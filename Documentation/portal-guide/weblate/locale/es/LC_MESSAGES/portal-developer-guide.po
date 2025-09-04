@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Portal Guide ${revision}\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-19 04:43+0000\n"
+"POT-Creation-Date: 2025-09-04 02:01+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: es\n"
@@ -255,7 +255,7 @@ msgstr ""
 #: ../../source/portal-developer-guide/customization/task-item-details.rst:254
 #: ../../source/portal-developer-guide/customization/task-item-details.rst:305
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:642
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:609
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:613
 msgid "Result"
 msgstr ""
 
@@ -2739,7 +2739,7 @@ msgstr ""
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-viewer-widget.rst:38
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:39
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:33
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:79
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:81
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-welcome-widget.rst:61
 msgid "``id``: ID of the widget"
 msgstr ""
@@ -2760,7 +2760,7 @@ msgstr ""
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-viewer-widget.rst:44
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:45
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:39
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:85
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:87
 msgid "``x``: HTML DOM Style ``left`` is calculated as formula ``x / 12 * 100%``"
 msgstr ""
 
@@ -2771,7 +2771,7 @@ msgstr ""
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-viewer-widget.rst:46
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:47
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:41
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:87
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:89
 msgid "``y``: HTML DOM Style ``top`` is calculated as formula ``y / 12 * 100%``"
 msgstr ""
 
@@ -2782,7 +2782,7 @@ msgstr ""
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-viewer-widget.rst:48
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:49
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:43
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:89
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:91
 msgid ""
 "``w``: HTML DOM Style ``width`` is calculated as formula ``60 * w + 20 * "
 "(w - 1)``"
@@ -2795,7 +2795,7 @@ msgstr ""
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-viewer-widget.rst:50
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:51
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:45
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:91
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:93
 msgid ""
 "``h``: HTML DOM Style ``height`` is calculated as formula ``60 * h + 20 *"
 " (h - 1)``"
@@ -2805,7 +2805,7 @@ msgstr ""
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-notification-widget.rst:68
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-viewer-widget.rst:52
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:53
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:93
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:95
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-welcome-widget.rst:73
 msgid "``styleClass`` (optional): add CSS Classes to HTML DOM of the widget"
 msgstr ""
@@ -2814,7 +2814,7 @@ msgstr ""
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-notification-widget.rst:70
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-viewer-widget.rst:54
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:55
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:95
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:97
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-welcome-widget.rst:75
 msgid "``style`` (optional): add inline style to HTML DOM of the widget"
 msgstr ""
@@ -2825,7 +2825,7 @@ msgstr ""
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-external-page-widget.rst:70
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-notification-widget.rst:74
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-viewer-widget.rst:58
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:106
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:108
 msgid ""
 "``showFullscreenMode``: visibility of the fullscreen mode icon. The "
 "default value is ``true``, set to ``false`` to hide the icon"
@@ -3102,7 +3102,7 @@ msgid "``sortField``: default sort field for the Case widget"
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:102
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:99
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:101
 msgid ""
 "``sortDescending``: sort direction of the default sort field. The default"
 " value is ``false`` (sort ascending)"
@@ -3115,14 +3115,14 @@ msgid ""
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:108
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:104
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:106
 msgid ""
 "``showWidgetInfo``: visibility of the widget information icon. The "
 "default value is ``true``, set to ``false`` to hide the icon"
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:112
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:108
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:110
 msgid ""
 "``isTopMenu``: if the value is ``true``, the dashboard appears as a top-"
 "level item in the navigation bar. If the value is ``false``, it appears "
@@ -3194,14 +3194,14 @@ msgid ""
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:149
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:149
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:153
 msgid ""
 "``visible``: visibility of a column. The default value is \"true\". Set "
 "to \"false\" to hide the column."
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:152
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:152
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:156
 msgid ""
 "``quickSearch``: Adds this field to the search scope of the quick search."
 " The default value is ``false``. Set it to ``true`` to apply search "
@@ -3209,12 +3209,12 @@ msgid ""
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:155
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:155
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:159
 msgid "``headers``: multilingual header of the column."
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:160
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:160
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:164
 msgid "Custom Columns"
 msgstr ""
 
@@ -3242,7 +3242,7 @@ msgid ""
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:192
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:186
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:190
 msgid ""
 "``type``: type of the widget column. There are two options: ``STANDARD`` "
 "and ``CUSTOM``."
@@ -3255,7 +3255,7 @@ msgid ""
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:198
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:192
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:196
 msgid ""
 "Portal only displays custom fields declared in the ``custom-fields.yaml``"
 " file. Refer to :dev-url:`Custom Fields Meta Information </doc/|version"
@@ -3338,7 +3338,7 @@ msgid "custom-action-button-custom-field"
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:237
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:196
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:200
 msgid "Filter Conditions"
 msgstr ""
 
@@ -3352,43 +3352,43 @@ msgid ""
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:244
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:203
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:207
 msgid "Base structure of filter json:"
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:270
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:229
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:233
 msgid "``field``: filter field name corresponding with column name"
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:272
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:230
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:234
 msgid "``values``: filter value, could be a list, a string or a number"
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:274
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:231
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:235
 msgid ""
 "``operator``: filter operator, operators can be difference depend on each"
 " field type."
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:276
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:233
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:237
 msgid ""
 "**String column**: is, is_not, empty, not_empty, contains, not_contains, "
 "start_with, not_start_with, end_with, not_end_with"
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:278
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:235
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:239
 msgid ""
 "**Number column**: between, not_between, empty, not_empty, equal, "
 "not_equal, less, less_or_equal, greater, greater_or_equal"
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:280
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:237
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:241
 msgid ""
 "**Date column**: today, yesterday, is, is_not, before, after, between, "
 "not_between, current, last, next, empty, not_empty"
@@ -3401,7 +3401,7 @@ msgid ""
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:284
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:241
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:245
 msgid "Date type additional field:"
 msgstr ""
 
@@ -3430,7 +3430,7 @@ msgid "``to``: string value. E.g.: \"55.2\""
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:299
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:249
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:253
 msgid ""
 "There are additional fields dependent on the operator and many specific "
 "filters for each field type. Below is the list of filterable columns and "
@@ -3438,7 +3438,7 @@ msgid ""
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:303
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:254
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:258
 msgid ""
 "We encourage utilizing dashboard configurations to edit widgets and then "
 "leveraging the export dashboard feature to ensure better expectations "
@@ -3446,12 +3446,12 @@ msgid ""
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:305
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:256
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:260
 msgid "Standard Column:"
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:307
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:286
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:290
 msgid "``name``"
 msgstr ""
 
@@ -3463,7 +3463,7 @@ msgid ""
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:333
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:312
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:316
 msgid "``description``"
 msgstr ""
 
@@ -3530,7 +3530,7 @@ msgid "``type`` field must be ``custom``"
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:533
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:500
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:504
 msgid "Quick Search"
 msgstr ""
 
@@ -3542,19 +3542,19 @@ msgid ""
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:538
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:505
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:509
 msgid "``enableQuickSearch``: enables the quick search feature for the widget."
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:540
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:507
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:511
 msgid ""
 "``quickSearch``: indicates that a column is searchable using the quick "
 "search feature."
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:542
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:509
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:513
 msgid ""
 "If you set the ``enableQuickSearch`` attribute to ``false``, the quick "
 "search feature will be disabled, regardless of the ``quickSearch`` "
@@ -3572,7 +3572,7 @@ msgid ""
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:550
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:517
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:521
 msgid "Below are the definition of these attributes:"
 msgstr ""
 
@@ -3585,30 +3585,30 @@ msgstr ""
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:568
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:596
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:115
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:535
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:563
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:539
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:567
 msgid "Valid values:"
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:570
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:117
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:537
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:541
 msgid "``true``: show the quick search text box."
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:571
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:118
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:538
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:542
 msgid "``false``: hide the quick search text box."
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:572
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:539
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:543
 msgid "``not defined``: hide the quick search text box."
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:574
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:541
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:545
 msgid ""
 "``quickSearch``: to choose which columns can be searched by the quick "
 "search feature, set the ``quickSearch`` field for each column as shown "
@@ -3616,29 +3616,29 @@ msgid ""
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:598
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:565
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:569
 msgid "``true``: apply quick search for this column."
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:599
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:566
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:570
 msgid "``false``: do not apply quick search for this column."
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:600
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:567
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:571
 msgid ""
 "``not defined``: the ``name`` and ``description`` columns are ``true``, "
 "other columns are ``false`` by default."
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:603
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:570
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:574
 msgid "Multi-Language Support for Custom String Fields"
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:605
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:572
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:576
 msgid ""
 "With the **Multi-Language Support for Custom Fields** feature, we enable "
 "the provision of values in a custom field in multiple languages. The "
@@ -3647,19 +3647,19 @@ msgid ""
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:609
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:576
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:580
 msgid ""
 "Portal only supports Multi-Language for Custom Fields with ``TYPE: "
 "STRING``."
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:612
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:579
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:583
 msgid "Enabling Multi-Language Support"
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:614
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:581
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:585
 msgid ""
 "To allow a custom field to retrieve multilingual values from the CMS, set"
 " the ``HasCmsValue`` attribute to ``true`` in the corresponding ``custom-"
@@ -3679,7 +3679,7 @@ msgid ""
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:624
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:591
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:595
 msgid "Example YAML Configuration"
 msgstr ""
 
@@ -3700,71 +3700,71 @@ msgid "case-field-cms"
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:644
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:611
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:615
 msgid ""
 "If ``HasCmsValues`` is set with ``true``, the values from the CMS are "
 "used."
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:645
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:612
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:616
 msgid ""
 "If the values are entered and translated in the CMS, then the custom "
 "field is displayed based on the selected language."
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:646
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:613
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:617
 msgid ""
 "If the translation for a value is missing in the CMS, the static value "
 "from the entry is used instead."
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:649
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:616
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:620
 msgid "Sorting, Filtering, and Searching with Multi-Language Custom Fields"
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:652
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:619
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:623
 msgid "Sorting"
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:654
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:621
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:625
 msgid ""
 "``HasCmsValues = false`` or not set. Sorting is performed as usual based "
 "on the stored values."
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:655
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:622
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:626
 msgid ""
 "``HasCmsValues = true``. Sorting is performed based on values translated "
 "in the currently selected language."
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:659
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:626
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:630
 msgid ""
 "If ``HasCmsValues = true`` but a translation is missing in a specific "
 "language, only the translated values are sorted."
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:662
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:630
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:634
 msgid "Searching"
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:664
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:632
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:636
 msgid ""
 "``HasCmsValues = false`` or not set. The search is performed as usual "
 "based on the stored value."
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:665
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:633
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:637
 msgid ""
 "``HasCmsValues = true``. The search is conducted in both the CMS "
 "translations and the original value."
@@ -3777,45 +3777,45 @@ msgid ""
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:670
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:638
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:642
 msgid "Filtering"
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:672
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:640
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:644
 msgid ""
 "``HasCmsValues = false`` or not set. Filtering is performed as usual "
 "based on the stored value."
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:673
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:641
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:645
 msgid ""
 "``HasCmsValues = true``. The filter is conducted in both the CMS "
 "translations and the original value."
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:677
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:645
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:649
 msgid ""
 "When enabling the Multi-Language for Custom Fields, only accepted "
 "``CONTAINS`` operator."
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:681
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:649
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:653
 msgid ""
 "If a value needs to be filtered in multiple languages, all corresponding "
 "translations must be in the filter."
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:684
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:652
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:656
 msgid "Conclusion"
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:686
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:654
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:658
 msgid ""
 "With Multi-Language Support for Custom Fields, we enable flexible and "
 "dynamic provision of field content in multiple languages. The "
@@ -4178,13 +4178,13 @@ msgid ""
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-notification-widget.rst:56
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:81
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:83
 msgid "``names``: multilingual name of the widget on the UI"
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-notification-widget.rst:58
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:43
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:83
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:85
 msgid "``layout``: layout definition of the widget"
 msgstr ""
 
@@ -4440,127 +4440,135 @@ msgstr ""
 msgid "Below is a sample JSON definition of a task widget in the Portal dashboard"
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:75
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:77
 msgid "The basic JSON structure of a Task widget"
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:77
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:79
 msgid "``type``: type of the widget. Use ``task`` for a task widget"
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:97
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:99
 msgid "``sortField``: default sort field for the widget"
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:101
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:103
 msgid ""
 "``rowsPerPage``: maximum number of tasks can be displayed on one page of "
 "the task widget. The default value is 10 rows per page"
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:112
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:114
 msgid ""
 "``columns``: column configurations for each of the columns in the widget."
 " You can predefine filters, styles, visibility,... of columns and define "
 "custom columns, too:"
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:116
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:118
 msgid "``field``: the field name of the column"
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:118
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:120
 msgid "For standard columns, ``field`` must be one of these:"
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:120
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:122
 msgid "``start``: column which contains start button to start the task directly."
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:122
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:124
 msgid "``Pin``: column which contains Pin button to Pin your task."
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:124
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:126
 msgid "``priority``: task priority"
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:126
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:128
 msgid "``id``: task ID"
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:128
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:130
 msgid "``name``: task name"
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:130
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:132
 msgid "``description``: task description"
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:132
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:134
 msgid "``activator``: task activator"
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:134
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:136
 msgid "``state``: task business state"
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:136
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:138
 msgid "``startTimestamp``: created date and time of the task"
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:138
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:140
 msgid "``endTimestamp``: end date and time of the task"
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:140
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:142
 msgid "``expiryTimestamp``: expiry date and time of the task"
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:142
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:144
 msgid ""
 "``actions``: for further actions: access task details, reset task, "
 "delegate task, reserve, destroy task, trigger escalation task and add Ad-"
 "hoc task"
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:144
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:146
 msgid ""
 "For custom columns, ``field`` is the name of a task custom field. Portal "
 "will use the value of ``field`` to get the value of the column."
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:147
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:149
 msgid ""
 "``canWorkOn``: filter only tasks that the current user can work on. The "
 "default value is \"false\"."
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:162
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:151
+msgid ""
+"``filterTasksByCurrentCaseOwner``: filter only the tasks where the "
+"current user is the case owner. The default value is ``false``. This "
+"filter is visible only if the ``Portal.Cases.EnableOwner`` setting is set"
+" to ``true`` in the :ref:`Admin Settings <update-portal-settings>`."
+msgstr ""
+
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:166
 msgid ""
 "|ivy| supports custom fields for tasks. You can show them in the Task "
 "widget as a column."
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:165
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:169
 msgid ""
 "You can predefine which column to show, and other attributes such as "
 "filter, format, and style. Below is a standard JSON of a custom column."
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:183
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:187
 msgid ""
 "Besides attributes explained in the previous section, a custom column has"
 " two differences:"
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:188
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:192
 msgid ""
 "``field``: this attribute is the name of the task's custom field which "
 "will be used to get data for the column."
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:198
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:202
 msgid ""
 "You can predefine filter conditions for most columns of the task widget. "
 "Each column has different requirements: some accept only a list, some "
@@ -4569,27 +4577,27 @@ msgid ""
 " for more details."
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:239
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:243
 msgid "``type``: ``standard`` for standard column or ``custom`` for custom column"
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:243
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:247
 msgid "``periodType``: string value. E.g.: ``YEAR``, ``MONTH``, ``WEEK``, ``DAY``"
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:245
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:249
 msgid "``from``: string value. E.g.: \"04/04/2024\""
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:247
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:251
 msgid "``to``: string value. E.g.: \"05/05/2024\""
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:258
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:262
 msgid "``activator``"
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:282
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:286
 msgid ""
 "This column only accepts a list of role names or usernames as filter "
 "conditions for the task's responsible username. The available filter "
@@ -4597,54 +4605,54 @@ msgid ""
 "``current_user`` operator does not require value field."
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:309
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:338
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:313
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:342
 msgid ""
 "This column accepts all operators available for String column. "
 "Additionally, it accepts ``value`` as a list of string."
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:340
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:344
 msgid "``priority``"
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:364
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:368
 msgid ""
 "This column only accepts a list of priorities' names as the filter "
 "condition. The available filter operator is ``in``."
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:367
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:371
 msgid ""
 "Refer to :dev-url:`Task Priority </doc/|version|/public-"
 "api/ch/ivyteam/ivy/workflow/WorkflowPriority.html>` for available task "
 "priorities."
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:370
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:374
 msgid "``state``"
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:393
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:397
 msgid ""
 "This column only accepts a list of task business state names as its "
 "filter condition. The available filter operator is ``in``."
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:396
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:400
 msgid ""
 "Refer to :dev-url:`Task Business States </doc/|version|/public-"
 "api/ch/ivyteam/ivy/workflow/TaskBusinessState.html>` for available task "
 "business states."
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:400
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:404
 msgid ""
 "``startTimestamp`` and ``expiryTimestamp`` : created date and finished "
 "date of the Task"
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:443
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:447
 msgid ""
 "These columns accept all operators available for Date column. Fields may "
 "vary depending on the operator. The JSON example above covers most use "
@@ -4652,35 +4660,35 @@ msgid ""
 "``dd.MM.yyyy HH:mm``, ``MM/dd/yyyy`` and ``MM/dd/yyyy HH:mm``."
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:448
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:452
 msgid "``application``"
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:470
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:474
 msgid "Custom Field Column :"
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:472
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:476
 msgid ""
 ":ref:`configure-new-dashboard-task-widget-custom-columns` are using the "
 "same operator as :ref:`Standard Column <configure-new-dashboard-task-"
 "widget-filter-structure>`."
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:476
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:480
 msgid ""
 "``type`` field must be ``custom`` for Custom Field and ``custom_case`` "
 "for Custom Case Field."
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:502
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:506
 msgid ""
 "The quick search is a useful function for users to quickly search the "
 "tasks within the task widget. The configuration of the quick search has "
 "two attributes:"
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:512
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:516
 msgid ""
 "Conversely, if you set the ``enableQuickSearch`` attribute to ``true``, "
 "the quick search feature will search within the values of all columns "
@@ -4690,13 +4698,13 @@ msgid ""
 "description fields."
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:519
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:523
 msgid ""
 "``enableQuickSearch``: to enable/disable the quick search feature, set "
 "the ``enableQuickSearch`` field of the Task widget as shown below."
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:585
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:589
 #, python-brace-format
 msgid ""
 "Following this path to add your custom field values: "
@@ -4706,7 +4714,7 @@ msgid ""
 "description-category-and-values>` to get more information."
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:601
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:605
 msgid ""
 "In your CMS, the path should be "
 "``/CustomFields/Tasks/DriversVehicle/Values/Bike``, "
@@ -4714,15 +4722,15 @@ msgid ""
 "``/CustomFields/Tasks/DriversVehicle/Values/MonsterTruck``."
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:606
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:610
 msgid "|task-field-cms|"
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:660
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:664
 msgid "task-field-cms"
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:635
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:639
 msgid ""
 "Example: When language is German, a user can search for **Fahrrad** or "
 "the original value **Bike**."
