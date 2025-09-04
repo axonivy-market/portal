@@ -11,6 +11,14 @@
       "name" : "start()",
       "config" : {
         "callSignature" : "start",
+        "input" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.service.GlobalSettingService;",
+            "import ch.ivy.addon.portalkit.enums.GlobalVariable;",
+            "",
+            "out.isDocumentPreviewEnabled = GlobalSettingService.getInstance().findBooleanGlobalSettingValue(GlobalVariable.ENABLE_DOCUMENT_PREVIEW);"
+          ]
+        },
         "guid" : "1682717B951993D3"
       },
       "visual" : {
@@ -84,16 +92,7 @@
             "segment" : 0.29,
             "offset" : { "x" : -2, "y" : -7 }
           }, "condition" : "in.uploadDocumentCheckStatus == com.axonivy.portal.components.enums.UploadDocumentCheckStatus.OK" },
-        { "id" : "f86", "to" : "f67" }
-      ]
-    }, {
-      "id" : "f67",
-      "type" : "Alternative",
-      "visual" : {
-        "at" : { "x" : 408, "y" : 384 }
-      },
-      "connect" : [
-        { "id" : "f77", "to" : "f76" }
+        { "id" : "f42", "to" : "f76", "via" : [ { "x" : 408, "y" : 384 } ] }
       ]
     }, {
       "id" : "f68",
@@ -125,7 +124,7 @@
       "id" : "f4",
       "type" : "HtmlDialogEnd",
       "visual" : {
-        "at" : { "x" : 416, "y" : 448 }
+        "at" : { "x" : 408, "y" : 448 }
       }
     }, {
       "id" : "f5",
@@ -139,11 +138,7 @@
           ],
           "map" : {
             "out.document" : "param.document"
-          },
-          "code" : [
-            "import org.apache.commons.lang3.Strings;",
-            "out.isImage = param.document!= null && Strings.CI.startsWith(param.document.getContentType(), \"image/\");"
-          ]
+          }
         },
         "result" : {
           "params" : [
@@ -462,5 +457,97 @@
         "at" : { "x" : 944, "y" : 288 }
       },
       "connect" : { "id" : "f33", "to" : "f68" }
+    }, {
+      "id" : "f43",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "previewDocument(IvyDocument)",
+      "config" : {
+        "callSignature" : "previewDocument",
+        "input" : {
+          "params" : [
+            { "name" : "document", "type" : "com.axonivy.portal.components.ivydata.bo.IvyDocument" }
+          ],
+          "map" : {
+            "out.document" : "param.document"
+          },
+          "code" : [
+            "import com.axonivy.portal.components.util.DocumentUtils;",
+            "out.isImage = DocumentUtils.isImageDocument(param.document);"
+          ]
+        },
+        "result" : {
+          "params" : [
+            { "name" : "streamedContent", "type" : "org.primefaces.model.StreamedContent" }
+          ],
+          "map" : {
+            "result.streamedContent" : "in.streamedContent"
+          }
+        },
+        "guid" : "198EF84665F13715"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 760 },
+        "labelOffset" : { "x" : 13, "y" : 35 }
+      },
+      "connect" : { "id" : "f48", "to" : "f44" }
+    }, {
+      "id" : "f44",
+      "type" : "SubProcessCall",
+      "name" : "Download Document",
+      "config" : {
+        "processCall" : "Functional Processes/DownloadDocument:downloadDocument(ch.ivyteam.ivy.workflow.ICase,com.axonivy.portal.components.ivydata.bo.IvyDocument)",
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.streamedContent" : "result.streamedContent"
+          }
+        },
+        "call" : {
+          "params" : [
+            { "name" : "bussinessCase", "type" : "ch.ivyteam.ivy.workflow.ICase" },
+            { "name" : "document", "type" : "com.axonivy.portal.components.ivydata.bo.IvyDocument" }
+          ],
+          "map" : {
+            "param.bussinessCase" : "in.businessCase",
+            "param.document" : "in.document"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 256, "y" : 760 },
+        "size" : { "width" : 128, "height" : 60 }
+      },
+      "connect" : { "id" : "f51", "to" : "f45" }
+    }, {
+      "id" : "f45",
+      "type" : "SubProcessCall",
+      "name" : "Functional Processes/PreviewDocument",
+      "config" : {
+        "processCall" : "Functional Processes/PreviewDocument:previewDocumentWithDocFactory(org.primefaces.model.StreamedContent)",
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.streamedContent" : "result.streamedContent"
+          }
+        },
+        "call" : {
+          "params" : [
+            { "name" : "streamedContent", "type" : "org.primefaces.model.StreamedContent" }
+          ],
+          "map" : {
+            "param.streamedContent" : "in.streamedContent"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 448, "y" : 760 }
+      },
+      "connect" : { "id" : "f49", "to" : "f47" }
+    }, {
+      "id" : "f47",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 632, "y" : 760 }
+      }
     } ]
 }

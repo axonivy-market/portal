@@ -6,8 +6,8 @@ documents java.util.List<com.axonivy.portal.components.ivydata.bo.IvyDocument> #
 documents PERSISTENT #fieldModifier
 documentUploadEvent org.primefaces.event.FileUploadEvent #field
 documentUploadEvent PERSISTENT #fieldModifier
-iCase ch.ivyteam.ivy.workflow.ICase #field
-iCase PERSISTENT #fieldModifier
+caze ch.ivyteam.ivy.workflow.ICase #field
+caze PERSISTENT #fieldModifier
 isHideUploadDocumentForDoneCase Boolean #field
 isHideUploadDocumentForDoneCase PERSISTENT #fieldModifier
 name String #field
@@ -22,3 +22,5 @@ deleteDocumentMessage String #field
 deleteDocumentMessage PERSISTENT #fieldModifier
 isImage Boolean #field
 isImage PERSISTENT #fieldModifier
+isDocumentPreviewEnabled Boolean #field
+isDocumentPreviewEnabled PERSISTENT #fieldModifier
