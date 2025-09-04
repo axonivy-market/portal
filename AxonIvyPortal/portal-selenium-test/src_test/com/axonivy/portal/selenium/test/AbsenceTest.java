@@ -22,7 +22,7 @@ import com.codeborne.selenide.Condition;
 import ch.ivy.addon.portalkit.enums.DeputyRoleType;
 
 
-@IvyWebTest
+@IvyWebTest(headless = false)
 public class AbsenceTest extends BaseTest {
   private static final LocalDate TODAY = LocalDate.now();
   private static final LocalDate YESTERDAY = TODAY.minusDays(1);
