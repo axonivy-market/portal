@@ -82,33 +82,42 @@ public class DashboardWelcomeWidgetConfigurationBean extends DashboardWelcomeWid
 
   public void handleFileUpload(FileUploadEvent event) {
     UploadedFile file = event.getFile();
-    if (file != null && file.getContent() != null && file.getContent().length > 0 && file.getFileName() != null) {
-      if (StringUtils.isNotBlank(getWidget().getImageLocation())) {
-        getWelcomeWidgetImageContentObject(true).delete();
-      }
-      // If image is not saved, create location
-      String extension = FilenameUtils.getExtension(file.getFileName());
-      String fileName = getWidget().getId().concat(DEFAULT_LOCALE_AND_DOT).concat(extension);
-      getWidget().setImageLocation(fileName);
-      getWidget().setImageType(extension);
+    if (file == null || file.getContent() == null || file.getContent().length == 0 || file.getFileName() == null) {
+      return;
+    }
 
-      byte[] content = file.getContent();
+    String originalLocation = getWidget().getImageLocation();
+    String originalType = getWidget().getImageType();
 
-      // scan svg files for malicious scripts
-      if ("svg".equalsIgnoreCase(FilenameUtils.getExtension(file.getFileName()))) {
-        String fileContent = new String(file.getContent(), StandardCharsets.UTF_8);
-        if (!SVGSecurityScanner.isSafe(fileContent)) {
-          FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR,
-              "SVG file contains potentially malicious content and cannot be uploaded", null);
-          FacesContext.getCurrentInstance().addMessage("config-welcome-widget-message", message);
-          return;
-        }
+    String extension = FilenameUtils.getExtension(file.getFileName());
+    byte[] content = file.getContent();
+
+    if (extension != null && extension.toLowerCase().startsWith("svg")) {
+      String fileContent = new String(content, StandardCharsets.UTF_8);
+      if (!SVGSecurityScanner.isSafe(fileContent)) {
+        getWidget().setImageLocation(originalLocation);
+        getWidget().setImageType(originalType);
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+            Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/documentFiles/fileContainScript"), null);
+        FacesContext.getCurrentInstance().addMessage("config-welcome-widget-message", message);
+        return;
       }
-      // save the temporary image
-      imageCMSObject = getWelcomeWidgetImageContentObject(true);
-      if (imageCMSObject != null) {
-        WelcomeWidgetUtils.readObjectValueOfDefaultLocale(imageCMSObject).write().bytes(content);
+    }
+
+    if (StringUtils.isNotBlank(originalLocation)) {
+      ContentObject previousTemp = getWelcomeWidgetImageContentObject(true);
+      if (previousTemp != null) {
+        previousTemp.delete();
       }
+    }
+
+    String fileName = getWidget().getId().concat(DEFAULT_LOCALE_AND_DOT).concat(extension);
+    getWidget().setImageLocation(fileName);
+    getWidget().setImageType(extension);
+
+    imageCMSObject = getWelcomeWidgetImageContentObject(true);
+    if (imageCMSObject != null) {
+      WelcomeWidgetUtils.readObjectValueOfDefaultLocale(imageCMSObject).write().bytes(content);
     }
   }
 

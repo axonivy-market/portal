@@ -16,6 +16,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.primefaces.PrimeFaces;
 import org.primefaces.event.FileUploadEvent;
 
+import com.axonivy.portal.components.util.ImageUploadResult;
 import com.axonivy.portal.util.ExternalLinkUtils;
 import com.axonivy.portal.util.UploadDocumentUtils;
 
@@ -30,7 +31,6 @@ import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IUser;
-import ch.ivyteam.util.Pair;
 
 @ManagedBean
 @ViewScoped
@@ -84,15 +84,15 @@ public class ExternalLinkBean implements Serializable {
 
   public void handleImageUpload(FileUploadEvent event) {
     removeImage();
-    Pair<String, String> imageInfo = ExternalLinkUtils.handleImageUpload(event);
-    if (imageInfo.equals(Pair.of(null, null))) {
+    ImageUploadResult imageInfo = ExternalLinkUtils.handleImageUpload(event);
+    if (imageInfo.isInvalid()) {
       FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR,
           Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/documentFiles/fileContainScript"), null);
       FacesContext.getCurrentInstance().addMessage("external-link-dialog-message", message);
       return;
     } else {
-      externalLink.setImageLocation(imageInfo.getLeft());
-      externalLink.setImageType(imageInfo.getRight());
+      externalLink.setImageLocation(imageInfo.imageLocation());
+      externalLink.setImageType(imageInfo.imageType());
     }
   }
   

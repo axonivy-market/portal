@@ -142,18 +142,18 @@ public class WelcomeWidgetUtils {
     }
     if (StringUtils.isNotBlank(widget.getImageLocation())) {
       String widgetId = DashboardWidgetUtils.generateNewWidgetId(WELCOME);
-      String fileExtension = WelcomeWidgetUtils.getFileTypeOfImage(widget.getImageType());
+      String rawExtension = WelcomeWidgetUtils.getFileTypeOfImage(widget.getImageType());
+      String fileExtension = normalizeSvgExtension(rawExtension);
       String imageLocation = widgetId.concat(WelcomeWidgetUtils.DEFAULT_LOCALE_AND_DOT).concat(fileExtension);
-      ContentObject newImageObject =
-          WelcomeWidgetUtils.getImageContentObject(WelcomeWidgetUtils.getFileNameOfImage(imageLocation), fileExtension);
+      ContentObject newImageObject = WelcomeWidgetUtils
+          .getImageContentObject(WelcomeWidgetUtils.getFileNameOfImage(imageLocation), fileExtension);
       if (StringUtils.isNotBlank(widget.getImageContent())) {
-        // If has defined content, create new image
         byte[] content = Base64.getDecoder().decode(widget.getImageContent());
-        // Handle SVG security scanning
-        if ("svg".equalsIgnoreCase(fileExtension)) {
-          String fileContent = new String(content, StandardCharsets.UTF_8);
-          if (!SVGSecurityScanner.isSafe(fileContent)) {
-            Ivy.log().warn("WidgetId [{}] image rejected: unsafe SVG content.", widget.getId());
+        if (isPotentialSvg(fileExtension, content)) {
+          if (isUnsafeSvg(content)) {
+            Ivy.log().warn("WidgetId [{0}] image rejected: unsafe SVG content (base64 path).", widget.getId());
+            widget.setImageContent(null);
+            widget.setImageLocation(null);
             return;
           }
         }
@@ -161,10 +161,60 @@ public class WelcomeWidgetUtils {
         widget.setImageLocation(imageLocation);
         widget.setImageContent(null);
       } else {
-        // If has defined location, clone new image
         byte[] oldFileContent = WelcomeWidgetUtils.getImageAsByteData(widget.getImageLocation());
-        WelcomeWidgetUtils.readObjectValueOfDefaultLocale(newImageObject).write().bytes(oldFileContent);
+        if (oldFileContent != null) {
+          if (isPotentialSvg(fileExtension, oldFileContent) && isUnsafeSvg(oldFileContent)) {
+            Ivy.log().warn("WidgetId [{0}] image clone rejected: unsafe SVG content (clone path).", widget.getId());
+            widget.setImageLocation(null);
+            return;
+          }
+          WelcomeWidgetUtils.readObjectValueOfDefaultLocale(newImageObject).write().bytes(oldFileContent);
+        }
       }
     }
+  }
+
+  static boolean isPotentialSvg(String extension, byte[] data) {
+    if (isSvgExtension(extension)) {
+      return true;
+    }
+    return isSvgContent(data);
+  }
+
+  static boolean isSvgExtension(String extension) {
+    if (extension == null) {
+      return false;
+    }
+    String lower = extension.toLowerCase();
+    return "svg".equals(lower) || lower.startsWith("svg+") || "svgz".equals(lower);
+  }
+
+  static boolean isSvgContent(byte[] data) {
+    if (data == null || data.length < 4) {
+      return false;
+    }
+    String prefix = new String(data, 0, Math.min(data.length, 200), StandardCharsets.UTF_8).trim().toLowerCase();
+    return prefix.startsWith("<svg");
+  }
+
+  static boolean isUnsafeSvg(byte[] data) {
+    try {
+      String content = new String(data, StandardCharsets.UTF_8);
+      return !SVGSecurityScanner.isSafe(content);
+    } catch (Exception e) {
+      Ivy.log().warn("Error during SVG safety check: {0}", e.getMessage());
+      return true;
+    }
+  }
+
+  static String normalizeSvgExtension(String ext) {
+    if (ext == null) {
+      return EMPTY;
+    }
+    String lower = ext.toLowerCase();
+    if (lower.startsWith("svg")) {
+  return "svg";
+    }
+    return ext;
   }
 }

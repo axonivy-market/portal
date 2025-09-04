@@ -29,6 +29,7 @@ import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
 
 import com.axonivy.portal.components.dto.SecurityMemberDTO;
+import com.axonivy.portal.components.util.ImageUploadResult;
 import com.axonivy.portal.components.util.RoleUtils;
 import com.axonivy.portal.util.ExternalLinkUtils;
 import com.axonivy.portal.util.UploadDocumentUtils;
@@ -60,7 +61,6 @@ import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.exec.Sudo;
 import ch.ivyteam.ivy.workflow.IProcessStart;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
-import ch.ivyteam.util.Pair;
 
 @ManagedBean
 @ViewScoped
@@ -323,20 +323,19 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
     DisplayNameConvertor.updateEmptyValue(userLanguguage, externalLink.getDescriptions());
   }
 
-
   public void handleExternalLinkImageUpload(FileUploadEvent event) {
-    if(this.editedExternalLink == null) {
+    if (this.editedExternalLink == null) {
       return;
     }
     removeTempExternalLinkImage();
-    Pair<String, String> imageInfo = ExternalLinkUtils.handleImageUpload(event);
-    if (imageInfo.equals(Pair.of(null, null))) {
+    ImageUploadResult imageInfo = ExternalLinkUtils.handleImageUpload(event);
+    if (imageInfo.isInvalid()) {
       FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR,
           Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/documentFiles/fileContainScript"), null);
       FacesContext.getCurrentInstance().addMessage("process-dialog-message", message);
     } else {
-    this.editedExternalLink.setImageLocation(imageInfo.getLeft());
-      this.editedExternalLink.setImageType(imageInfo.getRight());
+      this.editedExternalLink.setImageLocation(imageInfo.imageLocation());
+      this.editedExternalLink.setImageType(imageInfo.imageType());
     }
   }
 
