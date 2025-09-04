@@ -46,6 +46,7 @@
         "security" : "system",
         "output" : {
           "code" : [
+            "import com.axonivy.portal.components.util.DocumentUtils;",
             "import org.primefaces.model.StreamedContent;",
             "import java.util.HashMap;",
             "import java.util.Map;",
@@ -53,7 +54,7 @@
             "",
             "Map params = new HashMap();",
             "params.put(\"streamedContent\", in.streamedContent);",
-            "Map response = IvyAdapterService.startSubProcessInSecurityContext(\"previewDocumentByStream(org.primefaces.model.StreamedContent)\", params);",
+            "Map response = IvyAdapterService.startSubProcessInSecurityContext(DocumentUtils.DOC_FACTORY_SIGNATURE, params);",
             "if (response != null && response.get(\"streamedContent\") != null){",
             "  in.returnStreamedContent = response.get(\"streamedContent\") as StreamedContent;",
             "} else {",
