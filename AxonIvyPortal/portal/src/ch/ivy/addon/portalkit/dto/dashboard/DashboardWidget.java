@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 
 import com.axonivy.portal.dto.dashboard.NavigationDashboardWidget;
 import com.axonivy.portal.dto.dashboard.NewsDashboardWidget;
@@ -181,7 +182,7 @@ public abstract class DashboardWidget implements Serializable {
     }
 
     var searchResult = getUserFilterCollection().getWidgetFilterSelections().stream()
-        .filter(filter -> StringUtils.containsIgnoreCase(filter.getName(), searchSavedFilterKeyword))
+        .filter(filter -> Strings.CI.contains(filter.getName(), searchSavedFilterKeyword))
         .collect(Collectors.toList());
     setSavedFilters(searchResult);
   }

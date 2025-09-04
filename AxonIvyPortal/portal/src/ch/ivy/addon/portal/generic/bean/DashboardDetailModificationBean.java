@@ -37,8 +37,8 @@ import javax.faces.context.FacesContext;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 import org.apache.commons.lang3.math.NumberUtils;
-import org.apache.logging.log4j.util.Strings;
 import org.primefaces.PrimeFaces;
 import org.primefaces.event.ColumnResizeEvent;
 
@@ -332,7 +332,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     var iWebStartable = ProcessService.getInstance()
         .findCustomDashboardProcesses()
         .stream()
-        .filter(startable -> StringUtils.endsWith(startable.getId(), process.getId()))
+        .filter(startable -> Strings.CS.endsWith(startable.getId(), process.getId()))
         .findFirst().orElse(null);
 
     if (Objects.isNull(iWebStartable)) {
@@ -648,7 +648,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   private ContentObject getWelcomeWidgetImageObject(boolean isTempImage, WelcomeDashboardWidget widget, boolean isDarkMode) {
     String imageName = WelcomeWidgetUtils.getFileNameOfImage(isDarkMode ? widget.getImageLocationDarkMode() : widget.getImageLocation());
     // check if default light mode is configured for dark mode
-    if (isDarkMode && StringUtils.equals(widget.getImageLocationDarkMode(), widget.getImageLocation())) {
+    if (isDarkMode && Strings.CS.equals(widget.getImageLocationDarkMode(), widget.getImageLocation())) {
       imageName = imageName + WelcomeWidgetUtils.DARK_MODE;
     }
     imageName = isTempImage ? "temp_".concat(imageName) : imageName;
@@ -1071,8 +1071,8 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   }
 
   public void translate(DisplayName title) {
-    translatedText = Strings.EMPTY;
-    warningText = Strings.EMPTY;
+    translatedText = "";
+    warningText = "";
 
     String currentLanguage = UserUtils.getUserLanguage();
     if (!title.getLocale().getLanguage().equals(currentLanguage)) {

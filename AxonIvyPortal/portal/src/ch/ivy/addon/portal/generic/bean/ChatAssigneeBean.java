@@ -15,6 +15,7 @@ import javax.faces.context.FacesContext;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 import org.primefaces.PrimeFaces;
 
 import com.axonivy.portal.components.dto.RoleDTO;
@@ -246,7 +247,7 @@ public class ChatAssigneeBean implements Serializable {
     ObjectMapper objectMapper = new ObjectMapper();
     Map<String, Object> mappedObject = objectMapper.convertValue(group, Map.class);
     for (Map.Entry<String, Object> entry : mappedObject.entrySet()) {
-      if (StringUtils.equals("params", entry.getKey())) {
+      if (Strings.CS.equals("params", entry.getKey())) {
         Map<String, String> params = (Map<String, String>) entry.getValue();
         for (Map.Entry<String, String> param : params.entrySet()) {
           groupChatName = groupChatName.replace("{" + param.getKey() + "}", param.getValue());

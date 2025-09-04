@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 import org.primefaces.model.CheckboxTreeNode;
 
 import com.axonivy.portal.bo.ItemByCategoryStatistic;
@@ -33,7 +34,7 @@ public class CategoryUtils {
 
     List<String> values = new ArrayList<>();
     for (String category : categoryPaths) {
-      if (StringUtils.equals(category, CategoryUtils.NO_CATEGORY)) {
+      if (Strings.CS.equals(category, CategoryUtils.NO_CATEGORY)) {
         values.add(Ivy.cms().co(NO_CATEGORY_CMS));
       } else {
         values.add(category);
@@ -47,7 +48,7 @@ public class CategoryUtils {
     if (nodes != null) {
       for (CheckboxTreeNode<CategoryNode> node : nodes) {
         String category = node.getData().getCategory();
-        if (StringUtils.equals(category, StringUtils.EMPTY)) {
+        if (Strings.CS.equals(category, StringUtils.EMPTY)) {
           return new ArrayList<>(); // "All categories" is selected
         }
         nodePaths.add(category);
@@ -61,7 +62,7 @@ public class CategoryUtils {
     if (nodes != null) {
       for (CheckboxTreeNode<CategoryNode> node : nodes) {
         var categoryNode = node.getData();
-        if (StringUtils.equals(categoryNode.getCategory(), StringUtils.EMPTY)) {
+        if (Strings.CS.equals(categoryNode.getCategory(), StringUtils.EMPTY)) {
           return ALL; // "All categories" is selected
         }
         nodePaths.add(categoryNode.getValue());

@@ -21,6 +21,7 @@ import javax.faces.context.FacesContext;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 
 import com.axonivy.portal.components.util.FacesMessageUtils;
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
@@ -107,7 +108,7 @@ public class ColumnManagementBean implements Serializable, IMultiLanguage {
   }
 
   public List<String> completeCategoriesSelection(String query) {
-    return getCustomFieldCategories().stream().filter(cat -> StringUtils.containsIgnoreCase(cat, query))
+    return getCustomFieldCategories().stream().filter(cat -> Strings.CI.contains(cat, query))
         .collect(Collectors.toList());
   }
 
@@ -189,7 +190,7 @@ public class ColumnManagementBean implements Serializable, IMultiLanguage {
         standardFields.add(col.getField());
       }
     }
-    standardFields.sort(StringUtils::compare);
+    standardFields.sort(Strings.CS::compare);
     return standardFields;
   }
 
@@ -261,7 +262,7 @@ public class ColumnManagementBean implements Serializable, IMultiLanguage {
           .filter(meta -> !meta.isHidden())
           .filter(filterCustomFieldByCategory())
         .map(ICustomFieldMeta::name).filter(isNotUsedIn(getExistingFieldNames()))
-          .sorted().filter(f -> StringUtils.containsIgnoreCase(f, query))
+          .sorted().filter(f -> Strings.CI.contains(f, query))
           .collect(Collectors.toList());
   }
 
@@ -277,9 +278,9 @@ public class ColumnManagementBean implements Serializable, IMultiLanguage {
     return meta -> {
       if (StringUtils.isNoneBlank(selectedCustomFieldCategory)) {
         if (selectedCustomFieldCategory.equalsIgnoreCase(Ivy.cms().co(NO_CATEGORY_CMS))) {
-          return StringUtils.equals(meta.category(), EMPTY);
+          return Strings.CS.equals(meta.category(), EMPTY);
         }
-        return StringUtils.equals(meta.category(), selectedCustomFieldCategory);
+        return Strings.CS.equals(meta.category(), selectedCustomFieldCategory);
       }
       return true;
     };

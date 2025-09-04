@@ -23,7 +23,6 @@ import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.enums.GlobalVariable.Option;
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivy.addon.portalkit.jsf.Attrs;
-import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.PrimeFacesUtils;
 import ch.ivyteam.ivy.environment.Ivy;

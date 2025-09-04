@@ -8,6 +8,7 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 
 import com.axonivy.portal.components.util.FacesMessageUtils;
 
@@ -39,7 +40,7 @@ public class WidgetFilterHelperBean implements Serializable {
 
   private boolean isDuplicatedFilter() {
     var result = WidgetFilterService.getInstance().findFiltersByWidgetId(saveFilter.getWidgetId());
-    var foundFilter = result.stream().filter(filter -> StringUtils.equalsIgnoreCase(filter.getName(), saveFilter.getName()))
+    var foundFilter = result.stream().filter(filter -> Strings.CI.equals(filter.getName(), saveFilter.getName()))
         .findFirst().orElse(null);
     return foundFilter == null ? false : true;
   }
