@@ -626,7 +626,7 @@
       "connect" : [
         { "id" : "f55", "to" : "f52", "label" : {
             "name" : "Yes"
-          } },
+          }, "condition" : "in.isRenameDocumentSuccess" },
         { "id" : "f51", "to" : "f2", "label" : {
             "name" : "No"
           } }
