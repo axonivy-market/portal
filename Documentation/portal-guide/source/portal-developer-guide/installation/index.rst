@@ -482,6 +482,11 @@ Release notes
 This part lists all relevant changes since the last official product
 releases of |ivy|.
 
+Changes in 13.2.0
+-----------------
+- Enhanced the document preview feature for the task and case detail. If you have DocFactory in the same security context. You can preview Word(doc, docx), Excel(xls, xlsx) and email(eml) documents.
+
+
 Changes in 13.1.0
 -----------------
 - Introduced Custom Statistic Chart. Refer to :ref:`statistic-chart` for more information. 
