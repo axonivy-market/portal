@@ -552,37 +552,31 @@
         "size" : { "width" : 128 }
       },
       "connect" : [
-        { "id" : "f92", "to" : "f94" }
+        { "id" : "f97", "to" : "f96" }
       ]
     }, {
       "id" : "f93",
       "type" : "HtmlDialogEnd",
       "visual" : {
-        "at" : { "x" : 680, "y" : 768 }
+        "at" : { "x" : 632, "y" : 768 }
       }
     }, {
-      "id" : "f94",
-      "type" : "SubProcessCall",
-      "name" : "Search for DocFactory",
+      "id" : "f96",
+      "type" : "Script",
+      "name" : "Find DocFactory and convert",
       "config" : {
-        "processCall" : "Functional Processes/PreviewDocument:previewDocumentWithDocFactory(org.primefaces.model.StreamedContent)",
-        "call" : {
-          "map" : {
-            "param.streamedContent" : "in.streamedContent"
-          }
-        },
         "output" : {
-          "map" : {
-            "out" : "in",
-            "out.streamedContent" : "result.streamedContent"
-          }
+          "code" : [
+            "import com.axonivy.portal.components.util.DocumentUtils;",
+            "in.streamedContent = DocumentUtils.findDocFactoryAndConvert(in.streamedContent);"
+          ]
         }
       },
       "visual" : {
-        "at" : { "x" : 448, "y" : 768 }
+        "at" : { "x" : 432, "y" : 768 }
       },
       "connect" : [
-        { "id" : "f95", "to" : "f93", "color" : "default" }
+        { "id" : "f98", "to" : "f93" }
       ]
     } ]
 }
