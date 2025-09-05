@@ -124,12 +124,8 @@ function checkUrl(iFrame, appName) {
   }
 
   // Update title
-  if (appName) {
-    const title = iframeDoc.title ? iframeDoc.title.concat(" - ", appName) : appName;
-    document.title = title;
-  } else {
-    document.title = iframeDoc.title;
-  }
+  const title = iframeDoc.title ? iframeDoc.title.concat(" - ", appName) : appName;
+  document.title = title; 
 
   var path = getPortalIframePath(iFrame);
   if (path === '' || invalidIFrameSrcPath) {
