@@ -53,26 +53,28 @@ public final class DocumentUtils {
         && Strings.CI.endsWithAny(streamedContent.getName(), SUPPORTED_PREVIEW_FILE_TYPES)) {
       return streamedContent;
     }
-    Map<String, Object> params = new HashMap<String, Object>();
 
-    InputStream is = streamedContent.getStream().get();
-    params.put("inputStream", is);
-    params.put("fileName", streamedContent.getName());
-    params.put("contentType", streamedContent.getContentType());
-
-    Map<String, Object> response = IvyAdapterService.startSubProcessInSecurityContext(DocumentUtils.DOC_FACTORY_SIGNATURE, params);
-
-    if (response != null && response.get("inputStream") != null){
-      InputStream convertedIS = (InputStream)response.get("inputStream");
-      
-      return DefaultStreamedContent
-          .builder()
-          .stream(() -> convertedIS)
-          .name(streamedContent.getName())
-          // DocFactory always return stream as pdf
-          .contentType("application/pdf")
-          .build();
-    } 
+    if (streamedContent != null && streamedContent.getStream() != null) {
+      Map<String, Object> params = new HashMap<String, Object>();
+      InputStream is = streamedContent.getStream().get();
+      params.put("inputStream", is);
+      params.put("fileName", streamedContent.getName());
+      params.put("contentType", streamedContent.getContentType());
+  
+      Map<String, Object> response = IvyAdapterService.startSubProcessInSecurityContext(DocumentUtils.DOC_FACTORY_SIGNATURE, params);
+  
+      if (response != null && response.get("inputStream") != null){
+        InputStream convertedIS = (InputStream)response.get("inputStream");
+        
+        return DefaultStreamedContent
+            .builder()
+            .stream(() -> convertedIS)
+            .name(streamedContent.getName())
+            // DocFactory always returns stream as pdf
+            .contentType("application/pdf")
+            .build();
+      } 
+    }
     return streamedContent;
   }
 }
