@@ -102,6 +102,11 @@ public class PortalCasesScreenshotTest extends ScreenshotBaseTest {
 
     refreshPage();
     detailsPage.waitForCaseDetailsDisplay();
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(detailsPage.getRenameDocumentDialog(),
+        ScreenshotUtils.CASE_DETAIL_FOLDER + "how-to-rename-document", new ScreenshotMargin(10));
+
+    refreshPage();
+    detailsPage.waitForCaseDetailsDisplay();
     ScreenshotUtils.executeDecorateJs("scrollToBottomOfLayoutContent()");
     ScreenshotUtils.executeDecorateJs("highlightShowMoreNoteLink()");
     detailsPage.getHistoriesBox();

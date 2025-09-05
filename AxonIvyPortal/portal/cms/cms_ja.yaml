@@ -247,9 +247,11 @@ ch.ivy.addon.portalkit.ui.jsf:
       disableTaskCount: タスク リストでタスクのカウントを無効にするには true に設定してください
       displayAllUsersOfTaskActivator: この設定は SecurityMemberDisplayName コンポーネントに使用します。SecurityMember がロールである場合、この設定を true に設定すると、このロールのすべてのユーザーが一覧表示されます。true に設定すると、ロール名の横にアイコン情報が表示されます。
       displayMessageAfterFinishOrLeaveTask: ユーザーがタスクを完了または退出すると、フィードバック メッセージが表示されます。
+      documentUploadSizeLimit: 'TODO: Set the size limit for uploading documents in megabytes (MB). The default value is 20MB.'
       embedInFrame: プロセス／タスクをIFrameモードで開始するには true に設定してください
       enableCaseOwner: ケースがクエリーされるときに、フィルタリングケースオーナーを有効にするには true に設定します。この設定は、ケースリスト、グローバル検索、統計など、すべてのケースクエリーに影響します。
       enableDeepLTranslation: DeepL翻訳サポートを有効にするには、このプロパティーを true に設定してください。
+      enableDocumentPreview: 'TODO: Set to true to enable document preview for some certain file types. Supported file types are: pdf, png, txt, log.'
       enableGroupChat: グループ チャット機能を有効にするには、このプロパティーを true に設定してください。
       enablePinCase: 'TODO: Set this property to true to enable the ability to pin cases.'
       enablePinTask: 'TODO: Set this property to true to enable the ability to pin tasks.'
@@ -272,6 +274,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       hideTimeNote: 日付の横の時間と分を非表示にするには、true に設定してください。
       hideUploadDocumentForDoneCaseNote: ケース完了後のドキュメントのアップロード（および削除）を拒否するには、true に設定します。
       hideYear: true に設定すると、年は非表示になり、そうでない場合は表示されます。
+      imageUploadSizeLimit: 'TODO: Set the size limit for uploading images in megabytes (MB). The default value is 6MB.'
       loggedInUserFormat: ログインしたユーザー形式を表示するオプション
       refreshTaskListIntervalNote: タスクリストの更新間隔。（秒単位）
       showAvatar: ユーザー／ロールのアバターの表示のオン／オフを切り替えます。
@@ -284,9 +287,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       showTaskDurationTime: タスク詳細ページでの所要時間の表示のオン／オフを切り替えます。
       showTooltipTechnicalName: TODO Enable to show users' technical name on tooltips.
       uploadDocumentWhiteListExtensionNote: すべての拡張子を許可する場合は、空欄にしてください。一部の拡張子のみを許可する場合は、対象の拡張子をカンマで区切って入力してください。（例：pdf, txt, doc, docx）
-      documentUploadSizeLimit: 'TODO: Set the size limit for uploading documents in megabytes (MB). The default value is 20MB.'
-      enableDocumentPreview: 'TODO: Set to true to enable document preview for some certain file types. Supported file types are: pdf, png, txt, log.'
-      imageUploadSizeLimit: 'TODO: Set the size limit for uploading images in megabytes (MB). The default value is 6MB.'
     key: キー
     link: リンク
     loading: 読み込み中
@@ -764,11 +764,13 @@ ch.ivy.addon.portalkit.ui.jsf:
       WidgetNameColumn: ウィジェット名
       WrongDateFormat: 日付が無効です
     ManageFilter: フィルターの管理
+    NoColumnsEnabledForQuickSearch: 'TODO: No columns are enabled for quick search'
     NoData: データなし
     NoSavedFilterMessage: 保存されたフィルターが見つかりません。［フィルターを保存］ ボタンをクリックして新しいフィルターを作成してください
     NoWidgetAvailable: ウィジェットがありません。
     QuickSearch: クイック検索
     QuickSearchInfo: ウィジェットの列管理で、クイック検索の範囲をカスタマイズできます。「含む」に基づいて検索しますが、多数の列を追加する場合はパフォーマンスに注意してください。
+    QuickSearchScope: 'TODO: Search Scope: {0}'
     RestoreDefaultDashboardMessage: 続行すると、自分で作成したすべてのウィジェットが失われます。<span class="dashboard-template-name-message">{0}</span> の標準設定が適用されます。
     SaveNewWidgetFilterHeader: 新しいウィジェットフィルターを保存
     SavedFilterHeader: 保存されたフィルター
@@ -931,12 +933,16 @@ ch.ivy.addon.portalkit.ui.jsf:
     yourProcessViewer: プロセス ビューアー
     yourProcesses: プロセス
     yourTasks: タスク
-    NoColumnsEnabledForQuickSearch: 'TODO: No columns are enabled for quick search'
-    QuickSearchScope: 'TODO: Search Scope: {0}'
   dashboardProcess:
     processAriaLabel: 'TODO Process name: {0}. Process description: {1}'
   documentFiles:
+    FilenameEmpty: 'TODO: Filename cannot be empty.'
     PreviewDocument: タスクの詳細にアクセス
+    RenameFile: 'TODO: Rename file'
+    RenamingDocument: 'TODO: Rename document'
+    RenamingDocumentNote: 'TODO: {0} has renamed the file {1} to {2}'
+    RenamingDocumentSuccess: 'TODO: Rename successfully.'
+    RenamingFailed: 'TODO: An error occurs while renaming the document.'
     deleteDocumentNote: '{0} が {1} を削除しました'
     deleteSuceed: ファイルの削除に成功しました
     download: ダウンロード
@@ -1755,4 +1761,3 @@ Texts:
 
     </P>
 
-...
