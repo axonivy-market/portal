@@ -1,4 +1,0 @@
-PreviewDocumentData #class
-com.axonivy.portal.components #namespace
-streamedContent org.primefaces.model.StreamedContent #field
-returnStreamedContent org.primefaces.model.StreamedContent #field
