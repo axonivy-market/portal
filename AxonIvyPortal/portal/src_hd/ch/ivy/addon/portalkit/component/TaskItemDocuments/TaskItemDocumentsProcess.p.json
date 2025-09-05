@@ -517,32 +517,7 @@
         "at" : { "x" : 256, "y" : 760 },
         "size" : { "width" : 128, "height" : 60 }
       },
-      "connect" : { "id" : "f57", "to" : "f45" }
-    }, {
-      "id" : "f45",
-      "type" : "SubProcessCall",
-      "name" : "Functional Processes/PreviewDocument",
-      "config" : {
-        "processCall" : "Functional Processes/PreviewDocument:previewDocumentWithDocFactory(org.primefaces.model.StreamedContent)",
-        "output" : {
-          "map" : {
-            "out" : "in",
-            "out.streamedContent" : "result.streamedContent"
-          }
-        },
-        "call" : {
-          "params" : [
-            { "name" : "streamedContent", "type" : "org.primefaces.model.StreamedContent" }
-          ],
-          "map" : {
-            "param.streamedContent" : "in.streamedContent"
-          }
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 448, "y" : 760 }
-      },
-      "connect" : { "id" : "f61", "to" : "f47" }
+      "connect" : { "id" : "f45", "to" : "f64" }
     }, {
       "id" : "f47",
       "type" : "HtmlDialogEnd",
@@ -680,5 +655,21 @@
         "size" : { "width" : 128, "height" : 60 }
       },
       "connect" : { "id" : "f48", "to" : "f14" }
+    }, {
+      "id" : "f64",
+      "type" : "Script",
+      "name" : "Find DocFactory and convert",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.components.util.DocumentUtils;",
+            "in.streamedContent = DocumentUtils.findDocFactoryAndConvert(in.streamedContent);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 440, "y" : 760 }
+      },
+      "connect" : { "id" : "f57", "to" : "f47" }
     } ]
 }
