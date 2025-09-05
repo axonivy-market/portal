@@ -9,19 +9,21 @@ import org.apache.commons.lang3.StringUtils;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.file.UploadedFile;
 
+import com.axonivy.portal.components.document.SVGSecurityScanner;
+import com.axonivy.portal.components.util.ImageUploadResult;
+
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.cm.ContentObject;
 import ch.ivyteam.ivy.cm.ContentObjectValue;
 import ch.ivyteam.ivy.cm.exec.ContentManagement;
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.util.Pair;
 
 public class ExternalLinkUtils {
 
   public static final String IMAGE_DIRECTORY = "com/axonivy/portal/ExternalLink";
   public static final String DEFAULT_LOCALE_TAG = "en";
 
-  public static Pair<String, String> handleImageUpload(FileUploadEvent event) {
+  public static ImageUploadResult handleImageUpload(FileUploadEvent event) {
     UploadedFile file = event.getFile();
     if (file != null && file.getContent() != null && file.getContent().length > 0 && file.getFileName() != null) {
       // save the image
@@ -29,10 +31,11 @@ public class ExternalLinkUtils {
       String fileExtension = FilenameUtils.getExtension(file.getFileName());
       byte[] content = file.getContent();
 
-      // hanlde sanitize svg
-      if ("svg".equals(fileExtension)) {
-        content = PortalSanitizeUtils.sanitizeSvg(new String(content, StandardCharsets.UTF_8))
-            .getBytes(StandardCharsets.UTF_8);
+      if ("svg".equalsIgnoreCase(fileExtension)) {
+        String fileContent = new String(content, StandardCharsets.UTF_8);
+        if (!SVGSecurityScanner.isSafe(fileContent)) {
+          return new ImageUploadResult(null, null, true);
+        }
       }
 
       ContentObject imageCMSObject =
@@ -40,10 +43,10 @@ public class ExternalLinkUtils {
 
       if (imageCMSObject != null) {
         readObjectValueOfDefaultLocale(imageCMSObject).write().bytes(content);
-        return Pair.of(imageCMSObject.uri(), fileExtension);
+        return new ImageUploadResult(imageCMSObject.uri(), fileExtension, false);
       }
     }
-    return Pair.of(StringUtils.EMPTY, StringUtils.EMPTY);
+    return new ImageUploadResult(StringUtils.EMPTY, StringUtils.EMPTY, false);
   }
 
   public static void removeImage(String imageUrl, String imageType) {

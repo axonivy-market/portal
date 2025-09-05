@@ -11,7 +11,8 @@ import org.primefaces.virusscan.VirusException;
 import org.primefaces.virusscan.VirusScanner;
 import org.primefaces.virusscan.VirusScannerService;
 
-import ch.ivy.addon.portalkit.document.DocumentDetector;
+import com.axonivy.portal.components.document.DocumentDetector;
+
 import ch.ivy.addon.portalkit.document.DocumentDetectorFactory;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;

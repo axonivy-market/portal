@@ -45,7 +45,7 @@
             styleClass="si si-graphic-tablet-drawing-pen"/>
         </p>
 
-        <p:messages styleClass="ui-g-12 u-padding-0">
+        <p:messages styleClass="ui-g-12 u-padding-0" id="process-dialog-message">
           <p:autoUpdate />
         </p:messages>
 
@@ -176,7 +176,7 @@
               listener="#{processWidgetBean.handleExternalLinkImageUpload}"
               chooseIcon="#{visibilityBean.generateButtonIcon('si si-add-small')}"
               dragDropSupport="true" auto="true"
-              update="file-upload-panel"
+              update="file-upload-panel process-dialog-message"
               allowTypes="/(\.|\/)(png|jpg|jpeg|svg)$/i"
               accept=".png,.jpg,.jpeg,.svg"
               sizeLimit="#{processWidgetBean.uploadFileLimit}"
@@ -259,7 +259,7 @@
     <p:ajax event="close" update="add-external-link-dialog" resetValues="true" />
     <h:form id="add-external-link-form" styleClass="add-external-link-form ui-g">
       <p:defaultCommand target="external-link-name"/>
-      <p:messages styleClass="ui-g-12"/>
+      <p:messages styleClass="ui-g-12" id="external-link-dialog-message"/>
 
       <!-- Process Name -->
       <div class="ui-g-12">
@@ -366,17 +366,19 @@
       </div>
       <h:panelGroup id="file-upload-panel" layout="block"
         styleClass="#{empty externalLinkBean.externalLink.imageLocation ? 'ui-g-12 ':'ui-g-12 ui-fluid u-padding-0 MarTop10 external-link-preview-image-panel'}">
+        
         <p:fileUpload id="external-link-image-upload"
           rendered="#{empty externalLinkBean.externalLink.imageLocation}"
           listener="#{externalLinkBean.handleImageUpload}"
           chooseIcon="#{visibilityBean.generateButtonIcon('si si-add-small')}"
-          dragDropSupport="true" auto="true" update="file-upload-panel"
+          dragDropSupport="true" auto="true" update="file-upload-panel external-link-dialog-message"
           allowTypes="/(\.|\/)(png|jpg|jpeg|svg)$/i"
           accept=".png,.jpg,.jpeg,.svg"
           sizeLimit="#{externalLinkBean.uploadFileLimit}"
           invalidSizeMessage="#{externalLinkBean.getFileUploadInvalidSizeMessage()}"
           label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/select')}"
-          invalidFileMessage="#{ivy.cms.co('/Dialogs/components/CaseDocument/invalidFileMessage')}" />
+          invalidFileMessage="#{ivy.cms.co('/Dialogs/components/CaseDocument/invalidFileMessage')}" 
+          />
         <p:graphicImage id="external-link-preview-image"
           rendered="#{not empty externalLinkBean.externalLink.imageLocation}"
           styleClass="external-link-preview-image" library="ivy-cms"

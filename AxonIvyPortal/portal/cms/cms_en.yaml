@@ -1005,7 +1005,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     deleteDocumentNote: '{0} has deleted {1}'
     deleteSuceed: File deleted successfully
     download: Download
-    fileContainScript: This file is not allowed to upload because it contains some script!
+    fileContainScript: File contains potentially malicious content and cannot be uploaded!
     fileContainVirus: Upload failed, virus/infection detected!
     fileCouldNotParse: Could not parse the file
     fileEmptyMessage: File is empty
