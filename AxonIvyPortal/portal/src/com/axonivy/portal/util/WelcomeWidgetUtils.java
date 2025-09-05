@@ -14,7 +14,8 @@ import javax.faces.context.FacesContext;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 
-import ch.ivy.addon.portalkit.document.SVGSecurityScanner;
+import com.axonivy.portal.components.document.SVGSecurityScanner;
+
 import ch.ivy.addon.portalkit.dto.dashboard.WelcomeDashboardWidget;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 import ch.ivyteam.ivy.application.IApplication;

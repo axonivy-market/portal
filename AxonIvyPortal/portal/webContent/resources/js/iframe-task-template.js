@@ -124,8 +124,12 @@ function checkUrl(iFrame, appName) {
   }
 
   // Update title
-  const title = iframeDoc.title ? iframeDoc.title.concat(" - ", appName) : appName;
-  document.title = title; 
+  if (appName) {
+    const title = iframeDoc.title ? iframeDoc.title.concat(" - ", appName) : appName;
+    document.title = title;
+  } else {
+    document.title = iframeDoc.title;
+  }
 
   var path = getPortalIframePath(iFrame);
   if (path === '' || invalidIFrameSrcPath) {
@@ -136,19 +140,15 @@ function checkUrl(iFrame, appName) {
   if (path.match("/default/redirect.xhtml$")) {
     var redirectUrl = new URLSearchParams(iFrame.contentWindow.location.search).get("redirectPage");
     iFrame.src = "about:blank";
-    redirectToUrlCommand([
-      {
-        name: "url",
-        value: redirectUrl,
-      },
-    ]);
+    redirectToUrlCommand([{
+      name: 'url',
+      value: redirectUrl
+    }]);
   } else {
-    useTaskInIFrame([
-      {
-        name: "url",
-        value: path,
-      },
-    ]);
+    useTaskInIFrame([{
+      name: 'url',
+      value: path
+    }]);
     updateHistory(iFrame.contentWindow.location.href);
   }
 }

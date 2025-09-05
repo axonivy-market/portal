@@ -9,9 +9,9 @@ import org.apache.commons.lang3.StringUtils;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.file.UploadedFile;
 
+import com.axonivy.portal.components.document.SVGSecurityScanner;
 import com.axonivy.portal.components.util.ImageUploadResult;
 
-import ch.ivy.addon.portalkit.document.SVGSecurityScanner;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.cm.ContentObject;
 import ch.ivyteam.ivy.cm.ContentObjectValue;
