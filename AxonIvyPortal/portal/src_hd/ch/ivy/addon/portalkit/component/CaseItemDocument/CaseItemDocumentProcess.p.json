@@ -456,5 +456,139 @@
       "connect" : [
         { "id" : "f34", "to" : "f51" }
       ]
+    }, {
+      "id" : "f17",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "renameDocument()",
+      "config" : {
+        "signature" : "renameDocument",
+        "guid" : "1990F07DC10AB8AD"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 784 }
+      },
+      "connect" : [
+        { "id" : "f43", "to" : "f37" }
+      ]
+    }, {
+      "id" : "f37",
+      "type" : "SubProcessCall",
+      "name" : "Rename Document",
+      "config" : {
+        "processCall" : "Functional Processes/RenameDocumentItem:renameDocumentItem(ch.ivyteam.ivy.workflow.ICase,com.axonivy.portal.components.ivydata.bo.IvyDocument)",
+        "call" : {
+          "map" : {
+            "param.businessCase" : "in.caze",
+            "param.document" : "in.document"
+          }
+        },
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.isRenameDocumentSuccess" : "result.isSuccess",
+            "out.renameDocumentMessage" : "result.message"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 248, "y" : 784 }
+      },
+      "connect" : [
+        { "id" : "f48", "to" : "f44" }
+      ]
+    }, {
+      "id" : "f38",
+      "type" : "Script",
+      "name" : "Show success message",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.components.util.FacesMessageUtils;",
+            "import javax.faces.context.FacesContext;",
+            "",
+            "String successMsg = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/documentFiles/RenamingDocumentSuccess\");",
+            "FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.sanitizedMessage(successMsg, \"\" ));"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 512, "y" : 784 }
+      },
+      "connect" : [
+        { "id" : "f52", "to" : "f40" }
+      ]
+    }, {
+      "id" : "f39",
+      "type" : "Script",
+      "name" : "Show error message",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.components.util.FacesMessageUtils;",
+            "import javax.faces.application.FacesMessage;",
+            "import javax.faces.context.FacesContext;",
+            "",
+            "FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR, in.renameDocumentMessage, null));"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 376, "y" : 904 }
+      },
+      "connect" : [
+        { "id" : "f55", "to" : "f40", "via" : [ { "x" : 688, "y" : 904 } ] }
+      ]
+    }, {
+      "id" : "f40",
+      "type" : "SubProcessCall",
+      "name" : "Find documents",
+      "config" : {
+        "processCall" : "Functional Processes/GetDocumentList:getDocumentList(ch.ivyteam.ivy.workflow.ICase)",
+        "call" : {
+          "map" : {
+            "param.businessCase" : "in.caze"
+          }
+        },
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.documents" : "result.documents"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 688, "y" : 784 }
+      },
+      "connect" : [
+        { "id" : "f54", "to" : "f41" }
+      ]
+    }, {
+      "id" : "f41",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 808, "y" : 784 },
+        "labelOffset" : { "x" : 10, "y" : 30 }
+      }
+    }, {
+      "id" : "f44",
+      "type" : "Alternative",
+      "name" : "rename successfully?",
+      "config" : {
+        "conditions" : {
+          "f45" : "in.isRenameDocumentSuccess"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 376, "y" : 784 },
+        "labelOffset" : { "x" : 24, "y" : -24 }
+      },
+      "connect" : [
+        { "id" : "f45", "to" : "f38", "label" : {
+            "name" : "Yes"
+          } },
+        { "id" : "f47", "to" : "f39", "label" : {
+            "name" : "No"
+          } }
+      ]
     } ]
 }

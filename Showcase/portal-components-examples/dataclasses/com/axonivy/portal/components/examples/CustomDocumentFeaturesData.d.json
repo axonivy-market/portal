@@ -39,5 +39,9 @@
   }, {
     "name" : "skip",
     "type" : "Boolean"
+  }, {
+    "name" : "isRenamingSuccess",
+    "type" : "Boolean",
+    "modifiers" : [ "PERSISTENT" ]
   } ]
 }

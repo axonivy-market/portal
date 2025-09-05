@@ -97,7 +97,7 @@ The task details are separated into 4 different sections:
    |detailed-task-information-note|
 
 #. Documents, these documents once attached to the case are
-   available on all tasks. You may add, delete or preview documents 
+   available on all tasks. You may add, delete, rename or preview documents
    described in the HowTo’s below.
 
    |detailed-task-information-documents|
@@ -150,6 +150,25 @@ HowTo: Attach a document to a case
 .. note::
 
    Grant either permission :bdg-ref-warning:`🔑DocumentOfInvolvedCaseWrite <DocumentOfInvolvedCaseWrite>` or :bdg-ref-warning:`🔑DocumentWrite <DocumentWrite>` to allow a user to upload documents.
+
+HowTo: Rename a document of a case
+----------------------------------
+
+#. Open the case details
+
+#. Click on the |edit-icon| button next to the
+   attachment you want to rename
+
+#. A dialog is opened to rename the selected document
+
+#. Update filename as you expect in the input field
+
+#. Click the button :guilabel:`Save` to save your change
+
+#. Filename will be updated and a note about the renaming will be added
+
+|how-to-rename-document|
+
 
 HowTo: Remove an attachment from the case
 -----------------------------------------
@@ -298,3 +317,6 @@ HowTo: Share Task Details
 .. |task-status-banner| image:: ../../screenshots/task-detail/task-status-banner.png
    :alt: Task Details: the Status banner
 .. |how-to-preview-document| image:: ../../screenshots/case-detail/how-to-preview-document.png
+   :alt: Task Details: preview document dialog
+.. |how-to-rename-document| image:: ../../screenshots/case-detail/how-to-rename-document.png
+   :alt: Task Details: rename document dialog
