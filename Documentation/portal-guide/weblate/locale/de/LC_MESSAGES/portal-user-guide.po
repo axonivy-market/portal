@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Portal Guide ${revision}\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-19 04:43+0000\n"
+"POT-Creation-Date: 2025-09-04 02:01+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: de\n"
@@ -721,7 +721,10 @@ msgid ""
 msgstr ""
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv
-msgid "queries e.g. for case widget, global search."
+msgid ""
+"queries e.g. for case widget, global search. It also makes the \"Filter "
+"tasks by current case owner\" filter available in the task widget, which "
+"is hidden by default."
 msgstr ""
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
@@ -2330,7 +2333,7 @@ msgid "|dashboard-configuration-page|"
 msgstr ""
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:246
-#: ../../source/portal-user-guide/new-dashboard/index.rst:430
+#: ../../source/portal-user-guide/new-dashboard/index.rst:434
 msgid "Dashboard configuration screen"
 msgstr ""
 
@@ -4756,7 +4759,7 @@ msgstr ""
 msgid "|dash-board|"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:420
+#: ../../source/portal-user-guide/new-dashboard/index.rst:424
 msgid "Dashboard screen"
 msgstr ""
 
@@ -4838,7 +4841,7 @@ msgstr ""
 msgid "|widget-filter|"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:422
+#: ../../source/portal-user-guide/new-dashboard/index.rst:426
 msgid "Dashboard widget's filters panel"
 msgstr ""
 
@@ -4850,7 +4853,7 @@ msgstr ""
 msgid "|widget-info|"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:424
+#: ../../source/portal-user-guide/new-dashboard/index.rst:428
 msgid "Dashboard widget's info panel"
 msgstr ""
 
@@ -4918,7 +4921,7 @@ msgstr ""
 msgid "|add-widget|"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:432
+#: ../../source/portal-user-guide/new-dashboard/index.rst:436
 msgid "Add new widget dialog"
 msgstr ""
 
@@ -4936,12 +4939,12 @@ msgstr ""
 msgid "|task-list-widget|"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:434
+#: ../../source/portal-user-guide/new-dashboard/index.rst:438
 msgid "Dashboard task widget's configuration dialog"
 msgstr ""
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:88
-#: ../../source/portal-user-guide/new-dashboard/index.rst:173
+#: ../../source/portal-user-guide/new-dashboard/index.rst:177
 msgid ""
 "On the widget configuration panel, you can define the widget name, enable"
 " the quick search function, show or hide the widget information and "
@@ -4950,12 +4953,12 @@ msgid ""
 msgstr ""
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:92
-#: ../../source/portal-user-guide/new-dashboard/index.rst:177
+#: ../../source/portal-user-guide/new-dashboard/index.rst:181
 msgid "**Filters panel**"
 msgstr ""
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:94
-#: ../../source/portal-user-guide/new-dashboard/index.rst:179
+#: ../../source/portal-user-guide/new-dashboard/index.rst:183
 msgid ""
 "By clicking on the :guilabel:`Filter` button, you can configure the "
 "complex filter for your widget and get a preview of it by clicking on the"
@@ -4967,57 +4970,64 @@ msgstr ""
 msgid "|task-list-widget-configuration|"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:436
+#: ../../source/portal-user-guide/new-dashboard/index.rst:440
 msgid "Dashboard task widget's configuration panel"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:100
-#: ../../source/portal-user-guide/new-dashboard/index.rst:185
-msgid "**Column Management**"
-msgstr ""
-
 #: ../../source/portal-user-guide/new-dashboard/index.rst:102
-#: ../../source/portal-user-guide/new-dashboard/index.rst:187
 msgid ""
-"By clicking on the :guilabel:`Manage Columns` button at the top right of "
-"the configuration panel. You get the following dialog:"
+"``Filter tasks by current case owner`` filter is hidden by default. To "
+"make it visible, you need to set the ``Portal.Cases.EnableOwner`` setting"
+" to ``true`` in the :ref:`Admin Settings <update-portal-settings>`."
 msgstr ""
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:104
-msgid "|task-list-widget-table-configuration|"
-msgstr ""
-
-#: ../../source/portal-user-guide/new-dashboard/index.rst:438
-msgid "Dashboard task widget's table configuration"
+#: ../../source/portal-user-guide/new-dashboard/index.rst:189
+msgid "**Column Management**"
 msgstr ""
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:106
 #: ../../source/portal-user-guide/new-dashboard/index.rst:191
 msgid ""
+"By clicking on the :guilabel:`Manage Columns` button at the top right of "
+"the configuration panel. You get the following dialog:"
+msgstr ""
+
+#: ../../source/portal-user-guide/new-dashboard/index.rst:108
+msgid "|task-list-widget-table-configuration|"
+msgstr ""
+
+#: ../../source/portal-user-guide/new-dashboard/index.rst:442
+msgid "Dashboard task widget's table configuration"
+msgstr ""
+
+#: ../../source/portal-user-guide/new-dashboard/index.rst:110
+#: ../../source/portal-user-guide/new-dashboard/index.rst:195
+msgid ""
 "In the column management dialog, you find two sections to configure the "
 "table columns:"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:108
-msgid "Add field section: add any available fields to your widget table"
-msgstr ""
-
-#: ../../source/portal-user-guide/new-dashboard/index.rst:109
-#: ../../source/portal-user-guide/new-dashboard/index.rst:194
-msgid "Columns section: configure the widget table itself as follows:"
-msgstr ""
-
-#: ../../source/portal-user-guide/new-dashboard/index.rst:111
-#: ../../source/portal-user-guide/new-dashboard/index.rst:196
-msgid "Enable visibility"
-msgstr ""
-
 #: ../../source/portal-user-guide/new-dashboard/index.rst:112
-msgid "Enable the quick search by selecting the quick search checkbox"
+msgid "Add field section: add any available fields to your widget table"
 msgstr ""
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:113
 #: ../../source/portal-user-guide/new-dashboard/index.rst:198
+msgid "Columns section: configure the widget table itself as follows:"
+msgstr ""
+
+#: ../../source/portal-user-guide/new-dashboard/index.rst:115
+#: ../../source/portal-user-guide/new-dashboard/index.rst:200
+msgid "Enable visibility"
+msgstr ""
+
+#: ../../source/portal-user-guide/new-dashboard/index.rst:116
+msgid "Enable the quick search by selecting the quick search checkbox"
+msgstr ""
+
+#: ../../source/portal-user-guide/new-dashboard/index.rst:117
+#: ../../source/portal-user-guide/new-dashboard/index.rst:202
 msgid ""
 "Reorder the columns by drag and drop using the arrows |move-expand-"
 "vertical|"
@@ -5027,305 +5037,305 @@ msgstr ""
 msgid "move-expand-vertical"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:114
-#: ../../source/portal-user-guide/new-dashboard/index.rst:199
+#: ../../source/portal-user-guide/new-dashboard/index.rst:118
+#: ../../source/portal-user-guide/new-dashboard/index.rst:203
 msgid "Remove columns"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:118
+#: ../../source/portal-user-guide/new-dashboard/index.rst:122
 msgid "The Quick search feature is supporting these fields:"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:120
+#: ../../source/portal-user-guide/new-dashboard/index.rst:124
 msgid ""
 "Standard fields: Id, name, description, category, responsible (display "
 "name), and application."
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:121
+#: ../../source/portal-user-guide/new-dashboard/index.rst:125
 msgid "Task custom fields: fields that have type ``STRING`` or ``TEXT``."
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:122
+#: ../../source/portal-user-guide/new-dashboard/index.rst:126
 msgid "Case custom fields: fields that have type ``STRING`` or ``TEXT``."
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:123
+#: ../../source/portal-user-guide/new-dashboard/index.rst:127
 msgid "Business case custom fields: fields that have type ``STRING`` or ``TEXT``."
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:125
-#: ../../source/portal-user-guide/new-dashboard/index.rst:208
+#: ../../source/portal-user-guide/new-dashboard/index.rst:129
+#: ../../source/portal-user-guide/new-dashboard/index.rst:212
 msgid ""
 "Quick search is enabled for the standard field name and description by "
 "default."
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:127
+#: ../../source/portal-user-guide/new-dashboard/index.rst:131
 msgid ""
 "Portal supports to display **custom case fields** and **business custom "
 "case** within the task list."
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:129
+#: ../../source/portal-user-guide/new-dashboard/index.rst:133
 msgid "|task-column-field-type-configuration|"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:440
+#: ../../source/portal-user-guide/new-dashboard/index.rst:444
 msgid "Dashboard task widget's column management"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:131
-#: ../../source/portal-user-guide/new-dashboard/index.rst:210
+#: ../../source/portal-user-guide/new-dashboard/index.rst:135
+#: ../../source/portal-user-guide/new-dashboard/index.rst:214
 msgid "**Excel export**"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:133
+#: ../../source/portal-user-guide/new-dashboard/index.rst:137
 msgid ""
 "In view mode, you can export all data of the task widget by clicking on "
 "the link ``Export to Excel`` at the bottom left corner of the widget "
 "information panel."
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:135
+#: ../../source/portal-user-guide/new-dashboard/index.rst:139
 msgid "|task-export-excel|"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:428
+#: ../../source/portal-user-guide/new-dashboard/index.rst:432
 msgid "Dashboard task widget: export to Excel feature"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:137
+#: ../../source/portal-user-guide/new-dashboard/index.rst:141
 msgid ""
 "If the number of exported tasks exceeds the maximum row number of the "
 "Excel file, Portal will separate data into multiple Excel files and put "
 "them into a single zip file."
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:140
-#: ../../source/portal-user-guide/new-dashboard/index.rst:219
+#: ../../source/portal-user-guide/new-dashboard/index.rst:144
+#: ../../source/portal-user-guide/new-dashboard/index.rst:223
 msgid "**Quick search**"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:142
-#: ../../source/portal-user-guide/new-dashboard/index.rst:221
+#: ../../source/portal-user-guide/new-dashboard/index.rst:146
+#: ../../source/portal-user-guide/new-dashboard/index.rst:225
 msgid ""
 "In view mode, when quick search is enabled, a text box will appear to "
 "allow you to search."
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:144
+#: ../../source/portal-user-guide/new-dashboard/index.rst:148
 msgid "|task-quick-search-textbox|"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:484
+#: ../../source/portal-user-guide/new-dashboard/index.rst:488
 msgid "Dashboard task widget's quick search"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:148
-#: ../../source/portal-user-guide/new-dashboard/index.rst:227
+#: ../../source/portal-user-guide/new-dashboard/index.rst:152
+#: ../../source/portal-user-guide/new-dashboard/index.rst:231
 msgid ""
 "You can define the scope of the quick search feature in the configuration"
 " panel."
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:149
-#: ../../source/portal-user-guide/new-dashboard/index.rst:228
+#: ../../source/portal-user-guide/new-dashboard/index.rst:153
+#: ../../source/portal-user-guide/new-dashboard/index.rst:232
 msgid ""
 "The result of the quick search function may be affected if you apply a "
 "complex filter on the widget."
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:151
-#: ../../source/portal-user-guide/new-dashboard/index.rst:230
-msgid "**Adjust column width**"
-msgstr ""
-
-#: ../../source/portal-user-guide/new-dashboard/index.rst:153
-#: ../../source/portal-user-guide/new-dashboard/index.rst:232
-msgid ""
-"In edit mode, you can adjust the width of each column directly within the"
-" widget table."
-msgstr ""
-
 #: ../../source/portal-user-guide/new-dashboard/index.rst:155
-msgid "|task-list-widget-edit-mode|"
-msgstr ""
-
-#: ../../source/portal-user-guide/new-dashboard/index.rst:488
-msgid "Dashboard task widget in the Edit mode"
+#: ../../source/portal-user-guide/new-dashboard/index.rst:234
+msgid "**Adjust column width**"
 msgstr ""
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:157
 #: ../../source/portal-user-guide/new-dashboard/index.rst:236
 msgid ""
-"You may also notice gridlines on the table which implemented by Portal to"
-" help you adjust the column widths more efficiently."
+"In edit mode, you can adjust the width of each column directly within the"
+" widget table."
+msgstr ""
+
+#: ../../source/portal-user-guide/new-dashboard/index.rst:159
+msgid "|task-list-widget-edit-mode|"
+msgstr ""
+
+#: ../../source/portal-user-guide/new-dashboard/index.rst:492
+msgid "Dashboard task widget in the Edit mode"
 msgstr ""
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:161
 #: ../../source/portal-user-guide/new-dashboard/index.rst:240
+msgid ""
+"You may also notice gridlines on the table which implemented by Portal to"
+" help you adjust the column widths more efficiently."
+msgstr ""
+
+#: ../../source/portal-user-guide/new-dashboard/index.rst:165
+#: ../../source/portal-user-guide/new-dashboard/index.rst:244
 msgid ""
 "If the total width of the columns is less than the widget’s width, the "
 "Portal will automatically adjust the column widths to match the widget’s "
 "width."
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:166
+#: ../../source/portal-user-guide/new-dashboard/index.rst:170
 msgid "Case list widget"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:168
+#: ../../source/portal-user-guide/new-dashboard/index.rst:172
 msgid ""
 "Adding a case list widget will give you total flexibility about what you "
 "want to see and how."
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:171
+#: ../../source/portal-user-guide/new-dashboard/index.rst:175
 msgid "|case-list-widget|"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:444
+#: ../../source/portal-user-guide/new-dashboard/index.rst:448
 msgid "Dashboard case widget's configuration dialog"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:183
+#: ../../source/portal-user-guide/new-dashboard/index.rst:187
 msgid "|case-list-widget-configuration|"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:446
+#: ../../source/portal-user-guide/new-dashboard/index.rst:450
 msgid "Dashboard case widget's configuration panel"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:189
+#: ../../source/portal-user-guide/new-dashboard/index.rst:193
 msgid "|case-list-widget-table-configuration|"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:448
+#: ../../source/portal-user-guide/new-dashboard/index.rst:452
 msgid "Dashboard case widget's table configuration"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:193
+#: ../../source/portal-user-guide/new-dashboard/index.rst:197
 msgid "Add field section: add any available field to your widget table"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:197
+#: ../../source/portal-user-guide/new-dashboard/index.rst:201
 msgid "Enable quick search by selecting the quick search checkbox"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:203
+#: ../../source/portal-user-guide/new-dashboard/index.rst:207
 msgid "Quick search feature is supporting these fields:"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:205
+#: ../../source/portal-user-guide/new-dashboard/index.rst:209
 msgid ""
 "Standard fields: Id, name, description, category, creator (display name),"
 " and application."
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:206
+#: ../../source/portal-user-guide/new-dashboard/index.rst:210
 msgid "Custom fields: fields that have type ``STRING`` or ``TEXT``."
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:212
+#: ../../source/portal-user-guide/new-dashboard/index.rst:216
 msgid ""
 "In view mode, you can export all data of the case widget by clicking on "
 "the link ``Export to Excel`` at the end of the widget information panel."
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:214
+#: ../../source/portal-user-guide/new-dashboard/index.rst:218
 msgid "|case-export-excel|"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:426
+#: ../../source/portal-user-guide/new-dashboard/index.rst:430
 msgid "Dashboard case widget: export to Excel feature"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:216
+#: ../../source/portal-user-guide/new-dashboard/index.rst:220
 msgid ""
 "If the number of exported cases exceeds the maximum row number of the "
 "Excel file, Portal will separate data into multiple Excel files and put "
 "them into a single zip file."
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:223
+#: ../../source/portal-user-guide/new-dashboard/index.rst:227
 msgid "|case-quick-search-textbox|"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:486
+#: ../../source/portal-user-guide/new-dashboard/index.rst:490
 msgid "Dashboard case widget's quick search"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:234
+#: ../../source/portal-user-guide/new-dashboard/index.rst:238
 msgid "|case-list-widget-edit-mode|"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:490
+#: ../../source/portal-user-guide/new-dashboard/index.rst:494
 msgid "Dashboard case widget in the Edit mode"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:245
+#: ../../source/portal-user-guide/new-dashboard/index.rst:249
 msgid "Process list widget"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:247
+#: ../../source/portal-user-guide/new-dashboard/index.rst:251
 msgid "There are four process widget modes available:"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:249
+#: ../../source/portal-user-guide/new-dashboard/index.rst:253
 msgid "Combined mode"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:250
+#: ../../source/portal-user-guide/new-dashboard/index.rst:254
 msgid "Compact mode"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:251
+#: ../../source/portal-user-guide/new-dashboard/index.rst:255
 msgid "Full mode"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:252
+#: ../../source/portal-user-guide/new-dashboard/index.rst:256
 msgid "Image mode"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:254
+#: ../../source/portal-user-guide/new-dashboard/index.rst:258
 msgid ""
 "In the widget configuration, you can choose the display mode, show or "
 "hide widget information and fullscreen mode icons."
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:256
+#: ../../source/portal-user-guide/new-dashboard/index.rst:260
 msgid "|process-widget-modes|"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:450
+#: ../../source/portal-user-guide/new-dashboard/index.rst:454
 msgid "Dashboard process widget mode selection"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:258
+#: ../../source/portal-user-guide/new-dashboard/index.rst:262
 msgid "**Combined mode**"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:260
+#: ../../source/portal-user-guide/new-dashboard/index.rst:264
 msgid ""
 "This widget displays the selected process start and all related cases and"
 " tasks combined in one single widget. This widget configuration will help"
 " you find tasks specifically to a particular process:"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:264
+#: ../../source/portal-user-guide/new-dashboard/index.rst:268
 msgid "|process-widget-combined-mode|"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:452
+#: ../../source/portal-user-guide/new-dashboard/index.rst:456
 msgid "Dashboard process widget's combined mode"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:266
+#: ../../source/portal-user-guide/new-dashboard/index.rst:270
 msgid "**Compact mode**"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:268
+#: ../../source/portal-user-guide/new-dashboard/index.rst:272
 msgid ""
 "This widget displays a list of all selected process starts. You can sort "
 "your processes by index, alphabetical order, most used or custom order. "
@@ -5333,228 +5343,228 @@ msgid ""
 "enable quick search by selecting the quick search checkbox."
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:271
+#: ../../source/portal-user-guide/new-dashboard/index.rst:275
 msgid "|process-widget-compact-mode|"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:454
+#: ../../source/portal-user-guide/new-dashboard/index.rst:458
 msgid "Dashboard process widget's compact mode"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:273
+#: ../../source/portal-user-guide/new-dashboard/index.rst:277
 msgid ""
 "In view mode, when quick search function is enabled, a text box will "
 "appear to allow you to search."
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:276
+#: ../../source/portal-user-guide/new-dashboard/index.rst:280
 msgid ""
 "Quick search function can only be used when process widget mode is "
 "``Compact Mode``."
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:277
+#: ../../source/portal-user-guide/new-dashboard/index.rst:281
 msgid "Quick search function supports searching by ``process name``."
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:279
+#: ../../source/portal-user-guide/new-dashboard/index.rst:283
 msgid "|process-quick-search-textbox|"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:464
+#: ../../source/portal-user-guide/new-dashboard/index.rst:468
 msgid "Quick search feature of dashboard process widget"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:281
+#: ../../source/portal-user-guide/new-dashboard/index.rst:285
 msgid "**Full mode**"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:283
+#: ../../source/portal-user-guide/new-dashboard/index.rst:287
 msgid ""
 "You can create a widget with a card layout including an icon for a single"
 " process."
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:285
+#: ../../source/portal-user-guide/new-dashboard/index.rst:289
 msgid "|process-widget-full-mode|"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:456
+#: ../../source/portal-user-guide/new-dashboard/index.rst:460
 msgid "Dashboard process widget's full mode"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:287
+#: ../../source/portal-user-guide/new-dashboard/index.rst:291
 msgid "**Image mode**"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:289
+#: ../../source/portal-user-guide/new-dashboard/index.rst:293
 msgid ""
 "You can create a widget with a card layout, including a nice picture for "
 "a single process."
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:291
+#: ../../source/portal-user-guide/new-dashboard/index.rst:295
 msgid "|process-widget-image-mode|"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:458
+#: ../../source/portal-user-guide/new-dashboard/index.rst:462
 msgid "Dashboard process widget's image mode"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:294
+#: ../../source/portal-user-guide/new-dashboard/index.rst:298
 msgid "Process viewer widget"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:296
+#: ../../source/portal-user-guide/new-dashboard/index.rst:300
 msgid "You can define the widget name and process to be displayed."
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:298
+#: ../../source/portal-user-guide/new-dashboard/index.rst:302
 msgid "Configuration of a process viewer widget:"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:300
+#: ../../source/portal-user-guide/new-dashboard/index.rst:304
 msgid "|process-viewer-widget-configuration|"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:462
+#: ../../source/portal-user-guide/new-dashboard/index.rst:466
 msgid "Dashboard process viewer widget's configuration dialog"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:302
-#: ../../source/portal-user-guide/new-dashboard/index.rst:329
+#: ../../source/portal-user-guide/new-dashboard/index.rst:306
+#: ../../source/portal-user-guide/new-dashboard/index.rst:333
 msgid "This is sample output of the widget configured above:"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:304
+#: ../../source/portal-user-guide/new-dashboard/index.rst:308
 msgid "|process-viewer-widget|"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:460
+#: ../../source/portal-user-guide/new-dashboard/index.rst:464
 msgid "Dashboard process viewer widget"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:307
+#: ../../source/portal-user-guide/new-dashboard/index.rst:311
 msgid "Statistic chart widget"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:309
+#: ../../source/portal-user-guide/new-dashboard/index.rst:313
 msgid ""
 "Portal has deprecated the legacy statistic chart widget and now offers a "
 "wide range of new standard statistical charts. For more information, "
 "please refer to the :ref:`statistic-chart` section."
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:313
+#: ../../source/portal-user-guide/new-dashboard/index.rst:317
 msgid "Welcome widget"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:315
+#: ../../source/portal-user-guide/new-dashboard/index.rst:319
 msgid ""
 "You can define a welcome widget with background images for both light and"
 " dark mode and a welcome text."
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:317
+#: ../../source/portal-user-guide/new-dashboard/index.rst:321
 msgid "|welcome-widget-configuration|"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:466
+#: ../../source/portal-user-guide/new-dashboard/index.rst:470
 msgid "Dashboard welcome widget's configuration dialog"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:321
+#: ../../source/portal-user-guide/new-dashboard/index.rst:325
 msgid "News feed widget"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:323
+#: ../../source/portal-user-guide/new-dashboard/index.rst:327
 msgid "You can define a news feed widget to display all news entries to the user"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:325
+#: ../../source/portal-user-guide/new-dashboard/index.rst:329
 msgid "Configuration of the news feed widget:"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:327
+#: ../../source/portal-user-guide/new-dashboard/index.rst:331
 msgid "|news-feed-widget-configuration|"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:468
+#: ../../source/portal-user-guide/new-dashboard/index.rst:472
 msgid "Dashboard news feed widget's configuration dialog"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:331
+#: ../../source/portal-user-guide/new-dashboard/index.rst:335
 msgid "|news-feed-widget|"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:470
+#: ../../source/portal-user-guide/new-dashboard/index.rst:474
 msgid "Dashboard news feed widget"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:333
+#: ../../source/portal-user-guide/new-dashboard/index.rst:337
 msgid "**Manage news feed content**"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:335
+#: ../../source/portal-user-guide/new-dashboard/index.rst:339
 msgid ""
 "Grant permission :bdg-ref-warning:`🔑NewsManagement <NewsManagement>` to "
 "allow a user to manage the content of the news feed."
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:337
+#: ../../source/portal-user-guide/new-dashboard/index.rst:341
 msgid "If the user has permission, then the user can:"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:339
+#: ../../source/portal-user-guide/new-dashboard/index.rst:343
 msgid ""
 "**Add news message**:  add a new entry for the news feed by clicking "
 ":guilabel:`Add News`: button."
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:341
+#: ../../source/portal-user-guide/new-dashboard/index.rst:345
 msgid ""
 "**Edit news message**: edit an existing entry for the list by clicking on"
 " the |edit-icon| icon in the lower right corner of each entry."
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:343
+#: ../../source/portal-user-guide/new-dashboard/index.rst:347
 msgid ""
 "**Delete news message**: delete entry directly from the list, by clicking"
 " on the |trash-icon| icon in the lower right corner of each entry."
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:345
+#: ../../source/portal-user-guide/new-dashboard/index.rst:349
 msgid "The :guilabel:`Manage News` dialog."
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:347
+#: ../../source/portal-user-guide/new-dashboard/index.rst:351
 msgid "|news-feed-widget-manage-content|"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:472
+#: ../../source/portal-user-guide/new-dashboard/index.rst:476
 msgid "Dashboard news feed widget's Manage news dialog"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:349
+#: ../../source/portal-user-guide/new-dashboard/index.rst:353
 msgid "|news-feed-widget-overlay-panel|"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:474
+#: ../../source/portal-user-guide/new-dashboard/index.rst:478
 msgid "Dashboard external page widget's overlay dialog"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:351
+#: ../../source/portal-user-guide/new-dashboard/index.rst:355
 msgid "In manage news, the user can:"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:353
+#: ../../source/portal-user-guide/new-dashboard/index.rst:357
 msgid ""
 "Create one entry in multiple languages. When creating the entry, the user"
 " can switch between the available languages with a click on the tab view "
 "header."
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:355
+#: ../../source/portal-user-guide/new-dashboard/index.rst:359
 msgid ""
 "Translate the title by clicking on the input label. Translate the content"
 " by clicking on the |translate-icon| icon. If you see something wrong "
@@ -5565,165 +5575,165 @@ msgstr ""
 msgid "translate-icon"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:357
+#: ../../source/portal-user-guide/new-dashboard/index.rst:361
 msgid ""
 "Choose an icon for the news by clicking directly on the icon, the "
 ":guilabel:`Icon browser` browser will be shown."
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:359
+#: ../../source/portal-user-guide/new-dashboard/index.rst:363
 msgid "Define the news title. Its length is limited to 200 characters."
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:361
+#: ../../source/portal-user-guide/new-dashboard/index.rst:365
 msgid ""
 "Provide news content, i.e., the main information for the news feed. The "
 "content is limited to a maximum of 1,000 characters."
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:363
+#: ../../source/portal-user-guide/new-dashboard/index.rst:367
 msgid ""
 "After setting up everything, simply click on the :guilabel:`Share this "
 "dashboard` link at the bottom of your dashboard to share it with "
 "colleagues."
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:366
+#: ../../source/portal-user-guide/new-dashboard/index.rst:370
 msgid "External page widget"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:368
+#: ../../source/portal-user-guide/new-dashboard/index.rst:372
 msgid "You enter an URL to embed an external webpage into the Portal dashboard."
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:370
+#: ../../source/portal-user-guide/new-dashboard/index.rst:374
 msgid "|external-page-widget-configuration|"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:476
+#: ../../source/portal-user-guide/new-dashboard/index.rst:480
 msgid "Dashboard external page widget's configuration dialog"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:375
+#: ../../source/portal-user-guide/new-dashboard/index.rst:379
 msgid "Notifications widget"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:377
+#: ../../source/portal-user-guide/new-dashboard/index.rst:381
 msgid ""
 "You can define a Notifications widget to display all Notifications based "
 "on your notification settings."
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:379
+#: ../../source/portal-user-guide/new-dashboard/index.rst:383
 msgid "|notification-widget-configuration|"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:480
+#: ../../source/portal-user-guide/new-dashboard/index.rst:484
 msgid "Dashboard notification widget's configuration dialog"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:381
+#: ../../source/portal-user-guide/new-dashboard/index.rst:385
 msgid "This is the sample output of the widget configured above:"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:383
+#: ../../source/portal-user-guide/new-dashboard/index.rst:387
 msgid "|notification-widget|"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:482
+#: ../../source/portal-user-guide/new-dashboard/index.rst:486
 msgid "Dashboard notification widget"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:386
+#: ../../source/portal-user-guide/new-dashboard/index.rst:390
 msgid "Clone a widget"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:389
+#: ../../source/portal-user-guide/new-dashboard/index.rst:393
 msgid "Clone a widget from existing dashboard"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:391
+#: ../../source/portal-user-guide/new-dashboard/index.rst:395
 msgid ""
 "When editing a dashboard, you can clone a widget from another dashboard "
 "by opening the :guilabel:`Add a widget` dialog by press on the "
 ":guilabel:`+ Add widget` button."
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:393
+#: ../../source/portal-user-guide/new-dashboard/index.rst:397
 msgid ""
 "Once the dialog opens, click the :guilabel:`Clone widget` button at the "
 "top."
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:395
+#: ../../source/portal-user-guide/new-dashboard/index.rst:399
 msgid "|clone-widget-from-button|"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:498
+#: ../../source/portal-user-guide/new-dashboard/index.rst:502
 msgid ""
 "\"Clone widget from\" button placed inside the \"Add new widget\" dialog."
 " The \"Clone widget from\" dialog will appear after clicking this button."
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:397
+#: ../../source/portal-user-guide/new-dashboard/index.rst:401
 msgid ""
 "This will open the :guilabel:`Clone widget from` dialog. Select the "
 "dashboard that contains the widget you want to clone, then choose the "
 "specific widget."
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:399
+#: ../../source/portal-user-guide/new-dashboard/index.rst:403
 msgid "|clone-widget-from-dialog|"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:500
+#: ../../source/portal-user-guide/new-dashboard/index.rst:504
 msgid "\"Clone widget from\" dialog."
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:401
+#: ../../source/portal-user-guide/new-dashboard/index.rst:405
 msgid ""
 "After selecting the widget, click the :guilabel:`Clone` button to add it "
 "to the current dashboard."
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:404
+#: ../../source/portal-user-guide/new-dashboard/index.rst:408
 msgid "Clone a widget to another dashboard"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:406
+#: ../../source/portal-user-guide/new-dashboard/index.rst:410
 msgid ""
 "The Portal provides another convenient way to clone widgets between "
 "dashboards. To clone a specific widget, click the :guilabel:`Copy` icon "
 "on the widget header."
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:408
+#: ../../source/portal-user-guide/new-dashboard/index.rst:412
 msgid "|clone-widget-button|"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:492
+#: ../../source/portal-user-guide/new-dashboard/index.rst:496
 msgid ""
 "Clone widget button placed on the header of a widget in Edit mode. After "
 "clicking this button, the Clone widget dialog will appear."
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:410
+#: ../../source/portal-user-guide/new-dashboard/index.rst:414
 msgid ""
 "For certain widget types, such as the Welcome widget, you can find the "
 ":guilabel:`Clone` option in the context menu."
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:412
+#: ../../source/portal-user-guide/new-dashboard/index.rst:416
 msgid "|clone-widget-menu-option|"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:494
+#: ../../source/portal-user-guide/new-dashboard/index.rst:498
 msgid ""
 "Clone widget menu a widget in Edit mode. After clicking this menu, the "
 "Clone widget dialog will appear."
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:414
+#: ../../source/portal-user-guide/new-dashboard/index.rst:418
 msgid ""
 "After selecting the :guilabel:`Clone` option, the :guilabel:`Clone "
 "widget` dialog will appear. Choose the target dashboard where you want to"
@@ -5731,11 +5741,11 @@ msgid ""
 " process."
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:416
+#: ../../source/portal-user-guide/new-dashboard/index.rst:420
 msgid "|clone-widget-dialog|"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:496
+#: ../../source/portal-user-guide/new-dashboard/index.rst:500
 msgid "Clone widget dialog in Edit mode."
 msgstr ""
 
@@ -6661,4 +6671,7 @@ msgstr ""
 #: ../../source/portal-user-guide/statistic-chart/index.rst:99
 msgid "This chart shows all tasks that are due today."
 msgstr ""
+
+#~ msgid "queries e.g. for case widget, global search."
+#~ msgstr ""
 

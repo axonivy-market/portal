@@ -97,6 +97,10 @@ refer to :ref:`Complex Filter <complex-filter>` for more details.
 
 |task-list-widget-configuration|
 
+.. important::
+
+  ``Filter tasks by current case owner`` filter is hidden by default. To make it visible, you need to set the ``Portal.Cases.EnableOwner`` setting to ``true`` in the :ref:`Admin Settings <update-portal-settings>`.
+
 **Column Management**
 
 By clicking on the :guilabel:`Manage Columns` button at the top right of the configuration panel. You get the following dialog:
