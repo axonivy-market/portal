@@ -10,16 +10,14 @@ if (taskUrl) {
     updateIframeSrc(taskUrl);
   } else {
     const iframe = document.getElementById("iFrame");
+    //Non-relative Url -> stop loading iframe
     try {
       if (iframe && iframe.contentWindow) {
         iframe.contentWindow.stop();
       }
     } catch (e) {
-      console.warn(
-        "Could not stop iframe loading for non-relative taskUrl:",
-        e
-      );
-    }
+      console.warn("Could not stop iframe loading for non-relative taskUrl:",e);
+    } 
     console.warn("Blocked non-relative taskUrl:", taskUrl);
   }
 }
@@ -213,7 +211,6 @@ const convertProcessSteps = processSteps => {
 function isRelativeUrl(u) {
   if (!u) return false;
   u = String(u).trim();
-
   // block protocol-relative (//host) and obvious control chars
   if (
     u.startsWith("//") ||
@@ -222,9 +219,7 @@ function isRelativeUrl(u) {
     u.indexOf("\0") >= 0
   )
     return false;
-
   // block any scheme: http:, https:, javascript:, file:, data:, etc.
   if (/^[a-zA-Z][a-zA-Z0-9+.-]*:/.test(u)) return false;
-
   return true;
 }
