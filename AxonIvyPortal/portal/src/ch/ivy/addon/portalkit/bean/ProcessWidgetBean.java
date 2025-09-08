@@ -302,7 +302,7 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
     if (imageInfo.isInvalid()) {
       FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR,
           Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/documentFiles/fileContainScript"), null);
-      FacesContext.getCurrentInstance().addMessage("process-dialog-message", message);
+      FacesContext.getCurrentInstance().addMessage("edit-external-link-error-message", message);
     } else {
       this.editedExternalLink.setImageLocation(imageInfo.imageLocation());
       this.editedExternalLink.setImageType(imageInfo.imageType());

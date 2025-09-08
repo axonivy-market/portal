@@ -4,6 +4,15 @@ It makes iframe invisible when on unload, and visible when on load.
 
 If iframe reaches /default/redirect.xhtml$, Portal stops processing inside iframe.
 Portal navigates in main page, also not execute unnecessary JS.
+On Chrome, iframe is loaded with about:blank, then onload is registered, then loaded with the URL.
+On Firefox (like GUI test), iframe is loaded with the URL (no about:blank) before onload is registered.
+Therefore we need to check if iframe document is ready and not about:blank, execute logic of onload to not miss any onload event.
+
+Consider to test: multi-browsers, skip task list, back to home, session timeout.
+Check no white page in dark mode, try removing visibility = "hidden" to check handling inside iframe, log to see any unexpected behaviors.
+*/
+var invalidIFrameSrcPath = false;
+var blockedTaskUrl = false;
 let taskUrl = new URLSearchParams(window.location.search).get("taskUrl");
 let updateIframeSrc = (newSrc) => {
   document.getElementById('iFrame').src = newSrc;
@@ -14,28 +23,22 @@ if (taskUrl) {
     updateIframeSrc(taskUrl);
   } else {
     const iframe = document.getElementById("iFrame");
-    //Non-relative Url -> stop loading iframe
-    try {
-      if (iframe && iframe.contentWindow) {
-        iframe.contentWindow.stop();
-      }
-    } catch (e) {
-      console.warn("Could not stop iframe loading for non-relative taskUrl:",e);
-    } 
+    blockedTaskUrl = true;
+    if (iframe) {
+      try { iframe.removeAttribute('src'); } catch(ignore) {}
+      try { iframe.src = 'about:blank'; } catch(ignore) {}
+      try { if (iframe.contentWindow) { iframe.contentWindow.stop(); } } catch(ignore) {}
+      try { iframe.style.visibility = 'hidden'; } catch(ignore) {}
+    }
     console.warn("Blocked non-relative taskUrl:", taskUrl);
   }
 }
 
-On Chrome, iframe is loaded with about:blank, then onload is registered, then loaded with the URL.
-On Firefox (like GUI test), iframe is loaded with the URL (no about:blank) before onload is registered.
-Therefore we need to check if iframe document is ready and not about:blank, execute logic of onload to not miss any onload event.
-
-Consider to test: multi-browsers, skip task list, back to home, session timeout.
-Check no white page in dark mode, try removing visibility = "hidden" to check handling inside iframe, log to see any unexpected behaviors.
-*/
-var invalidIFrameSrcPath = false;
 var isMainPageNavigating = false;
 function loadIframe() {
+  if (blockedTaskUrl) {
+    return; // if non-relative url -> return
+  }
   var iframe = getPortalIframe();
 
   const onIframeLoad = function () {
@@ -267,11 +270,7 @@ function isRelativeUrl(u) {
   if (!u) return false;
   u = String(u).trim();
   // block protocol-relative (//host) and obvious control chars
-  if (
-    u.startsWith("//") ||
-    u.includes("\r") ||
-    u.includes("\n") ||
-    u.indexOf("\0") >= 0
+  if (u.startsWith("//") || u.includes("\r") || u.includes("\n") || u.indexOf("\0") >= 0
   )
     return false;
   // block any scheme: http:, https:, javascript:, file:, data:, etc.

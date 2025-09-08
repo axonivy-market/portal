@@ -181,9 +181,11 @@ public class WelcomeWidgetUtils {
         // If has defined content, create new image
         byte[] content = Base64.getDecoder().decode(widget.getImageContentDarkMode());
         // Handle sanitize SVG
-        if ("svg".equals(fileExtensionDarkMode)) {
-          content = PortalSanitizeUtils.sanitizeSvg(new String(content, StandardCharsets.UTF_8))
-              .getBytes(StandardCharsets.UTF_8);
+        if (isUnsafeSvg(content)) {
+          Ivy.log().warn("WidgetId [{0}] image rejected: unsafe SVG content (base64 path).", widget.getId());
+          widget.setImageContent(null);
+          widget.setImageLocation(null);
+          return;
         }
         WelcomeWidgetUtils.readObjectValueOfDefaultLocale(newImageObjectDarkMode).write().bytes(content);
         widget.setImageLocationDarkMode(imageLocationDarkMode);

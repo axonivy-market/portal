@@ -84,8 +84,6 @@ public class DashboardWelcomeWidgetConfigurationBean extends DashboardWelcomeWid
     
     if (StringUtils.isNotBlank(widget.getImageLocationDarkMode())) {
       imageCMSObjectDarkMode = getWelcomeWidgetImageContentObjectDarkMode(false);
-    } else {
-      imageCMSObjectDarkMode = getWelcomeWidgetImageContentObject(false);
     }
   }
 
@@ -132,30 +130,44 @@ public class DashboardWelcomeWidgetConfigurationBean extends DashboardWelcomeWid
   
   public void handleFileUploadDarkMode(FileUploadEvent event) {
     UploadedFile file = event.getFile();
-    if (file != null && file.getContent() != null && file.getContent().length > 0 && file.getFileName() != null) {
-      if (StringUtils.isNotBlank(getWidget().getImageLocationDarkMode())) {
-        getWelcomeWidgetImageContentObjectDarkMode(true).delete();
-      }
-      // If image is not saved, create location
-      String extension = FilenameUtils.getExtension(file.getFileName());
-      String fileName = getWidget().getId().concat(WelcomeWidgetUtils.DARK_MODE).concat(DEFAULT_LOCALE_AND_DOT).concat(extension);
-      getWidget().setImageLocationDarkMode(fileName);
-      getWidget().setImageTypeDarkMode(extension);
+    if (file == null || file.getContent() == null || file.getContent().length == 0 || file.getFileName() == null) {
+      return;
+    }
 
-      byte[] content = file.getContent();
-      // hanlde sanitize svg
-      if ("svg".equals(extension)) {
-        content = PortalSanitizeUtils.sanitizeSvg(new String(content, StandardCharsets.UTF_8))
-            .getBytes(StandardCharsets.UTF_8);
-      }
+    String originalLocation = getWidget().getImageLocationDarkMode();
+    String originalType = getWidget().getImageTypeDarkMode();
 
-      // save the temporary image
-      imageCMSObjectDarkMode = getWelcomeWidgetImageContentObjectDarkMode(true);
-      if (imageCMSObjectDarkMode != null) {
-        WelcomeWidgetUtils.readObjectValueOfDefaultLocale(imageCMSObjectDarkMode).write().bytes(content);
-        }
+    String extension = FilenameUtils.getExtension(file.getFileName());
+    byte[] content = file.getContent();
 
+    if (extension != null && extension.toLowerCase().startsWith("svg")) {
+      String fileContent = new String(content, StandardCharsets.UTF_8);
+      if (!SVGSecurityScanner.isSafe(fileContent)) {
+        getWidget().setImageLocationDarkMode(originalLocation);
+        getWidget().setImageTypeDarkMode(originalType);
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+            Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/documentFiles/fileContainScript"), null);
+        FacesContext.getCurrentInstance().addMessage("config-welcome-widget-message", message);
+        return;
       }
+    }
+
+    if (StringUtils.isNotBlank(originalLocation)) {
+      ContentObject previousTemp = getWelcomeWidgetImageContentObjectDarkMode(true);
+      if (previousTemp != null) {
+        previousTemp.delete();
+      }
+    }
+
+    String fileName = getWidget().getId().concat(WelcomeWidgetUtils.DARK_MODE).concat(DEFAULT_LOCALE_AND_DOT).concat(extension);
+    getWidget().setImageLocationDarkMode(fileName);
+    getWidget().setImageTypeDarkMode(extension);
+
+    imageCMSObjectDarkMode = getWelcomeWidgetImageContentObjectDarkMode(true);
+
+    if (imageCMSObjectDarkMode != null) {
+      WelcomeWidgetUtils.readObjectValueOfDefaultLocale(imageCMSObjectDarkMode).write().bytes(content);
+    }
   }
   
   public String getImageUriDarkMode() {

@@ -95,10 +95,9 @@ public class ExternalLinkBean implements Serializable, IMultiLanguage {
           Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/documentFiles/fileContainScript"), null);
       FacesContext.getCurrentInstance().addMessage("external-link-dialog-message", message);
       return;
-    } else {
-      externalLink.setImageLocation(imageInfo.imageLocation());
-      externalLink.setImageType(imageInfo.imageType());
     }
+    externalLink.setImageLocation(imageInfo.imageLocation());
+    externalLink.setImageType(imageInfo.imageType());
   }
   
   public void removeImage() {
