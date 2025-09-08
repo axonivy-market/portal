@@ -276,7 +276,12 @@ public class CaseDetailsPage extends TemplatePage {
     renameDialog.$("input[id*='new-filename']").clear();
     renameDialog.$("input[id*='new-filename']").setValue(newFilename);
     renameDialog.$("button[id*='document-rename-save-button']").click();
-    Selenide.sleep(1000);
+
+    // Wait for either the dialog to disappear OR error message to appear
+    WaitHelper.assertTrueWithWait(() ->
+      !renameDialog.isDisplayed() || $("span.ui-messages-error-summary").isDisplayed()
+    );
+
     return $("span.js-document-name").getText();
   }
 

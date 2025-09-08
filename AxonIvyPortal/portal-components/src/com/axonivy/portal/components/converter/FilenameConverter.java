@@ -28,8 +28,13 @@ public class FilenameConverter implements Converter {
     }
     String filename = value.toString();
     int lastDot = filename.lastIndexOf(".");
-    component.getAttributes().put("fileExtension", filename.substring(lastDot));
 
+    if (lastDot == -1) {
+      component.getAttributes().put("fileExtension", StringUtils.EMPTY);
+      return filename;
+    }
+
+    component.getAttributes().put("fileExtension", filename.substring(lastDot));
     return filename.substring(0, lastDot);
   }
 }
