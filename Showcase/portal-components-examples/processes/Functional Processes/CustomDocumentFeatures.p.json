@@ -814,40 +814,6 @@
       },
       "connect" : { "id" : "f63", "to" : "f10", "via" : [ { "x" : 312, "y" : 592 } ] }
     }, {
-      "id" : "f64",
-      "type" : "CallSubStart",
-      "name" : "portalRenameDocument(ICase,IvyDocument)",
-      "config" : {
-        "callSignature" : "portalRenameDocument",
-        "input" : {
-          "params" : [
-            { "name" : "businessCase", "type" : "ch.ivyteam.ivy.workflow.ICase" },
-            { "name" : "document", "type" : "com.axonivy.portal.components.ivydata.bo.IvyDocument" }
-          ],
-          "map" : {
-            "out.businessCase" : "param.businessCase",
-            "out.document" : "param.document",
-            "out.isRenamingSuccess" : "true"
-          }
-        },
-        "result" : {
-          "params" : [
-            { "name" : "message", "type" : "String" },
-            { "name" : "status", "type" : "String" },
-            { "name" : "isSuccess", "type" : "Boolean" }
-          ],
-          "map" : {
-            "result.message" : "in.message",
-            "result.status" : "in.skip ? com.axonivy.portal.components.enums.CustomProcessStatus.SKIP.name() : com.axonivy.portal.components.enums.CustomProcessStatus.OK.name()",
-            "result.isSuccess" : "in.isRenamingSuccess"
-          }
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 96, "y" : 872 }
-      },
-      "connect" : { "id" : "f76", "to" : "f65" }
-    }, {
       "id" : "f65",
       "type" : "Script",
       "name" : "detect if need to skip rename",
@@ -924,9 +890,9 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 96, "y" : 968 }
+        "at" : { "x" : 96, "y" : 872 }
       },
-      "connect" : { "id" : "f81", "to" : "f65", "via" : [ { "x" : 304, "y" : 968 } ] }
+      "connect" : { "id" : "f81", "to" : "f65" }
     }, {
       "id" : "S10",
       "type" : "EmbeddedProcess",

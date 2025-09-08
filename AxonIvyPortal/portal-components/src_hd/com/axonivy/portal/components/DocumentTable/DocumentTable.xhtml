@@ -114,20 +114,22 @@
         </div>
         <div class="ui-g-3">
         <p:commandLink id="document-download" styleClass="#{cc.attrs.downloadStyleClass}"
-          immediate="true" ajax="false" process="@none" title="#{cc.attrs.downloadTitle}"
+          immediate="true" ajax="false" process="@none"
           ariaLabel="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/Download')}"
           rendered="#{cc.attrs.downloadRendered}">
           <i class="fa #{cc.attrs.downloadIcon}" />
           <p:fileDownload value="#{logic.download(document)}" />
+          <p:tooltip for="document-download" trackMouse="true" hideEvent="mouseleave click" value="#{cc.attrs.downloadTitle}" />
         </p:commandLink>
         </div>
         <div class="ui-g-3">
         <p:commandLink id="document-delete" styleClass="#{cc.attrs.deleteStyleClass}"
           actionListener="#{data.setSelectedDocument(document)}" rendered="#{cc.attrs.deleteRendered}"
-          update="#{cc.attrs.updatedComponentAfterDeleted}" immediate="true" title="#{cc.attrs.deleteTitle}"
+          update="#{cc.attrs.updatedComponentAfterDeleted}" immediate="true"
           ariaLabel="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/Delete')}"
           oncomplete="PF('document-delete-dialog').show()">
           <i class="fa #{cc.attrs.deleteIcon}" />
+          <p:tooltip for="document-delete" trackMouse="true" hideEvent="mouseleave click" value="#{cc.attrs.deleteTitle}" />
         </p:commandLink>
         </div>
       </p:column>

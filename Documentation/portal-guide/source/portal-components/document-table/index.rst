@@ -206,6 +206,7 @@ should be already modified in the document's name attribute.
 
 Portal will call subprocesses with the above details in the same security context and then
 get result where:
+
     - ``message``: the message to inform the user that their new filename is successfully updated or invalid to use.
     - ``isSuccess``: ``true`` if the document's name is successfully updated, otherwise ``false``.
     - ``status``: ``SKIP`` if customized process skipped updating the filename.

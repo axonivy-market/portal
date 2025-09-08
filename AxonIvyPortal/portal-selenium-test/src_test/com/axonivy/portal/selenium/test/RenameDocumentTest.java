@@ -1,7 +1,5 @@
 package com.axonivy.portal.selenium.test;
 
-import static com.codeborne.selenide.Selenide.$;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -22,8 +20,8 @@ public class RenameDocumentTest extends BaseTest {
   private CaseWidgetPage casePage;
   private CaseDetailsPage caseDetailsPage;
   
-  private String duplicateNameMsg = "There is already a file with the same name in this location.";
-  private String forbiddenCharsMsg = "A file name can't contain any of the following characters: \\ / : * ? \" < > |";
+  private static final String DUPLICATE_NAME_MSG = "There is already a file with the same name in this location.";
+  private static final String FORBIDDEN_CHARS_MSG = "A file name can't contain any of the following characters: \\ / : * ? \" < > |";
 
   @Override
   @BeforeEach
@@ -52,12 +50,12 @@ public class RenameDocumentTest extends BaseTest {
     // Change name of second file to the same, show invalid message, name is not updated and new note is not created
     String nameAfterUpdatingSecondFile = caseDetailsPage.renameDocument("dataset");
     assertEquals(nameAfterUpdatingSecondFile, "test-no-files-no-js.pdf");
-    assertEquals(caseDetailsPage.getRenamingFileMessage(), duplicateNameMsg);
+    assertEquals(caseDetailsPage.getRenamingFileMessage(), DUPLICATE_NAME_MSG);
     assertEquals(caseDetailsPage.getLatestHistoryContent(), "admin has uploaded test-no-files-no-js.pdf");
 
     // Invalid name when using forbidden characters
     caseDetailsPage.renameDocument("test-no-files-no-js?");
-    assertEquals(caseDetailsPage.getRenamingFileMessage(), forbiddenCharsMsg);
+    assertEquals(caseDetailsPage.getRenamingFileMessage(), FORBIDDEN_CHARS_MSG);
     assertEquals(caseDetailsPage.getLatestHistoryContent(), "admin has uploaded test-no-files-no-js.pdf");
 
     // Change back to the old name, name is not changed so new note is not created

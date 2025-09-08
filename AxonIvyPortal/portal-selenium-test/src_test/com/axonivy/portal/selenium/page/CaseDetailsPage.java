@@ -27,7 +27,6 @@ import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
-import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 
 public class CaseDetailsPage extends TemplatePage {
@@ -270,7 +269,12 @@ public class CaseDetailsPage extends TemplatePage {
     renameDialog.$("input[id*='new-filename']").clear();
     renameDialog.$("input[id*='new-filename']").setValue(newFilename);
     renameDialog.$("button[id*='document-rename-save-button']").click();
-    Selenide.sleep(1000);
+
+    // Wait for either the dialog to disappear OR error message to appear
+    WaitHelper.assertTrueWithWait(() ->
+      !renameDialog.isDisplayed() || $("span.ui-messages-error-summary").isDisplayed()
+    );
+
     return $("span.js-document-name").getText();
   }
   
