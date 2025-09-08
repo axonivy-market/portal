@@ -3,9 +3,10 @@ package ch.ivy.addon.portalkit.role;
 import java.io.Serializable;
 import java.util.Objects;
 
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 
 import com.axonivy.portal.components.dto.UserDTO;
+
 import ch.ivyteam.ivy.security.IUser;
 
 public class UserHolder implements Serializable {
@@ -34,7 +35,7 @@ public class UserHolder implements Serializable {
     this.name = iUser.getName();
     this.displayName = iUser.getDisplayName();
     this.isDirectlyAssignedRole = iUser.getRoles().stream()
-        .filter(role -> StringUtils.equals(role.getName(), roleName)).findAny().isPresent();
+        .filter(role -> Strings.CS.equals(role.getName(), roleName)).findAny().isPresent();
   }
 
   public UserHolder(String name, String displayName) {

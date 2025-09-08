@@ -725,7 +725,7 @@ public class DashboardProcessWidgetTest extends BaseTest {
   public void testHideExpandMode() {
     ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
         newDashboardPage.editProcessWidgetConfiguration();
-    editProcessWidgetConfiguration.clickOnExpandModeCheckbox();;
+    editProcessWidgetConfiguration.clickOnExpandModeCheckbox();
     editProcessWidgetConfiguration.save();
     backToNewDashboardPage();
     ProcessWidgetNewDashBoardPage processWidget = newDashboardPage.selectProcessWidget(YOUR_PROCESSES);

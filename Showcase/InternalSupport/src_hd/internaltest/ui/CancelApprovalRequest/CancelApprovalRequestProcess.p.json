@@ -45,7 +45,7 @@
             "import ch.ivyteam.ivy.workflow.INote;",
             "ICase wfCase = ivy.wf.findCase(in.caseId);",
             "String cancelNote = \"Cancel Reason: \" +  out.cancelReason;",
-            "INote note = wfCase.createNote(ivy.session, cancelNote);"
+            "wfCase.createNote(ivy.session, cancelNote);"
           ]
         },
         "sudo" : true
