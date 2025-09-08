@@ -942,7 +942,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     deleteDocumentNote: '{0} a supprimé(e) {1}'
     deleteSuceed: Le fichier a été supprimé avec succès
     download: Télécharger
-    fileContainScript: Ce fichier n'est pas autorisé à être téléchargé en raison du contenu du script!
+    fileContainScript: Le fichier contient un contenu potentiellement malveillant et ne peut pas être téléversé !
     fileContainVirus: Erreur de téléchargement, virus/infection détecté !
     fileCouldNotParse: Impossible d'analyser le fichier
     fileEmptyMessage: Le fichier est vide
