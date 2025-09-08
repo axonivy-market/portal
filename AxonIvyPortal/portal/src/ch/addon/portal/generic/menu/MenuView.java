@@ -205,7 +205,7 @@ public class MenuView implements Serializable {
   }
 
   private DefaultSubMenu createDashboardGroupMenu(String defaultTitle, String mainMenuDisplayName, String mainMenuIcon, String dashboardLink) {
-    // Encode URL in a data attribute via CSS class
+    // Encode URL as base64 in CSS class for JavaScript href patching (IVYPORTAL-19031)
     String urlClass = String.format("js-parent-dashboard-url-%s", Base64.getUrlEncoder().encodeToString(StringUtils.defaultIfEmpty(dashboardLink, EMPTY).getBytes()));
 
     return DefaultSubMenu.builder().label(StringUtils.isBlank(mainMenuDisplayName) ? defaultTitle : mainMenuDisplayName)

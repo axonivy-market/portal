@@ -107,7 +107,7 @@ public class PortalMenuItem extends DefaultMenuItem {
     } else {
       generateMenuParams(builder);
 
-      // Encode URL in a data attribute via CSS class
+      // Encode URL as base64 in CSS class for JavaScript href patching (IVYPORTAL-19031)
       String urlClass = String.format("js-menu-url-%s", Base64.getUrlEncoder().encodeToString(StringUtils.defaultIfEmpty(builder.url, EMPTY).getBytes()));
       this.setStyleClass(String.format("%s %s", StringUtils.defaultIfEmpty(this.getStyleClass(), EMPTY), urlClass));
 
