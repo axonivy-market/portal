@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Portal Guide ${revision}\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-04 02:01+0000\n"
+"POT-Creation-Date: 2025-09-08 03:35+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: de\n"
@@ -943,6 +943,22 @@ msgstr ""
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "If true, case note does not display any system tasks for administrator."
+msgstr ""
+
+#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
+msgid "Portal.Histories.CheckSystemTasksByDefault"
+msgstr ""
+
+#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
+msgid "Check show system tasks by default in case/task details."
+msgstr ""
+
+#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
+msgid "Portal.Histories.CheckSystemNotesByDefault"
+msgstr ""
+
+#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
+msgid "Check show system notes by default in case/task details."
 msgstr ""
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
