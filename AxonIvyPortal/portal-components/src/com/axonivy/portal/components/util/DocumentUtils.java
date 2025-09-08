@@ -49,7 +49,7 @@ public final class DocumentUtils {
   
   public static StreamedContent findDocFactoryAndConvert(StreamedContent streamedContent) {
     if (streamedContent != null 
-        && StringUtils.isNoneEmpty(streamedContent.getName()) 
+        && StringUtils.isNotEmpty(streamedContent.getName()) 
         && Strings.CI.endsWithAny(streamedContent.getName(), SUPPORTED_PREVIEW_FILE_TYPES)) {
       return streamedContent;
     }
