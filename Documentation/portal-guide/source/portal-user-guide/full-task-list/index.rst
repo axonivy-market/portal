@@ -97,7 +97,7 @@ The task details are separated into 4 different sections:
    |detailed-task-information-note|
 
 #. Documents, these documents once attached to the case are
-   available on all tasks. You may add, delete or preview documents 
+   available on all tasks. You may add, delete, rename or preview documents
    described in the HowTo’s below.
 
    |detailed-task-information-documents|
@@ -151,6 +151,25 @@ HowTo: Attach a document to a case
 
    Grant either permission :bdg-ref-warning:`🔑DocumentOfInvolvedCaseWrite <DocumentOfInvolvedCaseWrite>` or :bdg-ref-warning:`🔑DocumentWrite <DocumentWrite>` to allow a user to upload documents.
 
+HowTo: Rename a document of a case
+----------------------------------
+
+#. Open the case details
+
+#. Click on the |edit-icon| button next to the
+   attachment you want to rename
+
+#. A dialog is opened to rename the selected document
+
+#. Update filename as you expect in the input field
+
+#. Click the button :guilabel:`Save` to save your change
+
+#. Filename will be updated and a note about the renaming will be added
+
+|how-to-rename-document|
+
+
 HowTo: Remove an attachment from the case
 -----------------------------------------
 
@@ -170,7 +189,7 @@ HowTo: Remove an attachment from the case
    Grant either permission :bdg-ref-warning:`🔑DocumentOfInvolvedCaseWrite <DocumentOfInvolvedCaseWrite>` or :bdg-ref-warning:`🔑DocumentWrite <DocumentWrite>` to allow a user to delete documents.
 
 
-HowTo: Preview a document of a case
+HowTo: Preview a document of a task
 ------------------------------------
 
 #. Open the task details of a task
@@ -186,10 +205,11 @@ HowTo: Preview a document of a case
 
 .. note::
 
-   Portal can preview images, plain text(txt and log) and pdf documents.
+    - Portal can preview images(jpg, jpeg, bmp and png), plain text(txt and log) and pdf documents by default.
 
-   Change :ref:`Portal settings <update-portal-settings>` :guilabel:`Portal.Document.EnablePreview` to true to enable this feature.
+    - Portal can preview Word(doc, docx), Excel(xls, xlsx) and email(eml) documents if :dev-url:`DocFactory <https://market.axonivy.com/doc-factory#tab-description>` is deployed in the same security context.
 
+    - Change :ref:`Portal settings <update-portal-settings>` :guilabel:`Portal.Document.EnablePreview` to true to enable this feature.
 
 HowTo: Add a note to a task
 ---------------------------
@@ -298,3 +318,6 @@ HowTo: Share Task Details
 .. |task-status-banner| image:: ../../screenshots/task-detail/task-status-banner.png
    :alt: Task Details: the Status banner
 .. |how-to-preview-document| image:: ../../screenshots/case-detail/how-to-preview-document.png
+   :alt: Task Details: preview document dialog
+.. |how-to-rename-document| image:: ../../screenshots/case-detail/how-to-rename-document.png
+   :alt: Task Details: rename document dialog

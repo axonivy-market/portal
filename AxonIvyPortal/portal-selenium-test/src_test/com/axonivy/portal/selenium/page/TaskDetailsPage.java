@@ -377,4 +377,30 @@ public class TaskDetailsPage extends TemplatePage {
     waitForElementClickableThenClick(By.cssSelector(".portal-breadcrumb ol li:nth-of-type(2) .ui-menuitem-link"));
   }
 
+  public SelenideElement getAllResponsible() {
+    return $("[id$=':all-responsibles'] a");
+  }
+  
+  public SelenideElement getAllExpiryResponsible() {
+    return $("[id$=':all-expiry-responsibles'] a");
+  }
+
+  public SelenideElement getExpiryResponsibleDialog() {
+    return $("[id$=':expiry-responsible-dialog']");
+  }
+  
+  public void clickOnSystemNotesCheckbox(boolean checkboxShouldBeChecked) {
+    waitForElementDisplayed(By.cssSelector("[id$=':task-history-content-container']"), true);
+    var systemNotesCheckbox = findElementByCssSelector("[id$=':task-notes:show-system-notes-checkbox']");
+    var checkbox = systemNotesCheckbox.findElement(By.cssSelector("div.ui-chkbox-box.ui-widget"));
+    if ((checkboxShouldBeChecked && checkbox.getAttribute("class").contains("ui-state-active"))
+        || (!checkboxShouldBeChecked && !checkbox.getAttribute("class").contains("ui-state-active"))) {
+      return;
+    } else {
+      systemNotesCheckbox.findElement(By.cssSelector("span.ui-chkbox-label")).click();
+      // Cannot identify when the ajax request of select checkbox is finished
+      // So we need to wait for Ajax Indicator disappear
+      clickOnSystemNotesCheckbox(checkboxShouldBeChecked);
+    }
+  }
 }

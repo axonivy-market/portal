@@ -316,11 +316,7 @@
           ],
           "map" : {
             "out.selectedDocument" : "param.selectedDocument"
-          },
-          "code" : [
-            "import org.apache.commons.lang3.StringUtils;",
-            "out.isImage = param.selectedDocument!= null && StringUtils.startsWithIgnoreCase(param.selectedDocument.getContentType(), \"image/\");"
-          ]
+          }
         },
         "result" : {
           "params" : [
@@ -529,6 +525,224 @@
       },
       "connect" : [
         { "id" : "f17", "to" : "f43", "color" : "default" }
+      ]
+    }, {
+      "id" : "f49",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "renameDocument()",
+      "config" : {
+        "signature" : "renameDocument",
+        "guid" : "199183E90E4A22BC"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 888 }
+      },
+      "connect" : [
+        { "id" : "f58", "to" : "f52" }
+      ]
+    }, {
+      "id" : "f52",
+      "type" : "SubProcessCall",
+      "name" : "Rename Document",
+      "config" : {
+        "processCall" : "Functional Processes/RenameDocumentItem:renameDocumentItem(ch.ivyteam.ivy.workflow.ICase,com.axonivy.portal.components.ivydata.bo.IvyDocument)",
+        "call" : {
+          "map" : {
+            "param.businessCase" : "in.ivyCase",
+            "param.document" : "in.selectedDocument"
+          }
+        },
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.isRenameDocumentSuccess" : "result.isSuccess",
+            "out.renameDocumentMessage" : "result.message"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 248, "y" : 888 }
+      },
+      "connect" : [
+        { "id" : "f60", "to" : "f53" }
+      ]
+    }, {
+      "id" : "f53",
+      "type" : "Alternative",
+      "name" : "rename successfully?",
+      "config" : {
+        "conditions" : {
+          "f64" : "in.isRenameDocumentSuccess"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 376, "y" : 888 },
+        "labelOffset" : { "x" : 24, "y" : -24 }
+      },
+      "connect" : [
+        { "id" : "f64", "to" : "f54", "label" : {
+            "name" : "Yes"
+          } },
+        { "id" : "f62", "to" : "f55", "label" : {
+            "name" : "No"
+          } }
+      ]
+    }, {
+      "id" : "f54",
+      "type" : "Script",
+      "name" : "Show success message",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.components.util.FacesMessageUtils;",
+            "import javax.faces.context.FacesContext;",
+            "",
+            "String successMsg = ivy.cms.co(\"/Dialogs/com/axonivy/portal/components/DocumentTable/RenamingDocumentSuccess\");",
+            "FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.sanitizedMessage(successMsg, \"\" ));"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 512, "y" : 888 }
+      },
+      "connect" : [
+        { "id" : "f61", "to" : "f56" }
+      ]
+    }, {
+      "id" : "f55",
+      "type" : "Script",
+      "name" : "Show error message",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.components.util.FacesMessageUtils;",
+            "import javax.faces.application.FacesMessage;",
+            "import javax.faces.context.FacesContext;",
+            "",
+            "FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR, in.renameDocumentMessage, null));"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 376, "y" : 1008 }
+      },
+      "connect" : [
+        { "id" : "f59", "to" : "f56", "via" : [ { "x" : 688, "y" : 1008 } ] }
+      ]
+    }, {
+      "id" : "f56",
+      "type" : "SubProcessCall",
+      "name" : "Find documents",
+      "config" : {
+        "processCall" : "Functional Processes/GetDocumentItems:getDocumentItems(ch.ivyteam.ivy.workflow.ICase)",
+        "call" : {
+          "map" : {
+            "param.businessCase" : "in.ivyCase"
+          }
+        },
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.documents" : "result.documents"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 688, "y" : 888 }
+      },
+      "connect" : [
+        { "id" : "f63", "to" : "f57" }
+      ]
+    }, {
+      "id" : "f57",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 808, "y" : 888 },
+        "labelOffset" : { "x" : 10, "y" : 30 }
+      }
+    }, {
+      "id" : "f65",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "preview(IvyDocument)",
+      "config" : {
+        "signature" : "preview",
+        "input" : {
+          "params" : [
+            { "name" : "selectedDocument", "type" : "com.axonivy.portal.components.ivydata.bo.IvyDocument", "desc" : "" }
+          ],
+          "map" : {
+            "out.selectedDocument" : "param.selectedDocument"
+          },
+          "code" : [
+            "import com.axonivy.portal.components.util.DocumentUtils;",
+            "out.isImage = DocumentUtils.isImageDocument(param.selectedDocument);"
+          ]
+        },
+        "result" : {
+          "params" : [
+            { "name" : "streamedContent", "type" : "org.primefaces.model.StreamedContent", "desc" : "" }
+          ],
+          "map" : {
+            "result.streamedContent" : "in.streamedContent"
+          }
+        },
+        "guid" : "19927B17BA823F9C"
+      },
+      "visual" : {
+        "at" : { "x" : 88, "y" : 1136 }
+      },
+      "connect" : [
+        { "id" : "f69", "to" : "f66" }
+      ]
+    }, {
+      "id" : "f66",
+      "type" : "SubProcessCall",
+      "name" : "DownloadDocument",
+      "config" : {
+        "processCall" : "Functional Processes/DownloadDocumentItem:downloadDocumentItem(ch.ivyteam.ivy.workflow.ICase,com.axonivy.portal.components.ivydata.bo.IvyDocument)",
+        "call" : {
+          "map" : {
+            "param.bussinessCase" : "in.ivyCase",
+            "param.document" : "in.selectedDocument"
+          }
+        },
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.streamedContent" : "result.streamedContent"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 240, "y" : 1136 },
+        "size" : { "width" : 128 }
+      },
+      "connect" : [
+        { "id" : "f68", "to" : "f70" }
+      ]
+    }, {
+      "id" : "f67",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 688, "y" : 1136 }
+      }
+    }, {
+      "id" : "f70",
+      "type" : "Script",
+      "name" : "Find DocFactory and convert",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.components.util.DocumentUtils;",
+            "in.streamedContent = DocumentUtils.findDocFactoryAndConvert(in.streamedContent);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 432, "y" : 1136 }
+      },
+      "connect" : [
+        { "id" : "f71", "to" : "f67", "color" : "default" }
       ]
     } ]
 }
