@@ -3,9 +3,23 @@ var invalidIFrameSrcPath = false;
 let taskUrl = new URLSearchParams(window.location.search).get("taskUrl");
 let updateIframeSrc = (newSrc) => {
   document.getElementById('iFrame').src = newSrc;
-}
-if (taskUrl){
-  updateIframeSrc(taskUrl)
+};
+
+if (taskUrl) {
+  if (isRelativeUrl(taskUrl)) {
+    updateIframeSrc(taskUrl);
+  } else {
+    const iframe = document.getElementById("iFrame");
+    //Non-relative Url -> stop loading iframe
+    try {
+      if (iframe && iframe.contentWindow) {
+        iframe.contentWindow.stop();
+      }
+    } catch (e) {
+      console.warn("Could not stop iframe loading for non-relative taskUrl:",e);
+    } 
+    console.warn("Blocked non-relative taskUrl:", taskUrl);
+  }
 }
 
 loadIframe(false);
@@ -196,4 +210,20 @@ const convertProcessSteps = processSteps => {
     let stepsCompatibleWithPortal8 = processSteps.split(',');
     return JSON.stringify(stepsCompatibleWithPortal8);
   }
+};
+
+function isRelativeUrl(u) {
+  if (!u) return false;
+  u = String(u).trim();
+  // block protocol-relative (//host) and obvious control chars
+  if (
+    u.startsWith("//") ||
+    u.includes("\r") ||
+    u.includes("\n") ||
+    u.indexOf("\0") >= 0
+  )
+    return false;
+  // block any scheme: http:, https:, javascript:, file:, data:, etc.
+  if (/^[a-zA-Z][a-zA-Z0-9+.-]*:/.test(u)) return false;
+  return true;
 }
