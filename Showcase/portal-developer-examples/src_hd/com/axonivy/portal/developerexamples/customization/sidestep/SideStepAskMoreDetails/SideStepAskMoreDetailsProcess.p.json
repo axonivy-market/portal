@@ -1,0 +1,182 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/process/12.0.0/process.json",
+  "id" : "19660C0146486D96",
+  "kind" : "HTML_DIALOG",
+  "config" : {
+    "data" : "com.axonivy.portal.developerexamples.customization.sidestep.SideStepAskMoreDetails.SideStepAskMoreDetailsData"
+  },
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "HtmlDialogStart",
+      "name" : "start(String,String,String,Boolean)",
+      "config" : {
+        "signature" : "start",
+        "input" : {
+          "params" : [
+            { "name" : "originalTaskUuid", "type" : "String", "desc" : "" },
+            { "name" : "caseUuid", "type" : "String", "desc" : "" },
+            { "name" : "comment", "type" : "String", "desc" : "" },
+            { "name" : "isParallel", "type" : "Boolean", "desc" : "" }
+          ],
+          "map" : {
+            "out.caseUuid" : "param.caseUuid",
+            "out.comment" : "param.comment",
+            "out.isParallel" : "param.isParallel",
+            "out.originalTaskUuid" : "param.originalTaskUuid"
+          }
+        },
+        "guid" : "19660C014688AF59"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 96 }
+      },
+      "connect" : [
+        { "id" : "f2", "to" : "f6" }
+      ]
+    }, {
+      "id" : "f1",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 480, "y" : 96 }
+      }
+    }, {
+      "id" : "f6",
+      "type" : "Script",
+      "name" : "Load data",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.developerexamples.dto.SideStepExampleDTO;",
+            "import ch.ivyteam.ivy.workflow.ICase;",
+            "import com.axonivy.portal.developerexamples.LeaveRequest;",
+            "",
+            "ICase caze = ivy.wf.findCase(in.caseUuid);",
+            "in.leaveRequestData = ivy.repo.find(caze.getBusinessCase(), LeaveRequest.class) as LeaveRequest;"
+          ]
+        },
+        "sudo" : true
+      },
+      "visual" : {
+        "at" : { "x" : 336, "y" : 96 }
+      },
+      "connect" : [
+        { "id" : "f7", "to" : "f1", "color" : "default" }
+      ]
+    }, {
+      "id" : "f8",
+      "type" : "HtmlDialogEventStart",
+      "name" : "submit",
+      "config" : {
+        "guid" : "1966C0E6558A30D7"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 264 }
+      },
+      "connect" : [
+        { "id" : "f9", "to" : "f16" }
+      ]
+    }, {
+      "id" : "f16",
+      "type" : "Script",
+      "name" : "save data",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.developerexamples.dto.SideStepExampleDTO;",
+            "import com.axonivy.portal.components.publicapi.SideStepAPI;",
+            "",
+            "SideStepExampleDTO dto = new SideStepExampleDTO();",
+            "",
+            "dto.setAskMoreDetails(in.leaveRequestDetails);",
+            "dto.setAssignee(ivy.session.getSessionUserName());",
+            "dto.setOriginalTaskUuid(in.originalTaskUuid);",
+            "dto.setCompleted(true);",
+            "",
+            "",
+            "in.leaveRequestData.sideStepTasks.add(dto);",
+            "",
+            "ivy.repo.save(in.leaveRequestData);",
+            "SideStepAPI.finishSideStep(in.originalTaskUuid, in.isParallel);"
+          ]
+        },
+        "sudo" : true
+      },
+      "visual" : {
+        "at" : { "x" : 336, "y" : 264 }
+      },
+      "connect" : [
+        { "id" : "f17", "to" : "f18" }
+      ]
+    }, {
+      "id" : "f18",
+      "type" : "HtmlDialogExit",
+      "visual" : {
+        "at" : { "x" : 616, "y" : 264 }
+      }
+    }, {
+      "id" : "f19",
+      "type" : "HtmlDialogEventStart",
+      "name" : "close",
+      "config" : {
+        "guid" : "1966C14FD2124120"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 424 }
+      },
+      "connect" : [
+        { "id" : "f21", "to" : "f20" }
+      ]
+    }, {
+      "id" : "f20",
+      "type" : "HtmlDialogExit",
+      "visual" : {
+        "at" : { "x" : 264, "y" : 424 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 400, "y" : 528 }
+      }
+    }, {
+      "id" : "f4",
+      "type" : "Script",
+      "name" : "back to homepage",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.components.publicapi.PortalNavigatorInFrameAPI;",
+            "",
+            "PortalNavigatorInFrameAPI.navigateToPortalEndPage();"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 208, "y" : 528 }
+      },
+      "connect" : [
+        { "id" : "f23", "to" : "f3" }
+      ]
+    }, {
+      "id" : "f5",
+      "type" : "HtmlDialogEventStart",
+      "name" : "cancel",
+      "config" : {
+        "guid" : "1985593B8B311B74",
+        "output" : {
+          "code" : [
+            "/*import javax.faces.context.FacesContext;",
+            "import ch.ivy.addon.portal.generic.bean.UserMenuBean;",
+            "String homePageUrl = new UserMenuBean().getHomePageURL();",
+            "FacesContext.getCurrentInstance().getExternalContext().redirect(homePageUrl);*/"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 528 }
+      },
+      "connect" : [
+        { "id" : "f22", "to" : "f4" }
+      ]
+    } ]
+}
