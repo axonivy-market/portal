@@ -235,6 +235,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       behaviourWhenClickingOnLineInTaskList: タスク リスト、ダッシュボードのタスク ウィジェット、およびケース詳細ページの関連タスクの行をクリックしたときの動作（タスクを実行するか、タスクの詳細にアクセスするか）を切り替えます。
       chatMaxConnection: 設定された数値は、アクティブなチャットで許可されるタブの数を制御します。それ以上のタブが開かれると、非アクティブなタブではチャットが無効になります。許可される値は 1 から 5 です。
       chatResponseTimeout: 'チャット応答タイムアウトで単位は秒。初期値は 0 で、これはタイムアウトなしを意味します。チャットメッセージがリバースプロキシ Nginx を通過する場合、チャット応答タイムアウトは Nginx タイムアウトよりも短くする必要があります。（例: 60 秒未満）'
+      checkSystemNotesByDefault: TODO If the value is true and system notes are visible, the checkbox will appear checked.
+      checkSystemTasksByDefault: TODO If the value is true and system tasks are visible, the checkbox will appear checked.
       dateFilterWithTime: 時間による日付フィルタリングを有効にするには、true に設定してください。この設定は、タスク リスト、ケース リスト、および統計に影響します。
       deepLAuthKey: DeepL認証キー（末尾は:fx）
       defaultHomepage: ホームアイコンまたはロゴをクリックしたときにリダイレクトされる標準ホームページを設定します。この設定は、タスク完了後の終了ページにも適用されます。
