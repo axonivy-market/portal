@@ -26,6 +26,7 @@ import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
+import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 
 import ch.ivyteam.ivy.workflow.task.TaskBusinessState;
@@ -260,6 +261,34 @@ public class CaseDetailsPage extends TemplatePage {
     return $("div[id$='document-deletion-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
+  public SelenideElement getRenameDocumentDialog() {
+    $("a[id$='edit-filename']").shouldBe(getClickableCondition()).click();
+    $(By.cssSelector("div[id$='document-renaming-dialog']")).shouldBe(appear, DEFAULT_TIMEOUT);
+    $("[id$='document-renaming-dialog_title']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    return $("div[id$='document-renaming-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  public String renameDocument(String newFilename) {
+    if ($("[id$='document-renaming-dialog_title']").isDisplayed()) {
+      $("[id$='document-rename-cancel-button']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    }
+    SelenideElement renameDialog = this.getRenameDocumentDialog();
+    renameDialog.$("input[id*='new-filename']").clear();
+    renameDialog.$("input[id*='new-filename']").setValue(newFilename);
+    renameDialog.$("button[id*='document-rename-save-button']").click();
+
+    // Wait for either the dialog to disappear OR error message to appear
+    WaitHelper.assertTrueWithWait(() ->
+      !renameDialog.isDisplayed() || $("span.ui-messages-error-summary").isDisplayed()
+    );
+
+    return $("span.js-document-name").getText();
+  }
+
+  public String getRenamingFileMessage() {
+    return $("span.ui-messages-error-summary").getText();
+  }
+
   public void waitForShowNoteHistory() {
     $(".note-history-container").shouldBe(Condition.visible, DEFAULT_TIMEOUT);
   }
@@ -471,6 +500,7 @@ public class CaseDetailsPage extends TemplatePage {
     return getTextOfCurrentBreadcrumb().replace("Case: ", "");
   }
 
+  @Override
   public String getTextOfCurrentBreadcrumb() {
     WebElement breadcrumb = findElementByCssSelector(CURRENT_BREADCRUMB_SELECTOR);
     String result = "";
@@ -1041,6 +1071,36 @@ public class CaseDetailsPage extends TemplatePage {
   
   public boolean getFirstItemPreviewDocumentVisible() {
     return $("a[id$=':0:preview-file']").exists();
+  }
+  
+  public void clickOnSystemNotesCheckbox(boolean checkboxShouldBeChecked) {
+    waitForElementDisplayed(By.cssSelector("[id$=':history-container']"), true);
+    var systemNotesCheckbox = findElementByCssSelector("[id$=':case-histories:system-note-checkbox']");
+    var checkbox = systemNotesCheckbox.findElement(By.cssSelector("div.ui-chkbox-box.ui-widget"));
+    if ((checkboxShouldBeChecked && checkbox.getAttribute(CLASS).contains("ui-state-active"))
+        || (!checkboxShouldBeChecked && !checkbox.getAttribute(CLASS).contains("ui-state-active"))) {
+      return;
+    } else {
+      systemNotesCheckbox.findElement(By.cssSelector("span.ui-chkbox-label")).click();
+      // Cannot identify when the ajax request of select checkbox is finished
+      // So we need to wait for Ajax Indicator disappear
+      clickOnSystemNotesCheckbox(checkboxShouldBeChecked);
+    }
+  }
+
+  public void clickOnSystemTasksCheckbox(boolean checkboxShouldBeChecked) {
+    waitForElementDisplayed(By.cssSelector("[id$=':history-container']"), true);
+    var systemNotesCheckbox = findElementByCssSelector("[id$=':case-histories:system-task-checkbox']");
+    var checkbox = systemNotesCheckbox.findElement(By.cssSelector("div.ui-chkbox-box.ui-widget"));
+    if ((checkboxShouldBeChecked && checkbox.getAttribute(CLASS).contains("ui-state-active"))
+        || (!checkboxShouldBeChecked && !checkbox.getAttribute(CLASS).contains("ui-state-active"))) {
+      return;
+    } else {
+      systemNotesCheckbox.findElement(By.cssSelector("span.ui-chkbox-label")).click();
+      // Cannot identify when the ajax request of select checkbox is finished
+      // So we need to wait for Ajax Indicator disappear
+      clickOnSystemTasksCheckbox(checkboxShouldBeChecked);
+    }
   }
 }
 

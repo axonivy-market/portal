@@ -18,6 +18,7 @@ import javax.faces.event.ActionEvent;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 import org.primefaces.event.MenuActionEvent;
 import org.primefaces.model.menu.MenuItem;
 
@@ -119,8 +120,8 @@ public class PortalMenuNavigator {
   }
 
   private static boolean isSessionUserHasPermisson(String permission) {
-    return StringUtils.startsWith(permission, "#")
-        ? StringUtils.equals(Ivy.session().getSessionUser().getMemberName(), permission)
+    return Strings.CS.startsWith(permission, "#")
+        ? Strings.CS.equals(Ivy.session().getSessionUser().getMemberName(), permission)
         : PermissionUtils.doesSessionUserHaveRole(permission);
   }
 
@@ -219,7 +220,7 @@ public class PortalMenuNavigator {
 
     // Set the name of the submenu item based on the current language or use default title
     item.label = dashboard.getTitles().stream()
-        .filter(name -> StringUtils.equalsIgnoreCase(name.getLocale().toString(), currentLanguage)
+        .filter(name -> Strings.CI.equals(name.getLocale().toString(), currentLanguage)
             && StringUtils.isNotBlank(name.getValue()))
         .map(DisplayName::getValue).findFirst().orElse(defaultTitle);
 

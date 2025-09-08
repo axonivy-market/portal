@@ -12,6 +12,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.primefaces.model.menu.DefaultMenuItem;
 
 import com.axonivy.portal.components.enums.MenuKind;
+
 import ch.ivy.addon.portalkit.util.DashboardUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 
@@ -130,26 +131,14 @@ public class PortalMenuItem extends DefaultMenuItem {
   }
 
   private String generateMenuId(MenuKind menuKind) {
-    String menuFormat = "%s";
-    switch (menuKind) {
-      case DASHBOARD:
-        menuFormat = MENU_ID_FORMAT;
-        break;
-      case PROCESS:
-      case CUSTOM:
-        menuFormat = SUB_MENU_ID_FORMAT;
-        break;
-      case MAIN_DASHBOARD:
-        menuFormat = MAIN_DASHBOARD_MENU_ID_FORMAT;
-      case EXTERNAL_LINK:
-        menuFormat = EXTERNAL_MENU_ID_FORMAT;
-        break;
-      case THIRD_PARTY:
-        menuFormat = THIRD_PARTY_MENU_ID_FORMAT;
-        break;
-      default:
-        break;
-    }
+    String menuFormat = switch (menuKind) {
+      case DASHBOARD -> MENU_ID_FORMAT;
+      case PROCESS, CUSTOM -> SUB_MENU_ID_FORMAT;
+      case MAIN_DASHBOARD -> MAIN_DASHBOARD_MENU_ID_FORMAT;
+      case EXTERNAL_LINK -> EXTERNAL_MENU_ID_FORMAT;
+      case THIRD_PARTY -> THIRD_PARTY_MENU_ID_FORMAT;
+      default -> "%s";
+    };
     return String.format(menuFormat, menuKind);
   }
 

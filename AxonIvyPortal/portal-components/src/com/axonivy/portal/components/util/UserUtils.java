@@ -14,6 +14,7 @@ import java.util.function.Function;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 
 import com.axonivy.portal.components.constant.PortalComponentConstants;
 import com.axonivy.portal.components.dto.UserDTO;
@@ -70,7 +71,7 @@ public class UserUtils {
   }
 
   public static List<UserDTO> filterOut(List<UserDTO> users, UserDTO excludedUser) {
-    return users.stream().filter(user -> !StringUtils.equals(user.getName(), excludedUser.getName())).collect(toList());
+    return users.stream().filter(user -> !Strings.CS.equals(user.getName(), excludedUser.getName())).collect(toList());
   }
 
   private static String loadLanguage(Function<IUser, Locale> userLocaleLoader) {

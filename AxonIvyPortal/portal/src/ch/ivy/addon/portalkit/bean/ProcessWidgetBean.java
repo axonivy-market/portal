@@ -24,7 +24,7 @@ import javax.faces.context.FacesContext;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.logging.log4j.util.Strings;
+import org.apache.commons.lang3.Strings;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
@@ -110,7 +110,7 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
 
   private String getProcessModeByLabel(String processLabel) {
     return Stream.of(ProcessMode.values())
-        .filter(e -> StringUtils.equalsIgnoreCase(processLabel, e.getLabel()) || StringUtils.equalsIgnoreCase(e.name(), processLabel))
+        .filter(e -> Strings.CI.equals(processLabel, e.getLabel()) || Strings.CI.equals(e.name(), processLabel))
         .findFirst()
         .orElse(ProcessMode.IMAGE).toString();
   }
@@ -329,7 +329,7 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
     String processId = this.editedProcess.getId();
     String oldProcessNameFirstLetter = extractProcessFirstLetter(oldProcessName);
     String firstLetter = extractProcessFirstLetter(this.editedProcess.getName());
-    if (!StringUtils.equals(oldProcessNameFirstLetter, firstLetter)) {
+    if (!Strings.CS.equals(oldProcessNameFirstLetter, firstLetter)) {
       if (StringUtils.isNotEmpty(oldProcessNameFirstLetter)
           && this.processesByAlphabet.containsKey(oldProcessNameFirstLetter)) {
         List<Process> processes = this.processesByAlphabet.get(oldProcessNameFirstLetter);
@@ -504,7 +504,7 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
   }
 
   public boolean isCompactMode() {
-    return StringUtils.equalsIgnoreCase(this.viewMode, ProcessMode.COMPACT.name());
+    return Strings.CI.equals(this.viewMode, ProcessMode.COMPACT.name());
   }
 
   public List<SecurityMemberDTO> getSelectedSecurityMemberDTOsWhenCreatingExternalLink() {
@@ -574,8 +574,8 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
   }
   
   private void translateValues(DisplayName title, List<DisplayName> languages) {
-    translatedText = Strings.EMPTY;
-    warningText = Strings.EMPTY;
+    translatedText = "";
+    warningText = "";
 
     String currentLanguage = UserUtils.getUserLanguage();
     if (!title.getLocale().getLanguage().equals(currentLanguage)) {

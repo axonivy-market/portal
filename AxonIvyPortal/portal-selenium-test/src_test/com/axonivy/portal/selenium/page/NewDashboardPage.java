@@ -58,6 +58,7 @@ public class NewDashboardPage extends TemplatePage {
         .shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 
+  @Override
   public ChangePasswordPage openChangePasswordPage() {
     clickUserMenuItem("change-password-menu-item");
     return new ChangePasswordPage();
@@ -118,6 +119,7 @@ public class NewDashboardPage extends TemplatePage {
     return widget.ancestor(".grid-stack-item");
   }
 
+  @Override
   public MainMenuPage openMainMenu() {
     $(".dashboard-cases-container").shouldBe(appear, DEFAULT_TIMEOUT);
     if (!isMainMenuOpen()) {
@@ -974,6 +976,7 @@ public class NewDashboardPage extends TemplatePage {
     return $("[id='theme-switcher']").shouldBe(appear, DEFAULT_TIMEOUT).is(Condition.cssClass("ui-state-disabled"));
   }
 
+  @Override
   public NewDashboardPage openTaskList() {
     return openMainMenu().selectTaskMenu();
   }
