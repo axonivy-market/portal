@@ -62,7 +62,7 @@ The case details are separated into four different sections:
    |case-details-histories|
 
 #. Documents: Here, documents attached to the case are listed. You
-   may add. delete or preview documents as described in the HowTo’s below.
+   may add, delete, rename or preview documents as described in the HowTo’s below.
 
    |case-details-documents|
 
@@ -148,6 +148,23 @@ HowTo: Preview a document of a case
 
    Change :ref:`Portal settings <update-portal-settings>` :guilabel:`Portal.Document.EnablePreview` to true to enable this feature.
 
+HowTo: Rename a document of a case
+----------------------------------
+
+#. Open the case details
+
+#. Click on the |edit-icon| button next to the
+   attachment you want to rename
+
+#. A dialog is opened to rename the selected document
+
+#. Update filename as you expect in the input field
+
+#. Click the button :guilabel:`Save` to save your change
+
+#. Filename will be updated and a note about the renaming will be added
+
+|how-to-rename-document|
 
 HowTo: Add a Note to a Case
 ---------------------------
@@ -360,3 +377,6 @@ HowTo: Share Case Details
 .. |how-to-share-case-details| image:: ../../screenshots/case-detail/share-page-button.png
    :alt: Case Details: button to get the shareable link of the case details
 .. |how-to-preview-document| image:: ../../screenshots/case-detail/how-to-preview-document.png
+   :alt: Case Details: preview document dialog
+.. |how-to-rename-document| image:: ../../screenshots/case-detail/how-to-rename-document.png
+   :alt: Case Details: rename document dialog

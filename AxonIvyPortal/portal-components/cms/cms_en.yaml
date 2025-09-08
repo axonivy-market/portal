@@ -16,6 +16,7 @@ Dialogs:
             Process:
               ProcessName: Process name
             RequiredFieldMessage: This field is required
+            Save: Save
             Task:
               Activator: Responsible
             Type: Type
@@ -31,10 +32,15 @@ Dialogs:
             FileContainVirus: Upload failed, virus/infection detected!
             FileFunction: Functions
             FileLimitMessage: The maximum number of files are already uploaded!
+            FilenameEmpty: Filename cannot be empty.
             InvalidFileMessage: This file type is not accepted!
             Name: Filename
             NoFile: No files are found!
             Preview: Preview
+            RenamingDocument: Rename document
+            RenamingDocumentNote: '{0} has renamed the file {1} to {2}'
+            RenamingDocumentSuccess: Rename successfully.
+            RenamingFailed: An error occurs while renaming the document.
             Size: File size
             Type: Type
             Upload: Upload new file
@@ -94,6 +100,10 @@ Labels:
       ErrorWhenProceedRequest: An error has occurred while trying to process your request. Please try again later.
       SomethingWentWrong: Something went wrong when proceed your request. Please try again later.
   DisabledUserPrefix: (disabled)
+  Enums:
+    NewFilenameValidation:
+      ALREADY_EXIST: There is already a file with the same name in this location.
+      INVALID_FORMAT: 'A file name can''t contain any of the following characters: \ / : * ? " < > |'
   NoName: no name
   NoResults: No results
   None: None

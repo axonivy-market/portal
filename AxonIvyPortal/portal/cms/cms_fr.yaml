@@ -940,7 +940,13 @@ ch.ivy.addon.portalkit.ui.jsf:
   dashboardProcess:
     processAriaLabel: 'Nom du processus : {0}. Description du processus : {1}'
   documentFiles:
+    FilenameEmpty: Le nom du fichier ne peut pas être vide.
     PreviewDocument: Aperçu
+    RenameFile: Renommer le fichier
+    RenamingDocument: Renommer le document
+    RenamingDocumentNote: '{0} a renommé le fichier {1} en {2}'
+    RenamingDocumentSuccess: Renommé avec succès.
+    RenamingFailed: Une erreur s'est produite lors du renommage du document.
     deleteDocumentNote: '{0} a supprimé(e) {1}'
     deleteSuceed: Le fichier a été supprimé avec succès
     download: Télécharger
