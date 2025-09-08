@@ -24,6 +24,7 @@ public class TaskDashboardExporter extends DashboardWidgetExporter{
    * Constructor
    * 
    * @param visibleColumns list of columns to export
+   * @param columnModels 
    * @param widgetName
    *
    */

@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 
 import ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel;
 import ch.ivy.addon.portalkit.enums.TaskSortField;
@@ -73,7 +74,7 @@ public class TaskExporter extends Exporter {
   }
 
   protected Object getCommonColumnValue(String column, ITask task) {
-    if (StringUtils.equals(column, TaskLazyDataModel.DESCRIPTION)) {
+    if (Strings.CS.equals(column, TaskLazyDataModel.DESCRIPTION)) {
       return task.descriptions().current();
     }
 

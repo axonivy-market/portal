@@ -7,7 +7,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 
 import ch.ivy.addon.portalkit.configuration.GlobalSetting;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
@@ -87,7 +87,7 @@ public class GlobalSettingService {
   }
 
   public List<GlobalSetting> findAll() {
-    return getPortalVariableStream().sorted((v1, v2) -> StringUtils.compareIgnoreCase(v1.name(), v2.name()))
+    return getPortalVariableStream().sorted((v1, v2) -> Strings.CI.compare(v1.name(), v2.name()))
         .map(v -> new GlobalSetting(v.name(), v.value())).collect(toList());
   }
 

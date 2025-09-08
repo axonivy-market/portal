@@ -14,6 +14,7 @@ import java.util.stream.Stream;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 
 import com.axonivy.portal.components.dto.RoleDTO;
 import com.axonivy.portal.components.enums.AdditionalProperty;
@@ -37,7 +38,7 @@ public final class RoleUtils {
       roles = filterRoleDTO(roles, query);
     }
 
-    roles.sort((first, second) -> StringUtils.compareIgnoreCase(first.getDisplayName(), second.getDisplayName()));
+    roles.sort((first, second) -> Strings.CI.compare(first.getDisplayName(), second.getDisplayName()));
 
     return roles;
   }
@@ -142,7 +143,7 @@ public final class RoleUtils {
 
     List<RoleDTO> filterRoles = new ArrayList<>();
     for (RoleDTO role : roles) {
-      if (StringUtils.containsIgnoreCase(role.getDisplayName(), query) || StringUtils.containsIgnoreCase(role.getMemberName(), query)) {
+      if (Strings.CI.contains(role.getDisplayName(), query) || Strings.CI.contains(role.getMemberName(), query)) {
         filterRoles.add(role);
       }
     }

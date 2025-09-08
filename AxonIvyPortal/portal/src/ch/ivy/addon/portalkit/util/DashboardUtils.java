@@ -15,6 +15,7 @@ import java.util.function.Consumer;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 import org.primefaces.PrimeFaces;
 
 import com.axonivy.portal.migration.dashboard.migrator.JsonDashboardMigrator;
@@ -65,7 +66,7 @@ public class DashboardUtils {
   }
 
   private static boolean isSessionUserHasPermisson(String permission) {
-    return StringUtils.startsWith(permission, "#") ? StringUtils.equals(currentUser().getMemberName(), permission)
+    return Strings.CS.startsWith(permission, "#") ? Strings.CS.equals(currentUser().getMemberName(), permission)
         : PermissionUtils.doesSessionUserHaveRole(permission);
   }
 
@@ -315,6 +316,7 @@ public class DashboardUtils {
 
   /**
    * Uses this method before saving a dashboard to simplify generated json from the dashboard
+   * @param dashboards 
    */
   public static void updatePropertiesToNullIfCurrentValueIsDefaultValue(List<Dashboard> dashboards) {
     if (CollectionUtils.isEmpty(dashboards)) {

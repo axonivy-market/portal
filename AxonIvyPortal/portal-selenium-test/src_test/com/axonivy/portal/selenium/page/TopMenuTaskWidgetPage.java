@@ -189,7 +189,7 @@ public class TopMenuTaskWidgetPage extends TaskWidgetNewDashBoardPage {
     $$(String.format("div.js-task-side-steps-panel-default_task_list_dashboard_task_1-%d", taskIndex)).filter(appear)
         .first().shouldBe(appear, DEFAULT_TIMEOUT).$("div.ui-overlaypanel-content").$$("a[class*='option-item']")
         .filter(Condition.not(Condition.cssClass("ui-state-disabled"))).filter(text("Process Viewer")).first()
-        .shouldBe(getClickableCondition()).click();;
+        .shouldBe(getClickableCondition()).click();
   }
 
   public String getNameOfTaskAt(int taskIndex) {
@@ -258,7 +258,7 @@ public class TopMenuTaskWidgetPage extends TaskWidgetNewDashBoardPage {
     if (isRole) {
       waitForElementDisplayed(By.cssSelector("[id$=':task-delegate-form:activator-type-select']"), true);
       waitForElementEnabled(By.cssSelector("[id$=':task-delegate-form:activator-type-select:1']"), true);
-      waitForElementClickableThenClick("[for$=':task-delegate-form:activator-type-select:1']");;
+      waitForElementClickableThenClick("[for$=':task-delegate-form:activator-type-select:1']");
       waitForElementDisplayed(By.cssSelector("input[id$='group-activator-select_input']"), true);
       responsibleElement = $(By.cssSelector("input[id$='group-activator-select_input']"));
       responsibleElement.click();

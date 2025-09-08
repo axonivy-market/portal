@@ -23,6 +23,7 @@ public class CaseDashboardExporter extends DashboardWidgetExporter{
    * Constructor
    * 
    * @param columnsVisibility list of columns to export
+   * @param columnModels 
    * @param widgetName 
    */
   public CaseDashboardExporter(List<String> columnsVisibility, List<ColumnModel> columnModels, String widgetName) {
