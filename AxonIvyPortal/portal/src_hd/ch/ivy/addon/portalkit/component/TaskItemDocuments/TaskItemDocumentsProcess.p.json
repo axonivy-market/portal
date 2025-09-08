@@ -11,15 +11,6 @@
       "name" : "start()",
       "config" : {
         "signature" : "start",
-        "input" : {
-          "map" : { },
-          "code" : [
-            "import ch.ivy.addon.portalkit.service.GlobalSettingService;",
-            "import ch.ivy.addon.portalkit.enums.GlobalVariable;",
-            "",
-            "out.isDocumentPreviewEnabled = GlobalSettingService.getInstance().findBooleanGlobalSettingValue(GlobalVariable.ENABLE_DOCUMENT_PREVIEW);"
-          ]
-        },
         "guid" : "1682717B951993D3"
       },
       "visual" : {
@@ -161,7 +152,11 @@
           ],
           "map" : {
             "out.document" : "param.document"
-          }
+          },
+          "code" : [
+            "import org.apache.commons.lang3.StringUtils;",
+            "out.isImage = param.document!= null && StringUtils.startsWithIgnoreCase(param.document.getContentType(), \"image/\");"
+          ]
         },
         "result" : {
           "params" : [
@@ -616,90 +611,6 @@
       },
       "connect" : [
         { "id" : "f55", "to" : "f43", "via" : [ { "x" : 688, "y" : 904 } ] }
-      ]
-    }, {
-      "id" : "f62",
-      "type" : "Script",
-      "name" : "Find DocFactory and convert",
-      "config" : {
-        "output" : {
-          "code" : [
-            "import com.axonivy.portal.components.util.DocumentUtils;",
-            "in.streamedContent = DocumentUtils.findDocFactoryAndConvert(in.streamedContent);"
-          ]
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 464, "y" : 1032 }
-      },
-      "connect" : [
-        { "id" : "f64", "to" : "f59", "color" : "default" }
-      ]
-    }, {
-      "id" : "f59",
-      "type" : "HtmlDialogEnd",
-      "visual" : {
-        "at" : { "x" : 608, "y" : 1032 }
-      }
-    }, {
-      "id" : "f56",
-      "type" : "HtmlDialogMethodStart",
-      "name" : "previewDocument(IvyDocument)",
-      "config" : {
-        "signature" : "previewDocument",
-        "input" : {
-          "params" : [
-            { "name" : "document", "type" : "com.axonivy.portal.components.ivydata.bo.IvyDocument", "desc" : "" }
-          ],
-          "map" : {
-            "out.document" : "param.document"
-          },
-          "code" : [
-            "import com.axonivy.portal.components.util.DocumentUtils;",
-            "out.isImage = DocumentUtils.isImageDocument(param.document);"
-          ]
-        },
-        "result" : {
-          "params" : [
-            { "name" : "streamedContent", "type" : "org.primefaces.model.StreamedContent", "desc" : "" }
-          ],
-          "map" : {
-            "result.streamedContent" : "in.streamedContent"
-          }
-        },
-        "guid" : "19927ABAD7EE1882"
-      },
-      "visual" : {
-        "at" : { "x" : 96, "y" : 1032 }
-      },
-      "connect" : [
-        { "id" : "f58", "to" : "f57" }
-      ]
-    }, {
-      "id" : "f57",
-      "type" : "SubProcessCall",
-      "name" : "Download Document",
-      "config" : {
-        "processCall" : "Functional Processes/DownloadDocument:downloadDocument(ch.ivyteam.ivy.workflow.ICase,com.axonivy.portal.components.ivydata.bo.IvyDocument)",
-        "call" : {
-          "map" : {
-            "param.bussinessCase" : "in.businessCase",
-            "param.document" : "in.document"
-          }
-        },
-        "output" : {
-          "map" : {
-            "out" : "in",
-            "out.streamedContent" : "result.streamedContent"
-          }
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 256, "y" : 1032 },
-        "size" : { "width" : 128 }
-      },
-      "connect" : [
-        { "id" : "f60", "to" : "f62" }
       ]
     } ]
 }

@@ -482,10 +482,6 @@ Release notes
 This part lists all relevant changes since the last official product
 releases of |ivy|.
 
-Changes in 12.0.9
-------------------
-- Enhanced the document preview feature for the task and case detail. If you have :dev-url:`DocFactory <https://market.axonivy.com/doc-factory#tab-description>` in the same security context. You can preview Word(doc, docx), Excel(xls, xlsx) and email(eml) documents.
-
 Changes in 12.0.6
 -----------------
 - Introduced the Portal Setting ``Portal.Cases.EnablePinnedCase`` and ``Portal.Tasks.EnablePinnedTask`` to enable the pinning feature for the case and task widgets on the dashboard.
