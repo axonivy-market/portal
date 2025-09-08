@@ -90,7 +90,7 @@ Variables:
       ShowDurationTime: "true"
     Cases:
       # Set to true to enable filtering case owner when cases are queried.
-      # This setting affects all case queries, e.g. for case widget, global search, statistic.
+      # This setting affects all case queries, e.g. for case widget, global search, statistic. It also makes the "Filter tasks by current case owner" filter available in the task widget, which is hidden by default.
       EnableOwner: "false"
       # Set to true to hide case creator in case widget and case details.
       # This setting affects all case queries, e.g. for case widget, global search, statistic.
@@ -134,6 +134,10 @@ Variables:
       HideSystemNotesForAdministrator: "false"
       # If true, case history does not display the related case information in the history table.
       HideRelatedCaseInfo: "false"
+      # If the value is true and system notes are visible, the checkbox will appear checked.
+      CheckSystemNotesByDefault: "true"
+      # If the value is true and system tasks are visible, the checkbox will appear checked.
+      CheckSystemTasksByDefault: "true"
     Document:
       # Set to true to enable script checking for uploaded document. Currently this function supports checking for PDF, Excel, Word.
       EnableScriptChecking: "true"

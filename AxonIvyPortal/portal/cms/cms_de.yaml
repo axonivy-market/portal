@@ -233,6 +233,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       behaviourWhenClickingOnLineInTaskList: Zum Umschalten des Verhaltens (Ausführen der Aufgabe oder Aufrufen der Aufgabendetails) beim Klicken auf eine Zeile in der Aufgabenliste, im Aufgaben-Widget des Dashboards und bei verwandten Aufgaben auf der Seite mit den Vorgangsdetails.
       chatMaxConnection: 'Die gesetzte Nummer steuert die Anzahl der erlaubten Tabs mit aktiven Chat. Falls mehr Tabs geöffnet werden, wird der Chat in inaktive Tabs deaktiviert. Erlaubte Werte zw. 1-5 '
       chatResponseTimeout: Chat-Antwort-Time-out in Sekunden, Standardwert ist 0 und bedeutet kein Time-out. Wenn Chat-Nachrichten durch den Reverse-Proxy Nginx gehen, muss das Chat-Antwort-Time-out kleiner sein als das Nginx-Time-out, z. B. kleiner als 60 Sekunden.
+      checkSystemNotesByDefault: Wenn der Wert wahr ist und die Systemnotizen sichtbar sind, wird das Kontrollkästchen als aktiviert angezeigt.
+      checkSystemTasksByDefault: Wenn der Wert „true“ ist und Systemaufgaben sichtbar sind, wird das Kontrollkästchen als aktiviert angezeigt.
       dateFilterWithTime: Setzen Sie diesen Wert auf true, um die Datumsfilterung mit Uhrzeit zu aktivieren. Diese Einstellung wirkt sich auf die Aufgabenliste, die Fallliste und die Statistik aus.
       deepLAuthKey: DeepL Authentifizierungsschlüssel (sollte mit :fx enden)
       defaultHomepage: Zum Einstellen der Standard-Homepage, zu der umgeleitet wird, wenn Sie auf das Home-Symbol oder das Logo klicken. Diese Einstellung gilt auch für die Endeseite nach Beendigung einer Aufgabe.
@@ -250,7 +252,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       displayMessageAfterFinishOrLeaveTask: Eine Feedback-Nachricht wird angezeigt, nachdem der Benutzer eine Aufgabe beendet oder verlassen hat.
       documentUploadSizeLimit: Legen Sie das Größenlimit für das Hochladen von Dokumenten in Megabyte (MB) fest. Der Standardwert beträgt 20 MB.
       embedInFrame: Auf true gesetzt, um einen Prozess/Task im IFrame-Modus zu starten
-      enableCaseOwner: Wird auf true gesetzt, um die Filterung des Vorgangsinhabers bei der Abfrage von Vorgängen zu aktivieren. Diese Einstellung wirkt sich auf alle Vorgangsabfragen aus, z.B. nach Vorgangsliste, globale Suche, Statistik, …
+      enableCaseOwner: Wird auf true gesetzt, um die Filterung des Vorgangsinhabers bei der Abfrage von Vorgängen zu aktivieren. Diese Einstellung wirkt sich auf alle Vorgangsabfragen aus, z.B. nach Vorgangsliste, globale Suche, Statistik, …Außerdem wird der Filter "Aufgaben nach aktuellem Fallinhaber
+        filtern" im Aufgaben-Widget verfügbar gemacht, der standardmäßig ausgeblendet ist.
       enableDeepLTranslation: Setzen Sie diese Eigenschaft auf true, um die DeepL Übersetzungsunterstützung zu aktivieren.
       enableDocumentPreview: 'Auf "true" setzen, um die Vorschau von Dokumenten für bestimmte Dateitypen zu aktivieren. Unterstützte Dateitypen sind: pdf, png, jpeg, jpg, txt, log.'
       enableGroupChat: Setzen Sie diese Einstellung auf "true", um den Gruppenchat zu aktivieren
@@ -765,6 +768,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       NotFound: Kein Filter gefunden
       WidgetNameColumn: Widget-Name
       WrongDateFormat: Das Datum ist ungültig
+    FilterTasksByCurrentCaseOwner: Aufgaben nach aktuellem Fallbesitzer filtern
     ManageFilter: Filterverwaltung
     NoColumnsEnabledForQuickSearch: Keine Spalten sind für die Schnellsuche aktiviert
     NoData: Keine Daten

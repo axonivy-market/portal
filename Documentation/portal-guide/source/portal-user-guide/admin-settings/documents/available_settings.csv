@@ -5,7 +5,7 @@ Portal.CaseDetails.HideDocument,FALSE,"Set to true, the document section in case
 Portal.CaseDetails.HideUploadDocumentForDoneCase,FALSE,Set to true to deny upload (also delete) document after a case is done.
 Portal.CaseDetails.ShowDurationTime,TRUE,For switch on/off the display of the duration time in case details page.
 Portal.Cases.EnableOwner,FALSE,"| Set to true to enable filtering case owner when cases are queried. This setting affects all case 
-| queries e.g. for case widget, global search."
+| queries e.g. for case widget, global search. It also makes the ""Filter tasks by current case owner"" filter available in the task widget, which is hidden by default."
 Portal.Cases.HideCaseCreator,FALSE,"Set to true to hide case creator in case widget, case widget and case details. This setting affects all case queries, e.g. for case widget, global search."
 Portal.Cases.EnablePinnedCase,FALSE,"Set this property to true to enable the ability to pin case."
 Portal.Chat.EnableGroup,FALSE,Set this property to true to enable group chat function.
@@ -32,6 +32,8 @@ Portal.Histories.HideSystemNotes,TRUE,"If true, case/task note does not display 
 Portal.Histories.HideSystemNotesForAdministrator,FALSE,"If true, case/task note does not display any system notes for administrator."
 Portal.Histories.HideSystemTasks,TRUE,"If true, case note does not display any system tasks for non-administrator users."
 Portal.Histories.HideSystemTasksForAdministrator,FALSE,"If true, case note does not display any system tasks for administrator."
+Portal.Histories.CheckSystemTasksByDefault,TRUE,"Check show system tasks by default in case/task details."
+Portal.Histories.CheckSystemNotesByDefault,TRUE,"Check show system notes by default in case/task details."
 Portal.Homepage,Dashboard,"| Define the standard homepage which will be redirected to when clicking on home icon or logo.
 | This setting also applies to the end page for finished tasks."
 Portal.LoggedInUserFormat,Display name,The option to show logged-in user format.
