@@ -566,7 +566,7 @@
       "type" : "SubProcessCall",
       "name" : "Rename Document",
       "config" : {
-        "processCall" : "Functional Processes/RenameDocument:renameDocument(ch.ivyteam.ivy.workflow.ICase,com.axonivy.portal.components.ivydata.bo.IvyDocument)",
+        "processCall" : "Functional Processes/RenameDocumentItem:renameDocumentItem(ch.ivyteam.ivy.workflow.ICase,com.axonivy.portal.components.ivydata.bo.IvyDocument)",
         "output" : {
           "map" : {
             "out" : "in",
