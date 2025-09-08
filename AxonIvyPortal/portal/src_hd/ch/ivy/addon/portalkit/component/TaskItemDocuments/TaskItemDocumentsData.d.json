@@ -59,9 +59,5 @@
     "name" : "renameDocumentMessage",
     "type" : "String",
     "modifiers" : [ "PERSISTENT" ]
-  }, {
-    "name" : "isDocumentPreviewEnabled",
-    "type" : "Boolean",
-    "modifiers" : [ "PERSISTENT" ]
   } ]
 }
