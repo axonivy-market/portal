@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 
 import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -117,7 +118,7 @@ public class CreatorColumnModel extends CaseColumnModel implements Serializable 
     }
     return filters.stream()
         .map(this::findSecurityMember)
-        .filter(m -> StringUtils.containsIgnoreCase(m.getDisplayName(), query) || StringUtils.containsIgnoreCase(m.getName(), query))
+        .filter(m -> Strings.CI.contains(m.getDisplayName(), query) || Strings.CI.contains(m.getName(), query))
         .collect(Collectors.toList());
   }
   

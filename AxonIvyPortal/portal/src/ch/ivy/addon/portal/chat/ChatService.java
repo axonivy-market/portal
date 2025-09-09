@@ -40,6 +40,7 @@ import javax.ws.rs.core.Response;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.ListUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 
 import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -74,7 +75,6 @@ import io.swagger.v3.oas.annotations.Hidden;
  * history helps prevent actions lost if unavailable AsyncResponse.</li>
  * </ul>
  */
-@SuppressWarnings("restriction")
 @Hidden
 @Path("chat")
 @Singleton
@@ -241,7 +241,7 @@ public class ChatService {
     // If receiver is online, send message directly to receiver's response.
     resumeAsyncResponse(receiver, chatResponse, clientId, actor);
     resumeAsyncResponse(actor, chatResponse, clientId, actor);
-    if (StringUtils.equals(ChatService.nodeName, nodeName)) {
+    if (Strings.CS.equals(ChatService.nodeName, nodeName)) {
       ChatMessageManager.savePersonalMessage(message);
     }
   }
@@ -292,7 +292,7 @@ public class ChatService {
   public synchronized void performSendingGroupMessage(String messageText, String caseId, String clientId, String actor,
       String nodeName) {
     ChatMessage message = new ChatMessage(actor, messageText, caseId);
-    if (StringUtils.equals(ChatService.nodeName, nodeName)) {
+    if (Strings.CS.equals(ChatService.nodeName, nodeName)) {
       ChatMessageManager.saveGroupMessage(message, caseId);
     }
     Set<String> members = ChatGroupUtils.getUserNamesFromGroup(Long.parseLong(caseId));
