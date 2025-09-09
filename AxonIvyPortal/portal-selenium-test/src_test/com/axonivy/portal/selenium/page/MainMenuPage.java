@@ -118,9 +118,12 @@ public class MainMenuPage extends TemplatePage {
   }
 
   public void clickMainMenuItem(String name) {
-    WebElement element = driver.findElement(By.xpath(
-        String.format("//li[contains(@class, 'external-menu-item-main_dashboard') and .//span[text()='%s']]", name)));
-    element.click();
+    /**
+     * TODO: ROBOT STABILIZE THIS TEST FOR RELEASE - ASK IMPLEMENTER AFTER RELEASE
+     */
+//    WebElement element = driver.findElement(By.xpath(
+//        String.format("//li[contains(@class, 'external-menu-item-main_dashboard') and .//span[text()='%s']]", name)));
+    $("[title='" + name + "']").click();
   }
 
   public void assertThirdPartyApp(String url) {
