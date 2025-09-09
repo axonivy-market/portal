@@ -32,6 +32,7 @@ import ch.ivyteam.ivy.workflow.query.TaskQuery.OrderByColumnQuery;
 public class DashboardTaskSearchCriteria {
 
   private boolean canWorkOn;
+  private boolean filterTasksByCurrentCaseOwner;
   private List<TaskColumnModel> columns;
   private List<DashboardFilter> filters;
   private List<DashboardFilter> userFilters;
@@ -319,6 +320,14 @@ public class DashboardTaskSearchCriteria {
 
   public void setCanWorkOn(boolean canWorkOn) {
     this.canWorkOn = canWorkOn;
+  }
+
+  public boolean isFilterTasksByCurrentCaseOwner() {
+    return filterTasksByCurrentCaseOwner;
+  }
+
+  public void setFilterTasksByCurrentCaseOwner(boolean filterTasksByCurrentCaseOwner) {
+    this.filterTasksByCurrentCaseOwner = filterTasksByCurrentCaseOwner;
   }
 
   public List<TaskColumnModel> getColumns() {
