@@ -62,13 +62,21 @@
             "  List<IDocument> iDocuments = CaseDocumentService.newInstance(in.businessCase).getAll();",
             "  IvyDocumentTransformer transformer = new IvyDocumentTransformer();",
             "  in.documents = transformer.transform(iDocuments);",
-            "  for (IvyDocument ivyDocument : in.documents) {",
+            "for (IvyDocument ivyDocument : in.documents) {",
+            "    String documentTypeString = null;",
             "    String stringField = DocumentCustomField.TYPE_PREFIX + ivyDocument.id;",
-            "    String documentTypeString = in.businessCase.customFields().stringField(stringField).getOrNull();",
-            "    if (StringUtils.isNotBlank(documentTypeString)) {",
-            "      ivyDocument.setType(BasicDocumentType.valueOf(documentTypeString.toUpperCase()));",
+            "    documentTypeString = in.businessCase.customFields().stringField(stringField).getOrNull();",
+            "    /* in old versions, we used id to store the type of document. From version 11, id is deprecated and Portal also change to use uuid",
+            "    so we have to add another if condition for uuid.",
+            "    */",
+            "    if (StringUtils.isBlank(documentTypeString)) {",
+            "        stringField = DocumentCustomField.TYPE_PREFIX + ivyDocument.uuid;",
+            "        documentTypeString = in.businessCase.customFields().stringField(stringField).getOrNull();",
             "    }",
-            "  }",
+            "    if (StringUtils.isNotBlank(documentTypeString)) {",
+            "        ivyDocument.setType(BasicDocumentType.valueOf(documentTypeString.toUpperCase()));",
+            "    }",
+            "}",
             "}"
           ]
         },
@@ -96,10 +104,7 @@
       ],
       "visual" : {
         "at" : { "x" : 320, "y" : 332 },
-        "size" : { "width" : 624, "height" : 132 },
-        "description" : "",
-        "color" : "",
-        "icon" : ""
+        "size" : { "width" : 624, "height" : 132 }
       },
       "connect" : [
         { "id" : "f6", "to" : "f0" }
