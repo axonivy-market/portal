@@ -181,4 +181,4 @@ jobs:
             name: Selenium tests
             path: '*.xml'
             reporter: java-junit
-            failures-only: 'true'
+            list-tests: 'failed'
