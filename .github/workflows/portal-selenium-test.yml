@@ -181,5 +181,4 @@ jobs:
             name: Selenium tests
             path: '*.xml'
             reporter: java-junit
-            only-summary: 'false'
             failures-only: 'true'
