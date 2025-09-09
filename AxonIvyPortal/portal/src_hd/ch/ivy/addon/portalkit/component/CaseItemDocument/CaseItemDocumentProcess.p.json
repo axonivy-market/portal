@@ -11,6 +11,15 @@
       "name" : "start()",
       "config" : {
         "signature" : "start",
+        "input" : {
+          "map" : { },
+          "code" : [
+            "import ch.ivy.addon.portalkit.service.GlobalSettingService;",
+            "import ch.ivy.addon.portalkit.enums.GlobalVariable;",
+            "",
+            "out.isDocumentPreviewEnabled = GlobalSettingService.getInstance().findBooleanGlobalSettingValue(GlobalVariable.ENABLE_DOCUMENT_PREVIEW);"
+          ]
+        },
         "guid" : "167E9DEBBFA8A8ED"
       },
       "visual" : {
