@@ -351,7 +351,7 @@ public final class TaskUtils {
   }
   
   public static void setResonsibleToExpiryResponsible(ITask task) {
-    task.expiry().responsibles().all().clear();
+    task.expiry().responsibles().set(null);
     for (Responsible responsible : task.responsibles().all()) {
       if(responsible != null) {
         task.expiry().responsibles().add(responsible.get());
