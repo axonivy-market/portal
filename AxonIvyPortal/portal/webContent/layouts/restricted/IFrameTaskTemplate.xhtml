@@ -98,13 +98,35 @@
       <script>
         $(document).ready(function() {
           var taskUrl = `#{htmlSanitizerBean.escapeForJS(iFrameTaskTemplateBean.taskUrl)}`;
-          if (taskUrl){
-            if(taskUrl.endsWith('blank')){
-              window.history.back(document.referrer);
+          if (taskUrl) {
+            taskUrl = taskUrl.trim();
+            if (typeof isRelativeUrl !== 'function' || typeof updateIframeSrc !== 'function') {
+              window.isRelativeUrl = window.isRelativeUrl || function(u){
+                if(!u) return false;
+                u = String(u).trim();
+                if(u.startsWith('//') || /[\r\n\0]/.test(u)) return false;
+                if(/^[a-zA-Z][a-zA-Z0-9+.-]*:/.test(u)) return false;
+                return true;
+              };
+              window.updateIframeSrc = window.updateIframeSrc || function(newSrc){
+                var iframe = document.getElementById('iFrame');
+                if (iframe) { iframe.src = newSrc; }
+              };
             }
-            getPortalIframe().src = taskUrl;
+            if (isRelativeUrl(taskUrl)) {
+              updateIframeSrc(taskUrl);
+            } else {
+              const iframe = document.getElementById('iFrame');
+              try {
+                if (iframe) {
+                  iframe.contentWindow.stop();
+                }
+              } catch (e) {
+                console.warn('Could not stop iframe loading for non-relative taskUrl:', e);
+              }
+              console.warn('Blocked non-relative taskUrl:', taskUrl);
+            }
           }
-          
           loadIframe();
         });
       </script>
