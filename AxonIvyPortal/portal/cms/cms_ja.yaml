@@ -943,7 +943,13 @@ ch.ivy.addon.portalkit.ui.jsf:
   dashboardProcess:
     processAriaLabel: 'TODO Process name: {0}. Process description: {1}'
   documentFiles:
+    FilenameEmpty: 'TODO: Filename cannot be empty.'
     PreviewDocument: タスクの詳細にアクセス
+    RenameFile: 'TODO: Rename file'
+    RenamingDocument: 'TODO: Rename document'
+    RenamingDocumentNote: 'TODO: {0} has renamed the file {1} to {2}'
+    RenamingDocumentSuccess: 'TODO: Rename successfully.'
+    RenamingFailed: 'TODO: An error occurs while renaming the document.'
     deleteDocumentNote: '{0} が {1} を削除しました'
     deleteSuceed: ファイルの削除に成功しました
     download: ダウンロード

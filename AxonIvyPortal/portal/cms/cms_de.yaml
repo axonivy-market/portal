@@ -945,7 +945,13 @@ ch.ivy.addon.portalkit.ui.jsf:
   dashboardProcess:
     processAriaLabel: Aufgabe {0} starten
   documentFiles:
+    FilenameEmpty: Dateiname darf nicht leer sein.
     PreviewDocument: Vorschau
+    RenameFile: Datei umbenennen
+    RenamingDocument: Dokument umbenennen
+    RenamingDocumentNote: '{0} hat die Datei {1} in {2} umbenannt'
+    RenamingDocumentSuccess: Erfolgreich umbenannt.
+    RenamingFailed: Beim Umbenennen des Dokuments ist ein Fehler aufgetreten.
     deleteDocumentNote: '{0} hat folgendes gelöscht: {1}'
     deleteSuceed: Datei wurde erfolgreich gelöscht
     download: Herunterladen

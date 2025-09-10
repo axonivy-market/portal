@@ -1,0 +1,256 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/process/12.0.0/process.json",
+  "id" : "199145808183E17A",
+  "kind" : "CALLABLE_SUB",
+  "config" : {
+    "data" : "com.axonivy.portal.components.RenameDocumentItemData"
+  },
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "CallSubStart",
+      "name" : "renameDocumentItem(ICase,IvyDocument)",
+      "config" : {
+        "signature" : "renameDocumentItem",
+        "input" : {
+          "params" : [
+            { "name" : "businessCase", "type" : "ch.ivyteam.ivy.workflow.ICase", "desc" : "" },
+            { "name" : "document", "type" : "com.axonivy.portal.components.ivydata.bo.IvyDocument", "desc" : "" }
+          ],
+          "map" : {
+            "out.businessCase" : "param.businessCase",
+            "out.document" : "param.document",
+            "out.isSuccess" : "true"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "message", "type" : "String", "desc" : "" },
+            { "name" : "isSuccess", "type" : "Boolean", "desc" : "" }
+          ],
+          "map" : {
+            "result.message" : "in.message",
+            "result.isSuccess" : "in.isSuccess"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 704, "y" : 312 }
+      },
+      "connect" : [
+        { "id" : "f2", "to" : "f5" }
+      ]
+    }, {
+      "id" : "f1",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 1364, "y" : 312 },
+        "labelOffset" : { "x" : 13, "y" : 33 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "ProcessAnnotation",
+      "name" : [
+        "This sub process can be customized to rename file in your DMS",
+        "This sub process also contains some validation, so if you override it, you have to implement validation by your own",
+        "",
+        "The custom proccess signature must be: \"portalRenameDocumentItem(ICase,IvyDocument)\""
+      ],
+      "visual" : {
+        "at" : { "x" : 704, "y" : 200 },
+        "size" : { "width" : 536, "height" : 78 }
+      },
+      "connect" : [
+        { "id" : "f8", "to" : "f0" }
+      ]
+    }, {
+      "id" : "f5",
+      "type" : "Script",
+      "name" : "Call customized sub process",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.components.enums.CustomSignature;",
+            "import com.axonivy.portal.components.enums.CustomProcessStatus;",
+            "import java.util.HashMap;",
+            "import java.util.Map;",
+            "import com.axonivy.portal.components.service.IvyAdapterService;",
+            "",
+            "Map params = new HashMap();",
+            "",
+            "params.put(\"businessCase\", in.businessCase);",
+            "params.put(\"document\", in.document);",
+            "",
+            "Map result = IvyAdapterService.startSubProcessInSecurityContext(CustomSignature.RENAME_DOCUMENT_ITEM.getSignature(), params);",
+            "in.hasCustomProcess = result != null;",
+            "if (in.hasCustomProcess) {",
+            "  in.message = result.get(\"message\").toString();",
+            "  in.isSuccess = result.get(\"isSuccess\").toBoolean();",
+            "  in.status = CustomProcessStatus.toEnum(result.get(\"status\").toString());",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 932, "y" : 313 },
+        "size" : { "width" : 136, "height" : 62 }
+      },
+      "connect" : [
+        { "id" : "f16", "to" : "f4", "color" : "default" }
+      ]
+    }, {
+      "id" : "S10",
+      "type" : "EmbeddedProcess",
+      "name" : "Update filename",
+      "elements" : [ {
+          "id" : "S10-f9",
+          "type" : "Script",
+          "name" : "Update filename and create note",
+          "config" : {
+            "output" : {
+              "code" : [
+                "import java.util.Arrays;",
+                "import ch.ivyteam.ivy.workflow.document.Path;",
+                "import ch.ivyteam.ivy.workflow.document.IDocument;",
+                "",
+                "IDocument document = in.businessCase.documents().get(in.document.uuid);",
+                "",
+                "if (!document.getName().equals(in.document.name)) {",
+                "  String note = ivy.cms.co(\"/Dialogs/com/axonivy/portal/components/DocumentTable/RenamingDocumentNote\", Arrays.asList(ivy.session.getSessionUserName(), document.getName(), in.document.getName()));",
+                "  ",
+                "  try {",
+                "    if (document.getName().equalsIgnoreCase(in.document.name)) {",
+                "      in.businessCase.documents().move(document, new Path(in.document.name + System.currentTimeMillis().toString()));",
+                "    }",
+                "    ",
+                "    in.businessCase.documents().move(document, new Path(in.document.name));",
+                "    in.businessCase.createNote(ivy.session, note);",
+                "  } catch (Exception e) {   ",
+                "    in.isSuccess = false;",
+                "    in.message = ivy.cms.co(\"/Dialogs/com/axonivy/portal/components/DocumentTable/RenamingFailed\");",
+                "  }",
+                "}"
+              ]
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 488, "y" : 160 },
+            "size" : { "width" : 144, "height" : 62 }
+          },
+          "connect" : [
+            { "id" : "S10-f10", "to" : "S10-f13", "color" : "default" }
+          ]
+        }, {
+          "id" : "S10-f7",
+          "type" : "Script",
+          "name" : "Validate new filename",
+          "config" : {
+            "output" : {
+              "code" : [
+                "import com.axonivy.portal.components.enums.NewFilenameValidation;",
+                "import com.axonivy.portal.components.service.CaseDocumentService;",
+                "",
+                "NewFilenameValidation filenameValidation = CaseDocumentService.newInstance(in.businessCase).isNewFilenameValid(in.document);",
+                "",
+                "in.isSuccess = NewFilenameValidation.VALID == filenameValidation;",
+                "",
+                "if (!in.isSuccess) {",
+                "  in.message = filenameValidation.getLabel();",
+                "}"
+              ]
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 200, "y" : 160 },
+            "size" : { "width" : 128, "height" : 62 }
+          },
+          "connect" : [
+            { "id" : "S10-f8", "to" : "S10-f11", "color" : "default" }
+          ]
+        }, {
+          "id" : "S10-f11",
+          "type" : "Alternative",
+          "name" : "valid?",
+          "config" : {
+            "conditions" : {
+              "S10-f12" : "in.isSuccess"
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 336, "y" : 160 },
+            "labelOffset" : { "y" : -24 }
+          },
+          "connect" : [
+            { "id" : "S10-f12", "to" : "S10-f9", "label" : {
+                "name" : "Yes"
+              }, "color" : "default" },
+            { "id" : "S10-f15", "to" : "S10-f13", "via" : [ { "x" : 336, "y" : 215 }, { "x" : 648, "y" : 215 } ], "label" : {
+                "name" : "No",
+                "segment" : 1.5
+              } }
+          ]
+        }, {
+          "id" : "S10-f13",
+          "type" : "Alternative",
+          "visual" : {
+            "at" : { "x" : 648, "y" : 160 },
+            "labelOffset" : { "x" : 14, "y" : 34 }
+          },
+          "connect" : [
+            { "id" : "S10-f1", "to" : "S10-g1", "color" : "default" }
+          ]
+        }, {
+          "id" : "S10-g0",
+          "type" : "EmbeddedStart",
+          "name" : "in 1",
+          "visual" : {
+            "at" : { "x" : 64, "y" : 160 },
+            "labelOffset" : { "x" : 3, "y" : 23 }
+          },
+          "parentConnector" : "f6",
+          "connect" : [
+            { "id" : "S10-f0", "to" : "S10-f7" }
+          ]
+        }, {
+          "id" : "S10-g1",
+          "type" : "EmbeddedEnd",
+          "name" : "out 1",
+          "visual" : {
+            "at" : { "x" : 736, "y" : 160 },
+            "labelOffset" : { "x" : 3, "y" : 23 }
+          },
+          "parentConnector" : "f17"
+        } ],
+      "visual" : {
+        "at" : { "x" : 1232, "y" : 312 }
+      },
+      "connect" : [
+        { "id" : "f17", "to" : "f1" }
+      ]
+    }, {
+      "id" : "f4",
+      "type" : "Alternative",
+      "name" : [
+        "has custom",
+        "sub process ?"
+      ],
+      "config" : {
+        "conditions" : {
+          "f7" : "in.hasCustomProcess && in.status != com.axonivy.portal.components.enums.CustomProcessStatus.SKIP",
+          "f6" : ""
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 1092, "y" : 312 },
+        "labelOffset" : { "y" : -40 }
+      },
+      "connect" : [
+        { "id" : "f6", "to" : "S10", "label" : {
+            "name" : "No"
+          }, "color" : "default" },
+        { "id" : "f7", "to" : "f1", "via" : [ { "x" : 1092, "y" : 368 }, { "x" : 1364, "y" : 368 } ], "label" : {
+            "name" : "Yes",
+            "segment" : 1.5
+          } }
+      ]
+    } ]
+}
