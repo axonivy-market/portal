@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.NavigationHelper;
+import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.page.CaseDetailsPage;
 import com.axonivy.portal.selenium.page.CaseWidgetNewDashBoardPage;
@@ -46,6 +47,7 @@ public class MenuHighlightTest extends BaseTest {
 
   @Test
   public void testHighlightDefaultMenus() {
+    login(TestAccount.DEMO_USER);
     NewDashboardPage dashboardPage = new NewDashboardPage();
     dashboardPage.openMainMenu();
     assertMenuHighlighted(DASHBOARD_0_PARENT_DASHBOARD_PATTERN);
