@@ -4,7 +4,7 @@ import static com.axonivy.portal.components.constant.CustomFields.BUSINESS_DETAI
 
 import java.util.List;
 
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 
 import com.axonivy.portal.components.dto.BusinessDetailsDTO;
 import com.axonivy.portal.components.service.exception.PortalException;
@@ -74,6 +74,6 @@ public class BusinessDetailsAPI {
   
 
   private static boolean detectExternalLink(String path) {
-    return StringUtils.startsWithIgnoreCase(path, "http:") || StringUtils.startsWithIgnoreCase(path, "https:");
+    return Strings.CI.startsWith(path, "http:") || Strings.CI.startsWith(path, "https:");
   }
 }

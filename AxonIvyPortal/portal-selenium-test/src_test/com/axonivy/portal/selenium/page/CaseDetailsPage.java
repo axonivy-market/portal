@@ -1051,5 +1051,35 @@ public class CaseDetailsPage extends TemplatePage {
   public boolean getFirstItemPreviewDocumentVisible() {
     return $("a[id$=':0:preview-file']").exists();
   }
+  
+  public void clickOnSystemNotesCheckbox(boolean checkboxShouldBeChecked) {
+    waitForElementDisplayed(By.cssSelector("[id$=':history-container']"), true);
+    var systemNotesCheckbox = findElementByCssSelector("[id$=':case-histories:system-note-checkbox']");
+    var checkbox = systemNotesCheckbox.findElement(By.cssSelector("div.ui-chkbox-box.ui-widget"));
+    if ((checkboxShouldBeChecked && checkbox.getAttribute(CLASS).contains("ui-state-active"))
+        || (!checkboxShouldBeChecked && !checkbox.getAttribute(CLASS).contains("ui-state-active"))) {
+      return;
+    } else {
+      systemNotesCheckbox.findElement(By.cssSelector("span.ui-chkbox-label")).click();
+      // Cannot identify when the ajax request of select checkbox is finished
+      // So we need to wait for Ajax Indicator disappear
+      clickOnSystemNotesCheckbox(checkboxShouldBeChecked);
+    }
+  }
+
+  public void clickOnSystemTasksCheckbox(boolean checkboxShouldBeChecked) {
+    waitForElementDisplayed(By.cssSelector("[id$=':history-container']"), true);
+    var systemNotesCheckbox = findElementByCssSelector("[id$=':case-histories:system-task-checkbox']");
+    var checkbox = systemNotesCheckbox.findElement(By.cssSelector("div.ui-chkbox-box.ui-widget"));
+    if ((checkboxShouldBeChecked && checkbox.getAttribute(CLASS).contains("ui-state-active"))
+        || (!checkboxShouldBeChecked && !checkbox.getAttribute(CLASS).contains("ui-state-active"))) {
+      return;
+    } else {
+      systemNotesCheckbox.findElement(By.cssSelector("span.ui-chkbox-label")).click();
+      // Cannot identify when the ajax request of select checkbox is finished
+      // So we need to wait for Ajax Indicator disappear
+      clickOnSystemTasksCheckbox(checkboxShouldBeChecked);
+    }
+  }
 }
 

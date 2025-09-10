@@ -11,13 +11,22 @@
       "name" : "start()",
       "config" : {
         "signature" : "start",
+        "input" : {
+          "map" : { },
+          "code" : [
+            "import ch.ivy.addon.portalkit.service.GlobalSettingService;",
+            "import ch.ivy.addon.portalkit.enums.GlobalVariable;",
+            "",
+            "out.isDocumentPreviewEnabled = GlobalSettingService.getInstance().findBooleanGlobalSettingValue(GlobalVariable.ENABLE_DOCUMENT_PREVIEW);"
+          ]
+        },
         "guid" : "167E9DEBBFA8A8ED"
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 96 }
       },
       "connect" : [
-        { "id" : "f1", "to" : "f2" }
+        { "id" : "f1", "to" : "f77" }
       ]
     }, {
       "id" : "f2",
@@ -116,11 +125,7 @@
           ],
           "map" : {
             "out.document" : "param.document"
-          },
-          "code" : [
-            "import org.apache.commons.lang3.StringUtils;",
-            "out.isImage = param.document!= null && StringUtils.startsWithIgnoreCase(param.document.getContentType(), \"image/\");"
-          ]
+          }
         },
         "result" : {
           "params" : [
@@ -455,6 +460,112 @@
       },
       "connect" : [
         { "id" : "f34", "to" : "f51" }
+      ]
+    }, {
+      "id" : "f70",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "previewDocument(IvyDocument)",
+      "config" : {
+        "signature" : "previewDocument",
+        "input" : {
+          "params" : [
+            { "name" : "document", "type" : "com.axonivy.portal.components.ivydata.bo.IvyDocument", "desc" : "" }
+          ],
+          "map" : {
+            "out.document" : "param.document"
+          },
+          "code" : [
+            "import com.axonivy.portal.components.util.DocumentUtils;",
+            "",
+            "out.isImage = DocumentUtils.isImageDocument(param.document);"
+          ]
+        },
+        "result" : {
+          "params" : [
+            { "name" : "streamedContent", "type" : "org.primefaces.model.StreamedContent", "desc" : "" }
+          ],
+          "map" : {
+            "result.streamedContent" : "in.streamedContent"
+          }
+        },
+        "guid" : "198F53928756A09B"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 776 },
+        "labelOffset" : { "x" : 11, "y" : 37 }
+      },
+      "connect" : [
+        { "id" : "f71", "to" : "f72" }
+      ]
+    }, {
+      "id" : "f72",
+      "type" : "SubProcessCall",
+      "name" : "Download Document",
+      "config" : {
+        "processCall" : "Functional Processes/DownloadDocument:downloadDocument(ch.ivyteam.ivy.workflow.ICase,com.axonivy.portal.components.ivydata.bo.IvyDocument)",
+        "call" : {
+          "map" : {
+            "param.bussinessCase" : "in.caze",
+            "param.document" : "in.document"
+          }
+        },
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.streamedContent" : "result.streamedContent"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 256, "y" : 776 },
+        "size" : { "width" : 128 }
+      },
+      "connect" : [
+        { "id" : "f80", "to" : "f79" }
+      ]
+    }, {
+      "id" : "f74",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 632, "y" : 776 }
+      }
+    }, {
+      "id" : "f77",
+      "type" : "Script",
+      "name" : "Read can preview document setting",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.service.GlobalSettingService;",
+            "import ch.ivy.addon.portalkit.enums.GlobalVariable;",
+            "",
+            "in.isDocumentPreviewEnabled = GlobalSettingService.getInstance().findBooleanGlobalSettingValue(GlobalVariable.ENABLE_DOCUMENT_PREVIEW);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 96 }
+      },
+      "connect" : [
+        { "id" : "f78", "to" : "f2", "color" : "default" }
+      ]
+    }, {
+      "id" : "f79",
+      "type" : "Script",
+      "name" : "Find DocFactory and convert",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.components.util.DocumentUtils;",
+            "in.streamedContent = DocumentUtils.findDocFactoryAndConvert(in.streamedContent);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 440, "y" : 776 }
+      },
+      "connect" : [
+        { "id" : "f81", "to" : "f74" }
       ]
     } ]
 }

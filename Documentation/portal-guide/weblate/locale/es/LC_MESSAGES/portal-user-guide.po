@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Portal Guide ${revision}\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-04 02:00+0000\n"
+"POT-Creation-Date: 2025-09-09 04:55+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: es\n"
@@ -937,6 +937,22 @@ msgstr ""
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "If true, case note does not display any system tasks for administrator."
+msgstr ""
+
+#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
+msgid "Portal.Histories.CheckSystemTasksByDefault"
+msgstr ""
+
+#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
+msgid "Check show system tasks by default in case/task details."
+msgstr ""
+
+#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
+msgid "Portal.Histories.CheckSystemNotesByDefault"
+msgstr ""
+
+#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
+msgid "Check show system notes by default in case/task details."
 msgstr ""
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
@@ -3113,7 +3129,7 @@ msgstr ""
 msgid "|navigate-to-full-cases-list-page|"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:328
+#: ../../source/portal-user-guide/full-case-list/index.rst:330
 msgid "Menu to navigate to the Full case list page"
 msgstr ""
 
@@ -3122,7 +3138,7 @@ msgid "For each case, the list shows the following key information:"
 msgstr ""
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:21
-#: ../../source/portal-user-guide/full-case-list/index.rst:268
+#: ../../source/portal-user-guide/full-case-list/index.rst:270
 msgid "Case ID"
 msgstr ""
 
@@ -3132,16 +3148,16 @@ msgid "Pin"
 msgstr ""
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:25
-#: ../../source/portal-user-guide/full-case-list/index.rst:218
-#: ../../source/portal-user-guide/full-case-list/index.rst:264
+#: ../../source/portal-user-guide/full-case-list/index.rst:220
+#: ../../source/portal-user-guide/full-case-list/index.rst:266
 #: ../../source/portal-user-guide/full-task-list/index.rst:37
 #: ../../source/portal-user-guide/statistic-chart/index.rst:120
 msgid "Name"
 msgstr ""
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:27
-#: ../../source/portal-user-guide/full-case-list/index.rst:220
-#: ../../source/portal-user-guide/full-case-list/index.rst:266
+#: ../../source/portal-user-guide/full-case-list/index.rst:222
+#: ../../source/portal-user-guide/full-case-list/index.rst:268
 #: ../../source/portal-user-guide/full-task-list/index.rst:39
 #: ../../source/portal-user-guide/my-profile/index.rst:27
 #: ../../source/portal-user-guide/my-profile/index.rst:46
@@ -3152,12 +3168,12 @@ msgid "Description"
 msgstr ""
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:29
-#: ../../source/portal-user-guide/full-case-list/index.rst:270
+#: ../../source/portal-user-guide/full-case-list/index.rst:272
 msgid "Creator"
 msgstr ""
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:31
-#: ../../source/portal-user-guide/full-case-list/index.rst:226
+#: ../../source/portal-user-guide/full-case-list/index.rst:228
 #: ../../source/portal-user-guide/full-task-list/index.rst:45
 msgid "Creation Date"
 msgstr ""
@@ -3167,14 +3183,14 @@ msgid "Finished Date"
 msgstr ""
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:35
-#: ../../source/portal-user-guide/full-case-list/index.rst:232
-#: ../../source/portal-user-guide/full-case-list/index.rst:276
+#: ../../source/portal-user-guide/full-case-list/index.rst:234
+#: ../../source/portal-user-guide/full-case-list/index.rst:278
 #: ../../source/portal-user-guide/full-task-list/index.rst:43
 msgid "State"
 msgstr ""
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:37
-#: ../../source/portal-user-guide/full-case-list/index.rst:278
+#: ../../source/portal-user-guide/full-case-list/index.rst:280
 #: ../../source/portal-user-guide/full-task-list/index.rst:49
 msgid "Category"
 msgstr ""
@@ -3183,7 +3199,7 @@ msgstr ""
 msgid "|case-key-information|"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:330
+#: ../../source/portal-user-guide/full-case-list/index.rst:332
 msgid "Full case list: key informations"
 msgstr ""
 
@@ -3198,11 +3214,11 @@ msgid "To access the full set of case data, click on the case Name/Description."
 msgstr ""
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:45
-#: ../../source/portal-user-guide/full-case-list/index.rst:260
+#: ../../source/portal-user-guide/full-case-list/index.rst:262
 msgid "|case-details|"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:332
+#: ../../source/portal-user-guide/full-case-list/index.rst:334
 msgid "The Case Details page"
 msgstr ""
 
@@ -3220,7 +3236,7 @@ msgstr ""
 msgid "|case-details-data-description|"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:334
+#: ../../source/portal-user-guide/full-case-list/index.rst:336
 msgid "Case Details: General section"
 msgstr ""
 
@@ -3232,11 +3248,11 @@ msgid ""
 msgstr ""
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:57
-#: ../../source/portal-user-guide/full-case-list/index.rst:200
+#: ../../source/portal-user-guide/full-case-list/index.rst:202
 msgid "|case-details-related-tasks-cases|"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:336
+#: ../../source/portal-user-guide/full-case-list/index.rst:338
 msgid "Case Details: Related Tasks of Case section"
 msgstr ""
 
@@ -3250,7 +3266,7 @@ msgstr ""
 msgid "|case-details-histories|"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:338
+#: ../../source/portal-user-guide/full-case-list/index.rst:340
 msgid "Case Details: Histories section"
 msgstr ""
 
@@ -3264,7 +3280,7 @@ msgstr ""
 msgid "|case-details-documents|"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:340
+#: ../../source/portal-user-guide/full-case-list/index.rst:342
 msgid "Case Details: Documents section"
 msgstr ""
 
@@ -3276,11 +3292,11 @@ msgstr ""
 #: ../../source/portal-user-guide/full-case-list/index.rst:95
 #: ../../source/portal-user-guide/full-case-list/index.rst:117
 #: ../../source/portal-user-guide/full-case-list/index.rst:135
-#: ../../source/portal-user-guide/full-case-list/index.rst:155
-#: ../../source/portal-user-guide/full-case-list/index.rst:181
-#: ../../source/portal-user-guide/full-case-list/index.rst:196
-#: ../../source/portal-user-guide/full-case-list/index.rst:255
-#: ../../source/portal-user-guide/full-case-list/index.rst:316
+#: ../../source/portal-user-guide/full-case-list/index.rst:157
+#: ../../source/portal-user-guide/full-case-list/index.rst:183
+#: ../../source/portal-user-guide/full-case-list/index.rst:198
+#: ../../source/portal-user-guide/full-case-list/index.rst:257
+#: ../../source/portal-user-guide/full-case-list/index.rst:318
 msgid "Open the case details"
 msgstr ""
 
@@ -3294,7 +3310,7 @@ msgstr ""
 msgid "|how-to-switch-to-edit-mode|"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:354
+#: ../../source/portal-user-guide/full-case-list/index.rst:356
 msgid "Case Details: button to switch to the edit mode"
 msgstr ""
 
@@ -3309,7 +3325,7 @@ msgstr ""
 msgid "|how-to-switch-to-view-mode|"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:352
+#: ../../source/portal-user-guide/full-case-list/index.rst:354
 msgid "Case Details: save button"
 msgstr ""
 
@@ -3324,7 +3340,7 @@ msgstr ""
 msgid "|how-to-reset-to-default|"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:356
+#: ../../source/portal-user-guide/full-case-list/index.rst:358
 msgid "Case Details: button to reset to the default configurations"
 msgstr ""
 
@@ -3357,7 +3373,7 @@ msgstr ""
 msgid "|how-to-attach-document-to-case|"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:342
+#: ../../source/portal-user-guide/full-case-list/index.rst:344
 msgid "Case Details: Add document dialog"
 msgstr ""
 
@@ -3395,7 +3411,7 @@ msgstr ""
 msgid "|how-to-delete-an-attachment-from-case|"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:344
+#: ../../source/portal-user-guide/full-case-list/index.rst:346
 msgid "Case Details: Delete document confirm dialog"
 msgstr ""
 
@@ -3407,7 +3423,6 @@ msgid ""
 msgstr ""
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:133
-#: ../../source/portal-user-guide/full-task-list/index.rst:174
 msgid "HowTo: Preview a document of a case"
 msgstr ""
 
@@ -3438,86 +3453,96 @@ msgstr ""
 msgid "|how-to-preview-document|"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:362
-#: ../../source/portal-user-guide/full-task-list/index.rst:300
+#: ../../source/portal-user-guide/full-case-list/index.rst:364
+#: ../../source/portal-user-guide/full-task-list/index.rst:302
 msgid "how-to-preview-document"
 msgstr ""
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:147
 #: ../../source/portal-user-guide/full-task-list/index.rst:189
-msgid "Portal can preview images, plain text(txt and log) and pdf documents."
+msgid ""
+"Portal can preview images(jpg, jpeg, bmp and png), plain text(txt and "
+"log) and pdf documents by default."
 msgstr ""
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:149
 #: ../../source/portal-user-guide/full-task-list/index.rst:191
 msgid ""
+"Portal can preview Word(doc, docx), Excel(xls, xlsx) and email(eml) "
+"documents if :dev-url:`DocFactory <https://market.axonivy.com/doc-factory"
+"#tab-description>` is deployed in the same security context."
+msgstr ""
+
+#: ../../source/portal-user-guide/full-case-list/index.rst:151
+#: ../../source/portal-user-guide/full-task-list/index.rst:193
+msgid ""
 "Change :ref:`Portal settings <update-portal-settings>` "
 ":guilabel:`Portal.Document.EnablePreview` to true to enable this feature."
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:153
+#: ../../source/portal-user-guide/full-case-list/index.rst:155
 msgid "HowTo: Add a Note to a Case"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:157
+#: ../../source/portal-user-guide/full-case-list/index.rst:159
 msgid "Click on the |add-icon| ``Add note`` link below the notes section."
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:159
+#: ../../source/portal-user-guide/full-case-list/index.rst:161
 msgid "The :guilabel:`Add note` dialog is opened."
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:161
+#: ../../source/portal-user-guide/full-case-list/index.rst:163
 msgid "Enter your note."
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:163
+#: ../../source/portal-user-guide/full-case-list/index.rst:165
 msgid "To save your note, click :guilabel:`Save`."
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:165
+#: ../../source/portal-user-guide/full-case-list/index.rst:167
 msgid "|how-to-add-task-note|"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:346
+#: ../../source/portal-user-guide/full-case-list/index.rst:348
 msgid "Case Details: Add note dialog"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:168
+#: ../../source/portal-user-guide/full-case-list/index.rst:170
 msgid ""
 "Notes of a technical case are displayed on the ``Notes`` table of the "
 "case, and its tasks."
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:170
+#: ../../source/portal-user-guide/full-case-list/index.rst:172
 msgid "Visibility rule for notes of business case:"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:172
+#: ../../source/portal-user-guide/full-case-list/index.rst:174
 msgid ""
 "Displayed in the ``History`` table of the case details and its direct "
 "tasks"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:173
+#: ../../source/portal-user-guide/full-case-list/index.rst:175
 msgid "Displayed in the ``History`` table of its technical case details."
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:174
+#: ../../source/portal-user-guide/full-case-list/index.rst:176
 msgid "Not displayed in the ``Notes`` table of tasks belong to technical case."
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:176
+#: ../../source/portal-user-guide/full-case-list/index.rst:178
 msgid ""
 "Grant permission :bdg-ref-warning:`🔑TaskCaseAddNote <TaskCaseAddNote>` to"
 " allow a user to add a note to a case."
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:179
+#: ../../source/portal-user-guide/full-case-list/index.rst:181
 msgid "HowTo: Export a Case History"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:183
+#: ../../source/portal-user-guide/full-case-list/index.rst:185
 msgid "Click on |show-more-icon| :guilabel:`Show more` below the notes section"
 msgstr ""
 
@@ -3525,235 +3550,235 @@ msgstr ""
 msgid "show-more-icon"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:185
-#: ../../source/portal-user-guide/full-task-list/index.rst:223
+#: ../../source/portal-user-guide/full-case-list/index.rst:187
+#: ../../source/portal-user-guide/full-task-list/index.rst:225
 msgid "|how-to-show-note-details|"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:348
+#: ../../source/portal-user-guide/full-case-list/index.rst:350
 msgid "Case Details: Link to show more notes details"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:187
+#: ../../source/portal-user-guide/full-case-list/index.rst:189
 msgid "A page containing the case history is opened"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:189
+#: ../../source/portal-user-guide/full-case-list/index.rst:191
 msgid "To export the case history, click on :guilabel:`Export to Excel`"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:191
+#: ../../source/portal-user-guide/full-case-list/index.rst:193
 msgid "|export-case-history|"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:350
+#: ../../source/portal-user-guide/full-case-list/index.rst:352
 msgid "Case Business Information page: Link to export case history"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:194
+#: ../../source/portal-user-guide/full-case-list/index.rst:196
 msgid "HowTo: Manipulate Related Tasks Inside Case Details"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:198
+#: ../../source/portal-user-guide/full-case-list/index.rst:200
 msgid "Scroll to **Related Tasks of Case**"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:202
+#: ../../source/portal-user-guide/full-case-list/index.rst:204
 msgid "This section shows you the related tasks of this case."
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:205
+#: ../../source/portal-user-guide/full-case-list/index.rst:207
 msgid ""
 "What you see here depends on the roles granted to you in both the "
 "application and the |ivy| Portal. Administrators can see all open tasks."
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:210
+#: ../../source/portal-user-guide/full-case-list/index.rst:212
 msgid ""
 "Grant either permission :bdg-ref-warning:`🔑TaskReadOwnCaseTasks "
 "<TaskReadOwnCaseTasks>` or :bdg-ref-warning:`🔑TaskReadAll <TaskReadAll>` "
 "to allow a user to see all related tasks of a case."
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:212
+#: ../../source/portal-user-guide/full-case-list/index.rst:214
 msgid ""
 "The list shows the following key information for each task. To change the"
 " columns displayed, click on :guilabel:`Manage columns`. Select from the "
 "following columns:"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:216
+#: ../../source/portal-user-guide/full-case-list/index.rst:218
 #: ../../source/portal-user-guide/full-task-list/index.rst:31
 msgid "Priority"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:222
+#: ../../source/portal-user-guide/full-case-list/index.rst:224
 #: ../../source/portal-user-guide/full-task-list/index.rst:41
 msgid "Responsible user or role"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:224
+#: ../../source/portal-user-guide/full-case-list/index.rst:226
 #: ../../source/portal-user-guide/full-task-list/index.rst:35
 msgid "Task ID"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:228
+#: ../../source/portal-user-guide/full-case-list/index.rst:230
 #: ../../source/portal-user-guide/full-task-list/index.rst:47
 msgid "Expiry Date"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:230
-#: ../../source/portal-user-guide/full-case-list/index.rst:274
+#: ../../source/portal-user-guide/full-case-list/index.rst:232
+#: ../../source/portal-user-guide/full-case-list/index.rst:276
 msgid "Finished date"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:234
+#: ../../source/portal-user-guide/full-case-list/index.rst:236
 msgid ""
 "At the end of each row, a side step menu is available. It offers the "
 "following actions:"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:237
+#: ../../source/portal-user-guide/full-case-list/index.rst:239
 #: ../../source/portal-user-guide/full-task-list/index.rst:60
 msgid "Reset Task"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:239
+#: ../../source/portal-user-guide/full-case-list/index.rst:241
 #: ../../source/portal-user-guide/full-task-list/index.rst:62
 msgid "Delegate Task"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:241
+#: ../../source/portal-user-guide/full-case-list/index.rst:243
 msgid "Reserve Task"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:243
+#: ../../source/portal-user-guide/full-case-list/index.rst:245
 msgid "Destroy Task"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:245
+#: ../../source/portal-user-guide/full-case-list/index.rst:247
 msgid "Trigger Escalation Task"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:247
+#: ../../source/portal-user-guide/full-case-list/index.rst:249
 #: ../../source/portal-user-guide/full-task-list/index.rst:70
 msgid "Workflow Events"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:249
+#: ../../source/portal-user-guide/full-case-list/index.rst:251
 msgid ""
 "To access the full set of the task data, click on the row containing the "
 "task."
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:253
+#: ../../source/portal-user-guide/full-case-list/index.rst:255
 msgid "HowTo: Manipulate Related Cases Inside Case Details"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:257
+#: ../../source/portal-user-guide/full-case-list/index.rst:259
 msgid ""
 "Scroll to **Related Cases** section. This section is shown only if the "
 "case has related cases."
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:262
+#: ../../source/portal-user-guide/full-case-list/index.rst:264
 msgid ""
 "By default, the following information is shown. To change it, click on "
 ":guilabel:`Manage columns` to select from:"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:272
+#: ../../source/portal-user-guide/full-case-list/index.rst:274
 msgid "Creation date"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:280
+#: ../../source/portal-user-guide/full-case-list/index.rst:282
 msgid "The Action column provides these actions to handle the related case:"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:282
-#: ../../source/portal-user-guide/full-case-list/index.rst:299
+#: ../../source/portal-user-guide/full-case-list/index.rst:284
+#: ../../source/portal-user-guide/full-case-list/index.rst:301
 msgid "Case details"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:284
+#: ../../source/portal-user-guide/full-case-list/index.rst:286
 msgid "Business details"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:286
+#: ../../source/portal-user-guide/full-case-list/index.rst:288
 msgid "Side step"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:288
+#: ../../source/portal-user-guide/full-case-list/index.rst:290
 msgid ""
 "To see the details of the related case, click on its row. To export the "
 "related case list, click on :guilabel:`Export to Excel`."
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:294
+#: ../../source/portal-user-guide/full-case-list/index.rst:296
 msgid "HowTo: Show Process Viewer"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:296
+#: ../../source/portal-user-guide/full-case-list/index.rst:298
 msgid ""
 "Portal provides a visual representation of the process flow of the "
 "current case or task. To open the viewer, select :guilabel:`Process "
 "Viewer` in the :guilabel:`Action` menu."
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:297
+#: ../../source/portal-user-guide/full-case-list/index.rst:299
 msgid "You find this option on the following pages:"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:300
+#: ../../source/portal-user-guide/full-case-list/index.rst:302
 msgid "Task details"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:301
+#: ../../source/portal-user-guide/full-case-list/index.rst:303
 msgid "Full case list"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:302
+#: ../../source/portal-user-guide/full-case-list/index.rst:304
 msgid "Full task list"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:304
+#: ../../source/portal-user-guide/full-case-list/index.rst:306
 msgid "Click on :guilabel:`Actions`"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:306
+#: ../../source/portal-user-guide/full-case-list/index.rst:308
 msgid "Click on :guilabel:`Process Viewer`"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:308
+#: ../../source/portal-user-guide/full-case-list/index.rst:310
 msgid "Portal opens a new browser tab. You see the process viewer."
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:310
+#: ../../source/portal-user-guide/full-case-list/index.rst:312
 msgid "|portal-process-viewer|"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:358
+#: ../../source/portal-user-guide/full-case-list/index.rst:360
 msgid "Process Viewer page"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:314
+#: ../../source/portal-user-guide/full-case-list/index.rst:316
 msgid "HowTo: Share Case Details"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:318
-#: ../../source/portal-user-guide/full-task-list/index.rst:255
+#: ../../source/portal-user-guide/full-case-list/index.rst:320
+#: ../../source/portal-user-guide/full-task-list/index.rst:257
 msgid "Click on the share button |share-icon|"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:320
+#: ../../source/portal-user-guide/full-case-list/index.rst:322
 msgid "|how-to-share-case-details|"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:360
+#: ../../source/portal-user-guide/full-case-list/index.rst:362
 msgid "Case Details: button to get the shareable link of the case details"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:324
+#: ../../source/portal-user-guide/full-case-list/index.rst:326
 msgid ""
 "Grant permission :bdg-ref-warning:`🔑ShareCaseDetailsLink "
 "<ShareCaseDetailsLink>` to allow a user to share case details."
@@ -4164,7 +4189,7 @@ msgstr ""
 msgid "|navigate-to-full-task-list-page|"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:266
+#: ../../source/portal-user-guide/full-task-list/index.rst:268
 msgid "Menu to navigate to the Full task list"
 msgstr ""
 
@@ -4188,7 +4213,7 @@ msgstr ""
 msgid "|task-key-information|"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:268
+#: ../../source/portal-user-guide/full-task-list/index.rst:270
 msgid "Full task list: key informations"
 msgstr ""
 
@@ -4251,7 +4276,7 @@ msgstr ""
 msgid "|task-status-banner|"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:298
+#: ../../source/portal-user-guide/full-task-list/index.rst:300
 msgid "Task Details: the Status banner"
 msgstr ""
 
@@ -4265,7 +4290,7 @@ msgstr ""
 msgid "|detailed-task-information-data-description|"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:270
+#: ../../source/portal-user-guide/full-task-list/index.rst:272
 msgid "Task Details: General section"
 msgstr ""
 
@@ -4277,7 +4302,7 @@ msgstr ""
 msgid "|detailed-task-information-note|"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:272
+#: ../../source/portal-user-guide/full-task-list/index.rst:274
 msgid "Task Details: Notes section"
 msgstr ""
 
@@ -4292,7 +4317,7 @@ msgstr ""
 msgid "|detailed-task-information-documents|"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:274
+#: ../../source/portal-user-guide/full-task-list/index.rst:276
 msgid "Task Details: Documents section"
 msgstr ""
 
@@ -4300,7 +4325,7 @@ msgstr ""
 msgid "|detailed-task-information|"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:276
+#: ../../source/portal-user-guide/full-task-list/index.rst:278
 msgid "The Task Details page"
 msgstr ""
 
@@ -4330,13 +4355,13 @@ msgstr ""
 #: ../../source/portal-user-guide/full-task-list/index.rst:138
 #: ../../source/portal-user-guide/full-task-list/index.rst:157
 #: ../../source/portal-user-guide/full-task-list/index.rst:176
-#: ../../source/portal-user-guide/full-task-list/index.rst:197
-#: ../../source/portal-user-guide/full-task-list/index.rst:219
-#: ../../source/portal-user-guide/full-task-list/index.rst:240
+#: ../../source/portal-user-guide/full-task-list/index.rst:199
+#: ../../source/portal-user-guide/full-task-list/index.rst:221
+#: ../../source/portal-user-guide/full-task-list/index.rst:242
 msgid "Open the task details of a task"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:292
+#: ../../source/portal-user-guide/full-task-list/index.rst:294
 msgid "Task Details: button to switch to the edit mode"
 msgstr ""
 
@@ -4346,7 +4371,7 @@ msgid ""
 "switch to readonly mode."
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:290
+#: ../../source/portal-user-guide/full-task-list/index.rst:292
 msgid "Task Details: save button"
 msgstr ""
 
@@ -4354,7 +4379,7 @@ msgstr ""
 msgid "Click :guilabel:`Reset` button to reset to default configuration."
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:294
+#: ../../source/portal-user-guide/full-task-list/index.rst:296
 msgid "Task Details: button to reset to the default configurations"
 msgstr ""
 
@@ -4366,7 +4391,7 @@ msgstr ""
 msgid "|how-to-upload-document|"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:278
+#: ../../source/portal-user-guide/full-task-list/index.rst:280
 msgid "Task Details:Add document dialog"
 msgstr ""
 
@@ -4395,7 +4420,7 @@ msgstr ""
 msgid "|how-to-delete-document|"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:280
+#: ../../source/portal-user-guide/full-task-list/index.rst:282
 msgid "Task Details: Delete document confirm dialog"
 msgstr ""
 
@@ -4406,133 +4431,137 @@ msgid ""
 "<DocumentWrite>` to allow a user to delete documents."
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:195
+#: ../../source/portal-user-guide/full-task-list/index.rst:174
+msgid "HowTo: Preview a document of a task"
+msgstr ""
+
+#: ../../source/portal-user-guide/full-task-list/index.rst:197
 msgid "HowTo: Add a note to a task"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:199
+#: ../../source/portal-user-guide/full-task-list/index.rst:201
 msgid "Click on the link |add-icon| ``Add note`` below the notes section"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:201
+#: ../../source/portal-user-guide/full-task-list/index.rst:203
 msgid "The :guilabel:`Add note` dialog is opened"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:203
+#: ../../source/portal-user-guide/full-task-list/index.rst:205
 msgid "Enter your note"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:205
+#: ../../source/portal-user-guide/full-task-list/index.rst:207
 msgid "Confirm your note by clicking the button :guilabel:`Save`"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:207
+#: ../../source/portal-user-guide/full-task-list/index.rst:209
 msgid "|how-to-add-note|"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:282
+#: ../../source/portal-user-guide/full-task-list/index.rst:284
 msgid "Task Details: Add note dialog"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:210
+#: ../../source/portal-user-guide/full-task-list/index.rst:212
 msgid ""
 "Notes of a task are displayed in the ``Notes`` table of the task details,"
 " and in the ``History`` table of its business case."
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:212
+#: ../../source/portal-user-guide/full-task-list/index.rst:214
 msgid ""
 "If the task belongs to a technical case, its notes are also displayed in "
 "the ``History`` table of this technical case."
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:214
+#: ../../source/portal-user-guide/full-task-list/index.rst:216
 msgid ""
 "Grant permission :bdg-ref-warning:`🔑TaskCaseAddNote <TaskCaseAddNote>` to"
 " allow a user to add task and case notes."
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:217
+#: ../../source/portal-user-guide/full-task-list/index.rst:219
 msgid "HowTo: Export a task history"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:221
+#: ../../source/portal-user-guide/full-task-list/index.rst:223
 msgid "Click on the link |show-more-icon| ``Show more`` below the notes section"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:284
+#: ../../source/portal-user-guide/full-task-list/index.rst:286
 msgid "Task Details: Link to show more notes details"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:225
+#: ../../source/portal-user-guide/full-task-list/index.rst:227
 msgid "A new page with the task history is opened"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:227
+#: ../../source/portal-user-guide/full-task-list/index.rst:229
 msgid ""
 "You may export the history by clicking on the button :guilabel:`Export to"
 " Excel`"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:229
+#: ../../source/portal-user-guide/full-task-list/index.rst:231
 msgid "|how-to-export-note-details|"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:286
+#: ../../source/portal-user-guide/full-task-list/index.rst:288
 msgid "Link to export task notes"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:235
+#: ../../source/portal-user-guide/full-task-list/index.rst:237
 msgid "HowTo: Show Workflow Events"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:238
+#: ../../source/portal-user-guide/full-task-list/index.rst:240
 msgid ""
 "Grant permission :bdg-warning:`🔑WorkflowEventReadAll` to allow a user to "
 "see all workflow events of a task."
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:242
+#: ../../source/portal-user-guide/full-task-list/index.rst:244
 msgid ""
 "Click on the link ``Actions`` on the right top corner of the **Data and "
 "Description** section"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:244
+#: ../../source/portal-user-guide/full-task-list/index.rst:246
 msgid ""
 "Click the link ``Workflow Events`` on the overlay panel to see Workflow "
 "Events dialog"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:246
+#: ../../source/portal-user-guide/full-task-list/index.rst:248
 msgid "**Workflow Events dialog**"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:248
+#: ../../source/portal-user-guide/full-task-list/index.rst:250
 msgid "|workflow-events-table|"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:288
+#: ../../source/portal-user-guide/full-task-list/index.rst:290
 msgid "Workflow events of task dialog"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:251
+#: ../../source/portal-user-guide/full-task-list/index.rst:253
 msgid "HowTo: Share Task Details"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:253
+#: ../../source/portal-user-guide/full-task-list/index.rst:255
 msgid "Open the task details"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:257
+#: ../../source/portal-user-guide/full-task-list/index.rst:259
 msgid "|how-to-share-task-details|"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:296
+#: ../../source/portal-user-guide/full-task-list/index.rst:298
 msgid "Task Details: button to get the shareable link of the task details"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:261
+#: ../../source/portal-user-guide/full-task-list/index.rst:263
 msgid ""
 "Grant permission :bdg-ref-warning:`🔑ShareTaskDetailsLink "
 "<ShareTaskDetailsLink>` to allow a user to share task details."
@@ -6908,5 +6937,8 @@ msgid "Toggle to show label of number chart."
 msgstr ""
 
 #~ msgid "queries e.g. for case widget, global search."
+#~ msgstr ""
+
+#~ msgid "Portal can preview images, plain text(txt and log) and pdf documents."
 #~ msgstr ""
 
