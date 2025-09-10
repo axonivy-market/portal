@@ -90,7 +90,7 @@
           "code" : [
             "import javax.faces.context.FacesContext;",
             "",
-            "FacesContext.getCurrentInstance().getExternalContext().redirect(ivy.html.applicationHomeLink().getAbsolute());"
+            "FacesContext.getCurrentInstance().getExternalContext().redirect(ivy.html.applicationHomeRef());"
           ]
         }
       },
