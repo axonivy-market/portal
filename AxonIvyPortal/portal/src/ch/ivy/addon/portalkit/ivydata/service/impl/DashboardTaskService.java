@@ -87,6 +87,12 @@ public class DashboardTaskService extends TaskService {
         subQuery.where().and(queryExcludeHiddenTasks());
         hasSubQueryChanged = true;
       }
+
+      if (!PermissionUtils.hasSystemTaskReadAllPermission()) {
+        subQuery.where().and(queryExcludeSystemTasks());
+        hasSubQueryChanged = true;
+      }
+
       var finalQuery = hasSubQueryChanged ? query.where().and(subQuery) : query;
       return executeTaskQuery(finalQuery, startIndex, count);
     });
@@ -109,6 +115,12 @@ public class DashboardTaskService extends TaskService {
         subQuery.where().and(queryExcludeHiddenTasks());
         hasSubQueryChanged = true;
       }
+
+      if (!PermissionUtils.hasSystemTaskReadAllPermission()) {
+        subQuery.where().and(queryExcludeSystemTasks());
+        hasSubQueryChanged = true;
+      }
+
       var finalQuery = hasSubQueryChanged ? query.where().and(subQuery) : query;
 
       return countTasks(finalQuery);

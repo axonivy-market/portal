@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Portal Guide ${revision}\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-04 02:01+0000\n"
+"POT-Creation-Date: 2025-09-08 09:17+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: es\n"
@@ -6939,21 +6939,33 @@ msgid ""
 msgstr ""
 
 #: ../../source/portal-developer-guide/installation/index.rst:486
-msgid "Changes in 12.0.6"
+msgid "Changes in 12.0.9"
 msgstr ""
 
 #: ../../source/portal-developer-guide/installation/index.rst:487
+msgid ""
+"Enhanced the document preview feature for the task and case detail. If "
+"you have :dev-url:`DocFactory <https://market.axonivy.com/doc-factory"
+"#tab-description>` in the same security context. You can preview "
+"Word(doc, docx), Excel(xls, xlsx) and email(eml) documents."
+msgstr ""
+
+#: ../../source/portal-developer-guide/installation/index.rst:490
+msgid "Changes in 12.0.6"
+msgstr ""
+
+#: ../../source/portal-developer-guide/installation/index.rst:491
 msgid ""
 "Introduced the Portal Setting ``Portal.Cases.EnablePinnedCase`` and "
 "``Portal.Tasks.EnablePinnedTask`` to enable the pinning feature for the "
 "case and task widgets on the dashboard."
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:490
+#: ../../source/portal-developer-guide/installation/index.rst:494
 msgid "Changes in 12.0.4"
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:491
+#: ../../source/portal-developer-guide/installation/index.rst:495
 msgid ""
 "Introduced the Portal Setting "
 "``Portal.Cases.BehaviourWhenClickingOnLineInCaseList`` to toggle between "
@@ -6962,40 +6974,40 @@ msgid ""
 "process widget in combined mode."
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:494
+#: ../../source/portal-developer-guide/installation/index.rst:498
 msgid "Changes in 12.0.1"
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:495
+#: ../../source/portal-developer-guide/installation/index.rst:499
 msgid ""
 "Introduced the document preview feature for the task and case detail. You"
 " can preview images(png or jpeg), plain text(txt or log) and pdf "
 "documents."
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:496
+#: ../../source/portal-developer-guide/installation/index.rst:500
 msgid ""
 "Introduced the Portal Setting ``Portal.Document.EnablePreview`` to "
 "control visibility of the preview document icon in Portal."
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:499
+#: ../../source/portal-developer-guide/installation/index.rst:503
 msgid "Changes in 12.0.0"
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:501
+#: ../../source/portal-developer-guide/installation/index.rst:505
 msgid ""
 "The old statistic chart is removed, use the new :ref:`statistic-chart` "
 "instead."
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:502
+#: ../../source/portal-developer-guide/installation/index.rst:506
 msgid ""
 "Introduce the component IFrameTaskConfig to configure IFrame tasks. Refer"
 " to :ref:`iframe-configure-template` for more information."
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:503
+#: ../../source/portal-developer-guide/installation/index.rst:507
 msgid ""
 "The :ref:`full task list page <full-task-list>` and :ref:`full case list "
 "page <full-case-list>` have been redesigned to align with the concept of "
@@ -7003,17 +7015,17 @@ msgid ""
 "width widget. To configure it, you can adjust it like any other widgets."
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:505
+#: ../../source/portal-developer-guide/installation/index.rst:509
 msgid ""
 "Support multiple case owners. The single case owner sort feature is "
 "removed."
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:508
+#: ../../source/portal-developer-guide/installation/index.rst:512
 msgid "Changes in 11.2.0"
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:510
+#: ../../source/portal-developer-guide/installation/index.rst:514
 msgid ""
 "The ``ch.ivy.addon.portalkit.publicapi.ApplicationMultiLanguageAPI`` "
 "class is removed and no longer supported, use "
@@ -7021,14 +7033,14 @@ msgid ""
 "instead."
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:511
+#: ../../source/portal-developer-guide/installation/index.rst:515
 msgid ""
 "The ``ch.ivy.addon.portalkit.publicapi.CaseAPI`` class is removed and no "
 "longer supported, use ``com.axonivy.portal.components.publicapi.CaseAPI``"
 " instead."
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:512
+#: ../../source/portal-developer-guide/installation/index.rst:516
 msgid ""
 "The ``ch.ivy.addon.portalkit.publicapi.PortalGlobalGrowInIFrameAPI`` "
 "class is removed and no longer supported, use "
@@ -7036,35 +7048,35 @@ msgid ""
 "instead."
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:513
+#: ../../source/portal-developer-guide/installation/index.rst:517
 msgid ""
 "The ``ch.ivy.addon.portalkit.publicapi.PortalNavigatorAPI`` class is "
 "removed and no longer supported, use "
 "``com.axonivy.portal.components.publicapi.PortalNavigatorAPI`` instead."
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:514
+#: ../../source/portal-developer-guide/installation/index.rst:518
 msgid ""
 "The ``ch.ivy.addon.portalkit.publicapi.ProcessStartAPI`` class is removed"
 " and no longer supported, use "
 "``com.axonivy.portal.components.publicapi.ProcessStartAPI`` instead."
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:515
+#: ../../source/portal-developer-guide/installation/index.rst:519
 msgid ""
 "The ``ch.ivy.addon.portalkit.publicapi.RoleAPI`` class is removed and no "
 "longer supported, use ``com.axonivy.portal.components.publicapi.RoleAPI``"
 " instead."
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:516
+#: ../../source/portal-developer-guide/installation/index.rst:520
 msgid ""
 "The ``ch.ivy.addon.portalkit.publicapi.TaskAPI`` class is removed and no "
 "longer supported, use ``com.axonivy.portal.components.publicapi.TaskAPI``"
 " instead."
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:517
+#: ../../source/portal-developer-guide/installation/index.rst:521
 msgid ""
 "The ``com.axonivy.portal.components.util.PortalNavigatorInFrameAPI`` "
 "class is removed and no longer supported, use "
@@ -7072,51 +7084,51 @@ msgid ""
 "instead."
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:518
+#: ../../source/portal-developer-guide/installation/index.rst:522
 msgid ""
 "Introduced the sort feature for the process dashboard widget. User can "
 "sort the processes by index, alphabetical order or by custom order."
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:519
+#: ../../source/portal-developer-guide/installation/index.rst:523
 msgid ""
 "Introduced the ``taskId`` param for the component "
 "``ic:com.axonivy.portal.components.ProcessViewer`` to highlight the "
 "current step in the Process Viewer."
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:520
+#: ../../source/portal-developer-guide/installation/index.rst:524
 msgid "Portal Legacy dashboard has been removed."
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:521
+#: ../../source/portal-developer-guide/installation/index.rst:525
 msgid ""
 "The ``AxonIvyExpress`` module is renamed to ``axonivy-express`` and "
 "becomes an item on the Axon Ivy Market."
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:524
+#: ../../source/portal-developer-guide/installation/index.rst:528
 msgid "Changes in 10"
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:526
+#: ../../source/portal-developer-guide/installation/index.rst:530
 msgid ""
 "Introduced the ``Application`` filter and the ``Application`` column in "
 "the following places: full task list, full case list, dashboard task "
 "list, dashboard case list, and task analysis."
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:529
+#: ../../source/portal-developer-guide/installation/index.rst:533
 msgid "Changes in 9.4"
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:531
+#: ../../source/portal-developer-guide/installation/index.rst:535
 msgid ""
 "Combined projects ``PortalStyle``, ``PortalKit``, and ``PortalTemplate`` "
 "to one project named ``portal``."
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:533
+#: ../../source/portal-developer-guide/installation/index.rst:537
 msgid ""
 "Introduced the ``Portal.Tasks.BehaviourWhenClickingOnLineInTaskList`` "
 "Portal setting to set behaviour when clicking on a line in task list, "
@@ -7124,190 +7136,190 @@ msgid ""
 " can change it via user profile."
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:536
+#: ../../source/portal-developer-guide/installation/index.rst:540
 msgid ""
 "Introduced the ``Portal.StatisticChartScalingInterval`` Portal setting to"
 " set the interval in seconds to do periodic statistic chart scaling "
 "requests."
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:538
+#: ../../source/portal-developer-guide/installation/index.rst:542
 msgid ""
 "Introduced the ``Portal.LoginPage.ShowFooter`` Portal setting to control "
 "visibility of the footer on the login page."
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:540
+#: ../../source/portal-developer-guide/installation/index.rst:544
 msgid ""
 "Introduced the ``Portal.Theme.Mode`` Portal setting to set the default "
 "theme mode: Light or Dark."
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:542
+#: ../../source/portal-developer-guide/installation/index.rst:546
 msgid ""
 "Introduced the ``Portal.Theme.EnableSwitchThemeModeButton`` Portal "
 "setting to control state of the switch theme button on the top-bar."
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:544
+#: ../../source/portal-developer-guide/installation/index.rst:548
 msgid ""
 "Introduced new ``Task ID``, ``Task Name``, ``Case ID`` and ``Case Name`` "
 "filter in the Portal full task list and case list."
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:546
+#: ../../source/portal-developer-guide/installation/index.rst:550
 msgid ""
 "Introduced the ``Process Viewer`` page, user can get the visual viewer of"
 " the process start. See details :ref:`Show Process Viewer <how-to-show-"
 "process-viewer>`"
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:548
+#: ../../source/portal-developer-guide/installation/index.rst:552
 msgid ""
 "Introduced the ``Formatting language setting`` to format values, for "
 "example the decimal separator is displayed differently in different "
 "regions of the world."
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:550
+#: ../../source/portal-developer-guide/installation/index.rst:554
 msgid ""
 "Removed subprocess ``DefaultChartColor.p.json``, introduced some Portal "
 "variables for customizing the default chart color."
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:552
+#: ../../source/portal-developer-guide/installation/index.rst:556
 msgid "Introduce some components in new ``portal-components`` project."
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:554
+#: ../../source/portal-developer-guide/installation/index.rst:558
 msgid ""
 ":ref:`User Selection Component <components-portal-components-user-"
 "selection>`"
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:556
+#: ../../source/portal-developer-guide/installation/index.rst:560
 msgid ""
 ":ref:`Role Selection Component <components-portal-components-role-"
 "selection>`"
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:558
+#: ../../source/portal-developer-guide/installation/index.rst:562
 msgid ""
 ":ref:`Document Table Component <components-portal-components-document-"
 "table>`"
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:560
+#: ../../source/portal-developer-guide/installation/index.rst:564
 msgid ""
 ":ref:`Process Chain Component <components-portal-components-process-"
 "chain>`"
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:562
+#: ../../source/portal-developer-guide/installation/index.rst:566
 msgid ""
 ":ref:`Process Viewer Component <components-portal-components-process-"
 "viewer>`"
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:565
+#: ../../source/portal-developer-guide/installation/index.rst:569
 msgid "Changes in 9.3"
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:567
+#: ../../source/portal-developer-guide/installation/index.rst:571
 msgid ""
 "No need to update PortalGroupId variable when you change group id of "
 "Portal."
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:571
+#: ../../source/portal-developer-guide/installation/index.rst:575
 msgid "Changes in 9.2"
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:573
+#: ../../source/portal-developer-guide/installation/index.rst:577
 msgid ""
 "Included new TaskState such as ``Destroyed``, ``Failed``, ``Join failed``"
 " and ``Waiting for event`` in Portal Task list, also in Task State "
 "filter."
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:575
+#: ../../source/portal-developer-guide/installation/index.rst:579
 msgid ""
 "Included new CaseState ``Destroyed`` in Portal Case list, also in Case "
 "State filter."
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:577
+#: ../../source/portal-developer-guide/installation/index.rst:581
 msgid ""
 "Introduced :ref:`Workflow Events table <how-to-show-workflow-events>`, "
 "user who has permission :bdg-warning:`🔑WorkflowEventReadAll` can see all "
 "``WORKFLOW_EVENTS``."
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:579
+#: ../../source/portal-developer-guide/installation/index.rst:583
 msgid ""
 "Introduced the ``Portal.Homepage`` Portal setting to set the default "
 "homepage, each user can change it via user profile."
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:581
+#: ../../source/portal-developer-guide/installation/index.rst:585
 msgid ""
 "Introduced new approach to customize :ref:`Portal Case Item details "
 "<customization-case-item-details>`. Now, your case information in Case "
 "details page and Case Info dialog is the same"
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:583
+#: ../../source/portal-developer-guide/installation/index.rst:587
 msgid ""
 "Introduced new approach to customize :ref:`Portal Task Item Details "
 "<customization-task-item-details>`."
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:585
-#: ../../source/portal-developer-guide/installation/index.rst:602
+#: ../../source/portal-developer-guide/installation/index.rst:589
+#: ../../source/portal-developer-guide/installation/index.rst:606
 msgid ""
 "Introduced new Portal Setting ``Portal.ShowButtonIcon`` to control "
 "visibility of icon of button in Portal."
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:587
+#: ../../source/portal-developer-guide/installation/index.rst:591
 msgid ""
 "Introduced new variable named ``PortalLoginPageDisplay`` to show Login "
 "page or hide it then show error page instead."
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:589
+#: ../../source/portal-developer-guide/installation/index.rst:593
 msgid ""
 "No multiple applications anymore, Portal now only works in current "
 "application. It means administrator can not add new Ivy application."
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:591
+#: ../../source/portal-developer-guide/installation/index.rst:595
 msgid "Statistic charts support multiple names for each supported languages."
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:593
+#: ../../source/portal-developer-guide/installation/index.rst:597
 msgid "Portal supports multilingual user favorites"
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:595
+#: ../../source/portal-developer-guide/installation/index.rst:599
 msgid "Portal supports logos in SVG format."
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:598
+#: ../../source/portal-developer-guide/installation/index.rst:602
 msgid "Changes in 9.1"
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:600
+#: ../../source/portal-developer-guide/installation/index.rst:604
 msgid ""
 "Refactored style customization approach. From now on, Portal use CSS "
 "Variable as technology to customize CSS."
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:604
+#: ../../source/portal-developer-guide/installation/index.rst:608
 msgid "Introduced new Portal dialog with icon decorator."
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:606
+#: ../../source/portal-developer-guide/installation/index.rst:610
 msgid "TaskTemplate-7, TaskTemplate and TwoColumnTemplate have been removed."
 msgstr ""
 

@@ -463,6 +463,7 @@ public class DashboardBean implements Serializable, IMultiLanguage {
     }
   }
 
+  @Override
   public boolean isRequiredField(DisplayName displayName) {
     String currentLanguage = UserUtils.getUserLanguage();
     String displayLanguage = displayName.getLocale().getLanguage();
