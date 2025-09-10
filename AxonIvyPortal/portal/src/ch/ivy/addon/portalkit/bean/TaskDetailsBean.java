@@ -20,7 +20,6 @@ import ch.ivy.addon.portalkit.dto.taskdetails.TaskDetails;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.jsf.Attrs;
-import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.service.DateTimeGlobalSettingService;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.SecurityMemberDisplayNameUtils;

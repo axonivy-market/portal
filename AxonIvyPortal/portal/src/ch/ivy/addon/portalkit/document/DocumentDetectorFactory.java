@@ -2,6 +2,12 @@ package ch.ivy.addon.portalkit.document;
 
 import org.apache.commons.lang.StringUtils;
 
+import com.axonivy.portal.components.document.DocumentDetector;
+import com.axonivy.portal.components.document.ExcelDocumentDetector;
+import com.axonivy.portal.components.document.PDFDocumentDetector;
+import com.axonivy.portal.components.document.SVGSecurityScanner;
+import com.axonivy.portal.components.document.WordDocumentDetector;
+
 public class DocumentDetectorFactory {
   
   public DocumentDetector getDocumentDetector(String fileExtension) {

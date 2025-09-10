@@ -21,6 +21,7 @@ public class LeaveRequestIFramePage extends TaskTemplateIFramePage {
     return "#content";
   }
 
+  @Override
   public void waitForIFrameContentVisible() {
     $("div[id='content']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }

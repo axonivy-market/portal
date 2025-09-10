@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.service.exception.PortalException;
@@ -32,9 +33,11 @@ public class BusinessDetailsUtils {
 
   /**
    * Attempt to find custom businessDetails url which is using in case detail only
+   * @param caze 
+   * @return business detail url
    **/
-  public static String getCustomBusinessDetailUri(ICase iCase) {
-    return getBusinessDetailUrlFromCustomField(iCase, false);
+  public static String getCustomBusinessDetailUri(ICase caze) {
+    return getBusinessDetailUrlFromCustomField(caze, false);
   }
 
   /**
@@ -170,7 +173,7 @@ public class BusinessDetailsUtils {
   }
 
   private static boolean isExternalLink(String path) {
-    return StringUtils.startsWithIgnoreCase(path, "http:") || StringUtils.startsWithIgnoreCase(path, "https:");
+    return Strings.CI.startsWith(path, "http:") || Strings.CI.startsWith(path, "https:");
   }
 
 }

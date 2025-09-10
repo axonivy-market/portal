@@ -40,11 +40,13 @@ public class CloneWidgetBean extends DashboardDetailModificationBean {
   private Dashboard targetDashboard;
   private List<ClientStatistic> statisticWidgets;
 
+  @Override
   @PostConstruct
   public void initConfigration() {
     targetDashboard = null;
   }
 
+  @Override
   public void cloneWidget() {
     if (targetDashboard == null) {
       return;
@@ -127,6 +129,7 @@ public class CloneWidgetBean extends DashboardDetailModificationBean {
         Arrays.asList(result));
   }
 
+  @Override
   protected void initStatisticWidgets() {
     statisticWidgets = new ArrayList<>();
     statisticWidgets.addAll(statisticWidgets);
