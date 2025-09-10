@@ -507,14 +507,6 @@ public class CaseDetailsPage extends TemplatePage {
     $(By.cssSelector("[id$=':reset-to-default-case-form:confirm-destruction']"))
         .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
-  
-  public void sortAscendingByTaskState() {
-    WebElement stateColumn = $("thead[id*='related-tasks_head']").shouldBe(appear).$$("th").filterBy(Condition.cssClass("related-task-state-column")).first();
-    String sortState = stateColumn.getCssValue("ariaSort");
-    if (sortState.isBlank() || sortState.equals("descending")) {
-      stateColumn.click();
-    }
-  }
 
   public void switchToEditMode() {
     waitForElementDisplayed(By.cssSelector("[id$=':switch-to-edit-mode-button']"), true);
