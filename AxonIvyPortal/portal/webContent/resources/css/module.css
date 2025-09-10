@@ -5535,9 +5535,20 @@ border-top: 0.14rem dashed;
 .process-action-group .process-category {
   max-width: 100%;
   min-width: 0;
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--ivy-primary-color);
+  border-radius: 2rem;
+  color: var(--ivy-primary-text-color);
+  background: var(--ivy-primary-color);
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+  box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
 }
 
-.process-action-group .process-category span.ui-button-text {
+.process-action-group .process-category span {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;

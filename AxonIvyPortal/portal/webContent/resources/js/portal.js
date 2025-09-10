@@ -897,6 +897,10 @@ function updateMainMenuAriaLabel() {
   }
 }
 
+function updateHeadingRole() {
+  $('a.breadcrumb-current-item span.ui-menuitem-text').attr("role", "heading").attr("aria-level", "1");
+}
+
 function focusElementWithId(elementId) {
     var element = document.querySelector('[id$="' + elementId + '"]');
     if (element) { element.focus(); }
