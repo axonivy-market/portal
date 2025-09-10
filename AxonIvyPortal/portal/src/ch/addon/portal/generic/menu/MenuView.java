@@ -21,6 +21,7 @@ import javax.faces.event.ActionEvent;
 
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 import org.primefaces.PrimeFaces;
 import org.primefaces.model.menu.DefaultMenuItem;
 import org.primefaces.model.menu.DefaultMenuModel;
@@ -225,7 +226,7 @@ public class MenuView implements Serializable {
 
   private String getLocalizedTitle(Dashboard board, String currentLanguage, String defaultTitle) {
     return board.getTitles().stream()
-        .filter(name -> StringUtils.equalsIgnoreCase(name.getLocale().toString(), currentLanguage)
+        .filter(name -> Strings.CI.equals(name.getLocale().toString(), currentLanguage)
             && StringUtils.isNotBlank(name.getValue()))
         .map(DisplayName::getValue).findFirst().orElse(defaultTitle);
   }
@@ -235,7 +236,7 @@ public class MenuView implements Serializable {
     boolean isMainDashboardMenu =
         StringUtils.isNotEmpty(activeDashboardId) && activeDashboardId.endsWith(DashboardUtils.MAIN_DASHBOARD_MENU_POSTFIX);
 
-    if (StringUtils.endsWith(Ivy.request().getRootRequest().getRequestPath(), DASHBOARD_PAGE_URL)
+    if (Strings.CS.endsWith(Ivy.request().getRootRequest().getRequestPath(), DASHBOARD_PAGE_URL)
         && !isMainDashboardMenu) {
       dashboardGroupMenu.setExpanded(true);
     }

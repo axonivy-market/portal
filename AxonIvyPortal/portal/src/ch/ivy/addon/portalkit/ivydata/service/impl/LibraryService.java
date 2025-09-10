@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 
 import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivyteam.ivy.application.IApplication;
@@ -29,7 +29,7 @@ public class LibraryService{
                               .getLibraries()
                               .stream()
                               .filter(lib -> !portalLibraryStrings.contains(lib.getId()) && displayStates.contains(lib.getProcessModelVersion().getReleaseState()))
-                              .sorted((l1, l2) -> StringUtils.compareIgnoreCase(l1.getProcessModelVersion().getProcessModel().getName(), l2.getProcessModelVersion().getProcessModel().getName()))
+                              .sorted((l1, l2) -> Strings.CI.compare(l1.getProcessModelVersion().getProcessModel().getName(), l2.getProcessModelVersion().getProcessModel().getName()))
                               .collect(Collectors.toList());
       
       libraries.put(currentApp.getName(), collect);

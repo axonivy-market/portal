@@ -91,7 +91,7 @@
           process="@this"
           title="#{cc.attrs.previewTitle}"
           styleClass="#{cc.attrs.previewStyleClass}"
-          actionListener="#{logic.download(document)}"
+          actionListener="#{logic.preview(document)}"
           rendered="#{documentUploadBean.canPreviewDocument(document,cc.attrs.previewRendered)}"
           update="#{cc.clientId}:preview-document-dialog"
           oncomplete="PF('preview-document-dialog').show()">

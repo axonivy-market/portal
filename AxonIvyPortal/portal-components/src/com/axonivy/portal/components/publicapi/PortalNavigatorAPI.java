@@ -119,7 +119,7 @@ public final class PortalNavigatorAPI extends BaseNavigator {
   /**
    * Builds a portal URL pointing to the given static page path.
    *
-   * @param staticPagePath relative path to the static page inside the portal
+   * @param staticPageUrl relative path to the static page inside the portal
    * @return A full or relative portal URL with the static page as query parameter
    */
   public static String buildPortalStaticPageUrl(String staticPageUrl) {
