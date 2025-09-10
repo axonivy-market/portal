@@ -84,9 +84,8 @@ public class EnhanceVisibilityTasksForMemberOfRoleTest extends BaseTest {
     taskWidget.addFilter("state", null);
     taskWidget.inputValueOnLatestFilter(FilterValueType.STATE_TYPE, "Open");
     taskWidget.applyFilter();
-    taskWidget.waitForPageLoad();
-    int tasksReserved = taskWidget.countAllTasks().size();
-    assertEquals(countTasksReserved, tasksReserved);
+    taskWidget = new TopMenuTaskWidgetPage();
+    assertEquals(countTasksReserved, taskWidget.countAllTasks().size());
   }
 
   @Test
