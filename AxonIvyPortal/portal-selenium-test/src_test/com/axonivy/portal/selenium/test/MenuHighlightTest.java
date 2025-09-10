@@ -46,6 +46,8 @@ public class MenuHighlightTest extends BaseTest {
 
   @Test
   public void testHighlightDefaultMenus() {
+    NewDashboardPage dashboardPage = new NewDashboardPage();
+    dashboardPage.openMainMenu();
     assertMenuHighlighted(DASHBOARD_0_PARENT_DASHBOARD_PATTERN);
     MainMenuPage menuPage = new MainMenuPage();
     menuPage.selectProcessesMenu();
