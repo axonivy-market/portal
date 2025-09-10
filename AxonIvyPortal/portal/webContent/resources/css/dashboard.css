@@ -596,7 +596,6 @@ body .ui-selectcheckboxmenu.task-configuration__selectcheckboxmenu .ui-selectche
 .dashboard-cases--table.no-resize table,
 .dashboard-tasks--table.no-resize table {
   min-width: 100%;
-  width: max-content;
 }
 
 .js-resizing.dashboard-cases--table.no-resize table,
@@ -1658,19 +1657,20 @@ body .widget__content .ui-datatable.dashboard-tasks--table.no-resize .ui-widget-
   white-space: nowrap;
 }
 
-body .widget__content .ui-datatable.dashboard-cases--table:not(.no-resize) .ui-widget-header thead th.widget-column-header .ui-column-title,
-body .widget__content .ui-datatable.dashboard-tasks--table:not(.no-resize) .ui-widget-header thead th.widget-column-header .ui-column-title,
+body .widget__content .ui-datatable.dashboard-cases--table .ui-widget-header thead th.widget-column-header .ui-column-title,
+body .widget__content .ui-datatable.dashboard-tasks--table .ui-widget-header thead th.widget-column-header .ui-column-title,
 body .widget__content .ui-datatable.dashboard-cases--table.js-resizing .ui-widget-header thead th.widget-column-header .ui-column-title,
 body .widget__content .ui-datatable.dashboard-tasks--table.js-resizing .ui-widget-header thead th.widget-column-header .ui-column-title {
   white-space: nowrap;
   text-overflow: ellipsis;
-  max-width: calc(100% - 30px);
+  max-width: 100%;
   display: inline-block;
   overflow: hidden;
 }
 
-body .widget__content .ui-datatable.dashboard-tasks--table.no-resize .ui-widget-header thead th.widget-column-header.dashboard-tasks__start .ui-column-title,
-body .widget__content .ui-datatable.dashboard-tasks--table.no-resize .ui-widget-header thead th.widget-column-header.dashboard-tasks__priority .ui-column-title,
-body .widget__content .ui-datatable.dashboard-cases--table.no-resize .ui-widget-header thead th.widget-column-header.dashboard-tasks__priority .ui-column-title {
-  max-width: max-content;
+body .widget__content .ui-datatable.dashboard-cases--table .ui-widget-header thead th.widget-column-header.ui-sortable-column .ui-column-title,
+body .widget__content .ui-datatable.dashboard-tasks--table .ui-widget-header thead th.widget-column-header.ui-sortable-column .ui-column-title,
+body .widget__content .ui-datatable.dashboard-cases--table.js-resizing .ui-widget-header thead th.widget-column-header.ui-sortable-column .ui-column-title,
+body .widget__content .ui-datatable.dashboard-tasks--table.js-resizing .ui-widget-header thead th.widget-column-header.ui-sortable-column .ui-column-title {
+  max-width: calc(100% - 30px);
 }
