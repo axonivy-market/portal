@@ -73,8 +73,8 @@ public class NoteHistoryPage extends TemplatePage {
     }
   }
   
-  public boolean isSystemNotesCheckboxSelected() {
-    return findElementByCssSelector("[id$=':show-system-notes-checkbox']").isSelected();
+  public boolean isTaskNoteTableVisible() {
+    return findElementByCssSelector("[id$=':task-note-table']").isDisplayed();
   }
 
   public void waitForNoteTableDisplayed() {
