@@ -72,6 +72,10 @@ public class NoteHistoryPage extends TemplatePage {
       checkbox.click();
     }
   }
+  
+  public boolean isSystemNotesCheckboxSelected() {
+    return findElementByCssSelector("[id$=':show-system-notes-checkbox']").isSelected();
+  }
 
   public void waitForNoteTableDisplayed() {
     waitForElementDisplayed(By.cssSelector("[id$=':task-note-table']"), true);
