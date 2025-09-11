@@ -11,6 +11,7 @@ import org.openqa.selenium.WebElement;
 
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.ElementsCollection;
+import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
 
 public class NoteHistoryPage extends TemplatePage {
@@ -66,7 +67,10 @@ public class NoteHistoryPage extends TemplatePage {
   }
 
   public void clickOnCheckboxShowSystemNotes() {
-    findElementByCssSelector("[id$=':show-system-notes-checkbox']").click();
+    SelenideElement checkbox = findElementByCssSelector("[id$=':show-system-notes-checkbox']");
+    if (!checkbox.isSelected()) {
+      checkbox.click();
+    }
   }
 
   public void waitForNoteTableDisplayed() {
