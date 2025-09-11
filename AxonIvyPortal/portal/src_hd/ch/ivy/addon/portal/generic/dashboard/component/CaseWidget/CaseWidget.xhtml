@@ -40,7 +40,7 @@
 
       <p:dataTable id="dashboard-cases" widgetVar="#{cc.attrs.caseWidgetVar}-#{caseWidget.id}" value="#{caseWidget.dataModel}" var="caseItem"
         lazy="true" scrollRows="25"
-        disabledSelection="#{isPreviewMode}"
+        disabledSelection="#{isPreviewMode}" partialUpdate="false"
         liveScroll="true" scrollable="true" sortBy="#{(isResizing or isPreviewMode) ? null : caseWidget.sortBy}"
         showGridlines="#{isResizing}" resizableColumns="#{isResizing}" resizeMode="expand"
         rowIndexVar="rowIndex" rowHover="#{isReadOnlyMode}" selectionMode="single"
