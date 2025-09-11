@@ -134,7 +134,7 @@ function checkUrl(iFrame, appName) {
   }
   invalidIFrameSrcPath = false;
 
-  if (path.endsWith('/go/end')) {
+  if (path.endsWith('/go/end') || path.endsWith('/go/home')) {
     let redirectUrl = getMetaRefreshUrl(iFrame.contentDocument);
     if (redirectUrl) {
       iFrame.contentWindow.stop();

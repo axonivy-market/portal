@@ -45,7 +45,7 @@ the functions of the **Document Table**.
 .. tip::
 
    You can refer to process ``CustomDocumentFeatures`` in project ``portal-component-examples``
-   to examnine how to customize.
+   to examine how to customize.
 
 Get document list
 -----------------
