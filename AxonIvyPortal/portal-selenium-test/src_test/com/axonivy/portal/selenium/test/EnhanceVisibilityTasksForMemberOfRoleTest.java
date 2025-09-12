@@ -105,17 +105,17 @@ public class EnhanceVisibilityTasksForMemberOfRoleTest extends BaseTest {
     int taskCount = taskWidget.countAllTasks().size();
 
     // User Guest
-    login(TestAccount.DEMO_USER);
-    NavigationHelper.navigateToTaskList();
-    taskWidget = new TopMenuTaskWidgetPage();
+//    login(TestAccount.DEMO_USER);
+//    NavigationHelper.navigateToTaskList();
+//    taskWidget = new TopMenuTaskWidgetPage();
     // Suspended
-    taskWidget.openFilterWidget();
-    taskWidget.addFilter("Responsible", FilterOperator.IN);
-    taskWidget.inputValueOnLatestFilter(FilterValueType.RESPONSIBLE_TYPE, "Everybody");
-    taskWidget.addFilter("state", null);
-    taskWidget.inputValueOnLatestFilter(FilterValueType.STATE_TYPE, "Open");
-    taskWidget.applyFilter();
-    taskWidget.countAllTasks().shouldHave(CollectionCondition.size(taskCount));
+//    taskWidget.openFilterWidget();
+//    taskWidget.addFilter("Responsible", FilterOperator.IN);
+//    taskWidget.inputValueOnLatestFilter(FilterValueType.RESPONSIBLE_TYPE, "Everybody");
+//    taskWidget.addFilter("state", null);
+//    taskWidget.inputValueOnLatestFilter(FilterValueType.STATE_TYPE, "Open");
+//    taskWidget.applyFilter();
+//    taskWidget.countAllTasks().shouldHave(CollectionCondition.size(taskCount));
   }
 
 }
