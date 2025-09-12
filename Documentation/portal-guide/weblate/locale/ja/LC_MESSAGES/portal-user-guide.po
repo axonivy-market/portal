@@ -558,7 +558,7 @@ msgstr ""
 
 #: ../../source/portal-user-guide/accessibility/index.rst:188
 msgid "A **Process List Widget** to display the ongoing processes."
-msgstr "A **プロセスリストウィジェット** to display the ongoing processes。"
+msgstr "進行中のプロセスを表示する **プロセスリストウィジェット**。"
 
 #: ../../source/portal-user-guide/accessibility/index.rst:189
 msgid "A **Task List Widget** to show tasks."
@@ -629,7 +629,7 @@ msgstr "|select-admin-settings|"
 
 #: ../../source/portal-user-guide/admin-settings/index.rst:143
 msgid "Admin setting menu"
-msgstr ""
+msgstr "管理者設定メニュー"
 
 #: ../../source/portal-user-guide/admin-settings/index.rst:26
 msgid "HowTo: Add a Third Party Application"
@@ -748,7 +748,7 @@ msgstr ""
 
 #: ../../source/portal-user-guide/admin-settings/index.rst:70
 msgid "Available settings"
-msgstr ""
+msgstr "利用可能な設定"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Key"
@@ -1074,7 +1074,7 @@ msgstr ""
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 #: ../../source/portal-user-guide/new-dashboard/index.rst:4
 msgid "Dashboard"
-msgstr ""
+msgstr "ダッシュボード"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv
 msgid ""
@@ -1622,7 +1622,7 @@ msgid ""
 "information."
 msgstr ""
 "ポータルには、 :guilabel:`ロールの管理` タブに表示されるロールの数を制御する 2 つの詳細設定も用意されています。"
-"詳細については、 :ref:`設定の変数 <portal-available-settings-ja>` を参照してください。"
+"詳細については、 :ref:`Settings Variables <portal-available-settings>` を参照してください。"
 
 #: ../../source/portal-user-guide/admin-settings/index.rst:120
 msgid "HowTo: Enable/Disable Password Validation"
@@ -1719,7 +1719,9 @@ msgid ""
 "applications you or your company implemented using |ivy|. With a web-"
 "based, modern interface, the Portal provides you with key functionalities"
 " on all your devices:"
-msgstr "**|ivy| Portal** は、ユーザーやユーザーの会社が |ivy| を使用して実装したアプリケーションで日常作業を行う中心的存在です。"
+msgstr ""
+"**|ivy| Portal** は、ユーザーやユーザーの会社が |ivy| を使用して実装したアプリケーションで日常作業を行う中心的存在です。"
+"ポータルは、ウェブベースのモダンなインターフェースを備え、すべてのデバイスに主要な機能を提供します。"
 
 #: ../../source/portal-user-guide/axon-ivy-portal/index.rst:11
 msgid "Access your applications and start new cases"
@@ -1790,7 +1792,9 @@ msgid ""
 "After successful login, you will see the |ivy| Portal Homepage and your "
 "personal dashboard. All your activities can be managed from this central "
 "entry point. The Portal Homepage has the following elements:"
-msgstr "ログインに成功すると、|ivy| Portal のホームページと個人用ダッシュボードが表示されます。すべての活動をこの中心となるエントリポイントから管理できます。"
+msgstr ""
+"ログインに成功すると、|ivy| Portal のホームページと個人用ダッシュボードが表示されます。すべての活動をこの中心となるエントリポイントから管理できます。"
+"ポータルのホームページには以下の要素が含まれます。"
 
 #: ../../source/portal-user-guide/axon-ivy-portal/index.rst:49
 msgid ""
@@ -1798,7 +1802,7 @@ msgid ""
 "with a global search field, key information about the Portal and options "
 "to configure your personal user account. See :ref:`portal-header` for "
 "details."
-msgstr "一番上の |ivy| Portal のヘッダーは常に表示され、グローバル検索フィールド、ポータルについての重要な情報、個人用ユーザーアカウントを設定するためのオプションが表示されます。詳細については、:ref:`portal-header-ja` を参照してください。"
+msgstr "一番上の |ivy| Portal のヘッダーは常に表示され、グローバル検索フィールド、ポータルについての重要な情報、個人用ユーザーアカウントを設定するためのオプションが表示されます。詳細については、:ref:`portal-header` を参照してください。"
 
 #: ../../source/portal-user-guide/axon-ivy-portal/index.rst:54
 msgid "|axon-ivy-portal-header|"
@@ -1834,7 +1838,7 @@ msgid ""
 "In the center, you see your personal dashboard providing you access to "
 "your processes, cases, tasks and performance indicators. See :ref:`new-"
 "dashboard` for a detailed description."
-msgstr "中央には、個人用ダッシュボードが表示され、自分のプロセス、ケース、タスク、パフォーマンス指標にアクセスできます。詳細については、 :ref:`new-dashboard-ja` を参照してください。"
+msgstr "中央には、個人用ダッシュボードが表示され、自分のプロセス、ケース、タスク、パフォーマンス指標にアクセスできます。詳細については、 :ref:`new-dashboard` を参照してください。"
 
 #: ../../source/portal-user-guide/axon-ivy-portal/index.rst:68
 msgid "|axon-ivy-portal|"
@@ -1874,7 +1878,7 @@ msgid ""
 "the :guilabel:`Filter` button within the Edit Widget Configuration panel "
 "on the Edit Dashboard. Please refer to :ref:`new-dashboard` for more "
 "details."
-msgstr "ダッシュボードのタスク／ケースウィジェットにある :guilabel:`フィルター` ボタンをクリックするか、ダッシュボードの編集のウィジェットの編集設定パネルにある :guilabel:`フィルター` ボタンをクリックして、フィルターダイアログにアクセスできます。詳細については、 :ref:`new-dashboard-ja` を参照してください。"
+msgstr "ダッシュボードのタスク／ケースウィジェットにある :guilabel:`フィルター` ボタンをクリックするか、ダッシュボードの編集のウィジェットの編集設定パネルにある :guilabel:`フィルター` ボタンをクリックして、フィルターダイアログにアクセスできます。詳細については、 :ref:`new-dashboard` を参照してください。"
 
 #: ../../source/portal-user-guide/complex-filter/index.rst:25
 msgid ""
@@ -1945,7 +1949,7 @@ msgstr "ダッシュボードの設定で、タスク／ケースウィジェッ
 msgid ""
 "For more information about filter operators, please refer to the table "
 ":ref:`filter-operators`."
-msgstr "フィルターの演算子の詳細については、 :ref:`filter-operators-ja` を参照してください。"
+msgstr "フィルターの演算子の詳細については、 :ref:`filter-operators` を参照してください。"
 
 #: ../../source/portal-user-guide/complex-filter/index.rst:48
 msgid "Save A Filter Set"
@@ -1983,7 +1987,7 @@ msgstr "|widget-save-filter|"
 
 #: ../../source/portal-user-guide/complex-filter/index.rst:204
 msgid "Save widget's complex filters"
-msgstr ""
+msgstr "ウィジェットの複合フィルターの保存"
 
 #: ../../source/portal-user-guide/complex-filter/index.rst:63
 msgid "Filter Set Management"
@@ -2045,7 +2049,7 @@ msgstr "カテゴリー、状態、作成者、アプリケーションに有効
 msgid ""
 "Results include only records where the data in the column match the value"
 " in the filter."
-msgstr "列の値がフィルターの値に一致するレコードのみ含まれます。"
+msgstr "結果には、列の値がフィルターの値に一致するレコードのみ含まれます。"
 
 #: ../../source/portal-user-guide/complex-filter/index.rst:87
 msgid "Not In"
@@ -2059,11 +2063,11 @@ msgstr "カテゴリー、作成者に有効。1 つの値または複数の値�
 msgid ""
 "Results include only records where the data in the column does not match "
 "the value in the filter."
-msgstr "列の値がフィルターの値に一致しないレコードのみ含まれます。"
+msgstr "結果には、列の値がフィルターの値に一致しないレコードのみ含まれます。"
 
 #: ../../source/portal-user-guide/complex-filter/index.rst:90
 msgid "Contains"
-msgstr "含む"
+msgstr "指定の値を含む"
 
 #: ../../source/portal-user-guide/complex-filter/index.rst
 msgid ""
@@ -2075,21 +2079,21 @@ msgstr "カテゴリー、ID、およびテキストを含む列に有効。1 �
 msgid ""
 "Results include only records where the data in the column contains the "
 "value in the filter."
-msgstr "列のデータがフィルターの値を含むレコードのみ含まれます。"
+msgstr "結果には、列のデータにフィルターの値が含まれるレコードのみ含まれます。"
 
 #: ../../source/portal-user-guide/complex-filter/index.rst:93
 msgid "Doesn't Contains"
-msgstr "含まない"
+msgstr "指定の値を含まない"
 
 #: ../../source/portal-user-guide/complex-filter/index.rst
 msgid ""
 "Results include only records where the data in the column dóes not "
 "contain the value in the filter."
-msgstr "列のデータがフィルターの値を含まないレコードのみ含まれます。"
+msgstr "結果には、列のデータにフィルターの値が含まれないレコードのみ含まれます。"
 
 #: ../../source/portal-user-guide/complex-filter/index.rst:96
 msgid "Between"
-msgstr "の間"
+msgstr "指定の値の間にある"
 
 #: ../../source/portal-user-guide/complex-filter/index.rst
 msgid "Valid for a column that contains number, dates. Specify two values."
@@ -2099,73 +2103,73 @@ msgstr "数値、日付を含む列に有効。2 つの値を指定します。"
 msgid ""
 "Result include only records where the data in the column is between the "
 "two values in the filter."
-msgstr "列のデータがフィルターの 2 つの値の間にあるレコードのみ含まれます。"
+msgstr "結果には、列のデータがフィルターの 2 つの値の間にあるレコードのみ含まれます。"
 
 #: ../../source/portal-user-guide/complex-filter/index.rst:99
 msgid "Not Between"
-msgstr "の間でない"
+msgstr "指定の値の間にない"
 
 #: ../../source/portal-user-guide/complex-filter/index.rst
 msgid ""
 "Result include only records where the data in the column is not between "
 "the two values in the filter."
-msgstr "列のデータがフィルターの 2 つの値の間にないレコードのみ含まれます。"
+msgstr "結果には、列のデータがフィルターの 2 つの値の間にないレコードのみ含まれます。"
 
 #: ../../source/portal-user-guide/complex-filter/index.rst:102
 msgid "Equal"
-msgstr "等しい"
+msgstr "指定の値と等しい"
 
 #: ../../source/portal-user-guide/complex-filter/index.rst
 msgid "Valid for a column that contains number. Specify a single value."
-msgstr "数値を含む列に有効。1 つの値を指定します。"
+msgstr "結果には、列の値がフィルターの値に一致するレコードのみ含まれます。"
 
 #: ../../source/portal-user-guide/complex-filter/index.rst:105
 msgid "Not Equal"
-msgstr "等しくない"
+msgstr "指定の値と等しくない"
 
 #: ../../source/portal-user-guide/complex-filter/index.rst:108
 msgid "Less"
-msgstr "より小さい"
+msgstr "指定の値より小さい"
 
 #: ../../source/portal-user-guide/complex-filter/index.rst
 msgid ""
 "Results include only records where the data in the column is less than "
 "the value in the filter."
-msgstr "列のデータがフィルターの値より小さいレコードのみ含まれます。"
+msgstr "結果には、列の値がフィルターの値より小さいレコードのみ含まれます。"
 
 #: ../../source/portal-user-guide/complex-filter/index.rst:111
 msgid "Less or equal"
-msgstr "以下"
+msgstr "指定の値以下"
 
 #: ../../source/portal-user-guide/complex-filter/index.rst
 msgid ""
 "Results include only records where the data in the column is less than or"
 " the equal to the value in the filter."
-msgstr "列のデータがフィルターの値以下のレコードのみ含まれます。"
+msgstr "結果には、列の値がフィルターの値より小さいか等しいレコードのみ含まれます。"
 
 #: ../../source/portal-user-guide/complex-filter/index.rst:114
 msgid "Greater"
-msgstr "より大きい"
+msgstr "指定の値より大きい"
 
 #: ../../source/portal-user-guide/complex-filter/index.rst
 msgid ""
 "Results include only records where the data in the column is greater than"
 " the value in the filter."
-msgstr "列のデータがフィルターの値より大きいレコードのみ含まれます。"
+msgstr "結果には、列の値がフィルターの値より大きいレコードのみ含まれます。"
 
 #: ../../source/portal-user-guide/complex-filter/index.rst:117
 msgid "Greater or equal"
-msgstr "以上"
+msgstr "指定の値より大きいか等しい"
 
 #: ../../source/portal-user-guide/complex-filter/index.rst
 msgid ""
 "Results include only records where the data in the column is greater than"
 " or equal to the value in the filter."
-msgstr "列のデータがフィルターの値以上のレコードのみ含まれます。"
+msgstr "結果には、列の値がフィルターの値より大きいか等しいレコードのみ含まれます。"
 
 #: ../../source/portal-user-guide/complex-filter/index.rst:120
 msgid "Is Empty"
-msgstr "空である"
+msgstr "空欄である"
 
 #: ../../source/portal-user-guide/complex-filter/index.rst
 msgid ""
@@ -2175,19 +2179,19 @@ msgstr "テキスト、数値、または日付を含む列に有効。値は指
 
 #: ../../source/portal-user-guide/complex-filter/index.rst
 msgid "Results include only records that contain no data in the column."
-msgstr "列にデータが含まれていないレコードのみ含まれます。"
+msgstr "結果には、列にデータが含まれないレコードのみ含まれます。"
 
 #: ../../source/portal-user-guide/complex-filter/index.rst:123
 msgid "Is Not Empty"
-msgstr "空でない"
+msgstr "空欄ではない"
 
 #: ../../source/portal-user-guide/complex-filter/index.rst
 msgid "Results include only records that contain data in the column."
-msgstr "列にデータが含まれているレコードのみ含まれます。"
+msgstr "結果には、列にデータが含まれるレコードのみ含まれます。"
 
 #: ../../source/portal-user-guide/complex-filter/index.rst:126
 msgid "Is"
-msgstr "指定の値"
+msgstr "指定の値である"
 
 #: ../../source/portal-user-guide/complex-filter/index.rst
 msgid ""
@@ -2197,7 +2201,7 @@ msgstr "テキスト、日付を含む列に有効。1 つの値または複数�
 
 #: ../../source/portal-user-guide/complex-filter/index.rst:129
 msgid "Is Not"
-msgstr "指定の値でない"
+msgstr "指定の値ではない"
 
 #: ../../source/portal-user-guide/complex-filter/index.rst:132
 msgid "Today"
@@ -2211,7 +2215,7 @@ msgstr "日付を含む列に有効。値は指定しないでください。"
 msgid ""
 "Results include only records where the date in the column matches the "
 "current date."
-msgstr "列の日付が現在の日付に一致するレコードのみ含まれます。"
+msgstr "結果には、列の日付が現在の日付に一致するレコードのみ含まれます。"
 
 #: ../../source/portal-user-guide/complex-filter/index.rst:135
 msgid "Yesterday"
@@ -2221,11 +2225,11 @@ msgstr "昨日"
 msgid ""
 "Results include only records where the date in the column matches the "
 "yesterday's date."
-msgstr "列の日付が昨日の日付に一致するレコードのみ含まれます。"
+msgstr "結果には、列の日付が昨日の日付に一致するレコードのみ含まれます。"
 
 #: ../../source/portal-user-guide/complex-filter/index.rst:138
 msgid "Is Before"
-msgstr "より前"
+msgstr "指定の値の前にある"
 
 #: ../../source/portal-user-guide/complex-filter/index.rst
 msgid "Valid for a column that contains dates. Specify a single value."
@@ -2235,17 +2239,17 @@ msgstr "日付を含む列に有効。1 つの値を指定します。"
 msgid ""
 "Results include only records where the date in the column is before the "
 "date in the filter."
-msgstr "列の日付がフィルターの日付より前のレコードのみ含まれます。"
+msgstr "結果には、列の日付がフィルターの日付の前にあるレコードのみ含まれます。"
 
 #: ../../source/portal-user-guide/complex-filter/index.rst:141
 msgid "Is After"
-msgstr "より後"
+msgstr "指定の値の後にある"
 
 #: ../../source/portal-user-guide/complex-filter/index.rst
 msgid ""
 "Results include only records where the date in the column is after the "
 "date in the filter."
-msgstr "列の日付がフィルターの日付より後のレコードのみ含まれます。"
+msgstr "結果には、列の日付がフィルターの日付の後にあるレコードのみ含まれます。"
 
 #: ../../source/portal-user-guide/complex-filter/index.rst:144
 msgid "Current"
@@ -2253,19 +2257,19 @@ msgstr "現在"
 
 #: ../../source/portal-user-guide/complex-filter/index.rst
 msgid "Valid for a column that contains dates. Select Year, Month or Week."
-msgstr "日付を含む列に有効。年、月、または週を選択します。"
+msgstr "日付を含む列に有効。年、月または週を選択します。"
 
 #: ../../source/portal-user-guide/complex-filter/index.rst
 msgid ""
 "Results include only records where the date in the column falls within "
 "the range specified in the filter."
-msgstr "列の日付がフィルターで指定された範囲内にあるレコードのみ含まれます。"
+msgstr "結果には、列の日付がフィルターで指定した範囲内にあるレコードのみ含まれます。"
 
 #: ../../source/portal-user-guide/complex-filter/index.rst
 msgid ""
 "Specifically, it will be from the first day of the current "
 "year/month/week to the end of the last day of the current"
-msgstr ""
+msgstr "具体的には、現在の年／月／週の最初の日から現在の年／月／週の最後の日の終わりまでとなります。"
 
 #: ../../source/portal-user-guide/complex-filter/index.rst
 msgid "year/month/week."
@@ -2273,67 +2277,67 @@ msgstr ""
 
 #: ../../source/portal-user-guide/complex-filter/index.rst
 msgid "*Example*: Find all cases that were created in the current month."
-msgstr ""
+msgstr "*例* ：現在の月に作成されたすべてのケースを検索します。"
 
 #: ../../source/portal-user-guide/complex-filter/index.rst
 msgid ""
 ":bdg-dark-line:`Created Date` :bdg-dark-line:`Current` :bdg-dark-"
 "line:`Month`"
-msgstr ""
+msgstr ":bdg-dark-line:`作成日` :bdg-dark-line:`現在` :bdg-dark-line:`月`"
 
 #: ../../source/portal-user-guide/complex-filter/index.rst
 msgid ""
 "*Explanation*: Assuming today is ``2/27/2024 11:41:28``, the query will "
 "retrieve cases where the Created Date falls"
-msgstr ""
+msgstr "*説明* ：今日が ``2024/2/27 11:41:28`` であると仮定した場合、クエリは、作成日が"
 
 #: ../../source/portal-user-guide/complex-filter/index.rst
 msgid "within the period from ``2/1/2024 00:00:00`` to ``2/29/2024 23:59:59``."
-msgstr ""
+msgstr "``2024/2/1 00:00:00`` から ``2024/2/29 23:59:59`` までの期間のケースを検索します。"
 
 #: ../../source/portal-user-guide/complex-filter/index.rst:155
 msgid "Within the last"
-msgstr ""
+msgstr "今日までの期間"
 
 #: ../../source/portal-user-guide/complex-filter/index.rst
 msgid ""
 "Valid for a column that contains dates. Specify a single value then "
 "select Year(s), Month(s), Week(s) or Day(s)."
-msgstr ""
+msgstr "日付を含む列に有効。1 つの値を指定し、年、月、週または日を選択します。"
 
 #: ../../source/portal-user-guide/complex-filter/index.rst
 msgid ""
 "Specifically, it will be from the beginning of the first day of the last "
 "<input_value> year(s)/month(s)/week(s)"
-msgstr ""
+msgstr "具体的には、過去 <input_value> 年／月／週の最初の日の始まりから"
 
 #: ../../source/portal-user-guide/complex-filter/index.rst
 msgid "to the present moment."
-msgstr ""
+msgstr "現在までとなります。"
 
 #: ../../source/portal-user-guide/complex-filter/index.rst
 msgid "*Example*: Find all cases that were created within the last 2 years"
-msgstr ""
+msgstr "*例*：過去 2 年間に作成されたすべてのケースを検索します。"
 
 #: ../../source/portal-user-guide/complex-filter/index.rst
 msgid ""
 ":bdg-dark-line:`Created Date` :bdg-dark-line:`Within the last` :bdg-dark-"
 "line:`2` :bdg-dark-line:`Year(s)`"
-msgstr ""
+msgstr ":bdg-dark-line:`作成日` :bdg-dark-line:`今日までの期間` :bdg-dark-line:`2` :bdg-dark-line:`年`"
 
 #: ../../source/portal-user-guide/complex-filter/index.rst
 msgid "within the period from ``2/27/2022 00:00:00`` to ``2/27/2024 11:41:28``."
-msgstr ""
+msgstr "``2022/2/27 00:00:00`` から ``2024/2/27 11:41:28`` までの期間のケースを検索します。"
 
 #: ../../source/portal-user-guide/complex-filter/index.rst:166
 msgid "Within the next"
-msgstr ""
+msgstr "次の期間"
 
 #: ../../source/portal-user-guide/complex-filter/index.rst
 msgid ""
 "Specifically, it will be from the present moment to the end of the day of"
 " the next <input_value>"
-msgstr ""
+msgstr "具体的には、現在から次の <input_value> 年／月／週間の日の終わりまでとなります。"
 
 #: ../../source/portal-user-guide/complex-filter/index.rst
 msgid "year(s)/month(s)/week(s)."
@@ -2341,23 +2345,23 @@ msgstr ""
 
 #: ../../source/portal-user-guide/complex-filter/index.rst
 msgid "*Example*: Find all cases with Invoice Due Date within the next 3 weeks"
-msgstr ""
+msgstr "*例*：請求書の支払期日が次の 3 週間以内のすべてのケースを検索します。"
 
 #: ../../source/portal-user-guide/complex-filter/index.rst
 msgid ""
 ":bdg-dark-line:`Invoice Due Date` :bdg-dark-line:`Within the next` :bdg-"
 "dark-line:`3` :bdg-dark-line:`Week(s)`"
-msgstr ""
+msgstr ":bdg-dark-line:`請求書の支払期日` :bdg-dark-line:`次の期間` :bdg-dark-line:`3` :bdg-dark-line:`週`"
 
 #: ../../source/portal-user-guide/complex-filter/index.rst
 msgid ""
 "*Explanation*: Assuming today is ``2/27/2024 11:41:28``, the query will "
 "retrieve cases where the Invoice Due Date falls"
-msgstr ""
+msgstr "*説明* ：今日が ``2024/2/27 11:41:28`` であると仮定した場合、クエリは、請求書の支払期日が"
 
 #: ../../source/portal-user-guide/complex-filter/index.rst
 msgid "within the period from ``2/27/2024 11:41:28`` to ``3/19/2024 23:59:59``."
-msgstr ""
+msgstr "``2024/2/27 11:41:28`` から ``2024/3/19 23:59:59`` までの期間のケースを検索します。"
 
 #: ../../source/portal-user-guide/complex-filter/index.rst:177
 msgid "Starts with"
@@ -2367,13 +2371,13 @@ msgstr "指定の値で始まる"
 msgid ""
 "Valid for a column that contains text. Specify a single value or multiple"
 " values."
-msgstr ""
+msgstr "テキストを含む列に有効。1 つの値または複数の値を指定します。"
 
 #: ../../source/portal-user-guide/complex-filter/index.rst
 msgid ""
 "Results include only records where the data in the column start with the "
 "value in the filter."
-msgstr ""
+msgstr "結果には、列のデータがフィルターの値で始まるレコードのみ含まれます。"
 
 #: ../../source/portal-user-guide/complex-filter/index.rst:180
 msgid "Doesn't start with"
@@ -2383,7 +2387,7 @@ msgstr "指定の値で始まらない"
 msgid ""
 "Results include only records where the data in the column does not start "
 "with the value in the filter."
-msgstr "列のデータがフィルターの値で始まらないレコードのみ含まれます。"
+msgstr "結果には、列のデータがフィルターの値で始まらないレコードのみ含まれます。"
 
 #: ../../source/portal-user-guide/complex-filter/index.rst:183
 msgid "Ends with"
@@ -2393,7 +2397,7 @@ msgstr "指定の値で終わる"
 msgid ""
 "Results include only records where the data in the column end with the "
 "value in the filter."
-msgstr "列のデータがフィルターの値で終わるレコードのみ含まれます。"
+msgstr "結果には、列のデータがフィルターの値で終わるレコードのみ含まれます。"
 
 #: ../../source/portal-user-guide/complex-filter/index.rst:186
 msgid "Doesn't end with"
@@ -2403,7 +2407,7 @@ msgstr "指定の値で終わらない"
 msgid ""
 "Results include only records where the data in the column does not end "
 "with the value in the filter."
-msgstr "列のデータがフィルターの値で終わらないレコードのみ含まれます。"
+msgstr "結果には、列のデータがフィルターの値で終わらないレコードのみ含まれます。"
 
 #: ../../source/portal-user-guide/complex-filter/index.rst:189
 msgid "No Category"
@@ -2415,7 +2419,7 @@ msgstr "カテゴリーに有効。値は指定しないでください。"
 
 #: ../../source/portal-user-guide/complex-filter/index.rst
 msgid "Results include only records where the data in the column has no category."
-msgstr "列のデータがカテゴリーなしのレコードのみ含まれます。"
+msgstr "結果には、列のデータがカテゴリーなしのレコードのみ含まれます。"
 
 #: ../../source/portal-user-guide/complex-filter/index.rst:192
 msgid "Current user"
@@ -2429,7 +2433,7 @@ msgstr "作成者に有効。値は指定しないでください。"
 msgid ""
 "Results include only records where the data in the column has been "
 "created by current user."
-msgstr "列のデータが現在のユーザーによって作成されたレコードのみ含まれます。"
+msgstr "結果には、列のデータが現在のユーザーによって作成されたレコードのみ含まれます。"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:4
 #: ../../source/portal-user-guide/portal-header/index.rst:38
@@ -2517,8 +2521,7 @@ msgid ""
 "Select one of the available templates to add  (see :ref:`Available "
 "dashboard templates <private-available-dashboard-template>`)."
 msgstr ""
-"追加するテンプレートを 1 つ選択します（ :ref:`利用可能なダッシュボードのテンプレート "
-"<private-available-dashboard-template-ja>` を参照）。"
+"追加するテンプレートを 1 つ選択します（ :ref:`Available dashboard templates <private-available-dashboard-template>` を参照）。"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:36
 msgid "The :guilabel:`Create new private dashboard` dialog is opened."
@@ -2540,7 +2543,7 @@ msgstr "add-icon"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:42
 msgid "Configure your private dashboard (see: :ref:`Dashboard <new-dashboard>`)."
-msgstr "個人用ダッシュボードを設定します（ :ref:`ダッシュボード <new-dashboard-ja>` を参照）。"
+msgstr "個人用ダッシュボードを設定します（ :ref:`Dashboard <new-dashboard>` を参照）。"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:44
 msgid ""
@@ -2562,7 +2565,7 @@ msgstr "個人用ダッシュボードの作成ダイアログ"
 msgid ""
 "To set multi languages for the dashboard title, see at :ref:`portal-"
 "multi-language`:"
-msgstr "ダッシュボードのタイトルの複数の言語を設定するには、 :ref:`portal-multi-language-ja` を参照してください。"
+msgstr "ダッシュボードのタイトルの複数の言語を設定するには、 :ref:`portal-multi-language` を参照してください。"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:53
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:160
@@ -2639,7 +2642,7 @@ msgstr ":guilabel:`ダッシュボードの作成` ボタンを選択して、�
 msgid ""
 "Configuration your private dashboard (see: :ref:`Dashboard <new-"
 "dashboard>`)."
-msgstr "個人用ダッシュボードを設定します（ :ref:`ダッシュボード <new-dashboard-ja>` を参照）。"
+msgstr "個人用ダッシュボードを設定します（ :ref:`Dashboard <new-dashboard>` を参照）。"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:79
 msgid ""
@@ -2694,8 +2697,8 @@ msgid ""
 "Export dashboard, |trash-icon| Delete a private dashboard."
 msgstr ""
 "アクション：|actions-menu-icon| をクリックして、 :guilabel:`アクション` メニューを表示"
-"します。メニューには、|edit-icon| 編集（名前、説明）、|settings-icon| 設定（ :ref:`ダッシ"
-"ュボード <new-dashboard-ja>` を参照）、|download-icon| ダッシュボードをエクスポート、"
+"します。メニューには、|edit-icon| 編集（名前、説明）、|settings-icon| 設定（ :ref:`Dashboards "
+"<new-dashboard>` を参照）、|download-icon| ダッシュボードをエクスポート、"
 "|trash-icon| 個人用ダッシュボードを削除アクションが表示されます。"
 
 #: ../../source/portal-user-guide/includes/_common-icon.rst:59
@@ -2815,8 +2818,8 @@ msgid ""
 "Select one of the available templates to add  (see :ref:`Available "
 "dashboard templates <public-available-dashboard-template>`)."
 msgstr ""
-"追加するテンプレートを 1 つ選択します（ :ref:`利用可能なダッシュボードのテンプレート "
-"<public-available-dashboard-template-ja>` を参照）。"
+"追加するテンプレートを 1 つ選択します（ :ref:`Available "
+"<public-available-dashboard-template>` を参照）。"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:141
 msgid "The :guilabel:`Create new public dashboard` dialog is opened."
@@ -2842,7 +2845,7 @@ msgstr "|add-icon| （ダッシュボードの作成）を選択して、公開�
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:149
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:188
 msgid "Configuration public dashboard (see: :ref:`Dashboard <new-dashboard>`)."
-msgstr "公開用ダッシュボードを設定します（ :ref:`ダッシュボード <new-dashboard-ja>` を参照）。"
+msgstr "公開用ダッシュボードを設定します（ :ref:`Dashboard <new-dashboard>` を参照）。"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:151
 msgid ""
@@ -2947,8 +2950,8 @@ msgid ""
 "dashboard."
 msgstr ""
 "アクション：|actions-menu-icon| をクリックして、 :guilabel:`アクション` メニューを表示"
-"します。メニューには、|edit-icon| 編集（名前、説明）、|settings-icon| 設定（ :ref:`ダッシ"
-"ュボード <new-dashboard-ja>` を参照）、|download-icon| ダッシュボードをエクスポート、"
+"します。メニューには、|edit-icon| 編集（名前、説明）、|settings-icon| 設定（ :ref:`Dashboards "
+"<new-dashboard>` を参照）、|download-icon| ダッシュボードをエクスポート、"
 "|share-icon| 共有、|trash-icon| 公開用ダッシュボードを削除アクションが表示されます。"
 
 #: ../../source/portal-user-guide/includes/_common-icon.rst:55
@@ -3241,9 +3244,7 @@ msgid ""
 "management will need to be handled in that external system."
 msgstr ""
 "ユーザーに「パスワードを忘れました」リンクが表示されるには、管理者がパスワードの変更"
-"機能を有効にする必要があります。\n"
-"\n"
-"Active Directory、Entra ID などの外部セキュリティシステムを使用している場合は、その外部"
+"機能を有効にする必要があります。Active Directory、Entra ID などの外部セキュリティシステムを使用している場合は、その外部"
 "システムでパスワード管理を処理する必要があります。"
 
 #: ../../source/portal-user-guide/forgot-password/index.rst:12
@@ -3470,7 +3471,7 @@ msgstr "|case-details-related-tasks-cases|"
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:355
 msgid "Case Details: Related Tasks of Case section"
-msgstr "Case Details: Related Tasks of Case section"
+msgstr ""
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:59
 msgid ""
@@ -3486,7 +3487,7 @@ msgstr "|case-details-histories|"
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:357
 msgid "Case Details: Histories section"
-msgstr "Case Details: Histories section"
+msgstr ""
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:64
 msgid ""
@@ -3502,7 +3503,7 @@ msgstr "|case-details-documents|"
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:359
 msgid "Case Details: Documents section"
-msgstr "Case Details: Documents section"
+msgstr ""
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:72
 msgid "HowTo: Move and Resize Widgets in Case Details"
@@ -3534,7 +3535,7 @@ msgstr "|how-to-switch-to-edit-mode|"
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:373
 msgid "Case Details: button to switch to the edit mode"
-msgstr "Case Details: button to switch to the edit mode"
+msgstr ""
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:80
 msgid ""
@@ -3549,7 +3550,7 @@ msgstr "|how-to-switch-to-view-mode|"
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:371
 msgid "Case Details: save button"
-msgstr "Case Details: save button"
+msgstr ""
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:86
 msgid ""
@@ -3564,7 +3565,7 @@ msgstr "|how-to-reset-to-default|"
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:375
 msgid "Case Details: button to reset to the default configurations"
-msgstr "Case Details: button to reset to the default configurations"
+msgstr ""
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:93
 #: ../../source/portal-user-guide/full-task-list/index.rst:136
@@ -3705,7 +3706,7 @@ msgstr ""
 msgid ""
 "Change :ref:`Portal settings <update-portal-settings>` "
 ":guilabel:`Portal.Document.EnablePreview` to true to enable this feature."
-msgstr "この機能を有効にするには、:ref:`ポータル設定 <update-portal-settings-ja>` の "
+msgstr "この機能を有効にするには、:ref:`Portal settings <update-portal-settings>` の "
 ":guilabel:`Portal.Document.EnablePreview` を true に変更します。"
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:154
@@ -3773,7 +3774,7 @@ msgstr "|how-to-add-task-note|"
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:365
 msgid "Case Details: Add note dialog"
-msgstr "ケースの詳細：ノートを追加ダイアログ"
+msgstr ""
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:187
 msgid ""
@@ -3824,7 +3825,7 @@ msgstr "|how-to-show-note-details|"
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:367
 msgid "Case Details: Link to show more notes details"
-msgstr "Case Details: Link to show more notes details"
+msgstr ""
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:206
 msgid "A page containing the case history is opened"
@@ -3840,7 +3841,7 @@ msgstr "|export-case-history|"
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:369
 msgid "Case Business Information page: Link to export case history"
-msgstr "Case Business Information page: Link to export case history"
+msgstr ""
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:213
 msgid "HowTo: Manipulate Related Tasks Inside Case Details"
@@ -4041,7 +4042,7 @@ msgstr "|portal-process-viewer|"
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:377
 msgid "Process Viewer page"
-msgstr "Process Viewer page"
+msgstr ""
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:333
 msgid "HowTo: Share Case Details"
@@ -4145,7 +4146,7 @@ msgid ""
 msgstr ""
 "**全プロセスリスト** は、3 つのモードでプロセスリストを表示します。 "
 "**イメージモード** が自動的にアクティブになります。デフォルトのプロセスの表示"
-"モードを変更するには、 ``マイプロフィール`` の :ref:`process-list-configuration-ja` "
+"モードを変更するには、 ``マイプロフィール`` の :ref:`process-list-configuration` "
 "にアクセスします。"
 
 #: ../../source/portal-user-guide/full-process-list/index.rst:34
@@ -4170,7 +4171,7 @@ msgstr ""
 
 #: ../../source/portal-user-guide/full-process-list/index.rst:42
 msgid "See :ref:`values_of_default_image`."
-msgstr ":ref:`values_of_default_image-ja` を参照してください。"
+msgstr ":ref:`values_of_default_image` を参照してください。"
 
 #: ../../source/portal-user-guide/full-process-list/index.rst:45
 msgid "Grid Mode"
@@ -4701,7 +4702,7 @@ msgid ""
 "configuration <dashboard-configuration>`."
 msgstr ""
 "全タスクリストページは、トップレベルメニューからアクセス可能なダッシュボードとして機能します。 "
-"タスクリストをカスタマイズするには、 :ref:`ダッシュボードの設定 <dashboard-configuration-ja>` に移動します。"
+"タスクリストをカスタマイズするには、 :ref:`Dashboard configuration <dashboard-configuration>` に移動します。"
 
 #: ../../source/portal-user-guide/full-task-list/index.rst:113
 msgid ""
@@ -5450,7 +5451,7 @@ msgid ""
 msgstr ""
 ":guilabel:`フィルター` ボタンをクリックして、ウィジェットの複合フィルターを設定し、"
 ":guilabel:`適用` ボタンをクリックしてプレビューできます。詳細については、"
-":ref:`複合フィルター <complex-filter-ja>` を参照してください。"
+":ref:`Complex Filter <complex-filter>` を参照してください。"
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:98
 msgid "|task-list-widget-configuration|"
@@ -5971,7 +5972,7 @@ msgid ""
 "please refer to the :ref:`statistic-chart` section."
 msgstr ""
 "ポータルでは、レガシー統計チャートウィジェットが非推奨になりました。代わりに新しい"
-"標準的な統計チャートが多数用意されています。詳細については、 :ref:`statistic-chart-ja` の"
+"標準的な統計チャートが多数用意されています。詳細については、 :ref:`statistic-chart` の"
 "セクションを参照してください。"
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:317
@@ -6102,7 +6103,7 @@ msgid ""
 "with the translation, please prefer to :ref:`enable-translation`"
 msgstr ""
 "入力ラベルをクリックして、タイトルを翻訳する。|translate-icon| アイコンをクリックして、"
-"コンテンツを翻訳します。翻訳に問題が生じた場合は、:ref:`enable-translation-ja` を"
+"コンテンツを翻訳します。翻訳に問題が生じた場合は、:ref:`enable-translation` を"
 "参照してください。"
 
 #: ../../source/portal-user-guide/includes/_common-icon.rst:53
@@ -6339,7 +6340,7 @@ msgid ""
 "channels>` or go to a full page notification by clicking on More actions "
 "icon in the top right of the panel."
 msgstr ""
-"パネルで、 :ref:`通知設定 <notification-channels-ja>` にアクセスしたり、パネル"
+"パネルで、 :ref:`notification settings <notification-channels>` にアクセスしたり、パネル"
 "の右上にある「その他のアクション」アイコンをクリックして、フルページの通知に移動"
 "したりすることができます。"
 
@@ -6401,7 +6402,7 @@ msgstr ""
 #: ../../source/portal-user-guide/portal-chat/index.rst:16
 #: ../../source/portal-user-guide/qr-code/index.rst:18
 msgid "See :ref:`Update Portal settings <update-portal-settings>`."
-msgstr ":ref:`ポータルの設定の更新 <update-portal-settings-ja>` を参照してください。"
+msgstr ":ref:`Update Portal settings <update-portal-settings>` を参照してください。"
 
 #: ../../source/portal-user-guide/portal-chat/index.rst:20
 msgid "HowTo: Create a process chat related to a case"
@@ -6561,7 +6562,7 @@ msgid ""
 "Menu entry :ref:`Admin Settings <admin-settings>` is only available for "
 "users who have role ``AXONIVY_PORTAL_ADMIN``."
 msgstr ""
-":ref:`管理者設定 <admin-settings-ja>` メニューエントリは、 ``AXONIVY_PORTAL_ADMIN`` ロールを持つユーザーの"
+":ref:`Admin Settings <admin-settings>` メニューエントリは、 ``AXONIVY_PORTAL_ADMIN`` ロールを持つユーザーの"
 "み利用可能です。"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:33
@@ -6573,7 +6574,7 @@ msgid ""
 "Menu entry :ref:`my-profile` contains general setting, user language and "
 "notification channels subscription settings."
 msgstr ""
-":ref:`my-profile-ja` メニューエントリには、一般設定、ユーザーの言語、通知チャネルのサブスクリプ"
+":ref:`my-profile` メニューエントリには、一般設定、ユーザーの言語、通知チャネルのサブスクリプ"
 "ションの設定が含まれます。"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:40
@@ -6584,7 +6585,7 @@ msgid ""
 " a user to define dashboard settings either for their own private "
 "dashboards or public dashboards, respectively."
 msgstr ""
-":ref:`dashboard-configuration-ja` メニューエントリには、ダッシュボードの設定が含まれます。"
+":ref:`dashboard-configuration` メニューエントリには、ダッシュボードの設定が含まれます。"
 "ユーザーが個人用ダッシュボードまたは公開用ダッシュボードのダッシュボードの設定を定義できるように"
 "するには、 :bdg-ref-warning:`🔑DashboardWriteOwn <DashboardWriteOwn>` または "
 ":bdg-ref-warning:`🔑DashboardWritePublic <DashboardWritePublic>` のいずれかの権限をそれぞれ付与"
@@ -6905,7 +6906,7 @@ msgstr ""
 
 #: ../../source/portal-user-guide/portal-header/index.rst:174
 msgid "You can configure these variables by :ref:`settings-admin-settings`."
-msgstr ":ref:`settings-admin-settings-ja` を参照して、3 つの変数を設定できます。"
+msgstr ":ref:`settings-admin-settings` を参照して、3 つの変数を設定できます。"
 
 #: ../../source/portal-user-guide/portal-multi-language/index.rst:4
 msgid "Portal Multi Language"
@@ -6935,7 +6936,7 @@ msgid ""
 "Open :ref:`Admin Settings <admin-settings>`, set "
 ":guilabel:`Portal.DeepL.Enable` to true."
 msgstr ""
-":ref:`管理者設定 <admin-settings-ja>` を開き、:guilabel:`Portal.DeepL.Enable` を true "
+":ref:`Admin Settings <admin-settings>` を開き、:guilabel:`Portal.DeepL.Enable` を true "
 "に設定します。"
 
 #: ../../source/portal-user-guide/portal-multi-language/index.rst:18
