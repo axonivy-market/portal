@@ -52,7 +52,7 @@
       </h:panelGroup>
 
       <p:dataTable id="dashboard-cases" widgetVar="#{cc.attrs.caseWidgetVar}-#{caseWidget.id}" value="#{caseWidget.dataModel}" var="caseItem"
-        lazy="true" scrollRows="25"
+        lazy="true" scrollRows="25" partialUpdate="false"
         liveScroll="true" scrollable="true" sortBy="#{isResizing ? null : caseWidget.sortBy}"
         showGridlines="#{isResizing}" resizableColumns="#{isResizing}" resizeMode="expand"
         rowIndexVar="rowIndex" rowHover="#{isReadOnlyMode}" selectionMode="single"
