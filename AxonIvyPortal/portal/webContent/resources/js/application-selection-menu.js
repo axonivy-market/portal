@@ -23,29 +23,21 @@ function base64UrlDecode(str) {
 }
 
 /**
- * Updates href attributes for menu items and logos with base64 encoded URLs
- * 
- * This function solves a limitation of PrimeFaces menu components which support
- * either URL navigation OR AJAX actions, but not both simultaneously.
- * 
- * Solution:
- * 1. Java side: Build menu items with AJAX actions for normal left-click behavior
- * 2. Java side: Store the target URLs as base64-encoded values in CSS class names
- * 3. JavaScript side: Decode these URLs and set them as href attributes
- * 
- * This hybrid approach provides:
- * - Left click: AJAX action (normal behavior)
- * - Right click: "Open in new tab" works correctly with the href URL
- * 
- * The function dynamically updates href attributes for:
- * 1. Menu items with js-menu-url-* classes
- * 2. Parent dashboard menu items with js-parent-dashboard-url-* classes  
- * 3. Logo links with js-logo-url-* classes
- * 
- * URLs are base64 URL-encoded in CSS class names to avoid conflicts with 
- * special characters that could break HTML attributes.
- * 
- * Story ID: IVYPORTAL-19031
+ * Patch href for menu items and logos using base64-encoded URLs.
+ *
+ * PrimeFaces <p:menuitem> supports either URL or AJAX, not both, 
+ * and does not allow custom attributes (e.g. data-url).
+ *
+ * Approach:
+ * 1. Java: encode target URL as Base64 in CSS class
+ * 2. JS: decode class and set href dynamically
+ *
+ * Covers:
+ * - Menu items (js-menu-url-*)
+ * - Parent dashboard (js-parent-dashboard-url-*)
+ * - Logos (js-logo-url-*)
+ *
+ * Story: IVYPORTAL-19031
  */
 function updateMenuHref() {
   // Handle regular menu items with encoded URLs in class names
