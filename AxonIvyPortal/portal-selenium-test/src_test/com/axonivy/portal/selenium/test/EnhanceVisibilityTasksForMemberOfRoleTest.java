@@ -12,6 +12,7 @@ import com.axonivy.portal.selenium.common.FilterValueType;
 import com.axonivy.portal.selenium.common.NavigationHelper;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
+import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.TopMenuTaskWidgetPage;
 import com.codeborne.selenide.CollectionCondition;
 
@@ -29,6 +30,9 @@ public class EnhanceVisibilityTasksForMemberOfRoleTest extends BaseTest {
   public void testVisibilityTaskOpen() {
     login(TestAccount.DEMO_USER);
     createTestingTasks();
+
+    NewDashboardPage dashboard = new NewDashboardPage();
+    dashboard.waitForPageLoad();
     NavigationHelper.navigateToTaskList();
     TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
 
@@ -59,6 +63,9 @@ public class EnhanceVisibilityTasksForMemberOfRoleTest extends BaseTest {
     updateGlobalVariable(Variable.TASK_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST.getKey(), "ACCESS_TASK_DETAILS");
     login(TestAccount.DEMO_USER);
     createTestingTasks();
+
+    NewDashboardPage dashboard = new NewDashboardPage();
+    dashboard.waitForPageLoad();
     NavigationHelper.navigateToTaskList();
     TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
     // Suspended
@@ -90,6 +97,9 @@ public class EnhanceVisibilityTasksForMemberOfRoleTest extends BaseTest {
   public void testVisibilityTaskDone() {
     login(TestAccount.GUEST_USER);
     createTestingTasks();
+    NewDashboardPage dashboard = new NewDashboardPage();
+    dashboard.waitForPageLoad();
+
     NavigationHelper.navigateToTaskList();
     TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
     // Suspended
