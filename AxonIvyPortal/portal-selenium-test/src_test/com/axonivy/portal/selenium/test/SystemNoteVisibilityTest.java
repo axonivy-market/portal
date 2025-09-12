@@ -86,9 +86,7 @@ public class SystemNoteVisibilityTest extends BaseTest {
     assertFalse(taskNoteAuthors.contains(SYSTEM_USER_NAME));
   }
 
-//  @Test
-//  TODO: robot temporary disable this code - fix after release
-//  checked and see no problem with the feature
+  @Test
   public void testSystemNoteVisibilityInTaskDetailForNormalUser() {
     login(TestAccount.DEMO_USER);
     updatePortalSetting(Variable.HIDE_SYSTEM_NOTES_FROM_HISTORY.getKey(), "true");
