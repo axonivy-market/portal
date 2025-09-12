@@ -12,7 +12,6 @@ import com.axonivy.portal.selenium.common.FilterValueType;
 import com.axonivy.portal.selenium.common.NavigationHelper;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
-import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.TopMenuTaskWidgetPage;
 import com.codeborne.selenide.CollectionCondition;
 
@@ -44,6 +43,7 @@ public class EnhanceVisibilityTasksForMemberOfRoleTest extends BaseTest {
     taskWidget.countAllTasks().shouldHave(size(2), DEFAULT_TIMEOUT);
     // User Guest
     login(TestAccount.GUEST_USER);
+    redirectToNewDashBoard();
     NavigationHelper.navigateToTaskList();
     // Suspended
     taskWidget = new TopMenuTaskWidgetPage();
@@ -75,6 +75,7 @@ public class EnhanceVisibilityTasksForMemberOfRoleTest extends BaseTest {
     int countTasksReserved = taskWidget.countAllTasks().size();
     // User Guest
     login(TestAccount.GUEST_USER);
+    redirectToNewDashBoard();
     NavigationHelper.navigateToTaskList();
     taskWidget = new TopMenuTaskWidgetPage();
 
@@ -106,6 +107,7 @@ public class EnhanceVisibilityTasksForMemberOfRoleTest extends BaseTest {
 
     // User Guest
     login(TestAccount.DEMO_USER);
+    redirectToNewDashBoard();
     NavigationHelper.navigateToTaskList();
     taskWidget = new TopMenuTaskWidgetPage();
     // Suspended
