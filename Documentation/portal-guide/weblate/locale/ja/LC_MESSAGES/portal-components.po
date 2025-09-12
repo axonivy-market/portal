@@ -22,25 +22,27 @@ msgstr ""
 
 #: ../../source/portal-components/document-table/index.rst:4
 msgid "Document Table"
-msgstr ""
+msgstr "ドキュメントテーブル"
 
 #: ../../source/portal-components/document-table/index.rst:6
 msgid ""
 "This component is a case document table with functions display, upload, "
 "preview, download and delete document entries."
 msgstr ""
+"このコンポーネントは、ドキュメントのエントリの表示、アップロード、プレビュー、ダウンロード、削除"
+"機能を持つケースドキュメントテーブルです。"
 
 #: ../../source/portal-components/document-table/index.rst:9
 msgid "|document-table|"
-msgstr ""
+msgstr "|document-table|"
 
 #: ../../source/portal-components/document-table/index.rst:283
 msgid "document-table"
-msgstr ""
+msgstr "document-table"
 
 #: ../../source/portal-components/document-table/index.rst:12
 msgid "Attributes"
-msgstr ""
+msgstr "属性"
 
 #: ../../source/portal-components/document-table/index.rst:58
 #: ../../source/portal-components/document-table/index.rst:85
@@ -392,7 +394,7 @@ msgstr ""
 #: ../../source/portal-components/document-table/index.rst:93
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "enableScriptCheckingForUploadedDocument"
-msgstr ""
+msgstr "enableScriptCheckingForUploadedDocument"
 
 #: ../../source/portal-components/document-table/index.rst
 msgid ""
@@ -414,7 +416,7 @@ msgstr ""
 #: ../../source/portal-components/document-table/index.rst:95
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "enableVirusScannerForUploadedDocument"
-msgstr ""
+msgstr "enableVirusScannerForUploadedDocument"
 
 #: ../../source/portal-components/document-table/index.rst
 msgid ""
@@ -437,7 +439,7 @@ msgstr ""
 #: ../../source/portal-components/document-table/index.rst:97
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "allowedUploadFileTypes"
-msgstr ""
+msgstr "allowedUploadFileTypes"
 
 #: ../../source/portal-components/document-table/index.rst
 msgid "String value to specify the list of file extension that can be uploaded."
@@ -458,25 +460,31 @@ msgstr ""
 
 #: ../../source/portal-components/document-table/index.rst:20
 msgid "Virus scanning"
-msgstr ""
+msgstr "ウイルススキャン"
 
 #: ../../source/portal-components/document-table/index.rst:22
 msgid ""
 "The **Document Table** has options to check for harmful scripts and "
 "viruses inside the file before uploading it to the system."
 msgstr ""
+"**ドキュメントテーブル** には、ファイルをシステムにアップロードする前に、ファイ"
+"ル内の有害なスクリプトやウイルスをチェックするオプションが用意されています。"
 
 #: ../../source/portal-components/document-table/index.rst:24
 msgid ""
 "Set ``enableScriptCheckingForUploadedDocument`` to ``true`` to check for "
 "harmful scripts."
 msgstr ""
+"有害なスクリプトをチェックするには、 ``enableScriptCheckingForUploadedDocument`` "
+"を ``true`` に設定します。"
 
 #: ../../source/portal-components/document-table/index.rst:25
 msgid ""
 "Set ``enableVirusScannerForUploadedDocument`` to ``true`` to enable virus"
 " scanning."
 msgstr ""
+"ウイルススキャンを有効にするには、 ``enableVirusScannerForUploadedDocument`` を "
+"``true`` に設定します。"
 
 #: ../../source/portal-components/document-table/index.rst:27
 #: ../../source/portal-components/role-selection/index.rst:24
@@ -484,43 +492,51 @@ msgstr ""
 #: ../../source/portal-components/user-selection/index.rst:22
 #: ../../source/portal-components/user-selection/index.rst:35
 msgid "Code example:"
-msgstr ""
+msgstr "コードの例："
 
 #: ../../source/portal-components/document-table/index.rst:35
 msgid ""
 "Please refer to :ref:`settings-virus-scanning-setting` for more details "
 "about virus scanning."
 msgstr ""
+"ウイルススキャンの詳細については、:ref:`settings-virus-scanning-setting-ja` を参"
+"照してください。"
 
 #: ../../source/portal-components/document-table/index.rst:40
 msgid "Customize"
-msgstr ""
+msgstr "カスタマイズ"
 
 #: ../../source/portal-components/document-table/index.rst:42
 msgid ""
 "In your project, create four callable subprocesses with the information "
 "below to customize the functions of the **Document Table**."
 msgstr ""
+"以下の情報を使用して、プロジェクトで 4 つの呼び出し可能サブプロセスを作成し、"
+" **ドキュメントテーブル** の機能をカスタマイズします。"
 
 #: ../../source/portal-components/document-table/index.rst:47
 msgid ""
 "You can refer to process ``CustomDocumentFeatures`` in project ``portal-"
 "component-examples`` to examnine how to customize."
 msgstr ""
+"``portal-component-examples`` プロジェクトの ``CustomDocumentFeatures`` プロセスを"
+"参照して、カスタマイズ方法を確認できます。"
 
 #: ../../source/portal-components/document-table/index.rst:51
 msgid "Get document list"
-msgstr ""
+msgstr "ドキュメントリストの取得"
 
 #: ../../source/portal-components/document-table/index.rst:53
 msgid ""
 "To customize how **Document Table** gets documents, create a callable "
 "subprocess with:"
 msgstr ""
+"**ドキュメントテーブル** のドキュメントの取得方法をカスタマイズするには、以下を"
+"使用して呼び出し可能サブプロセスを作成します。"
 
 #: ../../source/portal-components/document-table/index.rst:55
 msgid "**Signature**: portalGetDocumentItems"
-msgstr ""
+msgstr "**シグネチャ**：portalGetDocumentItems"
 
 #: ../../source/portal-components/document-table/index.rst:60
 #: ../../source/portal-components/document-table/index.rst:87
@@ -528,7 +544,7 @@ msgstr ""
 #: ../../source/portal-components/document-table/index.rst:141
 #: ../../source/portal-components/document-table/index.rst:163
 msgid "**Parameter**"
-msgstr ""
+msgstr "**パラメーター**"
 
 #: ../../source/portal-components/document-table/index.rst:62
 #: ../../source/portal-components/document-table/index.rst:89
@@ -536,7 +552,7 @@ msgstr ""
 #: ../../source/portal-components/document-table/index.rst:143
 #: ../../source/portal-components/document-table/index.rst:165
 msgid "businessCase"
-msgstr ""
+msgstr "businessCase"
 
 #: ../../source/portal-components/document-table/index.rst:62
 #: ../../source/portal-components/document-table/index.rst:89
@@ -544,7 +560,7 @@ msgstr ""
 #: ../../source/portal-components/document-table/index.rst:143
 #: ../../source/portal-components/document-table/index.rst:165
 msgid "ch.ivyteam.ivy.workflow.ICase"
-msgstr ""
+msgstr "ch.ivyteam.ivy.workflow.ICase"
 
 #: ../../source/portal-components/document-table/index.rst:64
 #: ../../source/portal-components/document-table/index.rst:99
@@ -552,22 +568,22 @@ msgstr ""
 #: ../../source/portal-components/document-table/index.rst:147
 #: ../../source/portal-components/document-table/index.rst:169
 msgid "**Result**"
-msgstr ""
+msgstr "**結果**"
 
 #: ../../source/portal-components/document-table/index.rst:66
 msgid "documents"
-msgstr ""
+msgstr "documents"
 
 #: ../../source/portal-components/document-table/index.rst:66
 msgid "java.util.List<com.axonivy.portal.components.ivydata.bo.IvyDocument>"
-msgstr ""
+msgstr "java.util.List<com.axonivy.portal.components.ivydata.bo.IvyDocument>"
 
 #: ../../source/portal-components/document-table/index.rst:68
 #: ../../source/portal-components/document-table/index.rst:103
 #: ../../source/portal-components/document-table/index.rst:149
 #: ../../source/portal-components/document-table/index.rst:171
 msgid "message"
-msgstr ""
+msgstr "message"
 
 #: ../../source/portal-components/document-table/index.rst:68
 #: ../../source/portal-components/document-table/index.rst:97
@@ -577,7 +593,7 @@ msgstr ""
 #: ../../source/portal-components/document-table/index.rst:171
 #: ../../source/portal-components/document-table/index.rst:175
 msgid "java.lang.String"
-msgstr ""
+msgstr "java.lang.String"
 
 #: ../../source/portal-components/document-table/index.rst:73
 msgid ""
@@ -585,104 +601,112 @@ msgid ""
 "``List<ch.ivy.addon.portal.component.ivydata.bo.IvyDocument>`` These "
 "fields are mandatory when mapping: ``id``, ``name``, ``contentType``"
 msgstr ""
+"DMS からドキュメントリストを取得したら、 ``List<ch.ivy.addon.portal.component.ivydata.bo.IvyDocument>`` に変換してください。"
+"``id``、 ``name`` 、 ``contentType`` をマッピングする場合、これらのフィールドは必須です。"
 
 #: ../../source/portal-components/document-table/index.rst:77
 msgid "Upload document"
-msgstr ""
+msgstr "ドキュメントのアップロード"
 
 #: ../../source/portal-components/document-table/index.rst:79
 msgid ""
 "To customize what **Document Table** should do when a user uploads a "
 "document, create a callable subprocess with:"
 msgstr ""
+"ユーザーがドキュメントをアップロードする際の **ドキュメントテーブル** の動作を"
+"カスタマイズするには、以下を使用して呼び出し可能サブプロセスを作成します。"
 
 #: ../../source/portal-components/document-table/index.rst:82
 msgid "**Signature**: portalUploadDocumentItem"
-msgstr ""
+msgstr "**Signature**: portalUploadDocumentItem"
 
 #: ../../source/portal-components/document-table/index.rst:85
 #: ../../source/portal-components/document-table/index.rst:161
 msgid "Note"
-msgstr ""
+msgstr "注記"
 
 #: ../../source/portal-components/document-table/index.rst:91
 msgid "uploadedFile"
-msgstr ""
+msgstr "uploadedFile"
 
 #: ../../source/portal-components/document-table/index.rst:91
 msgid "org.primefaces.model.file.UploadedFile"
-msgstr ""
+msgstr "org.primefaces.model.file.UploadedFile"
 
 #: ../../source/portal-components/document-table/index.rst:93
 #: ../../source/portal-components/document-table/index.rst:95
 #: ../../source/portal-components/document-table/index.rst:173
 msgid "java.lang.Boolean"
-msgstr ""
+msgstr "java.lang.Boolean"
 
 #: ../../source/portal-components/document-table/index.rst:101
 msgid "uploadedDocument"
-msgstr ""
+msgstr "uploadedDocument"
 
 #: ../../source/portal-components/document-table/index.rst:101
 msgid "ch.ivyteam.ivy.workflow.document.IDocument"
-msgstr ""
+msgstr "ch.ivyteam.ivy.workflow.document.IDocument"
 
 #: ../../source/portal-components/document-table/index.rst:105
 #: ../../source/portal-components/document-table/index.rst:175
 msgid "status"
-msgstr ""
+msgstr "status"
 
 #: ../../source/portal-components/document-table/index.rst:105
 msgid "OK or FAIL"
-msgstr ""
+msgstr "OK または FAIL"
 
 #: ../../source/portal-components/document-table/index.rst:109
 msgid "Download document"
-msgstr ""
+msgstr "ドキュメントのダウンロード"
 
 #: ../../source/portal-components/document-table/index.rst:111
 msgid ""
 "To customize behavior when a user downloads a document from **Document "
 "Table**, create a callable subprocess with:"
 msgstr ""
+"ユーザーが **ドキュメントテーブル** からドキュメントをダウンロードする際の動作を"
+"カスタマイズするには、以下を使用して呼び出し可能サブプロセスを作成します。"
 
 #: ../../source/portal-components/document-table/index.rst:114
 msgid "**Signature**: portalDownloadDocumentItem"
-msgstr ""
+msgstr "**シグネチャ**：portalDownloadDocumentItem"
 
 #: ../../source/portal-components/document-table/index.rst:123
 #: ../../source/portal-components/document-table/index.rst:145
 #: ../../source/portal-components/document-table/index.rst:167
 msgid "document"
-msgstr ""
+msgstr "document"
 
 #: ../../source/portal-components/document-table/index.rst:123
 #: ../../source/portal-components/document-table/index.rst:145
 #: ../../source/portal-components/document-table/index.rst:167
 msgid "com.axonivy.portal.components.ivydata.bo.IvyDocument"
-msgstr ""
+msgstr "com.axonivy.portal.components.ivydata.bo.IvyDocument"
 
 #: ../../source/portal-components/document-table/index.rst:127
 msgid "streamedContent"
-msgstr ""
+msgstr "streamedContent"
 
 #: ../../source/portal-components/document-table/index.rst:127
 msgid "org.primefaces.model.StreamedContent"
-msgstr ""
+msgstr "org.primefaces.model.StreamedContent"
 
 #: ../../source/portal-components/document-table/index.rst:131
 msgid "Delete document"
-msgstr ""
+msgstr "ドキュメントの削除"
 
 #: ../../source/portal-components/document-table/index.rst:133
 msgid ""
 "To customize behavior when a user deletes a document from **Document "
 "Table**, create a callable subprocess with:"
 msgstr ""
+"ユーザーが **ドキュメントテーブル** からドキュメントを削除する際の動作を"
+"カスタマイズするには、以下を使用して呼び出し可能サブプロセスを作成します。"
 
 #: ../../source/portal-components/document-table/index.rst:136
 msgid "**Signature**: portalDeleteDocumentItem"
-msgstr ""
+msgstr "**シグネチャ**：portalDeleteDocumentItem"
 
 #: ../../source/portal-components/document-table/index.rst:153
 msgid "Rename document"
@@ -741,7 +765,7 @@ msgstr ""
 
 #: ../../source/portal-components/document-table/index.rst:190
 msgid "User interface"
-msgstr ""
+msgstr "ユーザーインターフェース"
 
 #: ../../source/portal-components/document-table/index.rst:192
 msgid ""
@@ -749,25 +773,27 @@ msgid ""
 "**Document Table** such as adding a new column or removing default "
 "columns."
 msgstr ""
+"機能だけでなく、新しい列の追加やデフォルトの列の削除など、 **ドキュメントテーブル** の UI もカスタマイズできます。"
 
 #: ../../source/portal-components/document-table/index.rst:195
 #: ../../source/portal-components/style-customization/index.rst:11
 msgid "Code Example:"
-msgstr ""
+msgstr "コードの例："
 
 #: ../../source/portal-components/document-table/index.rst:223
 msgid ""
 "Refer to process ``DocumentTableExample`` in project ``portal-components-"
 "examples`` for more details."
 msgstr ""
+"詳細については、 ``portal-components-examples`` プロジェクトの ``DocumentTableExample`` プロセスを参照してください。"
 
 #: ../../source/portal-components/document-table/index.rst:226
 msgid "Migration Notes"
-msgstr ""
+msgstr "移行に関する注記"
 
 #: ../../source/portal-components/document-table/index.rst:229
 msgid "Migrate 10.0.x to 10.0.12"
-msgstr ""
+msgstr "10.0.x から 10.0.12 への移行"
 
 #: ../../source/portal-components/document-table/index.rst:231
 msgid ""
@@ -775,6 +801,9 @@ msgid ""
 "for functions of **Document Table**. Please follow our guidelines below "
 "to migrate your override subprocesses."
 msgstr ""
+"このバージョンから、 **ドキュメントテーブル** の機能のプロセスのオーバーライドが"
+"サポート対象外になりました。以下のガイドラインに従って、サブプロセスのオーバーラ"
+"イドを移行してください。"
 
 #: ../../source/portal-components/document-table/index.rst:234
 msgid ""
@@ -782,62 +811,64 @@ msgid ""
 "``UploadDocumentItem``, ``DeleteDocumentItem``, and "
 "``DownloadDocumentItem`` from your project."
 msgstr ""
+"プロジェクトから ``GetDocumentItems``、 ``UploadDocumentItem``、 ``DeleteDocumentItem``、"
+" ``DownloadDocumentItem`` のサブプロセスのオーバーライドを削除します。"
 
 #: ../../source/portal-components/document-table/index.rst:237
 msgid "Change the signature of your callable starts as described below."
-msgstr ""
+msgstr "以下のとおり、呼び出し可能な開始サブプロセスのシグネチャを変更します。"
 
 #: ../../source/portal-components/document-table/index.rst:240
 msgid "Subprocess"
-msgstr ""
+msgstr "サブプロセス"
 
 #: ../../source/portal-components/document-table/index.rst:240
 msgid "New signature"
-msgstr ""
+msgstr "新しいシグネチャ"
 
 #: ../../source/portal-components/document-table/index.rst:242
 #: ../../source/portal-components/document-table/index.rst:265
 msgid "GetDocumentItems"
-msgstr ""
+msgstr "GetDocumentItems"
 
 #: ../../source/portal-components/document-table/index.rst:242
 msgid "portalGetDocumentItems"
-msgstr ""
+msgstr "portalGetDocumentItems"
 
 #: ../../source/portal-components/document-table/index.rst:244
 #: ../../source/portal-components/document-table/index.rst:267
 msgid "UploadDocumentItem"
-msgstr ""
+msgstr "UploadDocumentItem"
 
 #: ../../source/portal-components/document-table/index.rst:244
 msgid "portalUploadDocumentItem"
-msgstr ""
+msgstr "portalUploadDocumentItem"
 
 #: ../../source/portal-components/document-table/index.rst:246
 #: ../../source/portal-components/document-table/index.rst:269
 msgid "DeleteDocumentItem"
-msgstr ""
+msgstr "DeleteDocumentItem"
 
 #: ../../source/portal-components/document-table/index.rst:246
 msgid "portalDownloadDocumentItem"
-msgstr ""
+msgstr "portalDownloadDocumentItem"
 
 #: ../../source/portal-components/document-table/index.rst:248
 #: ../../source/portal-components/document-table/index.rst:271
 msgid "DownloadDocumentItem"
-msgstr ""
+msgstr "DownloadDocumentItem"
 
 #: ../../source/portal-components/document-table/index.rst:248
 msgid "portalDeleteDocumentItem"
-msgstr ""
+msgstr "portalDeleteDocumentItem"
 
 #: ../../source/portal-components/document-table/index.rst:251
 msgid "Now your **Document Table** should work as before."
-msgstr ""
+msgstr "**ドキュメントテーブル** がこれまでと同じように動作するはずです。"
 
 #: ../../source/portal-components/document-table/index.rst:254
 msgid "Migrate to 10.0.0"
-msgstr ""
+msgstr "10.0.0 への移行"
 
 #: ../../source/portal-components/document-table/index.rst:256
 msgid ""
@@ -845,6 +876,8 @@ msgid ""
 "``ic:ch.ivy.addon.portalkit.component.document.DocumentTable`` with "
 "``ic:com.axonivy.portal.components.DocumentTable``."
 msgstr ""
+"HTML ファイルのコードを置き換えます。 ``ic:ch.ivy.addon.portalkit.component.document.DocumentTable`` を "
+"``ic:com.axonivy.portal.components.DocumentTable`` に置き換えてください。"
 
 #: ../../source/portal-components/document-table/index.rst:258
 msgid ""
@@ -853,40 +886,43 @@ msgid ""
 "``enableVirusScannerForUploadedDocument`` and ``allowedUploadFileTypes`` "
 "as required."
 msgstr ""
+"必要に応じて、新しい ``enableScriptCheckingForUploadedDocument``、 "
+"``enableVirusScannerForUploadedDocument``、 ``allowedUploadFileTypes`` 属性の値の更新を検討します。"
 
 #: ../../source/portal-components/document-table/index.rst:260
 msgid "Override subprocesses if you want and adapt your business accordingly."
-msgstr ""
+msgstr "必要な場合はサブプロセスをオーバーライドし、ビジネスをそれに合わせます。"
 
 #: ../../source/portal-components/document-table/index.rst:263
 msgid "New subprocess"
-msgstr ""
+msgstr "新しいサブプロセス"
 
 #: ../../source/portal-components/document-table/index.rst:263
 msgid "Deprecated subprocess"
-msgstr ""
+msgstr "非推奨のサブプロセス"
 
 #: ../../source/portal-components/document-table/index.rst:265
 msgid "GetDocumentList"
-msgstr ""
+msgstr "GetDocumentList"
 
 #: ../../source/portal-components/document-table/index.rst:267
 msgid "UploadDocument"
-msgstr ""
+msgstr "UploadDocument"
 
 #: ../../source/portal-components/document-table/index.rst:269
 msgid "DeleteDocument"
-msgstr ""
+msgstr "DeleteDocument"
 
 #: ../../source/portal-components/document-table/index.rst:271
 msgid "DownloadDocument"
-msgstr ""
+msgstr "DownloadDocument"
 
 #: ../../source/portal-components/document-table/index.rst:274
 msgid ""
 "If you have customized IvyDocument make sure to extend it from class "
 "``com.axonivy.portal.components.ivydata.bo.IvyDocument``."
 msgstr ""
+"IvyDocument をカスタマイズした場合は、必ず ``com.axonivy.portal.components.ivydata.bo.IvyDocument`` クラスから拡張してください。"
 
 #: ../../source/portal-components/document-table/index.rst:276
 msgid ""
@@ -895,22 +931,28 @@ msgid ""
 "``ch.ivy.addon.portalkit.enums.DocumentType`` with "
 "``com.axonivy.portal.components.enums.DocumentType``."
 msgstr ""
+"``typeSelectionItems`` と ``selectedType`` 属性が ``com.axonivy.portal.components.enums.DocumentType`` を使用するようになりました。"
+"``ch.ivy.addon.portalkit.enums.DocumentType`` を ``com.axonivy.portal.components.enums.DocumentType`` に置き換えてください。"
 
 #: ../../source/portal-components/document-table/index.rst:280
 msgid ""
 "Please remove redundant overridden configurations, subprocesses, and data"
 " classes such as GetDocumentListOverride, UploadDocumentOverride, etc."
 msgstr ""
+"GetDocumentListOverride、UploadDocumentOverride など、オーバーライドされた重複する設定、サブプロセス、"
+"データクラスを削除してください。"
 
 #: ../../source/portal-components/index.rst:4
 msgid "Portal Components"
-msgstr ""
+msgstr "ポータルのコンポーネント"
 
 #: ../../source/portal-components/index.rst:6
 msgid ""
 "In ``portal-components``, we introduced some components independent of "
 "the Portal. You don't need to import the Portal projects to use them."
 msgstr ""
+"``portal-components`` に、ポータルに依存しないコンポーネントを導入しました。"
+"これらを使用する場合、ポータルのプロジェクトをインポートする必要はありません。"
 
 #: ../../source/portal-components/index.rst:9
 msgid ""
@@ -918,6 +960,8 @@ msgid ""
 "Primefaces. We strongly recommend using the Freya theme, as the Serenity "
 "theme is deprecated and will be removed in Portal 13."
 msgstr ""
+"これらのコンポーネントは、PrimeFaces の Freya テーマと Serenity テーマの両方を完全"
+"にサポートします。"
 
 #: ../../source/portal-components/index.rst:22
 msgid ""
@@ -925,11 +969,13 @@ msgid ""
 "on use and customization, as well as look and feel of each component in "
 "supported themes."
 msgstr ""
+"使用やカスタマイズの詳細、サポートされるテーマにおける各コンポーネントの外観につ"
+"いては、 ``portal-components-examples`` プロジェクトを参照してください。"
 
 #: ../../source/portal-components/process-chain/index.rst:4
 #: ../../source/portal-components/style-customization/index.rst:38
 msgid "Process Chain"
-msgstr ""
+msgstr "プロセスチェーン"
 
 #: ../../source/portal-components/process-chain/index.rst:9
 #: ../../source/portal-components/process-viewer/index.rst:7
@@ -937,7 +983,7 @@ msgstr ""
 #: ../../source/portal-components/security-member-name-and-avatar/index.rst:7
 #: ../../source/portal-components/user-selection/index.rst:7
 msgid "Introduction"
-msgstr ""
+msgstr "概要"
 
 #: ../../source/portal-components/process-chain/index.rst:11
 msgid ""
@@ -945,28 +991,32 @@ msgid ""
 "a process: the currently executable steps, done steps, and open steps. "
 "Its features are:"
 msgstr ""
+"プロセスチェーンコンポーネントは、現在実行可能なステップ、完了したステップ、未完了のステップを含むすべての"
+"ステップのステータス情報を 1 つのプロセスで提供します。特徴は以下のとおりです。"
 
 #: ../../source/portal-components/process-chain/index.rst:14
 msgid ""
 "Display all currently executable steps, or display only helpful steps "
 "like begin, last, current, previous, and next steps."
 msgstr ""
+"現在実行可能なすべてのステップを表示します。または、最初のステップ、最後のステップ、現在のステップ、"
+"前のステップ、次のステップなど、有用なステップのみ表示します。"
 
 #: ../../source/portal-components/process-chain/index.rst:17
 msgid "Change the shape of the process chain: circle or line."
-msgstr ""
+msgstr "プロセスチェーンの形状（円または線）を変更します。"
 
 #: ../../source/portal-components/process-chain/index.rst:19
 msgid "Change the orientation of the process chain: horizontal or vertical."
-msgstr ""
+msgstr "プロセスチェーンの向き（横または縦）を変更します。"
 
 #: ../../source/portal-components/process-chain/index.rst:21
 msgid "|process-chain|"
-msgstr ""
+msgstr "|process-chain|"
 
 #: ../../source/portal-components/process-chain/index.rst:64
 msgid "process-chain"
-msgstr ""
+msgstr "process-chain"
 
 #: ../../source/portal-components/process-chain/index.rst:26
 #: ../../source/portal-components/process-viewer/index.rst:25
@@ -974,45 +1024,47 @@ msgstr ""
 #: ../../source/portal-components/security-member-name-and-avatar/index.rst:13
 #: ../../source/portal-components/user-selection/index.rst:14
 msgid "How to Use"
-msgstr ""
+msgstr "使用方法"
 
 #: ../../source/portal-components/process-chain/index.rst:28
 msgid ""
 "You can integrate the Process Chain component in any widget by including "
 "the component on a page with following code:"
 msgstr ""
+"以下のコードを使用して、プロセスチェーンコンポーネントをページに含めることにより、任意のウィジェットに"
+"コンポーネントを統合できます。"
 
 #: ../../source/portal-components/process-chain/index.rst:36
 msgid "You have to set the parameters"
-msgstr ""
+msgstr "以下のパラメーターを設定する必要があります。"
 
 #: ../../source/portal-components/process-chain/index.rst:38
 msgid "``actualStepIndex``. This is the index of the current step."
-msgstr ""
+msgstr "``actualStepIndex`` ：現在のステップのインデックスです。"
 
 #: ../../source/portal-components/process-chain/index.rst:39
 msgid "``steps``. This is list of working steps."
-msgstr ""
+msgstr "``steps`` ：作業中のステップのリストです。"
 
 #: ../../source/portal-components/process-chain/index.rst:41
 msgid "You may change the parameters"
-msgstr ""
+msgstr "以下のパラメーターを変更できます。"
 
 #: ../../source/portal-components/process-chain/index.rst:43
 msgid ""
 "``shape`` to ``CIRCLE`` or ``LINE`` according to your requirements. "
 "Default is ``CIRCLE``."
-msgstr ""
+msgstr "要件に応じて ``shape`` を ``CIRCLE`` または ``LINE`` に変更します。初期値は ``CIRCLE`` です。"
 
 #: ../../source/portal-components/process-chain/index.rst:44
 msgid ""
 "``direction`` to ``HORIZONTAL`` or ``VERTICAL`` . Default is "
 "``HORIZONTAL``."
-msgstr ""
+msgstr "``direction`` を ``HORIZONTAL`` または ``VERTICAL`` に変更します。初期値は ``HORIZONTAL`` です。"
 
 #: ../../source/portal-components/process-chain/index.rst:45
 msgid "``isShowAllSteps`` to ``TRUE`` or ``FALSE`` . Default is ``FALSE``."
-msgstr ""
+msgstr "``isShowAllSteps`` を ``TRUE`` または ``FALSE`` に変更します初期値は ``FALSE`` です。"
 
 #: ../../source/portal-components/documents/process_chain_component_attributes.csv:1
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
@@ -1093,10 +1145,12 @@ msgid ""
 "If you want to customize its style, please refer to :ref:`components-"
 "portal-components-style-customization`."
 msgstr ""
+"スタイルをカスタマイズしたい場合は、:ref:`components-portal-components-style-customization` を"
+"参照してください。"
 
 #: ../../source/portal-components/process-chain/index.rst:60
 msgid "Migrate from Deprecated Process Chain"
-msgstr ""
+msgstr "非推奨のプロセスチェーンからの移行"
 
 #: ../../source/portal-components/process-chain/index.rst:62
 msgid ""
@@ -1104,35 +1158,41 @@ msgid ""
 "``ch.ivy.addon.portalkit.singleapp.process.ProcessChain`` with "
 "``com.axonivy.portal.components.ProcessChain``."
 msgstr ""
+"HTML ファイルのコードを置き換えます。 ``ch.ivy.addon.portalkit.singleapp.process.ProcessChain`` を"
+" ``com.axonivy.portal.components.ProcessChain`` に置き換えてください。"
 
 #: ../../source/portal-components/process-viewer/index.rst:4
 #: ../../source/portal-components/style-customization/index.rst:58
 msgid "Process Viewer"
-msgstr ""
+msgstr "プロセスビューアー"
 
 #: ../../source/portal-components/process-viewer/index.rst:9
 msgid ""
 "The Process Viewer component provides a visual representation of the "
 "process flow from a given Task ID, Case ID or Process relative link."
 msgstr ""
+"プロセスビューアーコンポーネントは、指定されたタスク ID、ケース ID、プロセスの相対リンク"
+"からのプロセスフローを視覚的に表現します。"
 
 #: ../../source/portal-components/process-viewer/index.rst:11
 msgid "|portal-process-viewer-component|"
-msgstr ""
+msgstr "|portal-process-viewer-component|"
 
 #: ../../source/portal-components/process-viewer/index.rst:60
 msgid "portal-process-viewer-component"
-msgstr ""
+msgstr "portal-process-viewer-component"
 
 #: ../../source/portal-components/process-viewer/index.rst:14
 msgid ""
 "If a process is designed to not allow users to view it, an error message "
 "will be shown instead."
 msgstr ""
+"プロセスのユーザーへの表示が許可されていない場合は、プロセスの代わりにエラーメッセージが"
+"表示されます。"
 
 #: ../../source/portal-components/process-viewer/index.rst:16
 msgid "Attributes of this component:"
-msgstr ""
+msgstr "このコンポーネントの属性："
 
 #: ../../source/portal-components/documents/process_viewer_component_attributes.csv:1
 msgid "taskId"
@@ -1172,22 +1232,25 @@ msgid ""
 "You can integrate the Process Viewer component in any page by including "
 "following code."
 msgstr ""
+"以下のコードを含めることにより、任意のページにプロセスビューアーコンポーネントを統合できます。"
 
 #: ../../source/portal-components/process-viewer/index.rst:29
 msgid "You have to set one of parameters below:"
-msgstr ""
+msgstr "以下のいずれかのパラメーターを設定する必要があります。"
 
 #: ../../source/portal-components/process-viewer/index.rst:31
 msgid ""
 "``taskId``: show the process or Case Map of the task has ID equals to "
 "``taskId``."
 msgstr ""
+"``taskId``： ``taskId`` に等しい ID を持つタスクのプロセスまたはケースマップを表示します。"
 
 #: ../../source/portal-components/process-viewer/index.rst:37
 msgid ""
 "``caseId``: show the process or Case Map of the case has ID equals to "
 "``caseId``."
 msgstr ""
+"``caseId``： ``caseId`` に等しい ID を持つケースのプロセスまたはケースマップを表示します。"
 
 #: ../../source/portal-components/process-viewer/index.rst:43
 msgid ""
@@ -1197,23 +1260,26 @@ msgstr ""
 
 #: ../../source/portal-components/process-viewer/index.rst:50
 msgid "Sub Case (Technical Case) is not supported."
-msgstr ""
+msgstr "サブケース（テクニカルケース）はサポートされていません。"
 
 #: ../../source/portal-components/process-viewer/index.rst:52
 msgid ""
 "You can customize the container style by using parameter "
 "``containerStyleClass``"
 msgstr ""
+"``containerStyleClass`` パラメーターを使用して、コンテナのスタイルをカスタマイズできます。"
 
 #: ../../source/portal-components/process-viewer/index.rst:54
 msgid ""
 "Refer to process ``ProcessViewerExample`` in project ``portal-components-"
 "examples`` for more details."
 msgstr ""
+"詳細については、 ``portal-components-examples`` プロジェクトの ``ProcessViewerExample`` プロセス"
+"を参照してください。"
 
 #: ../../source/portal-components/role-selection/index.rst:4
 msgid "Role Selection"
-msgstr ""
+msgstr "ロールの選択"
 
 #: ../../source/portal-components/role-selection/index.rst:9
 msgid ""
@@ -1222,39 +1288,45 @@ msgid ""
 " label, one autocomplete and one message element to display messages "
 "related to this autocomplete element."
 msgstr ""
+"このコンポーネントは、ロールのリストからロールを選択するのに使用します。ロー"
+"ルのリストを定義していない場合は、すべてのロールがロードされます。コンポーネ"
+"ントには、1 つのラベル、1 つのオートコンプリート、このオートコンプリート要素"
+"に関連するメッセージを表示する 1 つのメッセージ要素が含まれます。"
 
 #: ../../source/portal-components/role-selection/index.rst:17
 msgid ""
 "You can insert this component into any page. This component offers the "
 "following two styles to display its label."
 msgstr ""
+"このコンポーネントは任意のページに挿入できます。以下の 2 つのスタイルでラベル"
+"を表示します。"
 
 #: ../../source/portal-components/role-selection/index.rst:20
 #: ../../source/portal-components/user-selection/index.rst:18
 msgid "Default Style"
-msgstr ""
+msgstr "デフォルトのスタイル"
 
 #: ../../source/portal-components/role-selection/index.rst:22
 msgid "|role-selection|"
-msgstr ""
+msgstr "|role-selection|"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/role-selection/index.rst:107
 msgid "role-selection"
-msgstr ""
+msgstr "role-selection"
 
 #: ../../source/portal-components/role-selection/index.rst:35
 #: ../../source/portal-components/user-selection/index.rst:31
 msgid "Floating Label"
-msgstr ""
+msgstr "フローティングラベル"
 
 #: ../../source/portal-components/role-selection/index.rst:37
 msgid "|role-selection-floating-label|"
-msgstr ""
+msgstr "|role-selection-floating-label|"
 
 #: ../../source/portal-components/role-selection/index.rst:108
 msgid "role-selection-floating-label"
-msgstr ""
+msgstr "role-selection-floating-label"
 
 #: ../../source/portal-components/role-selection/index.rst:51
 msgid ""
@@ -1265,44 +1337,52 @@ msgid ""
 " a facet named ``event`` for autocomplete so that the ajax event can be "
 "nested, as well."
 msgstr ""
+"ロールの選択コンポーネントのオートコンプリート要素を使用して、子イベントや Ajax イベントを挿"
+"入できます（ ``RoleSelection.xhtml`` を参照）。RoleSelection コンポーネントの任意の子は、"
+" ``insertChildren`` タグの位置にあるこのオートコンプリートにリペアレントされます。また、Ajax "
+"イベントを入れ子にできるように、 ``event`` という名前のオートコンプリートのファセットを導入"
+"しました。"
 
 #: ../../source/portal-components/role-selection/index.rst:58
 msgid "For example:"
-msgstr ""
+msgstr "例："
 
 #: ../../source/portal-components/role-selection/index.rst:60
 msgid ""
 "I want to display roles in dropdown list formatted as \"<Display Name> "
 "(<Member Name>)\". When I select a role, a message shall be displayed."
 msgstr ""
+"「<表示名> (<メンバー名>)」という形式のドロップダウンリストでロールを表示します。"
+"ロールを選択すると、メッセージが表示されます。"
 
 #: ../../source/portal-components/role-selection/index.rst:63
 msgid "|role-selection-with-children-and-ajax-event|"
-msgstr ""
+msgstr "|role-selection-with-children-and-ajax-event|"
 
 #: ../../source/portal-components/role-selection/index.rst:109
 msgid "role-selection-with-children-and-ajax-event"
-msgstr ""
+msgstr "role-selection-with-children-and-ajax-event"
 
 #: ../../source/portal-components/role-selection/index.rst:65
 msgid "|role-selection-component-ajax-expand|"
-msgstr ""
+msgstr "|role-selection-component-ajax-expand|"
 
 #: ../../source/portal-components/role-selection/index.rst:110
 msgid "role-selection-component-ajax-expand"
-msgstr ""
+msgstr "role-selection-component-ajax-expand"
 
 #: ../../source/portal-components/role-selection/index.rst:87
 msgid ""
 "Please refer to ``RoleSelectionExample.xhtml`` in ``portal-components-"
 "examples`` project for more details."
 msgstr ""
+"詳細については、 ``portal-components-examples`` プロジェクトの ``RoleSelectionExample.xhtml`` を参照してください。"
 
 #: ../../source/portal-components/role-selection/index.rst:89
 #: ../../source/portal-components/security-member-name-and-avatar/index.rst:35
 #: ../../source/portal-components/user-selection/index.rst:81
 msgid "This component offers the following attributes:"
-msgstr ""
+msgstr "このコンポーネントには以下の属性が用意されています。"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
@@ -1707,7 +1787,7 @@ msgstr ""
 
 #: ../../source/portal-components/role-selection/index.rst:100
 msgid "Migrate from Deprecated Role Selection"
-msgstr ""
+msgstr "非推奨のロールの選択からの移行"
 
 #: ../../source/portal-components/role-selection/index.rst:101
 msgid ""
@@ -1715,22 +1795,26 @@ msgid ""
 "``ic:ch.ivy.addon.portalkit.component.RoleSelection`` with "
 "``ic:com.axonivy.portal.components.RoleSelection``."
 msgstr ""
+"HTML ファイルのコードを置き換えます。 ``ic:ch.ivy.addon.portalkit.component.RoleSelection`` を "
+"``ic:com.axonivy.portal.components.RoleSelection`` に置き換えてください。"
 
 #: ../../source/portal-components/role-selection/index.rst:103
 msgid ""
 "Replace ``ch.ivy.addon.portalkit.dto.RoleDTO`` with "
 "``com.axonivy.portal.components.dto.RoleDTO``."
 msgstr ""
+"``ch.ivy.addon.portalkit.dto.RoleDTO`` を ``com.axonivy.portal.components.dto.RoleDTO`` に置き換えます。"
 
 #: ../../source/portal-components/role-selection/index.rst:105
 msgid ""
 "If you stored class ``ch.ivy.addon.portalkit.dto.RoleDTO`` in your "
 "database, you have to update the database manually."
 msgstr ""
+"データベースに ``ch.ivy.addon.portalkit.dto.RoleDTO`` クラスを格納した場合は、データベースを手動で更新する必要があります。"
 
 #: ../../source/portal-components/security-member-name-and-avatar/index.rst:4
 msgid "Security Member Name And Avatar"
-msgstr ""
+msgstr "セキュリティメンバーの名前とアバター"
 
 #: ../../source/portal-components/security-member-name-and-avatar/index.rst:9
 msgid ""
@@ -1739,34 +1823,37 @@ msgid ""
 ":`components-portal-components-user-selection` and :ref:`components-"
 "portal-components-role-selection`."
 msgstr ""
+"このコンポーネントは、ivy のセキュリティシステムでセキュリティメンバーの名前とアバターを表示"
+"するのに使用します。コンポーネントは、:ref:`components-portal-components-user-selection-ja`、"
+":ref:`components-portal-components-role-selection-ja` にも統合されています。"
 
 #: ../../source/portal-components/security-member-name-and-avatar/index.rst:15
 msgid "You can insert this component into any page."
-msgstr ""
+msgstr "このコンポーネントは任意のページに挿入できます。"
 
 #: ../../source/portal-components/security-member-name-and-avatar/index.rst:17
 msgid "|session-role-security-member-name-and-avatar|"
-msgstr ""
+msgstr "|session-role-security-member-name-and-avatar|"
 
 #: ../../source/portal-components/security-member-name-and-avatar/index.rst:46
 msgid "session-role-security-member-name-and-avatar"
-msgstr ""
+msgstr "session-role-security-member-name-and-avatar"
 
 #: ../../source/portal-components/security-member-name-and-avatar/index.rst:19
 msgid "Code example using the top-level role (Everybody):"
-msgstr ""
+msgstr "最上位のロール（Everybody）を使用したコードの例："
 
 #: ../../source/portal-components/security-member-name-and-avatar/index.rst:26
 msgid "|session-user-security-member-name-and-avatar|"
-msgstr ""
+msgstr "|session-user-security-member-name-and-avatar|"
 
 #: ../../source/portal-components/security-member-name-and-avatar/index.rst:45
 msgid "session-user-security-member-name-and-avatar"
-msgstr ""
+msgstr "session-user-security-member-name-and-avatar"
 
 #: ../../source/portal-components/security-member-name-and-avatar/index.rst:28
 msgid "Code example using the current session user:"
-msgstr ""
+msgstr "現在のセッションのユーザーを使用したコードの例："
 
 #: ../../source/portal-components/documents/security_member_name_and_avatar_component_attributes.csv:1
 msgid "Required"
@@ -1856,36 +1943,43 @@ msgid ""
 "Refer to process ``SecurityMemberNameAndAvatarExample`` in project "
 "``portal-components-examples`` for more details."
 msgstr ""
+"詳細については、 ``portal-components-examples`` プロジェクトの ``SecurityMemberNameAndAvatarExample`` "
+"プロセスを参照してください。"
 
 #: ../../source/portal-components/style-customization/index.rst:4
 msgid "Style Customization"
-msgstr ""
+msgstr "スタイルのカスタマイズ"
 
 #: ../../source/portal-components/style-customization/index.rst:7
 msgid "How to customize"
-msgstr ""
+msgstr "カスタマイズ方法"
 
 #: ../../source/portal-components/style-customization/index.rst:9
 msgid ""
 "You have to add a new css file to your resources and import it into your "
 "template."
 msgstr ""
+"リソースに新しい CSS ファイルを追加し、テンプレートにインポートする必要があります。"
 
 #: ../../source/portal-components/style-customization/index.rst:24
 msgid ""
 "You have to place your css file in a ``<h:outputStylesheet />`` below the"
 " component to override defined styles."
 msgstr ""
+"定義済みのスタイルを上書きするには、コンポーネントの下に ``<h:outputStylesheet />`` "
+"で CSS ファイルを配置する必要があります。"
 
 #: ../../source/portal-components/style-customization/index.rst:26
 msgid ""
 "Within this file you can override default css variables of components. "
 "For example, the \\--process-history-description-text-color:"
 msgstr ""
+"このファイル内で、コンポーネントのデフォルトの CSS 変数を上書きできます。"
+"たとえば、\\--process-history-description-text-color："
 
 #: ../../source/portal-components/style-customization/index.rst:35
 msgid "List of css variables that you can override"
-msgstr ""
+msgstr "上書き可能な CSS 変数のリスト"
 
 #: ../../source/portal-components/documents/css_variables/process_chain.csv:1
 #: ../../source/portal-components/documents/css_variables/process_history.csv:1
@@ -1987,7 +2081,7 @@ msgstr ""
 
 #: ../../source/portal-components/style-customization/index.rst:48
 msgid "Process History"
-msgstr ""
+msgstr "プロセス履歴"
 
 #: ../../source/portal-components/documents/css_variables/process_history.csv:1
 msgid "\\--process-history-header-border-bottom-color"
@@ -2152,7 +2246,7 @@ msgstr ""
 
 #: ../../source/portal-components/user-selection/index.rst:4
 msgid "User Selection"
-msgstr ""
+msgstr "ユーザーの選択"
 
 #: ../../source/portal-components/user-selection/index.rst:9
 msgid ""
@@ -2162,29 +2256,35 @@ msgid ""
 "message element to display a message related to that autocomplete "
 "element."
 msgstr ""
+"このコンポーネントは、ロール名のリストで定義されたユーザーのリストから 1 人のユーザーを選択"
+"するのに使用します。ロール名のリストを定義していない場合は、すべてのユーザーがロードされ"
+"ます。コンポーネントには、ラベル、オートコンプリート、そのオートコンプリート要素に関連す"
+"るメッセージを表示する 1 つのメッセージ要素が含まれます。"
 
 #: ../../source/portal-components/user-selection/index.rst:16
 msgid ""
 "You can insert this component into any page. This component supports two "
 "styles to display a label."
 msgstr ""
+"このコンポーネントは任意のページに挿入できます。以下の 2 つのスタイルでラベルを表示しま"
+"す。"
 
 #: ../../source/portal-components/user-selection/index.rst:20
 msgid "|user-selection|"
-msgstr ""
+msgstr "|user-selection|"
 
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
 #: ../../source/portal-components/user-selection/index.rst:100
 msgid "user-selection"
-msgstr ""
+msgstr "user-selection"
 
 #: ../../source/portal-components/user-selection/index.rst:33
 msgid "|user-selection-floating-label|"
-msgstr ""
+msgstr "|user-selection-floating-label|"
 
 #: ../../source/portal-components/user-selection/index.rst:101
 msgid "user-selection-floating-label"
-msgstr ""
+msgstr "user-selection-floating-label"
 
 #: ../../source/portal-components/user-selection/index.rst:46
 msgid ""
@@ -2195,38 +2295,43 @@ msgid ""
 "named ``event`` for autocomplete so that the ajax event can be nested, as"
 " well."
 msgstr ""
+"ユーザーの選択コンポーネントのオートコンプリート要素を使用して、子イベントや Ajax イベントを挿入できます（ ``UserSelection.xhtml`` を参照）。"
+" UserSelection コンポーネントの任意の子は、 ``insertChildren`` タグの位置にあるこのオートコンプリートにリペアレントされます。"
+" また、Ajax イベントを入れ子にできるように、 ``event`` という名前のオートコンプリートのファセットを導入します。"
 
 #: ../../source/portal-components/user-selection/index.rst:53
 msgid "An example:"
-msgstr ""
+msgstr "例："
 
 #: ../../source/portal-components/user-selection/index.rst:55
 msgid ""
 "I want to display users in a dropdown list formatted as \"<Full name> "
 "(<username>)\". When I select a user, a message shall be displayed."
 msgstr ""
+"「<氏名> (<ユーザー名>)」という形式のドロップダウンリストでユーザーを表示します。"
+"ユーザーを選択すると、メッセージが表示されます。"
 
 #: ../../source/portal-components/user-selection/index.rst:58
 msgid "|user-selection-with-children-and-ajax-event|"
-msgstr ""
+msgstr "|user-selection-with-children-and-ajax-event|"
 
 #: ../../source/portal-components/user-selection/index.rst:102
 msgid "user-selection-with-children-and-ajax-event"
-msgstr ""
+msgstr "user-selection-with-children-and-ajax-event"
 
 #: ../../source/portal-components/user-selection/index.rst:60
 msgid "|user-selection-component-ajax-expand|"
-msgstr ""
+msgstr "|user-selection-component-ajax-expand|"
 
 #: ../../source/portal-components/user-selection/index.rst:103
 msgid "user-selection-component-ajax-expand"
-msgstr ""
+msgstr "user-selection-component-ajax-expand"
 
 #: ../../source/portal-components/user-selection/index.rst:79
 msgid ""
 "Please refer to ``UserSelectionExample.xhtml`` in project ``portal-"
 "components-examples`` for more details."
-msgstr ""
+msgstr "詳細については、 ``portal-components-examples`` プロジェクトの ``UserSelectionExample.xhtml`` を参照してください。"
 
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
 msgid ""
@@ -2336,7 +2441,7 @@ msgstr ""
 
 #: ../../source/portal-components/user-selection/index.rst:92
 msgid "Migrate from Deprecated User Selection"
-msgstr ""
+msgstr "非推奨のユーザーの選択からの移行"
 
 #: ../../source/portal-components/user-selection/index.rst:94
 msgid ""
@@ -2344,16 +2449,20 @@ msgid ""
 "``ic:ch.ivy.addon.portalkit.component.UserSelection`` with "
 "``ic:com.axonivy.portal.components.UserSelection``."
 msgstr ""
+"HTML ファイルのコードを置き換えます。 ``ic:ch.ivy.addon.portalkit.component.UserSelection`` を "
+"``ic:com.axonivy.portal.components.UserSelection`` に置き換えてください。"
 
 #: ../../source/portal-components/user-selection/index.rst:96
 msgid ""
 "Replace ``ch.ivy.addon.portalkit.dto.UserDTO`` with "
 "``com.axonivy.portal.components.dto.UserDTO``."
 msgstr ""
+"``ch.ivy.addon.portalkit.dto.UserDTO`` を ``com.axonivy.portal.components.dto.UserDTO`` に置き換えます。"
 
 #: ../../source/portal-components/user-selection/index.rst:98
 msgid ""
 "If you stored class ``ch.ivy.addon.portalkit.dto.UserDTO`` in your "
 "database, you have to update the database manually."
 msgstr ""
+"データベースに ``ch.ivy.addon.portalkit.dto.UserDTO`` クラスを格納した場合は、データベースを手動で更新する必要があります。"
 
