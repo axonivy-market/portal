@@ -24,15 +24,13 @@ public class EnhanceVisibilityTasksForMemberOfRoleTest extends BaseTest {
   @BeforeEach
   public void setup() {
     super.setup();
+    createTestingTasks();
   }
 
   @Test
   public void testVisibilityTaskOpen() {
     login(TestAccount.DEMO_USER);
-    createTestingTasks();
-
-    NewDashboardPage dashboard = new NewDashboardPage();
-    dashboard.waitForPageLoad();
+    redirectToNewDashBoard();
     NavigationHelper.navigateToTaskList();
     TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
 
@@ -62,10 +60,7 @@ public class EnhanceVisibilityTasksForMemberOfRoleTest extends BaseTest {
   public void testVisibilityTaskInprogress() {
     updateGlobalVariable(Variable.TASK_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST.getKey(), "ACCESS_TASK_DETAILS");
     login(TestAccount.DEMO_USER);
-    createTestingTasks();
-
-    NewDashboardPage dashboard = new NewDashboardPage();
-    dashboard.waitForPageLoad();
+    redirectToNewDashBoard();
     NavigationHelper.navigateToTaskList();
     TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
     // Suspended
@@ -96,9 +91,7 @@ public class EnhanceVisibilityTasksForMemberOfRoleTest extends BaseTest {
   @Test
   public void testVisibilityTaskDone() {
     login(TestAccount.GUEST_USER);
-    createTestingTasks();
-    NewDashboardPage dashboard = new NewDashboardPage();
-    dashboard.waitForPageLoad();
+    redirectToNewDashBoard();
 
     NavigationHelper.navigateToTaskList();
     TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
