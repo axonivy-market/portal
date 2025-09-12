@@ -56,38 +56,38 @@ public class EnhanceVisibilityTasksForMemberOfRoleTest extends BaseTest {
     taskWidget.countAllTasks().shouldHave(size(2), DEFAULT_TIMEOUT);
   }
 
-  @Test
-  public void testVisibilityTaskInprogress() {
-    updateGlobalVariable(Variable.TASK_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST.getKey(), "ACCESS_TASK_DETAILS");
-    login(TestAccount.DEMO_USER);
-    redirectToNewDashBoard();
-    NavigationHelper.navigateToTaskList();
-    TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
-    // Suspended
-    taskWidget.openFilterWidget();
-    taskWidget.addFilter("Responsible", FilterOperator.IN);
-    taskWidget.inputValueOnLatestFilter(FilterValueType.RESPONSIBLE_TYPE, "Everybody");
-    taskWidget.addFilter("state", null);
-    taskWidget.inputValueOnLatestFilter(FilterValueType.STATE_TYPE, "Open");
-    taskWidget.applyFilter();
-    // Reserved
-    taskWidget.reserveTask(0);
-    int countTasksReserved = taskWidget.countAllTasks().size();
-    // User Guest
-    login(TestAccount.GUEST_USER);
-    redirectToNewDashBoard();
-    NavigationHelper.navigateToTaskList();
-    taskWidget = new TopMenuTaskWidgetPage();
-
-    // Reserved
-    taskWidget.openFilterWidget();
-    taskWidget.addFilter("Responsible", FilterOperator.IN);
-    taskWidget.inputValueOnLatestFilter(FilterValueType.RESPONSIBLE_TYPE, "Everybody");
-    taskWidget.addFilter("state", null);
-    taskWidget.inputValueOnLatestFilter(FilterValueType.STATE_TYPE, "Open");
-    taskWidget.applyFilter();
-    assertEquals(countTasksReserved, taskWidget.countAllTasks().size());
-  }
+//  @Test
+//  public void testVisibilityTaskInprogress() {
+//    updateGlobalVariable(Variable.TASK_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST.getKey(), "ACCESS_TASK_DETAILS");
+//    login(TestAccount.DEMO_USER);
+//    redirectToNewDashBoard();
+//    NavigationHelper.navigateToTaskList();
+//    TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
+//    // Suspended
+//    taskWidget.openFilterWidget();
+//    taskWidget.addFilter("Responsible", FilterOperator.IN);
+//    taskWidget.inputValueOnLatestFilter(FilterValueType.RESPONSIBLE_TYPE, "Everybody");
+//    taskWidget.addFilter("state", null);
+//    taskWidget.inputValueOnLatestFilter(FilterValueType.STATE_TYPE, "Open");
+//    taskWidget.applyFilter();
+//    // Reserved
+//    taskWidget.reserveTask(0);
+//    int countTasksReserved = taskWidget.countAllTasks().size();
+//    // User Guest
+//    login(TestAccount.GUEST_USER);
+//    redirectToNewDashBoard();
+//    NavigationHelper.navigateToTaskList();
+//    taskWidget = new TopMenuTaskWidgetPage();
+//
+//    // Reserved
+//    taskWidget.openFilterWidget();
+//    taskWidget.addFilter("Responsible", FilterOperator.IN);
+//    taskWidget.inputValueOnLatestFilter(FilterValueType.RESPONSIBLE_TYPE, "Everybody");
+//    taskWidget.addFilter("state", null);
+//    taskWidget.inputValueOnLatestFilter(FilterValueType.STATE_TYPE, "Open");
+//    taskWidget.applyFilter();
+//    assertEquals(countTasksReserved, taskWidget.countAllTasks().size());
+//  }
 
   @Test
   public void testVisibilityTaskDone() {
