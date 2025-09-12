@@ -10,7 +10,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 import org.primefaces.model.DefaultTreeNode;
 import org.primefaces.model.TreeNode;
 
@@ -99,7 +99,7 @@ public class LazyRoleTreeNode extends DefaultTreeNode<RoleHolder> {
     if (CollectionUtils.isEmpty(roles)) {
       return filteredTreeNode;
     }
-    var foundRoles = roles.stream().filter(role -> StringUtils.containsIgnoreCase(role.getName(), filter)).collect(Collectors.toList());
+    var foundRoles = roles.stream().filter(role -> Strings.CI.contains(role.getName(), filter)).collect(Collectors.toList());
     if (CollectionUtils.isNotEmpty(foundRoles)) {
       var topRole = new RoleHolder(ISecurityContext.current().roles().topLevel());
       var everyBody = new DefaultTreeNode<>(DEFAULT_ROLE_TYPE, topRole, filteredTreeNode);
@@ -187,7 +187,7 @@ public class LazyRoleTreeNode extends DefaultTreeNode<RoleHolder> {
 
   private static boolean equalsRoleName(RoleHolder role, String roleName) {
     var treeDataName = isNull(role) ? null : role.getName();
-    return StringUtils.equals(treeDataName, roleName);
+    return Strings.CS.equals(treeDataName, roleName);
   }
 
   private static int getRoleChildrenLimitConfig() {

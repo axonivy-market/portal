@@ -81,6 +81,7 @@ function updateMenuHref() {
 
 // Initial update when page loads
 updateMenuHref();
+updateMainMenuAriaLabel();
 
 // Reapply update after each PrimeFaces AJAX update to ensure URLs remain correct
 // This is necessary because PrimeFaces AJAX updates may re-render menu components

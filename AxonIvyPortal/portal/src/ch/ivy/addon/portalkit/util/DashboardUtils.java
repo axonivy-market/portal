@@ -16,6 +16,7 @@ import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 import org.primefaces.PrimeFaces;
 
 import com.axonivy.portal.migration.dashboard.migrator.JsonDashboardMigrator;
@@ -81,7 +82,7 @@ public class DashboardUtils {
   }
 
   private static boolean isSessionUserHasPermisson(String permission) {
-    return StringUtils.startsWith(permission, "#") ? StringUtils.equals(currentUser().getMemberName(), permission)
+    return Strings.CS.startsWith(permission, "#") ? Strings.CS.equals(currentUser().getMemberName(), permission)
         : PermissionUtils.doesSessionUserHaveRole(permission);
   }
 
