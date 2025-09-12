@@ -894,7 +894,7 @@
         "Note",
         "In previous versions, document type was stored using the \"id\" as the key.",
         "",
-        "From version 11, id is deprecated so we use \"uuid\" instead of \"id\".",
+        "From version 11, id is deprecated and we use \"uuid\" instead of \"id\".",
         "",
         "To ensure compatibility, we first check for the type using \"id\".",
         "If not found, we then check using \"uuid\"."
