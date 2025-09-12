@@ -430,7 +430,7 @@
             "import com.axonivy.portal.components.document.DocumentCustomField;",
             "",
             "if (in.typeColumnRendered) {",
-            "  String stringField = DocumentCustomField.TYPE_PREFIX + in.uploadedDocument.getId();",
+            "  String stringField = DocumentCustomField.TYPE_PREFIX + in.uploadedDocument.uuid();",
             "  in.ivyCase.customFields().stringField(stringField).set(in.typeSelection.name());",
             "}"
           ]

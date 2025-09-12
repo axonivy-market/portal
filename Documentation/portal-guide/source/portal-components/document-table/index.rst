@@ -68,10 +68,10 @@ To customize how **Document Table** gets documents, create a callable subprocess
 | message                | java.lang.String                                                     |
 +------------------------+----------------------------------------------------------------------+
 
-.. note::
+.. important::
 
    After you get the document list from DMS, convert it into ``List<ch.ivy.addon.portal.component.ivydata.bo.IvyDocument>``
-   These fields are mandatory when mapping: ``id``, ``name``, ``contentType``
+   These fields are mandatory when mapping: ``id``, ``uuid``, ``name``, ``contentType``
 
 Upload document
 ---------------
