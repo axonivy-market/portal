@@ -29,7 +29,7 @@ public class EnhanceVisibilityTasksForMemberOfRoleTest extends BaseTest {
 
   @Test
   public void testVisibilityTaskOpen() {
-    login(TestAccount.DEMO_USER);
+    login(TestAccount.GUEST_USER);
     NavigationHelper.navigateToTaskList();
     TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
 
@@ -42,7 +42,7 @@ public class EnhanceVisibilityTasksForMemberOfRoleTest extends BaseTest {
     taskWidget.applyFilter();
     taskWidget.countAllTasks().shouldHave(size(2), DEFAULT_TIMEOUT);
     // User Guest
-    login(TestAccount.GUEST_USER);
+    login(TestAccount.DEMO_USER);
     redirectToNewDashBoard();
     NavigationHelper.navigateToTaskList();
     // Suspended
