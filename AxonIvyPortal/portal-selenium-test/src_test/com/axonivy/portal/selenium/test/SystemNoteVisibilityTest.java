@@ -18,6 +18,7 @@ import com.axonivy.portal.selenium.page.TaskDetailsPage;
 import com.axonivy.portal.selenium.page.TopMenuTaskWidgetPage;
 
 @IvyWebTest
+@IvyWebTest(headless = false)
 public class SystemNoteVisibilityTest extends BaseTest {
 
   private static final String CREATE_TESTING_TASK_URL = "internalSupport/14B2FC03D2E87141/processWithSystemNote.ivp";
@@ -99,6 +100,7 @@ public class SystemNoteVisibilityTest extends BaseTest {
     assertFalse(taskNoteAuthors.contains(SYSTEM_USER_NAME));
 
     updatePortalSetting(Variable.HIDE_SYSTEM_NOTES_FROM_HISTORY.getKey(), "false");
+    updatePortalSetting(Variable.CHECK_SYSTEM_NOTES_BY_DEFAULT.getKey(), "false");
     taskDetailsPage = openTaskDetails();
     taskNoteHistoryPage.clickOnCheckboxShowSystemNotes();
     taskNoteHistoryPage.waitForNoteTableDisplayed();
