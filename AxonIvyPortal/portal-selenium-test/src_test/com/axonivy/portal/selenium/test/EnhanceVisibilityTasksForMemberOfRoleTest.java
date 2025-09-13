@@ -95,6 +95,7 @@ public class EnhanceVisibilityTasksForMemberOfRoleTest extends BaseTest {
     MainMenuPage mainMenuPage = new NewDashboardPage().openMainMenu();
     mainMenuPage.clickMainMenuItem("Tasks");
     TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
+    taskWidget.waitForPageLoad();
     // Suspended
     taskWidget.openFilterWidget();
     taskWidget.addFilter("Responsible", FilterOperator.IN);
