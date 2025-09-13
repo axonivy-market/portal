@@ -13,7 +13,6 @@ import com.axonivy.portal.selenium.common.NavigationHelper;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.page.TopMenuTaskWidgetPage;
-import com.codeborne.selenide.CollectionCondition;
 
 @IvyWebTest
 public class EnhanceVisibilityTasksForMemberOfRoleTest extends BaseTest {
@@ -23,12 +22,12 @@ public class EnhanceVisibilityTasksForMemberOfRoleTest extends BaseTest {
   @BeforeEach
   public void setup() {
     super.setup();
+    createTestingTasks();
   }
 
   @Test
   public void testVisibilityTaskOpen() {
     login(TestAccount.DEMO_USER);
-    createTestingTasks();
     NavigationHelper.navigateToTaskList();
     TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
 
@@ -42,6 +41,7 @@ public class EnhanceVisibilityTasksForMemberOfRoleTest extends BaseTest {
     taskWidget.countAllTasks().shouldHave(size(2), DEFAULT_TIMEOUT);
     // User Guest
     login(TestAccount.GUEST_USER);
+    redirectToNewDashBoard();
     NavigationHelper.navigateToTaskList();
     // Suspended
     taskWidget = new TopMenuTaskWidgetPage();
@@ -58,9 +58,9 @@ public class EnhanceVisibilityTasksForMemberOfRoleTest extends BaseTest {
   public void testVisibilityTaskInprogress() {
     updateGlobalVariable(Variable.TASK_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST.getKey(), "ACCESS_TASK_DETAILS");
     login(TestAccount.DEMO_USER);
-    createTestingTasks();
     NavigationHelper.navigateToTaskList();
     TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
+
     // Suspended
     taskWidget.openFilterWidget();
     taskWidget.addFilter("Responsible", FilterOperator.IN);
@@ -68,11 +68,14 @@ public class EnhanceVisibilityTasksForMemberOfRoleTest extends BaseTest {
     taskWidget.addFilter("state", null);
     taskWidget.inputValueOnLatestFilter(FilterValueType.STATE_TYPE, "Open");
     taskWidget.applyFilter();
+
     // Reserved
     taskWidget.reserveTask(0);
-    int countTasksReserved = taskWidget.countAllTasks().size();
+    taskWidget.countAllTasks().shouldHave(size(2), DEFAULT_TIMEOUT);
+
     // User Guest
     login(TestAccount.GUEST_USER);
+    redirectToNewDashBoard();
     NavigationHelper.navigateToTaskList();
     taskWidget = new TopMenuTaskWidgetPage();
 
@@ -83,15 +86,15 @@ public class EnhanceVisibilityTasksForMemberOfRoleTest extends BaseTest {
     taskWidget.addFilter("state", null);
     taskWidget.inputValueOnLatestFilter(FilterValueType.STATE_TYPE, "Open");
     taskWidget.applyFilter();
-    assertEquals(countTasksReserved, taskWidget.countAllTasks().size());
+    taskWidget.countAllTasks().shouldHave(size(2), DEFAULT_TIMEOUT);
   }
 
   @Test
   public void testVisibilityTaskDone() {
     login(TestAccount.GUEST_USER);
-    createTestingTasks();
     NavigationHelper.navigateToTaskList();
     TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
+
     // Suspended
     taskWidget.openFilterWidget();
     taskWidget.addFilter("Responsible", FilterOperator.IN);
@@ -99,7 +102,7 @@ public class EnhanceVisibilityTasksForMemberOfRoleTest extends BaseTest {
     taskWidget.addFilter("state", null);
     taskWidget.inputValueOnLatestFilter(FilterValueType.STATE_TYPE, "Open");
     taskWidget.applyFilter();
-    int taskCount = taskWidget.countAllTasks().size();
+    taskWidget.countAllTasks().shouldHave(size(2), DEFAULT_TIMEOUT);
 
     // User Guest
     login(TestAccount.DEMO_USER);
@@ -112,7 +115,7 @@ public class EnhanceVisibilityTasksForMemberOfRoleTest extends BaseTest {
     taskWidget.addFilter("state", null);
     taskWidget.inputValueOnLatestFilter(FilterValueType.STATE_TYPE, "Open");
     taskWidget.applyFilter();
-    taskWidget.countAllTasks().shouldHave(CollectionCondition.size(taskCount));
+    taskWidget.countAllTasks().shouldHave(size(2), DEFAULT_TIMEOUT);
   }
 
 }

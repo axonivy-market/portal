@@ -299,6 +299,7 @@ public class TaskDetailsPage extends TemplatePage {
   public List<String> getTaskNoteHasAuthors() {
     ScreenshotUtils.resizeBrowser(new Dimension(2560, 1600));
     $("th.task-document-author").shouldBe(appear);
+    $("th.task-document-author").shouldBe(appear, DEFAULT_TIMEOUT);
     ElementsCollection noteAuthorElements =
         $$("td.task-document-author .name-after-avatar").shouldBe(CollectionCondition.sizeGreaterThanOrEqual(1));
     return noteAuthorElements.asFixedIterable().stream().map(w -> w.getText()).collect(Collectors.toList());
