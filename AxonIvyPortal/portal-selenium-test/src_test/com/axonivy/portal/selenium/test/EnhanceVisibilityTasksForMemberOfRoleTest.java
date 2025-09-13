@@ -16,7 +16,7 @@ import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.TopMenuTaskWidgetPage;
 import com.codeborne.selenide.CollectionCondition;
 
-@IvyWebTest
+@IvyWebTest(headless = false)
 public class EnhanceVisibilityTasksForMemberOfRoleTest extends BaseTest {
 
 
@@ -29,7 +29,7 @@ public class EnhanceVisibilityTasksForMemberOfRoleTest extends BaseTest {
 
   @Test
   public void testVisibilityTaskOpen() {
-    login(TestAccount.GUEST_USER);
+    login(TestAccount.DEMO_USER);
     NavigationHelper.navigateToTaskList();
     TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
 
@@ -42,7 +42,7 @@ public class EnhanceVisibilityTasksForMemberOfRoleTest extends BaseTest {
     taskWidget.applyFilter();
     taskWidget.countAllTasks().shouldHave(size(2), DEFAULT_TIMEOUT);
     // User Guest
-    login(TestAccount.DEMO_USER);
+    login(TestAccount.GUEST_USER);
     redirectToNewDashBoard();
     NavigationHelper.navigateToTaskList();
     // Suspended
@@ -92,11 +92,9 @@ public class EnhanceVisibilityTasksForMemberOfRoleTest extends BaseTest {
   @Test
   public void testVisibilityTaskDone() {
     login(TestAccount.GUEST_USER);
-    redirectToNewDashBoard();
-    MainMenuPage mainMenuPage = new NewDashboardPage().openMainMenu();
-    mainMenuPage.clickMainMenuItem("Tasks");
+    NavigationHelper.navigateToTaskList();
     TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
-    taskWidget.waitForPageLoad();
+
     // Suspended
     taskWidget.openFilterWidget();
     taskWidget.addFilter("Responsible", FilterOperator.IN);
@@ -104,7 +102,7 @@ public class EnhanceVisibilityTasksForMemberOfRoleTest extends BaseTest {
     taskWidget.addFilter("state", null);
     taskWidget.inputValueOnLatestFilter(FilterValueType.STATE_TYPE, "Open");
     taskWidget.applyFilter();
-    int taskCount = taskWidget.countAllTasks().size();
+    taskWidget.countAllTasks().shouldHave(size(2), DEFAULT_TIMEOUT);
 
     // User Guest
 //    login(TestAccount.DEMO_USER);
