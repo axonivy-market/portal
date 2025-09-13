@@ -91,6 +91,7 @@ public class EnhanceVisibilityTasksForMemberOfRoleTest extends BaseTest {
 
   @Test
   public void testVisibilityTaskDone() {
+    redirectToNewDashBoard();
     login(TestAccount.GUEST_USER);
     MainMenuPage mainMenuPage = new NewDashboardPage().openMainMenu();
     mainMenuPage.clickMainMenuItem("Tasks");
