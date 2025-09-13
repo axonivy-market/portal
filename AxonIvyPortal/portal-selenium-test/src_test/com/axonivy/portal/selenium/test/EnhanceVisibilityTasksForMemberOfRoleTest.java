@@ -16,7 +16,7 @@ import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.TopMenuTaskWidgetPage;
 import com.codeborne.selenide.CollectionCondition;
 
-@IvyWebTest(headless = false)
+@IvyWebTest
 public class EnhanceVisibilityTasksForMemberOfRoleTest extends BaseTest {
 
 
