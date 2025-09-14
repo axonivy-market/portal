@@ -35,7 +35,7 @@ public class TaskDetailsPage extends TemplatePage {
     $("a[id$=':task-notes:add-note-command']").click();
     $("div[id$=':task-notes:add-new-note-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
     $("div[id$=':task-notes:add-new-note-dialog']").find("textarea").sendKeys(noteContent);
-    $("button[id$=':task-notes:task-add-new-note-form:save-add-note-command']").click();
+    $("button[id$=':task-notes:task-add-new-note-form:save-add-note-command']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     $("div[id$=':task-notes:task-add-new-note-form:save-add-note-command']").shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 
@@ -215,7 +215,7 @@ public class TaskDetailsPage extends TemplatePage {
     $("div.ui-dialog[aria-hidden='false']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     SelenideElement addNoteDialog = $("div.ui-dialog[aria-hidden='false']").shouldBe(appear, DEFAULT_TIMEOUT);
     addNoteDialog.findElement(By.cssSelector("textarea[id$='note-content']")).sendKeys(content);
-    addNoteDialog.findElement(By.cssSelector("button[id$='save-add-note-command']")).click();
+    addNoteDialog.$("button[id$='save-add-note-command']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
 
   public void openAddAttachmentDialog() {
