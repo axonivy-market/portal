@@ -93,6 +93,7 @@ public class CaseDetailsTest extends BaseTest {
     caseDetailsPage.getRelatedCasesComponents().shouldHave(sizeGreaterThanOrEqual(1));
     caseDetailsPage.getHitoriesComponent().shouldHave(sizeGreaterThanOrEqual(1));
     caseDetailsPage.addNote(NOTE_BUSINESS_CASE);
+    refreshPage();
     caseDetailsPage.getNotesWithContent(NOTE_BUSINESS_CASE).shouldHave(size(1));
     caseDetailsPage.gotoTaskDetailsPageOfRelatedTask(ORDER_PIZZA);
     TaskDetailsPage taskDetailsPage = new TaskDetailsPage();
@@ -112,6 +113,7 @@ public class CaseDetailsTest extends BaseTest {
     caseDetailsPage.gotoCaseDetailsPageOfRelatedCase(TAKE_ORDER_AND_MAKE_PIZZA);
     caseDetailsPage.getHitoriesComponent().shouldHave(sizeGreaterThanOrEqual(1));
     caseDetailsPage.addNote(NOTE_TECHNICAL_CASE);
+    refreshPage();
     caseDetailsPage.getNotesWithContent(NOTE_TECHNICAL_CASE).shouldHave(size(1));
     caseDetailsPage.gotoTaskDetailsPageOfRelatedTask(TAKE_ORDER);
     TaskDetailsPage taskDetailsPage = new TaskDetailsPage();
@@ -398,6 +400,7 @@ public class CaseDetailsTest extends BaseTest {
   public void testHistoryAuthorIsUserFullName() {
     createTestingTask();
     detailsPage.addNote("Sample case note");
+    refreshPage();
     assertEquals(TestAccount.ADMIN_USER.getFullName(), detailsPage.getHistoryAuthor());
   }
 
@@ -508,6 +511,7 @@ public class CaseDetailsTest extends BaseTest {
     createTestingCaseContainTechnicalCases();
     detailsPage.getNumberOfHistory().shouldHave(size(1), DEFAULT_TIMEOUT);
     detailsPage.addNote("This is note on business case");
+    refreshPage();
     detailsPage.getNumberOfHistory().shouldHave(size(2), DEFAULT_TIMEOUT);
     assertEquals("This is note on business case", detailsPage.getLatestHistoryContent());
     detailsPage.clickRelatedCaseActionButton(0);
@@ -515,7 +519,9 @@ public class CaseDetailsTest extends BaseTest {
     new WebDriverWait(WebDriverRunner.getWebDriver(), DEFAULT_TIMEOUT)
         .until((webDriver) -> CASE_DETAILS_TITLE.equals(relatedCaseDetailsPage.getPageTitle()));
     relatedCaseDetailsPage.addNote("The first note of sub-case");
+    refreshPage();
     relatedCaseDetailsPage.addNote("The second note of sub-case");
+    refreshPage();
     var subCaseId = relatedCaseDetailsPage.getCaseId();
     var caseName = relatedCaseDetailsPage.getCaseName();
     relatedCaseDetailsPage.getNumberOfHistory().shouldHave(size(2), DEFAULT_TIMEOUT);
