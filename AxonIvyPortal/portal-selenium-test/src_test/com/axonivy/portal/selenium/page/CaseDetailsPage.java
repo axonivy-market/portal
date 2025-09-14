@@ -90,7 +90,8 @@ public class CaseDetailsPage extends TemplatePage {
     textArea.shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     textArea.sendKeys(noteContent);
     SelenideElement saveButton = addNoteDialog.$("button[id$='save-add-note-command']");
-    saveButton.shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).shouldBe(Condition.interactable).click();
+    saveButton.shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
+    clickByJavaScript(saveButton);
     saveButton.shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 
