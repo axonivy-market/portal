@@ -87,12 +87,12 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
   public void testVisibilityTaskActionForAdminUser() {
     login(TestAccount.ADMIN_USER);
     createTasksForTesting();
-    TaskWidgetNewDashBoardPage taskWidget = new TaskWidgetNewDashBoardPage();
-
     // Ready for Join
     assertTaskActionsByTaskStateAndName(DONE, "Task Switch A",
         Arrays.asList(DETAILS, RESET, DESTROY, TRIGGER_ESCALATION, WORKFLOW_EVENTS, PROCESS_VIEWER));
 
+    refreshPage();
+    TaskWidgetNewDashBoardPage taskWidget = new TaskWidgetNewDashBoardPage();
     // Suspended
     taskWidget.openFilterWidget();
     removeAllExistingFilter();
@@ -208,6 +208,7 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
     taskWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
     // Failed
     resizeBrowserTo2kResolution();
+    refreshPage();
     assertTaskActionsByTaskStateAndName(ERROR, "Signal create Task failed",
         Arrays.asList(DETAILS, RESET, DESTROY, WORKFLOW_EVENTS, PROCESS_VIEWER));
     // Join failed
