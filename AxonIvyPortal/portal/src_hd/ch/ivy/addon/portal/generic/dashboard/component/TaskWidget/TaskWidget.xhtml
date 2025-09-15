@@ -38,7 +38,7 @@
       </h:panelGroup>
       <p:dataTable id="dashboard-tasks" widgetVar="#{cc.attrs.taskWidgetVar}-#{taskWidget.id}" value="#{taskWidget.dataModel}" var="task"
         lazy="true" scrollRows="25"
-        disabledSelection="#{isPreviewMode}"
+        disabledSelection="#{isPreviewMode}" partialUpdate="false"
         liveScroll="true" scrollable="true" sortBy="#{(isResizing or isPreviewMode) ? null : taskWidget.sortBy}"
         showGridlines="#{isResizing}" resizableColumns="#{isResizing}" resizeMode="expand"
         rowIndexVar="rowIndex" rowHover="#{isReadOnlyMode}" selectionMode="single"
