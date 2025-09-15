@@ -882,7 +882,7 @@
         { "id" : "f100", "to" : "f37", "via" : [ { "x" : 272, "y" : 784 } ] }
       ]
     }, {
-      "id" : "f64",
+      "id" : "f101",
       "type" : "CallSubStart",
       "name" : "portalRenameDocumentItem(ICase,IvyDocument)",
       "config" : {
@@ -894,8 +894,7 @@
           ],
           "map" : {
             "out.businessCase" : "param.businessCase",
-            "out.document" : "param.document",
-            "out.isRenamingSuccess" : "true"
+            "out.document" : "param.document"
           }
         },
         "result" : {
@@ -912,13 +911,14 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 144, "y" : 1152 }
+        "at" : { "x" : 144, "y" : 912 },
+        "labelOffset" : { "x" : 17, "y" : 33 }
       },
       "connect" : [
-        { "id" : "f68", "to" : "f66" }
+        { "id" : "f103", "to" : "f102" }
       ]
     }, {
-      "id" : "f66",
+      "id" : "f102",
       "type" : "Script",
       "name" : "detect if need to skip rename",
       "config" : {
@@ -927,47 +927,81 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 336, "y" : 1152 }
+        "at" : { "x" : 352, "y" : 912 }
       },
       "connect" : [
-        { "id" : "f76", "to" : "f69" }
+        { "id" : "f105", "to" : "f104" }
       ]
     }, {
-      "id" : "f69",
+      "id" : "f104",
       "type" : "Alternative",
       "name" : "skip custom rename?",
       "config" : {
         "conditions" : {
-          "f77" : "in.skip",
-          "f97" : ""
+          "f111" : "in.skip",
+          "f106" : ""
         }
       },
       "visual" : {
-        "at" : { "x" : 496, "y" : 1152 },
+        "at" : { "x" : 480, "y" : 912 },
         "labelOffset" : { "y" : -24 }
       },
       "connect" : [
-        { "id" : "f97", "to" : "S10", "label" : {
+        { "id" : "f106", "to" : "S0", "label" : {
             "name" : "No"
           } },
-        { "id" : "f77", "to" : "f81", "via" : [ { "x" : 496, "y" : 1216 }, { "x" : 768, "y" : 1216 } ], "label" : {
+        { "id" : "f111", "to" : "f108", "via" : [ { "x" : 480, "y" : 960 }, { "x" : 728, "y" : 960 } ], "label" : {
             "name" : "Yes",
-            "segment" : 1.48
+            "segment" : 1.5
           } }
       ]
     }, {
-      "id" : "f95",
-      "type" : "CallSubEnd",
-      "visual" : {
-        "at" : { "x" : 864, "y" : 1152 },
-        "labelOffset" : { "x" : 13, "y" : 33 }
-      }
-    }, {
-      "id" : "S10",
+      "id" : "S0",
       "type" : "EmbeddedProcess",
       "name" : "Custom update filename",
       "elements" : [ {
-          "id" : "S10-f77",
+          "id" : "S0-f9",
+          "type" : "Script",
+          "name" : "Update filename and create note",
+          "config" : {
+            "output" : {
+              "code" : [
+                "import java.util.Arrays;",
+                "import ch.ivyteam.ivy.environment.Ivy;",
+                "import ch.ivyteam.ivy.workflow.document.Path;",
+                "import ch.ivyteam.ivy.workflow.document.IDocument;",
+                "",
+                "Ivy.log().info(\"Updating filename in customized sub process\");",
+                "",
+                "IDocument document = in.businessCase.documents().get(in.document.uuid);",
+                "",
+                "if (!document.getName().equals(in.document.name)) {",
+                "  String note = \"Customized sub process: \" +  ivy.cms.co(\"/Dialogs/com/axonivy/portal/components/DocumentTable/RenamingDocumentNote\", Arrays.asList(ivy.session.getSessionUserName(), document.getName(), in.document.getName()));",
+                "  ",
+                "  try {",
+                "    if (document.getName().equalsIgnoreCase(in.document.name)) {",
+                "      in.businessCase.documents().move(document, new Path(in.document.name + System.currentTimeMillis().toString()));",
+                "    }",
+                "    ",
+                "    in.businessCase.documents().move(document, new Path(in.document.name));",
+                "    in.businessCase.createNote(ivy.session, note);",
+                "  } catch (Exception e) {   ",
+                "    in.isRenamingSuccess = false;",
+                "    in.message = ivy.cms.co(\"/Dialogs/com/axonivy/portal/components/DocumentTable/RenamingFailed\");",
+                "  }",
+                "}"
+              ]
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 488, "y" : 160 },
+            "size" : { "width" : 144, "height" : 62 }
+          },
+          "connect" : [
+            { "id" : "S0-f10", "to" : "S0-f13", "color" : "default" }
+          ]
+        }, {
+          "id" : "S0-f7",
           "type" : "Script",
           "name" : "Validate new filename",
           "config" : {
@@ -991,15 +1025,15 @@
             "size" : { "width" : 128, "height" : 62 }
           },
           "connect" : [
-            { "id" : "S10-f89", "to" : "S10-f81", "color" : "default" }
+            { "id" : "S0-f8", "to" : "S0-f11", "color" : "default" }
           ]
         }, {
-          "id" : "S10-f81",
+          "id" : "S0-f11",
           "type" : "Alternative",
           "name" : "valid?",
           "config" : {
             "conditions" : {
-              "S10-f93" : "in.isRenamingSuccess"
+              "S0-f12" : "in.isRenamingSuccess"
             }
           },
           "visual" : {
@@ -1007,102 +1041,66 @@
             "labelOffset" : { "y" : -24 }
           },
           "connect" : [
-            { "id" : "S10-f93", "to" : "S10-f82", "label" : {
+            { "id" : "S0-f12", "to" : "S0-f9", "label" : {
                 "name" : "Yes"
               }, "color" : "default" },
-            { "id" : "S10-f86", "to" : "S10-f84", "via" : [ { "x" : 336, "y" : 214 }, { "x" : 648, "y" : 214 } ], "label" : {
+            { "id" : "S0-f15", "to" : "S0-f13", "via" : [ { "x" : 336, "y" : 215 }, { "x" : 648, "y" : 215 } ], "label" : {
                 "name" : "No",
                 "segment" : 1.5
               } }
           ]
         }, {
-          "id" : "S10-f82",
-          "type" : "Script",
-          "name" : "Update filename and create note",
-          "config" : {
-            "output" : {
-              "code" : [
-                "import java.util.Arrays;",
-                "import ch.ivyteam.ivy.environment.Ivy;",
-                "import ch.ivyteam.ivy.workflow.document.Path;",
-                "import ch.ivyteam.ivy.workflow.document.IDocument;",
-                "",
-                "Ivy.log().info(\"Updating filename in customized sub process\");",
-                "",
-                "IDocument document = in.businessCase.documents().get(in.document.uuid);",
-                "",
-                "if (!document.getName().equals(in.document.name)) {",
-                "  String note = \"Customized sub process: \" + ivy.cms.co(\"/Dialogs/com/axonivy/portal/components/DocumentTable/RenamingDocumentNote\", Arrays.asList(ivy.session.getSessionUserName(), document.getName(), in.document.getName()));",
-                "  ",
-                "  try {",
-                "    if (document.getName().equalsIgnoreCase(in.document.name)) {",
-                "      in.businessCase.documents().move(document, new Path(in.document.name + System.currentTimeMillis().toString()));",
-                "    }",
-                "    ",
-                "    in.businessCase.documents().move(document, new Path(in.document.name));",
-                "    in.businessCase.createNote(ivy.session, note);",
-                "  } catch (Exception e) {   ",
-                "    in.isRenamingSuccess = false;",
-                "    in.message = ivy.cms.co(\"/Dialogs/com/axonivy/portal/components/DocumentTable/RenamingFailed\");",
-                "  }",
-                "}"
-              ]
-            }
-          },
-          "visual" : {
-            "at" : { "x" : 488, "y" : 160 },
-            "size" : { "width" : 144, "height" : 62 }
-          },
-          "connect" : [
-            { "id" : "S10-f85", "to" : "S10-f84", "color" : "default" }
-          ]
-        }, {
-          "id" : "S10-f84",
+          "id" : "S0-f13",
           "type" : "Alternative",
           "visual" : {
             "at" : { "x" : 648, "y" : 160 },
             "labelOffset" : { "x" : 14, "y" : 34 }
           },
           "connect" : [
-            { "id" : "S10-f1", "to" : "S10-g1" }
+            { "id" : "S0-f1", "to" : "S0-g1", "color" : "default" }
           ]
         }, {
-          "id" : "S10-g0",
+          "id" : "S0-g0",
           "type" : "EmbeddedStart",
           "name" : "in 1",
           "visual" : {
             "at" : { "x" : 64, "y" : 160 },
             "labelOffset" : { "x" : 3, "y" : 23 }
           },
-          "parentConnector" : "f97",
+          "parentConnector" : "f106",
           "connect" : [
-            { "id" : "S10-f0", "to" : "S10-f77" }
+            { "id" : "S0-f0", "to" : "S0-f7" }
           ]
         }, {
-          "id" : "S10-g1",
+          "id" : "S0-g1",
           "type" : "EmbeddedEnd",
           "name" : "out 1",
           "visual" : {
             "at" : { "x" : 736, "y" : 160 },
             "labelOffset" : { "x" : 3, "y" : 23 }
           },
-          "parentConnector" : "f98"
+          "parentConnector" : "f109"
         } ],
       "visual" : {
-        "at" : { "x" : 640, "y" : 1152 }
+        "at" : { "x" : 616, "y" : 912 }
       },
       "connect" : [
-        { "id" : "f98", "to" : "f81" }
+        { "id" : "f109", "to" : "f108" }
       ]
     }, {
-      "id" : "f81",
+      "id" : "f107",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 800, "y" : 912 }
+      }
+    }, {
+      "id" : "f108",
       "type" : "Alternative",
       "visual" : {
-        "at" : { "x" : 768, "y" : 1152 },
-        "labelOffset" : { "x" : 14, "y" : 34 }
+        "at" : { "x" : 728, "y" : 912 }
       },
       "connect" : [
-        { "id" : "f82", "to" : "f95", "color" : "default" }
+        { "id" : "f110", "to" : "f107" }
       ]
     } ]
 }
