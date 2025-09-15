@@ -408,8 +408,8 @@ msgid ""
 "will be displayed."
 msgstr ""
 "Ivy には ``ViewExpiredException`` の警告ダイアログが用意されています。"
-"このダイアログは、プロジェクトの ``webContent/layouts/includes/exception.xhtml``"
-"ファイルにあります。プロジェクトのダイアログで :ref:`iframe-in-portal-ja` が使用"
+"このダイアログは、プロジェクトの ``webContent/layouts/includes/exception.xhtml`` "
+"ファイルにあります。プロジェクトのダイアログで :ref:`iframe-in-portal` が使用"
 "されている場合、 ``ViewExpiredException`` が発生すると、デフォルトの警告ダイアログが"
 "表示されます。"
 
@@ -744,19 +744,19 @@ msgstr "**CaseItemGeneralInformation** ``1``"
 
 #: ../../source/portal-developer-guide/customization/case-item-details.rst:13
 msgid "**CaseItemDocument** ``2``"
-msgstr "**CaseItemDetailsDocuments** ``2``
+msgstr "**CaseItemDetailsDocuments** ``2``"
 
 #: ../../source/portal-developer-guide/customization/case-item-details.rst:14
 msgid "**CaseItemRelatedCases** ``3``"
-msgstr "**CaseItemDetailsRelatedCases** ``3``
+msgstr "**CaseItemDetailsRelatedCases** ``3``"
 
 #: ../../source/portal-developer-guide/customization/case-item-details.rst:15
 msgid "**CaseItemRelatedTasks** ``4``"
-msgstr "**CaseItemDetailsRelatedTasks** ``4``
+msgstr "**CaseItemDetailsRelatedTasks** ``4``"
 
 #: ../../source/portal-developer-guide/customization/case-item-details.rst:16
 msgid "**CaseItemHistories** ``5``"
-msgstr "**CaseItemDetailsHistories** ``5``
+msgstr "**CaseItemDetailsHistories** ``5``"
 
 #: ../../source/portal-developer-guide/customization/case-item-details.rst:17
 msgid "**CaseItemBusinessDetails**"
@@ -934,7 +934,7 @@ msgid ""
 msgstr ""
 "``data`` （カスタムウィジェット）：カスタムウィジェットのデータ。:ref:`カス"
 "タムウィジェットの表示 <customization-case-item-details-how-to-override-ui-"
-"custom-body-ja>` を参照してください。"
+"custom-body>` を参照してください。"
 
 #: ../../source/portal-developer-guide/customization/case-item-details.rst:144
 msgid "**Do not change** ``type`` and ``id`` of widgets."
@@ -1136,8 +1136,7 @@ msgid ""
 "``processPath`` if you want to use an Ivy process start. You may "
 "predefine parameters for the process by adding ``params`` to the ``data``"
 " node."
-msgstr "``processPath`` ：Ivy のプロセス開始を使用する場合。 ``params`` を ``data``"
-"ノードに追加して、プロセスのパラメーターを事前に定義できます。"
+msgstr "``processPath`` ：Ivy のプロセス開始を使用する場合。 ``params`` を ``data`` ノードに追加して、プロセスのパラメーターを事前に定義できます。"
 
 #: ../../source/portal-developer-guide/customization/case-item-details.rst:290
 msgid "Use only one of ``processPath`` or ``url``."
@@ -2249,7 +2248,7 @@ msgid ""
 "To scale the homepage logo, override these variables: ``--small-home-"
 "logo-width``, ``--home-logo-height``."
 msgstr ""
-"ホームページのロゴを拡大縮小するには、``--small-home-logo-width``、``--home-logo-height``"
+"ホームページのロゴを拡大縮小するには、``--small-home-logo-width``、``--home-logo-height`` "
 "変数をオーバーライドしてください。"
 
 #: ../../source/portal-developer-guide/customization/portal-style-customization-logos-colors-date-patterns.rst:60
@@ -2837,8 +2836,8 @@ msgid ""
 "layout. There are 2 types of filter **:** ``categories`` (task "
 "categories) and ``states`` (task business states)."
 msgstr ""
-"``filters``：レイアウトを使用可能なタスクを決定する条件。 ``categories``"
-"（タスクのカテゴリー）と ``states``（タスクのビジネスの状態）の 2 つの"
+"``filters``：レイアウトを使用可能なタスクを決定する条件。 ``categories`` "
+"（タスクのカテゴリー）と ``states`` （タスクのビジネスの状態）の 2 つの"
 "タイプのフィルターがあります。"
 
 #: ../../source/portal-developer-guide/customization/task-item-details.rst:99
@@ -2889,15 +2888,16 @@ msgstr ""
 
 #: ../../source/portal-developer-guide/customization/task-item-details.rst:111
 msgid "``styleClass`` (optional): add CSS Classes to HTML DOM"
-msgstr "``styleClass``（オプション）：CSS クラスを HTML DOM に追加します。"
+msgstr "``styleClass`` （オプション）：CSS クラスを HTML DOM に追加します。"
 
 #: ../../source/portal-developer-guide/customization/task-item-details.rst:113
 msgid "``style`` (optional): add inline style to HTML DOM"
-msgstr "``style``（オプション）：インラインスタイルを HTML DOM に追加します。"
+msgstr "``style`` （オプション）：インラインスタイルを HTML DOM に追加します。"
 
 #: ../../source/portal-developer-guide/customization/task-item-details.rst:115
 msgid "``data`` (for custom widget): data for custom widget using iframe"
-msgstr "``data``（カスタムウィジェット）：iframe を使用するカスタムウィジェッ"
+msgstr ""
+"``data`` （カスタムウィジェット）：iframe を使用するカスタムウィジェッ"
 "トのデータ。"
 
 #: ../../source/portal-developer-guide/customization/task-item-details.rst:117
@@ -4554,7 +4554,7 @@ msgid ""
 "identifier of the Ivy process that will be displayed in custom widget"
 msgstr ""
 "``processPath``：カスタムウィジェットに表示される Ivy プロセスの "
-":dev-url:`|ivy| IWebStartable </doc/|version|/public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html>`"
+":dev-url:`|ivy| IWebStartable </doc/|version|/public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html>` "
 "ID。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-custom-widget.rst:147
@@ -4631,7 +4631,7 @@ msgid ""
 "custom widget."
 msgstr ""
 "カスタムウィジェットの Ivy プロセスの定義方法については、 ``variables.Portal.Dashboard.json`` "
-"JSON ファイル、 ``portal-user-examples`` プロジェクトの ``DashboardCustomWidgetExample/investmentList.ivp``"
+"JSON ファイル、 ``portal-user-examples`` プロジェクトの ``DashboardCustomWidgetExample/investmentList.ivp`` "
 "プロセスを参照してください。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-external-page-widget.rst:4
@@ -4648,12 +4648,9 @@ msgid ""
 "dashboard. This feature is especially useful for a company using other "
 "applications besides |ivy|. It allows user to interact with multiple "
 "systems directly from the Portal dashboard."
-msgstr "このウィジェットを使用して、外部ウェブページをポータルダッシュボード
-に埋め込むことができます。"
-"この機能は、|ivy| の他にアプリケーションを使用している企業にとって
-特に便利です。"
-"ユーザーは、複数のシステムをポータルダッシュボードから直接操作でき
-ます。"
+msgstr "このウィジェットを使用して、外部ウェブページをポータルダッシュボードに埋め込むことができます。"
+"この機能は、|ivy| の他にアプリケーションを使用している企業にとって特に便利です。"
+"ユーザーは、複数のシステムをポータルダッシュボードから直接操作できます。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-external-page-widget.rst:15
 msgid "|external-page-widget-configuration|"
@@ -4667,8 +4664,7 @@ msgstr "external-page-widget-configuration"
 msgid ""
 "``Widget title``: Title of the widget. Leave it blank to hide header of "
 "the widget."
-msgstr "``Widget title``：ウィジェットのタイトル。ウィジェットのヘッダーを非表
-示にするには、空白のままにしてください。"
+msgstr "``Widget title``：ウィジェットのタイトル。ウィジェットのヘッダーを非表示にするには、空白のままにしてください。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-external-page-widget.rst:19
 msgid "``External URL``: External page link."
@@ -4680,8 +4676,9 @@ msgstr "``External URL``：外部ページのリンク。"
 msgid ""
 "``showFullscreenMode``: visibility of the fullscreen mode icon. The "
 "default value is ``true``, set to ``false`` to hide the icon."
-msgstr "``showFullscreenMode``：全画面モードのアイコンの表示設定。デフォルト値は
- ``true`` です。アイコンを非表示にするには ``false`` に設定してください。"
+msgstr ""
+"``showFullscreenMode``：全画面モードのアイコンの表示設定。デフォルト値は"
+"``true`` です。アイコンを非表示にするには ``false`` に設定してください。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-external-page-widget.rst:25
 msgid "Define An External Page Widget Using JSON"
@@ -4697,8 +4694,7 @@ msgstr "属性の説明："
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-external-page-widget.rst:52
 msgid "``type``: type of the widget. Use ``custom`` for an external page widget."
-msgstr "``type``：ウィジェットのタイプ。外部ページウィジェットには ``custom`` を
-使用します。"
+msgstr "``type``：ウィジェットのタイプ。外部ページウィジェットには ``custom`` を使用します。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-external-page-widget.rst:56
 msgid "``names``: multi-language names of the widget on the UI"
@@ -4718,9 +4714,10 @@ msgid ""
 "Some external websites do not allow to be loaded in IFrames. You have to "
 "make sure that their security policy allows the embedding if you want to "
 "use these pages in your custom widget."
-msgstr "外部ウェブサイトによっては、IFrame にロードできません。そのようなページを
-カスタムウィジェットで使用したい場合は、ウェブサイトのセキュリティポリシ
-ーで埋め込みが許可されていることを確認する必要があります。"
+msgstr ""
+"外部ウェブサイトによっては、IFrame にロードできません。そのようなページを"
+"カスタムウィジェットで使用したい場合は、ウェブサイトのセキュリティポリシ"
+"ーで埋め込みが許可されていることを確認する必要があります。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-notification-widget.rst:4
 msgid "Configure Notifications Widget"
@@ -4735,8 +4732,9 @@ msgid ""
 "The Notifications widget of the Portal dashboard displays all "
 "notifications based on your notification settings. Refer to "
 ":ref:`Notifications widget <add-new-notification-widget>` for details."
-msgstr "ポータルダッシュボードの通知ウィジェットには、通知設定に基づくすべ
-ての通知が表示されます。詳細については、 :ref:`Notifications widget <add-new-notification-widget>` を参照してください。"
+msgstr ""
+"ポータルダッシュボードの通知ウィジェットには、通知設定に基づくすべ"
+"ての通知が表示されます。詳細については、 :ref:`Notifications widget <add-new-notification-widget>` を参照してください。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-notification-widget.rst:12
 msgid ""
@@ -4752,8 +4750,7 @@ msgstr "通知ウィジェットの JSON の基本的な構造"
 msgid ""
 "``type``: type of the widget. Use ``notification`` for a notification "
 "widget"
-msgstr "``type``：ウィジェットのタイプ。通知ウィジェットには ``notification`` を
-使用します。"
+msgstr "``type``：ウィジェットのタイプ。通知ウィジェットには ``notification`` を使用します。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-notification-widget.rst:56
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:83
@@ -6037,8 +6034,7 @@ msgstr "task-embedInFrame"
 msgid ""
 "**Case Level**: Set the ``embedInFrame`` String field in Case custom "
 "fields to:"
-msgstr "**ケースレベル**：ケースのカスタムフィールドの ``embedInFrame`` 文字列
-フィールドを設定します。"
+msgstr "**ケースレベル**：ケースのカスタムフィールドの ``embedInFrame`` 文字列フィールドを設定します。"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:48
 msgid "Leave unset to use engine-level configuration."
@@ -6061,9 +6057,9 @@ msgid ""
 "The **Portal Administrator** can globally configure all tasks to start "
 "inside IFrames by setting the ``Portal.EmbedInFrame`` value in the Portal"
 " settings. Refer to :ref:`update-portal-settings`."
-msgstr "**ポータル管理者** は、ポータル設定の ``Portal.EmbedInFrame`` の値を設定
-して、すべてのタスクが IFrame 内で開始するように設定できます。 :ref:`update-portal-
-settings` を参照してください。"
+msgstr ""
+"**ポータル管理者** は、ポータル設定の ``Portal.EmbedInFrame`` の値を設定"
+"して、すべてのタスクが IFrame 内で開始するように設定できます。 :ref:`update-portal-settings` を参照してください。"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:60
 msgid "Configure Template"
@@ -6083,8 +6079,7 @@ msgstr "作業中のタスクの名前とアイコン。"
 msgid ""
 "Process chain configuration. (See: :ref:`components-portal-components-"
 "process-chain`)."
-msgstr "プロセスチェーンの設定。 （参照： :ref:`components-portal-components-process-
-chain`）。"
+msgstr "プロセスチェーンの設定。 （参照： :ref:`components-portal-components-process-chain`）。"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:67
 msgid "Show/hide case details and other actions."
@@ -6125,8 +6120,7 @@ msgstr "``caseId``：ケース情報ダイアログに表示されるケース�
 
 #: ../../source/portal-developer-guide/iframe/index.rst:84
 msgid "``isHideCaseInfo``: Hides the ``Show Information`` button when true."
-msgstr "``isHideCaseInfo``：true に設定されている場合は、 ``情報の表示`` ボタンを非表示に
-します。"
+msgstr "``isHideCaseInfo``：true に設定されている場合は、 ``情報の表示`` ボタンを非表示にします。"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:86
 msgid "**Process Steps**"
@@ -6144,8 +6138,7 @@ msgstr "``processSteps``：プロセスステップのリストまたは JSON。
 
 #: ../../source/portal-developer-guide/iframe/index.rst:90
 msgid "``isShowAllSteps``: Displays all steps on large screens when true."
-msgstr "``isShowAllSteps``：true に設定されている場合は、すべてのステップを大画面に表示
-します。"
+msgstr "``isShowAllSteps``：true に設定されている場合は、すべてのステップを大画面に表示します。"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:91
 msgid ""
@@ -6165,15 +6158,15 @@ msgstr "**タスクアクション**"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:96
 msgid "``isHideTaskAction``: Hides the task action button when true."
-msgstr "``isHideTaskAction``：true に設定されている場合は、タスクアクションボタンを非表示に
-します。"
+msgstr "``isHideTaskAction``：true に設定されている場合は、タスクアクションボタンを非表示にします。"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:97
 msgid ""
 "``isWorkingOnATask``: Indicates if a task is currently being worked on, "
 "useful for displaying a warning when leaving the page."
-msgstr "``isWorkingOnATask``：タスクが現在作業中かどうかを示します。ページから離れる際に
-警告を表示するのに有用です。"
+msgstr ""
+"``isWorkingOnATask``：タスクが現在作業中かどうかを示します。ページから離れる際に"
+"警告を表示するのに有用です。"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:100
 msgid "**Miscellaneous**"
@@ -7591,8 +7584,8 @@ msgid ""
 "<https://market.axonivy.com/html-dialog-demo>`_. So that you need to "
 "update your files that are using classes in ivy-icon.css."
 msgstr ""
-"ivy-icon.css を削除し、現在のクラスを `HTML Dialog Demo <https://market.axonivy.com/html-dialog-demo>`_
-"にある新しいクラスに置き換えました。そのため、ivy-icon.css のクラスを使用しているファイルを更新
+"ivy-icon.css を削除し、現在のクラスを `HTML Dialog Demo <https://market.axonivy.com/html-dialog-demo>` _"
+"にある新しいクラスに置き換えました。そのため、ivy-icon.css のクラスを使用しているファイルを更新"
 "する必要があります。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:403
