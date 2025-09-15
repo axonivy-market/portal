@@ -5,6 +5,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -17,6 +18,7 @@ import org.primefaces.virusscan.VirusScannerService;
 
 import com.axonivy.portal.components.document.DocumentDetector;
 import com.axonivy.portal.components.document.DocumentDetectorFactory;
+import com.axonivy.portal.components.enums.NewFilenameValidation;
 import com.axonivy.portal.components.ivydata.bo.IvyDocument;
 import com.axonivy.portal.components.service.exception.PortalException;
 
@@ -29,6 +31,8 @@ import ch.ivyteam.ivy.workflow.document.IDocumentService;
 import ch.ivyteam.ivy.workflow.document.Path;
 
 public class CaseDocumentService {
+
+  private static final Pattern FORBIDDEN_PATTERN = Pattern.compile("[\\\\/:*?\"<>|]");
 
   private ICase iCase;
 
@@ -66,6 +70,21 @@ public class CaseDocumentService {
   public boolean doesDocumentExist(String filename) {
     IDocument document = documentsOf(iCase).get(new Path(filename));
     return document != null;
+  }
+
+  public boolean containsForbiddenChars(String filename) {
+    return FORBIDDEN_PATTERN.matcher(filename).find();
+  }
+
+  public NewFilenameValidation isNewFilenameValid(IvyDocument modifiedDoc) {
+    String newName = modifiedDoc.getName();
+    if (this.containsForbiddenChars(newName)) {
+      return NewFilenameValidation.INVALID_FORMAT;
+    }
+
+    boolean filenameExists = documentsOf(iCase).getAllDirectBelow(new Path("/")).stream()
+        .anyMatch(doc -> doc.getName().equalsIgnoreCase(newName) && !doc.uuid().equals(modifiedDoc.getUuid()));
+    return filenameExists ? NewFilenameValidation.ALREADY_EXIST : NewFilenameValidation.VALID;
   }
 
   public static boolean isDocumentTypeValid(String filename, String allowedFileTypes) {

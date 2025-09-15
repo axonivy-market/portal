@@ -52,5 +52,13 @@
   }, {
     "name" : "isDocumentPreviewEnabled",
     "type" : "Boolean"
+  }, {
+    "name" : "isRenameDocumentSuccess",
+    "type" : "Boolean",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "renameDocumentMessage",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
   } ]
 }
