@@ -20,7 +20,7 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.logging.log4j.util.Strings;
 
 import com.axonivy.portal.dto.News;
-import com.axonivy.portal.service.DeepLTranslationService;
+import com.axonivy.portal.service.IvyTranslationService;
 import com.axonivy.portal.service.NewsService;
 
 import ch.ivy.addon.portalkit.enums.PortalPermission;
@@ -135,7 +135,7 @@ public class NewsWidgetBean implements Serializable {
     String translatedText = Strings.EMPTY;
     warningText = Strings.EMPTY;
     try {
-      translatedText = DeepLTranslationService.getInstance().translate(text, defaultLanguage, target);
+      translatedText = IvyTranslationService.getInstance().translate(text, defaultLanguage, target);
     } catch (Exception e) {
       warningText = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/SomeThingWentWrong");
       Ivy.log().error("DeepL Translation Service error: ", e.getMessage());

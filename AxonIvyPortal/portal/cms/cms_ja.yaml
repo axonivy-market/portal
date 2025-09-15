@@ -238,7 +238,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       checkSystemNotesByDefault: TODO If the value is true and system notes are visible, the checkbox will appear checked.
       checkSystemTasksByDefault: TODO If the value is true and system tasks are visible, the checkbox will appear checked.
       dateFilterWithTime: 時間による日付フィルタリングを有効にするには、true に設定してください。この設定は、タスク リスト、ケース リスト、および統計に影響します。
-      deepLAuthKey: DeepL認証キー（末尾は:fx）
       defaultHomepage: ホームアイコンまたはロゴをクリックしたときにリダイレクトされる標準ホームページを設定します。この設定は、タスク完了後の終了ページにも適用されます。
       defaultProcessImage: 画像処理リストに表示される初期画像の標準設定。
       defaultProcessMode: 処理リストの表示モードの標準設定。
@@ -253,7 +252,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       displayMessageAfterFinishOrLeaveTask: ユーザーがタスクを完了または退出すると、フィードバック メッセージが表示されます。
       embedInFrame: プロセス／タスクをIFrameモードで開始するには true に設定してください
       enableCaseOwner: ケースがクエリーされるときに、フィルタリングケースオーナーを有効にするには true に設定します。この設定は、ケースリスト、グローバル検索、統計など、すべてのケースクエリーに影響します。デフォルトでは非表示になっているタスクウィジェットで、「現在のケース所有者でタスクをフィルタする」フィルタも利用可能になります。
-      enableDeepLTranslation: DeepL翻訳サポートを有効にするには、このプロパティーを true に設定してください。
       enableGroupChat: グループ チャット機能を有効にするには、このプロパティーを true に設定してください。
       enablePinCase: 'TODO: Set this property to true to enable the ability to pin cases.'
       enablePinTask: 'TODO: Set this property to true to enable the ability to pin tasks.'

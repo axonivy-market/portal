@@ -50,7 +50,7 @@ import com.axonivy.portal.dto.dashboard.NavigationDashboardWidget;
 import com.axonivy.portal.dto.dashboard.NewsDashboardWidget;
 import com.axonivy.portal.dto.dashboard.NotificationDashboardWidget;
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
-import com.axonivy.portal.service.DeepLTranslationService;
+import com.axonivy.portal.service.IvyTranslationService;
 import com.axonivy.portal.service.StatisticService;
 import com.axonivy.portal.util.DashboardCloneUtils;
 import com.axonivy.portal.util.WelcomeWidgetUtils;
@@ -1081,7 +1081,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
           .filter(lang -> currentLanguage.equals(lang.getLocale().getLanguage())).findFirst();
       if (optional.isPresent()) {
         try {
-          translatedText = DeepLTranslationService.getInstance().translate(optional.get().getValue(),
+          translatedText = IvyTranslationService.getInstance().translate(optional.get().getValue(),
               optional.get().getLocale(), title.getLocale());
         } catch (Exception e) {
           warningText = Ivy.cms()
