@@ -84,15 +84,13 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public void addNoteContent(String noteContent) {
-    waitForElementDisplayed(By.cssSelector("div.ui-dialog[aria-hidden='false']"), true);
-    SelenideElement addNoteDialog = findElementByCssSelector("div.ui-dialog[aria-hidden='false']");
-    waitForElementDisplayed(By.cssSelector("div.ui-dialog[aria-hidden='false']"), true);
-    SelenideElement textArea =
-        addNoteDialog.$(By.cssSelector("textarea[id$='note-content']")).shouldBe(appear, DEFAULT_TIMEOUT);
-    textArea.shouldBe(clickable(), DEFAULT_TIMEOUT).click();
+    $("div.ui-dialog[aria-hidden='false']").shouldBe(appear, DEFAULT_TIMEOUT);
+    SelenideElement addNoteDialog = $("div.ui-dialog[aria-hidden='false']").shouldBe(appear, DEFAULT_TIMEOUT);
+    SelenideElement textArea = addNoteDialog.$("textarea[id$='note-content']").shouldBe(appear, DEFAULT_TIMEOUT);
+    textArea.shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     textArea.sendKeys(noteContent);
-    SelenideElement saveButton = addNoteDialog.$(By.cssSelector("button[id$='save-add-note-command']"));
-    waitForElementClickableThenClick(saveButton);
+    SelenideElement saveButton = addNoteDialog.$("button[id$='save-add-note-command']");
+    saveButton.shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     saveButton.shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 
