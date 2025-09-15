@@ -10,7 +10,6 @@ import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.ScreenshotBaseTest;
 import com.axonivy.portal.selenium.common.ScreenshotUtils;
 import com.axonivy.portal.selenium.common.TestAccount;
-import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 
 @IvyWebTest
@@ -20,8 +19,6 @@ public class MultiLanguageTranslationSupportScreenshotTest extends ScreenshotBas
   @BeforeEach
   public void setup() {
     super.setup();
-    updatePortalSetting(Variable.DEEPL_AUTH_KEY.getKey(), "DEEPL_AUTH_KEY");
-    updatePortalSetting(Variable.ENABLE_DEEPL_TRANSLATION.getKey(), "true");
   }
 
   @Test
