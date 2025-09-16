@@ -62,7 +62,7 @@ Variables:
     # It will be shown with the page title
     ApplicationName: Axon Ivy
 
-    LogoAltText: Home logo
+    LogoAltText:
 
     Accessibility:
       # Set to true to allow the user interact with the keyboard shortcuts toggle.
