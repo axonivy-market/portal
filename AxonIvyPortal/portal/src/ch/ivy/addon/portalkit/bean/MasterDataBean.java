@@ -126,7 +126,9 @@ public class MasterDataBean implements Serializable {
   }
 
   public String getLogoAltText() {
-    return Ivy.var().get(LOGO_ALT_TEXT);
+    String customLogoAltText = Ivy.var().get(LOGO_ALT_TEXT);
+    return StringUtils.isBlank(customLogoAltText) ? Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/homeLogo")
+        : customLogoAltText;
   }
 
   public String getUserLanguage() {

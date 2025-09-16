@@ -20,12 +20,12 @@
 
   <!-- LOGO  -->
   <div class="sidebar-logo">
-    <p:commandLink ariaLabel="#{masterDataBean.logoAltText}"  
+    <p:commandLink ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/homeLogo')}"  
       id="logo" action="#{userMenuBean.navigateToHomePageOrDisplayWorkingTaskWarning(data.isWorkingOnATask, task)}" >
       <p:graphicImage styleClass="portal-home-logo" name="#{ivyFreyaTheme.logo}" library="ivy-branding" alt="#{masterDataBean.logoAltText}" />
     </p:commandLink>
     
-    <p:commandLink id="logo-small" ariaLabel="#{masterDataBean.logoAltText}"  
+    <p:commandLink id="logo-small" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/homeLogo')}"  
       action="#{userMenuBean.navigateToHomePageOrDisplayWorkingTaskWarning(data.isWorkingOnATask, task)}" styleClass="portal-home-logo-small">
       <p:graphicImage styleClass="portal-home-logo portal-home-logo-small" name="logo_small" library="ivy-branding" alt="#{masterDataBean.logoAltText}" />
     </p:commandLink>
