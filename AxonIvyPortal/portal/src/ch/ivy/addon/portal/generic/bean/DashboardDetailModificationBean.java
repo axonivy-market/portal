@@ -1086,7 +1086,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
         } catch (Exception e) {
           warningText = Ivy.cms()
               .co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/SomeThingWentWrong");
-          Ivy.log().error("DeepL Translation Service error: ", e.getMessage());
+          Ivy.log().error("Ivy Translation Service error: ", e.getMessage());
         }
       }
     }

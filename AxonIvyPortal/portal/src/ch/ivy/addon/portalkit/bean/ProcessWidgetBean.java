@@ -30,8 +30,8 @@ import org.primefaces.event.UnselectEvent;
 
 import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import com.axonivy.portal.components.util.RoleUtils;
-import com.axonivy.portal.service.IvyTranslationService;
 import com.axonivy.portal.service.GlobalSearchService;
+import com.axonivy.portal.service.IvyTranslationService;
 import com.axonivy.portal.util.ExternalLinkUtils;
 import com.axonivy.portal.util.UploadDocumentUtils;
 
@@ -581,7 +581,7 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
         } catch (Exception e) {
           warningText = Ivy.cms()
               .co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/SomeThingWentWrong");
-          Ivy.log().error("DeepL Translation Service error: ", e.getMessage());
+          Ivy.log().error("Ivy Translation Service error: ", e.getMessage());
         }
       }
     }

@@ -60,8 +60,6 @@ Portal.Theme.Mode,LIGHT,The default theme mode of the application.
 Portal.SearchScope.ByCaseFields,"NAME, DESCRIPTION, CUSTOM",Defining the fields that the global search will use to find matching cases beside case Id (this can influence the performance of the search).
 Portal.SearchScope.ByTaskFields,"NAME, DESCRIPTION",Defining the fields that the global search will use to find matching tasks beside task Id (this can influence the performance of the search).
 Portal.GlobalFooterInfo,"",Defining the global environment footer info.
-Portal.DeepL.AuthKey,,DeepL Authentication Key (should end with :fx)
-Portal.DeepL.Enable,FALSE,Set this property to true to enable the DeepL translation support.
 Portal.ShowQuickGlobalSearch,TRUE,For switch on/off the display of the quick global search.
 Portal.UserMenu.ShowQRCode,FALSE,For switch on/off the display of the QR code.
 Portal.UserMenu.BaseQRCodeUrl,"",Set Base URL for QR code to display.

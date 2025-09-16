@@ -141,6 +141,11 @@ In Engine
 
 #. Follow detailed migration notes for each version below.
 
+Migrate 13.1 To 13.2
+--------------------
+
+If you are using DeepL translation service in the Portal, please reconfigure it according to the instructions provided here: :dev-url:`|ivy| Translation service </doc/|version|/engine-guide/configuration/translation-service/index.html>`
+
 Migrate 11.3.2 To 12.0.0
 ------------------------
 
@@ -485,7 +490,8 @@ releases of |ivy|.
 Changes in 13.2.0
 -----------------
 - Enhanced the document preview feature for the task and case detail. If you have DocFactory in the same security context. You can preview Word(doc, docx), Excel(xls, xlsx) and email(eml) documents.
-
+- Removed the Portal Setting ``Portal.DeepL.AuthKey``.
+- Removed the Portal Setting ``Portal.DeepL.Enable``.
 
 Changes in 13.1.0
 -----------------
