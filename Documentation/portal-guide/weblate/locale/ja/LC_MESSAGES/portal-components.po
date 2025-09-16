@@ -56,7 +56,7 @@ msgstr "属性"
 #: ../../source/portal-components/documents/security_member_name_and_avatar_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
 msgid "Name"
-msgstr ""
+msgstr "名前"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 #: ../../source/portal-components/documents/process_chain_component_attributes.csv:1
@@ -79,7 +79,7 @@ msgstr ""
 #: ../../source/portal-components/documents/security_member_name_and_avatar_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
 msgid "Type"
-msgstr ""
+msgstr "タイプ"
 
 #: ../../source/portal-components/documents/css_variables/process_chain.csv:1
 #: ../../source/portal-components/documents/css_variables/process_history.csv:1
@@ -1959,27 +1959,27 @@ msgid ""
 "You have to add a new css file to your resources and import it into your "
 "template."
 msgstr ""
-"リソースに新しい CSS ファイルを追加し、テンプレートにインポートする必要があります。"
+"新しい css ファイルをリソースに追加し、テンプレートにインポートする必要があります。"
 
 #: ../../source/portal-components/style-customization/index.rst:24
 msgid ""
 "You have to place your css file in a ``<h:outputStylesheet />`` below the"
 " component to override defined styles."
 msgstr ""
-"定義済みのスタイルを上書きするには、コンポーネントの下に ``<h:outputStylesheet />`` "
-"で CSS ファイルを配置する必要があります。"
+"コンポーネントの下にある ``<h:outputStylesheet />`` に css ファイルを配置して、規定のスタ"
+"イルをオーバーライドする必要があります。"
 
 #: ../../source/portal-components/style-customization/index.rst:26
 msgid ""
 "Within this file you can override default css variables of components. "
 "For example, the \\--process-history-description-text-color:"
 msgstr ""
-"このファイル内で、コンポーネントのデフォルトの CSS 変数を上書きできます。"
-"たとえば、\\--process-history-description-text-color："
+"このファイル内で、コンポーネントのデフォルトの css 変数をオーバーライドできます。"
+"例えば、\\--process-history-description-text-color の場合は以下のようになります。"
 
 #: ../../source/portal-components/style-customization/index.rst:35
 msgid "List of css variables that you can override"
-msgstr "上書き可能な CSS 変数のリスト"
+msgstr "オーバーライドできる css 変数のリスト"
 
 #: ../../source/portal-components/documents/css_variables/process_chain.csv:1
 #: ../../source/portal-components/documents/css_variables/process_history.csv:1
