@@ -36,7 +36,7 @@ public class MasterDataBean implements Serializable {
   private static final String PORTAL_NAME = Ivy.cms().co("/ch.ivy.addon.portal.generic/PortalName/PortalName");
   private static final long serialVersionUID = 1L;
   private static final String APPLICATION_NAME = GlobalVariable.APPLICATION_NAME.getKey();
-  private static final String LOGO_ALT_TEXT = GlobalVariable.LOGO_ALT_TEXT.getKey();
+  private static final String LOGO_ALT_TEXT = "Portal.LogoAltText";
 
   public AwesomeIcon[] getAwesomeIcons() {
     return AwesomeIcon.values();

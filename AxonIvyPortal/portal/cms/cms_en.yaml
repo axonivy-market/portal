@@ -250,7 +250,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       DefaultThemeMode: The default theme mode of the application
       EnableSwitchThemeModeButton: Set to true to enable the switch theme button.
       GlobalSearchScopeCategoriesNote: Defining the types that the global search will search for
-      LogoAltText: The alternative text for the portal logo that will be used for accessibility purposes. This text describes the logo for screen readers and other assistive technologies.
       RoleDirectChildrenLimit: 'The set number controls the amount of direct children roles that is shown in Role Management tab. Valid number: 10, 50, 100'
       RoleParentLimit: 'The set number controls the amount of parent roles that is shown when filtering roles in Role Management tab. Valid number: 5, 10, 20'
       SearchScopeCaseFields: Defining the fields that the global search will use to find matching cases beside case Id (this can influence the performance of the search)
