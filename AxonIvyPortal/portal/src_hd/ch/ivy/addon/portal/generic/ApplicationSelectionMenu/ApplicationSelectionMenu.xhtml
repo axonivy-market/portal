@@ -16,20 +16,21 @@
 
 <cc:implementation>
   <c:set var="task" value="#{not empty cc.attrs.task ? cc.attrs.task : ivy.task}" />
+  <c:set var="logoDescription" value="#{masterDataBean.logoDescription}" />
   <f:event listener="#{logic.init(cc.attrs.isWorkingOnATask, task)}" type="preRenderComponent" />
 
   <!-- LOGO  -->
   <div class="sidebar-logo">
-    <p:commandLink ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/homeLogo')}" id="logo" 
+    <p:commandLink ariaLabel="#{logoDescription}" id="logo" 
       action="#{userMenuBean.navigateToHomePageOrDisplayWorkingTaskWarning(data.isWorkingOnATask, task)}" 
       onclick="removeNavigationDashboardBackButton();"
       styleClass="js-logo-url-#{userMenuBean.base64EncodedHomeUrl}">
-      <p:graphicImage styleClass="portal-home-logo" name="#{ivyFreyaTheme.logo}" library="ivy-branding" alt="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/homeLogo')}"/>
+      <p:graphicImage styleClass="portal-home-logo" name="#{ivyFreyaTheme.logo}" library="ivy-branding" alt="#{logoDescription}"/>
     </p:commandLink>
     <p:commandLink id="logo-small" action="#{userMenuBean.navigateToHomePageOrDisplayWorkingTaskWarning(data.isWorkingOnATask, task)}" 
       styleClass="portal-home-logo-small js-logo-url-#{userMenuBean.base64EncodedHomeUrl}"
-      ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/homeLogo')}">
-      <p:graphicImage styleClass="portal-home-logo portal-home-logo-small" name="logo_small" library="ivy-branding" alt="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/homeLogo')}" />
+      ariaLabel="#{logoDescription}">
+      <p:graphicImage styleClass="portal-home-logo portal-home-logo-small" name="logo_small" library="ivy-branding" alt="#{logoDescription}" />
     </p:commandLink>
 
     <p:commandLink id="toggle-menu" styleClass="sidebar-pin" global="false" ariaLabel="#{ivy.cms.co('/Labels/ToggleMenu')}"
