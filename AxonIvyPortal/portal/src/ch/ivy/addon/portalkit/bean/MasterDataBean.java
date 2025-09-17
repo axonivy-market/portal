@@ -36,7 +36,7 @@ public class MasterDataBean implements Serializable {
   private static final String PORTAL_NAME = Ivy.cms().co("/ch.ivy.addon.portal.generic/PortalName/PortalName");
   private static final long serialVersionUID = 1L;
   private static final String APPLICATION_NAME = GlobalVariable.APPLICATION_NAME.getKey();
-  private static final String LOGO_ALT_TEXT = "Portal.LogoAltText";
+  private static final String LOGO_DESCRIPTION = "Portal.LogoDescription";
 
   public AwesomeIcon[] getAwesomeIcons() {
     return AwesomeIcon.values();
@@ -125,11 +125,11 @@ public class MasterDataBean implements Serializable {
     return Ivy.var().get(APPLICATION_NAME);
   }
 
-  public String getLogoAltText() {
-    if (Ivy.var().variable(LOGO_ALT_TEXT) == null || Ivy.var().variable(LOGO_ALT_TEXT).isDefault()) {
+  public String getLogoDescription() {
+    if (Ivy.var().variable(LOGO_DESCRIPTION) == null || Ivy.var().variable(LOGO_DESCRIPTION).isDefault()) {
       return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/homeLogo");
     }
-    return Ivy.var().get(LOGO_ALT_TEXT);
+    return Ivy.var().get(LOGO_DESCRIPTION);
   }
 
   public String getUserLanguage() {
