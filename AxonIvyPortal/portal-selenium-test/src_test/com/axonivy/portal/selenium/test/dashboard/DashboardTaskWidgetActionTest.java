@@ -1,5 +1,8 @@
 package com.axonivy.portal.selenium.test.dashboard;
 
+import static com.codeborne.selenide.CollectionCondition.size;
+import static com.codeborne.selenide.CollectionCondition.sizeGreaterThanOrEqual;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -14,8 +17,6 @@ import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.TaskTemplateIFramePage;
 import com.axonivy.portal.selenium.page.TaskWidgetNewDashBoardPage;
-import static com.codeborne.selenide.CollectionCondition.size;
-import static com.codeborne.selenide.CollectionCondition.sizeGreaterThanOrEqual;
 import com.codeborne.selenide.ElementsCollection;
 
 import ch.ivy.addon.portalkit.enums.PortalVariable;
@@ -86,7 +87,6 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
   public void testVisibilityTaskActionForAdminUser() {
     login(TestAccount.ADMIN_USER);
     createTasksForTesting();
-    // Wait for task list to be fully loaded before checking actions
     newDashboardPage.waitForTaskListDisplay();
     
     // Ready for Join
@@ -94,14 +94,12 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
         Arrays.asList(DETAILS, RESET, DESTROY, TRIGGER_ESCALATION, WORKFLOW_EVENTS, PROCESS_VIEWER));
 
     refreshPage();
-    // Wait for page to reload completely
     newDashboardPage.waitForTaskListDisplay();
     TaskWidgetNewDashBoardPage taskWidget = new TaskWidgetNewDashBoardPage();
     // Suspended
     taskWidget.openFilterWidget();
     removeAllExistingFilter();
     taskWidget.applyFilter();
-    // Wait for filter to be applied and data to reload
     newDashboardPage.waitForPageLoad();
     assertTaskActionsByTaskStateAndName(OPEN, "Sick Leave Request", Arrays.asList(DETAILS, DELEGATE, RESERVE,
         CLEAR_EXPIRY, DESTROY, TRIGGER_ESCALATION, WORKFLOW_EVENTS, PROCESS_VIEWER));
@@ -213,17 +211,14 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
     redirectToRelativeLink(createTechnicalStateUrl);
     redirectToNewDashBoard();
     
-    // Wait for dashboard to load completely
     newDashboardPage.waitForTaskListDisplay();
     
     TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
     taskWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
     
-    // Failed - Ensure browser resolution is adequate for table rendering
     resizeBrowserTo2kResolution();
     refreshPage();
     
-    // Wait for page to fully reload with proper table structure
     newDashboardPage.waitForTaskListDisplay();
     newDashboardPage.waitForPageLoad();
     
@@ -235,7 +230,6 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
     removeAllExistingFilter();
     taskWidget.applyFilter();
     
-    // Wait for filter to complete and table to re-render
     newDashboardPage.waitForPageLoad();
     
     assertTaskActionsByTaskStateAndName(ERROR, "Signal create Technical task",
@@ -254,13 +248,8 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
 
   private void assertTaskAction(int index, List<String> taskActionsInTask) {
     TaskWidgetNewDashBoardPage taskWidget = new TaskWidgetNewDashBoardPage();
-    
-    // Wait for table to be completely loaded before accessing task actions
     taskWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
-    
-    // Additional wait to ensure table structure is fully rendered
     newDashboardPage.waitForPageLoad();
-    
     ElementsCollection actions = taskWidget.getActiveTaskActions(index);
     actions.shouldHave(size(taskActionsInTask.size()));
     assertTrue(actions.texts().containsAll(taskActionsInTask));

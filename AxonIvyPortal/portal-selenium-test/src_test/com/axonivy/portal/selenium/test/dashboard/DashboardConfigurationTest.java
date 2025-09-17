@@ -283,19 +283,12 @@ public class DashboardConfigurationTest extends BaseTest {
     NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
     newDashboardDetailsEditPage.clickOnRemoveWidgetButton();
 
-    // Wait for dashboard to stabilize after widget removal
     waitForDashboardStableAfterWidgetRemoval();
     
     // Verify that total number of widgets is 9 (originally 10, now deleted 1)
-    // This is more robust than looking for specific widget types
     $$(".grid-stack-item").shouldHave(size(9));
   }
 
-  /**
-   * Helper method to wait for dashboard stability after widget removal.
-   * This ensures that the page has fully re-rendered and widgets are properly loaded
-   * before making assertions about the remaining widgets.
-   */
   private void waitForDashboardStableAfterWidgetRemoval() {
     // Wait a bit for the DOM to update after widget removal
     try {
@@ -303,14 +296,8 @@ public class DashboardConfigurationTest extends BaseTest {
     } catch (InterruptedException e) {
       Thread.currentThread().interrupt();
     }
-    
-    // Wait for page to be loaded and dashboard to be stable
     newDashboardPage.waitPageLoaded();
-    
-    // Ensure dashboard container is visible and stable
     $(".js-dashboard__wrapper").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
-    
-    // Additional wait to ensure all widgets are properly rendered
     $$(".grid-stack-item").shouldBe(CollectionCondition.sizeGreaterThan(0), DEFAULT_TIMEOUT);
   }
 
@@ -326,9 +313,7 @@ public class DashboardConfigurationTest extends BaseTest {
     NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
     newDashboardDetailsEditPage.clickOnRemoveWidgetButton();
     
-    // Wait for dashboard to stabilize after widget removal
     waitForDashboardStableAfterWidgetRemoval();
-    
     // Verify that total number of widgets is 9 (originally 10, now deleted 1)
     // This is more robust than looking for specific widget types
     $$(".grid-stack-item").shouldHave(size(9));

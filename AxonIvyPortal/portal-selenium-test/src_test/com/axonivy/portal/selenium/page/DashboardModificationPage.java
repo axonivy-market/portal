@@ -1,7 +1,6 @@
 package com.axonivy.portal.selenium.page;
 
 import static com.codeborne.selenide.Selenide.$;
-
 import static com.codeborne.selenide.Selenide.$$;
 
 import java.util.List;
@@ -21,7 +20,6 @@ public class DashboardModificationPage extends TemplatePage {
     return "#dashboard-modification-component\\:dashboard-modification-container";
   }
   
-
   public ElementsCollection getDashboardRows() {
     return getDashboardRows(DEFAULT_TIMEOUT);
   }
@@ -37,11 +35,8 @@ public class DashboardModificationPage extends TemplatePage {
   }
 
   public void waitForDashboardTableToLoad(Duration timeout) {
-    // Wait for the dashboard table to be present and have at least one row (not empty)
     $("tbody[id='dashboard-modification-component:dashboard-table_data']")
         .shouldBe(Condition.appear, timeout);
-    // Wait for table to contain actual data (not just the empty message)
-    // This ensures the table has finished loading and rendering properly
     $("tbody[id='dashboard-modification-component:dashboard-table_data'] tr:not(.ui-datatable-empty-message)")
         .shouldBe(Condition.appear, timeout);
   }
