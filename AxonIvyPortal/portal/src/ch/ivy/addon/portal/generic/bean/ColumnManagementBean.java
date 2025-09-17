@@ -44,6 +44,7 @@ import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 import ch.ivy.addon.portalkit.util.DisplayNameConvertor;
+import ch.ivy.addon.portalkit.util.PortalCustomFieldUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.custom.field.CustomFieldType;
 import ch.ivyteam.ivy.workflow.custom.field.ICustomFieldMeta;
@@ -447,10 +448,23 @@ public class ColumnManagementBean implements Serializable, IMultiLanguage {
   private String getCurrentDisplayName() {
     if (widget.getType() == DashboardWidgetType.TASK) {
       return Ivy.cms().coLocale(String.format("/Labels/Enums/DashboardStandardTaskColumn/%s",
-          DashboardStandardTaskColumn.findBy(selectedField)), LanguageService.getInstance().getDefaultLanguage());
+          DashboardStandardTaskColumn.findBy(selectedField)), LanguageService.getInstance().getUserLanguage());
     } else if (widget.getType() == DashboardWidgetType.CASE) {
-      Ivy.cms().coLocale(String.format("/Labels/Enums/DashboardStandardCaseColumn/%s",
+      return Ivy.cms().coLocale(String.format("/Labels/Enums/DashboardStandardCaseColumn/%s",
           DashboardStandardCaseColumn.findBy(selectedField)), LanguageService.getInstance().getDefaultLanguage());
+    }
+    return "";
+  }
+  
+  private String getDisplayNameByLocale(String locale) {
+    if (widget.getType() == DashboardWidgetType.TASK && this.selectedFieldType.equals(DashboardColumnType.STANDARD)) {
+      return Ivy.cms().coLocale(String.format("/Labels/Enums/DashboardStandardTaskColumn/%s",
+          DashboardStandardTaskColumn.findBy(selectedField)), locale);
+    } else if (widget.getType() == DashboardWidgetType.CASE && this.selectedFieldType.equals(DashboardColumnType.STANDARD)) {
+      return Ivy.cms().coLocale(String.format("/Labels/Enums/DashboardStandardCaseColumn/%s",
+          DashboardStandardCaseColumn.findBy(selectedField)), locale);
+    } else if (widget.getType() == DashboardWidgetType.TASK && this.selectedFieldType.equals(DashboardColumnType.CUSTOM)) {
+      return Ivy.cms().coLocale(String.format("/CustomFields/Tasks/%s/Label", this.selectedField), locale);
     }
     return "";
   }
@@ -461,7 +475,7 @@ public class ColumnManagementBean implements Serializable, IMultiLanguage {
     for (String language : ivyLanguage.getSupportedLanguages()) {
       DisplayName newItem = new DisplayName();
       newItem.setLocale(Locale.forLanguageTag(language));
-      newItem.setValue(StringUtils.defaultIfBlank(getCurrentDisplayName(), this.fieldDisplayName));
+      newItem.setValue(StringUtils.defaultIfBlank(getDisplayNameByLocale(Locale.forLanguageTag(language).toLanguageTag()), this.fieldDisplayName));
       result.add(newItem);
     }
     this.fieldDisplayNames = result;
@@ -474,7 +488,9 @@ public class ColumnManagementBean implements Serializable, IMultiLanguage {
 
 
   public void updateNameByLocale() {
-    updateFieldDisplayNames();
+    if (this.fieldDisplayNames.isEmpty()) {
+      updateFieldDisplayNames();
+    }
     DisplayNameConvertor.setValue(fieldDisplayName, fieldDisplayNames);
   }
 

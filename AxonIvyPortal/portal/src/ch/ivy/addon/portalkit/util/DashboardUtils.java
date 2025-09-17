@@ -12,6 +12,7 @@ import java.util.Optional;
 import java.util.UUID;
 import java.util.function.Consumer;
 
+import org.apache.commons.collections.ListUtils;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -26,9 +27,14 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import ch.addon.portal.generic.menu.MenuView.PortalDashboardItemWrapper;
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.constant.IvyCacheIdentifier;
+import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardOrder;
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardTemplate;
+import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
+import ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget;
+import ch.ivy.addon.portalkit.enums.DashboardColumnType;
+import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
@@ -327,7 +333,28 @@ public class DashboardUtils {
       if (BooleanUtils.isFalse(dashboard.getIsTopMenu())) {
         dashboard.setIsTopMenu(null);
       }
+      
+      if (!dashboard.getWidgets().isEmpty()) {
+        updatePropertiesForWidgets(dashboard.getWidgets());
+      }
     }
+  }
+  
+  private static void updatePropertiesForWidgets(List<DashboardWidget> widgetList) {
+    for (DashboardWidget widget: widgetList) {
+      if (widget.getType().equals(DashboardWidgetType.TASK)) {
+        TaskDashboardWidget newWidget = (TaskDashboardWidget) widget;
+        for (ColumnModel column : newWidget.getColumns()) {
+          if (isNotStandardField(column.getType())) {
+            column.setHeaders(new ArrayList<>());
+          }
+        }
+      }
+    }
+  }
+  
+  private static boolean isNotStandardField(DashboardColumnType type) {
+    return !DashboardColumnType.STANDARD.equals(type);
   }
 
   public static boolean isDefaultTaskListDashboard(Dashboard dashboard) {
