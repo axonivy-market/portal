@@ -6791,9 +6791,10 @@ msgid ""
 "widths, please refer to the :ref:`Task widget configuraiton <new-"
 "dashboard-task-list-widget>`, and :ref:`Case widget configuraiton <new-"
 "dashboard-case-list-widget>` guides."
-msgstr "タスクウィジェットとケースウィジェットの列の幅を調整する新しい機能を実装しました。"
+msgstr ""
+"タスクウィジェットとケースウィジェットの列の幅を調整する新しい機能を実装しました。"
 " この変更により、以前のバージョンからのタスクウィジェットとケースウィジェットの列の幅に若干の影響が生じることがあります。"
-" 列の幅を手動で調整する方法については、:ref:`タスクウィジェットの設定 <new-dashboard-task-list-widget>`"
+" 列の幅を手動で調整する方法については、:ref:`タスクウィジェットの設定 <new-dashboard-task-list-widget>` "
 "と :ref:`ケースウィジェットの設定 <new-dashboard-case-list-widget>` を参照してください。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:157
@@ -7750,7 +7751,7 @@ msgid ""
 "Use ``pageContent`` to define your section in ``BasicTemplate.xhtml`` "
 "instead of ``simplePageContent``."
 msgstr ""
-"``simplePageContent`` の代わりに、 ``pageContent`` を使用して ``BasicTemplate.xhtml``"
+"``simplePageContent`` の代わりに、 ``pageContent`` を使用して ``BasicTemplate.xhtml`` "
 "のセクションを定義します。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:463

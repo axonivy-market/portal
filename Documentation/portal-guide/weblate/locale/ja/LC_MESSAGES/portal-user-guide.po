@@ -5449,7 +5449,7 @@ msgid ""
 msgstr ""
 ":guilabel:`フィルター` ボタンをクリックして、ウィジェットの複合フィルターを設定し、"
 ":guilabel:`適用` ボタンをクリックしてプレビューできます。詳細については、"
-":ref:` 複合フィルター <complex-filter>` を参照してください。"
+":ref:`複合フィルター <complex-filter>` を参照してください。"
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:98
 msgid "|task-list-widget-configuration|"
