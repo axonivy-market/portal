@@ -16,18 +16,19 @@
 
 <cc:implementation>
   <c:set var="task" value="#{not empty cc.attrs.task ? cc.attrs.task : ivy.task}" />
+  <c:set var="logoAltText" value="#{masterDataBean.logoAltText}" />
   <f:event listener="#{logic.init(cc.attrs.isWorkingOnATask, task)}" type="preRenderComponent" />
 
   <!-- LOGO  -->
   <div class="sidebar-logo">
-    <p:commandLink ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/homeLogo')}"  
+    <p:commandLink ariaLabel="#{logoAltText}"  
       id="logo" action="#{userMenuBean.navigateToHomePageOrDisplayWorkingTaskWarning(data.isWorkingOnATask, task)}" >
-      <p:graphicImage styleClass="portal-home-logo" name="#{ivyFreyaTheme.logo}" library="ivy-branding" alt="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/homeLogo')}" />
+      <p:graphicImage styleClass="portal-home-logo" name="#{ivyFreyaTheme.logo}" library="ivy-branding" alt="#{logoAltText}" />
     </p:commandLink>
     
-    <p:commandLink id="logo-small" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/homeLogo')}"  
+    <p:commandLink id="logo-small" ariaLabel="#{logoAltText}"  
       action="#{userMenuBean.navigateToHomePageOrDisplayWorkingTaskWarning(data.isWorkingOnATask, task)}" styleClass="portal-home-logo-small">
-      <p:graphicImage styleClass="portal-home-logo portal-home-logo-small" name="logo_small" library="ivy-branding" alt="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/homeLogo')}" />
+      <p:graphicImage styleClass="portal-home-logo portal-home-logo-small" name="logo_small" library="ivy-branding" alt="#{logoAltText}" />
     </p:commandLink>
     
     <p:commandLink id="toggle-menu" styleClass="sidebar-pin" global="false" ariaLabel="#{ivy.cms.co('/Labels/ToggleMenu')}"

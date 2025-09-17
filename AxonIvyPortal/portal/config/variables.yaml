@@ -61,7 +61,9 @@ Variables:
     # You can define the application name via this JSON file.
     # It will be shown with the page title
     ApplicationName: Axon Ivy
-    
+
+    LogoAltText: ''
+
     Accessibility:
       # Set to true to allow the user interact with the keyboard shortcuts toggle.
       AllowKeyboardShortcutsConfiguration: true
