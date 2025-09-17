@@ -23,6 +23,8 @@ import com.axonivy.portal.selenium.page.TaskWidgetNewDashBoardPage;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
+import static com.codeborne.selenide.Selenide.$$;
+import static com.codeborne.selenide.Selenide.$;
 
 @IvyWebTest
 public class DashboardConfigurationTest extends BaseTest {
@@ -273,27 +275,63 @@ public class DashboardConfigurationTest extends BaseTest {
   @Test
   public void testDeleteCaseWidgetForPrivateDashboard() {
     testAddPrivateDashboardUseTemplate();
-    var modificationPage = navigateToConfigurationAndOpenDashboardModificationPage();
+    DashboardModificationPage modificationPage = navigateToConfigurationAndOpenDashboardModificationPage();
     modificationPage.navigateToEditDashboardDetailsByName(NEW_PRIVATE_DASHBOARD);
 
     CaseWidgetNewDashBoardPage caseWidget = newDashboardPage.selectCaseWidget(YOUR_CASES_WIDGET);
     caseWidget.deleteCaseWidget();
     NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
     newDashboardDetailsEditPage.clickOnRemoveWidgetButton();
-    newDashboardPage.selectTaskWidget(" ").expand().shouldHave(size(8));
+
+    // Wait for dashboard to stabilize after widget removal
+    waitForDashboardStableAfterWidgetRemoval();
+    
+    // Verify that total number of widgets is 9 (originally 10, now deleted 1)
+    // This is more robust than looking for specific widget types
+    $$(".grid-stack-item").shouldHave(size(9));
   }
+
+  /**
+   * Helper method to wait for dashboard stability after widget removal.
+   * This ensures that the page has fully re-rendered and widgets are properly loaded
+   * before making assertions about the remaining widgets.
+   */
+  private void waitForDashboardStableAfterWidgetRemoval() {
+    // Wait a bit for the DOM to update after widget removal
+    try {
+      Thread.sleep(1000);
+    } catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+    }
+    
+    // Wait for page to be loaded and dashboard to be stable
+    newDashboardPage.waitPageLoaded();
+    
+    // Ensure dashboard container is visible and stable
+    $(".js-dashboard__wrapper").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    
+    // Additional wait to ensure all widgets are properly rendered
+    $$(".grid-stack-item").shouldBe(CollectionCondition.sizeGreaterThan(0), DEFAULT_TIMEOUT);
+  }
+
 
   @Test
   public void testDeleteProcessesWidgetForPrivateDashboard() {
     testAddPrivateDashboardUseTemplate();
-    var modificationPage = navigateToConfigurationAndOpenDashboardModificationPage();
+    DashboardModificationPage modificationPage = navigateToConfigurationAndOpenDashboardModificationPage();
     modificationPage.navigateToEditDashboardDetailsByName(NEW_PRIVATE_DASHBOARD);
 
     ProcessWidgetNewDashBoardPage processWidget = newDashboardPage.selectProcessWidget(YOUR_PROCESS_WIDGET);
     processWidget.deleteProcessWidget();
     NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
     newDashboardDetailsEditPage.clickOnRemoveWidgetButton();
-    newDashboardPage.selectTaskWidget(" ").expand().shouldHave(size(8));
+    
+    // Wait for dashboard to stabilize after widget removal
+    waitForDashboardStableAfterWidgetRemoval();
+    
+    // Verify that total number of widgets is 9 (originally 10, now deleted 1)
+    // This is more robust than looking for specific widget types
+    $$(".grid-stack-item").shouldHave(size(9));
   }
 
   @Test
