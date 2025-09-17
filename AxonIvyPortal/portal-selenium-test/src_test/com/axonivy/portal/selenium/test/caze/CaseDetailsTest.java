@@ -93,6 +93,7 @@ public class CaseDetailsTest extends BaseTest {
     caseDetailsPage.getRelatedCasesComponents().shouldHave(sizeGreaterThanOrEqual(1));
     caseDetailsPage.getHitoriesComponent().shouldHave(sizeGreaterThanOrEqual(1));
     caseDetailsPage.addNote(NOTE_BUSINESS_CASE);
+    caseDetailsPage.waitPageLoaded();
     refreshPage();
     caseDetailsPage.getNotesWithContent(NOTE_BUSINESS_CASE).shouldHave(size(1));
     caseDetailsPage.gotoTaskDetailsPageOfRelatedTask(ORDER_PIZZA);
@@ -511,25 +512,31 @@ public class CaseDetailsTest extends BaseTest {
     createTestingCaseContainTechnicalCases();
     detailsPage.getNumberOfHistory().shouldHave(size(1), DEFAULT_TIMEOUT);
     detailsPage.addNote("This is note on business case");
+    detailsPage.waitPageLoaded();
     refreshPage();
     detailsPage.getNumberOfHistory().shouldHave(size(2), DEFAULT_TIMEOUT);
     assertEquals("This is note on business case", detailsPage.getLatestHistoryContent());
     detailsPage.clickRelatedCaseActionButton(0);
-    var relatedCaseDetailsPage = detailsPage.openCasesOfCasePageViaDetailsAction(0);
+    CaseDetailsPage relatedCaseDetailsPage = detailsPage.openCasesOfCasePageViaDetailsAction(0);
     new WebDriverWait(WebDriverRunner.getWebDriver(), DEFAULT_TIMEOUT)
         .until((webDriver) -> CASE_DETAILS_TITLE.equals(relatedCaseDetailsPage.getPageTitle()));
+
     relatedCaseDetailsPage.addNote("The first note of sub-case");
+    relatedCaseDetailsPage.waitForPageLoad();
     refreshPage();
+
     relatedCaseDetailsPage.addNote("The second note of sub-case");
+    relatedCaseDetailsPage.waitForPageLoad();
     refreshPage();
-    var subCaseId = relatedCaseDetailsPage.getCaseId();
-    var caseName = relatedCaseDetailsPage.getCaseName();
+
+    String subCaseId = relatedCaseDetailsPage.getCaseId();
+    String  caseName = relatedCaseDetailsPage.getCaseName();
     relatedCaseDetailsPage.getNumberOfHistory().shouldHave(size(2), DEFAULT_TIMEOUT);
     relatedCaseDetailsPage.getNumberOfHistoryForRelatedCaseLink().shouldHave(size(0), DEFAULT_TIMEOUT);
     detailsPage = relatedCaseDetailsPage.openBusinessCaseFromTechnicalCase();
     detailsPage.getNumberOfHistory().shouldHave(size(4), DEFAULT_TIMEOUT);
     detailsPage.getNumberOfHistoryForRelatedCaseLink().shouldHave(size(4), DEFAULT_TIMEOUT);
-    var relaledCaseName = detailsPage.getContentOfHistoryTableRelatedCaseColumn(0);
+    String relaledCaseName = detailsPage.getContentOfHistoryTableRelatedCaseColumn(0);
     assertTrue(relaledCaseName.startsWith("#"));
     assertTrue(relaledCaseName.contains(subCaseId));
     assertTrue(relaledCaseName.contains(caseName));
