@@ -87,16 +87,20 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
   public void testVisibilityTaskActionForAdminUser() {
     login(TestAccount.ADMIN_USER);
     createTasksForTesting();
-    TaskWidgetNewDashBoardPage taskWidget = new TaskWidgetNewDashBoardPage();
-
+    newDashboardPage.waitForTaskListDisplay();
+    
     // Ready for Join
     assertTaskActionsByTaskStateAndName(DONE, "Task Switch A",
         Arrays.asList(DETAILS, RESET, DESTROY, TRIGGER_ESCALATION, WORKFLOW_EVENTS, PROCESS_VIEWER));
 
+    refreshPage();
+    newDashboardPage.waitForTaskListDisplay();
+    TaskWidgetNewDashBoardPage taskWidget = new TaskWidgetNewDashBoardPage();
     // Suspended
     taskWidget.openFilterWidget();
     removeAllExistingFilter();
     taskWidget.applyFilter();
+    newDashboardPage.waitForPageLoad();
     assertTaskActionsByTaskStateAndName(OPEN, "Sick Leave Request", Arrays.asList(DETAILS, DELEGATE, RESERVE,
         CLEAR_EXPIRY, DESTROY, TRIGGER_ESCALATION, WORKFLOW_EVENTS, PROCESS_VIEWER));
 
@@ -104,6 +108,7 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
     taskWidget.openFilterWidget();
     removeAllExistingFilter();
     taskWidget.applyFilter();
+    newDashboardPage.waitForPageLoad();
     assertTaskActionsByTaskStateAndName(DONE, "Categoried Leave Request",
         Arrays.asList(DETAILS, WORKFLOW_EVENTS, PROCESS_VIEWER));
 
@@ -111,6 +116,7 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
     taskWidget.openFilterWidget();
     removeAllExistingFilter();
     taskWidget.applyFilter();
+    newDashboardPage.waitForPageLoad();
     assertTaskActionsByTaskStateAndName(DELAYED, "Task Switch C",
         Arrays.asList(DETAILS, DELEGATE, CLEAR_DELAY, DESTROY, WORKFLOW_EVENTS, PROCESS_VIEWER));
 
@@ -118,6 +124,7 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
     taskWidget.openFilterWidget();
     removeAllExistingFilter();
     taskWidget.applyFilter();
+    newDashboardPage.waitForPageLoad();
     assertTaskActionsByTaskStateAndName(DESTROYED, "Task Switch B",
         Arrays.asList(DETAILS, WORKFLOW_EVENTS, PROCESS_VIEWER));
   }
@@ -203,17 +210,28 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
     login(TestAccount.ADMIN_USER);
     redirectToRelativeLink(createTechnicalStateUrl);
     redirectToNewDashBoard();
-    TaskWidgetNewDashBoardPage taskWidget = new TaskWidgetNewDashBoardPage();
-    taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
+    
+    newDashboardPage.waitForTaskListDisplay();
+    
+    TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
     taskWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
-    // Failed
+    
     resizeBrowserTo2kResolution();
+    refreshPage();
+    
+    newDashboardPage.waitForTaskListDisplay();
+    newDashboardPage.waitForPageLoad();
+    
     assertTaskActionsByTaskStateAndName(ERROR, "Signal create Task failed",
         Arrays.asList(DETAILS, RESET, DESTROY, WORKFLOW_EVENTS, PROCESS_VIEWER));
+    
     // Join failed
     taskWidget.openFilterWidget();
     removeAllExistingFilter();
     taskWidget.applyFilter();
+    
+    newDashboardPage.waitForPageLoad();
+    
     assertTaskActionsByTaskStateAndName(ERROR, "Signal create Technical task",
         Arrays.asList(DETAILS, DESTROY, WORKFLOW_EVENTS, PROCESS_VIEWER));
   }
@@ -230,6 +248,8 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
 
   private void assertTaskAction(int index, List<String> taskActionsInTask) {
     TaskWidgetNewDashBoardPage taskWidget = new TaskWidgetNewDashBoardPage();
+    taskWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
+    newDashboardPage.waitForPageLoad();
     ElementsCollection actions = taskWidget.getActiveTaskActions(index);
     actions.shouldHave(size(taskActionsInTask.size()));
     assertTrue(actions.texts().containsAll(taskActionsInTask));

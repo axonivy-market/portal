@@ -59,14 +59,25 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
 
   private int getIndexWidgetByColumnScrollable(String columnName) {
-    ElementsCollection elementsTH =
-        $(taskWidgetId).$(".ui-datatable-scrollable-header").shouldBe(appear, DEFAULT_TIMEOUT).$$("table thead tr th");
-    for (int i = 0; i < elementsTH.size(); i++) {
-      if (elementsTH.get(i).getAttribute("aria-label").equalsIgnoreCase(columnName)) {
-        return i;
+    SelenideElement taskWidget = $(taskWidgetId).shouldBe(appear, DEFAULT_TIMEOUT);
+    
+    // Try scrollable header first
+    if (taskWidget.$(".ui-datatable-scrollable-header").exists()) {
+      try {
+        ElementsCollection elementsTH = taskWidget.$(".ui-datatable-scrollable-header")
+            .shouldBe(appear, DEFAULT_TIMEOUT).$$("table thead tr th");
+        for (int i = 0; i < elementsTH.size(); i++) {
+          if (elementsTH.get(i).getAttribute("aria-label").equalsIgnoreCase(columnName)) {
+            return i;
+          }
+        }
+      } catch (Exception e) {
+        // Fall back to non-scrollable header
       }
     }
-    return 0;
+    
+    // Fallback to regular header
+    return getIndexWidgetByColumn(columnName);
   }
 
   private SelenideElement getColumnOfCaseHasActionIndex(int index, String columnName) {
@@ -80,7 +91,16 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
 
   public ElementsCollection expand() {
     $$("div.widget__header").filter(text(taskWidgetName)).first().shouldBe(appear, DEFAULT_TIMEOUT);
+    $(taskWidgetId).shouldBe(appear, DEFAULT_TIMEOUT);
+    waitForTableStructureReady();
+    
     return $$("div.widget__header").filter(text(taskWidgetName));
+  }
+  
+  private void waitForTableStructureReady() {
+    SelenideElement taskWidget = $(taskWidgetId).shouldBe(appear, DEFAULT_TIMEOUT);
+    taskWidget.$("table tbody").shouldBe(appear, DEFAULT_TIMEOUT);
+    waitForPageLoad();
   }
 
   protected SelenideElement getColumnOfTaskHasIndex(int index, String columnName) {
@@ -289,6 +309,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void clickOnTaskActionLink(int taskIndex) {
+    waitForPageLoad();
     getColumnOfCaseHasActionIndex(taskIndex, "Actions").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
 
