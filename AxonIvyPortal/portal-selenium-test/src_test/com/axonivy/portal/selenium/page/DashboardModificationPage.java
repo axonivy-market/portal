@@ -1,9 +1,11 @@
 package com.axonivy.portal.selenium.page;
 
 import static com.codeborne.selenide.Selenide.$;
+
 import static com.codeborne.selenide.Selenide.$$;
 
 import java.util.List;
+import java.time.Duration;
 
 import org.openqa.selenium.interactions.Actions;
 
@@ -18,11 +20,30 @@ public class DashboardModificationPage extends TemplatePage {
   protected String getLoadedLocator() {
     return "#dashboard-modification-component\\:dashboard-modification-container";
   }
+  
 
   public ElementsCollection getDashboardRows() {
+    return getDashboardRows(DEFAULT_TIMEOUT);
+  }
+
+  public ElementsCollection getDashboardRows(Duration timeout) {
     SelenideElement dashboardTable = $("tbody[id='dashboard-modification-component:dashboard-table_data']")
-        .shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+        .shouldBe(Condition.appear, timeout);
     return dashboardTable.$$("tr:not(.ui-datatable-empty-message)");
+  }
+
+  public void waitForDashboardTableToLoad() {
+    waitForDashboardTableToLoad(DEFAULT_TIMEOUT);
+  }
+
+  public void waitForDashboardTableToLoad(Duration timeout) {
+    // Wait for the dashboard table to be present and have at least one row (not empty)
+    $("tbody[id='dashboard-modification-component:dashboard-table_data']")
+        .shouldBe(Condition.appear, timeout);
+    // Wait for table to contain actual data (not just the empty message)
+    // This ensures the table has finished loading and rendering properly
+    $("tbody[id='dashboard-modification-component:dashboard-table_data'] tr:not(.ui-datatable-empty-message)")
+        .shouldBe(Condition.appear, timeout);
   }
 
   public SelenideElement getDashboardRowByName(String dashboardName) {

@@ -353,10 +353,14 @@ public class DashboardConfigurationTest extends BaseTest {
     createPublicDashboardUseTemplate();
     redirectToRelativeLink(denyDashboardExportOwnPermissionUrl);
     redirectToRelativeLink(grantDashboardExportPublicPermissionUrl);
-    var configurationPage = LinkNavigator.navigateToPortalDashboardConfiguration();
-    configurationPage.openEditPublicDashboardsPage().getDashboardExportButtonOfDashboard("New public dashboard")
+    DashboardConfigurationPage configurationPage = LinkNavigator.navigateToPortalDashboardConfiguration();
+    DashboardModificationPage publicDashboardPage = configurationPage.openEditPublicDashboardsPage();
+    publicDashboardPage.waitForDashboardTableToLoad();
+    publicDashboardPage.getDashboardExportButtonOfDashboard("New public dashboard")
         .shouldBe(Condition.appear);
-    configurationPage.openEditPrivateDashboardsPage().getDashboardExportButtonOfDashboard("New private dashboard")
+    DashboardModificationPage privateDashboardPage = configurationPage.openEditPrivateDashboardsPage();
+    privateDashboardPage.waitForDashboardTableToLoad();
+    privateDashboardPage.getDashboardExportButtonOfDashboard("New private dashboard")
         .shouldBe(Condition.disappear);
   }
 
