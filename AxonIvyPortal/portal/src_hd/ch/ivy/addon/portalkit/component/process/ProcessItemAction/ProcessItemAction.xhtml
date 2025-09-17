@@ -20,14 +20,17 @@
   <c:set var="showProcessViewer" value="#{processItemActionBean.isShowProcessViewer(process)}"/>
   <c:set var="hideActionButton" value="#{cc.attrs.hideActionButton or (!canModify and !showProcessViewer)}"/>
   <c:set var="buttonStyle" value="#{cc.attrs.outlinedButtonStyle ? 'ui-button-outlined':'ui-button-raised process-category-badge'}"/>
+  <c:set var="processCategoryDisplay" value="#{processItemActionBean.getDisplayProcessCategory(process)}"/>
 
   <div id="process-action-group" class="process-action-group">
-    <p:commandButton id="process-category" rendered="#{processItemActionBean.isRenderedCategory(process.category)}"
-      styleClass="rounded-button process-category #{buttonStyle}"
-      ariaLabel="#{processItemActionBean.getDisplayProcessCategory(process)}"
-      value="#{processItemActionBean.getDisplayProcessCategory(process)}"
-      readonly="true" type="button" onclick="return false;"/>
-    <p:tooltip for="process-category" value="#{process.category}" trackMouse="true" hideEvent="mouseleave click" />
+    <h:panelGroup id="process-category" layout="block"
+      styleClass="process-category ui-button ui-widget rounded-button #{buttonStyle}"
+      title="#{processItemActionBean.getDisplayProcessCategory(process)}"
+      rendered="#{processItemActionBean.isRenderedCategory(process.category)}">
+      <span>#{processCategoryDisplay}</span>
+    </h:panelGroup>
+    <p:tooltip for="process-category" value="#{processCategoryDisplay}" trackMouse="true" hideEvent="mouseleave click" 
+      rendered="#{processItemActionBean.isRenderedCategory(process.category)}" />
 
     <h:panelGroup layout="block" rendered="#{!hideActionButton}">
       <p:commandButton id="process-action-button" icon="si si-navigation-menu-horizontal"

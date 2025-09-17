@@ -5535,9 +5535,31 @@ border-top: 0.14rem dashed;
 .process-action-group .process-category {
   max-width: 100%;
   min-width: 0;
+  cursor: default;
 }
 
-.process-action-group .process-category span.ui-button-text {
+.process-category.ui-button.ui-widget {
+    display: inline-block !important;
+    padding: 0.5rem 1rem !important;
+    text-align: center !important;
+    vertical-align: middle !important;
+    line-height: 1.25 !important;
+    border-radius: 6px !important;
+    box-sizing: border-box !important;
+}
+
+/* For rounded buttons */
+.process-category.ui-button.rounded-button {
+    border-radius: 2rem !important;
+}
+
+/* Ensure the span doesn't interfere */
+.process-category.ui-button span {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.process-action-group .process-category span {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
