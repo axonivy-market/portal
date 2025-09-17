@@ -158,7 +158,7 @@ msgstr "グローバル通知"
 #: ../../source/portal-developer-guide/static-page/index.rst:9
 #: ../../source/portal-developer-guide/usermenu/index.rst:9
 msgid "Introduction"
-msgstr "概要"
+msgstr "はじめに"
 
 #: ../../source/portal-developer-guide/components/additional-components.rst:16
 msgid ""
@@ -2318,12 +2318,12 @@ msgstr ""
 #: ../../source/portal-developer-guide/iframe/documents/available_show_information_options.csv:1
 #: ../../source/portal-developer-guide/settings/index.rst:322
 msgid "Variable"
-msgstr ""
+msgstr "変数"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
 #: ../../source/portal-developer-guide/settings/index.rst:322
 msgid "Default value"
-msgstr ""
+msgstr "デフォルト値"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
 #: ../../source/portal-developer-guide/iframe/documents/available_other_options.csv:1
@@ -2332,7 +2332,7 @@ msgstr ""
 #: ../../source/portal-developer-guide/installation/index.rst:45
 #: ../../source/portal-developer-guide/settings/index.rst:322
 msgid "Description"
-msgstr ""
+msgstr "説明"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
 msgid "``--first-header-bar-color``"
@@ -3406,8 +3406,8 @@ msgstr "新しいポータルダッシュボードを開いて、新しいカス
 
 #: ../../source/portal-developer-guide/dashboard/index.rst:210
 msgid ""
-"To configure variables, refer to :dev-url:`|ivy| Variables </doc/|version"
-"|/designer-guide/configuration/variables.html>`"
+"To configure variables, refer to :dev-url:`|ivy| Variables </doc/|version|"
+"/designer-guide/configuration/variables.html>`"
 msgstr "変数の設定については、:dev-url:`|ivy| Variables </doc/|version|/designer-guide/configuration/variables.html>` を参照してください。"
 
 #: ../../source/portal-developer-guide/dashboard/index.rst:213
@@ -5677,7 +5677,7 @@ msgstr ""
 #: ../../source/portal-developer-guide/installation/index.rst:4
 #: ../../source/portal-developer-guide/installation/index.rst:29
 msgid "Installation"
-msgstr ""
+msgstr "インストール"
 
 #: ../../source/portal-developer-guide/deployment/index.rst:41
 msgid "Preparation"
@@ -5763,7 +5763,7 @@ msgstr ""
 #: ../../source/portal-developer-guide/deployment/index.rst:78
 #: ../../source/portal-developer-guide/settings/index.rst:369
 msgid "Configuration"
-msgstr ""
+msgstr "設定"
 
 #: ../../source/portal-developer-guide/deployment/index.rst:80
 msgid ""
@@ -6079,7 +6079,7 @@ msgstr "作業中のタスクの名前とアイコン。"
 msgid ""
 "Process chain configuration. (See: :ref:`components-portal-components-"
 "process-chain`)."
-msgstr "プロセスチェーンの設定。 （参照： :ref:`components-portal-components-process-chain`）。"
+msgstr "プロセスチェーンの設定。 （参照： :ref:`components-portal-components-process-chain`）"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:67
 msgid "Show/hide case details and other actions."
@@ -6204,7 +6204,7 @@ msgstr "**IFrameTaskConfigコンポーネントの使用** （推奨）"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:142
 msgid "**Using JavaScript (Deprecated)**"
-msgstr ""
+msgstr "**JavaScript の使用**"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:145
 msgid "This feature is deprecated and will be removed in Portal 14."
@@ -6418,7 +6418,7 @@ msgid ""
 "``xmlns:fn=\"http://xmlns.jcp.org/jsp/jstl/functions\"``"
 msgstr ""
 "``processSteps`` パラメーターを定義するときは、必ずこの JSP 機能タグを "
-"``xmlns:fn=\"http://xmlns.jcp.org/jsp/jstl/functions\"`` を HTML ダイアログに"
+"``xmlns:fn=\"http://xmlns.jcp.org/jsp/jstl/functions\"`` HTML ダイアログに"
 "追加してください。"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:350
@@ -6562,11 +6562,11 @@ msgstr "エンジンは自動的に、以下のデフォルトユーザーでポ
 
 #: ../../source/portal-developer-guide/installation/index.rst:45
 msgid "Username"
-msgstr ""
+msgstr "ユーザー名"
 
 #: ../../source/portal-developer-guide/installation/index.rst:45
 msgid "Password"
-msgstr ""
+msgstr "パスワード"
 
 #: ../../source/portal-developer-guide/installation/index.rst:47
 msgid "admin"
@@ -6574,7 +6574,7 @@ msgstr ""
 
 #: ../../source/portal-developer-guide/installation/index.rst:47
 msgid "This user has all Portal permissions, can access Portal Admin Settings."
-msgstr ""
+msgstr "このユーザーはポータルのすべての権限を持ち、ポータルの管理者設定にアクセスできます。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:52
 msgid "demo"
@@ -6582,7 +6582,7 @@ msgstr ""
 
 #: ../../source/portal-developer-guide/installation/index.rst:52
 msgid "This user has permission to manage user absences."
-msgstr ""
+msgstr "このユーザーはユーザーの不在を管理する権限を持ちます。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:56
 msgid "guest"
@@ -6590,7 +6590,7 @@ msgstr ""
 
 #: ../../source/portal-developer-guide/installation/index.rst:56
 msgid "Default standard user of the portal."
-msgstr ""
+msgstr "ポータルのデフォルトの標準的なユーザーです。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:62
 msgid "Engine With License (Production Mode)"
@@ -6620,7 +6620,8 @@ msgid ""
 "Include the Dashboard.json file in the app.zip under "
 "``<app.zip>/config/variables/Portal.Dashboard.json`` as shown in the "
 "structure below"
-msgstr "- 以下の構造に示すように、 ``<app.zip>/config/variables/Portal.Dashboard.json``"
+msgstr ""
+"以下の構造に示すように、 ``<app.zip>/config/variables/Portal.Dashboard.json``"
 " の app.zip の下に Dashboard.json ファイルを配置します。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:84
@@ -6629,7 +6630,7 @@ msgid ""
 "url:`Engine Deployment</doc/|version|/engine-"
 "guide/deployment/index.html>`"
 msgstr "JSON ファイルの名前は Portal.Dashboard.json とする必要があります。"
-":dev-url:`Engine Deployment</doc/|version|/engine-guide/deployment/index.html>`"
+":dev-url:`エンジンの展開 </doc/|version|/engine-guide/deployment/index.html>`"
 " を参照してください。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:85
@@ -6638,7 +6639,7 @@ msgid ""
 "following this path "
 "``<engine>/configuration/applications/<application>``. The Json file name"
 " has to be named ``variables.Portal.Dashboard.json``"
-msgstr "- Dashboard.json ファイルを ``<engine>/configuration/applications/<application>``"
+msgstr "Dashboard.json ファイルを ``<engine>/configuration/applications/<application>``"
 " パスの ``<application>`` フォルダーに直接コピーします。JSON ファイルの名"
 "前は ``variables.Portal.Dashboard.json`` とする必要があります。"
 
@@ -6646,7 +6647,7 @@ msgstr "- Dashboard.json ファイルを ``<engine>/configuration/applications/<
 msgid ""
 "Use the import dashboard feature of the Portal. Refer to :ref:`How to "
 "import your public dashboards<howto-import-your-public-dashboards>`"
-msgstr "- ポータルのダッシュボードのインポート機能を使用します。:ref:`公開用ダ"
+msgstr "ポータルのダッシュボードのインポート機能を使用します。:ref:`公開用ダ"
 "ッシュボードのインポート方法 <howto-import-your-public-dashboards-ja>` を参"
 "照してください。"
 
@@ -6680,14 +6681,14 @@ msgstr "すべてのアプリケーションは同じセキュリティコンテ
 msgid ""
 "Create a new application. Deploy Portal (portal, portal-components) to "
 "this application."
-msgstr "-  新しいアプリケーションを作成します。このアプリケーションにポータル（po"
+msgstr "新しいアプリケーションを作成します。このアプリケーションにポータル（po"
 "rtal、portal-components）を展開します。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:99
 msgid ""
 "Create new applications: App 1, App 2,... Deploy your projects to the new"
 " applications."
-msgstr "-  新しいアプリケーション（アプリ 1、アプリ 2...）を作成します。新しいア"
+msgstr "新しいアプリケーション（アプリ 1、アプリ 2...）を作成します。新しいア"
 "プリケーションにプロジェクトを展開します。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:105
@@ -6792,8 +6793,8 @@ msgid ""
 "dashboard-case-list-widget>` guides."
 msgstr "タスクウィジェットとケースウィジェットの列の幅を調整する新しい機能を実装しました。"
 " この変更により、以前のバージョンからのタスクウィジェットとケースウィジェットの列の幅に若干の影響が生じることがあります。"
-" 列の幅を手動で調整する方法については、:ref:`タスクウィジェットの設定 <new-dashboard-task-list-widget>`、"
-"および :ref:`ケースウィジェットの設定 <new-dashboard-case-list-widget>` のガイドを参照してください。"
+" 列の幅を手動で調整する方法については、:ref:`タスクウィジェットの設定 <new-dashboard-task-list-widget>`"
+"と :ref:`ケースウィジェットの設定 <new-dashboard-case-list-widget>` を参照してください。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:157
 msgid "Migrate 11.1.0 To 11.2.0"
@@ -7042,7 +7043,7 @@ msgstr "portalLogout"
 msgid ""
 ":ref:`Customize Change Password Process <customization-change-password-"
 "process>`"
-msgstr "":ref:`パスワードの変更プロセスのカスタマイズ <customization-change-password-process>`"
+msgstr ":ref:`パスワードの変更プロセスのカスタマイズ <customization-change-password-process>`"
 
 #: ../../source/portal-developer-guide/installation/index.rst:235
 msgid "Remove subprocess override of ``ChangePassword`` from your project."
@@ -7165,9 +7166,8 @@ msgid ""
 "Portal Logos And Colors <customization-portal-logos-and-colors>` to "
 "override login background, favicon & logo images. If you have changed the"
 " CMS in ``PortalStyle``, please adapt the ``portal`` CMS accordingly."
-msgstr "PortalStyle をカスタマイズしている場合は、:ref:`Customization Portal "
-"Logos And Colors <customization-portal-logos-and-colors>` を参照して、"
-"ログインの背景、ファビコン、ロゴの画像をオーバーライドしてください。"
+msgstr "PortalStyle をカスタマイズしている場合は、:ref:`ポータルのロゴと色のカスタマイズ"
+" <customization-portal-logos-and-colors>` を参照して、ログインの背景、ファビコン、ロゴの画像をオーバーライドします。"
 "``PortalStyle`` で CMS を変更している場合は、``portal`` の CMS をそれに合わせます。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:290
@@ -7176,7 +7176,7 @@ msgid ""
 "your project, please switch to using :dev-url:`Engine Branding "
 "</doc/|version|/designer-guide/user-interface/branding/branding-"
 "engine.html>` to customize styling"
-msgstr "``customization.css`` ファイルが削除されました。このファイルをプロジェクトで使用している場合は、:dev-url:`Engine Branding </doc/|version|/designer-guide/user-interface/branding/branding-engine.html>` の使用に切り替えて、スタイルをカスタマイズしてください。"
+msgstr "``customization.css`` ファイルが削除されました。このファイルをプロジェクトで使用している場合は、:dev-url:`エンジンのブランディング </doc/|version|/designer-guide/user-interface/branding/branding-engine.html>` の使用に切り替えて、スタイルをカスタマイズしてください。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:293
 msgid ""
@@ -7341,8 +7341,8 @@ msgid ""
 msgstr ""
 "ポータルダッシュボードのウィジェットは、 ``custom-fields.yaml`` "
 "ファイルで宣言された ``CustomFields`` のみサポートします。"
-"ダッシュボードウィジェットで ``CustomFields`` を使用している場合は、"
-":dev-url:`Custom Fields Meta Information </doc/|version|/designer-"
+"``CustomFields`` がダッシュボードのウィジェットで使用されている場合は、"
+":dev-url:`カスタムフィールドのメタ情報 </doc/|version|/designer-"
 "guide/how-to/workflow/custom-fields.html#meta-information>` に従って、"
 "データを適合させてください。"
 
@@ -7355,8 +7355,8 @@ msgid ""
 "labels, legend color."
 msgstr ""
 "``DefaultChartColor.p.json`` サブプロセスが削除されました。プロジェクトで"
-"使用している場合は、このサブプロセスのオーバーライドを削除し、"
-":dev-url:`Engine Branding </doc/|version|/designer-guide/user-interface/"
+"使用している場合は、このサブプロセスのオーバーライドを削除して、"
+":dev-url:`エンジンのブランディング </doc/|version|/designer-guide/user-interface/"
 "branding/branding-engine.html>` の使用に切り替えて、チャート、データラベル、"
 "凡例の色をカスタマイズしてください。"
 
@@ -7367,7 +7367,7 @@ msgid ""
 "access link ``your_host/your_application/pro/portal-"
 "migration/175F92F71BC45295/startMigrateConfiguration.ivp``"
 msgstr ""
-" :download:`portal-migration-9.4.0.iar <documents/portal-migration-9.4-"
+":download:`portal-migration-9.4.0.iar <documents/portal-migration-9.4-"
 "9.4.0.iar>` プロジェクトを Ivy アプリケーションに展開し、"
 " ``your_host/your_application/pro/portal-migration/175F92F71BC45295/"
 "startMigrateConfiguration.ivp`` リンクにアクセスして実行します。"
@@ -7392,7 +7392,7 @@ msgstr "管理者アカウントを使用してサインインしてください
 #: ../../source/portal-developer-guide/installation/index.rst:356
 #: ../../source/portal-developer-guide/installation/index.rst:383
 msgid "Run migration process only once"
-msgstr "移行プロセスは一度だけ実行してください"
+msgstr "移行プロセスは一度だけ実行してください。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:343
 msgid ""
@@ -7447,7 +7447,7 @@ msgid ""
 "PortalStart in your project."
 msgstr ""
 "DefaultApplicationHomePage.ivp と PortalDashboardConfiguration.ivp に関連する"
-"変更を行ったため、PortalTemplate から PortalStart プロセスをプロジェクトに"
+"変更を行ったため、PortalStart プロセスを PortalTemplate からプロジェクトに"
 "コピーしてください。それから、プロジェクトの PortalStart をカスタマイズして"
 "ください。"
 
@@ -7459,10 +7459,10 @@ msgid ""
 "use have any customized date filters in your project, update template "
 "accordingly."
 msgstr ""
-"TaskCreationDateFilter、CaseCreationDateFilter などのポータルの日付フィルターに、"
-"日付形式を検証するための ``<p:messages for=\"...\" />`` メッセージが各カレンダー"
+"日付の形式を確認するため、TaskCreationDateFilter、CaseCreationDateFilter などのポータルの日付フィルター"
+"の ``<p:messages for=\"...\" />`` メッセージが各カレンダー"
 "コンポーネントに追加されました。プロジェクトでカスタマイズされた日付フィルターを"
-"使用している場合は、それに合わせてテンプレートを更新してください。"
+"使用している場合は、それに合わせてテンプレートを交信してください。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:368
 msgid ""
@@ -7471,8 +7471,8 @@ msgid ""
 ":dev-url:`Variables </doc/|version|/designer-"
 "guide/configuration/variables.html>` configuration approach."
 msgstr ""
-"呼び出し可能プロセス ``DefaultChart.p.json``、 ``DefaultUserProcess.p.json`` が削除"
-"されました。これらは、:dev-url:`Variables </doc/|version|/designer-"
+"``DefaultChart.p.json``、 ``DefaultUserProcess.p.json`` 呼び出し可能プロセスが削除"
+"されました。これらは、:dev-url:`変数 </doc/|version|/designer-"
 "guide/configuration/variables.html>` の設定に置き換えられます。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:373
@@ -7485,8 +7485,8 @@ msgid ""
 " your Ivy application and run it by access link "
 "``your_host/your_application/pro/MigrateData/175F92F71BC45295/startMigrateConfiguration.ivp``"
 msgstr ""
-" :download:`MigrateData.iar <documents/MigrateData.iar>` プロジェクトを Ivy アプリケーションに展開し、 "
-"``your_host/your_application/pro/MigrateData/175F92F71BC45295/startMigrateConfiguration.ivp`` リ
+":download:`MigrateData.iar <documents/MigrateData.iar>` プロジェクトを Ivy アプリケーションに展開し、 "
+"``your_host/your_application/pro/MigrateData/175F92F71BC45295/startMigrateConfiguration.ivp`` リ"
 "ンクにアクセスして実行します。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:378
@@ -7496,7 +7496,7 @@ msgid ""
 "``your_host/your_application/pro/MigrateData/175F92F71BC45295/startMigrateConfiguration.ivp``"
 msgstr ""
 "アプリケーションが複数ある場合は、1 つのアプリケーションにのみ展開し、 "
-"``your_host/your_application/pro/MigrateData/175F92F71BC45295/startMigrateConfiguration.ivp`` リ
+"``your_host/your_application/pro/MigrateData/175F92F71BC45295/startMigrateConfiguration.ivp`` リ"
 "ンクにアクセスして実行してください。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:381
@@ -7526,7 +7526,7 @@ msgid ""
 "If you are using ``ProcessStartCollector``, replace constructor "
 "``ProcessStartCollector(application)`` with ``ProcessStartCollector()``."
 msgstr ""
-"``ProcessStartCollector`` を使用している場合は、 ``ProcessStartCollector(application)`` コン
+"``ProcessStartCollector`` を使用している場合は、 ``ProcessStartCollector(application)`` コン"
 "ストラクターを ``ProcessStartCollector()`` に置き換えます。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:389
@@ -7555,8 +7555,8 @@ msgid ""
 "``OpenPortalTasks.mod``, ``OpenPortalTaskDetails.mod``, "
 "``OpenPortalCases.mod``, ``OpenPortalCaseDetails.mod`` process."
 msgstr ""
-"``OpenPortalSearch.mod``、``OpenPortalTasks.mod``、``OpenPortalTaskDetails.mod``, "
-"``OpenPortalCases.mod``、``OpenPortalCaseDetails.mod`` プロセスが非推奨の呼び出し可能プロセ
+"``OpenPortalSearch.mod``、``OpenPortalTasks.mod``、``OpenPortalTaskDetails.mod``、 "
+"``OpenPortalCases.mod``、``OpenPortalCaseDetails.mod`` プロセスが非推奨の呼び出し可能プロセ"
 "スになりました。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:397
@@ -7566,7 +7566,7 @@ msgid ""
 "wizard>` to customize ``Portal HTML Dialog``"
 msgstr ""
 "ポータルでは、:dev-url:`|ivy| HtmlOverride ウィザード </doc/|version|/designer-guide/how-to/"
-"overrides.html?#override-new-wizard>` を使用して、 ``ポータルの HTML ダイアログ`` をカスタマ
+"overrides.html?#override-new-wizard>` を使用して、 ``ポータルの HTML ダイアログ`` をカスタマ"
 "イズすることを推奨します。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:399
@@ -7584,8 +7584,8 @@ msgid ""
 "<https://market.axonivy.com/html-dialog-demo>`_. So that you need to "
 "update your files that are using classes in ivy-icon.css."
 msgstr ""
-"ivy-icon.css を削除し、現在のクラスを `HTML Dialog Demo <https://market.axonivy.com/html-dialog-demo>` _"
-"にある新しいクラスに置き換えました。そのため、ivy-icon.css のクラスを使用しているファイルを更新"
+"ivy-icon.css を削除し、現在のクラスを `HTML Dialog Demo <https://market.axonivy.com/html-dialog-demo>`_"
+" にある新しいクラスに置き換えました。そのため、ivy-icon.css のクラスを使用しているファイルを更新"
 "する必要があります。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:403
@@ -7595,7 +7595,7 @@ msgid ""
 "<customization-task-item-details>` to add custom widgets."
 msgstr ""
 "taskItemDetailCustomPanelTop、taskItemDetailCustomPanelBottom をカスタマイズしている場合は、:ref:`"
-"TaskItemDetail のオーバーライド方法 <customization-task-item-details-ja>` に従って、カスタムウィジェッ
+"TaskItemDetail のオーバーライド方法 <customization-task-item-details-ja>` に従って、カスタムウィジェッ"
 "トを追加してください。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:405
@@ -7605,8 +7605,8 @@ msgid ""
 "override CaseItemDetail <customization-case-item-details>` to add these "
 "custom widgets."
 msgstr ""
-"``caseItemDetailCustomTop``、 ``caseItemDetailCustomMiddle``、 ``caseItemDetailCustomBottom`` をカスタ
-"マイズしている場合は、:ref:`CaseItemDetail のオーバーライド方法 <customization-case-item-details-ja>` に
+"``caseItemDetailCustomTop``、 ``caseItemDetailCustomMiddle``、 ``caseItemDetailCustomBottom`` をカスタ"
+"マイズしている場合は、:ref:`CaseItemDetail のオーバーライド方法 <customization-case-item-details-ja>` に"
 "従って、これらのカスタムウィジェットを追加してください。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:408
@@ -7618,55 +7618,52 @@ msgid ""
 "Remove the ``views`` field in SubMenuItem.java. Adapt it if you overrode "
 "the ``LoadSubMenuItems`` callable process"
 msgstr ""
-"SubMenuItem.java から ``views`` フィールドを削除します。 ``LoadSubMenuItems`` 呼び出し可能プロセ
-"スをオーバーライドしている場合は、それに適合させてください。"
+"SubMenuItem.java の ``views`` を削除します。 ``LoadSubMenuItems`` 呼び出し可能プロセ"
+"スをオーバーライドしている場合は、適合させます。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:412
 msgid ""
 "Add parameter ``<ui:param name=\"viewName\" value=\"TASK\" />`` to your "
 "customized ``PortalTasksTemplate`` to displayed breadcrumb of Task list."
 msgstr ""
-"カスタマイズした ``PortalTasksTemplate`` に ``<ui:param name=\"viewName\" value=\"TASK\" />`` パラメー
-"タを追加して、タスクリストのパンくずリストを表示します。"
+"``<ui:param name=\"viewName\" value=\"TASK\" />`` パラメーターをカスタマイズした ``PortalTasksTemplate`` "
+"に追加して、タスクリストのパンくずリストを表示します。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:414
 msgid ""
 "Add parameter ``<ui:param name=\"viewName\" value=\"CASE\" />`` to your "
 "customized ``PortalCasesTemplate`` to displayed breadcrumb of Case list."
 msgstr ""
-"カスタマイズした ``PortalCasesTemplate`` に ``<ui:param name=\"viewName\" value=\"CASE\" />`` パラメー
-"タを追加して、ケースリストのパンくずリストを表示します。"
+"``<ui:param name=\"viewName\" value=\"CASE\" />`` パラメーターをカスタマイズした ``PortalCasesTemplate`` "
+"に追加して、ケースリストのパンくずリストを表示します。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:416
 msgid ""
 "Ivy core has enhanced the Ivy URI, so Portal needs to make a migration. "
 "For each of your applications, execute the following steps:"
 msgstr ""
-"Ivy コアが Ivy URI を強化したため、ポータルは移行を行う必要があります。各アプリケーションに対し
-"て、以下の手順を実行してください："
+"Ivy のコアにより、Ivy の URI が拡張されました。ポータルで移行が必要です。アプリケーションごとに、以下の手"
+"順を実行してください。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:419
 msgid ""
 "Deploy process model :download:`PortalUrlMigration.iar "
 "<documents/PortalUrlMigration.iar>` to your Ivy Application."
 msgstr ""
-" :download:`PortalUrlMigration.iar <documents/PortalUrlMigration.iar>` プロセスモデルを Ivy アプリケーシ
+":download:`PortalUrlMigration.iar <documents/PortalUrlMigration.iar>` プロセスモデルを Ivy アプリケーシ"
 "ョンに展開します。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:422
 msgid ""
 "run ``migratePortalUrl.ivp`` once and wait until it is redirected to "
 "another page (i.e. the Homepage) without error."
-msgstr ""
-"``migratePortalUrl.ivp`` を 1 回実行し、エラーなく別のページ (ホームページなど) にリダイレクトされる
-"まで待ちます。"
+msgstr "``migratePortalUrl.ivp`` を 1 回実行し、エラーなしで他のページ（ホームページ）にリダイレクトされるまで待ちます。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:425
 msgid ""
 "Remove the process model ``migratePortalUrl.ivp`` after successfully "
 "migrating."
-msgstr ""
-"移行が成功したら、プロセスモデル ``migratePortalUrl.ivp`` を削除します。"
+msgstr "移行に成功したら、 ``migratePortalUrl.ivp`` プロセスモデルを削除します。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:427
 msgid ""
@@ -7677,10 +7674,11 @@ msgid ""
 "url:`Default Pages </doc/|version|/designer-guide/user-interface/default-"
 "pages/index.html>`"
 msgstr ""
-"HOMEPAGE_URL (シングルポータルアプリモード) および登録されたアプリケーションリンク (マルチポータルアプ
-"リモード) はもはや利用できません。ポータルに新しいポータルホームページの場所を知らせるには、プロ
-"ジェクトのデフォルトページを設定する必要があります。この章に従ってデフォルトページをカスタマイ
-"ズしてください： :dev-url:`デフォルトページ </doc/|version|/designer-guide/user-interface/default-pages/index.html>`"
+"HOMEPAGE_URL（シングルポータルアプリモード）と登録済みアプリケーションのリンク（マルチポータルアプリモー"
+"ド）が利用できなくなりました。 ポータルに新しいポータルホームページの場所を認識させるため、プロジェクトでデ"
+"フォルトのページを設定する必要があります。 "
+":dev-url:`デフォルトのページ </doc/|version|/designer-guide/user-interface/default-pages/index.html>` "
+"に従って、デフォルトのページをカスタマイズしてください。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:433
 msgid ""
@@ -7688,8 +7686,8 @@ msgid ""
 "convert the SASS syntax to the new CSS variables or use online tools such"
 " as |css_variable_convert| to convert it."
 msgstr ""
-"ポータルは現在、SASS の代わりに |css_variable| を使用しています。したがって、SASS 構文を新しい CSS
-" 変数に変換するか、|css_variable_convert| のようなオンラインツールを使用して変換する必要があります。"
+"ポータルは、 SASS の代わりに |css_variable| を使用します。そのため、SASS 構文を新しい CSS"
+" 変数に変換するか、|css_variable_convert| などのオンラインツールを使用して変換する必要があります。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:437
 msgid ""
@@ -7697,9 +7695,8 @@ msgid ""
 "setting and you have a customized case list, customize this field to this"
 " case list, e.g. add filter, column configuration, header."
 msgstr ""
-"エンジン管理者が ``Portal.Cases.EnableOwner`` 設定を有効にし、カスタマイズされたケースリストを持
-"っている場合は、このフィールドをケースリストにカスタマイズします。例：フィルター、列の構成、ヘッ
-"ダーを追加します。"
+"エンジンの管理者が ``Portal.Cases.EnableOwner`` 設定をアクティブ化しており、カスタマイズされたケースリストがあ"
+"る場合は、このフィールドをそのケースリストにカスタマイズします（フィルターの追加、列の設定、ヘッダーなど）。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:441
 msgid ""
@@ -7708,43 +7705,41 @@ msgid ""
 " data has to be migrated to work properly. Please follow these steps to "
 "migrate the existing data of your application:"
 msgstr ""
-"9.1 から Ivy エンジンはユーザーデータを同期するための新しいメカニズムを使用します。したがって、
-"ポータルはユーザーに関連するデータを適応させる必要があります。いくつかのデータは正常に動作するた
-"めに移行する必要があります。既存のアプリケーションデータを移行するには、次の手順に従ってください："
+"9.1 から Ivy エンジンは新しい方法を使用して、ユーザーのデータを同期します。 そのため、ポータルでユーザー"
+"に関連するデータを適合させる必要があります。正しく動作するように、いくつかのデータを移行する必要がありま"
+"す。 以下の手順に従って、アプリケーションの既存のデータを移行してください。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:446
 msgid ""
 "Deploy process model :download:`MigrateRelatedDataOfUserTo9.iar "
 "<documents/MigrateRelatedDataOfUserTo9.iar>` to your application."
 msgstr ""
-" :download:`MigrateRelatedDataOfUserTo9.iar <documents/MigrateRelatedDataOfUserTo9.iar>` プロセスモデ
+":download:`MigrateRelatedDataOfUserTo9.iar <documents/MigrateRelatedDataOfUserTo9.iar>` プロセスモデ"
 "ルをアプリケーションに展開します。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:449
 msgid "Run ``migratePrivateChat.ivp`` to migrate private chat messages."
 msgstr ""
-"プライベートチャットメッセージを移行するには、 ``migratePrivateChat.ivp`` を実行します。"
+"``migratePrivateChat.ivp`` を実行して、プライベートチャットメッセージを移行します。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:451
 msgid "Run ``migrateGroupChat.ivp`` to migrate group chat."
 msgstr ""
-"グループチャットを移行するには、 ``migrateGroupChat.ivp`` を実行します。"
+"``migrateGroupChat.ivp`` を実行して、グループチャットを移行します。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:453
 msgid ""
 "Run ``migrateUserProcessesAndExternalLinks.ivp`` to migrate user "
 "processes and external links."
-msgstr ""
-"ユーザープロセスと外部リンクを移行するには、 ``migrateUserProcessesAndExternalLinks.ivp`` を実行し
-"ます。"
+msgstr "``migrateUserProcessesAndExternalLinks.ivp`` を実行して、ユーザープロセスと外部リンクを移行します。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:456
 msgid ""
 "Run ``migrateExpressProcesses.ivp`` to migrate Express processes. Please "
 "skip this step if your application does not include Express."
 msgstr ""
-"Express プロセスを移行するには、 ``migrateExpressProcesses.ivp`` を実行します。アプリケーショ
-"ンに Express が含まれていない場合は、このステップをスキップしてください。"
+"``migrateExpressProcesses.ivp`` を実行して、Express のプロセスを移行します。アプリケーションに"
+" Express が含まれない場合は、この手順をスキップしてください。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:459
 msgid "Restart Ivy engine."
@@ -7755,8 +7750,8 @@ msgid ""
 "Use ``pageContent`` to define your section in ``BasicTemplate.xhtml`` "
 "instead of ``simplePageContent``."
 msgstr ""
-" ``BasicTemplate.xhtml`` でセクションを定義するには、 ``simplePageContent`` の代わりに ``pageContent``
-"`` を使用します。"
+"``simplePageContent`` の代わりに、 ``pageContent`` を使用して ``BasicTemplate.xhtml``"
+"のセクションを定義します。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:463
 msgid ""
@@ -7764,16 +7759,16 @@ msgid ""
 "``TaskTemplate`` has been removed, too, change it to ``frame-8`` "
 "(provided by Ivy)."
 msgstr ""
-"``TaskTemplate-7`` は削除されました。 ``TaskTemplate-8`` に変更してください。 ``TaskTemplate`` も削除
-"されましたので、 ``frame-8`` に変更してください (Ivy によって提供されます)。"
+"``TaskTemplate-7`` が削除されました。 ``TaskTemplate-8`` に変更してください。 ``TaskTemplate`` も削除されました。"
+"``frame-8`` （Ivy により提供）に変更してください。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:465
 msgid ""
 "The ``MenuKind`` enum has one more entry: EXTERNAL_LINK. Use it if your "
 "item is an external link. Use CUSTOM if it is an internal link."
 msgstr ""
-" ``MenuKind`` 列挙型に 1 つのエントリ EXTERNAL_LINK が追加されました。アイテムが外部リンクの場合は
-"これを使用し、内部リンクの場合は CUSTOM を使用します。"
+"``MenuKind`` enum に複数のエントリ（EXTERNAL_LINK）があります。これは、項目が外部リンクの場合に使用します。"
+"内部リンクの場合は CUSTOM を使用してください。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:468
 msgid ""
@@ -7781,22 +7776,22 @@ msgid ""
 "deprecated, redirect to ivy.html.applicationHomeRef() in your page "
 "instead."
 msgstr ""
-" ``PortalNavigatorInFrameAPI#navigateToPortalHome`` メソッドは非推奨です。代わりに、ページ内で ivy.html.applicationHomeRef()
-" にリダイレクトしてください。"
+" ``PortalNavigatorInFrameAPI#navigateToPortalHome`` メソッドは非推奨です。代わりにページの "
+"ivy.html.applicationHomeRef() にリダイレクトしてください。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:472
 msgid "Migrate 8.x To 9.x"
-msgstr ""
+msgstr "8.x から 9.x への移行"
 
 #: ../../source/portal-developer-guide/installation/index.rst:480
 msgid "Release notes"
-msgstr ""
+msgstr "リリースノート"
 
 #: ../../source/portal-developer-guide/installation/index.rst:482
 msgid ""
 "This part lists all relevant changes since the last official product "
 "releases of |ivy|."
-msgstr ""
+msgstr "ここには、 |ivy| の前回の正式な製品リリース以降のすべての関連する変更が記載されています。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:486
 msgid "Changes in 12.0.9"
@@ -8020,8 +8015,8 @@ msgid ""
 "the following places: full task list, full case list, dashboard task "
 "list, dashboard case list, and task analysis."
 msgstr ""
-"- 全タスクリスト、全ケースリスト、ダッシュボードのタスクリスト、ダッシュボードのケースリスト、"
-"  タスクの分析に ``アプリケーション`` フィルターと ``アプリケーション`` 列を導入しました。"
+"全タスクリスト、全ケースリスト、ダッシュボードのタスクリスト、ダッシュボードのケースリスト、"
+"タスクの分析に ``アプリケーション`` フィルターと ``アプリケーション`` 列を導入しました。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:533
 msgid "Changes in 9.4"
@@ -8094,7 +8089,7 @@ msgid ""
 "process-viewer>`"
 msgstr ""
 "``プロセスビューアー`` ページを導入しました。ユーザーは、プロセスの開始を視覚的に表示できます。"
-" :ref:`Show Process Viewer <how-to-show-process-viewer>` で詳細をご覧ください。"
+" :ref:`プロセスビューアーの表示 <how-to-show-process-viewer>` で詳細をご覧ください。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:552
 msgid ""
@@ -8166,7 +8161,7 @@ msgid ""
 "No need to update PortalGroupId variable when you change group id of "
 "Portal."
 msgstr ""
-"- ポータルのグループ ID を変更するときに PortalGroupId 変数を更新する必要はなくなりました。"
+"ポータルのグループ ID を変更するときに PortalGroupId 変数を更新する必要はなくなりました。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:575
 msgid "Changes in 9.2"
@@ -8178,16 +8173,16 @@ msgid ""
 " and ``Waiting for event`` in Portal Task list, also in Task State "
 "filter."
 msgstr ""
-"- ポータルのタスクリストとタスクの状態フィルターに ``破棄済``、 ``失敗``、 ``参加失敗``、"
-"  ``イベント待機中`` などの新しいタスクの状態を含めました。"
+"ポータルのタスクリストとタスクの状態フィルターに ``破棄済``、 ``失敗``、 ``参加失敗``、"
+"``イベント待機中`` などの新しいタスクの状態を含めました。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:579
 msgid ""
 "Included new CaseState ``Destroyed`` in Portal Case list, also in Case "
 "State filter."
 msgstr ""
-"- ポータルのケースリストとケースの状態フィルターに新しいケースの状態 ``破棄済`` を"
-"  含めました。"
+"ポータルのケースリストとケースの状態フィルターに新しいケースの状態 ``破棄済`` を"
+"含めました。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:581
 msgid ""
@@ -8204,7 +8199,7 @@ msgid ""
 "Introduced the ``Portal.Homepage`` Portal setting to set the default "
 "homepage, each user can change it via user profile."
 msgstr ""
-"- デフォルトのホームページを設定する ``Portal.Homepage`` ポータル設定を導入しました。各ユーザーは"
+"デフォルトのホームページを設定する ``Portal.Homepage`` ポータル設定を導入しました。各ユーザーは"
 "ユーザープロファイルから変更を行うことができます。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:585
@@ -8230,14 +8225,14 @@ msgid ""
 "Introduced new Portal Setting ``Portal.ShowButtonIcon`` to control "
 "visibility of icon of button in Portal."
 msgstr ""
-"- ポータルのボタンアイコンの表示設定を制御する ``Portal.ShowButtonIcon`` ポータル設定を導入しました。"
+"ポータルのボタンアイコンの表示設定を制御する ``Portal.ShowButtonIcon`` ポータル設定を導入しました。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:591
 msgid ""
 "Introduced new variable named ``PortalLoginPageDisplay`` to show Login "
 "page or hide it then show error page instead."
 msgstr ""
-"- ログインページを表示するか、非表示にして代わりにエラーページを表示する ``PortalLoginPageDisplay`` という"
+"ログインページを表示するか、非表示にして代わりにエラーページを表示する ``PortalLoginPageDisplay`` という"
 "名前の新しい変数を導入しました。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:593
@@ -8245,23 +8240,23 @@ msgid ""
 "No multiple applications anymore, Portal now only works in current "
 "application. It means administrator can not add new Ivy application."
 msgstr ""
-"- マルチアプリケーションがサポート対象外になりました。ポータルは現在のアプリケーションでのみ動作します。"
-"  つまり、管理者は新しい Ivy アプリケーションを追加できません。"
+"マルチアプリケーションがサポート対象外になりました。ポータルは現在のアプリケーションでのみ動作します。"
+"つまり、管理者は新しい Ivy アプリケーションを追加できません。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:595
 msgid "Statistic charts support multiple names for each supported languages."
 msgstr ""
-"- 統計チャートは、サポートされる言語ごとに複数の名前をサポートします。"
+"統計チャートは、サポートされる言語ごとに複数の名前をサポートします。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:597
 msgid "Portal supports multilingual user favorites"
 msgstr ""
-"- ポータルは、複数言語のユーザーのお気に入りをサポートします。"
+"ポータルは、複数言語のユーザーのお気に入りをサポートします。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:599
 msgid "Portal supports logos in SVG format."
 msgstr ""
-"- ポータルは SVG 形式のロゴをサポートします。"
+"ポータルは SVG 形式のロゴをサポートします。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:602
 msgid "Changes in 9.1"
@@ -8272,18 +8267,18 @@ msgid ""
 "Refactored style customization approach. From now on, Portal use CSS "
 "Variable as technology to customize CSS."
 msgstr ""
-"- スタイルのカスタマイズ方法をリファクタリングしました。今後は、ポータルは CSS をカスタマイズする"
-"  テクノロジーとして CSS 変数を使用します。"
+"スタイルのカスタマイズ方法をリファクタリングしました。今後は、ポータルは CSS をカスタマイズする"
+"テクノロジーとして CSS 変数を使用します。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:608
 msgid "Introduced new Portal dialog with icon decorator."
 msgstr ""
-"- アイコンデコレーターを含む新しいポータルダイアログを導入しました。"
+"アイコンデコレーターを含む新しいポータルダイアログを導入しました。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:610
 msgid "TaskTemplate-7, TaskTemplate and TwoColumnTemplate have been removed."
 msgstr ""
-"- TaskTemplate-7、TaskTemplate、TwoColumnTemplate が削除されました。"
+"TaskTemplate-7、TaskTemplate、TwoColumnTemplate が削除されました。"
 
 #: ../../source/portal-developer-guide/introduction/index.rst:6
 msgid ""
@@ -8634,8 +8629,8 @@ msgid ""
 "`Freya <https://www.primefaces.org/freya/>`_ theme by PrimeFaces. "
 "Moreover, the entire |ivy| Portal can now be used in Dark Mode."
 msgstr ""
-"この方向性でのもう 1 つの変更点が、新しい UI テーマへのアップグレ"
-"ドです。最新のトレンドとデザインパターンを PrimeFaces の新しい `"
+"この方向性でのもう 1 つの変更点が、新しい UI テーマへのアップグレテーマへのアップグレードです。"
+"最新のトレンドとデザインパターンを PrimeFaces の新しい `"
 "Freya <https://www.primefaces.org/freya/>`__ テーマに取り入れました。"
 "さらに、|ivy| Portal 全体をダークモードで使用できるようになりま"
 "した。"
@@ -8655,7 +8650,7 @@ msgid ""
 "needed."
 msgstr ""
 "ダークモードのカラースキームは、見た目が美しく、目にも優しいの"
-"が特徴です。エンドユーザーは、必要に応じてライトモードとダーク"
+"が特徴です。エンドユーザーは、必要に応じて、ライトモードとダーク"
 "モードを切り替えることができます。"
 
 #: ../../source/portal-developer-guide/introduction/index.rst:118
@@ -9714,8 +9709,8 @@ msgstr "ポータル設定を手動で行う方法については、:ref:`update
 
 #: ../../source/portal-developer-guide/settings/index.rst:25
 msgid ""
-"Portal settings are stored as :dev-url:`Variables </doc/|version"
-"|/designer-guide/configuration/variables.html>`."
+"Portal settings are stored as :dev-url:`Variables </doc/|version|"
+"/designer-guide/configuration/variables.html>`."
 msgstr "ポータル設定は、:dev-url:`変数 </doc/|version|/designer-guide/configuration/variables.html>` として格納されます。"
 
 #: ../../source/portal-developer-guide/settings/index.rst:27
@@ -9803,15 +9798,15 @@ msgstr "ロールの設定"
 
 #: ../../source/portal-developer-guide/settings/index.rst:63
 msgid "Portal roles"
-msgstr ""
+msgstr "ポータルのロール"
 
 #: ../../source/portal-developer-guide/settings/index.rst:63
 msgid "Rights"
-msgstr ""
+msgstr "権限"
 
 #: ../../source/portal-developer-guide/settings/index.rst:65
 msgid "AXONIVY_PORTAL_ADMIN"
-msgstr ""
+msgstr "AXONIVY_PORTAL_ADMIN"
 
 #: ../../source/portal-developer-guide/settings/index.rst:65
 msgid ""
@@ -9819,6 +9814,8 @@ msgid ""
 "role properties, and create public filters. Those who hold this role "
 "require some permissions."
 msgstr ""
+"このロールを持つユーザーはポータルの管理者ページにアクセスし、内部のロールのプロパティを設定し、パブリック"
+"フィルターを作成できます。このロールを保持するユーザーには権限が必要です。"
 
 #: ../../source/portal-developer-guide/settings/index.rst:77
 msgid "Permission Settings"
@@ -9826,8 +9823,8 @@ msgstr "権限の設定"
 
 #: ../../source/portal-developer-guide/settings/index.rst:79
 msgid ""
-"Configure permissions in the :dev-url:`Engine Cockpit </doc/|version"
-"|/engine-guide/reference/engine-cockpit/security.html>`. In the security "
+"Configure permissions in the :dev-url:`Engine Cockpit </doc/|version|"
+"/engine-guide/reference/engine-cockpit/security.html>`. In the security "
 "area, you will find all these permission in group \"PortalPermissions\"."
 msgstr ""
 ":dev-url:`エンジンコックピット </doc/|version|/engine-guide/reference/engine-cockpit/security.html>` で権限を設定します。"
@@ -9878,7 +9875,7 @@ msgid ""
 "<CaseOwnerTaskDelegate>`. This permission belongs to the "
 "PortalPermissions group."
 msgstr ""
-" :bdg-ref-warning:`🔑CaseOwnerTaskDelegate <CaseOwnerTaskDelegate>`.権限を持つケースオーナーは、ケース内のすべての関連するタスクを委任できます。"
+":bdg-ref-warning:`🔑CaseOwnerTaskDelegate <CaseOwnerTaskDelegate>`.権限を持つケースオーナーは、ケース内のすべての関連するタスクを委任できます。"
 " この権限は PortalPermissions グループに属します。"
 
 #: ../../source/portal-developer-guide/settings/index.rst:102
@@ -9887,7 +9884,7 @@ msgid ""
 "task state cannot be one of the following: CREATED, DONE, DESTROYED, "
 "RESUMED, FAILED."
 msgstr ""
-"- ユーザーが処理可能なタスクのみ委任できます。タスクの状態が CREATED、DONE、DESTROYED、RESUMED、FAILED の場合は委任できません。"
+"ユーザーが処理可能なタスクのみ委任できます。タスクの状態が CREATED、DONE、DESTROYED、RESUMED、FAILED の場合は委任できません。"
 
 #: ../../source/portal-developer-guide/settings/index.rst:104
 msgid "Reset"
@@ -10119,48 +10116,51 @@ msgstr "その他の権限"
 
 #: ../../source/portal-developer-guide/settings/index.rst:230
 msgid "Action"
-msgstr ""
+msgstr "アクション"
 
 #: ../../source/portal-developer-guide/settings/index.rst:230
 msgid "Permission required"
-msgstr ""
+msgstr "必要な権限"
 
 #: ../../source/portal-developer-guide/settings/index.rst:232
 msgid "Absence"
-msgstr ""
+msgstr "不在"
 
 #: ../../source/portal-developer-guide/settings/index.rst:232
 msgid "Read"
-msgstr ""
+msgstr "閲覧"
 
 #: ../../source/portal-developer-guide/settings/index.rst:232
 msgid ""
 ":bdg-ref-warning:`🔑UserReadOwnAbsences <UserReadOwnAbsences>`  or :bdg-"
 "ref-warning:`🔑UserReadAbsences <UserReadAbsences>`"
-msgstr "":bdg-ref-warning:`🔑UserReadOwnAbsences <UserReadOwnAbsences>`  or :bdg-"
+msgstr ""
+":bdg-ref-warning:`🔑UserReadOwnAbsences <UserReadOwnAbsences>`  または :bdg-"
 "ref-warning:`🔑UserReadAbsences <UserReadAbsences>`"
 
 #: ../../source/portal-developer-guide/settings/index.rst:235
 msgid "Create, edit"
-msgstr ""
+msgstr "作成、編集"
 
 #: ../../source/portal-developer-guide/settings/index.rst:235
 msgid ""
 ":bdg-ref-warning:`🔑UserCreateOwnAbsence <UserCreateOwnAbsence>` or :bdg-"
 "ref-warning:`🔑UserCreateAbsence <UserCreateAbsence>`"
-msgstr "":bdg-ref-warning:`🔑UserCreateOwnAbsence <UserCreateOwnAbsence>` or :bdg-"
+msgstr ""
+":bdg-ref-warning:`🔑UserCreateOwnAbsence <UserCreateOwnAbsence>` または :bdg-"
 "ref-warning:`🔑UserCreateAbsence <UserCreateAbsence>`"
 
 #: ../../source/portal-developer-guide/settings/index.rst:238
 msgid ""
 ":bdg-ref-warning:`🔑UserDeleteOwnAbsence <UserDeleteOwnAbsence>` or :bdg-"
 "ref-warning:`🔑UserDeleteAbsence <UserDeleteAbsence>`"
-msgstr "":bdg-ref-warning:`🔑UserDeleteOwnAbsence <UserDeleteOwnAbsence>` or :bdg-"
+msgstr ""
+":bdg-ref-warning:`🔑UserDeleteOwnAbsence <UserDeleteOwnAbsence>` または :bdg-"
 "ref-warning:`🔑UserDeleteAbsence <UserDeleteAbsence>`"
 
 #: ../../source/portal-developer-guide/settings/index.rst:241
 msgid "Read absences of all users"
-msgstr ""
+msgstr "すべてのユーザーの不在の閲覧"
 
 #: ../../source/portal-developer-guide/settings/index.rst:241
 msgid ":bdg-ref-warning:`🔑UserReadAbsences <UserReadAbsences>`"
@@ -10168,7 +10168,7 @@ msgstr ":bdg-ref-warning:`🔑UserReadAbsences <UserReadAbsences>`"
 
 #: ../../source/portal-developer-guide/settings/index.rst:243
 msgid "Delete absences of all users"
-msgstr ""
+msgstr "すべてのユーザーの不在の削除"
 
 #: ../../source/portal-developer-guide/settings/index.rst:243
 msgid ":bdg-ref-warning:`🔑UserDeleteAbsence <UserDeleteAbsence>`"
@@ -10176,7 +10176,7 @@ msgstr ":bdg-ref-warning:`🔑UserDeleteAbsence <UserDeleteAbsence>`"
 
 #: ../../source/portal-developer-guide/settings/index.rst:245
 msgid "Create new absence for all users"
-msgstr ""
+msgstr "すべてのユーザーの新しい不在の作成"
 
 #: ../../source/portal-developer-guide/settings/index.rst:245
 msgid ":bdg-ref-warning:`🔑UserCreateAbsence <UserCreateAbsence>`"
@@ -10184,43 +10184,45 @@ msgstr ":bdg-ref-warning:`🔑UserCreateAbsence <UserCreateAbsence>`"
 
 #: ../../source/portal-developer-guide/settings/index.rst:247
 msgid "Substitute"
-msgstr ""
+msgstr "代行者"
 
 #: ../../source/portal-developer-guide/settings/index.rst:247
 msgid "Manage substitute"
-msgstr ""
+msgstr "代行者の管理"
 
 #: ../../source/portal-developer-guide/settings/index.rst:247
 msgid ""
 ":bdg-ref-warning:`🔑UserCreateSubstitute <UserCreateSubstitute>` and :bdg-"
 "ref-warning:`🔑UserReadSubstitutes <UserReadSubstitutes>`"
-msgstr "":bdg-ref-warning:`🔑UserCreateSubstitute <UserCreateSubstitute>` and :bdg-"
+msgstr ":bdg-ref-warning:`🔑UserCreateSubstitute <UserCreateSubstitute>`、 :bdg-"
 "ref-warning:`🔑UserReadSubstitutes <UserReadSubstitutes>`"
 
 #: ../../source/portal-developer-guide/settings/index.rst:250
 msgid "Document"
-msgstr ""
+msgstr "ドキュメント"
 
 #: ../../source/portal-developer-guide/settings/index.rst:250
 msgid "Upload, delete"
-msgstr ""
+msgstr "アップロード、削除"
 
 #: ../../source/portal-developer-guide/settings/index.rst:250
 msgid ""
 ":bdg-ref-warning:`🔑DocumentWrite <DocumentWrite>` :bdg-ref-"
 "warning:`🔑DocumentOfInvolvedCaseWrite <DocumentOfInvolvedCaseWrite>`"
-msgstr "":bdg-ref-warning:`🔑DocumentWrite <DocumentWrite>` :bdg-ref-"
+msgstr ":bdg-ref-warning:`🔑DocumentWrite <DocumentWrite>` :bdg-ref-"
 "warning:`🔑DocumentOfInvolvedCaseWrite <DocumentOfInvolvedCaseWrite>`"
 
 #: ../../source/portal-developer-guide/settings/index.rst:253
 msgid "Portal permission"
-msgstr ""
+msgstr "ポータルの権限"
 
 #: ../../source/portal-developer-guide/settings/index.rst:253
 msgid ""
 "Access to full process list, it's \"Processes\" on the left menu and link"
 " \"Show all processes\" on Dashboard"
 msgstr ""
+"全プロセスリストへのアクセス左側のメニューに表示される「プロセス」、ダッシュボードの「すべてのプロセスの表"
+"示」リンク）"
 
 #: ../../source/portal-developer-guide/settings/index.rst:253
 msgid ":bdg-ref-warning:`🔑AccessFullProcessList <AccessFullProcessList>`"
@@ -10231,6 +10233,8 @@ msgid ""
 "Access to full task list, it's \"Tasks\" on the left menu and link \"Show"
 " full task list\" on Dashboard"
 msgstr ""
+"全タスクリストへのアクセス（左側のメニューに表示される「タスク」、ダッシュボードの「タスクリスト全体を表示」"
+"リンク）"
 
 #: ../../source/portal-developer-guide/settings/index.rst:258
 msgid ":bdg-ref-warning:`🔑AccessFullTaskList <AccessFullTaskList>`"
@@ -10238,7 +10242,7 @@ msgstr ":bdg-ref-warning:`🔑AccessFullTaskList <AccessFullTaskList>`"
 
 #: ../../source/portal-developer-guide/settings/index.rst:263
 msgid "Access to full case list, it's \"Cases\" on the left menu"
-msgstr ""
+msgstr "全ケースリストへのアクセス（左側のメニューに表示される「ケース」）"
 
 #: ../../source/portal-developer-guide/settings/index.rst:263
 msgid ":bdg-ref-warning:`🔑AccessFullCaseList <AccessFullCaseList>`"
@@ -10246,7 +10250,7 @@ msgstr ":bdg-ref-warning:`🔑AccessFullCaseList <AccessFullCaseList>`"
 
 #: ../../source/portal-developer-guide/settings/index.rst:266
 msgid "Add note to task/case"
-msgstr "ノートの追加"
+msgstr "タスク／ケースへのノートの追加"
 
 #: ../../source/portal-developer-guide/settings/index.rst:266
 msgid ":bdg-ref-warning:`🔑TaskCaseAddNote <TaskCaseAddNote>`"
@@ -10254,7 +10258,7 @@ msgstr ":bdg-ref-warning:`🔑TaskCaseAddNote <TaskCaseAddNote>`"
 
 #: ../../source/portal-developer-guide/settings/index.rst:268
 msgid "Display show more note"
-msgstr ""
+msgstr "［さらにノートを表示］の表示"
 
 #: ../../source/portal-developer-guide/settings/index.rst:268
 msgid ":bdg-ref-warning:`🔑TaskCaseShowMoreNote <TaskCaseShowMoreNote>`"
@@ -10264,7 +10268,7 @@ msgstr ":bdg-ref-warning:`🔑TaskCaseShowMoreNote <TaskCaseShowMoreNote>`"
 msgid ""
 "Create public external link, all other users can see that link in the "
 "full process list"
-msgstr ""
+msgstr "公開用外部リンクの作成。他のユーザーには全プロセスリストでそのリンクが表示されます。"
 
 #: ../../source/portal-developer-guide/settings/index.rst:270
 msgid ":bdg-ref-warning:`🔑CreatePublicExternalLink <CreatePublicExternalLink>`"
@@ -10272,7 +10276,7 @@ msgstr ":bdg-ref-warning:`🔑CreatePublicExternalLink <CreatePublicExternalLink
 
 #: ../../source/portal-developer-guide/settings/index.rst:274
 msgid "Dashboard sharing"
-msgstr ""
+msgstr "ダッシュボードの共有"
 
 #: ../../source/portal-developer-guide/settings/index.rst:274
 msgid ":bdg-ref-warning:`🔑ShareDashboardLink <ShareDashboardLink>`"
@@ -10347,11 +10351,11 @@ msgstr ""
 
 #: ../../source/portal-developer-guide/settings/index.rst:325
 msgid "PortalStartTimeCleanObsoletedDataExpression"
-msgstr ""
+msgstr "PortalStartTimeCleanObsoletedDataExpression"
 
 #: ../../source/portal-developer-guide/settings/index.rst:325
 msgid "0 6 \\* \\* \\*"
-msgstr ""
+msgstr "0 6 \\* \\* \\*"
 
 #: ../../source/portal-developer-guide/settings/index.rst:325
 msgid ""
@@ -10361,43 +10365,48 @@ msgid ""
 "guide/configur ation/advanced-configurati on.html#cron-expression>`_. "
 "Restart Ivy engine after changing this variable."
 msgstr ""
+"クロン式は、古いユーザーのデータを消去する時間を定義します。例えば、毎日 6AM の式は ``0 6 * * *`` "
+"になります。 `CRON Expression <https://developer.axonivy.com/doc/11.2/engine-guide/configuration/advanced-configuration.html#cron-expression>`_ "
+"を参照してください。この変数の変更後、Ivy エンジンを再起動します。"
 
 #: ../../source/portal-developer-guide/settings/index.rst:339
 msgid "PortalDeleteAllFinishedHiddenCases"
-msgstr ""
+msgstr "PortalDeleteAllFinishedHiddenCases"
 
 #: ../../source/portal-developer-guide/settings/index.rst:339
 msgid "false"
-msgstr ""
+msgstr "false"
 
 #: ../../source/portal-developer-guide/settings/index.rst:339
 msgid ""
 "If set to ``true``, the above cron job runs daily and removes all "
 "finished hidden cases on the engine."
 msgstr ""
+"``true`` に設定すると、上記の cron ジョブが毎日動作し、エンジンのすべての完了した非表示のケースを削除します。"
+
 
 #: ../../source/portal-developer-guide/settings/index.rst:344
 msgid "Otherwise, just cases which were generated by this Portal will be deleted."
-msgstr ""
+msgstr "そうでない場合は、このポータルで生成されたケースのみ削除されます。"
 
 #: ../../source/portal-developer-guide/settings/index.rst:348
 msgid "PortalHiddenTaskCaseExcluded"
-msgstr ""
+msgstr "PortalHiddenTaskCaseExcluded"
 
 #: ../../source/portal-developer-guide/settings/index.rst:348
 #: ../../source/portal-developer-guide/settings/index.rst:354
 msgid "true"
-msgstr ""
+msgstr "true"
 
 #: ../../source/portal-developer-guide/settings/index.rst:348
 msgid ""
 "By default, Portal will query tasks and cases which are not hidden. If "
 "set to ``false``, Portal will ignore this property."
-msgstr ""
+msgstr "ポータルは自動的に非表示でないタスクとケースを問い合わせます。``false`` に設定すると、ポータルはこのプロパティを無視します。"
 
 #: ../../source/portal-developer-guide/settings/index.rst:354
 msgid "PortalLoginPageDisplay"
-msgstr ""
+msgstr "PortalLoginPageDisplay"
 
 #: ../../source/portal-developer-guide/settings/index.rst:354
 msgid ""
@@ -10406,6 +10415,9 @@ msgid ""
 " and hide Logout in the User menu (when you use external authentication "
 "and the user is not present in your application user list.)"
 msgstr ""
+"ログインが必要で、ユーザーが不明な場合、ポータルは自動的にログインページにリダイレクトします。"
+"ログインエラーページにリダイレクトし、ユーザーメニューの［ログアウト］を非表示にするには、``false`` "
+"に設定します（外部認証を使用しており、アプリケーションのユーザーリストに該当するユーザーが存在しない場合）。"
 
 #: ../../source/portal-developer-guide/settings/index.rst:371
 msgid ""
@@ -10506,7 +10518,7 @@ msgid ""
 "Portal has built-in statistical chart definitions that can be used by the"
 " :ref:`Statistic widget <portal-statistic-widget>` in the Portal "
 "dashboard."
-msgstr "ポータルダッシュボードの :ref:`Statistic widget <portal-statistic-widget>` で使用できるすべての統計チャートのフィルターロジック、外観などの設定を定義できます。"
+msgstr "ポータルダッシュボードの :ref:`統計ウィジェット <portal-statistic-widget>` で使用できるすべての統計チャートのフィルターロジック、外観などの設定を定義できます。"
 
 #: ../../source/portal-developer-guide/settings/index.rst:443
 msgid "Filename: ``variables.Portal.ClientStatistic.json``"
@@ -10993,8 +11005,7 @@ msgstr "リバースプロキシを使用したポータルのインストール
 #: ../../source/portal-developer-guide/troubleshooting/index.rst:35
 msgid ""
 "If you install the Portal in an environment that uses a reverse proxy "
-"(Nginx, IIS or Apache httpd), you have to define the proxy in the |ivy-"
-"engine| configuration."
+"(Nginx, IIS or Apache httpd), you have to define the proxy in the |ivy-engine| configuration."
 msgstr ""
 "リバースプロキシ（Nginx、IIS、Apache httpd）を使用する環境にポータルをインストールする場合、|ivy-engine| の設定でプロキシを定義する必要があります。"
 

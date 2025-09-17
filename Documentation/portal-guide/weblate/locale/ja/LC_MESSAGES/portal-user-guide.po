@@ -1622,7 +1622,7 @@ msgid ""
 "information."
 msgstr ""
 "ポータルには、 :guilabel:`ロールの管理` タブに表示されるロールの数を制御する 2 つの詳細設定も用意されています。"
-"詳細については、 :ref:`Settings Variables <portal-available-settings>` を参照してください。"
+"詳細については、 :ref:`設定の変数 <portal-available-settings>` を参照してください。"
 
 #: ../../source/portal-user-guide/admin-settings/index.rst:120
 msgid "HowTo: Enable/Disable Password Validation"
@@ -2049,7 +2049,7 @@ msgstr "カテゴリー、状態、作成者、アプリケーションに有効
 msgid ""
 "Results include only records where the data in the column match the value"
 " in the filter."
-msgstr "結果には、列の値がフィルターの値に一致するレコードのみ含まれます。"
+msgstr "数値を含む列に有効。1 つの値を指定します。"
 
 #: ../../source/portal-user-guide/complex-filter/index.rst:87
 msgid "Not In"
@@ -2073,7 +2073,7 @@ msgstr "指定の値を含む"
 msgid ""
 "Valid for category, ID and column that contains text. Specify a single "
 "value or multiple values."
-msgstr "カテゴリー、ID、およびテキストを含む列に有効。1 つの値または複数の値を指定します。"
+msgstr "カテゴリー、ID、テキストを含む列に有効。1 つの値または複数の値を指定します。"
 
 #: ../../source/portal-user-guide/complex-filter/index.rst
 msgid ""
@@ -2121,7 +2121,7 @@ msgstr "指定の値と等しい"
 
 #: ../../source/portal-user-guide/complex-filter/index.rst
 msgid "Valid for a column that contains number. Specify a single value."
-msgstr "結果には、列の値がフィルターの値に一致するレコードのみ含まれます。"
+msgstr "数値を含む列に有効。1 つの値を指定します。"
 
 #: ../../source/portal-user-guide/complex-filter/index.rst:105
 msgid "Not Equal"
@@ -2139,7 +2139,7 @@ msgstr "結果には、列の値がフィルターの値より小さいレコー
 
 #: ../../source/portal-user-guide/complex-filter/index.rst:111
 msgid "Less or equal"
-msgstr "指定の値以下"
+msgstr "指定の値より小さいか等しい"
 
 #: ../../source/portal-user-guide/complex-filter/index.rst
 msgid ""
@@ -2175,7 +2175,7 @@ msgstr "空欄である"
 msgid ""
 "Valid for a column that contains text, numbers, or dates. Do not specify "
 "a value."
-msgstr "テキスト、数値、または日付を含む列に有効。値は指定しないでください。"
+msgstr "テキスト、数値、日付を含む列に有効。値は指定しないでください。"
 
 #: ../../source/portal-user-guide/complex-filter/index.rst
 msgid "Results include only records that contain no data in the column."
@@ -2269,11 +2269,11 @@ msgstr "結果には、列の日付がフィルターで指定した範囲内に
 msgid ""
 "Specifically, it will be from the first day of the current "
 "year/month/week to the end of the last day of the current"
-msgstr "具体的には、現在の年／月／週の最初の日から現在の年／月／週の最後の日の終わりまでとなります。"
+msgstr "具体的には、現在の年／月／週の最初の日から現在の年／月／週の最後の日の終わりまで"
 
 #: ../../source/portal-user-guide/complex-filter/index.rst
 msgid "year/month/week."
-msgstr ""
+msgstr "となります。"
 
 #: ../../source/portal-user-guide/complex-filter/index.rst
 msgid "*Example*: Find all cases that were created in the current month."
@@ -2289,7 +2289,7 @@ msgstr ":bdg-dark-line:`作成日` :bdg-dark-line:`現在` :bdg-dark-line:`月`"
 msgid ""
 "*Explanation*: Assuming today is ``2/27/2024 11:41:28``, the query will "
 "retrieve cases where the Created Date falls"
-msgstr "*説明* ：今日が ``2024/2/27 11:41:28`` であると仮定した場合、クエリは、作成日が"
+msgstr "*説明*：今日が ``2024/2/27 11:41:28`` であると仮定した場合、クエリは、作成日が"
 
 #: ../../source/portal-user-guide/complex-filter/index.rst
 msgid "within the period from ``2/1/2024 00:00:00`` to ``2/29/2024 23:59:59``."
@@ -2337,11 +2337,11 @@ msgstr "次の期間"
 msgid ""
 "Specifically, it will be from the present moment to the end of the day of"
 " the next <input_value>"
-msgstr "具体的には、現在から次の <input_value> 年／月／週間の日の終わりまでとなります。"
+msgstr "具体的には、現在から次の <input_value> 年／月／週間の日の終わりまで"
 
 #: ../../source/portal-user-guide/complex-filter/index.rst
 msgid "year(s)/month(s)/week(s)."
-msgstr ""
+msgstr "となります。"
 
 #: ../../source/portal-user-guide/complex-filter/index.rst
 msgid "*Example*: Find all cases with Invoice Due Date within the next 3 weeks"
@@ -2469,7 +2469,7 @@ msgstr "ダッシュボード設定メニュー"
 msgid ""
 "The :guilabel:`Dashboard Configuration` page provides you with private "
 "and public dashboard configuration tabs depending on the permissions you "
-"hold in the application. The usage will be explained in the HowTo's "
+"hold in the application. The usage will be explained in the HowTo’s "
 "further down in this chapter."
 msgstr ""
 ":guilabel:`ダッシュボード設定` ページには、アプリケーションで保有している権限によって、個人"
@@ -2521,7 +2521,7 @@ msgid ""
 "Select one of the available templates to add  (see :ref:`Available "
 "dashboard templates <private-available-dashboard-template>`)."
 msgstr ""
-"追加するテンプレートを 1 つ選択します（ :ref:`Available dashboard templates <private-available-dashboard-template>` を参照）。"
+"追加するテンプレートを 1 つ選択します（ :ref:`利用可能なダッシュボードのテンプレート <private-available-dashboard-template>` を参照）。"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:36
 msgid "The :guilabel:`Create new private dashboard` dialog is opened."
@@ -2543,7 +2543,7 @@ msgstr "add-icon"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:42
 msgid "Configure your private dashboard (see: :ref:`Dashboard <new-dashboard>`)."
-msgstr "個人用ダッシュボードを設定します（ :ref:`Dashboard <new-dashboard>` を参照）。"
+msgstr "個人用ダッシュボードを設定します（ :ref:`ダッシュボード <new-dashboard>` を参照）。"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:44
 msgid ""
@@ -2697,7 +2697,7 @@ msgid ""
 "Export dashboard, |trash-icon| Delete a private dashboard."
 msgstr ""
 "アクション：|actions-menu-icon| をクリックして、 :guilabel:`アクション` メニューを表示"
-"します。メニューには、|edit-icon| 編集（名前、説明）、|settings-icon| 設定（ :ref:`Dashboards "
+"します。メニューには、|edit-icon| 編集（名前、説明）、|settings-icon| 設定（ :ref:`ダッシュボード "
 "<new-dashboard>` を参照）、|download-icon| ダッシュボードをエクスポート、"
 "|trash-icon| 個人用ダッシュボードを削除アクションが表示されます。"
 
@@ -2765,22 +2765,22 @@ msgstr "個人用ダッシュボードを並べ替える"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:118
 msgid "Once created, your personal sort order is retained."
-msgstr "作成されると、個人のソート順序が保持されます。"
+msgstr "作成後は、個人の並べ替え順が維持されます。"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:119
 msgid ""
 "Once you have created a personal sort order, you can rearrange the order,"
 " but you cannot delete your personal sort order."
 msgstr ""
-"個人のソート順序を作成すると、その順序を並べ替えることはできますが、削除することはでき"
-"ません。"
+"個人の並べ替え順を作成した後、順序を並べ替えることはできますが、個人の並べ替え順"
+"を削除することはできません。"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:122
 msgid ""
 "If you create new dashboards, they are automatically added to the end of "
 "your personal sort order."
 msgstr ""
-"新しいダッシュボードを作成すると、それらは自動的に個人のソート順序の最後に追加されます。"
+"新しいダッシュボードを作成した場合、自動的に個人の並べ替え順の最後に追加されます。"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:125
 msgid "Public dashboards configuration"
@@ -2818,7 +2818,7 @@ msgid ""
 "Select one of the available templates to add  (see :ref:`Available "
 "dashboard templates <public-available-dashboard-template>`)."
 msgstr ""
-"追加するテンプレートを 1 つ選択します（ :ref:`Available "
+"追加するテンプレートを 1 つ選択します（ :ref:`利用可能なダッシュボードのテンプレート "
 "<public-available-dashboard-template>` を参照）。"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:141
@@ -3492,7 +3492,7 @@ msgstr ""
 #: ../../source/portal-user-guide/full-case-list/index.rst:64
 msgid ""
 "Documents: Here, documents attached to the case are listed. You may add, "
-"delete, rename or preview documents as described in the HowTo's below."
+"delete, rename or preview documents as described in the HowTo’s below."
 msgstr ""
 "ドキュメント：ここには、ケースに添付されたドキュメントが表示されます。以下の"
 "「ハウツー」のとおり、ドキュメントを追加、削除、プレビューできます。"
@@ -3684,7 +3684,7 @@ msgstr "|how-to-preview-document|"
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:381
 msgid "Case Details: preview document dialog"
-msgstr "ケースの詳細：ドキュメントのプレビューダイアログ"
+msgstr ""
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:147
 #: ../../source/portal-user-guide/full-task-list/index.rst:208
@@ -3706,7 +3706,7 @@ msgstr ""
 msgid ""
 "Change :ref:`Portal settings <update-portal-settings>` "
 ":guilabel:`Portal.Document.EnablePreview` to true to enable this feature."
-msgstr "この機能を有効にするには、:ref:`Portal settings <update-portal-settings>` の "
+msgstr "この機能を有効にするには、:ref:`ポータル設定 <update-portal-settings>` の "
 ":guilabel:`Portal.Document.EnablePreview` を true に変更します。"
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:154
@@ -4210,7 +4210,7 @@ msgstr ""
 
 #: ../../source/portal-user-guide/full-process-list/index.rst:61
 msgid ""
-"Don't confuse the process search with the global |ivy| Portal search "
+"Don’t confuse the process search with the global |ivy| Portal search "
 "which you find in the header area of the Portal."
 msgstr ""
 "プロセスの検索と、ポータルのヘッダー領域を検索する |ivy| Portal のグローバル検索を混同しな"
@@ -4268,11 +4268,11 @@ msgstr ":guilabel:`プロセス名` でプロセスに最適な名前を定義�
 
 #: ../../source/portal-user-guide/full-process-list/index.rst:86
 msgid ""
-"At the end of the :guilabel:`Process name` input, you will see a "
-"translate icon. Click the icon to open the ``Setting Multiple Languages``"
-" dialog. You can specify the name in multiple languages by filling in the"
-" various language fields. If you don't fill in a language field, the "
-"default language name will be used."
+"At the end of :guilabel:`Description` input, you will see a translate "
+"icon. Click the icon to open the ``Setting Multiple Languages`` dialog. "
+"You can specify the description in multiple languages by filling in the "
+"various language fields. If you don't fill in a language field, the "
+"default language description will be used."
 msgstr ""
 ":guilabel:`プロセス名` の入力後、翻訳アイコンが表示されます。"
 "アイコンをクリックして、 ``複数言語の設定`` ダイアログを開きます。言語フィール"
@@ -4544,7 +4544,7 @@ msgid ""
 "On the top of the **Full Task List** page you see next to the heading "
 ":guilabel:`Tasks` in brackets the overall number of tasks shown to you. "
 "Below you find the filter feature. The usage will be explained in the "
-"HowTo's further down this chapter. Finally, you see the list of tasks."
+"HowTo’s further down this chapter. Finally, you see the list of tasks."
 msgstr ""
 "**全タスクリスト** ページの一番上に表示される見出しの :guilabel:`タスク` の隣に、"
 "表示されるタスクの総数がかっこ書きで表示されます。その下にはフィルター機能が表示され"
@@ -4670,7 +4670,7 @@ msgstr "タスクの詳細：ノートセクション"
 msgid ""
 "Documents, these documents once attached to the case are available on all"
 " tasks. You may add, delete, rename or preview documents described in the"
-" HowTo's below."
+" HowTo’s below."
 msgstr ""
 "ドキュメント：ケースに添付されたドキュメントはすべてのタスクで利用できます。"
 "以下の「ハウツー」のとおり、ドキュメントを追加、削除、プレビューできます。"
@@ -4702,7 +4702,7 @@ msgid ""
 "configuration <dashboard-configuration>`."
 msgstr ""
 "全タスクリストページは、トップレベルメニューからアクセス可能なダッシュボードとして機能します。 "
-"タスクリストをカスタマイズするには、 :ref:`Dashboard configuration <dashboard-configuration>` に移動します。"
+"タスクリストをカスタマイズするには、 :ref:`ダッシュボードの設定 <dashboard-configuration>` に移動します。"
 
 #: ../../source/portal-user-guide/full-task-list/index.rst:113
 msgid ""
@@ -4814,7 +4814,7 @@ msgstr "ハウツー：ケースのドキュメントをプレビューする"
 
 #: ../../source/portal-user-guide/full-task-list/index.rst:320
 msgid "Task Details: preview document dialog"
-msgstr "タスクの詳細：プレビューダイアログ"
+msgstr ""
 
 #: ../../source/portal-user-guide/full-task-list/index.rst:215
 msgid "HowTo: Add a note to a task"
@@ -5096,7 +5096,7 @@ msgid ""
 "languages are currently supported in the |ivy| Portal:"
 msgstr "**言語** では、アプリケーションの言語を指定できます。\n"
 "この設定は、|ivy| Portal のすべてのページ、通知メール、サポートされている場合は会社のア\n"
-"プリケーションページに影響を及ぼします。"
+"プリケーションページに影響を及ぼします。|ivy| Portal では現在、以下の言語がサポートされています。 ポータル："
 
 #: ../../source/portal-user-guide/my-profile/index.rst:94
 msgid "English"
@@ -5128,12 +5128,10 @@ msgid ""
 " the standard language of the application. E.g. if your application only "
 "supports English, but you select Spanish as the Portal language, your "
 "application specific dialogs will still be shown in English."
-msgstr "アプリケーションは、このメニューで選択された言語と同じ言語をサポートする必要があります。\n"
-"\n"
-"そうでない場合、アプリケーション固有のコンテンツは、アプリケーションの標準言語で表示さ\n"
-"れます。\n"
-"\n"
-"例えば、アプリケーションが英語のみをサポートしている場合、ポータルの言語としてスペイン\n"
+msgstr ""
+"アプリケーションは、このメニューで選択された言語と同じ言語をサポートする必要があります。"
+"そうでない場合、アプリケーション固有のコンテンツは、アプリケーションの標準言語で表示されます。"
+"例えば、アプリケーションが英語のみをサポートしている場合、ポータルの言語としてスペイン"
 "語を選択しても、アプリケーション固有のダイアログは英語で表示されます。"
 
 #: ../../source/portal-user-guide/my-profile/index.rst:117
@@ -5451,7 +5449,7 @@ msgid ""
 msgstr ""
 ":guilabel:`フィルター` ボタンをクリックして、ウィジェットの複合フィルターを設定し、"
 ":guilabel:`適用` ボタンをクリックしてプレビューできます。詳細については、"
-":ref:`Complex Filter <complex-filter>` を参照してください。"
+":ref:` 複合フィルター <complex-filter>` を参照してください。"
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:98
 msgid "|task-list-widget-configuration|"
@@ -5677,8 +5675,8 @@ msgstr ""
 #: ../../source/portal-user-guide/new-dashboard/index.rst:165
 #: ../../source/portal-user-guide/new-dashboard/index.rst:244
 msgid ""
-"If the total width of the columns is less than the widget's width, the "
-"Portal will automatically adjust the column widths to match the widget's "
+"If the total width of the columns is less than the widget’s width, the "
+"Portal will automatically adjust the column widths to match the widget’s "
 "width."
 msgstr ""
 "列の全幅がウィジェットの幅よりも狭い場合、ポータルは自動的に列の幅をウィジェットの"
@@ -6316,7 +6314,7 @@ msgid ""
 "Portal notification displays all notifications based on your notification"
 " settings."
 msgstr ""
-"ポータルの通知では、通知設定に基づいてすべての通知が表示されます。"
+"ポータルの通知には、通知設定に基づいてすべての通知が表示されます。"
 
 #: ../../source/portal-user-guide/notification/index.rst:8
 msgid "|notification-panel|"
@@ -6331,8 +6329,7 @@ msgid ""
 "To open the notification, click  on the bell icon in the top right "
 "corner. A panel contains all your notifications will be displayed."
 msgstr ""
-"通知を開くには、右上隅にあるベルアイコンをクリックします。すべての通知が含まれる"
-"パネルが表示されます。"
+"通知を開くには、右上隅にあるベルのアイコンをクリックします。すべての通知を含むパネルが表示されます。"
 
 #: ../../source/portal-user-guide/notification/index.rst:10
 msgid ""
@@ -6340,24 +6337,21 @@ msgid ""
 "channels>` or go to a full page notification by clicking on More actions "
 "icon in the top right of the panel."
 msgstr ""
-"パネルで、 :ref:`notification settings <notification-channels>` にアクセスしたり、パネル"
-"の右上にある「その他のアクション」アイコンをクリックして、フルページの通知に移動"
-"したりすることができます。"
+"パネルでは、 :ref:`通知設定 <notification-channels>` にアクセスできます。"
+"また、パネルの右上にある［その他のアクション］アイコンをクリックして、全通知ページにアクセスできます。"
 
 #: ../../source/portal-user-guide/notification/index.rst:11
 msgid ""
 "Navigate to a full page notification by clicking on the |show-more-icon| "
 "icon."
 msgstr ""
-"|show-more-icon| アイコンをクリックして、フルページの通知に移動します。"
+"|show-more-icon| アイコンをクリックして、全通知ページに移動します。"
 
 #: ../../source/portal-user-guide/notification/index.rst:15
 msgid ""
 "The bell icon will automatically be hidden if the web notification "
 "channel is disabled either by the administrator or the user."
-msgstr ""
-"Web 通知チャネルが管理者またはユーザーによって無効にされた場合、ベルアイコンは"
-"自動的に非表示になります。"
+msgstr "ウェブ通知チャネルが管理者またはユーザーによって無効化されている場合、ベルのアイコンは自動的に非表示になります。"
 
 #: ../../source/portal-user-guide/notification/index.rst:17
 msgid "|notification-full-page|"
@@ -6365,7 +6359,7 @@ msgstr "|notification-full-page|"
 
 #: ../../source/portal-user-guide/notification/index.rst:24
 msgid "Full notifications page"
-msgstr "フルページの通知"
+msgstr "全通知ページ"
 
 #: ../../source/portal-user-guide/portal-chat/index.rst:4
 msgid "Portal Chat"
@@ -6402,7 +6396,7 @@ msgstr ""
 #: ../../source/portal-user-guide/portal-chat/index.rst:16
 #: ../../source/portal-user-guide/qr-code/index.rst:18
 msgid "See :ref:`Update Portal settings <update-portal-settings>`."
-msgstr ":ref:`Update Portal settings <update-portal-settings>` を参照してください。"
+msgstr ":ref:`ポータルの設定の更新 <update-portal-settings>` を参照してください。"
 
 #: ../../source/portal-user-guide/portal-chat/index.rst:20
 msgid "HowTo: Create a process chat related to a case"
@@ -6514,7 +6508,7 @@ msgstr ""
 
 #: ../../source/portal-user-guide/portal-header/index.rst:9
 msgid ""
-"Name of the user you're logged in with. Additionally, if you click on "
+"Name of the user you’re logged in with. Additionally, if you click on "
 "your username you get a menu with options that allow you to configure the"
 " |ivy| Portal to your personal needs. See `User Settings in the |ivy| "
 "Portal`_ for a detailed overview of the configuration options."
@@ -6562,7 +6556,7 @@ msgid ""
 "Menu entry :ref:`Admin Settings <admin-settings>` is only available for "
 "users who have role ``AXONIVY_PORTAL_ADMIN``."
 msgstr ""
-":ref:`Admin Settings <admin-settings>` メニューエントリは、 ``AXONIVY_PORTAL_ADMIN`` ロールを持つユーザーの"
+":ref:`管理者設定 <admin-settings>` メニューエントリは、 ``AXONIVY_PORTAL_ADMIN`` ロールを持つユーザーの"
 "み利用可能です。"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:33
@@ -6776,8 +6770,8 @@ msgid ""
 "cockpit/security.html>`. In the security area, open PersonalPermissions "
 "-> PersonalSecurityPermissions -> UserSetOwnPassword."
 msgstr ""
-"ユーザーがパスワードを変更できるようにするには、 :bdg-warning:`🔑UserSetOwnPassword "
-"<UserSetOwnPassword>` 権限を付与してください。次に権限を設定します :dev-url:`エンジンコックピット "
+"ユーザーがパスワードを変更できるようにするには、 :bdg-warning:`🔑UserSetOwnPassword` "
+"権限を付与してください。次に権限を設定します :dev-url:`エンジンコックピット "
 "</doc/|version|/engine-guide/reference/engine-cockpit/security.html>` . セキュリティ領域で"
 "［PersonalPermissions］、［PersonalSecurityPermissions］、［UserSetOwnPassword］を順に開いてください。"
 
@@ -6936,7 +6930,7 @@ msgid ""
 "Open :ref:`Admin Settings <admin-settings>`, set "
 ":guilabel:`Portal.DeepL.Enable` to true."
 msgstr ""
-":ref:`Admin Settings <admin-settings>` を開き、:guilabel:`Portal.DeepL.Enable` を true "
+":ref:`管理者設定 <admin-settings>` を開き、:guilabel:`Portal.DeepL.Enable` を true "
 "に設定します。"
 
 #: ../../source/portal-user-guide/portal-multi-language/index.rst:18
