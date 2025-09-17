@@ -21,9 +21,6 @@ on:
         default: 'nightly'
         required: true
 
-  push:
-    branches:
-      - feature/IVYPORTAL-19546-Add-Japanese-translation-to-Portal-Documentation-in-Weblate-12
 jobs:
   build-document:
     runs-on: ubuntu-latest
@@ -99,6 +96,7 @@ jobs:
           fi
           sudo mkdir -p Documentation/portal-guide/build/doc/en
           sudo mv Documentation/portal-guide/build/html/* Documentation/portal-guide/build/doc/en/
+
       - name: Build Japanese Documentation HTML
         id: build-ja-html
         run: |
@@ -122,6 +120,7 @@ jobs:
           fi
           sudo mkdir -p Documentation/portal-guide/build/doc/ja
           sudo mv Documentation/portal-guide/build/html/* Documentation/portal-guide/build/doc/ja/
+
       - name: Install or deploy document
         run: |
           sudo chmod -R a+rwx Documentation/

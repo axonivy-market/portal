@@ -499,7 +499,7 @@ msgid ""
 "Please refer to :ref:`settings-virus-scanning-setting` for more details "
 "about virus scanning."
 msgstr ""
-"ウイルススキャンの詳細については、:ref:`settings-virus-scanning-setting-ja` を参"
+"ウイルススキャンの詳細については、:ref:`settings-virus-scanning-setting` を参"
 "照してください。"
 
 #: ../../source/portal-components/document-table/index.rst:40
@@ -1824,8 +1824,8 @@ msgid ""
 "portal-components-role-selection`."
 msgstr ""
 "このコンポーネントは、ivy のセキュリティシステムでセキュリティメンバーの名前とアバターを表示"
-"するのに使用します。コンポーネントは、:ref:`components-portal-components-user-selection-ja`、"
-":ref:`components-portal-components-role-selection-ja` にも統合されています。"
+"するのに使用します。コンポーネントは、:ref:`components-portal-components-user-selection`、"
+":ref:`components-portal-components-role-selection` にも統合されています。"
 
 #: ../../source/portal-components/security-member-name-and-avatar/index.rst:15
 msgid "You can insert this component into any page."

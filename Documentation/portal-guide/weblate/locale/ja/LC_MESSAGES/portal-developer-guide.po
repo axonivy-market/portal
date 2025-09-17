@@ -158,7 +158,7 @@ msgstr "グローバル通知"
 #: ../../source/portal-developer-guide/static-page/index.rst:9
 #: ../../source/portal-developer-guide/usermenu/index.rst:9
 msgid "Introduction"
-msgstr "はじめに"
+msgstr "概要"
 
 #: ../../source/portal-developer-guide/components/additional-components.rst:16
 msgid ""
@@ -543,7 +543,7 @@ msgid ""
 "process."
 msgstr ""
 "ビジネスの詳細プロセスを作成します。このプロセスで、 ``uuid`` パラメーターを"
-"受け入れるリクエスト開始イベントを定義します。ケースの詳細ページの ``ビジネスの詳細``"
+"受け入れるリクエスト開始イベントを定義します。ケースの詳細ページの ``ビジネスの詳細`` "
 "ボタンをクリックすると、このプロセスが呼び出され、ケースの UUID が ``uuid`` パラメーターとして"
 "受け渡されます。 このプロセスで、ビジネスの詳細ページのユーザーインターフェースを設計、実装します。"
 
@@ -595,7 +595,7 @@ msgid ""
 "``ch.ivy.addon.portalkit.publicapi.BusinessDetailsAPI.create(BusinessDetailsDTO)``."
 " See the Public API section for more details."
 msgstr ""
-"``ch.ivy.addon.portalkit.publicapi.BusinessDetailsAPI.create(String)`` または"
+"``ch.ivy.addon.portalkit.publicapi.BusinessDetailsAPI.create(String)`` または "
 "``ch.ivy.addon.portalkit.publicapi.BusinessDetailsAPI.create(BusinessDetailsDTO)`` のいずれかのパブリック API を使用します。"
 " 詳細については、パブリック API のセクションを参照してください。"
 
@@ -681,21 +681,21 @@ msgid ""
 "Ensure the new UI aligns with the overall design and functionality "
 "requirements of your application."
 msgstr ""
-"- 新しい UI がアプリケーション全体の設計と機能の要件に適合していることを確認してください。"
+"新しい UI がアプリケーション全体の設計と機能の要件に適合していることを確認してください。"
 
 #: ../../source/portal-developer-guide/customization/business-details-page.rst:66
 msgid ""
 "Test the integration thoroughly to confirm that the case information is "
 "accurately passed and displayed."
 msgstr ""
-"- 統合を徹底的にテストして、ケース情報が正確に受け渡され、表示されることを確認してください。"
+"統合を徹底的にテストして、ケース情報が正確に受け渡され、表示されることを確認してください。"
 
 #: ../../source/portal-developer-guide/customization/business-details-page.rst:68
 msgid ""
 "When using external links, verify that the links are secure and "
 "accessible from your application environment."
 msgstr ""
-"- 外部リンクを使用する場合は、リンクが安全で、アプリケーション環境からアクセスできることを確認してください。"
+"外部リンクを使用する場合は、リンクが安全で、アプリケーション環境からアクセスできることを確認してください。"
 
 #: ../../source/portal-developer-guide/customization/business-details-page.rst:71
 msgid "Permission Setting"
@@ -886,9 +886,6 @@ msgid ""
 "``document`` -  ``technicalCase`` -  ``businessDetails`` -  "
 "``relatedTask`` -  ``history`` -  ``custom``."
 msgstr ""
-"``type``: ウィジェットのタイプ。以下の 6 (英語原文は 7) 種類があります： "
-"-  ``information`` 、``document`` 、``technicalCase`` 、 ``relatedTask`` 、"
-"``history`` 、``custom``。"
 
 #: ../../source/portal-developer-guide/customization/case-item-details.rst:126
 msgid "``layout``: defines the UI styling of the widget."
@@ -938,7 +935,7 @@ msgstr ""
 
 #: ../../source/portal-developer-guide/customization/case-item-details.rst:144
 msgid "**Do not change** ``type`` and ``id`` of widgets."
-msgstr "**Do not change** ``type`` and ``id`` of widgets."
+msgstr "ウィジェットの ``type`` と ``id`` は **変更しないでください**。"
 
 #: ../../source/portal-developer-guide/customization/case-item-details.rst:145
 msgid ""
@@ -961,7 +958,7 @@ msgstr "``x + w`` は **12** **以下** でなければなりません。"
 msgid "We support all case business states in filter type ``states``."
 msgstr ""
 "フィルタータイプ  ``states`` ではすべてのケースのビジネスの状態がサポ"
-"トされます。"
+"ートされます。"
 
 #: ../../source/portal-developer-guide/customization/case-item-details.rst:149
 msgid ""
@@ -970,7 +967,7 @@ msgid ""
 "warning:`🔑ShowCaseDetails <ShowCaseDetails>` permission is granted."
 msgstr ""
 "組み込みウィジェットのタイプ ``businessDetails`` はデフォルト設定の一部"
-"ではなく、:bdg-ref-warning:`🔑ShowCaseDetails <ShowCaseDetails>` 権限が与"
+"ではなく、 :bdg-ref-warning:`🔑ShowCaseDetails <ShowCaseDetails>` 権限が与"
 "えられている場合にのみ表示されます。"
 
 #: ../../source/portal-developer-guide/customization/case-item-details.rst:155
@@ -1108,7 +1105,7 @@ msgid ""
 "Cockpit Page to add custom widgets."
 msgstr ""
 "カスタムウィジェットを追加するには、 **エンジンの管理者** がコックピットペ"
-"ージで :ref:`Portal.CaseDetails <case-details-configuration-variable-ja>` 変"
+"ージで :ref:`Portal.CaseDetails <case-details-configuration-variable>` 変"
 "数を設定する必要があります。"
 
 #: ../../source/portal-developer-guide/customization/case-item-details.rst:200
@@ -1243,7 +1240,7 @@ msgstr "**シグネチャ**: portalChangePassword"
 #: ../../source/portal-developer-guide/customization/menu.rst:56
 #: ../../source/portal-developer-guide/customization/task-delegation.rst:12
 msgid "Name"
-msgstr ""
+msgstr "名前"
 
 #: ../../source/portal-developer-guide/customization/change-password-process.rst:24
 #: ../../source/portal-developer-guide/customization/document-processes.rst:30
@@ -1257,13 +1254,13 @@ msgstr ""
 #: ../../source/portal-developer-guide/customization/menu.rst:56
 #: ../../source/portal-developer-guide/customization/task-delegation.rst:12
 msgid "Type"
-msgstr ""
+msgstr "タイプ"
 
 #: ../../source/portal-developer-guide/customization/change-password-process.rst:24
 #: ../../source/portal-developer-guide/customization/document-processes.rst:57
 #: ../../source/portal-developer-guide/customization/task-delegation.rst:12
 msgid "Note"
-msgstr ""
+msgstr "注記"
 
 #: ../../source/portal-developer-guide/customization/change-password-process.rst:26
 #: ../../source/portal-developer-guide/customization/document-processes.rst:32
@@ -1275,7 +1272,7 @@ msgstr ""
 #: ../../source/portal-developer-guide/customization/logout-process.rst:29
 #: ../../source/portal-developer-guide/customization/task-delegation.rst:14
 msgid "**Parameter**"
-msgstr ""
+msgstr "**パラメーター**"
 
 #: ../../source/portal-developer-guide/customization/change-password-process.rst:28
 msgid "currentPassword"
@@ -1337,7 +1334,7 @@ msgstr ""
 #: ../../source/portal-developer-guide/customization/change-password-process.rst:36
 #: ../../source/portal-developer-guide/customization/document-processes.rst:77
 msgid "OK or FAIL"
-msgstr ""
+msgstr "OK または FAIL"
 
 #: ../../source/portal-developer-guide/customization/change-password-process.rst:41
 msgid ""
@@ -2073,7 +2070,7 @@ msgid ""
 "the main menu by using :ref:`Portal permissions <settings-permission-"
 "settings-others>`."
 msgstr ""
-":ref:`Portal permissions <settings-permission-settings-others>` を使用して、プロセス、"
+":ref:`ポータルの権限 <settings-permission-settings-others>` を使用して、プロセス、"
 "タスク、ケースの 3 つのメインメニューのデフォルトのメニュー項目を非表示にすること"
 "ができます。"
 
@@ -2088,10 +2085,9 @@ msgid ""
 " homepage. If a task is started from a task list, it redirects to that "
 "task list after the task is finished."
 msgstr ""
-"タスクが完了すると、ポータルは前のページに戻ります。たとえば、タスクが"
-"ホームページから開始された場合はホームページにリダイレクトします。"
-"タスクがタスクリストから開始された場合は、タスク完了後にそのタスクリス"
-"トにリダイレクトされます。"
+"タスクが完了すると、ポータルは前のページに戻ります。例えば、タスクがホームページから開始された場合、ホームペ"
+"ージにリダイレクトします。タスクがタスクリストから開始された場合は、タスクの完了後、そのタスクリストにリダイ"
+"レクトします。"
 
 #: ../../source/portal-developer-guide/customization/navigate-back.rst:13
 msgid ""
@@ -2131,7 +2127,7 @@ msgid ""
 "logo by using :dev-url:`Engine Branding </doc/|version|/designer-guide"
 "/user-interface/branding/branding-engine.html>`."
 msgstr ""
-":dev-url:`Engine Branding </doc/|version|/designer-guide/user-interface/"
+":dev-url:`エンジンのブランディング </doc/|version|/designer-guide/user-interface/"
 "branding/branding-engine.html>` により、メニューの左上隅のロゴとログインロゴの両方を"
 "変更できます。"
 
@@ -2159,25 +2155,23 @@ msgid ""
 msgstr ""
 "比率を維持しながら拡大縮小できるため、ロゴのグラフィックス形式は SVG（Scalable"
 " Vector Graphics）が最善です。ロゴは常に現在の解像度で可能な限りきれいにレン"
-"ダリングされます。解像度はブラウザのウィンドウサイズ、ズーム、画面解像度に依"
-"存します。さらに、SVG ファイルはテキストファイルであるため通常はかなり小さく、"
-"最新のブラウザはすべて SVG をレンダリングできます。"
+"ダリングされます。解像度は、ブラウザのウィンドウのサイズ、倍率、画面解像度によって決まります。 また、"
+" SVG ファイルはテキストファイルであるため、通常はかなり小さいです。 すべての最新のブラウザは、"
+" SVG 画像をレンダリングできます。"
 
 #: ../../source/portal-developer-guide/customization/portal-style-customization-logos-colors-date-patterns.rst:26
 msgid ""
 "On the other hand, PNG logos may blur when expanded, and they result in "
 "large file sizes if supplied in high resolution to prevent the blurring."
 msgstr ""
-"一方、PNG のロゴは拡大時にぼやけることがあり、ぼやけを防ぐために高解像度で"
-"提供するとファイルサイズが大きくなります。"
+"一方、PNG のロゴは拡大時にぼやけることがあるため、ぼやけないように高解像度で提供された場合、ファイルサイズが大きくなります。"
 
 #: ../../source/portal-developer-guide/customization/portal-style-customization-logos-colors-date-patterns.rst:29
 msgid ""
 "We recommend using images with a transparent background, if your "
 "Corporate Identity does not define a mandatory background color."
 msgstr ""
-"コーポレートアイデンティティで必須の背景色が定められていない場合は、背景が透"
-"明な画像の使用を推奨します。"
+"コーポレートアイデンティティで必須の背景色が定められていない場合は、背景が透明な画像を使用することを推奨します。"
 
 #: ../../source/portal-developer-guide/customization/portal-style-customization-logos-colors-date-patterns.rst:32
 msgid ""
@@ -2186,7 +2180,7 @@ msgid ""
 "guide/user-interface/branding/branding-user-interface.html#resources>` "
 "and follow the guidelines below."
 msgstr ""
-"ポータルで使用するロゴを変更する場合は、:dev-url:`User Interface Branding "
+"ポータルで使用するロゴを変更する場合は、:dev-url:`ユーザーインターフェースのブランディング "
 "</doc/|version|/designer-guide/user-interface/branding/branding-user-interface.html#"
 "resources>` に記載されているリソースを使用し、以下のガイドラインに従ってください。"
 
@@ -2208,16 +2202,15 @@ msgid ""
 "pixels (width by height) to fit the left menu size when it is expanded. "
 "For SVG, it is best if the logo has a 4:1 ratio."
 msgstr ""
-"TIP: PNG の場合、展開時の左側メニューに合わせて 168x42 ピクセル（幅 x 高さ）"
-"の画像を推奨します。SVG では、比率が 4:1 のロゴが最適です。"
+"PNG では、展開時の左側のメニューサイズに合わせて、サイズが 168x42 ピクセル（幅x高さ）"
+"の画像を使用することを推奨します。SVG では、比率が 4:1 のロゴが最善です。"
 
 #: ../../source/portal-developer-guide/customization/portal-style-customization-logos-colors-date-patterns.rst:45
 msgid ""
 "To scale your logo, override these variables: ``--home-logo-width``, "
 "``--home-logo-height``."
 msgstr ""
-"ロゴを拡大縮小するには、``--home-logo-width``、``--home-logo-height`` 変数をオーバー"
-"ライドしてください。"
+"ロゴを拡大縮小するには、``--home-logo-width``、``--home-logo-height`` 変数をオーバーライドします。"
 
 #: ../../source/portal-developer-guide/customization/portal-style-customization-logos-colors-date-patterns.rst:48
 msgid "Login & Collapsed Menu Logo"
@@ -2228,8 +2221,7 @@ msgid ""
 "Use resource ``logo_small`` to update the login logo & the homepage logo "
 "when the left-hand menu is collapsed."
 msgstr ""
-"左側のメニューが折りたたまれたときは、``logo_small`` リソースを使用してログインロゴ"
-"およびホームページロゴを更新します。"
+"左側のメニューが折りたたまれたときは、``logo_small`` リソースを使用して、ログインロゴとホームページのロゴを更新します。"
 
 #: ../../source/portal-developer-guide/customization/portal-style-customization-logos-colors-date-patterns.rst:53
 msgid "We recommend using an image with size is 50x50 pixels."
@@ -2240,8 +2232,7 @@ msgid ""
 "To scale the login logo, override variable: ``--login-logo-height``, the "
 "width will be calculated automatically."
 msgstr ""
-"ログインロゴを拡大縮小するには、``--login-logo-height`` 変数をオーバーライドしてくだ"
-"さい。幅は自動的に計算されます。"
+"ログインロゴを拡大縮小するには、``--login-logo-height`` 変数をオーバーライドします。幅が自動的に計算されます。"
 
 #: ../../source/portal-developer-guide/customization/portal-style-customization-logos-colors-date-patterns.rst:57
 msgid ""
@@ -2249,7 +2240,7 @@ msgid ""
 "logo-width``, ``--home-logo-height``."
 msgstr ""
 "ホームページのロゴを拡大縮小するには、``--small-home-logo-width``、``--home-logo-height`` "
-"変数をオーバーライドしてください。"
+"変数をオーバーライドします。"
 
 #: ../../source/portal-developer-guide/customization/portal-style-customization-logos-colors-date-patterns.rst:60
 msgid "Favicon"
@@ -2257,11 +2248,11 @@ msgstr "ファビコン"
 
 #: ../../source/portal-developer-guide/customization/portal-style-customization-logos-colors-date-patterns.rst:62
 msgid "Use resource ``favicon`` to update the favicon."
-msgstr "``favicon`` リソースを使用してファビコンを更新します。"
+msgstr "``favicon`` リソースを使用して、ファビコンを更新します。"
 
 #: ../../source/portal-developer-guide/customization/portal-style-customization-logos-colors-date-patterns.rst:65
 msgid "We recommend using an image with size 16x16 or 32x32 pixels."
-msgstr "16x16 または 32x32 ピクセルの画像を使用することを推奨します。"
+msgstr "サイズが 16x16 または 32x32 ピクセルの画像を使用することを推奨します。"
 
 #: ../../source/portal-developer-guide/customization/portal-style-customization-logos-colors-date-patterns.rst:68
 msgid "Change Portal Styles"
@@ -2269,7 +2260,7 @@ msgstr "ポータルのスタイルの変更"
 
 #: ../../source/portal-developer-guide/customization/portal-style-customization-logos-colors-date-patterns.rst:70
 msgid "The Portal uses modern |css_variable| to support style customization."
-msgstr "ポータルは最新の |css_variable| を使用してスタイルのカスタマイズをサポートして"
+msgstr "ポータルは、最新の |css_variable| を使用して、スタイルのカスタマイズをサポートして"
 "います。"
 
 #: ../../source/portal-developer-guide/customization/portal-style-customization-logos-colors-date-patterns.rst:72
@@ -2281,8 +2272,7 @@ msgid ""
 msgstr ""
 "安全にアップデートできる方法でポータルのスタイルをカスタマイズするため、オー"
 "バーライドする予定のすべての CSS 変数とスタイルを ``portal-root-variables.css``、"
-"``portal-variables-light.css``、``portal-variables-dark.css`` から ``custom.css`` に"
-"コピーすることを推奨します。"
+"``portal-variables-light.css``、``portal-variables-dark.css`` ファイルから ``custom.css`` ファイルにコピーすることを推奨します。"
 
 #: ../../source/portal-developer-guide/customization/portal-style-customization-logos-colors-date-patterns.rst:75
 msgid ""
@@ -2291,9 +2281,9 @@ msgid ""
 "url:`custom.css </doc/|version|/engine-guide/configuration/files/custom-"
 "css.html>`."
 msgstr ""
-":dev-url:`Engine Branding </doc/|version|/designer-guide/user-interface/branding/"
-"branding-engine.html>` を参照して、:dev-url:`custom.css </doc/|version|/engine-guide/"
-"configuration/files/custom-css.html>` の場所を確認してください。"
+":dev-url:`custom.css </doc/|version|/engine-guide/configuration/files/custom-css.html>` "
+"の場所については、 :dev-url:`エンジンのブランディング </doc/|version|/designer-guide/user-interface/branding/branding-engine.html>` "
+"を参照してください。"
 
 #: ../../source/portal-developer-guide/customization/portal-style-customization-logos-colors-date-patterns.rst:78
 msgid ""
@@ -2302,7 +2292,7 @@ msgid ""
 "because they may change in a future Portal version."
 msgstr ""
 "将来のポータルバージョンで変更される可能性があるため、``portal-root-variables.css``、"
-"``portal-variables-light.css``、``portal-variables-dark.css``、``portal.css`` を直接"
+"``portal-variables-light.css``、``portal-variables-dark.css``、``portal.css`` 変数を直接"
 "変更しないでください。"
 
 #: ../../source/portal-developer-guide/customization/portal-style-customization-logos-colors-date-patterns.rst:82
@@ -2523,7 +2513,7 @@ msgid ""
 "that text on buttons and other components is legible as it has high "
 "contrast."
 msgstr ""
-"``--primary-color`` が明るい色（黄色、水色など）の場合は、``--primary-text-color`` を"
+"``--primary-color`` が明るい色（黄色、水色など）の場合は、``--primary-text-color`` を "
 "``black`` に変更できます。高コントラストにより、ボタンなどのコンポーネントの"
 "テキストが読みやすくなります。"
 
@@ -2861,21 +2851,21 @@ msgid ""
 "``x``: HTML DOM Style ``left`` will be calculated by formula ``x / 12 * "
 "100%``"
 msgstr ""
-"``x``：HTML DOM スタイルの ``left`` は ``x / 12 * 100%`` で計算されます。"
+"``x``：HTML DOM スタイル ``left`` は ``x / 12 * 100%`` で計算されます。"
 
 #: ../../source/portal-developer-guide/customization/task-item-details.rst:105
 msgid ""
 "``y``: HTML DOM Style ``top`` will be calculated by formula ``y / 12 * "
 "100%``"
 msgstr ""
-"``y``：HTML DOM スタイルの ``top`` は ``y / 12 * 100%`` で計算されます。"
+"``y``：HTML DOM スタイル ``top`` は ``y / 12 * 100%`` で計算されます。"
 
 #: ../../source/portal-developer-guide/customization/task-item-details.rst:107
 msgid ""
 "``w``: HTML DOM Style ``width`` will be calculated by formula ``60 * w + "
 "20 * (w - 1)``"
 msgstr ""
-"``w``：HTML DOM スタイルの ``width`` は ``60 * w + 20 * (w - 1)`` で計算"
+"``w``：HTML DOM スタイル ``width`` は ``60 * w + 20 * (w - 1)`` で計算"
 "されます。"
 
 #: ../../source/portal-developer-guide/customization/task-item-details.rst:109
@@ -2883,7 +2873,7 @@ msgid ""
 "``h``: HTML DOM Style ``height`` will be calculated by formula ``60 * h +"
 " 20 * (h - 1)``"
 msgstr ""
-"``h``：HTML DOM スタイルの ``height`` は ``60 * h + 20 * (h - 1)`` で計算"
+"``h``：HTML DOM スタイル ``height`` は ``60 * h + 20 * (h - 1)`` で計算"
 "されます。"
 
 #: ../../source/portal-developer-guide/customization/task-item-details.rst:111
@@ -2931,8 +2921,8 @@ msgid ""
 "Key value for task has to start with ``task.``. Supported are two values:"
 " ``task.id``, ``task.category``."
 msgstr ""
-"タスクのキー値は ``task.`` で始まる必要があります。サポートされる値は"
-"``task.id`` と ``task.category`` の 2 つです。"
+"``task.`` で始まる必要があるタスクのキー値。 ``task.id`` と ``task.category`` "
+"の 2 つの値がサポートされます。"
 
 #: ../../source/portal-developer-guide/customization/task-item-details.rst:129
 msgid ""
@@ -2974,7 +2964,7 @@ msgid ""
 "available task business states."
 msgstr ""
 "フィルタータイプ ``states`` ではすべてのタスクのビジネスの状態がサポートされ"
-"ます。:dev-url:`Task Business States </doc/|version|/public-api/ch/ivyteam/ivy/"
+"ます。:dev-url:`タスクのビジネスの状態 </doc/|version|/public-api/ch/ivyteam/ivy/"
 "workflow/TaskBusinessState.html>` を参照して、利用可能なタスクのビジネスの"
 "状態を確認してください。"
 
@@ -3408,7 +3398,7 @@ msgstr "新しいポータルダッシュボードを開いて、新しいカス
 msgid ""
 "To configure variables, refer to :dev-url:`|ivy| Variables </doc/|version|"
 "/designer-guide/configuration/variables.html>`"
-msgstr "変数の設定については、:dev-url:`|ivy| Variables </doc/|version|/designer-guide/configuration/variables.html>` を参照してください。"
+msgstr "変数の設定については、:dev-url:`|ivy| の変数 </doc/|version|/designer-guide/configuration/variables.html>` を参照してください。"
 
 #: ../../source/portal-developer-guide/dashboard/index.rst:213
 msgid "Configure Dashboard Templates"
@@ -3478,7 +3468,7 @@ msgid ""
 "details."
 msgstr ""
 "ポータルダッシュボードのケースウィジェットは、インタラクティブなケースリストです。"
-"詳細については、:ref:`ケースリストウィジェット <new-dashboard-case-list-widget-ja>` "
+"詳細については、:ref:`ケースリストウィジェット <new-dashboard-case-list-widget>` "
 "を参照してください。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:12
@@ -3529,7 +3519,7 @@ msgid ""
 "of the case widget. The default is 10 rows per page"
 msgstr ""
 "``rowsPerPage``：ケースウィジェットの 1 ページに表示されるケースの最大数。"
-"デフォルトは 1 ページあたり 10 行です。"
+"初期値は 1 ページあたり 10 行です。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:108
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:106
@@ -3685,7 +3675,7 @@ msgid ""
 "``type``: type of the widget column. There are two options: ``STANDARD`` "
 "and ``CUSTOM``."
 msgstr ""
-"- ``type``：ウィジェットの列のタイプ。 ``STANDARD`` と ``CUSTOM`` の 2 つの"
+"``type``：ウィジェットの列のタイプ。 ``STANDARD`` と ``CUSTOM`` の 2 つの"
 "オプションがあります。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:194
@@ -3693,15 +3683,15 @@ msgid ""
 "``field``: this attribute is the name of the case's custom field which "
 "will be used to get data for the column."
 msgstr ""
-"- ``field``：この属性は、列のデータを取得するのに使用されるケースの"
+"``field``：この属性は、列のデータを取得するのに使用されるケースの"
 "カスタムフィールドの名前です。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:198
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:196
 msgid ""
 "Portal only displays custom fields declared in the ``custom-fields.yaml``"
-" file. Refer to :dev-url:`Custom Fields Meta Information </doc/|version"
-"|/designer-guide/how-to/workflow/custom-fields.html#meta-information>` "
+" file. Refer to :dev-url:`Custom Fields Meta Information </doc/|version|"
+"/designer-guide/how-to/workflow/custom-fields.html#meta-information>` "
 "for more information."
 msgstr ""
 "ポータルでは、 ``custom-fields.yaml`` ファイルで宣言されたカスタムフィールド"
@@ -3735,11 +3725,11 @@ msgid ""
 "case details page is clicked, Portal will call this process and pass the "
 "case UUID as the ``uuid`` parameter."
 msgstr ""
-"#. カスタムアクションボタンをクリックするとトリガーされる新しいプロセス"
+"カスタムアクションボタンをクリックするとトリガーされる新しいプロセス"
 "を作成します。このプロセスで、 ``uuid`` パラメーターを受け入れるリクエス"
 "ト開始イベントを定義します。ケースの詳細ページの ``カスタムアクショ"
 "ン`` ボタンをクリックすると、このプロセスが呼び出され、ケースの UUID"
-"が ``uuid`` パラメーターとして受け渡されます。"
+" が ``uuid`` パラメーターとして受け渡されます。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:211
 msgid "|custom-action-button-process-demo|"
@@ -3774,7 +3764,7 @@ msgid ""
 "``IsCustomAction: true`` is mandatory to inform Portal that it is an "
 "action button."
 msgstr ""
-"- これがアクションボタンであることをポータルに伝えるには、 ``IsCustom"
+"これがアクションボタンであることをポータルに伝えるには、 ``IsCustom"
 "Action: true`` が必須です。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:230
@@ -3782,7 +3772,7 @@ msgid ""
 "For the ``Icon``, please refer to the streamline icon showcase available "
 "in Html Dialog Demos on |ivy| Market."
 msgstr ""
-"- ``Icon`` については、|ivy| Market の Html Dialog Demos で利用可能な "
+"``Icon`` については、|ivy| Market の Html Dialog Demos で利用可能な "
 "Streamline アイコンを参照してください。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:232
@@ -3843,7 +3833,7 @@ msgid ""
 "**String column**: is, is_not, empty, not_empty, contains, not_contains, "
 "start_with, not_start_with, end_with, not_end_with"
 msgstr ""
-"- **文字列列**：is、is_not、empty、not_empty、contains、not_contains、"
+"**文字列列**：is、is_not、empty、not_empty、contains、not_contains、"
 "start_with、not_start_with、end_with、not_end_with"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:278
@@ -3852,7 +3842,7 @@ msgid ""
 "**Number column**: between, not_between, empty, not_empty, equal, "
 "not_equal, less, less_or_equal, greater, greater_or_equal"
 msgstr ""
-"- **数値列**：between、not_between、empty、not_empty、equal、not_equal、"
+"**数値列**：between、not_between、empty、not_empty、equal、not_equal、"
 "less、less_or_equal、greater、greater_or_equal"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:280
@@ -3861,7 +3851,7 @@ msgid ""
 "**Date column**: today, yesterday, is, is_not, before, after, between, "
 "not_between, current, last, next, empty, not_empty"
 msgstr ""
-"- **日付列**：today、yesterday、is、is_not、before、after、between、"
+"**日付列**：today、yesterday、is、is_not、before、after、between、"
 "not_between、current、last、next、empty、not_empty"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:282
@@ -3968,7 +3958,7 @@ msgid ""
 "require value field."
 msgstr ""
 "この列は、ケース作成者のユーザー名のフィルター値としてユーザー名のリストのみ"
-"受け入れます。利用可能なフィルターの演算子は ``in``、 ``not_in``、 ``current_user``"
+"受け入れます。利用可能なフィルターの演算子は ``in``、 ``not_in``、 ``current_user`` "
 "です。 ``current_user`` 演算子には値フィールドは必要ありません。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:419
@@ -4012,7 +4002,7 @@ msgid ""
 "same operator as :ref:`Standard Column <configure-new-dashboard-case-"
 "widget-filter-structure>`"
 msgstr ""
-":ref:`configure-new-dashboard-case-widget-custom-columns` は、:ref:`Standard Column "
+":ref:`configure-new-dashboard-case-widget-custom-columns` は、:ref:`標準の列 "
 "<configure-new-dashboard-case-widget-filter-structure>` と同じ演算子を使用"
 "しています。"
 
@@ -4044,7 +4034,7 @@ msgstr "``enableQuickSearch``：ウィジェットのクイック検索機能を
 msgid ""
 "``quickSearch``: indicates that a column is searchable using the quick "
 "search feature."
-msgstr "``quickSearch``：クイック検索機能で検索できる列を示します。"
+msgstr "``quickSearch``：クイック検索機能を使用した列の検索が可能なことを示します。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:542
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:513
@@ -4067,8 +4057,8 @@ msgid ""
 msgstr ""
 "逆に、 ``enableQuickSearch`` 属性を ``true`` に設定した場合は、 ``quickSearch`` "
 "属性が ``true`` に設定されているすべての列の値でクイック検索機能による"
-"検索が可能になります。 ``quickSearch`` をいずれの列にも割り当てていない場"
-"合、クイック検索はデフォルトで名前と説明フィールドを検索します。"
+"検索が可能になります。 ``quickSearch`` 属性をケースウィジェットのいずれの列にも割り当てていな"
+"い場合、クイック検索機能はデフォルトで名前フィールドと説明フィールドを検索します。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:550
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:521
@@ -4540,7 +4530,7 @@ msgid ""
 "for the Custom Widget<define-an-ivy-process-for-the-custom-widget>` above"
 " to understand the relation between name and type."
 msgstr ""
-"続ける前に、上記の :ref:`Define An Ivy Process for the Custom Widget<define-an-ivy-process-for-the-custom-widget>` の"
+"続ける前に、上記の :ref:`カスタムウィジェットの Ivy プロセスの定義 <define-an-ivy-process-for-the-custom-widget>` の"
 "セクションを読み、名前とタイプの関係を理解してください。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-custom-widget.rst:143
@@ -4549,8 +4539,8 @@ msgstr "属性の説明"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-custom-widget.rst:145
 msgid ""
-"``processPath``: the :dev-url:`|ivy| IWebStartable </doc/|version"
-"|/public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html>` "
+"``processPath``: the :dev-url:`|ivy| IWebStartable </doc/|version|"
+"/public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html>` "
 "identifier of the Ivy process that will be displayed in custom widget"
 msgstr ""
 "``processPath``：カスタムウィジェットに表示される Ivy プロセスの "
@@ -4576,7 +4566,7 @@ msgstr "value：パラメーターの事前定義済みの値"
 msgid ""
 "type: The desired data type for the parameter to be shown in the "
 "configuration dialog of the custom widget. There are four types: "
-"``string``, ``user``, ``date``, ``boolean``."
+"``string``、``user``、``date``、``boolean``."
 msgstr ""
 "type：カスタムウィジェットの設定ダイアログに表示されるパラメーターの"
 "データのタイプ。``string``, ``user``, ``date``, ``boolean`` の 4 つの"
@@ -4677,7 +4667,7 @@ msgid ""
 "``showFullscreenMode``: visibility of the fullscreen mode icon. The "
 "default value is ``true``, set to ``false`` to hide the icon."
 msgstr ""
-"``showFullscreenMode``：全画面モードのアイコンの表示設定。デフォルト値は"
+"``showFullscreenMode``：全画面モードのアイコンの表示設定。デフォルト値は "
 "``true`` です。アイコンを非表示にするには ``false`` に設定してください。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-external-page-widget.rst:25
@@ -4734,7 +4724,7 @@ msgid ""
 ":ref:`Notifications widget <add-new-notification-widget>` for details."
 msgstr ""
 "ポータルダッシュボードの通知ウィジェットには、通知設定に基づくすべ"
-"ての通知が表示されます。詳細については、 :ref:`Notifications widget <add-new-notification-widget>` を参照してください。"
+"ての通知が表示されます。詳細については、 :ref:`通知ウィジェット <add-new-notification-widget>` を参照してください。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-notification-widget.rst:12
 msgid ""
@@ -4805,8 +4795,8 @@ msgstr "``layout``：プロセスビューアーウィジェットのレイア�
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-viewer-widget.rst:56
 msgid ""
-"``processPath``: the :dev-url:`|ivy| IWebStartable </doc/|version"
-"|/public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html>` "
+"``processPath``: the :dev-url:`|ivy| IWebStartable </doc/|version|"
+"/public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html>` "
 "identifier of the process you want to display"
 msgstr "``processPath``：表示したいプロセスの :dev-url:`|ivy| IWebStartable </doc/|version|/public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html>` ID。"
 
@@ -4874,8 +4864,8 @@ msgstr "以下はコンパクトモードのプロセスウィジェットの標
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:94
 msgid ""
-"``processPaths``: the :dev-url:`|ivy| IWebStartable </doc/|version"
-"|/public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html>` "
+"``processPaths``: the :dev-url:`|ivy| IWebStartable </doc/|version|"
+"/public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html>` "
 "identifier of the processes that you want to show."
 msgstr ""
 "``processPaths``：表示したいプロセスの :dev-url:`|ivy| IWebStartable "
@@ -4949,8 +4939,8 @@ msgstr "以下は複合モードのプロセスウィジェットの標準的な
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:147
 msgid ""
-"``processPath``: the :dev-url:`|ivy| IWebStartable </doc/|version"
-"|/public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html>` "
+"``processPath``: the :dev-url:`|ivy| IWebStartable </doc/|version|"
+"/public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html>` "
 "identifier of the process you want to display. The Process widget will "
 "show all tasks and cases of this process, too."
 msgstr ""
@@ -5182,7 +5172,7 @@ msgid ""
 " for more details."
 msgstr ""
 "タスクウィジェットのほとんどの列でフィルター条件を事前に定義できます。要件は列ごとに異なり、リストのみ、文字列のみを受け入れる列もあれば、日時など、特定の形式の文字列を必要とする列もあります。"
-"詳細については、 :ref:`Complex Filter <complex-filter>` を参照してください。"
+"詳細については、 :ref:`複合フィルター <complex-filter>` を参照してください。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:243
 msgid "``type``: ``standard`` for standard column or ``custom`` for custom column"
@@ -5217,7 +5207,7 @@ msgstr "この列は、タスク責任者のユーザー名のフィルター条
 msgid ""
 "This column accepts all operators available for String column. "
 "Additionally, it accepts ``value`` as a list of string."
-msgstr "この列は、文字列列で利用可能なすべての演算子を受け入れます。さらに、文字列のリストとして``値``も受け入れます。"
+msgstr "この列は、文字列列で利用可能なすべての演算子を受け入れます。さらに、文字列のリストとして ``値`` も受け入れます。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:344
 msgid "``priority``"
@@ -5281,7 +5271,7 @@ msgid ""
 "same operator as :ref:`Standard Column <configure-new-dashboard-task-"
 "widget-filter-structure>`."
 msgstr ""
-":ref:`configure-new-dashboard-task-widget-custom-columns` は、:ref:`Standard Column <configure-new-dashboard-task-widget-filter-structure>` と同じ演算子を使用しています。"
+":ref:`configure-new-dashboard-task-widget-custom-columns` は、:ref:`標準の列 <configure-new-dashboard-task-widget-filter-structure>` と同じ演算子を使用しています。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:480
 msgid ""
@@ -5318,7 +5308,7 @@ msgid ""
 "``enableQuickSearch``: to enable/disable the quick search feature, set "
 "the ``enableQuickSearch`` field of the Task widget as shown below."
 msgstr ""
-"``enableQuickSearch``：クイック検索機能を有効／無効にします。以下のようにタスクウィジェットの"
+"``enableQuickSearch``：クイック検索機能を有効／無効にします。以下のようにタスクウィジェットの "
 "``enableQuickSearch`` フィールドを設定してください。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:589
@@ -6532,7 +6522,7 @@ msgid ""
 "The application consists of 2 process modules. For detailed information "
 "on each module, refer to :ref:`architecture`."
 msgstr "アプリケーションは 3 つのプロセスモジュールで構成されます。各モジ"
-"ュールの詳細については、:ref:`architecture-ja` を参照してください。"
+"ュールの詳細については、:ref:`architecture` を参照してください。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:24
 msgid ""
@@ -6648,7 +6638,7 @@ msgid ""
 "Use the import dashboard feature of the Portal. Refer to :ref:`How to "
 "import your public dashboards<howto-import-your-public-dashboards>`"
 msgstr "ポータルのダッシュボードのインポート機能を使用します。:ref:`公開用ダ"
-"ッシュボードのインポート方法 <howto-import-your-public-dashboards-ja>` を参"
+"ッシュボードのインポート方法 <howto-import-your-public-dashboards>` を参"
 "照してください。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:90
@@ -6674,7 +6664,7 @@ msgid ""
 "structure>` overview."
 msgstr "すべてのアプリケーションは同じセキュリティコンテキストにあり、他のア"
 "プリケーションに展開されるのは **portal-components** だけです。:ref:`ポ"
-"ータルのマルチアプリケーション <multi-app-structure-ja>` の概要を参照して"
+"ータルのマルチアプリケーション <multi-app-structure>` の概要を参照して"
 "ください。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:97
@@ -7158,7 +7148,7 @@ msgid ""
 "``PortalStyle``, ``PortalKit`` and ``PortalTemplate`` have been replaced "
 "by ``portal-components`` and ``portal`` from 9.4, refer to "
 ":ref:`architecture`."
-msgstr "9.4 から ``PortalStyle``, ``PortalKit``、``PortalTemplate`` が "
+msgstr "9.4 から ``PortalStyle``、 ``PortalKit``、``PortalTemplate`` が "
 "``portal-components`` と ``portal`` に置き換えられました。:ref:`architecture` を参照してください。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:286
@@ -7415,7 +7405,7 @@ msgid ""
 "access link ``your_host/your_application/pro/portal-"
 "migration/175F92F71BC45295/startMigrateConfiguration.ivp``"
 msgstr ""
-" :download:`portal-migration.iar <documents/portal-migration-9.3.0.iar>` "
+":download:`portal-migration.iar <documents/portal-migration-9.3.0.iar>` "
 "プロジェクトを Ivy アプリケーションに展開し、 ``your_host/your_application/"
 "pro/portal-migration/175F92F71BC45295/startMigrateConfiguration.ivp`` リンクに"
 "アクセスして実行します。"
@@ -7596,7 +7586,7 @@ msgid ""
 "<customization-task-item-details>` to add custom widgets."
 msgstr ""
 "taskItemDetailCustomPanelTop、taskItemDetailCustomPanelBottom をカスタマイズしている場合は、:ref:`"
-"TaskItemDetail のオーバーライド方法 <customization-task-item-details-ja>` に従って、カスタムウィジェッ"
+"TaskItemDetail のオーバーライド方法 <customization-task-item-details>` に従って、カスタムウィジェッ"
 "トを追加してください。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:405
@@ -7607,7 +7597,7 @@ msgid ""
 "custom widgets."
 msgstr ""
 "``caseItemDetailCustomTop``、 ``caseItemDetailCustomMiddle``、 ``caseItemDetailCustomBottom`` をカスタ"
-"マイズしている場合は、:ref:`CaseItemDetail のオーバーライド方法 <customization-case-item-details-ja>` に"
+"マイズしている場合は、:ref:`CaseItemDetail のオーバーライド方法 <customization-case-item-details>` に"
 "従って、これらのカスタムウィジェットを追加してください。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:408
@@ -7777,7 +7767,7 @@ msgid ""
 "deprecated, redirect to ivy.html.applicationHomeRef() in your page "
 "instead."
 msgstr ""
-" ``PortalNavigatorInFrameAPI#navigateToPortalHome`` メソッドは非推奨です。代わりにページの "
+"``PortalNavigatorInFrameAPI#navigateToPortalHome`` メソッドは非推奨です。代わりにページの "
 "ivy.html.applicationHomeRef() にリダイレクトしてください。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:472
@@ -9829,7 +9819,7 @@ msgid ""
 "area, you will find all these permission in group \"PortalPermissions\"."
 msgstr ""
 ":dev-url:`エンジンコックピット </doc/|version|/engine-guide/reference/engine-cockpit/security.html>` で権限を設定します。"
-" セキュリティ領域の\"PortalPermissions\"グループにこれらすべての権限があります。"
+" セキュリティ領域の「PortalPermissions」グループにこれらすべての権限があります。"
 
 #: ../../source/portal-developer-guide/settings/index.rst:84
 msgid "Task Permissions"
@@ -10035,11 +10025,11 @@ msgstr "ケースの権限"
 msgid ""
 "User needs permission :bdg-ref-warning:`🔑TaskCaseAddNote "
 "<TaskCaseAddNote>`."
-msgstr "ユーザーには次の権限が必要です：:bdg-ref-warning:`🔑TaskCaseAddNote <TaskCaseAddNote>`."
+msgstr "ユーザーには次の権限が必要です：:bdg-ref-warning:`🔑TaskCaseAddNote <TaskCaseAddNote>`。"
 
 #: ../../source/portal-developer-guide/settings/index.rst:181
 msgid "User needs permission :bdg-ref-warning:`🔑CaseDestroy <CaseDestroy>`."
-msgstr "ユーザーには次の権限が必要です：:bdg-ref-warning:`🔑CaseDestroy <CaseDestroy>`."
+msgstr "ユーザーには次の権限が必要です：:bdg-ref-warning:`🔑CaseDestroy <CaseDestroy>`。"
 
 #: ../../source/portal-developer-guide/settings/index.rst:184
 msgid "Case state has to be RUNNING."
@@ -10049,7 +10039,7 @@ msgstr "ケースの状態は RUNNING でなければなりません。"
 msgid ""
 "User needs permission :bdg-ref-warning:`🔑CaseWriteDescription "
 "<CaseWriteDescription>`."
-msgstr "ユーザーには次の権限が必要です：:bdg-ref-warning:`🔑CaseWriteDescription <CaseWriteDescription>`."
+msgstr "ユーザーには次の権限が必要です：:bdg-ref-warning:`🔑CaseWriteDescription <CaseWriteDescription>`。"
 
 #: ../../source/portal-developer-guide/settings/index.rst:191
 #: ../../source/portal-developer-guide/settings/index.rst:202
