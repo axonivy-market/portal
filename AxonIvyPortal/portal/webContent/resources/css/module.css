@@ -5535,18 +5535,28 @@ border-top: 0.14rem dashed;
 .process-action-group .process-category {
   max-width: 100%;
   min-width: 0;
-  display: inline-block;
-  padding: 0.5rem 1rem;
-  border: 1px solid var(--ivy-primary-color);
-  border-radius: 2rem;
-  font-size: var(--default-font-size);
-  color: var(--ivy-primary-text-color);
-  background: var(--ivy-primary-color);
-  text-align: center;
-  text-decoration: none;
   cursor: default;
-  transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
-  box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+}
+
+.process-category.ui-button.ui-widget {
+    display: inline-block !important;
+    padding: 0.5rem 1rem !important;
+    text-align: center !important;
+    vertical-align: middle !important;
+    line-height: 1.25 !important;
+    border-radius: 6px !important;
+    box-sizing: border-box !important;
+}
+
+/* For rounded buttons */
+.process-category.ui-button.rounded-button {
+    border-radius: 2rem !important;
+}
+
+/* Ensure the span doesn't interfere */
+.process-category.ui-button span {
+    display: inline-block;
+    vertical-align: middle;
 }
 
 .process-action-group .process-category span {
