@@ -88,45 +88,47 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
     login(TestAccount.ADMIN_USER);
     createTasksForTesting();
     newDashboardPage.waitForTaskListDisplay();
+    TaskWidgetNewDashBoardPage taskWidget = new TaskWidgetNewDashBoardPage();
     
     // Ready for Join
-    assertTaskActionsByTaskStateAndName(DONE, "Task Switch A",
-        Arrays.asList(DETAILS, RESET, DESTROY, TRIGGER_ESCALATION, WORKFLOW_EVENTS, PROCESS_VIEWER));
+//    assertTaskActionsByTaskStateAndName(DONE, "Task Switch A",
+//        Arrays.asList(DETAILS, RESET, DESTROY, TRIGGER_ESCALATION, WORKFLOW_EVENTS, PROCESS_VIEWER));
+    filterTaskByNameAndState("Task Switch A", "Done");
+    assertTaskAction(0, Arrays.asList(DETAILS, RESET, DESTROY, TRIGGER_ESCALATION, WORKFLOW_EVENTS, PROCESS_VIEWER));
 
-    refreshPage();
-    newDashboardPage.waitForTaskListDisplay();
-    TaskWidgetNewDashBoardPage taskWidget = new TaskWidgetNewDashBoardPage();
-    // Suspended
     taskWidget.openFilterWidget();
-    removeAllExistingFilter();
-    taskWidget.applyFilter();
-    newDashboardPage.waitForPageLoad();
-    assertTaskActionsByTaskStateAndName(OPEN, "Sick Leave Request", Arrays.asList(DETAILS, DELEGATE, RESERVE,
-        CLEAR_EXPIRY, DESTROY, TRIGGER_ESCALATION, WORKFLOW_EVENTS, PROCESS_VIEWER));
+    taskWidget.resetFilter();
+
+    // Suspended
+//    assertTaskActionsByTaskStateAndName(OPEN, "Sick Leave Request", Arrays.asList(DETAILS, DELEGATE, RESERVE,
+//        CLEAR_EXPIRY, DESTROY, TRIGGER_ESCALATION, WORKFLOW_EVENTS, PROCESS_VIEWER));
+    filterTaskByNameAndState("Sick Leave Request", "Open");
+    assertTaskAction(0, Arrays.asList(DETAILS, DELEGATE, RESERVE, CLEAR_EXPIRY, DESTROY, TRIGGER_ESCALATION, WORKFLOW_EVENTS, PROCESS_VIEWER));
+
+    taskWidget.openFilterWidget();
+    taskWidget.resetFilter();
 
     // Done
+//    assertTaskActionsByTaskStateAndName(DONE, "Categoried Leave Request", Arrays.asList(DETAILS, WORKFLOW_EVENTS, PROCESS_VIEWER));
+    filterTaskByNameAndState("Categoried Leave Request", "Done");
+    assertTaskAction(0, Arrays.asList(DETAILS, WORKFLOW_EVENTS, PROCESS_VIEWER));
+
     taskWidget.openFilterWidget();
-    removeAllExistingFilter();
-    taskWidget.applyFilter();
-    newDashboardPage.waitForPageLoad();
-    assertTaskActionsByTaskStateAndName(DONE, "Categoried Leave Request",
-        Arrays.asList(DETAILS, WORKFLOW_EVENTS, PROCESS_VIEWER));
+    taskWidget.resetFilter();
 
     // Delayed
+//    assertTaskActionsByTaskStateAndName(DELAYED, "Task Switch C", Arrays.asList(DETAILS, DELEGATE, CLEAR_DELAY, DESTROY, WORKFLOW_EVENTS, PROCESS_VIEWER));
+    filterTaskByNameAndState("Task Switch C", "Delayed");
+    assertTaskAction(0, Arrays.asList(DETAILS, DELEGATE, CLEAR_DELAY, DESTROY, WORKFLOW_EVENTS, PROCESS_VIEWER));
+
     taskWidget.openFilterWidget();
-    removeAllExistingFilter();
-    taskWidget.applyFilter();
-    newDashboardPage.waitForPageLoad();
-    assertTaskActionsByTaskStateAndName(DELAYED, "Task Switch C",
-        Arrays.asList(DETAILS, DELEGATE, CLEAR_DELAY, DESTROY, WORKFLOW_EVENTS, PROCESS_VIEWER));
+    taskWidget.resetFilter();
+    refreshPage();
 
     // Destroyed
-    taskWidget.openFilterWidget();
-    removeAllExistingFilter();
-    taskWidget.applyFilter();
-    newDashboardPage.waitForPageLoad();
-    assertTaskActionsByTaskStateAndName(DESTROYED, "Task Switch B",
-        Arrays.asList(DETAILS, WORKFLOW_EVENTS, PROCESS_VIEWER));
+//    assertTaskActionsByTaskStateAndName(DESTROYED, "Task Switch B", Arrays.asList(DETAILS, WORKFLOW_EVENTS, PROCESS_VIEWER));
+    filterTaskByNameAndState("Task Switch B", "Destroyed");
+    assertTaskAction(0, Arrays.asList(DETAILS, WORKFLOW_EVENTS, PROCESS_VIEWER));
   }
 
   @Test
@@ -210,30 +212,23 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
     login(TestAccount.ADMIN_USER);
     redirectToRelativeLink(createTechnicalStateUrl);
     redirectToNewDashBoard();
-    
     newDashboardPage.waitForTaskListDisplay();
-    
     TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
     taskWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
-    
     resizeBrowserTo2kResolution();
-    refreshPage();
-    
-    newDashboardPage.waitForTaskListDisplay();
-    newDashboardPage.waitForPageLoad();
-    
-    assertTaskActionsByTaskStateAndName(ERROR, "Signal create Task failed",
-        Arrays.asList(DETAILS, RESET, DESTROY, WORKFLOW_EVENTS, PROCESS_VIEWER));
+
+    // Delayed
+//    assertTaskActionsByTaskStateAndName(ERROR, "Signal create Task failed", Arrays.asList(DETAILS, RESET, DESTROY, WORKFLOW_EVENTS, PROCESS_VIEWER));
+    filterTaskByNameAndState("Signal create Task failed", ERROR);
+    assertTaskAction(0, Arrays.asList(DETAILS, RESET, DESTROY, WORKFLOW_EVENTS, PROCESS_VIEWER));
+
+    taskWidget.openFilterWidget();
+    taskWidget.resetFilter();
     
     // Join failed
-    taskWidget.openFilterWidget();
-    removeAllExistingFilter();
-    taskWidget.applyFilter();
-    
-    newDashboardPage.waitForPageLoad();
-    
-    assertTaskActionsByTaskStateAndName(ERROR, "Signal create Technical task",
-        Arrays.asList(DETAILS, DESTROY, WORKFLOW_EVENTS, PROCESS_VIEWER));
+//    assertTaskActionsByTaskStateAndName(ERROR, "Signal create Technical task", Arrays.asList(DETAILS, DESTROY, WORKFLOW_EVENTS, PROCESS_VIEWER));
+    filterTaskByNameAndState("Signal create Technical task", ERROR);
+    assertTaskAction(0, Arrays.asList(DETAILS, DESTROY, WORKFLOW_EVENTS, PROCESS_VIEWER));
   }
 
   private void assertTaskActionsByTaskState(String state, List<String> taskActionsInTask) {
@@ -241,14 +236,7 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
     assertTaskAction(0, taskActionsInTask);
   }
 
-  private void assertTaskActionsByTaskStateAndName(String state, String name, List<String> taskActionsInTask) {
-    filterTaskByNameAndState(name, state);
-    assertTaskAction(0, taskActionsInTask);
-  }
-
   private void assertTaskAction(int index, List<String> taskActionsInTask) {
-    refreshPage();
-    newDashboardPage.waitForTaskListDisplay();
     TaskWidgetNewDashBoardPage taskWidget = new TaskWidgetNewDashBoardPage();
     taskWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
     newDashboardPage.waitForPageLoad();
