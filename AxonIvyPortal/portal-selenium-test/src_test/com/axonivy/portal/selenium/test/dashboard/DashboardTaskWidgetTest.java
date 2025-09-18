@@ -106,8 +106,6 @@ public class DashboardTaskWidgetTest extends BaseTest {
     taskWidget.applyFilter();
     taskWidget.clickOnTaskActionLink(0);
     taskWidget.destroy();
-    refreshPage();
-    newDashboardPage.waitForTaskListDisplay();
     taskWidget.stateOfFirstTask().shouldHave(text(DESTROYED));
   }
 
