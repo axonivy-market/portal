@@ -283,8 +283,13 @@ public class StatisticService {
 
   private String getMetricAggregationQuery(StatisticAggregation chartAggregation) {
     return Objects.nonNull(chartAggregation.getKpiField()) && !chartAggregation.getKpiField().isBlank()
-        ? ",customFields.numbers." + chartAggregation.getKpiField() + ":" + chartAggregation.getAggregationMethod()
+        ? "," + (isBuiltInKPIField(chartAggregation.getKpiField()) ? "" : "customFields.numbers.") + chartAggregation.getKpiField() + ":" + chartAggregation.getAggregationMethod()
         : "";
+  }
+  
+  private boolean isBuiltInKPIField(String field) {
+    final Set<String> BUILT_IN_KPI_FIELDS = Set.of("businessRuntime", "workingTime");
+    return BUILT_IN_KPI_FIELDS.contains(field);
   }
 
   private String transformField(String field) {

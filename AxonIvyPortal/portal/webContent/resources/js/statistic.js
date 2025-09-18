@@ -130,6 +130,25 @@ const convertYValue = (value, config) => {
   return value;
 }
 
+const processYValue = (result, config) => {
+  if (result.length > 0 && result[0].aggs) {
+    const values = [];
+    result.forEach((bucket) => {
+      if (bucket.key.trim().length !== 0) {
+        bucket.aggs.forEach((item) => {
+          values.push({
+            key: bucket.key,
+            count: convertYValue(item.value, config)
+          });
+        });
+      }
+    })
+    return values;
+  }
+
+  return result;
+}
+
 async function fetchChartData(chart, chartId) {
   let data;
   let cloneResponse;
@@ -548,6 +567,8 @@ class ClientPieChart extends ClientCanvasChart {
     let config = this.data.chartConfig;
     let chart = this.chart;
 
+    const data = processYValue(result, this.data.chartConfig.additionalConfigs);
+
     if (result.length == 0) {
       return this.renderEmptyChart(chart, config.additionalConfigs);
     } else {
@@ -562,7 +583,7 @@ class ClientPieChart extends ClientCanvasChart {
           labels: result.map(bucket => this.formatChartLabel(bucket.key)),
           datasets: [{
             label: config.name,
-            data: config.statisticAggregation.kpiField ? result.map(bucket => bucket.aggs[0].value) : result.map(bucket => bucket.count),
+            data: data.map(bucket => bucket.count),
             counting: result.map(bucket => bucket.count),
             chartTarget: config.chartTarget,
             aggregation: config.statisticAggregation,
@@ -615,7 +636,7 @@ class ClientCartesianChart extends ClientCanvasChart {
     } else {
       //If the target type for the Y axis is 'time', get average time from sub aggregate of the result.
       const chartTypeConfig = this.getChartTypeConfig();
-      let data = chartTypeConfig?.yValue ? this.processYValue(result, chartTypeConfig?.yValue) : result;
+      let data = processYValue(result, this.data.chartConfig.additionalConfigs);
       // Because processYValue removes bucket which has empty key, if the returned result is empty, render empty chart
       if (data.length == 0) {
         return this.renderEmptyChart(chart, config.additionalConfigs);
@@ -632,8 +653,8 @@ class ClientCartesianChart extends ClientCanvasChart {
           labels: data.map(bucket => this.formatChartLabel(bucket.key)),
           datasets: [{
             label: config.name,
-            data: config.statisticAggregation.kpiField ? data.map(bucket => bucket.aggs[0].value) : data.map(bucket => bucket.count),
-            counting: data.map(bucket => bucket.count),
+            data: data.map(bucket => bucket.count),
+            counting: result.map(bucket => bucket.count),
             chartTarget: config.chartTarget,
             aggregation: config.statisticAggregation,
             backgroundColor: backgroundColors,
@@ -699,29 +720,6 @@ class ClientCartesianChart extends ClientCanvasChart {
   getChartTitleConfig() { }
 
   getBackgoundColors() { }
-
-  processYValue(result, yValue) {
-    switch (yValue) {
-      case 'time': {
-        const values = [];
-        result.forEach((bucket) => {
-          if (bucket.key.trim().length !== 0) {
-            bucket.aggs.forEach((item) => {
-              if (item['name'] === AVERAGE_BUSINESS_RUNTIME) {
-                values.push({
-                  key: bucket.key,
-                  count: convertYValue(item.value, this.data.chartConfig.additionalConfigs)
-                });
-              }
-            });
-          }
-        });
-        return values;
-      };
-      default:
-        return result;
-    }
-  }
 }
 
 // Class for bar chart
@@ -742,7 +740,7 @@ class ClientBarChart extends ClientCartesianChart {
     else if (result.length > 0) {
       // Update y value in case y value is time
       if (config.barChartConfig?.yValue === 'time') {
-        result = this.processYValue(result, config.barChartConfig.yValue);
+        result = processYValue(result, config.barChartConfig.yValue);
 
         // Because processYValue removes bucket which has empty key, if the returned result is empty, render empty chart
         if (result.length == 0) {
@@ -872,8 +870,7 @@ class ClientNumberChart extends ClientChart {
     let multipleNumberChartInHTML = '';
     if (result?.length > 0) {
         result.forEach((item, index) => {
-          const yValue = item.aggs.length > 0 ?
-              (item.aggs[0].value === "null" ? "0" : Number(item.aggs[0].value)) : item.count;
+          const yValue = item.aggs.length > 0 ? this.formatNumberValue(item.aggs[0].value) : item.count;
           const counting = item.aggs.length > 0 ? item.count + " " + chartTarget + "s" : "";
           let htmlString = this.generateItemHtml(item.key, yValue, suffixSymbold, index, counting);
           multipleNumberChartInHTML += htmlString;
@@ -918,6 +915,15 @@ class ClientNumberChart extends ClientChart {
       .join(' ');
   }
 
+  formatNumberValue(value) {
+    if (value === "null" || value === null || value === undefined) {
+      return "0";
+    }
+  
+    const numValue = Number(value);
+    return numValue % 1 === 0 ? numValue.toString() : numValue.toFixed(2);
+  }
+
   getItemFromFilters() {
     const aggregateFilter = this.data.chartConfig.aggregates + ':';
     const aggregateFilterRegex = new RegExp('^' + this.data.chartConfig.aggregates + ':');
@@ -940,15 +946,15 @@ class ClientNumberChart extends ClientChart {
 
 const customFooterChartTooltip = (tooltipItems) => {
   let total = 0;
-  if (tooltipItems.length === 0 || !tooltipItems[0].dataset.aggregation.kpiField) {
+  if (tooltipItems.length === 0 || !tooltipItems[0].dataset.aggregation?.kpiField) {
     return;
   }
   tooltipItems.forEach((tooltipItem) => total += tooltipItem.dataset.counting[tooltipItem.dataIndex]);
-  return 'Total: ' + total + ' ' + tooltipItems[0].dataset.chartTarget + "s";
+  return `Total: ${total} ${tooltipItems[0].dataset.chartTarget}${total !== 1 ? "s" : ""}`;
 };
 
 const customBeforeBodyChartTooltip = (tooltipItems) => {
-  if (tooltipItems.length === 0 || !tooltipItems[0].dataset.aggregation.kpiField) {
+  if (tooltipItems.length === 0 || !tooltipItems[0].dataset.aggregation?.kpiField) {
     return;
   }
   const aggregation = tooltipItems[0].dataset.aggregation;
