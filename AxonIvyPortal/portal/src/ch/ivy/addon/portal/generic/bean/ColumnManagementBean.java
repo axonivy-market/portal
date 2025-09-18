@@ -451,7 +451,7 @@ public class ColumnManagementBean implements Serializable, IMultiLanguage {
           DashboardStandardTaskColumn.findBy(selectedField)), LanguageService.getInstance().getUserLanguage());
     } else if (widget.getType() == DashboardWidgetType.CASE) {
       return Ivy.cms().coLocale(String.format("/Labels/Enums/DashboardStandardCaseColumn/%s",
-          DashboardStandardCaseColumn.findBy(selectedField)), LanguageService.getInstance().getDefaultLanguage());
+          DashboardStandardCaseColumn.findBy(selectedField)), LanguageService.getInstance().getUserLanguage());
     }
     return "";
   }
