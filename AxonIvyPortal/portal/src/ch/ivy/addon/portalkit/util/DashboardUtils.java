@@ -25,6 +25,7 @@ import com.axonivy.portal.util.UserExampleUtils;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.constant.IvyCacheIdentifier;
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardOrder;
@@ -479,4 +480,7 @@ public class DashboardUtils {
   public record PortalDashboardItemWrapper(List<Dashboard> dashboards) {
   }
 
+  public static String buildDashboardLink(Dashboard dashboard) {
+    return UrlUtils.getServerUrl() + PortalNavigator.getDashboardPageUrl(dashboard.getId());
+  }
 }

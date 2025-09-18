@@ -479,7 +479,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     continue: Continuer
     create: Créé
     creationDate: Date de création
-    dashboard: Dashboard
+    dashboard: Tableau de bord
     data: Données
     dateFromBiggerThanTo: '"Au" doit être ultérieur à "Depuis"'
     dateRequired: La date doit être remplie
@@ -943,7 +943,13 @@ ch.ivy.addon.portalkit.ui.jsf:
   dashboardProcess:
     processAriaLabel: 'Nom du processus : {0}. Description du processus : {1}'
   documentFiles:
+    FilenameEmpty: Le nom du fichier ne peut pas être vide.
     PreviewDocument: Aperçu
+    RenameFile: Renommer le fichier
+    RenamingDocument: Renommer le document
+    RenamingDocumentNote: '{0} a renommé le fichier {1} en {2}'
+    RenamingDocumentSuccess: Renommé avec succès.
+    RenamingFailed: Une erreur s'est produite lors du renommage du document.
     deleteDocumentNote: '{0} a supprimé(e) {1}'
     deleteSuceed: Le fichier a été supprimé avec succès
     download: Télécharger

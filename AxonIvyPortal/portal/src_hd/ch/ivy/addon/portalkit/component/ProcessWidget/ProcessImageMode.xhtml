@@ -5,18 +5,19 @@
   <c:set var="isExternalLink" value="#{processWidgetBean.isExternalLink(process)}" />
   <c:set var="isCaseMap" value="#{processWidgetBean.isCaseMap(process)}" />
   <c:set var="isDefaultProcessImage" value="#{processWidgetBean.isDefaultProcessImage(process.imageUrl)}" />
+  <c:set var="processCategoryDisplay" value="#{processItemActionBean.getDisplayProcessCategory(process)}"/>
 
   <h:panelGroup layout="block" styleClass="js-process-start-list-item ui-g-2 ui-xl-2 ui-lg-3 ui-md-6 ui-sm-12 image-process-item #{groupCode}">
     <div class="card-item card ui-g-12 u-padding-0 #{isExternalLink ? 'js-external-link-process-item' : ''}">
         <div class="process-category-and-icon-container">
-            <p:button id="process-category"
+            <h:panelGroup id="process-category" layout="block"
                 rendered="#{processItemActionBean.isRenderedCategory(process.category)}"
-                styleClass="rounded-button process-category #{buttonStyle}"
-                value="#{processItemActionBean.getDisplayProcessCategory(process)}"
-                readonly="true" type="button"
-                onclick="return false;" />
+                styleClass="rounded-button process-category ui-button ui-widget #{buttonStyle}">
+                <span>#{processCategoryDisplay}</span>
+            </h:panelGroup>
             <p:tooltip for="process-category"
-                value="#{process.category}" trackMouse="true"
+                rendered="#{processItemActionBean.isRenderedCategory(process.category)}"
+                value="#{processCategoryDisplay}" trackMouse="true"
                 hideEvent="mouseleave click" />
             <!-- Process Icon -->
             <div class="image-process-icon">
