@@ -247,6 +247,8 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
   }
 
   private void assertTaskAction(int index, List<String> taskActionsInTask) {
+    refreshPage();
+    newDashboardPage.waitForTaskListDisplay();
     TaskWidgetNewDashBoardPage taskWidget = new TaskWidgetNewDashBoardPage();
     taskWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
     newDashboardPage.waitForPageLoad();
