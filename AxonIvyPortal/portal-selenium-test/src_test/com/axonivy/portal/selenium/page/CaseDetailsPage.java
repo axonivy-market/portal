@@ -132,13 +132,16 @@ public class CaseDetailsPage extends TemplatePage {
 
   public SelenideElement getNameOfRelatedTask(int index) {
     getRelatedTasksPanel().shouldBe(appear, DEFAULT_TIMEOUT);
-    return $("div[id$='case-details-related-task-table'] table tbody").shouldBe(appear, DEFAULT_TIMEOUT).$$("tr")
-        .get(index).$$("td").findBy(Condition.attributeMatching("class", ".*related-task-name-column.*")).shouldBe(appear, DEFAULT_TIMEOUT).$("span");
+    return getRelatedTasksPanel().$("div[id$='case-details-related-task-table'] table tbody")
+        .shouldBe(appear, DEFAULT_TIMEOUT).$$("tr").get(index).$$("td")
+        .findBy(Condition.attributeMatching("class", ".*related-task-name-column.*")).shouldBe(appear, DEFAULT_TIMEOUT)
+        .$("span");
   }
 
   public SelenideElement getStateOfRelatedTask(int index) {
     getRelatedTasksPanel().shouldBe(appear, DEFAULT_TIMEOUT);
-    return $("div[id$='case-details-related-task-table'] table tbody")
+    return getRelatedTasksPanel()
+        .$("div[id$='case-details-related-task-table'] table tbody")
         .shouldBe(appear, DEFAULT_TIMEOUT).$$("tr")
         .get(index).$$("td").findBy(Condition.attributeMatching("class", ".*related-task-state-column.*"))
         .shouldBe(appear, DEFAULT_TIMEOUT)
