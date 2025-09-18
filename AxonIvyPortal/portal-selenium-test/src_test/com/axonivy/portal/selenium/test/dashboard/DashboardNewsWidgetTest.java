@@ -1,5 +1,6 @@
 package com.axonivy.portal.selenium.test.dashboard;
 
+import static com.axonivy.portal.selenium.common.Variable.ENABLE_TRANSLATION_SERVICE;
 import static com.codeborne.selenide.CollectionCondition.size;
 
 import org.junit.jupiter.api.AfterEach;
@@ -43,6 +44,7 @@ public class DashboardNewsWidgetTest extends BaseTest {
     super.setup();
     newDashboardPage = new NewDashboardPage();
     resetLanguageOfCurrentUser();
+    updatePortalSetting(ENABLE_TRANSLATION_SERVICE.getKey(), "true");
   }
 
   @Test

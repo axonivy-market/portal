@@ -1,5 +1,7 @@
 package com.axonivy.portal.selenium.test.dashboard;
 
+import static com.axonivy.portal.selenium.common.Variable.ENABLE_TRANSLATION_SERVICE;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -34,6 +36,7 @@ public class DashboardSupportMultiLanguageTest extends BaseTest {
     login(TestAccount.ADMIN_USER);
     redirectToNewDashBoard();
     resetLanguageOfCurrentUser();
+    updatePortalSetting(ENABLE_TRANSLATION_SERVICE.getKey(), "true");
   }
 
   @Test

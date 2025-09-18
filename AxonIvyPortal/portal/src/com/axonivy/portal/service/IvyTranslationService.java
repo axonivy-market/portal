@@ -5,6 +5,8 @@ import java.util.Locale;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.util.Strings;
 
+import ch.ivy.addon.portalkit.enums.GlobalVariable;
+import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.translation.service.TranslationService;
 
@@ -30,7 +32,10 @@ public class IvyTranslationService {
   }
 
   public boolean isShowTranslation(Locale language) {
-    return !language.getLanguage().equals(UserUtils.getUserLanguage()) && TranslationService.isDefaultServiceEnabled();
+    boolean enableTranslationService = GlobalSettingService.getInstance()
+        .findGlobalSettingValueAsBoolean(GlobalVariable.ENABLE_TRANSLATION_SERVICE);
+    return !language.getLanguage().equals(UserUtils.getUserLanguage()) && TranslationService.isDefaultServiceEnabled()
+        && enableTranslationService;
   }
 
 }

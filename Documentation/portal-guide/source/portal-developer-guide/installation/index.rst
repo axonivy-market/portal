@@ -491,7 +491,7 @@ Changes in 13.2.0
 -----------------
 - Enhanced the document preview feature for the task and case detail. If you have DocFactory in the same security context. You can preview Word(doc, docx), Excel(xls, xlsx) and email(eml) documents.
 - Removed the Portal Setting ``Portal.DeepL.AuthKey``.
-- Removed the Portal Setting ``Portal.DeepL.Enable``.
+- Renamed the Portal Setting ``Portal.DeepL.Enable`` to ``Portal.TranslationService.Enable``.
 
 Changes in 13.1.0
 -----------------

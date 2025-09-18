@@ -258,6 +258,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       enablePrivateChat: 個人用チャット機能を有効にするには、このプロパティーを true に設定してください。
       enableProcessViewer: タスク／ケースアクションでプロセスビューアーオプションを有効にするには、このプロパティをtrueに設定してください。
       enableScriptCheckingForUploadedDocumentNote: アップロードされたドキュメントのスクリプトチェックを有効にするには、true に設定してください。現在、この機能は PDF、Excel、Word のチェックをサポートしています。
+      enableTranslationService: TODO Set this property to true to enable translation service support
       enableVirusScannerForUploadedDocumentNote: アップロードされたドキュメントへのウイルススキャナーを有効にするには true に設定してください。現在、この機能は API VIRUSTOTAL を使用しています。
       hideCaseCreator: |-
         ケースリスト、ケースウィジェット、ケースの詳細でケースクリエイターを非表示にするには、true に設定してください。

@@ -193,6 +193,10 @@ Variables:
     CustomMenuItems: ""
     # Global footer info that is displayed in bottom right corner can be set in the portal admin settings.
     GlobalFooterInfo: ""
+    # Support the translation from English to the other languages or from German to the other languages (German, English, French, Spanish)
+    TranslationService:
+      # Set this property to true to enable the translation service support
+      Enable: "false"
     # You can define the application name via this JSON file.
     # It will be shown with the page title
     ApplicationName: Axon Ivy

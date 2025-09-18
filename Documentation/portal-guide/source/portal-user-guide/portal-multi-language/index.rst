@@ -13,10 +13,19 @@ HowTo: Enable the translation
 
 To use Axon Ivy's translation service:
 
+- Open :ref:`Admin Settings <admin-settings>`, set :guilabel:`Portal.TranslationService.Enable` to true.
+
 - Configure translation service variable, refer to :dev-url:`|ivy| translation service </doc/|version|/engine-guide/configuration/translation-service/index.html>`
 
 HowTo: Translate a pure text
 ----------------------------
+
+.. note::
+
+   The Portal translation only works if both Portal.TranslationService.Enable is set to true and the translation service is configured correctly.
+
+   Otherwise, you can translate the input text field manually.
+
 
 #. If any input text field is supported the translation, a :guilabel:`translator icon` will be shown.
    For example, let's create a private dashboard. Then, click on the :guilabel:`translator icon`.
