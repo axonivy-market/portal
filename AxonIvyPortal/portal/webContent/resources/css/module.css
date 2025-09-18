@@ -4889,7 +4889,6 @@ border-top: 0.14rem dashed;
 .process-action-group .process-category {
   max-width: 100%;
   min-width: 0;
-  cursor: default;
 }
 
 .process-category.ui-button.ui-widget {
@@ -4899,6 +4898,7 @@ border-top: 0.14rem dashed;
     vertical-align: middle !important;
     line-height: 1.25 !important;
     box-sizing: border-box !important;
+    cursor: default;
 }
 
 /* Ensure the span doesn't interfere */
