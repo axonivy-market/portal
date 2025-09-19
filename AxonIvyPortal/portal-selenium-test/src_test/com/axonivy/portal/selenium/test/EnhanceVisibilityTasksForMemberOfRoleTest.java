@@ -71,7 +71,7 @@ public class EnhanceVisibilityTasksForMemberOfRoleTest extends BaseTest {
     taskWidget.applyFilter();
     // Reserved
     taskWidget.reserveTask(0);
-    int countTasksReserved = taskWidget.countAllTasks().size();
+    taskWidget.countAllTasks().shouldHave(size(2), DEFAULT_TIMEOUT);
     // User Guest
     login(TestAccount.GUEST_USER);
     NavigationHelper.navigateToTaskList();
@@ -84,7 +84,7 @@ public class EnhanceVisibilityTasksForMemberOfRoleTest extends BaseTest {
     taskWidget.addFilter("state", null);
     taskWidget.inputValueOnLatestFilter(FilterValueType.STATE_TYPE, "Open");
     taskWidget.applyFilter();
-    assertEquals(countTasksReserved, taskWidget.countAllTasks().size());
+    taskWidget.countAllTasks().shouldHave(size(2), DEFAULT_TIMEOUT);
   }
 
   @Test
