@@ -131,7 +131,7 @@ const convertYValue = (value, config) => {
 }
 
 const processYValue = (result, config) => {
-  if (result.length > 0 && result[0].aggs) {
+  if (result.length > 0 && result[0].aggs.length > 0) {
     const values = [];
     result.forEach((bucket) => {
       if (bucket.key.trim().length !== 0) {
@@ -871,7 +871,7 @@ class ClientNumberChart extends ClientChart {
     if (result?.length > 0) {
         result.forEach((item, index) => {
           const yValue = item.aggs.length > 0 ? this.formatNumberValue(item.aggs[0].value) : item.count;
-          const counting = item.aggs.length > 0 ? item.count + " " + chartTarget + "s" : "";
+          const counting = item.aggs.length > 0 ? item.count + " " + chartTarget + (item.count > 1 ? "s" : "") : "";
           let htmlString = this.generateItemHtml(item.key, yValue, suffixSymbold, index, counting);
           multipleNumberChartInHTML += htmlString;
         })
