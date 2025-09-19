@@ -30,7 +30,7 @@ import org.primefaces.model.StreamedContent;
 import com.axonivy.portal.bo.jsonversion.DashboardJsonVersion;
 import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import com.axonivy.portal.components.util.RoleUtils;
-import com.axonivy.portal.service.DeepLTranslationService;
+import com.axonivy.portal.service.IvyTranslationService;
 import com.axonivy.portal.util.WelcomeWidgetUtils;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
@@ -314,12 +314,12 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
       DisplayName defaultTitle = languages.get(currentLanguage);
       if (defaultTitle != null) {
         try {
-          translatedText = DeepLTranslationService.getInstance().translate(defaultTitle.getValue(),
+          translatedText = IvyTranslationService.getInstance().translate(defaultTitle.getValue(),
               defaultTitle.getLocale(), title.getLocale());
         } catch (Exception e) {
           warningText = Ivy.cms()
               .co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/SomeThingWentWrong");
-          Ivy.log().error("DeepL Translation Service error: ", e.getMessage());
+          Ivy.log().error("Ivy Translation Service error: ", e.getMessage());
         }
       }
     }

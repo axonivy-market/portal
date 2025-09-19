@@ -1,4 +1,4 @@
-# yaml-language-server: $schema=https://json-schema.axonivy.com/app/13.2.0/variables.json
+# yaml-language-server: $schema=https://json-schema.axonivy.com/app/13.2.1/variables.json
 Variables:
   Portal:
     # To set the standard homepage which will be redirect to when click on home icon or logo.
@@ -194,11 +194,8 @@ Variables:
     # Global footer info that is displayed in bottom right corner can be set in the portal admin settings.
     GlobalFooterInfo: ""
     # Support the translation from English to the other languages or from German to the other languages (German, English, French, Spanish)
-    DeepL:
-      # DeepL Authentication Key (should end with :fx)
-      #[password]
-      AuthKey: ${decrypt:}
-      # Set this property to true to enable the DeepL translation support
+    TranslationService:
+      # Set this property to true to enable the translation service support
       Enable: "false"
     # You can define the application name via this JSON file.
     # It will be shown with the page title

@@ -1,19 +1,5 @@
-# yaml-language-server: $schema=https://json-schema.axonivy.com/app/0.0.1/rest-clients.json
+# yaml-language-server: $schema=https://json-schema.axonivy.com/app/13.2.1/rest-clients.json
 RestClients:
-  #The DeepL API provides programmatic access to DeepL’s machine translation technology.
-  DeepL:
-    UUID: 4a403c04-f107-44f0-9eb8-92f9c27f7ed1
-    Url: https://api-free.deepl.com/v2
-    Features:
-    - ch.ivyteam.ivy.rest.client.mapper.JsonFeature
-    - org.glassfish.jersey.media.multipart.MultiPartFeature
-    - com.axonivy.connector.deepl.DeepLAuthFeature
-    Properties:
-      AUTH.deepLKey: ${ivy.var.Portal.DeepL.AuthKey}
-    OpenAPI:
-      SpecUrl: https://raw.githubusercontent.com/DeepLcom/openapi/main/openapi.yaml
-      Namespace: com.deepl.api.v2.client
-      ResolveFully: true
   PortalAI (LangChain Server):
     UUID: 43e90b1f-7c7d-4a12-be4a-f4ee87d23e0a
     Url: http://localhost:8018/
