@@ -158,7 +158,7 @@ jobs:
             name: screenshots
             retention-days: 5
             path: |
-              AxonIvyPortal/portal-selenium-test/target/selenide/reports/*
+              AxonIvyPortal/portal-selenium-test/target/*
 
         - name: Archive test reports
           uses: actions/upload-artifact@v4
@@ -168,14 +168,6 @@ jobs:
             path: |
               AxonIvyPortal/portal-selenium-test/target/surefire-reports/*
             
-        - name: Archive screenshot image debug
-          uses: actions/upload-artifact@v4
-          with:
-            name: screenshots-test-reports
-            retention-days: 5
-            path: |
-              AxonIvyPortal/portal-selenium-test/target/*.zip
-
         - name: Show inputs
           run: |
             echo "## Inputs" >> $GITHUB_STEP_SUMMARY
