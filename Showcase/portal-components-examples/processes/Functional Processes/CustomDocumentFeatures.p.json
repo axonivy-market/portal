@@ -196,10 +196,10 @@
             "  for(CustomizedIvyDocument doc : in.documents) {",
             "    doc.setName(\"Overridden: \" + doc.getName());",
             "    String typeString = null;",
-            "    String typeStringField = DocumentCustomField.TYPE_PREFIX + doc.id;",
+            "    String typeStringField = DocumentCustomField.TYPE_PREFIX + doc.uuid;",
             "    typeString = in.businessCase.customFields().stringField(typeStringField).getOrNull();",
             "    if (StringUtils.isBlank(typeString)) {",
-            "      typeStringField = DocumentCustomField.TYPE_PREFIX + doc.uuid;",
+            "      typeStringField = DocumentCustomField.TYPE_PREFIX + doc.id;",
             "      typeString = in.businessCase.customFields().stringField(typeStringField).getOrNull();",
             "    }",
             "",
@@ -1107,6 +1107,25 @@
       },
       "connect" : [
         { "id" : "f110", "to" : "f107" }
+      ]
+    }, {
+      "id" : "f112",
+      "type" : "ProcessAnnotation",
+      "name" : [
+        "Note",
+        "In previous versions, document type was stored using the \"id\" as the key.",
+        "",
+        "From version 11, id is deprecated and we use \"uuid\" instead of \"id\".",
+        "",
+        "To ensure compatibility, we first check for the type using \"uuid\".",
+        "If not found, we then check using \"id\"."
+      ],
+      "visual" : {
+        "at" : { "x" : 1072, "y" : 857 },
+        "size" : { "width" : 432, "height" : 147 }
+      },
+      "connect" : [
+        { "id" : "f113", "to" : "f12" }
       ]
     } ]
 }
