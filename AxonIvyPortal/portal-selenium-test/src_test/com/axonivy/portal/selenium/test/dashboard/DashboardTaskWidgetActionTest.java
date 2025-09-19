@@ -3,6 +3,7 @@ package com.axonivy.portal.selenium.test.dashboard;
 import static com.codeborne.selenide.CollectionCondition.size;
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThanOrEqual;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
@@ -13,6 +14,7 @@ import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.FilterOperator;
 import com.axonivy.portal.selenium.common.FilterValueType;
+import com.axonivy.portal.selenium.common.ScreenshotUtils;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.TaskTemplateIFramePage;
@@ -84,16 +86,18 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
   }
 
   @Test
-  public void testVisibilityTaskActionForAdminUser() {
+  public void testVisibilityTaskActionForAdminUser() throws IOException {
     login(TestAccount.ADMIN_USER);
     redirectToRelativeLink(createTaskWithSystemState);
     redirectToNewDashBoard();
     TaskWidgetNewDashBoardPage taskWidget = new TaskWidgetNewDashBoardPage();
     taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
     taskWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "1-testVisibilityTaskActionForAdminUser");
 
     // Ready for Join
     filterTaskByNameAndState("Task Switch A", "Done");
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "2-testVisibilityTaskActionForAdminUser");
     assertTaskAction(0, Arrays.asList(DETAILS, RESET, DESTROY, TRIGGER_ESCALATION, WORKFLOW_EVENTS, PROCESS_VIEWER));
 
     taskWidget.openFilterWidget();
@@ -101,6 +105,7 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
 
     // Suspended
     filterTaskByNameAndState("Sick Leave Request", "Open");
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "3-testVisibilityTaskActionForAdminUser");
     assertTaskAction(0, Arrays.asList(DETAILS, DELEGATE, RESERVE, CLEAR_EXPIRY, DESTROY, TRIGGER_ESCALATION, WORKFLOW_EVENTS, PROCESS_VIEWER));
 
     taskWidget.openFilterWidget();
@@ -108,6 +113,7 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
 
     // Done
     filterTaskByNameAndState("Categoried Leave Request", "Done");
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "4-testVisibilityTaskActionForAdminUser");
     assertTaskAction(0, Arrays.asList(DETAILS, WORKFLOW_EVENTS, PROCESS_VIEWER));
 
     taskWidget.openFilterWidget();
@@ -115,6 +121,7 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
 
     // Delayed
     filterTaskByNameAndState("Task Switch C", "Delayed");
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "5-testVisibilityTaskActionForAdminUser");
     assertTaskAction(0, Arrays.asList(DETAILS, DELEGATE, CLEAR_DELAY, DESTROY, WORKFLOW_EVENTS, PROCESS_VIEWER));
 
     taskWidget.openFilterWidget();
@@ -123,6 +130,7 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
 
     // Destroyed
     filterTaskByNameAndState("Task Switch B", "Destroyed");
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "6-testVisibilityTaskActionForAdminUser");
     assertTaskAction(0, Arrays.asList(DETAILS, WORKFLOW_EVENTS, PROCESS_VIEWER));
   }
 
@@ -203,7 +211,7 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
   }
 
   @Test
-  public void testVisibilityTaskActionForTechnicalStates() {
+  public void testVisibilityTaskActionForTechnicalStates() throws IOException {
     login(TestAccount.ADMIN_USER);
     createTasksForTesting();
     redirectToRelativeLink(createTechnicalStateUrl);
@@ -211,9 +219,11 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
     TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
     taskWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
     resizeBrowserTo2kResolution();
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "1-testVisibilityTaskActionForTechnicalStates");
 
     // Delayed
     filterTaskByNameAndState("Signal create Task failed", ERROR);
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "2-testVisibilityTaskActionForTechnicalStates");
     assertTaskAction(0, Arrays.asList(DETAILS, RESET, DESTROY, WORKFLOW_EVENTS, PROCESS_VIEWER));
 
     taskWidget.openFilterWidget();
@@ -221,6 +231,7 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
     
     // Join failed
     filterTaskByNameAndState("Signal create Technical task", ERROR);
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "3-testVisibilityTaskActionForTechnicalStates");
     assertTaskAction(0, Arrays.asList(DETAILS, DESTROY, WORKFLOW_EVENTS, PROCESS_VIEWER));
   }
 
