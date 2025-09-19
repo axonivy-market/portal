@@ -93,8 +93,6 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
     taskWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
 
     // Ready for Join
-//    assertTaskActionsByTaskStateAndName(DONE, "Task Switch A",
-//        Arrays.asList(DETAILS, RESET, DESTROY, TRIGGER_ESCALATION, WORKFLOW_EVENTS, PROCESS_VIEWER));
     filterTaskByNameAndState("Task Switch A", "Done");
     assertTaskAction(0, Arrays.asList(DETAILS, RESET, DESTROY, TRIGGER_ESCALATION, WORKFLOW_EVENTS, PROCESS_VIEWER));
 
@@ -102,8 +100,6 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
     taskWidget.resetFilter();
 
     // Suspended
-//    assertTaskActionsByTaskStateAndName(OPEN, "Sick Leave Request", Arrays.asList(DETAILS, DELEGATE, RESERVE,
-//        CLEAR_EXPIRY, DESTROY, TRIGGER_ESCALATION, WORKFLOW_EVENTS, PROCESS_VIEWER));
     filterTaskByNameAndState("Sick Leave Request", "Open");
     assertTaskAction(0, Arrays.asList(DETAILS, DELEGATE, RESERVE, CLEAR_EXPIRY, DESTROY, TRIGGER_ESCALATION, WORKFLOW_EVENTS, PROCESS_VIEWER));
 
@@ -111,7 +107,6 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
     taskWidget.resetFilter();
 
     // Done
-//    assertTaskActionsByTaskStateAndName(DONE, "Categoried Leave Request", Arrays.asList(DETAILS, WORKFLOW_EVENTS, PROCESS_VIEWER));
     filterTaskByNameAndState("Categoried Leave Request", "Done");
     assertTaskAction(0, Arrays.asList(DETAILS, WORKFLOW_EVENTS, PROCESS_VIEWER));
 
@@ -119,7 +114,6 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
     taskWidget.resetFilter();
 
     // Delayed
-//    assertTaskActionsByTaskStateAndName(DELAYED, "Task Switch C", Arrays.asList(DETAILS, DELEGATE, CLEAR_DELAY, DESTROY, WORKFLOW_EVENTS, PROCESS_VIEWER));
     filterTaskByNameAndState("Task Switch C", "Delayed");
     assertTaskAction(0, Arrays.asList(DETAILS, DELEGATE, CLEAR_DELAY, DESTROY, WORKFLOW_EVENTS, PROCESS_VIEWER));
 
@@ -128,7 +122,6 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
     refreshPage();
 
     // Destroyed
-//    assertTaskActionsByTaskStateAndName(DESTROYED, "Task Switch B", Arrays.asList(DETAILS, WORKFLOW_EVENTS, PROCESS_VIEWER));
     filterTaskByNameAndState("Task Switch B", "Destroyed");
     assertTaskAction(0, Arrays.asList(DETAILS, WORKFLOW_EVENTS, PROCESS_VIEWER));
   }
@@ -220,7 +213,6 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
     resizeBrowserTo2kResolution();
 
     // Delayed
-//    assertTaskActionsByTaskStateAndName(ERROR, "Signal create Task failed", Arrays.asList(DETAILS, RESET, DESTROY, WORKFLOW_EVENTS, PROCESS_VIEWER));
     filterTaskByNameAndState("Signal create Task failed", ERROR);
     assertTaskAction(0, Arrays.asList(DETAILS, RESET, DESTROY, WORKFLOW_EVENTS, PROCESS_VIEWER));
 
@@ -228,7 +220,6 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
     taskWidget.resetFilter();
     
     // Join failed
-//    assertTaskActionsByTaskStateAndName(ERROR, "Signal create Technical task", Arrays.asList(DETAILS, DESTROY, WORKFLOW_EVENTS, PROCESS_VIEWER));
     filterTaskByNameAndState("Signal create Technical task", ERROR);
     assertTaskAction(0, Arrays.asList(DETAILS, DESTROY, WORKFLOW_EVENTS, PROCESS_VIEWER));
   }
