@@ -63,8 +63,13 @@
             "  IvyDocumentTransformer transformer = new IvyDocumentTransformer();",
             "  in.documents = transformer.transform(iDocuments);",
             "  for (IvyDocument ivyDocument : in.documents) {",
-            "    String stringField = DocumentCustomField.TYPE_PREFIX + ivyDocument.id;",
-            "    String documentTypeString = in.businessCase.customFields().stringField(stringField).getOrNull();",
+            "    String documentTypeString = null;",
+            "    String stringField = DocumentCustomField.TYPE_PREFIX + ivyDocument.uuid;",
+            "    documentTypeString = in.businessCase.customFields().stringField(stringField).getOrNull();",
+            "    if (StringUtils.isBlank(documentTypeString)) {",
+            "      stringField = DocumentCustomField.TYPE_PREFIX + ivyDocument.id;",
+            "      documentTypeString = in.businessCase.customFields().stringField(stringField).getOrNull();",
+            "    }",
             "    if (StringUtils.isNotBlank(documentTypeString)) {",
             "      ivyDocument.setType(BasicDocumentType.valueOf(documentTypeString.toUpperCase()));",
             "    }",
@@ -155,6 +160,25 @@
       },
       "connect" : [
         { "id" : "f11", "to" : "f7" }
+      ]
+    }, {
+      "id" : "f12",
+      "type" : "ProcessAnnotation",
+      "name" : [
+        "Note,",
+        "In previous versions, document type was stored using the id as the key.",
+        "",
+        "From version 11, id is deprecated and we use uuid instead of id.",
+        "",
+        "To ensure compatibility, we first check for the type using uuid.",
+        "If not found, we then check using id."
+      ],
+      "visual" : {
+        "at" : { "x" : 941, "y" : 349 },
+        "size" : { "width" : 374, "height" : 166 }
+      },
+      "connect" : [
+        { "id" : "f13", "to" : "f3" }
       ]
     } ]
 }
