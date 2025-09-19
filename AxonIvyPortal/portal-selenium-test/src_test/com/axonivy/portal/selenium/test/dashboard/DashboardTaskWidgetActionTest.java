@@ -216,6 +216,7 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
     login(TestAccount.ADMIN_USER);
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.DASHBOARD_FOLDER + "1testVisibilityTaskActionForTechnicalStates");
     createTasksForTesting();
+    redirectToRelativeLink(createTechnicalStateUrl);
 
     TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
     taskWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
