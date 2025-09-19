@@ -167,6 +167,14 @@ jobs:
             retention-days: 5
             path: |
               AxonIvyPortal/portal-selenium-test/target/surefire-reports/*
+            
+        - name: Archive screenshot image debug
+          uses: actions/upload-artifact@v4
+          with:
+            name: screenshots-test-reports
+            retention-days: 5
+            path: |
+              AxonIvyPortal/portal-selenium-test/target/*.zip
 
         - name: Show inputs
           run: |
@@ -182,11 +190,3 @@ jobs:
             path: '*.xml'
             reporter: java-junit
             only-summary: 'false'
-            
-        - name: Archive screenshot image
-          uses: actions/upload-artifact@v4
-          with:
-            name: screenshots
-            retention-days: 5
-            path: |
-              AxonIvyPortal/portal-selenium-test/target/*.zip
