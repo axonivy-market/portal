@@ -65,10 +65,15 @@
             "  IvyDocumentTransformer transformer = new IvyDocumentTransformer();",
             "  in.documents = transformer.transform(iDocuments);",
             "  for (IvyDocument ivyDocument : in.documents) {",
-            "    String stringField = DocumentCustomField.TYPE_PREFIX + ivyDocument.id;",
-            "    String documentTypeString = in.businessCase.customFields().stringField(stringField).getOrNull();",
+            "    String documentTypeString = null;",
+            "    String stringField = DocumentCustomField.TYPE_PREFIX + ivyDocument.uuid;",
+            "    documentTypeString = in.businessCase.customFields().stringField(stringField).getOrNull();",
+            "    if (StringUtils.isBlank(documentTypeString)) {",
+            "        stringField = DocumentCustomField.TYPE_PREFIX + ivyDocument.id;",
+            "        documentTypeString = in.businessCase.customFields().stringField(stringField).getOrNull();",
+            "    }",
             "    if (StringUtils.isNotBlank(documentTypeString)) {",
-            "      ivyDocument.setType(BasicDocumentType.valueOf(documentTypeString.toUpperCase()));",
+            "        ivyDocument.setType(BasicDocumentType.valueOf(documentTypeString.toUpperCase()));",
             "    }",
             "  }",
             "}"
@@ -93,6 +98,7 @@
         "After get document list from DMS, convert them into List<ch.ivy.addon.portal.component.ivydata.bo.IvyDocument>",
         "Some mandatory fields when mapping:",
         "- id",
+        "- uuid",
         "- name",
         "- contentType"
       ],
@@ -161,6 +167,25 @@
         { "id" : "f11", "to" : "f1", "via" : [ { "x" : 648, "y" : 312 }, { "x" : 968, "y" : 312 } ], "label" : {
             "name" : "Yes"
           } }
+      ]
+    }, {
+      "id" : "f12",
+      "type" : "ProcessAnnotation",
+      "name" : [
+        "Note",
+        "In previous versions, document type was stored using the \"id\" as the key.",
+        "",
+        "From version 11, id is deprecated and we use \"uuid\" instead of \"id\".",
+        "",
+        "To ensure compatibility, we first check for the type using \"uuid\".",
+        "If not found, we then check using \"id\"."
+      ],
+      "visual" : {
+        "at" : { "x" : 1048, "y" : 456 },
+        "size" : { "width" : 576, "height" : 166 }
+      },
+      "connect" : [
+        { "id" : "f13", "to" : "f3" }
       ]
     } ]
 }
