@@ -5,8 +5,6 @@ import static com.codeborne.selenide.CollectionCondition.sizeGreaterThanOrEqual;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 
-import java.io.IOException;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -25,7 +23,6 @@ import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.TaskEditWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.TaskTemplateIFramePage;
 import com.axonivy.portal.selenium.page.TaskWidgetNewDashBoardPage;
-
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 
 @IvyWebTest
@@ -96,26 +93,19 @@ public class DashboardTaskWidgetTest extends BaseTest {
   }
 
   @Test
-  public void testDestroyTaskWithPermission() throws IOException {
+  public void testDestroyTaskWithPermission() {
     login(TestAccount.ADMIN_USER);
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.NEW_DASHBOARD_FOLDER + "1testDestroyTaskWithPermission");
     createJSonFile("dashboard-has-one-task-widget.json", PortalVariable.DASHBOARD.key);
     redirectToRelativeLink(createTestingTasksUrl);
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.NEW_DASHBOARD_FOLDER + "2testDestroyTaskWithPermission");
     redirectToNewDashBoard();
     TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.NEW_DASHBOARD_FOLDER + "3testDestroyTaskWithPermission");
     taskWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
     taskWidget.openFilterWidget();
     taskWidget.filterTaskName(SICK_LEAVE_REQUEST, FilterOperator.IS);
     taskWidget.applyFilter();
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.NEW_DASHBOARD_FOLDER + "4testDestroyTaskWithPermission");
     taskWidget.clickOnTaskActionLink(0);
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.NEW_DASHBOARD_FOLDER + "5testDestroyTaskWithPermission");
     taskWidget.destroy();
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.NEW_DASHBOARD_FOLDER + "6testDestroyTaskWithPermission");
     taskWidget.stateOfFirstTask().shouldHave(text(DESTROYED));
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.NEW_DASHBOARD_FOLDER + "7testDestroyTaskWithPermission");
   }
 
   @Test
