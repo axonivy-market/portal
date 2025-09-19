@@ -1,3 +1,0 @@
-Variable,Description
-taskName,Custom text for ``Task name``
-isHideTaskName,"Hide ``Task name``, false (default) or true"

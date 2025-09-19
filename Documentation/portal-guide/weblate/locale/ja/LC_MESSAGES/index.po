@@ -22,5 +22,5 @@ msgstr ""
 
 #: ../../source/index.rst:2 ../../source/index.rst:4
 msgid "Portal"
-msgstr ""
+msgstr "Portal"
 

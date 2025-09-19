@@ -25,9 +25,6 @@ jobs:
       - name: Generate POT Templates
         working-directory: Documentation/portal-guide
         run: |
-          rm -r source/portal-components-japanese
-          rm -r source/portal-developer-guide-japanese
-          rm -r source/portal-user-guide-japanese
           docker run -v .:/doc -u $(id -u) axonivy/build-container:read-the-docs-2 make gettext BASEDIR=/doc
 
       - name: Update PO Languages files
