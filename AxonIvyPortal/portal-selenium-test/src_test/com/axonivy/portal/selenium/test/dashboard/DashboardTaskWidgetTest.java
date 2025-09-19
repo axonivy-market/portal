@@ -102,16 +102,16 @@ public class DashboardTaskWidgetTest extends BaseTest {
     redirectToNewDashBoard();
     TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
     taskWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "1-testDestroyTaskWithPermission");
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "testDestroyTaskWithPermission1");
     taskWidget.openFilterWidget();
     taskWidget.filterTaskName(SICK_LEAVE_REQUEST, FilterOperator.IS);
     taskWidget.applyFilter();
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "2-testDestroyTaskWithPermission");
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "testDestroyTaskWithPermission2");
     taskWidget.clickOnTaskActionLink(0);
     taskWidget.destroy();
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "3-testDestroyTaskWithPermission");
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "testDestroyTaskWithPermission3");
     taskWidget.stateOfFirstTask().shouldHave(text(DESTROYED));
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "4-testDestroyTaskWithPermission");
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "testDestroyTaskWithPermission4");
   }
 
   @Test
@@ -341,29 +341,29 @@ public class DashboardTaskWidgetTest extends BaseTest {
     login(TestAccount.ADMIN_USER);
     redirectToNewDashBoard();
     TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "1-testShowBusinessCustomFieldOnTaskWidget");
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "testShowBusinessCustomFieldOnTaskWidget1");
 
     var configurationPage = newDashboardPage.openDashboardConfigurationPage();
     DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "2-testShowBusinessCustomFieldOnTaskWidget");
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "testShowBusinessCustomFieldOnTaskWidget2");
     modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "3-testShowBusinessCustomFieldOnTaskWidget");
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "testShowBusinessCustomFieldOnTaskWidget3");
 
     taskWidget.openEditTaskWidget();
     taskWidget.clickOnManageColumns();
     taskWidget.selectCustomBusinessCaseFieldType();
     taskWidget.selectCustomerNameField();
     taskWidget.clickAddButton();
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "4-testShowBusinessCustomFieldOnTaskWidget");
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "testShowBusinessCustomFieldOnTaskWidget4");
     taskWidget.clickSaveButton();
     taskWidget.saveWidgetConfiguration();
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "5-testShowBusinessCustomFieldOnTaskWidget");
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "testShowBusinessCustomFieldOnTaskWidget5");
     MainMenuPage mainMenu = new MainMenuPage();
     mainMenu.clickOnLogo();
     TaskWidgetNewDashBoardPage taskWidget2 = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "6-testShowBusinessCustomFieldOnTaskWidget");
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "testShowBusinessCustomFieldOnTaskWidget6");
     assertEquals(AXON_IVY, taskWidget2.getCustomBusinessCaseFieldValueFromRowIndex(0));
     assertEquals(AXON_IVY, taskWidget2.getCustomBusinessCaseFieldValueFromRowIndex(1));
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "7-testShowBusinessCustomFieldOnTaskWidget");
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "testShowBusinessCustomFieldOnTaskWidget7");
   }
 }

@@ -62,19 +62,19 @@ public class TaskTemplateIFrameTest extends BaseTest {
   public void testNotDisplayWarningInIFrameTaskTemplate() throws IOException {
     redirectToRelativeLink(IFRAME_TASK_URL);
     waitForTemplateRender();
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "1-testNotDisplayWarningInIFrameTaskTemplate");
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "testTriggerEscalationTaskOnRelatedTasksOfCase1");
     TaskTemplatePage taskTemplatePage1 = new TaskTemplatePage();
     taskTemplatePage1.finishCreateInvestmentTask();
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "2-testNotDisplayWarningInIFrameTaskTemplate");
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "testTriggerEscalationTaskOnRelatedTasksOfCase2");
     TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
     taskWidget.openFilterWidget();
     taskWidget.addFilter("Name", FilterOperator.CONTAINS);
     taskWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "Approve Investment");
     taskWidget.applyFilter();
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "3-testNotDisplayWarningInIFrameTaskTemplate");
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "testTriggerEscalationTaskOnRelatedTasksOfCase3");
     TaskIFrameTemplatePage taskTemplatePage2 = taskWidget.startTaskIFrameByIndex(0);
     taskTemplatePage2.waitForPageLoad();
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "4-testNotDisplayWarningInIFrameTaskTemplate");
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "testTriggerEscalationTaskOnRelatedTasksOfCase4");
     taskTemplatePage2.clickOnLogo();
   }
 

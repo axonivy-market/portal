@@ -74,15 +74,15 @@ public class EscalationTaskTest extends BaseTest {
     NavigationHelper.navigateToTaskList();
     TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
     refreshPage();
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "1-testTriggerEscalationTaskOnTaskList");
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "testTriggerEscalationTaskOnTaskList1");
     taskWidget.openFilterWidget();
     taskWidget.addFilter("Name", FilterOperator.IS);
     taskWidget.inputValueOnLatestFilter(FilterValueType.TEXT, SICK_LEAVE_REQUEST);
     taskWidget.applyFilter();
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "2-testTriggerEscalationTaskOnTaskList");
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "testTriggerEscalationTaskOnTaskList2");
     taskWidget.countAllTasks().shouldHave(size(1));
     taskWidget.triggerEscalationTask(0);
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "3-testTriggerEscalationTaskOnTaskList");
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "testTriggerEscalationTaskOnTaskList3");
     // Try to refresh data
     refreshPage();
     taskWidget = new TopMenuTaskWidgetPage();
@@ -91,7 +91,7 @@ public class EscalationTaskTest extends BaseTest {
     taskWidget.inputValueOnLatestFilter(FilterValueType.STATE_TYPE, "Destroyed");
     taskWidget.applyFilter();
     taskWidget.countAllTasks().shouldHave(size(1));
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "4-testTriggerEscalationTaskOnTaskList");
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "testTriggerEscalationTaskOnTaskList4");
     assertTrue("Destroyed".equalsIgnoreCase(taskWidget.stateOfFirstTask().text()));
   }
 
@@ -102,22 +102,22 @@ public class EscalationTaskTest extends BaseTest {
     redirectToNewDashBoard();
     ScreenshotUtils.resizeBrowser(new Dimension(1980, 1080));
     CaseWidgetNewDashBoardPage caseWidgetPage = NavigationHelper.navigateToCaseList();
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "1-testTriggerEscalationTaskOnRelatedTasksOfCase");
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "testTriggerEscalationTaskOnRelatedTasksOfCase1");
 
     CaseDetailsPage caseDetailsPage = caseWidgetPage.openDetailsCase(TRIGGER_ESCALATION_CASE);
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "2-testTriggerEscalationTaskOnRelatedTasksOfCase");
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "testTriggerEscalationTaskOnRelatedTasksOfCase2");
     caseDetailsPage.getNameOfRelatedTask(0).shouldHave(Condition.text(SICK_LEAVE_REQUEST));
     caseDetailsPage.clickRelatedTaskActionButton(0);
     caseDetailsPage.triggerEscalationTask(0);
     caseDetailsPage.waitForPageLoad();
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "3-testTriggerEscalationTaskOnRelatedTasksOfCase");
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "testTriggerEscalationTaskOnRelatedTasksOfCase3");
 
     caseDetailsPage = new CaseDetailsPage();
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "4-testTriggerEscalationTaskOnRelatedTasksOfCase");
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "testTriggerEscalationTaskOnRelatedTasksOfCase4");
     caseDetailsPage.getNameOfRelatedTask(2).shouldHave(Condition.text(SICK_LEAVE_REQUEST));
     caseDetailsPage.getStateOfRelatedTask(2).shouldHave(Condition.text("Destroyed"));
     caseDetailsPage.getNameOfRelatedTask(0).shouldHave(Condition.text(SICK_LEAVE_REQUEST_ESCALATED));
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "5-testTriggerEscalationTaskOnRelatedTasksOfCase");
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "testTriggerEscalationTaskOnRelatedTasksOfCase5");
   }
 
   @Test
