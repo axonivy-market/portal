@@ -278,7 +278,6 @@ public class CaseDetailsTest extends BaseTest {
   }
 
   @Test
-  // unstable test
   public void testRelatedTaskDelegateTask() {
     createTestingTask();
     ScreenshotUtils.resizeBrowser(new Dimension(1920, 1080));
