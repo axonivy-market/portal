@@ -1,5 +1,7 @@
 package com.axonivy.portal.selenium.test.task;
 
+import java.io.IOException;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
@@ -9,6 +11,7 @@ import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.FilterOperator;
 import com.axonivy.portal.selenium.common.FilterValueType;
 import com.axonivy.portal.selenium.common.NavigationHelper;
+import com.axonivy.portal.selenium.common.ScreenshotUtils;
 import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.common.WaitHelper;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
@@ -56,18 +59,22 @@ public class TaskTemplateIFrameTest extends BaseTest {
   }
 
   @Test
-  public void testNotDisplayWarningInIFrameTaskTemplate() {
+  public void testNotDisplayWarningInIFrameTaskTemplate() throws IOException {
     redirectToRelativeLink(IFRAME_TASK_URL);
     waitForTemplateRender();
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "1-testNotDisplayWarningInIFrameTaskTemplate");
     TaskTemplatePage taskTemplatePage1 = new TaskTemplatePage();
     taskTemplatePage1.finishCreateInvestmentTask();
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "2-testNotDisplayWarningInIFrameTaskTemplate");
     TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
     taskWidget.openFilterWidget();
     taskWidget.addFilter("Name", FilterOperator.CONTAINS);
     taskWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "Approve Investment");
     taskWidget.applyFilter();
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "3-testNotDisplayWarningInIFrameTaskTemplate");
     TaskIFrameTemplatePage taskTemplatePage2 = taskWidget.startTaskIFrameByIndex(0);
     taskTemplatePage2.waitForPageLoad();
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "4-testNotDisplayWarningInIFrameTaskTemplate");
     taskTemplatePage2.clickOnLogo();
   }
 
