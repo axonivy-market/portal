@@ -98,24 +98,24 @@ public class DashboardTaskWidgetTest extends BaseTest {
   @Test
   public void testDestroyTaskWithPermission() throws IOException {
     login(TestAccount.ADMIN_USER);
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.DASHBOARD_FOLDER + "firstLogin");
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.NEW_DASHBOARD_FOLDER + "1testDestroyTaskWithPermission");
     createJSonFile("dashboard-has-one-task-widget.json", PortalVariable.DASHBOARD.key);
     redirectToRelativeLink(createTestingTasksUrl);
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.DASHBOARD_FOLDER + "createTestingTasksUrl");
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.NEW_DASHBOARD_FOLDER + "2testDestroyTaskWithPermission");
     redirectToNewDashBoard();
     TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.DASHBOARD_FOLDER + "redirectToTaskWidget");
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.NEW_DASHBOARD_FOLDER + "3testDestroyTaskWithPermission");
     taskWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
     taskWidget.openFilterWidget();
     taskWidget.filterTaskName(SICK_LEAVE_REQUEST, FilterOperator.IS);
     taskWidget.applyFilter();
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.DASHBOARD_FOLDER + "applyFilter");
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.NEW_DASHBOARD_FOLDER + "4testDestroyTaskWithPermission");
     taskWidget.clickOnTaskActionLink(0);
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.DASHBOARD_FOLDER + "taskAction");
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.NEW_DASHBOARD_FOLDER + "5testDestroyTaskWithPermission");
     taskWidget.destroy();
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.DASHBOARD_FOLDER + "destroy");
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.NEW_DASHBOARD_FOLDER + "6testDestroyTaskWithPermission");
     taskWidget.stateOfFirstTask().shouldHave(text(DESTROYED));
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.DASHBOARD_FOLDER + "destroy2");
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.NEW_DASHBOARD_FOLDER + "7testDestroyTaskWithPermission");
   }
 
   @Test
