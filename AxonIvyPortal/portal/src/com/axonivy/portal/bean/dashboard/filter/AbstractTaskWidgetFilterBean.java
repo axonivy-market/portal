@@ -40,7 +40,7 @@ public abstract class AbstractTaskWidgetFilterBean implements Serializable {
   public void preRender(TaskDashboardWidget widget) {
     this.widget = widget;
     this.widget.setInConfiguration(true);
-    this.mapHeaders = widget.getColumns().stream().collect(Collectors.toMap(TaskColumnModel::getField, Function.identity()));
+    this.mapHeaders = widget.getColumns().stream().filter(item -> item.getType().equals(DashboardColumnType.STANDARD)).collect(Collectors.toMap(TaskColumnModel::getField, Function.identity()));
     initFilterFields();
     initFilters();
   }

@@ -25,6 +25,7 @@ import org.apache.commons.lang3.Strings;
 
 import com.axonivy.portal.components.util.FacesMessageUtils;
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
+import com.axonivy.portal.service.DeepLTranslationService;
 
 import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget;
@@ -44,6 +45,7 @@ import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 import ch.ivy.addon.portalkit.util.DisplayNameConvertor;
+import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.custom.field.CustomFieldType;
 import ch.ivyteam.ivy.workflow.custom.field.ICustomFieldMeta;
@@ -71,6 +73,8 @@ public class ColumnManagementBean implements Serializable, IMultiLanguage {
   private String fieldDescription;
   private List<DisplayName> fieldDisplayNames;
   private boolean isConfiguredLanguage;
+  private String warningText;
+  private String translatedText;
 
   public void init() {
     this.fieldTypes = Arrays.asList(DashboardColumnType.STANDARD, DashboardColumnType.CUSTOM);
@@ -105,6 +109,8 @@ public class ColumnManagementBean implements Serializable, IMultiLanguage {
     this.isConfiguredLanguage = false;
     this.selectedCustomFieldType = CustomFieldType.STRING;
     this.fieldDisplayNames = Collections.emptyList();
+    this.warningText = null;
+    this.translatedText = null;
   }
 
   public List<String> completeCategoriesSelection(String query) {
@@ -447,10 +453,23 @@ public class ColumnManagementBean implements Serializable, IMultiLanguage {
   private String getCurrentDisplayName() {
     if (widget.getType() == DashboardWidgetType.TASK) {
       return Ivy.cms().coLocale(String.format("/Labels/Enums/DashboardStandardTaskColumn/%s",
-          DashboardStandardTaskColumn.findBy(selectedField)), LanguageService.getInstance().getDefaultLanguage());
+          DashboardStandardTaskColumn.findBy(selectedField)), LanguageService.getInstance().getUserLanguage());
     } else if (widget.getType() == DashboardWidgetType.CASE) {
-      Ivy.cms().coLocale(String.format("/Labels/Enums/DashboardStandardCaseColumn/%s",
-          DashboardStandardCaseColumn.findBy(selectedField)), LanguageService.getInstance().getDefaultLanguage());
+      return Ivy.cms().coLocale(String.format("/Labels/Enums/DashboardStandardCaseColumn/%s",
+          DashboardStandardCaseColumn.findBy(selectedField)), LanguageService.getInstance().getUserLanguage());
+    }
+    return "";
+  }
+  
+  private String getDisplayNameByLocale(String locale) {
+    if (widget.getType() == DashboardWidgetType.TASK && this.selectedFieldType.equals(DashboardColumnType.STANDARD)) {
+      return Ivy.cms().coLocale(String.format("/Labels/Enums/DashboardStandardTaskColumn/%s",
+          DashboardStandardTaskColumn.findBy(selectedField)), locale);
+    } else if (widget.getType() == DashboardWidgetType.CASE && this.selectedFieldType.equals(DashboardColumnType.STANDARD)) {
+      return Ivy.cms().coLocale(String.format("/Labels/Enums/DashboardStandardCaseColumn/%s",
+          DashboardStandardCaseColumn.findBy(selectedField)), locale);
+    } else if (widget.getType() == DashboardWidgetType.TASK && this.selectedFieldType.equals(DashboardColumnType.CUSTOM)) {
+      return Ivy.cms().coLocale(String.format("/CustomFields/Tasks/%s/Label", this.selectedField), locale);
     }
     return "";
   }
@@ -461,7 +480,7 @@ public class ColumnManagementBean implements Serializable, IMultiLanguage {
     for (String language : ivyLanguage.getSupportedLanguages()) {
       DisplayName newItem = new DisplayName();
       newItem.setLocale(Locale.forLanguageTag(language));
-      newItem.setValue(StringUtils.defaultIfBlank(getCurrentDisplayName(), this.fieldDisplayName));
+      newItem.setValue(StringUtils.defaultIfBlank(getDisplayNameByLocale(Locale.forLanguageTag(language).toLanguageTag()), this.fieldDisplayName));
       result.add(newItem);
     }
     this.fieldDisplayNames = result;
@@ -474,12 +493,50 @@ public class ColumnManagementBean implements Serializable, IMultiLanguage {
 
 
   public void updateNameByLocale() {
-    updateFieldDisplayNames();
+    if (this.fieldDisplayNames.isEmpty()) {
+      updateFieldDisplayNames();
+    }
     DisplayNameConvertor.setValue(fieldDisplayName, fieldDisplayNames);
   }
 
   public void updateCurrentLanguage() {
     this.fieldDisplayName = DisplayNameConvertor.updateCurrentValue(fieldDisplayName, fieldDisplayNames);
+  }
+
+  public void translate(DisplayName title) {
+    translateValues(title, fieldDisplayNames);
+  }
+  
+  public void translateTextArea(DisplayName title) {
+    translateValues(title, fieldDisplayNames);
+  }
+  
+  private void translateValues(DisplayName title, List<DisplayName> languages) {
+    translatedText = StringUtils.EMPTY;
+    warningText = StringUtils.EMPTY;
+
+    String currentLanguage = UserUtils.getUserLanguage();
+    if (!title.getLocale().getLanguage().equals(currentLanguage)) {
+      Optional<DisplayName> optional = languages.stream()
+          .filter(lang -> currentLanguage.equals(lang.getLocale().getLanguage())).findFirst();
+      if (optional.isPresent()) {
+        try {
+          translatedText = DeepLTranslationService.getInstance().translate(optional.get().getValue(),
+              optional.get().getLocale(), title.getLocale());
+        } catch (Exception e) {
+          warningText = Ivy.cms()
+              .co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/SomeThingWentWrong");
+          Ivy.log().error("DeepL Translation Service error: ", e.getMessage());
+        }
+      }
+    }
+  }
+  
+  public void applyTranslatedText(DisplayName displayName) {
+    if (StringUtils.isNotBlank(translatedText)) {
+      displayName.setValue(translatedText);
+      translatedText = StringUtils.EMPTY;
+    }
   }
 
   public boolean isConfiguredLanguage() {
@@ -488,6 +545,22 @@ public class ColumnManagementBean implements Serializable, IMultiLanguage {
 
   public void setConfiguredLanguage(boolean isConfiguredLanguage) {
     this.isConfiguredLanguage = isConfiguredLanguage;
+  }
+
+  public String getWarningText() {
+    return warningText;
+  }
+
+  public void setWarningText(String warningText) {
+    this.warningText = warningText;
+  }
+
+  public String getTranslatedText() {
+    return translatedText;
+  }
+
+  public void setTranslatedText(String translatedText) {
+    this.translatedText = translatedText;
   }
 
   public class FetchingField {
