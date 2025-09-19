@@ -86,10 +86,12 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
   @Test
   public void testVisibilityTaskActionForAdminUser() {
     login(TestAccount.ADMIN_USER);
-    createTasksForTesting();
-    newDashboardPage.waitForTaskListDisplay();
+    redirectToRelativeLink(createTaskWithSystemState);
+    redirectToNewDashBoard();
     TaskWidgetNewDashBoardPage taskWidget = new TaskWidgetNewDashBoardPage();
-    
+    taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
+    taskWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
+
     // Ready for Join
 //    assertTaskActionsByTaskStateAndName(DONE, "Task Switch A",
 //        Arrays.asList(DETAILS, RESET, DESTROY, TRIGGER_ESCALATION, WORKFLOW_EVENTS, PROCESS_VIEWER));
@@ -210,9 +212,8 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
   @Test
   public void testVisibilityTaskActionForTechnicalStates() {
     login(TestAccount.ADMIN_USER);
-    redirectToRelativeLink(createTechnicalStateUrl);
-    redirectToNewDashBoard();
-    newDashboardPage.waitForTaskListDisplay();
+    createTasksForTesting();
+
     TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
     taskWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
     resizeBrowserTo2kResolution();
