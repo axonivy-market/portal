@@ -28,7 +28,7 @@ import com.axonivy.portal.selenium.page.TaskTemplateIFramePage;
 import com.axonivy.portal.selenium.page.TaskWidgetNewDashBoardPage;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 
-@IvyWebTest
+@IvyWebTest(headless = false)
 public class DashboardTaskWidgetTest extends BaseTest {
 
   // WIDGET
@@ -97,9 +97,9 @@ public class DashboardTaskWidgetTest extends BaseTest {
 
   @Test
   public void testDestroyTaskWithPermission() throws IOException {
+    redirectToRelativeLink(createTestingTasksUrl);
     login(TestAccount.ADMIN_USER);
     createJSonFile("dashboard-has-one-task-widget.json", PortalVariable.DASHBOARD.key);
-    redirectToRelativeLink(createTestingTasksUrl);
 
     redirectToNewDashBoard();
     TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);

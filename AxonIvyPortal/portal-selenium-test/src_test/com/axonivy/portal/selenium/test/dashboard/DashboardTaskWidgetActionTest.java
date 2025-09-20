@@ -87,9 +87,8 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
 
   @Test
   public void testVisibilityTaskActionForAdminUser() throws IOException {
-    login(TestAccount.ADMIN_USER);
     redirectToRelativeLink(createTaskWithSystemState);
-    Sleeper.sleep(1000);
+    login(TestAccount.ADMIN_USER);
 
     redirectToNewDashBoard();
     TaskWidgetNewDashBoardPage taskWidget = new TaskWidgetNewDashBoardPage();
@@ -101,6 +100,7 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
     assertTaskAction(0, Arrays.asList(DETAILS, RESET, DESTROY, TRIGGER_ESCALATION, WORKFLOW_EVENTS, PROCESS_VIEWER));
     taskWidget.openFilterWidget();
     taskWidget.resetFilter();
+    taskWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
 
     // Suspended
     filterTaskByNameAndState("Sick Leave Request", "Open");
@@ -108,12 +108,14 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
         WORKFLOW_EVENTS, PROCESS_VIEWER));
     taskWidget.openFilterWidget();
     taskWidget.resetFilter();
+    taskWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
 
     // Done
     filterTaskByNameAndState("Categoried Leave Request", "Done");
     assertTaskAction(0, Arrays.asList(DETAILS, WORKFLOW_EVENTS, PROCESS_VIEWER));
     taskWidget.openFilterWidget();
     taskWidget.resetFilter();
+    taskWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
 
     // Delayed
     filterTaskByNameAndState("Task Switch C", "Delayed");
@@ -122,6 +124,7 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
 
     taskWidget.openFilterWidget();
     taskWidget.resetFilter();
+    taskWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "testVisibilityTaskActionForAdminUser2");
 
     // Destroyed
@@ -207,9 +210,9 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
 
   @Test
   public void testVisibilityTaskActionForTechnicalStates() throws IOException {
-    login(TestAccount.ADMIN_USER);
     createTasksForTesting();
     redirectToRelativeLink(createTechnicalStateUrl);
+    login(TestAccount.ADMIN_USER);
     Sleeper.sleep(1000);
 
     TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
