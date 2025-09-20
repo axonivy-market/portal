@@ -5,6 +5,8 @@ import static com.codeborne.selenide.CollectionCondition.sizeGreaterThanOrEqual;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 
+import java.io.IOException;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -14,6 +16,7 @@ import com.axonivy.portal.selenium.common.FilterOperator;
 import com.axonivy.portal.selenium.common.FilterValueType;
 import com.axonivy.portal.selenium.common.LinkNavigator;
 import com.axonivy.portal.selenium.common.ScreenshotUtils;
+import com.axonivy.portal.selenium.common.Sleeper;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.page.DashboardModificationPage;
@@ -93,19 +96,26 @@ public class DashboardTaskWidgetTest extends BaseTest {
   }
 
   @Test
-  public void testDestroyTaskWithPermission() {
+  public void testDestroyTaskWithPermission() throws IOException {
+    redirectToRelativeLink(createTestingTasksUrl);
     login(TestAccount.ADMIN_USER);
     createJSonFile("dashboard-has-one-task-widget.json", PortalVariable.DASHBOARD.key);
-    redirectToRelativeLink(createTestingTasksUrl);
+
     redirectToNewDashBoard();
     TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
     taskWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "testDestroyTaskWithPermission1");
     taskWidget.openFilterWidget();
     taskWidget.filterTaskName(SICK_LEAVE_REQUEST, FilterOperator.IS);
     taskWidget.applyFilter();
     taskWidget.clickOnTaskActionLink(0);
+    taskWidget.destroyTaskLink().shouldHave(visible);
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "testDestroyTaskWithPermission2_checkDestroyAvailable");
     taskWidget.destroy();
+    Sleeper.sleep(1000);
+
     taskWidget.stateOfFirstTask().shouldHave(text(DESTROYED));
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "testDestroyTaskWithPermission4");
   }
 
   @Test
@@ -330,7 +340,7 @@ public class DashboardTaskWidgetTest extends BaseTest {
   }
   
   @Test
-  public void testShowBusinessCustomFieldOnTaskWidget() {
+  public void testShowBusinessCustomFieldOnTaskWidget() throws IOException {
     redirectToRelativeLink(displayCustomFieldCaseOnTaskWidget);
     login(TestAccount.ADMIN_USER);
     redirectToNewDashBoard();
@@ -345,12 +355,20 @@ public class DashboardTaskWidgetTest extends BaseTest {
     taskWidget.selectCustomBusinessCaseFieldType();
     taskWidget.selectCustomerNameField();
     taskWidget.clickAddButton();
+    Sleeper.sleep(1000);
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "testShowBusinessCustomFieldOnTaskWidget-clickAddButton");
     taskWidget.clickSaveButton();
+    Sleeper.sleep(1000);
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "testShowBusinessCustomFieldOnTaskWidget-clickSaveButton");
     taskWidget.saveWidgetConfiguration();
+    Sleeper.sleep(1000);
     MainMenuPage mainMenu = new MainMenuPage();
     mainMenu.clickOnLogo();
     TaskWidgetNewDashBoardPage taskWidget2 = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
+    taskWidget2.expand().shouldHave(sizeGreaterThanOrEqual(1));
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "testShowBusinessCustomFieldOnTaskWidget1");
     assertEquals(AXON_IVY, taskWidget2.getCustomBusinessCaseFieldValueFromRowIndex(0));
     assertEquals(AXON_IVY, taskWidget2.getCustomBusinessCaseFieldValueFromRowIndex(1));
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "testShowBusinessCustomFieldOnTaskWidget2");
   }
 }

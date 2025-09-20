@@ -158,7 +158,7 @@ jobs:
             name: screenshots
             retention-days: 5
             path: |
-              AxonIvyPortal/portal-selenium-test/target/selenide/reports/*
+              AxonIvyPortal/portal-selenium-test/target/*
 
         - name: Archive test reports
           uses: actions/upload-artifact@v4
