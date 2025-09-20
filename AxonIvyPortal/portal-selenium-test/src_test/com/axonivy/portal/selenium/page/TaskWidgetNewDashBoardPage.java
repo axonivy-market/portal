@@ -362,7 +362,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public SelenideElement destroyTaskLink() {
-    return $("a[id$='task-destroy-command']").shouldBe(appear);
+    return $("a[id$='task-destroy-command']");
   }
 
   public void destroy() {
