@@ -301,7 +301,12 @@
   {
     "id": "4",
     "version": "13.1.0",
-    "aggregates": "category,businessRuntime:avg",
+    "statisticAggregation": {
+      "field": "category",
+      "type": "standard",
+      "kpiField": "businessRuntime",
+      "aggregationMethod": "avg"
+    },
     "filter": "businessRuntime:>0",
     "permissions": [
       "Everybody"
@@ -687,7 +692,11 @@
   {
     "id": "8",
     "version": "13.1.0",
-    "aggregates": "expiryTimestamp:bucket:week",
+    "statisticAggregation": {
+      "field": "expiryTimestamp",
+      "type": "standard",
+      "interval": "week"
+    },
     "filter": "expiryTimestamp:>=now/w <now/w+w,canWorkOn",
     "permissions": [
       "Everybody"
@@ -890,7 +899,11 @@
   {
     "id": "11",
     "version": "13.1.0",
-    "aggregates": "expiryTimestamp:bucket:day",
+    "statisticAggregation": {
+      "field": "expiryTimestamp",
+      "type": "standard",
+      "interval": "day"
+    },
     "filter": "canWorkOn,expiryTimestamp:>=now/d <now/d+d",
     "permissions": [
       "Everybody"

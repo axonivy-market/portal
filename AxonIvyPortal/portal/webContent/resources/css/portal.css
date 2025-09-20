@@ -1904,7 +1904,7 @@ body.dark .focused {
 }
 
 .statistic-chart-widget__chart.client-number-chart {
-  overflow: hidden;
+  overflow: auto;
 }
 
 .statistic-chart-widget__canvas {
