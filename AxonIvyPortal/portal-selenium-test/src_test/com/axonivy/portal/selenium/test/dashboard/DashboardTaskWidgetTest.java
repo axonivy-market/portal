@@ -28,7 +28,7 @@ import com.axonivy.portal.selenium.page.TaskTemplateIFramePage;
 import com.axonivy.portal.selenium.page.TaskWidgetNewDashBoardPage;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 
-@IvyWebTest(headless = false)
+@IvyWebTest
 public class DashboardTaskWidgetTest extends BaseTest {
 
   // WIDGET
