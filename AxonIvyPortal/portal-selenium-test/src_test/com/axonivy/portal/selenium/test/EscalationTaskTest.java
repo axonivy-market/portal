@@ -14,6 +14,7 @@ import com.axonivy.portal.selenium.common.FilterOperator;
 import com.axonivy.portal.selenium.common.FilterValueType;
 import com.axonivy.portal.selenium.common.NavigationHelper;
 import com.axonivy.portal.selenium.common.ScreenshotUtils;
+import com.axonivy.portal.selenium.common.Sleeper;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.page.CaseDetailsPage;
@@ -73,25 +74,22 @@ public class EscalationTaskTest extends BaseTest {
     redirectToNewDashBoard();
     NavigationHelper.navigateToTaskList();
     TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
-    refreshPage();
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "testTriggerEscalationTaskOnTaskList1");
     taskWidget.openFilterWidget();
     taskWidget.addFilter("Name", FilterOperator.IS);
     taskWidget.inputValueOnLatestFilter(FilterValueType.TEXT, SICK_LEAVE_REQUEST);
     taskWidget.applyFilter();
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "testTriggerEscalationTaskOnTaskList2");
     taskWidget.countAllTasks().shouldHave(size(1));
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "testTriggerEscalationTaskOnTaskList1");
     taskWidget.triggerEscalationTask(0);
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "testTriggerEscalationTaskOnTaskList3");
-    // Try to refresh data
-    refreshPage();
+    Sleeper.sleep(1000);
+
     taskWidget = new TopMenuTaskWidgetPage();
     taskWidget.openFilterWidget();
     taskWidget.addFilter("State", null);
     taskWidget.inputValueOnLatestFilter(FilterValueType.STATE_TYPE, "Destroyed");
     taskWidget.applyFilter();
     taskWidget.countAllTasks().shouldHave(size(1));
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "testTriggerEscalationTaskOnTaskList4");
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "testTriggerEscalationTaskOnTaskList2");
     assertTrue("Destroyed".equalsIgnoreCase(taskWidget.stateOfFirstTask().text()));
   }
 
@@ -102,22 +100,21 @@ public class EscalationTaskTest extends BaseTest {
     redirectToNewDashBoard();
     ScreenshotUtils.resizeBrowser(new Dimension(1980, 1080));
     CaseWidgetNewDashBoardPage caseWidgetPage = NavigationHelper.navigateToCaseList();
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "testTriggerEscalationTaskOnRelatedTasksOfCase1");
 
     CaseDetailsPage caseDetailsPage = caseWidgetPage.openDetailsCase(TRIGGER_ESCALATION_CASE);
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "testTriggerEscalationTaskOnRelatedTasksOfCase2");
     caseDetailsPage.getNameOfRelatedTask(0).shouldHave(Condition.text(SICK_LEAVE_REQUEST));
     caseDetailsPage.clickRelatedTaskActionButton(0);
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "testTriggerEscalationTaskOnRelatedTasksOfCase1-checkEscalationExist");
     caseDetailsPage.triggerEscalationTask(0);
-    caseDetailsPage.waitForPageLoad();
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "testTriggerEscalationTaskOnRelatedTasksOfCase3");
+    Sleeper.sleep(1000); // wait for escalation task proceed
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "testTriggerEscalationTaskOnRelatedTasksOfCase2-checkEscalationWorking");
 
     caseDetailsPage = new CaseDetailsPage();
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "testTriggerEscalationTaskOnRelatedTasksOfCase4");
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "testTriggerEscalationTaskOnRelatedTasksOfCase3");
     caseDetailsPage.getNameOfRelatedTask(2).shouldHave(Condition.text(SICK_LEAVE_REQUEST));
     caseDetailsPage.getStateOfRelatedTask(2).shouldHave(Condition.text("Destroyed"));
     caseDetailsPage.getNameOfRelatedTask(0).shouldHave(Condition.text(SICK_LEAVE_REQUEST_ESCALATED));
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "testTriggerEscalationTaskOnRelatedTasksOfCase5");
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "testTriggerEscalationTaskOnRelatedTasksOfCase4");
   }
 
   @Test
