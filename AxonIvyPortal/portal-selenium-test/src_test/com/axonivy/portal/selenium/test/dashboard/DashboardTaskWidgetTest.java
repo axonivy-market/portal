@@ -344,29 +344,25 @@ public class DashboardTaskWidgetTest extends BaseTest {
     login(TestAccount.ADMIN_USER);
     redirectToNewDashBoard();
     TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "testShowBusinessCustomFieldOnTaskWidget1");
 
     var configurationPage = newDashboardPage.openDashboardConfigurationPage();
     DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "testShowBusinessCustomFieldOnTaskWidget2");
     modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "testShowBusinessCustomFieldOnTaskWidget3");
 
     taskWidget.openEditTaskWidget();
     taskWidget.clickOnManageColumns();
     taskWidget.selectCustomBusinessCaseFieldType();
     taskWidget.selectCustomerNameField();
     taskWidget.clickAddButton();
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "testShowBusinessCustomFieldOnTaskWidget4");
     taskWidget.clickSaveButton();
     taskWidget.saveWidgetConfiguration();
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "testShowBusinessCustomFieldOnTaskWidget5");
     MainMenuPage mainMenu = new MainMenuPage();
     mainMenu.clickOnLogo();
     TaskWidgetNewDashBoardPage taskWidget2 = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "testShowBusinessCustomFieldOnTaskWidget6");
+    taskWidget2.expand().shouldHave(sizeGreaterThanOrEqual(1));
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "testShowBusinessCustomFieldOnTaskWidget1");
     assertEquals(AXON_IVY, taskWidget2.getCustomBusinessCaseFieldValueFromRowIndex(0));
     assertEquals(AXON_IVY, taskWidget2.getCustomBusinessCaseFieldValueFromRowIndex(1));
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "testShowBusinessCustomFieldOnTaskWidget7");
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "testShowBusinessCustomFieldOnTaskWidget2");
   }
 }
