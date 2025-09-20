@@ -109,6 +109,7 @@ public class DashboardTaskWidgetTest extends BaseTest {
     taskWidget.filterTaskName(SICK_LEAVE_REQUEST, FilterOperator.IS);
     taskWidget.applyFilter();
     taskWidget.clickOnTaskActionLink(0);
+    taskWidget.destroyTaskLink().shouldHave(visible);
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "testDestroyTaskWithPermission2_checkDestroyAvailable");
     taskWidget.destroy();
     Sleeper.sleep(1000);
@@ -354,8 +355,13 @@ public class DashboardTaskWidgetTest extends BaseTest {
     taskWidget.selectCustomBusinessCaseFieldType();
     taskWidget.selectCustomerNameField();
     taskWidget.clickAddButton();
+    Sleeper.sleep(1000);
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "testShowBusinessCustomFieldOnTaskWidget-clickAddButton");
     taskWidget.clickSaveButton();
+    Sleeper.sleep(1000);
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "testShowBusinessCustomFieldOnTaskWidget-clickSaveButton");
     taskWidget.saveWidgetConfiguration();
+    Sleeper.sleep(1000);
     MainMenuPage mainMenu = new MainMenuPage();
     mainMenu.clickOnLogo();
     TaskWidgetNewDashBoardPage taskWidget2 = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);

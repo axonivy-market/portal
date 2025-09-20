@@ -102,6 +102,16 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
     taskWidget.resetFilter();
     taskWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
 
+
+    // Destroyed
+    filterTaskByNameAndState("Task Switch B", "Destroyed");
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "testVisibilityTaskActionForAdminUser3");
+    assertTaskAction(0, Arrays.asList(DETAILS, WORKFLOW_EVENTS, PROCESS_VIEWER));
+
+    taskWidget.openFilterWidget();
+    taskWidget.resetFilter();
+    taskWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
+
     // Suspended
     filterTaskByNameAndState("Sick Leave Request", "Open");
     assertTaskAction(0, Arrays.asList(DETAILS, DELEGATE, RESERVE, CLEAR_EXPIRY, DESTROY, TRIGGER_ESCALATION,
@@ -126,11 +136,6 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
     taskWidget.resetFilter();
     taskWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "testVisibilityTaskActionForAdminUser2");
-
-    // Destroyed
-    filterTaskByNameAndState("Task Switch B", "Destroyed");
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "testVisibilityTaskActionForAdminUser3");
-    assertTaskAction(0, Arrays.asList(DETAILS, WORKFLOW_EVENTS, PROCESS_VIEWER));
   }
 
   @Test
@@ -210,7 +215,6 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
 
   @Test
   public void testVisibilityTaskActionForTechnicalStates() throws IOException {
-    createTasksForTesting();
     redirectToRelativeLink(createTechnicalStateUrl);
     login(TestAccount.ADMIN_USER);
     Sleeper.sleep(1000);
