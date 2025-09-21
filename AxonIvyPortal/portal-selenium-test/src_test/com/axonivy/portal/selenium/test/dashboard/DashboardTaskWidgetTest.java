@@ -97,9 +97,9 @@ public class DashboardTaskWidgetTest extends BaseTest {
 
   @Test
   public void testDestroyTaskWithPermission() throws IOException {
+    createJSonFile("dashboard-has-one-task-widget.json", PortalVariable.DASHBOARD.key);
     redirectToRelativeLink(createTestingTasksUrl);
     login(TestAccount.ADMIN_USER);
-    createJSonFile("dashboard-has-one-task-widget.json", PortalVariable.DASHBOARD.key);
 
     redirectToNewDashBoard();
     TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
@@ -110,9 +110,12 @@ public class DashboardTaskWidgetTest extends BaseTest {
     taskWidget.applyFilter();
     taskWidget.clickOnTaskActionLink(0);
     taskWidget.destroyTaskLink().shouldHave(visible);
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "testDestroyTaskWithPermission2_checkDestroyAvailable");
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "testDestroyTaskWithPermission2-checkDestroyAvailable");
     taskWidget.destroy();
-    Sleeper.sleep(1000);
+    Sleeper.sleep(3000);
+    taskWidget.clickOnTaskActionLink(0);
+    taskWidget.destroyTaskLink().shouldNotHave(visible);
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "testDestroyTaskWithPermission3-checkDestroyUnavailable");
 
     taskWidget.stateOfFirstTask().shouldHave(text(DESTROYED));
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "testDestroyTaskWithPermission4");
