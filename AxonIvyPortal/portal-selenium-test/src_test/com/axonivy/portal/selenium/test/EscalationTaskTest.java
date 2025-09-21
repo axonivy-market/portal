@@ -22,6 +22,7 @@ import com.axonivy.portal.selenium.page.TaskWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.TopMenuTaskWidgetPage;
 import com.codeborne.selenide.Condition;
 
+import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 
 @IvyWebTest
@@ -71,15 +72,13 @@ public class EscalationTaskTest extends BaseTest {
     redirectToNewDashBoard();
     NavigationHelper.navigateToTaskList();
     TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
-    refreshPage();
     taskWidget.openFilterWidget();
     taskWidget.addFilter("Name", FilterOperator.IS);
     taskWidget.inputValueOnLatestFilter(FilterValueType.TEXT, SICK_LEAVE_REQUEST);
     taskWidget.applyFilter();
     taskWidget.countAllTasks().shouldHave(size(1));
     taskWidget.triggerEscalationTask(0);
-    // Try to refresh data
-    refreshPage();
+
     taskWidget = new TopMenuTaskWidgetPage();
     taskWidget.openFilterWidget();
     taskWidget.addFilter("State", null);
@@ -92,6 +91,7 @@ public class EscalationTaskTest extends BaseTest {
   @Test
   public void testTriggerEscalationTaskOnRelatedTasksOfCase() {
     updateGlobalVariable(Variable.TASK_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST.getKey(), ACCESS_TASK_DETAILS);
+    grantSpecificPortalPermission(PortalPermission.SYSTEM_TASK_READ_ALL);
     login(TestAccount.ADMIN_USER);
     redirectToNewDashBoard();
     ScreenshotUtils.resizeBrowser(new Dimension(1980, 1080));
@@ -99,9 +99,10 @@ public class EscalationTaskTest extends BaseTest {
 
     CaseDetailsPage caseDetailsPage = caseWidgetPage.openDetailsCase(TRIGGER_ESCALATION_CASE);
     caseDetailsPage.getNameOfRelatedTask(0).shouldHave(Condition.text(SICK_LEAVE_REQUEST));
+    refreshPage();
     caseDetailsPage.clickRelatedTaskActionButton(0);
     caseDetailsPage.triggerEscalationTask(0);
-    caseDetailsPage.waitForPageLoad();
+    caseDetailsPage.relatedTaskListColumnShouldBeExist(ACCESS_TASK_DETAILS, false);
 
     caseDetailsPage = new CaseDetailsPage();
     caseDetailsPage.getNameOfRelatedTask(2).shouldHave(Condition.text(SICK_LEAVE_REQUEST));

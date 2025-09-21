@@ -14,7 +14,6 @@ import com.axonivy.portal.selenium.common.FilterOperator;
 import com.axonivy.portal.selenium.common.FilterValueType;
 import com.axonivy.portal.selenium.common.LinkNavigator;
 import com.axonivy.portal.selenium.common.ScreenshotUtils;
-import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.page.DashboardModificationPage;
 import com.axonivy.portal.selenium.page.MainMenuPage;
@@ -94,9 +93,10 @@ public class DashboardTaskWidgetTest extends BaseTest {
 
   @Test
   public void testDestroyTaskWithPermission() {
-    login(TestAccount.ADMIN_USER);
     createJSonFile("dashboard-has-one-task-widget.json", PortalVariable.DASHBOARD.key);
     redirectToRelativeLink(createTestingTasksUrl);
+    login(TestAccount.ADMIN_USER);
+
     redirectToNewDashBoard();
     TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
     taskWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
@@ -104,7 +104,10 @@ public class DashboardTaskWidgetTest extends BaseTest {
     taskWidget.filterTaskName(SICK_LEAVE_REQUEST, FilterOperator.IS);
     taskWidget.applyFilter();
     taskWidget.clickOnTaskActionLink(0);
+    taskWidget.destroyTaskLink().shouldHave(visible);
     taskWidget.destroy();
+    taskWidget.clickOnTaskActionLink(0);
+    taskWidget.destroyTaskLink().shouldNotHave(visible);
     taskWidget.stateOfFirstTask().shouldHave(text(DESTROYED));
   }
 
@@ -350,6 +353,7 @@ public class DashboardTaskWidgetTest extends BaseTest {
     MainMenuPage mainMenu = new MainMenuPage();
     mainMenu.clickOnLogo();
     TaskWidgetNewDashBoardPage taskWidget2 = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
+    taskWidget2.expand().shouldHave(sizeGreaterThanOrEqual(1));
     assertEquals(AXON_IVY, taskWidget2.getCustomBusinessCaseFieldValueFromRowIndex(0));
     assertEquals(AXON_IVY, taskWidget2.getCustomBusinessCaseFieldValueFromRowIndex(1));
   }
