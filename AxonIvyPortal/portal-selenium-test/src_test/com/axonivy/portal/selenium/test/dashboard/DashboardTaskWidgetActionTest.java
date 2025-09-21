@@ -13,7 +13,6 @@ import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.FilterOperator;
 import com.axonivy.portal.selenium.common.FilterValueType;
-import com.axonivy.portal.selenium.common.Sleeper;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.TaskTemplateIFramePage;
@@ -214,7 +213,6 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
     redirectToRelativeLink(createTechnicalStateUrl);
     grantSpecificPortalPermission(PortalPermission.SYSTEM_TASK_READ_ALL);
     login(TestAccount.ADMIN_USER);
-    Sleeper.sleep(1000);
 
     TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
     taskWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));

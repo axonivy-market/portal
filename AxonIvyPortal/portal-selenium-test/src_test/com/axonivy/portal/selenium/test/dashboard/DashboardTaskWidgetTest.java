@@ -14,8 +14,6 @@ import com.axonivy.portal.selenium.common.FilterOperator;
 import com.axonivy.portal.selenium.common.FilterValueType;
 import com.axonivy.portal.selenium.common.LinkNavigator;
 import com.axonivy.portal.selenium.common.ScreenshotUtils;
-//import com.axonivy.portal.selenium.common.Sleeper;
-import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.page.DashboardModificationPage;
 import com.axonivy.portal.selenium.page.MainMenuPage;
@@ -350,11 +348,8 @@ public class DashboardTaskWidgetTest extends BaseTest {
     taskWidget.selectCustomBusinessCaseFieldType();
     taskWidget.selectCustomerNameField();
     taskWidget.clickAddButton();
-//    Sleeper.sleep(1000); // wait for adding proceeded
     taskWidget.clickSaveButton();
-//    Sleeper.sleep(1000); // wait for saving proceeded
     taskWidget.saveWidgetConfiguration();
-//    Sleeper.sleep(1000);
     MainMenuPage mainMenu = new MainMenuPage();
     mainMenu.clickOnLogo();
     TaskWidgetNewDashBoardPage taskWidget2 = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
