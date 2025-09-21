@@ -2,8 +2,6 @@ package com.axonivy.portal.selenium.test;
 
 import static com.codeborne.selenide.CollectionCondition.size;
 
-import java.io.IOException;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Dimension;
@@ -69,7 +67,7 @@ public class EscalationTaskTest extends BaseTest {
   }
 
   @Test
-  public void testTriggerEscalationTaskOnTaskList() throws IOException {
+  public void testTriggerEscalationTaskOnTaskList() {
     login(TestAccount.ADMIN_USER);
     redirectToNewDashBoard();
     NavigationHelper.navigateToTaskList();
@@ -79,7 +77,6 @@ public class EscalationTaskTest extends BaseTest {
     taskWidget.inputValueOnLatestFilter(FilterValueType.TEXT, SICK_LEAVE_REQUEST);
     taskWidget.applyFilter();
     taskWidget.countAllTasks().shouldHave(size(1));
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "testTriggerEscalationTaskOnTaskList1");
     taskWidget.triggerEscalationTask(0);
 
     taskWidget = new TopMenuTaskWidgetPage();
@@ -88,12 +85,11 @@ public class EscalationTaskTest extends BaseTest {
     taskWidget.inputValueOnLatestFilter(FilterValueType.STATE_TYPE, "Destroyed");
     taskWidget.applyFilter();
     taskWidget.countAllTasks().shouldHave(size(1));
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "testTriggerEscalationTaskOnTaskList2");
     assertTrue("Destroyed".equalsIgnoreCase(taskWidget.stateOfFirstTask().text()));
   }
 
   @Test
-  public void testTriggerEscalationTaskOnRelatedTasksOfCase() throws IOException {
+  public void testTriggerEscalationTaskOnRelatedTasksOfCase() {
     updateGlobalVariable(Variable.TASK_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST.getKey(), ACCESS_TASK_DETAILS);
     grantSpecificPortalPermission(PortalPermission.SYSTEM_TASK_READ_ALL);
     login(TestAccount.ADMIN_USER);
@@ -105,17 +101,13 @@ public class EscalationTaskTest extends BaseTest {
     caseDetailsPage.getNameOfRelatedTask(0).shouldHave(Condition.text(SICK_LEAVE_REQUEST));
     refreshPage();
     caseDetailsPage.clickRelatedTaskActionButton(0);
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "testTriggerEscalationTaskOnRelatedTasksOfCase1-checkEscalationExist");
     caseDetailsPage.triggerEscalationTask(0);
     caseDetailsPage.relatedTaskListColumnShouldBeExist(ACCESS_TASK_DETAILS, false);
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "testTriggerEscalationTaskOnRelatedTasksOfCase2-checkEscalationWorking");
 
     caseDetailsPage = new CaseDetailsPage();
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "testTriggerEscalationTaskOnRelatedTasksOfCase3");
     caseDetailsPage.getNameOfRelatedTask(2).shouldHave(Condition.text(SICK_LEAVE_REQUEST));
     caseDetailsPage.getStateOfRelatedTask(2).shouldHave(Condition.text("Destroyed"));
     caseDetailsPage.getNameOfRelatedTask(0).shouldHave(Condition.text(SICK_LEAVE_REQUEST_ESCALATED));
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "testTriggerEscalationTaskOnRelatedTasksOfCase4");
   }
 
   @Test

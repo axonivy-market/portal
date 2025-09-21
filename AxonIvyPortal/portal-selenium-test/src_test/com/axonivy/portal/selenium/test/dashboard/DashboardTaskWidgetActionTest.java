@@ -3,7 +3,6 @@ package com.axonivy.portal.selenium.test.dashboard;
 import static com.codeborne.selenide.CollectionCondition.size;
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThanOrEqual;
 
-import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
@@ -14,7 +13,6 @@ import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.FilterOperator;
 import com.axonivy.portal.selenium.common.FilterValueType;
-import com.axonivy.portal.selenium.common.ScreenshotUtils;
 import com.axonivy.portal.selenium.common.Sleeper;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
@@ -87,7 +85,7 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
   }
 
   @Test
-  public void testVisibilityTaskActionForAdminUser() throws IOException {
+  public void testVisibilityTaskActionForAdminUser() {
     redirectToRelativeLink(createTaskWithSystemState);
     login(TestAccount.ADMIN_USER);
     grantSpecificPortalPermission(PortalPermission.SYSTEM_TASK_READ_ALL);
@@ -96,7 +94,6 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
     TaskWidgetNewDashBoardPage taskWidget = new TaskWidgetNewDashBoardPage();
     taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
     taskWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "testVisibilityTaskActionForAdminUser1-checkllTasks");
 
     // Ready for Join
     filterTaskByNameAndState("Task Switch A", "Done");
@@ -109,7 +106,6 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
     // Destroyed
     // Task switch B sometimes couldn't see by this test user
     filterTaskByNameAndState("Task Switch B", "Destroyed");
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "testVisibilityTaskActionForAdminUser2-checkTaskSwitchB");
     assertTaskAction(0, Arrays.asList(DETAILS, WORKFLOW_EVENTS, PROCESS_VIEWER));
 
     taskWidget.openFilterWidget();
@@ -132,13 +128,11 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
 
     // Delayed
     filterTaskByNameAndState("Task Switch C", "Delayed");
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "testVisibilityTaskActionForAdminUser3");
     assertTaskAction(0, Arrays.asList(DETAILS, DELEGATE, CLEAR_DELAY, DESTROY, WORKFLOW_EVENTS, PROCESS_VIEWER));
 
     taskWidget.openFilterWidget();
     taskWidget.resetFilter();
     taskWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "testVisibilityTaskActionForAdminUser4");
   }
 
   @Test
@@ -216,7 +210,7 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
   }
 
   @Test
-  public void testVisibilityTaskActionForTechnicalStates() throws IOException {
+  public void testVisibilityTaskActionForTechnicalStates() {
     redirectToRelativeLink(createTechnicalStateUrl);
     grantSpecificPortalPermission(PortalPermission.SYSTEM_TASK_READ_ALL);
     login(TestAccount.ADMIN_USER);
@@ -225,11 +219,9 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
     TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
     taskWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
     resizeBrowserTo2kResolution();
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "testVisibilityTaskActionForTechnicalStates1-checkAllTasks");
 
     // Delayed
     filterTaskByNameAndState("Signal create Task failed", ERROR);
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "testVisibilityTaskActionForTechnicalStates2");
     assertTaskAction(0, Arrays.asList(DETAILS, RESET, DESTROY, WORKFLOW_EVENTS, PROCESS_VIEWER));
 
     taskWidget.openFilterWidget();
@@ -237,7 +229,6 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
 
     // Join failed
     filterTaskByNameAndState("Signal create Technical task", ERROR);
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "testVisibilityTaskActionForTechnicalStates3");
     assertTaskAction(0, Arrays.asList(DETAILS, DESTROY, WORKFLOW_EVENTS, PROCESS_VIEWER));
   }
 
