@@ -14,7 +14,6 @@ import com.axonivy.portal.selenium.common.FilterOperator;
 import com.axonivy.portal.selenium.common.FilterValueType;
 import com.axonivy.portal.selenium.common.NavigationHelper;
 import com.axonivy.portal.selenium.common.ScreenshotUtils;
-import com.axonivy.portal.selenium.common.Sleeper;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.page.CaseDetailsPage;
@@ -82,7 +81,6 @@ public class EscalationTaskTest extends BaseTest {
     taskWidget.countAllTasks().shouldHave(size(1));
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "testTriggerEscalationTaskOnTaskList1");
     taskWidget.triggerEscalationTask(0);
-    Sleeper.sleep(3000);
 
     taskWidget = new TopMenuTaskWidgetPage();
     taskWidget.openFilterWidget();
@@ -106,11 +104,9 @@ public class EscalationTaskTest extends BaseTest {
     CaseDetailsPage caseDetailsPage = caseWidgetPage.openDetailsCase(TRIGGER_ESCALATION_CASE);
     caseDetailsPage.getNameOfRelatedTask(0).shouldHave(Condition.text(SICK_LEAVE_REQUEST));
     refreshPage();
-    Sleeper.sleep(1000); // wait for page stable
     caseDetailsPage.clickRelatedTaskActionButton(0);
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "testTriggerEscalationTaskOnRelatedTasksOfCase1-checkEscalationExist");
     caseDetailsPage.triggerEscalationTask(0);
-    Sleeper.sleep(3000); // wait for destroying proceeded
     caseDetailsPage.relatedTaskListColumnShouldBeExist(ACCESS_TASK_DETAILS, false);
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "testTriggerEscalationTaskOnRelatedTasksOfCase2-checkEscalationWorking");
 

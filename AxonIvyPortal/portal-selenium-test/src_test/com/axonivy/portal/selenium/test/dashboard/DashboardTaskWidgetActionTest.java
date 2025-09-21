@@ -118,8 +118,7 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
 
     // Suspended
     filterTaskByNameAndState("Sick Leave Request", "Open");
-    assertTaskAction(0, Arrays.asList(DETAILS, DELEGATE, RESERVE, CLEAR_EXPIRY, DESTROY, TRIGGER_ESCALATION,
-        WORKFLOW_EVENTS, PROCESS_VIEWER));
+    assertTaskAction(0, Arrays.asList(DETAILS, DELEGATE, RESERVE, CLEAR_EXPIRY, DESTROY, TRIGGER_ESCALATION, WORKFLOW_EVENTS, PROCESS_VIEWER));
     taskWidget.openFilterWidget();
     taskWidget.resetFilter();
     taskWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
@@ -162,8 +161,7 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
     taskWidget.openFilterWidget();
     taskWidget.removeFilter(0);
     taskWidget.applyFilter();
-    assertTaskActionsByTaskState(IN_PROGRESS,
-        Arrays.asList(DETAILS, RESERVE, RESET, CLEAR_EXPIRY, DESTROY, WORKFLOW_EVENTS, PROCESS_VIEWER));
+    assertTaskActionsByTaskState(IN_PROGRESS, Arrays.asList(DETAILS, RESERVE, RESET, CLEAR_EXPIRY, DESTROY, WORKFLOW_EVENTS, PROCESS_VIEWER));
 
     login(TestAccount.DEMO_USER);
     createTasksForTesting();
@@ -227,13 +225,11 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
     TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
     taskWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
     resizeBrowserTo2kResolution();
-    ScreenshotUtils
-        .capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "testVisibilityTaskActionForTechnicalStates1-checkAllTasks");
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "testVisibilityTaskActionForTechnicalStates1-checkAllTasks");
 
     // Delayed
     filterTaskByNameAndState("Signal create Task failed", ERROR);
-    ScreenshotUtils
-        .capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "testVisibilityTaskActionForTechnicalStates2");
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "testVisibilityTaskActionForTechnicalStates2");
     assertTaskAction(0, Arrays.asList(DETAILS, RESET, DESTROY, WORKFLOW_EVENTS, PROCESS_VIEWER));
 
     taskWidget.openFilterWidget();
@@ -241,8 +237,7 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
 
     // Join failed
     filterTaskByNameAndState("Signal create Technical task", ERROR);
-    ScreenshotUtils
-        .capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "testVisibilityTaskActionForTechnicalStates3");
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "testVisibilityTaskActionForTechnicalStates3");
     assertTaskAction(0, Arrays.asList(DETAILS, DESTROY, WORKFLOW_EVENTS, PROCESS_VIEWER));
   }
 

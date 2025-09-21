@@ -112,7 +112,6 @@ public class DashboardTaskWidgetTest extends BaseTest {
     taskWidget.destroyTaskLink().shouldHave(visible);
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "testDestroyTaskWithPermission2-checkDestroyAvailable");
     taskWidget.destroy();
-    Sleeper.sleep(3000);
     taskWidget.clickOnTaskActionLink(0);
     taskWidget.destroyTaskLink().shouldNotHave(visible);
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "testDestroyTaskWithPermission3-checkDestroyUnavailable");
@@ -358,10 +357,10 @@ public class DashboardTaskWidgetTest extends BaseTest {
     taskWidget.selectCustomBusinessCaseFieldType();
     taskWidget.selectCustomerNameField();
     taskWidget.clickAddButton();
-    Sleeper.sleep(1000);
+    Sleeper.sleep(1000); // wait for adding proceeded
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "testShowBusinessCustomFieldOnTaskWidget-clickAddButton");
     taskWidget.clickSaveButton();
-    Sleeper.sleep(1000);
+    Sleeper.sleep(1000); // wait for saving proceeded
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "testShowBusinessCustomFieldOnTaskWidget-clickSaveButton");
     taskWidget.saveWidgetConfiguration();
     Sleeper.sleep(1000);
