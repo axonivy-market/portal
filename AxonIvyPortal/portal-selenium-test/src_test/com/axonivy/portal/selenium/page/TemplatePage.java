@@ -380,6 +380,11 @@ public abstract class TemplatePage extends AbstractPage {
     openMainMenu();
     waitForElementClickableThenClick($("a[id*='user-menu-required-login:logo']"));
   }
+  
+  public void clickOnHomeLogo() {
+    switchBackToParent();
+    $("span[class*='si si-house-chimney-2']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+  }
 
   protected void refreshAndWaitElement(String cssSelector) {
     new WebDriverWait(WebDriverRunner.getWebDriver(), DEFAULT_TIMEOUT).until((webDriver) -> {
