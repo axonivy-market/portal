@@ -103,7 +103,6 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
 
 
     // Destroyed
-    // Task switch B sometimes couldn't see by this test user
     filterTaskByNameAndState("Task Switch B", "Destroyed");
     assertTaskAction(0, Arrays.asList(DETAILS, WORKFLOW_EVENTS, PROCESS_VIEWER));
 
