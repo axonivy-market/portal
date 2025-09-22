@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Portal Guide ${revision}\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-15 06:38+0000\n"
+"POT-Creation-Date: 2025-09-22 04:56+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: fr\n"
@@ -1259,19 +1259,11 @@ msgid "Defining the global environment footer info."
 msgstr ""
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
-msgid "Portal.DeepL.AuthKey"
+msgid "Portal.TranslationService.Enable"
 msgstr ""
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
-msgid "DeepL Authentication Key (should end with :fx)"
-msgstr ""
-
-#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
-msgid "Portal.DeepL.Enable"
-msgstr ""
-
-#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
-msgid "Set this property to true to enable the DeepL translation support."
+msgid "Set this property to true to enable the new translation service support."
 msgstr ""
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
@@ -2411,7 +2403,7 @@ msgid ""
 msgstr ""
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:46
-#: ../../source/portal-user-guide/portal-multi-language/index.rst:32
+#: ../../source/portal-user-guide/portal-multi-language/index.rst:33
 msgid "|create-private-dashboard-dialog|"
 msgstr ""
 
@@ -6395,7 +6387,7 @@ msgid ""
 "The document translation shows how easy it has become, to translate from "
 "the pure text, into the language of your end user. Say goodbye to "
 "language barriers in process automation with Axon Ivy's translation "
-"service powered by DeepL."
+"service."
 msgstr ""
 
 #: ../../source/portal-user-guide/portal-multi-language/index.rst:12
@@ -6403,20 +6395,20 @@ msgid "HowTo: Enable the translation"
 msgstr ""
 
 #: ../../source/portal-user-guide/portal-multi-language/index.rst:14
-msgid "To use DeepL powered translations:"
+msgid "To use Axon Ivy's translation service:"
 msgstr ""
 
 #: ../../source/portal-user-guide/portal-multi-language/index.rst:16
 msgid ""
 "Open :ref:`Admin Settings <admin-settings>`, set "
-":guilabel:`Portal.DeepL.Enable` to true."
+":guilabel:`Portal.TranslationService.Enable` to true."
 msgstr ""
 
 #: ../../source/portal-user-guide/portal-multi-language/index.rst:18
 msgid ""
-"Get a `free developer account <https://www.deepl.com/pro#developer/>`__ "
-"from DeepL.com, then copy the API-Key of your account into this Portal "
-"setting: :guilabel:`Portal.DeepL.AuthKey`."
+"Configure translation service variable, refer to :dev-url:`|ivy| "
+"translation service </doc/|version|/engine-guide/configuration"
+"/translation-service/index.html>`"
 msgstr ""
 
 #: ../../source/portal-user-guide/portal-multi-language/index.rst:21
@@ -6425,42 +6417,43 @@ msgstr ""
 
 #: ../../source/portal-user-guide/portal-multi-language/index.rst:25
 msgid ""
-"The Portal translation only works if both Portal.DeepL.Enable is set to "
-"true and Portal.DeepL.AuthKey contains a valid key."
+"The Portal translation only works if both "
+"Portal.TranslationService.Enable is set to true and the translation "
+"service is configured correctly."
 msgstr ""
 
 #: ../../source/portal-user-guide/portal-multi-language/index.rst:27
 msgid "Otherwise, you can translate the input text field manually."
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-multi-language/index.rst:29
+#: ../../source/portal-user-guide/portal-multi-language/index.rst:30
 msgid ""
 "If any input text field is supported the translation, a "
 ":guilabel:`translator icon` will be shown. For example, let's create a "
 "private dashboard. Then, click on the :guilabel:`translator icon`."
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-multi-language/index.rst:42
+#: ../../source/portal-user-guide/portal-multi-language/index.rst:43
 msgid "Multi language usage when create private dashboard"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-multi-language/index.rst:34
+#: ../../source/portal-user-guide/portal-multi-language/index.rst:35
 msgid "A Setting multiple languages dialog is shown."
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-multi-language/index.rst:36
+#: ../../source/portal-user-guide/portal-multi-language/index.rst:37
 msgid "|dashboard-multi-language-dialog|"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-multi-language/index.rst:44
+#: ../../source/portal-user-guide/portal-multi-language/index.rst:45
 msgid "Multi language dialog"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-multi-language/index.rst:38
+#: ../../source/portal-user-guide/portal-multi-language/index.rst:39
 msgid ""
 "Click on the input text field of a foreign language to have it translated"
-" by DeepL. To accept the translated text, clicking on :guilabel:`Auto. "
-"translation`."
+" by Axon Ivy's translation service. To accept the translated text, "
+"clicking on :guilabel:`Auto. translation`."
 msgstr ""
 
 #: ../../source/portal-user-guide/qr-code/index.rst:4
@@ -7006,5 +6999,58 @@ msgstr ""
 #~ " tasks. You may add, delete or "
 #~ "preview documents described in the "
 #~ "HowTo’s below."
+#~ msgstr ""
+
+#~ msgid "Portal.DeepL.AuthKey"
+#~ msgstr ""
+
+#~ msgid "DeepL Authentication Key (should end with :fx)"
+#~ msgstr ""
+
+#~ msgid "Portal.DeepL.Enable"
+#~ msgstr ""
+
+#~ msgid "Set this property to true to enable the DeepL translation support."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "The document translation shows how easy"
+#~ " it has become, to translate from "
+#~ "the pure text, into the language "
+#~ "of your end user. Say goodbye to"
+#~ " language barriers in process automation"
+#~ " with Axon Ivy's translation service "
+#~ "powered by DeepL."
+#~ msgstr ""
+
+#~ msgid "To use DeepL powered translations:"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Open :ref:`Admin Settings <admin-settings>`,"
+#~ " set :guilabel:`Portal.DeepL.Enable` to true."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Get a `free developer account "
+#~ "<https://www.deepl.com/pro#developer/>`__ from DeepL.com,"
+#~ " then copy the API-Key of your"
+#~ " account into this Portal setting: "
+#~ ":guilabel:`Portal.DeepL.AuthKey`."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "The Portal translation only works if "
+#~ "both Portal.DeepL.Enable is set to true"
+#~ " and Portal.DeepL.AuthKey contains a valid"
+#~ " key."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Click on the input text field of"
+#~ " a foreign language to have it "
+#~ "translated by DeepL. To accept the "
+#~ "translated text, clicking on :guilabel:`Auto."
+#~ " translation`."
 #~ msgstr ""
 
