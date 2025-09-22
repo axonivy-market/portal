@@ -108,7 +108,10 @@ public class DashboardTaskWidgetTest extends BaseTest {
     taskWidget.destroyTaskLink().shouldHave(visible);
     taskWidget.destroy();
     taskWidget.clickOnTaskActionLink(0);
-    taskWidget.destroyTaskLink().shouldNotHave(visible);
+    String destroyTaskLinkClassName = taskWidget.destroyTaskLink().getAttribute("class");
+    // couldn't assert disabled attribute in this case
+    // -> use className to check instead
+    assertTrue(destroyTaskLinkClassName.contains("ui-state-disabled")); 
     taskWidget.stateOfFirstTask().shouldHave(text(DESTROYED));
   }
 
