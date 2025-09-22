@@ -329,6 +329,16 @@ public class BaseTest {
     }
   }
 
+  public void updateTranslationVariable(String defaultInstance) {
+    try {
+      String encodeVariableValue = URLEncoder.encode(defaultInstance, "UTF-8");
+      String updateGlobalVariableLink = "portalKitTestHelper/1996F2D4E272FDB2/updateTranslationServiceVariable.ivp?variableValue=%s";
+      redirectToRelativeLink(String.format(updateGlobalVariableLink, encodeVariableValue));
+    } catch (UnsupportedEncodingException e) {
+      e.printStackTrace();
+    }
+  }
+
   public void goToTaskNoteHistoryPage(String taskId) {
     redirectToRelativeLink(String.format(showTaskNoteHistoryUrl, taskId));
   }

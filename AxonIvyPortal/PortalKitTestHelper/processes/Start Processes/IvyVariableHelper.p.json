@@ -1,0 +1,60 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/process/13.1.2/process.json",
+  "id" : "1996F2D4E272FDB2",
+  "config" : {
+    "data" : "portalKit_test.IvyVariableHelperData"
+  },
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "RequestStart",
+      "name" : "updateTranslationServiceVariable.ivp",
+      "config" : {
+        "signature" : "updateTranslationServiceVariable",
+        "input" : {
+          "params" : [
+            { "name" : "variableValue", "type" : "Object", "desc" : "" }
+          ],
+          "map" : {
+            "out.variableValue" : "param.variableValue"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f2", "to" : "f3" }
+      ]
+    }, {
+      "id" : "f1",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 464, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "Script",
+      "name" : "Update Translation variable",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivyteam.ivy.configuration.restricted.ConfigKey;",
+            "import ch.ivyteam.ivy.configuration.restricted.IConfiguration;",
+            "import ch.ivyteam.ivy.security.external.SecuritySystemConfig;",
+            "import ch.ivyteam.ivy.security.ISecurityContext;",
+            "",
+            "ConfigKey configKey = SecuritySystemConfig.prefix(ISecurityContext.DEFAULT).append(\"TranslationService\").append(\"DefaultInstance\");",
+            "IConfiguration.instance().set(configKey, in.variableValue);"
+          ]
+        },
+        "sudo" : true
+      },
+      "visual" : {
+        "at" : { "x" : 288, "y" : 64 },
+        "size" : { "width" : 160, "height" : 54 }
+      },
+      "connect" : [
+        { "id" : "f4", "to" : "f1", "color" : "default" }
+      ]
+    } ]
+}

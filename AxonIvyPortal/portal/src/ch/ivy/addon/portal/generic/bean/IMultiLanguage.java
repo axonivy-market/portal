@@ -2,7 +2,7 @@ package ch.ivy.addon.portal.generic.bean;
 
 import java.util.List;
 
-import com.axonivy.portal.service.DeepLTranslationService;
+import com.axonivy.portal.service.IvyTranslationService;
 
 import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.util.DisplayNameConvertor;
@@ -11,7 +11,7 @@ import ch.ivy.addon.portalkit.util.UserUtils;
 public interface IMultiLanguage {
 
   default boolean isShowTranslation(DisplayName title) {
-    return DeepLTranslationService.getInstance().isShowTranslation(title.getLocale());
+    return IvyTranslationService.getInstance().isShowTranslation(title.getLocale());
   }
 
   default boolean isFocus(DisplayName title) {

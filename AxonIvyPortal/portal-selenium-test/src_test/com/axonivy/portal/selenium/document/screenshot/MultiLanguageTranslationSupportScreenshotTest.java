@@ -20,8 +20,8 @@ public class MultiLanguageTranslationSupportScreenshotTest extends ScreenshotBas
   @BeforeEach
   public void setup() {
     super.setup();
-    updatePortalSetting(Variable.DEEPL_AUTH_KEY.getKey(), "DEEPL_AUTH_KEY");
-    updatePortalSetting(Variable.ENABLE_DEEPL_TRANSLATION.getKey(), "true");
+    updatePortalSetting(Variable.ENABLE_TRANSLATION_SERVICE.getKey(), "true");
+    updateTranslationVariable("DeepL");
   }
 
   @Test
