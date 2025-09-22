@@ -21,6 +21,7 @@ public class MultiLanguageTranslationSupportScreenshotTest extends ScreenshotBas
   public void setup() {
     super.setup();
     updatePortalSetting(Variable.ENABLE_TRANSLATION_SERVICE.getKey(), "true");
+    updateTranslationVariable("DeepL");
   }
 
   @Test

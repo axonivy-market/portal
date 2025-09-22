@@ -37,6 +37,7 @@ public class DashboardSupportMultiLanguageTest extends BaseTest {
     redirectToNewDashBoard();
     resetLanguageOfCurrentUser();
     updatePortalSetting(ENABLE_TRANSLATION_SERVICE.getKey(), "true");
+    updateTranslationVariable("DeepL");
   }
 
   @Test
