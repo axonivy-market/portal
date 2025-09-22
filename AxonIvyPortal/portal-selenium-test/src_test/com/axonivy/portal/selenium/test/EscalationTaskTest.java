@@ -14,7 +14,6 @@ import com.axonivy.portal.selenium.common.FilterOperator;
 import com.axonivy.portal.selenium.common.FilterValueType;
 import com.axonivy.portal.selenium.common.NavigationHelper;
 import com.axonivy.portal.selenium.common.ScreenshotUtils;
-import com.axonivy.portal.selenium.common.Sleeper;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.page.CaseDetailsPage;
@@ -45,6 +44,7 @@ public class EscalationTaskTest extends BaseTest {
   @BeforeEach
   public void setup() {
     super.setup();
+    login(TestAccount.ADMIN_USER);
     redirectToRelativeLink(createTestingEscalationTasksUrl);
   }
 
@@ -97,24 +97,27 @@ public class EscalationTaskTest extends BaseTest {
   public void testTriggerEscalationTaskOnRelatedTasksOfCase() throws IOException {
     updateGlobalVariable(Variable.TASK_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST.getKey(), ACCESS_TASK_DETAILS);
     grantSpecificPortalPermission(PortalPermission.SYSTEM_TASK_READ_ALL);
-    Sleeper.sleep(3000);
-    login(TestAccount.ADMIN_USER);
+    grantSpecificPortalPermission(PortalPermission.TASK_WRITE_EXPIRY_ACTIVATOR); // don't know why but it lack this permission - ask team later
     redirectToNewDashBoard();
+    
     ScreenshotUtils.resizeBrowser(new Dimension(1980, 1080));
+    login(TestAccount.ADMIN_USER);
     CaseWidgetNewDashBoardPage caseWidgetPage = NavigationHelper.navigateToCaseList();
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.CASE_DETAIL_FOLDER + "testTriggerEscalationTaskOnRelatedTasksOfCase-checkCaseList");
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.CASE_DETAIL_FOLDER + "testTriggerEscalationTaskOnRelatedTasksOfCase1-checkCaseList");
     CaseDetailsPage caseDetailsPage = caseWidgetPage.openDetailsCase(TRIGGER_ESCALATION_CASE);
+    
     caseDetailsPage.getNameOfRelatedTask(0).shouldHave(Condition.text(SICK_LEAVE_REQUEST));
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.CASE_DETAIL_FOLDER + "testTriggerEscalationTaskOnRelatedTasksOfCase-checkInCaseDetailsRelatedTasks");
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.CASE_DETAIL_FOLDER + "testTriggerEscalationTaskOnRelatedTasksOfCase2-checkInCaseDetailsRelatedTasks");
     refreshPage();
+    
     caseDetailsPage.clickRelatedTaskActionButton(0);
     caseDetailsPage.triggerEscalationTask(0);
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.CASE_DETAIL_FOLDER + "testTriggerEscalationTaskOnRelatedTasksOfCase-afterEscalation");
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.CASE_DETAIL_FOLDER + "testTriggerEscalationTaskOnRelatedTasksOfCase3-afterEscalation");
     caseDetailsPage = new CaseDetailsPage();
     caseDetailsPage.getNameOfRelatedTask(2).shouldHave(Condition.text(SICK_LEAVE_REQUEST));
     caseDetailsPage.getStateOfRelatedTask(2).shouldHave(Condition.text("Destroyed"));
     caseDetailsPage.getNameOfRelatedTask(0).shouldHave(Condition.text(SICK_LEAVE_REQUEST_ESCALATED));
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.CASE_DETAIL_FOLDER + "testTriggerEscalationTaskOnRelatedTasksOfCase-finalPictureOfTest");
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.CASE_DETAIL_FOLDER + "testTriggerEscalationTaskOnRelatedTasksOfCase4-finalPictureOfTest");
   }
 
   @Test
