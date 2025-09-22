@@ -14,6 +14,7 @@ import com.axonivy.portal.selenium.common.FilterOperator;
 import com.axonivy.portal.selenium.common.FilterValueType;
 import com.axonivy.portal.selenium.common.NavigationHelper;
 import com.axonivy.portal.selenium.common.ScreenshotUtils;
+import com.axonivy.portal.selenium.common.Sleeper;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.page.CaseDetailsPage;
@@ -96,14 +97,16 @@ public class EscalationTaskTest extends BaseTest {
   public void testTriggerEscalationTaskOnRelatedTasksOfCase() throws IOException {
     updateGlobalVariable(Variable.TASK_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST.getKey(), ACCESS_TASK_DETAILS);
     grantSpecificPortalPermission(PortalPermission.SYSTEM_TASK_READ_ALL);
+    Sleeper.sleep(3000);
     login(TestAccount.ADMIN_USER);
     redirectToNewDashBoard();
     ScreenshotUtils.resizeBrowser(new Dimension(1980, 1080));
     CaseWidgetNewDashBoardPage caseWidgetPage = NavigationHelper.navigateToCaseList();
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.CASE_DETAIL_FOLDER + "testTriggerEscalationTaskOnRelatedTasksOfCase-checkCaseList");
     CaseDetailsPage caseDetailsPage = caseWidgetPage.openDetailsCase(TRIGGER_ESCALATION_CASE);
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.CASE_DETAIL_FOLDER + "testTriggerEscalationTaskOnRelatedTasksOfCase-checkInCaseDetailsRelatedTasks");
     caseDetailsPage.getNameOfRelatedTask(0).shouldHave(Condition.text(SICK_LEAVE_REQUEST));
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.CASE_DETAIL_FOLDER + "testTriggerEscalationTaskOnRelatedTasksOfCase-checkInCaseDetailsRelatedTasks");
+    refreshPage();
     caseDetailsPage.clickRelatedTaskActionButton(0);
     caseDetailsPage.triggerEscalationTask(0);
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.CASE_DETAIL_FOLDER + "testTriggerEscalationTaskOnRelatedTasksOfCase-afterEscalation");

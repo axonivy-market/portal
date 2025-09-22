@@ -15,6 +15,7 @@ import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.FilterOperator;
 import com.axonivy.portal.selenium.common.FilterValueType;
 import com.axonivy.portal.selenium.common.ScreenshotUtils;
+import com.axonivy.portal.selenium.common.Sleeper;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.TaskTemplateIFramePage;
@@ -206,15 +207,15 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
   public void testVisibilityTaskActionForTechnicalStates() throws IOException {
     redirectToRelativeLink(createTechnicalStateUrl);
     grantSpecificPortalPermission(PortalPermission.SYSTEM_TASK_READ_ALL);
+    Sleeper.sleep(3000);
     login(TestAccount.ADMIN_USER);
-    redirectToNewDashBoard();
 
-    TaskWidgetNewDashBoardPage taskWidget = new TaskWidgetNewDashBoardPage();
-    taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
+    TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
     taskWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "testVisibilityTaskActionForTechnicalStates1-checkTasksRenderedEnough");
-    // Failed
     resizeBrowserTo2kResolution();
+
+    // Failed
     assertTaskActionsByTaskStateAndName(ERROR, "Signal create Task failed",
         Arrays.asList(DETAILS, PIN, RESET, DESTROY, WORKFLOW_EVENTS, PROCESS_VIEWER));
     // Join failed
