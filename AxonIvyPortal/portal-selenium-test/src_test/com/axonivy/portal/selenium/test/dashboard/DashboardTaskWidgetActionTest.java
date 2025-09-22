@@ -15,7 +15,6 @@ import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.FilterOperator;
 import com.axonivy.portal.selenium.common.FilterValueType;
 import com.axonivy.portal.selenium.common.ScreenshotUtils;
-import com.axonivy.portal.selenium.common.Sleeper;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.TaskTemplateIFramePage;
@@ -205,10 +204,10 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
 
   @Test
   public void testVisibilityTaskActionForTechnicalStates() throws IOException {
+    login(TestAccount.ADMIN_USER);
+    createTasksForTesting();
     redirectToRelativeLink(createTechnicalStateUrl);
     grantSpecificPortalPermission(PortalPermission.SYSTEM_TASK_READ_ALL);
-    Sleeper.sleep(3000);
-    login(TestAccount.ADMIN_USER);
 
     TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
     taskWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
@@ -216,13 +215,12 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
     resizeBrowserTo2kResolution();
 
     // Failed
-    assertTaskActionsByTaskStateAndName(ERROR, "Signal create Task failed",
-        Arrays.asList(DETAILS, PIN, RESET, DESTROY, WORKFLOW_EVENTS, PROCESS_VIEWER));
+    assertTaskActionsByTaskStateAndName(ERROR, "Signal create Task failed", Arrays.asList(DETAILS, PIN, RESET, DESTROY, WORKFLOW_EVENTS, PROCESS_VIEWER));
+
     // Join failed
     taskWidget.openFilterWidget();
     taskWidget.resetFilter();
-    assertTaskActionsByTaskStateAndName(ERROR, "Signal create Technical task",
-        Arrays.asList(DETAILS, PIN, DESTROY, WORKFLOW_EVENTS, PROCESS_VIEWER));
+    assertTaskActionsByTaskStateAndName(ERROR, "Signal create Technical task", Arrays.asList(DETAILS, PIN, DESTROY, WORKFLOW_EVENTS, PROCESS_VIEWER));
   }
 
   private void assertTaskActionsByTaskState(String state, List<String> taskActionsInTask) {
