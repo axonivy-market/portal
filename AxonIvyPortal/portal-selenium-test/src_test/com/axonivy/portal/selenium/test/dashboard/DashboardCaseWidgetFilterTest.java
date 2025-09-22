@@ -1,5 +1,6 @@
 package com.axonivy.portal.selenium.test.dashboard;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -178,20 +179,23 @@ public class DashboardCaseWidgetFilterTest extends BaseTest {
   }
 
   @Test
-  public void testFilterCaseState() {
+  public void testFilterCaseState() throws IOException {
     login(TestAccount.ADMIN_USER);
     redirectToNewDashBoard();
     CaseWidgetNewDashBoardPage caseWidget = newDashboardPage.selectCaseWidget(YOUR_CASES_WIDGET);
 
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.CASE_WIDGET_FOLDER + "testFilterCaseState-checkAllPage");
     caseWidget.destroyCase(0);
     caseWidget.waitTableLoaded();
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.CASE_WIDGET_FOLDER + "testFilterCaseState1-checkAllPage");
     caseWidget.destroyCase(1);
     caseWidget.waitTableLoaded();
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.CASE_WIDGET_FOLDER + "testFilterCaseState2-checkAllPage");
     caseWidget.openFilterWidget();
     caseWidget.addFilter("Name", null);
     caseWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "TestCase");
     caseWidget.applyFilter();
-
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.CASE_WIDGET_FOLDER + "testFilterCaseState3-checkAfterFilter");
     caseWidget.countCases("TestCase").shouldHave(CollectionCondition.size(10));
   }
 
