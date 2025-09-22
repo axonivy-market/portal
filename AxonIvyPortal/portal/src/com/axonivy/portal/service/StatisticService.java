@@ -282,11 +282,12 @@ public class StatisticService {
   }
 
   private String getMetricAggregationQuery(StatisticAggregation chartAggregation) {
-    return Objects.nonNull(chartAggregation.getKpiField()) && !chartAggregation.getKpiField().isBlank()
+    return StringUtils.isNoneBlank(chartAggregation.getKpiField())
         ? "," + (isBuiltInKPIField(chartAggregation.getKpiField()) ? "" : "customFields.numbers.") + chartAggregation.getKpiField() + ":" + chartAggregation.getAggregationMethod()
         : "";
   }
-  
+
+  // These fields are not numeric custom fields, so do not need to append customFields.numbers. in above function when building query
   private boolean isBuiltInKPIField(String field) {
     final Set<String> BUILT_IN_KPI_FIELDS = Set.of("businessRuntime", "workingTime");
     return BUILT_IN_KPI_FIELDS.contains(field);
