@@ -19,6 +19,7 @@ import com.axonivy.portal.selenium.page.TaskTemplateIFramePage;
 import com.axonivy.portal.selenium.page.TaskWidgetNewDashBoardPage;
 import com.codeborne.selenide.ElementsCollection;
 
+import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 
 @IvyWebTest
@@ -201,9 +202,10 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
 
   @Test
   public void testVisibilityTaskActionForTechnicalStates() {
-    login(TestAccount.ADMIN_USER);
     redirectToRelativeLink(createTechnicalStateUrl);
     redirectToNewDashBoard();
+    grantSpecificPortalPermission(PortalPermission.SYSTEM_TASK_READ_ALL);
+    login(TestAccount.ADMIN_USER);
     TaskWidgetNewDashBoardPage taskWidget = new TaskWidgetNewDashBoardPage();
     taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
     taskWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
@@ -213,8 +215,7 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
         Arrays.asList(DETAILS, PIN, RESET, DESTROY, WORKFLOW_EVENTS, PROCESS_VIEWER));
     // Join failed
     taskWidget.openFilterWidget();
-    removeAllExistingFilter();
-    taskWidget.applyFilter();
+    taskWidget.resetFilter();
     assertTaskActionsByTaskStateAndName(ERROR, "Signal create Technical task",
         Arrays.asList(DETAILS, PIN, DESTROY, WORKFLOW_EVENTS, PROCESS_VIEWER));
   }
