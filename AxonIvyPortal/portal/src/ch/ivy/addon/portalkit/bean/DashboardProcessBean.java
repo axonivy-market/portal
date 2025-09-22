@@ -30,6 +30,8 @@ import ch.ivy.addon.portalkit.dto.dashboard.process.DashboardProcess;
 import ch.ivy.addon.portalkit.enums.ProcessType;
 import ch.ivy.addon.portalkit.enums.ProcessWidgetMode;
 import ch.ivy.addon.portalkit.service.ExternalLinkService;
+import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.security.exec.Sudo;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
 @ManagedBean
@@ -130,6 +132,13 @@ public class DashboardProcessBean extends AbstractProcessBean implements Seriali
       link += (link.contains("?") ? "&" : "?" + "embedInFrame");
     }
     return link;
+  }
+  
+  public IWebStartable findWebstartableByProcessId(String id) {
+    return Sudo.get(() -> {
+      return Ivy.session().findStartable(id)
+          .orElse(null);
+    });
   }
 
   public boolean isCaseMap(DashboardProcess process) {

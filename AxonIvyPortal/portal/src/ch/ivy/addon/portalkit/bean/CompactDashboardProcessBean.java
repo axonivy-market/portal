@@ -6,6 +6,7 @@ import static ch.ivy.addon.portalkit.enums.DashboardStandardProcessColumn.CATEGO
 import java.io.IOException;
 import java.io.Serializable;
 import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -31,6 +32,8 @@ import ch.ivy.addon.portalkit.enums.ProcessSorting;
 import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.request.IHttpResponse;
+import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
 @ManagedBean
 @ViewScoped
@@ -175,8 +178,21 @@ public class CompactDashboardProcessBean
       dashboardProcessBean.redirectToLink(link, false);
       return;
     }
-
+    
+    IWebStartable iwebStartable = dashboardProcessBean.findWebstartableByProcessId(process.getId());
+    if (iwebStartable != null) {
+      String embedInFrame = iwebStartable.customFields().value("embedInFrame");
+      if (embedInFrame != null && "false".equals(embedInFrame)) {
+          IHttpResponse.current().sendRedirect(link);
+          return;
+      }
+    }
     dashboardProcessBean.redirectToLink(link, true);
+  }
+  
+  public static String generateStartFrameUrl(String startLink) {
+    var startLinkEncoded = URLEncoder.encode(startLink, StandardCharsets.UTF_8);
+    return "IFrameTaskTemplate.xhtml?" + "taskUrl=" + startLinkEncoded;
   }
 
   private void handleNavigateAsAiResult(DashboardProcess process, String link) {
