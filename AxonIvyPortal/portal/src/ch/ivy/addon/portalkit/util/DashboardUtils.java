@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
@@ -27,9 +28,14 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.constant.IvyCacheIdentifier;
+import ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget;
+import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardOrder;
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardTemplate;
+import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
+import ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget;
+import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.DashboardDisplayType;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
@@ -317,8 +323,60 @@ public class DashboardUtils {
     if (CollectionUtils.isEmpty(dashboards)) {
       return;
     }
+    dashboards.parallelStream()
+    .filter(Objects::nonNull)
+    .forEach(dashboard -> {
+      
+      if (CollectionUtils.isNotEmpty(dashboard.getWidgets())) {
+        updatePropertiesForWidgets(dashboard.getWidgets());
+      }
+    });
   }
-
+  
+  private static void updatePropertiesForWidgets(List<DashboardWidget> widgetList) {
+    widgetList.stream()
+        .map(DashboardUtils::getColumnsFromWidget)
+        .filter(CollectionUtils::isNotEmpty)
+        .flatMap(List::stream)
+        .forEach(column -> column.setHeaders(new ArrayList<>()));
+  }
+  
+  private static List<ColumnModel> getColumnsFromWidget(DashboardWidget widget) {
+    if (widget == null || widget.getType() == null) {
+      return List.of();
+    }
+    
+    return switch (widget.getType()) {
+      case TASK -> {
+        TaskDashboardWidget taskWidget = (TaskDashboardWidget) widget;
+        yield taskWidget.getColumns().stream()
+            .filter(Objects::nonNull)
+            .filter(item -> isCustomField(item.getType()))
+            .map(ColumnModel.class::cast)
+            .toList();
+      }
+      case CASE -> {
+        CaseDashboardWidget caseWidget = (CaseDashboardWidget) widget;
+        yield caseWidget.getColumns().stream()
+            .filter(Objects::nonNull)
+            .filter(item -> isCustomField(item.getType()))
+            .map(ColumnModel.class::cast)
+            .toList();
+      }
+      default -> List.of();
+    };
+  }
+  
+  private static boolean isCustomField(DashboardColumnType type) {
+    if (type == null) {
+      return false;
+    }
+    return switch (type) {
+      case CUSTOM, CUSTOM_CASE, CUSTOM_BUSINESS_CASE -> true;
+      default -> false;
+    };
+  }
+  
   public static boolean isDefaultTaskListDashboard(Dashboard dashboard) {
     return Optional.ofNullable(dashboard).map(Dashboard::getId).orElseGet(() -> "")
         .contentEquals(DEFAULT_TASK_LIST_DASHBOARD);
