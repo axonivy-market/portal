@@ -187,11 +187,11 @@ public class DashboardCaseWidgetFilterTest extends BaseTest {
 
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.CASE_WIDGET_FOLDER + "testFilterCaseState-checkAllPage");
     caseWidget.destroyCase(0);
-    caseWidget.waitTableLoaded();
+//    caseWidget.waitTableLoaded();
     caseWidget.scrollToCaseWidget();
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.CASE_WIDGET_FOLDER + "testFilterCaseState1-checkAllPage");
     caseWidget.destroyCase(1);
-    caseWidget.waitTableLoaded();
+//    caseWidget.waitTableLoaded();
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.CASE_WIDGET_FOLDER + "testFilterCaseState2-checkAllPage");
     caseWidget.openFilterWidget();
     caseWidget.addFilter("Name", null);
