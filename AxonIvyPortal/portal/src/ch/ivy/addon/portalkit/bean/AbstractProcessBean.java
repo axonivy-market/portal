@@ -90,7 +90,8 @@ public abstract class AbstractProcessBean implements Serializable {
       return;
     }
     String processId = getWebStartableProcessId(process, StringUtils.EMPTY);
-    IWebStartable iWebStartable = findWebstartableByProcessId(processId);
+    
+    IWebStartable iWebStartable = processId.isEmpty() ? findWebstartableByProcessId(process.getId()) : findWebstartableByProcessId(processId);
 
     if (iWebStartable != null) {
       String embedInFrame = iWebStartable.customFields().value("embedInFrame");
