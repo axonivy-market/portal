@@ -1,6 +1,7 @@
 package ch.ivy.addon.portalkit.bean;
 
 import java.beans.PropertyChangeListener;
+
 import java.beans.PropertyChangeSupport;
 import java.io.IOException;
 import java.io.Serializable;
@@ -30,8 +31,6 @@ import ch.ivy.addon.portalkit.dto.dashboard.process.DashboardProcess;
 import ch.ivy.addon.portalkit.enums.ProcessType;
 import ch.ivy.addon.portalkit.enums.ProcessWidgetMode;
 import ch.ivy.addon.portalkit.service.ExternalLinkService;
-import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.security.exec.Sudo;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
 @ManagedBean
