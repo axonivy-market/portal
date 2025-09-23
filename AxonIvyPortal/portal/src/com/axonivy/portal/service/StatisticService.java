@@ -8,7 +8,6 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map.Entry;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -282,7 +281,7 @@ public class StatisticService {
   }
 
   private String getMetricAggregationQuery(StatisticAggregation chartAggregation) {
-    return StringUtils.isNoneBlank(chartAggregation.getKpiField())
+    return StringUtils.isNotBlank(chartAggregation.getKpiField())
         ? "," + (isBuiltInKPIField(chartAggregation.getKpiField()) ? "" : "customFields.numbers.") + chartAggregation.getKpiField() + ":" + chartAggregation.getAggregationMethod()
         : "";
   }
