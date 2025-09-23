@@ -187,12 +187,8 @@ public class CompactDashboardProcessBean
           return;
       }
     }
+    
     dashboardProcessBean.redirectToLink(link, true);
-  }
-  
-  public static String generateStartFrameUrl(String startLink) {
-    var startLinkEncoded = URLEncoder.encode(startLink, StandardCharsets.UTF_8);
-    return "IFrameTaskTemplate.xhtml?" + "taskUrl=" + startLinkEncoded;
   }
 
   private void handleNavigateAsAiResult(DashboardProcess process, String link) {

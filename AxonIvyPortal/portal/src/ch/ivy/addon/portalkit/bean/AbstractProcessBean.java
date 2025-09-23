@@ -26,6 +26,9 @@ import ch.ivy.addon.portalkit.enums.ProcessType;
 import ch.ivy.addon.portalkit.mapper.UserProcessMapper;
 import ch.ivy.addon.portalkit.service.ExternalLinkService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
+import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.request.IHttpResponse;
+import ch.ivyteam.ivy.security.exec.Sudo;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
 public abstract class AbstractProcessBean implements Serializable {
@@ -47,11 +50,16 @@ public abstract class AbstractProcessBean implements Serializable {
   public String getProcessInformationPageUrl(Process process) {
     String processId = StringUtils.EMPTY;
 
+    processId = getWebStartableProcessId(process, processId);
+    return PortalNavigator.buildProcessInfoUrl(processId.isEmpty() ? process.getId() : processId );
+  }
+
+  private String getWebStartableProcessId(Process process, String processId) {
     Object nestedProcess = process.getProcess();
     if (nestedProcess instanceof IWebStartable) {
       processId = ((IWebStartable) nestedProcess).getId();
     }
-    return PortalNavigator.buildProcessInfoUrl(processId.isEmpty() ? process.getId() : processId );
+    return processId;
   }
 
   protected abstract List<Process> findProcesses();
@@ -81,11 +89,28 @@ public abstract class AbstractProcessBean implements Serializable {
       FacesContext.getCurrentInstance().getExternalContext().redirect(link);
       return;
     }
+    String processId = getWebStartableProcessId(process, StringUtils.EMPTY);
+    IWebStartable iWebStartable = findWebstartableByProcessId(processId);
 
+    if (iWebStartable != null) {
+      String embedInFrame = iWebStartable.customFields().value("embedInFrame");
+      if (embedInFrame != null && "false".equals(embedInFrame)) {
+          IHttpResponse.current().sendRedirect(link);
+          return;
+      }
+    }
+ 
     link += link.contains("?") ? "&" : "?";
     // Put the "embedInIFrame" param to the task start link to open it in the DefaultFramePage process
     // Then this process will open task in IFrame or not based on its "embedInIFrame" String custom field
     FacesContext.getCurrentInstance().getExternalContext().redirect(link + "embedInFrame");
+  }
+  
+  public IWebStartable findWebstartableByProcessId(String id) {
+    return Sudo.get(() -> {
+      return Ivy.session().findStartable(id)
+          .orElse(null);
+    });
   }
 
   public boolean isIvyProcess(Process process) {

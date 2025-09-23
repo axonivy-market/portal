@@ -133,13 +133,6 @@ public class DashboardProcessBean extends AbstractProcessBean implements Seriali
     }
     return link;
   }
-  
-  public IWebStartable findWebstartableByProcessId(String id) {
-    return Sudo.get(() -> {
-      return Ivy.session().findStartable(id)
-          .orElse(null);
-    });
-  }
 
   public boolean isCaseMap(DashboardProcess process) {
     return !Objects.isNull(process) && process.getStartLink().endsWith(".icm");
