@@ -313,13 +313,13 @@ msgstr ""
 
 #: ../../source/portal-user-guide/accessibility/index.rst:113
 msgid "Enable & Disable Keyboard shortcuts"
-msgstr ""
+msgstr "キーボードショートカットの有効化と無効化"
 
 #: ../../source/portal-user-guide/accessibility/index.rst:115
 msgid ""
 "You can enable/disable keyboard shortcuts in your **My Profile**. Please "
 "visit :ref:`accessibility-settings` for more details."
-msgstr ""
+msgstr "キーボードショートカットは **マイプロフィール** で有効化/無効化できます。詳細は :ref:`accessibility-settings` をご覧ください。"
 
 #: ../../source/portal-user-guide/accessibility/index.rst:118
 msgid "Extended Descriptive Elements in the Task and Case List"
@@ -635,7 +635,7 @@ msgstr ":guilabel:`リンク` に URL を入力します（http://www.google.com
 msgid ""
 "Select :guilabel:`Permissions` to specify the permissions required for "
 "the application to be visible."
-msgstr ""
+msgstr ":guilabel:`権限` を選択し、アプリケーションを表示するために必要な権限を指定してください。"
 
 #: ../../source/portal-user-guide/admin-settings/index.rst:44
 msgid "Click on :guilabel:`Save`."
@@ -3319,7 +3319,7 @@ msgstr "ケース ID"
 #: ../../source/portal-user-guide/full-case-list/index.rst:23
 #: ../../source/portal-user-guide/full-task-list/index.rst:33
 msgid "Pin"
-msgstr ""
+msgstr "ピン"
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:25
 #: ../../source/portal-user-guide/full-case-list/index.rst:237
@@ -3664,17 +3664,17 @@ msgstr ""
 #: ../../source/portal-user-guide/full-case-list/index.rst:154
 #: ../../source/portal-user-guide/full-task-list/index.rst:155
 msgid "HowTo: Rename a document of a case"
-msgstr ""
+msgstr "手順：ケースのドキュメント名を変更する"
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:158
 #: ../../source/portal-user-guide/full-task-list/index.rst:159
 msgid "Click on the |edit-icon| button next to the attachment you want to rename"
-msgstr ""
+msgstr "名前を変更したい添付ファイルの横にある |edit-icon| ボタンをクリックしてください"
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:161
 #: ../../source/portal-user-guide/full-task-list/index.rst:162
 msgid "A dialog is opened to rename the selected document"
-msgstr ""
+msgstr "選択したドキュメントの名前を変更するためのダイアログが開きます"
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:163
 #: ../../source/portal-user-guide/full-task-list/index.rst:164
@@ -3684,12 +3684,12 @@ msgstr ""
 #: ../../source/portal-user-guide/full-case-list/index.rst:165
 #: ../../source/portal-user-guide/full-task-list/index.rst:166
 msgid "Click the button :guilabel:`Save` to save your change"
-msgstr ""
+msgstr "変更を保存するには :guilabel:`Save` ボタンをクリックしてください"
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:167
 #: ../../source/portal-user-guide/full-task-list/index.rst:168
 msgid "Filename will be updated and a note about the renaming will be added"
-msgstr ""
+msgstr "ファイル名が更新され、名前の変更に関する注記が追加されます"
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:169
 #: ../../source/portal-user-guide/full-task-list/index.rst:170
@@ -3698,7 +3698,7 @@ msgstr "|how-to-rename-document|"
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:383
 msgid "Case Details: rename document dialog"
-msgstr ""
+msgstr "ケース詳細: 文書名変更ダイアログ"
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:172
 msgid "HowTo: Add a Note to a Case"
@@ -3726,7 +3726,7 @@ msgstr "|how-to-add-task-note|"
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:365
 msgid "Case Details: Add note dialog"
-msgstr ""
+msgstr "ケース詳細：メモ追加ダイアログ"
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:187
 msgid ""
@@ -3779,7 +3779,7 @@ msgstr "|how-to-show-note-details|"
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:367
 msgid "Case Details: Link to show more notes details"
-msgstr ""
+msgstr "ケース詳細：詳細なメモを表示するリンク"
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:206
 msgid "A page containing the case history is opened"
@@ -3795,7 +3795,7 @@ msgstr "|export-case-history|"
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:369
 msgid "Case Business Information page: Link to export case history"
-msgstr ""
+msgstr "ケースビジネス情報ページ：ケース履歴のエクスポートリンク"
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:213
 msgid "HowTo: Manipulate Related Tasks Inside Case Details"
@@ -3992,7 +3992,7 @@ msgstr "|portal-process-viewer|"
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:377
 msgid "Process Viewer page"
-msgstr ""
+msgstr "プロセスビューアーページ"
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:333
 msgid "HowTo: Share Case Details"
@@ -4009,7 +4009,7 @@ msgstr "|how-to-share-case-details|"
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:379
 msgid "Case Details: button to get the shareable link of the case details"
-msgstr ""
+msgstr "ケース詳細：ケース詳細の共有用リンクを取得するボタン"
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:343
 msgid ""
@@ -4203,7 +4203,6 @@ msgid "For the :guilabel:`Process name`, define the best name for it."
 msgstr ":guilabel:`プロセス名` でプロセスに最適な名前を定義します。"
 
 #: ../../source/portal-user-guide/full-process-list/index.rst:86
-#, fuzzy
 msgid ""
 "At the end of the :guilabel:`Process name` input, you will see a "
 "translate icon. Click the icon to open the ``Setting Multiple Languages``"
@@ -4232,8 +4231,9 @@ msgid ""
 "various language fields. If you don't fill in a language field, the "
 "default language description will be used."
 msgstr ""
-":guilabel:`プロセス名` の入力後、翻訳アイコンが表示されます。アイコンをクリックして、 ``複数言語の設定`` "
-"ダイアログを開きます。言語フィールドに名前を入力して、複数の言語で名前を指定できます。言語フィールドに名前を入力しない場合は、デフォルトの言語の名前が使用されます。"
+":guilabel:`説明` の入力後、翻訳アイコンが表示されます。アイコンをクリックして、 ``複数言語の設定`` "
+"ダイアログを開きます。言語フィールドに説明を入力して、複数の言語で説明を指定できます。"
+"言語フィールドに説明を入力しない場合は、デフォルトの言語の説明が使用されます。"
 
 #: ../../source/portal-user-guide/full-process-list/index.rst:102
 msgid ""
@@ -4939,57 +4939,57 @@ msgstr "オプションを選択しない場合、ポータルは管理者が定
 
 #: ../../source/portal-user-guide/my-profile/index.rst:38
 msgid "Task list configuration"
-msgstr ""
+msgstr "タスクリスト設定"
 
 #: ../../source/portal-user-guide/my-profile/index.rst:40
 msgid ""
 "This section has available options which help you to configure your Task "
 "list. These are options you can modify:"
-msgstr ""
+msgstr "このセクションには、タスクリストの設定に役立つ利用可能なオプションがあります。変更可能なオプションは以下の通りです："
 
 #: ../../source/portal-user-guide/my-profile/index.rst:48
 msgid "Unpin all pinned tasks"
-msgstr ""
+msgstr "固定されたタスクをすべて解除する"
 
 #: ../../source/portal-user-guide/my-profile/index.rst:48
 msgid "Unpin all of your pinned tasks"
-msgstr ""
+msgstr "固定したタスクをすべて解除する"
 
 #: ../../source/portal-user-guide/my-profile/index.rst:54
 msgid "Case list configuration"
-msgstr ""
+msgstr "ケースリスト設定"
 
 #: ../../source/portal-user-guide/my-profile/index.rst:56
 msgid ""
 "This section has available options which help you to configure your Case "
 "list. These are options you can modify:"
-msgstr ""
+msgstr "このセクションには、ケースリストの設定に役立つ利用可能なオプションがあります。変更可能なオプションは以下の通りです："
 
 #: ../../source/portal-user-guide/my-profile/index.rst:64
 msgid "Unpin all pinned cases"
-msgstr ""
+msgstr "固定されているすべてのケースの固定を解除する"
 
 #: ../../source/portal-user-guide/my-profile/index.rst:64
 msgid "Unpin all of your pinned cases"
-msgstr ""
+msgstr "固定したケースをすべて解除する"
 
 #: ../../source/portal-user-guide/my-profile/index.rst:70
 msgid "Accessibility settings"
-msgstr ""
+msgstr "アクセシビリティ設定"
 
 #: ../../source/portal-user-guide/my-profile/index.rst:72
 msgid ""
 "Accessibility settings help you customize your experience to meet your "
 "specific needs. These are options you can modify:"
-msgstr ""
+msgstr "アクセシビリティ設定は、特定のニーズに合わせて体験をカスタマイズするのに役立ちます。変更可能なオプションは以下の通りです："
 
 #: ../../source/portal-user-guide/my-profile/index.rst:80
 msgid "Keyboard shortcuts for navigation"
-msgstr ""
+msgstr "ナビゲーション用キーボードショートカット"
 
 #: ../../source/portal-user-guide/my-profile/index.rst:80
 msgid "Enable or disable keyboard shortcuts for navigation"
-msgstr ""
+msgstr "キーボードショートカットによるナビゲーションを有効または無効にする"
 
 #: ../../source/portal-user-guide/my-profile/index.rst:86
 msgid "Language settings"
@@ -5074,6 +5074,8 @@ msgid ""
 "warning:`🔑NotificationChannelsSetting <NotificationChannelsSetting>` to "
 "allow or prevent users from modifying notification channel preferences."
 msgstr ""
+"管理者として、通知チャネル設定の編集を許可または禁止する権限"
+" :bdg-ref-warning:`🔑NotificationChannelsSetting <NotificationChannelsSetting>` を設定できます。"
 
 #: ../../source/portal-user-guide/my-profile/index.rst:133
 msgid ""
@@ -5084,6 +5086,9 @@ msgid ""
 "role, then grant it to specific roles that should be allowed to modify "
 "notification channel preferences."
 msgstr ""
+"これを行うには、:dev-url:`エンジン コックピット </doc/|version|/engine-guide/reference/engine-cockpit/security.html>` "
+"にアクセスし、**セキュリティ領域** を開きます。この権限はデフォルトで「すべてのユーザー」ロールに付与されているため、管理者は「すべてのユー"
+"ザー」ロールからこの権限を拒否し、通知チャネルの設定を変更できる特定のロールに付与する必要があります。"
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:4
 msgid "Dashboard"

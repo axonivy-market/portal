@@ -679,8 +679,8 @@ msgstr "権限の設定"
 
 #: ../../source/portal-developer-guide/customization/business-details-page.rst:73
 msgid ""
-"Configure permissions in the :dev-url:`Engine Cockpit </doc/|version"
-"|/engine-guide/reference/engine-cockpit/security.html>`. In the security "
+"Configure permissions in the :dev-url:`Engine Cockpit </doc/|version|"
+"/engine-guide/reference/engine-cockpit/security.html>`. In the security "
 "area, open PortalPermissions -> PortalCasePermissions -> ShowCaseDetails."
 msgstr ""
 ":dev-url:`エンジンコックピット </doc/|version|/engine-guide/reference/engine-"
@@ -978,7 +978,7 @@ msgid ""
 "The key value for the case has to start with ``case.``. Supported are "
 "three values: ``case.id``, ``case.uuid``, ``case.category``."
 msgstr ""
-"``case.`` で始まる必要があるケースのキー値。 ``case.id`` と ``case.category`` の 2 "
+"``case.`` で始まる必要があるケースのキー値。 ``case.id``、 ``case.uuid`` と ``case.category`` の 3 "
 "つの値がサポートされます。"
 
 #: ../../source/portal-developer-guide/customization/case-item-details.rst:171
@@ -3237,7 +3237,7 @@ msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/index.rst:205
 msgid "e.g: AxonIvyDesigner12.0.0/configuration/applications/designer"
-msgstr "e.g: AxonIvyDesigner12.0.0/configuration/applications/designer"
+msgstr "例: AxonIvyDesigner12.0.0/configuration/applications/designer"
 
 #: ../../source/portal-developer-guide/dashboard/index.rst:207
 msgid ""
@@ -3255,8 +3255,8 @@ msgstr "新しいポータルダッシュボードを開いて、新しいカス
 
 #: ../../source/portal-developer-guide/dashboard/index.rst:210
 msgid ""
-"To configure variables, refer to :dev-url:`|ivy| Variables </doc/|version"
-"|/designer-guide/configuration/variables.html>`"
+"To configure variables, refer to :dev-url:`|ivy| Variables </doc/|version|"
+"/designer-guide/configuration/variables.html>`"
 msgstr ""
 "変数の設定については、:dev-url:`|ivy| の変数 </doc/|version|/designer-"
 "guide/configuration/variables.html>` を参照してください。"
@@ -5959,7 +5959,7 @@ msgstr "**JavaScript の使用**"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:145
 msgid "This feature is deprecated and will be removed in Portal 14."
-msgstr ""
+msgstr "この機能は非推奨となり、Portal 14 で削除されます。"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:177
 msgid "Configure Task Details"
@@ -6286,7 +6286,7 @@ msgid ""
 "The application consists of 2 process modules. For detailed information "
 "on each module, refer to :ref:`architecture`."
 msgstr ""
-"アプリケーションは 3 つのプロセスモジュールで構成されます。各モジュールの詳細については、:ref:`architecture` "
+"アプリケーションは 2 つのプロセスモジュールで構成されます。各モジュールの詳細については、:ref:`architecture` "
 "を参照してください。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:24
@@ -9375,8 +9375,8 @@ msgstr "ポータル設定を手動で行う方法については、:ref:`update
 
 #: ../../source/portal-developer-guide/settings/index.rst:25
 msgid ""
-"Portal settings are stored as :dev-url:`Variables </doc/|version"
-"|/designer-guide/configuration/variables.html>`."
+"Portal settings are stored as :dev-url:`Variables </doc/|version|"
+"/designer-guide/configuration/variables.html>`."
 msgstr ""
 "ポータル設定は、:dev-url:`変数 </doc/|version|/designer-"
 "guide/configuration/variables.html>` として格納されます。"
@@ -9493,8 +9493,8 @@ msgstr "権限の設定"
 
 #: ../../source/portal-developer-guide/settings/index.rst:79
 msgid ""
-"Configure permissions in the :dev-url:`Engine Cockpit </doc/|version"
-"|/engine-guide/reference/engine-cockpit/security.html>`. In the security "
+"Configure permissions in the :dev-url:`Engine Cockpit </doc/|version|"
+"/engine-guide/reference/engine-cockpit/security.html>`. In the security "
 "area, you will find all these permission in group \"PortalPermissions\"."
 msgstr ""
 ":dev-url:`エンジンコックピット </doc/|version|/engine-guide/reference/engine-"
@@ -9580,6 +9580,10 @@ msgid ""
 "warning:`🔑TaskResetReadyForJoin <TaskResetReadyForJoin>` or :bdg-ref-"
 "warning:`🔑TaskReset <TaskReset>`."
 msgstr ""
+"タスクをリセットするには、ユーザーに以下の権限が必要です：:bdg-ref-warning:"
+"`🔑TaskResetOwnWorkingTask <TaskResetOwnWorkingTask>` または"
+" :bdg-ref-warning:`🔑TaskResetReadyForJoin <TaskResetReadyForJoin>` "
+"または :bdg-ref-warning:`🔑TaskReset <TaskReset>` 。"
 
 #: ../../source/portal-developer-guide/settings/index.rst:115
 msgid ""
@@ -9964,7 +9968,7 @@ msgstr ":bdg-ref-warning:`🔑ShareDashboardLink <ShareDashboardLink>`"
 
 #: ../../source/portal-developer-guide/settings/index.rst:276
 msgid "Modify notification channels preferences in :ref:`my-profile` page"
-msgstr ""
+msgstr "通知チャネルの設定を :ref:`my-profile` ページで変更する"
 
 #: ../../source/portal-developer-guide/settings/index.rst:276
 msgid ""
@@ -9985,11 +9989,11 @@ msgid ""
 "API key once you have an account. To configure the API key add the "
 "following snippet to the configuration/web.xml file:"
 msgstr ""
-"PrimeFaces には、 `VirusTotal <https://www.virustotal.com/>`_ "
-"を使用するインターフェースがあらかじめ実装されています。 `VirusTotal <https://www.virustotal.com/>`_ "
+"PrimeFaces には、 `VirusTotal <https://www.virustotal.com/>`__ "
+"を使用するインターフェースがあらかじめ実装されています。 `VirusTotal <https://www.virustotal.com/>`__ "
 "を有効にするには、 `VirusTotal のウェブサイト <https://www.virustotal.com/>`_ "
 "でコミュニティアカウントを作成する必要があります。 アカウントの作成後、API キーを受け取ります。 API "
-"キーを設定するには、configuration/web.xml ファイルに次のスニペットを追加します。"
+"キーを設定するには、 configuration/web.xml ファイルに次のスニペットを追加します。"
 
 #: ../../source/portal-developer-guide/settings/index.rst:302
 msgid ""
@@ -10008,7 +10012,7 @@ msgid ""
 "<https://community.axonivy.com/d/144-how-to-check-if-a-uploaded-files-"
 "contain-a-virus/>`_."
 msgstr ""
-"参照： `How to check if uploaded files contain a virus "
+"参照： `アップロードされたファイルにウイルスが含まれているか確認する方法 "
 "<https://community.axonivy.com/d/144-how-to-check-if-a-uploaded-files-"
 "contain-a-virus/>`_."
 
@@ -10212,6 +10216,8 @@ msgid ""
 "this variable will be lost. Please consider this before making any "
 "changes."
 msgstr ""
+"次期バージョンの Portal では、統計処理のより強力な手法を導入するため、この変数は削除さ"
+"れます。この変数への変更はすべて失われます。変更を行う前に、この点をご考慮ください。"
 
 #: ../../source/portal-developer-guide/settings/index.rst:460
 msgid "``id``: ID of the statistic chart"
@@ -10789,7 +10795,7 @@ msgstr "``url``：外部ウェブページの URL またはリダイレクトし
 
 #: ../../source/portal-developer-guide/usermenu/index.rst:82
 msgid "Ivy process start URLs are a **relative link** to the process."
-msgstr "Ivy プロセスの開始 URL は、プロセスへの**相対リンク**です。"
+msgstr "Ivy プロセスの開始 URL は、プロセスへの **相対リンク** です。"
 
 #: ../../source/portal-developer-guide/usermenu/index.rst:84
 msgid ""
