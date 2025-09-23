@@ -3,6 +3,8 @@ package com.axonivy.portal.selenium.test.task;
 import static com.codeborne.selenide.CollectionCondition.size;
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThanOrEqual;
 
+import java.io.IOException;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -11,6 +13,7 @@ import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.FilterOperator;
 import com.axonivy.portal.selenium.common.FilterValueType;
 import com.axonivy.portal.selenium.common.NavigationHelper;
+import com.axonivy.portal.selenium.common.ScreenshotUtils;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.page.CaseDetailsPage;
@@ -106,14 +109,16 @@ public class TaskDetailsTest extends BaseTest {
   }
 
   @Test
-  public void testShowTaskStatusBannerOnTaskDetails() {
+  public void testShowTaskStatusBannerOnTaskDetails() throws IOException {
     redirectToRelativeLink(createTestingTasksUrl);
     login(TestAccount.ADMIN_USER);
     resizeBrowserToFullHDResolution();
     grantSpecificPortalPermission(PortalPermission.SYSTEM_TASK_READ_ALL);
+    grantSpecificPortalPermission(PortalPermission.TASK_DISPLAY_DESTROY_ACTION);
     redirectToNewDashBoard();
     NavigationHelper.navigateToTaskList();
     TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_DETAIL_FOLDER + "testShowTaskStatusBannerOnTaskDetails1-checkAll");
 
     taskWidget.openDashboardTaskDetails("Maternity Leave Request");
     TaskDetailsPage taskDetailsPage = new TaskDetailsPage();
@@ -124,6 +129,7 @@ public class TaskDetailsTest extends BaseTest {
     taskWidget = new TopMenuTaskWidgetPage();
     taskWidget.openDashboardTaskDetails("Maternity Leave Request");
     taskDetailsPage.getStatusBanner().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_DETAIL_FOLDER + "testShowTaskStatusBannerOnTaskDetails2-checkMaternity");
 
     NavigationHelper.navigateToTaskList();
     taskWidget = new TopMenuTaskWidgetPage();
