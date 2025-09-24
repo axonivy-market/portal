@@ -148,11 +148,13 @@ public class TaskDetailsTest extends BaseTest {
     redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
     NavigationHelper.navigateToTaskList();
     taskWidget = new TopMenuTaskWidgetPage();
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_DETAIL_FOLDER + "testShowTaskStatusBannerOnTaskDetails3-checkTechnicalCase");
     taskWidget.openFilterWidget();
     taskWidget.removeFilter(0);
     taskWidget.addFilter("Name", FilterOperator.IS);
     taskWidget.inputValueOnLatestFilter(FilterValueType.TEXT, TAKE_ORDER);
     taskWidget.applyFilter();
+    taskWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
     taskWidget.startTask(0);
     taskDetailsPage = new TaskDetailsPage();
     taskDetailsPage.waitForPageLoad();
