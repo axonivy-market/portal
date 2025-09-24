@@ -323,10 +323,9 @@ public class DashboardUtils {
     if (CollectionUtils.isEmpty(dashboards)) {
       return;
     }
-    dashboards.parallelStream()
+    dashboards.stream()
     .filter(Objects::nonNull)
     .forEach(dashboard -> {
-      
       if (CollectionUtils.isNotEmpty(dashboard.getWidgets())) {
         updatePropertiesForWidgets(dashboard.getWidgets());
       }
