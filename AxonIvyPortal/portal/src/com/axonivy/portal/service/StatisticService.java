@@ -8,7 +8,6 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map.Entry;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -282,9 +281,15 @@ public class StatisticService {
   }
 
   private String getMetricAggregationQuery(StatisticAggregation chartAggregation) {
-    return Objects.nonNull(chartAggregation.getKpiField()) && !chartAggregation.getKpiField().isBlank()
-        ? ",customFields.numbers." + chartAggregation.getKpiField() + ":" + chartAggregation.getAggregationMethod()
+    return StringUtils.isNotBlank(chartAggregation.getKpiField())
+        ? "," + (isBuiltInKPIField(chartAggregation.getKpiField()) ? "" : "customFields.numbers.") + chartAggregation.getKpiField() + ":" + chartAggregation.getAggregationMethod()
         : "";
+  }
+
+  // These fields are not numeric custom fields, so do not need to append customFields.numbers. in above function when building query
+  private boolean isBuiltInKPIField(String field) {
+    final Set<String> BUILT_IN_KPI_FIELDS = Set.of("businessRuntime", "workingTime");
+    return BUILT_IN_KPI_FIELDS.contains(field);
   }
 
   private String transformField(String field) {

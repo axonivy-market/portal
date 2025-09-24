@@ -4,20 +4,21 @@
 # package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2025.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: Portal Guide ${revision}\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-10 09:37+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2025-09-19 04:44+0000\n"
+"PO-Revision-Date: 2025-09-19 06:44+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"Language-Team: Spanish <https://hosted.weblate.org/projects/axonivy-portal/"
+"portal-le/doc/portal-doc-components/es/>\n"
 "Language: es\n"
-"Language-Team: es <LL@li.org>\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.14-dev\n"
 "Generated-By: Babel 2.17.0\n"
 
 #: ../../source/portal-components/document-table/index.rst:4
@@ -34,7 +35,7 @@ msgstr ""
 msgid "|document-table|"
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:246
+#: ../../source/portal-components/document-table/index.rst:283
 msgid "document-table"
 msgstr ""
 
@@ -46,6 +47,7 @@ msgstr ""
 #: ../../source/portal-components/document-table/index.rst:85
 #: ../../source/portal-components/document-table/index.rst:117
 #: ../../source/portal-components/document-table/index.rst:139
+#: ../../source/portal-components/document-table/index.rst:161
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 #: ../../source/portal-components/documents/process_chain_component_attributes.csv:1
 #: ../../source/portal-components/documents/process_viewer_component_attributes.csv:1
@@ -68,6 +70,7 @@ msgstr ""
 #: ../../source/portal-components/document-table/index.rst:85
 #: ../../source/portal-components/document-table/index.rst:117
 #: ../../source/portal-components/document-table/index.rst:139
+#: ../../source/portal-components/document-table/index.rst:161
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 #: ../../source/portal-components/documents/process_chain_component_attributes.csv:1
 #: ../../source/portal-components/documents/process_viewer_component_attributes.csv:1
@@ -179,6 +182,16 @@ msgstr ""
 msgid ""
 "Boolean value to specify the rendering of the delete icon, when set to "
 "false delete icon will not be rendered."
+msgstr ""
+
+#: ../../source/portal-components/documents/document_table_component_attributes.csv:1
+msgid "renameRendered"
+msgstr ""
+
+#: ../../source/portal-components/documents/document_table_component_attributes.csv:1
+msgid ""
+"Boolean value to specify the rendering of the edit filename icon, when "
+"set to false the icon will not be rendered."
 msgstr ""
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
@@ -340,6 +353,22 @@ msgid "Component will be triggered the update after document is deleted."
 msgstr ""
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
+msgid "renameStyleClass"
+msgstr ""
+
+#: ../../source/portal-components/documents/document_table_component_attributes.csv:1
+msgid "Styles for edit filename link."
+msgstr ""
+
+#: ../../source/portal-components/documents/document_table_component_attributes.csv:1
+msgid "updatedComponentAfterRenamed"
+msgstr ""
+
+#: ../../source/portal-components/documents/document_table_component_attributes.csv:1
+msgid "Component will be triggered the update after document is renamed."
+msgstr ""
+
+#: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "selectedType"
 msgstr ""
 
@@ -498,6 +527,7 @@ msgstr ""
 #: ../../source/portal-components/document-table/index.rst:87
 #: ../../source/portal-components/document-table/index.rst:119
 #: ../../source/portal-components/document-table/index.rst:141
+#: ../../source/portal-components/document-table/index.rst:163
 msgid "**Parameter**"
 msgstr ""
 
@@ -505,6 +535,7 @@ msgstr ""
 #: ../../source/portal-components/document-table/index.rst:89
 #: ../../source/portal-components/document-table/index.rst:121
 #: ../../source/portal-components/document-table/index.rst:143
+#: ../../source/portal-components/document-table/index.rst:165
 msgid "businessCase"
 msgstr ""
 
@@ -512,6 +543,7 @@ msgstr ""
 #: ../../source/portal-components/document-table/index.rst:89
 #: ../../source/portal-components/document-table/index.rst:121
 #: ../../source/portal-components/document-table/index.rst:143
+#: ../../source/portal-components/document-table/index.rst:165
 msgid "ch.ivyteam.ivy.workflow.ICase"
 msgstr ""
 
@@ -519,6 +551,7 @@ msgstr ""
 #: ../../source/portal-components/document-table/index.rst:99
 #: ../../source/portal-components/document-table/index.rst:125
 #: ../../source/portal-components/document-table/index.rst:147
+#: ../../source/portal-components/document-table/index.rst:169
 msgid "**Result**"
 msgstr ""
 
@@ -533,6 +566,7 @@ msgstr ""
 #: ../../source/portal-components/document-table/index.rst:68
 #: ../../source/portal-components/document-table/index.rst:103
 #: ../../source/portal-components/document-table/index.rst:149
+#: ../../source/portal-components/document-table/index.rst:171
 msgid "message"
 msgstr ""
 
@@ -541,6 +575,8 @@ msgstr ""
 #: ../../source/portal-components/document-table/index.rst:103
 #: ../../source/portal-components/document-table/index.rst:105
 #: ../../source/portal-components/document-table/index.rst:149
+#: ../../source/portal-components/document-table/index.rst:171
+#: ../../source/portal-components/document-table/index.rst:175
 msgid "java.lang.String"
 msgstr ""
 
@@ -548,7 +584,8 @@ msgstr ""
 msgid ""
 "After you get the document list from DMS, convert it into "
 "``List<ch.ivy.addon.portal.component.ivydata.bo.IvyDocument>`` These "
-"fields are mandatory when mapping: ``id``, ``name``, ``contentType``"
+"fields are mandatory when mapping: ``id``, ``uuid``, ``name``, "
+"``contentType``"
 msgstr ""
 
 #: ../../source/portal-components/document-table/index.rst:77
@@ -566,6 +603,7 @@ msgid "**Signature**: portalUploadDocumentItem"
 msgstr ""
 
 #: ../../source/portal-components/document-table/index.rst:85
+#: ../../source/portal-components/document-table/index.rst:161
 msgid "Note"
 msgstr ""
 
@@ -579,6 +617,7 @@ msgstr ""
 
 #: ../../source/portal-components/document-table/index.rst:93
 #: ../../source/portal-components/document-table/index.rst:95
+#: ../../source/portal-components/document-table/index.rst:173
 msgid "java.lang.Boolean"
 msgstr ""
 
@@ -591,6 +630,7 @@ msgid "ch.ivyteam.ivy.workflow.document.IDocument"
 msgstr ""
 
 #: ../../source/portal-components/document-table/index.rst:105
+#: ../../source/portal-components/document-table/index.rst:175
 msgid "status"
 msgstr ""
 
@@ -614,11 +654,13 @@ msgstr ""
 
 #: ../../source/portal-components/document-table/index.rst:123
 #: ../../source/portal-components/document-table/index.rst:145
+#: ../../source/portal-components/document-table/index.rst:167
 msgid "document"
 msgstr ""
 
 #: ../../source/portal-components/document-table/index.rst:123
 #: ../../source/portal-components/document-table/index.rst:145
+#: ../../source/portal-components/document-table/index.rst:167
 msgid "com.axonivy.portal.components.ivydata.bo.IvyDocument"
 msgstr ""
 
@@ -645,113 +687,168 @@ msgid "**Signature**: portalDeleteDocumentItem"
 msgstr ""
 
 #: ../../source/portal-components/document-table/index.rst:153
-msgid "User interface"
+msgid "Rename document"
 msgstr ""
 
 #: ../../source/portal-components/document-table/index.rst:155
+msgid ""
+"To customize behavior when a user rename a document from **Document "
+"Table**, create a callable subprocess with:"
+msgstr ""
+
+#: ../../source/portal-components/document-table/index.rst:158
+msgid "**Signature**: portalRenameDocumentItem"
+msgstr ""
+
+#: ../../source/portal-components/document-table/index.rst:173
+msgid "isSuccess"
+msgstr ""
+
+#: ../../source/portal-components/document-table/index.rst:173
+msgid "rename successfully or not"
+msgstr ""
+
+#: ../../source/portal-components/document-table/index.rst:175
+msgid "OK or SKIP"
+msgstr ""
+
+#: ../../source/portal-components/document-table/index.rst:179
+msgid ""
+"The parameters of the callable subprocess data contain the Ivy "
+"``document`` to update, the new filename should be already modified in "
+"the document's name attribute."
+msgstr ""
+
+#: ../../source/portal-components/document-table/index.rst:182
+msgid ""
+"Portal will call subprocesses with the above details in the same security"
+" context and then get result where:"
+msgstr ""
+
+#: ../../source/portal-components/document-table/index.rst:185
+msgid ""
+"``message``: the message to inform the user that their new filename is "
+"successfully updated or invalid to use."
+msgstr ""
+
+#: ../../source/portal-components/document-table/index.rst:186
+msgid ""
+"``isSuccess``: ``true`` if the document's name is successfully updated, "
+"otherwise ``false``."
+msgstr ""
+
+#: ../../source/portal-components/document-table/index.rst:187
+msgid "``status``: ``SKIP`` if customized process skipped updating the filename."
+msgstr ""
+
+#: ../../source/portal-components/document-table/index.rst:190
+msgid "User interface"
+msgstr ""
+
+#: ../../source/portal-components/document-table/index.rst:192
 msgid ""
 "Not only the functions, but you can also customize the UI of the "
 "**Document Table** such as adding a new column or removing default "
 "columns."
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:158
+#: ../../source/portal-components/document-table/index.rst:195
 #: ../../source/portal-components/style-customization/index.rst:11
 msgid "Code Example:"
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:186
+#: ../../source/portal-components/document-table/index.rst:223
 msgid ""
 "Refer to process ``DocumentTableExample`` in project ``portal-components-"
 "examples`` for more details."
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:189
+#: ../../source/portal-components/document-table/index.rst:226
 msgid "Migration Notes"
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:192
+#: ../../source/portal-components/document-table/index.rst:229
 msgid "Migrate 10.0.x to 10.0.12"
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:194
+#: ../../source/portal-components/document-table/index.rst:231
 msgid ""
 "Since this version, we no longer support the override process approach "
 "for functions of **Document Table**. Please follow our guidelines below "
 "to migrate your override subprocesses."
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:197
+#: ../../source/portal-components/document-table/index.rst:234
 msgid ""
 "Remove Subprocess Override of ``GetDocumentItems``, "
 "``UploadDocumentItem``, ``DeleteDocumentItem``, and "
 "``DownloadDocumentItem`` from your project."
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:200
+#: ../../source/portal-components/document-table/index.rst:237
 msgid "Change the signature of your callable starts as described below."
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:203
+#: ../../source/portal-components/document-table/index.rst:240
 msgid "Subprocess"
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:203
+#: ../../source/portal-components/document-table/index.rst:240
 msgid "New signature"
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:205
-#: ../../source/portal-components/document-table/index.rst:228
+#: ../../source/portal-components/document-table/index.rst:242
+#: ../../source/portal-components/document-table/index.rst:265
 msgid "GetDocumentItems"
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:205
+#: ../../source/portal-components/document-table/index.rst:242
 msgid "portalGetDocumentItems"
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:207
-#: ../../source/portal-components/document-table/index.rst:230
+#: ../../source/portal-components/document-table/index.rst:244
+#: ../../source/portal-components/document-table/index.rst:267
 msgid "UploadDocumentItem"
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:207
+#: ../../source/portal-components/document-table/index.rst:244
 msgid "portalUploadDocumentItem"
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:209
-#: ../../source/portal-components/document-table/index.rst:232
+#: ../../source/portal-components/document-table/index.rst:246
+#: ../../source/portal-components/document-table/index.rst:269
 msgid "DeleteDocumentItem"
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:209
+#: ../../source/portal-components/document-table/index.rst:246
 msgid "portalDownloadDocumentItem"
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:211
-#: ../../source/portal-components/document-table/index.rst:234
+#: ../../source/portal-components/document-table/index.rst:248
+#: ../../source/portal-components/document-table/index.rst:271
 msgid "DownloadDocumentItem"
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:211
+#: ../../source/portal-components/document-table/index.rst:248
 msgid "portalDeleteDocumentItem"
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:214
+#: ../../source/portal-components/document-table/index.rst:251
 msgid "Now your **Document Table** should work as before."
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:217
+#: ../../source/portal-components/document-table/index.rst:254
 msgid "Migrate to 10.0.0"
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:219
+#: ../../source/portal-components/document-table/index.rst:256
 msgid ""
 "Replace code in HTML files: replace "
 "``ic:ch.ivy.addon.portalkit.component.document.DocumentTable`` with "
 "``ic:com.axonivy.portal.components.DocumentTable``."
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:221
+#: ../../source/portal-components/document-table/index.rst:258
 msgid ""
 "Consider updating value of the new attributes "
 "``enableScriptCheckingForUploadedDocument``, "
@@ -759,41 +856,41 @@ msgid ""
 "as required."
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:223
+#: ../../source/portal-components/document-table/index.rst:260
 msgid "Override subprocesses if you want and adapt your business accordingly."
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:226
+#: ../../source/portal-components/document-table/index.rst:263
 msgid "New subprocess"
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:226
+#: ../../source/portal-components/document-table/index.rst:263
 msgid "Deprecated subprocess"
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:228
+#: ../../source/portal-components/document-table/index.rst:265
 msgid "GetDocumentList"
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:230
+#: ../../source/portal-components/document-table/index.rst:267
 msgid "UploadDocument"
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:232
+#: ../../source/portal-components/document-table/index.rst:269
 msgid "DeleteDocument"
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:234
+#: ../../source/portal-components/document-table/index.rst:271
 msgid "DownloadDocument"
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:237
+#: ../../source/portal-components/document-table/index.rst:274
 msgid ""
 "If you have customized IvyDocument make sure to extend it from class "
 "``com.axonivy.portal.components.ivydata.bo.IvyDocument``."
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:239
+#: ../../source/portal-components/document-table/index.rst:276
 msgid ""
 "Attributes ``typeSelectionItems`` and ``selectedType`` now use "
 "``com.axonivy.portal.components.enums.DocumentType``. Please replace "
@@ -801,7 +898,7 @@ msgid ""
 "``com.axonivy.portal.components.enums.DocumentType``."
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:243
+#: ../../source/portal-components/document-table/index.rst:280
 msgid ""
 "Please remove redundant overridden configurations, subprocesses, and data"
 " classes such as GetDocumentListOverride, UploadDocumentOverride, etc."
@@ -2261,3 +2358,10 @@ msgstr ""
 #~ " customize."
 #~ msgstr ""
 
+#~ msgid ""
+#~ "After you get the document list "
+#~ "from DMS, convert it into "
+#~ "``List<ch.ivy.addon.portal.component.ivydata.bo.IvyDocument>`` "
+#~ "These fields are mandatory when mapping:"
+#~ " ``id``, ``name``, ``contentType``"
+#~ msgstr ""

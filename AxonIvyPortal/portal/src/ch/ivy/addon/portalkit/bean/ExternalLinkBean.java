@@ -17,7 +17,7 @@ import org.apache.logging.log4j.util.Strings;
 import org.primefaces.PrimeFaces;
 import org.primefaces.event.FileUploadEvent;
 
-import com.axonivy.portal.service.DeepLTranslationService;
+import com.axonivy.portal.service.IvyTranslationService;
 import com.axonivy.portal.util.ExternalLinkUtils;
 import com.axonivy.portal.util.UploadDocumentUtils;
 
@@ -163,12 +163,12 @@ public class ExternalLinkBean implements Serializable, IMultiLanguage {
           .filter(lang -> currentLanguage.equals(lang.getLocale().getLanguage())).findFirst();
       if (optional.isPresent()) {
         try {
-          translatedText = DeepLTranslationService.getInstance().translate(optional.get().getValue(),
+          translatedText = IvyTranslationService.getInstance().translate(optional.get().getValue(),
               optional.get().getLocale(), title.getLocale());
         } catch (Exception e) {
           warningText = Ivy.cms()
               .co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/SomeThingWentWrong");
-          Ivy.log().error("DeepL Translation Service error: ", e.getMessage());
+          Ivy.log().error("Ivy Translation Service error: ", e.getMessage());
         }
       }
     }

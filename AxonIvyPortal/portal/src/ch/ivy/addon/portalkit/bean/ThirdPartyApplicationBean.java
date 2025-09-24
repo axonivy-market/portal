@@ -26,7 +26,7 @@ import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import com.axonivy.portal.components.util.FacesMessageUtils;
 import com.axonivy.portal.components.util.Locales;
 import com.axonivy.portal.components.util.RoleUtils;
-import com.axonivy.portal.service.DeepLTranslationService;
+import com.axonivy.portal.service.IvyTranslationService;
 
 import ch.ivy.addon.portalkit.comparator.ApplicationIndexAscendingComparator;
 import ch.ivy.addon.portalkit.configuration.Application;
@@ -429,12 +429,12 @@ public class ThirdPartyApplicationBean implements Serializable {
             .filter(lang -> currentLanguage.equals(lang.getLocale().getLanguage())).findFirst();
         if (optional.isPresent()) {
           try {
-            translatedText = DeepLTranslationService.getInstance().translate(optional.get().getValue(),
+            translatedText = IvyTranslationService.getInstance().translate(optional.get().getValue(),
                 optional.get().getLocale(), title.getLocale());
           } catch (Exception e) {
             warningText =
                 Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/SomeThingWentWrong");
-            Ivy.log().error("DeepL Translation Service error: ", e.getMessage());
+            Ivy.log().error("Ivy Translation Service error: ", e.getMessage());
           }
         }
       }
@@ -506,7 +506,7 @@ public class ThirdPartyApplicationBean implements Serializable {
   }
 
   public boolean isShowTranslation(DisplayName title) {
-    return DeepLTranslationService.getInstance().isShowTranslation(title.getLocale());
+    return IvyTranslationService.getInstance().isShowTranslation(title.getLocale());
   }
 
   public boolean isFocus(DisplayName title) {

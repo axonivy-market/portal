@@ -430,7 +430,7 @@
             "import com.axonivy.portal.components.document.DocumentCustomField;",
             "",
             "if (in.typeColumnRendered) {",
-            "  String stringField = DocumentCustomField.TYPE_PREFIX + in.uploadedDocument.getId();",
+            "  String stringField = DocumentCustomField.TYPE_PREFIX + in.uploadedDocument.uuid();",
             "  in.ivyCase.customFields().stringField(stringField).set(in.typeSelection.name());",
             "}"
           ]
@@ -611,5 +611,139 @@
       "connect" : [
         { "id" : "f59", "to" : "f56" }
       ]
+    }, {
+      "id" : "f60",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "renameDocument()",
+      "config" : {
+        "signature" : "renameDocument",
+        "guid" : "19931978EF7DB446"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 1024 }
+      },
+      "connect" : [
+        { "id" : "f61", "to" : "f62" }
+      ]
+    }, {
+      "id" : "f62",
+      "type" : "SubProcessCall",
+      "name" : "Rename Document",
+      "config" : {
+        "processCall" : "Functional Processes/RenameDocumentItem:renameDocumentItem(ch.ivyteam.ivy.workflow.ICase,com.axonivy.portal.components.ivydata.bo.IvyDocument)",
+        "call" : {
+          "map" : {
+            "param.businessCase" : "in.ivyCase",
+            "param.document" : "in.selectedDocument"
+          }
+        },
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.isRenameDocumentSuccess" : "result.isSuccess",
+            "out.renameDocumentMessage" : "result.message"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 256, "y" : 1024 }
+      },
+      "connect" : [
+        { "id" : "f63", "to" : "f64" }
+      ]
+    }, {
+      "id" : "f64",
+      "type" : "Alternative",
+      "name" : "rename successfully?",
+      "config" : {
+        "conditions" : {
+          "f65" : "in.isRenameDocumentSuccess"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 392, "y" : 1024 },
+        "labelOffset" : { "x" : 24, "y" : -24 }
+      },
+      "connect" : [
+        { "id" : "f65", "to" : "f67", "label" : {
+            "name" : "Yes"
+          } },
+        { "id" : "f66", "to" : "f69", "label" : {
+            "name" : "No"
+          } }
+      ]
+    }, {
+      "id" : "f67",
+      "type" : "Script",
+      "name" : "Show success message",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.components.util.FacesMessageUtils;",
+            "import javax.faces.context.FacesContext;",
+            "",
+            "String successMsg = ivy.cms.co(\"/Dialogs/com/axonivy/portal/components/DocumentTable/RenamingDocumentSuccess\");",
+            "FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.sanitizedMessage(successMsg, \"\" ));"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 528, "y" : 1024 }
+      },
+      "connect" : [
+        { "id" : "f68", "to" : "f71" }
+      ]
+    }, {
+      "id" : "f69",
+      "type" : "Script",
+      "name" : "Show error message",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.components.util.FacesMessageUtils;",
+            "import javax.faces.application.FacesMessage;",
+            "import javax.faces.context.FacesContext;",
+            "",
+            "FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR, in.renameDocumentMessage, null));"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 392, "y" : 1144 }
+      },
+      "connect" : [
+        { "id" : "f70", "to" : "f71", "via" : [ { "x" : 688, "y" : 1144 } ] }
+      ]
+    }, {
+      "id" : "f71",
+      "type" : "SubProcessCall",
+      "name" : "Find documents",
+      "config" : {
+        "processCall" : "Functional Processes/GetDocumentItems:getDocumentItems(ch.ivyteam.ivy.workflow.ICase)",
+        "call" : {
+          "map" : {
+            "param.businessCase" : "in.ivyCase"
+          }
+        },
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.documents" : "result.documents"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 688, "y" : 1024 }
+      },
+      "connect" : [
+        { "id" : "f72", "to" : "f73" }
+      ]
+    }, {
+      "id" : "f73",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 800, "y" : 1024 },
+        "labelOffset" : { "x" : 10, "y" : 30 }
+      }
     } ]
 }

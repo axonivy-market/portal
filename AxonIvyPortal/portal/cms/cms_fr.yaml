@@ -236,7 +236,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       checkSystemNotesByDefault: Si la valeur est vraie et que les notes système sont visibles, la case à cocher apparaîtra comme cochée.
       checkSystemTasksByDefault: Si la valeur est vraie et que les tâches système sont visibles, la case à cocher apparaîtra cochée.
       dateFilterWithTime: Défini à true pour activer le filtrage de la date avec l'heure. Ce paramètre s'applique à la liste des tâches, à la liste des cas et aux statistiques.
-      deepLAuthKey: DeepL Clé d'authentification (doit se terminer par :fx)
       defaultHomepage: Pour définir la page d'accueil standard vers laquelle sera redirigée la personne qui clique sur l'icône d'accueil ou le logo. Ce paramètre s'applique également à la page de fin après avoir terminé une tâche.
       defaultProcessImage: Le paramètre standard de l'image par défaut qui sera affichée dans la liste de traitement des images.
       defaultProcessMode: Le paramètre standard du mode d'affichage dans la liste des processus.
@@ -254,7 +253,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       embedInFrame: Régler sur true pour démarrer un processus/tâche en mode IFrame
       enableCaseOwner: Réglé sur true pour activer le filtrage du propriétaire de cas lorsque les cas sont interrogés. Ce paramètre affecte toutes les requêtes de cas, par exemple pour la liste des cas, la recherche globale, les statistiques. Cela rend également disponible le filtre "Filtrer les tâches
         par propriétaire actuel du dossier" dans le widget de tâches, qui est masqué par défaut.
-      enableDeepLTranslation: Attribuez la valeur true à cette propriété pour activer la prise en charge de la traduction de DeepL.
       enableDocumentPreview: 'Définir sur "true" pour activer l''aperçu des documents pour certains types de fichiers. Les types de fichiers pris en charge sont : pdf, png, jpeg, jpg, txt, log.'
       enableGroupChat: Définissez cette propriété sur true pour activer la fonction de chat de groupe
       enablePinCase: Définissez cette propriété sur true pour activer la possibilité d’épingler des cas.
@@ -262,6 +260,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       enablePrivateChat: Définissez cette propriété à true pour activer la fonction de chat privé
       enableProcessViewer: Définissez cette propriété à true pour activer l'option de visualisation de processus dans les actions de Task/Case.
       enableScriptCheckingForUploadedDocumentNote: Défini sur true pour activer la vérification de script pour le document téléchargé. Actuellement, cette fonction prend en charge la vérification de PDF, Excel, Word.
+      enableTranslationService: Définissez cette propriété sur true pour activer le service de traduction
       enableVirusScannerForUploadedDocumentNote: Définie sur true pour activer le scanner de virus pour le document téléchargé. Actuellement, cette fonction utilise l'API VIRUSTOTAL.
       hideCaseCreator: |-
         La valeur "true" permet de masquer le créateur du dossier dans la liste des dossiers, le widget du dossier et les détails du dossier.
@@ -479,7 +478,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     continue: Continuer
     create: Créé
     creationDate: Date de création
-    dashboard: Dashboard
+    dashboard: Tableau de bord
     data: Données
     dateFromBiggerThanTo: '"Au" doit être ultérieur à "Depuis"'
     dateRequired: La date doit être remplie
@@ -943,7 +942,13 @@ ch.ivy.addon.portalkit.ui.jsf:
   dashboardProcess:
     processAriaLabel: 'Nom du processus : {0}. Description du processus : {1}'
   documentFiles:
+    FilenameEmpty: Le nom du fichier ne peut pas être vide.
     PreviewDocument: Aperçu
+    RenameFile: Renommer le fichier
+    RenamingDocument: Renommer le document
+    RenamingDocumentNote: '{0} a renommé le fichier {1} en {2}'
+    RenamingDocumentSuccess: Renommé avec succès.
+    RenamingFailed: Une erreur s'est produite lors du renommage du document.
     deleteDocumentNote: '{0} a supprimé(e) {1}'
     deleteSuceed: Le fichier a été supprimé avec succès
     download: Télécharger

@@ -4,6 +4,10 @@ function hideBreadcrumb() {
   }
 }
 
+function updateHeadingRole() {
+  $('a.breadcrumb-current-item span.ui-menuitem-text').attr("role", "heading").attr("aria-level", "1");
+}
+
 /**
  * This function handles the reverse process of Java's URL encoding of base64 strings.
  * Java side: URL.encode(Base64.encode(originalUrl)) 
@@ -82,6 +86,7 @@ function updateMenuHref() {
 // Initial update when page loads
 updateMenuHref();
 updateMainMenuAriaLabel();
+updateHeadingRole();
 
 // Reapply update after each PrimeFaces AJAX update to ensure URLs remain correct
 // This is necessary because PrimeFaces AJAX updates may re-render menu components

@@ -68,10 +68,10 @@ To customize how **Document Table** gets documents, create a callable subprocess
 | message                | java.lang.String                                                     |
 +------------------------+----------------------------------------------------------------------+
 
-.. note::
+.. important::
 
    After you get the document list from DMS, convert it into ``List<ch.ivy.addon.portal.component.ivydata.bo.IvyDocument>``
-   These fields are mandatory when mapping: ``id``, ``name``, ``contentType``
+   These fields are mandatory when mapping: ``id``, ``uuid``, ``name``, ``contentType``
 
 Upload document
 ---------------
@@ -148,6 +148,43 @@ create a callable subprocess with:
 +------------------------+------------------------------------------------------+
 | message                | java.lang.String                                     |
 +------------------------+------------------------------------------------------+
+
+Rename document
+---------------
+
+To customize behavior when a user rename a document from **Document Table**,
+create a callable subprocess with:
+
+**Signature**: portalRenameDocumentItem
+
++------------------------+------------------------------------------------------+--------------------------------+
+| Name                   | Type                                                 | Note                           |
++========================+======================================================+================================+
+| **Parameter**                                                                                                  |
++------------------------+------------------------------------------------------+--------------------------------+
+| businessCase           | ch.ivyteam.ivy.workflow.ICase                        |                                |
++------------------------+------------------------------------------------------+--------------------------------+
+| document               | com.axonivy.portal.components.ivydata.bo.IvyDocument |                                |
++------------------------+------------------------------------------------------+--------------------------------+
+|**Result**                                                                                                      |
++------------------------+------------------------------------------------------+--------------------------------+
+| message                | java.lang.String                                     |                                |
++------------------------+------------------------------------------------------+--------------------------------+
+| isSuccess              | java.lang.Boolean                                    | rename successfully or not     |
++------------------------+------------------------------------------------------+--------------------------------+
+| status                 | java.lang.String                                     | OK or SKIP                     |
++------------------------+------------------------------------------------------+--------------------------------+
+
+
+The parameters of the callable subprocess data contain the Ivy ``document`` to update, the new filename
+should be already modified in the document's name attribute.
+
+Portal will call subprocesses with the above details in the same security context and then
+get result where:
+
+   - ``message``: the message to inform the user that their new filename is successfully updated or invalid to use.
+   - ``isSuccess``: ``true`` if the document's name is successfully updated, otherwise ``false``.
+   - ``status``: ``SKIP`` if customized process skipped updating the filename.
 
 User interface
 --------------
