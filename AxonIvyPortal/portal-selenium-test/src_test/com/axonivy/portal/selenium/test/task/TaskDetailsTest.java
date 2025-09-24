@@ -137,6 +137,7 @@ public class TaskDetailsTest extends BaseTest {
     taskWidget.addFilter("Name", FilterOperator.IS);
     taskWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "Sick Leave Request");
     taskWidget.applyFilter();
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_DETAIL_FOLDER + "testShowTaskStatusBannerOnTaskDetails2-testFilterSickLeaveRequest");
     taskWidget.destroyTask(0);
     taskWidget.openDashboardTaskDetails("Sick Leave Request");
     taskDetailsPage = new TaskDetailsPage();
