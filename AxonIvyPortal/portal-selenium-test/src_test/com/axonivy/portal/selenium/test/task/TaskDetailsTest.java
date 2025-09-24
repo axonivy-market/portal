@@ -148,14 +148,20 @@ public class TaskDetailsTest extends BaseTest {
     redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
     NavigationHelper.navigateToTaskList();
     taskWidget = new TopMenuTaskWidgetPage();
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_DETAIL_FOLDER + "testShowTaskStatusBannerOnTaskDetails3-checkTechnicalCase");
     taskWidget.openFilterWidget();
     taskWidget.removeFilter(0);
     taskWidget.addFilter("Name", FilterOperator.IS);
     taskWidget.inputValueOnLatestFilter(FilterValueType.TEXT, TAKE_ORDER);
     taskWidget.applyFilter();
     taskWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_DETAIL_FOLDER + "testShowTaskStatusBannerOnTaskDetails3-takeOrder");
     taskWidget.startTask(0);
+    // at this stage, start task then it's done
+    // user will be redirected to task list
+    // then we should click on the task again to go to task detail as I observe
+    taskWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
+    refreshPage();
+    taskWidget.clickOnTaskName(TAKE_ORDER);
     taskDetailsPage = new TaskDetailsPage();
     taskDetailsPage.waitForPageLoad();
     taskDetailsPage.getStatusBanner().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
