@@ -141,6 +141,7 @@ public class TaskDetailsTest extends BaseTest {
     taskWidget.destroyTask(0);
     taskWidget.openDashboardTaskDetails("Sick Leave Request");
     taskDetailsPage = new TaskDetailsPage();
+    taskDetailsPage.waitForPageLoad();
     taskDetailsPage.getStatusBanner().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_DETAIL_FOLDER + "testShowTaskStatusBannerOnTaskDetails3-statusBanner");
 
@@ -154,6 +155,7 @@ public class TaskDetailsTest extends BaseTest {
     taskWidget.applyFilter();
     taskWidget.startTask(0);
     taskDetailsPage = new TaskDetailsPage();
+    taskDetailsPage.waitForPageLoad();
     taskDetailsPage.getStatusBanner().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_DETAIL_FOLDER + "testShowTaskStatusBannerOnTaskDetails4-statusBanner");
 
@@ -164,6 +166,7 @@ public class TaskDetailsTest extends BaseTest {
     taskWidget.applyFilter();
     taskWidget.openDashboardTaskDetails(TAKE_ORDER);
     taskDetailsPage = new TaskDetailsPage();
+    taskDetailsPage.waitForPageLoad();
     taskDetailsPage.getStatusBanner().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_DETAIL_FOLDER + "testShowTaskStatusBannerOnTaskDetails5-statusBanner");
   }
