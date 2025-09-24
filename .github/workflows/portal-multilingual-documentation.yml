@@ -18,7 +18,7 @@ on:
     inputs:
       ivyVersion:
         description: 'Ivy version use to replace |version| placeholder of the links which navigate to ivy documentation. e.g.: https://developer.axonivy.com/doc/nightly/designer-guide/configuration/variables.html'
-        default: 'nightly'
+        default: 'nightly-12'
         required: true
 
   push:
@@ -72,7 +72,7 @@ jobs:
 
       - name: Generate resources
         run: |
-          mvn clean process-resources -Divy.engine.version=[13.1.0,] -Divy.engine.download.url=https://developer.axonivy.com/permalink/nightly/axonivy-engine.zip -f Documentation/public-api/pom.xml
+          mvn clean process-resources -Divy.engine.version=[12.0.0,] -Divy.engine.download.url=https://developer.axonivy.com/permalink/nightly/axonivy-engine.zip -f Documentation/public-api/pom.xml
           mvn clean generate-resources -f Documentation/pom.xml
       - name: Run substitute
         shell: bash
