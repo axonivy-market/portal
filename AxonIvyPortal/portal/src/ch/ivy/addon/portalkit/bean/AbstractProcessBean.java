@@ -26,6 +26,7 @@ import ch.ivy.addon.portalkit.enums.ProcessType;
 import ch.ivy.addon.portalkit.mapper.UserProcessMapper;
 import ch.ivy.addon.portalkit.service.ExternalLinkService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
+import ch.ivy.addon.portalkit.util.RequestUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.request.IHttpResponse;
 import ch.ivyteam.ivy.security.exec.Sudo;
@@ -89,14 +90,15 @@ public abstract class AbstractProcessBean implements Serializable {
       FacesContext.getCurrentInstance().getExternalContext().redirect(link);
       return;
     }
-    String processId = getWebStartableProcessId(process, StringUtils.EMPTY);
     
-    IWebStartable iWebStartable = processId.isEmpty() ? findWebstartableByProcessId(process.getId()) : findWebstartableByProcessId(processId);
-
+    String processId = getWebStartableProcessId(process, StringUtils.EMPTY);
+    IWebStartable iWebStartable = processId.isEmpty() ? findIWebStartableByProcessId(process.getId()) : findIWebStartableByProcessId(processId);
+    
+    // Check if embedInFrame is set to false in request tab
     if (iWebStartable != null) {
       String embedInFrame = iWebStartable.customFields().value("embedInFrame");
       if (embedInFrame != null && "false".equals(embedInFrame)) {
-          IHttpResponse.current().sendRedirect(link);
+          RequestUtils.redirect(link);
           return;
       }
     }
@@ -107,7 +109,7 @@ public abstract class AbstractProcessBean implements Serializable {
     FacesContext.getCurrentInstance().getExternalContext().redirect(link + "embedInFrame");
   }
   
-  public IWebStartable findWebstartableByProcessId(String id) {
+  public IWebStartable findIWebStartableByProcessId(String id) {
     return Sudo.get(() -> {
       return Ivy.session().findStartable(id)
           .orElse(null);
