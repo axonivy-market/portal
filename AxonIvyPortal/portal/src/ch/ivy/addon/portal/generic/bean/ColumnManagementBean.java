@@ -493,7 +493,7 @@ public class ColumnManagementBean implements Serializable, IMultiLanguage {
 
 
   public void updateNameByLocale() {
-    if (this.fieldDisplayNames == null) {
+    if (this.fieldDisplayNames.isEmpty()) {
       updateFieldDisplayNames();
     }
     DisplayNameConvertor.setValue(fieldDisplayName, fieldDisplayNames);
