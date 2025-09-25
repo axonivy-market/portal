@@ -60,17 +60,19 @@ public class IFrameService {
    * @return whether request start has embed in IFrame
    */
   public static String embedInFrame(DashboardProcess process) {
-    String embedInFrame = null;
     Object nestedProcess = process.getProcess();
     if (nestedProcess instanceof IWebStartable) {
-      embedInFrame = ((IWebStartable) nestedProcess).customFields().value(CustomFields.EMBED_IN_FRAME);
-      return embedInFrame == null ? StringUtils.EMPTY : embedInFrame;
+      return getEmbedInFrameCustomField((IWebStartable) nestedProcess);
     }
     IWebStartable startableProcess = Ivy.wf().findStartable(process.getId()).orElse(null);
     if (startableProcess == null) {
       return StringUtils.EMPTY;
     }
-    embedInFrame = startableProcess.customFields().value(CustomFields.EMBED_IN_FRAME);
-    return embedInFrame == null ? StringUtils.EMPTY : embedInFrame;
+    return getEmbedInFrameCustomField(startableProcess);
+  }
+  
+  private static String getEmbedInFrameCustomField(IWebStartable process) {
+    String embedInFrame = process.customFields().value(CustomFields.EMBED_IN_FRAME);
+    return embedInFrame != null ? embedInFrame : StringUtils.EMPTY;
   }
 }
