@@ -30,6 +30,7 @@ import ch.ivy.addon.portalkit.dto.dashboard.process.DashboardProcess;
 import ch.ivy.addon.portalkit.enums.DashboardStandardProcessColumn;
 import ch.ivy.addon.portalkit.enums.ProcessSorting;
 import ch.ivy.addon.portalkit.jsf.ManagedBeans;
+import ch.ivy.addon.portalkit.service.IFrameService;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 import ch.ivy.addon.portalkit.util.RequestUtils;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -180,16 +181,13 @@ public class CompactDashboardProcessBean
       return;
     }
     
-    IWebStartable iWebStartable = dashboardProcessBean.findIWebStartableByProcessId(process.getId());
-    if (iWebStartable != null) {
-      String embedInFrame = iWebStartable.customFields().value("embedInFrame");
-      if (embedInFrame != null && "false".equals(embedInFrame)) {
-          RequestUtils.redirect(link);
-          return;
-      }
+    String embedInFrameFromRequestStart = IFrameService.embedInFrame(process);
+    if (embedInFrameFromRequestStart.isEmpty() || "true".equals(embedInFrameFromRequestStart)) {
+      dashboardProcessBean.redirectToLink(link, true);
+      return;
     }
+    RequestUtils.redirect(link);
     
-    dashboardProcessBean.redirectToLink(link, true);
   }
 
   private void handleNavigateAsAiResult(DashboardProcess process, String link) {

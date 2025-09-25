@@ -1,9 +1,13 @@
 package ch.ivy.addon.portalkit.service;
 
+import org.apache.commons.lang3.StringUtils;
+
 import ch.ivy.addon.portalkit.constant.CustomFields;
+import ch.ivy.addon.portalkit.dto.dashboard.process.DashboardProcess;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.ITask;
+import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
 public class IFrameService {
 
@@ -49,5 +53,14 @@ public class IFrameService {
       embedInIFrame = task.getCase().customFields().stringField(CustomFields.EMBED_IN_FRAME).getOrNull();
     }
     return embedInIFrame != null ? Boolean.valueOf(embedInIFrame) : null;
+  }
+  
+  public static String embedInFrame(DashboardProcess process) {
+    IWebStartable startableProcess = Ivy.wf().findStartable(process.getId()).orElse(null);
+    if (startableProcess == null) {
+      return StringUtils.EMPTY;
+    }
+    String embedInFrame = startableProcess.customFields().value(CustomFields.EMBED_IN_FRAME);
+    return embedInFrame == null ? StringUtils.EMPTY : embedInFrame;
   }
 }
