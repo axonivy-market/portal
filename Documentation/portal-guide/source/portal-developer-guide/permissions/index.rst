@@ -51,7 +51,7 @@ Portal Task Permissions
     - Permission to reset all tasks
 
 - _`TaskDestroy`
-    - Permission to execute the Destroy Task action
+    - Permission to see the Destroy Task action
 
 - _`TaskWriteExpiryTimestamp`   
     - Control whether to change the deadline
@@ -83,7 +83,7 @@ Portal Task Permissions
     - Permission to see the Workflow Event action
 
 - _`TaskDisplayDestroyAction`
-    - Permission to see the Destroy Task action
+    - Permission to see the Destroy action
 
 - _`TaskResetReadyForJoin`
     - Permission to reset tasks that are in state Ready for Join
