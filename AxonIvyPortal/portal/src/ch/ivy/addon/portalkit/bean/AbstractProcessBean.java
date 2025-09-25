@@ -60,15 +60,6 @@ public abstract class AbstractProcessBean implements Serializable {
     }
     return processId;
   }
-  
-  private String getEmbedInFrameFromProcessRequestStart(Process process) {
-    Object nestedProcess = process.getProcess();
-    if (nestedProcess instanceof IWebStartable) {
-      String embedInFrame = ((IWebStartable) nestedProcess).customFields().value(CustomFields.EMBED_IN_FRAME);
-      return embedInFrame == null ? StringUtils.EMPTY : embedInFrame;
-    }
-    return StringUtils.EMPTY;
-  }
 
   protected abstract List<Process> findProcesses();
 
@@ -99,12 +90,14 @@ public abstract class AbstractProcessBean implements Serializable {
     }
     
     // Check if embedInFrame is set to false in request tab
-    String embedInFrame = getEmbedInFrameFromProcessRequestStart(process);
-    if ("false".equals(embedInFrame)) {
+    if (process instanceof IWebStartable) {
+      String embedInFrame = ((IWebStartable) process).customFields().value(CustomFields.EMBED_IN_FRAME);
+      if ("false".equals(embedInFrame)) {
         RequestUtils.redirect(link);
         return;
+      }
     }
- 
+
     link += link.contains("?") ? "&" : "?";
     // Put the "embedInIFrame" param to the task start link to open it in the DefaultFramePage process
     // Then this process will open task in IFrame or not based on its "embedInIFrame" String custom field

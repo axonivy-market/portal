@@ -54,13 +54,23 @@ public class IFrameService {
     }
     return embedInIFrame != null ? Boolean.valueOf(embedInIFrame) : null;
   }
-  
+
+  /**
+   * @param process
+   * @return whether request start has embed in IFrame
+   */
   public static String embedInFrame(DashboardProcess process) {
+    String embedInFrame = null;
+    Object nestedProcess = process.getProcess();
+    if (nestedProcess instanceof IWebStartable) {
+      embedInFrame = ((IWebStartable) nestedProcess).customFields().value(CustomFields.EMBED_IN_FRAME);
+      return embedInFrame == null ? StringUtils.EMPTY : embedInFrame;
+    }
     IWebStartable startableProcess = Ivy.wf().findStartable(process.getId()).orElse(null);
     if (startableProcess == null) {
       return StringUtils.EMPTY;
     }
-    String embedInFrame = startableProcess.customFields().value(CustomFields.EMBED_IN_FRAME);
+    embedInFrame = startableProcess.customFields().value(CustomFields.EMBED_IN_FRAME);
     return embedInFrame == null ? StringUtils.EMPTY : embedInFrame;
   }
 }
