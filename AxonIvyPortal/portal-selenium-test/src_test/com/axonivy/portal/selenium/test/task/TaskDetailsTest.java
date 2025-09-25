@@ -67,23 +67,28 @@ public class TaskDetailsTest extends BaseTest {
   }
 
   @Test
-  public void testVisibilityOfNotesWhenAddNoteOnTaskDetailsWithTechnicalCase() {
+  public void testVisibilityOfNotesWhenAddNoteOnTaskDetailsWithTechnicalCase() throws IOException {
     redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
     login(TestAccount.ADMIN_USER);
     redirectToNewDashBoard();
     MainMenuPage mainMenuPage = new MainMenuPage();
     mainMenuPage.openTaskList();
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_DETAIL_FOLDER + "testVisibilityOfNotesWhenAddNoteOnTaskDetailsWithTechnicalCase1-checkTasks");
     TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
     taskWidget.openDashboardTaskDetails(TAKE_ORDER);
+    taskWidget.waitForPageLoad();
     TaskDetailsPage taskDetailsPage = new TaskDetailsPage();
     taskDetailsPage.addNote(NOTE_TASK_DETAIL_TECHNICAL_CASE);
     taskDetailsPage.getNotesWithContent(NOTE_TASK_DETAIL_TECHNICAL_CASE).shouldHave(size(1));
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_DETAIL_FOLDER + "testVisibilityOfNotesWhenAddNoteOnTaskDetailsWithTechnicalCase2-addNotes");
     CaseDetailsPage caseDetailsPage = taskDetailsPage.gotoTechnicalCase();
     caseDetailsPage.getHitoriesComponent().shouldHave(sizeGreaterThanOrEqual(1));
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_DETAIL_FOLDER + "testVisibilityOfNotesWhenAddNoteOnTaskDetailsWithTechnicalCase3-technicalCases");
     caseDetailsPage.getNotesWithContent(NOTE_TASK_DETAIL_TECHNICAL_CASE).shouldHave(size(1));
     caseDetailsPage.gotoBusinessCase();
     caseDetailsPage.getHitoriesComponent().shouldHave(sizeGreaterThanOrEqual(1));
     caseDetailsPage.getNotesWithContent(NOTE_TASK_DETAIL_TECHNICAL_CASE).shouldHave(size(1));
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_DETAIL_FOLDER + "testVisibilityOfNotesWhenAddNoteOnTaskDetailsWithTechnicalCase4-businessCase");
   }
 
   @Test
