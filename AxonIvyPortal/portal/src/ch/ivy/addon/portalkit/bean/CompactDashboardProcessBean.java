@@ -34,8 +34,6 @@ import ch.ivy.addon.portalkit.service.IFrameService;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 import ch.ivy.addon.portalkit.util.RequestUtils;
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.request.IHttpResponse;
-import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
 @ManagedBean
 @ViewScoped
@@ -182,12 +180,11 @@ public class CompactDashboardProcessBean
     }
     
     String embedInFrameFromRequestStart = IFrameService.embedInFrame(process);
-    if (embedInFrameFromRequestStart.isEmpty() || "true".equals(embedInFrameFromRequestStart)) {
-      dashboardProcessBean.redirectToLink(link, true);
+    if ("false".equals(embedInFrameFromRequestStart)) {
+      RequestUtils.redirect(link);
       return;
     }
-    RequestUtils.redirect(link);
-    
+    dashboardProcessBean.redirectToLink(link, true);
   }
 
   private void handleNavigateAsAiResult(DashboardProcess process, String link) {

@@ -28,8 +28,6 @@ import ch.ivy.addon.portalkit.mapper.UserProcessMapper;
 import ch.ivy.addon.portalkit.service.ExternalLinkService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.util.RequestUtils;
-import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.security.exec.Sudo;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
 public abstract class AbstractProcessBean implements Serializable {
@@ -104,7 +102,7 @@ public abstract class AbstractProcessBean implements Serializable {
     
     // Check if embedInFrame is set to false in request tab
     String embedInFrame = getEmbedInFrameFromProcessRequestStart(process);
-    if (embedInFrame != null && "false".equals(embedInFrame)) {
+    if ("false".equals(embedInFrame)) {
         RequestUtils.redirect(link);
         return;
     }
