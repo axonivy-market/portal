@@ -19,19 +19,35 @@
         <version>2.6</version>
         <executions>
           <execution>
-            <id>copy-javadoc</id>
+            <id>copy-javadoc-en</id>
             <phase>process-resources</phase>
             <goals>
               <goal>copy-resources</goal>
             </goals>
             <configuration>
-              <outputDirectory>build/html/portal-developer-guide/public-api</outputDirectory>
+              <outputDirectory>build/doc/en/portal-developer-guide/public-api</outputDirectory>
               <resources>
                 <resource>
                   <directory>../public-api/target/site/apidocs</directory>
                   <filtering>true</filtering>
                 </resource>
               </resources>
+            </configuration>
+          </execution>
+          <execution>
+            <id>copy-javadoc-ja</id>
+            <phase>process-resources</phase>
+            <goals>
+                <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+                <outputDirectory>build/doc/ja/portal-developer-guide/public-api</outputDirectory>
+                <resources>
+                    <resource>
+                        <directory>../public-api/target/site/apidocs</directory>
+                        <filtering>true</filtering>
+                    </resource>
+                </resources>
             </configuration>
           </execution>
         </executions>
