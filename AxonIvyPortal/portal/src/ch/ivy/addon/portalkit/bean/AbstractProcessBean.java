@@ -90,8 +90,9 @@ public abstract class AbstractProcessBean implements Serializable {
     }
     
     // Check if embedInFrame is set to false in request tab
-    if (process instanceof IWebStartable) {
-      String embedInFrame = ((IWebStartable) process).customFields().value(CustomFields.EMBED_IN_FRAME);
+    Object nestedProcess = process.getProcess();
+    if (nestedProcess instanceof IWebStartable) {
+      String embedInFrame = ((IWebStartable) nestedProcess).customFields().value(CustomFields.EMBED_IN_FRAME);
       if ("false".equals(embedInFrame)) {
         RequestUtils.redirect(link);
         return;
