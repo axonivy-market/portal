@@ -1,5 +1,7 @@
 package com.axonivy.portal.selenium.test.task;
 
+import java.io.IOException;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -7,6 +9,7 @@ import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.FilterOperator;
 import com.axonivy.portal.selenium.common.FilterValueType;
+import com.axonivy.portal.selenium.common.ScreenshotUtils;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.page.MainMenuPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
@@ -70,12 +73,13 @@ public class CustomTaskDelegateTest extends BaseTest {
   }
 
   @Test
-  public void testCustomTaskDelegateNoDelegateOption() {
+  public void testCustomTaskDelegateNoDelegateOption() throws IOException {
     login(TestAccount.GUEST_USER);
     openDashboard();
     MainMenuPage menu = new MainMenuPage();
     menu.openTaskList();
     TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_DETAIL_FOLDER + "testCustomTaskDelegateNoDelegateOption1-checkLoginUser");
     taskWidget.openFilterWidget();
     taskWidget.addFilter("Name", FilterOperator.IS);
     taskWidget.inputValueOnLatestFilter(FilterValueType.TEXT, MATERNITY_LEAVE_REQUEST);
@@ -83,8 +87,10 @@ public class CustomTaskDelegateTest extends BaseTest {
     taskWidget.inputValueOnLatestFilter(FilterValueType.STATE_TYPE, "Open");
     taskWidget.applyFilter();
     taskWidget.openTaskDelegateDialog(0);
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_DETAIL_FOLDER + "testCustomTaskDelegateNoDelegateOption2-checkDelegate");
     assertFalse(taskWidget.isDelegateTypeAvailable());
     assertEquals("This task cannot be delegated to any other user or group.", taskWidget.getCannotDelegateText());
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_DETAIL_FOLDER + "testCustomTaskDelegateNoDelegateOption3-checkMessage");
   }
 
   private void openDashboard() {
