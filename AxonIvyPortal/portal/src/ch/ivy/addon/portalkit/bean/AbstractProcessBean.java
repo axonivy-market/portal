@@ -98,8 +98,6 @@ public abstract class AbstractProcessBean implements Serializable {
       return;
     }
     
-    
-    
     // Check if embedInFrame is set to false in request tab
     String embedInFrame = getEmbedInFrameFromProcessRequestStart(process);
     if ("false".equals(embedInFrame)) {
