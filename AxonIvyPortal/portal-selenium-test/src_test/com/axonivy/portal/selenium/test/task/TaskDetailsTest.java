@@ -49,7 +49,7 @@ public class TaskDetailsTest extends BaseTest {
   }
 
   @Test
-  public void testVisibilityOfNotesWhenAddNoteOnTaskDetailsWithoutTechnicalCase() {
+  public void testVisibilityOfNotesWhenAddNoteOnTaskDetailsWithoutTechnicalCase() throws IOException {
     redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
     login(TestAccount.ADMIN_USER);
     redirectToNewDashBoard();
@@ -58,12 +58,16 @@ public class TaskDetailsTest extends BaseTest {
     TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
     taskWidget.openDashboardTaskDetails(ORDER_PIZZA);
     TaskDetailsPage taskDetailsPage = new TaskDetailsPage();
+    taskDetailsPage.waitForPageLoad();
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_DETAIL_FOLDER + "testVisibilityOfNotesWhenAddNoteOnTaskDetailsWithoutTechnicalCase1-checkTasks");
     taskDetailsPage.addNote(NOTE_TASK_DETAIL_BUSINESS_CASE);
     taskDetailsPage.getNotesWithContent(NOTE_TASK_DETAIL_BUSINESS_CASE).shouldHave(size(1));
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_DETAIL_FOLDER + "testVisibilityOfNotesWhenAddNoteOnTaskDetailsWithoutTechnicalCase2-checkTasks");
     taskDetailsPage.gotoBusinessCase();
     CaseDetailsPage caseDetailsPage = new CaseDetailsPage();
     caseDetailsPage.getHitoriesComponent().shouldHave(sizeGreaterThanOrEqual(1));
     caseDetailsPage.getNotesWithContent(NOTE_TASK_DETAIL_BUSINESS_CASE).shouldHave(size(1));
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_DETAIL_FOLDER + "testVisibilityOfNotesWhenAddNoteOnTaskDetailsWithoutTechnicalCase3-checkTasks");
   }
 
   @Test
@@ -77,17 +81,19 @@ public class TaskDetailsTest extends BaseTest {
     TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
     taskWidget.openDashboardTaskDetails(TAKE_ORDER);
     TaskDetailsPage taskDetailsPage = new TaskDetailsPage();
+    taskDetailsPage.waitForPageLoad();
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_DETAIL_FOLDER + "testVisibilityOfNotesWhenAddNoteOnTaskDetailsWithTechnicalCase2-checkIfAddNoteElementExisting");
     taskDetailsPage.addNote(NOTE_TASK_DETAIL_TECHNICAL_CASE);
     taskDetailsPage.getNotesWithContent(NOTE_TASK_DETAIL_TECHNICAL_CASE).shouldHave(size(1));
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_DETAIL_FOLDER + "testVisibilityOfNotesWhenAddNoteOnTaskDetailsWithTechnicalCase2-addNotes");
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_DETAIL_FOLDER + "testVisibilityOfNotesWhenAddNoteOnTaskDetailsWithTechnicalCase3-addNotes");
     CaseDetailsPage caseDetailsPage = taskDetailsPage.gotoTechnicalCase();
     caseDetailsPage.getHitoriesComponent().shouldHave(sizeGreaterThanOrEqual(1));
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_DETAIL_FOLDER + "testVisibilityOfNotesWhenAddNoteOnTaskDetailsWithTechnicalCase3-technicalCases");
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_DETAIL_FOLDER + "testVisibilityOfNotesWhenAddNoteOnTaskDetailsWithTechnicalCase4-technicalCases");
     caseDetailsPage.getNotesWithContent(NOTE_TASK_DETAIL_TECHNICAL_CASE).shouldHave(size(1));
     caseDetailsPage.gotoBusinessCase();
     caseDetailsPage.getHitoriesComponent().shouldHave(sizeGreaterThanOrEqual(1));
     caseDetailsPage.getNotesWithContent(NOTE_TASK_DETAIL_TECHNICAL_CASE).shouldHave(size(1));
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_DETAIL_FOLDER + "testVisibilityOfNotesWhenAddNoteOnTaskDetailsWithTechnicalCase4-businessCase");
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_DETAIL_FOLDER + "testVisibilityOfNotesWhenAddNoteOnTaskDetailsWithTechnicalCase5-businessCase");
   }
 
   @Test
@@ -113,7 +119,7 @@ public class TaskDetailsTest extends BaseTest {
   }
 
   @Test
-  public void testShowTaskStatusBannerOnTaskDetails() throws IOException {
+  public void testShowTaskStatusBannerOnTaskDetails() {
     redirectToRelativeLink(createTestingTasksUrl);
     login(TestAccount.ADMIN_USER);
     resizeBrowserToFullHDResolution();
@@ -122,7 +128,6 @@ public class TaskDetailsTest extends BaseTest {
     redirectToNewDashBoard();
     NavigationHelper.navigateToTaskList();
     TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_DETAIL_FOLDER + "testShowTaskStatusBannerOnTaskDetails1-checkAll");
 
     taskWidget.openDashboardTaskDetails("Maternity Leave Request");
     TaskDetailsPage taskDetailsPage = new TaskDetailsPage();
@@ -133,7 +138,6 @@ public class TaskDetailsTest extends BaseTest {
     taskWidget = new TopMenuTaskWidgetPage();
     taskWidget.openDashboardTaskDetails("Maternity Leave Request");
     taskDetailsPage.getStatusBanner().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_DETAIL_FOLDER + "testShowTaskStatusBannerOnTaskDetails2-checkMaternity");
 
     NavigationHelper.navigateToTaskList();
     taskWidget = new TopMenuTaskWidgetPage();
@@ -141,13 +145,11 @@ public class TaskDetailsTest extends BaseTest {
     taskWidget.addFilter("Name", FilterOperator.IS);
     taskWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "Sick Leave Request");
     taskWidget.applyFilter();
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_DETAIL_FOLDER + "testShowTaskStatusBannerOnTaskDetails2-testFilterSickLeaveRequest");
     taskWidget.destroyTask(0);
     taskWidget.openDashboardTaskDetails("Sick Leave Request");
     taskDetailsPage = new TaskDetailsPage();
     taskDetailsPage.waitForPageLoad();
     taskDetailsPage.getStatusBanner().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_DETAIL_FOLDER + "testShowTaskStatusBannerOnTaskDetails3-statusBanner");
 
     redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
     NavigationHelper.navigateToTaskList();
@@ -158,7 +160,6 @@ public class TaskDetailsTest extends BaseTest {
     taskWidget.inputValueOnLatestFilter(FilterValueType.TEXT, TAKE_ORDER);
     taskWidget.applyFilter();
     taskWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_DETAIL_FOLDER + "testShowTaskStatusBannerOnTaskDetails3-takeOrder");
     taskWidget.startTask(0);
     // at this stage, start task then it's done
     // user will be redirected to task list
@@ -169,7 +170,6 @@ public class TaskDetailsTest extends BaseTest {
     taskDetailsPage = new TaskDetailsPage();
     taskDetailsPage.waitForPageLoad();
     taskDetailsPage.getStatusBanner().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_DETAIL_FOLDER + "testShowTaskStatusBannerOnTaskDetails4-statusBanner");
 
     redirectToNewDashBoard();
     NavigationHelper.navigateToTaskList();
@@ -180,7 +180,6 @@ public class TaskDetailsTest extends BaseTest {
     taskDetailsPage = new TaskDetailsPage();
     taskDetailsPage.waitForPageLoad();
     taskDetailsPage.getStatusBanner().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_DETAIL_FOLDER + "testShowTaskStatusBannerOnTaskDetails5-statusBanner");
   }
   
   @Test
