@@ -21,10 +21,6 @@ on:
         default: 'nightly-12'
         required: true
 
-  push:
-    branches:
-      - feature/IVYPORTAL-19546-Add-Japanese-translation-to-Portal-Documentation-in-Weblate-12
-
 jobs:
   build-document:
     runs-on: ubuntu-latest
