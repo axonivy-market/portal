@@ -12,9 +12,7 @@ import com.axonivy.portal.selenium.common.FilterValueType;
 import com.axonivy.portal.selenium.common.NavigationHelper;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
-import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.TopMenuTaskWidgetPage;
-import com.codeborne.selenide.CollectionCondition;
 
 @IvyWebTest
 public class EnhanceVisibilityTasksForMemberOfRoleTest extends BaseTest {
