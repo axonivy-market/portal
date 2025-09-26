@@ -99,6 +99,7 @@ Labels:
       CanceledFlow: フローをキャンセルしました。ご要望があればお知らせください。
       ErrorWhenProceedRequest: リクエストの処理中にエラーが発生しました。しばらくしてから、もう一度お試しください。
       SomethingWentWrong: リクエストの処理中に問題が発生しました。しばらくしてから、もう一度お試しください。
+  Close: 閉じる
   DisabledUserPrefix: （無効）
   Enums:
     NewFilenameValidation:
