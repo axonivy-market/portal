@@ -45,16 +45,15 @@ public class TaskDetailsTest extends BaseTest {
   public void setup() {
     super.setup();
     updateGlobalVariable(Variable.TASK_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST.getKey(), ACCESS_TASK_DETAILS);
-//    grantSpecificPortalPermission(PortalPermission.TASK_CASE_ADD_NOTE);
   }
 
   @Test
   public void testVisibilityOfNotesWhenAddNoteOnTaskDetailsWithoutTechnicalCase() throws IOException {
+    grantSpecificPortalPermission(PortalPermission.TASK_CASE_ADD_NOTE);
     login(TestAccount.ADMIN_USER);
     redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
     redirectToNewDashBoard();
-    MainMenuPage mainMenuPage = new MainMenuPage();
-    mainMenuPage.openTaskList();
+    NavigationHelper.navigateToTaskList();
 
     TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
     
@@ -74,11 +73,11 @@ public class TaskDetailsTest extends BaseTest {
 
   @Test
   public void testVisibilityOfNotesWhenAddNoteOnTaskDetailsWithTechnicalCase() throws IOException {
+    grantSpecificPortalPermission(PortalPermission.TASK_CASE_ADD_NOTE);
     login(TestAccount.ADMIN_USER);
     redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
     redirectToNewDashBoard();
-    MainMenuPage mainMenuPage = new MainMenuPage();
-    mainMenuPage.openTaskList();
+    NavigationHelper.navigateToTaskList();
 
     TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
     TaskDetailsPage taskDetailsPage = taskWidget.openDashboardTaskDetails(TAKE_ORDER);
