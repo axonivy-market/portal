@@ -211,7 +211,6 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
 
     TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
     taskWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "testVisibilityTaskActionForTechnicalStates1-checkTasksRenderedEnough");
     resizeBrowserTo2kResolution();
 
     // Failed
