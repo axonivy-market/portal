@@ -55,12 +55,14 @@ public class TaskDetailsTest extends BaseTest {
     redirectToNewDashBoard();
     MainMenuPage mainMenuPage = new MainMenuPage();
     mainMenuPage.openTaskList();
+
     TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
     taskWidget.openDashboardTaskDetails(ORDER_PIZZA);
     TaskDetailsPage taskDetailsPage = new TaskDetailsPage();
     taskDetailsPage.waitForPageLoad();
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_DETAIL_FOLDER + "testVisibilityOfNotesWhenAddNoteOnTaskDetailsWithoutTechnicalCase1-checkTasks");
     taskDetailsPage.addNote(NOTE_TASK_DETAIL_BUSINESS_CASE);
+    refreshPage();
     taskDetailsPage.getNotesWithContent(NOTE_TASK_DETAIL_BUSINESS_CASE).shouldHave(size(1));
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_DETAIL_FOLDER + "testVisibilityOfNotesWhenAddNoteOnTaskDetailsWithoutTechnicalCase2-checkTasks");
     taskDetailsPage.gotoBusinessCase();
@@ -78,12 +80,14 @@ public class TaskDetailsTest extends BaseTest {
     MainMenuPage mainMenuPage = new MainMenuPage();
     mainMenuPage.openTaskList();
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_DETAIL_FOLDER + "testVisibilityOfNotesWhenAddNoteOnTaskDetailsWithTechnicalCase1-checkTasks");
+
     TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
     taskWidget.openDashboardTaskDetails(TAKE_ORDER);
     TaskDetailsPage taskDetailsPage = new TaskDetailsPage();
     taskDetailsPage.waitForPageLoad();
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_DETAIL_FOLDER + "testVisibilityOfNotesWhenAddNoteOnTaskDetailsWithTechnicalCase2-checkIfAddNoteElementExisting");
     taskDetailsPage.addNote(NOTE_TASK_DETAIL_TECHNICAL_CASE);
+    refreshPage();
     taskDetailsPage.getNotesWithContent(NOTE_TASK_DETAIL_TECHNICAL_CASE).shouldHave(size(1));
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_DETAIL_FOLDER + "testVisibilityOfNotesWhenAddNoteOnTaskDetailsWithTechnicalCase3-addNotes");
     CaseDetailsPage caseDetailsPage = taskDetailsPage.gotoTechnicalCase();

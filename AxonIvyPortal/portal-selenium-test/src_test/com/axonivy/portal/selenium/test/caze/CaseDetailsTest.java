@@ -427,7 +427,8 @@ public class CaseDetailsTest extends BaseTest {
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.CASE_WIDGET_FOLDER + "testOpenViewNoteDialog1");
     detailsPage.addNote("Consider the remaining annual leaves before the approval");
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.CASE_WIDGET_FOLDER + "testOpenViewNoteDialog2");
-    detailsPage.waitForPageLoad();
+    refreshPage();
+    detailsPage.getNotesWithContent("Consider the remaining annual leaves before the approval").shouldHave(size(1));
     detailsPage.clickViewNote();
     assertTrue(detailsPage.isViewNoteDialogPresented());
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.CASE_WIDGET_FOLDER + "testOpenViewNoteDialog3");
