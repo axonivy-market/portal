@@ -424,14 +424,11 @@ public class CaseDetailsTest extends BaseTest {
   @Test
   public void testOpenViewNoteDialog() throws IOException {
     createTestingTask();
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.CASE_WIDGET_FOLDER + "testOpenViewNoteDialog1");
     detailsPage.addNote("Consider the remaining annual leaves before the approval");
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.CASE_WIDGET_FOLDER + "testOpenViewNoteDialog2");
     refreshPage();
     detailsPage.getNotesWithContent("Consider the remaining annual leaves before the approval").shouldHave(size(1));
     detailsPage.clickViewNote();
     assertTrue(detailsPage.isViewNoteDialogPresented());
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.CASE_WIDGET_FOLDER + "testOpenViewNoteDialog3");
   }
 
   @Test
