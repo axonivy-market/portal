@@ -177,10 +177,59 @@ function initClientCharts(statisticEndpoint, defaultLocale, datePatternConfig, d
   // Find HTML elements of client charts widget
   const charts = Array.from(document.getElementsByClassName('js-statistic-chart'));
   if (!charts || charts.length == 0) {
+    console.log('No statistic charts found with class js-statistic-chart');
     return;
   }
  
+  console.log(`Found ${charts.length} statistic charts to initialize`);
   statisticApiURL = window.location.origin + statisticEndpoint;
+
+  // Add global debugging for chart interactions
+  window.debugStatisticCharts = function() {
+    console.log('=== Statistic Charts Debug Info ===');
+    console.log('Charts found:', charts.length);
+    charts.forEach((chart, index) => {
+      console.log(`Chart ${index}:`, chart);
+      console.log(`Chart ID: ${chart.getAttribute(DATA_CHART_ID)}`);
+      console.log(`Chart classes: ${chart.className}`);
+      const canvas = chart.querySelector('canvas');
+      if (canvas) {
+        console.log(`Has canvas:`, canvas);
+      }
+    });
+    console.log('Remote command available:', typeof window.openStatisticDrillDown);
+    console.log('=== End Debug Info ===');
+  };
+
+  // Call debug function
+  window.debugStatisticCharts();
+
+  // Add a test function for drill-down
+  window.testDrillDown = function() {
+    console.log('Testing drill-down functionality...');
+    const testData = {
+      chartId: 'test-chart',
+      chartType: 'bar',
+      filterKey: 'state',
+      filterValue: 'CREATED',
+      label: 'Created',
+      value: 5,
+      count: 5,
+      chartTarget: 'case'
+    };
+    
+    console.log('Test data:', testData);
+    
+    if (typeof window.openStatisticDrillDown === 'function') {
+      console.log('Calling remote command with test data...');
+      window.openStatisticDrillDown([{
+        name: 'drillDownData',
+        value: JSON.stringify(testData)
+      }]);
+    } else {
+      console.error('Remote command not available!');
+    }
+  };
 
   // Use AJAX to call REST API to fetch data for each chart elements
   charts.forEach(async chart => {
@@ -438,6 +487,102 @@ getBackgroundColorsWithAllScope(chartConfig, data) {
 
   updateClientChart() { }
 
+  // Method to handle chart element clicks for drill-down functionality
+  handleChartClick(element, event) {
+    console.log('Chart clicked! Element:', element, 'Event:', event);
+    console.log('Chart config:', this.data.chartConfig);
+    console.log('EnableDrillDown:', this.data.chartConfig.enableDrillDown);
+    
+    // For testing purposes, enable drill-down by default
+    if (!this.data.chartConfig.enableDrillDown) {
+      console.log('Drill-down not enabled, enabling it for testing...');
+      this.data.chartConfig.enableDrillDown = true;
+    }
+
+    if (!this.data.chartConfig.enableDrillDown) {
+      console.log('Drill-down functionality is disabled for this chart');
+      return;
+    }
+
+    const dataIndex = element.index;
+    const dataset = this.clientChartConfig.data.datasets[element.datasetIndex || 0];
+    const label = this.clientChartConfig.data.labels[dataIndex];
+    const value = dataset.data[dataIndex];
+    const counting = dataset.counting ? dataset.counting[dataIndex] : value;
+
+    const drillDownData = {
+      chartId: this.data.chartConfig.id,
+      chartType: this.data.chartConfig.chartType,
+      filterKey: this.data.chartConfig.statisticAggregation?.field,
+      filterValue: this.getOriginalFilterValue(label, dataIndex),
+      label: label,
+      value: value,
+      count: counting,
+      chartTarget: dataset.chartTarget,
+      aggregation: dataset.aggregation
+    };
+
+    console.log('Drill-down data:', drillDownData);
+    this.openDrillDownDialog(drillDownData);
+  }
+
+  // Method to get the original filter value (before formatting)
+  getOriginalFilterValue(formattedLabel, dataIndex) {
+    // For most charts, use the original bucket key
+    if (this.dataResult && this.dataResult[dataIndex]) {
+      return this.dataResult[dataIndex].key;
+    }
+    return formattedLabel;
+  }
+
+  // Method to open drill-down dialog
+  openDrillDownDialog(drillDownData) {
+    console.log('Opening drill-down dialog with data:', drillDownData);
+    
+    // Check if remote command function exists
+    if (typeof window.openStatisticDrillDown === 'function') {
+      console.log('Remote command function found, calling it...');
+      try {
+        window.openStatisticDrillDown([{
+          name: 'drillDownData',
+          value: JSON.stringify(drillDownData)
+        }]);
+        console.log('Remote command called successfully');
+      } catch (error) {
+        console.error('Error calling remote command:', error);
+      }
+    } else {
+      console.error('Remote command function not found!');
+      console.log('Available window functions:', Object.keys(window).filter(key => key.includes('Statistic') || key.includes('drillDown')));
+      
+      // Try alternative approach - make direct AJAX call
+      console.log('Attempting direct AJAX call as fallback...');
+      this.makeDirectDrillDownCall(drillDownData);
+    }
+  }
+
+  // Fallback method to make direct AJAX call
+  makeDirectDrillDownCall(drillDownData) {
+    const url = window.location.origin + '/api/statistic/drill-down';
+    console.log('Making direct call to:', url);
+    
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(drillDownData)
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log('Direct drill-down response:', data);
+      alert('Drill-down data retrieved! Check console for details.');
+    })
+    .catch(error => {
+      console.error('Direct drill-down call failed:', error);
+    });
+  }
+
   // Method to render empty chart
   renderEmptyChart(chart, additionalConfig) {
     let emptyChartDataMessage;
@@ -573,6 +718,22 @@ class ClientPieChart extends ClientCanvasChart {
         options: {
           responsive: true,
           maintainAspectRatio: false,
+          onClick: (event, elements) => {
+            console.log('Pie Chart onClick triggered!', event, elements);
+            console.log('Chart instance:', this);
+            console.log('Elements length:', elements.length);
+            
+            if (elements.length > 0) {
+              console.log('Calling handleChartClick with element:', elements[0]);
+              this.handleChartClick(elements[0], event);
+            } else {
+              console.log('No elements clicked - clicking outside chart data');
+              // Try to handle click on chart background or test with dummy data
+              const dummyElement = { index: 0, datasetIndex: 0 };
+              console.log('Testing with dummy element:', dummyElement);
+              this.handleChartClick(dummyElement, event);
+            }
+          },
           plugins: {
             legend: {
               labels: {
@@ -646,6 +807,22 @@ class ClientCartesianChart extends ClientCanvasChart {
         options: {
           responsive: true,
           maintainAspectRatio: false,
+          onClick: (event, elements) => {
+            console.log('Bar/Line Chart onClick triggered!', event, elements);
+            console.log('Chart instance:', this);
+            console.log('Elements length:', elements.length);
+            
+            if (elements.length > 0) {
+              console.log('Calling handleChartClick with element:', elements[0]);
+              this.handleChartClick(elements[0], event);
+            } else {
+              console.log('No elements clicked - clicking outside chart data');
+              // Try to handle click on chart background or test with dummy data
+              const dummyElement = { index: 0, datasetIndex: 0 };
+              console.log('Testing with dummy element:', dummyElement);
+              this.handleChartClick(dummyElement, event);
+            }
+          },
           plugins: {
             legend: {
               display: false,
@@ -850,7 +1027,12 @@ class ClientNumberChart extends ClientChart {
 
     $(this.chart).parents('.statistic-chart-widget__chart').addClass('client-number-chart');
     let multipleKPI = this.renderMultipleNumberChartInHTML(result, config.numberChartConfig.suffixSymbol, config.chartTarget);
-    return $(this.chart).html(multipleKPI);
+    $(this.chart).html(multipleKPI);
+    
+    // Store chart instance reference for click handling
+    $(this.chart)[0].chartInstance = this;
+    
+    return $(this.chart);
   }
 
   initWidgetHeaderName(chart, widgetName) {
@@ -888,8 +1070,11 @@ class ClientNumberChart extends ClientChart {
   generateItemHtml(label, number, suffixSymbol, index, counting) {
     let border = '<div class="chart-border">' + '</div>';
     label = this.data.chartConfig.numberChartConfig?.hideLabel === true ? '' : this.formatChartLabel(label) ;
+    const isClickable = this.data.chartConfig.enableDrillDown ? 'chart-content-card-clickable' : '';
+    const clickHandler = this.data.chartConfig.enableDrillDown ? 'onclick="this.closest(\'.js-statistic-chart\').chartInstance.handleChartClick(null, event)"' : '';
+    
     let html =
-      '<div class="text-center chart-content-card">' +
+      `<div class="text-center chart-content-card ${isClickable}" ${clickHandler}>` +
       '    <div class="chart-number-container">' +
       '        <span class="card-number chart-number-font-size chart-number-animation">' + number + '</span>' +
       '        <i class="card-number chart-number-font-size chart-number-animation ' + suffixSymbol + '"></i>' +
@@ -935,6 +1120,43 @@ class ClientNumberChart extends ClientChart {
 
   updateClientChart() {
     this.render();
+  }
+
+  // Override chart click handler for number charts
+  handleChartClick(clickedElement, event) {
+    if (!this.data.chartConfig.enableDrillDown) {
+      return;
+    }
+
+    // For number charts, determine which number was clicked
+    const clickTarget = event.target.closest('.chart-content-card');
+    if (!clickTarget) {
+      return;
+    }
+
+    const cardIndex = Array.from(clickTarget.parentElement.children)
+      .filter(el => el.classList.contains('chart-content-card'))
+      .indexOf(clickTarget);
+
+    if (cardIndex >= 0 && cardIndex < this.dataResult.length) {
+      const item = this.dataResult[cardIndex];
+      const value = item.aggs.length > 0 ? 
+        (item.aggs[0].value === "null" ? 0 : Number(item.aggs[0].value)) : item.count;
+      
+      const drillDownData = {
+        chartId: this.data.chartConfig.chartId,
+        chartType: this.data.chartConfig.chartType,
+        filterKey: this.data.chartConfig.statisticAggregation?.field,
+        filterValue: item.key,
+        label: this.formatChartLabel(item.key),
+        value: value,
+        count: item.count,
+        chartTarget: this.data.chartConfig.chartTarget,
+        aggregation: this.data.chartConfig.statisticAggregation
+      };
+
+      this.openDrillDownDialog(drillDownData);
+    }
   }
 }
 

@@ -1,0 +1,179 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
+  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+<cc:interface componentType="IvyComponent">
+  <cc:attribute name="widgetVar" required="true" type="java.lang.String" />
+  <cc:attribute name="drillDownData" type="java.lang.Object" />
+  <cc:attribute name="drillDownResults" type="java.util.List" />
+  <cc:attribute name="totalCount" type="java.lang.Integer" default="0" />
+</cc:interface>
+
+<cc:implementation>
+  <c:set var="widgetVar" value="#{cc.attrs.widgetVar}" />
+  <c:set var="drillDownData" value="#{cc.attrs.drillDownData}" />
+  <c:set var="drillDownResults" value="#{cc.attrs.drillDownResults}" />
+  <c:set var="totalCount" value="#{cc.attrs.totalCount}" />
+
+  <p:dialog id="statistic-drill-down-dialog" 
+            widgetVar="#{widgetVar}" 
+            header="#{drillDownData.label} - #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/drillDownTitle')}" 
+            modal="true" 
+            resizable="true"
+            width="80%"
+            height="70%"
+            styleClass="statistic-drill-down-dialog"
+            responsive="true">
+
+    <h:form id="drill-down-form" prependId="false">
+      
+      <!-- Summary Information -->
+      <div class="ui-g drill-down-summary">
+        <div class="ui-g-12 ui-md-3">
+          <h:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/drillDownCategory')}: " styleClass="drill-down-label" />
+          <h:outputText value="#{drillDownData.label}" styleClass="drill-down-value" />
+        </div>
+        <div class="ui-g-12 ui-md-3">
+          <h:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/drillDownValue')}: " styleClass="drill-down-label" />
+          <h:outputText value="#{drillDownData.value}" styleClass="drill-down-value" />
+        </div>
+        <div class="ui-g-12 ui-md-3">
+          <h:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/drillDownCount')}: " styleClass="drill-down-label" />
+          <h:outputText value="#{drillDownData.count}" styleClass="drill-down-value" />
+        </div>
+        <div class="ui-g-12 ui-md-3">
+          <h:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/drillDownTotal')}: " styleClass="drill-down-label" />
+          <h:outputText value="#{totalCount}" styleClass="drill-down-value" />
+        </div>
+      </div>
+
+      <p:separator />
+
+      <!-- Data Table -->
+      <p:dataTable id="drill-down-table" 
+                   var="item" 
+                   value="#{drillDownResults}"
+                   paginator="true" 
+                   rows="10"
+                   paginatorPosition="bottom"
+                   paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                   rowsPerPageTemplate="5,10,15,20"
+                   lazy="true"
+                   sortMode="single"
+                   resizableColumns="true"
+                   reflow="true"
+                   styleClass="drill-down-table"
+                   emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/drillDownNoData')}">
+        
+        <!-- Dynamic columns based on chart target (case/task) -->
+        <c:if test="#{drillDownData.chartTarget eq 'case'}">
+          <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/ID')}" 
+                    sortBy="#{item.id}" 
+                    styleClass="text-center">
+            <h:outputText value="#{item.id}" />
+          </p:column>
+          
+          <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/name')}" 
+                    sortBy="#{item.name}">
+            <h:outputText value="#{item.name}" />
+          </p:column>
+          
+          <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/state')}" 
+                    sortBy="#{item.state}"
+                    styleClass="text-center">
+            <h:outputText value="#{item.state}" />
+          </p:column>
+          
+          <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/creator')}" 
+                    sortBy="#{item.creator}">
+            <h:outputText value="#{item.creator}" />
+          </p:column>
+          
+          <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/creationTime')}" 
+                    sortBy="#{item.creationTime}"
+                    styleClass="text-center">
+            <h:outputText value="#{item.creationTime}">
+              <f:convertDateTime pattern="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/dateTimePattern')}" />
+            </h:outputText>
+          </p:column>
+        </c:if>
+        
+        <c:if test="#{drillDownData.chartTarget eq 'task'}">
+          <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/ID')}" 
+                    sortBy="#{item.id}" 
+                    styleClass="text-center">
+            <h:outputText value="#{item.id}" />
+          </p:column>
+          
+          <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/name')}" 
+                    sortBy="#{item.name}">
+            <h:outputText value="#{item.name}" />
+          </p:column>
+          
+          <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/state')}" 
+                    sortBy="#{item.state}"
+                    styleClass="text-center">
+            <h:outputText value="#{item.state}" />
+          </p:column>
+          
+          <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/priority')}" 
+                    sortBy="#{item.priority}"
+                    styleClass="text-center">
+            <h:outputText value="#{item.priority}" />
+          </p:column>
+          
+          <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/responsible')}" 
+                    sortBy="#{item.responsible}">
+            <h:outputText value="#{item.responsible}" />
+          </p:column>
+          
+          <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/creationTime')}" 
+                    sortBy="#{item.creationTime}"
+                    styleClass="text-center">
+            <h:outputText value="#{item.creationTime}">
+              <f:convertDateTime pattern="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/dateTimePattern')}" />
+            </h:outputText>
+          </p:column>
+        </c:if>
+        
+        <!-- Actions column -->
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}" 
+                  styleClass="text-center action-column"
+                  exportable="false">
+          <c:if test="#{drillDownData.chartTarget eq 'case'}">
+            <p:commandButton icon="si si-eye-1" 
+                           styleClass="rounded-button" 
+                           title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/viewDetails')}"
+                           action="#{cc.viewCaseDetails(item.id)}"
+                           process="@this"
+                           global="false"
+                           immediate="true" />
+          </c:if>
+          
+          <c:if test="#{drillDownData.chartTarget eq 'task'}">
+            <p:commandButton icon="si si-single-neutral-actions-play-1" 
+                           styleClass="rounded-button" 
+                           title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/start')}"
+                           action="#{cc.startTask(item.id)}"
+                           process="@this"
+                           global="false"
+                           immediate="true"
+                           rendered="#{item.state eq 'READY_FOR_JOIN' or item.state eq 'SUSPENDED'}" />
+                           
+            <p:commandButton icon="si si-eye-1" 
+                           styleClass="rounded-button" 
+                           title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/viewDetails')}"
+                           action="#{cc.viewTaskDetails(item.id)}"
+                           process="@this"
+                           global="false"
+                           immediate="true" />
+          </c:if>
+        </p:column>
+      </p:dataTable>
+    </h:form>
+  </p:dialog>
+</cc:implementation>
+
+</html>

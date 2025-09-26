@@ -5,6 +5,7 @@ import static com.axonivy.portal.bean.StatisticConfigurationBean.DEFAULT_COLORS;
 import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map.Entry;
@@ -22,10 +23,12 @@ import org.apache.logging.log4j.util.Strings;
 import com.axonivy.portal.bo.PieChartConfig;
 import com.axonivy.portal.bo.Statistic;
 import com.axonivy.portal.bo.StatisticAggregation;
+import com.axonivy.portal.components.publicapi.PortalNavigatorAPI;
 import com.axonivy.portal.constant.StatisticConstants;
 import com.axonivy.portal.dto.StatisticDto;
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 import com.axonivy.portal.enums.AdditionalChartConfig;
+import com.axonivy.portal.enums.dashboard.filter.FilterOperator;
 import com.axonivy.portal.enums.statistic.AggregationField;
 import com.axonivy.portal.enums.statistic.ChartTarget;
 import com.axonivy.portal.enums.statistic.ChartType;
@@ -35,11 +38,16 @@ import com.axonivy.portal.util.statisticfilter.field.CaseFilterFieldFactory;
 import com.axonivy.portal.util.statisticfilter.field.TaskFilterFieldFactory;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget;
+import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
+import ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget;
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
+import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
 import ch.ivy.addon.portalkit.service.exception.PortalException;
 import ch.ivy.addon.portalkit.statistics.StatisticResponse;
+import ch.ivy.addon.portalkit.util.DefaultDashboardUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.searchengine.client.agg.AggregationResult;
 import ch.ivyteam.ivy.workflow.stats.WorkflowStats;
@@ -140,11 +148,16 @@ public class StatisticService {
       filter = chart.getFilter();
     }
 
-    return switch (chart.getChartTarget()) {
-      case CASE -> WorkflowStats.current().caze().aggregate(aggregates, filter);
-      case TASK ->  WorkflowStats.current().task().aggregate(aggregates, filter);
-      default -> throw new PortalException("Cannot parse chartTarget " + chart.getChartTarget());
-    };
+    Ivy.log().warn("chart name: {0} ||| aggregates: {1} ||| filter {2}", chart.getName(), aggregates, filter);
+    switch (chart.getChartTarget()) {
+      case CASE:
+        filter = StringUtils.isBlank(filter) ? "isBusinessCase:true" : "isBusinessCase:true," + filter;
+        return WorkflowStats.current().caze().aggregate(aggregates, filter);
+      case TASK:
+        return WorkflowStats.current().task().aggregate(aggregates, filter);
+      default:
+        throw new PortalException("Cannot parse chartTarget " + chart.getChartTarget());
+    }
   }
   
   public List<Entry<String, String>> getAdditionalConfig() {
@@ -292,6 +305,147 @@ public class StatisticService {
     case StatisticConstants.STATE -> StatisticConstants.BUSSINESS_STATE;
     default -> field;
     };
+  }
+
+  /**
+   * Get drill-down data for chart element
+   * 
+   * @param drillDownData
+   * @return List of cases/tasks that match the drill-down criteria
+   */
+  public Object getStatisticDrillDownData(com.axonivy.portal.dto.StatisticDrillDownDto drillDownData) {
+    try {
+      Statistic chart = findByStatisticId(drillDownData.getChartId());
+      validateChart(drillDownData.getChartId(), chart);
+      
+      // Build query based on chart configuration and drill-down filter
+      String query = buildDrillDownQuery(chart, drillDownData);
+      
+      // Execute search based on chart target (case/task)
+      if ("case".equals(drillDownData.getChartTarget())) {
+        return searchCases(query, drillDownData);
+      } else if ("task".equals(drillDownData.getChartTarget())) {
+        return searchTasks(query, drillDownData);
+      }
+      
+      return Collections.emptyList();
+    } catch (Exception e) {
+      Ivy.log().error("Failed to get drill-down data for chart: " + drillDownData.getChartId(), e);
+      throw new PortalException("Failed to retrieve drill-down data");
+    }
+  }
+
+  private String buildDrillDownQuery(Statistic chart, com.axonivy.portal.dto.StatisticDrillDownDto drillDownData) {
+    StringBuilder query = new StringBuilder();
+    
+    // Add base filters from chart configuration
+    if (StringUtils.isNotBlank(chart.getFilter())) {
+      query.append(chart.getFilter());
+    }
+    
+    // Add drill-down specific filter
+    if (StringUtils.isNotBlank(drillDownData.getFilterKey()) && drillDownData.getFilterValue() != null) {
+      if (query.length() > 0) {
+        query.append(" AND ");
+      }
+      
+      String field = transformField(drillDownData.getFilterKey());
+      String value = String.valueOf(drillDownData.getFilterValue());
+      
+      // Handle different field types
+      if (isTimestampField(field)) {
+        // For timestamp fields, create a date range filter
+        query.append(field).append(":[").append(value).append(" TO ").append(value).append("]");
+      } else {
+        // For other fields, exact match
+        query.append(field).append(":").append(value);
+      }
+    }
+    
+    return query.toString();
+  }
+
+  private boolean isTimestampField(String field) {
+    return field != null && field.toLowerCase().contains("timestamp");
+  }
+
+  private Object searchCases(String query, com.axonivy.portal.dto.StatisticDrillDownDto drillDownData) {
+    // This is a stub implementation - replace with actual case search logic
+    // You would typically use Ivy's search API to find cases matching the criteria
+    
+    List<Object> cases = new ArrayList<>();
+    Ivy.log().warn(
+        "=====chartId: {0}, chartTarget: {1}, filterKey: {2}, filterValue: {3}, pageNumber: {4}, pageSize: {5}, sortField: {6}, sortOrder: {7}",
+        drillDownData.getChartId(), drillDownData.getChartTarget(), drillDownData.getFilterKey(),
+        drillDownData.getFilterValue(), drillDownData.getPageNumber(), drillDownData.getPageSize(),
+        drillDownData.getSortField(), drillDownData.getSortOrder());
+    Statistic chart = findByStatisticId(drillDownData.getChartId());
+
+    Dashboard drillDownDashboard = DefaultDashboardUtils.getCaseDrillDownDashboard();
+    CaseDashboardWidget widget = (CaseDashboardWidget) drillDownDashboard.getWidgets().get(0);
+    List<DashboardFilter> filters = widget.getFilters();
+    // Add filter based on the drill-down field and value
+    if (StringUtils.isNotBlank(drillDownData.getFilterKey()) && drillDownData.getFilterValue() != null) {
+      DashboardFilter drillDownFilter = new DashboardFilter();
+      drillDownFilter.setFilterType(DashboardColumnType.STANDARD);
+      drillDownFilter.setField(drillDownData.getFilterKey());
+      drillDownFilter.setOperator(FilterOperator.IN); // TODO z1 maybe not IN
+      drillDownFilter.setValues(Arrays.asList(String.valueOf(drillDownData.getFilterValue())));
+      filters.add(drillDownFilter);
+    }
+    // Add chart's existing filters to the dashboard widget
+    if (CollectionUtils.isNotEmpty(chart.getFilters())) {
+      filters.addAll(chart.getFilters());
+    }
+
+    Ivy.session().setAttribute(SessionAttribute.DRILL_DOWN_DASHBOARD.name(), drillDownDashboard);
+    Ivy.log().warn("=====statistic {0}", BusinessEntityConverter.entityToJsonValue(chart));
+    Ivy.log().warn("=====dashboard {0}", BusinessEntityConverter.entityToJsonValue(drillDownDashboard));
+    PortalNavigatorAPI.navigateToPortalHome();
+    return new com.axonivy.portal.bean.StatisticDrillDownBean.DrillDownResult(cases, 0, drillDownData.getPageNumber(), drillDownData.getPageSize());
+  }
+
+  private Object searchTasks(String query, com.axonivy.portal.dto.StatisticDrillDownDto drillDownData) {
+    // This is a stub implementation - replace with actual task search logic
+    // You would typically use Ivy's search API to find tasks matching the criteria
+    
+    List<Object> tasks = new ArrayList<>();
+    Ivy.log().warn(
+        "=====chartId: {0}, chartTarget: {1}, filterKey: {2}, filterValue: {3}, pageNumber: {4}, pageSize: {5}, sortField: {6}, sortOrder: {7}",
+      drillDownData.getChartId(), 
+      drillDownData.getChartTarget(), 
+      drillDownData.getFilterKey(), 
+      drillDownData.getFilterValue(), 
+      drillDownData.getPageNumber(), 
+      drillDownData.getPageSize(), 
+      drillDownData.getSortField(), 
+      drillDownData.getSortOrder());
+    Statistic chart = findByStatisticId(drillDownData.getChartId());
+
+    Dashboard drillDownDashboard = DefaultDashboardUtils.getTaskDrillDownDashboard();
+    TaskDashboardWidget widget = (TaskDashboardWidget) drillDownDashboard.getWidgets().get(0);
+    List<DashboardFilter> filters = widget.getFilters();
+    // Add filter based on the drill-down field and value
+    if (StringUtils.isNotBlank(drillDownData.getFilterKey()) && drillDownData.getFilterValue() != null) {
+      DashboardFilter drillDownFilter = new DashboardFilter();
+      drillDownFilter.setFilterType(chart.getStatisticAggregation().getType());
+      drillDownFilter.setField(chart.getStatisticAggregation().getField());
+      drillDownFilter.setOperator(FilterOperator.IN); // TODO z1 maybe not IN
+      drillDownFilter.setValues(Arrays.asList(String.valueOf(drillDownData.getFilterValue())));
+      filters.add(drillDownFilter);
+    }
+    // Add chart's existing filters to the dashboard widget
+    if (CollectionUtils.isNotEmpty(chart.getFilters())) {
+      filters.addAll(chart.getFilters());
+    }
+
+    Ivy.session().setAttribute(SessionAttribute.DRILL_DOWN_DASHBOARD.name(),
+        drillDownDashboard);
+    Ivy.log().warn("=====statistic {0}", BusinessEntityConverter.entityToJsonValue(chart));
+    Ivy.log().warn("=====dashboard {0}", BusinessEntityConverter.entityToJsonValue(drillDownDashboard));
+    PortalNavigatorAPI.navigateToPortalHome();
+
+    return new com.axonivy.portal.bean.StatisticDrillDownBean.DrillDownResult(tasks, 0, drillDownData.getPageNumber(), drillDownData.getPageSize());
   }
   
 }

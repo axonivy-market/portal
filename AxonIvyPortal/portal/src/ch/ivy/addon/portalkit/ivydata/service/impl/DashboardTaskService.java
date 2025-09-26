@@ -4,9 +4,13 @@ import static ch.ivy.addon.portalkit.util.HiddenTasksCasesConfig.isHiddenTasksCa
 
 import java.util.List;
 
+import com.axonivy.portal.components.persistence.converter.BusinessEntityConverter;
+import com.axonivy.portal.dto.StatisticDrillDownDto;
+
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.DashboardTaskSearchCriteria;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
+import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.exec.Sudo;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
@@ -69,6 +73,7 @@ public class DashboardTaskService extends TaskService {
   }
 
   public List<ITask> findDashboardTaskByCriteria(DashboardTaskSearchCriteria criteria, int startIndex, int count) {
+    Ivy.log().warn("Criteria \r\n {0}", BusinessEntityConverter.entityToJsonValue(criteria));
     return Sudo.get(() -> {
       TaskQuery query = criteria.buildQuery();
       var subQuery = TaskQuery.create();
@@ -125,5 +130,13 @@ public class DashboardTaskService extends TaskService {
 
       return countTasks(finalQuery);
     });
+  }
+
+
+  public void drilldown(StatisticDrillDownDto drillDownData) {
+    DashboardTaskSearchCriteria criteria = new DashboardTaskSearchCriteria();
+    findDashboardTaskByCriteria(criteria, 0, 20);
+
+
   }
 }
