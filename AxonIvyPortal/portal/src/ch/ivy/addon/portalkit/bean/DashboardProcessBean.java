@@ -1,6 +1,7 @@
 package ch.ivy.addon.portalkit.bean;
 
 import java.beans.PropertyChangeListener;
+
 import java.beans.PropertyChangeSupport;
 import java.io.IOException;
 import java.io.Serializable;
