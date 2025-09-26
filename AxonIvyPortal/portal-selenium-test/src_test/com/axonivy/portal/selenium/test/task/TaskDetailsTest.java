@@ -51,14 +51,15 @@ public class TaskDetailsTest extends BaseTest {
   @Test
   public void testVisibilityOfNotesWhenAddNoteOnTaskDetailsWithoutTechnicalCase() throws IOException {
     redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
+    grantSpecificPortalPermission(PortalPermission.TASK_CASE_ADD_NOTE);
     login(TestAccount.ADMIN_USER);
     redirectToNewDashBoard();
     MainMenuPage mainMenuPage = new MainMenuPage();
     mainMenuPage.openTaskList();
 
     TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
-    taskWidget.openDashboardTaskDetails(ORDER_PIZZA);
-    TaskDetailsPage taskDetailsPage = new TaskDetailsPage();
+    
+    TaskDetailsPage taskDetailsPage = taskWidget.openDashboardTaskDetails(ORDER_PIZZA);
     taskDetailsPage.waitForPageLoad();
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_DETAIL_FOLDER + "testVisibilityOfNotesWhenAddNoteOnTaskDetailsWithoutTechnicalCase1-checkTasks");
     taskDetailsPage.addNote(NOTE_TASK_DETAIL_BUSINESS_CASE);
@@ -75,6 +76,7 @@ public class TaskDetailsTest extends BaseTest {
   @Test
   public void testVisibilityOfNotesWhenAddNoteOnTaskDetailsWithTechnicalCase() throws IOException {
     redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
+    grantSpecificPortalPermission(PortalPermission.TASK_CASE_ADD_NOTE);
     login(TestAccount.ADMIN_USER);
     redirectToNewDashBoard();
     MainMenuPage mainMenuPage = new MainMenuPage();
