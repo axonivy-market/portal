@@ -12,6 +12,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
 import com.axonivy.portal.dto.StatisticDto;
+import com.axonivy.portal.dto.StatisticDrillDownDto;
 import com.axonivy.portal.service.StatisticService;
 
 import ch.ivy.addon.portalkit.statistics.StatisticResponse;
@@ -44,6 +45,25 @@ public class StatisticRestService {
       return Response.ok(result).build();
     } catch (NotFoundException e) {
       return Response.ok(e.getMessage()).build();
+    }
+  }
+
+  @POST
+  @Path(value = "drill-down")
+  @Produces(MediaType.APPLICATION_JSON)
+  @ApiResponses(value = {
+      @ApiResponse(responseCode = "200", description = "Get drill-down data for chart element", content = {
+          @Content(mediaType = "application/json") }),
+      @ApiResponse(responseCode = "406", description = "Invalid call") })
+  public Response getDrillDownData(StatisticDrillDownDto payload) {
+    if (Optional.ofNullable(payload).map(StatisticDrillDownDto::getChartId).isEmpty()) {
+      return Response.status(Status.NOT_ACCEPTABLE).build();
+    }
+    try {
+      Object result = StatisticService.getInstance().getStatisticDrillDownData(payload);
+      return Response.ok(result).build();
+    } catch (Exception e) {
+      return Response.status(Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
     }
   }
 

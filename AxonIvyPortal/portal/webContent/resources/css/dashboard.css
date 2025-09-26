@@ -1942,4 +1942,61 @@ body .widget__content .ui-datatable.dashboard-tasks--table .ui-widget-header the
   overflow: hidden;
   text-overflow: ellipsis;
   width: 100%;
-}}
+}
+
+/* Drill-down chart styling */
+.chart-content-card-clickable {
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.chart-content-card-clickable:hover {
+  background-color: var(--ds-background-neutral-hovered, #f0f1f2);
+  border-radius: 4px;
+}
+
+/* Drill-down dialog styling */
+.statistic-drill-down-dialog .ui-dialog-content {
+  padding: 1rem;
+}
+
+.drill-down-summary {
+  background-color: var(--ds-background-neutral-subtle, #f8f8f8);
+  padding: 1rem;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+}
+
+.drill-down-summary .drill-down-label {
+  font-weight: 600;
+  color: var(--ds-text-subtle, #505258);
+}
+
+.drill-down-summary .drill-down-value {
+  font-weight: 500;
+  color: var(--ds-text, #292a2e);
+  display: block;
+  margin-top: 0.25rem;
+}
+
+.drill-down-table .action-column {
+  width: 120px;
+}
+
+.drill-down-table .action-column .rounded-button {
+  margin: 0 0.25rem;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+}
+
+.drill-down-table .action-column .rounded-button.ui-button-icon-only .ui-button-icon-primary {
+  margin-top: -0.5em;
+  margin-left: -0.5em;
+}
+
+/* Chart click cursor */
+.js-statistic-chart canvas {
+  cursor: pointer;
+}

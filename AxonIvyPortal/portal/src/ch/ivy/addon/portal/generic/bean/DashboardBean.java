@@ -99,6 +99,13 @@ public class DashboardBean implements Serializable, IMultiLanguage {
 
     dashboards = collectDashboards();
 
+    Dashboard drillDownDashboard = retrieveDrillDownDashboard();
+    if (drillDownDashboard != null) {
+      dashboards.add(drillDownDashboard);
+      Ivy.session().setAttribute(SELECTED_SUB_DASHBOARD_ID.name(), drillDownDashboard.getId());
+    }
+
+
     if (CollectionUtils.isNotEmpty(DashboardUtils.getDashboardsWithoutMenuItem())
         || isRequestPathForMainOrDetailModification() || isNavigateToDashboard()) {
       updateSelectedDashboardIdFromSessionAttribute();
@@ -118,7 +125,18 @@ public class DashboardBean implements Serializable, IMultiLanguage {
 
     buildStatisticApiUri();
   }
-  
+
+  private Dashboard retrieveDrillDownDashboard() {
+    Dashboard drillDownDashboard = null;
+    try {
+      drillDownDashboard = (Dashboard) Ivy.session().getAttribute(SessionAttribute.DRILL_DOWN_DASHBOARD.name());
+    } catch (ClassCastException e) {
+      // Ignore this because the drill-down Dashboard is obsolete
+    }
+    Ivy.session().removeAttribute(SessionAttribute.DRILL_DOWN_DASHBOARD.name());
+    return drillDownDashboard;
+  }
+
   private boolean isNavigateToDashboard() {
     Object attr = Ivy.session().getAttribute(SessionAttribute.NAVIGATE_TO_DASHBOARD.name());
     return attr != null && (boolean) attr;
