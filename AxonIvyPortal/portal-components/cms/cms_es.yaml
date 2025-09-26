@@ -97,6 +97,7 @@ Dialogs:
               IVY_PROCESS: Proceso de negocio
             ProcessViewerIFrameTitle: Marco del visor de procesos
 Labels:
+  Close: Cerrar
   DisabledUserPrefix: (inactivo)
   Enums:
     NewFilenameValidation:

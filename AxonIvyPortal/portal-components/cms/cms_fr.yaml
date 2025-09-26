@@ -97,6 +97,7 @@ Dialogs:
               IVY_PROCESS: Processus d'entreprise
             ProcessViewerIFrameTitle: Cadre de visualisation du processus
 Labels:
+  Close: Fermer
   DisabledUserPrefix: (désactivé)
   Enums:
     NewFilenameValidation:

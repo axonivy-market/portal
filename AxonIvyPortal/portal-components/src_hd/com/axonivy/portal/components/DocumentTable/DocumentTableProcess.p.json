@@ -711,5 +711,44 @@
         "at" : { "x" : 384, "y" : 832 }
       },
       "connect" : { "id" : "f23", "to" : "f53" }
+    }, {
+      "id" : "f14",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "closeStream()",
+      "config" : {
+        "callSignature" : "closeStream",
+        "guid" : "199806D385B46C0A"
+      },
+      "visual" : {
+        "at" : { "x" : 80, "y" : 1184 }
+      },
+      "connect" : { "id" : "f75", "to" : "f56" }
+    }, {
+      "id" : "f56",
+      "type" : "Script",
+      "name" : "Close stream",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import java.io.InputStream;",
+            "if (in.streamedContent != null && in.streamedContent.getStream() != null){",
+            "  InputStream is = in.streamedContent.getStream().get() as InputStream;",
+            "  if (is != null){",
+            "    is.close();",
+            "  }",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 232, "y" : 1184 }
+      },
+      "connect" : { "id" : "f76", "to" : "f74" }
+    }, {
+      "id" : "f74",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 384, "y" : 1184 }
+      }
     } ]
 }
