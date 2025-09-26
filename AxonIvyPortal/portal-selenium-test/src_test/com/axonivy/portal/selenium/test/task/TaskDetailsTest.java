@@ -44,6 +44,7 @@ public class TaskDetailsTest extends BaseTest {
   @BeforeEach
   public void setup() {
     super.setup();
+    login(TestAccount.ADMIN_USER);
     updateGlobalVariable(Variable.TASK_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST.getKey(), ACCESS_TASK_DETAILS);
     grantSpecificPortalPermission(PortalPermission.TASK_CASE_ADD_NOTE);
   }
@@ -51,7 +52,6 @@ public class TaskDetailsTest extends BaseTest {
   @Test
   public void testVisibilityOfNotesWhenAddNoteOnTaskDetailsWithoutTechnicalCase() throws IOException {
     redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
-    login(TestAccount.ADMIN_USER);
     redirectToNewDashBoard();
     MainMenuPage mainMenuPage = new MainMenuPage();
     mainMenuPage.openTaskList();
@@ -73,7 +73,6 @@ public class TaskDetailsTest extends BaseTest {
   @Test
   public void testVisibilityOfNotesWhenAddNoteOnTaskDetailsWithTechnicalCase() throws IOException {
     redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
-    login(TestAccount.ADMIN_USER);
     redirectToNewDashBoard();
     MainMenuPage mainMenuPage = new MainMenuPage();
     mainMenuPage.openTaskList();
