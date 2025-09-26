@@ -31,6 +31,7 @@ public class TaskDetailsPage extends TemplatePage {
   }
 
   public void addNote(String noteContent) {
+    $("a[id$=':task-notes:add-note-command']").shouldBe(appear, DEFAULT_TIMEOUT).scrollIntoCenter();
     $("a[id$=':task-notes:add-note-command']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     $("div[id$=':task-notes:add-new-note-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
     $("div[id$=':task-notes:add-new-note-dialog']").find("textarea").sendKeys(noteContent);
