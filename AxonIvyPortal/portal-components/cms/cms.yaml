@@ -25,5 +25,6 @@ Dialogs:
               EXTERNAL_LINK: External Link
               IVY_PROCESS: Business Process
 Labels:
+  Close: Close
   NoName: no name
   NotAvailable: N/A
