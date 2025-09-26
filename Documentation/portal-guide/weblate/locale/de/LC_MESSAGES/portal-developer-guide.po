@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Portal Guide ${revision}\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-22 04:56+0000\n"
+"POT-Creation-Date: 2025-09-26 07:08+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: de\n"
@@ -8384,7 +8384,7 @@ msgid "_`TaskDestroy`"
 msgstr ""
 
 #: ../../source/portal-developer-guide/permissions/index.rst:57
-msgid "Permission to see the Destroy Task action"
+msgid "Permission to execute the Destroy action"
 msgstr ""
 
 #: ../../source/portal-developer-guide/permissions/index.rst:59
@@ -10153,4 +10153,7 @@ msgstr ""
 #: ../../source/portal-developer-guide/usermenu/index.rst:93
 msgid "Params are not required if the URL denotes an external webpage."
 msgstr ""
+
+#~ msgid "Permission to see the Destroy Task action"
+#~ msgstr ""
 
