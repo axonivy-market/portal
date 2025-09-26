@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Portal Guide ${revision}\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-18 01:49+0000\n"
+"POT-Creation-Date: 2025-09-26 07:09+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ja\n"
@@ -679,8 +679,8 @@ msgstr "権限の設定"
 
 #: ../../source/portal-developer-guide/customization/business-details-page.rst:73
 msgid ""
-"Configure permissions in the :dev-url:`Engine Cockpit </doc/|version|"
-"/engine-guide/reference/engine-cockpit/security.html>`. In the security "
+"Configure permissions in the :dev-url:`Engine Cockpit </doc/|version"
+"|/engine-guide/reference/engine-cockpit/security.html>`. In the security "
 "area, open PortalPermissions -> PortalCasePermissions -> ShowCaseDetails."
 msgstr ""
 ":dev-url:`エンジンコックピット </doc/|version|/engine-guide/reference/engine-"
@@ -978,8 +978,8 @@ msgid ""
 "The key value for the case has to start with ``case.``. Supported are "
 "three values: ``case.id``, ``case.uuid``, ``case.category``."
 msgstr ""
-"``case.`` で始まる必要があるケースのキー値。 ``case.id``、 ``case.uuid`` と ``case.category`` の 3 "
-"つの値がサポートされます。"
+"``case.`` で始まる必要があるケースのキー値。 ``case.id``、 ``case.uuid`` と "
+"``case.category`` の 3 つの値がサポートされます。"
 
 #: ../../source/portal-developer-guide/customization/case-item-details.rst:171
 msgid ""
@@ -3255,8 +3255,8 @@ msgstr "新しいポータルダッシュボードを開いて、新しいカス
 
 #: ../../source/portal-developer-guide/dashboard/index.rst:210
 msgid ""
-"To configure variables, refer to :dev-url:`|ivy| Variables </doc/|version|"
-"/designer-guide/configuration/variables.html>`"
+"To configure variables, refer to :dev-url:`|ivy| Variables </doc/|version"
+"|/designer-guide/configuration/variables.html>`"
 msgstr ""
 "変数の設定については、:dev-url:`|ivy| の変数 </doc/|version|/designer-"
 "guide/configuration/variables.html>` を参照してください。"
@@ -8911,8 +8911,9 @@ msgid "_`TaskDestroy`"
 msgstr "_`TaskDestroy`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:57
-msgid "Permission to see the Destroy Task action"
-msgstr "タスクの破棄アクションを表示する権限"
+#, fuzzy
+msgid "Permission to execute the Destroy action"
+msgstr "破棄アクションを表示する権限"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:59
 msgid "_`TaskWriteExpiryTimestamp`"
@@ -9375,8 +9376,8 @@ msgstr "ポータル設定を手動で行う方法については、:ref:`update
 
 #: ../../source/portal-developer-guide/settings/index.rst:25
 msgid ""
-"Portal settings are stored as :dev-url:`Variables </doc/|version|"
-"/designer-guide/configuration/variables.html>`."
+"Portal settings are stored as :dev-url:`Variables </doc/|version"
+"|/designer-guide/configuration/variables.html>`."
 msgstr ""
 "ポータル設定は、:dev-url:`変数 </doc/|version|/designer-"
 "guide/configuration/variables.html>` として格納されます。"
@@ -9493,8 +9494,8 @@ msgstr "権限の設定"
 
 #: ../../source/portal-developer-guide/settings/index.rst:79
 msgid ""
-"Configure permissions in the :dev-url:`Engine Cockpit </doc/|version|"
-"/engine-guide/reference/engine-cockpit/security.html>`. In the security "
+"Configure permissions in the :dev-url:`Engine Cockpit </doc/|version"
+"|/engine-guide/reference/engine-cockpit/security.html>`. In the security "
 "area, you will find all these permission in group \"PortalPermissions\"."
 msgstr ""
 ":dev-url:`エンジンコックピット </doc/|version|/engine-guide/reference/engine-"
@@ -9580,10 +9581,9 @@ msgid ""
 "warning:`🔑TaskResetReadyForJoin <TaskResetReadyForJoin>` or :bdg-ref-"
 "warning:`🔑TaskReset <TaskReset>`."
 msgstr ""
-"タスクをリセットするには、ユーザーに以下の権限が必要です：:bdg-ref-warning:"
-"`🔑TaskResetOwnWorkingTask <TaskResetOwnWorkingTask>` または"
-" :bdg-ref-warning:`🔑TaskResetReadyForJoin <TaskResetReadyForJoin>` "
-"または :bdg-ref-warning:`🔑TaskReset <TaskReset>` 。"
+"タスクをリセットするには、ユーザーに以下の権限が必要です：:bdg-ref-warning:`🔑TaskResetOwnWorkingTask "
+"<TaskResetOwnWorkingTask>` または :bdg-ref-warning:`🔑TaskResetReadyForJoin "
+"<TaskResetReadyForJoin>` または :bdg-ref-warning:`🔑TaskReset <TaskReset>` 。"
 
 #: ../../source/portal-developer-guide/settings/index.rst:115
 msgid ""
@@ -9990,10 +9990,10 @@ msgid ""
 "following snippet to the configuration/web.xml file:"
 msgstr ""
 "PrimeFaces には、 `VirusTotal <https://www.virustotal.com/>`__ "
-"を使用するインターフェースがあらかじめ実装されています。 `VirusTotal <https://www.virustotal.com/>`__ "
-"を有効にするには、 `VirusTotal のウェブサイト <https://www.virustotal.com/>`_ "
-"でコミュニティアカウントを作成する必要があります。 アカウントの作成後、API キーを受け取ります。 API "
-"キーを設定するには、 configuration/web.xml ファイルに次のスニペットを追加します。"
+"を使用するインターフェースがあらかじめ実装されています。 `VirusTotal <https://www.virustotal.com/>`__"
+" を有効にするには、 `VirusTotal のウェブサイト <https://www.virustotal.com/>`_ "
+"でコミュニティアカウントを作成する必要があります。 アカウントの作成後、API キーを受け取ります。 API キーを設定するには、 "
+"configuration/web.xml ファイルに次のスニペットを追加します。"
 
 #: ../../source/portal-developer-guide/settings/index.rst:302
 msgid ""
@@ -10216,8 +10216,8 @@ msgid ""
 "this variable will be lost. Please consider this before making any "
 "changes."
 msgstr ""
-"次期バージョンの Portal では、統計処理のより強力な手法を導入するため、この変数は削除さ"
-"れます。この変数への変更はすべて失われます。変更を行う前に、この点をご考慮ください。"
+"次期バージョンの Portal "
+"では、統計処理のより強力な手法を導入するため、この変数は削除されます。この変数への変更はすべて失われます。変更を行う前に、この点をご考慮ください。"
 
 #: ../../source/portal-developer-guide/settings/index.rst:460
 msgid "``id``: ID of the statistic chart"
@@ -10818,4 +10818,7 @@ msgstr "key：Ivy プロセスのパラメーターの名前。"
 #: ../../source/portal-developer-guide/usermenu/index.rst:93
 msgid "Params are not required if the URL denotes an external webpage."
 msgstr "URL に外部ウェブページが示されている場合、パラメーターは必要ありません。"
+
+#~ msgid "Permission to see the Destroy Task action"
+#~ msgstr "タスクの破棄アクションを表示する権限"
 
