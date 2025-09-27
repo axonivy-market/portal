@@ -44,6 +44,7 @@ public class TaskDetailsTest extends BaseTest {
   @BeforeEach
   public void setup() {
     super.setup();
+    login(TestAccount.ADMIN_USER);
     updateGlobalVariable(Variable.TASK_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST.getKey(), ACCESS_TASK_DETAILS);
     grantSpecificPortalPermission(PortalPermission.TASK_CASE_ADD_NOTE);
   }
@@ -51,15 +52,12 @@ public class TaskDetailsTest extends BaseTest {
   @Test
   public void testVisibilityOfNotesWhenAddNoteOnTaskDetailsWithoutTechnicalCase() throws IOException {
     redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
-    login(TestAccount.ADMIN_USER);
     redirectToNewDashBoard();
     MainMenuPage mainMenuPage = new MainMenuPage();
     mainMenuPage.openTaskList();
-
     TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
-    
-    TaskDetailsPage taskDetailsPage = taskWidget.openDashboardTaskDetails(ORDER_PIZZA);
-    taskDetailsPage.waitForPageLoad();
+    taskWidget.openDashboardTaskDetails(ORDER_PIZZA);
+    TaskDetailsPage taskDetailsPage = new TaskDetailsPage();
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_DETAIL_FOLDER + "testVisibilityOfNotesWhenAddNoteOnTaskDetailsWithoutTechnicalCase1-checkTasks");
     taskDetailsPage.addNote(NOTE_TASK_DETAIL_BUSINESS_CASE);
     refreshPage();
@@ -75,15 +73,12 @@ public class TaskDetailsTest extends BaseTest {
   @Test
   public void testVisibilityOfNotesWhenAddNoteOnTaskDetailsWithTechnicalCase() throws IOException {
     redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
-    login(TestAccount.ADMIN_USER);
     redirectToNewDashBoard();
     MainMenuPage mainMenuPage = new MainMenuPage();
     mainMenuPage.openTaskList();
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_DETAIL_FOLDER + "testVisibilityOfNotesWhenAddNoteOnTaskDetailsWithTechnicalCase1-checkTasks");
-
     TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
-    TaskDetailsPage taskDetailsPage = taskWidget.openDashboardTaskDetails(TAKE_ORDER);
-    taskDetailsPage.waitForPageLoad();
+    taskWidget.openDashboardTaskDetails(TAKE_ORDER);
+    TaskDetailsPage taskDetailsPage = new TaskDetailsPage();
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_DETAIL_FOLDER + "testVisibilityOfNotesWhenAddNoteOnTaskDetailsWithTechnicalCase2-checkIfAddNoteElementExisting");
     taskDetailsPage.addNote(NOTE_TASK_DETAIL_TECHNICAL_CASE);
     refreshPage();
