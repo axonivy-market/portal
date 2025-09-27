@@ -3,6 +3,7 @@ package com.axonivy.portal.selenium.page;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
+import java.time.Duration;
 import java.util.List;
 
 import org.openqa.selenium.interactions.Actions;
@@ -25,6 +26,17 @@ public class DashboardModificationPage extends TemplatePage {
     SelenideElement dashboardTable = $("tbody[id='dashboard-modification-component:dashboard-table_data']")
         .shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     return dashboardTable.$$("tr:not(.ui-datatable-empty-message)");
+  }
+
+  public void waitForDashboardTableToLoad() {
+    waitForDashboardTableToLoad(DEFAULT_TIMEOUT);
+  }
+
+  public void waitForDashboardTableToLoad(Duration timeout) {
+    $("tbody[id='dashboard-modification-component:dashboard-table_data']")
+        .shouldBe(Condition.appear, timeout);
+    $("tbody[id='dashboard-modification-component:dashboard-table_data'] tr:not(.ui-datatable-empty-message)")
+        .shouldBe(Condition.appear, timeout);
   }
 
   public SelenideElement getDashboardRowByName(String dashboardName) {

@@ -1,5 +1,7 @@
 package com.axonivy.portal.selenium.test.task;
 
+import java.io.IOException;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -39,6 +41,7 @@ public class CustomTaskDelegateTest extends BaseTest {
     taskWidget.inputValueOnLatestFilter(FilterValueType.STATE_TYPE, "Open");
     taskWidget.applyFilter();
     taskWidget.openTaskDelegateDialog(0);
+    taskWidget.waitForTaskDelegateDialogContent();
 
     // User type is disabled
     assertTrue(taskWidget.isDelegateTypeDisabled(0));
@@ -70,7 +73,7 @@ public class CustomTaskDelegateTest extends BaseTest {
   }
 
   @Test
-  public void testCustomTaskDelegateNoDelegateOption() {
+  public void testCustomTaskDelegateNoDelegateOption() throws IOException {
     login(TestAccount.GUEST_USER);
     openDashboard();
     MainMenuPage menu = new MainMenuPage();

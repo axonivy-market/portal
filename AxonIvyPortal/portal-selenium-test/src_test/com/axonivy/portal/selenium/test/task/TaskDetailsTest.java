@@ -3,6 +3,8 @@ package com.axonivy.portal.selenium.test.task;
 import static com.codeborne.selenide.CollectionCondition.size;
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThanOrEqual;
 
+import java.io.IOException;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -11,6 +13,7 @@ import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.FilterOperator;
 import com.axonivy.portal.selenium.common.FilterValueType;
 import com.axonivy.portal.selenium.common.NavigationHelper;
+import com.axonivy.portal.selenium.common.ScreenshotUtils;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.page.CaseDetailsPage;
@@ -41,14 +44,14 @@ public class TaskDetailsTest extends BaseTest {
   @BeforeEach
   public void setup() {
     super.setup();
+    login(TestAccount.ADMIN_USER);
     updateGlobalVariable(Variable.TASK_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST.getKey(), ACCESS_TASK_DETAILS);
     grantSpecificPortalPermission(PortalPermission.TASK_CASE_ADD_NOTE);
   }
 
   @Test
-  public void testVisibilityOfNotesWhenAddNoteOnTaskDetailsWithoutTechnicalCase() {
+  public void testVisibilityOfNotesWhenAddNoteOnTaskDetailsWithoutTechnicalCase() throws IOException {
     redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
-    login(TestAccount.ADMIN_USER);
     redirectToNewDashBoard();
     MainMenuPage mainMenuPage = new MainMenuPage();
     mainMenuPage.openTaskList();
@@ -56,6 +59,7 @@ public class TaskDetailsTest extends BaseTest {
     taskWidget.openDashboardTaskDetails(ORDER_PIZZA);
     TaskDetailsPage taskDetailsPage = new TaskDetailsPage();
     taskDetailsPage.addNote(NOTE_TASK_DETAIL_BUSINESS_CASE);
+    refreshPage();
     taskDetailsPage.getNotesWithContent(NOTE_TASK_DETAIL_BUSINESS_CASE).shouldHave(size(1));
     taskDetailsPage.gotoBusinessCase();
     CaseDetailsPage caseDetailsPage = new CaseDetailsPage();
@@ -64,9 +68,8 @@ public class TaskDetailsTest extends BaseTest {
   }
 
   @Test
-  public void testVisibilityOfNotesWhenAddNoteOnTaskDetailsWithTechnicalCase() {
+  public void testVisibilityOfNotesWhenAddNoteOnTaskDetailsWithTechnicalCase() throws IOException {
     redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
-    login(TestAccount.ADMIN_USER);
     redirectToNewDashBoard();
     MainMenuPage mainMenuPage = new MainMenuPage();
     mainMenuPage.openTaskList();
@@ -74,6 +77,7 @@ public class TaskDetailsTest extends BaseTest {
     taskWidget.openDashboardTaskDetails(TAKE_ORDER);
     TaskDetailsPage taskDetailsPage = new TaskDetailsPage();
     taskDetailsPage.addNote(NOTE_TASK_DETAIL_TECHNICAL_CASE);
+    refreshPage();
     taskDetailsPage.getNotesWithContent(NOTE_TASK_DETAIL_TECHNICAL_CASE).shouldHave(size(1));
     CaseDetailsPage caseDetailsPage = taskDetailsPage.gotoTechnicalCase();
     caseDetailsPage.getHitoriesComponent().shouldHave(sizeGreaterThanOrEqual(1));
@@ -111,6 +115,7 @@ public class TaskDetailsTest extends BaseTest {
     login(TestAccount.ADMIN_USER);
     resizeBrowserToFullHDResolution();
     grantSpecificPortalPermission(PortalPermission.SYSTEM_TASK_READ_ALL);
+    grantSpecificPortalPermission(PortalPermission.TASK_DISPLAY_DESTROY_ACTION);
     redirectToNewDashBoard();
     NavigationHelper.navigateToTaskList();
     TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
@@ -133,6 +138,8 @@ public class TaskDetailsTest extends BaseTest {
     taskWidget.applyFilter();
     taskWidget.destroyTask(0);
     taskWidget.openDashboardTaskDetails("Sick Leave Request");
+    taskDetailsPage = new TaskDetailsPage();
+    taskDetailsPage.waitForPageLoad();
     taskDetailsPage.getStatusBanner().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
 
     redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
@@ -143,14 +150,26 @@ public class TaskDetailsTest extends BaseTest {
     taskWidget.addFilter("Name", FilterOperator.IS);
     taskWidget.inputValueOnLatestFilter(FilterValueType.TEXT, TAKE_ORDER);
     taskWidget.applyFilter();
-
+    taskWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
     taskWidget.startTask(0);
+    // at this stage, start task then it's done
+    // user will be redirected to task list
+    // then we should click on the task again to go to task detail as I observe
+    taskWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
+    refreshPage();
+    taskWidget.clickOnTaskName(TAKE_ORDER);
+    taskDetailsPage = new TaskDetailsPage();
+    taskDetailsPage.waitForPageLoad();
+    taskDetailsPage.getStatusBanner().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+
     redirectToNewDashBoard();
     NavigationHelper.navigateToTaskList();
     taskWidget.openFilterWidget();
     taskWidget.removeFilter(0);
     taskWidget.applyFilter();
     taskWidget.openDashboardTaskDetails(TAKE_ORDER);
+    taskDetailsPage = new TaskDetailsPage();
+    taskDetailsPage.waitForPageLoad();
     taskDetailsPage.getStatusBanner().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
   

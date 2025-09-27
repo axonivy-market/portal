@@ -12,9 +12,7 @@ import com.axonivy.portal.selenium.common.FilterValueType;
 import com.axonivy.portal.selenium.common.NavigationHelper;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
-import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.TopMenuTaskWidgetPage;
-import com.codeborne.selenide.CollectionCondition;
 
 @IvyWebTest
 public class EnhanceVisibilityTasksForMemberOfRoleTest extends BaseTest {
@@ -71,9 +69,10 @@ public class EnhanceVisibilityTasksForMemberOfRoleTest extends BaseTest {
     taskWidget.applyFilter();
     // Reserved
     taskWidget.reserveTask(0);
-    int countTasksReserved = taskWidget.countAllTasks().size();
+    taskWidget.countAllTasks().shouldHave(size(2), DEFAULT_TIMEOUT);
     // User Guest
     login(TestAccount.GUEST_USER);
+    redirectToNewDashBoard();
     NavigationHelper.navigateToTaskList();
     taskWidget = new TopMenuTaskWidgetPage();
 
@@ -84,7 +83,7 @@ public class EnhanceVisibilityTasksForMemberOfRoleTest extends BaseTest {
     taskWidget.addFilter("state", null);
     taskWidget.inputValueOnLatestFilter(FilterValueType.STATE_TYPE, "Open");
     taskWidget.applyFilter();
-    assertEquals(countTasksReserved, taskWidget.countAllTasks().size());
+    taskWidget.countAllTasks().shouldHave(size(2), DEFAULT_TIMEOUT);
   }
 
   @Test
@@ -100,12 +99,7 @@ public class EnhanceVisibilityTasksForMemberOfRoleTest extends BaseTest {
     taskWidget.addFilter("state", null);
     taskWidget.inputValueOnLatestFilter(FilterValueType.STATE_TYPE, "Open");
     taskWidget.applyFilter();
-
-    refreshPage();
-    NewDashboardPage dashboardPage = new NewDashboardPage();
-    dashboardPage.waitForTaskWidgetLoaded();
-
-    int taskCount = taskWidget.countAllTasks().size();
+    taskWidget.countAllTasks().shouldHave(size(2), DEFAULT_TIMEOUT);
 
     // User Guest
     login(TestAccount.DEMO_USER);
@@ -118,12 +112,7 @@ public class EnhanceVisibilityTasksForMemberOfRoleTest extends BaseTest {
     taskWidget.addFilter("state", null);
     taskWidget.inputValueOnLatestFilter(FilterValueType.STATE_TYPE, "Open");
     taskWidget.applyFilter();
-
-    refreshPage();
-    dashboardPage = new NewDashboardPage();
-    dashboardPage.waitForTaskWidgetLoaded();
-
-    taskWidget.countAllTasks().shouldHave(CollectionCondition.size(taskCount));
+    taskWidget.countAllTasks().shouldHave(size(2), DEFAULT_TIMEOUT);
   }
 
 }

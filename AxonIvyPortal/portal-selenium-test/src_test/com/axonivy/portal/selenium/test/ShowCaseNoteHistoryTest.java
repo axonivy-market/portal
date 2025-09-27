@@ -1,6 +1,5 @@
 package com.axonivy.portal.selenium.test;
 
-import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -53,7 +52,7 @@ public class ShowCaseNoteHistoryTest extends BaseTest {
     assertEquals(NOTE_CONTENT, caseHistoryPage.getNoteContentOfRow(0));
     assertEquals(CASE_NAME, caseHistoryPage.getCaseName());
     assertEquals(caseId, caseHistoryPage.getCaseId());
-    assertTrue(StringUtils.equalsIgnoreCase(CASE_STATUS, caseHistoryPage.getCaseState()));
+    assertEquals(CASE_STATUS, caseHistoryPage.getCaseState());
   }
 
   @Test
@@ -75,7 +74,7 @@ public class ShowCaseNoteHistoryTest extends BaseTest {
     assertEquals(2, numberOfNotes);
     assertEquals(NOTE_CONTENT, caseHistoryPage.getNoteContentOfRow(0));
     assertEquals(caseName, caseHistoryPage.getCaseName());
-    assertTrue(StringUtils.equalsIgnoreCase(CASE_STATUS, caseHistoryPage.getCaseState()));
+    assertEquals(CASE_STATUS, caseHistoryPage.getCaseState());
   }
 
 }
