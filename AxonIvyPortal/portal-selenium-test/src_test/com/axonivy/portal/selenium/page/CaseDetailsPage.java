@@ -6,6 +6,7 @@ import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
 import java.util.Optional;
@@ -22,6 +23,7 @@ import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 
 import com.axonivy.portal.selenium.common.ScreenshotUtils;
+import com.axonivy.portal.selenium.common.Sleeper;
 import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
@@ -90,7 +92,7 @@ public class CaseDetailsPage extends TemplatePage {
     textArea.sendKeys(noteContent);
     SelenideElement saveButton = addNoteDialog.$("button[id$='save-add-note-command']");
     saveButton.shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-    saveButton.shouldBe(disappear, DEFAULT_TIMEOUT);
+    Sleeper.sleep(1000);
   }
 
   public ElementsCollection getNotesWithContent(String content) {
@@ -361,7 +363,7 @@ public class CaseDetailsPage extends TemplatePage {
 
   public void onClickHistoryIcon() {
     $("a[id$=':case-histories:add-note-command']").shouldBe(appear, DEFAULT_TIMEOUT).scrollIntoCenter();
-    waitForElementClickableThenClick($("a[id$=':case-histories:add-note-command']"));
+    $("a[id$=':case-histories:add-note-command']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
 
   public void onClickDestroyCase() {

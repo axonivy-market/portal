@@ -425,7 +425,6 @@ public class CaseDetailsTest extends BaseTest {
   public void testOpenViewNoteDialog() throws IOException {
     createTestingTask();
     detailsPage.addNote("Consider the remaining annual leaves before the approval");
-    refreshPage();
     detailsPage.getNotesWithContent("Consider the remaining annual leaves before the approval").shouldHave(size(1));
     detailsPage.clickViewNote();
     assertTrue(detailsPage.isViewNoteDialogPresented());
