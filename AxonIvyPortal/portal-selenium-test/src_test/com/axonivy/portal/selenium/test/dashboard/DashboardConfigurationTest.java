@@ -328,6 +328,7 @@ public class DashboardConfigurationTest extends BaseTest {
     publicDashboardPage.waitForDashboardTableToLoad();
     publicDashboardPage.getDashboardExportButtonOfDashboard("New public dashboard")
         .shouldBe(Condition.appear);
+    refreshPage(); // refresh to make the edit menu disappear
     DashboardModificationPage privateDashboardPage = configurationPage.openEditPrivateDashboardsPage();
     privateDashboardPage.waitForDashboardTableToLoad();
     privateDashboardPage.getDashboardExportButtonOfDashboard("New private dashboard")
