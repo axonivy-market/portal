@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Portal Guide ${revision}\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-22 04:56+0000\n"
+"POT-Creation-Date: 2025-09-26 07:08+0000\n"
 "PO-Revision-Date: 2025-08-15 08:10+0000\n"
 "Last-Translator: Thang Huynh <hhqthang@axonactive.com>\n"
 "Language: ja\n"
@@ -8384,7 +8384,7 @@ msgid "_`TaskDestroy`"
 msgstr ""
 
 #: ../../source/portal-developer-guide/permissions/index.rst:57
-msgid "Permission to see the Destroy Task action"
+msgid "Permission to execute the Destroy action"
 msgstr ""
 
 #: ../../source/portal-developer-guide/permissions/index.rst:59
@@ -10155,5 +10155,8 @@ msgid "Params are not required if the URL denotes an external webpage."
 msgstr ""
 
 #~ msgid "``field``: aggregation field."
+#~ msgstr ""
+
+#~ msgid "Permission to see the Destroy Task action"
 #~ msgstr ""
 
