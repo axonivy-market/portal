@@ -41,6 +41,7 @@ public class CustomTaskDelegateTest extends BaseTest {
     taskWidget.inputValueOnLatestFilter(FilterValueType.STATE_TYPE, "Open");
     taskWidget.applyFilter();
     taskWidget.openTaskDelegateDialog(0);
+    taskWidget.waitForTaskDelegateDialogContent();
 
     // User type is disabled
     assertTrue(taskWidget.isDelegateTypeDisabled(0));

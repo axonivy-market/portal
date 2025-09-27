@@ -361,4 +361,8 @@ public class TopMenuTaskWidgetPage extends TaskWidgetNewDashBoardPage {
   public void clickOnPinColumn(int index) {
     getColumnOfTaskHasIndex(index, "Pin").shouldBe(getClickableCondition()).click();
   }
+  
+  public void waitForTaskDelegateDialogContent() {
+    $("div[id$='task-delegate-dialog_content']").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
 }
