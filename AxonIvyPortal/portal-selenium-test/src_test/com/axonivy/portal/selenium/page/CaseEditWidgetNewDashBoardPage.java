@@ -149,7 +149,7 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public SelenideElement getAddedFieldRemoveLink(String field) {
-    return getColumnManagementDialog().$("tbody td.js-column-field-" + field + " a");
+    return getColumnManagementDialog().$("tbody td.js-column-field-" + field + " a").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public SelenideElement getCustomField(String field) {
