@@ -58,6 +58,7 @@ public class CaseBehaviorsTest extends BaseTest {
     assertEquals(ORDER_PIZZA, firstCaseName);
     resultPage.clickOnCase(0);
     detailsPage = new CaseDetailsPage();
+    detailsPage.waitForCaseDetailsDisplay();
     assertEquals(ORDER_PIZZA, detailsPage.getCaseName());
   }
 

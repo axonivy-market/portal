@@ -19,6 +19,7 @@ import com.axonivy.portal.selenium.page.TaskTemplateIFramePage;
 import com.axonivy.portal.selenium.page.TaskWidgetNewDashBoardPage;
 import com.codeborne.selenide.ElementsCollection;
 
+import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 
 @IvyWebTest
@@ -202,21 +203,21 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
   @Test
   public void testVisibilityTaskActionForTechnicalStates() {
     login(TestAccount.ADMIN_USER);
+    createTasksForTesting();
     redirectToRelativeLink(createTechnicalStateUrl);
-    redirectToNewDashBoard();
-    TaskWidgetNewDashBoardPage taskWidget = new TaskWidgetNewDashBoardPage();
-    taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
+    grantSpecificPortalPermission(PortalPermission.SYSTEM_TASK_READ_ALL);
+
+    TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
     taskWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
-    // Failed
     resizeBrowserTo2kResolution();
-    assertTaskActionsByTaskStateAndName(ERROR, "Signal create Task failed",
-        Arrays.asList(DETAILS, PIN, RESET, DESTROY, WORKFLOW_EVENTS, PROCESS_VIEWER));
+
+    // Failed
+    assertTaskActionsByTaskStateAndName(ERROR, "Signal create Task failed", Arrays.asList(DETAILS, PIN, RESET, DESTROY, WORKFLOW_EVENTS, PROCESS_VIEWER));
+
     // Join failed
     taskWidget.openFilterWidget();
-    removeAllExistingFilter();
-    taskWidget.applyFilter();
-    assertTaskActionsByTaskStateAndName(ERROR, "Signal create Technical task",
-        Arrays.asList(DETAILS, PIN, DESTROY, WORKFLOW_EVENTS, PROCESS_VIEWER));
+    taskWidget.resetFilter();
+    assertTaskActionsByTaskStateAndName(ERROR, "Signal create Technical task", Arrays.asList(DETAILS, PIN, DESTROY, WORKFLOW_EVENTS, PROCESS_VIEWER));
   }
 
   private void assertTaskActionsByTaskState(String state, List<String> taskActionsInTask) {

@@ -6,6 +6,7 @@ import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
 import java.util.Optional;
@@ -22,11 +23,11 @@ import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 
 import com.axonivy.portal.selenium.common.ScreenshotUtils;
+import com.axonivy.portal.selenium.common.Sleeper;
 import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
-import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 
 import ch.ivyteam.ivy.workflow.task.TaskBusinessState;
@@ -84,16 +85,14 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public void addNoteContent(String noteContent) {
-    waitForElementDisplayed(By.cssSelector("div.ui-dialog[aria-hidden='false']"), true);
-    SelenideElement addNoteDialog = findElementByCssSelector("div.ui-dialog[aria-hidden='false']");
-    waitForElementDisplayed(By.cssSelector("div.ui-dialog[aria-hidden='false']"), true);
-    SelenideElement textArea =
-        addNoteDialog.$(By.cssSelector("textarea[id$='note-content']")).shouldBe(appear, DEFAULT_TIMEOUT);
-    textArea.shouldBe(clickable(), DEFAULT_TIMEOUT).click();
+    $("div.ui-dialog[aria-hidden='false']").shouldBe(appear, DEFAULT_TIMEOUT);
+    SelenideElement addNoteDialog = $("div.ui-dialog[aria-hidden='false']").shouldBe(appear, DEFAULT_TIMEOUT);
+    SelenideElement textArea = addNoteDialog.$("textarea[id$='note-content']").shouldBe(appear, DEFAULT_TIMEOUT);
+    textArea.shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();;
     textArea.sendKeys(noteContent);
-    SelenideElement saveButton = addNoteDialog.$(By.cssSelector("button[id$='save-add-note-command']"));
-    waitForElementClickableThenClick(saveButton);
-    saveButton.shouldBe(disappear, DEFAULT_TIMEOUT);
+    SelenideElement saveButton = addNoteDialog.$("button[id$='save-add-note-command']");
+    saveButton.shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    Sleeper.sleep(1000);
   }
 
   public ElementsCollection getNotesWithContent(String content) {
@@ -363,7 +362,8 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public void onClickHistoryIcon() {
-    waitForElementClickableThenClick($("a[id$=':case-histories:add-note-command']"));
+    $("a[id$=':case-histories:add-note-command']").shouldBe(appear, DEFAULT_TIMEOUT).scrollIntoCenter();
+    $("a[id$=':case-histories:add-note-command']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
 
   public void onClickDestroyCase() {
