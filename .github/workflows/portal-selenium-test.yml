@@ -160,14 +160,6 @@ jobs:
             path: |
               AxonIvyPortal/portal-selenium-test/target/selenide/reports/*
 
-        - name: Archive debug screenshot image
-          uses: actions/upload-artifact@v4
-          with:
-            name: debug screenshots
-            retention-days: 5
-            path: |
-              AxonIvyPortal/portal-selenium-test/target/screenshots/*
-
         - name: Archive test reports
           uses: actions/upload-artifact@v4
           with:
