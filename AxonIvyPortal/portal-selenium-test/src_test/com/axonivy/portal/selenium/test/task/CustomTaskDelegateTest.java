@@ -1,7 +1,5 @@
 package com.axonivy.portal.selenium.test.task;
 
-import java.io.IOException;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -14,7 +12,7 @@ import com.axonivy.portal.selenium.page.MainMenuPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.TopMenuTaskWidgetPage;
 
-@IvyWebTest
+@IvyWebTest(headless = false)
 public class CustomTaskDelegateTest extends BaseTest {
 
   private static final String SICK_LEAVE_REQUEST = "Sick Leave Request";
@@ -74,7 +72,7 @@ public class CustomTaskDelegateTest extends BaseTest {
   }
 
   @Test
-  public void testCustomTaskDelegateNoDelegateOption() throws IOException {
+  public void testCustomTaskDelegateNoDelegateOption() {
     login(TestAccount.GUEST_USER);
     openDashboard();
     MainMenuPage menu = new MainMenuPage();

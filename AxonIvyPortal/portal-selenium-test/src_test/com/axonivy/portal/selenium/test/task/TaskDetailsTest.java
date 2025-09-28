@@ -3,8 +3,6 @@ package com.axonivy.portal.selenium.test.task;
 import static com.codeborne.selenide.CollectionCondition.size;
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThanOrEqual;
 
-import java.io.IOException;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -13,7 +11,6 @@ import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.FilterOperator;
 import com.axonivy.portal.selenium.common.FilterValueType;
 import com.axonivy.portal.selenium.common.NavigationHelper;
-import com.axonivy.portal.selenium.common.ScreenshotUtils;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.page.CaseDetailsPage;
@@ -50,7 +47,7 @@ public class TaskDetailsTest extends BaseTest {
   }
 
   @Test
-  public void testVisibilityOfNotesWhenAddNoteOnTaskDetailsWithoutTechnicalCase() throws IOException {
+  public void testVisibilityOfNotesWhenAddNoteOnTaskDetailsWithoutTechnicalCase() {
     redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
     redirectToNewDashBoard();
     MainMenuPage mainMenuPage = new MainMenuPage();
@@ -68,7 +65,7 @@ public class TaskDetailsTest extends BaseTest {
   }
 
   @Test
-  public void testVisibilityOfNotesWhenAddNoteOnTaskDetailsWithTechnicalCase() throws IOException {
+  public void testVisibilityOfNotesWhenAddNoteOnTaskDetailsWithTechnicalCase() {
     redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
     redirectToNewDashBoard();
     MainMenuPage mainMenuPage = new MainMenuPage();

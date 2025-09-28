@@ -2,8 +2,6 @@ package com.axonivy.portal.selenium.test;
 
 import static com.codeborne.selenide.CollectionCondition.size;
 
-import java.io.IOException;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Dimension;
@@ -94,7 +92,7 @@ public class EscalationTaskTest extends BaseTest {
   }
 
   @Test
-  public void testTriggerEscalationTaskOnRelatedTasksOfCase() throws IOException {
+  public void testTriggerEscalationTaskOnRelatedTasksOfCase() {
     updateGlobalVariable(Variable.TASK_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST.getKey(), ACCESS_TASK_DETAILS);
     grantSpecificPortalPermission(PortalPermission.SYSTEM_TASK_READ_ALL);
     grantSpecificPortalPermission(PortalPermission.TASK_WRITE_EXPIRY_ACTIVATOR);

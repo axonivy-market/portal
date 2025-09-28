@@ -422,7 +422,7 @@ public class CaseDetailsTest extends BaseTest {
   }
 
   @Test
-  public void testOpenViewNoteDialog() throws IOException {
+  public void testOpenViewNoteDialog() {
     createTestingTask();
     detailsPage.addNote("Consider the remaining annual leaves before the approval");
     detailsPage.getNotesWithContent("Consider the remaining annual leaves before the approval").shouldHave(size(1));
@@ -446,7 +446,7 @@ public class CaseDetailsTest extends BaseTest {
   }
 
   @Test
-  public void testCustomWidgetsInCaseDetails() throws IOException {
+  public void testCustomWidgetsInCaseDetails() {
     redirectToRelativeLink(CREATE_EVENT_TEST_URL);
 
     setupCaseDetailsWithIFrameProcess();
@@ -473,7 +473,7 @@ public class CaseDetailsTest extends BaseTest {
     WaitHelper.waitForNavigation(() -> detailsPage = goToCaseList().openDetailsCase(CUSTOM_CASE_WIDGET_NAME));
   }
 
-  public void setupCaseDetailsWithIFrameProcess() throws IOException {
+  public void setupCaseDetailsWithIFrameProcess() {
     ConfigurationJsonUtils.updateJSONSetting("custom-case-details.json", Variable.CASE_DETAIL);
     detailsPage = goToCaseList().openDetailsCase(CUSTOM_CASE_WIDGET_NAME);
   }

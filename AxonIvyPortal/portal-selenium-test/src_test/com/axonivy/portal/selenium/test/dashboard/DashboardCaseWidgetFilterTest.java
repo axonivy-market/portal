@@ -1,6 +1,5 @@
 package com.axonivy.portal.selenium.test.dashboard;
 
-import java.io.IOException;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -179,7 +178,7 @@ public class DashboardCaseWidgetFilterTest extends BaseTest {
   }
 
   @Test
-  public void testFilterCaseState() throws IOException {
+  public void testFilterCaseState() {
     login(TestAccount.ADMIN_USER);
     redirectToNewDashBoard();
     CaseWidgetNewDashBoardPage caseWidget = newDashboardPage.selectCaseWidget(YOUR_CASES_WIDGET);
