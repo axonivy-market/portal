@@ -446,7 +446,7 @@ public class CaseDetailsTest extends BaseTest {
   }
 
   @Test
-  public void testCustomWidgetsInCaseDetails() {
+  public void testCustomWidgetsInCaseDetails() throws IOException {
     redirectToRelativeLink(CREATE_EVENT_TEST_URL);
 
     setupCaseDetailsWithIFrameProcess();
@@ -473,7 +473,7 @@ public class CaseDetailsTest extends BaseTest {
     WaitHelper.waitForNavigation(() -> detailsPage = goToCaseList().openDetailsCase(CUSTOM_CASE_WIDGET_NAME));
   }
 
-  public void setupCaseDetailsWithIFrameProcess() {
+  public void setupCaseDetailsWithIFrameProcess() throws IOException {
     ConfigurationJsonUtils.updateJSONSetting("custom-case-details.json", Variable.CASE_DETAIL);
     detailsPage = goToCaseList().openDetailsCase(CUSTOM_CASE_WIDGET_NAME);
   }
