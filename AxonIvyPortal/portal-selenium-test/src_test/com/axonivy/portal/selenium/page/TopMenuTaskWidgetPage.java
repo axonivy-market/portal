@@ -128,7 +128,7 @@ public class TopMenuTaskWidgetPage extends TaskWidgetNewDashBoardPage {
     clickTaskAction(taskIndex, "Reserve");
   }
 
-  private void clickTaskAction(int taskIndex, String actionName) {
+  public void clickTaskAction(int taskIndex, String actionName) {
     ElementsCollection taskPanels =
         $$(String.format("div.js-task-side-steps-panel-default_task_list_dashboard_task_1-%d", taskIndex))
             .filter(appear);
