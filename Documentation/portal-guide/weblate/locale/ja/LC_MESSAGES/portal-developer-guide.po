@@ -10,7 +10,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-09-26 07:09+0000\n"
 "PO-Revision-Date: 2025-09-29 09:09+0000\n"
-"Last-Translator: DeepL <noreply-mt-deepl@weblate.org>\n"
+"Last-Translator: Thang Huynh <hhqthang@axonactive.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/axonivy-portal/"
 "portal-12/doc/portal-developer-guide/ja/>\n"
 "Language: ja\n"
@@ -529,7 +529,7 @@ msgstr "|customization-business-details-page-start-request|"
 
 #: ../../source/portal-developer-guide/customization/business-details-page.rst:82
 msgid "customization-business-details-page-start-request"
-msgstr "カスタマイズ・ビジネス詳細ページ開始リクエスト"
+msgstr "customization-business-details-page-start-request"
 
 #: ../../source/portal-developer-guide/customization/business-details-page.rst:27
 msgid ""
@@ -562,7 +562,7 @@ msgstr "|set-business-details-page-callable-process|"
 
 #: ../../source/portal-developer-guide/customization/business-details-page.rst:80
 msgid "set-business-details-page-callable-process"
-msgstr "セットビジネス詳細ページ呼び出し可能プロセス"
+msgstr "set-business-details-page-callable-process"
 
 #: ../../source/portal-developer-guide/customization/business-details-page.rst:36
 msgid ""
@@ -583,7 +583,7 @@ msgstr "|customize-business-details-with-public-api|"
 
 #: ../../source/portal-developer-guide/customization/business-details-page.rst:81
 msgid "customize-business-details-with-public-api"
-msgstr "パブリックAPIによるビジネス詳細のカスタマイズ"
+msgstr "customize-business-details-with-public-api"
 
 #: ../../source/portal-developer-guide/customization/business-details-page.rst:42
 msgid ""
@@ -642,7 +642,7 @@ msgstr "|start-business-details-page-iframe|"
 
 #: ../../source/portal-developer-guide/customization/business-details-page.rst:79
 msgid "start-business-details-page-iframe"
-msgstr "スタート-ビジネス詳細ページ-iframe"
+msgstr "start-business-details-page-iframe"
 
 #: ../../source/portal-developer-guide/customization/business-details-page.rst:58
 msgid ""
@@ -1224,7 +1224,7 @@ msgstr "**パラメーター**"
 
 #: ../../source/portal-developer-guide/customization/change-password-process.rst:28
 msgid "currentPassword"
-msgstr "現在のパスワード"
+msgstr "currentPassword"
 
 #: ../../source/portal-developer-guide/customization/change-password-process.rst:28
 #: ../../source/portal-developer-guide/customization/change-password-process.rst:30
@@ -1251,7 +1251,7 @@ msgstr "java.lang.String"
 #: ../../source/portal-developer-guide/customization/change-password-process.rst:30
 #: ../../source/portal-developer-guide/customization/forgot-password.rst:51
 msgid "newPassword"
-msgstr "新しいパスワード"
+msgstr "newPassword"
 
 #: ../../source/portal-developer-guide/customization/change-password-process.rst:32
 #: ../../source/portal-developer-guide/customization/document-processes.rst:36
@@ -2227,7 +2227,7 @@ msgstr "説明"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
 msgid "``--first-header-bar-color``"
-msgstr "最初のヘッダーバーの色 ``--first-header-bar-color``"
+msgstr "``--first-header-bar-color``"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
 msgid "hsl(195,100%,29%)"
@@ -2239,7 +2239,7 @@ msgstr "トップバーメニューの最初のヘッダーバーの色"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
 msgid "``--second-header-bar-color``"
-msgstr "セカンドヘッダーバーカラー``"
+msgstr "``--second-header-bar-color``"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
 msgid "Color of the second header bar on the topbar menu"
@@ -2247,7 +2247,7 @@ msgstr "トップバーメニューの2番目のヘッダーバーの色"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
 msgid "``--third-header-bar-color``"
-msgstr "第3ヘッダーバーカラー ``--third-header-bar-color``"
+msgstr "``--third-header-bar-color``"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
 msgid "Color of the third header bar on the topbar menu"
@@ -2255,7 +2255,7 @@ msgstr "トップバーメニューの3番目のヘッダーバーの色"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
 msgid "``--task-low-priority-color``"
-msgstr "タスクの優先順位が低い色 ``--task-low-priority-color``"
+msgstr "``--task-low-priority-color``"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
 msgid "#90DDE9"
@@ -2279,7 +2279,7 @@ msgstr "タスクリスト上の通常の優先度アイコンの色"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
 msgid "``--task-high-priority-color``"
-msgstr "タスクの高優先度カラー``--task-high-priority-color``"
+msgstr "``--task-high-priority-color``"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
 msgid "#007095"
@@ -2291,7 +2291,7 @@ msgstr "タスクリスト上の優先度の高いアイコンの色"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
 msgid "``--task-exception-priority-color``"
-msgstr "タスク例外優先色`` - タスク例外優先色``"
+msgstr "``--task-exception-priority-color``"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
 msgid "#EE4A52"
@@ -2303,7 +2303,7 @@ msgstr "タスクリスト上の例外優先度アイコンの色"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
 msgid "``--task-state-suspended-background``"
-msgstr "タスク状態-サスペンド-バックグラウンド``"
+msgstr "``--task-state-suspended-background``"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
 msgid "#DADADA"
@@ -2315,7 +2315,7 @@ msgstr "タスク、症例リストの中断状態インジケータの色"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
 msgid "``--task-state-resumed-background``"
-msgstr "タスク・ステート-再開-バックグラウンド``"
+msgstr "``--task-state-resumed-background``"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
 msgid "#FFE896"
@@ -2327,7 +2327,7 @@ msgstr "タスク、ケースリスト上の再開状態インジケータの色
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
 msgid "``--task-state-done-background``"
-msgstr "タスク・ステート・ドーン・バックグラウンド``"
+msgstr "``--task-state-done-background``"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
 msgid "#D4EBA2"
@@ -2339,8 +2339,7 @@ msgstr "タスク、ケースリストの完了状態インジケータの色"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
 msgid "``--task-state-parked-background``"
-msgstr "タスク・ステート・パーキング・バックグランド ``--task-state-parked-"
-"background``"
+msgstr "``--task-state-parked-background``"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
 msgid "rgba(0, 112, 149, 0.2)"
@@ -2352,7 +2351,7 @@ msgstr "タスク、ケースリストの駐車状態インジケータの色"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
 msgid "``--task-state-failed-background``"
-msgstr "タスク状態失敗の背景``"
+msgstr "``--task-state-failed-background``"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
 msgid "Color of the failed state indicator on the task, case list"
@@ -2360,7 +2359,7 @@ msgstr "タスク、ケースリスト上の失敗状態インジケータの色
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
 msgid "``--task-state-failed-text-color``"
-msgstr "タスク・ステートに失敗したテキストの色 ``--task-state-failed-text-color``"
+msgstr "``--task-state-failed-text-color``"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
 msgid "var(--ivy-primary-color-white)"
@@ -2529,7 +2528,7 @@ msgstr "**シグネチャ**：portalCalculateTaskDelegate"
 #: ../../source/portal-developer-guide/customization/task-delegation.rst:16
 #: ../../source/portal-developer-guide/customization/task-delegation.rst:28
 msgid "roles"
-msgstr "役割"
+msgstr "roles"
 
 #: ../../source/portal-developer-guide/customization/task-delegation.rst:16
 #: ../../source/portal-developer-guide/customization/task-delegation.rst:28
@@ -2539,7 +2538,7 @@ msgstr "java.util.List<com.axonivy.portal.components.dto.RoleDTO>。"
 #: ../../source/portal-developer-guide/customization/task-delegation.rst:18
 #: ../../source/portal-developer-guide/customization/task-delegation.rst:30
 msgid "users"
-msgstr "ユーザー"
+msgstr "users"
 
 #: ../../source/portal-developer-guide/customization/task-delegation.rst:18
 #: ../../source/portal-developer-guide/customization/task-delegation.rst:30
@@ -2548,7 +2547,7 @@ msgstr "java.util.List<com.axonivy.portal.components.dto.UserDTO>。"
 
 #: ../../source/portal-developer-guide/customization/task-delegation.rst:20
 msgid "currentUser"
-msgstr "カレントユーザー"
+msgstr "currentUser"
 
 #: ../../source/portal-developer-guide/customization/task-delegation.rst:20
 #: ../../source/portal-developer-guide/installation/documents/class_replacement_9.4.csv:1
@@ -6182,7 +6181,7 @@ msgstr "情報を表示する」ボタンを非表示にする。"
 
 #: ../../source/portal-developer-guide/iframe/documents/available_show_information_options.csv:1
 msgid "caseId"
-msgstr "ケースアイディー"
+msgstr "caseId"
 
 #: ../../source/portal-developer-guide/iframe/documents/available_show_information_options.csv:1
 msgid "ID of case to be displayed in case information dialog"
@@ -6210,7 +6209,7 @@ msgstr "``プロセスステップ`` のオプション"
 
 #: ../../source/portal-developer-guide/iframe/documents/available_process_steps_options.csv:1
 msgid "currentProcessStep"
-msgstr "カレントプロセスステップ"
+msgstr "currentProcessStep"
 
 #: ../../source/portal-developer-guide/iframe/documents/available_process_steps_options.csv:1
 msgid "current process step"
@@ -6218,7 +6217,7 @@ msgstr "現在のプロセスステップ"
 
 #: ../../source/portal-developer-guide/iframe/documents/available_process_steps_options.csv:1
 msgid "processSteps"
-msgstr "プロセスステップ"
+msgstr "processSteps"
 
 #: ../../source/portal-developer-guide/iframe/documents/available_process_steps_options.csv:1
 msgid "list of process steps"
@@ -6242,7 +6241,7 @@ msgstr "HORIZONTAL（デフォルト）またはVERTICAL"
 
 #: ../../source/portal-developer-guide/iframe/documents/available_process_steps_options.csv:1
 msgid "processChainShape"
-msgstr "プロセスチェーン形状"
+msgstr "processChainShape"
 
 #: ../../source/portal-developer-guide/iframe/documents/available_process_steps_options.csv:1
 msgid "CIRCLE (default) or LINE"
@@ -6286,7 +6285,7 @@ msgstr "ページを離れるときに警告を表示するためにタスクに
 
 #: ../../source/portal-developer-guide/iframe/documents/available_other_options.csv:1
 msgid "announcementInvisible"
-msgstr "アナウンス不可視"
+msgstr "announcementInvisible"
 
 #: ../../source/portal-developer-guide/iframe/documents/available_other_options.csv:1
 msgid "true (default) or false"
@@ -9097,7 +9096,7 @@ msgstr "ポータルのケースの権限"
 #: ../../source/portal-developer-guide/permissions/index.rst:102
 #, fuzzy
 msgid "_`CaseReadAll`"
-msgstr "_`ケースリードオール``"
+msgstr "_`CaseReadAll`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:103
 msgid "Permission to see all cases"
@@ -9106,7 +9105,7 @@ msgstr "すべてのケースを表示する権限"
 #: ../../source/portal-developer-guide/permissions/index.rst:105
 #, fuzzy
 msgid "_`CaseDestroy`"
-msgstr "_`ケース破棄``"
+msgstr "_`CaseDestroy`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:106
 msgid "Permission to delete cases"
@@ -9115,7 +9114,7 @@ msgstr "ケースを削除する権限"
 #: ../../source/portal-developer-guide/permissions/index.rst:108
 #, fuzzy
 msgid "_`CaseWriteName`"
-msgstr "_`ケースライトネーム``"
+msgstr "_`CaseWriteName`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:109
 msgid "Permission to change the case name"
@@ -9124,7 +9123,7 @@ msgstr "ケース名を変更する権限"
 #: ../../source/portal-developer-guide/permissions/index.rst:111
 #, fuzzy
 msgid "_`CaseWriteDescription`"
-msgstr "_`CaseWriteDescription`（ケースライトディスクリプション"
+msgstr "_`CaseWriteDescription`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:112
 msgid "Permission to change the case description"
@@ -9133,7 +9132,7 @@ msgstr "ケースの説明を変更する権限"
 #: ../../source/portal-developer-guide/permissions/index.rst:114
 #, fuzzy
 msgid "_`ShowAllTasksOfCase`"
-msgstr "_`ShowAllTasksOfCase`。"
+msgstr "_`ShowAllTasksOfCase`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:115
 msgid "Permission to see the related tasks's action"
@@ -9142,7 +9141,7 @@ msgstr "関連するタスクのアクションを表示する権限"
 #: ../../source/portal-developer-guide/permissions/index.rst:119
 #, fuzzy
 msgid "_`ShowCaseDetails`"
-msgstr "_`ShowCaseDetails`。"
+msgstr "_`ShowCaseDetails`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:120
 msgid "Permission to see the Business details action"
@@ -9151,7 +9150,7 @@ msgstr "ビジネスの詳細アクションを表示する権限"
 #: ../../source/portal-developer-guide/permissions/index.rst:124
 #, fuzzy
 msgid "_`ShareCaseDetailsLink`"
-msgstr "_`シェアケース詳細リンク``ShareCaseDetailsLink"
+msgstr "_`ShareCaseDetailsLink`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:125
 msgid "Permission to see the Share button in case details"
@@ -9160,7 +9159,7 @@ msgstr "ケースの詳細に共有ボタンを表示する権限"
 #: ../../source/portal-developer-guide/permissions/index.rst:129
 #, fuzzy
 msgid "_`CaseOwnerTaskDelegate`"
-msgstr "_`ケースオーナー・タスクデリゲート``CaseOwnerTaskDelegate``"
+msgstr "_`CaseOwnerTaskDelegate`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:130
 msgid ""
@@ -9175,7 +9174,7 @@ msgstr "ポータルの一般的な権限"
 #: ../../source/portal-developer-guide/permissions/index.rst:135
 #, fuzzy
 msgid "_`RoleCreate`"
-msgstr "_`役割作成``"
+msgstr "_`RoleCreate`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:136
 msgid "Permission to create a new dynamic role"
@@ -9184,7 +9183,7 @@ msgstr "新しい動的ロールを作成する権限"
 #: ../../source/portal-developer-guide/permissions/index.rst:138
 #, fuzzy
 msgid "_`RoleDelete`"
-msgstr "_`役割削除``"
+msgstr "_`RoleDelete`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:139
 msgid "Permission to delete a dynamic role"
@@ -9193,7 +9192,7 @@ msgstr "動的ロールを削除する権限"
 #: ../../source/portal-developer-guide/permissions/index.rst:141
 #, fuzzy
 msgid "_`RoleMove`"
-msgstr "_`ロールムーブ``"
+msgstr "_`RoleMove`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:142
 msgid "Permission to move role (select the parent role)"
@@ -9211,7 +9210,7 @@ msgstr "すべてのロールを表示する権限"
 #: ../../source/portal-developer-guide/permissions/index.rst:149
 #, fuzzy
 msgid "_`DocumentRead`"
-msgstr "ドキュメントを読む"
+msgstr "_`DocumentRead`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:150
 msgid "Permission to see all documents"
@@ -9220,7 +9219,7 @@ msgstr "すべてのドキュメントを表示する権限"
 #: ../../source/portal-developer-guide/permissions/index.rst:152
 #, fuzzy
 msgid "_`DocumentWrite`"
-msgstr "_`ドキュメントライト``"
+msgstr "_`DocumentWrite`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:153
 #: ../../source/portal-developer-guide/permissions/index.rst:156
@@ -9576,7 +9575,7 @@ msgstr "|translate-json|"
 
 #: ../../source/portal-developer-guide/settings/index.rst:528
 msgid "translate-json"
-msgstr "翻訳json"
+msgstr "translate-json"
 
 #: ../../source/portal-developer-guide/settings/index.rst:50
 msgid ""
@@ -9591,7 +9590,7 @@ msgstr "|translate-java|"
 
 #: ../../source/portal-developer-guide/settings/index.rst:529
 msgid "translate-java"
-msgstr "翻訳-Java"
+msgstr "translate-java"
 
 #: ../../source/portal-developer-guide/settings/index.rst:54
 msgid "Import the Excel file."
