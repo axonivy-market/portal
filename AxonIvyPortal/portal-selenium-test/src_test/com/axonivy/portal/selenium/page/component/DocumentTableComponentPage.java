@@ -44,6 +44,6 @@ public class DocumentTableComponentPage extends TemplatePage {
   }
 
   public void closePreviewDialog() {
-    $("[id$=':preview-document-dialog'] .ui-dialog-titlebar-close").click();
+    $("button[id$=':preview-document-close-button']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
 }
