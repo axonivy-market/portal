@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Portal Guide ${revision}\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-09-19 04:44+0000\n"
-"PO-Revision-Date: 2025-09-19 06:44+0000\n"
+"PO-Revision-Date: 2025-09-29 10:33+0000\n"
 "Last-Translator: Thang Huynh <hhqthang@axonactive.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/axonivy-portal/"
 "portal-le/doc/portal-doc-components/ja/>\n"
@@ -33,11 +33,11 @@ msgstr ""
 
 #: ../../source/portal-components/document-table/index.rst:9
 msgid "|document-table|"
-msgstr ""
+msgstr "|document-table|"
 
 #: ../../source/portal-components/document-table/index.rst:283
 msgid "document-table"
-msgstr ""
+msgstr "document-table"
 
 #: ../../source/portal-components/document-table/index.rst:12
 msgid "Attributes"
@@ -64,7 +64,7 @@ msgstr ""
 #: ../../source/portal-components/documents/security_member_name_and_avatar_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
 msgid "Default"
-msgstr ""
+msgstr "デフォルト"
 
 #: ../../source/portal-components/document-table/index.rst:58
 #: ../../source/portal-components/document-table/index.rst:85
@@ -90,15 +90,15 @@ msgstr ""
 #: ../../source/portal-components/documents/security_member_name_and_avatar_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
 msgid "Description"
-msgstr ""
+msgstr "説明"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "nameColumnRendered"
-msgstr ""
+msgstr "nameColumnRendered"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "TRUE"
-msgstr ""
+msgstr "TRUE"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 #: ../../source/portal-components/documents/process_chain_component_attributes.csv:1
@@ -106,67 +106,73 @@ msgstr ""
 #: ../../source/portal-components/documents/security_member_name_and_avatar_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
 msgid "Boolean"
-msgstr ""
+msgstr "Boolean"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid ""
 "Boolean value to specify the rendering of the name column, when set to "
 "false name column will not be rendered."
-msgstr ""
+msgstr "名前カラムのレンダリングを指定するブール値で、falseに設定すると名前カラムはレ"
+"ンダリングされません。"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "sizeColumnRendered"
-msgstr ""
+msgstr "sizeColumnRendered"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid ""
 "Boolean value to specify the rendering of the size column, when set to "
 "false size column will not be rendered."
-msgstr ""
+msgstr "サイズカラムのレンダリングを指定するブール値。falseに設定すると、サイズカラム"
+"はレンダリングされません。"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "typeColumnRendered"
-msgstr ""
+msgstr "typeColumnRendered"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid ""
 "Boolean value to specify the rendering of the type column, when set to "
 "false type column will not be rendered."
-msgstr ""
+msgstr "型カラムのレンダリングを指定するブール値で、falseに設定すると型カラムはレンダ"
+"リングされません。"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "functionColumnRendered"
-msgstr ""
+msgstr "functionColumnRendered"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid ""
 "Boolean value to specify the rendering of the function column, when set "
 "to false function column will not be rendered."
-msgstr ""
+msgstr "関数列のレンダリングを指定するブール値。falseに設定すると関数列はレンダリング"
+"されない。"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "previewRendered"
-msgstr ""
+msgstr "previewRendered"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid ""
 "Boolean value to specify the rendering of the preview icon, when set to "
 "false preview icon will not be rendered."
-msgstr ""
+msgstr "プレビューアイコンのレンダリングを指定するブール値。falseに設定するとプレビュ"
+"ーアイコンはレンダリングされない。"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "uploadRendered"
-msgstr ""
+msgstr "uploadRendered"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid ""
 "Boolean value to specify the rendering of the upload icon, when set to "
 "false upload icon will not be rendered."
-msgstr ""
+msgstr "アップロードアイコンのレンダリングを指定するブール値。falseに設定すると、アッ"
+"プロードアイコンはレンダリングされません。"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "downloadRendered"
-msgstr ""
+msgstr "downloadRendered"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid ""
@@ -176,7 +182,7 @@ msgstr ""
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "deleteRendered"
-msgstr ""
+msgstr "deleteRendered"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid ""
@@ -186,7 +192,7 @@ msgstr ""
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "renameRendered"
-msgstr ""
+msgstr "renameRendered"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid ""
@@ -196,7 +202,7 @@ msgstr ""
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "messageRendered"
-msgstr ""
+msgstr "messageRendered"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid ""
@@ -206,7 +212,7 @@ msgstr ""
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "fileLimit"
-msgstr ""
+msgstr "fileLimit"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "-1"
@@ -217,7 +223,7 @@ msgstr ""
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
 msgid "Integer"
-msgstr ""
+msgstr "Integer"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "Number of files are in the given ICase."
@@ -225,19 +231,19 @@ msgstr ""
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "sizeLimit"
-msgstr ""
+msgstr "sizeLimit"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/security_member_name_and_avatar_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
 msgid "null"
-msgstr ""
+msgstr "null"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 #: ../../source/portal-components/documents/process_viewer_component_attributes.csv:1
 msgid "Long"
-msgstr ""
+msgstr "Long"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "Individual uploading file size limit in bytes."
@@ -245,7 +251,7 @@ msgstr ""
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "updatedComponentAfterUploaded"
-msgstr ""
+msgstr "updatedComponentAfterUploaded"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 #: ../../source/portal-components/documents/process_chain_component_attributes.csv:1
@@ -254,7 +260,7 @@ msgstr ""
 #: ../../source/portal-components/documents/security_member_name_and_avatar_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
 msgid "String"
-msgstr ""
+msgstr "String"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "Component will be triggered the update after document is uploaded."
@@ -262,11 +268,11 @@ msgstr ""
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "previewIcon"
-msgstr ""
+msgstr "previewIcon"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "fa-eye"
-msgstr ""
+msgstr "fa-eye"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "Icon class will be displayed in preview dialog."
@@ -274,7 +280,7 @@ msgstr ""
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "previewStyleClass"
-msgstr ""
+msgstr "previewStyleClass"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "Styles for preview link."
@@ -290,7 +296,7 @@ msgstr ""
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "previewPDFStyleClass"
-msgstr ""
+msgstr "previewPDFStyleClass"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "Styles for PDF preview dialog."
@@ -298,7 +304,7 @@ msgstr ""
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "previewImageStyleClass"
-msgstr ""
+msgstr "previewImageStyleClass"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "Styles for image preview dialog."
@@ -306,11 +312,11 @@ msgstr ""
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "downloadIcon"
-msgstr ""
+msgstr "downloadIcon"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "fa-download"
-msgstr ""
+msgstr "fa-download"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "Icon class will be displayed in download link."
@@ -318,7 +324,7 @@ msgstr ""
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "downloadStyleClass"
-msgstr ""
+msgstr "downloadStyleClass"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "Styles for download link."
@@ -326,11 +332,11 @@ msgstr ""
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "deleteIcon"
-msgstr ""
+msgstr "deleteIcon"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "fa-trash-o"
-msgstr ""
+msgstr "fa-trash-o"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "Icon class will be displayed in delete link."
@@ -338,7 +344,7 @@ msgstr ""
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "deleteStyleClass"
-msgstr ""
+msgstr "deleteStyleClass"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "Styles for delete link."
@@ -346,7 +352,7 @@ msgstr ""
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "updatedComponentAfterDeleted"
-msgstr ""
+msgstr "updatedComponentAfterDeleted"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "Component will be triggered the update after document is deleted."
@@ -354,7 +360,7 @@ msgstr ""
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "renameStyleClass"
-msgstr ""
+msgstr "renameStyleClass"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "Styles for edit filename link."
@@ -370,7 +376,7 @@ msgstr ""
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "selectedType"
-msgstr ""
+msgstr "selectedType"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid ""
@@ -380,11 +386,11 @@ msgstr ""
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "typeSelectionItems"
-msgstr ""
+msgstr "typeSelectionItems"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "DOCUMENTATION,CONTRACT,INFORMATION,EMAIL,OTHERS"
-msgstr ""
+msgstr "DOCUMENTATION,CONTRACT,INFORMATION,EMAIL,OTHERS"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "String value to specify the list of document type."
@@ -393,7 +399,7 @@ msgstr ""
 #: ../../source/portal-components/document-table/index.rst:93
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "enableScriptCheckingForUploadedDocument"
-msgstr ""
+msgstr "enableScriptCheckingForUploadedDocument"
 
 #: ../../source/portal-components/document-table/index.rst
 msgid ""
@@ -587,6 +593,10 @@ msgid ""
 "fields are mandatory when mapping: ``id``, ``uuid``, ``name``, "
 "``contentType``"
 msgstr ""
+"DMS からドキュメントリストを取得したら、 "
+"``List<ch.ivy.addon.portal.component.ivydata.bo.IvyDocument>`` "
+"に変換してください。``id``、``uuid``、 ``name`` 、 ``contentType`` "
+"をマッピングする場合、これらのフィールドは必須です。"
 
 #: ../../source/portal-components/document-table/index.rst:77
 msgid "Upload document"
@@ -931,7 +941,7 @@ msgstr ""
 #: ../../source/portal-components/security-member-name-and-avatar/index.rst:7
 #: ../../source/portal-components/user-selection/index.rst:7
 msgid "Introduction"
-msgstr ""
+msgstr "概要"
 
 #: ../../source/portal-components/process-chain/index.rst:11
 msgid ""
@@ -1012,11 +1022,11 @@ msgstr ""
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
 msgid "componentId"
-msgstr ""
+msgstr "componentId"
 
 #: ../../source/portal-components/documents/process_chain_component_attributes.csv:1
 msgid "process-chain-component-id"
-msgstr ""
+msgstr "process-chain-component-id"
 
 #: ../../source/portal-components/documents/process_chain_component_attributes.csv:1
 msgid "The component identifier."
@@ -1024,7 +1034,7 @@ msgstr ""
 
 #: ../../source/portal-components/documents/process_chain_component_attributes.csv:1
 msgid "steps"
-msgstr ""
+msgstr "steps"
 
 #: ../../source/portal-components/documents/process_chain_component_attributes.csv:1
 msgid "List of step in the process chain."
@@ -1032,7 +1042,7 @@ msgstr ""
 
 #: ../../source/portal-components/documents/process_chain_component_attributes.csv:1
 msgid "actualStepIndex"
-msgstr ""
+msgstr "actualStepIndex"
 
 #: ../../source/portal-components/documents/process_chain_component_attributes.csv:1
 msgid "0"
@@ -1044,23 +1054,23 @@ msgstr ""
 
 #: ../../source/portal-components/documents/process_chain_component_attributes.csv:1
 msgid "direction"
-msgstr ""
+msgstr "direction"
 
 #: ../../source/portal-components/documents/process_chain_component_attributes.csv:1
 msgid "HORIZONTAL"
-msgstr ""
+msgstr "HORIZONTAL"
 
 #: ../../source/portal-components/documents/process_chain_component_attributes.csv:1
 msgid "Direction of process chain: VERTICAL, HORIZONTAL."
-msgstr ""
+msgstr "プロセスチェーンの方向：VERTICAL, HORIZONTAL."
 
 #: ../../source/portal-components/documents/process_chain_component_attributes.csv:1
 msgid "shape"
-msgstr ""
+msgstr "shape"
 
 #: ../../source/portal-components/documents/process_chain_component_attributes.csv:1
 msgid "CIRCLE"
-msgstr ""
+msgstr "CIRCLE"
 
 #: ../../source/portal-components/documents/process_chain_component_attributes.csv:1
 msgid "Shape of process chain: CIRCLE, LINE."
@@ -1075,7 +1085,7 @@ msgstr ""
 #: ../../source/portal-components/documents/security_member_name_and_avatar_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
 msgid "false"
-msgstr ""
+msgstr "false"
 
 #: ../../source/portal-components/documents/process_chain_component_attributes.csv:1
 msgid "Show all steps of the process chain."
@@ -1130,7 +1140,7 @@ msgstr ""
 
 #: ../../source/portal-components/documents/process_viewer_component_attributes.csv:1
 msgid "taskId"
-msgstr ""
+msgstr "taskId"
 
 #: ../../source/portal-components/documents/process_viewer_component_attributes.csv:1
 msgid "Task ID."
@@ -1138,7 +1148,7 @@ msgstr ""
 
 #: ../../source/portal-components/documents/process_viewer_component_attributes.csv:1
 msgid "caseId"
-msgstr ""
+msgstr "caseId"
 
 #: ../../source/portal-components/documents/process_viewer_component_attributes.csv:1
 msgid "Case ID."
@@ -1146,7 +1156,7 @@ msgstr ""
 
 #: ../../source/portal-components/documents/process_viewer_component_attributes.csv:1
 msgid "processLink"
-msgstr ""
+msgstr "processLink"
 
 #: ../../source/portal-components/documents/process_viewer_component_attributes.csv:1
 msgid "Process or Case Map relative link."
@@ -1155,7 +1165,7 @@ msgstr ""
 #: ../../source/portal-components/documents/process_viewer_component_attributes.csv:1
 #: ../../source/portal-components/documents/security_member_name_and_avatar_component_attributes.csv:1
 msgid "containerStyleClass"
-msgstr ""
+msgstr "containerStyleClass"
 
 #: ../../source/portal-components/documents/process_viewer_component_attributes.csv:1
 msgid "Component container style class."
@@ -1306,7 +1316,7 @@ msgstr ""
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
 msgid "List<String>"
-msgstr ""
+msgstr "List<String>"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 msgid ""
@@ -1320,11 +1330,11 @@ msgstr ""
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 msgid "selectedRole"
-msgstr ""
+msgstr "selectedRole"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 msgid "RoleDTO"
-msgstr ""
+msgstr "RoleDTO"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 msgid "Required input and output value for selected role."
@@ -1332,7 +1342,7 @@ msgstr ""
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 msgid "excludedRolenames"
-msgstr ""
+msgstr "excludedRolenames"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 msgid ""
@@ -1343,7 +1353,7 @@ msgstr ""
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
 msgid "requiredMessage"
-msgstr ""
+msgstr "requiredMessage"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
@@ -1357,13 +1367,13 @@ msgstr ""
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
 msgid "forceSelection"
-msgstr ""
+msgstr "forceSelection"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/security_member_name_and_avatar_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
 msgid "true"
-msgstr ""
+msgstr "true"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 msgid "If true, only accept roles from the given list."
@@ -1386,11 +1396,11 @@ msgstr ""
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
 msgid "completeMethod"
-msgstr ""
+msgstr "completeMethod"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 msgid "completeRole"
-msgstr ""
+msgstr "completeRole"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
@@ -1404,7 +1414,7 @@ msgstr ""
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
 msgid "isDisabled"
-msgstr ""
+msgstr "isDisabled"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 msgid "If true, Role Selection is disabled."
@@ -1413,7 +1423,7 @@ msgstr ""
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
 msgid "isRequired"
-msgstr ""
+msgstr "isRequired"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 msgid "If true, Marks Role Selection is required."
@@ -1422,7 +1432,7 @@ msgstr ""
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
 msgid "isReadOnly"
-msgstr ""
+msgstr "isReadOnly"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 msgid "If true, user cannot change role."
@@ -1440,7 +1450,7 @@ msgstr ""
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
 msgid "hightlight"
-msgstr ""
+msgstr "hightlight"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 msgid "Highlights the first suggested role automatically."
@@ -1449,7 +1459,7 @@ msgstr ""
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
 msgid "floatingLabel"
-msgstr ""
+msgstr "floatingLabel"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
@@ -1606,7 +1616,7 @@ msgstr ""
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
 msgid "scrollHeight"
-msgstr ""
+msgstr "scrollHeight"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
@@ -1621,7 +1631,7 @@ msgstr ""
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
 msgid "hasCustomizedSelectionList"
-msgstr ""
+msgstr "hasCustomizedSelectionList"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
@@ -1687,7 +1697,7 @@ msgstr ""
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
 msgid "emptyMessage"
-msgstr ""
+msgstr "emptyMessage"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
@@ -1768,7 +1778,7 @@ msgstr ""
 
 #: ../../source/portal-components/documents/security_member_name_and_avatar_component_attributes.csv:1
 msgid "id"
-msgstr ""
+msgstr "id"
 
 #: ../../source/portal-components/documents/security_member_name_and_avatar_component_attributes.csv:1
 msgid "Id of component."
@@ -1776,7 +1786,7 @@ msgstr ""
 
 #: ../../source/portal-components/documents/security_member_name_and_avatar_component_attributes.csv:1
 msgid "securityMember"
-msgstr ""
+msgstr "securityMember"
 
 #: ../../source/portal-components/documents/security_member_name_and_avatar_component_attributes.csv:1
 msgid "ISecurityMember"
@@ -1792,11 +1802,11 @@ msgstr ""
 
 #: ../../source/portal-components/documents/security_member_name_and_avatar_component_attributes.csv:1
 msgid "displayNameId"
-msgstr ""
+msgstr "displayNameId"
 
 #: ../../source/portal-components/documents/security_member_name_and_avatar_component_attributes.csv:1
 msgid "username"
-msgstr ""
+msgstr "username"
 
 #: ../../source/portal-components/documents/security_member_name_and_avatar_component_attributes.csv:1
 msgid "Id of display name element."
@@ -1808,7 +1818,7 @@ msgstr ""
 
 #: ../../source/portal-components/documents/security_member_name_and_avatar_component_attributes.csv:1
 msgid "displayNameRendered"
-msgstr ""
+msgstr "displayNameRendered"
 
 #: ../../source/portal-components/documents/security_member_name_and_avatar_component_attributes.csv:1
 msgid "If false, the security member name is hidden."
@@ -1816,7 +1826,7 @@ msgstr ""
 
 #: ../../source/portal-components/documents/security_member_name_and_avatar_component_attributes.csv:1
 msgid "displayNameStyleClass"
-msgstr ""
+msgstr "displayNameStyleClass"
 
 #: ../../source/portal-components/documents/security_member_name_and_avatar_component_attributes.csv:1
 msgid "The style class is applied for display name element."
@@ -1895,7 +1905,7 @@ msgstr ""
 
 #: ../../source/portal-components/documents/css_variables/process_chain.csv:1
 msgid "\\--process-chain-process-step-font-size"
-msgstr ""
+msgstr "\\--process-chain-process-step-font-size"
 
 #: ../../source/portal-components/documents/css_variables/process_chain.csv:1
 msgid "12px"
@@ -1907,11 +1917,11 @@ msgstr ""
 
 #: ../../source/portal-components/documents/css_variables/process_chain.csv:1
 msgid "\\--process-chain-body-background-color"
-msgstr ""
+msgstr "\\--process-chain-body-background-color"
 
 #: ../../source/portal-components/documents/css_variables/process_chain.csv:1
 msgid "rgba(0,0,0,0)"
-msgstr ""
+msgstr "rgba(0,0,0,0)"
 
 #: ../../source/portal-components/documents/css_variables/process_chain.csv:1
 msgid "Background color of waiting circle process steps."
@@ -1919,7 +1929,7 @@ msgstr ""
 
 #: ../../source/portal-components/documents/css_variables/process_chain.csv:1
 msgid "\\--process-chain-menu-color"
-msgstr ""
+msgstr "\\--process-chain-menu-color"
 
 #: ../../source/portal-components/documents/css_variables/process_chain.csv:1
 msgid "var(\\--primary-color, hsl(195, 100%, 29%))"
@@ -1931,7 +1941,7 @@ msgstr ""
 
 #: ../../source/portal-components/documents/css_variables/process_chain.csv:1
 msgid "\\--process-chain-link-color"
-msgstr ""
+msgstr "\\--process-chain-link-color"
 
 #: ../../source/portal-components/documents/css_variables/process_chain.csv:1
 #: ../../source/portal-components/documents/css_variables/process_history.csv:1
@@ -1944,12 +1954,12 @@ msgstr ""
 
 #: ../../source/portal-components/documents/css_variables/process_chain.csv:1
 msgid "\\--process-chain-current-circle-horizontal-step-title-font-weight"
-msgstr ""
+msgstr "\\--process-chain-current-circle-horizontal-step-title-font-weight"
 
 #: ../../source/portal-components/documents/css_variables/process_chain.csv:1
 #: ../../source/portal-components/documents/css_variables/process_viewer.csv:1
 msgid "bold"
-msgstr ""
+msgstr "bold"
 
 #: ../../source/portal-components/documents/css_variables/process_chain.csv:1
 msgid "Font weight of circle horizontal process step title."
@@ -1957,7 +1967,7 @@ msgstr ""
 
 #: ../../source/portal-components/documents/css_variables/process_chain.csv:1
 msgid "\\--process-chain-current-circle-vertical-step-title-font-weight"
-msgstr ""
+msgstr "\\--process-chain-current-circle-vertical-step-title-font-weight"
 
 #: ../../source/portal-components/documents/css_variables/process_chain.csv:1
 msgid "Font weight of circle vertical process step title."
@@ -1965,7 +1975,7 @@ msgstr ""
 
 #: ../../source/portal-components/documents/css_variables/process_chain.csv:1
 msgid "\\--process-chain-current-line-horizontal-step-title-font-weight"
-msgstr ""
+msgstr "\\--process-chain-current-line-horizontal-step-title-font-weight"
 
 #: ../../source/portal-components/documents/css_variables/process_chain.csv:1
 msgid "Font weight of line horizontal process step title."
@@ -1973,7 +1983,7 @@ msgstr ""
 
 #: ../../source/portal-components/documents/css_variables/process_chain.csv:1
 msgid "\\--process-chain-current-line-vertical-step-title-font-weight"
-msgstr ""
+msgstr "\\--process-chain-current-line-vertical-step-title-font-weight"
 
 #: ../../source/portal-components/documents/css_variables/process_chain.csv:1
 msgid "Font weight of line vertical process step title."
@@ -1985,7 +1995,7 @@ msgstr ""
 
 #: ../../source/portal-components/documents/css_variables/process_history.csv:1
 msgid "\\--process-history-header-border-bottom-color"
-msgstr ""
+msgstr "\\--process-history-header-border-bottom-color"
 
 #: ../../source/portal-components/documents/css_variables/process_history.csv:1
 msgid "Color of bottom header’s border."
@@ -1993,7 +2003,7 @@ msgstr ""
 
 #: ../../source/portal-components/documents/css_variables/process_history.csv:1
 msgid "\\--process-history-unsortable-header-font-size"
-msgstr ""
+msgstr "\\--process-history-unsortable-header-font-size"
 
 #: ../../source/portal-components/documents/css_variables/process_history.csv:1
 msgid "1.4rem"
@@ -2005,7 +2015,7 @@ msgstr ""
 
 #: ../../source/portal-components/documents/css_variables/process_history.csv:1
 msgid "\\--process-history-unsortable-header-text-color"
-msgstr ""
+msgstr "\\--process-history-unsortable-header-text-color"
 
 #: ../../source/portal-components/documents/css_variables/process_history.csv:1
 msgid "#9C9D9D"
@@ -2017,7 +2027,7 @@ msgstr ""
 
 #: ../../source/portal-components/documents/css_variables/process_history.csv:1
 msgid "\\--process-history-description-text-color"
-msgstr ""
+msgstr "\\--process-history-description-text-color"
 
 #: ../../source/portal-components/documents/css_variables/process_history.csv:1
 msgid "Text color of item description."
@@ -2025,7 +2035,7 @@ msgstr ""
 
 #: ../../source/portal-components/documents/css_variables/process_history.csv:1
 msgid "\\--process-history-item-background-color"
-msgstr ""
+msgstr "\\--process-history-item-background-color"
 
 #: ../../source/portal-components/documents/css_variables/process_history.csv:1
 msgid "rgba(var(\\--white, #000000), 0.2)"
@@ -2037,7 +2047,7 @@ msgstr ""
 
 #: ../../source/portal-components/documents/css_variables/process_history.csv:1
 msgid "\\--process-history-item-border-bottom-color"
-msgstr ""
+msgstr "\\--process-history-item-border-bottom-color"
 
 #: ../../source/portal-components/documents/css_variables/process_history.csv:1
 msgid "Color of bottom item’s border."
@@ -2045,7 +2055,7 @@ msgstr ""
 
 #: ../../source/portal-components/documents/css_variables/process_history.csv:1
 msgid "\\--process-history-item-border-hover"
-msgstr ""
+msgstr "\\--process-history-item-border-hover"
 
 #: ../../source/portal-components/documents/css_variables/process_history.csv:1
 msgid "1px solid #90DDE9"
@@ -2057,7 +2067,7 @@ msgstr ""
 
 #: ../../source/portal-components/documents/css_variables/process_history.csv:1
 msgid "\\--process-history-item-background-hover"
-msgstr ""
+msgstr "\\--process-history-item-background-hover"
 
 #: ../../source/portal-components/documents/css_variables/process_history.csv:1
 msgid "rgba(144, 221, 233, 0.24)"
@@ -2069,7 +2079,7 @@ msgstr ""
 
 #: ../../source/portal-components/documents/css_variables/process_history.csv:1
 msgid "\\--process-history-state-in-progress-color"
-msgstr ""
+msgstr "\\--process-history-state-in-progress-color"
 
 #: ../../source/portal-components/documents/css_variables/process_history.csv:1
 msgid "rgba(7, 140, 255, 1)"
@@ -2081,7 +2091,7 @@ msgstr ""
 
 #: ../../source/portal-components/documents/css_variables/process_history.csv:1
 msgid "\\--process-history-state-done-or-resume-color"
-msgstr ""
+msgstr "\\--process-history-state-done-or-resume-color"
 
 #: ../../source/portal-components/documents/css_variables/process_history.csv:1
 msgid "#4EB41C"
@@ -2093,7 +2103,7 @@ msgstr ""
 
 #: ../../source/portal-components/documents/css_variables/process_history.csv:1
 msgid "\\--process-history-empty-message-label-color"
-msgstr ""
+msgstr "\\--process-history-empty-message-label-color"
 
 #: ../../source/portal-components/documents/css_variables/process_history.csv:1
 msgid "hsl(64, 1%, 48%)"
@@ -2105,7 +2115,7 @@ msgstr ""
 
 #: ../../source/portal-components/documents/css_variables/process_history.csv:1
 msgid "\\--process-history-empty-message-label-font-size"
-msgstr ""
+msgstr "\\--process-history-empty-message-label-font-size"
 
 #: ../../source/portal-components/documents/css_variables/process_history.csv:1
 #: ../../source/portal-components/documents/css_variables/process_viewer.csv:1
@@ -2118,7 +2128,7 @@ msgstr ""
 
 #: ../../source/portal-components/documents/css_variables/process_viewer.csv:1
 msgid "\\--process-viewer-data-has-error-message-font-weight"
-msgstr ""
+msgstr "\\--process-viewer-data-has-error-message-font-weight"
 
 #: ../../source/portal-components/documents/css_variables/process_viewer.csv:1
 msgid "Error message font weight."
@@ -2126,7 +2136,7 @@ msgstr ""
 
 #: ../../source/portal-components/documents/css_variables/process_viewer.csv:1
 msgid "\\--process-viewer-data-has-error-message-font-size"
-msgstr ""
+msgstr "\\--process-viewer-data-has-error-message-font-size"
 
 #: ../../source/portal-components/documents/css_variables/process_viewer.csv:1
 msgid "Error message font size."
@@ -2134,7 +2144,7 @@ msgstr ""
 
 #: ../../source/portal-components/documents/css_variables/process_viewer.csv:1
 msgid "\\--process-details-column-title-font-size"
-msgstr ""
+msgstr "\\--process-details-column-title-font-size"
 
 #: ../../source/portal-components/documents/css_variables/process_viewer.csv:1
 msgid "0.85rem"
@@ -2234,11 +2244,11 @@ msgstr ""
 
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
 msgid "selectedUser"
-msgstr ""
+msgstr "selectedUser"
 
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
 msgid "UserDTO"
-msgstr ""
+msgstr "UserDTO"
 
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
 msgid "Required input and output value for selected user."
@@ -2246,7 +2256,7 @@ msgstr ""
 
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
 msgid "excludedUsernames"
-msgstr ""
+msgstr "excludedUsernames"
 
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
 msgid ""
@@ -2270,7 +2280,7 @@ msgstr ""
 
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
 msgid "completeUser"
-msgstr ""
+msgstr "completeUser"
 
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
 msgid "Method for user autocomplete."
