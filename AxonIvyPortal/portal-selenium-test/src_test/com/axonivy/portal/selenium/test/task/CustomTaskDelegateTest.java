@@ -38,7 +38,8 @@ public class CustomTaskDelegateTest extends BaseTest {
     taskWidget.addFilter("state", null);
     taskWidget.inputValueOnLatestFilter(FilterValueType.STATE_TYPE, "Open");
     taskWidget.applyFilter();
-    taskWidget.openTaskDelegateDialog(0);
+    taskWidget.clickOnTaskActionLink(0);
+    taskWidget.clickTaskAction(0, "Delegate");
     taskWidget.waitForTaskDelegateDialogContent();
 
     // User type is disabled
@@ -85,7 +86,8 @@ public class CustomTaskDelegateTest extends BaseTest {
     taskWidget.addFilter("state", null);
     taskWidget.inputValueOnLatestFilter(FilterValueType.STATE_TYPE, "Open");
     taskWidget.applyFilter();
-    taskWidget.openTaskDelegateDialog(0);
+    taskWidget.clickOnTaskActionLink(0);
+    taskWidget.clickTaskAction(0, "Delegate");
     taskWidget.waitForTaskDelegateDialogContent();
     assertFalse(taskWidget.isDelegateTypeAvailable());
     assertEquals("This task cannot be delegated to any other user or group.", taskWidget.getCannotDelegateText());
