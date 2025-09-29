@@ -117,7 +117,7 @@ public String getFilter() {
 
   public void setNames(List<DisplayName> names) {
     this.names = names;
-    name = DisplayNameUtils.findDisplayNameOfUserLanguage(names);
+    name = DisplayNameUtils.findLocalizedName(names);
   }
 
   public String getName() {
@@ -130,7 +130,7 @@ public String getFilter() {
 
   public void setDescriptions(List<DisplayName> descriptions) {
     this.descriptions = descriptions;
-    description = DisplayNameUtils.findDisplayNameOfUserLanguage(descriptions);
+    description = DisplayNameUtils.findLocalizedName(descriptions);
   }
 
   public String getDescription() {

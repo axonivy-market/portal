@@ -12,10 +12,10 @@ import org.apache.commons.lang3.Strings;
 
 import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.language.LanguageManager;
-import ch.ivyteam.ivy.security.ISecurityContext;
 
 public final class LanguageUtils {
+
+  private static final String DEFAULT_LANGUAGE = "en";
 
   private LanguageUtils() {}
 
@@ -30,26 +30,43 @@ public final class LanguageUtils {
     if (CollectionUtils.isEmpty(names)) {
       return "";
     }
-    String nameInUserLanguage = findNameInUserLanguage(names).map(DisplayName::getValue).orElse(null);
-    if (nameInUserLanguage != null) {
-      return nameInUserLanguage;
+    
+    Locale userLocale = getUserLocale();
+    
+    // 1. Try full locale match (including country variants)
+    String nameInFullLocale = findNameByFullLocale(names, userLocale).map(DisplayName::getValue).orElse(null);
+    if (nameInFullLocale != null) {
+      return nameInFullLocale;
     }
-    String systemLanguage = LanguageManager.instance().configurator(ISecurityContext.current()).content().toString();
-    String nameInSystemLanguage = findNameByLanguage(names, systemLanguage).map(DisplayName::getValue).orElse(null);
-    if (nameInSystemLanguage != null) {
-      return nameInSystemLanguage;
+    
+    // 2. Try language code match (ignoring country)
+    String nameInLanguage = findNameByLanguageCode(names, userLocale.getLanguage()).map(DisplayName::getValue).orElse(null);
+    if (nameInLanguage != null) {
+      return nameInLanguage;
     }
-    return CollectionUtils.emptyIfNull(names).stream().map(DisplayName::getValue).filter(Objects::nonNull).findFirst()
-        .orElse("");
+    
+    // 3. Try default language (English)
+    String nameInEnglish = findNameByLanguageCode(names, DEFAULT_LANGUAGE).map(DisplayName::getValue).orElse("");
+    return nameInEnglish;
   }
 
   public static Optional<DisplayName> findNameInUserLanguage(List<DisplayName> names) {
-    return findNameByLanguage(names, getUserLanguage());
+    return findNameByFullLocale(names, getUserLocale());
   }
 
   public static Optional<DisplayName> findNameByLanguage(List<DisplayName> names, String language) {
     return CollectionUtils.emptyIfNull(names).stream()
         .filter(name -> Strings.CI.equals(name.getLocale().toLanguageTag(), language)).findFirst();
+  }
+
+  public static Optional<DisplayName> findNameByFullLocale(List<DisplayName> names, Locale locale) {
+    return CollectionUtils.emptyIfNull(names).stream()
+        .filter(name -> locale.equals(name.getLocale())).findFirst();
+  }
+
+  public static Optional<DisplayName> findNameByLanguageCode(List<DisplayName> names, String languageCode) {
+    return CollectionUtils.emptyIfNull(names).stream()
+        .filter(name -> Strings.CI.equals(name.getLocale().getLanguage(), languageCode)).findFirst();
   }
 
   public static String getUserLanguage() {
