@@ -10,7 +10,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-09-22 04:56+0000\n"
 "PO-Revision-Date: 2025-09-29 10:29+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"Last-Translator: DeepL <noreply-mt-deepl@weblate.org>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/axonivy-portal/"
 "portal-le/doc/portal-doc-developer-guide/ja/>\n"
 "Language: ja\n"
@@ -916,6 +916,8 @@ msgid ""
 "``document`` -  ``technicalCase`` -  ``businessDetails`` -  "
 "``relatedTask`` -  ``history`` -  ``custom``."
 msgstr ""
+"`type` `` ` - ` ` - ` ` - ` ` - ` ` - ` ` - ` `.information` `document` "
+"`technicalCase` `businessDetails` `relatedTask` `history` `custom`"
 
 #: ../../source/portal-developer-guide/customization/case-item-details.rst:126
 msgid "``layout``: defines the UI styling of the widget."
@@ -2522,7 +2524,8 @@ msgstr "``custom.css`` でポータルのスタイルをカスタマイズでき
 msgid ""
 "For example, to edit the ``--first-header-bar`` you need to insert this "
 "for example in the ``custom.css``:"
-msgstr ""
+msgstr "たとえば、``--first-header-bar`` を編集するには、``custom.css`` "
+"に挿入する必要があります："
 
 #: ../../source/portal-developer-guide/customization/portal-style-customization-logos-colors-date-patterns.rst:103
 msgid ""
@@ -3379,7 +3382,8 @@ msgstr "``permissions``：ダッシュボードにアクセスできるロール
 msgid ""
 "``dashboardDisplayType``: the display type of your dashboard in the left "
 "menu of Portal."
-msgstr ""
+msgstr "`dashboardDisplayType``：ポータルの左メニューにあるダッシュボードの表示タイプ"
+"。"
 
 #: ../../source/portal-developer-guide/dashboard/index.rst:172
 msgid ""
@@ -3626,7 +3630,7 @@ msgstr "``id``：ケース ID"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:126
 msgid "``Pin``: column which contains Pin button to Pin your case."
-msgstr ""
+msgstr "`Pin``: あなたのケースをPinするためのPinボタンがあるカラムです。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:128
 msgid "``name``: case name"
@@ -4650,6 +4654,9 @@ msgid ""
 "configuration dialog of the custom widget. There are four types: "
 "``string``, ``user``, ``date``, ``boolean``."
 msgstr ""
+"タイプ：タイプ: "
+"カスタムウィジェットの設定ダイアログに表示されるパラメータのデータタイプ。4つ"
+"のタイプがあります：`string``,``user``,``date``,``boolean``."
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-custom-widget.rst:157
 msgid ""
@@ -4780,7 +4787,7 @@ msgstr "``names``：UI に表示されるウィジェットの複数言語の名
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-external-page-widget.rst:58
 msgid "``layout``: layout definition of the statistic widget"
-msgstr ""
+msgstr "`layout``: 統計ウィジェットのレイアウト定義"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-external-page-widget.rst:68
 msgid "``url``: the URL of the external webpage you want to show."
@@ -4799,23 +4806,26 @@ msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:4
 msgid "Configure Navigation Dashboard Widget"
-msgstr ""
+msgstr "ナビゲーション・ダッシュボード・ウィジェットの設定"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:9
 msgid "Define Navigation Dashboard Widget"
-msgstr ""
+msgstr "ナビゲーション・ダッシュボード・ウィジェットの定義"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:11
 msgid ""
 "The Navigation Dashboard widget of the Portal dashboard allows users to "
 "navigate to a target dashboard quickly with a single click."
 msgstr ""
+"ポータル・ダッシュボードのナビゲーション・ダッシュボード・ウィジェットを使用"
+"すると、ユーザーはワンクリックで目的のダッシュボードにすばやく移動できます。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:13
 msgid ""
 "Below is a sample JSON definition of a navigation dashboard widget in the"
 " Portal dashboard."
-msgstr ""
+msgstr "以下は、ポータル・ダッシュボードのナビゲーション・ダッシュボード・ウィジェッ"
+"トのJSON定義のサンプルです。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:68
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:148
@@ -4827,6 +4837,8 @@ msgid ""
 "``type``: type of the widget. Use ``navigation-dashboard`` for a "
 "navigation dashboard widget"
 msgstr ""
+"`type``: ウィジェットのタイプ。ナビゲーションダッシュボードウィジェットには `"
+" ` を使用してください。`navigation-dashboard`"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:74
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-notification-widget.rst:56
@@ -4836,7 +4848,7 @@ msgstr "``names``：UI に表示されるウィジェットの複数言語の名
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:76
 msgid "``buttonNames``: multilingual button name on the widget"
-msgstr ""
+msgstr "`buttonNames``: ウィジェットの多言語ボタン名"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:78
 msgid "``layout``: layout definition of the client statistic widget"
@@ -4844,15 +4856,15 @@ msgstr "``layout``：クライアントの統計ウィジェットのレイア�
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:88
 msgid "``targetDashboardId``: the target dashboard id"
-msgstr ""
+msgstr "`targetDashboardId``: 対象のダッシュボードの ID"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:90
 msgid "``description``: the widget description"
-msgstr ""
+msgstr "`description``: ウィジェットの説明"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:92
 msgid "``icon``: the icon shown on the widget"
-msgstr ""
+msgstr "`icon``: ウィジェットに表示されるアイコン"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-notification-widget.rst:4
 msgid "Configure Notifications Widget"
@@ -5154,29 +5166,29 @@ msgstr "以下はポータルダッシュボードの統計ウィジェットの
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:152
 #: ../../source/portal-developer-guide/settings/index.rst:582
 msgid "``version``: current version of the widget."
-msgstr ""
+msgstr "`version``: ウィジェットの現在のバージョン。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:154
 #: ../../source/portal-developer-guide/settings/index.rst:584
 msgid "``statisticAggregation``: statistic's aggregation."
-msgstr ""
+msgstr "`statisticAggregation``: 統計の集計。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:156
 #: ../../source/portal-developer-guide/settings/index.rst:586
 msgid "``field``: aggregation (group by) field."
-msgstr ""
+msgstr "`field``: 集計（group by）フィールド。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:158
 #: ../../source/portal-developer-guide/settings/index.rst:588
 msgid "``type``: type of the field, could be `standard` or `custom`."
-msgstr ""
+msgstr "`type``: フィールドのタイプ。`standard` または `custom` である。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:160
 #: ../../source/portal-developer-guide/settings/index.rst:590
 msgid ""
 "``kpiField`` (optional): the numeric custom field on which to perform "
 "calculations."
-msgstr ""
+msgstr "`kpiField`` (オプション): 計算を行う数値カスタムフィールド。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:162
 #: ../../source/portal-developer-guide/settings/index.rst:592
@@ -5184,6 +5196,8 @@ msgid ""
 "``aggregationMethod`` (optional): the calculation method to apply, could "
 "be `sum`, `avg`, `max` or `min`."
 msgstr ""
+"`aggregationMethod`` (オプション): 適用する計算方法。`sum`, `avg`, `max` "
+"または `min` を指定する。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:164
 #: ../../source/portal-developer-guide/settings/index.rst:594
@@ -5193,77 +5207,82 @@ msgid ""
 "system applies the specified aggregation method to the numeric values in "
 "``kpiField``."
 msgstr ""
+"``kpiField`` と``aggregationMethod`` "
+"が提供されない場合、カウント統計（タスク数またはケース数のカウント）を返しま"
+"す。一方、システムは``kpiField`` の数値に指定された集計方法を適用する。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:167
 #: ../../source/portal-developer-guide/settings/index.rst:597
 msgid "``filters``: filters for the statistic chart."
-msgstr ""
+msgstr "`filters``: 統計チャートのフィルター。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:169
 #: ../../source/portal-developer-guide/settings/index.rst:599
 msgid "``field``: field to filter."
-msgstr ""
+msgstr "`field``: フィルタリングするフィールド。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:171
 #: ../../source/portal-developer-guide/settings/index.rst:601
 msgid "``values``: value of the filter to query."
-msgstr ""
+msgstr "`values``: 問い合わせるフィルターの値。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:173
 #: ../../source/portal-developer-guide/settings/index.rst:603
 msgid "``operator``: operator for the filter."
-msgstr ""
+msgstr "`operator``: フィルタの演算子。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:175
 #: ../../source/portal-developer-guide/settings/index.rst:605
 msgid "``type``: type of the field."
-msgstr ""
+msgstr "`type``: フィールドのタイプ。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:177
 #: ../../source/portal-developer-guide/settings/index.rst:607
 msgid "``permissions``: permissions for statistic chart."
-msgstr ""
+msgstr "`permissions``: 統計チャートのパーミッション。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:179
 #: ../../source/portal-developer-guide/settings/index.rst:609
 msgid "``chartTarget``: chart's target, could be `case` or `task`."
-msgstr ""
+msgstr "`chartTarget``: `case` または `task` である。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:181
 #: ../../source/portal-developer-guide/settings/index.rst:619
 msgid "``chartType``: chart's type, could be `bar`, `line`, `pie` or `number`."
-msgstr ""
+msgstr "`chartType``: チャートの種類。`bar`, `line`, `pie` または `number` "
+"のいずれか。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:183
 #: ../../source/portal-developer-guide/settings/index.rst:611
 msgid "``icon``: icon for the statistic chart."
-msgstr ""
+msgstr "`icon``: 統計チャートのアイコン。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:185
 #: ../../source/portal-developer-guide/settings/index.rst:613
 msgid ""
 "``refreshInterval``: number of seconds for the chart auto-refreshed, "
 "minimum value is 60."
-msgstr ""
+msgstr "`refreshInterval``: チャートが自動更新される秒数、最小値は 60。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:187
 #: ../../source/portal-developer-guide/settings/index.rst:615
 msgid "``names``: name for the statistic chart, multi-language supported."
-msgstr ""
+msgstr "`names``: 統計チャートの名前、多言語対応。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:189
 #: ../../source/portal-developer-guide/settings/index.rst:617
 msgid ""
 "``descriptions``: description for the statistic chart, multi-language "
 "supported."
-msgstr ""
+msgstr "`descriptions``: 統計チャートの説明、多言語対応。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:191
 #: ../../source/portal-developer-guide/settings/index.rst:637
 msgid ""
 "For some specific charts such as ``Bar``, ``Pie``, ``Line`` or "
 "``Number``, there are additional fields:"
-msgstr ""
+msgstr "``Bar``、``Pie``、``Line``、``Number`` "
+"のような特定のチャートには、追加のフィールドがある："
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:193
 #: ../../source/portal-developer-guide/settings/index.rst:639
@@ -5271,6 +5290,8 @@ msgid ""
 "``barChartConfig``: additional fields for configuring the ``Bar`` chart, "
 "you can add if chart type is ``bar``"
 msgstr ""
+"`barChartConfig``: ` ` チャートを設定するための追加フィールド。"
+"チャートのタイプが ` ` の場合に追加できる。`Bar` `bar`"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:195
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:203
@@ -5293,7 +5314,7 @@ msgstr "``yTitles``：Y 軸の複数言語の表示タイトル"
 #: ../../source/portal-developer-guide/settings/index.rst:653
 #: ../../source/portal-developer-guide/settings/index.rst:657
 msgid "``backgroundColors`` : the colors to display the chart"
-msgstr ""
+msgstr "`backgroundColors`` : チャートを表示する色"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:201
 #: ../../source/portal-developer-guide/settings/index.rst:647
@@ -5301,6 +5322,8 @@ msgid ""
 "``lineChartConfig``: additional fields for configuring the ``Line`` "
 "chart, you can add if chart type is ``line``"
 msgstr ""
+"`lineChartConfig``: ` ` チャートを設定するための追加フィールド。"
+"チャートのタイプが ` ` の場合に追加できる。`Line` `line`"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:209
 #: ../../source/portal-developer-guide/settings/index.rst:655
@@ -5308,6 +5331,8 @@ msgid ""
 "``pieChartConfig``: additional fields for configuring the ``Pie`` chart, "
 "you can add if chart type is ``pie``"
 msgstr ""
+"`pieChartConfig``: ` ` チャートを設定するための追加フィールド。"
+"チャートのタイプが ` ` の場合に追加できる。`Pie` `pie`"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:213
 #: ../../source/portal-developer-guide/settings/index.rst:659
@@ -5321,7 +5346,7 @@ msgstr ""
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:215
 #: ../../source/portal-developer-guide/settings/index.rst:661
 msgid "``hideLabel``: toggle to show label of the number chart"
-msgstr ""
+msgstr "`hideLabel``: 数値チャートのラベル表示を切り替える"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:4
 msgid "Configure Task Widget"
@@ -5387,7 +5412,7 @@ msgstr "``start``：タスクを直接開始する開始ボタンを含む列"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:124
 msgid "``Pin``: column which contains Pin button to Pin your task."
-msgstr ""
+msgstr "`Pin``: タスクをピン留めするためのピンボタンがあるカラム。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:126
 msgid "``priority``: task priority"
@@ -5419,7 +5444,7 @@ msgstr "``startTimestamp``：タスクの作成日時"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:140
 msgid "``endTimestamp``: end date and time of the task"
-msgstr ""
+msgstr "`endTimestamp``: タスクの終了日時"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:142
 msgid "``expiryTimestamp``: expiry date and time of the task"
@@ -5458,6 +5483,11 @@ msgid ""
 "filter is visible only if the ``Portal.Cases.EnableOwner`` setting is set"
 " to ``true`` in the :ref:`Admin Settings <update-portal-settings>`."
 msgstr ""
+"`filterTasksByCurrentCaseOwner``: "
+"現在のユーザーがケースの所有者であるタスクのみをフィルタします。"
+"デフォルト値は ` ` です。このフィルタは、 の ` ` 設定が ` ` "
+"に設定されている場合にのみ表示されます。`false` :ref:`Admin Settings <update-"
+"portal-settings>` `Portal.Cases.EnableOwner` `true`"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:166
 msgid ""
@@ -5669,6 +5699,11 @@ msgid ""
 "|/designer-guide/configuration/custom-fields.html#localize-label-"
 "description-category-and-values>` to get more information."
 msgstr ""
+"カスタム・フィールドの値を追加するには、以下のパスに従ってください：`/"
+"CustomFields/Tasks/{fieldName}/Values/{value}``:dev-url:`Localize Label, "
+"Description, Category and Values </doc/|version|/designer-guide/"
+"configuration/custom-fields.html#localize-label-description-category-and-"
+"values>` に従ってください。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:605
 msgid ""
@@ -5677,6 +5712,9 @@ msgid ""
 "``/CustomFields/Tasks/DriversVehicle/Values/Car`` or "
 "``/CustomFields/Tasks/DriversVehicle/Values/MonsterTruck``."
 msgstr ""
+"あなたのCMSでは、パスは``/CustomFields/Tasks/DriversVehicle/Values/Bike``,``/"
+"CustomFields/Tasks/DriversVehicle/Values/Car`` または``/CustomFields/Tasks/"
+"DriversVehicle/Values/MonsterTruck`` であるべきです。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:610
 msgid "|task-field-cms|"
@@ -5690,7 +5728,8 @@ msgstr "task-field-cms"
 msgid ""
 "Example: When language is German, a user can search for **Fahrrad** or "
 "the original value **Bike**."
-msgstr ""
+msgstr "例言語がドイツ語の場合、ユーザーは**Fahrrad** または元の値**Bike** "
+"を検索できる。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-template.rst:4
 msgid "Configure Dashboard Template"
@@ -5984,6 +6023,10 @@ msgid ""
 "deployment guidelines </doc/|version|/engine-"
 "guide/deployment/index.html>`"
 msgstr ""
+"このセクションでは、ポータルを初めて展開する際のステップ・バイ・ステップのガ"
+"イドを提供します。例やベスト・プラクティスも含まれています。より包括的な展開"
+"情報については:dev-url:`|ivy| deployment guidelines </doc/|version|/engine-"
+"guide/deployment/index.html>`"
 
 #: ../../source/portal-developer-guide/deployment/index.rst:10
 msgid "The following is an overview of a sample deployment setup:"
@@ -6042,6 +6085,11 @@ msgid ""
 " </doc/|version|/engine-guide/deployment/prepare/application-"
 "configuration/index.html>`."
 msgstr ""
+".zipファイルを使用することを推奨します：:dev-url:`branding </doc/|version"
+"|/designer-guide/user-interface/branding/branding-"
+"engine.html>`変数、データベース、REST クライアント:dev-url:`configuration </"
+"doc/|version|/engine-guide/deployment/prepare/application-configuration/"
+"index.html>`."
 
 #: ../../source/portal-developer-guide/deployment/index.rst:49
 msgid "Recommended Deployment Setup (Sample)"
@@ -6123,6 +6171,11 @@ msgid ""
 "</doc/|version|/engine-guide/reference/engine-cockpit>`. This section "
 "highlights the most important configuration settings."
 msgstr ""
+"コンフィギュレーションは、:dev-url:`deployment </doc/|version|/engine-guide/"
+"deployment/prepare/application-configuration/index.html>` または:dev-url:`"
+"Engine Cockpit UI </doc/|version|/engine-guide/reference/engine-cockpit>` "
+"から行うことができます。 "
+"このセクションでは、最も重要なコンフィギュレーション設定について説明します。"
 
 #: ../../source/portal-developer-guide/deployment/index.rst:86
 msgid "Dashboard Configuration"
@@ -6162,6 +6215,8 @@ msgid ""
 "Place the `Portal.Dashboard.json` file within the `config/variables/` "
 "directory inside the application zip."
 msgstr ""
+"Portal.Dashboard.json`ファイルをアプリケーションZIP内の`config/variables/"
+"`ディレクトリに配置します。"
 
 #: ../../source/portal-developer-guide/deployment/index.rst:111
 msgid ""
@@ -6169,6 +6224,9 @@ msgid ""
 "application folder: "
 "``<engine>/configuration/applications/<application>/variables.Portal.Dashboard.json``"
 msgstr ""
+"あるいは、設定ファイルをエンジンのアプリケーション・フォルダーに直接コピーし"
+"てください：`<engine>/configuration/applications/"
+"<application>/variables.Portal.Dashboard.json``"
 
 #: ../../source/portal-developer-guide/deployment/index.rst:115
 msgid "**Using Engine Cockpit UI**"
@@ -6568,7 +6626,7 @@ msgstr "パラメーターを受け渡す前にサニタイジングすること
 
 #: ../../source/portal-developer-guide/iframe/index.rst:114
 msgid "**Using ``IFrameTaskConfig`` Component**"
-msgstr ""
+msgstr "**IFrameTaskConfigコンポーネントを使う**"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:143
 msgid "Configure Task Details"
@@ -6875,6 +6933,10 @@ msgid ""
 " escaping special characters — one of the most common techniques for "
 "JavaScript string sanitization."
 msgstr ""
+"ポータルでは、JavaScriptの文字列サニタイズのための最も一般的な手法の1つである"
+"、特殊文字のエスケープによるJavaScript文字列のサニタイズを支援するためのパブ"
+"リックAPI``SanitizeAPI.escapeForJavascript`` を``portal-components`` "
+"プロジェクトで提供しています。"
 
 #: ../../source/portal-developer-guide/index.rst:6
 msgid "Portal Developer Guide"
@@ -7167,7 +7229,7 @@ msgstr "ポータルプロジェクトと顧客プロジェクトを再展開し
 
 #: ../../source/portal-developer-guide/installation/index.rst:145
 msgid "Migrate 13.1 To 13.2"
-msgstr ""
+msgstr "13.1から13.2への移行"
 
 #: ../../source/portal-developer-guide/installation/index.rst:147
 msgid ""
@@ -7176,6 +7238,10 @@ msgid ""
 "url:`|ivy| Translation service </doc/|version|/engine-guide/configuration"
 "/translation-service/index.html>`"
 msgstr ""
+"ポータルで DeepL "
+"翻訳サービスを使用している場合は、ここに記載されている手順に従って再構成して"
+"ください：:dev-url:`|ivy| Translation service </doc/|version|/engine-guide/"
+"configuration/translation-service/index.html>`"
 
 #: ../../source/portal-developer-guide/installation/index.rst:150
 msgid "Migrate 11.3.2 To 12.0.0"
@@ -8306,7 +8372,7 @@ msgstr "ここには、 |ivy| "
 
 #: ../../source/portal-developer-guide/installation/index.rst:491
 msgid "Changes in 13.2.0"
-msgstr ""
+msgstr "13.2.0での変更点"
 
 #: ../../source/portal-developer-guide/installation/index.rst:492
 msgid ""
@@ -8314,30 +8380,36 @@ msgid ""
 "you have DocFactory in the same security context. You can preview "
 "Word(doc, docx), Excel(xls, xlsx) and email(eml) documents."
 msgstr ""
+"タスクとケース詳細のドキュメントプレビュー機能を強化しました。同じセキュリテ"
+"ィコンテキストにDocFactoryがある場合。Word(doc、docx)、Excel(xls、xlsx)、Eメ"
+"ール(eml)のドキュメントをプレビューできます。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:493
 msgid "Removed the Portal Setting ``Portal.DeepL.AuthKey``."
-msgstr ""
+msgstr "ポータル設定``Portal.DeepL.AuthKey`` を削除。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:494
 msgid ""
 "Renamed the Portal Setting ``Portal.DeepL.Enable`` to "
 "``Portal.TranslationService.Enable``."
 msgstr ""
+"ポータル設定``Portal.DeepL.Enable`` "
+"の名前を``Portal.TranslationService.Enable`` に変更。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:497
 msgid "Changes in 13.1.0"
-msgstr ""
+msgstr "13.1.0での変更点"
 
 #: ../../source/portal-developer-guide/installation/index.rst:498
 msgid ""
 "Introduced Custom Statistic Chart. Refer to :ref:`statistic-chart` for "
 "more information."
-msgstr ""
+msgstr "カスタム統計チャートを導入。詳細は:ref:`statistic-chart` を参照。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:499
 msgid "Rename the old file ``Portal.ClientStatistic`` to ``Portal.Statistic``."
-msgstr ""
+msgstr "古いファイル``Portal.ClientStatistic`` を``Portal.Statistic`` "
+"にリネームする。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:502
 msgid "Changes in 12.0.6"
@@ -8349,6 +8421,10 @@ msgid ""
 "``Portal.Tasks.EnablePinnedTask`` to enable the pinning feature for the "
 "case and task widgets on the dashboard."
 msgstr ""
+"ポータル設定``Portal.Cases.EnablePinnedCase`` "
+"と``Portal.Tasks.EnablePinnedTask`` "
+"を導入し、ダッシュボードのケースとタスクウィジェットのピン留め機能を有効にし"
+"た。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:506
 msgid "Changes in 12.0.4"
@@ -9773,7 +9849,7 @@ msgstr "_`TaskDestroy`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:57
 msgid "Permission to see the Destroy Task action"
-msgstr ""
+msgstr "タスクの破棄アクションの表示許可"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:59
 msgid "_`TaskWriteExpiryTimestamp`"
@@ -9955,7 +10031,7 @@ msgstr "ロールを移動する権限（親ロールを選択）"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:144
 msgid "_`RoleReadAll`"
-msgstr ""
+msgstr "_`RoleReadAll`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:145
 msgid "Permission to see all roles"
@@ -9980,11 +10056,11 @@ msgstr "ドキュメントを更新、削除する権限"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:155
 msgid "_`DocumentOfInvolvedCaseWrite`"
-msgstr ""
+msgstr "_`DocumentOfInvolvedCaseWrite`。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:160
 msgid "_`DashboardWriteOwn`"
-msgstr ""
+msgstr "_`DashboardWriteOwn`。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:161
 msgid "Permission to update private dashboards"
@@ -9992,7 +10068,7 @@ msgstr "個人用ダッシュボードを更新する権限"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:165
 msgid "_`DashboardWritePublic`"
-msgstr ""
+msgstr "_`DashboardWritePublic`。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:166
 msgid "Permission to update public dashboards"
@@ -10000,7 +10076,7 @@ msgstr "公開用ダッシュボードを更新する権限"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:168
 msgid "_`AccessFullProcessList`"
-msgstr ""
+msgstr "_`AccessFullProcessList`。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:169
 msgid "Permission to access the full process list. See :ref:`full-process-list`."
@@ -10009,7 +10085,7 @@ msgstr "全プロセスリストにアクセスする権限。:ref:`full-process
 
 #: ../../source/portal-developer-guide/permissions/index.rst:173
 msgid "_`AccessFullTaskList`"
-msgstr ""
+msgstr "_`AccessFullTaskList`。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:174
 msgid "Permission to access the full task list. See :ref:`full-task-list`."
@@ -10017,7 +10093,7 @@ msgstr "全タスクリストにアクセスする権限。:ref:`full-task-list`
 
 #: ../../source/portal-developer-guide/permissions/index.rst:178
 msgid "_`AccessFullCaseList`"
-msgstr ""
+msgstr "_`AccessFullCaseList`。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:179
 msgid "Permission to access the full case list. See :ref:`full-case-list`."
@@ -10025,7 +10101,7 @@ msgstr "全ケースリストにアクセスする権限。:ref:`full-case-list`
 
 #: ../../source/portal-developer-guide/permissions/index.rst:183
 msgid "_`TaskCaseAddNote`"
-msgstr ""
+msgstr "_`TaskCaseAddNote`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:184
 msgid "Permission to add notes to a task/case"
@@ -10033,7 +10109,7 @@ msgstr "タスク／ケースにノートを追加する権限"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:188
 msgid "_`TaskCaseShowMoreNote`"
-msgstr ""
+msgstr "_`TaskCaseShowMoreNote`（タスクケースショウモアノート"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:189
 msgid "Permission to see Show more note"
@@ -10041,7 +10117,7 @@ msgstr "［さらにノートを表示］を表示する権限"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:193
 msgid "_`CreatePublicExternalLink`"
-msgstr ""
+msgstr "_`CreatePublicExternalLink`。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:194
 msgid ""
@@ -10052,7 +10128,7 @@ msgstr "公開用外部リンクを作成する権限。他のすべてのユー
 
 #: ../../source/portal-developer-guide/permissions/index.rst:196
 msgid "_`RoleManagement`"
-msgstr ""
+msgstr "_`役割管理``"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:197
 msgid "Permission to access the Role Management tab"
@@ -10078,7 +10154,7 @@ msgstr "管理者設定ページのパスワード検証セクションにアク
 
 #: ../../source/portal-developer-guide/permissions/index.rst:205
 msgid "_`DashboardExportOwn`"
-msgstr ""
+msgstr "_`ダッシュボード・エクスポート``DashboardExportOwn``"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:206
 msgid "Permission to export private dashboards"
@@ -10086,7 +10162,7 @@ msgstr "個人用ダッシュボードをエクスポートする権限"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:208
 msgid "_`DashboardExportPublic`"
-msgstr ""
+msgstr "_`DashboardExportPublic`。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:209
 msgid "Permission to export public dashboards"
@@ -10094,7 +10170,7 @@ msgstr "公開用ダッシュボードをエクスポートする権限"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:211
 msgid "_`DashboardImportOwn`"
-msgstr ""
+msgstr "_`DashboardImportOwn`。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:212
 msgid "Permission to import private dashboards"
@@ -10102,7 +10178,7 @@ msgstr "個人用ダッシュボードをインポートする権限"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:214
 msgid "_`DashboardImportPublic`"
-msgstr ""
+msgstr "_`DashboardImportPublic`。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:215
 msgid "Permission to import public dashboards"
@@ -10118,7 +10194,7 @@ msgstr "ダッシュボードのリンクを共有する権限"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:222
 msgid "_`NotificationChannelsSetting`"
-msgstr ""
+msgstr "_`NotificationChannelsSetting`。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:223
 msgid ""
@@ -10136,7 +10212,7 @@ msgstr "ポータルの不在者と代行者の権限"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:232
 msgid "_`UserCreateAbsence`"
-msgstr ""
+msgstr "_`UserCreateAbsence`。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:233
 msgid "Permission to create, edit absences of all users"
@@ -10144,7 +10220,7 @@ msgstr "すべてのユーザーの不在を作成、編集する権限"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:235
 msgid "_`UserCreateOwnAbsence`"
-msgstr ""
+msgstr "_`UserCreateOwnAbsence`。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:236
 msgid "Permission to create, edit my own absences"
@@ -10152,7 +10228,7 @@ msgstr "自分の不在を作成、編集する権限"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:240
 msgid "_`UserDeleteAbsence`"
-msgstr ""
+msgstr "_`UserDeleteAbsence`。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:241
 msgid "Permission to remove the absence entries for all users"
@@ -10160,7 +10236,7 @@ msgstr "すべてのユーザーの不在エントリを削除する権限"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:243
 msgid "_`UserDeleteOwnAbsence`"
-msgstr ""
+msgstr "_`UserDeleteOwnAbsence`。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:244
 msgid "Permission to remove my own absence entries"
@@ -10168,7 +10244,7 @@ msgstr "自分の不在エントリを削除する権限"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:248
 msgid "_`UserReadAbsences`"
-msgstr ""
+msgstr "_`UserReadAbsences`。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:249
 msgid "Permission to read absences of all users"
@@ -10176,7 +10252,7 @@ msgstr "すべてのユーザーの不在を閲覧する権限"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:251
 msgid "_`UserReadOwnAbsences`"
-msgstr ""
+msgstr "_`UserReadOwnAbsences`。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:252
 msgid "Permission to read my own absences"
@@ -10184,7 +10260,7 @@ msgstr "自分の不在を閲覧する権限"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:256
 msgid "_`UserCreateSubstitute`"
-msgstr ""
+msgstr "_`UserCreateSubstitute`(ユーザークリエイトサブスティテュート)"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:257
 msgid "Permission to create substitutes of all users"
@@ -10192,7 +10268,7 @@ msgstr "すべてのユーザーの代行者を作成する権限"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:259
 msgid "_`UserCreateOwnSubstitute`"
-msgstr ""
+msgstr "_`UserCreateOwnSubstitute`（ユーザークリエイトオウンサブスティテュート"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:260
 msgid "Permission to create my own substitutes"
@@ -10200,7 +10276,7 @@ msgstr "自分の代行者を作成する権限"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:264
 msgid "_`UserReadSubstitutes`"
-msgstr ""
+msgstr "_`ユーザーリード置換``"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:265
 msgid "Permission to read substitutes of all users"
@@ -11111,58 +11187,61 @@ msgid ""
 "statistic charts that can be used by the :ref:`Statistic widget <portal-"
 "statistic-widget>` of Portal dashboard."
 msgstr ""
+"ポータル・ダッシュボードの:ref:`Statistic widget <portal-statistic-widget>` "
+"で使用できるすべての統計チャートについて、フィルタ・ロジック、外観、その他の"
+"設定を定義できます。"
 
 #: ../../source/portal-developer-guide/settings/index.rst:443
 msgid "Filename: ``variables.Portal.CustomStatistic.json``"
-msgstr ""
+msgstr "ファイル名：``variables.Portal.CustomStatistic.json``"
 
 #: ../../source/portal-developer-guide/settings/index.rst:621
 msgid "``pie``: Pie chart"
-msgstr ""
+msgstr "`pie``：円グラフ"
 
 #: ../../source/portal-developer-guide/settings/index.rst:623
 msgid "|pie-chart|"
-msgstr ""
+msgstr "|pie-chart|"
 
 #: ../../source/portal-developer-guide/settings/index.rst:715
 msgid "pie-chart"
-msgstr ""
+msgstr "円グラフ"
 
 #: ../../source/portal-developer-guide/settings/index.rst:625
 msgid "``bar``: Bar chart"
-msgstr ""
+msgstr "`bar``：棒グラフ"
 
 #: ../../source/portal-developer-guide/settings/index.rst:627
 msgid "|bar-chart|"
-msgstr ""
+msgstr "|bar-chart|"
 
 #: ../../source/portal-developer-guide/settings/index.rst:716
 msgid "bar-chart"
-msgstr ""
+msgstr "棒グラフ"
 
 #: ../../source/portal-developer-guide/settings/index.rst:629
 msgid "``line``: Line chart"
-msgstr ""
+msgstr "`line``：折れ線グラフ"
 
 #: ../../source/portal-developer-guide/settings/index.rst:631
 msgid "|line-chart|"
-msgstr ""
+msgstr "|line-chart|"
 
 #: ../../source/portal-developer-guide/settings/index.rst:718
 msgid "line-chart"
-msgstr ""
+msgstr "線グラフ"
 
 #: ../../source/portal-developer-guide/settings/index.rst:633
 msgid "``number``: Labelled number chart"
-msgstr ""
+msgstr "`number``：ラベル付きナンバーチャート"
 
 #: ../../source/portal-developer-guide/settings/index.rst:635
 msgid "|number-chart|"
-msgstr ""
+msgstr "|number-chart|"
 
 #: ../../source/portal-developer-guide/settings/index.rst:717
 msgid "number-chart"
-msgstr ""
+msgstr "すうひょう"
 
 #: ../../source/portal-developer-guide/settings/index.rst:666
 msgid "Portal Processes External Links"
