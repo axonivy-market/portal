@@ -32,7 +32,7 @@ public class PasswordValidationPage extends TemplatePage {
   }
 
   public boolean isPasswordValidationToggleChecked() {
-    return getPasswordValidationToggle().getAttribute("class").contains("ui-toggleswitch-checked");
+    return getPasswordValidationToggle().getDomAttribute("class").contains("ui-toggleswitch-checked");
   }
 
   public void clickOnPasswordValidationToggle() {
@@ -57,6 +57,6 @@ public class PasswordValidationPage extends TemplatePage {
   public boolean isCheckBoxInTableEnabled() {
     return $(
         "[id^='admin-setting-component:adminTabView:password-validation-component:password-validation-form:password-policy-setting']")
-            .findElement(By.className("ui-chkbox-box")).getAttribute("class").contains("ui-state-active");
+            .findElement(By.className("ui-chkbox-box")).getDomAttribute("class").contains("ui-state-active");
   }
 }
