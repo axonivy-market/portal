@@ -270,7 +270,7 @@ public abstract class TemplatePage extends AbstractPage {
 
   public boolean isMainMenuOpen() {
     WebElement mainMenu = $(".layout-wrapper");
-    return mainMenu.getAttribute(CLASS_PROPERTY).indexOf("static") > 0;
+    return mainMenu.getDomAttribute(CLASS_PROPERTY).indexOf("static") > 0;
   }
 
   public void clickOnMyProfile() {
@@ -353,10 +353,10 @@ public abstract class TemplatePage extends AbstractPage {
     WebElement breadcrumb = findElementByCssSelector(CURRENT_BREADCRUMB_SELECTOR);
     String result = "";
     if (CollectionUtils.isNotEmpty(breadcrumb.findElements(By.cssSelector(".js-count")))) {
-      result = breadcrumb.findElement(By.cssSelector(".ui-menuitem-text")).getAttribute("innerHTML")
-          + breadcrumb.findElement(By.cssSelector(".js-count")).getAttribute("innerHTML");
+      result = breadcrumb.findElement(By.cssSelector(".ui-menuitem-text")).getDomAttribute("innerHTML")
+          + breadcrumb.findElement(By.cssSelector(".js-count")).getDomAttribute("innerHTML");
     } else {
-      result = breadcrumb.findElement(By.cssSelector(".ui-menuitem-text")).getAttribute("innerHTML");
+      result = breadcrumb.findElement(By.cssSelector(".ui-menuitem-text")).getDomAttribute("innerHTML");
     }
     return result;
 

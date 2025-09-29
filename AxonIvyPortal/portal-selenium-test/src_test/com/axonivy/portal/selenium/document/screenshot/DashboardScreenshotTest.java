@@ -631,14 +631,4 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
     detailsEditPage.addWidgetByName(widgetName);
   }
 
-  private void addPublicStatisticWidget(String widgetName) {
-    redirectToDashboardConfiguration();
-    DashboardConfigurationPage configPage = new DashboardConfigurationPage();
-    configPage.selectPublicDashboardType();
-    DashboardModificationPage editPage = new DashboardModificationPage();
-    NewDashboardDetailsEditPage detailsEditPage = editPage.navigateToEditDashboardDetailsByName("Dashboard");
-    detailsEditPage.waitPageLoaded();
-    detailsEditPage.addWidget();
-    detailsEditPage.addStatisticWidgetByName(widgetName);
-  }
 }

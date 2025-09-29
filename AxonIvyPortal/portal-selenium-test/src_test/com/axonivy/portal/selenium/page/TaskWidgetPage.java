@@ -354,7 +354,7 @@ public class TaskWidgetPage extends TemplatePage {
     String startCommandButton =
         String.format(taskWidgetId + ":task-list-scroller:%d:task-item:task-action:task-action-component", taskId);
     WebElement element = findElementById(startCommandButton);
-    return !element.getAttribute(CLASS).contains("ui-state-disabled");
+    return !element.getDomAttribute(CLASS).contains("ui-state-disabled");
   }
 
   public List<String> getActiveTaskAction(int taskIndex) {
@@ -362,7 +362,7 @@ public class TaskWidgetPage extends TemplatePage {
     WebElement actionPanel = findElementByCssSelector(String.format(
         "div[id$='task-list-scroller:%d:task-item:task-action:additional-options:side-steps-panel']", taskIndex));
     return actionPanel.findElements(By.cssSelector("a[class*='option-item']")).stream()
-        .filter(elem -> !elem.getAttribute("class").contains("ui-state-disabled")).map(WebElement::getText)
+        .filter(elem -> !elem.getDomAttribute("class").contains("ui-state-disabled")).map(WebElement::getText)
         .collect(Collectors.toList());
   }
 
@@ -727,11 +727,13 @@ public class TaskWidgetPage extends TemplatePage {
     return findElementByCssSelector("a[id$=':task-export-to-excel']");
   }
 
-  public boolean isDownloadCompleted() {
-    WebElement statusDialog = driver.findElement(By.cssSelector("div[id$=':status-dialog']"));
-    WaitHelper.assertTrueWithWait(() -> StringUtils.isNotBlank(statusDialog.getAttribute("download-status")));
-    return StringUtils.equals(statusDialog.getAttribute("download-status"), "completed");
-  }
+  // consider to remove - no reference to this method
+//  public boolean isDownloadCompleted() {
+//    WebElement statusDialog = driver.findElement(By.cssSelector("div[id$=':status-dialog']"));
+//    WaitHelper.assertTrueWithWait(() -> StringUtils.isNotBlank(statusDialog.getDomAttribute("download-status")));
+//    assertEquals(statusDialog.getDomAttribute("download-status"), "completed");
+//    return true;
+//  }
 
   public void sortTaskListByColumn(String columnHeaderText, int rowIndex, String columnId, String expectedValue) {
     WebElement taskListHeader = findElementById(taskWidgetId + ":task-widget-sort-menu");
