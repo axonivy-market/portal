@@ -1,5 +1,6 @@
 package com.axonivy.portal.components.util;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
@@ -47,7 +48,7 @@ public final class DocumentUtils {
     return document != null && Strings.CI.startsWith(document.getContentType(), "image/");
   }
   
-  public static StreamedContent findDocFactoryAndConvert(StreamedContent streamedContent) {
+  public static StreamedContent findDocFactoryAndConvert(StreamedContent streamedContent) throws IOException {
     if (streamedContent != null 
         && StringUtils.isNotEmpty(streamedContent.getName()) 
         && Strings.CI.endsWithAny(streamedContent.getName(), SUPPORTED_PREVIEW_FILE_TYPES)) {
@@ -57,23 +58,26 @@ public final class DocumentUtils {
     if (streamedContent != null && streamedContent.getStream() != null) {
       Map<String, Object> params = new HashMap<String, Object>();
       InputStream is = streamedContent.getStream().get();
-      params.put("inputStream", is);
-      params.put("fileName", streamedContent.getName());
-      params.put("contentType", streamedContent.getContentType());
-  
-      Map<String, Object> response = IvyAdapterService.startSubProcessInSecurityContext(DocumentUtils.DOC_FACTORY_SIGNATURE, params);
-  
-      if (response != null && response.get("inputStream") != null){
-        InputStream convertedIS = (InputStream)response.get("inputStream");
+      if (is != null) {
+        params.put("inputStream", is);
+        params.put("fileName", streamedContent.getName());
+        params.put("contentType", streamedContent.getContentType());      
         
-        return DefaultStreamedContent
-            .builder()
-            .stream(() -> convertedIS)
-            .name(streamedContent.getName())
-            // DocFactory always returns stream as pdf
-            .contentType("application/pdf")
-            .build();
-      } 
+        Map<String, Object> response = IvyAdapterService.startSubProcessInSecurityContext(DocumentUtils.DOC_FACTORY_SIGNATURE, params);
+        
+        if (response != null && response.get("inputStream") != null){
+          InputStream convertedIS = (InputStream)response.get("inputStream");
+          
+          is.close();
+          return DefaultStreamedContent
+              .builder()
+              .stream(() -> convertedIS)
+              .name(streamedContent.getName())
+              // DocFactory always returns stream as pdf
+              .contentType("application/pdf")
+              .build();
+        } 
+      }
     }
     return streamedContent;
   }

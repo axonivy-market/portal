@@ -97,6 +97,7 @@ Dialogs:
               IVY_PROCESS: Business Process
             ProcessViewerIFrameTitle: Process viewer frame
 Labels:
+  Close: Close
   DisabledUserPrefix: (disabled)
   Enums:
     NewFilenameValidation:

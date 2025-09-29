@@ -496,12 +496,12 @@
         "at" : { "x" : 248, "y" : 760 },
         "size" : { "width" : 128, "height" : 60 }
       },
-      "connect" : { "id" : "f64", "to" : "f62" }
+      "connect" : { "id" : "f45", "to" : "f62" }
     }, {
       "id" : "f47",
       "type" : "HtmlDialogEnd",
       "visual" : {
-        "at" : { "x" : 904, "y" : 760 }
+        "at" : { "x" : 624, "y" : 760 }
       }
     }, {
       "id" : "f17",
@@ -647,8 +647,47 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 448, "y" : 760 }
+        "at" : { "x" : 464, "y" : 760 }
       },
       "connect" : { "id" : "f15", "to" : "f47" }
+    }, {
+      "id" : "f22",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "closeStream()",
+      "config" : {
+        "callSignature" : "closeStream",
+        "guid" : "1997F39E389B31D2"
+      },
+      "visual" : {
+        "at" : { "x" : 80, "y" : 1080 }
+      },
+      "connect" : { "id" : "f66", "to" : "f64" }
+    }, {
+      "id" : "f64",
+      "type" : "Script",
+      "name" : "Close stream",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import java.io.InputStream;",
+            "if (in.streamedContent != null && in.streamedContent.getStream() != null){",
+            "  InputStream is = in.streamedContent.getStream().get() as InputStream;",
+            "  if (is != null){",
+            "    is.close();",
+            "  }",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 232, "y" : 1080 }
+      },
+      "connect" : { "id" : "f67", "to" : "f65" }
+    }, {
+      "id" : "f65",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 384, "y" : 1080 }
+      }
     } ]
 }
