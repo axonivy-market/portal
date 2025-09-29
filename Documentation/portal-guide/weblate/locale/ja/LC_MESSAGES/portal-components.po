@@ -10,7 +10,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-09-19 04:44+0000\n"
 "PO-Revision-Date: 2025-09-29 10:33+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"Last-Translator: DeepL <noreply-mt-deepl@weblate.org>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/axonivy-portal/"
 "portal-le/doc/portal-doc-components/ja/>\n"
 "Language: ja\n"
@@ -410,7 +410,8 @@ msgstr "enableScriptCheckingForUploadedDocument"
 msgid ""
 "Boolean value to specify script checking. Set to ``true`` to enable "
 "script checking."
-msgstr ""
+msgstr "スクリプトチェックを指定するブール値。スクリプトチェックを有効にするには``tru"
+"e`` に設定する。"
 
 #: ../../source/portal-components/document-table/index.rst
 msgid ""
@@ -418,10 +419,12 @@ msgid ""
 "``Portal.Document.EnableScriptChecking`` as its default value, refer to "
 ":ref:`update-portal-settings` for more details."
 msgstr ""
+"この設定はポータル設定``Portal.Document.EnableScriptChecking`` "
+"をデフォルト値として検出する。詳細は:ref:`update-portal-settings` を参照。"
 
 #: ../../source/portal-components/document-table/index.rst
 msgid "If the Portal setting is not available, defaults to ``false``."
-msgstr ""
+msgstr "ポータルの設定がない場合、デフォルトは``false`` となる。"
 
 #: ../../source/portal-components/document-table/index.rst:95
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
@@ -434,6 +437,9 @@ msgid ""
 "scanning. Refer to :ref:`Virus Scanning Setting<settings-virus-scanning-"
 "setting>` for more details."
 msgstr ""
+"ウイルススキャンを指定するブール値。ウイルススキャンを有効にするには、``true`"
+"` に設定します。詳細は:ref:`Virus Scanning Setting<settings-virus-scanning-"
+"setting>` を参照してください。"
 
 #: ../../source/portal-components/document-table/index.rst
 msgid ""
@@ -441,10 +447,12 @@ msgid ""
 "``Portal.Document.EnableVirusScanner`` as its default value, refer to "
 ":ref:`update-portal-settings` for more details."
 msgstr ""
+"この設定はポータル設定``Portal.Document.EnableVirusScanner`` "
+"をデフォルト値として検出する。詳細は:ref:`update-portal-settings` を参照。"
 
 #: ../../source/portal-components/document-table/index.rst
 msgid "If Portal setting is not available, default value is ``false``."
-msgstr ""
+msgstr "ポータルの設定がない場合、デフォルト値は``false`` となる。"
 
 #: ../../source/portal-components/document-table/index.rst:97
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
@@ -461,12 +469,16 @@ msgid ""
 "``Portal.Document.WhitelistExtension`` as its default value, refer to "
 ":ref:`update-portal-settings` for more details."
 msgstr ""
+"この設定はポータル設定``Portal.Document.WhitelistExtension`` "
+"をデフォルト値として検出する。詳細は:ref:`update-portal-settings` を参照。"
 
 #: ../../source/portal-components/document-table/index.rst
 msgid ""
 "If Portal setting is not available, default value is "
 "``doc,docx,xls,xlsx,xlsm,csv,pdf,ppt,pptx,txt,zip,jpg,jpeg,bmp,png``."
 msgstr ""
+"ポータルの設定がない場合、デフォルト値は``doc,docx,xls,xlsx,xlsm,csv,pdf,ppt,"
+"pptx,txt,zip,jpg,jpeg,bmp,png`` となる。"
 
 #: ../../source/portal-components/document-table/index.rst:20
 msgid "Virus scanning"
@@ -758,6 +770,9 @@ msgid ""
 "``document`` to update, the new filename should be already modified in "
 "the document's name attribute."
 msgstr ""
+"呼び出し可能なサブプロセスデータのパラメータには、更新する Ivy``document`` "
+"が含まれます。新しいファイル名は、ドキュメントのname属性ですでに変更されてい"
+"る必要があります。"
 
 #: ../../source/portal-components/document-table/index.rst:182
 msgid ""
@@ -770,17 +785,20 @@ msgstr "ポータルは、同じセキュリティー・コンテキストの中
 msgid ""
 "``message``: the message to inform the user that their new filename is "
 "successfully updated or invalid to use."
-msgstr ""
+msgstr "`message``: "
+"新しいファイル名が正常に更新されたか、あるいは無効であることをユーザーに知ら"
+"せるメッセージ。"
 
 #: ../../source/portal-components/document-table/index.rst:186
 msgid ""
 "``isSuccess``: ``true`` if the document's name is successfully updated, "
 "otherwise ``false``."
-msgstr ""
+msgstr "``isSuccess``:``true`` 文書名の更新に成功した場合、それ以外の場合``false``."
 
 #: ../../source/portal-components/document-table/index.rst:187
 msgid "``status``: ``SKIP`` if customized process skipped updating the filename."
-msgstr ""
+msgstr "`status``: ` ` "
+"カスタマイズされたプロセスがファイル名の更新をスキップした場合。`SKIP`"
 
 #: ../../source/portal-components/document-table/index.rst:190
 msgid "User interface"
@@ -987,7 +1005,8 @@ msgstr ""
 msgid ""
 "Please refer to project ``portal-components-examples`` for more details "
 "on use, and customization."
-msgstr ""
+msgstr "使用方法やカスタマイズの詳細については、プロジェクト``portal-components-"
+"examples`` を参照してください。"
 
 #: ../../source/portal-components/process-chain/index.rst:4
 #: ../../source/portal-components/style-customization/index.rst:38
@@ -1277,7 +1296,8 @@ msgstr "``caseId``： ``caseId`` に等しい ID "
 msgid ""
 "``processLink``: show the process or Case Map which by its defined "
 "relative link."
-msgstr ""
+msgstr "`processLink``: "
+"定義された相対リンクによってプロセスまたはケースマップを表示します。"
 
 #: ../../source/portal-components/process-viewer/index.rst:50
 msgid "Sub Case (Technical Case) is not supported."
