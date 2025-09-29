@@ -10,7 +10,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-09-22 04:56+0000\n"
 "PO-Revision-Date: 2025-09-29 10:17+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"Last-Translator: DeepL <noreply-mt-deepl@weblate.org>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/axonivy-portal/"
 "portal-le/doc/portal-doc-user-guide/ja/>\n"
 "Language: ja\n"
@@ -1456,11 +1456,12 @@ msgstr "グローバル環境フッター情報の定義"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.TranslationService.Enable"
-msgstr ""
+msgstr "Portal.TranslationService.Enable"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Set this property to true to enable the new translation service support."
-msgstr ""
+msgstr "新しい翻訳サービスのサポートを有効にするには、このプロパティをtrueに設定しま"
+"す。"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.ShowQuickGlobalSearch"
@@ -3011,7 +3012,8 @@ msgstr ":guilabel:`新しい公開用ダッシュボードを作成` ダイア�
 msgid ""
 "Enter the mandatory title, permissions to see the public dashboard and "
 "the optional description for the public dashboard."
-msgstr ""
+msgstr "必須タイトル、公開ダッシュボードの閲覧権限、公開ダッシュボードの説明（オプシ"
+"ョン）を入力します。"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:145
 msgid ""
@@ -3022,6 +3024,13 @@ msgid ""
 "level item in the navigation bar. The option ``HIDDEN`` will hide the "
 "dashboard from the menu."
 msgstr ""
+"ダッシュボードの表示タイプを1つ選択します。3つのタイプがあります：`TOP "
+"MENU``、``SUB MENU``、``HIDDEN`` です。デフォルトは``SUB MENU`` で、"
+"ダッシュボードは `Dashboard` メニューアイテムの中に配置されます。``Top Menu``"
+" "
+"が選択された場合、ダッシュボードはナビゲーションバーのトップレベルアイテムと"
+"して表示されます。``HIDDEN``というオプションはメニューからダッシュボードを非"
+"表示にします。"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:148
 msgid "Create the public dashboard by selecting |add-icon| Create dashboard."
@@ -5421,11 +5430,11 @@ msgstr ""
 
 #: ../../source/portal-user-guide/my-profile/index.rst:127
 msgid "|notification-channels|"
-msgstr ""
+msgstr "|notification-channels|"
 
 #: ../../source/portal-user-guide/my-profile/index.rst:140
 msgid "Notification channels settings"
-msgstr ""
+msgstr "通知チャンネルの設定"
 
 #: ../../source/portal-user-guide/my-profile/index.rst:129
 msgid ""
@@ -5529,7 +5538,8 @@ msgstr "**プロセスビューアーウィジェット** "
 msgid ""
 "**Statistic chart widget**: This widget provides graphical display of "
 "statistical data."
-msgstr ""
+msgstr "**統計チャートウィジェット** "
+"：統計データをグラフィカルに表示するウィジェットです。"
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:31
 msgid ""
@@ -5565,6 +5575,9 @@ msgid ""
 "**Navigation dashboard widget**: This widget allows users to jump "
 "directly to a linked dashboard by clicking a button."
 msgstr ""
+"**ナビゲーションダッシュボードウィジェット** "
+"：このウィジェットを使用すると、ユーザーはボタンをクリックしてリンク先のダッ"
+"シュボードに直接ジャンプできます。"
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:41
 msgid ""
@@ -5749,6 +5762,10 @@ msgid ""
 "make it visible, you need to set the ``Portal.Cases.EnableOwner`` setting"
 " to ``true`` in the :ref:`Admin Settings <update-portal-settings>`."
 msgstr ""
+"`Filter tasks by current case "
+"owner``フィルターはデフォルトでは非表示になっています。表示させるには、 の ` "
+"` 設定を ` ` に設定する必要があります。:ref:`Admin Settings <update-portal-"
+"settings>` `Portal.Cases.EnableOwner` `true`"
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:106
 #: ../../source/portal-user-guide/new-dashboard/index.rst:191
@@ -6385,6 +6402,9 @@ msgid ""
 " by clicking on the |translate-icon| icon. To enable the translation, "
 "please prefer to :ref:`enable-translation`"
 msgstr ""
+"入力ラベルをクリックしてタイトルを翻訳します。|translate-icon| "
+"アイコンをクリックして内容を翻訳してください。翻訳を有効にするには:ref"
+":`enable-translation`"
 
 #: ../../source/portal-user-guide/includes/_common-icon.rst:53
 msgid "translate-icon"
@@ -6465,17 +6485,19 @@ msgstr "ダッシュボードの通知ウィジェット"
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:390
 msgid "Navigation dashboard widget"
-msgstr ""
+msgstr "ナビゲーション・ダッシュボード・ウィジェット"
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:392
 msgid ""
 "You can configure a navigation dashboard widget that lets users quickly "
 "access a target dashboard with a click."
 msgstr ""
+"ナビゲーション・ダッシュボード・ウィジェットを構成して、ユーザがクリックする"
+"だけで目的のダッシュボードにすばやくアクセスできるようにすることができます。"
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:394
 msgid "|navigation-dashboard-widget-configuration|"
-msgstr ""
+msgstr "|navigation-dashboard-widget-configuration|"
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:520
 msgid "Navigation dashboard widget configuration"
@@ -6483,17 +6505,18 @@ msgstr "Navigation dashboard widget configuration"
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:398
 msgid "|navigation-dashboard-widget|"
-msgstr ""
+msgstr "|navigation-dashboard-widget|"
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:522
 msgid "navigation-dashboard-widget"
-msgstr ""
+msgstr "ナビゲーション・ダッシュボード・ウィジェット"
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:402
 msgid ""
 "If the user does not have the permission to access the dashboard, the "
 "button is disabled."
-msgstr ""
+msgstr "ユーザーがダッシュボードにアクセスする権限を持っていない場合、ボタンは無効に"
+"なります。"
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:406
 msgid "Clone a widget"
@@ -7241,6 +7264,10 @@ msgid ""
 "language barriers in process automation with Axon Ivy's translation "
 "service."
 msgstr ""
+"ドキュメント翻訳では、純粋なテキストからエンドユーザーの言語に翻訳することが"
+"、いかに簡単になったかを示しています。Axon Ivy "
+"の翻訳サービスを利用して、プロセスオートメーションにおける言語の障壁に別れを"
+"告げましょう。"
 
 #: ../../source/portal-user-guide/portal-multi-language/index.rst:12
 msgid "HowTo: Enable the translation"
@@ -7248,13 +7275,15 @@ msgstr "ハウツー：翻訳を有効にする"
 
 #: ../../source/portal-user-guide/portal-multi-language/index.rst:14
 msgid "To use Axon Ivy's translation service:"
-msgstr ""
+msgstr "アクソンアイビーの翻訳サービスを利用するには："
 
 #: ../../source/portal-user-guide/portal-multi-language/index.rst:16
 msgid ""
 "Open :ref:`Admin Settings <admin-settings>`, set "
 ":guilabel:`Portal.TranslationService.Enable` to true."
 msgstr ""
+":ref:`Admin Settings <admin-settings>` "
+"を開き、:guilabel:`Portal.TranslationService.Enable` を true に設定する。"
 
 #: ../../source/portal-user-guide/portal-multi-language/index.rst:18
 msgid ""
@@ -7262,6 +7291,8 @@ msgid ""
 "translation service </doc/|version|/engine-guide/configuration"
 "/translation-service/index.html>`"
 msgstr ""
+"翻訳サービス変数の設定:dev-url:`|ivy| translation service </doc/|version"
+"|/engine-guide/configuration/translation-service/index.html>`"
 
 #: ../../source/portal-user-guide/portal-multi-language/index.rst:21
 msgid "HowTo: Translate a pure text"
@@ -7273,6 +7304,8 @@ msgid ""
 "Portal.TranslationService.Enable is set to true and the translation "
 "service is configured correctly."
 msgstr ""
+"ポータルの翻訳は、Portal.TranslationService.Enableがtrueに設定され、翻訳サー"
+"ビスが正しく構成されている場合にのみ機能します。"
 
 #: ../../source/portal-user-guide/portal-multi-language/index.rst:27
 msgid "Otherwise, you can translate the input text field manually."
@@ -7310,6 +7343,9 @@ msgid ""
 " by Axon Ivy's translation service. To accept the translated text, "
 "clicking on :guilabel:`Auto. translation`."
 msgstr ""
+"外国語の入力テキストフィールドをクリックすると、アクソンアイビーの翻訳サービ"
+"スによって翻訳されます。翻訳されたテキストを受け入れるには、:guilabel:`Auto. "
+"translation` をクリックします。"
 
 #: ../../source/portal-user-guide/qr-code/index.rst:4
 msgid "QR code"
@@ -7423,6 +7459,10 @@ msgid ""
 "Charts or :guilabel:`Create custom statistic widget` for configuring new "
 "statistic chart."
 msgstr ""
+"ウィジェットを追加したいダッシュボードの[ダッシュボード構成]"
+"に移動し、事前定義された[標準チャート]の場合は[:guilabel:`Add Widget` ]"
+"を、新しい統計チャートを構成する場合は"
+"[:guilabel:`Create custom statistic widget` ]を選択します。"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst:18
 msgid ""
@@ -7619,7 +7659,7 @@ msgstr "|open-tasks-chart|"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst:179
 msgid "Number of opening tasks chart"
-msgstr ""
+msgstr "オープニング・タスク表"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst:92
 msgid "This chart shows all tasks the user can work on."
@@ -7643,51 +7683,52 @@ msgstr "これは、今日納期のタスクの数を表示します。"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst:103
 msgid "How to configure new statistic chart"
-msgstr ""
+msgstr "新しい統計チャートの設定方法"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst:105
 msgid ""
 "Navigate to Dashboard Configuration of the dashboard and select "
 ":guilabel:`Create custom statistic widget`."
-msgstr ""
+msgstr "ダッシュボードのダッシュボード構成に移動し、:guilabel:`Create custom "
+"statistic widget` を選択する。"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst:107
 msgid "|create-new-custom-statistic-widget|"
-msgstr ""
+msgstr "|create-new-custom-statistic-widget|"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst:187
 msgid "Create new custom statistic widget"
-msgstr ""
+msgstr "新しいカスタム統計ウィジェットを作成する"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst:109
 msgid ""
 "From the configuration for statistic chart, fill in the form to create "
 "new statistic chart."
-msgstr ""
+msgstr "統計図表の設定から、新しい統計図表を作成するためのフォームに記入する。"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst:111
 msgid "|custom-statistic-widget-configuration-page|"
-msgstr ""
+msgstr "|custom-statistic-widget-configuration-page|"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst:189
 msgid "Custom statistic widet configuration page"
-msgstr ""
+msgstr "カスタム統計ウィジェット設定ページ"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst:114
 msgid "Available values for configuring statistic chart"
-msgstr ""
+msgstr "統計グラフの設定に使用可能な値"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst:118
 msgid "**Value**"
-msgstr ""
+msgstr "**価値**"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst
 msgid "Name of the statistic chart."
-msgstr ""
+msgstr "統計グラフの名前。"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst
 msgid "Description for the statistic chart."
-msgstr ""
+msgstr "統計図表の説明。"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst:124
 msgid "Icon"
@@ -7695,11 +7736,11 @@ msgstr "アイコン"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst
 msgid "Icon for custom statistic chart."
-msgstr ""
+msgstr "カスタム統計チャートのアイコン。"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst
 msgid "Click on the plus icon at the end of the line to see full list of icons."
-msgstr ""
+msgstr "行末のプラスアイコンをクリックすると、アイコンの全リストが表示されます。"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst:127
 msgid "Chart type"
@@ -7707,7 +7748,7 @@ msgstr "TODO Chart type"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst
 msgid "Type of the chart (Bar, Line, Pie, Number)."
-msgstr ""
+msgstr "チャートの種類（棒グラフ、折れ線グラフ、円グラフ、数値グラフ）。"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst:129
 msgid "For"
@@ -7715,7 +7756,7 @@ msgstr "TODO For"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst
 msgid "Chart target (Task, Case)."
-msgstr ""
+msgstr "チャートターゲット（タスク、ケース）。"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst:131
 msgid "KPI"
@@ -7723,23 +7764,24 @@ msgstr "TODO KPI"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst
 msgid "List of numeric custom fields is shown alongside with `Counting`."
-msgstr ""
+msgstr "数値カスタムフィールドのリストは `Counting` と共に表示される。"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst
 msgid ""
 "The calculation using below aggregation method will be performed on "
 "selected KPI."
-msgstr ""
+msgstr "選択された KPI に対して、以下の集計方法による計算が行われる。"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst
 msgid ""
 "If `Counting` is selected to count numbers of tasks or cases, the "
 "aggregation method"
-msgstr ""
+msgstr "タスクまたはケースの数をカウントするために `Counting` "
+"を選択した場合、集計方法"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst
 msgid "selection will be disabled."
-msgstr ""
+msgstr "の選択は無効になる。"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst:136
 msgid "Aggregation method"
@@ -7747,7 +7789,7 @@ msgstr "TODO Aggregation method"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst
 msgid "List of 4 aggregation methods: `Sum`, `Average`, `Max`, `Min`."
-msgstr ""
+msgstr "4つの集約メソッドのリスト: `Sum`、`Average`、`Max`、`Min`。"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst:138
 msgid "Group by"
@@ -7757,11 +7799,12 @@ msgstr "TODO Group by"
 msgid ""
 "Aggregation to group all the results, the drop down values depend on the "
 "chart target."
-msgstr ""
+msgstr "すべての結果をグループ化する集計、ドロップダウンの値はチャートのターゲットに"
+"依存します。"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst
 msgid "Currently we don't support aggregations have type number."
-msgstr ""
+msgstr "現在のところ、型番号を持つ集約はサポートしていない。"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst:141
 msgid "Filters"
@@ -7769,11 +7812,11 @@ msgstr "フィルター"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst
 msgid "Works like complex filter of Portal."
-msgstr ""
+msgstr "ポータルの複雑なフィルターのように機能する。"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst
 msgid "Please refer to :ref:`complex-filter` for more details."
-msgstr ""
+msgstr "詳細は:ref:`complex-filter` 。"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst:144
 msgid "Permissions"
@@ -7781,7 +7824,7 @@ msgstr "権限"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst
 msgid "Permission for the current statistic chart."
-msgstr ""
+msgstr "現在の統計チャートの許可。"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst:146
 msgid "Auto-refresh enabled"
@@ -7789,11 +7832,11 @@ msgstr "TODO Auto-refresh enabled"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst
 msgid "The statistic can be auto-refreshed after a certain prediod."
-msgstr ""
+msgstr "この統計は一定時間経過後に自動更新される。"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst
 msgid "Click on this button to turn on/off the feature."
-msgstr ""
+msgstr "このボタンをクリックすると、機能のオン/オフが切り替わります。"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst:149
 msgid "Auto-refresh interval (seconds)"
@@ -7801,11 +7844,11 @@ msgstr "TODO Auto-refresh interval (seconds)"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst
 msgid "The time for statistic chart to be auto-refreshed in second."
-msgstr ""
+msgstr "統計チャートが自動更新されるまでの時間を秒単位で指定する。"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst
 msgid "Minimum number is 60."
-msgstr ""
+msgstr "最低人数は60人。"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst:152
 msgid "X axis title"
@@ -7813,7 +7856,7 @@ msgstr "TODO X axis title"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst
 msgid "X title for the statistic chart."
-msgstr ""
+msgstr "統計チャートのタイトル。"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst:154
 msgid "Y axis title"
@@ -7821,15 +7864,15 @@ msgstr "TODO Y axis title"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst
 msgid "Y title for the statistic chart."
-msgstr ""
+msgstr "統計チャートのYタイトル。"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst:156
 msgid "Color 1-8"
-msgstr ""
+msgstr "カラー1～8"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst
 msgid "Colors for data in the chart."
-msgstr ""
+msgstr "チャートのデータの色。"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst:158
 msgid "Hide label"
@@ -7837,7 +7880,7 @@ msgstr "TODO Hide label"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst
 msgid "Toggle to show label of number chart."
-msgstr ""
+msgstr "数値チャートのラベル表示を切り替える。"
 
 #~ msgid "queries e.g. for case widget, global search."
 #~ msgstr ""
