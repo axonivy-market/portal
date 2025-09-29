@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Portal Guide ${revision}\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-09-26 07:09+0000\n"
-"PO-Revision-Date: 2025-09-29 09:09+0000\n"
+"PO-Revision-Date: 2025-09-29 09:50+0000\n"
 "Last-Translator: Thang Huynh <hhqthang@axonactive.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/axonivy-portal/"
 "portal-12/doc/portal-developer-guide/ja/>\n"
@@ -10486,7 +10486,7 @@ msgstr ""
 
 #: ../../source/portal-developer-guide/static-page/index.rst:4
 msgid "Static Pages"
-msgstr "Static Pages"
+msgstr "静的ページ"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:11
 msgid ""
@@ -10496,187 +10496,178 @@ msgid ""
 "pages, or any custom content that doesn't require dynamic process "
 "execution."
 msgstr ""
-"Static pages in Axon Ivy Portal allow developers to create custom JSF "
-"pages that can be integrated into the portal's navigation system. These "
-"pages are useful for displaying static content, documentation, help "
-"pages, or any custom content that doesn't require dynamic process "
-"execution."
+"Axon Ivy Portal の静的ページでは、開発者は、ポータルのナビゲーション・"
+"システムに統合できるカスタム JSF "
+"ページを作成できます。これらのページは、静的コンテンツ、ドキュメント、ヘルプ"
+"ページ、または動的なプロセスの実行を必要としないカスタムコンテンツを表示する"
+"のに便利です。"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:13
 msgid ""
 "Static pages are JSF (JavaServer Faces) pages that use the portal's "
 "layout templates and styling, providing a consistent user experience "
 "while allowing for custom content."
-msgstr ""
-"Static pages are JSF (JavaServer Faces) pages that use the portal's "
-"layout templates and styling, providing a consistent user experience "
-"while allowing for custom content."
+msgstr "静的ページは、ポータルのレイアウトテンプレートとスタイルを使用するJSF（"
+"JavaServer Faces）ページです。"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:18
 msgid "Creating Static Pages"
-msgstr "Creating Static Pages"
+msgstr "静的ページの作成"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:21
 msgid "File Structure"
-msgstr "File Structure"
+msgstr "ファイル構成"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:23
 msgid ""
 "Static pages should be placed in the `webContent/view/` directory of your"
 " project. The recommended structure is:"
-msgstr ""
-"Static pages should be placed in the `webContent/view/` directory of your"
-" project. The recommended structure is:"
+msgstr "静的ページはプロジェクトの `webContent/view/` "
+"ディレクトリに置く必要があります。推奨される構造は"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:39
 msgid "Basic Static Page Template"
-msgstr "Basic Static Page Template"
+msgstr "基本静的ページテンプレート"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:41
 msgid "Here's a basic template for creating a static page:"
-msgstr "Here's a basic template for creating a static page:"
+msgstr "ここでは、静的ページを作成するための基本的なテンプレートを紹介する："
 
 #: ../../source/portal-developer-guide/static-page/index.rst:73
 msgid "Layout Templates"
-msgstr "Layout Templates"
+msgstr "レイアウトテンプレート"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:75
 msgid "Portal provides several layout templates you can use:"
-msgstr "Portal provides several layout templates you can use:"
+msgstr "ポータルには、使用できるレイアウトテンプレートがいくつか用意されている："
 
 #: ../../source/portal-developer-guide/static-page/index.rst:77
 msgid "**frame-10.xhtml**: Standard portal layout with sidebar"
-msgstr "**frame-10.xhtml**: Standard portal layout with sidebar"
+msgstr "**frame-10.xhtml** ：サイドバーのある標準的なポータルレイアウト"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:78
 msgid "**frame-10-full-width.xhtml**: Full-width layout without sidebar"
-msgstr "**frame-10-full-width.xhtml**: Full-width layout without sidebar"
+msgstr "**frame-10-full-width.xhtml** ：サイドバーなしの全幅レイアウト"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:79
 msgid "**basic-10.xhtml**: Basic layout for simple pages"
-msgstr "**basic-10.xhtml**: Basic layout for simple pages"
+msgstr "**basic-10.xhtml** ：シンプルなページの基本レイアウト"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:81
 msgid "Choose the appropriate template based on your content needs."
-msgstr "Choose the appropriate template based on your content needs."
+msgstr "コンテンツのニーズに応じて適切なテンプレートを選択してください。"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:86
 msgid "Integrating Static Pages into Portal"
-msgstr "Integrating Static Pages into Portal"
+msgstr "静的ページをポータルに統合する"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:88
 msgid ""
 "There are several ways to integrate static pages into the portal "
 "navigation system."
-msgstr ""
-"There are several ways to integrate static pages into the portal "
-"navigation system."
+msgstr "静的ページをポータル・ナビゲーション・システムに統合するには、いくつかの方法"
+"があります。"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:91
 msgid "Main Menu Integration"
-msgstr "Main Menu Integration"
+msgstr "メインメニューの統合"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:93
 msgid ""
 "You can add static pages to the main menu using the "
 "`Portal.CustomMenuItems` configuration."
-msgstr ""
-"You can add static pages to the main menu using the "
-"`Portal.CustomMenuItems` configuration."
+msgstr "`Portal.CustomMenuItems` "
+"設定を使ってメインメニューに静的ページを追加することができます。"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:96
 msgid "Configuration Method"
-msgstr "Configuration Method"
+msgstr "設定方法"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:98
 msgid ""
 "Add the following JSON configuration to the `Portal.CustomMenuItems` "
 "variable:"
-msgstr ""
-"Add the following JSON configuration to the `Portal.CustomMenuItems` "
-"variable:"
+msgstr "`Portal.CustomMenuItems` 変数に以下のJSON設定を追加する："
 
 #: ../../source/portal-developer-guide/static-page/index.rst:113
 #: ../../source/portal-developer-guide/static-page/index.rst:166
 msgid "Parameters:"
-msgstr "Parameters:"
+msgstr "パラメーター"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:115
 #: ../../source/portal-developer-guide/static-page/index.rst:169
+#, fuzzy
 msgid "**menuKind**: Must be set to `\"STATIC_PAGE\"`"
-msgstr "**menuKind**: Must be set to `\"STATIC_PAGE\"`"
+msgstr "**menuKind** ：STATIC_PAGE\"`に設定されなければならない。"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:116
 msgid "**link**: Path to your static page relative to the view directory"
-msgstr "**link**: Path to your static page relative to the view directory"
+msgstr "**link** ：ビューディレクトリからの静的ページへの相対パス"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:117
 msgid "**label**: Display name in the menu"
-msgstr "**label**: Display name in the menu"
+msgstr "**ラベル** ：メニューの表示名"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:118
 msgid "**icon**: Icon class"
-msgstr "**icon**: Icon class"
+msgstr "**アイコン** ：アイコンクラス"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:119
 msgid "**index**: Menu position (optional, defaults to 0)"
-msgstr "**index**: Menu position (optional, defaults to 0)"
+msgstr "**index** ：メニューの位置（オプション、デフォルトは0）"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:120
 msgid "**version**: Portal version"
-msgstr "**version**: Portal version"
+msgstr "**バージョン** ：ポータル版"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:123
 msgid "Programmatic Method"
-msgstr "Programmatic Method"
+msgstr "プログラム方式"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:125
 msgid ""
 "You can also add static pages programmatically using a callable "
 "subprocess:"
-msgstr ""
-"You can also add static pages programmatically using a callable "
-"subprocess:"
+msgstr "呼び出し可能なサブプロセスを使って、プログラムで静的ページを追加することもで"
+"きる："
 
 #: ../../source/portal-developer-guide/static-page/index.rst:141
 msgid "User Menu Integration"
-msgstr "User Menu Integration"
+msgstr "ユーザーメニューの統合"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:143
 msgid ""
 "Static pages can also be added to the user menu using the "
 "`Portal.UserMenu` configuration:"
-msgstr ""
-"Static pages can also be added to the user menu using the "
-"`Portal.UserMenu` configuration:"
+msgstr "静的ページも `Portal.UserMenu` "
+"設定を使ってユーザーメニューに追加することができます："
 
 #: ../../source/portal-developer-guide/static-page/index.rst:168
 msgid "**id**: Unique identifier for the menu item"
-msgstr "**id**: Unique identifier for the menu item"
+msgstr "**id** ：メニュー項目の一意な識別子"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:170
 msgid "**titles**: Multilingual titles"
-msgstr "**titles**: Multilingual titles"
+msgstr "**タイトル** ：多言語タイトル"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:171
 msgid "**permissions**: Array of roles or users who can see this item"
-msgstr "**permissions**: Array of roles or users who can see this item"
+msgstr "**パーミッション** ：このアイテムを見ることができるロールまたはユーザーの配列"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:172
 msgid "**url**: Path to your static page"
-msgstr "**url**: Path to your static page"
+msgstr "**url** ：静的ページへのパス"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:177
 msgid "URL Conversion"
-msgstr "URL Conversion"
+msgstr "URL変換"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:179
 msgid ""
 "Portal automatically converts static page links to the proper format when"
 " used in menus. The conversion process:"
-msgstr ""
-"Portal automatically converts static page links to the proper format when"
-" used in menus. The conversion process:"
+msgstr "Portalは、メニューで使用する場合、静的ページリンクを自動的に適切なフォーマッ"
+"トに変換します。変換プロセス"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:181
 msgid "**Input**: `app/faces/view/portal-components-examples/static.xhtml`"
@@ -10684,103 +10675,103 @@ msgstr "**Input**: `app/faces/view/portal-components-examples/static.xhtml`"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:182
 msgid "**Conversion**: Uses `StaticPageUtils.buildUrl()` method"
-msgstr "**Conversion**: Uses `StaticPageUtils.buildUrl()` method"
+msgstr "**変換** ：StaticPageUtils.buildUrl()`メソッドを使う"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:183
 msgid "**Output**: Full portal URL with iframe wrapper"
-msgstr "**Output**: Full portal URL with iframe wrapper"
+msgstr "**出力** ：iframeラッパー付き完全なポータルURL"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:185
 msgid "The conversion formula:"
-msgstr "The conversion formula:"
+msgstr "換算式："
 
 #: ../../source/portal-developer-guide/static-page/index.rst:194
 msgid "Examples"
-msgstr "Examples"
+msgstr "例"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:197
 msgid "Simple Information Page"
-msgstr "Simple Information Page"
+msgstr "シンプルな情報ページ"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:199
 msgid "Create a simple information page with custom styling:"
-msgstr "Create a simple information page with custom styling:"
+msgstr "カスタムスタイルでシンプルな情報ページを作成する："
 
 #: ../../source/portal-developer-guide/static-page/index.rst:287
 msgid "Best Practices"
-msgstr "Best Practices"
+msgstr "ベストプラクティス"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:290
 msgid "File Organization"
-msgstr "File Organization"
+msgstr "ファイル構成"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:292
 msgid "Place static pages in `webContent/view/` directory"
-msgstr "Place static pages in `webContent/view/` directory"
+msgstr "静的ページを `webContent/view/` ディレクトリに配置する。"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:293
 msgid ""
 "Use descriptive file names (e.g., `help-documentation.xhtml`, `user-"
 "guide.xhtml`)"
-msgstr ""
-"Use descriptive file names (e.g., `help-documentation.xhtml`, `user-"
-"guide.xhtml`)"
+msgstr "説明的なファイル名を使う（例： `help-documentation.xhtml` 、 `user-"
+"guide.xhtml` ）。"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:294
 msgid "Organize related pages in subdirectories if needed"
-msgstr "Organize related pages in subdirectories if needed"
+msgstr "必要に応じて、関連ページをサブディレクトリに整理する。"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:298
 msgid "Content Guidelines"
-msgstr "Content Guidelines"
+msgstr "コンテンツ・ガイドライン"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:300
 msgid "Keep content focused and relevant"
-msgstr "Keep content focused and relevant"
+msgstr "コンテンツの焦点を絞り、関連性を保つ"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:301
 msgid "Use consistent styling with the portal theme"
-msgstr "Use consistent styling with the portal theme"
+msgstr "ポータルテーマと一貫性のあるスタイリングを使用する"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:302
 msgid "Ensure responsive design for different screen sizes"
-msgstr "Ensure responsive design for different screen sizes"
+msgstr "さまざまな画面サイズに対応するレスポンシブ・デザインの確保"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:303
 msgid "Include proper navigation breadcrumbs when appropriate"
-msgstr "Include proper navigation breadcrumbs when appropriate"
+msgstr "適切な場合は、適切なナビゲーション・ブレッドクラムを含める。"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:306
 msgid "Security Considerations"
-msgstr "Security Considerations"
+msgstr "セキュリティへの配慮"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:308
 msgid "Validate all user inputs if forms are included"
-msgstr "Validate all user inputs if forms are included"
+msgstr "フォームが含まれている場合、すべてのユーザー入力を検証する"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:309
 msgid "Use proper access controls through menu permissions"
-msgstr "Use proper access controls through menu permissions"
+msgstr "メニュー権限による適切なアクセス制御"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:310
 msgid "Sanitize any dynamic content"
-msgstr "Sanitize any dynamic content"
+msgstr "動的コンテンツをサニタイズする"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:311
 msgid "Follow portal security guidelines"
-msgstr "Follow portal security guidelines"
+msgstr "ポータルのセキュリティガイドラインに従う"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:316
 msgid "References"
-msgstr "References"
+msgstr "参考文献"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:318
+#, fuzzy
 msgid ""
 "`Static JSF Pages Documentation <https://developer.axonivy.com/doc/12"
 "/designer-guide/user-interface/static-jsf-pages.html#static-jsf-pages>`_"
 msgstr ""
-"`Static JSF Pages Documentation <https://developer.axonivy.com/doc/12"
-"/designer-guide/user-interface/static-jsf-pages.html#static-jsf-pages>`_"
+"`静的JSFページ・ドキュメント<https://developer.axonivy.com/doc/12/"
+"designer-guide/user-interface/static-jsf-pages.html#static-jsf-pages>`_"
 
 #: ../../source/portal-developer-guide/troubleshooting/index.rst:5
 msgid "Troubleshooting"
