@@ -10,7 +10,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-09-19 08:12+0000\n"
 "PO-Revision-Date: 2025-09-29 08:59+0000\n"
-"Last-Translator: DeepL <noreply-mt-deepl@weblate.org>\n"
+"Last-Translator: Thang Huynh <hhqthang@axonactive.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/axonivy-portal/"
 "portal-12/doc/portal-components/ja/>\n"
 "Language: ja\n"
@@ -96,11 +96,11 @@ msgstr "説明"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "nameColumnRendered"
-msgstr "nameColumnレンダリング"
+msgstr "nameColumnRendered"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "TRUE"
-msgstr "真"
+msgstr "TRUE"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 #: ../../source/portal-components/documents/process_chain_component_attributes.csv:1
@@ -108,7 +108,7 @@ msgstr "真"
 #: ../../source/portal-components/documents/security_member_name_and_avatar_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
 msgid "Boolean"
-msgstr "ブーリアン"
+msgstr "Boolean"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid ""
@@ -141,7 +141,7 @@ msgstr "型カラムのレンダリングを指定するブール値で、false�
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "functionColumnRendered"
-msgstr "関数列レンダリング"
+msgstr "functionColumnRendered"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid ""
@@ -152,7 +152,7 @@ msgstr "関数列のレンダリングを指定するブール値。falseに設�
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "previewRendered"
-msgstr "プレビューレンダリング"
+msgstr "previewRendered"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid ""
@@ -163,7 +163,7 @@ msgstr "プレビューアイコンのレンダリングを指定するブール
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "uploadRendered"
-msgstr "アップロード"
+msgstr "uploadRendered"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid ""
@@ -174,7 +174,7 @@ msgstr "アップロードアイコンのレンダリングを指定するブー
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "downloadRendered"
-msgstr "ダウンロード"
+msgstr "downloadRendered"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid ""
@@ -185,7 +185,7 @@ msgstr "ダウンロードアイコンのレンダリングを指定するブー
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "deleteRendered"
-msgstr "削除"
+msgstr "deleteRendered"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid ""
@@ -196,7 +196,7 @@ msgstr "削除アイコンのレンダリングを指定するブール値。fal
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "renameRendered"
-msgstr "リネーム"
+msgstr "renameRendered"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid ""
@@ -207,7 +207,7 @@ msgstr "ファイル名編集アイコンのレンダリングを指定するブ
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "messageRendered"
-msgstr "メッセージレンダリング"
+msgstr "messageRendered"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid ""
@@ -218,7 +218,7 @@ msgstr "メッセージのレンダリングを指定するブール値。false�
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "fileLimit"
-msgstr "ファイルリミット"
+msgstr "fileLimit"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "-1"
@@ -229,7 +229,7 @@ msgstr "-1"
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
 msgid "Integer"
-msgstr "整数"
+msgstr "Integer"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "Number of files are in the given ICase."
@@ -237,19 +237,19 @@ msgstr "指定された ICase に含まれるファイルの数。"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "sizeLimit"
-msgstr "サイズリミット"
+msgstr "sizeLimit"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/security_member_name_and_avatar_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
 msgid "null"
-msgstr "ヌル"
+msgstr "null"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 #: ../../source/portal-components/documents/process_viewer_component_attributes.csv:1
 msgid "Long"
-msgstr "ロング"
+msgstr "Long"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "Individual uploading file size limit in bytes."
@@ -257,7 +257,7 @@ msgstr "個々のアップロードファイルのサイズ制限（バイト単
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "updatedComponentAfterUploaded"
-msgstr "updatedComponentアップロード後"
+msgstr "updatedComponentAfterUploaded"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 #: ../../source/portal-components/documents/process_chain_component_attributes.csv:1
@@ -266,7 +266,7 @@ msgstr "updatedComponentアップロード後"
 #: ../../source/portal-components/documents/security_member_name_and_avatar_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
 msgid "String"
-msgstr "ストリング"
+msgstr "String"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "Component will be triggered the update after document is uploaded."
@@ -274,11 +274,11 @@ msgstr "コンポーネントは、文書がアップロードされた後に更
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "previewIcon"
-msgstr "プレビューアイコン"
+msgstr "previewIcon"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "fa-eye"
-msgstr "ファ・アイ"
+msgstr "fa-eye"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "Icon class will be displayed in preview dialog."
@@ -286,7 +286,7 @@ msgstr "アイコンのクラスはプレビューダイアログに表示され
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "previewStyleClass"
-msgstr "プレビュースタイルクラス"
+msgstr "previewStyleClass"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "Styles for preview link."
@@ -302,7 +302,7 @@ msgstr "プレビューダイアログのスタイル"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "previewPDFStyleClass"
-msgstr "プレビューPDFスタイルクラス"
+msgstr "previewPDFStyleClass"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "Styles for PDF preview dialog."
@@ -310,7 +310,7 @@ msgstr "PDFプレビューダイアログのスタイル。"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "previewImageStyleClass"
-msgstr "プレビュー画像スタイルクラス"
+msgstr "previewImageStyleClass"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "Styles for image preview dialog."
@@ -318,11 +318,11 @@ msgstr "画像プレビューダイアログのスタイル"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "downloadIcon"
-msgstr "ダウンロードアイコン"
+msgstr "downloadIcon"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "fa-download"
-msgstr "ダウンロード"
+msgstr "fa-download"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "Icon class will be displayed in download link."
@@ -330,7 +330,7 @@ msgstr "アイコンクラスはダウンロードリンクに表示されます
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "downloadStyleClass"
-msgstr "ダウンロードスタイルクラス"
+msgstr "downloadStyleClass"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "Styles for download link."
@@ -338,11 +338,11 @@ msgstr "ダウンロードリンクのスタイル"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "deleteIcon"
-msgstr "デリートアイコン"
+msgstr "deleteIcon"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "fa-trash-o"
-msgstr "ファ・トラッシュ・オ"
+msgstr "fa-trash-o"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "Icon class will be displayed in delete link."
@@ -350,7 +350,7 @@ msgstr "アイコンクラスは削除リンクに表示されます。"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "deleteStyleClass"
-msgstr "削除スタイルクラス"
+msgstr "deleteStyleClass"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "Styles for delete link."
@@ -358,7 +358,7 @@ msgstr "削除リンクのスタイル。"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "updatedComponentAfterDeleted"
-msgstr "UpdateComponentAfterDeleted"
+msgstr "updatedComponentAfterDeleted"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "Component will be triggered the update after document is deleted."
@@ -366,7 +366,7 @@ msgstr "コンポーネントが更新されるのは、ドキュメントが削
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "renameStyleClass"
-msgstr "リネームスタイルクラス"
+msgstr "renameStyleClass"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "Styles for edit filename link."
@@ -382,7 +382,7 @@ msgstr "コンポーネントが更新されるのは、ドキュメントの名
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "selectedType"
-msgstr "選択型"
+msgstr "selectedType"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid ""
@@ -392,11 +392,11 @@ msgstr "デフォルトでは ``typeSelectionItems`` の最初の要素になり
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "typeSelectionItems"
-msgstr "タイプ選択項目"
+msgstr "typeSelectionItems"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "DOCUMENTATION,CONTRACT,INFORMATION,EMAIL,OTHERS"
-msgstr "文書,契約,情報,電子メール,その他"
+msgstr "DOCUMENTATION,CONTRACT,INFORMATION,EMAIL,OTHERS"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "String value to specify the list of document type."
@@ -633,8 +633,10 @@ msgid ""
 "fields are mandatory when mapping: ``id``, ``uuid``, ``name``, "
 "``contentType``"
 msgstr ""
-"DMS からドキュメントリストを取得したら、 ``List<ch.ivy.addon.portal.component.ivydata.bo.IvyDocument>`` に変換してください。"
-"``id``、 ``name`` 、 ``contentType`` をマッピングする場合、これらのフィールドは必須です。"
+"DMS からドキュメントリストを取得したら、 "
+"``List<ch.ivy.addon.portal.component.ivydata.bo.IvyDocument>`` "
+"に変換してください。``id``、``uuid``、 ``name`` 、 ``contentType`` "
+"をマッピングする場合、これらのフィールドは必須です。"
 
 #: ../../source/portal-components/document-table/index.rst:77
 msgid "Upload document"
@@ -1116,11 +1118,11 @@ msgstr "``isShowAllSteps`` を ``TRUE`` または ``FALSE`` に変更します�
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
 msgid "componentId"
-msgstr "コンポーネントID"
+msgstr "componentId"
 
 #: ../../source/portal-components/documents/process_chain_component_attributes.csv:1
 msgid "process-chain-component-id"
-msgstr "プロセスチェーンコンポーネントID"
+msgstr "process-chain-component-id"
 
 #: ../../source/portal-components/documents/process_chain_component_attributes.csv:1
 msgid "The component identifier."
@@ -1128,7 +1130,7 @@ msgstr "コンポーネントの識別子。"
 
 #: ../../source/portal-components/documents/process_chain_component_attributes.csv:1
 msgid "steps"
-msgstr "ステップ"
+msgstr "steps"
 
 #: ../../source/portal-components/documents/process_chain_component_attributes.csv:1
 msgid "List of step in the process chain."
@@ -1136,7 +1138,7 @@ msgstr "プロセスチェーンのステップのリスト。"
 
 #: ../../source/portal-components/documents/process_chain_component_attributes.csv:1
 msgid "actualStepIndex"
-msgstr "実際のステップインデックス"
+msgstr "actualStepIndex"
 
 #: ../../source/portal-components/documents/process_chain_component_attributes.csv:1
 msgid "0"
@@ -1148,23 +1150,23 @@ msgstr "実際のステップ・インデックスまたは現在のステップ
 
 #: ../../source/portal-components/documents/process_chain_component_attributes.csv:1
 msgid "direction"
-msgstr "方向"
+msgstr "direction"
 
 #: ../../source/portal-components/documents/process_chain_component_attributes.csv:1
 msgid "HORIZONTAL"
-msgstr "水平"
+msgstr "HORIZONTAL"
 
 #: ../../source/portal-components/documents/process_chain_component_attributes.csv:1
 msgid "Direction of process chain: VERTICAL, HORIZONTAL."
-msgstr "プロセスチェーンの方向：垂直、水平"
+msgstr "プロセスチェーンの方向：VERTICAL, HORIZONTAL."
 
 #: ../../source/portal-components/documents/process_chain_component_attributes.csv:1
 msgid "shape"
-msgstr "形状"
+msgstr "shape"
 
 #: ../../source/portal-components/documents/process_chain_component_attributes.csv:1
 msgid "CIRCLE"
-msgstr "サークル"
+msgstr "CIRCLE"
 
 #: ../../source/portal-components/documents/process_chain_component_attributes.csv:1
 msgid "Shape of process chain: CIRCLE, LINE."
@@ -1179,7 +1181,7 @@ msgstr "isShowAllSteps"
 #: ../../source/portal-components/documents/security_member_name_and_avatar_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
 msgid "false"
-msgstr "擬似"
+msgstr "false"
 
 #: ../../source/portal-components/documents/process_chain_component_attributes.csv:1
 msgid "Show all steps of the process chain."
@@ -1242,7 +1244,7 @@ msgstr "このコンポーネントの属性："
 
 #: ../../source/portal-components/documents/process_viewer_component_attributes.csv:1
 msgid "taskId"
-msgstr "タスクID"
+msgstr "taskId"
 
 #: ../../source/portal-components/documents/process_viewer_component_attributes.csv:1
 msgid "Task ID."
@@ -1250,7 +1252,7 @@ msgstr "タスクID"
 
 #: ../../source/portal-components/documents/process_viewer_component_attributes.csv:1
 msgid "caseId"
-msgstr "ケースアイディー"
+msgstr "caseId"
 
 #: ../../source/portal-components/documents/process_viewer_component_attributes.csv:1
 msgid "Case ID."
@@ -1258,7 +1260,7 @@ msgstr "ケースID"
 
 #: ../../source/portal-components/documents/process_viewer_component_attributes.csv:1
 msgid "processLink"
-msgstr "プロセスリンク"
+msgstr "processLink"
 
 #: ../../source/portal-components/documents/process_viewer_component_attributes.csv:1
 msgid "Process or Case Map relative link."
@@ -1267,7 +1269,7 @@ msgstr "プロセスまたはケースマップの相対リンク。"
 #: ../../source/portal-components/documents/process_viewer_component_attributes.csv:1
 #: ../../source/portal-components/documents/security_member_name_and_avatar_component_attributes.csv:1
 msgid "containerStyleClass"
-msgstr "コンテナスタイルクラス"
+msgstr "containerStyleClass"
 
 #: ../../source/portal-components/documents/process_viewer_component_attributes.csv:1
 msgid "Component container style class."
@@ -1440,7 +1442,7 @@ msgstr "fromRoleNames"
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
 msgid "List<String>"
-msgstr "リスト<文字列"
+msgstr "List<String>"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 msgid ""
@@ -1455,11 +1457,11 @@ msgstr "ロールオートコンプリートのID。"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 msgid "selectedRole"
-msgstr "選択された役割"
+msgstr "selectedRole"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 msgid "RoleDTO"
-msgstr "役割DTO"
+msgstr "RoleDTO"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 msgid "Required input and output value for selected role."
@@ -1467,7 +1469,7 @@ msgstr "選択した役割に必要な入出力値。"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 msgid "excludedRolenames"
-msgstr "除外"
+msgstr "excludedRolenames"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 msgid ""
@@ -1479,7 +1481,7 @@ msgstr "ロール選択から除外するロール。デフォルトのcompleteM
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
 msgid "requiredMessage"
-msgstr "必須メッセージ"
+msgstr "requiredMessage"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
@@ -1493,13 +1495,13 @@ msgstr "ロールのオートコンプリート検証が失敗した場合に表
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
 msgid "forceSelection"
-msgstr "強制選択"
+msgstr "forceSelection"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/security_member_name_and_avatar_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
 msgid "true"
-msgstr "真の"
+msgstr "true"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 msgid "If true, only accept roles from the given list."
@@ -1522,11 +1524,11 @@ msgstr "オートコンプリートを開始する前に入力する文字数。
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
 msgid "completeMethod"
-msgstr "コンプリートメソッド"
+msgstr "completeMethod"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 msgid "completeRole"
-msgstr "コンプリートロール"
+msgstr "completeRole"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
@@ -1540,7 +1542,7 @@ msgstr "ロールオートコンプリートのメソッド。"
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
 msgid "isDisabled"
-msgstr "無効"
+msgstr "isDisabled"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 msgid "If true, Role Selection is disabled."
@@ -1549,7 +1551,7 @@ msgstr "trueの場合、Role Selectionは無効になる。"
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
 msgid "isRequired"
-msgstr "必須"
+msgstr "isRequired"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 msgid "If true, Marks Role Selection is required."
@@ -1558,7 +1560,7 @@ msgstr "trueの場合、マークス役割選択が必要。"
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
 msgid "isReadOnly"
-msgstr "読み取り専用"
+msgstr "isReadOnly"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 msgid "If true, user cannot change role."
@@ -1576,7 +1578,7 @@ msgstr "roleフィールドに対するメッセージのレンダリングを�
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
 msgid "hightlight"
-msgstr "ハイライト"
+msgstr "hightlight"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 msgid "Highlights the first suggested role automatically."
@@ -1585,7 +1587,7 @@ msgstr "最初に提案された役割が自動的にハイライトされます
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
 msgid "floatingLabel"
-msgstr "フローティングラベル"
+msgstr "floatingLabel"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
@@ -1744,7 +1746,7 @@ msgstr "表示される結果の最大数。"
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
 msgid "scrollHeight"
-msgstr "スクロールハイト"
+msgstr "scrollHeight"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
@@ -1759,7 +1761,7 @@ msgstr "primefacesオートコンプリートのscrollHeight属性。"
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
 msgid "hasCustomizedSelectionList"
-msgstr "カスタマイズ・セレクション・リスト"
+msgstr "hasCustomizedSelectionList"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
@@ -1827,7 +1829,7 @@ msgstr "選択リスト内のアイテムのコンテナのスタイルクラス
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
 msgid "emptyMessage"
-msgstr "空のメッセージ"
+msgstr "emptyMessage"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
@@ -1915,7 +1917,7 @@ msgstr "必須"
 
 #: ../../source/portal-components/documents/security_member_name_and_avatar_component_attributes.csv:1
 msgid "id"
-msgstr "アイドル"
+msgstr "id"
 
 #: ../../source/portal-components/documents/security_member_name_and_avatar_component_attributes.csv:1
 msgid "Id of component."
@@ -1923,7 +1925,7 @@ msgstr "コンポーネントの ID。"
 
 #: ../../source/portal-components/documents/security_member_name_and_avatar_component_attributes.csv:1
 msgid "securityMember"
-msgstr "セキュリティメンバー"
+msgstr "securityMember"
 
 #: ../../source/portal-components/documents/security_member_name_and_avatar_component_attributes.csv:1
 msgid "ISecurityMember"
@@ -1939,11 +1941,11 @@ msgstr "isShowAvatar"
 
 #: ../../source/portal-components/documents/security_member_name_and_avatar_component_attributes.csv:1
 msgid "displayNameId"
-msgstr "表示名Id"
+msgstr "displayNameId"
 
 #: ../../source/portal-components/documents/security_member_name_and_avatar_component_attributes.csv:1
 msgid "username"
-msgstr "ユーザー名"
+msgstr "username"
 
 #: ../../source/portal-components/documents/security_member_name_and_avatar_component_attributes.csv:1
 msgid "Id of display name element."
@@ -1955,7 +1957,7 @@ msgstr "セキュリティ・メンバー名が表示される。"
 
 #: ../../source/portal-components/documents/security_member_name_and_avatar_component_attributes.csv:1
 msgid "displayNameRendered"
-msgstr "表示名レンダリング"
+msgstr "displayNameRendered"
 
 #: ../../source/portal-components/documents/security_member_name_and_avatar_component_attributes.csv:1
 msgid "If false, the security member name is hidden."
@@ -1963,7 +1965,7 @@ msgstr "False の場合、セキュリティ・メンバー名は非表示にな
 
 #: ../../source/portal-components/documents/security_member_name_and_avatar_component_attributes.csv:1
 msgid "displayNameStyleClass"
-msgstr "表示名スタイルクラス"
+msgstr "displayNameStyleClass"
 
 #: ../../source/portal-components/documents/security_member_name_and_avatar_component_attributes.csv:1
 msgid "The style class is applied for display name element."
@@ -2052,7 +2054,7 @@ msgstr "デフォルト値"
 
 #: ../../source/portal-components/documents/css_variables/process_chain.csv:1
 msgid "\\--process-chain-process-step-font-size"
-msgstr "\\--プロセスチェーン-プロセスステップ-フォントサイズ"
+msgstr "\\--process-chain-process-step-font-size"
 
 #: ../../source/portal-components/documents/css_variables/process_chain.csv:1
 msgid "12px"
@@ -2064,11 +2066,11 @@ msgstr "プロセスチェーンの構成要素におけるプロセスステッ
 
 #: ../../source/portal-components/documents/css_variables/process_chain.csv:1
 msgid "\\--process-chain-body-background-color"
-msgstr "\\--プロセス・チェーン・ボディの背景色"
+msgstr "\\--process-chain-body-background-color"
 
 #: ../../source/portal-components/documents/css_variables/process_chain.csv:1
 msgid "rgba(0,0,0,0)"
-msgstr "ルグバ(0,0,0,0)"
+msgstr "rgba(0,0,0,0)"
 
 #: ../../source/portal-components/documents/css_variables/process_chain.csv:1
 msgid "Background color of waiting circle process steps."
@@ -2076,7 +2078,7 @@ msgstr "待機円のプロセスステップの背景色。"
 
 #: ../../source/portal-components/documents/css_variables/process_chain.csv:1
 msgid "\\--process-chain-menu-color"
-msgstr "\\--プロセス・チェーン・メニュー・カラー"
+msgstr "\\--process-chain-menu-color"
 
 #: ../../source/portal-components/documents/css_variables/process_chain.csv:1
 msgid "var(\\--primary-color, hsl(195, 100%, 29%))"
@@ -2088,7 +2090,7 @@ msgstr "工程ステップの色。"
 
 #: ../../source/portal-components/documents/css_variables/process_chain.csv:1
 msgid "\\--process-chain-link-color"
-msgstr "\\--プロセス・チェーン・リンク・カラー"
+msgstr "\\--process-chain-link-color"
 
 #: ../../source/portal-components/documents/css_variables/process_chain.csv:1
 #: ../../source/portal-components/documents/css_variables/process_history.csv:1
@@ -2101,13 +2103,12 @@ msgstr "工程間の色をリンクさせる。"
 
 #: ../../source/portal-components/documents/css_variables/process_chain.csv:1
 msgid "\\--process-chain-current-circle-horizontal-step-title-font-weight"
-msgstr "\\"
-"--プロセス-チェーン-カレント-サークル-水平ステップ-タイトル-フォント-ウェイト"
+msgstr "\\--process-chain-current-circle-horizontal-step-title-font-weight"
 
 #: ../../source/portal-components/documents/css_variables/process_chain.csv:1
 #: ../../source/portal-components/documents/css_variables/process_viewer.csv:1
 msgid "bold"
-msgstr "大胆"
+msgstr "bold"
 
 #: ../../source/portal-components/documents/css_variables/process_chain.csv:1
 msgid "Font weight of circle horizontal process step title."
@@ -2115,9 +2116,7 @@ msgstr "円の水平プロセス・ステップ・タイトルのフォントの
 
 #: ../../source/portal-components/documents/css_variables/process_chain.csv:1
 msgid "\\--process-chain-current-circle-vertical-step-title-font-weight"
-msgstr "\\"
-"--プロセス・チェーン・カレント・サークル・バーティカル・ステップ・タイトル・"
-"フォントウェイト"
+msgstr "\\--process-chain-current-circle-vertical-step-title-font-weight"
 
 #: ../../source/portal-components/documents/css_variables/process_chain.csv:1
 msgid "Font weight of circle vertical process step title."
@@ -2125,9 +2124,7 @@ msgstr "円の縦書きプロセスステップタイトルのフォントの太
 
 #: ../../source/portal-components/documents/css_variables/process_chain.csv:1
 msgid "\\--process-chain-current-line-horizontal-step-title-font-weight"
-msgstr "\\"
-"--プロセス・チェーン・カレント・ライン・ホリゾンタル・ステップ・タイトル・フ"
-"ォントウェイト"
+msgstr "\\--process-chain-current-line-horizontal-step-title-font-weight"
 
 #: ../../source/portal-components/documents/css_variables/process_chain.csv:1
 msgid "Font weight of line horizontal process step title."
@@ -2135,9 +2132,7 @@ msgstr "行の横のプロセス・ステップ・タイトルのフォントの
 
 #: ../../source/portal-components/documents/css_variables/process_chain.csv:1
 msgid "\\--process-chain-current-line-vertical-step-title-font-weight"
-msgstr "\\"
-"--プロセス・チェーン・カレント・ライン・バーティカル・ステップ・タイトル・フ"
-"ォントウェイト"
+msgstr "\\--process-chain-current-line-vertical-step-title-font-weight"
 
 #: ../../source/portal-components/documents/css_variables/process_chain.csv:1
 msgid "Font weight of line vertical process step title."
@@ -2149,7 +2144,7 @@ msgstr "プロセス履歴"
 
 #: ../../source/portal-components/documents/css_variables/process_history.csv:1
 msgid "\\--process-history-header-border-bottom-color"
-msgstr "\\--プロセスヒストリーのヘッダーボーダー下部の色"
+msgstr "\\--process-history-header-border-bottom-color"
 
 #: ../../source/portal-components/documents/css_variables/process_history.csv:1
 msgid "Color of bottom header’s border."
@@ -2157,7 +2152,7 @@ msgstr "下部ヘッダーのボーダーの色。"
 
 #: ../../source/portal-components/documents/css_variables/process_history.csv:1
 msgid "\\--process-history-unsortable-header-font-size"
-msgstr "\\--ヘッダーのフォントサイズ"
+msgstr "\\--process-history-unsortable-header-font-size"
 
 #: ../../source/portal-components/documents/css_variables/process_history.csv:1
 msgid "1.4rem"
@@ -2169,7 +2164,7 @@ msgstr "ソート不可能なセルヘッダのテキストサイズ。"
 
 #: ../../source/portal-components/documents/css_variables/process_history.csv:1
 msgid "\\--process-history-unsortable-header-text-color"
-msgstr "\\--ヘッダーテキストカラー"
+msgstr "\\--process-history-unsortable-header-text-color"
 
 #: ../../source/portal-components/documents/css_variables/process_history.csv:1
 msgid "#9C9D9D"
@@ -2181,7 +2176,7 @@ msgstr "ソート不可能なセルヘッダのテキスト色。"
 
 #: ../../source/portal-components/documents/css_variables/process_history.csv:1
 msgid "\\--process-history-description-text-color"
-msgstr "\\--プロセス履歴説明のテキスト色"
+msgstr "\\--process-history-description-text-color"
 
 #: ../../source/portal-components/documents/css_variables/process_history.csv:1
 msgid "Text color of item description."
@@ -2189,7 +2184,7 @@ msgstr "アイテム説明の文字色。"
 
 #: ../../source/portal-components/documents/css_variables/process_history.csv:1
 msgid "\\--process-history-item-background-color"
-msgstr "\\--プロセス履歴項目の背景色"
+msgstr "\\--process-history-item-background-color"
 
 #: ../../source/portal-components/documents/css_variables/process_history.csv:1
 msgid "rgba(var(\\--white, #000000), 0.2)"
@@ -2201,7 +2196,7 @@ msgstr "アイテムの背景色。"
 
 #: ../../source/portal-components/documents/css_variables/process_history.csv:1
 msgid "\\--process-history-item-border-bottom-color"
-msgstr "\\--プロセス-ヒストリー-アイテム-ボーダー-ボトム-カラー"
+msgstr "\\--process-history-item-border-bottom-color"
 
 #: ../../source/portal-components/documents/css_variables/process_history.csv:1
 msgid "Color of bottom item’s border."
@@ -2209,7 +2204,7 @@ msgstr "ボトムアイテムのボーダーの色。"
 
 #: ../../source/portal-components/documents/css_variables/process_history.csv:1
 msgid "\\--process-history-item-border-hover"
-msgstr "\\--プロセス・ヒストリー・アイテム・ボーダー・オーバー"
+msgstr "\\--process-history-item-border-hover"
 
 #: ../../source/portal-components/documents/css_variables/process_history.csv:1
 msgid "1px solid #90DDE9"
@@ -2221,7 +2216,7 @@ msgstr "アイテムのボーダーのホバーカラー。"
 
 #: ../../source/portal-components/documents/css_variables/process_history.csv:1
 msgid "\\--process-history-item-background-hover"
-msgstr "\\--プロセス・ヒストリー・アイテムのバックグラウンド・ホバー"
+msgstr "\\--process-history-item-background-hover"
 
 #: ../../source/portal-components/documents/css_variables/process_history.csv:1
 msgid "rgba(144, 221, 233, 0.24)"
@@ -2233,7 +2228,7 @@ msgstr "アイテムのホバー背景色。"
 
 #: ../../source/portal-components/documents/css_variables/process_history.csv:1
 msgid "\\--process-history-state-in-progress-color"
-msgstr "\\--プロセス・ヒストリー・ステート・イン・プログレス・カラー"
+msgstr "\\--process-history-state-in-progress-color"
 
 #: ../../source/portal-components/documents/css_variables/process_history.csv:1
 msgid "rgba(7, 140, 255, 1)"
@@ -2245,7 +2240,7 @@ msgstr "進行中の状態の色。"
 
 #: ../../source/portal-components/documents/css_variables/process_history.csv:1
 msgid "\\--process-history-state-done-or-resume-color"
-msgstr "\\--プロセス・ヒストリー・ステート・ドン・オア・レジューム・カラー"
+msgstr "\\--process-history-state-done-or-resume-color"
 
 #: ../../source/portal-components/documents/css_variables/process_history.csv:1
 msgid "#4EB41C"
@@ -2257,7 +2252,7 @@ msgstr "完了または再開状態の色。"
 
 #: ../../source/portal-components/documents/css_variables/process_history.csv:1
 msgid "\\--process-history-empty-message-label-color"
-msgstr "\\--プロセス履歴の空メッセージのラベルの色"
+msgstr "\\--process-history-empty-message-label-color"
 
 #: ../../source/portal-components/documents/css_variables/process_history.csv:1
 msgid "hsl(64, 1%, 48%)"
@@ -2269,7 +2264,7 @@ msgstr "項目がない場合のメッセージラベルの文字色。"
 
 #: ../../source/portal-components/documents/css_variables/process_history.csv:1
 msgid "\\--process-history-empty-message-label-font-size"
-msgstr "\\--プロセス履歴-空メッセージ-ラベルのフォントサイズ"
+msgstr "\\--process-history-empty-message-label-font-size"
 
 #: ../../source/portal-components/documents/css_variables/process_history.csv:1
 #: ../../source/portal-components/documents/css_variables/process_viewer.csv:1
@@ -2282,7 +2277,7 @@ msgstr "項目がない場合のメッセージラベルのフォントサイズ
 
 #: ../../source/portal-components/documents/css_variables/process_viewer.csv:1
 msgid "\\--process-viewer-data-has-error-message-font-weight"
-msgstr "\\--エラーメッセージのフォントウェイト"
+msgstr "\\--process-viewer-data-has-error-message-font-weight"
 
 #: ../../source/portal-components/documents/css_variables/process_viewer.csv:1
 msgid "Error message font weight."
@@ -2290,7 +2285,7 @@ msgstr "エラーメッセージのフォントの太さ。"
 
 #: ../../source/portal-components/documents/css_variables/process_viewer.csv:1
 msgid "\\--process-viewer-data-has-error-message-font-size"
-msgstr "\\--エラーメッセージのフォントサイズ"
+msgstr "\\--process-viewer-data-has-error-message-font-size"
 
 #: ../../source/portal-components/documents/css_variables/process_viewer.csv:1
 msgid "Error message font size."
@@ -2298,7 +2293,7 @@ msgstr "エラーメッセージのフォントサイズ。"
 
 #: ../../source/portal-components/documents/css_variables/process_viewer.csv:1
 msgid "\\--process-details-column-title-font-size"
-msgstr "\\--プロセス詳細のカラムタイトルのフォントサイズ"
+msgstr "\\--process-details-column-title-font-size"
 
 #: ../../source/portal-components/documents/css_variables/process_viewer.csv:1
 msgid "0.85rem"
@@ -2410,11 +2405,11 @@ msgstr "ユーザーオートコンプリートのID。"
 
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
 msgid "selectedUser"
-msgstr "選択ユーザー"
+msgstr "selectedUser"
 
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
 msgid "UserDTO"
-msgstr "ユーザーDTO"
+msgstr "UserDTO"
 
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
 msgid "Required input and output value for selected user."
@@ -2422,7 +2417,7 @@ msgstr "選択したユーザーに必要な入出力値。"
 
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
 msgid "excludedUsernames"
-msgstr "除外ユーザー名"
+msgstr "excludedUsernames"
 
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
 msgid ""
@@ -2447,7 +2442,7 @@ msgstr "オートコンプリートを開始する前に入力する文字数。
 
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
 msgid "completeUser"
-msgstr "コンプリートユーザー"
+msgstr "completeUser"
 
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
 msgid "Method for user autocomplete."
