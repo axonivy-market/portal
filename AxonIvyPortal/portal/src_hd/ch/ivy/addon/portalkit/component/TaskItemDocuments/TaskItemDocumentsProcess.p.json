@@ -701,5 +701,49 @@
       "connect" : [
         { "id" : "f60", "to" : "f62" }
       ]
+    }, {
+      "id" : "f65",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "closeStream()",
+      "config" : {
+        "signature" : "closeStream",
+        "guid" : "19984CDAC8E2BC7C"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 1152 }
+      },
+      "connect" : [
+        { "id" : "f63", "to" : "f61" }
+      ]
+    }, {
+      "id" : "f61",
+      "type" : "Script",
+      "name" : "Close stream",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import java.io.InputStream;",
+            "if (in.streamedContent != null && in.streamedContent.getStream() != null){",
+            "  InputStream is = in.streamedContent.getStream().get() as InputStream;",
+            "  if (is != null){",
+            "    is.close();",
+            "  }",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 256, "y" : 1152 }
+      },
+      "connect" : [
+        { "id" : "f70", "to" : "f66" }
+      ]
+    }, {
+      "id" : "f66",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 400, "y" : 1152 },
+        "labelOffset" : { "x" : 10, "y" : 30 }
+      }
     } ]
 }
