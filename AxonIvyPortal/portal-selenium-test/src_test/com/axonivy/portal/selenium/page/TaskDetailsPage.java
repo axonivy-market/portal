@@ -16,6 +16,7 @@ import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 
 import com.axonivy.portal.selenium.common.ScreenshotUtils;
+import com.axonivy.portal.selenium.common.Sleeper;
 import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
@@ -204,6 +205,7 @@ public class TaskDetailsPage extends TemplatePage {
   public SelenideElement getAddNoteDialog() {
     var noteDialog = $("[id$=':task-notes:add-new-note-dialog']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     noteDialog.$("button[id$=':save-add-note-command']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
+    Sleeper.sleep(500); // Explicitly wait for better screenshots
     return noteDialog;
   }
 
