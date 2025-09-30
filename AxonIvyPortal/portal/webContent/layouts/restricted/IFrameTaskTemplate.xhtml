@@ -100,15 +100,17 @@
           var taskUrl = `#{htmlSanitizerBean.escapeForJS(iFrameTaskTemplateBean.taskUrl)}`;
           if (taskUrl) {
             taskUrl = taskUrl.trim();
-            if (typeof isRelativeUrl !== 'function' || typeof updateIframeSrc !== 'function') {
-              window.isRelativeUrl = window.isRelativeUrl || function(u){
+            if (typeof isRelativeUrl !== 'function') {
+              window.isRelativeUrl = function(u){
                 if(!u) return false;
                 u = String(u).trim();
                 if(u.startsWith('//') || /[\r\n\0]/.test(u)) return false;
                 if(/^[a-zA-Z][a-zA-Z0-9+.-]*:/.test(u)) return false;
                 return true;
               };
-              window.updateIframeSrc = window.updateIframeSrc || function(newSrc){
+            }
+            if (typeof updateIframeSrc !== 'function') {
+              window.updateIframeSrc = function(newSrc){
                 var iframe = document.getElementById('iFrame');
                 if (iframe) { iframe.src = newSrc; }
               };
