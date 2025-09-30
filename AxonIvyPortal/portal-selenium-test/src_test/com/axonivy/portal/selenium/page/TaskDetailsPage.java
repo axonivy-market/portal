@@ -230,6 +230,7 @@ public class TaskDetailsPage extends TemplatePage {
   public SelenideElement getAddAttachmentDialog() {
     var uploadDialog = $("[id$=':task-documents:document-upload-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
     uploadDialog.$(".ui-dialog-title").shouldBe(appear, DEFAULT_TIMEOUT).click();
+    Sleeper.sleep(500); // Explicitly wait for better screenshots
     return uploadDialog;
   }
 
