@@ -420,7 +420,7 @@ msgid ""
 ":ref:`update-portal-settings` for more details."
 msgstr ""
 "この設定はポータル設定``Portal.Document.EnableScriptChecking`` "
-"をデフォルト値として検出する。詳細は:ref:`update-portal-settings` を参照。"
+"をデフォルト値として検出する。詳細は :ref:`update-portal-settings` を参照。"
 
 #: ../../source/portal-components/document-table/index.rst
 msgid "If the Portal setting is not available, defaults to ``false``."
@@ -438,7 +438,7 @@ msgid ""
 "setting>` for more details."
 msgstr ""
 "ウイルススキャンを指定するブール値。ウイルススキャンを有効にするには、``true`"
-"` に設定します。詳細は:ref:`Virus Scanning Setting<settings-virus-scanning-"
+"` に設定します。詳細は :ref:`Virus Scanning Setting<settings-virus-scanning-"
 "setting>` を参照してください。"
 
 #: ../../source/portal-components/document-table/index.rst
@@ -448,7 +448,7 @@ msgid ""
 ":ref:`update-portal-settings` for more details."
 msgstr ""
 "この設定はポータル設定``Portal.Document.EnableVirusScanner`` "
-"をデフォルト値として検出する。詳細は:ref:`update-portal-settings` を参照。"
+"をデフォルト値として検出する。詳細は :ref:`update-portal-settings` を参照。"
 
 #: ../../source/portal-components/document-table/index.rst
 msgid "If Portal setting is not available, default value is ``false``."
@@ -469,8 +469,8 @@ msgid ""
 "``Portal.Document.WhitelistExtension`` as its default value, refer to "
 ":ref:`update-portal-settings` for more details."
 msgstr ""
-"この設定はポータル設定``Portal.Document.WhitelistExtension`` "
-"をデフォルト値として検出する。詳細は:ref:`update-portal-settings` を参照。"
+"この設定はポータル設定 ``Portal.Document.WhitelistExtension`` "
+"をデフォルト値として検出する。詳細は :ref:`update-portal-settings` を参照。"
 
 #: ../../source/portal-components/document-table/index.rst
 msgid ""
@@ -737,7 +737,7 @@ msgstr "**シグネチャ**：portalDeleteDocumentItem"
 
 #: ../../source/portal-components/document-table/index.rst:153
 msgid "Rename document"
-msgstr "TODO: Rename document"
+msgstr "ドキュメントの名前を変更する"
 
 #: ../../source/portal-components/document-table/index.rst:155
 msgid ""

@@ -6215,8 +6215,8 @@ msgid ""
 "Place the `Portal.Dashboard.json` file within the `config/variables/` "
 "directory inside the application zip."
 msgstr ""
-"Portal.Dashboard.json`ファイルをアプリケーションZIP内の`config/variables/"
-"`ディレクトリに配置します。"
+"`Portal.Dashboard.json` ファイルをアプリケーションZIP内の `config/variables/`"
+" ディレクトリに配置します。"
 
 #: ../../source/portal-developer-guide/deployment/index.rst:111
 msgid ""
@@ -8404,7 +8404,7 @@ msgstr "13.1.0での変更点"
 msgid ""
 "Introduced Custom Statistic Chart. Refer to :ref:`statistic-chart` for "
 "more information."
-msgstr "カスタム統計チャートを導入。詳細は:ref:`statistic-chart` を参照。"
+msgstr "カスタム統計チャートを導入。詳細は :ref:`statistic-chart` を参照。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:499
 msgid "Rename the old file ``Portal.ClientStatistic`` to ``Portal.Statistic``."
@@ -10109,7 +10109,7 @@ msgstr "タスク／ケースにノートを追加する権限"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:188
 msgid "_`TaskCaseShowMoreNote`"
-msgstr "_`TaskCaseShowMoreNote`（タスクケースショウモアノート"
+msgstr "_`TaskCaseShowMoreNote`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:189
 msgid "Permission to see Show more note"
@@ -10260,7 +10260,7 @@ msgstr "自分の不在を閲覧する権限"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:256
 msgid "_`UserCreateSubstitute`"
-msgstr "_`UserCreateSubstitute`(ユーザークリエイトサブスティテュート)"
+msgstr "_`UserCreateSubstitute`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:257
 msgid "Permission to create substitutes of all users"
@@ -10268,7 +10268,7 @@ msgstr "すべてのユーザーの代行者を作成する権限"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:259
 msgid "_`UserCreateOwnSubstitute`"
-msgstr "_`UserCreateOwnSubstitute`（ユーザークリエイトオウンサブスティテュート"
+msgstr "_`UserCreateOwnSubstitute`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:260
 msgid "Permission to create my own substitutes"
@@ -11187,7 +11187,7 @@ msgid ""
 "statistic charts that can be used by the :ref:`Statistic widget <portal-"
 "statistic-widget>` of Portal dashboard."
 msgstr ""
-"ポータル・ダッシュボードの:ref:`Statistic widget <portal-statistic-widget>` "
+"ポータル・ダッシュボードの :ref:`Statistic widget <portal-statistic-widget>` "
 "で使用できるすべての統計チャートについて、フィルタ・ロジック、外観、その他の"
 "設定を定義できます。"
 
@@ -11435,7 +11435,7 @@ msgstr "パラメーター"
 #: ../../source/portal-developer-guide/static-page/index.rst:115
 #: ../../source/portal-developer-guide/static-page/index.rst:169
 msgid "**menuKind**: Must be set to `\"STATIC_PAGE\"`"
-msgstr "**menuKind** ：STATIC_PAGE\"`に設定されなければならない。"
+msgstr "**menuKind** ：`\"STATIC_PAGE\"` に設定されなければならない。"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:116
 msgid "**link**: Path to your static page relative to the view directory"
@@ -11606,7 +11606,7 @@ msgid ""
 "`Static JSF Pages Documentation <https://developer.axonivy.com/doc/12"
 "/designer-guide/user-interface/static-jsf-pages.html#static-jsf-pages>`_"
 msgstr ""
-"`静的JSFページ・ドキュメント<https://developer.axonivy.com/doc/12/"
+"`静的JSFページ・ドキュメント <https://developer.axonivy.com/doc/12/"
 "designer-guide/user-interface/static-jsf-pages.html#static-jsf-pages>`_"
 
 #: ../../source/portal-developer-guide/troubleshooting/index.rst:5
