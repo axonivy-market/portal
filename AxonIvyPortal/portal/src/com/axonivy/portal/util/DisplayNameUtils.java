@@ -17,7 +17,7 @@ public class DisplayNameUtils {
   }
   
   public static String findLocalizedName(List<DisplayName> names) {
-  return LanguageUtils.getLocalizedName(names);
+    return LanguageUtils.getLocalizedName(names);
   }
 
 }
