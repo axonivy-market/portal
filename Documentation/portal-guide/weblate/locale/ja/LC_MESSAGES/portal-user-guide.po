@@ -3024,12 +3024,11 @@ msgid ""
 "level item in the navigation bar. The option ``HIDDEN`` will hide the "
 "dashboard from the menu."
 msgstr ""
-"ダッシュボードの表示タイプを1つ選択します。3つのタイプがあります：`TOP "
-"MENU``、``SUB MENU``、``HIDDEN`` です。デフォルトは``SUB MENU`` で、"
-"ダッシュボードは `Dashboard` メニューアイテムの中に配置されます。``Top Menu``"
-" "
+"ダッシュボードの表示タイプを1つ選択します。3つのタイプがあります：``TOP "
+"MENU`` 、 ``SUB MENU`` 、 ``HIDDEN`` です。デフォルトは ``SUB MENU`` で、"
+"ダッシュボードは `Dashboard` メニューアイテムの中に配置されます。 ``Top Menu`` "
 "が選択された場合、ダッシュボードはナビゲーションバーのトップレベルアイテムと"
-"して表示されます。``HIDDEN``というオプションはメニューからダッシュボードを非"
+"して表示されます。 ``HIDDEN`` というオプションはメニューからダッシュボードを非"
 "表示にします。"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:148
@@ -5762,10 +5761,10 @@ msgid ""
 "make it visible, you need to set the ``Portal.Cases.EnableOwner`` setting"
 " to ``true`` in the :ref:`Admin Settings <update-portal-settings>`."
 msgstr ""
-"`Filter tasks by current case "
-"owner``フィルターはデフォルトでは非表示になっています。表示させるには、 の ` "
-"` 設定を ` ` に設定する必要があります。:ref:`Admin Settings <update-portal-"
-"settings>` `Portal.Cases.EnableOwner` `true`"
+"``Filter tasks by current case "
+"owner`` フィルターはデフォルトでは非表示になっています。表示させるには、 の "
+"設定をに設定する必要があります。 :ref:`Admin Settings <update-portal-"
+"settings>` ``Portal.Cases.EnableOwner`` ``true``"
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:106
 #: ../../source/portal-user-guide/new-dashboard/index.rst:191
@@ -6402,8 +6401,8 @@ msgid ""
 " by clicking on the |translate-icon| icon. To enable the translation, "
 "please prefer to :ref:`enable-translation`"
 msgstr ""
-"入力ラベルをクリックしてタイトルを翻訳します。|translate-icon| "
-"アイコンをクリックして内容を翻訳してください。翻訳を有効にするには:ref"
+"入力ラベルをクリックしてタイトルを翻訳します。 |translate-icon| "
+"アイコンをクリックして内容を翻訳してください。翻訳を有効にするには :ref"
 ":`enable-translation`"
 
 #: ../../source/portal-user-guide/includes/_common-icon.rst:53
@@ -7816,7 +7815,7 @@ msgstr "ポータルの複雑なフィルターのように機能する。"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst
 msgid "Please refer to :ref:`complex-filter` for more details."
-msgstr "詳細は:ref:`complex-filter` 。"
+msgstr "詳細は :ref:`complex-filter` 。"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst:144
 msgid "Permissions"
