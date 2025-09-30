@@ -236,6 +236,7 @@ public class CaseDetailsPage extends TemplatePage {
     onClickHistoryIcon();
     var result = $("div[id$=':case-histories:add-note-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
     result.$(".ui-dialog-title").shouldBe(appear, DEFAULT_TIMEOUT).click();
+    Sleeper.sleep(500); // Explicitly wait for better screenshots
     return result.shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
