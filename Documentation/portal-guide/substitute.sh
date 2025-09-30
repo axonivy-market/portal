@@ -6,8 +6,6 @@ major="${version%%.*}"  # 10
 # switch to directory of script
 pushd $(dirname "${BASH_SOURCE[0]}") 2>&1 1> /dev/null
 
-cd source/
-
 # check all RST files for start of placeholders, and feed them to sed
 # execute sed only on files containing placeholders.
 replace_expr="s/\\|ivy-designer\\|/Axon Ivy Designer/g; \
