@@ -244,6 +244,7 @@ public class CaseDetailsPage extends TemplatePage {
     SelenideElement dialog = getAddAttachmentDialog();
     dialog.shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     $("[id$='document:document-upload-dialog_title']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    Sleeper.sleep(500); // Explicitly wait for better screenshots
     return dialog;
   }
 
