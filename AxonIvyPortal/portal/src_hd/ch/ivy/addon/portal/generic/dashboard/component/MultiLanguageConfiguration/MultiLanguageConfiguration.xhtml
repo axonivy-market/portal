@@ -50,7 +50,7 @@
               requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}">
                <p:ajax event="click" listener="#{managedBean.translate(title)}"
                disabled="#{managedBean.isShowTranslation(title) eq 'false'}"
-               process="@form" partialSubmit="true" global="false" update="translated-text-panel, tranlate-link, multi-languages-message" />
+               process="@form" partialSubmit="true" global="false" update="translated-text-panel, tranlate-link"/>
             </p:inputText>
             <p:inputTextarea value="#{title.value}" maxlength="200" rows="3" styleClass="w-full" id="title-textarea" rendered="#{!cc.attrs.useInputText}"> 
               <p:ajax event="click" listener="#{managedBean.translateTextArea(title)}"
