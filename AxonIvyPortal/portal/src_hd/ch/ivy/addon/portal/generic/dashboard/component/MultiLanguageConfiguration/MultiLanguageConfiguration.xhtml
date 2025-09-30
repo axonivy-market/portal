@@ -32,7 +32,7 @@
     id="multiple-languages-dialog" widgetVar="multiple-languages-dialog" modal="true" responsive="true"
     dynamic="#{cc.attrs.dynamic}">
     <h:form id="add-language-detail-form">
-      <p:messages id="multi-language-message"/>
+      <p:messages id="multi-languages-message"/>
       <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/emptySupportedLanguages')}"
         rendered="#{titles.isEmpty()}" />
     <h:panelGroup id="multiple-language-panel" layout="block" styleClass="multiple-language-data-table">
@@ -50,7 +50,7 @@
               requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}">
                <p:ajax event="click" listener="#{managedBean.translate(title)}"
                disabled="#{managedBean.isShowTranslation(title) eq 'false'}"
-               process="@form" partialSubmit="true" global="false" update="translated-text-panel, tranlate-link, multi-language-message" />
+               process="@form" partialSubmit="true" global="false" update="translated-text-panel, tranlate-link, multi-languages-message" />
             </p:inputText>
             <p:inputTextarea value="#{title.value}" maxlength="200" rows="3" styleClass="w-full" id="title-textarea" rendered="#{!cc.attrs.useInputText}"> 
               <p:ajax event="click" listener="#{managedBean.translateTextArea(title)}"
