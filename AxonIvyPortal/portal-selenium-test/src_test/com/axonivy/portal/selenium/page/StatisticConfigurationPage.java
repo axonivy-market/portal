@@ -182,6 +182,7 @@ public class StatisticConfigurationPage extends TemplatePage {
   
   public WebElement getColoringScope() {
     $("div[id$='config-form:coloring-option'] div.ui-selectonemenu-trigger").shouldBe(getClickableCondition()).click();
+    Sleeper.sleep(500); // Explicitly wait for better screenshots
     return $("div[id$='config-form:coloring-option_panel']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
   
