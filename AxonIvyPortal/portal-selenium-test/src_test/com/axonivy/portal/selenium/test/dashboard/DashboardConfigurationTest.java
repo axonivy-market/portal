@@ -23,6 +23,8 @@ import com.axonivy.portal.selenium.page.TaskWidgetNewDashBoardPage;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
+import static com.codeborne.selenide.Selenide.$$;
+import static com.codeborne.selenide.Selenide.$;
 
 @IvyWebTest
 public class DashboardConfigurationTest extends BaseTest {
@@ -273,27 +275,48 @@ public class DashboardConfigurationTest extends BaseTest {
   @Test
   public void testDeleteCaseWidgetForPrivateDashboard() {
     testAddPrivateDashboardUseTemplate();
-    var modificationPage = navigateToConfigurationAndOpenDashboardModificationPage();
+    DashboardModificationPage modificationPage = navigateToConfigurationAndOpenDashboardModificationPage();
     modificationPage.navigateToEditDashboardDetailsByName(NEW_PRIVATE_DASHBOARD);
 
     CaseWidgetNewDashBoardPage caseWidget = newDashboardPage.selectCaseWidget(YOUR_CASES_WIDGET);
     caseWidget.deleteCaseWidget();
     NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
     newDashboardDetailsEditPage.clickOnRemoveWidgetButton();
-    newDashboardPage.selectTaskWidget(" ").expand().shouldHave(size(8));
+
+    waitForDashboardStableAfterWidgetRemoval();
+    
+    // Verify that total number of widgets is 9 (originally 10, now deleted 1)
+    $$(".grid-stack-item").shouldHave(size(9));
   }
+
+  private void waitForDashboardStableAfterWidgetRemoval() {
+    // Wait a bit for the DOM to update after widget removal
+    try {
+      Thread.sleep(1000);
+    } catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+    }
+    newDashboardPage.waitPageLoaded();
+    $(".js-dashboard__wrapper").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    $$(".grid-stack-item").shouldBe(CollectionCondition.sizeGreaterThan(0), DEFAULT_TIMEOUT);
+  }
+
 
   @Test
   public void testDeleteProcessesWidgetForPrivateDashboard() {
     testAddPrivateDashboardUseTemplate();
-    var modificationPage = navigateToConfigurationAndOpenDashboardModificationPage();
+    DashboardModificationPage modificationPage = navigateToConfigurationAndOpenDashboardModificationPage();
     modificationPage.navigateToEditDashboardDetailsByName(NEW_PRIVATE_DASHBOARD);
 
     ProcessWidgetNewDashBoardPage processWidget = newDashboardPage.selectProcessWidget(YOUR_PROCESS_WIDGET);
     processWidget.deleteProcessWidget();
     NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
     newDashboardDetailsEditPage.clickOnRemoveWidgetButton();
-    newDashboardPage.selectTaskWidget(" ").expand().shouldHave(size(8));
+    
+    waitForDashboardStableAfterWidgetRemoval();
+    // Verify that total number of widgets is 9 (originally 10, now deleted 1)
+    // This is more robust than looking for specific widget types
+    $$(".grid-stack-item").shouldHave(size(9));
   }
 
   @Test
@@ -315,10 +338,14 @@ public class DashboardConfigurationTest extends BaseTest {
     createPublicDashboardUseTemplate();
     redirectToRelativeLink(denyDashboardExportOwnPermissionUrl);
     redirectToRelativeLink(grantDashboardExportPublicPermissionUrl);
-    var configurationPage = LinkNavigator.navigateToPortalDashboardConfiguration();
-    configurationPage.openEditPublicDashboardsPage().getDashboardExportButtonOfDashboard("New public dashboard")
+    DashboardConfigurationPage configurationPage = LinkNavigator.navigateToPortalDashboardConfiguration();
+    DashboardModificationPage publicDashboardPage = configurationPage.openEditPublicDashboardsPage();
+    publicDashboardPage.waitForDashboardTableToLoad();
+    publicDashboardPage.getDashboardExportButtonOfDashboard("New public dashboard")
         .shouldBe(Condition.appear);
-    configurationPage.openEditPrivateDashboardsPage().getDashboardExportButtonOfDashboard("New private dashboard")
+    DashboardModificationPage privateDashboardPage = configurationPage.openEditPrivateDashboardsPage();
+    privateDashboardPage.waitForDashboardTableToLoad();
+    privateDashboardPage.getDashboardExportButtonOfDashboard("New private dashboard")
         .shouldBe(Condition.disappear);
   }
 

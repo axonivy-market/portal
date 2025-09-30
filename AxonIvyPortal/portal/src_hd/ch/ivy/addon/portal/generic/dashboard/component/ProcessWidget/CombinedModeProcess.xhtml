@@ -71,7 +71,7 @@
         <!-- Start process -->
         <div class="ui-g-12 MarTop10 u-no-padding-left u-no-padding-right" id="start-button-container">
           <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/startProcess')}" id="start-button"
-            ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/startProcess')}"
+            ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/startProcess')} #{widget.process.name}"
             actionListener="#{dashboardProcessBean.startProcess(widget.process)}" icon="si si-arrow-right-1"
             disabled="#{!isReadOnlyMode or isInConfiguration}" process="process-item" partialSubmit="true" />
         </div>

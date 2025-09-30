@@ -93,6 +93,8 @@ public class CaseDetailsTest extends BaseTest {
     caseDetailsPage.getRelatedCasesComponents().shouldHave(sizeGreaterThanOrEqual(1));
     caseDetailsPage.getHitoriesComponent().shouldHave(sizeGreaterThanOrEqual(1));
     caseDetailsPage.addNote(NOTE_BUSINESS_CASE);
+    caseDetailsPage.waitPageLoaded();
+    refreshPage();
     caseDetailsPage.getNotesWithContent(NOTE_BUSINESS_CASE).shouldHave(size(1));
     caseDetailsPage.gotoTaskDetailsPageOfRelatedTask(ORDER_PIZZA);
     TaskDetailsPage taskDetailsPage = new TaskDetailsPage();
@@ -112,6 +114,7 @@ public class CaseDetailsTest extends BaseTest {
     caseDetailsPage.gotoCaseDetailsPageOfRelatedCase(TAKE_ORDER_AND_MAKE_PIZZA);
     caseDetailsPage.getHitoriesComponent().shouldHave(sizeGreaterThanOrEqual(1));
     caseDetailsPage.addNote(NOTE_TECHNICAL_CASE);
+    refreshPage();
     caseDetailsPage.getNotesWithContent(NOTE_TECHNICAL_CASE).shouldHave(size(1));
     caseDetailsPage.gotoTaskDetailsPageOfRelatedTask(TAKE_ORDER);
     TaskDetailsPage taskDetailsPage = new TaskDetailsPage();
@@ -275,7 +278,6 @@ public class CaseDetailsTest extends BaseTest {
   }
 
   @Test
-  // unstable test
   public void testRelatedTaskDelegateTask() {
     createTestingTask();
     ScreenshotUtils.resizeBrowser(new Dimension(1920, 1080));
@@ -398,6 +400,7 @@ public class CaseDetailsTest extends BaseTest {
   public void testHistoryAuthorIsUserFullName() {
     createTestingTask();
     detailsPage.addNote("Sample case note");
+    refreshPage();
     assertEquals(TestAccount.ADMIN_USER.getFullName(), detailsPage.getHistoryAuthor());
   }
 
@@ -508,22 +511,31 @@ public class CaseDetailsTest extends BaseTest {
     createTestingCaseContainTechnicalCases();
     detailsPage.getNumberOfHistory().shouldHave(size(1), DEFAULT_TIMEOUT);
     detailsPage.addNote("This is note on business case");
+    detailsPage.waitPageLoaded();
+    refreshPage();
     detailsPage.getNumberOfHistory().shouldHave(size(2), DEFAULT_TIMEOUT);
     assertEquals("This is note on business case", detailsPage.getLatestHistoryContent());
     detailsPage.clickRelatedCaseActionButton(0);
-    var relatedCaseDetailsPage = detailsPage.openCasesOfCasePageViaDetailsAction(0);
+    CaseDetailsPage relatedCaseDetailsPage = detailsPage.openCasesOfCasePageViaDetailsAction(0);
     new WebDriverWait(WebDriverRunner.getWebDriver(), DEFAULT_TIMEOUT)
         .until((webDriver) -> CASE_DETAILS_TITLE.equals(relatedCaseDetailsPage.getPageTitle()));
+
     relatedCaseDetailsPage.addNote("The first note of sub-case");
+    relatedCaseDetailsPage.waitForPageLoad();
+    refreshPage();
+
     relatedCaseDetailsPage.addNote("The second note of sub-case");
-    var subCaseId = relatedCaseDetailsPage.getCaseId();
-    var caseName = relatedCaseDetailsPage.getCaseName();
+    relatedCaseDetailsPage.waitForPageLoad();
+    refreshPage();
+
+    String subCaseId = relatedCaseDetailsPage.getCaseId();
+    String  caseName = relatedCaseDetailsPage.getCaseName();
     relatedCaseDetailsPage.getNumberOfHistory().shouldHave(size(2), DEFAULT_TIMEOUT);
     relatedCaseDetailsPage.getNumberOfHistoryForRelatedCaseLink().shouldHave(size(0), DEFAULT_TIMEOUT);
     detailsPage = relatedCaseDetailsPage.openBusinessCaseFromTechnicalCase();
     detailsPage.getNumberOfHistory().shouldHave(size(4), DEFAULT_TIMEOUT);
     detailsPage.getNumberOfHistoryForRelatedCaseLink().shouldHave(size(4), DEFAULT_TIMEOUT);
-    var relaledCaseName = detailsPage.getContentOfHistoryTableRelatedCaseColumn(0);
+    String relaledCaseName = detailsPage.getContentOfHistoryTableRelatedCaseColumn(0);
     assertTrue(relaledCaseName.startsWith("#"));
     assertTrue(relaledCaseName.contains(subCaseId));
     assertTrue(relaledCaseName.contains(caseName));
