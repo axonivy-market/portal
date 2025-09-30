@@ -4,12 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.LocaleUtils;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.Strings;
 
 import ch.ivy.addon.portalkit.dto.DisplayName;
+import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
 import ch.ivyteam.ivy.environment.Ivy;
 
 public final class LanguageUtils {
@@ -45,8 +48,7 @@ public final class LanguageUtils {
     }
     
     // 3. Try default language (English)
-    String nameInEnglish = findNameByLanguageCode(names, DEFAULT_LANGUAGE).map(DisplayName::getValue).orElse("");
-    return nameInEnglish;
+    return findNameByLanguageCode(names, DEFAULT_LANGUAGE).map(DisplayName::getValue).orElse("");
   }
 
   public static Optional<DisplayName> findNameInUserLanguage(List<DisplayName> names) {
@@ -90,5 +92,35 @@ public final class LanguageUtils {
       this.names = names;
       this.name = name;
     }
+  }
+  
+  public static List<String> getSupportedLanguages() {
+    return LanguageService.getInstance().getIvyLanguageOfUser().getSupportedLanguages();
+  }
+  
+  public static Locale getSupportedLocale(Locale userLocale) {
+    String userLanguage = userLocale.getLanguage();
+    List<String> supportedLanguages = LanguageUtils.getSupportedLanguages();
+    
+    List<Locale> supportedLocales = supportedLanguages.stream()
+        .map(LocaleUtils::toLocale)
+        .collect(Collectors.toList());
+
+    // 1. Try exact locale match
+    if (supportedLocales.contains(userLocale)) {
+        return userLocale;
+    }
+    
+    // 2. Try language-only match
+    if (supportedLanguages.contains(userLanguage)) {
+        return LocaleUtils.toLocale(userLanguage);
+    }
+    
+    // 3. Fall back to English
+    return LocaleUtils.toLocale(DEFAULT_LANGUAGE);
+  }
+  
+  public static boolean isSupportedLocale(Locale locale) {
+    return getSupportedLanguages().contains(locale.getLanguage());
   }
 }

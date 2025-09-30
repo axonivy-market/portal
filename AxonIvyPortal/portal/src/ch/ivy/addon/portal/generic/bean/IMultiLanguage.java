@@ -2,11 +2,15 @@ package ch.ivy.addon.portal.generic.bean;
 
 import java.util.List;
 
+import java.util.Locale;
+
 import com.axonivy.portal.service.DeepLTranslationService;
 
 import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.util.DisplayNameConvertor;
+import ch.ivy.addon.portalkit.util.LanguageUtils;
 import ch.ivy.addon.portalkit.util.UserUtils;
+import ch.ivyteam.ivy.environment.Ivy;
 
 public interface IMultiLanguage {
 
@@ -27,5 +31,9 @@ public interface IMultiLanguage {
   default void initAndSetValue(String value, List<DisplayName> values) {
     DisplayNameConvertor.initMultipleLanguages(value, values);
     DisplayNameConvertor.setValue(value, values);
-  }  
+  }
+  
+  default Locale getUserLocale() {
+    return LanguageUtils.getSupportedLocale(Ivy.session().getContentLocale());
+  }
 }

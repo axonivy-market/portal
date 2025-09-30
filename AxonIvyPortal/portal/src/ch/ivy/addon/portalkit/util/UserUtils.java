@@ -10,6 +10,7 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.LocaleUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Strings;
 
@@ -289,6 +290,10 @@ public class UserUtils {
 
   public static String getUserLanguage() {
     String userLanguage = LanguageService.getInstance().getIvyLanguageOfUser().getUserLanguage();
+    Locale userLocale = LocaleUtils.toLocale(userLanguage);
+    if (LanguageUtils.isSupportedLocale(userLocale)) {
+      userLanguage = userLocale.getCountry().isEmpty() ? userLanguage : userLocale.getLanguage();
+    }
     String systemLanguage = LanguageManager.instance().configurator(ISecurityContext.current()).content().toString();
     return StringUtils.defaultIfBlank(userLanguage, systemLanguage);
   }
