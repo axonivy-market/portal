@@ -23,7 +23,7 @@ msgstr ""
 
 #: ../../source/portal-user-guide/accessibility/index.rst:4
 msgid "Accessibility"
-msgstr "TODO: Accessibility"
+msgstr "アクセシビリティ"
 
 #: ../../source/portal-user-guide/accessibility/index.rst:8
 msgid "Why is Accessibility Important?"
@@ -1257,7 +1257,7 @@ msgstr "Portal.Tasks.EnablePinnedTask"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Set this property to true to enable the ability to pin tasks."
-msgstr "TODO: Set this property to true to enable the ability to pin tasks."
+msgstr "このプロパティをtrueに設定すると、タスクをピン留めする機能が有効になります。"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.Cases.BehaviourWhenClickingOnLineInCaseList"
@@ -1531,8 +1531,8 @@ msgid ""
 "Set the size limit for uploading documents in megabytes (MB). The default"
 " value is 20MB."
 msgstr ""
-"TODO: Set the size limit for uploading documents in megabytes (MB). The "
-"default value is 20MB."
+"アップロードするドキュメントのサイズ制限をメガバイト"
+"（MB）単位で設定します。デフォルト値は20MBです。"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.Upload.ImageUploadSizeLimit"
@@ -1548,8 +1548,8 @@ msgid ""
 "Set the size limit for uploading images in megabytes (MB). The default "
 "value is 6MB."
 msgstr ""
-"TODO: Set the size limit for uploading images in megabytes (MB). The default "
-"value is 6MB."
+"画像アップロードのサイズ制限をメガバイト（MB）"
+"単位で設定します。デフォルト値は6MBです。"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.DelegationAppendOption"
@@ -1780,7 +1780,7 @@ msgstr "設定を保存した後、パスワードを変更するか、パスワ
 
 #: ../../source/portal-user-guide/ai-assistant/index.rst:4
 msgid "AI Assistant"
-msgstr "TODO AI Assistant"
+msgstr "AIアシスタント"
 
 #: ../../source/portal-user-guide/ai-assistant/index.rst:6
 msgid ""
@@ -3569,7 +3569,7 @@ msgstr "ケース ID"
 #: ../../source/portal-user-guide/full-case-list/index.rst:23
 #: ../../source/portal-user-guide/full-task-list/index.rst:33
 msgid "Pin"
-msgstr "TODO: Pin"
+msgstr "ピン"
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:25
 #: ../../source/portal-user-guide/full-case-list/index.rst:237
@@ -5306,7 +5306,7 @@ msgstr "このセクションには、タスクリストの設定に役立つ利
 
 #: ../../source/portal-user-guide/my-profile/index.rst:48
 msgid "Unpin all pinned tasks"
-msgstr "TODO: Unpin all pinned tasks"
+msgstr "固定されたタスクをすべて解除する"
 
 #: ../../source/portal-user-guide/my-profile/index.rst:48
 msgid "Unpin all of your pinned tasks"
@@ -5325,7 +5325,7 @@ msgstr "このセクションには、ケースリストの設定に役立つ利
 
 #: ../../source/portal-user-guide/my-profile/index.rst:64
 msgid "Unpin all pinned cases"
-msgstr "TODO: Unpin all pinned cases"
+msgstr "固定されているすべてのケースの固定を解除する"
 
 #: ../../source/portal-user-guide/my-profile/index.rst:64
 msgid "Unpin all of your pinned cases"
@@ -5344,7 +5344,7 @@ msgstr "アクセシビリティ設定は、特定のニーズに合わせて体
 
 #: ../../source/portal-user-guide/my-profile/index.rst:81
 msgid "Keyboard shortcuts for navigation"
-msgstr "TODO: Keyboard shortcuts for navigation"
+msgstr "ナビゲーション用キーボードショートカット"
 
 #: ../../source/portal-user-guide/my-profile/index.rst:81
 msgid "Enable or disable keyboard shortcuts for navigation"
@@ -7743,7 +7743,7 @@ msgstr "行末のプラスアイコンをクリックすると、アイコンの
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst:127
 msgid "Chart type"
-msgstr "TODO Chart type"
+msgstr "チャートタイプ"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst
 msgid "Type of the chart (Bar, Line, Pie, Number)."
@@ -7751,7 +7751,7 @@ msgstr "チャートの種類（棒グラフ、折れ線グラフ、円グラフ
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst:129
 msgid "For"
-msgstr "TODO For"
+msgstr "ために"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst
 msgid "Chart target (Task, Case)."
@@ -7759,7 +7759,7 @@ msgstr "チャートターゲット（タスク、ケース）。"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst:131
 msgid "KPI"
-msgstr "TODO KPI"
+msgstr "KPI"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst
 msgid "List of numeric custom fields is shown alongside with `Counting`."
@@ -7784,7 +7784,7 @@ msgstr "の選択は無効になる。"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst:136
 msgid "Aggregation method"
-msgstr "TODO Aggregation method"
+msgstr "集計方法"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst
 msgid "List of 4 aggregation methods: `Sum`, `Average`, `Max`, `Min`."
@@ -7792,7 +7792,7 @@ msgstr "4つの集約メソッドのリスト: `Sum`、`Average`、`Max`、`Min`
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst:138
 msgid "Group by"
-msgstr "TODO Group by"
+msgstr "グループ化"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst
 msgid ""
@@ -7827,7 +7827,7 @@ msgstr "現在の統計チャートの許可。"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst:146
 msgid "Auto-refresh enabled"
-msgstr "TODO Auto-refresh enabled"
+msgstr "自動更新が有効です"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst
 msgid "The statistic can be auto-refreshed after a certain prediod."
@@ -7839,7 +7839,7 @@ msgstr "このボタンをクリックすると、機能のオン/オフが切�
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst:149
 msgid "Auto-refresh interval (seconds)"
-msgstr "TODO Auto-refresh interval (seconds)"
+msgstr "自動更新間隔（秒）"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst
 msgid "The time for statistic chart to be auto-refreshed in second."
@@ -7851,7 +7851,7 @@ msgstr "最低人数は60人。"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst:152
 msgid "X axis title"
-msgstr "TODO X axis title"
+msgstr "X軸のラベル"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst
 msgid "X title for the statistic chart."
@@ -7859,7 +7859,7 @@ msgstr "統計チャートのタイトル。"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst:154
 msgid "Y axis title"
-msgstr "TODO Y axis title"
+msgstr "Y軸のラベル"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst
 msgid "Y title for the statistic chart."
@@ -7875,7 +7875,7 @@ msgstr "チャートのデータの色。"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst:158
 msgid "Hide label"
-msgstr "TODO Hide label"
+msgstr "ラベルを非表示にする"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst
 msgid "Toggle to show label of number chart."

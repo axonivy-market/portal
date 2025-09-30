@@ -737,7 +737,7 @@ msgstr "**シグネチャ**：portalDeleteDocumentItem"
 
 #: ../../source/portal-components/document-table/index.rst:153
 msgid "Rename document"
-msgstr "TODO: Rename document"
+msgstr "ドキュメントの名前を変更する"
 
 #: ../../source/portal-components/document-table/index.rst:155
 msgid ""
