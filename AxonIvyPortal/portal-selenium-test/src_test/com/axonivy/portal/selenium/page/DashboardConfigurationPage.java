@@ -40,6 +40,7 @@ public class DashboardConfigurationPage extends TemplatePage {
   public SelenideElement getDashboardConfigurationPageWithActionsMenu() {
     waitForDashboardConfigurationTypeSelectionAppear();
     getDashboardConfigurationActionMenu();
+    Sleeper.sleep(500); // Explicitly wait for better screenshots
     return $("div[id$='configuration-group']"); 
   }
 
