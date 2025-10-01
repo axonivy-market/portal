@@ -727,14 +727,6 @@ public class TaskWidgetPage extends TemplatePage {
     return findElementByCssSelector("a[id$=':task-export-to-excel']");
   }
 
-  // consider to remove - no reference to this method
-//  public boolean isDownloadCompleted() {
-//    WebElement statusDialog = driver.findElement(By.cssSelector("div[id$=':status-dialog']"));
-//    WaitHelper.assertTrueWithWait(() -> StringUtils.isNotBlank(statusDialog.getDomAttribute("download-status")));
-//    assertEquals(statusDialog.getDomAttribute("download-status"), "completed");
-//    return true;
-//  }
-
   public void sortTaskListByColumn(String columnHeaderText, int rowIndex, String columnId, String expectedValue) {
     WebElement taskListHeader = findElementById(taskWidgetId + ":task-widget-sort-menu");
     for (WebElement column : taskListHeader.findElements(By.tagName("a"))) {
