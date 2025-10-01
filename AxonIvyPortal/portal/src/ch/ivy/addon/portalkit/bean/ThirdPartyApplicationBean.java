@@ -335,6 +335,7 @@ public class ThirdPartyApplicationBean implements Serializable, IMultiLanguage {
     try {
       DisplayNameConvertor convertor = new DisplayNameConvertor();
       Locale currentLocale = new Locales().getCurrentLocale();
+      currentLocale = LanguageUtils.getSupportedLocale(currentLocale);
       String currentLanguage = currentLocale.getLanguage();
       convertor.add(currentLocale, this.displayNameInCurrentLanguage != null ? this.displayNameInCurrentLanguage : "");
 
