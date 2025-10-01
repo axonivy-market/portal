@@ -49,7 +49,6 @@ public class DisplayNameAdaptor {
   public String getDisplayNameAsString() {
     String result = convertor.toString(currentLocale);
     if (result != null && !result.trim().isEmpty()) {
-      Ivy.log().info("Test 1");
       return result;
     }
     
@@ -58,13 +57,11 @@ public class DisplayNameAdaptor {
     for (Map.Entry<String, String> entry : displayNames.entrySet()) {
       if (isLanguageMatch(entry.getKey(), languageCode) && 
           entry.getValue() != null && !entry.getValue().trim().isEmpty()) {
-        Ivy.log().info("Test 2");
           return entry.getValue();
         }
     }
   
     // 3. Try English default
-    Ivy.log().info("Test 3");
     return getValueForLanguage(displayNames, "en");
 
   }
