@@ -32,7 +32,7 @@ pipeline {
       steps {
         script {
           dir("${testDir}") {
-            sh 'mvn test'
+            sh 'mvn clean test'
           }
         }
       }
