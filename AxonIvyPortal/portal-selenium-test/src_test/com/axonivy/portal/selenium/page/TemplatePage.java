@@ -353,10 +353,10 @@ public abstract class TemplatePage extends AbstractPage {
     WebElement breadcrumb = findElementByCssSelector(CURRENT_BREADCRUMB_SELECTOR);
     String result = "";
     if (CollectionUtils.isNotEmpty(breadcrumb.findElements(By.cssSelector(".js-count")))) {
-      result = breadcrumb.findElement(By.cssSelector(".ui-menuitem-text")).getText()
-          + breadcrumb.findElement(By.cssSelector(".js-count")).getText();
+      result = breadcrumb.findElement(By.cssSelector(".ui-menuitem-text")).getDomProperty("innerHTML")
+          + breadcrumb.findElement(By.cssSelector(".js-count")).getDomProperty("innerHTML");
     } else {
-      result = breadcrumb.findElement(By.cssSelector(".ui-menuitem-text")).getText();
+      result = breadcrumb.findElement(By.cssSelector(".ui-menuitem-text")).getDomProperty("innerHTML");
     }
     return result;
 
