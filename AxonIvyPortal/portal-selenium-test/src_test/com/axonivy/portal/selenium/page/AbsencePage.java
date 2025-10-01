@@ -12,6 +12,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import com.axonivy.portal.selenium.common.Sleeper;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
@@ -160,6 +161,7 @@ public class AbsencePage extends TemplatePage {
   }
 
   public WebElement getAbsenceForm() {
+    Sleeper.sleep(500); // Explicitly wait for better screenshots
     return $("[id$='absences-management-container']");
   }
 

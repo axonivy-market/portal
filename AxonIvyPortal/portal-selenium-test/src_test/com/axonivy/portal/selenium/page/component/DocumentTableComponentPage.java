@@ -42,8 +42,4 @@ public class DocumentTableComponentPage extends TemplatePage {
   public boolean isPreviewContentDisplayed() {
     return $("object[type='application/pdf']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).isDisplayed();
   }
-
-  public void closePreviewDialog() {
-    $("[id$=':preview-document-dialog'] .ui-dialog-titlebar-close").click();
-  }
 }

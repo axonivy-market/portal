@@ -25,10 +25,10 @@ jobs:
   build-document:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Set up Java
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v5
         with:
           distribution: 'temurin'
           java-version: '21'
@@ -54,7 +54,7 @@ jobs:
           echo "version=$VERSION" >> "$GITHUB_OUTPUT"
           echo "Version is $VERSION"
       - name: Download artifacts from screenshot workflow
-        uses: dawidd6/action-download-artifact@v9
+        uses: dawidd6/action-download-artifact@v11
         with:
           workflow: portal-document-screenshot-test.yml
           name: screenshots
@@ -79,7 +79,7 @@ jobs:
         run: |
           docker run -u root:root --rm -v ${{ github.workspace }}:/workspace -w /workspace/Documentation/portal-guide \
             axonivy/build-container:read-the-docs-2 make -C /doc-build html BASEDIR='/workspace/Documentation/portal-guide' \
-            VERSION=${{ steps.get_version.outputs.version }} VERSION_SWITCHER=true 2> sphinx-warnings-en.log
+            VERSION=${{ steps.get_version.outputs.version }} VERSION_SWITCHER=true PROJECT_NAME='portal' 2> sphinx-warnings-en.log
           WARNINGS=$(grep -c "WARNING" sphinx-warnings-en.log || echo 0)
           echo "Found $WARNINGS warnings in English documentation."
           if [ "$WARNINGS" -ge 1 ]; then
@@ -103,7 +103,7 @@ jobs:
           docker run -u root:root --rm -v ${{ github.workspace }}:/workspace -w /workspace/Documentation/portal-guide \
             axonivy/build-container:read-the-docs-2 make -C /doc-build html BASEDIR='/workspace/Documentation/portal-guide' \
             LOCALEDIR=/workspace/Documentation/portal-guide/weblate/locale SPHINXOPTS="-D language='ja'" \
-            VERSION=${{ steps.get_version.outputs.version }} VERSION_SWITCHER=true 2> sphinx-warnings-ja.log
+            VERSION=${{ steps.get_version.outputs.version }} VERSION_SWITCHER=true PROJECT_NAME='portal' 2> sphinx-warnings-ja.log
           WARNINGS=$(grep -c "WARNING" sphinx-warnings-ja.log || echo 0)
           echo "Found $WARNINGS warnings in Japanese documentation."
           if [ "$WARNINGS" -ge 1 ]; then
