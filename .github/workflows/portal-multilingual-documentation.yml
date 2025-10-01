@@ -67,7 +67,7 @@ jobs:
         run: |
           docker run -u root:root --rm -v ${{ github.workspace }}:/workspace -w /workspace/Documentation/portal-guide \
             axonivy/build-container:read-the-docs-2 make -C /doc-build html BASEDIR='/workspace/Documentation/portal-guide' \
-            VERSION=${{ steps.get_version.outputs.version }} VERSION_SWITCHER=true 2> sphinx-warnings.log
+            VERSION=${{ steps.get_version.outputs.version }} VERSION_SWITCHER=true PROJECT_NAME='portal' 2> sphinx-warnings.log
             WARNINGS=$(grep -c "WARNING" sphinx-warnings.log || echo 0)
             echo "Found $WARNINGS warnings."
             if [ "$WARNINGS" -ge 1 ]; then
