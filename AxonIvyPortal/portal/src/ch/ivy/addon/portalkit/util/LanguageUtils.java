@@ -83,6 +83,10 @@ public final class LanguageUtils {
     Optional<DisplayName> nameInUserLanguage = LanguageUtils.findNameInUserLanguage(names);
     if (nameInUserLanguage.isPresent()) {
       nameInUserLanguage.get().setValue(name);
+    } else {
+      Locale userLocale = convertLocaleWithCountryToGenericLocale(getUserLocale());
+      DisplayName newName = new DisplayName(userLocale, name);
+      names.add(newName);
     }
     return new NameResult(names, name);
   }
@@ -92,6 +96,13 @@ public final class LanguageUtils {
       this.names = names;
       this.name = name;
     }
+  }
+  
+  private static Locale convertLocaleWithCountryToGenericLocale(Locale locale) {
+    if (locale.getCountry().isEmpty()) {
+      return locale;
+    }
+    return LocaleUtils.toLocale(locale.getLanguage());
   }
   
   public static List<String> getSupportedLanguages() {
