@@ -107,7 +107,7 @@ public class BackNavigationTest extends BaseTest {
 
     caseDetailsPage = caseWidgetPage.openDetailsCase(PAYMENT_CASE_NAME);
     caseDetailsPage.gotoCaseDetailsPageOfRelatedCase(SIGNAL_NEW_PAYMENT);
-    caseDetailsPage.waitPageLoaded();
+    caseDetailsPage.waitForCaseDetailsDisplay();
     assertEquals(SIGNAL_NEW_PAYMENT, caseDetailsPage.getCaseName());
 
     caseDetailsPage.clickBackButton();

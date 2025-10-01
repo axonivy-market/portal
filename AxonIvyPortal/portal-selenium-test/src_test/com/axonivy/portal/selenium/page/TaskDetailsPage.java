@@ -130,7 +130,7 @@ public class TaskDetailsPage extends TemplatePage {
     return actionPanel.findElements(By.cssSelector("a[class*='option-item']"))
         .stream()
         .filter(
-            elem -> !elem.getAttribute("class").contains("ui-state-disabled"))
+            elem -> !elem.getDomAttribute("class").contains("ui-state-disabled"))
         .map(WebElement::getText)
         .collect(Collectors.toList());
   }
@@ -397,8 +397,8 @@ public class TaskDetailsPage extends TemplatePage {
     waitForElementDisplayed(By.cssSelector("[id$=':task-history-content-container']"), true);
     var systemNotesCheckbox = findElementByCssSelector("[id$=':task-notes:show-system-notes-checkbox']");
     var checkbox = systemNotesCheckbox.findElement(By.cssSelector("div.ui-chkbox-box.ui-widget"));
-    if ((checkboxShouldBeChecked && checkbox.getAttribute("class").contains("ui-state-active"))
-        || (!checkboxShouldBeChecked && !checkbox.getAttribute("class").contains("ui-state-active"))) {
+    if ((checkboxShouldBeChecked && checkbox.getDomAttribute("class").contains("ui-state-active"))
+        || (!checkboxShouldBeChecked && !checkbox.getDomAttribute("class").contains("ui-state-active"))) {
       return;
     } else {
       systemNotesCheckbox.findElement(By.cssSelector("span.ui-chkbox-label")).click();
