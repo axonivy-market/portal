@@ -500,20 +500,6 @@ public class CaseDetailsPage extends TemplatePage {
     return getTextOfCurrentBreadcrumb().replace("Case: ", "");
   }
 
-  @Override
-  public String getTextOfCurrentBreadcrumb() {
-    WebElement breadcrumb = findElementByCssSelector(CURRENT_BREADCRUMB_SELECTOR);
-    String result = "";
-    if (CollectionUtils.isNotEmpty(breadcrumb.findElements(By.cssSelector(".js-count")))) {
-      result = breadcrumb.findElement(By.cssSelector(".ui-menuitem-text")).getText()
-          + breadcrumb.findElement(By.cssSelector(".js-count")).getText();
-    } else {
-      result = breadcrumb.findElement(By.cssSelector(".ui-menuitem-text")).getText();
-    }
-    return result;
-
-  }
-
   public String getContentOfHistoryTableRelatedCaseColumn(int rowIndex) {
     waitForElementDisplayed(By.cssSelector("[id$=':case-histories:case-histories']"), true);
     return findElementByCssSelector(
