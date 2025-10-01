@@ -51,8 +51,20 @@ jobs:
             # Stops the workflow if the condition is met
             exit 1
           fi
+          
+          # Check if version contains milestone marker (m followed by number)
+          if [[ "$VERSION" =~ -m[0-9]+ ]]; then
+            RELEASE="dev"
+          else
+            # Extract only major.minor (first two segments)
+            RELEASE=$(echo "$VERSION" | sed 's/-SNAPSHOT$//' | cut -d. -f1,2)
+          fi
+          
           echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "release=$RELEASE" >> "$GITHUB_OUTPUT"
           echo "Version is $VERSION"
+          echo "Release is $RELEASE"
+
       - name: Download artifacts from screenshot workflow
         uses: dawidd6/action-download-artifact@v9
         with:
@@ -70,6 +82,7 @@ jobs:
         run: |
           mvn clean process-resources -Divy.engine.version=[12.0.0,] -Divy.engine.download.url=https://developer.axonivy.com/permalink/nightly-12.0/axonivy-engine.zip -f Documentation/public-api/pom.xml
           mvn clean generate-resources -f Documentation/pom.xml
+
       - name: Run substitute
         shell: bash
         run: chmod +x Documentation/portal-guide/substitute.sh && Documentation/portal-guide/substitute.sh ${{ inputs.ivyVersion }}
