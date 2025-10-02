@@ -51,7 +51,7 @@ public class TaskDetailsTest extends BaseTest {
     login(TestAccount.ADMIN_USER);
     redirectToNewDashBoard();
     MainMenuPage mainMenuPage = new MainMenuPage();
-    mainMenuPage.openTaskList();
+    mainMenuPage.selectTaskMenu();
     TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
     taskWidget.openDashboardTaskDetails(ORDER_PIZZA);
     TaskDetailsPage taskDetailsPage = new TaskDetailsPage();
@@ -69,7 +69,7 @@ public class TaskDetailsTest extends BaseTest {
     login(TestAccount.ADMIN_USER);
     redirectToNewDashBoard();
     MainMenuPage mainMenuPage = new MainMenuPage();
-    mainMenuPage.openTaskList();
+    mainMenuPage.selectTaskMenu();
     TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
     taskWidget.openDashboardTaskDetails(TAKE_ORDER);
     TaskDetailsPage taskDetailsPage = new TaskDetailsPage();
