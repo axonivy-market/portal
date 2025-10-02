@@ -42,14 +42,14 @@ jobs:
           if [[ "$VERSION" =~ -m[0-9]+ ]]; then
             RELEASE="dev"
           else
-            # Extract release version (remove -SNAPSHOT and last version segment)
-            RELEASE=$(echo "$VERSION" | sed 's/-SNAPSHOT$//' | sed 's/\.[^.]*$//')
+            # Extract only major.minor (first two segments)
+            RELEASE=$(echo "$VERSION" | sed 's/-SNAPSHOT$//' | cut -d. -f1,2)
           fi
           
           echo "version=$VERSION" >> "$GITHUB_OUTPUT"
           echo "release=$RELEASE" >> "$GITHUB_OUTPUT"
           echo "Version is $VERSION"
-          echo "Release is $RELEASE"
+          echo "Release is $RELEASE" 
       
       - name: Download artifacts from screenshot workflow
         uses: dawidd6/action-download-artifact@v8
