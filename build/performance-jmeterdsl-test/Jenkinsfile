@@ -41,8 +41,6 @@ pipeline {
 
   post {
     always {
-      // archiveArtifacts artifacts: "${jmeterDslSourceDir}/target/surefire-reports/*.xml", allowEmptyArchive: true // temporary disable
-      junit "${jmeterDslSourceDir}/target/surefire-reports/*.xml"
       script {
         for (engineName in engineNames) {
           sh "docker compose -f ${ivyDir}/${engineName}/docker-compose.yml down"
@@ -53,6 +51,8 @@ pipeline {
         """
         // Performance report for JMeter-JavaDSL JTL files
         perfReport sourceDataFiles: "${jmeterDslSourceDir}/target/jtls/*.jtl", compareBuildPrevious: true, ignoreFailedBuilds: true, ignoreUnstableBuilds: true, errorFailedThreshold: 1
+      // archiveArtifacts artifacts: "${jmeterDslSourceDir}/target/surefire-reports/*.xml", allowEmptyArchive: true // temporary disable
+      // junit "${jmeterDslSourceDir}/target/surefire-reports/*.xml" // temporary disable
       }
     }
   }
