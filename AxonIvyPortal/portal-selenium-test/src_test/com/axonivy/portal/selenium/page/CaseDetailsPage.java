@@ -649,7 +649,7 @@ public class CaseDetailsPage extends TemplatePage {
     columnCheckbox.shouldBe(Condition.visible, DEFAULT_TIMEOUT).click();
     WaitHelper.assertTrueWithWait(() -> !findElementByCssSelector(
         "label[for$='task-widget:task-columns-configuration:select-columns-form:columns-checkbox:5']")
-            .getDomAttribute("class").equals("ui-state-disabled"));
+            .getClass().equals("ui-state-disabled"));
   }
 
   public void clickRelatedTaskColumnsButton() {
