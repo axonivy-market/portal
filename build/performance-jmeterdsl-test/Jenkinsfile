@@ -8,15 +8,15 @@ pipeline {
   // triggers removed
 
   environment {
+    jmeterDslSourceDir = '/var/tools/ivy/performance-master/jmeter-javadsl-test'
     ivyDir = '/var/tools/ivy'
-    testDir = '/var/tools/ivy/performance-master/jmeter-javadsl-test'
-    engineNames = ['master', '12', '10', '8', 'performance-master', 'performance-12', 'performance-10', 'performance-8']
   }
 
   stages {
     stage('deploy') {
       steps {
         script {
+          engineNames = ['master', '12', '10', '8', 'performance-master', 'performance-12', 'performance-10', 'performance-8']
           currentBuild.description = "On ${env.NODE_NAME}"
           for (engineName in engineNames) {
             sh "docker compose -f ${ivyDir}/${engineName}/docker-compose.yml down"
@@ -31,7 +31,7 @@ pipeline {
     stage('Run JMeter-JavaDSL Tests') {
       steps {
         script {
-          dir("${testDir}") {
+          dir("${jmeterDslSourceDir}") {
             sh 'mvn clean test'
           }
         }
@@ -41,8 +41,8 @@ pipeline {
 
   post {
     always {
-      archiveArtifacts artifacts: "${testDir}/target/surefire-reports/*.xml", allowEmptyArchive: true
-      junit "${testDir}/target/surefire-reports/*.xml"
+      archiveArtifacts artifacts: "${jmeterDslSourceDir}/target/surefire-reports/*.xml", allowEmptyArchive: true
+      junit "${jmeterDslSourceDir}/target/surefire-reports/*.xml"
       script {
         for (engineName in engineNames) {
           sh "docker compose -f ${ivyDir}/${engineName}/docker-compose.yml down"
@@ -52,7 +52,7 @@ pipeline {
           docker compose -f ${ivyDir}/${engineNames[1]}/docker-compose.yml up -d
         """
         // Performance report for JMeter-JavaDSL JTL files
-        perfReport sourceDataFiles: "${testDir}/target/jtls/*.jtl", compareBuildPrevious: true, ignoreFailedBuilds: true, ignoreUnstableBuilds: true, errorFailedThreshold: 1
+        perfReport sourceDataFiles: "${jmeterDslSourceDir}/target/jtls/*.jtl", compareBuildPrevious: true, ignoreFailedBuilds: true, ignoreUnstableBuilds: true, errorFailedThreshold: 1
       }
     }
   }
