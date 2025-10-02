@@ -41,7 +41,7 @@ pipeline {
 
   post {
     always {
-      archiveArtifacts artifacts: "${jmeterDslSourceDir}/target/surefire-reports/*.xml", allowEmptyArchive: true
+      // archiveArtifacts artifacts: "${jmeterDslSourceDir}/target/surefire-reports/*.xml", allowEmptyArchive: true // temporary disable
       junit "${jmeterDslSourceDir}/target/surefire-reports/*.xml"
       script {
         for (engineName in engineNames) {
