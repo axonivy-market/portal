@@ -7,10 +7,12 @@ import java.util.Objects;
 import java.util.Optional;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.LocaleUtils;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.Strings;
 
 import ch.ivy.addon.portalkit.dto.DisplayName;
+import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.language.LanguageManager;
 import ch.ivyteam.ivy.security.ISecurityContext;
@@ -44,7 +46,7 @@ public final class LanguageUtils {
   }
 
   public static Optional<DisplayName> findNameInUserLanguage(List<DisplayName> names) {
-    return findNameByLanguage(names, getUserLanguage());
+    return findNameByLanguage(names, getPortalSupportedUserLanguage());
   }
 
   public static Optional<DisplayName> findNameByLanguage(List<DisplayName> names, String language) {
@@ -53,7 +55,11 @@ public final class LanguageUtils {
   }
 
   public static String getUserLanguage() {
-    return getUserLocale().toLanguageTag();
+    return LanguageService.getInstance().getUserLanguage();
+  }
+  
+  public static String getPortalSupportedUserLanguage() {
+    return LanguageService.getInstance().getSupportedLanguageInPortal();
   }
 
   public static Locale getUserLocale() {
@@ -66,7 +72,7 @@ public final class LanguageUtils {
     if (nameInUserLanguage.isPresent()) {
       nameInUserLanguage.get().setValue(name);
     } else {
-      DisplayName newName = new DisplayName(LanguageUtils.getUserLocale(), name);
+      DisplayName newName = new DisplayName(LocaleUtils.toLocale(getPortalSupportedUserLanguage()), name);
       names.add(newName);
     }
     return new NameResult(names, name);
@@ -78,4 +84,6 @@ public final class LanguageUtils {
       this.name = name;
     }
   }
+  
+  
 }

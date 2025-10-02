@@ -9,6 +9,7 @@ import java.util.UUID;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+import org.apache.commons.lang3.LocaleUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.components.service.IvyCacheService;
@@ -17,6 +18,7 @@ import ch.ivy.addon.portalkit.constant.IvyCacheIdentifier;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.ivydata.bo.IvyLanguage;
 import ch.ivy.addon.portalkit.util.ListUtilities;
+import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.language.LanguageConfigurator;
 import ch.ivyteam.ivy.language.LanguageManager;
@@ -48,9 +50,8 @@ public class LanguageService {
     List<Locale> formatLocales = getFormattingLocales();
     
     List<String> supportedLanguages = ListUtilities.transformList(contentLocales, Locale::toLanguageTag); 
-    
-    List<String> supportedFormatLanguages =  ListUtilities.transformList(formatLocales, Locale::toLanguageTag); 
-    
+    List<String> supportedFormatLanguages =  ListUtilities.transformList(formatLocales, Locale::toLanguageTag);
+
     ivyLanguage.setUserLanguage(getUserLanguage());
     ivyLanguage.setSupportedLanguages(supportedLanguages);
     
@@ -177,4 +178,22 @@ public class LanguageService {
     return new LanguageConfigurator(ISecurityContext.current());
   }
   
+  public String getSupportedLanguageInPortal() {
+    IvyLanguage ivyLanguage = LanguageService.getInstance().getIvyLanguageOfUser();
+    String userLanguage = ivyLanguage.getUserLanguage();
+    List<String> supportedLanguages = ivyLanguage.getSupportedLanguages();
+    Ivy.log().info(supportedLanguages);
+    Locale userLocale = LocaleUtils.toLocale(userLanguage);
+    if (userLocale.getCountry().isEmpty() && supportedLanguages.contains(userLanguage)) {
+      return userLanguage;
+    }
+    List<Locale> supportedLocales = LanguageService.getInstance().getContentLocales();
+    if (supportedLocales.contains(userLocale)) {
+      return userLanguage;
+    } else if (supportedLanguages.contains(userLocale.getLanguage())) {
+      return userLocale.getLanguage();
+    }
+    return "en";
+  }
+
 }
