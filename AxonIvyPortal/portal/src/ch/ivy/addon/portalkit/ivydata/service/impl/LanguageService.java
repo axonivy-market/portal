@@ -9,6 +9,7 @@ import java.util.UUID;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+import org.apache.commons.lang3.LocaleUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.components.service.IvyCacheService;
@@ -47,11 +48,12 @@ public class LanguageService {
     List<Locale> contentLocales = getContentLocales();
     List<Locale> formatLocales = getFormattingLocales();
     
-    List<String> supportedLanguages = ListUtilities.transformList(contentLocales, Locale::toLanguageTag); 
+    List<String> supportedLanguages = ListUtilities.transformList(contentLocales, Locale::toLanguageTag);
+    List<String> supportedFormatLanguages =  ListUtilities.transformList(formatLocales, Locale::toLanguageTag);
+
+    String userLanguage = getUserLanguage();
     
-    List<String> supportedFormatLanguages =  ListUtilities.transformList(formatLocales, Locale::toLanguageTag); 
-    
-    ivyLanguage.setUserLanguage(getUserLanguage());
+    ivyLanguage.setUserLanguage(userLanguage);
     ivyLanguage.setSupportedLanguages(supportedLanguages);
     
     ivyLanguage.setUserFormattingLanguage(getUserFormatLanguage());
@@ -59,13 +61,45 @@ public class LanguageService {
     ivyLanguage.initItemFormattingLanguage();
     return ivyLanguage;
   }
+  
+  public boolean isLocaleSupported(Locale locale) {
+    return getContentLocales().contains(locale);
+  }
+  
+  public boolean isLanguageSupported(String language) {
+    return getSupportedLanguages().contains(language);
+  }
+  
+  public boolean hasCountry(Locale locale) {
+    return !locale.getCountry().isEmpty();
+  }
+  
+  public Locale convertToPortalUserLocale(Locale locale) {
+    if (isLocaleSupported(locale)) {
+      return locale;
+    }
+
+    if (hasCountry(locale)) {
+      String language = locale.getLanguage();
+      return isLanguageSupported(language) ? LocaleUtils.toLocale(language) : LocaleUtils.toLocale(Locale.ENGLISH);
+    }
+    return LocaleUtils.toLocale(Locale.ENGLISH);
+  }
 
   public String getUserLanguage() {
     String languageTag = loadLanguage(IUser::getLanguage);
     if (languageTag == StringUtils.EMPTY) {
     return getDefaultLanguage().toLanguageTag();
     }
-    return languageTag;
+    Locale userLocale = LocaleUtils.toLocale(languageTag);
+    if (getContentLocales().contains(userLocale)) {
+      return languageTag;
+    }
+    return getSupportedLanguages().contains(userLocale.getLanguage()) ? userLocale.getLanguage() : getDefaultLanguage().toLanguageTag();
+  }
+  
+  private List<String> getSupportedLanguages() {
+    return ListUtilities.transformList(getContentLocales(), Locale::toLanguageTag);
   }
   
   public String getUserFormatLanguage() {
@@ -79,7 +113,6 @@ public class LanguageService {
     } else {
       Locale apply = userLocaleLoader.apply(Ivy.session().getSessionUser());
       languageTag = Objects.nonNull(apply) ? apply.toLanguageTag() : languageTag;
-
     }
     return languageTag;
   }
@@ -176,5 +209,5 @@ public class LanguageService {
   private LanguageConfigurator getLanguageConfigurator() {
     return new LanguageConfigurator(ISecurityContext.current());
   }
-  
+
 }
