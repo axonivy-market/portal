@@ -16,6 +16,7 @@ import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 
 import com.axonivy.portal.selenium.common.ScreenshotUtils;
+import com.axonivy.portal.selenium.common.Sleeper;
 import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
@@ -31,11 +32,11 @@ public class TaskDetailsPage extends TemplatePage {
   }
 
   public void addNote(String noteContent) {
-    $("a[id$=':task-notes:add-note-command']").shouldBe(appear, DEFAULT_TIMEOUT);
-    $("a[id$=':task-notes:add-note-command']").click();
+    $("a[id$=':task-notes:add-note-command']").shouldBe(appear, DEFAULT_TIMEOUT).scrollIntoCenter();
+    $("a[id$=':task-notes:add-note-command']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     $("div[id$=':task-notes:add-new-note-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
     $("div[id$=':task-notes:add-new-note-dialog']").find("textarea").sendKeys(noteContent);
-    $("button[id$=':task-notes:task-add-new-note-form:save-add-note-command']").click();
+    $("button[id$=':task-notes:task-add-new-note-form:save-add-note-command']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     $("div[id$=':task-notes:task-add-new-note-form:save-add-note-command']").shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 
@@ -129,7 +130,7 @@ public class TaskDetailsPage extends TemplatePage {
     return actionPanel.findElements(By.cssSelector("a[class*='option-item']"))
         .stream()
         .filter(
-            elem -> !elem.getAttribute("class").contains("ui-state-disabled"))
+            elem -> !elem.getDomAttribute("class").contains("ui-state-disabled"))
         .map(WebElement::getText)
         .collect(Collectors.toList());
   }
@@ -204,6 +205,7 @@ public class TaskDetailsPage extends TemplatePage {
   public SelenideElement getAddNoteDialog() {
     var noteDialog = $("[id$=':task-notes:add-new-note-dialog']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     noteDialog.$("button[id$=':save-add-note-command']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
+    Sleeper.sleep(500); // Explicitly wait for better screenshots
     return noteDialog;
   }
 
@@ -214,8 +216,8 @@ public class TaskDetailsPage extends TemplatePage {
   public void addNoteToTaskWithContent(String content) {
     $("div.ui-dialog[aria-hidden='false']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     SelenideElement addNoteDialog = $("div.ui-dialog[aria-hidden='false']").shouldBe(appear, DEFAULT_TIMEOUT);
-    addNoteDialog.findElement(By.cssSelector("textarea[id$='note-content']")).sendKeys(content);
-    addNoteDialog.findElement(By.cssSelector("button[id$='save-add-note-command']")).click();
+    addNoteDialog.$("textarea[id$='note-content']").sendKeys(content);
+    addNoteDialog.$("button[id$='save-add-note-command']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();;
   }
 
   public void openAddAttachmentDialog() {
@@ -228,6 +230,7 @@ public class TaskDetailsPage extends TemplatePage {
   public SelenideElement getAddAttachmentDialog() {
     var uploadDialog = $("[id$=':task-documents:document-upload-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
     uploadDialog.$(".ui-dialog-title").shouldBe(appear, DEFAULT_TIMEOUT).click();
+    Sleeper.sleep(500); // Explicitly wait for better screenshots
     return uploadDialog;
   }
 
@@ -394,8 +397,8 @@ public class TaskDetailsPage extends TemplatePage {
     waitForElementDisplayed(By.cssSelector("[id$=':task-history-content-container']"), true);
     var systemNotesCheckbox = findElementByCssSelector("[id$=':task-notes:show-system-notes-checkbox']");
     var checkbox = systemNotesCheckbox.findElement(By.cssSelector("div.ui-chkbox-box.ui-widget"));
-    if ((checkboxShouldBeChecked && checkbox.getAttribute("class").contains("ui-state-active"))
-        || (!checkboxShouldBeChecked && !checkbox.getAttribute("class").contains("ui-state-active"))) {
+    if ((checkboxShouldBeChecked && checkbox.getDomAttribute("class").contains("ui-state-active"))
+        || (!checkboxShouldBeChecked && !checkbox.getDomAttribute("class").contains("ui-state-active"))) {
       return;
     } else {
       systemNotesCheckbox.findElement(By.cssSelector("span.ui-chkbox-label")).click();

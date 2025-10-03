@@ -9,6 +9,7 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
+import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivyteam.ivy.environment.Ivy;
 
 /**
@@ -30,7 +31,7 @@ public abstract class DashboardWidgetExporter extends Exporter {
     this.setColumnsVisibility(columnsVisibility);
     this.setWidgetName(widgetName);
     this.setFileNameCms(fileNameCms);
-    this.setMapHeaders(columnModels.stream().collect(Collectors.toMap(ColumnModel::getField, Function.identity())));
+    this.setMapHeaders(columnModels.stream().filter(item -> item.getType().equals(DashboardColumnType.STANDARD)).collect(Collectors.toMap(ColumnModel::getField, Function.identity())));
   }
   
   /**

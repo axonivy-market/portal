@@ -97,7 +97,7 @@ jobs:
             await github.rest.actions.createWorkflowDispatch({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              workflow_id: 'portal-documentation.yml',
+              workflow_id: 'portal-multilingual-documentation.yml',
               ref: 'master'
             })
 
@@ -110,7 +110,7 @@ jobs:
             await github.rest.actions.createWorkflowDispatch({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              workflow_id: 'portal-documentation.yml',
+              workflow_id: 'portal-multilingual-documentation.yml',
               ref: 'release/12.0'
             })
 

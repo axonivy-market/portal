@@ -128,7 +128,7 @@ public class TopMenuTaskWidgetPage extends TaskWidgetNewDashBoardPage {
     clickTaskAction(taskIndex, "Reserve");
   }
 
-  private void clickTaskAction(int taskIndex, String actionName) {
+  public void clickTaskAction(int taskIndex, String actionName) {
     ElementsCollection taskPanels =
         $$(String.format("div.js-task-side-steps-panel-default_task_list_dashboard_task_1-%d", taskIndex))
             .filter(appear);
@@ -360,5 +360,9 @@ public class TopMenuTaskWidgetPage extends TaskWidgetNewDashBoardPage {
 
   public void clickOnPinColumn(int index) {
     getColumnOfTaskHasIndex(index, "Pin").shouldBe(getClickableCondition()).click();
+  }
+  
+  public void waitForTaskDelegateDialogContent() {
+    $("div[id$='task-delegate-dialog_content']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 }

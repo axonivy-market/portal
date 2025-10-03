@@ -1,5 +1,6 @@
 package com.axonivy.portal.selenium.test.caze;
 
+import static com.codeborne.selenide.CollectionCondition.sizeGreaterThanOrEqual;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -24,7 +25,6 @@ public class CaseBehaviorsTest extends BaseTest {
   private static final String ACCESS_CASE_DETAILS = "ACCESS_CASE_DETAILS";
   private static final String ACCESS_BUSINESS_DETAILS = "ACCESS_BUSINESS_DETAILS";
   private com.axonivy.portal.selenium.page.NewDashboardPage newDashboardPage;
-  private CaseDetailsPage detailsPage;
 
   @Override
   @BeforeEach
@@ -46,19 +46,21 @@ public class CaseBehaviorsTest extends BaseTest {
     redirectToNewDashBoard();
     newDashboardPage = new NewDashboardPage();
     CaseWidgetNewDashBoardPage caseWidgetPage = NavigationHelper.navigateToCaseList();
-    detailsPage = caseWidgetPage.openDetailsCase(ORDER_PIZZA);
+    CaseDetailsPage caseDetailsPage = caseWidgetPage.openDetailsCase(ORDER_PIZZA);
+    caseDetailsPage.getRelatedCasesComponents().shouldHave(sizeGreaterThanOrEqual(1));
     // show case details
-    assertTrue(detailsPage.isDisplayed());
+    assertTrue(caseDetailsPage.isDisplayed());
     // show case details of related case
-    detailsPage.gotoCaseDetailsPageOfRelatedCase(TAKE_ORDER_AND_MAKE_PIZZA);
+    caseDetailsPage.gotoCaseDetailsPageOfRelatedCase(TAKE_ORDER_AND_MAKE_PIZZA);
 
     GlobalSearchResultPage resultPage = newDashboardPage.inputGlobalSearchKeyword(ORDER_PIZZA);
     resultPage.openCaseTab();
     String firstCaseName = resultPage.getNameOfCase(0);
     assertEquals(ORDER_PIZZA, firstCaseName);
     resultPage.clickOnCase(0);
-    detailsPage = new CaseDetailsPage();
-    assertEquals(ORDER_PIZZA, detailsPage.getCaseName());
+    caseDetailsPage = new CaseDetailsPage();
+    caseDetailsPage.waitForCaseDetailsDisplay();
+    assertEquals(ORDER_PIZZA, caseDetailsPage.getCaseName());
   }
 
   @Test
@@ -83,8 +85,8 @@ public class CaseBehaviorsTest extends BaseTest {
     // show business details of related case
     redirectToNewDashBoard();
     caseWidgetPage = NavigationHelper.navigateToCaseList();
-    detailsPage = caseWidgetPage.openCaseDetailsViaAction(0);
-    detailsPage.clickOnRelatedCase(TAKE_ORDER_AND_MAKE_PIZZA);
+    CaseDetailsPage caseDetailsPage = caseWidgetPage.openCaseDetailsViaAction(0);
+    caseDetailsPage.clickOnRelatedCase(TAKE_ORDER_AND_MAKE_PIZZA);
     additionalCaseDetailsPage = new AdditionalCaseDetailsPage();
     assertTrue(additionalCaseDetailsPage.isDisplayed());
   }

@@ -99,6 +99,7 @@ Labels:
       CanceledFlow: You have canceled the flow. If you have any requests, please let me know.
       ErrorWhenProceedRequest: An error has occurred while trying to process your request. Please try again later.
       SomethingWentWrong: Something went wrong when proceed your request. Please try again later.
+  Close: Cerrar
   DisabledUserPrefix: (inactivo)
   Enums:
     NewFilenameValidation:

@@ -1,6 +1,5 @@
 package com.axonivy.portal.selenium.test;
 
-import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -46,7 +45,7 @@ public class FullProcessPageTest extends BaseTest {
     String currentView = processWidgetPage.getCurrentViewMode();
     processWidgetPage.selectGridMode();
     String newView = processWidgetPage.getCurrentViewMode();
-    assertFalse(StringUtils.equals(currentView, newView));
+    assertNotEquals(currentView, newView);
   }
 
   @Test
@@ -76,7 +75,7 @@ public class FullProcessPageTest extends BaseTest {
     processWidgetPage.waitForGridProcessListDisplayed();
     processWidgetPage.enterSearchKeyword("link");
     String newIcon = processWidgetPage.getProcessItemIcon(0);
-    assertFalse(StringUtils.equals(currentIcon, newIcon));
+    assertNotEquals(currentIcon, newIcon);
 
     login(TestAccount.CASE_OWNER_USER);
     newDashboardPage = new NewDashboardPage();
