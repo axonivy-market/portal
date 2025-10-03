@@ -179,11 +179,6 @@ public class CompactDashboardProcessBean
       return;
     }
     
-    String embedInFrameFromRequestStart = IFrameService.embedInFrame(process);
-    if ("false".equals(embedInFrameFromRequestStart)) {
-      RequestUtils.redirect(link);
-      return;
-    }
     dashboardProcessBean.redirectToLink(link, true);
   }
 

@@ -2,6 +2,7 @@ package ch.ivy.addon.portalkit.bean;
 
 import java.io.IOException;
 
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -27,7 +28,6 @@ import ch.ivy.addon.portalkit.enums.ProcessType;
 import ch.ivy.addon.portalkit.mapper.UserProcessMapper;
 import ch.ivy.addon.portalkit.service.ExternalLinkService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
-import ch.ivy.addon.portalkit.util.RequestUtils;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
 public abstract class AbstractProcessBean implements Serializable {
@@ -49,16 +49,11 @@ public abstract class AbstractProcessBean implements Serializable {
   public String getProcessInformationPageUrl(Process process) {
     String processId = StringUtils.EMPTY;
 
-    processId = getWebStartableProcessId(process, processId);
-    return PortalNavigator.buildProcessInfoUrl(processId.isEmpty() ? process.getId() : processId );
-  }
-
-  private String getWebStartableProcessId(Process process, String processId) {
     Object nestedProcess = process.getProcess();
     if (nestedProcess instanceof IWebStartable) {
       processId = ((IWebStartable) nestedProcess).getId();
     }
-    return processId;
+    return PortalNavigator.buildProcessInfoUrl(processId.isEmpty() ? process.getId() : processId );
   }
 
   protected abstract List<Process> findProcesses();
@@ -87,16 +82,6 @@ public abstract class AbstractProcessBean implements Serializable {
     if (process.getType() == ProcessType.EXTERNAL_LINK) {
       FacesContext.getCurrentInstance().getExternalContext().redirect(link);
       return;
-    }
-    
-    // Check if embedInFrame is set to false in request tab
-    Object nestedProcess = process.getProcess();
-    if (nestedProcess instanceof IWebStartable) {
-      String embedInFrame = ((IWebStartable) nestedProcess).customFields().value(CustomFields.EMBED_IN_FRAME);
-      if ("false".equals(embedInFrame)) {
-        RequestUtils.redirect(link);
-        return;
-      }
     }
 
     link += link.contains("?") ? "&" : "?";
