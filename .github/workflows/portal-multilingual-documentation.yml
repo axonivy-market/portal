@@ -52,11 +52,11 @@ jobs:
             exit 1
           fi
           
-          # Check if version contains milestone marker (m followed by number)
+          # Check if it's a sprint release
           if [[ "$VERSION" =~ -m[0-9]+ ]]; then
             RELEASE="dev"
           else
-            # Extract only major.minor (first two segments)
+            # Extract only major.minor
             RELEASE=$(echo "$VERSION" | sed 's/-SNAPSHOT$//' | cut -d. -f1,2)
           fi
           
