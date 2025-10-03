@@ -46,7 +46,7 @@ public final class LanguageUtils {
   }
 
   public static Optional<DisplayName> findNameInUserLanguage(List<DisplayName> names) {
-    return findNameByLanguage(names, getPortalSupportedUserLanguage());
+    return findNameByLanguage(names, getUserLanguage());
   }
 
   public static Optional<DisplayName> findNameByLanguage(List<DisplayName> names, String language) {
@@ -57,13 +57,10 @@ public final class LanguageUtils {
   public static String getUserLanguage() {
     return LanguageService.getInstance().getUserLanguage();
   }
-  
-  public static String getPortalSupportedUserLanguage() {
-    return LanguageService.getInstance().getSupportedLanguageInPortal();
-  }
 
   public static Locale getUserLocale() {
-    return Ivy.session().getContentLocale();
+    Locale userLocale = Ivy.session().getContentLocale();
+    return LanguageService.getInstance().convertToPortalUserLocale(userLocale);
   }
 
   public static NameResult collectMultilingualNames(List<DisplayName> names, String name) {
@@ -72,7 +69,7 @@ public final class LanguageUtils {
     if (nameInUserLanguage.isPresent()) {
       nameInUserLanguage.get().setValue(name);
     } else {
-      DisplayName newName = new DisplayName(LocaleUtils.toLocale(getPortalSupportedUserLanguage()), name);
+      DisplayName newName = new DisplayName(LocaleUtils.toLocale(getUserLanguage()), name);
       names.add(newName);
     }
     return new NameResult(names, name);
@@ -84,6 +81,4 @@ public final class LanguageUtils {
       this.name = name;
     }
   }
-  
-  
 }

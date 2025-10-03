@@ -11,7 +11,6 @@ import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
 import ch.ivy.addon.portalkit.util.DisplayNameConvertor;
 import ch.ivy.addon.portalkit.util.UserUtils;
-import ch.ivyteam.ivy.environment.Ivy;
 
 public interface IMultiLanguage {
 
@@ -35,8 +34,7 @@ public interface IMultiLanguage {
   }
   
   default Locale getSupportedUserLanguage() {
-    String supportedPortalUserLanguage = LanguageService.getInstance().getSupportedLanguageInPortal();
-    Ivy.log().info(supportedPortalUserLanguage);
+    String supportedPortalUserLanguage = LanguageService.getInstance().getUserLanguage();
     return LocaleUtils.toLocale(supportedPortalUserLanguage);
   }
 }
