@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Portal Guide ${revision}\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-09-19 08:12+0000\n"
-"PO-Revision-Date: 2025-09-29 08:59+0000\n"
+"PO-Revision-Date: 2025-09-30 11:01+0000\n"
 "Last-Translator: Thang Huynh <hhqthang@axonactive.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/axonivy-portal/"
 "portal-12/doc/portal-components/ja/>\n"
@@ -416,14 +416,13 @@ msgstr "スクリプトチェックを指定するブール値。スクリプト
 "e`` に設定する。"
 
 #: ../../source/portal-components/document-table/index.rst
-#, fuzzy
 msgid ""
 "The setting will detect Portal setting "
 "``Portal.Document.EnableScriptChecking`` as its default value, refer to "
 ":ref:`update-portal-settings` for more details."
 msgstr ""
-"この設定はポータル設定``Portal.Document.EnableScriptChecking`` "
-"をデフォルト値として検出する。詳細は:ref:`update-portal-settings` を参照。"
+"この設定はポータル設定 ``Portal.Document.EnableScriptChecking`` "
+"をデフォルト値として検出する。詳細は :ref:`update-portal-settings` を参照。"
 
 #: ../../source/portal-components/document-table/index.rst
 #, fuzzy
@@ -447,14 +446,13 @@ msgstr ""
 "setting>` を参照してください。"
 
 #: ../../source/portal-components/document-table/index.rst
-#, fuzzy
 msgid ""
 "The setting will detect Portal setting "
 "``Portal.Document.EnableVirusScanner`` as its default value, refer to "
 ":ref:`update-portal-settings` for more details."
 msgstr ""
-"この設定はポータル設定``Portal.Document.EnableVirusScanner`` "
-"をデフォルト値として検出する。詳細は:ref:`update-portal-settings` を参照。"
+"この設定はポータル設定 ``Portal.Document.EnableVirusScanner`` "
+"をデフォルト値として検出する。詳細は :ref:`update-portal-settings` を参照。"
 
 #: ../../source/portal-components/document-table/index.rst
 #, fuzzy
