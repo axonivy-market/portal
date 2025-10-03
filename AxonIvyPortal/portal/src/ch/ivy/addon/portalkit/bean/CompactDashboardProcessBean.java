@@ -1,6 +1,7 @@
 package ch.ivy.addon.portalkit.bean;
 
 import static ch.ivy.addon.portalkit.enums.DashboardStandardProcessColumn.APPLICATION;
+
 import static ch.ivy.addon.portalkit.enums.DashboardStandardProcessColumn.CATEGORY;
 
 import java.io.IOException;
@@ -175,7 +176,6 @@ public class CompactDashboardProcessBean
       dashboardProcessBean.redirectToLink(link, false);
       return;
     }
-
     dashboardProcessBean.redirectToLink(link, true);
   }
 

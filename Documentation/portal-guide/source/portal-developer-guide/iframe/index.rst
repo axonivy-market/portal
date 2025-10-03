@@ -33,6 +33,14 @@ Follow these steps to use the IFrame approach:
 #. **Configuration Levels**  
    If you want custom behavior, configure at one of the following levels to open your tasks in an IFrame:
 
+   - **Request start Level**: Set the ``embedInFrame`` field in Request tab custom fields to:
+
+     - ``true``: Start inside IFrame.
+     - ``false``: Do not start inside IFrame.
+     - Leave unset to use task, case or engine-level configuration.
+
+     |request-tab-embedInFrame|
+
    - **Task Level**: Set the ``embedInFrame`` field in Task custom fields to:
 
      - ``true``: Start inside IFrame.
@@ -354,6 +362,7 @@ Whenever you use a Portal feature that communicates through JavaScript, ensure t
 
 The Portal provides the public API ``SanitizeAPI.escapeForJavascript`` in the ``portal-components`` project to help sanitize JavaScript strings by escaping special characters — one of the most common techniques for JavaScript string sanitization.
 
+.. |request-tab-embedInFrame| image:: images/request-tab-embedInFrame.png
 .. |task-embedInFrame| image:: images/task-embedInFrame.png
 .. |case-embedInFrame| image:: images/case-embedInFrame.png
 .. |case-list-template| image:: ../../screenshots/case/case-key-information.png
