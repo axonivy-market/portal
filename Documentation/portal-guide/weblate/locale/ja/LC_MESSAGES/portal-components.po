@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Portal Guide ${revision}\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-09-19 08:12+0000\n"
-"PO-Revision-Date: 2025-09-30 11:01+0000\n"
+"PO-Revision-Date: 2025-10-04 11:02+0000\n"
 "Last-Translator: Thang Huynh <hhqthang@axonactive.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/axonivy-portal/"
 "portal-12/doc/portal-components/ja/>\n"
@@ -408,12 +408,11 @@ msgid "enableScriptCheckingForUploadedDocument"
 msgstr "enableScriptCheckingForUploadedDocument"
 
 #: ../../source/portal-components/document-table/index.rst
-#, fuzzy
 msgid ""
 "Boolean value to specify script checking. Set to ``true`` to enable "
 "script checking."
-msgstr "スクリプトチェックを指定するブール値。スクリプトチェックを有効にするには``tru"
-"e`` に設定する。"
+msgstr "スクリプトチェックを指定するブール値。スクリプトチェックを有効にするには "
+"``true`` に設定する。"
 
 #: ../../source/portal-components/document-table/index.rst
 msgid ""
@@ -425,9 +424,8 @@ msgstr ""
 "をデフォルト値として検出する。詳細は :ref:`update-portal-settings` を参照。"
 
 #: ../../source/portal-components/document-table/index.rst
-#, fuzzy
 msgid "If the Portal setting is not available, defaults to ``false``."
-msgstr "ポータルの設定がない場合、デフォルトは``false`` となる。"
+msgstr "ポータルの設定がない場合、デフォルトは ``false`` となる。"
 
 #: ../../source/portal-components/document-table/index.rst:95
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
@@ -455,9 +453,8 @@ msgstr ""
 "をデフォルト値として検出する。詳細は :ref:`update-portal-settings` を参照。"
 
 #: ../../source/portal-components/document-table/index.rst
-#, fuzzy
 msgid "If Portal setting is not available, default value is ``false``."
-msgstr "ポータルの設定がない場合、デフォルト値は``false`` となる。"
+msgstr "ポータルの設定がない場合、デフォルト値は ``false`` となる。"
 
 #: ../../source/portal-components/document-table/index.rst:97
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
@@ -479,13 +476,12 @@ msgstr ""
 "をデフォルト値として検出する。詳細は:ref:`update-portal-settings` を参照。"
 
 #: ../../source/portal-components/document-table/index.rst
-#, fuzzy
 msgid ""
 "If Portal setting is not available, default value is "
 "``doc,docx,xls,xlsx,xlsm,csv,pdf,ppt,pptx,txt,zip,jpg,jpeg,bmp,png``."
 msgstr ""
-"ポータルの設定がない場合、デフォルト値は``doc,docx,xls,xlsx,xlsm,csv,pdf,ppt,"
-"pptx,txt,zip,jpg,jpeg,bmp,png`` となる。"
+"ポータルの設定がない場合、デフォルト値は "
+"``doc,docx,xls,xlsx,xlsm,csv,pdf,ppt,pptx,txt,zip,jpg,jpeg,bmp,png`` となる。"
 
 #: ../../source/portal-components/document-table/index.rst:20
 msgid "Virus scanning"
@@ -770,13 +766,12 @@ msgid "OK or SKIP"
 msgstr "OKまたはSKIP"
 
 #: ../../source/portal-components/document-table/index.rst:179
-#, fuzzy
 msgid ""
 "The parameters of the callable subprocess data contain the Ivy "
 "``document`` to update, the new filename should be already modified in "
 "the document's name attribute."
 msgstr ""
-"呼び出し可能なサブプロセスデータのパラメータには、更新する Ivy``document`` "
+"呼び出し可能なサブプロセスデータのパラメータには、更新する Ivy ``document`` "
 "が含まれます。新しいファイル名は、ドキュメントのname属性ですでに変更されてい"
 "る必要があります。"
 
@@ -788,26 +783,22 @@ msgstr "ポータルは、同じセキュリティー・コンテキストの中
 "セスを呼び出し、結果を得る："
 
 #: ../../source/portal-components/document-table/index.rst:185
-#, fuzzy
 msgid ""
 "``message``: the message to inform the user that their new filename is "
 "successfully updated or invalid to use."
-msgstr "`message``: "
-"新しいファイル名が正常に更新されたか、あるいは無効であることをユーザーに知ら"
-"せるメッセージ。"
+msgstr "``message``: 新しいファイル名が正常に更新されたか、あるいは無効であることをユ"
+"ーザーに知らせるメッセージ。"
 
 #: ../../source/portal-components/document-table/index.rst:186
-#, fuzzy
 msgid ""
 "``isSuccess``: ``true`` if the document's name is successfully updated, "
 "otherwise ``false``."
-msgstr "``isSuccess``:``true`` 文書名の更新に成功した場合、それ以外の場合``false``."
+msgstr "``isSuccess``:``true`` 文書名の更新に成功した場合、それ以外の場合 ``false``."
 
 #: ../../source/portal-components/document-table/index.rst:187
-#, fuzzy
 msgid "``status``: ``SKIP`` if customized process skipped updating the filename."
-msgstr "`status``: ` ` "
-"カスタマイズされたプロセスがファイル名の更新をスキップした場合。`SKIP`"
+msgstr "``status``: ``SKIP`` カスタマイズされたプロセスがファイル名の更新をスキップし"
+"た場合 。"
 
 #: ../../source/portal-components/document-table/index.rst:190
 msgid "User interface"
@@ -1299,12 +1290,11 @@ msgstr ""
 "``caseId``： ``caseId`` に等しい ID を持つケースのプロセスまたはケースマップを表示します。"
 
 #: ../../source/portal-components/process-viewer/index.rst:43
-#, fuzzy
 msgid ""
 "``processLink``: show the process or Case Map which by its defined "
 "relative link."
-msgstr "`processLink``: "
-"定義された相対リンクによってプロセスまたはケースマップを表示します。"
+msgstr "``processLink``: 定義された相対リンクによってプロセスまたはケースマップを表示"
+"します。"
 
 #: ../../source/portal-components/process-viewer/index.rst:50
 msgid "Sub Case (Technical Case) is not supported."
