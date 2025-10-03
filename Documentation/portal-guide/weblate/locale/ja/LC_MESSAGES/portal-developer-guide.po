@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Portal Guide ${revision}\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-09-26 07:09+0000\n"
-"PO-Revision-Date: 2025-09-29 09:50+0000\n"
+"PO-Revision-Date: 2025-10-04 11:02+0000\n"
 "Last-Translator: Thang Huynh <hhqthang@axonactive.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/axonivy-portal/"
 "portal-12/doc/portal-developer-guide/ja/>\n"
@@ -2592,9 +2592,10 @@ msgid ""
 "the task can be delegated to. To skip the result of one callable "
 "subprocess, please set the result variable ``status`` to ``\"SKIP\"``."
 msgstr ""
-"ポータルは、上記の詳細情報でサブプロセスを呼び出し、すべての ``roles`` と``users`` "
-"を組み合わせて、タスクを委任できるロールとユーザーのリストを作成します。1 つの呼び出し可能サブプロセスをスキップするには、結果の "
-"``status`` 変数を ``SKIP`` に設定してください。"
+"ポータルは、上記の詳細情報でサブプロセスを呼び出し、すべての ``roles`` と "
+"``users`` を組み合わせて、タスクを委任できるロールとユーザーのリストを作成し"
+"ます。1 つの呼び出し可能サブプロセスをスキップするには、結果の ``status`` 変"
+"数を ``SKIP`` に設定してください。"
 
 #: ../../source/portal-developer-guide/customization/task-delegation.rst:47
 msgid ""
@@ -3423,9 +3424,8 @@ msgid "``id``: case ID"
 msgstr "``id``：ケース ID"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:126
-#, fuzzy
 msgid "``Pin``: column which contains Pin button to Pin your case."
-msgstr "`Pin``: あなたのケースをPinするためのPinボタンがあるカラムです。"
+msgstr "``Pin``: あなたのケースをPinするためのPinボタンがあるカラムです。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:128
 msgid "``name``: case name"
@@ -3979,10 +3979,11 @@ msgid ""
 "and the custom field uses the static value. Additionally, the value must "
 "be entered and maintained in the CMS in multiple languages."
 msgstr ""
-"カスタムフィールドが CMS から多言語の値を取得できるようにするには、対応する``custom-field`` yaml ファイルの設定で "
-"``HasCmsValue`` 属性を ``true`` "
-"に設定してください。そうでない場合、ロジックは変更されず、カスタムフィールドは静的値を使用します。さらに、値は CMS "
-"に複数の言語で入力して維持する必要があります。"
+"カスタムフィールドが CMS から多言語の値を取得できるようにするには、対応する "
+"``custom-field`` yaml ファイルの設定で ``HasCmsValue`` 属性を ``true`` に設定"
+"してください。そうでない場合、ロジックは変更されず、カスタムフィールドは静的"
+"値を使用します。さらに、値は CMS に複数の言語で入力して維持する必要があります"
+"。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:618
 #, python-brace-format
@@ -4365,14 +4366,14 @@ msgid "value: predefined value for the parameter."
 msgstr "value：パラメーターの事前定義済みの値"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-custom-widget.rst:153
-#, fuzzy
 msgid ""
 "type: The desired data type for the parameter to be shown in the "
 "configuration dialog of the custom widget. There are four types: "
 "``string``, ``user``, ``date``, ``boolean``."
 msgstr ""
-"type：カスタムウィジェットの設定ダイアログに表示されるパラメーターのデータのタイプ。``string``, ``user``, "
-"``date``, ``boolean`` の 4 つのタイプがあります。"
+"タイプ：タイプ: カスタムウィジェットの設定ダイアログに表示されるパラメータの"
+"データタイプ。4つのタイプがあります： ``string``, ``user``, ``date``, "
+"``boolean``."
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-custom-widget.rst:157
 msgid ""
@@ -4870,9 +4871,8 @@ msgid "``start``: column which contains start button to start the task directly.
 msgstr "``start``：タスクを直接開始する開始ボタンを含む列"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:124
-#, fuzzy
 msgid "``Pin``: column which contains Pin button to Pin your task."
-msgstr "`Pin``: タスクをピン留めするためのピンボタンがあるカラム。"
+msgstr "``Pin``: タスクをピン留めするためのピンボタンがあるカラム。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:126
 msgid "``priority``: task priority"
@@ -4903,9 +4903,8 @@ msgid "``startTimestamp``: created date and time of the task"
 msgstr "``startTimestamp``：タスクの作成日時"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:140
-#, fuzzy
 msgid "``endTimestamp``: end date and time of the task"
-msgstr "`endTimestamp``: タスクの終了日時"
+msgstr "``endTimestamp``: タスクの終了日時"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:142
 msgid "``expiryTimestamp``: expiry date and time of the task"
@@ -4933,18 +4932,16 @@ msgid ""
 msgstr "``canWorkOn``：現在のユーザーが作業できるタスクのみフィルターします。デフォルト値は「false」です。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:151
-#, fuzzy
 msgid ""
 "``filterTasksByCurrentCaseOwner``: filter only the tasks where the "
 "current user is the case owner. The default value is ``false``. This "
 "filter is visible only if the ``Portal.Cases.EnableOwner`` setting is set"
 " to ``true`` in the :ref:`Admin Settings <update-portal-settings>`."
 msgstr ""
-"`filterTasksByCurrentCaseOwner``: "
-"現在のユーザーがケースの所有者であるタスクのみをフィルタします。"
-"デフォルト値は ` ` です。このフィルタは、 の ` ` 設定が ` ` "
-"に設定されている場合にのみ表示されます。`false` :ref:`Admin Settings <update-"
-"portal-settings>` `Portal.Cases.EnableOwner` `true`"
+"``filterTasksByCurrentCaseOwner``: 現在のユーザーがケースの所有者であるタスク"
+"のみをフィルタします。デフォルト値は ``false`` です。このフィルタは、 の "
+"``Portal.Cases.EnableOwner`` 設定が ``true`` に設定されている場合にのみ表示さ"
+"れます。 :ref:`Admin Settings <update-portal-settings>`."
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:166
 msgid ""
@@ -5128,7 +5125,7 @@ msgstr ""
 "``enableQuickSearch`` フィールドを設定してください。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:589
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid ""
 "Following this path to add your custom field values: "
 "``/CustomFields/Tasks/{fieldName}/Values/{value}`` Please follow this "
@@ -5136,23 +5133,22 @@ msgid ""
 "|/designer-guide/configuration/custom-fields.html#localize-label-"
 "description-category-and-values>` to get more information."
 msgstr ""
-"カスタム・フィールドの値を追加するには、以下のパスに従ってください：`/"
-"CustomFields/Tasks/{fieldName}/Values/{value}``:dev-url:`Localize Label, "
+"カスタム・フィールドの値を追加するには、以下のパスに従ってください：``/"
+"CustomFields/Tasks/{fieldName}/Values/{value}`` :dev-url:`Localize Label, "
 "Description, Category and Values </doc/|version|/designer-guide/"
 "configuration/custom-fields.html#localize-label-description-category-and-"
 "values>` に従ってください。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:605
-#, fuzzy
 msgid ""
 "In your CMS, the path should be "
 "``/CustomFields/Tasks/DriversVehicle/Values/Bike``, "
 "``/CustomFields/Tasks/DriversVehicle/Values/Car`` or "
 "``/CustomFields/Tasks/DriversVehicle/Values/MonsterTruck``."
 msgstr ""
-"あなたのCMSでは、パスは``/CustomFields/Tasks/DriversVehicle/Values/Bike``,``/"
-"CustomFields/Tasks/DriversVehicle/Values/Car`` または``/CustomFields/Tasks/"
-"DriversVehicle/Values/MonsterTruck`` であるべきです。"
+"あなたのCMSでは、パスは ``/CustomFields/Tasks/DriversVehicle/Values/Bike``, "
+"``/CustomFields/Tasks/DriversVehicle/Values/Car`` または ``/CustomFields/"
+"Tasks/DriversVehicle/Values/MonsterTruck`` であるべきです。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:610
 msgid "|task-field-cms|"
@@ -5163,12 +5159,11 @@ msgid "task-field-cms"
 msgstr "task-field-cms"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:639
-#, fuzzy
 msgid ""
 "Example: When language is German, a user can search for **Fahrrad** or "
 "the original value **Bike**."
-msgstr "例言語がドイツ語の場合、ユーザーは**Fahrrad** または元の値**Bike** "
-"を検索できる。"
+msgstr "例言語がドイツ語の場合、ユーザーは **Fahrrad** または元の値 **Bike** を検索で"
+"きる。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-template.rst:4
 msgid "Configure Dashboard Template"
@@ -5434,7 +5429,6 @@ msgid "Deployment"
 msgstr "配備"
 
 #: ../../source/portal-developer-guide/deployment/index.rst:6
-#, fuzzy
 msgid ""
 "This section provides a step-by-step guide for deploying the Portal for "
 "the first time. It includes examples and best practices. For more "
@@ -5444,7 +5438,7 @@ msgid ""
 msgstr ""
 "このセクションでは、ポータルを初めて展開する際のステップ・バイ・ステップのガ"
 "イドを提供します。例やベスト・プラクティスも含まれています。より包括的な展開"
-"情報については:dev-url:`|ivy| deployment guidelines </doc/|version|/engine-"
+"情報については :dev-url:`|ivy| deployment guidelines </doc/|version|/engine-"
 "guide/deployment/index.html>`"
 
 #: ../../source/portal-developer-guide/deployment/index.rst:10
@@ -5497,7 +5491,6 @@ msgstr "Axon Ivy プロジェクトは、.iar (Ivy Archive) ファイルまた�
 "ファイルとしてパッケージ化されます。"
 
 #: ../../source/portal-developer-guide/deployment/index.rst:44
-#, fuzzy
 msgid ""
 "We recommend using .zip files, as they can include: :dev-url:`branding "
 "</doc/|version|/designer-guide/user-interface/branding/branding-"
@@ -5506,10 +5499,9 @@ msgid ""
 "configuration/index.html>`."
 msgstr ""
 ".zipファイルを使用することを推奨します：:dev-url:`branding </doc/|version"
-"|/designer-guide/user-interface/branding/branding-"
-"engine.html>`変数、データベース、REST クライアント:dev-url:`configuration </"
-"doc/|version|/engine-guide/deployment/prepare/application-configuration/"
-"index.html>`."
+"|/designer-guide/user-interface/branding/branding-engine.html>` 変数、データ"
+"ベース、REST クライアント :dev-url:`configuration </doc/|version|/engine-"
+"guide/deployment/prepare/application-configuration/index.html>`."
 
 #: ../../source/portal-developer-guide/deployment/index.rst:49
 msgid "Recommended Deployment Setup (Sample)"
@@ -5584,7 +5576,6 @@ msgid "Configuration"
 msgstr "設定"
 
 #: ../../source/portal-developer-guide/deployment/index.rst:80
-#, fuzzy
 msgid ""
 "Configuration can be done either through :dev-url:`deployment "
 "</doc/|version|/engine-guide/deployment/prepare/application-"
@@ -5593,10 +5584,10 @@ msgid ""
 "highlights the most important configuration settings."
 msgstr ""
 "コンフィギュレーションは、:dev-url:`deployment </doc/|version|/engine-guide/"
-"deployment/prepare/application-configuration/index.html>` または:dev-url:`"
-"Engine Cockpit UI </doc/|version|/engine-guide/reference/engine-cockpit>` "
-"から行うことができます。 "
-"このセクションでは、最も重要なコンフィギュレーション設定について説明します。"
+"deployment/prepare/application-configuration/index.html>` または :dev-url:`"
+"Engine Cockpit UI </doc/|version|/engine-guide/reference/engine-cockpit>` か"
+"ら行うことができます。 このセクションでは、最も重要なコンフィギュレーション設"
+"定について説明します。"
 
 #: ../../source/portal-developer-guide/deployment/index.rst:86
 msgid "Dashboard Configuration"
@@ -5641,14 +5632,13 @@ msgstr ""
 "`ディレクトリに配置します。"
 
 #: ../../source/portal-developer-guide/deployment/index.rst:111
-#, fuzzy
 msgid ""
 "Alternatively, copy the configuration file directly into the engine's "
 "application folder: "
 "``<engine>/configuration/applications/<application>/variables.Portal.Dashboard.json``"
 msgstr ""
 "あるいは、設定ファイルをエンジンのアプリケーション・フォルダーに直接コピーし"
-"てください：`<engine>/configuration/applications/"
+"てください：``<engine>/configuration/applications/"
 "<application>/variables.Portal.Dashboard.json``"
 
 #: ../../source/portal-developer-guide/deployment/index.rst:115
@@ -6324,7 +6314,6 @@ msgstr "JavaScriptで通信するポータルの機能を使用する場合は�
 "ずデータをサニタイズしてください。"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:389
-#, fuzzy
 msgid ""
 "The Portal provides the public API ``SanitizeAPI.escapeForJavascript`` in"
 " the ``portal-components`` project to help sanitize JavaScript strings by"
@@ -6333,8 +6322,8 @@ msgid ""
 msgstr ""
 "ポータルでは、JavaScriptの文字列サニタイズのための最も一般的な手法の1つである"
 "、特殊文字のエスケープによるJavaScript文字列のサニタイズを支援するためのパブ"
-"リックAPI``SanitizeAPI.escapeForJavascript`` を``portal-components`` "
-"プロジェクトで提供しています。"
+"リックAPI ``SanitizeAPI.escapeForJavascript`` を ``portal-components`` プロジ"
+"ェクトで提供しています。"
 
 #: ../../source/portal-developer-guide/index.rst:6
 msgid "Portal Developer Guide"
@@ -6673,7 +6662,9 @@ msgstr "エンジンを再起動します。"
 msgid ""
 "Open **Portal**, go to **Setting** -> **Express Management**. Import the "
 "configuration which is exported at the first step."
-msgstr "**ポータル**を開き、［ **設定** ］、［ **Expressの管理** ］の順に移動します。最初にエクスポートした設定をインポートします。"
+msgstr ""
+"**ポータル** を開き、［ **設定** ］、［ **Expressの管理** ］の順に移動します"
+"。最初にエクスポートした設定をインポートします。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:168
 msgid ""
@@ -7681,16 +7672,14 @@ msgid "Changes in 12.0.6"
 msgstr "12.0.6の変更点"
 
 #: ../../source/portal-developer-guide/installation/index.rst:491
-#, fuzzy
 msgid ""
 "Introduced the Portal Setting ``Portal.Cases.EnablePinnedCase`` and "
 "``Portal.Tasks.EnablePinnedTask`` to enable the pinning feature for the "
 "case and task widgets on the dashboard."
 msgstr ""
-"ポータル設定``Portal.Cases.EnablePinnedCase`` "
-"と``Portal.Tasks.EnablePinnedTask`` "
-"を導入し、ダッシュボードのケースとタスクウィジェットのピン留め機能を有効にし"
-"た。"
+"ポータル設定 ``Portal.Cases.EnablePinnedCase`` と "
+"``Portal.Tasks.EnablePinnedTask`` を導入し、ダッシュボードのケースとタスクウ"
+"ィジェットのピン留め機能を有効にした。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:494
 msgid "Changes in 12.0.4"
