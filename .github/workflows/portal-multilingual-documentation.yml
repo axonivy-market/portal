@@ -51,8 +51,20 @@ jobs:
             # Stops the workflow if the condition is met
             exit 1
           fi
+
+          # Check if it's a sprint release
+          if [[ "$VERSION" =~ -m[0-9]+ ]]; then
+            RELEASE="dev"
+          else
+            # Extract only major.minor
+            RELEASE=$(echo "$VERSION" | sed 's/-SNAPSHOT$//' | cut -d. -f1,2)
+          fi
+          
           echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "release=$RELEASE" >> "$GITHUB_OUTPUT"
           echo "Version is $VERSION"
+          echo "Release is $RELEASE" 
+
       - name: Download artifacts from screenshot workflow
         uses: dawidd6/action-download-artifact@v11
         with:
@@ -70,6 +82,7 @@ jobs:
         run: |
           mvn clean process-resources -Divy.engine.version=[13.1.0,] -Divy.engine.download.url=https://developer.axonivy.com/permalink/nightly/axonivy-engine.zip -f Documentation/public-api/pom.xml
           mvn clean generate-resources -f Documentation/pom.xml
+
       - name: Run substitute
         shell: bash
         run: chmod +x Documentation/portal-guide/substitute.sh && Documentation/portal-guide/substitute.sh ${{ inputs.ivyVersion }}
@@ -79,7 +92,7 @@ jobs:
         run: |
           docker run -u root:root --rm -v ${{ github.workspace }}:/workspace -w /workspace/Documentation/portal-guide \
             axonivy/build-container:read-the-docs-2 make -C /doc-build html BASEDIR='/workspace/Documentation/portal-guide' \
-            VERSION=${{ steps.get_version.outputs.version }} VERSION_SWITCHER=true PROJECT_NAME='portal' 2> sphinx-warnings-en.log
+            VERSION=${{ steps.get_version.outputs.release }} VERSION_SWITCHER=true PROJECT_NAME='portal' 2> sphinx-warnings-en.log
           WARNINGS=$(grep -c "WARNING" sphinx-warnings-en.log || echo 0)
           echo "Found $WARNINGS warnings in English documentation."
           if [ "$WARNINGS" -ge 1 ]; then
@@ -103,7 +116,7 @@ jobs:
           docker run -u root:root --rm -v ${{ github.workspace }}:/workspace -w /workspace/Documentation/portal-guide \
             axonivy/build-container:read-the-docs-2 make -C /doc-build html BASEDIR='/workspace/Documentation/portal-guide' \
             LOCALEDIR=/workspace/Documentation/portal-guide/weblate/locale SPHINXOPTS="-D language='ja'" \
-            VERSION=${{ steps.get_version.outputs.version }} VERSION_SWITCHER=true PROJECT_NAME='portal' 2> sphinx-warnings-ja.log
+            VERSION=${{ steps.get_version.outputs.release }} VERSION_SWITCHER=true PROJECT_NAME='portal' 2> sphinx-warnings-ja.log
           WARNINGS=$(grep -c "WARNING" sphinx-warnings-ja.log || echo 0)
           echo "Found $WARNINGS warnings in Japanese documentation."
           if [ "$WARNINGS" -ge 1 ]; then
