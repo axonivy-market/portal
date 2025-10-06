@@ -125,9 +125,17 @@
           } else {
             const iframeEl = getPortalIframe();
             if (iframeEl) {
-                const cw = iframeEl.contentWindow;
-                if (cw) {
-                  cw.stop();
+                try {
+                  const cw = iframeEl.contentWindow;
+                  if (cw) {
+                    cw.stop();
+                  }
+                } catch (e) {
+                  if (e && e.name === 'SecurityError') {
+                    console.warn('SecurityError accessing iframe.contentWindow:', e);
+                  } else {
+                    throw e;
+                  }
                 }
             }
             console.warn('Blocked non-relative taskUrl:', taskUrl);
