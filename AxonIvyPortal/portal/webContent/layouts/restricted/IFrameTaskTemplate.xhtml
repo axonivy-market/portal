@@ -98,38 +98,35 @@
       <script>
         $(document).ready(function() {
           var taskUrl = `#{htmlSanitizerBean.escapeForJS(iFrameTaskTemplateBean.taskUrl)}`;
-          if (taskUrl) {
-            taskUrl = taskUrl.trim();
-            if (typeof isRelativeUrl !== 'function') {
-              window.isRelativeUrl = function(u){
-                if(!u) return false;
-                u = String(u).trim();
-                const lower = u.toLowerCase();
-                if (lower.startsWith('javascript:') || lower.startsWith('data:')) return false;
-                if(u.startsWith('//') || /[\r\n\x00]/.test(u)) return false;
-                if(/^[a-zA-Z][a-zA-Z0-9+.-]*:/.test(u)) return false;
-                return true;
-              };
-            }
-            if (typeof updateIframeSrc !== 'function') {
-              window.updateIframeSrc = function(newSrc){
-                var iframe = document.getElementById('iFrame');
-                if (iframe) { iframe.src = newSrc; }
-              };
-            }
+          if (!taskUrl) {
+            loadIframe();
+            return;}
+          taskUrl = taskUrl.trim();
+          if (typeof isRelativeUrl !== 'function') {
+            window.isRelativeUrl = function(u) {
+              if (!u) return false;
+              u = String(u).trim();
+              const lower = u.toLowerCase();
+              if (lower.startsWith('javascript:') || lower.startsWith('data:')) return false;
+              if (u.startsWith('//') || /[\r\n\x00]/.test(u)) return false;
+              if (/^[a-zA-Z][a-zA-Z0-9+.-]*:/.test(u)) return false;
+              return true;
+            };}
+          if (typeof updateIframeSrc !== 'function') {
+            window.updateIframeSrc = function(newSrc) {
+              var iframe = document.getElementById('iFrame');
+              if (iframe) { iframe.src = newSrc; }
+            };}
+          if (isRelativeUrl(taskUrl)) {
+            updateIframeSrc(taskUrl);
+          } else {
             const iframeEl = document.getElementById('iFrame');
-            if (isRelativeUrl(taskUrl)) {
-              updateIframeSrc(taskUrl);
-            } else {
-              try { if (iframeEl) {
-                  var cw = iframeEl.contentWindow;
-                  if (cw) {
-                    cw.stop();
-                  }}} catch (e) {
-                console.warn('Could not stop iframe loading for non-relative taskUrl:', e);
-              }
-              console.warn('Blocked non-relative taskUrl:', taskUrl);
-            }}
+            if (iframeEl) {
+                const cw = iframeEl.contentWindow;
+                if (cw) {
+                  cw.stop();
+              }} console.warn('Blocked non-relative taskUrl:', taskUrl);
+          }
           loadIframe();
         });
       </script>
