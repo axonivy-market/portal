@@ -109,21 +109,21 @@
               u = String(u).trim();
               const lower = u.toLowerCase();
               if (lower.startsWith('javascript:') || lower.startsWith('data:')) return false;
-              if (u.startsWith('//') || /[\r\n\x00]/.test(u)) return false;
+              if (u.startsWith('//') || /[\r\n\0]/.test(u)) return false;
               if (/^[a-zA-Z][a-zA-Z0-9+.-]*:/.test(u)) return false;
               return true;
             };
           }
           if (typeof updateIframeSrc !== 'function') {
             window.updateIframeSrc = function(newSrc) {
-              var iframe = document.getElementById('iFrame');
+              var iframe = getPortalIframe();
               if (iframe) { iframe.src = newSrc; }
             };
           }
           if (isRelativeUrl(taskUrl)) {
             updateIframeSrc(taskUrl);
           } else {
-            const iframeEl = document.getElementById('iFrame');
+            const iframeEl = getPortalIframe();
             if (iframeEl) {
                 const cw = iframeEl.contentWindow;
                 if (cw) {
