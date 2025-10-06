@@ -104,7 +104,9 @@
               window.isRelativeUrl = function(u){
                 if(!u) return false;
                 u = String(u).trim();
-                if(u.startsWith('//') || /[\r\n\0]/.test(u)) return false;
+                const lower = u.toLowerCase();
+                if (lower.startsWith('javascript:') || lower.startsWith('data:')) return false;
+                if(u.startsWith('//') || /[\r\n\x00]/.test(u)) return false;
                 if(/^[a-zA-Z][a-zA-Z0-9+.-]*:/.test(u)) return false;
                 return true;
               };
@@ -115,20 +117,19 @@
                 if (iframe) { iframe.src = newSrc; }
               };
             }
+            const iframeEl = document.getElementById('iFrame');
             if (isRelativeUrl(taskUrl)) {
               updateIframeSrc(taskUrl);
             } else {
-              const iframe = document.getElementById('iFrame');
-              try {
-                if (iframe) {
-                  iframe.contentWindow.stop();
-                }
-              } catch (e) {
+              try { if (iframeEl) {
+                  var cw = iframeEl.contentWindow;
+                  if (cw) {
+                    cw.stop();
+                  }}} catch (e) {
                 console.warn('Could not stop iframe loading for non-relative taskUrl:', e);
               }
               console.warn('Blocked non-relative taskUrl:', taskUrl);
-            }
-          }
+            }}
           loadIframe();
         });
       </script>

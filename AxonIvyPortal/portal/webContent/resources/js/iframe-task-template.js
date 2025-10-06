@@ -14,6 +14,17 @@ Check no white page in dark mode, try removing visibility = "hidden" to check ha
 */
 var invalidIFrameSrcPath = false;
 var isMainPageNavigating = false;
+
+// Determine if a URL is a safe relative path (no scheme, no protocol-relative, no javascript:/data:)
+function isRelativeUrl(u) {
+  if (!u) return false;
+  u = String(u).trim();
+  const lower = u.toLowerCase();
+  if (lower.startsWith("javascript:") || lower.startsWith("data:")) return false;
+  if (u.startsWith("//") || /[\r\n\0]/.test(u)) return false;
+  if (/^[a-zA-Z][a-zA-Z0-9+.-]*:/.test(u)) return false;
+  return true;
+}
 function loadIframe() {
   var iframe = getPortalIframe();
 
