@@ -100,7 +100,8 @@
           var taskUrl = `#{htmlSanitizerBean.escapeForJS(iFrameTaskTemplateBean.taskUrl)}`;
           if (!taskUrl) {
             loadIframe();
-            return;}
+            return;
+          }
           taskUrl = taskUrl.trim();
           if (typeof isRelativeUrl !== 'function') {
             window.isRelativeUrl = function(u) {
@@ -111,12 +112,14 @@
               if (u.startsWith('//') || /[\r\n\x00]/.test(u)) return false;
               if (/^[a-zA-Z][a-zA-Z0-9+.-]*:/.test(u)) return false;
               return true;
-            };}
+            };
+          }
           if (typeof updateIframeSrc !== 'function') {
             window.updateIframeSrc = function(newSrc) {
               var iframe = document.getElementById('iFrame');
               if (iframe) { iframe.src = newSrc; }
-            };}
+            };
+          }
           if (isRelativeUrl(taskUrl)) {
             updateIframeSrc(taskUrl);
           } else {
@@ -125,7 +128,9 @@
                 const cw = iframeEl.contentWindow;
                 if (cw) {
                   cw.stop();
-              }} console.warn('Blocked non-relative taskUrl:', taskUrl);
+                }
+            }
+            console.warn('Blocked non-relative taskUrl:', taskUrl);
           }
           loadIframe();
         });
