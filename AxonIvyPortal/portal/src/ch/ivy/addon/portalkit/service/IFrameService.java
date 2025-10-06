@@ -1,13 +1,8 @@
 package ch.ivy.addon.portalkit.service;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
-import java.util.function.Predicate;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.Strings;
 
 import com.axonivy.portal.components.publicapi.ProcessStartAPI;
 import com.axonivy.portal.components.service.impl.ProcessService;
@@ -58,7 +53,7 @@ public class IFrameService {
    */
   private static Boolean getEmbedInIFrameCustomField(ITask task) {
     String embedInFrame = "";
-    if (isFirstTask(task, task.getId())) {
+    if (isFirstTask(task)) {
       embedInFrame = getEmbedInFrameInProcessRequestTab(task);
     }
     if (StringUtils.isBlank(embedInFrame)) {
@@ -88,7 +83,8 @@ public class IFrameService {
     return webstartable.customFields().value(CustomFields.EMBED_IN_FRAME);
   }
 
-  private static Boolean isFirstTask(ITask task, Long taskId) {
+  private static Boolean isFirstTask(ITask task) {
+    Long taskId = task.getId();
     Long firstTaskId = task.getCase().getFirstTask().getId();
     return Objects.equals(taskId, firstTaskId);
   }
