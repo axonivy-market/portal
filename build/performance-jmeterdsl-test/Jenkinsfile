@@ -11,7 +11,7 @@ pipeline {
     engineVersion = 'master'
     jmeterDslSourceDir = '/var/tools/ivy/performance-master/jmeter-javadsl-test'
     ivyDir = '/var/tools/ivy'
-    resultDir = "/var/tools/jmeter-javadsl-performance-result/${env.engineVersion}/
+    resultDir = '/var/tools/jmeter-javadsl-performance-result/${env.engineVersion}/'
 
   }
 
