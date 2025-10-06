@@ -8,10 +8,10 @@ pipeline {
   // triggers removed
 
   environment {
-    engineVersion = 'master'
     jmeterDslSourceDir = '/var/tools/ivy/performance-master/jmeter-javadsl-test'
     ivyDir = '/var/tools/ivy'
-    resultDir = '/var/tools/jmeter-javadsl-performance-result/${env.engineVersion}/'
+    //could be master/12/10
+    resultDir = '/var/tools/jmeter-javadsl-performance-result/master'
 
   }
 
