@@ -81,29 +81,13 @@ public class IFrameService {
     if (relativeUrl.isEmpty()) {
       return null;
     }
-    IWebStartable webstartable = findWebStartable(relativeUrl);
+    IWebStartable webstartable = ProcessService.getInstance().findWebStartable(relativeUrl);
     if (webstartable == null) {
       return null;
     }
     return webstartable.customFields().value(CustomFields.EMBED_IN_FRAME);
   }
-  
-  private static IWebStartable findWebStartable(String processLink) {
-    if (StringUtils.isNotBlank(processLink)) {
-      return getWebStartables().stream().filter(filterByRelativeLink(processLink)).findFirst().orElse(null);
-    }
-    
-    return null;
-  }
-  
-  private static Predicate<? super IWebStartable> filterByRelativeLink(String startProcessId) {
-    return webStartable -> Strings.CS.equals(startProcessId, webStartable.getLink().getRelative());
-  }
-  
-  private static List<IWebStartable> getWebStartables() {
-    return Optional.ofNullable(ProcessService.getInstance().findProcesses()).orElse(new ArrayList<>());
-  }
-  
+
   private static Boolean isFirstTask(ITask task, Long taskId) {
     Long firstTaskId = task.getCase().getFirstTask().getId();
     return Objects.equals(taskId, firstTaskId);
