@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: Portal Guide ${revision}\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-09-26 07:09+0000\n"
-"PO-Revision-Date: 2025-10-04 11:02+0000\n"
-"Last-Translator: Thang Huynh <hhqthang@axonactive.com>\n"
+"PO-Revision-Date: 2025-10-06 03:16+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/axonivy-portal/"
 "portal-12/doc/portal-developer-guide/ja/>\n"
 "Language: ja\n"
@@ -214,24 +214,30 @@ msgid ""
 msgstr "このセクションでは、ポータルの使用中に発生する可能性があるエラーのタイプと、ポータル内でのエラー処理の方法について説明します。"
 
 #: ../../source/portal-developer-guide/components/error-handling.rst:9
+#, fuzzy
 msgid ""
 "Ajax error: These errors occur during a JSF Ajax request, such as when "
 "the user clicks the \"Show Full Mode\" button to switch the task widget "
 "to full mode. Without proper error handling, users receive no feedback if"
 " the action was unsuccessful."
 msgstr ""
-"Ajax のエラー：タスクウィジェットをフルモードに切り替えるために「フルモードで表示」ボタンをクリックするなど、JSF Ajax "
-"リクエスト中に発生するエラーです。   アクションが正常に完了しなかった場合、適切なエラー処理を行わないと、フィードバックを得られません。"
+"Ajax のエラー：タスクウィジェットをフルモードに切り替えるために「フルモードで"
+"表示」ボタンをクリックするなど、JSF Ajax リクエスト中に発生するエラーです。"
+"   アクションが正常に完了しなかった場合、適切なエラー処理を行わないと、フィー"
+"ドバックを得られません。"
 
 #: ../../source/portal-developer-guide/components/error-handling.rst:13
+#, fuzzy
 msgid ""
 "Non-ajax error: These errors occur when a user accesses the Portal via a "
 "URL that cannot be processed successfully by the server, or when "
 "navigating to a corrupt URL. For example, this can happen if a user "
 "clicks a link to start a task that does not exist."
 msgstr ""
-"Ajax 以外のエラー：ユーザーが、サーバーが正常に処理できない URL からポータルにアクセスした場合や、破損した URL "
-"に移動した場合に発生するエラーです。   例えば、ユーザーが存在しないタスクを開始するリンクをクリックしたときに発生します。"
+"Ajax 以外のエラー：ユーザーが、サーバーが正常に処理できない URL からポータル"
+"にアクセスした場合や、破損した URL に移動した場合に発生するエラーです。   例"
+"えば、ユーザーが存在しないタスクを開始するリンクをクリックしたときに発生しま"
+"す。"
 
 #: ../../source/portal-developer-guide/components/error-handling.rst:17
 msgid ""
@@ -919,8 +925,10 @@ msgid "``x + w`` must **not be larger** than **12**."
 msgstr "``x + w`` は **12** **以下** でなければなりません。"
 
 #: ../../source/portal-developer-guide/customization/case-item-details.rst:148
+#, fuzzy
 msgid "We support all case business states in filter type ``states``."
-msgstr "フィルタータイプ  ``states`` ではすべてのケースのビジネスの状態がサポートされます。"
+msgstr "フィルタータイプ  ``states`` ではすべてのケースのビジネスの状態がサポートされ"
+"ます。"
 
 #: ../../source/portal-developer-guide/customization/case-item-details.rst:149
 msgid ""
@@ -2699,13 +2707,15 @@ msgid "``id``: ID which used to identify layout."
 msgstr "``id``：レイアウトの識別に使用する ID。"
 
 #: ../../source/portal-developer-guide/customization/task-item-details.rst:97
+#, fuzzy
 msgid ""
 "``filters``: conditions to determine which tasks are able to use the "
 "layout. There are 2 types of filter **:** ``categories`` (task "
 "categories) and ``states`` (task business states)."
 msgstr ""
-"``filters``：レイアウトを使用可能なタスクを決定する条件。 ``categories`` （タスクのカテゴリー）と ``states``"
-" （タスクのビジネスの状態）の 2 つのタイプのフィルターがあります。"
+"``filters``：レイアウトを使用可能なタスクを決定する条件。 ``categories`` （タ"
+"スクのカテゴリー）と ``states`` （タスクのビジネスの状態）の 2 つのタイプのフ"
+"ィルターがあります。"
 
 #: ../../source/portal-developer-guide/customization/task-item-details.rst:99
 msgid ""
@@ -5819,10 +5829,12 @@ msgstr ""
 "テンプレートまたはカスタムテンプレートを使用できます。**ポータル** は自動的にテンプレートを IFrame 内でレンダリングします。"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:33
+#, fuzzy
 msgid ""
 "**Configuration Levels** If you want custom behavior, configure at one of"
 " the following levels to open your tasks in an IFrame:"
-msgstr "**設定レベル**  カスタム動作が必要な場合は、IFrame 内でタスクが開くように、以下のいずれかのレベルで設定します。"
+msgstr "**設定レベル**  カスタム動作が必要な場合は、IFrame 内でタスクが開くように、以"
+"下のいずれかのレベルで設定します。"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:36
 msgid "**Task Level**: Set the ``embedInFrame`` field in Task custom fields to:"
@@ -8866,6 +8878,7 @@ msgid "Portal Task Permissions"
 msgstr "ポータルのタスクの権限"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:12
+#, fuzzy
 msgid "_`TaskReadAll`"
 msgstr "_`TaskReadAll`"
 
@@ -8874,6 +8887,7 @@ msgid "Permission to see all tasks"
 msgstr "すべてのタスクを表示する権限"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:15
+#, fuzzy
 msgid "_`SystemTaskReadAll`"
 msgstr "_`SystemTaskReadAll`"
 
@@ -8882,6 +8896,7 @@ msgid "Permission to see system tasks"
 msgstr "システムタスクを表示する権限"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:18
+#, fuzzy
 msgid "_`TaskReadOwnCaseTasks`"
 msgstr "_`TaskReadOwnCaseTasks`"
 
@@ -8918,6 +8933,7 @@ msgid "Granted to role Everybody by default"
 msgstr "デフォルトでは Everybody ロールに付与"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:23
+#, fuzzy
 msgid "_`TaskParkOwnWorkingTask`"
 msgstr "_`TaskParkOwnWorkingTask`"
 
@@ -8926,6 +8942,7 @@ msgid "Permission to reserve my own tasks"
 msgstr "自分のタスクを予約する権限"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:28
+#, fuzzy
 msgid "_`TaskResetOwnWorkingTask`"
 msgstr "_`TaskResetOwnWorkingTask`"
 
@@ -8934,6 +8951,7 @@ msgid "Permission to reset my own tasks"
 msgstr "自分のタスクをリセットする権限"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:33
+#, fuzzy
 msgid "_`TaskWriteName`"
 msgstr "_`TaskWriteName`"
 
@@ -8942,6 +8960,7 @@ msgid "Permission to change the task name"
 msgstr "タスク名を変更する権限"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:36
+#, fuzzy
 msgid "_`TaskWriteDescription`"
 msgstr "_`TaskWriteDescription`"
 
@@ -8950,6 +8969,7 @@ msgid "Permission to change the task description"
 msgstr "タスクの説明を変更する権限"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:39
+#, fuzzy
 msgid "_`TaskWriteOriginalPriority`"
 msgstr "_`TaskWriteOriginalPriority`"
 
@@ -8958,6 +8978,7 @@ msgid "Permission to change the task priority"
 msgstr "タスクの優先度を変更する権限"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:42
+#, fuzzy
 msgid "_`TaskWriteActivator`"
 msgstr "_`TaskWriteActivator`"
 
@@ -8966,6 +8987,7 @@ msgid "Permission to delegate tasks"
 msgstr "タスクを委任する権限"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:47
+#, fuzzy
 msgid "_`TaskWriteExpiryActivator`"
 msgstr "_`TaskWriteExpiryActivator`"
 
@@ -8974,6 +8996,7 @@ msgid "Permission to change the expiry responsible"
 msgstr "有効期限の責任者を変更する権限"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:50
+#, fuzzy
 msgid "_`TaskWriteDelayTimestamp`"
 msgstr "_`TaskWriteDelayTimestamp`"
 
@@ -8982,6 +9005,7 @@ msgid "Permission to change the delay time"
 msgstr "遅延時間を変更する権限"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:53
+#, fuzzy
 msgid "_`TaskReset`"
 msgstr "_`TaskReset`"
 
@@ -8990,6 +9014,7 @@ msgid "Permission to reset all tasks"
 msgstr "すべてのタスクをリセットする権限"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:56
+#, fuzzy
 msgid "_`TaskDestroy`"
 msgstr "_`TaskDestroy`"
 
@@ -8999,6 +9024,7 @@ msgid "Permission to execute the Destroy action"
 msgstr "破棄アクションを表示する権限"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:59
+#, fuzzy
 msgid "_`TaskWriteExpiryTimestamp`"
 msgstr "_`TaskWriteExpiryTimestamp`"
 
@@ -9007,6 +9033,7 @@ msgid "Control whether to change the deadline"
 msgstr "期限を変更するかどうかを制御"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:62
+#, fuzzy
 msgid "_`TaskWriteActivatorOwnTasks`"
 msgstr "_`TaskWriteActivatorOwnTasks`"
 
@@ -9015,6 +9042,7 @@ msgid "Permission to delegate my own tasks"
 msgstr "自分のタスクを委任する権限"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:65
+#, fuzzy
 msgid "_`TaskDisplayAdditionalOptions`"
 msgstr "_`TaskDisplayAdditionalOptions`"
 
@@ -9023,6 +9051,7 @@ msgid "Permission to see additional actions"
 msgstr "追加のアクションを表示する権限"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:70
+#, fuzzy
 msgid "_`TaskDisplayResetAction`"
 msgstr "_`TaskDisplayResetAction`"
 
@@ -9031,6 +9060,7 @@ msgid "Permission to see the Reset action"
 msgstr "リセットアクションを表示する権限"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:75
+#, fuzzy
 msgid "_`TaskDisplayReserveAction`"
 msgstr "_`TaskDisplayReserveAction`"
 
@@ -9039,6 +9069,7 @@ msgid "Permission to see the Reserve action"
 msgstr "予約アクションを表示する権限"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:80
+#, fuzzy
 msgid "_`TaskDisplayDelegateAction`"
 msgstr "_`TaskDisplayDelegateAction`"
 
@@ -9047,6 +9078,7 @@ msgid "Permission to see the Delegate action"
 msgstr "委任アクションを表示する権限"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:85
+#, fuzzy
 msgid "_`TaskDisplayWorkflowEventAction`"
 msgstr "_`TaskDisplayWorkflowEventAction`"
 
@@ -9055,6 +9087,7 @@ msgid "Permission to see the Workflow Event action"
 msgstr "ワークフローイベントアクションを表示する権限"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:88
+#, fuzzy
 msgid "_`TaskDisplayDestroyAction`"
 msgstr "_`TaskDisplayDestroyAction`"
 
@@ -9063,6 +9096,7 @@ msgid "Permission to see the Destroy action"
 msgstr "破棄アクションを表示する権限"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:91
+#, fuzzy
 msgid "_`TaskResetReadyForJoin`"
 msgstr "_`TaskResetReadyForJoin`"
 
@@ -9071,6 +9105,7 @@ msgid "Permission to reset tasks that are in state Ready for Join"
 msgstr "参加準備完了状態にあるタスクをリセットする権限"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:94
+#, fuzzy
 msgid "_`ShareTaskDetailsLink`"
 msgstr "_`ShareTaskDetailsLink`"
 
