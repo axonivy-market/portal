@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: Portal Guide ${revision}\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-09-17 06:56+0000\n"
-"PO-Revision-Date: 2025-10-04 11:02+0000\n"
-"Last-Translator: Thang Huynh <hhqthang@axonactive.com>\n"
+"PO-Revision-Date: 2025-10-06 03:16+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/axonivy-portal/"
 "portal-12/doc/portal-user-guide/ja/>\n"
 "Language: ja\n"
@@ -2319,6 +2319,7 @@ msgid "*Example*: Find all cases that were created in the current month."
 msgstr "*例* ：現在の月に作成されたすべてのケースを検索します。"
 
 #: ../../source/portal-user-guide/complex-filter/index.rst
+#, fuzzy
 msgid ""
 ":bdg-dark-line:`Created Date` :bdg-dark-line:`Current` :bdg-dark-"
 "line:`Month`"
@@ -2359,12 +2360,13 @@ msgid "*Example*: Find all cases that were created within the last 2 years"
 msgstr "*例*：過去 2 年間に作成されたすべてのケースを検索します。"
 
 #: ../../source/portal-user-guide/complex-filter/index.rst
+#, fuzzy
 msgid ""
 ":bdg-dark-line:`Created Date` :bdg-dark-line:`Within the last` :bdg-dark-"
 "line:`2` :bdg-dark-line:`Year(s)`"
 msgstr ""
-":bdg-dark-line:`作成日` :bdg-dark-line:`今日までの期間` :bdg-dark-line:`2` :bdg-"
-"dark-line:`年`"
+":bdg-dark-line:`作成日` :bdg-dark-line:`今日までの期間` :bdg-dark-line:`2` "
+":bdg-dark-line:`年`"
 
 #: ../../source/portal-user-guide/complex-filter/index.rst
 msgid "within the period from ``2/27/2022 00:00:00`` to ``2/27/2024 11:41:28``."
@@ -2389,12 +2391,13 @@ msgid "*Example*: Find all cases with Invoice Due Date within the next 3 weeks"
 msgstr "*例*：請求書の支払期日が次の 3 週間以内のすべてのケースを検索します。"
 
 #: ../../source/portal-user-guide/complex-filter/index.rst
+#, fuzzy
 msgid ""
 ":bdg-dark-line:`Invoice Due Date` :bdg-dark-line:`Within the next` :bdg-"
 "dark-line:`3` :bdg-dark-line:`Week(s)`"
 msgstr ""
-":bdg-dark-line:`請求書の支払期日` :bdg-dark-line:`次の期間` :bdg-dark-line:`3` :bdg-"
-"dark-line:`週`"
+":bdg-dark-line:`請求書の支払期日` :bdg-dark-line:`次の期間` :bdg-dark-"
+"line:`3` :bdg-dark-line:`週`"
 
 #: ../../source/portal-user-guide/complex-filter/index.rst
 msgid ""
@@ -6613,16 +6616,17 @@ msgid "Absences page: Set deputy section"
 msgstr "不在ページ：代行者の設定セクション"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:104
+#, fuzzy
 msgid ""
 "Grant either permission :bdg-ref-warning:`🔑UserCreateOwnSubstitute "
 "<UserCreateOwnSubstitute>` or :bdg-ref-warning:`🔑UserCreateSubstitute "
 "<UserCreateSubstitute>` to allow a user to create their own substitute "
 "definitions or create substitute definitions for all users, respectively."
 msgstr ""
-"ユーザーが自分の代行者の定義を作成したり、すべてのユーザーの代行者の定義を作成できるようにするには、 :bdg-ref-"
-"warning:`🔑UserCreateOwnSubstitute <UserCreateOwnSubstitute>` または  :bdg-"
-"ref-warning:`🔑UserCreateSubstitute <UserCreateSubstitute>` "
-"のいずれかの権限をそれぞれ付与してください。"
+"ユーザーが自分の代行者の定義を作成したり、すべてのユーザーの代行者の定義を作"
+"成できるようにするには、 :bdg-ref-warning:`🔑UserCreateOwnSubstitute "
+"<UserCreateOwnSubstitute>` または  :bdg-ref-warning:`🔑UserCreateSubstitute "
+"<UserCreateSubstitute>` のいずれかの権限をそれぞれ付与してください。"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:108
 msgid "Change Password"
@@ -6722,11 +6726,13 @@ msgid "Tasks: id, name, description and all custom string fields"
 msgstr "タスク：ID、名前、説明、すべてのカスタム文字列フィールド"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:155
+#, fuzzy
 msgid ""
 "When you confirm the keyword you’re looking for, the |ivy| Portal will "
 "route you to the **Global Search Results** page. For each category a tab "
 "is provided, giving you the results of your search."
-msgstr "検索するキーワードを確定すると、 **グローバル検索結果** ページに転送されます。カテゴリーごとにタブが用意され、検索結果が表示されます。"
+msgstr "検索するキーワードを確定すると、 **グローバル検索結果** ページに転送されます"
+"。カテゴリーごとにタブが用意され、検索結果が表示されます。"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:159
 msgid "|portal-global-search-result-page|"
@@ -7017,6 +7023,7 @@ msgid "This pie chart displays all tasks by priority."
 msgstr "この円グラフは、すべてのタスクの数を優先度別に表示します。"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst:30
+#, fuzzy
 msgid "Chart type: :bdg-info:`Pie`"
 msgstr "チャートのタイプ： :bdg-info:`円グラフ`"
 
@@ -7041,6 +7048,7 @@ msgstr "この棒グラフは、ユーザーが作業できるすべてのタス
 #: ../../source/portal-user-guide/statistic-chart/index.rst:37
 #: ../../source/portal-user-guide/statistic-chart/index.rst:44
 #: ../../source/portal-user-guide/statistic-chart/index.rst:51
+#, fuzzy
 msgid "Chart type: :bdg-info:`Bar`"
 msgstr "チャートのタイプ： :bdg-info:`棒グラフ`"
 
@@ -7092,6 +7100,7 @@ msgstr "このグラフは、1 日あたりの開始ケース数（過去 5 日�
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst:58
 #: ../../source/portal-user-guide/statistic-chart/index.rst:65
+#, fuzzy
 msgid "Chart type: :bdg-info:`Line`"
 msgstr "チャートのタイプ： :bdg-info:`折れ線グラフ`"
 
@@ -7132,6 +7141,7 @@ msgstr "これは、ユーザーが関与しているすべての実行中のケ
 #: ../../source/portal-user-guide/statistic-chart/index.rst:86
 #: ../../source/portal-user-guide/statistic-chart/index.rst:93
 #: ../../source/portal-user-guide/statistic-chart/index.rst:100
+#, fuzzy
 msgid "Chart type: :bdg-info:`Number`"
 msgstr "チャートのタイプ： :bdg-info:`数値表`"
 
