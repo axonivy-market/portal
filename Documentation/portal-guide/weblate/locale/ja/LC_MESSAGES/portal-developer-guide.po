@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: Portal Guide ${revision}\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-09-22 04:56+0000\n"
-"PO-Revision-Date: 2025-09-29 10:29+0000\n"
-"Last-Translator: DeepL <noreply-mt-deepl@weblate.org>\n"
+"PO-Revision-Date: 2025-10-03 11:00+0000\n"
+"Last-Translator: Thang Huynh <hhqthang@axonactive.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/axonivy-portal/"
 "portal-le/doc/portal-doc-developer-guide/ja/>\n"
 "Language: ja\n"
@@ -2736,8 +2736,8 @@ msgid ""
 "the task can be delegated to. To skip the result of one callable "
 "subprocess, please set the result variable ``status`` to ``\"SKIP\"``."
 msgstr ""
-"ポータルは、上記の詳細情報でサブプロセスを呼び出し、すべての ``roles`` "
-"と``users`` "
+"ポータルは、上記の詳細情報でサブプロセスを呼び出し、すべての ``roles`` と "
+"``users`` "
 "を組み合わせて、タスクを委任できるロールとユーザーのリストを作成します。1 "
 "つの呼び出し可能サブプロセスをスキップするには、結果の ``status`` 変数を "
 "``SKIP`` に設定してください。"
@@ -3382,8 +3382,8 @@ msgstr "``permissions``：ダッシュボードにアクセスできるロール
 msgid ""
 "``dashboardDisplayType``: the display type of your dashboard in the left "
 "menu of Portal."
-msgstr "`dashboardDisplayType``：ポータルの左メニューにあるダッシュボードの表示タイプ"
-"。"
+msgstr "``dashboardDisplayType``：ポータルの左メニューにあるダッシュボードの表示タイ"
+"プ。"
 
 #: ../../source/portal-developer-guide/dashboard/index.rst:172
 msgid ""
@@ -3630,7 +3630,7 @@ msgstr "``id``：ケース ID"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:126
 msgid "``Pin``: column which contains Pin button to Pin your case."
-msgstr "`Pin``: あなたのケースをPinするためのPinボタンがあるカラムです。"
+msgstr "``Pin``: あなたのケースをPinするためのPinボタンがあるカラムです。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:128
 msgid "``name``: case name"
@@ -4229,7 +4229,7 @@ msgid ""
 "and the custom field uses the static value. Additionally, the value must "
 "be entered and maintained in the CMS in multiple languages."
 msgstr ""
-"カスタムフィールドが CMS から多言語の値を取得できるようにするには、対応する"
+"カスタムフィールドが CMS から多言語の値を取得できるようにするには、対応する "
 "``custom-field`` yaml ファイルの設定で ``HasCmsValue`` 属性を ``true`` "
 "に設定してください。そうでない場合、ロジックは変更されず、カスタムフィールド"
 "は静的値を使用します。さらに、値は CMS "
@@ -4656,7 +4656,7 @@ msgid ""
 msgstr ""
 "タイプ：タイプ: "
 "カスタムウィジェットの設定ダイアログに表示されるパラメータのデータタイプ。4つ"
-"のタイプがあります：`string``,``user``,``date``,``boolean``."
+"のタイプがあります： ``string``, ``user``, ``date``, ``boolean``."
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-custom-widget.rst:157
 msgid ""
@@ -4787,7 +4787,7 @@ msgstr "``names``：UI に表示されるウィジェットの複数言語の名
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-external-page-widget.rst:58
 msgid "``layout``: layout definition of the statistic widget"
-msgstr "`layout``: 統計ウィジェットのレイアウト定義"
+msgstr "``layout``: 統計ウィジェットのレイアウト定義"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-external-page-widget.rst:68
 msgid "``url``: the URL of the external webpage you want to show."
@@ -4837,8 +4837,8 @@ msgid ""
 "``type``: type of the widget. Use ``navigation-dashboard`` for a "
 "navigation dashboard widget"
 msgstr ""
-"`type``: ウィジェットのタイプ。ナビゲーションダッシュボードウィジェットには `"
-" ` を使用してください。`navigation-dashboard`"
+"``type``: ウィジェットのタイプ。ナビゲーションダッシュボードウィジェットには "
+"を使用してください。``navigation-dashboard``"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:74
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-notification-widget.rst:56
@@ -4848,7 +4848,7 @@ msgstr "``names``：UI に表示されるウィジェットの複数言語の名
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:76
 msgid "``buttonNames``: multilingual button name on the widget"
-msgstr "`buttonNames``: ウィジェットの多言語ボタン名"
+msgstr "``buttonNames``: ウィジェットの多言語ボタン名"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:78
 msgid "``layout``: layout definition of the client statistic widget"
@@ -4856,15 +4856,15 @@ msgstr "``layout``：クライアントの統計ウィジェットのレイア�
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:88
 msgid "``targetDashboardId``: the target dashboard id"
-msgstr "`targetDashboardId``: 対象のダッシュボードの ID"
+msgstr "``targetDashboardId``: 対象のダッシュボードの ID"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:90
 msgid "``description``: the widget description"
-msgstr "`description``: ウィジェットの説明"
+msgstr "``description``: ウィジェットの説明"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:92
 msgid "``icon``: the icon shown on the widget"
-msgstr "`icon``: ウィジェットに表示されるアイコン"
+msgstr "``icon``: ウィジェットに表示されるアイコン"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-notification-widget.rst:4
 msgid "Configure Notifications Widget"
@@ -5166,29 +5166,29 @@ msgstr "以下はポータルダッシュボードの統計ウィジェットの
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:152
 #: ../../source/portal-developer-guide/settings/index.rst:582
 msgid "``version``: current version of the widget."
-msgstr "`version``: ウィジェットの現在のバージョン。"
+msgstr "``version``: ウィジェットの現在のバージョン。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:154
 #: ../../source/portal-developer-guide/settings/index.rst:584
 msgid "``statisticAggregation``: statistic's aggregation."
-msgstr "`statisticAggregation``: 統計の集計。"
+msgstr "``statisticAggregation``: 統計の集計。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:156
 #: ../../source/portal-developer-guide/settings/index.rst:586
 msgid "``field``: aggregation (group by) field."
-msgstr "`field``: 集計（group by）フィールド。"
+msgstr "``field``: 集計（group by）フィールド。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:158
 #: ../../source/portal-developer-guide/settings/index.rst:588
 msgid "``type``: type of the field, could be `standard` or `custom`."
-msgstr "`type``: フィールドのタイプ。`standard` または `custom` である。"
+msgstr "``type``: フィールドのタイプ。`standard` または `custom` である。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:160
 #: ../../source/portal-developer-guide/settings/index.rst:590
 msgid ""
 "``kpiField`` (optional): the numeric custom field on which to perform "
 "calculations."
-msgstr "`kpiField`` (オプション): 計算を行う数値カスタムフィールド。"
+msgstr "``kpiField`` (オプション): 計算を行う数値カスタムフィールド。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:162
 #: ../../source/portal-developer-guide/settings/index.rst:592
@@ -5196,7 +5196,7 @@ msgid ""
 "``aggregationMethod`` (optional): the calculation method to apply, could "
 "be `sum`, `avg`, `max` or `min`."
 msgstr ""
-"`aggregationMethod`` (オプション): 適用する計算方法。`sum`, `avg`, `max` "
+"``aggregationMethod`` (オプション): 適用する計算方法。`sum`, `avg`, `max` "
 "または `min` を指定する。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:164
@@ -5207,74 +5207,74 @@ msgid ""
 "system applies the specified aggregation method to the numeric values in "
 "``kpiField``."
 msgstr ""
-"``kpiField`` と``aggregationMethod`` "
+"``kpiField`` と ``aggregationMethod`` "
 "が提供されない場合、カウント統計（タスク数またはケース数のカウント）を返しま"
-"す。一方、システムは``kpiField`` の数値に指定された集計方法を適用する。"
+"す。一方、システムは ``kpiField`` の数値に指定された集計方法を適用する。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:167
 #: ../../source/portal-developer-guide/settings/index.rst:597
 msgid "``filters``: filters for the statistic chart."
-msgstr "`filters``: 統計チャートのフィルター。"
+msgstr "``filters``: 統計チャートのフィルター。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:169
 #: ../../source/portal-developer-guide/settings/index.rst:599
 msgid "``field``: field to filter."
-msgstr "`field``: フィルタリングするフィールド。"
+msgstr "``field``: フィルタリングするフィールド。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:171
 #: ../../source/portal-developer-guide/settings/index.rst:601
 msgid "``values``: value of the filter to query."
-msgstr "`values``: 問い合わせるフィルターの値。"
+msgstr "``values``: 問い合わせるフィルターの値。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:173
 #: ../../source/portal-developer-guide/settings/index.rst:603
 msgid "``operator``: operator for the filter."
-msgstr "`operator``: フィルタの演算子。"
+msgstr "``operator``: フィルタの演算子。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:175
 #: ../../source/portal-developer-guide/settings/index.rst:605
 msgid "``type``: type of the field."
-msgstr "`type``: フィールドのタイプ。"
+msgstr "``type``: フィールドのタイプ。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:177
 #: ../../source/portal-developer-guide/settings/index.rst:607
 msgid "``permissions``: permissions for statistic chart."
-msgstr "`permissions``: 統計チャートのパーミッション。"
+msgstr "``permissions``: 統計チャートのパーミッション。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:179
 #: ../../source/portal-developer-guide/settings/index.rst:609
 msgid "``chartTarget``: chart's target, could be `case` or `task`."
-msgstr "`chartTarget``: `case` または `task` である。"
+msgstr "``chartTarget``: `case` または `task` である。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:181
 #: ../../source/portal-developer-guide/settings/index.rst:619
 msgid "``chartType``: chart's type, could be `bar`, `line`, `pie` or `number`."
-msgstr "`chartType``: チャートの種類。`bar`, `line`, `pie` または `number` "
+msgstr "``chartType``: チャートの種類。`bar`, `line`, `pie` または `number` "
 "のいずれか。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:183
 #: ../../source/portal-developer-guide/settings/index.rst:611
 msgid "``icon``: icon for the statistic chart."
-msgstr "`icon``: 統計チャートのアイコン。"
+msgstr "``icon``: 統計チャートのアイコン。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:185
 #: ../../source/portal-developer-guide/settings/index.rst:613
 msgid ""
 "``refreshInterval``: number of seconds for the chart auto-refreshed, "
 "minimum value is 60."
-msgstr "`refreshInterval``: チャートが自動更新される秒数、最小値は 60。"
+msgstr "``refreshInterval``: チャートが自動更新される秒数、最小値は 60。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:187
 #: ../../source/portal-developer-guide/settings/index.rst:615
 msgid "``names``: name for the statistic chart, multi-language supported."
-msgstr "`names``: 統計チャートの名前、多言語対応。"
+msgstr "``names``: 統計チャートの名前、多言語対応。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:189
 #: ../../source/portal-developer-guide/settings/index.rst:617
 msgid ""
 "``descriptions``: description for the statistic chart, multi-language "
 "supported."
-msgstr "`descriptions``: 統計チャートの説明、多言語対応。"
+msgstr "``descriptions``: 統計チャートの説明、多言語対応。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:191
 #: ../../source/portal-developer-guide/settings/index.rst:637
@@ -5289,9 +5289,8 @@ msgstr "``Bar``、``Pie``、``Line``、``Number`` "
 msgid ""
 "``barChartConfig``: additional fields for configuring the ``Bar`` chart, "
 "you can add if chart type is ``bar``"
-msgstr ""
-"`barChartConfig``: ` ` チャートを設定するための追加フィールド。"
-"チャートのタイプが ` ` の場合に追加できる。`Bar` `bar`"
+msgstr "``barChartConfig``: チャートを設定するための追加フィールド。"
+"チャートのタイプが の場合に追加できる ``bar``"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:195
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:203
@@ -5314,7 +5313,7 @@ msgstr "``yTitles``：Y 軸の複数言語の表示タイトル"
 #: ../../source/portal-developer-guide/settings/index.rst:653
 #: ../../source/portal-developer-guide/settings/index.rst:657
 msgid "``backgroundColors`` : the colors to display the chart"
-msgstr "`backgroundColors`` : チャートを表示する色"
+msgstr "``backgroundColors`` : チャートを表示する色"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:201
 #: ../../source/portal-developer-guide/settings/index.rst:647
@@ -5322,8 +5321,8 @@ msgid ""
 "``lineChartConfig``: additional fields for configuring the ``Line`` "
 "chart, you can add if chart type is ``line``"
 msgstr ""
-"`lineChartConfig``: ` ` チャートを設定するための追加フィールド。"
-"チャートのタイプが ` ` の場合に追加できる。`Line` `line`"
+"``lineChartConfig``: ` ` チャートを設定するための追加フィールド。"
+"チャートのタイプが ` ` の場合に追加できる。``Line`` ``line``"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:209
 #: ../../source/portal-developer-guide/settings/index.rst:655
@@ -5331,8 +5330,8 @@ msgid ""
 "``pieChartConfig``: additional fields for configuring the ``Pie`` chart, "
 "you can add if chart type is ``pie``"
 msgstr ""
-"`pieChartConfig``: ` ` チャートを設定するための追加フィールド。"
-"チャートのタイプが ` ` の場合に追加できる。`Pie` `pie`"
+"``pieChartConfig``: ` ` チャートを設定するための追加フィールド。"
+"チャートのタイプが ` ` の場合に追加できる。``Pie`` ``pie``"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:213
 #: ../../source/portal-developer-guide/settings/index.rst:659
@@ -5346,7 +5345,7 @@ msgstr ""
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:215
 #: ../../source/portal-developer-guide/settings/index.rst:661
 msgid "``hideLabel``: toggle to show label of the number chart"
-msgstr "`hideLabel``: 数値チャートのラベル表示を切り替える"
+msgstr "``hideLabel``: 数値チャートのラベル表示を切り替える"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:4
 msgid "Configure Task Widget"
@@ -5412,7 +5411,7 @@ msgstr "``start``：タスクを直接開始する開始ボタンを含む列"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:124
 msgid "``Pin``: column which contains Pin button to Pin your task."
-msgstr "`Pin``: タスクをピン留めするためのピンボタンがあるカラム。"
+msgstr "``Pin``: タスクをピン留めするためのピンボタンがあるカラム。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:126
 msgid "``priority``: task priority"
@@ -5444,7 +5443,7 @@ msgstr "``startTimestamp``：タスクの作成日時"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:140
 msgid "``endTimestamp``: end date and time of the task"
-msgstr "`endTimestamp``: タスクの終了日時"
+msgstr "``endTimestamp``: タスクの終了日時"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:142
 msgid "``expiryTimestamp``: expiry date and time of the task"
@@ -5483,11 +5482,12 @@ msgid ""
 "filter is visible only if the ``Portal.Cases.EnableOwner`` setting is set"
 " to ``true`` in the :ref:`Admin Settings <update-portal-settings>`."
 msgstr ""
-"`filterTasksByCurrentCaseOwner``: "
+"``filterTasksByCurrentCaseOwner``: "
 "現在のユーザーがケースの所有者であるタスクのみをフィルタします。"
-"デフォルト値は ` ` です。このフィルタは、 の ` ` 設定が ` ` "
-"に設定されている場合にのみ表示されます。`false` :ref:`Admin Settings <update-"
-"portal-settings>` `Portal.Cases.EnableOwner` `true`"
+"デフォルト値は ``false`` です。このフィルタは、 の "
+"``Portal.Cases.EnableOwner`` 設定が ``true`` "
+"に設定されている場合にのみ表示されます。 :ref:`Admin Settings <update-portal-"
+"settings>`."
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:166
 msgid ""
@@ -5699,8 +5699,8 @@ msgid ""
 "|/designer-guide/configuration/custom-fields.html#localize-label-"
 "description-category-and-values>` to get more information."
 msgstr ""
-"カスタム・フィールドの値を追加するには、以下のパスに従ってください：`/"
-"CustomFields/Tasks/{fieldName}/Values/{value}``:dev-url:`Localize Label, "
+"カスタム・フィールドの値を追加するには、以下のパスに従ってください：``/"
+"CustomFields/Tasks/{fieldName}/Values/{value}`` :dev-url:`Localize Label, "
 "Description, Category and Values </doc/|version|/designer-guide/"
 "configuration/custom-fields.html#localize-label-description-category-and-"
 "values>` に従ってください。"
@@ -5712,9 +5712,9 @@ msgid ""
 "``/CustomFields/Tasks/DriversVehicle/Values/Car`` or "
 "``/CustomFields/Tasks/DriversVehicle/Values/MonsterTruck``."
 msgstr ""
-"あなたのCMSでは、パスは``/CustomFields/Tasks/DriversVehicle/Values/Bike``,``/"
-"CustomFields/Tasks/DriversVehicle/Values/Car`` または``/CustomFields/Tasks/"
-"DriversVehicle/Values/MonsterTruck`` であるべきです。"
+"あなたのCMSでは、パスは ``/CustomFields/Tasks/DriversVehicle/Values/Bike``, "
+"``/CustomFields/Tasks/DriversVehicle/Values/Car`` または ``/CustomFields/"
+"Tasks/DriversVehicle/Values/MonsterTruck`` であるべきです。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:610
 msgid "|task-field-cms|"
@@ -5728,7 +5728,7 @@ msgstr "task-field-cms"
 msgid ""
 "Example: When language is German, a user can search for **Fahrrad** or "
 "the original value **Bike**."
-msgstr "例言語がドイツ語の場合、ユーザーは**Fahrrad** または元の値**Bike** "
+msgstr "例言語がドイツ語の場合、ユーザーは **Fahrrad** または元の値 **Bike** "
 "を検索できる。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-template.rst:4
@@ -6024,9 +6024,9 @@ msgid ""
 "guide/deployment/index.html>`"
 msgstr ""
 "このセクションでは、ポータルを初めて展開する際のステップ・バイ・ステップのガ"
-"イドを提供します。例やベスト・プラクティスも含まれています。より包括的な展開"
-"情報については:dev-url:`|ivy| deployment guidelines </doc/|version|/engine-"
-"guide/deployment/index.html>`"
+"イドを提供します。例やベスト・プラクティスも含まれています。"
+"より包括的な展開情報については :dev-url:`|ivy| deployment guidelines </doc/"
+"|version|/engine-guide/deployment/index.html>`"
 
 #: ../../source/portal-developer-guide/deployment/index.rst:10
 msgid "The following is an overview of a sample deployment setup:"
@@ -6086,10 +6086,9 @@ msgid ""
 "configuration/index.html>`."
 msgstr ""
 ".zipファイルを使用することを推奨します：:dev-url:`branding </doc/|version"
-"|/designer-guide/user-interface/branding/branding-"
-"engine.html>`変数、データベース、REST クライアント:dev-url:`configuration </"
-"doc/|version|/engine-guide/deployment/prepare/application-configuration/"
-"index.html>`."
+"|/designer-guide/user-interface/branding/branding-engine.html>` "
+"変数、データベース、REST クライアント :dev-url:`configuration </doc/|version"
+"|/engine-guide/deployment/prepare/application-configuration/index.html>`."
 
 #: ../../source/portal-developer-guide/deployment/index.rst:49
 msgid "Recommended Deployment Setup (Sample)"
@@ -6172,7 +6171,7 @@ msgid ""
 "highlights the most important configuration settings."
 msgstr ""
 "コンフィギュレーションは、:dev-url:`deployment </doc/|version|/engine-guide/"
-"deployment/prepare/application-configuration/index.html>` または:dev-url:`"
+"deployment/prepare/application-configuration/index.html>` または :dev-url:`"
 "Engine Cockpit UI </doc/|version|/engine-guide/reference/engine-cockpit>` "
 "から行うことができます。 "
 "このセクションでは、最も重要なコンフィギュレーション設定について説明します。"
@@ -6225,7 +6224,7 @@ msgid ""
 "``<engine>/configuration/applications/<application>/variables.Portal.Dashboard.json``"
 msgstr ""
 "あるいは、設定ファイルをエンジンのアプリケーション・フォルダーに直接コピーし"
-"てください：`<engine>/configuration/applications/"
+"てください：``<engine>/configuration/applications/"
 "<application>/variables.Portal.Dashboard.json``"
 
 #: ../../source/portal-developer-guide/deployment/index.rst:115
@@ -6934,8 +6933,9 @@ msgid ""
 "JavaScript string sanitization."
 msgstr ""
 "ポータルでは、JavaScriptの文字列サニタイズのための最も一般的な手法の1つである"
-"、特殊文字のエスケープによるJavaScript文字列のサニタイズを支援するためのパブ"
-"リックAPI``SanitizeAPI.escapeForJavascript`` を``portal-components`` "
+"、"
+"特殊文字のエスケープによるJavaScript文字列のサニタイズを支援するためのパブリ"
+"ックAPI ``SanitizeAPI.escapeForJavascript`` を ``portal-components`` "
 "プロジェクトで提供しています。"
 
 #: ../../source/portal-developer-guide/index.rst:6
@@ -7324,7 +7324,7 @@ msgid ""
 "Open **Portal**, go to **Setting** -> **Express Management**. Import the "
 "configuration which is exported at the first step."
 msgstr ""
-"**ポータル**を開き、［ **設定** ］、［ **Expressの管理** "
+"**ポータル** を開き、［ **設定** ］、［ **Expressの管理** "
 "］の順に移動します。最初にエクスポートした設定をインポートします。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:173
@@ -8386,15 +8386,15 @@ msgstr ""
 
 #: ../../source/portal-developer-guide/installation/index.rst:493
 msgid "Removed the Portal Setting ``Portal.DeepL.AuthKey``."
-msgstr "ポータル設定``Portal.DeepL.AuthKey`` を削除。"
+msgstr "ポータル設定 ``Portal.DeepL.AuthKey`` を削除。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:494
 msgid ""
 "Renamed the Portal Setting ``Portal.DeepL.Enable`` to "
 "``Portal.TranslationService.Enable``."
 msgstr ""
-"ポータル設定``Portal.DeepL.Enable`` "
-"の名前を``Portal.TranslationService.Enable`` に変更。"
+"ポータル設定 ``Portal.DeepL.Enable`` の名前を "
+"``Portal.TranslationService.Enable`` に変更。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:497
 msgid "Changes in 13.1.0"
@@ -8408,7 +8408,7 @@ msgstr "カスタム統計チャートを導入。詳細は :ref:`statistic-char
 
 #: ../../source/portal-developer-guide/installation/index.rst:499
 msgid "Rename the old file ``Portal.ClientStatistic`` to ``Portal.Statistic``."
-msgstr "古いファイル``Portal.ClientStatistic`` を``Portal.Statistic`` "
+msgstr "古いファイル ``Portal.ClientStatistic`` を ``Portal.Statistic`` "
 "にリネームする。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:502
@@ -8421,8 +8421,8 @@ msgid ""
 "``Portal.Tasks.EnablePinnedTask`` to enable the pinning feature for the "
 "case and task widgets on the dashboard."
 msgstr ""
-"ポータル設定``Portal.Cases.EnablePinnedCase`` "
-"と``Portal.Tasks.EnablePinnedTask`` "
+"ポータル設定 ``Portal.Cases.EnablePinnedCase`` と "
+"``Portal.Tasks.EnablePinnedTask`` "
 "を導入し、ダッシュボードのケースとタスクウィジェットのピン留め機能を有効にし"
 "た。"
 
@@ -11197,7 +11197,7 @@ msgstr "ファイル名：``variables.Portal.CustomStatistic.json``"
 
 #: ../../source/portal-developer-guide/settings/index.rst:621
 msgid "``pie``: Pie chart"
-msgstr "`pie``：円グラフ"
+msgstr "``pie``：円グラフ"
 
 #: ../../source/portal-developer-guide/settings/index.rst:623
 msgid "|pie-chart|"
@@ -11209,7 +11209,7 @@ msgstr "円グラフ"
 
 #: ../../source/portal-developer-guide/settings/index.rst:625
 msgid "``bar``: Bar chart"
-msgstr "`bar``：棒グラフ"
+msgstr "``bar``：棒グラフ"
 
 #: ../../source/portal-developer-guide/settings/index.rst:627
 msgid "|bar-chart|"
@@ -11221,7 +11221,7 @@ msgstr "棒グラフ"
 
 #: ../../source/portal-developer-guide/settings/index.rst:629
 msgid "``line``: Line chart"
-msgstr "`line``：折れ線グラフ"
+msgstr "``line``：折れ線グラフ"
 
 #: ../../source/portal-developer-guide/settings/index.rst:631
 msgid "|line-chart|"
@@ -11233,7 +11233,7 @@ msgstr "線グラフ"
 
 #: ../../source/portal-developer-guide/settings/index.rst:633
 msgid "``number``: Labelled number chart"
-msgstr "`number``：ラベル付きナンバーチャート"
+msgstr "``number``：ラベル付きナンバーチャート"
 
 #: ../../source/portal-developer-guide/settings/index.rst:635
 msgid "|number-chart|"
