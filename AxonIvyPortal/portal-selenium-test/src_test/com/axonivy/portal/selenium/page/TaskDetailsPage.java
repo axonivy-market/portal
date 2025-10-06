@@ -120,7 +120,7 @@ public class TaskDetailsPage extends TemplatePage {
   }
 
   public boolean isActionLinkEnable() {
-    return !$(".action-link").getAttribute("class").contains("ui-state-disabled");
+    return !$(".action-link").getDomAttribute("class").contains("ui-state-disabled");
   }
 
   public List<String> getActiveTaskAction() {
@@ -129,7 +129,7 @@ public class TaskDetailsPage extends TemplatePage {
     return actionPanel.findElements(By.cssSelector("a[class*='option-item']"))
         .stream()
         .filter(
-            elem -> !elem.getAttribute("class").contains("ui-state-disabled"))
+            elem -> !elem.getDomAttribute("class").contains("ui-state-disabled"))
         .map(WebElement::getText)
         .collect(Collectors.toList());
   }
@@ -293,7 +293,7 @@ public class TaskDetailsPage extends TemplatePage {
   }
 
   public String getTaskUuid() {
-    return $("a[id$='show-more-note-link']").getAttribute("href").split("uuid=")[1];
+    return $("a[id$='show-more-note-link']").getDomAttribute("href").split("uuid=")[1];
   }
 
   public List<String> getTaskNoteHasAuthors() {
@@ -394,8 +394,8 @@ public class TaskDetailsPage extends TemplatePage {
     waitForElementDisplayed(By.cssSelector("[id$=':task-history-content-container']"), true);
     var systemNotesCheckbox = findElementByCssSelector("[id$=':task-notes:show-system-notes-checkbox']");
     var checkbox = systemNotesCheckbox.findElement(By.cssSelector("div.ui-chkbox-box.ui-widget"));
-    if ((checkboxShouldBeChecked && checkbox.getAttribute("class").contains("ui-state-active"))
-        || (!checkboxShouldBeChecked && !checkbox.getAttribute("class").contains("ui-state-active"))) {
+    if ((checkboxShouldBeChecked && checkbox.getDomAttribute("class").contains("ui-state-active"))
+        || (!checkboxShouldBeChecked && !checkbox.getDomAttribute("class").contains("ui-state-active"))) {
       return;
     } else {
       systemNotesCheckbox.findElement(By.cssSelector("span.ui-chkbox-label")).click();
