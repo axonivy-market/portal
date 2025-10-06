@@ -129,6 +129,7 @@ Processes:
     resumeRequest: Demande de curriculum vitae
     sideStep: Marches latérales disponibles
     verifyPersonalData: Vérification des données personnelles
+    abortRequest: Demande d'annulation
   ContractNegotiation:
     name: Négociation de contrats
   DashboardCustomWidget:
@@ -155,6 +156,7 @@ Processes:
     leaveRequest: Processus d'absence
     name: Processus d'absence
     rejectedTask: Votre demande de congé est rejetée
+    approvalTask: Votre demande de congé est approuvée
   MarketingCampaign:
     name: Coordination des campagnes marketing
   Procurement:
