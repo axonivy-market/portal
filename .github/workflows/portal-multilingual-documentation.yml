@@ -53,11 +53,11 @@ jobs:
           fi
 
           # Check if it's a sprint release
-          if [[ "$VERSION" =~ -m[0-9]+ ]]; then
+          if [[ "$VERSION" == *-* ]]; then
             RELEASE="dev"
           else
             # Extract only major.minor
-            RELEASE=$(echo "$VERSION" | sed 's/-SNAPSHOT$//' | cut -d. -f1,2)
+            RELEASE=$(echo "$VERSION" | cut -d. -f1,2)
           fi
           
           echo "version=$VERSION" >> "$GITHUB_OUTPUT"
