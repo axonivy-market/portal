@@ -1843,6 +1843,10 @@ body.dark .focused {
   transition: font-size .3s ease;
 }
 
+.chart-number-counting {
+  font-size: max(1rem, 0.5rem + 2cqh);
+}
+
 .chart-number-font-size {
   font-weight: bolder;
 }
