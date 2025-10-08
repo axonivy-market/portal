@@ -97,9 +97,7 @@ public class EscalationTaskTest extends BaseTest {
     grantSpecificPortalPermission(PortalPermission.SYSTEM_TASK_READ_ALL);
     grantSpecificPortalPermission(PortalPermission.TASK_WRITE_EXPIRY_ACTIVATOR);
     redirectToNewDashBoard();
-    
     ScreenshotUtils.resizeBrowser(new Dimension(1980, 1080));
-    login(TestAccount.ADMIN_USER);
     CaseWidgetNewDashBoardPage caseWidgetPage = NavigationHelper.navigateToCaseList();
     CaseDetailsPage caseDetailsPage = caseWidgetPage.openDetailsCase(TRIGGER_ESCALATION_CASE);
     
