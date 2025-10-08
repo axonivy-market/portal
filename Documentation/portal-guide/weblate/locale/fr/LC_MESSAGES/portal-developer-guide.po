@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Portal Guide ${revision}\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-22 04:56+0000\n"
+"POT-Creation-Date: 2025-10-08 08:04+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: fr\n"
@@ -5530,294 +5530,314 @@ msgid ""
 msgstr ""
 
 #: ../../source/portal-developer-guide/iframe/index.rst:36
-msgid "**Task Level**: Set the ``embedInFrame`` field in Task custom fields to:"
+msgid ""
+"**Request start Level**: Set the ``embedInFrame`` field in Request tab "
+"custom fields to:"
 msgstr ""
 
 #: ../../source/portal-developer-guide/iframe/index.rst:38
 #: ../../source/portal-developer-guide/iframe/index.rst:46
+#: ../../source/portal-developer-guide/iframe/index.rst:54
 msgid "``true``: Start inside IFrame."
 msgstr ""
 
 #: ../../source/portal-developer-guide/iframe/index.rst:39
 #: ../../source/portal-developer-guide/iframe/index.rst:47
+#: ../../source/portal-developer-guide/iframe/index.rst:55
 msgid "``false``: Do not start inside IFrame."
 msgstr ""
 
 #: ../../source/portal-developer-guide/iframe/index.rst:40
-msgid "Leave unset to use case or engine-level configuration."
+msgid "Leave unset to use task, case or engine-level configuration."
 msgstr ""
 
 #: ../../source/portal-developer-guide/iframe/index.rst:42
-msgid "|task-embedInFrame|"
+msgid "|request-tab-embedInFrame|"
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:357
-msgid "task-embedInFrame"
+#: ../../source/portal-developer-guide/iframe/index.rst:365
+msgid "request-tab-embedInFrame"
 msgstr ""
 
 #: ../../source/portal-developer-guide/iframe/index.rst:44
+msgid "**Task Level**: Set the ``embedInFrame`` field in Task custom fields to:"
+msgstr ""
+
+#: ../../source/portal-developer-guide/iframe/index.rst:48
+msgid "Leave unset to use case or engine-level configuration."
+msgstr ""
+
+#: ../../source/portal-developer-guide/iframe/index.rst:50
+msgid "|task-embedInFrame|"
+msgstr ""
+
+#: ../../source/portal-developer-guide/iframe/index.rst:366
+msgid "task-embedInFrame"
+msgstr ""
+
+#: ../../source/portal-developer-guide/iframe/index.rst:52
 msgid ""
 "**Case Level**: Set the ``embedInFrame`` String field in Case custom "
 "fields to:"
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:48
+#: ../../source/portal-developer-guide/iframe/index.rst:56
 msgid "Leave unset to use engine-level configuration."
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:50
+#: ../../source/portal-developer-guide/iframe/index.rst:58
 msgid "|case-embedInFrame|"
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:358
+#: ../../source/portal-developer-guide/iframe/index.rst:367
 msgid "case-embedInFrame"
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:52
+#: ../../source/portal-developer-guide/iframe/index.rst:60
 msgid "**Engine Level**:"
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:54
+#: ../../source/portal-developer-guide/iframe/index.rst:62
 msgid ""
 "The **Portal Administrator** can globally configure all tasks to start "
 "inside IFrames by setting the ``Portal.EmbedInFrame`` value in the Portal"
 " settings. Refer to :ref:`update-portal-settings`."
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:60
+#: ../../source/portal-developer-guide/iframe/index.rst:68
 msgid "Configure Template"
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:62
+#: ../../source/portal-developer-guide/iframe/index.rst:70
 msgid ""
 "The **Portal** allows configuration of templates with the following "
 "options:"
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:64
+#: ../../source/portal-developer-guide/iframe/index.rst:72
 msgid "Name and icon for the working task."
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:65
+#: ../../source/portal-developer-guide/iframe/index.rst:73
 msgid ""
 "Process chain configuration. (See: :ref:`components-portal-components-"
 "process-chain`)."
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:67
+#: ../../source/portal-developer-guide/iframe/index.rst:75
 msgid "Show/hide case details and other actions."
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:71
+#: ../../source/portal-developer-guide/iframe/index.rst:79
 msgid "Template Parameters"
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:73
+#: ../../source/portal-developer-guide/iframe/index.rst:81
 msgid "The following parameters are available for this template:"
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:75
+#: ../../source/portal-developer-guide/iframe/index.rst:83
 msgid "**Task Details**"
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:77
-#: ../../source/portal-developer-guide/iframe/index.rst:147
+#: ../../source/portal-developer-guide/iframe/index.rst:85
+#: ../../source/portal-developer-guide/iframe/index.rst:155
 msgid "``taskName``: Custom text for the task name."
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:78
+#: ../../source/portal-developer-guide/iframe/index.rst:86
 msgid "``taskIcon``: Icon for the task, using Streamline or Awesome font."
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:79
+#: ../../source/portal-developer-guide/iframe/index.rst:87
 msgid "``isHideTaskName``: Hides the task name when true."
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:81
+#: ../../source/portal-developer-guide/iframe/index.rst:89
 msgid "**Case Information**"
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:83
+#: ../../source/portal-developer-guide/iframe/index.rst:91
 msgid "``caseId``: ID of the case to be displayed in the case information dialog."
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:84
+#: ../../source/portal-developer-guide/iframe/index.rst:92
 msgid "``isHideCaseInfo``: Hides the ``Show Information`` button when true."
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:86
+#: ../../source/portal-developer-guide/iframe/index.rst:94
 msgid "**Process Steps**"
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:88
+#: ../../source/portal-developer-guide/iframe/index.rst:96
 msgid ""
 "``currentProcessStep``: Current step in the process, either as an index "
 "or step name."
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:89
+#: ../../source/portal-developer-guide/iframe/index.rst:97
 msgid "``processSteps``: List of process steps or JSON."
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:90
+#: ../../source/portal-developer-guide/iframe/index.rst:98
 msgid "``isShowAllSteps``: Displays all steps on large screens when true."
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:91
+#: ../../source/portal-developer-guide/iframe/index.rst:99
 msgid ""
 "``processChainDirection``: Orientation of the process chain, either "
 "``VERTICAL`` or ``HORIZONTAL``."
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:92
+#: ../../source/portal-developer-guide/iframe/index.rst:100
 msgid ""
 "``processChainShape``: Shape of the process chain, either ``LINE`` or "
 "``CIRCLE``."
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:94
+#: ../../source/portal-developer-guide/iframe/index.rst:102
 msgid "**Task Actions**"
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:96
+#: ../../source/portal-developer-guide/iframe/index.rst:104
 msgid "``isHideTaskAction``: Hides the task action button when true."
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:97
+#: ../../source/portal-developer-guide/iframe/index.rst:105
 msgid ""
 "``isWorkingOnATask``: Indicates if a task is currently being worked on, "
 "useful for displaying a warning when leaving the page."
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:100
+#: ../../source/portal-developer-guide/iframe/index.rst:108
 msgid "**Miscellaneous**"
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:102
+#: ../../source/portal-developer-guide/iframe/index.rst:110
 msgid "``announcementInvisible``: Makes the announcement invisible."
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:103
+#: ../../source/portal-developer-guide/iframe/index.rst:111
 msgid ""
 "``isCardFrame``: Displays content of the IFrame inside a card-style "
 "container."
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:104
+#: ../../source/portal-developer-guide/iframe/index.rst:112
 msgid "``viewName``: Defines a custom breadcrumb view."
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:107
+#: ../../source/portal-developer-guide/iframe/index.rst:115
 msgid "Configuration Methods"
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:109
+#: ../../source/portal-developer-guide/iframe/index.rst:117
 msgid "You can configure the UI in one of two ways:"
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:112
+#: ../../source/portal-developer-guide/iframe/index.rst:120
 msgid "We recommend to sanitize your parameters before passing them."
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:114
+#: ../../source/portal-developer-guide/iframe/index.rst:122
 msgid "**Using ``IFrameTaskConfig`` Component**"
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:143
+#: ../../source/portal-developer-guide/iframe/index.rst:151
 msgid "Configure Task Details"
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:144
+#: ../../source/portal-developer-guide/iframe/index.rst:152
 msgid "You can customize task details, such as the task name and icon."
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:146
-#: ../../source/portal-developer-guide/iframe/index.rst:172
-#: ../../source/portal-developer-guide/iframe/index.rst:196
-#: ../../source/portal-developer-guide/iframe/index.rst:222
+#: ../../source/portal-developer-guide/iframe/index.rst:154
+#: ../../source/portal-developer-guide/iframe/index.rst:180
+#: ../../source/portal-developer-guide/iframe/index.rst:204
+#: ../../source/portal-developer-guide/iframe/index.rst:230
 msgid "**Parameters:**"
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:148
+#: ../../source/portal-developer-guide/iframe/index.rst:156
 msgid ""
 "``taskIcon``: Using Streamline or Awesome font (e.g., `si si-arrow-"
 "right`)."
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:149
+#: ../../source/portal-developer-guide/iframe/index.rst:157
 msgid ""
 "``isHideTaskName``: Set to ``true`` to hide the task name. Default is "
 "``false``."
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:151
-#: ../../source/portal-developer-guide/iframe/index.rst:177
-#: ../../source/portal-developer-guide/iframe/index.rst:202
-#: ../../source/portal-developer-guide/iframe/index.rst:232
+#: ../../source/portal-developer-guide/iframe/index.rst:159
+#: ../../source/portal-developer-guide/iframe/index.rst:185
+#: ../../source/portal-developer-guide/iframe/index.rst:210
+#: ../../source/portal-developer-guide/iframe/index.rst:240
 msgid "**Example:**"
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:169
+#: ../../source/portal-developer-guide/iframe/index.rst:177
 msgid "Configure Case Information"
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:170
+#: ../../source/portal-developer-guide/iframe/index.rst:178
 msgid ""
 "Customize how case details are displayed and whether to show the \"Show "
 "Information\" button."
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:173
+#: ../../source/portal-developer-guide/iframe/index.rst:181
 msgid "``caseId``: The ID of the case to display in the information dialog."
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:174
+#: ../../source/portal-developer-guide/iframe/index.rst:182
 msgid ""
 "``isHideCaseInfo``: Set to ``true`` to hide the \"Show Information\" "
 "button. Default is ``false``."
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:193
+#: ../../source/portal-developer-guide/iframe/index.rst:201
 msgid "Configure Task Actions"
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:194
+#: ../../source/portal-developer-guide/iframe/index.rst:202
 msgid "Control the visibility and behavior of task-related buttons and actions."
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:197
+#: ../../source/portal-developer-guide/iframe/index.rst:205
 msgid ""
 "``isHideTaskAction``: Set to ``true`` to hide the task action button. "
 "Default is ``false``."
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:199
+#: ../../source/portal-developer-guide/iframe/index.rst:207
 msgid ""
 "``isWorkingOnATask``: Indicates if the task is active. Useful for "
 "displaying a warning when leaving the page. Default is ``true``."
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:219
+#: ../../source/portal-developer-guide/iframe/index.rst:227
 msgid "Configure Miscellaneous Options"
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:220
+#: ../../source/portal-developer-guide/iframe/index.rst:228
 msgid "Additional settings can influence the layout and visibility of elements."
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:223
+#: ../../source/portal-developer-guide/iframe/index.rst:231
 msgid ""
 "``announcementInvisible``: Set to ``true`` to hide announcements. Default"
 " is ``false``."
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:225
+#: ../../source/portal-developer-guide/iframe/index.rst:233
 msgid ""
 "``isCardFrame``: Set to ``true`` to display the IFrame content inside a "
 "card-style container."
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:227
+#: ../../source/portal-developer-guide/iframe/index.rst:235
 msgid ""
 "``viewName``: Custom breadcrumb view. Possible values are: ``HOME, "
 "PROCESS, TASK, TASK_DETAIL, CASE_DETAIL, CASE, TECHNICAL_CASE, "
@@ -5826,25 +5846,25 @@ msgid ""
 "NOTIFICATION``."
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:249
+#: ../../source/portal-developer-guide/iframe/index.rst:257
 msgid "Configure Show Information"
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:251
+#: ../../source/portal-developer-guide/iframe/index.rst:259
 msgid ""
 "When you click the ``Show Information`` button, **Portal** will show  "
 "details of the running case in a modal dialog."
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:254
+#: ../../source/portal-developer-guide/iframe/index.rst:262
 msgid "Options for ``Show Information``"
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:256
+#: ../../source/portal-developer-guide/iframe/index.rst:264
 msgid "``caseId``: Case ID of the case you want to show in the modal dialog."
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:257
+#: ../../source/portal-developer-guide/iframe/index.rst:265
 msgid "``isHideCaseInfo``: Hide the ``Show Information`` button"
 msgstr ""
 
@@ -5864,23 +5884,23 @@ msgstr ""
 msgid "ID of case to be displayed in case information dialog"
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:265
-#: ../../source/portal-developer-guide/iframe/index.rst:298
-#: ../../source/portal-developer-guide/iframe/index.rst:326
+#: ../../source/portal-developer-guide/iframe/index.rst:273
+#: ../../source/portal-developer-guide/iframe/index.rst:306
+#: ../../source/portal-developer-guide/iframe/index.rst:334
 msgid "Example using IFrameTaskConfig:"
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:280
+#: ../../source/portal-developer-guide/iframe/index.rst:288
 msgid "Configure Process steps"
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:282
+#: ../../source/portal-developer-guide/iframe/index.rst:290
 msgid ""
 "``Process steps`` have many options to be configured from the list of "
 "steps to layout and shape."
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:284
+#: ../../source/portal-developer-guide/iframe/index.rst:292
 msgid "Options for ``Process steps``"
 msgstr ""
 
@@ -5924,18 +5944,18 @@ msgstr ""
 msgid "CIRCLE (default) or LINE"
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:295
+#: ../../source/portal-developer-guide/iframe/index.rst:303
 msgid ""
 "When defining parameter ``processSteps``, please make sure that you add "
 "this JSP function tag to your HTML dialog: "
 "``xmlns:fn=\"http://xmlns.jcp.org/jsp/jstl/functions\"``"
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:316
+#: ../../source/portal-developer-guide/iframe/index.rst:324
 msgid "Other options"
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:318
+#: ../../source/portal-developer-guide/iframe/index.rst:326
 msgid "Various options can affect functions and layout."
 msgstr ""
 
@@ -5973,28 +5993,28 @@ msgstr ""
 msgid "display content of the IFrame inside a card style"
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:344
+#: ../../source/portal-developer-guide/iframe/index.rst:352
 msgid "Developer tips"
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:346
+#: ../../source/portal-developer-guide/iframe/index.rst:354
 msgid ""
 "If your project has a navigation button that does not complete a task "
 "(e.g., Cancel), redirect the user to the desired page (e.g., the "
 "application home, task list, process list, etc.) in the HTML dialog."
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:351
+#: ../../source/portal-developer-guide/iframe/index.rst:359
 msgid "Sanitize JavaScript string"
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:353
+#: ../../source/portal-developer-guide/iframe/index.rst:361
 msgid ""
 "Whenever you use a Portal feature that communicates through JavaScript, "
 "ensure that you sanitize your data before sending it to the Portal"
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:355
+#: ../../source/portal-developer-guide/iframe/index.rst:363
 msgid ""
 "The Portal provides the public API ``SanitizeAPI.escapeForJavascript`` in"
 " the ``portal-components`` project to help sanitize JavaScript strings by"
@@ -8384,7 +8404,7 @@ msgid "_`TaskDestroy`"
 msgstr ""
 
 #: ../../source/portal-developer-guide/permissions/index.rst:57
-msgid "Permission to see the Destroy Task action"
+msgid "Permission to execute the Destroy action"
 msgstr ""
 
 #: ../../source/portal-developer-guide/permissions/index.rst:59
@@ -10153,4 +10173,7 @@ msgstr ""
 #: ../../source/portal-developer-guide/usermenu/index.rst:93
 msgid "Params are not required if the URL denotes an external webpage."
 msgstr ""
+
+#~ msgid "Permission to see the Destroy Task action"
+#~ msgstr ""
 
