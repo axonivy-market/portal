@@ -175,8 +175,8 @@ public class CompactDashboardProcessBean
       dashboardProcessBean.redirectToLink(link, false);
       return;
     }
-    dashboardProcessBean.redirectToLink(link, true);
 
+    dashboardProcessBean.redirectToLink(link, true);
   }
 
   private void handleNavigateAsAiResult(DashboardProcess process, String link) {
