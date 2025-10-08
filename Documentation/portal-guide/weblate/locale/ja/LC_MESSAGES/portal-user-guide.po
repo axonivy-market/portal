@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Portal Guide ${revision}\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-09-22 04:56+0000\n"
-"PO-Revision-Date: 2025-10-03 11:01+0000\n"
+"PO-Revision-Date: 2025-10-08 07:30+0000\n"
 "Last-Translator: Thang Huynh <hhqthang@axonactive.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/axonivy-portal/"
 "portal-le/doc/portal-doc-user-guide/ja/>\n"
@@ -800,11 +800,11 @@ msgstr "trueを設定すると、キーボードショートカットのトグ�
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.ApplicationName"
-msgstr "ポータル.アプリケーション名"
+msgstr "Portal.ApplicationName"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Axon Ivy"
-msgstr "アクソンアイビー"
+msgstr "Axon Ivy"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "The application name that will be displayed on the page title."
@@ -816,7 +816,7 @@ msgstr "Portal.CaseDetails.HideDocument"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "FALSE"
-msgstr "偽"
+msgstr "FALSE"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid ""
@@ -845,7 +845,7 @@ msgstr "ケース詳細ページでの所要時間の表示のオン／オフを
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.Cases.EnableOwner"
-msgstr "Portal.Cases.EnableOwner（オーナーを有効にする"
+msgstr "Portal.Cases.EnableOwner"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv
 msgid ""
@@ -959,7 +959,7 @@ msgstr "時間による日付フィルタリングを有効にするにはtrue�
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.DateTimeFormat.HideTime"
-msgstr "ポータル.DateTimeFormat.HideTime"
+msgstr "Portal.DateTimeFormat.HideTime"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Set to true to hide hours and minutes next to date."
@@ -967,7 +967,7 @@ msgstr "日付の横の時間と分を非表示にするには、true に設定�
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.DateTimeFormat.HideYear"
-msgstr "ポータル.DateTimeFormat.HideYear"
+msgstr "Portal.DateTimeFormat.HideYear"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Set to true, year will be hidden, otherwise it will be shown."
@@ -975,7 +975,7 @@ msgstr "true に設定すると、年は非表示になり、そうでない場�
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.DisplayMessageAfterFinishTask"
-msgstr "Portal.DisplayMessageAfterFinishTask（タスク終了後のメッセージ表示"
+msgstr "Portal.DisplayMessageAfterFinishTask"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "A feedback message will be displayed after user finishes or leaves a task."
@@ -984,7 +984,7 @@ msgstr "ユーザーがタスクを完了または退出すると、フィード
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.DisplayUsersOfRole"
-msgstr "ポータル.DisplayUsersOfRole"
+msgstr "Portal.DisplayUsersOfRole"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv
 msgid ""
@@ -998,8 +998,7 @@ msgstr ""
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.Document.EnableScriptChecking"
-msgstr "Portal.Document.EnableScriptChecking（ポータル.ドキュメント.スクリプトチェッ"
-"クの有効化"
+msgstr "Portal.Document.EnableScriptChecking"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid ""
@@ -1022,8 +1021,7 @@ msgstr ""
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.Document.WhitelistExtension"
-msgstr "Portal.Document.WhitelistExtension（ポータル.ドキュメント.ホワイトリスト.エク"
-"ステンション"
+msgstr "Portal.Document.WhitelistExtension"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv
 msgid "doc, docx, xls,"
@@ -1058,7 +1056,7 @@ msgstr "コンマで区切ってください。例：pdf、txt、doc、docx。"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.EmbedInFrame"
-msgstr "ポータル.EmbedInFrame"
+msgstr "Portal.EmbedInFrame"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "If true, start a process/task in IFrame mode."
@@ -1066,7 +1064,7 @@ msgstr "trueの場合、IFrameモードでプロセス/タスクを開始する�
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.Histories.HideSystemNotes"
-msgstr "Portal.Histories.HideSystemNotes（システムノートを隠す"
+msgstr "Portal.Histories.HideSystemNotes"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid ""
@@ -1078,7 +1076,7 @@ msgstr "true "
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.Histories.HideSystemNotesForAdministrator"
-msgstr "Portal.Histories.HideSystemNotesForAdministrator（管理者のシステムメモを隠す"
+msgstr "Portal.Histories.HideSystemNotesForAdministrator"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid ""
@@ -1102,8 +1100,7 @@ msgstr "true "
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.Histories.HideSystemTasksForAdministrator"
-msgstr "Portal.Histories.HideSystemTasksForAdministrator（管理者のシステムタスクを隠"
-"す"
+msgstr "Portal.Histories.HideSystemTasksForAdministrator"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "If true, case note does not display any system tasks for administrator."
@@ -1127,7 +1124,7 @@ msgstr "ケース/タスクの詳細にシステムノートをデフォルト�
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.Homepage"
-msgstr "ポータル.ホームページ"
+msgstr "Portal.Homepage"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 #: ../../source/portal-user-guide/new-dashboard/index.rst:4
@@ -1159,7 +1156,7 @@ msgstr "ログインしているユーザーの書式を表示するオプショ
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.Processes.DefaultImage"
-msgstr "Portal.Processes.DefaultImage（ポータル.プロセス.デフォルト画像"
+msgstr "Portal.Processes.DefaultImage"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "DEFAULT"
@@ -1173,7 +1170,7 @@ msgstr "画像処理リストに表示される初期画像の標準設定。"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.Processes.Mode"
-msgstr "ポータル.プロセス.モード"
+msgstr "Portal.Processes.Mode"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Image"
@@ -1185,7 +1182,7 @@ msgstr "処理リストの表示モードの標準設定。"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.Processes.ShowInformation"
-msgstr "ポータル.プロセス.ShowInformation"
+msgstr "Portal.Processes.ShowInformation"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid ""
@@ -1197,7 +1194,7 @@ msgstr "プロセスページ（グリッド "
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.ShowButtonIcon"
-msgstr "ポータル.ShowButtonIcon"
+msgstr "Portal.ShowButtonIcon"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "If true, show icons in buttons."
@@ -1205,7 +1202,7 @@ msgstr "trueの場合、ボタンにアイコンを表示する。"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.ShowGlobalSearch"
-msgstr "ポータル.ShowGlobalSearch"
+msgstr "Portal.ShowGlobalSearch"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "If true, display the global search box."
@@ -1232,9 +1229,7 @@ msgstr "タスク詳細ページでの所要時間の表示のオン／オフを
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.Tasks.BehaviourWhenClickingOnLineInTaskList"
-msgstr ""
-"Portal.Tasks.BehaviourWhenClickingOnLineInTaskList（ポータル.タスク.ビヘイビ"
-"アウェンクリックオンラインインタスクリスト"
+msgstr "Portal.Tasks.BehaviourWhenClickingOnLineInTaskList"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Run the task"
@@ -1281,7 +1276,7 @@ msgstr "ダッシュボードの症例ウィジェット、グローバル検索
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.UserMenu.HideChangePasswordMenu"
-msgstr "Portal.UserMenu.HideChangePasswordメニュー"
+msgstr "Portal.UserMenu.HideChangePasswordMenu"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid ""
@@ -1308,7 +1303,7 @@ msgstr "true "
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.ProcessViewer"
-msgstr "ポータル.ProcessViewer"
+msgstr "Portal.ProcessViewer"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid ""
@@ -1333,7 +1328,7 @@ msgstr "true の場合、ケース履歴は関連するケース情報を履歴�
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.ShowErrorLogToConsole"
-msgstr "ポータル.ShowErrorLogToConsole"
+msgstr "Portal.ShowErrorLogToConsole"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "If true, write error log to browser console."
@@ -1341,7 +1336,7 @@ msgstr "trueの場合、ブラウザのコンソールにエラーログを書�
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.ShowAvatar"
-msgstr "ポータル.ShowAvatar"
+msgstr "Portal.ShowAvatar"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "If true, switch on the display of user/role avatars."
@@ -1349,7 +1344,7 @@ msgstr "trueの場合、ユーザー/ロールアバターの表示をオンに�
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.RoleDirectChildrenLimit"
-msgstr "Portal.RoleDirectChildrenリミット"
+msgstr "Portal.RoleDirectChildrenLimit"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "50"
@@ -1367,7 +1362,7 @@ msgstr "有効数字：10, 50, 100."
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.RoleParentLimit"
-msgstr "ポータル.RoleParentLimit"
+msgstr "Portal.RoleParentLimit"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "10"
@@ -1394,7 +1389,7 @@ msgstr "ログインページのフッターを非表示にするにはfalseを�
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.Theme.EnableSwitchThemeModeButton"
-msgstr "Portal.Theme.EnableSwitchThemeModeボタン"
+msgstr "Portal.Theme.EnableSwitchThemeModeButton"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "If false, the Switch Theme Mode button is disabled."
@@ -1402,11 +1397,11 @@ msgstr "Falseの場合、Switch Theme Modeボタンは無効になります。"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.Theme.Mode"
-msgstr "ポータル.テーマ.モード"
+msgstr "Portal.Theme.Mode"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "LIGHT"
-msgstr "ライト"
+msgstr "LIGHT"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "The default theme mode of the application."
@@ -1414,11 +1409,11 @@ msgstr "アプリケーションのデフォルトのテーマモード。"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.SearchScope.ByCaseFields"
-msgstr "Portal.SearchScope.ByCaseFields（ポータル.サーチスコープ.バイケースフィールド"
+msgstr "Portal.SearchScope.ByCaseFields"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "NAME, DESCRIPTION, CUSTOM"
-msgstr "名前、説明、カスタム"
+msgstr "NAME, DESCRIPTION, CUSTOM"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid ""
@@ -1431,11 +1426,11 @@ msgstr ""
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.SearchScope.ByTaskFields"
-msgstr "Portal.SearchScope.ByTaskFields（ポータル.サーチスコープ.バイタスクフィールド"
+msgstr "Portal.SearchScope.ByTaskFields"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "NAME, DESCRIPTION"
-msgstr "名前、説明"
+msgstr "NAME, DESCRIPTION"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid ""
@@ -1465,7 +1460,7 @@ msgstr "新しい翻訳サービスのサポートを有効にするには、こ
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.ShowQuickGlobalSearch"
-msgstr "ポータル.ShowQuickGlobalSearch"
+msgstr "Portal.ShowQuickGlobalSearch"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "For switch on/off the display of the quick global search."
@@ -1498,7 +1493,7 @@ msgstr "Apple Store で Axon Ivy モバイル アプリをダウンロードす�
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.UserMenu.GooglePlayURL"
-msgstr "ポータル.ユーザーメニュー.GooglePlayURL"
+msgstr "Portal.UserMenu.GooglePlayURL"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Set URL to download Axon Ivy mobile app on Google Play."
@@ -1507,11 +1502,11 @@ msgstr "Google Play で Axon Ivy モバイル アプリをダウンロードす�
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.GlobalSearchScopeCategories"
-msgstr "Portal.GlobalSearchScopeCategories（グローバル・サーチ・スコープ・カテゴリー"
+msgstr "Portal.GlobalSearchScopeCategories"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "PROCESSES,TASKS,CASES"
-msgstr "プロセス、タスク、ケース"
+msgstr "PROCESSES,TASKS,CASES"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Defining the types that the global search will search for."
@@ -1519,8 +1514,7 @@ msgstr "グローバル検索が検索するタイプを定義する。"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.Upload.DocumentUploadSizeLimit"
-msgstr "Portal.Upload.DocumentUploadSizeLimit（ポータル.アップロード.ドキュメントアッ"
-"プロードサイズリミット"
+msgstr "Portal.Upload.DocumentUploadSizeLimit"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "20"
@@ -1536,8 +1530,7 @@ msgstr ""
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.Upload.ImageUploadSizeLimit"
-msgstr "Portal.Upload.ImageUploadSizeLimit（ポータル.アップロード.イメージアップロー"
-"ドサイズリミット"
+msgstr "Portal.Upload.ImageUploadSizeLimit"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "6"
@@ -1584,7 +1577,7 @@ msgstr ""
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.ShowTooltipTechnicalName"
-msgstr "Portal.ShowTooltipテクニカルネーム"
+msgstr "Portal.ShowTooltipTechnicalName"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Enable to show users' technical name on tooltips."
@@ -2822,8 +2815,8 @@ msgstr ":guilabel:`ダッシュボードの作成` "
 msgid ""
 "Configuration your private dashboard (see: :ref:`Dashboard <new-"
 "dashboard>`)."
-msgstr "個人用ダッシュボードを設定します（ :ref:`Dashboard <new-dashboard>` "
-"を参照）。"
+msgstr "個人用ダッシュボードを設定します（ :ref:`ダッシュボード <new-dashboard>` を参"
+"照）。"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:79
 msgid ""
@@ -3039,8 +3032,8 @@ msgstr "|add-icon| "
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:150
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:189
 msgid "Configuration public dashboard (see: :ref:`Dashboard <new-dashboard>`)."
-msgstr "公開用ダッシュボードを設定します（ :ref:`Dashboard <new-dashboard>` "
-"を参照）。"
+msgstr "公開用ダッシュボードを設定します（ :ref:`ダッシュボード <new-dashboard>` を参"
+"照）。"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:152
 msgid ""
@@ -7143,7 +7136,7 @@ msgstr "バージョン情報ダイアログ"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:130
 msgid "Logout"
-msgstr "ログアウト"
+msgstr "Logout"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:132
 msgid ""
@@ -7281,8 +7274,8 @@ msgid ""
 "Open :ref:`Admin Settings <admin-settings>`, set "
 ":guilabel:`Portal.TranslationService.Enable` to true."
 msgstr ""
-":ref:`Admin Settings <admin-settings>` "
-"を開き、:guilabel:`Portal.TranslationService.Enable` を true に設定する。"
+":ref:`管理者設定 <admin-settings>` を開き、"
+":guilabel:`Portal.TranslationService.Enable` を true に設定する。"
 
 #: ../../source/portal-user-guide/portal-multi-language/index.rst:18
 msgid ""
@@ -7290,8 +7283,8 @@ msgid ""
 "translation service </doc/|version|/engine-guide/configuration"
 "/translation-service/index.html>`"
 msgstr ""
-"翻訳サービス変数の設定 :dev-url:`|ivy| translation service </doc/|version"
-"|/engine-guide/configuration/translation-service/index.html>`"
+"翻訳サービス変数の設定 :dev-url:`翻訳サービス </doc/|version|/engine-guide/"
+"configuration/translation-service/index.html>`"
 
 #: ../../source/portal-user-guide/portal-multi-language/index.rst:21
 msgid "HowTo: Translate a pure text"
