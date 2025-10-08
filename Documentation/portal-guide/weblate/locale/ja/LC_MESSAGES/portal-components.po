@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Portal Guide ${revision}\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-09-19 08:12+0000\n"
-"PO-Revision-Date: 2025-10-04 11:02+0000\n"
+"PO-Revision-Date: 2025-10-09 02:31+0000\n"
 "Last-Translator: Thang Huynh <hhqthang@axonactive.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/axonivy-portal/"
 "portal-12/doc/portal-components/ja/>\n"
@@ -433,15 +433,14 @@ msgid "enableVirusScannerForUploadedDocument"
 msgstr "enableVirusScannerForUploadedDocument"
 
 #: ../../source/portal-components/document-table/index.rst
-#, fuzzy
 msgid ""
 "Boolean value to specify virus scanning. Set to ``true`` to enable virus "
 "scanning. Refer to :ref:`Virus Scanning Setting<settings-virus-scanning-"
 "setting>` for more details."
 msgstr ""
-"ウイルススキャンを指定するブール値。ウイルススキャンを有効にするには、``true`"
-"` に設定します。詳細は:ref:`Virus Scanning Setting<settings-virus-scanning-"
-"setting>` を参照してください。"
+"ウイルススキャンを指定するブール値。ウイルススキャンを有効にするには、"
+"``true`` に設定します。詳細は :ref:`ウイルススキャンの設定 <settings-virus-"
+"scanning-setting>` を参照してください。"
 
 #: ../../source/portal-components/document-table/index.rst
 msgid ""
@@ -646,7 +645,7 @@ msgstr ""
 
 #: ../../source/portal-components/document-table/index.rst:82
 msgid "**Signature**: portalUploadDocumentItem"
-msgstr "**Signature**: portalUploadDocumentItem"
+msgstr "**シグネチャ**: portalUploadDocumentItem"
 
 #: ../../source/portal-components/document-table/index.rst:85
 #: ../../source/portal-components/document-table/index.rst:161
@@ -755,7 +754,7 @@ msgstr "**署名**: portalRenameDocumentItem"
 
 #: ../../source/portal-components/document-table/index.rst:173
 msgid "isSuccess"
-msgstr "成功"
+msgstr "isSuccess"
 
 #: ../../source/portal-components/document-table/index.rst:173
 msgid "rename successfully or not"
@@ -1635,7 +1634,7 @@ msgstr "ラベルのスタイルクラス。"
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
 msgid "label"
-msgstr "ラベル"
+msgstr "label"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 msgid "Text of label for role selection component."
@@ -1644,7 +1643,7 @@ msgstr "役割選択コンポーネントのラベルのテキスト。"
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
 msgid "size"
-msgstr "サイズ"
+msgstr "size"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 msgid "Number of characters. usesed to determine the width of the input element."
@@ -1653,7 +1652,7 @@ msgstr "入力要素の幅を決定するために使用される。"
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
 msgid "messageStyleClass"
-msgstr "メッセージスタイルクラス"
+msgstr "messageStyleClass"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 msgid "Message style class."
@@ -1662,13 +1661,13 @@ msgstr "メッセージスタイルのクラス。"
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
 msgid "itemLabel"
-msgstr "アイテムラベル"
+msgstr "itemLabel"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/security_member_name_and_avatar_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
 msgid "displayName"
-msgstr "表示名"
+msgstr "displayName"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 msgid "Displayed text of selected role and roles in dropdown list."
@@ -1678,7 +1677,7 @@ msgstr "選択されたロールおよびロールのテキストがドロップ
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
 msgid "cache"
-msgstr "キャッシュ"
+msgstr "cache"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 msgid "If true, autocomplete caches the search result list."
@@ -1687,12 +1686,12 @@ msgstr "trueの場合、オートコンプリートは検索結果リストを�
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
 msgid "moreText"
-msgstr "モアテキスト"
+msgstr "moreText"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
 msgid "More..."
-msgstr "もっと..."
+msgstr "More..."
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
@@ -1704,7 +1703,7 @@ msgstr "提案リストがmaxResultsより大きい場合にパネルに表示�
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
 msgid "queryDelay"
-msgstr "クエリ遅延"
+msgstr "queryDelay"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
@@ -1719,7 +1718,7 @@ msgstr "サーバーに問い合わせを送信するまでのミリ秒単位の
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
 msgid "maxResults"
-msgstr "最大結果"
+msgstr "maxResults"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
@@ -1775,8 +1774,9 @@ msgid ""
 "value, refer to HowTo: Update :ref:`update-portal-settings` for more "
 "details."
 msgstr ""
-"この設定はPortalの設定Portal.ShowAvatarをデフォルト値として検出します：詳しく"
-"はHowTo: Update :ref:`update-portal-settings` を参照してください。"
+"設定はPortal設定のPortal.ShowAvatarをデフォルト値として検出します。詳細は :re"
+"f:`ハウツー：ポータル設定を更新する <update-portal-settings>`を参照してくださ"
+"い。"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv
 #: ../../source/portal-components/documents/security_member_name_and_avatar_component_attributes.csv
@@ -1822,7 +1822,7 @@ msgstr "emptyMessage"
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
 msgid "No results"
-msgstr "結果なし"
+msgstr "No results"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
@@ -2196,7 +2196,7 @@ msgstr "\\--process-history-item-border-hover"
 
 #: ../../source/portal-components/documents/css_variables/process_history.csv:1
 msgid "1px solid #90DDE9"
-msgstr "1pxソリッド#90DDE9"
+msgstr "1px solid #90DDE9"
 
 #: ../../source/portal-components/documents/css_variables/process_history.csv:1
 msgid "Hover color of item’s border."
@@ -2208,7 +2208,7 @@ msgstr "\\--process-history-item-background-hover"
 
 #: ../../source/portal-components/documents/css_variables/process_history.csv:1
 msgid "rgba(144, 221, 233, 0.24)"
-msgstr "RGBA(144, 221, 233, 0.24)"
+msgstr "rgba(144, 221, 233, 0.24)"
 
 #: ../../source/portal-components/documents/css_variables/process_history.csv:1
 msgid "Hover background color of item."
@@ -2220,7 +2220,7 @@ msgstr "\\--process-history-state-in-progress-color"
 
 #: ../../source/portal-components/documents/css_variables/process_history.csv:1
 msgid "rgba(7, 140, 255, 1)"
-msgstr "RGBA(7, 140, 255, 1)"
+msgstr "rgba(7, 140, 255, 1)"
 
 #: ../../source/portal-components/documents/css_variables/process_history.csv:1
 msgid "Color of in-progress state."
@@ -2244,7 +2244,7 @@ msgstr "\\--process-history-empty-message-label-color"
 
 #: ../../source/portal-components/documents/css_variables/process_history.csv:1
 msgid "hsl(64, 1%, 48%)"
-msgstr "HSL(64, 1%, 48%)"
+msgstr "hsl(64, 1%, 48%)"
 
 #: ../../source/portal-components/documents/css_variables/process_history.csv:1
 msgid "Text color of message label when there is no item."
