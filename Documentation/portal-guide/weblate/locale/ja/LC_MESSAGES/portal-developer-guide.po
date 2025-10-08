@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Portal Guide ${revision}\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-09-22 04:56+0000\n"
-"PO-Revision-Date: 2025-10-03 11:00+0000\n"
+"PO-Revision-Date: 2025-10-08 07:27+0000\n"
 "Last-Translator: Thang Huynh <hhqthang@axonactive.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/axonivy-portal/"
 "portal-le/doc/portal-doc-developer-guide/ja/>\n"
@@ -916,8 +916,9 @@ msgid ""
 "``document`` -  ``technicalCase`` -  ``businessDetails`` -  "
 "``relatedTask`` -  ``history`` -  ``custom``."
 msgstr ""
-"`type` `` ` - ` ` - ` ` - ` ` - ` ` - ` ` - ` `.information` `document` "
-"`technicalCase` `businessDetails` `relatedTask` `history` `custom`"
+"``type``: ウィジェットの種類。7種類あります：‐  ``information``-  "
+"``document``-  ``technicalCase``-  ``businessDetails``-  ``relatedTask``-  "
+"``history``-  ``custom``。"
 
 #: ../../source/portal-developer-guide/customization/case-item-details.rst:126
 msgid "``layout``: defines the UI styling of the widget."
@@ -6984,8 +6985,8 @@ msgid ""
 "The deployment of Ivy projects is described in :dev-url:`project "
 "deployment </doc/|version|/engine-guide/deployment/index.html>` ."
 msgstr ""
-"Ivy プロジェクトの展開については、:dev-url:`project deployment </doc/|version"
-"|/engine-guide/deployment/index.html>` で説明します。"
+"Ivy プロジェクトの展開については、:dev-url:`展開 </doc/|version|/engine-"
+"guide/deployment/index.html>` で説明します。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:32
 msgid "Designer"
@@ -7238,10 +7239,9 @@ msgid ""
 "url:`|ivy| Translation service </doc/|version|/engine-guide/configuration"
 "/translation-service/index.html>`"
 msgstr ""
-"ポータルで DeepL "
-"翻訳サービスを使用している場合は、ここに記載されている手順に従って再構成して"
-"ください：:dev-url:`|ivy| Translation service </doc/|version|/engine-guide/"
-"configuration/translation-service/index.html>`"
+"ポータルで DeepL 翻訳サービスを使用している場合は、ここに記載されている手順に"
+"従って再構成してください：:dev-url:`|ivy| 翻訳サービス </doc/|version"
+"|/engine-guide/configuration/translation-service/index.html>`"
 
 #: ../../source/portal-developer-guide/installation/index.rst:150
 msgid "Migrate 11.3.2 To 12.0.0"
@@ -7342,7 +7342,7 @@ msgid ""
 "<https://developer.axonivy.com/doc/|version|/engine-guide/configuration"
 "/advanced-configuration.html#cron-expression>`_."
 msgstr ""
-"Axon Ivy CRON のジョブパターンを参照してください（ `CRON Expression <https://"
+"Axon Ivy CRON のジョブパターンを参照してください（ `CRON 式 <https://"
 "developer.axonivy.com/doc/|version|/engine-guide/configuration/advanced-"
 "configuration.html#cron-expression>`_ ）。"
 
@@ -7558,7 +7558,7 @@ msgstr "portalGetLogoutPage"
 
 #: ../../source/portal-developer-guide/installation/index.rst:236
 msgid "Logout"
-msgstr "ログアウト"
+msgstr "Logout"
 
 #: ../../source/portal-developer-guide/installation/index.rst:236
 msgid "portalLogout"
@@ -8125,9 +8125,9 @@ msgid ""
 "</doc/|version|/designer-guide/how-to/overrides.html?#override-new-"
 "wizard>` to customize ``Portal HTML Dialog``"
 msgstr ""
-"ポータルでは、:dev-url:`|ivy| HtmlOverride ウィザード </doc/|version"
+"ポータルでは、:dev-url:`オーバーライドの作成ウィザード </doc/|version"
 "|/designer-guide/how-to/overrides.html?#override-new-wizard>` を使用して、 ``"
-"ポータルの HTML ダイアログ`` をカスタマイズすることを推奨します。"
+"ポータルの HTML ダイアログ`` をカスタマイズすることを推奨します"
 
 #: ../../source/portal-developer-guide/installation/index.rst:404
 msgid ""
@@ -8144,9 +8144,8 @@ msgid ""
 "update your files that are using classes in ivy-icon.css."
 msgstr ""
 "ivy-icon.css を削除し、現在のクラスを `HTML Dialog Demo <https://"
-"market.axonivy.com/html-dialog-demo>`_ "
-"にある新しいクラスに置き換えました。そのため、ivy-icon.css "
-"のクラスを使用しているファイルを更新する必要があります。"
+"market.axonivy.com/html-dialog-demo>`_ にある新しいクラスに置き換えました。そ"
+"のため、ivy-icon.css のクラスを使用しているファイルを更新する必要があります。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:408
 msgid ""
@@ -8154,10 +8153,9 @@ msgid ""
 " customization, follow :ref:`How to override TaskItemDetail "
 "<customization-task-item-details>` to add custom widgets."
 msgstr ""
-"taskItemDetailCustomPanelTop、taskItemDetailCustomPanelBottom "
-"をカスタマイズしている場合は、:ref:`TaskItemDetail のオーバーライド方法 "
-"<customization-task-item-details>` "
-"に従って、カスタムウィジェットを追加してください。"
+"taskItemDetailCustomPanelTop、taskItemDetailCustomPanelBottom をカスタマイズ"
+"している場合は、:ref:`タスク項目の詳細 <customization-task-item-details>` に"
+"従って、カスタムウィジェットを追加してください。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:410
 msgid ""
@@ -8167,9 +8165,9 @@ msgid ""
 "custom widgets."
 msgstr ""
 "``caseItemDetailCustomTop``、 ``caseItemDetailCustomMiddle``、 "
-"``caseItemDetailCustomBottom`` をカスタマイズしている場合は、:ref:`"
-"CaseItemDetail のオーバーライド方法 <customization-case-item-details>` "
-"に従って、これらのカスタムウィジェットを追加してください。"
+"``caseItemDetailCustomBottom`` をカスタマイズしている場合は、:ref:`ケース項目"
+"の詳細 <customization-case-item-details>` に従って、これらのカスタムウィジェ"
+"ットを追加してください。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:413
 msgid "Migrate 8.x To 9.1"
@@ -10056,11 +10054,11 @@ msgstr "ドキュメントを更新、削除する権限"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:155
 msgid "_`DocumentOfInvolvedCaseWrite`"
-msgstr "_`DocumentOfInvolvedCaseWrite`。"
+msgstr "_`DocumentOfInvolvedCaseWrite`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:160
 msgid "_`DashboardWriteOwn`"
-msgstr "_`DashboardWriteOwn`。"
+msgstr "_`DashboardWriteOwn`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:161
 msgid "Permission to update private dashboards"
@@ -10068,7 +10066,7 @@ msgstr "個人用ダッシュボードを更新する権限"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:165
 msgid "_`DashboardWritePublic`"
-msgstr "_`DashboardWritePublic`。"
+msgstr "_`DashboardWritePublic`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:166
 msgid "Permission to update public dashboards"
@@ -10076,7 +10074,7 @@ msgstr "公開用ダッシュボードを更新する権限"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:168
 msgid "_`AccessFullProcessList`"
-msgstr "_`AccessFullProcessList`。"
+msgstr "_`AccessFullProcessList`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:169
 msgid "Permission to access the full process list. See :ref:`full-process-list`."
@@ -10085,7 +10083,7 @@ msgstr "全プロセスリストにアクセスする権限。:ref:`full-process
 
 #: ../../source/portal-developer-guide/permissions/index.rst:173
 msgid "_`AccessFullTaskList`"
-msgstr "_`AccessFullTaskList`。"
+msgstr "_`AccessFullTaskList`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:174
 msgid "Permission to access the full task list. See :ref:`full-task-list`."
@@ -10093,7 +10091,7 @@ msgstr "全タスクリストにアクセスする権限。:ref:`full-task-list`
 
 #: ../../source/portal-developer-guide/permissions/index.rst:178
 msgid "_`AccessFullCaseList`"
-msgstr "_`AccessFullCaseList`。"
+msgstr "_`AccessFullCaseList`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:179
 msgid "Permission to access the full case list. See :ref:`full-case-list`."
@@ -10117,7 +10115,7 @@ msgstr "［さらにノートを表示］を表示する権限"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:193
 msgid "_`CreatePublicExternalLink`"
-msgstr "_`CreatePublicExternalLink`。"
+msgstr "_`CreatePublicExternalLink`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:194
 msgid ""
@@ -10162,7 +10160,7 @@ msgstr "個人用ダッシュボードをエクスポートする権限"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:208
 msgid "_`DashboardExportPublic`"
-msgstr "_`DashboardExportPublic`。"
+msgstr "_`DashboardExportPublic`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:209
 msgid "Permission to export public dashboards"
@@ -10170,7 +10168,7 @@ msgstr "公開用ダッシュボードをエクスポートする権限"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:211
 msgid "_`DashboardImportOwn`"
-msgstr "_`DashboardImportOwn`。"
+msgstr "_`DashboardImportOwn`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:212
 msgid "Permission to import private dashboards"
@@ -10178,7 +10176,7 @@ msgstr "個人用ダッシュボードをインポートする権限"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:214
 msgid "_`DashboardImportPublic`"
-msgstr "_`DashboardImportPublic`。"
+msgstr "_`DashboardImportPublic`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:215
 msgid "Permission to import public dashboards"
@@ -10194,7 +10192,7 @@ msgstr "ダッシュボードのリンクを共有する権限"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:222
 msgid "_`NotificationChannelsSetting`"
-msgstr "_`NotificationChannelsSetting`。"
+msgstr "_`NotificationChannelsSetting`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:223
 msgid ""
@@ -10212,7 +10210,7 @@ msgstr "ポータルの不在者と代行者の権限"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:232
 msgid "_`UserCreateAbsence`"
-msgstr "_`UserCreateAbsence`。"
+msgstr "_`UserCreateAbsence`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:233
 msgid "Permission to create, edit absences of all users"
@@ -10220,7 +10218,7 @@ msgstr "すべてのユーザーの不在を作成、編集する権限"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:235
 msgid "_`UserCreateOwnAbsence`"
-msgstr "_`UserCreateOwnAbsence`。"
+msgstr "_`UserCreateOwnAbsence`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:236
 msgid "Permission to create, edit my own absences"
@@ -10228,7 +10226,7 @@ msgstr "自分の不在を作成、編集する権限"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:240
 msgid "_`UserDeleteAbsence`"
-msgstr "_`UserDeleteAbsence`。"
+msgstr "_`UserDeleteAbsence`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:241
 msgid "Permission to remove the absence entries for all users"
@@ -10236,7 +10234,7 @@ msgstr "すべてのユーザーの不在エントリを削除する権限"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:243
 msgid "_`UserDeleteOwnAbsence`"
-msgstr "_`UserDeleteOwnAbsence`。"
+msgstr "_`UserDeleteOwnAbsence`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:244
 msgid "Permission to remove my own absence entries"
@@ -10244,7 +10242,7 @@ msgstr "自分の不在エントリを削除する権限"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:248
 msgid "_`UserReadAbsences`"
-msgstr "_`UserReadAbsences`。"
+msgstr "_`UserReadAbsences`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:249
 msgid "Permission to read absences of all users"
@@ -10252,7 +10250,7 @@ msgstr "すべてのユーザーの不在を閲覧する権限"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:251
 msgid "_`UserReadOwnAbsences`"
-msgstr "_`UserReadOwnAbsences`。"
+msgstr "_`UserReadOwnAbsences`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:252
 msgid "Permission to read my own absences"
@@ -11025,10 +11023,10 @@ msgid ""
 "Restart Ivy engine after changing this variable."
 msgstr ""
 "クロン式は、古いユーザーのデータを消去する時間を定義します。例えば、毎日 6AM "
-"の式は ``0 6 * * *`` になります。 `CRON Expression <https://"
-"developer.axonivy.com/doc/11.2/engine-guide/configuration/advanced-"
-"configuration.html#cron-expression>`_ を参照してください。この変数の変更後、"
-"Ivy エンジンを再起動します。"
+"の式は ``0 6 * * *`` になります。 `CRON 式 <https://developer.axonivy.com/"
+"doc/11.2/engine-guide/configuration/advanced-configuration.html#cron-"
+"expression>`_ を参照してください。この変数の変更後、Ivy エンジンを再起動しま"
+"す。"
 
 #: ../../source/portal-developer-guide/settings/index.rst:339
 msgid "PortalDeleteAllFinishedHiddenCases"
@@ -11187,9 +11185,9 @@ msgid ""
 "statistic charts that can be used by the :ref:`Statistic widget <portal-"
 "statistic-widget>` of Portal dashboard."
 msgstr ""
-"ポータル・ダッシュボードの :ref:`Statistic widget <portal-statistic-widget>` "
-"で使用できるすべての統計チャートについて、フィルタ・ロジック、外観、その他の"
-"設定を定義できます。"
+"ポータル・ダッシュボードの :ref:`統計ウィジェットの定義 <portal-statistic-"
+"widget>` で使用できるすべての統計チャートについて、フィルタ・ロジック、外観、"
+"その他の設定を定義できます。"
 
 #: ../../source/portal-developer-guide/settings/index.rst:443
 msgid "Filename: ``variables.Portal.CustomStatistic.json``"
