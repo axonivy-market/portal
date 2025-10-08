@@ -15,11 +15,6 @@ permissions:
   pages: write
 on:
   workflow_dispatch:
-    inputs:
-      ivyVersion:
-        description: 'Ivy version use to replace |version| placeholder of the links which navigate to ivy documentation. e.g.: https://developer.axonivy.com/doc/nightly/designer-guide/configuration/variables.html'
-        default: 'nightly'
-        required: true
 
 jobs:
   build-document:
@@ -44,7 +39,6 @@ jobs:
       - name: Get current version
         id: get_version
         run: |
-          echo "Build portal document. Use input 'ivyVersion' with default value is 'nightly'" >> $GITHUB_STEP_SUMMARY
           VERSION=$(mvn help:evaluate -Dexpression=revision -q -DforceStdout -f Documentation/pom.xml)
           if [[ "$VERSION" == "null object or invalid expression" ]]; then
             echo "Error: could not evaluate maven revision property"
@@ -59,11 +53,11 @@ jobs:
             # Extract only major.minor
             RELEASE=$(echo "$VERSION" | cut -d. -f1,2)
           fi
-          
+
           echo "version=$VERSION" >> "$GITHUB_OUTPUT"
           echo "release=$RELEASE" >> "$GITHUB_OUTPUT"
           echo "Version is $VERSION"
-          echo "Release is $RELEASE" 
+          echo "Release is $RELEASE"
 
       - name: Download artifacts from screenshot workflow
         uses: dawidd6/action-download-artifact@v11
@@ -82,10 +76,6 @@ jobs:
         run: |
           mvn clean process-resources -Divy.engine.version=[13.1.0,] -Divy.engine.download.url=https://developer.axonivy.com/permalink/nightly/axonivy-engine.zip -f Documentation/public-api/pom.xml
           mvn clean generate-resources -f Documentation/pom.xml
-
-      - name: Run substitute
-        shell: bash
-        run: chmod +x Documentation/portal-guide/substitute.sh && Documentation/portal-guide/substitute.sh ${{ inputs.ivyVersion }}
 
       - name: Build English Documentation HTML
         id: build-en-html
