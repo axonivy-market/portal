@@ -176,6 +176,7 @@ public class CompactDashboardProcessBean
       return;
     }
     dashboardProcessBean.redirectToLink(link, true);
+
   }
 
   private void handleNavigateAsAiResult(DashboardProcess process, String link) {

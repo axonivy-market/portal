@@ -2,8 +2,6 @@ package ch.ivy.addon.portalkit.service;
 
 import java.util.Objects;
 
-import org.apache.commons.lang3.StringUtils;
-
 import com.axonivy.portal.components.publicapi.ProcessStartAPI;
 import com.axonivy.portal.components.service.impl.ProcessService;
 
@@ -52,11 +50,11 @@ public class IFrameService {
    * @return whether task embed in IFrame
    */
   private static Boolean getEmbedInIFrameCustomField(ITask task) {
-    String embedInFrame = "";
+    String embedInFrame = null;
     if (isFirstTask(task)) {
       embedInFrame = getEmbedInFrameInProcessRequestTab(task);
     }
-    if (StringUtils.isBlank(embedInFrame)) {
+    if (embedInFrame == null) {
       embedInFrame = task.customFields().stringField(CustomFields.EMBED_IN_FRAME).getOrNull();
       if (embedInFrame == null) {
         embedInFrame = task.getCase().customFields().stringField(CustomFields.EMBED_IN_FRAME).getOrNull();
@@ -83,9 +81,9 @@ public class IFrameService {
     return webstartable.customFields().value(CustomFields.EMBED_IN_FRAME);
   }
 
-  private static Boolean isFirstTask(ITask task) {
-    Long taskId = task.getId();
-    Long firstTaskId = task.getCase().getFirstTask().getId();
-    return Objects.equals(taskId, firstTaskId);
+  private static boolean isFirstTask(ITask task) {
+    String taskUUID = task.uuid();
+    String firstTaskUUID = task.getCase().getFirstTask().uuid();
+    return Objects.equals(taskUUID, firstTaskUUID);
   }
 }

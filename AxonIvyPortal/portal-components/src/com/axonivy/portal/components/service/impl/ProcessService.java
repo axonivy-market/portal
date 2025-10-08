@@ -4,7 +4,6 @@ import static com.axonivy.portal.components.constant.CustomFields.IS_DASHBOARD_P
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -65,19 +64,14 @@ public class ProcessService {
     return start -> BooleanUtils.toBoolean(start.customFields().value(IS_DASHBOARD_PROCESS));
   }
   
-  private Predicate<? super IWebStartable> filterByRelativeLink(String startProcessId) {
-    return webStartable -> Strings.CS.equals(startProcessId, webStartable.getLink().getRelative());
-  }
-  
-  private List<IWebStartable> getWebStartables() {
-    return Optional.ofNullable(ProcessService.getInstance().findProcesses()).orElse(new ArrayList<>());
-  }
-  
   public IWebStartable findWebStartable(String processLink) {
     if (StringUtils.isNotBlank(processLink)) {
-      return getWebStartables().stream().filter(filterByRelativeLink(processLink)).findFirst().orElse(null);
+      return findProcesses().stream()
+          .filter(webStartable -> Strings.CS.equals(processLink, webStartable.getLink().getRelative()))
+          .findFirst()
+          .orElse(null);
     }
-    
+
     return null;
   }
 }
