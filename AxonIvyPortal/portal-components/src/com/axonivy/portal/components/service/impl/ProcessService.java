@@ -8,6 +8,7 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.BooleanUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Strings;
 
 import ch.ivyteam.ivy.environment.Ivy;
@@ -61,5 +62,16 @@ public class ProcessService {
 
   private Predicate<? super IWebStartable> filterByCustomDashboardProcess() {
     return start -> BooleanUtils.toBoolean(start.customFields().value(IS_DASHBOARD_PROCESS));
+  }
+  
+  public IWebStartable findWebStartable(String processLink) {
+    if (StringUtils.isNotBlank(processLink)) {
+      return findProcesses().stream()
+          .filter(webStartable -> Strings.CS.equals(processLink, webStartable.getLink().getRelative()))
+          .findFirst()
+          .orElse(null);
+    }
+
+    return null;
   }
 }
