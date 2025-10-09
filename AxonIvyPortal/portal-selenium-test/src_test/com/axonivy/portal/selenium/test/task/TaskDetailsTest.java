@@ -3,6 +3,8 @@ package com.axonivy.portal.selenium.test.task;
 import static com.codeborne.selenide.CollectionCondition.size;
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThanOrEqual;
 
+import java.util.List;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -21,7 +23,7 @@ import com.codeborne.selenide.Condition;
 
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 
-@IvyWebTest
+@IvyWebTest(headless = false)
 public class TaskDetailsTest extends BaseTest {
 
   // TASK NAME
@@ -44,6 +46,7 @@ public class TaskDetailsTest extends BaseTest {
     login(TestAccount.ADMIN_USER);
     updateGlobalVariable(Variable.TASK_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST.getKey(), ACCESS_TASK_DETAILS);
     grantSpecificPortalPermission(PortalPermission.TASK_CASE_ADD_NOTE);
+    grantSpecificPortalPermission(PortalPermission.TASK_DISPLAY_CUSTOM_FIELDS_ACTION);
   }
 
   @Test
@@ -187,5 +190,23 @@ public class TaskDetailsTest extends BaseTest {
     taskDetailsPage.getNotesWithContent("System note").shouldHave(size(1));
     taskDetailsPage.clickOnSystemNotesCheckbox(false);
     taskDetailsPage.getNotesWithContent("System note").shouldHave(size(0));
+  }
+  
+  @Test
+  public void testShowCustomFieldsOfTask() {
+    redirectToRelativeLink(createDataForStatisticWidget);
+    redirectToNewDashBoard();
+    MainMenuPage mainMenuPage = new MainMenuPage();
+    mainMenuPage.selectTaskMenu();
+    TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
+    taskWidget.openDashboardTaskDetails("Maternity Leave Request");
+    TaskDetailsPage taskDetailsPage = new TaskDetailsPage();
+    
+    // Verify custom field dialog data
+    taskDetailsPage.openActionPanel();
+    taskDetailsPage.clickOnShowCustomFieldsDialog();
+    assertTrue(taskDetailsPage.getCustomFieldsDialog().isDisplayed());
+    List<String> customFieldNames = taskDetailsPage.getCustomFieldNames();
+    assertFalse(customFieldNames.isEmpty());
   }
 }
