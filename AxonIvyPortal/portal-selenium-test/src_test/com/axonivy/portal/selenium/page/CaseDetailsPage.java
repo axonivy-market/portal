@@ -26,7 +26,6 @@ import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
-import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 
 import ch.ivyteam.ivy.workflow.task.TaskBusinessState;
@@ -447,7 +446,7 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public String getCaseUuid() {
-    return findElementByCssSelector("a[id$='show-more-note-link']").getAttribute("href").split("uuid=")[1];
+    return findElementByCssSelector("a[id$='show-more-note-link']").getDomAttribute("href").split("uuid=")[1];
   }
 
   public void clickRelatedCaseActionButton(int index) {
@@ -482,8 +481,8 @@ public class CaseDetailsPage extends TemplatePage {
     waitForElementDisplayed(By.cssSelector("[id$=':history-container']"), true);
     var relatedCaseCheckbox = findElementByCssSelector("[id$=':case-histories:related-case-checkbox']");
     var checkbox = relatedCaseCheckbox.findElement(By.cssSelector("div.ui-chkbox-box.ui-widget"));
-    if ((checkboxShouldBeChecked && checkbox.getAttribute(CLASS).contains("ui-state-active"))
-        || (!checkboxShouldBeChecked && !checkbox.getAttribute(CLASS).contains("ui-state-active"))) {
+    if ((checkboxShouldBeChecked && checkbox.getDomAttribute(CLASS).contains("ui-state-active"))
+        || (!checkboxShouldBeChecked && !checkbox.getDomAttribute(CLASS).contains("ui-state-active"))) {
       return;
     } else {
       relatedCaseCheckbox.findElement(By.cssSelector("span.ui-chkbox-label")).click();
@@ -507,10 +506,10 @@ public class CaseDetailsPage extends TemplatePage {
     WebElement breadcrumb = findElementByCssSelector(CURRENT_BREADCRUMB_SELECTOR);
     String result = "";
     if (CollectionUtils.isNotEmpty(breadcrumb.findElements(By.cssSelector(".js-count")))) {
-      result = breadcrumb.findElement(By.cssSelector(".ui-menuitem-text")).getAttribute("innerHTML")
-          + breadcrumb.findElement(By.cssSelector(".js-count")).getAttribute("innerHTML");
+      result = breadcrumb.findElement(By.cssSelector(".ui-menuitem-text")).getDomProperty("innerHTML")
+          + breadcrumb.findElement(By.cssSelector(".js-count")).getDomProperty("innerHTML");
     } else {
-      result = breadcrumb.findElement(By.cssSelector(".ui-menuitem-text")).getAttribute("innerHTML");
+      result = breadcrumb.findElement(By.cssSelector(".ui-menuitem-text")).getDomProperty("innerHTML");
     }
     return result;
 
@@ -544,7 +543,7 @@ public class CaseDetailsPage extends TemplatePage {
     $(By.cssSelector("[id$=':switch-to-edit-mode-button']")).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     com.axonivy.portal.selenium.common.WaitHelper.assertTrueWithWait(() -> {
       var infoWidget = findElementByCssSelector("[id$='case-details-information-panel']");
-      return infoWidget.getAttribute(CLASS_PROPERTY).contains("ui-resizable ui-resizable-autohide");
+      return infoWidget.getDomAttribute(CLASS_PROPERTY).contains("ui-resizable ui-resizable-autohide");
     });
   }
 
@@ -563,12 +562,12 @@ public class CaseDetailsPage extends TemplatePage {
 
   public String getProcessLinkInCustomIFrameWidget() {
     WebElement formInFrame = findElementByCssSelector("form[id='custom-widget-iframe-data']");
-    return formInFrame.getAttribute("action");
+    return formInFrame.getDomAttribute("action");
   }
 
   public String getIFrameURLOfCustomWidget() {
     WebElement iframe = findElementByCssSelector("[id$=':custom-iframe']");
-    return iframe.findElement(By.tagName("iframe")).getAttribute("src");
+    return iframe.findElement(By.tagName("iframe")).getDomAttribute("src");
   }
 
   public boolean isCustomMiddlePanelDisplay() {
@@ -650,7 +649,7 @@ public class CaseDetailsPage extends TemplatePage {
     columnCheckbox.shouldBe(Condition.visible, DEFAULT_TIMEOUT).click();
     WaitHelper.assertTrueWithWait(() -> !findElementByCssSelector(
         "label[for$='task-widget:task-columns-configuration:select-columns-form:columns-checkbox:5']")
-            .getAttribute("class").equals("ui-state-disabled"));
+            .getClass().equals("ui-state-disabled"));
   }
 
   public void clickRelatedTaskColumnsButton() {
@@ -684,8 +683,8 @@ public class CaseDetailsPage extends TemplatePage {
 
   public boolean isDownloadCompleted(String statusDialogId) {
     WebElement statusDialog = driver.findElement(By.cssSelector("div[id$=':" + statusDialogId + "']"));
-    WaitHelper.assertTrueWithWait(() -> StringUtils.isNotBlank(statusDialog.getAttribute("download-status")));
-    return StringUtils.equals(statusDialog.getAttribute("download-status"), "completed");
+    WaitHelper.assertTrueWithWait(() -> StringUtils.isNotBlank(statusDialog.getDomAttribute("download-status")));
+    return StringUtils.equals(statusDialog.getDomAttribute("download-status"), "completed");
   }
 
   public Integer getTaskRowIndex(String taskName) {
@@ -780,12 +779,12 @@ public class CaseDetailsPage extends TemplatePage {
         String.format("[id$='task-widget:related-tasks:%d:additional-options:task-delegate-command", index);
     waitForElementDisplayed(By.cssSelector(commandButton), true);
     WebElement delegateButton = findElementByCssSelector(commandButton);
-    return delegateButton.getAttribute(CLASS).contains("ui-state-disabled");
+    return delegateButton.getDomAttribute(CLASS).contains("ui-state-disabled");
   }
 
   public boolean isRelatedTaskDestroyEnabled(String taskName) {
     WebElement destroyButton = findDestroyCommand(taskName);
-    return !destroyButton.getAttribute(CLASS).contains("ui-state-disabled");
+    return !destroyButton.getDomAttribute(CLASS).contains("ui-state-disabled");
   }
 
   public void selectDelegateResponsible(String responsibleName, boolean isRole) {
@@ -839,7 +838,7 @@ public class CaseDetailsPage extends TemplatePage {
     Integer index = getTaskRowIndex(taskName);
     WebElement element = $$("td.related-task-state-column span.task-state").get(index);
     if (element != null) {
-      String stateClass = element.getAttribute(CLASS);
+      String stateClass = element.getDomAttribute(CLASS);
       return stateClass.contains(taskState.toString().toLowerCase() + "-task-state");
     }
     return false;
@@ -963,7 +962,7 @@ public class CaseDetailsPage extends TemplatePage {
     waitForElementClickableThenClick($(By.xpath(xpath)));
     WaitHelper.assertTrueWithWait(() -> !findElementByCssSelector(
         "label[for$='related-cases-widget:case-columns-configuration:select-columns-form:columns-checkbox:3']")
-            .getAttribute("class").equals("ui-state-disabled"));
+            .getDomAttribute("class").equals("ui-state-disabled"));
   }
 
   public void clickRelatedCaseApplyButton() {
@@ -1079,8 +1078,8 @@ public class CaseDetailsPage extends TemplatePage {
     waitForElementDisplayed(By.cssSelector("[id$=':history-container']"), true);
     var systemNotesCheckbox = findElementByCssSelector("[id$=':case-histories:system-note-checkbox']");
     var checkbox = systemNotesCheckbox.findElement(By.cssSelector("div.ui-chkbox-box.ui-widget"));
-    if ((checkboxShouldBeChecked && checkbox.getAttribute(CLASS).contains("ui-state-active"))
-        || (!checkboxShouldBeChecked && !checkbox.getAttribute(CLASS).contains("ui-state-active"))) {
+    if ((checkboxShouldBeChecked && checkbox.getDomAttribute(CLASS).contains("ui-state-active"))
+        || (!checkboxShouldBeChecked && !checkbox.getDomAttribute(CLASS).contains("ui-state-active"))) {
       return;
     } else {
       systemNotesCheckbox.findElement(By.cssSelector("span.ui-chkbox-label")).click();
@@ -1094,8 +1093,8 @@ public class CaseDetailsPage extends TemplatePage {
     waitForElementDisplayed(By.cssSelector("[id$=':history-container']"), true);
     var systemNotesCheckbox = findElementByCssSelector("[id$=':case-histories:system-task-checkbox']");
     var checkbox = systemNotesCheckbox.findElement(By.cssSelector("div.ui-chkbox-box.ui-widget"));
-    if ((checkboxShouldBeChecked && checkbox.getAttribute(CLASS).contains("ui-state-active"))
-        || (!checkboxShouldBeChecked && !checkbox.getAttribute(CLASS).contains("ui-state-active"))) {
+    if ((checkboxShouldBeChecked && checkbox.getDomAttribute(CLASS).contains("ui-state-active"))
+        || (!checkboxShouldBeChecked && !checkbox.getDomAttribute(CLASS).contains("ui-state-active"))) {
       return;
     } else {
       systemNotesCheckbox.findElement(By.cssSelector("span.ui-chkbox-label")).click();

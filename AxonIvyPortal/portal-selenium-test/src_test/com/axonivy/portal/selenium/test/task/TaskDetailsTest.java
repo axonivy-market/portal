@@ -41,6 +41,7 @@ public class TaskDetailsTest extends BaseTest {
   @BeforeEach
   public void setup() {
     super.setup();
+    login(TestAccount.ADMIN_USER);
     updateGlobalVariable(Variable.TASK_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST.getKey(), ACCESS_TASK_DETAILS);
     grantSpecificPortalPermission(PortalPermission.TASK_CASE_ADD_NOTE);
   }
@@ -48,14 +49,14 @@ public class TaskDetailsTest extends BaseTest {
   @Test
   public void testVisibilityOfNotesWhenAddNoteOnTaskDetailsWithoutTechnicalCase() {
     redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
-    login(TestAccount.ADMIN_USER);
     redirectToNewDashBoard();
     MainMenuPage mainMenuPage = new MainMenuPage();
-    mainMenuPage.openTaskList();
+    mainMenuPage.selectTaskMenu();
     TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
     taskWidget.openDashboardTaskDetails(ORDER_PIZZA);
     TaskDetailsPage taskDetailsPage = new TaskDetailsPage();
     taskDetailsPage.addNote(NOTE_TASK_DETAIL_BUSINESS_CASE);
+    
     taskDetailsPage.getNotesWithContent(NOTE_TASK_DETAIL_BUSINESS_CASE).shouldHave(size(1));
     taskDetailsPage.gotoBusinessCase();
     CaseDetailsPage caseDetailsPage = new CaseDetailsPage();
@@ -66,14 +67,14 @@ public class TaskDetailsTest extends BaseTest {
   @Test
   public void testVisibilityOfNotesWhenAddNoteOnTaskDetailsWithTechnicalCase() {
     redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
-    login(TestAccount.ADMIN_USER);
     redirectToNewDashBoard();
     MainMenuPage mainMenuPage = new MainMenuPage();
-    mainMenuPage.openTaskList();
+    mainMenuPage.selectTaskMenu();
     TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
     taskWidget.openDashboardTaskDetails(TAKE_ORDER);
     TaskDetailsPage taskDetailsPage = new TaskDetailsPage();
     taskDetailsPage.addNote(NOTE_TASK_DETAIL_TECHNICAL_CASE);
+    
     taskDetailsPage.getNotesWithContent(NOTE_TASK_DETAIL_TECHNICAL_CASE).shouldHave(size(1));
     CaseDetailsPage caseDetailsPage = taskDetailsPage.gotoTechnicalCase();
     caseDetailsPage.getHitoriesComponent().shouldHave(sizeGreaterThanOrEqual(1));

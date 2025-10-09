@@ -33,6 +33,14 @@ Follow these steps to use the IFrame approach:
 #. **Configuration Levels**  
    If you want custom behavior, configure at one of the following levels to open your tasks in an IFrame:
 
+   - **Request start Level**: Set the ``embedInFrame`` field in Request tab custom fields to:
+
+     - ``true``: Start inside IFrame.
+     - ``false``: Do not start inside IFrame.
+     - Leave unset to use task, case or engine-level configuration.
+
+     |request-tab-embedInFrame|
+
    - **Task Level**: Set the ``embedInFrame`` field in Task custom fields to:
 
      - ``true``: Start inside IFrame.
@@ -390,6 +398,7 @@ The Portal provides the public API ``SanitizeAPI.escapeForJavascript`` in the ``
 
 .. |task-embedInFrame| image:: images/task-embedInFrame.png
 .. |case-embedInFrame| image:: images/case-embedInFrame.png
+.. |request-tab-embedInFrame| image:: images/request-tab-embedInFrame.png
 .. |case-list-template| image:: ../../screenshots/case/case-key-information.png
 .. |task-list-template| image:: ../../screenshots/task/task-key-information.png
 .. |task-name-template| image:: ../../screenshots/layout-template/task-template.png

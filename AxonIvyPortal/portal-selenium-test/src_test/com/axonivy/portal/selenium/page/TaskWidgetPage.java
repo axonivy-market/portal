@@ -251,7 +251,7 @@ public class TaskWidgetPage extends TemplatePage {
   public void waitTaskAppearThenClick(int index) {
     SelenideElement taskStartElement =
         findElementById(taskWidgetId + ":task-list-scroller").$$(By.className("start-task-action")).get(index);
-    if (taskStartElement.getAttribute("id").contains(":task-action:resume-task-action-component")) {
+    if (taskStartElement.getDomAttribute("id").contains(":task-action:resume-task-action-component")) {
       waitForElementClickableThenClick(taskStartElement);
       resetResumedTask();
     } else {
@@ -334,16 +334,16 @@ public class TaskWidgetPage extends TemplatePage {
 
   public void clickOnUnCheckSelectAllStates() {
     var selectAll = getStateFilterPanel().$(By.cssSelector("[id$=':filter-input-form:states-select-all']"));
-    if (selectAll.$(By.className("ui-chkbox-box")).getAttribute(CLASS_PROPERTY).contains("ui-state-active")) {
+    if (selectAll.$(By.className("ui-chkbox-box")).getDomAttribute(CLASS_PROPERTY).contains("ui-state-active")) {
       waitForElementClickableThenClick($(selectAll.$(By.cssSelector("span.ui-chkbox-label"))));
       WaitHelper.assertTrueWithWait(() -> {
-        return $("[id$=':filter-input-form:states-select-all'] span.ui-chkbox-icon").getAttribute(CLASS)
+        return $("[id$=':filter-input-form:states-select-all'] span.ui-chkbox-icon").getDomAttribute(CLASS)
             .contains("ui-icon-blank");
       });
     } else {
       waitForElementClickableThenClick($(selectAll.$(By.cssSelector("span.ui-chkbox-label"))));
       WaitHelper.assertTrueWithWait(() -> {
-        return $("[id$=':filter-input-form:states-select-all'] span.ui-chkbox-icon").getAttribute(CLASS)
+        return $("[id$=':filter-input-form:states-select-all'] span.ui-chkbox-icon").getDomAttribute(CLASS)
             .contains("ui-icon-check");
       });
       clickOnUnCheckSelectAllStates();
@@ -354,7 +354,7 @@ public class TaskWidgetPage extends TemplatePage {
     String startCommandButton =
         String.format(taskWidgetId + ":task-list-scroller:%d:task-item:task-action:task-action-component", taskId);
     WebElement element = findElementById(startCommandButton);
-    return !element.getAttribute(CLASS).contains("ui-state-disabled");
+    return !element.getDomAttribute(CLASS).contains("ui-state-disabled");
   }
 
   public List<String> getActiveTaskAction(int taskIndex) {
@@ -362,12 +362,12 @@ public class TaskWidgetPage extends TemplatePage {
     WebElement actionPanel = findElementByCssSelector(String.format(
         "div[id$='task-list-scroller:%d:task-item:task-action:additional-options:side-steps-panel']", taskIndex));
     return actionPanel.findElements(By.cssSelector("a[class*='option-item']")).stream()
-        .filter(elem -> !elem.getAttribute("class").contains("ui-state-disabled")).map(WebElement::getText)
+        .filter(elem -> !elem.getDomAttribute("class").contains("ui-state-disabled")).map(WebElement::getText)
         .collect(Collectors.toList());
   }
 
   public boolean isActionLinkEnable() {
-    return !$(".action-link").getAttribute("class").contains("ui-state-disabled");
+    return !$(".action-link").getDomAttribute("class").contains("ui-state-disabled");
   }
 
   public TaskIFrameTemplatePage startTaskIFrame(int index) {
@@ -557,7 +557,7 @@ public class TaskWidgetPage extends TemplatePage {
         + ":task-item:task-action:additional-options:task-delegate-command"), true);
     SelenideElement delegateButton = findElementById(taskWidgetId + ":task-list-scroller:" + index
         + ":task-item:task-action:additional-options:task-delegate-command");
-    return delegateButton.getAttribute(CLASS).contains("ui-state-disabled");
+    return delegateButton.getDomAttribute(CLASS).contains("ui-state-disabled");
   }
 
   public String getNameOfTaskAt(int index) {
@@ -729,8 +729,8 @@ public class TaskWidgetPage extends TemplatePage {
 
   public boolean isDownloadCompleted() {
     WebElement statusDialog = driver.findElement(By.cssSelector("div[id$=':status-dialog']"));
-    WaitHelper.assertTrueWithWait(() -> StringUtils.isNotBlank(statusDialog.getAttribute("download-status")));
-    return StringUtils.equals(statusDialog.getAttribute("download-status"), "completed");
+    WaitHelper.assertTrueWithWait(() -> StringUtils.isNotBlank(statusDialog.getDomAttribute("download-status")));
+    return StringUtils.equals(statusDialog.getDomAttribute("download-status"), "completed");
   }
 
   public void sortTaskListByColumn(String columnHeaderText, int rowIndex, String columnId, String expectedValue) {
