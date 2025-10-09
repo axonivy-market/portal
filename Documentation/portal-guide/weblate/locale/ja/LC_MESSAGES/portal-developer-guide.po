@@ -10,7 +10,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-09-26 07:09+0000\n"
 "PO-Revision-Date: 2025-10-09 10:37+0000\n"
-"Last-Translator: Thang Huynh <hhqthang@axonactive.com>\n"
+"Last-Translator: DeepL <noreply-mt-deepl@weblate.org>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/axonivy-portal/"
 "portal-12/doc/portal-developer-guide/ja/>\n"
 "Language: ja\n"
@@ -4178,9 +4178,9 @@ msgid ""
 "field content is displayed based on the language selected in the custom "
 "field."
 msgstr ""
-"**Multi-Language Support for Custom Fields** "
-"機能により、カスタムフィールドの値を多言語で提供できるようになります。フィー"
-"ルドの内容は、カスタムフィールドで選択された言語に基づいて表示されます。"
+"**Multi-Language Support for Custom Fields** 機能により、カスタムフィールドの"
+"値を多言語で提供できるようになります。フィールドの内容は、カスタムフィールド"
+"で選択された言語に基づいて表示されます。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:609
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:580
@@ -4359,8 +4359,8 @@ msgstr "``HasCmsValues = true`` の場合、フィルターは CMS の翻訳と�
 msgid ""
 "When enabling the Multi-Language for Custom Fields, only accepted "
 "``CONTAINS`` operator."
-msgstr "カスタムフィールドの多言語化を有効にする場合、``CONTAINS`` "
-"演算子のみ受け付けます。"
+msgstr "カスタムフィールドの多言語化を有効にする場合、``CONTAINS`` 演算子のみ受け付け"
+"ます。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:681
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:653
@@ -5805,8 +5805,8 @@ msgstr "準備"
 msgid ""
 "Axon Ivy projects are packaged as either .iar (Ivy Archive) files or .zip"
 " files for deployment."
-msgstr "Axon Ivy プロジェクトは、.iar (Ivy Archive) ファイルまたは配備用の .zip "
-"ファイルとしてパッケージ化されます。"
+msgstr "Axon Ivy プロジェクトは、.iar (Ivy Archive) ファイルまたは配備用の .zip ファ"
+"イルとしてパッケージ化されます。"
 
 #: ../../source/portal-developer-guide/deployment/index.rst:44
 msgid ""
@@ -5854,9 +5854,8 @@ msgid ""
 "Create a security system, or use the default one provided by |ivy|. This "
 "security system will be shared across applications."
 msgstr ""
-"セキュリティ・システムを作成するか、|ivy| "
-"が提供するデフォルトのものを使用する。このセキュリティシステムは、アプリケー"
-"ション間で共有されます。"
+"セキュリティ・システムを作成するか、|ivy| が提供するデフォルトのものを使用す"
+"る。このセキュリティシステムは、アプリケーション間で共有されます。"
 
 #: ../../source/portal-developer-guide/deployment/index.rst:68
 msgid "Create applications:"
@@ -5937,8 +5936,8 @@ msgstr "**配置構成**"
 msgid ""
 "To configure the Portal Dashboard via deployment, include the "
 "configuration file in the deployment package:"
-msgstr "配置によってポータル "
-"ダッシュボードを構成するには、構成ファイルを配置パッケージに含めます："
+msgstr "配置によってポータル ダッシュボードを構成するには、構成ファイルを配置パッケー"
+"ジに含めます："
 
 #: ../../source/portal-developer-guide/deployment/index.rst:99
 msgid ""
@@ -5964,8 +5963,8 @@ msgstr "**エンジンコックピットUIの使用**"
 
 #: ../../source/portal-developer-guide/deployment/index.rst:117
 msgid "To configure the Portal Dashboard via the Engine Cockpit UI:"
-msgstr "Engine Cockpit UI "
-"を使用してポータル・ダッシュボードを設定するには、次の手順に従います："
+msgstr "Engine Cockpit UI を使用してポータル・ダッシュボードを設定するには、次の手順"
+"に従います："
 
 #: ../../source/portal-developer-guide/deployment/index.rst:119
 msgid "Log in to the Engine Cockpit UI."
@@ -6008,8 +6007,8 @@ msgid ""
 "In the **Import Dashboard** dialog, drag and drop or upload the JSON file"
 " containing the dashboard configuration."
 msgstr ""
-"**Import Dashboard** ダイアログで、ダッシュボード構成を含む JSON "
-"ファイルをドラッグアンドドロップするか、アップロードします。"
+"**Import Dashboard** ダイアログで、ダッシュボード構成を含む JSON ファイルをド"
+"ラッグアンドドロップするか、アップロードします。"
 
 #: ../../source/portal-developer-guide/deployment/index.rst:133
 msgid "Edit the mandatory title and optional description for the dashboard."
@@ -6042,8 +6041,8 @@ msgstr "その他の構成"
 msgid ""
 "Configure the variables, databases, REST clients either through "
 "deployment or via the Cockpit UI."
-msgstr "変数、データベース、RESTクライアントを、デプロイメントまたはCockpit "
-"UIを介して設定します。"
+msgstr "変数、データベース、RESTクライアントを、デプロイメントまたはCockpit UIを介し"
+"て設定します。"
 
 #: ../../source/portal-developer-guide/deployment/index.rst:144
 msgid "Configure necessary user roles and permissions."
@@ -10061,8 +10060,8 @@ msgid ""
 "Add the translations for the new language for all json files in the "
 "Portal located at Config/variables by adding new locale/value item."
 msgstr ""
-"Config/variablesにあるポータルのすべてのjsonファイルに、新しいlocale/"
-"value項目を追加して、新しい言語の翻訳を追加します。"
+"Config/variablesにあるポータルのすべてのjsonファイルに、新しいlocale/value項"
+"目を追加して、新しい言語の翻訳を追加します。"
 
 #: ../../source/portal-developer-guide/settings/index.rst:48
 msgid "|translate-json|"
@@ -10076,8 +10075,8 @@ msgstr "translate-json"
 msgid ""
 "Add the translations for the new language to DefaultDashboardUtils.java "
 "by adding new locale/value item."
-msgstr "新しい言語用の翻訳をDefaultDashboardUtils.javaに追加し、新しいlocale/"
-"value項目を追加します。"
+msgstr "新しい言語用の翻訳をDefaultDashboardUtils.javaに追加し、新しいlocale/value項"
+"目を追加します。"
 
 #: ../../source/portal-developer-guide/settings/index.rst:52
 msgid "|translate-java|"
