@@ -232,4 +232,11 @@ public class PermissionUtils {
     return hasPortalPermission(PortalPermission.STATISTIC_WRITE_PUBLIC);
   }
 
+  /**
+   * Check if current user has permission see system notes in case/task details
+   * @return true if current user has permission.
+   */
+  public static boolean checkNoteReadAllPermission() {
+    return hasPermission(IPermission.NOTE_READ_ALL);
+  }
 }
