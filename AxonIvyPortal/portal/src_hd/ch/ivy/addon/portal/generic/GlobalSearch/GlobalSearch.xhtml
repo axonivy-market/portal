@@ -50,11 +50,14 @@
     immediate="true" process="@this" partialSubmit="true" />
     
   <p:remoteCommand id="global-search-remote-cmd" name="portalGlobalSearch" actionListener="#{logic.search(isWorkingOnATask, cc.attrs.case)}"
-    process="global-search-data" partialSubmit="true" oncomplete="showConfirmationDialog();"/>
+    process="global-search-data" partialSubmit="true" oncomplete="showConfirmationDialog(args.isWorkingOnATask);"/>
     
   <p:remoteCommand id="global-search-mobile-remote-cmd" name="portalGlobalSearchMobile" actionListener="#{logic.search(isWorkingOnATask, cc.attrs.case)}"
     process="global-search-mobile-data" partialSubmit="true" />
     
+  <p:remoteCommand id="global-search-update-params-cmd" name="portalGlobalSearchUpdateParams" actionListener="#{logic.updateParams(isWorkingOnATask)}"
+    partialSubmit="true"/>
+
   <p:overlayPanel rendered="#{cc.attrs.showQuickGlobalSearch}" hideEvent="dbclick" id="global-search-form" onHide="resetSearchBar();"
    for="global-search-component:global-search-data" styleClass="global-search-form">
     <h:outputScript library="js" name="global-search.js" />
@@ -94,7 +97,10 @@
 
   </p:overlayPanel>
   <script>
-      function showConfirmationDialog() {
+      function showConfirmationDialog(isWorkingOnATask) {
+          if (isWorkingOnATask == false) {
+            return;
+          }
           if (PrimeFaces.widgets['search-task-losing-confirmation-dialog']) {
               PF('search-task-losing-confirmation-dialog').show();
           } else {
