@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Portal Guide ${revision}\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-09-22 04:56+0000\n"
-"PO-Revision-Date: 2025-10-08 07:27+0000\n"
+"PO-Revision-Date: 2025-10-10 10:07+0000\n"
 "Last-Translator: Thang Huynh <hhqthang@axonactive.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/axonivy-portal/"
 "portal-le/doc/portal-doc-developer-guide/ja/>\n"
@@ -223,9 +223,8 @@ msgid ""
 "to full mode. Without proper error handling, users receive no feedback if"
 " the action was unsuccessful."
 msgstr ""
-"Ajax "
-"のエラー：タスクウィジェットをフルモードに切り替えるために「フルモードで表示"
-"」ボタンをクリックするなど、JSF Ajax リクエスト中に発生するエラーです。   "
+"Ajax のエラー：タスクウィジェットをフルモードに切り替えるために「フルモードで"
+"表示」ボタンをクリックするなど、JSF Ajax リクエスト中に発生するエラーです。 "
 "アクションが正常に完了しなかった場合、適切なエラー処理を行わないと、フィード"
 "バックを得られません。"
 
@@ -236,11 +235,10 @@ msgid ""
 "navigating to a corrupt URL. For example, this can happen if a user "
 "clicks a link to start a task that does not exist."
 msgstr ""
-"Ajax 以外のエラー：ユーザーが、サーバーが正常に処理できない URL "
-"からポータルにアクセスした場合や、破損した URL "
-"に移動した場合に発生するエラーです。   "
-"例えば、ユーザーが存在しないタスクを開始するリンクをクリックしたときに発生し"
-"ます。"
+"Ajax 以外のエラー：ユーザーが、サーバーが正常に処理できない URL からポータル"
+"にアクセスした場合や、破損した URL に移動した場合に発生するエラーです。 例え"
+"ば、ユーザーが存在しないタスクを開始するリンクをクリックしたときに発生します"
+"。"
 
 #: ../../source/portal-developer-guide/components/error-handling.rst:17
 msgid ""
@@ -986,8 +984,8 @@ msgstr "``x + w`` は **12** **以下** でなければなりません。"
 
 #: ../../source/portal-developer-guide/customization/case-item-details.rst:148
 msgid "We support all case business states in filter type ``states``."
-msgstr "フィルタータイプ  ``states`` "
-"ではすべてのケースのビジネスの状態がサポートされます。"
+msgstr "フィルタータイプ ``states`` ではすべてのケースのビジネスの状態がサポートされ"
+"ます。"
 
 #: ../../source/portal-developer-guide/customization/case-item-details.rst:149
 msgid ""
@@ -6416,8 +6414,8 @@ msgstr ""
 msgid ""
 "**Configuration Levels** If you want custom behavior, configure at one of"
 " the following levels to open your tasks in an IFrame:"
-msgstr "**設定レベル**  カスタム動作が必要な場合は、IFrame "
-"内でタスクが開くように、以下のいずれかのレベルで設定します。"
+msgstr "**設定レベル** カスタム動作が必要な場合は、IFrame 内でタスクが開くように、以"
+"下のいずれかのレベルで設定します。"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:36
 msgid "**Task Level**: Set the ``embedInFrame`` field in Task custom fields to:"
@@ -10126,7 +10124,7 @@ msgstr "公開用外部リンクを作成する権限。他のすべてのユー
 
 #: ../../source/portal-developer-guide/permissions/index.rst:196
 msgid "_`RoleManagement`"
-msgstr "_`役割管理``"
+msgstr "_`RoleManagement`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:197
 msgid "Permission to access the Role Management tab"
@@ -10152,7 +10150,7 @@ msgstr "管理者設定ページのパスワード検証セクションにアク
 
 #: ../../source/portal-developer-guide/permissions/index.rst:205
 msgid "_`DashboardExportOwn`"
-msgstr "_`ダッシュボード・エクスポート``DashboardExportOwn``"
+msgstr "_`DashboardExportOwn`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:206
 msgid "Permission to export private dashboards"
@@ -10274,7 +10272,7 @@ msgstr "自分の代行者を作成する権限"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:264
 msgid "_`UserReadSubstitutes`"
-msgstr "_`ユーザーリード置換``"
+msgstr "_`UserReadSubstitutes`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:265
 msgid "Permission to read substitutes of all users"
@@ -11433,7 +11431,7 @@ msgstr "パラメーター"
 #: ../../source/portal-developer-guide/static-page/index.rst:115
 #: ../../source/portal-developer-guide/static-page/index.rst:169
 msgid "**menuKind**: Must be set to `\"STATIC_PAGE\"`"
-msgstr "**menuKind** ：`\"STATIC_PAGE\"` に設定されなければならない。"
+msgstr "**menuKind** ：`\"STATIC_PAGE\"` に設定されなければならない"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:116
 msgid "**link**: Path to your static page relative to the view directory"
@@ -11604,7 +11602,7 @@ msgid ""
 "`Static JSF Pages Documentation <https://developer.axonivy.com/doc/12"
 "/designer-guide/user-interface/static-jsf-pages.html#static-jsf-pages>`_"
 msgstr ""
-"`静的JSFページ・ドキュメント <https://developer.axonivy.com/doc/12/"
+"`静的JSFページ・ドキュメント<https://developer.axonivy.com/doc/12/"
 "designer-guide/user-interface/static-jsf-pages.html#static-jsf-pages>`_"
 
 #: ../../source/portal-developer-guide/troubleshooting/index.rst:5
