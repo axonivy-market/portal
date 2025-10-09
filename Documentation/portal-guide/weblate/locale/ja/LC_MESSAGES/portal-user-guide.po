@@ -1041,7 +1041,7 @@ msgstr "txt、zip、jpg、"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv
 msgid "jpeg, bmp, png"
-msgstr "JPEG、BMP、PNG"
+msgstr "jpeg、bmp、png"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv
 msgid ""
@@ -1476,7 +1476,7 @@ msgstr "QRコードの表示のオン／オフを切り替えます。"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.UserMenu.BaseQRCodeUrl"
-msgstr "Portal.UserMenu.BaseQRCodeUrl。"
+msgstr "Portal.UserMenu.BaseQRCodeUrl"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Set Base URL for QR code to display."
@@ -1550,7 +1550,7 @@ msgstr "Portal.DelegationAppendOption"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "None"
-msgstr "なし"
+msgstr "None"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Defines the fields that can be appended to the role group display name."
@@ -3144,7 +3144,7 @@ msgid ""
 msgstr ""
 "アクション：|actions-menu-icon| をクリックして、 :guilabel:`アクション` "
 "メニューを表示します。メニューには、|edit-icon| 編集（名前、説明"
-"）、|settings-icon| 設定（ :ref:`Dashboards <new-dashboard>` を参照"
+"）、|settings-icon| 設定（ :ref:`ダッシュボード <new-dashboard>` を参照"
 "）、|download-icon| ダッシュボードをエクスポート、|share-icon| 共有、|trash-"
 "icon| 公開用ダッシュボードを削除アクションが表示されます。"
 
@@ -5756,7 +5756,7 @@ msgid ""
 msgstr ""
 "``Filter tasks by current case "
 "owner`` フィルターはデフォルトでは非表示になっています。表示させるには、 の "
-"設定をに設定する必要があります。 :ref:`Admin Settings <update-portal-"
+"設定をに設定する必要があります。 :ref:`ハウツー：ポータル設定を更新する <update-portal-"
 "settings>` ``Portal.Cases.EnableOwner`` ``true``"
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:106

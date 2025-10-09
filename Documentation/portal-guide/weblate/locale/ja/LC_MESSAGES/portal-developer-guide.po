@@ -1672,8 +1672,7 @@ msgid ""
 "\"HIDE\")"
 msgstr ""
 "com.axonivy.portal.components.util.RoleAPI.setProperty([自分のロール], "
-"ch.ivy.addon.portalkit.enums.AdditionalProperty.HIDE.toString(), \"\"HIDE\"\""
-")"
+"ch.ivy.addon.portalkit.enums.AdditionalProperty.HIDE.toString(), \"HIDE\")"
 
 #: ../../source/portal-developer-guide/customization/hide-technical-stuffs.rst:22
 #: ../../source/portal-developer-guide/customization/hide-technical-stuffs.rst:39
@@ -1879,7 +1878,7 @@ msgstr "isTaskReserve"
 #: ../../source/portal-developer-guide/customization/logout-process.rst:33
 #: ../../source/portal-developer-guide/customization/task-delegation.rst:22
 msgid "task"
-msgstr "タスク"
+msgstr "task"
 
 #: ../../source/portal-developer-guide/customization/logout-process.rst:37
 msgid "Customize the logout page"
@@ -1891,7 +1890,7 @@ msgstr "**シグネチャ**：portalGetLogoutPage"
 
 #: ../../source/portal-developer-guide/customization/logout-process.rst:48
 msgid "logoutPage"
-msgstr "ログアウトページ"
+msgstr "logoutPage"
 
 #: ../../source/portal-developer-guide/customization/menu.rst:4
 msgid "Menu And Default Homepage In User Profile"
@@ -2008,13 +2007,12 @@ msgstr "**シグネチャ**：portalLoadSubMenuItems"
 
 #: ../../source/portal-developer-guide/customization/menu.rst:60
 msgid "subMenuItems"
-msgstr "サブメニュー項目"
+msgstr "subMenuItems"
 
 #: ../../source/portal-developer-guide/customization/menu.rst:60
 msgid "java.util.List<com.axonivy.portal.components.configuration.CustomSubMenuItem>"
 msgstr ""
 "java.util.List<com.axonivy.portal.components.configuration.CustomSubMenuItem>"
-"。"
 
 #: ../../source/portal-developer-guide/customization/menu.rst:63
 msgid "Example of a menu that redirects to an Ivy process."
@@ -2491,7 +2489,7 @@ msgstr "``--task-state-parked-background``"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
 msgid "rgba(0, 112, 149, 0.2)"
-msgstr "RGBA(0, 112, 149, 0.2)"
+msgstr "rgba(0, 112, 149, 0.2)"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
 msgid "Color of the parked state indicator on the task, case list"
@@ -2677,7 +2675,7 @@ msgstr "roles"
 #: ../../source/portal-developer-guide/customization/task-delegation.rst:16
 #: ../../source/portal-developer-guide/customization/task-delegation.rst:28
 msgid "java.util.List<com.axonivy.portal.components.dto.RoleDTO>"
-msgstr "java.util.List<com.axonivy.portal.components.dto.RoleDTO>。"
+msgstr "java.util.List<com.axonivy.portal.components.dto.RoleDTO>"
 
 #: ../../source/portal-developer-guide/customization/task-delegation.rst:18
 #: ../../source/portal-developer-guide/customization/task-delegation.rst:30
@@ -2687,7 +2685,7 @@ msgstr "users"
 #: ../../source/portal-developer-guide/customization/task-delegation.rst:18
 #: ../../source/portal-developer-guide/customization/task-delegation.rst:30
 msgid "java.util.List<com.axonivy.portal.components.dto.UserDTO>"
-msgstr "java.util.List<com.axonivy.portal.components.dto.UserDTO>。"
+msgstr "java.util.List<com.axonivy.portal.components.dto.UserDTO>"
 
 #: ../../source/portal-developer-guide/customization/task-delegation.rst:20
 msgid "currentUser"
@@ -5322,8 +5320,8 @@ msgid ""
 "``lineChartConfig``: additional fields for configuring the ``Line`` "
 "chart, you can add if chart type is ``line``"
 msgstr ""
-"``lineChartConfig``: ` ` チャートを設定するための追加フィールド。"
-"チャートのタイプが ` ` の場合に追加できる。``Line`` ``line``"
+"``lineChartConfig``: ``Line`` チャートを設定するための追加フィールド。"
+"チャートのタイプがの場合に追加できる ``line``。
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:209
 #: ../../source/portal-developer-guide/settings/index.rst:655
@@ -5331,8 +5329,8 @@ msgid ""
 "``pieChartConfig``: additional fields for configuring the ``Pie`` chart, "
 "you can add if chart type is ``pie``"
 msgstr ""
-"``pieChartConfig``: ` ` チャートを設定するための追加フィールド。"
-"チャートのタイプが ` ` の場合に追加できる。``Pie`` ``pie``"
+"``pieChartConfig``: ``Pie`` チャートを設定するための追加フィールド。"
+"チャートのタイプが の場合に追加できる ``pie``。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:213
 #: ../../source/portal-developer-guide/settings/index.rst:659
@@ -5340,7 +5338,7 @@ msgid ""
 "``numberChartConfig``: additional fields for configuring the ``Number`` "
 "chart, you can add if chart type is ``number``"
 msgstr ""
-"``numberChartConfig``： ``数値`` 表を設定する場合に必要なフィールド。"
+"``numberChartConfig``： ``Number`` 表を設定する場合に必要なフィールド。"
 "チャートのタイプが ``number`` の場合に追加してください。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:215
@@ -6026,7 +6024,7 @@ msgid ""
 msgstr ""
 "このセクションでは、ポータルを初めて展開する際のステップ・バイ・ステップのガ"
 "イドを提供します。例やベスト・プラクティスも含まれています。"
-"より包括的な展開情報については :doc-url:`Axon Ivy deployment guidelines <"
+"より包括的な展開情報については :doc-url:`Axon Ivy 展開 <"
 "/engine-guide/deployment/index.html>`"
 
 #: ../../source/portal-developer-guide/deployment/index.rst:10
@@ -6086,9 +6084,9 @@ msgid ""
 " </engine-guide/deployment/prepare/application-"
 "configuration/index.html>`."
 msgstr ""
-".zipファイルを使用することを推奨します：:doc-url:`branding <"
+".zipファイルを使用することを推奨します：:doc-url:`エンジンのブランディング <"
 "/designer-guide/user-interface/branding/branding-engine.html>` "
-"変数、データベース、REST クライアント :doc-url:`configuration <"
+"変数、データベース、REST クライアント :doc-url:`アプリケーションの設定 <"
 "/engine-guide/deployment/prepare/application-configuration/index.html>`."
 
 #: ../../source/portal-developer-guide/deployment/index.rst:49
@@ -6171,9 +6169,9 @@ msgid ""
 "</engine-guide/reference/engine-cockpit>`. This section "
 "highlights the most important configuration settings."
 msgstr ""
-"コンフィギュレーションは、:doc-url:`deployment </engine-guide/"
+"コンフィギュレーションは、:doc-url:`アプリケーションの設定 </engine-guide/"
 "deployment/prepare/application-configuration/index.html>` または :doc-url:`"
-"Engine Cockpit UI </engine-guide/reference/engine-cockpit>` "
+"エンジンコックピット </engine-guide/reference/engine-cockpit>` "
 "から行うことができます。 "
 "このセクションでは、最も重要なコンフィギュレーション設定について説明します。"
 
@@ -6301,7 +6299,7 @@ msgid ""
 "For more details, refer to the Dashboard configuration: :ref:`Dashboard "
 "Configuration <dashboard-configuration>`."
 msgstr ""
-"詳細については、ダッシュボードの設定（:ref:`Dashboard Configuration "
+"詳細については、ダッシュボードの設定（:ref:`ダッシュボード設定 "
 "<dashboard-configuration>` ）を参照してください。"
 
 #: ../../source/portal-developer-guide/deployment/index.rst:141
@@ -10125,7 +10123,7 @@ msgstr "公開用外部リンクを作成する権限。他のすべてのユー
 
 #: ../../source/portal-developer-guide/permissions/index.rst:196
 msgid "_`RoleManagement`"
-msgstr "_`役割管理``"
+msgstr "_`RoleManagement`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:197
 msgid "Permission to access the Role Management tab"
@@ -10133,7 +10131,7 @@ msgstr "ロールの管理タブにアクセスする権限"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:199
 msgid "_`NewsManagement`"
-msgstr "ニュース管理"
+msgstr "_`NewsManagement`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:200
 msgid "Permission to manage the content of the News feed"
@@ -10141,7 +10139,7 @@ msgstr "ニュースフィードのコンテンツを管理する権限"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:202
 msgid "_`PasswordValidation`"
-msgstr "パスワードバリデーション"
+msgstr "_`PasswordValidation`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:203
 msgid ""
@@ -10151,7 +10149,7 @@ msgstr "管理者設定ページのパスワード検証セクションにアク
 
 #: ../../source/portal-developer-guide/permissions/index.rst:205
 msgid "_`DashboardExportOwn`"
-msgstr "_`ダッシュボード・エクスポート``DashboardExportOwn``"
+msgstr "_`DashboardExportOwn`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:206
 msgid "Permission to export private dashboards"
@@ -10183,7 +10181,7 @@ msgstr "公開用ダッシュボードをインポートする権限"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:217
 msgid "_`ShareDashboardLink`"
-msgstr "共有ダッシュボードリンク"
+msgstr "_`ShareDashboardLink`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:218
 msgid "Permission to share dashboard links"
@@ -10273,7 +10271,7 @@ msgstr "自分の代行者を作成する権限"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:264
 msgid "_`UserReadSubstitutes`"
-msgstr "_`ユーザーリード置換``"
+msgstr "_`UserReadSubstitutes`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:265
 msgid "Permission to read substitutes of all users"
@@ -11440,11 +11438,11 @@ msgstr "**link** ：ビューディレクトリからの静的ページへの相
 
 #: ../../source/portal-developer-guide/static-page/index.rst:117
 msgid "**label**: Display name in the menu"
-msgstr "**ラベル** ：メニューの表示名"
+msgstr "**label**: メニューの表示名"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:118
 msgid "**icon**: Icon class"
-msgstr "**アイコン** ：アイコンクラス"
+msgstr "**icon**: アイコンクラス"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:119
 msgid "**index**: Menu position (optional, defaults to 0)"
@@ -11452,7 +11450,7 @@ msgstr "**index** ：メニューの位置（オプション、デフォルト�
 
 #: ../../source/portal-developer-guide/static-page/index.rst:120
 msgid "**version**: Portal version"
-msgstr "**バージョン** ：ポータル版"
+msgstr "**version**: ポータル版"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:123
 msgid "Programmatic Method"
@@ -11482,11 +11480,11 @@ msgstr "**id** ：メニュー項目の一意な識別子"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:170
 msgid "**titles**: Multilingual titles"
-msgstr "**タイトル** ：多言語タイトル"
+msgstr "**titles**: 多言語タイトル"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:171
 msgid "**permissions**: Array of roles or users who can see this item"
-msgstr "**パーミッション** ：このアイテムを見ることができるロールまたはユーザーの配列"
+msgstr "**permissions**: このアイテムを見ることができるロールまたはユーザーの配列"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:172
 msgid "**url**: Path to your static page"
@@ -11505,7 +11503,7 @@ msgstr "Portalは、メニューで使用する場合、静的ページリンク
 
 #: ../../source/portal-developer-guide/static-page/index.rst:181
 msgid "**Input**: `app/faces/view/portal-components-examples/static.xhtml`"
-msgstr "**Input**: `app/faces/view/portal-components-examples/static.xhtml`"
+msgstr "**入力**: `app/faces/view/portal-components-examples/static.xhtml`"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:182
 msgid "**Conversion**: Uses `StaticPageUtils.buildUrl()` method"
