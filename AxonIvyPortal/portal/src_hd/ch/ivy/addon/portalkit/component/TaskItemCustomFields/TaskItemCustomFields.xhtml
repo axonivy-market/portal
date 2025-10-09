@@ -8,10 +8,8 @@
 </cc:interface>
 
 <cc:implementation>
-<h:form id="task-custom-fields-commands">
   <p:remoteCommand name="initCustomFieldListData" actionListener="#{logic.getCustomFieldsData(cc.attrs.taskId)}"
     oncomplete="PF('task-custom-fields-dialog').show()" update="#{cc.clientId}:task-custom-fields-dialog" />
-</h:form>
   <p:dialog id="task-custom-fields-dialog" widgetVar="task-custom-fields-dialog"
     header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/customFieldsDialog', [cc.attrs.taskId])}"
     dynamic="true" closable="true"
