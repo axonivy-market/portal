@@ -7136,7 +7136,7 @@ msgstr "バージョン情報ダイアログ"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:130
 msgid "Logout"
-msgstr "Logout"
+msgstr "ログアウト"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:132
 msgid ""
