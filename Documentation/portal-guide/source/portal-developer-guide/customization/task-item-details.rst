@@ -136,7 +136,7 @@ How to configure widgets in task details
    -  ``x``, ``y``, ``w`` and ``h`` must be **integers**.
    -  ``x + w`` must **not be larger** than **12**.
    -  For data of custom widget, if you input ``processPath``, don't input ``url``. You can only use one of them.
-   -  We support all task business states for filter type ``states``. Please refer to :dev-url:`Task Business States </doc/|version|/public-api/ch/ivyteam/ivy/workflow/TaskBusinessState.html>` to check for available task business states.
+   -  We support all task business states for filter type ``states``. Please refer to :dev-url:`Task Business States </doc/12.0/public-api/ch/ivyteam/ivy/workflow/TaskBusinessState.html>` to check for available task business states.
 
 
 Show Custom Panels (Widgets)
@@ -155,7 +155,7 @@ Show Custom Panels (Widgets)
    - Go to the example homepage by the process ``Start Processes/ExamplePortalStart/DefaultApplicationHomePage.ivp``
    - Lastly, go to task details to check the new custom layout.
 
-   About how to configure Variables, refer to :dev-url:`|ivy| Variables </doc/|version|/designer-guide/configuration/variables.html>`
+   About how to configure Variables, refer to :dev-url:`Axon Ivy Variables </doc/12.0/designer-guide/configuration/variables.html>`
 
 
 There are **two steps** for adding new custom panels.
