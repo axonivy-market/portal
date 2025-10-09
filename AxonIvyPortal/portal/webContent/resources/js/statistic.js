@@ -159,7 +159,7 @@ function shouldRenderEmptyChart(data) {
     var objects = result;
     const allNestedValuesAreZero = objects.every(obj => 
       Object.values(obj.aggs).every(val => {
-        return val.value == 0;
+        return val.value == 0 || val.value == null || val.value == undefined || val.value === "null";
       })
     );
     return allNestedValuesAreZero;
