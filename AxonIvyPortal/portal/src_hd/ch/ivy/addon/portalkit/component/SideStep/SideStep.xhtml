@@ -117,7 +117,7 @@
       <span class="option-item-label">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/events')}</span>
     </p:commandLink>
     
-    <p:commandLink id="task-custom-fields-command"
+    <p:commandLink id="task-custom-fields-command" rendered="#{taskActionBean.showCustomFieldsAction}"
       styleClass="option-item ui-menu-items" onstart="event.stopPropagation();" process="@this"
       ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/customFieldsDialog')}"
       update="@parent #{cc.attrs.componentToUpdate} @widgetVar(task-custom-fields-dialog)"
