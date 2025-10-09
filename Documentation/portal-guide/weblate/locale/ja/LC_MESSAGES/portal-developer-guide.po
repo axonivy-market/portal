@@ -8,17 +8,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Portal Guide ${revision}\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-26 07:09+0000\n"
+"POT-Creation-Date: 2025-10-09 02:32+0000\n"
 "PO-Revision-Date: 2025-09-29 09:50+0000\n"
 "Last-Translator: Thang Huynh <hhqthang@axonactive.com>\n"
-"Language-Team: Japanese <https://hosted.weblate.org/projects/axonivy-portal/"
-"portal-12/doc/portal-developer-guide/ja/>\n"
 "Language: ja\n"
+"Language-Team: Japanese <https://hosted.weblate.org/projects/axonivy-"
+"portal/portal-12/doc/portal-developer-guide/ja/>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.14-dev\n"
 "Generated-By: Babel 2.17.0\n"
 
 #: ../../source/portal-developer-guide/architecture/index.rst:4
@@ -1379,8 +1378,7 @@ msgstr "org.primefaces.model.file.UploadedFile"
 
 #: ../../source/portal-developer-guide/customization/document-processes.rst:65
 msgid "enableScriptCheckingForUploadedDocument"
-msgstr "enableScriptCheckingForUploadedDocument（アップロードされたドキュメントのスク"
-"リプトチェックを有効にする"
+msgstr "enableScriptCheckingForUploadedDocument（アップロードされたドキュメントのスクリプトチェックを有効にする"
 
 #: ../../source/portal-developer-guide/customization/document-processes.rst:65
 #: ../../source/portal-developer-guide/customization/document-processes.rst:67
@@ -1892,9 +1890,7 @@ msgstr "サブメニュー項目"
 
 #: ../../source/portal-developer-guide/customization/menu.rst:60
 msgid "java.util.List<com.axonivy.portal.components.configuration.CustomSubMenuItem>"
-msgstr ""
-"java.util.List<com.axonivy.portal.components.configuration.CustomSubMenuItem>"
-"。"
+msgstr "java.util.List<com.axonivy.portal.components.configuration.CustomSubMenuItem>。"
 
 #: ../../source/portal-developer-guide/customization/menu.rst:63
 msgid "Example of a menu that redirects to an Ivy process."
@@ -3955,8 +3951,7 @@ msgid ""
 "field."
 msgstr ""
 "**Multi-Language Support for Custom Fields** "
-"機能により、カスタムフィールドの値を多言語で提供できるようになります。フィー"
-"ルドの内容は、カスタムフィールドで選択された言語に基づいて表示されます。"
+"機能により、カスタムフィールドの値を多言語で提供できるようになります。フィールドの内容は、カスタムフィールドで選択された言語に基づいて表示されます。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:609
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:580
@@ -4123,8 +4118,7 @@ msgstr "``HasCmsValues = true`` の場合、フィルターは CMS の翻訳と�
 msgid ""
 "When enabling the Multi-Language for Custom Fields, only accepted "
 "``CONTAINS`` operator."
-msgstr "カスタムフィールドの多言語化を有効にする場合、``CONTAINS`` "
-"演算子のみ受け付けます。"
+msgstr "カスタムフィールドの多言語化を有効にする場合、``CONTAINS`` 演算子のみ受け付けます。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:681
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:653
@@ -4145,11 +4139,7 @@ msgid ""
 "dynamic provision of field content in multiple languages. The "
 "functionalities for searching, sorting, and filtering have been adapted "
 "accordingly to ensure consistent behavior for multilingual content."
-msgstr ""
-"カスタムフィールドの多言語サポートにより、多言語でのフィールドコンテンツの柔"
-"軟かつダイナミックな提供が可能になりました。検索、ソート、フィルタリングの機"
-"能は、多言語コンテンツの一貫した動作を保証するために、それに応じて適応されて"
-"います。"
+msgstr "カスタムフィールドの多言語サポートにより、多言語でのフィールドコンテンツの柔軟かつダイナミックな提供が可能になりました。検索、ソート、フィルタリングの機能は、多言語コンテンツの一貫した動作を保証するために、それに応じて適応されています。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-custom-widget.rst:4
 msgid "Configure Custom Widget"
@@ -4940,11 +4930,9 @@ msgid ""
 "filter is visible only if the ``Portal.Cases.EnableOwner`` setting is set"
 " to ``true`` in the :ref:`Admin Settings <update-portal-settings>`."
 msgstr ""
-"`filterTasksByCurrentCaseOwner``: "
-"現在のユーザーがケースの所有者であるタスクのみをフィルタします。"
-"デフォルト値は ` ` です。このフィルタは、 の ` ` 設定が ` ` "
-"に設定されている場合にのみ表示されます。`false` :ref:`Admin Settings <update-"
-"portal-settings>` `Portal.Cases.EnableOwner` `true`"
+"`filterTasksByCurrentCaseOwner``: 現在のユーザーがケースの所有者であるタスクのみをフィルタします。デフォルト値は"
+" ` ` です。このフィルタは、 の ` ` 設定が ` ` に設定されている場合にのみ表示されます。`false` :ref:`Admin "
+"Settings <update-portal-settings>` `Portal.Cases.EnableOwner` `true`"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:166
 msgid ""
@@ -5136,11 +5124,10 @@ msgid ""
 "|/designer-guide/configuration/custom-fields.html#localize-label-"
 "description-category-and-values>` to get more information."
 msgstr ""
-"カスタム・フィールドの値を追加するには、以下のパスに従ってください：`/"
-"CustomFields/Tasks/{fieldName}/Values/{value}``:dev-url:`Localize Label, "
-"Description, Category and Values </doc/|version|/designer-guide/"
-"configuration/custom-fields.html#localize-label-description-category-and-"
-"values>` に従ってください。"
+"カスタム・フィールドの値を追加するには、以下のパスに従ってください：`/CustomFields/Tasks/{fieldName}/Values/{value"
+"}``:dev-url:`Localize Label, Description, Category and Values "
+"</doc/|version|/designer-guide/configuration/custom-fields.html#localize-"
+"label-description-category-and-values>` に従ってください。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:605
 #, fuzzy
@@ -5150,9 +5137,8 @@ msgid ""
 "``/CustomFields/Tasks/DriversVehicle/Values/Car`` or "
 "``/CustomFields/Tasks/DriversVehicle/Values/MonsterTruck``."
 msgstr ""
-"あなたのCMSでは、パスは``/CustomFields/Tasks/DriversVehicle/Values/Bike``,``/"
-"CustomFields/Tasks/DriversVehicle/Values/Car`` または``/CustomFields/Tasks/"
-"DriversVehicle/Values/MonsterTruck`` であるべきです。"
+"あなたのCMSでは、パスは``/CustomFields/Tasks/DriversVehicle/Values/Bike``,``/CustomFields/Tasks/DriversVehicle/Values/Car``"
+" または``/CustomFields/Tasks/DriversVehicle/Values/MonsterTruck`` であるべきです。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:610
 msgid "|task-field-cms|"
@@ -5167,8 +5153,7 @@ msgstr "task-field-cms"
 msgid ""
 "Example: When language is German, a user can search for **Fahrrad** or "
 "the original value **Bike**."
-msgstr "例言語がドイツ語の場合、ユーザーは**Fahrrad** または元の値**Bike** "
-"を検索できる。"
+msgstr "例言語がドイツ語の場合、ユーザーは**Fahrrad** または元の値**Bike** を検索できる。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-template.rst:4
 msgid "Configure Dashboard Template"
@@ -5442,9 +5427,8 @@ msgid ""
 "deployment guidelines </doc/|version|/engine-"
 "guide/deployment/index.html>`"
 msgstr ""
-"このセクションでは、ポータルを初めて展開する際のステップ・バイ・ステップのガ"
-"イドを提供します。例やベスト・プラクティスも含まれています。より包括的な展開"
-"情報については:dev-url:`|ivy| deployment guidelines </doc/|version|/engine-"
+"このセクションでは、ポータルを初めて展開する際のステップ・バイ・ステップのガイドを提供します。例やベスト・プラクティスも含まれています。より包括的な展開情報については"
+":dev-url:`|ivy| deployment guidelines </doc/|version|/engine-"
 "guide/deployment/index.html>`"
 
 #: ../../source/portal-developer-guide/deployment/index.rst:10
@@ -5453,15 +5437,13 @@ msgstr "以下は、展開設定のサンプルの概要です："
 
 #: ../../source/portal-developer-guide/deployment/index.rst:12
 msgid "The Portal application includes the portal-components and portal projects."
-msgstr "ポータル・アプリケーションには、ポータル・コンポーネントとポータル・プロジェ"
-"クトが含まれます。"
+msgstr "ポータル・アプリケーションには、ポータル・コンポーネントとポータル・プロジェクトが含まれます。"
 
 #: ../../source/portal-developer-guide/deployment/index.rst:13
 msgid ""
 "The Business application includes the shared portal-components and "
 "customer-specific projects (e.g., accounting)."
-msgstr "ビジネス・アプリケーションには、共有ポータル・コンポーネントと顧客固有のプロ"
-"ジェクト（会計など）が含まれる。"
+msgstr "ビジネス・アプリケーションには、共有ポータル・コンポーネントと顧客固有のプロジェクト（会計など）が含まれる。"
 
 #: ../../source/portal-developer-guide/deployment/index.rst:30
 msgid "Prerequisites"
@@ -5493,8 +5475,7 @@ msgstr "準備"
 msgid ""
 "Axon Ivy projects are packaged as either .iar (Ivy Archive) files or .zip"
 " files for deployment."
-msgstr "Axon Ivy プロジェクトは、.iar (Ivy Archive) ファイルまたは配備用の .zip "
-"ファイルとしてパッケージ化されます。"
+msgstr "Axon Ivy プロジェクトは、.iar (Ivy Archive) ファイルまたは配備用の .zip ファイルとしてパッケージ化されます。"
 
 #: ../../source/portal-developer-guide/deployment/index.rst:44
 #, fuzzy
@@ -5505,11 +5486,10 @@ msgid ""
 " </doc/|version|/engine-guide/deployment/prepare/application-"
 "configuration/index.html>`."
 msgstr ""
-".zipファイルを使用することを推奨します：:dev-url:`branding </doc/|version"
-"|/designer-guide/user-interface/branding/branding-"
-"engine.html>`変数、データベース、REST クライアント:dev-url:`configuration </"
-"doc/|version|/engine-guide/deployment/prepare/application-configuration/"
-"index.html>`."
+".zipファイルを使用することを推奨します：:dev-url:`branding </doc/|version|/designer-guide"
+"/user-interface/branding/branding-engine.html>`変数、データベース、REST クライアント:dev-"
+"url:`configuration </doc/|version|/engine-guide/deployment/prepare"
+"/application-configuration/index.html>`."
 
 #: ../../source/portal-developer-guide/deployment/index.rst:49
 msgid "Recommended Deployment Setup (Sample)"
@@ -5543,10 +5523,7 @@ msgstr "ブランディング、変数、データベース、RESTクライア�
 msgid ""
 "Create a security system, or use the default one provided by |ivy|. This "
 "security system will be shared across applications."
-msgstr ""
-"セキュリティ・システムを作成するか、|ivy| "
-"が提供するデフォルトのものを使用する。このセキュリティシステムは、アプリケー"
-"ション間で共有されます。"
+msgstr "セキュリティ・システムを作成するか、|ivy| が提供するデフォルトのものを使用する。このセキュリティシステムは、アプリケーション間で共有されます。"
 
 #: ../../source/portal-developer-guide/deployment/index.rst:68
 msgid "Create applications:"
@@ -5568,15 +5545,13 @@ msgstr "アプリケーションパッケージをデプロイする："
 msgid ""
 "Deploy the Portal application zip file (or .iar files) to the Portal "
 "application."
-msgstr "ポータル・アプリケーションのZIPファイル（または.iarファイル）をポータル・アプ"
-"リケーションに配置します。"
+msgstr "ポータル・アプリケーションのZIPファイル（または.iarファイル）をポータル・アプリケーションに配置します。"
 
 #: ../../source/portal-developer-guide/deployment/index.rst:75
 msgid ""
 "Deploy the business application zip file (or .iar files) to the "
 "corresponding business application (e.g., Accounting)."
-msgstr "ビジネスアプリケーションのZIPファイル（または.iarファイル）を、対応するビジネ"
-"スアプリケーション（会計など）にデプロイします。"
+msgstr "ビジネスアプリケーションのZIPファイル（または.iarファイル）を、対応するビジネスアプリケーション（会計など）にデプロイします。"
 
 #: ../../source/portal-developer-guide/deployment/index.rst:78
 #: ../../source/portal-developer-guide/settings/index.rst:369
@@ -5592,11 +5567,10 @@ msgid ""
 "</doc/|version|/engine-guide/reference/engine-cockpit>`. This section "
 "highlights the most important configuration settings."
 msgstr ""
-"コンフィギュレーションは、:dev-url:`deployment </doc/|version|/engine-guide/"
-"deployment/prepare/application-configuration/index.html>` または:dev-url:`"
-"Engine Cockpit UI </doc/|version|/engine-guide/reference/engine-cockpit>` "
-"から行うことができます。 "
-"このセクションでは、最も重要なコンフィギュレーション設定について説明します。"
+"コンフィギュレーションは、:dev-url:`deployment </doc/|version|/engine-"
+"guide/deployment/prepare/application-configuration/index.html>` または:dev-"
+"url:`Engine Cockpit UI </doc/|version|/engine-guide/reference/engine-"
+"cockpit>` から行うことができます。 このセクションでは、最も重要なコンフィギュレーション設定について説明します。"
 
 #: ../../source/portal-developer-guide/deployment/index.rst:86
 msgid "Dashboard Configuration"
@@ -5628,17 +5602,14 @@ msgstr "**配置構成**"
 msgid ""
 "To configure the Portal Dashboard via deployment, include the "
 "configuration file in the deployment package:"
-msgstr "配置によってポータル "
-"ダッシュボードを構成するには、構成ファイルを配置パッケージに含めます："
+msgstr "配置によってポータル ダッシュボードを構成するには、構成ファイルを配置パッケージに含めます："
 
 #: ../../source/portal-developer-guide/deployment/index.rst:99
 #, fuzzy
 msgid ""
 "Place the `Portal.Dashboard.json` file within the `config/variables/` "
 "directory inside the application zip."
-msgstr ""
-"Portal.Dashboard.json`ファイルをアプリケーションZIP内の`config/variables/"
-"`ディレクトリに配置します。"
+msgstr "Portal.Dashboard.json`ファイルをアプリケーションZIP内の`config/variables/`ディレクトリに配置します。"
 
 #: ../../source/portal-developer-guide/deployment/index.rst:111
 #, fuzzy
@@ -5646,10 +5617,7 @@ msgid ""
 "Alternatively, copy the configuration file directly into the engine's "
 "application folder: "
 "``<engine>/configuration/applications/<application>/variables.Portal.Dashboard.json``"
-msgstr ""
-"あるいは、設定ファイルをエンジンのアプリケーション・フォルダーに直接コピーし"
-"てください：`<engine>/configuration/applications/"
-"<application>/variables.Portal.Dashboard.json``"
+msgstr "あるいは、設定ファイルをエンジンのアプリケーション・フォルダーに直接コピーしてください：`<engine>/configuration/applications/<application>/variables.Portal.Dashboard.json``"
 
 #: ../../source/portal-developer-guide/deployment/index.rst:115
 msgid "**Using Engine Cockpit UI**"
@@ -5657,8 +5625,7 @@ msgstr "**エンジンコックピットUIの使用**"
 
 #: ../../source/portal-developer-guide/deployment/index.rst:117
 msgid "To configure the Portal Dashboard via the Engine Cockpit UI:"
-msgstr "Engine Cockpit UI "
-"を使用してポータル・ダッシュボードを設定するには、次の手順に従います："
+msgstr "Engine Cockpit UI を使用してポータル・ダッシュボードを設定するには、次の手順に従います："
 
 #: ../../source/portal-developer-guide/deployment/index.rst:119
 msgid "Log in to the Engine Cockpit UI."
@@ -5716,16 +5683,15 @@ msgstr "**Create Dashboard** をクリックして、インポートを確定し
 msgid ""
 "Configure the dashboard as needed and ensure it appears in the dashboard "
 "list."
-msgstr "必要に応じてダッシュボードを構成し、ダッシュボード・リストに表示されるように"
-"します。"
+msgstr "必要に応じてダッシュボードを構成し、ダッシュボード・リストに表示されるようにします。"
 
 #: ../../source/portal-developer-guide/deployment/index.rst:138
 msgid ""
 "For more details, refer to the Dashboard configuration: :ref:`Dashboard "
 "Configuration <dashboard-configuration>`."
 msgstr ""
-"詳細については、ダッシュボードの設定（:ref:`Dashboard Configuration "
-"<dashboard-configuration>` ）を参照してください。"
+"詳細については、ダッシュボードの設定（:ref:`Dashboard Configuration <dashboard-"
+"configuration>` ）を参照してください。"
 
 #: ../../source/portal-developer-guide/deployment/index.rst:141
 msgid "Other Configurations"
@@ -5735,8 +5701,7 @@ msgstr "その他の構成"
 msgid ""
 "Configure the variables, databases, REST clients either through "
 "deployment or via the Cockpit UI."
-msgstr "変数、データベース、RESTクライアントを、デプロイメントまたはCockpit "
-"UIを介して設定します。"
+msgstr "変数、データベース、RESTクライアントを、デプロイメントまたはCockpit UIを介して設定します。"
 
 #: ../../source/portal-developer-guide/deployment/index.rst:144
 msgid "Configure necessary user roles and permissions."
@@ -5758,15 +5723,13 @@ msgstr "潜在的な問題がないかログをチェックし、エラーがあ
 msgid ""
 "Validate that the Portal functions correctly and that all users have "
 "appropriate access."
-msgstr "ポータルが正しく機能し、すべてのユーザーが適切なアクセス権を持っていることを"
-"検証する。"
+msgstr "ポータルが正しく機能し、すべてのユーザーが適切なアクセス権を持っていることを検証する。"
 
 #: ../../source/portal-developer-guide/deployment/index.rst:153
 msgid ""
 "Following these best practices ensures a smooth and efficient Portal "
 "deployment."
-msgstr "これらのベストプラクティスに従うことで、スムーズで効率的なポータルの展開が実"
-"現します。"
+msgstr "これらのベストプラクティスに従うことで、スムーズで効率的なポータルの展開が実現します。"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:4
 msgid "IFrame In Portal"
@@ -5835,54 +5798,78 @@ msgid ""
 msgstr "**設定レベル**  カスタム動作が必要な場合は、IFrame 内でタスクが開くように、以下のいずれかのレベルで設定します。"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:36
-msgid "**Task Level**: Set the ``embedInFrame`` field in Task custom fields to:"
+#, fuzzy
+msgid ""
+"**Request start Level**: Set the ``embedInFrame`` field in Request tab "
+"custom fields to:"
 msgstr "**タスクレベル**：カスタムタスクフィールドの ``embedInFrame`` フィールドを設定します。"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:38
 #: ../../source/portal-developer-guide/iframe/index.rst:46
+#: ../../source/portal-developer-guide/iframe/index.rst:54
 msgid "``true``: Start inside IFrame."
 msgstr "``true``：IFrame 内で開始"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:39
 #: ../../source/portal-developer-guide/iframe/index.rst:47
+#: ../../source/portal-developer-guide/iframe/index.rst:55
 msgid "``false``: Do not start inside IFrame."
 msgstr "``false``：IFrame 内で開始しない"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:40
-msgid "Leave unset to use case or engine-level configuration."
+#, fuzzy
+msgid "Leave unset to use task, case or engine-level configuration."
 msgstr "ケースまたはエンジンレベルの設定を使用する場合は、未設定のままにします。"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:42
-msgid "|task-embedInFrame|"
+#, fuzzy
+msgid "|request-tab-embedInFrame|"
 msgstr "|task-embedInFrame|"
 
-#: ../../source/portal-developer-guide/iframe/index.rst:391
-msgid "task-embedInFrame"
+#: ../../source/portal-developer-guide/iframe/index.rst:401
+#, fuzzy
+msgid "request-tab-embedInFrame"
 msgstr "task-embedInFrame"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:44
+msgid "**Task Level**: Set the ``embedInFrame`` field in Task custom fields to:"
+msgstr "**タスクレベル**：カスタムタスクフィールドの ``embedInFrame`` フィールドを設定します。"
+
+#: ../../source/portal-developer-guide/iframe/index.rst:48
+msgid "Leave unset to use case or engine-level configuration."
+msgstr "ケースまたはエンジンレベルの設定を使用する場合は、未設定のままにします。"
+
+#: ../../source/portal-developer-guide/iframe/index.rst:50
+msgid "|task-embedInFrame|"
+msgstr "|task-embedInFrame|"
+
+#: ../../source/portal-developer-guide/iframe/index.rst:399
+msgid "task-embedInFrame"
+msgstr "task-embedInFrame"
+
+#: ../../source/portal-developer-guide/iframe/index.rst:52
 msgid ""
 "**Case Level**: Set the ``embedInFrame`` String field in Case custom "
 "fields to:"
 msgstr "**ケースレベル**：ケースのカスタムフィールドの ``embedInFrame`` 文字列フィールドを設定します。"
 
-#: ../../source/portal-developer-guide/iframe/index.rst:48
+#: ../../source/portal-developer-guide/iframe/index.rst:56
 msgid "Leave unset to use engine-level configuration."
 msgstr "エンジンレベルの設定を使用する場合は、未設定のままにします。"
 
-#: ../../source/portal-developer-guide/iframe/index.rst:50
+#: ../../source/portal-developer-guide/iframe/index.rst:58
 msgid "|case-embedInFrame|"
 msgstr "|case-embedInFrame|"
 
-#: ../../source/portal-developer-guide/iframe/index.rst:392
+#: ../../source/portal-developer-guide/iframe/index.rst:400
 msgid "case-embedInFrame"
 msgstr "case-embedInFrame"
 
-#: ../../source/portal-developer-guide/iframe/index.rst:52
+#: ../../source/portal-developer-guide/iframe/index.rst:60
 msgid "**Engine Level**:"
 msgstr "**エンジンレベル**："
 
-#: ../../source/portal-developer-guide/iframe/index.rst:54
+#: ../../source/portal-developer-guide/iframe/index.rst:62
 msgid ""
 "The **Portal Administrator** can globally configure all tasks to start "
 "inside IFrames by setting the ``Portal.EmbedInFrame`` value in the Portal"
@@ -5891,216 +5878,216 @@ msgstr ""
 "**ポータル管理者** は、ポータル設定の ``Portal.EmbedInFrame`` の値を設定して、すべてのタスクが IFrame "
 "内で開始するように設定できます。 :ref:`update-portal-settings` を参照してください。"
 
-#: ../../source/portal-developer-guide/iframe/index.rst:60
+#: ../../source/portal-developer-guide/iframe/index.rst:68
 msgid "Configure Template"
 msgstr "テンプレートの設定"
 
-#: ../../source/portal-developer-guide/iframe/index.rst:62
+#: ../../source/portal-developer-guide/iframe/index.rst:70
 msgid ""
 "The **Portal** allows configuration of templates with the following "
 "options:"
 msgstr "**ポータル** では、以下のオプションを使用して、テンプレートを設定できます。"
 
-#: ../../source/portal-developer-guide/iframe/index.rst:64
+#: ../../source/portal-developer-guide/iframe/index.rst:72
 msgid "Name and icon for the working task."
 msgstr "作業中のタスクの名前とアイコン。"
 
-#: ../../source/portal-developer-guide/iframe/index.rst:65
+#: ../../source/portal-developer-guide/iframe/index.rst:73
 msgid ""
 "Process chain configuration. (See: :ref:`components-portal-components-"
 "process-chain`)."
 msgstr "プロセスチェーンの設定。 （参照： :ref:`components-portal-components-process-chain`）"
 
-#: ../../source/portal-developer-guide/iframe/index.rst:67
+#: ../../source/portal-developer-guide/iframe/index.rst:75
 msgid "Show/hide case details and other actions."
 msgstr "ケースの詳細およびその他のアクションの表示／非表示。"
 
-#: ../../source/portal-developer-guide/iframe/index.rst:71
+#: ../../source/portal-developer-guide/iframe/index.rst:79
 msgid "Template Parameters"
 msgstr "テンプレートのパラメーター"
 
-#: ../../source/portal-developer-guide/iframe/index.rst:73
+#: ../../source/portal-developer-guide/iframe/index.rst:81
 msgid "The following parameters are available for this template:"
 msgstr "このテンプレートでは、以下のパラメーターが利用可能です。"
 
-#: ../../source/portal-developer-guide/iframe/index.rst:75
+#: ../../source/portal-developer-guide/iframe/index.rst:83
 msgid "**Task Details**"
 msgstr "**タスクの詳細**"
 
-#: ../../source/portal-developer-guide/iframe/index.rst:77
-#: ../../source/portal-developer-guide/iframe/index.rst:181
+#: ../../source/portal-developer-guide/iframe/index.rst:85
+#: ../../source/portal-developer-guide/iframe/index.rst:189
 msgid "``taskName``: Custom text for the task name."
 msgstr "``taskName``：タスク名のカスタムテキスト。"
 
-#: ../../source/portal-developer-guide/iframe/index.rst:78
+#: ../../source/portal-developer-guide/iframe/index.rst:86
 msgid "``taskIcon``: Icon for the task, using Streamline or Awesome font."
 msgstr "``taskIcon``：タスクのアイコン（Streamline または Awesome フォントを使用）。"
 
-#: ../../source/portal-developer-guide/iframe/index.rst:79
+#: ../../source/portal-developer-guide/iframe/index.rst:87
 msgid "``isHideTaskName``: Hides the task name when true."
 msgstr "``isHideTaskName``：true に設定されている場合は、タスク名を非表示にします。"
 
-#: ../../source/portal-developer-guide/iframe/index.rst:81
+#: ../../source/portal-developer-guide/iframe/index.rst:89
 msgid "**Case Information**"
 msgstr "**ケース情報**"
 
-#: ../../source/portal-developer-guide/iframe/index.rst:83
+#: ../../source/portal-developer-guide/iframe/index.rst:91
 msgid "``caseId``: ID of the case to be displayed in the case information dialog."
 msgstr "``caseId``：ケース情報ダイアログに表示されるケースの ID。"
 
-#: ../../source/portal-developer-guide/iframe/index.rst:84
+#: ../../source/portal-developer-guide/iframe/index.rst:92
 msgid "``isHideCaseInfo``: Hides the ``Show Information`` button when true."
 msgstr "``isHideCaseInfo``：true に設定されている場合は、 ``情報の表示`` ボタンを非表示にします。"
 
-#: ../../source/portal-developer-guide/iframe/index.rst:86
+#: ../../source/portal-developer-guide/iframe/index.rst:94
 msgid "**Process Steps**"
 msgstr "**プロセスステップ**"
 
-#: ../../source/portal-developer-guide/iframe/index.rst:88
+#: ../../source/portal-developer-guide/iframe/index.rst:96
 msgid ""
 "``currentProcessStep``: Current step in the process, either as an index "
 "or step name."
 msgstr "``currentProcessStep``：プロセスの現在のステップ（インデックスまたはステップ名）。"
 
-#: ../../source/portal-developer-guide/iframe/index.rst:89
+#: ../../source/portal-developer-guide/iframe/index.rst:97
 msgid "``processSteps``: List of process steps or JSON."
 msgstr "``processSteps``：プロセスステップのリストまたは JSON。"
 
-#: ../../source/portal-developer-guide/iframe/index.rst:90
+#: ../../source/portal-developer-guide/iframe/index.rst:98
 msgid "``isShowAllSteps``: Displays all steps on large screens when true."
 msgstr "``isShowAllSteps``：true に設定されている場合は、すべてのステップを大画面に表示します。"
 
-#: ../../source/portal-developer-guide/iframe/index.rst:91
+#: ../../source/portal-developer-guide/iframe/index.rst:99
 msgid ""
 "``processChainDirection``: Orientation of the process chain, either "
 "``VERTICAL`` or ``HORIZONTAL``."
 msgstr "``processChainDirection``：プロセスチェーンの向き（ ``VERTICAL`` または ``HORIZONTAL``）。"
 
-#: ../../source/portal-developer-guide/iframe/index.rst:92
+#: ../../source/portal-developer-guide/iframe/index.rst:100
 msgid ""
 "``processChainShape``: Shape of the process chain, either ``LINE`` or "
 "``CIRCLE``."
 msgstr "``processChainShape``：プロセスチェーンの形状（ ``LINE`` または ``CIRCLE``）。"
 
-#: ../../source/portal-developer-guide/iframe/index.rst:94
+#: ../../source/portal-developer-guide/iframe/index.rst:102
 msgid "**Task Actions**"
 msgstr "**タスクアクション**"
 
-#: ../../source/portal-developer-guide/iframe/index.rst:96
+#: ../../source/portal-developer-guide/iframe/index.rst:104
 msgid "``isHideTaskAction``: Hides the task action button when true."
 msgstr "``isHideTaskAction``：true に設定されている場合は、タスクアクションボタンを非表示にします。"
 
-#: ../../source/portal-developer-guide/iframe/index.rst:97
+#: ../../source/portal-developer-guide/iframe/index.rst:105
 msgid ""
 "``isWorkingOnATask``: Indicates if a task is currently being worked on, "
 "useful for displaying a warning when leaving the page."
 msgstr "``isWorkingOnATask``：タスクが現在作業中かどうかを示します。ページから離れる際に警告を表示するのに有用です。"
 
-#: ../../source/portal-developer-guide/iframe/index.rst:100
+#: ../../source/portal-developer-guide/iframe/index.rst:108
 msgid "**Miscellaneous**"
 msgstr "**その他**"
 
-#: ../../source/portal-developer-guide/iframe/index.rst:102
+#: ../../source/portal-developer-guide/iframe/index.rst:110
 msgid "``announcementInvisible``: Makes the announcement invisible."
 msgstr "``announcementInvisible``：通知を非表示にします。"
 
-#: ../../source/portal-developer-guide/iframe/index.rst:103
+#: ../../source/portal-developer-guide/iframe/index.rst:111
 msgid ""
 "``isCardFrame``: Displays content of the IFrame inside a card-style "
 "container."
 msgstr "``isCardFrame``：カードスタイルのコンテナ内に IFrame のコンテンツを表示します。"
 
-#: ../../source/portal-developer-guide/iframe/index.rst:104
+#: ../../source/portal-developer-guide/iframe/index.rst:112
 msgid "``viewName``: Defines a custom breadcrumb view."
 msgstr "``viewName``：カスタムパンくずリストの表示を定義します。"
 
-#: ../../source/portal-developer-guide/iframe/index.rst:107
+#: ../../source/portal-developer-guide/iframe/index.rst:115
 msgid "Configuration Methods"
 msgstr "設定方法"
 
-#: ../../source/portal-developer-guide/iframe/index.rst:109
+#: ../../source/portal-developer-guide/iframe/index.rst:117
 msgid "You can configure the UI in one of two ways:"
 msgstr "以下のいずれかの方法で UI を設定できます。"
 
-#: ../../source/portal-developer-guide/iframe/index.rst:112
+#: ../../source/portal-developer-guide/iframe/index.rst:120
 msgid "We recommend to sanitize your parameters before passing them."
 msgstr "パラメーターを受け渡す前にサニタイジングすることを推奨します。"
 
-#: ../../source/portal-developer-guide/iframe/index.rst:114
+#: ../../source/portal-developer-guide/iframe/index.rst:122
 msgid "**Using ``IFrameTaskConfig`` Component** (Recommended)"
 msgstr "**IFrameTaskConfigコンポーネントの使用** （推奨）"
 
-#: ../../source/portal-developer-guide/iframe/index.rst:142
+#: ../../source/portal-developer-guide/iframe/index.rst:150
 msgid "**Using JavaScript (Deprecated)**"
 msgstr "**JavaScript の使用**"
 
-#: ../../source/portal-developer-guide/iframe/index.rst:145
+#: ../../source/portal-developer-guide/iframe/index.rst:153
 msgid "This feature is deprecated and will be removed in Portal 14."
 msgstr "この機能は非推奨となり、Portal 14 で削除されます。"
 
-#: ../../source/portal-developer-guide/iframe/index.rst:177
+#: ../../source/portal-developer-guide/iframe/index.rst:185
 msgid "Configure Task Details"
 msgstr "タスクの詳細の設定"
 
-#: ../../source/portal-developer-guide/iframe/index.rst:178
+#: ../../source/portal-developer-guide/iframe/index.rst:186
 msgid "You can customize task details, such as the task name and icon."
 msgstr "タスク名、アイコンなどのタスクの詳細をカスタマイズできます。"
 
-#: ../../source/portal-developer-guide/iframe/index.rst:180
-#: ../../source/portal-developer-guide/iframe/index.rst:206
-#: ../../source/portal-developer-guide/iframe/index.rst:230
-#: ../../source/portal-developer-guide/iframe/index.rst:256
+#: ../../source/portal-developer-guide/iframe/index.rst:188
+#: ../../source/portal-developer-guide/iframe/index.rst:214
+#: ../../source/portal-developer-guide/iframe/index.rst:238
+#: ../../source/portal-developer-guide/iframe/index.rst:264
 msgid "**Parameters:**"
 msgstr "**パラメーター**："
 
-#: ../../source/portal-developer-guide/iframe/index.rst:182
+#: ../../source/portal-developer-guide/iframe/index.rst:190
 msgid ""
 "``taskIcon``: Using Streamline or Awesome font (e.g., `si si-arrow-"
 "right`)."
 msgstr "``taskIcon``：Streamline または Awesome フォントの使用（ `si si-arrow-right` など）。"
 
-#: ../../source/portal-developer-guide/iframe/index.rst:183
+#: ../../source/portal-developer-guide/iframe/index.rst:191
 msgid ""
 "``isHideTaskName``: Set to ``true`` to hide the task name. Default is "
 "``false``."
 msgstr "``isHideTaskName``：タスク名を非表示にするには、 ``true`` に設定します。初期値は ``false`` です。"
 
-#: ../../source/portal-developer-guide/iframe/index.rst:185
-#: ../../source/portal-developer-guide/iframe/index.rst:211
-#: ../../source/portal-developer-guide/iframe/index.rst:236
-#: ../../source/portal-developer-guide/iframe/index.rst:266
+#: ../../source/portal-developer-guide/iframe/index.rst:193
+#: ../../source/portal-developer-guide/iframe/index.rst:219
+#: ../../source/portal-developer-guide/iframe/index.rst:244
+#: ../../source/portal-developer-guide/iframe/index.rst:274
 msgid "**Example:**"
 msgstr "**例：**"
 
-#: ../../source/portal-developer-guide/iframe/index.rst:203
+#: ../../source/portal-developer-guide/iframe/index.rst:211
 msgid "Configure Case Information"
 msgstr "ケース情報の設定"
 
-#: ../../source/portal-developer-guide/iframe/index.rst:204
+#: ../../source/portal-developer-guide/iframe/index.rst:212
 msgid ""
 "Customize how case details are displayed and whether to show the \"Show "
 "Information\" button."
 msgstr "ケースの詳細を表示する方法、「情報の表示」ボタンを表示するかどうかをカスタマイズします。"
 
-#: ../../source/portal-developer-guide/iframe/index.rst:207
+#: ../../source/portal-developer-guide/iframe/index.rst:215
 msgid "``caseId``: The ID of the case to display in the information dialog."
 msgstr "``caseId``：情報ダイアログに表示するケースの ID。"
 
-#: ../../source/portal-developer-guide/iframe/index.rst:208
+#: ../../source/portal-developer-guide/iframe/index.rst:216
 msgid ""
 "``isHideCaseInfo``: Set to ``true`` to hide the \"Show Information\" "
 "button. Default is ``false``."
 msgstr "``isHideCaseInfo``：「情報の表示」ボタンを非表示にするには、 ``true`` に設定します。初期値は ``false`` です。"
 
-#: ../../source/portal-developer-guide/iframe/index.rst:227
+#: ../../source/portal-developer-guide/iframe/index.rst:235
 msgid "Configure Task Actions"
 msgstr "タスクアクションの設定"
 
-#: ../../source/portal-developer-guide/iframe/index.rst:228
+#: ../../source/portal-developer-guide/iframe/index.rst:236
 msgid "Control the visibility and behavior of task-related buttons and actions."
 msgstr "タスク関連のボタンとアクションの表示設定と動作を制御します。"
 
-#: ../../source/portal-developer-guide/iframe/index.rst:231
+#: ../../source/portal-developer-guide/iframe/index.rst:239
 msgid ""
 "``isHideTaskAction``: Set to ``true`` to hide the task action button. "
 "Default is ``false``."
@@ -6108,7 +6095,7 @@ msgstr ""
 "``isHideTaskAction``：タスクアクションボタンを非表示にするには、 ``true`` に設定します。初期値は ``false``"
 " です。"
 
-#: ../../source/portal-developer-guide/iframe/index.rst:233
+#: ../../source/portal-developer-guide/iframe/index.rst:241
 msgid ""
 "``isWorkingOnATask``: Indicates if the task is active. Useful for "
 "displaying a warning when leaving the page. Default is ``true``."
@@ -6116,27 +6103,27 @@ msgstr ""
 "``isWorkingOnATask``：タスクがアクティブかどうかを示します。ページから離れる際に警告を表示するのに有用です。初期値は "
 "``true`` です。"
 
-#: ../../source/portal-developer-guide/iframe/index.rst:253
+#: ../../source/portal-developer-guide/iframe/index.rst:261
 msgid "Configure Miscellaneous Options"
 msgstr "その他のオプションの設定"
 
-#: ../../source/portal-developer-guide/iframe/index.rst:254
+#: ../../source/portal-developer-guide/iframe/index.rst:262
 msgid "Additional settings can influence the layout and visibility of elements."
 msgstr "追加の設定は、要素のレイアウトと表示設定に影響を及ぼすことがあります。"
 
-#: ../../source/portal-developer-guide/iframe/index.rst:257
+#: ../../source/portal-developer-guide/iframe/index.rst:265
 msgid ""
 "``announcementInvisible``: Set to ``true`` to hide announcements. Default"
 " is ``false``."
 msgstr "``announcementInvisible``：通知を非表示にするには、 ``true`` に設定します。初期値は ``false`` です。"
 
-#: ../../source/portal-developer-guide/iframe/index.rst:259
+#: ../../source/portal-developer-guide/iframe/index.rst:267
 msgid ""
 "``isCardFrame``: Set to ``true`` to display the IFrame content inside a "
 "card-style container."
 msgstr "``isCardFrame``：カードスタイルのコンテナ内に IFrame のコンテンツを表示するには、 ``true`` に設定します。"
 
-#: ../../source/portal-developer-guide/iframe/index.rst:261
+#: ../../source/portal-developer-guide/iframe/index.rst:269
 msgid ""
 "``viewName``: Custom breadcrumb view. Possible values are: ``HOME, "
 "PROCESS, TASK, TASK_DETAIL, CASE_DETAIL, CASE, TECHNICAL_CASE, "
@@ -6149,25 +6136,25 @@ msgstr ""
 "ABSENCES_MANAGEMENT, DASHBOARD_CONFIGURATION, EDIT_DASHBOARD_DETAILS, "
 "PROCESS_VIEWER, PORTAL_MANAGEMENT, NOTIFICATION``."
 
-#: ../../source/portal-developer-guide/iframe/index.rst:283
+#: ../../source/portal-developer-guide/iframe/index.rst:291
 msgid "Configure Show Information"
 msgstr "表示情報の設定"
 
-#: ../../source/portal-developer-guide/iframe/index.rst:285
+#: ../../source/portal-developer-guide/iframe/index.rst:293
 msgid ""
 "When you click the ``Show Information`` button, **Portal** will show  "
 "details of the running case in a modal dialog."
 msgstr "``情報の表示`` ボタンをクリックすると、 **ポータル** のモーダルダイアログに実行中のケースの詳細が表示されます。"
 
-#: ../../source/portal-developer-guide/iframe/index.rst:288
+#: ../../source/portal-developer-guide/iframe/index.rst:296
 msgid "Options for ``Show Information``"
 msgstr "``情報の表示`` のオプション"
 
-#: ../../source/portal-developer-guide/iframe/index.rst:290
+#: ../../source/portal-developer-guide/iframe/index.rst:298
 msgid "``caseId``: Case ID of the case you want to show in the modal dialog."
 msgstr "``caseId``：モーダルダイアログに表示するケースのケース ID。"
 
-#: ../../source/portal-developer-guide/iframe/index.rst:291
+#: ../../source/portal-developer-guide/iframe/index.rst:299
 msgid "``isHideCaseInfo``: Hide the ``Show Information`` button"
 msgstr "``isHideCaseInfo``： ``情報の表示`` ボタンを非表示にします。"
 
@@ -6187,23 +6174,23 @@ msgstr "caseId"
 msgid "ID of case to be displayed in case information dialog"
 msgstr "症例情報ダイアログに表示する症例のID"
 
-#: ../../source/portal-developer-guide/iframe/index.rst:299
-#: ../../source/portal-developer-guide/iframe/index.rst:332
-#: ../../source/portal-developer-guide/iframe/index.rst:360
+#: ../../source/portal-developer-guide/iframe/index.rst:307
+#: ../../source/portal-developer-guide/iframe/index.rst:340
+#: ../../source/portal-developer-guide/iframe/index.rst:368
 msgid "Example using IFrameTaskConfig:"
 msgstr "IFrameTaskConfig を使用した例："
 
-#: ../../source/portal-developer-guide/iframe/index.rst:314
+#: ../../source/portal-developer-guide/iframe/index.rst:322
 msgid "Configure Process steps"
 msgstr "プロセスステップの設定"
 
-#: ../../source/portal-developer-guide/iframe/index.rst:316
+#: ../../source/portal-developer-guide/iframe/index.rst:324
 msgid ""
 "``Process steps`` have many options to be configured from the list of "
 "steps to layout and shape."
 msgstr "``プロセスステップ`` では、ステップのリストからレイアウト、形状まで、さまざまなオプションを設定できます。"
 
-#: ../../source/portal-developer-guide/iframe/index.rst:318
+#: ../../source/portal-developer-guide/iframe/index.rst:326
 msgid "Options for ``Process steps``"
 msgstr "``プロセスステップ`` のオプション"
 
@@ -6247,7 +6234,7 @@ msgstr "processChainShape"
 msgid "CIRCLE (default) or LINE"
 msgstr "CIRCLE（デフォルト）またはLINE"
 
-#: ../../source/portal-developer-guide/iframe/index.rst:329
+#: ../../source/portal-developer-guide/iframe/index.rst:337
 msgid ""
 "When defining parameter ``processSteps``, please make sure that you add "
 "this JSP function tag to your HTML dialog: "
@@ -6257,11 +6244,11 @@ msgstr ""
 "``xmlns:fn=\"http://xmlns.jcp.org/jsp/jstl/functions\"`` HTML "
 "ダイアログに追加してください。"
 
-#: ../../source/portal-developer-guide/iframe/index.rst:350
+#: ../../source/portal-developer-guide/iframe/index.rst:358
 msgid "Other options"
 msgstr "その他のオプション"
 
-#: ../../source/portal-developer-guide/iframe/index.rst:352
+#: ../../source/portal-developer-guide/iframe/index.rst:360
 msgid "Various options can affect functions and layout."
 msgstr "オプションは、機能とレイアウトに影響を及ぼすことがあります。"
 
@@ -6299,11 +6286,11 @@ msgstr "isCardFrame"
 msgid "display content of the IFrame inside a card style"
 msgstr "カードスタイルの中にIFrameのコンテンツを表示する"
 
-#: ../../source/portal-developer-guide/iframe/index.rst:378
+#: ../../source/portal-developer-guide/iframe/index.rst:386
 msgid "Developer tips"
 msgstr "開発者へのヒント"
 
-#: ../../source/portal-developer-guide/iframe/index.rst:380
+#: ../../source/portal-developer-guide/iframe/index.rst:388
 msgid ""
 "If your project has a navigation button that does not complete a task "
 "(e.g., Cancel), redirect the user to the desired page (e.g., the "
@@ -6312,18 +6299,17 @@ msgstr ""
 "プロジェクトにタスクを完了しないナビゲーションボタン（キャンセルなど）が含まれる場合は、HTML "
 "ダイアログでユーザーを所定のページ（アプリケーションホーム、タスクリスト、プロセスリストなど）にリダイレクトしてください。"
 
-#: ../../source/portal-developer-guide/iframe/index.rst:385
+#: ../../source/portal-developer-guide/iframe/index.rst:393
 msgid "Sanitize JavaScript string"
 msgstr "JavaScript文字列のサニタイズ"
 
-#: ../../source/portal-developer-guide/iframe/index.rst:387
+#: ../../source/portal-developer-guide/iframe/index.rst:395
 msgid ""
 "Whenever you use a Portal feature that communicates through JavaScript, "
 "ensure that you sanitize your data before sending it to the Portal"
-msgstr "JavaScriptで通信するポータルの機能を使用する場合は、ポータルに送信する前に必"
-"ずデータをサニタイズしてください。"
+msgstr "JavaScriptで通信するポータルの機能を使用する場合は、ポータルに送信する前に必ずデータをサニタイズしてください。"
 
-#: ../../source/portal-developer-guide/iframe/index.rst:389
+#: ../../source/portal-developer-guide/iframe/index.rst:397
 #, fuzzy
 msgid ""
 "The Portal provides the public API ``SanitizeAPI.escapeForJavascript`` in"
@@ -6331,10 +6317,8 @@ msgid ""
 " escaping special characters — one of the most common techniques for "
 "JavaScript string sanitization."
 msgstr ""
-"ポータルでは、JavaScriptの文字列サニタイズのための最も一般的な手法の1つである"
-"、特殊文字のエスケープによるJavaScript文字列のサニタイズを支援するためのパブ"
-"リックAPI``SanitizeAPI.escapeForJavascript`` を``portal-components`` "
-"プロジェクトで提供しています。"
+"ポータルでは、JavaScriptの文字列サニタイズのための最も一般的な手法の1つである、特殊文字のエスケープによるJavaScript文字列のサニタイズを支援するためのパブリックAPI``SanitizeAPI.escapeForJavascript``"
+" を``portal-components`` プロジェクトで提供しています。"
 
 #: ../../source/portal-developer-guide/index.rst:6
 msgid "Portal Developer Guide"
@@ -7670,11 +7654,9 @@ msgid ""
 "#tab-description>` in the same security context. You can preview "
 "Word(doc, docx), Excel(xls, xlsx) and email(eml) documents."
 msgstr ""
-"タスクとケース詳細のドキュメントプレビュー機能を強化した。同じセキュリティコ"
-"ンテキストで:dev-url:`DocFactory <https://market.axonivy.com/doc-factory#tab-"
-"description>` "
-"。Word(doc、docx)、Excel(xls、xlsx)、Eメール(eml)のドキュメントをプレビューで"
-"きます。"
+"タスクとケース詳細のドキュメントプレビュー機能を強化した。同じセキュリティコンテキストで:dev-url:`DocFactory "
+"<https://market.axonivy.com/doc-factory#tab-description>` "
+"。Word(doc、docx)、Excel(xls、xlsx)、Eメール(eml)のドキュメントをプレビューできます。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:490
 msgid "Changes in 12.0.6"
@@ -7689,8 +7671,7 @@ msgid ""
 msgstr ""
 "ポータル設定``Portal.Cases.EnablePinnedCase`` "
 "と``Portal.Tasks.EnablePinnedTask`` "
-"を導入し、ダッシュボードのケースとタスクウィジェットのピン留め機能を有効にし"
-"た。"
+"を導入し、ダッシュボードのケースとタスクウィジェットのピン留め機能を有効にした。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:494
 msgid "Changes in 12.0.4"
@@ -9565,9 +9546,7 @@ msgstr "すべての CMS エントリに新しい言語の翻訳を追加しま�
 msgid ""
 "Add the translations for the new language for all json files in the "
 "Portal located at Config/variables by adding new locale/value item."
-msgstr ""
-"Config/variablesにあるポータルのすべてのjsonファイルに、新しいlocale/"
-"value項目を追加して、新しい言語の翻訳を追加します。"
+msgstr "Config/variablesにあるポータルのすべてのjsonファイルに、新しいlocale/value項目を追加して、新しい言語の翻訳を追加します。"
 
 #: ../../source/portal-developer-guide/settings/index.rst:48
 msgid "|translate-json|"
@@ -9581,8 +9560,7 @@ msgstr "translate-json"
 msgid ""
 "Add the translations for the new language to DefaultDashboardUtils.java "
 "by adding new locale/value item."
-msgstr "新しい言語用の翻訳をDefaultDashboardUtils.javaに追加し、新しいlocale/"
-"value項目を追加します。"
+msgstr "新しい言語用の翻訳をDefaultDashboardUtils.javaに追加し、新しいlocale/value項目を追加します。"
 
 #: ../../source/portal-developer-guide/settings/index.rst:52
 msgid "|translate-java|"
@@ -10496,19 +10474,15 @@ msgid ""
 "pages, or any custom content that doesn't require dynamic process "
 "execution."
 msgstr ""
-"Axon Ivy Portal の静的ページでは、開発者は、ポータルのナビゲーション・"
-"システムに統合できるカスタム JSF "
-"ページを作成できます。これらのページは、静的コンテンツ、ドキュメント、ヘルプ"
-"ページ、または動的なプロセスの実行を必要としないカスタムコンテンツを表示する"
-"のに便利です。"
+"Axon Ivy Portal の静的ページでは、開発者は、ポータルのナビゲーション・システムに統合できるカスタム JSF "
+"ページを作成できます。これらのページは、静的コンテンツ、ドキュメント、ヘルプページ、または動的なプロセスの実行を必要としないカスタムコンテンツを表示するのに便利です。"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:13
 msgid ""
 "Static pages are JSF (JavaServer Faces) pages that use the portal's "
 "layout templates and styling, providing a consistent user experience "
 "while allowing for custom content."
-msgstr "静的ページは、ポータルのレイアウトテンプレートとスタイルを使用するJSF（"
-"JavaServer Faces）ページです。"
+msgstr "静的ページは、ポータルのレイアウトテンプレートとスタイルを使用するJSF（JavaServer Faces）ページです。"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:18
 msgid "Creating Static Pages"
@@ -10522,8 +10496,7 @@ msgstr "ファイル構成"
 msgid ""
 "Static pages should be placed in the `webContent/view/` directory of your"
 " project. The recommended structure is:"
-msgstr "静的ページはプロジェクトの `webContent/view/` "
-"ディレクトリに置く必要があります。推奨される構造は"
+msgstr "静的ページはプロジェクトの `webContent/view/` ディレクトリに置く必要があります。推奨される構造は"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:39
 msgid "Basic Static Page Template"
@@ -10565,8 +10538,7 @@ msgstr "静的ページをポータルに統合する"
 msgid ""
 "There are several ways to integrate static pages into the portal "
 "navigation system."
-msgstr "静的ページをポータル・ナビゲーション・システムに統合するには、いくつかの方法"
-"があります。"
+msgstr "静的ページをポータル・ナビゲーション・システムに統合するには、いくつかの方法があります。"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:91
 msgid "Main Menu Integration"
@@ -10576,8 +10548,7 @@ msgstr "メインメニューの統合"
 msgid ""
 "You can add static pages to the main menu using the "
 "`Portal.CustomMenuItems` configuration."
-msgstr "`Portal.CustomMenuItems` "
-"設定を使ってメインメニューに静的ページを追加することができます。"
+msgstr "`Portal.CustomMenuItems` 設定を使ってメインメニューに静的ページを追加することができます。"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:96
 msgid "Configuration Method"
@@ -10628,8 +10599,7 @@ msgstr "プログラム方式"
 msgid ""
 "You can also add static pages programmatically using a callable "
 "subprocess:"
-msgstr "呼び出し可能なサブプロセスを使って、プログラムで静的ページを追加することもで"
-"きる："
+msgstr "呼び出し可能なサブプロセスを使って、プログラムで静的ページを追加することもできる："
 
 #: ../../source/portal-developer-guide/static-page/index.rst:141
 msgid "User Menu Integration"
@@ -10639,8 +10609,7 @@ msgstr "ユーザーメニューの統合"
 msgid ""
 "Static pages can also be added to the user menu using the "
 "`Portal.UserMenu` configuration:"
-msgstr "静的ページも `Portal.UserMenu` "
-"設定を使ってユーザーメニューに追加することができます："
+msgstr "静的ページも `Portal.UserMenu` 設定を使ってユーザーメニューに追加することができます："
 
 #: ../../source/portal-developer-guide/static-page/index.rst:168
 msgid "**id**: Unique identifier for the menu item"
@@ -10666,8 +10635,7 @@ msgstr "URL変換"
 msgid ""
 "Portal automatically converts static page links to the proper format when"
 " used in menus. The conversion process:"
-msgstr "Portalは、メニューで使用する場合、静的ページリンクを自動的に適切なフォーマッ"
-"トに変換します。変換プロセス"
+msgstr "Portalは、メニューで使用する場合、静的ページリンクを自動的に適切なフォーマットに変換します。変換プロセス"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:181
 msgid "**Input**: `app/faces/view/portal-components-examples/static.xhtml`"
@@ -10713,8 +10681,7 @@ msgstr "静的ページを `webContent/view/` ディレクトリに配置する�
 msgid ""
 "Use descriptive file names (e.g., `help-documentation.xhtml`, `user-"
 "guide.xhtml`)"
-msgstr "説明的なファイル名を使う（例： `help-documentation.xhtml` 、 `user-"
-"guide.xhtml` ）。"
+msgstr "説明的なファイル名を使う（例： `help-documentation.xhtml` 、 `user-guide.xhtml` ）。"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:294
 msgid "Organize related pages in subdirectories if needed"
@@ -10770,8 +10737,8 @@ msgid ""
 "`Static JSF Pages Documentation <https://developer.axonivy.com/doc/12"
 "/designer-guide/user-interface/static-jsf-pages.html#static-jsf-pages>`_"
 msgstr ""
-"`静的JSFページ・ドキュメント<https://developer.axonivy.com/doc/12/"
-"designer-guide/user-interface/static-jsf-pages.html#static-jsf-pages>`_"
+"`静的JSFページ・ドキュメント<https://developer.axonivy.com/doc/12/designer-guide"
+"/user-interface/static-jsf-pages.html#static-jsf-pages>`_"
 
 #: ../../source/portal-developer-guide/troubleshooting/index.rst:5
 msgid "Troubleshooting"
@@ -10949,3 +10916,4 @@ msgstr "URL に外部ウェブページが示されている場合、パラメ�
 
 #~ msgid "Permission to see the Destroy Task action"
 #~ msgstr "タスクの破棄アクションを表示する権限"
+
