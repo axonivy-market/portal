@@ -37,6 +37,9 @@ public class TaskDetailsTest extends BaseTest {
   private static final String ACCESS_TASK_DETAILS = "ACCESS_TASK_DETAILS";
   private static final String CREATE_NOTES = "InternalSupport/14B2FC03D2E87141/processWithSystemNote.ivp";
 
+  private static final String GRANT_NOTE_READ_ALL_PERMISSION_URL = "portalKitTestHelper/14DE09882B540AD5/grantNoteReadAllPermission.ivp";
+  private static final String DENY_NOTE_READ_ALL_PERMISSION_URL = "portalKitTestHelper/14DE09882B540AD5/denyNoteReadAllPermission.ivp";
+
   @Override
   @BeforeEach
   public void setup() {
@@ -217,5 +220,26 @@ public class TaskDetailsTest extends BaseTest {
     taskDetailsPage.getNotesWithContent("System note").shouldHave(size(1));
     taskDetailsPage.clickOnSystemNotesCheckbox(false);
     taskDetailsPage.getNotesWithContent("System note").shouldHave(size(0));
+  }
+
+  @Test
+  public void testShowNotesWhenGrantNoteReadAllPermissionInTaskDetails() {
+    redirectToRelativeLink(CREATE_NOTES);
+    login(TestAccount.DEMO_USER);
+    redirectToRelativeLink(DENY_NOTE_READ_ALL_PERMISSION_URL);
+
+    redirectToNewDashBoard();
+    NavigationHelper.navigateToTaskList();
+    TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
+    taskWidget.openDashboardTaskDetails("User: create note");
+    TaskDetailsPage taskDetailsPage = new TaskDetailsPage();
+    taskDetailsPage.getNotesWithContent("System note").shouldHave(size(0));
+
+    redirectToRelativeLink(GRANT_NOTE_READ_ALL_PERMISSION_URL);
+    NavigationHelper.navigateToTaskList();
+    taskWidget = new TopMenuTaskWidgetPage();
+    taskWidget.openDashboardTaskDetails("User: create note");
+    taskDetailsPage = new TaskDetailsPage();
+    taskDetailsPage.getNotesWithContent("System note").shouldHave(size(1));
   }
 }
