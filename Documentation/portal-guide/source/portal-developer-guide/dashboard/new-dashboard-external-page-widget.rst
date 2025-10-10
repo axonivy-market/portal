@@ -9,7 +9,7 @@ Define An External Page Widget
 ------------------------------
 
 You can use this widget to embed an external webpage into the Portal dashboard.
-This feature is especially useful for a company using other applications besides |ivy|.
+This feature is especially useful for a company using other applications besides Axon Ivy.
 It allows user to interact with multiple systems directly from the Portal dashboard.
 
    |external-page-widget-configuration|

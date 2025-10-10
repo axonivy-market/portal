@@ -59,14 +59,14 @@ Introduction
 ^^^^^^^^^^^^
 
 By default, when the server encounters an error such as ``HTTP 404``,
-``HTTP 500`` or an exception while loading a page, the |ivy-engine| will show
+``HTTP 500`` or an exception while loading a page, the Axon Ivy Engine will show
 a default error page. E.g.:
 
 |default-ivy-error|
 
 You can find the contents of this page in the file located at
 ``${AxonIvyEngineFolder}/webapp/ivy/ivy-error-page.xhtml``, but the error page
-is not user friendly. Thus, the |ivy| Portal provides an alternative solution
+is not user friendly. Thus, the Axon Ivy Portal provides an alternative solution
 to make this page more understandable for end users.
 
 .. _components-error-handling-nonajax-error-handling-howtoconfigure:

@@ -196,7 +196,7 @@ two differences:
 
 .. important::
    Portal only displays custom fields declared in the ``custom-fields.yaml`` file.
-   Refer to :dev-url:`Custom Fields Meta Information </doc/|version|/designer-guide/how-to/workflow/custom-fields.html#meta-information>` for more information.
+   Refer to :doc-url:`Custom Fields Meta Information </designer-guide/how-to/workflow/custom-fields.html#meta-information>` for more information.
 
 Custom Action Button Columns
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -227,7 +227,7 @@ Follow these steps to implement it:
                   IsCustomAction: true
 
       - ``IsCustomAction: true`` is mandatory to inform Portal that it is an action button.
-      - For the ``Icon``, please refer to the streamline icon showcase available in Html Dialog Demos on |ivy| Market.
+      - For the ``Icon``, please refer to the streamline icon showcase available in Html Dialog Demos on Axon Ivy Market.
 
    #. On the process start of the main process, assign a custom field to it.
    
@@ -381,7 +381,7 @@ Standard Column:
 
       This column only accepts a list of case business state names as the filter value. The available filter operator is ``in``.
 
-      Refer to :dev-url:`Case business states </doc/|version|/public-api/ch/ivyteam/ivy/workflow/caze/CaseBusinessState.html>` for
+      Refer to :doc-url:`Case business states </public-api/ch/ivyteam/ivy/workflow/caze/CaseBusinessState.html>` for
       available case business states.
 
    - ``creator``
@@ -616,8 +616,8 @@ Otherwise, the logic remains unchanged, and the custom field uses the static val
 Additionally, the value must be entered and maintained in the CMS in multiple languages.
 
 Following this path to add your custom field values: ``/CustomFields/Cases/{fieldName}/Values/{value}``
-Please follow this :dev-url:`Localize Label, Description, Category
-and Values </doc/|version|/designer-guide/configuration/custom-fields.html#localize-label-description-category-and-values>`
+Please follow this :doc-url:`Localize Label, Description, Category
+and Values </designer-guide/configuration/custom-fields.html#localize-label-description-category-and-values>`
 to get more information.
 
 Example YAML Configuration

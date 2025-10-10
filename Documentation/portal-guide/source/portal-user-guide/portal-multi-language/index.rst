@@ -15,7 +15,7 @@ To use Axon Ivy's translation service:
 
 - Open :ref:`Admin Settings <admin-settings>`, set :guilabel:`Portal.TranslationService.Enable` to true.
 
-- Configure translation service variable, refer to :dev-url:`|ivy| translation service </doc/|version|/engine-guide/configuration/translation-service/index.html>`
+- Configure translation service variable, refer to :doc-url:`Axon Ivy translation service </engine-guide/configuration/translation-service/index.html>`
 
 HowTo: Translate a pure text
 ----------------------------

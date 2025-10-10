@@ -1781,7 +1781,7 @@ msgid ""
 "details."
 msgstr ""
 "設定はPortal設定のPortal.ShowAvatarをデフォルト値として検出します。詳細は :re"
-"f:`ハウツー：ポータル設定を更新する <update-portal-settings>`を参照してくださ"
+"f:`ハウツー：ポータル設定を更新する <update-portal-settings>` を参照してくださ"
 "い。"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv

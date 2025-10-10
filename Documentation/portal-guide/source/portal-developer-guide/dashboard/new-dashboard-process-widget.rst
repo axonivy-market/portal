@@ -91,10 +91,10 @@ Below is a standard JSON definition of a Process widget in compact mode
       }
    ..
 
-``processPaths``: the :dev-url:`|ivy| IWebStartable </doc/|version|/public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html>` identifier of the processes that you want to
+``processPaths``: the :doc-url:`Axon Ivy IWebStartable </public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html>` identifier of the processes that you want to
 show.
 
-``categories``: categories of processes that you want to show. The value should be the :dev-url:`CMS URI </doc/|version|/designer-guide/how-to/workflow/categories.html#workflow-categories>` of this category. Process widget
+``categories``: categories of processes that you want to show. The value should be the :doc-url:`CMS URI </designer-guide/how-to/workflow/categories.html#workflow-categories>` of this category. Process widget
 will show all processes that belonged to these categories.
 
 If you define both ``processPaths`` and ``categories``, the process widget will
@@ -144,7 +144,7 @@ Below is a standard JSON definition of a Process widget in combined mode
       }
    ..
 
-``processPath``: the :dev-url:`|ivy| IWebStartable </doc/|version|/public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html>` identifier of the process you want to display.
+``processPath``: the :doc-url:`Axon Ivy IWebStartable </public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html>` identifier of the process you want to display.
 The Process widget will show all tasks and cases of this process, too.
 
 ``rowsPerPage``: the number of tasks/cases that are displayed on one page. 
