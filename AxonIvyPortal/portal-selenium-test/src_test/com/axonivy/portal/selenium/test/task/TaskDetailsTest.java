@@ -3,6 +3,7 @@ package com.axonivy.portal.selenium.test.task;
 import static com.codeborne.selenide.CollectionCondition.size;
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThanOrEqual;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -37,9 +38,6 @@ public class TaskDetailsTest extends BaseTest {
   private static final String ACCESS_TASK_DETAILS = "ACCESS_TASK_DETAILS";
   private static final String CREATE_NOTES = "InternalSupport/14B2FC03D2E87141/processWithSystemNote.ivp";
 
-  private static final String GRANT_NOTE_READ_ALL_PERMISSION_URL = "portalKitTestHelper/14DE09882B540AD5/grantNoteReadAllPermission.ivp";
-  private static final String DENY_NOTE_READ_ALL_PERMISSION_URL = "portalKitTestHelper/14DE09882B540AD5/denyNoteReadAllPermission.ivp";
-
   @Override
   @BeforeEach
   public void setup() {
@@ -48,6 +46,12 @@ public class TaskDetailsTest extends BaseTest {
     updateGlobalVariable(Variable.TASK_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST.getKey(), ACCESS_TASK_DETAILS);
     grantSpecificPortalPermission(PortalPermission.TASK_CASE_ADD_NOTE);
   }
+  
+  @AfterEach
+  public void teardown() {
+    denySpecificPortalPermission(PortalPermission.NOTE_READ_ALL_CASE_TASK_DETAILS);
+  }
+
 
   @Test
   public void testVisibilityOfNotesWhenAddNoteOnTaskDetailsWithoutTechnicalCase() {
@@ -226,7 +230,6 @@ public class TaskDetailsTest extends BaseTest {
   public void testShowNotesWhenGrantNoteReadAllPermissionInTaskDetails() {
     redirectToRelativeLink(CREATE_NOTES);
     login(TestAccount.DEMO_USER);
-    redirectToRelativeLink(DENY_NOTE_READ_ALL_PERMISSION_URL);
 
     redirectToNewDashBoard();
     NavigationHelper.navigateToTaskList();
@@ -235,7 +238,7 @@ public class TaskDetailsTest extends BaseTest {
     TaskDetailsPage taskDetailsPage = new TaskDetailsPage();
     taskDetailsPage.getNotesWithContent("System note").shouldHave(size(0));
 
-    redirectToRelativeLink(GRANT_NOTE_READ_ALL_PERMISSION_URL);
+    grantSpecificPortalPermission(PortalPermission.NOTE_READ_ALL_CASE_TASK_DETAILS);
     NavigationHelper.navigateToTaskList();
     taskWidget = new TopMenuTaskWidgetPage();
     taskWidget.openDashboardTaskDetails("User: create note");

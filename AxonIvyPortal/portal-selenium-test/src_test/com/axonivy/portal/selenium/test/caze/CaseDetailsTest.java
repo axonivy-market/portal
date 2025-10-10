@@ -71,8 +71,6 @@ public class CaseDetailsTest extends BaseTest {
   private static final String SICK_LEAVE_REQUEST_TASK = "Sick Leave Request";
   private static final String ANNUAL_LEAVE_REQUEST_TASK = "Annual Leave Request";
   private static final String CREATE_NOTES = "InternalSupport/14B2FC03D2E87141/processWithSystemNote.ivp";
-  private static final String GRANT_NOTE_READ_ALL_PERMISSION_URL = "portalKitTestHelper/14DE09882B540AD5/grantNoteReadAllPermission.ivp";
-  private static final String DENY_NOTE_READ_ALL_PERMISSION_URL = "portalKitTestHelper/14DE09882B540AD5/denyNoteReadAllPermission.ivp";
   
 
   @Override
@@ -491,6 +489,7 @@ public class CaseDetailsTest extends BaseTest {
   @AfterEach
   public void teardown() {
     denySpecificPortalPermission(PortalPermission.TASK_CASE_ADD_NOTE);
+    denySpecificPortalPermission(PortalPermission.NOTE_READ_ALL_CASE_TASK_DETAILS);
   }
 
   @Test
@@ -625,13 +624,12 @@ public class CaseDetailsTest extends BaseTest {
   public void testShowNotesWhenGrantNoteReadAllPermission() {
     redirectToRelativeLink(CREATE_NOTES);
     login(TestAccount.DEMO_USER);
-    redirectToRelativeLink(DENY_NOTE_READ_ALL_PERMISSION_URL);
     CaseWidgetNewDashBoardPage casePage = NavigationHelper.navigateToCaseList();
     detailsPage = casePage.openDetailsCase("Create note");
     detailsPage.waitPageLoaded();
     detailsPage.getNotesWithContent("System note").shouldHave(size(0));
 
-    redirectToRelativeLink(GRANT_NOTE_READ_ALL_PERMISSION_URL);
+    grantSpecificPortalPermission(PortalPermission.NOTE_READ_ALL_CASE_TASK_DETAILS);
     casePage = NavigationHelper.navigateToCaseList();
     detailsPage = casePage.openDetailsCase("Create note");
     detailsPage.waitPageLoaded();

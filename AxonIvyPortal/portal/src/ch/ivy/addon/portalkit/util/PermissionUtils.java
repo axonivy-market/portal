@@ -236,7 +236,7 @@ public class PermissionUtils {
    * Check if current user has permission see system notes in case/task details
    * @return true if current user has permission.
    */
-  public static boolean checkNoteReadAllPermission() {
-    return hasPermission(IPermission.NOTE_READ_ALL);
+  public static boolean checkNoteReadAllCaseTaskDetailsPermission() {
+    return hasPortalPermission(PortalPermission.NOTE_READ_ALL_CASE_TASK_DETAILS);
   }
 }
