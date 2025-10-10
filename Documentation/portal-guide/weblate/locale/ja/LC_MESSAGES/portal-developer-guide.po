@@ -10749,7 +10749,7 @@ msgid ""
 "`Static JSF Pages Documentation <https://developer.axonivy.com/doc/12"
 "/designer-guide/user-interface/static-jsf-pages.html#static-jsf-pages>`_"
 msgstr ""
-"`静的JSFページ・ドキュメント<https://developer.axonivy.com/doc/12/"
+"`静的JSFページ・ドキュメント <https://developer.axonivy.com/doc/12/"
 "designer-guide/user-interface/static-jsf-pages.html#static-jsf-pages>`_"
 
 #: ../../source/portal-developer-guide/troubleshooting/index.rst:5
