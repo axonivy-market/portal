@@ -1,5 +1,5 @@
-name: Documentation
-run-name: 📚 Documentation
+name: Portal Multilingual Documentation
+run-name: 📚 Portal Multilingual Documentation
 on:
   workflow_dispatch:
     inputs:
@@ -37,8 +37,19 @@ jobs:
             # Stops the workflow if the condition is met
             exit 1
           fi
+          
+          # Check if it's a sprint release
+          if [[ "$VERSION" == *-* ]]; then
+            RELEASE="dev"
+          else
+            # Extract only major.minor
+            RELEASE=$(echo "$VERSION" | cut -d. -f1,2)
+          fi
+          
           echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "release=$RELEASE" >> "$GITHUB_OUTPUT"
           echo "Version is $VERSION"
+          echo "Release is $RELEASE" 
       
       - name: Download artifacts from screenshot workflow
         uses: dawidd6/action-download-artifact@v8
@@ -66,7 +77,8 @@ jobs:
         id: build-html
         run: |
           docker run -u root:root --rm -v ${{ github.workspace }}:/workspace -w /workspace/Documentation/portal-guide \
-            axonivy/build-container:read-the-docs-2 make -C /doc-build html BASEDIR='/workspace/Documentation/portal-guide' VERSION=${{ steps.get_version.outputs.version }} 2> sphinx-warnings.log
+            axonivy/build-container:read-the-docs-2 make -C /doc-build html BASEDIR='/workspace/Documentation/portal-guide' \
+            VERSION=${{ steps.get_version.outputs.release }} VERSION_SWITCHER=true 2> sphinx-warnings.log
             WARNINGS=$(grep -c "WARNING" sphinx-warnings.log || echo 0)
             echo "Found $WARNINGS warnings."
             if [ "$WARNINGS" -ge 1 ]; then
@@ -81,7 +93,8 @@ jobs:
               echo '```' >> $GITHUB_STEP_SUMMARY
               exit 1
             fi
-  
+          sudo mkdir -p Documentation/portal-guide/build/doc/en
+          sudo mv Documentation/portal-guide/build/html/* Documentation/portal-guide/build/doc/en/
 
       - name: Install or deploy document
         run: |
@@ -100,7 +113,7 @@ jobs:
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: Documentation-${{ steps.get_version.outputs.version }}
+          name: Documentation-multilingual-${{ steps.get_version.outputs.version }}
           path: |
             Documentation/portal-guide/target/*.zip
     
