@@ -37,6 +37,5 @@ public class DocumentTableComponentTest extends BaseTest {
     documentTableComponentPage.clickPreviewButton();
     documentTableComponentPage.waitForPreviewDialog();
     assertTrue(documentTableComponentPage.isPreviewContentDisplayed());
-    documentTableComponentPage.closePreviewDialog();
   }
 }

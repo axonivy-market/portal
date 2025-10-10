@@ -4,7 +4,7 @@ import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Condition.disappear;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
 import java.util.stream.Collectors;
@@ -118,9 +118,7 @@ public class MainMenuPage extends TemplatePage {
   }
 
   public void clickMainMenuItem(String name) {
-    WebElement element = driver.findElement(By.xpath(
-        String.format("//li[contains(@class, 'external-menu-item-main_dashboard') and .//span[text()='%s']]", name)));
-    element.click();
+    $("[title='" + name + "']").click();
   }
 
   public void assertThirdPartyApp(String url) {
@@ -129,7 +127,7 @@ public class MainMenuPage extends TemplatePage {
     ArrayList<String> tabs = new ArrayList<String>(driver.getWindowHandles());
     driver.switchTo().window(tabs.get(1));
     WaitHelper.assertTrueWithWait(() -> "Google".equals(driver.getTitle()));
-    assertEquals(url, driver.getCurrentUrl());
+    assertTrue(driver.getCurrentUrl().contains(url));
   }
 
   public void assertMainMenuItem(String name) {

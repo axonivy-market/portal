@@ -286,7 +286,7 @@ public class ProcessWidgetPage extends TemplatePage {
   public String getProcessItemIcon(int index) {
     WebElement processItem = findElementByCssSelector(
         String.format("[id$='grid-process-group-alphabet:%d:grid-processes:0:process-grid-item:process-item']", index));
-    return processItem.findElement(By.id("icon")).getAttribute("class");
+    return processItem.findElement(By.id("icon")).getDomAttribute("class");
   }
 
   public void waitForImageProcessListDisplayed() {
