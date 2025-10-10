@@ -131,7 +131,7 @@
                     cw.stop();
                   }
                 } catch (e) {
-                  if (e && e.name === 'SecurityError') {
+                  if (e === 'SecurityError') {
                     console.warn('SecurityError accessing iframe.contentWindow:', e);
                   } else {
                     throw e;
