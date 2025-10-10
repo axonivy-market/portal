@@ -300,10 +300,10 @@ msgstr "Ajax 以外のエラーの処理"
 #: ../../source/portal-developer-guide/components/error-handling.rst:61
 msgid ""
 "By default, when the server encounters an error such as ``HTTP 404``, "
-"``HTTP 500`` or an exception while loading a page, the |ivy-engine| will "
+"``HTTP 500`` or an exception while loading a page, the Axon Ivy Engine will "
 "show a default error page. E.g.:"
 msgstr ""
-"ページの読み込み中にサーバーで ``HTTP 404``、 ``HTTP 500`` などのエラーや例外が発生した場合、|ivy-engine| "
+"ページの読み込み中にサーバーで ``HTTP 404``、 ``HTTP 500`` などのエラーや例外が発生した場合、Axon Ivy Engine "
 "は自動的にデフォルトのエラーページを表示します。"
 
 #: ../../source/portal-developer-guide/components/error-handling.rst:65
@@ -319,11 +319,11 @@ msgstr "default-ivy-error"
 msgid ""
 "You can find the contents of this page in the file located at "
 "``${AxonIvyEngineFolder}/webapp/ivy/ivy-error-page.xhtml``, but the error"
-" page is not user friendly. Thus, the |ivy| Portal provides an "
+" page is not user friendly. Thus, the Axon Ivy Portal provides an "
 "alternative solution to make this page more understandable for end users."
 msgstr ""
 "このページのコンテンツは ``${AxonIvyEngineFolder}/webapp/ivy/ivy-error-page.xhtml`` "
-"にあるファイルにありますが、エラーページはユーザーフレンドリーではありません。そのため、|ivy| Portal "
+"にあるファイルにありますが、エラーページはユーザーフレンドリーではありません。そのため、Axon Ivy Portal "
 "では、エンドユーザーがこのページを理解しやすくする別の方法が用意されています。"
 
 #: ../../source/portal-developer-guide/components/error-handling.rst:75
@@ -475,11 +475,11 @@ msgstr ""
 msgid ""
 "If your system uses an additional Tomcat **Valve**, then we recommend to "
 "add asyncSupported in file ``Context.xml``. An example file is available "
-"at :dev-url:`File Reference </doc/|version|/engine-"
+"at :dev-url:`File Reference </doc/12.0/engine-"
 "guide/configuration/files/context-xml.html>`."
 msgstr ""
 "システムが追加の Tomcat の **値** を使用している場合は、 ``Context.xml`` ファイルに asyncSupported "
-"を追加することを推奨します。 :dev-url:`参照ファイル </doc/|version|/engine-"
+"を追加することを推奨します。 :dev-url:`参照ファイル </doc/12.0/engine-"
 "guide/configuration/files/context-xml.html>` にサンプルファイルがあります。"
 
 #: ../../source/portal-developer-guide/components/portal-chat.rst:40
@@ -537,12 +537,12 @@ msgstr "customization-business-details-page-start-request"
 
 #: ../../source/portal-developer-guide/customization/business-details-page.rst:27
 msgid ""
-"Store the :dev-url:`IWebStartable ID </doc/|version|/public-"
+"Store the :dev-url:`IWebStartable ID </doc/12.0/public-"
 "api/ch/ivyteam/ivy/workflow/start/IWebStartable.html#getId()>` of the "
 "process to the string custom field ``businessDetails`` of the case. There"
 " are 2 ways to perform this:"
 msgstr ""
-"プロセスの :dev-url:`IWebStartable ID </doc/|version|/public-"
+"プロセスの :dev-url:`IWebStartable ID </doc/12.0/public-"
 "api/ch/ivyteam/ivy/workflow/start/IWebStartable.html#getId()>` をケースの "
 "``businessDetails`` 文字列カスタムフィールドに格納します。 以下の 2 つの方法があります。"
 
@@ -592,11 +592,11 @@ msgstr "customize-business-details-with-public-api"
 #: ../../source/portal-developer-guide/customization/business-details-page.rst:42
 msgid ""
 "The business details page also supports external links in case the "
-"business details site is outside of |ivy|. You can replace the path with "
+"business details site is outside of Axon Ivy. You can replace the path with "
 "any URL. Portal will take care of the rest. E.g., "
 "``BusinessDetailsAPI.create(\"https://google.com\")``"
 msgstr ""
-"また、ビジネスの詳細ページでは、ビジネスの詳細が |ivy| の外部にある場合に、外部リンクを埋め込むことができます。パスを任意の URL "
+"また、ビジネスの詳細ページでは、ビジネスの詳細が Axon Ivy の外部にある場合に、外部リンクを埋め込むことができます。パスを任意の URL "
 "に置き換えてください。後はポータルが処理します。例： "
 "``BusinessDetailsAPI.create(\"https://google.com\")``"
 
@@ -684,11 +684,11 @@ msgstr "権限の設定"
 
 #: ../../source/portal-developer-guide/customization/business-details-page.rst:73
 msgid ""
-"Configure permissions in the :dev-url:`Engine Cockpit </doc/|version"
-"|/engine-guide/reference/engine-cockpit/security.html>`. In the security "
+"Configure permissions in the :dev-url:`Engine Cockpit </doc/12.0"
+"/engine-guide/reference/engine-cockpit/security.html>`. In the security "
 "area, open PortalPermissions -> PortalCasePermissions -> ShowCaseDetails."
 msgstr ""
-":dev-url:`エンジンコックピット </doc/|version|/engine-guide/reference/engine-"
+":dev-url:`エンジンコックピット </doc/12.0/engine-guide/reference/engine-"
 "cockpit/security.html>` "
 "で権限を設定します。セキュリティ領域で［PortalPermissions］、［PortalCasePermissions］、［ShowCaseDetails］を順に開いてください。"
 
@@ -835,11 +835,11 @@ msgstr "``states`` （ケースのビジネスの状態）."
 #: ../../source/portal-developer-guide/customization/case-item-details.rst:110
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:384
 msgid ""
-"Refer to :dev-url:`Case business states </doc/|version|/public-"
+"Refer to :dev-url:`Case business states </doc/12.0/public-"
 "api/ch/ivyteam/ivy/workflow/caze/CaseBusinessState.html>` for available "
 "case business states."
 msgstr ""
-"利用可能なケースのビジネスの状態については、:dev-url:`ケースのビジネスの状態 </doc/|version|/public-"
+"利用可能なケースのビジネスの状態については、:dev-url:`ケースのビジネスの状態 </doc/12.0/public-"
 "api/ch/ivyteam/ivy/workflow/caze/CaseBusinessState.html>` を参照してください。"
 
 #: ../../source/portal-developer-guide/customization/case-item-details.rst:113
@@ -1043,10 +1043,10 @@ msgstr "ケースの詳細に移動し、新しいカスタムレイアウトを
 #: ../../source/portal-developer-guide/customization/case-item-details.rst:187
 #: ../../source/portal-developer-guide/customization/task-item-details.rst:158
 msgid ""
-"About how to configure Variables, refer to :dev-url:`|ivy| Variables "
-"</doc/|version|/designer-guide/configuration/variables.html>`"
+"About how to configure Variables, refer to :dev-url:`Axon Ivy Variables "
+"</doc/12.0/designer-guide/configuration/variables.html>`"
 msgstr ""
-"変数の設定方法については、:dev-url:`|ivy| の変数 </doc/|version|/designer-"
+"変数の設定方法については、:dev-url:`Axon Ivy の変数 </doc/12.0/designer-"
 "guide/configuration/variables.html>` を参照してください。"
 
 #: ../../source/portal-developer-guide/customization/case-item-details.rst:191
@@ -1276,13 +1276,13 @@ msgstr "**結果**"
 #: ../../source/portal-developer-guide/customization/document-processes.rst:121
 #: ../../source/portal-developer-guide/customization/forgot-password.rst:61
 msgid "message"
-msgstr "メッセージ"
+msgstr "message"
 
 #: ../../source/portal-developer-guide/customization/change-password-process.rst:36
 #: ../../source/portal-developer-guide/customization/document-processes.rst:77
 #: ../../source/portal-developer-guide/customization/task-delegation.rst:26
 msgid "status"
-msgstr "ステータス"
+msgstr "status"
 
 #: ../../source/portal-developer-guide/customization/change-password-process.rst:36
 #: ../../source/portal-developer-guide/customization/document-processes.rst:77
@@ -1333,7 +1333,7 @@ msgstr "**シグネチャ**：portalGetDocumentList"
 #: ../../source/portal-developer-guide/customization/document-processes.rst:93
 #: ../../source/portal-developer-guide/customization/document-processes.rst:115
 msgid "businessCase"
-msgstr "ビジネスケース"
+msgstr "businessCase"
 
 #: ../../source/portal-developer-guide/customization/document-processes.rst:34
 #: ../../source/portal-developer-guide/customization/document-processes.rst:61
@@ -1344,7 +1344,7 @@ msgstr "ch.ivyteam.ivy.workflow.ICase"
 
 #: ../../source/portal-developer-guide/customization/document-processes.rst:38
 msgid "documents"
-msgstr "書類"
+msgstr "documents"
 
 #: ../../source/portal-developer-guide/customization/document-processes.rst:38
 msgid "java.util.List<com.axonivy.portal.components.ivydata.bo.IvyDocument>"
@@ -1376,7 +1376,7 @@ msgstr "**シグネチャ**：portalUploadDocument"
 
 #: ../../source/portal-developer-guide/customization/document-processes.rst:63
 msgid "uploadedFile"
-msgstr "アップロードファイル"
+msgstr "uploadedFile"
 
 #: ../../source/portal-developer-guide/customization/document-processes.rst:63
 msgid "org.primefaces.model.file.UploadedFile"
@@ -1384,8 +1384,7 @@ msgstr "org.primefaces.model.file.UploadedFile"
 
 #: ../../source/portal-developer-guide/customization/document-processes.rst:65
 msgid "enableScriptCheckingForUploadedDocument"
-msgstr "enableScriptCheckingForUploadedDocument（アップロードされたドキュメントのスク"
-"リプトチェックを有効にする"
+msgstr "enableScriptCheckingForUploadedDocument"
 
 #: ../../source/portal-developer-guide/customization/document-processes.rst:65
 #: ../../source/portal-developer-guide/customization/document-processes.rst:67
@@ -1395,15 +1394,15 @@ msgstr "java.lang.Boolean"
 
 #: ../../source/portal-developer-guide/customization/document-processes.rst:67
 msgid "enableVirusScannerForUploadedDocument"
-msgstr "enableVirusScannerForUploadedDocument。"
+msgstr "enableVirusScannerForUploadedDocument"
 
 #: ../../source/portal-developer-guide/customization/document-processes.rst:69
 msgid "allowedUploadFileTypes"
-msgstr "許可されるアップロードファイルの種類"
+msgstr "allowedUploadFileTypes"
 
 #: ../../source/portal-developer-guide/customization/document-processes.rst:73
 msgid "uploadedDocument"
-msgstr "アップロードされたドキュメント"
+msgstr "uploadedDocument"
 
 #: ../../source/portal-developer-guide/customization/document-processes.rst:73
 msgid "ch.ivyteam.ivy.workflow.document.IDocument"
@@ -1426,7 +1425,7 @@ msgstr "**シグネチャ**：portalDownloadDocument"
 #: ../../source/portal-developer-guide/customization/document-processes.rst:95
 #: ../../source/portal-developer-guide/customization/document-processes.rst:117
 msgid "document"
-msgstr "ドキュメント"
+msgstr "document"
 
 #: ../../source/portal-developer-guide/customization/document-processes.rst:95
 #: ../../source/portal-developer-guide/customization/document-processes.rst:117
@@ -1436,7 +1435,7 @@ msgstr "com.axonivy.portal.components.ivydata.bo.IvyDocument"
 
 #: ../../source/portal-developer-guide/customization/document-processes.rst:99
 msgid "streamedContent"
-msgstr "ストリームコンテンツ"
+msgstr "streamedContent"
 
 #: ../../source/portal-developer-guide/customization/document-processes.rst:99
 msgid "org.primefaces.model.StreamedContent"
@@ -1584,7 +1583,7 @@ msgid ""
 msgstr ""
 "com.axonivy.portal.components.util.RoleAPI.setProperty([自分のロール], "
 "ch.ivy.addon.portalkit.enums.AdditionalProperty.HIDE.toString(), "
-"\"\"HIDE\"\")"
+"\"HIDE\")"
 
 #: ../../source/portal-developer-guide/customization/hide-technical-stuffs.rst:22
 #: ../../source/portal-developer-guide/customization/hide-technical-stuffs.rst:39
@@ -1775,7 +1774,7 @@ msgstr "isTaskReserve"
 #: ../../source/portal-developer-guide/customization/logout-process.rst:33
 #: ../../source/portal-developer-guide/customization/task-delegation.rst:22
 msgid "task"
-msgstr "タスク"
+msgstr "task"
 
 #: ../../source/portal-developer-guide/customization/logout-process.rst:37
 msgid "Customize the logout page"
@@ -1787,7 +1786,7 @@ msgstr "**シグネチャ**：portalGetLogoutPage"
 
 #: ../../source/portal-developer-guide/customization/logout-process.rst:48
 msgid "logoutPage"
-msgstr "ログアウトページ"
+msgstr "logoutPage"
 
 #: ../../source/portal-developer-guide/customization/menu.rst:4
 msgid "Menu And Default Homepage In User Profile"
@@ -1893,13 +1892,12 @@ msgstr "**シグネチャ**：portalLoadSubMenuItems"
 
 #: ../../source/portal-developer-guide/customization/menu.rst:60
 msgid "subMenuItems"
-msgstr "サブメニュー項目"
+msgstr "subMenuItems"
 
 #: ../../source/portal-developer-guide/customization/menu.rst:60
 msgid "java.util.List<com.axonivy.portal.components.configuration.CustomSubMenuItem>"
 msgstr ""
 "java.util.List<com.axonivy.portal.components.configuration.CustomSubMenuItem>"
-"。"
 
 #: ../../source/portal-developer-guide/customization/menu.rst:63
 msgid "Example of a menu that redirects to an Ivy process."
@@ -2041,10 +2039,10 @@ msgstr "ポータルで表示されるロゴの変更"
 #: ../../source/portal-developer-guide/customization/portal-style-customization-logos-colors-date-patterns.rst:11
 msgid ""
 "You can change both the top-left corner logo in the menu and the login "
-"logo by using :dev-url:`Engine Branding </doc/|version|/designer-guide"
+"logo by using :dev-url:`Engine Branding </doc/12.0/designer-guide"
 "/user-interface/branding/branding-engine.html>`."
 msgstr ""
-":dev-url:`エンジンのブランディング </doc/|version|/designer-guide/user-"
+":dev-url:`エンジンのブランディング </doc/12.0/designer-guide/user-"
 "interface/branding/branding-engine.html>` "
 "により、メニューの左上隅のロゴとログインロゴの両方を変更できます。"
 
@@ -2088,12 +2086,12 @@ msgstr "コーポレートアイデンティティで必須の背景色が定め
 #: ../../source/portal-developer-guide/customization/portal-style-customization-logos-colors-date-patterns.rst:32
 msgid ""
 "To change the logos used in the Portal, please use resources that are "
-"described at :dev-url:`User Interface Branding </doc/|version|/designer-"
+"described at :dev-url:`User Interface Branding </doc/12.0/designer-"
 "guide/user-interface/branding/branding-user-interface.html#resources>` "
 "and follow the guidelines below."
 msgstr ""
-"ポータルで使用するロゴを変更する場合は、:dev-url:`ユーザーインターフェースのブランディング </doc/|version"
-"|/designer-guide/user-interface/branding/branding-user-"
+"ポータルで使用するロゴを変更する場合は、:dev-url:`ユーザーインターフェースのブランディング </doc/12.0"
+"/designer-guide/user-interface/branding/branding-user-"
 "interface.html#resources>` に記載されているリソースを使用し、以下のガイドラインに従ってください。"
 
 #: ../../source/portal-developer-guide/customization/portal-style-customization-logos-colors-date-patterns.rst:36
@@ -2182,14 +2180,14 @@ msgstr ""
 
 #: ../../source/portal-developer-guide/customization/portal-style-customization-logos-colors-date-patterns.rst:75
 msgid ""
-"Refer to :dev-url:`Engine Branding </doc/|version|/designer-guide/user-"
+"Refer to :dev-url:`Engine Branding </doc/12.0/designer-guide/user-"
 "interface/branding/branding-engine.html>` for the location of :dev-"
-"url:`custom.css </doc/|version|/engine-guide/configuration/files/custom-"
+"url:`custom.css </doc/12.0/engine-guide/configuration/files/custom-"
 "css.html>`."
 msgstr ""
-":dev-url:`custom.css </doc/|version|/engine-guide/configuration/files"
-"/custom-css.html>` の場所については、 :dev-url:`エンジンのブランディング </doc/|version"
-"|/designer-guide/user-interface/branding/branding-engine.html>` "
+":dev-url:`custom.css </doc/12.0/engine-guide/configuration/files"
+"/custom-css.html>` の場所については、 :dev-url:`エンジンのブランディング </doc/12.0"
+"/designer-guide/user-interface/branding/branding-engine.html>` "
 "を参照してください。"
 
 #: ../../source/portal-developer-guide/customization/portal-style-customization-logos-colors-date-patterns.rst:78
@@ -2348,7 +2346,7 @@ msgstr "``--task-state-parked-background``"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
 msgid "rgba(0, 112, 149, 0.2)"
-msgstr "RGBA(0, 112, 149, 0.2)"
+msgstr "rgba(0, 112, 149, 0.2)"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
 msgid "Color of the parked state indicator on the task, case list"
@@ -2420,11 +2418,11 @@ msgstr ""
 msgid ""
 "If you are using IFrames and you want to customize the colors of the "
 "project specific UIs, then refer to this documentation :dev-"
-"url:`/doc/|version|/designer-guide/how-to/overrides.html?#override-new-"
+"url:`/doc/12.0/designer-guide/how-to/overrides.html?#override-new-"
 "wizard`"
 msgstr ""
 "IFrame を使用しており、プロジェクト固有の UI の色をカスタマイズしたい場合は、このドキュメントを参照してください。 :dev-"
-"url:`/doc/|version|/designer-guide/how-to/overrides.html?#override-new-"
+"url:`/doc/12.0/designer-guide/how-to/overrides.html?#override-new-"
 "wizard`"
 
 #: ../../source/portal-developer-guide/customization/portal-style-customization-logos-colors-date-patterns.rst:112
@@ -2538,7 +2536,7 @@ msgstr "roles"
 #: ../../source/portal-developer-guide/customization/task-delegation.rst:16
 #: ../../source/portal-developer-guide/customization/task-delegation.rst:28
 msgid "java.util.List<com.axonivy.portal.components.dto.RoleDTO>"
-msgstr "java.util.List<com.axonivy.portal.components.dto.RoleDTO>。"
+msgstr "java.util.List<com.axonivy.portal.components.dto.RoleDTO>"
 
 #: ../../source/portal-developer-guide/customization/task-delegation.rst:18
 #: ../../source/portal-developer-guide/customization/task-delegation.rst:30
@@ -2548,7 +2546,7 @@ msgstr "users"
 #: ../../source/portal-developer-guide/customization/task-delegation.rst:18
 #: ../../source/portal-developer-guide/customization/task-delegation.rst:30
 msgid "java.util.List<com.axonivy.portal.components.dto.UserDTO>"
-msgstr "java.util.List<com.axonivy.portal.components.dto.UserDTO>。"
+msgstr "java.util.List<com.axonivy.portal.components.dto.UserDTO>"
 
 #: ../../source/portal-developer-guide/customization/task-delegation.rst:20
 msgid "currentUser"
@@ -2825,12 +2823,12 @@ msgstr ""
 #: ../../source/portal-developer-guide/customization/task-item-details.rst:139
 msgid ""
 "We support all task business states for filter type ``states``. Please "
-"refer to :dev-url:`Task Business States </doc/|version|/public-"
+"refer to :dev-url:`Task Business States </doc/12.0/public-"
 "api/ch/ivyteam/ivy/workflow/TaskBusinessState.html>` to check for "
 "available task business states."
 msgstr ""
 "フィルタータイプ ``states`` ではすべてのタスクのビジネスの状態がサポートされます。:dev-url:`タスクのビジネスの状態 "
-"</doc/|version|/public-"
+"</doc/12.0/public-"
 "api/ch/ivyteam/ivy/workflow/TaskBusinessState.html>` "
 "を参照して、利用可能なタスクのビジネスの状態を確認してください。"
 
@@ -2973,8 +2971,8 @@ msgid "Define News widget"
 msgstr "ニュースウィジェットの定義"
 
 #: ../../source/portal-developer-guide/dashboard/dashboard-newsfeed-widget.rst:9
-msgid "The news widget shares relevant information as a News Feed into |ivy|."
-msgstr "ニュースウィジェットは、関連情報をニュースフィードとして |ivy| に共有します。"
+msgid "The news widget shares relevant information as a News Feed into Axon Ivy."
+msgstr "ニュースウィジェットは、関連情報をニュースフィードとして Axon Ivy に共有します。"
 
 #: ../../source/portal-developer-guide/dashboard/dashboard-newsfeed-widget.rst:11
 msgid "Below is a sample JSON definition of a news widget in the Portal dashboard"
@@ -3269,10 +3267,10 @@ msgstr "新しいポータルダッシュボードを開いて、新しいカス
 
 #: ../../source/portal-developer-guide/dashboard/index.rst:210
 msgid ""
-"To configure variables, refer to :dev-url:`|ivy| Variables </doc/|version"
-"|/designer-guide/configuration/variables.html>`"
+"To configure variables, refer to :dev-url:`Axon Ivy Variables </doc/12.0"
+"/designer-guide/configuration/variables.html>`"
 msgstr ""
-"変数の設定については、:dev-url:`|ivy| の変数 </doc/|version|/designer-"
+"変数の設定については、:dev-url:`Axon Ivy の変数 </doc/12.0/designer-"
 "guide/configuration/variables.html>` を参照してください。"
 
 #: ../../source/portal-developer-guide/dashboard/index.rst:213
@@ -3543,12 +3541,12 @@ msgstr "``field``：この属性は、列のデータを取得するのに使用
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:196
 msgid ""
 "Portal only displays custom fields declared in the ``custom-fields.yaml``"
-" file. Refer to :dev-url:`Custom Fields Meta Information </doc/|version"
-"|/designer-guide/how-to/workflow/custom-fields.html#meta-information>` "
+" file. Refer to :dev-url:`Custom Fields Meta Information </doc/12.0"
+"/designer-guide/how-to/workflow/custom-fields.html#meta-information>` "
 "for more information."
 msgstr ""
 "ポータルでは、 ``custom-fields.yaml`` ファイルで宣言されたカスタムフィールドのみ表示されます。詳細については、 :dev-"
-"url:`カスタムフィールドのメタ情報 </doc/|version|/designer-guide/how-to/workflow"
+"url:`カスタムフィールドのメタ情報 </doc/12.0/designer-guide/how-to/workflow"
 "/custom-fields.html#meta-information>` を参照してください。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:202
@@ -3613,9 +3611,9 @@ msgstr "これがアクションボタンであることをポータルに伝え
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:230
 msgid ""
 "For the ``Icon``, please refer to the streamline icon showcase available "
-"in Html Dialog Demos on |ivy| Market."
+"in Html Dialog Demos on Axon Ivy Market."
 msgstr ""
-"``Icon`` については、|ivy| Market の Html Dialog Demos で利用可能な Streamline "
+"``Icon`` については、Axon Ivy Market の Html Dialog Demos で利用可能な Streamline "
 "アイコンを参照してください。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:232
@@ -3960,7 +3958,7 @@ msgid ""
 "field content is displayed based on the language selected in the custom "
 "field."
 msgstr ""
-"**Multi-Language Support for Custom Fields** "
+"**カスタムフィールドの多言語対応** "
 "機能により、カスタムフィールドの値を多言語で提供できるようになります。フィー"
 "ルドの内容は、カスタムフィールドで選択された言語に基づいて表示されます。"
 
@@ -3996,19 +3994,19 @@ msgstr ""
 msgid ""
 "Following this path to add your custom field values: "
 "``/CustomFields/Cases/{fieldName}/Values/{value}`` Please follow this "
-":dev-url:`Localize Label, Description, Category and Values </doc/|version"
-"|/designer-guide/configuration/custom-fields.html#localize-label-"
+":dev-url:`Localize Label, Description, Category and Values </doc/12.0"
+"/designer-guide/configuration/custom-fields.html#localize-label-"
 "description-category-and-values>` to get more information."
 msgstr ""
 "カスタムフィールドの値を追加するには、次のパスに従ってください：``/CustomFields/Cases/{fieldName}/Values/{value}``。詳細については、次を参照してください："
-" :dev-url:`Localize Label, Description, Category and Values "
-"</doc/|version|/designer-guide/configuration/custom-fields.html#localize-"
+" :dev-url:`ラベル、説明、カテゴリ、および値をローカライズする "
+"</doc/12.0/designer-guide/configuration/custom-fields.html#localize-"
 "label-description-category-and-values>`。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:624
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:595
 msgid "Example YAML Configuration"
-msgstr "Example YAML Configuration"
+msgstr "YAML設定例"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:634
 msgid ""
@@ -4348,12 +4346,12 @@ msgstr "属性の説明"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-custom-widget.rst:145
 msgid ""
-"``processPath``: the :dev-url:`|ivy| IWebStartable </doc/|version"
-"|/public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html>` "
+"``processPath``: the :dev-url:`Axon Ivy IWebStartable </doc/12.0"
+"/public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html>` "
 "identifier of the Ivy process that will be displayed in custom widget"
 msgstr ""
-"``processPath``：カスタムウィジェットに表示される Ivy プロセスの :dev-url:`|ivy| IWebStartable "
-"</doc/|version|/public-"
+"``processPath``：カスタムウィジェットに表示される Ivy プロセスの :dev-url:`Axon Ivy IWebStartable "
+"</doc/12.0/public-"
 "api/ch/ivyteam/ivy/workflow/start/IWebStartable.html>` ID。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-custom-widget.rst:147
@@ -4392,11 +4390,11 @@ msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-custom-widget.rst:176
 msgid ""
-"type ``user``: The parameter value is an |ivy| username. In the "
+"type ``user``: The parameter value is an Axon Ivy username. In the "
 "configuration dialog, the user can edit this parameter by choosing a user"
 " from a dropdown. Only Ivy usernames are accepted as values."
 msgstr ""
-"``user`` タイプ：パラメーターの値は |ivy| "
+"``user`` タイプ：パラメーターの値は Axon Ivy "
 "のユーザー名です。ユーザーは、設定ダイアログのドロップダウンでユーザーを選択して、このパラメーターを編集できます。Ivy "
 "のユーザー名のみ、値として受け入れられます。"
 
@@ -4444,10 +4442,10 @@ msgstr "外部ページウィジェットの定義"
 msgid ""
 "You can use this widget to embed an external webpage into the Portal "
 "dashboard. This feature is especially useful for a company using other "
-"applications besides |ivy|. It allows user to interact with multiple "
+"applications besides Axon Ivy. It allows user to interact with multiple "
 "systems directly from the Portal dashboard."
 msgstr ""
-"このウィジェットを使用して、外部ウェブページをポータルダッシュボードに埋め込むことができます。この機能は、|ivy| "
+"このウィジェットを使用して、外部ウェブページをポータルダッシュボードに埋め込むことができます。この機能は、Axon Ivy "
 "の他にアプリケーションを使用している企業にとって特に便利です。ユーザーは、複数のシステムをポータルダッシュボードから直接操作できます。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-external-page-widget.rst:15
@@ -4602,12 +4600,12 @@ msgstr "``layout``：プロセスビューアーウィジェットのレイア�
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-viewer-widget.rst:56
 msgid ""
-"``processPath``: the :dev-url:`|ivy| IWebStartable </doc/|version"
-"|/public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html>` "
+"``processPath``: the :dev-url:`Axon Ivy IWebStartable </doc/12.0"
+"/public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html>` "
 "identifier of the process you want to display"
 msgstr ""
-"``processPath``：表示したいプロセスの :dev-url:`|ivy| IWebStartable </doc/|version"
-"|/public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html>` ID。"
+"``processPath``：表示したいプロセスの :dev-url:`Axon Ivy IWebStartable </doc/12.0"
+"/public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html>` ID。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:4
 msgid "Configure Process Widget"
@@ -4670,22 +4668,22 @@ msgstr "以下はコンパクトモードのプロセスウィジェットの標
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:94
 msgid ""
-"``processPaths``: the :dev-url:`|ivy| IWebStartable </doc/|version"
-"|/public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html>` "
+"``processPaths``: the :dev-url:`Axon Ivy IWebStartable </doc/12.0"
+"/public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html>` "
 "identifier of the processes that you want to show."
 msgstr ""
-"``processPaths``：表示したいプロセスの :dev-url:`|ivy| IWebStartable </doc/|version"
-"|/public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html>` ID。"
+"``processPaths``：表示したいプロセスの :dev-url:`Axon Ivy IWebStartable </doc/12.0"
+"/public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html>` ID。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:97
 msgid ""
 "``categories``: categories of processes that you want to show. The value "
-"should be the :dev-url:`CMS URI </doc/|version|/designer-guide/how-"
+"should be the :dev-url:`CMS URI </doc/12.0/designer-guide/how-"
 "to/workflow/categories.html#workflow-categories>` of this category. "
 "Process widget will show all processes that belonged to these categories."
 msgstr ""
 "``categories``：表示したいプロセスのカテゴリー。値はこのカテゴリーの :dev-url:`CMS URI "
-"</doc/|version|/designer-guide/how-to/workflow/categories.html#workflow-"
+"</doc/12.0/designer-guide/how-to/workflow/categories.html#workflow-"
 "categories>` とします。プロセスウィジェットは、これらのカテゴリーに属するすべてのプロセスを表示します。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:100
@@ -4747,13 +4745,13 @@ msgstr "以下は複合モードのプロセスウィジェットの標準的な
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:147
 msgid ""
-"``processPath``: the :dev-url:`|ivy| IWebStartable </doc/|version"
-"|/public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html>` "
+"``processPath``: the :dev-url:`Axon Ivy IWebStartable </doc/12.0"
+"/public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html>` "
 "identifier of the process you want to display. The Process widget will "
 "show all tasks and cases of this process, too."
 msgstr ""
-"``processPath``：表示したいプロセスの :dev-url:`|ivy| IWebStartable </doc/|version"
-"|/public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html>` "
+"``processPath``：表示したいプロセスの :dev-url:`Axon Ivy IWebStartable </doc/12.0"
+"/public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html>` "
 "ID。プロセスウィジェットは、このプロセスのすべてのタスクとケースを表示します。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:150
@@ -4947,13 +4945,13 @@ msgstr ""
 "``filterTasksByCurrentCaseOwner``: 現在のユーザーがケースの所有者であるタスク"
 "のみをフィルタします。デフォルト値は ``false`` です。このフィルタは、 の "
 "``Portal.Cases.EnableOwner`` 設定が ``true`` に設定されている場合にのみ表示さ"
-"れます。 :ref:`Admin Settings <update-portal-settings>`."
+"れます。 :ref:`ハウツー：ポータル設定を更新する <update-portal-settings>`."
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:166
 msgid ""
-"|ivy| supports custom fields for tasks. You can show them in the Task "
+"Axon Ivy supports custom fields for tasks. You can show them in the Task "
 "widget as a column."
-msgstr "|ivy| は、タスクのカスタムフィールドをサポートします。タスクウィジェットでは列として表示できます。"
+msgstr "Axon Ivy は、タスクのカスタムフィールドをサポートします。タスクウィジェットでは列として表示できます。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:169
 msgid ""
@@ -5034,11 +5032,11 @@ msgstr "この列は、フィルター条件として優先度名のリストの
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:371
 msgid ""
-"Refer to :dev-url:`Task Priority </doc/|version|/public-"
+"Refer to :dev-url:`Task Priority </doc/12.0/public-"
 "api/ch/ivyteam/ivy/workflow/WorkflowPriority.html>` for available task "
 "priorities."
 msgstr ""
-"利用可能なタスクの優先度については、:dev-url:`タスクの優先度 </doc/|version|/public-"
+"利用可能なタスクの優先度については、:dev-url:`タスクの優先度 </doc/12.0/public-"
 "api/ch/ivyteam/ivy/workflow/WorkflowPriority.html>` を参照してください。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:374
@@ -5053,11 +5051,11 @@ msgstr "この列は、フィルター条件としてタスクのビジネスの
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:400
 msgid ""
-"Refer to :dev-url:`Task Business States </doc/|version|/public-"
+"Refer to :dev-url:`Task Business States </doc/12.0/public-"
 "api/ch/ivyteam/ivy/workflow/TaskBusinessState.html>` for available task "
 "business states."
 msgstr ""
-"利用可能なタスクのビジネスの状態については、:dev-url:`タスクのビジネスの状態 </doc/|version|/public-"
+"利用可能なタスクのビジネスの状態については、:dev-url:`タスクのビジネスの状態 </doc/12.0/public-"
 "api/ch/ivyteam/ivy/workflow/TaskBusinessState.html>` を参照してください。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:404
@@ -5135,13 +5133,13 @@ msgstr ""
 msgid ""
 "Following this path to add your custom field values: "
 "``/CustomFields/Tasks/{fieldName}/Values/{value}`` Please follow this "
-":dev-url:`Localize Label, Description, Category and Values </doc/|version"
-"|/designer-guide/configuration/custom-fields.html#localize-label-"
+":dev-url:`Localize Label, Description, Category and Values </doc/12.0"
+"/designer-guide/configuration/custom-fields.html#localize-label-"
 "description-category-and-values>` to get more information."
 msgstr ""
 "カスタム・フィールドの値を追加するには、以下のパスに従ってください：``/"
 "CustomFields/Tasks/{fieldName}/Values/{value}`` :dev-url:`Localize Label, "
-"Description, Category and Values </doc/|version|/designer-guide/"
+"Description, Category and Values </doc/12.0/designer-guide/"
 "configuration/custom-fields.html#localize-label-description-category-and-"
 "values>` に従ってください。"
 
@@ -5438,13 +5436,13 @@ msgstr "配備"
 msgid ""
 "This section provides a step-by-step guide for deploying the Portal for "
 "the first time. It includes examples and best practices. For more "
-"comprehensive deployment information, refer to the :dev-url:`|ivy| "
-"deployment guidelines </doc/|version|/engine-"
+"comprehensive deployment information, refer to the :dev-url:`Axon Ivy "
+"deployment guidelines </doc/12.0/engine-"
 "guide/deployment/index.html>`"
 msgstr ""
 "このセクションでは、ポータルを初めて展開する際のステップ・バイ・ステップのガ"
 "イドを提供します。例やベスト・プラクティスも含まれています。より包括的な展開"
-"情報については :dev-url:`|ivy| deployment guidelines </doc/|version|/engine-"
+"情報については :dev-url:`Axon Ivy 展開 </doc/12.0/engine-"
 "guide/deployment/index.html>`"
 
 #: ../../source/portal-developer-guide/deployment/index.rst:10
@@ -5499,14 +5497,14 @@ msgstr "Axon Ivy プロジェクトは、.iar (Ivy Archive) ファイルまた�
 #: ../../source/portal-developer-guide/deployment/index.rst:44
 msgid ""
 "We recommend using .zip files, as they can include: :dev-url:`branding "
-"</doc/|version|/designer-guide/user-interface/branding/branding-"
+"</doc/12.0/designer-guide/user-interface/branding/branding-"
 "engine.html>`, variables, databases, REST clients :dev-url:`configuration"
-" </doc/|version|/engine-guide/deployment/prepare/application-"
+" </doc/12.0/engine-guide/deployment/prepare/application-"
 "configuration/index.html>`."
 msgstr ""
-".zipファイルを使用することを推奨します：:dev-url:`branding </doc/|version"
-"|/designer-guide/user-interface/branding/branding-engine.html>` 変数、データ"
-"ベース、REST クライアント :dev-url:`configuration </doc/|version|/engine-"
+".zipファイルを使用することを推奨します：:dev-url:`エンジンのブランディング </doc/12.0"
+"/designer-guide/user-interface/branding/branding-engine.html>` 変数、データ"
+"ベース、REST クライアント :dev-url:`アプリケーションの設定 </doc/12.0/engine-"
 "guide/deployment/prepare/application-configuration/index.html>`."
 
 #: ../../source/portal-developer-guide/deployment/index.rst:49
@@ -5539,10 +5537,10 @@ msgstr "ブランディング、変数、データベース、RESTクライア�
 
 #: ../../source/portal-developer-guide/deployment/index.rst:67
 msgid ""
-"Create a security system, or use the default one provided by |ivy|. This "
+"Create a security system, or use the default one provided by Axon Ivy. This "
 "security system will be shared across applications."
 msgstr ""
-"セキュリティ・システムを作成するか、|ivy| "
+"セキュリティ・システムを作成するか、Axon Ivy "
 "が提供するデフォルトのものを使用する。このセキュリティシステムは、アプリケー"
 "ション間で共有されます。"
 
@@ -5584,14 +5582,14 @@ msgstr "設定"
 #: ../../source/portal-developer-guide/deployment/index.rst:80
 msgid ""
 "Configuration can be done either through :dev-url:`deployment "
-"</doc/|version|/engine-guide/deployment/prepare/application-"
+"</doc/12.0/engine-guide/deployment/prepare/application-"
 "configuration/index.html>` or via the :dev-url:`Engine Cockpit UI "
-"</doc/|version|/engine-guide/reference/engine-cockpit>`. This section "
+"</doc/12.0/engine-guide/reference/engine-cockpit>`. This section "
 "highlights the most important configuration settings."
 msgstr ""
-"コンフィギュレーションは、:dev-url:`deployment </doc/|version|/engine-guide/"
+"コンフィギュレーションは、:dev-url:`アプリケーションの設定 </doc/12.0/engine-guide/"
 "deployment/prepare/application-configuration/index.html>` または :dev-url:`"
-"Engine Cockpit UI </doc/|version|/engine-guide/reference/engine-cockpit>` か"
+"エンジンコックピット </doc/12.0/engine-guide/reference/engine-cockpit>` か"
 "ら行うことができます。 このセクションでは、最も重要なコンフィギュレーション設"
 "定について説明します。"
 
@@ -5719,7 +5717,7 @@ msgid ""
 "For more details, refer to the Dashboard configuration: :ref:`Dashboard "
 "Configuration <dashboard-configuration>`."
 msgstr ""
-"詳細については、ダッシュボードの設定（:ref:`Dashboard Configuration "
+"詳細については、ダッシュボードの設定（:ref:`ダッシュボード設定 "
 "<dashboard-configuration>` ）を参照してください。"
 
 #: ../../source/portal-developer-guide/deployment/index.rst:141
@@ -6370,9 +6368,9 @@ msgstr ""
 #: ../../source/portal-developer-guide/installation/index.rst:24
 msgid ""
 "The deployment of Ivy projects is described in :dev-url:`project "
-"deployment </doc/|version|/engine-guide/deployment/index.html>` ."
+"deployment </doc/12.0/engine-guide/deployment/index.html>` ."
 msgstr ""
-"Ivy プロジェクトの展開については、:dev-url:`展開 </doc/|version|/engine-"
+"Ivy プロジェクトの展開については、:dev-url:`展開 </doc/12.0/engine-"
 "guide/deployment/index.html>` で説明します。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:32
@@ -6403,7 +6401,7 @@ msgstr "パスワード"
 
 #: ../../source/portal-developer-guide/installation/index.rst:47
 msgid "admin"
-msgstr "管理者"
+msgstr "admin"
 
 #: ../../source/portal-developer-guide/installation/index.rst:47
 msgid "This user has all Portal permissions, can access Portal Admin Settings."
@@ -6411,7 +6409,7 @@ msgstr "このユーザーはポータルのすべての権限を持ち、ポー
 
 #: ../../source/portal-developer-guide/installation/index.rst:52
 msgid "demo"
-msgstr "デモ"
+msgstr "demo"
 
 #: ../../source/portal-developer-guide/installation/index.rst:52
 msgid "This user has permission to manage user absences."
@@ -6419,7 +6417,7 @@ msgstr "このユーザーはユーザーの不在を管理する権限を持ち
 
 #: ../../source/portal-developer-guide/installation/index.rst:56
 msgid "guest"
-msgstr "ゲスト"
+msgstr "guest"
 
 #: ../../source/portal-developer-guide/installation/index.rst:56
 msgid "Default standard user of the portal."
@@ -6457,11 +6455,11 @@ msgstr ""
 #: ../../source/portal-developer-guide/installation/index.rst:84
 msgid ""
 "The JSON file name has to be Portal.Dashboard.json. Refer to :dev-"
-"url:`Engine Deployment</doc/|version|/engine-"
+"url:`Engine Deployment</doc/12.0/engine-"
 "guide/deployment/index.html>`"
 msgstr ""
 "JSON ファイルの名前は Portal.Dashboard.json とする必要があります。:dev-url:`エンジンの展開 "
-"</doc/|version|/engine-guide/deployment/index.html>` を参照してください。"
+"</doc/12.0/engine-guide/deployment/index.html>` を参照してください。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:85
 msgid ""
@@ -6525,9 +6523,9 @@ msgstr "移行に関する注記"
 msgid ""
 "This document informs you in detail about incompatibilities that were "
 "introduced between Portal versions and tells you what needs to be done to"
-" make your existing Portal working with current |ivy-engine|."
+" make your existing Portal working with current Axon Ivy Engine."
 msgstr ""
-"このドキュメントでは、ポータルのバージョン間の不整合について詳しく説明し、既存のポータルを現在の |ivy-engine| "
+"このドキュメントでは、ポータルのバージョン間の不整合について詳しく説明し、既存のポータルを現在の Axon Ivy Engine "
 "で動作させるために必要な措置について述べます。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:112
@@ -6545,14 +6543,14 @@ msgstr ""
 
 #: ../../source/portal-developer-guide/installation/index.rst:119
 msgid ""
-"To migrate the Portal, you need to migrate |ivy| first. Refer to the "
-":dev-url:`|ivy| Migration Notes "
-"</doc/|version|/axonivy/migration/index.html>`. Changes in |ivy| could "
+"To migrate the Portal, you need to migrate Axon Ivy first. Refer to the "
+":dev-url:`Axon Ivy Migration Notes "
+"</doc/12.0/axonivy/migration/index.html>`. Changes in Axon Ivy could "
 "lead to problems if a customer project is not migrated properly."
 msgstr ""
-"ポータルを移行するには、最初に |ivy| を移行する必要があります。:dev-url:`|ivy| の移行に関する注記 "
-"</doc/|version|/axonivy/migration/index.html>` "
-"を参照してください。顧客プロジェクトが適切に移行されていない場合、|ivy| の変更によって問題が生じることがあります。"
+"ポータルを移行するには、最初に Axon Ivy を移行する必要があります。:dev-url:`Axon Ivy の移行に関する注記 "
+"</doc/12.0/axonivy/migration/index.html>` "
+"を参照してください。顧客プロジェクトが適切に移行されていない場合、Axon Ivy の変更によって問題が生じることがあります。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:125
 msgid "In Designer"
@@ -6566,11 +6564,11 @@ msgstr "ポータルのすべてのプロジェクトを新しいリリースの
 msgid ""
 "Upgrade your projects to use the latest portal version by using the "
 "**Convert Project** feature. Please find more information here: :dev-"
-"url:`Converting Projects </doc/|version|/designer-guide/process-"
+"url:`Converting Projects </doc/12.0/designer-guide/process-"
 "modeling/projects/converting.html#converting-projects>`"
 msgstr ""
 "最新のポータルバージョンを使用するため、 **プロジェクトの変換** 機能を使用して、プロジェクトをアップグレードします。:dev-"
-"url:`プロジェクトの変換 </doc/|version|/designer-guide/process-"
+"url:`プロジェクトの変換 </doc/12.0/designer-guide/process-"
 "modeling/projects/converting.html#converting-projects>` で詳細を確認してください。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:129
@@ -6604,12 +6602,12 @@ msgstr "11.3.2 から 12.0.0 への移行"
 msgid ""
 "1. Custom field values for business details pages are migrated silently "
 "from the process link relative path to its :dev-url:`IWebStartable ID "
-"</doc/|version|/public-"
+"</doc/12.0/public-"
 "api/ch/ivyteam/ivy/workflow/start/IWebStartable.html#getId()>`. You don't"
 " need to do anything, this is just for your information."
 msgstr ""
 "ビジネスの詳細ページのカスタムフィールドの値は、プロセスリンクの相対パスから :dev-url:`IWebStartable ID "
-"</doc/|version|/public-"
+"</doc/12.0/public-"
 "api/ch/ivyteam/ivy/workflow/start/IWebStartable.html#getId()>` "
 "にサイレントに移行されます。 管理者が何かを行う必要はありません。これは単なる参考情報です。"
 
@@ -6683,11 +6681,11 @@ msgstr ""
 #: ../../source/portal-developer-guide/installation/index.rst:169
 msgid ""
 "Refer to Axon Ivy CRON job pattern: `CRON Expression "
-"<https://developer.axonivy.com/doc/|version|/engine-guide/configuration"
+"<https://developer.axonivy.com/doc/12.0/engine-guide/configuration"
 "/advanced-configuration.html#cron-expression>`_."
 msgstr ""
 "Axon Ivy CRON のジョブパターンを参照してください（ `CRON 式 <https://"
-"developer.axonivy.com/doc/|version|/engine-guide/configuration/advanced-"
+"developer.axonivy.com/doc/12.0/engine-guide/configuration/advanced-"
 "configuration.html#cron-expression>`_ ）。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:170
@@ -7039,11 +7037,11 @@ msgstr ""
 msgid ""
 "The ``customization.css`` file has been removed, in case you use it in "
 "your project, please switch to using :dev-url:`Engine Branding "
-"</doc/|version|/designer-guide/user-interface/branding/branding-"
+"</doc/12.0/designer-guide/user-interface/branding/branding-"
 "engine.html>` to customize styling"
 msgstr ""
 "``customization.css`` ファイルが削除されました。このファイルをプロジェクトで使用している場合は、:dev-"
-"url:`エンジンのブランディング </doc/|version|/designer-guide/user-interface/branding"
+"url:`エンジンのブランディング </doc/12.0/designer-guide/user-interface/branding"
 "/branding-engine.html>` の使用に切り替えて、スタイルをカスタマイズしてください。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:293
@@ -7207,25 +7205,25 @@ msgid ""
 "Portal dashboard widgets only support the ``CustomFields`` declared in "
 "the ``custom-fields.yaml`` file. If your ``CustomFields`` are used in the"
 " dashboard widget, please follow the :dev-url:`Custom Fields Meta "
-"Information </doc/|version|/designer-guide/how-to/workflow/custom-"
+"Information </doc/12.0/designer-guide/how-to/workflow/custom-"
 "fields.html#meta-information>` to adapt the data."
 msgstr ""
 "ポータルダッシュボードのウィジェットは、 ``custom-fields.yaml`` ファイルで宣言された ``CustomFields`` "
 "のみサポートします。``CustomFields`` がダッシュボードのウィジェットで使用されている場合は、:dev-"
-"url:`カスタムフィールドのメタ情報 </doc/|version|/designer-guide/how-to/workflow"
+"url:`カスタムフィールドのメタ情報 </doc/12.0/designer-guide/how-to/workflow"
 "/custom-fields.html#meta-information>` に従って、データを適合させてください。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:331
 msgid ""
 "The ``DefaultChartColor.p.json`` subprocess has been removed, in case you"
 " use it in your project, please remove override this subprocess and "
-"switch to using :dev-url:`Engine Branding </doc/|version|/designer-guide"
+"switch to using :dev-url:`Engine Branding </doc/12.0/designer-guide"
 "/user-interface/branding/branding-engine.html>` to customize chart, data "
 "labels, legend color."
 msgstr ""
 "``DefaultChartColor.p.json`` "
 "サブプロセスが削除されました。プロジェクトで使用している場合は、このサブプロセスのオーバーライドを削除して、:dev-"
-"url:`エンジンのブランディング </doc/|version|/designer-guide/user-interface/branding"
+"url:`エンジンのブランディング </doc/12.0/designer-guide/user-interface/branding"
 "/branding-engine.html>` の使用に切り替えて、チャート、データラベル、凡例の色をカスタマイズしてください。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:334
@@ -7334,11 +7332,11 @@ msgstr ""
 msgid ""
 "The callable process ``DefaultChart.p.json``, "
 "``DefaultUserProcess.p.json`` has been removed. They are replaced by the "
-":dev-url:`Variables </doc/|version|/designer-"
+":dev-url:`Variables </doc/12.0/designer-"
 "guide/configuration/variables.html>` configuration approach."
 msgstr ""
 "``DefaultChart.p.json``、 ``DefaultUserProcess.p.json`` "
-"呼び出し可能プロセスが削除されました。これらは、:dev-url:`変数 </doc/|version|/designer-"
+"呼び出し可能プロセスが削除されました。これらは、:dev-url:`変数 </doc/12.0/designer-"
 "guide/configuration/variables.html>` の設定に置き換えられます。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:373
@@ -7428,12 +7426,12 @@ msgstr ""
 
 #: ../../source/portal-developer-guide/installation/index.rst:397
 msgid ""
-"Portal recommends using :dev-url:`|ivy| HtmlOverride wizard "
-"</doc/|version|/designer-guide/how-to/overrides.html?#override-new-"
+"Portal recommends using :dev-url:`Axon Ivy HtmlOverride wizard "
+"</doc/12.0/designer-guide/how-to/overrides.html?#override-new-"
 "wizard>` to customize ``Portal HTML Dialog``"
 msgstr ""
-"ポータルでは、:dev-url:`オーバーライドの作成ウィザード </doc/|version"
-"|/designer-guide/how-to/overrides.html?#override-new-wizard>` を使用して、 ``"
+"ポータルでは、:dev-url:`オーバーライドの作成ウィザード </doc/12.0"
+"/designer-guide/how-to/overrides.html?#override-new-wizard>` を使用して、 ``"
 "ポータルの HTML ダイアログ`` をカスタマイズすることを推奨します"
 
 #: ../../source/portal-developer-guide/installation/index.rst:399
@@ -7535,12 +7533,12 @@ msgid ""
 "(multi Portal app mode) are not available anymore. To let Portal know "
 "where your new Portal home page is, you have to set default pages in your"
 " project. Follow this chapter to customize default-pages: :dev-"
-"url:`Default Pages </doc/|version|/designer-guide/user-interface/default-"
+"url:`Default Pages </doc/12.0/designer-guide/user-interface/default-"
 "pages/index.html>`"
 msgstr ""
 "HOMEPAGE_URL（シングルポータルアプリモード）と登録済みアプリケーションのリンク（マルチポータルアプリモード）が利用できなくなりました。"
 " ポータルに新しいポータルホームページの場所を認識させるため、プロジェクトでデフォルトのページを設定する必要があります。 :dev-"
-"url:`デフォルトのページ </doc/|version|/designer-guide/user-interface/default-"
+"url:`デフォルトのページ </doc/12.0/designer-guide/user-interface/default-"
 "pages/index.html>` に従って、デフォルトのページをカスタマイズしてください。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:433
@@ -7652,8 +7650,8 @@ msgstr "リリースノート"
 #: ../../source/portal-developer-guide/installation/index.rst:482
 msgid ""
 "This part lists all relevant changes since the last official product "
-"releases of |ivy|."
-msgstr "ここには、 |ivy| の前回の正式な製品リリース以降のすべての関連する変更が記載されています。"
+"releases of Axon Ivy."
+msgstr "ここには、 Axon Ivy の前回の正式な製品リリース以降のすべての関連する変更が記載されています。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:486
 msgid "Changes in 12.0.9"
@@ -8158,10 +8156,10 @@ msgstr "10 の新機能と注目すべき変更点"
 msgid ""
 "The focus with Release 10 was to finalize the new portal approach of "
 "enabling the portal users to configure the portal to their custom needs "
-"and make the portal more adaptable to the various use cases of the |ivy| "
+"and make the portal more adaptable to the various use cases of the Axon Ivy "
 "Platform."
 msgstr ""
-"リリース 10 の注目点は、ポータルのユーザーがそれぞれのニーズに合わせてポータルを設定し、|ivy| "
+"リリース 10 の注目点は、ポータルのユーザーがそれぞれのニーズに合わせてポータルを設定し、Axon Ivy "
 "プラットフォームのさまざまなユースケースにポータルを適合させることができる新しい方法の完成です。"
 
 #: ../../source/portal-developer-guide/introduction/index.rst:30
@@ -8262,10 +8260,10 @@ msgstr "ポータルのプロジェクトが portal と portal-components の 2 
 
 #: ../../source/portal-developer-guide/introduction/index.rst:56
 msgid ""
-"The multiapp approach is now covered by the |ivy| core, making the use of"
+"The multiapp approach is now covered by the Axon Ivy core, making the use of"
 " the portal for displaying tasks from more than one application much "
 "easier"
-msgstr "|ivy| のコアがマルチアプリに対応し、ポータルを使用した複数のアプリケーションの表示が簡単になりました。"
+msgstr "Axon Ivy のコアがマルチアプリに対応し、ポータルを使用した複数のアプリケーションの表示が簡単になりました。"
 
 #: ../../source/portal-developer-guide/introduction/index.rst:57
 msgid ""
@@ -8288,10 +8286,10 @@ msgstr ""
 #: ../../source/portal-developer-guide/introduction/index.rst:59
 msgid ""
 "The portal-components project now offers ready to use components like a "
-"documents-component or user choosers that can be reused in your |ivy| "
+"documents-component or user choosers that can be reused in your Axon Ivy "
 "Projects"
 msgstr ""
-"portal-components プロジェクトで、documents-component などのコンポーネントや、|ivy| "
+"portal-components プロジェクトで、documents-component などのコンポーネントや、Axon Ivy "
 "プロジェクトで再利用可能なユーザーチューザーを利用できるようになりました。"
 
 #: ../../source/portal-developer-guide/introduction/index.rst:62
@@ -8317,10 +8315,10 @@ msgstr "new-welcome-widget"
 
 #: ../../source/portal-developer-guide/introduction/index.rst:70
 msgid ""
-"Inviting and modern Look & Feel for |ivy| Portal 9.4. Refer to :ref"
+"Inviting and modern Look & Feel for Axon Ivy Portal 9.4. Refer to :ref"
 ":`introduction-new-and-note-worthy-9.4`."
 msgstr ""
-"モダンな外観の |ivy| Portal 9.4。詳細については、:ref:`introduction-new-and-note-"
+"モダンな外観の Axon Ivy Portal 9.4。詳細については、:ref:`introduction-new-and-note-"
 "worthy-9.4` を参照してください。"
 
 #: ../../source/portal-developer-guide/introduction/index.rst:72
@@ -8342,10 +8340,10 @@ msgstr "パスワード検証の変更"
 
 #: ../../source/portal-developer-guide/introduction/index.rst:77
 msgid ""
-"The Individual Dashboard for |ivy| Portal 9.3. Refers to :ref"
+"The Individual Dashboard for Axon Ivy Portal 9.3. Refers to :ref"
 ":`introduction-new-and-note-worthy-9.3`."
 msgstr ""
-"|ivy| Portal 9.3 の個人用ダッシュボード。詳細については、:ref:`introduction-new-and-note-"
+"Axon Ivy Portal 9.3 の個人用ダッシュボード。詳細については、:ref:`introduction-new-and-note-"
 "worthy-9.3` を参照してください。"
 
 #: ../../source/portal-developer-guide/introduction/index.rst:79
@@ -8370,10 +8368,10 @@ msgstr "調整可能なプロセスリストの外観"
 
 #: ../../source/portal-developer-guide/introduction/index.rst:84
 msgid ""
-"More UX for |ivy| Portal 9.2. Refer to :ref:`introduction-new-and-note-"
+"More UX for Axon Ivy Portal 9.2. Refer to :ref:`introduction-new-and-note-"
 "worthy-9.2`."
 msgstr ""
-"|ivy| Portal 9.2 の UX の向上について。:ref:`introduction-new-and-note-worthy-9.2`"
+"Axon Ivy Portal 9.2 の UX の向上について。:ref:`introduction-new-and-note-worthy-9.2`"
 " を参照してください。"
 
 #: ../../source/portal-developer-guide/introduction/index.rst:86
@@ -8436,11 +8434,11 @@ msgid ""
 "Another step in this direction is the upgrade to a new UI theme. The "
 "latest trends and design patterns are ideally included in the fresh "
 "`Freya <https://www.primefaces.org/freya/>`_ theme by PrimeFaces. "
-"Moreover, the entire |ivy| Portal can now be used in Dark Mode."
+"Moreover, the entire Axon Ivy Portal can now be used in Dark Mode."
 msgstr ""
 "この方向性でのもう 1 つの変更点が、新しい UI テーマへのアップグレテーマへのアップグレードです。最新のトレンドとデザインパターンを "
 "PrimeFaces の新しい `Freya <https://www.primefaces.org/freya/>`__ "
-"テーマに取り入れました。さらに、|ivy| Portal 全体をダークモードで使用できるようになりました。"
+"テーマに取り入れました。さらに、Axon Ivy Portal 全体をダークモードで使用できるようになりました。"
 
 #: ../../source/portal-developer-guide/introduction/index.rst:113
 msgid "|dashboard-dark-mode|"
@@ -8463,9 +8461,9 @@ msgstr "ダッシュボード設定ウィザード"
 
 #: ../../source/portal-developer-guide/introduction/index.rst:120
 msgid ""
-"All dashboards within the |ivy| Portal can now be configured and arranged"
+"All dashboards within the Axon Ivy Portal can now be configured and arranged"
 " with a wizard according to individual preferences."
-msgstr "ウィザードで、|ivy| Portal のすべてのダッシュボードを好みに合わせて設定できるようになりました。"
+msgstr "ウィザードで、Axon Ivy Portal のすべてのダッシュボードを好みに合わせて設定できるようになりました。"
 
 #: ../../source/portal-developer-guide/introduction/index.rst:122
 msgid "|dashboard-configuration-wizard|"
@@ -8506,16 +8504,16 @@ msgstr "パスワード検証"
 #: ../../source/portal-developer-guide/introduction/index.rst:134
 msgid ""
 "Password policies are different in each company. This fact is fully taken"
-" into account in the |ivy| Portal."
-msgstr "パスワードポリシーは、企業ごとに異なります。|ivy| Portal では、その事実に十分に配慮しました。"
+" into account in the Axon Ivy Portal."
+msgstr "パスワードポリシーは、企業ごとに異なります。Axon Ivy Portal では、その事実に十分に配慮しました。"
 
 #: ../../source/portal-developer-guide/introduction/index.rst:136
 msgid ""
-"This applies to users managed by the |ivy-engine| only. If users are "
+"This applies to users managed by the Axon Ivy Engine only. If users are "
 "imported from an external Identity Provider (IDP), this IDP manages "
 "passwords as well as password policy."
 msgstr ""
-"パスワード検証は、|ivy-engine| で管理されるユーザーにのみ適用されます。ユーザーを外部 ID "
+"パスワード検証は、Axon Ivy Engine で管理されるユーザーにのみ適用されます。ユーザーを外部 ID "
 "プロバイダー（IDP）からインポートする場合、その IDP がパスワードとパスワードポリシーを管理します。"
 
 #: ../../source/portal-developer-guide/introduction/index.rst:138
@@ -8581,9 +8579,9 @@ msgstr ""
 
 #: ../../source/portal-developer-guide/introduction/index.rst:165
 msgid ""
-"|ivy| Portal supports a sophisticated concept featuring default widgets "
+"Axon Ivy Portal supports a sophisticated concept featuring default widgets "
 "for Process Starts, Task Lists, and Case Lists."
-msgstr "|ivy| Portal には、プロセスの開始、タスクリスト、ケースリストのデフォルトのウィジェットが用意されています。"
+msgstr "Axon Ivy Portal には、プロセスの開始、タスクリスト、ケースリストのデフォルトのウィジェットが用意されています。"
 
 #: ../../source/portal-developer-guide/introduction/index.rst:167
 msgid "|default-widgets|"
@@ -8596,10 +8594,10 @@ msgstr "default-widgets"
 #: ../../source/portal-developer-guide/introduction/index.rst:169
 msgid ""
 "Processes, tasks, and cases are essential when it comes to business "
-"process automation and workflow management. Therefore, the |ivy| Portal "
+"process automation and workflow management. Therefore, the Axon Ivy Portal "
 "gives you full power by providing these standard widgets out-of-the-box."
 msgstr ""
-"プロセス、タスク、ケースは、ビジネスプロセスの自動化やワークフローの管理において非常に重要です。|ivy| Portal "
+"プロセス、タスク、ケースは、ビジネスプロセスの自動化やワークフローの管理において非常に重要です。Axon Ivy Portal "
 "のこれらの標準ウィジェットは、そのまますぐに使えます。"
 
 #: ../../source/portal-developer-guide/introduction/index.rst:171
@@ -8635,8 +8633,8 @@ msgid "There are two different widgets types available:"
 msgstr "以下の 2 つのタイプのウィジェットが利用可能です。"
 
 #: ../../source/portal-developer-guide/introduction/index.rst:183
-msgid "|ivy| Process"
-msgstr "|ivy| プロセス"
+msgid "Axon Ivy Process"
+msgstr "Axon Ivy プロセス"
 
 #: ../../source/portal-developer-guide/introduction/index.rst:184
 msgid "External URL"
@@ -8653,9 +8651,9 @@ msgstr ""
 
 #: ../../source/portal-developer-guide/introduction/index.rst:188
 msgid ""
-"Specify your |ivy| Process as a widget element and display your process "
+"Specify your Axon Ivy Process as a widget element and display your process "
 "directly in your custom dashboard."
-msgstr "|ivy| プロセスをウィジェットの要素として指定し、プロセスをカスタムダッシュボードに直接表示します。"
+msgstr "Axon Ivy プロセスをウィジェットの要素として指定し、プロセスをカスタムダッシュボードに直接表示します。"
 
 #: ../../source/portal-developer-guide/introduction/index.rst:193
 msgid ""
@@ -8696,8 +8694,8 @@ msgstr "タスク／ケースの詳細の構成が整えられ、ユーザーは
 #: ../../source/portal-developer-guide/introduction/index.rst:215
 msgid ""
 "Users can reset their passwords easily using the standard password reset "
-"feature integrated in |ivy| Portal"
-msgstr "ユーザーは、|ivy| Portal に統合された標準的なパスワードのリセット機能を使用して、簡単にパスワードをリセットできます。"
+"feature integrated in Axon Ivy Portal"
+msgstr "ユーザーは、Axon Ivy Portal に統合された標準的なパスワードのリセット機能を使用して、簡単にパスワードをリセットできます。"
 
 #: ../../source/portal-developer-guide/introduction/index.rst:217
 msgid "|login-screen| |send-email-screen|"
@@ -8714,10 +8712,10 @@ msgstr "send-email-screen"
 #: ../../source/portal-developer-guide/introduction/index.rst:222
 msgid ""
 "We have listened to you! Business users requested to export specific "
-"lists from |ivy| Portal to perform further analysis in Microsoft Excel. "
+"lists from Axon Ivy Portal to perform further analysis in Microsoft Excel. "
 "Now they have the possibility to export any list with one mouse click."
 msgstr ""
-"私たちはユーザーの声に耳を傾けます。特定のリストを |ivy| Portal からエクスポートして、Microsoft Excel "
+"私たちはユーザーの声に耳を傾けます。特定のリストを Axon Ivy Portal からエクスポートして、Microsoft Excel "
 "でさらに分析を行いたいというリクエストがビジネスユーザーから寄せられていました。これからは、どのリストでもワンクリックでエクスポートできます。"
 
 #: ../../source/portal-developer-guide/introduction/index.rst:225
@@ -8767,9 +8765,9 @@ msgstr "case-details"
 
 #: ../../source/portal-developer-guide/introduction/index.rst:244
 msgid ""
-"Make it your own way with the |ivy| Portal. Users can optimize process "
-"work and customize the |ivy| Portal to their own taste."
-msgstr "|ivy| Portal にも個性を。ユーザーは、プロセス作業を最適化し、|ivy| Portal を独自のテイストでカスタマイズできます。"
+"Make it your own way with the Axon Ivy Portal. Users can optimize process "
+"work and customize the Axon Ivy Portal to their own taste."
+msgstr "Axon Ivy Portal にも個性を。ユーザーは、プロセス作業を最適化し、Axon Ivy Portal を独自のテイストでカスタマイズできます。"
 
 #: ../../source/portal-developer-guide/introduction/index.rst:246
 msgid "|my-profile-save|"
@@ -9302,7 +9300,7 @@ msgstr "ロールの管理タブにアクセスする権限"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:199
 msgid "_`NewsManagement`"
-msgstr "ニュース管理"
+msgstr "_`NewsManagement`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:200
 msgid "Permission to manage the content of the News feed"
@@ -9310,7 +9308,7 @@ msgstr "ニュースフィードのコンテンツを管理する権限"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:202
 msgid "_`PasswordValidation`"
-msgstr "パスワードバリデーション"
+msgstr "_`PasswordValidation`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:203
 msgid ""
@@ -9355,7 +9353,7 @@ msgstr "公開用ダッシュボードをインポートする権限"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:217
 msgid "_`ShareDashboardLink`"
-msgstr "共有ダッシュボードリンク"
+msgstr "_`ShareDashboardLink`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:218
 msgid "Permission to share dashboard links"
@@ -9490,10 +9488,10 @@ msgstr "ポータル設定を手動で行う方法については、:ref:`update
 
 #: ../../source/portal-developer-guide/settings/index.rst:25
 msgid ""
-"Portal settings are stored as :dev-url:`Variables </doc/|version"
-"|/designer-guide/configuration/variables.html>`."
+"Portal settings are stored as :dev-url:`Variables </doc/12.0"
+"/designer-guide/configuration/variables.html>`."
 msgstr ""
-"ポータル設定は、:dev-url:`変数 </doc/|version|/designer-"
+"ポータル設定は、:dev-url:`変数 </doc/12.0/designer-"
 "guide/configuration/variables.html>` として格納されます。"
 
 #: ../../source/portal-developer-guide/settings/index.rst:27
@@ -9611,11 +9609,11 @@ msgstr "権限の設定"
 
 #: ../../source/portal-developer-guide/settings/index.rst:79
 msgid ""
-"Configure permissions in the :dev-url:`Engine Cockpit </doc/|version"
-"|/engine-guide/reference/engine-cockpit/security.html>`. In the security "
+"Configure permissions in the :dev-url:`Engine Cockpit </doc/12.0"
+"/engine-guide/reference/engine-cockpit/security.html>`. In the security "
 "area, you will find all these permission in group \"PortalPermissions\"."
 msgstr ""
-":dev-url:`エンジンコックピット </doc/|version|/engine-guide/reference/engine-"
+":dev-url:`エンジンコックピット </doc/12.0/engine-guide/reference/engine-"
 "cockpit/security.html>` で権限を設定します。 "
 "セキュリティ領域の「PortalPermissions」グループにこれらすべての権限があります。"
 
@@ -10588,11 +10586,11 @@ msgstr "**link** ：ビューディレクトリからの静的ページへの相
 
 #: ../../source/portal-developer-guide/static-page/index.rst:117
 msgid "**label**: Display name in the menu"
-msgstr "**ラベル** ：メニューの表示名"
+msgstr "**label** ：メニューの表示名"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:118
 msgid "**icon**: Icon class"
-msgstr "**アイコン** ：アイコンクラス"
+msgstr "**icon** ：アイコンクラス"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:119
 msgid "**index**: Menu position (optional, defaults to 0)"
@@ -10600,7 +10598,7 @@ msgstr "**index** ：メニューの位置（オプション、デフォルト�
 
 #: ../../source/portal-developer-guide/static-page/index.rst:120
 msgid "**version**: Portal version"
-msgstr "**バージョン** ：ポータル版"
+msgstr "**version** ：ポータル版"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:123
 msgid "Programmatic Method"
@@ -10630,11 +10628,11 @@ msgstr "**id** ：メニュー項目の一意な識別子"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:170
 msgid "**titles**: Multilingual titles"
-msgstr "**タイトル** ：多言語タイトル"
+msgstr "**titles** ：多言語タイトル"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:171
 msgid "**permissions**: Array of roles or users who can see this item"
-msgstr "**パーミッション** ：このアイテムを見ることができるロールまたはユーザーの配列"
+msgstr "**permissions** ：このアイテムを見ることができるロールまたはユーザーの配列"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:172
 msgid "**url**: Path to your static page"
@@ -10653,7 +10651,7 @@ msgstr "Portalは、メニューで使用する場合、静的ページリンク
 
 #: ../../source/portal-developer-guide/static-page/index.rst:181
 msgid "**Input**: `app/faces/view/portal-components-examples/static.xhtml`"
-msgstr "**Input**: `app/faces/view/portal-components-examples/static.xhtml`"
+msgstr "**入力**: `app/faces/view/portal-components-examples/static.xhtml`"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:182
 msgid "**Conversion**: Uses `StaticPageUtils.buildUrl()` method"
@@ -10761,8 +10759,8 @@ msgstr "トラブルシューティング"
 #: ../../source/portal-developer-guide/troubleshooting/index.rst:7
 msgid ""
 "Here, we present solutions to some of the most common problems related to"
-" the |ivy| Portal."
-msgstr "ここでは、|ivy| Portal に関連するよくある問題の解決策を紹介します。"
+" the Axon Ivy Portal."
+msgstr "ここでは、Axon Ivy Portal に関連するよくある問題の解決策を紹介します。"
 
 #: ../../source/portal-developer-guide/troubleshooting/index.rst:10
 msgid ""
@@ -10777,9 +10775,9 @@ msgstr "コミュニティ"
 #: ../../source/portal-developer-guide/troubleshooting/index.rst:15
 msgid ""
 "The `Community <http://community.axonivy.com/>`__ contains a considerable"
-" amount of questions and answers related to |ivy| Designer and Engine."
+" amount of questions and answers related to Axon Ivy Designer and Engine."
 msgstr ""
-"`コミュニティ <http://community.axonivy.com/>`__ には、|ivy| "
+"`コミュニティ <http://community.axonivy.com/>`__ には、Axon Ivy "
 "のデザイナーとエンジンに関連する多くの質問とその答えが掲載されています。"
 
 #: ../../source/portal-developer-guide/troubleshooting/index.rst:19
@@ -10814,10 +10812,10 @@ msgstr "リバースプロキシを使用したポータルのインストール
 #: ../../source/portal-developer-guide/troubleshooting/index.rst:35
 msgid ""
 "If you install the Portal in an environment that uses a reverse proxy "
-"(Nginx, IIS or Apache httpd), you have to define the proxy in the |ivy-"
-"engine| configuration."
+"(Nginx, IIS or Apache httpd), you have to define the proxy in the Axon Ivy Engine"
+" configuration."
 msgstr ""
-"リバースプロキシ（Nginx、IIS、Apache httpd）を使用する環境にポータルをインストールする場合、|ivy-engine| "
+"リバースプロキシ（Nginx、IIS、Apache httpd）を使用する環境にポータルをインストールする場合、Axon Ivy Engine "
 "の設定でプロキシを定義する必要があります。"
 
 #: ../../source/portal-developer-guide/usermenu/index.rst:4
