@@ -4202,7 +4202,7 @@ msgid ""
 "field content is displayed based on the language selected in the custom "
 "field."
 msgstr ""
-"**Multi-Language Support for Custom Fields** "
+"**カスタムフィールドの多言語対応** "
 "機能により、カスタムフィールドの値を多言語で提供できるようになります。フィー"
 "ルドの内容は、カスタムフィールドで選択された言語に基づいて表示されます。"
 
@@ -4245,15 +4245,15 @@ msgid ""
 msgstr ""
 "カスタムフィールドの値を追加するには、次のパスに従ってください：``/"
 "CustomFields/Cases/{fieldName}/Values/"
-"{value}``。詳細については、次を参照してください： :doc-url:`Localize Label, "
-"Description, Category and Values </designer-guide/"
+"{value}``。詳細については、次を参照してください： :doc-url:`ラベル、説明、カテゴリ、および値をローカライズする "
+"</designer-guide/"
 "configuration/custom-fields.html#localize-label-description-category-and-"
 "values>`。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:624
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:595
 msgid "Example YAML Configuration"
-msgstr "Example YAML Configuration"
+msgstr "YAML設定例"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:634
 msgid ""
@@ -5485,7 +5485,7 @@ msgstr ""
 "現在のユーザーがケースの所有者であるタスクのみをフィルタします。"
 "デフォルト値は ``false`` です。このフィルタは、 の "
 "``Portal.Cases.EnableOwner`` 設定が ``true`` "
-"に設定されている場合にのみ表示されます。 :ref:`Admin Settings <update-portal-"
+"に設定されている場合にのみ表示されます。 :ref:`ハウツー：ポータル設定を更新する <update-portal-"
 "settings>`."
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:166
