@@ -14,6 +14,7 @@ Check no white page in dark mode, try removing visibility = "hidden" to check ha
 */
 var invalidIFrameSrcPath = false;
 var isMainPageNavigating = false;
+
 function loadIframe() {
   var iframe = getPortalIframe();
 
