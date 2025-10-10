@@ -24,7 +24,7 @@ How to customize the business details page
 
    |customization-business-details-page-start-request|
 
-#. Store the :dev-url:`IWebStartable ID </doc/|version|/public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html#getId()>` of the 
+#. Store the :dev-url:`IWebStartable ID </doc/12.0/public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html#getId()>` of the
    process to the string custom field ``businessDetails`` of the case. There are 2 ways to perform this:
    
    * Use the ``SetBusinessDetailsPage.p.json`` callable process, and pass the IWebStartable ID of the business details process as the 
@@ -39,7 +39,7 @@ How to customize the business details page
       |customize-business-details-with-public-api|
 
       .. tip:: 
-         The business details page also supports external links in case the business details site is outside of |ivy|.
+         The business details page also supports external links in case the business details site is outside of Axon Ivy.
          You can replace the path with any URL. Portal will take care of the rest. E.g., ``BusinessDetailsAPI.create("https://google.com")``
 
 Customization
@@ -71,7 +71,7 @@ Permission Setting
 ------------------
 
 Configure permissions in the :dev-url:`Engine Cockpit
-</doc/|version|/engine-guide/reference/engine-cockpit/security.html>`. In the security area, open PortalPermissions -> PortalCasePermissions -> ShowCaseDetails.
+</doc/12.0/engine-guide/reference/engine-cockpit/security.html>`. In the security area, open PortalPermissions -> PortalCasePermissions -> ShowCaseDetails.
 
 Or search :bdg-ref-warning:`🔑ShowCaseDetails <ShowCaseDetails>` in the permissions search bar. By default, this permission is set to ``true`` for the role ``Everybody``.
 

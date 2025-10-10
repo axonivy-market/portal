@@ -1773,8 +1773,8 @@ msgid ""
 "value, refer to HowTo: Update :ref:`update-portal-settings` for more "
 "details."
 msgstr ""
-"設定はPortal設定のPortal.ShowAvatarをデフォルト値として検出します。詳細は :re"
-"f:`ハウツー：ポータル設定を更新する <update-portal-settings>`を参照してくださ"
+"設定はPortal設定の Portal.ShowAvatar をデフォルト値として検出します。詳細は"
+"ハウツー：ポータル設定を更新する :ref:`update-portal-settings` を参照してくださ"
 "い。"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv

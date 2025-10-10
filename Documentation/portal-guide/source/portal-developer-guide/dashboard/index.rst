@@ -207,7 +207,7 @@ efficiently.
    - Start the process ``Start Processes/CreateTestData/CreateTestDataForCustomizedDashboard.ivp`` in the ``portal-developer-examples`` project.
    - Open the new Portal dashboard to check the new custom layout.
 
-   To configure variables, refer to :dev-url:`|ivy| Variables </doc/|version|/designer-guide/configuration/variables.html>`
+   To configure variables, refer to :dev-url:`Axon Ivy Variables </doc/12.0/designer-guide/configuration/variables.html>`
 
 Configure Dashboard Templates
 -----------------------------

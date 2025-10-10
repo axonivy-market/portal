@@ -25,7 +25,7 @@ Information
   To handle this limitation, Portal introduced the setting **Portal.Chat.MaxConnection**. Default value is 3. If a fourth tab is opened, chat in one inactive tab will be deactivated.
   If you select a tab where chat has been deactivated, all chat information will be refreshed and chat is activated again. If there are still more than MaxConnection chat tabs open, chat in another tab will be deactivated.
 
-- If your system uses an additional Tomcat **Valve**, then we recommend to add asyncSupported in file ``Context.xml``. An example file is available at :dev-url:`File Reference </doc/|version|/engine-guide/configuration/files/context-xml.html>`.
+- If your system uses an additional Tomcat **Valve**, then we recommend to add asyncSupported in file ``Context.xml``. An example file is available at :dev-url:`File Reference </doc/12.0/engine-guide/configuration/files/context-xml.html>`.
 
   .. code-block:: html
 

@@ -142,7 +142,7 @@ the relation between name and type.
 
 Attributes explanation
 
-   ``processPath``: the :dev-url:`|ivy| IWebStartable </doc/|version|/public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html>` identifier of the Ivy process that will be displayed in custom widget
+   ``processPath``: the :dev-url:`Axon Ivy IWebStartable </doc/12.0/public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html>` identifier of the Ivy process that will be displayed in custom widget
 
    ``params``: parameters for the Ivy process above. Each parameter can be defined as follows:
 
@@ -173,7 +173,7 @@ Attributes explanation
             }
          ..
 
-         - type ``user``: The parameter value is an |ivy| username. In the
+         - type ``user``: The parameter value is an Axon Ivy username. In the
            configuration dialog, the user can edit this parameter by choosing a
            user from a dropdown. Only Ivy usernames are accepted as values.
 

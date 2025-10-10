@@ -5,7 +5,7 @@ Deployment
 
 This section provides a step-by-step guide for deploying the Portal for the first time.
 It includes examples and best practices. For more comprehensive deployment information, refer to the
-:dev-url:`|ivy| deployment guidelines </doc/|version|/engine-guide/deployment/index.html>`
+:dev-url:`Axon Ivy deployment guidelines </doc/12.0/engine-guide/deployment/index.html>`
 
 The following is an overview of a sample deployment setup:
 
@@ -42,8 +42,8 @@ Preparation
 
 - Axon Ivy projects are packaged as either .iar (Ivy Archive) files or .zip files for deployment.
 - We recommend using .zip files, as they can include:
-  :dev-url:`branding </doc/|version|/designer-guide/user-interface/branding/branding-engine.html>`, 
-  variables, databases, REST clients :dev-url:`configuration </doc/|version|/engine-guide/deployment/prepare/application-configuration/index.html>`.
+  :dev-url:`branding </doc/12.0/designer-guide/user-interface/branding/branding-engine.html>`,
+  variables, databases, REST clients :dev-url:`configuration </doc/12.0/engine-guide/deployment/prepare/application-configuration/index.html>`.
 
 Recommended Deployment Setup (Sample)
 -------------------------------------
@@ -64,7 +64,7 @@ Prepare two zip files for deployment:
 Deployment
 ----------
 
-- Create a security system, or use the default one provided by |ivy|. This security system will be shared across applications.
+- Create a security system, or use the default one provided by Axon Ivy. This security system will be shared across applications.
 - Create applications:
 
   - One for the Portal, e.g., named Portal
@@ -78,8 +78,8 @@ Configuration
 =============
 
 Configuration can be done either through 
-:dev-url:`deployment </doc/|version|/engine-guide/deployment/prepare/application-configuration/index.html>` 
-or via the :dev-url:`Engine Cockpit UI </doc/|version|/engine-guide/reference/engine-cockpit>`.
+:dev-url:`deployment </doc/12.0/engine-guide/deployment/prepare/application-configuration/index.html>`
+or via the :dev-url:`Engine Cockpit UI </doc/12.0/engine-guide/reference/engine-cockpit>`.
 This section highlights the most important configuration settings.
 
 Dashboard Configuration

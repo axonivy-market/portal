@@ -22,7 +22,7 @@ on each module, refer to :ref:`architecture`.
 -  portal
 
 The deployment of Ivy projects is described in :dev-url:`project
-deployment </doc/|version|/engine-guide/deployment/index.html>`
+deployment </doc/12.0/engine-guide/deployment/index.html>`
 .
 
 Installation
@@ -81,7 +81,7 @@ To install Dashboard JSON configuration file to the Axon Ivy Engine, you can cho
       ├── portal-components.iar    
    ..
 
-   The JSON file name has to be Portal.Dashboard.json. Refer to :dev-url:`Engine Deployment</doc/|version|/engine-guide/deployment/index.html>` 
+   The JSON file name has to be Portal.Dashboard.json. Refer to :dev-url:`Engine Deployment</doc/12.0/engine-guide/deployment/index.html>`
 - Copy the Dashboard.json file directly into your ``<application>`` folder following this path ``<engine>/configuration/applications/<application>``. The Json file name has to be named ``variables.Portal.Dashboard.json``
 
 - Use the import dashboard feature of the Portal. Refer to :ref:`How to import your public dashboards<howto-import-your-public-dashboards>`
@@ -106,7 +106,7 @@ Migration Notes
 
 This document informs you in detail about incompatibilities that were
 introduced between Portal versions and tells you what needs to be done
-to make your existing Portal working with current |ivy-engine|.
+to make your existing Portal working with current Axon Ivy Engine.
 
 How To Migrate
 --------------
@@ -116,16 +116,16 @@ How To Migrate
    it may have changed or have been removed. Don't forget to re-implement the
    APIs concerned in your own project.
 
-   To migrate the Portal, you need to migrate |ivy| first. Refer to the
-   :dev-url:`|ivy| Migration Notes
-   </doc/|version|/axonivy/migration/index.html>`. Changes in |ivy| could lead
+   To migrate the Portal, you need to migrate Axon Ivy first. Refer to the
+   :dev-url:`Axon Ivy Migration Notes
+   </doc/12.0/axonivy/migration/index.html>`. Changes in Axon Ivy could lead
    to problems if a customer project is not migrated properly.
 
 In Designer
 -----------
 
 #. Replace all Portal projects with the versions of the new release.
-#. Upgrade your projects to use the latest portal version by using the **Convert Project** feature. Please find more information here: :dev-url:`Converting Projects </doc/|version|/designer-guide/process-modeling/projects/converting.html#converting-projects>`
+#. Upgrade your projects to use the latest portal version by using the **Convert Project** feature. Please find more information here: :dev-url:`Converting Projects </doc/12.0/designer-guide/process-modeling/projects/converting.html#converting-projects>`
 #. Follow detailed migration notes for each version below.
 #. If customization needs copying code from Portal, merge changes between the
    two versions of the Portal for copied code.
@@ -145,7 +145,7 @@ Migrate 11.3.2 To 12.0.0
 ------------------------
 
 1. Custom field values for business details pages are migrated silently from the process link relative path 
-to its :dev-url:`IWebStartable ID </doc/|version|/public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html#getId()>`. 
+to its :dev-url:`IWebStartable ID </doc/12.0/public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html#getId()>`.
 You don't need to do anything, this is just for your information.
 
 2. We implemented a new feature to adjusting column widths in the Task and Case widgets.
@@ -166,7 +166,7 @@ The ``AxonIvyExpress`` module is renamed to ``axonivy-express`` and becomes an i
 
 
 - If you override ``PortalStartTimeCleanObsoletedDataExpression`` variable, please update it to new Ivy CRON job pattern.
-- Refer to Axon Ivy CRON job pattern: `CRON Expression <https://developer.axonivy.com/doc/|version|/engine-guide/configuration/advanced-configuration.html#cron-expression>`_.
+- Refer to Axon Ivy CRON job pattern: `CRON Expression <https://developer.axonivy.com/doc/12.0/engine-guide/configuration/advanced-configuration.html#cron-expression>`_.
 - Example: Change ``0 0 1 * * ?`` to ``0 1 * * *`` for job trigger 01:00 AM everyday.
 
 Migrate 10.0.19 To 10.0.20
@@ -288,7 +288,7 @@ Migrate 9.3 To 9.4
    If you have changed the CMS in ``PortalStyle``, please adapt the ``portal`` CMS accordingly.
 
 #. The ``customization.css`` file has been removed, in case you use it in your project, please switch to using
-   :dev-url:`Engine Branding </doc/|version|/designer-guide/user-interface/branding/branding-engine.html>` to customize styling
+   :dev-url:`Engine Branding </doc/12.0/designer-guide/user-interface/branding/branding-engine.html>` to customize styling
 
 #. Subprocesses related to documents are moved to the independent project ``portal-components``.
    If you customized these processes, please override the correspond subprocess again and added your customization to it.
@@ -326,10 +326,10 @@ Migrate 9.3 To 9.4
    - :ref:`Migration steps <components-portal-components-migrate-from-old-process-chain>` for the new :ref:`Process Chain <components-portal-components-process-chain>` component.
 
 #. Portal dashboard widgets only support the ``CustomFields`` declared in the ``custom-fields.yaml`` file.
-   If your ``CustomFields`` are used in the dashboard widget, please follow the :dev-url:`Custom Fields Meta Information </doc/|version|/designer-guide/how-to/workflow/custom-fields.html#meta-information>` to adapt the data.
+   If your ``CustomFields`` are used in the dashboard widget, please follow the :dev-url:`Custom Fields Meta Information </doc/12.0/designer-guide/how-to/workflow/custom-fields.html#meta-information>` to adapt the data.
 
 #. The ``DefaultChartColor.p.json`` subprocess has been removed, in case you use it in your project, please remove override this subprocess and switch to using
-   :dev-url:`Engine Branding </doc/|version|/designer-guide/user-interface/branding/branding-engine.html>` to customize chart, data labels, legend color.
+   :dev-url:`Engine Branding </doc/12.0/designer-guide/user-interface/branding/branding-engine.html>` to customize chart, data labels, legend color.
 
 #. Deploy :download:`portal-migration-9.4.0.iar <documents/portal-migration-9.4-9.4.0.iar>` project to your Ivy application and run it by access link
    ``your_host/your_application/pro/portal-migration/175F92F71BC45295/startMigrateConfiguration.ivp``
@@ -366,7 +366,7 @@ Migrate 9.2 To 9.3
    If you use have any customized date filters in your project, update template accordingly.
 
 #. The callable process ``DefaultChart.p.json``, ``DefaultUserProcess.p.json`` has been removed. They are replaced by
-   the :dev-url:`Variables </doc/|version|/designer-guide/configuration/variables.html>` configuration approach.
+   the :dev-url:`Variables </doc/12.0/designer-guide/configuration/variables.html>` configuration approach.
    
 
 Migrate 9.1 To 9.2
@@ -394,7 +394,7 @@ Migrate 9.1 To 9.2
 
 #. Deprecated callable processes: ``OpenPortalSearch.mod``, ``OpenPortalTasks.mod``, ``OpenPortalTaskDetails.mod``, ``OpenPortalCases.mod``, ``OpenPortalCaseDetails.mod`` process.
 
-   Portal recommends using :dev-url:`|ivy| HtmlOverride wizard </doc/|version|/designer-guide/how-to/overrides.html?#override-new-wizard>` to customize ``Portal HTML Dialog``
+   Portal recommends using :dev-url:`Axon Ivy HtmlOverride wizard </doc/12.0/designer-guide/how-to/overrides.html?#override-new-wizard>` to customize ``Portal HTML Dialog``
 
    .. important:: The callable process which is supporting to open customization dialog will be removed in the future, do not use it in the new project
 
@@ -428,7 +428,7 @@ Migrate 8.x To 9.1
    Portal app mode) are not available anymore. To let Portal know where your new
    Portal home page is, you have to set default pages in your project.
    Follow this chapter to customize default-pages:
-   :dev-url:`Default Pages </doc/|version|/designer-guide/user-interface/default-pages/index.html>`
+   :dev-url:`Default Pages </doc/12.0/designer-guide/user-interface/default-pages/index.html>`
 
 #. Portal now uses |css_variable| instead of SASS. Therefore, you have to convert
    the SASS syntax to the new CSS variables or use online tools such as
@@ -480,7 +480,7 @@ Release notes
 =============
 
 This part lists all relevant changes since the last official product
-releases of |ivy|.
+releases of Axon Ivy.
 
 Changes in 12.0.9
 ------------------
