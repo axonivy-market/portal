@@ -38,7 +38,8 @@ public enum PortalPermission {
   PASSWORD_VALIDATION("PasswordValidation", PortalPermissionGroup.GENERAL_PERMISSIONS_GROUP),
   STATISTIC_WRITE_PUBLIC("StatisticWritePublic", PortalPermissionGroup.STATISTIC_GROUP),
   CASE_OWNER_TASK_DELEGATE("CaseOwnerTaskDelegate", PortalPermissionGroup.CASE_PERMISSIONS_GROUP),
-  NOTIFICATION_CHANNELS_SETTING("NotificationChannelsSetting", PortalPermissionGroup.GENERAL_PERMISSIONS_GROUP);
+  NOTIFICATION_CHANNELS_SETTING("NotificationChannelsSetting", PortalPermissionGroup.GENERAL_PERMISSIONS_GROUP),
+  NOTE_READ_ALL_CASE_TASK_DETAILS("NoteReadAllCaseTaskDetails", PortalPermissionGroup.GENERAL_PERMISSIONS_GROUP);
 
   private String value;
   private PortalPermissionGroup group;
