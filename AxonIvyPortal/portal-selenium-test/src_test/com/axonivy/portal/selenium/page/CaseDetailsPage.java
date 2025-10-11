@@ -101,6 +101,7 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public void gotoTaskDetailsPageOfRelatedTask(String taskName) {
+    $("div[id$='case-details-related-task-table']").shouldBe(appear, DEFAULT_TIMEOUT).scrollTo();
     $$("div[id$='case-details-related-task-table'] table tbody tr td span")
         .filter(text(taskName)).first().click();
   }
