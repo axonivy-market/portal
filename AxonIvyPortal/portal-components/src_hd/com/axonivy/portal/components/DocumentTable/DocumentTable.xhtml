@@ -100,7 +100,7 @@
             value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/Preview')}" />
         </p:commandLink>
         <p:commandLink id="edit-filename" ariaLabel="#{cc.attrs.renameText}"
-          rendered="#{cc.attrs.renameRendered}" styleClass="#{cc.attrs.renameStyleClass}"
+          rendered="#{cc.attrs.renameRendered}" styleClass="#{cc.attrs.renameStyleClass}" immediate="true"
           actionListener="#{data.setSelectedDocument(document)}"
           update="#{cc.clientId}:document-renaming-dialog"
           oncomplete="PF('document-renaming-dialog').show()">
