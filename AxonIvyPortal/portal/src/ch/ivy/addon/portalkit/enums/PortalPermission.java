@@ -38,7 +38,8 @@ public enum PortalPermission {
   CREATE_PUBLIC_EXTERNAL_LINK("CreatePublicExternalLink", PortalPermissionGroup.GENERAL_PERMISSIONS_GROUP),
   ROLE_MANAGEMENT("RoleManagement", PortalPermissionGroup.GENERAL_PERMISSIONS_GROUP),
   NEWS_MANAGEMENT("NewsManagement", PortalPermissionGroup.GENERAL_PERMISSIONS_GROUP),
-  PASSWORD_VALIDATION("PasswordValidation", PortalPermissionGroup.GENERAL_PERMISSIONS_GROUP);
+  PASSWORD_VALIDATION("PasswordValidation", PortalPermissionGroup.GENERAL_PERMISSIONS_GROUP),
+  NOTE_READ_ALL_CASE_TASK_DETAILS("NoteReadAllCaseTaskDetails", PortalPermissionGroup.GENERAL_PERMISSIONS_GROUP);
 
   private String value;
   private PortalPermissionGroup group;

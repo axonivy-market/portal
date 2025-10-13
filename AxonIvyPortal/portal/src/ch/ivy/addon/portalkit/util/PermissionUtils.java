@@ -304,4 +304,12 @@ public class PermissionUtils {
     return Optional.ofNullable(Ivy.var().get(SKIP_PERMISSION_VARIABLE_KEY))
         .map(Boolean::parseBoolean).orElseGet(() -> false);
   }
+  
+  /**
+   * Check if current user has permission see system notes in case/task details
+   * @return true if current user has permission.
+   */
+  public static boolean checkNoteReadAllCaseTaskDetailsPermission() {
+    return hasPortalPermission(PortalPermission.NOTE_READ_ALL_CASE_TASK_DETAILS);
+  }
 }

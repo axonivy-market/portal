@@ -38,7 +38,7 @@ import com.codeborne.selenide.WebDriverRunner;
 
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 
-@IvyWebTest
+@IvyWebTest(headless = false)
 public class CaseDetailsTest extends BaseTest {
   private static final String ORDER_PIZZA = "Order Pizza";
   private static final String TAKE_ORDER = "Take Order";
@@ -65,6 +65,8 @@ public class CaseDetailsTest extends BaseTest {
   public static final String CREATE_EVENT_TEST_URL = "portal-developer-examples/17A2C6D73AB4186E/CreateEventTest.ivp";
   private static final String SICK_LEAVE_REQUEST_TASK = "Sick Leave Request";
   private static final String ANNUAL_LEAVE_REQUEST_TASK = "Annual Leave Request";
+  private static final String CREATE_NOTES = "InternalSupport/14B2FC03D2E87141/processWithSystemNote.ivp";
+  
 
   @Override
   @BeforeEach
@@ -501,6 +503,7 @@ public class CaseDetailsTest extends BaseTest {
   @AfterEach
   public void teardown() {
     denySpecificPortalPermission(PortalPermission.TASK_CASE_ADD_NOTE);
+    denySpecificPortalPermission(PortalPermission.NOTE_READ_ALL_CASE_TASK_DETAILS);
   }
 
   @Test
@@ -559,5 +562,21 @@ public class CaseDetailsTest extends BaseTest {
     caseDetailsPage.clickShowOnlyOpenTasks();
     caseDetailsPage.countRelatedTasks().shouldBe(size(3));
 
+  }
+
+  @Test
+  public void testShowNotesWhenGrantNoteReadAllPermission() {
+    redirectToRelativeLink(CREATE_NOTES);
+    login(TestAccount.DEMO_USER);
+    CaseWidgetPage casePage = NavigationHelper.navigateToCaseList();
+    detailsPage = casePage.openDetailsOfCaseHasName("Create note");
+    detailsPage.waitPageLoaded();
+    detailsPage.getNotesWithContent("System note").shouldHave(size(0));
+
+    grantSpecificPortalPermission(PortalPermission.NOTE_READ_ALL_CASE_TASK_DETAILS);
+    casePage = NavigationHelper.navigateToCaseList();
+    detailsPage = casePage.openDetailsOfCaseHasName("Create note");
+    detailsPage.waitPageLoaded();
+    detailsPage.getNotesWithContent("System note").shouldHave(size(1));
   }
 }
