@@ -4,9 +4,10 @@ import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 
-import com.axonivy.portal.util.ExternalLinkUtils;
+import com.axonivy.portal.util.ImageUploadUtils;
 
 import ch.ivy.addon.portalkit.configuration.ExternalLink;
+import ch.ivy.addon.portalkit.constant.DashboardConstants;
 import ch.ivy.addon.portalkit.enums.DefaultImage;
 import ch.ivy.addon.portalkit.enums.ProcessType;
 import ch.ivy.addon.portalkit.service.ExternalLinkService;
@@ -27,8 +28,8 @@ public class ExternalLinkProcessItem implements Process {
   
   private void convertBase64ImageToFile() {
     if (StringUtils.isNotBlank(externalLink.getImageType()) && StringUtils.isNotBlank(externalLink.getImageContent())) {
-      String imageLocation = ExternalLinkUtils.imageBase64ToApplicationCMSFile(externalLink.getImageContent(), externalLink.getImageType());
-      ExternalLinkUtils.removeImage(externalLink.getImageLocation(), externalLink.getImageType());
+      String imageLocation = ImageUploadUtils.imageBase64ToApplicationCMSFile(externalLink.getImageContent(), externalLink.getImageType(), DashboardConstants.EXTERNAL_LINK_IMAGE_DIRECTORY);
+      ImageUploadUtils.removeImage(externalLink.getImageLocation(), externalLink.getImageType());
       externalLink.setImageLocation(imageLocation);
       externalLink.setImageContent(null);
       ExternalLinkService.getInstance().save(externalLink);
@@ -84,7 +85,7 @@ public class ExternalLinkProcessItem implements Process {
   @Override
   public String getImageUrl() {
     String imageLocation = this.externalLink.getImageLocation();
-    return ExternalLinkUtils.isValidImageUrl(imageLocation, this.externalLink.getImageType()) ? imageLocation : getContentImageUrl(DefaultImage.ARROWRIGHT.getPath());
+    return ImageUploadUtils.isValidImageUrl(imageLocation, this.externalLink.getImageType()) ? imageLocation : getContentImageUrl(DefaultImage.ARROWRIGHT.getPath());
   }
 
   public String getImageType() {
@@ -114,6 +115,6 @@ public class ExternalLinkProcessItem implements Process {
   // Use the same image in Light mode
   public String getDefaultImageDarkUrl() {
     String imageLocation = this.externalLink.getImageLocation();
-    return ExternalLinkUtils.isValidImageUrl(imageLocation, this.externalLink.getImageType()) ? imageLocation : getContentImageUrl(DefaultImage.ARROWRIGHT.getPath());
+    return ImageUploadUtils.isValidImageUrl(imageLocation, this.externalLink.getImageType()) ? imageLocation : getContentImageUrl(DefaultImage.ARROWRIGHT.getPath());
   }
 }

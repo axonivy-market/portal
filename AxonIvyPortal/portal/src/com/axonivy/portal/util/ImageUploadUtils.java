@@ -16,12 +16,11 @@ import ch.ivyteam.ivy.cm.exec.ContentManagement;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.util.Pair;
 
-public class ExternalLinkUtils {
+public class ImageUploadUtils {
 
-  public static final String IMAGE_DIRECTORY = "com/axonivy/portal/ExternalLink";
   public static final String DEFAULT_LOCALE_TAG = "en";
 
-  public static Pair<String, String> handleImageUpload(FileUploadEvent event) {
+  public static Pair<String, String> handleImageUpload(FileUploadEvent event, String imageDir) {
     UploadedFile file = event.getFile();
     if (file != null && file.getContent() != null && file.getContent().length > 0 && file.getFileName() != null) {
       // save the image
@@ -36,7 +35,7 @@ public class ExternalLinkUtils {
       }
 
       ContentObject imageCMSObject =
-          getApplicationCMS().child().folder(IMAGE_DIRECTORY).child().file(fileName, fileExtension);
+          getApplicationCMS().child().folder(imageDir).child().file(fileName, fileExtension);
 
       if (imageCMSObject != null) {
         readObjectValueOfDefaultLocale(imageCMSObject).write().bytes(content);
@@ -53,11 +52,11 @@ public class ExternalLinkUtils {
     }
   }
 
-  public static String imageBase64ToApplicationCMSFile(String base64Data, String imageType) {
+  public static String imageBase64ToApplicationCMSFile(String base64Data, String imageType, String imageDir) {
     try {
       byte[] data = Base64.getDecoder().decode(base64Data.getBytes(StandardCharsets.UTF_8));
       String fileName = UUID.randomUUID().toString();
-      ContentObject imageCMSObject = getApplicationCMS().child().folder(IMAGE_DIRECTORY).child().file(fileName, imageType);
+      ContentObject imageCMSObject = getApplicationCMS().child().folder(imageDir).child().file(fileName, imageType);
 
       if (imageCMSObject != null) {
         readObjectValueOfDefaultLocale(imageCMSObject).write().bytes(data);

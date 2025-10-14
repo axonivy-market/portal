@@ -18,12 +18,13 @@ import org.primefaces.PrimeFaces;
 import org.primefaces.event.FileUploadEvent;
 
 import com.axonivy.portal.service.IvyTranslationService;
-import com.axonivy.portal.util.ExternalLinkUtils;
+import com.axonivy.portal.util.ImageUploadUtils;
 import com.axonivy.portal.util.UploadDocumentUtils;
 
 import ch.ivy.addon.portal.generic.bean.IMultiLanguage;
 import ch.ivy.addon.portalkit.bo.ExternalLinkProcessItem;
 import ch.ivy.addon.portalkit.configuration.ExternalLink;
+import ch.ivy.addon.portalkit.constant.DashboardConstants;
 import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.enums.Protocol;
 import ch.ivy.addon.portalkit.service.ExternalLinkService;
@@ -88,14 +89,14 @@ public class ExternalLinkBean implements Serializable, IMultiLanguage {
 
   public void handleImageUpload(FileUploadEvent event) {
     removeImage();
-    Pair<String, String> imageInfo = ExternalLinkUtils.handleImageUpload(event);
+    Pair<String, String> imageInfo = ImageUploadUtils.handleImageUpload(event, DashboardConstants.EXTERNAL_LINK_IMAGE_DIRECTORY);
     externalLink.setImageLocation(imageInfo.getLeft());
     externalLink.setImageType(imageInfo.getRight());
   }
   
   public void removeImage() {
     if (StringUtils.isNoneBlank(externalLink.getImageLocation())) {
-      ExternalLinkUtils.removeImage(externalLink.getImageLocation(), externalLink.getImageType());
+      ImageUploadUtils.removeImage(externalLink.getImageLocation(), externalLink.getImageType());
       externalLink.setImageLocation(null);
       externalLink.setImageType(null);
     }

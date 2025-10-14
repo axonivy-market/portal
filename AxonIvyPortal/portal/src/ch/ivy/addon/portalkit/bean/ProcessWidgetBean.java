@@ -32,7 +32,7 @@ import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import com.axonivy.portal.components.util.RoleUtils;
 import com.axonivy.portal.service.GlobalSearchService;
 import com.axonivy.portal.service.IvyTranslationService;
-import com.axonivy.portal.util.ExternalLinkUtils;
+import com.axonivy.portal.util.ImageUploadUtils;
 import com.axonivy.portal.util.UploadDocumentUtils;
 
 import ch.ivy.addon.portal.generic.bean.IMultiLanguage;
@@ -41,6 +41,7 @@ import ch.ivy.addon.portalkit.bo.IvyProcess;
 import ch.ivy.addon.portalkit.bo.Process;
 import ch.ivy.addon.portalkit.configuration.ExternalLink;
 import ch.ivy.addon.portalkit.configuration.GlobalSetting;
+import ch.ivy.addon.portalkit.constant.DashboardConstants;
 import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.ProcessMode;
@@ -297,7 +298,7 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
       return;
     }
     removeTempExternalLinkImage();
-    Pair<String, String> imageInfo = ExternalLinkUtils.handleImageUpload(event);
+    Pair<String, String> imageInfo = ImageUploadUtils.handleImageUpload(event, DashboardConstants.EXTERNAL_LINK_IMAGE_DIRECTORY);
     this.editedExternalLink.setImageLocation(imageInfo.getLeft());
     this.editedExternalLink.setImageType(imageInfo.getRight());
   }
@@ -305,7 +306,7 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
   public void removeTempExternalLinkImage() {
     if (this.editedExternalLink != null && StringUtils.isNoneBlank(this.editedExternalLink.getImageLocation())) {
       if (!Objects.equals(this.editedExternalLink.getImageLocation(), this.originalExternalLinkImage)) {
-        ExternalLinkUtils.removeImage(this.editedExternalLink.getImageLocation(), this.editedExternalLink.getImageType());
+        ImageUploadUtils.removeImage(this.editedExternalLink.getImageLocation(), this.editedExternalLink.getImageType());
       }
       this.editedExternalLink.setImageLocation(null);
       this.editedExternalLink.setImageType(null);
@@ -314,7 +315,7 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
 
   public void removeOriginalExternalLinkImage(String imageUrl, String imageType) {
     if (StringUtils.isNoneBlank(imageUrl) && !isDefaultProcessImage(imageUrl)) {
-      ExternalLinkUtils.removeImage(imageUrl, imageType);
+      ImageUploadUtils.removeImage(imageUrl, imageType);
     }
   }
 
