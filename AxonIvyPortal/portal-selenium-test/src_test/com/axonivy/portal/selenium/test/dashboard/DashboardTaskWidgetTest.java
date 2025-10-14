@@ -374,8 +374,8 @@ public class DashboardTaskWidgetTest extends BaseTest {
 
     taskWidget.clickCustomFieldsButtonOnActions(0);
     taskWidget.waitForPageLoad();
-    assertTrue(taskWidget.isCustomFieldsPanelShowed());
-    List<String> taskCustomFieldNames = taskWidget.getCustomFieldNamesOnTaskCustomFieldsPanel();
+    assertTrue(taskWidget.isCustomFieldsDialogDislayed());
+    List<String> taskCustomFieldNames = taskWidget.getCustomFieldNamesOnTaskCustomFieldsDialog();
     assertFalse(taskCustomFieldNames.isEmpty());
   }
 }

@@ -316,11 +316,11 @@ public class CaseDetailsTest extends BaseTest {
   }
   
   @Test
-  public void testRelatedTaskOpenCustomFieldsPanel() {
+  public void testRelatedTaskOpenCustomFieldsDialog() {
     createTestingTask();
     detailsPage.clickCustomFieldsButtonOnActions(SICK_LEAVE_REQUEST_TASK);
-    assertTrue(detailsPage.getCustomFieldsPanelOfTask().isDisplayed());
-    List<String> customFieldNames = detailsPage.getCustomFieldNamesOnTaskCustomFieldsPanel();
+    assertTrue(detailsPage.getCustomFieldsDialog().isDisplayed());
+    List<String> customFieldNames = detailsPage.getCustomFieldNamesOnTaskCustomFieldsDialog();
     assertFalse(customFieldNames.isEmpty());
   }
   

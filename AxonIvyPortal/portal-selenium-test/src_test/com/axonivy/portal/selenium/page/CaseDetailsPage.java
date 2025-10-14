@@ -714,14 +714,14 @@ public class CaseDetailsPage extends TemplatePage {
   public void clickCustomFieldsButtonOnActions(String taskName) {
     clickRelatedTaskActionButton(taskName);
     $("[id$='additional-options:task-custom-fields-command']").shouldBe(getClickableCondition()).click();
-    waitForElementDisplayed(getCustomFieldsPanelOfTask(), true);
+    waitForElementDisplayed(getCustomFieldsDialog(), true);
   }
   
-  public SelenideElement getCustomFieldsPanelOfTask() {
+  public SelenideElement getCustomFieldsDialog() {
     return $("div[id$='task-custom-fields-dialog']");
   }
   
-  public List<String> getCustomFieldNamesOnTaskCustomFieldsPanel() {
+  public List<String> getCustomFieldNamesOnTaskCustomFieldsDialog() {
     return $$("span[id$='customFieldLabel']")
         .shouldBe(CollectionCondition.sizeGreaterThanOrEqual(0), DEFAULT_TIMEOUT)
         .asFixedIterable()

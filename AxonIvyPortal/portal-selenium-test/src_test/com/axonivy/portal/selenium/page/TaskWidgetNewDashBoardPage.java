@@ -325,7 +325,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
     getCustomFieldsPanelOfTask().shouldBe(appear);
   }
   
-  public List<String> getCustomFieldNamesOnTaskCustomFieldsPanel() {
+  public List<String> getCustomFieldNamesOnTaskCustomFieldsDialog() {
     return $$("span[id$='customFieldLabel']")
         .shouldBe(CollectionCondition.sizeGreaterThanOrEqual(0), DEFAULT_TIMEOUT)
         .asFixedIterable()
@@ -338,7 +338,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
     return $("div[id$='task-custom-fields-dialog']");
   }
   
-  public boolean isCustomFieldsPanelShowed() {
+  public boolean isCustomFieldsDialogDislayed() {
     return getCustomFieldsPanelOfTask().isDisplayed();
 
   }
