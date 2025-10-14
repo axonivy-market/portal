@@ -194,9 +194,8 @@ public class DashboardWelcomeWidgetConfigurationBean extends DashboardWelcomeWid
 
   public String generateGreetingText(Locale locale) {
     String greetingTextCms = WelcomeWidgetUtils.generateGreetingTextByTime(parsedClientTime);
-    String greetingTextLocalized = StringUtils.defaultString(Ivy.cms().coLocale(greetingTextCms, locale));
     return String.join(" ",
-        greetingTextLocalized,
+        Ivy.cms().coLocale(greetingTextCms, locale),
         Ivy.session().getSessionUser().getDisplayName(), "");
   }
 
