@@ -4,17 +4,17 @@ Full Task List
 **************
 
 The **Full Task List** page is a dashboard featuring a single, full-width task widget. 
-You can reach the page by using the |task-list-icon| :guilabel:`Tasks` link in the |ivy| Portal menu.
+You can reach the page by using the |task-list-icon| :guilabel:`Tasks` link in the Axon Ivy Portal menu.
 
 .. note::
 
-   Grant permission :bdg-ref-warning:`🔑AccessFullTaskList <AccessFullTaskList>` to allow a user to access the full task list ( |task-list-icon| :guilabel:`Tasks`) in the |ivy| Portal menu.
+   Grant permission :bdg-ref-warning:`🔑AccessFullTaskList <AccessFullTaskList>` to allow a user to access the full task list ( |task-list-icon| :guilabel:`Tasks`) in the Axon Ivy Portal menu.
 
 
 .. hint:: 
    Depending on the roles you hold
    in the application and the     
-   configuration of the |ivy|  
+   configuration of the Axon Ivy
    Portal, you might see not only 
    the tasks belonging to you but 
    all open tasks.     
