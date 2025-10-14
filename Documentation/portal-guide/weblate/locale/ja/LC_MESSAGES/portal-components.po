@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Portal Guide ${revision}\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-09-19 08:12+0000\n"
-"PO-Revision-Date: 2025-09-30 11:01+0000\n"
+"PO-Revision-Date: 2025-10-09 10:24+0000\n"
 "Last-Translator: Thang Huynh <hhqthang@axonactive.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/axonivy-portal/"
 "portal-12/doc/portal-components/ja/>\n"
@@ -408,12 +408,11 @@ msgid "enableScriptCheckingForUploadedDocument"
 msgstr "enableScriptCheckingForUploadedDocument"
 
 #: ../../source/portal-components/document-table/index.rst
-#, fuzzy
 msgid ""
 "Boolean value to specify script checking. Set to ``true`` to enable "
 "script checking."
-msgstr "スクリプトチェックを指定するブール値。スクリプトチェックを有効にするには``tru"
-"e`` に設定する。"
+msgstr "スクリプトチェックを指定するブール値。スクリプトチェックを有効にするには "
+"``true`` に設定する。"
 
 #: ../../source/portal-components/document-table/index.rst
 msgid ""
@@ -425,9 +424,8 @@ msgstr ""
 "をデフォルト値として検出する。詳細は :ref:`update-portal-settings` を参照。"
 
 #: ../../source/portal-components/document-table/index.rst
-#, fuzzy
 msgid "If the Portal setting is not available, defaults to ``false``."
-msgstr "ポータルの設定がない場合、デフォルトは``false`` となる。"
+msgstr "ポータルの設定がない場合、デフォルトは ``false`` となる。"
 
 #: ../../source/portal-components/document-table/index.rst:95
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
@@ -435,15 +433,14 @@ msgid "enableVirusScannerForUploadedDocument"
 msgstr "enableVirusScannerForUploadedDocument"
 
 #: ../../source/portal-components/document-table/index.rst
-#, fuzzy
 msgid ""
 "Boolean value to specify virus scanning. Set to ``true`` to enable virus "
 "scanning. Refer to :ref:`Virus Scanning Setting<settings-virus-scanning-"
 "setting>` for more details."
 msgstr ""
-"ウイルススキャンを指定するブール値。ウイルススキャンを有効にするには、``true`"
-"` に設定します。詳細は:ref:`Virus Scanning Setting<settings-virus-scanning-"
-"setting>` を参照してください。"
+"ウイルススキャンを指定するブール値。ウイルススキャンを有効にするには、"
+"``true`` に設定します。詳細は :ref:`ウイルススキャンの設定 <settings-virus-"
+"scanning-setting>` を参照してください。"
 
 #: ../../source/portal-components/document-table/index.rst
 msgid ""
@@ -455,9 +452,8 @@ msgstr ""
 "をデフォルト値として検出する。詳細は :ref:`update-portal-settings` を参照。"
 
 #: ../../source/portal-components/document-table/index.rst
-#, fuzzy
 msgid "If Portal setting is not available, default value is ``false``."
-msgstr "ポータルの設定がない場合、デフォルト値は``false`` となる。"
+msgstr "ポータルの設定がない場合、デフォルト値は ``false`` となる。"
 
 #: ../../source/portal-components/document-table/index.rst:97
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
@@ -469,23 +465,21 @@ msgid "String value to specify the list of file extension that can be uploaded."
 msgstr "アップロード可能なファイル拡張子のリストを指定する文字列値。"
 
 #: ../../source/portal-components/document-table/index.rst
-#, fuzzy
 msgid ""
 "The setting will detect Portal setting "
 "``Portal.Document.WhitelistExtension`` as its default value, refer to "
 ":ref:`update-portal-settings` for more details."
 msgstr ""
-"この設定はポータル設定``Portal.Document.WhitelistExtension`` "
-"をデフォルト値として検出する。詳細は:ref:`update-portal-settings` を参照。"
+"この設定はポータル設定 ``Portal.Document.WhitelistExtension`` をデフォルト値"
+"として検出する。詳細は :ref:`update-portal-settings` を参照。"
 
 #: ../../source/portal-components/document-table/index.rst
-#, fuzzy
 msgid ""
 "If Portal setting is not available, default value is "
 "``doc,docx,xls,xlsx,xlsm,csv,pdf,ppt,pptx,txt,zip,jpg,jpeg,bmp,png``."
 msgstr ""
-"ポータルの設定がない場合、デフォルト値は``doc,docx,xls,xlsx,xlsm,csv,pdf,ppt,"
-"pptx,txt,zip,jpg,jpeg,bmp,png`` となる。"
+"ポータルの設定がない場合、デフォルト値は "
+"``doc,docx,xls,xlsx,xlsm,csv,pdf,ppt,pptx,txt,zip,jpg,jpeg,bmp,png`` となる。"
 
 #: ../../source/portal-components/document-table/index.rst:20
 msgid "Virus scanning"
@@ -650,7 +644,7 @@ msgstr ""
 
 #: ../../source/portal-components/document-table/index.rst:82
 msgid "**Signature**: portalUploadDocumentItem"
-msgstr "**Signature**: portalUploadDocumentItem"
+msgstr "**シグネチャ**: portalUploadDocumentItem"
 
 #: ../../source/portal-components/document-table/index.rst:85
 #: ../../source/portal-components/document-table/index.rst:161
@@ -759,7 +753,7 @@ msgstr "**署名**: portalRenameDocumentItem"
 
 #: ../../source/portal-components/document-table/index.rst:173
 msgid "isSuccess"
-msgstr "成功"
+msgstr "isSuccess"
 
 #: ../../source/portal-components/document-table/index.rst:173
 msgid "rename successfully or not"
@@ -770,13 +764,12 @@ msgid "OK or SKIP"
 msgstr "OKまたはSKIP"
 
 #: ../../source/portal-components/document-table/index.rst:179
-#, fuzzy
 msgid ""
 "The parameters of the callable subprocess data contain the Ivy "
 "``document`` to update, the new filename should be already modified in "
 "the document's name attribute."
 msgstr ""
-"呼び出し可能なサブプロセスデータのパラメータには、更新する Ivy``document`` "
+"呼び出し可能なサブプロセスデータのパラメータには、更新する Ivy ``document`` "
 "が含まれます。新しいファイル名は、ドキュメントのname属性ですでに変更されてい"
 "る必要があります。"
 
@@ -788,26 +781,22 @@ msgstr "ポータルは、同じセキュリティー・コンテキストの中
 "セスを呼び出し、結果を得る："
 
 #: ../../source/portal-components/document-table/index.rst:185
-#, fuzzy
 msgid ""
 "``message``: the message to inform the user that their new filename is "
 "successfully updated or invalid to use."
-msgstr "`message``: "
-"新しいファイル名が正常に更新されたか、あるいは無効であることをユーザーに知ら"
-"せるメッセージ。"
+msgstr "``message``: 新しいファイル名が正常に更新されたか、あるいは無効であることをユ"
+"ーザーに知らせるメッセージ。"
 
 #: ../../source/portal-components/document-table/index.rst:186
-#, fuzzy
 msgid ""
 "``isSuccess``: ``true`` if the document's name is successfully updated, "
 "otherwise ``false``."
-msgstr "``isSuccess``:``true`` 文書名の更新に成功した場合、それ以外の場合``false``."
+msgstr "``isSuccess``:``true`` 文書名の更新に成功した場合、それ以外の場合 ``false``."
 
 #: ../../source/portal-components/document-table/index.rst:187
-#, fuzzy
 msgid "``status``: ``SKIP`` if customized process skipped updating the filename."
-msgstr "`status``: ` ` "
-"カスタマイズされたプロセスがファイル名の更新をスキップした場合。`SKIP`"
+msgstr "``status``: ``SKIP`` カスタマイズされたプロセスがファイル名の更新をスキップし"
+"た場合 。"
 
 #: ../../source/portal-components/document-table/index.rst:190
 msgid "User interface"
@@ -1299,12 +1288,11 @@ msgstr ""
 "``caseId``： ``caseId`` に等しい ID を持つケースのプロセスまたはケースマップを表示します。"
 
 #: ../../source/portal-components/process-viewer/index.rst:43
-#, fuzzy
 msgid ""
 "``processLink``: show the process or Case Map which by its defined "
 "relative link."
-msgstr "`processLink``: "
-"定義された相対リンクによってプロセスまたはケースマップを表示します。"
+msgstr "``processLink``: 定義された相対リンクによってプロセスまたはケースマップを表示"
+"します。"
 
 #: ../../source/portal-components/process-viewer/index.rst:50
 msgid "Sub Case (Technical Case) is not supported."
@@ -1645,7 +1633,7 @@ msgstr "ラベルのスタイルクラス。"
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
 msgid "label"
-msgstr "ラベル"
+msgstr "label"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 msgid "Text of label for role selection component."
@@ -1654,7 +1642,7 @@ msgstr "役割選択コンポーネントのラベルのテキスト。"
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
 msgid "size"
-msgstr "サイズ"
+msgstr "size"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 msgid "Number of characters. usesed to determine the width of the input element."
@@ -1663,7 +1651,7 @@ msgstr "入力要素の幅を決定するために使用される。"
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
 msgid "messageStyleClass"
-msgstr "メッセージスタイルクラス"
+msgstr "messageStyleClass"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 msgid "Message style class."
@@ -1672,13 +1660,13 @@ msgstr "メッセージスタイルのクラス。"
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
 msgid "itemLabel"
-msgstr "アイテムラベル"
+msgstr "itemLabel"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/security_member_name_and_avatar_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
 msgid "displayName"
-msgstr "表示名"
+msgstr "displayName"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 msgid "Displayed text of selected role and roles in dropdown list."
@@ -1688,7 +1676,7 @@ msgstr "選択されたロールおよびロールのテキストがドロップ
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
 msgid "cache"
-msgstr "キャッシュ"
+msgstr "cache"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 msgid "If true, autocomplete caches the search result list."
@@ -1697,12 +1685,12 @@ msgstr "trueの場合、オートコンプリートは検索結果リストを�
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
 msgid "moreText"
-msgstr "モアテキスト"
+msgstr "moreText"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
 msgid "More..."
-msgstr "もっと..."
+msgstr "More..."
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
@@ -1714,7 +1702,7 @@ msgstr "提案リストがmaxResultsより大きい場合にパネルに表示�
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
 msgid "queryDelay"
-msgstr "クエリ遅延"
+msgstr "queryDelay"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
@@ -1729,7 +1717,7 @@ msgstr "サーバーに問い合わせを送信するまでのミリ秒単位の
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
 msgid "maxResults"
-msgstr "最大結果"
+msgstr "maxResults"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
@@ -1785,8 +1773,9 @@ msgid ""
 "value, refer to HowTo: Update :ref:`update-portal-settings` for more "
 "details."
 msgstr ""
-"この設定はPortalの設定Portal.ShowAvatarをデフォルト値として検出します：詳しく"
-"はHowTo: Update :ref:`update-portal-settings` を参照してください。"
+"設定はPortal設定のPortal.ShowAvatarをデフォルト値として検出します。詳細は :re"
+"f:`ハウツー：ポータル設定を更新する <update-portal-settings>`を参照してくださ"
+"い。"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv
 #: ../../source/portal-components/documents/security_member_name_and_avatar_component_attributes.csv
@@ -1832,7 +1821,7 @@ msgstr "emptyMessage"
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
 msgid "No results"
-msgstr "結果なし"
+msgstr "No results"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
@@ -2206,7 +2195,7 @@ msgstr "\\--process-history-item-border-hover"
 
 #: ../../source/portal-components/documents/css_variables/process_history.csv:1
 msgid "1px solid #90DDE9"
-msgstr "1pxソリッド#90DDE9"
+msgstr "1px solid #90DDE9"
 
 #: ../../source/portal-components/documents/css_variables/process_history.csv:1
 msgid "Hover color of item’s border."
@@ -2218,7 +2207,7 @@ msgstr "\\--process-history-item-background-hover"
 
 #: ../../source/portal-components/documents/css_variables/process_history.csv:1
 msgid "rgba(144, 221, 233, 0.24)"
-msgstr "RGBA(144, 221, 233, 0.24)"
+msgstr "rgba(144, 221, 233, 0.24)"
 
 #: ../../source/portal-components/documents/css_variables/process_history.csv:1
 msgid "Hover background color of item."
@@ -2230,7 +2219,7 @@ msgstr "\\--process-history-state-in-progress-color"
 
 #: ../../source/portal-components/documents/css_variables/process_history.csv:1
 msgid "rgba(7, 140, 255, 1)"
-msgstr "RGBA(7, 140, 255, 1)"
+msgstr "rgba(7, 140, 255, 1)"
 
 #: ../../source/portal-components/documents/css_variables/process_history.csv:1
 msgid "Color of in-progress state."
@@ -2254,7 +2243,7 @@ msgstr "\\--process-history-empty-message-label-color"
 
 #: ../../source/portal-components/documents/css_variables/process_history.csv:1
 msgid "hsl(64, 1%, 48%)"
-msgstr "HSL(64, 1%, 48%)"
+msgstr "hsl(64, 1%, 48%)"
 
 #: ../../source/portal-components/documents/css_variables/process_history.csv:1
 msgid "Text color of message label when there is no item."
