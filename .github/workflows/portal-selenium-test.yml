@@ -422,6 +422,7 @@ jobs:
                 for (const file of testResultFiles) {
                   try {
                     const content = fs.readFileSync(file, 'utf8');
+                    console.log(`Parsing file: ${file}`);
                     
                     // Extract test suite info using regex
                     const testSuiteMatch = content.match(/<testsuite[^>]*tests="(\d+)"[^>]*failures="(\d+)"[^>]*errors="(\d+)"[^>]*skipped="(\d+)"[^>]*name="([^"]*)"[^>]*time="([^"]*)"[^>]*>/);
@@ -439,26 +440,35 @@ jobs:
                       totalErrors += errors;
                       totalSkipped += skipped;
                       
-                      // Find failed test cases
-                      const failureMatches = content.matchAll(/<testcase[^>]*classname="([^"]*)"[^>]*name="([^"]*)"[^>]*time="([^"]*)"[^>]*>[\s\S]*?<(?:failure|error)[^>]*message="([^"]*)"[^>]*(?:type="([^"]*)"[^>]*)?>([\s\S]*?)<\/(?:failure|error)>/g);
+                      console.log(`Suite: ${suiteName}, Tests: ${tests}, Failures: ${failures}, Errors: ${errors}, Skipped: ${skipped}`);
                       
-                      for (const match of failureMatches) {
-                        const className = match[1];
-                        const testName = match[2];
-                        const testTime = match[3];
-                        const message = match[4];
-                        const type = match[5] || 'failure';
-                        const details = match[6];
+                      // Find failed test cases - simplified regex patterns
+                      const testCaseRegex = /<testcase[^>]*classname="([^"]*)"[^>]*name="([^"]*)"[^>]*time="([^"]*)"[^>]*>([\s\S]*?)<\/testcase>/g;
+                      let testCaseMatch;
+                      
+                      while ((testCaseMatch = testCaseRegex.exec(content)) !== null) {
+                        const className = testCaseMatch[1];
+                        const testName = testCaseMatch[2];
+                        const testTime = testCaseMatch[3];
+                        const testCaseContent = testCaseMatch[4];
                         
-                        failedTests.push({
-                          suite: suiteName,
-                          class: className,
-                          test: testName,
-                          time: testTime,
-                          message: message,
-                          type: type,
-                          details: details.trim()
-                        });
+                        // Check if this test case contains failure or error elements
+                        const hasFailure = testCaseContent.includes('<failure') || testCaseContent.includes('<error');
+                        
+                        if (hasFailure) {
+                          // Extract failure/error message if available
+                          const failureMatch = testCaseContent.match(/<(?:failure|error)[^>]*(?:message="([^"]*)")?[^>]*>/);
+                          const message = failureMatch && failureMatch[1] ? failureMatch[1] : 'Test failed';
+                          
+                          failedTests.push({
+                            suite: suiteName,
+                            class: className,
+                            test: testName,
+                            time: testTime,
+                            message: message
+                          });
+                          console.log(`Found failed test: ${className}.${testName}`);
+                        }
                       }
                     }
                   } catch (parseError) {
