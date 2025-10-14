@@ -308,11 +308,18 @@ jobs:
             script: |
               const fs = require('fs');
               const path = require('path');
-              const { glob } = require('glob');
               
               try {
                 // Find all test result XML files
-                const testResultFiles = await glob('AxonIvyPortal/portal-selenium-test/target/surefire-reports/TEST-*.xml');
+                const reportsDir = 'AxonIvyPortal/portal-selenium-test/target/surefire-reports';
+                let testResultFiles = [];
+                
+                if (fs.existsSync(reportsDir)) {
+                  const files = fs.readdirSync(reportsDir);
+                  testResultFiles = files
+                    .filter(file => file.startsWith('TEST-') && file.endsWith('.xml'))
+                    .map(file => path.join(reportsDir, file));
+                }
                 
                 if (testResultFiles.length === 0) {
                   await core.summary
