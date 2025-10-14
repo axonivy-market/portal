@@ -540,7 +540,10 @@ jobs:
                   });
                   
                   for (const [className, tests] of Object.entries(groupedFailures)) {
-                    summaryText += `### 📋 ${className}\n`;
+                    // Create a unique ID for the copy button
+                    const copyId = `copy-${className.replace(/\./g, '-')}`;
+                    
+                    summaryText += `### 📋 ${className} <button onclick="navigator.clipboard.writeText('${className}').then(() => { this.textContent='✅ Copied!'; setTimeout(() => this.textContent='📋 Copy', 2000); })" style="background: #f0f0f0; border: 1px solid #ccc; border-radius: 4px; padding: 2px 6px; font-size: 10px; cursor: pointer; margin-left: 8px;">📋 Copy</button>\n`;
                     summaryText += tests.map(test => `- ${test.test}`).join('\n');
                     summaryText += `\n\n`;
                   }
