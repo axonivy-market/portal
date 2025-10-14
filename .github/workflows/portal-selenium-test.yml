@@ -147,7 +147,7 @@ jobs:
                     }
                     
                     const messageColumn = description ? 
-                      `**${title.replace(/\|/g, '\\|')}**<br/>${description.replace(/\|/g, '\\|')}` : 
+                      `${title.replace(/\|/g, '\\|')}<br/>${description.replace(/\|/g, '\\|')}` : 
                       title.replace(/\|/g, '\\|');
                     
                     return [
