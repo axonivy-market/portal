@@ -5,10 +5,12 @@ import static ch.ivy.addon.portalkit.util.DashboardUtils.DASHBOARD_PAGE_URL;
 import static ch.ivy.addon.portalkit.util.DashboardUtils.PARENT_DASHBOARD_MENU_PATTERN;
 import static ch.ivy.addon.portalkit.util.DashboardUtils.SUB_DASHBOARD_MENU_PATTERN;
 import static java.util.Objects.isNull;
+import static org.apache.commons.lang3.StringUtils.EMPTY;
 
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.Arrays;
+import java.util.Base64;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -183,14 +185,14 @@ public class MenuView implements Serializable {
   private MenuElement buildDashboardGroupMenu(List<Dashboard> subItemDashboards, String defaultTitle,
       String mainMenuDisplayName, String mainMenuIcon, String currentLanguage, String dashboardLink) {
 
-    DefaultSubMenu dashboardGroupMenu = createDashboardGroupMenu(defaultTitle, mainMenuDisplayName, mainMenuIcon);
+    DefaultSubMenu dashboardGroupMenu = createDashboardGroupMenu(defaultTitle, mainMenuDisplayName, mainMenuIcon, dashboardLink);
 
     for (Dashboard board : subItemDashboards) {
       if (board.getIsTopMenu()) {
         continue;
       }
       String iconClass = determineIconClass(board);
-      var dashboardMenu = createDashboardMenu(board, dashboardLink, iconClass);
+      var dashboardMenu = createDashboardMenu(board, iconClass);
 
       String localizedTitle =
           getLocalizedTitle(board, currentLanguage, (String) ((DefaultMenuItem) dashboardMenu).getValue());
@@ -203,12 +205,14 @@ public class MenuView implements Serializable {
     return dashboardGroupMenu;
   }
 
-  private DefaultSubMenu createDashboardGroupMenu(String defaultTitle, String mainMenuDisplayName,
-      String mainMenuIcon) {
+  private DefaultSubMenu createDashboardGroupMenu(String defaultTitle, String mainMenuDisplayName, String mainMenuIcon, String dashboardLink) {
+    // Encode URL as base64 in CSS class for JavaScript href patching (IVYPORTAL-19031)
+    String urlClass = String.format("js-parent-dashboard-url-%s", Base64.getUrlEncoder().encodeToString(StringUtils.defaultIfEmpty(dashboardLink, EMPTY).getBytes()));
+
     return DefaultSubMenu.builder().label(StringUtils.isBlank(mainMenuDisplayName) ? defaultTitle : mainMenuDisplayName)
         .icon(StringUtils.isBlank(mainMenuIcon) ? PortalMenuItem.DEFAULT_DASHBOARD_ICON : mainMenuIcon)
-        .id(String.format(PARENT_DASHBOARD_MENU_PATTERN, MenuKind.DASHBOARD.name())).styleClass(DASHBOARD_MENU_JS_CLASS)
-        .build();
+        .id(String.format(PARENT_DASHBOARD_MENU_PATTERN, MenuKind.DASHBOARD.name()))
+        .styleClass(String.format("%s %s", DASHBOARD_MENU_JS_CLASS, urlClass)).build();
   }
 
   private String determineIconClass(Dashboard board) {
@@ -218,9 +222,9 @@ public class MenuView implements Serializable {
     return (board.getIcon().startsWith("fa") ? "fa " : "si ") + board.getIcon();
   }
 
-  private MenuElement createDashboardMenu(Dashboard board, String dashboardLink, String iconClass) {
+  private MenuElement createDashboardMenu(Dashboard board, String iconClass) {
     var dashboardMenu = new PortalMenuBuilder(board.getTitle(), MenuKind.DASHBOARD, this.isWorkingOnATask)
-        .icon(iconClass).url(dashboardLink).workingTaskId(this.workingTaskId).build();
+        .icon(iconClass).url(DashboardUtils.buildDashboardLink(board)).workingTaskId(this.workingTaskId).build();
     dashboardMenu.setId(String.format(SUB_DASHBOARD_MENU_PATTERN, board.getId()));
     return dashboardMenu;
   }

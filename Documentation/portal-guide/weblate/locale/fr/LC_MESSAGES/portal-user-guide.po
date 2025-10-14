@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Portal Guide ${revision}\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-08 09:17+0000\n"
+"POT-Creation-Date: 2025-09-17 06:56+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: fr\n"
@@ -966,8 +966,7 @@ msgid "Portal.Homepage"
 msgstr ""
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
-#: ../../source/portal-user-guide/new-dashboard/index.rst:4
-msgid "Dashboard"
+msgid "``Dashboard``"
 msgstr ""
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv
@@ -4816,6 +4815,10 @@ msgid ""
 "default, administrators need to deny this permission from the Everybody "
 "role, then grant it to specific roles that should be allowed to modify "
 "notification channel preferences."
+msgstr ""
+
+#: ../../source/portal-user-guide/new-dashboard/index.rst:4
+msgid "Dashboard"
 msgstr ""
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:9

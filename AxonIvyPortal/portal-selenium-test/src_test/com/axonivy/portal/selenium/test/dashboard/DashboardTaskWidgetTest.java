@@ -23,7 +23,6 @@ import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.TaskEditWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.TaskTemplateIFramePage;
 import com.axonivy.portal.selenium.page.TaskWidgetNewDashBoardPage;
-
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 
 @IvyWebTest
@@ -98,6 +97,7 @@ public class DashboardTaskWidgetTest extends BaseTest {
     createJSonFile("dashboard-has-one-task-widget.json", PortalVariable.DASHBOARD.key);
     redirectToRelativeLink(createTestingTasksUrl);
     login(TestAccount.ADMIN_USER);
+
     redirectToNewDashBoard();
     TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
     taskWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
@@ -105,7 +105,13 @@ public class DashboardTaskWidgetTest extends BaseTest {
     taskWidget.filterTaskName(SICK_LEAVE_REQUEST, FilterOperator.IS);
     taskWidget.applyFilter();
     taskWidget.clickOnTaskActionLink(0);
+    taskWidget.destroyTaskLink().shouldHave(visible);
     taskWidget.destroy();
+    taskWidget.clickOnTaskActionLink(0);
+    String destroyTaskLinkClassName = taskWidget.destroyTaskLink().getAttribute("class");
+    // couldn't assert disabled attribute in this case
+    // -> use className to check instead
+    assertTrue(destroyTaskLinkClassName.contains("ui-state-disabled")); 
     taskWidget.stateOfFirstTask().shouldHave(text(DESTROYED));
   }
 
@@ -351,6 +357,7 @@ public class DashboardTaskWidgetTest extends BaseTest {
     MainMenuPage mainMenu = new MainMenuPage();
     mainMenu.clickOnLogo();
     TaskWidgetNewDashBoardPage taskWidget2 = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
+    taskWidget2.expand().shouldHave(sizeGreaterThanOrEqual(1));
     assertEquals(AXON_IVY, taskWidget2.getCustomBusinessCaseFieldValueFromRowIndex(0));
     assertEquals(AXON_IVY, taskWidget2.getCustomBusinessCaseFieldValueFromRowIndex(1));
   }

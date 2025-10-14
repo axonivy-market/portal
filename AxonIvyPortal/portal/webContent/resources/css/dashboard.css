@@ -223,6 +223,7 @@
 .table-widget-panel.task-dashboard-widget__panel .widget__content,
 .table-widget-panel.case-dashboard-widget__panel .widget__content {
   padding: 0;
+  overflow-y: hidden;
 }
 
 .case-dashboard-widget__loading-message,

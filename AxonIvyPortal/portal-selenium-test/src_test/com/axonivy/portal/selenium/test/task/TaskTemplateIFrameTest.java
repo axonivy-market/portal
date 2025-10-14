@@ -68,7 +68,7 @@ public class TaskTemplateIFrameTest extends BaseTest {
     taskWidget.applyFilter();
     TaskIFrameTemplatePage taskTemplatePage2 = taskWidget.startTaskIFrameByIndex(0);
     taskTemplatePage2.waitForPageLoad();
-    taskTemplatePage2.clickOnLogo();
+    taskTemplatePage2.clickOnHomeLogo();
   }
 
   @Test

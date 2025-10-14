@@ -8,7 +8,7 @@
 
   <fileSets>
     <fileSet>
-      <directory>build/html</directory>
+      <directory>build/doc</directory>
       <outputDirectory>.</outputDirectory>
       <excludes>
         <exclude>_sources/.doctrees/**</exclude>
