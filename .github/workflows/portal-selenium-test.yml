@@ -35,41 +35,75 @@ jobs:
           script: |
             const branch = context.ref.replace('refs/heads/', '');
             
-            // Get latest commits
-            const { data: commits } = await github.rest.repos.listCommits({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              sha: context.sha,
-              per_page: 10
-            });
+            try {
+              // Get commits specific to this branch by comparing with the default branch
+              const { data: defaultBranch } = await github.rest.repos.get({
+                owner: context.repo.owner,
+                repo: context.repo.repo
+              });
+              
+              let commits = [];
+              
+              if (branch === defaultBranch.default_branch) {
+                // If this is the default branch, show recent commits
+                const { data: recentCommits } = await github.rest.repos.listCommits({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  sha: context.sha,
+                  per_page: 10
+                });
+                commits = recentCommits;
+              } else {
+                // For feature branches, show commits that are ahead of the default branch
+                const { data: comparison } = await github.rest.repos.compareCommits({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  base: defaultBranch.default_branch,
+                  head: branch
+                });
+                commits = comparison.commits || [];
+              }
 
-            if (!commits || commits.length === 0) {
+              if (!commits || commits.length === 0) {
+                await core.summary
+                  .addHeading(`📝 No new commits found on branch '${branch}'`)
+                  .addRaw(branch === defaultBranch.default_branch ? 
+                    'This branch has no recent commits.' : 
+                    `This branch has no commits ahead of '${defaultBranch.default_branch}'.`)
+                  .write();
+                return;
+              }
+
+              const commitCount = commits.length;
+              const maxDisplay = Math.min(commitCount, 10);
+              
               await core.summary
-                .addHeading(`📝 No commits found on branch '${branch}'`)
-                .write();
-              return;
-            }
-
-            await core.summary
-              .addHeading(`📝 Latest commits on branch '${branch}' (maximum: 10)`)
-              .addTable([
-                [
-                  { data: 'Commit', header: true },
-                  { data: 'Message', header: true },
-                  { data: 'Author', header: true },
-                  { data: 'Date', header: true }
-                ],
-                ...commits.map(commit => [
-                  `[${commit.sha.substring(0, 7)}](${commit.html_url})`,
-                  commit.commit.message.split('\n')[0].replace(/\|/g, '\\|'),
-                  `@${commit.author?.login || commit.commit.author.name}`,
-                  new Date(commit.commit.author.date).toLocaleString('vi-VN', {
-                    timeZone: 'Asia/Ho_Chi_Minh',
-                    hour12: false
-                  })
+                .addHeading(`📝 Latest commits on branch '${branch}' (showing ${maxDisplay} of ${commitCount})`)
+                .addTable([
+                  [
+                    { data: 'Commit', header: true },
+                    { data: 'Message', header: true },
+                    { data: 'Author', header: true },
+                    { data: 'Date', header: true }
+                  ],
+                  ...commits.slice(0, maxDisplay).map(commit => [
+                    `[${commit.sha.substring(0, 7)}](${commit.html_url})`,
+                    commit.commit.message.split('\n')[0].replace(/\|/g, '\\|'),
+                    `@${commit.author?.login || commit.commit.author.name}`,
+                    new Date(commit.commit.author.date).toLocaleString('vi-VN', {
+                      timeZone: 'Asia/Ho_Chi_Minh',
+                      hour12: false
+                    })
+                  ])
                 ])
-              ])
-              .write();
+                .write();
+            } catch (error) {
+              console.error('Error fetching commits:', error);
+              await core.summary
+                .addHeading(`📝 Error fetching commits for branch '${branch}'`)
+                .addRaw(`Could not retrieve commit information: ${error.message}`)
+                .write();
+            }
 
       - name: Show PRs merged into this branch
         uses: actions/github-script@v8
