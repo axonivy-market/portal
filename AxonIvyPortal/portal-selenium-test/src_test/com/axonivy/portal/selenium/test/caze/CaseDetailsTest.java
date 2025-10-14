@@ -38,7 +38,7 @@ import com.codeborne.selenide.WebDriverRunner;
 
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 
-@IvyWebTest(headless = false)
+@IvyWebTest
 public class CaseDetailsTest extends BaseTest {
   private static final String ORDER_PIZZA = "Order Pizza";
   private static final String TAKE_ORDER = "Take Order";

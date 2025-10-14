@@ -75,8 +75,9 @@ public class GlobalSettingService {
   }
   
   public boolean findHideSystemNotesFromHistorySettingValue() {
-    GlobalVariable globalVariable =
-        PermissionUtils.isSessionUserHasAdminRole() ? GlobalVariable.HIDE_SYSTEM_NOTES_FROM_HISTORY_ADMINISTRATOR
+    GlobalVariable globalVariable = (PermissionUtils.isSessionUserHasAdminRole()
+        || PermissionUtils.checkNoteReadAllCaseTaskDetailsPermission())
+            ? GlobalVariable.HIDE_SYSTEM_NOTES_FROM_HISTORY_ADMINISTRATOR
             : GlobalVariable.HIDE_SYSTEM_NOTES_FROM_HISTORY;
     return findGlobalSettingValueAsBoolean(globalVariable);
   }
