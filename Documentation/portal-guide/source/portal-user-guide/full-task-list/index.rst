@@ -67,6 +67,8 @@ handling tasks:
 
 #. Trigger Escalation
 
+#. Custom Fields
+
 #. Workflow Events
 
 #. Process Viewer
@@ -76,7 +78,7 @@ handling tasks:
    Grant permissions :bdg-ref-warning:`🔑TaskDisplayResetAction <TaskDisplayResetAction>`, 
    :bdg-ref-warning:`🔑TaskDisplayReserveAction <TaskDisplayReserveAction>`, :bdg-ref-warning:`🔑TaskDisplayDelegateAction <TaskDisplayDelegateAction>`, 
    :bdg-ref-warning:`🔑TaskDisplayDestroyAction <TaskDisplayDestroyAction>`, :bdg-ref-warning:`🔑TaskDisplayAdditionalOptions <TaskDisplayAdditionalOptions>`,
-   :bdg-ref-warning:`🔑TaskDisplayWorkflowEventAction <TaskDisplayWorkflowEventAction>` to allow a user to see the corresponding buttons and menu items.
+   :bdg-ref-warning:`🔑TaskDisplayWorkflowEventAction <TaskDisplayWorkflowEventAction>`, :bdg-ref-warning:`🔑TaskDisplayCustomFieldsAction <TaskDisplayCustomFieldsAction>` to allow a user to see the corresponding buttons and menu items.
 
 Finally, you have the possibility to access the full set of the task
 data by clicking on `Actions` then clicking on the `Details` menu item.
@@ -267,6 +269,22 @@ HowTo: Show Workflow Events
 
 |workflow-events-table|
 
+HowTo: Show Custom Fields
+---------------------------
+
+.. note:: 
+   Grant permission :bdg-warning:`🔑TaskDisplayCustomFieldsAction <TaskDisplayCustomFieldsAction>` to allow a user to see all custom fields of a task.
+
+#. Open the task details of a task
+
+#. Click on the link ``Actions`` on the right top corner of the **Data and Description** section
+
+#. Click the link ``Custom Fields`` on the overlay panel to see Custom Fields dialog
+
+**Custom Fields dialog**
+
+|custom-fields-dialog|
+
 HowTo: Share Task Details
 -------------------------
 
@@ -307,6 +325,8 @@ HowTo: Share Task Details
    :alt: Link to export task notes
 .. |workflow-events-table| image:: ../../screenshots/task-detail/workflow-events-table.png
    :alt: Workflow events of task dialog
+.. |custom-fields-dialog| image:: ../../screenshots/task-detail/custom-fields-dialog.png
+   :alt: Custom fields of task dialog
 .. |how-to-switch-to-view-mode| image:: ../../screenshots/task-detail/how-to-switch-to-view-mode.png
    :alt: Task Details: save button
 .. |how-to-switch-to-edit-mode| image:: ../../screenshots/task-detail/how-to-switch-to-edit-mode.png

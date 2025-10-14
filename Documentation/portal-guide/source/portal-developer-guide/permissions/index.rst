@@ -85,6 +85,9 @@ Portal Task Permissions
 - _`TaskDisplayWorkflowEventAction`
     - Permission to see the Workflow Event action
 
+- _`TaskDisplayCustomFieldsAction`
+    - Permission to see the Custom Fields action
+
 - _`TaskDisplayDestroyAction`
     - Permission to see the Destroy action
 
