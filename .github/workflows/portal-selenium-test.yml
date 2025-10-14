@@ -505,7 +505,10 @@ jobs:
                 summaryText += `- **💥 Errors**: ${totalErrors}\n`;
                 summaryText += `- **⏭️ Skipped**: ${totalSkipped}\n\n`;
                 
-                if (failedTests.length === 0) {
+                console.log(`Final totals - Tests: ${totalTests}, Failures: ${totalFailures}, Errors: ${totalErrors}, Skipped: ${totalSkipped}, Success: ${successCount}`);
+                console.log(`Failed tests found: ${failedTests.length}`);
+                
+                if (totalFailures === 0 && totalErrors === 0) {
                   summaryText += `🎉 **All tests passed!**`;
                 } else {
                   summaryText += `## ❌ Failed Tests (${failedTests.length})\n\n`;
