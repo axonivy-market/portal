@@ -124,15 +124,39 @@ jobs:
                     { data: 'Author', header: true },
                     { data: 'Date', header: true }
                   ],
-                  ...commits.slice(0, maxDisplay).map(commit => [
-                    `[${commit.sha.substring(0, 7)}](${commit.html_url})`,
-                    commit.commit.message.split('\n')[0].replace(/\|/g, '\\|'),
-                    `@${commit.author?.login || commit.commit.author.name}`,
-                    new Date(commit.commit.author.date).toLocaleString('vi-VN', {
-                      timeZone: 'Asia/Ho_Chi_Minh',
-                      hour12: false
-                    })
-                  ])
+                  ...commits.slice(0, maxDisplay).map(commit => {
+                    // Get full commit message with title and description
+                    const fullMessage = commit.commit.message.trim();
+                    const lines = fullMessage.split('\n');
+                    const title = lines[0];
+                    
+                    // Include description if it exists (skip empty lines after title)
+                    let description = '';
+                    if (lines.length > 1) {
+                      const descLines = lines.slice(1).filter(line => line.trim() !== '');
+                      if (descLines.length > 0) {
+                        description = descLines.join(' ').trim();
+                        // Limit description length to avoid too wide tables
+                        if (description.length > 200) {
+                          description = description.substring(0, 200) + '...';
+                        }
+                      }
+                    }
+                    
+                    const messageColumn = description ? 
+                      `**${title.replace(/\|/g, '\\|')}**<br/>${description.replace(/\|/g, '\\|')}` : 
+                      title.replace(/\|/g, '\\|');
+                    
+                    return [
+                      `[${commit.sha.substring(0, 7)}](${commit.html_url})`,
+                      messageColumn,
+                      `@${commit.author?.login || commit.commit.author.name}`,
+                      new Date(commit.commit.author.date).toLocaleString('vi-VN', {
+                        timeZone: 'Asia/Ho_Chi_Minh',
+                        hour12: false
+                      })
+                    ];
+                  })
                 ])
                 .write();
                 
