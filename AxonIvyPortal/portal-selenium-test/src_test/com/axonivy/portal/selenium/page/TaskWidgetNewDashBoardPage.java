@@ -338,7 +338,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
     return $("div[id$='task-custom-fields-dialog']");
   }
   
-  public boolean isCustomFieldsDialogDislayed() {
+  public boolean isCustomFieldsDialogDisplayed() {
     return getCustomFieldsPanelOfTask().isDisplayed();
 
   }

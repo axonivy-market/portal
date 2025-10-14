@@ -26,14 +26,13 @@
       "config" : {
         "output" : {
           "code" : [
-            "import ch.ivy.addon.portalkit.util.ListUtilities;",
             "import org.apache.commons.collections4.ListUtils;",
             "import java.util.ArrayList;",
             "if (in.task == null || in.task.customFields().all() == null) {",
             "  in.customFieldList = new ArrayList();",
-            "}",
-            "",
-            "in.customFieldList = ListUtils.emptyIfNull(in.task.customFields().all());"
+            "} else {",
+            "  in.customFieldList = ListUtils.emptyIfNull(in.task.customFields().all());",
+            "}"
           ]
         },
         "sudo" : true
