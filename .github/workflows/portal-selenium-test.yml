@@ -515,11 +515,6 @@ jobs:
                 // Build summary
                 const successCount = totalTests - totalFailures - totalErrors - totalSkipped;
                 let summaryText = `## 🧪 Test Results Summary\n\n`;
-                summaryText += `- **Total Tests**: ${totalTests}\n`;
-                summaryText += `- **✅ Passed**: ${successCount}\n`;
-                summaryText += `- **❌ Failed**: ${totalFailures}\n`;
-                summaryText += `- **💥 Errors**: ${totalErrors}\n`;
-                summaryText += `- **⏭️ Skipped**: ${totalSkipped}\n\n`;
                 
                 console.log(`Final totals - Tests: ${totalTests}, Failures: ${totalFailures}, Errors: ${totalErrors}, Skipped: ${totalSkipped}, Success: ${successCount}`);
                 console.log(`Failed tests found: ${failedTests.length}`);
