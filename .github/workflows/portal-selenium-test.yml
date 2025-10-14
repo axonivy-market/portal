@@ -462,32 +462,62 @@ jobs:
                       console.log(`Suite: ${suiteName}, Tests: ${tests}, Failures: ${failures}, Errors: ${errors}, Skipped: ${skipped}`);
                       console.log(`Testsuite element: ${testSuiteElement}`);
                       
-                      // Find failed test cases - simplified regex patterns
-                      const testCaseRegex = /<testcase[^>]*classname="([^"]*)"[^>]*name="([^"]*)"[^>]*time="([^"]*)"[^>]*>([\s\S]*?)<\/testcase>/g;
-                      let testCaseMatch;
+                      // Find failed test cases - try alternative approach
+                      console.log(`Looking for failed tests in suite: ${suiteName}`);
                       
-                      while ((testCaseMatch = testCaseRegex.exec(content)) !== null) {
-                        const className = testCaseMatch[1];
-                        const testName = testCaseMatch[2];
-                        const testTime = testCaseMatch[3];
-                        const testCaseContent = testCaseMatch[4];
+                      // First try: Look for testcase elements that contain failure/error tags
+                      const failedTestRegex = /<testcase[^>]*classname="([^"]*)"[^>]*name="([^"]*)"[^>]*[^>]*>[\s\S]*?<(?:failure|error)[\s\S]*?<\/testcase>/g;
+                      let failedMatch;
+                      
+                      while ((failedMatch = failedTestRegex.exec(content)) !== null) {
+                        const className = failedMatch[1];
+                        const testName = failedMatch[2];
                         
-                        // Check if this test case contains failure or error elements
-                        const hasFailure = testCaseContent.includes('<failure') || testCaseContent.includes('<error');
+                        failedTests.push({
+                          suite: suiteName,
+                          class: className,
+                          test: testName,
+                          time: '0',
+                          message: 'Test failed'
+                        });
+                        console.log(`Found failed test (method 1): ${className}.${testName}`);
+                      }
+                      
+                      // If no failures found with first method, try the original approach
+                      if (failedTests.length === 0 && (failures > 0 || errors > 0)) {
+                        console.log(`Method 1 found no failures, trying method 2...`);
                         
-                        if (hasFailure) {
-                          // Extract failure/error message if available
-                          const failureMatch = testCaseContent.match(/<(?:failure|error)[^>]*(?:message="([^"]*)")?[^>]*>/);
-                          const message = failureMatch && failureMatch[1] ? failureMatch[1] : 'Test failed';
+                        const testCaseRegex = /<testcase[^>]*classname="([^"]*)"[^>]*name="([^"]*)"[^>]*time="([^"]*)"[^>]*>([\s\S]*?)<\/testcase>/g;
+                        let testCaseMatch;
+                        
+                        while ((testCaseMatch = testCaseRegex.exec(content)) !== null) {
+                          const className = testCaseMatch[1];
+                          const testName = testCaseMatch[2];
+                          const testTime = testCaseMatch[3];
+                          const testCaseContent = testCaseMatch[4];
                           
-                          failedTests.push({
-                            suite: suiteName,
-                            class: className,
-                            test: testName,
-                            time: testTime,
-                            message: message
-                          });
-                          console.log(`Found failed test: ${className}.${testName}`);
+                          console.log(`Found test case: ${className}.${testName}`);
+                          console.log(`Test case content preview: ${testCaseContent.substring(0, 200)}...`);
+                          
+                          // Check if this test case contains failure or error elements
+                          const hasFailure = testCaseContent.includes('<failure') || testCaseContent.includes('<error');
+                          
+                          console.log(`Test ${testName} has failure: ${hasFailure}`);
+                          
+                          if (hasFailure) {
+                            // Extract failure/error message if available
+                            const failureMatch = testCaseContent.match(/<(?:failure|error)[^>]*(?:message="([^"]*)")?[^>]*>/);
+                            const message = failureMatch && failureMatch[1] ? failureMatch[1] : 'Test failed';
+                            
+                            failedTests.push({
+                              suite: suiteName,
+                              class: className,
+                              test: testName,
+                              time: testTime,
+                              message: message
+                            });
+                            console.log(`Found failed test (method 2): ${className}.${testName}`);
+                          }
                         }
                       }
                     }
