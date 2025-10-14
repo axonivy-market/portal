@@ -5,6 +5,8 @@ import static com.codeborne.selenide.CollectionCondition.sizeGreaterThanOrEqual;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 
+import java.util.List;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -360,5 +362,20 @@ public class DashboardTaskWidgetTest extends BaseTest {
     taskWidget2.expand().shouldHave(sizeGreaterThanOrEqual(1));
     assertEquals(AXON_IVY, taskWidget2.getCustomBusinessCaseFieldValueFromRowIndex(0));
     assertEquals(AXON_IVY, taskWidget2.getCustomBusinessCaseFieldValueFromRowIndex(1));
+  }
+  
+  @Test
+  public void testShowCustomFieldsOnActionButtonOfTaskWidget() {
+    redirectToRelativeLink(displayCustomFieldCaseOnTaskWidget);
+    redirectToRelativeLink(createTestingTasksUrl);
+    login(TestAccount.ADMIN_USER);
+    redirectToNewDashBoard();
+    TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
+
+    taskWidget.clickCustomFieldsButtonOnActions(0);
+    taskWidget.waitForPageLoad();
+    assertTrue(taskWidget.isCustomFieldsPanelShowed());
+    List<String> taskCustomFieldNames = taskWidget.getCustomFieldNamesOnTaskCustomFieldsPanel();
+    assertFalse(taskCustomFieldNames.isEmpty());
   }
 }

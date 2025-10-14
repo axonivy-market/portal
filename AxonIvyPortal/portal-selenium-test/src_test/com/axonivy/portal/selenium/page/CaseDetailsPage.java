@@ -710,6 +710,25 @@ public class CaseDetailsPage extends TemplatePage {
         String.format("[id$='task-widget:related-tasks:%d:additional-options:side-steps-panel']", index);
     waitForElementDisplayed(By.cssSelector(actionPanel), true);
   }
+  
+  public void clickCustomFieldsButtonOnActions(String taskName) {
+    clickRelatedTaskActionButton(taskName);
+    $("[id$='additional-options:task-custom-fields-command']").shouldBe(getClickableCondition()).click();
+    waitForElementDisplayed(getCustomFieldsPanelOfTask(), true);
+  }
+  
+  public SelenideElement getCustomFieldsPanelOfTask() {
+    return $("div[id$='task-custom-fields-dialog']");
+  }
+  
+  public List<String> getCustomFieldNamesOnTaskCustomFieldsPanel() {
+    return $$("span[id$='customFieldLabel']")
+        .shouldBe(CollectionCondition.sizeGreaterThanOrEqual(0), DEFAULT_TIMEOUT)
+        .asFixedIterable()
+        .stream()
+        .map(SelenideElement::getText)
+        .collect(Collectors.toList());
+  }
 
   public int getTaskRowIndexFromDetailPage(String taskName) {
     ElementsCollection taskNames = $$(".task-name-value");
