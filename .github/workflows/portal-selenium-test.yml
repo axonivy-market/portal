@@ -300,6 +300,124 @@ jobs:
             echo "## Inputs" >> $GITHUB_STEP_SUMMARY
             echo "- Test pattern: ${{inputs.testPatternToRun}}" >> $GITHUB_STEP_SUMMARY
             echo "- Engine download url: ${{inputs.engineDownloadURL}}" >> $GITHUB_STEP_SUMMARY
+
+        - name: Parse and show failed tests
+          if: always()
+          uses: actions/github-script@v8
+          with:
+            script: |
+              const fs = require('fs');
+              const path = require('path');
+              const { glob } = require('glob');
+              
+              try {
+                // Find all test result XML files
+                const testResultFiles = await glob('AxonIvyPortal/portal-selenium-test/target/surefire-reports/TEST-*.xml');
+                
+                if (testResultFiles.length === 0) {
+                  await core.summary
+                    .addHeading('🔍 Test Results')
+                    .addRaw('No test result files found.')
+                    .write();
+                  return;
+                }
+                
+                let totalTests = 0;
+                let totalFailures = 0;
+                let totalErrors = 0;
+                let totalSkipped = 0;
+                let failedTests = [];
+                
+                // Parse each XML file
+                for (const file of testResultFiles) {
+                  try {
+                    const content = fs.readFileSync(file, 'utf8');
+                    
+                    // Extract test suite info using regex
+                    const testSuiteMatch = content.match(/<testsuite[^>]*tests="(\d+)"[^>]*failures="(\d+)"[^>]*errors="(\d+)"[^>]*skipped="(\d+)"[^>]*name="([^"]*)"[^>]*time="([^"]*)"[^>]*>/);
+                    
+                    if (testSuiteMatch) {
+                      const tests = parseInt(testSuiteMatch[1]);
+                      const failures = parseInt(testSuiteMatch[2]);
+                      const errors = parseInt(testSuiteMatch[3]);
+                      const skipped = parseInt(testSuiteMatch[4]);
+                      const suiteName = testSuiteMatch[5];
+                      const time = testSuiteMatch[6];
+                      
+                      totalTests += tests;
+                      totalFailures += failures;
+                      totalErrors += errors;
+                      totalSkipped += skipped;
+                      
+                      // Find failed test cases
+                      const failureMatches = content.matchAll(/<testcase[^>]*classname="([^"]*)"[^>]*name="([^"]*)"[^>]*time="([^"]*)"[^>]*>[\s\S]*?<(?:failure|error)[^>]*message="([^"]*)"[^>]*(?:type="([^"]*)"[^>]*)?>([\s\S]*?)<\/(?:failure|error)>/g);
+                      
+                      for (const match of failureMatches) {
+                        const className = match[1];
+                        const testName = match[2];
+                        const testTime = match[3];
+                        const message = match[4];
+                        const type = match[5] || 'failure';
+                        const details = match[6];
+                        
+                        failedTests.push({
+                          suite: suiteName,
+                          class: className,
+                          test: testName,
+                          time: testTime,
+                          message: message,
+                          type: type,
+                          details: details.trim()
+                        });
+                      }
+                    }
+                  } catch (parseError) {
+                    console.error(`Error parsing ${file}:`, parseError.message);
+                  }
+                }
+                
+                // Build summary
+                const successCount = totalTests - totalFailures - totalErrors - totalSkipped;
+                let summaryText = `## 🧪 Test Results Summary\n\n`;
+                summaryText += `- **Total Tests**: ${totalTests}\n`;
+                summaryText += `- **✅ Passed**: ${successCount}\n`;
+                summaryText += `- **❌ Failed**: ${totalFailures}\n`;
+                summaryText += `- **💥 Errors**: ${totalErrors}\n`;
+                summaryText += `- **⏭️ Skipped**: ${totalSkipped}\n\n`;
+                
+                if (failedTests.length === 0) {
+                  summaryText += `🎉 **All tests passed!**`;
+                } else {
+                  summaryText += `## ❌ Failed Tests (${failedTests.length})\n\n`;
+                  
+                  // Group by test class for better organization
+                  const groupedFailures = {};
+                  failedTests.forEach(test => {
+                    const key = test.class;
+                    if (!groupedFailures[key]) {
+                      groupedFailures[key] = [];
+                    }
+                    groupedFailures[key].push(test);
+                  });
+                  
+                  for (const [className, tests] of Object.entries(groupedFailures)) {
+                    summaryText += `### 📋 ${className}\n`;
+                    summaryText += tests.map(test => `- ${test.test}`).join('\n');
+                    summaryText += `\n\n`;
+                  }
+                }
+                
+                await core.summary
+                  .addRaw(summaryText)
+                  .write();
+                  
+              } catch (error) {
+                console.error('Error parsing test results:', error);
+                await core.summary
+                  .addHeading('🔍 Test Results')
+                  .addRaw(`Error parsing test results: ${error.message}`)
+                  .write();
+              }
         
         - name: Report
           uses: dorny/test-reporter@v2.1.1
