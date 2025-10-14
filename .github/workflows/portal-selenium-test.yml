@@ -75,7 +75,10 @@ jobs:
                     hour12: false
                   });
                   
-                  comparisonInfo = `📊 Comparing with last successful build: [${lastSuccessfulSha.substring(0, 7)}](https://github.com/${context.repo.owner}/${context.repo.repo}/commit/${lastSuccessfulSha}) (${lastSuccessfulDateFormatted})`;
+                  const lastRun = workflowRuns.workflow_runs[0];
+                  const buildUrl = `${lastRun.html_url}`;
+                  
+                  comparisonInfo = `📊 Comparing with last successful build: [#${lastRun.run_number}](${buildUrl}) - [${lastSuccessfulSha.substring(0, 7)}](https://github.com/${context.repo.owner}/${context.repo.repo}/commit/${lastSuccessfulSha}) (${lastSuccessfulDateFormatted})`;
                 } catch (compareError) {
                   console.log('Could not compare with last successful build, showing recent commits instead');
                   const { data: recentCommits } = await github.rest.repos.listCommits({
@@ -203,7 +206,9 @@ jobs:
                   hour12: false
                 });
                 
-                prComparisonInfo = `📊 PRs merged since last successful build: ${lastSuccessfulDateFormatted}`;
+                const buildUrl = `${lastRun.html_url}`;
+                
+                prComparisonInfo = `📊 PRs merged since last successful build: [#${lastRun.run_number}](${buildUrl}) (${lastSuccessfulDateFormatted})`;
               } else {
                 prComparisonInfo = '🆕 No previous successful build found - showing recent merged PRs';
               }
