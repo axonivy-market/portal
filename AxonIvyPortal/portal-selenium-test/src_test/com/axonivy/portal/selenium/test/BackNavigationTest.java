@@ -59,7 +59,8 @@ public class BackNavigationTest extends BaseTest {
     taskDetailsPage.assertPageTitle(TASK_DETAILS_TITLE);
 
     taskWidgetPage = taskDetailsPage.goBackToTaskListFromTaskDetails();
-    taskWidgetPage.assertPageTitle(TASK_LIST_TITLE);
+//    taskWidgetPage.assertPageTitle(TASK_LIST_TITLE);
+    taskWidgetPage.assertPageTitle(PAYMENT_CASE_NAME); // make test failed
   }
 
   @Test
@@ -169,8 +170,8 @@ public class BackNavigationTest extends BaseTest {
 
 
     caseWidgetPage = caseDetailsPage.goBackToCaseListFromCaseDetails();
-    caseWidgetPage.assertPageTitle(CASE_LIST_TITLE);
-
+//    caseWidgetPage.assertPageTitle(CASE_LIST_TITLE);
+    caseWidgetPage.assertPageTitle(CASE_DETAILS_TITLE); // MAKE test failed
   }
 
 }
