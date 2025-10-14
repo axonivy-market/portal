@@ -174,52 +174,111 @@ jobs:
                 .write();
             }
 
-      - name: Show PRs merged into this branch
+      - name: Show PRs merged since last successful build
         uses: actions/github-script@v8
         with:
           script: |
             const branch = context.ref.replace('refs/heads/', '');
-            const { data: prs } = await github.rest.pulls.list({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              base: branch,
-              state: 'closed',
-              per_page: 50,
-              page: 1
-            });
+            
+            try {
+              // Get the last successful workflow run for this branch (same logic as commits)
+              const { data: workflowRuns } = await github.rest.actions.listWorkflowRuns({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                workflow_id: 'portal-selenium-test.yml',
+                branch: branch,
+                status: 'success',
+                per_page: 1
+              });
 
-            const mergedPrs = prs
-              .filter(pr => pr.merged_at !== null)
-              .sort((a, b) => new Date(b.merged_at) - new Date(a.merged_at))
-              .slice(0, 10);
+              let lastSuccessfulDate = null;
+              let prComparisonInfo = '';
+              
+              if (workflowRuns.workflow_runs && workflowRuns.workflow_runs.length > 0) {
+                const lastRun = workflowRuns.workflow_runs[0];
+                lastSuccessfulDate = new Date(lastRun.created_at);
+                
+                const lastSuccessfulDateFormatted = lastSuccessfulDate.toLocaleString('vi-VN', {
+                  timeZone: 'Asia/Ho_Chi_Minh',
+                  hour12: false
+                });
+                
+                prComparisonInfo = `📊 PRs merged since last successful build: ${lastSuccessfulDateFormatted}`;
+              } else {
+                prComparisonInfo = '🆕 No previous successful build found - showing recent merged PRs';
+              }
 
-            if (!prs || prs.length === 0) {
+              // Get all merged PRs for this branch
+              const { data: prs } = await github.rest.pulls.list({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                base: branch,
+                state: 'closed',
+                per_page: 50,
+                page: 1
+              });
+
+              let relevantPrs = [];
+              
+              if (lastSuccessfulDate) {
+                // Filter PRs merged after the last successful build
+                relevantPrs = prs
+                  .filter(pr => pr.merged_at !== null && new Date(pr.merged_at) > lastSuccessfulDate)
+                  .sort((a, b) => new Date(b.merged_at) - new Date(a.merged_at));
+              } else {
+                // No previous successful build, show recent merged PRs
+                relevantPrs = prs
+                  .filter(pr => pr.merged_at !== null)
+                  .sort((a, b) => new Date(b.merged_at) - new Date(a.merged_at))
+                  .slice(0, 10);
+              }
+
+              if (relevantPrs.length === 0) {
+                await core.summary
+                  .addHeading(`🔗 PRs merged since last successful build on '${branch}'`)
+                  .addRaw(prComparisonInfo)
+                  .addRaw('\n\n*No PRs merged since last successful build*')
+                  .write();
+                return;
+              }
+
+              const maxDisplay = Math.min(relevantPrs.length, 15);
+              
               await core.summary
-                .addHeading(`🔗 No PRs merged into '${branch}'`)
-                .write();
-              return;
-            }
-
-            await core.summary
-              .addHeading(`🔗 PRs merged into '${branch}' (maximum: 10)`)
-              .addTable([
-                [
-                  { data: 'PR Number', header: true },
-                  { data: 'Title', header: true },
-                  { data: 'Author', header: true },
-                  { data: 'Merged At', header: true }
-                ],
-                ...mergedPrs.map(pr => [
-                  `[${pr.number}](${pr.html_url})`,
-                  pr.title.replace(/\|/g, '\\|'),
-                  `@${pr.user.login}`,
-                  new Date(pr.merged_at).toLocaleString('vi-VN', {
-                    timeZone: 'Asia/Ho_Chi_Minh',
-                    hour12: false
-                  })
+                .addHeading(`🔗 PRs merged since last successful build on '${branch}' (${relevantPrs.length} PR${relevantPrs.length !== 1 ? 's' : ''})`)
+                .addRaw(prComparisonInfo)
+                .addTable([
+                  [
+                    { data: 'PR Number', header: true },
+                    { data: 'Title', header: true },
+                    { data: 'Author', header: true },
+                    { data: 'Merged At', header: true }
+                  ],
+                  ...relevantPrs.slice(0, maxDisplay).map(pr => [
+                    `[${pr.number}](${pr.html_url})`,
+                    pr.title.replace(/\|/g, '\\|'),
+                    `@${pr.user.login}`,
+                    new Date(pr.merged_at).toLocaleString('vi-VN', {
+                      timeZone: 'Asia/Ho_Chi_Minh',
+                      hour12: false
+                    })
+                  ])
                 ])
-              ])
-              .write();
+                .write();
+                
+              if (relevantPrs.length > maxDisplay) {
+                await core.summary
+                  .addRaw(`\n*... and ${relevantPrs.length - maxDisplay} more PR${relevantPrs.length - maxDisplay !== 1 ? 's' : ''}*`)
+                  .write();
+              }
+              
+            } catch (error) {
+              console.error('Error fetching PRs since last build:', error);
+              await core.summary
+                .addHeading(`🔗 Error fetching PRs for branch '${branch}'`)
+                .addRaw(`Could not retrieve PR information: ${error.message}`)
+                .write();
+            }
 
 
   portal-selenium-test:
