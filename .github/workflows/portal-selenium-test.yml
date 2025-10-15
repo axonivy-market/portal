@@ -410,121 +410,171 @@ jobs:
           uses: actions/github-script@v8
           with:
             script: |
-              const fs = require('fs');
-              const path = require('path');
-              const { XMLParser } = require('fast-xml-parser');
+              // Import required Node.js modules for file system operations
+              const fs = require('fs');                         // File system operations (read files, check existence)
+              const path = require('path');                     // Path manipulation utilities
+              // Note: Using regex parsing instead of XML parser to avoid external dependencies
 
               try {
-                // Find all test result XML files
+                // === STEP 1: Locate test result XML files ===
+                // Define the directory where Maven Surefire plugin stores test results
                 const reportsDir = 'AxonIvyPortal/portal-selenium-test/target/surefire-reports';
-                let testResultFiles = [];
+                let testResultFiles = [];                  // Array to store paths of found XML files
 
+                // Check if the reports directory exists (tests may not have run)
                 if (fs.existsSync(reportsDir)) {
+                  // Read all files in the reports directory
                   const files = fs.readdirSync(reportsDir);
+                  // Filter for JUnit XML files (pattern: TEST-*.xml)
                   testResultFiles = files
-                    .filter(file => file.startsWith('TEST-') && file.endsWith('.xml'))
-                    .map(file => path.join(reportsDir, file));
+                    .filter(file => file.startsWith('TEST-') && file.endsWith('.xml')) // Only JUnit XML files
+                    .map(file => path.join(reportsDir, file));                         // Convert to full paths
                 } else {
+                  // Log warning if reports directory doesn't exist
                   console.log(`Reports directory does not exist: ${reportsDir}`);
                 }
 
+                // === STEP 2: Handle case where no test files are found ===
                 if (testResultFiles.length === 0) {
+                  // Display message indicating no test results were found
                   await core.summary
-                    .addHeading('🔍 Test Results')
-                    .addRaw('No test result files found.')
-                    .write();
-                  return;
+                    .addHeading('🔍 Test Results')                    // Add section heading
+                    .addRaw('No test result files found.')            // Add explanation message
+                    .write();                                         // Write to GitHub summary
+                  return;                                             // Exit early - nothing to process
                 }
 
-                let totalFailures = 0;
-                let totalErrors = 0;
-                let failedTests = [];
+                // === STEP 3: Initialize variables for test result analysis ===
+                let totalFailures = 0;                      // Counter for total failed tests
+                let totalErrors = 0;                        // Counter for total test errors
+                let failedTests = [];                       // Array to store detailed info about failed tests
 
-                const parser = new XMLParser({
-                  ignoreAttributes: false,
-                  attributeNamePrefix: '',
-                  allowBooleanAttributes: true
-                });
+                // === Helper function to extract attribute value from XML tag ===
+                function extractAttribute(xmlContent, tagName, attributeName) {
+                  // Create regex to find the tag and extract the attribute value
+                  const regex = new RegExp(`<${tagName}[^>]*\\s${attributeName}=["']([^"']*)["']`, 'i');
+                  const match = xmlContent.match(regex);
+                  return match ? match[1] : null;
+                }
 
+                // === Helper function to extract text content between XML tags ===
+                function extractTextContent(xmlContent, tagName) {
+                  const regex = new RegExp(`<${tagName}[^>]*>([\\s\\S]*?)<\\/${tagName}>`, 'i');
+                  const match = xmlContent.match(regex);
+                  return match ? match[1].trim() : null;
+                }
+
+                // === STEP 4: Process each test result XML file ===
                 for (const file of testResultFiles) {
                   try {
+                    // Read the XML file content as text
                     const content = fs.readFileSync(file, 'utf8');
-                    const result = parser.parse(content);
 
-                    // Support both <testsuite> and <testsuites>
-                    let suites = [];
-                    if (result.testsuite) {
-                      suites = [result.testsuite];
-                    } else if (result.testsuites && result.testsuites.testsuite) {
-                      suites = Array.isArray(result.testsuites.testsuite)
-                        ? result.testsuites.testsuite
-                        : [result.testsuites.testsuite];
-                    }
+                    // === Extract test suite information using regex ===
+                    // Get suite name from testsuite tag
+                    const suiteName = extractAttribute(content, 'testsuite', 'name') || 'Unknown Suite';
+                    
+                    // Get failure and error counts from testsuite tag
+                    const suiteFailures = parseInt(extractAttribute(content, 'testsuite', 'failures') || '0');
+                    const suiteErrors = parseInt(extractAttribute(content, 'testsuite', 'errors') || '0');
+                    
+                    // Add to global counters
+                    totalFailures += suiteFailures;
+                    totalErrors += suiteErrors;
 
-                    suites.forEach(suite => {
-                      const suiteName = suite.name || 'Unknown Suite';
-                      const failures = parseInt(suite.failures || 0);
-                      const errors = parseInt(suite.errors || 0);
-                      totalFailures += failures;
-                      totalErrors += errors;
+                    // === Find all testcase elements that have failures or errors ===
+                    // Regex to match testcase tags with their content
+                    const testcaseRegex = /<testcase[^>]*>[\s\S]*?<\/testcase>/gi;
+                    const testcaseMatches = content.match(testcaseRegex) || [];
 
-                      let testcases = suite.testcase || [];
-                      if (!Array.isArray(testcases)) testcases = [testcases];
-
-                      testcases.forEach(tc => {
-                        const hasFailure = tc.failure || tc.error;
-                        if (hasFailure) {
-                          failedTests.push({
-                            suite: suiteName,
-                            class: tc.classname || 'UnknownClass',
-                            test: tc.name || 'UnknownTest',
-                            time: tc.time || '0',
-                            message: (tc.failure && tc.failure['#text']) || (tc.error && tc.error['#text']) || 'Test failed'
-                          });
+                    // Process each test case
+                    testcaseMatches.forEach(testcaseXml => {
+                      // Check if this test case has failure or error elements
+                      const hasFailure = testcaseXml.includes('<failure') || testcaseXml.includes('<error');
+                      
+                      if (hasFailure) {
+                        // Extract test case attributes
+                        const className = extractAttribute(testcaseXml, 'testcase', 'classname') || 'UnknownClass';
+                        const testName = extractAttribute(testcaseXml, 'testcase', 'name') || 'UnknownTest';
+                        const testTime = extractAttribute(testcaseXml, 'testcase', 'time') || '0';
+                        
+                        // Extract failure or error message
+                        let message = 'Test failed';
+                        const failureText = extractTextContent(testcaseXml, 'failure');
+                        const errorText = extractTextContent(testcaseXml, 'error');
+                        
+                        if (failureText) {
+                          message = failureText;
+                        } else if (errorText) {
+                          message = errorText;
                         }
-                      });
+                        
+                        // Truncate message if too long for display
+                        if (message.length > 200) {
+                          message = message.substring(0, 200) + '...';
+                        }
+
+                        // Store detailed information about the failed test
+                        failedTests.push({
+                          suite: suiteName,                     // Which test suite this belongs to
+                          class: className,                     // Java class name
+                          test: testName,                       // Test method name
+                          time: testTime,                       // Test execution time
+                          message: message                      // Error/failure message
+                        });
+                      }
                     });
+
                   } catch (parseError) {
+                    // Log parsing errors but continue processing other files
                     console.error(`Error parsing ${file}:`, parseError.message);
                   }
                 }
 
-                let summaryText = `## 🧪 Test Results Summary\n\n`;
+                // === STEP 5: Build summary text for display ===
+                let summaryText = `## 🧪 Test Results Summary\n\n`;       // Start with heading
 
+                // === Case A: All tests passed ===
                 if (totalFailures === 0 && totalErrors === 0) {
-                  summaryText += `🎉 **All tests passed!**`;
+                  summaryText += `🎉 **All tests passed!**`;               // Success message
                 } else {
-                  summaryText += `❌ **Failed Tests (${failedTests.length})**\n\n`;
+                  // === Case B: Some tests failed ===
+                  summaryText += `❌ **Failed Tests (${failedTests.length})**\n\n`; // Failure header with count
 
-                  // Group by test class for better organization
-                  const groupedFailures = {};
+                  // === Group failed tests by class for better organization ===
+                  const groupedFailures = {};                             // Object to group tests by class name
                   failedTests.forEach(test => {
-                    const key = test.class;
+                    const key = test.class;                               // Use class name as grouping key
                     if (!groupedFailures[key]) {
-                      groupedFailures[key] = [];
+                      groupedFailures[key] = [];                          // Initialize array for new class
                     }
-                    groupedFailures[key].push(test);
+                    groupedFailures[key].push(test);                      // Add test to appropriate class group
                   });
 
-                  summaryText += '```\n';
+                  // === Format grouped failures for display ===
+                  summaryText += '```\n';                                 // Start code block for formatting
                   for (const [className, tests] of Object.entries(groupedFailures)) {
-                    summaryText += `${className}\n`;
+                    summaryText += `${className}\n`;                      // Class name header
+                    // List all failed test methods in this class
                     summaryText += tests.map(test => `- ${test.test}`).join('\n');
-                    summaryText += '\n\n';
+                    summaryText += '\n\n';                                // Add spacing between classes
                   }
-                  summaryText += '```\n';
+                  summaryText += '```\n';                                 // End code block
                 }
 
+                // === STEP 6: Write the complete summary to GitHub ===
                 await core.summary
-                  .addRaw(summaryText)
-                  .write();
+                  .addRaw(summaryText)                                    // Add the formatted summary text
+                  .write();                                               // Write to GitHub Actions summary
 
               } catch (error) {
-                console.error('Error parsing test results:', error);
+                // === Error handling for the entire process ===
+                console.error('Error parsing test results:', error);     // Log error for debugging
+                // Display user-friendly error message in summary
                 await core.summary
-                  .addHeading('🔍 Test Results')
-                  .addRaw(`Error parsing test results: ${error.message}`)
-                  .write();
+                  .addHeading('🔍 Test Results')                          // Error section heading
+                  .addRaw(`Error parsing test results: ${error.message}`) // Error details
+                  .write();                                               // Write error summary
               }
         
         - name: Report
