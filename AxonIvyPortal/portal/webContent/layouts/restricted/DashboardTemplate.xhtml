@@ -228,6 +228,10 @@
            <!-- Workflow Event of Task Dialog -->
            <ic:ch.ivy.addon.portalkit.component.TaskItemWorkflowEvents id="dashboard-tasks-workflow-event"
             taskId="#{taskWidgetBean.selectedTaskItemId}"/>
+            
+           <!-- Custom fields of Task Dialog -->
+           <ic:ch.ivy.addon.portalkit.component.TaskItemCustomFields id="dashboard-tasks-custom-fields"
+            taskId="#{taskWidgetBean.selectedTaskItemId}"/>
            
            <!-- Destroy case dialog -->
            <ui:decorate template="/layouts/decorator/portal-dialog-with-icon.xhtml">

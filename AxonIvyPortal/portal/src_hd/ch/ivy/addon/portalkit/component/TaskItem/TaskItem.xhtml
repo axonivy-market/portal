@@ -16,6 +16,7 @@
   <cc:attribute name="destroyTaskDialogComponent" default=""/>
   <cc:attribute name="onEscalationComplete" />
   <cc:attribute name="onWorkflowEventComplete" />
+  <cc:attribute name="onCustomFieldsDialogComplete" />
   <cc:attribute name="inFrame" default="false" />
   <cc:attribute name="readOnly" default="true" />
 </cc:interface>
@@ -52,6 +53,7 @@
           <ui:param name="onEscalationComplete" value="#{cc.attrs.onEscalationComplete}" />
           <ui:param name="onWorkflowEventComplete" value="#{cc.attrs.onWorkflowEventComplete}" />
           <ui:param name="destroyTaskDialogComponent" value="#{cc.attrs.destroyTaskDialogComponent}" />
+          <ui:param name="onCustomFieldsDialogComplete" value="#{cc.attrs.onCustomFieldsDialogComplete}" />
         </ui:include>
       </f:subview>
     </div>

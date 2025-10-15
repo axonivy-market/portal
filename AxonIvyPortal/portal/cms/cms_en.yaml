@@ -1178,6 +1178,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     afterEscalation: After escalation
     businessCase: Business Case
     completedOn: Completed on
+    customFields: Custom Fields
+    customFieldsDialog: 'Custom Fields of task #{0}'
     delayedUntil: Delayed until
     deleteFile: Delete file
     documents: Documents

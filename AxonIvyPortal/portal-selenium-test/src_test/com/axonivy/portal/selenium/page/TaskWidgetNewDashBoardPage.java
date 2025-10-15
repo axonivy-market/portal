@@ -6,6 +6,9 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 
@@ -315,6 +318,29 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
 
   public void reserveTask(int taskIndex) {
     getActiveTaskActions(taskIndex).filter(text("Reserve")).first().shouldBe(getClickableCondition()).click();
+  }
+  
+  public void clickCustomFieldsButtonOnActions(int taskIndex) {
+    getActiveTaskActions(taskIndex).filter(text("Custom Fields")).first().shouldBe(getClickableCondition()).click();
+    getCustomFieldsPanelOfTask().shouldBe(appear);
+  }
+  
+  public List<String> getCustomFieldNamesOnTaskCustomFieldsDialog() {
+    return $$("span[id$='customFieldLabel']")
+        .shouldBe(CollectionCondition.sizeGreaterThanOrEqual(0), DEFAULT_TIMEOUT)
+        .asFixedIterable()
+        .stream()
+        .map(SelenideElement::getText)
+        .collect(Collectors.toList());
+  }
+  
+  public SelenideElement getCustomFieldsPanelOfTask() {
+    return $("div[id$='task-custom-fields-dialog']");
+  }
+  
+  public boolean isCustomFieldsDialogDisplayed() {
+    return getCustomFieldsPanelOfTask().isDisplayed();
+
   }
 
   public void clickCancelTask() {

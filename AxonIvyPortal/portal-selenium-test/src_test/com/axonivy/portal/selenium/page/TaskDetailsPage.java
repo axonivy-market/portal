@@ -269,6 +269,24 @@ public class TaskDetailsPage extends TemplatePage {
     $("a[id$=':task-workflow-event-command']").shouldBe(getClickableCondition()).click();
     $("div[id$='events-table']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
+  
+  public void clickOnShowCustomFieldsDialog() {
+    $("a[id$=':task-custom-fields-command']").shouldBe(getClickableCondition()).click();
+    $("div[id$='task-custom-fields-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+  
+  public SelenideElement getCustomFieldsDialog() {
+    return $("div[id$='task-custom-fields-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  public List<String> getCustomFieldNames() {
+    return $$("span[id$='customFieldLabel']")
+        .shouldBe(CollectionCondition.sizeGreaterThanOrEqual(0), DEFAULT_TIMEOUT)
+        .asFixedIterable()
+        .stream()
+        .map(SelenideElement::getText)
+        .collect(Collectors.toList());
+  }
 
   public WebElement getWorkflowEventsTable() {
     $("th[id*='events-table:']").shouldBe(appear, DEFAULT_TIMEOUT);
