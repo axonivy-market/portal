@@ -115,7 +115,7 @@ jobs:
               }
 
               const commitCount = commits.length;
-              const maxDisplay = Math.min(commitCount, 15);
+              const maxDisplay = commitCount; // Show all commits
               
               await core.summary
                 .addHeading(`📝 Changes since last successful build on '${branch}' (${commitCount} commit${commitCount !== 1 ? 's' : ''})`)
@@ -163,12 +163,6 @@ jobs:
                 ])
                 .write();
                 
-              if (commitCount > maxDisplay) {
-                await core.summary
-                  .addRaw(`\n*... and ${commitCount - maxDisplay} more commit${commitCount - maxDisplay !== 1 ? 's' : ''}*`)
-                  .write();
-              }
-              
             } catch (error) {
               console.error('Error fetching commits since last build:', error);
               await core.summary
@@ -247,7 +241,7 @@ jobs:
                 return;
               }
 
-              const maxDisplay = Math.min(relevantPrs.length, 15);
+              const maxDisplay = relevantPrs.length; // Show all PRs
               
               await core.summary
                 .addHeading(`🔗 PRs merged since last successful build on '${branch}' (${relevantPrs.length} PR${relevantPrs.length !== 1 ? 's' : ''})`)
@@ -271,12 +265,6 @@ jobs:
                 ])
                 .write();
                 
-              if (relevantPrs.length > maxDisplay) {
-                await core.summary
-                  .addRaw(`\n*... and ${relevantPrs.length - maxDisplay} more PR${relevantPrs.length - maxDisplay !== 1 ? 's' : ''}*`)
-                  .write();
-              }
-              
             } catch (error) {
               console.error('Error fetching PRs since last build:', error);
               await core.summary
