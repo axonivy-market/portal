@@ -33,141 +33,170 @@ jobs:
         uses: actions/github-script@v8
         with:
           script: |
-            const branch = context.ref.replace('refs/heads/', '');
-            const workflowName = 'Portal Selenium Test';
-            
+            const branch = context.ref.replace('refs/heads/', ''); // Extract the branch name from the GitHub context (removes 'refs/heads/' prefix)
             try {
-              // Get the last successful workflow run for this branch
+              // === STEP 1: FIND THE LAST SUCCESSFUL WORKFLOW RUN ==============================
+              // Query GitHub API to get the most recent successful workflow run for this branch
               const { data: workflowRuns } = await github.rest.actions.listWorkflowRuns({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                workflow_id: 'portal-selenium-test.yml',
-                branch: branch,
-                status: 'success',
-                per_page: 1
+                owner: context.repo.owner,               // Repository owner (e.g., 'axonivy-market')
+                repo: context.repo.repo,                 // Repository name (e.g., 'portal')
+                workflow_id: 'portal-selenium-test.yml', // This specific workflow file
+                branch: branch,                          // Only runs from current branch
+                status: 'success',                       // Only successful runs
+                per_page: 1                              // We only need the most recent one
               });
 
-              let lastSuccessfulSha = null;
-              let lastSuccessfulDate = null;
+              // Initialize variables to store last successful build information
+              let lastSuccessfulSha = null;         // SHA of the last successful commit
+              let lastSuccessfulDate = null;        // Date when last successful build ran
               
+              // Check if we found any successful workflow runs
               if (workflowRuns.workflow_runs && workflowRuns.workflow_runs.length > 0) {
-                const lastRun = workflowRuns.workflow_runs[0];
-                lastSuccessfulSha = lastRun.head_sha;
-                lastSuccessfulDate = lastRun.created_at;
+                const lastRun = workflowRuns.workflow_runs[0]; // Get the most recent successful run
+                lastSuccessfulSha = lastRun.head_sha;          // Store the commit SHA that was tested
+                lastSuccessfulDate = lastRun.created_at;       // Store when the run was created
               }
 
-              let commits = [];
-              let comparisonInfo = '';
+              // Initialize arrays to store commit data and comparison info
+              let commits = [];                      // Will hold the list of commits to display
+              let comparisonInfo = '';               // Will hold information about what we're comparing
               
+
+              // === STEP 2: DETERMINE WHAT COMMITS TO SHOW BASED ON LAST SUCCESSFUL BUILD ==============================
               if (lastSuccessfulSha && lastSuccessfulSha !== context.sha) {
+                // Case A: We have a previous successful build and current commit is different
                 // Compare commits between last successful build and current commit
                 try {
+                  // Use GitHub API to compare two commits and get all commits in between
                   const { data: comparison } = await github.rest.repos.compareCommits({
-                    owner: context.repo.owner,
-                    repo: context.repo.repo,
-                    base: lastSuccessfulSha,
-                    head: context.sha
+                    owner: context.repo.owner,        // Repository owner
+                    repo: context.repo.repo,          // Repository name
+                    base: lastSuccessfulSha,          // Starting point (last successful commit)
+                    head: context.sha                 // Ending point (current commit being tested)
                   });
-                  commits = comparison.commits || [];
+                  commits = comparison.commits || []; // Extract the commits array (fallback to empty array)
                   
+                  // Format the date of last successful build for display
                   const lastSuccessfulDateFormatted = new Date(lastSuccessfulDate).toLocaleString('vi-VN', {
-                    timeZone: 'Asia/Ho_Chi_Minh',
-                    hour12: false
+                    timeZone: 'Asia/Ho_Chi_Minh',     // Use Vietnam timezone
+                    hour12: false                     // Use 24-hour format
                   });
                   
+                  // Get reference to the last successful workflow run for building URL
                   const lastRun = workflowRuns.workflow_runs[0];
-                  const buildUrl = `${lastRun.html_url}`;
+                  const buildUrl = `${lastRun.html_url}`;        // URL to the last successful build
                   
+                  // Create informational text showing what we're comparing against
                   comparisonInfo = `📊 Comparing with last successful build: [#${lastRun.run_number}](${buildUrl}) - [${lastSuccessfulSha.substring(0, 7)}](https://github.com/${context.repo.owner}/${context.repo.repo}/commit/${lastSuccessfulSha}) (${lastSuccessfulDateFormatted})`;
                 } catch (compareError) {
+                  // If comparison fails (e.g., commits are too far apart), fallback to recent commits
                   const { data: recentCommits } = await github.rest.repos.listCommits({
-                    owner: context.repo.owner,
-                    repo: context.repo.repo,
-                    sha: context.sha,
-                    per_page: 10
+                    owner: context.repo.owner,        // Repository owner
+                    repo: context.repo.repo,          // Repository name
+                    sha: context.sha,                 // Starting from current commit
+                    per_page: 10                      // Limit to 10 most recent commits
                   });
-                  commits = recentCommits;
+                  commits = recentCommits;            // Use recent commits instead of comparison
                   comparisonInfo = '⚠️ Could not compare with last build, showing recent commits';
                 }
               } else if (lastSuccessfulSha === context.sha) {
+                // Case B: Current commit is the same as last successful build (re-running same commit)
                 comparisonInfo = '✅ This commit was the last successful build - no new changes';
               } else {
-                // No previous successful build found, show recent commits
+                // Case C: No previous successful build found (first run or all previous runs failed)
+                // Show recent commits instead
                 const { data: recentCommits } = await github.rest.repos.listCommits({
-                  owner: context.repo.owner,
-                  repo: context.repo.repo,
-                  sha: context.sha,
-                  per_page: 10
+                  owner: context.repo.owner,          // Repository owner
+                  repo: context.repo.repo,            // Repository name
+                  sha: context.sha,                   // Starting from current commit
+                  per_page: 10                        // Limit to 10 most recent commits
                 });
-                commits = recentCommits;
+                commits = recentCommits;              // Use recent commits
                 comparisonInfo = '🆕 No previous successful build found - showing recent commits';
               }
 
-              // Build the summary
+              // === STEP 3: BUILD AND DISPLAY THE SUMMARY ==============================
+              // Handle case where no commits were found
               if (!commits || commits.length === 0) {
                 await core.summary
-                  .addHeading(`📝 Changes since last successful build on '${branch}'`)
-                  .addRaw(comparisonInfo)
-                  .addRaw('\n\n*No new commits found*')
-                  .write();
-                return;
+                  .addHeading(`📝 Changes since last successful build on '${branch}'`) // Add section heading
+                  .addRaw(comparisonInfo)                                              // Add comparison context
+                  .addRaw('\n\n*No new commits found*')                                // Add "no commits" message
+                  .write();                                                            // Write to GitHub summary
+                return;                                                                // Exit early
               }
 
-              const commitCount = commits.length;
-              const maxDisplay = commitCount; // Show all commits
+              // Calculate how many commits to display
+              const commitCount = commits.length;     // Total number of commits found
+              const maxDisplay = commitCount;         // Show all commits (no limit)
               
+              // Build the main summary table with commit information
               await core.summary
+                // Add heading with branch name and commit count (with proper pluralization)
                 .addHeading(`📝 Changes since last successful build on '${branch}' (${commitCount} commit${commitCount !== 1 ? 's' : ''})`)
-                .addRaw(comparisonInfo)
-                .addTable([
-                  [
-                    { data: 'Commit', header: true },
-                    { data: 'Message', header: true },
-                    { data: 'Author', header: true },
-                    { data: 'Date', header: true }
+                .addRaw(comparisonInfo)                // Add the comparison context information
+                .addTable([                            // Create a table with commit details
+                  [                                    // Table header row
+                    { data: 'Commit', header: true },   // Column 1: Commit SHA (as link)
+                    { data: 'Message', header: true },  // Column 2: Commit message
+                    { data: 'Author', header: true },   // Column 3: Commit author
+                    { data: 'Date', header: true }      // Column 4: Commit date
                   ],
+                  // Map each commit to a table row (spread operator to flatten the array)
                   ...commits.slice(0, maxDisplay).map(commit => {
-                    // Get full commit message with title and description
+                    // === Process commit message ===
+                    // Get the full commit message and remove leading/trailing whitespace
                     const fullMessage = commit.commit.message.trim();
-                    const lines = fullMessage.split('\n');
-                    const title = lines[0];
+                    const lines = fullMessage.split('\n');   // Split into lines
+                    const title = lines[0];                  // First line is the title
                     
-                    // Include description if it exists (skip empty lines after title)
+                    // Extract description from remaining lines (skip empty lines after title)
                     let description = '';
-                    if (lines.length > 1) {
+                    if (lines.length > 1) {                  // Check if there are more lines after title
+                      // Filter out empty lines and join remaining lines
                       const descLines = lines.slice(1).filter(line => line.trim() !== '');
                       if (descLines.length > 0) {
-                        description = descLines.join(' ').trim();
-                        // Limit description length to avoid too wide tables
+                        description = descLines.join(' ').trim(); // Join description lines with spaces
+                        // Truncate description if too long to prevent table from becoming too wide
                         if (description.length > 200) {
                           description = description.substring(0, 200) + '...';
                         }
                       }
                     }
                     
+                    // Build the message column content (title + description if available)
+                    // Escape pipe characters that would break markdown table formatting
                     const messageColumn = description ? 
                       `${title.replace(/\|/g, '\\|')}<br/>${description.replace(/\|/g, '\\|')}` : 
                       title.replace(/\|/g, '\\|');
                     
+                    // Return table row array with formatted data
                     return [
-                      `[${commit.sha.substring(0, 7)}](${commit.html_url})`,
-                      messageColumn,
-                      `@${commit.author?.login || commit.commit.author.name}`,
-                      new Date(commit.commit.author.date).toLocaleString('vi-VN', {
-                        timeZone: 'Asia/Ho_Chi_Minh',
-                        hour12: false
+                      
+                      `[${commit.sha.substring(0, 7)}](${commit.html_url})`,        // Column 1: Commit SHA as clickable link (shortened to 7 characters)
+                      
+                      messageColumn,                                                // Column 2: Commit message (title + description)
+                      
+                      `@${commit.author?.login || commit.commit.author.name}`,      // Column 3: Author username (with @ prefix) or fallback to name
+                      
+                      new Date(commit.commit.author.date).toLocaleString('vi-VN', { // Column 4: Formatted commit date in Vietnam timezone
+                        timeZone: 'Asia/Ho_Chi_Minh',   // Use Vietnam timezone
+                        hour12: false                   // Use 24-hour format
                       })
                     ];
                   })
                 ])
-                .write();
+                .write();                               // Write the complete summary to GitHub
                 
             } catch (error) {
+              // === Error handling ==============================
               console.error('Error fetching commits since last build:', error);
+
+              // Display user-friendly error message in the summary
               await core.summary
-                .addHeading(`📝 Error fetching commits for branch '${branch}'`)
-                .addRaw(`Could not retrieve commit information: ${error.message}`)
-                .write();
+                .addHeading(`📝 Error fetching commits for branch '${branch}'`)     // Error heading
+                .addRaw(`Could not retrieve commit information: ${error.message}`)  // Error details
+                .write();                                                           // Write error summary
             }
 
       - name: Show PRs merged since last successful build
