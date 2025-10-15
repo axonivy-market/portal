@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: Portal Guide ${revision}\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-09-17 06:56+0000\n"
-"PO-Revision-Date: 2025-09-29 09:16+0000\n"
-"Last-Translator: DeepL <noreply-mt-deepl@weblate.org>\n"
+"PO-Revision-Date: 2025-10-09 10:31+0000\n"
+"Last-Translator: Thang Huynh <hhqthang@axonactive.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/axonivy-portal/"
 "portal-12/doc/portal-user-guide/ja/>\n"
 "Language: ja\n"
@@ -694,11 +694,11 @@ msgstr "すべての設定をデフォルト値にリセットするには、:gu
 
 #: ../../source/portal-user-guide/admin-settings/index.rst:64
 msgid ""
-"Portal settings are stored as |ivy| variables and can be configured in "
-"the :dev-url:`|ivy| Cockpit </doc/|version|/engine-guide/reference"
+"Portal settings are stored as Axon Ivy variables and can be configured in "
+"the :dev-url:`Axon Ivy Cockpit </doc/12.0/engine-guide/reference"
 "/engine-cockpit/configuration.html#engine-cockpit-variables>`."
 msgstr ""
-"ポータル設定は |ivy| の変数として格納され、:dev-url:`|ivy| コックピット </doc/|version|/engine-"
+"ポータル設定は Axon Ivy の変数として格納され、:dev-url:`Axon Ivy コックピット </doc/12.0/engine-"
 "guide/reference/engine-cockpit/configuration.html#engine-cockpit-"
 "variables>` で設定できます。"
 
@@ -733,11 +733,11 @@ msgstr "trueを設定すると、キーボードショートカットのトグ�
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.ApplicationName"
-msgstr "ポータル.アプリケーション名"
+msgstr "Portal.ApplicationName"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Axon Ivy"
-msgstr "アクソンアイビー"
+msgstr "Axon Ivy"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "The application name that will be displayed on the page title."
@@ -749,7 +749,7 @@ msgstr "Portal.CaseDetails.HideDocument"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "FALSE"
-msgstr "偽"
+msgstr "FALSE"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid ""
@@ -777,7 +777,7 @@ msgstr "ケース詳細ページの継続時間表示のオン・オフ。"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.Cases.EnableOwner"
-msgstr "Portal.Cases.EnableOwner（オーナーを有効にする"
+msgstr "Portal.Cases.EnableOwner"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv
 msgid ""
@@ -891,7 +891,7 @@ msgstr "時間による日付フィルタリングを有効にするにはtrue�
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.DateTimeFormat.HideTime"
-msgstr "ポータル.DateTimeFormat.HideTime"
+msgstr "Portal.DateTimeFormat.HideTime"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Set to true to hide hours and minutes next to date."
@@ -899,7 +899,7 @@ msgstr "trueに設定すると、日付の横に時・分を表示しない。"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.DateTimeFormat.HideYear"
-msgstr "ポータル.DateTimeFormat.HideYear"
+msgstr "Portal.DateTimeFormat.HideYear"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Set to true, year will be hidden, otherwise it will be shown."
@@ -907,7 +907,7 @@ msgstr "trueに設定すると年は非表示になり、そうでなければ�
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.DisplayMessageAfterFinishTask"
-msgstr "Portal.DisplayMessageAfterFinishTask（タスク終了後のメッセージ表示"
+msgstr "Portal.DisplayMessageAfterFinishTask"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "A feedback message will be displayed after user finishes or leaves a task."
@@ -916,7 +916,7 @@ msgstr "フィードバックメッセージは、ユーザがタスクを終了
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.DisplayUsersOfRole"
-msgstr "ポータル.DisplayUsersOfRole"
+msgstr "Portal.DisplayUsersOfRole"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv
 msgid ""
@@ -930,8 +930,7 @@ msgstr ""
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.Document.EnableScriptChecking"
-msgstr "Portal.Document.EnableScriptChecking（ポータル.ドキュメント.スクリプトチェッ"
-"クの有効化"
+msgstr "Portal.Document.EnableScriptChecking"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid ""
@@ -954,8 +953,7 @@ msgstr ""
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.Document.WhitelistExtension"
-msgstr "Portal.Document.WhitelistExtension（ポータル.ドキュメント.ホワイトリスト.エク"
-"ステンション"
+msgstr "Portal.Document.WhitelistExtension"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv
 msgid "doc, docx, xls,"
@@ -975,7 +973,7 @@ msgstr "txt、zip、jpg、"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv
 msgid "jpeg, bmp, png"
-msgstr "JPEG、BMP、PNG"
+msgstr "jpeg、bmp、png"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv
 msgid ""
@@ -990,7 +988,7 @@ msgstr "コンマで区切ってください。例：pdf、txt、doc、docx。"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.EmbedInFrame"
-msgstr "ポータル.EmbedInFrame"
+msgstr "Portal.EmbedInFrame"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "If true, start a process/task in IFrame mode."
@@ -998,7 +996,7 @@ msgstr "trueの場合、IFrameモードでプロセス/タスクを開始する�
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.Histories.HideSystemNotes"
-msgstr "Portal.Histories.HideSystemNotes（システムノートを隠す"
+msgstr "Portal.Histories.HideSystemNotes"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid ""
@@ -1009,7 +1007,7 @@ msgstr "trueの場合、ケース/タスクノートは、管理者以外のユ�
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.Histories.HideSystemNotesForAdministrator"
-msgstr "Portal.Histories.HideSystemNotesForAdministrator（管理者のシステムメモを隠す"
+msgstr "Portal.Histories.HideSystemNotesForAdministrator"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid ""
@@ -1030,8 +1028,7 @@ msgstr "trueの場合、ケースノートは、管理者以外のユーザー�
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.Histories.HideSystemTasksForAdministrator"
-msgstr "Portal.Histories.HideSystemTasksForAdministrator（管理者のシステムタスクを隠"
-"す"
+msgstr "Portal.Histories.HideSystemTasksForAdministrator"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "If true, case note does not display any system tasks for administrator."
@@ -1055,12 +1052,11 @@ msgstr "ケース/タスクの詳細にシステムノートをデフォルト�
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.Homepage"
-msgstr "ポータル.ホームページ"
+msgstr "Portal.Homepage"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
-#, fuzzy
 msgid "``Dashboard``"
-msgstr "ダッシュボード"
+msgstr "``Dashboard``"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv
 msgid ""
@@ -1087,7 +1083,7 @@ msgstr "ログインしているユーザーの書式を表示するオプショ
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.Processes.DefaultImage"
-msgstr "Portal.Processes.DefaultImage（ポータル.プロセス.デフォルト画像"
+msgstr "Portal.Processes.DefaultImage"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "DEFAULT"
@@ -1101,7 +1097,7 @@ msgstr "画像プロセスリストに表示されるデフォルト画像の標
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.Processes.Mode"
-msgstr "ポータル.プロセス.モード"
+msgstr "Portal.Processes.Mode"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Image"
@@ -1113,7 +1109,7 @@ msgstr "プロセスリストのビューモードの標準設定。"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.Processes.ShowInformation"
-msgstr "ポータル.プロセス.ShowInformation"
+msgstr "Portal.Processes.ShowInformation"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid ""
@@ -1124,7 +1120,7 @@ msgstr "プロセスページ(グリッドモード)およびケース詳細の�
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.ShowButtonIcon"
-msgstr "ポータル.ShowButtonIcon"
+msgstr "Portal.ShowButtonIcon"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "If true, show icons in buttons."
@@ -1132,7 +1128,7 @@ msgstr "trueの場合、ボタンにアイコンを表示する。"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.ShowGlobalSearch"
-msgstr "ポータル.ShowGlobalSearch"
+msgstr "Portal.ShowGlobalSearch"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "If true, display the global search box."
@@ -1159,9 +1155,7 @@ msgstr "タスク詳細ページの継続時間表示のオン・オフ。"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.Tasks.BehaviourWhenClickingOnLineInTaskList"
-msgstr ""
-"Portal.Tasks.BehaviourWhenClickingOnLineInTaskList（ポータル.タスク.ビヘイビ"
-"アウェンクリックオンラインインタスクリスト"
+msgstr "Portal.Tasks.BehaviourWhenClickingOnLineInTaskList"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Run the task"
@@ -1208,7 +1202,7 @@ msgstr "ダッシュボードの症例ウィジェット、グローバル検索
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.UserMenu.HideChangePasswordMenu"
-msgstr "Portal.UserMenu.HideChangePasswordメニュー"
+msgstr "Portal.UserMenu.HideChangePasswordMenu"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid ""
@@ -1234,7 +1228,7 @@ msgstr "trueの場合、トップメニューのログアウトボタンは非�
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.ProcessViewer"
-msgstr "ポータル.ProcessViewer"
+msgstr "Portal.ProcessViewer"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid ""
@@ -1259,7 +1253,7 @@ msgstr "trueの場合、症例履歴は履歴テーブルに関連する症例�
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.ShowErrorLogToConsole"
-msgstr "ポータル.ShowErrorLogToConsole"
+msgstr "Portal.ShowErrorLogToConsole"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "If true, write error log to browser console."
@@ -1267,7 +1261,7 @@ msgstr "trueの場合、ブラウザのコンソールにエラーログを書�
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.ShowAvatar"
-msgstr "ポータル.ShowAvatar"
+msgstr "Portal.ShowAvatar"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "If true, switch on the display of user/role avatars."
@@ -1275,7 +1269,7 @@ msgstr "trueの場合、ユーザー/ロールアバターの表示をオンに�
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.RoleDirectChildrenLimit"
-msgstr "Portal.RoleDirectChildrenリミット"
+msgstr "Portal.RoleDirectChildrenLimit"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "50"
@@ -1293,7 +1287,7 @@ msgstr "有効数字：10, 50, 100."
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.RoleParentLimit"
-msgstr "ポータル.RoleParentLimit"
+msgstr "Portal.RoleParentLimit"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "10"
@@ -1320,7 +1314,7 @@ msgstr "ログインページのフッターを非表示にするにはfalseを�
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.Theme.EnableSwitchThemeModeButton"
-msgstr "Portal.Theme.EnableSwitchThemeModeボタン"
+msgstr "Portal.Theme.EnableSwitchThemeModeButton"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "If false, the Switch Theme Mode button is disabled."
@@ -1328,11 +1322,11 @@ msgstr "Falseの場合、Switch Theme Modeボタンは無効になります。"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.Theme.Mode"
-msgstr "ポータル.テーマ.モード"
+msgstr "Portal.Theme.Mode"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "LIGHT"
-msgstr "ライト"
+msgstr "LIGHT"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "The default theme mode of the application."
@@ -1340,11 +1334,11 @@ msgstr "アプリケーションのデフォルトのテーマモード。"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.SearchScope.ByCaseFields"
-msgstr "Portal.SearchScope.ByCaseFields（ポータル.サーチスコープ.バイケースフィールド"
+msgstr "Portal.SearchScope.ByCaseFields"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "NAME, DESCRIPTION, CUSTOM"
-msgstr "名前、説明、カスタム"
+msgstr "NAME, DESCRIPTION, CUSTOM"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid ""
@@ -1357,11 +1351,11 @@ msgstr ""
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.SearchScope.ByTaskFields"
-msgstr "Portal.SearchScope.ByTaskFields（ポータル.サーチスコープ.バイタスクフィールド"
+msgstr "Portal.SearchScope.ByTaskFields"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "NAME, DESCRIPTION"
-msgstr "名前、説明"
+msgstr "NAME, DESCRIPTION"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid ""
@@ -1390,7 +1384,7 @@ msgstr "DeepL 認証キー (末尾に :fx を付ける必要があります)"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.DeepL.Enable"
-msgstr "ポータル.DeepL.Enable"
+msgstr "Portal.DeepL.Enable"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Set this property to true to enable the DeepL translation support."
@@ -1398,7 +1392,7 @@ msgstr "DeepL 変換のサポートを有効にするには、このプロパテ
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.ShowQuickGlobalSearch"
-msgstr "ポータル.ShowQuickGlobalSearch"
+msgstr "Portal.ShowQuickGlobalSearch"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "For switch on/off the display of the quick global search."
@@ -1414,7 +1408,7 @@ msgstr "QRコード表示のON/OFF。"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.UserMenu.BaseQRCodeUrl"
-msgstr "Portal.UserMenu.BaseQRCodeUrl。"
+msgstr "Portal.UserMenu.BaseQRCodeUrl"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Set Base URL for QR code to display."
@@ -1430,7 +1424,7 @@ msgstr "Apple StoreでAxon Ivyモバイルアプリをダウンロードする�
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.UserMenu.GooglePlayURL"
-msgstr "ポータル.ユーザーメニュー.GooglePlayURL"
+msgstr "Portal.UserMenu.GooglePlayURL"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Set URL to download Axon Ivy mobile app on Google Play."
@@ -1438,11 +1432,11 @@ msgstr "Google PlayでAxon Ivyモバイルアプリをダウンロードする�
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.GlobalSearchScopeCategories"
-msgstr "Portal.GlobalSearchScopeCategories（グローバル・サーチ・スコープ・カテゴリー"
+msgstr "Portal.GlobalSearchScopeCategories"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "PROCESSES,TASKS,CASES"
-msgstr "プロセス、タスク、ケース"
+msgstr "PROCESSES,TASKS,CASES"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Defining the types that the global search will search for."
@@ -1450,8 +1444,7 @@ msgstr "グローバル検索が検索するタイプを定義する。"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.Upload.DocumentUploadSizeLimit"
-msgstr "Portal.Upload.DocumentUploadSizeLimit（ポータル.アップロード.ドキュメントアッ"
-"プロードサイズリミット"
+msgstr "Portal.Upload.DocumentUploadSizeLimit"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "20"
@@ -1466,8 +1459,7 @@ msgstr "文書をアップロードする際のサイズ制限をメガバイト
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.Upload.ImageUploadSizeLimit"
-msgstr "Portal.Upload.ImageUploadSizeLimit（ポータル.アップロード.イメージアップロー"
-"ドサイズリミット"
+msgstr "Portal.Upload.ImageUploadSizeLimit"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "6"
@@ -1486,7 +1478,7 @@ msgstr "Portal.DelegationAppendOption"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "None"
-msgstr "なし"
+msgstr "None"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Defines the fields that can be appended to the role group display name."
@@ -1513,7 +1505,7 @@ msgstr ""
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.ShowTooltipTechnicalName"
-msgstr "Portal.ShowTooltipテクニカルネーム"
+msgstr "Portal.ShowTooltipTechnicalName"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Enable to show users' technical name on tooltips."
@@ -1732,17 +1724,17 @@ msgid "ai-assistant-menu-item"
 msgstr "ai-assistant-menu-item"
 
 #: ../../source/portal-user-guide/axon-ivy-portal/index.rst:4
-msgid "|ivy| Portal"
-msgstr "|ivy| Portal"
+msgid "Axon Ivy Portal"
+msgstr "Axon Ivy Portal"
 
 #: ../../source/portal-user-guide/axon-ivy-portal/index.rst:6
 msgid ""
-"**|ivy| Portal** is the centerpiece for your daily work with the "
-"applications you or your company implemented using |ivy|. With a web-"
+"**Axon Ivy Portal** is the centerpiece for your daily work with the "
+"applications you or your company implemented using Axon Ivy. With a web-"
 "based, modern interface, the Portal provides you with key functionalities"
 " on all your devices:"
 msgstr ""
-"**|ivy| Portal** は、ユーザーやユーザーの会社が |ivy| "
+"**Axon Ivy Portal** は、ユーザーやユーザーの会社が Axon Ivy "
 "を使用して実装したアプリケーションで日常作業を行う中心的存在です。ポータルは、ウェブベースのモダンなインターフェースを備え、すべてのデバイスに主要な機能を提供します。"
 
 #: ../../source/portal-user-guide/axon-ivy-portal/index.rst:11
@@ -1761,34 +1753,34 @@ msgstr "すべてのケースとタスクで即時の統計、履歴データを
 
 #: ../../source/portal-user-guide/axon-ivy-portal/index.rst:18
 msgid ""
-"Improve your |ivy| Portal experience and efficiency through the built-in "
+"Improve your Axon Ivy Portal experience and efficiency through the built-in "
 "customization options"
-msgstr "組み込みカスタムオプションにより、|ivy| Portal のエクスペリエンスと効率性を高める"
+msgstr "組み込みカスタムオプションにより、Axon Ivy Portal のエクスペリエンスと効率性を高める"
 
 #: ../../source/portal-user-guide/axon-ivy-portal/index.rst:21
 msgid ""
 "This document provides you – as a business user – with a comprehensive "
-"overview of the |ivy| Portal, its features and functionalities."
-msgstr "このドキュメントでは、ビジネスユーザー向けに、|ivy| Portal とその機能の包括的な概要を紹介します。"
+"overview of the Axon Ivy Portal, its features and functionalities."
+msgstr "このドキュメントでは、ビジネスユーザー向けに、Axon Ivy Portal とその機能の包括的な概要を紹介します。"
 
 #: ../../source/portal-user-guide/axon-ivy-portal/index.rst:25
 msgid ""
 "The look and feel shown in the screenshots of this document, as well as "
-"the features presented are part of the standard |ivy| Portal. However, "
-"the |ivy| Portal is highly configurable, thus, the Portal of your company"
+"the features presented are part of the standard Axon Ivy Portal. However, "
+"the Axon Ivy Portal is highly configurable, thus, the Portal of your company"
 " might have a different look and feel, and some features might be "
 "disabled by your administrator."
 msgstr ""
-"このドキュメントのスクリーンショットで示す外観や機能は、標準的な |ivy| Portal のものです。|ivy| Portal "
+"このドキュメントのスクリーンショットで示す外観や機能は、標準的な Axon Ivy Portal のものです。Axon Ivy Portal "
 "は細かい設定が可能なため、ポータルの外観はこのドキュメントと異なる場合があります。また、管理者によって機能が無効になっていることがあります。"
 
 #: ../../source/portal-user-guide/axon-ivy-portal/index.rst:31
 msgid ""
-"To start your |ivy| Portal experience, open the link provided by your "
-"administrator in a web browser. The |ivy| Portal will ask you to enter "
+"To start your Axon Ivy Portal experience, open the link provided by your "
+"administrator in a web browser. The Axon Ivy Portal will ask you to enter "
 "your login credentials."
 msgstr ""
-"|ivy| Portal を初めて使用するには、管理者から提供されたリンクをウェブブラウザで開きます。|ivy| Portal "
+"Axon Ivy Portal を初めて使用するには、管理者から提供されたリンクをウェブブラウザで開きます。Axon Ivy Portal "
 "からログイン資格情報を入力するよう求められます。"
 
 #: ../../source/portal-user-guide/axon-ivy-portal/index.rst:35
@@ -1804,9 +1796,9 @@ msgstr "ポータルのログイン画面"
 msgid ""
 "Depending on your infrastructure, you might be automatically logged in "
 "using single-sign-on (SSO). In this case, you will be forwarded directly "
-"to the |ivy| Portal Dashboard."
+"to the Axon Ivy Portal Dashboard."
 msgstr ""
-"インフラストラクチャによって、シングルサインオン（SSO）を使用して自動的にログインされることがあります。この場合は、|ivy| Portal "
+"インフラストラクチャによって、シングルサインオン（SSO）を使用して自動的にログインされることがあります。この場合は、Axon Ivy Portal "
 "のダッシュボードに直接転送されます。"
 
 #: ../../source/portal-user-guide/axon-ivy-portal/index.rst:42
@@ -1817,21 +1809,21 @@ msgstr "Ivy セキュリティシステムを使用している場合は、 :gui
 
 #: ../../source/portal-user-guide/axon-ivy-portal/index.rst:45
 msgid ""
-"After successful login, you will see the |ivy| Portal Homepage and your "
+"After successful login, you will see the Axon Ivy Portal Homepage and your "
 "personal dashboard. All your activities can be managed from this central "
 "entry point. The Portal Homepage has the following elements:"
 msgstr ""
-"ログインに成功すると、|ivy| Portal "
+"ログインに成功すると、Axon Ivy Portal "
 "のホームページと個人用ダッシュボードが表示されます。すべての活動をこの中心となるエントリポイントから管理できます。ポータルのホームページには以下の要素が含まれます。"
 
 #: ../../source/portal-user-guide/axon-ivy-portal/index.rst:49
 msgid ""
-"The |ivy| Portal header at the top is always visible and provides you "
+"The Axon Ivy Portal header at the top is always visible and provides you "
 "with a global search field, key information about the Portal and options "
 "to configure your personal user account. See :ref:`portal-header` for "
 "details."
 msgstr ""
-"一番上の |ivy| Portal "
+"一番上の Axon Ivy Portal "
 "のヘッダーは常に表示され、グローバル検索フィールド、ポータルについての重要な情報、個人用ユーザーアカウントを設定するためのオプションが表示されます。詳細については、:ref"
 ":`portal-header` を参照してください。"
 
@@ -1846,12 +1838,12 @@ msgstr "ポータルのヘッダー"
 #: ../../source/portal-user-guide/axon-ivy-portal/index.rst:56
 msgid ""
 "The menu on the left side is always visible and gives you access to all "
-"processes, cases, tasks and other features of the |ivy| Portal. If the "
+"processes, cases, tasks and other features of the Axon Ivy Portal. If the "
 "menu is minimized, hover over the menu to enlarge it. You may permanently"
 " enlarge the menu by clicking on the |pin-icon| icon in the top left hand"
 " corner."
 msgstr ""
-"左側のメニューは常に表示され、|ivy| Portal "
+"左側のメニューは常に表示され、Axon Ivy Portal "
 "のすべてのプロセス、ケース、タスクなどの機能にアクセスできます。メニューが最小化されている場合、メニューの上にカーソルを置くと拡大されます。左上隅にある"
 " |pin-icon| アイコンをクリックして、メニューを常時拡大できます。"
 
@@ -2363,8 +2355,8 @@ msgid ""
 ":bdg-dark-line:`Created Date` :bdg-dark-line:`Within the last` :bdg-dark-"
 "line:`2` :bdg-dark-line:`Year(s)`"
 msgstr ""
-":bdg-dark-line:`作成日` :bdg-dark-line:`今日までの期間` :bdg-dark-line:`2` :bdg-"
-"dark-line:`年`"
+":bdg-dark-line:`作成日` :bdg-dark-line:`今日までの期間` :bdg-dark-line:`2` "
+":bdg-dark-line:`年`"
 
 #: ../../source/portal-user-guide/complex-filter/index.rst
 msgid "within the period from ``2/27/2022 00:00:00`` to ``2/27/2024 11:41:28``."
@@ -2393,8 +2385,8 @@ msgid ""
 ":bdg-dark-line:`Invoice Due Date` :bdg-dark-line:`Within the next` :bdg-"
 "dark-line:`3` :bdg-dark-line:`Week(s)`"
 msgstr ""
-":bdg-dark-line:`請求書の支払期日` :bdg-dark-line:`次の期間` :bdg-dark-line:`3` :bdg-"
-"dark-line:`週`"
+":bdg-dark-line:`請求書の支払期日` :bdg-dark-line:`次の期間` :bdg-dark-"
+"line:`3` :bdg-dark-line:`週`"
 
 #: ../../source/portal-user-guide/complex-filter/index.rst
 msgid ""
@@ -2684,7 +2676,8 @@ msgstr ":guilabel:`ダッシュボードの作成` ボタンを選択して、�
 msgid ""
 "Configuration your private dashboard (see: :ref:`Dashboard <new-"
 "dashboard>`)."
-msgstr "個人用ダッシュボードを設定します（ :ref:`Dashboard <new-dashboard>` を参照）。"
+msgstr "個人用ダッシュボードを設定します（ :ref:`ダッシュボード <new-dashboard>` を参"
+"照）。"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:79
 msgid ""
@@ -2881,7 +2874,8 @@ msgstr "|add-icon| （ダッシュボードの作成）を選択して、公開�
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:149
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:188
 msgid "Configuration public dashboard (see: :ref:`Dashboard <new-dashboard>`)."
-msgstr "公開用ダッシュボードを設定します（ :ref:`Dashboard <new-dashboard>` を参照）。"
+msgstr "公開用ダッシュボードを設定します（ :ref:`ダッシュボード <new-dashboard>` を参"
+"照）。"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:151
 msgid ""
@@ -2983,7 +2977,7 @@ msgid ""
 "dashboard."
 msgstr ""
 "アクション：|actions-menu-icon| をクリックして、 :guilabel:`アクション` メニューを表示します。メニューには"
-"、|edit-icon| 編集（名前、説明）、|settings-icon| 設定（ :ref:`Dashboards <new-"
+"、|edit-icon| 編集（名前、説明）、|settings-icon| 設定（ :ref:`ダッシュボード <new-"
 "dashboard>` を参照）、|download-icon| ダッシュボードをエクスポート、|share-icon| 共有、|trash-"
 "icon| 公開用ダッシュボードを削除アクションが表示されます。"
 
@@ -3061,12 +3055,12 @@ msgstr "デモプロセス"
 
 #: ../../source/portal-user-guide/demo-processes/index.rst:6
 msgid ""
-"When you start the |ivy-engine| in demo mode, you will see **portal-user-"
+"When you start the Axon Ivy Engine in demo mode, you will see **portal-user-"
 "examples**. In this project, we provide some simple examples. You can "
-"play with them to have the feeling how |ivy| and Portal work."
+"play with them to have the feeling how Axon Ivy and Portal work."
 msgstr ""
-"|ivy-engine| をデモモードで起動した場合、 **portal-user-examples** "
-"が表示されます。このプロジェクトでは、簡単な例をいくつか紹介します。これらを試して、|ivy| とポータルの感触をつかむことができます。"
+"Axon Ivy Engine をデモモードで起動した場合、 **portal-user-examples** "
+"が表示されます。このプロジェクトでは、簡単な例をいくつか紹介します。これらを試して、Axon Ivy とポータルの感触をつかむことができます。"
 
 #: ../../source/portal-user-guide/demo-processes/index.rst:11
 msgid "You can use these accounts to log in to Portal in demo mode:"
@@ -3338,9 +3332,9 @@ msgstr "全ケースリスト"
 msgid ""
 "The **Full Case List** page is a dashboard featuring a single, full-width"
 " task widget. You can reach the page by using the |case-icon| "
-":guilabel:`Cases` link in the |ivy| Portal menu."
+":guilabel:`Cases` link in the Axon Ivy Portal menu."
 msgstr ""
-"**全ケースリスト** ページは、1 つの全幅タスクウィジェットを含むダッシュボードです。 |ivy| Portal のメニューにある "
+"**全ケースリスト** ページは、1 つの全幅タスクウィジェットを含むダッシュボードです。 Axon Ivy Portal のメニューにある "
 "|case-icon| :guilabel:`ケース` リンクを使用して、ページにアクセスできます。"
 
 #: ../../source/portal-user-guide/includes/_common-icon.rst:21
@@ -3492,9 +3486,9 @@ msgstr "ケースの詳細ケースセクションの関連タスク"
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:59
 msgid ""
-"Histories: The |ivy| Portal adds notes here for state changes of the "
+"Histories: The Axon Ivy Portal adds notes here for state changes of the "
 "case. You may add your own notes as described below."
-msgstr "履歴：|ivy| Portal は、ケースの状態の変更に関するノートをここに追加します。以下のとおり、独自のノートを追加できます。"
+msgstr "履歴：Axon Ivy Portal は、ケースの状態の変更に関するノートをここに追加します。以下のとおり、独自のノートを追加できます。"
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:62
 msgid "|case-details-histories|"
@@ -3751,7 +3745,7 @@ msgstr "入力フィールドでファイル名を期待通りに更新する"
 #: ../../source/portal-user-guide/full-case-list/index.rst:165
 #: ../../source/portal-user-guide/full-task-list/index.rst:166
 msgid "Click the button :guilabel:`Save` to save your change"
-msgstr "変更を保存するには :guilabel:`Save` ボタンをクリックしてください"
+msgstr "変更を保存するには :guilabel:`保存` ボタンをクリックしてください"
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:167
 #: ../../source/portal-user-guide/full-task-list/index.rst:168
@@ -3879,9 +3873,9 @@ msgstr "このセクションには、このケースの関連タスクが表示
 #: ../../source/portal-user-guide/full-case-list/index.rst:224
 msgid ""
 "What you see here depends on the roles granted to you in both the "
-"application and the |ivy| Portal. Administrators can see all open tasks."
+"application and the Axon Ivy Portal. Administrators can see all open tasks."
 msgstr ""
-"ここに表示されるタスクは、アプリケーションと |ivy| Portal の両方で付与されたロールによって異なります。 "
+"ここに表示されるタスクは、アプリケーションと Axon Ivy Portal の両方で付与されたロールによって異なります。 "
 "管理者はすべてのオープンなタスクを表示できます。"
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:229
@@ -4094,18 +4088,18 @@ msgstr "全プロセスリスト"
 msgid ""
 "The **Full Process List** page gives you an overview of all the processes"
 " in the application available to you. To open the page, click "
-":guilabel:`Processes` in the |ivy| Portal menu."
+":guilabel:`Processes` in the Axon Ivy Portal menu."
 msgstr ""
-"**全プロセスリスト** ページには、利用可能なアプリケーションのすべてのプロセスの概要が表示されます。ページを開くには、|ivy| Portal"
+"**全プロセスリスト** ページには、利用可能なアプリケーションのすべてのプロセスの概要が表示されます。ページを開くには、Axon Ivy Portal"
 " メニューの :guilabel:`プロセス` をクリックします。"
 
 #: ../../source/portal-user-guide/full-process-list/index.rst:12
 msgid ""
 "Grant permission :bdg-ref-warning:`🔑AccessFullProcessList "
 "<AccessFullProcessList>` to allow a user to see the full process list "
-"(:guilabel:`Processes`) in the |ivy| Portal menu."
+"(:guilabel:`Processes`) in the Axon Ivy Portal menu."
 msgstr ""
-"ユーザーが |ivy| Portal メニューで全プロセスリスト（ :guilabel:`プロセス` ）を表示できるようにするには、 :bdg-"
+"ユーザーが Axon Ivy Portal メニューで全プロセスリスト（ :guilabel:`プロセス` ）を表示できるようにするには、 :bdg-"
 "ref-warning:`🔑AccessFullProcessList <AccessFullProcessList>` 権限を付与してください。"
 
 #: ../../source/portal-user-guide/full-process-list/index.rst:15
@@ -4217,9 +4211,9 @@ msgstr "特定のプロセスを検索するには、検索フィールド（上
 
 #: ../../source/portal-user-guide/full-process-list/index.rst:61
 msgid ""
-"Don’t confuse the process search with the global |ivy| Portal search "
+"Don’t confuse the process search with the global Axon Ivy Portal search "
 "which you find in the header area of the Portal."
-msgstr "プロセスの検索と、ポータルのヘッダー領域を検索する |ivy| Portal のグローバル検索を混同しないでください。"
+msgstr "プロセスの検索と、ポータルのヘッダー領域を検索する Axon Ivy Portal のグローバル検索を混同しないでください。"
 
 #: ../../source/portal-user-guide/full-process-list/index.rst:64
 msgid ""
@@ -4491,9 +4485,9 @@ msgstr "全タスクリスト"
 msgid ""
 "The **Full Task List** page is a dashboard featuring a single, full-width"
 " task widget. You can reach the page by using the |task-list-icon| "
-":guilabel:`Tasks` link in the |ivy| Portal menu."
+":guilabel:`Tasks` link in the Axon Ivy Portal menu."
 msgstr ""
-"**全タスクリスト** ページは、1 つの全幅タスクウィジェットを含むダッシュボードです。 |ivy| Portal のメニューにある "
+"**全タスクリスト** ページは、1 つの全幅タスクウィジェットを含むダッシュボードです。 Axon Ivy Portal のメニューにある "
 "|task-list-icon| :guilabel:`タスク` リンクを使用して、ページにアクセスできます。"
 
 #: ../../source/portal-user-guide/includes/_common-icon.rst:33
@@ -4504,18 +4498,18 @@ msgstr "task-list-icon"
 msgid ""
 "Grant permission :bdg-ref-warning:`🔑AccessFullTaskList "
 "<AccessFullTaskList>` to allow a user to access the full task list ( "
-"|task-list-icon| :guilabel:`Tasks`) in the |ivy| Portal menu."
+"|task-list-icon| :guilabel:`Tasks`) in the Axon Ivy Portal menu."
 msgstr ""
-"ユーザーが |ivy| Portal メニューで全タスクリスト（|task-list-icon| :guilabel:`タスク` "
+"ユーザーが Axon Ivy Portal メニューで全タスクリスト（|task-list-icon| :guilabel:`タスク` "
 "）にアクセスできるようにするには、 :bdg-ref-warning:`🔑AccessFullTaskList "
 "<AccessFullTaskList>` 権限を付与してください。"
 
 #: ../../source/portal-user-guide/full-task-list/index.rst:15
 msgid ""
 "Depending on the roles you hold in the application and the configuration "
-"of the |ivy| Portal, you might see not only the tasks belonging to you "
+"of the Axon Ivy Portal, you might see not only the tasks belonging to you "
 "but all open tasks."
-msgstr "アプリケーションで保有しているロールと |ivy| Portal の設定によって、自分のタスクだけでなく、すべてのオープンなタスクも表示されます。"
+msgstr "アプリケーションで保有しているロールと Axon Ivy Portal の設定によって、自分のタスクだけでなく、すべてのオープンなタスクも表示されます。"
 
 #: ../../source/portal-user-guide/full-task-list/index.rst:22
 msgid "|navigate-to-full-task-list-page|"
@@ -5065,13 +5059,13 @@ msgstr "言語設定"
 #: ../../source/portal-user-guide/my-profile/index.rst:88
 msgid ""
 "**Language** allows you to specify your preferred application language. "
-"This setting will affect all |ivy| Portal pages, notification mails, and "
+"This setting will affect all Axon Ivy Portal pages, notification mails, and "
 "– if supported – your company's application pages as well. The following "
-"languages are currently supported in the |ivy| Portal:"
+"languages are currently supported in the Axon Ivy Portal:"
 msgstr ""
 "**言語** では、アプリケーションの言語を指定できます。\n"
-"この設定は、|ivy| Portal のすべてのページ、通知メール、サポートされている場合は会社のア\n"
-"プリケーションページに影響を及ぼします。|ivy| Portal では現在、以下の言語がサポートされています。 ポータル："
+"この設定は、Axon Ivy Portal のすべてのページ、通知メール、サポートされている場合は会社のア\n"
+"プリケーションページに影響を及ぼします。Axon Ivy Portal では現在、以下の言語がサポートされています。 ポータル："
 
 #: ../../source/portal-user-guide/my-profile/index.rst:94
 msgid "English"
@@ -5114,8 +5108,8 @@ msgstr "通知チャネル"
 msgid ""
 "**Notification Channels** allows you to configure your manage "
 "subscriptions of the different kinds of notification channels in the "
-"|ivy| Engine."
-msgstr "**通知チャネル** では、|ivy| Engine の通知チャネルのサブスクリプションを設定できます。"
+"Axon Ivy Engine."
+msgstr "**通知チャネル** では、Axon Ivy Engine の通知チャネルのサブスクリプションを設定できます。"
 
 #: ../../source/portal-user-guide/my-profile/index.rst:123
 msgid ""
@@ -5146,14 +5140,14 @@ msgstr ""
 
 #: ../../source/portal-user-guide/my-profile/index.rst:133
 msgid ""
-"To do this, access the :dev-url:`Engine Cockpit </doc/|version|/engine-"
+"To do this, access the :dev-url:`Engine Cockpit </doc/12.0/engine-"
 "guide/reference/engine-cockpit/security.html>`, open the **Security "
 "area**. Since this permission is granted to the Everybody role by "
 "default, administrators need to deny this permission from the Everybody "
 "role, then grant it to specific roles that should be allowed to modify "
 "notification channel preferences."
 msgstr ""
-"これを行うには、:dev-url:`エンジン コックピット </doc/|version|/engine-guide/reference/engine-cockpit/security.html>` "
+"これを行うには、:dev-url:`エンジン コックピット </doc/12.0/engine-guide/reference/engine-cockpit/security.html>` "
 "にアクセスし、**セキュリティ領域** を開きます。この権限はデフォルトで「すべてのユーザー」ロールに付与されているため、管理者は「すべてのユー"
 "ザー」ロールからこの権限を拒否し、通知チャネルの設定を変更できる特定のロールに付与する必要があります。"
 
@@ -5163,12 +5157,12 @@ msgstr "ダッシュボード"
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:9
 msgid ""
-"The |ivy| Portal Dashboard is the first page you encounter after "
+"The Axon Ivy Portal Dashboard is the first page you encounter after "
 "successful login. You can always get back to the dashboard using the "
-"**Dashboard** link in the |ivy| Portal navigation menu. Alternatively, "
+"**Dashboard** link in the Axon Ivy Portal navigation menu. Alternatively, "
 "you can click on the logo image at the top left of the header."
 msgstr ""
-"|ivy| Portal ダッシュボードは、ログイン成功後に最初に表示されるページです。|ivy| Portal のナビゲーションメニューにある "
+"Axon Ivy Portal ダッシュボードは、ログイン成功後に最初に表示されるページです。Axon Ivy Portal のナビゲーションメニューにある "
 "**ダッシュボード** リンクを使用して、いつでもダッシュボードに戻ることができます。または、ヘッダーの左上にあるロゴ画像をクリックします。"
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:14
@@ -5228,8 +5222,8 @@ msgstr "**ウェルカムウィジェット** ：このウィジェットは、�
 #: ../../source/portal-user-guide/new-dashboard/index.rst:33
 msgid ""
 "**News feed widget**: This widget shares relevant information as a News "
-"Feed into |ivy|."
-msgstr "**ニュースフィードウィジェット** ：このウィジェットは、関連情報をニュースフィードとして |ivy| に共有します。"
+"Feed into Axon Ivy."
+msgstr "**ニュースフィードウィジェット** ：このウィジェットは、関連情報をニュースフィードとして Axon Ivy に共有します。"
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:35
 msgid ""
@@ -5405,16 +5399,15 @@ msgid "Dashboard task widget's configuration panel"
 msgstr "ダッシュボードのタスクウィジェットの設定パネル"
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:102
-#, fuzzy
 msgid ""
 "``Filter tasks by current case owner`` filter is hidden by default. To "
 "make it visible, you need to set the ``Portal.Cases.EnableOwner`` setting"
 " to ``true`` in the :ref:`Admin Settings <update-portal-settings>`."
 msgstr ""
-"`Filter tasks by current case "
-"owner``フィルターはデフォルトでは非表示になっています。表示させるには、 の ` "
-"` 設定を ` ` に設定する必要があります。:ref:`Admin Settings <update-portal-"
-"settings>` `Portal.Cases.EnableOwner` `true`"
+"``Filter tasks by current case owner`` フィルターはデフォルトでは非表示になっ"
+"ています。表示させるには、 の ``Portal.Cases.EnableOwner`` 設定を ``true`` に"
+"設定する必要があります。:ref:`ハウツー：ポータル設定を更新する <update-"
+"portal-settings>`"
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:104
 #: ../../source/portal-user-guide/new-dashboard/index.rst:189
@@ -6390,19 +6383,19 @@ msgstr "ポータルのヘッダー"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:6
 msgid ""
-"|ivy| Portal header is always visible. On the top right of the header you"
+"Axon Ivy Portal header is always visible. On the top right of the header you"
 " find two useful features:"
-msgstr "|ivy| Portal のヘッダーは常時表示されます。ヘッダーの右上には、2 つの便利な機能があります。"
+msgstr "Axon Ivy Portal のヘッダーは常時表示されます。ヘッダーの右上には、2 つの便利な機能があります。"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:9
 msgid ""
 "Name of the user you’re logged in with. Additionally, if you click on "
 "your username you get a menu with options that allow you to configure the"
-" |ivy| Portal to your personal needs. See `User Settings in the |ivy| "
+" Axon Ivy Portal to your personal needs. See `User Settings in the Axon Ivy "
 "Portal`_ for a detailed overview of the configuration options."
 msgstr ""
-"ログインしたときに使用したユーザーの名前。自分のユーザー名をクリックすると、自分のニーズに合わせて |ivy| Portal "
-"を設定できるオプションを含むメニューが表示されます。設定オプションの詳細については、 `|ivy| Portal のユーザー設定`_ "
+"ログインしたときに使用したユーザーの名前。自分のユーザー名をクリックすると、自分のニーズに合わせて Axon Ivy Portal "
+"を設定できるオプションを含むメニューが表示されます。設定オプションの詳細については、 `Axon Ivy Portal のユーザー設定`_ "
 "を参照してください。"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:14
@@ -6416,7 +6409,7 @@ msgstr ""
 
 #: ../../source/portal-user-guide/includes/_common-icon.rst:13
 msgid "search-icon"
-msgstr "|search-icon|"
+msgstr "search-icon"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:18
 msgid "|portal-header|"
@@ -6427,16 +6420,16 @@ msgid "Portal header items"
 msgstr "ポータルのヘッダーの項目"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:21
-msgid "User Settings in the |ivy| Portal"
-msgstr "|ivy| Portal のユーザー設定"
+msgid "User Settings in the Axon Ivy Portal"
+msgstr "Axon Ivy Portal のユーザー設定"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:23
 msgid ""
-"When you click on your username in the top right of the |ivy| Portal, a "
+"When you click on your username in the top right of the Axon Ivy Portal, a "
 "menu is shown allowing you to configure the Portal to your personal "
 "needs. These features are described in the following sections below."
 msgstr ""
-"|ivy| Portal "
+"Axon Ivy Portal "
 "の右上にあるユーザー名をクリックすると、自分のニーズに合わせてポータルを設定できるメニューが表示されます。これらの機能について、以下のセクションで説明します。"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:30
@@ -6598,7 +6591,7 @@ msgstr ""
 
 #: ../../source/portal-user-guide/includes/_common-icon.rst:43
 msgid "si-notes-quill"
-msgstr "|si-notes-quill|"
+msgstr "si-notes-quill"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:98
 msgid "Confirm your substitutes with the button :guilabel:`Save`."
@@ -6619,10 +6612,10 @@ msgid ""
 "<UserCreateSubstitute>` to allow a user to create their own substitute "
 "definitions or create substitute definitions for all users, respectively."
 msgstr ""
-"ユーザーが自分の代行者の定義を作成したり、すべてのユーザーの代行者の定義を作成できるようにするには、 :bdg-ref-"
-"warning:`🔑UserCreateOwnSubstitute <UserCreateOwnSubstitute>` または  :bdg-"
-"ref-warning:`🔑UserCreateSubstitute <UserCreateSubstitute>` "
-"のいずれかの権限をそれぞれ付与してください。"
+"ユーザーが自分の代行者の定義を作成したり、すべてのユーザーの代行者の定義を作"
+"成できるようにするには、 :bdg-ref-warning:`🔑UserCreateOwnSubstitute "
+"<UserCreateOwnSubstitute>` または :bdg-ref-warning:`🔑UserCreateSubstitute "
+"<UserCreateSubstitute>` のいずれかの権限をそれぞれ付与してください。"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:108
 msgid "Change Password"
@@ -6646,12 +6639,12 @@ msgstr "パスワードの変更ダイアログ"
 msgid ""
 "Grant permission: :bdg-warning:`🔑UserSetOwnPassword` to allow a user to "
 "change their password. Configure permissions in the :dev-url:`Engine "
-"Cockpit </doc/|version|/engine-guide/reference/engine-"
+"Cockpit </doc/12.0/engine-guide/reference/engine-"
 "cockpit/security.html>`. In the security area, open PersonalPermissions "
 "-> PersonalSecurityPermissions -> UserSetOwnPassword."
 msgstr ""
 "ユーザーがパスワードを変更できるようにするには、 :bdg-warning:`🔑UserSetOwnPassword` "
-"権限を付与してください。次に権限を設定します :dev-url:`エンジンコックピット </doc/|version|/engine-"
+"権限を付与してください。次に権限を設定します :dev-url:`エンジンコックピット </doc/12.0/engine-"
 "guide/reference/engine-cockpit/security.html>` . "
 "セキュリティ領域で［PersonalPermissions］、［PersonalSecurityPermissions］、［UserSetOwnPassword］を順に開いてください。"
 
@@ -6662,11 +6655,11 @@ msgstr "情報"
 #: ../../source/portal-user-guide/portal-header/index.rst:123
 msgid ""
 "The menu entry :guilabel:`Info` provides you with detailed information "
-"about the |ivy-engine|, the |ivy| Portal and your company's application. "
+"about the Axon Ivy Engine, the Axon Ivy Portal and your company's application. "
 "You might be asked for this information in case you issue a support "
 "request."
 msgstr ""
-":guilabel:`情報` メニューエントリには、|ivy-engine|、|ivy| "
+":guilabel:`情報` メニューエントリには、Axon Ivy Engine、Axon Ivy "
 "Portal、会社のアプリケーションに関する詳細情報が表示されます。サポートリクエストを発行する場合、この情報が求められることがあります。"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:127
@@ -6679,22 +6672,22 @@ msgstr "バージョン情報ダイアログ"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:130
 msgid "Logout"
-msgstr "ログアウト"
+msgstr "Logout"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:132
 msgid ""
 "The menu entry :guilabel:`Logout` will terminate your session in the "
-"|ivy| Portal. You’ll be routed back to the login page of the |ivy| "
+"Axon Ivy Portal. You’ll be routed back to the login page of the Axon Ivy "
 "Portal."
 msgstr ""
-":guilabel:`ログアウト` メニューエントリは、|ivy| Portal でのセッションを終了します。ユーザーは |ivy| Portal"
+":guilabel:`ログアウト` メニューエントリは、Axon Ivy Portal でのセッションを終了します。ユーザーは Axon Ivy Portal"
 " のログインページにリダイレクトされます。"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:137
 msgid ""
-"The |ivy| Portal will also do an automatic logout if you’re inactive for "
+"The Axon Ivy Portal will also do an automatic logout if you’re inactive for "
 "a certain amount of time."
-msgstr "また、ユーザーが一定時間何もしない場合、|ivy| Portal は自動ログアウトを行います。"
+msgstr "また、ユーザーが一定時間何もしない場合、Axon Ivy Portal は自動ログアウトを行います。"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:143
 msgid "Global Search"
@@ -6703,10 +6696,10 @@ msgstr "グローバル検索"
 #: ../../source/portal-user-guide/portal-header/index.rst:145
 msgid ""
 "The Global Search is a convenient tool for you to look up information in "
-"the whole |ivy| Portal. You may search for any keyword. By default, the "
-"|ivy| Portal will search for:"
+"the whole Axon Ivy Portal. You may search for any keyword. By default, the "
+"Axon Ivy Portal will search for:"
 msgstr ""
-"グローバル検索は、|ivy| Portal 全体の情報を検索できる便利なツールです。任意のキーワードを検索できます。|ivy| Portal "
+"グローバル検索は、Axon Ivy Portal 全体の情報を検索できる便利なツールです。任意のキーワードを検索できます。Axon Ivy Portal "
 "は自動的に以下を検索します。"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:149
@@ -6723,10 +6716,11 @@ msgstr "タスク：ID、名前、説明、すべてのカスタム文字列フ�
 
 #: ../../source/portal-user-guide/portal-header/index.rst:155
 msgid ""
-"When you confirm the keyword you’re looking for, the |ivy| Portal will "
+"When you confirm the keyword you’re looking for, the Axon Ivy Portal will "
 "route you to the **Global Search Results** page. For each category a tab "
 "is provided, giving you the results of your search."
-msgstr "検索するキーワードを確定すると、 **グローバル検索結果** ページに転送されます。カテゴリーごとにタブが用意され、検索結果が表示されます。"
+msgstr "検索するキーワードを確定すると、 **グローバル検索結果** ページに転送されます"
+"。カテゴリーごとにタブが用意され、検索結果が表示されます。"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:159
 msgid "|portal-global-search-result-page|"

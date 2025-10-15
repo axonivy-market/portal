@@ -5,7 +5,7 @@ Troubleshooting
 ===============
 
 Here, we present solutions to some of the most common problems related
-to the |ivy| Portal.
+to the Axon Ivy Portal.
 
 If you can't find your solution here there are some other sources which
 could help:
@@ -13,7 +13,7 @@ could help:
 -  Community
 
    The `Community <http://community.axonivy.com/>`__ contains a
-   considerable amount of questions and answers related to |ivy|
+   considerable amount of questions and answers related to Axon Ivy
    Designer and Engine.
 
 -  Stack Overflow
@@ -33,5 +33,5 @@ Portal Installation with Reverse Proxy
 ======================================
 
 If you install the Portal in an environment that uses a reverse proxy (Nginx,
-IIS or Apache httpd), you have to define the proxy in the |ivy-engine|
+IIS or Apache httpd), you have to define the proxy in the Axon Ivy Engine
 configuration.

@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.AfterEach;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
@@ -192,6 +193,30 @@ public class TaskDetailsTest extends BaseTest {
     taskDetailsPage.getNotesWithContent("System note").shouldHave(size(0));
   }
   
+  @AfterEach
+  public void teardown() {
+    denySpecificPortalPermission(PortalPermission.NOTE_READ_ALL_CASE_TASK_DETAILS);
+  }
+  
+  @Test
+  public void testShowNotesWhenGrantNoteReadAllPermissionInTaskDetails() {
+    redirectToRelativeLink(CREATE_NOTES);
+    login(TestAccount.DEMO_USER);
+
+    redirectToNewDashBoard();
+    NavigationHelper.navigateToTaskList();
+    TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
+    taskWidget.openDashboardTaskDetails("User: create note");
+    TaskDetailsPage taskDetailsPage = new TaskDetailsPage();
+    taskDetailsPage.getNotesWithContent("System note").shouldHave(size(0));
+
+    grantSpecificPortalPermission(PortalPermission.NOTE_READ_ALL_CASE_TASK_DETAILS);
+    NavigationHelper.navigateToTaskList();
+    taskWidget = new TopMenuTaskWidgetPage();
+    taskWidget.openDashboardTaskDetails("User: create note");
+    taskDetailsPage = new TaskDetailsPage();
+    taskDetailsPage.getNotesWithContent("System note").shouldHave(size(1));
+    
   @Test
   public void testShowCustomFieldsOfTask() {
     redirectToRelativeLink(createDataForStatisticWidget);

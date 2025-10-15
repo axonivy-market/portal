@@ -227,6 +227,9 @@ Portal General Permissions
 
     - Granted to role Everybody by default.
 
+- _`NoteReadAllCaseTaskDetails`
+    - Permission allows non-admin users to view system notes in case and task details
+
 .. _portal-absence-and-sub-permission:
 
 Portal Absence And Substitute Permissions

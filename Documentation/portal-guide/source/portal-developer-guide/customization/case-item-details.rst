@@ -107,7 +107,7 @@ How to Configure Widgets in Case Details
       -  ``categories`` (case categories)
       -  ``states`` (case business states).
 
-         Refer to :dev-url:`Case business states </doc/|version|/public-api/ch/ivyteam/ivy/workflow/caze/CaseBusinessState.html>` for
+         Refer to :dev-url:`Case business states </doc/12.0/public-api/ch/ivyteam/ivy/workflow/caze/CaseBusinessState.html>` for
          available case business states.
 
    -  The structure of each widget inside the case details layout is stored in variable **Portal.CaseDetails**:
@@ -184,7 +184,7 @@ For the custom widget, we have a new node is ``data`` inside of case details wid
       - Go to the homepage.
       - And then go to case details to check the new custom layout.
    
-      About how to configure Variables, refer to :dev-url:`|ivy| Variables </doc/|version|/designer-guide/configuration/variables.html>`
+      About how to configure Variables, refer to :dev-url:`Axon Ivy Variables </doc/12.0/designer-guide/configuration/variables.html>`
    
 
 Adding New Custom Panels

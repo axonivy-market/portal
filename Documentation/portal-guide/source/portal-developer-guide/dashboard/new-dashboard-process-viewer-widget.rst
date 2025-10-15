@@ -53,6 +53,6 @@ The basic JSON structure of a process viewer widget
 
       ``style`` (optional): add inline style to HTML DOM of the widget
 
-   ``processPath``: the :dev-url:`|ivy| IWebStartable </doc/|version|/public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html>` identifier of the process you want to display
+   ``processPath``: the :dev-url:`Axon Ivy IWebStartable </doc/12.0/public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html>` identifier of the process you want to display
 
    ``showFullscreenMode``: visibility of the fullscreen mode icon. The default value is ``true``, set to ``false`` to hide the icon

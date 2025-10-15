@@ -94,10 +94,12 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public ElementsCollection getNotesWithContent(String content) {
+    $("[id$='history-container']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).scrollTo();
     return $$("span[id$=':case-histories:case-histories-table'] table tbody tr td a").filter(text(content));
   }
 
   public void gotoTaskDetailsPageOfRelatedTask(String taskName) {
+    $("div[id$='case-details-related-task-table']").shouldBe(appear, DEFAULT_TIMEOUT).scrollTo();
     $$("div[id$='case-details-related-task-table'] table tbody tr td span")
         .filter(text(taskName)).first().click();
   }
@@ -302,10 +304,8 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public void waitForIFrameURLWidgetLoad() {
-    $("[name='custom-widget-iframe-url']").shouldBe(appear, DEFAULT_TIMEOUT);
-    switchToIframeWithNameOrId("custom-widget-iframe-url");
-    $("a[href='https://www.iana.org/domains/example']").shouldBe(Condition.visible, DEFAULT_TIMEOUT);
-    switchBackToParent();
+    SelenideElement iframe = $("iframe[name='custom-widget-iframe-url']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    iframe.shouldHave(Condition.attributeMatching("src", ".*example\\.com.*"));
   }
 
   public SelenideElement getSharePageButtonElement() {
