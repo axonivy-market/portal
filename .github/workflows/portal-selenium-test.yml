@@ -410,16 +410,13 @@ jobs:
           uses: actions/github-script@v8
           with:
             script: |
-              // Import required Node.js modules for file system operations
               const fs = require('fs');                         // File system operations (read files, check existence)
               const path = require('path');                     // Path manipulation utilities
-              // Note: Using regex parsing instead of XML parser to avoid external dependencies
 
               try {
-                // === STEP 1: Locate test result XML files ===
-                // Define the directory where Maven Surefire plugin stores test results
+                // === STEP 1: LOCATE TEST RESULT XML FILES ====================================
                 const reportsDir = 'AxonIvyPortal/portal-selenium-test/target/surefire-reports';
-                let testResultFiles = [];                  // Array to store paths of found XML files
+                let testResultFiles = [];             // Array to store paths of found XML files
 
                 // Check if the reports directory exists (tests may not have run)
                 if (fs.existsSync(reportsDir)) {
@@ -434,7 +431,7 @@ jobs:
                   console.log(`Reports directory does not exist: ${reportsDir}`);
                 }
 
-                // === STEP 2: Handle case where no test files are found ===
+                // === STEP 2: HANDLE CASE WHERE NO TEST FILES ARE FOUND ====================================
                 if (testResultFiles.length === 0) {
                   // Display message indicating no test results were found
                   await core.summary
@@ -444,30 +441,53 @@ jobs:
                   return;                                             // Exit early - nothing to process
                 }
 
-                // === STEP 3: Initialize variables for test result analysis ===
-                let totalFailures = 0;                      // Counter for total failed tests
-                let totalErrors = 0;                        // Counter for total test errors
+                // === STEP 3: INITIALIZE VARIABLES FOR TEST RESULT ANALYSIS ====================================
+                let totalFailures = 0;
+                let totalErrors = 0;
                 let failedTests = [];                       // Array to store detailed info about failed tests
 
-                // === Helper function to extract attribute value from XML tag ===
+                // === HELPER FUNCTION to extract attribute value from XML tag ===
                 function extractAttribute(xmlContent, tagName, attributeName) {
                   // Create regex to find the tag and extract the attribute value
                   const regex = new RegExp(`<${tagName}[^>]*\\s${attributeName}=["']([^"']*)["']`, 'i');
+                  /*
+                  *  <${tagName} - Matches the opening of an XML tag with the specified tag name
+                  *  [^>]* - Matches any characters except > (other attributes or spaces)
+                  *  \\s - Matches whitespace (space, tab, newline) before the target attribute
+                  *  ${attributeName}= - Matches the attribute name followed by equals sign
+                  *  ["'] - Matches either a double quote " or single quote '
+                  *  ([^"']*) - Capture group that matches any characters except quotes
+                  *  ["'] - Matches the closing quote (either " or ')
+                  */
                   const match = xmlContent.match(regex);
                   return match ? match[1] : null;
                 }
 
-                // === Helper function to extract text content between XML tags ===
+                // === HELPER FUNCTION to extract text content between XML tags ===
                 function extractTextContent(xmlContent, tagName) {
                   const regex = new RegExp(`<${tagName}[^>]*>([\\s\\S]*?)<\\/${tagName}>`, 'i');
+                  /*
+                  * <${tagName} - Matches the opening of an XML tag with the specified tag name
+                  * [^>]* - Matches any characters except > (handles attributes in the opening tag)
+                  * > - Matches the closing > of the opening tag
+                  * ([\\s\\S]*?) - Capture group to extract text content inside the tag
+                  *
+                  *     ( and ) - Creates a capture group to extract the content
+                  *     \\s - Matches any whitespace character (space, tab, newline, etc.)
+                  *     \\S - Matches any non-whitespace character
+                  *     [\\s\\S] - Matches ANY character (whitespace OR non-whitespace = everything)
+                  *     * - Zero or more of the previous pattern
+                  *     ? - Makes it non-greedy (matches as little as possible)
+                  *
+                  * <\\/${tagName}> - Matches the closing tag
+                  */
                   const match = xmlContent.match(regex);
                   return match ? match[1].trim() : null;
                 }
 
-                // === STEP 4: Process each test result XML file ===
+                // === STEP 4: PROCESS EACH TEST RESULT XML FILE ====================================
                 for (const file of testResultFiles) {
                   try {
-                    // Read the XML file content as text
                     const content = fs.readFileSync(file, 'utf8');
 
                     // === Extract test suite information using regex ===
@@ -531,7 +551,7 @@ jobs:
                   }
                 }
 
-                // === STEP 5: Build summary text for display ===
+                // === STEP 5: BUILD SUMMARY TEXT FOR DISPLAY ==============================
                 let summaryText = `## 🧪 Test Results Summary\n\n`;       // Start with heading
 
                 // === Case A: All tests passed ===
@@ -562,14 +582,13 @@ jobs:
                   summaryText += '```\n';                                 // End code block
                 }
 
-                // === STEP 6: Write the complete summary to GitHub ===
+                // === STEP 6: WRITE THE COMPLETE SUMMARY TO GITHUB =============================
                 await core.summary
                   .addRaw(summaryText)                                    // Add the formatted summary text
                   .write();                                               // Write to GitHub Actions summary
 
               } catch (error) {
-                // === Error handling for the entire process ===
-                console.error('Error parsing test results:', error);     // Log error for debugging
+                console.error('Error parsing test results:', error);     
                 // Display user-friendly error message in summary
                 await core.summary
                   .addHeading('🔍 Test Results')                          // Error section heading
