@@ -4241,7 +4241,8 @@
           }
         },
         "request" : {
-          "name" : "Custom Statistics Widget"
+          "name" : "Custom Statistics Widget",
+          "isVisibleOnStartList" : false
         }
       },
       "visual" : {
