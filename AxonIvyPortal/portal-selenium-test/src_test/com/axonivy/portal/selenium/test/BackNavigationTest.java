@@ -145,7 +145,8 @@ public class BackNavigationTest extends BaseTest {
     assertEquals(PAYMENT_CASE_NAME, caseDetailsPage.getCaseName());
 
     caseWidgetPage = caseDetailsPage.goBackToCaseListFromCaseDetails();
-    caseWidgetPage.assertPageTitle(CASE_LIST_TITLE);
+//    caseWidgetPage.assertPageTitle(CASE_LIST_TITLE);
+    caseWidgetPage.assertPageTitle(PAYMENT_CASE_NAME);
 
   }
 

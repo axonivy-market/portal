@@ -38,12 +38,12 @@ jobs:
               // === STEP 1: FIND THE LAST SUCCESSFUL WORKFLOW RUN ==============================
               // Query GitHub API to get the most recent successful workflow run for this branch
               const { data: workflowRuns } = await github.rest.actions.listWorkflowRuns({
-                owner: context.repo.owner,               // Repository owner (e.g., 'axonivy-market')
-                repo: context.repo.repo,                 // Repository name (e.g., 'portal')
+                owner: context.repo.owner,           // Repository owner (e.g., 'axonivy-market')
+                repo: context.repo.repo,             // Repository name (e.g., 'portal')
                 workflow_id: 'portal-selenium-test.yml', // This specific workflow file
-                branch: branch,                          // Only runs from current branch
-                status: 'success',                       // Only successful runs
-                per_page: 1                              // We only need the most recent one
+                branch: branch,                      // Only runs from current branch
+                status: 'success',                   // Only successful runs
+                per_page: 1                          // We only need the most recent one
               });
 
               // Initialize variables to store last successful build information
@@ -412,12 +412,13 @@ jobs:
             script: |
               const fs = require('fs');
               const path = require('path');
-              
+              const { XMLParser } = require('fast-xml-parser');
+
               try {
                 // Find all test result XML files
                 const reportsDir = 'AxonIvyPortal/portal-selenium-test/target/surefire-reports';
                 let testResultFiles = [];
-                
+
                 if (fs.existsSync(reportsDir)) {
                   const files = fs.readdirSync(reportsDir);
                   testResultFiles = files
@@ -426,7 +427,7 @@ jobs:
                 } else {
                   console.log(`Reports directory does not exist: ${reportsDir}`);
                 }
-                
+
                 if (testResultFiles.length === 0) {
                   await core.summary
                     .addHeading('🔍 Test Results')
@@ -434,84 +435,67 @@ jobs:
                     .write();
                   return;
                 }
-                
+
                 let totalFailures = 0;
                 let totalErrors = 0;
                 let failedTests = [];
-                
-                // Parse each XML file
+
+                const parser = new XMLParser({
+                  ignoreAttributes: false,
+                  attributeNamePrefix: '',
+                  allowBooleanAttributes: true
+                });
+
                 for (const file of testResultFiles) {
                   try {
                     const content = fs.readFileSync(file, 'utf8');
-                    // Extract test suite info using more flexible regex
-                    const testSuiteMatch = content.match(/<testsuite[^>]*>/);
-                    
-                    if (testSuiteMatch) {
-                      const testSuiteElement = testSuiteMatch[0];
-                      
-                      // Extract individual attributes more reliably
-                      const testsMatch = testSuiteElement.match(/tests="(\d+)"/);
-                      const failuresMatch = testSuiteElement.match(/failures="(\d+)"/);
-                      const errorsMatch = testSuiteElement.match(/errors="(\d+)"/);
-                      const skippedMatch = testSuiteElement.match(/skipped="(\d+)"/);
-                      const nameMatch = testSuiteElement.match(/name="([^"]*)"/);
-                      const timeMatch = testSuiteElement.match(/time="([^"]*)"/);
-                      
-                      const tests = testsMatch ? parseInt(testsMatch[1]) : 0;
-                      const failures = failuresMatch ? parseInt(failuresMatch[1]) : 0;
-                      const errors = errorsMatch ? parseInt(errorsMatch[1]) : 0;
-                      const skipped = skippedMatch ? parseInt(skippedMatch[1]) : 0;
-                      const suiteName = nameMatch ? nameMatch[1] : 'Unknown Suite';
-                      const time = timeMatch ? timeMatch[1] : '0';
-                      
+                    const result = parser.parse(content);
+
+                    // Support both <testsuite> and <testsuites>
+                    let suites = [];
+                    if (result.testsuite) {
+                      suites = [result.testsuite];
+                    } else if (result.testsuites && result.testsuites.testsuite) {
+                      suites = Array.isArray(result.testsuites.testsuite)
+                        ? result.testsuites.testsuite
+                        : [result.testsuites.testsuite];
+                    }
+
+                    suites.forEach(suite => {
+                      const suiteName = suite.name || 'Unknown Suite';
+                      const failures = parseInt(suite.failures || 0);
+                      const errors = parseInt(suite.errors || 0);
                       totalFailures += failures;
                       totalErrors += errors;
-                      
-                      // Method 1: Simple approach - find all testcase elements and check if they contain failure/error
-                      const allTestCases = content.match(/<testcase[^>]*>[\s\S]*?<\/testcase>/g);
-                      
-                      if (allTestCases) {
-                        allTestCases.forEach((testCaseXml, index) => {
-                          // Extract classname and name from the opening tag
-                          const classnameMatch = testCaseXml.match(/classname="([^"]*)"/);
-                          const nameMatch = testCaseXml.match(/name="([^"]*)"/);
-                          
-                          if (classnameMatch && nameMatch) {
-                            const className = classnameMatch[1];
-                            const testName = nameMatch[1];
-                            
-                            // Check if this testcase contains failure or error
-                            const hasFailure = testCaseXml.includes('<failure') || testCaseXml.includes('<error');
-                            
-                            if (hasFailure) {
-                              failedTests.push({
-                                suite: suiteName,
-                                class: className,
-                                test: testName,
-                                time: '0',
-                                message: 'Test failed'
-                              });
-                            }
-                          } else {
-                            console.log(`Could not extract classname/name from testcase ${index + 1}`);
-                          }
-                        });
-                      } else {
-                        console.log('No testcase elements found');
-                      }
-                    }
+
+                      let testcases = suite.testcase || [];
+                      if (!Array.isArray(testcases)) testcases = [testcases];
+
+                      testcases.forEach(tc => {
+                        const hasFailure = tc.failure || tc.error;
+                        if (hasFailure) {
+                          failedTests.push({
+                            suite: suiteName,
+                            class: tc.classname || 'UnknownClass',
+                            test: tc.name || 'UnknownTest',
+                            time: tc.time || '0',
+                            message: (tc.failure && tc.failure['#text']) || (tc.error && tc.error['#text']) || 'Test failed'
+                          });
+                        }
+                      });
+                    });
                   } catch (parseError) {
                     console.error(`Error parsing ${file}:`, parseError.message);
                   }
                 }
-                
+
                 let summaryText = `## 🧪 Test Results Summary\n\n`;
 
                 if (totalFailures === 0 && totalErrors === 0) {
                   summaryText += `🎉 **All tests passed!**`;
                 } else {
                   summaryText += `❌ **Failed Tests (${failedTests.length})**\n\n`;
-                  
+
                   // Group by test class for better organization
                   const groupedFailures = {};
                   failedTests.forEach(test => {
@@ -521,7 +505,7 @@ jobs:
                     }
                     groupedFailures[key].push(test);
                   });
-                  
+
                   summaryText += '```\n';
                   for (const [className, tests] of Object.entries(groupedFailures)) {
                     summaryText += `${className}\n`;
@@ -530,11 +514,11 @@ jobs:
                   }
                   summaryText += '```\n';
                 }
-                
+
                 await core.summary
                   .addRaw(summaryText)
                   .write();
-                  
+
               } catch (error) {
                 console.error('Error parsing test results:', error);
                 await core.summary
