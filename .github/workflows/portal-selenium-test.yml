@@ -80,7 +80,6 @@ jobs:
                   
                   comparisonInfo = `📊 Comparing with last successful build: [#${lastRun.run_number}](${buildUrl}) - [${lastSuccessfulSha.substring(0, 7)}](https://github.com/${context.repo.owner}/${context.repo.repo}/commit/${lastSuccessfulSha}) (${lastSuccessfulDateFormatted})`;
                 } catch (compareError) {
-                  console.log('Could not compare with last successful build, showing recent commits instead');
                   const { data: recentCommits } = await github.rest.repos.listCommits({
                     owner: context.repo.owner,
                     repo: context.repo.repo,
@@ -392,11 +391,9 @@ jobs:
                 
                 if (fs.existsSync(reportsDir)) {
                   const files = fs.readdirSync(reportsDir);
-                  console.log(`Found files in ${reportsDir}:`, files);
                   testResultFiles = files
                     .filter(file => file.startsWith('TEST-') && file.endsWith('.xml'))
                     .map(file => path.join(reportsDir, file));
-                  console.log(`Filtered test result files:`, testResultFiles);
                 } else {
                   console.log(`Reports directory does not exist: ${reportsDir}`);
                 }
@@ -409,18 +406,14 @@ jobs:
                   return;
                 }
                 
-                let totalTests = 0;
                 let totalFailures = 0;
                 let totalErrors = 0;
-                let totalSkipped = 0;
                 let failedTests = [];
                 
                 // Parse each XML file
                 for (const file of testResultFiles) {
                   try {
                     const content = fs.readFileSync(file, 'utf8');
-                    console.log(`Parsing file: ${file}`);
-                    
                     // Extract test suite info using more flexible regex
                     const testSuiteMatch = content.match(/<testsuite[^>]*>/);
                     
@@ -442,26 +435,14 @@ jobs:
                       const suiteName = nameMatch ? nameMatch[1] : 'Unknown Suite';
                       const time = timeMatch ? timeMatch[1] : '0';
                       
-                      totalTests += tests;
                       totalFailures += failures;
                       totalErrors += errors;
-                      totalSkipped += skipped;
-                      
-                      console.log(`Suite: ${suiteName}, Tests: ${tests}, Failures: ${failures}, Errors: ${errors}, Skipped: ${skipped}`);
-                      console.log(`Testsuite element: ${testSuiteElement}`);
-                      
-                      // Find failed test cases - try alternative approach
-                      console.log(`Looking for failed tests in suite: ${suiteName}`);
                       
                       // Method 1: Simple approach - find all testcase elements and check if they contain failure/error
                       const allTestCases = content.match(/<testcase[^>]*>[\s\S]*?<\/testcase>/g);
                       
                       if (allTestCases) {
-                        console.log(`Found ${allTestCases.length} testcase elements`);
-                        
                         allTestCases.forEach((testCaseXml, index) => {
-                          console.log(`Processing testcase ${index + 1}`);
-                          
                           // Extract classname and name from the opening tag
                           const classnameMatch = testCaseXml.match(/classname="([^"]*)"/);
                           const nameMatch = testCaseXml.match(/name="([^"]*)"/);
@@ -470,12 +451,8 @@ jobs:
                             const className = classnameMatch[1];
                             const testName = nameMatch[1];
                             
-                            console.log(`Test: ${className}.${testName}`);
-                            
                             // Check if this testcase contains failure or error
                             const hasFailure = testCaseXml.includes('<failure') || testCaseXml.includes('<error');
-                            
-                            console.log(`Has failure/error: ${hasFailure}`);
                             
                             if (hasFailure) {
                               failedTests.push({
@@ -485,7 +462,6 @@ jobs:
                                 time: '0',
                                 message: 'Test failed'
                               });
-                              console.log(`Added failed test: ${className}.${testName}`);
                             }
                           } else {
                             console.log(`Could not extract classname/name from testcase ${index + 1}`);
@@ -500,13 +476,8 @@ jobs:
                   }
                 }
                 
-                // Build summary
-                const successCount = totalTests - totalFailures - totalErrors - totalSkipped;
                 let summaryText = `## 🧪 Test Results Summary\n\n`;
-                
-                console.log(`Final totals - Tests: ${totalTests}, Failures: ${totalFailures}, Errors: ${totalErrors}, Skipped: ${totalSkipped}, Success: ${successCount}`);
-                console.log(`Failed tests found: ${failedTests.length}`);
-                
+
                 if (totalFailures === 0 && totalErrors === 0) {
                   summaryText += `🎉 **All tests passed!**`;
                 } else {
