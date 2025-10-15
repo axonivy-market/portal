@@ -99,7 +99,7 @@
           <p:tooltip for="document-preview" trackMouse="true" hideEvent="mouseleave click"
             value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/Preview')}" />
         </p:commandLink>
-        <p:commandLink id="edit-filename" ariaLabel="#{cc.attrs.renameText}"
+        <p:commandLink id="edit-filename" ariaLabel="#{cc.attrs.renameText}" immediate="true"
           rendered="#{cc.attrs.renameRendered}" styleClass="#{cc.attrs.renameStyleClass}"
           actionListener="#{data.setSelectedDocument(document)}"
           update="#{cc.clientId}:document-renaming-dialog"
