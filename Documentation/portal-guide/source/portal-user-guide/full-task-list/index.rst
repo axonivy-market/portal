@@ -273,7 +273,7 @@ HowTo: Show Custom Fields
 ---------------------------
 
 .. note:: 
-   Grant permission :bdg-warning:`🔑TaskDisplayCustomFieldsAction <TaskDisplayCustomFieldsAction>` to allow a user to see all custom fields of a task.
+   Grant permission :bdg-ref-warning:`🔑TaskDisplayCustomFieldsAction <TaskDisplayCustomFieldsAction>` to allow a user to see Custom Fields link in Actions panel.
 
 #. Open the task details of a task
 
