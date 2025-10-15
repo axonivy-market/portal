@@ -28,6 +28,7 @@ import com.axonivy.portal.components.util.Locales;
 import com.axonivy.portal.components.util.RoleUtils;
 import com.axonivy.portal.service.IvyTranslationService;
 
+import ch.ivy.addon.portal.generic.bean.IMultiLanguage;
 import ch.ivy.addon.portalkit.comparator.ApplicationIndexAscendingComparator;
 import ch.ivy.addon.portalkit.configuration.Application;
 import ch.ivy.addon.portalkit.dto.DisplayName;
@@ -38,12 +39,13 @@ import ch.ivy.addon.portalkit.service.ApplicationMultiLanguage;
 import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
 import ch.ivy.addon.portalkit.util.DisplayNameAdaptor;
 import ch.ivy.addon.portalkit.util.DisplayNameConvertor;
+import ch.ivy.addon.portalkit.util.LanguageUtils;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 
 @ManagedBean
 @ViewScoped
-public class ThirdPartyApplicationBean implements Serializable {
+public class ThirdPartyApplicationBean implements Serializable, IMultiLanguage {
   private static final long serialVersionUID = 1L;
 
   private List<String> selectedApplicationPermissions;
@@ -131,7 +133,7 @@ public class ThirdPartyApplicationBean implements Serializable {
     this.dialogTitle = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/adminSettings/editApplication");
 
     try {
-      Locale currentLocale = new Locales().getCurrentLocale();
+      Locale currentLocale = LanguageUtils.getUserLocale();
       DisplayNameAdaptor displayNameAdaptor = new DisplayNameAdaptor(application.getDisplayName(), currentLocale);
       this.displayNameInCurrentLanguage = displayNameAdaptor.getDisplayNameAsString();
 
