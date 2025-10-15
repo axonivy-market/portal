@@ -12,7 +12,7 @@
     oncomplete="PF('task-custom-fields-dialog').show()" update="#{cc.clientId}:task-custom-fields-dialog" />
   <p:dialog id="task-custom-fields-dialog" widgetVar="task-custom-fields-dialog"
     header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/customFieldsDialog', [cc.attrs.taskId])}"
-    dynamic="true" closable="true"
+    dynamic="true" closable="true" closeOnEscape="true"
     appendTo="@(body)"
     modal="true" responsive="true" fitViewport="true"
     styleClass="task-custom-fields-dialog">
