@@ -29,7 +29,8 @@ import ch.ivyteam.ivy.security.exec.Sudo;
 public class LanguageService {
 
   private static LanguageService instance;
-
+  private String DEFAULT_LOCALE_CODE = "en";
+  
   private LanguageService() {}
 
   public static LanguageService getInstance() {
@@ -81,16 +82,18 @@ public class LanguageService {
 
     if (hasCountry(locale)) {
       String language = locale.getLanguage();
-      return isLanguageSupported(language) ? LocaleUtils.toLocale(language) : LocaleUtils.toLocale(Locale.ENGLISH);
+      return isLanguageSupported(language) ? LocaleUtils.toLocale(language) : LocaleUtils.toLocale(DEFAULT_LOCALE_CODE);
     }
-    return LocaleUtils.toLocale(Locale.ENGLISH);
+    return LocaleUtils.toLocale(DEFAULT_LOCALE_CODE);
   }
 
   public String getUserLanguage() {
     String languageTag = loadLanguage(IUser::getLanguage);
+    
     if (languageTag == StringUtils.EMPTY) {
     return getDefaultLanguage().toLanguageTag();
     }
+    
     Locale userLocale = LocaleUtils.toLocale(languageTag);
     if (getContentLocales().contains(userLocale)) {
       return languageTag;
