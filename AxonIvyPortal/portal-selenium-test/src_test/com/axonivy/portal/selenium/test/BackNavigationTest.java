@@ -145,8 +145,7 @@ public class BackNavigationTest extends BaseTest {
     assertEquals(PAYMENT_CASE_NAME, caseDetailsPage.getCaseName());
 
     caseWidgetPage = caseDetailsPage.goBackToCaseListFromCaseDetails();
-//    caseWidgetPage.assertPageTitle(CASE_LIST_TITLE);
-    caseWidgetPage.assertPageTitle(PAYMENT_CASE_NAME);
+    caseWidgetPage.assertPageTitle(CASE_LIST_TITLE);
 
   }
 
@@ -170,8 +169,7 @@ public class BackNavigationTest extends BaseTest {
 
 
     caseWidgetPage = caseDetailsPage.goBackToCaseListFromCaseDetails();
-//    caseWidgetPage.assertPageTitle(CASE_LIST_TITLE);
-    caseWidgetPage.assertPageTitle("MAKE TEST FAILED TO TEST BUILD REPORT");
+    caseWidgetPage.assertPageTitle(CASE_LIST_TITLE);
 
   }
 
