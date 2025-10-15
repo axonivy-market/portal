@@ -59,7 +59,6 @@ public class ExternalLinkTest extends BaseTest {
     String iconClass = "si-server-search";
     processPage.addExternalLink(TEST_PROCESS, "https://www.google.com", iconClass, "test-welcome-widget-image.jpg");
 
-//    $("i." + iconClass).should(Condition.appear);
-    $("i." + iconClass).should(Condition.disappear); // make test failed
+    $("i." + iconClass).should(Condition.appear);
   }
 }

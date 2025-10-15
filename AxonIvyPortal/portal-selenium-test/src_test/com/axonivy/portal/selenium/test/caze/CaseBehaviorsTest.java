@@ -88,7 +88,6 @@ public class CaseBehaviorsTest extends BaseTest {
     CaseDetailsPage caseDetailsPage = caseWidgetPage.openCaseDetailsViaAction(0);
     caseDetailsPage.clickOnRelatedCase(TAKE_ORDER_AND_MAKE_PIZZA);
     additionalCaseDetailsPage = new AdditionalCaseDetailsPage();
-//    assertTrue(additionalCaseDetailsPage.isDisplayed());
-    assertFalse(additionalCaseDetailsPage.isDisplayed()); // make test failed on purpose to test script showing failed tests
+    assertTrue(additionalCaseDetailsPage.isDisplayed());
   }
 }
