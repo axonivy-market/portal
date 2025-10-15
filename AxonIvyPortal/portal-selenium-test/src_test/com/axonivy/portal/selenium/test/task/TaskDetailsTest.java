@@ -15,10 +15,12 @@ import java.util.Locale;
 import org.apache.commons.lang.StringUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.AfterEach;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.DateTimePattern;
+import com.axonivy.portal.selenium.common.NavigationHelper;
 import com.axonivy.portal.selenium.common.TaskState;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.TestRole;
@@ -48,6 +50,7 @@ public class TaskDetailsTest extends BaseTest {
 
   private static final String ACCESS_TASK_DETAILS = "ACCESS_TASK_DETAILS";
   private static final String COMMENT_CONTENT = "Test comment";
+  private static final String CREATE_NOTES = "InternalSupport/14B2FC03D2E87141/processWithSystemNote.ivp";
 
   private HomePage homePage;
   private TaskWidgetPage taskWidgetPage;
@@ -374,5 +377,30 @@ public class TaskDetailsTest extends BaseTest {
     taskDetailsPage = openDetailsPageOfFirstTask();
     String eventData = taskDetailsPage.openWorkflowEventDialog();
     assertTrue(eventData.contains("admin"));
+  }
+  
+  @AfterEach
+  public void teardown() {
+    denySpecificPortalPermission(PortalPermission.NOTE_READ_ALL_CASE_TASK_DETAILS);
+  }
+  
+  @Test
+  public void testShowNotesWhenGrantNoteReadAllPermissionInTaskDetails() {
+    redirectToRelativeLink(CREATE_NOTES);
+    login(TestAccount.DEMO_USER);
+
+    redirectToNewDashBoard();
+    NavigationHelper.navigateToTaskList();
+    TaskWidgetPage taskWidget = new TaskWidgetPage();
+    taskWidget.openTaskDetailsFromActionMenu(0);
+    TaskDetailsPage taskDetailsPage = new TaskDetailsPage();
+    taskDetailsPage.getNotesWithContent("System note").shouldHave(size(0));
+
+    grantSpecificPortalPermission(PortalPermission.NOTE_READ_ALL_CASE_TASK_DETAILS);
+    NavigationHelper.navigateToTaskList();
+    taskWidget = new TaskWidgetPage();
+    taskWidget.openTaskDetailsFromActionMenu(0);
+    taskDetailsPage = new TaskDetailsPage();
+    taskDetailsPage.getNotesWithContent("System note").shouldHave(size(1));
   }
 }

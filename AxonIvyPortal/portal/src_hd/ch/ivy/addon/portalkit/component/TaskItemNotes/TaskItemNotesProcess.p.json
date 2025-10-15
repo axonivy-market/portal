@@ -144,10 +144,11 @@
           "code" : [
             "import ch.ivy.addon.portalkit.service.GlobalSettingService;",
             "import ch.ivy.addon.portalkit.util.PermissionUtils;",
-            "",
             "GlobalSettingService globalSettingService = new GlobalSettingService();",
+            "boolean isAdmin = PermissionUtils.isSessionUserHasAdminRole();",
+            "boolean isUserHasPermissionNoteReadAllCaseTaskDetails = PermissionUtils.checkNoteReadAllCaseTaskDetailsPermission();",
             "out.showSystemNotesChkbox = !globalSettingService.findHideSystemNotesFromHistorySettingValue();",
-            "out.showSystemNotes = PermissionUtils.isSessionUserHasAdminRole();"
+            "out.showSystemNotes = isAdmin || isUserHasPermissionNoteReadAllCaseTaskDetails;"
           ]
         }
       },
