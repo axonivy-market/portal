@@ -1,6 +1,7 @@
 package ch.ivy.addon.portalkit.util;
 
 import java.util.ArrayList;
+
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
@@ -13,7 +14,6 @@ import org.apache.commons.lang3.Strings;
 
 import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
-import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.language.LanguageManager;
 import ch.ivyteam.ivy.security.ISecurityContext;
 
@@ -46,21 +46,12 @@ public final class LanguageUtils {
   }
 
   public static Optional<DisplayName> findNameInUserLanguage(List<DisplayName> names) {
-    return findNameByLanguage(names, getUserLanguage());
+    return findNameByLanguage(names, LanguageService.getInstance().getUserLanguage());
   }
 
   public static Optional<DisplayName> findNameByLanguage(List<DisplayName> names, String language) {
     return CollectionUtils.emptyIfNull(names).stream()
         .filter(name -> Strings.CI.equals(name.getLocale().toLanguageTag(), language)).findFirst();
-  }
-
-  public static String getUserLanguage() {
-    return LanguageService.getInstance().getUserLanguage();
-  }
-
-  public static Locale getUserLocale() {
-    Locale userLocale = Ivy.session().getContentLocale();
-    return LanguageService.getInstance().convertToPortalUserLocale(userLocale);
   }
 
   public static NameResult collectMultilingualNames(List<DisplayName> names, String name) {
@@ -69,7 +60,7 @@ public final class LanguageUtils {
     if (nameInUserLanguage.isPresent()) {
       nameInUserLanguage.get().setValue(name);
     } else {
-      DisplayName newName = new DisplayName(LocaleUtils.toLocale(getUserLanguage()), name);
+      DisplayName newName = new DisplayName(LanguageService.getInstance().getUserLocale(), name);
       names.add(newName);
     }
     return new NameResult(names, name);
