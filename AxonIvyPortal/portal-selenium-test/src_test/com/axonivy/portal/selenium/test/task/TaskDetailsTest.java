@@ -216,7 +216,8 @@ public class TaskDetailsTest extends BaseTest {
     taskWidget.openDashboardTaskDetails("User: create note");
     taskDetailsPage = new TaskDetailsPage();
     taskDetailsPage.getNotesWithContent("System note").shouldHave(size(1));
-    
+  }
+  
   @Test
   public void testShowCustomFieldsOfTask() {
     redirectToRelativeLink(createDataForStatisticWidget);
