@@ -454,7 +454,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     allowPng: Nur das png Format wird unterstützt
     apply: Anwenden
     at: am
-    author: Author
+    author: Autor
     back: Zurück
     backToCaseMap: Zurück zur Case Map
     backgroundColor: Hintergrundfarbe
@@ -1181,6 +1181,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     afterEscalation: Nach Eskalation
     businessCase: Vorgang
     completedOn: Erledigt am
+    customFields: Benutzerdefinierte Felder
+    customFieldsDialog: 'Benutzerdefinierte Felder der Aufgabe #{0}'
     delayedUntil: Sperrfrist
     deleteFile: Datei löschen
     documents: Dokumente
