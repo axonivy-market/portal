@@ -5121,8 +5121,19 @@ body.light .image-process-container .image-process-item .card-item.card.image-wi
   display: none;
 }
 
+.image-process-container .image-process-item .card-item.card.image-widget-mode .image-view-form .process-description{
+  container-type: size;
+  container-name: process-description-container;
+}
+
 .image-process-container .image-process-item .card-item.card.image-widget-mode .image-view-form .process-description {
   height: 100%;
+}
+
+@container process-description-container (max-height: 3px) {
+  .process-item-description {
+    display: none;
+  }
 }
 
 @supports (-webkit-touch-callout: none) {

@@ -1449,6 +1449,10 @@ body.in-dialog .ui-widget-overlay {
   border: 1px solid var(--card-dialog-border-color);
 }
 
+.search-results-tabview .process-list-container {
+  background-color: var(--process-list-compact-mode-background-color);
+}
+
 /* Dashboard Excel export */
 .dashboard-excel-export-form {
   float: left;
