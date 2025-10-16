@@ -119,7 +119,7 @@
     
     <p:commandLink id="task-custom-fields-command" rendered="#{taskActionBean.showCustomFieldsAction}"
       styleClass="option-item ui-menu-items" onstart="event.stopPropagation();" process="@this"
-      ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/customFieldsDialog')}"
+      ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/customFieldsDialog', [task.id])}"
       update="@parent #{cc.attrs.componentToUpdate} @widgetVar(task-custom-fields-dialog)"
       actionListener="#{taskActionBean.updateSelectedTaskItemId(isShowInTaskList, task.id)}"
       oncomplete="#{cc.attrs.onCustomFieldsDialogComplete}" global="false" >
