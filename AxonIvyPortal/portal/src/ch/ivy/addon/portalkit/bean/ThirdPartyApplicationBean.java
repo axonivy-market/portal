@@ -501,20 +501,6 @@ public class ThirdPartyApplicationBean implements Serializable, IMultiLanguage {
     }
   }
 
-  public boolean isRequiredField(DisplayName displayName) {
-    String currentLanguage = UserUtils.getUserLanguage();
-    String displayLanguage = displayName.getLocale().getLanguage();
-    return currentLanguage.equals(displayLanguage);
-  }
-
-  public boolean isShowTranslation(DisplayName title) {
-    return IvyTranslationService.getInstance().isShowTranslation(title.getLocale());
-  }
-
-  public boolean isFocus(DisplayName title) {
-    return !isShowTranslation(title) && title.getLocale().getLanguage().equals(UserUtils.getUserLanguage());
-  }
-
   public List<String> getLanguageList() {
     if (this.languages == null) {
       initApplicationLanguages();

@@ -95,10 +95,24 @@ public class LanguageService {
     }
     
     Locale userLocale = LocaleUtils.toLocale(languageTag);
-    if (getContentLocales().contains(userLocale)) {
+    if (isLocaleSupported(userLocale)) {
+      
       return languageTag;
     }
     return getSupportedLanguages().contains(userLocale.getLanguage()) ? userLocale.getLanguage() : getDefaultLanguage().toLanguageTag();
+  }
+
+  public Locale getUserLocale() {
+    String sessionUserId = getSessionUserId();
+    IvyCacheService cacheService = IvyCacheService.getInstance();
+    Optional<Object> result = cacheService.getSessionCacheValue(IvyCacheIdentifier.PORTAL_USER_LOCALE,
+        sessionUserId);
+    if (result.isPresent()) {
+      return (Locale) result.get();
+    }
+    Locale userLocale = convertToPortalUserLocale(Ivy.session().getContentLocale());
+    cacheService.setSessionCache(IvyCacheIdentifier.PORTAL_USER_LOCALE, sessionUserId, userLocale);
+    return userLocale;
   }
   
   private List<String> getSupportedLanguages() {
