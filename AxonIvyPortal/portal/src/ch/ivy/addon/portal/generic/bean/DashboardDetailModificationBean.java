@@ -41,6 +41,7 @@ import org.apache.commons.lang3.Strings;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.primefaces.PrimeFaces;
 import org.primefaces.event.ColumnResizeEvent;
+import org.primefaces.event.FileUploadEvent;
 
 import com.axonivy.portal.bo.Statistic;
 import com.axonivy.portal.components.dto.UserDTO;
@@ -53,6 +54,7 @@ import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 import com.axonivy.portal.service.IvyTranslationService;
 import com.axonivy.portal.service.StatisticService;
 import com.axonivy.portal.util.DashboardCloneUtils;
+import com.axonivy.portal.util.ImageUploadUtils;
 import com.axonivy.portal.util.WelcomeWidgetUtils;
 import com.google.common.base.Predicate;
 
@@ -100,6 +102,7 @@ import ch.ivyteam.ivy.cm.ContentObject;
 import ch.ivyteam.ivy.cm.ContentObjectValue;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
+import ch.ivyteam.util.Pair;
 
 @ViewScoped
 @ManagedBean
@@ -1277,5 +1280,39 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
 
   public boolean canEditStatistic() {
     return PermissionUtils.hasStatisticWritePublicPermission() && isPublicDashboard;
+  }
+  
+  // Navigation Dashboard Widget Image Upload Methods
+  public void handleImageUpload(FileUploadEvent event) {
+    if (this.widget instanceof NavigationDashboardWidget) {
+      NavigationDashboardWidget navWidget = (NavigationDashboardWidget) this.widget;
+      
+      // Remove previous image if exists
+      if (StringUtils.isNotBlank(navWidget.getImageLocation())) {
+        ImageUploadUtils.removeImage(navWidget.getImageLocation(), navWidget.getImageType());
+      }
+      
+      // Upload new image
+      Pair<String, String> imageInfo = ImageUploadUtils.handleImageUpload(event, DashboardConstants.NAVIGATION_WIDGET_IMAGE_DIRECTORY);
+      if (StringUtils.isNotBlank(imageInfo.getLeft())) {
+        navWidget.setImageLocation(imageInfo.getLeft());
+        navWidget.setImageType(imageInfo.getRight());
+      }
+    }
+  }
+  
+  public void removeImage(NavigationDashboardWidget targetWidget) {
+    if (targetWidget != null && StringUtils.isNotBlank(targetWidget.getImageLocation())) {
+      ImageUploadUtils.removeImage(targetWidget.getImageLocation(), targetWidget.getImageType());
+      targetWidget.setImageLocation(null);
+      targetWidget.setImageType(null);
+    }
+  }
+  
+  public void onVisualTypeChange(NavigationDashboardWidget targetWidget) {
+    // If switching away from IMAGE mode, remove the uploaded image
+    if (targetWidget != null && targetWidget.getVisualType() != ch.ivy.addon.portalkit.enums.VisualType.IMAGE) {
+      removeImage(targetWidget);
+    }
   }
 }

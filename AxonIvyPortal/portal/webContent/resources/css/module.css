@@ -5618,7 +5618,7 @@ a.dashboard-action-container label {
   border-radius: 50%;
 }
 
-.ui-external-link-preview-image-panel, .ui-dashboard-upload-file-panel {
+.ui-external-link-preview-image-panel, .ui-dashboard-upload-file-panel, .ui-navigation-widget-preview-image-panel {
   width: 100%;
   border: 1px solid var(--process-list-item-border-color);
   background-color: var(--process-list-item-background-color);
@@ -5638,7 +5638,10 @@ a.dashboard-action-container label {
   display: flex;
 }
 
-.ui-external-link-preview-image-panel > .ui-external-link-preview-image-label, .ui-dashboard-upload-file-panel > .ui-dashboard-upload-file-label, .ui-document-upload-file-panel > .ui-document-upload-file-label {
+.ui-external-link-preview-image-panel > .ui-external-link-preview-image-label, 
+.ui-dashboard-upload-file-panel > .ui-dashboard-upload-file-label, 
+.ui-document-upload-file-panel > .ui-document-upload-file-label,
+.ui-navigation-widget-preview-image-panel > .ui-navigation-widget-preview-image-label {
   width: 42%;
   display: block;
   text-align: center;
@@ -5647,7 +5650,10 @@ a.dashboard-action-container label {
   top: 12px;
 }
 
-.ui-external-link-preview-image-label > #ui-external-link-preview-image-icon, .ui-dashboard-upload-file-label > #ui-dashboard-upload-file-icon,  .ui-document-upload-file-label > #ui-document-upload-file-icon {
+.ui-external-link-preview-image-label > #ui-external-link-preview-image-icon, 
+.ui-dashboard-upload-file-label > #ui-dashboard-upload-file-icon,  
+.ui-document-upload-file-label > #ui-document-upload-file-icon,
+.ui-navigation-widget-preview-image-label > #ui-navigation-widget-preview-image-icon {
   width: 100%;
   font-size: 2em;
   top: -20px;

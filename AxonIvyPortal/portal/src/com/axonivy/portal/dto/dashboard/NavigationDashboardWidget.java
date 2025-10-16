@@ -9,6 +9,7 @@ import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.dto.WidgetLayout;
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
+import ch.ivy.addon.portalkit.enums.VisualType;
 import ch.ivy.addon.portalkit.util.LanguageUtils;
 import ch.ivy.addon.portalkit.util.LanguageUtils.NameResult;
 
@@ -24,6 +25,14 @@ public class NavigationDashboardWidget extends DashboardWidget implements Serial
   @JsonIgnore
   private String buttonName;
   private List<DisplayName> buttonNames;
+  private VisualType visualType;
+
+  private String imageLocation;
+  private String imageType;
+  
+  private String imageLocationDarkMode;
+  private String imageTypeDarkMode;
+
   
   @Override
   public void resetWidgetFilters() {}
@@ -41,6 +50,7 @@ public class NavigationDashboardWidget extends DashboardWidget implements Serial
     var widget = new NavigationDashboardWidget();
     widget.setId(widgetId);
     widget.setButtonName(buttonName);
+    widget.setVisualType(VisualType.ICON); // Default to icon visual type
     widget.setLayout(new WidgetLayout());
     widget.getLayout().setWidth(3);
     widget.getLayout().setHeight(3);
@@ -96,5 +106,35 @@ public class NavigationDashboardWidget extends DashboardWidget implements Serial
   
   public void setButtonNames(List<DisplayName> buttonNames) {
     this.buttonNames = buttonNames;
+  }
+  public VisualType getVisualType() {
+    return visualType;
+  }
+  public void setVisualType(VisualType visualType) {
+    this.visualType = visualType;
+  }
+  public String getImageLocation() {
+    return imageLocation;
+  }
+  public void setImageLocation(String imageLocation) {
+    this.imageLocation = imageLocation;
+  }
+  public String getImageType() {
+    return imageType;
+  }
+  public void setImageType(String imageType) {
+    this.imageType = imageType;
+  }
+  public String getImageLocationDarkMode() {
+    return imageLocationDarkMode;
+  }
+  public void setImageLocationDarkMode(String imageLocationDarkMode) {
+    this.imageLocationDarkMode = imageLocationDarkMode;
+  }
+  public String getImageTypeDarkMode() {
+    return imageTypeDarkMode;
+  }
+  public void setImageTypeDarkMode(String imageTypeDarkMode) {
+    this.imageTypeDarkMode = imageTypeDarkMode;
   }
 }

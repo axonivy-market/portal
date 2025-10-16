@@ -71,21 +71,86 @@
           value="#{widget.description}"/>
       </div>
     </h:panelGroup>
-    <div class="ui-g-4">
-      <h:outputLabel id="navigation-dashboard-widget-icon-label" for="navigation-dashboard-widget-icon" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/icon')}" />
-    </div>
-    <div class="ui-g-12 u-no-padding-top navigation-dashboard-widget-icon">
-      <ic:ch.ivy.addon.portalkit.component.IconSelection id="navigation-dashboard-widget-icon" value="#{widget.icon}"/>
-    </div>
     <h:panelGroup id="dashboard-link-group" styleClass="u-padding-0 ui-fluid" layout="block">
       <div class="ui-g-4 mt-2">
-      <p:outputLabel styleClass="" for="@next" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/dashboard')}"/>
+        <p:outputLabel styleClass="" for="@next" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/dashboard')}"/>
       </div>
       <div class="ui-g-8">
       <p:selectOneMenu styleClass="w-full" id="dashboard-link-selection-menu" value="#{widget.targetDashboardId}">
         <f:selectItems value="#{dashboardBean.getPublicDashboards()}" var="dashboard" itemLabel="#{dashboard.title}" itemValue="#{dashboard.id}"/>
       </p:selectOneMenu>
       </div>
+    </h:panelGroup>
+    <h:panelGroup id="widget-visual-group" styleClass="grid">
+      <div class="col-4">
+        <p:outputLabel styleClass="" for="@next" value="Visual Type"/>
+      </div>
+      <div class="col-8">
+        <p:selectOneRadio id="line" value="#{widget.visualType}" layout="lineDirection">
+          <f:selectItem itemLabel="Icon" itemValue="ICON" />
+          <f:selectItem itemLabel="Image" itemValue="IMAGE" />
+          <p:ajax event="change" update="visual-demo" 
+                  listener="#{managedBean.onVisualTypeChange(widget)}" 
+                  process="@this" />
+        </p:selectOneRadio>
+      </div>
+  <!--     <div class="ui-g-4"> -->
+  <!--       <h:outputLabel id="navigation-dashboard-widget-icon-label" for="navigation-dashboard-widget-icon" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/icon')}" /> -->
+  <!--     </div> -->
+      <h:panelGroup id="visual-demo" styleClass="col-12 mt-2">
+        <h:panelGroup rendered="#{widget.visualType == 'ICON'}">
+            <ic:ch.ivy.addon.portalkit.component.IconSelection id="navigation-dashboard-widget-icon" value="#{widget.icon}"/>
+        </h:panelGroup>
+        
+        <h:panelGroup rendered="#{widget.visualType == 'IMAGE'}">
+          <div class="ui-g-12 MarTop10">
+            <h:outputLabel id="navigation-widget-image-label"
+              for="navigation-widget-image-upload"
+              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/image')}" />
+          </div>
+          <h:panelGroup id="file-upload-panel" layout="block"
+            styleClass="#{empty widget.imageLocation ? 'ui-g-12 ':'ui-g-12 ui-fluid u-padding-0 MarTop10 external-link-preview-image-panel'}">
+            <p:fileUpload id="navigation-widget-image-upload"
+              style="display: none;"
+              widgetVar="navigationWidgetUpload"
+              rendered="#{empty widget.imageLocation}"
+              listener="#{managedBean.handleImageUpload}"
+              chooseIcon="#{visibilityBean.generateButtonIcon('si si-add-small')}"
+              dragDropSupport="true" auto="true" update="file-upload-panel"
+              allowTypes="/(\.|\/)(png|jpg|jpeg|svg)$/i"
+              accept=".png,.jpg,.jpeg,.svg" onvalidationfailure="handleUploadFileFail('navigationWidgetUpload');"
+              sizeLimit="5242880"
+              invalidSizeMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/fileSizeExceeded')}"
+              invalidFileMessage="#{ivy.cms.co('/Dialogs/components/CaseDocument/invalidFileMessage')}"
+              dropZone="navigation-widget-preview-image-panel" oncomplete="hideExtendLinkPreviewLabel();"/>
+              
+            <p:outputPanel id="navigation-widget-preview-image-panel" styleClass="ui-navigation-widget-preview-image-panel" >
+                <h:panelGroup rendered="#{empty widget.imageLocation}" class="ui-navigation-widget-preview-image-label">
+                <i class="si si-file-code-upload-1" id="ui-navigation-widget-preview-image-icon" />
+                <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/dragAndDropImage')}">
+                <p:link value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/uploadOneHere')}" onclick="PF('navigationWidgetUpload').show();return false"/>
+                </p:outputLabel>
+                </h:panelGroup>
+                <p:graphicImage id="navigation-widget-preview-image"
+                   rendered="#{not empty widget.imageLocation}"
+                   styleClass="external-link-preview-image" library="ivy-cms"
+                   name="#{widget.imageLocation}" />
+            </p:outputPanel>
+
+            <h:panelGroup class="external-link-preview-image-overlay-panel"
+              rendered="#{not empty widget.imageLocation}">
+              <p:commandButton id="navigation-widget-delete-image-button"
+                actionListener="#{navigationDashboardWidgetConfigurationBean.removeTempImage(widget)}"
+                ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/remove')}"
+                process="navigation-widget-delete-image-button"
+                partialSubmit="true" update="file-upload-panel"
+                rendered="#{not empty widget.imageLocation}"
+                styleClass="external-link-delete-image-button"
+                icon="si si-bin-1" immediate="true" />
+            </h:panelGroup>
+          </h:panelGroup>
+        </h:panelGroup>
+      </h:panelGroup>
     </h:panelGroup>
 
   </h:panelGroup>

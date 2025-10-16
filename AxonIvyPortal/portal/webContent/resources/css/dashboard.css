@@ -1938,9 +1938,47 @@ body .widget__content .ui-datatable.dashboard-tasks--table .ui-widget-header the
   width: calc(100% - 35px);
 }
 
+.navigation-dashboard-widget-panel .widget-header-actions {
+  position: absolute;
+  top: 0px;
+  z-index: 1;
+  position: absolute;
+  right: 0;
+  /* top: -100px; */
+  padding: 8px;
+  width: 100%;
+  display: inline-flex;
+  justify-content: flex-end;
+}
+
 .navigate-dashboard-button-truncate > span {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   width: 100%;
-}}
+}
+
+/* Navigation Dashboard Widget Image Styles - Based on image-process-item-image */
+.navigation-widget-image {
+  height: 8rem; /* Fixed height for navigation widget */
+  position: relative;
+  object-fit: cover;
+  width: inherit;
+  border-radius: 10px;
+}
+
+/* Navigation widget image - fit width with 67% height */
+.navigation-widget-image-full {
+  height: 67%; /* Adjusted height for better fit */
+  position: relative;
+  object-fit: cover;
+  width: inherit; /* Fit the card width */
+  border-radius: 10px;
+}
+
+.navigation-widget-visual {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 8rem;
+}
