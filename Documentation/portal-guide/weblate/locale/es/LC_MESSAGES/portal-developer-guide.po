@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Portal Guide ${revision}\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-22 04:56+0000\n"
+"POT-Creation-Date: 2025-10-17 02:31+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: es\n"
@@ -266,8 +266,8 @@ msgstr ""
 #: ../../source/portal-developer-guide/components/error-handling.rst:61
 msgid ""
 "By default, when the server encounters an error such as ``HTTP 404``, "
-"``HTTP 500`` or an exception while loading a page, the Axon Ivy Engine will "
-"show a default error page. E.g.:"
+"``HTTP 500`` or an exception while loading a page, the Axon Ivy Engine "
+"will show a default error page. E.g.:"
 msgstr ""
 
 #: ../../source/portal-developer-guide/components/error-handling.rst:65
@@ -420,8 +420,8 @@ msgstr ""
 msgid ""
 "If your system uses an additional Tomcat **Valve**, then we recommend to "
 "add asyncSupported in file ``Context.xml``. An example file is available "
-"at :doc-url:`File Reference </engine-"
-"guide/configuration/files/context-xml.html>`."
+"at :doc-url:`File Reference </engine-guide/configuration/files/context-"
+"xml.html>`."
 msgstr ""
 
 #: ../../source/portal-developer-guide/components/portal-chat.rst:40
@@ -517,8 +517,8 @@ msgstr ""
 #: ../../source/portal-developer-guide/customization/business-details-page.rst:42
 msgid ""
 "The business details page also supports external links in case the "
-"business details site is outside of Axon Ivy. You can replace the path with "
-"any URL. Portal will take care of the rest. E.g., "
+"business details site is outside of Axon Ivy. You can replace the path "
+"with any URL. Portal will take care of the rest. E.g., "
 "``BusinessDetailsAPI.create(\"https://google.com\")``"
 msgstr ""
 
@@ -597,9 +597,9 @@ msgstr ""
 
 #: ../../source/portal-developer-guide/customization/business-details-page.rst:73
 msgid ""
-"Configure permissions in the :doc-url:`Engine Cockpit <"
-"/engine-guide/reference/engine-cockpit/security.html>`. In the security "
-"area, open PortalPermissions -> PortalCasePermissions -> ShowCaseDetails."
+"Configure permissions in the :doc-url:`Engine Cockpit </engine-"
+"guide/reference/engine-cockpit/security.html>`. In the security area, "
+"open PortalPermissions -> PortalCasePermissions -> ShowCaseDetails."
 msgstr ""
 
 #: ../../source/portal-developer-guide/customization/business-details-page.rst:76
@@ -1860,8 +1860,8 @@ msgstr ""
 #: ../../source/portal-developer-guide/customization/portal-style-customization-logos-colors-date-patterns.rst:11
 msgid ""
 "You can change both the top-left corner logo in the menu and the login "
-"logo by using :doc-url:`Engine Branding </designer-guide"
-"/user-interface/branding/branding-engine.html>`."
+"logo by using :doc-url:`Engine Branding </designer-guide/user-"
+"interface/branding/branding-engine.html>`."
 msgstr ""
 
 #: ../../source/portal-developer-guide/customization/portal-style-customization-logos-colors-date-patterns.rst:14
@@ -1898,9 +1898,9 @@ msgstr ""
 #: ../../source/portal-developer-guide/customization/portal-style-customization-logos-colors-date-patterns.rst:32
 msgid ""
 "To change the logos used in the Portal, please use resources that are "
-"described at :doc-url:`User Interface Branding </designer-"
-"guide/user-interface/branding/branding-user-interface.html#resources>` "
-"and follow the guidelines below."
+"described at :doc-url:`User Interface Branding </designer-guide/user-"
+"interface/branding/branding-user-interface.html#resources>` and follow "
+"the guidelines below."
 msgstr ""
 
 #: ../../source/portal-developer-guide/customization/portal-style-customization-logos-colors-date-patterns.rst:36
@@ -1984,8 +1984,7 @@ msgstr ""
 msgid ""
 "Refer to :doc-url:`Engine Branding </designer-guide/user-"
 "interface/branding/branding-engine.html>` for the location of :doc-"
-"url:`custom.css </engine-guide/configuration/files/custom-"
-"css.html>`."
+"url:`custom.css </engine-guide/configuration/files/custom-css.html>`."
 msgstr ""
 
 #: ../../source/portal-developer-guide/customization/portal-style-customization-logos-colors-date-patterns.rst:78
@@ -2195,9 +2194,8 @@ msgstr ""
 #: ../../source/portal-developer-guide/customization/portal-style-customization-logos-colors-date-patterns.rst:110
 msgid ""
 "If you are using IFrames and you want to customize the colors of the "
-"project specific UIs, then refer to this documentation :doc-"
-"url:`/designer-guide/how-to/overrides.html?#override-new-"
-"wizard`"
+"project specific UIs, then refer to this documentation :doc-url"
+":`/designer-guide/how-to/overrides.html?#override-new-wizard`"
 msgstr ""
 
 #: ../../source/portal-developer-guide/customization/portal-style-customization-logos-colors-date-patterns.rst:114
@@ -2989,8 +2987,8 @@ msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/index.rst:214
 msgid ""
-"To configure variables, refer to :doc-url:`Axon Ivy Variables <"
-"/designer-guide/configuration/variables.html>`"
+"To configure variables, refer to :doc-url:`Axon Ivy Variables </designer-"
+"guide/configuration/variables.html>`"
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/index.rst:217
@@ -3245,9 +3243,9 @@ msgstr ""
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:196
 msgid ""
 "Portal only displays custom fields declared in the ``custom-fields.yaml``"
-" file. Refer to :doc-url:`Custom Fields Meta Information <"
-"/designer-guide/how-to/workflow/custom-fields.html#meta-information>` "
-"for more information."
+" file. Refer to :doc-url:`Custom Fields Meta Information </designer-guide"
+"/how-to/workflow/custom-fields.html#meta-information>` for more "
+"information."
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:202
@@ -3660,9 +3658,9 @@ msgstr ""
 msgid ""
 "Following this path to add your custom field values: "
 "``/CustomFields/Cases/{fieldName}/Values/{value}`` Please follow this "
-":doc-url:`Localize Label, Description, Category and Values <"
-"/designer-guide/configuration/custom-fields.html#localize-label-"
-"description-category-and-values>` to get more information."
+":doc-url:`Localize Label, Description, Category and Values </designer-"
+"guide/configuration/custom-fields.html#localize-label-description-"
+"category-and-values>` to get more information."
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:624
@@ -3993,9 +3991,9 @@ msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-custom-widget.rst:145
 msgid ""
-"``processPath``: the :doc-url:`Axon Ivy IWebStartable <"
-"/public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html>` "
-"identifier of the Ivy process that will be displayed in custom widget"
+"``processPath``: the :doc-url:`Axon Ivy IWebStartable </public-"
+"api/ch/ivyteam/ivy/workflow/start/IWebStartable.html>` identifier of the "
+"Ivy process that will be displayed in custom widget"
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-custom-widget.rst:147
@@ -4269,9 +4267,9 @@ msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-viewer-widget.rst:56
 msgid ""
-"``processPath``: the :doc-url:`Axon Ivy IWebStartable <"
-"/public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html>` "
-"identifier of the process you want to display"
+"``processPath``: the :doc-url:`Axon Ivy IWebStartable </public-"
+"api/ch/ivyteam/ivy/workflow/start/IWebStartable.html>` identifier of the "
+"process you want to display"
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:4
@@ -4328,9 +4326,9 @@ msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:94
 msgid ""
-"``processPaths``: the :doc-url:`Axon Ivy IWebStartable <"
-"/public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html>` "
-"identifier of the processes that you want to show."
+"``processPaths``: the :doc-url:`Axon Ivy IWebStartable </public-"
+"api/ch/ivyteam/ivy/workflow/start/IWebStartable.html>` identifier of the "
+"processes that you want to show."
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:97
@@ -4394,10 +4392,10 @@ msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:147
 msgid ""
-"``processPath``: the :doc-url:`Axon Ivy IWebStartable <"
-"/public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html>` "
-"identifier of the process you want to display. The Process widget will "
-"show all tasks and cases of this process, too."
+"``processPath``: the :doc-url:`Axon Ivy IWebStartable </public-"
+"api/ch/ivyteam/ivy/workflow/start/IWebStartable.html>` identifier of the "
+"process you want to display. The Process widget will show all tasks and "
+"cases of this process, too."
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:150
@@ -4901,9 +4899,9 @@ msgstr ""
 msgid ""
 "Following this path to add your custom field values: "
 "``/CustomFields/Tasks/{fieldName}/Values/{value}`` Please follow this "
-":doc-url:`Localize Label, Description, Category and Values <"
-"/designer-guide/configuration/custom-fields.html#localize-label-"
-"description-category-and-values>` to get more information."
+":doc-url:`Localize Label, Description, Category and Values </designer-"
+"guide/configuration/custom-fields.html#localize-label-description-"
+"category-and-values>` to get more information."
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:605
@@ -5181,8 +5179,7 @@ msgid ""
 "This section provides a step-by-step guide for deploying the Portal for "
 "the first time. It includes examples and best practices. For more "
 "comprehensive deployment information, refer to the :doc-url:`Axon Ivy "
-"deployment guidelines </engine-"
-"guide/deployment/index.html>`"
+"deployment guidelines </engine-guide/deployment/index.html>`"
 msgstr ""
 
 #: ../../source/portal-developer-guide/deployment/index.rst:10
@@ -5234,10 +5231,9 @@ msgstr ""
 #: ../../source/portal-developer-guide/deployment/index.rst:44
 msgid ""
 "We recommend using .zip files, as they can include: :doc-url:`branding "
-"</designer-guide/user-interface/branding/branding-"
-"engine.html>`, variables, databases, REST clients :doc-url:`configuration"
-" </engine-guide/deployment/prepare/application-"
-"configuration/index.html>`."
+"</designer-guide/user-interface/branding/branding-engine.html>`, "
+"variables, databases, REST clients :doc-url:`configuration </engine-"
+"guide/deployment/prepare/application-configuration/index.html>`."
 msgstr ""
 
 #: ../../source/portal-developer-guide/deployment/index.rst:49
@@ -5270,8 +5266,8 @@ msgstr ""
 
 #: ../../source/portal-developer-guide/deployment/index.rst:67
 msgid ""
-"Create a security system, or use the default one provided by Axon Ivy. This "
-"security system will be shared across applications."
+"Create a security system, or use the default one provided by Axon Ivy. "
+"This security system will be shared across applications."
 msgstr ""
 
 #: ../../source/portal-developer-guide/deployment/index.rst:68
@@ -5309,11 +5305,11 @@ msgstr ""
 
 #: ../../source/portal-developer-guide/deployment/index.rst:80
 msgid ""
-"Configuration can be done either through :doc-url:`deployment "
-"</engine-guide/deployment/prepare/application-"
-"configuration/index.html>` or via the :doc-url:`Engine Cockpit UI "
-"</engine-guide/reference/engine-cockpit>`. This section "
-"highlights the most important configuration settings."
+"Configuration can be done either through :doc-url:`deployment </engine-"
+"guide/deployment/prepare/application-configuration/index.html>` or via "
+"the :doc-url:`Engine Cockpit UI </engine-guide/reference/engine-"
+"cockpit>`. This section highlights the most important configuration "
+"settings."
 msgstr ""
 
 #: ../../source/portal-developer-guide/deployment/index.rst:86
@@ -5530,294 +5526,314 @@ msgid ""
 msgstr ""
 
 #: ../../source/portal-developer-guide/iframe/index.rst:36
-msgid "**Task Level**: Set the ``embedInFrame`` field in Task custom fields to:"
+msgid ""
+"**Request start Level**: Set the ``embedInFrame`` field in Request tab "
+"custom fields to:"
 msgstr ""
 
 #: ../../source/portal-developer-guide/iframe/index.rst:38
 #: ../../source/portal-developer-guide/iframe/index.rst:46
+#: ../../source/portal-developer-guide/iframe/index.rst:54
 msgid "``true``: Start inside IFrame."
 msgstr ""
 
 #: ../../source/portal-developer-guide/iframe/index.rst:39
 #: ../../source/portal-developer-guide/iframe/index.rst:47
+#: ../../source/portal-developer-guide/iframe/index.rst:55
 msgid "``false``: Do not start inside IFrame."
 msgstr ""
 
 #: ../../source/portal-developer-guide/iframe/index.rst:40
-msgid "Leave unset to use case or engine-level configuration."
+msgid "Leave unset to use task, case or engine-level configuration."
 msgstr ""
 
 #: ../../source/portal-developer-guide/iframe/index.rst:42
-msgid "|task-embedInFrame|"
+msgid "|request-tab-embedInFrame|"
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:357
-msgid "task-embedInFrame"
+#: ../../source/portal-developer-guide/iframe/index.rst:365
+msgid "request-tab-embedInFrame"
 msgstr ""
 
 #: ../../source/portal-developer-guide/iframe/index.rst:44
+msgid "**Task Level**: Set the ``embedInFrame`` field in Task custom fields to:"
+msgstr ""
+
+#: ../../source/portal-developer-guide/iframe/index.rst:48
+msgid "Leave unset to use case or engine-level configuration."
+msgstr ""
+
+#: ../../source/portal-developer-guide/iframe/index.rst:50
+msgid "|task-embedInFrame|"
+msgstr ""
+
+#: ../../source/portal-developer-guide/iframe/index.rst:366
+msgid "task-embedInFrame"
+msgstr ""
+
+#: ../../source/portal-developer-guide/iframe/index.rst:52
 msgid ""
 "**Case Level**: Set the ``embedInFrame`` String field in Case custom "
 "fields to:"
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:48
+#: ../../source/portal-developer-guide/iframe/index.rst:56
 msgid "Leave unset to use engine-level configuration."
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:50
+#: ../../source/portal-developer-guide/iframe/index.rst:58
 msgid "|case-embedInFrame|"
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:358
+#: ../../source/portal-developer-guide/iframe/index.rst:367
 msgid "case-embedInFrame"
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:52
+#: ../../source/portal-developer-guide/iframe/index.rst:60
 msgid "**Engine Level**:"
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:54
+#: ../../source/portal-developer-guide/iframe/index.rst:62
 msgid ""
 "The **Portal Administrator** can globally configure all tasks to start "
 "inside IFrames by setting the ``Portal.EmbedInFrame`` value in the Portal"
 " settings. Refer to :ref:`update-portal-settings`."
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:60
+#: ../../source/portal-developer-guide/iframe/index.rst:68
 msgid "Configure Template"
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:62
+#: ../../source/portal-developer-guide/iframe/index.rst:70
 msgid ""
 "The **Portal** allows configuration of templates with the following "
 "options:"
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:64
+#: ../../source/portal-developer-guide/iframe/index.rst:72
 msgid "Name and icon for the working task."
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:65
+#: ../../source/portal-developer-guide/iframe/index.rst:73
 msgid ""
 "Process chain configuration. (See: :ref:`components-portal-components-"
 "process-chain`)."
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:67
+#: ../../source/portal-developer-guide/iframe/index.rst:75
 msgid "Show/hide case details and other actions."
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:71
+#: ../../source/portal-developer-guide/iframe/index.rst:79
 msgid "Template Parameters"
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:73
+#: ../../source/portal-developer-guide/iframe/index.rst:81
 msgid "The following parameters are available for this template:"
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:75
+#: ../../source/portal-developer-guide/iframe/index.rst:83
 msgid "**Task Details**"
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:77
-#: ../../source/portal-developer-guide/iframe/index.rst:147
+#: ../../source/portal-developer-guide/iframe/index.rst:85
+#: ../../source/portal-developer-guide/iframe/index.rst:155
 msgid "``taskName``: Custom text for the task name."
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:78
+#: ../../source/portal-developer-guide/iframe/index.rst:86
 msgid "``taskIcon``: Icon for the task, using Streamline or Awesome font."
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:79
+#: ../../source/portal-developer-guide/iframe/index.rst:87
 msgid "``isHideTaskName``: Hides the task name when true."
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:81
+#: ../../source/portal-developer-guide/iframe/index.rst:89
 msgid "**Case Information**"
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:83
+#: ../../source/portal-developer-guide/iframe/index.rst:91
 msgid "``caseId``: ID of the case to be displayed in the case information dialog."
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:84
+#: ../../source/portal-developer-guide/iframe/index.rst:92
 msgid "``isHideCaseInfo``: Hides the ``Show Information`` button when true."
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:86
+#: ../../source/portal-developer-guide/iframe/index.rst:94
 msgid "**Process Steps**"
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:88
+#: ../../source/portal-developer-guide/iframe/index.rst:96
 msgid ""
 "``currentProcessStep``: Current step in the process, either as an index "
 "or step name."
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:89
+#: ../../source/portal-developer-guide/iframe/index.rst:97
 msgid "``processSteps``: List of process steps or JSON."
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:90
+#: ../../source/portal-developer-guide/iframe/index.rst:98
 msgid "``isShowAllSteps``: Displays all steps on large screens when true."
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:91
+#: ../../source/portal-developer-guide/iframe/index.rst:99
 msgid ""
 "``processChainDirection``: Orientation of the process chain, either "
 "``VERTICAL`` or ``HORIZONTAL``."
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:92
+#: ../../source/portal-developer-guide/iframe/index.rst:100
 msgid ""
 "``processChainShape``: Shape of the process chain, either ``LINE`` or "
 "``CIRCLE``."
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:94
+#: ../../source/portal-developer-guide/iframe/index.rst:102
 msgid "**Task Actions**"
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:96
+#: ../../source/portal-developer-guide/iframe/index.rst:104
 msgid "``isHideTaskAction``: Hides the task action button when true."
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:97
+#: ../../source/portal-developer-guide/iframe/index.rst:105
 msgid ""
 "``isWorkingOnATask``: Indicates if a task is currently being worked on, "
 "useful for displaying a warning when leaving the page."
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:100
+#: ../../source/portal-developer-guide/iframe/index.rst:108
 msgid "**Miscellaneous**"
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:102
+#: ../../source/portal-developer-guide/iframe/index.rst:110
 msgid "``announcementInvisible``: Makes the announcement invisible."
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:103
+#: ../../source/portal-developer-guide/iframe/index.rst:111
 msgid ""
 "``isCardFrame``: Displays content of the IFrame inside a card-style "
 "container."
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:104
+#: ../../source/portal-developer-guide/iframe/index.rst:112
 msgid "``viewName``: Defines a custom breadcrumb view."
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:107
+#: ../../source/portal-developer-guide/iframe/index.rst:115
 msgid "Configuration Methods"
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:109
+#: ../../source/portal-developer-guide/iframe/index.rst:117
 msgid "You can configure the UI in one of two ways:"
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:112
+#: ../../source/portal-developer-guide/iframe/index.rst:120
 msgid "We recommend to sanitize your parameters before passing them."
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:114
+#: ../../source/portal-developer-guide/iframe/index.rst:122
 msgid "**Using ``IFrameTaskConfig`` Component**"
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:143
+#: ../../source/portal-developer-guide/iframe/index.rst:151
 msgid "Configure Task Details"
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:144
+#: ../../source/portal-developer-guide/iframe/index.rst:152
 msgid "You can customize task details, such as the task name and icon."
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:146
-#: ../../source/portal-developer-guide/iframe/index.rst:172
-#: ../../source/portal-developer-guide/iframe/index.rst:196
-#: ../../source/portal-developer-guide/iframe/index.rst:222
+#: ../../source/portal-developer-guide/iframe/index.rst:154
+#: ../../source/portal-developer-guide/iframe/index.rst:180
+#: ../../source/portal-developer-guide/iframe/index.rst:204
+#: ../../source/portal-developer-guide/iframe/index.rst:230
 msgid "**Parameters:**"
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:148
+#: ../../source/portal-developer-guide/iframe/index.rst:156
 msgid ""
 "``taskIcon``: Using Streamline or Awesome font (e.g., `si si-arrow-"
 "right`)."
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:149
+#: ../../source/portal-developer-guide/iframe/index.rst:157
 msgid ""
 "``isHideTaskName``: Set to ``true`` to hide the task name. Default is "
 "``false``."
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:151
-#: ../../source/portal-developer-guide/iframe/index.rst:177
-#: ../../source/portal-developer-guide/iframe/index.rst:202
-#: ../../source/portal-developer-guide/iframe/index.rst:232
+#: ../../source/portal-developer-guide/iframe/index.rst:159
+#: ../../source/portal-developer-guide/iframe/index.rst:185
+#: ../../source/portal-developer-guide/iframe/index.rst:210
+#: ../../source/portal-developer-guide/iframe/index.rst:240
 msgid "**Example:**"
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:169
+#: ../../source/portal-developer-guide/iframe/index.rst:177
 msgid "Configure Case Information"
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:170
+#: ../../source/portal-developer-guide/iframe/index.rst:178
 msgid ""
 "Customize how case details are displayed and whether to show the \"Show "
 "Information\" button."
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:173
+#: ../../source/portal-developer-guide/iframe/index.rst:181
 msgid "``caseId``: The ID of the case to display in the information dialog."
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:174
+#: ../../source/portal-developer-guide/iframe/index.rst:182
 msgid ""
 "``isHideCaseInfo``: Set to ``true`` to hide the \"Show Information\" "
 "button. Default is ``false``."
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:193
+#: ../../source/portal-developer-guide/iframe/index.rst:201
 msgid "Configure Task Actions"
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:194
+#: ../../source/portal-developer-guide/iframe/index.rst:202
 msgid "Control the visibility and behavior of task-related buttons and actions."
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:197
+#: ../../source/portal-developer-guide/iframe/index.rst:205
 msgid ""
 "``isHideTaskAction``: Set to ``true`` to hide the task action button. "
 "Default is ``false``."
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:199
+#: ../../source/portal-developer-guide/iframe/index.rst:207
 msgid ""
 "``isWorkingOnATask``: Indicates if the task is active. Useful for "
 "displaying a warning when leaving the page. Default is ``true``."
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:219
+#: ../../source/portal-developer-guide/iframe/index.rst:227
 msgid "Configure Miscellaneous Options"
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:220
+#: ../../source/portal-developer-guide/iframe/index.rst:228
 msgid "Additional settings can influence the layout and visibility of elements."
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:223
+#: ../../source/portal-developer-guide/iframe/index.rst:231
 msgid ""
 "``announcementInvisible``: Set to ``true`` to hide announcements. Default"
 " is ``false``."
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:225
+#: ../../source/portal-developer-guide/iframe/index.rst:233
 msgid ""
 "``isCardFrame``: Set to ``true`` to display the IFrame content inside a "
 "card-style container."
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:227
+#: ../../source/portal-developer-guide/iframe/index.rst:235
 msgid ""
 "``viewName``: Custom breadcrumb view. Possible values are: ``HOME, "
 "PROCESS, TASK, TASK_DETAIL, CASE_DETAIL, CASE, TECHNICAL_CASE, "
@@ -5826,25 +5842,25 @@ msgid ""
 "NOTIFICATION``."
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:249
+#: ../../source/portal-developer-guide/iframe/index.rst:257
 msgid "Configure Show Information"
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:251
+#: ../../source/portal-developer-guide/iframe/index.rst:259
 msgid ""
 "When you click the ``Show Information`` button, **Portal** will show  "
 "details of the running case in a modal dialog."
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:254
+#: ../../source/portal-developer-guide/iframe/index.rst:262
 msgid "Options for ``Show Information``"
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:256
+#: ../../source/portal-developer-guide/iframe/index.rst:264
 msgid "``caseId``: Case ID of the case you want to show in the modal dialog."
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:257
+#: ../../source/portal-developer-guide/iframe/index.rst:265
 msgid "``isHideCaseInfo``: Hide the ``Show Information`` button"
 msgstr ""
 
@@ -5864,23 +5880,23 @@ msgstr ""
 msgid "ID of case to be displayed in case information dialog"
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:265
-#: ../../source/portal-developer-guide/iframe/index.rst:298
-#: ../../source/portal-developer-guide/iframe/index.rst:326
+#: ../../source/portal-developer-guide/iframe/index.rst:273
+#: ../../source/portal-developer-guide/iframe/index.rst:306
+#: ../../source/portal-developer-guide/iframe/index.rst:334
 msgid "Example using IFrameTaskConfig:"
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:280
+#: ../../source/portal-developer-guide/iframe/index.rst:288
 msgid "Configure Process steps"
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:282
+#: ../../source/portal-developer-guide/iframe/index.rst:290
 msgid ""
 "``Process steps`` have many options to be configured from the list of "
 "steps to layout and shape."
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:284
+#: ../../source/portal-developer-guide/iframe/index.rst:292
 msgid "Options for ``Process steps``"
 msgstr ""
 
@@ -5924,18 +5940,18 @@ msgstr ""
 msgid "CIRCLE (default) or LINE"
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:295
+#: ../../source/portal-developer-guide/iframe/index.rst:303
 msgid ""
 "When defining parameter ``processSteps``, please make sure that you add "
 "this JSP function tag to your HTML dialog: "
 "``xmlns:fn=\"http://xmlns.jcp.org/jsp/jstl/functions\"``"
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:316
+#: ../../source/portal-developer-guide/iframe/index.rst:324
 msgid "Other options"
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:318
+#: ../../source/portal-developer-guide/iframe/index.rst:326
 msgid "Various options can affect functions and layout."
 msgstr ""
 
@@ -5973,28 +5989,28 @@ msgstr ""
 msgid "display content of the IFrame inside a card style"
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:344
+#: ../../source/portal-developer-guide/iframe/index.rst:352
 msgid "Developer tips"
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:346
+#: ../../source/portal-developer-guide/iframe/index.rst:354
 msgid ""
 "If your project has a navigation button that does not complete a task "
 "(e.g., Cancel), redirect the user to the desired page (e.g., the "
 "application home, task list, process list, etc.) in the HTML dialog."
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:351
+#: ../../source/portal-developer-guide/iframe/index.rst:359
 msgid "Sanitize JavaScript string"
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:353
+#: ../../source/portal-developer-guide/iframe/index.rst:361
 msgid ""
 "Whenever you use a Portal feature that communicates through JavaScript, "
 "ensure that you sanitize your data before sending it to the Portal"
 msgstr ""
 
-#: ../../source/portal-developer-guide/iframe/index.rst:355
+#: ../../source/portal-developer-guide/iframe/index.rst:363
 msgid ""
 "The Portal provides the public API ``SanitizeAPI.escapeForJavascript`` in"
 " the ``portal-components`` project to help sanitize JavaScript strings by"
@@ -6120,8 +6136,7 @@ msgstr ""
 #: ../../source/portal-developer-guide/installation/index.rst:84
 msgid ""
 "The JSON file name has to be Portal.Dashboard.json. Refer to :doc-"
-"url:`Engine Deployment</engine-"
-"guide/deployment/index.html>`"
+"url:`Engine Deployment</engine-guide/deployment/index.html>`"
 msgstr ""
 
 #: ../../source/portal-developer-guide/installation/index.rst:85
@@ -6195,9 +6210,9 @@ msgstr ""
 #: ../../source/portal-developer-guide/installation/index.rst:119
 msgid ""
 "To migrate the Portal, you need to migrate Axon Ivy first. Refer to the "
-":doc-url:`Axon Ivy Migration Notes "
-"</axonivy/migration/index.html>`. Changes in Axon Ivy could "
-"lead to problems if a customer project is not migrated properly."
+":doc-url:`Axon Ivy Migration Notes </axonivy/migration/index.html>`. "
+"Changes in Axon Ivy could lead to problems if a customer project is not "
+"migrated properly."
 msgstr ""
 
 #: ../../source/portal-developer-guide/installation/index.rst:125
@@ -6259,9 +6274,8 @@ msgstr ""
 msgid ""
 "1. Custom field values for business details pages are migrated silently "
 "from the process link relative path to its :doc-url:`IWebStartable ID "
-"</public-"
-"api/ch/ivyteam/ivy/workflow/start/IWebStartable.html#getId()>`. You don't"
-" need to do anything, this is just for your information."
+"</public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html#getId()>`. "
+"You don't need to do anything, this is just for your information."
 msgstr ""
 
 #: ../../source/portal-developer-guide/installation/index.rst:156
@@ -6322,8 +6336,8 @@ msgstr ""
 #: ../../source/portal-developer-guide/installation/index.rst:174
 msgid ""
 "Refer to Axon Ivy CRON job pattern: `CRON Expression "
-"<https://developer.axonivy.com/engine-guide/configuration"
-"/advanced-configuration.html#cron-expression>`_."
+"<https://developer.axonivy.com/engine-guide/configuration/advanced-"
+"configuration.html#cron-expression>`_."
 msgstr ""
 
 #: ../../source/portal-developer-guide/installation/index.rst:175
@@ -6639,8 +6653,8 @@ msgstr ""
 msgid ""
 "The ``customization.css`` file has been removed, in case you use it in "
 "your project, please switch to using :doc-url:`Engine Branding "
-"</designer-guide/user-interface/branding/branding-"
-"engine.html>` to customize styling"
+"</designer-guide/user-interface/branding/branding-engine.html>` to "
+"customize styling"
 msgstr ""
 
 #: ../../source/portal-developer-guide/installation/index.rst:298
@@ -6786,16 +6800,16 @@ msgid ""
 "Portal dashboard widgets only support the ``CustomFields`` declared in "
 "the ``custom-fields.yaml`` file. If your ``CustomFields`` are used in the"
 " dashboard widget, please follow the :doc-url:`Custom Fields Meta "
-"Information </designer-guide/how-to/workflow/custom-"
-"fields.html#meta-information>` to adapt the data."
+"Information </designer-guide/how-to/workflow/custom-fields.html#meta-"
+"information>` to adapt the data."
 msgstr ""
 
 #: ../../source/portal-developer-guide/installation/index.rst:336
 msgid ""
 "The ``DefaultChartColor.p.json`` subprocess has been removed, in case you"
 " use it in your project, please remove override this subprocess and "
-"switch to using :doc-url:`Engine Branding </designer-guide"
-"/user-interface/branding/branding-engine.html>` to customize chart, data "
+"switch to using :doc-url:`Engine Branding </designer-guide/user-"
+"interface/branding/branding-engine.html>` to customize chart, data "
 "labels, legend color."
 msgstr ""
 
@@ -6880,8 +6894,8 @@ msgstr ""
 msgid ""
 "The callable process ``DefaultChart.p.json``, "
 "``DefaultUserProcess.p.json`` has been removed. They are replaced by the "
-":doc-url:`Variables </designer-"
-"guide/configuration/variables.html>` configuration approach."
+":doc-url:`Variables </designer-guide/configuration/variables.html>` "
+"configuration approach."
 msgstr ""
 
 #: ../../source/portal-developer-guide/installation/index.rst:378
@@ -6953,8 +6967,8 @@ msgstr ""
 #: ../../source/portal-developer-guide/installation/index.rst:402
 msgid ""
 "Portal recommends using :doc-url:`Axon Ivy HtmlOverride wizard "
-"</designer-guide/how-to/overrides.html?#override-new-"
-"wizard>` to customize ``Portal HTML Dialog``"
+"</designer-guide/how-to/overrides.html?#override-new-wizard>` to "
+"customize ``Portal HTML Dialog``"
 msgstr ""
 
 #: ../../source/portal-developer-guide/installation/index.rst:404
@@ -7578,8 +7592,8 @@ msgstr ""
 msgid ""
 "The focus with Release 10 was to finalize the new portal approach of "
 "enabling the portal users to configure the portal to their custom needs "
-"and make the portal more adaptable to the various use cases of the Axon Ivy "
-"Platform."
+"and make the portal more adaptable to the various use cases of the Axon "
+"Ivy Platform."
 msgstr ""
 
 #: ../../source/portal-developer-guide/introduction/index.rst:30
@@ -7680,8 +7694,8 @@ msgstr ""
 
 #: ../../source/portal-developer-guide/introduction/index.rst:56
 msgid ""
-"The multiapp approach is now covered by the Axon Ivy core, making the use of"
-" the portal for displaying tasks from more than one application much "
+"The multiapp approach is now covered by the Axon Ivy core, making the use"
+" of the portal for displaying tasks from more than one application much "
 "easier"
 msgstr ""
 
@@ -7776,8 +7790,8 @@ msgstr ""
 
 #: ../../source/portal-developer-guide/introduction/index.rst:84
 msgid ""
-"More UX for Axon Ivy Portal 9.2. Refer to :ref:`introduction-new-and-note-"
-"worthy-9.2`."
+"More UX for Axon Ivy Portal 9.2. Refer to :ref:`introduction-new-and-"
+"note-worthy-9.2`."
 msgstr ""
 
 #: ../../source/portal-developer-guide/introduction/index.rst:86
@@ -7864,8 +7878,8 @@ msgstr ""
 
 #: ../../source/portal-developer-guide/introduction/index.rst:120
 msgid ""
-"All dashboards within the Axon Ivy Portal can now be configured and arranged"
-" with a wizard according to individual preferences."
+"All dashboards within the Axon Ivy Portal can now be configured and "
+"arranged with a wizard according to individual preferences."
 msgstr ""
 
 #: ../../source/portal-developer-guide/introduction/index.rst:122
@@ -7976,8 +7990,8 @@ msgstr ""
 
 #: ../../source/portal-developer-guide/introduction/index.rst:165
 msgid ""
-"Axon Ivy Portal supports a sophisticated concept featuring default widgets "
-"for Process Starts, Task Lists, and Case Lists."
+"Axon Ivy Portal supports a sophisticated concept featuring default "
+"widgets for Process Starts, Task Lists, and Case Lists."
 msgstr ""
 
 #: ../../source/portal-developer-guide/introduction/index.rst:167
@@ -7991,8 +8005,9 @@ msgstr ""
 #: ../../source/portal-developer-guide/introduction/index.rst:169
 msgid ""
 "Processes, tasks, and cases are essential when it comes to business "
-"process automation and workflow management. Therefore, the Axon Ivy Portal "
-"gives you full power by providing these standard widgets out-of-the-box."
+"process automation and workflow management. Therefore, the Axon Ivy "
+"Portal gives you full power by providing these standard widgets out-of-"
+"the-box."
 msgstr ""
 
 #: ../../source/portal-developer-guide/introduction/index.rst:171
@@ -8044,8 +8059,8 @@ msgstr ""
 
 #: ../../source/portal-developer-guide/introduction/index.rst:188
 msgid ""
-"Specify your Axon Ivy Process as a widget element and display your process "
-"directly in your custom dashboard."
+"Specify your Axon Ivy Process as a widget element and display your "
+"process directly in your custom dashboard."
 msgstr ""
 
 #: ../../source/portal-developer-guide/introduction/index.rst:193
@@ -8105,8 +8120,9 @@ msgstr ""
 #: ../../source/portal-developer-guide/introduction/index.rst:222
 msgid ""
 "We have listened to you! Business users requested to export specific "
-"lists from Axon Ivy Portal to perform further analysis in Microsoft Excel. "
-"Now they have the possibility to export any list with one mouse click."
+"lists from Axon Ivy Portal to perform further analysis in Microsoft "
+"Excel. Now they have the possibility to export any list with one mouse "
+"click."
 msgstr ""
 
 #: ../../source/portal-developer-guide/introduction/index.rst:225
@@ -8156,8 +8172,8 @@ msgstr ""
 
 #: ../../source/portal-developer-guide/introduction/index.rst:244
 msgid ""
-"Make it your own way with the Axon Ivy Portal. Users can optimize process "
-"work and customize the Axon Ivy Portal to their own taste."
+"Make it your own way with the Axon Ivy Portal. Users can optimize process"
+" work and customize the Axon Ivy Portal to their own taste."
 msgstr ""
 
 #: ../../source/portal-developer-guide/introduction/index.rst:246
@@ -8287,23 +8303,23 @@ msgstr ""
 #: ../../source/portal-developer-guide/permissions/index.rst:73
 #: ../../source/portal-developer-guide/permissions/index.rst:78
 #: ../../source/portal-developer-guide/permissions/index.rst:83
-#: ../../source/portal-developer-guide/permissions/index.rst:97
-#: ../../source/portal-developer-guide/permissions/index.rst:117
-#: ../../source/portal-developer-guide/permissions/index.rst:122
-#: ../../source/portal-developer-guide/permissions/index.rst:127
-#: ../../source/portal-developer-guide/permissions/index.rst:147
-#: ../../source/portal-developer-guide/permissions/index.rst:158
-#: ../../source/portal-developer-guide/permissions/index.rst:163
-#: ../../source/portal-developer-guide/permissions/index.rst:171
-#: ../../source/portal-developer-guide/permissions/index.rst:176
-#: ../../source/portal-developer-guide/permissions/index.rst:181
-#: ../../source/portal-developer-guide/permissions/index.rst:186
-#: ../../source/portal-developer-guide/permissions/index.rst:191
-#: ../../source/portal-developer-guide/permissions/index.rst:220
-#: ../../source/portal-developer-guide/permissions/index.rst:238
-#: ../../source/portal-developer-guide/permissions/index.rst:246
-#: ../../source/portal-developer-guide/permissions/index.rst:254
-#: ../../source/portal-developer-guide/permissions/index.rst:262
+#: ../../source/portal-developer-guide/permissions/index.rst:100
+#: ../../source/portal-developer-guide/permissions/index.rst:120
+#: ../../source/portal-developer-guide/permissions/index.rst:125
+#: ../../source/portal-developer-guide/permissions/index.rst:130
+#: ../../source/portal-developer-guide/permissions/index.rst:150
+#: ../../source/portal-developer-guide/permissions/index.rst:161
+#: ../../source/portal-developer-guide/permissions/index.rst:166
+#: ../../source/portal-developer-guide/permissions/index.rst:174
+#: ../../source/portal-developer-guide/permissions/index.rst:179
+#: ../../source/portal-developer-guide/permissions/index.rst:184
+#: ../../source/portal-developer-guide/permissions/index.rst:189
+#: ../../source/portal-developer-guide/permissions/index.rst:194
+#: ../../source/portal-developer-guide/permissions/index.rst:223
+#: ../../source/portal-developer-guide/permissions/index.rst:244
+#: ../../source/portal-developer-guide/permissions/index.rst:252
+#: ../../source/portal-developer-guide/permissions/index.rst:260
+#: ../../source/portal-developer-guide/permissions/index.rst:268
 msgid "Granted to role Everybody by default"
 msgstr ""
 
@@ -8384,7 +8400,7 @@ msgid "_`TaskDestroy`"
 msgstr ""
 
 #: ../../source/portal-developer-guide/permissions/index.rst:57
-msgid "Permission to see the Destroy Task action"
+msgid "Permission to execute the Destroy action"
 msgstr ""
 
 #: ../../source/portal-developer-guide/permissions/index.rst:59
@@ -8444,375 +8460,393 @@ msgid "Permission to see the Workflow Event action"
 msgstr ""
 
 #: ../../source/portal-developer-guide/permissions/index.rst:88
-msgid "_`TaskDisplayDestroyAction`"
+msgid "_`TaskDisplayCustomFieldsAction`"
 msgstr ""
 
 #: ../../source/portal-developer-guide/permissions/index.rst:89
-msgid "Permission to see the Destroy action"
+msgid "Permission to see the Custom Fields action"
 msgstr ""
 
 #: ../../source/portal-developer-guide/permissions/index.rst:91
-msgid "_`TaskResetReadyForJoin`"
+msgid "_`TaskDisplayDestroyAction`"
 msgstr ""
 
 #: ../../source/portal-developer-guide/permissions/index.rst:92
-msgid "Permission to reset tasks that are in state Ready for Join"
+msgid "Permission to see the Destroy action"
 msgstr ""
 
 #: ../../source/portal-developer-guide/permissions/index.rst:94
-msgid "_`ShareTaskDetailsLink`"
+msgid "_`TaskResetReadyForJoin`"
 msgstr ""
 
 #: ../../source/portal-developer-guide/permissions/index.rst:95
+msgid "Permission to reset tasks that are in state Ready for Join"
+msgstr ""
+
+#: ../../source/portal-developer-guide/permissions/index.rst:97
+msgid "_`ShareTaskDetailsLink`"
+msgstr ""
+
+#: ../../source/portal-developer-guide/permissions/index.rst:98
 msgid "Permission to see the Share button in task details"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:100
+#: ../../source/portal-developer-guide/permissions/index.rst:103
 msgid "Portal Case Permissions"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:102
+#: ../../source/portal-developer-guide/permissions/index.rst:105
 msgid "_`CaseReadAll`"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:103
+#: ../../source/portal-developer-guide/permissions/index.rst:106
 msgid "Permission to see all cases"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:105
+#: ../../source/portal-developer-guide/permissions/index.rst:108
 msgid "_`CaseDestroy`"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:106
+#: ../../source/portal-developer-guide/permissions/index.rst:109
 msgid "Permission to delete cases"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:108
+#: ../../source/portal-developer-guide/permissions/index.rst:111
 msgid "_`CaseWriteName`"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:109
+#: ../../source/portal-developer-guide/permissions/index.rst:112
 msgid "Permission to change the case name"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:111
+#: ../../source/portal-developer-guide/permissions/index.rst:114
 msgid "_`CaseWriteDescription`"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:112
+#: ../../source/portal-developer-guide/permissions/index.rst:115
 msgid "Permission to change the case description"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:114
+#: ../../source/portal-developer-guide/permissions/index.rst:117
 msgid "_`ShowAllTasksOfCase`"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:115
+#: ../../source/portal-developer-guide/permissions/index.rst:118
 msgid "Permission to see the related tasks's action"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:119
+#: ../../source/portal-developer-guide/permissions/index.rst:122
 msgid "_`ShowCaseDetails`"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:120
+#: ../../source/portal-developer-guide/permissions/index.rst:123
 msgid "Permission to see the Business details action"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:124
+#: ../../source/portal-developer-guide/permissions/index.rst:127
 msgid "_`ShareCaseDetailsLink`"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:125
+#: ../../source/portal-developer-guide/permissions/index.rst:128
 msgid "Permission to see the Share button in case details"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:129
+#: ../../source/portal-developer-guide/permissions/index.rst:132
 msgid "_`CaseOwnerTaskDelegate`"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:130
+#: ../../source/portal-developer-guide/permissions/index.rst:133
 msgid ""
 "Permission to delegate related tasks of case where the user is the case "
 "owner"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:133
+#: ../../source/portal-developer-guide/permissions/index.rst:136
 msgid "Portal General Permissions"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:135
+#: ../../source/portal-developer-guide/permissions/index.rst:138
 msgid "_`RoleCreate`"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:136
+#: ../../source/portal-developer-guide/permissions/index.rst:139
 msgid "Permission to create a new dynamic role"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:138
+#: ../../source/portal-developer-guide/permissions/index.rst:141
 msgid "_`RoleDelete`"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:139
+#: ../../source/portal-developer-guide/permissions/index.rst:142
 msgid "Permission to delete a dynamic role"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:141
+#: ../../source/portal-developer-guide/permissions/index.rst:144
 msgid "_`RoleMove`"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:142
+#: ../../source/portal-developer-guide/permissions/index.rst:145
 msgid "Permission to move role (select the parent role)"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:144
+#: ../../source/portal-developer-guide/permissions/index.rst:147
 msgid "_`RoleReadAll`"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:145
+#: ../../source/portal-developer-guide/permissions/index.rst:148
 msgid "Permission to see all roles"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:149
+#: ../../source/portal-developer-guide/permissions/index.rst:152
 msgid "_`DocumentRead`"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:150
+#: ../../source/portal-developer-guide/permissions/index.rst:153
 msgid "Permission to see all documents"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:152
+#: ../../source/portal-developer-guide/permissions/index.rst:155
 msgid "_`DocumentWrite`"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:153
 #: ../../source/portal-developer-guide/permissions/index.rst:156
+#: ../../source/portal-developer-guide/permissions/index.rst:159
 msgid "Permission to update, delete documents"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:155
+#: ../../source/portal-developer-guide/permissions/index.rst:158
 msgid "_`DocumentOfInvolvedCaseWrite`"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:160
+#: ../../source/portal-developer-guide/permissions/index.rst:163
 msgid "_`DashboardWriteOwn`"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:161
+#: ../../source/portal-developer-guide/permissions/index.rst:164
 msgid "Permission to update private dashboards"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:165
+#: ../../source/portal-developer-guide/permissions/index.rst:168
 msgid "_`DashboardWritePublic`"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:166
+#: ../../source/portal-developer-guide/permissions/index.rst:169
 msgid "Permission to update public dashboards"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:168
+#: ../../source/portal-developer-guide/permissions/index.rst:171
 msgid "_`AccessFullProcessList`"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:169
+#: ../../source/portal-developer-guide/permissions/index.rst:172
 msgid "Permission to access the full process list. See :ref:`full-process-list`."
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:173
+#: ../../source/portal-developer-guide/permissions/index.rst:176
 msgid "_`AccessFullTaskList`"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:174
+#: ../../source/portal-developer-guide/permissions/index.rst:177
 msgid "Permission to access the full task list. See :ref:`full-task-list`."
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:178
+#: ../../source/portal-developer-guide/permissions/index.rst:181
 msgid "_`AccessFullCaseList`"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:179
+#: ../../source/portal-developer-guide/permissions/index.rst:182
 msgid "Permission to access the full case list. See :ref:`full-case-list`."
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:183
+#: ../../source/portal-developer-guide/permissions/index.rst:186
 msgid "_`TaskCaseAddNote`"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:184
+#: ../../source/portal-developer-guide/permissions/index.rst:187
 msgid "Permission to add notes to a task/case"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:188
+#: ../../source/portal-developer-guide/permissions/index.rst:191
 msgid "_`TaskCaseShowMoreNote`"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:189
+#: ../../source/portal-developer-guide/permissions/index.rst:192
 msgid "Permission to see Show more note"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:193
+#: ../../source/portal-developer-guide/permissions/index.rst:196
 msgid "_`CreatePublicExternalLink`"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:194
+#: ../../source/portal-developer-guide/permissions/index.rst:197
 msgid ""
 "Permission to create public external links, all other users can see the "
 "links in the full process list."
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:196
+#: ../../source/portal-developer-guide/permissions/index.rst:199
 msgid "_`RoleManagement`"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:197
+#: ../../source/portal-developer-guide/permissions/index.rst:200
 msgid "Permission to access the Role Management tab"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:199
+#: ../../source/portal-developer-guide/permissions/index.rst:202
 msgid "_`NewsManagement`"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:200
+#: ../../source/portal-developer-guide/permissions/index.rst:203
 msgid "Permission to manage the content of the News feed"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:202
+#: ../../source/portal-developer-guide/permissions/index.rst:205
 msgid "_`PasswordValidation`"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:203
+#: ../../source/portal-developer-guide/permissions/index.rst:206
 msgid ""
 "Permission to access the Password Validation section in the Admin "
 "Settings page"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:205
+#: ../../source/portal-developer-guide/permissions/index.rst:208
 msgid "_`DashboardExportOwn`"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:206
+#: ../../source/portal-developer-guide/permissions/index.rst:209
 msgid "Permission to export private dashboards"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:208
+#: ../../source/portal-developer-guide/permissions/index.rst:211
 msgid "_`DashboardExportPublic`"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:209
+#: ../../source/portal-developer-guide/permissions/index.rst:212
 msgid "Permission to export public dashboards"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:211
+#: ../../source/portal-developer-guide/permissions/index.rst:214
 msgid "_`DashboardImportOwn`"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:212
+#: ../../source/portal-developer-guide/permissions/index.rst:215
 msgid "Permission to import private dashboards"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:214
+#: ../../source/portal-developer-guide/permissions/index.rst:217
 msgid "_`DashboardImportPublic`"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:215
+#: ../../source/portal-developer-guide/permissions/index.rst:218
 msgid "Permission to import public dashboards"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:217
+#: ../../source/portal-developer-guide/permissions/index.rst:220
 msgid "_`ShareDashboardLink`"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:218
+#: ../../source/portal-developer-guide/permissions/index.rst:221
 msgid "Permission to share dashboard links"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:222
+#: ../../source/portal-developer-guide/permissions/index.rst:225
 msgid "_`NotificationChannelsSetting`"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:223
+#: ../../source/portal-developer-guide/permissions/index.rst:226
 msgid ""
 "Permission to customize notification channel preferences in :ref:`my-"
 "profile` page"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:225
+#: ../../source/portal-developer-guide/permissions/index.rst:228
 msgid "Granted to role Everybody by default."
 msgstr ""
 
 #: ../../source/portal-developer-guide/permissions/index.rst:230
-msgid "Portal Absence And Substitute Permissions"
+msgid "_`NoteReadAllCaseTaskDetails`"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:232
-msgid "_`UserCreateAbsence`"
-msgstr ""
-
-#: ../../source/portal-developer-guide/permissions/index.rst:233
-msgid "Permission to create, edit absences of all users"
-msgstr ""
-
-#: ../../source/portal-developer-guide/permissions/index.rst:235
-msgid "_`UserCreateOwnAbsence`"
+#: ../../source/portal-developer-guide/permissions/index.rst:231
+msgid ""
+"Permission allows non-admin users to view system notes in case and task "
+"details"
 msgstr ""
 
 #: ../../source/portal-developer-guide/permissions/index.rst:236
-msgid "Permission to create, edit my own absences"
+msgid "Portal Absence And Substitute Permissions"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:240
-msgid "_`UserDeleteAbsence`"
+#: ../../source/portal-developer-guide/permissions/index.rst:238
+msgid "_`UserCreateAbsence`"
+msgstr ""
+
+#: ../../source/portal-developer-guide/permissions/index.rst:239
+msgid "Permission to create, edit absences of all users"
 msgstr ""
 
 #: ../../source/portal-developer-guide/permissions/index.rst:241
+msgid "_`UserCreateOwnAbsence`"
+msgstr ""
+
+#: ../../source/portal-developer-guide/permissions/index.rst:242
+msgid "Permission to create, edit my own absences"
+msgstr ""
+
+#: ../../source/portal-developer-guide/permissions/index.rst:246
+msgid "_`UserDeleteAbsence`"
+msgstr ""
+
+#: ../../source/portal-developer-guide/permissions/index.rst:247
 msgid "Permission to remove the absence entries for all users"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:243
+#: ../../source/portal-developer-guide/permissions/index.rst:249
 msgid "_`UserDeleteOwnAbsence`"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:244
+#: ../../source/portal-developer-guide/permissions/index.rst:250
 msgid "Permission to remove my own absence entries"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:248
+#: ../../source/portal-developer-guide/permissions/index.rst:254
 msgid "_`UserReadAbsences`"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:249
+#: ../../source/portal-developer-guide/permissions/index.rst:255
 msgid "Permission to read absences of all users"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:251
+#: ../../source/portal-developer-guide/permissions/index.rst:257
 msgid "_`UserReadOwnAbsences`"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:252
+#: ../../source/portal-developer-guide/permissions/index.rst:258
 msgid "Permission to read my own absences"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:256
+#: ../../source/portal-developer-guide/permissions/index.rst:262
 msgid "_`UserCreateSubstitute`"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:257
+#: ../../source/portal-developer-guide/permissions/index.rst:263
 msgid "Permission to create substitutes of all users"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:259
+#: ../../source/portal-developer-guide/permissions/index.rst:265
 msgid "_`UserCreateOwnSubstitute`"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:260
+#: ../../source/portal-developer-guide/permissions/index.rst:266
 msgid "Permission to create my own substitutes"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:264
+#: ../../source/portal-developer-guide/permissions/index.rst:270
 msgid "_`UserReadSubstitutes`"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:265
+#: ../../source/portal-developer-guide/permissions/index.rst:271
 msgid "Permission to read substitutes of all users"
 msgstr ""
 
@@ -8848,8 +8882,8 @@ msgstr ""
 
 #: ../../source/portal-developer-guide/settings/index.rst:25
 msgid ""
-"Portal settings are stored as :doc-url:`Variables <"
-"/designer-guide/configuration/variables.html>`."
+"Portal settings are stored as :doc-url:`Variables </designer-"
+"guide/configuration/variables.html>`."
 msgstr ""
 
 #: ../../source/portal-developer-guide/settings/index.rst:27
@@ -8958,9 +8992,9 @@ msgstr ""
 
 #: ../../source/portal-developer-guide/settings/index.rst:79
 msgid ""
-"Configure permissions in the :doc-url:`Engine Cockpit <"
-"/engine-guide/reference/engine-cockpit/security.html>`. In the security "
-"area, you will find all these permission in group \"PortalPermissions\"."
+"Configure permissions in the :doc-url:`Engine Cockpit </engine-"
+"guide/reference/engine-cockpit/security.html>`. In the security area, you"
+" will find all these permission in group \"PortalPermissions\"."
 msgstr ""
 
 #: ../../source/portal-developer-guide/settings/index.rst:84
@@ -10044,8 +10078,8 @@ msgstr ""
 #: ../../source/portal-developer-guide/troubleshooting/index.rst:35
 msgid ""
 "If you install the Portal in an environment that uses a reverse proxy "
-"(Nginx, IIS or Apache httpd), you have to define the proxy in the Axon Ivy Engine "
-"configuration."
+"(Nginx, IIS or Apache httpd), you have to define the proxy in the Axon "
+"Ivy Engine configuration."
 msgstr ""
 
 #: ../../source/portal-developer-guide/usermenu/index.rst:4
@@ -10153,4 +10187,7 @@ msgstr ""
 #: ../../source/portal-developer-guide/usermenu/index.rst:93
 msgid "Params are not required if the URL denotes an external webpage."
 msgstr ""
+
+#~ msgid "Permission to see the Destroy Task action"
+#~ msgstr ""
 
