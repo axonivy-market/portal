@@ -16,8 +16,8 @@
     appendTo="@(body)"
     modal="true" responsive="true" fitViewport="true"
     styleClass="task-custom-fields-dialog">
-  <p:dataTable id="customFieldsTable" var="field" value="#{data.customFieldList}" emptyMessage="#{ivy.cm.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}" >
-    <p:column headerText="#{ivy.cm.co('/ch.ivy.addon.portalkit.ui.jsf/common/name')}">
+  <p:dataTable id="customFieldsTable" var="field" value="#{data.customFieldList}" emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}" >
+    <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/name')}">
       <h:outputText id="customFieldLabel" value="#{field.name()}"/>
     </p:column>
     <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/value')}">
@@ -29,7 +29,7 @@
       </h:outputText>
       <h:outputText id="value" value="#{field.getOrNull()}" rendered="#{field.type() ne 'TIMESTAMP' and field.type() ne 'NUMBER'}" />
     </p:column>
-    <p:column headerText="#{ivy.cm.co('/ch.ivy.addon.portalkit.ui.jsf/common/type')}">
+    <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/type')}">
       <h:outputText id="customFieldType" value="#{field.type()}"/>
     </p:column>
   </p:dataTable>
