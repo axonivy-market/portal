@@ -9,6 +9,7 @@ import org.apache.commons.lang3.Strings;
 import ch.ivy.addon.portalkit.constant.DashboardConfigurationPrefix;
 import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.enums.ProcessType;
+import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
 import ch.ivyteam.ivy.environment.Ivy;
 
 public class UserProcess {
@@ -61,7 +62,7 @@ public class UserProcess {
   }
 
   private String getActiveDisplayName() {
-    Locale currentLocale = Ivy.session().getContentLocale();
+    Locale currentLocale = LanguageService.getInstance().getUserLocale();
     return names.stream().filter(displayName -> displayName.getLocale().equals(currentLocale))
         .map(DisplayName::getValue).findFirst().orElse(getDisplayNameWithCms());
   }

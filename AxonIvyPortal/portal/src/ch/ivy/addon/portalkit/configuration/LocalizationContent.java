@@ -6,7 +6,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
 
 public class LocalizationContent {
 
@@ -41,7 +41,7 @@ public class LocalizationContent {
   public String getLanguageDisplayName() {
     if (StringUtils.isEmpty(languageDisplayName)) {
       Locale displayedLocale = Locale.forLanguageTag(language);
-      languageDisplayName = displayedLocale.getDisplayName(Ivy.session().getContentLocale());
+      languageDisplayName = displayedLocale.getDisplayName(LanguageService.getInstance().getUserLocale());
     }
     return languageDisplayName;
   }

@@ -1,16 +1,14 @@
 package com.axonivy.portal.components.util;
 
 import static java.util.Comparator.comparingLong;
+
 import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.toCollection;
 import static java.util.stream.Collectors.toList;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
-import java.util.Objects;
 import java.util.TreeSet;
-import java.util.function.Function;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -18,10 +16,10 @@ import org.apache.commons.lang3.Strings;
 
 import com.axonivy.portal.components.constant.PortalComponentConstants;
 import com.axonivy.portal.components.dto.UserDTO;
+import com.axonivy.portal.components.service.LanguageService;
 
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
-import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.security.exec.Sudo;
 import ch.ivyteam.ivy.workflow.IWorkflowSession;
 
@@ -74,16 +72,8 @@ public class UserUtils {
     return users.stream().filter(user -> !Strings.CS.equals(user.getName(), excludedUser.getName())).collect(toList());
   }
 
-  private static String loadLanguage(Function<IUser, Locale> userLocaleLoader) {
-    var languageTag = "";
-    if (!Ivy.session().isSessionUserUnknown()) {
-      Locale apply = userLocaleLoader.apply(Ivy.session().getSessionUser());
-      languageTag = Objects.nonNull(apply) ? apply.toLanguageTag() : languageTag;
-    }
-    return languageTag;
-  }
   public static String getUserLanguage() {
-    return loadLanguage(IUser::getLanguage);
+    return LanguageService.getInstance().getUserLanguage();
   }
 
   /**

@@ -38,11 +38,14 @@ public class MasterDataBean implements Serializable {
 
   private static final long serialVersionUID = 1L;
   private static final String APPLICATION_NAME = GlobalVariable.APPLICATION_NAME.getKey();
-  private static final String PORTAL_NAME = Ivy.cms().co("/ch.ivy.addon.portal.generic/PortalName/PortalName");
   private static final String LOGO_DESCRIPTION = "Portal.LogoDescription";
   
   public AwesomeIcon[] getAwesomeIcons() {
     return AwesomeIcon.values();
+  }
+  
+  public String getPortalName() {
+    return Ivy.cms().co("/ch.ivy.addon.portal.generic/PortalName/PortalName");
   }
 
   public ApplicationType[] getApplicationTypes() {
@@ -119,9 +122,9 @@ public class MasterDataBean implements Serializable {
   
   public String getPortalApplicationName() {
     if (StringUtils.isBlank(getApplicationName())) {
-      return PORTAL_NAME;
+      return getPortalName();
     }
-    return String.join(" - ", PORTAL_NAME, getApplicationName());
+    return String.join(" - ", getPortalName(), getApplicationName());
   }
 
   public String getApplicationName() {

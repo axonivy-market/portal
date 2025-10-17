@@ -53,6 +53,7 @@ import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 import ch.ivy.addon.portalkit.enums.ProcessSorting;
 import ch.ivy.addon.portalkit.enums.ProcessWidgetMode;
 import ch.ivy.addon.portalkit.enums.TaskSortField;
+import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
 import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
 import ch.ivy.addon.portalkit.service.ExternalLinkService;
@@ -688,7 +689,7 @@ public class DashboardWidgetUtils {
   }
 
   public static List<DashboardProcess> sortProcessByAlphabet(List<DashboardProcess> processes) {
-    Locale currentLocale = Ivy.session().getContentLocale();
+    Locale currentLocale = LanguageService.getInstance().getUserLocale();
     Collator collator = Collator.getInstance(currentLocale);
 
     Comparator<DashboardProcess> comparator = Comparator.comparing(process -> process.getName().toLowerCase(),
@@ -698,7 +699,7 @@ public class DashboardWidgetUtils {
   }
 
   public static List<DashboardProcess> sortProcessByIndex(List<DashboardProcess> processes) {
-    Locale currentLocale = Ivy.session().getContentLocale();
+    Locale currentLocale = LanguageService.getInstance().getUserLocale();
     Collator collator = Collator.getInstance(currentLocale);
 
     Comparator<DashboardProcess> byName = Comparator.comparing(process -> process.getName().toLowerCase(),

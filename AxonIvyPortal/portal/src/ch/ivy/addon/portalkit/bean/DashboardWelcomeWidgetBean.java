@@ -22,6 +22,7 @@ import ch.ivy.addon.portalkit.dto.dashboard.WelcomeDashboardWidget;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.enums.WelcomeTextPosition;
+import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
 import ch.ivy.addon.portalkit.jsf.Attrs;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
 import ch.ivy.addon.portalkit.support.HtmlParser;
@@ -135,14 +136,13 @@ public class DashboardWelcomeWidgetBean implements Serializable {
     var originWelcomeText = welcomeWidget.getWelcomeText();
     if (StringUtils.isNoneBlank(originWelcomeText) && (Strings.CS.startsWith(originWelcomeText.trim(), ",") || Strings.CS.startsWith(originWelcomeText.trim(), "."))) {
       var newWelcomeText = String.join(SPACE,
-          Ivy.cms().coLocale(greetingTextCms, Ivy.session().getContentLocale()),
+          Ivy.cms().coLocale(greetingTextCms, LanguageService.getInstance().getUserLocale()),
           Ivy.session().getSessionUser().getDisplayName());
       welcomeWidget.setWelcomeText(newWelcomeText.concat(welcomeWidget.getWelcomeText()));
       return;
     }
-
     welcomeWidget.setWelcomeText(String.join(SPACE,
-          Ivy.cms().coLocale(greetingTextCms, Ivy.session().getContentLocale()),
+          Ivy.cms().coLocale(greetingTextCms, LanguageService.getInstance().getUserLocale()),
           Ivy.session().getSessionUser().getDisplayName(),
           welcomeWidget.getWelcomeText()));
   }

@@ -16,6 +16,7 @@ import com.axonivy.portal.util.NewsUtils;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import ch.ivy.addon.portalkit.configuration.AbstractConfiguration;
+import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
 import ch.ivyteam.ivy.cm.ContentObject;
 import ch.ivyteam.ivy.environment.Ivy;
 
@@ -38,7 +39,7 @@ public class News extends AbstractConfiguration implements Serializable {
   public News(ContentObject contentObject) {
     this.setId(contentObject.name());
     this.contentObject = contentObject;
-    this.locale = Ivy.session().getContentLocale();
+    this.locale = LanguageService.getInstance().getUserLocale();
     this.icon = getCMSValueByKey(ICON);
     this.name = getCMSValueByKey(NAME);
     this.description = getCMSValueByKey(DESCRIPTION);
