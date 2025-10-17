@@ -88,7 +88,7 @@ public class CaseDetailsPage extends TemplatePage {
     $("div.ui-dialog[aria-hidden='false']").shouldBe(appear, DEFAULT_TIMEOUT);
     SelenideElement addNoteDialog = $("div.ui-dialog[aria-hidden='false']").shouldBe(appear, DEFAULT_TIMEOUT);
     SelenideElement textArea = addNoteDialog.$("textarea[id$='note-content']").shouldBe(appear, DEFAULT_TIMEOUT);
-    textArea.shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();;
+    textArea.shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     textArea.sendKeys(noteContent);
     SelenideElement saveButton = addNoteDialog.$("button[id$='save-add-note-command']");
     saveButton.shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
@@ -1104,6 +1104,25 @@ public class CaseDetailsPage extends TemplatePage {
       // So we need to wait for Ajax Indicator disappear
       clickOnSystemTasksCheckbox(checkboxShouldBeChecked);
     }
+  }
+  
+  public void clickCustomFieldsButtonOnActions(String taskName) {
+    clickRelatedTaskActionButton(taskName);
+    $("[id$='additional-options:task-custom-fields-command']").shouldBe(getClickableCondition()).click();
+    waitForElementDisplayed(getCustomFieldsDialog(), true);
+  }
+  
+  public SelenideElement getCustomFieldsDialog() {
+    return $("div[id$='task-custom-fields-dialog']");
+  }
+  
+  public List<String> getCustomFieldNamesOnTaskCustomFieldsDialog() {
+    return $$("span[id$='customFieldLabel']")
+        .shouldBe(CollectionCondition.sizeGreaterThanOrEqual(0), DEFAULT_TIMEOUT)
+        .asFixedIterable()
+        .stream()
+        .map(SelenideElement::getText)
+        .collect(Collectors.toList());
   }
 }
 

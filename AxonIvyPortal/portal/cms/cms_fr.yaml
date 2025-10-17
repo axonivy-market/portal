@@ -1182,6 +1182,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     afterEscalation: Après escalade
     businessCase: Dossier
     completedOn: Fini le
+    customFields: Champs personnalisés
+    customFieldsDialog: 'Champs personnalisés de la tâche #{0}'
     delayedUntil: Retardé jusqu'au
     deleteFile: Supprimer le fichier
     documents: Documents

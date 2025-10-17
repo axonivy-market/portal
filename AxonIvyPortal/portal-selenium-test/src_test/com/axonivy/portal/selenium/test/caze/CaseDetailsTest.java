@@ -6,6 +6,7 @@ import static com.codeborne.selenide.Condition.text;
 import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
 import java.io.IOException;
+import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.AfterEach;
@@ -634,5 +635,14 @@ public class CaseDetailsTest extends BaseTest {
     detailsPage = casePage.openDetailsCase("Create note");
     detailsPage.waitPageLoaded();
     detailsPage.getNotesWithContent("System note").shouldHave(size(1));
+  }
+  
+  @Test
+  public void testShowCustomFieldsDialogOnRelatedTask() {
+    createTestingTask();
+    detailsPage.clickCustomFieldsButtonOnActions(SICK_LEAVE_REQUEST_TASK);
+    assertTrue(detailsPage.getCustomFieldsDialog().isDisplayed());
+    List<String> customFieldNames = detailsPage.getCustomFieldNamesOnTaskCustomFieldsDialog();
+    assertFalse(customFieldNames.isEmpty());
   }
 }

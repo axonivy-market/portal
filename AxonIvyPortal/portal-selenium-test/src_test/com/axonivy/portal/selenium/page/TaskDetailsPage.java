@@ -405,4 +405,22 @@ public class TaskDetailsPage extends TemplatePage {
       clickOnSystemNotesCheckbox(checkboxShouldBeChecked);
     }
   }
+  
+  public void clickOnShowCustomFieldsDialog() {
+    $("a[id$=':task-custom-fields-command']").shouldBe(getClickableCondition()).click();
+    $("div[id$='task-custom-fields-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+  
+  public SelenideElement getCustomFieldsDialog() {
+    return $("div[id$='task-custom-fields-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  public List<String> getCustomFieldNames() {
+    return $$("span[id$='customFieldLabel']")
+        .shouldBe(CollectionCondition.sizeGreaterThanOrEqual(0), DEFAULT_TIMEOUT)
+        .asFixedIterable()
+        .stream()
+        .map(SelenideElement::getText)
+        .collect(Collectors.toList());
+  }
 }
