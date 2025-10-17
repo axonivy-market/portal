@@ -145,6 +145,8 @@ public class LanguageService {
           ? Locale.forLanguageTag(language.getUserLanguage()) 
           : null;
       currentUser.setLanguage(userLanguage);
+      IvyCacheService cacheService = IvyCacheService.getInstance();
+      cacheService.setSessionCache(IvyCacheIdentifier.PORTAL_USER_LOCALE, getSessionUserId(), userLanguage);
       
       Locale userFormatLocale = language.getItemFormattingLanguage() != null 
           && language.getItemFormattingLanguage().getValue() != null 

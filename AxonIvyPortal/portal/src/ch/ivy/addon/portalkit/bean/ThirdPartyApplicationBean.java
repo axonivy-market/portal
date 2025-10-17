@@ -1,6 +1,7 @@
 package ch.ivy.addon.portalkit.bean;
 
 import java.io.Serializable;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -39,7 +40,6 @@ import ch.ivy.addon.portalkit.service.ApplicationMultiLanguage;
 import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
 import ch.ivy.addon.portalkit.util.DisplayNameAdaptor;
 import ch.ivy.addon.portalkit.util.DisplayNameConvertor;
-import ch.ivy.addon.portalkit.util.LanguageUtils;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 
