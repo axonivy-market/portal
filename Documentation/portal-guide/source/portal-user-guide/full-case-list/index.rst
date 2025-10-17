@@ -4,7 +4,7 @@ Full Case List
 **************
 
 The **Full Case List** page is a dashboard featuring a single, full-width task widget. 
-You can reach the page by using the |case-icon| :guilabel:`Cases` link in the |ivy| Portal menu.
+You can reach the page by using the |case-icon| :guilabel:`Cases` link in the Axon Ivy Portal menu.
 
 .. note::
 
@@ -56,7 +56,7 @@ The case details are separated into four different sections:
 
    |case-details-related-tasks-cases|
 
-#. Histories: The |ivy| Portal adds notes here for state changes of the
+#. Histories: The Axon Ivy Portal adds notes here for state changes of the
    case. You may add your own notes as described below.
 
    |case-details-histories|
@@ -146,7 +146,7 @@ HowTo: Preview a document of a case
 
     - Portal can preview images(jpg, jpeg, bmp and png), plain text(txt and log) and pdf documents by default.
 
-    - Portal can preview Word(doc, docx), Excel(xls, xlsx) and email(eml) documents if :dev-url:`DocFactory <https://market.axonivy.com/doc-factory#tab-description>` is deployed in the same security context.
+    - Portal can preview Word(doc, docx), Excel(xls, xlsx) and email(eml) documents if :doc-url:`DocFactory <https://market.axonivy.com/doc-factory#tab-description>` is deployed in the same security context.
 
     - Change :ref:`Portal settings <update-portal-settings>` :guilabel:`Portal.Document.EnablePreview` to true to enable this feature.
 
@@ -222,7 +222,7 @@ This section shows you the related tasks of this case.
 
 .. hint:: 
    What you see here depends on the roles granted to you in both the application 
-   and the |ivy| Portal. Administrators can see all open tasks.
+   and the Axon Ivy Portal. Administrators can see all open tasks.
 
 .. note::
    

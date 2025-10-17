@@ -144,6 +144,7 @@
             <ui:param name="onDelegateComplete" value="initDataToDelegate()" />
             <ui:param name="onEscalationComplete" value="PF('escalation-task-dialog').show()" />
             <ui:param name="onWorkflowEventComplete" value="initWorkflowEventData()" />
+            <ui:param name="onCustomFieldsDialogComplete" value="initCustomFieldListData()" />
             <ui:param name="inFrame" value="#{cc.attrs.inFrame}" />
             <ui:param name="destroyTaskDialogComponent" value="#{cc.clientId}:destroy-task-confirmation-dialog" />
           </ui:include>
@@ -249,6 +250,10 @@
 
   <!-- Workflow Event of Task -->
   <ic:ch.ivy.addon.portalkit.component.TaskItemWorkflowEvents id="workflow-event-component"
+    taskId="#{taskWidgetBean.selectedTaskItemId}" />
+    
+  <!-- Task custom fields of Task -->
+  <ic:ch.ivy.addon.portalkit.component.TaskItemCustomFields id="custom-field-component"
     taskId="#{taskWidgetBean.selectedTaskItemId}" />
 
   <script type="text/javascript">

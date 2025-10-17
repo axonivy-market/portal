@@ -59,8 +59,8 @@ HowTo: Update Portal Settings
 #. To reset all settings to their default values, click on :guilabel:`Restore all to defaults`.
 
 .. hint:: 
-   Portal settings are stored as |ivy| variables and can be configured in the 
-   :dev-url:`|ivy| Cockpit </doc/|version|/engine-guide/reference/engine-cockpit/configuration.html#engine-cockpit-variables>`.
+   Portal settings are stored as Axon Ivy variables and can be configured in the
+   :doc-url:`Axon Ivy Cockpit </engine-guide/reference/engine-cockpit/configuration.html#engine-cockpit-variables>`.
 
 .. _portal-available-settings:
 
