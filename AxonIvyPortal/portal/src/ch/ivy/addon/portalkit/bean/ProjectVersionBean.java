@@ -9,9 +9,9 @@ import java.util.Map;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
-import ch.ivy.addon.portalkit.ivydata.service.impl.LibraryService;
+import ch.ivy.addon.portalkit.ivydata.service.impl.CustomerProjectService;
 import ch.ivyteam.ivy.application.IApplication;
-import ch.ivyteam.ivy.application.ILibrary;
+import ch.ivyteam.ivy.application.IProcessModelVersion;
 import ch.ivyteam.ivy.application.ReleaseState;
 import ch.ivyteam.ivy.environment.Ivy;
 
@@ -22,12 +22,7 @@ public class ProjectVersionBean implements Serializable {
   private static final long serialVersionUID = -2148042793400166168L;
   private String engineVersion;
   private String portalVersion;
-  private Map<String, List<ILibrary>> projectLibraries;
-
-  private Map<String, List<ILibrary>> retrieveProjectLibraries() {
-    LibraryService service = new LibraryService();
-    return service.collectLibraries();
-  }
+  private Map<String, List<IProcessModelVersion>> customerProjects;
 
   public String getEngineVersion() {
     return engineVersion;
@@ -37,18 +32,26 @@ public class ProjectVersionBean implements Serializable {
     return portalVersion;
   }
 
-  public Map<String, List<ILibrary>> getProjectLibraries() {
-    return projectLibraries;
+  public Map<String, List<IProcessModelVersion>> getCustomersProjects() {
+    return customerProjects;
   }
 
   public void loadProjectVesion() {
     engineVersion = ch.ivyteam.ivy.Advisor.getAdvisor().getVersion().toString();
-    ILibrary portalLibrary = IApplication.current().findReleasedLibrary(PORTAL_LIBRARY_ID);
-    portalVersion = portalLibrary.getQualifiedVersion().toString();
-    projectLibraries = retrieveProjectLibraries();
+    portalVersion = portalVersion();
+    customerProjects = new CustomerProjectService().collect();
   }
-  
+
   public String translateReleaseState(ReleaseState state) {
     return Ivy.cms().co(String.format("/ch.ivy.addon.portalkit.ui.jsf/Enums/ReleaseState/%s", state.toString()));
+  }
+
+  private String portalVersion() {
+    return IApplication.current().getProcessModelVersions()
+        .filter(pmv -> pmv.getReleaseState() == ReleaseState.RELEASED)
+        .filter(pmv -> PORTAL_LIBRARY_ID.equals(pmv.getLibraryId()))
+        .findAny()
+        .map(IProcessModelVersion::getLibraryVersion)
+        .orElse(null);
   }
 }
