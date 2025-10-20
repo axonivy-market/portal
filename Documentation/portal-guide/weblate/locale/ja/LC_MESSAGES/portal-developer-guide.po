@@ -8,17 +8,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Portal Guide ${revision}\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-17 02:31+0000\n"
+"POT-Creation-Date: 2025-10-20 06:57+0000\n"
 "PO-Revision-Date: 2025-10-17 10:38+0000\n"
 "Last-Translator: Thang Huynh <hhqthang@axonactive.com>\n"
-"Language-Team: Japanese <https://hosted.weblate.org/projects/axonivy-portal/"
-"portal-le/doc/portal-doc-developer-guide/ja/>\n"
 "Language: ja\n"
+"Language-Team: Japanese <https://hosted.weblate.org/projects/axonivy-"
+"portal/portal-le/doc/portal-doc-developer-guide/ja/>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.14-dev\n"
 "Generated-By: Babel 2.17.0\n"
 
 #: ../../source/portal-developer-guide/architecture/index.rst:4
@@ -5983,8 +5982,7 @@ msgstr "**設定レベル**  カスタム動作が必要な場合は、IFrame �
 msgid ""
 "**Request start Level**: Set the ``embedInFrame`` field in Request tab "
 "custom fields to:"
-msgstr "**リクエスト開始レベル** ：リクエストタブのカスタムフィールドに "
-"``embedInFrame`` フィールドを設定する："
+msgstr "**リクエスト開始レベル** ：リクエストタブのカスタムフィールドに ``embedInFrame`` フィールドを設定する："
 
 #: ../../source/portal-developer-guide/iframe/index.rst:38
 #: ../../source/portal-developer-guide/iframe/index.rst:46
@@ -6000,8 +5998,7 @@ msgstr "``false``：IFrame 内で開始しない"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:40
 msgid "Leave unset to use task, case or engine-level configuration."
-msgstr "タスク、ケース、またはエンジンレベルの設定を使用する場合は、未設定のままにし"
-"ます。"
+msgstr "タスク、ケース、またはエンジンレベルの設定を使用する場合は、未設定のままにします。"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:42
 msgid "|request-tab-embedInFrame|"
@@ -9107,10 +9104,10 @@ msgstr "関連するタスクを表示する権限"
 #: ../../source/portal-developer-guide/permissions/index.rst:189
 #: ../../source/portal-developer-guide/permissions/index.rst:194
 #: ../../source/portal-developer-guide/permissions/index.rst:223
-#: ../../source/portal-developer-guide/permissions/index.rst:244
-#: ../../source/portal-developer-guide/permissions/index.rst:252
-#: ../../source/portal-developer-guide/permissions/index.rst:260
-#: ../../source/portal-developer-guide/permissions/index.rst:268
+#: ../../source/portal-developer-guide/permissions/index.rst:241
+#: ../../source/portal-developer-guide/permissions/index.rst:249
+#: ../../source/portal-developer-guide/permissions/index.rst:257
+#: ../../source/portal-developer-guide/permissions/index.rst:265
 msgid "Granted to role Everybody by default"
 msgstr "デフォルトでは Everybody ロールに付与"
 
@@ -9555,90 +9552,79 @@ msgstr ":ref:`my-profile` 、通知チャンネル設定のカスタマイズを
 msgid "Granted to role Everybody by default."
 msgstr "デフォルトでは Everybody ロールに付与"
 
-#: ../../source/portal-developer-guide/permissions/index.rst:230
-msgid "_`NoteReadAllCaseTaskDetails`"
-msgstr "_`NoteReadAllCaseTaskDetails`"
-
-#: ../../source/portal-developer-guide/permissions/index.rst:231
-msgid ""
-"Permission allows non-admin users to view system notes in case and task "
-"details"
-msgstr "管理者以外のユーザがケースとタスクの詳細のシステムノートを閲覧できるようにす"
-"る権限"
-
-#: ../../source/portal-developer-guide/permissions/index.rst:236
+#: ../../source/portal-developer-guide/permissions/index.rst:233
 msgid "Portal Absence And Substitute Permissions"
 msgstr "ポータルの不在者と代行者の権限"
 
-#: ../../source/portal-developer-guide/permissions/index.rst:238
+#: ../../source/portal-developer-guide/permissions/index.rst:235
 msgid "_`UserCreateAbsence`"
 msgstr "_`UserCreateAbsence`"
 
-#: ../../source/portal-developer-guide/permissions/index.rst:239
+#: ../../source/portal-developer-guide/permissions/index.rst:236
 msgid "Permission to create, edit absences of all users"
 msgstr "すべてのユーザーの不在を作成、編集する権限"
 
-#: ../../source/portal-developer-guide/permissions/index.rst:241
+#: ../../source/portal-developer-guide/permissions/index.rst:238
 msgid "_`UserCreateOwnAbsence`"
 msgstr "_`UserCreateOwnAbsence`"
 
-#: ../../source/portal-developer-guide/permissions/index.rst:242
+#: ../../source/portal-developer-guide/permissions/index.rst:239
 msgid "Permission to create, edit my own absences"
 msgstr "自分の不在を作成、編集する権限"
 
-#: ../../source/portal-developer-guide/permissions/index.rst:246
+#: ../../source/portal-developer-guide/permissions/index.rst:243
 msgid "_`UserDeleteAbsence`"
 msgstr "_`UserDeleteAbsence`"
 
-#: ../../source/portal-developer-guide/permissions/index.rst:247
+#: ../../source/portal-developer-guide/permissions/index.rst:244
 msgid "Permission to remove the absence entries for all users"
 msgstr "すべてのユーザーの不在エントリを削除する権限"
 
-#: ../../source/portal-developer-guide/permissions/index.rst:249
+#: ../../source/portal-developer-guide/permissions/index.rst:246
 msgid "_`UserDeleteOwnAbsence`"
 msgstr "_`UserDeleteOwnAbsence`"
 
-#: ../../source/portal-developer-guide/permissions/index.rst:250
+#: ../../source/portal-developer-guide/permissions/index.rst:247
 msgid "Permission to remove my own absence entries"
 msgstr "自分の不在エントリを削除する権限"
 
-#: ../../source/portal-developer-guide/permissions/index.rst:254
+#: ../../source/portal-developer-guide/permissions/index.rst:251
 msgid "_`UserReadAbsences`"
 msgstr "_`UserReadAbsences`"
 
-#: ../../source/portal-developer-guide/permissions/index.rst:255
+#: ../../source/portal-developer-guide/permissions/index.rst:252
 msgid "Permission to read absences of all users"
 msgstr "すべてのユーザーの不在を閲覧する権限"
 
-#: ../../source/portal-developer-guide/permissions/index.rst:257
+#: ../../source/portal-developer-guide/permissions/index.rst:254
 msgid "_`UserReadOwnAbsences`"
 msgstr "_`UserReadOwnAbsences`"
 
-#: ../../source/portal-developer-guide/permissions/index.rst:258
+#: ../../source/portal-developer-guide/permissions/index.rst:255
 msgid "Permission to read my own absences"
 msgstr "自分の不在を閲覧する権限"
 
-#: ../../source/portal-developer-guide/permissions/index.rst:262
+#: ../../source/portal-developer-guide/permissions/index.rst:259
 msgid "_`UserCreateSubstitute`"
 msgstr "_`UserCreateSubstitute`"
 
-#: ../../source/portal-developer-guide/permissions/index.rst:263
+#: ../../source/portal-developer-guide/permissions/index.rst:260
 msgid "Permission to create substitutes of all users"
 msgstr "すべてのユーザーの代行者を作成する権限"
 
-#: ../../source/portal-developer-guide/permissions/index.rst:265
+#: ../../source/portal-developer-guide/permissions/index.rst:262
 msgid "_`UserCreateOwnSubstitute`"
 msgstr "_`UserCreateOwnSubstitute`"
 
-#: ../../source/portal-developer-guide/permissions/index.rst:266
+#: ../../source/portal-developer-guide/permissions/index.rst:263
 msgid "Permission to create my own substitutes"
 msgstr "自分の代行者を作成する権限"
 
-#: ../../source/portal-developer-guide/permissions/index.rst:270
+#: ../../source/portal-developer-guide/permissions/index.rst:267
 msgid "_`UserReadSubstitutes`"
 msgstr "_`UserReadSubstitutes`"
 
-#: ../../source/portal-developer-guide/permissions/index.rst:271
+#: ../../source/portal-developer-guide/permissions/index.rst:268
 msgid "Permission to read substitutes of all users"
 msgstr "すべてのユーザーの代行者を閲覧する権限"
 
@@ -11088,3 +11074,13 @@ msgstr "URL に外部ウェブページが示されている場合、パラメ�
 
 #~ msgid "Permission to see the Destroy Task action"
 #~ msgstr "タスクの破棄アクションの表示許可"
+
+#~ msgid "_`NoteReadAllCaseTaskDetails`"
+#~ msgstr "_`NoteReadAllCaseTaskDetails`"
+
+#~ msgid ""
+#~ "Permission allows non-admin users to "
+#~ "view system notes in case and task"
+#~ " details"
+#~ msgstr "管理者以外のユーザがケースとタスクの詳細のシステムノートを閲覧できるようにする権限"
+
