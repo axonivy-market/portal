@@ -18,7 +18,6 @@
   <cc:attribute name="isPreviewMode" default="false" type="java.lang.Boolean"/>
   <cc:attribute name="ariaLabel" />
   <cc:attribute name="destroyCaseDialogComponent" default=""/>
-  <cc:attribute name="onShowCaseCustomFieldsComplete" />
 </cc:interface>
 
 <cc:implementation>
@@ -76,11 +75,12 @@
     <p:commandLink id="show-case-custom-fields" rendered="#{caseActionBean.showCustomFieldsDialog(case)}"
                    onstart="event.stopPropagation();"
                    ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/customFields')}" 
-                   styleClass="case-command action-step-item ui-menu-items" onclick="initCustomFieldListData();"
+                   styleClass="case-command action-step-item ui-menu-items" onclick="initCaseCustomFieldListData();"
                    update="@parent #{cc.attrs.update}" process="@this">
       <i class="action-icon si si-cog-double-2" />
       <span class="option-item-label">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/customFields')}</span>
     </p:commandLink>
+  <ic:ch.ivy.addon.portalkit.component.CaseItemCustomFields id="custom-fields-component" caseId="#{case.id}"/>
 
     <p:link id="show-process-viewer-link" target="_blank"
       styleClass="show-process-viewer-link case-command action-step-item"
