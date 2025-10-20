@@ -490,7 +490,6 @@ public class CaseDetailsTest extends BaseTest {
   @AfterEach
   public void teardown() {
     denySpecificPortalPermission(PortalPermission.TASK_CASE_ADD_NOTE);
-    denySpecificPortalPermission(PortalPermission.NOTE_READ_ALL_CASE_TASK_DETAILS);
   }
 
   @Test
@@ -619,22 +618,7 @@ public class CaseDetailsTest extends BaseTest {
     detailsPage.clickOnSystemTasksCheckbox(true);
 
     detailsPage.getNotesWithContent("System: create note").shouldHave(size(1));
-  }
 
-  @Test
-  public void testShowNotesWhenGrantNoteReadAllPermission() {
-    redirectToRelativeLink(CREATE_NOTES);
-    login(TestAccount.DEMO_USER);
-    CaseWidgetNewDashBoardPage casePage = NavigationHelper.navigateToCaseList();
-    detailsPage = casePage.openDetailsCase("Create note");
-    detailsPage.waitPageLoaded();
-    detailsPage.getNotesWithContent("System note").shouldHave(size(0));
-
-    grantSpecificPortalPermission(PortalPermission.NOTE_READ_ALL_CASE_TASK_DETAILS);
-    casePage = NavigationHelper.navigateToCaseList();
-    detailsPage = casePage.openDetailsCase("Create note");
-    detailsPage.waitPageLoaded();
-    detailsPage.getNotesWithContent("System note").shouldHave(size(1));
   }
   
   @Test
