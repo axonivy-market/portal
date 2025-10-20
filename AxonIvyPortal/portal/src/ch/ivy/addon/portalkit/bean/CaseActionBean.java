@@ -19,6 +19,7 @@ import com.axonivy.portal.util.BusinessDetailsUtils;
 import ch.ivy.addon.portal.generic.bean.UserMenuBean;
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
+import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.util.CaseUtils;
@@ -116,7 +117,7 @@ public class CaseActionBean implements Serializable {
         : Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/pin");
   }
   
-  public boolean isBusinessDetailsCustomized(ICase caze) {
+  private boolean isBusinessDetailsCustomized(ICase caze) {
     if (caze == null) {
       return false;
     }
@@ -125,5 +126,9 @@ public class CaseActionBean implements Serializable {
       additionalCaseDetailsPageUri = caze.customFields().stringField(CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE.name()).getOrNull();
     }
     return !StringUtils.isEmpty(additionalCaseDetailsPageUri);
+  }
+  
+  public boolean showCustomFieldsDialog(ICase caze) {
+    return isBusinessDetailsCustomized(caze) && PermissionUtils.hasPortalPermission(PortalPermission.CASE_DISPLAY_CUSTOM_FIELDS_ACTION);
   }
 }
