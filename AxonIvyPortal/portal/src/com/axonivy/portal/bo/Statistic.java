@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Map.Entry;
 
+import org.apache.commons.lang3.StringUtils;
+
 import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 import com.axonivy.portal.enums.statistic.ChartTarget;
@@ -271,5 +273,9 @@ public class Statistic extends AbstractConfiguration implements Serializable {
 
   public void setConditionBasedColoringScope(ConditionBasedColoringScope conditionBasedColoringScope) {
     this.conditionBasedColoringScope = conditionBasedColoringScope;
+  }
+
+  public boolean getCanDrillDown() {
+    return StringUtils.isEmpty(aggregates) && StringUtils.isEmpty(filter);
   }
 }

@@ -25,6 +25,7 @@ import com.axonivy.portal.constant.StatisticConstants;
 import com.axonivy.portal.dto.StatisticDto;
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 import com.axonivy.portal.enums.AdditionalChartConfig;
+import com.axonivy.portal.enums.dashboard.filter.FilterOperator;
 import com.axonivy.portal.enums.statistic.AggregationField;
 import com.axonivy.portal.enums.statistic.ChartTarget;
 import com.axonivy.portal.enums.statistic.ChartType;
@@ -34,11 +35,18 @@ import com.axonivy.portal.util.statisticfilter.field.CaseFilterFieldFactory;
 import com.axonivy.portal.util.statisticfilter.field.TaskFilterFieldFactory;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget;
+import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
+import ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget;
+import ch.ivy.addon.portalkit.dto.dashboard.casecolumn.CaseColumnModel;
+import ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.TaskColumnModel;
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
+import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
 import ch.ivy.addon.portalkit.service.exception.PortalException;
 import ch.ivy.addon.portalkit.statistics.StatisticResponse;
+import ch.ivy.addon.portalkit.util.DefaultDashboardUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.searchengine.client.agg.AggregationResult;
 import ch.ivyteam.ivy.workflow.stats.WorkflowStats;
@@ -139,11 +147,16 @@ public class StatisticService {
       filter = chart.getFilter();
     }
 
-    return switch (chart.getChartTarget()) {
-      case CASE -> WorkflowStats.current().caze().aggregate(aggregates, filter);
-      case TASK ->  WorkflowStats.current().task().aggregate(aggregates, filter);
-      default -> throw new PortalException("Cannot parse chartTarget " + chart.getChartTarget());
-    };
+    Ivy.log().warn("chart name: {0} ||| aggregates: {1} ||| filter {2}", chart.getName(), aggregates, filter);
+    switch (chart.getChartTarget()) {
+      case CASE:
+        filter = StringUtils.isBlank(filter) ? "isBusinessCase:true" : "isBusinessCase:true," + filter;
+        return WorkflowStats.current().caze().aggregate(aggregates, filter);
+      case TASK:
+        return WorkflowStats.current().task().aggregate(aggregates, filter);
+      default:
+        throw new PortalException("Cannot parse chartTarget " + chart.getChartTarget());
+    }
   }
   
   public List<Entry<String, String>> getAdditionalConfig() {
@@ -297,6 +310,208 @@ public class StatisticService {
     case StatisticConstants.STATE -> StatisticConstants.BUSSINESS_STATE;
     default -> field;
     };
+  }
+
+  public void getStatisticDrillDownData(com.axonivy.portal.dto.StatisticDrillDownDto drillDownData) {
+    Statistic chart = findByStatisticId(drillDownData.getChartId());
+    validateChart(drillDownData.getChartId(), chart);
+
+    if ("case".equals(drillDownData.getChartTarget())) { // TODO z1 consider chart target as enum
+      searchCases(drillDownData);
+    } else if ("task".equals(drillDownData.getChartTarget())) {
+      searchTasks(drillDownData);
+    }
+  }
+
+  private void searchCases(com.axonivy.portal.dto.StatisticDrillDownDto drillDownData) {
+    Statistic chart = findByStatisticId(drillDownData.getChartId());
+
+    Dashboard drillDownDashboard = DefaultDashboardUtils.getCaseDrillDownDashboard();
+    CaseDashboardWidget widget = (CaseDashboardWidget) drillDownDashboard.getWidgets().get(0);
+    
+    ensureAllStatisticFieldsInCaseColumns(widget, chart);
+    
+    List<DashboardFilter> filters = widget.getFilters();
+    // Add filter based on the drill-down field and value
+    if (StringUtils.isNotBlank(drillDownData.getFilterKey()) && drillDownData.getFilterValue() != null) {
+      DashboardFilter drillDownFilter = new DashboardFilter();
+      drillDownFilter.setFilterType(DashboardColumnType.STANDARD);
+      drillDownFilter.setField(drillDownData.getFilterKey());
+      drillDownFilter.setOperator(FilterOperator.IN); // TODO z1 maybe not IN
+      drillDownFilter.setValues(Arrays.asList(String.valueOf(drillDownData.getFilterValue())));
+      filters.add(drillDownFilter);
+    }
+    // Add chart's existing filters to the dashboard widget
+    if (CollectionUtils.isNotEmpty(chart.getFilters())) {
+      filters.addAll(chart.getFilters());
+    }
+
+    Ivy.session().setAttribute(SessionAttribute.DRILL_DOWN_DASHBOARD.name(), drillDownDashboard);
+    Ivy.log().warn("=====statistic {0}", BusinessEntityConverter.entityToJsonValue(chart));
+    Ivy.log().warn("=====dashboard {0}", BusinessEntityConverter.entityToJsonValue(drillDownDashboard));
+  }
+
+  private void searchTasks(com.axonivy.portal.dto.StatisticDrillDownDto drillDownData) {
+    Statistic chart = findByStatisticId(drillDownData.getChartId());
+
+    Dashboard drillDownDashboard = DefaultDashboardUtils.getTaskDrillDownDashboard();
+    TaskDashboardWidget widget = (TaskDashboardWidget) drillDownDashboard.getWidgets().get(0);
+    
+    ensureAllStatisticFieldsInTaskColumns(widget, chart);
+    
+    List<DashboardFilter> filters = widget.getFilters();
+    // Add filter based on the drill-down field and value
+    if (StringUtils.isNotBlank(drillDownData.getFilterKey()) && drillDownData.getFilterValue() != null) {
+      DashboardFilter drillDownFilter = new DashboardFilter();
+      drillDownFilter.setFilterType(chart.getStatisticAggregation().getType());
+      drillDownFilter.setField(chart.getStatisticAggregation().getField());
+      drillDownFilter.setOperator(FilterOperator.IN); // TODO z1 maybe not IN
+      drillDownFilter.setValues(Arrays.asList(String.valueOf(drillDownData.getFilterValue())));
+      filters.add(drillDownFilter);
+    }
+    // Add chart's existing filters to the dashboard widget
+    if (CollectionUtils.isNotEmpty(chart.getFilters())) {
+      filters.addAll(chart.getFilters());
+    }
+
+    Ivy.session().setAttribute(SessionAttribute.DRILL_DOWN_DASHBOARD.name(),
+        drillDownDashboard);
+    Ivy.log().warn("=====statistic {0}", BusinessEntityConverter.entityToJsonValue(chart));
+    Ivy.log().warn("=====dashboard {0}", BusinessEntityConverter.entityToJsonValue(drillDownDashboard));
+  }
+  
+  /**
+   * Ensures that all relevant statistic fields are included in the task widget columns.
+   * This includes: aggregation field, KPI field, and filter fields.
+   */
+  private void ensureAllStatisticFieldsInTaskColumns(TaskDashboardWidget widget, Statistic chart) {
+    List<TaskColumnModel> columns = widget.getColumns();
+    boolean columnsModified = false;
+    
+    if (chart.getStatisticAggregation() != null && StringUtils.isNotBlank(chart.getStatisticAggregation().getField())) {
+      String field = chart.getStatisticAggregation().getField();
+      DashboardColumnType fieldType = chart.getStatisticAggregation().getType();
+      if (ensureSingleFieldInTaskColumns(columns, field, fieldType)) {
+        columnsModified = true;
+        Ivy.log().info("Added statistic aggregation field '{}' (type: {}) to drill-down task widget columns", field, fieldType);
+      }
+    }
+    
+    if (chart.getStatisticAggregation() != null && StringUtils.isNotBlank(chart.getStatisticAggregation().getKpiField())) {
+      String kpiField = chart.getStatisticAggregation().getKpiField();
+      DashboardColumnType fieldType = DashboardColumnType.CUSTOM; // KPI fields are typically custom numeric fields
+      if (ensureSingleFieldInTaskColumns(columns, kpiField, fieldType)) {
+        columnsModified = true;
+        Ivy.log().info("Added statistic KPI field '{}' (type: {}) to drill-down task widget columns", kpiField, fieldType);
+      }
+    }
+    
+    if (CollectionUtils.isNotEmpty(chart.getFilters())) {
+      for (DashboardFilter filter : chart.getFilters()) {
+        if (StringUtils.isNotBlank(filter.getField())) {
+          String field = filter.getField();
+          DashboardColumnType fieldType = filter.getFilterType();
+          if (ensureSingleFieldInTaskColumns(columns, field, fieldType)) {
+            columnsModified = true;
+            Ivy.log().info("Added statistic filter field '{}' (type: {}) to drill-down task widget columns", field, fieldType);
+          }
+        }
+      }
+    }
+    
+    if (columnsModified) {
+      widget.setColumns(columns);
+    }
+  }
+  
+  private boolean ensureSingleFieldInTaskColumns(List<TaskColumnModel> columns, String field, DashboardColumnType fieldType) {
+    if (StringUtils.isBlank(field)) {
+      return false;
+    }
+
+    boolean fieldExists = columns.stream()
+        .anyMatch(column -> field.equals(column.getField()) && fieldType == column.getType());
+    
+    if (!fieldExists) {
+      TaskColumnModel newColumn = TaskColumnModel.constructColumn(fieldType, field);
+      newColumn.setField(field);
+      newColumn.setType(fieldType);
+      newColumn.setWidth("120"); // Default width
+      
+      int insertPosition = Math.max(0, columns.size() - 1);
+      columns.add(insertPosition, newColumn);
+      return true;
+    }
+    
+    return false;
+  }
+  
+  /**
+   * Ensures that all relevant statistic fields are included in the case widget columns.
+   * This includes: aggregation field, KPI field, and filter fields.
+   */
+  private void ensureAllStatisticFieldsInCaseColumns(CaseDashboardWidget widget, Statistic chart) {
+    List<CaseColumnModel> columns = widget.getColumns();
+    boolean columnsModified = false;
+    
+    // TODO z1 Ensure aggregation field is included
+    if (chart.getStatisticAggregation() != null && StringUtils.isNotBlank(chart.getStatisticAggregation().getField())) {
+      String field = chart.getStatisticAggregation().getField();
+      DashboardColumnType fieldType = chart.getStatisticAggregation().getType();
+      if (ensureSingleFieldInCaseColumns(columns, field, fieldType)) {
+        columnsModified = true;
+        Ivy.log().info("Added statistic aggregation field '{}' (type: {}) to drill-down case widget columns", field, fieldType);
+      }
+    }
+    
+    // TODO z1 Ensure KPI field is included
+    if (chart.getStatisticAggregation() != null && StringUtils.isNotBlank(chart.getStatisticAggregation().getKpiField())) {
+      String kpiField = chart.getStatisticAggregation().getKpiField();
+      DashboardColumnType fieldType = DashboardColumnType.CUSTOM; // KPI fields are typically custom numeric fields
+      if (ensureSingleFieldInCaseColumns(columns, kpiField, fieldType)) {
+        columnsModified = true;
+        Ivy.log().info("Added statistic KPI field '{}' (type: {}) to drill-down case widget columns", kpiField, fieldType);
+      }
+    }
+    
+    // TODO z1 Ensure filter fields are included
+    if (CollectionUtils.isNotEmpty(chart.getFilters())) {
+      for (DashboardFilter filter : chart.getFilters()) {
+        if (StringUtils.isNotBlank(filter.getField())) {
+          String field = filter.getField();
+          DashboardColumnType fieldType = filter.getFilterType();
+          if (ensureSingleFieldInCaseColumns(columns, field, fieldType)) {
+            columnsModified = true;
+            Ivy.log().info("Added statistic filter field '{}' (type: {}) to drill-down case widget columns", field, fieldType);
+          }
+        }
+      }
+    }
+
+    if (columnsModified) {
+      widget.setColumns(columns);
+    }
+  }
+  
+  private boolean ensureSingleFieldInCaseColumns(List<CaseColumnModel> columns, String field, DashboardColumnType fieldType) {
+    if (StringUtils.isBlank(field)) {
+      return false;
+    }
+
+    boolean fieldExists = columns.stream()
+        .anyMatch(column -> field.equals(column.getField()) && fieldType == column.getType());
+    
+    if (!fieldExists) {
+      CaseColumnModel newColumn = CaseColumnModel.constructColumn(fieldType, field);
+      newColumn.setField(field);
+      newColumn.setType(fieldType);
+      newColumn.setWidth("120"); // TODO z1 width
+      int insertPosition = Math.max(0, columns.size() - 1);
+      columns.add(insertPosition, newColumn);
+      return true;
+    }
+    
+    return false;
   }
   
 }

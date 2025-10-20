@@ -457,6 +457,53 @@ getBackgroundColorsWithAllScope(chartConfig, data) {
 
   updateClientChart() { }
 
+  canDrillDown() {
+    const config = this.data.chartConfig;
+    return config.canDrillDown === true;
+  }
+
+  handleChartClick(element, event) {
+    if (!this.canDrillDown()) {
+      return;
+    }
+
+    const dataIndex = element.index;
+    const dataset = this.clientChartConfig.data.datasets[element.datasetIndex || 0];
+    const label = this.clientChartConfig.data.labels[dataIndex];
+    const value = dataset.data[dataIndex];
+    const counting = dataset.counting ? dataset.counting[dataIndex] : value;
+
+    const drillDownData = {
+      chartId: this.data.chartConfig.id,
+      chartType: this.data.chartConfig.chartType,
+      filterKey: this.data.chartConfig.statisticAggregation?.field,
+      filterValue: this.getOriginalFilterValue(label, dataIndex),
+      label: label,
+      value: value,
+      count: counting,
+      chartTarget: dataset.chartTarget,
+      aggregation: dataset.aggregation
+    };
+
+    this.drillDownStatistic(drillDownData);
+  }
+
+  getOriginalFilterValue(formattedLabel, dataIndex) {
+    if (this.dataResult && this.dataResult[dataIndex]) {
+      return this.dataResult[dataIndex].key;
+    }
+    return formattedLabel;
+  }
+
+  drillDownStatistic(drillDownData) {
+    if (typeof window.openStatisticDrillDown === 'function') {
+      window.openStatisticDrillDown([{
+        name: 'drillDownData',
+        value: JSON.stringify(drillDownData)
+      }]);
+    }
+  }
+
   // Method to render empty chart
   renderEmptyChart(chart, additionalConfig) {
     let emptyChartDataMessage;
@@ -594,6 +641,14 @@ class ClientPieChart extends ClientCanvasChart {
         options: {
           responsive: true,
           maintainAspectRatio: false,
+          onHover: (event, elements) => {
+            event.native.target.style.cursor = this.canDrillDown() && elements.length > 0 ? 'pointer' : 'default';
+          },
+          onClick: (event, elements) => {
+            if (this.canDrillDown() && elements.length > 0) {
+              this.handleChartClick(elements[0], event);
+            }
+          },
           plugins: {
             legend: {
               labels: {
@@ -667,6 +722,14 @@ class ClientCartesianChart extends ClientCanvasChart {
         options: {
           responsive: true,
           maintainAspectRatio: false,
+          onHover: (event, elements) => {
+            event.native.target.style.cursor = this.canDrillDown() && elements.length > 0 ? 'pointer' : 'default';
+          },
+          onClick: (event, elements) => {
+            if (this.canDrillDown() && elements.length > 0) {
+              this.handleChartClick(elements[0], event);
+            }
+          },
           plugins: {
             legend: {
               display: false,
@@ -848,7 +911,12 @@ class ClientNumberChart extends ClientChart {
 
     $(this.chart).parents('.statistic-chart-widget__chart').addClass('client-number-chart');
     let multipleKPI = this.renderMultipleNumberChartInHTML(result, config.numberChartConfig.suffixSymbol, config.chartTarget);
-    return $(this.chart).html(multipleKPI);
+    $(this.chart).html(multipleKPI);
+    
+    // TODO z1 Store chart instance reference for click handling
+    $(this.chart)[0].chartInstance = this;
+
+    return $(this.chart);
   }
 
   initWidgetHeaderName(chart, widgetName) {
@@ -885,8 +953,13 @@ class ClientNumberChart extends ClientChart {
   generateItemHtml(label, number, suffixSymbol, index, counting) {
     let border = '<div class="chart-border">' + '</div>';
     label = this.data.chartConfig.numberChartConfig?.hideLabel === true ? '' : this.formatChartLabel(label) ;
+    
+    const isDrillDownEnabled = this.canDrillDown();
+    const isClickable = isDrillDownEnabled ? 'chart-content-card-clickable' : '';
+    const clickHandler = isDrillDownEnabled ? `data-index="${index}" onclick="this.closest('.js-statistic-chart').chartInstance.handleNumberCardClick(this, event)"` : '';
+    
     let html =
-      '<div class="text-center chart-content-card">' +
+      `<div class="text-center chart-content-card ${isClickable}" ${clickHandler}>` +
       '    <div class="chart-number-container">' +
       '        <span class="card-number chart-number-font-size chart-number-animation">' + number + '</span>' +
       '        <i class="card-number chart-number-font-size chart-number-animation ' + suffixSymbol + '"></i>' +
@@ -941,6 +1014,34 @@ class ClientNumberChart extends ClientChart {
 
   updateClientChart() {
     this.render();
+  }
+
+  handleNumberCardClick(cardElement, event) {
+    if (!this.canDrillDown()) {
+      return;
+    }
+
+    const cardIndex = parseInt(cardElement.getAttribute('data-index'));
+
+    if (cardIndex >= 0 && cardIndex < this.dataResult.length) {
+      const item = this.dataResult[cardIndex];
+      const value = item.aggs.length > 0 ? 
+        (item.aggs[0].value === "null" ? 0 : Number(item.aggs[0].value)) : item.count;
+      
+      const drillDownData = {
+        chartId: this.data.chartConfig.id || this.data.chartConfig.chartId,
+        chartType: this.data.chartConfig.chartType,
+        filterKey: this.data.chartConfig.statisticAggregation?.field || this.data.chartConfig.aggregates,
+        filterValue: item.key,
+        label: this.formatChartLabel(item.key),
+        value: value,
+        count: item.count,
+        chartTarget: this.data.chartConfig.chartTarget,
+        aggregation: this.data.chartConfig.statisticAggregation
+      };
+
+      this.drillDownStatistic(drillDownData);
+    }
   }
 }
 
