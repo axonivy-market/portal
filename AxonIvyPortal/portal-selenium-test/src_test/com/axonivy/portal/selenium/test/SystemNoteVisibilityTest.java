@@ -3,6 +3,7 @@ package com.axonivy.portal.selenium.test;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
@@ -16,6 +17,8 @@ import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.NoteHistoryPage;
 import com.axonivy.portal.selenium.page.TaskDetailsPage;
 import com.axonivy.portal.selenium.page.TopMenuTaskWidgetPage;
+
+import ch.ivy.addon.portalkit.enums.PortalPermission;
 
 @IvyWebTest
 public class SystemNoteVisibilityTest extends BaseTest {
@@ -33,10 +36,16 @@ public class SystemNoteVisibilityTest extends BaseTest {
     updatePortalSetting(Variable.HIDE_SYSTEM_TASKS_FROM_HISTORY_ADMINISTRATOR.getKey(), "true");
     redirectToRelativeLink(CREATE_TESTING_TASK_URL);
   }
+  
+  @AfterEach
+  public void teardown() {
+    denySpecificPortalPermission(PortalPermission.NOTE_READ_ALL_CASE_TASK_DETAILS);
+  }
 
   @Test
   public void testSystemNoteVisibilityInCaseForAdmin() {
     login(TestAccount.ADMIN_USER);
+    grantSpecificPortalPermission(PortalPermission.NOTE_READ_ALL_CASE_TASK_DETAILS);
 
     CaseDetailsPage caseDetailsPage = openCaseDetails();
     String caseId = caseDetailsPage.getCaseUuid();
@@ -63,8 +72,8 @@ public class SystemNoteVisibilityTest extends BaseTest {
 
   @Test
   public void testSystemNoteVisibilityInTaskForAdmin() {
-    updatePortalSetting(Variable.HIDE_SYSTEM_NOTES_FROM_HISTORY_ADMINISTRATOR.getKey(), "false");
     login(TestAccount.ADMIN_USER);
+    grantSpecificPortalPermission(PortalPermission.NOTE_READ_ALL_CASE_TASK_DETAILS);
 
     TaskDetailsPage taskDetailsPage = openTaskDetails();
     taskDetailsPage.waitPageLoaded();
@@ -75,7 +84,7 @@ public class SystemNoteVisibilityTest extends BaseTest {
     taskNoteAuthors = taskNoteHistoryPage.getNoteAuthors();
     assertTrue(taskNoteAuthors.contains(SYSTEM_USER_NAME));
 
-    updatePortalSetting(Variable.HIDE_SYSTEM_NOTES_FROM_HISTORY_ADMINISTRATOR.getKey(), "true");
+    denySpecificPortalPermission(PortalPermission.NOTE_READ_ALL_CASE_TASK_DETAILS);
     taskDetailsPage = openTaskDetails();
     taskNoteAuthors = taskDetailsPage.getTaskNoteAuthors();
     assertFalse(taskNoteAuthors.contains(SYSTEM_USER_NAME));
@@ -89,7 +98,6 @@ public class SystemNoteVisibilityTest extends BaseTest {
   @Test
   public void testSystemNoteVisibilityInTaskDetailForNormalUser() {
     login(TestAccount.DEMO_USER);
-    updatePortalSetting(Variable.HIDE_SYSTEM_NOTES_FROM_HISTORY.getKey(), "true");
     TaskDetailsPage taskDetailsPage = openTaskDetails();
     List<String> taskNoteAuthors = taskDetailsPage.getTaskNoteAuthors();
     assertFalse(taskNoteAuthors.contains(SYSTEM_USER_NAME));
@@ -98,7 +106,7 @@ public class SystemNoteVisibilityTest extends BaseTest {
     taskNoteAuthors = taskNoteHistoryPage.getNoteAuthors();
     assertFalse(taskNoteAuthors.contains(SYSTEM_USER_NAME));
 
-    updatePortalSetting(Variable.HIDE_SYSTEM_NOTES_FROM_HISTORY.getKey(), "false");
+    grantSpecificPortalPermission(PortalPermission.NOTE_READ_ALL_CASE_TASK_DETAILS);
     updatePortalSetting(Variable.CHECK_SYSTEM_NOTES_BY_DEFAULT.getKey(), "false");
     taskDetailsPage = openTaskDetails();
     taskNoteHistoryPage.clickOnCheckboxShowSystemNotes();

@@ -559,6 +559,7 @@ public class CaseDetailsTest extends BaseTest {
 
   @Test
   public void testUncheckSystemNotesByDefaultForAdminUser() {
+    grantSpecificPortalPermission(PortalPermission.NOTE_READ_ALL_CASE_TASK_DETAILS);
     updateGlobalVariable(Variable.CHECK_SYSTEM_NOTES_BY_DEFAULT.getKey(), "false");
     redirectToRelativeLink(CREATE_NOTES);
 
@@ -574,7 +575,7 @@ public class CaseDetailsTest extends BaseTest {
 
   @Test
   public void testCheckSystemNotesByDefaultForNormalUser() {
-    updateGlobalVariable(Variable.HIDE_SYSTEM_NOTES_FROM_HISTORY.getKey(), "false");
+    grantSpecificPortalPermission(PortalPermission.NOTE_READ_ALL_CASE_TASK_DETAILS);
     updateGlobalVariable(Variable.CHECK_SYSTEM_NOTES_BY_DEFAULT.getKey(), "false");
     login(TestAccount.DEMO_USER);
     redirectToRelativeLink(CREATE_NOTES);
@@ -628,5 +629,21 @@ public class CaseDetailsTest extends BaseTest {
     assertTrue(detailsPage.getCustomFieldsDialog().isDisplayed());
     List<String> customFieldNames = detailsPage.getCustomFieldNamesOnTaskCustomFieldsDialog();
     assertFalse(customFieldNames.isEmpty());
+  }
+  
+  @Test
+  public void testShowNotesWhenGrantNoteReadAllPermission() {
+    redirectToRelativeLink(CREATE_NOTES);
+    login(TestAccount.DEMO_USER);
+    CaseWidgetNewDashBoardPage casePage = NavigationHelper.navigateToCaseList();
+    detailsPage = casePage.openDetailsCase("Create note");
+    detailsPage.waitPageLoaded();
+    detailsPage.getNotesWithContent("System note").shouldHave(size(0));
+
+    grantSpecificPortalPermission(PortalPermission.NOTE_READ_ALL_CASE_TASK_DETAILS);
+    casePage = NavigationHelper.navigateToCaseList();
+    detailsPage = casePage.openDetailsCase("Create note");
+    detailsPage.waitPageLoaded();
+    detailsPage.getNotesWithContent("System note").shouldHave(size(1));
   }
 }

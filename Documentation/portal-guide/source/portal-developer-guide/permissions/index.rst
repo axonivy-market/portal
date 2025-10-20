@@ -226,6 +226,9 @@ Portal General Permissions
     - Permission to customize notification channel preferences in :ref:`my-profile` page
 
     - Granted to role Everybody by default.
+    
+_`NoteReadAllCaseTaskDetails`
+    - Permission allows users to view system notes in case and task details
 
 .. _portal-absence-and-sub-permission:
 

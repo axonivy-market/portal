@@ -269,8 +269,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       hideChangePasswordButtonNote: Setzen Sie diese Variable auf true, um die Option "Passwort ändern" im oberen Menü und die Option "Passwort vergessen" auf der Anmeldeseite auszublenden. Wenn sie auf false gesetzt ist, werden diese Optionen angezeigt.
       hideLogoutButtonNote: 'Auf "true" setzen, um die Logout Funktion im Top Menu zu deaktivieren. '
       hideRelatedCaseInfoFromHistory: Wenn diese Option auf "true" gesetzt ist, werden die zugehörigen Fallinformationen nicht in der Tabelle "Historie" angezeigt.
-      hideSystemNotesFromHistory: Wenn diese Option aktiviert ist, werden in den Vorgangs-/Aufgabennotizen keine Systemnotizen für Benutzer ohne Administratorrechte angezeigt.
-      hideSystemNotesFromHistoryAdministrator: Wenn diese Option aktiviert ist, werden in den Vorgangs-/Aufgabennotizen keine Systemnotizen für Administratoren angezeigt.
       hideSystemTasksFromHistory: Wenn diese Option aktiviert ist, zeigt die Vorgangs- / Aufgabennotiz keine technischen Verlaufseinträge für Benutzer ohne Administratorrechte an.
       hideSystemTasksFromHistoryAdministrator: Wenn dies der Fall ist, zeigt die Vorgangs- / Aufgabennotiz keine technischen Verlaufseinträge für den Administrator an.
       hideTaskDocument: Auf "true" setzen, um die Dokumentensektion in Taskdetails auszublenden.

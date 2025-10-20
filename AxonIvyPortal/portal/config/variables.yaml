@@ -126,12 +126,6 @@ Variables:
     Histories:
       # If true, case note does not display any system tasks for non-administrator users.
       HideSystemTasks: "true"
-      # If true, case/task note does not display any system notes for non-administrator users.
-      HideSystemNotes: "true"
-      # If true, case note does not display any system tasks for administrator.
-      HideSystemTasksForAdministrator: "false"
-      # If true, case/task note does not display any system notes for administrator.
-      HideSystemNotesForAdministrator: "false"
       # If true, case history does not display the related case information in the history table.
       HideRelatedCaseInfo: "false"
       # If the value is true and system notes are visible, the checkbox will appear checked.
@@ -200,7 +194,7 @@ Variables:
     # You can define the application name via this JSON file.
     # It will be shown with the page title
     ApplicationName: Axon Ivy
-    LogoDescription: ''
+    LogoDescription: ""
     Upload:
       # Set the size limit for uploading documents in megabytes (MB). The default value is 20MB.
       DocumentUploadSizeLimit: "20"
