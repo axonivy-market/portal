@@ -1,6 +1,7 @@
 package ch.ivy.addon.portalkit.util;
 
 import java.io.IOException;
+
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
@@ -8,13 +9,14 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.function.Consumer;
 
 import org.apache.commons.collections4.CollectionUtils;
-import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 import org.primefaces.PrimeFaces;
 
 import com.axonivy.portal.migration.dashboard.migrator.JsonDashboardMigrator;
@@ -23,10 +25,16 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import ch.addon.portal.generic.menu.MenuView.PortalDashboardItemWrapper;
+import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.constant.IvyCacheIdentifier;
+import ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget;
+import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardOrder;
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardTemplate;
+import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
+import ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget;
+import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
@@ -65,7 +73,7 @@ public class DashboardUtils {
   }
 
   private static boolean isSessionUserHasPermisson(String permission) {
-    return StringUtils.startsWith(permission, "#") ? StringUtils.equals(currentUser().getMemberName(), permission)
+    return Strings.CS.startsWith(permission, "#") ? Strings.CS.equals(currentUser().getMemberName(), permission)
         : PermissionUtils.doesSessionUserHaveRole(permission);
   }
 
@@ -315,16 +323,68 @@ public class DashboardUtils {
 
   /**
    * Uses this method before saving a dashboard to simplify generated json from the dashboard
+   * @param dashboards 
    */
   public static void updatePropertiesToNullIfCurrentValueIsDefaultValue(List<Dashboard> dashboards) {
     if (CollectionUtils.isEmpty(dashboards)) {
       return;
     }
-    for (Dashboard dashboard : dashboards) {
-      if (BooleanUtils.isFalse(dashboard.getIsTopMenu())) {
-        dashboard.setIsTopMenu(null);
-      }
+    
+    dashboards.parallelStream()
+        .filter(Objects::nonNull)
+        .forEach(dashboard -> {
+          if (Boolean.FALSE.equals(dashboard.getIsTopMenu())) {
+            dashboard.setIsTopMenu(null);
+          }
+          
+          if (CollectionUtils.isNotEmpty(dashboard.getWidgets())) {
+            updatePropertiesForWidgets(dashboard.getWidgets());
+          }
+        });
+  }
+  
+  private static void updatePropertiesForWidgets(List<DashboardWidget> widgetList) {
+    widgetList.stream()
+        .map(DashboardUtils::getColumnsFromWidget)
+        .filter(CollectionUtils::isNotEmpty)
+        .flatMap(List::stream)
+        .forEach(column -> column.setHeaders(new ArrayList<>()));
+  }
+  
+  private static List<ColumnModel> getColumnsFromWidget(DashboardWidget widget) {
+    if (widget == null || widget.getType() == null) {
+      return List.of();
     }
+    
+    return switch (widget.getType()) {
+      case TASK -> {
+        TaskDashboardWidget taskWidget = (TaskDashboardWidget) widget;
+        yield taskWidget.getColumns().stream()
+            .filter(Objects::nonNull)
+            .filter(item -> isCustomField(item.getType()))
+            .map(ColumnModel.class::cast)
+            .toList();
+      }
+      case CASE -> {
+        CaseDashboardWidget caseWidget = (CaseDashboardWidget) widget;
+        yield caseWidget.getColumns().stream()
+            .filter(Objects::nonNull)
+            .filter(item -> isCustomField(item.getType()))
+            .map(ColumnModel.class::cast)
+            .toList();
+      }
+      default -> List.of();
+    };
+  }
+  
+  private static boolean isCustomField(DashboardColumnType type) {
+    if (type == null) {
+      return false;
+    }
+    return switch (type) {
+      case CUSTOM, CUSTOM_CASE, CUSTOM_BUSINESS_CASE -> true;
+      default -> false;
+    };
   }
 
   public static boolean isDefaultTaskListDashboard(Dashboard dashboard) {
@@ -335,5 +395,9 @@ public class DashboardUtils {
   public static boolean isDefaultCaseListDashboard(Dashboard dashboard) {
     return Optional.ofNullable(dashboard).map(Dashboard::getId)
         .orElseGet(() -> "").contentEquals(DEFAULT_CASE_LIST_DASHBOARD);
+  }
+
+  public static String buildDashboardLink(Dashboard dashboard) {
+    return UrlUtils.getServerUrl() + PortalNavigator.getDashboardPageUrl(dashboard.getId());
   }
 }

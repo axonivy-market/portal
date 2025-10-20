@@ -16,7 +16,7 @@ Dialogs:
             Process:
               ProcessName: Process name
             RequiredFieldMessage: This field is required
-            SideStepPrefix: 'Side step task for: '
+            Save: Save
             Task:
               Activator: Responsible
             Type: Type
@@ -32,10 +32,15 @@ Dialogs:
             FileContainVirus: Upload failed, virus/infection detected!
             FileFunction: Functions
             FileLimitMessage: The maximum number of files are already uploaded!
+            FilenameEmpty: Filename cannot be empty.
             InvalidFileMessage: This file type is not accepted!
             Name: Filename
             NoFile: No files are found!
             Preview: Preview
+            RenamingDocument: Rename document
+            RenamingDocumentNote: '{0} has renamed the file {1} to {2}'
+            RenamingDocumentSuccess: Rename successfully.
+            RenamingFailed: An error occurs while renaming the document.
             Size: File size
             Type: Type
             Upload: Upload new file
@@ -88,16 +93,18 @@ Dialogs:
               EXTERNAL_LINK: External Link
               IVY_PROCESS: Business Process
             ProcessViewerIFrameTitle: Process viewer frame
-          SideStepType:
-            PARALLEL: Start a backgroud task (parallel)
-            SWITCH: Pause this task and start process (switch)
 Labels:
   AI:
     Error:
       CanceledFlow: You have canceled the flow. If you have any requests, please let me know.
       ErrorWhenProceedRequest: An error has occurred while trying to process your request. Please try again later.
       SomethingWentWrong: Something went wrong when proceed your request. Please try again later.
+  Close: Close
   DisabledUserPrefix: (disabled)
+  Enums:
+    NewFilenameValidation:
+      ALREADY_EXIST: There is already a file with the same name in this location.
+      INVALID_FORMAT: 'A file name can''t contain any of the following characters: \ / : * ? " < > |'
   NoName: no name
   NoResults: No results
   None: None

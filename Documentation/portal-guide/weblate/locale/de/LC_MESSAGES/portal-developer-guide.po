@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Portal Guide ${revision}\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-19 04:43+0000\n"
+"POT-Creation-Date: 2025-09-26 07:09+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: de\n"
@@ -255,7 +255,7 @@ msgstr ""
 #: ../../source/portal-developer-guide/customization/task-item-details.rst:254
 #: ../../source/portal-developer-guide/customization/task-item-details.rst:305
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:642
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:609
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:613
 msgid "Result"
 msgstr ""
 
@@ -274,7 +274,7 @@ msgstr ""
 #: ../../source/portal-developer-guide/components/error-handling.rst:61
 msgid ""
 "By default, when the server encounters an error such as ``HTTP 404``, "
-"``HTTP 500`` or an exception while loading a page, the |ivy-engine| will "
+"``HTTP 500`` or an exception while loading a page, the Axon Ivy Engine will "
 "show a default error page. E.g.:"
 msgstr ""
 
@@ -291,7 +291,7 @@ msgstr ""
 msgid ""
 "You can find the contents of this page in the file located at "
 "``${AxonIvyEngineFolder}/webapp/ivy/ivy-error-page.xhtml``, but the error"
-" page is not user friendly. Thus, the |ivy| Portal provides an "
+" page is not user friendly. Thus, the Axon Ivy Portal provides an "
 "alternative solution to make this page more understandable for end users."
 msgstr ""
 
@@ -428,7 +428,7 @@ msgstr ""
 msgid ""
 "If your system uses an additional Tomcat **Valve**, then we recommend to "
 "add asyncSupported in file ``Context.xml``. An example file is available "
-"at :dev-url:`File Reference </doc/|version|/engine-"
+"at :dev-url:`File Reference </doc/12.0/engine-"
 "guide/configuration/files/context-xml.html>`."
 msgstr ""
 
@@ -481,7 +481,7 @@ msgstr ""
 
 #: ../../source/portal-developer-guide/customization/business-details-page.rst:27
 msgid ""
-"Store the :dev-url:`IWebStartable ID </doc/|version|/public-"
+"Store the :dev-url:`IWebStartable ID </doc/12.0/public-"
 "api/ch/ivyteam/ivy/workflow/start/IWebStartable.html#getId()>` of the "
 "process to the string custom field ``businessDetails`` of the case. There"
 " are 2 ways to perform this:"
@@ -525,7 +525,7 @@ msgstr ""
 #: ../../source/portal-developer-guide/customization/business-details-page.rst:42
 msgid ""
 "The business details page also supports external links in case the "
-"business details site is outside of |ivy|. You can replace the path with "
+"business details site is outside of Axon Ivy. You can replace the path with "
 "any URL. Portal will take care of the rest. E.g., "
 "``BusinessDetailsAPI.create(\"https://google.com\")``"
 msgstr ""
@@ -605,8 +605,8 @@ msgstr ""
 
 #: ../../source/portal-developer-guide/customization/business-details-page.rst:73
 msgid ""
-"Configure permissions in the :dev-url:`Engine Cockpit </doc/|version"
-"|/engine-guide/reference/engine-cockpit/security.html>`. In the security "
+"Configure permissions in the :dev-url:`Engine Cockpit </doc/12.0"
+"/engine-guide/reference/engine-cockpit/security.html>`. In the security "
 "area, open PortalPermissions -> PortalCasePermissions -> ShowCaseDetails."
 msgstr ""
 
@@ -742,7 +742,7 @@ msgstr ""
 #: ../../source/portal-developer-guide/customization/case-item-details.rst:110
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:384
 msgid ""
-"Refer to :dev-url:`Case business states </doc/|version|/public-"
+"Refer to :dev-url:`Case business states </doc/12.0/public-"
 "api/ch/ivyteam/ivy/workflow/caze/CaseBusinessState.html>` for available "
 "case business states."
 msgstr ""
@@ -928,8 +928,8 @@ msgstr ""
 #: ../../source/portal-developer-guide/customization/case-item-details.rst:187
 #: ../../source/portal-developer-guide/customization/task-item-details.rst:158
 msgid ""
-"About how to configure Variables, refer to :dev-url:`|ivy| Variables "
-"</doc/|version|/designer-guide/configuration/variables.html>`"
+"About how to configure Variables, refer to :dev-url:`Axon Ivy Variables "
+"</doc/12.0/designer-guide/configuration/variables.html>`"
 msgstr ""
 
 #: ../../source/portal-developer-guide/customization/case-item-details.rst:191
@@ -1868,7 +1868,7 @@ msgstr ""
 #: ../../source/portal-developer-guide/customization/portal-style-customization-logos-colors-date-patterns.rst:11
 msgid ""
 "You can change both the top-left corner logo in the menu and the login "
-"logo by using :dev-url:`Engine Branding </doc/|version|/designer-guide"
+"logo by using :dev-url:`Engine Branding </doc/12.0/designer-guide"
 "/user-interface/branding/branding-engine.html>`."
 msgstr ""
 
@@ -1906,7 +1906,7 @@ msgstr ""
 #: ../../source/portal-developer-guide/customization/portal-style-customization-logos-colors-date-patterns.rst:32
 msgid ""
 "To change the logos used in the Portal, please use resources that are "
-"described at :dev-url:`User Interface Branding </doc/|version|/designer-"
+"described at :dev-url:`User Interface Branding </doc/12.0/designer-"
 "guide/user-interface/branding/branding-user-interface.html#resources>` "
 "and follow the guidelines below."
 msgstr ""
@@ -1990,9 +1990,9 @@ msgstr ""
 
 #: ../../source/portal-developer-guide/customization/portal-style-customization-logos-colors-date-patterns.rst:75
 msgid ""
-"Refer to :dev-url:`Engine Branding </doc/|version|/designer-guide/user-"
+"Refer to :dev-url:`Engine Branding </doc/12.0/designer-guide/user-"
 "interface/branding/branding-engine.html>` for the location of :dev-"
-"url:`custom.css </doc/|version|/engine-guide/configuration/files/custom-"
+"url:`custom.css </doc/12.0/engine-guide/configuration/files/custom-"
 "css.html>`."
 msgstr ""
 
@@ -2215,7 +2215,7 @@ msgstr ""
 msgid ""
 "If you are using IFrames and you want to customize the colors of the "
 "project specific UIs, then refer to this documentation :dev-"
-"url:`/doc/|version|/designer-guide/how-to/overrides.html?#override-new-"
+"url:`/doc/12.0/designer-guide/how-to/overrides.html?#override-new-"
 "wizard`"
 msgstr ""
 
@@ -2585,7 +2585,7 @@ msgstr ""
 #: ../../source/portal-developer-guide/customization/task-item-details.rst:139
 msgid ""
 "We support all task business states for filter type ``states``. Please "
-"refer to :dev-url:`Task Business States </doc/|version|/public-"
+"refer to :dev-url:`Task Business States </doc/12.0/public-"
 "api/ch/ivyteam/ivy/workflow/TaskBusinessState.html>` to check for "
 "available task business states."
 msgstr ""
@@ -2718,7 +2718,7 @@ msgid "Define News widget"
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/dashboard-newsfeed-widget.rst:9
-msgid "The news widget shares relevant information as a News Feed into |ivy|."
+msgid "The news widget shares relevant information as a News Feed into Axon Ivy."
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/dashboard-newsfeed-widget.rst:11
@@ -2739,7 +2739,7 @@ msgstr ""
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-viewer-widget.rst:38
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:39
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:33
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:79
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:81
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-welcome-widget.rst:61
 msgid "``id``: ID of the widget"
 msgstr ""
@@ -2760,7 +2760,7 @@ msgstr ""
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-viewer-widget.rst:44
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:45
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:39
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:85
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:87
 msgid "``x``: HTML DOM Style ``left`` is calculated as formula ``x / 12 * 100%``"
 msgstr ""
 
@@ -2771,7 +2771,7 @@ msgstr ""
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-viewer-widget.rst:46
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:47
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:41
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:87
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:89
 msgid "``y``: HTML DOM Style ``top`` is calculated as formula ``y / 12 * 100%``"
 msgstr ""
 
@@ -2782,7 +2782,7 @@ msgstr ""
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-viewer-widget.rst:48
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:49
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:43
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:89
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:91
 msgid ""
 "``w``: HTML DOM Style ``width`` is calculated as formula ``60 * w + 20 * "
 "(w - 1)``"
@@ -2795,7 +2795,7 @@ msgstr ""
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-viewer-widget.rst:50
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:51
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:45
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:91
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:93
 msgid ""
 "``h``: HTML DOM Style ``height`` is calculated as formula ``60 * h + 20 *"
 " (h - 1)``"
@@ -2805,7 +2805,7 @@ msgstr ""
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-notification-widget.rst:68
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-viewer-widget.rst:52
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:53
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:93
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:95
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-welcome-widget.rst:73
 msgid "``styleClass`` (optional): add CSS Classes to HTML DOM of the widget"
 msgstr ""
@@ -2814,7 +2814,7 @@ msgstr ""
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-notification-widget.rst:70
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-viewer-widget.rst:54
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:55
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:95
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:97
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-welcome-widget.rst:75
 msgid "``style`` (optional): add inline style to HTML DOM of the widget"
 msgstr ""
@@ -2825,7 +2825,7 @@ msgstr ""
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-external-page-widget.rst:70
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-notification-widget.rst:74
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-viewer-widget.rst:58
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:106
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:108
 msgid ""
 "``showFullscreenMode``: visibility of the fullscreen mode icon. The "
 "default value is ``true``, set to ``false`` to hide the icon"
@@ -3002,8 +3002,8 @@ msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/index.rst:210
 msgid ""
-"To configure variables, refer to :dev-url:`|ivy| Variables </doc/|version"
-"|/designer-guide/configuration/variables.html>`"
+"To configure variables, refer to :dev-url:`Axon Ivy Variables </doc/12.0"
+"/designer-guide/configuration/variables.html>`"
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/index.rst:213
@@ -3102,7 +3102,7 @@ msgid "``sortField``: default sort field for the Case widget"
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:102
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:99
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:101
 msgid ""
 "``sortDescending``: sort direction of the default sort field. The default"
 " value is ``false`` (sort ascending)"
@@ -3115,14 +3115,14 @@ msgid ""
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:108
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:104
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:106
 msgid ""
 "``showWidgetInfo``: visibility of the widget information icon. The "
 "default value is ``true``, set to ``false`` to hide the icon"
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:112
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:108
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:110
 msgid ""
 "``isTopMenu``: if the value is ``true``, the dashboard appears as a top-"
 "level item in the navigation bar. If the value is ``false``, it appears "
@@ -3194,14 +3194,14 @@ msgid ""
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:149
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:149
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:153
 msgid ""
 "``visible``: visibility of a column. The default value is \"true\". Set "
 "to \"false\" to hide the column."
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:152
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:152
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:156
 msgid ""
 "``quickSearch``: Adds this field to the search scope of the quick search."
 " The default value is ``false``. Set it to ``true`` to apply search "
@@ -3209,12 +3209,12 @@ msgid ""
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:155
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:155
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:159
 msgid "``headers``: multilingual header of the column."
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:160
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:160
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:164
 msgid "Custom Columns"
 msgstr ""
 
@@ -3242,7 +3242,7 @@ msgid ""
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:192
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:186
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:190
 msgid ""
 "``type``: type of the widget column. There are two options: ``STANDARD`` "
 "and ``CUSTOM``."
@@ -3255,11 +3255,11 @@ msgid ""
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:198
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:192
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:196
 msgid ""
 "Portal only displays custom fields declared in the ``custom-fields.yaml``"
-" file. Refer to :dev-url:`Custom Fields Meta Information </doc/|version"
-"|/designer-guide/how-to/workflow/custom-fields.html#meta-information>` "
+" file. Refer to :dev-url:`Custom Fields Meta Information </doc/12.0"
+"/designer-guide/how-to/workflow/custom-fields.html#meta-information>` "
 "for more information."
 msgstr ""
 
@@ -3322,7 +3322,7 @@ msgstr ""
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:230
 msgid ""
 "For the ``Icon``, please refer to the streamline icon showcase available "
-"in Html Dialog Demos on |ivy| Market."
+"in Html Dialog Demos on Axon Ivy Market."
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:232
@@ -3338,7 +3338,7 @@ msgid "custom-action-button-custom-field"
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:237
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:196
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:200
 msgid "Filter Conditions"
 msgstr ""
 
@@ -3352,43 +3352,43 @@ msgid ""
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:244
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:203
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:207
 msgid "Base structure of filter json:"
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:270
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:229
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:233
 msgid "``field``: filter field name corresponding with column name"
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:272
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:230
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:234
 msgid "``values``: filter value, could be a list, a string or a number"
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:274
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:231
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:235
 msgid ""
 "``operator``: filter operator, operators can be difference depend on each"
 " field type."
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:276
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:233
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:237
 msgid ""
 "**String column**: is, is_not, empty, not_empty, contains, not_contains, "
 "start_with, not_start_with, end_with, not_end_with"
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:278
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:235
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:239
 msgid ""
 "**Number column**: between, not_between, empty, not_empty, equal, "
 "not_equal, less, less_or_equal, greater, greater_or_equal"
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:280
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:237
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:241
 msgid ""
 "**Date column**: today, yesterday, is, is_not, before, after, between, "
 "not_between, current, last, next, empty, not_empty"
@@ -3401,7 +3401,7 @@ msgid ""
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:284
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:241
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:245
 msgid "Date type additional field:"
 msgstr ""
 
@@ -3430,7 +3430,7 @@ msgid "``to``: string value. E.g.: \"55.2\""
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:299
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:249
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:253
 msgid ""
 "There are additional fields dependent on the operator and many specific "
 "filters for each field type. Below is the list of filterable columns and "
@@ -3438,7 +3438,7 @@ msgid ""
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:303
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:254
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:258
 msgid ""
 "We encourage utilizing dashboard configurations to edit widgets and then "
 "leveraging the export dashboard feature to ensure better expectations "
@@ -3446,12 +3446,12 @@ msgid ""
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:305
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:256
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:260
 msgid "Standard Column:"
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:307
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:286
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:290
 msgid "``name``"
 msgstr ""
 
@@ -3463,7 +3463,7 @@ msgid ""
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:333
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:312
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:316
 msgid "``description``"
 msgstr ""
 
@@ -3530,7 +3530,7 @@ msgid "``type`` field must be ``custom``"
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:533
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:500
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:504
 msgid "Quick Search"
 msgstr ""
 
@@ -3542,19 +3542,19 @@ msgid ""
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:538
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:505
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:509
 msgid "``enableQuickSearch``: enables the quick search feature for the widget."
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:540
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:507
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:511
 msgid ""
 "``quickSearch``: indicates that a column is searchable using the quick "
 "search feature."
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:542
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:509
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:513
 msgid ""
 "If you set the ``enableQuickSearch`` attribute to ``false``, the quick "
 "search feature will be disabled, regardless of the ``quickSearch`` "
@@ -3572,7 +3572,7 @@ msgid ""
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:550
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:517
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:521
 msgid "Below are the definition of these attributes:"
 msgstr ""
 
@@ -3585,30 +3585,30 @@ msgstr ""
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:568
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:596
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:115
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:535
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:563
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:539
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:567
 msgid "Valid values:"
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:570
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:117
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:537
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:541
 msgid "``true``: show the quick search text box."
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:571
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:118
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:538
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:542
 msgid "``false``: hide the quick search text box."
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:572
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:539
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:543
 msgid "``not defined``: hide the quick search text box."
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:574
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:541
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:545
 msgid ""
 "``quickSearch``: to choose which columns can be searched by the quick "
 "search feature, set the ``quickSearch`` field for each column as shown "
@@ -3616,29 +3616,29 @@ msgid ""
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:598
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:565
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:569
 msgid "``true``: apply quick search for this column."
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:599
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:566
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:570
 msgid "``false``: do not apply quick search for this column."
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:600
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:567
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:571
 msgid ""
 "``not defined``: the ``name`` and ``description`` columns are ``true``, "
 "other columns are ``false`` by default."
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:603
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:570
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:574
 msgid "Multi-Language Support for Custom String Fields"
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:605
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:572
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:576
 msgid ""
 "With the **Multi-Language Support for Custom Fields** feature, we enable "
 "the provision of values in a custom field in multiple languages. The "
@@ -3647,19 +3647,19 @@ msgid ""
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:609
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:576
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:580
 msgid ""
 "Portal only supports Multi-Language for Custom Fields with ``TYPE: "
 "STRING``."
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:612
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:579
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:583
 msgid "Enabling Multi-Language Support"
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:614
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:581
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:585
 msgid ""
 "To allow a custom field to retrieve multilingual values from the CMS, set"
 " the ``HasCmsValue`` attribute to ``true`` in the corresponding ``custom-"
@@ -3673,13 +3673,13 @@ msgstr ""
 msgid ""
 "Following this path to add your custom field values: "
 "``/CustomFields/Cases/{fieldName}/Values/{value}`` Please follow this "
-":dev-url:`Localize Label, Description, Category and Values </doc/|version"
-"|/designer-guide/configuration/custom-fields.html#localize-label-"
+":dev-url:`Localize Label, Description, Category and Values </doc/12.0"
+"/designer-guide/configuration/custom-fields.html#localize-label-"
 "description-category-and-values>` to get more information."
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:624
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:591
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:595
 msgid "Example YAML Configuration"
 msgstr ""
 
@@ -3700,71 +3700,71 @@ msgid "case-field-cms"
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:644
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:611
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:615
 msgid ""
 "If ``HasCmsValues`` is set with ``true``, the values from the CMS are "
 "used."
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:645
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:612
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:616
 msgid ""
 "If the values are entered and translated in the CMS, then the custom "
 "field is displayed based on the selected language."
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:646
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:613
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:617
 msgid ""
 "If the translation for a value is missing in the CMS, the static value "
 "from the entry is used instead."
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:649
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:616
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:620
 msgid "Sorting, Filtering, and Searching with Multi-Language Custom Fields"
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:652
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:619
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:623
 msgid "Sorting"
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:654
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:621
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:625
 msgid ""
 "``HasCmsValues = false`` or not set. Sorting is performed as usual based "
 "on the stored values."
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:655
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:622
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:626
 msgid ""
 "``HasCmsValues = true``. Sorting is performed based on values translated "
 "in the currently selected language."
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:659
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:626
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:630
 msgid ""
 "If ``HasCmsValues = true`` but a translation is missing in a specific "
 "language, only the translated values are sorted."
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:662
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:630
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:634
 msgid "Searching"
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:664
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:632
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:636
 msgid ""
 "``HasCmsValues = false`` or not set. The search is performed as usual "
 "based on the stored value."
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:665
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:633
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:637
 msgid ""
 "``HasCmsValues = true``. The search is conducted in both the CMS "
 "translations and the original value."
@@ -3777,45 +3777,45 @@ msgid ""
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:670
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:638
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:642
 msgid "Filtering"
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:672
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:640
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:644
 msgid ""
 "``HasCmsValues = false`` or not set. Filtering is performed as usual "
 "based on the stored value."
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:673
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:641
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:645
 msgid ""
 "``HasCmsValues = true``. The filter is conducted in both the CMS "
 "translations and the original value."
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:677
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:645
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:649
 msgid ""
 "When enabling the Multi-Language for Custom Fields, only accepted "
 "``CONTAINS`` operator."
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:681
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:649
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:653
 msgid ""
 "If a value needs to be filtered in multiple languages, all corresponding "
 "translations must be in the filter."
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:684
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:652
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:656
 msgid "Conclusion"
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:686
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:654
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:658
 msgid ""
 "With Multi-Language Support for Custom Fields, we enable flexible and "
 "dynamic provision of field content in multiple languages. The "
@@ -4004,8 +4004,8 @@ msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-custom-widget.rst:145
 msgid ""
-"``processPath``: the :dev-url:`|ivy| IWebStartable </doc/|version"
-"|/public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html>` "
+"``processPath``: the :dev-url:`Axon Ivy IWebStartable </doc/12.0"
+"/public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html>` "
 "identifier of the Ivy process that will be displayed in custom widget"
 msgstr ""
 
@@ -4040,7 +4040,7 @@ msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-custom-widget.rst:176
 msgid ""
-"type ``user``: The parameter value is an |ivy| username. In the "
+"type ``user``: The parameter value is an Axon Ivy username. In the "
 "configuration dialog, the user can edit this parameter by choosing a user"
 " from a dropdown. Only Ivy usernames are accepted as values."
 msgstr ""
@@ -4080,7 +4080,7 @@ msgstr ""
 msgid ""
 "You can use this widget to embed an external webpage into the Portal "
 "dashboard. This feature is especially useful for a company using other "
-"applications besides |ivy|. It allows user to interact with multiple "
+"applications besides Axon Ivy. It allows user to interact with multiple "
 "systems directly from the Portal dashboard."
 msgstr ""
 
@@ -4178,13 +4178,13 @@ msgid ""
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-notification-widget.rst:56
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:81
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:83
 msgid "``names``: multilingual name of the widget on the UI"
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-notification-widget.rst:58
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:43
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:83
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:85
 msgid "``layout``: layout definition of the widget"
 msgstr ""
 
@@ -4230,8 +4230,8 @@ msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-viewer-widget.rst:56
 msgid ""
-"``processPath``: the :dev-url:`|ivy| IWebStartable </doc/|version"
-"|/public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html>` "
+"``processPath``: the :dev-url:`Axon Ivy IWebStartable </doc/12.0"
+"/public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html>` "
 "identifier of the process you want to display"
 msgstr ""
 
@@ -4289,15 +4289,15 @@ msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:94
 msgid ""
-"``processPaths``: the :dev-url:`|ivy| IWebStartable </doc/|version"
-"|/public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html>` "
+"``processPaths``: the :dev-url:`Axon Ivy IWebStartable </doc/12.0"
+"/public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html>` "
 "identifier of the processes that you want to show."
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:97
 msgid ""
 "``categories``: categories of processes that you want to show. The value "
-"should be the :dev-url:`CMS URI </doc/|version|/designer-guide/how-"
+"should be the :dev-url:`CMS URI </doc/12.0/designer-guide/how-"
 "to/workflow/categories.html#workflow-categories>` of this category. "
 "Process widget will show all processes that belonged to these categories."
 msgstr ""
@@ -4355,8 +4355,8 @@ msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:147
 msgid ""
-"``processPath``: the :dev-url:`|ivy| IWebStartable </doc/|version"
-"|/public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html>` "
+"``processPath``: the :dev-url:`Axon Ivy IWebStartable </doc/12.0"
+"/public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html>` "
 "identifier of the process you want to display. The Process widget will "
 "show all tasks and cases of this process, too."
 msgstr ""
@@ -4440,127 +4440,135 @@ msgstr ""
 msgid "Below is a sample JSON definition of a task widget in the Portal dashboard"
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:75
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:77
 msgid "The basic JSON structure of a Task widget"
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:77
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:79
 msgid "``type``: type of the widget. Use ``task`` for a task widget"
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:97
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:99
 msgid "``sortField``: default sort field for the widget"
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:101
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:103
 msgid ""
 "``rowsPerPage``: maximum number of tasks can be displayed on one page of "
 "the task widget. The default value is 10 rows per page"
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:112
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:114
 msgid ""
 "``columns``: column configurations for each of the columns in the widget."
 " You can predefine filters, styles, visibility,... of columns and define "
 "custom columns, too:"
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:116
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:118
 msgid "``field``: the field name of the column"
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:118
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:120
 msgid "For standard columns, ``field`` must be one of these:"
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:120
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:122
 msgid "``start``: column which contains start button to start the task directly."
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:122
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:124
 msgid "``Pin``: column which contains Pin button to Pin your task."
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:124
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:126
 msgid "``priority``: task priority"
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:126
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:128
 msgid "``id``: task ID"
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:128
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:130
 msgid "``name``: task name"
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:130
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:132
 msgid "``description``: task description"
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:132
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:134
 msgid "``activator``: task activator"
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:134
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:136
 msgid "``state``: task business state"
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:136
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:138
 msgid "``startTimestamp``: created date and time of the task"
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:138
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:140
 msgid "``endTimestamp``: end date and time of the task"
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:140
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:142
 msgid "``expiryTimestamp``: expiry date and time of the task"
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:142
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:144
 msgid ""
 "``actions``: for further actions: access task details, reset task, "
 "delegate task, reserve, destroy task, trigger escalation task and add Ad-"
 "hoc task"
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:144
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:146
 msgid ""
 "For custom columns, ``field`` is the name of a task custom field. Portal "
 "will use the value of ``field`` to get the value of the column."
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:147
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:149
 msgid ""
 "``canWorkOn``: filter only tasks that the current user can work on. The "
 "default value is \"false\"."
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:162
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:151
 msgid ""
-"|ivy| supports custom fields for tasks. You can show them in the Task "
+"``filterTasksByCurrentCaseOwner``: filter only the tasks where the "
+"current user is the case owner. The default value is ``false``. This "
+"filter is visible only if the ``Portal.Cases.EnableOwner`` setting is set"
+" to ``true`` in the :ref:`Admin Settings <update-portal-settings>`."
+msgstr ""
+
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:166
+msgid ""
+"Axon Ivy supports custom fields for tasks. You can show them in the Task "
 "widget as a column."
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:165
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:169
 msgid ""
 "You can predefine which column to show, and other attributes such as "
 "filter, format, and style. Below is a standard JSON of a custom column."
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:183
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:187
 msgid ""
 "Besides attributes explained in the previous section, a custom column has"
 " two differences:"
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:188
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:192
 msgid ""
 "``field``: this attribute is the name of the task's custom field which "
 "will be used to get data for the column."
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:198
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:202
 msgid ""
 "You can predefine filter conditions for most columns of the task widget. "
 "Each column has different requirements: some accept only a list, some "
@@ -4569,27 +4577,27 @@ msgid ""
 " for more details."
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:239
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:243
 msgid "``type``: ``standard`` for standard column or ``custom`` for custom column"
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:243
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:247
 msgid "``periodType``: string value. E.g.: ``YEAR``, ``MONTH``, ``WEEK``, ``DAY``"
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:245
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:249
 msgid "``from``: string value. E.g.: \"04/04/2024\""
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:247
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:251
 msgid "``to``: string value. E.g.: \"05/05/2024\""
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:258
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:262
 msgid "``activator``"
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:282
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:286
 msgid ""
 "This column only accepts a list of role names or usernames as filter "
 "conditions for the task's responsible username. The available filter "
@@ -4597,54 +4605,54 @@ msgid ""
 "``current_user`` operator does not require value field."
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:309
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:338
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:313
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:342
 msgid ""
 "This column accepts all operators available for String column. "
 "Additionally, it accepts ``value`` as a list of string."
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:340
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:344
 msgid "``priority``"
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:364
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:368
 msgid ""
 "This column only accepts a list of priorities' names as the filter "
 "condition. The available filter operator is ``in``."
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:367
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:371
 msgid ""
-"Refer to :dev-url:`Task Priority </doc/|version|/public-"
+"Refer to :dev-url:`Task Priority </doc/12.0/public-"
 "api/ch/ivyteam/ivy/workflow/WorkflowPriority.html>` for available task "
 "priorities."
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:370
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:374
 msgid "``state``"
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:393
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:397
 msgid ""
 "This column only accepts a list of task business state names as its "
 "filter condition. The available filter operator is ``in``."
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:396
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:400
 msgid ""
-"Refer to :dev-url:`Task Business States </doc/|version|/public-"
+"Refer to :dev-url:`Task Business States </doc/12.0/public-"
 "api/ch/ivyteam/ivy/workflow/TaskBusinessState.html>` for available task "
 "business states."
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:400
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:404
 msgid ""
 "``startTimestamp`` and ``expiryTimestamp`` : created date and finished "
 "date of the Task"
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:443
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:447
 msgid ""
 "These columns accept all operators available for Date column. Fields may "
 "vary depending on the operator. The JSON example above covers most use "
@@ -4652,35 +4660,35 @@ msgid ""
 "``dd.MM.yyyy HH:mm``, ``MM/dd/yyyy`` and ``MM/dd/yyyy HH:mm``."
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:448
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:452
 msgid "``application``"
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:470
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:474
 msgid "Custom Field Column :"
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:472
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:476
 msgid ""
 ":ref:`configure-new-dashboard-task-widget-custom-columns` are using the "
 "same operator as :ref:`Standard Column <configure-new-dashboard-task-"
 "widget-filter-structure>`."
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:476
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:480
 msgid ""
 "``type`` field must be ``custom`` for Custom Field and ``custom_case`` "
 "for Custom Case Field."
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:502
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:506
 msgid ""
 "The quick search is a useful function for users to quickly search the "
 "tasks within the task widget. The configuration of the quick search has "
 "two attributes:"
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:512
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:516
 msgid ""
 "Conversely, if you set the ``enableQuickSearch`` attribute to ``true``, "
 "the quick search feature will search within the values of all columns "
@@ -4690,23 +4698,23 @@ msgid ""
 "description fields."
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:519
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:523
 msgid ""
 "``enableQuickSearch``: to enable/disable the quick search feature, set "
 "the ``enableQuickSearch`` field of the Task widget as shown below."
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:585
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:589
 #, python-brace-format
 msgid ""
 "Following this path to add your custom field values: "
 "``/CustomFields/Tasks/{fieldName}/Values/{value}`` Please follow this "
-":dev-url:`Localize Label, Description, Category and Values </doc/|version"
-"|/designer-guide/configuration/custom-fields.html#localize-label-"
+":dev-url:`Localize Label, Description, Category and Values </doc/12.0"
+"/designer-guide/configuration/custom-fields.html#localize-label-"
 "description-category-and-values>` to get more information."
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:601
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:605
 msgid ""
 "In your CMS, the path should be "
 "``/CustomFields/Tasks/DriversVehicle/Values/Bike``, "
@@ -4714,15 +4722,15 @@ msgid ""
 "``/CustomFields/Tasks/DriversVehicle/Values/MonsterTruck``."
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:606
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:610
 msgid "|task-field-cms|"
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:660
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:664
 msgid "task-field-cms"
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:635
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:639
 msgid ""
 "Example: When language is German, a user can search for **Fahrrad** or "
 "the original value **Bike**."
@@ -4980,8 +4988,8 @@ msgstr ""
 msgid ""
 "This section provides a step-by-step guide for deploying the Portal for "
 "the first time. It includes examples and best practices. For more "
-"comprehensive deployment information, refer to the :dev-url:`|ivy| "
-"deployment guidelines </doc/|version|/engine-"
+"comprehensive deployment information, refer to the :dev-url:`Axon Ivy "
+"deployment guidelines </doc/12.0/engine-"
 "guide/deployment/index.html>`"
 msgstr ""
 
@@ -5034,9 +5042,9 @@ msgstr ""
 #: ../../source/portal-developer-guide/deployment/index.rst:44
 msgid ""
 "We recommend using .zip files, as they can include: :dev-url:`branding "
-"</doc/|version|/designer-guide/user-interface/branding/branding-"
+"</doc/12.0/designer-guide/user-interface/branding/branding-"
 "engine.html>`, variables, databases, REST clients :dev-url:`configuration"
-" </doc/|version|/engine-guide/deployment/prepare/application-"
+" </doc/12.0/engine-guide/deployment/prepare/application-"
 "configuration/index.html>`."
 msgstr ""
 
@@ -5070,7 +5078,7 @@ msgstr ""
 
 #: ../../source/portal-developer-guide/deployment/index.rst:67
 msgid ""
-"Create a security system, or use the default one provided by |ivy|. This "
+"Create a security system, or use the default one provided by Axon Ivy. This "
 "security system will be shared across applications."
 msgstr ""
 
@@ -5110,9 +5118,9 @@ msgstr ""
 #: ../../source/portal-developer-guide/deployment/index.rst:80
 msgid ""
 "Configuration can be done either through :dev-url:`deployment "
-"</doc/|version|/engine-guide/deployment/prepare/application-"
+"</doc/12.0/engine-guide/deployment/prepare/application-"
 "configuration/index.html>` or via the :dev-url:`Engine Cockpit UI "
-"</doc/|version|/engine-guide/reference/engine-cockpit>`. This section "
+"</doc/12.0/engine-guide/reference/engine-cockpit>`. This section "
 "highlights the most important configuration settings."
 msgstr ""
 
@@ -5845,7 +5853,7 @@ msgstr ""
 #: ../../source/portal-developer-guide/installation/index.rst:24
 msgid ""
 "The deployment of Ivy projects is described in :dev-url:`project "
-"deployment </doc/|version|/engine-guide/deployment/index.html>` ."
+"deployment </doc/12.0/engine-guide/deployment/index.html>` ."
 msgstr ""
 
 #: ../../source/portal-developer-guide/installation/index.rst:32
@@ -5928,7 +5936,7 @@ msgstr ""
 #: ../../source/portal-developer-guide/installation/index.rst:84
 msgid ""
 "The JSON file name has to be Portal.Dashboard.json. Refer to :dev-"
-"url:`Engine Deployment</doc/|version|/engine-"
+"url:`Engine Deployment</doc/12.0/engine-"
 "guide/deployment/index.html>`"
 msgstr ""
 
@@ -5986,7 +5994,7 @@ msgstr ""
 msgid ""
 "This document informs you in detail about incompatibilities that were "
 "introduced between Portal versions and tells you what needs to be done to"
-" make your existing Portal working with current |ivy-engine|."
+" make your existing Portal working with current Axon Ivy Engine."
 msgstr ""
 
 #: ../../source/portal-developer-guide/installation/index.rst:112
@@ -6002,9 +6010,9 @@ msgstr ""
 
 #: ../../source/portal-developer-guide/installation/index.rst:119
 msgid ""
-"To migrate the Portal, you need to migrate |ivy| first. Refer to the "
-":dev-url:`|ivy| Migration Notes "
-"</doc/|version|/axonivy/migration/index.html>`. Changes in |ivy| could "
+"To migrate the Portal, you need to migrate Axon Ivy first. Refer to the "
+":dev-url:`Axon Ivy Migration Notes "
+"</doc/12.0/axonivy/migration/index.html>`. Changes in Axon Ivy could "
 "lead to problems if a customer project is not migrated properly."
 msgstr ""
 
@@ -6020,7 +6028,7 @@ msgstr ""
 msgid ""
 "Upgrade your projects to use the latest portal version by using the "
 "**Convert Project** feature. Please find more information here: :dev-"
-"url:`Converting Projects </doc/|version|/designer-guide/process-"
+"url:`Converting Projects </doc/12.0/designer-guide/process-"
 "modeling/projects/converting.html#converting-projects>`"
 msgstr ""
 
@@ -6055,7 +6063,7 @@ msgstr ""
 msgid ""
 "1. Custom field values for business details pages are migrated silently "
 "from the process link relative path to its :dev-url:`IWebStartable ID "
-"</doc/|version|/public-"
+"</doc/12.0/public-"
 "api/ch/ivyteam/ivy/workflow/start/IWebStartable.html#getId()>`. You don't"
 " need to do anything, this is just for your information."
 msgstr ""
@@ -6118,7 +6126,7 @@ msgstr ""
 #: ../../source/portal-developer-guide/installation/index.rst:169
 msgid ""
 "Refer to Axon Ivy CRON job pattern: `CRON Expression "
-"<https://developer.axonivy.com/doc/|version|/engine-guide/configuration"
+"<https://developer.axonivy.com/doc/12.0/engine-guide/configuration"
 "/advanced-configuration.html#cron-expression>`_."
 msgstr ""
 
@@ -6435,7 +6443,7 @@ msgstr ""
 msgid ""
 "The ``customization.css`` file has been removed, in case you use it in "
 "your project, please switch to using :dev-url:`Engine Branding "
-"</doc/|version|/designer-guide/user-interface/branding/branding-"
+"</doc/12.0/designer-guide/user-interface/branding/branding-"
 "engine.html>` to customize styling"
 msgstr ""
 
@@ -6582,7 +6590,7 @@ msgid ""
 "Portal dashboard widgets only support the ``CustomFields`` declared in "
 "the ``custom-fields.yaml`` file. If your ``CustomFields`` are used in the"
 " dashboard widget, please follow the :dev-url:`Custom Fields Meta "
-"Information </doc/|version|/designer-guide/how-to/workflow/custom-"
+"Information </doc/12.0/designer-guide/how-to/workflow/custom-"
 "fields.html#meta-information>` to adapt the data."
 msgstr ""
 
@@ -6590,7 +6598,7 @@ msgstr ""
 msgid ""
 "The ``DefaultChartColor.p.json`` subprocess has been removed, in case you"
 " use it in your project, please remove override this subprocess and "
-"switch to using :dev-url:`Engine Branding </doc/|version|/designer-guide"
+"switch to using :dev-url:`Engine Branding </doc/12.0/designer-guide"
 "/user-interface/branding/branding-engine.html>` to customize chart, data "
 "labels, legend color."
 msgstr ""
@@ -6676,7 +6684,7 @@ msgstr ""
 msgid ""
 "The callable process ``DefaultChart.p.json``, "
 "``DefaultUserProcess.p.json`` has been removed. They are replaced by the "
-":dev-url:`Variables </doc/|version|/designer-"
+":dev-url:`Variables </doc/12.0/designer-"
 "guide/configuration/variables.html>` configuration approach."
 msgstr ""
 
@@ -6748,8 +6756,8 @@ msgstr ""
 
 #: ../../source/portal-developer-guide/installation/index.rst:397
 msgid ""
-"Portal recommends using :dev-url:`|ivy| HtmlOverride wizard "
-"</doc/|version|/designer-guide/how-to/overrides.html?#override-new-"
+"Portal recommends using :dev-url:`Axon Ivy HtmlOverride wizard "
+"</doc/12.0/designer-guide/how-to/overrides.html?#override-new-"
 "wizard>` to customize ``Portal HTML Dialog``"
 msgstr ""
 
@@ -6834,7 +6842,7 @@ msgid ""
 "(multi Portal app mode) are not available anymore. To let Portal know "
 "where your new Portal home page is, you have to set default pages in your"
 " project. Follow this chapter to customize default-pages: :dev-"
-"url:`Default Pages </doc/|version|/designer-guide/user-interface/default-"
+"url:`Default Pages </doc/12.0/designer-guide/user-interface/default-"
 "pages/index.html>`"
 msgstr ""
 
@@ -6927,25 +6935,37 @@ msgstr ""
 #: ../../source/portal-developer-guide/installation/index.rst:482
 msgid ""
 "This part lists all relevant changes since the last official product "
-"releases of |ivy|."
+"releases of Axon Ivy."
 msgstr ""
 
 #: ../../source/portal-developer-guide/installation/index.rst:486
-msgid "Changes in 12.0.6"
+msgid "Changes in 12.0.9"
 msgstr ""
 
 #: ../../source/portal-developer-guide/installation/index.rst:487
+msgid ""
+"Enhanced the document preview feature for the task and case detail. If "
+"you have :dev-url:`DocFactory <https://market.axonivy.com/doc-factory"
+"#tab-description>` in the same security context. You can preview "
+"Word(doc, docx), Excel(xls, xlsx) and email(eml) documents."
+msgstr ""
+
+#: ../../source/portal-developer-guide/installation/index.rst:490
+msgid "Changes in 12.0.6"
+msgstr ""
+
+#: ../../source/portal-developer-guide/installation/index.rst:491
 msgid ""
 "Introduced the Portal Setting ``Portal.Cases.EnablePinnedCase`` and "
 "``Portal.Tasks.EnablePinnedTask`` to enable the pinning feature for the "
 "case and task widgets on the dashboard."
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:490
+#: ../../source/portal-developer-guide/installation/index.rst:494
 msgid "Changes in 12.0.4"
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:491
+#: ../../source/portal-developer-guide/installation/index.rst:495
 msgid ""
 "Introduced the Portal Setting "
 "``Portal.Cases.BehaviourWhenClickingOnLineInCaseList`` to toggle between "
@@ -6954,40 +6974,40 @@ msgid ""
 "process widget in combined mode."
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:494
+#: ../../source/portal-developer-guide/installation/index.rst:498
 msgid "Changes in 12.0.1"
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:495
+#: ../../source/portal-developer-guide/installation/index.rst:499
 msgid ""
 "Introduced the document preview feature for the task and case detail. You"
 " can preview images(png or jpeg), plain text(txt or log) and pdf "
 "documents."
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:496
+#: ../../source/portal-developer-guide/installation/index.rst:500
 msgid ""
 "Introduced the Portal Setting ``Portal.Document.EnablePreview`` to "
 "control visibility of the preview document icon in Portal."
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:499
+#: ../../source/portal-developer-guide/installation/index.rst:503
 msgid "Changes in 12.0.0"
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:501
+#: ../../source/portal-developer-guide/installation/index.rst:505
 msgid ""
 "The old statistic chart is removed, use the new :ref:`statistic-chart` "
 "instead."
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:502
+#: ../../source/portal-developer-guide/installation/index.rst:506
 msgid ""
 "Introduce the component IFrameTaskConfig to configure IFrame tasks. Refer"
 " to :ref:`iframe-configure-template` for more information."
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:503
+#: ../../source/portal-developer-guide/installation/index.rst:507
 msgid ""
 "The :ref:`full task list page <full-task-list>` and :ref:`full case list "
 "page <full-case-list>` have been redesigned to align with the concept of "
@@ -6995,17 +7015,17 @@ msgid ""
 "width widget. To configure it, you can adjust it like any other widgets."
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:505
+#: ../../source/portal-developer-guide/installation/index.rst:509
 msgid ""
 "Support multiple case owners. The single case owner sort feature is "
 "removed."
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:508
+#: ../../source/portal-developer-guide/installation/index.rst:512
 msgid "Changes in 11.2.0"
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:510
+#: ../../source/portal-developer-guide/installation/index.rst:514
 msgid ""
 "The ``ch.ivy.addon.portalkit.publicapi.ApplicationMultiLanguageAPI`` "
 "class is removed and no longer supported, use "
@@ -7013,14 +7033,14 @@ msgid ""
 "instead."
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:511
+#: ../../source/portal-developer-guide/installation/index.rst:515
 msgid ""
 "The ``ch.ivy.addon.portalkit.publicapi.CaseAPI`` class is removed and no "
 "longer supported, use ``com.axonivy.portal.components.publicapi.CaseAPI``"
 " instead."
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:512
+#: ../../source/portal-developer-guide/installation/index.rst:516
 msgid ""
 "The ``ch.ivy.addon.portalkit.publicapi.PortalGlobalGrowInIFrameAPI`` "
 "class is removed and no longer supported, use "
@@ -7028,35 +7048,35 @@ msgid ""
 "instead."
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:513
+#: ../../source/portal-developer-guide/installation/index.rst:517
 msgid ""
 "The ``ch.ivy.addon.portalkit.publicapi.PortalNavigatorAPI`` class is "
 "removed and no longer supported, use "
 "``com.axonivy.portal.components.publicapi.PortalNavigatorAPI`` instead."
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:514
+#: ../../source/portal-developer-guide/installation/index.rst:518
 msgid ""
 "The ``ch.ivy.addon.portalkit.publicapi.ProcessStartAPI`` class is removed"
 " and no longer supported, use "
 "``com.axonivy.portal.components.publicapi.ProcessStartAPI`` instead."
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:515
+#: ../../source/portal-developer-guide/installation/index.rst:519
 msgid ""
 "The ``ch.ivy.addon.portalkit.publicapi.RoleAPI`` class is removed and no "
 "longer supported, use ``com.axonivy.portal.components.publicapi.RoleAPI``"
 " instead."
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:516
+#: ../../source/portal-developer-guide/installation/index.rst:520
 msgid ""
 "The ``ch.ivy.addon.portalkit.publicapi.TaskAPI`` class is removed and no "
 "longer supported, use ``com.axonivy.portal.components.publicapi.TaskAPI``"
 " instead."
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:517
+#: ../../source/portal-developer-guide/installation/index.rst:521
 msgid ""
 "The ``com.axonivy.portal.components.util.PortalNavigatorInFrameAPI`` "
 "class is removed and no longer supported, use "
@@ -7064,51 +7084,51 @@ msgid ""
 "instead."
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:518
+#: ../../source/portal-developer-guide/installation/index.rst:522
 msgid ""
 "Introduced the sort feature for the process dashboard widget. User can "
 "sort the processes by index, alphabetical order or by custom order."
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:519
+#: ../../source/portal-developer-guide/installation/index.rst:523
 msgid ""
 "Introduced the ``taskId`` param for the component "
 "``ic:com.axonivy.portal.components.ProcessViewer`` to highlight the "
 "current step in the Process Viewer."
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:520
+#: ../../source/portal-developer-guide/installation/index.rst:524
 msgid "Portal Legacy dashboard has been removed."
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:521
+#: ../../source/portal-developer-guide/installation/index.rst:525
 msgid ""
 "The ``AxonIvyExpress`` module is renamed to ``axonivy-express`` and "
 "becomes an item on the Axon Ivy Market."
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:524
+#: ../../source/portal-developer-guide/installation/index.rst:528
 msgid "Changes in 10"
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:526
+#: ../../source/portal-developer-guide/installation/index.rst:530
 msgid ""
 "Introduced the ``Application`` filter and the ``Application`` column in "
 "the following places: full task list, full case list, dashboard task "
 "list, dashboard case list, and task analysis."
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:529
+#: ../../source/portal-developer-guide/installation/index.rst:533
 msgid "Changes in 9.4"
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:531
+#: ../../source/portal-developer-guide/installation/index.rst:535
 msgid ""
 "Combined projects ``PortalStyle``, ``PortalKit``, and ``PortalTemplate`` "
 "to one project named ``portal``."
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:533
+#: ../../source/portal-developer-guide/installation/index.rst:537
 msgid ""
 "Introduced the ``Portal.Tasks.BehaviourWhenClickingOnLineInTaskList`` "
 "Portal setting to set behaviour when clicking on a line in task list, "
@@ -7116,190 +7136,190 @@ msgid ""
 " can change it via user profile."
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:536
+#: ../../source/portal-developer-guide/installation/index.rst:540
 msgid ""
 "Introduced the ``Portal.StatisticChartScalingInterval`` Portal setting to"
 " set the interval in seconds to do periodic statistic chart scaling "
 "requests."
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:538
+#: ../../source/portal-developer-guide/installation/index.rst:542
 msgid ""
 "Introduced the ``Portal.LoginPage.ShowFooter`` Portal setting to control "
 "visibility of the footer on the login page."
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:540
+#: ../../source/portal-developer-guide/installation/index.rst:544
 msgid ""
 "Introduced the ``Portal.Theme.Mode`` Portal setting to set the default "
 "theme mode: Light or Dark."
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:542
+#: ../../source/portal-developer-guide/installation/index.rst:546
 msgid ""
 "Introduced the ``Portal.Theme.EnableSwitchThemeModeButton`` Portal "
 "setting to control state of the switch theme button on the top-bar."
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:544
+#: ../../source/portal-developer-guide/installation/index.rst:548
 msgid ""
 "Introduced new ``Task ID``, ``Task Name``, ``Case ID`` and ``Case Name`` "
 "filter in the Portal full task list and case list."
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:546
+#: ../../source/portal-developer-guide/installation/index.rst:550
 msgid ""
 "Introduced the ``Process Viewer`` page, user can get the visual viewer of"
 " the process start. See details :ref:`Show Process Viewer <how-to-show-"
 "process-viewer>`"
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:548
+#: ../../source/portal-developer-guide/installation/index.rst:552
 msgid ""
 "Introduced the ``Formatting language setting`` to format values, for "
 "example the decimal separator is displayed differently in different "
 "regions of the world."
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:550
+#: ../../source/portal-developer-guide/installation/index.rst:554
 msgid ""
 "Removed subprocess ``DefaultChartColor.p.json``, introduced some Portal "
 "variables for customizing the default chart color."
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:552
+#: ../../source/portal-developer-guide/installation/index.rst:556
 msgid "Introduce some components in new ``portal-components`` project."
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:554
+#: ../../source/portal-developer-guide/installation/index.rst:558
 msgid ""
 ":ref:`User Selection Component <components-portal-components-user-"
 "selection>`"
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:556
+#: ../../source/portal-developer-guide/installation/index.rst:560
 msgid ""
 ":ref:`Role Selection Component <components-portal-components-role-"
 "selection>`"
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:558
+#: ../../source/portal-developer-guide/installation/index.rst:562
 msgid ""
 ":ref:`Document Table Component <components-portal-components-document-"
 "table>`"
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:560
+#: ../../source/portal-developer-guide/installation/index.rst:564
 msgid ""
 ":ref:`Process Chain Component <components-portal-components-process-"
 "chain>`"
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:562
+#: ../../source/portal-developer-guide/installation/index.rst:566
 msgid ""
 ":ref:`Process Viewer Component <components-portal-components-process-"
 "viewer>`"
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:565
+#: ../../source/portal-developer-guide/installation/index.rst:569
 msgid "Changes in 9.3"
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:567
+#: ../../source/portal-developer-guide/installation/index.rst:571
 msgid ""
 "No need to update PortalGroupId variable when you change group id of "
 "Portal."
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:571
+#: ../../source/portal-developer-guide/installation/index.rst:575
 msgid "Changes in 9.2"
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:573
+#: ../../source/portal-developer-guide/installation/index.rst:577
 msgid ""
 "Included new TaskState such as ``Destroyed``, ``Failed``, ``Join failed``"
 " and ``Waiting for event`` in Portal Task list, also in Task State "
 "filter."
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:575
+#: ../../source/portal-developer-guide/installation/index.rst:579
 msgid ""
 "Included new CaseState ``Destroyed`` in Portal Case list, also in Case "
 "State filter."
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:577
+#: ../../source/portal-developer-guide/installation/index.rst:581
 msgid ""
 "Introduced :ref:`Workflow Events table <how-to-show-workflow-events>`, "
 "user who has permission :bdg-warning:`🔑WorkflowEventReadAll` can see all "
 "``WORKFLOW_EVENTS``."
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:579
+#: ../../source/portal-developer-guide/installation/index.rst:583
 msgid ""
 "Introduced the ``Portal.Homepage`` Portal setting to set the default "
 "homepage, each user can change it via user profile."
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:581
+#: ../../source/portal-developer-guide/installation/index.rst:585
 msgid ""
 "Introduced new approach to customize :ref:`Portal Case Item details "
 "<customization-case-item-details>`. Now, your case information in Case "
 "details page and Case Info dialog is the same"
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:583
+#: ../../source/portal-developer-guide/installation/index.rst:587
 msgid ""
 "Introduced new approach to customize :ref:`Portal Task Item Details "
 "<customization-task-item-details>`."
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:585
-#: ../../source/portal-developer-guide/installation/index.rst:602
+#: ../../source/portal-developer-guide/installation/index.rst:589
+#: ../../source/portal-developer-guide/installation/index.rst:606
 msgid ""
 "Introduced new Portal Setting ``Portal.ShowButtonIcon`` to control "
 "visibility of icon of button in Portal."
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:587
+#: ../../source/portal-developer-guide/installation/index.rst:591
 msgid ""
 "Introduced new variable named ``PortalLoginPageDisplay`` to show Login "
 "page or hide it then show error page instead."
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:589
+#: ../../source/portal-developer-guide/installation/index.rst:593
 msgid ""
 "No multiple applications anymore, Portal now only works in current "
 "application. It means administrator can not add new Ivy application."
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:591
+#: ../../source/portal-developer-guide/installation/index.rst:595
 msgid "Statistic charts support multiple names for each supported languages."
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:593
+#: ../../source/portal-developer-guide/installation/index.rst:597
 msgid "Portal supports multilingual user favorites"
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:595
+#: ../../source/portal-developer-guide/installation/index.rst:599
 msgid "Portal supports logos in SVG format."
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:598
+#: ../../source/portal-developer-guide/installation/index.rst:602
 msgid "Changes in 9.1"
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:600
+#: ../../source/portal-developer-guide/installation/index.rst:604
 msgid ""
 "Refactored style customization approach. From now on, Portal use CSS "
 "Variable as technology to customize CSS."
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:604
+#: ../../source/portal-developer-guide/installation/index.rst:608
 msgid "Introduced new Portal dialog with icon decorator."
 msgstr ""
 
-#: ../../source/portal-developer-guide/installation/index.rst:606
+#: ../../source/portal-developer-guide/installation/index.rst:610
 msgid "TaskTemplate-7, TaskTemplate and TwoColumnTemplate have been removed."
 msgstr ""
 
@@ -7339,7 +7359,7 @@ msgstr ""
 msgid ""
 "The focus with Release 10 was to finalize the new portal approach of "
 "enabling the portal users to configure the portal to their custom needs "
-"and make the portal more adaptable to the various use cases of the |ivy| "
+"and make the portal more adaptable to the various use cases of the Axon Ivy "
 "Platform."
 msgstr ""
 
@@ -7441,7 +7461,7 @@ msgstr ""
 
 #: ../../source/portal-developer-guide/introduction/index.rst:56
 msgid ""
-"The multiapp approach is now covered by the |ivy| core, making the use of"
+"The multiapp approach is now covered by the Axon Ivy core, making the use of"
 " the portal for displaying tasks from more than one application much "
 "easier"
 msgstr ""
@@ -7463,7 +7483,7 @@ msgstr ""
 #: ../../source/portal-developer-guide/introduction/index.rst:59
 msgid ""
 "The portal-components project now offers ready to use components like a "
-"documents-component or user choosers that can be reused in your |ivy| "
+"documents-component or user choosers that can be reused in your Axon Ivy "
 "Projects"
 msgstr ""
 
@@ -7488,7 +7508,7 @@ msgstr ""
 
 #: ../../source/portal-developer-guide/introduction/index.rst:70
 msgid ""
-"Inviting and modern Look & Feel for |ivy| Portal 9.4. Refer to :ref"
+"Inviting and modern Look & Feel for Axon Ivy Portal 9.4. Refer to :ref"
 ":`introduction-new-and-note-worthy-9.4`."
 msgstr ""
 
@@ -7511,7 +7531,7 @@ msgstr ""
 
 #: ../../source/portal-developer-guide/introduction/index.rst:77
 msgid ""
-"The Individual Dashboard for |ivy| Portal 9.3. Refers to :ref"
+"The Individual Dashboard for Axon Ivy Portal 9.3. Refers to :ref"
 ":`introduction-new-and-note-worthy-9.3`."
 msgstr ""
 
@@ -7537,7 +7557,7 @@ msgstr ""
 
 #: ../../source/portal-developer-guide/introduction/index.rst:84
 msgid ""
-"More UX for |ivy| Portal 9.2. Refer to :ref:`introduction-new-and-note-"
+"More UX for Axon Ivy Portal 9.2. Refer to :ref:`introduction-new-and-note-"
 "worthy-9.2`."
 msgstr ""
 
@@ -7601,7 +7621,7 @@ msgid ""
 "Another step in this direction is the upgrade to a new UI theme. The "
 "latest trends and design patterns are ideally included in the fresh "
 "`Freya <https://www.primefaces.org/freya/>`_ theme by PrimeFaces. "
-"Moreover, the entire |ivy| Portal can now be used in Dark Mode."
+"Moreover, the entire Axon Ivy Portal can now be used in Dark Mode."
 msgstr ""
 
 #: ../../source/portal-developer-guide/introduction/index.rst:113
@@ -7625,7 +7645,7 @@ msgstr ""
 
 #: ../../source/portal-developer-guide/introduction/index.rst:120
 msgid ""
-"All dashboards within the |ivy| Portal can now be configured and arranged"
+"All dashboards within the Axon Ivy Portal can now be configured and arranged"
 " with a wizard according to individual preferences."
 msgstr ""
 
@@ -7666,12 +7686,12 @@ msgstr ""
 #: ../../source/portal-developer-guide/introduction/index.rst:134
 msgid ""
 "Password policies are different in each company. This fact is fully taken"
-" into account in the |ivy| Portal."
+" into account in the Axon Ivy Portal."
 msgstr ""
 
 #: ../../source/portal-developer-guide/introduction/index.rst:136
 msgid ""
-"This applies to users managed by the |ivy-engine| only. If users are "
+"This applies to users managed by the Axon Ivy Engine only. If users are "
 "imported from an external Identity Provider (IDP), this IDP manages "
 "passwords as well as password policy."
 msgstr ""
@@ -7737,7 +7757,7 @@ msgstr ""
 
 #: ../../source/portal-developer-guide/introduction/index.rst:165
 msgid ""
-"|ivy| Portal supports a sophisticated concept featuring default widgets "
+"Axon Ivy Portal supports a sophisticated concept featuring default widgets "
 "for Process Starts, Task Lists, and Case Lists."
 msgstr ""
 
@@ -7752,7 +7772,7 @@ msgstr ""
 #: ../../source/portal-developer-guide/introduction/index.rst:169
 msgid ""
 "Processes, tasks, and cases are essential when it comes to business "
-"process automation and workflow management. Therefore, the |ivy| Portal "
+"process automation and workflow management. Therefore, the Axon Ivy Portal "
 "gives you full power by providing these standard widgets out-of-the-box."
 msgstr ""
 
@@ -7789,7 +7809,7 @@ msgid "There are two different widgets types available:"
 msgstr ""
 
 #: ../../source/portal-developer-guide/introduction/index.rst:183
-msgid "|ivy| Process"
+msgid "Axon Ivy Process"
 msgstr ""
 
 #: ../../source/portal-developer-guide/introduction/index.rst:184
@@ -7805,7 +7825,7 @@ msgstr ""
 
 #: ../../source/portal-developer-guide/introduction/index.rst:188
 msgid ""
-"Specify your |ivy| Process as a widget element and display your process "
+"Specify your Axon Ivy Process as a widget element and display your process "
 "directly in your custom dashboard."
 msgstr ""
 
@@ -7848,7 +7868,7 @@ msgstr ""
 #: ../../source/portal-developer-guide/introduction/index.rst:215
 msgid ""
 "Users can reset their passwords easily using the standard password reset "
-"feature integrated in |ivy| Portal"
+"feature integrated in Axon Ivy Portal"
 msgstr ""
 
 #: ../../source/portal-developer-guide/introduction/index.rst:217
@@ -7866,7 +7886,7 @@ msgstr ""
 #: ../../source/portal-developer-guide/introduction/index.rst:222
 msgid ""
 "We have listened to you! Business users requested to export specific "
-"lists from |ivy| Portal to perform further analysis in Microsoft Excel. "
+"lists from Axon Ivy Portal to perform further analysis in Microsoft Excel. "
 "Now they have the possibility to export any list with one mouse click."
 msgstr ""
 
@@ -7917,8 +7937,8 @@ msgstr ""
 
 #: ../../source/portal-developer-guide/introduction/index.rst:244
 msgid ""
-"Make it your own way with the |ivy| Portal. Users can optimize process "
-"work and customize the |ivy| Portal to their own taste."
+"Make it your own way with the Axon Ivy Portal. Users can optimize process "
+"work and customize the Axon Ivy Portal to their own taste."
 msgstr ""
 
 #: ../../source/portal-developer-guide/introduction/index.rst:246
@@ -8145,7 +8165,7 @@ msgid "_`TaskDestroy`"
 msgstr ""
 
 #: ../../source/portal-developer-guide/permissions/index.rst:57
-msgid "Permission to see the Destroy Task action"
+msgid "Permission to execute the Destroy action"
 msgstr ""
 
 #: ../../source/portal-developer-guide/permissions/index.rst:59
@@ -8609,8 +8629,8 @@ msgstr ""
 
 #: ../../source/portal-developer-guide/settings/index.rst:25
 msgid ""
-"Portal settings are stored as :dev-url:`Variables </doc/|version"
-"|/designer-guide/configuration/variables.html>`."
+"Portal settings are stored as :dev-url:`Variables </doc/12.0"
+"/designer-guide/configuration/variables.html>`."
 msgstr ""
 
 #: ../../source/portal-developer-guide/settings/index.rst:27
@@ -8719,8 +8739,8 @@ msgstr ""
 
 #: ../../source/portal-developer-guide/settings/index.rst:79
 msgid ""
-"Configure permissions in the :dev-url:`Engine Cockpit </doc/|version"
-"|/engine-guide/reference/engine-cockpit/security.html>`. In the security "
+"Configure permissions in the :dev-url:`Engine Cockpit </doc/12.0"
+"/engine-guide/reference/engine-cockpit/security.html>`. In the security "
 "area, you will find all these permission in group \"PortalPermissions\"."
 msgstr ""
 
@@ -9762,7 +9782,7 @@ msgstr ""
 #: ../../source/portal-developer-guide/troubleshooting/index.rst:7
 msgid ""
 "Here, we present solutions to some of the most common problems related to"
-" the |ivy| Portal."
+" the Axon Ivy Portal."
 msgstr ""
 
 #: ../../source/portal-developer-guide/troubleshooting/index.rst:10
@@ -9778,7 +9798,7 @@ msgstr ""
 #: ../../source/portal-developer-guide/troubleshooting/index.rst:15
 msgid ""
 "The `Community <http://community.axonivy.com/>`__ contains a considerable"
-" amount of questions and answers related to |ivy| Designer and Engine."
+" amount of questions and answers related to Axon Ivy Designer and Engine."
 msgstr ""
 
 #: ../../source/portal-developer-guide/troubleshooting/index.rst:19
@@ -9809,8 +9829,8 @@ msgstr ""
 #: ../../source/portal-developer-guide/troubleshooting/index.rst:35
 msgid ""
 "If you install the Portal in an environment that uses a reverse proxy "
-"(Nginx, IIS or Apache httpd), you have to define the proxy in the |ivy-"
-"engine| configuration."
+"(Nginx, IIS or Apache httpd), you have to define the proxy in the Axon Ivy Engine"
+" configuration."
 msgstr ""
 
 #: ../../source/portal-developer-guide/usermenu/index.rst:4
@@ -9918,4 +9938,7 @@ msgstr ""
 #: ../../source/portal-developer-guide/usermenu/index.rst:93
 msgid "Params are not required if the URL denotes an external webpage."
 msgstr ""
+
+#~ msgid "Permission to see the Destroy Task action"
+#~ msgstr ""
 

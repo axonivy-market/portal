@@ -4,17 +4,17 @@ Full Task List
 **************
 
 The **Full Task List** page is a dashboard featuring a single, full-width task widget. 
-You can reach the page by using the |task-list-icon| :guilabel:`Tasks` link in the |ivy| Portal menu.
+You can reach the page by using the |task-list-icon| :guilabel:`Tasks` link in the Axon Ivy Portal menu.
 
 .. note::
 
-   Grant permission :bdg-ref-warning:`🔑AccessFullTaskList <AccessFullTaskList>` to allow a user to access the full task list ( |task-list-icon| :guilabel:`Tasks`) in the |ivy| Portal menu.
+   Grant permission :bdg-ref-warning:`🔑AccessFullTaskList <AccessFullTaskList>` to allow a user to access the full task list ( |task-list-icon| :guilabel:`Tasks`) in the Axon Ivy Portal menu.
 
 
 .. hint:: 
    Depending on the roles you hold
    in the application and the     
-   configuration of the |ivy|  
+   configuration of the Axon Ivy
    Portal, you might see not only 
    the tasks belonging to you but 
    all open tasks.     
@@ -67,6 +67,8 @@ handling tasks:
 
 #. Trigger Escalation
 
+#. Custom Fields
+
 #. Workflow Events
 
 #. Process Viewer
@@ -76,7 +78,7 @@ handling tasks:
    Grant permissions :bdg-ref-warning:`🔑TaskDisplayResetAction <TaskDisplayResetAction>`, 
    :bdg-ref-warning:`🔑TaskDisplayReserveAction <TaskDisplayReserveAction>`, :bdg-ref-warning:`🔑TaskDisplayDelegateAction <TaskDisplayDelegateAction>`, 
    :bdg-ref-warning:`🔑TaskDisplayDestroyAction <TaskDisplayDestroyAction>`, :bdg-ref-warning:`🔑TaskDisplayAdditionalOptions <TaskDisplayAdditionalOptions>`,
-   :bdg-ref-warning:`🔑TaskDisplayWorkflowEventAction <TaskDisplayWorkflowEventAction>` to allow a user to see the corresponding buttons and menu items.
+   :bdg-ref-warning:`🔑TaskDisplayWorkflowEventAction <TaskDisplayWorkflowEventAction>`, :bdg-ref-warning:`🔑TaskDisplayCustomFieldsAction <TaskDisplayCustomFieldsAction>` to allow a user to see the corresponding buttons and menu items.
 
 Finally, you have the possibility to access the full set of the task
 data by clicking on `Actions` then clicking on the `Details` menu item.
@@ -97,7 +99,7 @@ The task details are separated into 4 different sections:
    |detailed-task-information-note|
 
 #. Documents, these documents once attached to the case are
-   available on all tasks. You may add, delete or preview documents 
+   available on all tasks. You may add, delete, rename or preview documents
    described in the HowTo’s below.
 
    |detailed-task-information-documents|
@@ -151,6 +153,25 @@ HowTo: Attach a document to a case
 
    Grant either permission :bdg-ref-warning:`🔑DocumentOfInvolvedCaseWrite <DocumentOfInvolvedCaseWrite>` or :bdg-ref-warning:`🔑DocumentWrite <DocumentWrite>` to allow a user to upload documents.
 
+HowTo: Rename a document of a case
+----------------------------------
+
+#. Open the case details
+
+#. Click on the |edit-icon| button next to the
+   attachment you want to rename
+
+#. A dialog is opened to rename the selected document
+
+#. Update filename as you expect in the input field
+
+#. Click the button :guilabel:`Save` to save your change
+
+#. Filename will be updated and a note about the renaming will be added
+
+|how-to-rename-document|
+
+
 HowTo: Remove an attachment from the case
 -----------------------------------------
 
@@ -170,7 +191,7 @@ HowTo: Remove an attachment from the case
    Grant either permission :bdg-ref-warning:`🔑DocumentOfInvolvedCaseWrite <DocumentOfInvolvedCaseWrite>` or :bdg-ref-warning:`🔑DocumentWrite <DocumentWrite>` to allow a user to delete documents.
 
 
-HowTo: Preview a document of a case
+HowTo: Preview a document of a task
 ------------------------------------
 
 #. Open the task details of a task
@@ -186,10 +207,11 @@ HowTo: Preview a document of a case
 
 .. note::
 
-   Portal can preview images, plain text(txt and log) and pdf documents.
+    - Portal can preview images(jpg, jpeg, bmp and png), plain text(txt and log) and pdf documents by default.
 
-   Change :ref:`Portal settings <update-portal-settings>` :guilabel:`Portal.Document.EnablePreview` to true to enable this feature.
+    - Portal can preview Word(doc, docx), Excel(xls, xlsx) and email(eml) documents if :dev-url:`DocFactory <https://market.axonivy.com/doc-factory#tab-description>` is deployed in the same security context.
 
+    - Change :ref:`Portal settings <update-portal-settings>` :guilabel:`Portal.Document.EnablePreview` to true to enable this feature.
 
 HowTo: Add a note to a task
 ---------------------------
@@ -247,6 +269,22 @@ HowTo: Show Workflow Events
 
 |workflow-events-table|
 
+HowTo: Show Custom Fields
+---------------------------
+
+.. note:: 
+   Grant permission :bdg-ref-warning:`🔑TaskDisplayCustomFieldsAction <TaskDisplayCustomFieldsAction>` to allow a user to see Custom Fields link in Actions panel.
+
+#. Open the task details of a task
+
+#. Click on the link ``Actions`` on the right top corner of the **Data and Description** section
+
+#. Click the link ``Custom Fields`` on the overlay panel to see Custom Fields dialog
+
+**Custom Fields dialog**
+
+|custom-fields-dialog|
+
 HowTo: Share Task Details
 -------------------------
 
@@ -287,6 +325,8 @@ HowTo: Share Task Details
    :alt: Link to export task notes
 .. |workflow-events-table| image:: ../../screenshots/task-detail/workflow-events-table.png
    :alt: Workflow events of task dialog
+.. |custom-fields-dialog| image:: ../../screenshots/task-detail/custom-fields-dialog.png
+   :alt: Custom fields of task dialog
 .. |how-to-switch-to-view-mode| image:: ../../screenshots/task-detail/how-to-switch-to-view-mode.png
    :alt: Task Details: save button
 .. |how-to-switch-to-edit-mode| image:: ../../screenshots/task-detail/how-to-switch-to-edit-mode.png
@@ -298,3 +338,6 @@ HowTo: Share Task Details
 .. |task-status-banner| image:: ../../screenshots/task-detail/task-status-banner.png
    :alt: Task Details: the Status banner
 .. |how-to-preview-document| image:: ../../screenshots/case-detail/how-to-preview-document.png
+   :alt: Task Details: preview document dialog
+.. |how-to-rename-document| image:: ../../screenshots/case-detail/how-to-rename-document.png
+   :alt: Task Details: rename document dialog

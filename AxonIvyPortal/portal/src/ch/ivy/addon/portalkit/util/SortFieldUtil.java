@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 import org.primefaces.model.SortMeta;
 import org.primefaces.model.SortOrder;
 
@@ -84,11 +85,11 @@ public class SortFieldUtil {
     if (sortField.contains(SORT_SEPARATOR)) {
       int directionIndex = sortField.lastIndexOf(SORT_SEPARATOR);
       String sortDirection = StringUtils.substring(sortField, directionIndex + 1);
-      return StringUtils.equalsIgnoreCase(sortDirection, SortDirection.ASC.name())
-          || StringUtils.startsWithIgnoreCase(SortDirection.ASC.name(), sortDirection);
+      return Strings.CI.equals(sortDirection, SortDirection.ASC.name())
+          || Strings.CI.startsWith(SortDirection.ASC.name(), sortDirection);
     }
-    return StringUtils.equalsIgnoreCase(sortField, SortDirection.ASC.name())
-        || StringUtils.startsWithIgnoreCase(SortDirection.ASC.name(), sortField);
+    return Strings.CI.equals(sortField, SortDirection.ASC.name())
+        || Strings.CI.startsWith(SortDirection.ASC.name(), sortField);
   }
 
   public static boolean invalidSortField(String sortField, List<String> columns) {

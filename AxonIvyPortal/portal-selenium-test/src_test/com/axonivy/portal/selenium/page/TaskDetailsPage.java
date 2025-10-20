@@ -35,7 +35,7 @@ public class TaskDetailsPage extends TemplatePage {
     $("a[id$=':task-notes:add-note-command']").click();
     $("div[id$=':task-notes:add-new-note-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
     $("div[id$=':task-notes:add-new-note-dialog']").find("textarea").sendKeys(noteContent);
-    $("button[id$=':task-notes:task-add-new-note-form:save-add-note-command']").click();
+    $("button[id$=':task-notes:task-add-new-note-form:save-add-note-command']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     $("div[id$=':task-notes:task-add-new-note-form:save-add-note-command']").shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 
@@ -120,7 +120,7 @@ public class TaskDetailsPage extends TemplatePage {
   }
 
   public boolean isActionLinkEnable() {
-    return !$(".action-link").getAttribute("class").contains("ui-state-disabled");
+    return !$(".action-link").getDomAttribute("class").contains("ui-state-disabled");
   }
 
   public List<String> getActiveTaskAction() {
@@ -129,7 +129,7 @@ public class TaskDetailsPage extends TemplatePage {
     return actionPanel.findElements(By.cssSelector("a[class*='option-item']"))
         .stream()
         .filter(
-            elem -> !elem.getAttribute("class").contains("ui-state-disabled"))
+            elem -> !elem.getDomAttribute("class").contains("ui-state-disabled"))
         .map(WebElement::getText)
         .collect(Collectors.toList());
   }
@@ -215,7 +215,7 @@ public class TaskDetailsPage extends TemplatePage {
     $("div.ui-dialog[aria-hidden='false']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     SelenideElement addNoteDialog = $("div.ui-dialog[aria-hidden='false']").shouldBe(appear, DEFAULT_TIMEOUT);
     addNoteDialog.findElement(By.cssSelector("textarea[id$='note-content']")).sendKeys(content);
-    addNoteDialog.findElement(By.cssSelector("button[id$='save-add-note-command']")).click();
+    addNoteDialog.$("button[id$='save-add-note-command']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
 
   public void openAddAttachmentDialog() {
@@ -269,6 +269,24 @@ public class TaskDetailsPage extends TemplatePage {
     $("a[id$=':task-workflow-event-command']").shouldBe(getClickableCondition()).click();
     $("div[id$='events-table']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
+  
+  public void clickOnShowCustomFieldsDialog() {
+    $("a[id$=':task-custom-fields-command']").shouldBe(getClickableCondition()).click();
+    $("div[id$='task-custom-fields-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+  
+  public SelenideElement getCustomFieldsDialog() {
+    return $("div[id$='task-custom-fields-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  public List<String> getCustomFieldNames() {
+    return $$("span[id$='customFieldLabel']")
+        .shouldBe(CollectionCondition.sizeGreaterThanOrEqual(0), DEFAULT_TIMEOUT)
+        .asFixedIterable()
+        .stream()
+        .map(SelenideElement::getText)
+        .collect(Collectors.toList());
+  }
 
   public WebElement getWorkflowEventsTable() {
     $("th[id*='events-table:']").shouldBe(appear, DEFAULT_TIMEOUT);
@@ -280,10 +298,8 @@ public class TaskDetailsPage extends TemplatePage {
   }
 
   public void waitForIFrameURLWidgetLoad() {
-    switchToIframeWithNameOrId("custom-widget-iframe-url");
-    $("a[href='https://www.iana.org/domains/example']").shouldBe(Condition.visible, DEFAULT_TIMEOUT);
-    switchBackToParent();
-
+    SelenideElement iframe = $("iframe[name='custom-widget-iframe-url']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    iframe.shouldHave(Condition.attributeMatching("src", ".*example\\.com.*"));
   }
 
   public void waitForIFrameWidgetLoad() {
@@ -293,12 +309,13 @@ public class TaskDetailsPage extends TemplatePage {
   }
 
   public String getTaskUuid() {
-    return $("a[id$='show-more-note-link']").getAttribute("href").split("uuid=")[1];
+    return $("a[id$='show-more-note-link']").getDomAttribute("href").split("uuid=")[1];
   }
 
   public List<String> getTaskNoteHasAuthors() {
     ScreenshotUtils.resizeBrowser(new Dimension(2560, 1600));
     $("th.task-document-author").shouldBe(appear);
+    $("th.task-document-author").shouldBe(appear, DEFAULT_TIMEOUT);
     ElementsCollection noteAuthorElements =
         $$("td.task-document-author .name-after-avatar").shouldBe(CollectionCondition.sizeGreaterThanOrEqual(1));
     return noteAuthorElements.asFixedIterable().stream().map(w -> w.getText()).collect(Collectors.toList());
@@ -377,4 +394,30 @@ public class TaskDetailsPage extends TemplatePage {
     waitForElementClickableThenClick(By.cssSelector(".portal-breadcrumb ol li:nth-of-type(2) .ui-menuitem-link"));
   }
 
+  public SelenideElement getAllResponsible() {
+    return $("[id$=':all-responsibles'] a");
+  }
+  
+  public SelenideElement getAllExpiryResponsible() {
+    return $("[id$=':all-expiry-responsibles'] a");
+  }
+
+  public SelenideElement getExpiryResponsibleDialog() {
+    return $("[id$=':expiry-responsible-dialog']");
+  }
+  
+  public void clickOnSystemNotesCheckbox(boolean checkboxShouldBeChecked) {
+    waitForElementDisplayed(By.cssSelector("[id$=':task-history-content-container']"), true);
+    var systemNotesCheckbox = findElementByCssSelector("[id$=':task-notes:show-system-notes-checkbox']");
+    var checkbox = systemNotesCheckbox.findElement(By.cssSelector("div.ui-chkbox-box.ui-widget"));
+    if ((checkboxShouldBeChecked && checkbox.getDomAttribute("class").contains("ui-state-active"))
+        || (!checkboxShouldBeChecked && !checkbox.getDomAttribute("class").contains("ui-state-active"))) {
+      return;
+    } else {
+      systemNotesCheckbox.findElement(By.cssSelector("span.ui-chkbox-label")).click();
+      // Cannot identify when the ajax request of select checkbox is finished
+      // So we need to wait for Ajax Indicator disappear
+      clickOnSystemNotesCheckbox(checkboxShouldBeChecked);
+    }
+  }
 }

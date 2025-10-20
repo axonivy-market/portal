@@ -3,8 +3,11 @@ package com.axonivy.portal.selenium.test.task;
 import static com.codeborne.selenide.CollectionCondition.size;
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThanOrEqual;
 
+import java.util.List;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.AfterEach;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
@@ -35,26 +38,29 @@ public class TaskDetailsTest extends BaseTest {
       "Note is added on Task Details and the task has only Business Case";
 
   private static final String ACCESS_TASK_DETAILS = "ACCESS_TASK_DETAILS";
+  private static final String CREATE_NOTES = "InternalSupport/14B2FC03D2E87141/processWithSystemNote.ivp";
 
   @Override
   @BeforeEach
   public void setup() {
     super.setup();
+    login(TestAccount.ADMIN_USER);
     updateGlobalVariable(Variable.TASK_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST.getKey(), ACCESS_TASK_DETAILS);
     grantSpecificPortalPermission(PortalPermission.TASK_CASE_ADD_NOTE);
+    grantSpecificPortalPermission(PortalPermission.TASK_DISPLAY_CUSTOM_FIELDS_ACTION);
   }
 
   @Test
   public void testVisibilityOfNotesWhenAddNoteOnTaskDetailsWithoutTechnicalCase() {
     redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
-    login(TestAccount.ADMIN_USER);
     redirectToNewDashBoard();
     MainMenuPage mainMenuPage = new MainMenuPage();
-    mainMenuPage.openTaskList();
+    mainMenuPage.selectTaskMenu();
     TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
     taskWidget.openDashboardTaskDetails(ORDER_PIZZA);
     TaskDetailsPage taskDetailsPage = new TaskDetailsPage();
     taskDetailsPage.addNote(NOTE_TASK_DETAIL_BUSINESS_CASE);
+    
     taskDetailsPage.getNotesWithContent(NOTE_TASK_DETAIL_BUSINESS_CASE).shouldHave(size(1));
     taskDetailsPage.gotoBusinessCase();
     CaseDetailsPage caseDetailsPage = new CaseDetailsPage();
@@ -65,14 +71,14 @@ public class TaskDetailsTest extends BaseTest {
   @Test
   public void testVisibilityOfNotesWhenAddNoteOnTaskDetailsWithTechnicalCase() {
     redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
-    login(TestAccount.ADMIN_USER);
     redirectToNewDashBoard();
     MainMenuPage mainMenuPage = new MainMenuPage();
-    mainMenuPage.openTaskList();
+    mainMenuPage.selectTaskMenu();
     TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
     taskWidget.openDashboardTaskDetails(TAKE_ORDER);
     TaskDetailsPage taskDetailsPage = new TaskDetailsPage();
     taskDetailsPage.addNote(NOTE_TASK_DETAIL_TECHNICAL_CASE);
+    
     taskDetailsPage.getNotesWithContent(NOTE_TASK_DETAIL_TECHNICAL_CASE).shouldHave(size(1));
     CaseDetailsPage caseDetailsPage = taskDetailsPage.gotoTechnicalCase();
     caseDetailsPage.getHitoriesComponent().shouldHave(sizeGreaterThanOrEqual(1));
@@ -150,5 +156,83 @@ public class TaskDetailsTest extends BaseTest {
     taskWidget.applyFilter();
     taskWidget.openDashboardTaskDetails(TAKE_ORDER);
     taskDetailsPage.getStatusBanner().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+  }
+  
+  @Test
+  public void testUncheckSystemNotesByDefaultForAdminUser() {
+    updateGlobalVariable(Variable.CHECK_SYSTEM_NOTES_BY_DEFAULT.getKey(), "false");
+    login(TestAccount.ADMIN_USER);
+    redirectToRelativeLink(CREATE_NOTES);
+
+    redirectToNewDashBoard();
+    NavigationHelper.navigateToTaskList();
+    TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
+    taskWidget.openDashboardTaskDetails("User: create note");
+    TaskDetailsPage taskDetailsPage = new TaskDetailsPage();
+
+    taskDetailsPage.getNotesWithContent("System note").shouldHave(size(0));
+    taskDetailsPage.clickOnSystemNotesCheckbox(true);
+    taskDetailsPage.getNotesWithContent("System note").shouldHave(size(1));
+  }
+
+  @Test
+  public void testCheckSystemNotesByDefaultForNormalUser() {
+    updateGlobalVariable(Variable.HIDE_SYSTEM_NOTES_FROM_HISTORY.getKey(), "false");
+    updateGlobalVariable(Variable.CHECK_SYSTEM_NOTES_BY_DEFAULT.getKey(), "true");
+    login(TestAccount.DEMO_USER);
+    redirectToRelativeLink(CREATE_NOTES);
+
+    redirectToNewDashBoard();
+    NavigationHelper.navigateToTaskList();
+    TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
+    taskWidget.openDashboardTaskDetails("User: create note");
+    TaskDetailsPage taskDetailsPage = new TaskDetailsPage();
+
+    taskDetailsPage.getNotesWithContent("System note").shouldHave(size(1));
+    taskDetailsPage.clickOnSystemNotesCheckbox(false);
+    taskDetailsPage.getNotesWithContent("System note").shouldHave(size(0));
+  }
+  
+  @AfterEach
+  public void teardown() {
+    denySpecificPortalPermission(PortalPermission.NOTE_READ_ALL_CASE_TASK_DETAILS);
+  }
+  
+  @Test
+  public void testShowNotesWhenGrantNoteReadAllPermissionInTaskDetails() {
+    redirectToRelativeLink(CREATE_NOTES);
+    login(TestAccount.DEMO_USER);
+
+    redirectToNewDashBoard();
+    NavigationHelper.navigateToTaskList();
+    TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
+    taskWidget.openDashboardTaskDetails("User: create note");
+    TaskDetailsPage taskDetailsPage = new TaskDetailsPage();
+    taskDetailsPage.getNotesWithContent("System note").shouldHave(size(0));
+
+    grantSpecificPortalPermission(PortalPermission.NOTE_READ_ALL_CASE_TASK_DETAILS);
+    NavigationHelper.navigateToTaskList();
+    taskWidget = new TopMenuTaskWidgetPage();
+    taskWidget.openDashboardTaskDetails("User: create note");
+    taskDetailsPage = new TaskDetailsPage();
+    taskDetailsPage.getNotesWithContent("System note").shouldHave(size(1));
+  }
+  
+  @Test
+  public void testShowCustomFieldsOfTask() {
+    redirectToRelativeLink(createDataForStatisticWidget);
+    redirectToNewDashBoard();
+    MainMenuPage mainMenuPage = new MainMenuPage();
+    mainMenuPage.selectTaskMenu();
+    TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
+    taskWidget.openDashboardTaskDetails("Maternity Leave Request");
+    TaskDetailsPage taskDetailsPage = new TaskDetailsPage();
+    
+    // Verify custom field dialog data
+    taskDetailsPage.openActionPanel();
+    taskDetailsPage.clickOnShowCustomFieldsDialog();
+    assertTrue(taskDetailsPage.getCustomFieldsDialog().isDisplayed());
+    List<String> customFieldNames = taskDetailsPage.getCustomFieldNames();
+    assertFalse(customFieldNames.isEmpty());
   }
 }

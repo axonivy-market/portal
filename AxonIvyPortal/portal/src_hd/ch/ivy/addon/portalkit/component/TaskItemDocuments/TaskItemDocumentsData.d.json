@@ -51,5 +51,17 @@
     "name" : "isImage",
     "type" : "Boolean",
     "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "isRenameDocumentSuccess",
+    "type" : "Boolean",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "renameDocumentMessage",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "isDocumentPreviewEnabled",
+    "type" : "Boolean",
+    "modifiers" : [ "PERSISTENT" ]
   } ]
 }

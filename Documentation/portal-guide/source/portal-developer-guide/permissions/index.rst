@@ -54,7 +54,7 @@ Portal Task Permissions
     - Permission to reset all tasks
 
 - _`TaskDestroy`
-    - Permission to see the Destroy Task action
+    - Permission to execute the Destroy action
 
 - _`TaskWriteExpiryTimestamp`   
     - Control whether to change the deadline
@@ -84,6 +84,9 @@ Portal Task Permissions
 
 - _`TaskDisplayWorkflowEventAction`
     - Permission to see the Workflow Event action
+
+- _`TaskDisplayCustomFieldsAction`
+    - Permission to see the Custom Fields action
 
 - _`TaskDisplayDestroyAction`
     - Permission to see the Destroy action
@@ -223,6 +226,9 @@ Portal General Permissions
     - Permission to customize notification channel preferences in :ref:`my-profile` page
 
     - Granted to role Everybody by default.
+
+- _`NoteReadAllCaseTaskDetails`
+    - Permission allows non-admin users to view system notes in case and task details
 
 .. _portal-absence-and-sub-permission:
 

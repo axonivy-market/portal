@@ -797,19 +797,6 @@ $(document).ready(function () {
   // END OF HANDLE EXPAND BUTTON IN FILE PREVIEW
 
   // START: FIX ACCESSIBILITY ISSUES
-  let parentMenu = $("[id$='user-menu-required-login:main-navigator:main-menu']");
-  if (parentMenu) {
-    if (parentMenu.attr('role') === undefined) {
-      parentMenu.attr('role', 'menu');
-    }
-    parentMenu.find('li').each((index, item) => {
-      let linkItem = $(item).find('a');
-      if (linkItem && linkItem.attr('aria-label') === undefined) {
-        linkItem.attr('aria-label', linkItem.text());
-      }
-    })
-  }
-
   setTimeout(function () {
     let combobox = $("span[role='combobox']");
     combobox.each((index, item) => {
@@ -854,6 +841,29 @@ function focusFirstVisibleElementInPanel(widgetVar, selector) {
   }
 }
 
+function updateMainMenuAriaLabel() {
+  let parentMenu = $("[id$='user-menu-required-login:main-navigator:main-menu']");
+  if (parentMenu) {
+    if (parentMenu.attr('role') === undefined) {
+      parentMenu.attr('role', 'menu');
+    }
+    parentMenu.find('li').each((__, item) => {
+      let linkItem = $(item).find('a');
+      if (linkItem && linkItem.attr('aria-label') === undefined) {
+        if (linkItem.length > 1) {
+          $(linkItem).each((__, link) => {
+            if ($(link).attr('aria-label') === undefined) { 
+              $(link).attr('aria-label', $(link).text());
+            }
+          })
+        } else {
+          linkItem.attr('aria-label', linkItem.text());
+        }
+      }
+    })
+  }
+}
+
 function focusElementWithId(elementId) {
     var element = document.querySelector('[id$="' + elementId + '"]');
     if (element) { element.focus(); }
@@ -889,8 +899,11 @@ function initFocusManagament(targetWindow) {
             }
 
             try {
-              let targetElement = this.targetElement[0];
-              storeFocusedElement(targetWindow.document, lastFocusedElements, this.cfg.id, targetElement);
+              if (this.targetElement && this.targetElement.length > 0) {
+                let targetElement = this.targetElement[0];
+                storeFocusedElement(targetWindow.document, lastFocusedElements, this.cfg.id, targetElement);
+              }
+
             } catch(e) {
               console.warn("Cannot store focused element");
             }

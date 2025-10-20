@@ -138,8 +138,8 @@ public class RoleManagementBean implements Serializable {
     }
 
     if (nonNull(existedRole)) {
-      existedRole.setDisplayNameTemplate(selectedRole.getDisplayName());
-      existedRole.setDisplayDescriptionTemplate(selectedRole.getDescription());
+      existedRole.setDisplayName(selectedRole.getDisplayName());
+      existedRole.setDescription(selectedRole.getDescription());
       addRoleGrowlMessage(FacesMessage.SEVERITY_INFO, "/ch.ivy.addon.portalkit.ui.jsf/components/RoleManagement/Messages/UpdateRoleSuccess", selectedRole.getName());
     } else {
       var parentRole = RoleUtils.findRole(selectedParentRole.getName());

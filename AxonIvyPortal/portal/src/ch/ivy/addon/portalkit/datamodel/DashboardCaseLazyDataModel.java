@@ -84,7 +84,8 @@ public class DashboardCaseLazyDataModel extends LiveScrollLazyModel<ICase> {
       IvyThreadContext.restoreFromMemento(memento);
       foundCases = DashboardCaseService.getInstance().findByCaseQuery(criteria.buildQuery(), 0, 25);
       addDistict(cases, foundCases);
-      mapCases.putAll(foundCases.stream().collect(Collectors.toMap(o -> o.getId(), Function.identity())));
+      final var collect = foundCases.stream().collect(Collectors.toMap(o -> o.getId(), Function.identity(), (l1, l2) -> l1));
+      mapCases.putAll(collect);
       IvyThreadContext.reset();
     });
     isFirstTime = true;

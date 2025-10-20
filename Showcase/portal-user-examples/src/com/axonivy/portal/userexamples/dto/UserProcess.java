@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Locale;
 
 import org.apache.commons.collections4.CollectionUtils;
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 
 import com.axonivy.portal.components.enums.ProcessType;
 
@@ -114,8 +114,8 @@ public class UserProcess {
   }
 
   private String getDisplayNameWithCms() {
-    return StringUtils.startsWithIgnoreCase(processName, "cms")
-        ? Ivy.cms().co(StringUtils.removeStart(processName, "cms"))
+    return Strings.CI.startsWith(processName, "cms")
+        ? Ivy.cms().co(Strings.CS.removeStart(processName, "cms"))
         : processName;
   }
 }

@@ -16,7 +16,7 @@ Dialogs:
             Process:
               ProcessName: プロセス名
             RequiredFieldMessage: このフィールドは必須です
-            SideStepPrefix: 'TODO: Side step task for: '
+            Save: 'TODO: Save'
             Task:
               Activator: 責任者
             Type: タイプ
@@ -32,10 +32,15 @@ Dialogs:
             FileContainVirus: アップロードに失敗しました。ウイルス／感染が検出されました。
             FileFunction: 機能
             FileLimitMessage: すでに最大数のファイルがアップロードされています！
+            FilenameEmpty: 'TODO: Filename cannot be empty.'
             InvalidFileMessage: このファイルの種類は受け入れられません！
             Name: ファイル名
             NoFile: ファイルが見つかりません！
             Preview: プレビュー
+            RenamingDocument: 'TODO: Rename document'
+            RenamingDocumentNote: 'TODO: {0} has renamed the file {1} to {2}'
+            RenamingDocumentSuccess: 'TODO: Rename successfully.'
+            RenamingFailed: 'TODO: An error occurs while renaming the document.'
             Size: ファイルサイズ
             Type: タイプ
             Upload: 新しいファイルをアップロード
@@ -88,16 +93,18 @@ Dialogs:
               EXTERNAL_LINK: 外部リンク
               IVY_PROCESS: ビジネスプロセス
             ProcessViewerIFrameTitle: プロセスビューアーフレーム
-          SideStepType:
-            PARALLEL: 'TODO : Start a backgroud task (parallel)'
-            SWITCH: 'TODO: Pause this task and start process (switch)'
 Labels:
   AI:
     Error:
       CanceledFlow: フローをキャンセルしました。ご要望があればお知らせください。
       ErrorWhenProceedRequest: リクエストの処理中にエラーが発生しました。しばらくしてから、もう一度お試しください。
       SomethingWentWrong: リクエストの処理中に問題が発生しました。しばらくしてから、もう一度お試しください。
+  Close: 閉じる
   DisabledUserPrefix: （無効）
+  Enums:
+    NewFilenameValidation:
+      ALREADY_EXIST: 'TODO: There is already a file with the same name in this location.'
+      INVALID_FORMAT: 'TODO: A file name can''t contain any of the following characters: \ / : * ? " < > |'
   NoName: 名前なし
   NoResults: 結果なし
   None: なし

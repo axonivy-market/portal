@@ -6,6 +6,7 @@ import static com.codeborne.selenide.Condition.text;
 import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
 import java.io.IOException;
+import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
 import org.junit.jupiter.api.AfterEach;
@@ -70,6 +71,8 @@ public class CaseDetailsTest extends BaseTest {
   public static final String CREATE_EVENT_TEST_URL = "portal-developer-examples/17A2C6D73AB4186E/CreateEventTest.ivp";
   private static final String SICK_LEAVE_REQUEST_TASK = "Sick Leave Request";
   private static final String ANNUAL_LEAVE_REQUEST_TASK = "Annual Leave Request";
+  private static final String CREATE_NOTES = "InternalSupport/14B2FC03D2E87141/processWithSystemNote.ivp";
+  
 
   @Override
   @BeforeEach
@@ -91,6 +94,8 @@ public class CaseDetailsTest extends BaseTest {
     caseDetailsPage.getRelatedCasesComponents().shouldHave(sizeGreaterThanOrEqual(1));
     caseDetailsPage.getHitoriesComponent().shouldHave(sizeGreaterThanOrEqual(1));
     caseDetailsPage.addNote(NOTE_BUSINESS_CASE);
+    caseDetailsPage.waitPageLoaded();
+    refreshPage();
     caseDetailsPage.getNotesWithContent(NOTE_BUSINESS_CASE).shouldHave(size(1));
     caseDetailsPage.gotoTaskDetailsPageOfRelatedTask(ORDER_PIZZA);
     TaskDetailsPage taskDetailsPage = new TaskDetailsPage();
@@ -110,6 +115,7 @@ public class CaseDetailsTest extends BaseTest {
     caseDetailsPage.gotoCaseDetailsPageOfRelatedCase(TAKE_ORDER_AND_MAKE_PIZZA);
     caseDetailsPage.getHitoriesComponent().shouldHave(sizeGreaterThanOrEqual(1));
     caseDetailsPage.addNote(NOTE_TECHNICAL_CASE);
+    refreshPage();
     caseDetailsPage.getNotesWithContent(NOTE_TECHNICAL_CASE).shouldHave(size(1));
     caseDetailsPage.gotoTaskDetailsPageOfRelatedTask(TAKE_ORDER);
     TaskDetailsPage taskDetailsPage = new TaskDetailsPage();
@@ -273,7 +279,6 @@ public class CaseDetailsTest extends BaseTest {
   }
 
   @Test
-  // unstable test
   public void testRelatedTaskDelegateTask() {
     createTestingTask();
     ScreenshotUtils.resizeBrowser(new Dimension(1920, 1080));
@@ -309,7 +314,16 @@ public class CaseDetailsTest extends BaseTest {
     TaskDetailsPage taskDetailsPage = detailsPage.openTasksOfCasePageViaDetailsAction(index);
     WaitHelper.assertTrueWithWait(() -> TASK_DETAILS_TITLE.equals(taskDetailsPage.getPageTitle()));
   }
-
+  
+  @Test
+  public void testRelatedTaskOpenCustomFieldsDialog() {
+    createTestingTask();
+    detailsPage.clickCustomFieldsButtonOnActions(SICK_LEAVE_REQUEST_TASK);
+    assertTrue(detailsPage.getCustomFieldsDialog().isDisplayed());
+    List<String> customFieldNames = detailsPage.getCustomFieldNamesOnTaskCustomFieldsDialog();
+    assertFalse(customFieldNames.isEmpty());
+  }
+  
   @Test
   public void testRelatedCaseOpenDetails() {
     createTestingCaseContainTechnicalCases();
@@ -396,6 +410,7 @@ public class CaseDetailsTest extends BaseTest {
   public void testHistoryAuthorIsUserFullName() {
     createTestingTask();
     detailsPage.addNote("Sample case note");
+    refreshPage();
     assertEquals(TestAccount.ADMIN_USER.getFullName(), detailsPage.getHistoryAuthor());
   }
 
@@ -499,6 +514,7 @@ public class CaseDetailsTest extends BaseTest {
   @AfterEach
   public void teardown() {
     denySpecificPortalPermission(PortalPermission.TASK_CASE_ADD_NOTE);
+    denySpecificPortalPermission(PortalPermission.NOTE_READ_ALL_CASE_TASK_DETAILS);
   }
 
   @Test
@@ -506,22 +522,31 @@ public class CaseDetailsTest extends BaseTest {
     createTestingCaseContainTechnicalCases();
     detailsPage.getNumberOfHistory().shouldHave(size(1), DEFAULT_TIMEOUT);
     detailsPage.addNote("This is note on business case");
+    detailsPage.waitPageLoaded();
+    refreshPage();
     detailsPage.getNumberOfHistory().shouldHave(size(2), DEFAULT_TIMEOUT);
     assertEquals("This is note on business case", detailsPage.getLatestHistoryContent());
     detailsPage.clickRelatedCaseActionButton(0);
-    var relatedCaseDetailsPage = detailsPage.openCasesOfCasePageViaDetailsAction(0);
+    CaseDetailsPage relatedCaseDetailsPage = detailsPage.openCasesOfCasePageViaDetailsAction(0);
     new WebDriverWait(WebDriverRunner.getWebDriver(), DEFAULT_TIMEOUT)
         .until((webDriver) -> CASE_DETAILS_TITLE.equals(relatedCaseDetailsPage.getPageTitle()));
+
     relatedCaseDetailsPage.addNote("The first note of sub-case");
+    relatedCaseDetailsPage.waitForPageLoad();
+    refreshPage();
+
     relatedCaseDetailsPage.addNote("The second note of sub-case");
-    var subCaseId = relatedCaseDetailsPage.getCaseId();
-    var caseName = relatedCaseDetailsPage.getCaseName();
+    relatedCaseDetailsPage.waitForPageLoad();
+    refreshPage();
+
+    String subCaseId = relatedCaseDetailsPage.getCaseId();
+    String  caseName = relatedCaseDetailsPage.getCaseName();
     relatedCaseDetailsPage.getNumberOfHistory().shouldHave(size(2), DEFAULT_TIMEOUT);
     relatedCaseDetailsPage.getNumberOfHistoryForRelatedCaseLink().shouldHave(size(0), DEFAULT_TIMEOUT);
     detailsPage = relatedCaseDetailsPage.openBusinessCaseFromTechnicalCase();
     detailsPage.getNumberOfHistory().shouldHave(size(4), DEFAULT_TIMEOUT);
     detailsPage.getNumberOfHistoryForRelatedCaseLink().shouldHave(size(4), DEFAULT_TIMEOUT);
-    var relaledCaseName = detailsPage.getContentOfHistoryTableRelatedCaseColumn(0);
+    String relaledCaseName = detailsPage.getContentOfHistoryTableRelatedCaseColumn(0);
     assertTrue(relaledCaseName.startsWith("#"));
     assertTrue(relaledCaseName.contains(subCaseId));
     assertTrue(relaledCaseName.contains(caseName));
@@ -540,5 +565,84 @@ public class CaseDetailsTest extends BaseTest {
     CaseWidgetNewDashBoardPage casePage = NavigationHelper.navigateToCaseList();
     detailsPage = casePage.openDetailsCase(ORDER_PIZZA);
     assertFalse(detailsPage.isShowRelatedCaseCheckbox());
+  }
+  
+  @Test
+  public void testUncheckSystemNotesByDefaultForAdminUser() {
+    updateGlobalVariable(Variable.CHECK_SYSTEM_NOTES_BY_DEFAULT.getKey(), "false");
+    redirectToRelativeLink(CREATE_NOTES);
+
+    CaseWidgetNewDashBoardPage casePage = NavigationHelper.navigateToCaseList();
+    detailsPage = casePage.openDetailsCase("Create note");
+    detailsPage.waitPageLoaded();
+
+    detailsPage.getNotesWithContent("System note").shouldHave(size(0));
+    detailsPage.clickOnSystemNotesCheckbox(true);
+
+    detailsPage.getNotesWithContent("System note").shouldHave(size(1));
+  }
+
+  @Test
+  public void testCheckSystemNotesByDefaultForNormalUser() {
+    updateGlobalVariable(Variable.HIDE_SYSTEM_NOTES_FROM_HISTORY.getKey(), "false");
+    updateGlobalVariable(Variable.CHECK_SYSTEM_NOTES_BY_DEFAULT.getKey(), "false");
+    login(TestAccount.DEMO_USER);
+    redirectToRelativeLink(CREATE_NOTES);
+
+    CaseWidgetNewDashBoardPage casePage = NavigationHelper.navigateToCaseList();
+    detailsPage = casePage.openDetailsCase("Create note");
+    detailsPage.waitPageLoaded();
+
+    detailsPage.getNotesWithContent("System note").shouldHave(size(0));
+    detailsPage.clickOnSystemNotesCheckbox(true);
+
+    detailsPage.getNotesWithContent("System note").shouldHave(size(1));
+  }
+
+  @Test
+  public void testUncheckSystemTasksByDefaultForAdminUser() {
+    updateGlobalVariable(Variable.CHECK_SYSTEM_TASKS_BY_DEFAULT.getKey(), "false");
+    redirectToRelativeLink(CREATE_NOTES);
+
+    CaseWidgetNewDashBoardPage casePage = NavigationHelper.navigateToCaseList();
+    detailsPage = casePage.openDetailsCase("Create note");
+    detailsPage.waitPageLoaded();
+
+    detailsPage.getNotesWithContent("System: create note").shouldHave(size(0));
+    detailsPage.clickOnSystemTasksCheckbox(true);
+
+    detailsPage.getNotesWithContent("System: create note").shouldHave(size(1));
+  }
+
+  @Test
+  public void testCheckSystemTasksByDefaultForNormalUser() {
+    updateGlobalVariable(Variable.HIDE_SYSTEM_TASKS_FROM_HISTORY.getKey(), "false");
+    updateGlobalVariable(Variable.CHECK_SYSTEM_TASKS_BY_DEFAULT.getKey(), "false");
+    redirectToRelativeLink(CREATE_NOTES);
+
+    CaseWidgetNewDashBoardPage casePage = NavigationHelper.navigateToCaseList();
+    detailsPage = casePage.openDetailsCase("Create note");
+    detailsPage.waitPageLoaded();
+
+    detailsPage.getNotesWithContent("System: create note").shouldHave(size(0));
+    detailsPage.clickOnSystemTasksCheckbox(true);
+
+    detailsPage.getNotesWithContent("System: create note").shouldHave(size(1));
+  }
+  
+  @Test
+  public void testShowNotesWhenGrantNoteReadAllPermission() {
+    redirectToRelativeLink(CREATE_NOTES);
+    login(TestAccount.DEMO_USER);
+    CaseWidgetNewDashBoardPage casePage = NavigationHelper.navigateToCaseList();
+    detailsPage = casePage.openDetailsCase("Create note");
+    detailsPage.waitPageLoaded();
+    detailsPage.getNotesWithContent("System note").shouldHave(size(0));
+
+    grantSpecificPortalPermission(PortalPermission.NOTE_READ_ALL_CASE_TASK_DETAILS);
+    casePage = NavigationHelper.navigateToCaseList();
+    detailsPage = casePage.openDetailsCase("Create note");
+    detailsPage.waitPageLoaded();
+    detailsPage.getNotesWithContent("System note").shouldHave(size(1));
   }
 }

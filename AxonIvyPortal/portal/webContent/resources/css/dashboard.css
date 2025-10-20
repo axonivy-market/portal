@@ -223,6 +223,7 @@
 .table-widget-panel.task-dashboard-widget__panel .widget__content,
 .table-widget-panel.case-dashboard-widget__panel .widget__content {
   padding: 0;
+  overflow-y: hidden;
 }
 
 .case-dashboard-widget__loading-message,
@@ -388,13 +389,6 @@ td.dashboard-tasks__category span {
 
 .case-configuration.card {
   padding: 15px 20px 15px;
-}
-
-.task-configuration__chbox-work-on {
-  width: 10%; 
-  display: block;
-  padding: 5px 0;
-
 }
 
 .task-configuration__input-text {

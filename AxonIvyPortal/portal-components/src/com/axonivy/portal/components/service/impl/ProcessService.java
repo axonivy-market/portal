@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.exec.Sudo;
@@ -51,7 +52,7 @@ public class ProcessService {
 
   private boolean isNotPortalHomeAndMSTeamsProcess(IWebStartable process) {
     String relativeEncoded = process.getLink().getRelativeEncoded();
-    return !StringUtils.endsWithAny(relativeEncoded, PORTAL_START_REQUEST_PATH, PORTAL_IN_TEAMS_REQUEST_PATH);
+    return !Strings.CS.endsWithAny(relativeEncoded, PORTAL_START_REQUEST_PATH, PORTAL_IN_TEAMS_REQUEST_PATH);
   }
 
   public List<IWebStartable> findCustomDashboardProcesses() {
@@ -61,5 +62,16 @@ public class ProcessService {
 
   private Predicate<? super IWebStartable> filterByCustomDashboardProcess() {
     return start -> BooleanUtils.toBoolean(start.customFields().value(IS_DASHBOARD_PROCESS));
+  }
+  
+  public IWebStartable findWebStartable(String processLink) {
+    if (StringUtils.isNotBlank(processLink)) {
+      return findProcesses().stream()
+          .filter(webStartable -> Strings.CS.equals(processLink, webStartable.getLink().getRelative()))
+          .findFirst()
+          .orElse(null);
+    }
+
+    return null;
   }
 }
