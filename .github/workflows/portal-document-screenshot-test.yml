@@ -119,14 +119,16 @@ jobs:
 
       - name: Deploy Portal Modules
         run: |
-          DEPLOYMENT=$ENGINE_DIR/system/demo-applications/demo-portal
-          rm -rf $DEPLOYMENT/*
-          cp Showcase/portal-demo-app/target/*.zip $DEPLOYMENT
-          cp Showcase/portal-developer-examples/target/*.iar $DEPLOYMENT
-          cp Showcase/portal-components-examples/target/*.iar $DEPLOYMENT
-          cp AxonIvyPortal/PortalKitTestHelper/target/*.iar $DEPLOYMENT
-          cp Showcase/InternalSupport/target/*.iar $DEPLOYMENT
-
+          DEPLOYMENT="$ENGINE_DIR/deploy/demo-portal"
+          mkdir -p "$DEPLOYMENT"
+          cp AxonIvyPortal/PortalApp/target/*.iar "$DEPLOYMENT"
+          cp AxonIvyPortal/portal/target/*.iar "$DEPLOYMENT"
+          cp AxonIvyPortal/portal-components/target/*.iar "$DEPLOYMENT"
+          cp AxonIvyPortal/PortalKitTestHelper/target/*.iar "$DEPLOYMENT"
+          cp Showcase/portal-user-examples/target/*.iar "$DEPLOYMENT"
+          cp Showcase/portal-developer-examples/target/*.iar "$DEPLOYMENT"
+          cp Showcase/portal-components-examples/target/*.iar "$DEPLOYMENT"
+          cp Showcase/InternalSupport/target/*.iar "$DEPLOYMENT"
       
       - name: Run test
         id: run-test        
