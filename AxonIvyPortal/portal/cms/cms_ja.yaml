@@ -331,6 +331,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     addDocumentHelpText: ファイルをアップロードするには、ドラッグ＆ドロップするか、ファイルを選択してください
     addNoteHelpText: ここにテキストを入力してください。
     businessDetailsTitle: ビジネスの詳細
+    customFields: Custom Fields
+    customFieldsDialog: 'ケースのカスタムフィールド #{0}'
     deleteFile: ファイル削除
     documents: ドキュメント
     downloadFile: ファイルをダウンロード

@@ -1,5 +1,7 @@
 package ch.ivy.addon.portalkit.bean;
 
+import static ch.ivy.addon.portalkit.enums.AdditionalProperty.CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE;
+
 import static ch.ivy.addon.portalkit.enums.PortalPermission.SHOW_CASE_DETAILS;
 
 import java.io.Serializable;
@@ -9,6 +11,9 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
+import org.apache.commons.lang3.StringUtils;
+
+import com.axonivy.portal.components.constant.CustomFields;
 import com.axonivy.portal.util.BusinessDetailsUtils;
 
 import ch.ivy.addon.portal.generic.bean.UserMenuBean;
@@ -110,5 +115,15 @@ public class CaseActionBean implements Serializable {
     return CaseUtils.isPinnedCase(caze) ? Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/unpin")
         : Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/pin");
   }
-
+  
+  public boolean isBusinessDetailsCustomized(ICase caze) {
+    if (caze == null) {
+      return false;
+    }
+    String additionalCaseDetailsPageUri = caze.customFields().stringField(CustomFields.BUSINESS_DETAILS).getOrNull();
+    if (StringUtils.isEmpty(additionalCaseDetailsPageUri)) {
+      additionalCaseDetailsPageUri = caze.customFields().stringField(CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE.name()).getOrNull();
+    }
+    return !StringUtils.isEmpty(additionalCaseDetailsPageUri);
+  }
 }
