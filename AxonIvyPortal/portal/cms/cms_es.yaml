@@ -332,7 +332,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     addDocumentHelpText: Para cargar archivos, arrastrar y soltar o seleccionar archivos
     addNoteHelpText: Escriba su texto aquí.
     businessDetailsTitle: Detalles del negocio
-    customFields: Custom Fields
+    customFields: Campos personalizados
     customFieldsDialog: 'Campos personalizados del caso #{0}'
     deleteFile: Borrar archivo
     documents: Documentos

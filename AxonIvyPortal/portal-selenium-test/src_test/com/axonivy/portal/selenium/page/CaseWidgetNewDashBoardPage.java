@@ -197,7 +197,7 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
   }
   
   public void clickOnCustomFieldsLink() {
-    getActionsPanelOfCase().$$("a") .filter(text("Custom Fields"))
+    getActionsPanelOfCase().$$("a").filter(text("Custom Fields"))
       .first()
       .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT)
       .click();

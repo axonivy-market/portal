@@ -79,7 +79,7 @@
                    styleClass="case-command action-step-item ui-menu-items" onclick="initCustomFieldListData();"
                    update="@parent #{cc.attrs.update}" process="@this">
       <i class="action-icon si si-cog-double-2" />
-      <span class="option-item-label">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/customFields')}</span>
+      <span class="option-item-label">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/customFields')}</span>
     </p:commandLink>
     <ic:ch.ivy.addon.portalkit.component.CaseItemCustomFields id="custom-fields-component" case="#{case}" />
 
