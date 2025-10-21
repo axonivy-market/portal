@@ -453,10 +453,10 @@ public class ColumnManagementBean implements Serializable, IMultiLanguage {
   private String getCurrentDisplayName() {
     if (widget.getType() == DashboardWidgetType.TASK) {
       return Ivy.cms().coLocale(String.format("/Labels/Enums/DashboardStandardTaskColumn/%s",
-          DashboardStandardTaskColumn.findBy(selectedField)), LanguageService.getInstance().getUserLanguage());
+          DashboardStandardTaskColumn.findBy(selectedField)), Ivy.session().getContentLocale());
     } else if (widget.getType() == DashboardWidgetType.CASE) {
       return Ivy.cms().coLocale(String.format("/Labels/Enums/DashboardStandardCaseColumn/%s",
-          DashboardStandardCaseColumn.findBy(selectedField)), LanguageService.getInstance().getUserLanguage());
+          DashboardStandardCaseColumn.findBy(selectedField)), Ivy.session().getContentLocale());
     }
     return "";
   }

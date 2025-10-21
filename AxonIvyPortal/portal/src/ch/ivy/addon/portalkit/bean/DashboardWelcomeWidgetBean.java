@@ -142,7 +142,7 @@ public class DashboardWelcomeWidgetBean implements Serializable {
       return;
     }
     welcomeWidget.setWelcomeText(String.join(SPACE,
-          Ivy.cms().coLocale(greetingTextCms, LanguageService.getInstance().getUserLocale()),
+          Ivy.cms().coLocale(greetingTextCms, Ivy.session().getContentLocale()),
           Ivy.session().getSessionUser().getDisplayName(),
           welcomeWidget.getWelcomeText()));
   }
