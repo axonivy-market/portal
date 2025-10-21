@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Portal Guide ${revision}\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-17 02:31+0000\n"
+"POT-Creation-Date: 2025-10-21 03:49+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: de\n"
@@ -8316,10 +8316,10 @@ msgstr ""
 #: ../../source/portal-developer-guide/permissions/index.rst:189
 #: ../../source/portal-developer-guide/permissions/index.rst:194
 #: ../../source/portal-developer-guide/permissions/index.rst:223
-#: ../../source/portal-developer-guide/permissions/index.rst:244
-#: ../../source/portal-developer-guide/permissions/index.rst:252
-#: ../../source/portal-developer-guide/permissions/index.rst:260
-#: ../../source/portal-developer-guide/permissions/index.rst:268
+#: ../../source/portal-developer-guide/permissions/index.rst:241
+#: ../../source/portal-developer-guide/permissions/index.rst:249
+#: ../../source/portal-developer-guide/permissions/index.rst:257
+#: ../../source/portal-developer-guide/permissions/index.rst:265
 msgid "Granted to role Everybody by default"
 msgstr ""
 
@@ -8764,89 +8764,79 @@ msgstr ""
 msgid "Granted to role Everybody by default."
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:230
-msgid "_`NoteReadAllCaseTaskDetails`"
-msgstr ""
-
-#: ../../source/portal-developer-guide/permissions/index.rst:231
-msgid ""
-"Permission allows non-admin users to view system notes in case and task "
-"details"
-msgstr ""
-
-#: ../../source/portal-developer-guide/permissions/index.rst:236
+#: ../../source/portal-developer-guide/permissions/index.rst:233
 msgid "Portal Absence And Substitute Permissions"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:238
+#: ../../source/portal-developer-guide/permissions/index.rst:235
 msgid "_`UserCreateAbsence`"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:239
+#: ../../source/portal-developer-guide/permissions/index.rst:236
 msgid "Permission to create, edit absences of all users"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:241
+#: ../../source/portal-developer-guide/permissions/index.rst:238
 msgid "_`UserCreateOwnAbsence`"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:242
+#: ../../source/portal-developer-guide/permissions/index.rst:239
 msgid "Permission to create, edit my own absences"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:246
+#: ../../source/portal-developer-guide/permissions/index.rst:243
 msgid "_`UserDeleteAbsence`"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:247
+#: ../../source/portal-developer-guide/permissions/index.rst:244
 msgid "Permission to remove the absence entries for all users"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:249
+#: ../../source/portal-developer-guide/permissions/index.rst:246
 msgid "_`UserDeleteOwnAbsence`"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:250
+#: ../../source/portal-developer-guide/permissions/index.rst:247
 msgid "Permission to remove my own absence entries"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:254
+#: ../../source/portal-developer-guide/permissions/index.rst:251
 msgid "_`UserReadAbsences`"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:255
+#: ../../source/portal-developer-guide/permissions/index.rst:252
 msgid "Permission to read absences of all users"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:257
+#: ../../source/portal-developer-guide/permissions/index.rst:254
 msgid "_`UserReadOwnAbsences`"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:258
+#: ../../source/portal-developer-guide/permissions/index.rst:255
 msgid "Permission to read my own absences"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:262
+#: ../../source/portal-developer-guide/permissions/index.rst:259
 msgid "_`UserCreateSubstitute`"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:263
+#: ../../source/portal-developer-guide/permissions/index.rst:260
 msgid "Permission to create substitutes of all users"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:265
+#: ../../source/portal-developer-guide/permissions/index.rst:262
 msgid "_`UserCreateOwnSubstitute`"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:266
+#: ../../source/portal-developer-guide/permissions/index.rst:263
 msgid "Permission to create my own substitutes"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:270
+#: ../../source/portal-developer-guide/permissions/index.rst:267
 msgid "_`UserReadSubstitutes`"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:271
+#: ../../source/portal-developer-guide/permissions/index.rst:268
 msgid "Permission to read substitutes of all users"
 msgstr ""
 
@@ -10189,5 +10179,14 @@ msgid "Params are not required if the URL denotes an external webpage."
 msgstr ""
 
 #~ msgid "Permission to see the Destroy Task action"
+#~ msgstr ""
+
+#~ msgid "_`NoteReadAllCaseTaskDetails`"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Permission allows non-admin users to "
+#~ "view system notes in case and task"
+#~ " details"
 #~ msgstr ""
 
