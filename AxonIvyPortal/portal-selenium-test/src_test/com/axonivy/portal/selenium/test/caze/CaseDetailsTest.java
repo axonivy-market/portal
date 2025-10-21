@@ -639,7 +639,7 @@ public class CaseDetailsTest extends BaseTest {
     CaseWidgetNewDashBoardPage caseWidgetPage = NavigationHelper.navigateToCaseList();
     CaseDetailsPage caseDetailsPage = caseWidgetPage.openDetailsCase("Leave Request");
     caseDetailsPage.openActionMenu();
-    caseDetailsPage.clickOnShowCaseCustomFieldsDialog();
+    caseDetailsPage.clickOnCaseCustomFieldsAction();
     List<String> customFieldValues = caseDetailsPage.getCaseCustomFieldNames();
     assertFalse(customFieldValues.isEmpty());
   }
