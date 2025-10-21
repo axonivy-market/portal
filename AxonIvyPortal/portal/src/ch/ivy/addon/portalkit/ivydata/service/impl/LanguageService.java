@@ -9,7 +9,6 @@ import java.util.UUID;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-import org.apache.commons.lang3.LocaleUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.components.service.IvyCacheService;
@@ -29,7 +28,7 @@ import ch.ivyteam.ivy.security.exec.Sudo;
 public class LanguageService {
 
   private static LanguageService instance;
-  private String DEFAULT_LOCALE_CODE = "en";
+  private static final String DEFAULT_LOCALE_CODE = "en";
   
   private LanguageService() {}
 
@@ -82,9 +81,9 @@ public class LanguageService {
 
     if (hasCountry(locale)) {
       String language = locale.getLanguage();
-      return isLanguageSupported(language) ? LocaleUtils.toLocale(language) : LocaleUtils.toLocale(DEFAULT_LOCALE_CODE);
+      return isLanguageSupported(language) ? Locale.forLanguageTag(language) : Locale.forLanguageTag(DEFAULT_LOCALE_CODE);
     }
-    return LocaleUtils.toLocale(DEFAULT_LOCALE_CODE);
+    return Locale.forLanguageTag(DEFAULT_LOCALE_CODE);
   }
 
   public String getUserLanguage() {
@@ -94,7 +93,7 @@ public class LanguageService {
     return getDefaultLanguage().toLanguageTag();
     }
     
-    Locale userLocale = LocaleUtils.toLocale(languageTag);
+    Locale userLocale = Locale.forLanguageTag(languageTag);
     if (isLocaleSupported(userLocale)) {
       
       return languageTag;

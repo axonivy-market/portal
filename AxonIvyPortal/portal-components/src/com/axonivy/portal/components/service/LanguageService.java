@@ -8,7 +8,6 @@ import java.util.UUID;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-import org.apache.commons.lang3.LocaleUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.components.constant.IvyCacheIdentifier;
@@ -38,12 +37,11 @@ public class LanguageService {
   
   public String getUserLanguage() {
     String languageTag = loadLanguage(IUser::getLanguage);
-    
     if (languageTag == StringUtils.EMPTY) {
     return getDefaultLanguage().toLanguageTag();
     }
     
-    Locale userLocale = LocaleUtils.toLocale(languageTag);
+    Locale userLocale = Locale.forLanguageTag(languageTag);
     if (getContentLocales().contains(userLocale)) {
       return languageTag;
     }
@@ -57,9 +55,9 @@ public class LanguageService {
 
     if (hasCountry(locale)) {
       String language = locale.getLanguage();
-      return isLanguageSupported(language) ? LocaleUtils.toLocale(language) : LocaleUtils.toLocale(DEFAULT_LOCALE_CODE);
+      return isLanguageSupported(language) ? Locale.forLanguageTag(language) : Locale.forLanguageTag(DEFAULT_LOCALE_CODE);
     }
-    return LocaleUtils.toLocale(DEFAULT_LOCALE_CODE);
+    return Locale.forLanguageTag(DEFAULT_LOCALE_CODE);
   }
   
   public Locale getUserLocale() {
