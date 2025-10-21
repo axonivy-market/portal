@@ -63,6 +63,11 @@ HowTo: Update Portal Settings
 .. hint:: 
    Portal settings are stored as Axon Ivy variables and can be configured in the
    :dev-url:`Axon Ivy Cockpit </doc/12.0/engine-guide/reference/engine-cockpit/configuration.html#engine-cockpit-variables>`.
+   
+.. warning::
+  :guilabel:`Portal.Histories.HideSystemNotes` and :guilabel:`Portal.Histories.HideSystemNotesForAdministrator`
+  are marked for removal in version LTS 13. We will use permission :guilabel:`NoteReadAllCaseTaskDetails` to
+  control the visibility of system notes in task and case details.
 
 .. _portal-available-settings:
 
