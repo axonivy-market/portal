@@ -44,6 +44,7 @@ public class TaskActionBean implements Serializable {
   private boolean isShowAdditionalOptions;
   private boolean isShowDestroyTask;
   private boolean isShowReadWorkflowEvent;
+  private boolean isShowCustomFieldsAction;
   private static final String BACK_FROM_TASK_DETAILS = "Start Processes/PortalStart/BackFromTaskDetails.ivp";
 
   public TaskActionBean() {
@@ -53,6 +54,7 @@ public class TaskActionBean implements Serializable {
     isShowAdditionalOptions = PermissionUtils.hasPortalPermission(PortalPermission.TASK_DISPLAY_ADDITIONAL_OPTIONS);
     isShowDestroyTask = PermissionUtils.hasPortalPermission(PortalPermission.TASK_DISPLAY_DESTROY_ACTION);
     isShowReadWorkflowEvent = PermissionUtils.hasPortalPermission(PortalPermission.TASK_DISPLAY_WORKFLOW_EVENT_ACTION);
+    isShowCustomFieldsAction = PermissionUtils.hasPortalPermission(PortalPermission.TASK_DISPLAY_CUSTOM_FIELDS_ACTION);
   }
 
   public boolean canReset(ITask task) {
@@ -274,6 +276,14 @@ public class TaskActionBean implements Serializable {
 
   public void setShowReadWorkflowEvent(boolean isShowReadWorkflowEvent) {
     this.isShowReadWorkflowEvent = isShowReadWorkflowEvent;
+  }
+  
+  public boolean isShowCustomFieldsAction() {
+    return isShowCustomFieldsAction;
+  }
+
+  public void setShowCustomFieldsAction(boolean isShowCustomFieldsAction) {
+    this.isShowCustomFieldsAction = isShowCustomFieldsAction;
   }
 
   public void updateSelectedTaskItemId(boolean isShowInTaskList, Long taskId) {

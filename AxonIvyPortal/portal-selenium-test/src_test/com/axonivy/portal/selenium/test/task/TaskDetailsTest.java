@@ -3,8 +3,11 @@ package com.axonivy.portal.selenium.test.task;
 import static com.codeborne.selenide.CollectionCondition.size;
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThanOrEqual;
 
+import java.util.List;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.AfterEach;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
@@ -44,6 +47,7 @@ public class TaskDetailsTest extends BaseTest {
     login(TestAccount.ADMIN_USER);
     updateGlobalVariable(Variable.TASK_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST.getKey(), ACCESS_TASK_DETAILS);
     grantSpecificPortalPermission(PortalPermission.TASK_CASE_ADD_NOTE);
+    grantSpecificPortalPermission(PortalPermission.TASK_DISPLAY_CUSTOM_FIELDS_ACTION);
   }
 
   @Test
@@ -187,5 +191,48 @@ public class TaskDetailsTest extends BaseTest {
     taskDetailsPage.getNotesWithContent("System note").shouldHave(size(1));
     taskDetailsPage.clickOnSystemNotesCheckbox(false);
     taskDetailsPage.getNotesWithContent("System note").shouldHave(size(0));
+  }
+  
+  @AfterEach
+  public void teardown() {
+    denySpecificPortalPermission(PortalPermission.NOTE_READ_ALL_CASE_TASK_DETAILS);
+  }
+  
+  @Test
+  public void testShowNotesWhenGrantNoteReadAllPermissionInTaskDetails() {
+    redirectToRelativeLink(CREATE_NOTES);
+    login(TestAccount.DEMO_USER);
+
+    redirectToNewDashBoard();
+    NavigationHelper.navigateToTaskList();
+    TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
+    taskWidget.openDashboardTaskDetails("User: create note");
+    TaskDetailsPage taskDetailsPage = new TaskDetailsPage();
+    taskDetailsPage.getNotesWithContent("System note").shouldHave(size(0));
+
+    grantSpecificPortalPermission(PortalPermission.NOTE_READ_ALL_CASE_TASK_DETAILS);
+    NavigationHelper.navigateToTaskList();
+    taskWidget = new TopMenuTaskWidgetPage();
+    taskWidget.openDashboardTaskDetails("User: create note");
+    taskDetailsPage = new TaskDetailsPage();
+    taskDetailsPage.getNotesWithContent("System note").shouldHave(size(1));
+  }
+  
+  @Test
+  public void testShowCustomFieldsOfTask() {
+    redirectToRelativeLink(createDataForStatisticWidget);
+    redirectToNewDashBoard();
+    MainMenuPage mainMenuPage = new MainMenuPage();
+    mainMenuPage.selectTaskMenu();
+    TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
+    taskWidget.openDashboardTaskDetails("Maternity Leave Request");
+    TaskDetailsPage taskDetailsPage = new TaskDetailsPage();
+    
+    // Verify custom field dialog data
+    taskDetailsPage.openActionPanel();
+    taskDetailsPage.clickOnShowCustomFieldsDialog();
+    assertTrue(taskDetailsPage.getCustomFieldsDialog().isDisplayed());
+    List<String> customFieldNames = taskDetailsPage.getCustomFieldNames();
+    assertFalse(customFieldNames.isEmpty());
   }
 }

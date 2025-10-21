@@ -1179,6 +1179,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     afterEscalation: エスカレーション後
     businessCase: ビジネスケース
     completedOn: 完了日
+    customFields: カスタムフィールド
+    customFieldsDialog: 'タスクのカスタムフィールド #{0}'
     delayedUntil: この日まで延期
     deleteFile: ファイルを削除
     documents: ドキュメント
