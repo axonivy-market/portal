@@ -106,17 +106,6 @@ jobs:
             mvn clean install -f $module/pom.xml -Divy.engine.directory=$ENGINE_DIR
           done
 
-      - name: Verify Portal Modules
-        run: |
-          APP_DIR="$ENGINE_DIR/deploy/demo-portal"
-          if [ -d "$APP_DIR" ]; then
-            echo "demo-portal already exists."
-          else
-            echo "demo-portal not found. Creating it..."
-            mkdir -p "$ENGINE_DIR/deploy"
-            cp Showcase/portal-demo-app/target/*.zip "$ENGINE_DIR/deploy"
-          fi
-
       - name: Deploy Portal Modules
         run: |
           DEPLOYMENT=$ENGINE_DIR/system/demo-applications/demo-portal
