@@ -48,7 +48,7 @@ public class ProjectVersionBean implements Serializable {
 
   private String portalVersion() {
     return IApplication.current().getProcessModelVersions()
-        .filter(pmv -> pmv.getReleaseState() == ReleaseState.RELEASED)
+        .filter(pmv -> ReleaseState.RELEASED.equals(pmv.getReleaseState()))
         .filter(pmv -> PORTAL_LIBRARY_ID.equals(pmv.getLibraryId()))
         .findAny()
         .map(IProcessModelVersion::getLibraryVersion)
