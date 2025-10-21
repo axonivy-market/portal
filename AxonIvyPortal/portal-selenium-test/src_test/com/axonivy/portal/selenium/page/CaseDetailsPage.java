@@ -363,13 +363,17 @@ public class CaseDetailsPage extends TemplatePage {
     waitForElementDisplayed(By.cssSelector("[id$=':action-group:action-steps-panel'].action-steps-panel"), true);
   }
   
-  public void clickOnShowCaseCustomFieldsDialog() {    
-    $("a[id$=':show-case-custom-fields']")
+  public void clickOnCaseCustomFieldsAction() {
+    getCaseCustomFieldsButton()
       .shouldBe(appear, DEFAULT_TIMEOUT)
       .shouldBe(getClickableCondition())
       .click();
       
     getCaseCustomFieldsDialog().shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  public SelenideElement getCaseCustomFieldsButton() {
+    return $("a[id$=':show-case-custom-fields']");
   }
   
   public List<String> getCaseCustomFieldNames() {
