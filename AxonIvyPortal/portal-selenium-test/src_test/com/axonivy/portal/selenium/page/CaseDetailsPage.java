@@ -362,7 +362,29 @@ public class CaseDetailsPage extends TemplatePage {
     waitForElementClickableThenClick($("[id$=':action-group:case-details-action-link']"));
     waitForElementDisplayed(By.cssSelector("[id$=':action-group:action-steps-panel'].action-steps-panel"), true);
   }
+  
+  public void clickOnShowCaseCustomFieldsDialog() {    
+    $("a[id$=':show-case-custom-fields']")
+      .shouldBe(appear, DEFAULT_TIMEOUT)
+      .shouldBe(getClickableCondition())
+      .click();
+      
+    getCaseCustomFieldsDialog().shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+  
+  public List<String> getCaseCustomFieldNames() {
+    return $$("span[id$='customFieldLabel']")
+        .shouldBe(CollectionCondition.sizeGreaterThanOrEqual(0), DEFAULT_TIMEOUT)
+        .asFixedIterable()
+        .stream()
+        .map(SelenideElement::getText)
+        .collect(Collectors.toList());
+  }
 
+  public SelenideElement getCaseCustomFieldsDialog() {
+    return $("div[id$='case-custom-fields-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+  
   public void onClickHistoryIcon() {
     waitForElementClickableThenClick($("a[id$=':case-histories:add-note-command']"));
   }
@@ -714,10 +736,10 @@ public class CaseDetailsPage extends TemplatePage {
   public void clickCustomFieldsButtonOnActions(String taskName) {
     clickRelatedTaskActionButton(taskName);
     $("[id$='additional-options:task-custom-fields-command']").shouldBe(getClickableCondition()).click();
-    waitForElementDisplayed(getCustomFieldsDialog(), true);
+    waitForElementDisplayed(getTaskCustomFieldsDialog(), true);
   }
   
-  public SelenideElement getCustomFieldsDialog() {
+  public SelenideElement getTaskCustomFieldsDialog() {
     return $("div[id$='task-custom-fields-dialog']");
   }
   

@@ -1,10 +1,14 @@
 package com.axonivy.portal.selenium.page;
 
 import static com.codeborne.selenide.Condition.appear;
+
 import static com.codeborne.selenide.Condition.disappear;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.openqa.selenium.By;
 
@@ -185,6 +189,31 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
 
   public void clickOnCaseActionLink(int caseIndex) {
     getColumnOfCaseHasActionIndex(caseIndex, "Actions").shouldBe(getClickableCondition()).click();
+  }
+  
+  public SelenideElement getActionsPanelOfCase() {
+    return $("div[id$=':action-steps-panel']").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+  
+  public void clickOnCustomFieldsLink() {
+    getActionsPanelOfCase().$$("a") .filter(text("Custom Fields"))
+      .first()
+      .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT)
+      .click();
+    waitForElementDisplayed(getCaseCustomFieldsDialog(), true);
+  }
+  
+  public SelenideElement getCaseCustomFieldsDialog() {
+    return $("div[id$='case-custom-fields-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+  
+  public List<String> getCaseCustomFieldNames() {
+    return $$("span[id$='customFieldLabel']")
+        .shouldBe(CollectionCondition.sizeGreaterThanOrEqual(0), DEFAULT_TIMEOUT)
+        .asFixedIterable()
+        .stream()
+        .map(SelenideElement::getText)
+        .collect(Collectors.toList());
   }
 
   public CaseDetailsPage openCaseDetailsViaAction(int index) {
