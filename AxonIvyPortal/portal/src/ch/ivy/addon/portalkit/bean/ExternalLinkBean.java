@@ -19,7 +19,6 @@ import org.primefaces.PrimeFaces;
 import org.primefaces.event.FileUploadEvent;
 
 import com.axonivy.portal.components.util.ImageUploadResult;
-import com.axonivy.portal.service.DeepLTranslationService;
 import com.axonivy.portal.service.IvyTranslationService;
 import com.axonivy.portal.util.ExternalLinkUtils;
 import com.axonivy.portal.util.UploadDocumentUtils;
