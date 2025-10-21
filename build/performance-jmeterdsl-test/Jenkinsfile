@@ -5,14 +5,13 @@ pipeline {
     buildDiscarder(logRotator(numToKeepStr: '200', artifactNumToKeepStr: '5'))
   }
 
-  // triggers removed
+  // cron job triggers removed
 
   environment {
     jmeterDslSourceDir = '/var/tools/ivy/performance-master/jmeter-javadsl-test'
     ivyDir = '/var/tools/ivy'
     //could be master/12/10
     resultDir = '/var/tools/jmeter-javadsl-performance-result/master'
-
   }
 
   stages {
@@ -28,6 +27,28 @@ pipeline {
             docker compose -f ${ivyDir}/${engineNames[4]}/docker-compose.yml up -d
             sleep 100
           """
+        }
+      }
+    }
+    stage('Setup Credentials') {
+      steps {
+        script {
+          withCredentials([
+              file(credentialsId: 'users-server-csv', variable: 'USERS_SERVER_CSV'),
+              file(credentialsId: 'admin-user-server-csv', variable: 'ADMIN_USER_CSV'),
+              file(credentialsId: 'normal-user-server-csv', variable: 'NORMAL_USER_CSV'),
+          ]) {
+            // Copy credential files to expected locations
+            sh '''
+              cp "$USERS_SERVER_CSV" "jmeter/data/users_server.csv"
+              cp "$ADMIN_USER_CSV" "jmeter/data/single_admin_user_server.csv"
+              cp "$NORMAL_USER_CSV" "jmeter/data/single_normal_user_server.csv"
+              
+              # Verify files were created
+              echo "Credential files created:"
+              ls -la jmeter/data/*.csv
+            '''
+          }
         }
       }
     }

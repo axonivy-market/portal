@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd"
+  xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.axonivy.ivy.api</groupId>
+    <artifactId>ivy-project-parent</artifactId>
+    <version>13.2.0-SNAPSHOT</version>
+    <relativePath />
+  </parent>
+  <groupId>com.axonivy.portal</groupId>
+  <artifactId>portal-performance-test</artifactId>
+  <version>13.2.0-SNAPSHOT</version>
+  <packaging>iar</packaging>
+
+  <properties>
+    <maven.compiler.source>21</maven.compiler.source>
+    <maven.compiler.target>21</maven.compiler.target>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <build>
+    <pluginManagement>
+      <plugins>
+        <!-- We force to use the latest version of surefire plugin to properly
+        run junit5 tests -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <version>3.1.2</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>3.11.0</version>
+        </plugin>
+
+        <plugin>
+          <groupId>com.axonivy.ivy.ci</groupId>
+          <artifactId>project-build-plugin</artifactId>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+
+  <dependencies>
+    <dependency>
+      <groupId>us.abstracta.jmeter</groupId>
+      <artifactId>jmeter-java-dsl</artifactId>
+      <version>1.29.1</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-engine</artifactId>
+      <version>5.9.1</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.assertj</groupId>
+      <artifactId>assertj-core</artifactId>
+      <version>3.24.2</version>
+      <scope>test</scope>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.junit.platform/junit-platform-launcher -->
+    <dependency>
+      <groupId>org.junit.platform</groupId>
+      <artifactId>junit-platform-launcher</artifactId>
+      <version>1.9.1</version>
+      <scope>test</scope>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/us.abstracta.jmeter/jmeter-java-dsl-jmx2dsl &ndash;&gt;-->
+    <dependency>
+      <groupId>us.abstracta.jmeter</groupId>
+      <artifactId>jmeter-java-dsl-jmx2dsl</artifactId>
+      <version>1.8</version>
+    </dependency>
+  </dependencies>
+</project>
