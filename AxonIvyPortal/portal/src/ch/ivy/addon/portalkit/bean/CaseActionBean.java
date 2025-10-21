@@ -117,18 +117,7 @@ public class CaseActionBean implements Serializable {
         : Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/pin");
   }
   
-  private boolean isBusinessDetailsCustomized(ICase caze) {
-    if (caze == null) {
-      return false;
-    }
-    String additionalCaseDetailsPageUri = caze.customFields().stringField(CustomFields.BUSINESS_DETAILS).getOrNull();
-    if (StringUtils.isEmpty(additionalCaseDetailsPageUri)) {
-      additionalCaseDetailsPageUri = caze.customFields().stringField(CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE.name()).getOrNull();
-    }
-    return !StringUtils.isEmpty(additionalCaseDetailsPageUri);
-  }
-  
-  public boolean showCustomFieldsDialog(ICase caze) {
-    return isBusinessDetailsCustomized(caze) && PermissionUtils.hasPortalPermission(PortalPermission.CASE_DISPLAY_CUSTOM_FIELDS_ACTION);
+  public boolean showCustomFieldsDialog() {
+    return PermissionUtils.hasPortalPermission(PortalPermission.CASE_DISPLAY_CUSTOM_FIELDS_ACTION);
   }
 }
