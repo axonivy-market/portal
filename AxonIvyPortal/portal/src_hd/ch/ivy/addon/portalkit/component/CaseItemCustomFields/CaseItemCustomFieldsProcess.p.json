@@ -83,21 +83,16 @@
     }, {
       "id" : "f6",
       "type" : "HtmlDialogMethodStart",
-      "name" : "getCustomFieldsData(Long)",
+      "name" : "getCustomFieldsData(ICase)",
       "config" : {
         "signature" : "getCustomFieldsData",
         "input" : {
           "params" : [
-            { "name" : "caseId", "type" : "Long", "desc" : "" }
+            { "name" : "caze", "type" : "ch.ivyteam.ivy.workflow.ICase", "desc" : "" }
           ],
-          "map" : { },
-          "code" : [
-            "import ch.ivy.addon.portalkit.util.CaseUtils;",
-            "import ch.ivy.addon.portalkit.util.TaskUtils;",
-            "if (param.caseId != null) {",
-            "  out.caze = CaseUtils.findCase(param.caseId);",
-            "}"
-          ]
+          "map" : {
+            "out.caze" : "param.caze"
+          }
         },
         "guid" : "19A00BD4F90CD220"
       },

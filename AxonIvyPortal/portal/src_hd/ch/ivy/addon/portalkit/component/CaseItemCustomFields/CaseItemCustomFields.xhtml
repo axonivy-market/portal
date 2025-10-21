@@ -4,37 +4,35 @@
   xmlns:pc="http://xmlns.jcp.org/jsf/composite/components">
 
 <cc:interface componentType="IvyComponent">
-  <cc:attribute name="caseId" shortDescription="Selected case id" />
   <cc:attribute name="case" shortDescription="Selected case" type="ch.ivyteam.ivy.workflow.ICase"/>
 </cc:interface>
 
 <cc:implementation>
-  <p:remoteCommand name="initCaseCustomFieldListData" actionListener="#{logic.getCustomFieldsData(cc.attrs.caseId)}" 
+  <p:remoteCommand name="initCaseCustomFieldListData" actionListener="#{logic.getCustomFieldsData(cc.attrs.case)}" 
   oncomplete="PF('case-custom-fields-dialog').show()" update="#{cc.clientId}:case-custom-fields-dialog" global="false"/>
   <p:dialog id="case-custom-fields-dialog" widgetVar="case-custom-fields-dialog"
-    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/customFieldsDialog', [cc.attrs.caseId])}"
+    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/customFieldsDialog', [cc.attrs.case.id])}"
     dynamic="true" closable="true" closeOnEscape="true"
     appendTo="@(body)"
     modal="true" responsive="true" fitViewport="true"
     styleClass="case-custom-fields-dialog">
-  <p:dataTable id="customFieldsTable" var="field" value="#{data.customFieldList}" emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}" >
-    <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/name')}">
-      <h:outputText id="customFieldLabel" value="#{field.name()}"/>
-    </p:column>
-    <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/value')}">
-      <h:outputText id="number-value" value="#{field.getOrNull()}" rendered="#{field.type() eq 'NUMBER'}">
-        <f:convertNumber type="number" integerOnly="true" />
-      </h:outputText>
-      <h:outputText id="timestamp-value" value="#{field.getOrNull()}" rendered="#{field.type() eq 'TIMESTAMP'}">
-        <f:convertDateTime locale="#{localeBean.locale}" pattern="#{dateTimePatternBean.dateTimestampPattern}"/>
-      </h:outputText>
-      <h:outputText id="value" value="#{field.getOrNull()}" rendered="#{field.type() ne 'TIMESTAMP' and field.type() ne 'NUMBER'}" />
-    </p:column>
-    <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/type')}">
-      <h:outputText id="customFieldType" value="#{field.type()}"/>
-    </p:column>
-  </p:dataTable>
-
+   <p:dataTable id="customFieldsTable" var="field" value="#{data.customFieldList}" emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}" >
+     <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/name')}">
+       <h:outputText id="customFieldLabel" value="#{field.name()}"/>
+     </p:column>
+     <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/value')}">
+       <h:outputText id="number-value" value="#{field.getOrNull()}" rendered="#{field.type() eq 'NUMBER'}">
+         <f:convertNumber type="number" integerOnly="true" />
+       </h:outputText>
+       <h:outputText id="timestamp-value" value="#{field.getOrNull()}" rendered="#{field.type() eq 'TIMESTAMP'}">
+         <f:convertDateTime locale="#{localeBean.locale}" pattern="#{dateTimePatternBean.dateTimestampPattern}"/>
+       </h:outputText>
+       <h:outputText id="value" value="#{field.getOrNull()}" rendered="#{field.type() ne 'TIMESTAMP' and field.type() ne 'NUMBER'}" />
+     </p:column>
+     <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/type')}">
+       <h:outputText id="customFieldType" value="#{field.type()}"/>
+     </p:column>
+   </p:dataTable>
   </p:dialog>
 
 </cc:implementation>
