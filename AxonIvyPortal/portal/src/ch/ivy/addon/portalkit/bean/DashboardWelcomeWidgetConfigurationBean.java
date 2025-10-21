@@ -84,6 +84,8 @@ public class DashboardWelcomeWidgetConfigurationBean extends DashboardWelcomeWid
     
     if (StringUtils.isNotBlank(widget.getImageLocationDarkMode())) {
       imageCMSObjectDarkMode = getWelcomeWidgetImageContentObjectDarkMode(false);
+    } else {
+      imageCMSObjectDarkMode = null;
     }
   }
 
