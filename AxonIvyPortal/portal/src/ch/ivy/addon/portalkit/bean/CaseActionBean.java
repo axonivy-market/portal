@@ -1,7 +1,5 @@
 package ch.ivy.addon.portalkit.bean;
 
-import static ch.ivy.addon.portalkit.enums.AdditionalProperty.CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE;
-
 import static ch.ivy.addon.portalkit.enums.PortalPermission.SHOW_CASE_DETAILS;
 
 import java.io.Serializable;
@@ -11,9 +9,6 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
-import org.apache.commons.lang3.StringUtils;
-
-import com.axonivy.portal.components.constant.CustomFields;
 import com.axonivy.portal.util.BusinessDetailsUtils;
 
 import ch.ivy.addon.portal.generic.bean.UserMenuBean;
