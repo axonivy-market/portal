@@ -108,9 +108,9 @@
               if (!u) return false;
               u = String(u).trim();
               const lower = u.toLowerCase();
-              if (lower.startsWith('javascript:') || lower.startsWith('data:')) return false;
-              if (/^(\s*)?\/\//.test(u) || /[\r\n\0]/.test(u)) return false;
-              if (/^(\s*)?[a-zA-Z][a-zA-Z0-9+.-]*:/.test(u)) return false;
+              if (lower.startsWith('javascript:') || lower.startsWith('data:') || lower.startsWith('vbscript:')) return false;
+              if (/^\/\//.test(u) || /[\r\n\0]/.test(u)) return false;
+              if (/^[a-zA-Z][a-zA-Z0-9+.-]*:/.test(u)) return false;
               return true;
             };
           }
