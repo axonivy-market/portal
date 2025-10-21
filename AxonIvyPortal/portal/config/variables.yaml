@@ -196,7 +196,7 @@ Variables:
     # You can define the application name via this JSON file.
     # It will be shown with the page title
     ApplicationName: Axon Ivy
-    LogoDescription: ""
+    LogoDescription: ''
     Upload:
       # Set the size limit for uploading documents in megabytes (MB). The default value is 20MB.
       DocumentUploadSizeLimit: "20"
