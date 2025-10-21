@@ -54,6 +54,11 @@ HowTo: Update Portal Settings
    Portal settings are stored as |ivy| variables and can be configured in the 
    :dev-url:`|ivy| Cockpit </doc/|version|/engine-guide/reference/engine-cockpit/configuration.html#engine-cockpit-variables>`.
 
+.. warning::
+  :guilabel:`Portal.Histories.HideSystemNotes` and :guilabel:`Portal.Histories.HideSystemNotesForAdministrator`
+  are marked for removal in version LTS 13. We will use permission :guilabel:`NoteReadAllCaseTaskDetails` to
+  control the visibility of system notes in task and case details.
+
 .. _portal-available-settings:
 
 .. centered:: Available settings
