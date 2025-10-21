@@ -131,11 +131,7 @@
                     cw.stop();
                   }
                 } catch (e) {
-                  if (e === 'SecurityError') {
-                    console.warn('SecurityError accessing iframe.contentWindow:', e);
-                  } else {
-                    console.warn('Exception accessing iframe.contentWindow:', e);
-                  }
+                   console.warn('Exception accessing iframe.contentWindow:', e);
                 }
             }
             console.warn('Blocked non-relative taskUrl:', taskUrl);
