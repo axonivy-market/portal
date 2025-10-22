@@ -110,6 +110,7 @@ public class StatisticConfigurationBean implements Serializable, IMultiLanguage 
   private List<DisplayName> yTitles;
   private String yTitle;
   private List<String> selectedPermissions;
+  private List<String> chartDrillDownSelectedPermissions;
   private List<String> backgroundColors;
   private boolean isEditMode;
   private boolean refreshIntervalEnabled;
@@ -140,6 +141,7 @@ public class StatisticConfigurationBean implements Serializable, IMultiLanguage 
     }
     populateBackgroundColorsIfMissing();
     initPermissions();
+    initChartDrillDownPermissions();
     initMultilanguageServices();
     initFilterFields();
     initFilters();
@@ -252,6 +254,7 @@ public class StatisticConfigurationBean implements Serializable, IMultiLanguage 
     statistic.setLineChartConfig(new LineChartConfig());
     statistic.setPieChartConfig(new PieChartConfig() {});
     statistic.setPermissions(new ArrayList<>(Arrays.asList(ISecurityConstants.TOP_LEVEL_ROLE_NAME)));
+    statistic.setChartDrillDownPermissions(new ArrayList<>(Arrays.asList(ISecurityConstants.TOP_LEVEL_ROLE_NAME)));
     xTitles = new ArrayList<>();
     yTitles = new ArrayList<>();
     backgroundColors = new ArrayList<>(DEFAULT_COLORS);
@@ -467,7 +470,22 @@ public class StatisticConfigurationBean implements Serializable, IMultiLanguage 
     return RoleUtils.findRoles(null, selectedPermissions, query).stream().map(SecurityMemberDTOMapper::mapFromRoleDTO)
         .collect(Collectors.toList());
   }
+  
+  public List<SecurityMemberDTO> completeChartDrillDownPermissions(String query) {
+    return RoleUtils.findRoles(null, chartDrillDownSelectedPermissions, query).stream().map(SecurityMemberDTOMapper::mapFromRoleDTO)
+        .collect(Collectors.toList());
+  }
 
+  public void onSelectChartDrillDownPermission(SelectEvent<Object> event) {
+    SecurityMemberDTO selectedItem = (SecurityMemberDTO) event.getObject();
+    chartDrillDownSelectedPermissions.add(selectedItem.getName());
+  }
+
+  public void onUnselectChartDrillDownPermission(UnselectEvent<Object> event) {
+    SecurityMemberDTO selectedItem = (SecurityMemberDTO) event.getObject();
+    chartDrillDownSelectedPermissions.remove(selectedItem.getName());
+  }
+  
   public void onSelectPermissionForDashboard(SelectEvent<Object> event) {
     SecurityMemberDTO selectedItem = (SecurityMemberDTO) event.getObject();
     selectedPermissions.add(selectedItem.getName());
@@ -660,6 +678,15 @@ public class StatisticConfigurationBean implements Serializable, IMultiLanguage 
         .collect(Collectors.toList()));
 
     selectedPermissions = Optional.ofNullable(statistic).map(Statistic::getPermissionDTOs).orElse(new ArrayList<>())
+        .stream().map(SecurityMemberDTO::getName).collect(Collectors.toList());
+  }
+  
+  private void initChartDrillDownPermissions() {
+    statistic.setChartDrillDownPermissionDTOs(Optional.ofNullable(statistic).map(Statistic::getChartDrillDownPermissions).orElse(new ArrayList<>())
+        .stream().filter(Objects::nonNull).distinct().map(permission -> findSecurityMemberDtoByName(permission))
+        .collect(Collectors.toList()));
+
+    chartDrillDownSelectedPermissions = Optional.ofNullable(statistic).map(Statistic::getChartDrillDownPermissionDTOs).orElse(new ArrayList<>())
         .stream().map(SecurityMemberDTO::getName).collect(Collectors.toList());
   }
 
@@ -1018,6 +1045,14 @@ public class StatisticConfigurationBean implements Serializable, IMultiLanguage 
   
   public List<ConditionBasedColoringScope> getConditionBasedColoringScopes() {
     return ConditionBasedColoringScope.SCOPES.stream().collect(Collectors.toList());
+  }
+
+  public List<String> getChartDrillDownSelectedPermissions() {
+    return chartDrillDownSelectedPermissions;
+  }
+
+  public void setChartDrillDownSelectedPermissions(List<String> chartDrillDownSelectedPermissions) {
+    this.chartDrillDownSelectedPermissions = chartDrillDownSelectedPermissions;
   }
 
 }

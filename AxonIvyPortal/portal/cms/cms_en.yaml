@@ -1567,6 +1567,9 @@ Dialogs:
             AggregationMethod: Aggregation method
             AggregationMethodTooltip: Choose an aggregation method to perform calculations on your KPI field - Sum, Average, Max, or Min. Disabled when 'Counting' is selected
             ChartConfiguration: Chart Configuration
+            ChartDrillDownEnabled: Chart drill-down enabled
+            ChartDrillDownInfo: Chart drill-down info
+            ChartDrillDownPermissions: Chart drill-down permissions
             ChartType: Chart type
             Color: Color {0}
             ConditionBasedColoring:

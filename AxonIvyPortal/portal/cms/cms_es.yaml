@@ -1572,6 +1572,9 @@ Dialogs:
             AggregationMethod: Métodos de agregación
             AggregationMethodTooltip: Elige un método de agregación para realizar cálculos sobre tu campo KPI - Suma, Promedio, Máximo o Mínimo. Desactivado cuando se selecciona 'Counting'
             ChartConfiguration: Configuración de gráficos
+            ChartDrillDownEnabled: Desglose de gráficos habilitado
+            ChartDrillDownInfo: Chart drill-down info
+            ChartDrillDownPermissions: Permisos de desglose de gráficos
             ChartType: Tipo de gráfico
             Color: Color {0}
             ConditionBasedColoring:
