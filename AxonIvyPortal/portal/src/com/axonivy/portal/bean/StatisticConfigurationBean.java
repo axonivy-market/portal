@@ -411,6 +411,19 @@ public class StatisticConfigurationBean implements Serializable, IMultiLanguage 
       permissions = responsibles.stream().map(SecurityMemberDTO::getMemberName).collect(Collectors.toList());
       statistic.setPermissions(permissions);
     }
+    
+    List<SecurityMemberDTO> chartDrillDownResponsibles = statistic.getChartDrillDownPermissionDTOs();
+    List<String> chartDrillDownPermissions = new ArrayList<>();
+    if (CollectionUtils.isNotEmpty(chartDrillDownResponsibles)) {
+      Collection<SecurityMemberDTO> distinctPermissionDTOs =
+          chartDrillDownResponsibles.stream().collect(Collectors.toMap(SecurityMemberDTO::getMemberName, responsible -> responsible,
+              (responsible1, responsible2) -> responsible1)).values();
+      chartDrillDownResponsibles.clear();
+      chartDrillDownResponsibles.addAll(distinctPermissionDTOs);
+      chartDrillDownPermissions = chartDrillDownResponsibles.stream().map(SecurityMemberDTO::getMemberName).collect(Collectors.toList());
+      statistic.setChartDrillDownPermissions(chartDrillDownPermissions);
+    }
+    
     backgroundColors.removeIf(Objects::isNull);
     if (BAR == statistic.getChartType()) {
       statistic.setBarChartConfig(new BarChartConfig());

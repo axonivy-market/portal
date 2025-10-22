@@ -2,6 +2,7 @@ package com.axonivy.portal.bo;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Optional;
 import java.util.Map.Entry;
 
 import org.apache.commons.lang3.StringUtils;
@@ -21,6 +22,7 @@ import ch.ivy.addon.portalkit.configuration.AbstractConfiguration;
 import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.util.LanguageUtils;
 import ch.ivy.addon.portalkit.util.LanguageUtils.NameResult;
+import ch.ivyteam.ivy.environment.Ivy;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class Statistic extends AbstractConfiguration implements Serializable {
@@ -288,7 +290,7 @@ public class Statistic extends AbstractConfiguration implements Serializable {
   }
 
   public boolean getCanDrillDown() {
-    return StringUtils.isEmpty(aggregates) && StringUtils.isEmpty(filter);
+    return chartDrillDownEnabled && hasPermission() && StringUtils.isEmpty(aggregates) && StringUtils.isEmpty(filter);
   }
 
   public boolean getChartDrillDownEnabled() {
@@ -305,5 +307,12 @@ public class Statistic extends AbstractConfiguration implements Serializable {
 
   public void setChartDrillDownPermissions(List<String> accessDrillDownPermission) {
     this.chartDrillDownPermissions = accessDrillDownPermission;
+  }
+  
+  private boolean hasPermission() {
+    return Optional.ofNullable(chartDrillDownPermissions)
+                   .orElse(List.of())
+                   .stream()
+                   .anyMatch(permission -> Ivy.session().getSessionUser().has().role(permission));
   }
 }
