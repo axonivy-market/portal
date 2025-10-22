@@ -23,16 +23,16 @@ pipeline {
               file(credentialsId: 'users-server-csv', variable: 'USERS_SERVER_CSV'),
               file(credentialsId: 'admin-user-server-csv', variable: 'ADMIN_USER_CSV'),
               file(credentialsId: 'normal-user-server-csv', variable: 'NORMAL_USER_CSV'),
-          ]) {
+          ]) https://1ivy.atlassian.net/browse/IVYPORTAL-19756{
             // Copy credential files to expected locations
             sh '''
-              cp "$USERS_SERVER_CSV" "jmeter/data/users_server.csv"
-              cp "$ADMIN_USER_CSV" "jmeter/data/single_admin_user_server.csv"
-              cp "$NORMAL_USER_CSV" "jmeter/data/single_normal_user_server.csv"
+              cp "$USERS_SERVER_CSV" "${jmeterDslSourceDir}/jmeter/data/users_server.csv"
+              cp "$ADMIN_USER_CSV" "${jmeterDslSourceDir}/jmeter/data/single_admin_user_server.csv"
+              cp "$NORMAL_USER_CSV" "${jmeterDslSourceDir}/jmeter/data/single_normal_user_server.csv"
               
               # Verify files were created
               echo "Credential files created:"
-              ls -la jmeter/data/*.csv
+              ls -la ${jmeterDslSourceDir}/jmeter/data/*.csv
             '''
           }
         }
