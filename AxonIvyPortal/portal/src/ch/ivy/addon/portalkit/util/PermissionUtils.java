@@ -233,7 +233,7 @@ public class PermissionUtils {
   }
   
   /**
-   * Check if current user has permission see system notes in case/task details
+   * Check if current user has permission to see system notes in case/task details
    * @return true if current user has permission.
    */
   public static boolean checkNoteReadAllCaseTaskDetailsPermission() {
