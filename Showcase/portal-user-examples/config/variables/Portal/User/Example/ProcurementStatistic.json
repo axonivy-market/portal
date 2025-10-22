@@ -1,0 +1,966 @@
+[
+  {
+    "id": "21ef6b6842384c33a787b2a5912257e7",
+    "version": "13.2.0",
+    "statisticAggregation": {
+      "field": "Item",
+      "type": "custom",
+      "kpiField": "SpendAmount",
+      "aggregationMethod": "sum"
+    },
+    "permissions": [
+      "Everybody"
+    ],
+    "chartTarget": "case",
+    "chartType": "pie",
+    "icon": "si-pie-line-graph",
+    "names": [
+      {
+        "locale": "en",
+        "value": "Distribution of Spend by Category"
+      },
+      {
+        "locale": "fr",
+        "value": "Distribution of Spend by Category"
+      },
+      {
+        "locale": "de",
+        "value": "Distribution of Spend by Category"
+      },
+      {
+        "locale": "ja",
+        "value": "Distribution of Spend by Category"
+      },
+      {
+        "locale": "es",
+        "value": "Distribution of Spend by Category"
+      }
+    ],
+    "descriptions": [
+      {
+        "locale": "en",
+        "value": ""
+      },
+      {
+        "locale": "fr",
+        "value": ""
+      },
+      {
+        "locale": "de",
+        "value": ""
+      },
+      {
+        "locale": "ja",
+        "value": ""
+      },
+      {
+        "locale": "es",
+        "value": ""
+      }
+    ],
+    "pieChartConfig": {
+      "backgroundColors": [
+        "#6299f7",
+        "#8dc261",
+        "#98bffa",
+        "#bee3cb",
+        "#c8befa",
+        "#f5bf9f",
+        "#f8da96",
+        "#f9908c"
+      ],
+      "conditionBasedColoringEnabled": false
+    },
+    "conditionBasedColoringEnabled": false
+  },
+  {
+    "id": "12159ba721b94ea7bc4a0c5e0b4c93d0",
+    "version": "13.2.0",
+    "statisticAggregation": {
+      "field": "MonthYear",
+      "type": "custom"
+    },
+    "permissions": [
+      "Everybody"
+    ],
+    "chartTarget": "case",
+    "chartType": "line",
+    "icon": "si-pie-line-graph",
+    "names": [
+      {
+        "locale": "en",
+        "value": "Number of Purchase Requests / Orders per Month"
+      },
+      {
+        "locale": "fr",
+        "value": "Number of Purchase Requests / Orders per Month"
+      },
+      {
+        "locale": "de",
+        "value": "Number of Purchase Requests / Orders per Month"
+      },
+      {
+        "locale": "ja",
+        "value": "Number of Purchase Requests / Orders per Month"
+      },
+      {
+        "locale": "es",
+        "value": "Number of Purchase Requests / Orders per Month"
+      }
+    ],
+    "descriptions": [
+      {
+        "locale": "en",
+        "value": ""
+      },
+      {
+        "locale": "fr",
+        "value": ""
+      },
+      {
+        "locale": "de",
+        "value": ""
+      },
+      {
+        "locale": "ja",
+        "value": ""
+      },
+      {
+        "locale": "es",
+        "value": ""
+      }
+    ],
+    "lineChartConfig": {
+      "xTitles": [
+        {
+          "locale": "en",
+          "value": "Month of year"
+        },
+        {
+          "locale": "fr",
+          "value": "Month of year"
+        },
+        {
+          "locale": "de",
+          "value": "Month of year"
+        },
+        {
+          "locale": "ja",
+          "value": "Month of year"
+        },
+        {
+          "locale": "es",
+          "value": "Month of year"
+        }
+      ],
+      "yTitles": [
+        {
+          "locale": "en",
+          "value": "Number of orders"
+        },
+        {
+          "locale": "fr",
+          "value": "Number of orders"
+        },
+        {
+          "locale": "de",
+          "value": "Number of orders"
+        },
+        {
+          "locale": "ja",
+          "value": "Number of orders"
+        },
+        {
+          "locale": "es",
+          "value": "Number of orders"
+        }
+      ],
+      "backgroundColors": [
+        "#6299f7",
+        "#8dc261",
+        "#98bffa",
+        "#bee3cb",
+        "#c8befa",
+        "#f5bf9f",
+        "#f8da96",
+        "#f9908c"
+      ]
+    },
+    "defaultBackgroundColor": "#8dc261",
+    "conditionBasedColoringEnabled": false
+  },
+  {
+    "id": "4f9b2ed818504b8faabe74dc6d5c51d0",
+    "version": "13.2.0",
+    "statisticAggregation": {
+      "field": "Department",
+      "type": "custom",
+      "kpiField": "SpendAmount",
+      "aggregationMethod": "sum"
+    },
+    "permissions": [
+      "Everybody"
+    ],
+    "chartTarget": "case",
+    "chartType": "line",
+    "icon": "si-pie-line-graph",
+    "names": [
+      {
+        "locale": "en",
+        "value": "Total Procurement Spend per Department"
+      },
+      {
+        "locale": "fr",
+        "value": "Total Procurement Spend per Department"
+      },
+      {
+        "locale": "de",
+        "value": "Total Procurement Spend per Department"
+      },
+      {
+        "locale": "ja",
+        "value": "Total Procurement Spend per Department"
+      },
+      {
+        "locale": "es",
+        "value": "Total Procurement Spend per Department"
+      }
+    ],
+    "descriptions": [
+      {
+        "locale": "en",
+        "value": ""
+      },
+      {
+        "locale": "fr",
+        "value": ""
+      },
+      {
+        "locale": "de",
+        "value": ""
+      },
+      {
+        "locale": "ja",
+        "value": ""
+      },
+      {
+        "locale": "es",
+        "value": ""
+      }
+    ],
+    "lineChartConfig": {
+      "xTitles": [
+        {
+          "locale": "en",
+          "value": "Department"
+        },
+        {
+          "locale": "fr",
+          "value": "Department"
+        },
+        {
+          "locale": "de",
+          "value": "Department"
+        },
+        {
+          "locale": "ja",
+          "value": "Department"
+        },
+        {
+          "locale": "es",
+          "value": "Department"
+        }
+      ],
+      "yTitles": [
+        {
+          "locale": "en",
+          "value": "Amount spent"
+        },
+        {
+          "locale": "fr",
+          "value": "Amount spent"
+        },
+        {
+          "locale": "de",
+          "value": "Amount spent"
+        },
+        {
+          "locale": "ja",
+          "value": "Amount spent"
+        },
+        {
+          "locale": "es",
+          "value": "Amount spent"
+        }
+      ],
+      "backgroundColors": [
+        "#6299f7",
+        "#8dc261",
+        "#98bffa",
+        "#bee3cb",
+        "#c8befa",
+        "#f5bf9f",
+        "#f8da96",
+        "#f9908c"
+      ]
+    },
+    "conditionBasedColoringEnabled": false
+  },
+  {
+    "id": "6b3e8ccb484648c8bbe4453cc76292d8",
+    "version": "13.2.0",
+    "statisticAggregation": {
+      "field": "Department",
+      "type": "custom",
+      "kpiField": "daysToDecision",
+      "aggregationMethod": "avg"
+    },
+    "permissions": [
+      "Everybody"
+    ],
+    "chartTarget": "case",
+    "chartType": "bar",
+    "icon": "si-pie-line-graph",
+    "names": [
+      {
+        "locale": "en",
+        "value": "Average Time from Request to Decision (Lead Time)"
+      },
+      {
+        "locale": "fr",
+        "value": "Average Time from Request to Decision (Lead Time)"
+      },
+      {
+        "locale": "de",
+        "value": "Average Time from Request to Decision (Lead Time)"
+      },
+      {
+        "locale": "ja",
+        "value": "Average Time from Request to Decision (Lead Time)"
+      },
+      {
+        "locale": "es",
+        "value": "Average Time from Request to Decision (Lead Time)"
+      }
+    ],
+    "descriptions": [
+      {
+        "locale": "en",
+        "value": ""
+      },
+      {
+        "locale": "fr",
+        "value": ""
+      },
+      {
+        "locale": "de",
+        "value": ""
+      },
+      {
+        "locale": "ja",
+        "value": ""
+      },
+      {
+        "locale": "es",
+        "value": ""
+      }
+    ],
+    "barChartConfig": {
+      "xTitles": [
+        {
+          "locale": "en",
+          "value": "Department"
+        },
+        {
+          "locale": "fr",
+          "value": "Department"
+        },
+        {
+          "locale": "de",
+          "value": "Department"
+        },
+        {
+          "locale": "ja",
+          "value": "Department"
+        },
+        {
+          "locale": "es",
+          "value": "Department"
+        }
+      ],
+      "yTitles": [
+        {
+          "locale": "en",
+          "value": "Average number of days"
+        },
+        {
+          "locale": "fr",
+          "value": "Average number of days"
+        },
+        {
+          "locale": "de",
+          "value": "Average number of days"
+        },
+        {
+          "locale": "ja",
+          "value": "Average number of days"
+        },
+        {
+          "locale": "es",
+          "value": "Average number of days"
+        }
+      ],
+      "backgroundColors": [
+        "#6299f7",
+        "#8dc261",
+        "#98bffa",
+        "#bee3cb",
+        "#c8befa",
+        "#f5bf9f",
+        "#f8da96",
+        "#f9908c"
+      ]
+    },
+    "conditionBasedColoringEnabled": false
+  },
+  {
+    "id": "6b3340d8a61c458ba655d697469fc1b4",
+    "version": "13.2.0",
+    "statisticAggregation": {
+      "field": "decision",
+      "type": "custom"
+    },
+    "permissions": [
+      "Everybody"
+    ],
+    "chartTarget": "case",
+    "chartType": "bar",
+    "icon": "si-pie-line-graph",
+    "names": [
+      {
+        "locale": "en",
+        "value": "Approval Rate (Approved, Rejected, Pending)"
+      },
+      {
+        "locale": "fr",
+        "value": "Approval Rate (Approved, Rejected, Pending)"
+      },
+      {
+        "locale": "de",
+        "value": "Approval Rate (Approved, Rejected, Pending)"
+      },
+      {
+        "locale": "ja",
+        "value": "Approval Rate (Approved, Rejected, Pending)"
+      },
+      {
+        "locale": "es",
+        "value": "Approval Rate (Approved, Rejected, Pending)"
+      }
+    ],
+    "descriptions": [
+      {
+        "locale": "en",
+        "value": ""
+      },
+      {
+        "locale": "fr",
+        "value": ""
+      },
+      {
+        "locale": "de",
+        "value": ""
+      },
+      {
+        "locale": "ja",
+        "value": ""
+      },
+      {
+        "locale": "es",
+        "value": ""
+      }
+    ],
+    "barChartConfig": {
+      "xTitles": [
+        {
+          "locale": "en",
+          "value": "Decision"
+        },
+        {
+          "locale": "fr",
+          "value": "Decision"
+        },
+        {
+          "locale": "de",
+          "value": "Decision"
+        },
+        {
+          "locale": "ja",
+          "value": "Decision"
+        },
+        {
+          "locale": "es",
+          "value": "Decision"
+        }
+      ],
+      "yTitles": [
+        {
+          "locale": "en",
+          "value": "Number of orders"
+        },
+        {
+          "locale": "fr",
+          "value": "Number of orders"
+        },
+        {
+          "locale": "de",
+          "value": "Number of orders"
+        },
+        {
+          "locale": "ja",
+          "value": "Number of orders"
+        },
+        {
+          "locale": "es",
+          "value": "Number of orders"
+        }
+      ],
+      "backgroundColors": [
+        "#6299f7",
+        "#8dc261",
+        "#98bffa",
+        "#bee3cb",
+        "#c8befa",
+        "#f5bf9f",
+        "#f8da96",
+        "#f9908c"
+      ]
+    },
+    "conditionBasedColoringEnabled": false
+  },
+  {
+    "id": "741ea4131554457e98abda979cdd1a4c",
+    "version": "13.2.0",
+    "statisticAggregation": {
+      "field": "Department",
+      "type": "custom",
+      "kpiField": "reworkNoLoops",
+      "aggregationMethod": "avg"
+    },
+    "permissions": [
+      "Everybody"
+    ],
+    "chartTarget": "case",
+    "chartType": "bar",
+    "icon": "si-pie-line-graph",
+    "names": [
+      {
+        "locale": "en",
+        "value": "Average Number of Approval Loops"
+      },
+      {
+        "locale": "fr",
+        "value": "Average Number of Approval Loops"
+      },
+      {
+        "locale": "de",
+        "value": "Average Number of Approval Loops"
+      },
+      {
+        "locale": "ja",
+        "value": "Average Number of Approval Loops"
+      },
+      {
+        "locale": "es",
+        "value": "Average Number of Approval Loops"
+      }
+    ],
+    "descriptions": [
+      {
+        "locale": "en",
+        "value": ""
+      },
+      {
+        "locale": "fr",
+        "value": ""
+      },
+      {
+        "locale": "de",
+        "value": ""
+      },
+      {
+        "locale": "ja",
+        "value": ""
+      },
+      {
+        "locale": "es",
+        "value": ""
+      }
+    ],
+    "barChartConfig": {
+      "xTitles": [
+        {
+          "locale": "en",
+          "value": "Department"
+        },
+        {
+          "locale": "fr",
+          "value": "Department"
+        },
+        {
+          "locale": "de",
+          "value": "Department"
+        },
+        {
+          "locale": "ja",
+          "value": "Department"
+        },
+        {
+          "locale": "es",
+          "value": "Department"
+        }
+      ],
+      "yTitles": [
+        {
+          "locale": "en",
+          "value": "Average approval loops"
+        },
+        {
+          "locale": "fr",
+          "value": "Average approval loops"
+        },
+        {
+          "locale": "de",
+          "value": "Average approval loops"
+        },
+        {
+          "locale": "ja",
+          "value": "Average approval loops"
+        },
+        {
+          "locale": "es",
+          "value": "Average approval loops"
+        }
+      ],
+      "backgroundColors": [
+        "#6299f7",
+        "#8dc261",
+        "#98bffa",
+        "#bee3cb",
+        "#c8befa",
+        "#f5bf9f",
+        "#f8da96",
+        "#f9908c"
+      ]
+    },
+    "conditionBasedColoringEnabled": false
+  },
+  {
+    "id": "a7353e5b93e4466890466830a65264c5",
+    "version": "13.2.0",
+    "statisticAggregation": {
+      "field": "reworkOccurred",
+      "type": "custom",
+      "kpiField": "daysToDecision",
+      "aggregationMethod": "avg"
+    },
+    "permissions": [
+      "Everybody"
+    ],
+    "chartTarget": "case",
+    "chartType": "bar",
+    "icon": "si-pie-line-graph",
+    "names": [
+      {
+        "locale": "en",
+        "value": "Cycle Time Comparison time to decision (with vs without rework)"
+      },
+      {
+        "locale": "fr",
+        "value": "Cycle Time Comparison time to decision (with vs without rework)"
+      },
+      {
+        "locale": "de",
+        "value": "Cycle Time Comparison time to decision (with vs without rework)"
+      },
+      {
+        "locale": "ja",
+        "value": "Cycle Time Comparison time to decision (with vs without rework)"
+      },
+      {
+        "locale": "es",
+        "value": "Cycle Time Comparison time to decision (with vs without rework)"
+      }
+    ],
+    "descriptions": [
+      {
+        "locale": "en",
+        "value": ""
+      },
+      {
+        "locale": "fr",
+        "value": ""
+      },
+      {
+        "locale": "de",
+        "value": ""
+      },
+      {
+        "locale": "ja",
+        "value": ""
+      },
+      {
+        "locale": "es",
+        "value": ""
+      }
+    ],
+    "barChartConfig": {
+      "xTitles": [
+        {
+          "locale": "en",
+          "value": "Rework occured?"
+        },
+        {
+          "locale": "fr",
+          "value": "Rework occured?"
+        },
+        {
+          "locale": "de",
+          "value": "Rework occured?"
+        },
+        {
+          "locale": "ja",
+          "value": "Rework occured?"
+        },
+        {
+          "locale": "es",
+          "value": "Rework occured?"
+        }
+      ],
+      "yTitles": [
+        {
+          "locale": "en",
+          "value": "Average days to decision"
+        },
+        {
+          "locale": "fr",
+          "value": "Average days to decision"
+        },
+        {
+          "locale": "de",
+          "value": "Average days to decision"
+        },
+        {
+          "locale": "ja",
+          "value": "Average days to decision"
+        },
+        {
+          "locale": "es",
+          "value": "Average days to decision"
+        }
+      ],
+      "backgroundColors": [
+        "#6299f7",
+        "#8dc261",
+        "#98bffa",
+        "#bee3cb",
+        "#c8befa",
+        "#f5bf9f",
+        "#f8da96",
+        "#f9908c"
+      ]
+    },
+    "conditionBasedColoringEnabled": false
+  },
+  {
+    "id": "5116b8b02baa408da1dff648adda024c",
+    "version": "13.2.0",
+    "statisticAggregation": {
+      "field": "reworkCauses",
+      "type": "custom",
+      "kpiField": "daysToDecision",
+      "aggregationMethod": "avg"
+    },
+    "permissions": [
+      "Everybody"
+    ],
+    "chartTarget": "case",
+    "chartType": "bar",
+    "icon": "si-pie-line-graph",
+    "names": [
+      {
+        "locale": "en",
+        "value": "Average Cycle Time per Cause of Rework"
+      },
+      {
+        "locale": "fr",
+        "value": "Average Cycle Time per Cause of Rework"
+      },
+      {
+        "locale": "de",
+        "value": "Average Cycle Time per Cause of Rework"
+      },
+      {
+        "locale": "ja",
+        "value": "Average Cycle Time per Cause of Rework"
+      },
+      {
+        "locale": "es",
+        "value": "Average Cycle Time per Cause of Rework"
+      }
+    ],
+    "descriptions": [
+      {
+        "locale": "en",
+        "value": ""
+      },
+      {
+        "locale": "fr",
+        "value": ""
+      },
+      {
+        "locale": "de",
+        "value": ""
+      },
+      {
+        "locale": "ja",
+        "value": ""
+      },
+      {
+        "locale": "es",
+        "value": ""
+      }
+    ],
+    "barChartConfig": {
+      "xTitles": [
+        {
+          "locale": "en",
+          "value": "Cause for rework"
+        },
+        {
+          "locale": "fr",
+          "value": "Cause for rework"
+        },
+        {
+          "locale": "de",
+          "value": "Cause for rework"
+        },
+        {
+          "locale": "ja",
+          "value": "Cause for rework"
+        },
+        {
+          "locale": "es",
+          "value": "Cause for rework"
+        }
+      ],
+      "yTitles": [
+        {
+          "locale": "en",
+          "value": "Average number of days"
+        },
+        {
+          "locale": "fr",
+          "value": "Average Cycle Time per Cause of Rework"
+        },
+        {
+          "locale": "de",
+          "value": "Average Cycle Time per Cause of Rework"
+        },
+        {
+          "locale": "ja",
+          "value": "Average Cycle Time per Cause of Rework"
+        },
+        {
+          "locale": "es",
+          "value": "Average Cycle Time per Cause of Rework"
+        }
+      ],
+      "backgroundColors": [
+        "#6299f7",
+        "#8dc261",
+        "#98bffa",
+        "#bee3cb",
+        "#c8befa",
+        "#f5bf9f",
+        "#f8da96",
+        "#f9908c"
+      ]
+    },
+    "defaultBackgroundColor": "#8dc261",
+    "conditionBasedColoringEnabled": false
+  },
+  {
+    "id": "b4968c1cbe3d435c907026a8e7ce83e1",
+    "version": "13.2.0",
+    "statisticAggregation": {
+      "field": "reworkCauses",
+      "type": "custom"
+    },
+    "permissions": [
+      "Everybody"
+    ],
+    "chartTarget": "case",
+    "chartType": "pie",
+    "icon": "si-pie-line-graph",
+    "names": [
+      {
+        "locale": "en",
+        "value": "Distribution Causes of Rework"
+      },
+      {
+        "locale": "fr",
+        "value": "Distribution causes of Rework"
+      },
+      {
+        "locale": "de",
+        "value": "Distribution causes of Rework"
+      },
+      {
+        "locale": "ja",
+        "value": "Distribution causes of Rework"
+      },
+      {
+        "locale": "es",
+        "value": "Distribution causes of Rework"
+      }
+    ],
+    "descriptions": [
+      {
+        "locale": "en",
+        "value": ""
+      },
+      {
+        "locale": "fr",
+        "value": ""
+      },
+      {
+        "locale": "de",
+        "value": ""
+      },
+      {
+        "locale": "ja",
+        "value": ""
+      },
+      {
+        "locale": "es",
+        "value": ""
+      }
+    ],
+    "pieChartConfig": {
+      "backgroundColors": [
+        "#6299f7",
+        "#8dc261",
+        "#98bffa",
+        "#bee3cb",
+        "#c8befa",
+        "#f5bf9f",
+        "#f8da96",
+        "#f9908c"
+      ],
+      "conditionBasedColoringEnabled": false
+    },
+    "defaultBackgroundColor": "#8dc261",
+    "conditionBasedColoringEnabled": false
+  }
+]

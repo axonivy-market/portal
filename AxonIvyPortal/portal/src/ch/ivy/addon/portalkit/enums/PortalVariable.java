@@ -18,7 +18,9 @@ public enum PortalVariable {
   DASHBOARD_MAIN_MENU_ENTRY("Portal.Dashboard.MainMenuEntry"),
   STATISTIC("Portal.Statistic"),
   CUSTOM_STATISTIC("Portal.CustomStatistic"),
-  SESSION_CACHE_TIMEOUT("Portal.SessionCacheTimeout");
+  SESSION_CACHE_TIMEOUT("Portal.SessionCacheTimeout"),
+  SAMPLE_KPI_STATISTIC_KEY("Portal.User.Example.ProcurementStatistic"),
+  SAMPLE_KPI_DASHBOARD_KEY("Portal.User.Example.ProcurementDashboard");
 
   public String key;
 
