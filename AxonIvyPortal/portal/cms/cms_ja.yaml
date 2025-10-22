@@ -332,8 +332,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     addDocumentHelpText: ファイルをアップロードするには、ドラッグ＆ドロップするか、ファイルを選択してください
     addNoteHelpText: ここにテキストを入力してください。
     businessDetailsTitle: ビジネスの詳細
-    customFields: カスタムフィールド
-    customFieldsDialog: 'ケースのカスタムフィールド #{0}'
+    customFields: TODO Custom Fields
+    customFieldsDialog: 'TODO Custom Fields of case #{0}'
     deleteFile: ファイル削除
     documents: ドキュメント
     downloadFile: ファイルをダウンロード
@@ -1184,8 +1184,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     afterEscalation: エスカレーション後
     businessCase: ビジネスケース
     completedOn: 完了日
-    customFields: カスタムフィールド
-    customFieldsDialog: 'タスクのカスタムフィールド #{0}'
+    customFields: TODO Custom Fields
+    customFieldsDialog: 'TODO Custom Fields of task #{0}'
     delayedUntil: この日まで延期
     deleteFile: ファイルを削除
     documents: ドキュメント
