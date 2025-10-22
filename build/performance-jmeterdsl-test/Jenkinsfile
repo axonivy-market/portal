@@ -26,9 +26,9 @@ pipeline {
           ]) {
             sh '''
               # Copy files into the running container
-              docker cp "$USERS_SERVER_CSV" ivy-performance-master:${jmeterDslSourceDir}/jmeter/data/users_server.csv
-              docker cp "$ADMIN_USER_CSV" ivy-performance-master:${jmeterDslSourceDir}/jmeter/data/admin_user.csv
-              docker cp "$NORMAL_USER_CSV" ivy-performance-master:${jmeterDslSourceDir}/jmeter/data/normal_user.csv
+              docker cp "$USERS_SERVER_CSV" ivy-performance-master:AxonIvyPortal/portal-performance-test/jmeter/data/users_server.csv
+              docker cp "$ADMIN_USER_CSV" ivy-performance-master:AxonIvyPortal/portal-performance-test/jmeter/data/admin_user.csv
+              docker cp "$NORMAL_USER_CSV" ivy-performance-master:AxonIvyPortal/portal-performance-test/jmeter/data/normal_user.csv
             '''
           }
         }
