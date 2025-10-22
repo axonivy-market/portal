@@ -26,9 +26,9 @@ pipeline {
           ]) {
             sh '''
              # Copy credential files to the correct location
-              cp "$USERS_SERVER_CSV" "${jmeterDslSourceDir}/jmeter/data/users_server.csv"
-              cp "$ADMIN_USER_CSV" "${jmeterDslSourceDir}/jmeter/data/single_admin_user_server.csv"
-              cp "$NORMAL_USER_CSV" "${jmeterDslSourceDir}/jmeter/data/single_normal_user_server.csv"
+              cp "$USERS_SERVER_CSV" "${jmeterDslSourceDir}/jmeter/data"
+              cp "$ADMIN_USER_CSV" "${jmeterDslSourceDir}/jmeter/data"
+              cp "$NORMAL_USER_CSV" "${jmeterDslSourceDir}/jmeter/data"
               
               # Verify files were created
               echo "Credential files created:"
