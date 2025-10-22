@@ -16,21 +16,21 @@ pipeline {
   }
 
   stages {
-    stage('deploy') {
-      steps {
-        script {
-          engineNames = ['master', '12', '10', '8', 'performance-master', 'performance-12', 'performance-10', 'performance-8']
-          currentBuild.description = "On ${env.NODE_NAME}"
-          for (engineName in engineNames) {
-            sh "docker compose -f ${ivyDir}/${engineName}/docker-compose.yml down"
-          }
-          sh """
-            docker compose -f ${ivyDir}/${engineNames[4]}/docker-compose.yml up -d
-            sleep 100
-          """
-        }
-      }
-    }
+//    stage('deploy') {
+//      steps {
+//        script {
+//          engineNames = ['master', '12', '10', '8', 'performance-master', 'performance-12', 'performance-10', 'performance-8']
+//          currentBuild.description = "On ${env.NODE_NAME}"
+//          for (engineName in engineNames) {
+//            sh "docker compose -f ${ivyDir}/${engineName}/docker-compose.yml down"
+//          }
+//          sh """
+//            docker compose -f ${ivyDir}/${engineNames[4]}/docker-compose.yml up -d
+//            sleep 100
+//          """
+//        }
+//      }
+//    }
     stage('Setup Credentials') {
       steps {
         script {
@@ -67,13 +67,13 @@ pipeline {
   post {
     always {
       script {
-        for (engineName in engineNames) {
-          sh "docker compose -f ${ivyDir}/${engineName}/docker-compose.yml down"
-        }
+//        for (engineName in engineNames) {
+//          sh "docker compose -f ${ivyDir}/${engineName}/docker-compose.yml down"
+//        }
         sh """
-          docker compose -f ${ivyDir}/${engineNames[0]}/docker-compose.yml up -d
-          docker compose -f ${ivyDir}/${engineNames[1]}/docker-compose.yml up -d
-          
+//          docker compose -f ${ivyDir}/${engineNames[0]}/docker-compose.yml up -d
+//          docker compose -f ${ivyDir}/${engineNames[1]}/docker-compose.yml up -d
+//          
           cp -r ${jmeterDslSourceDir}/target/jtls/* ${resultDir}
         """
         perfReport sourceDataFiles: "${jmeterDslSourceDir}/target/jtls/**/*.jtl", compareBuildPrevious: true, ignoreFailedBuilds: true, ignoreUnstableBuilds: true, errorFailedThreshold: 1
