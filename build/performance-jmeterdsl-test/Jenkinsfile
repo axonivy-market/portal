@@ -9,7 +9,7 @@ pipeline {
 
   environment {
     // Jmeter DSL source directory is in Portal source -> prefer to Performance test
-    jmeterDslSourceDir = '"${WORKSPACE}/AxonIvyPortal/portal-performance-test'
+    jmeterDslSourceDir = '${WORKSPACE}/AxonIvyPortal/portal-performance-test'
     ivyDir = '/var/tools/ivy'
     //could be master/12/10
     resultDir = '/var/tools/jmeter-javadsl-performance-result/master'
