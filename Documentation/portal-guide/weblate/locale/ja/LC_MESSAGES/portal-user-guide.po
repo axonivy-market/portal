@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Portal Guide ${revision}\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-15 03:56+0000\n"
+"POT-Creation-Date: 2025-10-22 04:04+0000\n"
 "PO-Revision-Date: 2025-10-09 10:31+0000\n"
 "Last-Translator: Thang Huynh <hhqthang@axonactive.com>\n"
 "Language: ja\n"
@@ -583,7 +583,7 @@ msgstr ":guilabel:`管理者設定` ユーザーメニュー項目を選択し�
 msgid "|select-admin-settings|"
 msgstr "|select-admin-settings|"
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:143
+#: ../../source/portal-user-guide/admin-settings/index.rst:148
 msgid "Admin setting menu"
 msgstr "管理者設定メニュー"
 
@@ -599,7 +599,7 @@ msgstr ":guilabel:`アプリケーション` タブを選択します。"
 msgid "|applications|"
 msgstr "|applications|"
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:137
+#: ../../source/portal-user-guide/admin-settings/index.rst:142
 msgid "Admin setting: applications"
 msgstr "管理者設定：アプリケーション"
 
@@ -615,7 +615,7 @@ msgstr ""
 msgid "|add-application|"
 msgstr "|add-application|"
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:139
+#: ../../source/portal-user-guide/admin-settings/index.rst:144
 msgid "Admin setting: Add application dialog"
 msgstr "管理者設定：アプリケーションの追加ダイアログ"
 
@@ -657,7 +657,7 @@ msgstr ":guilabel:`設定` タブを選択します。利用可能なすべて�
 msgid "|global-settings|"
 msgstr "|global-settings|"
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:145
+#: ../../source/portal-user-guide/admin-settings/index.rst:150
 msgid "Admin setting: Global settings"
 msgstr "管理者設定：グローバル設定"
 
@@ -675,7 +675,7 @@ msgstr "edit-icon"
 msgid "|edit-global-settings|"
 msgstr "|edit-global-settings|"
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:147
+#: ../../source/portal-user-guide/admin-settings/index.rst:152
 msgid "Admin setting: Edit global setting dialog"
 msgstr "管理者設定：グローバル設定の編集ダイアログ"
 
@@ -703,7 +703,16 @@ msgstr ""
 "guide/reference/engine-cockpit/configuration.html#engine-cockpit-"
 "variables>` で設定できます。"
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:70
+#: ../../source/portal-user-guide/admin-settings/index.rst:68
+msgid ""
+":guilabel:`Portal.Histories.HideSystemNotes` and "
+":guilabel:`Portal.Histories.HideSystemNotesForAdministrator` are marked "
+"for removal in version LTS 13. We will use permission "
+":guilabel:`NoteReadAllCaseTaskDetails` to control the visibility of "
+"system notes in task and case details."
+msgstr ""
+
+#: ../../source/portal-user-guide/admin-settings/index.rst:75
 msgid "Available settings"
 msgstr "利用可能な設定"
 
@@ -1470,49 +1479,49 @@ msgstr "Portal.ShowTooltipTechnicalName"
 msgid "Enable to show users' technical name on tooltips."
 msgstr "ユーザーの技術名をツールチップに表示できるようにした。"
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:78
+#: ../../source/portal-user-guide/admin-settings/index.rst:83
 msgid "HowTo: Show/Hide the Announcement"
 msgstr "ハウツー：通知の表示／非表示を切り替える"
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:80
+#: ../../source/portal-user-guide/admin-settings/index.rst:85
 msgid "Select the :guilabel:`Announcements` tab."
 msgstr ":guilabel:`通知` タブを選択します。"
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:82
+#: ../../source/portal-user-guide/admin-settings/index.rst:87
 msgid "|announcement|"
 msgstr "|announcement|"
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:141
+#: ../../source/portal-user-guide/admin-settings/index.rst:146
 msgid "Admin setting: Announcement"
 msgstr "管理者設定：通知"
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:84
+#: ../../source/portal-user-guide/admin-settings/index.rst:89
 msgid "Input your announcement text and click on :guilabel:`Save` button."
 msgstr "通知テキストを入力し、:guilabel:`保存` ボタンをクリックします"
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:86
+#: ../../source/portal-user-guide/admin-settings/index.rst:91
 msgid ""
 "Turn on the :guilabel:`Enable announcement` option to display the "
 "announcement."
 msgstr ":guilabel:`通知の有効化` オプションをオンにして、通知を表示します。"
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:88
+#: ../../source/portal-user-guide/admin-settings/index.rst:93
 msgid ""
 "Turn off the :guilabel:`Enable announcement` option to hide the "
 "announcement."
 msgstr ":guilabel:`通知の有効化` オプションをオフにして、通知を非表示にします。"
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:91
+#: ../../source/portal-user-guide/admin-settings/index.rst:96
 msgid "HowTo: Manage Roles"
 msgstr "ハウツー：ロールを管理する"
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:92
+#: ../../source/portal-user-guide/admin-settings/index.rst:97
 msgid ""
 "Portal provides the :guilabel:`Role Management` section in the "
 ":guilabel:`Admin Settings` area, where the user can manage roles."
 msgstr "ポータルの :guilabel:`管理者設定` 領域にある :guilabel:`ロールの管理` セクションで、ロールを管理できます。"
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:94
+#: ../../source/portal-user-guide/admin-settings/index.rst:99
 msgid ""
 "To see the :guilabel:`Role Management` tab, the user has to have the "
 "permission :bdg-ref-warning:`🔑RoleManagement <RoleManagement>`."
@@ -1520,19 +1529,19 @@ msgstr ""
 ":guilabel:`ロールの管理` タブを表示するには、:bdg-ref-warning:`🔑RoleManagement "
 "<RoleManagement>` 権限が必要です。"
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:95
+#: ../../source/portal-user-guide/admin-settings/index.rst:100
 msgid "To manage roles, the user also has to own these permissions:"
 msgstr "ロールを管理するには、以下の権限も必要になります。"
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:97
+#: ../../source/portal-user-guide/admin-settings/index.rst:102
 msgid ":bdg-ref-warning:`🔑RoleCreate <RoleCreate>`: create a new dynamic role"
 msgstr ":bdg-ref-warning:`🔑RoleCreate <RoleCreate>`：新しい動的ロールを作成"
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:98
+#: ../../source/portal-user-guide/admin-settings/index.rst:103
 msgid ":bdg-ref-warning:`🔑RoleDelete <RoleDelete>`: delete a dynamic role"
 msgstr ":bdg-ref-warning:`🔑RoleDelete <RoleDelete>`：動的ロールを削除"
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:99
+#: ../../source/portal-user-guide/admin-settings/index.rst:104
 msgid ""
 ":bdg-ref-warning:`🔑RoleMove <RoleMove>`: can select the parent role at "
 "the :guilabel:`Create new role` step, by default the system will use "
@@ -1541,41 +1550,41 @@ msgstr ""
 ":bdg-ref-warning:`🔑RoleMove <RoleMove>`：:guilabel:`新しいロールを作成する` "
 "ステップで親ロールを選択できます。デフォルトでは、システムは ``Everybody`` を使用します。"
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:101
+#: ../../source/portal-user-guide/admin-settings/index.rst:106
 msgid "Select the :guilabel:`Role Management` tab."
 msgstr ":guilabel:`ロールの管理` タブを選択します。"
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:103
+#: ../../source/portal-user-guide/admin-settings/index.rst:108
 msgid "|role-assignment-tab|"
 msgstr "|role-assignment-tab|"
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:149
+#: ../../source/portal-user-guide/admin-settings/index.rst:154
 msgid "Admin setting: Role management"
 msgstr "管理者設定：ロールの管理"
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:105
+#: ../../source/portal-user-guide/admin-settings/index.rst:110
 msgid "Click on the :guilabel:`Create new role` button and fill in the data."
 msgstr ":guilabel:`新しいロールを作成する` ボタンをクリックし、データを入力します。"
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:107
+#: ../../source/portal-user-guide/admin-settings/index.rst:112
 msgid "|role-assignment-creation-dialog|"
 msgstr "|role-assignment-creation-dialog|"
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:151
+#: ../../source/portal-user-guide/admin-settings/index.rst:156
 msgid "Admin setting: role creation dialog"
 msgstr "管理者設定：ロールの作成ダイアログ"
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:109
+#: ../../source/portal-user-guide/admin-settings/index.rst:114
 msgid ""
 "After filling all mandatory fields, click on the :guilabel:`Save` button "
 "to create the role."
 msgstr "すべての必須フィールドにデータを入力した後、 :guilabel:`保存` ボタンをクリックして、ロールを作成します。"
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:111
+#: ../../source/portal-user-guide/admin-settings/index.rst:116
 msgid "On the role tree table, you will see the new role."
 msgstr "ロールツリーテーブルに新しいロールが表示されます。"
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:113
+#: ../../source/portal-user-guide/admin-settings/index.rst:118
 msgid ""
 "The user can manage this new role by editing role properties, assigning "
 "users to the role, and deleting the role using the actions available on "
@@ -1584,7 +1593,7 @@ msgstr ""
 "ユーザーは、ロールのプロパティを編集し、ユーザーをロールに割り当て、 :guilabel:`アクション` "
 "列にあるアクションを使用してロールを削除し、新しいロールを管理できます。"
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:116
+#: ../../source/portal-user-guide/admin-settings/index.rst:121
 msgid ""
 "Portal also provides two advanced configurations to control the number of"
 " roles that are shown in the :guilabel:`Role Management` tab. Refer to "
@@ -1594,11 +1603,11 @@ msgstr ""
 "ポータルには、 :guilabel:`ロールの管理` タブに表示されるロールの数を制御する 2 つの詳細設定も用意されています。詳細については、 "
 ":ref:`設定の変数 <portal-available-settings>` を参照してください。"
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:120
+#: ../../source/portal-user-guide/admin-settings/index.rst:125
 msgid "HowTo: Enable/Disable Password Validation"
 msgstr "ハウツー：パスワード検証を有効／無効にする"
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:121
+#: ../../source/portal-user-guide/admin-settings/index.rst:126
 msgid ""
 "Portal provides the :guilabel:`Password Validation` section in the "
 ":guilabel:`Admin Settings` area, where you can enable/disable password "
@@ -1607,7 +1616,7 @@ msgstr ""
 "ポータルの :guilabel:`管理者設定` 領域にある :guilabel:`パスワード検証` "
 "セクションで、パスワード検証を有効／無効にし、パスワードポリシーを変更できます。"
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:123
+#: ../../source/portal-user-guide/admin-settings/index.rst:128
 msgid ""
 "To see the :guilabel:`Password Validation` tab, you have to have the "
 "permission :bdg-ref-warning:`🔑PasswordValidation <PasswordValidation>`."
@@ -1615,25 +1624,25 @@ msgstr ""
 ":guilabel:`パスワード検証` タブを表示するには、:bdg-ref-warning:`🔑PasswordValidation "
 "<PasswordValidation>` 権限が必要です。"
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:125
+#: ../../source/portal-user-guide/admin-settings/index.rst:130
 msgid "Select the :guilabel:`Password Validation` tab."
 msgstr ":guilabel:`パスワード検証` タブを選択します。"
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:127
+#: ../../source/portal-user-guide/admin-settings/index.rst:132
 msgid "|password-validation-tab|"
 msgstr "|password-validation-tab|"
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:153
+#: ../../source/portal-user-guide/admin-settings/index.rst:158
 msgid "Admin setting: Password Validation"
 msgstr "管理者設定：パスワード検証"
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:129
+#: ../../source/portal-user-guide/admin-settings/index.rst:134
 msgid ""
 "Click :guilabel:`Enable Password Validation` toggle switch to "
 "enable/disable the feature."
 msgstr ":guilabel:`パスワード検証の有効化` トグルスイッチをクリックして、機能を有効／無効にします。"
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:131
+#: ../../source/portal-user-guide/admin-settings/index.rst:136
 msgid ""
 "If :guilabel:`Enable Password Validation` toggle switch is "
 ":guilabel:`Enabled`, you can activate/deactivate password policies and "
@@ -1644,7 +1653,7 @@ msgstr ""
 "の場合、パスワードポリシーをアクティブ化／非アクティブ化し、パスワードポリシーの設定を変更し、 :guilabel:`保存` "
 "ボタンをクリックして設定を保存できます。"
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:133
+#: ../../source/portal-user-guide/admin-settings/index.rst:138
 msgid ""
 "After saving the configuration, you can verify it by either changing the "
 "password or reset password."

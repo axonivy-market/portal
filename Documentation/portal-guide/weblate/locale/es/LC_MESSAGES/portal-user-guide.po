@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Portal Guide ${revision}\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-15 03:56+0000\n"
+"POT-Creation-Date: 2025-10-22 04:04+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: es\n"
@@ -525,7 +525,7 @@ msgstr ""
 msgid "|select-admin-settings|"
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:143
+#: ../../source/portal-user-guide/admin-settings/index.rst:148
 msgid "Admin setting menu"
 msgstr ""
 
@@ -541,7 +541,7 @@ msgstr ""
 msgid "|applications|"
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:137
+#: ../../source/portal-user-guide/admin-settings/index.rst:142
 msgid "Admin setting: applications"
 msgstr ""
 
@@ -555,7 +555,7 @@ msgstr ""
 msgid "|add-application|"
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:139
+#: ../../source/portal-user-guide/admin-settings/index.rst:144
 msgid "Admin setting: Add application dialog"
 msgstr ""
 
@@ -597,7 +597,7 @@ msgstr ""
 msgid "|global-settings|"
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:145
+#: ../../source/portal-user-guide/admin-settings/index.rst:150
 msgid "Admin setting: Global settings"
 msgstr ""
 
@@ -615,7 +615,7 @@ msgstr ""
 msgid "|edit-global-settings|"
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:147
+#: ../../source/portal-user-guide/admin-settings/index.rst:152
 msgid "Admin setting: Edit global setting dialog"
 msgstr ""
 
@@ -640,7 +640,16 @@ msgid ""
 "cockpit/configuration.html#engine-cockpit-variables>`."
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:70
+#: ../../source/portal-user-guide/admin-settings/index.rst:68
+msgid ""
+":guilabel:`Portal.Histories.HideSystemNotes` and "
+":guilabel:`Portal.Histories.HideSystemNotesForAdministrator` are marked "
+"for removal in version LTS 13. We will use permission "
+":guilabel:`NoteReadAllCaseTaskDetails` to control the visibility of "
+"system notes in task and case details."
+msgstr ""
+
+#: ../../source/portal-user-guide/admin-settings/index.rst:75
 msgid "Available settings"
 msgstr ""
 
@@ -1395,115 +1404,115 @@ msgstr ""
 msgid "Enable to show users' technical name on tooltips."
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:78
+#: ../../source/portal-user-guide/admin-settings/index.rst:83
 msgid "HowTo: Show/Hide the Announcement"
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:80
+#: ../../source/portal-user-guide/admin-settings/index.rst:85
 msgid "Select the :guilabel:`Announcements` tab."
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:82
+#: ../../source/portal-user-guide/admin-settings/index.rst:87
 msgid "|announcement|"
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:141
+#: ../../source/portal-user-guide/admin-settings/index.rst:146
 msgid "Admin setting: Announcement"
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:84
+#: ../../source/portal-user-guide/admin-settings/index.rst:89
 msgid "Input your announcement text and click on :guilabel:`Save` button."
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:86
+#: ../../source/portal-user-guide/admin-settings/index.rst:91
 msgid ""
 "Turn on the :guilabel:`Enable announcement` option to display the "
 "announcement."
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:88
+#: ../../source/portal-user-guide/admin-settings/index.rst:93
 msgid ""
 "Turn off the :guilabel:`Enable announcement` option to hide the "
 "announcement."
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:91
+#: ../../source/portal-user-guide/admin-settings/index.rst:96
 msgid "HowTo: Manage Roles"
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:92
+#: ../../source/portal-user-guide/admin-settings/index.rst:97
 msgid ""
 "Portal provides the :guilabel:`Role Management` section in the "
 ":guilabel:`Admin Settings` area, where the user can manage roles."
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:94
+#: ../../source/portal-user-guide/admin-settings/index.rst:99
 msgid ""
 "To see the :guilabel:`Role Management` tab, the user has to have the "
 "permission :bdg-ref-warning:`🔑RoleManagement <RoleManagement>`."
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:95
+#: ../../source/portal-user-guide/admin-settings/index.rst:100
 msgid "To manage roles, the user also has to own these permissions:"
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:97
+#: ../../source/portal-user-guide/admin-settings/index.rst:102
 msgid ":bdg-ref-warning:`🔑RoleCreate <RoleCreate>`: create a new dynamic role"
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:98
+#: ../../source/portal-user-guide/admin-settings/index.rst:103
 msgid ":bdg-ref-warning:`🔑RoleDelete <RoleDelete>`: delete a dynamic role"
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:99
+#: ../../source/portal-user-guide/admin-settings/index.rst:104
 msgid ""
 ":bdg-ref-warning:`🔑RoleMove <RoleMove>`: can select the parent role at "
 "the :guilabel:`Create new role` step, by default the system will use "
 "``Everybody``"
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:101
+#: ../../source/portal-user-guide/admin-settings/index.rst:106
 msgid "Select the :guilabel:`Role Management` tab."
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:103
+#: ../../source/portal-user-guide/admin-settings/index.rst:108
 msgid "|role-assignment-tab|"
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:149
+#: ../../source/portal-user-guide/admin-settings/index.rst:154
 msgid "Admin setting: Role management"
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:105
+#: ../../source/portal-user-guide/admin-settings/index.rst:110
 msgid "Click on the :guilabel:`Create new role` button and fill in the data."
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:107
+#: ../../source/portal-user-guide/admin-settings/index.rst:112
 msgid "|role-assignment-creation-dialog|"
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:151
+#: ../../source/portal-user-guide/admin-settings/index.rst:156
 msgid "Admin setting: role creation dialog"
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:109
+#: ../../source/portal-user-guide/admin-settings/index.rst:114
 msgid ""
 "After filling all mandatory fields, click on the :guilabel:`Save` button "
 "to create the role."
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:111
+#: ../../source/portal-user-guide/admin-settings/index.rst:116
 msgid "On the role tree table, you will see the new role."
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:113
+#: ../../source/portal-user-guide/admin-settings/index.rst:118
 msgid ""
 "The user can manage this new role by editing role properties, assigning "
 "users to the role, and deleting the role using the actions available on "
 "the :guilabel:`Actions` column."
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:116
+#: ../../source/portal-user-guide/admin-settings/index.rst:121
 msgid ""
 "Portal also provides two advanced configurations to control the number of"
 " roles that are shown in the :guilabel:`Role Management` tab. Refer to "
@@ -1511,42 +1520,42 @@ msgid ""
 "information."
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:120
+#: ../../source/portal-user-guide/admin-settings/index.rst:125
 msgid "HowTo: Enable/Disable Password Validation"
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:121
+#: ../../source/portal-user-guide/admin-settings/index.rst:126
 msgid ""
 "Portal provides the :guilabel:`Password Validation` section in the "
 ":guilabel:`Admin Settings` area, where you can enable/disable password "
 "validation and change password policies as well."
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:123
+#: ../../source/portal-user-guide/admin-settings/index.rst:128
 msgid ""
 "To see the :guilabel:`Password Validation` tab, you have to have the "
 "permission :bdg-ref-warning:`🔑PasswordValidation <PasswordValidation>`."
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:125
+#: ../../source/portal-user-guide/admin-settings/index.rst:130
 msgid "Select the :guilabel:`Password Validation` tab."
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:127
+#: ../../source/portal-user-guide/admin-settings/index.rst:132
 msgid "|password-validation-tab|"
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:153
+#: ../../source/portal-user-guide/admin-settings/index.rst:158
 msgid "Admin setting: Password Validation"
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:129
+#: ../../source/portal-user-guide/admin-settings/index.rst:134
 msgid ""
 "Click :guilabel:`Enable Password Validation` toggle switch to "
 "enable/disable the feature."
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:131
+#: ../../source/portal-user-guide/admin-settings/index.rst:136
 msgid ""
 "If :guilabel:`Enable Password Validation` toggle switch is "
 ":guilabel:`Enabled`, you can activate/deactivate password policies and "
@@ -1554,7 +1563,7 @@ msgid ""
 "save the configuration."
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:133
+#: ../../source/portal-user-guide/admin-settings/index.rst:138
 msgid ""
 "After saving the configuration, you can verify it by either changing the "
 "password or reset password."
