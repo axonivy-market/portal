@@ -229,8 +229,7 @@ Portal General Permissions
     
 _`NoteReadAllCaseTaskDetails`
     - Permission allows users to view system notes in case and task details
-
-
+    
 .. _portal-absence-and-sub-permission:
 
 Portal Absence And Substitute Permissions
