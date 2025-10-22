@@ -26,9 +26,9 @@ pipeline {
           ]) {
             sh """
               # Copy files into the running container
-              cp "$USERS_SERVER_CSV" ${jmeterDslSourceDir}/jmeter/data
-              cp "$ADMIN_USER_CSV" ${jmeterDslSourceDir}/jmeter/data
-              cp "$NORMAL_USER_CSV" ${jmeterDslSourceDir}/jmeter/data
+              cp $USERS_SERVER_CSV ${jmeterDslSourceDir}/jmeter/data
+              cp $ADMIN_USER_CSV ${jmeterDslSourceDir}/jmeter/data
+              cp $NORMAL_USER_CSV ${jmeterDslSourceDir}/jmeter/data
             """
           }
         }
