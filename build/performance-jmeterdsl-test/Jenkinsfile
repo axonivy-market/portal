@@ -8,7 +8,8 @@ pipeline {
   // cron job triggers removed
 
   environment {
-    jmeterDslSourceDir = '/var/tools/ivy/performance-master/jmeter-javadsl-test'
+    // Jmeter DSL source directory is in Portal source -> prefer to Performance test
+    jmeterDslSourceDir = '"${WORKSPACE}/AxonIvyPortal/portal-performance-test'
     ivyDir = '/var/tools/ivy'
     //could be master/12/10
     resultDir = '/var/tools/jmeter-javadsl-performance-result/master'
