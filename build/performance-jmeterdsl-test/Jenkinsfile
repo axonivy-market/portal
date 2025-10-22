@@ -20,9 +20,9 @@ pipeline {
       steps {
         script {
           withCredentials([
-              file(credentialsId: 'users-server-csv', variable: 'USERS_SERVER_CSV'),
-              file(credentialsId: 'admin-user-server-csv', variable: 'ADMIN_USER_CSV'),
-              file(credentialsId: 'normal-user-server-csv', variable: 'NORMAL_USER_CSV'),
+              file(credentialsId: 'users_server', variable: 'USERS_SERVER_CSV'),
+              file(credentialsId: 'single_admin_user_server', variable: 'ADMIN_USER_CSV'),
+              file(credentialsId: 'single_normal_user_server', variable: 'NORMAL_USER_CSV'),
           ]) {
             sh """
               # Copy files into the running container
