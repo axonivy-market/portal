@@ -25,12 +25,10 @@ pipeline {
               file(credentialsId: 'normal-user-server-csv', variable: 'NORMAL_USER_CSV'),
           ]) {
             sh '''
-            # Run Docker with volume mount
-          docker run -d \
-            -v "$USERS_SERVER_CSV:${jmeterDslSourceDir}/jmeter/data/users_server.csv:ro" \
-            -v "$ADMIN_USER_CSV:${jmeterDslSourceDir}/jmeter/data/admin_user.csv:ro" \
-            -v "$NORMAL_USER_CSV:${jmeterDslSourceDir}/jmeter/data/normal_user.csv:ro" \
-            ivy-performance-master
+              # Copy files into the running container
+              docker cp "$USERS_SERVER_CSV" ivy-performance-master:${jmeterDslSourceDir}/jmeter/data/users_server.csv
+              docker cp "$ADMIN_USER_CSV" ivy-performance-master:${jmeterDslSourceDir}/jmeter/data/admin_user.csv
+              docker cp "$NORMAL_USER_CSV" ivy-performance-master:${jmeterDslSourceDir}/jmeter/data/normal_user.csv
             '''
           }
         }
