@@ -149,6 +149,25 @@ const processYValue = (result, config) => {
   return result;
 }
 
+function shouldRenderEmptyChart(data) {
+  var result = data.result.aggs?.[0]?.buckets ?? [];
+  if (result.length == 0) {
+    return true;
+  }
+
+  if (data.chartConfig.statisticAggregation.kpiField) {
+    var objects = result;
+    const allNestedValuesAreZero = objects.every(obj => 
+      Object.values(obj.aggs).every(val => {
+        return val.value == 0 || val.value == null || val.value == undefined || val.value === "null";
+      })
+    );
+    return allNestedValuesAreZero;
+  }
+
+  return false;
+}
+
 async function fetchChartData(chart, chartId) {
   let data;
   let cloneResponse;
@@ -538,7 +557,7 @@ class ClientCanvasChart extends ClientChart {
     let chart = this.chart;
 
     // Render empty chart when result empty 
-    if (result.length == 0) {
+    if (shouldRenderEmptyChart(this.data)) {
       return this.renderEmptyChart(chart, config.additionalConfigs);
     }
 
@@ -566,10 +585,10 @@ class ClientPieChart extends ClientCanvasChart {
     let result = this.data.result.aggs?.[0]?.buckets ?? [];
     let config = this.data.chartConfig;
     let chart = this.chart;
-
+    
     const data = processYValue(result, this.data.chartConfig.additionalConfigs);
 
-    if (result.length == 0) {
+    if (shouldRenderEmptyChart(this.data)) {
       return this.renderEmptyChart(chart, config.additionalConfigs);
     } else {
       let html = this.renderChartCanvas(chart.getAttribute(DATA_CHART_ID));
@@ -631,7 +650,7 @@ class ClientCartesianChart extends ClientCanvasChart {
     let config = this.data.chartConfig;
     let chart = this.chart;
 
-    if (result.length == 0) {
+    if (shouldRenderEmptyChart(this.data)) {
       return this.renderEmptyChart(chart, config.additionalConfigs);
     } else {
       //If the target type for the Y axis is 'time', get average time from sub aggregate of the result.
@@ -734,7 +753,7 @@ class ClientBarChart extends ClientCartesianChart {
     let chart = this.chart;
 
     // Render empty chart when result empty 
-    if (result.length == 0) {
+    if (shouldRenderEmptyChart(this.data)) {
       return this.renderEmptyChart(chart, config.additionalConfigs);
     } 
     else if (result.length > 0) {
@@ -890,14 +909,20 @@ class ClientNumberChart extends ClientChart {
       '    <div class="chart-number-container">' +
       '        <span class="card-number chart-number-font-size chart-number-animation">' + number + '</span>' +
       '        <i class="card-number chart-number-font-size chart-number-animation ' + suffixSymbol + '"></i>' +
-      '    </div>' +
-      '    <h4 class="chart-number-animation">' + counting + '</h4>' +
+      '    </div>' + this.generateCountingHTML(counting) +
       '    <div class="chart-label-container">' +
       '        <span class="card-name chart-name-font-size chart-number-animation">' + label + '</span>' +
       '    </div>' +
       '</div>';
     return index > 0 ? border + html : html;
   };
+
+  generateCountingHTML(counting) {
+    if (counting) {
+      return '<div class="chart-number-animation chart-number-counting" style="padding-top: 10px;">' + counting + '</div>';
+    }
+    return '';
+  }
 
   // Method to format chart label.
   formatChartLabel(label) {
