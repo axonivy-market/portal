@@ -1,99 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions">
 <h:body>
-  <ui:composition template="/layouts/BasicTemplate.xhtml">
-<ui:define name="pageContent">
-  <style type="text/css">
-    .portal-iframe-slot { width:100%; overflow:hidden; margin:0; padding:0; }
-    #iFrame { display:block; width:100%; border:0; }
-
-    .portal-layout-container, #main-area-panel, .layout-main { min-height: 0 !important; }
-  </style>
-
-  <div id="portal-iframe-slot" class="portal-iframe-slot">
-    <iframe id="iFrame" src="#{data.url}" scrolling="auto"></iframe>
-  </div>
-
-  <script type="text/javascript">
-  //<![CDATA[
-  (function () {
-    function toPx(v){ var n = parseFloat(v); return isNaN(n) ? 0 : n; }
-    function padBottomOf(sel){
-      var el = document.querySelector(sel);
-      if(!el) return 0;
-      var cs = window.getComputedStyle(el);
-      return toPx(cs.paddingBottom) + toPx(cs.borderBottomWidth) + toPx(cs.marginBottom);
-    }
-
-    function resizeIframe() {
-      var slot   = document.getElementById('portal-iframe-slot');
-      var iframe = document.getElementById('iFrame');
-      if (!slot || !iframe) return;
-
-      // Viewport height
-      var vpH = window.innerHeight || document.documentElement.clientHeight || 0;
-
-      // Where our slot starts, in the current layout -> auto-includes any header/topbar/announcement/paddings above it
-      var top = Math.max(0, slot.getBoundingClientRect().top);
-
-      // Footer (can disappear → 0)
-      var footer = document.getElementById('portal-template-footer');
-      var footerH = footer ? footer.offsetHeight : 0;
-
-      // Bottom paddings that change depending on what’s enabled
-      var pb =
-          padBottomOf('.layout-main') +
-          padBottomOf('.portal-layout-container') +
-          padBottomOf('#main-area-panel');
-
-      // Compute target height; floor and subtract 1px to avoid sub-pixel overflow in Chrome
-      var raw = vpH - top - footerH - pb;
-      var height = Math.max(0, Math.floor(raw) - 1);
-
-      slot.style.height   = height + 'px';
-      iframe.style.height = height + 'px';
-    }
-
-    function schedule() {
-      resizeIframe();
-      // Re-run shortly as Portal/PrimeFaces do late DOM adjustments
-      setTimeout(resizeIframe, 0);
-      setTimeout(resizeIframe, 100);
-      setTimeout(resizeIframe, 300);
-    }
-
-    if (document.readyState === 'complete') schedule();
-    window.addEventListener('load', schedule);
-    window.addEventListener('resize', function(){ setTimeout(resizeIframe, 0); });
-
-    // PrimeFaces ajax/layout mutations
-    if (window.jQuery) {
-      jQuery(document).on('pfAjaxComplete', function(){ setTimeout(resizeIframe, 0); });
-    }
-    if (window.PF && PF.ajax && typeof PF.ajax.addOnComplete === 'function') {
-      PF.ajax.addOnComplete(function(){ setTimeout(resizeIframe, 0); });
-    }
-
-    // Observe dynamic size changes (header/footer/announcement hide/show)
-    if (window.ResizeObserver) {
-      var ro = new ResizeObserver(function(){ resizeIframe(); });
-      ['#portal-template-header', '.layout-topbar.js-layout-topbar',
-       '#announcement-container', '#portal-template-footer',
-       '.layout-main', '.portal-layout-container', '#main-area-panel'
-      ].forEach(function(sel){
-        var el = document.querySelector(sel);
-        if (el) ro.observe(el);
-      });
-    }
-  })();
-  //]]>
-  </script>
-</ui:define>
-
+  <ui:composition template="/layouts/IFramePortalTemplate.xhtml">
+    <ui:param name="url" value="#{data.url}" />
   </ui:composition>
 </h:body>
+
 </html>
