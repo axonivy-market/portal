@@ -319,7 +319,7 @@ public class CaseDetailsTest extends BaseTest {
   public void testRelatedTaskOpenCustomFieldsDialog() {
     createTestingTask();
     detailsPage.clickCustomFieldsButtonOnActions(SICK_LEAVE_REQUEST_TASK);
-    assertTrue(detailsPage.getCustomFieldsDialog().isDisplayed());
+    assertTrue(detailsPage.getTaskCustomFieldsDialog().isDisplayed());
     List<String> customFieldNames = detailsPage.getCustomFieldNamesOnTaskCustomFieldsDialog();
     assertFalse(customFieldNames.isEmpty());
   }
@@ -644,5 +644,19 @@ public class CaseDetailsTest extends BaseTest {
     detailsPage = casePage.openDetailsCase("Create note");
     detailsPage.waitPageLoaded();
     detailsPage.getNotesWithContent("System note").shouldHave(size(1));
+  }
+  
+  @Test
+  public void testShowCustomFieldsLinkWhenPermissionGranted() {
+    redirectToRelativeLink(createTestingTasksUrl);
+    login(TestAccount.ADMIN_USER);
+    grantSpecificPortalPermission(PortalPermission.CASE_DISPLAY_CUSTOM_FIELDS_ACTION);
+    redirectToNewDashBoard();
+    CaseWidgetNewDashBoardPage caseWidgetPage = NavigationHelper.navigateToCaseList();
+    CaseDetailsPage caseDetailsPage = caseWidgetPage.openDetailsCase("Leave Request");
+    caseDetailsPage.openActionMenu();
+    caseDetailsPage.clickOnCaseCustomFieldsAction();
+    List<String> customFieldValues = caseDetailsPage.getCaseCustomFieldNames();
+    assertFalse(customFieldValues.isEmpty());
   }
 }

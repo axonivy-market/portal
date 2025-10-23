@@ -98,13 +98,44 @@
       <script>
         $(document).ready(function() {
           var taskUrl = `#{htmlSanitizerBean.escapeForJS(iFrameTaskTemplateBean.taskUrl)}`;
-          if (taskUrl){
-            if(taskUrl.endsWith('blank')){
-              window.history.back(document.referrer);
-            }
-            getPortalIframe().src = taskUrl;
+          if (!taskUrl) {
+            loadIframe();
+            return;
           }
-          
+          taskUrl = taskUrl.trim();
+          if (typeof isRelativeUrl !== 'function') {
+            window.isRelativeUrl = function(u) {
+              if (!u) return false;
+              u = String(u).trim();
+              const lower = u.toLowerCase();
+              if (lower.startsWith('javascript:') || lower.startsWith('data:')) return false;
+              if (/^(\s*)?\/\//.test(u) || /[\r\n\0]/.test(u)) return false;
+              if (/^(\s*)?[a-zA-Z][a-zA-Z0-9+.-]*:/.test(u)) return false;
+              return true;
+            };
+          }
+          if (typeof updateIframeSrc !== 'function') {
+            window.updateIframeSrc = function(newSrc) {
+              var iframe = getPortalIframe();
+              if (iframe) { iframe.src = newSrc; }
+            };
+          }
+          if (isRelativeUrl(taskUrl)) {
+            updateIframeSrc(taskUrl);
+          } else {
+            const iframeEl = getPortalIframe();
+            if (iframeEl) {
+                try {
+                  const cw = iframeEl.contentWindow;
+                  if (cw) {
+                    cw.stop();
+                  }
+                } catch (e) {
+                   console.warn('Exception accessing iframe.contentWindow:', e);
+                }
+            }
+            console.warn('Blocked non-relative taskUrl:', taskUrl);
+          }
           loadIframe();
         });
       </script>
