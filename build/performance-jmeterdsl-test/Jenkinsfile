@@ -8,10 +8,8 @@ pipeline {
   // cron job triggers removed
 
   environment {
-    // Jmeter DSL source directory is in Portal source -> prefer to Performance test
     jmeterDslSourceDir = 'AxonIvyPortal/portal-performance-test'
     ivyDir = '/var/tools/ivy'
-    //could be master/12/10
     resultDir = '/var/tools/jmeter-javadsl-performance-result/master'
   }
 
@@ -35,6 +33,7 @@ pipeline {
       steps {
         script {
           withCredentials([
+              // Jenkins > Manage Jenkins > Manage Credentials
               file(credentialsId: 'users_server', variable: 'USERS_SERVER_CSV'),
               file(credentialsId: 'single_admin_user_server', variable: 'ADMIN_USER_CSV'),
               file(credentialsId: 'single_admin_user_server', variable: 'NORMAL_USER_CSV'),
