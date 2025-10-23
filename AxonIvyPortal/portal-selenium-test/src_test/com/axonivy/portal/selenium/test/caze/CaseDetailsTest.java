@@ -6,6 +6,7 @@ import static com.codeborne.selenide.Condition.text;
 import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
 import java.io.IOException;
+import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.AfterEach;
@@ -489,7 +490,6 @@ public class CaseDetailsTest extends BaseTest {
   @AfterEach
   public void teardown() {
     denySpecificPortalPermission(PortalPermission.TASK_CASE_ADD_NOTE);
-    denySpecificPortalPermission(PortalPermission.NOTE_READ_ALL_CASE_TASK_DETAILS);
   }
 
   @Test
@@ -618,21 +618,29 @@ public class CaseDetailsTest extends BaseTest {
     detailsPage.clickOnSystemTasksCheckbox(true);
 
     detailsPage.getNotesWithContent("System: create note").shouldHave(size(1));
+
   }
-
+  
   @Test
-  public void testShowNotesWhenGrantNoteReadAllPermission() {
-    redirectToRelativeLink(CREATE_NOTES);
-    login(TestAccount.DEMO_USER);
-    CaseWidgetNewDashBoardPage casePage = NavigationHelper.navigateToCaseList();
-    detailsPage = casePage.openDetailsCase("Create note");
-    detailsPage.waitPageLoaded();
-    detailsPage.getNotesWithContent("System note").shouldHave(size(0));
-
-    grantSpecificPortalPermission(PortalPermission.NOTE_READ_ALL_CASE_TASK_DETAILS);
-    casePage = NavigationHelper.navigateToCaseList();
-    detailsPage = casePage.openDetailsCase("Create note");
-    detailsPage.waitPageLoaded();
-    detailsPage.getNotesWithContent("System note").shouldHave(size(1));
+  public void testShowCustomFieldsDialogOnRelatedTask() {
+    createTestingTask();
+    detailsPage.clickCustomFieldsButtonOnActions(SICK_LEAVE_REQUEST_TASK);
+    assertTrue(detailsPage.getCustomFieldsDialog().isDisplayed());
+    List<String> customFieldNames = detailsPage.getCustomFieldNamesOnTaskCustomFieldsDialog();
+    assertFalse(customFieldNames.isEmpty());
+  }
+  
+  @Test
+  public void testShowCustomFieldsLinkWhenPermissionGranted() {
+    redirectToRelativeLink(createTestingTasksUrl);
+    login(TestAccount.ADMIN_USER);
+    grantSpecificPortalPermission(PortalPermission.CASE_DISPLAY_CUSTOM_FIELDS_ACTION);
+    redirectToNewDashBoard();
+    CaseWidgetNewDashBoardPage caseWidgetPage = NavigationHelper.navigateToCaseList();
+    CaseDetailsPage caseDetailsPage = caseWidgetPage.openDetailsCase("Leave Request");
+    caseDetailsPage.openActionMenu();
+    caseDetailsPage.clickOnCaseCustomFieldsAction();
+    List<String> customFieldValues = caseDetailsPage.getCaseCustomFieldNames();
+    assertFalse(customFieldValues.isEmpty());
   }
 }

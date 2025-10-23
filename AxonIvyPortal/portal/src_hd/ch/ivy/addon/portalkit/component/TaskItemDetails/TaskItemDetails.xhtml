@@ -122,7 +122,7 @@
                   renderedAdditionalAction="#{taskActionBean.showAdditionalOptions(task)}" task="#{task}"
                   isDisabled="#{taskActionBean.noActionAvailable(task) or cc.attrs.readOnly}" destroyTaskDialogComponent="#{cc.attrs.destroyTaskDialogComponent}"
                   componentToUpdate="#{informationWidgetComponent} #{historyWidgetComponent} #{cc.attrs.componentToUpdate}" onDestroyComplete="PF('destroy-task-dialog').show()"
-                  onEscalationComplete="PF('escalation-task-dialog').show()"
+                  onEscalationComplete="PF('escalation-task-dialog').show()" onCustomFieldsDialogComplete="initCustomFieldListData()"
                   showInTaskList="false" onDelegateComplete="initDataToDelegate()" onWorkflowEventComplete="initWorkflowEventData()" />
               </h:panelGroup>
             </div>
@@ -273,6 +273,8 @@
 
   <!-- Workflow Event of Task -->
   <ic:ch.ivy.addon.portalkit.component.TaskItemWorkflowEvents id="workflow-event-component" taskId="#{task.id}" />
+
+  <ic:ch.ivy.addon.portalkit.component.TaskItemCustomFields id="custom-fields-component" taskId="#{task.id}" />
 
   <!-- Task Exipy Activator Selection Dialog -->
   <ic:ch.ivy.addon.portalkit.component.TaskExpiryActivatorSelection task="#{task}"

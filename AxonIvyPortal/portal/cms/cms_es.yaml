@@ -332,6 +332,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     addDocumentHelpText: Para cargar archivos, arrastrar y soltar o seleccionar archivos
     addNoteHelpText: Escriba su texto aquí.
     businessDetailsTitle: Detalles del negocio
+    customFields: Campos personalizados
+    customFieldsDialog: 'Campos personalizados del caso #{0}'
     deleteFile: Borrar archivo
     documents: Documentos
     downloadFile: Descargar archivo
@@ -952,7 +954,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     deleteDocumentNote: '{0} ha eliminado {1}'
     deleteSuceed: Archivo eliminado con éxito
     download: Descargar
-    fileContainScript: ¡Este archivo no puede cargarse porque contiene algunos scripts!
+    fileContainScript: ¡El archivo contiene contenido potencialmente malicioso y no se puede subir!
     fileContainVirus: Carga fallida, ¡se ha detectado un virus/infección!
     fileCouldNotParse: No se pudo analizar el archivo
     fileEmptyMessage: El archivo está vacío
@@ -1183,6 +1185,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     afterEscalation: Después de la escalada
     businessCase: Caso comercial
     completedOn: Completado en
+    customFields: Campos personalizados
+    customFieldsDialog: 'Campos personalizados de la tarea #{0}'
     delayedUntil: Retrasado hasta
     deleteFile: Borrar archivo
     documents: Documentos
