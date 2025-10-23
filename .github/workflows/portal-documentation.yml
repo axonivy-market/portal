@@ -1,5 +1,5 @@
-name: Portal Multilingual Documentation
-run-name: 📚 Portal Multilingual Documentation
+name: Documentation
+run-name: 📚 Documentation
 on:
   workflow_dispatch:
     inputs:
@@ -113,7 +113,7 @@ jobs:
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: Documentation-multilingual-${{ steps.get_version.outputs.version }}
+          name: Documentation-${{ steps.get_version.outputs.version }}
           path: |
             Documentation/portal-guide/target/*.zip
     
