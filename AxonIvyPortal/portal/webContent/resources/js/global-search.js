@@ -297,31 +297,38 @@ if (document) {
   }
 
   function initConfirmDialog() {
-    if (PrimeFaces.widgets['search-task-losing-confirmation-dialog']) {
-      $("a.search-task-list-item").off('click').on('click', e => {
-        PF('search-task-losing-confirmation-dialog').show();
-        let id = $(e.target).closest('.search-task-list-item').find('.search-item-result').attr("data-id");
-        rcUpdateCurrentItemId([{name: 'id', value: id}, {name: 'type', value: 'TASK'}]);
-        return false;
-      });
-      $("a.search-case-list-item").off('click').on('click', e => {
-        PF('search-task-losing-confirmation-dialog').show();
-        let id = $(e.target).closest('.search-case-list-item').find('.search-item-result').attr("data-id");
-        rcUpdateCurrentItemId([{name: 'id', value: id}, {name: 'type', value: 'CASE'}]);
-        return false;
-      });
-      $("a.search-process-list-item").off('click').on('click', e => {
-        PF('search-task-losing-confirmation-dialog').show();
-        let id = $(e.target).closest('.search-process-list-item').find('.search-item-result').attr("data-id");
-        rcUpdateCurrentItemId([{name: 'id', value: id}, {name: 'type', value: 'PROCESS'}]);
-        return false;
-      });
+    let isWorkingOnATask = true;
 
-    }
+    portalGlobalSearchUpdateParams().then(function(responseData){
+      isWorkingOnATask = responseData.jqXHR.pfArgs.isWorkingOnATask;
+
+      if (isWorkingOnATask == false ) {
+        return;
+      }
+      if (PrimeFaces.widgets['search-task-losing-confirmation-dialog']) {
+        $("a.search-task-list-item").off('click').on('click', e => {
+          PF('search-task-losing-confirmation-dialog').show();
+          let id = $(e.target).closest('.search-task-list-item').find('.search-item-result').attr("data-id");
+          rcUpdateCurrentItemId([{name: 'id', value: id}, {name: 'type', value: 'TASK'}]);
+          return false;
+        });
+        $("a.search-case-list-item").off('click').on('click', e => {
+          PF('search-task-losing-confirmation-dialog').show();
+          let id = $(e.target).closest('.search-case-list-item').find('.search-item-result').attr("data-id");
+          rcUpdateCurrentItemId([{name: 'id', value: id}, {name: 'type', value: 'CASE'}]);
+          return false;
+        });
+        $("a.search-process-list-item").off('click').on('click', e => {
+          PF('search-task-losing-confirmation-dialog').show();
+          let id = $(e.target).closest('.search-process-list-item').find('.search-item-result').attr("data-id");
+          rcUpdateCurrentItemId([{name: 'id', value: id}, {name: 'type', value: 'PROCESS'}]);
+          return false;
+        });
+      }
+    }).catch(function(error) {
+      console.error(error);  
+    });
   }
-
-
-
 
   let processComponent = (process) => {
     return '<a href="' + process.link + '" class="task-even-row full-mode task-start-list-item js-task-start-list-item search-process-list-item">' +
