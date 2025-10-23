@@ -24,14 +24,13 @@ pipeline {
           for (engineName in engineNames) {
             sh "docker compose -f ${ivyDir}/${engineName}/docker-compose.yml down"
           }
-          sh '''
+          sh """
             docker compose -f ${ivyDir}/${engineNames[4]}/docker-compose.yml up -d
             sleep 100
-          '''
+          """
         }
       }
     }
-
     stage('Setup Credentials') {
       steps {
         script {
