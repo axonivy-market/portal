@@ -21,6 +21,8 @@
   </properties>
 
   <build>
+    <testSourceDirectory>src_test</testSourceDirectory>
+
     <pluginManagement>
       <plugins>
         <!-- We force to use the latest version of surefire plugin to properly
