@@ -227,6 +227,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       SessionCacheTimeout: Délai d'expiration du cache de session pour le portail. Définit la durée d'expiration du cache de session (en secondes) pour le portail. Cette valeur peut être définie entre 300 (5 minutes) et 86 400 (24 heures).
       ShowLoginPageFooter: Pour activer/désactiver l'affichage du pied de page sur la page de connexion.
       ShowQRCode: Pour activer/désactiver l'affichage du code QR.
+      allowKeyboardShortcutsConfiguration: Définissez sur true pour permettre à l’utilisateur d’interagir avec le bouton des raccourcis clavier.
       behaviourWhenClickingOnLineInCaseList: Pour alterner entre les comportements (accéder aux détails du dossier ou aux détails de l’entreprise) lors du clic sur un dossier dans le widget de dossier du dashboard, la recherche globale, les dossiers associés et le widget de processus en mode combiné.
       behaviourWhenClickingOnLineInTaskList: Pour changer de comportement (exécuter la tâche ou accéder aux détails de la tâche) en cliquant sur une ligne dans la liste des tâches, le widget des tâches du tableau de bord et les tâches liées dans la page des détails du cas.
       chatMaxConnection: Si le nombre de tabs du browser est supérieur à ce nombre maximum, le chat sera désactivé sur les tabs inactifs du browser. Les valeurs valides sont 1, 2, 3, 4, 5.
@@ -245,11 +246,13 @@ ch.ivy.addon.portalkit.ui.jsf:
       delegationAppendOption: Ce paramètre détermine quelles informations supplémentaires sont incluses lors du formatage des noms de rôle.
       disableCaseCount: Mettre à true pour désactiver le cas de comptage dans la liste des cas
       disableTaskCount: Mettre à true pour désactiver la tâche de comptage dans la liste des tâches
-      displayAllUsersOfTaskActivator: Ce paramètre est utilisé pour le composant SecurityMemberDisplayName. Si le SecurityMember est un rôle, définissez ce paramètre sur true pour afficher la liste de tous les utilisateurs de ce rôle. Si ce paramètre a la valeur true, des informations sur l'icône sont affichées à côté du nom du rôle.
+      displayAllUsersOfTaskActivator: Ce paramètre est utilisé pour le composant SecurityMemberDisplayName. Si le SecurityMember est un rôle, définissez ce paramètre sur true pour afficher la liste de tous les utilisateurs de ce rôle. Si ce paramètre a la valeur true, des informations sur l'icône sont
+        affichées à côté du nom du rôle.
       displayMessageAfterFinishOrLeaveTask: Un message de retour d'information sera affiché lorsque l'utilisateur aura terminé ou quitté une tâche.
       documentUploadSizeLimit: Définissez la limite de taille pour le téléchargement de documents en mégaoctets (Mo). La valeur par défaut est de 20 Mo.
       embedInFrame: Régler sur true pour démarrer un processus/tâche en mode IFrame
-      enableCaseOwner: Réglé sur true pour activer le filtrage du propriétaire de cas lorsque les cas sont interrogés. Ce paramètre affecte toutes les requêtes de cas, par exemple pour la liste des cas, la recherche globale, les statistiques. Cela rend également disponible le filtre "Filtrer les tâches par propriétaire actuel du dossier" dans le widget de tâches, qui est masqué par défaut.
+      enableCaseOwner: Réglé sur true pour activer le filtrage du propriétaire de cas lorsque les cas sont interrogés. Ce paramètre affecte toutes les requêtes de cas, par exemple pour la liste des cas, la recherche globale, les statistiques. Cela rend également disponible le filtre "Filtrer les tâches
+        par propriétaire actuel du dossier" dans le widget de tâches, qui est masqué par défaut.
       enableDeepLTranslation: Attribuez la valeur true à cette propriété pour activer la prise en charge de la traduction de DeepL.
       enableDocumentPreview: 'Définir sur "true" pour activer l''aperçu des documents pour certains types de fichiers. Les types de fichiers pris en charge sont : pdf, png, jpeg, jpg, txt, log.'
       enableGroupChat: Définissez cette propriété sur true pour activer la fonction de chat de groupe
@@ -287,7 +290,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       showTaskDurationTime: Pour activer/désactiver l'affichage de la durée dans la page des détails de la tâche.
       showTooltipTechnicalName: Activer l'affichage du nom technique des utilisateurs dans les infobulles.
       uploadDocumentWhiteListExtensionNote: 'Laissez la valeur vide si vous autorisez toutes les extensions. Si juste autoriser quelques extensions, listez les extensions ici, séparées par des virgules. Exemple: pdf, txt, doc, docx.'
-      allowKeyboardShortcutsConfiguration: Définissez sur true pour permettre à l’utilisateur d’interagir avec le bouton des raccourcis clavier.
     key: Clé
     link: Lien
     loading: CHARGEMENT
@@ -330,6 +332,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     addDocumentHelpText: Pour ajouter des fichiers, glissez-les ou sélectionnez-les
     addNoteHelpText: Ecrivez votre texte ici
     businessDetailsTitle: Détails de l'entreprise
+    customFields: Champs personnalisés
+    customFieldsDialog: 'Champs personnalisés du cas #{0}'
     deleteFile: Supprimer le fichier
     documents: Documents
     downloadFile: Télécharger le fichier
@@ -924,7 +928,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     taskListIntroduction: Ce widget affiche des informations pertinentes sur les tâches selon les paramètres définis.
     taskStart: Commencer la tâche
     taskWidgetConfiguration: Configuration du widget de tâches
-    topMenuItemInfo: Si la case "Is Top Menu Item" est cochée, le tableau de bord apparaît comme un élément de niveau supérieur dans la barre de navigation, trié selon sa position dans la liste. Si elle n'est pas cochée, il apparaît comme un sous-élément sous "Tableaux de bord", également trié par position dans la liste.
+    topMenuItemInfo: Si la case "Is Top Menu Item" est cochée, le tableau de bord apparaît comme un élément de niveau supérieur dans la barre de navigation, trié selon sa position dans la liste. Si elle n'est pas cochée, il apparaît comme un sous-élément sous "Tableaux de bord", également trié par position
+      dans la liste.
     widgetInfo: Informations sur le widget
     widgetInfoIcon: Icône d'information du widget
     widgetTitle: Titre du widget
@@ -1328,8 +1333,10 @@ ch.ivy.addon.portalkit.ui.jsf:
   taskWarning:
     createdTaskLeave: '<div>Vous êtes sur le point de quitter cette page.<br/>  Choisissez l&apos;&apos;une des options suivantes :</div> <UL><LI>Quitter : abandonnez vos modifications et allez à la page choisie. <LI>Annuler : continuez à travailler sur cette tâche. </UL>'
     createdTaskLogout: '<div>Vous êtes sur le point de quitter cette page.<br/> Choisissez l&apos;&apos;une des options suivantes :</div> <UL> <LI>Déconnecter : abandonnez vos modifications et déconnectez-vous. <LI>Annuler : continuez à travailler sur cette tâche. </UL>'
-    resetParkTaskBeforeLeave: '<div>Vous êtes sur le point de laisser une tâche en cours.<br/>Choisissez l&apos;&apos;une des options suivantes :</div><UL> <LI> Quitter : abandonnez vos modifications et allez à la page choisie. <LI> Enregistrer : abandonnez vos modifications et conservez la tâche dans votre liste de tâches personnelles. Ensuite déconnectez-vous. <LI> Annuler : continuez à travailler sur cette tâche. </UL>'
-    resetParkTaskBeforeLogout: '<div>Vous êtes sur le point de laisser une tâche en cours.</br> Choisissez l&apos;&apos;une des options suivantes : </div><UL> <LI>Déconnecter : abandonnez vos modifications et déconnectez-vous. <LI>Enregistrer : annulez vos modifications et conservez la tâche dans votre liste de tâches personnelles. Ensuite, déconnectez-vous. <LI> Annuler : continuez à travailler sur cette tâche. </UL>'
+    resetParkTaskBeforeLeave: '<div>Vous êtes sur le point de laisser une tâche en cours.<br/>Choisissez l&apos;&apos;une des options suivantes :</div><UL> <LI> Quitter : abandonnez vos modifications et allez à la page choisie. <LI> Enregistrer : abandonnez vos modifications et conservez la tâche dans
+      votre liste de tâches personnelles. Ensuite déconnectez-vous. <LI> Annuler : continuez à travailler sur cette tâche. </UL>'
+    resetParkTaskBeforeLogout: '<div>Vous êtes sur le point de laisser une tâche en cours.</br> Choisissez l&apos;&apos;une des options suivantes : </div><UL> <LI>Déconnecter : abandonnez vos modifications et déconnectez-vous. <LI>Enregistrer : annulez vos modifications et conservez la tâche dans votre
+      liste de tâches personnelles. Ensuite, déconnectez-vous. <LI> Annuler : continuez à travailler sur cette tâche. </UL>'
     taskNotFound: cette tâche n'existe pas ou vous n'avez pas l'autorisation de la voir.
   userProfile:
     myProfileTitle: Mon profil
@@ -1483,7 +1490,8 @@ Dialogs:
                         <span class="shortcut-key">Alt + 4</span>Se focaliser sur l’onglet des cas
                     </div>
                 </div>
-              title: 'Raccourcis d’accessibilité. Alt + 1: Fokus auf die Dashboards. Alt + 2: Fokus auf die Prozesse. Alt + 3: Fokus auf die Aufgaben. Alt + 4: Fokus auf die Fälle. Alt + 5: Fokus auf die Suche. Alt + 6: Fokus auf die User Einstellungen. Alt + 7: Permet d’afficher ou de masquer le menu principal. Alt + A: Fokus auf den ersten Prozess. Alt + W: Fokus auf die erste Aufgabe. Alt + Q: Fokus auf den ersten Fall. Tab: Sequentielles Durchlaufen von Elementen. Esc: Erweiterte Widgets schließen/Kontext Menüs schließen. Enter: Auswahl bestätigen'
+              title: 'Raccourcis d’accessibilité. Alt + 1: Fokus auf die Dashboards. Alt + 2: Fokus auf die Prozesse. Alt + 3: Fokus auf die Aufgaben. Alt + 4: Fokus auf die Fälle. Alt + 5: Fokus auf die Suche. Alt + 6: Fokus auf die User Einstellungen. Alt + 7: Permet d’afficher ou de masquer le menu
+                principal. Alt + A: Fokus auf den ersten Prozess. Alt + W: Fokus auf die erste Aufgabe. Alt + Q: Fokus auf den ersten Fall. Tab: Sequentielles Durchlaufen von Elementen. Esc: Erweiterte Widgets schließen/Kontext Menüs schließen. Enter: Auswahl bestätigen'
             CaseWidgetConfiguration:
               AddFilter: Ajouter un filtre
             ClientStatisticWidget:

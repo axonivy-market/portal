@@ -330,6 +330,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     addDocumentHelpText: To upload files, drag & drop or select files
     addNoteHelpText: Write your text here.
     businessDetailsTitle: Business Details
+    customFields: Custom Fields
+    customFieldsDialog: 'Custom Fields of case #{0}'
     deleteFile: Delete file
     documents: Documents
     downloadFile: Download file
