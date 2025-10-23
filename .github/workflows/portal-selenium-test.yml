@@ -190,7 +190,7 @@ jobs:
                 }
                 
                 if (testResultFiles.length === 0) {
-                  fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY, '## ❌ Test Results\\n\\nNo test result files found.\\n\\n');
+                  fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY, '## ❌ Test Results\n\nNo test result files found.\n\n');
                   return;
                 }
                 
@@ -258,30 +258,30 @@ jobs:
                 let summaryContent = '';
                 
                 if (totalFailures === 0 && totalErrors === 0) {
-                  summaryContent += `## ✅ All Tests Passed\\n\\n`;
-                  summaryContent += `📊 **Summary**: ${totalTests} tests passed\\n\\n`;
+                  summaryContent += `## ✅ All Tests Passed\n\n`;
+                  summaryContent += `📊 **Summary**: ${totalTests} tests passed\n\n`;
                 } else {
-                  summaryContent += `## ❌ Test Failures (${failedTests.length})\\n\\n`;
-                  summaryContent += `📊 **Summary**: ${totalTests} total, ${totalFailures + totalErrors} failed, ${totalTests - totalFailures - totalErrors} passed\\n\\n`;
+                  summaryContent += `## ❌ Test Failures (${failedTests.length})\n\n`;
+                  summaryContent += `📊 **Summary**: ${totalTests} total, ${totalFailures + totalErrors} failed, ${totalTests - totalFailures - totalErrors} passed\n\n`;
                   
                   if (failedTests.length > 0) {
-                    summaryContent += `| Test Class | Test Method | Error Message | Details |\\n`;
-                    summaryContent += `|------------|-------------|---------------|---------|\\n`;
+                    summaryContent += `| Test Class | Test Method | Error Message | Details |\n`;
+                    summaryContent += `|------------|-------------|---------------|---------|\n`;
                     
                     failedTests.forEach(test => {
                       const shortClassName = test.class.split('.').pop();
                       const shortMessage = test.message.length > 80 ? test.message.substring(0, 80) + '...' : test.message;
-                      const escapedMessage = shortMessage.replace(/\|/g, '\\\\|').replace(/\n/g, ' ');
+                      const escapedMessage = shortMessage.replace(/\|/g, '\\|').replace(/\n/g, ' ');
                       
-                      summaryContent += `| \`${shortClassName}\` | \`${test.test}\` | ${escapedMessage} | [📋 XML Report](../../artifacts/selenium-test-reports) |\\n`;
+                      summaryContent += `| \`${shortClassName}\` | \`${test.test}\` | ${escapedMessage} | [📋 XML Report](../../artifacts/selenium-test-reports) |\n`;
                     });
                     
-                    summaryContent += '\\n';
-                    summaryContent += `### 📋 How to View Full Details\\n\\n`;
-                    summaryContent += `1. **Screenshots**: Download the \`screenshots\` artifact above\\n`;
-                    summaryContent += `2. **Test Reports**: Download the \`selenium-test-reports\` artifact for complete XML reports\\n`;
-                    summaryContent += `3. **HTML Report**: Download the \`html-test-report\` artifact for detailed HTML view\\n`;
-                    summaryContent += `4. **Engine Logs**: Check the "Log out on failures" step above\\n\\n`;
+                    summaryContent += '\n';
+                    summaryContent += `### 📋 How to View Full Details\n\n`;
+                    summaryContent += `1. **Screenshots**: Download the \`screenshots\` artifact above\n`;
+                    summaryContent += `2. **Test Reports**: Download the \`selenium-test-reports\` artifact for complete XML reports\n`;
+                    summaryContent += `3. **HTML Report**: Download the \`html-test-report\` artifact for detailed HTML view\n`;
+                    summaryContent += `4. **Engine Logs**: Check the "Log out on failures" step above\n\n`;
                   }
                 }
                 
@@ -290,7 +290,7 @@ jobs:
                 
               } catch (error) {
                 console.error('Error parsing test results:', error);
-                fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY, `## ❌ Error\\n\\nError parsing test results: ${error.message}\\n\\n`);
+                fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY, `## ❌ Error\n\nError parsing test results: ${error.message}\n\n`);
               }
 
         - name: Generate HTML Test Report
