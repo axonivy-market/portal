@@ -9,33 +9,46 @@ pipeline {
 
   environment {
     // Jmeter DSL source directory is in Portal source -> prefer to Performance test
-    jmeterDslSourceDir = 'AxonIvyPortal/portal-performance-test'
+    jmeterDslSourceDir = '"${WORKSPACE}/AxonIvyPortal/portal-performance-test'
     ivyDir = '/var/tools/ivy'
     //could be master/12/10
     resultDir = '/var/tools/jmeter-javadsl-performance-result/master'
   }
 
   stages {
+    stage('deploy') {
+      steps {
+        script {
+          engineNames = ['master', '12', '10', '8', 'performance-master', 'performance-12', 'performance-10', 'performance-8']
+          currentBuild.description = "On ${env.NODE_NAME}"
+          for (engineName in engineNames) {
+            sh "docker compose -f ${ivyDir}/${engineName}/docker-compose.yml down"
+          }
+          sh """
+            docker compose -f ${ivyDir}/${engineNames[4]}/docker-compose.yml up -d
+            sleep 100
+          """
+        }
+      }
+    }
+
     stage('Setup Credentials') {
       steps {
         script {
           withCredentials([
-              file(credentialsId: 'users_server', variable: 'USERS_SERVER_CSV'),
-              file(credentialsId: 'single_admin_user_server', variable: 'ADMIN_USER_CSV'),
-              file(credentialsId: 'single_normal_user_server', variable: 'NORMAL_USER_CSV'),
+              file(credentialsId: 'users-server-csv', variable: 'USERS_SERVER_CSV'),
+              file(credentialsId: 'admin-user-server-csv', variable: 'ADMIN_USER_CSV'),
+              file(credentialsId: 'normal-user-server-csv', variable: 'NORMAL_USER_CSV'),
           ]) {
+            // Copy credential files to expected locations
             sh '''
-              # Ensure target directory exists
-              mkdir -p ${jmeterDslSourceDir}/jmeter/data
+              cp "$USERS_SERVER_CSV" "jmeter/data/users_server.csv"
+              cp "$ADMIN_USER_CSV" "jmeter/data/single_admin_user_server.csv"
+              cp "$NORMAL_USER_CSV" "jmeter/data/single_normal_user_server.csv"
               
-              # Copy files into the running container using single quotes to avoid interpolation
-              cp "${USERS_SERVER_CSV}" "${jmeterDslSourceDir}/jmeter/data/users_server.csv"
-              cp "${ADMIN_USER_CSV}" "${jmeterDslSourceDir}/jmeter/data/single_admin_user_server.csv"
-              cp "${NORMAL_USER_CSV}" "${jmeterDslSourceDir}/jmeter/data/single_normal_user_server.csv"
-              
-              # Verify files were copied
-              echo "Files copied to ${jmeterDslSourceDir}/jmeter/data/"
-              ls -la "${jmeterDslSourceDir}/jmeter/data/"
+              # Verify files were created
+              echo "Credential files created:"
+              ls -la jmeter/data/*.csv
             '''
           }
         }
@@ -55,9 +68,16 @@ pipeline {
   post {
     always {
       script {
-        sh """
+        for (engineName in engineNames) {
+          sh "docker compose -f ${ivyDir}/${engineName}/docker-compose.yml down"
+        }
+
+        sh '''
+          docker compose -f ${ivyDir}/${engineNames[0]}/docker-compose.yml up -d
+          docker compose -f ${ivyDir}/${engineNames[1]}/docker-compose.yml up -d
+
           cp -r ${jmeterDslSourceDir}/target/jtls/* ${resultDir}
-        """
+        '''
         perfReport sourceDataFiles: "${jmeterDslSourceDir}/target/jtls/**/*.jtl", compareBuildPrevious: true, ignoreFailedBuilds: true, ignoreUnstableBuilds: true, errorFailedThreshold: 1
       }
     }

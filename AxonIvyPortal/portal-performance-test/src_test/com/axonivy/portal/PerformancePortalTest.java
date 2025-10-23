@@ -33,10 +33,10 @@ public class PerformancePortalTest {
 
 
     // ====================Test for 10 users====================
-//    System.out.println("=== Running test with 10 users ===");
-//    TestPlanStats stats10Users = runPortalTest(10, "10_normal_users", "${__P(users_server.csv)}");
+    System.out.println("=== Running test with 10 users ===");
+    TestPlanStats stats10Users = runPortalTest(10, "10_normal_users", "${__P(users_server.csv)}");
     // Validate second test results
-//    validateTestResults(stats10Users, "10 users test");
+    validateTestResults(stats10Users, "10 users test");
   }
 
   private TestPlanStats runPortalTest(int numberOfUsers, String testName, String csvFilePath) throws IOException, InterruptedException, TimeoutException {
