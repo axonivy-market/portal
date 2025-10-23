@@ -739,25 +739,10 @@ public class CaseDetailsPage extends TemplatePage {
     waitForElementDisplayed(By.cssSelector(actionPanel), true);
   }
   
-  public void clickCustomFieldsButtonOnActions(String taskName) {
-    clickRelatedTaskActionButton(taskName);
-    $("[id$='additional-options:task-custom-fields-command']").shouldBe(getClickableCondition()).click();
-    waitForElementDisplayed(getTaskCustomFieldsDialog(), true);
-  }
-  
   public SelenideElement getTaskCustomFieldsDialog() {
     return $("div[id$='task-custom-fields-dialog']");
   }
   
-  public List<String> getCustomFieldNamesOnTaskCustomFieldsDialog() {
-    return $$("span[id$='customFieldLabel']")
-        .shouldBe(CollectionCondition.sizeGreaterThanOrEqual(0), DEFAULT_TIMEOUT)
-        .asFixedIterable()
-        .stream()
-        .map(SelenideElement::getText)
-        .collect(Collectors.toList());
-  }
-
   public int getTaskRowIndexFromDetailPage(String taskName) {
     ElementsCollection taskNames = $$(".task-name-value");
     int taskIndex = IntStream.range(0, taskNames.size()).filter(i -> taskNames.get(i).getText().equals(taskName))
