@@ -199,7 +199,7 @@ public class DashboardWelcomeWidgetConfigurationBean extends DashboardWelcomeWid
     String greetingTextLocalized = StringUtils.defaultString(Ivy.cms().coLocale(greetingTextCms, locale));
     return String.join(" ",
         greetingTextLocalized,
-        Ivy.session().getSessionUser().getDisplayName(), "");
+        Ivy.session().getSessionUser().getDisplayName());
   }
 
   public List<WelcomeTextPosition> getTextPositions() {
