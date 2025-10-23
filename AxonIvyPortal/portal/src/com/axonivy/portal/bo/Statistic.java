@@ -1,6 +1,7 @@
 package com.axonivy.portal.bo;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map.Entry;
 
@@ -8,6 +9,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
+import com.axonivy.portal.enums.statistic.AggregationField;
 import com.axonivy.portal.enums.statistic.ChartTarget;
 import com.axonivy.portal.enums.statistic.ChartType;
 import com.axonivy.portal.enums.statistic.ConditionBasedColoringScope;
@@ -276,6 +278,8 @@ public class Statistic extends AbstractConfiguration implements Serializable {
   }
 
   public boolean getCanDrillDown() {
-    return StringUtils.isEmpty(aggregates) && StringUtils.isEmpty(filter);
+    boolean supportedDrillDownAggregation =
+        !Arrays.asList(AggregationField.WORKER_NAME.getName()).contains(statisticAggregation.getField());
+    return StringUtils.isEmpty(aggregates) && StringUtils.isEmpty(filter) && supportedDrillDownAggregation;
   }
 }
