@@ -1,9 +1,12 @@
 package com.axonivy.portal.selenium.test.dashboard;
 
 import static com.codeborne.selenide.CollectionCondition.size;
+
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThanOrEqual;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
+
+import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -26,6 +29,8 @@ import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.TaskWidgetNewDashBoardPage;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
+
+import ch.ivy.addon.portalkit.enums.PortalPermission;
 
 @IvyWebTest
 public class DashboardCaseWidgetTest extends BaseTest {
@@ -364,5 +369,18 @@ public class DashboardCaseWidgetTest extends BaseTest {
     detailsCase.clickShowCaseOwners();
     assertTrue(detailsCase.countCaseOwners() > 0);
     updatePortalSetting(Variable.ENABLE_CASE_OWNER.getKey(), "false");
+  }
+  
+  @Test
+  public void testShowCustomFieldsDialogOfCase() {
+    redirectToRelativeLink(createTestingTasksUrl);
+    login(TestAccount.ADMIN_USER);
+    grantSpecificPortalPermission(PortalPermission.CASE_DISPLAY_CUSTOM_FIELDS_ACTION);
+    redirectToNewDashBoard();
+    CaseWidgetNewDashBoardPage caseWidget = newDashboardPage.selectCaseWidget(YOUR_CASES_WIDGET);
+    caseWidget.clickOnCaseActionLink(0);
+    caseWidget.clickOnCustomFieldsLink();
+    List<String> customFieldValues = caseWidget.getCaseCustomFieldNames();
+    assertFalse(customFieldValues.isEmpty());
   }
 }

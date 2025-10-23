@@ -8,17 +8,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Portal Guide ${revision}\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-17 06:56+0000\n"
+"POT-Creation-Date: 2025-10-23 07:57+0000\n"
 "PO-Revision-Date: 2025-10-09 10:31+0000\n"
 "Last-Translator: Thang Huynh <hhqthang@axonactive.com>\n"
-"Language-Team: Japanese <https://hosted.weblate.org/projects/axonivy-portal/"
-"portal-12/doc/portal-user-guide/ja/>\n"
 "Language: ja\n"
+"Language-Team: Japanese <https://hosted.weblate.org/projects/axonivy-"
+"portal/portal-12/doc/portal-user-guide/ja/>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.14-dev\n"
 "Generated-By: Babel 2.17.0\n"
 
 #: ../../source/portal-user-guide/accessibility/index.rst:4
@@ -320,7 +319,9 @@ msgstr "キーボードショートカットの有効化と無効化"
 msgid ""
 "You can enable/disable keyboard shortcuts in your **My Profile**. Please "
 "visit :ref:`accessibility-settings` for more details."
-msgstr "キーボードショートカットは **マイプロフィール** で有効化/無効化できます。詳細は :ref:`accessibility-settings` をご覧ください。"
+msgstr ""
+"キーボードショートカットは **マイプロフィール** で有効化/無効化できます。詳細は :ref:`accessibility-settings`"
+" をご覧ください。"
 
 #: ../../source/portal-user-guide/accessibility/index.rst:118
 msgid "Extended Descriptive Elements in the Task and Case List"
@@ -582,7 +583,7 @@ msgstr ":guilabel:`管理者設定` ユーザーメニュー項目を選択し�
 msgid "|select-admin-settings|"
 msgstr "|select-admin-settings|"
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:143
+#: ../../source/portal-user-guide/admin-settings/index.rst:148
 msgid "Admin setting menu"
 msgstr "管理者設定メニュー"
 
@@ -598,7 +599,7 @@ msgstr ":guilabel:`アプリケーション` タブを選択します。"
 msgid "|applications|"
 msgstr "|applications|"
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:137
+#: ../../source/portal-user-guide/admin-settings/index.rst:142
 msgid "Admin setting: applications"
 msgstr "管理者設定：アプリケーション"
 
@@ -614,7 +615,7 @@ msgstr ""
 msgid "|add-application|"
 msgstr "|add-application|"
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:139
+#: ../../source/portal-user-guide/admin-settings/index.rst:144
 msgid "Admin setting: Add application dialog"
 msgstr "管理者設定：アプリケーションの追加ダイアログ"
 
@@ -656,7 +657,7 @@ msgstr ":guilabel:`設定` タブを選択します。利用可能なすべて�
 msgid "|global-settings|"
 msgstr "|global-settings|"
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:145
+#: ../../source/portal-user-guide/admin-settings/index.rst:150
 msgid "Admin setting: Global settings"
 msgstr "管理者設定：グローバル設定"
 
@@ -674,7 +675,7 @@ msgstr "edit-icon"
 msgid "|edit-global-settings|"
 msgstr "|edit-global-settings|"
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:147
+#: ../../source/portal-user-guide/admin-settings/index.rst:152
 msgid "Admin setting: Edit global setting dialog"
 msgstr "管理者設定：グローバル設定の編集ダイアログ"
 
@@ -694,15 +695,24 @@ msgstr "すべての設定をデフォルト値にリセットするには、:gu
 
 #: ../../source/portal-user-guide/admin-settings/index.rst:64
 msgid ""
-"Portal settings are stored as Axon Ivy variables and can be configured in "
-"the :dev-url:`Axon Ivy Cockpit </doc/12.0/engine-guide/reference"
-"/engine-cockpit/configuration.html#engine-cockpit-variables>`."
+"Portal settings are stored as Axon Ivy variables and can be configured in"
+" the :dev-url:`Axon Ivy Cockpit </doc/12.0/engine-guide/reference/engine-"
+"cockpit/configuration.html#engine-cockpit-variables>`."
 msgstr ""
 "ポータル設定は Axon Ivy の変数として格納され、:dev-url:`Axon Ivy コックピット </doc/12.0/engine-"
 "guide/reference/engine-cockpit/configuration.html#engine-cockpit-"
 "variables>` で設定できます。"
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:70
+#: ../../source/portal-user-guide/admin-settings/index.rst:68
+msgid ""
+":guilabel:`Portal.Histories.HideSystemNotes` and "
+":guilabel:`Portal.Histories.HideSystemNotesForAdministrator` are marked "
+"for removal in version LTS 13. We will use permission "
+":guilabel:`NoteReadAllCaseTaskDetails` to control the visibility of "
+"system notes in task and case details."
+msgstr ""
+
+#: ../../source/portal-user-guide/admin-settings/index.rst:75
 msgid "Available settings"
 msgstr "利用可能な設定"
 
@@ -728,8 +738,7 @@ msgstr "TRUE"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Set to true to allow the user interact with the keyboard shortcuts toggle."
-msgstr "trueを設定すると、キーボードショートカットのトグルをユーザーが操作できるよう"
-"になります。"
+msgstr "trueを設定すると、キーボードショートカットのトグルをユーザーが操作できるようになります。"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.ApplicationName"
@@ -755,8 +764,7 @@ msgstr "FALSE"
 msgid ""
 "Set to true, the document section in case detail page will be hidden, "
 "otherwise it will be shown."
-msgstr "trueに設定すると、詳細ページのドキュメントセクションは非表示になり、そうでな"
-"ければ表示されます。"
+msgstr "trueに設定すると、詳細ページのドキュメントセクションは非表示になり、そうでなければ表示されます。"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.CaseDetails.HideUploadDocumentForDoneCase"
@@ -764,8 +772,7 @@ msgstr "Portal.CaseDetails.HideUploadDocumentForDoneCase"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Set to true to deny upload (also delete) document after a case is done."
-msgstr "trueに設定すると、ケース終了後のドキュメントのアップロード(削除も含む)を拒否"
-"する。"
+msgstr "trueに設定すると、ケース終了後のドキュメントのアップロード(削除も含む)を拒否する。"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.CaseDetails.ShowDurationTime"
@@ -783,9 +790,7 @@ msgstr "Portal.Cases.EnableOwner"
 msgid ""
 "Set to true to enable filtering case owner when cases are queried. This "
 "setting affects all case"
-msgstr "true "
-"を設定すると、症例の照会時に症例所有者のフィルタリングが有効になります。この"
-"設定は、すべてのケース"
+msgstr "true を設定すると、症例の照会時に症例所有者のフィルタリングが有効になります。この設定は、すべてのケース"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv
 msgid ""
@@ -794,9 +799,7 @@ msgid ""
 "is hidden by default."
 msgstr ""
 "クエリ (例: "
-"ケースウィジェット、グローバル検索)。また、デフォルトでは非表示になっている「"
-"現在のケースオーナーによるタスクのフィルタ」フィルタがタスクウィジェットで利"
-"用できるようになります。"
+"ケースウィジェット、グローバル検索)。また、デフォルトでは非表示になっている「現在のケースオーナーによるタスクのフィルタ」フィルタがタスクウィジェットで利用できるようになります。"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.Cases.HideCaseCreator"
@@ -808,10 +811,8 @@ msgid ""
 "details. This setting affects all case queries, e.g. for case widget, "
 "global search."
 msgstr ""
-"case widget、case widget、および case details で case creator "
-"を非表示にするには、true "
-"を設定します。この設定は、ケースウィジェットやグローバル検索など、すべてのケ"
-"ースクエリに影響します。"
+"case widget、case widget、および case details で case creator を非表示にするには、true "
+"を設定します。この設定は、ケースウィジェットやグローバル検索など、すべてのケースクエリに影響します。"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.Cases.EnablePinnedCase"
@@ -849,13 +850,11 @@ msgstr "3"
 msgid ""
 "The set number controls the amount of tabs allowed with active chat. If "
 "more tabs are opened,"
-msgstr "設定された数は、アクティブなチャットで許可されるタブの量を制御します。それ以"
-"上のタブが開かれた場合"
+msgstr "設定された数は、アクティブなチャットで許可されるタブの量を制御します。それ以上のタブが開かれた場合"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv
 msgid "the chat will be disabled in inactive tabs. Allowed values are 1 to 5."
-msgstr "を指定すると、非アクティブなタブではチャットが無効になります。許可される値は1"
-"～5です。"
+msgstr "を指定すると、非アクティブなタブではチャットが無効になります。許可される値は1～5です。"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.Chat.ResponseTimeout"
@@ -875,8 +874,7 @@ msgstr "デフォルト値は0で、タイムアウトがないことを意味�
 msgid ""
 "the reverse proxy Nginx, chat response timeout must be less than the "
 "Nginx timeout, e.g. less than 60 seconds."
-msgstr "リバースプロキシNginxの場合、チャットのレスポンスタイムアウトはNginxのタイム"
-"アウトより短くなければなりません。"
+msgstr "リバースプロキシNginxの場合、チャットのレスポンスタイムアウトはNginxのタイムアウトより短くなければなりません。"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.DateTimeFormat.DateFilterWithTime"
@@ -886,8 +884,7 @@ msgstr "Portal.DateTimeFormat.DateFilterWithTime"
 msgid ""
 "Set to true to enable date filtering with time. This setting affects task"
 " widget and case widget."
-msgstr "時間による日付フィルタリングを有効にするにはtrueを設定します。この設定はタス"
-"クウィジェットとケースウィジェットに影響します。"
+msgstr "時間による日付フィルタリングを有効にするにはtrueを設定します。この設定はタスクウィジェットとケースウィジェットに影響します。"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.DateTimeFormat.HideTime"
@@ -911,8 +908,7 @@ msgstr "Portal.DisplayMessageAfterFinishTask"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "A feedback message will be displayed after user finishes or leaves a task."
-msgstr "フィードバックメッセージは、ユーザがタスクを終了または離脱した後に表示されま"
-"す。"
+msgstr "フィードバックメッセージは、ユーザがタスクを終了または離脱した後に表示されます。"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.DisplayUsersOfRole"
@@ -923,10 +919,7 @@ msgid ""
 "Controls the SecurityMemberDisplayName component.| If true and the "
 "SecurityMember is a role, lists all users of this role under the info "
 "icon besides the role name."
-msgstr ""
-"SecurityMemberDisplayNameコンポーネントを制御します。｜もしtrueでSecurityMemb"
-"erがロールの場合、ロール名の他に、情報アイコンの下にそのロールのすべてのユー"
-"ザーを表示します。"
+msgstr "SecurityMemberDisplayNameコンポーネントを制御します。｜もしtrueでSecurityMemberがロールの場合、ロール名の他に、情報アイコンの下にそのロールのすべてのユーザーを表示します。"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.Document.EnableScriptChecking"
@@ -936,8 +929,7 @@ msgstr "Portal.Document.EnableScriptChecking"
 msgid ""
 "If true, enables checking uploaded documents for scripting. Supports PDF,"
 " Excel, Word."
-msgstr "trueの場合、アップロードされたドキュメントのスクリプトチェックを有効にします"
-"。PDF、Excel、Wordをサポートしています。"
+msgstr "trueの場合、アップロードされたドキュメントのスクリプトチェックを有効にします。PDF、Excel、Wordをサポートしています。"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.Document.EnableVirusScanner"
@@ -948,8 +940,8 @@ msgid ""
 "Set to true to enable virus scanner for uploaded document. Currently this"
 " function uses the VIRUSTOTAL API."
 msgstr ""
-"アップロードされたドキュメントのウィルススキャナーを有効にするにはtrueを設定"
-"します。現在、この関数は VIRUSTOTAL API を使用しています。"
+"アップロードされたドキュメントのウィルススキャナーを有効にするにはtrueを設定します。現在、この関数は VIRUSTOTAL API "
+"を使用しています。"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.Document.WhitelistExtension"
@@ -979,8 +971,7 @@ msgstr "jpeg、bmp、png"
 msgid ""
 "Leave value empty if you allow all extensions. If you allow just some "
 "extensions, list out these extensions here,"
-msgstr "すべての拡張機能を許可する場合は、値を空のままにします。一部の拡張子だけを許"
-"可する場合は、ここにその拡張子を列挙してください、"
+msgstr "すべての拡張機能を許可する場合は、値を空のままにします。一部の拡張子だけを許可する場合は、ここにその拡張子を列挙してください、"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv
 msgid "separated by comma. Example: pdf, txt, doc, docx."
@@ -1002,8 +993,7 @@ msgstr "Portal.Histories.HideSystemNotes"
 msgid ""
 "If true, case/task note does not display any system notes for non-"
 "administrator users."
-msgstr "trueの場合、ケース/タスクノートは、管理者以外のユーザにはシステムノートを表示"
-"しません。"
+msgstr "trueの場合、ケース/タスクノートは、管理者以外のユーザにはシステムノートを表示しません。"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.Histories.HideSystemNotesForAdministrator"
@@ -1023,8 +1013,7 @@ msgstr "Portal.Histories.HideSystemTasks"
 msgid ""
 "If true, case note does not display any system tasks for non-"
 "administrator users."
-msgstr "trueの場合、ケースノートは、管理者以外のユーザーにはシステムタスクを表示しま"
-"せん。"
+msgstr "trueの場合、ケースノートは、管理者以外のユーザーにはシステムタスクを表示しません。"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.Histories.HideSystemTasksForAdministrator"
@@ -1062,8 +1051,7 @@ msgstr "``Dashboard``"
 msgid ""
 "Define the standard homepage which will be redirected to when clicking on"
 " home icon or logo."
-msgstr "ホームアイコンまたはロゴをクリックしたときにリダイレクトされる標準ホームペー"
-"ジを定義します。"
+msgstr "ホームアイコンまたはロゴをクリックしたときにリダイレクトされる標準ホームページを定義します。"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv
 msgid "This setting also applies to the end page for finished tasks."
@@ -1115,8 +1103,7 @@ msgstr "Portal.Processes.ShowInformation"
 msgid ""
 "Set to false to disable link to Show Information of process on Processes "
 "page (grid mode) and Case Details."
-msgstr "プロセスページ(グリッドモード)およびケース詳細のプロセス情報表示へのリンクを"
-"無効にするには、falseを設定します。"
+msgstr "プロセスページ(グリッドモード)およびケース詳細のプロセス情報表示へのリンクを無効にするには、falseを設定します。"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.ShowButtonIcon"
@@ -1142,8 +1129,7 @@ msgstr "Portal.TaskDetails.HideDocument"
 msgid ""
 "If true, the document section in task detail page will be hidden, "
 "otherwise it will be shown."
-msgstr "もしtrueなら、タスク詳細ページのドキュメントセクションは隠され、そうでなけれ"
-"ば表示される。"
+msgstr "もしtrueなら、タスク詳細ページのドキュメントセクションは隠され、そうでなければ表示される。"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.TaskDetails.ShowDurationTime"
@@ -1169,8 +1155,7 @@ msgstr "クリック時のデフォルトの動作（タスクの実行または
 msgid ""
 "on a line in the task widget, task widget of the dashboard or on related "
 "tasks in the case details page."
-msgstr "タスクウィジェット、ダッシュボードのタスクウィジェット、またはケースの詳細ペ"
-"ージの関連タスクの行に追加します。"
+msgstr "タスクウィジェット、ダッシュボードのタスクウィジェット、またはケースの詳細ページの関連タスクの行に追加します。"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.Tasks.EnablePinnedTask"
@@ -1190,15 +1175,13 @@ msgstr "ケースの詳細にアクセスする"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv
 msgid "Toggle between accessing case details or business details when clicking"
-msgstr "をクリックすると、ケースの詳細にアクセスするか、ビジネスの詳細にアクセスする"
-"かを切り替えることができます。"
+msgstr "をクリックすると、ケースの詳細にアクセスするか、ビジネスの詳細にアクセスするかを切り替えることができます。"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv
 msgid ""
 "on a case in the case widget on the dashboard, global search, related "
 "cases, and process widget in combined mode."
-msgstr "ダッシュボードの症例ウィジェット、グローバル検索、関連症例、"
-"および複合モードのプロセス ウィジェットで、症例を検索します。"
+msgstr "ダッシュボードの症例ウィジェット、グローバル検索、関連症例、および複合モードのプロセス ウィジェットで、症例を検索します。"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.UserMenu.HideChangePasswordMenu"
@@ -1210,10 +1193,8 @@ msgid ""
 "top menu and the \"Forgotten Password\" option on the login page. If set "
 "to false, these options will be shown."
 msgstr ""
-"この変数をtrueに設定すると、トップメニューの \"Change Password \""
-"オプションとログインページの \"Forgotten Password \""
-"オプションが非表示になる。falseに設定すると、これらのオプションは表示されます"
-"。"
+"この変数をtrueに設定すると、トップメニューの \"Change Password \"オプションとログインページの \"Forgotten "
+"Password \"オプションが非表示になる。falseに設定すると、これらのオプションは表示されます。"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.UserMenu.HideLogoutMenu"
@@ -1223,8 +1204,7 @@ msgstr "Portal.UserMenu.HideLogoutMenu"
 msgid ""
 "If true, the logout button on top menu will be hidden, otherwise it will "
 "be shown."
-msgstr "trueの場合、トップメニューのログアウトボタンは非表示になり、そうでない場合は"
-"表示されます。"
+msgstr "trueの場合、トップメニューのログアウトボタンは非表示になり、そうでない場合は表示されます。"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.ProcessViewer"
@@ -1236,10 +1216,8 @@ msgid ""
 "actions. If a process is designed to not allow users to view it, the "
 "option in related Task/Case actions will be hidden."
 msgstr ""
-"このプロパティを true に設定すると、タスク/ケース アクションにプロセス "
-"ビューア "
-"オプションが表示されます。ユーザーがプロセスを表示できないように設計されてい"
-"る場合、関連するタスク/ケースアクションのオプションは非表示になります。"
+"このプロパティを true に設定すると、タスク/ケース アクションにプロセス ビューア "
+"オプションが表示されます。ユーザーがプロセスを表示できないように設計されている場合、関連するタスク/ケースアクションのオプションは非表示になります。"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.Histories.HideRelatedCaseInfo"
@@ -1297,8 +1275,7 @@ msgstr "10"
 msgid ""
 "Controls the number of parent roles that are shown when filtering roles "
 "in the Role Management tab."
-msgstr "ロールの管理]タブでロールをフィルタリングするときに表示される親ロールの数を制"
-"御します。"
+msgstr "ロールの管理]タブでロールをフィルタリングするときに表示される親ロールの数を制御します。"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv
 msgid "Valid numbers: 5, 10, 20."
@@ -1344,10 +1321,7 @@ msgstr "NAME, DESCRIPTION, CUSTOM"
 msgid ""
 "Defining the fields that the global search will use to find matching "
 "cases beside case Id (this can influence the performance of the search)."
-msgstr ""
-"グローバル検索が、ケース ID "
-"以外の一致するケースを検索するために使用するフィールドを定義します "
-"(これは検索のパフォーマンスに影響します)。"
+msgstr "グローバル検索が、ケース ID 以外の一致するケースを検索するために使用するフィールドを定義します (これは検索のパフォーマンスに影響します)。"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.SearchScope.ByTaskFields"
@@ -1363,8 +1337,7 @@ msgid ""
 "tasks beside task Id (this can influence the performance of the search)."
 msgstr ""
 "グローバル検索が一致するタスクを見つけるために、タスク ID "
-"以外に使用するフィールドを定義する（これは検索のパフォーマンスに影響する可能"
-"性があります）。"
+"以外に使用するフィールドを定義する（これは検索のパフォーマンスに影響する可能性があります）。"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.GlobalFooterInfo"
@@ -1454,8 +1427,7 @@ msgstr "20"
 msgid ""
 "Set the size limit for uploading documents in megabytes (MB). The default"
 " value is 20MB."
-msgstr "文書をアップロードする際のサイズ制限をメガバイト（MB）単位で設定します。デフ"
-"ォルト値は20MBです。"
+msgstr "文書をアップロードする際のサイズ制限をメガバイト（MB）単位で設定します。デフォルト値は20MBです。"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.Upload.ImageUploadSizeLimit"
@@ -1469,8 +1441,7 @@ msgstr "6"
 msgid ""
 "Set the size limit for uploading images in megabytes (MB). The default "
 "value is 6MB."
-msgstr "画像をアップロードする際のサイズ制限をメガバイト（MB）単位で設定します。デフ"
-"ォルト値は6MBです。"
+msgstr "画像をアップロードする際のサイズ制限をメガバイト（MB）単位で設定します。デフォルト値は6MBです。"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.DelegationAppendOption"
@@ -1498,10 +1469,7 @@ msgid ""
 "This value can be set between 300 (5 minutes) and 86,400 (24 hours). To "
 "keep the session cache active until the user's session ends, set this "
 "variable to -1."
-msgstr ""
-"ポータルのセッション・キャッシュ・タイムアウト時間（秒）を定義します。この値"
-"は300(5分)から86,400(24時間)の間で設定できます。ユーザのセッションが終了する"
-"までセッション・キャッシュを有効にするには、この変数を-1に設定します。"
+msgstr "ポータルのセッション・キャッシュ・タイムアウト時間（秒）を定義します。この値は300(5分)から86,400(24時間)の間で設定できます。ユーザのセッションが終了するまでセッション・キャッシュを有効にするには、この変数を-1に設定します。"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.ShowTooltipTechnicalName"
@@ -1511,49 +1479,49 @@ msgstr "Portal.ShowTooltipTechnicalName"
 msgid "Enable to show users' technical name on tooltips."
 msgstr "ユーザーの技術名をツールチップに表示できるようにした。"
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:78
+#: ../../source/portal-user-guide/admin-settings/index.rst:83
 msgid "HowTo: Show/Hide the Announcement"
 msgstr "ハウツー：通知の表示／非表示を切り替える"
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:80
+#: ../../source/portal-user-guide/admin-settings/index.rst:85
 msgid "Select the :guilabel:`Announcements` tab."
 msgstr ":guilabel:`通知` タブを選択します。"
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:82
+#: ../../source/portal-user-guide/admin-settings/index.rst:87
 msgid "|announcement|"
 msgstr "|announcement|"
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:141
+#: ../../source/portal-user-guide/admin-settings/index.rst:146
 msgid "Admin setting: Announcement"
 msgstr "管理者設定：通知"
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:84
+#: ../../source/portal-user-guide/admin-settings/index.rst:89
 msgid "Input your announcement text and click on :guilabel:`Save` button."
 msgstr "通知テキストを入力し、:guilabel:`保存` ボタンをクリックします"
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:86
+#: ../../source/portal-user-guide/admin-settings/index.rst:91
 msgid ""
 "Turn on the :guilabel:`Enable announcement` option to display the "
 "announcement."
 msgstr ":guilabel:`通知の有効化` オプションをオンにして、通知を表示します。"
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:88
+#: ../../source/portal-user-guide/admin-settings/index.rst:93
 msgid ""
 "Turn off the :guilabel:`Enable announcement` option to hide the "
 "announcement."
 msgstr ":guilabel:`通知の有効化` オプションをオフにして、通知を非表示にします。"
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:91
+#: ../../source/portal-user-guide/admin-settings/index.rst:96
 msgid "HowTo: Manage Roles"
 msgstr "ハウツー：ロールを管理する"
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:92
+#: ../../source/portal-user-guide/admin-settings/index.rst:97
 msgid ""
 "Portal provides the :guilabel:`Role Management` section in the "
 ":guilabel:`Admin Settings` area, where the user can manage roles."
 msgstr "ポータルの :guilabel:`管理者設定` 領域にある :guilabel:`ロールの管理` セクションで、ロールを管理できます。"
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:94
+#: ../../source/portal-user-guide/admin-settings/index.rst:99
 msgid ""
 "To see the :guilabel:`Role Management` tab, the user has to have the "
 "permission :bdg-ref-warning:`🔑RoleManagement <RoleManagement>`."
@@ -1561,19 +1529,19 @@ msgstr ""
 ":guilabel:`ロールの管理` タブを表示するには、:bdg-ref-warning:`🔑RoleManagement "
 "<RoleManagement>` 権限が必要です。"
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:95
+#: ../../source/portal-user-guide/admin-settings/index.rst:100
 msgid "To manage roles, the user also has to own these permissions:"
 msgstr "ロールを管理するには、以下の権限も必要になります。"
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:97
+#: ../../source/portal-user-guide/admin-settings/index.rst:102
 msgid ":bdg-ref-warning:`🔑RoleCreate <RoleCreate>`: create a new dynamic role"
 msgstr ":bdg-ref-warning:`🔑RoleCreate <RoleCreate>`：新しい動的ロールを作成"
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:98
+#: ../../source/portal-user-guide/admin-settings/index.rst:103
 msgid ":bdg-ref-warning:`🔑RoleDelete <RoleDelete>`: delete a dynamic role"
 msgstr ":bdg-ref-warning:`🔑RoleDelete <RoleDelete>`：動的ロールを削除"
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:99
+#: ../../source/portal-user-guide/admin-settings/index.rst:104
 msgid ""
 ":bdg-ref-warning:`🔑RoleMove <RoleMove>`: can select the parent role at "
 "the :guilabel:`Create new role` step, by default the system will use "
@@ -1582,41 +1550,41 @@ msgstr ""
 ":bdg-ref-warning:`🔑RoleMove <RoleMove>`：:guilabel:`新しいロールを作成する` "
 "ステップで親ロールを選択できます。デフォルトでは、システムは ``Everybody`` を使用します。"
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:101
+#: ../../source/portal-user-guide/admin-settings/index.rst:106
 msgid "Select the :guilabel:`Role Management` tab."
 msgstr ":guilabel:`ロールの管理` タブを選択します。"
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:103
+#: ../../source/portal-user-guide/admin-settings/index.rst:108
 msgid "|role-assignment-tab|"
 msgstr "|role-assignment-tab|"
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:149
+#: ../../source/portal-user-guide/admin-settings/index.rst:154
 msgid "Admin setting: Role management"
 msgstr "管理者設定：ロールの管理"
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:105
+#: ../../source/portal-user-guide/admin-settings/index.rst:110
 msgid "Click on the :guilabel:`Create new role` button and fill in the data."
 msgstr ":guilabel:`新しいロールを作成する` ボタンをクリックし、データを入力します。"
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:107
+#: ../../source/portal-user-guide/admin-settings/index.rst:112
 msgid "|role-assignment-creation-dialog|"
 msgstr "|role-assignment-creation-dialog|"
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:151
+#: ../../source/portal-user-guide/admin-settings/index.rst:156
 msgid "Admin setting: role creation dialog"
 msgstr "管理者設定：ロールの作成ダイアログ"
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:109
+#: ../../source/portal-user-guide/admin-settings/index.rst:114
 msgid ""
 "After filling all mandatory fields, click on the :guilabel:`Save` button "
 "to create the role."
 msgstr "すべての必須フィールドにデータを入力した後、 :guilabel:`保存` ボタンをクリックして、ロールを作成します。"
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:111
+#: ../../source/portal-user-guide/admin-settings/index.rst:116
 msgid "On the role tree table, you will see the new role."
 msgstr "ロールツリーテーブルに新しいロールが表示されます。"
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:113
+#: ../../source/portal-user-guide/admin-settings/index.rst:118
 msgid ""
 "The user can manage this new role by editing role properties, assigning "
 "users to the role, and deleting the role using the actions available on "
@@ -1625,7 +1593,7 @@ msgstr ""
 "ユーザーは、ロールのプロパティを編集し、ユーザーをロールに割り当て、 :guilabel:`アクション` "
 "列にあるアクションを使用してロールを削除し、新しいロールを管理できます。"
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:116
+#: ../../source/portal-user-guide/admin-settings/index.rst:121
 msgid ""
 "Portal also provides two advanced configurations to control the number of"
 " roles that are shown in the :guilabel:`Role Management` tab. Refer to "
@@ -1635,11 +1603,11 @@ msgstr ""
 "ポータルには、 :guilabel:`ロールの管理` タブに表示されるロールの数を制御する 2 つの詳細設定も用意されています。詳細については、 "
 ":ref:`設定の変数 <portal-available-settings>` を参照してください。"
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:120
+#: ../../source/portal-user-guide/admin-settings/index.rst:125
 msgid "HowTo: Enable/Disable Password Validation"
 msgstr "ハウツー：パスワード検証を有効／無効にする"
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:121
+#: ../../source/portal-user-guide/admin-settings/index.rst:126
 msgid ""
 "Portal provides the :guilabel:`Password Validation` section in the "
 ":guilabel:`Admin Settings` area, where you can enable/disable password "
@@ -1648,7 +1616,7 @@ msgstr ""
 "ポータルの :guilabel:`管理者設定` 領域にある :guilabel:`パスワード検証` "
 "セクションで、パスワード検証を有効／無効にし、パスワードポリシーを変更できます。"
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:123
+#: ../../source/portal-user-guide/admin-settings/index.rst:128
 msgid ""
 "To see the :guilabel:`Password Validation` tab, you have to have the "
 "permission :bdg-ref-warning:`🔑PasswordValidation <PasswordValidation>`."
@@ -1656,25 +1624,25 @@ msgstr ""
 ":guilabel:`パスワード検証` タブを表示するには、:bdg-ref-warning:`🔑PasswordValidation "
 "<PasswordValidation>` 権限が必要です。"
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:125
+#: ../../source/portal-user-guide/admin-settings/index.rst:130
 msgid "Select the :guilabel:`Password Validation` tab."
 msgstr ":guilabel:`パスワード検証` タブを選択します。"
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:127
+#: ../../source/portal-user-guide/admin-settings/index.rst:132
 msgid "|password-validation-tab|"
 msgstr "|password-validation-tab|"
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:153
+#: ../../source/portal-user-guide/admin-settings/index.rst:158
 msgid "Admin setting: Password Validation"
 msgstr "管理者設定：パスワード検証"
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:129
+#: ../../source/portal-user-guide/admin-settings/index.rst:134
 msgid ""
 "Click :guilabel:`Enable Password Validation` toggle switch to "
 "enable/disable the feature."
 msgstr ":guilabel:`パスワード検証の有効化` トグルスイッチをクリックして、機能を有効／無効にします。"
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:131
+#: ../../source/portal-user-guide/admin-settings/index.rst:136
 msgid ""
 "If :guilabel:`Enable Password Validation` toggle switch is "
 ":guilabel:`Enabled`, you can activate/deactivate password policies and "
@@ -1685,7 +1653,7 @@ msgstr ""
 "の場合、パスワードポリシーをアクティブ化／非アクティブ化し、パスワードポリシーの設定を変更し、 :guilabel:`保存` "
 "ボタンをクリックして設定を保存できます。"
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:133
+#: ../../source/portal-user-guide/admin-settings/index.rst:138
 msgid ""
 "After saving the configuration, you can verify it by either changing the "
 "password or reset password."
@@ -1753,8 +1721,8 @@ msgstr "すべてのケースとタスクで即時の統計、履歴データを
 
 #: ../../source/portal-user-guide/axon-ivy-portal/index.rst:18
 msgid ""
-"Improve your Axon Ivy Portal experience and efficiency through the built-in "
-"customization options"
+"Improve your Axon Ivy Portal experience and efficiency through the built-"
+"in customization options"
 msgstr "組み込みカスタムオプションにより、Axon Ivy Portal のエクスペリエンスと効率性を高める"
 
 #: ../../source/portal-user-guide/axon-ivy-portal/index.rst:21
@@ -1766,9 +1734,9 @@ msgstr "このドキュメントでは、ビジネスユーザー向けに、Axo
 #: ../../source/portal-user-guide/axon-ivy-portal/index.rst:25
 msgid ""
 "The look and feel shown in the screenshots of this document, as well as "
-"the features presented are part of the standard Axon Ivy Portal. However, "
-"the Axon Ivy Portal is highly configurable, thus, the Portal of your company"
-" might have a different look and feel, and some features might be "
+"the features presented are part of the standard Axon Ivy Portal. However,"
+" the Axon Ivy Portal is highly configurable, thus, the Portal of your "
+"company might have a different look and feel, and some features might be "
 "disabled by your administrator."
 msgstr ""
 "このドキュメントのスクリーンショットで示す外観や機能は、標準的な Axon Ivy Portal のものです。Axon Ivy Portal "
@@ -1777,8 +1745,8 @@ msgstr ""
 #: ../../source/portal-user-guide/axon-ivy-portal/index.rst:31
 msgid ""
 "To start your Axon Ivy Portal experience, open the link provided by your "
-"administrator in a web browser. The Axon Ivy Portal will ask you to enter "
-"your login credentials."
+"administrator in a web browser. The Axon Ivy Portal will ask you to enter"
+" your login credentials."
 msgstr ""
 "Axon Ivy Portal を初めて使用するには、管理者から提供されたリンクをウェブブラウザで開きます。Axon Ivy Portal "
 "からログイン資格情報を入力するよう求められます。"
@@ -1798,8 +1766,8 @@ msgid ""
 "using single-sign-on (SSO). In this case, you will be forwarded directly "
 "to the Axon Ivy Portal Dashboard."
 msgstr ""
-"インフラストラクチャによって、シングルサインオン（SSO）を使用して自動的にログインされることがあります。この場合は、Axon Ivy Portal "
-"のダッシュボードに直接転送されます。"
+"インフラストラクチャによって、シングルサインオン（SSO）を使用して自動的にログインされることがあります。この場合は、Axon Ivy "
+"Portal のダッシュボードに直接転送されます。"
 
 #: ../../source/portal-user-guide/axon-ivy-portal/index.rst:42
 msgid ""
@@ -1809,9 +1777,9 @@ msgstr "Ivy セキュリティシステムを使用している場合は、 :gui
 
 #: ../../source/portal-user-guide/axon-ivy-portal/index.rst:45
 msgid ""
-"After successful login, you will see the Axon Ivy Portal Homepage and your "
-"personal dashboard. All your activities can be managed from this central "
-"entry point. The Portal Homepage has the following elements:"
+"After successful login, you will see the Axon Ivy Portal Homepage and "
+"your personal dashboard. All your activities can be managed from this "
+"central entry point. The Portal Homepage has the following elements:"
 msgstr ""
 "ログインに成功すると、Axon Ivy Portal "
 "のホームページと個人用ダッシュボードが表示されます。すべての活動をこの中心となるエントリポイントから管理できます。ポータルのホームページには以下の要素が含まれます。"
@@ -1838,10 +1806,10 @@ msgstr "ポータルのヘッダー"
 #: ../../source/portal-user-guide/axon-ivy-portal/index.rst:56
 msgid ""
 "The menu on the left side is always visible and gives you access to all "
-"processes, cases, tasks and other features of the Axon Ivy Portal. If the "
-"menu is minimized, hover over the menu to enlarge it. You may permanently"
-" enlarge the menu by clicking on the |pin-icon| icon in the top left hand"
-" corner."
+"processes, cases, tasks and other features of the Axon Ivy Portal. If the"
+" menu is minimized, hover over the menu to enlarge it. You may "
+"permanently enlarge the menu by clicking on the |pin-icon| icon in the "
+"top left hand corner."
 msgstr ""
 "左側のメニューは常に表示され、Axon Ivy Portal "
 "のすべてのプロセス、ケース、タスクなどの機能にアクセスできます。メニューが最小化されている場合、メニューの上にカーソルを置くと拡大されます。左上隅にある"
@@ -2355,8 +2323,8 @@ msgid ""
 ":bdg-dark-line:`Created Date` :bdg-dark-line:`Within the last` :bdg-dark-"
 "line:`2` :bdg-dark-line:`Year(s)`"
 msgstr ""
-":bdg-dark-line:`作成日` :bdg-dark-line:`今日までの期間` :bdg-dark-line:`2` "
-":bdg-dark-line:`年`"
+":bdg-dark-line:`作成日` :bdg-dark-line:`今日までの期間` :bdg-dark-line:`2` :bdg-"
+"dark-line:`年`"
 
 #: ../../source/portal-user-guide/complex-filter/index.rst
 msgid "within the period from ``2/27/2022 00:00:00`` to ``2/27/2024 11:41:28``."
@@ -2385,8 +2353,8 @@ msgid ""
 ":bdg-dark-line:`Invoice Due Date` :bdg-dark-line:`Within the next` :bdg-"
 "dark-line:`3` :bdg-dark-line:`Week(s)`"
 msgstr ""
-":bdg-dark-line:`請求書の支払期日` :bdg-dark-line:`次の期間` :bdg-dark-"
-"line:`3` :bdg-dark-line:`週`"
+":bdg-dark-line:`請求書の支払期日` :bdg-dark-line:`次の期間` :bdg-dark-line:`3` :bdg-"
+"dark-line:`週`"
 
 #: ../../source/portal-user-guide/complex-filter/index.rst
 msgid ""
@@ -2676,8 +2644,7 @@ msgstr ":guilabel:`ダッシュボードの作成` ボタンを選択して、�
 msgid ""
 "Configuration your private dashboard (see: :ref:`Dashboard <new-"
 "dashboard>`)."
-msgstr "個人用ダッシュボードを設定します（ :ref:`ダッシュボード <new-dashboard>` を参"
-"照）。"
+msgstr "個人用ダッシュボードを設定します（ :ref:`ダッシュボード <new-dashboard>` を参照）。"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:79
 msgid ""
@@ -2874,8 +2841,7 @@ msgstr "|add-icon| （ダッシュボードの作成）を選択して、公開�
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:149
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:188
 msgid "Configuration public dashboard (see: :ref:`Dashboard <new-dashboard>`)."
-msgstr "公開用ダッシュボードを設定します（ :ref:`ダッシュボード <new-dashboard>` を参"
-"照）。"
+msgstr "公開用ダッシュボードを設定します（ :ref:`ダッシュボード <new-dashboard>` を参照）。"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:151
 msgid ""
@@ -2977,9 +2943,9 @@ msgid ""
 "dashboard."
 msgstr ""
 "アクション：|actions-menu-icon| をクリックして、 :guilabel:`アクション` メニューを表示します。メニューには"
-"、|edit-icon| 編集（名前、説明）、|settings-icon| 設定（ :ref:`ダッシュボード <new-"
-"dashboard>` を参照）、|download-icon| ダッシュボードをエクスポート、|share-icon| 共有、|trash-"
-"icon| 公開用ダッシュボードを削除アクションが表示されます。"
+"、|edit-icon| 編集（名前、説明）、|settings-icon| 設定（ :ref:`ダッシュボード <new-dashboard>`"
+" を参照）、|download-icon| ダッシュボードをエクスポート、|share-icon| 共有、|trash-icon| "
+"公開用ダッシュボードを削除アクションが表示されます。"
 
 #: ../../source/portal-user-guide/includes/_common-icon.rst:55
 msgid "share-icon"
@@ -3055,9 +3021,9 @@ msgstr "デモプロセス"
 
 #: ../../source/portal-user-guide/demo-processes/index.rst:6
 msgid ""
-"When you start the Axon Ivy Engine in demo mode, you will see **portal-user-"
-"examples**. In this project, we provide some simple examples. You can "
-"play with them to have the feeling how Axon Ivy and Portal work."
+"When you start the Axon Ivy Engine in demo mode, you will see **portal-"
+"user-examples**. In this project, we provide some simple examples. You "
+"can play with them to have the feeling how Axon Ivy and Portal work."
 msgstr ""
 "Axon Ivy Engine をデモモードで起動した場合、 **portal-user-examples** "
 "が表示されます。このプロジェクトでは、簡単な例をいくつか紹介します。これらを試して、Axon Ivy とポータルの感触をつかむことができます。"
@@ -3359,7 +3325,7 @@ msgstr "ポータルに表示されるケースは、アプリケーションで
 msgid "|navigate-to-full-cases-list-page|"
 msgstr "|navigate-to-full-cases-list-page|"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:347
+#: ../../source/portal-user-guide/full-case-list/index.rst:364
 msgid "Menu to navigate to the Full case list page"
 msgstr "Menu to navigate to the Full case list page"
 
@@ -3427,7 +3393,7 @@ msgstr "カテゴリー"
 msgid "|case-key-information|"
 msgstr "|case-key-information|"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:349
+#: ../../source/portal-user-guide/full-case-list/index.rst:366
 msgid "Full case list: key informations"
 msgstr "症例リスト：主要情報"
 
@@ -3446,7 +3412,7 @@ msgstr "ケースデータ全体にアクセスするには、ケースの名前
 msgid "|case-details|"
 msgstr "|case-details|"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:351
+#: ../../source/portal-user-guide/full-case-list/index.rst:368
 msgid "The Case Details page"
 msgstr "ケースの詳細ページ"
 
@@ -3464,7 +3430,7 @@ msgstr "データと説明：ケースとその説明のメタデータが表示
 msgid "|case-details-data-description|"
 msgstr "|case-details-data-description|"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:353
+#: ../../source/portal-user-guide/full-case-list/index.rst:370
 msgid "Case Details: General section"
 msgstr "ケースの詳細一般セクション"
 
@@ -3480,7 +3446,7 @@ msgstr "関連する実行中のタスクとケース：関連するすべての
 msgid "|case-details-related-tasks-cases|"
 msgstr "|case-details-related-tasks-cases|"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:355
+#: ../../source/portal-user-guide/full-case-list/index.rst:372
 msgid "Case Details: Related Tasks of Case section"
 msgstr "ケースの詳細ケースセクションの関連タスク"
 
@@ -3494,7 +3460,7 @@ msgstr "履歴：Axon Ivy Portal は、ケースの状態の変更に関する�
 msgid "|case-details-histories|"
 msgstr "|case-details-histories|"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:357
+#: ../../source/portal-user-guide/full-case-list/index.rst:374
 msgid "Case Details: Histories section"
 msgstr "ケースの詳細歴史セクション"
 
@@ -3508,7 +3474,7 @@ msgstr "ドキュメント：ここには、ケースに添付されたドキュ
 msgid "|case-details-documents|"
 msgstr "|case-details-documents|"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:359
+#: ../../source/portal-user-guide/full-case-list/index.rst:376
 msgid "Case Details: Documents section"
 msgstr "事件の詳細書類セクション"
 
@@ -3526,21 +3492,22 @@ msgstr "ハウツー：ケースの詳細のウィジェットを移動し、サ
 #: ../../source/portal-user-guide/full-case-list/index.rst:215
 #: ../../source/portal-user-guide/full-case-list/index.rst:274
 #: ../../source/portal-user-guide/full-case-list/index.rst:335
-#: ../../source/portal-user-guide/full-task-list/index.rst:157
+#: ../../source/portal-user-guide/full-case-list/index.rst:348
+#: ../../source/portal-user-guide/full-task-list/index.rst:159
 msgid "Open the case details"
 msgstr "ケースの詳細を開きます。"
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:75
-#: ../../source/portal-user-guide/full-task-list/index.rst:120
+#: ../../source/portal-user-guide/full-task-list/index.rst:122
 msgid "Click on the :guilabel:`Edit` button to drag, drop and resize widgets."
 msgstr ":guilabel:`編集` ボタンをクリックして、ウィジェットをドラッグ＆ドロップし、サイズを変更します。"
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:77
-#: ../../source/portal-user-guide/full-task-list/index.rst:122
+#: ../../source/portal-user-guide/full-task-list/index.rst:124
 msgid "|how-to-switch-to-edit-mode|"
 msgstr "|how-to-switch-to-edit-mode|"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:373
+#: ../../source/portal-user-guide/full-case-list/index.rst:390
 msgid "Case Details: button to switch to the edit mode"
 msgstr "ケース詳細：編集モードに切り替えるボタン"
 
@@ -3551,11 +3518,11 @@ msgid ""
 msgstr "**保存** ボタンをクリックして、ページの現在の状態を保存し、読み取り専用モードに切り替えます。"
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:83
-#: ../../source/portal-user-guide/full-task-list/index.rst:127
+#: ../../source/portal-user-guide/full-task-list/index.rst:129
 msgid "|how-to-switch-to-view-mode|"
 msgstr "|how-to-switch-to-view-mode|"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:371
+#: ../../source/portal-user-guide/full-case-list/index.rst:388
 msgid "Case Details: save button"
 msgstr "ケース詳細：保存ボタン"
 
@@ -3566,16 +3533,16 @@ msgid ""
 msgstr "**リセット** ボタンをクリックして、ウィジェットをデフォルト設定にリセットします。"
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:88
-#: ../../source/portal-user-guide/full-task-list/index.rst:132
+#: ../../source/portal-user-guide/full-task-list/index.rst:134
 msgid "|how-to-reset-to-default|"
 msgstr "|how-to-reset-to-default|"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:375
+#: ../../source/portal-user-guide/full-case-list/index.rst:392
 msgid "Case Details: button to reset to the default configurations"
 msgstr "ケース詳細：デフォルト設定にリセットするボタン"
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:93
-#: ../../source/portal-user-guide/full-task-list/index.rst:136
+#: ../../source/portal-user-guide/full-task-list/index.rst:138
 msgid "HowTo: Attach a document to a case"
 msgstr "ハウツー：ケースにドキュメントを添付する"
 
@@ -3584,12 +3551,12 @@ msgid "Click |add-icon| :guilabel:`Add document`"
 msgstr "|add-icon| :guilabel:`ドキュメントを追加` をクリックします。"
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:99
-#: ../../source/portal-user-guide/full-task-list/index.rst:141
+#: ../../source/portal-user-guide/full-task-list/index.rst:143
 msgid "The :guilabel:`Add document` dialog is opened"
 msgstr ":guilabel:`ドキュメントを追加` ダイアログが開きます。"
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:101
-#: ../../source/portal-user-guide/full-task-list/index.rst:143
+#: ../../source/portal-user-guide/full-task-list/index.rst:145
 msgid ""
 "Upload a file by clicking :guilabel:`Upload here` or by dragging the file"
 " into the dialog"
@@ -3603,7 +3570,7 @@ msgstr ":guilabel:`閉じる` をクリックしてダイアログを閉じま�
 msgid "|how-to-attach-document-to-case|"
 msgstr "|how-to-attach-document-to-case|"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:361
+#: ../../source/portal-user-guide/full-case-list/index.rst:378
 msgid "Case Details: Add document dialog"
 msgstr "ケースの詳細ドキュメントの追加ダイアログ"
 
@@ -3632,7 +3599,7 @@ msgid "delete-icon"
 msgstr "delete-icon"
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:122
-#: ../../source/portal-user-guide/full-task-list/index.rst:181
+#: ../../source/portal-user-guide/full-task-list/index.rst:183
 msgid "A confirmation dialog is opened"
 msgstr "確認ダイアログが開きます。"
 
@@ -3644,7 +3611,7 @@ msgstr ":guilabel:`削除` をクリックして添付ファイルを削除し�
 msgid "|how-to-delete-an-attachment-from-case|"
 msgstr "|how-to-delete-an-attachment-from-case|"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:363
+#: ../../source/portal-user-guide/full-case-list/index.rst:380
 msgid "Case Details: Delete document confirm dialog"
 msgstr "ケースの詳細ドキュメントの削除確認ダイアログ"
 
@@ -3663,7 +3630,7 @@ msgid "HowTo: Preview a document of a case"
 msgstr "ハウツー：ケースのドキュメントをプレビューする"
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:137
-#: ../../source/portal-user-guide/full-task-list/index.rst:197
+#: ../../source/portal-user-guide/full-task-list/index.rst:199
 msgid ""
 "Click on the |preview-icon| button next to the attachment you want to "
 "preview"
@@ -3674,47 +3641,45 @@ msgid "preview-icon"
 msgstr "preview-icon"
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:139
-#: ../../source/portal-user-guide/full-task-list/index.rst:200
+#: ../../source/portal-user-guide/full-task-list/index.rst:202
 msgid "A preview dialog is opened"
 msgstr "プレビューダイアログが開きます。"
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:141
-#: ../../source/portal-user-guide/full-task-list/index.rst:146
-#: ../../source/portal-user-guide/full-task-list/index.rst:202
+#: ../../source/portal-user-guide/full-task-list/index.rst:148
+#: ../../source/portal-user-guide/full-task-list/index.rst:204
 msgid "Click the button :guilabel:`Close` to close the dialog"
 msgstr ":guilabel:`閉じる` ボタンをクリックしてダイアログを閉じます。"
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:143
-#: ../../source/portal-user-guide/full-task-list/index.rst:204
+#: ../../source/portal-user-guide/full-task-list/index.rst:206
 msgid "|how-to-preview-document|"
 msgstr "|how-to-preview-document|"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:381
+#: ../../source/portal-user-guide/full-case-list/index.rst:398
 msgid "Case Details: preview document dialog"
 msgstr "事例の詳細: ドキュメントのプレビューダイアログ"
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:147
-#: ../../source/portal-user-guide/full-task-list/index.rst:208
+#: ../../source/portal-user-guide/full-task-list/index.rst:210
 msgid ""
 "Portal can preview images(jpg, jpeg, bmp and png), plain text(txt and "
 "log) and pdf documents by default."
 msgstr "ポータルでは、画像、プレーンテキスト（txt と log）、pdf ドキュメントをプレビューできます。"
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:149
-#: ../../source/portal-user-guide/full-task-list/index.rst:210
+#: ../../source/portal-user-guide/full-task-list/index.rst:212
 msgid ""
 "Portal can preview Word(doc, docx), Excel(xls, xlsx) and email(eml) "
 "documents if :dev-url:`DocFactory <https://market.axonivy.com/doc-factory"
 "#tab-description>` is deployed in the same security context."
 msgstr ""
 ":dev-url:`DocFactory <https://market.axonivy.com/doc-factory#tab-"
-"description>` が同じセキュリティ・コンテキストに配置されている場合、Portal "
-"は "
-"Word(doc、docx)、Excel(xls、xlsx)、Eメール(eml)のドキュメントをプレビューでき"
-"ます。"
+"description>` が同じセキュリティ・コンテキストに配置されている場合、Portal は "
+"Word(doc、docx)、Excel(xls、xlsx)、Eメール(eml)のドキュメントをプレビューできます。"
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:151
-#: ../../source/portal-user-guide/full-task-list/index.rst:212
+#: ../../source/portal-user-guide/full-task-list/index.rst:214
 msgid ""
 "Change :ref:`Portal settings <update-portal-settings>` "
 ":guilabel:`Portal.Document.EnablePreview` to true to enable this feature."
@@ -3723,41 +3688,41 @@ msgstr ""
 ":guilabel:`Portal.Document.EnablePreview` を true に変更します。"
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:154
-#: ../../source/portal-user-guide/full-task-list/index.rst:155
+#: ../../source/portal-user-guide/full-task-list/index.rst:157
 msgid "HowTo: Rename a document of a case"
 msgstr "手順：ケースのドキュメント名を変更する"
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:158
-#: ../../source/portal-user-guide/full-task-list/index.rst:159
+#: ../../source/portal-user-guide/full-task-list/index.rst:161
 msgid "Click on the |edit-icon| button next to the attachment you want to rename"
 msgstr "名前を変更したい添付ファイルの横にある |edit-icon| ボタンをクリックしてください"
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:161
-#: ../../source/portal-user-guide/full-task-list/index.rst:162
+#: ../../source/portal-user-guide/full-task-list/index.rst:164
 msgid "A dialog is opened to rename the selected document"
 msgstr "選択したドキュメントの名前を変更するためのダイアログが開きます"
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:163
-#: ../../source/portal-user-guide/full-task-list/index.rst:164
+#: ../../source/portal-user-guide/full-task-list/index.rst:166
 msgid "Update filename as you expect in the input field"
 msgstr "入力フィールドでファイル名を期待通りに更新する"
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:165
-#: ../../source/portal-user-guide/full-task-list/index.rst:166
+#: ../../source/portal-user-guide/full-task-list/index.rst:168
 msgid "Click the button :guilabel:`Save` to save your change"
 msgstr "変更を保存するには :guilabel:`保存` ボタンをクリックしてください"
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:167
-#: ../../source/portal-user-guide/full-task-list/index.rst:168
+#: ../../source/portal-user-guide/full-task-list/index.rst:170
 msgid "Filename will be updated and a note about the renaming will be added"
 msgstr "ファイル名が更新され、名前の変更に関する注記が追加されます"
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:169
-#: ../../source/portal-user-guide/full-task-list/index.rst:170
+#: ../../source/portal-user-guide/full-task-list/index.rst:172
 msgid "|how-to-rename-document|"
 msgstr "|how-to-rename-document|"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:383
+#: ../../source/portal-user-guide/full-case-list/index.rst:400
 msgid "Case Details: rename document dialog"
 msgstr "ケース詳細: 文書名変更ダイアログ"
 
@@ -3785,7 +3750,7 @@ msgstr "ノートを保存するには、:guilabel:`保存` をクリックし�
 msgid "|how-to-add-task-note|"
 msgstr "|how-to-add-task-note|"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:365
+#: ../../source/portal-user-guide/full-case-list/index.rst:382
 msgid "Case Details: Add note dialog"
 msgstr "ケース詳細：メモ追加ダイアログ"
 
@@ -3834,11 +3799,11 @@ msgid "show-more-icon"
 msgstr "show-more-icon"
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:204
-#: ../../source/portal-user-guide/full-task-list/index.rst:243
+#: ../../source/portal-user-guide/full-task-list/index.rst:245
 msgid "|how-to-show-note-details|"
 msgstr "|how-to-show-note-details|"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:367
+#: ../../source/portal-user-guide/full-case-list/index.rst:384
 msgid "Case Details: Link to show more notes details"
 msgstr "ケース詳細：詳細なメモを表示するリンク"
 
@@ -3854,7 +3819,7 @@ msgstr "ケース履歴をエクスポートするには、:guilabel:`Excel に�
 msgid "|export-case-history|"
 msgstr "|export-case-history|"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:369
+#: ../../source/portal-user-guide/full-case-list/index.rst:386
 msgid "Case Business Information page: Link to export case history"
 msgstr "ケースビジネス情報ページ：ケース履歴のエクスポートリンク"
 
@@ -3873,7 +3838,8 @@ msgstr "このセクションには、このケースの関連タスクが表示
 #: ../../source/portal-user-guide/full-case-list/index.rst:224
 msgid ""
 "What you see here depends on the roles granted to you in both the "
-"application and the Axon Ivy Portal. Administrators can see all open tasks."
+"application and the Axon Ivy Portal. Administrators can see all open "
+"tasks."
 msgstr ""
 "ここに表示されるタスクは、アプリケーションと Axon Ivy Portal の両方で付与されたロールによって異なります。 "
 "管理者はすべてのオープンなタスクを表示できます。"
@@ -3951,7 +3917,7 @@ msgid "Trigger Escalation Task"
 msgstr "エスカレーションタスクのトリガー"
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:266
-#: ../../source/portal-user-guide/full-task-list/index.rst:70
+#: ../../source/portal-user-guide/full-task-list/index.rst:72
 msgid "Workflow Events"
 msgstr "ワークフローイベント"
 
@@ -4036,6 +4002,7 @@ msgid "Full task list"
 msgstr "全タスクリスト"
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:323
+#: ../../source/portal-user-guide/full-case-list/index.rst:350
 msgid "Click on :guilabel:`Actions`"
 msgstr ":guilabel:`アクション` をクリックします。"
 
@@ -4051,7 +4018,7 @@ msgstr "ブラウザの新しいタブが開きます。プロセスビューア
 msgid "|portal-process-viewer|"
 msgstr "|portal-process-viewer|"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:377
+#: ../../source/portal-user-guide/full-case-list/index.rst:394
 msgid "Process Viewer page"
 msgstr "プロセスビューアーページ"
 
@@ -4060,7 +4027,7 @@ msgid "HowTo: Share Case Details"
 msgstr "ハウツー：ケースの詳細を共有する"
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:337
-#: ../../source/portal-user-guide/full-task-list/index.rst:275
+#: ../../source/portal-user-guide/full-task-list/index.rst:293
 msgid "Click on the share button |share-icon|"
 msgstr "共有ボタン |share-icon| をクリックします。"
 
@@ -4068,7 +4035,7 @@ msgstr "共有ボタン |share-icon| をクリックします。"
 msgid "|how-to-share-case-details|"
 msgstr "|how-to-share-case-details|"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:379
+#: ../../source/portal-user-guide/full-case-list/index.rst:396
 msgid "Case Details: button to get the shareable link of the case details"
 msgstr "ケース詳細：ケース詳細の共有用リンクを取得するボタン"
 
@@ -4080,6 +4047,40 @@ msgstr ""
 "ユーザーがケースの詳細を共有できるようにするには、:bdg-ref-warning:`🔑ShareCaseDetailsLink "
 "<ShareCaseDetailsLink>` 権限を付与してください。"
 
+#: ../../source/portal-user-guide/full-case-list/index.rst:346
+#, fuzzy
+msgid "HowTo: Show Case Custom Fields Dialog"
+msgstr "ハウツー：プロセスビューアーを表示する"
+
+#: ../../source/portal-user-guide/full-case-list/index.rst:352
+#, fuzzy
+msgid "Click on :guilabel:`Custom Fields`"
+msgstr ":guilabel:`アクション` をクリックします。"
+
+#: ../../source/portal-user-guide/full-case-list/index.rst:354
+msgid "Portal opens the custom fields dialog of the case"
+msgstr ""
+
+#: ../../source/portal-user-guide/full-case-list/index.rst:356
+#, fuzzy
+msgid "|case-custom-fields-dialog|"
+msgstr "**ワークフローイベントダイアログ**"
+
+#: ../../source/portal-user-guide/full-case-list/index.rst:402
+#, fuzzy
+msgid "Case Details: custom fields dialog"
+msgstr "ケースの詳細ドキュメントの追加ダイアログ"
+
+#: ../../source/portal-user-guide/full-case-list/index.rst:360
+#, fuzzy
+msgid ""
+"Grant permission :bdg-ref-warning:`🔑CaseDisplayCustomFieldsAction "
+"<CaseDisplayCustomFieldsAction>` to allow a user to see the custom fields"
+" link."
+msgstr ""
+"ユーザーがタスクの詳細を共有できるようにするには、 :bdg-ref-warning:`🔑ShareTaskDetailsLink "
+"<ShareTaskDetailsLink>` 権限を付与してください。"
+
 #: ../../source/portal-user-guide/full-process-list/index.rst:4
 msgid "Full Process List"
 msgstr "全プロセスリスト"
@@ -4090,8 +4091,8 @@ msgid ""
 " in the application available to you. To open the page, click "
 ":guilabel:`Processes` in the Axon Ivy Portal menu."
 msgstr ""
-"**全プロセスリスト** ページには、利用可能なアプリケーションのすべてのプロセスの概要が表示されます。ページを開くには、Axon Ivy Portal"
-" メニューの :guilabel:`プロセス` をクリックします。"
+"**全プロセスリスト** ページには、利用可能なアプリケーションのすべてのプロセスの概要が表示されます。ページを開くには、Axon Ivy "
+"Portal メニューの :guilabel:`プロセス` をクリックします。"
 
 #: ../../source/portal-user-guide/full-process-list/index.rst:12
 msgid ""
@@ -4099,8 +4100,9 @@ msgid ""
 "<AccessFullProcessList>` to allow a user to see the full process list "
 "(:guilabel:`Processes`) in the Axon Ivy Portal menu."
 msgstr ""
-"ユーザーが Axon Ivy Portal メニューで全プロセスリスト（ :guilabel:`プロセス` ）を表示できるようにするには、 :bdg-"
-"ref-warning:`🔑AccessFullProcessList <AccessFullProcessList>` 権限を付与してください。"
+"ユーザーが Axon Ivy Portal メニューで全プロセスリスト（ :guilabel:`プロセス` ）を表示できるようにするには、 "
+":bdg-ref-warning:`🔑AccessFullProcessList <AccessFullProcessList>` "
+"権限を付与してください。"
 
 #: ../../source/portal-user-guide/full-process-list/index.rst:15
 msgid "|navigate-to-full-process-list|"
@@ -4293,8 +4295,7 @@ msgid ""
 "default language description will be used."
 msgstr ""
 ":guilabel:`説明` の入力後、翻訳アイコンが表示されます。アイコンをクリックして、 ``複数言語の設定`` "
-"ダイアログを開きます。言語フィールドに説明を入力して、複数の言語で説明を指定できます。"
-"言語フィールドに説明を入力しない場合は、デフォルトの言語の説明が使用されます。"
+"ダイアログを開きます。言語フィールドに説明を入力して、複数の言語で説明を指定できます。言語フィールドに説明を入力しない場合は、デフォルトの言語の説明が使用されます。"
 
 #: ../../source/portal-user-guide/full-process-list/index.rst:102
 msgid ""
@@ -4507,15 +4508,17 @@ msgstr ""
 #: ../../source/portal-user-guide/full-task-list/index.rst:15
 msgid ""
 "Depending on the roles you hold in the application and the configuration "
-"of the Axon Ivy Portal, you might see not only the tasks belonging to you "
-"but all open tasks."
-msgstr "アプリケーションで保有しているロールと Axon Ivy Portal の設定によって、自分のタスクだけでなく、すべてのオープンなタスクも表示されます。"
+"of the Axon Ivy Portal, you might see not only the tasks belonging to you"
+" but all open tasks."
+msgstr ""
+"アプリケーションで保有しているロールと Axon Ivy Portal "
+"の設定によって、自分のタスクだけでなく、すべてのオープンなタスクも表示されます。"
 
 #: ../../source/portal-user-guide/full-task-list/index.rst:22
 msgid "|navigate-to-full-task-list-page|"
 msgstr "|navigate-to-full-task-list-page|"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:286
+#: ../../source/portal-user-guide/full-task-list/index.rst:304
 msgid "Menu to navigate to the Full task list"
 msgstr "全タスクリストページに移動するメニュー"
 
@@ -4541,7 +4544,7 @@ msgstr "アプリケーション（この列は自動的に表示されません
 msgid "|task-key-information|"
 msgstr "|task-key-information|"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:288
+#: ../../source/portal-user-guide/full-task-list/index.rst:306
 msgid "Full task list: key informations"
 msgstr "全タスクリスト：主な情報"
 
@@ -4567,11 +4570,16 @@ msgstr "破棄"
 msgid "Trigger Escalation"
 msgstr "エスカレーションのトリガー"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:72
+#: ../../source/portal-user-guide/full-task-list/index.rst:70
+msgid "Custom Fields"
+msgstr ""
+
+#: ../../source/portal-user-guide/full-task-list/index.rst:74
 msgid "Process Viewer"
 msgstr "プロセスビューアー"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:76
+#: ../../source/portal-user-guide/full-task-list/index.rst:78
+#, fuzzy
 msgid ""
 "Grant permissions :bdg-ref-warning:`🔑TaskDisplayResetAction "
 "<TaskDisplayResetAction>`, :bdg-ref-warning:`🔑TaskDisplayReserveAction "
@@ -4580,8 +4588,9 @@ msgid ""
 "warning:`🔑TaskDisplayDestroyAction <TaskDisplayDestroyAction>`, :bdg-ref-"
 "warning:`🔑TaskDisplayAdditionalOptions <TaskDisplayAdditionalOptions>`, "
 ":bdg-ref-warning:`🔑TaskDisplayWorkflowEventAction "
-"<TaskDisplayWorkflowEventAction>` to allow a user to see the "
-"corresponding buttons and menu items."
+"<TaskDisplayWorkflowEventAction>`, :bdg-ref-"
+"warning:`🔑TaskDisplayCustomFieldsAction <TaskDisplayCustomFieldsAction>` "
+"to allow a user to see the corresponding buttons and menu items."
 msgstr ""
 "ユーザーが対応するボタンとメニュー項目を表示できるようにするには、 :bdg-ref-"
 "warning:`🔑TaskDisplayResetAction <TaskDisplayResetAction>` 、 :bdg-ref-"
@@ -4593,84 +4602,84 @@ msgstr ""
 " :bdg-ref-warning:`🔑TaskDisplayAdditionalOptions "
 "<TaskDisplayAdditionalOptions>` ,"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:81
+#: ../../source/portal-user-guide/full-task-list/index.rst:83
 msgid ""
 "Finally, you have the possibility to access the full set of the task data"
 " by clicking on `Actions` then clicking on the `Details` menu item."
 msgstr "最後に、 `アクション` をクリックし、 `詳細` メニュー項目をクリックして、すべてのタスクデータにアクセスできます。"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:84
+#: ../../source/portal-user-guide/full-task-list/index.rst:86
 msgid "The task details are separated into 4 different sections:"
 msgstr "タスクの詳細は、以下の 4 つのセクションに別れています。"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:86
+#: ../../source/portal-user-guide/full-task-list/index.rst:88
 msgid ""
 "Task status banner to display information that needs attention or that "
 "you should take action on."
 msgstr "注意な必要な情報や対処すべき情報を表示するタスクステータスバナー。"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:88
+#: ../../source/portal-user-guide/full-task-list/index.rst:90
 msgid "|task-status-banner|"
 msgstr "|task-status-banner|"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:318
+#: ../../source/portal-user-guide/full-task-list/index.rst:338
 msgid "Task Details: the Status banner"
 msgstr "タスクの詳細：ステータスバナー"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:90
+#: ../../source/portal-user-guide/full-task-list/index.rst:92
 msgid ""
 "Data and description, you find various metadata concerning the task and "
 "the respective case it is related to."
 msgstr "データと説明：タスクとタスクに関連するケースのメタデータが表示されます。"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:93
+#: ../../source/portal-user-guide/full-task-list/index.rst:95
 msgid "|detailed-task-information-data-description|"
 msgstr "|detailed-task-information-data-description|"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:290
+#: ../../source/portal-user-guide/full-task-list/index.rst:308
 msgid "Task Details: General section"
 msgstr "タスクの詳細：一般セクション"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:95
+#: ../../source/portal-user-guide/full-task-list/index.rst:97
 msgid "Histories, you may add additional notes which are described below"
 msgstr "履歴：以下に説明するノートを追加できます。"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:97
+#: ../../source/portal-user-guide/full-task-list/index.rst:99
 msgid "|detailed-task-information-note|"
 msgstr "|detailed-task-information-note|"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:292
+#: ../../source/portal-user-guide/full-task-list/index.rst:310
 msgid "Task Details: Notes section"
 msgstr "タスクの詳細：ノートセクション"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:99
+#: ../../source/portal-user-guide/full-task-list/index.rst:101
 msgid ""
 "Documents, these documents once attached to the case are available on all"
 " tasks. You may add, delete, rename or preview documents described in the"
 " HowTo’s below."
 msgstr "ドキュメント：ケースに添付されたドキュメントはすべてのタスクで利用できます。以下の「ハウツー」のとおり、ドキュメントを追加、削除、プレビューできます。"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:103
+#: ../../source/portal-user-guide/full-task-list/index.rst:105
 msgid "|detailed-task-information-documents|"
 msgstr "|detailed-task-information-documents|"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:294
+#: ../../source/portal-user-guide/full-task-list/index.rst:312
 msgid "Task Details: Documents section"
 msgstr "タスクの詳細：ドキュメントセクション"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:105
+#: ../../source/portal-user-guide/full-task-list/index.rst:107
 msgid "|detailed-task-information|"
 msgstr "|detailed-task-information|"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:296
+#: ../../source/portal-user-guide/full-task-list/index.rst:314
 msgid "The Task Details page"
 msgstr "タスクの詳細ページ"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:108
+#: ../../source/portal-user-guide/full-task-list/index.rst:110
 msgid "HowTo: Configure the full task list"
 msgstr "ハウツー：全タスクリストを設定する"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:110
+#: ../../source/portal-user-guide/full-task-list/index.rst:112
 msgid ""
 "The full task list page functions as a dashboard accessible from the top-"
 "level menu. To customize the task list, navigate to :ref:`Dashboard "
@@ -4679,62 +4688,63 @@ msgstr ""
 "全タスクリストページは、トップレベルメニューからアクセス可能なダッシュボードとして機能します。 タスクリストをカスタマイズするには、 "
 ":ref:`ダッシュボードの設定 <dashboard-configuration>` に移動します。"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:113
+#: ../../source/portal-user-guide/full-task-list/index.rst:115
 msgid ""
 "To restore the dashboard to its default settings, including the menu icon"
 " and task list layout, delete the dashboard. Portal will automatically "
 "recreate the dashboard with the default settings."
 msgstr "メニューアイコン、タスクリストのレイアウトを含め、ダッシュボードを初期設定に戻すには、ダッシュボードを削除します。ポータルは自動的に初期設定でダッシュボードを作成し直します。"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:117
+#: ../../source/portal-user-guide/full-task-list/index.rst:119
 msgid "HowTo: Move and Resize Widgets in Task Details"
 msgstr "ハウツー：タスクの詳細のウィジェットを移動し、サイズを変更する"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:118
-#: ../../source/portal-user-guide/full-task-list/index.rst:138
-#: ../../source/portal-user-guide/full-task-list/index.rst:176
-#: ../../source/portal-user-guide/full-task-list/index.rst:195
-#: ../../source/portal-user-guide/full-task-list/index.rst:217
-#: ../../source/portal-user-guide/full-task-list/index.rst:239
-#: ../../source/portal-user-guide/full-task-list/index.rst:260
+#: ../../source/portal-user-guide/full-task-list/index.rst:120
+#: ../../source/portal-user-guide/full-task-list/index.rst:140
+#: ../../source/portal-user-guide/full-task-list/index.rst:178
+#: ../../source/portal-user-guide/full-task-list/index.rst:197
+#: ../../source/portal-user-guide/full-task-list/index.rst:219
+#: ../../source/portal-user-guide/full-task-list/index.rst:241
+#: ../../source/portal-user-guide/full-task-list/index.rst:262
+#: ../../source/portal-user-guide/full-task-list/index.rst:278
 msgid "Open the task details of a task"
 msgstr "タスクのタスクの詳細を開きます。"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:312
+#: ../../source/portal-user-guide/full-task-list/index.rst:332
 msgid "Task Details: button to switch to the edit mode"
 msgstr "タスクの詳細：編集モードに切り替えるボタン"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:125
+#: ../../source/portal-user-guide/full-task-list/index.rst:127
 msgid ""
 "Click on the :guilabel:`Save` button to save current state of page and "
 "switch to readonly mode."
 msgstr ":guilabel:`保存` ボタンをクリックして、ページの現在の状態を保存し、読み取り専用モードに切り替えます。"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:310
+#: ../../source/portal-user-guide/full-task-list/index.rst:330
 msgid "Task Details: save button"
 msgstr "タスクの詳細：保存ボタン"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:130
+#: ../../source/portal-user-guide/full-task-list/index.rst:132
 msgid "Click :guilabel:`Reset` button to reset to default configuration."
 msgstr ":guilabel:`リセット` ボタンをクリックして初期設定にリセットします。"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:314
+#: ../../source/portal-user-guide/full-task-list/index.rst:334
 msgid "Task Details: button to reset to the default configurations"
 msgstr "タスクの詳細：デフォルト設定にリセットするボタン"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:139
+#: ../../source/portal-user-guide/full-task-list/index.rst:141
 msgid "Click the link |add-icon| ``Add document``"
 msgstr "|add-icon| ``ドキュメントを追加`` リンクをクリックします。"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:148
+#: ../../source/portal-user-guide/full-task-list/index.rst:150
 msgid "|how-to-upload-document|"
 msgstr "|how-to-upload-document|"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:298
+#: ../../source/portal-user-guide/full-task-list/index.rst:316
 msgid "Task Details:Add document dialog"
 msgstr "タスクの詳細：ドキュメントの追加ダイアログ"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:152
+#: ../../source/portal-user-guide/full-task-list/index.rst:154
 msgid ""
 "Grant either permission :bdg-ref-warning:`🔑DocumentOfInvolvedCaseWrite "
 "<DocumentOfInvolvedCaseWrite>` or :bdg-ref-warning:`🔑DocumentWrite "
@@ -4744,33 +4754,33 @@ msgstr ""
 "warning:`🔑DocumentOfInvolvedCaseWrite <DocumentOfInvolvedCaseWrite>` または "
 ":bdg-ref-warning:`🔑DocumentWrite <DocumentWrite>` のいずれかの権限を付与してください。"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:322
+#: ../../source/portal-user-guide/full-task-list/index.rst:342
 msgid "Task Details: rename document dialog"
 msgstr "タスク詳細: ドキュメント名の変更ダイアログ"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:174
+#: ../../source/portal-user-guide/full-task-list/index.rst:176
 msgid "HowTo: Remove an attachment from the case"
 msgstr "ハウツー：ケースから添付ファイルを削除する"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:178
+#: ../../source/portal-user-guide/full-task-list/index.rst:180
 msgid ""
 "Click on the |delete-icon| button next to the attachment you want to "
 "remove"
 msgstr "削除したい添付ファイルの隣にある |delete-icon| ボタンをクリックします。"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:183
+#: ../../source/portal-user-guide/full-task-list/index.rst:185
 msgid "Confirm the deletion with the button :guilabel:`Delete`"
 msgstr ":guilabel:`削除` ボタンをクリックして、削除を確定します。"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:185
+#: ../../source/portal-user-guide/full-task-list/index.rst:187
 msgid "|how-to-delete-document|"
 msgstr "|how-to-delete-document|"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:300
+#: ../../source/portal-user-guide/full-task-list/index.rst:318
 msgid "Task Details: Delete document confirm dialog"
 msgstr "タスクの詳細：ドキュメントの削除の確認ダイアログ"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:189
+#: ../../source/portal-user-guide/full-task-list/index.rst:191
 msgid ""
 "Grant either permission :bdg-ref-warning:`🔑DocumentOfInvolvedCaseWrite "
 "<DocumentOfInvolvedCaseWrite>` or :bdg-ref-warning:`🔑DocumentWrite "
@@ -4780,55 +4790,55 @@ msgstr ""
 "<DocumentOfInvolvedCaseWrite>` または :bdg-ref-warning:`🔑DocumentWrite "
 "<DocumentWrite>` のいずれかの権限を付与してください。"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:193
+#: ../../source/portal-user-guide/full-task-list/index.rst:195
 msgid "HowTo: Preview a document of a task"
 msgstr "ハウツー：ケースのドキュメントをプレビューする"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:320
+#: ../../source/portal-user-guide/full-task-list/index.rst:340
 msgid "Task Details: preview document dialog"
 msgstr "タスクの詳細: ドキュメントのプレビューダイアログ"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:215
+#: ../../source/portal-user-guide/full-task-list/index.rst:217
 msgid "HowTo: Add a note to a task"
 msgstr "ハウツー：タスクにノートを追加する"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:219
+#: ../../source/portal-user-guide/full-task-list/index.rst:221
 msgid "Click on the link |add-icon| ``Add note`` below the notes section"
 msgstr "ノートセクションの下にある |add-icon| ``ノートを追加`` リンクをクリックします。"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:221
+#: ../../source/portal-user-guide/full-task-list/index.rst:223
 msgid "The :guilabel:`Add note` dialog is opened"
 msgstr ":guilabel:`ノートを追加` ダイアログが開きます。"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:223
+#: ../../source/portal-user-guide/full-task-list/index.rst:225
 msgid "Enter your note"
 msgstr "ノートを入力します。"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:225
+#: ../../source/portal-user-guide/full-task-list/index.rst:227
 msgid "Confirm your note by clicking the button :guilabel:`Save`"
 msgstr ":guilabel:`保存` ボタンをクリックして、ノートを確定します。"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:227
+#: ../../source/portal-user-guide/full-task-list/index.rst:229
 msgid "|how-to-add-note|"
 msgstr "|how-to-add-note|"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:302
+#: ../../source/portal-user-guide/full-task-list/index.rst:320
 msgid "Task Details: Add note dialog"
 msgstr "タスクの詳細：ノートの追加ダイアログ"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:230
+#: ../../source/portal-user-guide/full-task-list/index.rst:232
 msgid ""
 "Notes of a task are displayed in the ``Notes`` table of the task details,"
 " and in the ``History`` table of its business case."
 msgstr "タスクのノートは、タスクの詳細の ``ノート`` 表と、タスクのビジネスケースの ``履歴`` 表に表示されます。"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:232
+#: ../../source/portal-user-guide/full-task-list/index.rst:234
 msgid ""
 "If the task belongs to a technical case, its notes are also displayed in "
 "the ``History`` table of this technical case."
 msgstr "タスクがテクニカルケースに属する場合、そのテクニカルケースの ``履歴`` 表にもノートが表示されます。"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:234
+#: ../../source/portal-user-guide/full-task-list/index.rst:236
 msgid ""
 "Grant permission :bdg-ref-warning:`🔑TaskCaseAddNote <TaskCaseAddNote>` to"
 " allow a user to add task and case notes."
@@ -4836,41 +4846,41 @@ msgstr ""
 "ユーザーがタスクとケースのノートを追加できるようにするには、 :bdg-ref-warning:`🔑TaskCaseAddNote "
 "<TaskCaseAddNote>` 権限を付与してください。"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:237
+#: ../../source/portal-user-guide/full-task-list/index.rst:239
 msgid "HowTo: Export a task history"
 msgstr "ハウツー：タスク履歴をエクスポートする"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:241
+#: ../../source/portal-user-guide/full-task-list/index.rst:243
 msgid "Click on the link |show-more-icon| ``Show more`` below the notes section"
 msgstr "ノートセクションの下にある |show-more-icon| ``さらに表示`` リンクをクリックします。"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:304
+#: ../../source/portal-user-guide/full-task-list/index.rst:322
 msgid "Task Details: Link to show more notes details"
 msgstr "タスクの詳細：ノートの詳細を表示するリンク"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:245
+#: ../../source/portal-user-guide/full-task-list/index.rst:247
 msgid "A new page with the task history is opened"
 msgstr "タスク履歴を含む新しいページが開きます。"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:247
+#: ../../source/portal-user-guide/full-task-list/index.rst:249
 msgid ""
 "You may export the history by clicking on the button :guilabel:`Export to"
 " Excel`"
 msgstr ":guilabel:`Excel にエクスポート` ボタンをクリックして、履歴をエクスポートできます。"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:249
+#: ../../source/portal-user-guide/full-task-list/index.rst:251
 msgid "|how-to-export-note-details|"
 msgstr "|how-to-export-note-details|"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:306
+#: ../../source/portal-user-guide/full-task-list/index.rst:324
 msgid "Link to export task notes"
 msgstr "タスクのノートをエクスポートするリンク"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:255
+#: ../../source/portal-user-guide/full-task-list/index.rst:257
 msgid "HowTo: Show Workflow Events"
 msgstr "ハウツー：ワークフローイベントを表示する"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:258
+#: ../../source/portal-user-guide/full-task-list/index.rst:260
 msgid ""
 "Grant permission :bdg-warning:`🔑WorkflowEventReadAll` to allow a user to "
 "see all workflow events of a task."
@@ -4878,47 +4888,84 @@ msgstr ""
 "ユーザーがタスクのすべてのワークフローイベントを表示できるようにするには、 :bdg-"
 "warning:`🔑WorkflowEventReadAll` 権限を付与してください。"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:262
+#: ../../source/portal-user-guide/full-task-list/index.rst:264
+#: ../../source/portal-user-guide/full-task-list/index.rst:280
 msgid ""
 "Click on the link ``Actions`` on the right top corner of the **Data and "
 "Description** section"
 msgstr "**データと説明** セクションの右上隅にある ``アクション`` リンクをクリックします。"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:264
+#: ../../source/portal-user-guide/full-task-list/index.rst:266
 msgid ""
 "Click the link ``Workflow Events`` on the overlay panel to see Workflow "
 "Events dialog"
 msgstr "オーバーレイパネルの ``ワークフローイベント`` リンクをクリックして、ワークフローイベントダイアログを表示します。"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:266
+#: ../../source/portal-user-guide/full-task-list/index.rst:268
 msgid "**Workflow Events dialog**"
 msgstr "**ワークフローイベントダイアログ**"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:268
+#: ../../source/portal-user-guide/full-task-list/index.rst:270
 msgid "|workflow-events-table|"
 msgstr "|workflow-events-table|"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:308
+#: ../../source/portal-user-guide/full-task-list/index.rst:326
 msgid "Workflow events of task dialog"
 msgstr "タスクのワークフローイベントダイアログ"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:271
+#: ../../source/portal-user-guide/full-task-list/index.rst:273
+#, fuzzy
+msgid "HowTo: Show Custom Fields"
+msgstr "ハウツー：プロセスビューアーを表示する"
+
+#: ../../source/portal-user-guide/full-task-list/index.rst:276
+#, fuzzy
+msgid ""
+"Grant permission :bdg-ref-warning:`🔑TaskDisplayCustomFieldsAction "
+"<TaskDisplayCustomFieldsAction>` to allow a user to see Custom Fields "
+"link in Actions panel."
+msgstr ""
+"ユーザーがタスクの詳細を共有できるようにするには、 :bdg-ref-warning:`🔑ShareTaskDetailsLink "
+"<ShareTaskDetailsLink>` 権限を付与してください。"
+
+#: ../../source/portal-user-guide/full-task-list/index.rst:282
+#, fuzzy
+msgid ""
+"Click the link ``Custom Fields`` on the overlay panel to see Custom "
+"Fields dialog"
+msgstr "オーバーレイパネルの ``ワークフローイベント`` リンクをクリックして、ワークフローイベントダイアログを表示します。"
+
+#: ../../source/portal-user-guide/full-task-list/index.rst:284
+#, fuzzy
+msgid "**Custom Fields dialog**"
+msgstr "**ワークフローイベントダイアログ**"
+
+#: ../../source/portal-user-guide/full-task-list/index.rst:286
+msgid "|custom-fields-dialog|"
+msgstr ""
+
+#: ../../source/portal-user-guide/full-task-list/index.rst:328
+#, fuzzy
+msgid "Custom fields of task dialog"
+msgstr "タスクのワークフローイベントダイアログ"
+
+#: ../../source/portal-user-guide/full-task-list/index.rst:289
 msgid "HowTo: Share Task Details"
 msgstr "ハウツー：タスクの詳細を共有する"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:273
+#: ../../source/portal-user-guide/full-task-list/index.rst:291
 msgid "Open the task details"
 msgstr "タスクの詳細を開きます。"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:277
+#: ../../source/portal-user-guide/full-task-list/index.rst:295
 msgid "|how-to-share-task-details|"
 msgstr "|how-to-share-task-details|"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:316
+#: ../../source/portal-user-guide/full-task-list/index.rst:336
 msgid "Task Details: button to get the shareable link of the task details"
 msgstr "タスクの詳細：タスクの詳細の共有可能なリンクを取得するボタン"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:281
+#: ../../source/portal-user-guide/full-task-list/index.rst:299
 msgid ""
 "Grant permission :bdg-ref-warning:`🔑ShareTaskDetailsLink "
 "<ShareTaskDetailsLink>` to allow a user to share task details."
@@ -5059,9 +5106,9 @@ msgstr "言語設定"
 #: ../../source/portal-user-guide/my-profile/index.rst:88
 msgid ""
 "**Language** allows you to specify your preferred application language. "
-"This setting will affect all Axon Ivy Portal pages, notification mails, and "
-"– if supported – your company's application pages as well. The following "
-"languages are currently supported in the Axon Ivy Portal:"
+"This setting will affect all Axon Ivy Portal pages, notification mails, "
+"and – if supported – your company's application pages as well. The "
+"following languages are currently supported in the Axon Ivy Portal:"
 msgstr ""
 "**言語** では、アプリケーションの言語を指定できます。\n"
 "この設定は、Axon Ivy Portal のすべてのページ、通知メール、サポートされている場合は会社のア\n"
@@ -5107,8 +5154,8 @@ msgstr "通知チャネル"
 #: ../../source/portal-user-guide/my-profile/index.rst:119
 msgid ""
 "**Notification Channels** allows you to configure your manage "
-"subscriptions of the different kinds of notification channels in the "
-"Axon Ivy Engine."
+"subscriptions of the different kinds of notification channels in the Axon"
+" Ivy Engine."
 msgstr "**通知チャネル** では、Axon Ivy Engine の通知チャネルのサブスクリプションを設定できます。"
 
 #: ../../source/portal-user-guide/my-profile/index.rst:123
@@ -5135,8 +5182,9 @@ msgid ""
 "warning:`🔑NotificationChannelsSetting <NotificationChannelsSetting>` to "
 "allow or prevent users from modifying notification channel preferences."
 msgstr ""
-"管理者として、通知チャネル設定の編集を許可または禁止する権限"
-" :bdg-ref-warning:`🔑NotificationChannelsSetting <NotificationChannelsSetting>` を設定できます。"
+"管理者として、通知チャネル設定の編集を許可または禁止する権限 :bdg-ref-"
+"warning:`🔑NotificationChannelsSetting <NotificationChannelsSetting>` "
+"を設定できます。"
 
 #: ../../source/portal-user-guide/my-profile/index.rst:133
 msgid ""
@@ -5147,9 +5195,9 @@ msgid ""
 "role, then grant it to specific roles that should be allowed to modify "
 "notification channel preferences."
 msgstr ""
-"これを行うには、:dev-url:`エンジン コックピット </doc/12.0/engine-guide/reference/engine-cockpit/security.html>` "
-"にアクセスし、**セキュリティ領域** を開きます。この権限はデフォルトで「すべてのユーザー」ロールに付与されているため、管理者は「すべてのユー"
-"ザー」ロールからこの権限を拒否し、通知チャネルの設定を変更できる特定のロールに付与する必要があります。"
+"これを行うには、:dev-url:`エンジン コックピット </doc/12.0/engine-guide/reference/engine-"
+"cockpit/security.html>` にアクセスし、**セキュリティ領域** "
+"を開きます。この権限はデフォルトで「すべてのユーザー」ロールに付与されているため、管理者は「すべてのユーザー」ロールからこの権限を拒否し、通知チャネルの設定を変更できる特定のロールに付与する必要があります。"
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:4
 msgid "Dashboard"
@@ -5159,11 +5207,12 @@ msgstr "ダッシュボード"
 msgid ""
 "The Axon Ivy Portal Dashboard is the first page you encounter after "
 "successful login. You can always get back to the dashboard using the "
-"**Dashboard** link in the Axon Ivy Portal navigation menu. Alternatively, "
-"you can click on the logo image at the top left of the header."
+"**Dashboard** link in the Axon Ivy Portal navigation menu. Alternatively,"
+" you can click on the logo image at the top left of the header."
 msgstr ""
-"Axon Ivy Portal ダッシュボードは、ログイン成功後に最初に表示されるページです。Axon Ivy Portal のナビゲーションメニューにある "
-"**ダッシュボード** リンクを使用して、いつでもダッシュボードに戻ることができます。または、ヘッダーの左上にあるロゴ画像をクリックします。"
+"Axon Ivy Portal ダッシュボードは、ログイン成功後に最初に表示されるページです。Axon Ivy Portal "
+"のナビゲーションメニューにある **ダッシュボード** "
+"リンクを使用して、いつでもダッシュボードに戻ることができます。または、ヘッダーの左上にあるロゴ画像をクリックします。"
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:14
 msgid ""
@@ -5404,10 +5453,9 @@ msgid ""
 "make it visible, you need to set the ``Portal.Cases.EnableOwner`` setting"
 " to ``true`` in the :ref:`Admin Settings <update-portal-settings>`."
 msgstr ""
-"``Filter tasks by current case owner`` フィルターはデフォルトでは非表示になっ"
-"ています。表示させるには、 の ``Portal.Cases.EnableOwner`` 設定を ``true`` に"
-"設定する必要があります。:ref:`ハウツー：ポータル設定を更新する <update-"
-"portal-settings>`"
+"``Filter tasks by current case owner`` フィルターはデフォルトでは非表示になっています。表示させるには、 の"
+" ``Portal.Cases.EnableOwner`` 設定を ``true`` "
+"に設定する必要があります。:ref:`ハウツー：ポータル設定を更新する <update-portal-settings>`"
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:104
 #: ../../source/portal-user-guide/new-dashboard/index.rst:189
@@ -6383,16 +6431,16 @@ msgstr "ポータルのヘッダー"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:6
 msgid ""
-"Axon Ivy Portal header is always visible. On the top right of the header you"
-" find two useful features:"
+"Axon Ivy Portal header is always visible. On the top right of the header "
+"you find two useful features:"
 msgstr "Axon Ivy Portal のヘッダーは常時表示されます。ヘッダーの右上には、2 つの便利な機能があります。"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:9
 msgid ""
 "Name of the user you’re logged in with. Additionally, if you click on "
 "your username you get a menu with options that allow you to configure the"
-" Axon Ivy Portal to your personal needs. See `User Settings in the Axon Ivy "
-"Portal`_ for a detailed overview of the configuration options."
+" Axon Ivy Portal to your personal needs. See `User Settings in the Axon "
+"Ivy Portal`_ for a detailed overview of the configuration options."
 msgstr ""
 "ログインしたときに使用したユーザーの名前。自分のユーザー名をクリックすると、自分のニーズに合わせて Axon Ivy Portal "
 "を設定できるオプションを含むメニューが表示されます。設定オプションの詳細については、 `Axon Ivy Portal のユーザー設定`_ "
@@ -6425,8 +6473,8 @@ msgstr "Axon Ivy Portal のユーザー設定"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:23
 msgid ""
-"When you click on your username in the top right of the Axon Ivy Portal, a "
-"menu is shown allowing you to configure the Portal to your personal "
+"When you click on your username in the top right of the Axon Ivy Portal, "
+"a menu is shown allowing you to configure the Portal to your personal "
 "needs. These features are described in the following sections below."
 msgstr ""
 "Axon Ivy Portal "
@@ -6612,10 +6660,10 @@ msgid ""
 "<UserCreateSubstitute>` to allow a user to create their own substitute "
 "definitions or create substitute definitions for all users, respectively."
 msgstr ""
-"ユーザーが自分の代行者の定義を作成したり、すべてのユーザーの代行者の定義を作"
-"成できるようにするには、 :bdg-ref-warning:`🔑UserCreateOwnSubstitute "
-"<UserCreateOwnSubstitute>` または :bdg-ref-warning:`🔑UserCreateSubstitute "
-"<UserCreateSubstitute>` のいずれかの権限をそれぞれ付与してください。"
+"ユーザーが自分の代行者の定義を作成したり、すべてのユーザーの代行者の定義を作成できるようにするには、 :bdg-ref-"
+"warning:`🔑UserCreateOwnSubstitute <UserCreateOwnSubstitute>` または :bdg-"
+"ref-warning:`🔑UserCreateSubstitute <UserCreateSubstitute>` "
+"のいずれかの権限をそれぞれ付与してください。"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:108
 msgid "Change Password"
@@ -6639,9 +6687,9 @@ msgstr "パスワードの変更ダイアログ"
 msgid ""
 "Grant permission: :bdg-warning:`🔑UserSetOwnPassword` to allow a user to "
 "change their password. Configure permissions in the :dev-url:`Engine "
-"Cockpit </doc/12.0/engine-guide/reference/engine-"
-"cockpit/security.html>`. In the security area, open PersonalPermissions "
-"-> PersonalSecurityPermissions -> UserSetOwnPassword."
+"Cockpit </doc/12.0/engine-guide/reference/engine-cockpit/security.html>`."
+" In the security area, open PersonalPermissions -> "
+"PersonalSecurityPermissions -> UserSetOwnPassword."
 msgstr ""
 "ユーザーがパスワードを変更できるようにするには、 :bdg-warning:`🔑UserSetOwnPassword` "
 "権限を付与してください。次に権限を設定します :dev-url:`エンジンコックピット </doc/12.0/engine-"
@@ -6655,9 +6703,9 @@ msgstr "情報"
 #: ../../source/portal-user-guide/portal-header/index.rst:123
 msgid ""
 "The menu entry :guilabel:`Info` provides you with detailed information "
-"about the Axon Ivy Engine, the Axon Ivy Portal and your company's application. "
-"You might be asked for this information in case you issue a support "
-"request."
+"about the Axon Ivy Engine, the Axon Ivy Portal and your company's "
+"application. You might be asked for this information in case you issue a "
+"support request."
 msgstr ""
 ":guilabel:`情報` メニューエントリには、Axon Ivy Engine、Axon Ivy "
 "Portal、会社のアプリケーションに関する詳細情報が表示されます。サポートリクエストを発行する場合、この情報が求められることがあります。"
@@ -6676,17 +6724,17 @@ msgstr "Logout"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:132
 msgid ""
-"The menu entry :guilabel:`Logout` will terminate your session in the "
-"Axon Ivy Portal. You’ll be routed back to the login page of the Axon Ivy "
+"The menu entry :guilabel:`Logout` will terminate your session in the Axon"
+" Ivy Portal. You’ll be routed back to the login page of the Axon Ivy "
 "Portal."
 msgstr ""
-":guilabel:`ログアウト` メニューエントリは、Axon Ivy Portal でのセッションを終了します。ユーザーは Axon Ivy Portal"
-" のログインページにリダイレクトされます。"
+":guilabel:`ログアウト` メニューエントリは、Axon Ivy Portal でのセッションを終了します。ユーザーは Axon Ivy "
+"Portal のログインページにリダイレクトされます。"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:137
 msgid ""
-"The Axon Ivy Portal will also do an automatic logout if you’re inactive for "
-"a certain amount of time."
+"The Axon Ivy Portal will also do an automatic logout if you’re inactive "
+"for a certain amount of time."
 msgstr "また、ユーザーが一定時間何もしない場合、Axon Ivy Portal は自動ログアウトを行います。"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:143
@@ -6696,11 +6744,11 @@ msgstr "グローバル検索"
 #: ../../source/portal-user-guide/portal-header/index.rst:145
 msgid ""
 "The Global Search is a convenient tool for you to look up information in "
-"the whole Axon Ivy Portal. You may search for any keyword. By default, the "
-"Axon Ivy Portal will search for:"
+"the whole Axon Ivy Portal. You may search for any keyword. By default, "
+"the Axon Ivy Portal will search for:"
 msgstr ""
-"グローバル検索は、Axon Ivy Portal 全体の情報を検索できる便利なツールです。任意のキーワードを検索できます。Axon Ivy Portal "
-"は自動的に以下を検索します。"
+"グローバル検索は、Axon Ivy Portal 全体の情報を検索できる便利なツールです。任意のキーワードを検索できます。Axon Ivy "
+"Portal は自動的に以下を検索します。"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:149
 msgid "Processes: name, description"
@@ -6716,11 +6764,10 @@ msgstr "タスク：ID、名前、説明、すべてのカスタム文字列フ�
 
 #: ../../source/portal-user-guide/portal-header/index.rst:155
 msgid ""
-"When you confirm the keyword you’re looking for, the Axon Ivy Portal will "
-"route you to the **Global Search Results** page. For each category a tab "
-"is provided, giving you the results of your search."
-msgstr "検索するキーワードを確定すると、 **グローバル検索結果** ページに転送されます"
-"。カテゴリーごとにタブが用意され、検索結果が表示されます。"
+"When you confirm the keyword you’re looking for, the Axon Ivy Portal will"
+" route you to the **Global Search Results** page. For each category a tab"
+" is provided, giving you the results of your search."
+msgstr "検索するキーワードを確定すると、 **グローバル検索結果** ページに転送されます。カテゴリーごとにタブが用意され、検索結果が表示されます。"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:159
 msgid "|portal-global-search-result-page|"
@@ -7212,3 +7259,4 @@ msgstr "これは、今日納期のタスクの数を表示します。"
 
 #~ msgid "Portal can preview images, plain text(txt and log) and pdf documents."
 #~ msgstr ""
+

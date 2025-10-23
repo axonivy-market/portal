@@ -2098,7 +2098,7 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
   right: -2px;
 }
 
-.workflow-events-dialog, .task-custom-fields-dialog {
+.workflow-events-dialog, .task-custom-fields-dialog, .case-custom-fields-dialog {
   max-width: 70%;
 }
 
@@ -2107,13 +2107,13 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
 }
 
 @media screen and (max-width: 40em) {
-  .workflow-events-dialog, .task-custom-fields-dialog {
+  .workflow-events-dialog, .task-custom-fields-dialog, .case-custom-fields-dialog {
     max-width: 90%;
   }
 }
 
 @media screen and (min-width: 40.063em) and (max-width: 64.062em) {
-  .workflow-events-dialog, .task-custom-fields-dialog {
+  .workflow-events-dialog, .task-custom-fields-dialog, .case-custom-fields-dialog {
     max-width: 80%;
   }
 }
