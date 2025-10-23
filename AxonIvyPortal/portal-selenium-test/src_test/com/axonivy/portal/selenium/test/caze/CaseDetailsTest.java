@@ -629,4 +629,18 @@ public class CaseDetailsTest extends BaseTest {
     List<String> customFieldNames = detailsPage.getCustomFieldNamesOnTaskCustomFieldsDialog();
     assertFalse(customFieldNames.isEmpty());
   }
+  
+  @Test
+  public void testShowCustomFieldsLinkWhenPermissionGranted() {
+    redirectToRelativeLink(createTestingTasksUrl);
+    login(TestAccount.ADMIN_USER);
+    grantSpecificPortalPermission(PortalPermission.CASE_DISPLAY_CUSTOM_FIELDS_ACTION);
+    redirectToNewDashBoard();
+    CaseWidgetNewDashBoardPage caseWidgetPage = NavigationHelper.navigateToCaseList();
+    CaseDetailsPage caseDetailsPage = caseWidgetPage.openDetailsCase("Leave Request");
+    caseDetailsPage.openActionMenu();
+    caseDetailsPage.clickOnCaseCustomFieldsAction();
+    List<String> customFieldValues = caseDetailsPage.getCaseCustomFieldNames();
+    assertFalse(customFieldValues.isEmpty());
+  }
 }

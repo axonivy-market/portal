@@ -362,7 +362,33 @@ public class CaseDetailsPage extends TemplatePage {
     waitForElementClickableThenClick($("[id$=':action-group:case-details-action-link']"));
     waitForElementDisplayed(By.cssSelector("[id$=':action-group:action-steps-panel'].action-steps-panel"), true);
   }
+  
+  public void clickOnCaseCustomFieldsAction() {
+    getCaseCustomFieldsButton()
+      .shouldBe(appear, DEFAULT_TIMEOUT)
+      .shouldBe(getClickableCondition())
+      .click();
+      
+    getCaseCustomFieldsDialog().shouldBe(appear, DEFAULT_TIMEOUT);
+  }
 
+  public SelenideElement getCaseCustomFieldsButton() {
+    return $("a[id$=':show-case-custom-fields']");
+  }
+  
+  public List<String> getCaseCustomFieldNames() {
+    return $$("span[id$='customFieldLabel']")
+        .shouldBe(CollectionCondition.sizeGreaterThanOrEqual(0), DEFAULT_TIMEOUT)
+        .asFixedIterable()
+        .stream()
+        .map(SelenideElement::getText)
+        .collect(Collectors.toList());
+  }
+
+  public SelenideElement getCaseCustomFieldsDialog() {
+    return $("div[id$='case-custom-fields-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+  
   public void onClickHistoryIcon() {
     $("a[id$=':case-histories:add-note-command']").shouldBe(appear, DEFAULT_TIMEOUT).scrollIntoCenter();
     $("a[id$=':case-histories:add-note-command']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
@@ -711,6 +737,25 @@ public class CaseDetailsPage extends TemplatePage {
     String actionPanel =
         String.format("[id$='task-widget:related-tasks:%d:additional-options:side-steps-panel']", index);
     waitForElementDisplayed(By.cssSelector(actionPanel), true);
+  }
+  
+  public void clickCustomFieldsButtonOnActions(String taskName) {
+    clickRelatedTaskActionButton(taskName);
+    $("[id$='additional-options:task-custom-fields-command']").shouldBe(getClickableCondition()).click();
+    waitForElementDisplayed(getTaskCustomFieldsDialog(), true);
+  }
+  
+  public SelenideElement getTaskCustomFieldsDialog() {
+    return $("div[id$='task-custom-fields-dialog']");
+  }
+  
+  public List<String> getCustomFieldNamesOnTaskCustomFieldsDialog() {
+    return $$("span[id$='customFieldLabel']")
+        .shouldBe(CollectionCondition.sizeGreaterThanOrEqual(0), DEFAULT_TIMEOUT)
+        .asFixedIterable()
+        .stream()
+        .map(SelenideElement::getText)
+        .collect(Collectors.toList());
   }
 
   public int getTaskRowIndexFromDetailPage(String taskName) {

@@ -332,6 +332,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     addDocumentHelpText: Para cargar archivos, arrastrar y soltar o seleccionar archivos
     addNoteHelpText: Escriba su texto aquí.
     businessDetailsTitle: Detalles del negocio
+    customFields: Campos personalizados
+    customFieldsDialog: 'Campos personalizados del caso #{0}'
     deleteFile: Borrar archivo
     documents: Documentos
     downloadFile: Descargar archivo
@@ -1183,6 +1185,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     afterEscalation: Después de la escalada
     businessCase: Caso comercial
     completedOn: Completado en
+    customFields: Campos personalizados
+    customFieldsDialog: 'Campos personalizados de la tarea #{0}'
     delayedUntil: Retrasado hasta
     deleteFile: Borrar archivo
     documents: Documentos

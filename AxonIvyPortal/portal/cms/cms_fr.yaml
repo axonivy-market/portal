@@ -332,6 +332,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     addDocumentHelpText: Pour ajouter des fichiers, glissez-les ou sélectionnez-les
     addNoteHelpText: Ecrivez votre texte ici
     businessDetailsTitle: Détails de l'entreprise
+    customFields: Champs personnalisés
+    customFieldsDialog: 'Champs personnalisés du cas #{0}'
     deleteFile: Supprimer le fichier
     documents: Documents
     downloadFile: Télécharger le fichier

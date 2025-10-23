@@ -342,6 +342,23 @@ HowTo: Share Case Details
 
    Grant permission :bdg-ref-warning:`🔑ShareCaseDetailsLink <ShareCaseDetailsLink>` to allow a user to share case details.
 
+HowTo: Show Case Custom Fields Dialog
+-------------------------
+
+#. Open the case details
+
+#. Click on :guilabel:`Actions`
+
+#. Click on :guilabel:`Custom Fields`
+
+#. Portal opens the custom fields dialog of the case
+
+|case-custom-fields-dialog|
+
+.. note::
+
+   Grant permission :bdg-ref-warning:`🔑CaseDisplayCustomFieldsAction <CaseDisplayCustomFieldsAction>` to allow a user to see the custom fields link.
+
 .. include:: ../includes/_common-icon.rst
 
 .. |navigate-to-full-cases-list-page| image:: ../../screenshots/case/navigate-to-full-cases-list-page.png
@@ -382,3 +399,5 @@ HowTo: Share Case Details
    :alt: Case Details: preview document dialog
 .. |how-to-rename-document| image:: ../../screenshots/case-detail/how-to-rename-document.png
    :alt: Case Details: rename document dialog
+.. |case-custom-fields-dialog| image:: ../../screenshots/case-detail/case-custom-fields-dialog.png
+   :alt: Case Details: custom fields dialog
