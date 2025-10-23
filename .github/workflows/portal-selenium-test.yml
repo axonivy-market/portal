@@ -150,7 +150,17 @@ jobs:
         - name: Log out on failures
           if: job.steps.run-test.status == failure()
           run: |
-            cat AxonIvyPortal/portal-selenium-test/target/testEngineOut.log 
+            cat AxonIvyPortal/portal-selenium-test/target/testEngineOut.log
+
+        - name: Add branch and commit info to summary  
+          if: always()
+          run: |
+            echo "## 🔍 Test Execution Details" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "**Branch:** \`${{ github.ref_name }}\`" >> $GITHUB_STEP_SUMMARY
+            echo "**Commit:** [${{ github.sha }}](https://github.com/${{ github.repository }}/commit/${{ github.sha }})" >> $GITHUB_STEP_SUMMARY
+            echo "**Workflow Run:** [#${{ github.run_number }}](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY 
 
         - name: Archive screenshot image
           uses: actions/upload-artifact@v4
@@ -159,6 +169,176 @@ jobs:
             retention-days: 5
             path: |
               AxonIvyPortal/portal-selenium-test/target/selenide/reports/*
+
+        - name: Parse and report test failures
+          if: always()
+          uses: actions/github-script@v8
+          with:
+            script: |
+              const fs = require('fs');
+              const path = require('path');
+              
+              try {
+                const reportsDir = 'AxonIvyPortal/portal-selenium-test/target/surefire-reports';
+                let testResultFiles = [];
+                
+                if (fs.existsSync(reportsDir)) {
+                  const files = fs.readdirSync(reportsDir);
+                  testResultFiles = files
+                    .filter(file => file.startsWith('TEST-') && file.endsWith('.xml'))
+                    .map(file => path.join(reportsDir, file));
+                }
+                
+                if (testResultFiles.length === 0) {
+                  fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY, '## ❌ Test Results\\n\\nNo test result files found.\\n\\n');
+                  return;
+                }
+                
+                let totalTests = 0;
+                let totalFailures = 0;
+                let totalErrors = 0;
+                let failedTests = [];
+                
+                // Helper function to extract XML attributes
+                function extractAttribute(xmlContent, tagName, attributeName) {
+                  const regex = new RegExp(`<${tagName}[^>]*\\s${attributeName}=["']([^"']*)["']`, 'i');
+                  const match = xmlContent.match(regex);
+                  return match ? match[1] : null;
+                }
+                
+                // Process each test result file
+                for (const file of testResultFiles) {
+                  try {
+                    const content = fs.readFileSync(file, 'utf8');
+                    const suiteName = extractAttribute(content, 'testsuite', 'name') || 'Unknown Suite';
+                    const suiteFailures = parseInt(extractAttribute(content, 'testsuite', 'failures') || '0');
+                    const suiteErrors = parseInt(extractAttribute(content, 'testsuite', 'errors') || '0');
+                    const suiteTests = parseInt(extractAttribute(content, 'testsuite', 'tests') || '0');
+                    
+                    totalTests += suiteTests;
+                    totalFailures += suiteFailures;
+                    totalErrors += suiteErrors;
+                    
+                    // Extract individual test cases
+                    const testcaseRegex = /<testcase[^>]*>[\s\S]*?<\/testcase>/gi;
+                    const testcaseMatches = content.match(testcaseRegex) || [];
+                    
+                    testcaseMatches.forEach(testcaseXml => {
+                      const className = extractAttribute(testcaseXml, 'testcase', 'classname') || 'UnknownClass';
+                      const testName = extractAttribute(testcaseXml, 'testcase', 'name') || 'UnknownTest';
+                      
+                      const hasFailure = testcaseXml.includes('<failure') || testcaseXml.includes('<error');
+                      
+                      if (hasFailure) {
+                        const failureElement = testcaseXml.match(/<(failure|error)[^>]*>([\s\S]*?)<\/(failure|error)>/i);
+                        let errorMessage = 'No error message available';
+                        
+                        if (failureElement) {
+                          const fullFailureContent = failureElement[2];
+                          // Extract first line as error message
+                          const lines = fullFailureContent.split('\\n').filter(line => line.trim());
+                          errorMessage = lines[0] || 'Unknown error';
+                        }
+                        
+                        failedTests.push({
+                          class: className,
+                          test: testName,
+                          message: errorMessage.trim(),
+                          fileName: path.basename(file)
+                        });
+                      }
+                    });
+                    
+                  } catch (parseError) {
+                    console.error(`Error parsing ${file}:`, parseError.message);
+                  }
+                }
+                
+                // Generate summary
+                let summaryContent = '';
+                
+                if (totalFailures === 0 && totalErrors === 0) {
+                  summaryContent += `## ✅ All Tests Passed\\n\\n`;
+                  summaryContent += `📊 **Summary**: ${totalTests} tests passed\\n\\n`;
+                } else {
+                  summaryContent += `## ❌ Test Failures (${failedTests.length})\\n\\n`;
+                  summaryContent += `📊 **Summary**: ${totalTests} total, ${totalFailures + totalErrors} failed, ${totalTests - totalFailures - totalErrors} passed\\n\\n`;
+                  
+                  if (failedTests.length > 0) {
+                    summaryContent += `| Test Class | Test Method | Error Message | Details |\\n`;
+                    summaryContent += `|------------|-------------|---------------|---------|\\n`;
+                    
+                    failedTests.forEach(test => {
+                      const shortClassName = test.class.split('.').pop();
+                      const shortMessage = test.message.length > 80 ? test.message.substring(0, 80) + '...' : test.message;
+                      const escapedMessage = shortMessage.replace(/\|/g, '\\\\|').replace(/\n/g, ' ');
+                      
+                      summaryContent += `| \`${shortClassName}\` | \`${test.test}\` | ${escapedMessage} | [📋 XML Report](../../artifacts/selenium-test-reports) |\\n`;
+                    });
+                    
+                    summaryContent += '\\n';
+                    summaryContent += `### 📋 How to View Full Details\\n\\n`;
+                    summaryContent += `1. **Screenshots**: Download the \`screenshots\` artifact above\\n`;
+                    summaryContent += `2. **Test Reports**: Download the \`selenium-test-reports\` artifact for complete XML reports\\n`;
+                    summaryContent += `3. **HTML Report**: Download the \`html-test-report\` artifact for detailed HTML view\\n`;
+                    summaryContent += `4. **Engine Logs**: Check the "Log out on failures" step above\\n\\n`;
+                  }
+                }
+                
+                // Write to GITHUB_STEP_SUMMARY
+                fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY, summaryContent);
+                
+              } catch (error) {
+                console.error('Error parsing test results:', error);
+                fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY, `## ❌ Error\\n\\nError parsing test results: ${error.message}\\n\\n`);
+              }
+
+        - name: Generate HTML Test Report
+          if: always()
+          run: |
+            # Create a simple HTML report from XML results
+            mkdir -p html-report
+            cat > html-report/index.html << 'EOF'
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <title>Selenium Test Report</title>
+                <style>
+                    body { font-family: Arial, sans-serif; margin: 20px; }
+                    .failed { color: #d32f2f; }
+                    .passed { color: #388e3c; }
+                    .error-details { background: #f5f5f5; padding: 10px; margin: 10px 0; border-left: 4px solid #d32f2f; }
+                    pre { white-space: pre-wrap; word-wrap: break-word; }
+                    table { border-collapse: collapse; width: 100%; }
+                    th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+                    th { background-color: #f2f2f2; }
+                </style>
+            </head>
+            <body>
+                <h1>Selenium Test Report</h1>
+                <p><strong>Branch:</strong> ${{ github.ref_name }}</p>
+                <p><strong>Commit:</strong> <a href="https://github.com/${{ github.repository }}/commit/${{ github.sha }}">${{ github.sha }}</a></p>
+                <p><strong>Workflow:</strong> <a href="https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}">#${{ github.run_number }}</a></p>
+                <hr>
+                <div id="test-results">
+                    <p>This HTML report provides basic information. For detailed test results and stack traces:</p>
+                    <ul>
+                        <li>Check the XML files in the surefire-reports directory</li>
+                        <li>View screenshots in the screenshots artifact</li>
+                        <li>Check the GitHub Actions summary for a quick overview</li>
+                    </ul>
+                </div>
+            </body>
+            </html>
+            EOF
+
+        - name: Archive HTML Test Report
+          if: always()
+          uses: actions/upload-artifact@v4
+          with:
+            name: html-test-report
+            retention-days: 5
+            path: html-report/
 
         - name: Archive test reports
           uses: actions/upload-artifact@v4
