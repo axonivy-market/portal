@@ -24,12 +24,19 @@ pipeline {
               file(credentialsId: 'single_admin_user_server', variable: 'ADMIN_USER_CSV'),
               file(credentialsId: 'single_normal_user_server', variable: 'NORMAL_USER_CSV'),
           ]) {
-            sh """
-              # Copy files into the running container
-              cp $USERS_SERVER_CSV ${jmeterDslSourceDir}/jmeter/data
-              cp $ADMIN_USER_CSV ${jmeterDslSourceDir}/jmeter/data
-              cp $NORMAL_USER_CSV ${jmeterDslSourceDir}/jmeter/data
-            """
+            sh '''
+              # Ensure target directory exists
+              mkdir -p ${jmeterDslSourceDir}/jmeter/data
+              
+              # Copy files into the running container using single quotes to avoid interpolation
+              cp "${USERS_SERVER_CSV}" "${jmeterDslSourceDir}/jmeter/data/users_server.csv"
+              cp "${ADMIN_USER_CSV}" "${jmeterDslSourceDir}/jmeter/data/single_admin_user_server.csv"
+              cp "${NORMAL_USER_CSV}" "${jmeterDslSourceDir}/jmeter/data/single_normal_user_server.csv"
+              
+              # Verify files were copied
+              echo "Files copied to ${jmeterDslSourceDir}/jmeter/data/"
+              ls -la "${jmeterDslSourceDir}/jmeter/data/"
+            '''
           }
         }
       }
