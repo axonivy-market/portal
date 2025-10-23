@@ -67,12 +67,12 @@ pipeline {
           sh "docker compose -f ${ivyDir}/${engineName}/docker-compose.yml down"
         }
 
-        sh '''
+        sh """
           docker compose -f ${ivyDir}/${engineNames[0]}/docker-compose.yml up -d
           docker compose -f ${ivyDir}/${engineNames[1]}/docker-compose.yml up -d
 
           cp -r ${jmeterDslSourceDir}/target/jtls/* ${resultDir}
-        '''
+        """
         perfReport sourceDataFiles: "${jmeterDslSourceDir}/target/jtls/**/*.jtl", compareBuildPrevious: true, ignoreFailedBuilds: true, ignoreUnstableBuilds: true, errorFailedThreshold: 1
       }
     }
