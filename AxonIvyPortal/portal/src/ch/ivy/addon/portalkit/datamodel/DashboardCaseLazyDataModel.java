@@ -93,7 +93,8 @@ public class DashboardCaseLazyDataModel extends LiveScrollLazyModel<ICase> {
   private void addDistinct(List<ICase> cases, List<ICase> foundCases) {
     Map<Long, ICase> unique =
         foundCases.stream().collect(Collectors.toMap(ICase::getId, Function.identity(), (oldVal, newVal) -> newVal));
-    unique.keySet().forEach(id -> cases.removeIf(existing -> existing.getId() == id));
+    java.util.Set<Long> idsToRemove = unique.keySet();
+    cases.removeIf(existing -> idsToRemove.contains(existing.getId()));
     cases.addAll(unique.values());
   }
 
