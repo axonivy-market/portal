@@ -952,7 +952,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     deleteDocumentNote: '{0} hat folgendes gelöscht: {1}'
     deleteSuceed: Datei wurde erfolgreich gelöscht
     download: Herunterladen
-    fileContainScript: Diese Datei darf aufgrund von Skript-Inhalten nicht hochgeladen werden!
+    fileContainScript: Die Datei enthält potenziell schädliche Inhalte und kann nicht hochgeladen werden!
     fileContainVirus: Upload fehlgeschlagen, Virus/Infektion erkannt!
     fileCouldNotParse: Die Datei konnte nicht analysiert werden
     fileEmptyMessage: Datei ist leer
