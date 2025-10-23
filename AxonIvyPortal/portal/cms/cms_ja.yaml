@@ -250,8 +250,10 @@ ch.ivy.addon.portalkit.ui.jsf:
       disableTaskCount: タスク リストでタスクのカウントを無効にするには true に設定してください
       displayAllUsersOfTaskActivator: この設定は SecurityMemberDisplayName コンポーネントに使用します。SecurityMember がロールである場合、この設定を true に設定すると、このロールのすべてのユーザーが一覧表示されます。true に設定すると、ロール名の横にアイコン情報が表示されます。
       displayMessageAfterFinishOrLeaveTask: ユーザーがタスクを完了または退出すると、フィードバック メッセージが表示されます。
+      documentUploadSizeLimit: 'TODO: Set the size limit for uploading documents in megabytes (MB). The default value is 20MB.'
       embedInFrame: プロセス／タスクをIFrameモードで開始するには true に設定してください
       enableCaseOwner: ケースがクエリーされるときに、フィルタリングケースオーナーを有効にするには true に設定します。この設定は、ケースリスト、グローバル検索、統計など、すべてのケースクエリーに影響します。デフォルトでは非表示になっているタスクウィジェットで、「現在のケース所有者でタスクをフィルタする」フィルタも利用可能になります。
+      enableDocumentPreview: 'TODO: Set to true to enable document preview for some certain file types. Supported file types are: pdf, png, txt, log.'
       enableGroupChat: グループ チャット機能を有効にするには、このプロパティーを true に設定してください。
       enablePinCase: 'TODO: Set this property to true to enable the ability to pin cases.'
       enablePinTask: 'TODO: Set this property to true to enable the ability to pin tasks.'
@@ -273,6 +275,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       hideTimeNote: 日付の横の時間と分を非表示にするには、true に設定してください。
       hideUploadDocumentForDoneCaseNote: ケース完了後のドキュメントのアップロード（および削除）を拒否するには、true に設定します。
       hideYear: true に設定すると、年は非表示になり、そうでない場合は表示されます。
+      imageUploadSizeLimit: 'TODO: Set the size limit for uploading images in megabytes (MB). The default value is 6MB.'
       loggedInUserFormat: ログインしたユーザー形式を表示するオプション
       refreshTaskListIntervalNote: タスクリストの更新間隔。（秒単位）
       showAvatar: ユーザー／ロールのアバターの表示のオン／オフを切り替えます。
@@ -285,9 +288,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       showTaskDurationTime: タスク詳細ページでの所要時間の表示のオン／オフを切り替えます。
       showTooltipTechnicalName: TODO Enable to show users' technical name on tooltips.
       uploadDocumentWhiteListExtensionNote: すべての拡張子を許可する場合は、空欄にしてください。一部の拡張子のみを許可する場合は、対象の拡張子をカンマで区切って入力してください。（例：pdf, txt, doc, docx）
-      documentUploadSizeLimit: 'TODO: Set the size limit for uploading documents in megabytes (MB). The default value is 20MB.'
-      enableDocumentPreview: 'TODO: Set to true to enable document preview for some certain file types. Supported file types are: pdf, png, txt, log.'
-      imageUploadSizeLimit: 'TODO: Set the size limit for uploading images in megabytes (MB). The default value is 6MB.'
     key: キー
     link: リンク
     loading: 読み込み中
@@ -330,6 +330,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     addDocumentHelpText: ファイルをアップロードするには、ドラッグ＆ドロップするか、ファイルを選択してください
     addNoteHelpText: ここにテキストを入力してください。
     businessDetailsTitle: ビジネスの詳細
+    customFields: TODO Custom Fields
+    customFieldsDialog: 'TODO Custom Fields of case #{0}'
     deleteFile: ファイル削除
     documents: ドキュメント
     downloadFile: ファイルをダウンロード
@@ -765,11 +767,13 @@ ch.ivy.addon.portalkit.ui.jsf:
       WrongDateFormat: 日付が無効です
     FilterTasksByCurrentCaseOwner: TODO Filter tasks by current case owner
     ManageFilter: フィルターの管理
+    NoColumnsEnabledForQuickSearch: 'TODO: No columns are enabled for quick search'
     NoData: データなし
     NoSavedFilterMessage: 保存されたフィルターが見つかりません。［フィルターを保存］ ボタンをクリックして新しいフィルターを作成してください
     NoWidgetAvailable: ウィジェットがありません。
     QuickSearch: クイック検索
     QuickSearchInfo: ウィジェットの列管理で、クイック検索の範囲をカスタマイズできます。「含む」に基づいて検索しますが、多数の列を追加する場合はパフォーマンスに注意してください。
+    QuickSearchScope: 'TODO: Search Scope: {0}'
     RestoreDefaultDashboardMessage: 続行すると、自分で作成したすべてのウィジェットが失われます。<span class="dashboard-template-name-message">{0}</span> の標準設定が適用されます。
     SaveNewWidgetFilterHeader: 新しいウィジェットフィルターを保存
     SavedFilterHeader: 保存されたフィルター
@@ -935,8 +939,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     yourProcessViewer: プロセス ビューアー
     yourProcesses: プロセス
     yourTasks: タスク
-    NoColumnsEnabledForQuickSearch: 'TODO: No columns are enabled for quick search'
-    QuickSearchScope: 'TODO: Search Scope: {0}'
   dashboardProcess:
     processAriaLabel: 'TODO Process name: {0}. Process description: {1}'
   documentFiles:
@@ -1180,8 +1182,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     afterEscalation: エスカレーション後
     businessCase: ビジネスケース
     completedOn: 完了日
-    customFields: カスタムフィールド
-    customFieldsDialog: 'タスクのカスタムフィールド #{0}'
+    customFields: TODO Custom Fields
+    customFieldsDialog: 'TODO Custom Fields of task #{0}'
     delayedUntil: この日まで延期
     deleteFile: ファイルを削除
     documents: ドキュメント
@@ -1379,9 +1381,9 @@ Dialogs:
               PortalDashboardConfiguration:
                 NewDashboard: 新規ダッシュボードを追加
               PortalDashboardDetailModification:
-                RemoveThisStatistic: TODO このカスタム統計を削除する
                 CreateCustomStatistic: 'TODO: Create custom statistic widget'
                 DeleteConfirm: 'TODO: Are you sure you want to delete?'
+                RemoveThisStatistic: TODO このカスタム統計を削除する
               component:
                 CustomDashboardWidget:
                   CouldNotFindLinkedProcess: リンクされたプロセスが見つかりませんでした。
@@ -1544,6 +1546,9 @@ Dialogs:
               WidgetFilter: ウィジェットフィルター
             PortalDashboardDetailModification:
               CloneWidget: ウィジェット複製
+            StatisticWidget:
+              IdNotFound: 'TODO: Chart with ID {0} not found'
+              NoPermissionChartMessage: 'TODO: You do not have the required permission to see this chart.'
             TaskWidgetConfiguration:
               AddFilter: フィルターの追加
               ResetFilter: フィルターのリセット
@@ -1552,9 +1557,6 @@ Dialogs:
                 SelectFilterField: TODO Select Filter Field
               DateFilter:
                 SelectPeriod: Select period
-            StatisticWidget:
-              IdNotFound: 'TODO: Chart with ID {0} not found'
-              NoPermissionChartMessage: 'TODO: You do not have the required permission to see this chart.'
         layouts:
           AbstractTaskTemplate:
             CaseDetailsIFrameTitle: ケース詳細フレーム
@@ -1595,6 +1597,7 @@ Dialogs:
             GroupBy: TODO Group by
             GroupbyTooltip: TODO The selected aggregation method will be applied to each group
             HideLabel: TODO Hide label
+            Interval: 'TODO: Interval'
             KPI: TODO KPI
             KPITooltip: 'TODO Select what to measure: Choose ''Counting'' to count the number of tasks or cases (default), or select a numeric custom field to analyze its values as a KPI'
             NewStatistic: TODO New Statistic Widget
@@ -1606,7 +1609,6 @@ Dialogs:
             StatisticConfiguration: TODO Statistic configuration
             XAxisTitle: TODO X axis title
             YAxisTitle: TODO Y axis title
-            Interval: 'TODO: Interval'
   components:
     CaseDocument:
       FileDate: 変更日時
@@ -1916,4 +1918,3 @@ Texts:
 
     </P>
 
-...

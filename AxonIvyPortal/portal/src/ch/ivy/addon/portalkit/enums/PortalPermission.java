@@ -21,6 +21,7 @@ public enum PortalPermission {
   SHOW_ALL_TASKS_OF_CASE("ShowAllTasksOfCase", PortalPermissionGroup.CASE_PERMISSIONS_GROUP),
   SHOW_CASE_DETAILS("ShowCaseDetails", PortalPermissionGroup.CASE_PERMISSIONS_GROUP),
   CASE_DETAILS_SHARE_LINK("ShareCaseDetailsLink", PortalPermissionGroup.CASE_PERMISSIONS_GROUP),
+  CASE_DISPLAY_CUSTOM_FIELDS_ACTION("CaseDisplayCustomFieldsAction", PortalPermissionGroup.CASE_PERMISSIONS_GROUP),
   TASK_CASE_ADD_NOTE("TaskCaseAddNote", PortalPermissionGroup.GENERAL_PERMISSIONS_GROUP),
   TASK_CASE_SHOW_MORE_NOTE("TaskCaseShowMoreNote", PortalPermissionGroup.GENERAL_PERMISSIONS_GROUP),
   TASK_DISPLAY_RESET_ACTION("TaskDisplayResetAction", PortalPermissionGroup.TASK_PERMISSIONS_GROUP),

@@ -632,6 +632,20 @@ public class CaseDetailsTest extends BaseTest {
   }
   
   @Test
+  public void testShowCustomFieldsLinkWhenPermissionGranted() {
+    redirectToRelativeLink(createTestingTasksUrl);
+    login(TestAccount.ADMIN_USER);
+    grantSpecificPortalPermission(PortalPermission.CASE_DISPLAY_CUSTOM_FIELDS_ACTION);
+    redirectToNewDashBoard();
+    CaseWidgetNewDashBoardPage caseWidgetPage = NavigationHelper.navigateToCaseList();
+    CaseDetailsPage caseDetailsPage = caseWidgetPage.openDetailsCase("Leave Request");
+    caseDetailsPage.openActionMenu();
+    caseDetailsPage.clickOnCaseCustomFieldsAction();
+    List<String> customFieldValues = caseDetailsPage.getCaseCustomFieldNames();
+    assertFalse(customFieldValues.isEmpty());
+  }
+
+  @Test
   public void testShowNotesWhenGrantNoteReadAllPermission() {
     redirectToRelativeLink(CREATE_NOTES);
     login(TestAccount.DEMO_USER);
@@ -646,4 +660,5 @@ public class CaseDetailsTest extends BaseTest {
     detailsPage.waitPageLoaded();
     detailsPage.getNotesWithContent("System note").shouldHave(size(1));
   }
+
 }
