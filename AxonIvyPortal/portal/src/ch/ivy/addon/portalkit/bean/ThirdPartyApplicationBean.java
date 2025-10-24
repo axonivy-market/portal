@@ -133,7 +133,7 @@ public class ThirdPartyApplicationBean implements Serializable, IMultiLanguage {
     this.dialogTitle = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/adminSettings/editApplication");
 
     try {
-      Locale currentLocale = LanguageUtils.getUserLocale();
+      Locale currentLocale = LanguageService.getInstance().getUserLocale();
       DisplayNameAdaptor displayNameAdaptor = new DisplayNameAdaptor(application.getDisplayName(), currentLocale);
       this.displayNameInCurrentLanguage = displayNameAdaptor.getDisplayNameAsString();
 

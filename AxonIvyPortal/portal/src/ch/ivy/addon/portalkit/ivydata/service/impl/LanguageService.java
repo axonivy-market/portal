@@ -9,7 +9,6 @@ import java.util.UUID;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-import org.apache.commons.lang3.LocaleUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.components.service.IvyCacheService;
@@ -28,6 +27,7 @@ import ch.ivyteam.ivy.security.exec.Sudo;
 
 public class LanguageService {
 
+  private static final String DEFAULT_LOCALE_CODE = "en";
   private static LanguageService instance;
 
   private LanguageService() {}
@@ -81,9 +81,9 @@ public class LanguageService {
 
     if (hasCountry(locale)) {
       String language = locale.getLanguage();
-      return isLanguageSupported(language) ? LocaleUtils.toLocale(language) : LocaleUtils.toLocale(Locale.ENGLISH);
+      return isLanguageSupported(language) ? Locale.forLanguageTag(language) : Locale.forLanguageTag(DEFAULT_LOCALE_CODE);
     }
-    return LocaleUtils.toLocale(Locale.ENGLISH);
+    return Locale.forLanguageTag(DEFAULT_LOCALE_CODE);
   }
 
   public String getUserLanguage() {
@@ -91,11 +91,24 @@ public class LanguageService {
     if (languageTag == StringUtils.EMPTY) {
     return getDefaultLanguage().toLanguageTag();
     }
-    Locale userLocale = LocaleUtils.toLocale(languageTag);
+    Locale userLocale = Locale.forLanguageTag(languageTag);
     if (getContentLocales().contains(userLocale)) {
       return languageTag;
     }
     return getSupportedLanguages().contains(userLocale.getLanguage()) ? userLocale.getLanguage() : getDefaultLanguage().toLanguageTag();
+  }
+  
+  public Locale getUserLocale() {
+    String sessionUserId = getSessionUserId();
+    IvyCacheService cacheService = IvyCacheService.getInstance();
+    Optional<Object> result = cacheService.getSessionCacheValue(IvyCacheIdentifier.PORTAL_USER_LOCALE,
+        sessionUserId);
+    if (result.isPresent()) {
+      return (Locale) result.get();
+    }
+    Locale userLocale = convertToPortalUserLocale(Ivy.session().getContentLocale());
+    cacheService.setSessionCache(IvyCacheIdentifier.PORTAL_USER_LOCALE, sessionUserId, userLocale);
+    return userLocale;
   }
   
   private List<String> getSupportedLanguages() {
