@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Portal Guide ${revision}\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-23 03:31+0000\n"
+"POT-Creation-Date: 2025-10-24 03:17+0000\n"
 "PO-Revision-Date: 2025-10-17 10:38+0000\n"
 "Last-Translator: Thang Huynh <hhqthang@axonactive.com>\n"
 "Language: ja\n"
@@ -9095,19 +9095,19 @@ msgstr "関連するタスクを表示する権限"
 #: ../../source/portal-developer-guide/permissions/index.rst:120
 #: ../../source/portal-developer-guide/permissions/index.rst:125
 #: ../../source/portal-developer-guide/permissions/index.rst:130
-#: ../../source/portal-developer-guide/permissions/index.rst:150
-#: ../../source/portal-developer-guide/permissions/index.rst:161
-#: ../../source/portal-developer-guide/permissions/index.rst:166
-#: ../../source/portal-developer-guide/permissions/index.rst:174
-#: ../../source/portal-developer-guide/permissions/index.rst:179
-#: ../../source/portal-developer-guide/permissions/index.rst:184
-#: ../../source/portal-developer-guide/permissions/index.rst:189
-#: ../../source/portal-developer-guide/permissions/index.rst:194
-#: ../../source/portal-developer-guide/permissions/index.rst:223
-#: ../../source/portal-developer-guide/permissions/index.rst:241
-#: ../../source/portal-developer-guide/permissions/index.rst:249
-#: ../../source/portal-developer-guide/permissions/index.rst:257
-#: ../../source/portal-developer-guide/permissions/index.rst:265
+#: ../../source/portal-developer-guide/permissions/index.rst:153
+#: ../../source/portal-developer-guide/permissions/index.rst:164
+#: ../../source/portal-developer-guide/permissions/index.rst:169
+#: ../../source/portal-developer-guide/permissions/index.rst:177
+#: ../../source/portal-developer-guide/permissions/index.rst:182
+#: ../../source/portal-developer-guide/permissions/index.rst:187
+#: ../../source/portal-developer-guide/permissions/index.rst:192
+#: ../../source/portal-developer-guide/permissions/index.rst:197
+#: ../../source/portal-developer-guide/permissions/index.rst:226
+#: ../../source/portal-developer-guide/permissions/index.rst:244
+#: ../../source/portal-developer-guide/permissions/index.rst:252
+#: ../../source/portal-developer-guide/permissions/index.rst:260
+#: ../../source/portal-developer-guide/permissions/index.rst:268
 msgid "Granted to role Everybody by default"
 msgstr "デフォルトでは Everybody ロールに付与"
 
@@ -9252,6 +9252,7 @@ msgid "_`TaskDisplayCustomFieldsAction`"
 msgstr "_`TaskDisplayCustomFieldsAction`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:89
+#: ../../source/portal-developer-guide/permissions/index.rst:136
 msgid "Permission to see the Custom Fields action"
 msgstr "カスタムフィールドのアクションを見る許可"
 
@@ -9349,282 +9350,287 @@ msgid ""
 "owner"
 msgstr "ユーザーがケースオーナーであるケースの関連タスクを委任する権限"
 
-#: ../../source/portal-developer-guide/permissions/index.rst:136
+#: ../../source/portal-developer-guide/permissions/index.rst:135
+#, fuzzy
+msgid "_`CaseDisplayCustomFieldsAction`"
+msgstr "_`TaskDisplayCustomFieldsAction`"
+
+#: ../../source/portal-developer-guide/permissions/index.rst:139
 msgid "Portal General Permissions"
 msgstr "ポータルの一般的な権限"
 
-#: ../../source/portal-developer-guide/permissions/index.rst:138
+#: ../../source/portal-developer-guide/permissions/index.rst:141
 msgid "_`RoleCreate`"
 msgstr "_`RoleCreate`"
 
-#: ../../source/portal-developer-guide/permissions/index.rst:139
+#: ../../source/portal-developer-guide/permissions/index.rst:142
 msgid "Permission to create a new dynamic role"
 msgstr "新しい動的ロールを作成する権限"
 
-#: ../../source/portal-developer-guide/permissions/index.rst:141
+#: ../../source/portal-developer-guide/permissions/index.rst:144
 msgid "_`RoleDelete`"
 msgstr "_`RoleDelete`"
 
-#: ../../source/portal-developer-guide/permissions/index.rst:142
+#: ../../source/portal-developer-guide/permissions/index.rst:145
 msgid "Permission to delete a dynamic role"
 msgstr "動的ロールを削除する権限"
 
-#: ../../source/portal-developer-guide/permissions/index.rst:144
+#: ../../source/portal-developer-guide/permissions/index.rst:147
 msgid "_`RoleMove`"
 msgstr "_`RoleMove`"
 
-#: ../../source/portal-developer-guide/permissions/index.rst:145
+#: ../../source/portal-developer-guide/permissions/index.rst:148
 msgid "Permission to move role (select the parent role)"
 msgstr "ロールを移動する権限（親ロールを選択）"
 
-#: ../../source/portal-developer-guide/permissions/index.rst:147
+#: ../../source/portal-developer-guide/permissions/index.rst:150
 msgid "_`RoleReadAll`"
 msgstr "_`RoleReadAll`"
 
-#: ../../source/portal-developer-guide/permissions/index.rst:148
+#: ../../source/portal-developer-guide/permissions/index.rst:151
 msgid "Permission to see all roles"
 msgstr "すべてのロールを表示する権限"
 
-#: ../../source/portal-developer-guide/permissions/index.rst:152
+#: ../../source/portal-developer-guide/permissions/index.rst:155
 msgid "_`DocumentRead`"
 msgstr "_`DocumentRead`"
 
-#: ../../source/portal-developer-guide/permissions/index.rst:153
+#: ../../source/portal-developer-guide/permissions/index.rst:156
 msgid "Permission to see all documents"
 msgstr "すべてのドキュメントを表示する権限"
 
-#: ../../source/portal-developer-guide/permissions/index.rst:155
+#: ../../source/portal-developer-guide/permissions/index.rst:158
 msgid "_`DocumentWrite`"
 msgstr "_`DocumentWrite`"
 
-#: ../../source/portal-developer-guide/permissions/index.rst:156
 #: ../../source/portal-developer-guide/permissions/index.rst:159
+#: ../../source/portal-developer-guide/permissions/index.rst:162
 msgid "Permission to update, delete documents"
 msgstr "ドキュメントを更新、削除する権限"
 
-#: ../../source/portal-developer-guide/permissions/index.rst:158
+#: ../../source/portal-developer-guide/permissions/index.rst:161
 msgid "_`DocumentOfInvolvedCaseWrite`"
 msgstr "_`DocumentOfInvolvedCaseWrite`"
 
-#: ../../source/portal-developer-guide/permissions/index.rst:163
+#: ../../source/portal-developer-guide/permissions/index.rst:166
 msgid "_`DashboardWriteOwn`"
 msgstr "_`DashboardWriteOwn`"
 
-#: ../../source/portal-developer-guide/permissions/index.rst:164
+#: ../../source/portal-developer-guide/permissions/index.rst:167
 msgid "Permission to update private dashboards"
 msgstr "個人用ダッシュボードを更新する権限"
 
-#: ../../source/portal-developer-guide/permissions/index.rst:168
+#: ../../source/portal-developer-guide/permissions/index.rst:171
 msgid "_`DashboardWritePublic`"
 msgstr "_`DashboardWritePublic`"
 
-#: ../../source/portal-developer-guide/permissions/index.rst:169
+#: ../../source/portal-developer-guide/permissions/index.rst:172
 msgid "Permission to update public dashboards"
 msgstr "公開用ダッシュボードを更新する権限"
 
-#: ../../source/portal-developer-guide/permissions/index.rst:171
+#: ../../source/portal-developer-guide/permissions/index.rst:174
 msgid "_`AccessFullProcessList`"
 msgstr "_`AccessFullProcessList`"
 
-#: ../../source/portal-developer-guide/permissions/index.rst:172
+#: ../../source/portal-developer-guide/permissions/index.rst:175
 msgid "Permission to access the full process list. See :ref:`full-process-list`."
 msgstr "全プロセスリストにアクセスする権限。:ref:`full-process-list` を参照してください。"
 
-#: ../../source/portal-developer-guide/permissions/index.rst:176
+#: ../../source/portal-developer-guide/permissions/index.rst:179
 msgid "_`AccessFullTaskList`"
 msgstr "_`AccessFullTaskList`"
 
-#: ../../source/portal-developer-guide/permissions/index.rst:177
+#: ../../source/portal-developer-guide/permissions/index.rst:180
 msgid "Permission to access the full task list. See :ref:`full-task-list`."
 msgstr "全タスクリストにアクセスする権限。:ref:`full-task-list` を参照してください。"
 
-#: ../../source/portal-developer-guide/permissions/index.rst:181
+#: ../../source/portal-developer-guide/permissions/index.rst:184
 msgid "_`AccessFullCaseList`"
 msgstr "_`AccessFullCaseList`"
 
-#: ../../source/portal-developer-guide/permissions/index.rst:182
+#: ../../source/portal-developer-guide/permissions/index.rst:185
 msgid "Permission to access the full case list. See :ref:`full-case-list`."
 msgstr "全ケースリストにアクセスする権限。:ref:`full-case-list` を参照してください。"
 
-#: ../../source/portal-developer-guide/permissions/index.rst:186
+#: ../../source/portal-developer-guide/permissions/index.rst:189
 msgid "_`TaskCaseAddNote`"
 msgstr "_`TaskCaseAddNote`"
 
-#: ../../source/portal-developer-guide/permissions/index.rst:187
+#: ../../source/portal-developer-guide/permissions/index.rst:190
 msgid "Permission to add notes to a task/case"
 msgstr "タスク／ケースにノートを追加する権限"
 
-#: ../../source/portal-developer-guide/permissions/index.rst:191
+#: ../../source/portal-developer-guide/permissions/index.rst:194
 msgid "_`TaskCaseShowMoreNote`"
 msgstr "_`TaskCaseShowMoreNote`"
 
-#: ../../source/portal-developer-guide/permissions/index.rst:192
+#: ../../source/portal-developer-guide/permissions/index.rst:195
 msgid "Permission to see Show more note"
 msgstr "［さらにノートを表示］を表示する権限"
 
-#: ../../source/portal-developer-guide/permissions/index.rst:196
+#: ../../source/portal-developer-guide/permissions/index.rst:199
 msgid "_`CreatePublicExternalLink`"
 msgstr "_`CreatePublicExternalLink`"
 
-#: ../../source/portal-developer-guide/permissions/index.rst:197
+#: ../../source/portal-developer-guide/permissions/index.rst:200
 msgid ""
 "Permission to create public external links, all other users can see the "
 "links in the full process list."
 msgstr "公開用外部リンクを作成する権限。他のすべてのユーザーは全プロセスリストのリンクを表示できます。"
 
-#: ../../source/portal-developer-guide/permissions/index.rst:199
+#: ../../source/portal-developer-guide/permissions/index.rst:202
 msgid "_`RoleManagement`"
 msgstr "_`RoleManagement`"
 
-#: ../../source/portal-developer-guide/permissions/index.rst:200
+#: ../../source/portal-developer-guide/permissions/index.rst:203
 msgid "Permission to access the Role Management tab"
 msgstr "ロールの管理タブにアクセスする権限"
 
-#: ../../source/portal-developer-guide/permissions/index.rst:202
+#: ../../source/portal-developer-guide/permissions/index.rst:205
 msgid "_`NewsManagement`"
 msgstr "_`NewsManagement`"
 
-#: ../../source/portal-developer-guide/permissions/index.rst:203
+#: ../../source/portal-developer-guide/permissions/index.rst:206
 msgid "Permission to manage the content of the News feed"
 msgstr "ニュースフィードのコンテンツを管理する権限"
 
-#: ../../source/portal-developer-guide/permissions/index.rst:205
+#: ../../source/portal-developer-guide/permissions/index.rst:208
 msgid "_`PasswordValidation`"
 msgstr "_`PasswordValidation`"
 
-#: ../../source/portal-developer-guide/permissions/index.rst:206
+#: ../../source/portal-developer-guide/permissions/index.rst:209
 msgid ""
 "Permission to access the Password Validation section in the Admin "
 "Settings page"
 msgstr "管理者設定ページのパスワード検証セクションにアクセスする権限"
 
-#: ../../source/portal-developer-guide/permissions/index.rst:208
+#: ../../source/portal-developer-guide/permissions/index.rst:211
 msgid "_`DashboardExportOwn`"
 msgstr "_`DashboardExportOwn`"
 
-#: ../../source/portal-developer-guide/permissions/index.rst:209
+#: ../../source/portal-developer-guide/permissions/index.rst:212
 msgid "Permission to export private dashboards"
 msgstr "個人用ダッシュボードをエクスポートする権限"
 
-#: ../../source/portal-developer-guide/permissions/index.rst:211
+#: ../../source/portal-developer-guide/permissions/index.rst:214
 msgid "_`DashboardExportPublic`"
 msgstr "_`DashboardExportPublic`"
 
-#: ../../source/portal-developer-guide/permissions/index.rst:212
+#: ../../source/portal-developer-guide/permissions/index.rst:215
 msgid "Permission to export public dashboards"
 msgstr "公開用ダッシュボードをエクスポートする権限"
 
-#: ../../source/portal-developer-guide/permissions/index.rst:214
+#: ../../source/portal-developer-guide/permissions/index.rst:217
 msgid "_`DashboardImportOwn`"
 msgstr "_`DashboardImportOwn`"
 
-#: ../../source/portal-developer-guide/permissions/index.rst:215
+#: ../../source/portal-developer-guide/permissions/index.rst:218
 msgid "Permission to import private dashboards"
 msgstr "個人用ダッシュボードをインポートする権限"
 
-#: ../../source/portal-developer-guide/permissions/index.rst:217
+#: ../../source/portal-developer-guide/permissions/index.rst:220
 msgid "_`DashboardImportPublic`"
 msgstr "_`DashboardImportPublic`"
 
-#: ../../source/portal-developer-guide/permissions/index.rst:218
+#: ../../source/portal-developer-guide/permissions/index.rst:221
 msgid "Permission to import public dashboards"
 msgstr "公開用ダッシュボードをインポートする権限"
 
-#: ../../source/portal-developer-guide/permissions/index.rst:220
+#: ../../source/portal-developer-guide/permissions/index.rst:223
 msgid "_`ShareDashboardLink`"
 msgstr "_`ShareDashboardLink`"
 
-#: ../../source/portal-developer-guide/permissions/index.rst:221
+#: ../../source/portal-developer-guide/permissions/index.rst:224
 msgid "Permission to share dashboard links"
 msgstr "ダッシュボードのリンクを共有する権限"
 
-#: ../../source/portal-developer-guide/permissions/index.rst:225
+#: ../../source/portal-developer-guide/permissions/index.rst:228
 msgid "_`NotificationChannelsSetting`"
 msgstr "_`NotificationChannelsSetting`"
 
-#: ../../source/portal-developer-guide/permissions/index.rst:226
+#: ../../source/portal-developer-guide/permissions/index.rst:229
 msgid ""
 "Permission to customize notification channel preferences in :ref:`my-"
 "profile` page"
 msgstr ":ref:`my-profile` 、通知チャンネル設定のカスタマイズを許可する。"
 
-#: ../../source/portal-developer-guide/permissions/index.rst:228
+#: ../../source/portal-developer-guide/permissions/index.rst:231
 msgid "Granted to role Everybody by default."
 msgstr "デフォルトでは Everybody ロールに付与"
 
-#: ../../source/portal-developer-guide/permissions/index.rst:233
+#: ../../source/portal-developer-guide/permissions/index.rst:236
 msgid "Portal Absence And Substitute Permissions"
 msgstr "ポータルの不在者と代行者の権限"
 
-#: ../../source/portal-developer-guide/permissions/index.rst:235
+#: ../../source/portal-developer-guide/permissions/index.rst:238
 msgid "_`UserCreateAbsence`"
 msgstr "_`UserCreateAbsence`"
 
-#: ../../source/portal-developer-guide/permissions/index.rst:236
+#: ../../source/portal-developer-guide/permissions/index.rst:239
 msgid "Permission to create, edit absences of all users"
 msgstr "すべてのユーザーの不在を作成、編集する権限"
 
-#: ../../source/portal-developer-guide/permissions/index.rst:238
+#: ../../source/portal-developer-guide/permissions/index.rst:241
 msgid "_`UserCreateOwnAbsence`"
 msgstr "_`UserCreateOwnAbsence`"
 
-#: ../../source/portal-developer-guide/permissions/index.rst:239
+#: ../../source/portal-developer-guide/permissions/index.rst:242
 msgid "Permission to create, edit my own absences"
 msgstr "自分の不在を作成、編集する権限"
 
-#: ../../source/portal-developer-guide/permissions/index.rst:243
+#: ../../source/portal-developer-guide/permissions/index.rst:246
 msgid "_`UserDeleteAbsence`"
 msgstr "_`UserDeleteAbsence`"
 
-#: ../../source/portal-developer-guide/permissions/index.rst:244
+#: ../../source/portal-developer-guide/permissions/index.rst:247
 msgid "Permission to remove the absence entries for all users"
 msgstr "すべてのユーザーの不在エントリを削除する権限"
 
-#: ../../source/portal-developer-guide/permissions/index.rst:246
+#: ../../source/portal-developer-guide/permissions/index.rst:249
 msgid "_`UserDeleteOwnAbsence`"
 msgstr "_`UserDeleteOwnAbsence`"
 
-#: ../../source/portal-developer-guide/permissions/index.rst:247
+#: ../../source/portal-developer-guide/permissions/index.rst:250
 msgid "Permission to remove my own absence entries"
 msgstr "自分の不在エントリを削除する権限"
 
-#: ../../source/portal-developer-guide/permissions/index.rst:251
+#: ../../source/portal-developer-guide/permissions/index.rst:254
 msgid "_`UserReadAbsences`"
 msgstr "_`UserReadAbsences`"
 
-#: ../../source/portal-developer-guide/permissions/index.rst:252
+#: ../../source/portal-developer-guide/permissions/index.rst:255
 msgid "Permission to read absences of all users"
 msgstr "すべてのユーザーの不在を閲覧する権限"
 
-#: ../../source/portal-developer-guide/permissions/index.rst:254
+#: ../../source/portal-developer-guide/permissions/index.rst:257
 msgid "_`UserReadOwnAbsences`"
 msgstr "_`UserReadOwnAbsences`"
 
-#: ../../source/portal-developer-guide/permissions/index.rst:255
+#: ../../source/portal-developer-guide/permissions/index.rst:258
 msgid "Permission to read my own absences"
 msgstr "自分の不在を閲覧する権限"
 
-#: ../../source/portal-developer-guide/permissions/index.rst:259
+#: ../../source/portal-developer-guide/permissions/index.rst:262
 msgid "_`UserCreateSubstitute`"
 msgstr "_`UserCreateSubstitute`"
 
-#: ../../source/portal-developer-guide/permissions/index.rst:260
+#: ../../source/portal-developer-guide/permissions/index.rst:263
 msgid "Permission to create substitutes of all users"
 msgstr "すべてのユーザーの代行者を作成する権限"
 
-#: ../../source/portal-developer-guide/permissions/index.rst:262
+#: ../../source/portal-developer-guide/permissions/index.rst:265
 msgid "_`UserCreateOwnSubstitute`"
 msgstr "_`UserCreateOwnSubstitute`"
 
-#: ../../source/portal-developer-guide/permissions/index.rst:263
+#: ../../source/portal-developer-guide/permissions/index.rst:266
 msgid "Permission to create my own substitutes"
 msgstr "自分の代行者を作成する権限"
 
-#: ../../source/portal-developer-guide/permissions/index.rst:267
+#: ../../source/portal-developer-guide/permissions/index.rst:270
 msgid "_`UserReadSubstitutes`"
 msgstr "_`UserReadSubstitutes`"
 
-#: ../../source/portal-developer-guide/permissions/index.rst:268
+#: ../../source/portal-developer-guide/permissions/index.rst:271
 msgid "Permission to read substitutes of all users"
 msgstr "すべてのユーザーの代行者を閲覧する権限"
 
