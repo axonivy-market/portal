@@ -269,8 +269,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       hideChangePasswordButtonNote: この変数を true に設定すると、トップメニューの「パスワードの変更」オプションとログインページの「パスワードを忘れた場合」オプションが非表示になります。false に設定すると、これらのオプションが表示されます。
       hideLogoutButtonNote: true の場合、トップメニューのログアウトボタンは非表示になり、それ以外の場合は表示されます。
       hideRelatedCaseInfoFromHistory: true の場合、ケース履歴は関連するケース情報を履歴テーブルに表示しません。
-      hideSystemNotesFromHistory: true の場合、管理者以外のユーザーに対してケース／タスクノートは何のシステムノートも表示しません。
-      hideSystemNotesFromHistoryAdministrator: true の場合、管理者に対してケース／タスクノートは何のシステムノートも表示しません。
       hideSystemTasksFromHistory: true の場合、管理者以外のユーザーに対してケースノートは何のシステムタスクも表示しません。
       hideSystemTasksFromHistoryAdministrator: true の場合、管理者に対してケースノートは何のシステムタスクも表示しません。
       hideTaskDocument: true に設定すると、タスク詳細ページのドキュメントセクションは非表示になり、それ以外の場合は表示されます。

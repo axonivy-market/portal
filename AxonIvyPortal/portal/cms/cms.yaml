@@ -192,8 +192,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       hideChangePasswordButtonNote: Set this variable to true to hide the "Change Password" option in the top menu and the "Forgotten Password" option on the login page. If set to false, these options will be shown.
       hideLogoutButtonNote: If true, the logout button on top menu will be hidden, otherwise it will be shown.
       hideRelatedCaseInfoFromHistory: If true, case history does not display the related case information in the history table.
-      hideSystemNotesFromHistory: If true, case/task note does not display any system notes for non-administrator users.
-      hideSystemNotesFromHistoryAdministrator: If true, case/task note does not display any system notes for administrator.
       hideSystemTasksFromHistory: If true, case note does not display any system tasks for non-administrator users.
       hideSystemTasksFromHistoryAdministrator: If true, case note does not display any system tasks for administrator.
       hideTaskDocument: Set to true, the document section in task detail page will be hidden, otherwise it will be shown.
