@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Portal Guide ${revision}\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-23 07:56+0000\n"
+"POT-Creation-Date: 2025-10-24 03:51+0000\n"
 "PO-Revision-Date: 2025-10-17 10:40+0000\n"
 "Last-Translator: Thang Huynh <hhqthang@axonactive.com>\n"
 "Language: ja\n"
@@ -969,26 +969,6 @@ msgstr "Portal.EmbedInFrame"
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "If true, start a process/task in IFrame mode."
 msgstr "trueの場合、IFrameモードでプロセス/タスクを開始する。"
-
-#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
-msgid "Portal.Histories.HideSystemNotes"
-msgstr "Portal.Histories.HideSystemNotes"
-
-#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
-msgid ""
-"If true, case/task note does not display any system notes for non-"
-"administrator users."
-msgstr "true の場合、管理者以外のユーザーに対してケース／タスクノートは何のシステムノートも表示しません。"
-
-#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
-msgid "Portal.Histories.HideSystemNotesForAdministrator"
-msgstr "Portal.Histories.HideSystemNotesForAdministrator"
-
-#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
-msgid ""
-"If true, case/task note does not display any system notes for "
-"administrator."
-msgstr "true の場合、管理者に対してケース／タスクノートは何のシステムノートも表示しません。"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.Histories.HideSystemTasks"
@@ -7529,4 +7509,22 @@ msgstr "数値チャートのラベル表示を切り替える。"
 #~ "translated text, clicking on :guilabel:`Auto."
 #~ " translation`."
 #~ msgstr ""
+
+#~ msgid "Portal.Histories.HideSystemNotes"
+#~ msgstr "Portal.Histories.HideSystemNotes"
+
+#~ msgid ""
+#~ "If true, case/task note does not "
+#~ "display any system notes for non-"
+#~ "administrator users."
+#~ msgstr "true の場合、管理者以外のユーザーに対してケース／タスクノートは何のシステムノートも表示しません。"
+
+#~ msgid "Portal.Histories.HideSystemNotesForAdministrator"
+#~ msgstr "Portal.Histories.HideSystemNotesForAdministrator"
+
+#~ msgid ""
+#~ "If true, case/task note does not "
+#~ "display any system notes for "
+#~ "administrator."
+#~ msgstr "true の場合、管理者に対してケース／タスクノートは何のシステムノートも表示しません。"
 
