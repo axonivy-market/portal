@@ -71,16 +71,16 @@ public class DashboardCaseWidgetActionTest extends BaseTest {
 
     // In progress
     assertCaseActionsByCaseState("Open",
-        Arrays.asList("Details", "Process overview", "Business details", "Destroy", "Process Viewer"));
+        Arrays.asList("Details", "Process overview", "Business details", "Custom Fields", "Destroy", "Process Viewer"));
     // Done
     assertCaseActionsByCaseState("Done",
-        Arrays.asList("Details", "Process overview", "Business details", "Process Viewer"));
+        Arrays.asList("Details", "Process overview", "Business details", "Custom Fields", "Process Viewer"));
     // Destroyed
     filterByCaseState("Open");
     caseWidget.destroyCase(0);
     caseWidget.waitTableLoaded();
     assertCaseActionsByCaseState("Destroyed",
-        Arrays.asList("Details", "Process overview", "Business details", "Process Viewer"));
+        Arrays.asList("Details", "Process overview", "Business details", "Custom Fields", "Process Viewer"));
   }
 
   private void assertCaseActionsByCaseState(String state, List<String> caseActionsInCase) {
