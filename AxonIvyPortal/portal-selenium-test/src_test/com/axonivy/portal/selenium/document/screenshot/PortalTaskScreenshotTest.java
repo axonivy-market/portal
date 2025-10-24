@@ -174,6 +174,15 @@ public class PortalTaskScreenshotTest extends ScreenshotBaseTest {
     WebElement workflowEventTable = taskDetails.getWorkflowEventsTable();
     ScreenshotUtils.captureElementWithMarginOptionScreenshot(workflowEventTable,
         ScreenshotUtils.TASK_DETAIL_FOLDER + "workflow-events-table", new ScreenshotMargin(100, 50));
+    
+    refreshPage();
+    taskDetails.waitUtilsTaskDetailsDisplayed();
+    ScreenshotUtils.resizeBrowser(new Dimension(1440, 1000));
+    taskDetails.openActionPanel();
+    taskDetails.clickOnShowCustomFieldsDialog();
+    WebElement customFieldsDialog = taskDetails.getCustomFieldsDialog();
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(customFieldsDialog,
+        ScreenshotUtils.TASK_DETAIL_FOLDER + "custom-fields-dialog", new ScreenshotMargin(100, 50));
   }
 
   @Test

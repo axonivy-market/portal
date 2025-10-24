@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
@@ -17,6 +18,7 @@ import org.apache.logging.log4j.util.Strings;
 import org.primefaces.PrimeFaces;
 import org.primefaces.event.FileUploadEvent;
 
+import com.axonivy.portal.components.util.ImageUploadResult;
 import com.axonivy.portal.service.IvyTranslationService;
 import com.axonivy.portal.util.ImageUploadUtils;
 import com.axonivy.portal.util.UploadDocumentUtils;
@@ -34,7 +36,6 @@ import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IUser;
-import ch.ivyteam.util.Pair;
 
 @ManagedBean
 @ViewScoped
@@ -89,9 +90,15 @@ public class ExternalLinkBean implements Serializable, IMultiLanguage {
 
   public void handleImageUpload(FileUploadEvent event) {
     removeImage();
-    Pair<String, String> imageInfo = ImageUploadUtils.handleImageUpload(event, DashboardConstants.EXTERNAL_LINK_IMAGE_DIRECTORY);
-    externalLink.setImageLocation(imageInfo.getLeft());
-    externalLink.setImageType(imageInfo.getRight());
+    ImageUploadResult imageInfo = ExternalLinkUtils.handleImageUpload(event, DashboardConstants.EXTERNAL_LINK_IMAGE_DIRECTORY);
+    if (imageInfo.isInvalid()) {
+      FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+          Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/documentFiles/fileContainScript"), null);
+      FacesContext.getCurrentInstance().addMessage("external-link-dialog-message", message);
+      return;
+    }
+    externalLink.setImageLocation(imageInfo.imageLocation());
+    externalLink.setImageType(imageInfo.imageType());
   }
   
   public void removeImage() {

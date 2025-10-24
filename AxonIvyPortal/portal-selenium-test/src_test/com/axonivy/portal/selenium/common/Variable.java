@@ -10,8 +10,6 @@ public enum Variable {
   HIDE_TIME("Portal.DateTimeFormat.HideTime"), HIDE_YEAR("Portal.DateTimeFormat.HideYear"),
   HIDE_SYSTEM_TASKS_FROM_HISTORY("Portal.Histories.HideSystemTasks"),
   HIDE_SYSTEM_TASKS_FROM_HISTORY_ADMINISTRATOR("Portal.Histories.HideSystemTasksForAdministrator"),
-  HIDE_SYSTEM_NOTES_FROM_HISTORY("Portal.Histories.HideSystemNotes"),
-  HIDE_SYSTEM_NOTES_FROM_HISTORY_ADMINISTRATOR("Portal.Histories.HideSystemNotesForAdministrator"),
   ENABLE_GROUP_CHAT("Portal.Chat.EnableGroup"),
   ENABLE_PRIVATE_CHAT("Portal.Chat.EnablePrivate"), CHAT_RESPONSE_TIMEOUT("Portal.Chat.ResponseTimeout"),
   CHAT_MAX_CONNECTION("Portal.Chat.MaxConnection"), ENABLE_CASE_OWNER("Portal.Cases.EnableOwner"),

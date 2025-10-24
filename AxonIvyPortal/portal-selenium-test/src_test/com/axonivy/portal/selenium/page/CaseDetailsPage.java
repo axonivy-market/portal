@@ -88,7 +88,7 @@ public class CaseDetailsPage extends TemplatePage {
     $("div.ui-dialog[aria-hidden='false']").shouldBe(appear, DEFAULT_TIMEOUT);
     SelenideElement addNoteDialog = $("div.ui-dialog[aria-hidden='false']").shouldBe(appear, DEFAULT_TIMEOUT);
     SelenideElement textArea = addNoteDialog.$("textarea[id$='note-content']").shouldBe(appear, DEFAULT_TIMEOUT);
-    textArea.shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();;
+    textArea.shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     textArea.sendKeys(noteContent);
     SelenideElement saveButton = addNoteDialog.$("button[id$='save-add-note-command']");
     saveButton.shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
@@ -96,10 +96,12 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public ElementsCollection getNotesWithContent(String content) {
+    $("[id$='history-container']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).scrollTo();
     return $$("span[id$=':case-histories:case-histories-table'] table tbody tr td a").filter(text(content));
   }
 
   public void gotoTaskDetailsPageOfRelatedTask(String taskName) {
+    $("div[id$='case-details-related-task-table']").shouldBe(appear, DEFAULT_TIMEOUT).scrollTo();
     $$("div[id$='case-details-related-task-table'] table tbody tr td span")
         .filter(text(taskName)).first().click();
   }
@@ -302,10 +304,8 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public void waitForIFrameURLWidgetLoad() {
-    $("[name='custom-widget-iframe-url']").shouldBe(appear, DEFAULT_TIMEOUT);
-    switchToIframeWithNameOrId("custom-widget-iframe-url");
-    $("a[href='https://www.iana.org/domains/example']").shouldBe(Condition.visible, DEFAULT_TIMEOUT);
-    switchBackToParent();
+    SelenideElement iframe = $("iframe[name='custom-widget-iframe-url']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    iframe.shouldHave(Condition.attributeMatching("src", ".*example\\.com.*"));
   }
 
   public SelenideElement getSharePageButtonElement() {
@@ -362,7 +362,33 @@ public class CaseDetailsPage extends TemplatePage {
     waitForElementClickableThenClick($("[id$=':action-group:case-details-action-link']"));
     waitForElementDisplayed(By.cssSelector("[id$=':action-group:action-steps-panel'].action-steps-panel"), true);
   }
+  
+  public void clickOnCaseCustomFieldsAction() {
+    getCaseCustomFieldsButton()
+      .shouldBe(appear, DEFAULT_TIMEOUT)
+      .shouldBe(getClickableCondition())
+      .click();
+      
+    getCaseCustomFieldsDialog().shouldBe(appear, DEFAULT_TIMEOUT);
+  }
 
+  public SelenideElement getCaseCustomFieldsButton() {
+    return $("a[id$=':show-case-custom-fields']");
+  }
+  
+  public List<String> getCaseCustomFieldNames() {
+    return $$("span[id$='customFieldLabel']")
+        .shouldBe(CollectionCondition.sizeGreaterThanOrEqual(0), DEFAULT_TIMEOUT)
+        .asFixedIterable()
+        .stream()
+        .map(SelenideElement::getText)
+        .collect(Collectors.toList());
+  }
+
+  public SelenideElement getCaseCustomFieldsDialog() {
+    return $("div[id$='case-custom-fields-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+  
   public void onClickHistoryIcon() {
     $("a[id$=':case-histories:add-note-command']").shouldBe(appear, DEFAULT_TIMEOUT).scrollIntoCenter();
     $("a[id$=':case-histories:add-note-command']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
@@ -712,7 +738,11 @@ public class CaseDetailsPage extends TemplatePage {
         String.format("[id$='task-widget:related-tasks:%d:additional-options:side-steps-panel']", index);
     waitForElementDisplayed(By.cssSelector(actionPanel), true);
   }
-
+  
+  public SelenideElement getTaskCustomFieldsDialog() {
+    return $("div[id$='task-custom-fields-dialog']");
+  }
+  
   public int getTaskRowIndexFromDetailPage(String taskName) {
     ElementsCollection taskNames = $$(".task-name-value");
     int taskIndex = IntStream.range(0, taskNames.size()).filter(i -> taskNames.get(i).getText().equals(taskName))
@@ -1104,6 +1134,10 @@ public class CaseDetailsPage extends TemplatePage {
       // So we need to wait for Ajax Indicator disappear
       clickOnSystemTasksCheckbox(checkboxShouldBeChecked);
     }
+  }
+  
+  public SelenideElement getCustomFieldsDialog() {
+    return $("div[id$='task-custom-fields-dialog']");
   }
 }
 

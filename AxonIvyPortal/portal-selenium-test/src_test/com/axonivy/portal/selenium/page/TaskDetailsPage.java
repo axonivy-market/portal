@@ -284,10 +284,8 @@ public class TaskDetailsPage extends TemplatePage {
   }
 
   public void waitForIFrameURLWidgetLoad() {
-    switchToIframeWithNameOrId("custom-widget-iframe-url");
-    $("a[href='https://www.iana.org/domains/example']").shouldBe(Condition.visible, DEFAULT_TIMEOUT);
-    switchBackToParent();
-
+    SelenideElement iframe = $("iframe[name='custom-widget-iframe-url']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    iframe.shouldHave(Condition.attributeMatching("src", ".*example\\.com.*"));
   }
 
   public void waitForIFrameWidgetLoad() {
@@ -406,5 +404,23 @@ public class TaskDetailsPage extends TemplatePage {
       // So we need to wait for Ajax Indicator disappear
       clickOnSystemNotesCheckbox(checkboxShouldBeChecked);
     }
+  }
+  
+  public void clickOnShowCustomFieldsDialog() {
+    $("a[id$=':task-custom-fields-command']").shouldBe(getClickableCondition()).click();
+    $("div[id$='task-custom-fields-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+  
+  public SelenideElement getCustomFieldsDialog() {
+    return $("div[id$='task-custom-fields-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  public List<String> getCustomFieldNames() {
+    return $$("span[id$='customFieldLabel']")
+        .shouldBe(CollectionCondition.sizeGreaterThanOrEqual(0), DEFAULT_TIMEOUT)
+        .asFixedIterable()
+        .stream()
+        .map(SelenideElement::getText)
+        .collect(Collectors.toList());
   }
 }

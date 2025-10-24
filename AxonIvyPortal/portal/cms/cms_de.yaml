@@ -269,8 +269,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       hideChangePasswordButtonNote: Setzen Sie diese Variable auf true, um die Option "Passwort ändern" im oberen Menü und die Option "Passwort vergessen" auf der Anmeldeseite auszublenden. Wenn sie auf false gesetzt ist, werden diese Optionen angezeigt.
       hideLogoutButtonNote: 'Auf "true" setzen, um die Logout Funktion im Top Menu zu deaktivieren. '
       hideRelatedCaseInfoFromHistory: Wenn diese Option auf "true" gesetzt ist, werden die zugehörigen Fallinformationen nicht in der Tabelle "Historie" angezeigt.
-      hideSystemNotesFromHistory: Wenn diese Option aktiviert ist, werden in den Vorgangs-/Aufgabennotizen keine Systemnotizen für Benutzer ohne Administratorrechte angezeigt.
-      hideSystemNotesFromHistoryAdministrator: Wenn diese Option aktiviert ist, werden in den Vorgangs-/Aufgabennotizen keine Systemnotizen für Administratoren angezeigt.
       hideSystemTasksFromHistory: Wenn diese Option aktiviert ist, zeigt die Vorgangs- / Aufgabennotiz keine technischen Verlaufseinträge für Benutzer ohne Administratorrechte an.
       hideSystemTasksFromHistoryAdministrator: Wenn dies der Fall ist, zeigt die Vorgangs- / Aufgabennotiz keine technischen Verlaufseinträge für den Administrator an.
       hideTaskDocument: Auf "true" setzen, um die Dokumentensektion in Taskdetails auszublenden.
@@ -332,6 +330,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     addDocumentHelpText: Zum Hochladen Dateien per Drag & Drop hier ablegen oder Dateien auswählen
     addNoteHelpText: Schreiben Sie hier Ihren Text
     businessDetailsTitle: Geschäftsdetails
+    customFields: Benutzerdefinierte Felder
+    customFieldsDialog: 'Benutzerdefinierte Felder des Falls #{0}'
     deleteFile: Datei löschen
     documents: Dokumente
     downloadFile: Datei herunterladen
@@ -954,7 +954,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     deleteDocumentNote: '{0} hat folgendes gelöscht: {1}'
     deleteSuceed: Datei wurde erfolgreich gelöscht
     download: Herunterladen
-    fileContainScript: Diese Datei darf aufgrund von Skript-Inhalten nicht hochgeladen werden!
+    fileContainScript: Die Datei enthält potenziell schädliche Inhalte und kann nicht hochgeladen werden!
     fileContainVirus: Upload fehlgeschlagen, Virus/Infektion erkannt!
     fileCouldNotParse: Die Datei konnte nicht analysiert werden
     fileEmptyMessage: Datei ist leer
@@ -1185,6 +1185,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     afterEscalation: Nach Eskalation
     businessCase: Vorgang
     completedOn: Erledigt am
+    customFields: Benutzerdefinierte Felder
+    customFieldsDialog: 'Benutzerdefinierte Felder der Aufgabe #{0}'
     delayedUntil: Sperrfrist
     deleteFile: Datei löschen
     documents: Dokumente

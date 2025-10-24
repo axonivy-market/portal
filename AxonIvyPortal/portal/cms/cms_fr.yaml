@@ -269,8 +269,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       hideChangePasswordButtonNote: Attribuez la valeur true à cette variable pour masquer l'option "Changer de mot de passe" dans le menu supérieur et l'option "Mot de passe oublié" sur la page de connexion. Si elle vaut false, ces options seront affichées.
       hideLogoutButtonNote: Si true, le bouton de déconnexion du menu supérieur sera masqué, sinon il sera affiché.
       hideRelatedCaseInfoFromHistory: Si la valeur est vraie, l'historique des cas n'affiche pas les informations relatives aux cas dans le tableau de l'historique.
-      hideSystemNotesFromHistory: Si vrai, la remarque sur le cas/la tâche n'affiche aucune note de système pour les utilisateurs non administrateurs.
-      hideSystemNotesFromHistoryAdministrator: Si vrai, la remarque sur le cas/la tâche n'affiche aucune note de système pour l'administrateur.
       hideSystemTasksFromHistory: Si vrai, la remarque sure le cas / de la tâche n'affiche aucune tâche du système pour les utilisateurs non administrateurs.
       hideSystemTasksFromHistoryAdministrator: Si vrai, la remarque sure le cas / de la tâche n'affiche aucune tâche système pour l'administrateur.
       hideTaskDocument: Si vous sélectionnez "true", la section du document dans la page de détail de la tâche sera invisible, sinon elle sera visible.
@@ -332,6 +330,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     addDocumentHelpText: Pour ajouter des fichiers, glissez-les ou sélectionnez-les
     addNoteHelpText: Ecrivez votre texte ici
     businessDetailsTitle: Détails de l'entreprise
+    customFields: Champs personnalisés
+    customFieldsDialog: 'Champs personnalisés du cas #{0}'
     deleteFile: Supprimer le fichier
     documents: Documents
     downloadFile: Télécharger le fichier
@@ -952,7 +952,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     deleteDocumentNote: '{0} a supprimé(e) {1}'
     deleteSuceed: Le fichier a été supprimé avec succès
     download: Télécharger
-    fileContainScript: Ce fichier n'est pas autorisé à être téléchargé en raison du contenu du script!
+    fileContainScript: Le fichier contient un contenu potentiellement malveillant et ne peut pas être téléversé !
     fileContainVirus: Erreur de téléchargement, virus/infection détecté !
     fileCouldNotParse: Impossible d'analyser le fichier
     fileEmptyMessage: Le fichier est vide
@@ -1182,6 +1182,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     afterEscalation: Après escalade
     businessCase: Dossier
     completedOn: Fini le
+    customFields: Champs personnalisés
+    customFieldsDialog: 'Champs personnalisés de la tâche #{0}'
     delayedUntil: Retardé jusqu'au
     deleteFile: Supprimer le fichier
     documents: Documents

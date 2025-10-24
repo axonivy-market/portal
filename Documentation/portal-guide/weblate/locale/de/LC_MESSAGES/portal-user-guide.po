@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Portal Guide ${revision}\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-22 04:56+0000\n"
+"POT-Creation-Date: 2025-10-23 07:56+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: de\n"
@@ -629,9 +629,9 @@ msgstr ""
 
 #: ../../source/portal-user-guide/admin-settings/index.rst:62
 msgid ""
-"Portal settings are stored as |ivy| variables and can be configured in "
-"the :dev-url:`|ivy| Cockpit </doc/|version|/engine-guide/reference"
-"/engine-cockpit/configuration.html#engine-cockpit-variables>`."
+"Portal settings are stored as Axon Ivy variables and can be configured in"
+" the :doc-url:`Axon Ivy Cockpit </engine-guide/reference/engine-"
+"cockpit/configuration.html#engine-cockpit-variables>`."
 msgstr ""
 
 #: ../../source/portal-user-guide/admin-settings/index.rst:68
@@ -1575,13 +1575,13 @@ msgid "ai-assistant-menu-item"
 msgstr ""
 
 #: ../../source/portal-user-guide/axon-ivy-portal/index.rst:4
-msgid "|ivy| Portal"
+msgid "Axon Ivy Portal"
 msgstr ""
 
 #: ../../source/portal-user-guide/axon-ivy-portal/index.rst:6
 msgid ""
-"**|ivy| Portal** is the centerpiece for your daily work with the "
-"applications you or your company implemented using |ivy|. With a web-"
+"**Axon Ivy Portal** is the centerpiece for your daily work with the "
+"applications you or your company implemented using Axon Ivy. With a web-"
 "based, modern interface, the Portal provides you with key functionalities"
 " on all your devices:"
 msgstr ""
@@ -1602,30 +1602,30 @@ msgstr ""
 
 #: ../../source/portal-user-guide/axon-ivy-portal/index.rst:18
 msgid ""
-"Improve your |ivy| Portal experience and efficiency through the built-in "
-"customization options"
+"Improve your Axon Ivy Portal experience and efficiency through the built-"
+"in customization options"
 msgstr ""
 
 #: ../../source/portal-user-guide/axon-ivy-portal/index.rst:21
 msgid ""
 "This document provides you – as a business user – with a comprehensive "
-"overview of the |ivy| Portal, its features and functionalities."
+"overview of the Axon Ivy Portal, its features and functionalities."
 msgstr ""
 
 #: ../../source/portal-user-guide/axon-ivy-portal/index.rst:25
 msgid ""
 "The look and feel shown in the screenshots of this document, as well as "
-"the features presented are part of the standard |ivy| Portal. However, "
-"the |ivy| Portal is highly configurable, thus, the Portal of your company"
-" might have a different look and feel, and some features might be "
+"the features presented are part of the standard Axon Ivy Portal. However,"
+" the Axon Ivy Portal is highly configurable, thus, the Portal of your "
+"company might have a different look and feel, and some features might be "
 "disabled by your administrator."
 msgstr ""
 
 #: ../../source/portal-user-guide/axon-ivy-portal/index.rst:31
 msgid ""
-"To start your |ivy| Portal experience, open the link provided by your "
-"administrator in a web browser. The |ivy| Portal will ask you to enter "
-"your login credentials."
+"To start your Axon Ivy Portal experience, open the link provided by your "
+"administrator in a web browser. The Axon Ivy Portal will ask you to enter"
+" your login credentials."
 msgstr ""
 
 #: ../../source/portal-user-guide/axon-ivy-portal/index.rst:35
@@ -1641,7 +1641,7 @@ msgstr ""
 msgid ""
 "Depending on your infrastructure, you might be automatically logged in "
 "using single-sign-on (SSO). In this case, you will be forwarded directly "
-"to the |ivy| Portal Dashboard."
+"to the Axon Ivy Portal Dashboard."
 msgstr ""
 
 #: ../../source/portal-user-guide/axon-ivy-portal/index.rst:42
@@ -1652,14 +1652,14 @@ msgstr ""
 
 #: ../../source/portal-user-guide/axon-ivy-portal/index.rst:45
 msgid ""
-"After successful login, you will see the |ivy| Portal Homepage and your "
-"personal dashboard. All your activities can be managed from this central "
-"entry point. The Portal Homepage has the following elements:"
+"After successful login, you will see the Axon Ivy Portal Homepage and "
+"your personal dashboard. All your activities can be managed from this "
+"central entry point. The Portal Homepage has the following elements:"
 msgstr ""
 
 #: ../../source/portal-user-guide/axon-ivy-portal/index.rst:49
 msgid ""
-"The |ivy| Portal header at the top is always visible and provides you "
+"The Axon Ivy Portal header at the top is always visible and provides you "
 "with a global search field, key information about the Portal and options "
 "to configure your personal user account. See :ref:`portal-header` for "
 "details."
@@ -1676,10 +1676,10 @@ msgstr ""
 #: ../../source/portal-user-guide/axon-ivy-portal/index.rst:56
 msgid ""
 "The menu on the left side is always visible and gives you access to all "
-"processes, cases, tasks and other features of the |ivy| Portal. If the "
-"menu is minimized, hover over the menu to enlarge it. You may permanently"
-" enlarge the menu by clicking on the |pin-icon| icon in the top left hand"
-" corner."
+"processes, cases, tasks and other features of the Axon Ivy Portal. If the"
+" menu is minimized, hover over the menu to enlarge it. You may "
+"permanently enlarge the menu by clicking on the |pin-icon| icon in the "
+"top left hand corner."
 msgstr ""
 
 #: ../../source/portal-user-guide/includes/_common-icon.rst:41
@@ -2834,9 +2834,9 @@ msgstr ""
 
 #: ../../source/portal-user-guide/demo-processes/index.rst:6
 msgid ""
-"When you start the |ivy-engine| in demo mode, you will see **portal-user-"
-"examples**. In this project, we provide some simple examples. You can "
-"play with them to have the feeling how |ivy| and Portal work."
+"When you start the Axon Ivy Engine in demo mode, you will see **portal-"
+"user-examples**. In this project, we provide some simple examples. You "
+"can play with them to have the feeling how Axon Ivy and Portal work."
 msgstr ""
 
 #: ../../source/portal-user-guide/demo-processes/index.rst:11
@@ -3098,7 +3098,7 @@ msgstr ""
 msgid ""
 "The **Full Case List** page is a dashboard featuring a single, full-width"
 " task widget. You can reach the page by using the |case-icon| "
-":guilabel:`Cases` link in the |ivy| Portal menu."
+":guilabel:`Cases` link in the Axon Ivy Portal menu."
 msgstr ""
 
 #: ../../source/portal-user-guide/includes/_common-icon.rst:21
@@ -3121,7 +3121,7 @@ msgstr ""
 msgid "|navigate-to-full-cases-list-page|"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:347
+#: ../../source/portal-user-guide/full-case-list/index.rst:364
 msgid "Menu to navigate to the Full case list page"
 msgstr ""
 
@@ -3191,7 +3191,7 @@ msgstr ""
 msgid "|case-key-information|"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:349
+#: ../../source/portal-user-guide/full-case-list/index.rst:366
 msgid "Full case list: key informations"
 msgstr ""
 
@@ -3210,7 +3210,7 @@ msgstr ""
 msgid "|case-details|"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:351
+#: ../../source/portal-user-guide/full-case-list/index.rst:368
 msgid "The Case Details page"
 msgstr ""
 
@@ -3228,7 +3228,7 @@ msgstr ""
 msgid "|case-details-data-description|"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:353
+#: ../../source/portal-user-guide/full-case-list/index.rst:370
 msgid "Case Details: General section"
 msgstr ""
 
@@ -3244,13 +3244,13 @@ msgstr ""
 msgid "|case-details-related-tasks-cases|"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:355
+#: ../../source/portal-user-guide/full-case-list/index.rst:372
 msgid "Case Details: Related Tasks of Case section"
 msgstr ""
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:59
 msgid ""
-"Histories: The |ivy| Portal adds notes here for state changes of the "
+"Histories: The Axon Ivy Portal adds notes here for state changes of the "
 "case. You may add your own notes as described below."
 msgstr ""
 
@@ -3258,7 +3258,7 @@ msgstr ""
 msgid "|case-details-histories|"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:357
+#: ../../source/portal-user-guide/full-case-list/index.rst:374
 msgid "Case Details: Histories section"
 msgstr ""
 
@@ -3272,7 +3272,7 @@ msgstr ""
 msgid "|case-details-documents|"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:359
+#: ../../source/portal-user-guide/full-case-list/index.rst:376
 msgid "Case Details: Documents section"
 msgstr ""
 
@@ -3290,21 +3290,22 @@ msgstr ""
 #: ../../source/portal-user-guide/full-case-list/index.rst:215
 #: ../../source/portal-user-guide/full-case-list/index.rst:274
 #: ../../source/portal-user-guide/full-case-list/index.rst:335
-#: ../../source/portal-user-guide/full-task-list/index.rst:157
+#: ../../source/portal-user-guide/full-case-list/index.rst:348
+#: ../../source/portal-user-guide/full-task-list/index.rst:159
 msgid "Open the case details"
 msgstr ""
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:75
-#: ../../source/portal-user-guide/full-task-list/index.rst:120
+#: ../../source/portal-user-guide/full-task-list/index.rst:122
 msgid "Click on the :guilabel:`Edit` button to drag, drop and resize widgets."
 msgstr ""
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:77
-#: ../../source/portal-user-guide/full-task-list/index.rst:122
+#: ../../source/portal-user-guide/full-task-list/index.rst:124
 msgid "|how-to-switch-to-edit-mode|"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:373
+#: ../../source/portal-user-guide/full-case-list/index.rst:390
 msgid "Case Details: button to switch to the edit mode"
 msgstr ""
 
@@ -3315,11 +3316,11 @@ msgid ""
 msgstr ""
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:83
-#: ../../source/portal-user-guide/full-task-list/index.rst:127
+#: ../../source/portal-user-guide/full-task-list/index.rst:129
 msgid "|how-to-switch-to-view-mode|"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:371
+#: ../../source/portal-user-guide/full-case-list/index.rst:388
 msgid "Case Details: save button"
 msgstr ""
 
@@ -3330,16 +3331,16 @@ msgid ""
 msgstr ""
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:88
-#: ../../source/portal-user-guide/full-task-list/index.rst:132
+#: ../../source/portal-user-guide/full-task-list/index.rst:134
 msgid "|how-to-reset-to-default|"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:375
+#: ../../source/portal-user-guide/full-case-list/index.rst:392
 msgid "Case Details: button to reset to the default configurations"
 msgstr ""
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:93
-#: ../../source/portal-user-guide/full-task-list/index.rst:136
+#: ../../source/portal-user-guide/full-task-list/index.rst:138
 msgid "HowTo: Attach a document to a case"
 msgstr ""
 
@@ -3348,12 +3349,12 @@ msgid "Click |add-icon| :guilabel:`Add document`"
 msgstr ""
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:99
-#: ../../source/portal-user-guide/full-task-list/index.rst:141
+#: ../../source/portal-user-guide/full-task-list/index.rst:143
 msgid "The :guilabel:`Add document` dialog is opened"
 msgstr ""
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:101
-#: ../../source/portal-user-guide/full-task-list/index.rst:143
+#: ../../source/portal-user-guide/full-task-list/index.rst:145
 msgid ""
 "Upload a file by clicking :guilabel:`Upload here` or by dragging the file"
 " into the dialog"
@@ -3367,7 +3368,7 @@ msgstr ""
 msgid "|how-to-attach-document-to-case|"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:361
+#: ../../source/portal-user-guide/full-case-list/index.rst:378
 msgid "Case Details: Add document dialog"
 msgstr ""
 
@@ -3393,7 +3394,7 @@ msgid "delete-icon"
 msgstr ""
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:122
-#: ../../source/portal-user-guide/full-task-list/index.rst:181
+#: ../../source/portal-user-guide/full-task-list/index.rst:183
 msgid "A confirmation dialog is opened"
 msgstr ""
 
@@ -3405,7 +3406,7 @@ msgstr ""
 msgid "|how-to-delete-an-attachment-from-case|"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:363
+#: ../../source/portal-user-guide/full-case-list/index.rst:380
 msgid "Case Details: Delete document confirm dialog"
 msgstr ""
 
@@ -3421,7 +3422,7 @@ msgid "HowTo: Preview a document of a case"
 msgstr ""
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:137
-#: ../../source/portal-user-guide/full-task-list/index.rst:197
+#: ../../source/portal-user-guide/full-task-list/index.rst:199
 msgid ""
 "Click on the |preview-icon| button next to the attachment you want to "
 "preview"
@@ -3432,83 +3433,83 @@ msgid "preview-icon"
 msgstr ""
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:139
-#: ../../source/portal-user-guide/full-task-list/index.rst:200
+#: ../../source/portal-user-guide/full-task-list/index.rst:202
 msgid "A preview dialog is opened"
 msgstr ""
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:141
-#: ../../source/portal-user-guide/full-task-list/index.rst:146
-#: ../../source/portal-user-guide/full-task-list/index.rst:202
+#: ../../source/portal-user-guide/full-task-list/index.rst:148
+#: ../../source/portal-user-guide/full-task-list/index.rst:204
 msgid "Click the button :guilabel:`Close` to close the dialog"
 msgstr ""
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:143
-#: ../../source/portal-user-guide/full-task-list/index.rst:204
+#: ../../source/portal-user-guide/full-task-list/index.rst:206
 msgid "|how-to-preview-document|"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:381
+#: ../../source/portal-user-guide/full-case-list/index.rst:398
 msgid "Case Details: preview document dialog"
 msgstr ""
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:147
-#: ../../source/portal-user-guide/full-task-list/index.rst:208
+#: ../../source/portal-user-guide/full-task-list/index.rst:210
 msgid ""
 "Portal can preview images(jpg, jpeg, bmp and png), plain text(txt and "
 "log) and pdf documents by default."
 msgstr ""
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:149
-#: ../../source/portal-user-guide/full-task-list/index.rst:210
+#: ../../source/portal-user-guide/full-task-list/index.rst:212
 msgid ""
 "Portal can preview Word(doc, docx), Excel(xls, xlsx) and email(eml) "
-"documents if :dev-url:`DocFactory <https://market.axonivy.com/doc-factory"
+"documents if :doc-url:`DocFactory <https://market.axonivy.com/doc-factory"
 "#tab-description>` is deployed in the same security context."
 msgstr ""
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:151
-#: ../../source/portal-user-guide/full-task-list/index.rst:212
+#: ../../source/portal-user-guide/full-task-list/index.rst:214
 msgid ""
 "Change :ref:`Portal settings <update-portal-settings>` "
 ":guilabel:`Portal.Document.EnablePreview` to true to enable this feature."
 msgstr ""
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:154
-#: ../../source/portal-user-guide/full-task-list/index.rst:155
+#: ../../source/portal-user-guide/full-task-list/index.rst:157
 msgid "HowTo: Rename a document of a case"
 msgstr ""
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:158
-#: ../../source/portal-user-guide/full-task-list/index.rst:159
+#: ../../source/portal-user-guide/full-task-list/index.rst:161
 msgid "Click on the |edit-icon| button next to the attachment you want to rename"
 msgstr ""
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:161
-#: ../../source/portal-user-guide/full-task-list/index.rst:162
+#: ../../source/portal-user-guide/full-task-list/index.rst:164
 msgid "A dialog is opened to rename the selected document"
 msgstr ""
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:163
-#: ../../source/portal-user-guide/full-task-list/index.rst:164
+#: ../../source/portal-user-guide/full-task-list/index.rst:166
 msgid "Update filename as you expect in the input field"
 msgstr ""
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:165
-#: ../../source/portal-user-guide/full-task-list/index.rst:166
+#: ../../source/portal-user-guide/full-task-list/index.rst:168
 msgid "Click the button :guilabel:`Save` to save your change"
 msgstr ""
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:167
-#: ../../source/portal-user-guide/full-task-list/index.rst:168
+#: ../../source/portal-user-guide/full-task-list/index.rst:170
 msgid "Filename will be updated and a note about the renaming will be added"
 msgstr ""
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:169
-#: ../../source/portal-user-guide/full-task-list/index.rst:170
+#: ../../source/portal-user-guide/full-task-list/index.rst:172
 msgid "|how-to-rename-document|"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:383
+#: ../../source/portal-user-guide/full-case-list/index.rst:400
 msgid "Case Details: rename document dialog"
 msgstr ""
 
@@ -3536,7 +3537,7 @@ msgstr ""
 msgid "|how-to-add-task-note|"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:365
+#: ../../source/portal-user-guide/full-case-list/index.rst:382
 msgid "Case Details: Add note dialog"
 msgstr ""
 
@@ -3583,11 +3584,11 @@ msgid "show-more-icon"
 msgstr ""
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:204
-#: ../../source/portal-user-guide/full-task-list/index.rst:244
+#: ../../source/portal-user-guide/full-task-list/index.rst:246
 msgid "|how-to-show-note-details|"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:367
+#: ../../source/portal-user-guide/full-case-list/index.rst:384
 msgid "Case Details: Link to show more notes details"
 msgstr ""
 
@@ -3603,7 +3604,7 @@ msgstr ""
 msgid "|export-case-history|"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:369
+#: ../../source/portal-user-guide/full-case-list/index.rst:386
 msgid "Case Business Information page: Link to export case history"
 msgstr ""
 
@@ -3622,7 +3623,8 @@ msgstr ""
 #: ../../source/portal-user-guide/full-case-list/index.rst:224
 msgid ""
 "What you see here depends on the roles granted to you in both the "
-"application and the |ivy| Portal. Administrators can see all open tasks."
+"application and the Axon Ivy Portal. Administrators can see all open "
+"tasks."
 msgstr ""
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:229
@@ -3693,7 +3695,7 @@ msgid "Trigger Escalation Task"
 msgstr ""
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:266
-#: ../../source/portal-user-guide/full-task-list/index.rst:70
+#: ../../source/portal-user-guide/full-task-list/index.rst:72
 msgid "Workflow Events"
 msgstr ""
 
@@ -3774,6 +3776,7 @@ msgid "Full task list"
 msgstr ""
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:323
+#: ../../source/portal-user-guide/full-case-list/index.rst:350
 msgid "Click on :guilabel:`Actions`"
 msgstr ""
 
@@ -3789,7 +3792,7 @@ msgstr ""
 msgid "|portal-process-viewer|"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:377
+#: ../../source/portal-user-guide/full-case-list/index.rst:394
 msgid "Process Viewer page"
 msgstr ""
 
@@ -3798,7 +3801,7 @@ msgid "HowTo: Share Case Details"
 msgstr ""
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:337
-#: ../../source/portal-user-guide/full-task-list/index.rst:276
+#: ../../source/portal-user-guide/full-task-list/index.rst:294
 msgid "Click on the share button |share-icon|"
 msgstr ""
 
@@ -3806,7 +3809,7 @@ msgstr ""
 msgid "|how-to-share-case-details|"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:379
+#: ../../source/portal-user-guide/full-case-list/index.rst:396
 msgid "Case Details: button to get the shareable link of the case details"
 msgstr ""
 
@@ -3814,6 +3817,33 @@ msgstr ""
 msgid ""
 "Grant permission :bdg-ref-warning:`🔑ShareCaseDetailsLink "
 "<ShareCaseDetailsLink>` to allow a user to share case details."
+msgstr ""
+
+#: ../../source/portal-user-guide/full-case-list/index.rst:346
+msgid "HowTo: Show Case Custom Fields Dialog"
+msgstr ""
+
+#: ../../source/portal-user-guide/full-case-list/index.rst:352
+msgid "Click on :guilabel:`Custom Fields`"
+msgstr ""
+
+#: ../../source/portal-user-guide/full-case-list/index.rst:354
+msgid "Portal opens the custom fields dialog of the case"
+msgstr ""
+
+#: ../../source/portal-user-guide/full-case-list/index.rst:356
+msgid "|case-custom-fields-dialog|"
+msgstr ""
+
+#: ../../source/portal-user-guide/full-case-list/index.rst:402
+msgid "Case Details: custom fields dialog"
+msgstr ""
+
+#: ../../source/portal-user-guide/full-case-list/index.rst:360
+msgid ""
+"Grant permission :bdg-ref-warning:`🔑CaseDisplayCustomFieldsAction "
+"<CaseDisplayCustomFieldsAction>` to allow a user to see the custom fields"
+" link."
 msgstr ""
 
 #: ../../source/portal-user-guide/full-process-list/index.rst:4
@@ -3824,14 +3854,14 @@ msgstr ""
 msgid ""
 "The **Full Process List** page gives you an overview of all the processes"
 " in the application available to you. To open the page, click "
-":guilabel:`Processes` in the |ivy| Portal menu."
+":guilabel:`Processes` in the Axon Ivy Portal menu."
 msgstr ""
 
 #: ../../source/portal-user-guide/full-process-list/index.rst:12
 msgid ""
 "Grant permission :bdg-ref-warning:`🔑AccessFullProcessList "
 "<AccessFullProcessList>` to allow a user to see the full process list "
-"(:guilabel:`Processes`) in the |ivy| Portal menu."
+"(:guilabel:`Processes`) in the Axon Ivy Portal menu."
 msgstr ""
 
 #: ../../source/portal-user-guide/full-process-list/index.rst:15
@@ -3940,7 +3970,7 @@ msgstr ""
 
 #: ../../source/portal-user-guide/full-process-list/index.rst:61
 msgid ""
-"Don’t confuse the process search with the global |ivy| Portal search "
+"Don’t confuse the process search with the global Axon Ivy Portal search "
 "which you find in the header area of the Portal."
 msgstr ""
 
@@ -4196,7 +4226,7 @@ msgstr ""
 msgid ""
 "The **Full Task List** page is a dashboard featuring a single, full-width"
 " task widget. You can reach the page by using the |task-list-icon| "
-":guilabel:`Tasks` link in the |ivy| Portal menu."
+":guilabel:`Tasks` link in the Axon Ivy Portal menu."
 msgstr ""
 
 #: ../../source/portal-user-guide/includes/_common-icon.rst:33
@@ -4207,21 +4237,21 @@ msgstr ""
 msgid ""
 "Grant permission :bdg-ref-warning:`🔑AccessFullTaskList "
 "<AccessFullTaskList>` to allow a user to access the full task list ( "
-"|task-list-icon| :guilabel:`Tasks`) in the |ivy| Portal menu."
+"|task-list-icon| :guilabel:`Tasks`) in the Axon Ivy Portal menu."
 msgstr ""
 
 #: ../../source/portal-user-guide/full-task-list/index.rst:15
 msgid ""
 "Depending on the roles you hold in the application and the configuration "
-"of the |ivy| Portal, you might see not only the tasks belonging to you "
-"but all open tasks."
+"of the Axon Ivy Portal, you might see not only the tasks belonging to you"
+" but all open tasks."
 msgstr ""
 
 #: ../../source/portal-user-guide/full-task-list/index.rst:22
 msgid "|navigate-to-full-task-list-page|"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:287
+#: ../../source/portal-user-guide/full-task-list/index.rst:305
 msgid "Menu to navigate to the Full task list"
 msgstr ""
 
@@ -4245,7 +4275,7 @@ msgstr ""
 msgid "|task-key-information|"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:289
+#: ../../source/portal-user-guide/full-task-list/index.rst:307
 msgid "Full task list: key informations"
 msgstr ""
 
@@ -4271,11 +4301,15 @@ msgstr ""
 msgid "Trigger Escalation"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:72
+#: ../../source/portal-user-guide/full-task-list/index.rst:70
+msgid "Custom Fields"
+msgstr ""
+
+#: ../../source/portal-user-guide/full-task-list/index.rst:74
 msgid "Process Viewer"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:76
+#: ../../source/portal-user-guide/full-task-list/index.rst:78
 msgid ""
 "Grant permissions :bdg-ref-warning:`🔑TaskDisplayResetAction "
 "<TaskDisplayResetAction>`, :bdg-ref-warning:`🔑TaskDisplayReserveAction "
@@ -4284,324 +4318,356 @@ msgid ""
 "warning:`🔑TaskDisplayDestroyAction <TaskDisplayDestroyAction>`, :bdg-ref-"
 "warning:`🔑TaskDisplayAdditionalOptions <TaskDisplayAdditionalOptions>`, "
 ":bdg-ref-warning:`🔑TaskDisplayWorkflowEventAction "
-"<TaskDisplayWorkflowEventAction>` to allow a user to see the "
-"corresponding buttons and menu items."
+"<TaskDisplayWorkflowEventAction>`, :bdg-ref-"
+"warning:`🔑TaskDisplayCustomFieldsAction <TaskDisplayCustomFieldsAction>` "
+"to allow a user to see the corresponding buttons and menu items."
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:81
+#: ../../source/portal-user-guide/full-task-list/index.rst:83
 msgid ""
 "Finally, you have the possibility to access the full set of the task data"
 " by clicking on `Actions` then clicking on the `Details` menu item."
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:84
+#: ../../source/portal-user-guide/full-task-list/index.rst:86
 msgid "The task details are separated into 4 different sections:"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:86
+#: ../../source/portal-user-guide/full-task-list/index.rst:88
 msgid ""
 "Task status banner to display information that needs attention or that "
 "you should take action on."
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:88
+#: ../../source/portal-user-guide/full-task-list/index.rst:90
 msgid "|task-status-banner|"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:319
+#: ../../source/portal-user-guide/full-task-list/index.rst:339
 msgid "Task Details: the Status banner"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:90
+#: ../../source/portal-user-guide/full-task-list/index.rst:92
 msgid ""
 "Data and description, you find various metadata concerning the task and "
 "the respective case it is related to."
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:93
+#: ../../source/portal-user-guide/full-task-list/index.rst:95
 msgid "|detailed-task-information-data-description|"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:291
+#: ../../source/portal-user-guide/full-task-list/index.rst:309
 msgid "Task Details: General section"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:95
+#: ../../source/portal-user-guide/full-task-list/index.rst:97
 msgid "Histories, you may add additional notes which are described below"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:97
+#: ../../source/portal-user-guide/full-task-list/index.rst:99
 msgid "|detailed-task-information-note|"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:293
+#: ../../source/portal-user-guide/full-task-list/index.rst:311
 msgid "Task Details: Notes section"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:99
+#: ../../source/portal-user-guide/full-task-list/index.rst:101
 msgid ""
 "Documents, these documents once attached to the case are available on all"
 " tasks. You may add, delete, rename or preview documents described in the"
 " HowTo’s below."
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:103
+#: ../../source/portal-user-guide/full-task-list/index.rst:105
 msgid "|detailed-task-information-documents|"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:295
+#: ../../source/portal-user-guide/full-task-list/index.rst:313
 msgid "Task Details: Documents section"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:105
+#: ../../source/portal-user-guide/full-task-list/index.rst:107
 msgid "|detailed-task-information|"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:297
+#: ../../source/portal-user-guide/full-task-list/index.rst:315
 msgid "The Task Details page"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:108
+#: ../../source/portal-user-guide/full-task-list/index.rst:110
 msgid "HowTo: Configure the full task list"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:110
+#: ../../source/portal-user-guide/full-task-list/index.rst:112
 msgid ""
 "The full task list page functions as a dashboard accessible from the top-"
 "level menu. To customize the task list, navigate to :ref:`Dashboard "
 "configuration <dashboard-configuration>`."
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:113
+#: ../../source/portal-user-guide/full-task-list/index.rst:115
 msgid ""
 "To restore the dashboard to its default settings, including the menu icon"
 " and task list layout, delete the dashboard. Portal will automatically "
 "recreate the dashboard with the default settings."
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:117
+#: ../../source/portal-user-guide/full-task-list/index.rst:119
 msgid "HowTo: Move and Resize Widgets in Task Details"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:118
-#: ../../source/portal-user-guide/full-task-list/index.rst:138
-#: ../../source/portal-user-guide/full-task-list/index.rst:176
-#: ../../source/portal-user-guide/full-task-list/index.rst:195
-#: ../../source/portal-user-guide/full-task-list/index.rst:218
-#: ../../source/portal-user-guide/full-task-list/index.rst:240
-#: ../../source/portal-user-guide/full-task-list/index.rst:261
+#: ../../source/portal-user-guide/full-task-list/index.rst:120
+#: ../../source/portal-user-guide/full-task-list/index.rst:140
+#: ../../source/portal-user-guide/full-task-list/index.rst:178
+#: ../../source/portal-user-guide/full-task-list/index.rst:197
+#: ../../source/portal-user-guide/full-task-list/index.rst:220
+#: ../../source/portal-user-guide/full-task-list/index.rst:242
+#: ../../source/portal-user-guide/full-task-list/index.rst:263
+#: ../../source/portal-user-guide/full-task-list/index.rst:279
 msgid "Open the task details of a task"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:313
+#: ../../source/portal-user-guide/full-task-list/index.rst:333
 msgid "Task Details: button to switch to the edit mode"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:125
+#: ../../source/portal-user-guide/full-task-list/index.rst:127
 msgid ""
 "Click on the :guilabel:`Save` button to save current state of page and "
 "switch to readonly mode."
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:311
+#: ../../source/portal-user-guide/full-task-list/index.rst:331
 msgid "Task Details: save button"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:130
+#: ../../source/portal-user-guide/full-task-list/index.rst:132
 msgid "Click :guilabel:`Reset` button to reset to default configuration."
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:315
+#: ../../source/portal-user-guide/full-task-list/index.rst:335
 msgid "Task Details: button to reset to the default configurations"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:139
+#: ../../source/portal-user-guide/full-task-list/index.rst:141
 msgid "Click the link |add-icon| ``Add document``"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:148
+#: ../../source/portal-user-guide/full-task-list/index.rst:150
 msgid "|how-to-upload-document|"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:299
+#: ../../source/portal-user-guide/full-task-list/index.rst:317
 msgid "Task Details:Add document dialog"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:152
+#: ../../source/portal-user-guide/full-task-list/index.rst:154
 msgid ""
 "Grant either permission :bdg-ref-warning:`🔑DocumentOfInvolvedCaseWrite "
 "<DocumentOfInvolvedCaseWrite>` or :bdg-ref-warning:`🔑DocumentWrite "
 "<DocumentWrite>` to allow a user to upload documents."
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:323
+#: ../../source/portal-user-guide/full-task-list/index.rst:343
 msgid "Task Details: rename document dialog"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:174
+#: ../../source/portal-user-guide/full-task-list/index.rst:176
 msgid "HowTo: Remove an attachment from the case"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:178
+#: ../../source/portal-user-guide/full-task-list/index.rst:180
 msgid ""
 "Click on the |delete-icon| button next to the attachment you want to "
 "remove"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:183
+#: ../../source/portal-user-guide/full-task-list/index.rst:185
 msgid "Confirm the deletion with the button :guilabel:`Delete`"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:185
+#: ../../source/portal-user-guide/full-task-list/index.rst:187
 msgid "|how-to-delete-document|"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:301
+#: ../../source/portal-user-guide/full-task-list/index.rst:319
 msgid "Task Details: Delete document confirm dialog"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:189
+#: ../../source/portal-user-guide/full-task-list/index.rst:191
 msgid ""
 "Grant either permission :bdg-ref-warning:`🔑DocumentOfInvolvedCaseWrite "
 "<DocumentOfInvolvedCaseWrite>` or :bdg-ref-warning:`🔑DocumentWrite "
 "<DocumentWrite>` to allow a user to delete documents."
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:193
+#: ../../source/portal-user-guide/full-task-list/index.rst:195
 msgid "HowTo: Preview a document of a task"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:321
+#: ../../source/portal-user-guide/full-task-list/index.rst:341
 msgid "Task Details: preview document dialog"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:216
+#: ../../source/portal-user-guide/full-task-list/index.rst:218
 msgid "HowTo: Add a note to a task"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:220
+#: ../../source/portal-user-guide/full-task-list/index.rst:222
 msgid "Click on the link |add-icon| ``Add note`` below the notes section"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:222
+#: ../../source/portal-user-guide/full-task-list/index.rst:224
 msgid "The :guilabel:`Add note` dialog is opened"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:224
+#: ../../source/portal-user-guide/full-task-list/index.rst:226
 msgid "Enter your note"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:226
+#: ../../source/portal-user-guide/full-task-list/index.rst:228
 msgid "Confirm your note by clicking the button :guilabel:`Save`"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:228
+#: ../../source/portal-user-guide/full-task-list/index.rst:230
 msgid "|how-to-add-note|"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:303
+#: ../../source/portal-user-guide/full-task-list/index.rst:321
 msgid "Task Details: Add note dialog"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:231
+#: ../../source/portal-user-guide/full-task-list/index.rst:233
 msgid ""
 "Notes of a task are displayed in the ``Notes`` table of the task details,"
 " and in the ``History`` table of its business case."
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:233
+#: ../../source/portal-user-guide/full-task-list/index.rst:235
 msgid ""
 "If the task belongs to a technical case, its notes are also displayed in "
 "the ``History`` table of this technical case."
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:235
+#: ../../source/portal-user-guide/full-task-list/index.rst:237
 msgid ""
 "Grant permission :bdg-ref-warning:`🔑TaskCaseAddNote <TaskCaseAddNote>` to"
 " allow a user to add task and case notes."
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:238
+#: ../../source/portal-user-guide/full-task-list/index.rst:240
 msgid "HowTo: Export a task history"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:242
+#: ../../source/portal-user-guide/full-task-list/index.rst:244
 msgid "Click on the link |show-more-icon| ``Show more`` below the notes section"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:305
+#: ../../source/portal-user-guide/full-task-list/index.rst:323
 msgid "Task Details: Link to show more notes details"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:246
+#: ../../source/portal-user-guide/full-task-list/index.rst:248
 msgid "A new page with the task history is opened"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:248
+#: ../../source/portal-user-guide/full-task-list/index.rst:250
 msgid ""
 "You may export the history by clicking on the button :guilabel:`Export to"
 " Excel`"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:250
+#: ../../source/portal-user-guide/full-task-list/index.rst:252
 msgid "|how-to-export-note-details|"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:307
+#: ../../source/portal-user-guide/full-task-list/index.rst:325
 msgid "Link to export task notes"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:256
+#: ../../source/portal-user-guide/full-task-list/index.rst:258
 msgid "HowTo: Show Workflow Events"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:259
+#: ../../source/portal-user-guide/full-task-list/index.rst:261
 msgid ""
 "Grant permission :bdg-warning:`🔑WorkflowEventReadAll` to allow a user to "
 "see all workflow events of a task."
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:263
+#: ../../source/portal-user-guide/full-task-list/index.rst:265
+#: ../../source/portal-user-guide/full-task-list/index.rst:281
 msgid ""
 "Click on the link ``Actions`` on the right top corner of the **Data and "
 "Description** section"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:265
+#: ../../source/portal-user-guide/full-task-list/index.rst:267
 msgid ""
 "Click the link ``Workflow Events`` on the overlay panel to see Workflow "
 "Events dialog"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:267
+#: ../../source/portal-user-guide/full-task-list/index.rst:269
 msgid "**Workflow Events dialog**"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:269
+#: ../../source/portal-user-guide/full-task-list/index.rst:271
 msgid "|workflow-events-table|"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:309
+#: ../../source/portal-user-guide/full-task-list/index.rst:327
 msgid "Workflow events of task dialog"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:272
+#: ../../source/portal-user-guide/full-task-list/index.rst:274
+msgid "HowTo: Show Custom Fields"
+msgstr ""
+
+#: ../../source/portal-user-guide/full-task-list/index.rst:277
+msgid ""
+"Grant permission :bdg-ref-warning:`🔑TaskDisplayCustomFieldsAction "
+"<TaskDisplayCustomFieldsAction>` to allow a user to see Custom Fields "
+"link in Actions panel."
+msgstr ""
+
+#: ../../source/portal-user-guide/full-task-list/index.rst:283
+msgid ""
+"Click the link ``Custom Fields`` on the overlay panel to see Custom "
+"Fields dialog"
+msgstr ""
+
+#: ../../source/portal-user-guide/full-task-list/index.rst:285
+msgid "**Custom Fields dialog**"
+msgstr ""
+
+#: ../../source/portal-user-guide/full-task-list/index.rst:287
+msgid "|custom-fields-dialog|"
+msgstr ""
+
+#: ../../source/portal-user-guide/full-task-list/index.rst:329
+msgid "Custom fields of task dialog"
+msgstr ""
+
+#: ../../source/portal-user-guide/full-task-list/index.rst:290
 msgid "HowTo: Share Task Details"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:274
+#: ../../source/portal-user-guide/full-task-list/index.rst:292
 msgid "Open the task details"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:278
+#: ../../source/portal-user-guide/full-task-list/index.rst:296
 msgid "|how-to-share-task-details|"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:317
+#: ../../source/portal-user-guide/full-task-list/index.rst:337
 msgid "Task Details: button to get the shareable link of the task details"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:282
+#: ../../source/portal-user-guide/full-task-list/index.rst:300
 msgid ""
 "Grant permission :bdg-ref-warning:`🔑ShareTaskDetailsLink "
 "<ShareTaskDetailsLink>` to allow a user to share task details."
@@ -4736,9 +4802,9 @@ msgstr ""
 #: ../../source/portal-user-guide/my-profile/index.rst:89
 msgid ""
 "**Language** allows you to specify your preferred application language. "
-"This setting will affect all |ivy| Portal pages, notification mails, and "
-"– if supported – your company's application pages as well. The following "
-"languages are currently supported in the |ivy| Portal:"
+"This setting will affect all Axon Ivy Portal pages, notification mails, "
+"and – if supported – your company's application pages as well. The "
+"following languages are currently supported in the Axon Ivy Portal:"
 msgstr ""
 
 #: ../../source/portal-user-guide/my-profile/index.rst:95
@@ -4779,8 +4845,8 @@ msgstr ""
 #: ../../source/portal-user-guide/my-profile/index.rst:120
 msgid ""
 "**Notification Channels** allows you to configure your manage "
-"subscriptions of the different kinds of notification channels in the "
-"|ivy| Engine."
+"subscriptions of the different kinds of notification channels in the Axon"
+" Ivy Engine."
 msgstr ""
 
 #: ../../source/portal-user-guide/my-profile/index.rst:124
@@ -4814,20 +4880,20 @@ msgstr ""
 
 #: ../../source/portal-user-guide/my-profile/index.rst:136
 msgid ""
-"To do this, access the :dev-url:`Engine Cockpit </doc/|version|/engine-"
-"guide/reference/engine-cockpit/security.html>`, open the **Security "
-"area**. Since this permission is granted to the Everybody role by "
-"default, administrators need to deny this permission from the Everybody "
-"role, then grant it to specific roles that should be allowed to modify "
-"notification channel preferences."
+"To do this, access the :doc-url:`Engine Cockpit </engine-guide/reference"
+"/engine-cockpit/security.html>`, open the **Security area**. Since this "
+"permission is granted to the Everybody role by default, administrators "
+"need to deny this permission from the Everybody role, then grant it to "
+"specific roles that should be allowed to modify notification channel "
+"preferences."
 msgstr ""
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:9
 msgid ""
-"The |ivy| Portal Dashboard is the first page you encounter after "
+"The Axon Ivy Portal Dashboard is the first page you encounter after "
 "successful login. You can always get back to the dashboard using the "
-"**Dashboard** link in the |ivy| Portal navigation menu. Alternatively, "
-"you can click on the logo image at the top left of the header."
+"**Dashboard** link in the Axon Ivy Portal navigation menu. Alternatively,"
+" you can click on the logo image at the top left of the header."
 msgstr ""
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:14
@@ -4887,7 +4953,7 @@ msgstr ""
 #: ../../source/portal-user-guide/new-dashboard/index.rst:33
 msgid ""
 "**News feed widget**: This widget shares relevant information as a News "
-"Feed into |ivy|."
+"Feed into Axon Ivy."
 msgstr ""
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:35
@@ -6036,16 +6102,16 @@ msgstr ""
 
 #: ../../source/portal-user-guide/portal-header/index.rst:6
 msgid ""
-"|ivy| Portal header is always visible. On the top right of the header you"
-" find two useful features:"
+"Axon Ivy Portal header is always visible. On the top right of the header "
+"you find two useful features:"
 msgstr ""
 
 #: ../../source/portal-user-guide/portal-header/index.rst:9
 msgid ""
 "Name of the user you’re logged in with. Additionally, if you click on "
 "your username you get a menu with options that allow you to configure the"
-" |ivy| Portal to your personal needs. See `User Settings in the |ivy| "
-"Portal`_ for a detailed overview of the configuration options."
+" Axon Ivy Portal to your personal needs. See `User Settings in the Axon "
+"Ivy Portal`_ for a detailed overview of the configuration options."
 msgstr ""
 
 #: ../../source/portal-user-guide/portal-header/index.rst:14
@@ -6068,13 +6134,13 @@ msgid "Portal header items"
 msgstr ""
 
 #: ../../source/portal-user-guide/portal-header/index.rst:21
-msgid "User Settings in the |ivy| Portal"
+msgid "User Settings in the Axon Ivy Portal"
 msgstr ""
 
 #: ../../source/portal-user-guide/portal-header/index.rst:23
 msgid ""
-"When you click on your username in the top right of the |ivy| Portal, a "
-"menu is shown allowing you to configure the Portal to your personal "
+"When you click on your username in the top right of the Axon Ivy Portal, "
+"a menu is shown allowing you to configure the Portal to your personal "
 "needs. These features are described in the following sections below."
 msgstr ""
 
@@ -6262,10 +6328,10 @@ msgstr ""
 #: ../../source/portal-user-guide/portal-header/index.rst:116
 msgid ""
 "Grant permission: :bdg-warning:`🔑UserSetOwnPassword` to allow a user to "
-"change their password. Configure permissions in the :dev-url:`Engine "
-"Cockpit </doc/|version|/engine-guide/reference/engine-"
-"cockpit/security.html>`. In the security area, open PersonalPermissions "
-"-> PersonalSecurityPermissions -> UserSetOwnPassword."
+"change their password. Configure permissions in the :doc-url:`Engine "
+"Cockpit </engine-guide/reference/engine-cockpit/security.html>`. In the "
+"security area, open PersonalPermissions -> PersonalSecurityPermissions ->"
+" UserSetOwnPassword."
 msgstr ""
 
 #: ../../source/portal-user-guide/portal-header/index.rst:121
@@ -6275,9 +6341,9 @@ msgstr ""
 #: ../../source/portal-user-guide/portal-header/index.rst:123
 msgid ""
 "The menu entry :guilabel:`Info` provides you with detailed information "
-"about the |ivy-engine|, the |ivy| Portal and your company's application. "
-"You might be asked for this information in case you issue a support "
-"request."
+"about the Axon Ivy Engine, the Axon Ivy Portal and your company's "
+"application. You might be asked for this information in case you issue a "
+"support request."
 msgstr ""
 
 #: ../../source/portal-user-guide/portal-header/index.rst:127
@@ -6294,15 +6360,15 @@ msgstr ""
 
 #: ../../source/portal-user-guide/portal-header/index.rst:132
 msgid ""
-"The menu entry :guilabel:`Logout` will terminate your session in the "
-"|ivy| Portal. You’ll be routed back to the login page of the |ivy| "
+"The menu entry :guilabel:`Logout` will terminate your session in the Axon"
+" Ivy Portal. You’ll be routed back to the login page of the Axon Ivy "
 "Portal."
 msgstr ""
 
 #: ../../source/portal-user-guide/portal-header/index.rst:137
 msgid ""
-"The |ivy| Portal will also do an automatic logout if you’re inactive for "
-"a certain amount of time."
+"The Axon Ivy Portal will also do an automatic logout if you’re inactive "
+"for a certain amount of time."
 msgstr ""
 
 #: ../../source/portal-user-guide/portal-header/index.rst:143
@@ -6312,8 +6378,8 @@ msgstr ""
 #: ../../source/portal-user-guide/portal-header/index.rst:145
 msgid ""
 "The Global Search is a convenient tool for you to look up information in "
-"the whole |ivy| Portal. You may search for any keyword. By default, the "
-"|ivy| Portal will search for:"
+"the whole Axon Ivy Portal. You may search for any keyword. By default, "
+"the Axon Ivy Portal will search for:"
 msgstr ""
 
 #: ../../source/portal-user-guide/portal-header/index.rst:149
@@ -6330,9 +6396,9 @@ msgstr ""
 
 #: ../../source/portal-user-guide/portal-header/index.rst:155
 msgid ""
-"When you confirm the keyword you’re looking for, the |ivy| Portal will "
-"route you to the **Global Search Results** page. For each category a tab "
-"is provided, giving you the results of your search."
+"When you confirm the keyword you’re looking for, the Axon Ivy Portal will"
+" route you to the **Global Search Results** page. For each category a tab"
+" is provided, giving you the results of your search."
 msgstr ""
 
 #: ../../source/portal-user-guide/portal-header/index.rst:159
@@ -6406,9 +6472,9 @@ msgstr ""
 
 #: ../../source/portal-user-guide/portal-multi-language/index.rst:18
 msgid ""
-"Configure translation service variable, refer to :dev-url:`|ivy| "
-"translation service </doc/|version|/engine-guide/configuration"
-"/translation-service/index.html>`"
+"Configure translation service variable, refer to :doc-url:`Axon Ivy "
+"translation service </engine-guide/configuration/translation-"
+"service/index.html>`"
 msgstr ""
 
 #: ../../source/portal-user-guide/portal-multi-language/index.rst:21
@@ -7052,5 +7118,21 @@ msgstr ""
 #~ "translated by DeepL. To accept the "
 #~ "translated text, clicking on :guilabel:`Auto."
 #~ " translation`."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Grant permissions :bdg-ref-"
+#~ "warning:`🔑TaskDisplayResetAction <TaskDisplayResetAction>`, "
+#~ ":bdg-ref-warning:`🔑TaskDisplayReserveAction "
+#~ "<TaskDisplayReserveAction>`, :bdg-ref-"
+#~ "warning:`🔑TaskDisplayDelegateAction "
+#~ "<TaskDisplayDelegateAction>`, :bdg-ref-"
+#~ "warning:`🔑TaskDisplayDestroyAction <TaskDisplayDestroyAction>`,"
+#~ " :bdg-ref-warning:`🔑TaskDisplayAdditionalOptions "
+#~ "<TaskDisplayAdditionalOptions>`, :bdg-ref-"
+#~ "warning:`🔑TaskDisplayWorkflowEventAction "
+#~ "<TaskDisplayWorkflowEventAction>` to allow a "
+#~ "user to see the corresponding buttons"
+#~ " and menu items."
 #~ msgstr ""
 

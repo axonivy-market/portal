@@ -246,7 +246,10 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   }
 
   public void restore() {
-    removeWelcomeWidgetImagesOfDashboard(getSelectedDashboard());
+    if (selectedDashboard.getWidgets() != null) {
+      removeWelcomeWidgetImagesOfDashboard(getSelectedDashboard());
+    }
+    
     selectedDashboardId = getSelectedDashboard().getId();
     if (StringUtils.isBlank(getSelectedDashboard().getTemplateId())) {
       selectedDashboard.setWidgets(new ArrayList<>());
@@ -377,6 +380,9 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
    * @param selectedDashboard
    */
   private void removeWelcomeWidgetImagesOfDashboard(Dashboard selectedDashboard) {
+    if (selectedDashboard.getWidgets().isEmpty()) {
+      return;
+    }
     for (DashboardWidget selectedWidget : selectedDashboard.getWidgets()) {
       if (WELCOME == selectedWidget.getType()) {
         removeWelcomeWidgetImage(selectedWidget);
