@@ -46,6 +46,7 @@ import org.primefaces.event.FileUploadEvent;
 import com.axonivy.portal.bo.Statistic;
 import com.axonivy.portal.components.dto.UserDTO;
 import com.axonivy.portal.components.service.impl.ProcessService;
+import com.axonivy.portal.components.util.ImageUploadResult;
 import com.axonivy.portal.dto.News;
 import com.axonivy.portal.dto.dashboard.NavigationDashboardWidget;
 import com.axonivy.portal.dto.dashboard.NewsDashboardWidget;
@@ -1299,10 +1300,10 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
       }
       
       // Upload new image
-      Pair<String, String> imageInfo = ImageUploadUtils.handleImageUpload(event, DashboardConstants.NAVIGATION_WIDGET_IMAGE_DIRECTORY);
-      if (StringUtils.isNotBlank(imageInfo.getLeft())) {
-        navWidget.setImageLocation(imageInfo.getLeft());
-        navWidget.setImageType(imageInfo.getRight());
+      ImageUploadResult imageInfo = ImageUploadUtils.handleImageUpload(event, DashboardConstants.NAVIGATION_WIDGET_IMAGE_DIRECTORY);
+      if (StringUtils.isNotBlank(imageInfo.imageLocation())) {
+        navWidget.setImageLocation(imageInfo.imageLocation());
+        navWidget.setImageType(imageInfo.imageType());
       }
     }
   }

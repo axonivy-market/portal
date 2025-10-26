@@ -10,6 +10,7 @@ import javax.faces.bean.ViewScoped;
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.event.FileUploadEvent;
 
+import com.axonivy.portal.components.util.ImageUploadResult;
 import com.axonivy.portal.dto.dashboard.NavigationDashboardWidget;
 import com.axonivy.portal.util.ImageUploadUtils;
 
@@ -37,10 +38,10 @@ public class NavigationDashboardWidgetConfigurationBean extends NavigationDashbo
     removePreviousImage();
     
     // Upload new image
-    Pair<String, String> imageInfo = ImageUploadUtils.handleImageUpload(event, DashboardConstants.NAVIGATION_WIDGET_IMAGE_DIRECTORY);
-    if (StringUtils.isNotBlank(imageInfo.getLeft())) {
-      this.widget.setImageLocation(imageInfo.getLeft());
-      this.widget.setImageType(imageInfo.getRight());
+    ImageUploadResult imageInfo = ImageUploadUtils.handleImageUpload(event, DashboardConstants.NAVIGATION_WIDGET_IMAGE_DIRECTORY);
+    if (StringUtils.isNotBlank(imageInfo.imageLocation())) {
+      this.widget.setImageLocation(imageInfo.imageLocation());
+      this.widget.setImageType(imageInfo.imageType());
     }
   }
   
