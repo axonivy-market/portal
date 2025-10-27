@@ -7,18 +7,10 @@ permissions:
   pull-requests: write
 
 on:
-  pull_request:
-    types:
-      - closed
-    branches:
-      - release/12.0
-    paths:
-      - 'Documentation/portal-guide/source/**'
   workflow_dispatch:
 
 jobs:
   build:
-    if: github.event.pull_request.merged == true || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -31,16 +23,7 @@ jobs:
         working-directory: Documentation/portal-guide
         run: |
           docker run -v .:/doc -u $(id -u) axonivy/build-container:read-the-docs-2 make\
-            generatePO BASEDIR=/doc LOCALEDIR=/doc/weblate/locale LANGUAGE=ja
-          
-          docker run -v .:/doc -u $(id -u) axonivy/build-container:read-the-docs-2 make\
-            generatePO BASEDIR=/doc LOCALEDIR=/doc/weblate/locale LANGUAGE=de
-          
-          docker run -v .:/doc -u $(id -u) axonivy/build-container:read-the-docs-2 make\
-            generatePO BASEDIR=/doc LOCALEDIR=/doc/weblate/locale LANGUAGE=fr
-          
-          docker run -v .:/doc -u $(id -u) axonivy/build-container:read-the-docs-2 make\
-            generatePO BASEDIR=/doc LOCALEDIR=/doc/weblate/locale LANGUAGE=es
+            generatePO BASEDIR=/doc LOCALEDIR=/doc/weblate/locale LANGUAGE=ja,de,fr,es
 
       - name: Check Locale Diff
         id: locale-diff
@@ -53,12 +36,7 @@ jobs:
       - name: Create branch name
         working-directory: .
         run: |
-          ORIGINAL_BRANCH="${{ github.event.pull_request.head.ref }}"
-          if [ -z "$ORIGINAL_BRANCH" ] || [ "$ORIGINAL_BRANCH" == "null" ]; then
-            NEW_BRANCH="weblate/update-language-files"
-          else
-            NEW_BRANCH="weblate/${ORIGINAL_BRANCH}"
-          fi
+          NEW_BRANCH="weblate/update-language-files-$(date +%Y%m%d-%H%M%S)"
           echo "WEBLATE_BRANCH=$NEW_BRANCH" >> $GITHUB_ENV
 
       - name: Create Pull Request
