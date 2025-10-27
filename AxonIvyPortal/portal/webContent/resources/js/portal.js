@@ -570,6 +570,49 @@ $(document).ready(function () {
     }
   }
 
+  function initShortcutsNavigationOnCustomWidget(iframe) {
+    const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
+    iframeDocument.addEventListener('keydown', function (event) {
+      if (isKeyboardShortcutsEnabled && onlyAltPressed(event)) {
+        if (event.code === 'KeyW' || event.code === 'KeyQ' || event.code === 'KeyA') {
+          event.preventDefault();
+          window.focus();
+          document.body.focus();
+          
+          const parentEvent = new KeyboardEvent('keydown', {
+            code: event.code,
+            key: event.key,
+            altKey: event.altKey,
+          });
+          
+          document.dispatchEvent(parentEvent);
+          return;
+        }
+        
+        if(toggleLeftMenu(event.code)) {
+          return;
+        }
+        handleFocusOnMainElement(event);
+      }
+      registerSearchIconClick();
+    });
+  }
+
+  function initShortcutsNavigationOnIframe(iframe) {
+    const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
+    iframeDocument.addEventListener('keydown', function (event) {
+      if (isKeyboardShortcutsEnabled && onlyAltPressed(event)) {
+        if(toggleLeftMenu(event.code)) {
+          return;
+        }
+        handleFocusOnMainElement(event);
+      }
+      registerSearchIconClick();
+    });
+  }
+
+
+
   function removeFocusedElements() {
     Object.keys(shortcuts).forEach(function (key) {
       removeFocusClass(findTargetElementByKey(key));
@@ -608,20 +651,20 @@ $(document).ready(function () {
 
   if (iframe) {
     iframe.onload = function () {
-      const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
-      iframeDocument.addEventListener('keydown', function (event) {
-        if (isKeyboardShortcutsEnabled && onlyAltPressed(event)) {
-          if(toggleLeftMenu(event.code)) {
-            return;
-          }
-          handleFocusOnMainElement(event);
-        }
-        registerSearchIconClick();
-        
-      });
+      initShortcutsNavigationOnIframe(iframe);
       handleExpandButtonInFilePreview(document.getElementById("iFrame").contentWindow);
     };
   }
+
+  var iframes = document.getElementsByClassName('js-custom-widget-iframe');
+  if (iframes.length > 0) {
+    Array.from(iframes).forEach(function(iframe) {
+      iframe.onload = function () {
+        initShortcutsNavigationOnCustomWidget(iframe);
+      }
+    });
+  }
+
 
   let taskIndex = 0;
   let resetTaskFormIndex = 0;

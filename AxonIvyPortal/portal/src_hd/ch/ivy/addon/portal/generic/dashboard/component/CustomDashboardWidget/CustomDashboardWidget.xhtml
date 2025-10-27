@@ -40,7 +40,7 @@
               <c:forEach var="param" items="#{widget.data.params}">
                 <input type="hidden" name="#{dashboardCustomWidgetBean.generateParamName(param)}" value="#{param.value}" />
               </c:forEach>
-              <iframe id="id-custom-widget-iframe-#{index}" name="custom-widget-iframe-#{index}" class="dashboard-custom-iframe u-hidden" 
+              <iframe id="id-custom-widget-iframe-#{index}" name="custom-widget-iframe-#{index}" class="dashboard-custom-iframe js-custom-widget-iframe u-hidden" 
                 title="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/generic/dashboard/component/CustomDashboardWidget/CustomWidgetIFrameTitle', [widget.name])}" />
             </h:form>
             <script type="text/javascript">
