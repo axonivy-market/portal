@@ -41,11 +41,14 @@
       "config" : {
         "output" : {
           "code" : [
+            "import org.primefaces.PrimeFaces;",
             "import ch.ivy.addon.portalkit.service.GrowlMessageService;",
             "",
             "if(in.isWorkingOnTask) {",
             "  GrowlMessageService.getInstance().addFeedbackMessage(in.isTaskFinished, in.caze);",
-            "}"
+            "}",
+            "",
+            "PrimeFaces.current().ajax().addCallbackParam(\"isWorkingOnATask\", in.isWorkingOnTask);"
           ]
         }
       },
@@ -343,5 +346,51 @@
       "connect" : [
         { "id" : "f30", "to" : "f19" }
       ]
+    }, {
+      "id" : "f35",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "updateParams(Boolean)",
+      "config" : {
+        "signature" : "updateParams",
+        "input" : {
+          "params" : [
+            { "name" : "isWorkingOnATask", "type" : "Boolean", "desc" : "" }
+          ],
+          "map" : {
+            "out.isWorkingOnTask" : "param.isWorkingOnATask"
+          }
+        },
+        "guid" : "199BD00043669B2A"
+      },
+      "visual" : {
+        "at" : { "x" : 72, "y" : 624 }
+      },
+      "connect" : [
+        { "id" : "f37", "to" : "f36" }
+      ]
+    }, {
+      "id" : "f36",
+      "type" : "Script",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import org.primefaces.PrimeFaces;",
+            "PrimeFaces.current().ajax().addCallbackParam(\"isWorkingOnATask\", in.isWorkingOnTask);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 264, "y" : 624 }
+      },
+      "connect" : [
+        { "id" : "f41", "to" : "f38" }
+      ]
+    }, {
+      "id" : "f38",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 456, "y" : 624 },
+        "labelOffset" : { "x" : 10, "y" : 30 }
+      }
     } ]
 }
