@@ -30,10 +30,13 @@ import org.primefaces.model.StreamedContent;
 import com.axonivy.portal.bo.jsonversion.DashboardJsonVersion;
 import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import com.axonivy.portal.components.util.RoleUtils;
+import com.axonivy.portal.dto.dashboard.NavigationDashboardWidget;
 import com.axonivy.portal.service.IvyTranslationService;
+import com.axonivy.portal.util.ImageUploadUtils;
 import com.axonivy.portal.util.WelcomeWidgetUtils;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
+import ch.ivy.addon.portalkit.constant.DashboardConstants;
 import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
@@ -352,6 +355,12 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
         
         welcomeWidget.setImageTypeDarkMode(WelcomeWidgetUtils.getFileTypeOfImage(welcomeWidget.getImageTypeDarkMode()));
         welcomeWidget.setImageContentDarkMode(encodeWelcomeWidgetImage(welcomeWidget.getImageLocationDarkMode(), welcomeWidget.getImageTypeDarkMode()));
+      } else if (widget instanceof NavigationDashboardWidget) {
+        NavigationDashboardWidget navWid = (NavigationDashboardWidget) widget;
+        navWid.setImageContent(ImageUploadUtils.imageToBase64(navWid.getImageLocation(), 
+            navWid.getImageType(), DashboardConstants.NAVIGATION_WIDGET_IMAGE_DIRECTORY));
+        navWid.setImageContentDarkMode(ImageUploadUtils.imageToBase64(navWid.getImageLocationDarkMode(), 
+            navWid.getImageTypeDarkMode(), DashboardConstants.NAVIGATION_WIDGET_IMAGE_DIRECTORY));
       }
     });
 

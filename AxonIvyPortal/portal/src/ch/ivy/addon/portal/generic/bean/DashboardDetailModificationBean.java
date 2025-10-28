@@ -41,12 +41,10 @@ import org.apache.commons.lang3.Strings;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.primefaces.PrimeFaces;
 import org.primefaces.event.ColumnResizeEvent;
-import org.primefaces.event.FileUploadEvent;
 
 import com.axonivy.portal.bo.Statistic;
 import com.axonivy.portal.components.dto.UserDTO;
 import com.axonivy.portal.components.service.impl.ProcessService;
-import com.axonivy.portal.components.util.ImageUploadResult;
 import com.axonivy.portal.dto.News;
 import com.axonivy.portal.dto.dashboard.NavigationDashboardWidget;
 import com.axonivy.portal.dto.dashboard.NewsDashboardWidget;
@@ -103,7 +101,6 @@ import ch.ivyteam.ivy.cm.ContentObject;
 import ch.ivyteam.ivy.cm.ContentObjectValue;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
-import ch.ivyteam.util.Pair;
 
 @ViewScoped
 @ManagedBean
@@ -355,8 +352,15 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   public void removeWidget() {
     if (this.getDeleteWidget() != null) {
       this.getSelectedDashboard().getWidgets().remove(getDeleteWidget());
-      if (WELCOME == this.deleteWidget.getType()) {
-        removeWelcomeWidgetImage(this.deleteWidget);
+      switch (this.deleteWidget.getType()) {
+        case WELCOME:
+          removeWelcomeWidgetImage(this.deleteWidget);
+          break;
+        case NAVIGATION_DASHBOARD:
+          removeNavigationImage(this.deleteWidget);
+          break;
+        default:
+          break;
       }
       saveSelectedDashboard();
     }
@@ -374,6 +378,12 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     if (StringUtils.isNotBlank(welcomeWidget.getImageLocationDarkMode())) {
       WelcomeWidgetUtils.removeWelcomeImage(welcomeWidget.getImageLocationDarkMode(), welcomeWidget.getImageTypeDarkMode());
     }
+  }
+  
+  private void removeNavigationImage(DashboardWidget selectedWidget) {
+    NavigationDashboardWidget navWid = (NavigationDashboardWidget) selectedWidget;
+    ImageUploadUtils.removeImage(navWid.getImageLocation(), navWid.getImageType());
+    ImageUploadUtils.removeImage(navWid.getImageLocationDarkMode(), navWid.getImageTypeDarkMode());
   }
 
   /**
@@ -536,17 +546,25 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   }
 
   public void onCancel(DashboardWidget widget) {
-    if (widget != null && WELCOME == widget.getType()) {
-      removeTempImageOfWelcomeWidget(widget);
-      WelcomeDashboardWidget welcomeWidget = (WelcomeDashboardWidget) widget;
-      ContentObject welcomeImage = getWelcomeWidgetImageObject(false, welcomeWidget, false);
-      if (!StringUtils.isBlank(welcomeWidget.getImageLocation()) && welcomeImage != null && !welcomeImage.exists()) {
-        welcomeWidget.setImageLocation(null);
-      }
-      
-      ContentObject welcomeImageDarkMode = getWelcomeWidgetImageObject(false, welcomeWidget, true);
-      if (!StringUtils.isBlank(welcomeWidget.getImageLocationDarkMode()) && welcomeImageDarkMode != null && !welcomeImageDarkMode.exists()) {
-        welcomeWidget.setImageLocationDarkMode(null);
+    if (widget != null) {
+      switch (widget.getType()) {
+        case WELCOME:
+          removeTempImageOfWelcomeWidget(widget);
+          WelcomeDashboardWidget welcomeWidget = (WelcomeDashboardWidget) widget;
+          ContentObject welcomeImage = getWelcomeWidgetImageObject(false, welcomeWidget, false);
+          if (!StringUtils.isBlank(welcomeWidget.getImageLocation()) && welcomeImage != null && !welcomeImage.exists()) {
+            welcomeWidget.setImageLocation(null);
+          }
+          
+          ContentObject welcomeImageDarkMode = getWelcomeWidgetImageObject(false, welcomeWidget, true);
+          if (!StringUtils.isBlank(welcomeWidget.getImageLocationDarkMode()) && welcomeImageDarkMode != null && !welcomeImageDarkMode.exists()) {
+            welcomeWidget.setImageLocationDarkMode(null);
+          }
+          break;
+        case NAVIGATION_DASHBOARD:
+          removeNavigationImage(this.deleteWidget);
+        default:
+          break;
       }
     }
   }
@@ -1287,39 +1305,5 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
 
   public boolean canEditStatistic() {
     return PermissionUtils.hasStatisticWritePublicPermission() && isPublicDashboard;
-  }
-  
-  // Navigation Dashboard Widget Image Upload Methods
-  public void handleImageUpload(FileUploadEvent event) {
-    if (this.widget instanceof NavigationDashboardWidget) {
-      NavigationDashboardWidget navWidget = (NavigationDashboardWidget) this.widget;
-      
-      // Remove previous image if exists
-      if (StringUtils.isNotBlank(navWidget.getImageLocation())) {
-        ImageUploadUtils.removeImage(navWidget.getImageLocation(), navWidget.getImageType());
-      }
-      
-      // Upload new image
-      ImageUploadResult imageInfo = ImageUploadUtils.handleImageUpload(event, DashboardConstants.NAVIGATION_WIDGET_IMAGE_DIRECTORY);
-      if (StringUtils.isNotBlank(imageInfo.imageLocation())) {
-        navWidget.setImageLocation(imageInfo.imageLocation());
-        navWidget.setImageType(imageInfo.imageType());
-      }
-    }
-  }
-  
-  public void removeImage(NavigationDashboardWidget targetWidget) {
-    if (targetWidget != null && StringUtils.isNotBlank(targetWidget.getImageLocation())) {
-      ImageUploadUtils.removeImage(targetWidget.getImageLocation(), targetWidget.getImageType());
-      targetWidget.setImageLocation(null);
-      targetWidget.setImageType(null);
-    }
-  }
-  
-  public void onVisualTypeChange(NavigationDashboardWidget targetWidget) {
-    // If switching away from IMAGE mode, remove the uploaded image
-    if (targetWidget != null && targetWidget.getVisualType() != ch.ivy.addon.portalkit.enums.VisualType.IMAGE) {
-      removeImage(targetWidget);
-    }
   }
 }

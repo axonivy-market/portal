@@ -67,21 +67,21 @@
         
         <!-- Show image when visual type is IMAGE (always show image, even if empty imageLocation) -->
         <h:panelGroup rendered="#{widget.visualType == 'IMAGE'}">
-            <!-- Check if it's a default image or custom uploaded image -->
-            <c:set var="isDefaultNavigationImage" value="#{empty widget.imageLocation}" />
-            
-            <!-- Default image (when no custom image is uploaded) -->
-            <h:panelGroup rendered="#{isDefaultNavigationImage}">
-              <!-- You can add default image handling here later -->
-            </h:panelGroup>
-            
             <!-- Custom uploaded image - fill the entire widget area -->
-            <p:graphicImage rendered="#{!isDefaultNavigationImage}" 
+            <p:graphicImage rendered="#{not empty widget.imageLocation}" 
                             cache="true"
-                            styleClass="navigation-widget-image-full" 
+                            styleClass="navigation-widget-image-full light-mode" 
                             alt="#{widget.name}"
                             library="ivy-cms" 
                             name="#{widget.imageLocation}" />
+                            
+            <p:graphicImage rendered="#{not empty widget.imageLocationDarkMode}" 
+                            cache="true"
+                            styleClass="navigation-widget-image-full dark-mode" 
+                            alt="#{widget.name}"
+                            library="ivy-cms" 
+                            name="#{widget.imageLocationDarkMode}" />
+            
         </h:panelGroup>
         
         <h:panelGroup styleClass="mt-3 w-full" layout="block" rendered="#{widget.visualType == null or widget.visualType == 'ICON'}">

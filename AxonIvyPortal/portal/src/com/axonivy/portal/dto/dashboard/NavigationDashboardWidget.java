@@ -32,8 +32,10 @@ public class NavigationDashboardWidget extends DashboardWidget implements Serial
   
   private String imageLocationDarkMode;
   private String imageTypeDarkMode;
-
   
+  private String imageContent;
+  private String imageContentDarkMode;
+
   @Override
   public void resetWidgetFilters() {}
   @Override
@@ -136,5 +138,17 @@ public class NavigationDashboardWidget extends DashboardWidget implements Serial
   }
   public void setImageTypeDarkMode(String imageTypeDarkMode) {
     this.imageTypeDarkMode = imageTypeDarkMode;
+  }
+  public String getImageContent() {
+    return imageContent;
+  }
+  public void setImageContent(String imageContent) {
+    this.imageContent = imageContent;
+  }
+  public String getImageContentDarkMode() {
+    return imageContentDarkMode;
+  }
+  public void setImageContentDarkMode(String imageContentDarkMode) {
+    this.imageContentDarkMode = imageContentDarkMode;
   }
 }

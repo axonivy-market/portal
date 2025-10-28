@@ -80,7 +80,7 @@ public class ImageUploadUtils {
     return imageCMSObject.exists();
   }
 
-  private static ContentObjectValue readObjectValueOfDefaultLocale(ContentObject contentObject) {
+  public static ContentObjectValue readObjectValueOfDefaultLocale(ContentObject contentObject) {
     if (contentObject == null) {
       return null;
     }
@@ -89,5 +89,23 @@ public class ImageUploadUtils {
 
   private static ContentObject getApplicationCMS() {
     return ContentManagement.cms(IApplication.current()).root();
+  }
+  
+  public static String imageToBase64(String imageLocation, String extension, String imageDir) {
+    if (StringUtils.isBlank(imageLocation)) {
+      return "";
+    }
+    String result = "";
+    String fileName = getFileNameOfImage(imageLocation);
+    ContentObject imageCMSObject =
+        getApplicationCMS().child().folder(imageDir).child().file(fileName, extension);
+    if (imageCMSObject != null) {
+      result = new String(Base64.getEncoder().encode(ImageUploadUtils.readObjectValueOfDefaultLocale(imageCMSObject).read().bytes()));
+    }
+    return result;
+  }
+  
+  private static String getFileNameOfImage(String imageLocation) {
+    return StringUtils.defaultIfEmpty(imageLocation, "").substring(imageLocation.lastIndexOf('/') + 1);
   }
 }

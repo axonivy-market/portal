@@ -12,6 +12,8 @@
 <cc:implementation>
   <c:set var="widget" value="#{cc.attrs.widget}" />
   <c:set var="managedBean" value="#{cc.attrs.managedBean}" />
+  <f:event listener="#{navigationDashboardWidgetConfigurationBean.init()}" type="preRenderComponent" />
+  
   <!-- Configuration -->
   <h:panelGroup id="user-filter" layout="block"
     styleClass="card dashboard-card widget-configuration navigation-dashboard-widget-configuration">
@@ -81,17 +83,16 @@
       </p:selectOneMenu>
       </div>
     </h:panelGroup>
-    <h:panelGroup id="widget-visual-group" styleClass="grid">
-      <div class="col-4">
+    <h:panelGroup id="widget-visual-group" styleClass="u-padding-0 ui-fluid" layout="block">
+      <div class="ui-g-4 mt-2">
         <p:outputLabel styleClass="" for="@next" value="Visual Type"/>
       </div>
-      <div class="col-8">
+      <div class="ui-g-8">
         <p:selectOneRadio id="line" value="#{widget.visualType}" layout="lineDirection">
           <f:selectItem itemLabel="Image" itemValue="IMAGE" />
           <f:selectItem itemLabel="Icon" itemValue="ICON" />
           <p:ajax event="change" update="visual-demo"
                   oncomplete="PF('new-widget-configuration-dialog').initPosition();"
-                  listener="#{managedBean.onVisualTypeChange(widget)}" 
                   process="@this"/>
         </p:selectOneRadio>
       </div>
@@ -117,7 +118,7 @@
                   style="display: none;"
                   widgetVar="navigationWidgetUpload"
                   rendered="#{empty widget.imageLocation}"
-                  listener="#{managedBean.handleImageUpload}"
+                  listener="#{navigationDashboardWidgetConfigurationBean.handleImageUpload}"
                   chooseIcon="#{visibilityBean.generateButtonIcon('si si-add-small')}"
                   dragDropSupport="true" auto="true" update="file-upload-panel"
                   allowTypes="/(\.|\/)(png|jpg|jpeg|svg)$/i"
@@ -125,7 +126,7 @@
                   sizeLimit="5242880"
                   invalidSizeMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/fileSizeExceeded')}"
                   invalidFileMessage="#{ivy.cms.co('/Dialogs/components/CaseDocument/invalidFileMessage')}"
-                  dropZone="navigation-widget-preview-image-panel" oncomplete="hideExtendLinkPreviewLabel();"/>
+                  dropZone="navigation-widget-preview-image-panel" />
                   
                 <p:outputPanel id="navigation-widget-preview-image-panel" styleClass="ui-navigation-widget-preview-image-panel" >
                     <h:panelGroup rendered="#{empty widget.imageLocation}" class="ui-navigation-widget-preview-image-label">
@@ -143,7 +144,7 @@
                 <h:panelGroup class="external-link-preview-image-overlay-panel"
                   rendered="#{not empty widget.imageLocation}">
                   <p:commandButton id="navigation-widget-delete-image-button"
-                    actionListener="#{navigationDashboardWidgetConfigurationBean.removeTempImage(widget)}"
+                    actionListener="#{navigationDashboardWidgetConfigurationBean.removeImage(false)}"
                     ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/remove')}"
                     process="navigation-widget-delete-image-button"
                     partialSubmit="true" update="file-upload-panel"
@@ -154,11 +155,49 @@
               </h:panelGroup>
             </p:tab>
             <p:tab title="Dark Mode">
-            
+              <h:panelGroup id="file-upload-panel-dark-mode" layout="block"
+                styleClass="#{empty widget.imageLocationDarkMode ? 'ui-g-12 ':'ui-g-12 ui-fluid u-padding-0 MarTop10 external-link-preview-image-panel'}">
+                <p:fileUpload id="navigation-widget-image-dark-mode-upload"
+                  style="display: none;"
+                  widgetVar="navigationWidgetUpload"
+                  rendered="#{empty widget.imageLocationDarkMode}"
+                  listener="#{navigationDashboardWidgetConfigurationBean.handleImageDarkModeUpload}"
+                  chooseIcon="#{visibilityBean.generateButtonIcon('si si-add-small')}"
+                  dragDropSupport="true" auto="true" update="file-upload-panel-dark-mode"
+                  allowTypes="/(\.|\/)(png|jpg|jpeg|svg)$/i"
+                  accept=".png,.jpg,.jpeg,.svg" onvalidationfailure="handleUploadFileFail('navigationWidgetUpload');"
+                  sizeLimit="5242880"
+                  invalidSizeMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/fileSizeExceeded')}"
+                  invalidFileMessage="#{ivy.cms.co('/Dialogs/components/CaseDocument/invalidFileMessage')}"
+                  dropZone="navigation-widget-preview-image-panel" oncomplete="hideExtendLinkPreviewLabel();"/>
+                  
+                <p:outputPanel id="navigation-widget-preview-image-dark-mode-panel" styleClass="ui-navigation-widget-preview-image-panel" >
+                    <h:panelGroup rendered="#{empty widget.imageLocationDarkMode}" class="ui-navigation-widget-preview-image-label">
+                    <i class="si si-file-code-upload-1" id="ui-navigation-widget-preview-image-icon" />
+                    <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/dragAndDropImage')}">
+                    <p:link value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/uploadOneHere')}" onclick="PF('navigationWidgetUpload').show();return false"/>
+                    </p:outputLabel>
+                    </h:panelGroup>
+                    <p:graphicImage id="navigation-widget-preview-image-dark-mode"
+                       rendered="#{not empty widget.imageLocationDarkMode}"
+                       styleClass="external-link-preview-image" library="ivy-cms"
+                       name="#{widget.imageLocationDarkMode}" />
+                </p:outputPanel>
+    
+                <h:panelGroup class="external-link-preview-image-overlay-panel"
+                  rendered="#{not empty widget.imageLocationDarkMode}">
+                  <p:commandButton id="navigation-widget-delete-image-dark-mode-button"
+                    actionListener="#{navigationDashboardWidgetConfigurationBean.removeImage(true)}"
+                    ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/remove')}"
+                    process="navigation-widget-delete-image-dark-mode-button"
+                    partialSubmit="true" update="file-upload-panel-dark-mode"
+                    rendered="#{not empty widget.imageLocationDarkMode}"
+                    styleClass="external-link-delete-image-button"
+                    icon="si si-bin-1" immediate="true" />
+                </h:panelGroup>
+              </h:panelGroup>
             </p:tab>
           </p:tabView>
-          
-          
         </h:panelGroup>
       </h:panelGroup>
     </h:panelGroup>
