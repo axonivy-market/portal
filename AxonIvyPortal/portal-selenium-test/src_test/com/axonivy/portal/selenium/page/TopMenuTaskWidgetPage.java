@@ -129,11 +129,9 @@ public class TopMenuTaskWidgetPage extends TaskWidgetNewDashBoardPage {
   private void clickTaskAction(int taskIndex, String actionName) {
     SelenideElement taskActionPanel = getTaskActionPanel(taskIndex);
     waitForElementDisplayed(taskActionPanel, true);
-    ElementsCollection actionList = taskActionPanel.findAll(By.className("option-item"));
-    actionList.filter(text(actionName)).first().click();
-//    taskActionPanel.$$("a[class*='option-item']")
-//        .filter(Condition.not(Condition.cssClass("ui-state-disabled"))).filter(text(actionName)).first()
-//        .shouldBe(getClickableCondition()).click();
+    taskActionPanel.$$("a[class*='option-item']")
+        .filter(Condition.not(Condition.cssClass("ui-state-disabled"))).filter(text(actionName)).first()
+        .shouldBe(getClickableCondition()).click();
   }
   
   private SelenideElement getTaskActionPanel(int taskIndex) {
