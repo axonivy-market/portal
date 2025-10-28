@@ -2,9 +2,12 @@ package ch.ivy.addon.portal.generic.bean;
 
 import java.util.List;
 
+import java.util.Locale;
+
 import com.axonivy.portal.service.IvyTranslationService;
 
 import ch.ivy.addon.portalkit.dto.DisplayName;
+import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
 import ch.ivy.addon.portalkit.util.DisplayNameConvertor;
 import ch.ivy.addon.portalkit.util.UserUtils;
 
@@ -19,7 +22,7 @@ public interface IMultiLanguage {
   }
   
   default boolean isRequiredField(DisplayName displayName) {
-    String currentLanguage = UserUtils.getUserLanguage();
+    String currentLanguage = getSupportedUserLanguage().getLanguage();
     String displayLanguage = displayName.getLocale().getLanguage();
     return currentLanguage.equals(displayLanguage);
   }
@@ -27,5 +30,10 @@ public interface IMultiLanguage {
   default void initAndSetValue(String value, List<DisplayName> values) {
     DisplayNameConvertor.initMultipleLanguages(value, values);
     DisplayNameConvertor.setValue(value, values);
-  }  
+  }
+  
+  default Locale getSupportedUserLanguage() {
+    String supportedPortalUserLanguage = LanguageService.getInstance().getUserLanguage();
+    return Locale.forLanguageTag(supportedPortalUserLanguage);
+  }
 }

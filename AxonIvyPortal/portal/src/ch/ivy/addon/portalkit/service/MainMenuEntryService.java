@@ -10,6 +10,7 @@ import org.apache.commons.collections4.CollectionUtils;
 import ch.ivy.addon.portalkit.configuration.MainMenuEntry;
 import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
+import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
 import ch.ivy.addon.portalkit.util.DisplayNameAdaptor;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -33,7 +34,7 @@ public class MainMenuEntryService {
   }
 
   public String getNameInCurrentLocale() {
-    Locale currentLocale = Ivy.session().getContentLocale();
+    Locale currentLocale = LanguageService.getInstance().getUserLocale();
     MainMenuEntry mainMenuEntry = getMainMenuEntry();
 
     if (mainMenuEntry != null) {
