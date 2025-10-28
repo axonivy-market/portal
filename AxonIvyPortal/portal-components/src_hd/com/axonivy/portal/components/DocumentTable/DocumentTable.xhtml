@@ -104,6 +104,7 @@
         </div>
         <div class="ui-g-3">
         <p:commandLink id="edit-filename" ariaLabel="#{cc.attrs.renameText}"
+          immediate="true"
           rendered="#{cc.attrs.renameRendered}" styleClass="#{cc.attrs.renameStyleClass}"
           actionListener="#{data.setSelectedDocument(document)}"
           update="#{cc.clientId}:document-renaming-dialog"
