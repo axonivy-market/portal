@@ -490,6 +490,7 @@ public class CaseDetailsTest extends BaseTest {
   @AfterEach
   public void teardown() {
     denySpecificPortalPermission(PortalPermission.TASK_CASE_ADD_NOTE);
+    denySpecificPortalPermission(PortalPermission.NOTE_READ_ALL_CASE_TASK_DETAILS);
   }
 
   @Test
@@ -575,10 +576,10 @@ public class CaseDetailsTest extends BaseTest {
 
   @Test
   public void testCheckSystemNotesByDefaultForNormalUser() {
-    grantSpecificPortalPermission(PortalPermission.NOTE_READ_ALL_CASE_TASK_DETAILS);
     updateGlobalVariable(Variable.CHECK_SYSTEM_NOTES_BY_DEFAULT.getKey(), "false");
     login(TestAccount.DEMO_USER);
     redirectToRelativeLink(CREATE_NOTES);
+    grantSpecificPortalPermission(PortalPermission.NOTE_READ_ALL_CASE_TASK_DETAILS);
 
     CaseWidgetNewDashBoardPage casePage = NavigationHelper.navigateToCaseList();
     detailsPage = casePage.openDetailsCase("Create note");
@@ -588,6 +589,7 @@ public class CaseDetailsTest extends BaseTest {
     detailsPage.clickOnSystemNotesCheckbox(true);
 
     detailsPage.getNotesWithContent("System note").shouldHave(size(1));
+    denySpecificPortalPermission(PortalPermission.NOTE_READ_ALL_CASE_TASK_DETAILS);
   }
 
   @Test
