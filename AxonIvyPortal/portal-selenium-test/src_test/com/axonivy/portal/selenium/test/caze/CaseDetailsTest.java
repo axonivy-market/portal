@@ -490,6 +490,7 @@ public class CaseDetailsTest extends BaseTest {
   @AfterEach
   public void teardown() {
     denySpecificPortalPermission(PortalPermission.TASK_CASE_ADD_NOTE);
+    denySpecificPortalPermission(PortalPermission.NOTE_READ_ALL_CASE_TASK_DETAILS);
   }
 
   @Test
