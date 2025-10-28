@@ -10,6 +10,7 @@ public class IvyDocument {
   private String id;
   private String name;
   private String path;
+  private String relativePath;
   private Long size;
   private String contentType;
   private ModificationInfo creation;
@@ -48,6 +49,14 @@ public class IvyDocument {
 
   public void setPath(String path) {
     this.path = path;
+  }
+
+  public String getRelativePath() {
+    return relativePath;
+  }
+
+  public void setRelativePath(String relativePath) {
+    this.relativePath = relativePath;
   }
 
   public Long getSize() {
@@ -128,6 +137,11 @@ public class IvyDocument {
     
     public Builder path(String path) {
       ivyDocument.path = path;
+      return this;
+    }
+
+    public Builder relativePath(String relativePath) {
+      ivyDocument.relativePath = relativePath;
       return this;
     }
     

@@ -63,7 +63,7 @@
                   symbolStyleClass="task-details-document-download-icon"
                   fileNameStyleClass="document-name"
                   fileSizeStyleClass="document-size" />
-                <p:tooltip for="download" trackMouse="true" hideEvent="mouseleave click" value="#{document.name}" />
+                <p:tooltip for="download" trackMouse="true" hideEvent="mouseleave click" value="#{document.relativePath}" />
               </p:commandLink>
               <p:commandLink id="preview-file" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/PreviewDocument')}" 
                 process="@this"
