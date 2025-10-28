@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Portal Guide ${revision}\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-23 07:56+0000\n"
+"POT-Creation-Date: 2025-10-24 03:51+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: de\n"
@@ -899,26 +899,6 @@ msgstr ""
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "If true, start a process/task in IFrame mode."
-msgstr ""
-
-#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
-msgid "Portal.Histories.HideSystemNotes"
-msgstr ""
-
-#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
-msgid ""
-"If true, case/task note does not display any system notes for non-"
-"administrator users."
-msgstr ""
-
-#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
-msgid "Portal.Histories.HideSystemNotesForAdministrator"
-msgstr ""
-
-#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
-msgid ""
-"If true, case/task note does not display any system notes for "
-"administrator."
 msgstr ""
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
@@ -7134,5 +7114,23 @@ msgstr ""
 #~ "<TaskDisplayWorkflowEventAction>` to allow a "
 #~ "user to see the corresponding buttons"
 #~ " and menu items."
+#~ msgstr ""
+
+#~ msgid "Portal.Histories.HideSystemNotes"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "If true, case/task note does not "
+#~ "display any system notes for non-"
+#~ "administrator users."
+#~ msgstr ""
+
+#~ msgid "Portal.Histories.HideSystemNotesForAdministrator"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "If true, case/task note does not "
+#~ "display any system notes for "
+#~ "administrator."
 #~ msgstr ""
 
