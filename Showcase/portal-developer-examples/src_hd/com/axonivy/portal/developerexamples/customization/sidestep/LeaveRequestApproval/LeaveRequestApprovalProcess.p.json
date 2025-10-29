@@ -132,9 +132,9 @@
             "import java.util.ArrayList;",
             "",
             "in.steps = new ArrayList();",
-            "in.steps.add(ivy.cms.co(\"/Labels/LeaveRequest/LeaveSteps/creation\"));",
-            "in.steps.add(ivy.cms.co(\"/Labels/LeaveRequest/LeaveSteps/approval\"));",
-            "in.steps.add(ivy.cms.co(\"/Labels/LeaveRequest/LeaveSteps/approvalResult\"));"
+            "in.steps.add(ivy.cms.co(\"/Labels/LeaveRequest/LeaveSteps/Creation\"));",
+            "in.steps.add(ivy.cms.co(\"/Labels/LeaveRequest/LeaveSteps/Approval\"));",
+            "in.steps.add(ivy.cms.co(\"/Labels/LeaveRequest/LeaveSteps/ApprovalResult\"));"
           ]
         }
       },

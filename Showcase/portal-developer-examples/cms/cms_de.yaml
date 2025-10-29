@@ -130,6 +130,7 @@ Dialogs:
         developerexamples:
           customization:
             sidestep:
+              CustomSideStepPrefix: 'Mein benutzerdefiniertes Aufgabennamenpräfix:'
               LeaveRequestApproval:
                 Approve: Genehmigen
                 Reject: Ablehnen
@@ -155,7 +156,7 @@ Enums:
     MATERNITY_LEAVE: Mutterschaftsurlaub
     SICK_LEAVE: Krankenstand
 Labels:
-  Close: Close
+  Close: Schließen
   LeaveRequest:
     ApprovalResultTaskIntro: Unten finden Sie eine Zusammenfassung Ihres Urlaubsantrags und des Feedbacks des Genehmigers.
     ApprovalTaskIntro: 'Es gibt einen Urlaubsantrag, der Ihre Genehmigung erfordert, Einzelheiten dazu finden Sie unten:'

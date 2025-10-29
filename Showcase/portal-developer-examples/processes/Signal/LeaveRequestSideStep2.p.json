@@ -17,16 +17,16 @@
             "import ch.ivyteam.ivy.security.ISecurityMember;",
             "import java.util.Arrays;",
             "import com.axonivy.portal.components.enums.SideStepType;",
-            "import com.axonivy.portal.components.publicapi.SideStepProcessParam;",
+            "import com.axonivy.portal.components.dto.SideStepProcessParamDTO;",
             "import ch.ivyteam.ivy.workflow.ICase;",
             "import ch.ivyteam.ivy.workflow.businesscase.IBusinessCase;",
-            "import com.axonivy.portal.components.publicapi.SideStepConfigurationDTO;",
+            "import com.axonivy.portal.components.dto.SideStepConfigurationDTO;",
             "import com.google.gson.Gson;",
             "import java.util.Map;",
             "import com.axonivy.portal.components.persistence.converter.BusinessEntityConverter;",
             "",
             "ivy.log.debug(signal.getSignalData() as String);",
-            "SideStepProcessParam data = BusinessEntityConverter.jsonValueToEntity(signal.getSignalData() as String, SideStepProcessParam.class) as SideStepProcessParam;",
+            "SideStepProcessParamDTO data = BusinessEntityConverter.jsonValueToEntity(signal.getSignalData() as String, SideStepProcessParamDTO.class) as SideStepProcessParamDTO;",
             "// custom params",
             "Map params = data.getSideStepProcessDto().getParams();",
             "",
@@ -52,7 +52,7 @@
       "type" : "TaskSwitchEvent",
       "config" : {
         "task" : {
-          "name" : "<%= com.axonivy.portal.components.publicapi.SideStepAPI.createSideStepTaskName(in1.originalTaskUuid, null); %>",
+          "name" : "<%= com.axonivy.portal.components.publicapi.SideStepAPI.createSideStepTaskName(in1.originalTaskUuid, \"/Dialogs/com/axonivy/portal/developerexamples/customization/sidestep/CustomSideStepPrefix\"); %>",
           "responsible" : {
             "type" : "USER_FROM_ATTRIBUTE",
             "activator" : "in1.securityMember.substring(1)"
@@ -122,7 +122,7 @@
       "type" : "TaskSwitchEvent",
       "config" : {
         "task" : {
-          "name" : "<%= com.axonivy.portal.components.publicapi.SideStepAPI.createSideStepTaskName(in1.originalTaskUuid, null); %>",
+          "name" : "<%= com.axonivy.portal.components.publicapi.SideStepAPI.createSideStepTaskName(in1.originalTaskUuid, \"/Dialogs/com/axonivy/portal/developerexamples/customization/sidestep/CustomSideStepPrefix\"); %>",
           "responsible" : {
             "type" : "ROLE_FROM_ATTRIBUTE",
             "activator" : "in1.securityMember"

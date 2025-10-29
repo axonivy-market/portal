@@ -444,6 +444,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     StringFormat:
       DateFromTo: '%s - %s'
       TextListOut: '%s、%s、。。'
+      TextWithColon: '%s：%s'
       TextWithContextInBrackets: 'TODO: %s (%s: %s)'
       TextWithRoundBracket: '%s（%s）'
     TaskCaseInformation: タスク／ケース情報

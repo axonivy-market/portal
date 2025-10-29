@@ -37,7 +37,7 @@ public final class SideStepAPI {
   public static String createSideStepTaskName(String originalTaskUuid, String prefixTaskNameCmsUri) {
     ITask originalTask = Ivy.wf().findTask(originalTaskUuid);
     if (originalTask != null) {
-      String prefixFromCms = StringUtils.isNotBlank(prefixTaskNameCmsUri) ? Ivy.cms().co(prefixTaskNameCmsUri) : "";
+      String prefixFromCms = StringUtils.isNotBlank(prefixTaskNameCmsUri) ? Ivy.cm().co(prefixTaskNameCmsUri) : "";
       return (StringUtils.isNotBlank(prefixFromCms) ? prefixFromCms : Ivy.cms().co(DEFAULT_PREFIX_TASK_NAME_CMS)) + originalTask.getName();
     }
     return null;

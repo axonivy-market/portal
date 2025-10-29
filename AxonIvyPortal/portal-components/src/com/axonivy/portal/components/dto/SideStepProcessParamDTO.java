@@ -1,4 +1,4 @@
-package com.axonivy.portal.components.publicapi;
+package com.axonivy.portal.components.dto;
 
 import java.io.Serializable;
 
@@ -15,7 +15,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
  * </pre>
  */
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-public class SideStepProcessParam implements Serializable {
+public class SideStepProcessParamDTO implements Serializable {
   private static final long serialVersionUID = -4988849644631374542L;
   private String version = JsonVersion.LATEST.getValue();
   private SideStepProcessDTO sideStepProcessDto;
@@ -23,9 +23,9 @@ public class SideStepProcessParam implements Serializable {
   private String comment;
   private Boolean isParallelSideStep;
 
-  public SideStepProcessParam() {}
+  public SideStepProcessParamDTO() {}
 
-  public SideStepProcessParam(SideStepProcessDTO sideStepProcessDto, String securityMemberId, Boolean isParallelSideStep, String comment) {
+  public SideStepProcessParamDTO(SideStepProcessDTO sideStepProcessDto, String securityMemberId, Boolean isParallelSideStep, String comment) {
     this.sideStepProcessDto = sideStepProcessDto;
     this.securityMemberId = securityMemberId;
     this.isParallelSideStep = isParallelSideStep;

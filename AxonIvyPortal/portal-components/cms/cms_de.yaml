@@ -17,6 +17,7 @@ Dialogs:
               ProcessName: Prozessname
             RequiredFieldMessage: Dies ist ein Pflichtfeld
             Save: Speichern
+            SideStepPrefix: 'Seitenschrittaufgabe für: '
             Task:
               Activator: Verantwortlich
             Type: Typ
@@ -93,6 +94,9 @@ Dialogs:
               EXTERNAL_LINK: External Link
               IVY_PROCESS: Geschäftsprozess
             ProcessViewerIFrameTitle: Prozessbetrachterrahmen
+          SideStepType:
+            PARALLEL: Parallel
+            SWITCH: Schalten
 Labels:
   AI:
     Error:

@@ -118,6 +118,7 @@ Dialogs:
         developerexamples:
           customization:
             sidestep:
+              CustomSideStepPrefix: 'TODO: My custom task name prefix:'
               LeaveRequestApproval:
                 Approve: 承認
                 Reject: 却下
@@ -143,7 +144,7 @@ Enums:
     MATERNITY_LEAVE: 産休
     SICK_LEAVE: 病欠
 Labels:
-  Close: Close
+  Close: 閉じる
   LeaveRequest:
     ApprovalResultTaskIntro: 以下は休暇申請の概要と承認者からのフィードバックです。
     ApprovalTaskIntro: 承認が必要な休暇申請があります。詳細は以下のとおりです：

@@ -130,6 +130,7 @@ Dialogs:
         developerexamples:
           customization:
             sidestep:
+              CustomSideStepPrefix: 'Préfixe de mon nom de tâche personnalisé :'
               LeaveRequestApproval:
                 Approve: Approuver
                 Reject: Refuser
@@ -155,7 +156,7 @@ Enums:
     MATERNITY_LEAVE: Congé de maternité
     SICK_LEAVE: Congés de maladie
 Labels:
-  Close: Close
+  Close: Fermer
   LeaveRequest:
     ApprovalResultTaskIntro: Vous trouverez ci-dessous un résumé de votre demande de congé et les commentaires de l'approbateur.
     ApprovalTaskIntro: 'Toute demande de congé doit être approuvée par vous, dont les détails figurent ci-dessous :'

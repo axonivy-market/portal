@@ -130,6 +130,7 @@ Dialogs:
         developerexamples:
           customization:
             sidestep:
+              CustomSideStepPrefix: 'My custom task name prefix: '
               LeaveRequestApproval:
                 Approve: Approve
                 Reject: Reject

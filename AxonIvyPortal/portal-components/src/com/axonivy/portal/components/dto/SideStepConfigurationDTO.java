@@ -1,7 +1,8 @@
-package com.axonivy.portal.components.publicapi;
+package com.axonivy.portal.components.dto;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 
 import com.axonivy.portal.components.ivydata.bo.JsonVersion;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -22,7 +23,7 @@ import ch.ivyteam.ivy.workflow.ITask;
  * <pre>
  * SideStepConfigurationDTO.builder()
  * .processes({@link List} of {@link SideStepProcessDTO})
- * .customSwitchSideStepTitle("Custom switch text")
+ * .customSwitchSideStepTitle("Labels/MyCustomSwitchSideStep")
  * .customParallelSideStepTitle("Custom parallel text")
  * .isParallelSideStep(true)
  * .build();
@@ -34,16 +35,16 @@ public class SideStepConfigurationDTO implements Serializable {
   private String version;
   private List<SideStepProcessDTO> processes;
   private Boolean isParallelSideStep;
-  private String customParallelSideStepTitle;
-  private String customSwitchSideStepTitle;
+  private Map<String, String> customParallelSideStepTitles;
+  private Map<String, String> customSwitchSideStepTitles;
 
   public SideStepConfigurationDTO() {}
   
   private SideStepConfigurationDTO(Builder builder) {
     this.processes = builder.processes;
     this.isParallelSideStep = builder.isParallelSideStep;
-    this.customParallelSideStepTitle = builder.customParallelSideStepTitle;
-    this.customSwitchSideStepTitle = builder.customSwitchSideStepTitle;
+    this.customParallelSideStepTitles = builder.customParallelSideStepTitles;
+    this.customSwitchSideStepTitles = builder.customSwitchSideStepTitles;
     this.version = builder.version;
   }
 
@@ -55,14 +56,6 @@ public class SideStepConfigurationDTO implements Serializable {
     return processes;
   }
 
-  public String getCustomParallelSideStepTitle() {
-    return customParallelSideStepTitle;
-  }
-
-  public String getCustomSwitchSideStepTitle() {
-    return customSwitchSideStepTitle;
-  }
-
   public String getVersion() {
     return version;
   }
@@ -71,11 +64,19 @@ public class SideStepConfigurationDTO implements Serializable {
     return isParallelSideStep;
   }
 
+  public Map<String, String> getCustomParallelSideStepTitles() {
+    return customParallelSideStepTitles;
+  }
+
+  public Map<String, String> getCustomSwitchSideStepTitles() {
+    return customSwitchSideStepTitles;
+  }
+
   public static class Builder {
     private List<SideStepProcessDTO> processes;
     private Boolean isParallelSideStep;
-    private String customParallelSideStepTitle;
-    private String customSwitchSideStepTitle;
+    private Map<String, String> customParallelSideStepTitles;
+    private Map<String, String> customSwitchSideStepTitles;
     private String version = JsonVersion.LATEST.getValue();
 
     /**
@@ -98,26 +99,16 @@ public class SideStepConfigurationDTO implements Serializable {
       return this;
     }
 
-    /**
-     * Optional function to set custom parallel side step title
-     * @param customParallelSideStepTitle 
-     * @return builder for {@link SideStepConfigurationDTO}
-     */
-    public Builder customParallelSideStepTitle(String customParallelSideStepTitle) {
-      this.customParallelSideStepTitle = customParallelSideStepTitle;
+    public Builder customParallelSideStepTitles(Map<String, String> customParallelSideStepTitles) {
+      this.customParallelSideStepTitles = customParallelSideStepTitles;
       return this;
     }
 
-    /**
-     * Optional function to set custom switch side step title
-     * @param customSwitchSideStepTitle
-     * @return builder for {@link SideStepConfigurationDTO}
-     */
-    public Builder customSwitchSideStepTitle(String customSwitchSideStepTitle) {
-      this.customSwitchSideStepTitle = customSwitchSideStepTitle;
+    public Builder customSwitchSideStepTitles(Map<String, String> customSwitchSideStepTitles) {
+      this.customSwitchSideStepTitles = customSwitchSideStepTitles;
       return this;
     }
-
+    
     public SideStepConfigurationDTO build() {
       return new SideStepConfigurationDTO(this);
     }

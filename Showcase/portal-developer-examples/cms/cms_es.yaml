@@ -130,6 +130,7 @@ Dialogs:
         developerexamples:
           customization:
             sidestep:
+              CustomSideStepPrefix: 'Mi prefijo de nombre de tarea personalizado:'
               LeaveRequestApproval:
                 Approve: Aprobar
                 Reject: Rechazar
@@ -155,7 +156,7 @@ Enums:
     MATERNITY_LEAVE: Ausencia maternal
     SICK_LEAVE: Ausencia por enfermedad
 Labels:
-  Close: Close
+  Close: Cerca
   LeaveRequest:
     ApprovalResultTaskIntro: Más abajo encontrará un resumen de su solicitud.
     ApprovalTaskIntro: 'Hay una solicitud para una ausencia. Detalles más abajo:'

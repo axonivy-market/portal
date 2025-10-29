@@ -18,12 +18,12 @@ import org.primefaces.PrimeFaces;
 
 import com.axonivy.portal.components.constant.CustomFields;
 import com.axonivy.portal.components.dto.RoleDTO;
+import com.axonivy.portal.components.dto.SideStepConfigurationDTO;
+import com.axonivy.portal.components.dto.SideStepProcessDTO;
+import com.axonivy.portal.components.dto.SideStepProcessParamDTO;
 import com.axonivy.portal.components.dto.UserDTO;
 import com.axonivy.portal.components.enums.SideStepType;
 import com.axonivy.portal.components.publicapi.PortalNavigatorInFrameAPI;
-import com.axonivy.portal.components.publicapi.SideStepConfigurationDTO;
-import com.axonivy.portal.components.publicapi.SideStepProcessDTO;
-import com.axonivy.portal.components.publicapi.SideStepProcessParam;
 import com.axonivy.portal.components.publicapi.TaskAPI;
 import com.axonivy.portal.components.service.IvyAdapterService;
 import com.axonivy.portal.components.util.FacesMessageUtils;
@@ -54,7 +54,7 @@ public class SideStepProcessBean implements Serializable {
   private SideStepType selectedStepType;
   private List<SideStepType> stepTypes;
   private String comment;
-  private SideStepConfigurationDTO sideStepInfo;
+  private SideStepConfigurationDTO sideStepConfigurationInfo;
   private boolean isUserDelegated = true;
 
   public List<SideStepProcessDTO> getProcesses() {
@@ -109,15 +109,15 @@ public class SideStepProcessBean implements Serializable {
             sideStepString = task.customFields().textField(CustomFields.SIDE_STEPS_TASK).getOrNull();
           }
           if (StringUtils.isNotBlank(sideStepString)) {
-            sideStepInfo = BusinessEntityConverter.jsonValueToEntity(sideStepString, SideStepConfigurationDTO.class);
-            if (sideStepInfo.getIsParallelSideStep() == null) {
+            sideStepConfigurationInfo = BusinessEntityConverter.jsonValueToEntity(sideStepString, SideStepConfigurationDTO.class);
+            if (sideStepConfigurationInfo.getIsParallelSideStep() == null) {
               setStepTypes(Arrays.asList(SideStepType.class.getEnumConstants()));
-            } else if (sideStepInfo.getIsParallelSideStep()) {
+            } else if (sideStepConfigurationInfo.getIsParallelSideStep()) {
               this.selectedStepType = SideStepType.PARALLEL;
             } else {
               this.selectedStepType = SideStepType.SWITCH;
             }
-            processes = sideStepInfo.getProcesses();
+            processes = sideStepConfigurationInfo.getProcesses();
           }
         }
       } catch (NullPointerException ex) {
@@ -128,11 +128,9 @@ public class SideStepProcessBean implements Serializable {
 
   public String getStepTypeTitle(SideStepType type) {
     return switch (type) {
-      case SideStepType.PARALLEL -> StringUtils.defaultIfBlank(sideStepInfo.getCustomParallelSideStepTitle(),
-          Ivy.cms().co("/Dialogs/com/axonivy/portal/components/SideStepType/" + SideStepType.PARALLEL.name()));
-      case SideStepType.SWITCH -> StringUtils.defaultIfBlank(sideStepInfo.getCustomSwitchSideStepTitle(),
-          Ivy.cms().co("/Dialogs/com/axonivy/portal/components/SideStepType/" + SideStepType.SWITCH.name()));
-      default -> null;
+      case SideStepType.PARALLEL -> StringUtils.defaultIfBlank((getCustomParallelTitle(sideStepConfigurationInfo)), SideStepType.PARALLEL.getLabel());
+      case SideStepType.SWITCH -> StringUtils.defaultIfBlank(getCustomSwitchTitle(sideStepConfigurationInfo), SideStepType.SWITCH.getLabel());
+      default -> "";
     };
   }
 
@@ -145,7 +143,7 @@ public class SideStepProcessBean implements Serializable {
         delegatedSecurityMember = SecurityMemberUtils.findISecurityMemberFromRoleDTO(assignedRole);
       }
       String securityMemberId = delegatedSecurityMember != null ? delegatedSecurityMember.getSecurityMemberId() : "";
-      SideStepProcessParam param = new SideStepProcessParam(selectedProcess, securityMemberId, selectedStepType == SideStepType.PARALLEL, comment);
+      SideStepProcessParamDTO param = new SideStepProcessParamDTO(selectedProcess, securityMemberId, selectedStepType == SideStepType.PARALLEL, comment);
       String jsonSerializedPayload = BusinessEntityConverter.entityToJsonValue(param);
       Ivy.wf().signals().create().data(jsonSerializedPayload).send(selectedProcess.getSignal());
       if (selectedStepType == SideStepType.SWITCH) {
@@ -230,11 +228,11 @@ public class SideStepProcessBean implements Serializable {
   }
 
   public SideStepConfigurationDTO getSideStepInfo() {
-    return sideStepInfo;
+    return sideStepConfigurationInfo;
   }
 
   public void setSideStepInfo(SideStepConfigurationDTO sideStepInfo) {
-    this.sideStepInfo = sideStepInfo;
+    this.sideStepConfigurationInfo = sideStepInfo;
   }
 
   public RoleDTO getAssignedRole() {
@@ -268,5 +266,31 @@ public class SideStepProcessBean implements Serializable {
   public void setUserRoles(List<String> userRoles) {
     this.userRoles = userRoles;
   }
-
+  
+  public String buildRequireMessage(String fieldName) {
+    return String.format(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/StringFormat/TextWithColon"), 
+        fieldName, Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage"));
+  }
+  
+  public String getProcessName(SideStepProcessDTO dto) {
+    if (dto.getProcessNames() != null) {
+      return dto.getProcessNames().get(Ivy.session().getContentLocale().toString());
+    }
+    return "";
+  }
+  
+  public String getCustomParallelTitle(SideStepConfigurationDTO dto) {
+    if (dto.getCustomParallelSideStepTitles() != null) {
+      return dto.getCustomParallelSideStepTitles().get(Ivy.session().getContentLocale().toString());
+    }
+    return "";
+  }
+  
+  public String getCustomSwitchTitle(SideStepConfigurationDTO dto) {
+    if (dto.getCustomSwitchSideStepTitles() != null) {
+      return dto.getCustomSwitchSideStepTitles().get(Ivy.session().getContentLocale().toString());
+    }
+    return "";
+  }
+  
 }
