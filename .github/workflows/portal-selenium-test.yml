@@ -21,7 +21,7 @@ env:
   ENGINE_URL: https://developer.axonivy.com/permalink/nightly-12/axonivy-engine.zip
 
 jobs:
-   show-branch-info:
+  show-branch-info:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -292,7 +292,6 @@ jobs:
                   ])
                 ])
                 .write();
-                
             } catch (error) {
               console.error('Error fetching PRs since last build:', error);
               await core.summary
@@ -300,7 +299,6 @@ jobs:
                 .addRaw(`Could not retrieve PR information: ${error.message}`)
                 .write();
             }
-
 
   portal-selenium-test:
       runs-on: ubuntu-latest
@@ -373,7 +371,7 @@ jobs:
             cp Showcase/portal-components-examples/target/*.iar $DEPLOYMENT
       
         - name: Run test
-          id: run-test        
+          id: run-test
           run: |
             mvn clean test -f AxonIvyPortal/portal-selenium-test/customized_pom.xml -Divy.engine.download.url=${{ inputs.engineDownloadURL }} -Dtest=${{ inputs.testPatternToRun }} -DbrowserType=FIREFOX -DtrimStackTrace=false -Divy.engine.directory=$ENGINE_DIR -Divy.deploy.timeout.seconds=60 -Divy.engine.start.timeout.seconds=500 -Dsurefire.rerunFailingTestsCount=2
           continue-on-error: true
