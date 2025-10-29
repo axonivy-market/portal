@@ -26,7 +26,6 @@ import com.axonivy.portal.util.UploadDocumentUtils;
 import ch.ivy.addon.portal.generic.bean.IMultiLanguage;
 import ch.ivy.addon.portalkit.bo.ExternalLinkProcessItem;
 import ch.ivy.addon.portalkit.configuration.ExternalLink;
-import ch.ivy.addon.portalkit.constant.DashboardConstants;
 import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.enums.Protocol;
 import ch.ivy.addon.portalkit.service.ExternalLinkService;
@@ -90,7 +89,7 @@ public class ExternalLinkBean implements Serializable, IMultiLanguage {
 
   public void handleImageUpload(FileUploadEvent event) {
     removeImage();
-    ImageUploadResult imageInfo = ImageUploadUtils.handleImageUpload(event, DashboardConstants.EXTERNAL_LINK_IMAGE_DIRECTORY);
+    ImageUploadResult imageInfo = ImageUploadUtils.handleImageUpload(event, ImageUploadUtils.EXTERNAL_LINK_IMAGE_DIRECTORY);
     if (imageInfo.isInvalid()) {
       FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR,
           Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/documentFiles/fileContainScript"), null);

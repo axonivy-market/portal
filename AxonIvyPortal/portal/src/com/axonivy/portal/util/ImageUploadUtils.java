@@ -21,6 +21,8 @@ import ch.ivyteam.ivy.environment.Ivy;
 public class ImageUploadUtils {
 
   public static final String DEFAULT_LOCALE_TAG = "en";
+  public static final String EXTERNAL_LINK_IMAGE_DIRECTORY = "com/axonivy/portal/ExternalLink";
+  public static final String NAVIGATION_WIDGET_IMAGE_DIRECTORY = "com/axonivy/portal/NavigationWidget";
 
   public static ImageUploadResult handleImageUpload(FileUploadEvent event, String imageDir) {
     UploadedFile file = event.getFile();
@@ -58,6 +60,10 @@ public class ImageUploadUtils {
   public static String imageBase64ToApplicationCMSFile(String base64Data, String imageType, String imageDir) {
     try {
       byte[] data = Base64.getDecoder().decode(base64Data.getBytes(StandardCharsets.UTF_8));
+      if (SvgUtils.isPotentialSvg(imageType, data) && SvgUtils.isUnsafeSvg(data)) {
+        Ivy.log().warn("Image rejected: unsafe SVG content (base64 path).");
+        return StringUtils.EMPTY;
+      }
       String fileName = UUID.randomUUID().toString();
       ContentObject imageCMSObject = getApplicationCMS().child().folder(imageDir).child().file(fileName, imageType);
 

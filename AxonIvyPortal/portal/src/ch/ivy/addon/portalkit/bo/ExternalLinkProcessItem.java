@@ -7,7 +7,6 @@ import org.apache.commons.lang3.StringUtils;
 import com.axonivy.portal.util.ImageUploadUtils;
 
 import ch.ivy.addon.portalkit.configuration.ExternalLink;
-import ch.ivy.addon.portalkit.constant.DashboardConstants;
 import ch.ivy.addon.portalkit.enums.DefaultImage;
 import ch.ivy.addon.portalkit.enums.ProcessType;
 import ch.ivy.addon.portalkit.service.ExternalLinkService;
@@ -28,7 +27,7 @@ public class ExternalLinkProcessItem implements Process {
   
   private void convertBase64ImageToFile() {
     if (StringUtils.isNotBlank(externalLink.getImageType()) && StringUtils.isNotBlank(externalLink.getImageContent())) {
-      String imageLocation = ImageUploadUtils.imageBase64ToApplicationCMSFile(externalLink.getImageContent(), externalLink.getImageType(), DashboardConstants.EXTERNAL_LINK_IMAGE_DIRECTORY);
+      String imageLocation = ImageUploadUtils.imageBase64ToApplicationCMSFile(externalLink.getImageContent(), externalLink.getImageType(), ImageUploadUtils.EXTERNAL_LINK_IMAGE_DIRECTORY);
       ImageUploadUtils.removeImage(externalLink.getImageLocation(), externalLink.getImageType());
       externalLink.setImageLocation(imageLocation);
       externalLink.setImageContent(null);

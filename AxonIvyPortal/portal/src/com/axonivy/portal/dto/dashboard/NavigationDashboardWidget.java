@@ -52,7 +52,7 @@ public class NavigationDashboardWidget extends DashboardWidget implements Serial
     var widget = new NavigationDashboardWidget();
     widget.setId(widgetId);
     widget.setButtonName(buttonName);
-    widget.setVisualType(VisualType.IMAGE); // Default to icon visual type
+    widget.setVisualType(VisualType.ICON);
     widget.setLayout(new WidgetLayout());
     widget.getLayout().setWidth(3);
     widget.getLayout().setHeight(3);

@@ -9,10 +9,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.primefaces.event.FileUploadEvent;
 
 import com.axonivy.portal.components.util.ImageUploadResult;
-import com.axonivy.portal.dto.dashboard.NavigationDashboardWidget;
 import com.axonivy.portal.util.ImageUploadUtils;
-
-import ch.ivy.addon.portalkit.constant.DashboardConstants;
 
 @ViewScoped
 @ManagedBean
@@ -34,7 +31,7 @@ public class NavigationDashboardWidgetConfigurationBean extends NavigationDashbo
     removeImage(false);
     
     // Upload new image
-    ImageUploadResult imageInfo = ImageUploadUtils.handleImageUpload(event, DashboardConstants.NAVIGATION_WIDGET_IMAGE_DIRECTORY);
+    ImageUploadResult imageInfo = ImageUploadUtils.handleImageUpload(event, ImageUploadUtils.NAVIGATION_WIDGET_IMAGE_DIRECTORY);
     if (StringUtils.isNotBlank(imageInfo.imageLocation())) {
       getWidget().setImageLocation(imageInfo.imageLocation());
       getWidget().setImageType(imageInfo.imageType());
@@ -50,7 +47,7 @@ public class NavigationDashboardWidgetConfigurationBean extends NavigationDashbo
     removeImage(true);
     
     // Upload new image
-    ImageUploadResult imageInfo = ImageUploadUtils.handleImageUpload(event, DashboardConstants.NAVIGATION_WIDGET_IMAGE_DIRECTORY);
+    ImageUploadResult imageInfo = ImageUploadUtils.handleImageUpload(event, ImageUploadUtils.NAVIGATION_WIDGET_IMAGE_DIRECTORY);
     if (StringUtils.isNotBlank(imageInfo.imageLocation())) {
       getWidget().setImageLocationDarkMode(imageInfo.imageLocation());
       getWidget().setImageTypeDarkMode(imageInfo.imageType());
@@ -71,12 +68,5 @@ public class NavigationDashboardWidgetConfigurationBean extends NavigationDashbo
       getWidget().setImageLocationDarkMode(null);
       getWidget().setImageTypeDarkMode(null);
     }
-  }
-  
-  public void onVisualTypeChange(NavigationDashboardWidget targetWidget) {
-    // If switching away from IMAGE mode, remove the uploaded image
-//    if (targetWidget != null && targetWidget.getVisualType() != VisualType.IMAGE) {
-//      removePreviousImage();
-//    }
   }
 }

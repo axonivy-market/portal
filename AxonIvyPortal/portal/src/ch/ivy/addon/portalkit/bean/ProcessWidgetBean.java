@@ -43,7 +43,6 @@ import ch.ivy.addon.portalkit.bo.IvyProcess;
 import ch.ivy.addon.portalkit.bo.Process;
 import ch.ivy.addon.portalkit.configuration.ExternalLink;
 import ch.ivy.addon.portalkit.configuration.GlobalSetting;
-import ch.ivy.addon.portalkit.constant.DashboardConstants;
 import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.ProcessMode;
@@ -299,7 +298,7 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
       return;
     }
     removeTempExternalLinkImage();
-    ImageUploadResult imageInfo = ImageUploadUtils.handleImageUpload(event, DashboardConstants.EXTERNAL_LINK_IMAGE_DIRECTORY);    if (imageInfo.isInvalid()) {
+    ImageUploadResult imageInfo = ImageUploadUtils.handleImageUpload(event, ImageUploadUtils.EXTERNAL_LINK_IMAGE_DIRECTORY);    if (imageInfo.isInvalid()) {
       FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR,
           Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/documentFiles/fileContainScript"), null);
       FacesContext.getCurrentInstance().addMessage("edit-external-link-error-message", message);

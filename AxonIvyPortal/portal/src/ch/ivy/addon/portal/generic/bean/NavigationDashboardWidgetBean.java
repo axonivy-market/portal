@@ -17,6 +17,7 @@ import javax.faces.context.FacesContext;
 import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.dto.dashboard.NavigationDashboardWidget;
+import com.axonivy.portal.util.ImageUploadUtils;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.dto.DisplayName;
@@ -38,6 +39,8 @@ public class NavigationDashboardWidgetBean implements Serializable {
   private Boolean isNavigateToTargetDashboard;
   private Deque<String> pageHistory = new ArrayDeque<>();
   private NavigationDashboardWidget widget;
+  
+  protected static final String DEFAULT_IMAGE_CMS_URI = "/Images/process/MUGBEGIN";
 
   public void init() {
     widget = Attrs.currentContext().getAttribute("#{cc.attrs.widget}", NavigationDashboardWidget.class);
@@ -178,5 +181,13 @@ public class NavigationDashboardWidgetBean implements Serializable {
 
   public void setWidget(NavigationDashboardWidget widget) {
     this.widget = widget;
+  }
+  
+  public String getDefaultImageLink() {
+    return DEFAULT_IMAGE_CMS_URI;
+  }
+
+  public boolean isRenderDefaultImage(String imageLocation, String imageType) {
+    return !ImageUploadUtils.isValidImageUrl(imageLocation, imageType);
   }
 }

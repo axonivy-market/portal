@@ -60,46 +60,52 @@
         <!-- Icon or Image Display -->
         <!-- Show icon when visual type is ICON or when no visual type is set (backward compatibility) -->
         <h:panelGroup rendered="#{widget.visualType == null or widget.visualType == 'ICON'}">
-            <div class="navigation-widget-visual">
-                <i class="#{iconSelectionBean.generateIconWithFontFamily(widget.icon)} text-7xl"/>
-            </div>
+          <h:panelGroup styleClass="navigation-widget-visual" layout="block" rendered="#{not empty widget.icon}">
+            <i class="#{iconSelectionBean.generateIconWithFontFamily(widget.icon)} text-7xl"/>
+          </h:panelGroup>
+          <h:panelGroup styleClass="navigation-widget-visual" layout="block" rendered="#{empty widget.icon}">
+            <i class="si si-navigation-right-circle text-7xl"/>
+          </h:panelGroup>
         </h:panelGroup>
         
         <!-- Show image when visual type is IMAGE (always show image, even if empty imageLocation) -->
         <h:panelGroup rendered="#{widget.visualType == 'IMAGE'}">
-            <!-- Custom uploaded image - fill the entire widget area -->
-            <p:graphicImage rendered="#{not empty widget.imageLocation}" 
-                            cache="true"
-                            styleClass="navigation-widget-image-full light-mode" 
-                            alt="#{widget.name}"
-                            library="ivy-cms" 
-                            name="#{widget.imageLocation}" />
-                            
-            <p:graphicImage rendered="#{not empty widget.imageLocationDarkMode}" 
-                            cache="true"
-                            styleClass="navigation-widget-image-full dark-mode" 
-                            alt="#{widget.name}"
-                            library="ivy-cms" 
-                            name="#{widget.imageLocationDarkMode}" />
-            
+
+          <p:graphicImage id="default-image" rendered="#{navigationDashboardWidgetBean.isRenderDefaultImage(widget.imageLocation, widget.imageType)}" 
+                          cache="true"
+                          styleClass="navigation-widget-image-full light-mode" 
+                          alt="#{widget.name}"
+                          library="ivy-cms" 
+                          name="#{navigationDashboardWidgetBean.defaultImageLink}" />
+
+          <p:graphicImage id="default-image-dark" rendered="#{navigationDashboardWidgetBean.isRenderDefaultImage(widget.imageLocationDarkMode, widget.imageTypeDarkMode)}" 
+                          cache="true"
+                          styleClass="navigation-widget-image-full dark-mode" 
+                          alt="#{widget.name}"
+                          library="ivy-cms" 
+                          name="#{navigationDashboardWidgetBean.defaultImageLink}" />
+
+          <p:graphicImage rendered="#{not navigationDashboardWidgetBean.isRenderDefaultImage(widget.imageLocation, widget.imageType)}" 
+                          cache="true"
+                          styleClass="navigation-widget-image-full light-mode" 
+                          alt="#{widget.name}"
+                          library="ivy-cms" 
+                          name="#{widget.imageLocation}" />
+
+          <p:graphicImage rendered="#{not navigationDashboardWidgetBean.isRenderDefaultImage(widget.imageLocationDarkMode, widget.imageTypeDarkMode)}" 
+                          cache="true"
+                          styleClass="navigation-widget-image-full dark-mode" 
+                          alt="#{widget.name}"
+                          library="ivy-cms" 
+                          name="#{widget.imageLocationDarkMode}" />
+
         </h:panelGroup>
-        
-        <h:panelGroup styleClass="mt-3 w-full" layout="block" rendered="#{widget.visualType == null or widget.visualType == 'ICON'}">
-          <div class="mt-2 navigation-widget-title">
-              <h:outputText styleClass="font-bold" value="#{widget.name}" />
-          </div>
-          <div class="mt-2">
-              <h:outputText id="navigation-widget-description" styleClass="flex justify-content-center" value="#{widget.description}" />
-              <p:tooltip for="navigation-widget-description" value="#{widget.description}" trackMouse="true" />
-          </div>
-        </h:panelGroup>
-        
         <!-- Normal text layout for image mode (not overlay) -->
-        <h:panelGroup styleClass="mt-3 w-full" layout="block" rendered="#{widget.visualType == 'IMAGE'}">
-          <div class="mt-2 navigation-widget-title">
+        <h:panelGroup styleClass="mt-3 w-full" layout="block">
+          <div class="m-2 navigation-widget-title">
               <h:outputText styleClass="font-bold" value="#{widget.name}" />
           </div>
-          <div class="mt-2">
+          <div class="m-2">
               <h:outputText id="navigation-widget-description-image" styleClass="flex justify-content-center" value="#{widget.description}" />
               <p:tooltip for="navigation-widget-description-image" value="#{widget.description}" trackMouse="true" />
           </div>
