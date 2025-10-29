@@ -34,7 +34,6 @@ public class Statistic extends AbstractConfiguration implements Serializable {
   private String filter;
   private List<DashboardFilter> filters;
   private List<String> permissions;
-  private List<String> chartDrillDownPermissions;
   private ChartTarget chartTarget;
   private ChartType chartType;
   private String icon;
@@ -56,8 +55,6 @@ public class Statistic extends AbstractConfiguration implements Serializable {
   private Boolean isCustom;
   @JsonIgnore
   private List<SecurityMemberDTO> permissionDTOs;
-  @JsonIgnore
-  private List<SecurityMemberDTO> chartDrillDownPermissionDTOs;
   private List<ThresholdStatisticChart> thresholdStatisticCharts;
   private String defaultBackgroundColor;
   private boolean conditionBasedColoringEnabled;
@@ -232,14 +229,6 @@ public class Statistic extends AbstractConfiguration implements Serializable {
   public void setPermissionDTOs(List<SecurityMemberDTO> permissionDTOs) {
     this.permissionDTOs = permissionDTOs;
   }
-  
-  public void setChartDrillDownPermissionDTOs(List<SecurityMemberDTO> chartDrillDownPermissionDTOs) {
-    this.chartDrillDownPermissionDTOs = chartDrillDownPermissionDTOs;
-  }
-  
-  public List<SecurityMemberDTO> getChartDrillDownPermissionDTOs() {
-    return chartDrillDownPermissionDTOs;
-  }
 
   public Boolean getIsCustom() {
     return isCustom;
@@ -290,7 +279,7 @@ public class Statistic extends AbstractConfiguration implements Serializable {
   }
 
   public boolean getCanDrillDown() {
-    return chartDrillDownEnabled && hasPermission() && StringUtils.isEmpty(aggregates) && StringUtils.isEmpty(filter);
+    return chartDrillDownEnabled && StringUtils.isEmpty(aggregates) && StringUtils.isEmpty(filter);
   }
 
   public boolean getChartDrillDownEnabled() {
@@ -299,20 +288,5 @@ public class Statistic extends AbstractConfiguration implements Serializable {
 
   public void setChartDrillDownEnabled(boolean chartDrillDownEnabled) {
     this.chartDrillDownEnabled = chartDrillDownEnabled;
-  }
-
-  public List<String> getChartDrillDownPermissions() {
-    return chartDrillDownPermissions;
-  }
-
-  public void setChartDrillDownPermissions(List<String> accessDrillDownPermission) {
-    this.chartDrillDownPermissions = accessDrillDownPermission;
-  }
-  
-  private boolean hasPermission() {
-    return Optional.ofNullable(chartDrillDownPermissions)
-                   .orElse(List.of())
-                   .stream()
-                   .anyMatch(permission -> Ivy.session().getSessionUser().has().role(permission));
   }
 }
