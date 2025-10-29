@@ -13,7 +13,7 @@ import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.page.TaskDetailsPage;
 import com.axonivy.portal.selenium.page.TopMenuTaskWidgetPage;
 
-@IvyWebTest(headless = false)
+@IvyWebTest
 public class TaskPriorityChangeTest extends BaseTest {
 
   @Override
@@ -42,6 +42,7 @@ public class TaskPriorityChangeTest extends BaseTest {
   public void testUserWithoutPermissionCannotChangeTaskPriority() {
     int firstTask = 0;
     NavigationHelper.navigateToTaskList();
+    ScreenshotUtils.resizeBrowser(new Dimension(2560, 1440)); // resize the width to prevent jittering on server
     TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
     taskWidget.openTaskDetailsPageByAction(firstTask);
     assertFalse(taskWidget.isTaskPriorityChangeComponentPresented(firstTask));
