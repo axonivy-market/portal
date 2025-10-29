@@ -21,6 +21,7 @@ import com.axonivy.portal.selenium.page.CaseWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.DashboardModificationPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.codeborne.selenide.ElementsCollection;
+import ch.ivy.addon.portalkit.enums.PortalPermission;
 
 @IvyWebTest
 public class DashboardCaseWidgetActionTest extends BaseTest {
@@ -55,6 +56,7 @@ public class DashboardCaseWidgetActionTest extends BaseTest {
     login(TestAccount.ADMIN_USER);
     redirectToRelativeLink(create12CasesWithCategoryUrl);
     redirectToNewDashBoard();
+    denySpecificPortalPermission(PortalPermission.CASE_DISPLAY_CUSTOM_FIELDS_ACTION);
     
     CaseWidgetNewDashBoardPage caseWidget = newDashboardPage.selectCaseWidget(YOUR_CASES_WIDGET);
     var configurationPage = newDashboardPage.openDashboardConfigurationPage();
