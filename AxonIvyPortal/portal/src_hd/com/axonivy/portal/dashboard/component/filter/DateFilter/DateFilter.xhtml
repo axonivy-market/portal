@@ -141,7 +141,7 @@
     </p:datePicker>
   </h:panelGroup>
 
-  <h:panelGroup id="current-period-panel" layout="block" rendered="#{filter.operator == 'CURRENT'}">
+  <h:panelGroup id="current-period-panel" layout="block" rendered="#{filter.operator == 'CURRENT'}" styleClass="ui-fluid">
     <p:selectOneMenu id="current-period-selection" value="#{filter.periodType}" disabled="#{readOnly}"
       pt:aria-label="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/filter/DateFilter/SelectPeriod')}">
       <f:selectItems value="#{widgetDateFilterBean.currentFilterPeriodTypes}" var="period"
