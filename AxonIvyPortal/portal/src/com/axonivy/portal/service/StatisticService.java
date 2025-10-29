@@ -115,9 +115,10 @@ public class StatisticService {
       }
       FilterField filterField = ChartTarget.TASK == chartTarget
           ? TaskFilterFieldFactory.findBy(statisticFilter.getField(), statisticFilter.getFilterType())
-          : CaseFilterFieldFactory.findBy(statisticFilter.getField(), statisticFilter.getFilterType());      
+          : CaseFilterFieldFactory.findBy(statisticFilter.getField(), statisticFilter.getFilterType());
 
       if (filterField != null) {
+        filterField.initFilter(statisticFilter);
         String filterQuery = ChartTarget.TASK == chartTarget 
             ? filterField.generateTaskFilter(statisticFilter)
             : filterField.generateCaseFilter(statisticFilter);
