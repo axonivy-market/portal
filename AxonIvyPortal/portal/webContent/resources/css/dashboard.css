@@ -1962,21 +1962,19 @@ body .widget__content .ui-datatable.dashboard-tasks--table .ui-widget-header the
   width: 100%;
 }
 
-/* Navigation Dashboard Widget Image Styles - Based on image-process-item-image */
 .navigation-widget-image {
-  height: 8rem; /* Fixed height for navigation widget */
+  height: 8rem;
   position: relative;
   object-fit: cover;
   width: inherit;
   border-radius: 10px;
 }
 
-/* Navigation widget image - fit width with 67% height */
 .navigation-widget-image-full {
-  height: 67%; /* Adjusted height for better fit */
+  height: 67%;
   position: relative;
   object-fit: cover;
-  width: inherit; /* Fit the card width */
+  width: inherit;
   border-radius: 10px;
 }
 
