@@ -1,6 +1,7 @@
 package ch.ivy.addon.portalkit.ivydata.service.impl;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 
 import ch.ivy.addon.portalkit.constant.UserProperty;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -34,7 +35,7 @@ public class UserSettingService {
   }
 
   public boolean isDefaultProcessModeOption(String processMode) {
-    return StringUtils.startsWithIgnoreCase(processMode,
+    return Strings.CI.startsWith(processMode,
         Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/MyProfile/defaultOption").replace("({0})", ""));
   }
 
@@ -59,5 +60,21 @@ public class UserSettingService {
 
   private IUser getSessionUser() {
     return Ivy.session().getSessionUser();
+  }
+  
+  public void updateUserProperty(String property, String value) {
+    IUser user = getSessionUser();
+    if (user != null) {
+      user.setProperty(property, value);
+    }
+  }
+  
+  public boolean isKeyboardShortcutsEnabled() {
+    String isKeyboardShortcutsEnabled = getUserProperty(UserProperty.ENABLE_KEYBOARD_SHORTCUTS);
+    if (StringUtils.isBlank(isKeyboardShortcutsEnabled)) {
+      updateUserProperty(UserProperty.ENABLE_KEYBOARD_SHORTCUTS, Boolean.FALSE.toString());
+      return Boolean.FALSE;
+    }
+    return Boolean.parseBoolean(isKeyboardShortcutsEnabled);
   }
 }

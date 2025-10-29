@@ -51,6 +51,15 @@
                     fileSize="#{masterDataBean.getReadableFileSize(document.size)}"
                     symbolStyleClass="case-details-document-download-icon"
                     fileNameStyleClass="js-document-name document-name" fileSizeStyleClass="document-size" />
+                  <p:tooltip for="download" trackMouse="true" hideEvent="mouseleave click" value="#{document.name}" />
+                </p:commandLink>
+                <p:commandLink id="edit-filename" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/RenameFile')} #{document.name}"
+                  styleClass="si si-graphic-tablet-drawing-pen Fright document-renaming ui-sm-hidden"
+                  actionListener="#{data.setDocument(document)}"
+                  update="document-renaming-dialog"
+                  oncomplete="PF('document-renaming-dialog').show()">
+                  <p:tooltip for="edit-filename" trackMouse="true" hideEvent="mouseleave click"
+                    value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/RenameFile')} #{document.name}" />
                 </p:commandLink>
                 <p:commandLink id="delete-file" actionListener="#{data.setDocument(document)}"
                   ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/deleteFile')} #{document.name}"
@@ -84,11 +93,38 @@
 
           <div class="ui-g-12 text-right">
             <p:commandButton actionListener="#{logic.close}"
+              ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
               icon="#{visibilityBean.generateButtonIcon('si si-remove')}"/>
           </div>
         </h:form>
       </div>
+
+      <p:dialog id="document-renaming-dialog" widgetVar="document-renaming-dialog" appendTo="@(body)"
+        header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/RenamingDocument')}" modal="true" resizable="false" showEffect="fade" hideEffect="fade"
+        styleClass="document-renaming-dialog" dynamic="true" fitViewport="true" responsive="true">
+        <h:form id="document-renaming-form">
+          <p:messages id="renaming-file-messages" escape="false" />
+          <p:inputText id="new-filename" value="#{data.document.name}" converter="filenameConverter" 
+            onfocus="this.select()" styleClass="w-full" maxlength="#{portalComponentUtilsBean.filenameMaxLength}"
+            required="true" requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/FilenameEmpty')}"/>
+          <h:panelGroup layout="block" styleClass="MarTop20 text-right">
+            <p:commandLink id="document-rename-cancel-button"
+              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+              ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+              onclick="PF('document-renaming-dialog').hide(); return false;"
+              styleClass="u-mar-right-15" />
+            <p:commandButton id="document-rename-save-button"
+              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
+              ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}" 
+              icon="#{visibilityBean.generateButtonIcon('si si-floppy-disk')}"
+              actionListener="#{logic.renameDocument}"
+              update="case-doc-form renaming-file-messages"
+              oncomplete="if (document.querySelector('.ui-messages-info')) PF('document-renaming-dialog').hide()"
+            />
+          </h:panelGroup>
+        </h:form>
+      </p:dialog>
 
       <ui:decorate template="/layouts/decorator/portal-dialog-with-icon.xhtml">
         <ui:param name="widgetVar" value="document-deletion-dialog" />
@@ -100,12 +136,13 @@
 
         <ui:define name="dialogFooter">
           <p:commandButton id="document-deletion-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
-            process="@this"
+            process="@this" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
             update="case-document-global-messages case-doc-form"
             actionListener="#{logic.deleteDocument}" styleClass="w-full portal-remove-button"
             oncomplete="PF('document-deletion-dialog').hide();" />
           <p:commandLink id="document-deletion-cancellation-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-             process="@this" onsuccess="PF('document-deletion-dialog').hide()" styleClass="pt-3 flex justify-content-center"/>
+                         ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+                         process="@this" onsuccess="PF('document-deletion-dialog').hide()" styleClass="pt-3 flex justify-content-center"/>
         </ui:define>
       </ui:decorate>
     </ui:define>

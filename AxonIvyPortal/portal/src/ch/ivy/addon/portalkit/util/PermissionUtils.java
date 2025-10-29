@@ -227,4 +227,12 @@ public class PermissionUtils {
   public static boolean checkUserSetOwnPasswordPermission() {
     return hasPermission(IPermission.USER_SET_OWN_PASSWORD);
   }
+  
+  /**
+   * Check if current user has permission see system notes in case/task details
+   * @return true if current user has permission.
+   */
+  public static boolean checkNoteReadAllCaseTaskDetailsPermission() {
+    return hasPortalPermission(PortalPermission.NOTE_READ_ALL_CASE_TASK_DETAILS);
+  }
 }

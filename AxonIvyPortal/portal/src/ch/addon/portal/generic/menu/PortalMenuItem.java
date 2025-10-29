@@ -6,12 +6,14 @@ import static org.apache.commons.lang3.StringUtils.EMPTY;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.Base64;
 import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.model.menu.DefaultMenuItem;
 
-import ch.ivy.addon.portalkit.enums.MenuKind;
+import com.axonivy.portal.components.enums.MenuKind;
+
 import ch.ivy.addon.portalkit.util.DashboardUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 
@@ -75,6 +77,8 @@ public class PortalMenuItem extends DefaultMenuItem {
     }
     this.setValue(builder.name);
     this.setIcon(builder.icon);
+    this.setTitle(builder.name);
+    this.setAriaLabel(builder.name);
     this.setIconPos(DEFAULT_ICON_POSITION);
     String containerClassMenuId = isNull(builder.id) ? generateMenuId(builder.menuKind) : builder.id;
     this.setStyleClass(String.format(MENU_CLASS_FORMAT, StringUtils.defaultIfEmpty(builder.styleClass, EMPTY), builder.menuKind.name()));
@@ -102,6 +106,11 @@ public class PortalMenuItem extends DefaultMenuItem {
       this.setParams(null);
     } else {
       generateMenuParams(builder);
+
+      // Encode URL as base64 in CSS class for JavaScript href patching (IVYPORTAL-19031)
+      String urlClass = String.format("js-menu-url-%s", Base64.getUrlEncoder().encodeToString(StringUtils.defaultIfEmpty(builder.url, EMPTY).getBytes()));
+      this.setStyleClass(String.format("%s %s", StringUtils.defaultIfEmpty(this.getStyleClass(), EMPTY), urlClass));
+
       this.setUrl(null);
     }
   }
@@ -128,26 +137,14 @@ public class PortalMenuItem extends DefaultMenuItem {
   }
 
   private String generateMenuId(MenuKind menuKind) {
-    String menuFormat = "%s";
-    switch (menuKind) {
-      case DASHBOARD:
-        menuFormat = MENU_ID_FORMAT;
-        break;
-      case PROCESS:
-      case CUSTOM:
-        menuFormat = SUB_MENU_ID_FORMAT;
-        break;
-      case MAIN_DASHBOARD:
-        menuFormat = MAIN_DASHBOARD_MENU_ID_FORMAT;
-      case EXTERNAL_LINK:
-        menuFormat = EXTERNAL_MENU_ID_FORMAT;
-        break;
-      case THIRD_PARTY:
-        menuFormat = THIRD_PARTY_MENU_ID_FORMAT;
-        break;
-      default:
-        break;
-    }
+    String menuFormat = switch (menuKind) {
+      case DASHBOARD -> MENU_ID_FORMAT;
+      case PROCESS, CUSTOM -> SUB_MENU_ID_FORMAT;
+      case MAIN_DASHBOARD -> MAIN_DASHBOARD_MENU_ID_FORMAT;
+      case EXTERNAL_LINK -> EXTERNAL_MENU_ID_FORMAT;
+      case THIRD_PARTY -> THIRD_PARTY_MENU_ID_FORMAT;
+      default -> "%s";
+    };
     return String.format(menuFormat, menuKind);
   }
 

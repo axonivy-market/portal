@@ -18,9 +18,11 @@ import javax.faces.event.ActionEvent;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 import org.primefaces.event.MenuActionEvent;
 import org.primefaces.model.menu.MenuItem;
 
+import com.axonivy.portal.components.enums.MenuKind;
 import com.axonivy.portal.components.publicapi.PortalNavigatorAPI;
 import com.axonivy.portal.service.CustomSubMenuItemService;
 
@@ -32,7 +34,6 @@ import ch.ivy.addon.portalkit.constant.IvyCacheIdentifier;
 import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
 import ch.ivy.addon.portalkit.enums.BreadCrumbKind;
-import ch.ivy.addon.portalkit.enums.MenuKind;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.service.IvyCacheService;
 import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
@@ -61,6 +62,7 @@ public class PortalMenuNavigator {
       case MAIN_DASHBOARD:
       case CUSTOM:
       case EXTERNAL_LINK:
+      case STATIC_PAGE:
         redirectToSelectedMenuUrl(params);
         break;
       case PROCESS:
@@ -106,8 +108,21 @@ public class PortalMenuNavigator {
 
   public static List<Application> getThirdPartyApps() {
     List<Application> applications = RegisteredApplicationService.getInstance().getPublicConfig();
+    applications.removeIf(application -> {
+      List<String> permissions = application.getPermissions();
+      if (CollectionUtils.isEmpty(permissions)) {
+        return false;
+      }
+      return permissions.stream().noneMatch(PortalMenuNavigator::isSessionUserHasPermisson);
+    });
     Collections.sort(applications, new ApplicationIndexAscendingComparator());
     return applications;
+  }
+
+  private static boolean isSessionUserHasPermisson(String permission) {
+    return Strings.CS.startsWith(permission, "#")
+        ? Strings.CS.equals(Ivy.session().getSessionUser().getMemberName(), permission)
+        : PermissionUtils.doesSessionUserHaveRole(permission);
   }
 
   public static List<SubMenuItem> callSubMenuItemsProcess() {
@@ -205,7 +220,7 @@ public class PortalMenuNavigator {
 
     // Set the name of the submenu item based on the current language or use default title
     item.label = dashboard.getTitles().stream()
-        .filter(name -> StringUtils.equalsIgnoreCase(name.getLocale().toString(), currentLanguage)
+        .filter(name -> Strings.CI.equals(name.getLocale().toString(), currentLanguage)
             && StringUtils.isNotBlank(name.getValue()))
         .map(DisplayName::getValue).findFirst().orElse(defaultTitle);
 

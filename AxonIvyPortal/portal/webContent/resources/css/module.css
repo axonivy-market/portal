@@ -390,7 +390,7 @@ span.case-details-document-add-link, span.task-details-document-add-link {
 }
 
 .case-document-name-text, .task-document-name-text {
-  width: calc(100% - 20px);
+  width: calc(100% - 90px);
   display: block;
   overflow: hidden;
 }
@@ -405,6 +405,12 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   right: 4px;
 }
 .document-preview{
+  position:absolute;
+  top:2px;
+  right:60px;
+}
+
+.document-renaming {
   position:absolute;
   top:2px;
   right:30px;
@@ -2092,7 +2098,7 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
   right: -2px;
 }
 
-.workflow-events-dialog {
+.workflow-events-dialog, .task-custom-fields-dialog, .case-custom-fields-dialog {
   max-width: 70%;
 }
 
@@ -2101,13 +2107,13 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
 }
 
 @media screen and (max-width: 40em) {
-  .workflow-events-dialog {
+  .workflow-events-dialog, .task-custom-fields-dialog, .case-custom-fields-dialog {
     max-width: 90%;
   }
 }
 
 @media screen and (min-width: 40.063em) and (max-width: 64.062em) {
-  .workflow-events-dialog {
+  .workflow-events-dialog, .task-custom-fields-dialog, .case-custom-fields-dialog {
     max-width: 80%;
   }
 }
@@ -3158,6 +3164,7 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 }
 
 .user-profile-setting-title {
+  display: block;
   margin-bottom: 0.5rem;
 }
 
@@ -4297,7 +4304,7 @@ _:-ms-fullscreen, :root .content-link-history {
 }
 
 .case-upload-dialog, .case-view-note-dialog, .document-upload-dialog, .task-note-dialog,
-.task-upload-dialog {
+.task-upload-dialog, .document-renaming-dialog {
   min-width: 50vw;
 }
 
@@ -4884,7 +4891,23 @@ border-top: 0.14rem dashed;
   min-width: 0;
 }
 
-.process-action-group .process-category span.ui-button-text {
+.process-category.ui-button.ui-widget {
+    display: inline-block !important;
+    padding: 0.5rem 1rem !important;
+    text-align: center !important;
+    vertical-align: middle !important;
+    line-height: 1.25 !important;
+    box-sizing: border-box !important;
+    cursor: default;
+}
+
+/* Ensure the span doesn't interfere */
+.process-category.ui-button span {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.process-action-group .process-category span {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -4992,6 +5015,7 @@ body .process-compact-mode > .ui-fieldset-content {
   overflow: hidden;
   width: 100%;
   text-align: end;
+  padding: 2px;
 }
 
 .image-view-form .start-process > button > span, .image-process-actions > button > span{
@@ -5097,8 +5121,19 @@ body.light .image-process-container .image-process-item .card-item.card.image-wi
   display: none;
 }
 
+.image-process-container .image-process-item .card-item.card.image-widget-mode .image-view-form .process-description{
+  container-type: size;
+  container-name: process-description-container;
+}
+
 .image-process-container .image-process-item .card-item.card.image-widget-mode .image-view-form .process-description {
   height: 100%;
+}
+
+@container process-description-container (max-height: 3px) {
+  .process-item-description {
+    display: none;
+  }
 }
 
 @supports (-webkit-touch-callout: none) {
@@ -5750,6 +5785,10 @@ body .ui-button.ui-widget.ui-no-rounded-button-process-page {
   box-shadow: none;
 }
 
+body .ui-button.ui-widget.ui-no-rounded-button-process-page.ui-state-focus {
+  box-shadow: 0 0 0 0.2rem var(--ivy-primary-light-color);
+}
+
 body .ui-button.ui-widget.ui-no-rounded-button-process-page.icon-more-menu-button {
   color: var(--widget-header-icon);
 }
@@ -5767,4 +5806,12 @@ body .ui-button.ui-widget.ui-no-rounded-button-process-page.icon-more-menu-butto
 .iframe-body.ai-result .layout-content,
 .iframe-body.ai-result .grid-stack {
   padding: 0;
+}
+
+body.edit-mode {
+  overflow: hidden;
+}
+
+.ui-focused:focus, .action-column-icon-button:focus {
+  outline: 0.2rem solid var(--ivy-primary-lightest-color) !important;
 }

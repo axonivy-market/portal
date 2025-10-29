@@ -93,7 +93,7 @@
               </h:panelGroup>
             </h:form>
           </h:panelGroup>
-  
+
           <div id="applied-filters-container" class="applied-filters-container">
             <!-- Title on mobile -->
             <h:panelGroup id="case-header-mobile" styleClass="ui-sm-4 widget-title-mobile js-widget-title-mobile u-hidden-md-up">
@@ -103,7 +103,7 @@
                 <h:outputText styleClass="js-case-count-mobile" rendered="#{!data.dataModel.disableCaseCount}" />
               </span>
             </h:panelGroup>
-  
+
             <!-- Search filter -->
             <div id="text-filter" class="text-filter #{cc.attrs.isTechnicalCaseView ? 'technical-case-text-filter' : ''}">
               <span class="selected-filters-label u-hidden-md-down">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/appliedFilters')} </span>
@@ -196,7 +196,8 @@
         <h:panelGroup id="case-list-actions" styleClass="case-list-actions u-hidden-md-down  #{!cc.attrs.hideWidgetHeader ? '' : 'no-widget-header'}">
           <h:form id="case-export-to-excel-form" styleClass="case-export-to-excel-form u-mar-right-20">
             <p:commandLink ajax="false" id="case-export-to-excel"
-              onclick="PrimeFaces.monitorDownload(start, stop);">
+                           ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/exportButton')}"
+                           onclick="PrimeFaces.monitorDownload(start, stop);">
               <i class="si si-office-file-xls-1 u-mar-right-5" />
               <span class="link-text">
                 <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/exportButton')}" />
@@ -213,7 +214,8 @@
       </h:panelGroup>
       <h:panelGroup rendered="#{cc.attrs.inFrame}" layout="block" styleClass="back-link-container">
         <p:commandLink id="back-link" actionListener="#{logic.backToCaseDetails()}" styleClass="list-back-link js-back-link"
-          process="@this" immediate="true" update="@none">
+                       ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}"
+                       process="@this" immediate="true" update="@none">
           <i class="si si-arrow-left-1 u-mar-right-5" />
           <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}"/>
         </p:commandLink>
@@ -252,7 +254,7 @@
     <ui:param name="appendTo" value="@(body)" />
     <ui:param name="headerText" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/resetToStandardFilterHeaderText')}" />
     <ui:param name="dialogContent" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/restoreDefaultFilterMessage')}" />
-    
+
     <ui:define name="dialogFooter">
        <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
           onclick="PF('reset-filter-set-dialog').hide();" styleClass="u-mar-right-15" />
@@ -263,7 +265,7 @@
         oncomplete="PF('reset-filter-set-dialog').hide(); caseWidget.setUpScrollbar(); caseWidget.setupHeader(); caseWidget.updateCaseCountToBreadcrumb();" />
     </ui:define>
   </ui:decorate>
-  
+
   <!-- Save filter dialog -->
   <p:dialog id="save-filter-set-dialog" widgetVar="save-filter-set-dialog" appendTo="@(body)"
     header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/saveFilter')}" resizable="false"
@@ -298,7 +300,7 @@
           icon="#{visibilityBean.generateButtonIcon('si si-check-1')}"
           oncomplete="if (args &amp;&amp; !args.validationFailed) {PF('save-filter-set-dialog').hide(); updateFilterContainer();}"
           actionListener="#{logic.saveFilter}" />
-        <p:remoteCommand name="updateFilterContainer" update="#{cc.clientId}:filter-selection-container #{cc.clientId}:filter-save-form #{cc.clientId}:filter-container" 
+        <p:remoteCommand name="updateFilterContainer" update="#{cc.clientId}:filter-selection-container #{cc.clientId}:filter-save-form #{cc.clientId}:filter-container"
           actionListener="#{logic.clearSaveFilterDialog}"/>
       </div>
     </h:form>
@@ -313,7 +315,7 @@
     <ui:param name="iconStyleClass" value="portal-dialog-error-icon" />
     <ui:param name="headerText" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/deleteFilterHeaderText')}" />
     <ui:param name="dialogContent" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/filterDeletionConfirmation')}" />
-    
+
     <ui:define name="dialogFooter">
        <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
           onclick="PF('delete-filter-confirmation-dialog').hide();" styleClass="u-mar-right-15" />
@@ -324,7 +326,7 @@
           update="case-basic-filter-form filter-container #{cc.clientId}:filter-container case-list filter-add-form #{cc.clientId}:hidden-case-count" />
     </ui:define>
   </ui:decorate>
-  
+
   <!-- Destroy case dialog -->
   <ui:decorate template="/layouts/decorator/portal-dialog-with-icon.xhtml">
     <ui:param name="id" value="destroy-case-confirmation-dialog" />
@@ -337,9 +339,11 @@
     
     <ui:define name="dialogFooter">
        <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-          onclick="PF('destroy-case-dialog').hide();" styleClass="u-mar-right-15"/>
+                      ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+                      onclick="PF('destroy-case-dialog').hide();" styleClass="u-mar-right-15"/>
        <p:commandButton id="confirm-destruction" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroy')}"
           icon="#{visibilityBean.generateButtonIcon('si si-remove')}"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroy')}"
           actionListener="#{caseWidgetBean.destroyCase(caseWidgetBean.selectedCase)}"
           oncomplete="caseWidget.setUpScrollbar();caseWidget.setupHeader(); caseWidget.updateCaseCountToBreadcrumb(); PF('destroy-case-dialog').hide()"
           update="#{p:resolveFirstComponentWithId('case-list', view).clientId} #{p:resolveFirstComponentWithId('case-list-scroller', view).clientId} #{cc.clientId}:hidden-case-count" />

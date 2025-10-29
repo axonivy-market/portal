@@ -6,9 +6,9 @@ Dashboard
 Introduction
 ------------
 
-The |ivy| Portal Dashboard is the first page you encounter after
+The Axon Ivy Portal Dashboard is the first page you encounter after
 successful login. You can always get back to the dashboard using the 
-**Dashboard** link in the |ivy| Portal navigation menu.
+**Dashboard** link in the Axon Ivy Portal navigation menu.
 Alternatively, you can click on the logo image at the top left of the header.
 
 The dashboard itself contains a set of widgets arranged on the page,
@@ -30,7 +30,7 @@ The following default widgets are available:
 
 #. **Welcome widget**: This widget greets the user based on the local time and enables a friendlier approach.
 
-#. **News feed widget**: This widget shares relevant information as a News Feed into |ivy|.
+#. **News feed widget**: This widget shares relevant information as a News Feed into Axon Ivy.
 
 #. **External page widget**: This widget displays an external webpage on your dashboard.
 
@@ -96,6 +96,10 @@ your widget and get a preview of it by clicking on the :guilabel:`Apply` button.
 refer to :ref:`Complex Filter <complex-filter>` for more details.
 
 |task-list-widget-configuration|
+
+.. important::
+
+  ``Filter tasks by current case owner`` filter is hidden by default. To make it visible, you need to set the ``Portal.Cases.EnableOwner`` setting to ``true`` in the :ref:`Admin Settings <update-portal-settings>`.
 
 **Column Management**
 

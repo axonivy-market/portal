@@ -64,8 +64,8 @@ public class DashboardCaseLazyDataModel extends LiveScrollLazyModel<ICase> {
         }
       }
       foundCases = DashboardCaseService.getInstance().findByCaseQuery(criteria.buildQuery(), first, pageSize);
-      addDistict(cases, foundCases);
-      mapCases.putAll(foundCases.stream().collect(Collectors.toMap(o -> o.getId(), Function.identity())));
+      addDistinct(cases, foundCases);
+      foundCases.forEach(c -> mapCases.put(c.getId(), c));
     }
 
     int rowCount = 0;
@@ -83,18 +83,19 @@ public class DashboardCaseLazyDataModel extends LiveScrollLazyModel<ICase> {
     future = CompletableFuture.runAsync(() -> {
       IvyThreadContext.restoreFromMemento(memento);
       foundCases = DashboardCaseService.getInstance().findByCaseQuery(criteria.buildQuery(), 0, 25);
-      addDistict(cases, foundCases);
-      mapCases.putAll(foundCases.stream().collect(Collectors.toMap(o -> o.getId(), Function.identity())));
+      addDistinct(cases, foundCases);
+      foundCases.forEach(c -> mapCases.put(c.getId(), c));
       IvyThreadContext.reset();
     });
     isFirstTime = true;
   }
 
-  private void addDistict(List<ICase> cases, List<ICase> foundCases) {
-    for (ICase found : foundCases) {
-      cases.removeIf(task -> task.getId() == found.getId());
-    }
-    cases.addAll(foundCases);
+  private void addDistinct(List<ICase> cases, List<ICase> foundCases) {
+    Map<Long, ICase> unique =
+        foundCases.stream().collect(Collectors.toMap(ICase::getId, Function.identity(), (oldVal, newVal) -> newVal));
+    java.util.Set<Long> idsToRemove = unique.keySet();
+    cases.removeIf(existing -> idsToRemove.contains(existing.getId()));
+    cases.addAll(unique.values());
   }
 
   @Override

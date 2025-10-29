@@ -11,6 +11,7 @@
   xmlns:fn="http://xmlns.jcp.org/jsp/jstl/functions"
   xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 <cc:interface componentType="IvyComponent">
+  <cc:attribute name="rendered" default="true"/>
   <cc:attribute name="managedBean" required="true"/>
   <cc:attribute name="titles" required="true" />
   <cc:attribute name="componentToUpdateOnCreate" />
@@ -25,7 +26,9 @@
   <c:set var="managedBean" value="#{cc.attrs.managedBean}" />
   <c:set var="titles" value="#{cc.attrs.titles}" />
   <c:set var="titleRequired" value="#{cc.attrs.titleRequired}" />
-  <p:dialog appendTo="@(body)" fitViewport="true" width="500" closeOnEscape="true"
+  <c:set var="userLocale" value="#{managedBean.getSupportedUserLanguage()}" />
+
+  <p:dialog rendered="#{cc.attrs.rendered}" appendTo="@(body)" fitViewport="true" width="500" closeOnEscape="true"
     header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/settingMultipleLanguages')}" resizable="false"
     id="multiple-languages-dialog" widgetVar="multiple-languages-dialog" modal="true" responsive="true"
     dynamic="#{cc.attrs.dynamic}">
@@ -36,7 +39,7 @@
       <h:dataTable id="table-titles" value="#{titles}" rendered="#{titles.isEmpty() eq 'false'}" var="title" width="460" 
         columnClasses="#{cc.attrs.useInputText ? '' : 'multi-language-textarea-label,'}">
         <h:column>
-          <p:outputLabel value="#{title.locale.getDisplayName(ivy.session.getContentLocale())}" for="#{cc.attrs.useInputText ? 'title-input' : 'title-textarea'}"
+          <p:outputLabel value="#{title.locale.getDisplayName(userLocale)}" for="#{cc.attrs.useInputText ? 'title-input' : 'title-textarea'}"
           styleClass="ui-g-12 #{cc.attrs.useInputText ? '' : 'external-link-description-label'}"/>
         </h:column>
         <h:column>
@@ -58,9 +61,11 @@
              for="#{cc.attrs.useInputText ? 'title-input' : 'title-textarea'}" appendTo="@(body)" my="right top" at="right bottom"
              id="overlay-panel-input"
              styleClass="filter-name-overlay-panel" dynamic="false" dismissable="true" showCloseIcon="true">
-              <p:commandLink id="tranlate-link" actionListener="#{managedBean.applyTranslatedText(title)}" update="@form" process="@this" partialSubmit="true" disabled="#{not empty managedBean.warningText}">
+              <p:commandLink id="tranlate-link" actionListener="#{managedBean.applyTranslatedText(title)}" update="@form" process="@this"
+                             partialSubmit="true" disabled="#{not empty managedBean.warningText}"
+                             ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/AutoTranslation')}">
                 <span class="fa fa-language language-icon-padding-right"/>
-                <h:outputText value="Auto. translation" />
+                <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/AutoTranslation')}" />
               </p:commandLink>
               <h:panelGroup id="translated-text-panel" layout="block">
                 <i id="translating-title" class="#{empty managedBean.translatedText and empty managedBean.warningText? 'pi pi-spin pi-spinner' : 'hidden'}"></i>
@@ -73,11 +78,12 @@
       </h:dataTable>
     </h:panelGroup>
       <div class="u-dialog-footer-actions-group">
-        <p:commandLink id="multi-language-cancel-button"
+        <p:commandLink id="multi-language-cancel-button" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
           onclick="PF('multiple-languages-dialog').hide(); return false;" />
         <p:spacer width="15px" rendered="#{!titles.isEmpty()}" />
         <p:commandButton id="multi-language-ok-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
           update="#{cc.attrs.componentToUpdateOnCreate}, #{cc.attrs.componentToUpdateOnModify}, @form" process="@form"
           oncomplete="PF('multiple-languages-dialog').hide();"
           actionListener="#{cc.attrs.updateCurrentLanguage}"

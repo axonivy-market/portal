@@ -16,6 +16,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
@@ -23,18 +24,20 @@ import javax.faces.context.FacesContext;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.logging.log4j.util.Strings;
+import org.apache.commons.lang3.Strings;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
 
 import com.axonivy.portal.components.dto.SecurityMemberDTO;
+import com.axonivy.portal.components.util.ImageUploadResult;
 import com.axonivy.portal.components.util.RoleUtils;
 import com.axonivy.portal.service.DeepLTranslationService;
 import com.axonivy.portal.service.GlobalSearchService;
 import com.axonivy.portal.util.ExternalLinkUtils;
 import com.axonivy.portal.util.UploadDocumentUtils;
 
+import ch.ivy.addon.portal.generic.bean.IMultiLanguage;
 import ch.ivy.addon.portalkit.bo.ExternalLinkProcessItem;
 import ch.ivy.addon.portalkit.bo.IvyProcess;
 import ch.ivy.addon.portalkit.bo.Process;
@@ -56,11 +59,10 @@ import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
-import ch.ivyteam.util.Pair;
 
 @ManagedBean
 @ViewScoped
-public class ProcessWidgetBean extends AbstractProcessBean implements Serializable {
+public class ProcessWidgetBean extends AbstractProcessBean implements Serializable, IMultiLanguage {
 
   private static final long serialVersionUID = -5889375917550618261L;
   private static final String SPECIAL_CHARACTER_KEY = "SPECIAL_CHARACTER";
@@ -108,7 +110,7 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
 
   private String getProcessModeByLabel(String processLabel) {
     return Stream.of(ProcessMode.values())
-        .filter(e -> StringUtils.equalsIgnoreCase(processLabel, e.getLabel()) || StringUtils.equalsIgnoreCase(e.name(), processLabel))
+        .filter(e -> Strings.CI.equals(processLabel, e.getLabel()) || Strings.CI.equals(e.name(), processLabel))
         .findFirst()
         .orElse(ProcessMode.IMAGE).toString();
   }
@@ -292,13 +294,19 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
   }
 
   public void handleExternalLinkImageUpload(FileUploadEvent event) {
-    if(this.editedExternalLink == null) {
+    if (this.editedExternalLink == null) {
       return;
     }
     removeTempExternalLinkImage();
-    Pair<String, String> imageInfo = ExternalLinkUtils.handleImageUpload(event);
-    this.editedExternalLink.setImageLocation(imageInfo.getLeft());
-    this.editedExternalLink.setImageType(imageInfo.getRight());
+    ImageUploadResult imageInfo = ExternalLinkUtils.handleImageUpload(event);
+    if (imageInfo.isInvalid()) {
+      FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+          Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/documentFiles/fileContainScript"), null);
+      FacesContext.getCurrentInstance().addMessage("edit-external-link-error-message", message);
+    } else {
+      this.editedExternalLink.setImageLocation(imageInfo.imageLocation());
+      this.editedExternalLink.setImageType(imageInfo.imageType());
+    }
   }
 
   public void removeTempExternalLinkImage() {
@@ -321,7 +329,7 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
     String processId = this.editedProcess.getId();
     String oldProcessNameFirstLetter = extractProcessFirstLetter(oldProcessName);
     String firstLetter = extractProcessFirstLetter(this.editedProcess.getName());
-    if (!StringUtils.equals(oldProcessNameFirstLetter, firstLetter)) {
+    if (!Strings.CS.equals(oldProcessNameFirstLetter, firstLetter)) {
       if (StringUtils.isNotEmpty(oldProcessNameFirstLetter)
           && this.processesByAlphabet.containsKey(oldProcessNameFirstLetter)) {
         List<Process> processes = this.processesByAlphabet.get(oldProcessNameFirstLetter);
@@ -449,7 +457,7 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
       return processGroups;
     }
     for (String processGroupName : CollectionUtils.emptyIfNull(processesByAlphabet.keySet())) {
-      if (!processGroupName.equals(SPECIAL_CHARACTER_KEY)) {
+      if (!SPECIAL_CHARACTER_KEY.equals(processGroupName)) {
         processGroups.put(processGroupName, processGroupName);
       } else {
         processGroups.put(SPECIAL_CHARACTER_KEY, "#");
@@ -496,7 +504,7 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
   }
 
   public boolean isCompactMode() {
-    return StringUtils.equalsIgnoreCase(this.viewMode, ProcessMode.COMPACT.name());
+    return Strings.CI.equals(this.viewMode, ProcessMode.COMPACT.name());
   }
 
   public List<SecurityMemberDTO> getSelectedSecurityMemberDTOsWhenCreatingExternalLink() {
@@ -540,25 +548,6 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
     String currentDescription = LanguageUtils.getLocalizedName(editedExternalLink.getDescriptions(), editedExternalLink.getDescription());
     initAndSetValue(currentDescription, editedExternalLink.getDescriptions());
   }
-  
-  private void initAndSetValue(String value, List<DisplayName> values) {
-    DisplayNameConvertor.initMultipleLanguages(value, values);
-    DisplayNameConvertor.setValue(value, values);
-  }
-  
-  public boolean isRequiredField(DisplayName displayName) {
-    String currentLanguage = UserUtils.getUserLanguage();
-    String displayLanguage = displayName.getLocale().getLanguage();
-    return currentLanguage.equals(displayLanguage);
-  }
-  
-  public boolean isShowTranslation(DisplayName title) {
-    return DeepLTranslationService.getInstance().isShowTranslation(title.getLocale());
-  }
-
-  public boolean isFocus(DisplayName title) {
-    return !isShowTranslation(title) && title.getLocale().getLanguage().equals(UserUtils.getUserLanguage());
-  }
 
   public String getWarningText() {
     return warningText;
@@ -585,8 +574,8 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
   }
   
   private void translateValues(DisplayName title, List<DisplayName> languages) {
-    translatedText = Strings.EMPTY;
-    warningText = Strings.EMPTY;
+    translatedText = "";
+    warningText = "";
 
     String currentLanguage = UserUtils.getUserLanguage();
     if (!title.getLocale().getLanguage().equals(currentLanguage)) {

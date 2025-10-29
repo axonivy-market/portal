@@ -10,8 +10,10 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.io.FileUtils;
@@ -20,21 +22,24 @@ import org.apache.commons.lang3.StringUtils;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.file.UploadedFile;
 
-import com.axonivy.portal.util.PortalSanitizeUtils;
+import com.axonivy.portal.components.document.SVGSecurityScanner;
 import com.axonivy.portal.util.UploadDocumentUtils;
 import com.axonivy.portal.util.WelcomeWidgetUtils;
 
+import ch.ivy.addon.portal.generic.bean.IMultiLanguage;
 import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.enums.WelcomeImageFit;
 import ch.ivy.addon.portalkit.enums.WelcomeTextPosition;
 import ch.ivy.addon.portalkit.enums.WelcomeTextSize;
 import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
+import ch.ivy.addon.portalkit.util.DisplayNameConvertor;
+import ch.ivy.addon.portalkit.util.LanguageUtils;
 import ch.ivyteam.ivy.cm.ContentObject;
 import ch.ivyteam.ivy.environment.Ivy;
 
 @ViewScoped
 @ManagedBean
-public class DashboardWelcomeWidgetConfigurationBean extends DashboardWelcomeWidgetBean implements Serializable {
+public class DashboardWelcomeWidgetConfigurationBean extends DashboardWelcomeWidgetBean implements Serializable, IMultiLanguage  {
 
   private static final long serialVersionUID = 597266282990903281L;
 
@@ -79,65 +84,90 @@ public class DashboardWelcomeWidgetConfigurationBean extends DashboardWelcomeWid
     
     if (StringUtils.isNotBlank(widget.getImageLocationDarkMode())) {
       imageCMSObjectDarkMode = getWelcomeWidgetImageContentObjectDarkMode(false);
-    } else {
-      imageCMSObjectDarkMode = getWelcomeWidgetImageContentObject(false);
     }
   }
 
   public void handleFileUpload(FileUploadEvent event) {
     UploadedFile file = event.getFile();
-    if (file != null && file.getContent() != null && file.getContent().length > 0 && file.getFileName() != null) {
-      if (StringUtils.isNotBlank(getWidget().getImageLocation())) {
-        getWelcomeWidgetImageContentObject(true).delete();
-      }
-      // If image is not saved, create location
-      String extension = FilenameUtils.getExtension(file.getFileName());
-      String fileName = getWidget().getId().concat(DEFAULT_LOCALE_AND_DOT).concat(extension);
-      getWidget().setImageLocation(fileName);
-      getWidget().setImageType(extension);
+    if (file == null || file.getContent() == null || file.getContent().length == 0 || file.getFileName() == null) {
+      return;
+    }
 
-      byte[] content = file.getContent();
+    String originalLocation = getWidget().getImageLocation();
+    String originalType = getWidget().getImageType();
 
-      // hanlde sanitize svg
-      if ("svg".equals(extension)) {
-        content = PortalSanitizeUtils.sanitizeSvg(new String(content, StandardCharsets.UTF_8))
-            .getBytes(StandardCharsets.UTF_8);
-      }
+    String extension = FilenameUtils.getExtension(file.getFileName());
+    byte[] content = file.getContent();
 
-      // save the temporary image
-      imageCMSObject = getWelcomeWidgetImageContentObject(true);
-      if (imageCMSObject != null) {
-        WelcomeWidgetUtils.readObjectValueOfDefaultLocale(imageCMSObject).write().bytes(content);
+    if (extension != null && extension.toLowerCase().startsWith("svg")) {
+      String fileContent = new String(content, StandardCharsets.UTF_8);
+      if (!SVGSecurityScanner.isSafe(fileContent)) {
+        getWidget().setImageLocation(originalLocation);
+        getWidget().setImageType(originalType);
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+            Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/documentFiles/fileContainScript"), null);
+        FacesContext.getCurrentInstance().addMessage("config-welcome-widget-message", message);
+        return;
       }
+    }
+
+    if (StringUtils.isNotBlank(originalLocation)) {
+      ContentObject previousTemp = getWelcomeWidgetImageContentObject(true);
+      if (previousTemp != null) {
+        previousTemp.delete();
+      }
+    }
+
+    String fileName = getWidget().getId().concat(DEFAULT_LOCALE_AND_DOT).concat(extension);
+    getWidget().setImageLocation(fileName);
+    getWidget().setImageType(extension);
+
+    imageCMSObject = getWelcomeWidgetImageContentObject(true);
+    if (imageCMSObject != null) {
+      WelcomeWidgetUtils.readObjectValueOfDefaultLocale(imageCMSObject).write().bytes(content);
     }
   }
   
   public void handleFileUploadDarkMode(FileUploadEvent event) {
     UploadedFile file = event.getFile();
-    if (file != null && file.getContent() != null && file.getContent().length > 0 && file.getFileName() != null) {
-      if (StringUtils.isNotBlank(getWidget().getImageLocationDarkMode())) {
-        getWelcomeWidgetImageContentObjectDarkMode(true).delete();
-      }
-      // If image is not saved, create location
-      String extension = FilenameUtils.getExtension(file.getFileName());
-      String fileName = getWidget().getId().concat(WelcomeWidgetUtils.DARK_MODE).concat(DEFAULT_LOCALE_AND_DOT).concat(extension);
-      getWidget().setImageLocationDarkMode(fileName);
-      getWidget().setImageTypeDarkMode(extension);
+    if (file == null || file.getContent() == null || file.getContent().length == 0 || file.getFileName() == null) {
+      return;
+    }
 
-      byte[] content = file.getContent();
-      // hanlde sanitize svg
-      if ("svg".equals(extension)) {
-        content = PortalSanitizeUtils.sanitizeSvg(new String(content, StandardCharsets.UTF_8))
-            .getBytes(StandardCharsets.UTF_8);
-      }
+    String originalLocation = getWidget().getImageLocationDarkMode();
+    String originalType = getWidget().getImageTypeDarkMode();
 
-      // save the temporary image
-      imageCMSObjectDarkMode = getWelcomeWidgetImageContentObjectDarkMode(true);
-      if (imageCMSObjectDarkMode != null) {
-        WelcomeWidgetUtils.readObjectValueOfDefaultLocale(imageCMSObjectDarkMode).write().bytes(content);
-        }
+    String extension = FilenameUtils.getExtension(file.getFileName());
+    byte[] content = file.getContent();
 
+    if (extension != null && extension.toLowerCase().startsWith("svg")) {
+      String fileContent = new String(content, StandardCharsets.UTF_8);
+      if (!SVGSecurityScanner.isSafe(fileContent)) {
+        getWidget().setImageLocationDarkMode(originalLocation);
+        getWidget().setImageTypeDarkMode(originalType);
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+            Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/documentFiles/fileContainScript"), null);
+        FacesContext.getCurrentInstance().addMessage("config-welcome-widget-message", message);
+        return;
       }
+    }
+
+    if (StringUtils.isNotBlank(originalLocation)) {
+      ContentObject previousTemp = getWelcomeWidgetImageContentObjectDarkMode(true);
+      if (previousTemp != null) {
+        previousTemp.delete();
+      }
+    }
+
+    String fileName = getWidget().getId().concat(WelcomeWidgetUtils.DARK_MODE).concat(DEFAULT_LOCALE_AND_DOT).concat(extension);
+    getWidget().setImageLocationDarkMode(fileName);
+    getWidget().setImageTypeDarkMode(extension);
+
+    imageCMSObjectDarkMode = getWelcomeWidgetImageContentObjectDarkMode(true);
+
+    if (imageCMSObjectDarkMode != null) {
+      WelcomeWidgetUtils.readObjectValueOfDefaultLocale(imageCMSObjectDarkMode).write().bytes(content);
+    }
   }
   
   public String getImageUriDarkMode() {
@@ -164,8 +194,9 @@ public class DashboardWelcomeWidgetConfigurationBean extends DashboardWelcomeWid
 
   public String generateGreetingText(Locale locale) {
     String greetingTextCms = WelcomeWidgetUtils.generateGreetingTextByTime(parsedClientTime);
+    String greetingTextLocalized = StringUtils.defaultString(Ivy.cms().coLocale(greetingTextCms, locale));
     return String.join(" ",
-        Ivy.cms().coLocale(greetingTextCms, locale),
+        greetingTextLocalized,
         Ivy.session().getSessionUser().getDisplayName(), "");
   }
 
@@ -220,5 +251,14 @@ public class DashboardWelcomeWidgetConfigurationBean extends DashboardWelcomeWid
   public String getLanguageDisplayText(Locale x) {
     return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/WelcomeWidget/DisplayedText", 
         Arrays.asList(x.getDisplayName(Ivy.session().getContentLocale())));
+  }
+  
+  public void updateAltTextByLocale() {
+    String currentAlt = LanguageUtils.getLocalizedName(widget.getAltTexts(), widget.getAltText());
+    initAndSetValue(currentAlt, widget.getAltTexts());
+  }
+  
+  public void updateCurrentLanguage() {
+    widget.setAltText(DisplayNameConvertor.updateCurrentValue(widget.getAltText(), widget.getAltTexts()));
   }
 }

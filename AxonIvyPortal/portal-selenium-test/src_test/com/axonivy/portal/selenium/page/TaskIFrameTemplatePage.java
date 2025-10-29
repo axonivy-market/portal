@@ -235,6 +235,16 @@ public class TaskIFrameTemplatePage extends TemplatePage {
     clickOnSubmitButton();
     return new NewDashboardPage();
   }
+  
+  public void addInputValueTaskPayment(String employee, String date) {
+    SelenideElement fullNameElement =
+        $(By.id("payment-request:fullname")).shouldBe(Condition.appear).shouldBe(Condition.editable);
+    fullNameElement.click();
+    fullNameElement.sendKeys(employee);
+    SelenideElement fromElement = $(By.id("payment-request:from_input"));
+    fromElement.click();
+    fromElement.sendKeys(date);
+  }
 
   public void clickSubmitButtonProceed() {
     $("button[id='form:proceed']").shouldBe(clickable(), DEFAULT_TIMEOUT).click();
@@ -281,10 +291,10 @@ public class TaskIFrameTemplatePage extends TemplatePage {
   }
 
   public void inputFields(String employee, String from, String to, String representation) {
-    $(By.id("leave-request:fullname")).sendKeys(employee);;
-    $(By.id("leave-request:from_input")).sendKeys(from);;
-    $(By.id("leave-request:to_input")).sendKeys(to);;
-    $(By.id("leave-request:substitute")).sendKeys(representation);;
+    $(By.id("leave-request:fullname")).sendKeys(employee);
+    $(By.id("leave-request:from_input")).sendKeys(from);
+    $(By.id("leave-request:to_input")).sendKeys(to);
+    $(By.id("leave-request:substitute")).sendKeys(representation);
   }
 
   public void switchToCaseInfoIframe() {

@@ -100,6 +100,19 @@ public class DashboardFilter implements Serializable {
   private String numberPattern;
 
   @JsonIgnore
+  private String label;
+
+  @JsonIgnore
+  public String getLabel() {
+    return label;
+  }
+
+  @JsonIgnore
+  public void setLabel(String label) {
+    this.label = label;
+  }
+  
+  @JsonIgnore
   public boolean isCustomDateField() {
     return filterField instanceof CaseFilterFieldCustomTimestamp
         || filterField instanceof TaskFilterCaseFieldCustomTimestamp
@@ -164,7 +177,7 @@ public class DashboardFilter implements Serializable {
   @JsonIgnore
   public boolean isTextField() {
     return (this.filterFormat == FilterFormat.TEXT || this.filterFormat == FilterFormat.STRING) && !isCategory()
-        && !isId() && !isApplication() && !isDefaultField();
+        && !isId() && !isApplication() && !isDefaultField() && !isResponsible() && !isCreator();
   }
 
   @JsonIgnore

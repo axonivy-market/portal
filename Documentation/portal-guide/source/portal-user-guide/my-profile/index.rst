@@ -64,15 +64,31 @@ These are options you can modify:
    | Unpin all pinned cases    | Unpin all of your pinned cases  |
    +---------------------------+---------------------------------+
 
+.. _accessibility-settings:
+
+Accessibility settings
+----------------------
+
+Accessibility settings help you customize your experience to meet your specific
+needs. These are options you can modify:
+
+.. table::
+
+   +-----------------------------------+-----------------------------------------------------+
+   | Option                            | Description                                         |
+   +===================================+=====================================================+
+   | Keyboard shortcuts for navigation | Enable or disable keyboard shortcuts for navigation |
+   +-----------------------------------+-----------------------------------------------------+
+
 .. _language-settings:
 
 Language settings
 -----------------
 
 **Language** allows you to specify your
-preferred application language. This setting will affect all |ivy|
+preferred application language. This setting will affect all Axon Ivy
 Portal pages, notification mails, and – if supported – your company's application pages as
-well. The following languages are currently supported in the |ivy|
+well. The following languages are currently supported in the Axon Ivy
 Portal:
 
 -  English
@@ -102,13 +118,19 @@ Notification Channels
 
 **Notification Channels** allows you to configure your
 manage subscriptions of the different kinds of notification channels in 
-the |ivy| Engine.
+the Axon Ivy Engine.
 
 The table :guilabel:`Notification Channels` displays all the available 
 events that can either be subscribed or unsubscribed.
 
 The checkbox in each event column allow you to specify 
-three state of event: subscribed by default, subscribe, unsubscribe.
+three state of event: subscribed by default, subscribe, unsubscribe. These checkboxes can be disabled by the administrator 
+to prevent users from modifying them.
+
+.. note::
+   - As an administrator, you can configure the permission :bdg-ref-warning:`🔑NotificationChannelsSetting <NotificationChannelsSetting>` to allow or prevent users from modifying notification channel preferences.
+   
+   - To do this, access the :dev-url:`Engine Cockpit </doc/12.0/engine-guide/reference/engine-cockpit/security.html>`, open the **Security area**. Since this permission is granted to the Everybody role by default, administrators need to deny this permission from the Everybody role, then grant it to specific roles that should be allowed to modify notification channel preferences.
 
 .. |my-profile-save| image:: ../../screenshots/my-profile/my-profile.png
    :alt: My profile page

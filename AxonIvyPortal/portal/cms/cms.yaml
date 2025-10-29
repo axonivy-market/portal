@@ -183,7 +183,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       displayAllUsersOfTaskActivator: This setting is using for SecurityMemberDisplayName component. If the SecurityMember is a role, set this setting to true to list out all users of this role. If set to true, icon info is shown beside the role name.
       displayMessageAfterFinishOrLeaveTask: A feedback message will be displayed after user finishes or leaves a task.
       embedInFrame: Set to true to start a process/task in IFrame mode
-      enableCaseOwner: Set to true to enable filtering case owner when cases are queried. This setting affects all case queries, e.g. for case list, global search, statistic.
+      enableCaseOwner: Set to true to enable filtering case owner when cases are queried. This setting affects all case queries, e.g. for case list, global search, statistic. It also makes the "Filter tasks by current case owner" filter available in the task widget, which is hidden by default.
       enableGroupChat: Set this property to true to enable group chat function
       enablePrivateChat: Set this property to true to enable private chat function
       enableProcessViewer: Set this property to true to enable process viewer option in Task/Case actions
@@ -1073,6 +1073,8 @@ Dialogs:
                   DragAndDropToChangeOrder: Drag and drop to change the order.
                 WelcomeDashboardWidget:
                   WelcomeToAxon: Welcome to Axon Ivy Portal
+                WelcomeWidgetConfiguration:
+                  AltText: Alt text
         portalkit:
           component:
             CaseItemDetails:
@@ -1111,6 +1113,11 @@ Dialogs:
               SeeMore: See more
             NewsWidgetConfiguration:
               NewsWidgetDescription: This widget shares relevant information as a News Feed into Axon Ivy.
+            filter:
+              DashboardFilter:
+                SelectFilterField: Select Filter Field
+              DateFilter:
+                SelectPeriod: Select period
   components:
     CaseDocument:
       FileDate: Modified at
@@ -1127,10 +1134,16 @@ Dialogs:
     MaxLabelLenght: '35'
     maxOptionsLength: '20'
 Labels:
+  AIAssistant: AI Assistant
   AppendTask-Explain: The task is added to the sequence after my task.
   AppendTheTask: Append the task
+  Chat: Chat
   Collapse: Collapse
   CreateNewDashboard: Create new dashboard
+  EnterFromValue: Enter from value
+  EnterToValue: Enter to value
+  EnterValue: Enter value
+  EnterValues: Enter values
   Enums:
     DashboardStandardTaskColumn:
       EXPIRY: Expiry
@@ -1139,6 +1152,8 @@ Labels:
   Expand: Expand
   InsertTask-Explain: Insert the task. My task will be postponed.
   InsertTheTask: Insert the task
+  SelectOperator: Choose Operator
+  SelectValues: Select values
   Task: Task
   TaskItemDetail: Task Details
   TaskUser-Explain: Comma separated list of users

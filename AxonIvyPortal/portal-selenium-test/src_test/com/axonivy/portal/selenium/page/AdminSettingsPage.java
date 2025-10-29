@@ -23,6 +23,7 @@ public class AdminSettingsPage extends TemplatePage {
     return "[id='" + PORTAL_MANAGEMENT_PAGE_ID + "']";
   }
 
+  @Override
   public boolean isDisplayed() {
     return $(By.id(PORTAL_MANAGEMENT_PAGE_ID)).isDisplayed();
   }
@@ -30,6 +31,8 @@ public class AdminSettingsPage extends TemplatePage {
   public void openSettingTab() {
     waitForElementClickableThenClick("a[href$='#admin-setting-component:adminTabView:setting-tab']");
     waitForElementDisplayed(By.cssSelector("[id$=':adminTabView:settingForm']"), true);
+    // wait ajax loading
+    Sleeper.sleep(2000);
   }
 
   private void editGlobalVariable(String variableName, String variableValue, boolean isBooleanType) {

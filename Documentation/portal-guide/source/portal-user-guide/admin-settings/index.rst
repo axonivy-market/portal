@@ -39,6 +39,8 @@ HowTo: Add a Third Party Application
 
 #. Enter its URL in :guilabel:`Link`, e.g. http://www.google.com.
 
+#. Select :guilabel:`Permissions` to specify the permissions required for the application to be visible.
+
 #. Click on :guilabel:`Save`.
 
 .. _update-portal-settings:
@@ -59,8 +61,13 @@ HowTo: Update Portal Settings
 #. To reset all settings to their default values, click on :guilabel:`Restore all to defaults`.
 
 .. hint:: 
-   Portal settings are stored as |ivy| variables and can be configured in the 
-   :dev-url:`|ivy| Cockpit </doc/|version|/engine-guide/reference/engine-cockpit/configuration.html#engine-cockpit-variables>`.
+   Portal settings are stored as Axon Ivy variables and can be configured in the
+   :dev-url:`Axon Ivy Cockpit </doc/12.0/engine-guide/reference/engine-cockpit/configuration.html#engine-cockpit-variables>`.
+   
+.. warning::
+  :guilabel:`Portal.Histories.HideSystemNotes` and :guilabel:`Portal.Histories.HideSystemNotesForAdministrator`
+  are marked for removal in version LTS 13. We will use permission :guilabel:`NoteReadAllCaseTaskDetails` to
+  control the visibility of system notes in task and case details.
 
 .. _portal-available-settings:
 

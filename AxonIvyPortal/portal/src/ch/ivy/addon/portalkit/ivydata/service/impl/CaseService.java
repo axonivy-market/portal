@@ -15,7 +15,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 
 import com.axonivy.portal.bo.ItemByCategoryStatistic;
 
@@ -259,7 +259,7 @@ public class CaseService{
         .stream()
         .filter(item -> item.getField(fieldName) != null)
         .map(item -> item.getField(fieldName).toString())
-        .filter(item -> StringUtils.containsIgnoreCase(item, criteria.getKeyword()))
+        .filter(item -> Strings.CI.contains(item, criteria.getKeyword()))
         .collect(Collectors.toList());
   }
 

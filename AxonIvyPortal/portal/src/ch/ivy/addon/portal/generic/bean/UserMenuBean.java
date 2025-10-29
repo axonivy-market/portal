@@ -2,6 +2,7 @@ package ch.ivy.addon.portal.generic.bean;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -17,6 +18,7 @@ import org.apache.commons.lang3.time.DateUtils;
 import org.primefaces.PrimeFaces;
 
 import com.axonivy.portal.bo.QRCodeData;
+import com.axonivy.portal.components.enums.MenuKind;
 import com.axonivy.portal.components.service.IvyAdapterService;
 import com.axonivy.portal.enums.PortalCustomSignature;
 import com.axonivy.portal.service.GlobalSearchService;
@@ -34,6 +36,7 @@ import ch.ivy.addon.portalkit.util.DashboardUtils;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.PortalProcessViewerUtils;
 import ch.ivy.addon.portalkit.util.RequestUtils;
+import ch.ivy.addon.portalkit.util.StaticPageUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.request.EngineUriResolver;
@@ -309,9 +312,14 @@ public class UserMenuBean implements Serializable {
   private String getURLFromUserMenu(UserMenu menu) {
     String menuUrl = menu.getUrl();
     if (StringUtils.isNotBlank(menuUrl)) {
+      if (menu.getMenuKind() == MenuKind.STATIC_PAGE) {
+        return StaticPageUtils.buildUrl(menuUrl);
+      }
+
       if (menuUrl.contains(".ivp")) {
         return PortalNavigator.buildUrlByKeyword(menuUrl, menuUrl, menu.getParams());
       }
+
       if (menuUrl.contains("http")) {
         return menuUrl;
       }
@@ -397,5 +405,15 @@ public class UserMenuBean implements Serializable {
       caseIdToProcessViewerDisplayed.put(caze.getId(), PortalProcessViewerUtils.isShowProcessViewer(caze));
     }
     return caseIdToProcessViewerDisplayed.get(caze.getId());
+  }
+
+  /**
+   * Encodes home page URL as base64 for CSS class names.
+   * JavaScript decodes this to set href attributes for right-click support.
+   * 
+   * Story ID: IVYPORTAL-19031
+   */
+  public String getBase64EncodedHomeUrl() {
+    return Base64.getUrlEncoder().encodeToString(getHomePageURL().getBytes());
   }
 }

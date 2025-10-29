@@ -29,21 +29,26 @@
             <span class="display-short-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}</span>
           </p:link>
           <p:commandLink id="add-note-command" styleClass="case-details-document-add-link"
+            ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addNote')}"
             rendered="#{caseTaskNoteHistoryBean.showAddNote}" onclick="PF('add-note-dialog-#{case.id}').show()"
             actionListener="#{data.setCaze(case)}">
             <span class="si si-notes-add" />
-            <span class="display-full-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addNote')} </span>
+            <span class="display-full-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addNote')}</span>
             <span class="display-short-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/add')}</span>
           </p:commandLink>
-          <p:selectBooleanCheckbox id="system-note-checkbox" value="#{data.showSystemNotes}" itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/showSystemNotes')}" rendered="#{data.showSystemNotesChkbox}"
+          <p:selectBooleanCheckbox id="system-note-checkbox" value="#{data.showSystemNotesChkbox}" 
+          itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/showSystemNotes')}" 
+          rendered="#{data.showSystemNotes}"
             styleClass="case-history-checkbox u-hidden-md-down u-hidden-sm-down">
             <p:ajax update="case-histories-table" process="@this" partialSubmit="true" listener="#{logic.loadHistories}" oncomplete="ResponsiveTable.init(':case-histories');"/>
           </p:selectBooleanCheckbox>
-          <p:selectBooleanCheckbox id="system-task-checkbox" value="#{data.showSystemTasks}" itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/showSystemTasks')}" rendered="#{data.showSystemTasksChkbox}"
+          <p:selectBooleanCheckbox id="system-task-checkbox" value="#{data.showSystemTasksChkbox}" 
+            itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/showSystemTasks')}" rendered="#{data.showSystemTasks}"
             styleClass="case-history-checkbox u-hidden-md-down u-hidden-sm-down">
             <p:ajax update="case-histories-table" process="@this" partialSubmit="true" listener="#{logic.loadHistories}" oncomplete="ResponsiveTable.init(':case-histories');"/>
           </p:selectBooleanCheckbox>
-          <p:selectBooleanCheckbox id="related-case-checkbox" value="#{data.showRelatedCaseInfo}" itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/showRelatedCaseInfo')}"
+          <p:selectBooleanCheckbox id="related-case-checkbox" value="#{data.showRelatedCaseInfo}" 
+            itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/showRelatedCaseInfo')}"
             rendered="#{data.showRelatedCaseInfoCheckbox}"
             styleClass="case-history-checkbox u-hidden-md-down u-hidden-sm-down">
             <p:ajax update="case-histories-table" process="@this" partialSubmit="true" oncomplete="ResponsiveTable.init(':case-histories');"/>
@@ -84,6 +89,7 @@
           styleClass="u-truncate-text history-related-case js-column-priority-1"
           rendered="#{case.isBusinessCase() and data.showRelatedCaseInfo}">
           <p:commandLink id="related-case-link" value="#{history.displayCaseName}"
+            ariaLabel="#{history.displayCaseName}"
             rendered="#{not empty history.displayCaseName}"
             actionListener="#{caseDetailsBean.navigateToCaseDetails(history.uuid)}"
             disabled="#{history.disabledCaseName}"/>
@@ -127,12 +133,14 @@
 
   <p:dialog id="view-note-dialog" widgetVar="view-note-dialog" closeOnEscape="true"
     header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/note')}" appendTo="@(body)"
-    modal="true" resizable="false" dynamic="true" styleClass="case-view-note-dialog" responsive="true">
+    modal="true" resizable="false" dynamic="true" styleClass="case-view-note-dialog" responsive="true"
+    focus="view-note-dialog-close-button">
     <h:panelGroup layout="block">
       <h:outputText value="#{data.fullNote}" />
     </h:panelGroup>
     <f:facet name="footer">
-      <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}" 
+      <p:commandButton id="view-note-dialog-close-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}" 
+        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
         icon="#{visibilityBean.generateButtonIcon('si si-remove')}" type="button"
         onclick="PF('view-note-dialog').hide()" />
     </f:facet>
@@ -153,13 +161,17 @@
       <h:panelGroup layout="block" styleClass="MarTop10 text-right">
         <p:commandLink id="cancel-add-note-command" actionListener="#{data.setNoteContent('')}"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" process="@this"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
           onsuccess="PF('add-note-dialog-#{case.id}').hide()"
           update="note-content create-note-msg" />
         <p:spacer width="15px" />
         <p:commandButton styleClass="add-new-note-save-command" id="save-add-note-command"
           icon="#{visibilityBean.generateButtonIcon('si si-floppy-disk')}" partialSubmit="true"
-          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}" process="note-content #{p:resolveFirstComponentWithId('system-note-checkbox', view).clientId} #{p:resolveFirstComponentWithId('system-task-checkbox', view).clientId}"
-          update="note-content create-note-msg #{p:resolveFirstComponentWithId('case-histories-table', view).clientId}" actionListener="#{logic.createNote()}"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}" 
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
+          process="note-content #{p:resolveFirstComponentWithId('system-note-checkbox', view).clientId} #{p:resolveFirstComponentWithId('system-task-checkbox', view).clientId}"
+          update="note-content create-note-msg #{p:resolveFirstComponentWithId('case-histories-table', view).clientId}"
+          actionListener="#{logic.createNote()}"
           oncomplete="if (args &amp;&amp; !args.validationFailed) {PF('add-note-dialog-#{case.id}').hide();ResponsiveTable.init(':case-histories');}" />
       </h:panelGroup>
     </h:form>

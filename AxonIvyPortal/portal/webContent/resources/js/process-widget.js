@@ -306,7 +306,14 @@ function hideLoadingText() {
 }
 
 function hideExtendLinkPreviewLabel() {
-  $('span.ui-external-link-preview-image-label').css('display', 'none');
+  // Hide label only if a preview image is present and visible; otherwise ensure it's shown
+  var hasVisibleImage = $('.external-link-preview-image:visible').length > 0;
+  var labelSpans = $('span.ui-external-link-preview-image-label');
+  if (hasVisibleImage) {
+    labelSpans.css('display', 'none');
+  } else {
+    labelSpans.css('display', '');
+  }
 }
 
 function handleUploadFileFail(widgetVar) {

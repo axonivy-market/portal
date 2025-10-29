@@ -148,7 +148,7 @@
             "import ch.ivyteam.ivy.environment.Ivy;",
             "import org.primefaces.PrimeFaces;",
             "",
-            "in.totalTasks = DashboardTaskService.getInstance().countByTaskQuery(in.widget.dataModel.criteria.buildQuery());"
+            "in.totalTasks = DashboardTaskService.getInstance().countDashboardTaskByCriteria(in.widget.dataModel.criteria);"
           ]
         },
         "sudo" : true
@@ -169,7 +169,7 @@
             "import ch.ivy.addon.portalkit.ivydata.service.impl.DashboardTaskService;",
             "",
             "int startIndex = in.loopCounter * in.maxResultNumberPerQuery;",
-            "in.collectedTasksForExporting.addAll(DashboardTaskService.getInstance().findByTaskQuery(in.widget.dataModel.getCriteria().buildQuery(), startIndex, in.maxResultNumberPerQuery));"
+            "in.collectedTasksForExporting.addAll(DashboardTaskService.getInstance().findDashboardTaskByCriteria(in.widget.dataModel.getCriteria(), startIndex, in.maxResultNumberPerQuery));"
           ]
         },
         "sudo" : true
@@ -192,7 +192,7 @@
           "code" : [
             "import ch.ivy.addon.portalkit.exporter.TaskDashboardExporter;",
             "",
-            "TaskDashboardExporter exporter = new TaskDashboardExporter(in.columnsVisibility, in.widget.name);",
+            "TaskDashboardExporter exporter = new TaskDashboardExporter(in.columnsVisibility, in.widget.columns, in.widget.name);",
             "in.exportedFile = exporter.getStreamedContent(in.collectedTasksForExporting);"
           ]
         }

@@ -2,7 +2,8 @@
   xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
   xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
   xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
-  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+  xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="filter" type="com.axonivy.portal.dto.dashboard.filter.DashboardFilter" />
@@ -20,7 +21,8 @@
 
   <h:panelGroup id="text-filter-operator-panel" layout="block"
     styleClass="ui-fluid md-inputfield id-filter-operator-panel">
-      <p:selectOneMenu id="operator-selection" value="#{filter.operator}" disabled="#{readOnly}">
+      <p:selectOneMenu id="operator-selection" value="#{filter.operator}" disabled="#{readOnly}"
+        pt:aria-label="#{ivy.cms.co('/Labels/SelectOperator')}">
         <f:selectItems value="#{widgetIdFilterBean.operators}" var="operator"
           itemValue="#{operator}" itemLabel="#{operator.label}" />
           <p:ajax event="itemSelect" listener="#{widgetIdFilterBean.onChangeOperator(filter)}"
@@ -32,7 +34,7 @@
 
   <h:panelGroup id="text-list-panel" layout="block"
     styleClass="ui-fluid md-inputfield text-list-filter" >
-    <p:chips value="#{filter.values}" unique="true" addOnPaste="true" disabled="#{readOnly}">
+    <p:chips value="#{filter.values}" unique="true" addOnPaste="true" disabled="#{readOnly}" pt:aria-label="#{ivy.cms.co('/Labels/EnterValues')}">
       <p:ajax event="itemSelect" update="@this" partialSubmit="true" global="false" />
       <p:ajax event="itemUnselect" update="@this" partialSubmit="true" global="false" />
       <f:validator validatorId="dashboardDefaultListFilterValidator" disabled="#{param['skipValidator'] == 'true'}" />

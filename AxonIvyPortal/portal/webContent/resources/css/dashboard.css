@@ -173,11 +173,13 @@
 .table-widget-panel {
   position: relative;
   overflow: hidden;
-  flex: 1;
+  flex-direction: column;
+  display: flex;
+  height: 100%;
 }
 
 .widget__header {
-  flex: 0 0 30px;
+  flex: 0 0 44px;
   padding: 14px 20px 7px;
   display: flex;
   flex-direction: row;
@@ -211,7 +213,6 @@
   overflow: auto;
   padding: 20px;
   height: auto;
-  max-height: calc(100% - 10px);
   width:100%;
 }
 
@@ -222,6 +223,7 @@
 .table-widget-panel.task-dashboard-widget__panel .widget__content,
 .table-widget-panel.case-dashboard-widget__panel .widget__content {
   padding: 0;
+  overflow-y: hidden;
 }
 
 .case-dashboard-widget__loading-message,
@@ -387,13 +389,6 @@ td.dashboard-tasks__category span {
 
 .case-configuration.card {
   padding: 15px 20px 15px;
-}
-
-.task-configuration__chbox-work-on {
-  width: 10%; 
-  display: block;
-  padding: 5px 0;
-
 }
 
 .task-configuration__input-text {
@@ -1165,10 +1160,6 @@ body .ui-widget.new-widget-dialog__introduction {
 
 .saved-filter-node.selected .saved-filter-node__text {
   font-weight: bold;
-}
-
-.saved-filter--not-found {
-  color: var(--widget-advanced-filter-overlay-panel-footer);
 }
 
 .saved-filter__manage-filter {

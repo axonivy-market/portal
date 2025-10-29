@@ -3,6 +3,7 @@ package ch.ivy.addon.portalkit.enums;
 public enum CustomWidgetParam {
 
   ID("id"),
+  UUID("uuid"),
   CATEGORY("category"),
   USERNAME("username"),
   EMAIL("email");

@@ -34,6 +34,8 @@ Below is a sample JSON definition of a task widget in the Portal dashboard
       "rowsPerPage": 20,
       "showWidgetInfo": true,
       "showFullscreenMode": true,
+      "filterTasksByCurrentCaseOwner": false,
+      "canWorkOn": false,
       "isTopMenu": false,
       "columns": [
          {
@@ -146,6 +148,8 @@ The basic JSON structure of a Task widget
 
       ``canWorkOn``: filter only tasks that the current user can work on. The default value is "false".
 
+      ``filterTasksByCurrentCaseOwner``: filter only the tasks where the current user is the case owner. The default value is ``false``. This filter is visible only if the ``Portal.Cases.EnableOwner`` setting is set to ``true`` in the :ref:`Admin Settings <update-portal-settings>`.
+
       ``visible``: visibility of a column. The default value is "true".
       Set to "false" to hide the column.
 
@@ -159,7 +163,7 @@ The basic JSON structure of a Task widget
 Custom Columns
 --------------
 
-|ivy| supports custom fields for tasks. You can show them in the Task widget
+Axon Ivy supports custom fields for tasks. You can show them in the Task widget
 as a column.
 
 You can predefine which column to show, and other attributes such as filter, format, and style. Below is a standard JSON of a custom column.
@@ -190,7 +194,7 @@ differences:
 
 .. important::
    Portal only displays custom fields declared in the ``custom-fields.yaml`` file.
-   Refer to :dev-url:`Custom Fields Meta Information </doc/|version|/designer-guide/how-to/workflow/custom-fields.html#meta-information>` for more information.
+   Refer to :dev-url:`Custom Fields Meta Information </doc/12.0/designer-guide/how-to/workflow/custom-fields.html#meta-information>` for more information.
 
 Filter Conditions
 -----------------
@@ -364,7 +368,7 @@ Standard Column:
       This column only accepts a list of priorities' names as the filter
       condition. The available filter operator is ``in``.
 
-      Refer to :dev-url:`Task Priority </doc/|version|/public-api/ch/ivyteam/ivy/workflow/WorkflowPriority.html>` for
+      Refer to :dev-url:`Task Priority </doc/12.0/public-api/ch/ivyteam/ivy/workflow/WorkflowPriority.html>` for
       available task priorities.
 
    - ``state``
@@ -393,7 +397,7 @@ Standard Column:
       This column only accepts a list of task business state names as its filter
       condition. The available filter operator is ``in``. 
 
-      Refer to :dev-url:`Task Business States </doc/|version|/public-api/ch/ivyteam/ivy/workflow/TaskBusinessState.html>` for
+      Refer to :dev-url:`Task Business States </doc/12.0/public-api/ch/ivyteam/ivy/workflow/TaskBusinessState.html>` for
       available task business states.
 
 
@@ -584,7 +588,7 @@ Additionally, the value must be entered and maintained in the CMS in multiple la
 
 Following this path to add your custom field values: ``/CustomFields/Tasks/{fieldName}/Values/{value}``
 Please follow this :dev-url:`Localize Label, Description, Category
-and Values </doc/|version|/designer-guide/configuration/custom-fields.html#localize-label-description-category-and-values>`
+and Values </doc/12.0/designer-guide/configuration/custom-fields.html#localize-label-description-category-and-values>`
 to get more information.
 
 Example YAML Configuration

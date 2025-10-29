@@ -5,10 +5,12 @@ import static ch.ivy.addon.portalkit.util.DashboardUtils.DASHBOARD_PAGE_URL;
 import static ch.ivy.addon.portalkit.util.DashboardUtils.PARENT_DASHBOARD_MENU_PATTERN;
 import static ch.ivy.addon.portalkit.util.DashboardUtils.SUB_DASHBOARD_MENU_PATTERN;
 import static java.util.Objects.isNull;
+import static org.apache.commons.lang3.StringUtils.EMPTY;
 
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.Arrays;
+import java.util.Base64;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -22,6 +24,7 @@ import javax.faces.event.ActionEvent;
 
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 import org.primefaces.PrimeFaces;
 import org.primefaces.model.menu.DefaultMenuItem;
 import org.primefaces.model.menu.DefaultMenuModel;
@@ -30,6 +33,7 @@ import org.primefaces.model.menu.MenuElement;
 import org.primefaces.model.menu.MenuItem;
 import org.primefaces.model.menu.MenuModel;
 
+import com.axonivy.portal.components.enums.MenuKind;
 import com.axonivy.portal.components.publicapi.ApplicationMultiLanguageAPI;
 
 import ch.addon.portal.generic.menu.PortalMenuItem.PortalMenuBuilder;
@@ -41,7 +45,6 @@ import ch.ivy.addon.portalkit.constant.IvyCacheIdentifier;
 import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
 import ch.ivy.addon.portalkit.enums.BreadCrumbKind;
-import ch.ivy.addon.portalkit.enums.MenuKind;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.service.ApplicationMultiLanguage;
 import ch.ivy.addon.portalkit.service.IvyCacheService;
@@ -125,7 +128,7 @@ public class MenuView implements Serializable {
 
   private boolean isExternalLink(SubMenuItem subMenuItem) {
     return subMenuItem.getMenuKind() == MenuKind.EXTERNAL_LINK
-        || subMenuItem.getMenuKind() == MenuKind.THIRD_PARTY;
+        || subMenuItem.getMenuKind() == MenuKind.THIRD_PARTY || subMenuItem.getMenuKind() == MenuKind.STATIC_PAGE;
   }
 
   private DefaultMenuItem buildThirdPartyItem(Application application, int menuIndex) {
@@ -182,14 +185,14 @@ public class MenuView implements Serializable {
   private MenuElement buildDashboardGroupMenu(List<Dashboard> subItemDashboards, String defaultTitle,
       String mainMenuDisplayName, String mainMenuIcon, String currentLanguage, String dashboardLink) {
 
-    DefaultSubMenu dashboardGroupMenu = createDashboardGroupMenu(defaultTitle, mainMenuDisplayName, mainMenuIcon);
+    DefaultSubMenu dashboardGroupMenu = createDashboardGroupMenu(defaultTitle, mainMenuDisplayName, mainMenuIcon, dashboardLink);
 
     for (Dashboard board : subItemDashboards) {
       if (board.getIsTopMenu()) {
         continue;
       }
       String iconClass = determineIconClass(board);
-      var dashboardMenu = createDashboardMenu(board, dashboardLink, iconClass);
+      var dashboardMenu = createDashboardMenu(board, iconClass);
 
       String localizedTitle =
           getLocalizedTitle(board, currentLanguage, (String) ((DefaultMenuItem) dashboardMenu).getValue());
@@ -202,12 +205,14 @@ public class MenuView implements Serializable {
     return dashboardGroupMenu;
   }
 
-  private DefaultSubMenu createDashboardGroupMenu(String defaultTitle, String mainMenuDisplayName,
-      String mainMenuIcon) {
+  private DefaultSubMenu createDashboardGroupMenu(String defaultTitle, String mainMenuDisplayName, String mainMenuIcon, String dashboardLink) {
+    // Encode URL as base64 in CSS class for JavaScript href patching (IVYPORTAL-19031)
+    String urlClass = String.format("js-parent-dashboard-url-%s", Base64.getUrlEncoder().encodeToString(StringUtils.defaultIfEmpty(dashboardLink, EMPTY).getBytes()));
+
     return DefaultSubMenu.builder().label(StringUtils.isBlank(mainMenuDisplayName) ? defaultTitle : mainMenuDisplayName)
         .icon(StringUtils.isBlank(mainMenuIcon) ? PortalMenuItem.DEFAULT_DASHBOARD_ICON : mainMenuIcon)
-        .id(String.format(PARENT_DASHBOARD_MENU_PATTERN, MenuKind.DASHBOARD.name())).styleClass(DASHBOARD_MENU_JS_CLASS)
-        .build();
+        .id(String.format(PARENT_DASHBOARD_MENU_PATTERN, MenuKind.DASHBOARD.name()))
+        .styleClass(String.format("%s %s", DASHBOARD_MENU_JS_CLASS, urlClass)).build();
   }
 
   private String determineIconClass(Dashboard board) {
@@ -217,16 +222,16 @@ public class MenuView implements Serializable {
     return (board.getIcon().startsWith("fa") ? "fa " : "si ") + board.getIcon();
   }
 
-  private MenuElement createDashboardMenu(Dashboard board, String dashboardLink, String iconClass) {
+  private MenuElement createDashboardMenu(Dashboard board, String iconClass) {
     var dashboardMenu = new PortalMenuBuilder(board.getTitle(), MenuKind.DASHBOARD, this.isWorkingOnATask)
-        .icon(iconClass).url(dashboardLink).workingTaskId(this.workingTaskId).build();
+        .icon(iconClass).url(DashboardUtils.buildDashboardLink(board)).workingTaskId(this.workingTaskId).build();
     dashboardMenu.setId(String.format(SUB_DASHBOARD_MENU_PATTERN, board.getId()));
     return dashboardMenu;
   }
 
   private String getLocalizedTitle(Dashboard board, String currentLanguage, String defaultTitle) {
     return board.getTitles().stream()
-        .filter(name -> StringUtils.equalsIgnoreCase(name.getLocale().toString(), currentLanguage)
+        .filter(name -> Strings.CI.equals(name.getLocale().toString(), currentLanguage)
             && StringUtils.isNotBlank(name.getValue()))
         .map(DisplayName::getValue).findFirst().orElse(defaultTitle);
   }
@@ -236,7 +241,7 @@ public class MenuView implements Serializable {
     boolean isMainDashboardMenu =
         StringUtils.isNotEmpty(activeDashboardId) && activeDashboardId.endsWith(DashboardUtils.MAIN_DASHBOARD_MENU_POSTFIX);
 
-    if (StringUtils.endsWith(Ivy.request().getRootRequest().getRequestPath(), DASHBOARD_PAGE_URL)
+    if (Strings.CS.endsWith(Ivy.request().getRootRequest().getRequestPath(), DASHBOARD_PAGE_URL)
         && !isMainDashboardMenu) {
       dashboardGroupMenu.setExpanded(true);
     }
@@ -371,7 +376,8 @@ public class MenuView implements Serializable {
     DefaultMenuItem caseListSubmenuItem = buildCaseListMenuItem();
     String title = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseList/headerTitle/technicalCasesOfBusinessCaseTitle", Arrays.asList(Long.toString(userCase.getId()), userCase.names().current()));
     caseListSubmenuItem.setValue(title);
-    caseListSubmenuItem.setDisabled(true);
+    caseListSubmenuItem.setUrl("#");
+    caseListSubmenuItem.setStyleClass("breadcrumb-current-item");
     breadcrumbModel.getElements().add(caseListSubmenuItem);
   }
 
@@ -380,7 +386,8 @@ public class MenuView implements Serializable {
     DefaultMenuItem taskListSubmenuItem = buildTaskListMenuItem();
     String title = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskList/headerTitle/relatedTasksHeader").concat(" #").concat(Long.toString(userCase.getId()));
     taskListSubmenuItem.setValue(title);
-    taskListSubmenuItem.setDisabled(true);
+    taskListSubmenuItem.setUrl("#");
+    taskListSubmenuItem.setStyleClass("breadcrumb-current-item");
     breadcrumbModel.getElements().add(taskListSubmenuItem);
   }
 
@@ -388,7 +395,8 @@ public class MenuView implements Serializable {
     setPortalHomeMenuToBreadcrumbModel();
 
     DefaultMenuItem processListSubmenuItem = buildProcessListMenuItem();
-    processListSubmenuItem.setDisabled(true);
+    processListSubmenuItem.setUrl("#");
+    processListSubmenuItem.setStyleClass("breadcrumb-current-item");
     breadcrumbModel.getElements().add(processListSubmenuItem);
   }
 
@@ -419,6 +427,8 @@ public class MenuView implements Serializable {
   private MenuItem buildPortalHomeMenuItem() {
     return DefaultMenuItem.builder()
       .icon("si si-house-chimney-2 portal-icon")
+      .ariaLabel(Ivy.cm().co("/ch.ivy.addon.portalkit.ui.jsf/MyProfile/Homepage"))
+      .title(Ivy.cm().co("/ch.ivy.addon.portalkit.ui.jsf/MyProfile/Homepage"))
       .onclick("navigateToPortalHome();")
       .build();
   }
@@ -449,7 +459,7 @@ public class MenuView implements Serializable {
     return DefaultMenuItem.builder()
       .value(String.join(": ", Ivy.cms().co("/Labels/Task"), taskName))
       .url("#")
-      .disabled(true)
+      .styleClass("breadcrumb-current-item")
       .build();
   }
 
@@ -457,7 +467,7 @@ public class MenuView implements Serializable {
     return DefaultMenuItem.builder()
       .value(String.join(": ", Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/case"), userCase.names().current()))
       .url("#")
-      .disabled(true)
+      .styleClass("breadcrumb-current-item")
       .build();
   }
 
@@ -465,7 +475,7 @@ public class MenuView implements Serializable {
     return DefaultMenuItem.builder()
       .value(Ivy.cms().co(cms))
       .url("#")
-      .disabled(true)
+      .styleClass("breadcrumb-current-item")
       .build();
   }
 

@@ -34,6 +34,8 @@ public enum GlobalVariable {
   HIDE_SYSTEM_TASKS_FROM_HISTORY_ADMINISTRATOR("Portal.Histories.HideSystemTasksForAdministrator", GlobalVariableType.SELECTION, Option.FALSE.toString(), "hideSystemTasksFromHistoryAdministrator"),
   HIDE_SYSTEM_NOTES_FROM_HISTORY("Portal.Histories.HideSystemNotes", GlobalVariableType.SELECTION, Option.TRUE.toString(), "hideSystemNotesFromHistory"),
   HIDE_SYSTEM_NOTES_FROM_HISTORY_ADMINISTRATOR("Portal.Histories.HideSystemNotesForAdministrator", GlobalVariableType.SELECTION, Option.FALSE.toString(), "hideSystemNotesFromHistoryAdministrator"),
+  CHECK_SYSTEM_TASKS_FROM_HISTORY("Portal.Histories.CheckSystemTasksByDefault", GlobalVariableType.SELECTION, Option.TRUE.toString(), "checkSystemTasksByDefault"),
+  CHECK_SYSTEM_NOTES_FROM_HISTORY("Portal.Histories.CheckSystemNotesByDefault", GlobalVariableType.SELECTION, Option.TRUE.toString(), "checkSystemNotesByDefault"),
   ENABLE_GROUP_CHAT("Portal.Chat.EnableGroup", GlobalVariableType.SELECTION, Option.FALSE.toString(), "enableGroupChat"),
   ENABLE_PRIVATE_CHAT("Portal.Chat.EnablePrivate", GlobalVariableType.SELECTION, Option.FALSE.toString(), "enablePrivateChat"),
   CHAT_RESPONSE_TIMEOUT("Portal.Chat.ResponseTimeout", GlobalVariableType.NUMBER, "0", "chatResponseTimeout"),
@@ -91,7 +93,9 @@ public enum GlobalVariable {
   DELEGATION_APPEND_OPTION("Portal.DelegationAppendOption", GlobalVariableType.EXTERNAL_SELECTION,DelegationAppendOption.NONE.name(), "delegationAppendOption",getDelegationAppendOption()),
   SESSION_CACHE_TIMEOUT("Portal.SessionCacheTimeout", GlobalVariableType.NUMBER,"86400", "SessionCacheTimeout"),
   ENABLE_PINNED_TASK("Portal.Tasks.EnablePinnedTask",GlobalVariableType.SELECTION, Option.FALSE.toString(),"enablePinTask"),
-  ENABLE_PINNED_CASE("Portal.Cases.EnablePinnedCase",GlobalVariableType.SELECTION, Option.FALSE.toString(),"enablePinCase");
+  ENABLE_PINNED_CASE("Portal.Cases.EnablePinnedCase",GlobalVariableType.SELECTION, Option.FALSE.toString(),"enablePinCase"),
+  ALLOW_KEYBOARD_SHORTCUTS_CONFIGURATION(
+      "Portal.Accessibility.AllowKeyboardShortcutsConfiguration", GlobalVariableType.SELECTION, Option.TRUE.toString(), "allowKeyboardShortcutsConfiguration");
 
   private String key;
   private GlobalVariableType type;

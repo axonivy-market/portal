@@ -51,6 +51,7 @@
       <h:panelGroup id="clone-to-footer-panel" layout="block" styleClass="text-right">
       <p:commandButton id="clone-button" styleClass="w-full"
         disabled="#{cloneWidgetBean.targetDashboard eq null}"
+        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/Clone')}"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/Clone')}"
         actionListener="#{cloneWidgetBean.cloneWidget()}"
         process="clone-widget-form"

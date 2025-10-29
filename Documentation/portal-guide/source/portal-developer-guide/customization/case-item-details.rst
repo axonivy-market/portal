@@ -10,10 +10,11 @@ information, the Portal supports customizing the CaseItemDetails.
 Each CaseItemDetails contains
 
 - **CaseItemGeneralInformation** ``1``
-- **CaseItemDetailsDocuments** ``2``
-- **CaseItemDetailsRelatedCases** ``3``
-- **CaseItemDetailsRelatedTasks** ``4``
-- **CaseItemDetailsHistories** ``5``
+- **CaseItemDocument** ``2``
+- **CaseItemRelatedCases** ``3``
+- **CaseItemRelatedTasks** ``4``
+- **CaseItemHistories** ``5``
+- **CaseItemBusinessDetails**
 -  Case Details custom panel: ``caseItemDetailCustomTop``,
    ``caseItemDetailCustomMiddle``, ``caseItemDetailCustomBottom``
 
@@ -106,17 +107,18 @@ How to Configure Widgets in Case Details
       -  ``categories`` (case categories)
       -  ``states`` (case business states).
 
-         Refer to :dev-url:`Case business states </doc/|version|/public-api/ch/ivyteam/ivy/workflow/caze/CaseBusinessState.html>` for
+         Refer to :dev-url:`Case business states </doc/12.0/public-api/ch/ivyteam/ivy/workflow/caze/CaseBusinessState.html>` for
          available case business states.
 
    -  The structure of each widget inside the case details layout is stored in variable **Portal.CaseDetails**:
 
       ``id``: ID of widget.
 
-      ``type``: type of widget, there are 6 types: 
+      ``type``: type of widget, there are 7 types: 
       -  ``information``
       -  ``document``
       -  ``technicalCase``
+      -  ``businessDetails``
       -  ``relatedTask``
       -  ``history``
       -  ``custom``.
@@ -144,6 +146,7 @@ How to Configure Widgets in Case Details
       - ``x``, ``y``, ``w`` and ``h`` have to be **integers**.
       - ``x + w`` must **not be larger** than **12**.
       - We support all case business states in filter type ``states``.
+      - The built-in widget type ``businessDetails`` is not part of the default configuration and will only be displayed if the :bdg-ref-warning:`🔑ShowCaseDetails <ShowCaseDetails>` permission is granted.
 
 
 .. _customization-case-item-details-how-to-override-ui-custom-body:
@@ -163,7 +166,7 @@ For the custom widget, we have a new node is ``data`` inside of case details wid
 
       - Key name that will be the parameter name for the Ivy process above. Note: don't use ``caseId``.
 
-      - The key value for the case has to start with ``case.``. Supported are two values: ``case.id``, ``case.category``.
+      - The key value for the case has to start with ``case.``. Supported are three values: ``case.id``, ``case.uuid``, ``case.category``.
 
       - Key value for case custom fields: must start with ``case.customFields.``, followed by custom field name.
 
@@ -181,7 +184,7 @@ For the custom widget, we have a new node is ``data`` inside of case details wid
       - Go to the homepage.
       - And then go to case details to check the new custom layout.
    
-      About how to configure Variables, refer to :dev-url:`|ivy| Variables </doc/|version|/designer-guide/configuration/variables.html>`
+      About how to configure Variables, refer to :dev-url:`Axon Ivy Variables </doc/12.0/designer-guide/configuration/variables.html>`
    
 
 Adding New Custom Panels

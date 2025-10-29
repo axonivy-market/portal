@@ -1,13 +1,16 @@
 package ch.ivy.addon.portalkit.util;
 
 import java.net.MalformedURLException;
+import java.net.URI;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
 import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 
 import ch.ivy.addon.portalkit.enums.Protocol;
 import ch.ivy.addon.portalkit.service.exception.PortalException;
@@ -32,9 +35,9 @@ public class UrlUtils {
 
   public static boolean isIvyUrl(String url) {
     return url == null
-        || (StringUtils.contains(url, ".ivp?")
-            || StringUtils.endsWith(url, ".ivp")
-            || StringUtils.endsWith(url, ".icm"));
+        || (Strings.CS.contains(url, ".ivp?")
+            || Strings.CS.endsWith(url, ".ivp")
+            || Strings.CS.endsWith(url, ".icm"));
   }
 
   public static String buildUrl(String url) {
@@ -61,6 +64,26 @@ public class UrlUtils {
       return link;
     }
     return link + (link.contains("?") ? "&" : "?") + EMBED_IN_FRAME;
+  }
+
+  public static String formatLinkWithoutEmbedInFrameParam(String link) {
+    try {
+      URI uri = new URI(link);
+      String query = uri.getQuery();
+      if (query == null) {
+        return link;
+      }
+      String filteredQuery = Arrays.stream(query.split("&")).filter(param -> !param.equals(EMBED_IN_FRAME))
+          .collect(Collectors.joining("&"));
+
+      URI newUri = new URI(uri.getScheme(), uri.getAuthority(), uri.getPath(),
+          filteredQuery.isEmpty() ? null : filteredQuery, uri.getFragment());
+
+      return newUri.toString();
+    } catch (Exception e) {
+      Ivy.log().warn("The link might be in the wrong format: {0}", link);
+      return link;
+    }
   }
 
   public static String buildUrlQueryString(Map<String, String> params) {

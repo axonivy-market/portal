@@ -42,7 +42,7 @@ public abstract class TemplatePage extends AbstractPage {
   public static final String ID_PROPERTY = "id";
   public static final String CLASS_PROPERTY = "class";
   public static final String CURRENT_BREADCRUMB_SELECTOR =
-      ".portal-breadcrumb li:last-child .ui-menuitem-link.ui-state-disabled";
+      ".portal-breadcrumb li:last-child .ui-menuitem-link.breadcrumb-current-item";
   private static final String HOME_BREADCRUMB_SELECTOR = ".portal-breadcrumb .ui-menuitem-link:first-child";
   public static final String PORTAL_GLOBAL_GROWL_ID = "portal-global-growl_container";
   protected static final String COMPONENT_PAGE_LOCATOR = "//*[contains(@id,'theme-selection')]";
@@ -269,7 +269,7 @@ public abstract class TemplatePage extends AbstractPage {
 
   public boolean isMainMenuOpen() {
     WebElement mainMenu = $(".layout-wrapper");
-    return mainMenu.getAttribute(CLASS_PROPERTY).indexOf("static") > 0;
+    return mainMenu.getDomAttribute(CLASS_PROPERTY).indexOf("static") > 0;
   }
 
   public void clickOnMyProfile() {
@@ -351,10 +351,10 @@ public abstract class TemplatePage extends AbstractPage {
     WebElement breadcrumb = findElementByCssSelector(CURRENT_BREADCRUMB_SELECTOR);
     String result = "";
     if (CollectionUtils.isNotEmpty(breadcrumb.findElements(By.cssSelector(".js-count")))) {
-      result = breadcrumb.findElement(By.cssSelector(".ui-menuitem-text")).getAttribute("innerHTML")
-          + breadcrumb.findElement(By.cssSelector(".js-count")).getAttribute("innerHTML");
+      result = breadcrumb.findElement(By.cssSelector(".ui-menuitem-text")).getDomProperty("innerHTML")
+          + breadcrumb.findElement(By.cssSelector(".js-count")).getDomProperty("innerHTML");
     } else {
-      result = breadcrumb.findElement(By.cssSelector(".ui-menuitem-text")).getAttribute("innerHTML");
+      result = breadcrumb.findElement(By.cssSelector(".ui-menuitem-text")).getDomProperty("innerHTML");
     }
     return result;
 
@@ -378,7 +378,12 @@ public abstract class TemplatePage extends AbstractPage {
   public void clickOnLogo() {
     switchBackToParent();
     openMainMenu();
-    waitForElementClickableThenClick($("a[id$='logo']"));
+    waitForElementClickableThenClick($("a[id*='user-menu-required-login:logo']"));
+  }
+  
+  public void clickOnHomeLogo() {
+    switchBackToParent();
+    $("span[class*='si si-house-chimney-2']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
   }
 
   protected void refreshAndWaitElement(String cssSelector) {

@@ -63,6 +63,7 @@
         onclick="PF('column-management-dialog').hide()" />
 
       <p:commandButton id="column-management-save-btn" icon="si si-floppy-disk"
+        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
         actionListener="#{columnManagementBean.save}" update="#{cc.attrs.componentToUpdate}"
         oncomplete="PF('column-management-dialog').hide();" process="@this"/>

@@ -17,6 +17,7 @@ import javax.faces.context.FacesContext;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 
 import com.axonivy.portal.components.publicapi.ProcessStartAPI;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -31,6 +32,7 @@ import ch.ivy.addon.portalkit.dto.AbstractConfigurableContent;
 import ch.ivy.addon.portalkit.dto.AbstractWidgetFilter;
 import ch.ivy.addon.portalkit.dto.WidgetLayout;
 import ch.ivy.addon.portalkit.dto.widget.AbstractWidget;
+import ch.ivy.addon.portalkit.dto.widget.BusinessDetailsWidget;
 import ch.ivy.addon.portalkit.dto.widget.CustomWidget;
 import ch.ivy.addon.portalkit.dto.widget.DocumentWidget;
 import ch.ivy.addon.portalkit.dto.widget.HistoryWidget;
@@ -161,7 +163,7 @@ public abstract class AbstractConfigurableContentBean<T extends AbstractConfigur
       }
     }
   }
-
+  
   private String readConfigurationOfUser() {
     if (Ivy.session().isSessionUserUnknown()) {
       return EMPTY;
@@ -224,6 +226,9 @@ public abstract class AbstractConfigurableContentBean<T extends AbstractConfigur
       else if (widget instanceof TechnicalCaseWidget) {
         widget.setType(WidgetType.TECHINCAL_CASE);
       }
+      else if (widget instanceof BusinessDetailsWidget) {
+        widget.setType(WidgetType.BUSINESS_DETAILS);
+      }
       else {
         widget.setType(WidgetType.CUSTOM);
       }
@@ -257,7 +262,7 @@ public abstract class AbstractConfigurableContentBean<T extends AbstractConfigur
 
   protected T getDefaultConfig(List<T> configurations) {
     return configurations.stream()
-        .filter(config -> StringUtils.equals(getDefaultConfigId(), config.getId()))
+        .filter(config -> Strings.CS.equals(getDefaultConfigId(), config.getId()))
         .findFirst().orElse(null);
   }
 
@@ -277,7 +282,7 @@ public abstract class AbstractConfigurableContentBean<T extends AbstractConfigur
     List<WidgetLayout> layouts = extractWidgetLayoutFromRequest();
     CollectionUtils.emptyIfNull(layouts).forEach(layout -> {
       AbstractWidget currentWidget = widgets.stream()
-                .filter(widget -> StringUtils.equals(widget.getId(), layout.getId()))
+                .filter(widget -> Strings.CS.equals(widget.getId(), layout.getId()))
                 .findFirst().get();
 
       currentWidget.getLayout().setAxisX(layout.getAxisX());
@@ -317,7 +322,7 @@ public abstract class AbstractConfigurableContentBean<T extends AbstractConfigur
   }
 
   private Predicate<? super T> filterByConfigurationId(String compareId) {
-    return config -> StringUtils.equals(compareId, config.getId());
+    return config -> Strings.CS.equals(compareId, config.getId());
   }
 
   protected void updateToConfiguration() throws JsonMappingException, JsonProcessingException {
@@ -333,7 +338,7 @@ public abstract class AbstractConfigurableContentBean<T extends AbstractConfigur
 
     configuration.setWidgets(updateWidgets);
     for (T config : configurationList) {
-      if (StringUtils.equals(config.getId(), configuration.getId())) {
+      if (Strings.CS.equals(config.getId(), configuration.getId())) {
         config.setChanged(!this.isReseted);
         config.setWidgets(configuration.getWidgets());
         break;

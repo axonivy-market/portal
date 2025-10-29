@@ -4,12 +4,14 @@ import static com.codeborne.selenide.CollectionCondition.size;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.Dimension;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.FilterOperator;
 import com.axonivy.portal.selenium.common.FilterValueType;
 import com.axonivy.portal.selenium.common.NavigationHelper;
+import com.axonivy.portal.selenium.common.ScreenshotUtils;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.page.CaseDetailsPage;
@@ -20,6 +22,7 @@ import com.axonivy.portal.selenium.page.TaskWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.TopMenuTaskWidgetPage;
 import com.codeborne.selenide.Condition;
 
+import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 
 @IvyWebTest
@@ -75,8 +78,7 @@ public class EscalationTaskTest extends BaseTest {
     taskWidget.applyFilter();
     taskWidget.countAllTasks().shouldHave(size(1));
     taskWidget.triggerEscalationTask(0);
-    // Try to refresh data
-    refreshPage();
+
     taskWidget = new TopMenuTaskWidgetPage();
     taskWidget.openFilterWidget();
     taskWidget.addFilter("State", null);
@@ -88,15 +90,21 @@ public class EscalationTaskTest extends BaseTest {
 
   @Test
   public void testTriggerEscalationTaskOnRelatedTasksOfCase() {
-    updateGlobalVariable(Variable.TASK_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST.getKey(), ACCESS_TASK_DETAILS);
     login(TestAccount.ADMIN_USER);
+    updateGlobalVariable(Variable.TASK_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST.getKey(), ACCESS_TASK_DETAILS);
+    grantSpecificPortalPermission(PortalPermission.SYSTEM_TASK_READ_ALL);
+    grantSpecificPortalPermission(PortalPermission.TASK_WRITE_EXPIRY_ACTIVATOR);
     redirectToNewDashBoard();
+    ScreenshotUtils.resizeBrowser(new Dimension(1980, 1080));
     CaseWidgetNewDashBoardPage caseWidgetPage = NavigationHelper.navigateToCaseList();
+
     CaseDetailsPage caseDetailsPage = caseWidgetPage.openDetailsCase(TRIGGER_ESCALATION_CASE);
     caseDetailsPage.getNameOfRelatedTask(0).shouldHave(Condition.text(SICK_LEAVE_REQUEST));
+    refreshPage();
     caseDetailsPage.clickRelatedTaskActionButton(0);
     caseDetailsPage.triggerEscalationTask(0);
-    refreshPage();
+    caseDetailsPage.relatedTaskListColumnShouldBeExist(ACCESS_TASK_DETAILS, false);
+
     caseDetailsPage = new CaseDetailsPage();
     caseDetailsPage.getNameOfRelatedTask(2).shouldHave(Condition.text(SICK_LEAVE_REQUEST));
     caseDetailsPage.getStateOfRelatedTask(2).shouldHave(Condition.text("Destroyed"));

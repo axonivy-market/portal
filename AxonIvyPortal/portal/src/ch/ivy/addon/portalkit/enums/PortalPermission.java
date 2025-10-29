@@ -21,6 +21,7 @@ public enum PortalPermission {
   SHOW_ALL_TASKS_OF_CASE("ShowAllTasksOfCase", PortalPermissionGroup.CASE_PERMISSIONS_GROUP),
   SHOW_CASE_DETAILS("ShowCaseDetails", PortalPermissionGroup.CASE_PERMISSIONS_GROUP),
   CASE_DETAILS_SHARE_LINK("ShareCaseDetailsLink", PortalPermissionGroup.CASE_PERMISSIONS_GROUP),
+  CASE_DISPLAY_CUSTOM_FIELDS_ACTION("CaseDisplayCustomFieldsAction", PortalPermissionGroup.CASE_PERMISSIONS_GROUP),
   TASK_CASE_ADD_NOTE("TaskCaseAddNote", PortalPermissionGroup.GENERAL_PERMISSIONS_GROUP),
   TASK_CASE_SHOW_MORE_NOTE("TaskCaseShowMoreNote", PortalPermissionGroup.GENERAL_PERMISSIONS_GROUP),
   TASK_DISPLAY_RESET_ACTION("TaskDisplayResetAction", PortalPermissionGroup.TASK_PERMISSIONS_GROUP),
@@ -28,14 +29,18 @@ public enum PortalPermission {
   TASK_DISPLAY_DELEGATE_ACTION("TaskDisplayDelegateAction", PortalPermissionGroup.TASK_PERMISSIONS_GROUP),
   TASK_DISPLAY_WORKFLOW_EVENT_ACTION("TaskDisplayWorkflowEventAction", PortalPermissionGroup.TASK_PERMISSIONS_GROUP),
   TASK_DISPLAY_DESTROY_ACTION("TaskDisplayDestroyAction", PortalPermissionGroup.TASK_PERMISSIONS_GROUP),
+  TASK_DISPLAY_CUSTOM_FIELDS_ACTION("TaskDisplayCustomFieldsAction", PortalPermissionGroup.TASK_PERMISSIONS_GROUP),
   TASK_RESET_READY_FOR_JOIN("TaskResetReadyForJoin", PortalPermissionGroup.TASK_PERMISSIONS_GROUP),
   TASK_DETAILS_SHARE_LINK("ShareTaskDetailsLink", PortalPermissionGroup.TASK_PERMISSIONS_GROUP),
+  TASK_WRITE_EXPIRY_ACTIVATOR("TaskWriteExpiryActivator", PortalPermissionGroup.TASK_PERMISSIONS_GROUP),
   SYSTEM_TASK_READ_ALL("SystemTaskReadAll", PortalPermissionGroup.TASK_PERMISSIONS_GROUP),
   CREATE_PUBLIC_EXTERNAL_LINK("CreatePublicExternalLink", PortalPermissionGroup.GENERAL_PERMISSIONS_GROUP),
   ROLE_MANAGEMENT("RoleManagement", PortalPermissionGroup.GENERAL_PERMISSIONS_GROUP),
   NEWS_MANAGEMENT("NewsManagement", PortalPermissionGroup.GENERAL_PERMISSIONS_GROUP),
   PASSWORD_VALIDATION("PasswordValidation", PortalPermissionGroup.GENERAL_PERMISSIONS_GROUP),
-  CASE_OWNER_TASK_DELEGATE("CaseOwnerTaskDelegate", PortalPermissionGroup.CASE_PERMISSIONS_GROUP);
+  CASE_OWNER_TASK_DELEGATE("CaseOwnerTaskDelegate", PortalPermissionGroup.CASE_PERMISSIONS_GROUP),
+  NOTIFICATION_CHANNELS_SETTING("NotificationChannelsSetting", PortalPermissionGroup.GENERAL_PERMISSIONS_GROUP),
+  NOTE_READ_ALL_CASE_TASK_DETAILS("NoteReadAllCaseTaskDetails", PortalPermissionGroup.GENERAL_PERMISSIONS_GROUP);
 
   private String value;
   private PortalPermissionGroup group;

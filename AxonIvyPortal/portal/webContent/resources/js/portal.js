@@ -431,26 +431,16 @@ function isPressedSpecialKeys(event) {
 
   const ctrlKeyActions = ['z', 'y', 'x', 'c', 'v', 'a'];
   const arrowKeys = [37, 38, 39, 40]; // Arrow Left, Arrow Up, Arrow Right, Arrow Down
-
-  if (ctrlPressed && ctrlKeyActions.includes(event.key.toLowerCase())) {
-      return true;
-  }
-
-  if (shiftPressed && arrowKeys.includes(event.keyCode)) {
-      return true;
-  }
-
-  if (arrowKeys.includes(event.keyCode)) {
-    return true;
-  }
-
   const specialKeys = [
     'Control', 'Alt', 'Pause', 'CapsLock', 'Escape',
     'PageUp', 'PageDown', 'PrintScreen', 'Insert', 'Meta',
-    'ContextMenu', 'NumLock', 'ScrollLock', 'Home', 'End'
+    'ContextMenu', 'NumLock', 'ScrollLock', 'Home', 'End', 'Tab'
   ];
 
-  return specialKeys.includes(event.key);
+  return (ctrlPressed && ctrlKeyActions.includes(event.key.toLowerCase()))
+      || (shiftPressed && arrowKeys.includes(event.keyCode))
+      || arrowKeys.includes(event.keyCode)
+      || specialKeys.includes(event.key);
 }
 
 function showQuickSearchInput(index) {
@@ -506,9 +496,16 @@ const caseItemId = '[id="user-menu-required-login:main-navigator:main-menu__js__
 const searchInputId = '[id="global-search-component:global-search-data"]:visible'
 const useSettingMenuId = 'a#user-settings-menu:visible';
 const pinButton = 'a[id="user-menu-required-login:toggle-menu"]';
+let isKeyboardShortcutsEnabled = false;
+
+function initKeyboardShortcutsEnabledValue(value) {
+  if (typeof value === 'boolean') {
+    isKeyboardShortcutsEnabled = value;
+  }
+}
 
 $(document).ready(function () {
-
+  initFocusManagament(window);
   const shortcuts = {
     'Digit1': $(singleDashboardId).length ? singleDashboardId : multipleDashboardId,
     'Digit2': processItemId,
@@ -584,7 +581,7 @@ $(document).ready(function () {
     iframe.onload = function () {
       const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
       iframeDocument.addEventListener('keydown', function (event) {
-        if (onlyAltPressed(event)) {
+        if (isKeyboardShortcutsEnabled && onlyAltPressed(event)) {
           if(toggleLeftMenu(event.code)) {
             return;
           }
@@ -648,7 +645,7 @@ $(document).ready(function () {
     var taskActionStepsPanel = $('[id$=":side-steps-panel"]:visible');
     var taskActionStepsPanelVisible = taskActionStepsPanel.length > 0;
 
-    if (onlyAltPressed(event)) {
+    if (isKeyboardShortcutsEnabled && onlyAltPressed(event)) {
       if(toggleLeftMenu(keyCode)) {
         return;
       }
@@ -798,5 +795,187 @@ $(document).ready(function () {
   handleExpandButtonInFilePreview();
 
   // END OF HANDLE EXPAND BUTTON IN FILE PREVIEW
+
+  // START: FIX ACCESSIBILITY ISSUES
+  setTimeout(function () {
+    let combobox = $("span[role='combobox']");
+    combobox.each((index, item) => {
+      if ($(item).attr('aria-label') === undefined) {
+        $(item).attr('aria-label', $(item).text());
+      }
+    });
+  }, 200);
+
+  setAltForAvatar();
 });
-// End of accessibility for shortcuts navigation
+
+function setAltForAvatar() {
+  $("div.has-avatar").each((index, item) => {
+    let imgTag = $(item).find('img');
+    if ($(imgTag).attr('alt') === undefined) {
+      let alt = $(item).find('.name-after-avatar').text() || 'Avatar';
+      $(imgTag).attr('alt', alt)
+    }
+  })
+}
+
+
+/**
+ * Focuses the first visible element matching the selector in a PrimeFaces overlay panel.
+ * @param {string} widgetVar - The widgetVar of the PrimeFaces overlay panel.
+ * @param {string} selector - The jQuery selector for the element(s) to focus.
+ */
+function focusFirstVisibleElementInPanel(widgetVar, selector) {
+  var panel = PF(widgetVar).jq;  
+  var first;
+  var destructionWords = ['remove', 'destroy', 'delete', 'confirmation', 'confirm', 'deletion', 'reset'];
+  
+  if (destructionWords.some(word => widgetVar.includes(word))) {
+    first = panel.find('a').first();
+  } else {
+  	first = panel.find(selector).first();
+  }
+  
+  if (first.length) {
+    first.focus();
+  }
+}
+
+function updateMainMenuAriaLabel() {
+  let parentMenu = $("[id$='user-menu-required-login:main-navigator:main-menu']");
+  if (parentMenu) {
+    if (parentMenu.attr('role') === undefined) {
+      parentMenu.attr('role', 'menu');
+    }
+    parentMenu.find('li').each((__, item) => {
+      let linkItem = $(item).find('a');
+      if (linkItem && linkItem.attr('aria-label') === undefined) {
+        if (linkItem.length > 1) {
+          $(linkItem).each((__, link) => {
+            if ($(link).attr('aria-label') === undefined) { 
+              $(link).attr('aria-label', $(link).text());
+            }
+          })
+        } else {
+          linkItem.attr('aria-label', linkItem.text());
+        }
+      }
+    })
+  }
+}
+
+function focusElementWithId(elementId) {
+    var element = document.querySelector('[id$="' + elementId + '"]');
+    if (element) { element.focus(); }
+}
+
+function addMissingAttr(query, attrName, attrValue) {
+  $(query).each((index, btn) => {
+    if ($(btn).attr(attrName) === undefined) {
+      $(btn).attr(attrName, attrValue);
+    }
+  });
+}
+
+function initFocusManagament(targetWindow) {
+  if (!targetWindow || !targetWindow.PrimeFaces) {
+    return;
+  }
+  var lastFocusedElements = [];
+
+  // OverlayPanel
+  if (targetWindow.PrimeFaces.widget.OverlayPanel) {
+    targetWindow.PrimeFaces.widget.OverlayPanel = targetWindow.PrimeFaces.widget.OverlayPanel.extend({
+        init: function(cfg) {
+          this._super(cfg);
+
+          this.originalOnHide = cfg.onHide;
+          this.originalOnShow = cfg.onShow;
+          var self = this;
+
+          cfg.onShow = function() {
+            if (self.originalOnShow) {
+              self.originalOnShow.call(this);
+            }
+
+            try {
+              if (this.targetElement && this.targetElement.length > 0) {
+                let targetElement = this.targetElement[0];
+                storeFocusedElement(targetWindow.document, lastFocusedElements, this.cfg.id, targetElement);
+              }
+
+            } catch(e) {
+              console.warn("Cannot store focused element");
+            }
+          };
+
+          cfg.onHide = function() {            
+              if (self.originalOnHide) {
+                  self.originalOnHide.call(this);
+              }
+              try {
+                restoreFocusedElement(targetWindow.document, lastFocusedElements, this.cfg.id);
+              } catch (e) {
+                console.warn("Cannot focus on last element");
+              }
+          };
+      }
+    })
+  }
+}
+
+function storeFocusedElement(targetDocument, focusElements, containerId, targetElement) {
+  if (targetElement && targetElement !== targetDocument.body && targetElement.tagName !== 'HTML') {
+    var item = {"containerId": containerId, "activeElement": targetElement};
+
+    if (focusElements.length === 0 || 
+        focusElements[focusElements.length - 1].containerId !== containerId ||
+        focusElements[focusElements.length - 1].activeElement !== targetElement) {
+      focusElements.push(item);
+    }
+  }
+}
+
+function restoreFocusedElement(targetDocument, focusElements, containerId) {
+  if (focusElements.length === 0) return;
+
+  const itemIndex = focusElements.findIndex(item => item.containerId === containerId);
+
+  if (itemIndex === -1) {
+    return;
+  }
+
+  const item = focusElements[itemIndex];
+  const lastEl = targetDocument.getElementById(item.activeElement.id);
+  focusElements.splice(itemIndex, 1);
+
+  if (lastEl && targetDocument.contains(lastEl) && lastEl.offsetParent !== null && !lastEl.disabled && lastEl.tabIndex !== -1) {
+    lastEl.focus();
+  }
+}
+
+function initIframeFocusManagement(iframe) {
+  if (!iframe || !iframe.contentWindow) {
+    return;
+  }
+  
+  try {
+    var iframeWindow = iframe.contentWindow;
+    initFocusManagament(iframeWindow);
+    console.log('Focus management initialized for iframe');
+  } catch (e) {
+    console.warn('Cannot initialize focus management for iframe:', e.message);
+  }
+}
+
+function handleFocusOnElementsInCaseDetailsPanel() {
+  const caseInfoDialog = document.getElementById('case-info-dialog');
+  if (caseInfoDialog.innerHTML.includes('i-frame-case-details')) {
+    const iframe = document.getElementById('i-frame-case-details');
+    setTimeout(() => {
+      initIframeFocusManagement(iframe);
+    }, 2000)
+  }
+}
+
+// END: FIX ACCESSIBILITY ISSUES  

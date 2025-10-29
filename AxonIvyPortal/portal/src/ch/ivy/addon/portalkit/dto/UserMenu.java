@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
+import com.axonivy.portal.components.enums.MenuKind;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
@@ -23,6 +24,8 @@ public class UserMenu extends AbstractConfiguration implements Serializable {
   private List<DisplayName> titles;
 
   private String url;
+
+  private MenuKind menuKind;
 
   private List<String> permissions;
 
@@ -52,6 +55,14 @@ public class UserMenu extends AbstractConfiguration implements Serializable {
 
   public void setUrl(String url) {
     this.url = url;
+  }
+
+  public MenuKind getMenuKind() {
+    return menuKind;
+  }
+
+  public void setMenuKind(MenuKind menuKind) {
+    this.menuKind = menuKind;
   }
 
   public List<String> getPermissions() {

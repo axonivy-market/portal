@@ -17,7 +17,7 @@ import com.axonivy.portal.components.generic.navigation.BaseNavigator;
 import com.axonivy.portal.components.publicapi.ProcessStartAPI;
 import com.axonivy.portal.components.util.ProcessStartUtils;
 
-import ch.ivy.addon.portalkit.enums.MenuKind;
+import com.axonivy.portal.components.enums.MenuKind;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.service.AiProcessService;
 import ch.ivy.addon.portalkit.util.RequestUtils;
@@ -246,9 +246,12 @@ public final class PortalNavigator extends BaseNavigator{
     if (StringUtils.isEmpty(requestPath)) {
       return StringUtils.EMPTY;
     }
-    String paramStr = params.entrySet().stream().map(e -> {
-      return e.getKey() + "=" + URLEncoder.encode(e.getValue(), StandardCharsets.ISO_8859_1);
-    }).collect(Collectors.joining("&"));
+    String paramStr = StringUtils.EMPTY;
+    if (params != null && !params.isEmpty()) {
+      paramStr = params.entrySet().stream().map(e -> {
+        return e.getKey() + "=" + URLEncoder.encode(e.getValue(), StandardCharsets.ISO_8859_1);
+      }).collect(Collectors.joining("&"));
+    }
     return requestPath + (StringUtils.isNotBlank(paramStr) ? "?" + paramStr : StringUtils.EMPTY);
   }
 

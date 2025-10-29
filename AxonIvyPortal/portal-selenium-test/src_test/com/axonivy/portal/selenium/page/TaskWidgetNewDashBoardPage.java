@@ -6,6 +6,9 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 
@@ -59,14 +62,25 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
 
   private int getIndexWidgetByColumnScrollable(String columnName) {
-    ElementsCollection elementsTH =
-        $(taskWidgetId).$(".ui-datatable-scrollable-header").shouldBe(appear, DEFAULT_TIMEOUT).$$("table thead tr th");
-    for (int i = 0; i < elementsTH.size(); i++) {
-      if (elementsTH.get(i).getAttribute("aria-label").equalsIgnoreCase(columnName)) {
-        return i;
+    SelenideElement taskWidget = $(taskWidgetId).shouldBe(appear, DEFAULT_TIMEOUT);
+    
+    // Try scrollable header first
+    if (taskWidget.$(".ui-datatable-scrollable-header").exists()) {
+      try {
+        ElementsCollection elementsTH = taskWidget.$(".ui-datatable-scrollable-header")
+            .shouldBe(appear, DEFAULT_TIMEOUT).$$("table thead tr th");
+        for (int i = 0; i < elementsTH.size(); i++) {
+          if (elementsTH.get(i).getAttribute("aria-label").equalsIgnoreCase(columnName)) {
+            return i;
+          }
+        }
+      } catch (Exception e) {
+        // Fall back to non-scrollable header
       }
     }
-    return 0;
+    
+    // Fallback to regular header
+    return getIndexWidgetByColumn(columnName);
   }
 
   private SelenideElement getColumnOfCaseHasActionIndex(int index, String columnName) {
@@ -80,7 +94,16 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
 
   public ElementsCollection expand() {
     $$("div.widget__header").filter(text(taskWidgetName)).first().shouldBe(appear, DEFAULT_TIMEOUT);
+    $(taskWidgetId).shouldBe(appear, DEFAULT_TIMEOUT);
+    waitForTableStructureReady();
+    
     return $$("div.widget__header").filter(text(taskWidgetName));
+  }
+  
+  private void waitForTableStructureReady() {
+    SelenideElement taskWidget = $(taskWidgetId).shouldBe(appear, DEFAULT_TIMEOUT);
+    taskWidget.$("table tbody").shouldBe(appear, DEFAULT_TIMEOUT);
+    waitForPageLoad();
   }
 
   protected SelenideElement getColumnOfTaskHasIndex(int index, String columnName) {
@@ -289,11 +312,35 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void clickOnTaskActionLink(int taskIndex) {
+    waitForPageLoad();
     getColumnOfCaseHasActionIndex(taskIndex, "Actions").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
 
   public void reserveTask(int taskIndex) {
     getActiveTaskActions(taskIndex).filter(text("Reserve")).first().shouldBe(getClickableCondition()).click();
+  }
+  
+  public void clickCustomFieldsButtonOnActions(int taskIndex) {
+    getActiveTaskActions(taskIndex).filter(text("Custom Fields")).first().shouldBe(getClickableCondition()).click();
+    getCustomFieldsPanelOfTask().shouldBe(appear);
+  }
+  
+  public List<String> getCustomFieldNamesOnTaskCustomFieldsDialog() {
+    return $$("span[id$='customFieldLabel']")
+        .shouldBe(CollectionCondition.sizeGreaterThanOrEqual(0), DEFAULT_TIMEOUT)
+        .asFixedIterable()
+        .stream()
+        .map(SelenideElement::getText)
+        .collect(Collectors.toList());
+  }
+  
+  public SelenideElement getCustomFieldsPanelOfTask() {
+    return $("div[id$='task-custom-fields-dialog']");
+  }
+  
+  public boolean isCustomFieldsDialogDisplayed() {
+    return getCustomFieldsPanelOfTask().isDisplayed();
+
   }
 
   public void clickCancelTask() {

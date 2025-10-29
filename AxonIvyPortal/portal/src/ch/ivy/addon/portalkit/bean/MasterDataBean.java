@@ -25,6 +25,7 @@ import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.enums.TaskSortField;
 import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
+import ch.ivy.addon.portalkit.ivydata.service.impl.UserSettingService;
 import ch.ivy.addon.portalkit.masterdata.AwesomeIcon;
 import ch.ivy.addon.portalkit.service.CaseDocumentService;
 import ch.ivy.addon.portalkit.service.GrowlMessageService;
@@ -38,6 +39,7 @@ public class MasterDataBean implements Serializable {
   private static final long serialVersionUID = 1L;
   private static final String APPLICATION_NAME = GlobalVariable.APPLICATION_NAME.getKey();
   private static final String PORTAL_NAME = Ivy.cms().co("/ch.ivy.addon.portal.generic/PortalName/PortalName");
+  private static final String LOGO_DESCRIPTION = "Portal.LogoDescription";
 
   public AwesomeIcon[] getAwesomeIcons() {
     return AwesomeIcon.values();
@@ -126,6 +128,13 @@ public class MasterDataBean implements Serializable {
     return Ivy.var().get(APPLICATION_NAME);
   }
 
+  public String getLogoDescription() {
+    if (Ivy.var().variable(LOGO_DESCRIPTION) == null || Ivy.var().variable(LOGO_DESCRIPTION).isDefault()) {
+      return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/homeLogo");
+    }
+    return Ivy.var().get(LOGO_DESCRIPTION);
+  }
+
   public String getUserLanguage() {
     return LanguageService.getInstance().getUserLanguage();
   }
@@ -136,5 +145,9 @@ public class MasterDataBean implements Serializable {
       return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/allTypes");
     } else
       return String.join(", ", extensionList);
+  }
+  
+  public boolean isKeyboardShortcutsEnabled() {
+    return UserSettingService.getInstance().isKeyboardShortcutsEnabled();
   }
 }

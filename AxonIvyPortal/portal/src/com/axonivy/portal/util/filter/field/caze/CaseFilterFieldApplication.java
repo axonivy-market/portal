@@ -20,7 +20,10 @@ public class CaseFilterFieldApplication extends FilterField {
 
   @Override
   public String getLabel() {
-    return DashboardStandardCaseColumn.APPLICATION.getLabel();
+    if (org.apache.commons.lang3.StringUtils.isBlank(this.label)) {
+      return DashboardStandardCaseColumn.APPLICATION.getLabel();
+    }
+    return this.label;
   }
 
   @Override
@@ -28,7 +31,9 @@ public class CaseFilterFieldApplication extends FilterField {
     filter.setFilterField(this);
     filter.setFilterType(DashboardColumnType.STANDARD);
     filter.setField(getName());
-
+    if (this.label == null) {
+      setLabel(filter.getLabel());
+    }
   }
 
   @Override

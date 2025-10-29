@@ -50,11 +50,14 @@
     immediate="true" process="@this" partialSubmit="true" />
     
   <p:remoteCommand id="global-search-remote-cmd" name="portalGlobalSearch" actionListener="#{logic.search(isWorkingOnATask, cc.attrs.case)}"
-    process="global-search-data" partialSubmit="true" oncomplete="showConfirmationDialog();"/>
+    process="global-search-data" partialSubmit="true" oncomplete="showConfirmationDialog(args.isWorkingOnATask);"/>
     
   <p:remoteCommand id="global-search-mobile-remote-cmd" name="portalGlobalSearchMobile" actionListener="#{logic.search(isWorkingOnATask, cc.attrs.case)}"
     process="global-search-mobile-data" partialSubmit="true" />
     
+  <p:remoteCommand id="global-search-update-params-cmd" name="portalGlobalSearchUpdateParams" actionListener="#{logic.updateParams(isWorkingOnATask)}"
+    partialSubmit="true"/>
+
   <p:overlayPanel rendered="#{cc.attrs.showQuickGlobalSearch}" hideEvent="dbclick" id="global-search-form" onHide="resetSearchBar();"
    for="global-search-component:global-search-data" styleClass="global-search-form">
     <h:outputScript library="js" name="global-search.js" />
@@ -67,7 +70,7 @@
           id="process-search-results">
          </div>
          <div class="global-search-all-results" >
-           <p:commandLink onclick="viewAllResults(0);" />
+           <p:commandLink onclick="viewAllResults(0);" ariaLabel="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/generic/GlobalSearch/ViewAllResults')}" />
          </div>
          <h:outputText styleClass="global-search-no-results" value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/generic/GlobalSearch/noResultsText')}" />
         </p:tab>
@@ -76,7 +79,7 @@
           <div id="task-search-results">
           </div>
           <div class="global-search-all-results" >
-           <p:commandLink onclick="viewAllResults(1);" />
+           <p:commandLink onclick="viewAllResults(1);" ariaLabel="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/generic/GlobalSearch/ViewAllResults')}" />
           </div>
           <h:outputText styleClass="global-search-no-results" value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/generic/GlobalSearch/noResultsText')}" />
         </p:tab>
@@ -85,7 +88,7 @@
           <div id="case-search-results" class="js-case-default-widget-container case-default-widget-container js-for-search-result">
           </div>
           <div class="global-search-all-results" >
-           <p:commandLink onclick="viewAllResults(2);" />
+           <p:commandLink onclick="viewAllResults(2);" ariaLabel="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/generic/GlobalSearch/ViewAllResults')}" />
           </div>
           <h:outputText styleClass="global-search-no-results" value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/generic/GlobalSearch/noResultsText')}" />
         </p:tab>
@@ -94,7 +97,10 @@
 
   </p:overlayPanel>
   <script>
-      function showConfirmationDialog() {
+      function showConfirmationDialog(isWorkingOnATask) {
+          if (isWorkingOnATask == false) {
+            return;
+          }
           if (PrimeFaces.widgets['search-task-losing-confirmation-dialog']) {
               PF('search-task-losing-confirmation-dialog').show();
           } else {

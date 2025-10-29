@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.service.exception.PortalException;
@@ -27,7 +28,16 @@ public class BusinessDetailsUtils {
   private static final String START_PROCESSES_SHOW_ADDITIONAL_CASE_DETAILS_PAGE = "Start Processes/PortalStart/showAdditionalCaseDetails.ivp";
 
   public static String getAdditionalCaseDetailsPageUri(ICase iCase) {
-    return getBusinessDetailUrlFromCustomField(iCase);
+    return getBusinessDetailUrlFromCustomField(iCase, true);
+  }
+
+  /**
+   * Attempt to find custom businessDetails url which is using in case detail only
+   * @param caze 
+   * @return business detail url
+   **/
+  public static String getCustomBusinessDetailUri(ICase caze) {
+    return getBusinessDetailUrlFromCustomField(caze, false);
   }
 
   /**
@@ -69,12 +79,12 @@ public class BusinessDetailsUtils {
    * append caseId, uuid if missing If migrated from custom text field, add
    * embedInFrame in query string.
    **/
-  private static String getBusinessDetailUrlFromCustomField(ICase iCase) {
+  private static String getBusinessDetailUrlFromCustomField(ICase iCase, Boolean useDefault) {
     String customFieldValue = iCase.customFields().stringField(BUSINESS_DETAILS).getOrNull();
     if (StringUtils.isEmpty(customFieldValue)) {
       customFieldValue = iCase.customFields().textField(CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE.name()).getOrNull();
       if (StringUtils.isEmpty(customFieldValue)) {
-        return constructDefaultBusinessDetailsUrl(iCase);
+        return useDefault ? constructDefaultBusinessDetailsUrl(iCase) : "";
       } else {
         customFieldValue += "&embedInFrame";
       }
@@ -163,7 +173,7 @@ public class BusinessDetailsUtils {
   }
 
   private static boolean isExternalLink(String path) {
-    return StringUtils.startsWithIgnoreCase(path, "http:") || StringUtils.startsWithIgnoreCase(path, "https:");
+    return Strings.CI.startsWith(path, "http:") || Strings.CI.startsWith(path, "https:");
   }
 
 }
