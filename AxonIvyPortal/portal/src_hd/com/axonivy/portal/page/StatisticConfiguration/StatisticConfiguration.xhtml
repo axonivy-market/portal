@@ -428,41 +428,12 @@
                            <p:toggleSwitch id="chart-drill-down-toggle"
                                           value="#{statisticConfigurationBean.statistic.chartDrillDownEnabled}"
                                           styleClass="col-1">
-                               <p:ajax update="chart-drill-down-toggle chart-drill-down-permissions"
+                               <p:ajax update="chart-drill-down-toggle"
                                       process="@this"/>
                            </p:toggleSwitch>
                        </div>
                     </div>
-                    <div class="field">
-                      <p:outputLabel for="@next" value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/ChartDrillDownPermissions')}" />
-                      <div class="w-full ui-fluid">
-                        <p:autoComplete id="chart-drill-down-permissions" scrollHeight="210" dropdown="true" disabled="#{!statisticConfigurationBean.statistic.chartDrillDownEnabled}"
-                          completeMethod="#{statisticConfigurationBean.completeChartDrillDownPermissions}"
-                          styleClass="manage-dashboard__input" inputStyleClass="manage-dashboard__autocomplete-input"
-                          emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
-                          value="#{statisticConfigurationBean.statistic.chartDrillDownPermissionDTOs}" var="responsible"
-                          itemValue="#{responsible}" itemLabel="#{responsible.briefDisplayNameWithState}"
-                          converter="pojoConverter" cache="true" maxResults="100" multiple="true"
-                          moreText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}..." dynamic="true"
-                          forceSelection="true" required="true"
-                          requiredMessage="#{ivy.cms.co('/Labels/RequiredFieldMessage',[ivy.cms.co('/Labels/Permissions')])}">
-                          <p:ajax event="itemSelect" listener="#{statisticConfigurationBean.onSelectChartDrillDownPermission}"
-                            update="permissions errors-message" global="false" process="@this" immediate="true" />
-                          <p:ajax event="itemUnselect"
-                            listener="#{statisticConfigurationBean.onUnselectChartDrillDownPermission}" global="false"
-                            process="@this" immediate="true" />
-                          <p:column>
-                            <pc:securityMemberNameAndAvatar displayName="#{dashboardTaskFilterBean.formatName(responsible)}"
-                              securityMember="#{responsible}">
-                              <f:facet name="alternativeAvatar">
-                                <h:outputText rendered="#{not avatarBean.isShowAvatar()}"
-                                  styleClass="fa #{responsible.isUser() ? 'fa-user' : 'fa-users'} u-mar-right-5" />
-                              </f:facet>
-                            </pc:securityMemberNameAndAvatar>
-                          </p:column>
-                        </p:autoComplete>
-                      </div>
-                    </div>
+
                 </h:panelGroup>
                 </div>
                </p:fieldset>
