@@ -570,7 +570,7 @@ $(document).ready(function () {
     }
   }
 
-  function initShortcutsNavigationOnCustomWidget(iframe) {
+  function initShortcutsNavigationOnIframe(iframe) {
     const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
     iframeDocument.addEventListener('keydown', function (event) {
       if (isKeyboardShortcutsEnabled && onlyAltPressed(event)) {
@@ -597,21 +597,6 @@ $(document).ready(function () {
       registerSearchIconClick();
     });
   }
-
-  function initShortcutsNavigationOnIframe(iframe) {
-    const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
-    iframeDocument.addEventListener('keydown', function (event) {
-      if (isKeyboardShortcutsEnabled && onlyAltPressed(event)) {
-        if(toggleLeftMenu(event.code)) {
-          return;
-        }
-        handleFocusOnMainElement(event);
-      }
-      registerSearchIconClick();
-    });
-  }
-
-
 
   function removeFocusedElements() {
     Object.keys(shortcuts).forEach(function (key) {
@@ -647,24 +632,16 @@ $(document).ready(function () {
     });
   }
 
-  const iframe = document.getElementById('iFrame');
-
-  if (iframe) {
-    iframe.onload = function () {
-      initShortcutsNavigationOnIframe(iframe);
-      handleExpandButtonInFilePreview(document.getElementById("iFrame").contentWindow);
-    };
-  }
-
-  var iframes = document.getElementsByClassName('js-custom-widget-iframe');
+  const iframes = document.getElementsByTagName('iframe');
+  
   if (iframes.length > 0) {
     Array.from(iframes).forEach(function(iframe) {
       iframe.onload = function () {
-        initShortcutsNavigationOnCustomWidget(iframe);
+        initShortcutsNavigationOnIframe(iframe);
+        handleExpandButtonInFilePreview(iframe.contentWindow);
       }
     });
   }
-
 
   let taskIndex = 0;
   let resetTaskFormIndex = 0;
