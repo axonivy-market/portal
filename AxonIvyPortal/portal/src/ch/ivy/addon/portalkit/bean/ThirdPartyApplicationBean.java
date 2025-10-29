@@ -1,6 +1,7 @@
 package ch.ivy.addon.portalkit.bean;
 
 import java.io.Serializable;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -28,6 +29,7 @@ import com.axonivy.portal.components.util.Locales;
 import com.axonivy.portal.components.util.RoleUtils;
 import com.axonivy.portal.service.IvyTranslationService;
 
+import ch.ivy.addon.portal.generic.bean.IMultiLanguage;
 import ch.ivy.addon.portalkit.comparator.ApplicationIndexAscendingComparator;
 import ch.ivy.addon.portalkit.configuration.Application;
 import ch.ivy.addon.portalkit.dto.DisplayName;
@@ -43,7 +45,7 @@ import ch.ivyteam.ivy.environment.Ivy;
 
 @ManagedBean
 @ViewScoped
-public class ThirdPartyApplicationBean implements Serializable {
+public class ThirdPartyApplicationBean implements Serializable, IMultiLanguage {
   private static final long serialVersionUID = 1L;
 
   private List<String> selectedApplicationPermissions;
@@ -131,7 +133,7 @@ public class ThirdPartyApplicationBean implements Serializable {
     this.dialogTitle = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/adminSettings/editApplication");
 
     try {
-      Locale currentLocale = new Locales().getCurrentLocale();
+      Locale currentLocale = LanguageService.getInstance().getUserLocale();
       DisplayNameAdaptor displayNameAdaptor = new DisplayNameAdaptor(application.getDisplayName(), currentLocale);
       this.displayNameInCurrentLanguage = displayNameAdaptor.getDisplayNameAsString();
 
@@ -497,20 +499,6 @@ public class ThirdPartyApplicationBean implements Serializable {
           "Error updating application order: " + e.getMessage(), null);
       FacesContext.getCurrentInstance().addMessage(null, errorMessage);
     }
-  }
-
-  public boolean isRequiredField(DisplayName displayName) {
-    String currentLanguage = UserUtils.getUserLanguage();
-    String displayLanguage = displayName.getLocale().getLanguage();
-    return currentLanguage.equals(displayLanguage);
-  }
-
-  public boolean isShowTranslation(DisplayName title) {
-    return IvyTranslationService.getInstance().isShowTranslation(title.getLocale());
-  }
-
-  public boolean isFocus(DisplayName title) {
-    return !isShowTranslation(title) && title.getLocale().getLanguage().equals(UserUtils.getUserLanguage());
   }
 
   public List<String> getLanguageList() {

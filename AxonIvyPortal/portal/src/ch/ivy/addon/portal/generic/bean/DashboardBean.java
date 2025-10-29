@@ -140,7 +140,7 @@ public class DashboardBean implements Serializable, IMultiLanguage {
     selectedDashboard = dashboards.get(currentDashboardIndex);
 
     String selectedDashboardName = selectedDashboard.getTitles().stream()
-        .filter(displayName -> displayName.getLocale().equals(Ivy.session().getContentLocale())).findFirst()
+        .filter(displayName -> displayName.getLocale().equals(LanguageService.getInstance().getUserLocale())).findFirst()
         .orElseGet(() -> selectedDashboard.getTitles().get(0)).getValue();
     setSelectedDashboardName(selectedDashboardName);
     initShareDashboardLink(selectedDashboard);

@@ -85,7 +85,7 @@ function filterOptionsForDateTimeFormatter(pattern) {
 function formatDateFollowLocale(dt) {
   const options = filterOptionsForDateTimeFormatter(datePattern);
   // Format locale
-  let friendlyLocale = locale.replace('_', '-');
+  let friendlyLocale = contentLocale.replace('_', '-');
   const formatter = new Intl.DateTimeFormat(friendlyLocale, options);
   return formatter.format(dt);
 }
@@ -347,7 +347,7 @@ function initConfig(defaultLocale, defaultContentLocale, datePatternConfig) {
 }
 
 function getFormatedTitle(titles) { 
-  const matchingItem = titles.find(item => item.locale === contentLocale);
+  const matchingItem = titles.find(item => item.locale === locale);
   if (matchingItem) {
     return matchingItem.value;
   }
