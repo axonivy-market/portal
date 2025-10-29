@@ -1,9 +1,8 @@
 package ch.ivy.addon.portal.generic.bean;
 
 import java.util.List;
-import java.util.Locale;
 
-import org.apache.commons.lang3.LocaleUtils;
+import java.util.Locale;
 
 import com.axonivy.portal.service.DeepLTranslationService;
 
@@ -35,6 +34,6 @@ public interface IMultiLanguage {
   
   default Locale getSupportedUserLanguage() {
     String supportedPortalUserLanguage = LanguageService.getInstance().getUserLanguage();
-    return LocaleUtils.toLocale(supportedPortalUserLanguage);
+    return Locale.forLanguageTag(supportedPortalUserLanguage);
   }
 }
