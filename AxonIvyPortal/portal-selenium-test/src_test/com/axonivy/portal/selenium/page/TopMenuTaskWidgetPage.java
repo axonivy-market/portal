@@ -127,15 +127,15 @@ public class TopMenuTaskWidgetPage extends TaskWidgetNewDashBoardPage {
   }
 
   private void clickTaskAction(int taskIndex, String actionName) {
-    $$(String.format("div.js-task-side-steps-panel-default_task_list_dashboard_task_1-%d", taskIndex))
-    .get(0).$("div.ui-overlaypanel-content").$$("a[class*='option-item']")
-    .filter(Condition.not(Condition.cssClass("ui-state-disabled"))).filter(text(actionName)).first()
-    .shouldBe(getClickableCondition()).click();
-
-//    $$(String.format("div.js-task-side-steps-panel-default_task_list_dashboard_task_1-%d", taskIndex)).filter(appear)
-//        .first().shouldBe(appear, DEFAULT_TIMEOUT).$("div.ui-overlaypanel-content").$$("a[class*='option-item']")
-//        .filter(Condition.not(Condition.cssClass("ui-state-disabled"))).filter(text(actionName)).first()
-//        .shouldBe(getClickableCondition()).click();
+//    $$(String.format("div.js-task-side-steps-panel-default_task_list_dashboard_task_1-%d", taskIndex))
+//    .get(0).$("div.ui-overlaypanel-content").$$("a[class*='option-item']")
+//    .filter(Condition.not(Condition.cssClass("ui-state-disabled"))).filter(text(actionName)).first()
+//    .shouldBe(getClickableCondition()).click();
+//
+    $$(String.format("div.js-task-side-steps-panel-default_task_list_dashboard_task_1-%d", taskIndex)).filter(appear)
+        .first().shouldBe(appear, DEFAULT_TIMEOUT).$("div.ui-overlaypanel-content").$$("a[class*='option-item']")
+        .filter(Condition.not(Condition.cssClass("ui-state-disabled"))).filter(text(actionName)).first()
+        .shouldBe(getClickableCondition()).click();
   }
 
   public void destroyTask(int taskIndex) {

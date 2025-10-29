@@ -313,7 +313,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
 
   public void clickOnTaskActionLink(int taskIndex) {
     waitForPageLoad();
-    getColumnOfCaseHasActionIndex(taskIndex, "Actions").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    getColumnOfCaseHasActionIndex(taskIndex, "Actions").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).scrollTo().click();
   }
 
   public void reserveTask(int taskIndex) {
