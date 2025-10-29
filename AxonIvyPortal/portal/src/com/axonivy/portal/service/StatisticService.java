@@ -43,6 +43,7 @@ import ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.casecolumn.CaseColumnModel;
 import ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.TaskColumnModel;
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
+import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
@@ -341,9 +342,17 @@ public class StatisticService {
     if (StringUtils.isNotBlank(drillDownData.getFilterKey()) && drillDownData.getFilterValue() != null) {
       DashboardFilter drillDownFilter = new DashboardFilter();
       drillDownFilter.setFilterType(DashboardColumnType.STANDARD);
-      drillDownFilter.setField(drillDownData.getFilterKey());
-      drillDownFilter.setOperator(FilterOperator.IN); // TODO z1 maybe not IN
-      drillDownFilter.setValues(Arrays.asList(String.valueOf(drillDownData.getFilterValue())));
+      drillDownFilter.setField(getDashboardCaseFilterFieldByAggregation(chart.getStatisticAggregation().getField()));
+
+      if (ALL_AGGREGATION_DATE_FIELDS.contains(chart.getStatisticAggregation().getField())
+          || (DashboardColumnType.CUSTOM == chart.getStatisticAggregation().getType()
+              && chart.getStatisticAggregation().getInterval() != null)) {
+        drillDownFilter.setOperator(FilterOperator.IS);
+        drillDownFilter.setFromDate(Date.from(Instant.parse(drillDownData.getFilterValue())));
+      } else {
+        drillDownFilter.setOperator(FilterOperator.IN); // TODO z1 maybe not IN
+        drillDownFilter.setValues(Arrays.asList(String.valueOf(drillDownData.getFilterValue())));
+      }
       filters.add(drillDownFilter);
     }
     // Add chart's existing filters to the dashboard widget
@@ -354,6 +363,14 @@ public class StatisticService {
     Ivy.session().setAttribute(SessionAttribute.DRILL_DOWN_DASHBOARD.name(), drillDownDashboard);
     Ivy.log().warn("=====statistic {0}", BusinessEntityConverter.entityToJsonValue(chart));
     Ivy.log().warn("=====dashboard {0}", BusinessEntityConverter.entityToJsonValue(drillDownDashboard));
+  }
+
+
+  private String getDashboardCaseFilterFieldByAggregation(String field) {
+    return switch (field) {
+      case StatisticConstants.CREATOR_NAME -> DashboardStandardCaseColumn.CREATOR.getField();
+      default -> field;
+    };
   }
 
   private void searchTasks(com.axonivy.portal.dto.StatisticDrillDownDto drillDownData) {
@@ -369,9 +386,11 @@ public class StatisticService {
     if (StringUtils.isNotBlank(drillDownData.getFilterKey()) && drillDownData.getFilterValue() != null) {
       DashboardFilter drillDownFilter = new DashboardFilter();
       drillDownFilter.setFilterType(chart.getStatisticAggregation().getType());
-      drillDownFilter.setField(getDashboardFilterFieldByAggregation(chart.getStatisticAggregation().getField()));
+      drillDownFilter.setField(getDashboardTaskFilterFieldByAggregation(chart.getStatisticAggregation().getField()));
       
-      if (ALL_AGGREGATION_DATE_FIELDS.contains(chart.getStatisticAggregation().getField())) {
+      if (ALL_AGGREGATION_DATE_FIELDS.contains(chart.getStatisticAggregation().getField())
+          || (DashboardColumnType.CUSTOM == chart.getStatisticAggregation().getType()
+              && chart.getStatisticAggregation().getInterval() != null)) {
         drillDownFilter.setOperator(FilterOperator.IS);
         drillDownFilter.setFromDate(Date.from(Instant.parse(drillDownData.getFilterValue())));
       } else {
@@ -392,19 +411,18 @@ public class StatisticService {
       }
     }
 
-    Ivy.session().setAttribute(SessionAttribute.DRILL_DOWN_DASHBOARD.name(),
-        drillDownDashboard);
+    Ivy.session().setAttribute(SessionAttribute.DRILL_DOWN_DASHBOARD.name(), drillDownDashboard);
     Ivy.log().warn("=====statistic {0}", BusinessEntityConverter.entityToJsonValue(chart));
     Ivy.log().warn("=====dashboard {0}", BusinessEntityConverter.entityToJsonValue(drillDownDashboard));
   }
 
-  private String getDashboardFilterFieldByAggregation(String field) {
+  private String getDashboardTaskFilterFieldByAggregation(String field) {
     return switch (field) {
       case StatisticConstants.RESPONSIBLE_NAME -> DashboardStandardTaskColumn.RESPONSIBLE.getField();
       default -> field;
     };
   }
-  
+
   private void ensureAllStatisticFieldsInTaskColumns(TaskDashboardWidget widget, Statistic chart) {
     List<TaskColumnModel> columns = widget.getColumns();
     boolean columnsModified = false;
@@ -470,7 +488,7 @@ public class StatisticService {
     
     // TODO z1 Ensure aggregation field is included
     if (chart.getStatisticAggregation() != null && StringUtils.isNotBlank(chart.getStatisticAggregation().getField())) {
-      String field = chart.getStatisticAggregation().getField();
+      String field = getDashboardCaseFilterFieldByAggregation(chart.getStatisticAggregation().getField());
       DashboardColumnType fieldType = chart.getStatisticAggregation().getType();
       if (ensureSingleFieldInCaseColumns(columns, field, fieldType)) {
         columnsModified = true;
