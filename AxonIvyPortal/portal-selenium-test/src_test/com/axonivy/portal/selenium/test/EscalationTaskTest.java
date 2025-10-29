@@ -51,6 +51,7 @@ public class EscalationTaskTest extends BaseTest {
     updateGlobalVariable(Variable.TASK_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST.getKey(), ACCESS_TASK_DETAILS);
     redirectToNewDashBoard();
     NavigationHelper.navigateToTaskList();
+    ScreenshotUtils.resizeBrowser(new Dimension(2560, 1440)); // resize the width to prevent jittering on server
     TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
     taskWidget.clickOnTaskName(SICK_LEAVE_REQUEST);
     TaskDetailsPage taskDetailsPage = new TaskDetailsPage();

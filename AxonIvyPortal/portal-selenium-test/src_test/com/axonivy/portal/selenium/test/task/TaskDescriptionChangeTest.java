@@ -3,10 +3,12 @@ package com.axonivy.portal.selenium.test.task;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.Dimension;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.NavigationHelper;
+import com.axonivy.portal.selenium.common.ScreenshotUtils;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
@@ -30,6 +32,7 @@ public class TaskDescriptionChangeTest extends BaseTest {
     login(TestAccount.ADMIN_USER);
     int firstTask = 0;
     NavigationHelper.navigateToTaskList();
+    ScreenshotUtils.resizeBrowser(new Dimension(2560, 1440)); // resize the width to prevent jittering on server
     TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
 
     taskWidget.openTaskDetailsPageByAction(firstTask);
