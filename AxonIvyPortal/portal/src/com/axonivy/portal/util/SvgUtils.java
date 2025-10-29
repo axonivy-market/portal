@@ -48,7 +48,7 @@ public class SvgUtils {
     }
     String lower = ext.toLowerCase();
     if (lower.startsWith("svg")) {
-  return "svg";
+        return "svg";
     }
     return ext;
   }

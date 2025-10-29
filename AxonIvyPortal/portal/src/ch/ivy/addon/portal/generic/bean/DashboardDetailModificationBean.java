@@ -563,6 +563,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
         case NAVIGATION_DASHBOARD:
           NavigationDashboardWidget navWid = (NavigationDashboardWidget) this.deleteWidget;
           NavigationWidgetUtils.removeNavigateWidgetImage(navWid);
+          break;
         default:
           break;
       }

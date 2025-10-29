@@ -169,9 +169,11 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
       switch (selectedWidget.getType()) {
         case WELCOME:
           removeWelcomeWidgetImage(selectedWidget);
+          break;
         case NAVIGATION_DASHBOARD:
           NavigationDashboardWidget navWid = (NavigationDashboardWidget) selectedWidget;
           NavigationWidgetUtils.removeNavigateWidgetImage(navWid);
+          break;
         default:
           break;
       }

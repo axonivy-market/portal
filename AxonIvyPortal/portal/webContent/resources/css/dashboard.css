@@ -1946,9 +1946,7 @@ body .widget__content .ui-datatable.dashboard-tasks--table .ui-widget-header the
   position: absolute;
   top: 0px;
   z-index: 1;
-  position: absolute;
   right: 0;
-  /* top: -100px; */
   padding: 8px;
   width: 100%;
   display: inline-flex;
