@@ -402,7 +402,7 @@ class ClientChart {
     });
 
     return data.map((val) => {
-      if (!val || typeof val.count !== 'number') return defaultBackgroundColor;
+      if (!isNumeric(val.count)) return defaultBackgroundColor;
 
       for (const func of generatedCompareFunctions) {
         const result = func(val.count, val.key);
