@@ -2,6 +2,7 @@ package com.axonivy.portal.selenium.page;
 
 import static com.codeborne.selenide.Selenide.$;
 
+import com.axonivy.portal.selenium.common.FileHelper;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 
@@ -60,4 +61,20 @@ public class NavigationDashboardWidgetConfigurationPage extends TemplatePage {
     waitForElementDisplayed($("div[class*='navigation-dashboard-widget-panel']"), true);
   }
 
+  public void uploadImage(String fileName) {
+    var configDialog = $("#new-widget-configuration-dialog");
+    configDialog.find("[id $= ':navigation-widget-image-upload_input']").sendKeys(FileHelper.getAbsolutePathToTestFile(fileName));
+    configDialog.find(".ui-fileupload-filename").shouldBe(Condition.disappear, DEFAULT_TIMEOUT)
+        .shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
+  }
+
+  public void uploadImageDarkMode(String fileName) {
+    var configDialog = $("#new-widget-configuration-dialog");
+    // Switch to Dark Mode tab
+    configDialog.findAll(".ui-tabs-nav li").filter(Condition.text("Dark Mode")).first().click();
+    // Upload image for dark mode
+    configDialog.find("[id $= ':navigation-widget-image-dark-mode-upload_input']").sendKeys(FileHelper.getAbsolutePathToTestFile(fileName));
+    configDialog.find(".ui-fileupload-filename").shouldBe(Condition.disappear, DEFAULT_TIMEOUT)
+        .shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
+  }
 }

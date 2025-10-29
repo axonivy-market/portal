@@ -87,6 +87,8 @@ public class DashboardNavigationWidgetTest extends BaseTest{
     navigationDashboardWidget.setWidgetTitle("Navigate to Tasks");
     navigationDashboardWidget.setWidgetDescription("Navigate to Tasks");
     navigationDashboardWidget.selectTargetDashboard("Tasks");
+    navigationDashboardWidget.uploadImage("test-welcome-widget-image.jpg");
+    navigationDashboardWidget.uploadImageDarkMode("test-welcome-widget-image.jpg");
     navigationDashboardWidget.save();
   }
 }
