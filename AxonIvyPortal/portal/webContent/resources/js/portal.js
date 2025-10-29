@@ -604,7 +604,7 @@ $(document).ready(function () {
   }
 
   const iframes = document.getElementsByTagName('iframe');
-  debugger;
+
   if (iframes.length > 0) {
     Array.from(iframes).forEach(function(iframe) {
       iframe.onload = function() {
