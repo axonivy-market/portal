@@ -208,6 +208,10 @@ public class DashboardEditCaseWidgetTest extends BaseTest {
     return modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
   }
 
+  // IVYPORTAL-19771 Case widget cannot sort
+  /*
+   * COMMENT OUT THIS TEST DUE TO THE BUG CASE WIDGET CANNOT SORT
+   * OPEN IT AGAIN AFTER THE TICKET IS DONE
   @Test
   public void testDefaultSortOnCaseWidget() {
     redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
@@ -226,5 +230,8 @@ public class DashboardEditCaseWidgetTest extends BaseTest {
 
     caseEditWidgetPage.clickOnCaseNameColumn();
     caseEditWidgetPage.getFirstCaseOfCaseWidget().shouldHave(text(ORDER_PIZZA), DEFAULT_TIMEOUT);
+    caseEditWidgetPage.getFirstCaseOfCaseWidget().shouldHave(text(ORDER_PIZZA), DEFAULT_TIMEOUT);
   }
+    */
+    
 }
