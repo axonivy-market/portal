@@ -22,6 +22,7 @@ import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 
 import com.axonivy.portal.selenium.common.ScreenshotUtils;
+import com.axonivy.portal.selenium.common.Sleeper;
 import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
@@ -1147,6 +1148,11 @@ public class CaseDetailsPage extends TemplatePage {
       // So we need to wait for Ajax Indicator disappear
       clickOnSystemTasksCheckbox(checkboxShouldBeChecked);
     }
+  }
+  
+  public void checkThenRefreshToGetRelatedTasks() {
+    $("div[id$=':show-only-open-tasks']").findElement(By.cssSelector("div.ui-chkbox-box.ui-widget")).click();
+    Sleeper.sleep(500);
   }
 }
 

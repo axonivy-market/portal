@@ -43,12 +43,13 @@ public class EscalationTaskTest extends BaseTest {
   public void setup() {
     super.setup();
     redirectToRelativeLink(createTestingEscalationTasksUrl);
+    login(TestAccount.ADMIN_USER);
+    ScreenshotUtils.resizeBrowser(new Dimension(2560, 1440)); // resize the width to prevent jittering on server
   }
 
   @Test
   public void testTriggerEscalationTaskOnTaskDetails() {
     updateGlobalVariable(Variable.TASK_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST.getKey(), ACCESS_TASK_DETAILS);
-    login(TestAccount.ADMIN_USER);
     redirectToNewDashBoard();
     NavigationHelper.navigateToTaskList();
     TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
@@ -68,7 +69,6 @@ public class EscalationTaskTest extends BaseTest {
 
   @Test
   public void testTriggerEscalationTaskOnTaskList() {
-    login(TestAccount.ADMIN_USER);
     redirectToNewDashBoard();
     NavigationHelper.navigateToTaskList();
     TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
@@ -90,12 +90,9 @@ public class EscalationTaskTest extends BaseTest {
 
   @Test
   public void testTriggerEscalationTaskOnRelatedTasksOfCase() {
-    login(TestAccount.ADMIN_USER);
     updateGlobalVariable(Variable.TASK_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST.getKey(), ACCESS_TASK_DETAILS);
     grantSpecificPortalPermission(PortalPermission.SYSTEM_TASK_READ_ALL);
-    grantSpecificPortalPermission(PortalPermission.TASK_WRITE_EXPIRY_ACTIVATOR);
     redirectToNewDashBoard();
-    ScreenshotUtils.resizeBrowser(new Dimension(1980, 1080));
     CaseWidgetNewDashBoardPage caseWidgetPage = NavigationHelper.navigateToCaseList();
 
     CaseDetailsPage caseDetailsPage = caseWidgetPage.openDetailsCase(TRIGGER_ESCALATION_CASE);
@@ -106,7 +103,15 @@ public class EscalationTaskTest extends BaseTest {
     caseDetailsPage.relatedTaskListColumnShouldBeExist(ACCESS_TASK_DETAILS, false);
 
     caseDetailsPage = new CaseDetailsPage();
-    caseDetailsPage.getNameOfRelatedTask(2).shouldHave(Condition.text(SICK_LEAVE_REQUEST));
+    // sometimes engine need time to render the proper tasks in the list
+    // if not see it, click on the check box to reload the list from db
+    if(SICK_LEAVE_REQUEST.equals(caseDetailsPage.getNameOfRelatedTask(2).getText())) {
+      caseDetailsPage.getNameOfRelatedTask(2).shouldHave(Condition.text(SICK_LEAVE_REQUEST));
+    } else {
+      caseDetailsPage.checkThenRefreshToGetRelatedTasks();
+      refreshPage();
+      caseDetailsPage.getNameOfRelatedTask(2).shouldHave(Condition.text(SICK_LEAVE_REQUEST));
+    }
     caseDetailsPage.getStateOfRelatedTask(2).shouldHave(Condition.text("Destroyed"));
     caseDetailsPage.getNameOfRelatedTask(0).shouldHave(Condition.text(SICK_LEAVE_REQUEST_ESCALATED));
   }
