@@ -25,7 +25,7 @@ import com.codeborne.selenide.Condition;
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 
-@IvyWebTest(headless = false)
+@IvyWebTest
 public class EscalationTaskTest extends BaseTest {
 
   // WIDGET NAME
@@ -71,6 +71,7 @@ public class EscalationTaskTest extends BaseTest {
   public void testTriggerEscalationTaskOnTaskList() {
     redirectToNewDashBoard();
     NavigationHelper.navigateToTaskList();
+    ScreenshotUtils.resizeBrowser(new Dimension(2560, 1440)); // resize the width to prevent jittering on server
     TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
     taskWidget.openFilterWidget();
     taskWidget.addFilter("Name", FilterOperator.IS);

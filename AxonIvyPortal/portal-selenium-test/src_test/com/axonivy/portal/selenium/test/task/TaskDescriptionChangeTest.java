@@ -15,7 +15,7 @@ import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.TopMenuTaskWidgetPage;
 import com.axonivy.portal.selenium.page.UserProfilePage;
 
-@IvyWebTest(headless = false)
+@IvyWebTest
 public class TaskDescriptionChangeTest extends BaseTest {
 
 
@@ -56,6 +56,7 @@ public class TaskDescriptionChangeTest extends BaseTest {
     int firstTask = 0;
     NavigationHelper.navigateToTaskList();
     TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
+    ScreenshotUtils.resizeBrowser(new Dimension(2560, 1440)); // resize the width to prevent jittering on server
     taskWidget.openTaskDetailsPageByAction(firstTask);
     assertFalse(taskWidget.isTaskNameChangeComponentPresented(firstTask));
   }

@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.Dimension;
 import org.junit.jupiter.api.AfterEach;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
@@ -14,6 +15,7 @@ import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.FilterOperator;
 import com.axonivy.portal.selenium.common.FilterValueType;
 import com.axonivy.portal.selenium.common.NavigationHelper;
+import com.axonivy.portal.selenium.common.ScreenshotUtils;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.page.CaseDetailsPage;
@@ -24,7 +26,7 @@ import com.codeborne.selenide.Condition;
 
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 
-@IvyWebTest(headless = false)
+@IvyWebTest
 public class TaskDetailsTest extends BaseTest {
 
   // TASK NAME
@@ -117,6 +119,7 @@ public class TaskDetailsTest extends BaseTest {
     grantSpecificPortalPermission(PortalPermission.SYSTEM_TASK_READ_ALL);
     redirectToNewDashBoard();
     NavigationHelper.navigateToTaskList();
+    ScreenshotUtils.resizeBrowser(new Dimension(2560, 1440)); // resize the width to prevent jittering on server
     TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
 
     taskWidget.openDashboardTaskDetails("Maternity Leave Request");
@@ -166,6 +169,7 @@ public class TaskDetailsTest extends BaseTest {
 
     redirectToNewDashBoard();
     NavigationHelper.navigateToTaskList();
+    ScreenshotUtils.resizeBrowser(new Dimension(2560, 1440)); // resize the width to prevent jittering on server
     TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
     taskWidget.openDashboardTaskDetails("User: create note");
     TaskDetailsPage taskDetailsPage = new TaskDetailsPage();
@@ -184,6 +188,7 @@ public class TaskDetailsTest extends BaseTest {
 
     redirectToNewDashBoard();
     NavigationHelper.navigateToTaskList();
+    ScreenshotUtils.resizeBrowser(new Dimension(2560, 1440)); // resize the width to prevent jittering on server
     TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
     taskWidget.openDashboardTaskDetails("User: create note");
     TaskDetailsPage taskDetailsPage = new TaskDetailsPage();
@@ -212,6 +217,7 @@ public class TaskDetailsTest extends BaseTest {
 
     grantSpecificPortalPermission(PortalPermission.NOTE_READ_ALL_CASE_TASK_DETAILS);
     NavigationHelper.navigateToTaskList();
+    ScreenshotUtils.resizeBrowser(new Dimension(2560, 1440)); // resize the width to prevent jittering on server
     taskWidget = new TopMenuTaskWidgetPage();
     taskWidget.openDashboardTaskDetails("User: create note");
     taskDetailsPage = new TaskDetailsPage();
