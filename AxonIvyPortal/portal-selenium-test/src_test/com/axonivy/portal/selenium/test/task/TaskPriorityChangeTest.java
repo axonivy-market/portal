@@ -22,6 +22,7 @@ public class TaskPriorityChangeTest extends BaseTest {
     super.setup();
     updateGlobalVariable(Variable.TASK_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST.getKey(), "ACCESS_TASK_DETAILS");
     createTestingTasks();
+    ScreenshotUtils.resizeBrowser(new Dimension(2560, 1440)); // resize the width to prevent jittering on server
   }
 
   @Test
@@ -31,7 +32,6 @@ public class TaskPriorityChangeTest extends BaseTest {
     int priorityIntValue = 2;
     String priorityStringValue = "NORMAL";
     NavigationHelper.navigateToTaskList();
-    ScreenshotUtils.resizeBrowser(new Dimension(2560, 1440)); // resize the width to prevent jittering on server
     TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
     TaskDetailsPage taskDetailsPage = taskWidget.openTaskDetailsPageByAction(firstTask);
     taskDetailsPage.changePriorityOfTask(priorityIntValue);
@@ -42,7 +42,6 @@ public class TaskPriorityChangeTest extends BaseTest {
   public void testUserWithoutPermissionCannotChangeTaskPriority() {
     int firstTask = 0;
     NavigationHelper.navigateToTaskList();
-    ScreenshotUtils.resizeBrowser(new Dimension(2560, 1440)); // resize the width to prevent jittering on server
     TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
     taskWidget.openTaskDetailsPageByAction(firstTask);
     assertFalse(taskWidget.isTaskPriorityChangeComponentPresented(firstTask));

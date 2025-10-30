@@ -44,6 +44,7 @@ public class EscalationTaskTest extends BaseTest {
     super.setup();
     redirectToRelativeLink(createTestingEscalationTasksUrl);
     login(TestAccount.ADMIN_USER);
+    ScreenshotUtils.resizeBrowser(new Dimension(2560, 1440)); // resize the width to prevent jittering on server
   }
 
   @Test
@@ -51,7 +52,6 @@ public class EscalationTaskTest extends BaseTest {
     updateGlobalVariable(Variable.TASK_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST.getKey(), ACCESS_TASK_DETAILS);
     redirectToNewDashBoard();
     NavigationHelper.navigateToTaskList();
-    ScreenshotUtils.resizeBrowser(new Dimension(2560, 1440)); // resize the width to prevent jittering on server
     TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
     taskWidget.clickOnTaskName(SICK_LEAVE_REQUEST);
     TaskDetailsPage taskDetailsPage = new TaskDetailsPage();
@@ -71,7 +71,6 @@ public class EscalationTaskTest extends BaseTest {
   public void testTriggerEscalationTaskOnTaskList() {
     redirectToNewDashBoard();
     NavigationHelper.navigateToTaskList();
-    ScreenshotUtils.resizeBrowser(new Dimension(2560, 1440)); // resize the width to prevent jittering on server
     TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
     taskWidget.openFilterWidget();
     taskWidget.addFilter("Name", FilterOperator.IS);
@@ -94,7 +93,6 @@ public class EscalationTaskTest extends BaseTest {
     updateGlobalVariable(Variable.TASK_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST.getKey(), ACCESS_TASK_DETAILS);
     grantSpecificPortalPermission(PortalPermission.SYSTEM_TASK_READ_ALL);
     redirectToNewDashBoard();
-    ScreenshotUtils.resizeBrowser(new Dimension(1980, 1080));
     CaseWidgetNewDashBoardPage caseWidgetPage = NavigationHelper.navigateToCaseList();
 
     CaseDetailsPage caseDetailsPage = caseWidgetPage.openDetailsCase(TRIGGER_ESCALATION_CASE);

@@ -25,6 +25,7 @@ public class TaskDescriptionChangeTest extends BaseTest {
     super.setup();
     updateGlobalVariable(Variable.TASK_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST.getKey(), "ACCESS_TASK_DETAILS");
     createTestingTasks();
+    ScreenshotUtils.resizeBrowser(new Dimension(2560, 1440)); // resize the width to prevent jittering on server
   }
 
   @Test
@@ -32,7 +33,6 @@ public class TaskDescriptionChangeTest extends BaseTest {
     login(TestAccount.ADMIN_USER);
     int firstTask = 0;
     NavigationHelper.navigateToTaskList();
-    ScreenshotUtils.resizeBrowser(new Dimension(2560, 1440)); // resize the width to prevent jittering on server
     TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
 
     taskWidget.openTaskDetailsPageByAction(firstTask);
@@ -56,7 +56,6 @@ public class TaskDescriptionChangeTest extends BaseTest {
     int firstTask = 0;
     NavigationHelper.navigateToTaskList();
     TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
-    ScreenshotUtils.resizeBrowser(new Dimension(2560, 1440)); // resize the width to prevent jittering on server
     taskWidget.openTaskDetailsPageByAction(firstTask);
     assertFalse(taskWidget.isTaskNameChangeComponentPresented(firstTask));
   }
