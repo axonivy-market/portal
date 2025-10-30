@@ -61,7 +61,14 @@ Below is a sample JSON definition of a navigation dashboard widget in the Portal
     },
     "targetDashboardId": "default-task-list-dashboard",
     "description": "Dive into the task list",
-    "icon": "fa-play"
+    "visualType" : "IMAGE",
+    "icon": "fa-play",
+    "imageContentDarkMode": "<your-image-data-as-base64>",
+    "imageLocationDarkMode": "/com/axonivy/portal/NavigationWidget/dd91ec84-c5aa-4202-aeea-4500fbd414ef",
+    "imageTypeDarkMode": "png",
+    "imageContent": "<your-image-data-as-base64>",
+    "imageLocation": "/com/axonivy/portal/NavigationWidget/dd91ec84-c5aa-4202-aeea-4500fbd404ef",
+    "imageType": "jpeg",
     }
 ..
 
@@ -89,4 +96,18 @@ The basic JSON structure of a statistic widget
 
    ``description``: the widget description
 
+   ``visualType``: the visual type of the widget. Possible values are ``ICON`` and ``IMAGE``
+
    ``icon``: the icon shown on the widget
+
+   ``imageContent``: the base64 data format of the process image. If this value is valid then it will be converted to a physical file. If you want to configure external link images when deploying, you just need to define ``imageContent``
+   
+   ``imageLocation``: the location of the process image. This image is stored in Application CMS. Basically, this should be handled by the engine
+   
+   ``imageType``: the extension of the process image. Basically, this should be handled by the engine
+
+   ``imageContentDarkMode``: the same as ``imageContent`` but for dark mode
+
+   ``imageLocationDarkMode``: the same as ``imageLocation`` but for dark mode
+
+   ``imageTypeDarkMode``: the same as ``imageType`` but for dark mode
