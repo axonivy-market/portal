@@ -22,7 +22,7 @@
   <c:set var="isReadOnlyMode" value="#{cc.attrs.isReadOnlyMode}" />
 
   <h:panelGroup id="#{panelId}" styleClass="card-widget-panel navigation-dashboard-widget-panel relative" layout="block" pt:role="region" pt:aria-label="#{widget.name}">
-     <h:panelGroup id="widget-header-actions" rendered="#{!isReadOnlyMode}" styleClass="widget-header-actions" 
+     <h:panelGroup id="widget-header-actions" rendered="#{!isReadOnlyMode}" styleClass="js-navigation-dashboard-widget widget-header-actions" 
       layout="block">
       <p:commandButton id="widget-action-button" icon="fa fa-ellipsis-h"
         ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}"
