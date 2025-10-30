@@ -477,7 +477,7 @@ getBackgroundColorsWithAllScope(chartConfig, data) {
       chartId: this.data.chartConfig.id,
       chartType: this.data.chartConfig.chartType,
       filterKey: this.data.chartConfig.statisticAggregation?.field,
-      filterValue: this.getOriginalFilterValue(label, dataIndex),
+      filterValue: this.data.result.aggs[0].buckets[dataIndex].key,
       label: label,
       value: value,
       count: counting,
@@ -486,13 +486,6 @@ getBackgroundColorsWithAllScope(chartConfig, data) {
     };
 
     this.drillDownStatistic(drillDownData);
-  }
-
-  getOriginalFilterValue(formattedLabel, dataIndex) {
-    if (this.dataResult && this.dataResult[dataIndex]) {
-      return this.dataResult[dataIndex].key;
-    }
-    return formattedLabel;
   }
 
   drillDownStatistic(drillDownData) {
