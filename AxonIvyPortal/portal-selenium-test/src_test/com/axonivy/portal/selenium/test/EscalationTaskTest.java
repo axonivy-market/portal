@@ -103,6 +103,14 @@ public class EscalationTaskTest extends BaseTest {
     caseDetailsPage.relatedTaskListColumnShouldBeExist(ACCESS_TASK_DETAILS, false);
 
     caseDetailsPage = new CaseDetailsPage();
+    // sometimes engine need time to render the proper tasks in the list
+    // if not see it, click on the check box to reload the list from db
+    if(SICK_LEAVE_REQUEST.equals(caseDetailsPage.getNameOfRelatedTask(2).getText())) {
+      caseDetailsPage.getNameOfRelatedTask(2).shouldHave(Condition.text(SICK_LEAVE_REQUEST));
+    } else {
+      caseDetailsPage.checkThenRefreshToGetRelatedTasks();
+      refreshPage();
+    }
     caseDetailsPage.getNameOfRelatedTask(2).shouldHave(Condition.text(SICK_LEAVE_REQUEST));
     caseDetailsPage.getStateOfRelatedTask(2).shouldHave(Condition.text("Destroyed"));
     caseDetailsPage.getNameOfRelatedTask(0).shouldHave(Condition.text(SICK_LEAVE_REQUEST_ESCALATED));
