@@ -85,7 +85,7 @@
     </h:panelGroup>
     <h:panelGroup id="widget-visual-group" styleClass="u-padding-0 ui-fluid" layout="block">
       <div class="ui-g-4 mt-2">
-        <p:outputLabel styleClass="" for="@next" value="Visual Type"/>
+        <p:outputLabel styleClass="" for="@next" value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/NavigationDashboardWidgetConfiguration/VisualType')}"/>
       </div>
       <div class="ui-g-8">
         <p:selectOneRadio id="line" value="#{widget.visualType}" layout="lineDirection">
