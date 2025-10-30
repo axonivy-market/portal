@@ -44,8 +44,13 @@ public class TextInOperatorHandler {
   }
   
   public String buildFilterForCurrentUserOperator(DashboardFilter filter) {
-    String currentUserMemberName = SecurityMemberUtils.getCurrentSessionUserAsSecurityMemberDTO().getMemberName();
-    filter.setValues(Arrays.asList(currentUserMemberName));
+    String currentUserMemberName = "";
+    if (filter.isCreator()) {
+      currentUserMemberName = SecurityMemberUtils.getCurrentSessionUserAsSecurityMemberDTO().getName();
+    } else {
+      currentUserMemberName = SecurityMemberUtils.getCurrentSessionUserAsSecurityMemberDTO().getMemberName();
+    }
+    filter.setValues(new ArrayList<>(Arrays.asList(currentUserMemberName)));
     return buildFilter(filter);
   }
 
