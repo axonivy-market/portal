@@ -24,7 +24,7 @@ import com.codeborne.selenide.Condition;
 
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 
-@IvyWebTest
+@IvyWebTest(headless = false)
 public class TaskDetailsTest extends BaseTest {
 
   // TASK NAME

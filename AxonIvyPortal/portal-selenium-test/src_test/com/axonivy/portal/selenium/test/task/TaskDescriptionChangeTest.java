@@ -15,7 +15,7 @@ import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.TopMenuTaskWidgetPage;
 import com.axonivy.portal.selenium.page.UserProfilePage;
 
-@IvyWebTest
+@IvyWebTest(headless = false)
 public class TaskDescriptionChangeTest extends BaseTest {
 
 

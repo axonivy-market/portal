@@ -25,7 +25,7 @@ import com.codeborne.selenide.Condition;
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 
-@IvyWebTest
+@IvyWebTest(headless = false)
 public class EscalationTaskTest extends BaseTest {
 
   // WIDGET NAME

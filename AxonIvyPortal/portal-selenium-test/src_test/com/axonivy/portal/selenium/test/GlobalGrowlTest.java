@@ -22,7 +22,7 @@ import com.axonivy.portal.selenium.page.TemplatePage;
 import com.axonivy.portal.selenium.page.TopMenuTaskWidgetPage;
 import com.codeborne.selenide.Condition;
 
-@IvyWebTest
+@IvyWebTest(headless = false)
 public class GlobalGrowlTest extends BaseTest {
 
   private static final String FINISH_MESSAGE_WITH_DETAILS =
