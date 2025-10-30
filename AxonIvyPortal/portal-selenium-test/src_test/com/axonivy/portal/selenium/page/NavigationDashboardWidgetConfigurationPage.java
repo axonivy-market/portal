@@ -2,6 +2,7 @@ package com.axonivy.portal.selenium.page;
 
 import static com.codeborne.selenide.Selenide.$;
 
+import com.axonivy.portal.selenium.common.FileHelper;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 
@@ -43,6 +44,37 @@ public class NavigationDashboardWidgetConfigurationPage extends TemplatePage {
     .$("ul").$$("li").filter(Condition.text(targetDashboard)).first().click();
   }
   
+  public void selectVisualType(String visualType) {
+    // Radio <input> elements are hidden; click their associated <label> instead.
+    SelenideElement container = $("form#widget-configuration-form").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+        .$("div[id$=':line']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+
+    String vt = visualType.toLowerCase();
+    if (vt.equals("image")) {
+      // index 0 corresponds to IMAGE
+      if (!container.$("input[id$=':line:0']").isSelected()) {
+        container.$("label[for$=':line:0']").click();
+      }
+      // Wait for image upload area to appear
+      $("#new-widget-configuration-dialog").find("label[id$='navigation-widget-image-label']")
+          .shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    } else if (vt.equals("icon")) {
+      // index 1 corresponds to ICON
+      if (!container.$("input[id$=':line:1']").isSelected()) {
+        container.$("label[for$=':line:1']").click();
+      }
+    }
+  }
+
+  private void waitForVisualTypeGroup() {
+    $("form#widget-configuration-form").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+      .$("div[id$=':line']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+  }
+
+  private SelenideElement getVisualTypeGroup() {
+    return $("form#widget-configuration-form").$("div[id$=':line']");
+  }
+  
   public void save() {
     $("button#widget-configuration-save-button").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
     getDialog().shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
@@ -60,4 +92,29 @@ public class NavigationDashboardWidgetConfigurationPage extends TemplatePage {
     waitForElementDisplayed($("div[class*='navigation-dashboard-widget-panel']"), true);
   }
 
+  public void uploadImage(String fileName) {
+    var configDialog = $("#new-widget-configuration-dialog");
+    ensureImageVisualSelected();
+    configDialog.find("[id $= ':navigation-widget-image-upload_input']").sendKeys(FileHelper.getAbsolutePathToTestFile(fileName));
+    configDialog.find(".ui-fileupload-filename").shouldBe(Condition.disappear, DEFAULT_TIMEOUT)
+        .shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
+  }
+
+  public void uploadImageDarkMode(String fileName) {
+    var configDialog = $("#new-widget-configuration-dialog");
+    ensureImageVisualSelected();
+    // Switch to Dark Mode tab
+    configDialog.findAll(".ui-tabs-nav li").filter(Condition.text("Dark Mode")).first().click();
+    // Upload image for dark mode
+    configDialog.find("[id $= ':navigation-widget-image-dark-mode-upload_input']").sendKeys(FileHelper.getAbsolutePathToTestFile(fileName));
+    configDialog.find(".ui-fileupload-filename").shouldBe(Condition.disappear, DEFAULT_TIMEOUT)
+        .shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
+  }
+
+  private void ensureImageVisualSelected() {
+    SelenideElement imageInput = $("form#widget-configuration-form").$("input[id$=':line:0']");
+    if (!imageInput.exists() || !imageInput.isSelected()) {
+      selectVisualType("IMAGE");
+    }
+  }
 }
