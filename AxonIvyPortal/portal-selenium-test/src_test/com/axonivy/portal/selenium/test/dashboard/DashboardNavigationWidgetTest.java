@@ -79,7 +79,7 @@ public class DashboardNavigationWidgetTest extends BaseTest{
     navigationWidget.clickOnNavigateButton();
     newDashboardPage.waitForTaskWidgetLoaded();
     assertTrue(newDashboardPage.isTaskListDisplayed());
-    }
+  }
 
   private void addNewNavigationDashboardWidget(NewDashboardDetailsEditPage newDashboardDetailsEditPage) {
     NavigationDashboardWidgetConfigurationPage navigationDashboardWidget =
@@ -87,6 +87,7 @@ public class DashboardNavigationWidgetTest extends BaseTest{
     navigationDashboardWidget.setWidgetTitle("Navigate to Tasks");
     navigationDashboardWidget.setWidgetDescription("Navigate to Tasks");
     navigationDashboardWidget.selectTargetDashboard("Tasks");
+    navigationDashboardWidget.selectVisualType("IMAGE");
     navigationDashboardWidget.uploadImage("test-welcome-widget-image.jpg");
     navigationDashboardWidget.uploadImageDarkMode("test-welcome-widget-image.jpg");
     navigationDashboardWidget.save();
