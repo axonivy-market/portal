@@ -19,6 +19,7 @@ public class IvyDocumentTransformer {
               .id(String.valueOf(document.getId()))
               .name(document.getName())
               .path(document.getPath().asString())
+              .relativePath(document.getRelativePath().asString())
               .size(document.getSize())
               .creation(document.getCreation())
               .lastModification(document.getLastModification())

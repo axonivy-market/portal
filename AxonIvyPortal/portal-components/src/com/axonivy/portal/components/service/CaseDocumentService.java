@@ -82,7 +82,9 @@ public class CaseDocumentService {
       return NewFilenameValidation.INVALID_FORMAT;
     }
 
-    boolean filenameExists = documentsOf(iCase).getAllDirectBelow(new Path("/")).stream()
+    Path parentPath = getParentPath(new Path(modifiedDoc.getRelativePath()));
+
+    boolean filenameExists = documentsOf(iCase).getAllDirectBelow(parentPath).stream()
         .anyMatch(doc -> doc.getName().equalsIgnoreCase(newName) && !doc.uuid().equals(modifiedDoc.getUuid()));
     return filenameExists ? NewFilenameValidation.ALREADY_EXIST : NewFilenameValidation.VALID;
   }
@@ -154,4 +156,15 @@ public class CaseDocumentService {
     }
    }
 
+  private static Path getParentPath(Path path) {
+    List<String> parentSegments = new ArrayList<>();
+    for (int i = 0; i < path.segmentCount() - 1; i++) {
+      parentSegments.add(path.getSegment(i));
+    }
+    return new Path(parentSegments);
+  }
+  
+  public static Path getPathAfterRename(Path oldPath, String newName) {
+    return getParentPath(oldPath).append(newName);
+  }
 }
