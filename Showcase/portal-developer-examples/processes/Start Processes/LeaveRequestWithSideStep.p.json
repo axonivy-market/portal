@@ -11,7 +11,7 @@
       "config" : {
         "signature" : "start",
         "request" : {
-          "name" : "<%=ivy.cms.co(\"/Processes/LeaveRequest/LeaveRequestWithSideSteps\")%>",
+          "name" : "<%=ivy.cms.co(\"/Processes/LeaveRequest/LeaveRequestWithSideStepsTaskLevel\")%>",
           "description" : [
             "This process allow employee to submit their leave request with additional manager notes feature.",
             "After approver reviews the request, they can add additional information through a side step before final approval."
@@ -36,7 +36,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 24, "y" : 376 }
+        "at" : { "x" : 32, "y" : 376 }
       },
       "connect" : [
         { "id" : "f2", "to" : "f75" }
@@ -79,7 +79,6 @@
             "activator" : "in.approver"
           },
           "code" : [
-            "import com.axonivy.portal.components.publicapi.SideStepAPI;",
             "import ch.ivyteam.ivy.workflow.ICase;",
             "import com.axonivy.portal.components.persistence.converter.BusinessEntityConverter;",
             "import java.util.Map;",
@@ -89,12 +88,6 @@
             "import com.axonivy.portal.components.constant.CustomFields;",
             "",
             "ICase caze = ivy.case;",
-            "",
-            "// Build first option",
-            "Map params1 = new HashMap();",
-            "params1.put(\"caseUuid\", caze.uuid());",
-            "params1.put(\"stepId\", \"1\");",
-            "params1.put(\"taskUuid\", task.uuid());",
             "",
             "Map processName1 = new HashMap();",
             "processName1.put(\"en\", \"Side step: Ask for more details\");",
@@ -106,7 +99,6 @@
             "SideStepProcessDTO dto1 = SideStepProcessDTO.builder()",
             "  .processNames(processName1)",
             "  .signal(\"com:axonivy:portal:developerexample:sideStep:askMoreDetails\")",
-            "  .params(params1)",
             "  .build();",
             "",
             "// Build second option",
@@ -125,7 +117,6 @@
             "SideStepProcessDTO dto2 = SideStepProcessDTO.builder()",
             "  .processNames(processName2)",
             "  .signal(\"com:axonivy:portal:developerexample:sideStep:CEOApproval\")",
-            "  .params(params2)",
             "  .build();",
             "",
             "// Define side step dto",
@@ -137,9 +128,8 @@
             ".processes(processes)",
             ".build();",
             "",
-            "",
+            "// Parse dto to string and save to task custom field",
             "String valueString = BusinessEntityConverter.entityToJsonValue(sideStepDto);",
-            "",
             "task.customFields().textField(CustomFields.SIDE_STEPS_TASK).set(valueString);"
           ]
         },
@@ -180,12 +170,6 @@
             "",
             "ICase caze = ivy.case;",
             "",
-            "",
-            "Map params = new HashMap();",
-            "params.put(\"stepId\", \"1\");",
-            "params.put(\"taskUuid\", task.uuid());",
-            "params.put(\"caseUuid\", caze.uuid());",
-            "",
             "Map processName = new HashMap();",
             "processName.put(\"en\", \"Side step: Inform customer\");",
             "processName.put(\"de\", \"Nebenschritt: Kunden informieren\");",
@@ -196,7 +180,6 @@
             "SideStepProcessDTO dto = SideStepProcessDTO.builder()",
             "  .processNames(processName)",
             "  .signal(\"com:axonivy:portal:developerexample:sideStep:informCustomer\")",
-            "  .params(params)",
             "  .build();",
             "",
             "// Define side step dto",
@@ -208,8 +191,8 @@
             ".isParallelSideStep(false)",
             ".build();",
             "",
+            "// Parse dto to string and save to custom field",
             "String valueString = BusinessEntityConverter.entityToJsonValue(sideStepDto);",
-            "",
             "task.customFields().textField(CustomFields.SIDE_STEPS_TASK).set(valueString);"
           ]
         }
@@ -323,7 +306,7 @@
       "config" : {
         "signature" : "start2",
         "request" : {
-          "name" : "<%=ivy.cms.co(\"/Processes/LeaveRequest/LeaveRequestWithSideStepsProcessLevel\")%>",
+          "name" : "<%=ivy.cms.co(\"/Processes/LeaveRequest/LeaveRequestWithSideStepsCaseLevel\")%>",
           "description" : [
             "This process allow employee to submit their leave request with additional manager notes feature.",
             "After approver reviews the request, they can add additional information through a side step before final approval."
@@ -471,10 +454,6 @@
             "",
             "ICase caze = ivy.case;",
             "",
-            "Map params1 = new HashMap();",
-            "params1.put(\"caseUuid\", caze.uuid());",
-            "params1.put(\"stepId\", \"1\");",
-            "",
             "Map processName1 = new HashMap();",
             "processName1.put(\"en\", \"Side step: Ask for more details\");",
             "processName1.put(\"de\", \"Seitenschritt: Fragen Sie nach weiteren Details\");",
@@ -485,13 +464,7 @@
             "SideStepProcessDTO dto1 = SideStepProcessDTO.builder()",
             "  .processNames(processName1)",
             "  .signal(\"com:axonivy:portal:developerexample:sideStep:askMoreDetails\")",
-            "  .params(params1)",
             "  .build();",
-            "",
-            "",
-            "Map params2 = new HashMap();",
-            "params2.put(\"stepId\", \"2\");",
-            "params2.put(\"caseUuid\", caze.uuid());",
             "",
             "Map processName2 = new HashMap();",
             "processName2.put(\"en\", \"Side step: CEO Approval\");",
@@ -503,12 +476,7 @@
             "SideStepProcessDTO dto2 = SideStepProcessDTO.builder()",
             "  .processNames(processName2)",
             "  .signal(\"com:axonivy:portal:developerexample:sideStep:CEOApproval\")",
-            "  .params(params2)",
             "  .build();",
-            "",
-            "Map params3 = new HashMap();",
-            "params3.put(\"caseUuid\", caze.uuid());",
-            "params3.put(\"stepId\", \"3\");",
             "",
             "Map processName3 = new HashMap();",
             "processName3.put(\"en\", \"Side step: Inform customer\");",
@@ -522,7 +490,6 @@
             "  .processNames(processName3)",
             "  .customSecurityMembersCallable(\"getCustomSecurityMemberForSideStep()\")",
             "  .signal(\"com:axonivy:portal:developerexample:sideStep:informCustomer\")",
-            "  .params(params3)",
             "  .build();",
             "",
             "// Define side step dto",
@@ -531,6 +498,7 @@
             "processes.add(dto2);",
             "processes.add(dto3);",
             "",
+            "// Optional: set custom title ",
             "Map customParallelTiles = new HashMap();",
             "customParallelTiles.put(\"en\", \"Custom parallel title\");",
             "customParallelTiles.put(\"de\", \"Benutzerdefinierter Paralleltitel\");",
@@ -552,8 +520,8 @@
             ".customSwitchSideStepTitles(customSwitchTiles)",
             ".build();",
             "",
+            "// Convert dto to string and save to case custom field",
             "String valueString = BusinessEntityConverter.entityToJsonValue(sideStepDto);",
-            "",
             "caze.customFields().textField(CustomFields.SIDE_STEP_CASE).set(valueString);"
           ]
         }

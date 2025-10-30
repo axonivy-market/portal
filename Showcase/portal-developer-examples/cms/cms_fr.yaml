@@ -217,8 +217,8 @@ Processes:
       Connaître le résultat
   LeaveRequest:
     LeaveRequest: Leave Request
-    LeaveRequestWithSideSteps: Demande de congé avec processus parallèles (niveau tâche)
-    LeaveRequestWithSideStepsProcessLevel: Demande de congé avec processus parallèles (au niveau du dossier)
+    LeaveRequestWithSideStepsCaseLevel: Demande de congé avec processus parallèles (au niveau du dossier)
+    LeaveRequestWithSideStepsTaskLevel: Demande de congé avec processus parallèles (niveau tâche)
     approvalTask: Votre demande de congé est approuvée
     approvalTaskName: Approbation de la demande de congé de {0}
     createLeaveRequest: 'Créer une demande de congé pour : {0}'

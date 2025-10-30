@@ -217,8 +217,8 @@ Processes:
       Tomar nota del resultado
   LeaveRequest:
     LeaveRequest: Leave Request
-    LeaveRequestWithSideSteps: Solicitud de permiso con procesos paralelos (nivel de tarea)
-    LeaveRequestWithSideStepsProcessLevel: Solicitud de permiso con procesos paralelos (a nivel de caso)
+    LeaveRequestWithSideStepsCaseLevel: Solicitud de permiso con procesos paralelos (a nivel de caso)
+    LeaveRequestWithSideStepsTaskLevel: Solicitud de permiso con procesos paralelos (nivel de tarea)
     approvalTask: Su ausencia ha sido aprovada
     approvalTaskName: Aprovar solicitud para ausencia del {0}
     createLeaveRequest: 'Crear ausencia para: {0}'

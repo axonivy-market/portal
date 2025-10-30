@@ -45,14 +45,13 @@ public class SideStepProcessBean implements Serializable {
 
   private ITask task;
   private SideStepProcessDTO selectedProcess;
-  private String processId;
   private List<SideStepProcessDTO> processes;
   private UserDTO assignee;
   private RoleDTO assignedRole;
   private List<String> userRoles;
   private List<String> roles;
-  private SideStepType selectedStepType;
-  private List<SideStepType> stepTypes;
+  private SideStepType selectedSideStepType;
+  private List<SideStepType> sideStepTypes;
   private String comment;
   private SideStepConfigurationDTO sideStepConfigurationInfo;
   private boolean isUserDelegated = true;
@@ -76,9 +75,6 @@ public class SideStepProcessBean implements Serializable {
     this.selectedProcess = selectedProcess;
     this.isUserDelegated = true;
     if (task != null && selectedProcess != null) {
-      if (selectedProcess.getParams() != null) {
-        selectedProcess.getParams().put("taskUuid", task.uuid());
-      }
       String securityMembersCallable = selectedProcess.getCustomSecurityMemberCallable();
 
       List<IRole> customUserRoles = new ArrayList<>();
@@ -93,7 +89,6 @@ public class SideStepProcessBean implements Serializable {
     }
   }
 
-  private String selectedProcessId;
 
   public boolean isRendered(ITask task) {
     return CollectionUtils.isNotEmpty(getSideStepProcesses(task));
@@ -101,26 +96,25 @@ public class SideStepProcessBean implements Serializable {
 
   public List<SideStepProcessDTO> getSideStepProcesses(ITask task) {
     if (processes == null) {
-      try {
-        if (task != null) {
-          this.task = task;
-          String sideStepString = task.getCase().customFields().textField(CustomFields.SIDE_STEP_CASE).getOrNull();
-          if (StringUtils.isBlank(sideStepString)) {
-            sideStepString = task.customFields().textField(CustomFields.SIDE_STEPS_TASK).getOrNull();
-          }
-          if (StringUtils.isNotBlank(sideStepString)) {
-            sideStepConfigurationInfo = BusinessEntityConverter.jsonValueToEntity(sideStepString, SideStepConfigurationDTO.class);
-            if (sideStepConfigurationInfo.getIsParallelSideStep() == null) {
-              setStepTypes(Arrays.asList(SideStepType.class.getEnumConstants()));
-            } else if (sideStepConfigurationInfo.getIsParallelSideStep()) {
-              this.selectedStepType = SideStepType.PARALLEL;
-            } else {
-              this.selectedStepType = SideStepType.SWITCH;
-            }
-            processes = sideStepConfigurationInfo.getProcesses();
-          }
+      if (task != null) {
+        this.task = task;
+        // check task level
+        String sideStepString = task.customFields().textField(CustomFields.SIDE_STEPS_TASK).getOrNull(); 
+        if (StringUtils.isBlank(sideStepString)) {
+          // if null check case level
+          sideStepString = task.getCase().customFields().textField(CustomFields.SIDE_STEP_CASE).getOrNull();
         }
-      } catch (NullPointerException ex) {
+        if (StringUtils.isNotBlank(sideStepString)) {
+          sideStepConfigurationInfo = BusinessEntityConverter.jsonValueToEntity(sideStepString, SideStepConfigurationDTO.class);
+          if (sideStepConfigurationInfo.getIsParallelSideStep() == null) {
+            setSideStepTypes(Arrays.asList(SideStepType.class.getEnumConstants()));
+          } else if (sideStepConfigurationInfo.getIsParallelSideStep()) {
+            this.selectedSideStepType = SideStepType.PARALLEL;
+          } else {
+            this.selectedSideStepType = SideStepType.SWITCH;
+          }
+          processes = sideStepConfigurationInfo.getProcesses();
+        }
       }
     }
     return processes;
@@ -143,10 +137,15 @@ public class SideStepProcessBean implements Serializable {
         delegatedSecurityMember = SecurityMemberUtils.findISecurityMemberFromRoleDTO(assignedRole);
       }
       String securityMemberId = delegatedSecurityMember != null ? delegatedSecurityMember.getSecurityMemberId() : "";
-      SideStepProcessParamDTO param = new SideStepProcessParamDTO(selectedProcess, securityMemberId, selectedStepType == SideStepType.PARALLEL, comment);
+      SideStepProcessParamDTO param =  SideStepProcessParamDTO.builder().sideStepProcessDto(selectedProcess)
+                                                                        .comment(comment)
+                                                                        .isParallelSideStep(selectedSideStepType == SideStepType.PARALLEL)
+                                                                        .taskUuid(task.uuid())
+                                                                        .securityMemberId(securityMemberId)
+                                                                        .build();
       String jsonSerializedPayload = BusinessEntityConverter.entityToJsonValue(param);
       Ivy.wf().signals().create().data(jsonSerializedPayload).send(selectedProcess.getSignal());
-      if (selectedStepType == SideStepType.SWITCH) {
+      if (selectedSideStepType == SideStepType.SWITCH) {
         TaskUtils.parkTask(task);
         TaskAPI.setHidePropertyToHideInPortal(task);
         PortalNavigatorInFrameAPI.navigateToPortalHome();
@@ -159,7 +158,7 @@ public class SideStepProcessBean implements Serializable {
   
   public void resetData() {
     this.selectedProcess = null;
-    this.selectedStepType = null;
+    this.selectedSideStepType = null;
     this.assignedRole = null;
     this.assignee = null;
     this.isUserDelegated = true;
@@ -179,44 +178,12 @@ public class SideStepProcessBean implements Serializable {
     this.task = task;
   }
 
-  public String getSelectedProcessId() {
-    return selectedProcessId;
-  }
-
-  public void setSelectedProcessId(String selectedProcessId) {
-    this.selectedProcessId = selectedProcessId;
-  }
-
-  public String getProcessId() {
-    return processId;
-  }
-
-  public void setProcessId(String processId) {
-    this.processId = processId;
-  }
-
   public UserDTO getAssignee() {
     return assignee;
   }
 
   public void setAssignee(UserDTO assignee) {
     this.assignee = assignee;
-  }
-
-  public List<SideStepType> getStepTypes() {
-    return stepTypes;
-  }
-
-  public void setStepTypes(List<SideStepType> stepTypes) {
-    this.stepTypes = stepTypes;
-  }
-
-  public SideStepType getSelectedStepType() {
-    return selectedStepType;
-  }
-
-  public void setSelectedStepType(SideStepType selectedStepType) {
-    this.selectedStepType = selectedStepType;
   }
 
   public String getComment() {
@@ -291,6 +258,22 @@ public class SideStepProcessBean implements Serializable {
       return dto.getCustomSwitchSideStepTitles().get(Ivy.session().getContentLocale().toString());
     }
     return "";
+  }
+
+  public SideStepType getSelectedSideStepType() {
+    return selectedSideStepType;
+  }
+
+  public List<SideStepType> getSideStepTypes() {
+    return sideStepTypes;
+  }
+
+  public void setSelectedSideStepType(SideStepType selectedSideStepType) {
+    this.selectedSideStepType = selectedSideStepType;
+  }
+
+  public void setSideStepTypes(List<SideStepType> sideStepTypes) {
+    this.sideStepTypes = sideStepTypes;
   }
   
 }

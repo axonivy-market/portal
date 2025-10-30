@@ -205,8 +205,8 @@ Processes:
       結果を確認します
   LeaveRequest:
     LeaveRequest: Leave Request
-    LeaveRequestWithSideSteps: TODO Leave request with side step processes
-    LeaveRequestWithSideStepsProcessLevel: 'TODO: Leave request with side step processes (case level)'
+    LeaveRequestWithSideStepsCaseLevel: 'TODO: Leave request with side step processes (case level)'
+    LeaveRequestWithSideStepsTaskLevel: TODO Leave request with side step processes
     approvalTask: あなたの休暇申請は承認されました
     approvalTaskName: '{0} の休暇申請の承認'
     createLeaveRequest: '{0}の休暇申請を作成'

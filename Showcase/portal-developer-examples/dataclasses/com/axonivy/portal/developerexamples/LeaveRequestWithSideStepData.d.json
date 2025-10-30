@@ -8,10 +8,6 @@
     "type" : "String",
     "modifiers" : [ "PERSISTENT" ]
   }, {
-    "name" : "stepId",
-    "type" : "Integer",
-    "modifiers" : [ "PERSISTENT" ]
-  }, {
     "name" : "isApproved",
     "type" : "Boolean",
     "modifiers" : [ "PERSISTENT" ]

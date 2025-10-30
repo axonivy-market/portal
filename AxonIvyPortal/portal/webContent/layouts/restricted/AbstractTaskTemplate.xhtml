@@ -234,14 +234,14 @@
                 <p:ajax event="itemSelect" global="false" update="side-step-process-form"/>
               </p:selectOneMenu>
             </div>
-            <h:panelGroup id="step-type-panel" rendered="#{not empty sideStepProcessBean.stepTypes}">
+            <h:panelGroup id="step-type-panel" rendered="#{not empty sideStepProcessBean.sideStepTypes}">
               <div class="field">
                 <p:outputLabel for="step-type" value="#{ivy.cms.co('/Labels/StepType')}" />
-                <p:selectOneMenu id="step-type" value="#{sideStepProcessBean.selectedStepType}" converter="pojoConverter" required="true" 
+                <p:selectOneMenu id="step-type" value="#{sideStepProcessBean.selectedSideStepType}" converter="pojoConverter" required="true" 
                   requiredMessage="#{sideStepProcessBean.buildRequireMessage(ivy.cms.co('/Labels/StepType'))}">
                   <f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/pleaseSelect')}"
                     itemValue="#{null}" noSelectionOption="true" />
-                  <f:selectItems value="#{sideStepProcessBean.stepTypes}" var="type" itemLabel="#{sideStepProcessBean.getStepTypeTitle(type)}"
+                  <f:selectItems value="#{sideStepProcessBean.sideStepTypes}" var="type" itemLabel="#{sideStepProcessBean.getStepTypeTitle(type)}"
                     itemValue="#{type}" />
                 </p:selectOneMenu>
               </div>
@@ -305,9 +305,11 @@
                 ariaLabel="#{ivy.cms.co('/Labels/Submit')}"
                 styleClass="w-full"
                 actionListener="#{sideStepProcessBean.handleSelectProcess()}"
-                oncomplete="if (!args.validationFailed) {PF('side-step-process-dialog').hide();}"
+                oncomplete="if (!args.validationFailed) {PF('side-step-process-dialog').hide();resetDataSideStep();}"
                 update="side-step-process-form"
-                form="side-step-process-form"/>
+                form="side-step-process-form">
+                <p:resetInput target="side-step-process-dialog"/>
+              </p:commandButton>
               <div class="w-full flex justify-content-center mt-2">
                 <p:commandLink id="side-step-process-cancel-button"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"

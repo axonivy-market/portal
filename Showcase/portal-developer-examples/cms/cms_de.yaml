@@ -217,8 +217,8 @@ Processes:
       Ergebnis zur Kenntnis nehmen
   LeaveRequest:
     LeaveRequest: Leave Request
-    LeaveRequestWithSideSteps: Urlaubsantrag mit Nebenprozessen (Aufgabenebene)
-    LeaveRequestWithSideStepsProcessLevel: Urlaubsantrag mit Nebenprozessen (auf Fallbasis)
+    LeaveRequestWithSideStepsCaseLevel: Urlaubsantrag mit Nebenprozessen (auf Fallbasis)
+    LeaveRequestWithSideStepsTaskLevel: Urlaubsantrag mit Nebenprozessen (Aufgabenebene)
     approvalTask: Ihr Urlaubsantrag wird genehmigt
     approvalTaskName: Genehmigung eines Urlaubsantrags von {0}
     createLeaveRequest: 'Urlaubsantrag anlegen für: {0}'

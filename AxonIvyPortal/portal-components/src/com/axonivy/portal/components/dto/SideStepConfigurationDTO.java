@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.collections4.CollectionUtils;
+
 import com.axonivy.portal.components.ivydata.bo.JsonVersion;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
@@ -11,20 +13,18 @@ import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.ITask;
 
 /**
- * DTO object contains information about side step configuration
+ * DTO object contains information about side step configuration.
  * Use this class to configure side step then parse it to JSON and save to custom text field of {@link ITask} or {@link ICase}
  * <pre>
- * <b>processes</b>: list of side step task created processes for user to select 
- * <b>isParallelSideStep</b>: whether side step task runs parallel with original task
- * <b>customParallelSideStepTitle</b>: custom parallel side step title (optional)
- * <b>customSwitchSideStepTitle</b>: custom switch side step title (optional)
+ * <b>processes</b>: list of side step task created processes for user to select (mandatory). 
+ * <b>isParallelSideStep</b>: whether side step task runs parallel with original task (mandatory).
+ * <b>customParallelSideStepTitles</b>: custom parallel side step title (optional)
+ * <b>customSwitchSideStepTitles</b>: custom switch side step title (optional)
  * </pre>
  * <p><b>Examples:</b></p>
  * <pre>
  * SideStepConfigurationDTO.builder()
  * .processes({@link List} of {@link SideStepProcessDTO})
- * .customSwitchSideStepTitle("Labels/MyCustomSwitchSideStep")
- * .customParallelSideStepTitle("Custom parallel text")
  * .isParallelSideStep(true)
  * .build();
  * </pre> 
@@ -41,23 +41,19 @@ public class SideStepConfigurationDTO implements Serializable {
   public SideStepConfigurationDTO() {}
   
   private SideStepConfigurationDTO(Builder builder) {
+    this.version = builder.version;
     this.processes = builder.processes;
     this.isParallelSideStep = builder.isParallelSideStep;
     this.customParallelSideStepTitles = builder.customParallelSideStepTitles;
     this.customSwitchSideStepTitles = builder.customSwitchSideStepTitles;
-    this.version = builder.version;
   }
 
   public static Builder builder() {
     return new Builder();
   }
-
+  
   public List<SideStepProcessDTO> getProcesses() {
     return processes;
-  }
-
-  public String getVersion() {
-    return version;
   }
 
   public Boolean getIsParallelSideStep() {
@@ -72,6 +68,10 @@ public class SideStepConfigurationDTO implements Serializable {
     return customSwitchSideStepTitles;
   }
 
+  public String getVersion() {
+    return version;
+  }
+
   public static class Builder {
     private List<SideStepProcessDTO> processes;
     private Boolean isParallelSideStep;
@@ -80,7 +80,7 @@ public class SideStepConfigurationDTO implements Serializable {
     private String version = JsonVersion.LATEST.getValue();
 
     /**
-     * Set list of processes for side step
+     * Set list of processes for side step. This is mandatory.
      * @param processes 
      * @return builder for {@link SideStepConfigurationDTO}
      */
@@ -90,7 +90,7 @@ public class SideStepConfigurationDTO implements Serializable {
     }
 
     /**
-     * Set true if this side step runs parallel with current task
+     * Set true if this side step runs parallel with current task. This is mandatory.
      * @param isParallelSideStep
      * @return builder for {@link SideStepConfigurationDTO}
      */
@@ -99,18 +99,47 @@ public class SideStepConfigurationDTO implements Serializable {
       return this;
     }
 
+    /**
+     * This set a map of multiple locale - title values to support for multiple languages of parallel side step title.
+     * This is optional.
+     * @param customParallelSideStepTitles A Map where keys are String to store locale value (e.g., "de", "en")
+     * and values are also String to store title value (e.g., "My custom title").
+     * This map contains various multiple language values for custom title.
+     * @return builder for {@link SideStepConfigurationDTO}
+     */
     public Builder customParallelSideStepTitles(Map<String, String> customParallelSideStepTitles) {
       this.customParallelSideStepTitles = customParallelSideStepTitles;
       return this;
     }
 
+    /**
+     * This set a map of multiple locale - title values to support for multiple languages of switch side step title.
+     * This is optional.
+     * @param customSwitchSideStepTitles A Map where keys are String to store locale value (e.g., "de", "en")
+     * and values are also String to store title value (e.g., "My custom title").
+     * @return builder for {@link SideStepConfigurationDTO}
+     */
     public Builder customSwitchSideStepTitles(Map<String, String> customSwitchSideStepTitles) {
       this.customSwitchSideStepTitles = customSwitchSideStepTitles;
       return this;
     }
     
+    /**
+     * Build a new instance.
+     * @return new instance of {@link SideStepConfigurationDTO}
+     */
     public SideStepConfigurationDTO build() {
+      validate();
       return new SideStepConfigurationDTO(this);
+    }
+    
+    private void validate() {
+      if (isParallelSideStep == null) {
+        throw new IllegalArgumentException("isParallelSideStep must be provided");
+      }
+      if (CollectionUtils.isEmpty(processes)) {
+        throw new IllegalArgumentException("List of SideStepProcessDTO must be provided");
+      }
     }
   }
 
