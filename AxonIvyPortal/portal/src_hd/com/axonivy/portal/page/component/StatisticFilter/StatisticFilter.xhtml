@@ -69,7 +69,7 @@
       <h:panelGroup layout="block" rendered="#{filter.isCreator()}">
         <ic:com.axonivy.portal.dashboard.component.filter.CreatorFilter filter="#{filter}"
           componentToUpdate="#{cc.attrs.componentToUpdate}" filterIndex="#{cc.attrs.filterIndex}"
-          readOnly="#{readOnly}" messageId="#{cc.attrs.messageId}"
+          readOnly="#{readOnly}" messageId="#{cc.attrs.messageId}" operators="#{widgetCreatorFilterBean.statisticOperators}"
           creatorCompleteMethod="#{cc.attrs.managedBean.completeCreators}" />
       </h:panelGroup>
       

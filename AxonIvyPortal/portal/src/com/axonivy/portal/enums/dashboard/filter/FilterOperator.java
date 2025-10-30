@@ -65,5 +65,7 @@ public enum FilterOperator {
   public static final Set<FilterOperator> STATISTIC_NUMBER_OPERATORS = Collections.unmodifiableSet(EnumSet.of(LESS, LESS_OR_EQUAL, GREATER, GREATER_OR_EQUAL, BETWEEN));
   public static final Set<FilterOperator> STATISTIC_DATE_OPERATORS = Collections.unmodifiableSet(EnumSet.of(TODAY, YESTERDAY, IS, BEFORE, AFTER, BETWEEN, CURRENT, LAST, NEXT));
   public static final Set<FilterOperator> STATISTIC_RESPONSIBLE_OPERATORS = Collections.unmodifiableSet(EnumSet.of(IN, CURRENT_USER));
+  public static final Set<FilterOperator> STATISTIC_CREATOR_OPERATORS = Collections.unmodifiableSet(EnumSet.of(IN, CURRENT_USER));
+
   
 }
