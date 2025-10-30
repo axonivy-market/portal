@@ -1,12 +1,17 @@
 package com.axonivy.portal.util.statisticfilter.operator.text;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import org.apache.commons.collections4.CollectionUtils;
+
 import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.constant.StatisticConstants;
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 
 import ch.ivy.addon.portalkit.constant.PortalConstants;
+import ch.ivy.addon.portalkit.util.SecurityMemberUtils;
 
 public class TextInOperatorHandler {
   private static TextInOperatorHandler instance;
@@ -36,6 +41,12 @@ public class TextInOperatorHandler {
     }
 
     return sb.toString();
+  }
+  
+  public String buildFilterForCurrentUserOperator(DashboardFilter filter) {
+    String currentUserMemberName = SecurityMemberUtils.getCurrentSessionUserAsSecurityMemberDTO().getMemberName();
+    filter.setValues(Arrays.asList(currentUserMemberName));
+    return buildFilter(filter);
   }
 
   public String buildFilterWithoutValue(DashboardFilter filter) {
