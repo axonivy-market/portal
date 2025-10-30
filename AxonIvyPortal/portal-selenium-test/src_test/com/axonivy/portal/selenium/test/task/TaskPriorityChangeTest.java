@@ -13,7 +13,7 @@ import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.page.TaskDetailsPage;
 import com.axonivy.portal.selenium.page.TopMenuTaskWidgetPage;
 
-@IvyWebTest
+@IvyWebTest(headless = false)
 public class TaskPriorityChangeTest extends BaseTest {
 
   @Override
