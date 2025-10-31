@@ -5032,8 +5032,7 @@ body .process-compact-mode > .ui-fieldset-content {
   text-align: center;
 }
 
-.process-description .process-description__text,
-.image-view-form .process-description .process-item-description {
+.process-description .process-description__text {
   line-height: 1.5;
   word-break: break-word;
 }
@@ -5126,13 +5125,69 @@ body.light .image-process-container .image-process-item .card-item.card.image-wi
   container-name: process-description-container;
 }
 
+.image-process-container .image-process-item .card-item.card.image-widget-mode {
+  container-type: size;
+  container-name: image-process-widget-container;
+}
+
 .image-process-container .image-process-item .card-item.card.image-widget-mode .image-view-form .process-description {
   height: 100%;
 }
 
-@container process-description-container (max-height: 3px) {
-  .process-item-description {
-    display: none;
+@container process-description-container (height < 100px) {
+  .image-view-form .process-description .process-item-description {
+    max-height: 4.2em;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    }
+}
+
+@container process-description-container (height < 20px) {
+  .image-view-form .process-description .process-item-description {
+    display: none !important;
+    }
+}
+
+@container image-process-widget-container (200px <= height < 300px) {
+   img.image-process-item-image {
+    height: 100% !important;
+  }
+  
+  .image-view-form {
+    bottom: 0px !important;
+  }
+}
+
+@container image-process-widget-container ( 100px <= height < 200px) {
+   img.image-process-item-image {
+    display: none !important;
+  }
+  
+  .image-view-form .process-description .process-item-description {
+    max-height: 4.2em;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+  
+  .image-view-form {
+    bottom: 0px !important;
+    height: 15vh !important;
+  }
+}
+
+@container image-process-widget-container ( height < 100px) {
+   img.image-process-item-image, .process-name, .process-description {
+    display: none !important;
+  }
+  
+    .image-view-form {
+    bottom: 0px !important;
   }
 }
 
