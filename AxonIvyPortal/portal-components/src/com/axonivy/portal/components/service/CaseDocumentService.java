@@ -103,9 +103,7 @@ public class CaseDocumentService {
     
     long modifiedId = Long.valueOf(modifiedDoc.getId());
 
-    Path parentPath = getParentPath(new Path(modifiedDoc.getRelativePath()));
-
-    boolean filenameExists = documentsOf(iCase).getAllDirectBelow(parentPath).stream()
+    boolean filenameExists = documentsOf(iCase).getAllDirectBelow(new Path("/")).stream()
         .anyMatch(doc -> doc.getName().equalsIgnoreCase(newName) 
             && !doc.getPath().asString().contains(EXPRESS_UPLOAD_FOLDER) && doc.getId() != modifiedId);
 
@@ -179,15 +177,4 @@ public class CaseDocumentService {
 		}
 	}
 
-  private static Path getParentPath(Path path) {
-    List<String> parentSegments = new ArrayList<>();
-    for (int i = 0; i < path.segmentCount() - 1; i++) {
-      parentSegments.add(path.getSegment(i));
-    }
-    return new Path(parentSegments);
-  }
-
-  public static Path getPathAfterRename(Path oldPath, String newName) {
-    return getParentPath(oldPath).append(newName);
-  }
 }

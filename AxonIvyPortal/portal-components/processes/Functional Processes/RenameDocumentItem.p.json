@@ -36,8 +36,8 @@
           "config" : {
             "output" : {
               "code" : [
-                "import com.axonivy.portal.components.service.CaseDocumentService;",
                 "import java.util.Arrays;",
+                "import ch.ivyteam.ivy.workflow.document.Path;",
                 "import ch.ivyteam.ivy.workflow.document.IDocument;",
                 "",
                 "IDocument document = in.businessCase.documents().get(Long.valueOf(in.document.id));",
@@ -47,10 +47,10 @@
                 "  ",
                 "  try {",
                 "    if (document.getName().equalsIgnoreCase(in.document.name)) {",
-                "      in.businessCase.documents().move(document, CaseDocumentService.getPathAfterRename(document.getRelativePath(), in.document.name + System.currentTimeMillis().toString()));",
+                "      in.businessCase.documents().move(document, new Path(in.document.name + System.currentTimeMillis().toString()));",
                 "    }",
                 "    ",
-                "    in.businessCase.documents().move(document, CaseDocumentService.getPathAfterRename(document.getRelativePath(), in.document.name));",
+                "    in.businessCase.documents().move(document, new Path(in.document.name));",
                 "    in.businessCase.createNote(ivy.session, note);",
                 "  } catch (Exception e) {   ",
                 "    in.isSuccess = false;",
