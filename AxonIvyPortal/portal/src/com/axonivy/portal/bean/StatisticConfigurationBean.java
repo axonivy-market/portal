@@ -285,7 +285,7 @@ public class StatisticConfigurationBean implements Serializable, IMultiLanguage 
     }
     
     for (DashboardFilter  filter : statistic.getFilters()) {
-      if (isFilterAvaliable(filter)) {
+      if (isFilterAvailable(filter)) {
         // If the filter available in the filter list, initialize it
         FilterField filterField = statistic.getChartTarget() == ChartTarget.TASK
             ? TaskFilterFieldFactory.findBy( // FIND FILTER FIELD FOR TASK
@@ -302,9 +302,9 @@ public class StatisticConfigurationBean implements Serializable, IMultiLanguage 
     }
   }
   
-  private boolean isFilterAvaliable(DashboardFilter  filter) {
+  private boolean isFilterAvailable(DashboardFilter  filter) {
     return Optional.ofNullable(filter).map(DashboardFilter ::getField).isPresent() && filterFields.stream()
-        .filter(field -> filter.getField().contentEquals(filter.getField())).findFirst().isPresent();
+        .filter(field -> filter.getField().equals(field.getName())).findFirst().isPresent();
   }
 
   private void populateBackgroundColorsIfMissing() {
