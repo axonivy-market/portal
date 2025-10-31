@@ -139,11 +139,16 @@ public class StatisticService {
       filter = chart.getFilter();
     }
 
-    return switch (chart.getChartTarget()) {
-      case CASE -> WorkflowStats.current().caze().aggregate(aggregates, filter);
-      case TASK ->  WorkflowStats.current().task().aggregate(aggregates, filter);
-      default -> throw new PortalException("Cannot parse chartTarget " + chart.getChartTarget());
-    };
+    Ivy.log().warn("chart name: {0} ||| aggregates: {1} ||| filter {2}", chart.getName(), aggregates, filter);
+    switch (chart.getChartTarget()) {
+      case CASE:
+        filter = StringUtils.isBlank(filter) ? "isBusinessCase:true" : "isBusinessCase:true," + filter;
+        return WorkflowStats.current().caze().aggregate(aggregates, filter);
+      case TASK:
+        return WorkflowStats.current().task().aggregate(aggregates, filter);
+      default:
+        throw new PortalException("Cannot parse chartTarget " + chart.getChartTarget());
+    }
   }
   
   public List<Entry<String, String>> getAdditionalConfig() {
@@ -169,7 +174,7 @@ public class StatisticService {
                    .orElse(null);
   }
   
-  private Statistic findByStatisticId(String id) {
+  public Statistic findByStatisticId(String id) {
     return findAllCharts().stream()
         .filter(e -> e.getId().equals(id))
         .findFirst()
@@ -298,5 +303,16 @@ public class StatisticService {
     default -> field;
     };
   }
-  
+
+  public void getStatisticDrillDownData(com.axonivy.portal.dto.StatisticDrillDownDto drillDownData) {
+    Statistic chart = findByStatisticId(drillDownData.getChartId());
+    validateChart(drillDownData.getChartId(), chart);
+
+    if ("case".equals(drillDownData.getChartTarget())) { // TODO z1 consider chart target as enum
+      CaseDrillDownService.getInstance().search(drillDownData);
+    } else if ("task".equals(drillDownData.getChartTarget())) {
+      TaskDrillDownService.getInstance().search(drillDownData);
+    }
+  }
+
 }

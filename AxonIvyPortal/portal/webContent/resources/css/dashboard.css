@@ -1943,4 +1943,10 @@ body .widget__content .ui-datatable.dashboard-tasks--table .ui-widget-header the
   overflow: hidden;
   text-overflow: ellipsis;
   width: 100%;
-}}
+}
+
+/* Drill-down chart styling */
+.chart-content-card-clickable,
+.js-statistic-chart canvas {
+  cursor: pointer;
+}
