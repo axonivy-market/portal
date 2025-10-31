@@ -11,7 +11,7 @@ import com.axonivy.portal.selenium.page.ProcessWidgetPage;
 import com.axonivy.portal.selenium.page.TaskTemplatePage;
 import com.axonivy.portal.selenium.page.TopMenuTaskWidgetPage;
 
-@IvyWebTest
+@IvyWebTest(headless = false)
 public class PortalSideStepTest extends BaseTest {
   
   @Override
@@ -47,7 +47,7 @@ public class PortalSideStepTest extends BaseTest {
     login(TestAccount.DEMO_USER);
     taskWidget = new TopMenuTaskWidgetPage();
 
-    taskWidget.startTaskByNameInIFrame("Side step task for: Approval for leave request of Portal Demo User");
+    taskWidget.startTaskByNameInIFrame("My custom task name prefix: Approval for leave request of Portal Demo User");
     taskWidget.finishSideStepForLeaveRequest();
   }
   

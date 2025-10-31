@@ -288,7 +288,7 @@ public class TaskTemplatePage extends TemplatePage {
   
   public void inputSideStepInfoTaskLevel() {
     $("div[id='side-step-process-form:side-step-process-select']").click();
-    $("ul[id='side-step-process-form:side-step-process-select_items']").$$("li").filter(Condition.text("Side step 1")).first().click();
+    $("ul[id='side-step-process-form:side-step-process-select_items']").$$("li").filter(Condition.text("Side step: Ask for more details")).first().click();
     
     
     $("input[id$=':assignee_input']").shouldBe(clickable(), DEFAULT_TIMEOUT).click();
@@ -309,7 +309,7 @@ public class TaskTemplatePage extends TemplatePage {
     $("div[id='side-step-process-form:side-step-process-select']").click();
     assertEquals($("ul[id='side-step-process-form:side-step-process-select_items']").$$("li").size(), numberOfConfig);
     
-    $("ul[id='side-step-process-form:side-step-process-select_items']").$$("li").filter(Condition.text("Side step 2")).first().click();
+    $("ul[id='side-step-process-form:side-step-process-select_items']").$$("li").filter(Condition.text("Side step: CEO Approval")).first().click();
     
     
     $("input[id$=':assignee_input']").shouldBe(clickable(), DEFAULT_TIMEOUT).click();
@@ -320,7 +320,7 @@ public class TaskTemplatePage extends TemplatePage {
     selectionItems.get(0).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     
     $("div[id='side-step-process-form:step-type']").shouldBe(Condition.clickable, DEFAULT_TIMEOUT).click();
-    $("ul[id='side-step-process-form:step-type_items']").$$("li").filter(Condition.text("This is customized parallel")).first().click();
+    $("ul[id='side-step-process-form:step-type_items']").$$("li").filter(Condition.text("Custom parallel title")).first().click();
     
     $("button[id='side-step-process-submit-button']").click();
   }

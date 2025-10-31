@@ -95,8 +95,8 @@ Dialogs:
               IVY_PROCESS: Proceso de negocio
             ProcessViewerIFrameTitle: Marco del visor de procesos
           SideStepType:
-            PARALLEL: Parallel
-            SWITCH: Switch
+            PARALLEL: Iniciar una tarea en segundo plano (paralela)
+            SWITCH: Pausar esta tarea e iniciar el proceso (cambiar)
 Labels:
   AI:
     Error:

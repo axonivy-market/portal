@@ -95,8 +95,8 @@ Dialogs:
               IVY_PROCESS: Business Process
             ProcessViewerIFrameTitle: Process viewer frame
           SideStepType:
-            PARALLEL: Parallel
-            SWITCH: Switch
+            PARALLEL: Start a backgroud task (parallel)
+            SWITCH: Pause this task and start process (switch)
 Labels:
   AI:
     Error:

@@ -1,6 +1,6 @@
 .. _side-step:
 
-Integrate a side step process
+Integrate A Side Step Process
 =============================
 
 .. _side-step-introduction:
@@ -60,32 +60,27 @@ How to Use and Set Up
 #. Define configuration for side step by building a list of ``SideStepProcessDTO`` objects. 
 
     .. code-block:: javascript
-
-        Map params1 = new HashMap();
-        params1.put("caseUuid", caze.uuid());
-        params1.put("stepId", "1");
-        params1.put("taskUuid", task.uuid());
-
+        // Create process name in multiple languages by creating a map with key as language code and value as process name title
+        Map processNames1 = new HashMap();
+        processNames1.put("en", "Side step: Ask for more details");
+        processNames1.put("de", "Seitenschritt: Fragen Sie nach weiteren Details");
+        
         // First configuration option
         SideStepProcessDTO dto1 = SideStepProcessDTO.builder()
-        .processName("Side step 1: Ask more details")
+        .processNames(processNames1)
         .signal("com:axonivy:portal:developerexample:sideStep:askMoreDetails")
-        .params(params1)
         .build();
 
-
-        Map params2 = new HashMap();
-        params1.put("caseUuid", ivy.case.uuid());
-        params1.put("stepId", "2");
-        params1.put("taskUuid", task.uuid());
+        Map processNames2 = new HashMap();
+        processNames2.put("en", "Side step: CEO Approval");
+        processNames2.put("de", "Seitenschritt: Genehmigung durch den CEO");
 
         // Second configuration option
         SideStepProcessDTO dto2 = SideStepProcessDTO.builder()
-        .processName("Side step 2: CEO Approval")
+        .processNames(processNames2)
         // Set signature name of the process which defines custom users and roles in the previous step
-        .customSecurityMembersCallable("getCustomSecurityMemberForSideStep()") 
+        .customSecurityMembersCallable("getCustomSecurityMemberForSideStep()")  // Optional
         .signal("com:axonivy:portal:developerexample:sideStep:CEOApproval")
-        .params(params2)
         .build();
 
         // Define side step process dto list
@@ -105,20 +100,28 @@ How to Use and Set Up
 
       // Create a SideStepConfigurationDTO object of portal-components from this list created on the above code snippet
       // If the isParallelSideStep value is not defined, on the UI you will see a drop down to select
+      Map customParallelTiles = new HashMap();
+      customParallelTiles.put("en", "Custom parallel title");
+      customParallelTiles.put("de", "Benutzerdefinierter Paralleltitel");
+
+      Map customSwitchTiles = new HashMap();
+      customSwitchTiles.put("en", "Custom switch title");
+      customSwitchTiles.put("de", "Benutzerdefinierter Schaltertitel");
+
       SideStepConfigurationDTO sideStepConfigurationDto = SideStepConfigurationDTO.builder()
         .processes(processes)
         .isParallelSideStep(true)
-        .customParallelSideStepTitle("Your custom title for parallel task if needed") // Optional
-        .customSwitchSideStepTitle("Your custom title for switch task if needed") // Optional
+        .customParallelSideStepTitles(customParallelTiles) // Optional
+        .customSwitchSideStepTitles(customSwitchTiles) // Optional
         .build();
 
-      // Convert SideStepDTO to Json 
+      // Convert SideStepConfigurationDTO to Json 
       String jsonValue = BusinessEntityConverter.entityToJsonValue(sideStepDto);
 
       // For side step task level
       task.customFields().textField(CustomFields.SIDE_STEPS_TASK).set(jsonValue);
       // Or for side step case level
-      ivy.case.customFields().textField(CustomFields.SIDE_STEPS_PROCESS).set(jsonValue);
+      ivy.case.customFields().textField(CustomFields.SIDE_STEP_CASE).set(jsonValue);
 
     ..
       
@@ -129,17 +132,37 @@ How to Use and Set Up
       [
         "version": "12.0.0",
         "processes": [
-        {
-          "signal": "com:axonivy:portal:developerexample:sideStep:askMoreDetails",
-          "processName": "Side step: Ask for more details",
-          "params": {
-            "stepId": "1",
-            "caseUuid": "7af73c93-3bb1-4a74-aa8f-366f33d8a489"
+          {
+            "signal": "com:axonivy:portal:developerexample:sideStep:askMoreDetails",
+            "processNames": {
+              "de": "Seitenschritt: Fragen Sie nach weiteren Details",
+              "en": "Side step: Ask for more details"
+            }
+          },
+          {
+            "signal": "com:axonivy:portal:developerexample:sideStep:CEOApproval",
+            "processNames": {
+              "de": "Seitenschritt: Genehmigung durch den CEO",
+              "en": "Side step: CEO Approval"
+            }
+          },
+          {
+            "signal": "com:axonivy:portal:developerexample:sideStep:informCustomer",
+            "processNames": {
+              "de": "Nebenschritt: Kunden informieren",
+              "en": "Side step: Inform customer"
+            },
+            "customSecurityMemberCallable": "getCustomSecurityMemberForSideStep()"
           }
-        }
         ],
-        "stepTypeParallelTitle": "This is customized parallel title",
-        "stepTypeSwitchTitle": "This is customized switch title"
+        "customParallelSideStepTitles": {
+          "de": "Benutzerdefinierter Paralleltitel",
+          "en": "Custom parallel title"
+        },
+        "customSwitchSideStepTitles": {
+          "de": "Benutzerdefinierter Schaltertitel",
+          "en": "Custom switch title"        
+        }
       ]
     ..
 
@@ -162,11 +185,11 @@ How to Use and Set Up
 
 #. Handle data in the process which was triggers by Portal
 
-   Process developer gets data from signal as JSON string, parses it to class ``SideStepProcessParam`` object of ``portal-components``. This object contains data send from Portal to use for the process.
+   Process developer gets data from signal as JSON string, parses it to class ``SideStepProcessParamDTO`` object of ``portal-components``. This object contains data send from Portal to use for the process.
       
     .. code-block:: javascript
 
-      SideStepProcessParam data = BusinessEntityConverter.jsonValueToEntity(signal.getSignalData() as String, SideStepProcessParam.class) as SideStepProcessParam;
+      SideStepProcessParamDTO data = BusinessEntityConverter.jsonValueToEntity(signal.getSignalData() as String, SideStepProcessParamDTO.class) as SideStepProcessParamDTO;
 
     ..
       

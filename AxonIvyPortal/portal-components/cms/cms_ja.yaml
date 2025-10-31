@@ -95,8 +95,8 @@ Dialogs:
               IVY_PROCESS: ビジネスプロセス
             ProcessViewerIFrameTitle: プロセスビューアーフレーム
           SideStepType:
-            PARALLEL: 平行
-            SWITCH: スイッチ
+            PARALLEL: 'TODO: Start a backgroud task (parallel)'
+            SWITCH: 'TODO: Pause this task and start process (switch)'
 Labels:
   AI:
     Error:

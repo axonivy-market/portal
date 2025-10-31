@@ -17,7 +17,7 @@ import ch.ivyteam.ivy.workflow.ITask;
  * Use this class to configure side step then parse it to JSON and save to custom text field of {@link ITask} or {@link ICase}
  * <pre>
  * <b>processes</b>: list of side step task created processes for user to select (mandatory). 
- * <b>isParallelSideStep</b>: whether side step task runs parallel with original task (mandatory).
+ * <b>isParallelSideStep</b>: whether side step task runs parallel with original task (optional).
  * <b>customParallelSideStepTitles</b>: custom parallel side step title (optional)
  * <b>customSwitchSideStepTitles</b>: custom switch side step title (optional)
  * </pre>
@@ -90,7 +90,7 @@ public class SideStepConfigurationDTO implements Serializable {
     }
 
     /**
-     * Set true if this side step runs parallel with current task. This is mandatory.
+     * Set true if this side step runs parallel with current task. This is optional.
      * @param isParallelSideStep
      * @return builder for {@link SideStepConfigurationDTO}
      */
@@ -134,9 +134,6 @@ public class SideStepConfigurationDTO implements Serializable {
     }
     
     private void validate() {
-      if (isParallelSideStep == null) {
-        throw new IllegalArgumentException("isParallelSideStep must be provided");
-      }
       if (CollectionUtils.isEmpty(processes)) {
         throw new IllegalArgumentException("List of SideStepProcessDTO must be provided");
       }

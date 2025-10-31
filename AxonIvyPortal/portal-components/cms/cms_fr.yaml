@@ -95,8 +95,8 @@ Dialogs:
               IVY_PROCESS: Processus d'entreprise
             ProcessViewerIFrameTitle: Cadre de visualisation du processus
           SideStepType:
-            PARALLEL: Parallèle
-            SWITCH: Changer
+            PARALLEL: Lancer une tâche en arrière-plan (en parallèle)
+            SWITCH: Mettre cette tâche en pause et démarrer le processus (basculer)
 Labels:
   AI:
     Error:

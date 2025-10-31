@@ -186,8 +186,10 @@
             "List processes = new List();",
             "processes.add(dto);",
             "",
+            "",
             "SideStepConfigurationDTO sideStepDto = SideStepConfigurationDTO.builder()",
             ".processes(processes)",
+            "// predefined side step is switch",
             ".isParallelSideStep(false)",
             ".build();",
             "",
@@ -522,7 +524,8 @@
             "",
             "// Convert dto to string and save to case custom field",
             "String valueString = BusinessEntityConverter.entityToJsonValue(sideStepDto);",
-            "caze.customFields().textField(CustomFields.SIDE_STEP_CASE).set(valueString);"
+            "caze.customFields().textField(CustomFields.SIDE_STEP_CASE).set(valueString);",
+            "ivy.log.error(valueString);"
           ]
         }
       },
