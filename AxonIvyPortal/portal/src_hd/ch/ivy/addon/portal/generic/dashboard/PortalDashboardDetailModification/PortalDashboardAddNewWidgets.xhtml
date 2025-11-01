@@ -101,7 +101,7 @@
                         target="_blank" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}" />
                       <p:menuitem id="delete-dashboard" process="@this"
                         styleClass="rounded-button ui-button-outlined ui-button-danger color-destroy" icon="si si-bin-1"
-                        global="false"
+                        global="false" rendered="#{!widget.isUserExample}"
                         actionListener="#{dashboardDetailModificationBean.onSelectedDeleteStatistic(widget)}"
                         title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
                         oncomplete="PF('remove-statistic-widget-dialog').show()"
@@ -120,6 +120,7 @@
                 <h:outputText id="statistic-widget-description" value="#{widget.description}" styleClass="new-widget-dialog__introduction h-3rem"/>
                 <p:tooltip id="statistic-widget-description-tooltip" for="statistic-widget-description" value="#{widget.description}" trackMouse="true" />
                 <p:commandButton id="add-widget" styleClass="new-widget-dialog__add-widget-button"
+                  rendered="#{!widget.isUserExample}"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/addWidget')}"
                   ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/addWidget')}"
                   actionListener="#{dashboardDetailModificationBean.saveStatisticWidget(widget)}"

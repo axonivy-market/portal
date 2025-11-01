@@ -1,0 +1,225 @@
+{
+  "id" : "a2a1479f8f3b439a95ea8f4507bd78b1",
+  "version" : "13.2.0",
+  "templateId" : "create-from-scratch",
+  "titles" : [ {
+    "locale" : "en",
+    "value" : "Sample: KPI Procurement Overview"
+  }, {
+    "locale" : "fr",
+    "value" : "Exemple : aperçu des indicateurs clés de performance en matière d'approvisionnement"
+  }, {
+    "locale" : "de",
+    "value" : "Beispiel: KPI-Übersicht Beschaffung"
+  }, {
+    "locale" : "ja",
+    "value" : "サンプル：調達KPI概要"
+  }, {
+    "locale" : "es",
+    "value" : "Ejemplo: Resumen de KPI de compras"
+  } ],
+  "icon" : "si-analytics-board-graph-line",
+  "description": "A sample KPI statistic dashboard",
+  "widgets" : [ {
+    "type" : "client-statistic",
+    "id" : "statistic_bfe0c1a34a45434fa2491289ac7b5c44",
+    "layout" : {
+      "w" : 4,
+      "h" : 3,
+      "x" : 0,
+      "y" : 3
+    },
+    "chartId" : "4f9b2ed818504b8faabe74dc6d5c51d0",
+    "showFullscreenMode" : true
+  }, {
+    "type" : "client-statistic",
+    "id" : "statistic_d3725e82744c4c9e9185ae1dbbae09d0",
+    "layout" : {
+      "w" : 4,
+      "h" : 3,
+      "x" : 4,
+      "y" : 0
+    },
+    "chartId" : "21ef6b6842384c33a787b2a5912257e7",
+    "showFullscreenMode" : true
+  }, {
+    "type" : "client-statistic",
+    "id" : "statistic_2884ad11d6ce414bb54462cce0c79fbb",
+    "layout" : {
+      "w" : 4,
+      "h" : 3,
+      "x" : 8,
+      "y" : 0
+    },
+    "chartId" : "12159ba721b94ea7bc4a0c5e0b4c93d0",
+    "showFullscreenMode" : true
+  }, {
+    "type" : "client-statistic",
+    "id" : "statistic_c7a1b633a98d423e881de75bba389edd",
+    "layout" : {
+      "w" : 4,
+      "h" : 3,
+      "x" : 8,
+      "y" : 3
+    },
+    "chartId" : "6b3340d8a61c458ba655d697469fc1b4",
+    "showFullscreenMode" : true
+  }, {
+    "type" : "client-statistic",
+    "id" : "statistic_40eb9c19de23424eb0b18e04258ebaee",
+    "layout" : {
+      "w" : 4,
+      "h" : 3,
+      "x" : 4,
+      "y" : 3
+    },
+    "chartId" : "6b3e8ccb484648c8bbe4453cc76292d8",
+    "showFullscreenMode" : true
+  }, {
+    "type" : "client-statistic",
+    "id" : "statistic_992aca21200d465fbe25269ac08ea619",
+    "layout" : {
+      "w" : 4,
+      "h" : 3,
+      "x" : 4,
+      "y" : 6
+    },
+    "chartId" : "741ea4131554457e98abda979cdd1a4c",
+    "showFullscreenMode" : true
+  }, {
+    "type" : "client-statistic",
+    "id" : "statistic_79ed744210c74f79b222fdecd8142bdf",
+    "layout" : {
+      "w" : 4,
+      "h" : 3,
+      "x" : 4,
+      "y" : 9
+    },
+    "chartId" : "b4968c1cbe3d435c907026a8e7ce83e1",
+    "showFullscreenMode" : true
+  }, {
+    "type" : "client-statistic",
+    "id" : "statistic_feb8bf6b931b4d28b5f1440527b46f8e",
+    "layout" : {
+      "w" : 4,
+      "h" : 3,
+      "x" : 0,
+      "y" : 9
+    },
+    "chartId" : "5116b8b02baa408da1dff648adda024c",
+    "showFullscreenMode" : true
+  }, {
+    "type" : "client-statistic",
+    "id" : "statistic_9f6399f6e9c64c0999d3cb520d539456",
+    "layout" : {
+      "w" : 4,
+      "h" : 3,
+      "x" : 8,
+      "y" : 6
+    },
+    "chartId" : "a7353e5b93e4466890466830a65264c5",
+    "showFullscreenMode" : true
+  }, {
+    "type" : "welcome",
+    "id" : "welcome_91f148a68b314aa7afca63b9473e0973",
+    "names" : [ {
+      "locale" : "en",
+      "value" : "Your Welcome Widget"
+    }, {
+      "locale" : "fr",
+      "value" : "Your Welcome Widget"
+    }, {
+      "locale" : "de",
+      "value" : "Your Welcome Widget"
+    }, {
+      "locale" : "ja",
+      "value" : "Your Welcome Widget"
+    }, {
+      "locale" : "es",
+      "value" : "Your Welcome Widget"
+    } ],
+    "layout" : {
+      "w" : 4,
+      "h" : 3,
+      "x" : 0,
+      "y" : 6
+    },
+    "welcomeTextPosition" : "TOP_LEFT",
+    "welcomeTextSize" : "HEADING_2",
+    "welcomeTextColor" : "#ffffff",
+    "welcomeTextColorDarkMode" : "#ffffff",
+    "welcomeTexts" : [ {
+      "locale" : "en",
+      "value" : "Process Quality View"
+    }, {
+      "locale" : "fr",
+      "value" : "Process Quality View"
+    }, {
+      "locale" : "de",
+      "value" : "Process Quality View"
+    }, {
+      "locale" : "ja",
+      "value" : "Process Quality View"
+    }, {
+      "locale" : "es",
+      "value" : "Process Quality View"
+    } ],
+    "altTexts" : [ {
+      "locale" : "en",
+      "value" : ""
+    } ],
+    "greeting" : false
+  }, {
+    "type" : "welcome",
+    "id" : "welcome_829f4c6b33c445449baed0de5000ec83",
+    "names" : [ {
+      "locale" : "en",
+      "value" : "Your Welcome Widget"
+    }, {
+      "locale" : "fr",
+      "value" : "Your Welcome Widget"
+    }, {
+      "locale" : "de",
+      "value" : "Your Welcome Widget"
+    }, {
+      "locale" : "ja",
+      "value" : "Your Welcome Widget"
+    }, {
+      "locale" : "es",
+      "value" : "Your Welcome Widget"
+    } ],
+    "layout" : {
+      "w" : 4,
+      "h" : 3,
+      "x" : 0,
+      "y" : 0
+    },
+    "welcomeTextPosition" : "TOP_LEFT",
+    "welcomeTextSize" : "HEADING_2",
+    "welcomeTextColor" : "#ffffff",
+    "welcomeTextColorDarkMode" : "#ffffff",
+    "welcomeTexts" : [ {
+      "locale" : "en",
+      "value" : "Business Controlling View"
+    }, {
+      "locale" : "fr",
+      "value" : "Business Controlling View"
+    }, {
+      "locale" : "de",
+      "value" : "Business Controlling View"
+    }, {
+      "locale" : "ja",
+      "value" : "Business Controlling View"
+    }, {
+      "locale" : "es",
+      "value" : "Business Controlling View"
+    } ],
+    "altTexts" : [ {
+      "locale" : "en",
+      "value" : ""
+    } ],
+    "greeting" : false
+  } ],
+  "permissions" : [ "Everybody" ],
+  "dashboardDisplayType" : "top_menu"
+}

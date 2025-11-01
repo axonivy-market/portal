@@ -5,6 +5,7 @@ import static com.axonivy.portal.bean.StatisticConfigurationBean.DEFAULT_COLORS;
 import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map.Entry;
@@ -48,6 +49,7 @@ public class StatisticService {
   private static final String DEFAULT_STATISTIC_KEY = PortalVariable.STATISTIC.key;
   private static final String CUSTOM_STATISTIC_KEY = PortalVariable.CUSTOM_STATISTIC.key;
   private static final String CLIENT_STATISTIC_KEY = "Portal.ClientStatistic";
+  private static final String SAMPLE_KPI_STATISTIC_KEY = PortalVariable.SAMPLE_KPI_STATISTIC_KEY.key;
   private static StatisticService instance;
 
   public static StatisticService getInstance() {
@@ -62,6 +64,7 @@ public class StatisticService {
     List<Statistic> statistics = getDefaultStatistic();
     statistics = statistics.stream().filter(statistic -> seenIds.add(statistic.getId())).collect(Collectors.toList());
     getCustomStatistic().stream().filter(obj -> seenIds.add(obj.getId())).forEach(statistics::add);
+    getSampleKPIStatistic().stream().filter(obj -> seenIds.add(obj.getId())).forEach(statistics::add);
     return statistics;
   }
 
@@ -193,11 +196,23 @@ public class StatisticService {
     return statistics;
   }
 
+  private List<Statistic> getSampleKPIStatistic() {
+    String sampleKPIChartJson = Ivy.var().get(SAMPLE_KPI_STATISTIC_KEY);
+    if (StringUtils.isEmpty(sampleKPIChartJson)) {
+      return Collections.emptyList();
+    }
+    List<Statistic> statistics = BusinessEntityConverter.jsonValueToEntities(sampleKPIChartJson, Statistic.class);
+    statistics.forEach(statistic -> statistic.setIsUserExample(true));
+    configDefaultStatisticSettings(statistics);
+    return statistics;
+  }
+
   public List<Statistic> getCustomStatistic() {
     migrateClientStatistic();
     List<Statistic> statistics =
         BusinessEntityConverter.jsonValueToEntities(Ivy.var().get(CUSTOM_STATISTIC_KEY), Statistic.class);
     configDefaultStatisticSettings(statistics);
+    statistics.addAll(getSampleKPIStatistic());
     return statistics;
   }
 

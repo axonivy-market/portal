@@ -196,6 +196,7 @@ public class DashboardUtils {
     if (UserExampleUtils.isUserExampleAvailable()) {
       collectedDashboards.add(DefaultDashboardUtils.getDefaultUserExampleDashboard());
     }
+    getSampleKPIDashboard().ifPresent(collectedDashboards::add);
     return collectedDashboards;
   }
 
@@ -539,5 +540,15 @@ public class DashboardUtils {
 
   public static String buildDashboardLink(Dashboard dashboard) {
     return UrlUtils.getServerUrl() + PortalNavigator.getDashboardPageUrl(dashboard.getId());
+  }
+  
+  private static final String SAMPLE_KPI_DASHBOARD_KEY = PortalVariable.SAMPLE_KPI_DASHBOARD_KEY.key;
+  
+  public static Optional<Dashboard> getSampleKPIDashboard() {
+    String sampleKPIDashboardJson = Ivy.var().get(SAMPLE_KPI_DASHBOARD_KEY);
+    if (StringUtils.isEmpty(sampleKPIDashboardJson)) {
+      return Optional.empty();
+    }
+    return Optional.of(jsonToDashboard(sampleKPIDashboardJson));
   }
 }

@@ -50,6 +50,8 @@ public class Statistic extends AbstractConfiguration implements Serializable {
   @JsonIgnore
   private Boolean isCustom;
   @JsonIgnore
+  private Boolean isUserExample;
+  @JsonIgnore
   private List<SecurityMemberDTO> permissionDTOs;
   private List<ThresholdStatisticChart> thresholdStatisticCharts;
   private String defaultBackgroundColor;
@@ -59,6 +61,7 @@ public class Statistic extends AbstractConfiguration implements Serializable {
   public Statistic() {
     icon = DEFAULT_ICON;
     isCustom = true;
+    isUserExample = false;
   }
 
   public String getIcon() {
@@ -231,6 +234,14 @@ public class Statistic extends AbstractConfiguration implements Serializable {
 
   public void setIsCustom(Boolean isCustom) {
     this.isCustom = isCustom;
+  }
+  
+  public Boolean getIsUserExample() {
+    return this.isUserExample;
+  }
+  
+  public void setIsUserExample(Boolean isUserExample) {
+    this.isUserExample = isUserExample;
   }
 
   public StatisticAggregation getStatisticAggregation() {

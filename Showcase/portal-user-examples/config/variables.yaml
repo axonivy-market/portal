@@ -1,0 +1,18 @@
+# yaml-language-server: $schema=https://json-schema.axonivy.com/app/13.2.1/variables.json
+# == Variables ==
+#
+# You can define here your project Variables.
+# If you want to define/override a Variable for a specific Environment, 
+# add an additional ‘variables.yaml’ file in a subdirectory in the ‘Config’ folder: 
+# '<project>/Config/_<environment>/variables.yaml
+#
+Variables:
+  Portal:
+    User:
+      Example:
+        # Configuration of some example for KPI statistic charts
+        # [file: json]
+        ProcurementStatistic: ""
+        # Sample Procurement KPI Dashboard
+        # [file: txt]
+        ProcurementDashboard: ""
