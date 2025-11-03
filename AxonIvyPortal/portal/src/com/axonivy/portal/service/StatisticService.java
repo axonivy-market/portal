@@ -1,6 +1,7 @@
 package com.axonivy.portal.service;
 
 import static com.axonivy.portal.bean.StatisticConfigurationBean.DEFAULT_COLORS;
+import static com.axonivy.portal.enums.statistic.ChartTarget.CASE;
 
 import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
@@ -305,14 +306,15 @@ public class StatisticService {
   }
 
   public void getStatisticDrillDownData(com.axonivy.portal.dto.StatisticDrillDownDto drillDownData) {
-    Statistic chart = findByStatisticId(drillDownData.getChartId());
-    validateChart(drillDownData.getChartId(), chart);
-
-    if ("case".equals(drillDownData.getChartTarget())) { // TODO z1 consider chart target as enum
-      CaseDrillDownService.getInstance().search(drillDownData);
-    } else if ("task".equals(drillDownData.getChartTarget())) {
-      TaskDrillDownService.getInstance().search(drillDownData);
+    Statistic statistic = findByStatisticId(drillDownData.getChartId());
+    validateChart(drillDownData.getChartId(), statistic);
+    AbstractDrillDownService drillDownService;
+    if (CASE == statistic.getChartTarget()) {
+      drillDownService = CaseDrillDownService.getInstance();
+    } else {
+      drillDownService = TaskDrillDownService.getInstance();
     }
+    drillDownService.search(statistic, drillDownData.getDrillDownValue());
   }
 
 }

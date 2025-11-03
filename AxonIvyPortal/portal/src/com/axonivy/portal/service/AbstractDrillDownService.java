@@ -9,7 +9,6 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.bo.Statistic;
-import com.axonivy.portal.dto.StatisticDrillDownDto;
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 import com.axonivy.portal.enums.dashboard.filter.FilterOperator;
 
@@ -26,14 +25,13 @@ public abstract class AbstractDrillDownService {
   private static final List<String> ALL_AGGREGATION_DATE_FIELDS =
       Arrays.asList("startTimestamp", "endTimestamp", "expiryTimestamp");
 
-  public void search(StatisticDrillDownDto drillDownData) {
-    Statistic chart = StatisticService.getInstance().findByStatisticId(drillDownData.getChartId());
+  public void search(Statistic statistic, String drillDownValue) {
     Dashboard drillDownDashboard = getDrillDownDashboard();
     DashboardWidget widget = drillDownDashboard.getWidgets().get(0);
-    ensureAllRelatedColumnsIncluded(widget, chart);
-    addDrillDownValueToWidgetFilters(drillDownData.getFilterValue(), chart, widget);
-    if (CollectionUtils.isNotEmpty(chart.getFilters())) {
-      addStatisticFiltersToWidgetFilters(widget, chart.getFilters());
+    ensureAllRelatedColumnsIncluded(widget, statistic);
+    addDrillDownValueToWidgetFilters(drillDownValue, statistic, widget);
+    if (CollectionUtils.isNotEmpty(statistic.getFilters())) {
+      addStatisticFiltersToWidgetFilters(widget, statistic.getFilters());
     }
     Ivy.session().setAttribute(SessionAttribute.DRILL_DOWN_DASHBOARD.name(), drillDownDashboard);
   }

@@ -127,14 +127,9 @@ public class DashboardBean implements Serializable, IMultiLanguage {
   }
 
   private Dashboard retrieveDrillDownDashboard() {
-    Dashboard drillDownDashboard = null;
-    try {
-      drillDownDashboard = (Dashboard) Ivy.session().getAttribute(SessionAttribute.DRILL_DOWN_DASHBOARD.name());
-    } catch (ClassCastException e) {
-      // Ignore this because the drill-down Dashboard is obsolete
-    }
+    Object drillDownDashboard = Ivy.session().getAttribute(SessionAttribute.DRILL_DOWN_DASHBOARD.name());
     Ivy.session().removeAttribute(SessionAttribute.DRILL_DOWN_DASHBOARD.name());
-    return drillDownDashboard;
+    return drillDownDashboard instanceof Dashboard ? (Dashboard) drillDownDashboard : null;
   }
 
   private boolean isNavigateToDashboard() {

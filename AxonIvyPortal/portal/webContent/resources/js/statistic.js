@@ -466,35 +466,18 @@ getBackgroundColorsWithAllScope(chartConfig, data) {
     if (!this.canDrillDown()) {
       return;
     }
-
-    const dataIndex = element.index;
-    const dataset = this.clientChartConfig.data.datasets[element.datasetIndex || 0];
-    const label = this.clientChartConfig.data.labels[dataIndex];
-    const value = dataset.data[dataIndex];
-    const counting = dataset.counting ? dataset.counting[dataIndex] : value;
-
     const drillDownData = {
       chartId: this.data.chartConfig.id,
-      chartType: this.data.chartConfig.chartType,
-      filterKey: this.data.chartConfig.statisticAggregation?.field,
-      filterValue: this.data.result.aggs[0].buckets[dataIndex].key,
-      label: label,
-      value: value,
-      count: counting,
-      chartTarget: dataset.chartTarget,
-      aggregation: dataset.aggregation
+      drillDownValue: this.data.result.aggs[0].buckets[element.index].key
     };
-
     this.drillDownStatistic(drillDownData);
   }
 
   drillDownStatistic(drillDownData) {
-    if (typeof window.openStatisticDrillDown === 'function') {
-      window.openStatisticDrillDown([{
-        name: 'drillDownData',
-        value: JSON.stringify(drillDownData)
-      }]);
-    }
+    window.openStatisticDrillDown([{
+      name: 'drillDownData',
+      value: JSON.stringify(drillDownData)
+    }]);
   }
 
   // Method to render empty chart
@@ -905,10 +888,7 @@ class ClientNumberChart extends ClientChart {
     $(this.chart).parents('.statistic-chart-widget__chart').addClass('client-number-chart');
     let multipleKPI = this.renderMultipleNumberChartInHTML(result, config.numberChartConfig.suffixSymbol, config.chartTarget);
     $(this.chart).html(multipleKPI);
-    
-    // TODO z1 Store chart instance reference for click handling
-    $(this.chart)[0].chartInstance = this;
-
+    this.chart.chartInstance = this; // chart instance reference for click handling
     return $(this.chart);
   }
 
@@ -1014,27 +994,13 @@ class ClientNumberChart extends ClientChart {
       return;
     }
 
-    const cardIndex = parseInt(cardElement.getAttribute('data-index'));
-
-    if (cardIndex >= 0 && cardIndex < this.dataResult.length) {
-      const item = this.dataResult[cardIndex];
-      const value = item.aggs.length > 0 ? 
-        (item.aggs[0].value === "null" ? 0 : Number(item.aggs[0].value)) : item.count;
-      
-      const drillDownData = {
-        chartId: this.data.chartConfig.id || this.data.chartConfig.chartId,
-        chartType: this.data.chartConfig.chartType,
-        filterKey: this.data.chartConfig.statisticAggregation?.field || this.data.chartConfig.aggregates,
-        filterValue: item.key,
-        label: this.formatChartLabel(item.key),
-        value: value,
-        count: item.count,
-        chartTarget: this.data.chartConfig.chartTarget,
-        aggregation: this.data.chartConfig.statisticAggregation
-      };
-
-      this.drillDownStatistic(drillDownData);
-    }
+  const cardIndex = parseInt(cardElement.getAttribute('data-index'));
+    const item = this.dataResult[cardIndex];
+    const drillDownData = {
+      chartId: this.data.chartConfig.id,
+      drillDownValue: item.key
+    };
+    this.drillDownStatistic(drillDownData);
   }
 }
 
