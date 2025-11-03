@@ -63,7 +63,8 @@
             update="delete-saved-filter-form:quick-filter-table"
             oncomplete="PF('quick-filter-table').clearFilters(); PF('manage-filter-dialog').initPosition();"/>
           <p:remoteCommand name="openStatisticDrillDown"
-            actionListener="#{statisticDrillDownBean.drillDownToDashboard(param.drillDownData)}" process="@this" />
+            actionListener="#{statisticDrillDownBean.drillDownToDashboard(param.drillDownData)}" oncomplete="navigateToDrillDownDashboard();" process="@this" />
+          <p:remoteCommand name="navigateToDrillDownDashboard" update="grid-stack" actionListener="#{navigationDashboardWidgetBean.navigateToDrillDownDashboard}" />
 
           <ui:insert name="additionalRemoteCommand" />
         </h:form>

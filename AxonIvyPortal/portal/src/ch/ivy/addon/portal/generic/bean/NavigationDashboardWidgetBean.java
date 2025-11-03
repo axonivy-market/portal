@@ -17,6 +17,7 @@ import javax.faces.context.FacesContext;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.axonivy.portal.components.publicapi.PortalNavigatorAPI;
 import com.axonivy.portal.dto.dashboard.NavigationDashboardWidget;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
@@ -24,6 +25,7 @@ import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
+import ch.ivy.addon.portalkit.service.DashboardService;
 import ch.ivy.addon.portalkit.util.DashboardUtils;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivy.addon.portalkit.util.UrlUtils;
@@ -102,6 +104,7 @@ public class NavigationDashboardWidgetBean implements Serializable {
     if (DashboardUtils.isHiddenDashboard((String) Ivy.session().getAttribute(SessionAttribute.SELECTED_SUB_DASHBOARD_ID.name()))) {
       removeSelectedSubDashboardId();
     }
+    Ivy.session().removeAttribute(SessionAttribute.DRILL_DOWN_DASHBOARD.name());
   }
   
   public void removeSelectedSubDashboardId() {
@@ -165,5 +168,22 @@ public class NavigationDashboardWidgetBean implements Serializable {
   
   private List<String> getSupportedLanguages() {
     return LanguageService.getInstance().getIvyLanguageOfUser().getSupportedLanguages();
+  }
+  
+  public void navigateToDrillDownDashboard() {
+    try {
+      Dashboard drillDownDashboard = retrieveDrillDownDashboard();
+      if (drillDownDashboard != null) {
+        navigateToDashboard(drillDownDashboard.getId());
+      }
+    } catch (Exception e) {
+      Ivy.log().warn("Error when trying going to the drill down dashboard ", e);
+      PortalNavigatorAPI.navigateToPortalHome();
+    }
+  }
+  
+  private Dashboard retrieveDrillDownDashboard() {
+    Object drillDownDashboard = Ivy.session().getAttribute(SessionAttribute.DRILL_DOWN_DASHBOARD.name());
+    return drillDownDashboard instanceof Dashboard ? (Dashboard) drillDownDashboard : null;
   }
 }

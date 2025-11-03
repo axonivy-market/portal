@@ -32,18 +32,18 @@
                     task="#{task}" case="#{case}" />
             <h:form id="navigation-dashboard-back-button" styleClass="flex justify-content-center"
              rendered="#{isInDashboard}">
-        <li class="topbar-item">
-          <h:panelGroup rendered="#{isInDashboard}">
-            <p:commandLink id="back-to-previous-dashboard-page" action="#{navigationDashboardWidgetBean.backToPreviousDashboard()}"
-              ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}"
-              styleClass="inline-flex align-items-center hover:underline" rendered="#{navigationDashboardWidgetBean.isNavigateToTargetDashboard}" process="@this">
-              <i class="si si-arrow-left-1" />
-              <p:spacer width="3px" />
-              <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}" />
-            </p:commandLink>
-            <h:inputHidden/>
-          </h:panelGroup>
-        </li>
+             <li class="topbar-item">
+               <h:panelGroup rendered="#{isInDashboard}">
+                 <p:commandLink id="back-to-previous-dashboard-page" action="#{navigationDashboardWidgetBean.backToPreviousDashboard()}"
+                   ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}"
+                   styleClass="inline-flex align-items-center hover:underline" rendered="#{navigationDashboardWidgetBean.isNavigateToTargetDashboard}" process="@this">
+                   <i class="si si-arrow-left-1" />
+                   <p:spacer width="3px" />
+                   <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}" />
+                 </p:commandLink>
+                 <h:inputHidden/>
+               </h:panelGroup>
+             </li>
             </h:form>
            </h:panelGroup>
         </li>
