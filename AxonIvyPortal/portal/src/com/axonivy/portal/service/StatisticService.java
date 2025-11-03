@@ -334,6 +334,7 @@ public class StatisticService {
     Statistic chart = findByStatisticId(drillDownData.getChartId());
 
     Dashboard drillDownDashboard = DefaultDashboardUtils.getCaseDrillDownDashboard();
+    drillDownDashboard.setIsResponsive(true);
     CaseDashboardWidget widget = (CaseDashboardWidget) drillDownDashboard.getWidgets().get(0);
     
     ensureAllStatisticFieldsInCaseColumns(widget, chart);
@@ -378,6 +379,7 @@ public class StatisticService {
     Statistic chart = findByStatisticId(drillDownData.getChartId());
 
     Dashboard drillDownDashboard = DefaultDashboardUtils.getTaskDrillDownDashboard();
+    drillDownDashboard.setIsResponsive(true);
     TaskDashboardWidget widget = (TaskDashboardWidget) drillDownDashboard.getWidgets().get(0);
     
     ensureAllStatisticFieldsInTaskColumns(widget, chart);
