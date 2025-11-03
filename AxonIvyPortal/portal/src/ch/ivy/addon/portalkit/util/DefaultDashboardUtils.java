@@ -834,6 +834,7 @@ public class DefaultDashboardUtils {
     dashboard.setId("default-task-list-drill-down-dashboard");
     dashboard.getWidgets().getFirst().setName("Drill-down Task Widget");
     dashboard.setDashboardDisplayType(DashboardDisplayType.HIDDEN);
+    dashboard.setIsResponsive(true);
     return dashboard;
   }
 
@@ -842,6 +843,7 @@ public class DefaultDashboardUtils {
     dashboard.setId("default-case-list-drill-down-dashboard");
     dashboard.getWidgets().getFirst().setName("Drill-down Case Widget");
     dashboard.setDashboardDisplayType(DashboardDisplayType.HIDDEN);
+    dashboard.setIsResponsive(true);
     return dashboard;
   }
 
