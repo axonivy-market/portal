@@ -73,7 +73,7 @@
 
       <p:column headerText="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/Name')}"
         rendered="#{cc.attrs.nameColumnRendered}" styleClass="document-name-column">
-        <h:outputText id="name" value="#{document.name}" title="#{document.name}" />
+        <h:outputText id="name" value="#{document.name}" title="#{document.relativePath}" />
       </p:column>
       <p:column headerText="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/Size')}"
         rendered="#{cc.attrs.sizeColumnRendered}" styleClass="document-size-column">
