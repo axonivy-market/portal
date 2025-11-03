@@ -43,9 +43,8 @@ public class CaseDrillDownService extends AbstractDrillDownService {
     return ((CaseDashboardWidget) widget).getFilters();
   }
 
-  @SuppressWarnings({"unchecked", "rawtypes"})
   @Override
-  protected List getWidgetColumns(DashboardWidget widget) {
+  protected List<CaseColumnModel> getWidgetColumns(DashboardWidget widget) {
     return ((CaseDashboardWidget) widget).getColumns();
   }
 
