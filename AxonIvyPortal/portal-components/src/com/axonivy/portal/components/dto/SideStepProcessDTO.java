@@ -32,6 +32,8 @@ public class SideStepProcessDTO implements Serializable {
   private String signal;
   private Map<String, String> processNames;
   private String customSecurityMemberCallable;
+  
+  public SideStepProcessDTO() {}
 
   private SideStepProcessDTO(Builder builder) {
     this.signal = builder.signal;

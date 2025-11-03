@@ -23,6 +23,8 @@ public class SideStepProcessParamDTO implements Serializable {
   private String securityMemberId;
   private String comment;
   private Boolean isParallelSideStep;
+  
+  public SideStepProcessParamDTO() {}
 
   private SideStepProcessParamDTO(Builder builder) {
     this.version = builder.version;

@@ -37,6 +37,8 @@ public class SideStepConfigurationDTO implements Serializable {
   private Boolean isParallelSideStep;
   private Map<String, String> customParallelSideStepTitles;
   private Map<String, String> customSwitchSideStepTitles;
+  
+  public SideStepConfigurationDTO() {}
 
   private SideStepConfigurationDTO(Builder builder) {
     this.version = builder.version;
