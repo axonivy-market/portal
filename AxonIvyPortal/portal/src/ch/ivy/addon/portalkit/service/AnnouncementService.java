@@ -147,15 +147,9 @@ public class AnnouncementService {
   }
 
   private Announcement getAnnouncementFromCache() {
-    Announcement announcement = null;
-    try {
-      announcement =
-          (Announcement) IvyCacheService.getInstance().getApplicationCache(PORTAL_ANNOUNCEMENT_CACHE_GROUP_NAME,
-          ANNOUNCEMENT_CACHE_ENTRY);
-    } catch (ClassCastException e) {
-      // If exception, could be code loaded, just ignore it, return null
-    }
-    return announcement;
+    Object announcement = IvyCacheService.getInstance().getApplicationCache(PORTAL_ANNOUNCEMENT_CACHE_GROUP_NAME,
+        ANNOUNCEMENT_CACHE_ENTRY);
+    return announcement instanceof Announcement ? (Announcement) announcement : null;
   }
 
   private void invalidateCache() {
