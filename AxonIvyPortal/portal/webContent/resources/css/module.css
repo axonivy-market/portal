@@ -5211,7 +5211,7 @@ body.light .image-process-container .image-process-item .card-item.card.image-wi
   position: relative;
   object-fit: cover;
   width: inherit;
-  border-radius: 10px;
+  border-radius: 15px;
 }
 
 .image-process-item .image-process-item-image-bgc {
