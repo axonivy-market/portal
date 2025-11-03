@@ -27,6 +27,7 @@ public abstract class AbstractDrillDownService {
 
   public void createDrillDownDashboardInSession(Statistic statistic, String drillDownValue) {
     Dashboard drillDownDashboard = getDrillDownDashboard();
+    drillDownDashboard.setIsResponsive(true);
     DashboardWidget widget = drillDownDashboard.getWidgets().get(0);
     ensureAllRelatedColumnsIncluded(widget, statistic);
     addDrillDownValueToWidgetFilters(drillDownValue, statistic, widget);
