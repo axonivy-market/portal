@@ -82,7 +82,15 @@ function filterOptionsForDateTimeFormatter(pattern) {
   return options;
 }
 
+function isDateValid(date) {
+  return !isNaN(date);
+}
+
 function formatDateFollowLocale(dt) {
+  if (!isDateValid(dt)) {
+    console.warn('Invalid Date object provided for formatting.');
+    return;
+  }
   const options = filterOptionsForDateTimeFormatter(datePattern);
   // Format locale
   let friendlyLocale = locale.replace('_', '-');
@@ -134,7 +142,7 @@ const processYValue = (result, config) => {
   if (result.length > 0 && result[0].aggs.length > 0) {
     const values = [];
     result.forEach((bucket) => {
-      if (bucket.key.trim().length !== 0) {
+      if (bucket.key) {
         bucket.aggs.forEach((item) => {
           values.push({
             key: bucket.key,
@@ -525,8 +533,9 @@ class ClientCanvasChart extends ClientChart {
   // Method to format chart label
   formatChartLabel(label) {
     let aggregationField = this.data.chartConfig.statisticAggregation?.field;
+    let kpiMethod = this.data.chartConfig.statisticAggregation?.kpiMethod;
 
-    if (typeof label === 'number' || this.isTimestampField(aggregationField)) {
+    if (typeof label === 'number' || this.isTimestampField(aggregationField) || kpiMethod) {
       return formatDateFollowLocale(new Date(label));
     }
     
