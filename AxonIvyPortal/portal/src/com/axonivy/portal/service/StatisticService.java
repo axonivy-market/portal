@@ -23,6 +23,7 @@ import com.axonivy.portal.bo.PieChartConfig;
 import com.axonivy.portal.bo.Statistic;
 import com.axonivy.portal.bo.StatisticAggregation;
 import com.axonivy.portal.constant.StatisticConstants;
+import com.axonivy.portal.dto.StatisticDrillDownDto;
 import com.axonivy.portal.dto.StatisticDto;
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 import com.axonivy.portal.enums.AdditionalChartConfig;
@@ -305,7 +306,12 @@ public class StatisticService {
     };
   }
 
-  public void getStatisticDrillDownData(com.axonivy.portal.dto.StatisticDrillDownDto drillDownData) {
+  public void createDrillDownDashboard(String drillDownDataJson) {
+     if (StringUtils.isBlank(drillDownDataJson)) {
+     return;
+     }
+     StatisticDrillDownDto drillDownData =
+         BusinessEntityConverter.jsonValueToEntity(drillDownDataJson, StatisticDrillDownDto.class);
     Statistic statistic = findByStatisticId(drillDownData.getChartId());
     validateChart(drillDownData.getChartId(), statistic);
     AbstractDrillDownService drillDownService;
@@ -314,7 +320,7 @@ public class StatisticService {
     } else {
       drillDownService = TaskDrillDownService.getInstance();
     }
-    drillDownService.search(statistic, drillDownData.getDrillDownValue());
+    drillDownService.createDrillDownDashboardInSession(statistic, drillDownData.getDrillDownValue());
   }
 
 }

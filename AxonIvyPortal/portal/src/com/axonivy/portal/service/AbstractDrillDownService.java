@@ -25,7 +25,7 @@ public abstract class AbstractDrillDownService {
   private static final List<String> ALL_AGGREGATION_DATE_FIELDS =
       Arrays.asList("startTimestamp", "endTimestamp", "expiryTimestamp");
 
-  public void search(Statistic statistic, String drillDownValue) {
+  public void createDrillDownDashboardInSession(Statistic statistic, String drillDownValue) {
     Dashboard drillDownDashboard = getDrillDownDashboard();
     DashboardWidget widget = drillDownDashboard.getWidgets().get(0);
     ensureAllRelatedColumnsIncluded(widget, statistic);
