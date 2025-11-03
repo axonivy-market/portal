@@ -25,7 +25,6 @@ import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
-import ch.ivy.addon.portalkit.service.DashboardService;
 import ch.ivy.addon.portalkit.util.DashboardUtils;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivy.addon.portalkit.util.UrlUtils;
@@ -81,10 +80,15 @@ public class NavigationDashboardWidgetBean implements Serializable {
         removeSessionAttributeNavigateToDashboard();
       }
       removeSelectedSubDashboardId();
+      removeDrillDownDashboardIfExist();
     }
     else {
       FacesContext.getCurrentInstance().getExternalContext().redirect(PortalNavigator.getPortalStartUrl());
     }
+  }
+
+  private void removeDrillDownDashboardIfExist() {
+    Ivy.session().removeAttribute(SessionAttribute.DRILL_DOWN_DASHBOARD.name());
   }
   
   private void addSessionAttributeNavigateToDashboard() {
@@ -104,7 +108,7 @@ public class NavigationDashboardWidgetBean implements Serializable {
     if (DashboardUtils.isHiddenDashboard((String) Ivy.session().getAttribute(SessionAttribute.SELECTED_SUB_DASHBOARD_ID.name()))) {
       removeSelectedSubDashboardId();
     }
-    Ivy.session().removeAttribute(SessionAttribute.DRILL_DOWN_DASHBOARD.name());
+    removeDrillDownDashboardIfExist();
   }
   
   public void removeSelectedSubDashboardId() {
@@ -170,10 +174,12 @@ public class NavigationDashboardWidgetBean implements Serializable {
     return LanguageService.getInstance().getIvyLanguageOfUser().getSupportedLanguages();
   }
   
-  public void navigateToDrillDownDashboard() {
+  public void navigateToDrillDownDashboard(String currentDashboardId) {
     try {
       Dashboard drillDownDashboard = retrieveDrillDownDashboard();
-      if (drillDownDashboard != null) {
+      if (drillDownDashboard != null && !StringUtils.isBlank(currentDashboardId)) {
+        pushPage(currentDashboardId);
+        setIsNavigateToTargetDashboard(Boolean.TRUE);
         navigateToDashboard(drillDownDashboard.getId());
       }
     } catch (Exception e) {

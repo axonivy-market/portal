@@ -99,13 +99,6 @@ public class DashboardBean implements Serializable, IMultiLanguage {
 
     dashboards = collectDashboards();
 
-    Dashboard drillDownDashboard = retrieveDrillDownDashboard();
-    if (drillDownDashboard != null) {
-      dashboards.add(drillDownDashboard);
-      Ivy.session().setAttribute(SELECTED_SUB_DASHBOARD_ID.name(), drillDownDashboard.getId());
-    }
-
-
     if (CollectionUtils.isNotEmpty(DashboardUtils.getDashboardsWithoutMenuItem())
         || isRequestPathForMainOrDetailModification() || isNavigateToDashboard()) {
       updateSelectedDashboardIdFromSessionAttribute();
@@ -171,6 +164,10 @@ public class DashboardBean implements Serializable, IMultiLanguage {
   protected List<Dashboard> collectDashboards() {
     List<Dashboard> dashboards = DashboardUtils.collectDashboards();
     dashboards.add(DefaultDashboardUtils.getDefaultUserExampleDashboard());
+    Dashboard drillDownDashboard = retrieveDrillDownDashboard();
+    if (drillDownDashboard != null) {
+      dashboards.add(drillDownDashboard);
+    }
     return dashboards;
   }
 
