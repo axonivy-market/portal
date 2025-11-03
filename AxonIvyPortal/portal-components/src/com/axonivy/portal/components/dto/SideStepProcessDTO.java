@@ -33,27 +33,37 @@ public class SideStepProcessDTO implements Serializable {
   private Map<String, String> processNames;
   private String customSecurityMemberCallable;
 
-  public SideStepProcessDTO() {
-  }
-
   private SideStepProcessDTO(Builder builder) {
     this.signal = builder.signal;
     this.customSecurityMemberCallable = builder.customSecurityMemberCallable;
     this.processNames = builder.processNames;
   }
 
+  /**
+   * Builder to build an instance of {@link SideStepProcessDTO}
+   * @return {@link Builder}
+   */
   public static Builder builder() {
     return new Builder();
   }
 
+  /**
+   * @return Ivy signal.
+   */
   public String getSignal() {
     return signal;
   }
 
+  /**
+   * @return name of Ivy callable subprocess to define custom list of users and roles.
+   */
   public String getCustomSecurityMemberCallable() {
     return customSecurityMemberCallable;
   }
 
+  /**
+   * @return display name of the process in multiple languages.
+   */
   public Map<String, String> getProcessNames() {
     return processNames;
   }

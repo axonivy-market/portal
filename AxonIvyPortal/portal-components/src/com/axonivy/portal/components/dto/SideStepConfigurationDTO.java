@@ -16,7 +16,7 @@ import ch.ivyteam.ivy.workflow.ITask;
  * DTO object contains information about side step configuration.
  * Use this class to configure side step then parse it to JSON and save to custom text field of {@link ITask} or {@link ICase}
  * <pre>
- * <b>processes</b>: list of side step task created processes for user to select (mandatory). 
+ * <b>processes</b>: list of side step processes for user to select (mandatory). 
  * <b>isParallelSideStep</b>: whether side step task runs parallel with original task (optional).
  * <b>customParallelSideStepTitles</b>: custom parallel side step title (optional)
  * <b>customSwitchSideStepTitles</b>: custom switch side step title (optional)
@@ -38,8 +38,6 @@ public class SideStepConfigurationDTO implements Serializable {
   private Map<String, String> customParallelSideStepTitles;
   private Map<String, String> customSwitchSideStepTitles;
 
-  public SideStepConfigurationDTO() {}
-  
   private SideStepConfigurationDTO(Builder builder) {
     this.version = builder.version;
     this.processes = builder.processes;
@@ -48,26 +46,45 @@ public class SideStepConfigurationDTO implements Serializable {
     this.customSwitchSideStepTitles = builder.customSwitchSideStepTitles;
   }
 
+  /**
+   * Builder to build an instance of {@link SideStepConfigurationDTO}
+   * @return {@link Builder}
+   */
   public static Builder builder() {
     return new Builder();
   }
-  
+
+  /**
+   * @return list of side step processes for user to select.
+   */
   public List<SideStepProcessDTO> getProcesses() {
     return processes;
   }
 
+  /**
+   * @return true: parallel side step, false: switch side step. 
+   */
   public Boolean getIsParallelSideStep() {
     return isParallelSideStep;
   }
 
+  /**
+   * @return custom title for parallel side step.
+   */
   public Map<String, String> getCustomParallelSideStepTitles() {
     return customParallelSideStepTitles;
   }
 
+  /**
+   * @return custom title for switch side step.
+   */
   public Map<String, String> getCustomSwitchSideStepTitles() {
     return customSwitchSideStepTitles;
   }
 
+  /**
+   * @return version of JSON file.
+   */
   public String getVersion() {
     return version;
   }

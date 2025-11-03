@@ -24,8 +24,6 @@ public class SideStepProcessParamDTO implements Serializable {
   private String comment;
   private Boolean isParallelSideStep;
 
-  public SideStepProcessParamDTO() {}
-
   private SideStepProcessParamDTO(Builder builder) {
     this.version = builder.version;
     this.sideStepProcessDto = builder.sideStepProcessDto;
@@ -35,36 +33,36 @@ public class SideStepProcessParamDTO implements Serializable {
     this.isParallelSideStep = builder.isParallelSideStep;
   }
   
+  /**
+   * Builder to build an instance of {@link SideStepProcessParamDTO}
+   * @return {@link Builder}
+   */
   public static Builder builder() {
     return new Builder();
   }
   
   /**
-   * Get object which has information about selected process.
-   * @return {@link SideStepProcessDTO}
+   * @return object {@link SideStepProcessDTO} which has information about selected process. 
    */
   public SideStepProcessDTO getSideStepProcessDto() {
     return sideStepProcessDto;
   }
 
   /**
-   * Get comment of user who trigger this side step.
-   * @return comment
+   * @return comment of user who trigger this side step.
    */
   public String getComment() {
     return comment;
   }
 
   /**
-   * Get security member id of user who trigger this side step. 
-   * @return security member id
+   * @return security member id of user who trigger this side step.
    */
   public String getSecurityMemberId() {
     return securityMemberId;
   }
 
   /**
-   * Get is parallel or switch side step.
    * @return true : is parallel side step, false : is switch side step
    */
   public Boolean getIsParallelSideStep() {
@@ -72,13 +70,15 @@ public class SideStepProcessParamDTO implements Serializable {
   }
 
   /**
-   * Get uuid of task which user trigger this side step from.
-   * @return task uuid
+   * @return uuid of task which user trigger this side step from.
    */
   public String getTaskUuid() {
     return taskUuid;
   }
 
+  /**
+   * @return version of JSON file.
+   */
   public String getVersion() {
     return version;
   }
