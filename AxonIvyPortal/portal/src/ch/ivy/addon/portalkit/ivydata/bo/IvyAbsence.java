@@ -10,8 +10,8 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import com.axonivy.portal.components.dto.UserDTO;
 
+import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
 import ch.ivy.addon.portalkit.service.DateTimeGlobalSettingService;
-import ch.ivyteam.ivy.environment.Ivy;
 
 public class IvyAbsence {
 
@@ -61,7 +61,7 @@ public class IvyAbsence {
   }
 
   public String getPeriod() {
-    DateFormat formatter = new SimpleDateFormat(DateTimeGlobalSettingService.getInstance().getDatePattern(), Ivy.session().getContentLocale());
+    DateFormat formatter = new SimpleDateFormat(DateTimeGlobalSettingService.getInstance().getDatePattern(), LanguageService.getInstance().getUserLocale());
     return String.format("%s - %s", formatter.format(from), formatter.format(until));
   }
 
