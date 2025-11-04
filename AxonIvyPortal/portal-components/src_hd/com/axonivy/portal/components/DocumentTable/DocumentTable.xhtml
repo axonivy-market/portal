@@ -14,6 +14,7 @@
   <cc:attribute name="renameRendered" default="true" />
   <cc:attribute name="messageRendered" default="true" />
   <cc:attribute name="renderChooseUploadIcon" default="true" />
+  <cc:attribute name="lazy" default="false" />
   
   <cc:attribute name="fileLimit" type="Integer" shortDescription="Number of files are in the given ICase" default="-1" />
   <cc:attribute name="sizeLimit" type="Long" shortDescription="Individual file size limit in bytes" />
@@ -50,7 +51,6 @@
   <cc:attribute name="enableScriptCheckingForUploadedDocument" default="#{documentUploadBean.getPortalScriptCheckingSettingOrDefault(false)}" />
   <cc:attribute name="enableVirusScannerForUploadedDocument" default="#{documentUploadBean.getPortalVirusScannerSettingOrDefault(false)}" />
   <cc:attribute name="allowedUploadFileTypes" default="#{documentUploadBean.getPortalAllowedUploadFileTypesSettingOrDefault('doc,docx,xls,xlsx,xlsm,csv,pdf,ppt,pptx,txt,zip,jpg,jpeg,bmp,png')}" type="java.lang.String"/>
-
 </cc:interface>
 
 <cc:implementation>
@@ -68,7 +68,11 @@
     <p:messages id="document-messages" for="document-messages" rendered="#{cc.attrs.messageRendered}" />
     <p:dataTable id="document-table" value="#{data.documents}" var="document"
       emptyMessage="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/NoFile')}" styleClass="margin-top-5"
-      widgetVar="fileTableVar" lazy="false">
+      widgetVar="fileTableVar" lazy="#{cc.attrs.lazy}"
+      paginator="#{cc.attrs.lazy}" rows="#{cc.attrs.lazy ? '5' : ''}"
+      paginatorPosition="bottom" paginatorAlwaysVisible="true"
+      paginatorTemplate="{PreviousPageLink} {PageLinks} {NextPageLink} {RowsPerPageDropdown}"
+      pageLinks="5" rowsPerPageTemplate="5,10,20,50">
       <f:event type="preRenderComponent" listener="#{logic.renderTable()}" />
 
       <p:column headerText="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/Name')}"
