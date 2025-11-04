@@ -1383,6 +1383,7 @@ Dialogs:
               PortalDashboardDetailModification:
                 CreateCustomStatistic: 'TODO: Create custom statistic widget'
                 DeleteConfirm: 'TODO: Are you sure you want to delete?'
+                Example: 例
                 RemoveThisStatistic: TODO このカスタム統計を削除する
               component:
                 CustomDashboardWidget:

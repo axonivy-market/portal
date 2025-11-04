@@ -1066,6 +1066,7 @@ Dialogs:
               PortalDashboardDetailModification:
                 CreateCustomStatistic: Create custom statistic widget
                 DeleteConfirm: Are you sure you want to delete?
+                Example: Example
                 RemoveThisStatistic: Remove this custom statistic
               component:
                 CustomDashboardWidget:
