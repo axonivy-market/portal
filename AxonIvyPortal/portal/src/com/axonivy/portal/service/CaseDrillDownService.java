@@ -51,7 +51,6 @@ public class CaseDrillDownService extends AbstractDrillDownService {
   @Override
   protected ColumnModel createWidgetColumn(DashboardColumnType fieldType, String field) {
     return CaseColumnModel.constructColumn(fieldType, field);
-
   }
 
   @Override

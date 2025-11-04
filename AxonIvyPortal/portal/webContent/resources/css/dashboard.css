@@ -1946,7 +1946,6 @@ body .widget__content .ui-datatable.dashboard-tasks--table .ui-widget-header the
 }
 
 /* Drill-down chart styling */
-.chart-content-card-clickable,
-.js-statistic-chart canvas {
+.chart-content-card-clickable {
   cursor: pointer;
 }

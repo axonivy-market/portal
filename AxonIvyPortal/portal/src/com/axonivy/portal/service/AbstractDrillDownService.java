@@ -17,8 +17,10 @@ import com.axonivy.portal.bo.Statistic;
 import com.axonivy.portal.bo.StatisticAggregation;
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 import com.axonivy.portal.enums.dashboard.filter.FilterOperator;
+import com.axonivy.portal.enums.statistic.AggregationField;
 import com.axonivy.portal.enums.statistic.AggregationInterval;
 
+import ch.ivy.addon.portalkit.dto.dashboard.AbstractColumn;
 import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
@@ -28,9 +30,7 @@ import ch.ivyteam.ivy.environment.Ivy;
 
 public abstract class AbstractDrillDownService {
 
-  private static final String DEFAULT_COLUMN_WIDTH = "120";
-  private static final List<String> ALL_AGGREGATION_DATE_FIELDS =
-      Arrays.asList("startTimestamp", "endTimestamp", "expiryTimestamp");
+  private static final String DEFAULT_COLUMN_WIDTH = String.valueOf(AbstractColumn.NORMAL_WIDTH);
 
   public void createDrillDownDashboardInSession(Statistic statistic, String drillDownValue) {
     Dashboard drillDownDashboard = getDrillDownDashboard();
@@ -57,7 +57,7 @@ public abstract class AbstractDrillDownService {
   }
 
   private boolean isTimestamAggregation(StatisticAggregation aggregation) {
-    boolean isStandardTimestampField = ALL_AGGREGATION_DATE_FIELDS.contains(aggregation.getField());
+    boolean isStandardTimestampField = AggregationField.TIMESTAMP_AGGREGATES.contains(aggregation.getField());
     boolean isCustomTimestampField =
         DashboardColumnType.CUSTOM == aggregation.getType() && aggregation.getInterval() != null;
     return isStandardTimestampField || isCustomTimestampField;

@@ -141,7 +141,6 @@ public class StatisticService {
       filter = chart.getFilter();
     }
 
-    Ivy.log().warn("chart name: {0} ||| aggregates: {1} ||| filter {2}", chart.getName(), aggregates, filter);
     switch (chart.getChartTarget()) {
       case CASE:
         filter = StringUtils.isBlank(filter) ? "isBusinessCase:true" : "isBusinessCase:true," + filter;
@@ -307,11 +306,11 @@ public class StatisticService {
   }
 
   public void createDrillDownDashboard(String drillDownDataJson) {
-     if (StringUtils.isBlank(drillDownDataJson)) {
-     return;
-     }
-     StatisticDrillDownDto drillDownData =
-         BusinessEntityConverter.jsonValueToEntity(drillDownDataJson, StatisticDrillDownDto.class);
+    if (StringUtils.isBlank(drillDownDataJson)) {
+      return;
+    }
+    StatisticDrillDownDto drillDownData =
+        BusinessEntityConverter.jsonValueToEntity(drillDownDataJson, StatisticDrillDownDto.class);
     Statistic statistic = findByStatisticId(drillDownData.getChartId());
     validateChart(drillDownData.getChartId(), statistic);
     AbstractDrillDownService drillDownService;
