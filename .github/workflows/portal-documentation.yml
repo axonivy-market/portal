@@ -64,7 +64,7 @@ jobs:
         with:
           workflow: portal-document-screenshot-test.yml
           name: screenshots
-          branch: release/12.0
+          branch: feature/IVYPORTAL-19090-Implement-the-Side-Step-Process
           path: Documentation/portal-guide/source/screenshots
 
       - name: install zip
