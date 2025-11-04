@@ -60,6 +60,7 @@ How to Use and Set Up
 #. Define configuration for side step by building a list of ``SideStepProcessDTO`` objects. 
 
     .. code-block:: javascript
+      
         // Create process name in multiple languages by creating a map with key as language code and value as process name title
         Map processNames1 = new HashMap();
         processNames1.put("en", "Side step: Ask for more details");
