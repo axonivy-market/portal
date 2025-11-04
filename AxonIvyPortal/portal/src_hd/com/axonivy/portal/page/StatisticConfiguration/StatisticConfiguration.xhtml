@@ -334,7 +334,25 @@
                     </div>
                   </h:panelGroup>
                 </h:panelGroup>
+                
+                <!-- Chart drill-down feature -->
+                <h:panelGroup id="chart-drill-down-container" class="col-12" layout="block">
+                    <div class="field" rendered="true">
+                     <p:outputLabel for="@next" value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/ChartDrillDownEnabled')}" />
+                     <h:outputText id="chart-drill-down-info" styleClass="si si-information-circle ml-2" />
+                     <p:tooltip for="chart-drill-down-info" value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/ChartDrillDownInfo')}" />
+                      <div>
+                           <p:toggleSwitch id="chart-drill-down-toggle"
+                                          value="#{statisticConfigurationBean.statistic.chartDrillDownEnabled}"
+                                          styleClass="col-1">
+                               <p:ajax update="chart-drill-down-toggle"
+                                      process="@this"/>
+                           </p:toggleSwitch>
+                       </div>
+                    </div>
 
+                </h:panelGroup>
+                
                 <!-- Condition Based Coloring Toggle -->
                 <h:panelGroup id="condition-based-coloring-container" class="field col-12 mb-0" layout="block" >
                     <h:panelGroup rendered="#{statisticConfigurationBean.statistic.chartType.name() ne 'NUMBER'}">
@@ -418,23 +436,6 @@
                   </h:panelGroup>
                  </h:panelGroup>
                  
-                <!-- Chart drill-down feature -->
-                <h:panelGroup id="chart-drill-down-container" class="col-12" layout="block">
-                    <div class="field" rendered="true">
-                     <p:outputLabel for="@next" value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/ChartDrillDownEnabled')}" />
-                     <h:outputText id="chart-drill-down-info" styleClass="si si-information-circle ml-2" />
-                     <p:tooltip for="chart-drill-down-info" value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/ChartDrillDownInfo')}" />
-                      <div>
-                           <p:toggleSwitch id="chart-drill-down-toggle"
-                                          value="#{statisticConfigurationBean.statistic.chartDrillDownEnabled}"
-                                          styleClass="col-1">
-                               <p:ajax update="chart-drill-down-toggle"
-                                      process="@this"/>
-                           </p:toggleSwitch>
-                       </div>
-                    </div>
-
-                </h:panelGroup>
                 </div>
                </p:fieldset>
               <!-- Advanced settings end-->
