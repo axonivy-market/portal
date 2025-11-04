@@ -231,12 +231,13 @@ public class PermissionUtils {
   public static boolean hasStatisticWritePublicPermission() {
     return hasPortalPermission(PortalPermission.STATISTIC_WRITE_PUBLIC);
   }
-
+  
   /**
-   * Check if current user has permission see system notes in case/task details
+   * Check if current user has permission to see system notes in case/task details
    * @return true if current user has permission.
    */
   public static boolean checkNoteReadAllCaseTaskDetailsPermission() {
     return hasPortalPermission(PortalPermission.NOTE_READ_ALL_CASE_TASK_DETAILS);
   }
+
 }

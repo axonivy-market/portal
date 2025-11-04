@@ -23,25 +23,25 @@
       <h:outputText id="portal-version" value="#{projectVersionBean.portalVersion}" />
     </div>
 
-    <h:panelGroup rendered="#{not empty projectVersionBean.projectLibraries}">
-      <ui:repeat id="application-list" value="#{projectVersionBean.projectLibraries.entrySet().toArray()}" var="entry">
+    <h:panelGroup rendered="#{not empty projectVersionBean.customersProjects}">
+      <ui:repeat id="application-list" value="#{projectVersionBean.customersProjects.entrySet().toArray()}" var="entry">
         <div class="ui-g-12 pl-0">
-          <p:dataTable id="application-project-version-table" value="#{entry.value}" var="library" styleClass="project-version-table"
+          <p:dataTable id="application-project-version-table" value="#{entry.value}" var="pmv" styleClass="project-version-table"
             reflow="true" lazy="false">
             <f:facet name="header">
               <h:outputText id="application-name" value="#{entry.key}" />
             </f:facet>
             <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/projectInfo/projectName')}">
-              <h:outputText id="project-name" value="#{library.getProcessModelVersion().getProcessModel().getName()}" />
+              <h:outputText id="project-name" value="#{pmv.getProcessModel().getName()}" />
             </p:column>
             <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/projectInfo/version')}" styleClass="project-version" >
-              <h:outputText id="project-version" value="#{library.getQualifiedVersion().toString()}" />
+              <h:outputText id="project-version" value="#{pmv.getLibraryVersion()}" />
             </p:column>
             <p:column headerText="PMV" width="35" styleClass="project-pmv">
-              <h:outputText id="pmv" value="#{library.getProcessModelVersion().getVersionNumber()}" />
+              <h:outputText id="pmv" value="#{pmv.getVersionNumber()}" />
             </p:column>
             <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/state')}" styleClass="project-state" >
-              <h:outputText id="state" value="#{projectVersionBean.translateReleaseState(library.getProcessModelVersion().getReleaseState())}" />
+              <h:outputText id="state" value="#{projectVersionBean.translateReleaseState(pmv.getReleaseState())}" />
             </p:column>
           </p:dataTable>
         </div>

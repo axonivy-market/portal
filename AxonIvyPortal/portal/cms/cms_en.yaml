@@ -267,8 +267,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       hideChangePasswordButtonNote: Set this variable to true to hide the "Change Password" option in the top menu and the "Forgotten Password" option on the login page. If set to false, these options will be shown.
       hideLogoutButtonNote: If true, the logout button on top menu will be hidden, otherwise it will be shown.
       hideRelatedCaseInfoFromHistory: If true, case history does not display the related case information in the history table.
-      hideSystemNotesFromHistory: If true, case/task note does not display any system notes for non-administrator users.
-      hideSystemNotesFromHistoryAdministrator: If true, case/task note does not display any system notes for administrator.
       hideSystemTasksFromHistory: If true, case note does not display any system tasks for non-administrator users.
       hideSystemTasksFromHistoryAdministrator: If true, case note does not display any system tasks for administrator.
       hideTaskDocument: Set to true, the document section in task detail page will be hidden, otherwise it will be shown.
@@ -330,6 +328,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     addDocumentHelpText: To upload files, drag & drop or select files
     addNoteHelpText: Write your text here.
     businessDetailsTitle: Business Details
+    customFields: Custom Fields
+    customFieldsDialog: 'Custom Fields of case #{0}'
     deleteFile: Delete file
     documents: Documents
     downloadFile: Download file
@@ -950,7 +950,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     deleteDocumentNote: '{0} has deleted {1}'
     deleteSuceed: File deleted successfully
     download: Download
-    fileContainScript: This file is not allowed to upload because it contains some script!
+    fileContainScript: File contains potentially malicious content and cannot be uploaded!
     fileContainVirus: Upload failed, virus/infection detected!
     fileCouldNotParse: Could not parse the file
     fileEmptyMessage: File is empty
@@ -1180,6 +1180,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     afterEscalation: After escalation
     businessCase: Business Case
     completedOn: Completed on
+    customFields: Custom Fields
+    customFieldsDialog: 'Custom Fields of task #{0}'
     delayedUntil: Delayed until
     deleteFile: Delete file
     documents: Documents

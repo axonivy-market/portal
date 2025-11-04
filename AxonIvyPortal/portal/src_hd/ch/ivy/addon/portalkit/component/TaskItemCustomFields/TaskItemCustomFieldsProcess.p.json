@@ -1,0 +1,86 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/process/13.1.2/process.json",
+  "id" : "199C73B9C1D4BF73",
+  "kind" : "HTML_DIALOG",
+  "config" : {
+    "data" : "ch.ivy.addon.portalkit.component.TaskItemCustomFields.TaskItemCustomFieldsData"
+  },
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "HtmlDialogStart",
+      "name" : "start()",
+      "config" : {
+        "signature" : "start",
+        "guid" : "1747BF679887637F"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f1", "to" : "f9" }
+      ]
+    }, {
+      "id" : "f8",
+      "type" : "Script",
+      "name" : "Find custom fields data",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import org.apache.commons.collections4.ListUtils;",
+            "import java.util.ArrayList;",
+            "if (in.task == null) {",
+            "  in.customFieldList = new ArrayList();",
+            "} else {",
+            "  in.customFieldList = ListUtils.emptyIfNull(in.task.customFields().all());",
+            "}"
+          ]
+        },
+        "sudo" : true
+      },
+      "visual" : {
+        "at" : { "x" : 280, "y" : 192 }
+      },
+      "connect" : [
+        { "id" : "f13", "to" : "f11" }
+      ]
+    }, {
+      "id" : "f11",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 440, "y" : 192 }
+      }
+    }, {
+      "id" : "f9",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 272, "y" : 64 }
+      }
+    }, {
+      "id" : "f10",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "getCustomFieldsData(Long)",
+      "config" : {
+        "signature" : "getCustomFieldsData",
+        "input" : {
+          "params" : [
+            { "name" : "taskId", "type" : "Long", "desc" : "" }
+          ],
+          "map" : { },
+          "code" : [
+            "import ch.ivy.addon.portalkit.util.TaskUtils;",
+            "if (param.taskId != null) {",
+            "  out.task = TaskUtils.findTaskById(param.taskId);",
+            "}"
+          ]
+        },
+        "guid" : "1747C052FA32B78C"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 192 },
+        "labelOffset" : { "x" : 26, "y" : 38 }
+      },
+      "connect" : [
+        { "id" : "f2", "to" : "f8" }
+      ]
+    } ]
+}

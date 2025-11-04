@@ -19,7 +19,7 @@
     <ui:define name="pageContent">
         <script>
           function initStatistics() {
-            initClientCharts("#{managedBean.statisticApiUri}" , "#{localeBean.locale}", "#{dateTimePatternBean.datePattern}", "#{ivy.session.contentLocale}");
+            initClientCharts("#{managedBean.statisticApiUri}" , "#{managedBean.getSupportedUserLanguage()}", "#{dateTimePatternBean.datePattern}", "#{localeBean.locale}");
           }
 
           $(document).ready(function () {
@@ -237,6 +237,10 @@
            
            <!-- Workflow Event of Task Dialog -->
            <ic:ch.ivy.addon.portalkit.component.TaskItemWorkflowEvents id="dashboard-tasks-workflow-event"
+            taskId="#{taskWidgetBean.selectedTaskItemId}"/>
+            
+           <!-- Custom fields of Task Dialog -->
+           <ic:ch.ivy.addon.portalkit.component.TaskItemCustomFields id="dashboard-tasks-custom-fields"
             taskId="#{taskWidgetBean.selectedTaskItemId}"/>
            
            <!-- Destroy case dialog -->

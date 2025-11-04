@@ -240,7 +240,7 @@ public class UserUtils {
   }
 
   public static String getUserLanguage() {
-    String userLanguage = LanguageService.getInstance().getIvyLanguageOfUser().getUserLanguage();
+    String userLanguage = LanguageService.getInstance().getUserLanguage();
     String systemLanguage = LanguageManager.instance().configurator(ISecurityContext.current()).content().toString();
     return StringUtils.defaultIfBlank(userLanguage, systemLanguage);
   }

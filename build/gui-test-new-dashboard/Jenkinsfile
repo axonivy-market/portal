@@ -27,6 +27,7 @@ pipeline {
 
   environment {
     engineDir = "$env.WORKSPACE/AxonIvyPortal/portal-selenium-test/engine"
+    MAVEN_OPTS = "-Xmx3000m -XX:+HeapDumpOnOutOfMemoryError"
   }
 
   stages {

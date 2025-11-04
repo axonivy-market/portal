@@ -28,8 +28,6 @@ Portal.Document.WhitelistExtension,"| doc, docx, xls,
 | jpeg, bmp, png","| Leave value empty if you allow all extensions. If you allow just some extensions, list out these extensions here,
 | separated by comma. Example: pdf, txt, doc, docx."
 Portal.EmbedInFrame,TRUE,"If true, start a process/task in IFrame mode."
-Portal.Histories.HideSystemNotes,TRUE,"If true, case/task note does not display any system notes for non-administrator users."
-Portal.Histories.HideSystemNotesForAdministrator,FALSE,"If true, case/task note does not display any system notes for administrator."
 Portal.Histories.HideSystemTasks,TRUE,"If true, case note does not display any system tasks for non-administrator users."
 Portal.Histories.HideSystemTasksForAdministrator,FALSE,"If true, case note does not display any system tasks for administrator."
 Portal.Histories.CheckSystemTasksByDefault,TRUE,"Check show system tasks by default in case/task details."

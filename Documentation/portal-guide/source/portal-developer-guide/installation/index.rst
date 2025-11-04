@@ -144,7 +144,10 @@ In Engine
 Migrate 13.1 To 13.2
 --------------------
 
-If you are using DeepL translation service in the Portal, please reconfigure it according to the instructions provided here: :doc-url:`Axon Ivy Translation service </engine-guide/configuration/translation-service/index.html>`
+1. If you are using DeepL translation service in the Portal, please reconfigure it according to the instructions provided here: :doc-url:`Axon Ivy Translation service </engine-guide/configuration/translation-service/index.html>`
+
+2. Global variables ``Portal.Histories.HideSystemNotes`` and ``Portal.Histories.HideSystemNotesForAdministrator`` have been removed and no longer supported.
+Use permission ``NoteReadAllCaseTaskDetails`` instead to control the visibility of system notes in task and case details.
 
 Migrate 11.3.2 To 12.0.0
 ------------------------
