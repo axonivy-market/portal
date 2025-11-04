@@ -5,7 +5,8 @@
   "fields" : [ {
     "name" : "item"
   }, {
-    "name" : "monthOfYear"
+    "name" : "monthOfYear",
+    "type" : "DateTime"
   }, {
     "name" : "department"
   }, {

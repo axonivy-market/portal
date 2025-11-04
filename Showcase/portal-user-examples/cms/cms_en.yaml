@@ -160,6 +160,7 @@ Processes:
   MarketingCampaign:
     name: Marketing campaign coordination
   Procurement:
+    description: Run this process (many times) to generate data for Sample KPI Statistic below. Procurement information such as spend amount, department, item, month of year, days to decision, decision, rework are randomized and assigned to custom fields of case.
     name: Procurement
   UserExampleGuide:
     DashboardCustomNoteWidget:
@@ -171,7 +172,7 @@ SampleStatisticValue:
   DaysToDecision: 2,5;6;2;7;4;9,4
   Decision: Approved;Rejected;Pending
   Department: Dep A;Dep B;Dep C;Dep D
-  Item: Laptop;Mobile;Keyboard;Table
+  Item: Laptop;Mobile;Keyboard;Tablet
   MonthOfYear: 01;02;03;04;05;06;07
   ReworkCauses: Missing info;Not eligible;Too expensive
   ReworkNoLoops: 0;1;2;0;0

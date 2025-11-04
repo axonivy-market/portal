@@ -38,7 +38,7 @@ CustomFields:
     MonthYear:
       Label: Month of Year
       Description: Month of year
-      Type: String
+      Type: Timestamp
     daysToDecision:
       Label: Days to Decision
       Description: Days from reuest to final decision

@@ -51,7 +51,7 @@
             { "name" : "decision", "type" : "STRING", "value" : "in1.decision" },
             { "name" : "Department", "type" : "STRING", "value" : "in1.department" },
             { "name" : "Item", "type" : "STRING", "value" : "in1.item" },
-            { "name" : "MonthYear", "type" : "STRING", "value" : "in1.monthOfYear" },
+            { "name" : "MonthYear", "type" : "TIMESTAMP", "value" : "in1.monthOfYear" },
             { "name" : "reworkCauses", "type" : "STRING", "value" : "in1.reworkCauses" },
             { "name" : "reworkNoLoops", "type" : "NUMBER", "value" : "in1.reworkNoLoops" },
             { "name" : "reworkOccurred", "type" : "STRING", "value" : "in1.reworkOccurred" },
@@ -70,7 +70,14 @@
       "type" : "RequestStart",
       "name" : "start2",
       "config" : {
-        "signature" : "start2"
+        "signature" : "start2",
+        "request" : {
+          "name" : "<%=ivy.cms.co(\"/Processes/Procurement/name\")%>",
+          "description" : "<%=ivy.cms.co(\"/Processes/Procurement/description\")%>",
+          "customFields" : [
+            { "name" : "cssIcon", "value" : "si-shopping-cart-check" }
+          ]
+        }
       },
       "visual" : {
         "at" : { "x" : 512, "y" : 320 }
@@ -85,6 +92,7 @@
       "config" : {
         "output" : {
           "code" : [
+            "import java.time.YearMonth;",
             "import com.axonivy.portal.userexamples.ProcurementDataForSampleKPIStatisticData;",
             "",
             "ProcurementDataForSampleKPIStatisticData instanceData;",
@@ -101,7 +109,8 @@
             "  instanceData.item = items.get((Math.random() * items.size()).intValue());",
             "  ",
             "  List<String> monthOfYears = ivy.cms.co(\"/SampleStatisticValue/MonthOfYear\").split(\";\");",
-            "  instanceData.monthOfYear = monthOfYears.get((Math.random() * monthOfYears.size()).intValue());",
+            "  int month = Integer.parseInt(monthOfYears.get((Math.random() * monthOfYears.size()).intValue()));",
+            "  instanceData.monthOfYear = new DateTime(2025, month, 1, 7, 1, 1);",
             "  ",
             "  List<String> spendAmounts = ivy.cms.co(\"/SampleStatisticValue/SpendAmount\").split(\";\");",
             "  instanceData.spendAmount = spendAmounts.get((Math.random() * spendAmounts.size()).intValue()).toNumber();",
@@ -154,8 +163,11 @@
       "type" : "ProcessAnnotation",
       "name" : "Run this process (many times) to generate data for Sample KPI Statistic. Then, let's see the result in Sample: KPI Procurement Overview dashboard",
       "visual" : {
-        "at" : { "x" : 703, "y" : 87 },
+        "at" : { "x" : 511, "y" : 431 },
         "size" : { "width" : 419, "height" : 59 }
-      }
+      },
+      "connect" : [
+        { "id" : "f11", "to" : "f4" }
+      ]
     } ]
 }

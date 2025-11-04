@@ -484,7 +484,6 @@
                     ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
                     styleClass="u-mar-right-15" actionListener="#{statisticConfigurationBean.cancel}" immediate="true" />
                   <p:commandButton id="create-statistic-chart"
-                    rendered="#{!statisticConfigurationBean.getIsUserExample()}"
                     value="#{ivy.cms.co(statisticConfigurationBean.editMode ? '/Labels/Save' : '/Dialogs/com/axonivy/portal/page/StatisticConfiguration/Create')}"
                     ariaLabel="#{ivy.cms.co(statisticConfigurationBean.editMode ? '/Labels/Save' : '/Dialogs/com/axonivy/portal/page/StatisticConfiguration/Create')}"
                     action="#{statisticConfigurationBean.save}" update="config-panel errors-message" />

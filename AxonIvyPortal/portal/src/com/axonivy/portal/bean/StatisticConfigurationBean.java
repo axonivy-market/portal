@@ -1019,9 +1019,5 @@ public class StatisticConfigurationBean implements Serializable, IMultiLanguage 
   public List<ConditionBasedColoringScope> getConditionBasedColoringScopes() {
     return ConditionBasedColoringScope.SCOPES.stream().collect(Collectors.toList());
   }
-  
-  public Boolean getIsUserExample() {
-    return this.statistic.getIsUserExample();
-  }
 
 }

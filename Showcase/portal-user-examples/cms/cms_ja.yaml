@@ -190,6 +190,7 @@ Processes:
   MarketingCampaign:
     name: マーケティングキャンペーン連携
   Procurement:
+    description: 以下のサンプルKPI統計データを生成するため、このプロセスを（複数回）実行してください。支出額、部門、品目、年度月、決定までの日数、決定内容、手直し作業などの調達情報はランダム化され、ケースのカスタムフィールドに割り当てられます。
     name: 調達
   UserExampleGuide:
     DashboardCustomNoteWidget:

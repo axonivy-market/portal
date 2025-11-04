@@ -12,6 +12,7 @@ import java.util.Map.Entry;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import javax.ws.rs.NotFoundException;
 
@@ -64,7 +65,6 @@ public class StatisticService {
     List<Statistic> statistics = getDefaultStatistic();
     statistics = statistics.stream().filter(statistic -> seenIds.add(statistic.getId())).collect(Collectors.toList());
     getCustomStatistic().stream().filter(obj -> seenIds.add(obj.getId())).forEach(statistics::add);
-    getSampleKPIStatistic().stream().filter(obj -> seenIds.add(obj.getId())).forEach(statistics::add);
     return statistics;
   }
 
@@ -173,14 +173,17 @@ public class StatisticService {
   }
   
   private Statistic findByStatisticId(String id) {
-    return findAllCharts().stream()
+    return Stream.concat(findAllCharts().stream(), getSampleKPIStatistic().stream())
         .filter(e -> e.getId().equals(id))
         .findFirst()
         .orElse(null);
   }
 
   public Statistic findByIdCustomStatistic(String id) {
-    return getCustomStatistic().stream().filter(e -> e.getId().equals(id)).findFirst().orElse(null);
+    return Stream.concat(getCustomStatistic().stream(), getSampleKPIStatistic().stream())
+        .filter(e -> e.getId().equals(id))
+        .findFirst()
+        .orElse(null);
   }
 
   public void saveJsonToVariable(List<Statistic> statistics) {
@@ -196,13 +199,12 @@ public class StatisticService {
     return statistics;
   }
 
-  private List<Statistic> getSampleKPIStatistic() {
+  public List<Statistic> getSampleKPIStatistic() {
     String sampleKPIChartJson = Ivy.var().get(SAMPLE_KPI_STATISTIC_KEY);
     if (StringUtils.isEmpty(sampleKPIChartJson)) {
       return Collections.emptyList();
     }
     List<Statistic> statistics = BusinessEntityConverter.jsonValueToEntities(sampleKPIChartJson, Statistic.class);
-    statistics.forEach(statistic -> statistic.setIsUserExample(true));
     configDefaultStatisticSettings(statistics);
     return statistics;
   }
@@ -212,7 +214,6 @@ public class StatisticService {
     List<Statistic> statistics =
         BusinessEntityConverter.jsonValueToEntities(Ivy.var().get(CUSTOM_STATISTIC_KEY), Statistic.class);
     configDefaultStatisticSettings(statistics);
-    statistics.addAll(getSampleKPIStatistic());
     return statistics;
   }
 
