@@ -1,7 +1,6 @@
 package com.axonivy.portal.bo;
 
 import java.io.Serializable;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map.Entry;
 
@@ -279,7 +278,7 @@ public class Statistic extends AbstractConfiguration implements Serializable {
 
   public boolean getCanDrillDown() {
     boolean supportedDrillDownAggregation =
-        !Arrays.asList(AggregationField.WORKER_NAME.getName()).contains(statisticAggregation.getField());
+        !AggregationField.AGGREGATES_HAS_NO_MATCHED_FILTERS.contains(statisticAggregation.getField());
     return StringUtils.isEmpty(aggregates) && StringUtils.isEmpty(filter) && supportedDrillDownAggregation;
   }
 }

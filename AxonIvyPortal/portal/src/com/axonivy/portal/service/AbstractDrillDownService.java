@@ -47,7 +47,7 @@ public abstract class AbstractDrillDownService {
     DashboardFilter drillDownFilter = new DashboardFilter();
     drillDownFilter.setFilterType(DashboardColumnType.STANDARD);
     drillDownFilter.setField(getDashboardFilterFieldByAggregationField(chart.getStatisticAggregation().getField()));
-    if (isTimestamAggregation(chart.getStatisticAggregation())) {
+    if (isTimestampAggregation(chart.getStatisticAggregation())) {
       setFilterForTimestampAggregation(drillDownValue, chart.getStatisticAggregation().getInterval(), drillDownFilter);
     } else {
       drillDownFilter.setOperator(FilterOperator.IN);
@@ -56,7 +56,7 @@ public abstract class AbstractDrillDownService {
     getWidgetFilters(widget).add(drillDownFilter);
   }
 
-  private boolean isTimestamAggregation(StatisticAggregation aggregation) {
+  private boolean isTimestampAggregation(StatisticAggregation aggregation) {
     boolean isStandardTimestampField = AggregationField.TIMESTAMP_AGGREGATES.contains(aggregation.getField());
     boolean isCustomTimestampField =
         DashboardColumnType.CUSTOM == aggregation.getType() && aggregation.getInterval() != null;

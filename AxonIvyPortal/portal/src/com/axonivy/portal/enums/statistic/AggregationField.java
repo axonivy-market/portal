@@ -48,4 +48,6 @@ public enum AggregationField implements HasCmsName {
 
   public static final Set<String> TIMESTAMP_AGGREGATES =
       Set.of(START_TIMESTAMP.getName(), END_TIMESTAMP.getName(), EXPIRY_TIMESTAMP.getName());
+
+  public static final Set<String> AGGREGATES_HAS_NO_MATCHED_FILTERS = Set.of(WORKER_NAME.getName());
 }

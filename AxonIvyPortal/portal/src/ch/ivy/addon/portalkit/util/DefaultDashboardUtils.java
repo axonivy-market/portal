@@ -829,7 +829,7 @@ public class DefaultDashboardUtils {
     return DashboardUtils.jsonToDashboard(DEFAULT_TASK_LIST_DASHBOARD_JSON);
   }
 
-  public static Dashboard getTaskDrillDownDashboard() { // TODO z1 refactor
+  public static Dashboard getTaskDrillDownDashboard() {
     Dashboard dashboard = DashboardUtils.jsonToDashboard(DEFAULT_TASK_LIST_DASHBOARD_JSON);
     dashboard.setId("default-task-list-drill-down-dashboard");
     dashboard.getWidgets().getFirst().setName("Drill-down Task Widget");
@@ -837,7 +837,7 @@ public class DefaultDashboardUtils {
     return dashboard;
   }
 
-  public static Dashboard getCaseDrillDownDashboard() { // TODO z1 refactor
+  public static Dashboard getCaseDrillDownDashboard() {
     Dashboard dashboard = DashboardUtils.jsonToDashboard(DEFAULT_CASE_LIST_DASHBOARD_JSON);
     dashboard.setId("default-case-list-drill-down-dashboard");
     dashboard.getWidgets().getFirst().setName("Drill-down Case Widget");
