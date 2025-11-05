@@ -14,6 +14,7 @@ arftifact, or import them into your designer under ``Ivy Projects``.
    portal-style-customization-logos-colors-date-patterns
    forgot-password
    menu
+   page-header-footer-process
    task-delegation
    task-item-details
    case-item-details
