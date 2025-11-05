@@ -5,8 +5,8 @@ This is the **Axon Ivy Portal** - the main end-user portal for the Axon Ivy Plat
 
 ### Repository Information
 - **Repository**: portal
-- **Owner**: pvthai-axonivy  
-- **Primary Branch**: master
+- **Owner**: @axonivy-market/team-wawa
+- **Primary Branch**: master, release/12, release/10
 - **License**: Apache License 2.0
 - **Current Version**: 13.2.0-SNAPSHOT
 - **Supported Versions**: 13.x.x, 12.0.x, 10.0.x
@@ -950,7 +950,7 @@ When reviewing code, consider:
 
 All changes should:
 1. Be tested and working
-2. Target the `master` branch
+2. Target the `master`, `release/12`, `release/10` branch
 3. Follow the code standards outlined above
 4. Include appropriate documentation
 5. Consider localization needs
