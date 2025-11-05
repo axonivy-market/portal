@@ -343,7 +343,7 @@ HowTo: Share Case Details
    Grant permission :bdg-ref-warning:`🔑ShareCaseDetailsLink <ShareCaseDetailsLink>` to allow a user to share case details.
 
 HowTo: Show Case Custom Fields Dialog
--------------------------
+-------------------------------------
 
 #. Open the case details
 

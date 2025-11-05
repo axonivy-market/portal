@@ -104,6 +104,7 @@ public class LeaveRequestPage extends TaskTemplateIFramePage {
   }
 
   public void enterApproverComment(String approverComment) {
+    $("[id$='leave-request:approver-comment']").scrollTo();
     findElementById("leave-request:approver-comment").sendKeys(approverComment);
   }
 
@@ -121,10 +122,9 @@ public class LeaveRequestPage extends TaskTemplateIFramePage {
     return new TaskTemplatePage();
   }
 
-  public NewDashboardPage clickRejectBtn() {
+  public void clickRejectBtn() {
     waitForElementClickableThenClick(By.id("leave-request:rejected-btn"));
     waitPageDisappear();
     switchBackToParent();
-    return new NewDashboardPage();
   }
 }
