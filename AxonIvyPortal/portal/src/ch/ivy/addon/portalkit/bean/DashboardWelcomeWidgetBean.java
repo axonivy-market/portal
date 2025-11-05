@@ -64,8 +64,7 @@ public class DashboardWelcomeWidgetBean implements Serializable {
     if (!CollectionUtils.isEmpty(widget.getWelcomeTexts())) {
       String userLanguage = UserUtils.getUserLanguage();
       widget.setWelcomeText(CollectionUtils.emptyIfNull(widget.getWelcomeTexts()).stream()
-          .filter(name -> equalsLanguageLocale(name, userLanguage))
-          .findFirst().orElse(new DisplayName()).getValue());
+          .filter(name -> equalsLanguageLocale(name, userLanguage)).findFirst().orElse(new DisplayName()).getValue());
     }
     widget.setImageContentObject(renderImage());
     // get image from light mode if not set
@@ -78,7 +77,7 @@ public class DashboardWelcomeWidgetBean implements Serializable {
       widget.setImageContentObjectDarkMode(renderImageDarkMode());
     }
     if (StringUtils.isNotBlank(widget.getId())) {
-      String idWithoutSpecialChar = widget.getId().replaceAll(REGEX_REPLACE_SPECIAL_CHARACTER,"_");
+      String idWithoutSpecialChar = widget.getId().replaceAll(REGEX_REPLACE_SPECIAL_CHARACTER, "_");
       widget.setInternalId(idWithoutSpecialChar);
     }
   }
@@ -95,7 +94,7 @@ public class DashboardWelcomeWidgetBean implements Serializable {
     
     return imageContent;
   }
-  
+
   public ContentObject renderImageDarkMode() {
     if (Optional.ofNullable(widget).map(WelcomeDashboardWidget::getImageLocationDarkMode).isEmpty()) {
       return null;
@@ -107,44 +106,47 @@ public class DashboardWelcomeWidgetBean implements Serializable {
   }
 
   private void removeImageContentOfWidget(ContentObject content, boolean isDarkMode) {
-    String imageContent = isDarkMode? widget.getImageContentDarkMode() : widget.getImageContent();
+    String imageContent = isDarkMode ? widget.getImageContentDarkMode() : widget.getImageContent();
     if (StringUtils.isNotBlank(imageContent)) {
       WelcomeWidgetUtils.readObjectValueOfDefaultLocale(content).write().bytes(Base64.getDecoder().decode(imageContent));
       List<Dashboard> dashboards = DashboardUtils.collectDashboards();
-      for (Dashboard dashboard :  dashboards) {
+      for (Dashboard dashboard : dashboards) {
         dashboard.getWidgets().stream()
-        .filter(item -> widget.getId().equals(item.getId()) && item.getType() == DashboardWidgetType.WELCOME)
-        .findFirst()
-        .ifPresent(item -> {
-          if (isDarkMode) {
-            ((WelcomeDashboardWidget) item).setImageContentDarkMode(null); 
-          } else {
-            ((WelcomeDashboardWidget) item).setImageContent(null);
-          }
-        });
+            .filter(item -> widget.getId().equals(item.getId()) && item.getType() == DashboardWidgetType.WELCOME)
+            .findFirst().ifPresent(item -> {
+              if (isDarkMode) {
+                ((WelcomeDashboardWidget) item).setImageContentDarkMode(null);
+              } else {
+                ((WelcomeDashboardWidget) item).setImageContent(null);
+              }
+            });
       }
       String dashboardJson = BusinessEntityConverter.entityToJsonValue(dashboards);
       Ivy.var().set(PortalVariable.DASHBOARD.key, dashboardJson);
-      
+
       DashboardUtils.updateDashboardCache();
     }
   }
-  
+
   public void updateWelcomeText(WelcomeDashboardWidget welcomeWidget) {
     int parseClientTime = WelcomeWidgetUtils.parseClientTime();
     String greetingTextCms = WelcomeWidgetUtils.generateGreetingTextByTime(parseClientTime);
+    String greetingTextLocalized =
+        StringUtils.defaultString(Ivy.cms().coLocale(greetingTextCms, Ivy.session().getContentLocale()));
     var originWelcomeText = welcomeWidget.getWelcomeText();
-    if (StringUtils.isNoneBlank(originWelcomeText) && (Strings.CS.startsWith(originWelcomeText.trim(), ",") || Strings.CS.startsWith(originWelcomeText.trim(), "."))) {
-      var newWelcomeText = String.join(SPACE,
-          Ivy.cms().coLocale(greetingTextCms, LanguageService.getInstance().getUserLocale()),
-          Ivy.session().getSessionUser().getDisplayName());
+    if (StringUtils.isNoneBlank(originWelcomeText) && (Strings.CS.startsWith(originWelcomeText.trim(), ",")
+        || Strings.CS.startsWith(originWelcomeText.trim(), "."))) {
+      var newWelcomeText = String.join(SPACE, greetingTextLocalized, Ivy.session().getSessionUser().getDisplayName());
       welcomeWidget.setWelcomeText(newWelcomeText.concat(welcomeWidget.getWelcomeText()));
       return;
     }
-    welcomeWidget.setWelcomeText(String.join(SPACE,
-          Ivy.cms().coLocale(greetingTextCms, Ivy.session().getContentLocale()),
-          Ivy.session().getSessionUser().getDisplayName(),
-          welcomeWidget.getWelcomeText()));
+    if (StringUtils.isBlank(originWelcomeText)) {
+      welcomeWidget
+          .setWelcomeText(String.join(SPACE, greetingTextLocalized, Ivy.session().getSessionUser().getDisplayName()));
+    } else {
+      welcomeWidget.setWelcomeText(String.join(SPACE, greetingTextLocalized,
+          Ivy.session().getSessionUser().getDisplayName(), originWelcomeText));
+    }
   }
 
   protected static boolean equalsLanguageLocale(DisplayName displayName, String language) {
@@ -166,7 +168,7 @@ public class DashboardWelcomeWidgetBean implements Serializable {
   public String getDefaultImageDarkLink() {
     return DEFAULT_IMAGE_DARK_CMS_URI;
   }
-  
+
   public String sanitizeHTML(String text) {
     return StringUtils.isBlank(text) ? "" : HtmlParser.sanitizeHTML(text);
   }
