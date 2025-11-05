@@ -17,6 +17,7 @@ public class CustomizedIvyDocumentTransformer {
     result.setId(String.valueOf(document.getId()));
     result.setName(document.getName());
     result.setPath(document.getPath().asString());
+    result.setRelativePath(document.getRelativePath().asString());
     result.setSize(document.getSize());
     result.setCreation(document.getCreation());
     result.setLastModification(document.getLastModification());

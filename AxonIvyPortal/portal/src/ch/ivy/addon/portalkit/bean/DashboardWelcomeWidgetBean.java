@@ -22,6 +22,7 @@ import ch.ivy.addon.portalkit.dto.dashboard.WelcomeDashboardWidget;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.enums.WelcomeTextPosition;
+import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
 import ch.ivy.addon.portalkit.jsf.Attrs;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
 import ch.ivy.addon.portalkit.support.HtmlParser;
@@ -139,7 +140,6 @@ public class DashboardWelcomeWidgetBean implements Serializable {
       welcomeWidget.setWelcomeText(newWelcomeText.concat(welcomeWidget.getWelcomeText()));
       return;
     }
-
     if (StringUtils.isBlank(originWelcomeText)) {
       welcomeWidget
           .setWelcomeText(String.join(SPACE, greetingTextLocalized, Ivy.session().getSessionUser().getDisplayName()));
