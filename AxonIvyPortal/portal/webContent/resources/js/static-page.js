@@ -23,7 +23,7 @@ $(document).ready(() => {
         $('#iFrame').outerHeight(availableHeight);
         windowHeight = window.innerHeight;
       }
-    }, 1000); // Delay execution by 1 sec to avoid send multiple requests
+    }, 1000); // Delay execution by 1 sec to avoid multiple DOM recalculations during resize
   });
 });
 
