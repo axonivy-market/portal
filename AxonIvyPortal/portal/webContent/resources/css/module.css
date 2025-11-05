@@ -5161,7 +5161,7 @@ body.light .image-process-container .image-process-item .card-item.card.image-wi
    img.image-process-item-image {
     height: 100% !important;
   }
-  
+
   .image-view-form {
     bottom: 0px !important;
     padding-bottom: 0px !important;
@@ -5170,11 +5170,11 @@ body.light .image-process-container .image-process-item .card-item.card.image-wi
 
 @container image-process-widget-container ( 100px <= height < 200px) {
    img.image-process-item-image {
-    display: none !important;
+    height: 100% !important;
   }
   
   .image-process-container .image-process-item .card-item.card.image-widget-mode .image-process-item-container {
-    height: 0% !important;
+    height: 40% !important;
   }
   
   .image-process-actions {
@@ -5190,19 +5190,34 @@ body.light .image-process-container .image-process-item .card-item.card.image-wi
     -webkit-box-orient: vertical;
   }
   
-  .image-view-form {
-    height: 15vh !important;
-  }
+    .image-view-form {
+        height: 15vh !important;
+        bottom: 0px !important;
+    }
 }
 
 @container image-process-widget-container ( height < 100px) {
-   img.image-process-item-image, .process-name, .process-description {
-    display: none !important;
-  }
+    img.image-process-item-image, .process-name, .process-description {
+        display: none !important;
+    }
   
-  .image-view-form {
-    bottom: 0px !important;
-  }
+    .image-view-form {
+        bottom: 0px !important;
+    }
+}
+
+@container image-process-widget-container ( width <= 200px) {
+    .image-process-item .card.image-widget-mode .process-name {
+        padding: 0 !important;
+    }
+
+    .image-process-item .process-name .process-image-view-name {
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        display: block;
+        overflow: hidden;
+        padding: 0.6rem;
+    }
 }
 
 @supports (-webkit-touch-callout: none) {
