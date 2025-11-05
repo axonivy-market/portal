@@ -5126,9 +5126,10 @@ body.light .image-process-container .image-process-item .card-item.card.image-wi
   display: none;
 }
 
-.image-process-container .image-process-item .card-item.card.image-widget-mode .image-view-form .process-description{
+.image-process-container .image-process-item .card-item.card.image-widget-mode .image-view-form .process-description {
   container-type: size;
   container-name: process-description-container;
+  height: 100%;
 }
 
 .image-process-container .image-process-item .card-item.card.image-widget-mode {
@@ -5136,8 +5137,15 @@ body.light .image-process-container .image-process-item .card-item.card.image-wi
   container-name: image-process-widget-container;
 }
 
-.image-process-container .image-process-item .card-item.card.image-widget-mode .image-view-form .process-description {
-  height: 100%;
+/* Shared text truncation styles */
+.image-view-form .process-description .process-item-description,
+.image-view-form .process-name .process-image-view-name {
+  max-height: 4.2em;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 
 @container process-description-container (height < 100px) {
@@ -5158,66 +5166,78 @@ body.light .image-process-container .image-process-item .card-item.card.image-wi
 }
 
 @container image-process-widget-container (200px <= height < 300px) {
-   img.image-process-item-image {
+  img.image-process-item-image {
     height: 100% !important;
   }
 
   .image-view-form {
-    bottom: 0px !important;
-    padding-bottom: 0px !important;
+    bottom: 0 !important;
+    padding-bottom: 0 !important;
   }
 }
 
-@container image-process-widget-container ( 100px <= height < 200px) {
-   img.image-process-item-image {
+@container image-process-widget-container (100px <= height < 200px) {
+  img.image-process-item-image {
     height: 100% !important;
   }
-  
+
   .image-process-container .image-process-item .card-item.card.image-widget-mode .image-process-item-container {
     height: 40% !important;
   }
-  
+
   .image-process-actions {
     padding-bottom: 0 !important;
+    position: absolute;
+    bottom: inherit;
   }
-  
-  .image-view-form .process-description .process-item-description {
-    max-height: 4.2em;
+
+  .image-view-form {
+    height: 15vh !important;
+    bottom: 0 !important;
+  }
+}
+
+@container image-process-widget-container (height < 100px) {
+  img.image-process-item-image {
+    height: 4rem !important;
+  }
+
+  .image-process-item .process-name .process-image-view-name {
+    position: absolute;
+    left: 0.5rem;
+    width: 60%;
+    white-space: nowrap;
     text-overflow: ellipsis;
+    display: block;
     overflow: hidden;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
+    z-index: 1;
+  }
+
+  .image-view-form {
+    bottom: 0 !important;
+  }
+
+  .image-process-actions,
+  .start-process {
+    position: absolute;
+  }
+}
+
+@container image-process-widget-container (width <= 200px) {
+  .image-process-item .card.image-widget-mode .process-name {
+    padding: 0.5em !important;
+  }
+}
+
+@container image-process-widget-container (width <= 200px) and (height < 100px) {
+  img.image-process-item-image {
+    display: none !important;
   }
   
-    .image-view-form {
-        height: 15vh !important;
-        bottom: 0px !important;
-    }
-}
-
-@container image-process-widget-container ( height < 100px) {
-    img.image-process-item-image, .process-name, .process-description {
-        display: none !important;
-    }
-  
-    .image-view-form {
-        bottom: 0px !important;
-    }
-}
-
-@container image-process-widget-container ( width <= 200px) {
-    .image-process-item .card.image-widget-mode .process-name {
-        padding: 0 !important;
-    }
-
-    .image-process-item .process-name .process-image-view-name {
-        white-space: nowrap;
-        text-overflow: ellipsis;
-        display: block;
-        overflow: hidden;
-        padding: 0.6rem;
-    }
+  .process-name, .image-process-actions {
+    align-items: center;
+    display: flex;
+  }
 }
 
 @supports (-webkit-touch-callout: none) {
