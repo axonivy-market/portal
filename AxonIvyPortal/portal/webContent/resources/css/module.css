@@ -5173,6 +5173,14 @@ body.light .image-process-container .image-process-item .card-item.card.image-wi
     display: none !important;
   }
   
+  .image-process-container .image-process-item .card-item.card.image-widget-mode .image-process-item-container {
+    height: 0% !important;
+  }
+  
+  .image-process-actions {
+    padding-bottom: 0 !important;
+  }
+  
   .image-view-form .process-description .process-item-description {
     max-height: 4.2em;
     text-overflow: ellipsis;
@@ -5183,7 +5191,6 @@ body.light .image-process-container .image-process-item .card-item.card.image-wi
   }
   
   .image-view-form {
-    bottom: 0px !important;
     height: 15vh !important;
   }
 }
