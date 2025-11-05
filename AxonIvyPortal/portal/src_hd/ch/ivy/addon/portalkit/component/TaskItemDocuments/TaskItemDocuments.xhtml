@@ -147,7 +147,7 @@
   </p:dialog>
   
   <p:dialog widgetVar="preview-document-dialog" id="preview-document-dialog" appendTo="@(body)" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/PreviewDocument')}" 
-    width="70vw" modal="true" maximizable="true" showEffect="fade" hideEffect="fade" dynamic="true" fitViewport="true" responsive="true" resizable="false">
+    width="70vw" modal="true" showEffect="fade" hideEffect="fade" dynamic="true" fitViewport="true" responsive="true" resizable="false">
     <div class="ui-g-12">
       <p:media value="#{data.streamedContent}" width="100%" height="600" cache="false" id="media-content" player="pdf" rendered="#{!data.isImage}"/>
       <p:graphicImage value="#{data.streamedContent}" stream="true" height="600" width="100%" rendered="#{data.isImage}" styleClass="preview-image" cache="false"/>
