@@ -1650,3 +1650,7 @@ body.dark .focused {
 .breadcrumb-current-item .js-count.has-count {
   color: var(--text-color)
 }
+
+.preview-image{
+  object-fit:contain;
+}
