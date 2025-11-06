@@ -12,6 +12,8 @@ import ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.TaskColumnModel;
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
+import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
+import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 import ch.ivy.addon.portalkit.util.DefaultDashboardUtils;
 
 public class TaskDrillDownService extends AbstractDrillDownService {
@@ -35,7 +37,10 @@ public class TaskDrillDownService extends AbstractDrillDownService {
 
   @Override
   protected Dashboard getDrillDownDashboard() {
-    return DefaultDashboardUtils.getTaskDrillDownDashboard();
+    Dashboard taskDrillDownDashboard = DefaultDashboardUtils.getTaskDrillDownDashboard();
+    taskDrillDownDashboard.getWidgets().getFirst().setName("Drill-down task widget");
+    taskDrillDownDashboard.getWidgets().getFirst().setId(DashboardWidgetUtils.generateNewWidgetId(DashboardWidgetType.TASK));
+    return taskDrillDownDashboard;
   }
 
   @Override

@@ -12,6 +12,8 @@ import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.casecolumn.CaseColumnModel;
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
+import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
+import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 import ch.ivy.addon.portalkit.util.DefaultDashboardUtils;
 
 public class CaseDrillDownService extends AbstractDrillDownService {
@@ -35,7 +37,10 @@ public class CaseDrillDownService extends AbstractDrillDownService {
 
   @Override
   protected Dashboard getDrillDownDashboard() {
-    return DefaultDashboardUtils.getCaseDrillDownDashboard();
+    Dashboard caseDrillDownDashboard = DefaultDashboardUtils.getCaseDrillDownDashboard();
+    caseDrillDownDashboard.getWidgets().getFirst().setName("Drill-down case widget");
+    caseDrillDownDashboard.getWidgets().getFirst().setId(DashboardWidgetUtils.generateNewWidgetId(DashboardWidgetType.CASE));
+    return caseDrillDownDashboard;
   }
 
   @Override
