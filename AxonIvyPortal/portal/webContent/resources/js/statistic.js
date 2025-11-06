@@ -897,7 +897,13 @@ class ClientNumberChart extends ClientChart {
     $(this.chart).parents('.statistic-chart-widget__chart').addClass('client-number-chart');
     let multipleKPI = this.renderMultipleNumberChartInHTML(result, config.numberChartConfig.suffixSymbol, config.chartTarget);
     $(this.chart).html(multipleKPI);
-    this.chart.chartInstance = this; // chart instance reference for click handling
+    
+    if (this.canDrillDown()) {
+      $(this.chart).find('.chart-content-card-clickable').each((index, element) => {
+        element.addEventListener('click', (event) => this.handleNumberCardClick(element, event));
+      });
+    }
+    
     return $(this.chart);
   }
 
@@ -935,13 +941,9 @@ class ClientNumberChart extends ClientChart {
   generateItemHtml(label, number, suffixSymbol, index, counting) {
     let border = '<div class="chart-border">' + '</div>';
     label = this.data.chartConfig.numberChartConfig?.hideLabel === true ? '' : this.formatChartLabel(label) ;
-    
-    const isDrillDownEnabled = this.canDrillDown();
-    const isClickable = isDrillDownEnabled ? 'chart-content-card-clickable' : '';
-    const clickHandler = isDrillDownEnabled ? `data-index="${index}" onclick="this.closest('.js-statistic-chart').chartInstance.handleNumberCardClick(this, event)"` : '';
-    
+    const isClickable = this.canDrillDown() ? 'chart-content-card-clickable' : '';
     let html =
-      `<div class="text-center chart-content-card ${isClickable}" ${clickHandler}>` +
+      `<div class="text-center chart-content-card ${isClickable}" data-index="${index}">` +
       '    <div class="chart-number-container">' +
       '        <span class="card-number chart-number-font-size chart-number-animation">' + number + '</span>' +
       '        <i class="card-number chart-number-font-size chart-number-animation ' + suffixSymbol + '"></i>' +
@@ -1003,7 +1005,7 @@ class ClientNumberChart extends ClientChart {
       return;
     }
 
-  const cardIndex = parseInt(cardElement.getAttribute('data-index'));
+    const cardIndex = parseInt(cardElement.getAttribute('data-index'));
     const item = this.dataResult[cardIndex];
     const drillDownData = {
       chartId: this.data.chartConfig.id,

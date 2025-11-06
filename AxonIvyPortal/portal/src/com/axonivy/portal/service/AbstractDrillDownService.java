@@ -1,6 +1,11 @@
 package com.axonivy.portal.service;
 
+import java.time.DayOfWeek;
 import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.ZoneId;
+import java.time.temporal.TemporalAdjusters;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -9,9 +14,13 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.bo.Statistic;
+import com.axonivy.portal.bo.StatisticAggregation;
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 import com.axonivy.portal.enums.dashboard.filter.FilterOperator;
+import com.axonivy.portal.enums.statistic.AggregationField;
+import com.axonivy.portal.enums.statistic.AggregationInterval;
 
+import ch.ivy.addon.portalkit.dto.dashboard.AbstractColumn;
 import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
@@ -21,9 +30,7 @@ import ch.ivyteam.ivy.environment.Ivy;
 
 public abstract class AbstractDrillDownService {
 
-  private static final String DEFAULT_COLUMN_WIDTH = "120";
-  private static final List<String> ALL_AGGREGATION_DATE_FIELDS =
-      Arrays.asList("startTimestamp", "endTimestamp", "expiryTimestamp");
+  private static final String DEFAULT_COLUMN_WIDTH = String.valueOf(AbstractColumn.NORMAL_WIDTH);
 
   public void createDrillDownDashboardInSession(Statistic statistic, String drillDownValue) {
     Dashboard drillDownDashboard = getDrillDownDashboard();
@@ -40,16 +47,39 @@ public abstract class AbstractDrillDownService {
     DashboardFilter drillDownFilter = new DashboardFilter();
     drillDownFilter.setFilterType(DashboardColumnType.STANDARD);
     drillDownFilter.setField(getDashboardFilterFieldByAggregationField(chart.getStatisticAggregation().getField()));
-    if (ALL_AGGREGATION_DATE_FIELDS.contains(chart.getStatisticAggregation().getField())
-        || (DashboardColumnType.CUSTOM == chart.getStatisticAggregation().getType()
-            && chart.getStatisticAggregation().getInterval() != null)) {
-      drillDownFilter.setOperator(FilterOperator.IS);
-      drillDownFilter.setFromDate(Date.from(Instant.parse(drillDownValue)));
+    if (isTimestampAggregation(chart.getStatisticAggregation())) {
+      setFilterForTimestampAggregation(drillDownValue, chart.getStatisticAggregation().getInterval(), drillDownFilter);
     } else {
       drillDownFilter.setOperator(FilterOperator.IN);
       drillDownFilter.setValues(Arrays.asList(String.valueOf(drillDownValue)));
     }
     getWidgetFilters(widget).add(drillDownFilter);
+  }
+
+  private boolean isTimestampAggregation(StatisticAggregation aggregation) {
+    boolean isStandardTimestampField = AggregationField.TIMESTAMP_AGGREGATES.contains(aggregation.getField());
+    boolean isCustomTimestampField =
+        DashboardColumnType.CUSTOM == aggregation.getType() && aggregation.getInterval() != null;
+    return isStandardTimestampField || isCustomTimestampField;
+  }
+
+  private void setFilterForTimestampAggregation(String drillDownValue, AggregationInterval interval,
+      DashboardFilter drillDownFilter) {
+    LocalDateTime startDateTime = LocalDateTime.ofInstant(Instant.parse(drillDownValue), ZoneId.systemDefault());
+    drillDownFilter.setFromDate(Date.from(startDateTime.atZone(ZoneId.systemDefault()).toInstant()));
+    switch (interval) {
+      case WEEK, MONTH, YEAR -> {
+        drillDownFilter.setOperator(FilterOperator.BETWEEN);
+        LocalDateTime endDateTime = switch (interval) {
+          case WEEK -> startDateTime.with(TemporalAdjusters.nextOrSame(DayOfWeek.SUNDAY));
+          case MONTH -> startDateTime.with(TemporalAdjusters.lastDayOfMonth());
+          default -> startDateTime.with(TemporalAdjusters.lastDayOfYear()); // YEAR as default
+        };
+        drillDownFilter
+            .setToDate(Date.from(endDateTime.with(LocalTime.MAX).atZone(ZoneId.systemDefault()).toInstant()));
+      }
+      default -> drillDownFilter.setOperator(FilterOperator.IS); // DAY as default
+    }
   }
 
   private void ensureAllRelatedColumnsIncluded(DashboardWidget widget, Statistic chart) {

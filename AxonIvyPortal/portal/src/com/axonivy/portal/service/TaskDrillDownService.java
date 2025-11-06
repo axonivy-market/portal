@@ -51,7 +51,6 @@ public class TaskDrillDownService extends AbstractDrillDownService {
   @Override
   protected ColumnModel createWidgetColumn(DashboardColumnType fieldType, String field) {
     return TaskColumnModel.constructColumn(fieldType, field);
-
   }
 
   @Override
