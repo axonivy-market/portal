@@ -92,6 +92,7 @@ if (document) {
     } else {
       $(eleSearchId).addClass('global-default-search-bar').removeClass('global-large-search-bar').removeClass('global-small-search-bar');
     }
+    $(eleSearchId).val('');
   }
 
   function viewAllResults(tabIndex) {
@@ -141,9 +142,7 @@ if (document) {
       portalGlobalSearch([{name: 'activeTabIndex', value: getTabActiveIndex()}]);
       return false;
     }
-    if ($(searchFormId).is(':hidden')
-        && !(event.altKey && event.key === '5')
-        && event.key !== 'Tab') {
+    if ($(eleSearchId).val().length > 0) {
       $(eleSearchId).click();
     }
     if ($(searchFormId).is(':visible')
