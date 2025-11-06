@@ -143,13 +143,15 @@
   </div>
 
   <f:facet name="footer">
-    <p:commandLink id="new-widget-close-button" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-      styleClass="new-widget-dialog__close-button"
-      value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-      onclick="PF('new-widget-dialog').hide()"
-      process="@this"
-      update="@this"
-      global="false"/>
+    <h:panelGroup layout="block" styleClass="pt-3">
+      <p:commandLink id="new-widget-close-button" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+        styleClass="new-widget-dialog__close-button "
+        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+        onclick="PF('new-widget-dialog').hide()"
+        process="@this"
+        update="@this"
+        global="false"/>
+    </h:panelGroup>
   </f:facet>
 </p:dialog>
 
