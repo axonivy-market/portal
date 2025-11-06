@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZoneId;
 import java.time.temporal.TemporalAdjusters;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -36,17 +37,48 @@ public abstract class AbstractDrillDownService {
     Dashboard drillDownDashboard = getDrillDownDashboard();
     DashboardWidget widget = drillDownDashboard.getWidgets().get(0);
     ensureAllRelatedColumnsIncluded(widget, statistic);
-    addDrillDownValueToWidgetFilters(drillDownValue, statistic, widget);
+//    addDrillDownValueToWidgetFilters(drillDownValue, statistic, widget);
+    
+    
+    List<DashboardFilter> filters = new ArrayList<>();
+    filters.add(buildFilterFromDrillDownValue(statistic.getStatisticAggregation(), drillDownValue));
     if (CollectionUtils.isNotEmpty(statistic.getFilters())) {
+      filters.addAll(filters);
+      if (StringUtils.isNotBlank(drillDownValue)) {
+        
+      }
       addStatisticFiltersToWidgetFilters(widget, statistic.getFilters());
     }
     Ivy.session().setAttribute(SessionAttribute.DRILL_DOWN_DASHBOARD.name(), drillDownDashboard);
   }
+  
+  private DashboardFilter buildFilterFromDrillDownValue(StatisticAggregation statisticAggValue, String drillDownValue) {
+    return switch (statisticAggValue.getType()) {
+      case STANDARD -> {
+        DashboardFilter filter = new DashboardFilter();
+        filter.setFilterType(DashboardColumnType.STANDARD);
+        filter.setField(statisticAggValue.getField());
+        filter.setOperator(getFilterOperator(statisticAggValue.getField()));
+        filter.setValue(drillDownValue);
+        yield filter;
+      }
+      default -> null;
+    };
+  }
+  
+  private FilterOperator getFilterOperator(String field) {
+    if (AggregationField.STRING_AGGREGATION_FIELDS.contains(field)) {
+      return FilterOperator.IS;
+    }
+    return FilterOperator.IN;
+  }
 
   private void addDrillDownValueToWidgetFilters(String drillDownValue, Statistic chart, DashboardWidget widget) {
     DashboardFilter drillDownFilter = new DashboardFilter();
-    drillDownFilter.setFilterType(DashboardColumnType.STANDARD);
-    drillDownFilter.setField(getDashboardFilterFieldByAggregationField(chart.getStatisticAggregation().getField()));
+    StatisticAggregation groupBy = chart.getStatisticAggregation();
+    
+    drillDownFilter.setFilterType(groupBy.getType());
+    drillDownFilter.setField(getDashboardFilterFieldByAggregationField(groupBy.getField()));
     if (isTimestampAggregation(chart.getStatisticAggregation())) {
       setFilterForTimestampAggregation(drillDownValue, chart.getStatisticAggregation().getInterval(), drillDownFilter);
     } else {
@@ -116,8 +148,8 @@ public abstract class AbstractDrillDownService {
 
   protected abstract Dashboard getDrillDownDashboard();
 
-  protected abstract List<DashboardFilter> getWidgetFilters(DashboardWidget widget);
 
+  protected abstract List<DashboardFilter> getWidgetFilters(DashboardWidget widget);
   protected abstract List<? extends ColumnModel> getWidgetColumns(DashboardWidget widget);
 
   protected abstract ColumnModel createWidgetColumn(DashboardColumnType fieldType, String field);
