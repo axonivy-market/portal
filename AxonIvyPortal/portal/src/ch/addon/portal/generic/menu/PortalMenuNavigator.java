@@ -182,9 +182,10 @@ public class PortalMenuNavigator {
 
     List<Dashboard> mainDashboards = DashboardUtils.collectMainDashboards();
     for (Dashboard dashboard : mainDashboards) {
-      if (isDefaultTaskCaseListDashboardButNoAccessPermission(dashboard)) {
+      if (isDefaultTaskCaseListDashboardButNoAccessPermission(dashboard) || !DashboardUtils.canSessionUserAccessDashboard(dashboard)) {
         continue;
       }
+
       subMenuItems.add(convertDashboardToSubMenuItem(dashboard, currentLanguage));
     }
 

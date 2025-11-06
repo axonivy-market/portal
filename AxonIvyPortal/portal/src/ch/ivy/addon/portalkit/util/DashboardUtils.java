@@ -76,6 +76,22 @@ public class DashboardUtils {
     return Strings.CS.startsWith(permission, "#") ? Strings.CS.equals(currentUser().getMemberName(), permission)
         : PermissionUtils.doesSessionUserHaveRole(permission);
   }
+  
+  public static boolean canSessionUserAccessDashboard(Dashboard dashboard) {
+    if (Optional.ofNullable(dashboard).map(Dashboard::getPermissions).isEmpty()) {
+      return false;
+    }
+    if (dashboard.getPermissions().contains(ISecurityConstants.TOP_LEVEL_ROLE_NAME)) {
+      return true;
+    }
+
+    for (String permission : dashboard.getPermissions()) {
+      if (isSessionUserHasPermisson(permission)) {
+        return true;
+      }
+    }
+    return false;
+  }
 
   public static List<Dashboard> jsonToDashboards(String dashboardJSON) {
     if (StringUtils.isBlank(dashboardJSON)) {
