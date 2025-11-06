@@ -559,7 +559,7 @@ public class DashboardBean implements Serializable, IMultiLanguage {
   }
 
   private StringBuilder appendFieldNameList(List<String> fieldList) {
-    return new StringBuilder(String.join(", ", fieldList));
+    return new StringBuilder(String.join(Ivy.cms().co("/Labels/Comma"), fieldList));
 }
 
   public String getSearchScope() {

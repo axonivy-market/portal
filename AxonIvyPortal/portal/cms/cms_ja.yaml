@@ -775,7 +775,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     NoWidgetAvailable: ウィジェットがありません。
     QuickSearch: クイック検索
     QuickSearchInfo: ウィジェットの列管理で、クイック検索の範囲をカスタマイズできます。「含む」に基づいて検索しますが、多数の列を追加する場合はパフォーマンスに注意してください。
-    QuickSearchScope: 'TODO: Search Scope: {0}'
+    QuickSearchScope: '検索範囲: {0}'
     RestoreDefaultDashboardMessage: 続行すると、自分で作成したすべてのウィジェットが失われます。<span class="dashboard-template-name-message">{0}</span> の標準設定が適用されます。
     SaveNewWidgetFilterHeader: 新しいウィジェットフィルターを保存
     SavedFilterHeader: 保存されたフィルター
@@ -1737,7 +1737,7 @@ Labels:
   AppendTheTask: タスクを追加
   Chat: TODO Chat
   Collapse: TODO 折りたたむ
-  Comma: 'TODO: , '
+  Comma: "、\n "
   Configuration: 設定
   CreateNewDashboard: 新しいダッシュボードを作成
   Description: 説明
