@@ -144,5 +144,5 @@ body.serenity .document-table-component .upload-container .ui-widget.ui-outputla
   gap: 10px;
 }
 .preview-image{
-  object-fit:contain;
+  object-fit: contain;
 }

@@ -1652,5 +1652,5 @@ body.dark .focused {
 }
 
 .preview-image{
-  object-fit:contain;
+  object-fit: contain;
 }
