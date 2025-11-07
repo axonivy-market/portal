@@ -215,7 +215,7 @@
         </p:dialog>
         
         <!-- START DIALOG TO CONFIGURE SIDE STEP PROCESSES -->
-        <p:dialog id="side-step-process-dialog" resizable="false" closeOnEscape="true" 
+        <p:dialog id="side-step-process-dialog" resizable="false" onHide="resetDataSideStep();" 
           header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/SideStep/SideStepProcess')}" width="650px" 
           rendered="#{sideStepProcessBean.isRendered(currentTask)}" widgetVar="side-step-process-dialog" appendTo="@(body)" modal="true"
           dynamic="true" responsive="true">
@@ -307,9 +307,7 @@
                 actionListener="#{sideStepProcessBean.handleSelectProcess()}"
                 oncomplete="if (!args.validationFailed) {PF('side-step-process-dialog').hide();resetDataSideStep();}"
                 update="side-step-process-form"
-                form="side-step-process-form">
-                <p:resetInput target="side-step-process-dialog"/>
-              </p:commandButton>
+                form="side-step-process-form" />
               <div class="w-full flex justify-content-center mt-2">
                 <p:commandLink id="side-step-process-cancel-button"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
@@ -320,7 +318,7 @@
               </div>
             </div>
           </f:facet>
-          <p:remoteCommand name="resetDataSideStep" actionListener="#{sideStepProcessBean.resetData()}" process="@this" immediate="true" update="side-step-process-dialog"/>
+          <p:remoteCommand name="resetDataSideStep" actionListener="#{sideStepProcessBean.resetData()}" update="side-step-process-dialog" resetValues="true"/>
         </p:dialog>
         <!-- END DIALOG TO CONFIGURE SIDE STEP PROCESSES -->
   
