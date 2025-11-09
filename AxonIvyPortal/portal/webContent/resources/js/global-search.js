@@ -16,6 +16,7 @@ if (document) {
   const PROCESS_TAB = 'PROCESS_TAB';
   const TASK_TAB = 'TASK_TAB';
   const CASE_TAB = 'CASE_TAB';
+  const numberShortcuts = ['1', '2', '3', '4', '5', '6', '7'];
   const requestInit = body => {
     return {
       method: "POST",
@@ -92,7 +93,6 @@ if (document) {
     } else {
       $(eleSearchId).addClass('global-default-search-bar').removeClass('global-large-search-bar').removeClass('global-small-search-bar');
     }
-    $(eleSearchId).val('');
   }
 
   function viewAllResults(tabIndex) {
@@ -143,8 +143,8 @@ if (document) {
       return false;
     }
 
-    if ($(eleSearchId).val().length > 0) {
-      $(eleSearchId).click();
+    if ($(searchFormId).is(':hidden') && event.key !== 'Tab' && !(event.altKey && numberShortcuts.includes(event.key))) {
+          $(eleSearchId).click();
     }
 
     if ($(searchFormId).is(':visible')
