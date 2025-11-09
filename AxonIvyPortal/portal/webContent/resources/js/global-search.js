@@ -93,7 +93,6 @@ if (document) {
     } else {
       $(eleSearchId).addClass('global-default-search-bar').removeClass('global-large-search-bar').removeClass('global-small-search-bar');
     }
-    $(eleSearchId).val('');
   }
 
   function viewAllResults(tabIndex) {
