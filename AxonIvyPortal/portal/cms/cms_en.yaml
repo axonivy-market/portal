@@ -1600,6 +1600,7 @@ Labels:
   AppendTheTask: Append the task
   Chat: Chat
   Collapse: Collapse
+  Comma: ','
   CreateNewDashboard: Create new dashboard
   EditDescription: Edit description
   EnterFromValue: Enter from value

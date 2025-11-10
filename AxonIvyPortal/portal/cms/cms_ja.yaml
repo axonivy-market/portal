@@ -1595,6 +1595,7 @@ Labels:
   AppendTheTask: タスクを追加
   Chat: TODO Chat
   Collapse: TODO 折りたたむ
+  Comma: '、'
   CreateNewDashboard: 新しいダッシュボードを作成
   EditDescription: 説明を編集
   EnterFromValue: TODO Enter from value
