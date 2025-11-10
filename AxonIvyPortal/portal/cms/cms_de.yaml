@@ -860,8 +860,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     customFieldType: Benutzerdefinierter Feldtyp
     dashboardManagement:
       CreateDashboard: Dashboard erstellen
-      DashboardPermissionRequiredMessage: 'Berechtigungen: Dies ist ein Pflichtfeld'
-      DashboardTitleRequiredMessage: 'Dashboard Titel: Dies ist ein Pflichtfeld'
       addDashboard: Dashboard hinzufügen
       dashboardIcon: Dashboard-Symbol
       dashboardPermission: Dashboard Berechtigung
@@ -870,6 +868,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       editDashboard: Dashboard editieren
       manageDashboard: Dashboard verwalten
       removeDashboardHeader: Dashboard "{0}" entfernen
+      requiredFieldMessage: '{0} ist erforderlich'
     deleteWidget: Widget löschen
     downloadZipFileExplanation: Wenn die Anzahl der zu exportierenden Elemente die Anzahl der Excel-Zeilen übersteigt, werden die Daten in mehrere Excel-Dateien aufgeteilt und anschließend in einer ZIP-Datei zum Herunterladen komprimiert.
     editWidget: Widget bearbeiten

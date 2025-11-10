@@ -858,8 +858,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     customFieldType: Tipo de campo personalizado
     dashboardManagement:
       CreateDashboard: Crear tablero
-      DashboardPermissionRequiredMessage: 'Permiso: este campo es obligatorio'
-      DashboardTitleRequiredMessage: 'Título del tablero: este campo es obligatorio'
       addDashboard: Añadir tablero
       dashboardIcon: Icono del panel de control
       dashboardPermission: Permiso de tablero
@@ -868,6 +866,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       editDashboard: Editar tablero
       manageDashboard: Administrar tablero
       removeDashboardHeader: Borrar el tablero "{0}"
+      requiredFieldMessage: '{0} es necesario'
     deleteWidget: Eliminar el widget
     downloadZipFileExplanation: Si el número de elementos a exportar supera el límite de filas de Excel, los datos se dividirán en varios archivos Excel y, a continuación, se comprimirán en un archivo ZIP para su descarga.
     editWidget: Editar widget

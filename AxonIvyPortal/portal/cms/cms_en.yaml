@@ -856,8 +856,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     customFieldType: Custom Field Type
     dashboardManagement:
       CreateDashboard: Create Dashboard
-      DashboardPermissionRequiredMessage: 'Permissions: This field is required'
-      DashboardTitleRequiredMessage: 'Dashboard title: This field is required'
       addDashboard: Add dashboard
       dashboardIcon: Dashboard icon
       dashboardPermission: Dashboard permission
@@ -866,6 +864,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       editDashboard: Edit dashboard
       manageDashboard: Manage dashboard
       removeDashboardHeader: Remove the "{0}" dashboard
+      requiredFieldMessage: '{0} is required'
     deleteWidget: Delete widget
     downloadZipFileExplanation: If the number of items to export exceeds the limit of Excel rows, data will be split to multiple Excel files, then compressed in a ZIP file to download.
     editWidget: Edit widget
