@@ -29,6 +29,7 @@ import ch.ivy.addon.portalkit.dto.dashboard.CompactProcessDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardTemplate;
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
+import ch.ivy.addon.portalkit.dto.dashboard.ProcessDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.SingleProcessDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.WidgetFilterModel;
@@ -446,25 +447,25 @@ public class DashboardBean implements Serializable {
   }
 
   public void setSearchScope(DashboardWidget widget) {
+    List<String> columnList = new ArrayList<>();
     if (widget instanceof TaskDashboardWidget taskWidget) {
-      this.searchScope = getSearchScopeFromWidget(taskWidget.getFilterableColumns());
+      columnList = taskWidget.getColumns().stream().filter(col -> Boolean.TRUE.equals(col.getQuickSearch()))
+          .map(ColumnModel::getHeaderText).collect(Collectors.toList());
+    } else if (widget instanceof CaseDashboardWidget caseWidget) {
+      columnList = caseWidget.getColumns().stream().filter(col -> Boolean.TRUE.equals(col.getQuickSearch()))
+          .map(ColumnModel::getHeaderText).collect(Collectors.toList());
+    } else if (widget instanceof ProcessDashboardWidget processWidget) {
+      columnList = processWidget.getFilterableColumns().stream().filter(col -> Boolean.TRUE.equals(col.getQuickSearch()))
+          .map(ColumnModel::getHeaderText).collect(Collectors.toList());
     }
     
-    if (widget instanceof CaseDashboardWidget caseWidget) {
-      this.searchScope = getSearchScopeFromWidget(caseWidget.getFilterableColumns());
+    if (columnList.isEmpty()) {
+      this.searchScope = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/NoColumnsEnabledForQuickSearch");
+    } else {
+      StringBuilder fieldNameList = appendFieldNameList(columnList);
+      this.searchScope = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/QuickSearchScope",
+          Arrays.asList(fieldNameList.toString()));
     }
-
-    if (widget instanceof CompactProcessDashboardWidget caseWidget) {
-      this.searchScope = getSearchScopeFromWidget(caseWidget.getFilterableColumns());
-    }
-  }
-
-  private String getSearchScopeFromWidget(List<ColumnModel> filterableColumns) {
-    List<String> fieldList = filterableColumns.stream().filter(col -> Boolean.TRUE.equals(col.getQuickSearch()))
-        .map(ColumnModel::getHeaderText).collect(Collectors.toList());
-    StringBuilder fieldNameList = appendFieldNameList(fieldList);
-    return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/QuickSearchScope",
-        Arrays.asList(fieldNameList.toString()));
   }
 
   private StringBuilder appendFieldNameList(List<String> fieldList) {
