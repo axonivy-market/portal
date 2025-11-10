@@ -1717,6 +1717,7 @@ Labels:
   Permissions: Berechtigungen
   PinnedCases: Angeheftete Fälle
   PinnedTasks: Angehängte Aufgaben
+  RequiredFieldMessage: '{0} ist erforderlich'
   SelectOperator: Operator auswählen
   SelectValues: Werte auswählen
   Share: Teilen
@@ -1726,7 +1727,6 @@ Labels:
   ToggleMenu: Menü umschalten
   ViewAllResults: Alle Ergebnisse anzeigen
   disabledUserPrefix: (inaktiv)
-  requiredFieldMessage: '{0} ist erforderlich'
 patterns:
   datePattern: dd.MM.yyyy
   dateTimePattern: dd.MM.yyyy HH:mm

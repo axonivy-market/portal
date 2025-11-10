@@ -1710,6 +1710,7 @@ Labels:
   Permissions: Permissions
   PinnedCases: Pinned Cases
   PinnedTasks: Pinned Tasks
+  RequiredFieldMessage: '{0} is required'
   SelectOperator: Select Operator
   SelectValues: Select values
   Share: Share
@@ -1719,7 +1720,6 @@ Labels:
   ToggleMenu: Toggle menu
   ViewAllResults: View all results
   disabledUserPrefix: (disabled)
-  requiredFieldMessage: '{0} is required'
 patterns:
   datePattern: dd.MM.yyyy
   dateTimePattern: dd.MM.yyyy HH:mm

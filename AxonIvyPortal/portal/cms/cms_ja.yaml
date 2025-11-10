@@ -1705,6 +1705,7 @@ Labels:
   Permissions: 権限
   PinnedCases: 'TODO: Pinned Cases'
   PinnedTasks: 'TODO: Pinned Tasks'
+  RequiredFieldMessage: '{0} が必要です'
   SelectOperator: TODO Choose Operator
   SelectValues: TODO Select values
   Share: 共有
@@ -1714,7 +1715,6 @@ Labels:
   ToggleMenu: メニューを切り替える
   ViewAllResults: すべての結果を表示
   disabledUserPrefix: （無効）
-  requiredFieldMessage: '{0} が必要です'
 patterns:
   datePattern: dd.MM.yyyy
   dateTimePattern: dd.MM.yyyy HH:mm
