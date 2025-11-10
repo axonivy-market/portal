@@ -62,7 +62,7 @@ public class HomepageUtils {
     Homepage homepage = new Homepage();
     String homepageName = getHomepageId();
     if (StringUtils.isBlank(homepageName)) {
-      homepage.setName(StringUtils.EMPTY);
+      homepage.setName("");
       return homepage;
     }
 
