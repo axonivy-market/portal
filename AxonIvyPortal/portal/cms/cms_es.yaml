@@ -1714,7 +1714,7 @@ Labels:
   Permissions: Permiso
   PinnedCases: Casos fijados
   PinnedTasks: Tareas fijadas
-  RequiredFieldMessage: '{0} es necesario'
+  RequiredFieldMessage: '{0}: Valor requerido'
   SelectOperator: Seleccionar operador
   SelectValues: Seleccionar valores
   Share: Compartir

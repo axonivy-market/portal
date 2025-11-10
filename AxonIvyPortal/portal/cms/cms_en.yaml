@@ -1710,7 +1710,7 @@ Labels:
   Permissions: Permissions
   PinnedCases: Pinned Cases
   PinnedTasks: Pinned Tasks
-  RequiredFieldMessage: '{0} is required'
+  RequiredFieldMessage: '{0}: Value is required'
   SelectOperator: Select Operator
   SelectValues: Select values
   Share: Share

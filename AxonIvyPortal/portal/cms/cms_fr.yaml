@@ -1714,7 +1714,7 @@ Labels:
   Permissions: Permissions
   PinnedCases: Cas épinglés
   PinnedTasks: Tâches épinglées
-  RequiredFieldMessage: '{0} est nécessaire'
+  RequiredFieldMessage: '{0} : La valeur est obligatoire'
   SelectOperator: Sélectionner l'opérateur
   SelectValues: Sélectionner les valeurs
   Share: Partager
