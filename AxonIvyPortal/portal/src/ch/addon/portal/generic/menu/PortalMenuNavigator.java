@@ -113,13 +113,13 @@ public class PortalMenuNavigator {
       if (CollectionUtils.isEmpty(permissions)) {
         return false;
       }
-      return permissions.stream().noneMatch(PortalMenuNavigator::isSessionUserHasPermisson);
+      return permissions.stream().noneMatch(PortalMenuNavigator::isSessionUserHasPermission);
     });
     Collections.sort(applications, new ApplicationIndexAscendingComparator());
     return applications;
   }
 
-  private static boolean isSessionUserHasPermisson(String permission) {
+  private static boolean isSessionUserHasPermission(String permission) {
     return Strings.CS.startsWith(permission, "#")
         ? Strings.CS.equals(Ivy.session().getSessionUser().getMemberName(), permission)
         : PermissionUtils.doesSessionUserHaveRole(permission);
