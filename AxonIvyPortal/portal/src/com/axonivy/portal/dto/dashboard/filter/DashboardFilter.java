@@ -28,6 +28,9 @@ public class DashboardFilter extends BaseFilter implements Serializable {
   public static final String APPLICATION = "application";
   
   @JsonIgnore
+  public static final String CATEGORY = "category";
+  
+  @JsonIgnore
   private FilterField filterField;
 
   @JsonIgnore
@@ -74,6 +77,11 @@ public class DashboardFilter extends BaseFilter implements Serializable {
   @JsonIgnore 
   public boolean isApplication() {
     return APPLICATION.equals(getField());
+  }
+  
+  @JsonIgnore
+  public boolean isCategory() {
+    return CATEGORY.equals(getField());
   }
 
   @JsonIgnore
