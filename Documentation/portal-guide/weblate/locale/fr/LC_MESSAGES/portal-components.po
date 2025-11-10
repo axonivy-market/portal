@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Portal Guide ${revision}\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-19 08:12+0000\n"
+"POT-Creation-Date: 2025-11-10 10:42+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: fr\n"
@@ -34,7 +34,7 @@ msgstr ""
 msgid "|document-table|"
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:283
+#: ../../source/portal-components/document-table/index.rst:292
 msgid "document-table"
 msgstr ""
 
@@ -901,6 +901,30 @@ msgstr ""
 msgid ""
 "Please remove redundant overridden configurations, subprocesses, and data"
 " classes such as GetDocumentListOverride, UploadDocumentOverride, etc."
+msgstr ""
+
+#: ../../source/portal-components/document-table/index.rst:284
+msgid "Release Notes"
+msgstr ""
+
+#: ../../source/portal-components/document-table/index.rst:287
+msgid "Changes in 12.0.9"
+msgstr ""
+
+#: ../../source/portal-components/document-table/index.rst:289
+msgid ""
+"Introduced **Renaming Document** feature for Document Table component. "
+"Follow instructions in :ref:`Customize <components-portal-components-"
+"migrate-from-old-document-table>` section to create a callable subprocess"
+" to customize the renaming behavior if needed."
+msgstr ""
+
+#: ../../source/portal-components/document-table/index.rst:290
+msgid ""
+"Enhanced the document preview feature for the task and case detail. If "
+"you have :dev-url:`DocFactory <https://market.axonivy.com/doc-factory"
+"#tab-description>` in the same security context, you can preview "
+"Word(doc, docx), Excel(xls, xlsx) and email(eml) documents."
 msgstr ""
 
 #: ../../source/portal-components/index.rst:4
