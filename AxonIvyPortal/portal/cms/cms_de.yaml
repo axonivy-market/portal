@@ -860,6 +860,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     customFieldType: Benutzerdefinierter Feldtyp
     dashboardManagement:
       CreateDashboard: Dashboard erstellen
+      DashboardPermissionRequiredMessage: 'Berechtigungen: Dies ist ein Pflichtfeld'
+      DashboardTitleRequiredMessage: 'Dashboard Titel: Dies ist ein Pflichtfeld'
       addDashboard: Dashboard hinzufügen
       dashboardIcon: Dashboard-Symbol
       dashboardPermission: Dashboard Berechtigung
