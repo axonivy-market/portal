@@ -250,6 +250,13 @@ Code Example:
 Migration Notes
 ^^^^^^^^^^^^^^^
 
+Migrate 10.0.x to 10.0.31
+-------------------------
+
+Since 10.0.31, Portal introduces **Renaming Document** feature for Document Table component.
+Follow instructions in :ref:`Customize <components-portal-components-migrate-from-old-document-table>` section to create
+a callable subprocess to customize the renaming behavior if needed.
+
 Migrate 10.0.x to 10.0.12
 -------------------------
 
