@@ -1,14 +1,14 @@
 package com.axonivy.portal.dto.dashboard;
 
+import ch.ivyteam.ivy.notification.web.WebNotifications;
 import com.axonivy.portal.datamodel.NotificationLazyModel;
 import com.axonivy.portal.dto.NotificationDto;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.dto.WidgetLayout;
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
-import ch.ivyteam.ivy.notification.web.WebNotifications;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class NotificationDashboardWidget extends DashboardWidget {
 
