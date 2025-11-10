@@ -182,12 +182,12 @@
   <!-- Set closable=false to force close stream by clicking Close button -->
   <p:dialog widgetVar="preview-document-dialog" id="preview-document-dialog" appendTo="@(body)" 
       header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/PreviewDocument')}" 
-      modal="true" showEffect="fade" hideEffect="fade" width="70vw" closable="false"
-      dynamic="true" fitViewport="true" responsive="true">
+      modal="true" showEffect="fade" hideEffect="fade" width="70vw" closable="false" maximizable="true"
+      dynamic="true" fitViewport="true" responsive="true" resizable="false">
     <div class="ui-g-12">
       <p:media value="#{data.streamedContent}" width="100%" height="600" cache="false" id="media-content" player="pdf" rendered="#{!data.isImage}"/>
       <p:graphicImage alt="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/PreviewDocument')}" 
-        value="#{data.streamedContent}" stream="true" height="600" width="100%" rendered="#{data.isImage}" styleClass="document-preview-image" cache="false"/>
+        value="#{data.streamedContent}" stream="true" height="600" width="100%" rendered="#{data.isImage}" styleClass="preview-image" cache="false"/>
     </div>
     <div class="u-dialog-footer-actions-group">
       <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}" 
