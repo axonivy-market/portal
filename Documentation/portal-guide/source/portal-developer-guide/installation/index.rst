@@ -474,7 +474,9 @@ releases of |ivy|.
 
 Changes in 10.0.31
 ------------------
-- Enhanced the document preview feature for the task and case detail. If you have :dev-url:`DocFactory <https://market.axonivy.com/doc-factory#tab-description>` in the same security context. You can preview Word(doc, docx), Excel(xls, xlsx) and email(eml) documents.
+
+- Introduced **Renaming Document** feature for the task and case detail. You can rename document in document table of task and case detail page, and the activity will be logged in history notes.
+- Enhanced the document preview feature for the task and case detail. If you have :dev-url:`DocFactory <https://market.axonivy.com/doc-factory#tab-description>` in the same security context, you can preview Word(doc, docx), Excel(xls, xlsx) and email(eml) documents.
 
 
 Changes in 10.0.25
