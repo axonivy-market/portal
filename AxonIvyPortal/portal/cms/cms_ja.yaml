@@ -857,8 +857,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     customFieldType: カスタムフィールド タイプ
     dashboardManagement:
       CreateDashboard: ダッシュボードの作成
-      DashboardPermissionRequiredMessage: '権限: このフィールドは必須です'
-      DashboardTitleRequiredMessage: 'ダッシュボードのタイトル: このフィールドは必須です'
       addDashboard: ダッシュボードの追加
       dashboardIcon: ダッシュボードアイコン
       dashboardPermission: ダッシュボードの権限
@@ -1707,6 +1705,7 @@ Labels:
   Permissions: 権限
   PinnedCases: 'TODO: Pinned Cases'
   PinnedTasks: 'TODO: Pinned Tasks'
+  RequiredFieldMessage: '{0} が必要です'
   SelectOperator: TODO Choose Operator
   SelectValues: TODO Select values
   Share: 共有

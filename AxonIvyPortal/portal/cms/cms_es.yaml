@@ -858,8 +858,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     customFieldType: Tipo de campo personalizado
     dashboardManagement:
       CreateDashboard: Crear tablero
-      DashboardPermissionRequiredMessage: 'Permiso: este campo es obligatorio'
-      DashboardTitleRequiredMessage: 'Título del tablero: este campo es obligatorio'
       addDashboard: Añadir tablero
       dashboardIcon: Icono del panel de control
       dashboardPermission: Permiso de tablero
@@ -1716,6 +1714,7 @@ Labels:
   Permissions: Permiso
   PinnedCases: Casos fijados
   PinnedTasks: Tareas fijadas
+  RequiredFieldMessage: '{0} es necesario'
   SelectOperator: Seleccionar operador
   SelectValues: Seleccionar valores
   Share: Compartir

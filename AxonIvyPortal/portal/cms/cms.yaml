@@ -622,14 +622,13 @@ ch.ivy.addon.portalkit.ui.jsf:
     customFieldType: Custom Field Type
     dashboardManagement:
       CreateDashboard: Create Dashboard
-      DashboardPermissionRequiredMessage: 'Permissions: This field is required'
-      DashboardTitleRequiredMessage: 'Dashboard title: This field is required'
       addDashboard: Add dashboard
       dashboardPermission: Dashboard permission
       dashboardTitle: Dashboard title
       editDashboard: Edit dashboard
       manageDashboard: Manage dashboard
       removeDashboardHeader: Remove the "{0}" dashboard
+      requiredFieldMessage: '{0} is required'
     deleteWidget: Delete widget
     editWidget: Edit widget
     existingField: The {0} field has already been existing

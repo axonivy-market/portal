@@ -860,8 +860,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     customFieldType: Benutzerdefinierter Feldtyp
     dashboardManagement:
       CreateDashboard: Dashboard erstellen
-      DashboardPermissionRequiredMessage: 'Berechtigungen: Dies ist ein Pflichtfeld'
-      DashboardTitleRequiredMessage: 'Dashboard Titel: Dies ist ein Pflichtfeld'
       addDashboard: Dashboard hinzufügen
       dashboardIcon: Dashboard-Symbol
       dashboardPermission: Dashboard Berechtigung
@@ -1719,6 +1717,7 @@ Labels:
   Permissions: Berechtigungen
   PinnedCases: Angeheftete Fälle
   PinnedTasks: Angehängte Aufgaben
+  RequiredFieldMessage: '{0} ist erforderlich'
   SelectOperator: Operator auswählen
   SelectValues: Werte auswählen
   Share: Teilen
