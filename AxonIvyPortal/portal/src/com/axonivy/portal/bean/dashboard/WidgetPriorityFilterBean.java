@@ -1,5 +1,6 @@
 package com.axonivy.portal.bean.dashboard;
 
+
 import static org.apache.commons.lang3.StringUtils.EMPTY;
 
 import java.io.Serializable;
@@ -55,14 +56,10 @@ public class WidgetPriorityFilterBean implements Serializable {
     prioritiesString = String.join(", ", priorities);
   }
   
-  public String getUserFriendlyTaskPriority(WorkflowPriority priority) {
+  public String getUserFriendlyTaskPriority(String priority) {
     if (priority == null) {
       return EMPTY;
     }
-
     return Ivy.cms().co(TASK_PRIORITY_CMS_PATH + priority + "_LOWERCASE");
-
   }
-
-
 }

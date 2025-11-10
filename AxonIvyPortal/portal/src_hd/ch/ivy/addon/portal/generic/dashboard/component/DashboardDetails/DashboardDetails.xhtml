@@ -38,7 +38,7 @@
         </div>
         <div class="ui-g-6 w-full ui-fluid  ui-inputgroup">
           <p:inputText id="dashboard-title" value="#{managedBean.selectedDashboard.title}"
-            required="#{param['skipValidator'] == null}" styleClass="manage-dashboard__input" 
+            required="#{param['skipValidator'] == null}" styleClass="manage-dashboard__input"
             requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/dashboardManagement/DashboardTitleRequiredMessage')}" />
           <p:commandButton id="add-language-button" icon="si si-chat-translate"
             actionListener="#{managedBean.updateDashboardTitleByLocale()}"
