@@ -283,7 +283,7 @@ Migrate to 10.0.0
 Release Notes
 ^^^^^^^^^^^^^
 
-Changes in 10.0.31
+Changes in 12.0.9
 ------------------
 
 - Introduced **Renaming Document** feature for Document Table component. Follow instructions in :ref:`Customize <components-portal-components-migrate-from-old-document-table>` section to create a callable subprocess to customize the renaming behavior if needed.
