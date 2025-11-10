@@ -143,3 +143,9 @@ body.serenity .document-table-component .upload-container .ui-widget.ui-outputla
   justify-content: end;
   gap: 10px;
 }
+.preview-image{
+  object-fit: contain;
+}
+.ui-dialog-maximized .preview-image {
+  height: auto;
+}
