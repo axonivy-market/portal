@@ -1603,6 +1603,7 @@ Labels:
   AppendTheTask: Ajouter la tâche
   Chat: Chat
   Collapse: Réduire
+  Comma: ','
   CreateNewDashboard: Créer un nouveau tableau de bord
   EditDescription: Editer la description
   EnterFromValue: Saisir la valeur initiale

@@ -1607,6 +1607,7 @@ Labels:
   AppendTheTask: Aufgabe anhängen
   Chat: Chat
   Collapse: Einklappen
+  Comma: ','
   CreateNewDashboard: Neues Dashboard erstellen
   EditDescription: Beschreibung bearbeiten
   EnterFromValue: Anfangswert eingeben

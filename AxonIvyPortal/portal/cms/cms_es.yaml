@@ -1604,6 +1604,7 @@ Labels:
   AppendTheTask: Anexar la tarea
   Chat: Chat
   Collapse: Contraer
+  Comma: ','
   CreateNewDashboard: Crear un nuevo cuadro de mandos
   EditDescription: Editar descripción
   EnterFromValue: Ingresar valor desde
