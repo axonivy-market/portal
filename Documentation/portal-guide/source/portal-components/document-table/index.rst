@@ -215,7 +215,7 @@ User interface
 --------------
 
 Not only the functions, but you can also customize the UI of the **Document Table**
-such as adding a new column or removing default columns.
+such as adding a new column, removing default columns or enable the lazy loading and pagination.
 
 Code Example:
 
@@ -224,7 +224,8 @@ Code Example:
    <h:form id="form">
       <ic:com.axonivy.portal.components.DocumentTable id="document-table-component"
          allowedUploadFileTypes="doc,docx,xls,xlsx,xlsm,csv,pdf,ppt,pptx,txt,png"
-         typeSelectionItems="#{documentTableExampleBean.documentTypes}">
+         typeSelectionItems="#{documentTableExampleBean.documentTypes}"
+         lazy="true">
          <f:facet name="componentHeader">
             <h2>This is the customized document table component header</h2>
          </f:facet>

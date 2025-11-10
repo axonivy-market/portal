@@ -69,10 +69,10 @@
     <p:dataTable id="document-table" value="#{data.documents}" var="document"
       emptyMessage="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/NoFile')}" styleClass="margin-top-5"
       widgetVar="fileTableVar" lazy="#{cc.attrs.lazy}"
-      paginator="#{cc.attrs.lazy}" rows="#{cc.attrs.lazy ? '5' : ''}"
-      paginatorPosition="bottom" paginatorAlwaysVisible="true"
-      paginatorTemplate="{PreviousPageLink} {PageLinks} {NextPageLink} {RowsPerPageDropdown}"
-      pageLinks="5" rowsPerPageTemplate="5,10,20,50">
+      paginator="#{cc.attrs.lazy}" rows="#{cc.attrs.lazy ? 5 : 0}"
+      paginatorPosition="#{cc.attrs.lazy ? 'bottom' : ''}" paginatorAlwaysVisible="#{cc.attrs.lazy ? 'true' : ''}"
+      paginatorTemplate="#{cc.attrs.lazy ? '{PreviousPageLink} {PageLinks} {NextPageLink} {RowsPerPageDropdown}' : ''}"
+      pageLinks="#{cc.attrs.lazy ? '5' : ''}" rowsPerPageTemplate="#{cc.attrs.lazy ? '5,10,20,50' : ''}">
       <f:event type="preRenderComponent" listener="#{logic.renderTable()}" />
 
       <p:column headerText="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/Name')}"
