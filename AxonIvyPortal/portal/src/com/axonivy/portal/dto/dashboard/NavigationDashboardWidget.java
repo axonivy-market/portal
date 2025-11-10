@@ -11,6 +11,7 @@ import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 import ch.ivy.addon.portalkit.util.LanguageUtils;
 import ch.ivy.addon.portalkit.util.LanguageUtils.NameResult;
+import ch.ivyteam.ivy.environment.Ivy;
 
 public class NavigationDashboardWidget extends DashboardWidget implements Serializable {
   
