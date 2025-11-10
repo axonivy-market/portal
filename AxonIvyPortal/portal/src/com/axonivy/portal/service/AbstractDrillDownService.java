@@ -6,11 +6,9 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZoneId;
 import java.time.temporal.TemporalAdjusters;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -21,35 +19,39 @@ import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 import com.axonivy.portal.enums.dashboard.filter.FilterOperator;
 import com.axonivy.portal.enums.statistic.AggregationField;
 import com.axonivy.portal.enums.statistic.AggregationInterval;
+import com.axonivy.portal.util.DisplayNameUtils;
 
+import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.dto.dashboard.AbstractColumn;
 import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
-import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
+import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
+import ch.ivy.addon.portalkit.util.DisplayNameConvertor;
+import ch.ivy.addon.portalkit.util.LanguageUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 
 public abstract class AbstractDrillDownService {
 
   private static final String DEFAULT_COLUMN_WIDTH = String.valueOf(AbstractColumn.NORMAL_WIDTH);
-  private static final List<String> FIELDS_SHOULD_USE_IN_OPERATOR = Collections.unmodifiableList(List.of(DashboardStandardTaskColumn.STATE.getField(), DashboardStandardTaskColumn.CATEGORY.getField(), DashboardStandardTaskColumn.RESPONSIBLE.getField(),
-      DashboardStandardCaseColumn.STATE.getField(), DashboardStandardCaseColumn.CREATOR.getField(), DashboardStandardCaseColumn.CATEGORY.getField()));
 
   public void createDrillDownDashboardInSession(Statistic statistic, String drillDownValue) {
     Dashboard drillDownDashboard = getDrillDownDashboard();
     DashboardWidget widget = drillDownDashboard.getWidgets().get(0);
     ensureAllRelatedColumnsIncluded(widget, statistic);
     DashboardFilter drillDownFilter = createDrillDownFilter(drillDownValue, statistic.getStatisticAggregation());
-    if (isDrillDownFilterDuplicatedWithFilters(drillDownFilter, statistic.getFilters())) {
-      statistic.getFilters().removeIf(filter -> filter.getField().equals(drillDownFilter.getField()));
-    }
+
     getWidgetFilters(widget).add(drillDownFilter);
     if (CollectionUtils.isNotEmpty(statistic.getFilters())) {
+      if (isDrillDownFilterDuplicatedWithFilters(drillDownFilter, statistic.getFilters())) {
+        statistic.getFilters().removeIf(filter -> filter.getField().equals(drillDownFilter.getField()));
+      }
       addStatisticFiltersToWidgetFilters(widget, statistic.getFilters());
     }
+    
     Ivy.session().setAttribute(SessionAttribute.DRILL_DOWN_DASHBOARD.name(), drillDownDashboard);
   }
   
