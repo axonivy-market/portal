@@ -250,13 +250,6 @@ Code Example:
 Migration Notes
 ^^^^^^^^^^^^^^^
 
-Migrate 10.0.x to 10.0.31
--------------------------
-
-Since 10.0.31, Portal introduces **Renaming Document** feature for Document Table component.
-Follow instructions in :ref:`Customize <components-portal-components-migrate-from-old-document-table>` section to create
-a callable subprocess to customize the renaming behavior if needed.
-
 Migrate 10.0.x to 10.0.12
 -------------------------
 
@@ -311,5 +304,17 @@ Migrate to 10.0.0
    .. note::
       Please remove redundant overridden configurations, subprocesses, and data classes such as GetDocumentListOverride,
       UploadDocumentOverride, etc.
+
+Release Notes
+^^^^^^^^^^^^^
+
+Changes in 10.0.31
+------------------
+
+- Introduced **Renaming Document** feature for Document Table component.
+Follow instructions in :ref:`Customize <components-portal-components-migrate-from-old-document-table>` section to create
+a callable subprocess to customize the renaming behavior if needed.
+
+- Enhanced the document preview feature for the task and case detail. If you have :dev-url:`DocFactory <https://market.axonivy.com/doc-factory#tab-description>` in the same security context. You can preview Word(doc, docx), Excel(xls, xlsx) and email(eml) documents.
 
 .. |document-table| image:: ../../screenshots/components/document-table.png
