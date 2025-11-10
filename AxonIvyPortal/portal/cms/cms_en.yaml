@@ -864,7 +864,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       editDashboard: Edit dashboard
       manageDashboard: Manage dashboard
       removeDashboardHeader: Remove the "{0}" dashboard
-      requiredFieldMessage: '{0} is required'
     deleteWidget: Delete widget
     downloadZipFileExplanation: If the number of items to export exceeds the limit of Excel rows, data will be split to multiple Excel files, then compressed in a ZIP file to download.
     editWidget: Edit widget
@@ -1720,6 +1719,7 @@ Labels:
   ToggleMenu: Toggle menu
   ViewAllResults: View all results
   disabledUserPrefix: (disabled)
+  requiredFieldMessage: '{0} is required'
 patterns:
   datePattern: dd.MM.yyyy
   dateTimePattern: dd.MM.yyyy HH:mm

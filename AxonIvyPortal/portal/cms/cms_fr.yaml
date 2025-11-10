@@ -866,7 +866,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       editDashboard: Modifier le tableau de bord
       manageDashboard: Gérer le tableau de bord
       removeDashboardHeader: Supprimez le tableau de bord "{0}".
-      requiredFieldMessage: '{0} est nécessaire'
     deleteWidget: Supprimer le widget
     downloadZipFileExplanation: Si le nombre d'éléments à exporter dépasse la limite des lignes Excel, les données seront divisées en plusieurs fichiers Excel, puis compressées dans un fichier ZIP à télécharger.
     editWidget: Modifier le widget
@@ -1724,6 +1723,7 @@ Labels:
   ToggleMenu: Menu à bascule
   ViewAllResults: Voir tous les résultats
   disabledUserPrefix: (désactivé)
+  requiredFieldMessage: '{0} est nécessaire'
 patterns:
   datePattern: dd.MM.yyyy
   dateTimePattern: dd.MM.yyyy HH:mm

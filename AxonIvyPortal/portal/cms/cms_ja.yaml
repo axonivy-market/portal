@@ -865,7 +865,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       editDashboard: ダッシュボードの編集
       manageDashboard: ダッシュボードの管理
       removeDashboardHeader: 「{0}」のダッシュボードを削除
-      requiredFieldMessage: '{0} が必要です'
     deleteWidget: ウィジェットを削除
     downloadZipFileExplanation: エクスポートするアイテム数が Excel の行数の制限を超える場合、データは複数の Excel ファイルに分割され、ZIP ファイルに圧縮されてダウンロードされます。
     editWidget: ウィジェットの編集
@@ -1715,6 +1714,7 @@ Labels:
   ToggleMenu: メニューを切り替える
   ViewAllResults: すべての結果を表示
   disabledUserPrefix: （無効）
+  requiredFieldMessage: '{0} が必要です'
 patterns:
   datePattern: dd.MM.yyyy
   dateTimePattern: dd.MM.yyyy HH:mm
