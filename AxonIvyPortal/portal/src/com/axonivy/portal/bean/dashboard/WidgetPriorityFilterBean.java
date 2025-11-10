@@ -1,6 +1,5 @@
 package com.axonivy.portal.bean.dashboard;
 
-
 import static org.apache.commons.lang3.StringUtils.EMPTY;
 
 import java.io.Serializable;
