@@ -215,7 +215,7 @@ User interface
 --------------
 
 Not only the functions, but you can also customize the UI of the **Document Table**
-such as adding a new column or removing default columns.
+such as adding a new column, removing default columns or enable the lazy loading and pagination.
 
 Code Example:
 
@@ -224,7 +224,8 @@ Code Example:
    <h:form id="form">
       <ic:com.axonivy.portal.components.DocumentTable id="document-table-component"
          allowedUploadFileTypes="doc,docx,xls,xlsx,xlsm,csv,pdf,ppt,pptx,txt,png"
-         typeSelectionItems="#{documentTableExampleBean.documentTypes}">
+         typeSelectionItems="#{documentTableExampleBean.documentTypes}"
+         lazy="true">
          <f:facet name="componentHeader">
             <h2>This is the customized document table component header</h2>
          </f:facet>
@@ -313,5 +314,10 @@ Changes in 10.0.31
 
 - Introduced **Renaming Document** feature for Document Table component. Follow instructions in :ref:`Customize <components-portal-components-migrate-from-old-document-table>` section to create a callable subprocess to customize the renaming behavior if needed.
 - Enhanced the document preview feature for the task and case detail. If you have :dev-url:`DocFactory <https://market.axonivy.com/doc-factory#tab-description>` in the same security context, you can preview Word(doc, docx), Excel(xls, xlsx) and email(eml) documents.
+
+
+Changes in 10.0.33
+------------------
+- Added lazy loading functionality to the Document Table component, enabling efficient data loading through pagination.
 
 .. |document-table| image:: ../../screenshots/components/document-table.png
