@@ -30,7 +30,7 @@
   <c:set var="showProcessOverview" value="#{caseActionBean.showProcessOverviewLink(case) and !inFrame}"/>
   <c:set var="showProcessViewer" value="#{caseActionBean.showProcessViewer(case)}"/>
   <c:set var="showSeparator" value="#{renderDestroyAction or showAdditionalCaseDetails or showOpenCaseDetail or showProcessOverview or showProcessViewer}"/>
-  <c:set var="isPreviewMode" value="#{cc.attrs.isPreviewMode}"/>
+    <c:set var="isPreviewMode" value="#{cc.attrs.isPreviewMode}"/>
 
   <p:commandLink id="#{cc.attrs.actionLinkId}" onclick="event.stopPropagation(); return false;" ariaLabel="#{cc.attrs.ariaLabel}"
     styleClass="#{isPreviewMode ? '' : cc.attrs.actionLinkStyleClass} #{cc.attrs.taskId} action-link portal-icon ui-sidestep-action" disabled="#{cc.attrs.readOnly or isPreviewMode}">
