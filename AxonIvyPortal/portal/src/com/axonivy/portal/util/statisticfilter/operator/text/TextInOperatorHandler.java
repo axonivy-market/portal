@@ -1,6 +1,7 @@
 package com.axonivy.portal.util.statisticfilter.operator.text;
 
 import java.util.ArrayList;
+
 import java.util.Arrays;
 
 import org.apache.commons.collections4.CollectionUtils;
@@ -32,12 +33,21 @@ public class TextInOperatorHandler {
     String field = changeFilterField(filter.getField());
     sb.append(field).append(PortalConstants.COLON);
 
+    String prefix, suffix;
+
+    if (filter.isCreator()) {
+        prefix = "#";
+        suffix = " ";
+    } else if (filter.isCategory()) {
+        prefix = "\"";
+        suffix = "\" ";
+    } else {
+        prefix = "";
+        suffix = " ";
+    }
+
     for (String value : filter.getValues()) {
-      if (filter.isCreator()) {
-        sb.append("#" + value).append(" ");
-      } else {
-        sb.append(value).append(" ");
-      }
+        sb.append(prefix).append(value).append(suffix);
     }
 
     return sb.toString();
