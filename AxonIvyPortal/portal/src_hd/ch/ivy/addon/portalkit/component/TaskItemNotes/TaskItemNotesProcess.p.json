@@ -161,7 +161,8 @@
             "",
             "GlobalSettingService globalSettingService = new GlobalSettingService();",
             "boolean isAdmin = PermissionUtils.isSessionUserHasAdminRole();",
-            "out.showSystemNotes = isAdmin ? !globalSettingService.findGlobalSettingValueAsBoolean(GlobalVariable.HIDE_SYSTEM_NOTES_FROM_HISTORY_ADMINISTRATOR) : !globalSettingService.findGlobalSettingValueAsBoolean(GlobalVariable.HIDE_SYSTEM_NOTES_FROM_HISTORY);",
+            "boolean isUserHasPermissionNoteReadAllCaseTaskDetails = PermissionUtils.checkNoteReadAllCaseTaskDetailsPermission();",
+            "out.showSystemNotes = isUserHasPermissionNoteReadAllCaseTaskDetails;",
             "out.showSystemNotesChkbox = out.showSystemNotes && globalSettingService.isCheckSystemNotesByDefault();"
           ]
         }

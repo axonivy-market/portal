@@ -92,7 +92,7 @@ public class DashboardFilter extends BaseFilter implements Serializable {
   @JsonIgnore
   public boolean isTextField() {
     return (getFilterFormat() == FilterFormat.TEXT || getFilterFormat() == FilterFormat.STRING) && !isCategory()
-        && !isId() && !isApplication() && !isDefaultField();
+        && !isId() && !isApplication() && !isDefaultField() && !isResponsible() && !isCreator();
   }
 
   @JsonIgnore

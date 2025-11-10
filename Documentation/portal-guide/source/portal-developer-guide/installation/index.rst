@@ -144,7 +144,10 @@ In Engine
 Migrate 13.1 To 13.2
 --------------------
 
-If you are using DeepL translation service in the Portal, please reconfigure it according to the instructions provided here: :doc-url:`Axon Ivy Translation service </engine-guide/configuration/translation-service/index.html>`
+1. If you are using DeepL translation service in the Portal, please reconfigure it according to the instructions provided here: :doc-url:`Axon Ivy Translation service </engine-guide/configuration/translation-service/index.html>`
+
+2. Global variables ``Portal.Histories.HideSystemNotes`` and ``Portal.Histories.HideSystemNotesForAdministrator`` have been removed and no longer supported.
+Use permission ``NoteReadAllCaseTaskDetails`` instead to control the visibility of system notes in task and case details.
 
 Migrate 11.3.2 To 12.0.0
 ------------------------
@@ -489,7 +492,8 @@ releases of Axon Ivy.
 
 Changes in 13.2.0
 -----------------
-- Enhanced the document preview feature for the task and case detail. If you have DocFactory in the same security context. You can preview Word(doc, docx), Excel(xls, xlsx) and email(eml) documents.
+- Introduced **Renaming Document** feature for the task and case detail. You can rename document in document table of task and case detail page, and the activity will be logged in history notes.
+- Enhanced the document preview feature for the task and case detail. If you have DocFactory in the same security context, you can preview Word(doc, docx), Excel(xls, xlsx) and email(eml) documents.
 - Removed the Portal Setting ``Portal.DeepL.AuthKey``.
 - Renamed the Portal Setting ``Portal.DeepL.Enable`` to ``Portal.TranslationService.Enable``.
 

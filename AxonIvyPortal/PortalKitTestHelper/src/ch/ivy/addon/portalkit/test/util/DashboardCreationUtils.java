@@ -1,6 +1,7 @@
 package ch.ivy.addon.portalkit.test.util;
 
 import java.util.ArrayList;
+
 import java.util.List;
 import java.util.Locale;
 
@@ -8,6 +9,7 @@ import com.axonivy.portal.dto.News;
 import com.axonivy.portal.service.NewsService;
 
 import ch.ivy.addon.portalkit.enums.PortalVariable;
+import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
 import ch.ivyteam.ivy.environment.Ivy;
 
 public class DashboardCreationUtils {
@@ -24,7 +26,7 @@ public class DashboardCreationUtils {
 
   public static void createDummyDataForNewsFeed() {
     List<News> newsList = new ArrayList<>();
-    Locale sessionLocale = Ivy.session().getContentLocale();
+    Locale sessionLocale = LanguageService.getInstance().getUserLocale();
     var news = new News();
     news.setLocale(sessionLocale);
     news.setIcon("si-send-email");

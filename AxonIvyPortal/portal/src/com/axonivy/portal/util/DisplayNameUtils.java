@@ -1,15 +1,15 @@
 package com.axonivy.portal.util;
 
 import java.util.List;
-
 import org.apache.commons.collections4.CollectionUtils;
+
 import ch.ivy.addon.portalkit.dto.DisplayName;
-import ch.ivy.addon.portalkit.util.UserUtils;
+import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
 
 public class DisplayNameUtils {
 
   public static String findDisplayNameOfUserLanguage(List<DisplayName> names) {
-    String userLanguage = UserUtils.getUserLanguage();
+    String userLanguage = LanguageService.getInstance().getUserLanguage();
     return CollectionUtils.emptyIfNull(names).stream()
         .filter(name -> userLanguage.equalsIgnoreCase(name.getLocale().toString())).findFirst()
         .map(DisplayName::getValue).orElse("");

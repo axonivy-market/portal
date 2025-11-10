@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Portal Guide ${revision}\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-17 02:31+0000\n"
+"POT-Creation-Date: 2025-10-24 03:17+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: fr\n"
@@ -8307,15 +8307,15 @@ msgstr ""
 #: ../../source/portal-developer-guide/permissions/index.rst:120
 #: ../../source/portal-developer-guide/permissions/index.rst:125
 #: ../../source/portal-developer-guide/permissions/index.rst:130
-#: ../../source/portal-developer-guide/permissions/index.rst:150
-#: ../../source/portal-developer-guide/permissions/index.rst:161
-#: ../../source/portal-developer-guide/permissions/index.rst:166
-#: ../../source/portal-developer-guide/permissions/index.rst:174
-#: ../../source/portal-developer-guide/permissions/index.rst:179
-#: ../../source/portal-developer-guide/permissions/index.rst:184
-#: ../../source/portal-developer-guide/permissions/index.rst:189
-#: ../../source/portal-developer-guide/permissions/index.rst:194
-#: ../../source/portal-developer-guide/permissions/index.rst:223
+#: ../../source/portal-developer-guide/permissions/index.rst:153
+#: ../../source/portal-developer-guide/permissions/index.rst:164
+#: ../../source/portal-developer-guide/permissions/index.rst:169
+#: ../../source/portal-developer-guide/permissions/index.rst:177
+#: ../../source/portal-developer-guide/permissions/index.rst:182
+#: ../../source/portal-developer-guide/permissions/index.rst:187
+#: ../../source/portal-developer-guide/permissions/index.rst:192
+#: ../../source/portal-developer-guide/permissions/index.rst:197
+#: ../../source/portal-developer-guide/permissions/index.rst:226
 #: ../../source/portal-developer-guide/permissions/index.rst:244
 #: ../../source/portal-developer-guide/permissions/index.rst:252
 #: ../../source/portal-developer-guide/permissions/index.rst:260
@@ -8464,6 +8464,7 @@ msgid "_`TaskDisplayCustomFieldsAction`"
 msgstr ""
 
 #: ../../source/portal-developer-guide/permissions/index.rst:89
+#: ../../source/portal-developer-guide/permissions/index.rst:136
 msgid "Permission to see the Custom Fields action"
 msgstr ""
 
@@ -8561,217 +8562,211 @@ msgid ""
 "owner"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:136
-msgid "Portal General Permissions"
-msgstr ""
-
-#: ../../source/portal-developer-guide/permissions/index.rst:138
-msgid "_`RoleCreate`"
+#: ../../source/portal-developer-guide/permissions/index.rst:135
+msgid "_`CaseDisplayCustomFieldsAction`"
 msgstr ""
 
 #: ../../source/portal-developer-guide/permissions/index.rst:139
-msgid "Permission to create a new dynamic role"
+msgid "Portal General Permissions"
 msgstr ""
 
 #: ../../source/portal-developer-guide/permissions/index.rst:141
-msgid "_`RoleDelete`"
+msgid "_`RoleCreate`"
 msgstr ""
 
 #: ../../source/portal-developer-guide/permissions/index.rst:142
-msgid "Permission to delete a dynamic role"
+msgid "Permission to create a new dynamic role"
 msgstr ""
 
 #: ../../source/portal-developer-guide/permissions/index.rst:144
-msgid "_`RoleMove`"
+msgid "_`RoleDelete`"
 msgstr ""
 
 #: ../../source/portal-developer-guide/permissions/index.rst:145
-msgid "Permission to move role (select the parent role)"
+msgid "Permission to delete a dynamic role"
 msgstr ""
 
 #: ../../source/portal-developer-guide/permissions/index.rst:147
-msgid "_`RoleReadAll`"
+msgid "_`RoleMove`"
 msgstr ""
 
 #: ../../source/portal-developer-guide/permissions/index.rst:148
+msgid "Permission to move role (select the parent role)"
+msgstr ""
+
+#: ../../source/portal-developer-guide/permissions/index.rst:150
+msgid "_`RoleReadAll`"
+msgstr ""
+
+#: ../../source/portal-developer-guide/permissions/index.rst:151
 msgid "Permission to see all roles"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:152
+#: ../../source/portal-developer-guide/permissions/index.rst:155
 msgid "_`DocumentRead`"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:153
+#: ../../source/portal-developer-guide/permissions/index.rst:156
 msgid "Permission to see all documents"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:155
+#: ../../source/portal-developer-guide/permissions/index.rst:158
 msgid "_`DocumentWrite`"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:156
 #: ../../source/portal-developer-guide/permissions/index.rst:159
+#: ../../source/portal-developer-guide/permissions/index.rst:162
 msgid "Permission to update, delete documents"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:158
+#: ../../source/portal-developer-guide/permissions/index.rst:161
 msgid "_`DocumentOfInvolvedCaseWrite`"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:163
+#: ../../source/portal-developer-guide/permissions/index.rst:166
 msgid "_`DashboardWriteOwn`"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:164
+#: ../../source/portal-developer-guide/permissions/index.rst:167
 msgid "Permission to update private dashboards"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:168
+#: ../../source/portal-developer-guide/permissions/index.rst:171
 msgid "_`DashboardWritePublic`"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:169
+#: ../../source/portal-developer-guide/permissions/index.rst:172
 msgid "Permission to update public dashboards"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:171
+#: ../../source/portal-developer-guide/permissions/index.rst:174
 msgid "_`AccessFullProcessList`"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:172
+#: ../../source/portal-developer-guide/permissions/index.rst:175
 msgid "Permission to access the full process list. See :ref:`full-process-list`."
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:176
+#: ../../source/portal-developer-guide/permissions/index.rst:179
 msgid "_`AccessFullTaskList`"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:177
+#: ../../source/portal-developer-guide/permissions/index.rst:180
 msgid "Permission to access the full task list. See :ref:`full-task-list`."
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:181
+#: ../../source/portal-developer-guide/permissions/index.rst:184
 msgid "_`AccessFullCaseList`"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:182
+#: ../../source/portal-developer-guide/permissions/index.rst:185
 msgid "Permission to access the full case list. See :ref:`full-case-list`."
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:186
+#: ../../source/portal-developer-guide/permissions/index.rst:189
 msgid "_`TaskCaseAddNote`"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:187
+#: ../../source/portal-developer-guide/permissions/index.rst:190
 msgid "Permission to add notes to a task/case"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:191
+#: ../../source/portal-developer-guide/permissions/index.rst:194
 msgid "_`TaskCaseShowMoreNote`"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:192
+#: ../../source/portal-developer-guide/permissions/index.rst:195
 msgid "Permission to see Show more note"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:196
+#: ../../source/portal-developer-guide/permissions/index.rst:199
 msgid "_`CreatePublicExternalLink`"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:197
+#: ../../source/portal-developer-guide/permissions/index.rst:200
 msgid ""
 "Permission to create public external links, all other users can see the "
 "links in the full process list."
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:199
+#: ../../source/portal-developer-guide/permissions/index.rst:202
 msgid "_`RoleManagement`"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:200
+#: ../../source/portal-developer-guide/permissions/index.rst:203
 msgid "Permission to access the Role Management tab"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:202
+#: ../../source/portal-developer-guide/permissions/index.rst:205
 msgid "_`NewsManagement`"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:203
+#: ../../source/portal-developer-guide/permissions/index.rst:206
 msgid "Permission to manage the content of the News feed"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:205
+#: ../../source/portal-developer-guide/permissions/index.rst:208
 msgid "_`PasswordValidation`"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:206
+#: ../../source/portal-developer-guide/permissions/index.rst:209
 msgid ""
 "Permission to access the Password Validation section in the Admin "
 "Settings page"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:208
+#: ../../source/portal-developer-guide/permissions/index.rst:211
 msgid "_`DashboardExportOwn`"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:209
+#: ../../source/portal-developer-guide/permissions/index.rst:212
 msgid "Permission to export private dashboards"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:211
+#: ../../source/portal-developer-guide/permissions/index.rst:214
 msgid "_`DashboardExportPublic`"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:212
+#: ../../source/portal-developer-guide/permissions/index.rst:215
 msgid "Permission to export public dashboards"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:214
+#: ../../source/portal-developer-guide/permissions/index.rst:217
 msgid "_`DashboardImportOwn`"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:215
+#: ../../source/portal-developer-guide/permissions/index.rst:218
 msgid "Permission to import private dashboards"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:217
+#: ../../source/portal-developer-guide/permissions/index.rst:220
 msgid "_`DashboardImportPublic`"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:218
+#: ../../source/portal-developer-guide/permissions/index.rst:221
 msgid "Permission to import public dashboards"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:220
+#: ../../source/portal-developer-guide/permissions/index.rst:223
 msgid "_`ShareDashboardLink`"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:221
+#: ../../source/portal-developer-guide/permissions/index.rst:224
 msgid "Permission to share dashboard links"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:225
+#: ../../source/portal-developer-guide/permissions/index.rst:228
 msgid "_`NotificationChannelsSetting`"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:226
+#: ../../source/portal-developer-guide/permissions/index.rst:229
 msgid ""
 "Permission to customize notification channel preferences in :ref:`my-"
 "profile` page"
 msgstr ""
 
-#: ../../source/portal-developer-guide/permissions/index.rst:228
-msgid "Granted to role Everybody by default."
-msgstr ""
-
-#: ../../source/portal-developer-guide/permissions/index.rst:230
-msgid "_`NoteReadAllCaseTaskDetails`"
-msgstr ""
-
 #: ../../source/portal-developer-guide/permissions/index.rst:231
-msgid ""
-"Permission allows non-admin users to view system notes in case and task "
-"details"
+msgid "Granted to role Everybody by default."
 msgstr ""
 
 #: ../../source/portal-developer-guide/permissions/index.rst:236
@@ -10189,5 +10184,14 @@ msgid "Params are not required if the URL denotes an external webpage."
 msgstr ""
 
 #~ msgid "Permission to see the Destroy Task action"
+#~ msgstr ""
+
+#~ msgid "_`NoteReadAllCaseTaskDetails`"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Permission allows non-admin users to "
+#~ "view system notes in case and task"
+#~ " details"
 #~ msgstr ""
 

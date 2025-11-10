@@ -16,7 +16,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       fromBiggerThanTill: Das 'bis' Datum muss nach dem 'von' Datum liegen.
       overlappingAbsence: Die Abwesenheit überschneidet sich mit einer anderen Abwesenheit.
       userNameRequired: '''Benutzername'' darf nicht leer sein.'
-    SelectedSubtitutes: Ausgewählte Ersatzstoffe
+    SelectedSubtitutes: Auswahl Stellvertreter:in
     absences: Abwesenheiten
     addAbsence: Abwesenheit erfassen
     deputies: Stellvertreter
@@ -24,7 +24,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     editAbsence: Abwesenheiten bearbeiten
     from: Von
     noDeputy: Kein Stellvertreter
-    noPermissionToSeeThisArea: Sie haben nicht die erforderliche Erlaubnis, dieses Gebiet zu sehen.
+    noPermissionToSeeThisArea: Fehlende Berechtigung für diesen Bereich.
     period: Zeitraum
     personalTaskDuringAbsenceDeputies: Vertretungen für persönlich zugewiesene Aufgaben während der Abwesenheit
     personalTaskPermanentDeputies: Ständige Stellvertreter für persönlich zugewiesene Aufgaben
@@ -45,20 +45,20 @@ ch.ivy.addon.portalkit.ui.jsf:
     allAbsences: Abwesenheiten aller Benutzer
     applicationAndRole: Applikation und Rolle
     definedDeputies: Definierte Stellvertreter
-    deputyFor: Ich bin Ersatz für
+    deputyFor: Ich bin Stellvertreter:in für
     myAbsences: Meine Abwesenheit
     myDeputies: Meine Stellvertreter
     nextAbsence: Bevorstehende Abwesenheit
     selectedDeputyFor: Ausgewählter Benutzer ist Stellvertreter für
     selectedUser: Ausgewählter Benutzer
   AccessibilityShortcuts:
-    processName: Barrierefreiheit Kürzel Widgets
+    processName: Barrierefreiheit Tastenkombinationen Widgets
   AllTasks:
     caseDescription: Beschreibung des Vorgangs
     taskDescription: Aufgabenbeschreibung
     taskState: Aufgabenstatus
   CaseDocuments:
-    CaseDocumentsPageTitle: Dokumente zum Vorfall
+    CaseDocumentsPageTitle: Dokumente zum Fall
   Enums:
     BasicDocumentType:
       CONTRACT: Vertrag
@@ -147,7 +147,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       NORMAL_TEXT: Normaler Text
   MyProfile:
     Accessibility: Erreichbarkeit
-    CaseList: Vorfall-Liste
+    CaseList: Fallliste
     DateFormat: Datum Format
     FormattingLanguage: Sprache der Formatierung
     General: Allgemeine
@@ -185,13 +185,13 @@ ch.ivy.addon.portalkit.ui.jsf:
       announcementsEnabled: Ankündigungen sind aktiviert.
       defaultLanguageRequiredMessage: Ein Ankündigungstext in der standard Applikationssprache ist notwendig.
       disabled: Deaktiviert
-      enable: Ansage einschalten
+      enable: Ankündigungen einschalten
       information: Sie können eine allgemeine Ankündigung in diesem Bereich machen (z.B. Wartungsankündigung). Diese Nachricht kann von allen Benutzern gesehen werden.
       saveChanges: Änderungen speichern
       tabTitle: Ankündigungen
     appDisplayName: Anzeigename
     appDisplayNameRequiredMsg: Geben Sie einen Anzeigename an.
-    appNameCharactersLimit: 'Nur die folgende Charakter sind für Applikationsname akzeptabel: [\p{Alnum}_-]+'
+    appNameCharactersLimit: 'Zulässige Zeichen für den Applikationsnamen: [\p{Alnum}_-]+'
     appNameRequiredMsg: Bitte, geben Sie den Anwendungsnamen an.
     applicationHint: Die Reihenfolge kann mit Drag & Drop geändert werden.
     applicationLinkRequiredMsg: Geben Sie den Portal Link an.
@@ -246,13 +246,11 @@ ch.ivy.addon.portalkit.ui.jsf:
       delegationAppendOption: Diese Einstellung bestimmt, welche zusätzlichen Informationen beim Formatieren von Rollennamen enthalten sind.
       disableCaseCount: Auf "true" setzen, um das zählen der Vorgänge in der Vorgangsliste zu deaktivieren
       disableTaskCount: Auf "true" setzen, um das zählen der Aufgaben in der Aufgabenliste zu deaktivieren
-      displayAllUsersOfTaskActivator: Diese Einstellung wird für die Komponente SecurityMemberDisplayName verwendet. Wenn der SecurityMember eine Rolle ist, setzen Sie diese Einstellung auf true, um alle Benutzer dieser Rolle aufzulisten. Wenn diese Einstellung auf true gesetzt ist, wird neben dem Rollennamen
-        eine Symbolinfo angezeigt.
+      displayAllUsersOfTaskActivator: Diese Einstellung wird für die Komponente SecurityMemberDisplayName verwendet. Wenn der SecurityMember eine Rolle ist, setzen Sie diese Einstellung auf true, um alle Benutzer dieser Rolle aufzulisten. Wenn diese Einstellung auf true gesetzt ist, wird neben dem Rollennamen eine Symbolinfo angezeigt.
       displayMessageAfterFinishOrLeaveTask: Eine Feedback-Nachricht wird angezeigt, nachdem der Benutzer eine Aufgabe beendet oder verlassen hat.
       documentUploadSizeLimit: Legen Sie das Größenlimit für das Hochladen von Dokumenten in Megabyte (MB) fest. Der Standardwert beträgt 20 MB.
       embedInFrame: Auf true gesetzt, um einen Prozess/Task im IFrame-Modus zu starten
-      enableCaseOwner: Wird auf true gesetzt, um die Filterung des Vorgangsinhabers bei der Abfrage von Vorgängen zu aktivieren. Diese Einstellung wirkt sich auf alle Vorgangsabfragen aus, z.B. nach Vorgangsliste, globale Suche, Statistik, …Außerdem wird der Filter "Aufgaben nach aktuellem Fallinhaber
-        filtern" im Aufgaben-Widget verfügbar gemacht, der standardmäßig ausgeblendet ist.
+      enableCaseOwner: Wird auf true gesetzt, um die Filterung des Vorgangsinhabers bei der Abfrage von Vorgängen zu aktivieren. Diese Einstellung wirkt sich auf alle Vorgangsabfragen aus, z.B. nach Vorgangsliste, globale Suche, Statistik, …Außerdem wird der Filter "Aufgaben nach aktuellem Fallinhaber filtern" im Aufgaben-Widget verfügbar gemacht, der standardmäßig ausgeblendet ist.
       enableDocumentPreview: 'Auf "true" setzen, um die Vorschau von Dokumenten für bestimmte Dateitypen zu aktivieren. Unterstützte Dateitypen sind: pdf, png, jpeg, jpg, txt, log.'
       enableGroupChat: Setzen Sie diese Einstellung auf "true", um den Gruppenchat zu aktivieren
       enablePinCase: Setzen Sie diese Eigenschaft auf „true“, um das Anheften von Fällen zu ermöglichen.
@@ -269,8 +267,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       hideChangePasswordButtonNote: Setzen Sie diese Variable auf true, um die Option "Passwort ändern" im oberen Menü und die Option "Passwort vergessen" auf der Anmeldeseite auszublenden. Wenn sie auf false gesetzt ist, werden diese Optionen angezeigt.
       hideLogoutButtonNote: 'Auf "true" setzen, um die Logout Funktion im Top Menu zu deaktivieren. '
       hideRelatedCaseInfoFromHistory: Wenn diese Option auf "true" gesetzt ist, werden die zugehörigen Fallinformationen nicht in der Tabelle "Historie" angezeigt.
-      hideSystemNotesFromHistory: Wenn diese Option aktiviert ist, werden in den Vorgangs-/Aufgabennotizen keine Systemnotizen für Benutzer ohne Administratorrechte angezeigt.
-      hideSystemNotesFromHistoryAdministrator: Wenn diese Option aktiviert ist, werden in den Vorgangs-/Aufgabennotizen keine Systemnotizen für Administratoren angezeigt.
       hideSystemTasksFromHistory: Wenn diese Option aktiviert ist, zeigt die Vorgangs- / Aufgabennotiz keine technischen Verlaufseinträge für Benutzer ohne Administratorrechte an.
       hideSystemTasksFromHistoryAdministrator: Wenn dies der Fall ist, zeigt die Vorgangs- / Aufgabennotiz keine technischen Verlaufseinträge für den Administrator an.
       hideTaskDocument: Auf "true" setzen, um die Dokumentensektion in Taskdetails auszublenden.
@@ -332,6 +328,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     addDocumentHelpText: Zum Hochladen Dateien per Drag & Drop hier ablegen oder Dateien auswählen
     addNoteHelpText: Schreiben Sie hier Ihren Text
     businessDetailsTitle: Geschäftsdetails
+    customFields: Benutzerdefinierte Felder
+    customFieldsDialog: 'Benutzerdefinierte Felder des Falls #{0}'
     deleteFile: Datei löschen
     documents: Dokumente
     downloadFile: Datei herunterladen
@@ -339,7 +337,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     history: Verlauf
     noCaseName: <Kein Vorgangsnamen>
     noDescription: Keine Beschreibung vorhanden
-    noRunningCase: Es wird kein Vorfall ausgeführt.
+    noRunningCase: Es wird kein Fall ausgeführt.
     noRunningTask: Es wird keine Aufgabe ausgeführt.
     noRunningTasksAndCasesPermission: Weitere Aufgaben werden derzeit bearbeitet. Sie haben keine Berechtigung, die zugehörigen Aufgaben dieses Vorganges zu sehen.
     noSideSteps: Keine Sidesteps verfügbar
@@ -456,7 +454,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     allowPng: Nur das png Format wird unterstützt
     apply: Anwenden
     at: am
-    author: Author
+    author: Autor
     back: Zurück
     backToCaseMap: Zurück zur Case Map
     backgroundColor: Hintergrundfarbe
@@ -604,7 +602,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     sessionExpriedInTeams: Ihre Session ist abgelaufen. Die Anwendung wird neu gestartet.
     setting: Einstellungen
     showDetail: Details anzeigen
-    showRelatedCaseInfo: Zugehöriger Vorfall
+    showRelatedCaseInfo: Zugehöriger Fall
     showSystemNotes: Systemhinweise
     showSystemTasks: Systemaufgaben
     sorting: Sortierung
@@ -717,7 +715,7 @@ ch.ivy.addon.portalkit.ui.jsf:
           Sie können die Aufgabe {0} nicht starten, da sie bereits abgeschlossen wurde.
 
       created: Erstellt am
-      expired: Ablaufdatum
+      expired: Fälligkeitsdatum
       showDetailsHint: Mehr Details anzeigen
       taskDescriptionNotAvailable: '[Keine Beschreibung]'
       taskNameNotAvailable: '[Kein Aufgabenname verfügbar]'
@@ -796,7 +794,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     addField: Feld hinzufügen
     addWidget: Widget hinzufügen
     canWorkOn: Kann arbeiten an
-    caseList: Vorfall-Liste
+    caseList: Fallliste
     caseListIntroduction: Dieses Widget zeigt relevante Vorgangsinformationen entsprechend einiger definierter Parameter an
     caseWidgetInfo:
       casesByCategory: Anzahl der Vorgänge nach Kategorie
@@ -920,8 +918,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     statisticWidgets: Statistik-Widgets
     switchToViewMode: Ansichtsmodus
     tasWidgetkInfo:
-      expireToday: Ablaufdatum heute
-      expiryThisWeek: Ablaufdatum diese Woche
+      expireToday: Fälligkeitsdatum heute
+      expiryThisWeek: Fälligkeitsdatum diese Woche
       numberOfTasks: Aufgabe(n)
       numberOfTasksByCategory: Anzahl der Aufgaben nach Kategorie
       numberOfTasksByState: Anzahl der Aufgaben nach Status
@@ -954,7 +952,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     deleteDocumentNote: '{0} hat folgendes gelöscht: {1}'
     deleteSuceed: Datei wurde erfolgreich gelöscht
     download: Herunterladen
-    fileContainScript: Diese Datei darf aufgrund von Skript-Inhalten nicht hochgeladen werden!
+    fileContainScript: Die Datei enthält potenziell schädliche Inhalte und kann nicht hochgeladen werden!
     fileContainVirus: Upload fehlgeschlagen, Virus/Infektion erkannt!
     fileCouldNotParse: Die Datei konnte nicht analysiert werden
     fileEmptyMessage: Datei ist leer
@@ -1155,10 +1153,10 @@ ch.ivy.addon.portalkit.ui.jsf:
     escalationActivatorDesc: Ändern Sie den Eskalations-Aktivator der Aufgabe auf einen bestimmten Benutzer oder eine Gruppe
     escalationActivatorHeader: Auswahl des Eskalations-Aktivators der Aufgabe
   taskBusinessState:
-    DELAYED: Verspätet
-    DELAYED_UPPERCASE: VERSPÄTET
-    DESTROYED: Zerstörte
-    DESTROYED_UPPERCASE: ZERSTÖRTE
+    DELAYED: Überfällig
+    DELAYED_UPPERCASE: ÜBERFÄLLIG
+    DESTROYED: gelöscht
+    DESTROYED_UPPERCASE: GELÖSCHTE
     DONE: Erledigt
     DONE_UPPERCASE: ERLEDIGT
     ERROR: Fehler
@@ -1244,7 +1242,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       COMPLETED: Erledigt am
       COMPLETED_ON: Erledigt am
       CREATION_TIME: Erstellt
-      EXPIRY_TIME: Ablaufdatum
+      EXPIRY_TIME: Fälligkeitsdatum
       ID: Aufgaben Id
       NAME: Name / Beschreibung
       PIN: Anheften
@@ -1265,7 +1263,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     removeExpiryTimeNote: '{0} ({1}) hat Frist der Aufgabe #{2} entfernt'
     resetTaskWarning: Diese Aufgabe wurde bereit gestartet. Mit einem Neustart werden bisherige Änderungen verloren gehen. Möchten Sie die Aufgabe trotzdem zurücksetzen?
     responsibleAfterEscalation: Verantwortlich nach Eskalation
-    setDeadlineNote: '{0} ({1}) hat das Ablaufdatum von der Aufgabe #{2} zum {3} angepasst'
+    setDeadlineNote: '{0} ({1}) hat das Fälligkeitsdatum von der Aufgabe #{2} zum {3} angepasst'
     setNameNote: Der Aufgabenname wurde durch {0} von {1} auf {2} geändert
     showOnlyTaskForMissingActivator: Nur Aufgaben mit fehlendem Aktivator anzeigen
     showOnlyTaskForMissingActivatorDesc: Dieser Filter zeigt Aufgaben an, die keinen Aktivator haben, der Aktivator nicht gefunden wird oder deaktiviert ist.
@@ -1335,10 +1333,8 @@ ch.ivy.addon.portalkit.ui.jsf:
   taskWarning:
     createdTaskLeave: '<div>Sie verlassen die aktuelle Seite.<br/>  Bitte wählen Sie eine der folgenden Optionen:</div><UL><LI>Verlassen: Ihre Änderungen verwerfen und zur ausgewählten Seite gehen.<LI>Abbrechen: Die Bearbeitung dieser Aufgabe fortsetzen.</UL>'
     createdTaskLogout: '<div>Sie verlassen die aktuelle Seite.<br/> Bitte wählen Sie eine der folgenden Optionen:</div><UL><LI>Abmelden: Ihre Änderungen verwerfen und abmelden.<LI>Abbrechen: Die Bearbeitung dieser Aufgabe fortsetzen.</UL>'
-    resetParkTaskBeforeLeave: '<div>Sie verlassen die aktuelle Aufgabe.<br/>Bitte wählen Sie eine der folgenden Optionen:</div><UL><LI>Verlassen: Ihre Änderungen verwerfen und zur ausgewählten Seite gehen.<LI>Reservieren: Ihre Änderungen verwerfen und die Aufgabe in Ihre Aufgabenliste verschieben<LI>Abbrechen:
-      Die Bearbeitung dieser Aufgabe fortsetzen.</UL>'
-    resetParkTaskBeforeLogout: '<div>Sie verlassen die aktuelle Aufgabe.</br> Bitte wählen Sie eine der folgenden Optionen:</div><UL><LI>Abmelden: Ihre Änderungen verwerfen und abmelden.<LI>Reservieren: Ihre Änderungen verwerfen und die Aufgabe in Ihre persönliche Aufgabenliste verschieben. Dann abmelden.<LI>Abbrechen:
-      Die Bearbeitung dieser Aufgabe fortsetzen.</UL>'
+    resetParkTaskBeforeLeave: '<div>Sie verlassen die aktuelle Aufgabe.<br/>Bitte wählen Sie eine der folgenden Optionen:</div><UL><LI>Verlassen: Ihre Änderungen verwerfen und zur ausgewählten Seite gehen.<LI>Reservieren: Ihre Änderungen verwerfen und die Aufgabe in Ihre Aufgabenliste verschieben<LI>Abbrechen: Die Bearbeitung dieser Aufgabe fortsetzen.</UL>'
+    resetParkTaskBeforeLogout: '<div>Sie verlassen die aktuelle Aufgabe.</br> Bitte wählen Sie eine der folgenden Optionen:</div><UL><LI>Abmelden: Ihre Änderungen verwerfen und abmelden.<LI>Reservieren: Ihre Änderungen verwerfen und die Aufgabe in Ihre persönliche Aufgabenliste verschieben. Dann abmelden.<LI>Abbrechen: Die Bearbeitung dieser Aufgabe fortsetzen.</UL>'
     taskNotFound: Die Aufgabe existiert nicht oder Sie haben ungenügende Rechte, um diese Aufgabe zu sehen.
   userProfile:
     myProfileTitle: Mein Profil
@@ -1500,9 +1496,7 @@ Dialogs:
                         <span class="shortcut-key">Alt + 4</span>Fokus auf die Fälle
                     </div>
                 </div>
-              title: 'Barrierefreiheitskürzel. Alt + 1: Se focaliser sur l’onglet du Dashboard. Alt + 2: Se focaliser sur l’onglet des processus. Alt + 3: Se focaliser sur l’onglet des tâches. Alt + 4: Se focaliser sur l’onglet des cas. Alt + 5: Se focaliser sur la recherche. Alt + 6: Se focaliser sur
-                les paramètres utilisateur. Alt + 7: Schaltet die Sichtbarkeit des Hauptmenüs um. Alt + A: Se focaliser sur le premier processus. Alt + W: Se focaliser sur la première tâche. Alt + Q: Se focaliser sur le premier cas. Tab: Navigation séquentielle entre les éléments. Esc: Fermer les widgets
-                agrandis/Fermer les menus contextuels. Enter: Confirmer la sélection'
+              title: 'Barrierefreiheit Tastenkombinationen: Alt + 1: Se focaliser sur l’onglet du Dashboard. Alt + 2: Se focaliser sur l’onglet des processus. Alt + 3: Se focaliser sur l’onglet des tâches. Alt + 4: Se focaliser sur l’onglet des cas. Alt + 5: Se focaliser sur la recherche. Alt + 6: Se focaliser sur les paramètres utilisateur. Alt + 7: Schaltet die Sichtbarkeit des Hauptmenüs um. Alt + A: Se focaliser sur le premier processus. Alt + W: Se focaliser sur la première tâche. Alt + Q: Se focaliser sur le premier cas. Tab: Navigation séquentielle entre les éléments. Esc: Fermer les widgets agrandis/Fermer les menus contextuels. Enter: Confirmer la sélection'
             CaseWidgetConfiguration:
               AddFilter: Filter hinzufügen
             ClientStatisticWidget:
@@ -1785,7 +1779,7 @@ Labels:
       CREATED: Erstellt am
       CREATOR: Ersteller
       DESCRIPTION: Beschreibung
-      FINISHED: Beendetes Datum
+      FINISHED: Enddatum
       ID: Id
       NAME: Name
       OWNER: Prozessverantwortlichen
@@ -1798,7 +1792,7 @@ Labels:
       COMPLETED: Abgeschlossenes Datum
       CREATED: Erstellt am
       DESCRIPTION: Beschreibung
-      EXPIRY: Ablaufdatum
+      EXPIRY: Fälligkeitsdatum
       ID: Id
       NAME: Name
       PIN: Anheften
@@ -1819,7 +1813,7 @@ Labels:
       EQUAL: Gleichberechtigt
       GREATER: Greater
       GREATER_OR_EQUAL: Größer oder gleich
-      IN: Unter
+      IN: Enthält
       IS: Ist
       IS_NOT: Ist nicht
       LAST: In den letzten

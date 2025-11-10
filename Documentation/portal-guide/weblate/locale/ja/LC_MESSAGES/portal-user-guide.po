@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Portal Guide ${revision}\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-17 02:31+0000\n"
-"PO-Revision-Date: 2025-10-17 10:40+0000\n"
+"POT-Creation-Date: 2025-10-23 07:56+0000\n"
+"PO-Revision-Date: 2025-11-05 08:38+0000\n"
 "Last-Translator: Thang Huynh <hhqthang@axonactive.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/axonivy-portal/"
 "portal-le/doc/portal-doc-user-guide/ja/>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.14-dev\n"
+"X-Generator: Weblate 5.14.1-dev\n"
 "Generated-By: Babel 2.17.0\n"
 
 #: ../../source/portal-user-guide/accessibility/index.rst:4
@@ -3315,7 +3315,7 @@ msgstr "ポータルに表示されるケースは、アプリケーションで
 msgid "|navigate-to-full-cases-list-page|"
 msgstr "|navigate-to-full-cases-list-page|"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:347
+#: ../../source/portal-user-guide/full-case-list/index.rst:364
 msgid "Menu to navigate to the Full case list page"
 msgstr "Menu to navigate to the Full case list page"
 
@@ -3385,7 +3385,7 @@ msgstr "カテゴリー"
 msgid "|case-key-information|"
 msgstr "|case-key-information|"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:349
+#: ../../source/portal-user-guide/full-case-list/index.rst:366
 msgid "Full case list: key informations"
 msgstr "症例リスト：主要情報"
 
@@ -3404,7 +3404,7 @@ msgstr "ケースデータ全体にアクセスするには、ケースの名前
 msgid "|case-details|"
 msgstr "|case-details|"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:351
+#: ../../source/portal-user-guide/full-case-list/index.rst:368
 msgid "The Case Details page"
 msgstr "ケースの詳細ページ"
 
@@ -3422,7 +3422,7 @@ msgstr "データと説明：ケースとその説明のメタデータが表示
 msgid "|case-details-data-description|"
 msgstr "|case-details-data-description|"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:353
+#: ../../source/portal-user-guide/full-case-list/index.rst:370
 msgid "Case Details: General section"
 msgstr "ケースの詳細一般セクション"
 
@@ -3438,7 +3438,7 @@ msgstr "関連する実行中のタスクとケース：関連するすべての
 msgid "|case-details-related-tasks-cases|"
 msgstr "|case-details-related-tasks-cases|"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:355
+#: ../../source/portal-user-guide/full-case-list/index.rst:372
 msgid "Case Details: Related Tasks of Case section"
 msgstr "ケースの詳細ケースセクションの関連タスク"
 
@@ -3452,7 +3452,7 @@ msgstr "履歴：Axon Ivy Portal は、ケースの状態の変更に関する�
 msgid "|case-details-histories|"
 msgstr "|case-details-histories|"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:357
+#: ../../source/portal-user-guide/full-case-list/index.rst:374
 msgid "Case Details: Histories section"
 msgstr "ケースの詳細歴史セクション"
 
@@ -3466,7 +3466,7 @@ msgstr "ドキュメント：ここには、ケースに添付されたドキュ
 msgid "|case-details-documents|"
 msgstr "|case-details-documents|"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:359
+#: ../../source/portal-user-guide/full-case-list/index.rst:376
 msgid "Case Details: Documents section"
 msgstr "事件の詳細書類セクション"
 
@@ -3484,6 +3484,7 @@ msgstr "ハウツー：ケースの詳細のウィジェットを移動し、サ
 #: ../../source/portal-user-guide/full-case-list/index.rst:215
 #: ../../source/portal-user-guide/full-case-list/index.rst:274
 #: ../../source/portal-user-guide/full-case-list/index.rst:335
+#: ../../source/portal-user-guide/full-case-list/index.rst:348
 #: ../../source/portal-user-guide/full-task-list/index.rst:159
 msgid "Open the case details"
 msgstr "ケースの詳細を開きます。"
@@ -3498,7 +3499,7 @@ msgstr ":guilabel:`編集` ボタンをクリックして、ウィジェット�
 msgid "|how-to-switch-to-edit-mode|"
 msgstr "|how-to-switch-to-edit-mode|"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:373
+#: ../../source/portal-user-guide/full-case-list/index.rst:390
 msgid "Case Details: button to switch to the edit mode"
 msgstr "ケース詳細：編集モードに切り替えるボタン"
 
@@ -3513,7 +3514,7 @@ msgstr "**保存** ボタンをクリックして、ページの現在の状態�
 msgid "|how-to-switch-to-view-mode|"
 msgstr "|how-to-switch-to-view-mode|"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:371
+#: ../../source/portal-user-guide/full-case-list/index.rst:388
 msgid "Case Details: save button"
 msgstr "ケース詳細：保存ボタン"
 
@@ -3528,7 +3529,7 @@ msgstr "**リセット** ボタンをクリックして、ウィジェットを�
 msgid "|how-to-reset-to-default|"
 msgstr "|how-to-reset-to-default|"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:375
+#: ../../source/portal-user-guide/full-case-list/index.rst:392
 msgid "Case Details: button to reset to the default configurations"
 msgstr "ケース詳細：デフォルト設定にリセットするボタン"
 
@@ -3561,7 +3562,7 @@ msgstr ":guilabel:`閉じる` をクリックしてダイアログを閉じま�
 msgid "|how-to-attach-document-to-case|"
 msgstr "|how-to-attach-document-to-case|"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:361
+#: ../../source/portal-user-guide/full-case-list/index.rst:378
 msgid "Case Details: Add document dialog"
 msgstr "ケースの詳細ドキュメントの追加ダイアログ"
 
@@ -3602,7 +3603,7 @@ msgstr ":guilabel:`削除` をクリックして添付ファイルを削除し�
 msgid "|how-to-delete-an-attachment-from-case|"
 msgstr "|how-to-delete-an-attachment-from-case|"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:363
+#: ../../source/portal-user-guide/full-case-list/index.rst:380
 msgid "Case Details: Delete document confirm dialog"
 msgstr "ケースの詳細ドキュメントの削除確認ダイアログ"
 
@@ -3647,7 +3648,7 @@ msgstr ":guilabel:`閉じる` ボタンをクリックしてダイアログを�
 msgid "|how-to-preview-document|"
 msgstr "|how-to-preview-document|"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:381
+#: ../../source/portal-user-guide/full-case-list/index.rst:398
 msgid "Case Details: preview document dialog"
 msgstr "事例の詳細: ドキュメントのプレビューダイアログ"
 
@@ -3713,7 +3714,7 @@ msgstr "ファイル名が更新され、名前の変更に関する注記が追
 msgid "|how-to-rename-document|"
 msgstr "|how-to-rename-document|"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:383
+#: ../../source/portal-user-guide/full-case-list/index.rst:400
 msgid "Case Details: rename document dialog"
 msgstr "ケース詳細: 文書名変更ダイアログ"
 
@@ -3741,7 +3742,7 @@ msgstr "ノートを保存するには、:guilabel:`保存` をクリックし�
 msgid "|how-to-add-task-note|"
 msgstr "|how-to-add-task-note|"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:365
+#: ../../source/portal-user-guide/full-case-list/index.rst:382
 msgid "Case Details: Add note dialog"
 msgstr "ケース詳細：メモ追加ダイアログ"
 
@@ -3794,7 +3795,7 @@ msgstr "show-more-icon"
 msgid "|how-to-show-note-details|"
 msgstr "|how-to-show-note-details|"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:367
+#: ../../source/portal-user-guide/full-case-list/index.rst:384
 msgid "Case Details: Link to show more notes details"
 msgstr "ケース詳細：詳細なメモを表示するリンク"
 
@@ -3810,7 +3811,7 @@ msgstr "ケース履歴をエクスポートするには、:guilabel:`Excel に�
 msgid "|export-case-history|"
 msgstr "|export-case-history|"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:369
+#: ../../source/portal-user-guide/full-case-list/index.rst:386
 msgid "Case Business Information page: Link to export case history"
 msgstr "ケースビジネス情報ページ：ケース履歴のエクスポートリンク"
 
@@ -3993,6 +3994,7 @@ msgid "Full task list"
 msgstr "全タスクリスト"
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:323
+#: ../../source/portal-user-guide/full-case-list/index.rst:350
 msgid "Click on :guilabel:`Actions`"
 msgstr ":guilabel:`アクション` をクリックします。"
 
@@ -4008,7 +4010,7 @@ msgstr "ブラウザの新しいタブが開きます。プロセスビューア
 msgid "|portal-process-viewer|"
 msgstr "|portal-process-viewer|"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:377
+#: ../../source/portal-user-guide/full-case-list/index.rst:394
 msgid "Process Viewer page"
 msgstr "プロセスビューアーページ"
 
@@ -4025,7 +4027,7 @@ msgstr "共有ボタン |share-icon| をクリックします。"
 msgid "|how-to-share-case-details|"
 msgstr "|how-to-share-case-details|"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:379
+#: ../../source/portal-user-guide/full-case-list/index.rst:396
 msgid "Case Details: button to get the shareable link of the case details"
 msgstr "ケース詳細：ケース詳細の共有用リンクを取得するボタン"
 
@@ -4036,6 +4038,40 @@ msgid ""
 msgstr ""
 "ユーザーがケースの詳細を共有できるようにするには、:bdg-ref-warning:`🔑ShareCaseDetailsLink "
 "<ShareCaseDetailsLink>` 権限を付与してください。"
+
+#: ../../source/portal-user-guide/full-case-list/index.rst:346
+#, fuzzy
+msgid "HowTo: Show Case Custom Fields Dialog"
+msgstr "ハウツーカスタムフィールドを表示する"
+
+#: ../../source/portal-user-guide/full-case-list/index.rst:352
+#, fuzzy
+msgid "Click on :guilabel:`Custom Fields`"
+msgstr ":guilabel:`アクション` をクリックします。"
+
+#: ../../source/portal-user-guide/full-case-list/index.rst:354
+msgid "Portal opens the custom fields dialog of the case"
+msgstr ""
+
+#: ../../source/portal-user-guide/full-case-list/index.rst:356
+#, fuzzy
+msgid "|case-custom-fields-dialog|"
+msgstr "|custom-fields-dialog|"
+
+#: ../../source/portal-user-guide/full-case-list/index.rst:402
+#, fuzzy
+msgid "Case Details: custom fields dialog"
+msgstr "ケースの詳細ドキュメントの追加ダイアログ"
+
+#: ../../source/portal-user-guide/full-case-list/index.rst:360
+#, fuzzy
+msgid ""
+"Grant permission :bdg-ref-warning:`🔑CaseDisplayCustomFieldsAction "
+"<CaseDisplayCustomFieldsAction>` to allow a user to see the custom fields"
+" link."
+msgstr ""
+":bdg-ref-warning:`🔑TaskDisplayCustomFieldsAction "
+"<TaskDisplayCustomFieldsAction>` 、「アクション」パネルの「カスタムフィールド」リンクの表示を許可します。"
 
 #: ../../source/portal-user-guide/full-process-list/index.rst:4
 msgid "Full Process List"
@@ -4547,15 +4583,16 @@ msgid ""
 "warning:`🔑TaskDisplayCustomFieldsAction <TaskDisplayCustomFieldsAction>` "
 "to allow a user to see the corresponding buttons and menu items."
 msgstr ""
-":bdg-ref-warning:`🔑TaskDisplayResetAction <TaskDisplayResetAction>`, :bdg-"
-"ref-warning:`🔑TaskDisplayReserveAction <TaskDisplayReserveAction>`, :bdg-"
-"ref-warning:`🔑TaskDisplayDelegateAction <TaskDisplayDelegateAction>`, :bdg-"
-"ref-warning:`🔑TaskDisplayDestroyAction <TaskDisplayDestroyAction>`, :bdg-"
-"ref-warning:`🔑TaskDisplayAdditionalOptions <TaskDisplayAdditionalOptions>`, "
+":bdg-ref-warning:`🔑TaskDisplayResetAction <TaskDisplayResetAction>`, "
+":bdg-ref-warning:`🔑TaskDisplayReserveAction <TaskDisplayReserveAction>`, "
+":bdg-ref-warning:`🔑TaskDisplayDelegateAction "
+"<TaskDisplayDelegateAction>`, :bdg-ref-warning:`🔑TaskDisplayDestroyAction"
+" <TaskDisplayDestroyAction>`, :bdg-ref-"
+"warning:`🔑TaskDisplayAdditionalOptions <TaskDisplayAdditionalOptions>`, "
 ":bdg-ref-warning:`🔑TaskDisplayWorkflowEventAction "
-"<TaskDisplayWorkflowEventAction>`, :bdg-ref-warning:`🔑"
-"TaskDisplayCustomFieldsAction <TaskDisplayCustomFieldsAction>` の権限を付与し"
-"、ユーザーに対応するボタンとメニュー項目を表示できるようにする。"
+"<TaskDisplayWorkflowEventAction>`, :bdg-ref-"
+"warning:`🔑TaskDisplayCustomFieldsAction <TaskDisplayCustomFieldsAction>` "
+"の権限を付与し、ユーザーに対応するボタンとメニュー項目を表示できるようにする。"
 
 #: ../../source/portal-user-guide/full-task-list/index.rst:83
 msgid ""
@@ -4612,7 +4649,10 @@ msgid ""
 "Documents, these documents once attached to the case are available on all"
 " tasks. You may add, delete, rename or preview documents described in the"
 " HowTo’s below."
-msgstr "ドキュメント：ケースに添付されたドキュメントはすべてのタスクで利用できます。以下の「ハウツー」のとおり、ドキュメントを追加、削除、プレビューできます。"
+msgstr ""
+"ドキュメント：ケースに添付されたドキュメントはすべてのタスクで利用できます。"
+"以下の「ハウツー」のとおり、ドキュメントを追加、削除、名前変更、プレビューで"
+"きます。"
 
 #: ../../source/portal-user-guide/full-task-list/index.rst:105
 msgid "|detailed-task-information-documents|"
@@ -4879,15 +4919,13 @@ msgid ""
 "link in Actions panel."
 msgstr ""
 ":bdg-ref-warning:`🔑TaskDisplayCustomFieldsAction "
-"<TaskDisplayCustomFieldsAction>` 、「アクション」パネルの「カスタムフィールド"
-"」リンクの表示を許可します。"
+"<TaskDisplayCustomFieldsAction>` 、「アクション」パネルの「カスタムフィールド」リンクの表示を許可します。"
 
 #: ../../source/portal-user-guide/full-task-list/index.rst:283
 msgid ""
 "Click the link ``Custom Fields`` on the overlay panel to see Custom "
 "Fields dialog"
-msgstr "オーバーレイパネルのリンク ``Custom Fields`` をクリックし、カスタムフィールド"
-"ダイアログを表示する"
+msgstr "オーバーレイパネルのリンク ``Custom Fields`` をクリックし、カスタムフィールドダイアログを表示する"
 
 #: ../../source/portal-user-guide/full-task-list/index.rst:285
 msgid "**Custom Fields dialog**"
@@ -5417,9 +5455,9 @@ msgid ""
 "make it visible, you need to set the ``Portal.Cases.EnableOwner`` setting"
 " to ``true`` in the :ref:`Admin Settings <update-portal-settings>`."
 msgstr ""
-"``Filter tasks by current case owner`` フィルターはデフォルトでは非表示になっています。表示させるには、 の"
-" 設定をに設定する必要があります。 :ref:`ハウツー：ポータル設定を更新する <update-portal-settings>` "
-"``Portal.Cases.EnableOwner`` ``true``"
+"``Filter tasks by current case owner`` フィルターはデフォルトで非表示です。表"
+"示するには、:ref:`ハウツー：ポータル設定を更新する <update-portal-settings>` "
+"で ``Portal.Cases.EnableOwner`` 設定を ``true`` に設定する必要があります。"
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:106
 #: ../../source/portal-user-guide/new-dashboard/index.rst:191

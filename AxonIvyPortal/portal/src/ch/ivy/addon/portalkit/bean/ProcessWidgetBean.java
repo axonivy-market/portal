@@ -16,6 +16,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
@@ -29,6 +30,7 @@ import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
 
 import com.axonivy.portal.components.dto.SecurityMemberDTO;
+import com.axonivy.portal.components.util.ImageUploadResult;
 import com.axonivy.portal.components.util.RoleUtils;
 import com.axonivy.portal.service.GlobalSearchService;
 import com.axonivy.portal.service.IvyTranslationService;
@@ -57,7 +59,6 @@ import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
-import ch.ivyteam.util.Pair;
 
 @ManagedBean
 @ViewScoped
@@ -293,13 +294,19 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
   }
 
   public void handleExternalLinkImageUpload(FileUploadEvent event) {
-    if(this.editedExternalLink == null) {
+    if (this.editedExternalLink == null) {
       return;
     }
     removeTempExternalLinkImage();
-    Pair<String, String> imageInfo = ExternalLinkUtils.handleImageUpload(event);
-    this.editedExternalLink.setImageLocation(imageInfo.getLeft());
-    this.editedExternalLink.setImageType(imageInfo.getRight());
+    ImageUploadResult imageInfo = ExternalLinkUtils.handleImageUpload(event);
+    if (imageInfo.isInvalid()) {
+      FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+          Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/documentFiles/fileContainScript"), null);
+      FacesContext.getCurrentInstance().addMessage("edit-external-link-error-message", message);
+    } else {
+      this.editedExternalLink.setImageLocation(imageInfo.imageLocation());
+      this.editedExternalLink.setImageType(imageInfo.imageType());
+    }
   }
 
   public void removeTempExternalLinkImage() {
@@ -450,7 +457,7 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
       return processGroups;
     }
     for (String processGroupName : CollectionUtils.emptyIfNull(processesByAlphabet.keySet())) {
-      if (!processGroupName.equals(SPECIAL_CHARACTER_KEY)) {
+      if (!SPECIAL_CHARACTER_KEY.equals(processGroupName)) {
         processGroups.put(processGroupName, processGroupName);
       } else {
         processGroups.put(SPECIAL_CHARACTER_KEY, "#");

@@ -4,6 +4,9 @@
   xmlns:pe="http://primefaces.org/ui/extensions">
 <h:body>
   <ui:composition template="/layouts/IFramePortalTemplate.xhtml">
+    <ui:define name="head">
+      <h:outputScript name="static-page.js" library="js" />
+    </ui:define>
     <ui:param name="url" value="#{data.url}" />
   </ui:composition>
 </h:body>
