@@ -1705,7 +1705,7 @@ Labels:
   Permissions: 権限
   PinnedCases: 'TODO: Pinned Cases'
   PinnedTasks: 'TODO: Pinned Tasks'
-  RequiredFieldMessage: '{0} が必要です'
+  RequiredFieldMessage: '{0}:値が必要です'
   SelectOperator: TODO Choose Operator
   SelectValues: TODO Select values
   Share: 共有
