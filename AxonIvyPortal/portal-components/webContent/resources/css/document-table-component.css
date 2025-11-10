@@ -127,5 +127,8 @@ body.freya .document-table-component .upload-container .type-selection-label {
   line-height: 2.5;
 }
 .preview-image{
-  object-fit:contain;
+  object-fit: contain;
+}
+.ui-dialog-maximized .preview-image {
+  height: auto;
 }

@@ -151,8 +151,8 @@
     <cc:renderFacet name="componentFooter" />
     
     <!-- set closable to true to force to close stream by clicking Close button -->
-    <p:dialog widgetVar="preview-document-dialog" id="preview-document-dialog" appendTo="@(body)" 
-        header="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/Preview')}" closable="false"
+    <p:dialog widgetVar="preview-document-dialog" id="preview-document-dialog" appendTo="@(body)" maximizable="true"
+        header="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/Preview')}" closable="false" resizable="false"
         modal="true" width="70vw" styleClass="#{cc.attrs.previewDialogStyleClass}" showEffect="fade" hideEffect="fade"
         dynamic="true" fitViewport="true" responsive="true">
       <div class="ui-g-12">
