@@ -31,7 +31,7 @@ After a task is finished, a growl message appears if ``Portal.DisplayMessageAfte
 .. _components-additional-component-global-growl-display-growl-after-finish-task:
 
 Display Growl After Leaving a Task
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 After the user cancels a task, a growl message is displayed if ``Portal.DisplayMessageAfterFinishTask`` is true.
 
