@@ -1654,3 +1654,6 @@ body.dark .focused {
 .preview-image{
   object-fit: contain;
 }
+.ui-dialog-maximized .preview-image {
+  height: auto;
+}

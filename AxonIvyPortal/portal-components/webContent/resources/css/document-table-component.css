@@ -146,3 +146,6 @@ body.serenity .document-table-component .upload-container .ui-widget.ui-outputla
 .preview-image{
   object-fit: contain;
 }
+.ui-dialog-maximized .preview-image {
+  height: auto;
+}
