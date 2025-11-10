@@ -384,7 +384,7 @@ jobs:
             cat AxonIvyPortal/portal-selenium-test/target/testEngineOut.log 
 
         - name: Archive screenshot image
-          uses: actions/upload-artifact@v4
+          uses: actions/upload-artifact@v5
           with:
             name: screenshots
             retention-days: 5
@@ -392,7 +392,7 @@ jobs:
               AxonIvyPortal/portal-selenium-test/target/selenide/reports/*
 
         - name: Archive test reports
-          uses: actions/upload-artifact@v4
+          uses: actions/upload-artifact@v5
           with:
             name: selenium-test-reports
             retention-days: 5
