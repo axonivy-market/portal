@@ -145,9 +145,7 @@ if (document) {
 
     if ($(searchFormId).is(':hidden') && event.key !== 'Tab' && !(event.altKey && keyShortcuts.includes(event.code))) {
       $(eleSearchId).click();
-    }
-
-    if ($(searchFormId).is(':visible')
+    } else if ($(searchFormId).is(':visible')
         && lastSearchInput !== $(eleSearchId).val()) {
       searchHandler();
     }
