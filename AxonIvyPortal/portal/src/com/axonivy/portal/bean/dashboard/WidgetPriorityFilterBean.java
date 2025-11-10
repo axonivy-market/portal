@@ -1,5 +1,7 @@
 package com.axonivy.portal.bean.dashboard;
 
+import static org.apache.commons.lang3.StringUtils.EMPTY;
+
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
@@ -10,6 +12,7 @@ import javax.faces.bean.ViewScoped;
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 import com.axonivy.portal.enums.dashboard.filter.FilterOperator;
 
+import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.WorkflowPriority;
 
 @ManagedBean
@@ -19,6 +22,7 @@ public class WidgetPriorityFilterBean implements Serializable {
   private static final long serialVersionUID = 5710087841257652703L;
 
   private static List<FilterOperator> priorityOperators = FilterOperator.PRIORITY_OPERATORS.stream().toList();
+  private static final String TASK_PRIORITY_CMS_PATH = "/ch.ivy.addon.portalkit.ui.jsf/taskPriority/";
 
   private List<String> priorities;
   private String prioritiesString;
@@ -50,5 +54,15 @@ public class WidgetPriorityFilterBean implements Serializable {
   public void updatePrioritiesString(List<String> priorities) {
     prioritiesString = String.join(", ", priorities);
   }
+  
+  public String getUserFriendlyTaskPriority(WorkflowPriority priority) {
+    if (priority == null) {
+      return EMPTY;
+    }
+
+    return Ivy.cms().co(TASK_PRIORITY_CMS_PATH + priority + "_LOWERCASE");
+
+  }
+
 
 }

@@ -858,6 +858,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     customFieldType: Type de champ personnalisé
     dashboardManagement:
       CreateDashboard: Créer un tableau de bord
+      DashboardPermissionRequiredMessage: 'Permissions: Ce champ est obligatoire'
+      DashboardTitleRequiredMessage: 'Titre du tableau de bord: Ce champ est obligatoire'
       addDashboard: Ajouter un tableau de bord
       dashboardIcon: Icône du tableau de bord
       dashboardPermission: Autorisation du tableau de bord
