@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Portal Guide ${revision}\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-10 10:42+0000\n"
+"POT-Creation-Date: 2025-11-11 02:51+0000\n"
 "PO-Revision-Date: 2025-10-09 10:24+0000\n"
 "Last-Translator: Thang Huynh <hhqthang@axonactive.com>\n"
 "Language: ja\n"
@@ -34,7 +34,7 @@ msgstr "このコンポーネントは、ドキュメントのエントリの表
 msgid "|document-table|"
 msgstr "|document-table|"
 
-#: ../../source/portal-components/document-table/index.rst:292
+#: ../../source/portal-components/document-table/index.rst:298
 msgid "document-table"
 msgstr "document-table"
 
@@ -202,6 +202,21 @@ msgid ""
 "Boolean value to specify the rendering of the message, when set to false "
 "message will not be rendered."
 msgstr "メッセージのレンダリングを指定するブール値。falseに設定するとメッセージはレンダリングされない。"
+
+#: ../../source/portal-components/documents/document_table_component_attributes.csv:1
+msgid "lazy"
+msgstr ""
+
+#: ../../source/portal-components/documents/document_table_component_attributes.csv:1
+#, fuzzy
+msgid "FALSE"
+msgstr "false"
+
+#: ../../source/portal-components/documents/document_table_component_attributes.csv:1
+msgid ""
+"Boolean value to specify whether the table should load data lazily and "
+"enable pagination."
+msgstr ""
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "fileLimit"
@@ -777,10 +792,11 @@ msgid "User interface"
 msgstr "ユーザーインターフェース"
 
 #: ../../source/portal-components/document-table/index.rst:192
+#, fuzzy
 msgid ""
 "Not only the functions, but you can also customize the UI of the "
-"**Document Table** such as adding a new column or removing default "
-"columns."
+"**Document Table** such as adding a new column, removing default columns "
+"or enable the lazy loading and pagination."
 msgstr "機能だけでなく、新しい列の追加やデフォルトの列の削除など、 **ドキュメントテーブル** の UI もカスタマイズできます。"
 
 #: ../../source/portal-components/document-table/index.rst:195
@@ -788,7 +804,7 @@ msgstr "機能だけでなく、新しい列の追加やデフォルトの列の
 msgid "Code Example:"
 msgstr "コードの例："
 
-#: ../../source/portal-components/document-table/index.rst:223
+#: ../../source/portal-components/document-table/index.rst:224
 msgid ""
 "Refer to process ``DocumentTableExample`` in project ``portal-components-"
 "examples`` for more details."
@@ -796,15 +812,15 @@ msgstr ""
 "詳細については、 ``portal-components-examples`` プロジェクトの ``DocumentTableExample`` "
 "プロセスを参照してください。"
 
-#: ../../source/portal-components/document-table/index.rst:226
+#: ../../source/portal-components/document-table/index.rst:227
 msgid "Migration Notes"
 msgstr "移行に関する注記"
 
-#: ../../source/portal-components/document-table/index.rst:229
+#: ../../source/portal-components/document-table/index.rst:230
 msgid "Migrate 10.0.x to 10.0.12"
 msgstr "10.0.x から 10.0.12 への移行"
 
-#: ../../source/portal-components/document-table/index.rst:231
+#: ../../source/portal-components/document-table/index.rst:232
 msgid ""
 "Since this version, we no longer support the override process approach "
 "for functions of **Document Table**. Please follow our guidelines below "
@@ -813,7 +829,7 @@ msgstr ""
 "このバージョンから、 **ドキュメントテーブル** "
 "の機能のプロセスのオーバーライドがサポート対象外になりました。以下のガイドラインに従って、サブプロセスのオーバーライドを移行してください。"
 
-#: ../../source/portal-components/document-table/index.rst:234
+#: ../../source/portal-components/document-table/index.rst:235
 msgid ""
 "Remove Subprocess Override of ``GetDocumentItems``, "
 "``UploadDocumentItem``, ``DeleteDocumentItem``, and "
@@ -822,63 +838,63 @@ msgstr ""
 "プロジェクトから ``GetDocumentItems``、 ``UploadDocumentItem``、 "
 "``DeleteDocumentItem``、 ``DownloadDocumentItem`` のサブプロセスのオーバーライドを削除します。"
 
-#: ../../source/portal-components/document-table/index.rst:237
+#: ../../source/portal-components/document-table/index.rst:238
 msgid "Change the signature of your callable starts as described below."
 msgstr "以下のとおり、呼び出し可能な開始サブプロセスのシグネチャを変更します。"
 
-#: ../../source/portal-components/document-table/index.rst:240
+#: ../../source/portal-components/document-table/index.rst:241
 msgid "Subprocess"
 msgstr "サブプロセス"
 
-#: ../../source/portal-components/document-table/index.rst:240
+#: ../../source/portal-components/document-table/index.rst:241
 msgid "New signature"
 msgstr "新しいシグネチャ"
 
-#: ../../source/portal-components/document-table/index.rst:242
-#: ../../source/portal-components/document-table/index.rst:265
+#: ../../source/portal-components/document-table/index.rst:243
+#: ../../source/portal-components/document-table/index.rst:266
 msgid "GetDocumentItems"
 msgstr "GetDocumentItems"
 
-#: ../../source/portal-components/document-table/index.rst:242
+#: ../../source/portal-components/document-table/index.rst:243
 msgid "portalGetDocumentItems"
 msgstr "portalGetDocumentItems"
 
-#: ../../source/portal-components/document-table/index.rst:244
-#: ../../source/portal-components/document-table/index.rst:267
+#: ../../source/portal-components/document-table/index.rst:245
+#: ../../source/portal-components/document-table/index.rst:268
 msgid "UploadDocumentItem"
 msgstr "UploadDocumentItem"
 
-#: ../../source/portal-components/document-table/index.rst:244
+#: ../../source/portal-components/document-table/index.rst:245
 msgid "portalUploadDocumentItem"
 msgstr "portalUploadDocumentItem"
 
-#: ../../source/portal-components/document-table/index.rst:246
-#: ../../source/portal-components/document-table/index.rst:269
+#: ../../source/portal-components/document-table/index.rst:247
+#: ../../source/portal-components/document-table/index.rst:270
 msgid "DeleteDocumentItem"
 msgstr "DeleteDocumentItem"
 
-#: ../../source/portal-components/document-table/index.rst:246
+#: ../../source/portal-components/document-table/index.rst:247
 msgid "portalDownloadDocumentItem"
 msgstr "portalDownloadDocumentItem"
 
-#: ../../source/portal-components/document-table/index.rst:248
-#: ../../source/portal-components/document-table/index.rst:271
+#: ../../source/portal-components/document-table/index.rst:249
+#: ../../source/portal-components/document-table/index.rst:272
 msgid "DownloadDocumentItem"
 msgstr "DownloadDocumentItem"
 
-#: ../../source/portal-components/document-table/index.rst:248
+#: ../../source/portal-components/document-table/index.rst:249
 msgid "portalDeleteDocumentItem"
 msgstr "portalDeleteDocumentItem"
 
-#: ../../source/portal-components/document-table/index.rst:251
+#: ../../source/portal-components/document-table/index.rst:252
 msgid "Now your **Document Table** should work as before."
 msgstr "**ドキュメントテーブル** がこれまでと同じように動作するはずです。"
 
-#: ../../source/portal-components/document-table/index.rst:254
+#: ../../source/portal-components/document-table/index.rst:255
 msgid "Migrate to 10.0.0"
 msgstr "10.0.0 への移行"
 
-#: ../../source/portal-components/document-table/index.rst:256
+#: ../../source/portal-components/document-table/index.rst:257
 msgid ""
 "Replace code in HTML files: replace "
 "``ic:ch.ivy.addon.portalkit.component.document.DocumentTable`` with "
@@ -888,7 +904,7 @@ msgstr ""
 "``ic:ch.ivy.addon.portalkit.component.document.DocumentTable`` を "
 "``ic:com.axonivy.portal.components.DocumentTable`` に置き換えてください。"
 
-#: ../../source/portal-components/document-table/index.rst:258
+#: ../../source/portal-components/document-table/index.rst:259
 msgid ""
 "Consider updating value of the new attributes "
 "``enableScriptCheckingForUploadedDocument``, "
@@ -899,35 +915,35 @@ msgstr ""
 "``enableVirusScannerForUploadedDocument``、 ``allowedUploadFileTypes`` "
 "属性の値の更新を検討します。"
 
-#: ../../source/portal-components/document-table/index.rst:260
+#: ../../source/portal-components/document-table/index.rst:261
 msgid "Override subprocesses if you want and adapt your business accordingly."
 msgstr "必要な場合はサブプロセスをオーバーライドし、ビジネスをそれに合わせます。"
 
-#: ../../source/portal-components/document-table/index.rst:263
+#: ../../source/portal-components/document-table/index.rst:264
 msgid "New subprocess"
 msgstr "新しいサブプロセス"
 
-#: ../../source/portal-components/document-table/index.rst:263
+#: ../../source/portal-components/document-table/index.rst:264
 msgid "Deprecated subprocess"
 msgstr "非推奨のサブプロセス"
 
-#: ../../source/portal-components/document-table/index.rst:265
+#: ../../source/portal-components/document-table/index.rst:266
 msgid "GetDocumentList"
 msgstr "GetDocumentList"
 
-#: ../../source/portal-components/document-table/index.rst:267
+#: ../../source/portal-components/document-table/index.rst:268
 msgid "UploadDocument"
 msgstr "UploadDocument"
 
-#: ../../source/portal-components/document-table/index.rst:269
+#: ../../source/portal-components/document-table/index.rst:270
 msgid "DeleteDocument"
 msgstr "DeleteDocument"
 
-#: ../../source/portal-components/document-table/index.rst:271
+#: ../../source/portal-components/document-table/index.rst:272
 msgid "DownloadDocument"
 msgstr "DownloadDocument"
 
-#: ../../source/portal-components/document-table/index.rst:274
+#: ../../source/portal-components/document-table/index.rst:275
 msgid ""
 "If you have customized IvyDocument make sure to extend it from class "
 "``com.axonivy.portal.components.ivydata.bo.IvyDocument``."
@@ -935,7 +951,7 @@ msgstr ""
 "IvyDocument をカスタマイズした場合は、必ず "
 "``com.axonivy.portal.components.ivydata.bo.IvyDocument`` クラスから拡張してください。"
 
-#: ../../source/portal-components/document-table/index.rst:276
+#: ../../source/portal-components/document-table/index.rst:277
 msgid ""
 "Attributes ``typeSelectionItems`` and ``selectedType`` now use "
 "``com.axonivy.portal.components.enums.DocumentType``. Please replace "
@@ -947,7 +963,7 @@ msgstr ""
 "を使用するようになりました。``ch.ivy.addon.portalkit.enums.DocumentType`` を "
 "``com.axonivy.portal.components.enums.DocumentType`` に置き換えてください。"
 
-#: ../../source/portal-components/document-table/index.rst:280
+#: ../../source/portal-components/document-table/index.rst:281
 msgid ""
 "Please remove redundant overridden configurations, subprocesses, and data"
 " classes such as GetDocumentListOverride, UploadDocumentOverride, etc."
@@ -955,15 +971,15 @@ msgstr ""
 "GetDocumentListOverride、UploadDocumentOverride "
 "など、オーバーライドされた重複する設定、サブプロセス、データクラスを削除してください。"
 
-#: ../../source/portal-components/document-table/index.rst:284
+#: ../../source/portal-components/document-table/index.rst:285
 msgid "Release Notes"
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:287
+#: ../../source/portal-components/document-table/index.rst:288
 msgid "Changes in 12.0.9"
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:289
+#: ../../source/portal-components/document-table/index.rst:290
 msgid ""
 "Introduced **Renaming Document** feature for Document Table component. "
 "Follow instructions in :ref:`Customize <components-portal-components-"
@@ -971,12 +987,22 @@ msgid ""
 " to customize the renaming behavior if needed."
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:290
+#: ../../source/portal-components/document-table/index.rst:291
 msgid ""
 "Enhanced the document preview feature for the task and case detail. If "
 "you have :dev-url:`DocFactory <https://market.axonivy.com/doc-factory"
 "#tab-description>` in the same security context, you can preview "
 "Word(doc, docx), Excel(xls, xlsx) and email(eml) documents."
+msgstr ""
+
+#: ../../source/portal-components/document-table/index.rst:295
+msgid "Changes in 12.0.11"
+msgstr ""
+
+#: ../../source/portal-components/document-table/index.rst:296
+msgid ""
+"Added lazy loading functionality to the Document Table component, "
+"enabling efficient data loading through pagination."
 msgstr ""
 
 #: ../../source/portal-components/index.rst:4
