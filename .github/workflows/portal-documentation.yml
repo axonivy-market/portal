@@ -4,8 +4,8 @@ on:
   workflow_dispatch:
     inputs:
       ivyVersion:
-        description: 'Ivy version use to replace |version| placeholder of the links which navigate to ivy documentation. e.g.: https://developer.axonivy.com/doc/nightly/designer-guide/configuration/variables.html'
-        default: 'nightly-10'
+        description: 'Keep as default value. Ivy version use to replace |version| placeholder of the links which navigate to ivy documentation. e.g.: https://developer.axonivy.com/doc/nightly/designer-guide/configuration/variables.html'
+        default: '10.0'
         required: true
 jobs:
   build-document:
