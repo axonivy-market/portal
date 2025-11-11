@@ -82,4 +82,9 @@ public final class WaitHelper {
       $("ASSERTION FAILED, CHECK STACK TRACE from BaseTest.assertTrue").shouldBe(exist, ZERO);
     }
   }
+
+  public static void waitForFadeInAnimationFinished() {
+    // Wait Primefaces fade in animation finished
+    Sleeper.sleep(500);
+  }
 }
