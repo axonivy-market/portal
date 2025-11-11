@@ -84,7 +84,6 @@ public final class WaitHelper {
   }
 
   public static void waitForAnimationFinished() {
-    // Wait Primefaces animation finished
-    Sleeper.sleep(500);
+    Sleeper.sleep(500); // Wait Primefaces animation finished
   }
 }
