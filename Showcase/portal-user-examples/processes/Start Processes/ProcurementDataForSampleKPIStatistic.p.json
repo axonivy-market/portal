@@ -15,17 +15,7 @@
           "map" : { },
           "code" : [
             "import com.axonivy.portal.userexamples.ProcurementDataForSampleKPIStatisticData;",
-            "out=signal.getSignalData() as ProcurementDataForSampleKPIStatisticData;",
-            "",
-            "ivy.log.info(\"Department: {0}\", out.department);",
-            "ivy.log.info(\"monthOfYear: {0}\", out.monthOfYear);",
-            "ivy.log.info(\"item: {0}\", out.item);",
-            "ivy.log.info(\"spendAmount: {0}\", out.spendAmount);",
-            "ivy.log.info(\"daysToDecision: {0}\", out.daysToDecision);",
-            "ivy.log.info(\"Decision {0}\", out.decision);",
-            "ivy.log.info(\"reworkCauses {0}\", out.reworkCauses); ",
-            "ivy.log.info(\"reworkNoLoops {0}\", out.reworkNoLoops); ",
-            "ivy.log.info(\"Decision {0}\", out.reworkOccurred);  "
+            "out=signal.getSignalData() as ProcurementDataForSampleKPIStatisticData;"
           ]
         }
       },
@@ -44,8 +34,8 @@
           "name" : "Review order"
         },
         "case" : {
-          "name" : "Procurement",
-          "description" : "Procurement Data for Sample KPI Statistic",
+          "name" : "<%=ivy.cms.co(\"/Processes/Procurement/name\")%>",
+          "description" : "<%=ivy.cms.co(\"/Processes/Procurement/description\")%>",
           "customFields" : [
             { "name" : "daysToDecision", "type" : "NUMBER", "value" : "in1.daysToDecision" },
             { "name" : "decision", "type" : "STRING", "value" : "in1.decision" },
@@ -102,8 +92,6 @@
             "",
             "  List<String> departments = ivy.cms.co(\"/SampleStatisticValue/Department\").split(\";\");",
             "  instanceData.department = departments.get((Math.random() * departments.size()).intValue());",
-            "",
-            "  ivy.log.info(\"Depatments {0}\", departments);",
             "  ",
             "  List<String> items = ivy.cms.co(\"/SampleStatisticValue/Item\").split(\";\");",
             "  instanceData.item = items.get((Math.random() * items.size()).intValue());",
@@ -135,7 +123,6 @@
             "",
             "  ivy.wf.signals().create().data(instanceData).send(\"createProcurementKPIcase\");",
             "",
-            "  ",
             "}"
           ]
         }

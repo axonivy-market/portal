@@ -164,7 +164,7 @@ Sample: KPI Procurement Overview
 The dashboards shown in the images below demonstrate the capabilities of Custom Statistics Widgets, which are available starting from version 13.2 of the Axon Ivy Portal.
 These widgets enable you to visualize KPIs and other information in a fully customizable way.
 
-Specially, this example is designed for procurement processes, these dashboards provide insights into various aspects of procurement activities.
+Specifically, this example is designed for procurement processes, these dashboards provide insights into various aspects of procurement activities.
 
 To access the sample dashboard, follow these steps:
 

@@ -1,4 +1,4 @@
-{
+[{
   "id" : "87c815fc1817445792a94dd30004d483",
   "version" : "13.2.0",
   "templateId" : "create-from-scratch",
@@ -350,4 +350,4 @@
   } ],
   "permissions" : [ "Everybody" ],
   "dashboardDisplayType" : "sub_menu"
-}
+}]

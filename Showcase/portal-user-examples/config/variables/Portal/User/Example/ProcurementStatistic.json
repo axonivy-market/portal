@@ -686,7 +686,7 @@
       },
       {
         "locale": "ja",
-        "value": "サイクルタイム比較決定までの時間（手直しあり vs 手直しなし"
+        "value": "サイクルタイム比較決定までの時間（手直しあり vs 手直しなし)"
       },
       {
         "locale": "es",
@@ -719,23 +719,23 @@
       "xTitles": [
         {
           "locale": "en",
-          "value": "Rework occured?"
+          "value": "Rework occurred?"
         },
         {
           "locale": "fr",
-          "value": "Rework occured?"
+          "value": "Rework occurred?"
         },
         {
           "locale": "de",
-          "value": "Rework occured?"
+          "value": "Rework occurred?"
         },
         {
           "locale": "ja",
-          "value": "Rework occured?"
+          "value": "Rework occurred?"
         },
         {
           "locale": "es",
-          "value": "Rework occured?"
+          "value": "Rework occurred?"
         }
       ],
       "yTitles": [

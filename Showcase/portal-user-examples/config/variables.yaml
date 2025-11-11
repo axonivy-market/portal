@@ -14,5 +14,5 @@ Variables:
         # [file: json]
         ProcurementStatistic: ""
         # Sample Procurement KPI Dashboard
-        # [file: txt]
+        # [file: json]
         ProcurementDashboard: ""

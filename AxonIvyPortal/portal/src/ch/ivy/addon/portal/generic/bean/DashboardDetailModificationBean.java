@@ -154,17 +154,12 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     }
     initCustomWidgets();
     initStatisticWidgets();
-    initStatisticExampleWidgets();
+    statisticExampleWidgets = StatisticService.externalStatistics;
   }
 
   protected void initStatisticWidgets() {
     setStatisticWidgets(new ArrayList<>());
     getStatisticWidgets().addAll(StatisticService.getInstance().findAllCharts());
-  }
-
-  protected void initStatisticExampleWidgets() {
-    setStatisticExampleWidgets(new ArrayList<>());
-    getStatisticExampleWidgets().addAll(StatisticService.getInstance().getSampleKPIStatistic());
   }
 
   private void initCustomWidgets() {
@@ -200,7 +195,6 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
       Ivy.log().error(e);
     }
     DashboardUtils.addDefaultTaskCaseListDashboardsIfMissing(collectedDashboards);
-    DashboardUtils.getSampleKPIDashboard().ifPresent(collectedDashboards::add);
     return collectedDashboards.stream()
         .filter(dashboard -> dashboard.getId().equals(selectedDashboardId)).collect(Collectors.toList());
   }
