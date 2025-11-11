@@ -86,7 +86,9 @@ public class PortalCasesScreenshotTest extends ScreenshotBaseTest {
 
     refreshPage();
     detailsPage.waitForCaseDetailsDisplay();
-    ScreenshotUtils.captureElementScreenshot(detailsPage.getAddNoteDialog(),
+    SelenideElement addNoteDialog = detailsPage.getAddNoteDialog();
+    WaitHelper.waitForAnimationFinished();
+    ScreenshotUtils.captureElementScreenshot(addNoteDialog,
         ScreenshotUtils.CASE_DETAIL_FOLDER + "how-to-add-task-note");
 
     detailsPage.addNoteContent("Take Order");
