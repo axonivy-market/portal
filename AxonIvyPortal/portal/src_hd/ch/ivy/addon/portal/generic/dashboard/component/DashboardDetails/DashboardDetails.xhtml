@@ -39,7 +39,7 @@
         <div class="ui-g-6 w-full ui-fluid  ui-inputgroup">
           <p:inputText id="dashboard-title" value="#{managedBean.selectedDashboard.title}"
             required="#{param['skipValidator'] == null}" styleClass="manage-dashboard__input"
-            requiredMessage="#{ivy.cms.co('/Labels/RequiredFieldMessage', [ivy.cms.co('/Labels/Permissions')])}" />
+            requiredMessage="#{ivy.cms.co('/Labels/RequiredFieldMessage', [ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/dashboardManagement/dashboardTitle')])}" />
           <p:commandButton id="add-language-button" icon="si si-chat-translate"
             actionListener="#{managedBean.updateDashboardTitleByLocale()}"
             process="dashboard-title"
@@ -51,11 +51,11 @@
         </div>
         <h:panelGroup layout="block" styleClass="ui-g-6 w-full manage-dashboard__label"
           rendered="#{cc.attrs.isPublicDashboard}">
-          <p:outputLabel for="dashboard-permission" styleClass="font-semibold" value="#{ivy.cms.co('/Labels/Permissions')}"
-            requiredMessage="#{ivy.cms.co('/Labels/RequiredFieldMessage', [ivy.cms.co('/Labels/Permissions')])}" />
+          <p:outputLabel for="dashboard-permission" styleClass="font-semibold" value="#{ivy.cms.co('/Labels/Permissions')}" />
         </h:panelGroup>
         <h:panelGroup layout="block" styleClass="ui-g-6 w-full ui-fluid" rendered="#{cc.attrs.isPublicDashboard}">
           <p:autoComplete id="dashboard-permission" scrollHeight="210" dropdown="true" required="#{param['skipValidator'] == null}"
+            requiredMessage="#{ivy.cms.co('/Labels/RequiredFieldMessage', [ivy.cms.co('/Labels/Permissions')])}" 
             completeMethod="#{managedBean.completePermissions}" styleClass="manage-dashboard__input"
             inputStyleClass="manage-dashboard__autocomplete-input" emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
             value="#{managedBean.selectedDashboard.permissionDTOs}" var="responsible"
