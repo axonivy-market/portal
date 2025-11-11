@@ -138,14 +138,14 @@ public class PortalTaskScreenshotTest extends ScreenshotBaseTest {
     ScreenshotUtils.resizeBrowser(new Dimension(1440, 1000));
     taskDetails.openAddNoteDialog();
     SelenideElement addNoteDialog = taskDetails.getAddNoteDialog();
-    WaitHelper.waitForFadeInAnimationFinished();
+    WaitHelper.waitForAnimationFinished();
     ScreenshotUtils.captureElementWithMarginOptionScreenshot(addNoteDialog,
         ScreenshotUtils.TASK_DETAIL_FOLDER + "how-to-add-note", new ScreenshotMargin(10));
     taskDetails.addNoteToTaskWithContent("Add a note for this task");
 
     taskDetails.openAddAttachmentDialog();
     SelenideElement addAttachmentDialog = taskDetails.getAddAttachmentDialog();
-    WaitHelper.waitForFadeInAnimationFinished();
+    WaitHelper.waitForAnimationFinished();
     ScreenshotUtils.captureElementWithMarginOptionScreenshot(addAttachmentDialog,
         ScreenshotUtils.TASK_DETAIL_FOLDER + "how-to-upload-document", new ScreenshotMargin(10));
     taskDetails.uploadDocument(FileHelper.getAbsolutePathToTestFile("test-no-files-no-js.pdf"));

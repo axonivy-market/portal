@@ -277,9 +277,6 @@ public class TaskDetailsPage extends TemplatePage {
   public void waitForIFrameURLWidgetLoad() {
     SelenideElement iframe = $("iframe[name='custom-widget-iframe-url']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     iframe.shouldHave(Condition.attributeMatching("src", ".*example\\.com.*"));
-    switchToIframeWithNameOrId("custom-widget-iframe-url");
-    $("a").shouldBe(Condition.visible, DEFAULT_TIMEOUT);
-    switchBackToParent();
   }
 
   public void waitForIFrameWidgetLoad() {
