@@ -299,7 +299,7 @@ public class CaseDetailsPage extends TemplatePage {
     SelenideElement iframe = $("iframe[name='custom-widget-iframe-url']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     iframe.shouldHave(Condition.attributeMatching("src", ".*example\\.com.*"));
     switchToIframeWithNameOrId("custom-widget-iframe-url");
-    $("a").shouldBe(Condition.visible, DEFAULT_TIMEOUT);
+    $("body").shouldHave(Condition.text("Learn more"), DEFAULT_TIMEOUT);
     switchBackToParent();
   }
 
