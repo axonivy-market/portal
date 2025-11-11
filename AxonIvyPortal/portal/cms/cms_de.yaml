@@ -756,6 +756,9 @@ ch.ivy.addon.portalkit.ui.jsf:
       SelectAction: Wählen Sie die Aktion
       SomeThingWentWrong: Etwas ist schief gelaufen
       Title: Dashboard-Konfiguration
+    DrillDownWidget:
+      caseDrillDown: Drilldown-Fall-Widget für {0}
+      taskDrillDown: Drilldown-Aufgaben-Widget für {0}
     EmptyFilterMessage: Kein Widget-Filter gefunden
     ExternalPageWidget: Externe Webseite
     ExternalPageWidgetIntroduction: Dieses Widget kann eine externe Webseite anzeigen.

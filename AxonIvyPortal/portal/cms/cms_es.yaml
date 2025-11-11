@@ -756,6 +756,9 @@ ch.ivy.addon.portalkit.ui.jsf:
       SelectAction: Seleccione la acción
       SomeThingWentWrong: Algo salió mal
       Title: Configuración Dashboard
+    DrillDownWidget:
+      caseDrillDown: Widget de casos detallados para {0}
+      taskDrillDown: Widget de tareas detalladas para {0}
     EmptyFilterMessage: No se ha encontrado ningún filtro de widget
     ExternalPageWidget: Página externa
     ExternalPageWidgetIntroduction: Este widget puede mostrar una página web externa.

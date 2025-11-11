@@ -8,7 +8,6 @@ import java.time.ZoneId;
 import java.time.temporal.TemporalAdjusters;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -19,9 +18,7 @@ import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 import com.axonivy.portal.enums.dashboard.filter.FilterOperator;
 import com.axonivy.portal.enums.statistic.AggregationField;
 import com.axonivy.portal.enums.statistic.AggregationInterval;
-import com.axonivy.portal.util.DisplayNameUtils;
 
-import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.dto.dashboard.AbstractColumn;
 import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
@@ -29,9 +26,6 @@ import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
-import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
-import ch.ivy.addon.portalkit.util.DisplayNameConvertor;
-import ch.ivy.addon.portalkit.util.LanguageUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 
 public abstract class AbstractDrillDownService {
@@ -51,7 +45,7 @@ public abstract class AbstractDrillDownService {
       }
       addStatisticFiltersToWidgetFilters(widget, statistic.getFilters());
     }
-    
+    buildWidgetName(statistic, widget);
     Ivy.session().setAttribute(SessionAttribute.DRILL_DOWN_DASHBOARD.name(), drillDownDashboard);
   }
   
@@ -140,12 +134,13 @@ public abstract class AbstractDrillDownService {
 
   protected abstract Dashboard getDrillDownDashboard();
 
-
   protected abstract List<DashboardFilter> getWidgetFilters(DashboardWidget widget);
+
   protected abstract List<? extends ColumnModel> getWidgetColumns(DashboardWidget widget);
 
   protected abstract ColumnModel createWidgetColumn(DashboardColumnType fieldType, String field);
 
   protected abstract void addStatisticFiltersToWidgetFilters(DashboardWidget widget, List<DashboardFilter> filters);
 
+  protected abstract void buildWidgetName(Statistic statistic, DashboardWidget widget);
 }

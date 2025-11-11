@@ -756,6 +756,9 @@ ch.ivy.addon.portalkit.ui.jsf:
       SelectAction: アクションを選択してください
       SomeThingWentWrong: 問題が発生しました
       Title: ダッシュボードの設定
+    DrillDownWidget:
+      caseDrillDown: TODO Drill-down case widget for {0}
+      taskDrillDown: TODO Drill-down task widget for {0}
     EmptyFilterMessage: ウィジェットフィルターが見つかりません
     ExternalPageWidget: 外部ページ
     ExternalPageWidgetIntroduction: このウィジェットは外部Webページを表示できます。

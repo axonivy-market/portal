@@ -2,6 +2,8 @@ package com.axonivy.portal.service;
 
 import java.util.List;
 
+import com.axonivy.portal.bo.Statistic;
+import com.axonivy.portal.components.service.LanguageService;
 import com.axonivy.portal.constant.StatisticConstants;
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 
@@ -15,6 +17,7 @@ import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 import ch.ivy.addon.portalkit.util.DefaultDashboardUtils;
+import ch.ivyteam.ivy.environment.Ivy;
 
 public class TaskDrillDownService extends AbstractDrillDownService {
 
@@ -67,6 +70,12 @@ public class TaskDrillDownService extends AbstractDrillDownService {
         getWidgetFilters(widget).add(filter);
       }
     }
+  }
+
+  @Override
+  protected void buildWidgetName(Statistic statistic, DashboardWidget widget) {
+    String statisticChartName = statistic.getNames().stream().filter(item -> LanguageService.getInstance().getUserLocale().equals(item.getLocale())).findFirst().map(value -> value.getValue()).orElse(""); 
+    widget.setName(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/DrillDownWidget/taskDrillDown", List.of(statisticChartName)));    
   }
 
 }
