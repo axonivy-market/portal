@@ -394,10 +394,12 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
 
   public void saveArrangment() {
     if (isPublicDashboard) {
+      System.out.println("Test system out to see Copilot review");
       savePublicArrangement();
     } else {
       savePrivateArrangement();
     }
+    Ivy.log().info(isPublicDashboard);
     updateDashboardCache();
   }
 
