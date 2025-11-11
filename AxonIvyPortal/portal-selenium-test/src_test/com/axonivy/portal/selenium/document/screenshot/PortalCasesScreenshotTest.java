@@ -11,6 +11,7 @@ import com.axonivy.portal.selenium.common.FileHelper;
 import com.axonivy.portal.selenium.common.ScreenshotBaseTest;
 import com.axonivy.portal.selenium.common.ScreenshotMargin;
 import com.axonivy.portal.selenium.common.ScreenshotUtils;
+import com.axonivy.portal.selenium.common.Sleeper;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.common.WaitHelper;
@@ -195,6 +196,7 @@ public class PortalCasesScreenshotTest extends ScreenshotBaseTest {
     setupCustomWidgetByJSONFile("custom-case-details-with-url.json");
     ScreenshotUtils.executeDecorateJs("highlightCustomWidgetInCaseDetails()");
      detailsPage.waitForIFrameURLWidgetLoad();
+     Sleeper.sleep(30000); // Try out whether iframe could show data after sleeping
     ScreenshotUtils
         .capturePageScreenshot(ScreenshotUtils.CASE_DETAIL_CUSTOMIZATION_FOLDER + "case-customized-iframe-url");
   }

@@ -301,7 +301,7 @@ public class CaseDetailsPage extends TemplatePage {
     iframe.shouldHave(Condition.attributeMatching("src", ".*example\\.com.*"));
     switchToIframeWithNameOrId("custom-widget-iframe-url");
     $("body").shouldHave(Condition.text("Learn more"), DEFAULT_TIMEOUT);
-    Sleeper.sleep(1000); // Try out whether iframe could show data after sleeping
+    Sleeper.sleep(30000); // Try out whether iframe could show data after sleeping
     switchBackToParent();
   }
 
