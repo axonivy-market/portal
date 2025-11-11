@@ -291,7 +291,7 @@ Changes in 13.2.0
 - Enhanced the document preview feature for the task and case detail. If you have DocFactory in the same security context, you can preview Word(doc, docx), Excel(xls, xlsx) and email(eml) documents.
 
 
-Changes in 10.0.33
+Changes in 12.0.11
 ------------------
 - Added lazy loading functionality to the Document Table component, enabling efficient data loading through pagination.
 
