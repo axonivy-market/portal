@@ -1306,6 +1306,7 @@ body .ui-widget.new-widget-dialog__introduction {
   width: 450px;
   margin: auto;
 }
+
 .statistic-configuration-panel {
   height: calc(100vh - 95px);
   overflow: hidden;
@@ -1799,7 +1800,7 @@ body .ui-widget.new-widget-dialog__introduction {
   margin-left: 0.5em;
   display: flex;
   align-items: flex-start;
-  min-width: 8vw;
+  min-width: 7vw;
   max-width: 16vw;
   overflow-wrap: anywhere;
 }
@@ -1821,7 +1822,7 @@ body .ui-widget.new-widget-dialog__introduction {
 
 .dashboard-widget-filter__filter-panel > div.filter-selection-panel,
 .dashboard-widget-filter__filter-panel > div.date-picker-panel {
-  min-width: 5vw;
+  min-width: 7vw;
 }
 
 .dashboard-widget-filter__filter-panel > div.period-type-panel {
@@ -1844,18 +1845,23 @@ body .ui-widget.new-widget-dialog__introduction {
   margin-left: 10px;
 }
 
-@media (max-width: 1700px) {
-  .dashboard-widget-filter__filter-panel > div:first-child {
-    width: 9vw;
-  }
+.dashboard-widget-filter__filter-panel > div.filter-selection-panel > div.ui-selectonemenu > span.ui-selectonemenu-label {
+  text-overflow: ellipsis;
+}
+
+@media (max-width: 1920px) {
 
   .dashboard-widget-filter__filter-panel > div.and-text-panel {
     width: 3vw;
   }
   
-  .dashboard-widget-filter__filter-panel > div {
-    min-width: 12vw;
+  .dashboard-widget-filter__filter-panel > div.filter-selection-panel {
+    min-width: 10vw;
     max-width: 15vw;
+  }
+
+  .dashboard-widget-filter__filter-panel > div:not(:first-child) {
+    min-width: 10vw;
   }
 }
 
