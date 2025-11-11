@@ -12,8 +12,8 @@ import javax.faces.bean.ViewScoped;
 import com.axonivy.portal.dto.dashboard.filter.BaseFilter;
 import com.axonivy.portal.enums.dashboard.filter.FilterOperator;
 
-import ch.ivyteam.ivy.workflow.WorkflowPriority;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.workflow.WorkflowPriority;
 
 @ManagedBean
 @ViewScoped
