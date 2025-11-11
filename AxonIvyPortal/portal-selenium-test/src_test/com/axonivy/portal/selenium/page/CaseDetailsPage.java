@@ -22,6 +22,7 @@ import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 
 import com.axonivy.portal.selenium.common.ScreenshotUtils;
+import com.axonivy.portal.selenium.common.Sleeper;
 import com.axonivy.portal.selenium.common.TaskState;
 import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.CollectionCondition;
@@ -300,6 +301,7 @@ public class CaseDetailsPage extends TemplatePage {
     iframe.shouldHave(Condition.attributeMatching("src", ".*example\\.com.*"));
     switchToIframeWithNameOrId("custom-widget-iframe-url");
     $("body").shouldHave(Condition.text("Learn more"), DEFAULT_TIMEOUT);
+    Sleeper.sleep(1000); // Try out whether iframe could show data after sleeping
     switchBackToParent();
   }
 
