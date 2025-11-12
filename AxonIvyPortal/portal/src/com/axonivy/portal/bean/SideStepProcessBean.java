@@ -99,7 +99,7 @@ public class SideStepProcessBean implements Serializable {
       if (task != null) {
         this.task = task;
         // check task level
-        String sideStepString = task.customFields().textField(CustomFields.SIDE_STEPS_TASK).getOrNull(); 
+        String sideStepString = task.customFields().textField(CustomFields.SIDE_STEP_TASK).getOrNull(); 
         if (StringUtils.isBlank(sideStepString)) {
           // if null check case level
           sideStepString = task.getCase().customFields().textField(CustomFields.SIDE_STEP_CASE).getOrNull();
