@@ -28,24 +28,6 @@
     <h:panelGroup id="widget-title-group"
       styleClass="ui-g-12 u-padding-0 ui-fluid">
       <div class="ui-g-4 mt-2">
-        <p:outputLabel for="button-name"
-          value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/NavigationDashboardWidgetConfiguration/ButtonName')}" />
-      </div>
-      <div class="ui-g-8 ui-inputgroup">
-        <p:inputText id="button-name"
-          styleClass="widget-configuration__input-text"
-          value="#{widget.buttonName}"/>
-          <!-- Add language button -->
-          <p:commandButton styleClass="app-setting-button"
-            ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/addLanguages')}"
-            icon="si si-chat-translate" id="button-name-language"
-            actionListener="#{navigationDashboardWidgetBean.updateButtonNameByLocale(widget)}"
-            process="button-name"
-            update="#{cc.clientId}:button-name-language-config:multiple-languages-dialog"
-            oncomplete="PF('multiple-languages-dialog').show();">
-          </p:commandButton>
-      </div>
-      <div class="ui-g-4 mt-2">
         <p:outputLabel for="widget-title"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/widgetTitle')}" />
       </div>
@@ -71,6 +53,24 @@
         <p:inputText id="widget-description"
           styleClass="widget-configuration__input-text"
           value="#{widget.description}"/>
+      </div>
+      <div class="ui-g-4 mt-2">
+        <p:outputLabel for="button-name"
+          value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/NavigationDashboardWidgetConfiguration/ButtonName')}" />
+      </div>
+      <div class="ui-g-8 ui-inputgroup">
+        <p:inputText id="button-name"
+          styleClass="widget-configuration__input-text"
+          value="#{widget.buttonName}"/>
+          <!-- Add language button -->
+          <p:commandButton styleClass="app-setting-button"
+            ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/addLanguages')}"
+            icon="si si-chat-translate" id="button-name-language"
+            actionListener="#{navigationDashboardWidgetBean.updateButtonNameByLocale(widget)}"
+            process="button-name"
+            update="#{cc.clientId}:button-name-language-config:multiple-languages-dialog"
+            oncomplete="PF('multiple-languages-dialog').show();">
+          </p:commandButton>
       </div>
     </h:panelGroup>
     <h:panelGroup id="dashboard-link-group" styleClass="u-padding-0 ui-fluid" layout="block">
@@ -159,13 +159,13 @@
                 styleClass="#{empty widget.imageLocationDarkMode ? 'ui-g-12 ':'ui-g-12 ui-fluid u-padding-0 MarTop10 external-link-preview-image-panel'}">
                 <p:fileUpload id="navigation-widget-image-dark-mode-upload"
                   style="display: none;"
-                  widgetVar="navigationWidgetUpload"
+                  widgetVar="navigationWidgetDarkModeUpload"
                   rendered="#{empty widget.imageLocationDarkMode}"
                   listener="#{navigationDashboardWidgetConfigurationBean.handleImageDarkModeUpload}"
                   chooseIcon="#{visibilityBean.generateButtonIcon('si si-add-small')}"
                   dragDropSupport="true" auto="true" update="file-upload-panel-dark-mode"
                   allowTypes="/(\.|\/)(png|jpg|jpeg|svg)$/i"
-                  accept=".png,.jpg,.jpeg,.svg" onvalidationfailure="handleUploadFileFail('navigationWidgetUpload');"
+                  accept=".png,.jpg,.jpeg,.svg" onvalidationfailure="handleUploadFileFail('navigationWidgetDarkModeUpload');"
                   sizeLimit="5242880"
                   invalidSizeMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/fileSizeExceeded')}"
                   invalidFileMessage="#{ivy.cms.co('/Dialogs/components/CaseDocument/invalidFileMessage')}"
@@ -175,7 +175,7 @@
                     <h:panelGroup rendered="#{empty widget.imageLocationDarkMode}" class="ui-navigation-widget-preview-image-label">
                     <i class="si si-file-code-upload-1" id="ui-navigation-widget-preview-image-icon" />
                     <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/dragAndDropImage')}">
-                    <p:link value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/uploadOneHere')}" onclick="PF('navigationWidgetUpload').show();return false"/>
+                    <p:link value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/uploadOneHere')}" onclick="PF('navigationWidgetDarkModeUpload').show();return false"/>
                     </p:outputLabel>
                     </h:panelGroup>
                     <p:graphicImage id="navigation-widget-preview-image-dark-mode"

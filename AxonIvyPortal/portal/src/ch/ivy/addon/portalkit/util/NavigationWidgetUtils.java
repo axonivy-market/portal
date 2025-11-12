@@ -63,7 +63,7 @@ public class NavigationWidgetUtils {
   }
   
   public static void writeNavigateWidgetImage(NavigationDashboardWidget widget) {
-    if (widget.getImageType() == null) {
+    if (widget.getImageType() == null && widget.getImageTypeDarkMode() == null) {
       Ivy.log().warn("WidgetId [{0}] does not has imageType. Skip write to cms.", widget.getId());
       return;
     }
@@ -82,10 +82,6 @@ public class NavigationWidgetUtils {
       }
     }
     
-    if (widget.getImageTypeDarkMode() == null) {
-      Ivy.log().warn("WidgetId [{0}] does not has imageTypeDarkMode. Skip write to cms.", widget.getId());
-      return;
-    }
     if (StringUtils.isNotBlank(widget.getImageContentDarkMode())) {
       String newImageLocation = ImageUploadUtils.imageBase64ToApplicationCMSFile(widget.getImageContentDarkMode(), 
           widget.getImageTypeDarkMode(), ImageUploadUtils.NAVIGATION_WIDGET_IMAGE_DIRECTORY);
