@@ -43,9 +43,7 @@ public class AdditionalComponentsScreenshotTest extends ScreenshotBaseTest {
     ScreenshotUtils.resizeBrowser(new Dimension(1500, 1500));
 
     NewDashboardPage newDashboardPage = new NewDashboardPage();
-    WaitHelper.waitForNavigation(() -> new NewDashboardPage().startTask(0));
-    ScreenshotUtils.resizeBrowser(new Dimension(1366, 800));
-    newDashboardPage = new NewDashboardPage();
+    newDashboardPage.startTask(0);
     newDashboardPage.waitForGrowlMessageDisplayClearly();
     ScreenshotUtils
         .captureHalfTopPageScreenShot(ScreenshotUtils.COMPONENTS_FOLDER + "example-global-growl-finished-task");
@@ -53,7 +51,7 @@ public class AdditionalComponentsScreenshotTest extends ScreenshotBaseTest {
     ScreenshotUtils.resizeBrowser(new Dimension(1500, 1500));
     redirectToRelativeLink(createTestingTasksUrl);
     newDashboardPage = new NewDashboardPage();
-    WaitHelper.waitForNavigation(() -> new NewDashboardPage().startTask(1));
+    newDashboardPage.startTask(1);
     TaskTemplatePage taskTemplatePage = new TaskTemplatePage();
     WaitHelper.waitForNavigation(() -> taskTemplatePage.clickCancelButton());
     ScreenshotUtils.resizeBrowser(new Dimension(1366, 800));
