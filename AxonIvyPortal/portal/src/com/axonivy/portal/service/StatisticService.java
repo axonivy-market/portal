@@ -56,7 +56,7 @@ public class StatisticService {
 
   private static final String PRECONFIG_STATISTIC_SIGNATURE = "loadPreConfigPortalStatistic()";
   public static final List<Statistic> externalStatistics;
-  
+
   static {
     Map<String, Object> response = IvyAdapterService.startSubProcessInSecurityContext(PRECONFIG_STATISTIC_SIGNATURE, null);
 
