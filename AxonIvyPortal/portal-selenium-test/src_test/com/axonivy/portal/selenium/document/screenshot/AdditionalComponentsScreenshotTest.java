@@ -12,7 +12,6 @@ import com.axonivy.portal.selenium.common.ScreenshotMargin;
 import com.axonivy.portal.selenium.common.ScreenshotUtils;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
-import com.axonivy.portal.selenium.common.WaitHelper;
 import com.axonivy.portal.selenium.page.MainMenuPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.ProcessHistoryPage;
@@ -26,7 +25,7 @@ import com.axonivy.portal.selenium.page.component.RoleSelectionComponentPage;
 import com.axonivy.portal.selenium.page.component.SecurityMemberNameAndAvatarComponentPage;
 import com.axonivy.portal.selenium.page.component.UserSelectionComponentPage;
 
-@IvyWebTest(headless = false)
+@IvyWebTest
 public class AdditionalComponentsScreenshotTest extends ScreenshotBaseTest {
 
   @Test
