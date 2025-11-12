@@ -3,6 +3,10 @@
 Developer Guide
 ***************
 
+Guidance for setting up, deploying, and extending the Portal. Start with
+Introduction and Architecture, then proceed to Installation and the
+customization sections that fit your use case.
+
 .. toctree::
    :maxdepth: 2
    :caption: Portal Developer Guide
@@ -19,5 +23,4 @@ Developer Guide
    customization/index
    troubleshooting/index
    permissions/index
-   public-api/index
    static-page/index

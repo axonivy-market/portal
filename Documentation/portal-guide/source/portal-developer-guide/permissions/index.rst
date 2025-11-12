@@ -3,6 +3,10 @@
 Permission List
 ===============
 
+Overview of roles and capabilities used across the Portal. Use this list to
+assign least-privilege access and understand which features each permission
+controls.
+
 Portal has a flexible security system that allows you to configure who can access applications, and what they can do/see in Portal.
 
 

@@ -3,6 +3,9 @@
 Deployment
 **********
 
+Guidelines for deploying Portal to Axon Ivy Engine, including configuration
+artifacts, environment variables, and reverse proxy considerations.
+
 This section provides a step-by-step guide for deploying the Portal for the first time.
 It includes examples and best practices. For more comprehensive deployment information, refer to the
 :dev-url:`Axon Ivy deployment guidelines </doc/12.0/engine-guide/deployment/index.html>`

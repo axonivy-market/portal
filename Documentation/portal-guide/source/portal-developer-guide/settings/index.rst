@@ -11,6 +11,9 @@
 Settings
 ********
 
+Configure global Portal behavior such as branding, variables, and integrations.
+These settings apply across dashboards, widgets, and admin features.
+
 This section covers Portal roles, permissions and other settings.
 
 |portal-header|

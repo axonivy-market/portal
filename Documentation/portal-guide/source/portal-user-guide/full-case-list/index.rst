@@ -3,7 +3,7 @@
 Full Case List
 **************
 
-The **Full Case List** page is a dashboard featuring a single, full-width task widget. 
+The **Full Case List** page is a dashboard featuring a single, full-width case widget. 
 You can reach the page by using the |case-icon| :guilabel:`Cases` link in the Axon Ivy Portal menu.
 
 .. note::
@@ -12,7 +12,7 @@ You can reach the page by using the |case-icon| :guilabel:`Cases` link in the Ax
 
 .. hint:: 
    The set of cases you see in the Portal depends on the roles you hold 
-   in in your applications.                      
+   in your applications.                      
 
 |navigate-to-full-cases-list-page|
 

@@ -3,8 +3,14 @@
 Introduction
 ************
 
-Portal Developer Guide provides information to set up, configure, customize
-Portal so that it could fit customer need.
+This guide explains how to set up, configure, and customize the Portal to fit
+your needs. It highlights key concepts, supported extension points, and best
+practices for building on top of Portal.
+
+- Start with :ref:`architecture` to understand modules and boundaries.
+- Follow :ref:`installation <installation>` and :ref:`deployment <deployment>` for setup.
+- Browse :ref:`customization <customization>` for UI and feature tweaks.
+- Use the :ref:`Public API <public-api>` from the ``portal-components`` module when integrating.
 
 .. _introduction-new-and-note-worthy-12.0:
 

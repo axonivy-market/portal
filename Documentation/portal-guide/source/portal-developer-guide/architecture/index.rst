@@ -4,16 +4,19 @@ Architecture
 ************
 
 .. important::
-      The CSS styles, Java methods, etc. which are not explicitly documented are
-      only used internally in Portal. Don't use them because they can be
-      changed in future versions.
+      The CSS styles, Java methods, etc. that are not explicitly documented are
+      internal to the Portal. Do not rely on them, as they may change in future
+      versions.
 
 .. _multi-app-structure:
 
-Basically, you can deploy both the Portal and Projects into one application. This makes sense for simple applications. However, migration can be difficult with this approach. So we recommend deploying the Portal and your projects into separate applications.
+You can deploy both the Portal and your projects into a single application. This
+can be acceptable for simple setups. However, upgrades and migration become more
+complex. We recommend deploying the Portal and your projects into separate
+applications.
 
-The Portal multi applications
-=============================
+The Portal multi-application setup
+==================================
 
 The Portal and Projects using it should be deployed in different applications but in the same security context.
 
@@ -23,7 +26,10 @@ The Portal and Projects using it should be deployed in different applications bu
 .. _architecture-portal-process-modules-structure:
 
 
-The Portal App consists of the following modules: portal-components, portal.
+The Portal App consists of the following modules:
+
+- ``portal-components`` — public UI components and public Java APIs
+- ``portal`` — Portal-specific UI, templates and pages
 
 |process-module-structure|
 
@@ -45,14 +51,14 @@ of the modules portal. You can use them in your own applications.
 portal
 ======
 
-**Contains portal specific UI components, templates and pages**
+**Contains portal-specific UI components, templates and pages**
 
 The module ``portal`` provides a set of specific UI components that you need
 to use and administer (or manage) the portal, templates for developer and portal pages.
 
-The templates offer features like top
-menu, application menu and user menu. It also contains start process links to
-default pages like Portal home, Portal task list, Portal case list etc..
+The templates offer features like top menu, application menu and user menu. It
+also contains start process links to default pages like Portal home, Portal
+task list, Portal case list, etc.
 
 
 .. |process-module-structure| image:: images/process-module-structure.png

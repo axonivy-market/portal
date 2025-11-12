@@ -3,11 +3,11 @@
 IFrame In Portal
 ****************
 
-Do you want to decouple your project and the **Portal** when starting a task to reduce your migration efforts?
-If the answer is yes, this chapter will help you.
+Learn how to decouple your project UIs from the Portal by running tasks inside
+an iFrame. This reduces coupling and simplifies future migrations.
 
-Since **Portal** 8, we introduced a new feature that a process/task can be started inside an IFrame This means that you can design
-your HTML dialog independent of the  **Portal**. It is rendered automatically inside an IFrame by default.
+Since Portal 8, processes/tasks can start inside an iFrame. Your HTML dialog
+remains independent of the Portal and is rendered in an iFrame by default.
 
 .. _iframe-usage:
 
