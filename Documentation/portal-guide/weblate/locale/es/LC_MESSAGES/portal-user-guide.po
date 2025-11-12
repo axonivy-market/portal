@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Portal Guide ${revision}\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-23 07:56+0000\n"
+"POT-Creation-Date: 2025-11-12 07:57+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: es\n"
@@ -899,26 +899,6 @@ msgstr ""
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "If true, start a process/task in IFrame mode."
-msgstr ""
-
-#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
-msgid "Portal.Histories.HideSystemNotes"
-msgstr ""
-
-#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
-msgid ""
-"If true, case/task note does not display any system notes for non-"
-"administrator users."
-msgstr ""
-
-#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
-msgid "Portal.Histories.HideSystemNotesForAdministrator"
-msgstr ""
-
-#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
-msgid ""
-"If true, case/task note does not display any system notes for "
-"administrator."
 msgstr ""
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
@@ -4695,7 +4675,7 @@ msgstr ""
 msgid "|my-profile-save|"
 msgstr ""
 
-#: ../../source/portal-user-guide/my-profile/index.rst:138
+#: ../../source/portal-user-guide/my-profile/index.rst:139
 msgid "My profile page"
 msgstr ""
 
@@ -4823,13 +4803,17 @@ msgstr ""
 msgid "Spanish"
 msgstr ""
 
-#: ../../source/portal-user-guide/my-profile/index.rst:100
+#: ../../source/portal-user-guide/my-profile/index.rst:99
+msgid "Japanese"
+msgstr ""
+
+#: ../../source/portal-user-guide/my-profile/index.rst:101
 msgid ""
 "**Formatting language** is used to format values, for example the decimal"
 " separator is displayed differently in different regions of the world."
 msgstr ""
 
-#: ../../source/portal-user-guide/my-profile/index.rst:103
+#: ../../source/portal-user-guide/my-profile/index.rst:104
 msgid ""
 "Your application needs to support the same language as the one selected "
 "in this menu. Otherwise the application specific content will be shown in"
@@ -4838,32 +4822,32 @@ msgid ""
 "application specific dialogs will still be shown in English."
 msgstr ""
 
-#: ../../source/portal-user-guide/my-profile/index.rst:118
+#: ../../source/portal-user-guide/my-profile/index.rst:119
 msgid "Notification Channels"
 msgstr ""
 
-#: ../../source/portal-user-guide/my-profile/index.rst:120
+#: ../../source/portal-user-guide/my-profile/index.rst:121
 msgid ""
 "**Notification Channels** allows you to configure your manage "
 "subscriptions of the different kinds of notification channels in the Axon"
 " Ivy Engine."
 msgstr ""
 
-#: ../../source/portal-user-guide/my-profile/index.rst:124
+#: ../../source/portal-user-guide/my-profile/index.rst:125
 msgid ""
 "The table :guilabel:`Notification Channels` displays all the available "
 "events that can either be subscribed or unsubscribed."
 msgstr ""
 
-#: ../../source/portal-user-guide/my-profile/index.rst:127
+#: ../../source/portal-user-guide/my-profile/index.rst:128
 msgid "|notification-channels|"
 msgstr ""
 
-#: ../../source/portal-user-guide/my-profile/index.rst:140
+#: ../../source/portal-user-guide/my-profile/index.rst:141
 msgid "Notification channels settings"
 msgstr ""
 
-#: ../../source/portal-user-guide/my-profile/index.rst:129
+#: ../../source/portal-user-guide/my-profile/index.rst:130
 msgid ""
 "The checkbox in each event column allow you to specify three state of "
 "event: subscribed by default, subscribe, unsubscribe. These checkboxes "
@@ -4871,14 +4855,14 @@ msgid ""
 "them."
 msgstr ""
 
-#: ../../source/portal-user-guide/my-profile/index.rst:134
+#: ../../source/portal-user-guide/my-profile/index.rst:135
 msgid ""
 "As an administrator, you can configure the permission :bdg-ref-"
 "warning:`🔑NotificationChannelsSetting <NotificationChannelsSetting>` to "
 "allow or prevent users from modifying notification channel preferences."
 msgstr ""
 
-#: ../../source/portal-user-guide/my-profile/index.rst:136
+#: ../../source/portal-user-guide/my-profile/index.rst:137
 msgid ""
 "To do this, access the :doc-url:`Engine Cockpit </engine-guide/reference"
 "/engine-cockpit/security.html>`, open the **Security area**. Since this "
@@ -7134,5 +7118,23 @@ msgstr ""
 #~ "<TaskDisplayWorkflowEventAction>` to allow a "
 #~ "user to see the corresponding buttons"
 #~ " and menu items."
+#~ msgstr ""
+
+#~ msgid "Portal.Histories.HideSystemNotes"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "If true, case/task note does not "
+#~ "display any system notes for non-"
+#~ "administrator users."
+#~ msgstr ""
+
+#~ msgid "Portal.Histories.HideSystemNotesForAdministrator"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "If true, case/task note does not "
+#~ "display any system notes for "
+#~ "administrator."
 #~ msgstr ""
 
