@@ -1,6 +1,7 @@
 package com.axonivy.portal.service;
 
 import java.util.List;
+import java.util.Set;
 
 import com.axonivy.portal.bo.Statistic;
 import com.axonivy.portal.components.service.LanguageService;
@@ -21,6 +22,7 @@ import ch.ivyteam.ivy.environment.Ivy;
 
 public class TaskDrillDownService extends AbstractDrillDownService {
 
+  private static final Set<String> FIELDS_USING_IN_OPERATOR = Set.of(DashboardStandardTaskColumn.STATE.getField(), DashboardStandardTaskColumn.CATEGORY.getField(), DashboardStandardTaskColumn.PRIORITY.getField(), DashboardStandardTaskColumn.RESPONSIBLE.getField());
   private static TaskDrillDownService instance;
 
   public static TaskDrillDownService getInstance() {
@@ -76,6 +78,11 @@ public class TaskDrillDownService extends AbstractDrillDownService {
   protected void buildWidgetName(Statistic statistic, DashboardWidget widget) {
     String statisticChartName = statistic.getNames().stream().filter(item -> LanguageService.getInstance().getUserLocale().equals(item.getLocale())).findFirst().map(value -> value.getValue()).orElse(""); 
     widget.setName(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/DrillDownWidget/taskDrillDown", List.of(statisticChartName)));    
+  }
+
+  @Override
+  protected boolean shouldUseInOperator(String field) {
+    return FIELDS_USING_IN_OPERATOR.contains(field);
   }
 
 }

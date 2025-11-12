@@ -1,6 +1,7 @@
 package com.axonivy.portal.service;
 
 import java.time.DayOfWeek;
+
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -31,7 +32,7 @@ import ch.ivyteam.ivy.environment.Ivy;
 public abstract class AbstractDrillDownService {
 
   private static final String DEFAULT_COLUMN_WIDTH = String.valueOf(AbstractColumn.NORMAL_WIDTH);
-
+  
   public void createDrillDownDashboardInSession(Statistic statistic, String drillDownValue) {
     Dashboard drillDownDashboard = getDrillDownDashboard();
     DashboardWidget widget = drillDownDashboard.getWidgets().get(0);
@@ -63,13 +64,13 @@ public abstract class AbstractDrillDownService {
     } else if (isCategoryAggregation(aggregation) && StringUtils.isBlank(drillDownValue)) {
       filter.setOperator(FilterOperator.NO_CATEGORY);
     } else {
-      filter.setOperator(FilterOperator.IN);
+      filter.setOperator(shouldUseInOperator(aggregation.getField()) ? FilterOperator.IN : FilterOperator.IS);
       filter.setValues(List.of(drillDownValue));
     }
     
     return filter;
   }
-  
+
   private boolean isCategoryAggregation(StatisticAggregation statisticAgg) {
     return DashboardStandardCaseColumn.CATEGORY.getField().equals(statisticAgg.getField());
   }
@@ -143,4 +144,6 @@ public abstract class AbstractDrillDownService {
   protected abstract void addStatisticFiltersToWidgetFilters(DashboardWidget widget, List<DashboardFilter> filters);
 
   protected abstract void buildWidgetName(Statistic statistic, DashboardWidget widget);
+  
+  protected abstract boolean shouldUseInOperator(String field);
 }

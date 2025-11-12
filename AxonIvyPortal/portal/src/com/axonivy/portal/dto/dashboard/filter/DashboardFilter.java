@@ -78,11 +78,6 @@ public class DashboardFilter extends BaseFilter implements Serializable {
   public boolean isApplication() {
     return APPLICATION.equals(getField());
   }
-  
-  @JsonIgnore
-  public boolean isCategory() {
-    return CATEGORY.equals(getField());
-  }
 
   @JsonIgnore
   public boolean isId() {
