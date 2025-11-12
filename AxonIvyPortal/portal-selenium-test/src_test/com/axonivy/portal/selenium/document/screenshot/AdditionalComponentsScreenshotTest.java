@@ -19,6 +19,7 @@ import com.axonivy.portal.selenium.page.ProcessHistoryPage;
 import com.axonivy.portal.selenium.page.ProcessViewerPage;
 import com.axonivy.portal.selenium.page.StatisticWidgetPage;
 import com.axonivy.portal.selenium.page.TaskTemplatePage;
+import com.axonivy.portal.selenium.page.TaskWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.component.DocumentTableComponentPage;
 import com.axonivy.portal.selenium.page.component.ProcessViewerComponentPage;
 import com.axonivy.portal.selenium.page.component.RoleSelectionComponentPage;
@@ -43,7 +44,8 @@ public class AdditionalComponentsScreenshotTest extends ScreenshotBaseTest {
     ScreenshotUtils.resizeBrowser(new Dimension(1500, 1500));
 
     NewDashboardPage newDashboardPage = new NewDashboardPage();
-    newDashboardPage.startTask(0);
+    TaskWidgetNewDashBoardPage taskWidget = new TaskWidgetNewDashBoardPage();
+    taskWidget.startFirstTask();
     newDashboardPage.waitForGrowlMessageDisplayClearly();
     ScreenshotUtils
         .captureHalfTopPageScreenShot(ScreenshotUtils.COMPONENTS_FOLDER + "example-global-growl-finished-task");
