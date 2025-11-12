@@ -463,7 +463,7 @@ getBackgroundColorsWithAllScope(chartConfig, data) {
   });
 
   return data.map((val) => {
-    if (!val || typeof val.count !== 'number') return defaultBackgroundColor;
+    if (!val || !isNumeric(val.count)) return defaultBackgroundColor;
 
     for (const func of generatedCompareFunction) {
       const result = func(val.count);
