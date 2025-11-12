@@ -43,7 +43,7 @@ public class CaseDrillDownService extends AbstractDrillDownService {
   @Override
   protected Dashboard getDrillDownDashboard() {
     Dashboard caseDrillDownDashboard = DefaultDashboardUtils.getCaseDrillDownDashboard();
-    caseDrillDownDashboard.getWidgets().getFirst().setName("Drill-down case widget");
+    caseDrillDownDashboard.setTitle(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/caseDrillDownDashboard"));
     caseDrillDownDashboard.getWidgets().getFirst().setId(DashboardWidgetUtils.generateNewWidgetId(DashboardWidgetType.CASE));
     return caseDrillDownDashboard;
   }

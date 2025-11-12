@@ -797,6 +797,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     addField: Ajouter un champ
     addWidget: Ajouter un widget
     canWorkOn: Peut travailler sur
+    caseDrillDownDashboard: Tableau de bord d’analyse détaillée des cas
     caseList: Liste des cas
     caseListIntroduction: Ce widget affiche les informations pertinentes sur l'affaire en fonction des paramètres définis.
     caseWidgetInfo:
@@ -927,6 +928,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       numberOfTasksByCategory: Nombre de tâches par catégorie
       numberOfTasksByState: Nombre de tâches par état
       predefinedFilters: Filtres prédéfinis
+      taskDrillDownDashboard: Tableau de bord d’analyse détaillée des tâches
     taskList: Liste des tâches
     taskListIntroduction: Ce widget affiche des informations pertinentes sur les tâches selon les paramètres définis.
     taskStart: Commencer la tâche

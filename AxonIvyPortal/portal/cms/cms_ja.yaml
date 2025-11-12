@@ -797,6 +797,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     addField: フィールドの追加
     addWidget: ウィジェットの追加
     canWorkOn: 作業可能
+    caseDrillDownDashboard: Case drill-down dashboard
     caseList: ケースリスト
     caseListIntroduction: このウィジェットは、定義された設定に従って関連するケース情報を表示します。
     caseWidgetInfo:
@@ -927,6 +928,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       numberOfTasksByCategory: カテゴリーごとのタスク数
       numberOfTasksByState: 状態別のタスク数
       predefinedFilters: 定義済みフィルター
+      taskDrillDownDashboard: 'TODO: Task drill-down dashboard'
     taskList: タスクリスト
     taskListIntroduction: このウィジェットには、定義された設定に従って関連するタスク情報が表示されます。
     taskStart: タスクの開始
