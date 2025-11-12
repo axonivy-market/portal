@@ -102,6 +102,10 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
     $$("span.widget__filter-noti-number").first().shouldBe(appear, DEFAULT_TIMEOUT);
     getColumnOfTaskHasIndex(taskIndex, "Start").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
+  
+  public void startTaskWithIndex(int taskIndex) {
+    getColumnOfTaskHasIndex(taskIndex, "Start").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+  }
 
   public ElementsCollection countRelatedCases() {
     return $("div[id$='related-cases']").$$("td.name-column");
