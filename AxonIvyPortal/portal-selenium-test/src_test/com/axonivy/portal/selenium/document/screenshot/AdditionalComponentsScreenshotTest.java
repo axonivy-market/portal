@@ -52,10 +52,12 @@ public class AdditionalComponentsScreenshotTest extends ScreenshotBaseTest {
     ScreenshotUtils.resizeBrowser(new Dimension(1500, 1500));
     redirectToRelativeLink(createTestingTasksUrl);
     showNewDashboard();
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.COMPONENTS_FOLDER + "check-before-start-task");
     newDashboardPage = new NewDashboardPage();
     taskWidget = new TaskWidgetNewDashBoardPage();
     taskWidget.startTaskWithIndex(1);
     TaskTemplatePage taskTemplatePage = new TaskTemplatePage();
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.COMPONENTS_FOLDER + "check-task-template");
     taskTemplatePage.clickCancelButton();
     ScreenshotUtils.resizeBrowser(new Dimension(1366, 800));
     newDashboardPage = new NewDashboardPage();
