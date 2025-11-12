@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Portal Guide ${revision}\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-23 07:57+0000\n"
+"POT-Creation-Date: 2025-11-10 10:42+0000\n"
 "PO-Revision-Date: 2025-10-09 10:31+0000\n"
 "Last-Translator: Thang Huynh <hhqthang@axonactive.com>\n"
 "Language: ja\n"
@@ -4995,7 +4995,7 @@ msgstr "一般設定、言語、通知チャネルのサブスクリプション
 msgid "|my-profile-save|"
 msgstr "|my-profile-save|"
 
-#: ../../source/portal-user-guide/my-profile/index.rst:135
+#: ../../source/portal-user-guide/my-profile/index.rst:136
 msgid "My profile page"
 msgstr "プロフィールページ"
 
@@ -5130,7 +5130,11 @@ msgstr "フランス語"
 msgid "Spanish"
 msgstr "スペイン語"
 
-#: ../../source/portal-user-guide/my-profile/index.rst:99
+#: ../../source/portal-user-guide/my-profile/index.rst:98
+msgid "Japanese"
+msgstr ""
+
+#: ../../source/portal-user-guide/my-profile/index.rst:100
 msgid ""
 "**Formatting language** is used to format values, for example the decimal"
 " separator is displayed differently in different regions of the world."
@@ -5138,7 +5142,7 @@ msgstr ""
 "**書式設定言語** を使用して、値の形式を設定します。例えば、小数点は世界中の異なる地域\n"
 "で異なる形式で表示されます。"
 
-#: ../../source/portal-user-guide/my-profile/index.rst:102
+#: ../../source/portal-user-guide/my-profile/index.rst:103
 msgid ""
 "Your application needs to support the same language as the one selected "
 "in this menu. Otherwise the application specific content will be shown in"
@@ -5147,18 +5151,18 @@ msgid ""
 "application specific dialogs will still be shown in English."
 msgstr "アプリケーションは、このメニューで選択された言語と同じ言語をサポートする必要があります。そうでない場合、アプリケーション固有のコンテンツは、アプリケーションの標準言語で表示されます。例えば、アプリケーションが英語のみをサポートしている場合、ポータルの言語としてスペイン語を選択しても、アプリケーション固有のダイアログは英語で表示されます。"
 
-#: ../../source/portal-user-guide/my-profile/index.rst:117
+#: ../../source/portal-user-guide/my-profile/index.rst:118
 msgid "Notification Channels"
 msgstr "通知チャネル"
 
-#: ../../source/portal-user-guide/my-profile/index.rst:119
+#: ../../source/portal-user-guide/my-profile/index.rst:120
 msgid ""
 "**Notification Channels** allows you to configure your manage "
 "subscriptions of the different kinds of notification channels in the Axon"
 " Ivy Engine."
 msgstr "**通知チャネル** では、Axon Ivy Engine の通知チャネルのサブスクリプションを設定できます。"
 
-#: ../../source/portal-user-guide/my-profile/index.rst:123
+#: ../../source/portal-user-guide/my-profile/index.rst:124
 msgid ""
 "The table :guilabel:`Notification Channels` displays all the available "
 "events that can either be subscribed or unsubscribed."
@@ -5166,7 +5170,7 @@ msgstr ""
 ":guilabel:`通知チャネル` テーブルには、登録または登録解除できるすべてのイベントが表示\n"
 "されます。"
 
-#: ../../source/portal-user-guide/my-profile/index.rst:126
+#: ../../source/portal-user-guide/my-profile/index.rst:127
 msgid ""
 "The checkbox in each event column allow you to specify three state of "
 "event: subscribed by default, subscribe, unsubscribe. These checkboxes "
@@ -5176,7 +5180,7 @@ msgstr ""
 "各イベントの列のチェックボックスで、登録済み（初期値）、登録、登録解除の 3 つのイベ\n"
 "ントの状態を指定できます。"
 
-#: ../../source/portal-user-guide/my-profile/index.rst:131
+#: ../../source/portal-user-guide/my-profile/index.rst:132
 msgid ""
 "As an administrator, you can configure the permission :bdg-ref-"
 "warning:`🔑NotificationChannelsSetting <NotificationChannelsSetting>` to "
@@ -5186,7 +5190,7 @@ msgstr ""
 "warning:`🔑NotificationChannelsSetting <NotificationChannelsSetting>` "
 "を設定できます。"
 
-#: ../../source/portal-user-guide/my-profile/index.rst:133
+#: ../../source/portal-user-guide/my-profile/index.rst:134
 msgid ""
 "To do this, access the :dev-url:`Engine Cockpit </doc/12.0/engine-"
 "guide/reference/engine-cockpit/security.html>`, open the **Security "

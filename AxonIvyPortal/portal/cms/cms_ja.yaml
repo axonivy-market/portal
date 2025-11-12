@@ -1601,6 +1601,7 @@ Labels:
   AssignToUser: 'TODO: Select assigned user'
   Chat: TODO Chat
   Collapse: TODO 折りたたむ
+  Comma: '、'
   CreateNewDashboard: 新しいダッシュボードを作成
   EditDescription: 説明を編集
   EnterFromValue: TODO Enter from value
@@ -1710,6 +1711,7 @@ Labels:
   Permissions: 権限
   PinnedCases: 'TODO: Pinned Cases'
   PinnedTasks: 'TODO: Pinned Tasks'
+  RequiredFieldMessage: '{0}:値が必要です'
   SelectOperator: TODO Choose Operator
   SelectProcess: 'TODO: Select a process'
   SelectValues: TODO Select values

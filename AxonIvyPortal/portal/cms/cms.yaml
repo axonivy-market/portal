@@ -628,6 +628,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       editDashboard: Edit dashboard
       manageDashboard: Manage dashboard
       removeDashboardHeader: Remove the "{0}" dashboard
+      requiredFieldMessage: '{0} is required'
     deleteWidget: Delete widget
     editWidget: Edit widget
     existingField: The {0} field has already been existing

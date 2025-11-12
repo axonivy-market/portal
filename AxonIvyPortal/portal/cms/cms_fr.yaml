@@ -1609,6 +1609,7 @@ Labels:
   AssignToUser: Sélectionner l'utilisateur assigné
   Chat: Chat
   Collapse: Réduire
+  Comma: ','
   CreateNewDashboard: Créer un nouveau tableau de bord
   EditDescription: Editer la description
   EnterFromValue: Saisir la valeur initiale
@@ -1719,6 +1720,7 @@ Labels:
   Permissions: Permissions
   PinnedCases: Cas épinglés
   PinnedTasks: Tâches épinglées
+  RequiredFieldMessage: '{0} : La valeur est obligatoire'
   SelectOperator: Sélectionner l'opérateur
   SelectProcess: Sélectionner un processus
   SelectValues: Sélectionner les valeurs

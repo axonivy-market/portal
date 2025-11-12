@@ -1610,6 +1610,7 @@ Labels:
   AssignToUser: Seleccionar usuario asignado
   Chat: Chat
   Collapse: Contraer
+  Comma: ','
   CreateNewDashboard: Crear un nuevo cuadro de mandos
   EditDescription: Editar descripción
   EnterFromValue: Ingresar valor desde
@@ -1719,6 +1720,7 @@ Labels:
   Permissions: Permiso
   PinnedCases: Casos fijados
   PinnedTasks: Tareas fijadas
+  RequiredFieldMessage: '{0}: Valor requerido'
   SelectOperator: Seleccionar operador
   SelectProcess: Seleccione un proceso
   SelectValues: Seleccionar valores

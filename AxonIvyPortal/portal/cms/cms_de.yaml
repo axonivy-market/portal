@@ -1613,6 +1613,7 @@ Labels:
   AssignToUser: Zugewiesenen Benutzer auswählen
   Chat: Chat
   Collapse: Einklappen
+  Comma: ','
   CreateNewDashboard: Neues Dashboard erstellen
   EditDescription: Beschreibung bearbeiten
   EnterFromValue: Anfangswert eingeben
@@ -1722,6 +1723,7 @@ Labels:
   Permissions: Berechtigungen
   PinnedCases: Angeheftete Fälle
   PinnedTasks: Angehängte Aufgaben
+  RequiredFieldMessage: '{0}: Wert ist erforderlich'
   SelectOperator: Operator auswählen
   SelectValues: Werte auswählen
   Share: Teilen

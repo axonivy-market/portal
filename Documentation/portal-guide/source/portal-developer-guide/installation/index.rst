@@ -482,9 +482,17 @@ Release notes
 This part lists all relevant changes since the last official product
 releases of Axon Ivy.
 
-Changes in 12.0.9
+Changes in 12.0.11
 ------------------
-- Enhanced the document preview feature for the task and case detail. If you have :dev-url:`DocFactory <https://market.axonivy.com/doc-factory#tab-description>` in the same security context. You can preview Word(doc, docx), Excel(xls, xlsx) and email(eml) documents.
+
+- Enhanced the document preview feature for the task and case detail. If you have :dev-url:`DocFactory <https://market.axonivy.com/doc-factory#tab-description>` in the same security context, you can preview Word(doc, docx), Excel(xls, xlsx) and email(eml) documents.
+- Enhanced the **Document Table** component by adding the lazy loading functionality to the Document Table component, enabling efficient data loading through pagination.
+
+Changes in 12.0.9
+-----------------
+
+- Introduced **Renaming Document** feature for the task and case detail. You can rename document in document table of task and case detail page, and the activity will be logged in history notes.
+- Enhanced the document preview feature for the task and case detail. If you have :dev-url:`DocFactory <https://market.axonivy.com/doc-factory#tab-description>` in the same security context, you can preview Word(doc, docx), Excel(xls, xlsx) and email(eml) documents.
 
 Changes in 12.0.6
 -----------------

@@ -1606,6 +1606,7 @@ Labels:
   AssignToUser: Select assigned user
   Chat: Chat
   Collapse: Collapse
+  Comma: ','
   CreateNewDashboard: Create new dashboard
   EditDescription: Edit description
   EnterFromValue: Enter from value
@@ -1715,6 +1716,7 @@ Labels:
   Permissions: Permissions
   PinnedCases: Pinned Cases
   PinnedTasks: Pinned Tasks
+  RequiredFieldMessage: '{0}: Value is required'
   SelectOperator: Select Operator
   SelectProcess: Select a process
   SelectValues: Select values
