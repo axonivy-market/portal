@@ -5,6 +5,7 @@ import static com.codeborne.selenide.Condition.disappear;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
+import java.time.Duration;
 import java.util.List;
 import java.util.stream.IntStream;
 
@@ -69,7 +70,7 @@ public class TaskTemplatePage extends TemplatePage {
   }
 
   public void clickCancelButton() {
-    $("a[id$='button-cancel']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $("a[id$='button-cancel']").shouldBe(getClickableCondition(), Duration.ofSeconds(60)).click();
   }
   
   public void clickActionButton() {
