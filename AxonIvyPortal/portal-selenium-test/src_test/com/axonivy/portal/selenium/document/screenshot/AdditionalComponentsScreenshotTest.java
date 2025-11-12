@@ -26,7 +26,7 @@ import com.axonivy.portal.selenium.page.component.RoleSelectionComponentPage;
 import com.axonivy.portal.selenium.page.component.SecurityMemberNameAndAvatarComponentPage;
 import com.axonivy.portal.selenium.page.component.UserSelectionComponentPage;
 
-@IvyWebTest
+@IvyWebTest(headless = false)
 public class AdditionalComponentsScreenshotTest extends ScreenshotBaseTest {
 
   @Test
@@ -57,7 +57,7 @@ public class AdditionalComponentsScreenshotTest extends ScreenshotBaseTest {
     taskWidget = new TaskWidgetNewDashBoardPage();
     taskWidget.startTaskWithIndex(1);
     TaskTemplatePage taskTemplatePage = new TaskTemplatePage();
-    WaitHelper.waitForNavigation(() -> taskTemplatePage.clickCancelButton());
+    taskTemplatePage.clickCancelButton();
     ScreenshotUtils.resizeBrowser(new Dimension(1366, 800));
     newDashboardPage = new NewDashboardPage();
     newDashboardPage.waitForTaskStartButtonDisplay(1);
