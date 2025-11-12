@@ -70,7 +70,7 @@ public class TaskTemplatePage extends TemplatePage {
   }
 
   public void clickCancelButton() {
-    $("a[id$='button-cancel']").shouldBe(getClickableCondition(), Duration.ofSeconds(60)).click();
+    $("a[id$='button-cancel']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
   
   public void clickActionButton() {
