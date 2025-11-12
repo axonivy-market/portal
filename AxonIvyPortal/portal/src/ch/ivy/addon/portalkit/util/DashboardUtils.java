@@ -87,7 +87,7 @@ public class DashboardUtils {
       if (permissions == null) {
         return false;
       }
-      return permissions.stream().noneMatch(DashboardUtils::isSessionUserHasPermisson);
+      return permissions.stream().noneMatch(DashboardUtils::isSessionUserHasPermission);
     });
     return dashboards;
   }
@@ -98,14 +98,37 @@ public class DashboardUtils {
       if (permissions == null) {
         return false;
       }
-      return permissions.stream().noneMatch(DashboardUtils::isSessionUserHasPermisson);
+      return permissions.stream().noneMatch(DashboardUtils::isSessionUserHasPermission);
     });
     return dashboards;
   }
 
-  private static boolean isSessionUserHasPermisson(String permission) {
+  private static boolean isSessionUserHasPermission(String permission) {
     return Strings.CS.startsWith(permission, "#") ? Strings.CS.equals(currentUser().getMemberName(), permission)
         : PermissionUtils.doesSessionUserHaveRole(permission);
+  }
+
+  /**
+   * Determines whether the session user has access to the specified dashboard.
+   * 
+   * @param dashboard the {@link Dashboard} instance to check access for
+   * @return {@code true} if the session user can access the dashboard.
+   */
+  public static boolean canSessionUserAccessDashboard(Dashboard dashboard) {
+    if (Optional.ofNullable(dashboard).map(Dashboard::getPermissions)
+        .orElse(new ArrayList<>()).isEmpty()) {
+      return false;
+    }
+    if (dashboard.getPermissions().contains(ISecurityConstants.TOP_LEVEL_ROLE_NAME)) {
+      return true;
+    }
+
+    for (String permission : dashboard.getPermissions()) {
+      if (isSessionUserHasPermission(permission)) {
+        return true;
+      }
+    }
+    return false;
   }
 
   public static List<Dashboard> jsonToDashboards(String dashboardJSON) {
