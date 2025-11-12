@@ -90,7 +90,7 @@ Side step
 ---------
 #. Login to Portal.
 
-#. Go to process list, select :guilabel:`Leave request with side step processes (task level)` :guilabel:`Leave request with side step processes (case level)` or to start a leave request.
+#. Go to process list, select :guilabel:`Leave request with side step processes (task level)` or :guilabel:`Leave request with side step processes (case level)` to start a leave request.
 
 #. You will go directly to the first task **Create leave request for: <user>**.
 

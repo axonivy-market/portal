@@ -174,8 +174,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     ProcessViewerText: プロセスビューアー
     Title: プロセスビューアー
   SideStep:
-    NewSideStepMessage: 'TODO: New side step task is created'
-    SideStepProcess: 'TODO: Start parallel process'
+    NewSideStepMessage: '新しいサイドステップタスクが作成されました。'
+    SideStepProcess: '並列処理を開始する'
   TaskDocuments:
     TaskDocumentsPageTitle: タスクドキュメント
   adminSettings:

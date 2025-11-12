@@ -118,26 +118,26 @@ Dialogs:
         developerexamples:
           customization:
             sidestep:
-              CustomSideStepPrefix: 'TODO: My custom task name prefix:'
+              CustomSideStepPrefix: 'カスタムタスク名のプレフィックス：'
               LeaveRequestApproval:
                 Approve: 承認
                 Reject: 却下
               LeaveRequestBusinessDetailsPage:
-                CompletedTaskNumber: 'TODO: Completed side step tasks:'
-                InformCustomer: 'TODO: Inform customer'
-                LeaveRequest: 'TODO: Leave Request Business Details'
-                SideStepComment: TODO:Side step comment
+                CompletedTaskNumber: '完了したタスク数：'
+                InformCustomer: '顧客に通知する'
+                LeaveRequest: '休暇申請のビジネス詳細'
+                SideStepComment: サイドステップコメント
               LeaveRequestSummary:
                 Finish: 完了
               SideStepAskMoreDetails:
-                MoreDetails: 'TODO: More details for leave request'
+                MoreDetails: '休暇申請の詳細'
               SideStepCEOApproval:
-                CEOApproval: 'TODO: CEO approval'
+                CEOApproval: 'CEOの承認'
               SideStepExample:
-                SideStepExample: 'TODO: Side Step Example'
+                SideStepExample: 'サイドステップの例'
               SideStepResultExample:
-                SideStepResult: 'TODO: Side step result'
-                SideStepTaskIs: 'TODO: Side step task is done by'
+                SideStepResult: 'サイドステップの結果'
+                SideStepTaskIs: 'サイドステップタスク実行者は：'
 Enums:
   LeaveType:
     ANNUAL_LEAVE: 年次有給休暇
@@ -155,13 +155,13 @@ Labels:
       Approval: 承認
       ApprovalResult: 承認結果
       Creation: 休暇申請の作成
-      RequesterSideStepComment: 'TODO: Requester side step comment'
-      SideStepComment: 'TODO: Side step comment'
+      RequesterSideStepComment: 'リクエスト者のサイドステップコメント'
+      SideStepComment: 'サイドステップコメント'
     LeaveType: 休暇の種類
     Requester: 申請者
     RequesterComment: 申請者のコメント
-    StepTypeParallelTitle: This is customized parallel title
-    StepTypeSwitchTitle: 'TODO: This is customized switch title'
+    StepTypeParallelTitle: これはカスタマイズされたパラレルタイトルです
+    StepTypeSwitchTitle: 'これはカスタマイズされたスイッチタイトルです'
     SubmitLeaveRequest: 休暇申請を送信
     To: まで
   OK: OK
@@ -205,8 +205,8 @@ Processes:
       結果を確認します
   LeaveRequest:
     LeaveRequest: Leave Request
-    LeaveRequestWithSideStepsCaseLevel: 'TODO: Leave request with side step processes (case level)'
-    LeaveRequestWithSideStepsTaskLevel: TODO Leave request with side step processes
+    LeaveRequestWithSideStepsCaseLevel: 'サイドステッププロセスによる休暇申請（ケースレベル）'
+    LeaveRequestWithSideStepsTaskLevel: サイドステッププロセスによる休暇申請
     approvalTask: あなたの休暇申請は承認されました
     approvalTaskName: '{0} の休暇申請の承認'
     createLeaveRequest: '{0}の休暇申請を作成'

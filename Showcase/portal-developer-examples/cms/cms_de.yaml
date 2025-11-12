@@ -172,7 +172,7 @@ Labels:
     LeaveType: Urlaubsart
     Requester: Antragsteller
     RequesterComment: Kommentar des Antragstellers
-    StepTypeParallelTitle: 'TODO: Dies ist ein angepasster Paralleltitel'
+    StepTypeParallelTitle: 'Dies ist ein angepasster Paralleltitel'
     StepTypeSwitchTitle: Dies ist ein angepasster Schaltertitel
     SubmitLeaveRequest: Urlaubsantrag einreichen
     To: Bis
