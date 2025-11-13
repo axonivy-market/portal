@@ -40,7 +40,7 @@ public class AdditionalComponentsScreenshotTest extends ScreenshotBaseTest {
     login(TestAccount.ADMIN_USER);
     updatePortalSetting(Variable.DISPLAY_MESSAGE_AFTER_FINISH_TASK.getKey(), "true");
     redirectToRelativeLink(createTestingCaseContainOneTask);
-    ScreenshotUtils.resizeBrowser(new Dimension(1500, 1500));
+    ScreenshotUtils.resizeBrowser(new Dimension(1366, 800));
 
     NewDashboardPage newDashboardPage = new NewDashboardPage();
     TaskWidgetNewDashBoardPage taskWidget = new TaskWidgetNewDashBoardPage();
@@ -49,18 +49,16 @@ public class AdditionalComponentsScreenshotTest extends ScreenshotBaseTest {
     ScreenshotUtils
         .captureHalfTopPageScreenShot(ScreenshotUtils.COMPONENTS_FOLDER + "example-global-growl-finished-task");
 
+    ScreenshotUtils.resizeBrowser(new Dimension(1500, 1500));
     redirectToRelativeLink(createTestingTasksUrl);
-    showNewDashboard();
     newDashboardPage = new NewDashboardPage();
     taskWidget = new TaskWidgetNewDashBoardPage();
-
     taskWidget.openFilterWidget();
     taskWidget.filterTaskName("Sick Leave Request");
     taskWidget.applyFilter();
     taskWidget.startFirstTask();
     TaskTemplatePage taskTemplatePage = new TaskTemplatePage();
     taskTemplatePage.clickCancelButton();
-    ScreenshotUtils.resizeBrowser(new Dimension(1366, 800));
     newDashboardPage = new NewDashboardPage();
     newDashboardPage.waitForTaskStartButtonDisplay(0);
     newDashboardPage.waitForGrowlMessageDisplayClearly();
