@@ -1576,7 +1576,7 @@ Dialogs:
             AggregationMethodTooltip: Wählen Sie eine Aggregationsmethode, um Berechnungen für Ihr KPI-Feld durchzuführen - Summe, Durchschnitt, Maximum oder Minimum. Deaktiviert, wenn 'Counting' ausgewählt ist
             ChartConfiguration: Diagrammeinstellungen
             ChartDrillDownEnabled: Drilldown in Diagrammen aktiviert
-            ChartDrillDownInfo: Chart drill-down info
+            ChartDrillDownInfo: '<p>Es funktioniert nur, wenn der Benutzer über folgende Berechtigungen verfügt: <strong>CaseReadAll</strong> für Fälle und <strong>TaskReadAll</strong> für Aufgaben.</p>'
             ChartDrillDownPermissions: Berechtigungen für Diagramm-Drilldowns
             ChartType: Diagrammtyp
             Color: Farbe {0}

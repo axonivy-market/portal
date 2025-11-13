@@ -1575,7 +1575,7 @@ Dialogs:
             AggregationMethodTooltip: TODO Choose an aggregation method to perform calculations on your KPI field - Sum, Average, Max, or Min. Disabled when 'Counting' is selected
             ChartConfiguration: TODO Chart Configuration
             ChartDrillDownEnabled: TODO Chart drill-down enabled
-            ChartDrillDownInfo: Chart drill-down info
+            ChartDrillDownInfo: 'TODO <p>It only works when the user has these permissions: <strong>CaseReadAll</strong> for case and <strong>TaskReadAll</strong> for task.</p>'
             ChartDrillDownPermissions: TODO Chart drill-down permissions
             ChartType: TODO Chart type
             Color: 色{0}

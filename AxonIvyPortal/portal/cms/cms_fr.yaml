@@ -1577,7 +1577,7 @@ Dialogs:
             AggregationMethodTooltip: Choisissez une méthode d’agrégation pour effectuer des calculs sur votre champ KPI - Somme, Moyenne, Maximum ou Minimum. Désactivé lorsque 'Counting' est sélectionné
             ChartConfiguration: Configuration des graphiques
             ChartDrillDownEnabled: Exploration approfondie des graphiques activée
-            ChartDrillDownInfo: Chart drill-down info
+            ChartDrillDownInfo: '<p>Cela ne fonctionne que si l''utilisateur dispose des autorisations suivantes : <strong>CaseReadAll</strong> pour les cas et <strong>TaskReadAll</strong> pour les tâches.</p>'
             ChartDrillDownPermissions: Autorisations d'exploration des graphiques
             ChartType: Type de graphique
             Color: Couleur {0}
