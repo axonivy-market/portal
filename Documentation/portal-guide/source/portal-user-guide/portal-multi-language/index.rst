@@ -3,41 +3,56 @@
 Portal Multi Language
 *********************
 
-The document translation shows how easy it has become, to translate from the pure text, into the language of your end user.
-Say goodbye to language barriers in process automation with Axon Ivy's translation service powered by DeepL.
+The Portal translation service powered by DeepL makes it easy to translate text content into your end user's language, eliminating language barriers in process automation.
+
+Translation Overview
+====================
+
+The Portal multi-language feature provides:
+
+- **Automated Translation**: DeepL-powered translations for supported languages
+- **Manual Translation**: Manual input when DeepL is not configured
+- **Flexible Application**: Available for dashboards, processes, and other customizable text fields
+
+.. note::
+   Portal translation requires both :guilabel:`Portal.DeepL.Enable` set to true and a valid :guilabel:`Portal.DeepL.AuthKey`. Otherwise, you can translate text fields manually.
 
 .. _enable-translation:
 
-HowTo: Enable the translation
------------------------------
+HowTo: Enable the Translation Service
+--------------------------------------
 
-To use DeepL powered translations:
+To use DeepL-powered translations:
 
-- Open :ref:`Admin Settings <admin-settings>`, set :guilabel:`Portal.DeepL.Enable` to true.
+#. Open :ref:`Admin Settings <admin-settings>`
 
-- Get a `free developer account <https://www.deepl.com/pro#developer/>`__ from DeepL.com, then copy the API-Key of your account into this Portal setting: :guilabel:`Portal.DeepL.AuthKey`.
+#. Set :guilabel:`Portal.DeepL.Enable` to true
 
-HowTo: Translate a pure text
-----------------------------
+#. Get a free developer account from `DeepL.com <https://www.deepl.com/pro#developer/>`__
 
-.. note::
+#. Copy your DeepL API key into the Portal setting :guilabel:`Portal.DeepL.AuthKey`
 
-   The Portal translation only works if both Portal.DeepL.Enable is set to true and Portal.DeepL.AuthKey contains a valid key.
+.. tip::
+   The DeepL free tier supports up to 500,000 characters per month, suitable for most Portal translation needs.
 
-   Otherwise, you can translate the input text field manually.
+HowTo: Translate Text
+---------------------
 
-#. If any input text field is supported the translation, a :guilabel:`translator icon` will be shown.
-   For example, let's create a private dashboard. Then, click on the :guilabel:`translator icon`.
+#. Look for the :guilabel:`translator icon` on supported input text fields. For example, when creating a private dashboard:
 
    |create-private-dashboard-dialog|
 
-#. A Setting multiple languages dialog is shown.
+#. Click on the :guilabel:`translator icon` to open the Setting Multiple Languages dialog.
 
    |dashboard-multi-language-dialog|
 
-#. Click on the input text field of a foreign language to have it translated by DeepL. To accept the translated text, clicking on :guilabel:`Auto. translation`.
+#. Click on the input text field of your target language.
+
+#. If DeepL is enabled, the text will be automatically translated. Click :guilabel:`Auto. translation` to accept the translated text.
 
    |overlay-panel-translation|
+
+#. If DeepL is not configured, enter translations manually for each language.
 
 .. include:: ../includes/_common-icon.rst
 

@@ -6,15 +6,45 @@ Full Case List
 The **Full Case List** page is a dashboard featuring a single, full-width case widget. 
 You can reach the page by using the |case-icon| :guilabel:`Cases` link in the Axon Ivy Portal menu.
 
-.. note::
+.. important::
+   **Access Requirement**: Only users with the :bdg-ref-warning:`🔑AccessFullCaseList <AccessFullCaseList>` 
+   permission can see the |case-icon| :guilabel:`Cases` menu item.
 
-   Grant permission :bdg-ref-warning:`🔑AccessFullCaseList <AccessFullCaseList>` if |case-icon| :guilabel:`Cases` is not visible.
-
-.. hint:: 
-   The set of cases you see in the Portal depends on the roles you hold 
-   in your applications.                      
+.. tip:: 
+   The cases you see depend on the roles you hold in your applications.
 
 |navigate-to-full-cases-list-page|
+
+Permission Reference
+====================
+
+Different case operations require specific permissions:
+
+.. table::
+   :widths: 40 60
+
+   +--------------------------------------+--------------------------------------------------------+
+   | Action                               | Required Permission                                    |
+   +======================================+========================================================+
+   | **View related tasks of case**       | :bdg-ref-warning:`🔑TaskReadOwnCaseTasks               |
+   |                                      | <TaskReadOwnCaseTasks>` or                             |
+   |                                      | :bdg-ref-warning:`🔑TaskReadAll <TaskReadAll>`         |
+   +--------------------------------------+--------------------------------------------------------+
+   | **Add/delete case documents**        | :bdg-ref-warning:`🔑DocumentOfInvolvedCaseWrite        |
+   |                                      | <DocumentOfInvolvedCaseWrite>` or                      |
+   |                                      | :bdg-ref-warning:`🔑DocumentWrite <DocumentWrite>`     |
+   +--------------------------------------+--------------------------------------------------------+
+   | **Add note to case**                 | :bdg-ref-warning:`🔑TaskCaseAddNote                    |
+   |                                      | <TaskCaseAddNote>`                                     |
+   +--------------------------------------+--------------------------------------------------------+
+   | **Share case details link**          | :bdg-ref-warning:`🔑ShareCaseDetailsLink               |
+   |                                      | <ShareCaseDetailsLink>`                                |\n   +--------------------------------------+--------------------------------------------------------+
+   | **View custom fields**               | :bdg-ref-warning:`🔑CaseDisplayCustomFieldsAction      |
+   |                                      | <CaseDisplayCustomFieldsAction>`                       |
+   +--------------------------------------+--------------------------------------------------------+
+
+Case List Information
+=====================
 
 For each case, the list shows the following key information:
 
@@ -44,6 +74,29 @@ To access the full set of case data, click on the case Name/Description.
 
 |case-details|
 
+Case Details Overview
+=====================
+
+The case details page is organized into four main sections:
+
+.. table::
+   :widths: 25 75
+
+   +----------------------------------+---------------------------------------------------------------+
+   | Section                          | Content                                                       |
+   +==================================+===============================================================+
+   | **Data and Description**         | Case metadata and description                                 |
+   +----------------------------------+---------------------------------------------------------------+
+   | **Related Tasks and Cases**      | Lists related running cases and tasks                         |
+   +----------------------------------+---------------------------------------------------------------+
+   | **Histories**                    | State changes, system notes, and user-added notes             |
+   +----------------------------------+---------------------------------------------------------------+
+   | **Documents**                    | Attached files with add, delete, rename, preview options      |
+   +----------------------------------+---------------------------------------------------------------+
+
+Detailed Sections
+-----------------
+
 The case details are separated into four different sections:
 
 #. Data and Description: Contain various metadata of the case and its description.
@@ -66,31 +119,29 @@ The case details are separated into four different sections:
 
    |case-details-documents|
 
-.. _howto-use-existing-filter-1:
+.. _howto-move-resize-widgets-case-details:
 
 HowTo: Move and Resize Widgets in Case Details
-----------------------------------------------
-1. Open the case details
+------------------------------------------------
 
-2. Click on the :guilabel:`Edit` button to drag, drop and resize widgets.
+#. Open the case details
 
-|how-to-switch-to-edit-mode|
+#. Click on the :guilabel:`Edit` button to drag, drop and resize widgets.
 
+   |how-to-switch-to-edit-mode|
 
-3. Click on the **Save** button to save the current state of the page and switch
-   to read-only mode.
+#. Click on the :guilabel:`Save` button to save the current state of the page and switch to read-only mode.
 
-|how-to-switch-to-view-mode|
+   |how-to-switch-to-view-mode|
 
+#. Click the :guilabel:`Reset` button to reset the widget to its default configuration.
 
-4. Click the **Reset** button to reset the widget to its default configuration.
-
-|how-to-reset-to-default|
+   |how-to-reset-to-default|
 
 .. _howto-attach-a-document-to-the-case-1:
 
-HowTo: Attach a document to a case
-------------------------------------
+HowTo: Attach a Document to a Case
+-----------------------------------
 
 #. Open the case details
 
@@ -101,13 +152,9 @@ HowTo: Attach a document to a case
 #. Upload a file by clicking :guilabel:`Upload here` or by dragging the
    file into the dialog
 
-#. Click :guilabel:`Close` close the dialog
+#. Click :guilabel:`Close` to close the dialog
 
 |how-to-attach-document-to-case|
-
-.. note::
-
-   Grant either permission :bdg-ref-warning:`🔑DocumentOfInvolvedCaseWrite <DocumentOfInvolvedCaseWrite>` or :bdg-ref-warning:`🔑DocumentWrite <DocumentWrite>` to allow a user to write case documents.
 
 .. _howto-remove-an-attachment-from-the-case-1:
 
@@ -125,12 +172,8 @@ HowTo: Remove an Attachment from the Case
 
 |how-to-delete-an-attachment-from-case|
 
-.. note::
-   
-   Grant either permission :bdg-ref-warning:`🔑DocumentOfInvolvedCaseWrite <DocumentOfInvolvedCaseWrite>` or :bdg-ref-warning:`🔑DocumentWrite <DocumentWrite>` to allow a user to delete attachments from a case.
-
-HowTo: Preview a document of a case
------------------------------------
+HowTo: Preview a Document of a Case
+------------------------------------
 
 #. Open the case details
 
@@ -143,15 +186,16 @@ HowTo: Preview a document of a case
 |how-to-preview-document|
 
 .. note::
+   **Supported Document Types:**
+   
+   - **Default**: Images (jpg, jpeg, bmp, png), plain text (txt, log), and PDF documents
+   - **With DocFactory**: Word (doc, docx), Excel (xls, xlsx), and email (eml) files
+   
+   Enable this feature by setting :ref:`Portal settings <update-portal-settings>` :guilabel:`Portal.Document.EnablePreview` to true. 
+   For Office documents, deploy :dev-url:`DocFactory <https://market.axonivy.com/doc-factory#tab-description>` in the same security context.
 
-    - Portal can preview images(jpg, jpeg, bmp and png), plain text(txt and log) and pdf documents by default.
-
-    - Portal can preview Word(doc, docx), Excel(xls, xlsx) and email(eml) documents if :dev-url:`DocFactory <https://market.axonivy.com/doc-factory#tab-description>` is deployed in the same security context.
-
-    - Change :ref:`Portal settings <update-portal-settings>` :guilabel:`Portal.Document.EnablePreview` to true to enable this feature.
-
-HowTo: Rename a document of a case
-----------------------------------
+HowTo: Rename a Document of a Case
+-----------------------------------
 
 #. Open the case details
 
@@ -184,15 +228,10 @@ HowTo: Add a Note to a Case
 |how-to-add-task-note|
 
 .. note::
-   Notes of a technical case are displayed on the ``Notes`` table of the case, and its tasks.
-
-   Visibility rule for notes of business case:
+   **Note Visibility:**
    
-      - Displayed in the ``History`` table of the case details and its direct tasks
-      - Displayed in the ``History`` table of its technical case details.
-      - Not displayed in the ``Notes`` table of tasks belong to technical case.
-   
-   Grant permission :bdg-ref-warning:`🔑TaskCaseAddNote <TaskCaseAddNote>` to allow a user to add a note to a case.
+   - **Technical case notes**: Displayed in the ``Notes`` table of the case and its tasks
+   - **Business case notes**: Displayed in the ``History`` table of the case details, its direct tasks, and technical case details (not shown in task Notes tables)
 
 HowTo: Export a Case History
 ----------------------------
@@ -220,13 +259,8 @@ HowTo: Manipulate Related Tasks Inside Case Details
 
 This section shows you the related tasks of this case.
 
-.. hint:: 
-   What you see here depends on the roles granted to you in both the application 
-   and the Axon Ivy Portal. Administrators can see all open tasks.
-
-.. note::
-   
-   Grant either permission :bdg-ref-warning:`🔑TaskReadOwnCaseTasks <TaskReadOwnCaseTasks>` or :bdg-ref-warning:`🔑TaskReadAll <TaskReadAll>` to allow a user to see all related tasks of a case.
+.. note:: 
+   The tasks you see depend on your application roles and Portal permissions. Administrators can see all open tasks.
 
 The list shows the following key information for each task. To change the
 columns displayed, click on :guilabel:`Manage columns`. Select from the
@@ -250,20 +284,16 @@ following columns:
 
 - State
 
-At the end of each row, a side step menu is available. It offers the following
-actions:
+**Available Actions:**
 
-- Reset Task
+At the end of each row, click the side step menu to access:
 
-- Delegate Task
-
-- Reserve Task
-
-- Destroy Task
-
-- Trigger Escalation Task
-
-- Workflow Events
+- **Reset Task**: Revert the task to its initial state
+- **Delegate Task**: Assign the task to another user or role
+- **Reserve Task**: Reserve the task for yourself
+- **Destroy Task**: Permanently remove the task
+- **Trigger Escalation Task**: Manually trigger task escalation
+- **Workflow Events**: View and manage workflow events
 
 To access the full set of the task data, click on the row containing the
 task.
@@ -296,13 +326,11 @@ By default, the following information is shown. To change it, click on :guilabel
 
 - Category
 
-The Action column provides these actions to handle the related case:
+**Available Actions:**
 
-- Case details
-
-- Business details
-
-- Side step
+- **Case details**: View full case information
+- **Business details**: View business-specific case data
+- **Side step**: Access additional case operations
 
 To see the details of the related case, click on its row. To export the related
 case list, click on :guilabel:`Export to Excel`.
@@ -310,15 +338,18 @@ case list, click on :guilabel:`Export to Excel`.
 .. _how-to-show-process-viewer:
 
 HowTo: Show Process Viewer
---------------------------
+---------------------------
 
-| Portal provides a visual representation of the process flow of the current case or task. To open the viewer, select :guilabel:`Process Viewer` in the :guilabel:`Action` menu.
-| You find this option on the following pages:
+Portal provides a visual representation of the process flow of the current case or task. To open the viewer, select :guilabel:`Process Viewer` in the :guilabel:`Action` menu.
 
-   - Case details
-   - Task details
-   - Full case list
-   - Full task list
+You find this option on the following pages:
+
+- Case details
+- Task details
+- Full case list
+- Full task list
+
+**Steps:**
 
 #. Click on :guilabel:`Actions`
 
@@ -338,10 +369,6 @@ HowTo: Share Case Details
 
 |how-to-share-case-details|
 
-.. note::
-
-   Grant permission :bdg-ref-warning:`🔑ShareCaseDetailsLink <ShareCaseDetailsLink>` to allow a user to share case details.
-
 HowTo: Show Case Custom Fields Dialog
 -------------------------------------
 
@@ -354,10 +381,6 @@ HowTo: Show Case Custom Fields Dialog
 #. Portal opens the custom fields dialog of the case
 
 |case-custom-fields-dialog|
-
-.. note::
-
-   Grant permission :bdg-ref-warning:`🔑CaseDisplayCustomFieldsAction <CaseDisplayCustomFieldsAction>` to allow a user to see the custom fields link.
 
 .. include:: ../includes/_common-icon.rst
 
