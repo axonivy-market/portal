@@ -864,7 +864,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     caseWidgetInfo:
       casesByCategory: Anzahl der Vorgänge nach Kategorie
       casesByState: Anzahl der Vorgänge nach Status
-      numberOfCase: Vorfälle
+      numberOfCase: Vorgänge
     category: Kategorie
     columnManagement: Spaltenverwaltung
     columnType:
