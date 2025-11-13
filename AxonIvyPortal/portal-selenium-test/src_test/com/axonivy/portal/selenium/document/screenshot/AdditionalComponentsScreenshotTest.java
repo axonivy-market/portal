@@ -50,13 +50,12 @@ public class AdditionalComponentsScreenshotTest extends ScreenshotBaseTest {
     ScreenshotUtils
         .captureHalfTopPageScreenShot(ScreenshotUtils.COMPONENTS_FOLDER + "example-global-growl-finished-task");
 
-    ScreenshotUtils.resizeBrowser(new Dimension(1500, 1500));
     redirectToRelativeLink(createTestingTasksUrl);
-    Sleeper.sleep(5000); //wait for task created
     showNewDashboard();
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.COMPONENTS_FOLDER + "check-before-start-task");
     newDashboardPage = new NewDashboardPage();
     taskWidget = new TaskWidgetNewDashBoardPage();
+    Sleeper.sleep(5000); //wait for task created
     taskWidget.startTaskWithIndex(1);
     TaskTemplatePage taskTemplatePage = new TaskTemplatePage();
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.COMPONENTS_FOLDER + "check-task-template");
