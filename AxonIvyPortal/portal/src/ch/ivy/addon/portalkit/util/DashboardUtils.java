@@ -529,6 +529,7 @@ public class DashboardUtils {
           }
           collectedDashboards.addAll(idToDashboard.values());
           addDefaultTaskCaseListDashboardsIfMissing(collectedDashboards);
+          collectedDashboards.addAll(externalDashboards);
         } catch (Exception e) {
           Ivy.log().error("Cannot collect Dashboards {0}", e.getMessage());
         }

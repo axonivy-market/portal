@@ -159,7 +159,6 @@ public class DashboardBean implements Serializable, IMultiLanguage {
   protected List<Dashboard> collectDashboards() {
     List<Dashboard> dashboards = DashboardUtils.collectDashboards();
     dashboards.add(DefaultDashboardUtils.getDefaultUserExampleDashboard());
-    dashboards.addAll(DashboardUtils.externalDashboards);
     return dashboards;
   }
 

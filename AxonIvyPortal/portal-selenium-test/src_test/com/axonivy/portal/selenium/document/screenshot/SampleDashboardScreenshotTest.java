@@ -50,7 +50,7 @@ public class SampleDashboardScreenshotTest extends ScreenshotBaseTest {
   }
 
   @Test
-  public void screenshotSampleStatisticChartConfig() throws InterruptedException, IOException {
+  public void screenshotSampleStatisticChartConfig() throws IOException {
     showNewDashboard();
     NewDashboardPage dashboardPage = new NewDashboardPage();
     DashboardConfigurationPage dashboardConfigurationPage = dashboardPage.openDashboardConfigurationPage();
@@ -58,12 +58,16 @@ public class SampleDashboardScreenshotTest extends ScreenshotBaseTest {
     dashboardConfigurationPage.clickButtonOnDashboardConfigurationActionMenu("Configuration", 2);
     NewDashboardDetailsEditPage dashboardConfigPage = new NewDashboardDetailsEditPage();
     dashboardConfigPage.addWidget().click();
-    $$("div[id$='example-chip']").shouldHave(CollectionCondition.size(9), DEFAULT_TIMEOUT).first().scrollIntoView(true);
+    scrollToExampleStatisticInAddWidgetDialog();
     ScreenshotUtils.resizeBrowserAndCaptureWholeScreen(ScreenshotUtils.SAMPLE_DASHBOARD_FOLDER + "statistic-config",
         new Dimension(1500, 1500));
   }
+  
+  private void scrollToExampleStatisticInAddWidgetDialog() {
+    $$("div[id$='example-chip']").shouldHave(CollectionCondition.size(9), DEFAULT_TIMEOUT).first().scrollIntoView(true);
+  }
 
-  public void waitForDashboardLoaded() {
+  private void waitForDashboardLoaded() {
     $("span[id$='welcome-text']").shouldHave(Condition.text("KPI Procurement Overview"), DEFAULT_TIMEOUT);
   }
 }

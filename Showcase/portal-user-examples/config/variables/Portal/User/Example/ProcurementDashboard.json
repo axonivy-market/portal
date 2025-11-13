@@ -349,5 +349,5 @@
     "greeting" : false
   } ],
   "permissions" : [ "Everybody" ],
-  "dashboardDisplayType" : "sub_menu"
+  "dashboardDisplayType" : "top_menu"
 }]
