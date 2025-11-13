@@ -130,7 +130,7 @@
             "",
             "// Parse dto to string and save to task custom field",
             "String valueString = BusinessEntityConverter.entityToJsonValue(sideStepDto);",
-            "task.customFields().textField(CustomFields.SIDE_STEPS_TASK).set(valueString);"
+            "task.customFields().textField(CustomFields.SIDE_STEP_TASK).set(valueString);"
           ]
         },
         "output" : {
@@ -195,7 +195,7 @@
             "",
             "// Parse dto to string and save to custom field",
             "String valueString = BusinessEntityConverter.entityToJsonValue(sideStepDto);",
-            "task.customFields().textField(CustomFields.SIDE_STEPS_TASK).set(valueString);"
+            "task.customFields().textField(CustomFields.SIDE_STEP_TASK).set(valueString);"
           ]
         }
       },

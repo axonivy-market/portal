@@ -184,9 +184,9 @@ How to Use and Set Up
    Portal sends signal to your selected process, with the JSON parameters contain your input information like task uuid, case uuid, your comment. 
    In case user select ``SWITCH`` step type (synchronously), Portal will park and set ``HIDE`` property to the original task until the side step completes. Otherwise the side step will run parallel with the original task.
 
-#. Handle data in the process which was triggers by Portal
+#. Handle data in the process which was triggered by Portal
 
-   Process developer gets data from signal as JSON string, parses it to class ``SideStepProcessParamDTO`` object of ``portal-components``. This object contains data send from Portal to use for the process.
+   Process developer gets data from the signal as JSON string, parses it to class ``SideStepProcessParamDTO`` object of ``portal-components``. This object contains data send from Portal to use for the process.
       
     .. code-block:: javascript
 
@@ -197,7 +197,7 @@ How to Use and Set Up
 #. Handle completion
 
    On finish your side step process must raise a done signal by calling API ``SideStepAPI.finishSideStep(String originalTaskUuid, boolean isParallelSideStep)``. 
-   This API will reactivates and removes ``HIDE`` property from the parked task if the side step task is ``SWITCH`` step type (synchronously).
+   This API will reactivate and remove ``HIDE`` property from the parked task if the side step task is ``SWITCH`` step type (synchronously).
 
 
 .. |signal-process| image:: images/side-step/signal-process.png
