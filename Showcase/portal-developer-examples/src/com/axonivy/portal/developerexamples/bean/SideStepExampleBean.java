@@ -17,9 +17,6 @@ import ch.ivyteam.ivy.environment.Ivy;
 @ManagedBean
 public class SideStepExampleBean implements Serializable{
 
-  /**
-   * 
-   */
   private static final long serialVersionUID = 1L;
   
   public boolean isVisible(List<SideStepExampleDTO> tasks) {
