@@ -24,7 +24,7 @@ The Portal provides two types of QR codes:
 Configuration
 =============
 
-HowTo: Activate the QR Code Feature Feature
+HowTo: Activate the QR Code Feature
 ------------------------------------
 
 Enable the QR code menu item in the user menu:

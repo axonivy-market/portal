@@ -38,7 +38,8 @@ Different case operations require specific permissions:
    |                                      | <TaskCaseAddNote>`                                     |
    +--------------------------------------+--------------------------------------------------------+
    | **Share case details link**          | :bdg-ref-warning:`🔑ShareCaseDetailsLink               |
-   |                                      | <ShareCaseDetailsLink>`                                |\n   +--------------------------------------+--------------------------------------------------------+
+   |                                      | <ShareCaseDetailsLink>`                                |
+   +--------------------------------------+--------------------------------------------------------+
    | **View custom fields**               | :bdg-ref-warning:`🔑CaseDisplayCustomFieldsAction      |
    |                                      | <CaseDisplayCustomFieldsAction>`                       |
    +--------------------------------------+--------------------------------------------------------+

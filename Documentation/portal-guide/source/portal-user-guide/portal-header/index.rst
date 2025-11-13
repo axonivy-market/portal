@@ -30,22 +30,22 @@ Different header features require specific permissions:
    +======================================+========================================================+
    | **Access admin settings**            | Role ``AXONIVY_PORTAL_ADMIN``                          |
    +--------------------------------------+--------------------------------------------------------+
-   | **Manage own dashboards**            | :bdg-ref-warning:`🔑DashboardWriteOwn                 |
+   | **Manage own dashboards**            | :bdg-ref-warning:`🔑DashboardWriteOwn                  |
    |                                      | <DashboardWriteOwn>`                                   |
    +--------------------------------------+--------------------------------------------------------+
-   | **Manage public dashboards**         | :bdg-ref-warning:`🔑DashboardWritePublic              |
+   | **Manage public dashboards**         | :bdg-ref-warning:`🔑DashboardWritePublic               |
    |                                      | <DashboardWritePublic>`                                |
    +--------------------------------------+--------------------------------------------------------+
-   | **Create own absences**              | :bdg-ref-warning:`🔑UserCreateOwnAbsence              |
+   | **Create own absences**              | :bdg-ref-warning:`🔑UserCreateOwnAbsence               |
    |                                      | <UserCreateOwnAbsence>`                                |
    +--------------------------------------+--------------------------------------------------------+
-   | **Create public absences**           | :bdg-ref-warning:`🔑UserCreateAbsence                 |
+   | **Create public absences**           | :bdg-ref-warning:`🔑UserCreateAbsence                  |
    |                                      | <UserCreateAbsence>`                                   |
    +--------------------------------------+--------------------------------------------------------+
-   | **Create own substitutes**           | :bdg-ref-warning:`🔑UserCreateOwnSubstitute           |
+   | **Create own substitutes**           | :bdg-ref-warning:`🔑UserCreateOwnSubstitute            |
    |                                      | <UserCreateOwnSubstitute>`                             |
    +--------------------------------------+--------------------------------------------------------+
-   | **Create all substitutes**           | :bdg-ref-warning:`🔑UserCreateSubstitute              |
+   | **Create all substitutes**           | :bdg-ref-warning:`🔑UserCreateSubstitute               |
    |                                      | <UserCreateSubstitute>`                                |
    +--------------------------------------+--------------------------------------------------------+
    | **Change own password**              | :bdg-warning:`🔑UserSetOwnPassword`                    |

@@ -107,9 +107,9 @@ Next Steps
 
 Now that you understand the Portal interface, explore these key features:
 
-- **Processes**: Start new business processes → See :ref:`process-list`
-- **Tasks**: View and complete your assigned work → See :ref:`task-list`
-- **Cases**: Track and manage case progress → See :ref:`case-list`
+- **Processes**: Start new business processes → See :ref:`full-process-list`
+- **Tasks**: View and complete your assigned work → See :ref:`full-task-list`
+- **Cases**: Track and manage case progress → See :ref:`full-case-list`
 - **Dashboards**: Customize your workspace → See :ref:`new-dashboard`
 - **User Settings**: Configure your preferences → See :ref:`my-profile`
 
