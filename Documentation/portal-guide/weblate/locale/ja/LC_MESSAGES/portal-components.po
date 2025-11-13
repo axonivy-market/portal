@@ -9,15 +9,16 @@ msgstr ""
 "Project-Id-Version: Portal Guide ${revision}\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-11-12 07:57+0000\n"
-"PO-Revision-Date: 2025-10-08 07:21+0000\n"
-"Last-Translator: Thang Huynh <hhqthang@axonactive.com>\n"
+"PO-Revision-Date: 2025-11-12 18:04+0000\n"
+"Last-Translator: Nam Mai <nam.mai@axonactive.com>\n"
+"Language-Team: Japanese <https://hosted.weblate.org/projects/axonivy-portal/"
+"portal-le/doc/portal-doc-components/ja/>\n"
 "Language: ja\n"
-"Language-Team: Japanese <https://hosted.weblate.org/projects/axonivy-"
-"portal/portal-le/doc/portal-doc-components/ja/>\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 5.15-dev\n"
 "Generated-By: Babel 2.17.0\n"
 
 #: ../../source/portal-components/document-table/index.rst:4
@@ -205,18 +206,18 @@ msgstr "メッセージのレンダリングを指定するブール値。false�
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "lazy"
-msgstr ""
+msgstr "lazy"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
-#, fuzzy
 msgid "FALSE"
-msgstr "false"
+msgstr "FALSE"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid ""
 "Boolean value to specify whether the table should load data lazily and "
 "enable pagination."
-msgstr ""
+msgstr "テーブルがデータを遅延ロードし、ページネーションを有効にするかどうかを指定す"
+"るブール値。"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "fileLimit"
@@ -792,12 +793,12 @@ msgid "User interface"
 msgstr "ユーザーインターフェース"
 
 #: ../../source/portal-components/document-table/index.rst:192
-#, fuzzy
 msgid ""
 "Not only the functions, but you can also customize the UI of the "
 "**Document Table** such as adding a new column, removing default columns "
 "or enable the lazy loading and pagination."
-msgstr "機能だけでなく、新しい列の追加やデフォルトの列の削除など、 **ドキュメントテーブル** の UI もカスタマイズできます。"
+msgstr "機能だけでなく、新しい列の追加やデフォルトの列の削除など、 **ドキュメントテー"
+"ブル** の UI もカスタマイズできます。"
 
 #: ../../source/portal-components/document-table/index.rst:195
 #: ../../source/portal-components/style-customization/index.rst:11
@@ -973,11 +974,11 @@ msgstr ""
 
 #: ../../source/portal-components/document-table/index.rst:285
 msgid "Release Notes"
-msgstr ""
+msgstr "リリースノート"
 
 #: ../../source/portal-components/document-table/index.rst:288
 msgid "Changes in 13.2.0"
-msgstr ""
+msgstr "13.2.0の変更点"
 
 #: ../../source/portal-components/document-table/index.rst:290
 msgid ""
@@ -986,6 +987,10 @@ msgid ""
 "migrate-from-old-document-table>` section to create a callable subprocess"
 " to customize the renaming behavior if needed."
 msgstr ""
+"**Document Table コンポーネントに Renaming Document** 機能を導入。:ref:`"
+"Customize <components-portal-components-migrate-from-old-document-table>` の"
+"説明に従って、呼び出し可能なサブプロセスを作成し、必要に応じてリネームの動作"
+"をカスタマイズします。"
 
 #: ../../source/portal-components/document-table/index.rst:291
 msgid ""
@@ -993,12 +998,16 @@ msgid ""
 "you have DocFactory in the same security context, you can preview "
 "Word(doc, docx), Excel(xls, xlsx) and email(eml) documents."
 msgstr ""
+"タスクと案件詳細のドキュメントプレビュー機能を強化しました。同じセキュリティ"
+"コンテキストにDocFactoryがある場合、Word(doc, docx)、Excel(xls, xlsx)、Eメー"
+"ル(eml)のドキュメントをプレビューできます。"
 
 #: ../../source/portal-components/document-table/index.rst:292
 msgid ""
 "Added lazy loading functionality to the Document Table component, "
 "enabling efficient data loading through pagination."
-msgstr ""
+msgstr "Document Tableコンポーネントに遅延ロード機能を追加し、ページネーションによる"
+"効率的なデータロードを可能にしました。"
 
 #: ../../source/portal-components/index.rst:4
 msgid "Portal Components"
@@ -2518,4 +2527,3 @@ msgstr ""
 #~ "These fields are mandatory when mapping:"
 #~ " ``id``, ``name``, ``contentType``"
 #~ msgstr ""
-
