@@ -20,7 +20,6 @@ will be removed in Portal 13.
    user-selection/index
    role-selection/index
    process-viewer/index
-   process-history/index
    style-customization/index
 
 Refer to the ``portal-components-examples`` project for usage, customization,

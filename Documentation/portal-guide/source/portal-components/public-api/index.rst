@@ -53,7 +53,7 @@ Example::
    PortalNavigatorAPI.navigateToPortalHome();
 
 PortalNavigatorInFrameAPI (inside iFrame)
-========================================
+==========================================
 
 Control navigation from a page running inside Portal's iFrame.
 
