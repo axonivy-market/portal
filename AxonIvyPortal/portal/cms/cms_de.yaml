@@ -613,7 +613,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     sessionExpriedInTeams: Ihre Session ist abgelaufen. Die Anwendung wird neu gestartet.
     setting: Einstellungen
     showDetail: Details anzeigen
-    showRelatedCaseInfo: Zugehöriger Vorfall
+    showRelatedCaseInfo: Zugehöriger Vorgang
     showSystemNotes: Systemhinweise
     showSystemTasks: Systemaufgaben
     sorting: Sortierung
@@ -864,7 +864,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     caseWidgetInfo:
       casesByCategory: Anzahl der Vorgänge nach Kategorie
       casesByState: Anzahl der Vorgänge nach Status
-      numberOfCase: Vorfälle
+      numberOfCase: Vorgänge
     category: Kategorie
     columnManagement: Spaltenverwaltung
     columnType:
