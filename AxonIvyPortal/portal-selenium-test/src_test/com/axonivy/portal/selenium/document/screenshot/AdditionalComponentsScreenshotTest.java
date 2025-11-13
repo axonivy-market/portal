@@ -52,7 +52,7 @@ public class AdditionalComponentsScreenshotTest extends ScreenshotBaseTest {
 
     ScreenshotUtils.resizeBrowser(new Dimension(1500, 1500));
     redirectToRelativeLink(createTestingTasksUrl);
-    Sleeper.sleep(10000); //wait for task created
+    Sleeper.sleep(5000); //wait for task created
     showNewDashboard();
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.COMPONENTS_FOLDER + "check-before-start-task");
     newDashboardPage = new NewDashboardPage();
