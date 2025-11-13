@@ -1,8 +1,8 @@
 package com.axonivy.portal.bo;
 
 import java.io.Serializable;
+
 import java.util.List;
-import java.util.Optional;
 import java.util.Map.Entry;
 
 import org.apache.commons.lang3.StringUtils;
@@ -18,12 +18,13 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
+import com.fasterxml.jackson.annotation.JsonView;
 
+import ch.ivy.addon.portalkit.bo.PortalJsonViews;
 import ch.ivy.addon.portalkit.configuration.AbstractConfiguration;
 import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.util.LanguageUtils;
 import ch.ivy.addon.portalkit.util.LanguageUtils.NameResult;
-import ch.ivyteam.ivy.environment.Ivy;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class Statistic extends AbstractConfiguration implements Serializable {
@@ -279,6 +280,7 @@ public class Statistic extends AbstractConfiguration implements Serializable {
     this.conditionBasedColoringScope = conditionBasedColoringScope;
   }
 
+  @JsonView(PortalJsonViews.Internal.class)
   public boolean getCanDrillDown() {
     boolean supportedDrillDownAggregation =
         !AggregationField.AGGREGATES_HAS_NO_MATCHED_FILTERS.contains(statisticAggregation.getField());
@@ -292,4 +294,5 @@ public class Statistic extends AbstractConfiguration implements Serializable {
   public void setChartDrillDownEnabled(boolean chartDrillDownEnabled) {
     this.chartDrillDownEnabled = chartDrillDownEnabled;
   }
+  
 }

@@ -188,7 +188,7 @@ public class StatisticService {
   }
 
   public void saveJsonToVariable(List<Statistic> statistics) {
-    String statisticsJson = BusinessEntityConverter.entityToJsonValue(statistics);
+    String statisticsJson = BusinessEntityConverter.entityToJsonValueExcludeInternalView(statistics);
     Ivy.var().set(CUSTOM_STATISTIC_KEY, statisticsJson);
   }
 
