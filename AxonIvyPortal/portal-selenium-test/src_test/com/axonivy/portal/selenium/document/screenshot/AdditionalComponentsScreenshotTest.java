@@ -59,6 +59,7 @@ public class AdditionalComponentsScreenshotTest extends ScreenshotBaseTest {
 
     taskWidget.openFilterWidget();
     taskWidget.filterTaskName("Sick Leave Request");
+    taskWidget.applyFilter();
     taskWidget.startFirstTask();
     TaskTemplatePage taskTemplatePage = new TaskTemplatePage();
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.COMPONENTS_FOLDER + "check-task-template");
