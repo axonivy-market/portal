@@ -10,7 +10,6 @@ import com.axonivy.portal.selenium.common.FileHelper;
 import com.axonivy.portal.selenium.common.ScreenshotBaseTest;
 import com.axonivy.portal.selenium.common.ScreenshotMargin;
 import com.axonivy.portal.selenium.common.ScreenshotUtils;
-import com.axonivy.portal.selenium.common.Sleeper;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.page.MainMenuPage;
@@ -55,8 +54,10 @@ public class AdditionalComponentsScreenshotTest extends ScreenshotBaseTest {
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.COMPONENTS_FOLDER + "check-before-start-task");
     newDashboardPage = new NewDashboardPage();
     taskWidget = new TaskWidgetNewDashBoardPage();
-    Sleeper.sleep(5000); //wait for task created
-    taskWidget.startTaskWithIndex(1);
+
+    taskWidget.openFilterWidget();
+    taskWidget.filterTaskName("Sick Leave Request");
+    taskWidget.startFirstTask();
     TaskTemplatePage taskTemplatePage = new TaskTemplatePage();
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.COMPONENTS_FOLDER + "check-task-template");
     taskTemplatePage.clickCancelButton();
