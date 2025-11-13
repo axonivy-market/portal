@@ -524,8 +524,7 @@
             "",
             "// Convert dto to string and save to case custom field",
             "String valueString = BusinessEntityConverter.entityToJsonValue(sideStepDto);",
-            "caze.customFields().textField(CustomFields.SIDE_STEP_CASE).set(valueString);",
-            "ivy.log.error(valueString);"
+            "caze.customFields().textField(CustomFields.SIDE_STEP_CASE).set(valueString);"
           ]
         }
       },
