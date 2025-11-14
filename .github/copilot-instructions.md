@@ -106,5 +106,14 @@ setTimeout(taskFunction, 3000); // What is 3000? Why?
 
 ## Security & Portal Specifics
 
+### Security & Input Validation
+- Validate all user inputs to prevent injection attacks
+- Never commit credentials, API keys, or sensitive data
+- Avoid committing binary files without justification
+
 ### Localization
 - All user-facing strings externalized (CMS/resource bundles)
+- New CMS entries should be capitalized and placed in `cms/` folder
+
+### Processes
+- Warning when modifying Task Switch elements (may affect workflow behavior)
