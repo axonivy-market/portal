@@ -315,6 +315,7 @@
   --image-process-header-background-color: hsla(0, 0%, 96%, 1);
   --image-process-header-background-color-hover: hsla(0, 0%, 86%, 1);
   --image-process-header-color: hsla(0, 0%, 49%, 1);
+  --process-action-button-color: hsla(0, 0%, 0%, 0.56);
   /* Process information page */
   --process-info-step-icon-font-color: var(--primary-color);
   /* Widget header */
