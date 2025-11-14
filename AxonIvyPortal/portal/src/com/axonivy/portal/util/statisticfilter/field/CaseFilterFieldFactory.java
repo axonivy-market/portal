@@ -30,7 +30,7 @@ public class CaseFilterFieldFactory {
   private static final Map<String, CustomFilterField> CUSTOM_FILTER_FIELD = new HashMap<>();
 
   static {
-    STANDARD_FILTER_FIELD.put(StatisticConstants.CREATOR_NAME, new CaseFilterFieldCreator());
+    STANDARD_FILTER_FIELD.put(StatisticConstants.CREATOR, new CaseFilterFieldCreator());
     STANDARD_FILTER_FIELD.put(DashboardStandardCaseColumn.APPLICATION.getField(), new CaseFilterFieldApplication());
     STANDARD_FILTER_FIELD.put(DashboardStandardCaseColumn.STATE.getField(), new CaseFilterFieldState());
     STANDARD_FILTER_FIELD.put(DashboardStandardCaseColumn.CATEGORY.getField(), new CaseFilterFieldCategory());

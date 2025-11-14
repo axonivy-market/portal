@@ -66,6 +66,7 @@ public class CaseFilterFieldCreator extends FilterField {
   public String generateCaseFilter(DashboardFilter filter) {
     return switch (filter.getOperator()) {
       case IN -> TextInOperatorHandler.getInstance().buildFilter(filter);
+      case CURRENT_USER -> TextInOperatorHandler.getInstance().buildFilterForCurrentUserOperator(filter);
       default -> null;
     };
   }

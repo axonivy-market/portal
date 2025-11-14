@@ -12,6 +12,7 @@
   <cc:attribute name="readOnly" default="false" />
   <cc:attribute name="messageId" />
   <cc:attribute name="responsibleCompleteMethod" required="true" method-signature="java.util.List responsibleCompleteMethod(java.lang.String)"/>
+  <cc:attribute name="operators" />
 </cc:interface>
 
 <cc:implementation>
@@ -19,13 +20,14 @@
   <c:set var="filterIndex" value="#{cc.attrs.filterIndex}" />
   <c:set var="readOnly" value="#{cc.attrs.readOnly}" />
   <c:set var="messageId" value="#{cc.attrs.messageId}" />
+  <c:set var="operators" value="#{cc.attrs.operators}" />
 
   <f:event listener="#{widgetResponsibleFilterBean.init(cc.attrs.filter)}" type="preRenderComponent" />
 
   <h:panelGroup id="responsible-filter-operator-panel" layout="block"
     styleClass="ui-fluid responsible-filter-operator-panel">
       <p:selectOneMenu id="operator-selection" value="#{filter.operator}" disabled="#{readOnly}" pt:aria-label="#{ivy.cms.co('/Labels/SelectOperator')}">
-        <f:selectItems value="#{widgetResponsibleFilterBean.operators}" var="operator"
+        <f:selectItems value="#{operators ne null ? operators : widgetResponsibleFilterBean.operators}" var="operator"
           itemValue="#{operator}" itemLabel="#{operator.label}" />
           <p:ajax event="itemSelect" listener="#{widgetResponsibleFilterBean.onChangeOperator(filter)}"
             update="#{cc.attrs.componentToUpdate} responsible-list-panel" />

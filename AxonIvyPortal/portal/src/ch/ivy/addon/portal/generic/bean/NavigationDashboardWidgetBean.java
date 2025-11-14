@@ -17,7 +17,10 @@ import javax.faces.context.FacesContext;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.axonivy.portal.components.publicapi.PortalNavigatorAPI;
 import com.axonivy.portal.dto.dashboard.NavigationDashboardWidget;
+import com.axonivy.portal.service.CaseDrillDownService;
+import com.axonivy.portal.service.TaskDrillDownService;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.dto.DisplayName;
@@ -79,10 +82,17 @@ public class NavigationDashboardWidgetBean implements Serializable {
         removeSessionAttributeNavigateToDashboard();
       }
       removeSelectedSubDashboardId();
+      removeDrillDownDashboardIfExist();
     }
     else {
       FacesContext.getCurrentInstance().getExternalContext().redirect(PortalNavigator.getPortalStartUrl());
     }
+  }
+
+  private void removeDrillDownDashboardIfExist() {
+    CaseDrillDownService.getInstance().removeWidgetFilterFromSession();
+    TaskDrillDownService.getInstance().removeWidgetFilterFromSession();
+    Ivy.session().removeAttribute(SessionAttribute.DRILL_DOWN_DASHBOARD.name());
   }
   
   private void addSessionAttributeNavigateToDashboard() {
@@ -102,6 +112,7 @@ public class NavigationDashboardWidgetBean implements Serializable {
     if (DashboardUtils.isHiddenDashboard((String) Ivy.session().getAttribute(SessionAttribute.SELECTED_SUB_DASHBOARD_ID.name()))) {
       removeSelectedSubDashboardId();
     }
+    removeDrillDownDashboardIfExist();
   }
   
   public void removeSelectedSubDashboardId() {
@@ -165,5 +176,24 @@ public class NavigationDashboardWidgetBean implements Serializable {
   
   private List<String> getSupportedLanguages() {
     return LanguageService.getInstance().getIvyLanguageOfUser().getSupportedLanguages();
+  }
+  
+  public void navigateToDrillDownDashboard(String currentDashboardId) {
+    try {
+      Dashboard drillDownDashboard = retrieveDrillDownDashboard();
+      if (drillDownDashboard != null && !StringUtils.isBlank(currentDashboardId)) {
+        pushPage(currentDashboardId);
+        setIsNavigateToTargetDashboard(Boolean.TRUE);
+        navigateToDashboard(drillDownDashboard.getId());
+      }
+    } catch (Exception e) {
+      Ivy.log().warn("Error when trying going to the drill down dashboard ", e);
+      PortalNavigatorAPI.navigateToPortalHome();
+    }
+  }
+  
+  private Dashboard retrieveDrillDownDashboard() {
+    Object drillDownDashboard = Ivy.session().getAttribute(SessionAttribute.DRILL_DOWN_DASHBOARD.name());
+    return drillDownDashboard instanceof Dashboard ? (Dashboard) drillDownDashboard : null;
   }
 }
