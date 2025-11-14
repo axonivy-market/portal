@@ -146,4 +146,6 @@ public abstract class AbstractDrillDownService {
   protected abstract void buildWidgetName(Statistic statistic, DashboardWidget widget);
   
   protected abstract boolean shouldUseInOperator(String field);
+  
+  public abstract void removeWidgetFilterFromSession();
 }

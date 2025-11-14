@@ -1,6 +1,7 @@
 package com.axonivy.portal.service;
 
 import java.util.List;
+
 import java.util.Set;
 
 import com.axonivy.portal.bo.Statistic;
@@ -16,12 +17,13 @@ import ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.TaskColumnModel;
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
-import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
+import ch.ivy.addon.portalkit.service.WidgetFilterService;
 import ch.ivy.addon.portalkit.util.DefaultDashboardUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 
 public class TaskDrillDownService extends AbstractDrillDownService {
 
+  private static final String TASK_DRILL_DOWN_WIDGET_ID = "task-drill-down-widget-id";
   private static final Set<String> FIELDS_USING_IN_OPERATOR = Set.of(DashboardStandardTaskColumn.STATE.getField(), DashboardStandardTaskColumn.CATEGORY.getField(), DashboardStandardTaskColumn.PRIORITY.getField(), DashboardStandardTaskColumn.RESPONSIBLE.getField());
   private static TaskDrillDownService instance;
 
@@ -44,7 +46,7 @@ public class TaskDrillDownService extends AbstractDrillDownService {
   protected Dashboard getDrillDownDashboard() {
     Dashboard taskDrillDownDashboard = DefaultDashboardUtils.getTaskDrillDownDashboard();
     taskDrillDownDashboard.setTitle(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/tasWidgetkInfo/taskDrillDownDashboard"));
-    taskDrillDownDashboard.getWidgets().getFirst().setId(DashboardWidgetUtils.generateNewWidgetId(DashboardWidgetType.TASK));
+    taskDrillDownDashboard.getWidgets().getFirst().setId(TASK_DRILL_DOWN_WIDGET_ID);
     return taskDrillDownDashboard;
   }
 
@@ -85,4 +87,8 @@ public class TaskDrillDownService extends AbstractDrillDownService {
     return FIELDS_USING_IN_OPERATOR.contains(field);
   }
 
+  @Override
+  public void removeWidgetFilterFromSession() {
+    WidgetFilterService.getInstance().removeWidgetFilterFromSession(TASK_DRILL_DOWN_WIDGET_ID, DashboardWidgetType.TASK);
+  }
 }

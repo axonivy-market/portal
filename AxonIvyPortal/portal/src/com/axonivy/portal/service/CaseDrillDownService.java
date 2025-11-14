@@ -16,12 +16,13 @@ import ch.ivy.addon.portalkit.dto.dashboard.casecolumn.CaseColumnModel;
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
-import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
+import ch.ivy.addon.portalkit.service.WidgetFilterService;
 import ch.ivy.addon.portalkit.util.DefaultDashboardUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 
 public class CaseDrillDownService extends AbstractDrillDownService {
   
+  private static final String CASE_DRILL_DOWN_WIDGET_ID = "case-drill-down-widget-id";
   private static final Set<String> FIELDS_USING_IN_OPERATOR = Set.of(DashboardStandardCaseColumn.STATE.getField(), DashboardStandardCaseColumn.CATEGORY.getField(), StatisticConstants.CREATOR_NAME);
   private static CaseDrillDownService instance;
   
@@ -44,7 +45,7 @@ public class CaseDrillDownService extends AbstractDrillDownService {
   protected Dashboard getDrillDownDashboard() {
     Dashboard caseDrillDownDashboard = DefaultDashboardUtils.getCaseDrillDownDashboard();
     caseDrillDownDashboard.setTitle(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/caseDrillDownDashboard"));
-    caseDrillDownDashboard.getWidgets().getFirst().setId(DashboardWidgetUtils.generateNewWidgetId(DashboardWidgetType.CASE));
+    caseDrillDownDashboard.getWidgets().getFirst().setId(CASE_DRILL_DOWN_WIDGET_ID);
     return caseDrillDownDashboard;
   }
 
@@ -77,6 +78,11 @@ public class CaseDrillDownService extends AbstractDrillDownService {
   @Override
   protected boolean shouldUseInOperator(String field) {
     return FIELDS_USING_IN_OPERATOR.contains(field);
+  }
+  
+  @Override
+  public void removeWidgetFilterFromSession() {
+    WidgetFilterService.getInstance().removeWidgetFilterFromSession(CASE_DRILL_DOWN_WIDGET_ID, DashboardWidgetType.CASE);
   }
 
 }
