@@ -1864,6 +1864,7 @@ Labels:
   ToggleMenu: Toggle menu
   ViewAllResults: View all results
   disabledUserPrefix: (disabled)
+  lowerCaseCms: lower case cms
 patterns:
   datePattern: dd.MM.yyyy
   dateTimePattern: dd.MM.yyyy HH:mm

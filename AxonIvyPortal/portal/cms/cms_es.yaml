@@ -1883,6 +1883,7 @@ Labels:
   ToggleMenu: Menú alternativo
   ViewAllResults: Ver todos los resultados
   disabledUserPrefix: (inactivo)
+  lowerCaseCms: lower case cms
 patterns:
   datePattern: dd.MM.yyyy
   dateTimePattern: dd.MM.yyyy HH:mm

@@ -1879,6 +1879,7 @@ Labels:
   ToggleMenu: Menu à bascule
   ViewAllResults: Voir tous les résultats
   disabledUserPrefix: (désactivé)
+  lowerCaseCms: lower case cms
 patterns:
   datePattern: dd.MM.yyyy
   dateTimePattern: dd.MM.yyyy HH:mm
