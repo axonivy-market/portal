@@ -11,7 +11,7 @@ import com.axonivy.portal.selenium.page.ProcessWidgetPage;
 import com.axonivy.portal.selenium.page.TaskTemplatePage;
 import com.axonivy.portal.selenium.page.TopMenuTaskWidgetPage;
 
-@IvyWebTest(headless = false)
+@IvyWebTest
 public class PortalSideStepTest extends BaseTest {
   
   @Override
