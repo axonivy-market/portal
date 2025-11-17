@@ -1892,6 +1892,7 @@ Processes:
       AddServerConfigDescription: Add server configuration
       DeleteServerConfigurationDescription: Delete server configuration
       SynchronizeServerConfigurationCaseName: Synchronize server configuration
+  newCmsInProcess: New cms in Process
   portalHome: Portal Home
   portalSettingSaved: Portal settings are saved
 Texts:

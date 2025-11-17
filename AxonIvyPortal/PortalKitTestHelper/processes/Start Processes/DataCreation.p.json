@@ -1222,14 +1222,6 @@
                   "timeout" : "new Duration(\"2D\")"
                 }
               }, {
-                "id" : "TaskB",
-                "name" : "Task Switch B",
-                "skipTasklist" : true,
-                "delay" : "new Duration(50000)",
-                "customFields" : [
-                  { "name" : "StateExampleTaskSwitchB", "type" : "STRING", "value" : "\"TaskWillBeDestroyed\"" }
-                ]
-              }, {
                 "id" : "TaskC",
                 "name" : "Task Switch C",
                 "skipTasklist" : true,
@@ -1237,21 +1229,16 @@
               } ]
           },
           "visual" : {
-            "at" : { "x" : 208, "y" : 256 }
+            "at" : { "x" : 152, "y" : 128 }
           },
           "connect" : [
             { "id" : "S10-f4", "to" : "S10-f3", "label" : {
                 "name" : "Task A",
                 "offset" : { "y" : -14 }
               }, "condition" : "ivp==\"TaskA.ivp\"" },
-            { "id" : "S10-f11", "to" : "S10-f10", "via" : [ { "x" : 208, "y" : 160 } ], "label" : {
-                "name" : "Task B",
-                "segment" : 1.49,
-                "offset" : { "y" : -11 }
-              }, "condition" : "ivp==\"TaskB.ivp\"" },
-            { "id" : "S10-f7", "to" : "S10-f5", "via" : [ { "x" : 208, "y" : 352 }, { "x" : 640, "y" : 352 } ], "label" : {
+            { "id" : "S10-f7", "to" : "S10-f5", "via" : [ { "x" : 208, "y" : 128 }, { "x" : 208, "y" : 352 }, { "x" : 640, "y" : 352 } ], "label" : {
                 "name" : "Task C",
-                "segment" : 1.46,
+                "segment" : 2.46,
                 "offset" : { "y" : -13 }
               }, "condition" : "ivp==\"TaskC.ivp\"", "var" : "in2" }
           ]
@@ -1284,12 +1271,6 @@
           "connect" : [
             { "id" : "S10-f0", "to" : "S10-g1", "condition" : "ivp==\"TaskA.ivp\"" }
           ]
-        }, {
-          "id" : "S10-f10",
-          "type" : "TaskEnd",
-          "visual" : {
-            "at" : { "x" : 640, "y" : 160 }
-          }
         }, {
           "id" : "S10-f8",
           "type" : "ErrorStartEvent",

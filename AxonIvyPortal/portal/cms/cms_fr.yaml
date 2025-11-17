@@ -1907,6 +1907,7 @@ Processes:
       AddServerConfigDescription: Ajouter la configuration du serveur
       DeleteServerConfigurationDescription: Supprimer la configuration du serveur
       SynchronizeServerConfigurationCaseName: Synchroniser la configuration du serveur
+  newCmsInProcess: New cms in Process
   portalHome: Page d'accueil
   portalSettingSaved: Les paramètres du portail sont enregistrés
 Texts:

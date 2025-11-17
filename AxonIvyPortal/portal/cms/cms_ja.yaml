@@ -1891,6 +1891,7 @@ Processes:
       AddServerConfigDescription: サーバー設定の追加
       DeleteServerConfigurationDescription: サーバー設定の削除
       SynchronizeServerConfigurationCaseName: サーバー設定の同期
+  newCmsInProcess: New cms in Process
   portalHome: ポータルホーム
   portalSettingSaved: ポータル設定が保存されます
 Texts:
