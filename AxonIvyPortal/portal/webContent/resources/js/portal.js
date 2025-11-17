@@ -5,7 +5,7 @@ var delayTime = 0;
 
 var Portal = {
   init : function(responsiveToolkit) {
-            // Swipe on mobile can cause problems with scroll
+    // Swipe on mobile can cause problems with scroll
     PrimeFaces.widget.Paginator.prototype.bindSwipeEvents = function() {}
 
     if ($('form.login-form').length > 0) {
@@ -37,7 +37,7 @@ var Portal = {
       clearTimeout(resizeTimer);
       resizeTimer = setTimeout(function() {
         responsiveToolkit.updateLayoutWithoutAnimation();
-      }, 777);
+      }, 250);
     });
   },
   
@@ -796,7 +796,7 @@ $(document).ready(function () {
       setTimeout(function () {
 
         $document.on('click', '.ui-dialog-titlebar-maximize, .ui-dialog-titlebar-restore', function () {
-          setTimeout(adjustMediaHeight, 281);
+          setTimeout(adjustMediaHeight, 100);
         });
 
         function adjustMediaHeight() {
@@ -823,7 +823,7 @@ $(document).ready(function () {
   setTimeout(function () {
     let combobox = $("span[role='combobox']");
     combobox.each((index, item) => {
-      if ($(item).attr('aria-label') == undefined) {
+      if ($(item).attr('aria-label') === undefined) {
         $(item).attr('aria-label', $(item).text());
       }
     });
