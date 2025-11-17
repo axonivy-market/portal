@@ -1847,6 +1847,7 @@ Labels:
   Login:
     CompanyName: Axon Ivy Portal
     Copyright: Copyright Ⓒ Axon Ivy Portal
+  LowerCaseCms: lower case cms
   Name: 名前
   Permissions: 権限
   PinnedCases: 'TODO: Pinned Cases'
@@ -1863,7 +1864,6 @@ Labels:
   ToggleMenu: メニューを切り替える
   ViewAllResults: すべての結果を表示
   disabledUserPrefix: （無効）
-  lowerCaseCms: lower case cms
 patterns:
   datePattern: dd.MM.yyyy
   dateTimePattern: dd.MM.yyyy HH:mm

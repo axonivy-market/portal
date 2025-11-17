@@ -58,7 +58,6 @@ var Portal = {
     if ($(window).width() < 992) { // Handle for mobile view
       const menuTopValue = (headerHeight + layoutTopbarHeight) + 'px';
       const menuHeightValue = 'calc(100vh - ' + (headerFooterHeight + envHeight) + 'px)';
-      const BLABLABLA = 100;
       $('.js-left-sidebar').css({'height': menuHeightValue, 'top': menuTopValue});
     } else {
       $('.js-left-sidebar').css({'height': 'calc(100vh - ' + (headerFooterHeight - envHeight) + 'px)','top': headerHeight + 'px'});
