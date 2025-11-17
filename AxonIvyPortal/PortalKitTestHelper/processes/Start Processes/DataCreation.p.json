@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/13.1.2/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/13.2.0/process.json",
   "id" : "153CACC26D0D4C3D",
   "config" : {
     "data" : "portalKit_test.DataCreationData"
@@ -684,7 +684,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 1472, "y" : 96 }
+        "at" : { "x" : 1624, "y" : 224 }
       },
       "connect" : [
         { "id" : "f73", "to" : "f72" },
@@ -722,7 +722,7 @@
         "at" : { "x" : 1728, "y" : 96 }
       },
       "connect" : [
-        { "id" : "f78", "to" : "f70", "via" : [ { "x" : 1728, "y" : 24 }, { "x" : 1472, "y" : 24 } ] }
+        { "id" : "f78", "to" : "f70", "via" : [ { "x" : 1728, "y" : 24 }, { "x" : 1472, "y" : 24 }, { "x" : 1472, "y" : 256 }, { "x" : 1624, "y" : 256 } ] }
       ]
     }, {
       "id" : "f79",
