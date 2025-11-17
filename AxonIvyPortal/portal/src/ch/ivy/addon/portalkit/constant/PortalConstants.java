@@ -17,6 +17,7 @@ public final class PortalConstants {
   public static final String LESS_THAN = "<";
   public static final String TASK = "task";
   public final static int LIMIT_NUMBER_RESPONSIBLE = 10;
+  public final static int CW_HKSJQ = 10;
 
   private PortalConstants() {}
 }

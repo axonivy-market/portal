@@ -383,8 +383,8 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
     openColumnManagementDialog();
     selectCustomType();
     
-    for(String fieldName : fieldNameList) {
-      addCustomFields(fieldName);
+    for(String n : fieldNameList) {
+      addCustomFields(n);
     }
     $("button[id$='column-management-save-btn']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
   }

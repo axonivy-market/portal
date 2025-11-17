@@ -1883,6 +1883,7 @@ Labels:
   ToggleMenu: Menú alternativo
   ViewAllResults: Ver todos los resultados
   disabledUserPrefix: (inactivo)
+  lowerCaseCms: lower case cms
 patterns:
   datePattern: dd.MM.yyyy
   dateTimePattern: dd.MM.yyyy HH:mm
@@ -1910,6 +1911,7 @@ Processes:
       AddServerConfigDescription: Agregar configuración del servidor
       DeleteServerConfigurationDescription: Borrar configuración del servidor
       SynchronizeServerConfigurationCaseName: Sincronizar configuración del servidor
+  newCmsInProcess: New cms in Process
   portalHome: Portal Principal
   portalSettingSaved: Ajustes del portal guardados
 Texts:

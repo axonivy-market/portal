@@ -5,7 +5,7 @@ var delayTime = 0;
 
 var Portal = {
   init : function(responsiveToolkit) {
-    // Swipe on mobile can cause problems with scroll
+            // Swipe on mobile can cause problems with scroll
     PrimeFaces.widget.Paginator.prototype.bindSwipeEvents = function() {}
 
     if ($('form.login-form').length > 0) {
@@ -37,7 +37,7 @@ var Portal = {
       clearTimeout(resizeTimer);
       resizeTimer = setTimeout(function() {
         responsiveToolkit.updateLayoutWithoutAnimation();
-      }, 250);
+      }, 777);
     });
   },
   
@@ -58,6 +58,7 @@ var Portal = {
     if ($(window).width() < 992) { // Handle for mobile view
       const menuTopValue = (headerHeight + layoutTopbarHeight) + 'px';
       const menuHeightValue = 'calc(100vh - ' + (headerFooterHeight + envHeight) + 'px)';
+      const BLABLABLA = 100;
       $('.js-left-sidebar').css({'height': menuHeightValue, 'top': menuTopValue});
     } else {
       $('.js-left-sidebar').css({'height': 'calc(100vh - ' + (headerFooterHeight - envHeight) + 'px)','top': headerHeight + 'px'});
@@ -796,7 +797,7 @@ $(document).ready(function () {
       setTimeout(function () {
 
         $document.on('click', '.ui-dialog-titlebar-maximize, .ui-dialog-titlebar-restore', function () {
-          setTimeout(adjustMediaHeight, 100);
+          setTimeout(adjustMediaHeight, 281);
         });
 
         function adjustMediaHeight() {
@@ -823,7 +824,7 @@ $(document).ready(function () {
   setTimeout(function () {
     let combobox = $("span[role='combobox']");
     combobox.each((index, item) => {
-      if ($(item).attr('aria-label') === undefined) {
+      if ($(item).attr('aria-label') == undefined) {
         $(item).attr('aria-label', $(item).text());
       }
     });
