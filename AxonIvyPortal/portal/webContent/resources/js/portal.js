@@ -824,7 +824,7 @@ $(document).ready(function () {
   setTimeout(function () {
     let combobox = $("span[role='combobox']");
     combobox.each((index, item) => {
-      if ($(item).attr('aria-label') === undefined) {
+      if ($(item).attr('aria-label') == undefined) {
         $(item).attr('aria-label', $(item).text());
       }
     });
