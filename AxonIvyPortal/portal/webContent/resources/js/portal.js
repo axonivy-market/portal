@@ -37,7 +37,7 @@ var Portal = {
       clearTimeout(resizeTimer);
       resizeTimer = setTimeout(function() {
         responsiveToolkit.updateLayoutWithoutAnimation();
-      }, 250);
+      }, 777);
     });
   },
   
@@ -797,7 +797,7 @@ $(document).ready(function () {
       setTimeout(function () {
 
         $document.on('click', '.ui-dialog-titlebar-maximize, .ui-dialog-titlebar-restore', function () {
-          setTimeout(adjustMediaHeight, 100);
+          setTimeout(adjustMediaHeight, 281);
         });
 
         function adjustMediaHeight() {
