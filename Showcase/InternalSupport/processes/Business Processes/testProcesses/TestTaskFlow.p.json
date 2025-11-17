@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/13.2.0/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/13.1.2/process.json",
   "id" : "14B2FC03D2E87141",
   "config" : {
     "data" : "internaltest.Data"
@@ -409,8 +409,8 @@
           } ]
       },
       "visual" : {
-        "at" : { "x" : 256, "y" : 616 },
-        "labelOffset" : { "x" : 216, "y" : 40 }
+        "at" : { "x" : 192, "y" : 576 },
+        "labelOffset" : { "x" : 83, "y" : 20 }
       },
       "connect" : [
         { "id" : "f50", "to" : "f47", "via" : [ { "x" : 136, "y" : 576 } ], "condition" : "ivp==\"TaskA.ivp\"" },
@@ -1282,6 +1282,22 @@
         { "id" : "f4", "to" : "f7", "var" : "in1" }
       ]
     }, {
+      "id" : "f12",
+      "type" : "DialogCall",
+      "name" : [
+        "Show ",
+        "Task Form"
+      ],
+      "config" : {
+        "dialog" : "com.axonivy.portal.developerexamples.testdata.LeaveRequestForm:start()"
+      },
+      "visual" : {
+        "at" : { "x" : 336, "y" : 296 }
+      },
+      "connect" : [
+        { "id" : "f19", "to" : "f45", "via" : [ { "x" : 336, "y" : 416 } ] }
+      ]
+    }, {
       "id" : "f45",
       "type" : "TaskEnd",
       "visual" : {
@@ -1293,6 +1309,23 @@
       "name" : "Create tasks",
       "config" : {
         "tasks" : [ {
+            "id" : "TaskB",
+            "name" : "Sick Leave Request",
+            "description" : "Sick Leave Request Description",
+            "category" : "OtherLeave/SickLeave/Long",
+            "priority" : {
+              "level" : "HIGH"
+            },
+            "expiry" : {
+              "timeout" : "new Duration(\"1D\")"
+            },
+            "customFields" : [
+              { "name" : "CustomerName", "type" : "STRING", "value" : "\"Tung Le\"" },
+              { "name" : "CustomerType", "type" : "STRING", "value" : "\"Interior\"" },
+              { "name" : "InvoiceTotalAmount", "type" : "NUMBER", "value" : "14" },
+              { "name" : "ShipmentDate", "type" : "TIMESTAMP", "value" : "new DateTime()" }
+            ]
+          }, {
             "id" : "TaskA",
             "name" : "Annual Leave Request",
             "description" : "Annual Leave Request Description",
@@ -1311,20 +1344,20 @@
               { "name" : "ShipmentDate", "type" : "TIMESTAMP", "value" : "new DateTime()" }
             ]
           }, {
-            "id" : "TaskB",
-            "name" : "Sick Leave Request",
-            "description" : "Sick Leave Request Description",
-            "category" : "OtherLeave/SickLeave/Long",
+            "id" : "TaskC",
+            "name" : "Maternity Leave Request",
+            "description" : "Maternity Leave Request Description",
+            "category" : "OtherLeave/Maternity",
             "priority" : {
-              "level" : "HIGH"
+              "level" : "LOW"
             },
             "expiry" : {
-              "timeout" : "new Duration(\"1D\")"
+              "timeout" : "new Duration(\"2D\")"
             },
             "customFields" : [
-              { "name" : "CustomerName", "type" : "STRING", "value" : "\"Tung Le\"" },
+              { "name" : "CustomerName", "type" : "STRING", "value" : "\"Anh Nguyen\"" },
               { "name" : "CustomerType", "type" : "STRING", "value" : "\"Interior\"" },
-              { "name" : "InvoiceTotalAmount", "type" : "NUMBER", "value" : "14" },
+              { "name" : "InvoiceTotalAmount", "type" : "NUMBER", "value" : "13" },
               { "name" : "ShipmentDate", "type" : "TIMESTAMP", "value" : "new DateTime()" }
             ]
           } ],
@@ -1342,7 +1375,8 @@
       },
       "connect" : [
         { "id" : "f13", "to" : "f9", "via" : [ { "x" : 72, "y" : 192 } ], "condition" : "ivp==\"TaskA.ivp\"" },
-        { "id" : "f14", "to" : "f11", "condition" : "ivp==\"TaskB.ivp\"" }
+        { "id" : "f14", "to" : "f11", "condition" : "ivp==\"TaskB.ivp\"" },
+        { "id" : "f15", "to" : "f12", "via" : [ { "x" : 336, "y" : 192 } ], "condition" : "ivp==\"TaskC.ivp\"" }
       ]
     }, {
       "id" : "f52",
