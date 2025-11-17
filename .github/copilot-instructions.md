@@ -34,7 +34,7 @@ Please ensure:
 
 When reviewing changes in `processes/**/*.p.json` files:
 
-1. Check for any lines containing `"type": "TaskSwitchGateway"`
+1. Check for any files containing `"type": "TaskSwitchGateway"`
 2. If found in the diff, examine the full context:
    - Look for added/removed task definitions within the TaskSwitchGateway
    - Check for changes to connection paths
