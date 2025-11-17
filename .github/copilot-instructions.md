@@ -1,72 +1,79 @@
-# GitHub Copilot PR Review Instructions for Axon Ivy Portal
-
-## Project Context
-**Axon Ivy Portal** - Enterprise BPM portal built on Axon Ivy Platform
-
-### Key Info
-- **Version**: 13.2.0-SNAPSHOT
-- **Tech Stack**: Java, Maven, PrimeFaces (XHTML/JSF), PrimeFlex, Selenium
-- **Main Modules**: portal, portal-components, portal-selenium-test, Showcase apps, Documentation
-- **Source Dirs**: `src/` (Java), `src_hd/` (XHTML), `webContent/` (CSS/JS), `cms/` (CMS)
-
----
+# Copilot Instructions for Portal Repository
 
 ## Code Review Guidelines
 
-### General Standards
-- **Formatting**: 2 spaces indentation (no tabs), 120 char line length, braces at end of line
+### Critical Elements Requiring Extra Attention
 
-### Java - Portal-Specific Patterns
+#### Task Switch Gateway Changes
+**CRITICAL**: Any changes to TaskSwitchGateway elements in process files must be flagged and carefully reviewed.
 
-#### 1. Security Context (CRITICAL)
-Always use `Sudo.get()` for security operations:
-```java
-public static List<IRole> getAllRoles() {
-  return Sudo.get(() -> {
-    return ISecurityContext.current().roles().all();
-  });
+- **Location**: All `.p.json` files under `processes/**/*.p.json`
+- **Identification**: Look for elements with `"type": "TaskSwitchGateway"`
+- **Action Required**: 
+  - ⚠️ **ALWAYS warn** if any changes are detected in or around TaskSwitchGateway elements
+  - Review should cover:
+    - Addition of new TaskSwitchGateway elements
+    - Removal of existing TaskSwitchGateway elements
+    - Modifications to TaskSwitchGateway properties (e.g., `visual`, `config`, `connect`)
+    - Changes to tasks within TaskSwitchGateway configurations
+    - Changes to connections (`connect`) from/to TaskSwitchGateway elements
+
+**Warning Message Template**:
+```
+⚠️ WARNING: TaskSwitchGateway Change Detected
+
+This PR contains changes to TaskSwitchGateway in process file(s).
+Please ensure:
+- All task definitions are correct
+- Task routing logic is preserved
+- No unintended task removals occurred
+- Process flow integrity is maintained
+```
+
+#### Detection Pattern
+
+When reviewing changes in `processes/**/*.p.json` files:
+
+1. Check for any lines containing `"type": "TaskSwitchGateway"`
+2. If found in the diff, examine the full context:
+   - Look for added/removed task definitions within the TaskSwitchGateway
+   - Check for changes to connection paths
+   - Verify visual positioning changes don't break flow logic
+3. Flag ALL such changes with a warning, regardless of how minor they appear
+
+**Example to Flag**:
+```json
+{
+  "id": "S10-g1",
+  "type": "TaskSwitchGateway",
+  "name": "TaskSwitch",
+  "config": {
+    "tasks": [
+      {
+        "id": "TaskA",
+        "name": "Task Switch A"
+      }
+    ]
+  }
 }
 ```
 
-#### 2. Null Safety (CRITICAL)
-- Use `Objects.nonNull()` / `Objects.isNull()` 
-- Use `CollectionUtils.emptyIfNull()` for collections
-- Use `StringUtils.isEmpty()`, `StringUtils.EMPTY`, `StringUtils.SPACE`
+Any modification to the above structure or its surrounding elements should trigger a review warning.
 
-#### 3. Stream API Pattern
-```java
-private static Predicate<IRole> predicateIsHiddenRole() {
-  return role -> Objects.nonNull(role.getProperty(AdditionalProperty.HIDE.toString()));
-}
+---
 
-private static List<IRole> filterRole(List<IRole> roles, Predicate<IRole> predicate) {
-  return CollectionUtils.emptyIfNull(roles).stream()
-    .filter(predicate)
-    .collect(Collectors.toList());
-}
-```
-#### Naming Conventions
+## Additional Review Rules
+---
+applyTo: "**"
+---
+When reviewing code, focus on:
 
-**Classes**
-- **DTOs**: Suffix with `Dto` (e.g., `RoleDto`, `BusinessDetailsDto`)
-
-**Variables**
-- Avoid one-character names except for temporary variables
-
-#### PrimeFlex First (CRITICAL)
-- **Prefer PrimeFlex utilities** over custom CSS: `w-full`, `flex`, `justify-content-between`, `align-items-center`, `mb-4`, `p-3`, `gap-2`
-- **NO inline styles** - use CSS classes
-
-#### Accessibility (CRITICAL - WCAG 2.2)
-- All `<img>` need `alt` attributes
-- Icon-only buttons need `ariaLabel`
-- All inputs need `<label for="">` 
-- Modal dialogs: `focus="@(.ui-fileupload-choose)"`
-- Menus: `role="menu"`, `role="menuitem"`
-- Every page needs proper `<title>` and heading structure
-
-#### Magic Numbers (CRITICAL)
-- **Never use magic numbers** - define constants with descriptive names or add comments
+## General Standards
+- New CMS entries should be capitalized and placed in `cms/` folder
+- When create new **DTOs**: Suffix with `Dto` (e.g., `RoleDto`, `BusinessDetailsDto`)
+- Avoid one-character variable name
+- Avoid inline-style in xhtml
+- Define constants with descriptive names or add comments
 ```javascript
 // Good
 const DEFAULT_TIMEOUT_MS = 3000;
@@ -75,10 +82,14 @@ setTimeout(taskFunction, DEFAULT_TIMEOUT_MS);
 // Bad
 setTimeout(taskFunction, 3000); // What is 3000? Why?
 ```
+- Use `===` not `==` in javascript files
 
-#### Key Standards
-- Use `===` not `==`
-- Avoid global variables
+### Java - Portal-Specific Patterns
+
+#### 1. Null Safety (CRITICAL)
+- Use `Objects.nonNull()` / `Objects.isNull()` 
+- Use `CollectionUtils.emptyIfNull()` for collections
+- Use `StringUtils.isEmpty()`, `StringUtils.EMPTY`, `StringUtils.SPACE`
 
 ### reStructuredText (.rst) - Documentation
 
@@ -87,33 +98,3 @@ setTimeout(taskFunction, 3000); // What is 3000? Why?
 - Use consistent hierarchy: `*` (title) → `=` (section) → `-` (subsection) → `^` (sub-subsection)
 - Blank line before/after directives
 - Indentation: 3 spaces for directive content
-
-#### Common Directives
-```rst
-.. code-block:: java
-   
-   // Code here
-
-.. image:: path/to/image.png
-   :alt: Alt text
-   :width: 600px
-
-`Link text <URL>`_
-:ref:`label-name`
-```
-
----
-
-## Security & Portal Specifics
-
-### Security & Input Validation
-- Validate all user inputs to prevent injection attacks
-- Never commit credentials, API keys, or sensitive data
-- Avoid committing binary files without justification
-
-### Localization
-- All user-facing strings externalized (CMS/resource bundles)
-- New CMS entries should be capitalized and placed in `cms/` folder
-
-### Processes
-- Warning when modifying Task Switch elements (may affect workflow behavior)
