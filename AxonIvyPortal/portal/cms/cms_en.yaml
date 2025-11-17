@@ -1848,7 +1848,6 @@ Labels:
   Login:
     CompanyName: Axon Ivy Portal
     Copyright: Copyright Ⓒ Axon Ivy Portal
-  LowerCaseCms: lower case cms
   Name: Name
   Permissions: Permissions
   PinnedCases: Pinned Cases
@@ -1892,7 +1891,6 @@ Processes:
       AddServerConfigDescription: Add server configuration
       DeleteServerConfigurationDescription: Delete server configuration
       SynchronizeServerConfigurationCaseName: Synchronize server configuration
-  newCmsInProcess: New cms in Process
   portalHome: Portal Home
   portalSettingSaved: Portal settings are saved
 Texts:

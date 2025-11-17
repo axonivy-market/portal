@@ -1847,7 +1847,6 @@ Labels:
   Login:
     CompanyName: Axon Ivy Portal
     Copyright: Copyright Ⓒ Axon Ivy Portal
-  LowerCaseCms: lower case cms
   Name: 名前
   Permissions: 権限
   PinnedCases: 'TODO: Pinned Cases'
@@ -1891,7 +1890,6 @@ Processes:
       AddServerConfigDescription: サーバー設定の追加
       DeleteServerConfigurationDescription: サーバー設定の削除
       SynchronizeServerConfigurationCaseName: サーバー設定の同期
-  newCmsInProcess: New cms in Process
   portalHome: ポータルホーム
   portalSettingSaved: ポータル設定が保存されます
 Texts:
