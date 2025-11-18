@@ -36,6 +36,7 @@ public abstract class AbstractDrillDownService {
   public void createDrillDownDashboardInSession(Statistic statistic, String drillDownValue) {
     Dashboard drillDownDashboard = getDrillDownDashboard();
     DashboardWidget widget = drillDownDashboard.getWidgets().get(0);
+    removeWidgetFilterFromSession();
     ensureAllRelatedColumnsIncluded(widget, statistic);
     DashboardFilter drillDownFilter = createDrillDownFilter(drillDownValue, statistic.getStatisticAggregation());
 

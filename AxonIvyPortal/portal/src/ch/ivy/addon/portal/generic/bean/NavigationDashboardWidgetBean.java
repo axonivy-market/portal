@@ -19,8 +19,6 @@ import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.components.publicapi.PortalNavigatorAPI;
 import com.axonivy.portal.dto.dashboard.NavigationDashboardWidget;
-import com.axonivy.portal.service.CaseDrillDownService;
-import com.axonivy.portal.service.TaskDrillDownService;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.dto.DisplayName;
@@ -90,8 +88,6 @@ public class NavigationDashboardWidgetBean implements Serializable {
   }
 
   private void removeDrillDownDashboardIfExist() {
-    CaseDrillDownService.getInstance().removeWidgetFilterFromSession();
-    TaskDrillDownService.getInstance().removeWidgetFilterFromSession();
     Ivy.session().removeAttribute(SessionAttribute.DRILL_DOWN_DASHBOARD.name());
   }
   
