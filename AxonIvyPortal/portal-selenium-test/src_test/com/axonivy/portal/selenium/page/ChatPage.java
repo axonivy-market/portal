@@ -12,11 +12,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 
+import com.axonivy.portal.selenium.common.Responsible;
 import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
-
-import ch.ivyteam.ivy.project.portal.test.Responsible;
 
 public class ChatPage extends TemplatePage {
 
@@ -36,7 +35,7 @@ public class ChatPage extends TemplatePage {
   public void addUserToChatGroup(List<Responsible> responsibles) {
     waitForElementDisplayed(By.id("chat-assignee-dialog"), true);
     for (Responsible responsible : responsibles) {
-      chooseResponsible(responsible.getResponsibleName(), responsible.getIsGroup());
+      chooseResponsible(responsible.responsibleName(), responsible.isGroup());
     }
   }
 
