@@ -5226,12 +5226,6 @@ body.light .image-process-container .image-process-item .card-item.card.image-wi
   }
 }
 
-@container image-process-widget-container (width <= 200px) {
-  .image-process-item .card.image-widget-mode .process-name {
-    padding: 0.5em !important;
-  }
-}
-
 @container image-process-widget-container (width <= 200px) and (height < 100px) {
   img.image-process-item-image {
     display: none !important;
