@@ -12,13 +12,13 @@ import com.axonivy.portal.selenium.common.ScreenshotMargin;
 import com.axonivy.portal.selenium.common.ScreenshotUtils;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
-import com.axonivy.portal.selenium.common.WaitHelper;
 import com.axonivy.portal.selenium.page.MainMenuPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.ProcessHistoryPage;
 import com.axonivy.portal.selenium.page.ProcessViewerPage;
 import com.axonivy.portal.selenium.page.StatisticWidgetPage;
 import com.axonivy.portal.selenium.page.TaskTemplatePage;
+import com.axonivy.portal.selenium.page.TaskWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.component.DocumentTableComponentPage;
 import com.axonivy.portal.selenium.page.component.ProcessViewerComponentPage;
 import com.axonivy.portal.selenium.page.component.RoleSelectionComponentPage;
@@ -40,12 +40,11 @@ public class AdditionalComponentsScreenshotTest extends ScreenshotBaseTest {
     login(TestAccount.ADMIN_USER);
     updatePortalSetting(Variable.DISPLAY_MESSAGE_AFTER_FINISH_TASK.getKey(), "true");
     redirectToRelativeLink(createTestingCaseContainOneTask);
-    ScreenshotUtils.resizeBrowser(new Dimension(1500, 1500));
+    ScreenshotUtils.resizeBrowser(new Dimension(1366, 800));
 
     NewDashboardPage newDashboardPage = new NewDashboardPage();
-    WaitHelper.waitForNavigation(() -> new NewDashboardPage().startTask(0));
-    ScreenshotUtils.resizeBrowser(new Dimension(1366, 800));
-    newDashboardPage = new NewDashboardPage();
+    TaskWidgetNewDashBoardPage taskWidget = new TaskWidgetNewDashBoardPage();
+    taskWidget.startFirstTask();
     newDashboardPage.waitForGrowlMessageDisplayClearly();
     ScreenshotUtils
         .captureHalfTopPageScreenShot(ScreenshotUtils.COMPONENTS_FOLDER + "example-global-growl-finished-task");
@@ -53,12 +52,15 @@ public class AdditionalComponentsScreenshotTest extends ScreenshotBaseTest {
     ScreenshotUtils.resizeBrowser(new Dimension(1500, 1500));
     redirectToRelativeLink(createTestingTasksUrl);
     newDashboardPage = new NewDashboardPage();
-    WaitHelper.waitForNavigation(() -> new NewDashboardPage().startTask(1));
+    taskWidget = new TaskWidgetNewDashBoardPage();
+    taskWidget.openFilterWidget();
+    taskWidget.filterTaskName("Sick Leave Request");
+    taskWidget.applyFilter();
+    taskWidget.startFirstTask();
     TaskTemplatePage taskTemplatePage = new TaskTemplatePage();
-    WaitHelper.waitForNavigation(() -> taskTemplatePage.clickCancelButton());
-    ScreenshotUtils.resizeBrowser(new Dimension(1366, 800));
+    taskTemplatePage.clickCancelButton();
     newDashboardPage = new NewDashboardPage();
-    newDashboardPage.waitForTaskStartButtonDisplay(1);
+    newDashboardPage.waitForTaskStartButtonDisplay(0);
     newDashboardPage.waitForGrowlMessageDisplayClearly();
     ScreenshotUtils
         .captureHalfTopPageScreenShot(ScreenshotUtils.COMPONENTS_FOLDER + "example-global-growl-cancelled-task");
