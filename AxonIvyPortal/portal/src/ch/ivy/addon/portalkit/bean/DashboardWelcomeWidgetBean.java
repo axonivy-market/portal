@@ -121,12 +121,12 @@ public class DashboardWelcomeWidgetBean implements Serializable {
                 ((WelcomeDashboardWidget) item).setImageContent(null);
               }
             });
-      }
-      String dashboardJson = BusinessEntityConverter.entityToJsonValue(dashboards);
-      Ivy.var().set(PortalVariable.DASHBOARD.key, dashboardJson);
+        String dashboardJson = BusinessEntityConverter.entityToJsonValue(dashboards);
+        Ivy.var().set(PortalVariable.DASHBOARD.key, dashboardJson);
 
-      MenuView menuView = (MenuView) ManagedBeans.get("menuView");
-      menuView.updateDashboardCache(DashboardUtils.collectDashboards());
+        MenuView menuView = (MenuView) ManagedBeans.get("menuView");
+        menuView.updateDashboardCache(DashboardUtils.collectDashboards());
+      }
     }
   }
 
