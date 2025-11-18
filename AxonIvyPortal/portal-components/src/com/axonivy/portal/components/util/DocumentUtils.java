@@ -66,16 +66,11 @@ public final class DocumentUtils {
         Map<String, Object> response = IvyAdapterService.startSubProcessInSecurityContext(DocumentUtils.DOC_FACTORY_SIGNATURE, params);
         
         if (response != null && response.get("inputStream") != null){
-          InputStream convertedIS = (InputStream)response.get("inputStream");
-          
+          DefaultStreamedContent returnDefaultStreamedContent = DefaultStreamedContent.builder()
+              .stream(() -> (InputStream) response.get("inputStream")).name(streamedContent.getName())
+              .contentType("application/pdf").build(); // DocFactory always returns stream as pdf
           is.close();
-          return DefaultStreamedContent
-              .builder()
-              .stream(() -> convertedIS)
-              .name(streamedContent.getName())
-              // DocFactory always returns stream as pdf
-              .contentType("application/pdf")
-              .build();
+          return returnDefaultStreamedContent;
         } 
       }
     }
