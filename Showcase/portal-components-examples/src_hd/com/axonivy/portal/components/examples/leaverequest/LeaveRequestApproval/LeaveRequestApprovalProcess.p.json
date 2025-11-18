@@ -48,7 +48,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 160 },
-        "labelOffset" : { "x" : 18 }
+        "labelOffset" : { "x" : 18, "y" : 35 }
       },
       "connect" : [
         { "id" : "f11", "to" : "f10" }
@@ -144,5 +144,24 @@
       "connect" : [
         { "id" : "f9", "to" : "f1" }
       ]
+    }, {
+      "id" : "f18",
+      "type" : "HtmlDialogEventStart",
+      "name" : "close",
+      "config" : {
+        "guid" : "196A53561C8FB49B"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 344 }
+      },
+      "connect" : [
+        { "id" : "f20", "to" : "f19" }
+      ]
+    }, {
+      "id" : "f19",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 504, "y" : 336 }
+      }
     } ]
 }

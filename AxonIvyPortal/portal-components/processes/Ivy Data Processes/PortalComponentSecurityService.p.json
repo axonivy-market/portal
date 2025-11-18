@@ -15,7 +15,6 @@
             "import com.axonivy.portal.components.ivydata.dto.IvySecurityResultDTO;",
             "import com.axonivy.portal.components.ivydata.service.impl.SecurityService;",
             "",
-            "",
             "IvySecurityResultDTO dto = SecurityService.newInstance().findUsers(in.query, in.startIndex, in.count, in.fromRoles, in.excludedUsernames);",
             "out.users = dto.users;"
           ]
@@ -72,5 +71,55 @@
       "connect" : [
         { "id" : "f7", "to" : "f4" }
       ]
+    }, {
+      "id" : "f29",
+      "type" : "CallSubStart",
+      "name" : "findRolesDTO()",
+      "config" : {
+        "signature" : "findRolesDTO",
+        "result" : {
+          "params" : [
+            { "name" : "roles", "type" : "java.util.List<com.axonivy.portal.components.dto.RoleDTO>", "desc" : "" }
+          ],
+          "map" : {
+            "result.roles" : "in.roleDTOs"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 224 },
+        "labelOffset" : { "x" : -2, "y" : 40 }
+      },
+      "connect" : [
+        { "id" : "f30", "to" : "f31" }
+      ]
+    }, {
+      "id" : "f31",
+      "type" : "Script",
+      "name" : "Find roles",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.components.ivydata.dto.IvySecurityResultDTO;",
+            "import com.axonivy.portal.components.ivydata.service.impl.SecurityService;",
+            "",
+            "IvySecurityResultDTO dto = SecurityService.newInstance().findRoleDTOs();",
+            "out.roleDTOs = dto.roleDTOs;"
+          ]
+        },
+        "sudo" : true
+      },
+      "visual" : {
+        "at" : { "x" : 416, "y" : 224 }
+      },
+      "connect" : [
+        { "id" : "f32", "to" : "f33" }
+      ]
+    }, {
+      "id" : "f33",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 608, "y" : 224 }
+      }
     } ]
 }
