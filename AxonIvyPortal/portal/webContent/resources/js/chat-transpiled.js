@@ -211,7 +211,12 @@ function Chat(uri, view) {
               return _context.abrupt("return");
 
             case 20:
-              this.listen(false, currentResponseId, response.status); // wait for next update
+              if (!document[hidden]) {
+                this.listen(false, currentResponseId, response.status); // wait for next update if browser tab is active
+              } else {
+                isChatDeactivated = true;
+                return _context.abrupt("return");
+              }
 
               if (!(response.action === "updateUserStatus")) {
                 _context.next = 25;
