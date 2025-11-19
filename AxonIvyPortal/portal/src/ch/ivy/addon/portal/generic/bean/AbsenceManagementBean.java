@@ -86,6 +86,9 @@ public class AbsenceManagementBean implements Serializable{
   }
 
   public boolean canReadSubstitute(UserDTO selectedUser) {
+    if (null == selectedUser || null == selectedUser.getName()) {
+      return false;
+    }
     boolean isLoginUser = selectedUser.getName().contentEquals(Ivy.session().getSessionUserName());
     return substitutionReadable || (ownSubstitutionReadable && isLoginUser);
   }

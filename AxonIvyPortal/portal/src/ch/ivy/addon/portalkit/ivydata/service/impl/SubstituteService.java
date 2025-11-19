@@ -119,6 +119,9 @@ public class SubstituteService{
   }
 
   private void deleteSubstitutes(IUser user) {
+    if(null == user) {
+      return;
+    }
     for (IUserSubstitute userSubstitute : user.getSubstitutes()) {
       user.deleteSubstitute(userSubstitute);
     }
