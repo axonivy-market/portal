@@ -173,9 +173,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     Breadcrumb: Process Viewer of {0} process
     ProcessViewerText: Process Viewer
     Title: Process Viewer
-  SideStep:
-    NewSideStepMessage: New side step task is created
-    SideStepProcess: Start parallel process
   TaskDocuments:
     TaskDocumentsPageTitle: Task Documents
   adminSettings:
@@ -443,7 +440,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     StringFormat:
       DateFromTo: '%s - %s'
       TextListOut: '%s, %s,..'
-      TextWithColon: '%s: %s'
       TextWithContextInBrackets: '%s (%s: %s)'
       TextWithRoundBracket: '%s (%s)'
     TaskCaseInformation: Task and Case Information
@@ -1602,8 +1598,6 @@ Labels:
   AllTasks: All Tasks
   AppendTask-Explain: The task is added to the sequence after my task.
   AppendTheTask: Append the task
-  AssignToRole: Select assigned group
-  AssignToUser: Select assigned user
   Chat: Chat
   Collapse: Collapse
   Comma: ','
@@ -1718,11 +1712,8 @@ Labels:
   PinnedTasks: Pinned Tasks
   RequiredFieldMessage: '{0}: Value is required'
   SelectOperator: Select Operator
-  SelectProcess: Select a process
   SelectValues: Select values
   Share: Share
-  StepType: Step type
-  Submit: Submit
   Task: Task
   TaskItemDetail: Task Details
   TaskUser-Explain: Comma separated list of users

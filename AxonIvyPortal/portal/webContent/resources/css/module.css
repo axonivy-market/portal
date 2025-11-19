@@ -636,7 +636,7 @@ span.case-details-document-add-link, span.task-details-document-add-link {
 }
 
 .action-steps-panel {
-  white-space: nowrap;
+  max-width: 220px;
 }
 
 .action-steps-panel .action-icon {
@@ -653,11 +653,7 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   box-sizing: content-box;
   text-align: left;
   color: var(--text-color);
-  min-width: 260px;
-}
-
-.action-steps-panel.ui-menu{
-  width: auto;
+  min-width: 160px;
 }
 
 .case-detail-header {

@@ -37,11 +37,4 @@ public final class TaskUtils {
     }
     return currentTasks;
   }
-  
-  public static void parkTask(final ITask task) {
-    Sudo.get(() -> {
-      Ivy.session().parkTask(task);
-      return Void.class;
-    });
-  }
 }

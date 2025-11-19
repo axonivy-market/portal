@@ -17,7 +17,6 @@ Dialogs:
               ProcessName: Nom du processus
             RequiredFieldMessage: Ce champ est obligatoire
             Save: Enregistrer
-            SideStepPrefix: 'Tâche de contournement pour: '
             Task:
               Activator: Responsable
             Type: Type
@@ -94,9 +93,6 @@ Dialogs:
               EXTERNAL_LINK: Lien externe
               IVY_PROCESS: Processus d'entreprise
             ProcessViewerIFrameTitle: Cadre de visualisation du processus
-          SideStepType:
-            PARALLEL: Lancer une tâche en arrière-plan (en parallèle)
-            SWITCH: Mettre cette tâche en pause et démarrer le processus (basculer)
 Labels:
   AI:
     Error:

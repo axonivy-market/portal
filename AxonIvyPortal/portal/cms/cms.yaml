@@ -1138,8 +1138,6 @@ Labels:
   AIAssistant: AI Assistant
   AppendTask-Explain: The task is added to the sequence after my task.
   AppendTheTask: Append the task
-  AssignToRole: Select assigned group
-  AssignToUser: Select assigned user
   Chat: Chat
   Collapse: Collapse
   CreateNewDashboard: Create new dashboard
@@ -1157,7 +1155,6 @@ Labels:
   InsertTheTask: Insert the task
   SelectOperator: Choose Operator
   SelectValues: Select values
-  StepType: Step type
   Task: Task
   TaskItemDetail: Task Details
   TaskUser-Explain: Comma separated list of users
