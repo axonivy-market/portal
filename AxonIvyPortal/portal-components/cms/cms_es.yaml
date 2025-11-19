@@ -17,7 +17,6 @@ Dialogs:
               ProcessName: Nombre del proceso
             RequiredFieldMessage: este campo es obligatorio
             Save: Guardar
-            SideStepPrefix: 'Tarea de paso lateral para:'
             Task:
               Activator: Responsable
             Type: Tipo
@@ -94,9 +93,6 @@ Dialogs:
               EXTERNAL_LINK: Link externo
               IVY_PROCESS: Proceso de negocio
             ProcessViewerIFrameTitle: Marco del visor de procesos
-          SideStepType:
-            PARALLEL: Iniciar una tarea en segundo plano (paralela)
-            SWITCH: Pausar esta tarea e iniciar el proceso (cambiar)
 Labels:
   AI:
     Error:

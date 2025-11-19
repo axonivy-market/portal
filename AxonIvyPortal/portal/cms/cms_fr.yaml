@@ -173,9 +173,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     Breadcrumb: Visualisation du processus {0}
     ProcessViewerText: Visualisation du processus
     Title: Visualisation du processus
-  SideStep:
-    NewSideStepMessage: Une nouvelle tâche d'étape secondaire est créée
-    SideStepProcess: Lancer un processus parallèle
   TaskDocuments:
     TaskDocumentsPageTitle: Documents de tâches
   adminSettings:
@@ -445,7 +442,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     StringFormat:
       DateFromTo: '%s - %s'
       TextListOut: '%s, %s,..'
-      TextWithColon: '%s: %s'
       TextWithContextInBrackets: '%s (%s: %s)'
       TextWithRoundBracket: '%s (%s)'
     TaskCaseInformation: Informations sur les tâches et les cas
@@ -1605,8 +1601,6 @@ Labels:
   AllTasks: Toutes les tâches
   AppendTask-Explain: La tâche est ajoutée à la séquence après ma tâche.
   AppendTheTask: Ajouter la tâche
-  AssignToRole: Sélectionner le groupe attribué
-  AssignToUser: Sélectionner l'utilisateur assigné
   Chat: Chat
   Collapse: Réduire
   Comma: ','
@@ -1722,11 +1716,8 @@ Labels:
   PinnedTasks: Tâches épinglées
   RequiredFieldMessage: '{0} : La valeur est obligatoire'
   SelectOperator: Sélectionner l'opérateur
-  SelectProcess: Sélectionner un processus
   SelectValues: Sélectionner les valeurs
   Share: Partager
-  StepType: Type d'étape
-  Submit: Soumettre
   Task: Tâche
   TaskItemDetail: Détails de la tâche
   TaskUser-Explain: Liste d’utilisateurs séparés par des virgules
