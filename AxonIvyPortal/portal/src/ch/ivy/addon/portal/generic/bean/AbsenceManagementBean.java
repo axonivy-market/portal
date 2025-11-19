@@ -81,13 +81,13 @@ public class AbsenceManagementBean implements Serializable{
   }
 
   public boolean canCreateSubstitute(UserDTO selectedUser) {
-    selectedUser = getOrCreateDefaultUser(selectedUser);
+    selectedUser = getCurrentUserAsDefaultIfEmpty(selectedUser);
     boolean isLoginUser = selectedUser.getName().contentEquals(Ivy.session().getSessionUserName());
     return substitutionCreatable || (ownSubstitutionCreatable && isLoginUser);
   }
 
   public boolean canReadSubstitute(UserDTO selectedUser) {
-    selectedUser = getOrCreateDefaultUser(selectedUser);
+    selectedUser = getCurrentUserAsDefaultIfEmpty(selectedUser);
     boolean isLoginUser = selectedUser.getName().contentEquals(Ivy.session().getSessionUserName());
     return substitutionReadable || (ownSubstitutionReadable && isLoginUser);
   }
@@ -128,7 +128,7 @@ public class AbsenceManagementBean implements Serializable{
     this.absencesDeletable = absencesDeletable;
   }
   
-  private UserDTO getOrCreateDefaultUser(UserDTO selectedUser) {
+  private UserDTO getCurrentUserAsDefaultIfEmpty(UserDTO selectedUser) {
     if (selectedUser == null || selectedUser.getName() == null) {
       return new UserDTO(Ivy.session().getSessionUser());
     }
