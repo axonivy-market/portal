@@ -342,7 +342,7 @@
                      <h:outputText id="chart-drill-down-info" styleClass="si si-information-circle ml-2" />
                      <p:tooltip for="chart-drill-down-info" value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/ChartDrillDownInfo')}" escape="false"/>
                       <div>
-                           <p:toggleSwitch id="chart-drill-down-toggle"
+                           <p:toggleSwitch id="chart-drill-down-toggle" ariaLabel="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/ChartDrillDownEnabled')}"
                                           value="#{statisticConfigurationBean.statistic.chartDrillDownEnabled}"
                                           styleClass="col-1">
                                <p:ajax update="chart-drill-down-toggle"

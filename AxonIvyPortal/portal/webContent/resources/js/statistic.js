@@ -501,10 +501,12 @@ getBackgroundColorsWithAllScope(chartConfig, data) {
   }
 
   drillDownStatistic(drillDownData) {
-    window.openStatisticDrillDown([{
-      name: 'drillDownData',
-      value: JSON.stringify(drillDownData)
-    }]);
+    if (typeof window.openStatisticDrillDown === 'function') {
+      window.openStatisticDrillDown([{
+        name: 'drillDownData',
+        value: JSON.stringify(drillDownData)
+      }]);
+    }
   }
 
   // Method to render empty chart

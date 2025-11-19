@@ -44,7 +44,7 @@ public class BusinessEntityConverter {
 
   private static String objectEntityToJsonValue(Object entity) {
     try {
-      return getObjectMapper().writerWithView(PortalJsonViews.Public.class).writeValueAsString(entity);
+      return getObjectMapper().writeValueAsString(entity);
     } catch (JsonProcessingException e) {
       throw new PortalException(e);
     }
