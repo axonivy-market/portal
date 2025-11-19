@@ -1,12 +1,3 @@
-.ui-fluid .user-selection-panel .ui-inputfield[size] {
-  width: 100%;
-}
-
-.ui-fluid.user-selection-panel {
-  display: inline-block;
-  width: 85%;
-}
-
-.message-for-floating-label {
-  padding-left: 2px;
+.ui-message:empty {
+  display: none;
 }
