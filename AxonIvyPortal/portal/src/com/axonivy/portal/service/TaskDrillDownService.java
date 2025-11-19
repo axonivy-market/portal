@@ -45,7 +45,7 @@ public class TaskDrillDownService extends AbstractDrillDownService {
   @Override
   protected Dashboard getDrillDownDashboard() {
     Dashboard taskDrillDownDashboard = DefaultDashboardUtils.getTaskDrillDownDashboard();
-    taskDrillDownDashboard.setTitle(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/tasWidgetkInfo/taskDrillDownDashboard"));
+    taskDrillDownDashboard.setTitle(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/taskWidgetInfo/taskDrillDownDashboard"));
     taskDrillDownDashboard.getWidgets().getFirst().setId(TASK_DRILL_DOWN_WIDGET_ID);
     return taskDrillDownDashboard;
   }
