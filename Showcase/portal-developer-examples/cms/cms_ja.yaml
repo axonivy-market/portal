@@ -112,7 +112,59 @@ Dialogs:
                   IsRequired: このフィールドは入力必須です
                   Representation: 代理
                   To: To
+  com:
+    axonivy:
+      portal:
+        developerexamples:
+          customization:
+            sidestep:
+              CustomSideStepPrefix: 'カスタムタスク名のプレフィックス：'
+              LeaveRequestApproval:
+                Approve: 承認
+                Reject: 却下
+              LeaveRequestBusinessDetailsPage:
+                CompletedTaskNumber: '完了したタスク数：'
+                InformCustomer: '顧客に通知する'
+                LeaveRequest: '休暇申請のビジネス詳細'
+                SideStepComment: サイドステップコメント
+              LeaveRequestSummary:
+                Finish: 完了
+              SideStepAskMoreDetails:
+                MoreDetails: '休暇申請の詳細'
+              SideStepCEOApproval:
+                CEOApproval: 'CEOの承認'
+              SideStepExample:
+                SideStepExample: 'サイドステップの例'
+              SideStepResultExample:
+                SideStepResult: 'サイドステップの結果'
+                SideStepTaskIs: 'サイドステップタスク実行者は：'
+Enums:
+  LeaveType:
+    ANNUAL_LEAVE: 年次有給休暇
+    MATERNITY_LEAVE: 産休
+    SICK_LEAVE: 病欠
 Labels:
+  Close: 閉じる
+  LeaveRequest:
+    ApprovalResultTaskIntro: 以下は休暇申請の概要と承認者からのフィードバックです。
+    ApprovalTaskIntro: 承認が必要な休暇申請があります。詳細は以下のとおりです：
+    Approver: 承認者
+    ApproverComment: 承認者のコメント
+    From: から
+    LeaveSteps:
+      Approval: 承認
+      ApprovalResult: 承認結果
+      Creation: 休暇申請の作成
+      RequesterSideStepComment: 'リクエスト者のサイドステップコメント'
+      SideStepComment: 'サイドステップコメント'
+    LeaveType: 休暇の種類
+    Requester: 申請者
+    RequesterComment: 申請者のコメント
+    StepTypeParallelTitle: これはカスタマイズされたパラレルタイトルです
+    StepTypeSwitchTitle: 'これはカスタマイズされたスイッチタイトルです'
+    SubmitLeaveRequest: 休暇申請を送信
+    To: まで
+  OK: OK
   changePasswordWSError: パスワードの変更中にエラーが発生しました。問題が解決しない場合は、管理者に連絡してください。
   forgotPasswordError: リクエストの処理中にエラーが発生しました。しばらくしてから、もう一度お試しください。
   passwordResetEmailCantSend: メールを送信中に例外エラーが発生しました。しばらくしてからもう一度お試しください。
@@ -151,6 +203,15 @@ Processes:
       #概要
       申請者は申請の概要を受け取ります
       結果を確認します
+  LeaveRequest:
+    LeaveRequest: Leave Request
+    LeaveRequestWithSideStepsCaseLevel: 'サイドステッププロセスによる休暇申請（ケースレベル）'
+    LeaveRequestWithSideStepsTaskLevel: サイドステッププロセスによる休暇申請
+    approvalTask: あなたの休暇申請は承認されました
+    approvalTaskName: '{0} の休暇申請の承認'
+    createLeaveRequest: '{0}の休暇申請を作成'
+    createNewLeaveRequest: システムタスク：新しい休暇申請の作成を開始
+    rejectedTask: あなたの休暇申請は却下されました
   MoreInformation:
     customProcessInfo: これはカスタムプロセス情報です
     description: カスタマイズされたプロセス情報ページを表示するには、詳細情報　をクリックしてください。
