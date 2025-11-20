@@ -9,15 +9,16 @@ msgstr ""
 "Project-Id-Version: Portal Guide ${revision}\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-11-10 10:42+0000\n"
-"PO-Revision-Date: 2025-10-09 10:31+0000\n"
-"Last-Translator: Thang Huynh <hhqthang@axonactive.com>\n"
+"PO-Revision-Date: 2025-11-20 04:09+0000\n"
+"Last-Translator: Loc Nguyen <loc.nguyenthanh@axonactive.com>\n"
+"Language-Team: Japanese <https://hosted.weblate.org/projects/axonivy-portal/"
+"portal-12/doc/portal-user-guide/ja/>\n"
 "Language: ja\n"
-"Language-Team: Japanese <https://hosted.weblate.org/projects/axonivy-"
-"portal/portal-12/doc/portal-user-guide/ja/>\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 5.15-dev\n"
 "Generated-By: Babel 2.17.0\n"
 
 #: ../../source/portal-user-guide/accessibility/index.rst:4
@@ -711,6 +712,10 @@ msgid ""
 ":guilabel:`NoteReadAllCaseTaskDetails` to control the visibility of "
 "system notes in task and case details."
 msgstr ""
+":guilabel:`Portal.Histories.HideSystemNotes` と "
+":guilabel:`Portal.Histories.HideSystemNotesForAdministrator` はバージョン "
+"LTS 13 で削除される予定です。権限 :guilabel:`NoteReadAllCaseTaskDetails` を使"
+"用して、タスクとケースの詳細におけるシステムノートの可視性を制御します。"
 
 #: ../../source/portal-user-guide/admin-settings/index.rst:75
 msgid "Available settings"
@@ -4048,9 +4053,8 @@ msgstr ""
 "<ShareCaseDetailsLink>` 権限を付与してください。"
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:346
-#, fuzzy
 msgid "HowTo: Show Case Custom Fields Dialog"
-msgstr "ハウツー：プロセスビューアーを表示する"
+msgstr "ハウツーカスタムフィールドダイアログを表示する"
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:352
 #, fuzzy
@@ -4059,27 +4063,25 @@ msgstr ":guilabel:`アクション` をクリックします。"
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:354
 msgid "Portal opens the custom fields dialog of the case"
-msgstr ""
+msgstr "ポータルは、ケースのカスタムフィールドダイアログを開きます"
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:356
-#, fuzzy
 msgid "|case-custom-fields-dialog|"
-msgstr "**ワークフローイベントダイアログ**"
+msgstr "|case-custom-fields-dialog|"
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:402
-#, fuzzy
 msgid "Case Details: custom fields dialog"
-msgstr "ケースの詳細ドキュメントの追加ダイアログ"
+msgstr "事例詳細：カスタムフィールドダイアログ"
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:360
-#, fuzzy
 msgid ""
 "Grant permission :bdg-ref-warning:`🔑CaseDisplayCustomFieldsAction "
 "<CaseDisplayCustomFieldsAction>` to allow a user to see the custom fields"
 " link."
 msgstr ""
-"ユーザーがタスクの詳細を共有できるようにするには、 :bdg-ref-warning:`🔑ShareTaskDetailsLink "
-"<ShareTaskDetailsLink>` 権限を付与してください。"
+"権限の付与:bdg-ref-warning:`🔑CaseDisplayCustomFieldsAction "
+"<CaseDisplayCustomFieldsAction>` ユーザーにカスタムフィールドのリンクを表示す"
+"ることを許可します。"
 
 #: ../../source/portal-user-guide/full-process-list/index.rst:4
 msgid "Full Process List"
@@ -4572,14 +4574,13 @@ msgstr "エスカレーションのトリガー"
 
 #: ../../source/portal-user-guide/full-task-list/index.rst:70
 msgid "Custom Fields"
-msgstr ""
+msgstr "カスタムフィールド"
 
 #: ../../source/portal-user-guide/full-task-list/index.rst:74
 msgid "Process Viewer"
 msgstr "プロセスビューアー"
 
 #: ../../source/portal-user-guide/full-task-list/index.rst:78
-#, fuzzy
 msgid ""
 "Grant permissions :bdg-ref-warning:`🔑TaskDisplayResetAction "
 "<TaskDisplayResetAction>`, :bdg-ref-warning:`🔑TaskDisplayReserveAction "
@@ -4592,15 +4593,15 @@ msgid ""
 "warning:`🔑TaskDisplayCustomFieldsAction <TaskDisplayCustomFieldsAction>` "
 "to allow a user to see the corresponding buttons and menu items."
 msgstr ""
-"ユーザーが対応するボタンとメニュー項目を表示できるようにするには、 :bdg-ref-"
-"warning:`🔑TaskDisplayResetAction <TaskDisplayResetAction>` 、 :bdg-ref-"
-"warning:`🔑TaskDisplayWorkflowEventAction "
-"<TaskDisplayWorkflowEventAction>` 権限を付与してください。 :bdg-ref-"
-"warning:`🔑TaskDisplayReserveAction <TaskDisplayReserveAction>` , :bdg-"
-"ref-warning:`🔑TaskDisplayDelegateAction <TaskDisplayDelegateAction>` , "
-":bdg-ref-warning:`🔑TaskDisplayDestroyAction <TaskDisplayDestroyAction>` ,"
-" :bdg-ref-warning:`🔑TaskDisplayAdditionalOptions "
-"<TaskDisplayAdditionalOptions>` ,"
+":bdg-ref-warning:`🔑TaskDisplayResetAction <TaskDisplayResetAction>`,:bdg-"
+"ref-warning:`🔑TaskDisplayReserveAction <TaskDisplayReserveAction>`,:bdg-ref-"
+"warning:`🔑TaskDisplayDelegateAction <TaskDisplayDelegateAction>`,:bdg-ref-wa"
+"rning:`🔑TaskDisplayDestroyAction <TaskDisplayDestroyAction>`,:bdg-ref-warnin"
+"g:`🔑TaskDisplayAdditionalOptions <TaskDisplayAdditionalOptions>`,:bdg-ref-wa"
+"rning:`🔑TaskDisplayWorkflowEventAction <TaskDisplayWorkflowEventAction"
+">`,:bdg-ref-warning:`🔑TaskDisplayCustomFieldsAction "
+"<TaskDisplayCustomFieldsAction>` の権限を付与し、対応するボタンやメニュー項目"
+"を表示できるようにします。"
 
 #: ../../source/portal-user-guide/full-task-list/index.rst:83
 msgid ""
@@ -4914,40 +4915,37 @@ msgid "Workflow events of task dialog"
 msgstr "タスクのワークフローイベントダイアログ"
 
 #: ../../source/portal-user-guide/full-task-list/index.rst:273
-#, fuzzy
 msgid "HowTo: Show Custom Fields"
-msgstr "ハウツー：プロセスビューアーを表示する"
+msgstr "ハウツーカスタムフィールドの表示"
 
 #: ../../source/portal-user-guide/full-task-list/index.rst:276
-#, fuzzy
 msgid ""
 "Grant permission :bdg-ref-warning:`🔑TaskDisplayCustomFieldsAction "
 "<TaskDisplayCustomFieldsAction>` to allow a user to see Custom Fields "
 "link in Actions panel."
 msgstr ""
-"ユーザーがタスクの詳細を共有できるようにするには、 :bdg-ref-warning:`🔑ShareTaskDetailsLink "
-"<ShareTaskDetailsLink>` 権限を付与してください。"
+"権限の付与:bdg-ref-warning:`🔑TaskDisplayCustomFieldsAction "
+"<TaskDisplayCustomFieldsAction>` 、ユーザーがアクションパネルのカスタムフィー"
+"ルドのリンクを表示できるようにします。"
 
 #: ../../source/portal-user-guide/full-task-list/index.rst:282
-#, fuzzy
 msgid ""
 "Click the link ``Custom Fields`` on the overlay panel to see Custom "
 "Fields dialog"
-msgstr "オーバーレイパネルの ``ワークフローイベント`` リンクをクリックして、ワークフローイベントダイアログを表示します。"
+msgstr "オーバーレイパネルのリンク ``Custom Fields`` をクリックすると、カスタムフィー"
+"ルドダイアログが表示されます"
 
 #: ../../source/portal-user-guide/full-task-list/index.rst:284
-#, fuzzy
 msgid "**Custom Fields dialog**"
-msgstr "**ワークフローイベントダイアログ**"
+msgstr "**カスタムフィールドダイアログ**"
 
 #: ../../source/portal-user-guide/full-task-list/index.rst:286
 msgid "|custom-fields-dialog|"
-msgstr ""
+msgstr "|custom-fields-dialog|"
 
 #: ../../source/portal-user-guide/full-task-list/index.rst:328
-#, fuzzy
 msgid "Custom fields of task dialog"
-msgstr "タスクのワークフローイベントダイアログ"
+msgstr "タスクダイアログのカスタムフィールド"
 
 #: ../../source/portal-user-guide/full-task-list/index.rst:289
 msgid "HowTo: Share Task Details"
@@ -5132,7 +5130,7 @@ msgstr "スペイン語"
 
 #: ../../source/portal-user-guide/my-profile/index.rst:98
 msgid "Japanese"
-msgstr ""
+msgstr "日本語"
 
 #: ../../source/portal-user-guide/my-profile/index.rst:100
 msgid ""
@@ -7263,4 +7261,3 @@ msgstr "これは、今日納期のタスクの数を表示します。"
 
 #~ msgid "Portal can preview images, plain text(txt and log) and pdf documents."
 #~ msgstr ""
-
