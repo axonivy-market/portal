@@ -120,6 +120,7 @@
   --process-list-item-border-color: hsl(0,0%,92.2%);
   --process-list-widget-item-background-color:  var(--ivy-primary-color-grey-pale);
   --process-list-item-text: var(--ivy-primary-color-black);
+  --process-action-button-color: hsla(0, 0%, 100%, 0.56);
 
   /* Case Detail */
   --case-related-task-color: var(--ivy-primary-color-black);
