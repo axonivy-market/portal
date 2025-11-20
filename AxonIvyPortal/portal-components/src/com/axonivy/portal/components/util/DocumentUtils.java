@@ -49,29 +49,29 @@ public final class DocumentUtils {
   }
   
   public static StreamedContent findDocFactoryAndConvert(StreamedContent streamedContent) throws IOException {
-    if (streamedContent != null 
-        && StringUtils.isNotEmpty(streamedContent.getName()) 
+    if (streamedContent != null && StringUtils.isNotEmpty(streamedContent.getName())
         && Strings.CI.endsWithAny(streamedContent.getName(), SUPPORTED_PREVIEW_FILE_TYPES)) {
       return streamedContent;
     }
 
     if (streamedContent != null && streamedContent.getStream() != null) {
       Map<String, Object> params = new HashMap<String, Object>();
-      InputStream is = streamedContent.getStream().get();
-      if (is != null) {
-        params.put("inputStream", is);
-        params.put("fileName", streamedContent.getName());
-        params.put("contentType", streamedContent.getContentType());      
-        
-        Map<String, Object> response = IvyAdapterService.startSubProcessInSecurityContext(DocumentUtils.DOC_FACTORY_SIGNATURE, params);
-        
-        if (response != null && response.get("inputStream") != null){
-          DefaultStreamedContent returnDefaultStreamedContent = DefaultStreamedContent.builder()
-              .stream(() -> (InputStream) response.get("inputStream")).name(streamedContent.getName())
-              .contentType("application/pdf").build(); // DocFactory always returns stream as pdf
-          is.close();
-          return returnDefaultStreamedContent;
-        } 
+      // auto-closed by try-with-resources
+      try (InputStream is = streamedContent.getStream().get()) {
+        if (is != null) {
+          params.put("inputStream", is);
+          params.put("fileName", streamedContent.getName());
+          params.put("contentType", streamedContent.getContentType());
+          Map<String, Object> response = IvyAdapterService
+              .startSubProcessInSecurityContext(DocumentUtils.DOC_FACTORY_SIGNATURE, params);
+
+          if (response != null && response.get("inputStream") != null) {
+            DefaultStreamedContent returnDefaultStreamedContent = DefaultStreamedContent.builder()
+                .stream(() -> (InputStream) response.get("inputStream")).name(streamedContent.getName())
+                .contentType("application/pdf").build(); // DocFactory always returns stream as pdf
+            return returnDefaultStreamedContent;
+          }
+        }
       }
     }
     return streamedContent;
