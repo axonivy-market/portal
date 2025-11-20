@@ -24,7 +24,7 @@ public class ApplicationColumnModel extends CaseColumnModel implements Serializa
     super.initDefaultValue();
     this.field = DashboardStandardCaseColumn.APPLICATION.getField();
     this.styleToDisplay = initDefaultStyle();
-    this.styleClass = defaultIfEmpty(this.styleClass, "dashboard-tasks__priority u-text-align-center");
+    this.styleClass = defaultIfEmpty(this.styleClass, getDefaultStyleClass());
     this.format = DashboardColumnFormat.CUSTOM;
     this.quickSearch = defaultIfEmpty(this.quickSearch, false);
   }
@@ -79,5 +79,10 @@ public class ApplicationColumnModel extends CaseColumnModel implements Serializa
   @Override
   public int getDefaultColumnWidth() {
     return TINY_WIDTH;
+  }
+  
+  @Override
+  public String getDefaultStyleClass() {
+    return "dashboard-tasks__priority u-text-align-center";
   }
 }
