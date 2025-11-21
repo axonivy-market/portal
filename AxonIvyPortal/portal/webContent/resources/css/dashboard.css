@@ -1973,7 +1973,8 @@ body .widget__content .ui-datatable.dashboard-tasks--table .ui-widget-header the
   position: relative;
   object-fit: cover;
   width: inherit;
-  border-radius: 10px;
+  border-radius: 15px;
+  padding: 8px
 }
 
 .navigation-widget-visual {
