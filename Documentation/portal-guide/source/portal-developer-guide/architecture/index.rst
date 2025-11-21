@@ -18,11 +18,11 @@ Portal provides a modular architecture designed for flexibility and maintainabil
    +---------------------------+---------------------------------------------------------------+
    | Architecture Component    | Purpose                                                       |
    +===========================+===============================================================+
-   | **Multi-App Setup**       | Separates Portal from custom apps for easier upgrades        |
+   | **Multi-App Setup**       | Separates Portal from custom apps for easier upgrades         |
    +---------------------------+---------------------------------------------------------------+
-   | **portal-components**     | Public UI components and APIs for reuse                      |
+   | **portal-components**     | Public UI components and APIs for reuse                       |
    +---------------------------+---------------------------------------------------------------+
-   | **portal**                | Portal-specific UI, templates, and pages                     |
+   | **portal**                | Portal-specific UI, templates, and pages                      |
    +---------------------------+---------------------------------------------------------------+
 
 Deployment Strategy

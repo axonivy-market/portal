@@ -54,7 +54,7 @@ Portal Dashboard is a flexible, customizable page where users can view and manag
    +===========================+===============================================================+
    | **Task Widget**           | Display and manage tasks with filters and actions             |
    +---------------------------+---------------------------------------------------------------+
-   | **Case Widget**           | View and track cases with customizable columns               |
+   | **Case Widget**           | View and track cases with customizable columns                |
    +---------------------------+---------------------------------------------------------------+
    | **Process Widget**        | Show available processes for starting workflows               |
    +---------------------------+---------------------------------------------------------------+
