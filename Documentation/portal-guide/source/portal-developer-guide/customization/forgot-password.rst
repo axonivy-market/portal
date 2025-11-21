@@ -3,7 +3,13 @@
 Forgot Password
 ===============
 
-.. _customization-case-widget-how-to-override-token-generation-and-email-sending:
+Introduction
+------------
+
+The Forgot Password customization allows you to override the default password reset mechanism, enabling you to implement custom token generation algorithms,
+integrate with external authentication systems, or customize the email sending process to match your organization's security policies and branding requirements.
+
+.. _customization-token-generation-email:
 
 Customize Token Generation And Email Sending
 --------------------------------------------
@@ -14,20 +20,15 @@ To customize this process, create a callable subprocess with:
 
 **Signature**: portalSendPasswordResetEmail
 
-+-----------------------+-------------------+
-| Name                  | Type              |
-+=======================+===================+
-| **Parameter**                             |
-+-----------------------+-------------------+
-| email                 | java.lang.String  |
-+-----------------------+-------------------+
+**Parameters:**
+
+``email`` (java.lang.String)
+   The email address to send the password reset token to.
 
 .. tip::
 
    Please refer to process ``CustomSendPasswordResetEmail`` in project ``portal-developer-examples``
    for an example of how to customize the token generation and email sending process.
-
-.. _customization-case-widget-how-to-override-password-resetting:
 
 .. _customization-password-reset:
 
@@ -43,25 +44,27 @@ To customize this process, create a callable subprocess with:
 
 **Signature**: portalResetPassword
 
-+-----------------------+-------------------+
-| Name                  | Type              |
-+=======================+===================+
-| **Parameter**                             |
-+-----------------------+-------------------+
-| newPassword           | java.lang.String  |
-+-----------------------+-------------------+
-| passwordConfirmation  | java.lang.String  |
-+-----------------------+-------------------+
-| token                 | java.lang.String  |
-+-----------------------+-------------------+
-| username              | java.lang.String  |
-+-----------------------+-------------------+
-|**Result**                                 |
-+-----------------------+-------------------+
-| message               | java.lang.String  |
-+-----------------------+-------------------+
-| resetSuccess          | java.lang.Boolean |
-+-----------------------+-------------------+
+**Parameters:**
+
+``newPassword`` (java.lang.String)
+   The new password to be set.
+
+``passwordConfirmation`` (java.lang.String)
+   Confirmation of the new password for validation.
+
+``token`` (java.lang.String)
+   The password reset token previously sent to the user.
+
+``username`` (java.lang.String)
+   The username for the account being reset.
+
+**Result:**
+
+``message`` (java.lang.String)
+   Status or error message to display to the user.
+
+``resetSuccess`` (java.lang.Boolean)
+   True if the password was reset successfully, false otherwise.
 
 .. tip::
 

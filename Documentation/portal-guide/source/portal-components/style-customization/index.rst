@@ -3,6 +3,12 @@
 Style Customization
 *******************
 
+Introduction
+^^^^^^^^^^^^
+
+Portal Components use CSS custom properties (variables) for styling, allowing you to customize colors, fonts, spacing, and other visual aspects without modifying component code.
+Override these CSS variables in your own stylesheet to match your corporate design or application theme.
+
 How to customize
 ^^^^^^^^^^^^^^^^
 

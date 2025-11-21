@@ -3,101 +3,122 @@
 Statistic Chart
 ***************
 
-Introduction
-------------
+Overview
+========
 
-Portal offers an all-new statistic charts widget, designed to empower users with deeper insights into their tasks, cases, overall productivity and more customization capabilities.
+Portal offers statistic chart widgets designed to provide deeper insights into tasks, cases, and overall productivity with visual analytics.
 
-How to use
-----------
+.. table::
+   :widths: 30 70
 
-To utilize the Statistic feature on the Dashboard Configuration, follow these steps:
+   +---------------------------+---------------------------------------------------------------+
+   | Chart Category            | Available Metrics                                             |
+   +===========================+===============================================================+
+   | **Task Statistics**       | By priority, expiry dates, due today, open tasks              |
+   +---------------------------+---------------------------------------------------------------+
+   | **Case Statistics**       | Running cases, completed per day, new per day                 |
+   +---------------------------+---------------------------------------------------------------+
+   | **Performance Metrics**   | Average runtime by category, top priority analysis            |
+   +---------------------------+---------------------------------------------------------------+
 
-- Navigate to Dashboard Configuration of the dashboard where you want to add the widget and select :guilabel:`Add Widget`.
+HowTo: Add Statistic Widgets to Dashboard
+------------------------------------------
 
-- From the dropdown menu labeled **Statistic Widgets**, choose from a variety of insightful charts.
+To add statistic charts to your dashboard:
+
+#. Navigate to :ref:`Dashboard Configuration <dashboard-configuration>` for the desired dashboard
+
+#. Click :guilabel:`Add Widget`
+
+#. From the **Statistic Widgets** dropdown menu, choose from the available charts
 
 |statistic-widget-list-page|
 
-Available Standard Charts
--------------------------
+Available Statistic Charts
+==========================
 
-- Tasks By Priority
+Task-Related Charts
+-------------------
 
-    |tasks-by-prior-pie-chart|
+**Tasks By Priority (Pie Chart)**
 
-    - This pie chart displays all tasks by priority.
-    - Chart type: :bdg-info:`Pie`
+|tasks-by-prior-pie-chart|
 
-- Top Priority: 3 Days
+- Displays all tasks by priority
+- Chart type: :bdg-info:`Pie`
 
-    |top-prior-chart|
+**Tasks By Priority (Bar Chart)**
 
-    - This chart displays all tasks that the user can work on, grouped by expiry within the next 3 days.
-    - Chart type: :bdg-info:`Bar`
+|tasks-by-prior-bar-chart|
 
-- Tasks By Priority
+- Displays all tasks the user can work on, grouped by priority
+- Chart type: :bdg-info:`Bar`
 
-    |tasks-by-prior-bar-chart|
+**Tasks By Priority (Number)**
 
-    - This bar chart displays all tasks that the user can work on grouped by priority.
-    - Chart type: :bdg-info:`Bar`
+|tasks-by-prior-number-chart|
 
-- Case Category Avg. Runtime
+- Shows all tasks the user can work on by priority
+- Chart type: :bdg-info:`Number`
 
-    |avg-runtime-chart|
+**Top Priority: 3 Days**
 
-    - This chart shows the average processing time of cases by category. 
-    - Chart type: :bdg-info:`Bar`
+|top-prior-chart|
 
-- New Cases Per Day
+- Displays all tasks the user can work on that expire within the next 3 days
+- Chart type: :bdg-info:`Bar`
 
-    |new-cases-chart|
+**Tasks that Expire by the End of the Week**
 
-    - This chart shows the number of cases started per day for the last 5 days.
-    - Chart type: :bdg-info:`Line`
+|tasks-expire-end-week-chart|
 
-- Completed Cases Per Day
+- Shows all tasks that expire by the end of the week
+- Chart type: :bdg-info:`Number`
 
-    |completed-cases-chart|
+**Tasks Due Today**
 
-    - This chart shows the number of cases finished per day for the last 5 days.
-    - Chart type: :bdg-info:`Line`
+|due-today-chart|
 
-- Running Cases
+- Shows all tasks that are due today
+- Chart type: :bdg-info:`Number`
 
-    |running-cases-chart|
+**Open Tasks**
 
-    - This chart shows all running cases in which the user is involved.
-    - Chart type: :bdg-info:`Number`
+|open-tasks-chart|
 
-- Tasks that expire by the end of the week
+- Shows all tasks the user can work on
+- Chart type: :bdg-info:`Number`
 
-    |tasks-expire-end-week-chart|
+Case-Related Charts
+-------------------
 
-    - This chart shows all tasks that expire by the end of the week.
-    - Chart type: :bdg-info:`Number`
+**Running Cases**
 
-- Tasks By Priority
+|running-cases-chart|
 
-    |tasks-by-prior-number-chart|
+- Shows all running cases in which the user is involved
+- Chart type: :bdg-info:`Number`
 
-    - This chart shows all tasks the user can work on by priority.
-    - Chart type: :bdg-info:`Number`
+**New Cases Per Day**
 
-- Open Tasks
+|new-cases-chart|
 
-    |open-tasks-chart|
+- Shows the number of cases started per day for the last 5 days
+- Chart type: :bdg-info:`Line`
 
-    - This chart shows all tasks the user can work on.
-    - Chart type: :bdg-info:`Number`
+**Completed Cases Per Day**
 
-- Tasks Due Today
+|completed-cases-chart|
 
-    |due-today-chart|
+- Shows the number of cases finished per day for the last 5 days
+- Chart type: :bdg-info:`Line`
 
-    - This chart shows all tasks that are due today.
-    - Chart type: :bdg-info:`Number`
+**Case Category Avg. Runtime**
+
+|avg-runtime-chart|
+
+- Shows the average processing time of cases by category
+- Chart type: :bdg-info:`Bar`
 
 .. |statistic-widget-list-page| image:: ../../screenshots/statistic/statistic-widget-list.png
    :alt: Statistic widget list
