@@ -1,4 +1,4 @@
-.. _public-api:
+.. _public-api-details:
 
 Public API
 **********
