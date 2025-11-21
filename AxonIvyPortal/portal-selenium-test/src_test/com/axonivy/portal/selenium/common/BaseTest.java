@@ -22,7 +22,6 @@ import com.codeborne.selenide.WebDriverRunner;
 
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
-import ch.ivyteam.ivy.project.portal.test.Responsible;
 
 /**
  * A base test that other tests extend it. It will test on browser IE by default. It provides feature to take screenshot
@@ -372,13 +371,6 @@ public class BaseTest {
 
   public WebDriverWait webDriverWait() {
     return new WebDriverWait(WebDriverRunner.getWebDriver(), DEFAULT_TIMEOUT);
-  }
-
-  public Responsible setResponsible(String userName, boolean isGroup) {
-    Responsible user = new Responsible();
-    user.setResponsibleName(userName);
-    user.setIsGroup(isGroup);
-    return user;
   }
 
   public void resizeBrowserTo2kResolution() {

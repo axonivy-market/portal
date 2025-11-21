@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/13.1.2/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/13.2.0/process.json",
   "id" : "189F33E127423286",
   "kind" : "CALLABLE_SUB",
   "config" : {
@@ -972,9 +972,9 @@
           "config" : {
             "output" : {
               "code" : [
+                "import com.axonivy.portal.components.service.CaseDocumentService;",
                 "import java.util.Arrays;",
                 "import ch.ivyteam.ivy.environment.Ivy;",
-                "import ch.ivyteam.ivy.workflow.document.Path;",
                 "import ch.ivyteam.ivy.workflow.document.IDocument;",
                 "",
                 "Ivy.log().info(\"Updating filename in customized sub process\");",
@@ -986,10 +986,10 @@
                 "  ",
                 "  try {",
                 "    if (document.getName().equalsIgnoreCase(in.document.name)) {",
-                "      in.businessCase.documents().move(document, new Path(in.document.name + System.currentTimeMillis().toString()));",
+                "      in.businessCase.documents().move(document, CaseDocumentService.getPathAfterRename(document.getRelativePath(), in.document.name + System.currentTimeMillis().toString()));",
                 "    }",
                 "    ",
-                "    in.businessCase.documents().move(document, new Path(in.document.name));",
+                "    in.businessCase.documents().move(document, CaseDocumentService.getPathAfterRename(document.getRelativePath(), in.document.name));",
                 "    in.businessCase.createNote(ivy.session, note);",
                 "  } catch (Exception e) {   ",
                 "    in.isRenamingSuccess = false;",

@@ -14,6 +14,7 @@
   <cc:attribute name="renameRendered" default="true" />
   <cc:attribute name="messageRendered" default="true" />
   <cc:attribute name="renderChooseUploadIcon" default="true" />
+  <cc:attribute name="lazy" default="false" />
   
   <cc:attribute name="fileLimit" type="Integer" shortDescription="Number of files are in the given ICase" default="-1" />
   <cc:attribute name="sizeLimit" type="Long" shortDescription="Individual file size limit in bytes" />
@@ -50,7 +51,6 @@
   <cc:attribute name="enableScriptCheckingForUploadedDocument" default="#{documentUploadBean.getPortalScriptCheckingSettingOrDefault(false)}" />
   <cc:attribute name="enableVirusScannerForUploadedDocument" default="#{documentUploadBean.getPortalVirusScannerSettingOrDefault(false)}" />
   <cc:attribute name="allowedUploadFileTypes" default="#{documentUploadBean.getPortalAllowedUploadFileTypesSettingOrDefault('doc,docx,xls,xlsx,xlsm,csv,pdf,ppt,pptx,txt,zip,jpg,jpeg,bmp,png')}" type="java.lang.String"/>
-
 </cc:interface>
 
 <cc:implementation>
@@ -68,12 +68,16 @@
     <p:messages id="document-messages" for="document-messages" rendered="#{cc.attrs.messageRendered}" />
     <p:dataTable id="document-table" value="#{data.documents}" var="document"
       emptyMessage="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/NoFile')}" styleClass="margin-top-5"
-      widgetVar="fileTableVar" lazy="false">
+      widgetVar="fileTableVar" lazy="#{cc.attrs.lazy}"
+      paginator="#{cc.attrs.lazy}" rows="#{cc.attrs.lazy ? 5 : 0}"
+      paginatorPosition="#{cc.attrs.lazy ? 'bottom' : ''}" paginatorAlwaysVisible="#{cc.attrs.lazy ? 'true' : ''}"
+      paginatorTemplate="#{cc.attrs.lazy ? '{PreviousPageLink} {PageLinks} {NextPageLink} {RowsPerPageDropdown}' : ''}"
+      pageLinks="#{cc.attrs.lazy ? '5' : ''}" rowsPerPageTemplate="#{cc.attrs.lazy ? '5,10,20,50' : ''}">
       <f:event type="preRenderComponent" listener="#{logic.renderTable()}" />
 
       <p:column headerText="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/Name')}"
         rendered="#{cc.attrs.nameColumnRendered}" styleClass="document-name-column">
-        <h:outputText id="name" value="#{document.name}" title="#{document.name}" />
+        <h:outputText id="name" value="#{document.name}" title="#{document.relativePath}" />
       </p:column>
       <p:column headerText="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/Size')}"
         rendered="#{cc.attrs.sizeColumnRendered}" styleClass="document-size-column">
@@ -150,13 +154,15 @@
 
     <cc:renderFacet name="componentFooter" />
     
-    <p:dialog widgetVar="preview-document-dialog" id="preview-document-dialog" appendTo="@(body)" 
-        header="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/Preview')}" closable="false"
-        modal="true" maximizable="true" width="850" styleClass="#{cc.attrs.previewDialogStyleClass}" showEffect="fade" hideEffect="fade"
+    <!-- set closable to true to force to close stream by clicking Close button -->
+    <p:dialog widgetVar="preview-document-dialog" id="preview-document-dialog" appendTo="@(body)" maximizable="true"
+        header="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/Preview')}" closable="false" resizable="false"
+        modal="true" width="70vw" styleClass="#{cc.attrs.previewDialogStyleClass}" showEffect="fade" hideEffect="fade"
         dynamic="true" fitViewport="true" responsive="true">
       <div class="ui-g-12">
         <p:media value="#{data.streamedContent}" width="100%" height="450" styleClass="#{cc.attrs.previewPDFStyleClass}" cache="false" id="media-content" player="pdf" rendered="#{!data.isImage}"/>
-        <p:graphicImage value="#{data.streamedContent}" width="100%" height="450" stream="true" rendered="#{data.isImage}" styleClass="#{cc.attrs.previewImageStyleClass}"/>
+        <p:graphicImage alt="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/Preview')}" 
+          value="#{data.streamedContent}" width="100%" height="450" stream="true" rendered="#{data.isImage}" styleClass="preview-image #{cc.attrs.previewImageStyleClass}" cache="false"/>
       </div>
       <f:facet name="footer">
         <div class="u-dialog-footer-actions-group">

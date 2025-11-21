@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Portal Guide ${revision}\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-23 07:56+0000\n"
-"PO-Revision-Date: 2025-10-17 10:40+0000\n"
+"POT-Creation-Date: 2025-11-12 07:57+0000\n"
+"PO-Revision-Date: 2025-11-05 08:38+0000\n"
 "Last-Translator: Thang Huynh <hhqthang@axonactive.com>\n"
 "Language: ja\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/axonivy-"
@@ -969,26 +969,6 @@ msgstr "Portal.EmbedInFrame"
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "If true, start a process/task in IFrame mode."
 msgstr "trueの場合、IFrameモードでプロセス/タスクを開始する。"
-
-#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
-msgid "Portal.Histories.HideSystemNotes"
-msgstr "Portal.Histories.HideSystemNotes"
-
-#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
-msgid ""
-"If true, case/task note does not display any system notes for non-"
-"administrator users."
-msgstr "true の場合、管理者以外のユーザーに対してケース／タスクノートは何のシステムノートも表示しません。"
-
-#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
-msgid "Portal.Histories.HideSystemNotesForAdministrator"
-msgstr "Portal.Histories.HideSystemNotesForAdministrator"
-
-#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
-msgid ""
-"If true, case/task note does not display any system notes for "
-"administrator."
-msgstr "true の場合、管理者に対してケース／タスクノートは何のシステムノートも表示しません。"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.Histories.HideSystemTasks"
@@ -4648,7 +4628,7 @@ msgid ""
 "Documents, these documents once attached to the case are available on all"
 " tasks. You may add, delete, rename or preview documents described in the"
 " HowTo’s below."
-msgstr "ドキュメント：ケースに添付されたドキュメントはすべてのタスクで利用できます。以下の「ハウツー」のとおり、ドキュメントを追加、削除、プレビューできます。"
+msgstr "ドキュメント：ケースに添付されたドキュメントはすべてのタスクで利用できます。以下の「ハウツー」のとおり、ドキュメントを追加、削除、名前変更、プレビューできます。"
 
 #: ../../source/portal-user-guide/full-task-list/index.rst:105
 msgid "|detailed-task-information-documents|"
@@ -4981,7 +4961,7 @@ msgstr "一般設定、言語、通知チャネルのサブスクリプション
 msgid "|my-profile-save|"
 msgstr "|my-profile-save|"
 
-#: ../../source/portal-user-guide/my-profile/index.rst:138
+#: ../../source/portal-user-guide/my-profile/index.rst:139
 msgid "My profile page"
 msgstr "プロフィールページ"
 
@@ -5116,7 +5096,11 @@ msgstr "フランス語"
 msgid "Spanish"
 msgstr "スペイン語"
 
-#: ../../source/portal-user-guide/my-profile/index.rst:100
+#: ../../source/portal-user-guide/my-profile/index.rst:99
+msgid "Japanese"
+msgstr ""
+
+#: ../../source/portal-user-guide/my-profile/index.rst:101
 msgid ""
 "**Formatting language** is used to format values, for example the decimal"
 " separator is displayed differently in different regions of the world."
@@ -5124,7 +5108,7 @@ msgstr ""
 "**書式設定言語** を使用して、値の形式を設定します。例えば、小数点は世界中の異なる地域\n"
 "で異なる形式で表示されます。"
 
-#: ../../source/portal-user-guide/my-profile/index.rst:103
+#: ../../source/portal-user-guide/my-profile/index.rst:104
 msgid ""
 "Your application needs to support the same language as the one selected "
 "in this menu. Otherwise the application specific content will be shown in"
@@ -5133,18 +5117,18 @@ msgid ""
 "application specific dialogs will still be shown in English."
 msgstr "アプリケーションは、このメニューで選択された言語と同じ言語をサポートする必要があります。そうでない場合、アプリケーション固有のコンテンツは、アプリケーションの標準言語で表示されます。例えば、アプリケーションが英語のみをサポートしている場合、ポータルの言語としてスペイン語を選択しても、アプリケーション固有のダイアログは英語で表示されます。"
 
-#: ../../source/portal-user-guide/my-profile/index.rst:118
+#: ../../source/portal-user-guide/my-profile/index.rst:119
 msgid "Notification Channels"
 msgstr "通知チャネル"
 
-#: ../../source/portal-user-guide/my-profile/index.rst:120
+#: ../../source/portal-user-guide/my-profile/index.rst:121
 msgid ""
 "**Notification Channels** allows you to configure your manage "
 "subscriptions of the different kinds of notification channels in the Axon"
 " Ivy Engine."
 msgstr "**通知チャネル** では、Axon Ivy Engine の通知チャネルのサブスクリプションを設定できます。"
 
-#: ../../source/portal-user-guide/my-profile/index.rst:124
+#: ../../source/portal-user-guide/my-profile/index.rst:125
 msgid ""
 "The table :guilabel:`Notification Channels` displays all the available "
 "events that can either be subscribed or unsubscribed."
@@ -5152,15 +5136,15 @@ msgstr ""
 ":guilabel:`通知チャネル` テーブルには、登録または登録解除できるすべてのイベントが表示\n"
 "されます。"
 
-#: ../../source/portal-user-guide/my-profile/index.rst:127
+#: ../../source/portal-user-guide/my-profile/index.rst:128
 msgid "|notification-channels|"
 msgstr "|notification-channels|"
 
-#: ../../source/portal-user-guide/my-profile/index.rst:140
+#: ../../source/portal-user-guide/my-profile/index.rst:141
 msgid "Notification channels settings"
 msgstr "通知チャンネルの設定"
 
-#: ../../source/portal-user-guide/my-profile/index.rst:129
+#: ../../source/portal-user-guide/my-profile/index.rst:130
 msgid ""
 "The checkbox in each event column allow you to specify three state of "
 "event: subscribed by default, subscribe, unsubscribe. These checkboxes "
@@ -5170,7 +5154,7 @@ msgstr ""
 "各イベントの列のチェックボックスで、登録済み（初期値）、登録、登録解除の 3 つのイベ\n"
 "ントの状態を指定できます。"
 
-#: ../../source/portal-user-guide/my-profile/index.rst:134
+#: ../../source/portal-user-guide/my-profile/index.rst:135
 msgid ""
 "As an administrator, you can configure the permission :bdg-ref-"
 "warning:`🔑NotificationChannelsSetting <NotificationChannelsSetting>` to "
@@ -5180,7 +5164,7 @@ msgstr ""
 "warning:`🔑NotificationChannelsSetting <NotificationChannelsSetting>` "
 "を設定できます。"
 
-#: ../../source/portal-user-guide/my-profile/index.rst:136
+#: ../../source/portal-user-guide/my-profile/index.rst:137
 msgid ""
 "To do this, access the :doc-url:`Engine Cockpit </engine-guide/reference"
 "/engine-cockpit/security.html>`, open the **Security area**. Since this "
@@ -5451,9 +5435,9 @@ msgid ""
 "make it visible, you need to set the ``Portal.Cases.EnableOwner`` setting"
 " to ``true`` in the :ref:`Admin Settings <update-portal-settings>`."
 msgstr ""
-"``Filter tasks by current case owner`` フィルターはデフォルトでは非表示になっています。表示させるには、 の"
-" 設定をに設定する必要があります。 :ref:`ハウツー：ポータル設定を更新する <update-portal-settings>` "
-"``Portal.Cases.EnableOwner`` ``true``"
+"``Filter tasks by current case owner`` "
+"フィルターはデフォルトで非表示です。表示するには、:ref:`ハウツー：ポータル設定を更新する <update-portal-settings>`"
+" で ``Portal.Cases.EnableOwner`` 設定を ``true`` に設定する必要があります。"
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:106
 #: ../../source/portal-user-guide/new-dashboard/index.rst:191
@@ -7529,4 +7513,22 @@ msgstr "数値チャートのラベル表示を切り替える。"
 #~ "translated text, clicking on :guilabel:`Auto."
 #~ " translation`."
 #~ msgstr ""
+
+#~ msgid "Portal.Histories.HideSystemNotes"
+#~ msgstr "Portal.Histories.HideSystemNotes"
+
+#~ msgid ""
+#~ "If true, case/task note does not "
+#~ "display any system notes for non-"
+#~ "administrator users."
+#~ msgstr "true の場合、管理者以外のユーザーに対してケース／タスクノートは何のシステムノートも表示しません。"
+
+#~ msgid "Portal.Histories.HideSystemNotesForAdministrator"
+#~ msgstr "Portal.Histories.HideSystemNotesForAdministrator"
+
+#~ msgid ""
+#~ "If true, case/task note does not "
+#~ "display any system notes for "
+#~ "administrator."
+#~ msgstr "true の場合、管理者に対してケース／タスクノートは何のシステムノートも表示しません。"
 
