@@ -476,6 +476,29 @@ getBackgroundColorsWithAllScope(chartConfig, data) {
 
   updateClientChart() { }
 
+  canDrillDown() {
+    const config = this.data.chartConfig;
+    return config.canDrillDown === true;
+  }
+
+  handleChartClick(element, event) {
+    if (!this.canDrillDown()) {
+      return;
+    }
+    const drillDownData = {
+      chartId: this.data.chartConfig.id,
+      drillDownValue: this.data.result.aggs[0].buckets[element.index].key
+    };
+    this.drillDownStatistic(drillDownData);
+  }
+
+  drillDownStatistic(drillDownData) {
+    window.openStatisticDrillDown([{
+      name: 'drillDownData',
+      value: JSON.stringify(drillDownData)
+    }]);
+  }
+
   // Method to render empty chart
   renderEmptyChart(chart, additionalConfig) {
     let emptyChartDataMessage;
@@ -613,6 +636,14 @@ class ClientPieChart extends ClientCanvasChart {
         options: {
           responsive: true,
           maintainAspectRatio: false,
+          onHover: (event, elements) => {
+            event.native.target.style.cursor = this.canDrillDown() && elements.length > 0 ? 'pointer' : 'default';
+          },
+          onClick: (event, elements) => {
+            if (this.canDrillDown() && elements.length > 0) {
+              this.handleChartClick(elements[0], event);
+            }
+          },
           plugins: {
             legend: {
               labels: {
@@ -686,6 +717,14 @@ class ClientCartesianChart extends ClientCanvasChart {
         options: {
           responsive: true,
           maintainAspectRatio: false,
+          onHover: (event, elements) => {
+            event.native.target.style.cursor = this.canDrillDown() && elements.length > 0 ? 'pointer' : 'default';
+          },
+          onClick: (event, elements) => {
+            if (this.canDrillDown() && elements.length > 0) {
+              this.handleChartClick(elements[0], event);
+            }
+          },
           plugins: {
             legend: {
               display: false,
@@ -867,7 +906,15 @@ class ClientNumberChart extends ClientChart {
 
     $(this.chart).parents('.statistic-chart-widget__chart').addClass('client-number-chart');
     let multipleKPI = this.renderMultipleNumberChartInHTML(result, config.numberChartConfig.suffixSymbol, config.chartTarget);
-    return $(this.chart).html(multipleKPI);
+    $(this.chart).html(multipleKPI);
+    
+    if (this.canDrillDown()) {
+      $(this.chart).find('.chart-content-card-clickable').each((index, element) => {
+        element.addEventListener('click', (event) => this.handleNumberCardClick(element, event));
+      });
+    }
+    
+    return $(this.chart);
   }
 
   initWidgetHeaderName(chart, widgetName) {
@@ -904,8 +951,9 @@ class ClientNumberChart extends ClientChart {
   generateItemHtml(label, number, suffixSymbol, index, counting) {
     let border = '<div class="chart-border">' + '</div>';
     label = this.data.chartConfig.numberChartConfig?.hideLabel === true ? '' : this.formatChartLabel(label) ;
+    const isClickable = this.canDrillDown() ? 'chart-content-card-clickable' : '';
     let html =
-      '<div class="text-center chart-content-card">' +
+      `<div class="text-center chart-content-card ${isClickable}" data-index="${index}">` +
       '    <div class="chart-number-container">' +
       '        <span class="card-number chart-number-font-size chart-number-animation">' + number + '</span>' +
       '        <i class="card-number chart-number-font-size chart-number-animation ' + suffixSymbol + '"></i>' +
@@ -966,6 +1014,20 @@ class ClientNumberChart extends ClientChart {
 
   updateClientChart() {
     this.render();
+  }
+
+  handleNumberCardClick(cardElement, event) {
+    if (!this.canDrillDown()) {
+      return;
+    }
+
+    const cardIndex = parseInt(cardElement.getAttribute('data-index'));
+    const item = this.dataResult[cardIndex];
+    const drillDownData = {
+      chartId: this.data.chartConfig.id,
+      drillDownValue: item.key
+    };
+    this.drillDownStatistic(drillDownData);
   }
 }
 
