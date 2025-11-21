@@ -202,7 +202,9 @@ function initRefresh() {
           refreshInfo.refreshInterval = MIN_REFRESH_INTERVAL;
         }
         refreshInfo.refreshIntervalId = setInterval(() => {
-          refreshChart(refreshInfo);
+          if (!document.hidden) {
+            refreshChart(refreshInfo);
+          }
         }, refreshInfo.refreshInterval * 1000);
       }
     }
