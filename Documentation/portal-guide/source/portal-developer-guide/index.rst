@@ -23,4 +23,5 @@ customization sections that fit your use case.
    customization/index
    troubleshooting/index
    permissions/index
+   public-api/index
    static-page/index
