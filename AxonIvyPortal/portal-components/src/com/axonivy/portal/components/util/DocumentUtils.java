@@ -21,9 +21,10 @@ import ch.ivyteam.ivy.process.call.SubProcessSearchFilter.SearchScope;
 
 public final class DocumentUtils {
   public static final String DOC_FACTORY_SIGNATURE = "previewDocumentByInputStream(String,String,java.io.InputStream)";
+  public static final String DOC_FACTORY_GET_SUPPORTED_FILE_TYPES_SIGNATURE = "getSupportedTypeForPreview()";
   private static final String[] SUPPORTED_PREVIEW_FILE_TYPES = {".pdf", ".txt", ".log", ".jpg", ".jpeg", ".bmp", ".png"};
-  private static final String[] DOC_FACTORY_SUPPORTED_PREVIEW_FILE_TYPES = {".eml", ".docx", ".doc", ".xls", ".xlsx"};
-  
+  private static final List<String> DOC_FACTORY_SUPPORTED_PREVIEW_FILE_TYPES;
+
   private static boolean isDocFactoryFound;
   
   static {
@@ -32,14 +33,29 @@ public final class DocumentUtils {
 
     List<SubProcessCallStart> subProcessStartList = SubProcessCallStart.find(filter);
     isDocFactoryFound = CollectionUtils.isNotEmpty(subProcessStartList);
+    
+    DOC_FACTORY_SUPPORTED_PREVIEW_FILE_TYPES = getDocFactorySupportedFileTypes();
   }
   
   private DocumentUtils() {}
 
+  public static List<String> getDocFactorySupportedFileTypes() {
+    if (!isDocFactoryFound) {
+      return List.of();
+    }
+
+    Map<String, Object> response = IvyAdapterService.startSubProcessInSecurityContext(DocumentUtils.DOC_FACTORY_GET_SUPPORTED_FILE_TYPES_SIGNATURE, null);
+    if (response != null && response.get("supportedTypes") != null) {
+      return (List<String>) response.get("supportedTypes");
+    }
+    
+    return List.of();
+  }
+
   public static boolean isSupportedPreviewType(IvyDocument document) {
     if (isDocFactoryFound) {
       return Strings.CI.endsWithAny(document.getPath(), SUPPORTED_PREVIEW_FILE_TYPES) 
-          || Strings.CI.endsWithAny(document.getPath(), DOC_FACTORY_SUPPORTED_PREVIEW_FILE_TYPES);
+          || Strings.CI.endsWithAny(document.getPath(), DOC_FACTORY_SUPPORTED_PREVIEW_FILE_TYPES.toArray(new String[0]));
     }
     return Strings.CI.endsWithAny(document.getPath(), SUPPORTED_PREVIEW_FILE_TYPES);
   }
