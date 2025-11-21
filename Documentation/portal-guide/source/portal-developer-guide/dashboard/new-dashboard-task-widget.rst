@@ -3,13 +3,17 @@
 Configure Task Widget
 =====================
 
+The task widget displays an interactive, customizable list of tasks with advanced filtering, sorting, and search capabilities. It supports custom columns, pre-configured filters, quick search across multiple fields, and multi-language support for custom string fields via CMS.
+
 Define Task Widget
 ------------------
 
-The Task widget of the Portal dashboard is an interactive task list. Refer
-to :ref:`Task List Widget <new-dashboard-task-list-widget>` for details.
+The task widget displays tasks with full control over columns, filters, sorting, and layout. Refer to :ref:`Task List Widget <new-dashboard-task-list-widget>` for widget behavior details.
 
-Below is a sample JSON definition of a task widget in the Portal dashboard
+Configuration Example
+^^^^^^^^^^^^^^^^^^^^^
+
+Below is a sample JSON definition of a task widget in the Portal dashboard:
 
 .. code-block:: javascript
 
@@ -19,7 +23,11 @@ Below is a sample JSON definition of a task widget in the Portal dashboard
       "names": [
          {
             "locale": "en",
-            "value": "Task Widget"
+            "value": "My Tasks"
+         },
+         {
+            "locale": "de",
+            "value": "Meine Aufgaben"
          }
       ],
       "layout": {
@@ -31,37 +39,39 @@ Below is a sample JSON definition of a task widget in the Portal dashboard
          "styleClass": "your-widget-class"
       },
       "sortField": "name",
+      "sortDescending": false,
       "rowsPerPage": 20,
       "showWidgetInfo": true,
       "showFullscreenMode": true,
       "filterTasksByCurrentCaseOwner": false,
       "canWorkOn": false,
-      "isTopMenu": false,
+      "enableQuickSearch": true,
       "columns": [
          {
             "field": "start"
          },
          {
             "field": "priority",
-            "visible": "false"
+            "visible": "true"
          },
          {
             "field": "id"
          },
          {
-            "field": "name"
+            "field": "name",
+            "quickSearch": "true"
          },
          {
             "field": "state",
             "headers": [
-            {
-               "locale": "en",
-               "value": "State"
-            },
-            {
-               "locale": "de",
-               "value": "Status"
-            }
+               {
+                  "locale": "en",
+                  "value": "State"
+               },
+               {
+                  "locale": "de",
+                  "value": "Status"
+               }
             ]
          },
          {
@@ -70,93 +80,205 @@ Below is a sample JSON definition of a task widget in the Portal dashboard
          {
             "field": "actions"
          }
+      ],
+      "filters": [
+         {
+            "field": "state",
+            "values": ["OPEN", "IN_PROGRESS"],
+            "operator": "in",
+            "type": "standard"
+         }
       ]
    }
+
 ..
 
-The basic JSON structure of a Task widget
+JSON Configuration Reference
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-   ``type``: type of the widget. Use ``task`` for a task widget
+**Required Properties**
 
-   ``id``: ID of the widget
+.. list-table::
+   :widths: 20 15 65
+   :header-rows: 1
 
-   ``names``: multilingual name of the widget on the UI
+   * - Property
+     - Type
+     - Description
+   * - ``type``
+     - string
+     - Widget type. Must be ``"task"`` for task widget
+   * - ``id``
+     - string
+     - Unique identifier for the widget
+   * - ``names``
+     - array
+     - Multilingual display names. Each entry: ``{"locale": "en", "value": "Name"}``
+   * - ``layout``
+     - object
+     - Widget position and size (see Layout Properties below)
+   * - ``columns``
+     - array
+     - Column configurations (see Columns section below)
 
-   ``layout``: layout definition of the widget
+**Layout Properties**
 
-      ``x``: HTML DOM Style ``left`` is calculated as formula ``x / 12 * 100%``
+.. list-table::
+   :widths: 20 15 65
+   :header-rows: 1
 
-      ``y``: HTML DOM Style ``top`` is calculated as formula ``y / 12 * 100%``
+   * - Property
+     - Type
+     - Description
+   * - ``x``
+     - number
+     - Column position in 12-column grid (0-11). CSS left = ``x / 12 * 100%``
+   * - ``y``
+     - number
+     - Row position. CSS top = ``y / 12 * 100%``
+   * - ``w``
+     - number
+     - Width in grid columns (1-12). Pixel width = ``60 * w + 20 * (w - 1)``
+   * - ``h``
+     - number
+     - Height in grid rows (min 5). Pixel height = ``60 * h + 20 * (h - 1)``
+   * - ``styleClass``
+     - string
+     - *(Optional)* CSS classes for custom styling
+   * - ``style``
+     - string
+     - *(Optional)* Inline CSS styles
 
-      ``w``: HTML DOM Style ``width`` is calculated as formula ``60 * w + 20 * (w - 1)``
+.. tip::
+   **Recommended task widget size:** Width 8-12 columns, Height 8-12 rows for optimal table display with pagination.
 
-      ``h``: HTML DOM Style ``height`` is calculated as formula ``60 * h + 20 * (h - 1)``
+**Display & Behavior Properties**
 
-      ``styleClass`` (optional): add CSS Classes to HTML DOM of the widget
+.. list-table::
+   :widths: 20 15 15 50
+   :header-rows: 1
 
-      ``style`` (optional): add inline style to HTML DOM of the widget
+   * - Property
+     - Type
+     - Default
+     - Description
+   * - ``sortField``
+     - string
+     - *(none)*
+     - Default column for sorting (e.g., ``"name"``, ``"priority"``, ``"startTimestamp"``)
+   * - ``sortDescending``
+     - boolean
+     - ``false``
+     - Sort direction. ``false`` = ascending, ``true`` = descending
+   * - ``rowsPerPage``
+     - number
+     - ``10``
+     - Number of tasks displayed per page
+   * - ``showWidgetInfo``
+     - boolean
+     - ``true``
+     - Show/hide widget information icon
+   * - ``showFullscreenMode``
+     - boolean
+     - ``true``
+     - Show/hide fullscreen mode icon
+   * - ``enableQuickSearch``
+     - boolean
+     - ``false``
+     - Enable quick search text box
+   * - ``canWorkOn``
+     - boolean
+     - ``false``
+     - Filter only tasks the current user can work on
+   * - ``filterTasksByCurrentCaseOwner``
+     - boolean
+     - ``false``
+     - Filter only tasks where current user is case owner (requires ``Portal.Cases.EnableOwner`` setting)
+   * - ``isTopMenu``
+     - boolean
+     - ``false``
+     - ``true`` = top-level nav item, ``false`` = under Dashboard menu
 
-   ``sortField``: default sort field for the widget
+**Columns Configuration**
 
-   ``sortDescending``: sort direction of the default sort field. The default value is ``false`` (sort ascending)
+Each column object in the ``columns`` array:
 
-   ``rowsPerPage``: maximum number of tasks can be displayed on one page of the task widget. 
-   The default value is 10 rows per page
+.. list-table::
+   :widths: 20 15 15 50
+   :header-rows: 1
 
-   ``showWidgetInfo``: visibility of the widget information icon. The default value is ``true``, set to ``false`` to hide the icon
+   * - Property
+     - Type
+     - Default
+     - Description
+   * - ``field``
+     - string
+     - *(required)*
+     - Column field name (see Standard Columns below)
+   * - ``visible``
+     - string
+     - ``"true"``
+     - Column visibility: ``"true"`` or ``"false"``
+   * - ``quickSearch``
+     - string
+     - ``"false"``
+     - Include in quick search: ``"true"`` or ``"false"``
+   * - ``headers``
+     - array
+     - *(none)*
+     - Multilingual column headers: ``[{"locale": "en", "value": "Header"}]``
+   * - ``type``
+     - string
+     - ``"STANDARD"``
+     - Column type: ``"STANDARD"`` or ``"CUSTOM"``
+   * - ``style``
+     - string
+     - *(none)*
+     - Inline CSS for custom columns (e.g., ``"width: 110px"``)
 
-   ``showFullscreenMode``: visibility of the fullscreen mode icon. The default value is ``true``, set to ``false`` to hide the icon
+**Standard Column Fields**
 
-   ``isTopMenu``: if the value is ``true``, the dashboard appears as a top-level item in the navigation bar. 
-   If the value is ``false``, it appears as a sub-item under the `Dashboard` menu. 
-   The default value is ``false``.
+- ``start`` - Start button to begin task execution
+- ``Pin`` - Pin button for task
+- ``priority`` - Task priority
+- ``id`` - Task ID
+- ``name`` - Task name
+- ``description`` - Task description
+- ``activator`` - Task activator
+- ``state`` - Task business state
+- ``startTimestamp`` - Creation date and time
+- ``endTimestamp`` - End date and time
+- ``expiryTimestamp`` - Expiry date and time
+- ``application`` - Application name
+- ``actions`` - Action buttons (details, reset, delegate, reserve, destroy, etc.)
 
-   ``columns``: column configurations for each of the columns in the widget. You
-   can predefine filters, styles, visibility,... of columns and define custom
-   columns, too:
+**Filters Configuration**
 
-      ``field``: the field name of the column
-         
-         For standard columns, ``field`` must be one of these:
-         
-            - ``start``: column which contains start button to start the task directly.
+The ``filters`` array defines pre-configured filter conditions:
 
-            - ``Pin``: column which contains Pin button to Pin your task.
-  
-            - ``priority``: task priority
+.. list-table::
+   :widths: 20 15 65
+   :header-rows: 1
 
-            - ``id``: task ID
+   * - Property
+     - Type
+     - Description
+   * - ``field``
+     - string
+     - Column field name to filter
+   * - ``values``
+     - array
+     - Filter values (format depends on field type)
+   * - ``operator``
+     - string
+     - Filter operator (see Filter Conditions section)
+   * - ``type``
+     - string
+     - ``"standard"`` or ``"custom"``
 
-            - ``name``: task name
+.. note::
+   For detailed filter configuration, see the :ref:`Filter Conditions <configure-new-dashboard-task-widget-filter-structure>` section below.
 
-            - ``description``: task description
-
-            - ``activator``: task activator
-
-            - ``state``: task business state
-
-            - ``startTimestamp``: created date and time of the task
-
-            - ``endTimestamp``: end date and time of the task
-
-            - ``expiryTimestamp``: expiry date and time of the task
-            
-            - ``actions``: for further actions: access task details, reset task, delegate task, reserve, destroy task, trigger escalation task and add Ad-hoc task
-
-         For custom columns, ``field`` is the name of a task custom field.
-         Portal will use the value of ``field`` to get the value of the column.
-
-      ``canWorkOn``: filter only tasks that the current user can work on. The default value is "false".
-
-      ``filterTasksByCurrentCaseOwner``: filter only the tasks where the current user is the case owner. The default value is ``false``. This filter is visible only if the ``Portal.Cases.EnableOwner`` setting is set to ``true`` in the :ref:`Admin Settings <update-portal-settings>`.
-
-      ``visible``: visibility of a column. The default value is "true".
-      Set to "false" to hide the column.
-
-      ``quickSearch``: Adds this field to the search scope of the quick search. The default value is ``false``.
-      Set it to ``true`` to apply search condition for the column.
-
-   -  ``headers``: multilingual header of the column.
 
 .. _configure-new-dashboard-task-widget-custom-columns:
 

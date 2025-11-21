@@ -8,31 +8,43 @@ User Menu
 Introduction
 ------------
 
-User menu is configurable. The user can add, remove and edit user items.
+The user menu can be customized to include additional items beyond the Portal's default entries. Custom items support two types of actions:
 
-These types of user items are available:
+**Available Item Types:**
 
-- Open external link
+- **Open External Link** - Redirect users to external websites or web applications
+- **Start Ivy Process** - Launch Ivy processes directly with optional parameters
 
-- Start Ivy Process
+**Configuration:**
 
-You can predefine user menu items and details of each item
-by configuring variable **Portal.UserMenu**.
+Custom user menu items are defined using the **Portal.UserMenu** variable. Configure this variable to predefine:
+
+- Menu item identifiers
+- Display titles (single or multilingual)
+- User/role permissions for visibility
+- Target URLs (external or process links)
+- Process parameters (for Ivy process starts)
 
 .. _customization-user-menu-definition:
 
 Define Your Own User Menu
--------------------------
+--------------------------
 
-Portal supports multiple configurable user items. They will be displayed below
-the default user item.
+Portal supports multiple configurable user menu items that display below the default entries (Profile, Admin Settings, Logout, etc.).
 
-You can predefine user item id, title, permissions to see, and URL for each user
-item.
+**HowTo: Configure Custom User Menu Items**
+
+#. Navigate to Engine Cockpit > Configuration > Variables
+#. Find or create the **Portal.UserMenu** variable
+#. Define your menu items using JSON configuration (see example below)
+#. Save the configuration
+#. Custom menu items appear immediately in the user menu
 
 |user-menu-configuration|
 
-Below is a JSON example for the configuration of user items.
+**Configuration Example:**
+
+Below is a comprehensive JSON example showing both external link and Ivy process configurations:
 
 .. code-block:: javascript
 
@@ -47,12 +59,12 @@ Below is a JSON example for the configuration of user items.
           "id" : "re-order-dashboard",
           "titles": [
               {
-              "locale": "en",
-              "value": "Reorder your dashboards"
+                  "locale": "en",
+                  "value": "Reorder your dashboards"
               },
               {
-              "locale": "de",
-              "value": "Dashboards neu anordnen"
+                  "locale": "de",
+                  "value": "Dashboards neu anordnen"
               }
           ],
           "permissions": ["Employee", "AXONIVY_PORTAL_ADMIN", "#daniel"],
@@ -65,31 +77,88 @@ Below is a JSON example for the configuration of user items.
 
 ..
 
-Structure of JSON for each user item:
+JSON Configuration Reference
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    ``id``: ID of the user item
+Each user menu item in the JSON array supports the following properties:
 
-    ``titles``: multilingual title of user item.
+**Required Properties:**
 
-    ``permissions``: users and roles that can see the user item.
+    ``id`` (string)
+        Unique identifier for the menu item
+        
+        - Must be unique across all menu items
+        - Used internally for tracking and configuration
 
-    .. tip::
-       If you don't define ``permissions`` for a user item, every user can see it.
+    ``url`` (string)
+        Target URL for the menu item
+        
+        - **External links:** Full URL starting with ``http://`` or ``https://``
+        - **Ivy processes:** Relative path to process start (e.g., ``Start Processes/MyApp/MyProcess.ivp``)
 
-    ``url``: the URL of the external webpage or Ivy process start you want to redirect to.
+**Title Properties (choose one):**
 
-    .. tip::
-        Ivy process start URLs are a **relative link** to the process.
+    ``title`` (string)
+        Single-language title displayed for all users
+        
+        - Simple option for single-language deployments
+        - Example: ``"title": "Company Intranet"``
 
-          - e.g: ``Start Processes/CreateTestData/CreateTestDataForCustomizedDashboard.ivp``
+    ``titles`` (array)
+        Multilingual titles for different locales
+        
+        - Each entry contains ``locale`` (language code) and ``value`` (translated text)
+        - Portal displays title matching user's language preference
+        - Falls back to first entry if user's locale not found
+        - Example:
+        
+          .. code-block:: javascript
+          
+              "titles": [
+                  {"locale": "en", "value": "My Dashboard"},
+                  {"locale": "de", "value": "Mein Dashboard"},
+                  {"locale": "fr", "value": "Mon tableau de bord"}
+              ]
 
-    ``params``: parameters for the Ivy process defined above. Each parameter can
-    be defined as a key-value pair as follows:
+**Optional Properties:**
 
-      - key : name of the parameter for the Ivy process.
-      - value: predefined value for the parameter.
+    ``permissions`` (array)
+        Users, roles, or groups that can see this menu item
+        
+        - **Roles:** Role names (e.g., ``"Employee"``, ``"AXONIVY_PORTAL_ADMIN"``)
+        - **Users:** Username prefixed with ``#`` (e.g., ``"#john.doe"``, ``"#admin"``)
+        - **Multiple entries:** User sees item if they match ANY permission
+        - **Omit for public:** If not specified, all users can see the item
 
-    .. tip::
-       Params are not required if the URL denotes an external webpage.
+    ``params`` (object)
+        Parameters passed to Ivy process starts
+        
+        - Only applicable for Ivy process URLs (not external links)
+        - Each parameter is a key-value pair
+        - **Key:** Parameter name expected by the Ivy process
+        - **Value:** Predefined value passed to the process
+        - Example: ``"params": {"dashboardId": "123", "mode": "edit"}``
+
+.. tip::
+   **Permission Configuration Best Practices:**
+   
+   - Use roles for broad access control (e.g., all employees)
+   - Use specific usernames for testing or user-specific menu items
+   - Combine roles and users for flexible access (e.g., ``["Manager", "#admin", "#special.user"]``)
+   - Omit permissions entirely for menu items all users should see
+
+.. note::
+   **Process URL Format:**
+   
+   Ivy process start URLs must be relative paths from the application root:
+   
+   - Correct: ``Start Processes/MyApp/MyProcess.ivp``
+   - Incorrect: ``/portal/Start Processes/MyApp/MyProcess.ivp``
+   - Incorrect: ``https://server/ivy/pro/portal/Start Processes/MyApp/MyProcess.ivp``
+
+.. important::
+   **Configuration Changes:**
+   
+   Changes to the Portal.UserMenu variable take effect immediately. Users may need to refresh their browser to see updates.
 
 .. |user-menu-configuration| image:: ../../screenshots/settings/user-menu-configuration.png

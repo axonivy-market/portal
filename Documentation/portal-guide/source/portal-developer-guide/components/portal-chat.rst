@@ -3,44 +3,70 @@
 Portal Chat
 ===========
 
-.. _components-portal-chat-chat-feature:
+Portal provides an integrated chat feature for real-time communication between users. Chat functionality is primarily configured through :ref:`Admin Settings <admin-settings>` rather than requiring custom development.
 
-Chat Feature
-------------
+Overview
+--------
 
 |chat|
 
-.. _components-portal-chat-information:
+Configuration
+-------------
 
-Information
+For end-user instructions on activating and using Portal Chat, see the :ref:`Portal Chat User Guide <portal-chat>`.
+
+**Key Configuration Settings:**
+
+.. table::
+   :widths: 40 60
+
+   +--------------------------------------+--------------------------------------------------------+
+   | Setting                              | Purpose                                                |
+   +======================================+========================================================+
+   | **Portal.Chat.Enabled**              | Enable or disable chat feature                         |
+   +--------------------------------------+--------------------------------------------------------+
+   | **Portal.Chat.ResponseTimeout**      | Long-polling timeout (important for reverse proxies)   |
+   +--------------------------------------+--------------------------------------------------------+
+   | **Portal.Chat.MaxConnection**        | Maximum concurrent chat connections per user           |
+   +--------------------------------------+--------------------------------------------------------+
+
+Configure these settings in :ref:`Admin Settings <update-portal-settings>`.
+
+Technical Considerations
+------------------------
+
+**Reverse Proxy Configuration**
+
+If browsers access Portal through a reverse proxy like Nginx, set ``Portal.Chat.ResponseTimeout`` to less than the proxy timeout (usually 60 seconds) to prevent connection abortions.
+
+**Browser Connection Limits**
+
+Each browser tab uses one long-polling request for chat. Browsers typically limit parallel long-polling requests per domain (usually 6 or more).
+
+Portal handles this with the ``Portal.Chat.MaxConnection`` setting (default: 3):
+
+- When a fourth tab opens, chat in one inactive tab is deactivated
+- Selecting a deactivated tab refreshes all chat information and reactivates chat
+- If more than MaxConnection tabs remain open, chat in another tab deactivates
+
+**Tomcat Valve Configuration**
+
+If your system uses an additional Tomcat **Valve**, add ``asyncSupported`` in ``Context.xml``. See :dev-url:`File Reference </doc/12.0/engine-guide/configuration/files/context-xml.html>` for details.
+
+.. code-block:: xml
+
+   <Context>
+     <Valve className="..." asyncSupported="true" />
+   </Context>
+
+Limitations
 -----------
 
-- To use Portal chat, refer to :ref:`portal-chat`
+**Single-Application Scope**
 
-- The chat feature has been rewritten in Ivy 7.4.
+Portal Chat does not support cross-application chat. Users can chat with other users in the current application, but cannot chat with users in other applications within the same security context.
 
-- If browsers access Portal through a reverse proxy like Nginx, set Portal setting **Portal.Chat.ResponseTimeout** to less than the Nginx timeout (usually 60 seconds) to prevent connection abortions.
-
-- Each tab uses one long-polling request for chat. Browsers limit the number of parallel long-polling requests for one domain. The maximumis usually six or more.
-  To handle this limitation, Portal introduced the setting **Portal.Chat.MaxConnection**. Default value is 3. If a fourth tab is opened, chat in one inactive tab will be deactivated.
-  If you select a tab where chat has been deactivated, all chat information will be refreshed and chat is activated again. If there are still more than MaxConnection chat tabs open, chat in another tab will be deactivated.
-
-- If your system uses an additional Tomcat **Valve**, then we recommend to add asyncSupported in file ``Context.xml``. An example file is available at :dev-url:`File Reference </doc/12.0/engine-guide/configuration/files/context-xml.html>`.
-
-  .. code-block:: html
-
-    <Context>
-      <Valve className="..." asyncSupported="true" />
-    </Context>
-
-
-.. _components-portal-chat-limitation:
-
-Limitations Of Current Portal Chat
-----------------------------------
-
-Portal Chat does not support cross-application chat. That means users are
-able to chat with other users in the current application, but they cannot chat
-with users in other applications.
+.. note::
+   Chat operates within application boundaries. For multi-application deployments, each application maintains its own separate chat context.
 
 .. |chat| image:: ../../screenshots/chat/chat.png

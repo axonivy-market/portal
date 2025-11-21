@@ -3,100 +3,161 @@
 Installation
 ************
 
-The Installation section describes all steps necessary to install and configure
-the Portal. If you install your application the first time, then it is important
-to start with the Basic installation. This section describes all initial steps
-that must be done for the first installation. If the application is already
-installed and configured, refer to `Migration notes`_ to migrate it.
+This guide covers Portal installation, configuration, and migration procedures. Whether you're installing Portal for the first time or upgrading from a previous version, follow the appropriate sections below.
+
+Overview
+========
+
+.. table::
+   :widths: 30 70
+
+   +---------------------------+----------------------------------------------------------------+
+   | Installation Type         | Description                                                    |
+   +===========================+================================================================+
+   | **Basic Installation**    | First-time Portal setup with initial configuration             |
+   +---------------------------+----------------------------------------------------------------+
+   | **Migration**             | Upgrade existing Portal to a new version                       |
+   +---------------------------+----------------------------------------------------------------+
+   | **Multi-App Setup**       | Deploy Portal across multiple applications                     |
+   +---------------------------+----------------------------------------------------------------+
+
+.. important::
+   For first-time installations, follow the :ref:`Basic Installation <basic-installation>` section. For existing Portal installations, refer to :ref:`Migration Notes <installation-migration-notes>`.
+
+.. _basic-installation:
 
 Basic Installation
 ==================
 
-Project Modules
----------------
+Prerequisites
+-------------
 
-The application consists of 2 process modules. For detailed information
-on each module, refer to :ref:`architecture`.
+- Axon Ivy Designer or Engine
+- Understanding of :ref:`Portal architecture <architecture>`
+- For production: Valid Axon Ivy Engine license
 
--  portal-components
--  portal
+Portal Modules
+--------------
 
-The deployment of Ivy projects is described in :dev-url:`project
-deployment </doc/12.0/engine-guide/deployment/index.html>`
-.
+The Portal application consists of 2 process modules:
 
-Installation
-------------
+.. table::
+   :widths: 30 70
+
+   +-------------------------+-----------------------------------------------------------+
+   | Module                  | Purpose                                                   |
+   +=========================+===========================================================+
+   | **portal-components**   | Public UI components and APIs for reuse                   |
+   +-------------------------+-----------------------------------------------------------+
+   | **portal**              | Portal-specific UI, templates, and pages                  |
+   +-------------------------+-----------------------------------------------------------+
+
+For detailed module information, refer to :ref:`architecture`.
+
+For project deployment procedures, see :dev-url:`project deployment </doc/12.0/engine-guide/deployment/index.html>`.
+
+Installation by Environment
+---------------------------
 
 Designer
 ^^^^^^^^
 
-Import Portal modules to Designer.
+Import Portal modules (portal and portal-components) to your Axon Ivy Designer.
 
-Engine Without License (Demo Mode)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Demo Mode (Engine Without License)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The engine automatically deploys the Portal application with the following set
-of default users:
+The engine automatically deploys the Portal application with pre-configured demo users:
 
 .. table::
+   :widths: 20 20 60
 
-   +-----------------------+-----------------------+-----------------------+
-   | Username              | Password              | Description           |
-   +=======================+=======================+=======================+
-   | admin                 | admin                 | This user has all     |
-   |                       |                       | Portal permissions,   |
-   |                       |                       | can access Portal     |
-   |                       |                       | Admin Settings.       |
-   +-----------------------+-----------------------+-----------------------+
-   | demo                  | demo                  | This user has         |
-   |                       |                       | permission to manage  |
-   |                       |                       | user absences.        |
-   +-----------------------+-----------------------+-----------------------+
-   | guest                 | guest                 | Default standard user |
-   |                       |                       | of the portal.        |
-   +-----------------------+-----------------------+-----------------------+
+   +-----------------------+-----------------------+-----------------------------------------------+
+   | Username              | Password              | Description                                   |
+   +=======================+=======================+===============================================+
+   | **admin**             | admin                 | Full Portal permissions, can access           |
+   |                       |                       | Admin Settings                                |
+   +-----------------------+-----------------------+-----------------------------------------------+
+   | **demo**              | demo                  | Can manage user absences                      |
+   +-----------------------+-----------------------+-----------------------------------------------+
+   | **guest**             | guest                 | Standard Portal user                          |
+   +-----------------------+-----------------------+-----------------------------------------------+
 
+.. warning::
+   Demo users are for development/testing only. Do not use in production environments.
 
-Engine With License (Production Mode)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Production Mode (Engine With License)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The engine does not deploy anything, you need to deploy and configure the Portal
-application manually.
+The engine does not deploy Portal automatically. You must deploy and configure Portal manually.
 
-Install Dashboard configuration file to engine (Production Mode)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-To install Dashboard JSON configuration file to the Axon Ivy Engine, you can choose 1 of these ways
+Dashboard Configuration
+^^^^^^^^^^^^^^^^^^^^^^^
 
-- Include the Dashboard.json file in the app.zip under ``<app.zip>/config/variables/Portal.Dashboard.json`` as shown in the structure below
+To install the Dashboard JSON configuration file to your Axon Ivy Engine, choose one of these methods:
 
-   .. code-block:: 
+**Method 1: Include in app.zip (Recommended)**
 
-      app.zip
-      ├── config
-      │   └── app.yaml
-      |   └── variables
-      |       └── Portal.Dashboard.json
-      ├── portal.iar
-      ├── portal-components.iar    
-   ..
+Include the Dashboard.json file in your app.zip under ``<app.zip>/config/variables/Portal.Dashboard.json``:
 
-   The JSON file name has to be Portal.Dashboard.json. Refer to :dev-url:`Engine Deployment</doc/12.0/engine-guide/deployment/index.html>`
-- Copy the Dashboard.json file directly into your ``<application>`` folder following this path ``<engine>/configuration/applications/<application>``. The Json file name has to be named ``variables.Portal.Dashboard.json``
+.. code-block:: text
 
-- Use the import dashboard feature of the Portal. Refer to :ref:`How to import your public dashboards<howto-import-your-public-dashboards>`
+   app.zip
+   ├── config
+   │   ├── app.yaml
+   │   └── variables
+   │       └── Portal.Dashboard.json
+   ├── portal.iar
+   └── portal-components.iar
 
-Setup Portal multi applications
-"""""""""""""""""""""""""""""""
 .. important::
+   The JSON file must be named ``Portal.Dashboard.json``.
 
-   This is used to display common task lists for each user in several applications. The Task/Case lists of all applications installed in a security context are displayed by the Portal running in this security context.
+See :dev-url:`Engine Deployment </doc/12.0/engine-guide/deployment/index.html>` for details.
 
-All applications are in the same security context and the **portal-components** should be the only part being deployed in the other applications. See :ref:`The Portal multi applications <multi-app-structure>` overview.
+**Method 2: Copy to Application Folder**
 
--  Create a new application. Deploy Portal (portal, portal-components) to this application.
+Copy the Dashboard.json file directly to: ``<engine>/configuration/applications/<application>/variables.Portal.Dashboard.json``
 
--  Create new applications: App 1, App 2,... Deploy your projects to the new applications.
+.. note::
+   The file must be named ``variables.Portal.Dashboard.json`` when using this method.
+
+**Method 3: Use Portal Import Feature**
+
+Use the Portal's import dashboard feature. See :ref:`How to import your public dashboards <howto-import-your-public-dashboards>`.
+
+Multi-Application Setup
+^^^^^^^^^^^^^^^^^^^^^^^
+
+This configuration displays unified task lists across multiple applications within the same security context.
+
+.. important::
+   The Portal running in a security context displays Task/Case lists from all applications in that context.
+
+**Architecture:**
+
+- **Application 1 (Portal)**: portal + portal-components  
+- **Application 2+ (Your Apps)**: your projects + portal-components (only if using Portal UI components)
+
+All applications must be in the same security context. Deploy **portal-components** to your custom applications only if you need to use Portal UI components or APIs. See :ref:`The Portal multi-application setup <multi-app-structure>` for details.
+
+**HowTo: Set Up Multi-Application Deployment**
+
+#. Create a new application for Portal
+
+#. Deploy both Portal modules (portal and portal-components) to this application
+
+#. Create additional applications for your projects (App1, App2, etc.)
+
+#. Deploy your projects to these applications
+
+#. (Optional) Add portal-components as a dependency if you want to reuse Portal UI components in your applications
+
+#. Verify all applications are in the same security context
+
+#. Deploy your projects along with portal-components to these applications
+
+#. Verify all applications are in the same security context
 
 
 .. _installation-migration-notes:
