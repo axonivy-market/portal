@@ -34,7 +34,7 @@ Portal settings can be configured through multiple interfaces depending on your 
 
 **Related Sections:**
 
-- :ref:`Permissions <permissions>` - Detailed permission reference
+- :ref:`Permissions <list-permissions>` - Detailed permission reference
 - :ref:`Dashboard Configuration <customization-new-dashboard>` - Configure dashboards
 - :ref:`Customization <customization>` - Extend Portal functionality
 - :ref:`Deployment <deployment>` - Production deployment settings

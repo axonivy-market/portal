@@ -320,7 +320,7 @@ Templates are configured using the **Portal.DashboardTemplates** variable.
    Template configuration is optional. Portal provides default templates out of the box.
 
 Configure Dashboard Main Menu Item
-------------------------------
+----------------------------------
 
 Customize the parent "Dashboard" menu item that appears in Portal's main navigation.
 When you have multiple dashboards, they are grouped under this menu item as a dropdown.
