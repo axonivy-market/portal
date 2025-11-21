@@ -13,6 +13,8 @@ import ch.ivy.addon.portalkit.ivydata.bo.IvySubstitute;
 import ch.ivy.addon.portalkit.ivydata.dto.IvySubstituteResultDTO;
 import ch.ivy.addon.portalkit.ivydata.service.ISubstituteService;
 import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
+import ch.ivy.addon.portalkit.util.UserUtils;
+import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.security.IUserSubstitute;
@@ -135,11 +137,10 @@ public class SubstituteService implements ISubstituteService {
   @Override
   public void saveSubstitutes(UserDTO userDTO, List<IvySubstitute> ivySubstitutes) {
     Sudo.get(() -> { 
-      if (userDTO == null) {
-        return Void.class;
+      IUser user = Ivy.session().getSessionUser();
+      if (userDTO != null && null != userDTO.getName()) {
+        user = UserUtils.findUserByUsername(userDTO.getName());
       }
-
-      IUser user = ServiceUtilities.findUser(userDTO.getName());
       deleteSubstitutes(user);
       createSubstitutes(ivySubstitutes, user);
       return Void.class;
