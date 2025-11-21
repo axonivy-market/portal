@@ -4,6 +4,42 @@ Permission List
 ===============
 
 Comprehensive reference of all Portal permissions. Use this list to assign least-privilege access and understand which features each permission controls.
+Proper permission configuration ensures Portal security aligns with your organization's access control policies.
+
+**Permission Architecture:**
+
+Portal's permission system extends Axon Ivy Engine's core security model with Portal-specific permissions. All permissions are configured in the Engine Cockpit under the PortalPermissions section and can be assigned to:
+
+- **Roles**: Grant permissions to all users with specific roles (e.g., "Manager", "Employee")
+- **Individual Users**: Grant permissions to specific user accounts (prefix with ``#``)
+- **Combinations**: Mix role-based and user-specific permissions for granular control
+
+**How to Use This Reference:**
+
+#. Find the permission category matching your use case
+#. Locate the specific permission you need to configure
+#. Note the permission name (used in Engine Cockpit configuration)
+#. Assign permission to appropriate roles or users
+#. Test with users from different roles to verify behavior
+
+**Configuration Location:**
+
+All permissions are configured in the :dev-url:`Engine Cockpit </doc/12.0/engine-guide/reference/engine-cockpit/security.html>` under Security > PortalPermissions. 
+For detailed configuration instructions and examples, see :ref:`Permission Settings <settings-permission-settings>`.
+
+**Best Practices:**
+
+- **Start with Roles**: Assign permissions to roles rather than individual users for easier maintenance
+- **Principle of Least Privilege**: Grant only the permissions users need for their work
+- **Test Thoroughly**: Verify permission configurations with users from different roles
+- **Document Decisions**: Keep track of why specific permissions were granted or denied
+
+**Related Sections:**
+
+- :ref:`Settings <settings-permission-settings>` - Permission configuration examples and detailed explanations
+- :ref:`Customization <customization>` - Build custom permission-based features
+
+Comprehensive reference of all Portal permissions. Use this list to assign least-privilege access and understand which features each permission controls.
 
 Overview
 --------

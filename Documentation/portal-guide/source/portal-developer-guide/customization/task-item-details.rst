@@ -3,12 +3,13 @@
 Task Item Details
 =================
 
-TaskItemDetails is a built-in component of Portal which contains the
-role, user, task, case and time information which users can interact with.
-To show needed task's information,
-Portal supports you to override concepts of TaskItemDetails component.
+Introduction
+------------
 
-Each TaskItemDetails contains
+The Task Item Details customization allows you to control which information widgets appear on task detail pages, including data descriptions, documents, histories, and custom panels.
+By overriding TaskItemDetails component concepts, you can tailor the task information display to match your business requirements and provide users with the most relevant task context.
+
+TaskItemDetails is a built-in component of Portal containing role, user, task, case, and time information. Each TaskItemDetails page contains:
 
 -  **Data and Description** ``1``
 

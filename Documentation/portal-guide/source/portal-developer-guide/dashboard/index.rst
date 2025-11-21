@@ -4,6 +4,20 @@ Portal Dashboard
 ================
 
 Create and customize flexible dashboards with drag-and-drop widgets, filters, and multilingual support.
+Portal dashboards enable users to build personalized workspaces that display tasks, cases, processes, statistics, and custom content in configurable layouts.
+
+**When to Use Dashboard Customization:**
+
+- Create role-specific dashboards (e.g., Manager Dashboard, HR Dashboard)
+- Display filtered task/case lists for specific departments or workflows
+- Embed external applications or reports directly into Portal
+- Show custom business metrics and statistics
+- Provide quick access to frequently-used processes
+
+**Related Sections:**
+
+- :ref:`Dashboard Templates <customization-dashboard-templates>` - Pre-built dashboard configurations
+- :ref:`Permissions <permission-general-permissions>` - Control dashboard access
 
 Overview
 --------
@@ -305,18 +319,20 @@ Templates are configured using the **Portal.DashboardTemplates** variable.
 .. note::
    Template configuration is optional. Portal provides default templates out of the box.
 
-Configure Main Menu Entry Dashboard
------------------------------------
+Configure Dashboard Main Menu Item
+------------------------------
 
-Customize how the Dashboard appears in Portal's main navigation menu by configuring its label and icon.
+Customize the parent "Dashboard" menu item that appears in Portal's main navigation.
+When you have multiple dashboards, they are grouped under this menu item as a dropdown.
+This configuration allows you to customize the label and icon of this grouping menu item.
 
-**HowTo: Customize Dashboard Menu Entry**
+**HowTo: Customize Dashboard Menu Item**
 
 #. Navigate to Engine Cockpit > Configuration > Variables
 #. Find or create the **Portal.Dashboard.MainMenuEntry** variable
 #. Configure menu entry using JSON (see example below)
 #. Save the configuration
-#. Dashboard menu entry updates immediately
+#. Dashboard menu item updates immediately
 
 **Configuration Example:**
 

@@ -85,58 +85,42 @@ JSON Configuration Reference
 
 **Template Properties**
 
-.. list-table::
-   :widths: 20 15 65
-   :header-rows: 1
+``id`` (string, required)
+   Unique identifier for the template. Must be unique across all templates
 
-   * - Property
-     - Type
-     - Description
-   * - ``id``
-     - string
-     - **Required.** Unique identifier for the template. Must be unique across all templates
-   * - ``titles``
-     - array
-     - **Required.** Multilingual titles displayed in template selection. Format: ``[{"locale": "en", "value": "Title"}]``
-   * - ``descriptions``
-     - array
-     - **Required.** Multilingual descriptions shown in template selection. Format: ``[{"locale": "en", "value": "Description"}]``
-   * - ``icon``
-     - string
-     - **Required.** Streamline icon class for template display (e.g., ``"si-cog-double-2"``)
-   * - ``dashboard``
-     - object
-     - **Required.** Complete dashboard configuration (see Dashboard Configuration below)
+``titles`` (array, required)
+   Multilingual titles displayed in template selection. Format: ``[{"locale": "en", "value": "Title"}]``
+
+``descriptions`` (array, required)
+   Multilingual descriptions shown in template selection. Format: ``[{"locale": "en", "value": "Description"}]``
+
+``icon`` (string, required)
+   Streamline icon class for template display (e.g., ``"si-cog-double-2"``)
+
+``dashboard`` (object, required)
+   Complete dashboard configuration (see Dashboard Configuration below)
 
 **Dashboard Configuration**
 
 The ``dashboard`` object contains the full dashboard definition that will be created when the template is selected:
 
-.. list-table::
-   :widths: 20 15 65
-   :header-rows: 1
+``id`` (string)
+   Dashboard identifier
 
-   * - Property
-     - Type
-     - Description
-   * - ``id``
-     - string
-     - Dashboard identifier
-   * - ``templateId``
-     - string
-     - Reference to the template ID
-   * - ``titles``
-     - array
-     - Multilingual dashboard titles: ``[{"locale": "en", "value": "Title"}]``
-   * - ``permissions``
-     - array
-     - List of roles/users with access (e.g., ``["Everybody"]``, ``["#admin"]``)
-   * - ``widgets``
-     - array
-     - Array of widget configurations (task, case, process, custom, etc.)
-   * - Additional properties
-     - various
-     - See :ref:`Dashboard Configuration <customization-new-dashboard>` for full details
+``templateId`` (string)
+   Reference to the template ID
+
+``titles`` (array)
+   Multilingual dashboard titles: ``[{"locale": "en", "value": "Title"}]``
+
+``permissions`` (array)
+   List of roles/users with access (e.g., ``["Everybody"]``, ``["#admin"]``)
+
+``widgets`` (array)
+   Array of widget configurations (task, case, process, custom, etc.)
+
+Additional properties (various)
+   See :ref:`Dashboard Configuration <customization-new-dashboard>` for full details
 
 .. tip::
    **Icon Selection:** Portal supports Streamline icons. Find available icons in the `HTML Dialog Demo <https://market.axonivy.com/html-dialog-demo>`_.

@@ -12,6 +12,34 @@ Settings
 ********
 
 This guide covers Portal configuration including roles, permissions, variables, and integrations. Settings control global Portal behavior across dashboards, widgets, and administrative features.
+Proper configuration ensures Portal aligns with your organization's security policies, business processes, and user experience requirements.
+
+**What Settings Control:**
+
+- User interface language and translations
+- Security roles and permissions for Portal features
+- Global variables affecting Portal behavior
+- Document upload restrictions and virus scanning
+- External integrations (announcements, third-party apps, external links)
+- Statistical chart configurations for dashboards
+
+**Configuration Methods:**
+
+Portal settings can be configured through multiple interfaces depending on your needs:
+
+#. **Admin Settings UI** - User-friendly interface for common settings (recommended for non-technical admins)
+#. **Engine Cockpit Variables** - Direct variable editing for advanced configuration
+#. **Variable YAML Files** - Development-time configuration that persists across Designer restarts
+#. **JSON Configuration Files** - Complex configurations like dashboards and announcements
+
+**Related Sections:**
+
+- :ref:`Permissions <permissions>` - Detailed permission reference
+- :ref:`Dashboard Configuration <customization-new-dashboard>` - Configure dashboards
+- :ref:`Customization <customization>` - Extend Portal functionality
+- :ref:`Deployment <deployment>` - Production deployment settings
+
+This guide covers Portal configuration including roles, permissions, variables, and integrations. Settings control global Portal behavior across dashboards, widgets, and administrative features.
 
 Overview
 ========

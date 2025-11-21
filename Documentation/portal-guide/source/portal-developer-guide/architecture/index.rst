@@ -6,9 +6,34 @@ Architecture
 .. important::
    The CSS styles, Java methods, etc. that are not explicitly documented are internal to the Portal. 
    Do not rely on them, as they may change in future versions.
+   Only use documented APIs, components, and customization points to ensure compatibility with future Portal releases.
 
 Overview
 ========
+
+Portal provides a modular architecture designed for flexibility, maintainability, and upgrade safety.
+Understanding Portal's structure and how it integrates with your applications is essential for successful implementation, customization, and long-term maintenance.
+
+**Architecture Principles:**
+
+#. **Separation of Concerns**: Portal provides the workbench, your apps provide business logic
+#. **Shared Components**: Reuse Portal UI components across all your applications
+#. **Configuration Over Code**: Customize through settings rather than code modifications
+#. **Iframe Isolation**: Your processes run independently while maintaining Portal integration
+
+**Key Concepts for Developers:**
+
+- **Security Context**: All Portal applications must share the same security context for task/case visibility
+- **Component Reuse**: Import portal-components into your apps to use Portal's UI components
+- **Public API**: Use documented APIs and customization points only
+- **Template Pattern**: Use Portal templates for consistent UI in your processes
+
+**Related Sections:**
+
+- :ref:`Installation <installation>` - Set up Portal in development
+- :ref:`Deployment <deployment>` - Deploy Portal to production
+- :ref:`Customization <customization>` - Extend Portal functionality
+- :ref:`IFrame Integration <iframe-in-portal>` - Embed processes in Portal
 
 Portal provides a modular architecture designed for flexibility and maintainability. Understanding how Portal integrates with your applications is essential for successful implementation.
 

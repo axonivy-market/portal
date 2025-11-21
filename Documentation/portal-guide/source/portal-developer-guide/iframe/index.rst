@@ -3,7 +3,6 @@
 IFrame In Portal
 ****************
 
-Portal renders custom process UIs inside iFrames to maintain separation between Portal and your custom applications. This decoupling simplifies development, reduces dependencies, and makes future Portal upgrades easier.
 
 Overview
 ========
@@ -120,98 +119,58 @@ Template Parameters Reference
 
 **Task Details**
 
-.. list-table::
-   :widths: 25 15 60
-   :header-rows: 1
+``taskName`` (string)
+   Custom text for the task name display
 
-   * - Parameter
-     - Type
-     - Description
-   * - ``taskName``
-     - string
-     - Custom text for the task name display
-   * - ``taskIcon``
-     - string
-     - Icon using Streamline or Font Awesome (e.g., ``"si si-bulb"``)
-   * - ``isHideTaskName``
-     - boolean
-     - ``true`` = hide task name, ``false`` = show (default)
+``taskIcon`` (string)
+   Icon using Streamline or Font Awesome (e.g., ``"si si-bulb"``)
+
+``isHideTaskName`` (boolean, default: ``false``)
+   ``true`` = hide task name, ``false`` = show
 
 **Case Information**
 
-.. list-table::
-   :widths: 25 15 60
-   :header-rows: 1
+``caseId`` (string)
+   ID of the case to display in case information dialog
 
-   * - Parameter
-     - Type
-     - Description
-   * - ``caseId``
-     - string
-     - ID of the case to display in case information dialog
-   * - ``isHideCaseInfo``
-     - boolean
-     - ``true`` = hide "Show Information" button, ``false`` = show (default)
+``isHideCaseInfo`` (boolean, default: ``false``)
+   ``true`` = hide "Show Information" button, ``false`` = show
 
 **Process Steps**
 
-.. list-table::
-   :widths: 25 15 60
-   :header-rows: 1
+``currentProcessStep`` (string/number)
+   Current step index or step name
 
-   * - Parameter
-     - Type
-     - Description
-   * - ``currentProcessStep``
-     - string/number
-     - Current step index or step name
-   * - ``processSteps``
-     - string/array
-     - List of step names or JSON string
-   * - ``isShowAllSteps``
-     - boolean
-     - ``true`` = show all steps on large screens, ``false`` = compact view (default)
-   * - ``processChainDirection``
-     - string
-     - ``"VERTICAL"`` or ``"HORIZONTAL"``
-   * - ``processChainShape``
-     - string
-     - ``"LINE"`` or ``"CIRCLE"``
+``processSteps`` (string/array)
+   List of step names or JSON string
+
+``isShowAllSteps`` (boolean, default: ``false``  
+   ``true`` = show all steps on large screens, ``false`` = compact view
+
+``processChainDirection`` (string)
+   ``"VERTICAL"`` or ``"HORIZONTAL"``
+
+``processChainShape`` (string)
+   ``"LINE"`` or ``"CIRCLE"``
 
 **Task Actions**
 
-.. list-table::
-   :widths: 25 15 60
-   :header-rows: 1
+``isHideTaskAction`` (boolean, default: ``false``)
+   ``true`` = hide task action button, ``false`` = show
 
-   * - Parameter
-     - Type
-     - Description
-   * - ``isHideTaskAction``
-     - boolean
-     - ``true`` = hide task action button, ``false`` = show (default)
-   * - ``isWorkingOnATask``
-     - boolean
-     - ``true`` = show navigation warning (default), ``false`` = no warning
+``isWorkingOnATask`` (boolean, default: ``true``)
+   ``true`` = show navigation warning, ``false`` = no warning
 
 **Miscellaneous**
 
-.. list-table::
-   :widths: 25 15 60
-   :header-rows: 1
+``announcementInvisible`` (boolean, default: ``false``)
+   ``true`` = hide announcements, ``false`` = show
 
-   * - Parameter
-     - Type
-     - Description
-   * - ``announcementInvisible``
-     - boolean
-     - ``true`` = hide announcements, ``false`` = show (default)
-   * - ``isCardFrame``
-     - boolean
-     - ``true`` = display content in card-style container, ``false`` = standard (default)
-   * - ``viewName``
-     - string
-     - Custom breadcrumb view (see View Names below)
+``isCardFrame`` (boolean, default: ``false``)
+   ``true`` = display content in card-style container, ``false`` = standard
+
+``viewName`` (string)
+   Custom breadcrumb view (see View Names below)
 
 **Available View Names:**
 

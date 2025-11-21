@@ -47,6 +47,15 @@ Most Portal features are now configured through :ref:`Admin Settings <admin-sett
 - Integrate portal-components into your custom applications
 - Call Portal APIs for navigation and task management
 
+**Need Help?**
+
+If you encounter issues during development or deployment:
+
+- Check :ref:`troubleshooting` for common problems and solutions
+- Review :ref:`installation-migration-notes` when upgrading Portal versions
+- Visit the `Axon Ivy Community <https://community.axonivy.com/>`_ for questions
+- Contact support@axonivy.com for licensed support
+
 .. _introduction-new-and-note-worthy-12.0:
 
 New & Noteworthy 12

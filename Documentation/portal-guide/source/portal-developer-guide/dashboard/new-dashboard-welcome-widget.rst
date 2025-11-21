@@ -62,147 +62,97 @@ JSON Configuration Reference
 
 **Required Properties**
 
-.. list-table::
-   :widths: 20 15 65
-   :header-rows: 1
+``type`` (string)
+   Widget type. Must be ``"welcome"`` for welcome widget
 
-   * - Property
-     - Type
-     - Description
-   * - ``type``
-     - string
-     - Widget type. Must be ``"welcome"`` for welcome widget
-   * - ``id``
-     - string
-     - Unique identifier for the widget
-   * - ``layout``
-     - object
-     - Widget position and size (see Layout Properties below)
-   * - ``welcomeTexts``
-     - array
-     - Multilingual welcome messages. Format: ``[{"locale": "en", "value": "Text"}]``
+``id`` (string)
+   Unique identifier for the widget
+
+``layout`` (object)
+   Widget position and size (see Layout Properties below)
+
+``welcomeTexts`` (array)
+   Multilingual welcome messages. Format: ``[{"locale": "en", "value": "Text"}]``
 
 **Layout Properties**
 
-.. list-table::
-   :widths: 20 15 65
-   :header-rows: 1
+``x`` (number)
+   Column position in 12-column grid (0-11). CSS left = ``x / 12 * 100%``
 
-   * - Property
-     - Type
-     - Description
-   * - ``x``
-     - number
-     - Column position in 12-column grid (0-11). CSS left = ``x / 12 * 100%``
-   * - ``y``
-     - number
-     - Row position. CSS top = ``y / 12 * 100%``
-   * - ``w``
-     - number
-     - Width in grid columns (1-12). Pixel width = ``60 * w + 20 * (w - 1)``
-   * - ``h``
-     - number
-     - Height in grid rows (min 2). Pixel height = ``60 * h + 20 * (h - 1)``
-   * - ``styleClass``
-     - string
-     - *(Optional)* CSS classes for custom styling
-   * - ``style``
-     - string
-     - *(Optional)* Inline CSS styles
+``y`` (number)
+   Row position. CSS top = ``y / 12 * 100%``
+
+``w`` (number)
+   Width in grid columns (1-12). Pixel width = ``60 * w + 20 * (w - 1)``
+
+``h`` (number)
+   Height in grid rows (min 2). Pixel height = ``60 * h + 20 * (h - 1)``
+
+``styleClass`` (string, optional)
+   CSS classes for custom styling
+
+``style`` (string, optional)
+   Inline CSS styles
 
 .. tip::
    **Recommended welcome widget size:** Width 12 columns (full width), Height 3-5 rows for prominent display.
 
 **Text Configuration Properties**
 
-.. list-table::
-   :widths: 25 15 15 45
-   :header-rows: 1
+``welcomeTextPosition`` (string, default: ``BOTTOM_LEFT``)
+   Text position: ``BOTTOM_LEFT``, ``BOTTOM_RIGHT``, ``TOP_LEFT``, ``TOP_RIGHT``, ``CENTER``
 
-   * - Property
-     - Type
-     - Default
-     - Description
-   * - ``welcomeTextPosition``
-     - string
-     - ``BOTTOM_LEFT``
-     - Text position: ``BOTTOM_LEFT``, ``BOTTOM_RIGHT``, ``TOP_LEFT``, ``TOP_RIGHT``, ``CENTER``
-   * - ``welcomeTextSize``
-     - string
-     - ``NORMAL_TEXT``
-     - Font size: ``NORMAL_TEXT`` (1.5rem), ``HEADING_3`` (2.5rem), ``HEADING_2`` (3.5rem), ``HEADING_1`` (5rem)
-   * - ``welcomeTextColor``
-     - string
-     - *(theme default)*
-     - Text color in light mode (CSS color value, e.g., ``#FFFFFF``)
-   * - ``welcomeTextColorDarkMode``
-     - string
-     - *(theme default)*
-     - Text color in dark mode (CSS color value)
-   * - ``greeting``
-     - boolean
-     - ``false``
-     - ``true`` = show time-based greeting + custom text, ``false`` = show custom text only
-   * - ``welcomeTextStyleClass``
-     - string
-     - *(none)*
-     - CSS class for text styling
+``welcomeTextSize`` (string, default: ``NORMAL_TEXT``)
+   Font size: ``NORMAL_TEXT`` (1.5rem), ``HEADING_3`` (2.5rem), ``HEADING_2`` (3.5rem), ``HEADING_1`` (5rem)
+
+``welcomeTextColor`` (string, optional)
+   Text color in light mode (CSS color value, e.g., ``#FFFFFF``)
+
+``welcomeTextColorDarkMode`` (string, optional)
+   Text color in dark mode (CSS color value)
+
+``greeting`` (boolean, default: ``false``)
+   ``true`` = show time-based greeting + custom text, ``false`` = show custom text only
+
+``welcomeTextStyleClass`` (string, optional)
+   CSS class for text styling
 
 **Image Configuration Properties**
 
-.. list-table::
-   :widths: 25 15 15 45
-   :header-rows: 1
+``welcomeImageFit`` (string, default: ``COVER``)
+   Image resize mode: ``NONE``, ``FILL``, ``COVER``, ``CONTAIN``
 
-   * - Property
-     - Type
-     - Default
-     - Description
-   * - ``welcomeImageFit``
-     - string
-     - ``COVER``
-     - Image resize mode: ``NONE``, ``FILL``, ``COVER``, ``CONTAIN``
-   * - ``imageStyleClass``
-     - string
-     - *(none)*
-     - CSS class for image container
-   * - ``imageInlineStyle``
-     - string
-     - *(none)*
-     - Inline CSS for image container
-   * - ``imageLocation``
-     - string
-     - *(managed)*
-     - Light mode image filename (managed by Portal)
-   * - ``imageType``
-     - string
-     - *(managed)*
-     - Light mode image type (managed by Portal)
-   * - ``imageLocationDarkMode``
-     - string
-     - *(managed)*
-     - Dark mode image filename (managed by Portal)
-   * - ``imageTypeDarkMode``
-     - string
-     - *(managed)*
-     - Dark mode image type (managed by Portal)
+``imageStyleClass`` (string, optional)
+   CSS class for image container
+
+``imageInlineStyle`` (string, optional)
+   Inline CSS for image container
+
+``imageLocation`` (string, managed by Portal)
+   Light mode image filename
+
+``imageType`` (string, managed by Portal)
+   Light mode image type
+
+``imageLocationDarkMode`` (string, managed by Portal)
+   Dark mode image filename
+
+``imageTypeDarkMode`` (string, managed by Portal)
+   Dark mode image type
 
 **Image Fit Options**
 
-.. list-table::
-   :widths: 25 75
-   :header-rows: 1
+``NONE``
+   Image shown at original size, centered. No resizing
 
-   * - Value
-     - Behavior
-   * - ``NONE``
-     - Image shown at original size, centered. No resizing
-   * - ``FILL``
-     - Image stretched to fill container. May distort aspect ratio
-   * - ``COVER``
-     - Image resized to fill container, maintaining aspect ratio. May crop edges
-   * - ``CONTAIN``
-     - Image resized to fit within container, maintaining aspect ratio. May show empty space
+``FILL``
+   Image stretched to fill container. May distort aspect ratio
+
+``COVER``
+   Image resized to fill container, maintaining aspect ratio. May crop edges
+
+``CONTAIN``
+   Image resized to fit within container, maintaining aspect ratio. May show empty space
 
 **Greeting Feature**
 

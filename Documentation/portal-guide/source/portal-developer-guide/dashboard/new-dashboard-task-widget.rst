@@ -98,143 +98,94 @@ JSON Configuration Reference
 
 **Required Properties**
 
-.. list-table::
-   :widths: 20 15 65
-   :header-rows: 1
+``type`` (string)
+   Widget type. Must be ``"task"`` for task widget
 
-   * - Property
-     - Type
-     - Description
-   * - ``type``
-     - string
-     - Widget type. Must be ``"task"`` for task widget
-   * - ``id``
-     - string
-     - Unique identifier for the widget
-   * - ``names``
-     - array
-     - Multilingual display names. Each entry: ``{"locale": "en", "value": "Name"}``
-   * - ``layout``
-     - object
-     - Widget position and size (see Layout Properties below)
-   * - ``columns``
-     - array
-     - Column configurations (see Columns section below)
+``id`` (string)
+   Unique identifier for the widget
+
+``names`` (array)
+   Multilingual display names. Each entry: ``{"locale": "en", "value": "Name"}``
+
+``layout`` (object)
+   Widget position and size (see Layout Properties below)
+
+``columns`` (array)
+   Column configurations (see Columns section below)
 
 **Layout Properties**
 
-.. list-table::
-   :widths: 20 15 65
-   :header-rows: 1
+``x`` (number)
+   Column position in 12-column grid (0-11). CSS left = ``x / 12 * 100%``
 
-   * - Property
-     - Type
-     - Description
-   * - ``x``
-     - number
-     - Column position in 12-column grid (0-11). CSS left = ``x / 12 * 100%``
-   * - ``y``
-     - number
-     - Row position. CSS top = ``y / 12 * 100%``
-   * - ``w``
-     - number
-     - Width in grid columns (1-12). Pixel width = ``60 * w + 20 * (w - 1)``
-   * - ``h``
-     - number
-     - Height in grid rows (min 5). Pixel height = ``60 * h + 20 * (h - 1)``
-   * - ``styleClass``
-     - string
-     - *(Optional)* CSS classes for custom styling
-   * - ``style``
-     - string
-     - *(Optional)* Inline CSS styles
+``y`` (number)
+   Row position. CSS top = ``y / 12 * 100%``
+
+``w`` (number)
+   Width in grid columns (1-12). Pixel width = ``60 * w + 20 * (w - 1)``
+
+``h`` (number)
+   Height in grid rows (min 5). Pixel height = ``60 * h + 20 * (h - 1)``
+
+``styleClass`` (string, optional)
+   CSS classes for custom styling
+
+``style`` (string, optional)
+   Inline CSS styles
 
 .. tip::
    **Recommended task widget size:** Width 8-12 columns, Height 8-12 rows for optimal table display with pagination.
 
 **Display & Behavior Properties**
 
-.. list-table::
-   :widths: 20 15 15 50
-   :header-rows: 1
+``sortField`` (string, optional)
+   Default column for sorting (e.g., ``"name"``, ``"priority"``, ``"startTimestamp"``)
 
-   * - Property
-     - Type
-     - Default
-     - Description
-   * - ``sortField``
-     - string
-     - *(none)*
-     - Default column for sorting (e.g., ``"name"``, ``"priority"``, ``"startTimestamp"``)
-   * - ``sortDescending``
-     - boolean
-     - ``false``
-     - Sort direction. ``false`` = ascending, ``true`` = descending
-   * - ``rowsPerPage``
-     - number
-     - ``10``
-     - Number of tasks displayed per page
-   * - ``showWidgetInfo``
-     - boolean
-     - ``true``
-     - Show/hide widget information icon
-   * - ``showFullscreenMode``
-     - boolean
-     - ``true``
-     - Show/hide fullscreen mode icon
-   * - ``enableQuickSearch``
-     - boolean
-     - ``false``
-     - Enable quick search text box
-   * - ``canWorkOn``
-     - boolean
-     - ``false``
-     - Filter only tasks the current user can work on
-   * - ``filterTasksByCurrentCaseOwner``
-     - boolean
-     - ``false``
-     - Filter only tasks where current user is case owner (requires ``Portal.Cases.EnableOwner`` setting)
-   * - ``isTopMenu``
-     - boolean
-     - ``false``
-     - ``true`` = top-level nav item, ``false`` = under Dashboard menu
+``sortDescending`` (boolean, default: ``false``)
+   Sort direction. ``false`` = ascending, ``true`` = descending
+
+``rowsPerPage`` (number, default: ``10``)
+   Number of tasks displayed per page
+
+``showWidgetInfo`` (boolean, default: ``true``)
+   Show/hide widget information icon
+
+``showFullscreenMode`` (boolean, default: ``true``)
+   Show/hide fullscreen mode icon
+
+``enableQuickSearch`` (boolean, default: ``false``)
+   Enable quick search text box
+
+``canWorkOn`` (boolean, default: ``false``)
+   Filter only tasks the current user can work on
+
+``filterTasksByCurrentCaseOwner`` (boolean, default: ``false``)
+   Filter only tasks where current user is case owner (requires ``Portal.Cases.EnableOwner`` setting)
+
+``isTopMenu`` (boolean, default: ``false``)
+   ``true`` = top-level nav item, ``false`` = under Dashboard menu
 
 **Columns Configuration**
 
 Each column object in the ``columns`` array:
 
-.. list-table::
-   :widths: 20 15 15 50
-   :header-rows: 1
+``field`` (string, required)
+   Column field name (see Standard Columns below)
 
-   * - Property
-     - Type
-     - Default
-     - Description
-   * - ``field``
-     - string
-     - *(required)*
-     - Column field name (see Standard Columns below)
-   * - ``visible``
-     - string
-     - ``"true"``
-     - Column visibility: ``"true"`` or ``"false"``
-   * - ``quickSearch``
-     - string
-     - ``"false"``
-     - Include in quick search: ``"true"`` or ``"false"``
-   * - ``headers``
-     - array
-     - *(none)*
-     - Multilingual column headers: ``[{"locale": "en", "value": "Header"}]``
-   * - ``type``
-     - string
-     - ``"STANDARD"``
-     - Column type: ``"STANDARD"`` or ``"CUSTOM"``
-   * - ``style``
-     - string
-     - *(none)*
-     - Inline CSS for custom columns (e.g., ``"width: 110px"``)
+``visible`` (string, default: ``"true"``)
+   Column visibility: ``"true"`` or ``"false"``
+
+``quickSearch`` (string, default: ``"false"``)
+   Include in quick search: ``"true"`` or ``"false"``
+
+``headers`` (array, optional)
+   Multilingual column headers: ``[{"locale": "en", "value": "Header"}]``
+
+``type`` (string, default: ``"STANDARD"``)
+   Column type: ``"STANDARD"`` or ``"CUSTOM"``
+
+``style`` (string, optional)
+   Inline CSS for custom columns (e.g., ``"width: 110px"``)
 
 **Standard Column Fields**
 
@@ -256,25 +207,17 @@ Each column object in the ``columns`` array:
 
 The ``filters`` array defines pre-configured filter conditions:
 
-.. list-table::
-   :widths: 20 15 65
-   :header-rows: 1
+``field`` (string)
+   Column field name to filter
 
-   * - Property
-     - Type
-     - Description
-   * - ``field``
-     - string
-     - Column field name to filter
-   * - ``values``
-     - array
-     - Filter values (format depends on field type)
-   * - ``operator``
-     - string
-     - Filter operator (see Filter Conditions section)
-   * - ``type``
-     - string
-     - ``"standard"`` or ``"custom"``
+``values`` (array)
+   Filter values (format depends on field type)
+
+``operator`` (string)
+   Filter operator (see Filter Conditions section)
+
+``type`` (string)
+   ``"standard"`` or ``"custom"``
 
 .. note::
    For detailed filter configuration, see the :ref:`Filter Conditions <configure-new-dashboard-task-widget-filter-structure>` section below.
