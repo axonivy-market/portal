@@ -221,7 +221,7 @@ As an administrator, you may want to limit fields which Global Search should be 
 - **Portal.SearchScope.ByTaskFields**: Defining the fields that the global search will use to find matching tasks besides task ID (can influence performance)
 - **Portal.GlobalSearchScopeCategories**: Defining the types that the global search will search for (can influence performance)
 
-You can configure these variables by :ref:`settings-admin-settings`.
+You can configure these variables in :ref:`admin-settings`.
 
 .. include:: ../includes/_common-icon.rst
 

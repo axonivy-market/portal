@@ -152,7 +152,7 @@ JSON Configuration Reference
    #. News items support rich text formatting, images, and links
    #. Items are displayed in reverse chronological order (newest first)
    
-   See :ref:`User Guide - News Management <news-management>` for content management details.
+   See the Portal User Guide dashboard documentation for news management details.
 
 .. important::
    **Widget Visibility:**

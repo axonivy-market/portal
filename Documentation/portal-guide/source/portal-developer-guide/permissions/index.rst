@@ -535,22 +535,6 @@ Permissions for managing user absences and task substitution.
     - View substitute assignments for all users
     - Required for seeing who is substituting whom
 
-- _`SystemTaskReadAll`
-
-  :bdg-ref-warning:`🔑SystemTaskReadAll <SystemTaskReadAll>`
-
-- _`TaskResetReadyForJoin`
-
-  :bdg-ref-warning:`🔑TaskResetReadyForJoin <TaskResetReadyForJoin>`
-
-- _`TaskWriteExpiryActivator`
-
-  :bdg-ref-warning:`🔑TaskWriteExpiryActivator <TaskWriteExpiryActivator>`
-
-- _`CaseOwnerTaskDelegate`
-
-  :bdg-ref-warning:`🔑CaseOwnerTaskDelegate <CaseOwnerTaskDelegate>`
-
 .. _engine-permissions-respected:
 
 Engine Permissions Respected by Portal
