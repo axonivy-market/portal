@@ -57,22 +57,24 @@ public final class DocumentUtils {
 
     if (streamedContent != null && streamedContent.getStream() != null) {
       Map<String, Object> params = new HashMap<String, Object>();
-      InputStream is = streamedContent.getStream().get();
-      if (is != null) {
-        params.put("inputStream", is);
-        params.put("fileName", streamedContent.getName());
-        params.put("contentType", streamedContent.getContentType());      
-        
-        Map<String, Object> response = IvyAdapterService.startSubProcessInSecurityContext(DocumentUtils.DOC_FACTORY_SIGNATURE, params);
-        
-        if (response != null && response.get("inputStream") != null) {
-          DefaultStreamedContent returnDefaultStreamedContent = DefaultStreamedContent.builder()
-              .stream(() -> (InputStream) response.get("inputStream")).name(streamedContent.getName())
-              // DocFactory always returns stream as pdf
-              .contentType("application/pdf").build();
+      // auto-closed by try-with-resources
+      try (InputStream is = streamedContent.getStream().get()) {
 
-          is.close();
-          return returnDefaultStreamedContent;
+        if (is != null) {
+          params.put("inputStream", is);
+          params.put("fileName", streamedContent.getName());
+          params.put("contentType", streamedContent.getContentType());
+          Map<String, Object> response = IvyAdapterService
+              .startSubProcessInSecurityContext(DocumentUtils.DOC_FACTORY_SIGNATURE, params);
+
+          if (response != null && response.get("inputStream") != null) {
+            DefaultStreamedContent returnDefaultStreamedContent = DefaultStreamedContent.builder()
+                .stream(() -> (InputStream) response.get("inputStream"))
+                .name(streamedContent.getName())
+                // DocFactory always returns stream as pdf
+                .contentType("application/pdf").build();
+            return returnDefaultStreamedContent;
+          }
         }
       }
     }
