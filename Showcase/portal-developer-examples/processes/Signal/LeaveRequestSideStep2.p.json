@@ -49,7 +49,7 @@
           "name" : "<%= com.axonivy.portal.components.publicapi.SideStepAPI.createSideStepTaskName(in1.originalTaskUuid, \"/Dialogs/com/axonivy/portal/developerexamples/customization/sidestep/CustomSideStepPrefix\"); %>",
           "responsible" : {
             "type" : "USER_FROM_ATTRIBUTE",
-            "activator" : "in1.securityMember.substring(1)"
+            "script" : "in1.securityMember.substring(1)"
           }
         },
         "case" : {
@@ -119,7 +119,7 @@
           "name" : "<%= com.axonivy.portal.components.publicapi.SideStepAPI.createSideStepTaskName(in1.originalTaskUuid, \"/Dialogs/com/axonivy/portal/developerexamples/customization/sidestep/CustomSideStepPrefix\"); %>",
           "responsible" : {
             "type" : "ROLE_FROM_ATTRIBUTE",
-            "activator" : "in1.securityMember"
+            "script" : "in1.securityMember"
           }
         },
         "case" : {

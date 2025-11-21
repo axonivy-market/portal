@@ -76,7 +76,7 @@
           "name" : "<%=ivy.cms.co(\"/Processes/LeaveRequest/approvalTaskName\", [ivy.security.users().find(in.requester).getDisplayName()])%>",
           "responsible" : {
             "type" : "USER_FROM_ATTRIBUTE",
-            "activator" : "in.approver"
+            "script" : "in.approver"
           },
           "code" : [
             "import ch.ivyteam.ivy.workflow.ICase;",
@@ -157,7 +157,7 @@
           "name" : "<%=in.isApproved? ivy.cms.co(\"/Processes/LeaveRequest/approvalTask\") : ivy.cms.co(\"/Processes/LeaveRequest/rejectedTask\")%>",
           "responsible" : {
             "type" : "USER_FROM_ATTRIBUTE",
-            "activator" : "in.requester"
+            "script" : "in.requester"
           },
           "code" : [
             "import ch.ivyteam.ivy.workflow.ICase;",
@@ -365,9 +365,6 @@
         "dialog" : "com.axonivy.portal.developerexamples.customization.sidestep.LeaveRequestCreation:start()",
         "task" : {
           "name" : "<%=ivy.cms.co(\"/Processes/LeaveRequest/createLeaveRequest\", [ivy.session.getSessionUser().getDisplayName()])%>",
-          "responsible" : {
-            "activator" : "SELF"
-          },
           "skipTasklist" : true
         },
         "output" : {
@@ -395,7 +392,7 @@
           "name" : "<%=ivy.cms.co(\"/Processes/LeaveRequest/approvalTaskName\", [ivy.security.users().find(in.requester).getDisplayName()])%>",
           "responsible" : {
             "type" : "USER_FROM_ATTRIBUTE",
-            "activator" : "in.approver"
+            "script" : "in.approver"
           }
         },
         "output" : {
@@ -422,7 +419,7 @@
           "name" : "<%=in.isApproved? ivy.cms.co(\"/Processes/LeaveRequest/approvalTask\") : ivy.cms.co(\"/Processes/LeaveRequest/rejectedTask\")%>",
           "responsible" : {
             "type" : "USER_FROM_ATTRIBUTE",
-            "activator" : "in.requester"
+            "script" : "in.requester"
           }
         }
       },
