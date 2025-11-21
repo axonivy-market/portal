@@ -95,6 +95,7 @@ Portal:
 -  German
 -  French
 -  Spanish
+-  Japanese
 
 **Formatting language** is used to format values, for example the decimal separator is displayed differently in different regions of the world.
 

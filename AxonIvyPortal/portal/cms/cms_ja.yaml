@@ -1595,6 +1595,7 @@ Labels:
   AppendTheTask: タスクを追加
   Chat: TODO Chat
   Collapse: TODO 折りたたむ
+  Comma: '、'
   CreateNewDashboard: 新しいダッシュボードを作成
   EditDescription: 説明を編集
   EnterFromValue: TODO Enter from value
@@ -1704,6 +1705,7 @@ Labels:
   Permissions: 権限
   PinnedCases: 'TODO: Pinned Cases'
   PinnedTasks: 'TODO: Pinned Tasks'
+  RequiredFieldMessage: '{0}:値が必要です'
   SelectOperator: TODO Choose Operator
   SelectValues: TODO Select values
   Share: 共有

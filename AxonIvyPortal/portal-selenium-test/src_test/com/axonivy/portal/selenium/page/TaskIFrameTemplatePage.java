@@ -139,7 +139,8 @@ public class TaskIFrameTemplatePage extends TemplatePage {
 
   private void waitForCloseButtonDisplayAfterInputedAprrovalNote(String approvalNote) {
     waitForElementDisplayed(By.id("content-form:approve-btn"), true);
-    $(By.id("content-form:content-tab-view:approval-note")).sendKeys(approvalNote);
+    $(By.id("content-form:content-tab-view:approval-note")).shouldBe(Condition.visible)
+    .shouldBe(Condition.enabled).sendKeys(approvalNote);
     clickByJavaScript($(By.id("content-form:approve-btn")));
     waitForElementDisplayed(By.id("content-form:close-btn"), true);
   }

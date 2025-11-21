@@ -16,7 +16,7 @@ if (document) {
   const PROCESS_TAB = 'PROCESS_TAB';
   const TASK_TAB = 'TASK_TAB';
   const CASE_TAB = 'CASE_TAB';
-  const numberShortcuts = ['1', '2', '3', '4', '5', '6', '7'];
+  const keyShortcuts = ['Digit1', 'Digit2', 'Digit3', 'Digit4', 'Digit5', 'Digit6', 'Digit7', 'KeyA', 'KeyW', 'KeyQ'];
   const requestInit = body => {
     return {
       method: "POST",
@@ -142,12 +142,10 @@ if (document) {
       portalGlobalSearch([{name: 'activeTabIndex', value: getTabActiveIndex()}]);
       return false;
     }
-    if ($(searchFormId).is(':hidden') && event.key !== 'Tab' && !(event.altKey && numberShortcuts.includes(event.key))) {
-          $(eleSearchId).click();
-    }
 
-    if ($(searchFormId).is(':visible')
-        && lastSearchInput !== $(eleSearchId).val()) {
+    if ($(searchFormId).is(':hidden') && event.key !== 'Tab' && !(event.altKey && keyShortcuts.includes(event.code))) {
+      $(eleSearchId).click();
+    } else if ($(searchFormId).is(':visible') && lastSearchInput !== $(eleSearchId).val()) {
       searchHandler();
     }
   }
