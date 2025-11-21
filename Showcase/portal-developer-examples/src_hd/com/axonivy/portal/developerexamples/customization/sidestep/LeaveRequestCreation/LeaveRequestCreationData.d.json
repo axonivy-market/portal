@@ -1,0 +1,27 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/13.2.0/data-class.json",
+  "simpleName" : "LeaveRequestCreationData",
+  "namespace" : "com.axonivy.portal.developerexamples.customization.sidestep.LeaveRequestCreation",
+  "fields" : [ {
+    "name" : "leaveRequestData",
+    "type" : "com.axonivy.portal.developerexamples.LeaveRequest"
+  }, {
+    "name" : "requester",
+    "type" : "com.axonivy.portal.components.dto.UserDTO"
+  }, {
+    "name" : "approver",
+    "type" : "com.axonivy.portal.components.dto.UserDTO"
+  }, {
+    "name" : "leaveTypes",
+    "type" : "java.util.List<com.axonivy.portal.developerexamples.enums.LeaveType>"
+  }, {
+    "name" : "approvers",
+    "type" : "java.util.List<com.axonivy.portal.components.dto.UserDTO>"
+  }, {
+    "name" : "isValid",
+    "type" : "Boolean"
+  }, {
+    "name" : "steps",
+    "type" : "java.util.List<String>"
+  } ]
+}

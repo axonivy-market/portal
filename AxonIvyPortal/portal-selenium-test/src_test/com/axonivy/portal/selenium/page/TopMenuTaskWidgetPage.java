@@ -14,6 +14,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import com.axonivy.portal.selenium.common.NavigationHelper;
 import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
@@ -364,5 +365,24 @@ public class TopMenuTaskWidgetPage extends TaskWidgetNewDashBoardPage {
   
   public void waitForTaskDelegateDialogContent() {
     $("div[id$='task-delegate-dialog_content']").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+  
+  public NewDashboardPage finishApprovalForLeaveRequest() {
+    waitForElementDisplayed(By.id("leave-request:approver-comment"), true);
+    $(By.id("leave-request:approver-comment")).sendKeys("Approve");
+    waitForElementClickableThenClick($(By.id("leave-request:approved-btn")));
+    waitPageDisappear();
+    driver.switchTo().defaultContent();
+    WaitHelper.waitForPresenceOfElementLocatedInFrame("[id$='global-search-component:global-search-data']");
+    return NavigationHelper.navigateToTaskList();
+  }
+
+  public NewDashboardPage finishSideStepForLeaveRequest() {
+    $(By.id("side-step-example:approver-comment")).sendKeys("I approve");
+    waitForElementClickableThenClick($(By.id("side-step-example:approved-btn")));
+    waitPageDisappear();
+    driver.switchTo().defaultContent();
+    WaitHelper.waitForPresenceOfElementLocatedInFrame("[id$='global-search-component:global-search-data']");
+    return NavigationHelper.navigateToTaskList();
   }
 }

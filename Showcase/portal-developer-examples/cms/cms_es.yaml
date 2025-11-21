@@ -124,7 +124,59 @@ Dialogs:
                   IsRequired: Mandatorio
                   Representation: Representante
                   To: Hasta
+  com:
+    axonivy:
+      portal:
+        developerexamples:
+          customization:
+            sidestep:
+              CustomSideStepPrefix: 'Mi prefijo de nombre de tarea personalizado:'
+              LeaveRequestApproval:
+                Approve: Aprobar
+                Reject: Rechazar
+              LeaveRequestBusinessDetailsPage:
+                CompletedTaskNumber: 'Tareas de paso lateral completadas:'
+                InformCustomer: Informar al cliente
+                LeaveRequest: Solicitud de baja Detalles de la empresa
+                SideStepComment: Comentario sobre el paso lateral
+              LeaveRequestSummary:
+                Finish: Acabar
+              SideStepAskMoreDetails:
+                MoreDetails: Más detalles para la solicitud de licencia
+              SideStepCEOApproval:
+                CEOApproval: Aprobación del CEO
+              SideStepExample:
+                SideStepExample: Ejemplo de paso lateral
+              SideStepResultExample:
+                SideStepResult: Resultado del paso lateral
+                SideStepTaskIs: La tarea de paso lateral se realiza mediante
+Enums:
+  LeaveType:
+    ANNUAL_LEAVE: Ausencia anual
+    MATERNITY_LEAVE: Ausencia maternal
+    SICK_LEAVE: Ausencia por enfermedad
 Labels:
+  Close: Cerca
+  LeaveRequest:
+    ApprovalResultTaskIntro: Más abajo encontrará un resumen de su solicitud.
+    ApprovalTaskIntro: 'Hay una solicitud para una ausencia. Detalles más abajo:'
+    Approver: Aprovador
+    ApproverComment: Comentario del aprovador
+    From: Desde
+    LeaveSteps:
+      Approval: Aprobar
+      ApprovalResult: Resultado del aprobado
+      Creation: Crear ausencia
+      RequesterSideStepComment: Comentario del solicitante
+      SideStepComment: Comentario sobre el paso lateral
+    LeaveType: Tipo de ausencia
+    Requester: Solicitante
+    RequesterComment: Comentario del solicitante
+    StepTypeParallelTitle: Este es un título paralelo personalizado
+    StepTypeSwitchTitle: Este es un título de interruptor personalizado
+    SubmitLeaveRequest: Presentar solicitud para ausencia
+    To: Hasta
+  OK: OK
   changePasswordWSError: Se produjo un error al cambiar su contraseña. Póngase en contacto con su administrador si este problema persiste.
   forgotPasswordError: Ha habido un error mientras se procesaba su solicitud. Por favor inténtelo más tarde.
   passwordResetEmailCantSend: 'Ha habido un problema para enviarle un E-Mail. Por favor inténtelo más tarde. '
@@ -163,6 +215,15 @@ Processes:
       #Resumen
       Solicitante obtendrá un resumen
       Tomar nota del resultado
+  LeaveRequest:
+    LeaveRequest: Leave Request
+    LeaveRequestWithSideStepsCaseLevel: Solicitud de permiso con procesos paralelos (a nivel de caso)
+    LeaveRequestWithSideStepsTaskLevel: Solicitud de permiso con procesos paralelos (nivel de tarea)
+    approvalTask: Su ausencia ha sido aprovada
+    approvalTaskName: Aprovar solicitud para ausencia del {0}
+    createLeaveRequest: 'Crear ausencia para: {0}'
+    createNewLeaveRequest: 'Tarea de sistema: Crear nueva solicitud para ausencia'
+    rejectedTask: Su solicitud para ausencia ha sido denegada
   MoreInformation:
     description: Haga clic en Más información para ver la página de información personalizada del proceso.
   Payment:

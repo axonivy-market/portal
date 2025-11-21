@@ -157,6 +157,7 @@ public class BaseTest {
   protected String multipleOwnersUrl = "InternalSupport/16A68510A341BE6E/multipleOwners.ivp";
   protected String displayCustomFieldCaseOnTaskWidget = "PortalKitTestHelper/153CACC26D0D4C3D/displayCustomFieldCaseOnTaskWidget.ivp";
   protected String taskWithMultiResponsibles = "InternalSupport/14B2FC03D2E87141/TaskWithMultiResponsible.ivp";
+  protected String createSideStepUrl = "portal-developer-examples/182E92730FF57036/start.ivp";
   
   protected void redirectToNewDashBoard() {
     open(EngineUrl.createProcessUrl(PORTAL_HOME_PAGE_URL));
