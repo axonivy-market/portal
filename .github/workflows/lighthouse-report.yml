@@ -86,7 +86,7 @@ jobs:
             "Showcase/portal-demo-app"
           )
           for module in "${modules[@]}"; do
-            mvn clean install -f $module/pom.xml -Divy.engine.directory=$ENGINE_DIR
+            mvn clean install -P-ivy -f $module/pom.xml -Divy.engine.directory=$ENGINE_DIR
           done
 
       - name: Deploy Portal Modules
