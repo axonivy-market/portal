@@ -362,11 +362,10 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
     }
     dashboardList.add(dashboard);
 
-    var inputStream = new ByteArrayInputStream(
-        BusinessEntityConverter.prettyPrintEntityToJsonValue(dashboardList).getBytes(StandardCharsets.UTF_8));
     return DefaultStreamedContent
         .builder()
-        .stream(() -> inputStream)
+        .stream(() -> new ByteArrayInputStream(
+            BusinessEntityConverter.prettyPrintEntityToJsonValue(dashboardList).getBytes(StandardCharsets.UTF_8)))
         .contentType(MediaType.APPLICATION_JSON)
         .name(getFileName(dashboard.getTitle()))
         .build();
