@@ -20,6 +20,7 @@ import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.json.JsonMapper;
 
+import ch.ivy.addon.portalkit.bo.PortalJsonViews;
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
 import ch.ivy.addon.portalkit.service.exception.PortalException;
 import ch.ivy.addon.portalkit.util.DashboardUtils;
@@ -36,10 +37,22 @@ public class BusinessEntityConverter {
   public static String entityToJsonValue(Object entity) {
     return objectEntityToJsonValue(entity);
   }
+  
+  public static String entityToJsonValueExcludeInternalView(Object entity) {
+    return objectEntityToJsonValueExcludeInternalView(entity);
+  }
 
   private static String objectEntityToJsonValue(Object entity) {
     try {
       return getObjectMapper().writeValueAsString(entity);
+    } catch (JsonProcessingException e) {
+      throw new PortalException(e);
+    }
+  }
+  
+  private static String objectEntityToJsonValueExcludeInternalView(Object entity) {
+    try {
+      return getObjectMapper().writerWithView(PortalJsonViews.Public.class).writeValueAsString(entity);
     } catch (JsonProcessingException e) {
       throw new PortalException(e);
     }

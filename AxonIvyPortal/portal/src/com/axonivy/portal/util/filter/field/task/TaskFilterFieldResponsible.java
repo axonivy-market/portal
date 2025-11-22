@@ -68,6 +68,7 @@ public class TaskFilterFieldResponsible extends FilterField {
   public String generateTaskFilter(DashboardFilter filter) {
     return switch (filter.getOperator()) {
       case IN -> TextInOperatorHandler.getInstance().buildFilter(filter);
+      case CURRENT_USER -> TextInOperatorHandler.getInstance().buildFilterForCurrentUserOperator(filter);
       default -> null;
     };
   }

@@ -28,6 +28,9 @@ public class DashboardFilter extends BaseFilter implements Serializable {
   public static final String APPLICATION = "application";
   
   @JsonIgnore
+  public static final String CATEGORY = "category";
+  
+  @JsonIgnore
   private FilterField filterField;
 
   @JsonIgnore

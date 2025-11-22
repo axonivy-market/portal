@@ -119,12 +119,12 @@
       <f:attribute name="locale" value="#{localeBean.locale}" />
       <f:attribute name="messageId" value="#{messageId}" />
     </p:datePicker>
-      <h:panelGroup id="between-dates-panel-and" layout="block" styleClass="and-text-panel"
-        rendered="#{filter.operator == 'BETWEEN' || filter.operator == 'NOT_BETWEEN'}">
-        <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/And')}</span>
-      </h:panelGroup>
-  </h:panelGroup>
 
+  </h:panelGroup>
+  <h:panelGroup id="between-dates-panel-and" styleClass="and-text-panel"
+    rendered="#{filter.operator == 'BETWEEN' || filter.operator == 'NOT_BETWEEN'}">
+    <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/And')}</span>
+  </h:panelGroup>
   <h:panelGroup id="between-dates-panel-to" layout="block"
     rendered="#{filter.operator == 'BETWEEN' || filter.operator == 'NOT_BETWEEN'}"
     styleClass="ui-fluid date-picker-panel">

@@ -47,7 +47,7 @@ public class CaseFilterFieldCustomNumber extends CustomFilterField {
   @Override
   public void addNewFilter(DashboardFilter filter) {
     initFilter(filter);
-    filter.setOperator(FilterOperator.NOT_EMPTY);
+    filter.setOperator(FilterOperator.BETWEEN);
     filter.setFrom(null);
     filter.setTo(null);
     filter.setValue(null);

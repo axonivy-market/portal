@@ -669,7 +669,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     statisticChartIntroduction: This widget displays available statistic charts.
     statisticChartWidget: Statistic chart
     switchToViewMode: View Mode
-    tasWidgetkInfo:
+    taskWidgetInfo:
       expireToday: Expire today
       expiryThisWeek: Expire this week
       numberOfTasks: task(s)

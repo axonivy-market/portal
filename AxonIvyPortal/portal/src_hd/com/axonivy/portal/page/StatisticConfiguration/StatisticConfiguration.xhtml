@@ -188,7 +188,7 @@
                       <p:ajax listener="#{statisticConfigurationBean.onSelectAggregationField()}"
                         update="chart-aggregation" />
                       <p:ajax event="itemSelect" listener="#{statisticConfigurationBean.resetConditionBasedColoring}" resetValues="true"
-                      update="chart-background-colors condition-based-coloring-container condition-based-coloring-scope" global="false"/>
+                      update="chart-background-colors condition-based-coloring-container condition-based-coloring-scope chart-drill-down-container" global="false"/>
                     </p:selectOneMenu>
                     <p:tooltip for="group-by-info-icon" value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/GroupbyTooltip')}" position="right"/>
                     
@@ -334,7 +334,25 @@
                     </div>
                   </h:panelGroup>
                 </h:panelGroup>
+                
+                <!-- Chart drill-down feature -->
+                <h:panelGroup id="chart-drill-down-container" class="field mb-0 col-12" layout="block">
+                    <h:panelGroup rendered="#{statisticConfigurationBean.statistic.statisticAggregation.field eq 'worker.name' ? false : true}">
+                     <p:outputLabel for="@next" value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/ChartDrillDownEnabled')}" />
+                     <h:outputText id="chart-drill-down-info" styleClass="si si-information-circle ml-2" />
+                     <p:tooltip for="chart-drill-down-info" value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/ChartDrillDownInfo')}" escape="false"/>
+                      <div>
+                           <p:toggleSwitch id="chart-drill-down-toggle" ariaLabel="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/ChartDrillDownEnabled')}"
+                                          value="#{statisticConfigurationBean.statistic.chartDrillDownEnabled}"
+                                          styleClass="col-1">
+                               <p:ajax update="chart-drill-down-toggle"
+                                      process="@this"/>
+                           </p:toggleSwitch>
+                       </div>
+                    </h:panelGroup>
 
+                </h:panelGroup>
+                
                 <!-- Condition Based Coloring Toggle -->
                 <h:panelGroup id="condition-based-coloring-container" class="field col-12 mb-0" layout="block" >
                     <h:panelGroup rendered="#{statisticConfigurationBean.statistic.chartType.name() ne 'NUMBER'}">
@@ -417,6 +435,7 @@
                       </h:panelGroup>
                   </h:panelGroup>
                  </h:panelGroup>
+                 
                 </div>
                </p:fieldset>
               <!-- Advanced settings end-->
@@ -444,7 +463,7 @@
                   <h:panelGroup id="stat-chart-widget__content" layout="block"
                     styleClass="preview-statistic-chart-widget__content widget__content widget__content mt-10">
                     <h:panelGroup styleClass="statistic-chart-widget__chart flex align-items-center" layout="block">
-                      <div class="ui-chart js-statistic-chart statistic-chart-widget__canvas preview-chart-box preview-statistic-chart"
+                      <div class="ui-chart js-statistic-chart statistic-chart-widget__canvas preview-chart-box preview-statistic-chart pointer-events-none"
                         data-chart-id="preview-statistic-chart">
                         <div class="empty-message-container w-35rem">
                           <i class="si si-analytics-pie-2 empty-message-icon" />

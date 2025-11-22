@@ -1,12 +1,18 @@
 package com.axonivy.portal.util.statisticfilter.operator.text;
 
+import java.util.ArrayList;
+
+import java.util.Arrays;
+
 import org.apache.commons.collections4.CollectionUtils;
+
 import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.constant.StatisticConstants;
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 
 import ch.ivy.addon.portalkit.constant.PortalConstants;
+import ch.ivy.addon.portalkit.util.SecurityMemberUtils;
 
 public class TextInOperatorHandler {
   private static TextInOperatorHandler instance;
@@ -27,15 +33,35 @@ public class TextInOperatorHandler {
     String field = changeFilterField(filter.getField());
     sb.append(field).append(PortalConstants.COLON);
 
+    String prefix, suffix;
+
+    if (filter.isCreator()) {
+        prefix = "#";
+        suffix = " ";
+    } else if (filter.isCategory()) {
+        prefix = "\"";
+        suffix = "\" ";
+    } else {
+        prefix = "";
+        suffix = " ";
+    }
+
     for (String value : filter.getValues()) {
-      if (filter.isCreator()) {
-        sb.append("#" + value).append(" ");
-      } else {
-        sb.append(value).append(" ");
-      }
+        sb.append(prefix).append(value).append(suffix);
     }
 
     return sb.toString();
+  }
+  
+  public String buildFilterForCurrentUserOperator(DashboardFilter filter) {
+    String currentUserMemberName = "";
+    if (filter.isCreator()) {
+      currentUserMemberName = SecurityMemberUtils.getCurrentSessionUserAsSecurityMemberDTO().getName();
+    } else {
+      currentUserMemberName = SecurityMemberUtils.getCurrentSessionUserAsSecurityMemberDTO().getMemberName();
+    }
+    filter.setValues(new ArrayList<>(Arrays.asList(currentUserMemberName)));
+    return buildFilter(filter);
   }
 
   public String buildFilterWithoutValue(DashboardFilter filter) {
