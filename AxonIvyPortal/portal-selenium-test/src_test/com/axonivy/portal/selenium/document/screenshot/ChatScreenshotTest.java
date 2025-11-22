@@ -9,6 +9,7 @@ import org.openqa.selenium.Dimension;
 import com.axonivy.portal.selenium.common.ScreenshotBaseTest;
 import com.axonivy.portal.selenium.common.ScreenshotMargin;
 import com.axonivy.portal.selenium.common.ScreenshotUtils;
+import com.axonivy.portal.selenium.common.Sleeper;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.page.ChatPage;
@@ -48,15 +49,23 @@ public class ChatScreenshotTest extends ScreenshotBaseTest {
     TaskTemplatePage taskTemplatePage = new TaskTemplatePage();
 
     taskTemplatePage.clickActionButton();
+    // DEBUGGING
+    Sleeper.sleep(5000);
     ScreenshotUtils.executeDecorateJs("highlightJoinGroupChatOption()");
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.CHAT_FOLDER + "create-new-group-chat");
 
     taskTemplatePage.clickChatGroup();
     ScreenshotUtils.captureElementWithMarginOptionScreenshot(taskTemplatePage.getAddMemberToChatDialog(),
         ScreenshotUtils.CHAT_FOLDER + "chat-group-assignee", new ScreenshotMargin(20));
+    // DEBUGGING
+    Sleeper.sleep(5000);
     taskTemplatePage.clickCreateGroupChatButton();
+    // DEBUGGING
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.CHAT_FOLDER + "before-switching-to-newDashboard");
 
     showNewDashboard();
+    // DEBUGGING
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.CHAT_FOLDER + "after-switching-to-newDashboard");
     newDashboardPage = new NewDashboardPage();
     ChatPage chatPage = newDashboardPage.openChatDialog();
     chatPage.openFirstGroupChat();

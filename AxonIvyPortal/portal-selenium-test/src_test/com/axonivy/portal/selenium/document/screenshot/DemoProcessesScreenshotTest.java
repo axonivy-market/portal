@@ -11,6 +11,7 @@ import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.NavigationHelper;
 import com.axonivy.portal.selenium.common.ScreenshotBaseTest;
 import com.axonivy.portal.selenium.common.ScreenshotUtils;
+import com.axonivy.portal.selenium.common.Sleeper;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.page.CaseMapPage;
 import com.axonivy.portal.selenium.page.ExampleOverviewPage;
@@ -95,7 +96,12 @@ public class DemoProcessesScreenshotTest extends ScreenshotBaseTest {
     newDashboardPage.startTask(0);
     caseMapPage = new CaseMapPage();
     caseMapPage.switchToIFrameOfTask();
+    // DEBUGGING
+    Sleeper.sleep(5000);
     caseMapPage.clickSubmitButtonAndBackToTaskList();
+    // DEBUGGING
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.DEMO_FOLDER + "before-switching-to-taskList");
+
     NavigationHelper.navigateToTaskList();
     TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
     taskWidget.clickOnTaskActionLink(0);
