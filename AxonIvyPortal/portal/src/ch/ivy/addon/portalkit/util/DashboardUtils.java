@@ -5,6 +5,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,6 +21,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Strings;
 import org.primefaces.PrimeFaces;
 
+import com.axonivy.portal.components.service.IvyAdapterService;
 import com.axonivy.portal.migration.dashboard.migrator.JsonDashboardMigrator;
 import com.axonivy.portal.migration.dashboardtemplate.migrator.JsonDashboardTemplateMigrator;
 import com.axonivy.portal.util.UserExampleUtils;
@@ -63,6 +65,20 @@ public class DashboardUtils {
   public final static String HIGHLIGHT_DASHBOARD_ITEM_METHOD_PATTERN = "highlightDashboardItem('%s')";
   public final static String DEFAULT_TASK_LIST_DASHBOARD = "default-task-list-dashboard";
   public final static String DEFAULT_CASE_LIST_DASHBOARD = "default-case-list-dashboard";
+
+  private static final String PRECONFIG_DASHBOARDS_SIGNATURE = "loadPreConfigPortalDashboard()";
+  public static final List<Dashboard> externalDashboards;
+
+  static {
+    Map<String, Object> response = IvyAdapterService.startSubProcessInSecurityContext(PRECONFIG_DASHBOARDS_SIGNATURE, null);
+
+    if (response != null && response.get("dashboardsJson") != null) {
+      String dashboardsJson = (String) response.get("dashboardsJson");
+      externalDashboards = jsonToDashboards(dashboardsJson);
+    } else {
+      externalDashboards = Collections.emptyList();
+    }
+  }
 
   public static List<Dashboard> getVisibleDashboards(String dashboardJson) {
     List<Dashboard> dashboards = jsonToDashboards(dashboardJson);
@@ -219,9 +235,9 @@ public class DashboardUtils {
     if (UserExampleUtils.isUserExampleAvailable()) {
       collectedDashboards.add(DefaultDashboardUtils.getDefaultUserExampleDashboard());
     }
+    collectedDashboards.addAll(externalDashboards);
     return collectedDashboards;
   }
-
 
   public static void highlightDashboardMenuItem(String selectedDashboardId) {
     PrimeFaces.current().executeScript(String.format(HIGHLIGHT_DASHBOARD_ITEM_METHOD_PATTERN, selectedDashboardId));
@@ -513,6 +529,7 @@ public class DashboardUtils {
           }
           collectedDashboards.addAll(idToDashboard.values());
           addDefaultTaskCaseListDashboardsIfMissing(collectedDashboards);
+          collectedDashboards.addAll(externalDashboards);
         } catch (Exception e) {
           Ivy.log().error("Cannot collect Dashboards {0}", e.getMessage());
         }
