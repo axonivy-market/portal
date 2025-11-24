@@ -482,14 +482,6 @@ Release notes
 This part lists all relevant changes since the last official product
 releases of Axon Ivy.
 
-Changes in 12.0.12
-------------------
-
-- Starting with Portal 12.0.12 and DocFactory 12.0.5, Portal automatically
-  supports previewing any document type that DocFactory can handle. This means
-  new document types added in future DocFactory releases become previewable
-  immediately - no Portal upgrade required.
-
 Changes in 12.0.11
 ------------------
 

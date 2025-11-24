@@ -46,7 +46,7 @@ public final class DocumentUtils {
 
     Map<String, Object> response = IvyAdapterService.startSubProcessInSecurityContext(DocumentUtils.DOC_FACTORY_GET_SUPPORTED_FILE_TYPES_SIGNATURE, null);
     if (response != null && response.get("supportedTypes") != null) {
-      return (List<String>) response.get("supportedTypes");
+      return objToListOfStrHelper(response.get("supportedTypes"));
     }
     
     return List.of();
@@ -91,5 +91,21 @@ public final class DocumentUtils {
       }
     }
     return streamedContent;
+  }
+
+  private static List<String> objToListOfStrHelper(Object obj) {
+    if (obj == null) {
+      return List.of();
+    }
+    
+    if (obj instanceof List<?>) {
+      List<?> rawList = (List<?>) obj;
+      return rawList.stream()
+        .filter(e -> e instanceof String)
+        .map(e -> (String) e)
+        .toList();
+    }
+    
+    return List.of();
   }
 }
