@@ -472,10 +472,6 @@ Release notes
 This part lists all relevant changes since the last official product
 releases of |ivy|.
 
-Changes in 10.0.34
-------------------
-- Starting with Portal 10.0.34 and DocFactory 10.0.20, Portal automatically supports previewing any document type that DocFactory can handle. This means new document types added in future DocFactory releases become previewable immediately - no Portal upgrade required.
-
 Changes in 10.0.31
 ------------------
 
