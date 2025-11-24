@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/13.1.2/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/13.2.0/process.json",
   "id" : "16D289860FF9CFCA",
   "kind" : "CALLABLE_SUB",
   "config" : {
@@ -130,10 +130,7 @@
       ],
       "visual" : {
         "at" : { "x" : 1000, "y" : 560 },
-        "size" : { "width" : 720, "height" : 76 },
-        "description" : "",
-        "color" : "",
-        "icon" : ""
+        "size" : { "width" : 720, "height" : 76 }
       }
     }, {
       "id" : "f12",
@@ -146,10 +143,7 @@
       ],
       "visual" : {
         "at" : { "x" : 1032, "y" : 912 },
-        "size" : { "width" : 800, "height" : 76 },
-        "description" : "",
-        "color" : "",
-        "icon" : ""
+        "size" : { "width" : 800, "height" : 76 }
       }
     }, {
       "id" : "f14",
@@ -190,10 +184,7 @@
       ],
       "visual" : {
         "at" : { "x" : 1960, "y" : 560 },
-        "size" : { "width" : 720, "height" : 76 },
-        "description" : "",
-        "color" : "",
-        "icon" : ""
+        "size" : { "width" : 720, "height" : 76 }
       }
     }, {
       "id" : "f16",

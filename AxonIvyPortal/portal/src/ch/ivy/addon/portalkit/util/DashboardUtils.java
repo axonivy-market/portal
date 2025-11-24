@@ -5,6 +5,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,6 +21,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Strings;
 import org.primefaces.PrimeFaces;
 
+import com.axonivy.portal.components.service.IvyAdapterService;
 import com.axonivy.portal.migration.dashboard.migrator.JsonDashboardMigrator;
 import com.axonivy.portal.migration.dashboardtemplate.migrator.JsonDashboardTemplateMigrator;
 import com.axonivy.portal.util.UserExampleUtils;
@@ -64,6 +66,20 @@ public class DashboardUtils {
   public final static String DEFAULT_TASK_LIST_DASHBOARD = "default-task-list-dashboard";
   public final static String DEFAULT_CASE_LIST_DASHBOARD = "default-case-list-dashboard";
 
+  private static final String PRECONFIG_DASHBOARDS_SIGNATURE = "loadPreConfigPortalDashboard()";
+  public static final List<Dashboard> externalDashboards;
+
+  static {
+    Map<String, Object> response = IvyAdapterService.startSubProcessInSecurityContext(PRECONFIG_DASHBOARDS_SIGNATURE, null);
+
+    if (response != null && response.get("dashboardsJson") != null) {
+      String dashboardsJson = (String) response.get("dashboardsJson");
+      externalDashboards = jsonToDashboards(dashboardsJson);
+    } else {
+      externalDashboards = Collections.emptyList();
+    }
+  }
+
   public static List<Dashboard> getVisibleDashboards(String dashboardJson) {
     List<Dashboard> dashboards = jsonToDashboards(dashboardJson);
     dashboards.removeIf(dashboard -> {
@@ -71,7 +87,7 @@ public class DashboardUtils {
       if (permissions == null) {
         return false;
       }
-      return permissions.stream().noneMatch(DashboardUtils::isSessionUserHasPermisson);
+      return permissions.stream().noneMatch(DashboardUtils::isSessionUserHasPermission);
     });
     return dashboards;
   }
@@ -82,14 +98,37 @@ public class DashboardUtils {
       if (permissions == null) {
         return false;
       }
-      return permissions.stream().noneMatch(DashboardUtils::isSessionUserHasPermisson);
+      return permissions.stream().noneMatch(DashboardUtils::isSessionUserHasPermission);
     });
     return dashboards;
   }
 
-  private static boolean isSessionUserHasPermisson(String permission) {
+  private static boolean isSessionUserHasPermission(String permission) {
     return Strings.CS.startsWith(permission, "#") ? Strings.CS.equals(currentUser().getMemberName(), permission)
         : PermissionUtils.doesSessionUserHaveRole(permission);
+  }
+
+  /**
+   * Determines whether the session user has access to the specified dashboard.
+   * 
+   * @param dashboard the {@link Dashboard} instance to check access for
+   * @return {@code true} if the session user can access the dashboard.
+   */
+  public static boolean canSessionUserAccessDashboard(Dashboard dashboard) {
+    if (Optional.ofNullable(dashboard).map(Dashboard::getPermissions)
+        .orElse(new ArrayList<>()).isEmpty()) {
+      return false;
+    }
+    if (dashboard.getPermissions().contains(ISecurityConstants.TOP_LEVEL_ROLE_NAME)) {
+      return true;
+    }
+
+    for (String permission : dashboard.getPermissions()) {
+      if (isSessionUserHasPermission(permission)) {
+        return true;
+      }
+    }
+    return false;
   }
 
   public static List<Dashboard> jsonToDashboards(String dashboardJSON) {
@@ -196,10 +235,9 @@ public class DashboardUtils {
     if (UserExampleUtils.isUserExampleAvailable()) {
       collectedDashboards.add(DefaultDashboardUtils.getDefaultUserExampleDashboard());
     }
-    getSampleKPIDashboard().ifPresent(collectedDashboards::add);
+    collectedDashboards.addAll(externalDashboards);
     return collectedDashboards;
   }
-
 
   public static void highlightDashboardMenuItem(String selectedDashboardId) {
     PrimeFaces.current().executeScript(String.format(HIGHLIGHT_DASHBOARD_ITEM_METHOD_PATTERN, selectedDashboardId));
@@ -491,6 +529,7 @@ public class DashboardUtils {
           }
           collectedDashboards.addAll(idToDashboard.values());
           addDefaultTaskCaseListDashboardsIfMissing(collectedDashboards);
+          collectedDashboards.addAll(externalDashboards);
         } catch (Exception e) {
           Ivy.log().error("Cannot collect Dashboards {0}", e.getMessage());
         }
@@ -540,15 +579,5 @@ public class DashboardUtils {
 
   public static String buildDashboardLink(Dashboard dashboard) {
     return UrlUtils.getServerUrl() + PortalNavigator.getDashboardPageUrl(dashboard.getId());
-  }
-  
-  private static final String SAMPLE_KPI_DASHBOARD_KEY = PortalVariable.SAMPLE_KPI_DASHBOARD_KEY.key;
-  
-  public static Optional<Dashboard> getSampleKPIDashboard() {
-    String sampleKPIDashboardJson = Ivy.var().get(SAMPLE_KPI_DASHBOARD_KEY);
-    if (StringUtils.isEmpty(sampleKPIDashboardJson)) {
-      return Optional.empty();
-    }
-    return Optional.of(jsonToDashboard(sampleKPIDashboardJson));
   }
 }

@@ -41,7 +41,7 @@ CustomFields:
       Type: Timestamp
     daysToDecision:
       Label: Days to Decision
-      Description: Days from reuest to final decision
+      Description: Days from request to final decision
       Type: Number
     decision:
       Label: Decision

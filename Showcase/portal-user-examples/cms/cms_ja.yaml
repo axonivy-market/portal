@@ -194,7 +194,7 @@ Processes:
     name: 調達
   UserExampleGuide:
     DashboardCustomNoteWidget:
-      name: 'TODO: Dashboard Custom Widget'
+      name: ダッシュボードカスタムウィジェット
     comingSoon: まもなく始まります...
     description: ようこそ！　このユーザーサンプルガイドでは、Axon Ivy ポータルで利用できるデモプロセスを紹介します。詳細については、以下の各リンクをクリックしてください。
     name: ユーザーサンプルガイド

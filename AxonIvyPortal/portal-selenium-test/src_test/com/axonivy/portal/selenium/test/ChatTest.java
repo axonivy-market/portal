@@ -9,6 +9,7 @@ import org.openqa.selenium.WindowType;
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.NavigationHelper;
+import com.axonivy.portal.selenium.common.Responsible;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.common.WaitHelper;
@@ -17,7 +18,6 @@ import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.TaskTemplatePage;
 import com.axonivy.portal.selenium.page.TopMenuTaskWidgetPage;
 
-import ch.ivyteam.ivy.project.portal.test.Responsible;
 
 @IvyWebTest
 public class ChatTest extends BaseTest {
@@ -39,7 +39,7 @@ public class ChatTest extends BaseTest {
 
   @Test
   public void chatAddGroup() {
-    Responsible chatUser1 = setResponsible(TestAccount.ADMIN_USER.getUsername(), false);
+    Responsible chatUser1 = new Responsible(TestAccount.ADMIN_USER.getUsername(), false);
     ChatPage chatPage = enableChatGroup();
     createChatGroup(TestAccount.DEMO_USER);
     joinChatGroupWhichAlreadyHadChatGroup(TestAccount.ADMIN_USER);
@@ -52,7 +52,7 @@ public class ChatTest extends BaseTest {
     openNewTabOrWindow(WindowType.WINDOW);
     launchBrowserAndGotoRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
 
-    Responsible chatGroupEveryBody = setResponsible("Everybody", true);
+    Responsible chatGroupEveryBody = new Responsible("Everybody", true);
     createChatGroup(TestAccount.GUEST_USER, chatUser1, chatGroupEveryBody);
 
     login(TestAccount.ADMIN_USER);

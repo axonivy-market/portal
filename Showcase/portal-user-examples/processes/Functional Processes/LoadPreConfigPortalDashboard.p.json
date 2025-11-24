@@ -1,0 +1,38 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/process/13.1.2/process.json",
+  "id" : "19A70D42454D8E31",
+  "kind" : "CALLABLE_SUB",
+  "config" : {
+    "data" : "com.axonivy.portal.userexamples.LoadPreConfigPortalDashboardData"
+  },
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "CallSubStart",
+      "name" : "loadPreConfigPortalDashboard()",
+      "config" : {
+        "signature" : "loadPreConfigPortalDashboard",
+        "result" : {
+          "params" : [
+            { "name" : "dashboardsJson", "type" : "String", "desc" : "" }
+          ],
+          "map" : { },
+          "code" : [
+            "import com.axonivy.portal.userexamples.utils.SampleDashboardUtil;",
+            "result.dashboardsJson = SampleDashboardUtil.getSampleDashboardsJson();"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f2", "to" : "f1" }
+      ]
+    }, {
+      "id" : "f1",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 352, "y" : 64 }
+      }
+    } ]
+}

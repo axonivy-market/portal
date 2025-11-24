@@ -91,7 +91,7 @@
                     rendered="#{widget.isCustom and dashboardDetailModificationBean.canEditStatistic()}">
                     <p:commandButton id="custom-statistic-action-button" icon="fa fa-ellipsis-h"
                       ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}"
-                      styleClass="rounded-button icon-more-menu-button ui-no-rounded-button-process-page h-1rem"
+                      styleClass="rounded-button icon-more-menu-button ui-no-rounded-button-process-page"
                       type="button" />
                     <p:menu id="custom-statistic-action-menu" styleClass="w-auto" overlay="true"
                       trigger="custom-statistic-action-button" my="right top" at="right bottom">
@@ -217,13 +217,15 @@
   </div>
 
   <f:facet name="footer">
-    <p:commandLink id="new-widget-close-button" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-      styleClass="new-widget-dialog__close-button"
-      value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-      onclick="PF('new-widget-dialog').hide()"
-      process="@this"
-      update="@this"
-      global="false"/>
+    <h:panelGroup layout="block" styleClass="pt-3">
+      <p:commandLink id="new-widget-close-button" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+        styleClass="new-widget-dialog__close-button "
+        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+        onclick="PF('new-widget-dialog').hide()"
+        process="@this"
+        update="@this"
+        global="false"/>
+    </h:panelGroup>
   </f:facet>
 </p:dialog>
 
