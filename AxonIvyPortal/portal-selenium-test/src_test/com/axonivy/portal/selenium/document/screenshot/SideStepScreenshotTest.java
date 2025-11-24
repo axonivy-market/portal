@@ -16,7 +16,7 @@ import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.ProcessWidgetPage;
 import com.axonivy.portal.selenium.page.TaskTemplatePage;
 import com.axonivy.portal.selenium.page.TopMenuTaskWidgetPage;
-@IvyWebTest
+@IvyWebTest(headless = false)
 public class SideStepScreenshotTest extends ScreenshotBaseTest {
   @Override
   @BeforeEach
@@ -48,7 +48,7 @@ public class SideStepScreenshotTest extends ScreenshotBaseTest {
     taskTemplatePage.clickActionButton();
     
     ScreenshotUtils.captureHalfTopRightPageScreenShot(ScreenshotUtils.SIDE_STEP_FOLDER + "side-step-menu");
-    taskTemplatePage.startCaseMapSideStep();
+    taskTemplatePage.startSideStep();
     ScreenshotUtils.captureElementWithMarginOptionScreenshot(taskTemplatePage.getSideStepConfigDialog(), ScreenshotUtils.SIDE_STEP_FOLDER + "side-step-config", new ScreenshotMargin(5, 5));
     
   }
