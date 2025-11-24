@@ -148,6 +148,11 @@ HowTo: Preview a document of a case
 
     - Portal can preview Word(doc, docx), Excel(xls, xlsx) and email(eml) documents if :dev-url:`DocFactory <https://market.axonivy.com/doc-factory#tab-description>` is deployed in the same security context.
 
+    - Starting with Portal 12.0.12 and DocFactory 12.0.5, Portal automatically
+      supports previewing any document type that DocFactory can handle. This means
+      new document types added in future DocFactory releases become previewable
+      immediately - no Portal upgrade required.
+
     - Change :ref:`Portal settings <update-portal-settings>` :guilabel:`Portal.Document.EnablePreview` to true to enable this feature.
 
 HowTo: Rename a document of a case

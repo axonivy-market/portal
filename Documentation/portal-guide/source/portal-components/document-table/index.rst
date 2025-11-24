@@ -295,4 +295,11 @@ Changes in 12.0.11
 ------------------
 - Added lazy loading functionality to the Document Table component, enabling efficient data loading through pagination.
 
+Changes in 12.0.12
+------------------
+- Starting with Portal 12.0.12 and DocFactory 12.0.5, Portal automatically
+  supports previewing any document type that DocFactory can handle. This means
+  new document types added in future DocFactory releases become previewable
+  immediately - no Portal upgrade required.
+
 .. |document-table| image:: ../../screenshots/components/document-table.png
