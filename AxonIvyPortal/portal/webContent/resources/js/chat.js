@@ -138,17 +138,18 @@ function Chat(uri, view) {
       var currentResponseId = response.id;
       if (response.status === "CHAT_REACHED_LIMITED_CONNECTION" || response.status === "SERVER_TIMEOUT") {
         currentResponseId = lastResponseId;
-      } else if (response.status === "DEACTIVATE_CHAT") {
-        if (!document[hidden]) {
-          setTimeout(function () {
-            chat.reloadChat();
-          }, 5000 - (new Date().getTime() - clientId));
-        } else {
-          isChatDeactivated = true;
-        }
+      } else if (response.status === "DEACTIVATE_CHAT" && !document[hidden]) {
+        setTimeout(function () {
+          chat.reloadChat();
+        }, 5000 - (new Date().getTime() - clientId));
         return;
       }
-      this.listen(false, currentResponseId, response.status); // wait for next update
+      if (!document[hidden]) {
+        this.listen(false, currentResponseId, response.status); // wait for next update if browser tab is active
+      } else {
+        isChatDeactivated = true;
+        return;
+      }
       if (response.action === "updateUserStatus") {
           view.updateUserOnlineStatus(response.content);
       } else if (response.action === "getUsers") {
