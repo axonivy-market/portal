@@ -146,7 +146,7 @@ HowTo: Preview a document of a case
 
     - Portal can preview images(jpg, jpeg, bmp and png), plain text(txt and log) and pdf documents by default.
 
-    - Portal can preview Word(doc, docx), Excel(xls, xlsx) and email(eml) documents if :doc-url:`DocFactory <https://market.axonivy.com/doc-factory#tab-description>` is deployed in the same security context.
+    - Portal can preview Word(doc, docx), Excel(xls, xlsx) and email(eml, msg) documents if :doc-url:`DocFactory <https://market.axonivy.com/doc-factory#tab-description>` is deployed in the same security context.
 
     - Change :ref:`Portal settings <update-portal-settings>` :guilabel:`Portal.Document.EnablePreview` to true to enable this feature.
 
