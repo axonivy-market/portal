@@ -239,7 +239,7 @@ public class DashboardConfigurationTest extends BaseTest {
     taskWidget.deleteTaskWidget();
     NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
     newDashboardDetailsEditPage.clickOnRemoveWidgetButton();
-    newDashboardPage.selectCaseWidget(YOUR_CASES_WIDGET).expand().shouldHave(size(1));
+    newDashboardPage.collectAvailableWidgets().shouldHave(size(8));
   }
 
   @Test
