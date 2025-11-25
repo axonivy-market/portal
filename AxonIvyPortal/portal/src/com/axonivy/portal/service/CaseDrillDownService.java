@@ -22,7 +22,7 @@ import ch.ivyteam.ivy.environment.Ivy;
 
 public class CaseDrillDownService extends AbstractDrillDownService {
   
-  private static final String CASE_DRILL_DOWN_WIDGET_ID = "case-drill-down-widget-id";
+  private static final String CASE_DRILL_DOWN_WIDGET_ID = "case_drill_down_widget_id";
   private static CaseDrillDownService instance;
   
   public static CaseDrillDownService getInstance() {

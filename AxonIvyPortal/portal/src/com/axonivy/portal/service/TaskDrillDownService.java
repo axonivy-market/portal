@@ -22,7 +22,7 @@ import ch.ivyteam.ivy.environment.Ivy;
 
 public class TaskDrillDownService extends AbstractDrillDownService {
 
-  private static final String TASK_DRILL_DOWN_WIDGET_ID = "task-drill-down-widget-id";
+  private static final String TASK_DRILL_DOWN_WIDGET_ID = "task_drill_down_widget_id";
   private static TaskDrillDownService instance;
 
   public static TaskDrillDownService getInstance() {
