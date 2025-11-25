@@ -1531,6 +1531,7 @@ Dialogs:
               ButtonName: Schaltfläche Name
               NavigationDashboardWidgetConfiguration: Konfiguration des Navigations-Dashboard-Widgets
               NavigationDashboardWidgetDescription: Dieses Widget ermöglicht es den Benutzern, durch einen Klick auf eine Schaltfläche direkt zu einem verknüpften Dashboard zu springen.
+              VisualType: Darstellungsart
             NewsWidget:
               NewsContentPlaceHolder: Nachrichteninhalt eingeben
               NewsContentValidateMessage: Nachrichteninhalt in {0} ist erforderlich

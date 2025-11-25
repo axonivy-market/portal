@@ -1522,6 +1522,7 @@ Dialogs:
               ButtonName: Button Name
               NavigationDashboardWidgetConfiguration: Navigation dashboard widget configuration
               NavigationDashboardWidgetDescription: This widget allows users to jump directly to a linked dashboard by clicking a button.
+              VisualType: Visual Type
             NewsWidget:
               NewsContentPlaceHolder: Enter News content
               NewsContentValidateMessage: News content in {0} is required

@@ -21,72 +21,105 @@
   <c:set var="panelId" value="navigation-widget-#{widget.id}-panel"/>
   <c:set var="isReadOnlyMode" value="#{cc.attrs.isReadOnlyMode}" />
 
-  <h:panelGroup id="#{panelId}" styleClass="card-widget-panel navigation-dashboard-widget-panel" layout="block" pt:role="region" pt:aria-label="#{widget.name}">
-     <div>
-       <h:panelGroup id="widget-header-actions" styleClass="js-navigation-dashboard-widget flex justify-content-end align-items-center navigation-dashboard-widget-panel pt-3 pr-2" layout="block">
-         <p:commandButton id="edit-widget-#{index}"
-           icon="si si-pencil"
-           styleClass="rounded-button ui-button-outlined u-hidden-sm-down u-mar-right-5"
-           oncomplete="PF('new-widget-configuration-dialog').show()"
-           ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/editWidget')}"
-           global="false"
-           actionListener="#{dashboardDetailModificationBean.prepareEditWidget(widget)}"
-           update="new-widget-configuration-dialog"
-           rendered="#{!isReadOnlyMode}"
-           process="@this"
-           partialSubmit="true" />
-         <p:tooltip for="edit-widget-#{index}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/editWidget')}" trackMouse="true"
-           hideEvent="mouseleave click" rendered="#{!isReadOnlyMode}"/>
-         <p:commandButton id="clone-widget-#{index}" type="button" icon="si si-copy-paste"
-           ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/CloneWidget')}"
-           styleClass="rounded-button ui-button-outlined u-mar-right-5"
-           rendered="#{!isReadOnlyMode}">
-           <p:ajax event="click" listener="#{cloneWidgetBean.setCloneWidget(widget)}"
-             process="@(this)"
-             update="clone-widget-component:clone-to-dashboard-dialog"
-             oncomplete="PF('clone-to-dashboard-dialog').show();" />
-         </p:commandButton>
-         <p:tooltip for="clone-widget-#{index}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/CloneWidget')}"
-           trackMouse="true" hideEvent="mouseleave click" />
-         <p:commandButton id="delete-widget-#{index}"
-           icon="si si-bin-1"
-           styleClass="rounded-button ui-button-outlined ui-button-danger"
-           oncomplete="PF('remove-widget-dialog').show()"
-           ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/deleteWidget')}"
-           global="false"
-           actionListener="#{dashboardDetailModificationBean.setDeleteWidget(widget)}"
-           update="remove-widget-dialog"
-           rendered="#{!isReadOnlyMode}"
-           process="@this"
-           partialSubmit="true" />
-         <p:tooltip for="delete-widget-#{index}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/deleteWidget')}" trackMouse="true"
-           hideEvent="mouseleave click" rendered="#{!isReadOnlyMode}"/>
-           
-       </h:panelGroup>
-     </div>
-       <h:panelGroup styleClass="navigation-dashboard-widget-info widget__content flex flex-column h-full align-items-center overflow-y-hidden" layout="block">
-          <div>
-              <i class="#{iconSelectionBean.generateIconWithFontFamily(widget.icon)} text-7xl"/>
-          </div>
-          <h:panelGroup styleClass="mt-3 w-full" layout="block">
-            <div class="mt-2 navigation-widget-title">
-                <h:outputText styleClass="font-bold" value="#{widget.name}" />
-            </div>
-            <div class="mt-2">
-                <h:outputText id="navigation-widget-description" styleClass="flex justify-content-center" value="#{widget.description}" />
-                <p:tooltip for="navigation-widget-description" value="#{widget.description}" trackMouse="true" />
-            </div>
+  <h:panelGroup id="#{panelId}" styleClass="card-widget-panel navigation-dashboard-widget-panel relative" layout="block" pt:role="region" pt:aria-label="#{widget.name}">
+     <h:panelGroup id="widget-header-actions" rendered="#{!isReadOnlyMode}" styleClass="js-navigation-dashboard-widget widget-header-actions" 
+      layout="block">
+      <p:commandButton id="widget-action-button" icon="fa fa-ellipsis-h"
+        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}"
+        styleClass="rounded-button icon-more-menu-button ui-no-rounded-button-process-page process-action-button" type="button"/>
+      <p:menu id="widget-action-menu" overlay="true"
+        trigger="widget-action-button"
+        my="right top" at="right bottom"
+        styleClass="widget-action-menu">
+        <p:menuitem id="edit-widget-#{index}"
+          styleClass="ui-sm-hidden"
+          global="false"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}"
+          icon="si si-graphic-tablet-drawing-pen"
+          oncomplete="PF('new-widget-configuration-dialog').show()"
+          actionListener="#{dashboardDetailModificationBean.prepareEditWidget(widget)}"
+          update="new-widget-configuration-dialog" />
+        <p:menuitem id="clone-widget-#{index}"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/Clone')}"
+          icon="si si-copy-paste"
+          actionListener="#{cloneWidgetBean.setCloneWidget(widget)}"
+          process="@(this)"
+          update="clone-widget-component:clone-to-dashboard-dialog"
+          oncomplete="PF('clone-to-dashboard-dialog').show();"
+          partialSubmit="true" />
+        <p:menuitem id="delete-widget-#{index}"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
+          icon="si si-bin-1" styleClass="color-destroy" global="false"
+          oncomplete="PF('remove-widget-dialog').show()"
+          actionListener="#{dashboardDetailModificationBean.setDeleteWidget(widget)}"
+          update="remove-widget-dialog"
+          process="@this" />
+      </p:menu>
+     </h:panelGroup>
+     <h:panelGroup styleClass="navigation-dashboard-widget-info widget__content flex flex-column align-items-center overflow-y-hidden p-0" layout="block">
+        <!-- Icon or Image Display -->
+        <!-- Show icon when visual type is ICON or when no visual type is set (backward compatibility) -->
+        <h:panelGroup rendered="#{widget.visualType == null or widget.visualType == 'ICON'}">
+          <h:panelGroup styleClass="navigation-widget-visual" layout="block" rendered="#{not empty widget.icon}">
+            <i class="#{iconSelectionBean.generateIconWithFontFamily(widget.icon)} text-7xl"/>
           </h:panelGroup>
-       </h:panelGroup>
-       <h:panelGroup id="navigation-dashboard-widget-footer" class="ml-3 mr-3 mb-3 mt-3">
-         <p:commandButton id="navigate-dashboard-button" styleClass="ui-button w-full ui-button-text-only navigate-dashboard-button-truncate"
-           disabled="#{navigationDashboardWidgetBean.isNotClickable(widget, isReadOnlyMode)}"
-           action="#{navigationDashboardWidgetBean.redirectToDashboard(widget, dashboardBean.selectedDashboard)}"
-           value="#{widget.buttonName}" ariaLabel="#{widget.buttonName}" />
-       </h:panelGroup>
-       <p:tooltip rendered="#{navigationDashboardWidgetBean.isNotClickable(widget, isReadOnlyMode)}"
-           for="navigation-dashboard-widget-footer" trackMouse="true"
-           value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/NavigationDashboardWidget/PermissionsDenied')}" />
+          <h:panelGroup styleClass="navigation-widget-visual" layout="block" rendered="#{empty widget.icon}">
+            <i class="si si-navigation-right-circle text-7xl"/>
+          </h:panelGroup>
+        </h:panelGroup>
+        
+        <!-- Show image when visual type is IMAGE (always show image, even if empty imageLocation) -->
+        <h:panelGroup rendered="#{widget.visualType == 'IMAGE'}">
+
+          <p:graphicImage id="default-image" rendered="#{navigationDashboardWidgetBean.isRenderDefaultImage(widget.imageLocation, widget.imageType)}" 
+                          cache="true"
+                          styleClass="navigation-widget-image-full light-mode" 
+                          alt="#{widget.name}"
+                          library="ivy-cms" 
+                          name="#{navigationDashboardWidgetBean.defaultImageLink}" />
+
+          <p:graphicImage id="default-image-dark" rendered="#{navigationDashboardWidgetBean.isRenderDefaultImage(widget.imageLocationDarkMode, widget.imageTypeDarkMode)}" 
+                          cache="true"
+                          styleClass="navigation-widget-image-full dark-mode" 
+                          alt="#{widget.name}"
+                          library="ivy-cms" 
+                          name="#{navigationDashboardWidgetBean.defaultImageLink}" />
+
+          <p:graphicImage rendered="#{not navigationDashboardWidgetBean.isRenderDefaultImage(widget.imageLocation, widget.imageType)}" 
+                          cache="true"
+                          styleClass="navigation-widget-image-full light-mode" 
+                          alt="#{widget.name}"
+                          library="ivy-cms" 
+                          name="#{widget.imageLocation}" />
+
+          <p:graphicImage rendered="#{not navigationDashboardWidgetBean.isRenderDefaultImage(widget.imageLocationDarkMode, widget.imageTypeDarkMode)}" 
+                          cache="true"
+                          styleClass="navigation-widget-image-full dark-mode" 
+                          alt="#{widget.name}"
+                          library="ivy-cms" 
+                          name="#{widget.imageLocationDarkMode}" />
+
+        </h:panelGroup>
+        <!-- Normal text layout for image mode (not overlay) -->
+        <h:panelGroup styleClass="mt-3 w-full" layout="block">
+          <div class="m-2 navigation-widget-title">
+              <h:outputText styleClass="font-bold" value="#{widget.name}" />
+          </div>
+          <div class="m-2">
+              <h:outputText id="navigation-widget-description-image" styleClass="flex justify-content-center" value="#{widget.description}" />
+              <p:tooltip for="navigation-widget-description-image" value="#{widget.description}" trackMouse="true" />
+          </div>
+        </h:panelGroup>
+     </h:panelGroup>
+     <h:panelGroup id="navigation-dashboard-widget-footer" class="ml-3 mr-3 mb-3 mt-3">
+       <p:commandButton id="navigate-dashboard-button" styleClass="ui-button w-full ui-button-text-only navigate-dashboard-button-truncate"
+         disabled="#{navigationDashboardWidgetBean.isNotClickable(widget, isReadOnlyMode)}"
+         action="#{navigationDashboardWidgetBean.redirectToDashboard(widget, dashboardBean.selectedDashboard)}"
+         value="#{widget.buttonName}" ariaLabel="#{widget.buttonName}" />
+     </h:panelGroup>
+     <p:tooltip rendered="#{navigationDashboardWidgetBean.isNotClickable(widget, isReadOnlyMode)}"
+         for="navigation-dashboard-widget-footer" trackMouse="true"
+         value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/NavigationDashboardWidget/PermissionsDenied')}" />
   </h:panelGroup>
 </cc:implementation>
 </html>
