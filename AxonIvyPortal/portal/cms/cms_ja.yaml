@@ -1521,6 +1521,7 @@ Dialogs:
               ButtonName: TODO Button Name
               NavigationDashboardWidgetConfiguration: Navigation dashboard widget configuration
               NavigationDashboardWidgetDescription: This widget allows users to jump directly to a linked dashboard via button click.
+              VisualType: 'TODO: Visual Type'
             NewsWidget:
               NewsContentPlaceHolder: ニュースコンテンツを入力
               NewsContentValidateMessage: '{0} のニュースコンテンツは必須です'

@@ -1525,6 +1525,7 @@ Dialogs:
                 Configuración del widget del dashboard de navegación
 
               NavigationDashboardWidgetDescription: Este widget permite a los usuarios acceder directamente a un dashboard vinculado haciendo clic en un botón.
+              VisualType: Tipo visual
             NewsWidget:
               NewsContentPlaceHolder: Introduzca el contenido de las noticias
               NewsContentValidateMessage: El contenido de las noticias en {0} es necesario
