@@ -154,7 +154,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     }
     initCustomWidgets();
     initStatisticWidgets();
-    statisticExampleWidgets = StatisticService.externalStatistics;
+    statisticExampleWidgets = StatisticService.getExternalStatistics();
   }
 
   protected void initStatisticWidgets() {

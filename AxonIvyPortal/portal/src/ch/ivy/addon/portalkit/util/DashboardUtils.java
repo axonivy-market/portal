@@ -5,7 +5,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -67,17 +66,21 @@ public class DashboardUtils {
   public final static String DEFAULT_CASE_LIST_DASHBOARD = "default-case-list-dashboard";
 
   private static final String PRECONFIG_DASHBOARDS_SIGNATURE = "loadPreConfigPortalDashboard()";
-  public static final List<Dashboard> externalDashboards;
+  public static List<Dashboard> externalDashboards;
 
-  static {
-    Map<String, Object> response = IvyAdapterService.startSubProcessInSecurityContext(PRECONFIG_DASHBOARDS_SIGNATURE, null);
+  public static List<Dashboard> getExternalDashboards() {
+    if (externalDashboards == null) {
+      Map<String, Object> response = IvyAdapterService.startSubProcessInSecurityContext(PRECONFIG_DASHBOARDS_SIGNATURE, null);
 
-    if (response != null && response.get("dashboardsJson") != null) {
-      String dashboardsJson = (String) response.get("dashboardsJson");
-      externalDashboards = jsonToDashboards(dashboardsJson);
-    } else {
-      externalDashboards = Collections.emptyList();
+      if (response != null && response.get("dashboardsJson") != null) {
+        String dashboardsJson = (String) response.get("dashboardsJson");
+        externalDashboards = jsonToDashboards(dashboardsJson);
+      } else {
+        externalDashboards = List.of();
+      }
     }
+
+    return externalDashboards;
   }
 
   public static List<Dashboard> getVisibleDashboards(String dashboardJson) {
@@ -235,7 +238,7 @@ public class DashboardUtils {
     if (UserExampleUtils.isUserExampleAvailable()) {
       collectedDashboards.add(DefaultDashboardUtils.getDefaultUserExampleDashboard());
     }
-    collectedDashboards.addAll(externalDashboards);
+    collectedDashboards.addAll(getExternalDashboards());
     return collectedDashboards;
   }
 
@@ -529,7 +532,7 @@ public class DashboardUtils {
           }
           collectedDashboards.addAll(idToDashboard.values());
           addDefaultTaskCaseListDashboardsIfMissing(collectedDashboards);
-          collectedDashboards.addAll(externalDashboards);
+          collectedDashboards.addAll(getExternalDashboards());
         } catch (Exception e) {
           Ivy.log().error("Cannot collect Dashboards {0}", e.getMessage());
         }

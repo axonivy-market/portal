@@ -5,7 +5,6 @@ import static com.axonivy.portal.bean.StatisticConfigurationBean.DEFAULT_COLORS;
 import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -55,25 +54,29 @@ public class StatisticService {
   private static StatisticService instance;
 
   private static final String PRECONFIG_STATISTIC_SIGNATURE = "loadPreConfigPortalStatistic()";
-  public static final List<Statistic> externalStatistics;
-
-  static {
-    Map<String, Object> response = IvyAdapterService.startSubProcessInSecurityContext(PRECONFIG_STATISTIC_SIGNATURE, null);
-
-    if (response != null && response.get("statisticsJson") != null) {
-      String statisticsJson = (String) response.get("statisticsJson");
-      externalStatistics = BusinessEntityConverter.jsonValueToEntities(statisticsJson, Statistic.class);
-      configDefaultStatisticSettings(externalStatistics);
-    } else {
-      externalStatistics = Collections.emptyList();
-    }
-  }
+  public static List<Statistic> externalStatistics;
 
   public static StatisticService getInstance() {
     if (instance == null) {
       instance = new StatisticService();
     }
     return StatisticService.instance;
+  }
+
+  public static List<Statistic> getExternalStatistics() {
+    if (externalStatistics == null) {
+      Map<String, Object> response = IvyAdapterService.startSubProcessInSecurityContext(PRECONFIG_STATISTIC_SIGNATURE, null);
+
+      if (response != null && response.get("statisticsJson") != null) {
+        String statisticsJson = (String) response.get("statisticsJson");
+        externalStatistics = BusinessEntityConverter.jsonValueToEntities(statisticsJson, Statistic.class);
+        configDefaultStatisticSettings(externalStatistics);
+      } else {
+        externalStatistics = List.of();
+      }
+    }
+
+    return StatisticService.externalStatistics;
   }
 
   public List<Statistic> findAllCharts() {
@@ -189,14 +192,14 @@ public class StatisticService {
   }
   
   private Statistic findByStatisticId(String id) {
-    return Stream.concat(findAllCharts().stream(), externalStatistics.stream())
+    return Stream.concat(findAllCharts().stream(), getExternalStatistics().stream())
         .filter(e -> e.getId().equals(id))
         .findFirst()
         .orElse(null);
   }
 
   public Statistic findByIdCustomStatistic(String id) {
-    return Stream.concat(getCustomStatistic().stream(), externalStatistics.stream())
+    return Stream.concat(getCustomStatistic().stream(), getExternalStatistics().stream())
         .filter(e -> e.getId().equals(id))
         .findFirst()
         .orElse(null);
