@@ -3,13 +3,17 @@
 Forgot Password
 ***************
 
-.. hint:: 
-  The admin will need to enable the change password feature for you to see the option
-  to display the "Forgot My Password" link.
-  If you use an external security system, like Active Directory or Entra ID, 
-  password management will need to be handled in that external system.
-  
-  You see the link on the bottom right of the login page.
+.. important::
+   The *Forgot Password* feature must be enabled by an administrator in the Portal configuration
+   before the "Forgot my password" link is shown on the login screen. If you do not see the link,
+   contact your Portal administrator.
+
+.. note::
+   External identity providers (e.g. Microsoft Entra ID (Azure AD), Active Directory, LDAP) manage
+   user credentials themselves. In those setups Portal does **not** change passwords; the link may be
+   hidden automatically or should be disabled. Use the provider's own self-service password reset pages.
+
+You find the "Forgot my password" link at the bottom right of the login page.
 
 |login-screen|
 
@@ -28,6 +32,10 @@ you will see this page:
 |reset-password-success-screen|
 
 Click on :guilabel:`Back To Login Page` and log in again with your account and the new password.
+
+.. tip::
+   For developers: This feature can be customized (e.g., custom email templates, validation rules).
+   See :ref:`Customize Forgot Password <customization-forgot-password>` in the Developer Guide.
 
 .. include:: ../includes/_common-icon.rst
 

@@ -8,13 +8,13 @@ Process Image
 Introduction
 ------------
 
-Follow this section to customize the process
-image of Portal.
+The Process Image customization allows you to assign custom visual icons to your processes in Portal's process list and cards.
+By defining a CMS image object in the process start's custom fields, you can replace the default process icons with branded images that help users quickly identify and distinguish between different processes.
 
 .. _customization-process-image-customization:
 
 Define Your Own Process Image
------------------------------
+------------------------------
 
 #. Create a CMS object with type image in your project.
 

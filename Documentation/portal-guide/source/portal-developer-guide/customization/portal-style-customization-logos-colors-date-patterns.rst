@@ -3,6 +3,12 @@
 Portal Styles Customization (Logos, Colors, Date Patterns)
 ==========================================================
 
+Introduction
+------------
+
+Customize Portal's visual appearance to match your corporate identity by configuring logos, colors, and date formats.
+Portal uses CSS variables for upgrade-safe theming and supports Axon Ivy's engine branding system for logo management.
+
 .. _customization-portal-logos-and-colors-change-portal-logos:
 
 Change Logos in Portal

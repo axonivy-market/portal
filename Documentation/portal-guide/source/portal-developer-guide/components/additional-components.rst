@@ -3,39 +3,50 @@
 Additional Components
 =====================
 
+Portal provides additional UI components and features that can be configured through the Admin Settings interface.
+
+.. note::
+   Most Portal features are now configured through :ref:`Admin Settings <admin-settings>` rather than requiring custom component integration. This provides a centralized, user-friendly way to manage Portal behavior.
+
 .. _components-additional-component-global-growl:
 
 Global Growl
 ------------
 
-.. _components-additional-component-global-growl-introduction:
+Portal includes a global growl component in BasicTemplate for displaying notification messages to users.
 
-Introduction
-^^^^^^^^^^^^
+Usage
+^^^^^
 
-This component is a global growl introduced in BasicTemplate. You can use it to
-display your messages in Portal using this code:
+To display messages using the Portal global growl in your custom dialogs:
 
 .. code-block:: html
 
-    <p:growl id="portal-global-growl" widgetVar="portal-global-growl" for="portal-global-growl-message" escape="false" showDetail="true" />
+    <p:growl id="portal-global-growl" widgetVar="portal-global-growl" 
+             for="portal-global-growl-message" escape="false" showDetail="true" />
 
+Configuration
+^^^^^^^^^^^^^
 
-Display Growl After Finishing a Task
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The global growl behavior is controlled by the Portal setting ``Portal.DisplayMessageAfterFinishTask``, which can be configured in :ref:`Admin Settings <update-portal-settings>`.
 
-After a task is finished, a growl message appears if ``Portal.DisplayMessageAfterFinishTask`` is true.
+**When Enabled:**
+
+- Displays a growl message after a task is finished
+- Shows a notification when a user cancels a task
+
+**Examples:**
+
+**Growl After Finishing a Task**
 
 |example-global-growl-finished-task|
 
-.. _components-additional-component-global-growl-display-growl-after-finish-task:
-
-Display Growl After Leaving a Task
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-After the user cancels a task, a growl message is displayed if ``Portal.DisplayMessageAfterFinishTask`` is true.
+**Growl After Leaving a Task**
 
 |example-global-growl-cancelled-task|
+
+.. tip::
+   Configure Portal behavior through :ref:`Admin Settings <admin-settings>` for easier management without code changes.
 
 .. |example-global-growl-finished-task| image:: ../../screenshots/components/example-global-growl-finished-task.png
 .. |example-global-growl-cancelled-task| image:: ../../screenshots/components/example-global-growl-cancelled-task.png

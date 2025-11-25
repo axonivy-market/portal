@@ -3,6 +3,12 @@
 Hide Technical Stuff
 ====================
 
+Introduction
+------------
+
+The Hide Technical Stuff customization allows you to prevent technical roles, tasks, and cases from appearing in Portal's user interface.
+By marking entities as technical, you can clean up views and delegation screens, hiding system-level workflows and administrative roles from end users while maintaining their functionality in the background.
+
 Depending on the value of Ivy variable ``PortalHiddenTaskCaseExcluded``, hidden
 tasks and cases are shown (``FALSE``) or hidden (``TRUE``). Default value is ``TRUE``.
 

@@ -8,9 +8,9 @@ Document Processes
 Introduction
 ------------
 
-When you upload documents but you want to manage them outside of Ivy, such as in
-a Document Management System (DMS), you should follow this section to customize
-the document functions of Portal.
+The Document Processes customization allows you to integrate Portal with external Document Management Systems (DMS)
+by overriding the default document handling functions. You can implement custom logic for uploading, downloading, retrieving, and deleting documents,
+enabling seamless integration with enterprise content management solutions while maintaining Portal's document UI.
 
 .. _customization-document-processes-customization:
 
@@ -26,24 +26,18 @@ Customize how Portal gets documents, create a callable subprocess with:
 
 **Signature**: portalGetDocumentList
 
-+------------------------+----------------------------------------------------------------------+
-| Name                   | Type                                                                 |
-+========================+======================================================================+
-| **Parameter**                                                                                 |
-+------------------------+----------------------------------------------------------------------+
-| businessCase           | ch.ivyteam.ivy.workflow.ICase                                        |
-+------------------------+----------------------------------------------------------------------+
-|**Result**                                                                                     |
-+------------------------+----------------------------------------------------------------------+
-| documents              | java.util.List<com.axonivy.portal.components.ivydata.bo.IvyDocument> |
-+------------------------+----------------------------------------------------------------------+
-| message                | java.lang.String                                                     |
-+------------------------+----------------------------------------------------------------------+
+**Parameters:**
 
-.. note::
+``businessCase`` (ch.ivyteam.ivy.workflow.ICase)
+   The case for which to retrieve documents.
 
-   After get document list from DMS, convert them into ``List<ch.ivy.addon.portal.component.ivydata.bo.IvyDocument>``
-   Some mandatory fields when mapping: ``id``, ``name``, ``contentType``
+**Result:**
+
+``documents`` (java.util.List<com.axonivy.portal.components.ivydata.bo.IvyDocument>)
+   List of documents associated with the case. After retrieving documents from your DMS, convert them into this type with mandatory fields: ``id``, ``name``, ``contentType``.
+
+``message`` (java.lang.String)
+   Status or error message from the document retrieval operation.
 
 Upload document
 +++++++++++++++
@@ -53,29 +47,33 @@ create a callable subprocess with:
 
 **Signature**: portalUploadDocument
 
-+-----------------------------------------+------------------------------------------------+---------------+
-| Name                                    | Type                                           | Note          |
-+=========================================+================================================+===============+
-| **Parameter**                                                                            |               |
-+-----------------------------------------+------------------------------------------------+---------------+
-| businessCase                            | ch.ivyteam.ivy.workflow.ICase                  |               |
-+-----------------------------------------+------------------------------------------------+---------------+
-| uploadedFile                            | org.primefaces.model.file.UploadedFile         |               |
-+-----------------------------------------+------------------------------------------------+---------------+
-| enableScriptCheckingForUploadedDocument | java.lang.Boolean                              |               |
-+-----------------------------------------+------------------------------------------------+---------------+
-| enableVirusScannerForUploadedDocument   | java.lang.Boolean                              |               |
-+-----------------------------------------+------------------------------------------------+---------------+
-| allowedUploadFileTypes                  | java.lang.String                               |               |
-+-----------------------------------------+------------------------------------------------+---------------+
-| **Result**                                                                               |               |
-+-----------------------------------------+------------------------------------------------+---------------+
-| uploadedDocument                        | ch.ivyteam.ivy.workflow.document.IDocument     |               |
-+-----------------------------------------+------------------------------------------------+---------------+
-| message                                 | java.lang.String                               |               |
-+-----------------------------------------+------------------------------------------------+---------------+
-| status                                  | java.lang.String                               | OK or FAIL    |
-+-----------------------------------------+------------------------------------------------+---------------+
+**Parameters:**
+
+``businessCase`` (ch.ivyteam.ivy.workflow.ICase)
+   The case to upload the document to.
+
+``uploadedFile`` (org.primefaces.model.file.UploadedFile)
+   The file being uploaded by the user.
+
+``enableScriptCheckingForUploadedDocument`` (java.lang.Boolean)
+   Whether to check uploaded files for embedded scripts.
+
+``enableVirusScannerForUploadedDocument`` (java.lang.Boolean)
+   Whether to scan uploaded files for viruses.
+
+``allowedUploadFileTypes`` (java.lang.String)
+   Comma-separated list of allowed file extensions.
+
+**Result:**
+
+``uploadedDocument`` (ch.ivyteam.ivy.workflow.document.IDocument)
+   The uploaded document object.
+
+``message`` (java.lang.String)
+   Status or error message from the upload operation.
+
+``status`` (java.lang.String)
+   Operation status: OK or FAIL.
 
 Download document
 +++++++++++++++++
@@ -85,19 +83,18 @@ create a callable subprocess with:
 
 **Signature**: portalDownloadDocument
 
-+------------------------+------------------------------------------------------+
-| Name                   | Type                                                 |
-+========================+======================================================+
-| **Parameter**                                                                 |
-+------------------------+------------------------------------------------------+
-| businessCase           | ch.ivyteam.ivy.workflow.ICase                        |
-+------------------------+------------------------------------------------------+
-| document               | com.axonivy.portal.components.ivydata.bo.IvyDocument |
-+------------------------+------------------------------------------------------+
-|**Result**                                                                     |
-+------------------------+------------------------------------------------------+
-| streamedContent        | org.primefaces.model.StreamedContent                 |
-+------------------------+------------------------------------------------------+
+**Parameters:**
+
+``businessCase`` (ch.ivyteam.ivy.workflow.ICase)
+   The case containing the document.
+
+``document`` (com.axonivy.portal.components.ivydata.bo.IvyDocument)
+   The document to be downloaded.
+
+**Result:**
+
+``streamedContent`` (org.primefaces.model.StreamedContent)
+   The document content stream for download.
 
 Delete document
 +++++++++++++++
@@ -107,16 +104,15 @@ create a callable subprocess with:
 
 **Signature**: portalDeleteDocument
 
-+------------------------+------------------------------------------------------+
-| Name                   | Type                                                 |
-+========================+======================================================+
-| **Parameter**                                                                 |
-+------------------------+------------------------------------------------------+
-| businessCase           | ch.ivyteam.ivy.workflow.ICase                        |
-+------------------------+------------------------------------------------------+
-| document               | com.axonivy.portal.components.ivydata.bo.IvyDocument |
-+------------------------+------------------------------------------------------+
-|**Result**                                                                     |
-+------------------------+------------------------------------------------------+
-| message                | java.lang.String                                     |
-+------------------------+------------------------------------------------------+
+**Parameters:**
+
+``businessCase`` (ch.ivyteam.ivy.workflow.ICase)
+   The case containing the document.
+
+``document`` (com.axonivy.portal.components.ivydata.bo.IvyDocument)
+   The document to be deleted.
+
+**Result:**
+
+``message`` (java.lang.String)
+   Status or error message from the delete operation.
