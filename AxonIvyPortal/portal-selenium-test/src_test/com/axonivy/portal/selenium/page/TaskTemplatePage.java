@@ -299,7 +299,7 @@ public class TaskTemplatePage extends TemplatePage {
 
 
     $("div[id='side-step-process-form:step-type']").click();
-    $("ul[id='side-step-process-form:step-type_items']").$$("li").filter(Condition.text("Start a backgroud task (parallel)")).first().click();
+    $("ul[id='side-step-process-form:step-type_items']").$$("li").filter(Condition.text("Start a background task (parallel)")).first().click();
 
     $("button[id='side-step-process-submit-button']").click();
   }
