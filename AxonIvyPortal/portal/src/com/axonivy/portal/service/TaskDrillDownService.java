@@ -2,12 +2,11 @@ package com.axonivy.portal.service;
 
 import java.util.List;
 
-import java.util.Set;
-
 import com.axonivy.portal.bo.Statistic;
 import com.axonivy.portal.components.service.LanguageService;
 import com.axonivy.portal.constant.StatisticConstants;
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
+import com.axonivy.portal.enums.statistic.AggregationField;
 
 import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
@@ -24,7 +23,6 @@ import ch.ivyteam.ivy.environment.Ivy;
 public class TaskDrillDownService extends AbstractDrillDownService {
 
   private static final String TASK_DRILL_DOWN_WIDGET_ID = "task-drill-down-widget-id";
-  private static final Set<String> FIELDS_USING_IN_OPERATOR = Set.of(DashboardStandardTaskColumn.STATE.getField(), DashboardStandardTaskColumn.CATEGORY.getField(), DashboardStandardTaskColumn.PRIORITY.getField(), DashboardStandardTaskColumn.RESPONSIBLE.getField());
   private static TaskDrillDownService instance;
 
   public static TaskDrillDownService getInstance() {
@@ -84,7 +82,7 @@ public class TaskDrillDownService extends AbstractDrillDownService {
 
   @Override
   protected boolean shouldUseInOperator(String field) {
-    return FIELDS_USING_IN_OPERATOR.contains(field);
+    return AggregationField.FIELDS_USING_IN_OPERATOR.contains(field);
   }
 
   @Override
