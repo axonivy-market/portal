@@ -1,7 +1,6 @@
 package ch.ivy.addon.portal.generic.bean;
 
 import java.io.IOException;
-
 import java.io.Serializable;
 import java.util.ArrayDeque;
 import java.util.Deque;
@@ -18,12 +17,14 @@ import javax.faces.context.FacesContext;
 import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.dto.dashboard.NavigationDashboardWidget;
+import com.axonivy.portal.util.ImageUploadUtils;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
+import ch.ivy.addon.portalkit.jsf.Attrs;
 import ch.ivy.addon.portalkit.util.DashboardUtils;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivy.addon.portalkit.util.UrlUtils;
@@ -37,17 +38,24 @@ public class NavigationDashboardWidgetBean implements Serializable {
   private static final long serialVersionUID = -4224901891867040688L;
   private Boolean isNavigateToTargetDashboard;
   private Deque<String> pageHistory = new ArrayDeque<>();
+  private NavigationDashboardWidget widget;
+  
+  protected static final String DEFAULT_IMAGE_CMS_URI = "/Images/process/MUGBEGIN";
+
+  public void init() {
+    widget = Attrs.currentContext().getAttribute("#{cc.attrs.widget}", NavigationDashboardWidget.class);
+  }
   
   public void pushPage(String pageId) {
-      if (!pageHistory.isEmpty() && pageHistory.peek().equals(pageId)) {
-          return;
-      }
-      
-      pageHistory.push(pageId);
+    if (!pageHistory.isEmpty() && pageHistory.peek().equals(pageId)) {
+        return;
+    }
+    
+    pageHistory.push(pageId);
   }
   
   public String getPreviousPage() {
-      return pageHistory.peek();
+    return pageHistory.peek();
   }
   
   private void removeLast() {
@@ -55,11 +63,11 @@ public class NavigationDashboardWidgetBean implements Serializable {
   }
   
   public boolean hasHistory() {
-      return !pageHistory.isEmpty();
+    return !pageHistory.isEmpty();
   }
   
   public void clearHistory() {
-      pageHistory.clear();
+    pageHistory.clear();
   }
 
   public void redirectToDashboard(NavigationDashboardWidget widget, Dashboard currentDashboard) throws IOException {
@@ -165,5 +173,21 @@ public class NavigationDashboardWidgetBean implements Serializable {
   
   private List<String> getSupportedLanguages() {
     return LanguageService.getInstance().getIvyLanguageOfUser().getSupportedLanguages();
+  }
+
+  public NavigationDashboardWidget getWidget() {
+    return widget;
+  }
+
+  public void setWidget(NavigationDashboardWidget widget) {
+    this.widget = widget;
+  }
+  
+  public String getDefaultImageLink() {
+    return DEFAULT_IMAGE_CMS_URI;
+  }
+
+  public boolean isRenderDefaultImage(String imageLocation, String imageType) {
+    return !ImageUploadUtils.isValidImageUrl(imageLocation, imageType);
   }
 }

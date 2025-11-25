@@ -18,12 +18,13 @@ import ch.ivyteam.ivy.cm.ContentObjectValue;
 import ch.ivyteam.ivy.cm.exec.ContentManagement;
 import ch.ivyteam.ivy.environment.Ivy;
 
-public class ExternalLinkUtils {
+public class ImageUploadUtils {
 
-  public static final String IMAGE_DIRECTORY = "com/axonivy/portal/ExternalLink";
   public static final String DEFAULT_LOCALE_TAG = "en";
+  public static final String EXTERNAL_LINK_IMAGE_DIRECTORY = "com/axonivy/portal/ExternalLink";
+  public static final String NAVIGATION_WIDGET_IMAGE_DIRECTORY = "com/axonivy/portal/NavigationWidget";
 
-  public static ImageUploadResult handleImageUpload(FileUploadEvent event) {
+  public static ImageUploadResult handleImageUpload(FileUploadEvent event, String imageDir) {
     UploadedFile file = event.getFile();
     if (file != null && file.getContent() != null && file.getContent().length > 0 && file.getFileName() != null) {
       // save the image
@@ -39,7 +40,7 @@ public class ExternalLinkUtils {
       }
 
       ContentObject imageCMSObject =
-          getApplicationCMS().child().folder(IMAGE_DIRECTORY).child().file(fileName, fileExtension);
+          getApplicationCMS().child().folder(imageDir).child().file(fileName, fileExtension);
 
       if (imageCMSObject != null) {
         readObjectValueOfDefaultLocale(imageCMSObject).write().bytes(content);
@@ -56,11 +57,15 @@ public class ExternalLinkUtils {
     }
   }
 
-  public static String imageBase64ToApplicationCMSFile(String base64Data, String imageType) {
+  public static String imageBase64ToApplicationCMSFile(String base64Data, String imageType, String imageDir) {
     try {
       byte[] data = Base64.getDecoder().decode(base64Data.getBytes(StandardCharsets.UTF_8));
+      if (SvgUtils.isPotentialSvg(imageType, data) && SvgUtils.isUnsafeSvg(data)) {
+        Ivy.log().warn("Image rejected: unsafe SVG content (base64 path).");
+        return StringUtils.EMPTY;
+      }
       String fileName = UUID.randomUUID().toString();
-      ContentObject imageCMSObject = getApplicationCMS().child().folder(IMAGE_DIRECTORY).child().file(fileName, imageType);
+      ContentObject imageCMSObject = getApplicationCMS().child().folder(imageDir).child().file(fileName, imageType);
 
       if (imageCMSObject != null) {
         readObjectValueOfDefaultLocale(imageCMSObject).write().bytes(data);
@@ -81,7 +86,7 @@ public class ExternalLinkUtils {
     return imageCMSObject.exists();
   }
 
-  private static ContentObjectValue readObjectValueOfDefaultLocale(ContentObject contentObject) {
+  public static ContentObjectValue readObjectValueOfDefaultLocale(ContentObject contentObject) {
     if (contentObject == null) {
       return null;
     }
@@ -90,5 +95,23 @@ public class ExternalLinkUtils {
 
   private static ContentObject getApplicationCMS() {
     return ContentManagement.cms(IApplication.current()).root();
+  }
+  
+  public static String imageToBase64(String imageLocation, String extension, String imageDir) {
+    if (StringUtils.isBlank(imageLocation)) {
+      return "";
+    }
+    String result = "";
+    String fileName = getFileNameOfImage(imageLocation);
+    ContentObject imageCMSObject =
+        getApplicationCMS().child().folder(imageDir).child().file(fileName, extension);
+    if (imageCMSObject != null) {
+      result = new String(Base64.getEncoder().encode(ImageUploadUtils.readObjectValueOfDefaultLocale(imageCMSObject).read().bytes()));
+    }
+    return result;
+  }
+  
+  private static String getFileNameOfImage(String imageLocation) {
+    return StringUtils.defaultIfEmpty(imageLocation, "").substring(imageLocation.lastIndexOf('/') + 1);
   }
 }
