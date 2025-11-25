@@ -105,7 +105,6 @@
           <argLine>
             -Dtest.engine.url=${test.engine.url}
             -Dtest.engine.app=demo-portal
-            -Dcapabilities.unhandledPromptBehavior=accept and notify
           </argLine>
         </configuration>
         <executions>
