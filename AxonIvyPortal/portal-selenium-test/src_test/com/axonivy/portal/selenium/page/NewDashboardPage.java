@@ -2,6 +2,7 @@ package com.axonivy.portal.selenium.page;
 
 import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Condition.disappear;
+import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
@@ -1134,5 +1135,9 @@ public class NewDashboardPage extends TemplatePage {
     return $("span#breadcrumb-container").shouldBe(Condition.appear, DEFAULT_TIMEOUT).
     $("form#navigation-dashboard-back-button").shouldBe(Condition.appear, DEFAULT_TIMEOUT).
     $("a[id$=':back-to-previous-dashboard-page']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+  }
+  
+  public ElementsCollection collectAvailableWidgets() {
+    return $$("div.widget__header");
   }
 }
