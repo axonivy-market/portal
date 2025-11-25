@@ -5177,9 +5177,9 @@ body.light .image-process-container .image-process-item .card-item.card.image-wi
     bottom: 0 !important;
     padding-bottom: 0 !important;
   }
-
-  .image-process-item .card.image-widget-mode .process-name {
-    padding: 0.6rem 0.6rem !important;
+  
+  .image-view-form .process-name {
+    height: 35%;
   }
 }
 

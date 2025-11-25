@@ -96,7 +96,6 @@ public class DemoProcessesScreenshotTest extends ScreenshotBaseTest {
     caseMapPage = new CaseMapPage();
     caseMapPage.switchToIFrameOfTask();
     caseMapPage.clickSubmitButtonAndBackToTaskList();
-    NavigationHelper.navigateToTaskList();
     TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
     taskWidget.clickOnTaskActionLink(0);
     assertTrue(taskWidget.isTaskAdditionActionDisplay("External solvency service"));

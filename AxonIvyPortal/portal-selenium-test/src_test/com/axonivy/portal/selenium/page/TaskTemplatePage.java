@@ -228,6 +228,12 @@ public class TaskTemplatePage extends TemplatePage {
     clickOnSubmitButton();
     return new NewDashboardPage();
   }
+  
+  public NewDashboardPage clickReserveButton() {
+    clickByJavaScript($("button[id$=':reserve-task-button']"));
+    switchBackToParent();
+    return new NewDashboardPage();
+  }
 
   public void clickSubmitButtonProceed() {
     $("button[id='form:proceed']").shouldBe(clickable(), DEFAULT_TIMEOUT).click();
