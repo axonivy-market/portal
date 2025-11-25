@@ -15,7 +15,7 @@ import ch.ivyteam.ivy.environment.Ivy;
 
 @ViewScoped
 @ManagedBean
-public class SideStepExampleBean implements Serializable{
+public class SideStepExampleBean implements Serializable {
 
   private static final long serialVersionUID = 1L;
   
