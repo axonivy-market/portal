@@ -47,9 +47,6 @@ See :ref:`Update Portal settings <update-portal-settings>`.
 Using QR Codes
 ==============
 
-Using QR Codes
-==============
-
 HowTo: Download the Axon Ivy Mobile Application
 ------------------------------------------------
 

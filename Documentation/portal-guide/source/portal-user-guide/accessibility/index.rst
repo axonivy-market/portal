@@ -208,10 +208,7 @@ Text Alternatives for Buttons
 We have implemented ARIA (Accessible Rich Internet Applications) attributes across many elements, including buttons, to ensure they are easily identifiable by screen readers. This allows users who rely on assistive technologies to interact with the portal more effectively.
 
 Accessibility Dashboard Templates
-==================================
-
-Accessibility Dashboard Templates
-==================================
+=================================
 
 To further enhance usability, we have created an **Accessibility Dashboard** that simplifies navigation for users with disabilities. This dashboard features a dedicated Shortcuts Widget that displays available shortcuts. When the dashboard opens, this widget is automatically focused and read aloud by the screen reader.
 

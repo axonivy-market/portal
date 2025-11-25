@@ -124,7 +124,8 @@ Role Configuration
 
 Portal uses specific roles to control administrative access:
 
-.. table::\n   :widths: 30 70
+.. table::
+   :widths: 30 70
 
    +---------------------------+----------------------------------------------------------------+
    | Role                      | Description                                                    |

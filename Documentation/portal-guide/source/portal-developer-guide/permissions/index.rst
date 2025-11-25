@@ -39,8 +39,6 @@ For detailed configuration instructions and examples, see :ref:`Permission Setti
 - :ref:`Settings <settings-permission-settings>` - Permission configuration examples and detailed explanations
 - :ref:`Customization <customization>` - Build custom permission-based features
 
-Comprehensive reference of all Portal permissions. Use this list to assign least-privilege access and understand which features each permission controls.
-
 Overview
 --------
 

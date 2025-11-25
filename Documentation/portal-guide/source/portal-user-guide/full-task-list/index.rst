@@ -181,7 +181,7 @@ To restore the dashboard to its default settings, including the menu icon and ta
 recreate the dashboard with the default settings.
 
 HowTo: Move and Resize Widgets in Task Details
------------------------------------------------
+----------------------------------------------
 
 #. Open the task details of a task
 
