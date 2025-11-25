@@ -27,7 +27,6 @@ public class NavigationDashboardWidgetConfigurationBean extends NavigationDashbo
       return;
     }
     
-    // Remove previous image if exists
     removeImage(false);
     
     // Upload new image
@@ -43,7 +42,6 @@ public class NavigationDashboardWidgetConfigurationBean extends NavigationDashbo
       return;
     }
     
-    // Remove previous image if exists
     removeImage(true);
     
     // Upload new image
@@ -55,8 +53,7 @@ public class NavigationDashboardWidgetConfigurationBean extends NavigationDashbo
   }
   
   /**
-   * Temporarily removes image from UI only (for delete button).
-   * The actual image deletion from server happens on save.
+   * Remove previous image if exists
    */
   public void removeImage(boolean isDarkMode) {
     if (StringUtils.isNotBlank(getWidget().getImageLocation()) && !isDarkMode) {
