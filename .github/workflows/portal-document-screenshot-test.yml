@@ -116,7 +116,9 @@ jobs:
           cp Showcase/portal-components-examples/target/*.iar $DEPLOYMENT
           cp AxonIvyPortal/PortalKitTestHelper/target/*.iar $DEPLOYMENT
           cp Showcase/InternalSupport/target/*.iar $DEPLOYMENT
-
+          cp AxonIvyPortal/portal/target/*.iar $DEPLOYMENT
+          cp AxonIvyPortal/portal-components/target/*.iar $DEPLOYMENT
+      
       
       - name: Run test
         id: run-test        
