@@ -1,30 +1,21 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "$schema" : "https://json-schema.axonivy.com/data-class/13.2.0/data-class.json",
   "simpleName" : "LeaveRequestSideStep1Data",
   "namespace" : "com.axonivy.portal.developerexamples",
-  "isBusinessCaseData" : false,
   "fields" : [ {
-    "name" : "originalTaskUuid",
-    "type" : "String",
-    "modifiers" : [ "PERSISTENT" ]
+    "name" : "originalTaskUuid"
   }, {
-    "name" : "originalCaseUuid",
-    "type" : "String",
-    "modifiers" : [ "PERSISTENT" ]
+    "name" : "originalCaseUuid"
   }, {
-    "name" : "comment",
-    "type" : "String",
-    "modifiers" : [ "PERSISTENT" ]
+    "name" : "comment"
   }, {
     "name" : "caze",
-    "type" : "ch.ivyteam.ivy.workflow.ICase"
+    "type" : "ch.ivyteam.ivy.workflow.ICase",
+    "modifiers" : [ ]
   }, {
-    "name" : "securityMember",
-    "type" : "String",
-    "modifiers" : [ "PERSISTENT" ]
+    "name" : "securityMember"
   }, {
     "name" : "isParallel",
-    "type" : "Boolean",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "Boolean"
   } ]
 }

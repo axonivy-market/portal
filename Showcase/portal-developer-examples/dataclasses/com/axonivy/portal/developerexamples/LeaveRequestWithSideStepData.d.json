@@ -1,33 +1,24 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "$schema" : "https://json-schema.axonivy.com/data-class/13.2.0/data-class.json",
   "simpleName" : "LeaveRequestWithSideStepData",
   "namespace" : "com.axonivy.portal.developerexamples",
-  "isBusinessCaseData" : false,
   "fields" : [ {
-    "name" : "caseUuid",
-    "type" : "String",
-    "modifiers" : [ "PERSISTENT" ]
+    "name" : "caseUuid"
   }, {
     "name" : "isApproved",
-    "type" : "Boolean",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "Boolean"
   }, {
-    "name" : "requester",
-    "type" : "String",
-    "modifiers" : [ "PERSISTENT" ]
+    "name" : "requester"
   }, {
-    "name" : "approver",
-    "type" : "String",
-    "modifiers" : [ "PERSISTENT" ]
+    "name" : "approver"
   }, {
     "name" : "leaveType",
-    "type" : "com.axonivy.portal.developerexamples.enums.LeaveType",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "com.axonivy.portal.developerexamples.enums.LeaveType"
   }, {
     "name" : "caze",
-    "type" : "ch.ivyteam.ivy.workflow.ICase"
+    "type" : "ch.ivyteam.ivy.workflow.ICase",
+    "modifiers" : [ ]
   }, {
-    "name" : "uuid",
-    "type" : "String"
+    "name" : "uuid"
   } ]
 }
