@@ -194,7 +194,7 @@
       "y" : 2
     },
     "data" : {
-      "processPath" : "portal-user-examples/Start Processes/UserExampleGuide/widgetNote.ivp",
+      "processPath" : "Start Processes/UserExampleGuide/widgetNote.ivp",
       "params" : [ {
         "name" : "noteDE",
         "type" : "STRING",
