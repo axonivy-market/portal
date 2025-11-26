@@ -109,7 +109,7 @@ public class DashboardWelcomeWidgetBean implements Serializable {
     String imageContent = isDarkMode ? widget.getImageContentDarkMode() : widget.getImageContent();
     if (StringUtils.isNotBlank(imageContent)) {
       WelcomeWidgetUtils.readObjectValueOfDefaultLocale(content).write().bytes(Base64.getDecoder().decode(imageContent));
-      List<Dashboard> dashboards = DashboardUtils.collectDashboards();
+      List<Dashboard> dashboards = DashboardUtils.getPublicDashboards();
       for (Dashboard dashboard : dashboards) {
         dashboard.getWidgets().stream()
             .filter(item -> widget.getId().equals(item.getId()) && item.getType() == DashboardWidgetType.WELCOME)
@@ -173,3 +173,4 @@ public class DashboardWelcomeWidgetBean implements Serializable {
     return StringUtils.isBlank(text) ? "" : HtmlParser.sanitizeHTML(text);
   }
 }
+
