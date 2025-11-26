@@ -82,7 +82,7 @@ public class DashboardWelcomeWidgetBean implements Serializable {
   private void removeImageContentOfWidget(ContentObject imageContent) {
     if (StringUtils.isNotBlank(widget.getImageContent())) {
       WelcomeWidgetUtils.readObjectValueOfDefaultLocale(imageContent).write().bytes(Base64.getDecoder().decode(widget.getImageContent()));
-      List<Dashboard> dashboards = DashboardUtils.collectDashboards();
+      List<Dashboard> dashboards = DashboardUtils.getPublicDashboards();
       for (Dashboard dashboard :  dashboards) {
         dashboard.getWidgets().stream()
         .filter(item -> widget.getId().equals(item.getId()) && item.getType() == DashboardWidgetType.WELCOME)
@@ -142,3 +142,4 @@ public class DashboardWelcomeWidgetBean implements Serializable {
     return StringUtils.isBlank(text) ? "" : HtmlParser.sanitizeHTML(text);
   }
 }
+
