@@ -239,10 +239,10 @@
         "Business Details Page"
       ],
       "config" : {
-        "dialog" : "com.axonivy.portal.developerexamples.customization.sidestep.LeaveRequestBusinessDetailsPage:start(ch.ivyteam.ivy.workflow.ICase)",
+        "dialog" : "com.axonivy.portal.developerexamples.customization.sidestep.LeaveRequestBusinessDetailsPage:start(String)",
         "call" : {
           "map" : {
-            "param.caze" : "in.caze"
+            "param.caseUuid" : "in.uuid"
           }
         }
       },
@@ -281,25 +281,7 @@
         "at" : { "x" : 40, "y" : 1216 }
       },
       "connect" : [
-        { "id" : "f85", "to" : "f91" }
-      ]
-    }, {
-      "id" : "f91",
-      "type" : "Script",
-      "name" : "Find case by id",
-      "config" : {
-        "output" : {
-          "code" : [
-            "import com.axonivy.portal.components.util.CaseUtils;",
-            "out.caze = CaseUtils.findCase(in.uuid);"
-          ]
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 264, "y" : 1216 }
-      },
-      "connect" : [
-        { "id" : "f92", "to" : "f81", "color" : "default" }
+        { "id" : "f106", "to" : "f81" }
       ]
     }, {
       "id" : "f93",

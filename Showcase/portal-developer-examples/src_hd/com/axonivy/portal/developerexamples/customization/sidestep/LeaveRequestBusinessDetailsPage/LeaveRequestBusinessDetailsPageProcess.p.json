@@ -8,15 +8,15 @@
   "elements" : [ {
       "id" : "f0",
       "type" : "HtmlDialogStart",
-      "name" : "start(ICase)",
+      "name" : "start(String)",
       "config" : {
         "signature" : "start",
         "input" : {
           "params" : [
-            { "name" : "caze", "type" : "ch.ivyteam.ivy.workflow.ICase", "desc" : "" }
+            { "name" : "caseUuid", "type" : "String", "desc" : "" }
           ],
           "map" : {
-            "out.caze" : "param.caze"
+            "out.caseUuid" : "param.caseUuid"
           }
         },
         "guid" : "1967A5F0322D0479"
@@ -65,8 +65,9 @@
             "import com.axonivy.portal.components.dto.UserDTO;",
             "import com.axonivy.portal.developerexamples.LeaveRequest;",
             "",
+            "ICase caze = ivy.wf.findCase(in.caseUuid);",
             "",
-            "in.leaveRequestData = ivy.repo.find(in.caze.getBusinessCase(), LeaveRequest.class) as LeaveRequest;",
+            "in.leaveRequestData = ivy.repo.find(caze.getBusinessCase(), LeaveRequest.class) as LeaveRequest;",
             "in.requester = new UserDTO(ISecurityContext.current().users().find(in.leaveRequestData.requesterUsername));",
             "in.approver = new UserDTO(ISecurityContext.current().users().find(in.leaveRequestData.approverUsername));",
             "in.requester = new UserDTO(ISecurityContext.current().users().find(in.leaveRequestData.requesterUsername));",
