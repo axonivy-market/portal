@@ -112,6 +112,7 @@ jobs:
           rm -rf $DEPLOYMENT/*
           cp Showcase/portal-demo-app/target/*.zip $DEPLOYMENT
           cp Showcase/portal-developer-examples/target/*.iar $DEPLOYMENT
+          cp Showcase/portal-user-examples/target/*.iar $DEPLOYMENT
           cp Showcase/portal-components-examples/target/*.iar $DEPLOYMENT
           cp AxonIvyPortal/PortalKitTestHelper/target/*.iar $DEPLOYMENT
           cp Showcase/InternalSupport/target/*.iar $DEPLOYMENT
