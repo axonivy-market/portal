@@ -194,7 +194,7 @@
       "y" : 2
     },
     "data" : {
-      "processPath" : "designer/portal-user-examples/Start Processes/UserExampleGuide/widgetNote.ivp",
+      "processPath" : "portal-user-examples/Start Processes/UserExampleGuide/widgetNote.ivp",
       "params" : [ {
         "name" : "noteDE",
         "type" : "STRING",
@@ -245,7 +245,7 @@
     },
     "showFullscreenMode" : true,
     "showWidgetInfo" : true,
-    "processPath" : "designer/portal-user-examples/Start Processes/ProcurementDataForSampleKPIStatistic/start2.ivp",
+    "processPath" : "portal-user-examples/Start Processes/ProcurementDataForSampleKPIStatistic/start2.ivp",
     "rowsPerPage" : 5
   }, {
     "type" : "welcome",
