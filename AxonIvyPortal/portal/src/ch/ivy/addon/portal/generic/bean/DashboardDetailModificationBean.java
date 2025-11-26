@@ -128,6 +128,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   private Optional<DashboardTemplate> foundTemplate;
   private List<DashboardProcess> customWidgets;
   private List<Statistic> statisticWidgets;
+  private List<Statistic> statisticExampleWidgets;
 
   // Clone widget function
   private Dashboard cloneFromDashboard;
@@ -156,6 +157,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     }
     initCustomWidgets();
     initStatisticWidgets();
+    statisticExampleWidgets = StatisticService.getExternalStatistics();
   }
 
   protected void initStatisticWidgets() {
@@ -1137,7 +1139,13 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   public void setStatisticWidgets(List<Statistic> statisticWidgets) {
     this.statisticWidgets = statisticWidgets;
   }
-  
+
+  public List<Statistic> getStatisticExampleWidgets() { return statisticExampleWidgets; }
+
+  public void setStatisticExampleWidgets(List<Statistic> statisticExampleWidgets) {
+    this.statisticExampleWidgets = statisticExampleWidgets;
+  }
+
   public boolean canEnableQuickSearch() {
     return Optional.ofNullable(this.widget).map(DashboardWidget::getType)
         .map(DashboardWidgetType::canEnableQuickSearch)
