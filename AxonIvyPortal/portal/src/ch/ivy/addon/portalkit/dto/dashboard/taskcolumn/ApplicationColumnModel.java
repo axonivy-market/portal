@@ -24,7 +24,7 @@ public class ApplicationColumnModel extends TaskColumnModel implements Serializa
     super.initDefaultValue();
     this.field = DashboardStandardTaskColumn.APPLICATION.getField();
     this.styleToDisplay = initDefaultStyle();
-    this.styleClass = defaultIfEmpty(this.styleClass, "dashboard-tasks__priority text-center widget-column");
+    this.styleClass = defaultIfEmpty(this.styleClass, getDefaultStyleClass());
     this.format = DashboardColumnFormat.CUSTOM;
     this.quickSearch = defaultIfEmpty(this.quickSearch, false);
   }
@@ -79,5 +79,10 @@ public class ApplicationColumnModel extends TaskColumnModel implements Serializa
   @Override
   public boolean canQuickSearch() {
     return true;
+  }
+  
+  @Override
+  public String getDefaultStyleClass() {
+    return "dashboard-tasks__priority text-center widget-column";
   }
 }
