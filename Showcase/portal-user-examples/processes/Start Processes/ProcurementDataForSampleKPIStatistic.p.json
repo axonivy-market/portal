@@ -1,0 +1,160 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/process/13.2.0/process.json",
+  "id" : "19A00FECADF4D484",
+  "config" : {
+    "data" : "com.axonivy.portal.userexamples.ProcurementDataForSampleKPIStatisticData"
+  },
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "SignalStartEvent",
+      "name" : "createProcurementKPIcase",
+      "config" : {
+        "signalCode" : "createProcurementKPIcase",
+        "attachToBusinessCase" : false,
+        "output" : {
+          "map" : { },
+          "code" : [
+            "import com.axonivy.portal.userexamples.ProcurementDataForSampleKPIStatisticData;",
+            "out=signal.getSignalData() as ProcurementDataForSampleKPIStatisticData;"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 512, "y" : 184 }
+      },
+      "connect" : [
+        { "id" : "f1", "to" : "f2" }
+      ]
+    }, {
+      "id" : "f2",
+      "type" : "TaskSwitchEvent",
+      "name" : "Review order",
+      "config" : {
+        "task" : {
+          "name" : "Review order"
+        },
+        "case" : {
+          "name" : "<%=ivy.cms.co(\"/Processes/Procurement/name\")%>",
+          "description" : "<%=ivy.cms.co(\"/Processes/Procurement/description\")%>",
+          "customFields" : [
+            { "name" : "daysToDecision", "type" : "NUMBER", "value" : "in1.daysToDecision" },
+            { "name" : "decision", "type" : "STRING", "value" : "in1.decision" },
+            { "name" : "Department", "type" : "STRING", "value" : "in1.department" },
+            { "name" : "Item", "type" : "STRING", "value" : "in1.item" },
+            { "name" : "MonthYear", "type" : "TIMESTAMP", "value" : "in1.monthOfYear" },
+            { "name" : "reworkCauses", "type" : "STRING", "value" : "in1.reworkCauses" },
+            { "name" : "reworkNoLoops", "type" : "NUMBER", "value" : "in1.reworkNoLoops" },
+            { "name" : "reworkOccurred", "type" : "STRING", "value" : "in1.reworkOccurred" },
+            { "name" : "SpendAmount", "type" : "NUMBER", "value" : "in1.spendAmount" }
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 664, "y" : 184 }
+      },
+      "connect" : [
+        { "id" : "f3", "to" : "f8", "color" : "default" }
+      ]
+    }, {
+      "id" : "f4",
+      "type" : "RequestStart",
+      "name" : "start2",
+      "config" : {
+        "signature" : "start2",
+        "request" : {
+          "name" : "<%=ivy.cms.co(\"/Processes/Procurement/name\")%>",
+          "description" : "<%=ivy.cms.co(\"/Processes/Procurement/description\")%>",
+          "customFields" : [
+            { "name" : "cssIcon", "value" : "si-shopping-cart-check" }
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 512, "y" : 320 }
+      },
+      "connect" : [
+        { "id" : "f5", "to" : "f6" }
+      ]
+    }, {
+      "id" : "f6",
+      "type" : "Script",
+      "name" : "create demo data",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import java.time.YearMonth;",
+            "import com.axonivy.portal.userexamples.ProcurementDataForSampleKPIStatisticData;",
+            "",
+            "ProcurementDataForSampleKPIStatisticData instanceData;",
+            "",
+            "for(int i = 0; i < 10; i++) {",
+            "  instanceData = new ProcurementDataForSampleKPIStatisticData();",
+            "",
+            "  List<String> departments = ivy.cms.co(\"/SampleStatisticValue/Department\").split(\";\");",
+            "  instanceData.department = departments.get((Math.random() * departments.size()).intValue());",
+            "  ",
+            "  List<String> items = ivy.cms.co(\"/SampleStatisticValue/Item\").split(\";\");",
+            "  instanceData.item = items.get((Math.random() * items.size()).intValue());",
+            "  ",
+            "  List<String> monthOfYears = ivy.cms.co(\"/SampleStatisticValue/MonthOfYear\").split(\";\");",
+            "  int month = Integer.parseInt(monthOfYears.get((Math.random() * monthOfYears.size()).intValue()));",
+            "  instanceData.monthOfYear = new DateTime(2025, month, 1, 7, 1, 1);",
+            "  ",
+            "  List<String> spendAmounts = ivy.cms.co(\"/SampleStatisticValue/SpendAmount\").split(\";\");",
+            "  instanceData.spendAmount = spendAmounts.get((Math.random() * spendAmounts.size()).intValue()).toNumber();",
+            "",
+            "",
+            "  List<String> daysToDecisions = ivy.cms.co(\"/SampleStatisticValue/DaysToDecision\").split(\";\");",
+            "  instanceData.daysToDecision = daysToDecisions.get((Math.random() * daysToDecisions.size()).intValue()).toNumber();",
+            "",
+            "",
+            "  List<String> decisions = ivy.cms.co(\"/SampleStatisticValue/Decision\").split(\";\");",
+            "  instanceData.decision = decisions.get((Math.random() * decisions.size()).intValue());",
+            "",
+            "",
+            "  List<String> reworkCauses = ivy.cms.co(\"/SampleStatisticValue/ReworkCauses\").split(\";\");",
+            "  instanceData.reworkCauses = reworkCauses.get((Math.random() * reworkCauses.size()).intValue());  ",
+            "",
+            "  List<String> reworkNoLoops = ivy.cms.co(\"/SampleStatisticValue/ReworkNoLoops\").split(\";\");",
+            "  instanceData.reworkNoLoops = reworkNoLoops.get((Math.random() * reworkNoLoops.size()).intValue()).toNumber();",
+            "",
+            "  List<String> reworkOccurred = ivy.cms.co(\"/SampleStatisticValue/ReworkOccurred\").split(\";\");",
+            "  instanceData.reworkOccurred = reworkOccurred.get((Math.random() * reworkOccurred.size()).intValue());  ",
+            "",
+            "  ivy.wf.signals().create().data(instanceData).send(\"createProcurementKPIcase\");",
+            "",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 664, "y" : 320 }
+      },
+      "connect" : [
+        { "id" : "f7", "to" : "f9" }
+      ]
+    }, {
+      "id" : "f8",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 800, "y" : 184 }
+      }
+    }, {
+      "id" : "f9",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 840, "y" : 320 }
+      }
+    }, {
+      "id" : "f10",
+      "type" : "ProcessAnnotation",
+      "name" : "Run this process (many times) to generate data for Sample KPI Statistic. Then, let's see the result in Sample: KPI Procurement Overview dashboard",
+      "visual" : {
+        "at" : { "x" : 511, "y" : 431 },
+        "size" : { "width" : 419, "height" : 59 }
+      },
+      "connect" : [
+        { "id" : "f11", "to" : "f4" }
+      ]
+    } ]
+}
