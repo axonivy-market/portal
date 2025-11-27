@@ -7,10 +7,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import javax.ws.rs.NotFoundException;
 
@@ -21,6 +23,7 @@ import org.apache.logging.log4j.util.Strings;
 import com.axonivy.portal.bo.PieChartConfig;
 import com.axonivy.portal.bo.Statistic;
 import com.axonivy.portal.bo.StatisticAggregation;
+import com.axonivy.portal.components.service.IvyAdapterService;
 import com.axonivy.portal.constant.StatisticConstants;
 import com.axonivy.portal.dto.StatisticDto;
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
@@ -50,11 +53,30 @@ public class StatisticService {
   private static final String CLIENT_STATISTIC_KEY = "Portal.ClientStatistic";
   private static StatisticService instance;
 
+  private static final String PRECONFIG_STATISTIC_SIGNATURE = "loadPreConfigPortalStatistic()";
+  public static List<Statistic> externalStatistics;
+
   public static StatisticService getInstance() {
     if (instance == null) {
       instance = new StatisticService();
     }
     return StatisticService.instance;
+  }
+
+  public static List<Statistic> getExternalStatistics() {
+    if (externalStatistics == null) {
+      Map<String, Object> response = IvyAdapterService.startSubProcessInSecurityContext(PRECONFIG_STATISTIC_SIGNATURE, null);
+
+      if (response != null && response.get("statisticsJson") != null) {
+        String statisticsJson = (String) response.get("statisticsJson");
+        externalStatistics = BusinessEntityConverter.jsonValueToEntities(statisticsJson, Statistic.class);
+        configDefaultStatisticSettings(externalStatistics);
+      } else {
+        externalStatistics = List.of();
+      }
+    }
+
+    return StatisticService.externalStatistics;
   }
 
   public List<Statistic> findAllCharts() {
@@ -170,14 +192,17 @@ public class StatisticService {
   }
   
   private Statistic findByStatisticId(String id) {
-    return findAllCharts().stream()
+    return Stream.concat(findAllCharts().stream(), getExternalStatistics().stream())
         .filter(e -> e.getId().equals(id))
         .findFirst()
         .orElse(null);
   }
 
   public Statistic findByIdCustomStatistic(String id) {
-    return getCustomStatistic().stream().filter(e -> e.getId().equals(id)).findFirst().orElse(null);
+    return Stream.concat(getCustomStatistic().stream(), getExternalStatistics().stream())
+        .filter(e -> e.getId().equals(id))
+        .findFirst()
+        .orElse(null);
   }
 
   public void saveJsonToVariable(List<Statistic> statistics) {
@@ -227,7 +252,7 @@ public class StatisticService {
     }
   }
 
-  private void configDefaultStatisticSettings(List<Statistic> statistics) {
+  private static void configDefaultStatisticSettings(List<Statistic> statistics) {
     for (Statistic statistic : statistics) {
       if (ChartType.PIE == statistic.getChartType()) {
         if (statistic.getPieChartConfig() == null) { // could be null due to migration from version 12
