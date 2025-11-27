@@ -455,7 +455,7 @@ public class CaseService{
         EnumSet<CaseState> ADVANCE_STATES = EnumSet.of(CREATED, RUNNING, DONE, DESTROYED);
         caseQuery.where().and(queryForStates(ADVANCE_STATES));
       } else {
-        EnumSet<CaseState> STANDARD_STATES = EnumSet.of(CREATED, RUNNING, DONE);
+        EnumSet<CaseState> STANDARD_STATES = EnumSet.of(CREATED, RUNNING, DONE, DESTROYED); // case related to currentUser could be deleted by another user
         caseQuery.where().and(queryForStates(STANDARD_STATES)).and(queryForCurrentUser(CaseQuery.create()));
       }
       if (isHiddenTasksCasesExcluded()) {

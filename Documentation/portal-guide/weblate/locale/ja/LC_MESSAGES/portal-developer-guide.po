@@ -9,15 +9,16 @@ msgstr ""
 "Project-Id-Version: Portal Guide ${revision}\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-11-11 02:51+0000\n"
-"PO-Revision-Date: 2025-10-09 10:31+0000\n"
-"Last-Translator: Thang Huynh <hhqthang@axonactive.com>\n"
+"PO-Revision-Date: 2025-11-20 04:09+0000\n"
+"Last-Translator: Loc Nguyen <loc.nguyenthanh@axonactive.com>\n"
+"Language-Team: Japanese <https://hosted.weblate.org/projects/axonivy-portal/"
+"portal-12/doc/portal-developer-guide/ja/>\n"
 "Language: ja\n"
-"Language-Team: Japanese <https://hosted.weblate.org/projects/axonivy-"
-"portal/portal-12/doc/portal-developer-guide/ja/>\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 5.15-dev\n"
 "Generated-By: Babel 2.17.0\n"
 
 #: ../../source/portal-developer-guide/architecture/index.rst:4
@@ -2031,27 +2032,30 @@ msgstr ""
 
 #: ../../source/portal-developer-guide/customization/page-header-footer-process.rst:4
 msgid "Page Header and Footer"
-msgstr ""
+msgstr "ページヘッダーとフッター"
 
 #: ../../source/portal-developer-guide/customization/page-header-footer-process.rst:11
 msgid "The page header and footer that is shown on each Portal page."
-msgstr ""
+msgstr "各ポータルページに表示されるページのヘッダーとフッター。"
 
 #: ../../source/portal-developer-guide/customization/page-header-footer-process.rst:13
 msgid ""
 "You can easily customize the page header and footer using HTML code. For "
 "example:"
-msgstr ""
+msgstr "ページのヘッダーとフッターは、HTML コードを使って簡単にカスタマイズできます。"
+"たとえば"
 
 #: ../../source/portal-developer-guide/customization/page-header-footer-process.rst:21
 msgid ""
 "For a complete example, see the process ``CustomPageHeaderAndFooter`` in "
 "the ``portal-developer-examples`` project."
 msgstr ""
+"完全な例については、 ``portal-developer-examples`` プロジェクトの "
+"``CustomPageHeaderAndFooter`` のプロセスを参照してください。"
 
 #: ../../source/portal-developer-guide/customization/page-header-footer-process.rst:24
 msgid "Page header and footer customization function"
-msgstr ""
+msgstr "ページヘッダー・フッターカスタマイズ機能"
 
 #: ../../source/portal-developer-guide/customization/page-header-footer-process.rst:28
 #, fuzzy
@@ -2065,7 +2069,7 @@ msgstr "portal-header"
 
 #: ../../source/portal-developer-guide/customization/page-header-footer-process.rst:37
 msgid "pageFooter"
-msgstr ""
+msgstr "ページフッター"
 
 #: ../../source/portal-developer-guide/customization/portal-style-customization-logos-colors-date-patterns.rst:4
 msgid "Portal Styles Customization (Logos, Colors, Date Patterns)"
@@ -7694,6 +7698,8 @@ msgid ""
 "functionality to the Document Table component, enabling efficient data "
 "loading through pagination."
 msgstr ""
+"**Document Table** コンポーネントにレイジーローディング機能を追加することで、"
+"ページネーションによる効率的なデータロードを可能にしました。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:492
 msgid "Changes in 12.0.9"
@@ -7705,6 +7711,9 @@ msgid ""
 "You can rename document in document table of task and case detail page, "
 "and the activity will be logged in history notes."
 msgstr ""
+"タスクと案件の詳細ページに **ドキュメント名の変更** 機能を導入。タスクや案件"
+"の詳細ページの文書テーブルで文書名を変更することができ、その操作は履歴ノート"
+"に記録されます。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:498
 msgid "Changes in 12.0.6"
@@ -9440,7 +9449,7 @@ msgstr "_`TaskReadOwnCaseTasks`"
 msgid ""
 "Permission allows non-admin users to view system notes in case and task "
 "details"
-msgstr ""
+msgstr "管理者以外のユーザがケースやタスクの詳細のシステムノートを閲覧できる権限"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:239
 msgid "Portal Absence And Substitute Permissions"
@@ -10981,4 +10990,3 @@ msgstr "URL に外部ウェブページが示されている場合、パラメ�
 
 #~ msgid "Permission to see the Destroy Task action"
 #~ msgstr "タスクの破棄アクションを表示する権限"
-

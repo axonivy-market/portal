@@ -37,10 +37,10 @@ public class NoteHistoryExporter {
     } catch (IOException e) {
       Ivy.log().error(e);
     }
-    ByteArrayInputStream inputStream = new ByteArrayInputStream(outputStream.toByteArray());
+    
     return DefaultStreamedContent
         .builder()
-        .stream(() -> inputStream)
+        .stream(() -> new ByteArrayInputStream(outputStream.toByteArray()))
         .contentType("application/xlsx")
         .name(fileName)
         .build();
@@ -68,10 +68,10 @@ public class NoteHistoryExporter {
     } catch (IOException e) {
       Ivy.log().error(e);
     }
-    ByteArrayInputStream inputStream = new ByteArrayInputStream(outputStream.toByteArray());
+
     return DefaultStreamedContent
         .builder()
-        .stream(() -> inputStream)
+        .stream(() -> new ByteArrayInputStream(outputStream.toByteArray()))
         .contentType("application/xlsx")
         .name(fileName)
         .build();

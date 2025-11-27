@@ -5144,8 +5144,15 @@ body.light .image-process-container .image-process-item .card-item.card.image-wi
   container-name: image-process-widget-container;
 }
 
-/* Shared text truncation styles */
-.image-view-form .process-description .process-item-description,
+.image-view-form .process-description .process-item-description {
+  max-height: 16.8em;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 8;
+  -webkit-box-orient: vertical;
+}
+
 .image-view-form .process-name .process-image-view-name {
   max-height: 4.2em;
   text-overflow: ellipsis;
@@ -5180,6 +5187,10 @@ body.light .image-process-container .image-process-item .card-item.card.image-wi
   .image-view-form {
     bottom: 0 !important;
     padding-bottom: 0 !important;
+  }
+  
+  .image-view-form .process-name {
+    height: 35%;
   }
 }
 
