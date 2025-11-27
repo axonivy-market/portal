@@ -24,7 +24,6 @@ public class SideStepScreenshotTest extends ScreenshotBaseTest {
     super.setup();
   }
 
-  
   @Test
   public void screenshotSideStepConfiguration() throws IOException {
     login(TestAccount.DEMO_USER);
@@ -49,7 +48,6 @@ public class SideStepScreenshotTest extends ScreenshotBaseTest {
     
     ScreenshotUtils.captureHalfTopRightPageScreenShot(ScreenshotUtils.SIDE_STEP_FOLDER + "side-step-menu");
     taskTemplatePage.startSideStep();
-    ScreenshotUtils.captureElementWithMarginOptionScreenshot(taskTemplatePage.getSideStepConfigDialog(), ScreenshotUtils.SIDE_STEP_FOLDER + "side-step-config", new ScreenshotMargin(5, 5));
-    
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(taskTemplatePage.getSideStepConfigDialog(), ScreenshotUtils.SIDE_STEP_FOLDER + "side-step-config", new ScreenshotMargin(5, 5));    
   }
 }

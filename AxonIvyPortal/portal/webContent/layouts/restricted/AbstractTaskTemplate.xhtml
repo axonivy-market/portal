@@ -257,7 +257,7 @@
               </h:panelGroup>
               
               <h:panelGroup id="select-delegate-panel" layout="block">
-                <h:panelGroup rendered="#{sideStepProcessBean.userDelegated}" styleClass="field">
+                <h:panelGroup rendered="#{sideStepProcessBean.taskDelegatedToUser}" styleClass="field">
                   <div class="field">
                     <h:panelGroup rendered="#{not empty sideStepProcessBean.userRoles}">
                       <ic:com.axonivy.portal.components.UserSelection componentId="assignee" fromRoleNames="#{sideStepProcessBean.userRoles}" messageStyleClass="hidden" 
@@ -272,7 +272,7 @@
                   </div>
                 </h:panelGroup>
 
-                <h:panelGroup rendered="#{!sideStepProcessBean.userDelegated}">
+                <h:panelGroup rendered="#{!sideStepProcessBean.taskDelegatedToUser}">
                   <div class="field">
                     <h:panelGroup rendered="#{not empty sideStepProcessBean.roles}">
                       <ic:com.axonivy.portal.components.RoleSelection componentId="assignee-role" fromRoleNames="#{sideStepProcessBean.roles}"

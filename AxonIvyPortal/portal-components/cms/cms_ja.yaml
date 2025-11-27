@@ -17,7 +17,7 @@ Dialogs:
               ProcessName: プロセス名
             RequiredFieldMessage: このフィールドは必須です
             Save: 'TODO: Save'
-            SideStepPrefix: 'TODO: Side step task for: '
+            SideStepPrefix: サイドステップ：
             Task:
               Activator: 責任者
             Type: タイプ
@@ -95,8 +95,8 @@ Dialogs:
               IVY_PROCESS: ビジネスプロセス
             ProcessViewerIFrameTitle: プロセスビューアーフレーム
           SideStepType:
-            PARALLEL: 'TODO: Start a backgroud task (parallel)'
-            SWITCH: 'TODO: Pause this task and start process (switch)'
+            PARALLEL: バックグラウンドタスクを開始する（並列）
+            SWITCH: このタスクを一時停止してプロセスを開始する（スイッチ）
 Labels:
   AI:
     Error:

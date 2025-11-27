@@ -172,7 +172,7 @@ Labels:
     LeaveType: Urlaubsart
     Requester: Antragsteller
     RequesterComment: Kommentar des Antragstellers
-    StepTypeParallelTitle: 'Dies ist ein angepasster Paralleltitel'
+    StepTypeParallelTitle: Dies ist ein angepasster Paralleltitel
     StepTypeSwitchTitle: Dies ist ein angepasster Schaltertitel
     SubmitLeaveRequest: Urlaubsantrag einreichen
     To: Bis
@@ -216,7 +216,7 @@ Processes:
       Antragssteller bekommt eine Zusammenfassung
       Ergebnis zur Kenntnis nehmen
   LeaveRequest:
-    LeaveRequest: Leave Request
+    LeaveRequest: Urlaubsantrag
     LeaveRequestWithSideStepsCaseLevel: Urlaubsantrag mit Nebenprozessen (auf Fallbasis)
     LeaveRequestWithSideStepsTaskLevel: Urlaubsantrag mit Nebenprozessen (Aufgabenebene)
     approvalTask: Ihr Urlaubsantrag wird genehmigt
