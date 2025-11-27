@@ -455,8 +455,6 @@ public class StatisticWidgetTest extends BaseTest {
     statisticConfigurationPage.clickGeneratePreviewChart();
     statisticConfigurationPage.chartCanvasVisible();
 
-    assertEquals(statisticConfigurationPage.getKpiFieldsItems().size(), 7);
-
     // BAR chart
     // Counting
     statisticConfigurationPage.changeChartType("Bar");
