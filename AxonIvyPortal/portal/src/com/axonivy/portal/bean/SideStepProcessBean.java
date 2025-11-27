@@ -54,7 +54,7 @@ public class SideStepProcessBean implements Serializable {
   private List<SideStepType> sideStepTypes;
   private String comment;
   private SideStepConfigurationDTO sideStepConfigurationInfo;
-  private boolean isUserDelegated = true;
+  private boolean isTaskDelegatedToUser = true;
 
   public List<SideStepProcessDTO> getProcesses() {
     return processes;
@@ -73,22 +73,21 @@ public class SideStepProcessBean implements Serializable {
     this.userRoles = new ArrayList<>();
     this.roles = new ArrayList<>();
     this.selectedProcess = selectedProcess;
-    this.isUserDelegated = true;
+    this.setTaskDelegatedToUser(true);
     if (task != null && selectedProcess != null) {
       String securityMembersCallable = selectedProcess.getCustomSecurityMemberCallable();
-
       List<IRole> customUserRoles = new ArrayList<>();
       List<IRole> customRoles = new ArrayList<>();
       if (StringUtils.isNotBlank(securityMembersCallable)) {
-        Map<String, Object> responseCallable = IvyAdapterService.startSubProcessInSecurityContext(securityMembersCallable, null);
+        Map<String, Object> responseCallable =
+            IvyAdapterService.startSubProcessInSecurityContext(securityMembersCallable, null);
         customUserRoles = (List<IRole>) responseCallable.get("userRolesToDelegate");
         customRoles = (List<IRole>) responseCallable.get("rolesToDelegate");
         this.userRoles = customUserRoles.stream().map(IRole::getName).collect(Collectors.toList());
         this.roles = customRoles.stream().map(IRole::getName).collect(Collectors.toList());
-      } 
+      }
     }
   }
-
 
   public boolean isRendered(ITask task) {
     return CollectionUtils.isNotEmpty(getSideStepProcesses(task));
@@ -99,15 +98,16 @@ public class SideStepProcessBean implements Serializable {
       if (task != null) {
         this.task = task;
         // check task level
-        String sideStepString = task.customFields().textField(CustomFields.SIDE_STEP_TASK).getOrNull(); 
+        String sideStepString = task.customFields().textField(CustomFields.SIDE_STEP_TASK).getOrNull();
         if (StringUtils.isBlank(sideStepString)) {
           // if null check case level
           sideStepString = task.getCase().customFields().textField(CustomFields.SIDE_STEP_CASE).getOrNull();
         }
         if (StringUtils.isNotBlank(sideStepString)) {
-          sideStepConfigurationInfo = BusinessEntityConverter.jsonValueToEntity(sideStepString, SideStepConfigurationDTO.class);
+          sideStepConfigurationInfo =
+              BusinessEntityConverter.jsonValueToEntity(sideStepString, SideStepConfigurationDTO.class);
           if (sideStepConfigurationInfo.getIsParallelSideStep() == null) {
-            setSideStepTypes(Arrays.asList(SideStepType.class.getEnumConstants()));
+            setSideStepTypes(Arrays.asList(SideStepType.values()));
           } else if (sideStepConfigurationInfo.getIsParallelSideStep()) {
             this.selectedSideStepType = SideStepType.PARALLEL;
           } else {
@@ -122,8 +122,10 @@ public class SideStepProcessBean implements Serializable {
 
   public String getStepTypeTitle(SideStepType type) {
     return switch (type) {
-      case SideStepType.PARALLEL -> StringUtils.defaultIfBlank((getCustomParallelTitle(sideStepConfigurationInfo)), SideStepType.PARALLEL.getLabel());
-      case SideStepType.SWITCH -> StringUtils.defaultIfBlank(getCustomSwitchTitle(sideStepConfigurationInfo), SideStepType.SWITCH.getLabel());
+      case SideStepType.PARALLEL -> StringUtils.defaultIfBlank((getCustomParallelTitle(sideStepConfigurationInfo)),
+          SideStepType.PARALLEL.getLabel());
+      case SideStepType.SWITCH -> StringUtils.defaultIfBlank(getCustomSwitchTitle(sideStepConfigurationInfo),
+          SideStepType.SWITCH.getLabel());
       default -> "";
     };
   }
@@ -137,12 +139,9 @@ public class SideStepProcessBean implements Serializable {
         delegatedSecurityMember = SecurityMemberUtils.findISecurityMemberFromRoleDTO(assignedRole);
       }
       String securityMemberId = delegatedSecurityMember != null ? delegatedSecurityMember.getSecurityMemberId() : "";
-      SideStepProcessParamDTO param =  SideStepProcessParamDTO.builder().sideStepProcessDto(selectedProcess)
-                                                                        .comment(comment)
-                                                                        .isParallelSideStep(selectedSideStepType == SideStepType.PARALLEL)
-                                                                        .taskUuid(task.uuid())
-                                                                        .securityMemberId(securityMemberId)
-                                                                        .build();
+      SideStepProcessParamDTO param = SideStepProcessParamDTO.builder().sideStepProcessDto(selectedProcess)
+          .comment(comment).isParallelSideStep(selectedSideStepType == SideStepType.PARALLEL).taskUuid(task.uuid())
+          .securityMemberId(securityMemberId).build();
       String jsonSerializedPayload = BusinessEntityConverter.entityToJsonValue(param);
       Ivy.wf().signals().create().data(jsonSerializedPayload).send(selectedProcess.getSignal());
       if (selectedSideStepType == SideStepType.SWITCH) {
@@ -151,17 +150,18 @@ public class SideStepProcessBean implements Serializable {
         PortalNavigatorInFrameAPI.navigateToPortalHome();
       }
       String message = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/SideStep/NewSideStepMessage");
-      FacesContext.getCurrentInstance().addMessage(GrowlMessageService.PORTAL_GLOBAL_GROWL_MESSAGE, FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_INFO, message, null));
+      FacesContext.getCurrentInstance().addMessage(GrowlMessageService.PORTAL_GLOBAL_GROWL_MESSAGE,
+          FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_INFO, message, null));
       PrimeFaces.current().ajax().update(GrowlMessageService.PORTAL_GLOBAL_GROWL);
     }
   }
-  
+
   public void resetData() {
     this.selectedProcess = null;
     this.selectedSideStepType = null;
     this.assignedRole = null;
     this.assignee = null;
-    this.isUserDelegated = true;
+    this.setTaskDelegatedToUser(true);
     this.comment = "";
   }
 
@@ -218,14 +218,6 @@ public class SideStepProcessBean implements Serializable {
     this.roles = roles;
   }
 
-  public boolean isUserDelegated() {
-    return isUserDelegated;
-  }
-
-  public void setUserDelegated(boolean isUserDelegated) {
-    this.isUserDelegated = isUserDelegated;
-  }
-
   public List<String> getUserRoles() {
     return userRoles;
   }
@@ -233,26 +225,26 @@ public class SideStepProcessBean implements Serializable {
   public void setUserRoles(List<String> userRoles) {
     this.userRoles = userRoles;
   }
-  
+
   public String buildRequireMessage(String fieldName) {
-    return String.format(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/StringFormat/TextWithColon"), 
-        fieldName, Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage"));
+    return String.format(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/StringFormat/TextWithColon"), fieldName,
+        Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage"));
   }
-  
+
   public String getProcessName(SideStepProcessDTO dto) {
     if (dto.getProcessNames() != null) {
       return dto.getProcessNames().get(Ivy.session().getContentLocale().toString());
     }
     return "";
   }
-  
+
   public String getCustomParallelTitle(SideStepConfigurationDTO dto) {
     if (dto.getCustomParallelSideStepTitles() != null) {
       return dto.getCustomParallelSideStepTitles().get(Ivy.session().getContentLocale().toString());
     }
     return "";
   }
-  
+
   public String getCustomSwitchTitle(SideStepConfigurationDTO dto) {
     if (dto.getCustomSwitchSideStepTitles() != null) {
       return dto.getCustomSwitchSideStepTitles().get(Ivy.session().getContentLocale().toString());
@@ -275,5 +267,12 @@ public class SideStepProcessBean implements Serializable {
   public void setSideStepTypes(List<SideStepType> sideStepTypes) {
     this.sideStepTypes = sideStepTypes;
   }
-  
+
+  public boolean isTaskDelegatedToUser() {
+    return isTaskDelegatedToUser;
+  }
+
+  public void setTaskDelegatedToUser(boolean isTaskDelegatedToUser) {
+    this.isTaskDelegatedToUser = isTaskDelegatedToUser;
+  }
 }

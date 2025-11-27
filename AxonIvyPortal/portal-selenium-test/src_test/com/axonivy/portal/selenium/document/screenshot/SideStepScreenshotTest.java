@@ -23,7 +23,6 @@ public class SideStepScreenshotTest extends ScreenshotBaseTest {
   public void setup() {
     super.setup();
   }
-
   
   @Test
   public void screenshotSideStepConfiguration() throws IOException {

@@ -10,7 +10,7 @@
       <h:form id="leave-request">
         <h:panelGroup styleClass="ui-g ui-fluid portal-card-container">
 
-          <div class="ui-g-12 ui-md-12 ui-lg-1 ui-xl-3"></div>
+          <div class="ui-g-12 ui-md-12 ui-lg-1 ui-xl-3" />
           <div class="card">
             <div class="grid">
               <p:messages id="leave-request-validation-msg" styleClass="w-full" />
@@ -61,15 +61,13 @@
                   update="@form" />
               </div>
               
-
             </div>
           </div>
-          <div class="ui-g-12 ui-md-12 ui-lg-1 ui-xl-3"></div>
+          <div class="ui-g-12 ui-md-12 ui-lg-1 ui-xl-3" />
         </h:panelGroup>
       </h:form>
       <ic:com.axonivy.portal.components.IFrameTaskConfig processSteps="#{portalComponentUtilsBean.convertToJSON(data.steps)}" currentProcessStep="0" />
       
-
     </ui:define>
   </ui:composition>
 </h:body>

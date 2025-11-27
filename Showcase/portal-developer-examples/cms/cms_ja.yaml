@@ -118,31 +118,31 @@ Dialogs:
         developerexamples:
           customization:
             sidestep:
-              CustomSideStepPrefix: 'カスタムタスク名のプレフィックス：'
+              CustomSideStepPrefix: カスタムタスク名のプレフィックス：
               LeaveRequestApproval:
                 Approve: 承認
                 Reject: 却下
               LeaveRequestBusinessDetailsPage:
-                CompletedTaskNumber: '完了したタスク数：'
-                InformCustomer: '顧客に通知する'
-                LeaveRequest: '休暇申請のビジネス詳細'
+                CompletedTaskNumber: 完了したタスク数：
+                InformCustomer: 顧客に通知する
+                LeaveRequest: 休暇申請のビジネス詳細
                 SideStepComment: サイドステップコメント
               LeaveRequestSummary:
                 Finish: 完了
               SideStepAskMoreDetails:
-                MoreDetails: '休暇申請の詳細'
+                MoreDetails: 休暇申請の詳細
               SideStepCEOApproval:
-                CEOApproval: 'CEOの承認'
+                CEOApproval: CEOの承認
               SideStepExample:
-                SideStepExample: 'サイドステップの例'
+                SideStepExample: サイドステップの例
               SideStepResultExample:
-                SideStepResult: 'サイドステップの結果'
-                SideStepTaskIs: 'サイドステップタスク実行者は：'
+                SideStepResult: サイドステップの結果
+                SideStepTaskIs: サイドステップタスク実行者は：
 Enums:
   LeaveType:
     ANNUAL_LEAVE: 年次有給休暇
     MATERNITY_LEAVE: 産休
-    SICK_LEAVE: 病欠                  
+    SICK_LEAVE: 病欠
 Labels:
   Close: 閉じる
   LeaveRequest:
@@ -155,13 +155,13 @@ Labels:
       Approval: 承認
       ApprovalResult: 承認結果
       Creation: 休暇申請の作成
-      RequesterSideStepComment: 'リクエスト者のサイドステップコメント'
-      SideStepComment: 'サイドステップコメント'
+      RequesterSideStepComment: リクエスト者のサイドステップコメント
+      SideStepComment: サイドステップコメント
     LeaveType: 休暇の種類
     Requester: 申請者
     RequesterComment: 申請者のコメント
     StepTypeParallelTitle: これはカスタマイズされたパラレルタイトルです
-    StepTypeSwitchTitle: 'これはカスタマイズされたスイッチタイトルです'
+    StepTypeSwitchTitle: これはカスタマイズされたスイッチタイトルです
     SubmitLeaveRequest: 休暇申請を送信
     To: まで
   OK: OK
@@ -204,8 +204,8 @@ Processes:
       申請者は申請の概要を受け取ります
       結果を確認します
   LeaveRequest:
-    LeaveRequest: Leave Request
-    LeaveRequestWithSideStepsCaseLevel: 'サイドステッププロセスによる休暇申請（ケースレベル）'
+    LeaveRequest: 休暇申請
+    LeaveRequestWithSideStepsCaseLevel: サイドステッププロセスによる休暇申請（ケースレベル）
     LeaveRequestWithSideStepsTaskLevel: サイドステッププロセスによる休暇申請
     approvalTask: あなたの休暇申請は承認されました
     approvalTaskName: '{0} の休暇申請の承認'

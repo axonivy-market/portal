@@ -216,7 +216,7 @@ Processes:
       Solicitante obtendrá un resumen
       Tomar nota del resultado
   LeaveRequest:
-    LeaveRequest: Leave Request
+    LeaveRequest: Tragedia navideña
     LeaveRequestWithSideStepsCaseLevel: Solicitud de permiso con procesos paralelos (a nivel de caso)
     LeaveRequestWithSideStepsTaskLevel: Solicitud de permiso con procesos paralelos (nivel de tarea)
     approvalTask: Su ausencia ha sido aprovada
