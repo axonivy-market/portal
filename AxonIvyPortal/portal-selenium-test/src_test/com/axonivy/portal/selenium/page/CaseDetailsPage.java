@@ -158,6 +158,7 @@ public class CaseDetailsPage extends TemplatePage {
     $("div[id$='\\:escalation-task-confirmation-dialog']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     $("button[id$='\\:confirm-escalation']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
         .shouldBe(getClickableCondition()).click();
+    $("div[id$='\\:escalation-task-confirmation-dialog']").shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 
   public SelenideElement getCreatorAvatar() {
