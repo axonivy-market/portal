@@ -49,6 +49,5 @@ public class SideStepScreenshotTest extends ScreenshotBaseTest {
     ScreenshotUtils.captureHalfTopRightPageScreenShot(ScreenshotUtils.SIDE_STEP_FOLDER + "side-step-menu");
     taskTemplatePage.startSideStep();
     ScreenshotUtils.captureElementWithMarginOptionScreenshot(taskTemplatePage.getSideStepConfigDialog(), ScreenshotUtils.SIDE_STEP_FOLDER + "side-step-config", new ScreenshotMargin(5, 5));
-    
   }
 }
