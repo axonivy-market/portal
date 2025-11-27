@@ -25,6 +25,7 @@ import ch.ivy.addon.portalkit.configuration.AbstractConfiguration;
 import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.util.LanguageUtils;
 import ch.ivy.addon.portalkit.util.LanguageUtils.NameResult;
+import ch.ivy.addon.portalkit.util.PermissionUtils;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class Statistic extends AbstractConfiguration implements Serializable {
@@ -284,7 +285,8 @@ public class Statistic extends AbstractConfiguration implements Serializable {
   public boolean getCanDrillDown() {
     boolean supportedDrillDownAggregation =
         !AggregationField.AGGREGATES_HAS_NO_MATCHED_FILTERS.contains(statisticAggregation.getField());
-    return chartDrillDownEnabled && StringUtils.isEmpty(aggregates) && StringUtils.isEmpty(filter) && supportedDrillDownAggregation;
+    boolean hasRequiredReadAllPermission = chartTarget.equals(ChartTarget.CASE) ? PermissionUtils.checkReadAllCasesPermission() : PermissionUtils.checkReadAllTasksPermission();
+    return chartDrillDownEnabled && StringUtils.isEmpty(aggregates) && StringUtils.isEmpty(filter) && supportedDrillDownAggregation && hasRequiredReadAllPermission;
   }
 
   public boolean getChartDrillDownEnabled() {

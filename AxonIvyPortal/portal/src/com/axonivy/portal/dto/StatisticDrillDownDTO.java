@@ -1,6 +1,6 @@
 package com.axonivy.portal.dto;
 
-public class StatisticDrillDownDto {
+public class StatisticDrillDownDTO {
 
   private String chartId;
   private String drillDownValue;
