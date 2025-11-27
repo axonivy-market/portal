@@ -23,8 +23,8 @@ import com.axonivy.portal.bo.PieChartConfig;
 import com.axonivy.portal.bo.Statistic;
 import com.axonivy.portal.bo.StatisticAggregation;
 import com.axonivy.portal.constant.StatisticConstants;
-import com.axonivy.portal.dto.StatisticDrillDownDto;
-import com.axonivy.portal.dto.StatisticDto;
+import com.axonivy.portal.dto.StatisticDrillDownDTO;
+import com.axonivy.portal.dto.StatisticDTO;
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 import com.axonivy.portal.enums.AdditionalChartConfig;
 import com.axonivy.portal.enums.statistic.AggregationField;
@@ -74,7 +74,7 @@ public class StatisticService {
    * @return Ivy statistic data from ElasticSearch
    * @throws NotFoundException
    */
-  public StatisticResponse getStatisticData(StatisticDto payload)
+  public StatisticResponse getStatisticData(StatisticDTO payload)
       throws NotFoundException {
     Statistic chart = findByStatisticId(payload.getChartId());
     validateChart(payload.getChartId(), chart);
@@ -310,8 +310,8 @@ public class StatisticService {
     if (StringUtils.isBlank(drillDownDataJson)) {
       return;
     }
-    StatisticDrillDownDto drillDownData =
-        BusinessEntityConverter.jsonValueToEntity(drillDownDataJson, StatisticDrillDownDto.class);
+    StatisticDrillDownDTO drillDownData =
+        BusinessEntityConverter.jsonValueToEntity(drillDownDataJson, StatisticDrillDownDTO.class);
     Statistic statistic = findByStatisticId(drillDownData.getChartId());
     validateChart(drillDownData.getChartId(), statistic);
     AbstractDrillDownService drillDownService;
