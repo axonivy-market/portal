@@ -1,6 +1,9 @@
 package com.axonivy.portal.service;
 
 import java.util.List;
+import java.util.stream.Collectors;
+
+import org.apache.commons.collections.CollectionUtils;
 
 import com.axonivy.portal.bo.Statistic;
 import com.axonivy.portal.components.service.LanguageService;
@@ -12,6 +15,7 @@ import ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
+import ch.ivy.addon.portalkit.dto.dashboard.WidgetFilterModel;
 import ch.ivy.addon.portalkit.dto.dashboard.casecolumn.CaseColumnModel;
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
@@ -81,7 +85,16 @@ public class CaseDrillDownService extends AbstractDrillDownService {
   
   @Override
   public void removeWidgetFilterFromSession() {
-    WidgetFilterService.getInstance().removeWidgetFilterFromSession(CASE_DRILL_DOWN_WIDGET_ID, DashboardWidgetType.CASE);
+    WidgetFilterService service = WidgetFilterService.getInstance();
+    service.removeWidgetFilterFromSession(CASE_DRILL_DOWN_WIDGET_ID, DashboardWidgetType.CASE);
+    List<WidgetFilterModel> savedFilters = service.findFiltersByWidgetId(CASE_DRILL_DOWN_WIDGET_ID);
+    
+    if (CollectionUtils.isNotEmpty(savedFilters)) {
+      savedFilters.stream()
+        .map(WidgetFilterModel::getId)
+        .distinct()
+        .forEach(service::delete);
+    }
   }
 
 }
