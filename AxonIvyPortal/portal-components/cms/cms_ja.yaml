@@ -17,7 +17,7 @@ Dialogs:
               ProcessName: プロセス名
             RequiredFieldMessage: このフィールドは必須です
             Save: 'TODO: Save'
-            SideStepPrefix: 次のタスクをサイドステップします：
+            SideStepPrefix: サイドステップ：
             Task:
               Activator: 責任者
             Type: タイプ

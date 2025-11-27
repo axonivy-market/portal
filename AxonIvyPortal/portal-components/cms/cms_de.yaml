@@ -17,7 +17,7 @@ Dialogs:
               ProcessName: Prozessname
             RequiredFieldMessage: Dies ist ein Pflichtfeld
             Save: Speichern
-            SideStepPrefix: 'Nebenaufgabe für: '
+            SideStepPrefix: 'Seitenschrittaufgabe für: '
             Task:
               Activator: Verantwortlich
             Type: Typ
