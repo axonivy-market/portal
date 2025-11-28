@@ -53,6 +53,7 @@ import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 import com.axonivy.portal.service.IvyTranslationService;
 import com.axonivy.portal.service.StatisticService;
 import com.axonivy.portal.util.DashboardCloneUtils;
+import com.axonivy.portal.util.ImageUploadUtils;
 import com.axonivy.portal.util.WelcomeWidgetUtils;
 import com.google.common.base.Predicate;
 
@@ -85,6 +86,7 @@ import ch.ivy.addon.portalkit.enums.DashboardStandardProcessColumn;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 import ch.ivy.addon.portalkit.enums.ProcessSorting;
 import ch.ivy.addon.portalkit.enums.ProcessWidgetMode;
+import ch.ivy.addon.portalkit.enums.VisualType;
 import ch.ivy.addon.portalkit.jsf.Attrs;
 import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.service.DashboardService;
@@ -94,6 +96,7 @@ import ch.ivy.addon.portalkit.util.CustomWidgetUtils;
 import ch.ivy.addon.portalkit.util.DashboardUtils;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 import ch.ivy.addon.portalkit.util.Dates;
+import ch.ivy.addon.portalkit.util.NavigationWidgetUtils;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.cm.ContentObject;
@@ -125,6 +128,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   private Optional<DashboardTemplate> foundTemplate;
   private List<DashboardProcess> customWidgets;
   private List<Statistic> statisticWidgets;
+  private List<Statistic> statisticExampleWidgets;
 
   // Clone widget function
   private Dashboard cloneFromDashboard;
@@ -153,6 +157,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     }
     initCustomWidgets();
     initStatisticWidgets();
+    statisticExampleWidgets = StatisticService.getExternalStatistics();
   }
 
   protected void initStatisticWidgets() {
@@ -351,8 +356,16 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   public void removeWidget() {
     if (this.getDeleteWidget() != null) {
       this.getSelectedDashboard().getWidgets().remove(getDeleteWidget());
-      if (WELCOME == this.deleteWidget.getType()) {
-        removeWelcomeWidgetImage(this.deleteWidget);
+      switch (this.deleteWidget.getType()) {
+        case WELCOME:
+          removeWelcomeWidgetImage(this.deleteWidget);
+          break;
+        case NAVIGATION_DASHBOARD:
+          NavigationDashboardWidget navWid = (NavigationDashboardWidget) this.deleteWidget;
+          NavigationWidgetUtils.removeNavigateWidgetImage(navWid);
+          break;
+        default:
+          break;
       }
       saveSelectedDashboard();
     }
@@ -509,7 +522,9 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
       case CASE -> {
         updateCaseWidget(widget);
       }
-
+      case NAVIGATION_DASHBOARD -> {
+        updateNavigationDashboardWidget(widget);
+      }
       default -> {}
     }
     updateWidgetPosition(widget);
@@ -532,17 +547,27 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   }
 
   public void onCancel(DashboardWidget widget) {
-    if (widget != null && WELCOME == widget.getType()) {
-      removeTempImageOfWelcomeWidget(widget);
-      WelcomeDashboardWidget welcomeWidget = (WelcomeDashboardWidget) widget;
-      ContentObject welcomeImage = getWelcomeWidgetImageObject(false, welcomeWidget, false);
-      if (!StringUtils.isBlank(welcomeWidget.getImageLocation()) && welcomeImage != null && !welcomeImage.exists()) {
-        welcomeWidget.setImageLocation(null);
-      }
-      
-      ContentObject welcomeImageDarkMode = getWelcomeWidgetImageObject(false, welcomeWidget, true);
-      if (!StringUtils.isBlank(welcomeWidget.getImageLocationDarkMode()) && welcomeImageDarkMode != null && !welcomeImageDarkMode.exists()) {
-        welcomeWidget.setImageLocationDarkMode(null);
+    if (widget != null) {
+      switch (widget.getType()) {
+        case WELCOME:
+          removeTempImageOfWelcomeWidget(widget);
+          WelcomeDashboardWidget welcomeWidget = (WelcomeDashboardWidget) widget;
+          ContentObject welcomeImage = getWelcomeWidgetImageObject(false, welcomeWidget, false);
+          if (!StringUtils.isBlank(welcomeWidget.getImageLocation()) && welcomeImage != null && !welcomeImage.exists()) {
+            welcomeWidget.setImageLocation(null);
+          }
+          
+          ContentObject welcomeImageDarkMode = getWelcomeWidgetImageObject(false, welcomeWidget, true);
+          if (!StringUtils.isBlank(welcomeWidget.getImageLocationDarkMode()) && welcomeImageDarkMode != null && !welcomeImageDarkMode.exists()) {
+            welcomeWidget.setImageLocationDarkMode(null);
+          }
+          break;
+        case NAVIGATION_DASHBOARD:
+          NavigationDashboardWidget navWid = (NavigationDashboardWidget) this.deleteWidget;
+          NavigationWidgetUtils.removeNavigateWidgetImage(navWid);
+          break;
+        default:
+          break;
       }
     }
   }
@@ -1114,7 +1139,13 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   public void setStatisticWidgets(List<Statistic> statisticWidgets) {
     this.statisticWidgets = statisticWidgets;
   }
-  
+
+  public List<Statistic> getStatisticExampleWidgets() { return statisticExampleWidgets; }
+
+  public void setStatisticExampleWidgets(List<Statistic> statisticExampleWidgets) {
+    this.statisticExampleWidgets = statisticExampleWidgets;
+  }
+
   public boolean canEnableQuickSearch() {
     return Optional.ofNullable(this.widget).map(DashboardWidget::getType)
         .map(DashboardWidgetType::canEnableQuickSearch)
@@ -1283,5 +1314,25 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
 
   public boolean canEditStatistic() {
     return PermissionUtils.hasStatisticWritePublicPermission() && isPublicDashboard;
+  }
+  
+  private void updateNavigationDashboardWidget(DashboardWidget widget) {
+    var navWid = (NavigationDashboardWidget) widget;
+    if (navWid.getVisualType() == VisualType.ICON) {
+      navWid.setImageContent(null);
+      navWid.setImageContentDarkMode(null);
+      if (!StringUtils.isAllBlank(navWid.getImageLocation(), navWid.getImageType())) {
+        ImageUploadUtils.removeImage(navWid.getImageLocation(), navWid.getImageType());
+        navWid.setImageType(null);
+        navWid.setImageLocation(null);
+      }
+      if (!StringUtils.isAllBlank(navWid.getImageLocationDarkMode(), navWid.getImageTypeDarkMode())) {
+        ImageUploadUtils.removeImage(navWid.getImageLocationDarkMode(), navWid.getImageTypeDarkMode());
+        navWid.setImageTypeDarkMode(null);
+        navWid.setImageLocationDarkMode(null);
+      }
+    } else if (navWid.getVisualType() == VisualType.IMAGE) {
+      navWid.setIcon(null);
+    }
   }
 }

@@ -91,7 +91,7 @@
                     rendered="#{widget.isCustom and dashboardDetailModificationBean.canEditStatistic()}">
                     <p:commandButton id="custom-statistic-action-button" icon="fa fa-ellipsis-h"
                       ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}"
-                      styleClass="rounded-button icon-more-menu-button ui-no-rounded-button-process-page h-1rem"
+                      styleClass="rounded-button icon-more-menu-button ui-no-rounded-button-process-page"
                       type="button" />
                     <p:menu id="custom-statistic-action-menu" styleClass="w-auto" overlay="true"
                       trigger="custom-statistic-action-button" my="right top" at="right bottom">
@@ -129,6 +129,47 @@
                   icon="si si-add"/>
               </h:panelGroup>
               
+            </div>
+          </div>
+        </ui:repeat>
+
+        <ui:repeat id="new-statistic-example-widget-dialog-content"
+         var="widget" value="#{dashboardDetailModificationBean.statisticExampleWidgets}">
+          <div class="new-widget-dialog__item card js-widget">
+
+            <div class="new-widget-dialog__item-title">
+              <div class="w-full">
+                <div class="flex gap-3">
+                  <div class="flex flex-1">
+                    <h:outputText id="statistic-example-widget-name" value="#{widget.name}" styleClass="new-widget-dialog__widget-name"/>
+                    <p:tooltip id="statistic-example-widget-name-tooltip" for="statistic-example-widget-name" value="#{widget.name}" trackMouse="true" />
+                  </div>
+                  <h:panelGroup styleClass="flex flex-none align-items-center">
+                    <p:commandButton id="custom-statistic-example-action-button" icon="fa fa-ellipsis-h"
+                      ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}"
+                      styleClass="rounded-button icon-more-menu-button ui-no-rounded-button-process-page h-1rem"
+                      type="button" />
+                    <p:menu id="custom-statistic-example-action-menu" styleClass="w-auto" overlay="true"
+                      trigger="custom-statistic-example-action-button" my="right top" at="right bottom">
+                      <p:menuitem id="edit-example" process="@this" icon="si si-graphic-tablet-drawing-pen"
+                        actionListener="#{dashboardDetailModificationBean.navigateToCustomStatisticWidgetPage(widget.id)}"
+                        global="false" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}"
+                        target="_blank" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}" />
+                    </p:menu>
+                  </h:panelGroup>
+                </div>
+              </div>
+            </div>
+
+            <div class="new-widget-dialog__item-details">
+              <h:panelGroup layout="block" styleClass="new-widget-dialog__image" >
+                <span class="#{iconSelectionBean.generateIconWithFontFamily(htmlSanitizerBean.sanitize(widget.icon))} new-widget-dialog__icon" />
+              </h:panelGroup>
+              <h:panelGroup layout="block" styleClass="ui-panelgrid-blank new-widget-dialog__item-content">
+                <h:outputText id="statistic-example-widget-description" value="#{widget.description}" styleClass="new-widget-dialog__introduction h-3rem"/>
+                <p:tooltip id="statistic-example-widget-description-tooltip" for="statistic-example-widget-description" value="#{widget.description}" trackMouse="true" />
+                <p:chip id="example-chip" label="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/generic/dashboard/PortalDashboardDetailModification/Example')}" styleClass="new-widget-dialog__add-widget-button" />
+              </h:panelGroup>
             </div>
           </div>
         </ui:repeat>
@@ -176,13 +217,15 @@
   </div>
 
   <f:facet name="footer">
-    <p:commandLink id="new-widget-close-button" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-      styleClass="new-widget-dialog__close-button"
-      value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-      onclick="PF('new-widget-dialog').hide()"
-      process="@this"
-      update="@this"
-      global="false"/>
+    <h:panelGroup layout="block" styleClass="pt-3">
+      <p:commandLink id="new-widget-close-button" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+        styleClass="new-widget-dialog__close-button "
+        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+        onclick="PF('new-widget-dialog').hide()"
+        process="@this"
+        update="@this"
+        global="false"/>
+    </h:panelGroup>
   </f:facet>
 </p:dialog>
 

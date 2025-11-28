@@ -20,7 +20,7 @@ import org.primefaces.event.FileUploadEvent;
 
 import com.axonivy.portal.components.util.ImageUploadResult;
 import com.axonivy.portal.service.IvyTranslationService;
-import com.axonivy.portal.util.ExternalLinkUtils;
+import com.axonivy.portal.util.ImageUploadUtils;
 import com.axonivy.portal.util.UploadDocumentUtils;
 
 import ch.ivy.addon.portal.generic.bean.IMultiLanguage;
@@ -89,7 +89,7 @@ public class ExternalLinkBean implements Serializable, IMultiLanguage {
 
   public void handleImageUpload(FileUploadEvent event) {
     removeImage();
-    ImageUploadResult imageInfo = ExternalLinkUtils.handleImageUpload(event);
+    ImageUploadResult imageInfo = ImageUploadUtils.handleImageUpload(event, ImageUploadUtils.EXTERNAL_LINK_IMAGE_DIRECTORY);
     if (imageInfo.isInvalid()) {
       FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR,
           Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/documentFiles/fileContainScript"), null);
@@ -102,7 +102,7 @@ public class ExternalLinkBean implements Serializable, IMultiLanguage {
   
   public void removeImage() {
     if (StringUtils.isNoneBlank(externalLink.getImageLocation())) {
-      ExternalLinkUtils.removeImage(externalLink.getImageLocation(), externalLink.getImageType());
+      ImageUploadUtils.removeImage(externalLink.getImageLocation(), externalLink.getImageType());
       externalLink.setImageLocation(null);
       externalLink.setImageType(null);
     }

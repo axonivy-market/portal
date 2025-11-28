@@ -4,7 +4,6 @@ import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.WELCOME;
 import static org.apache.commons.lang3.StringUtils.EMPTY;
 
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 import java.util.List;
 import java.util.stream.Stream;
@@ -13,8 +12,6 @@ import javax.faces.context.FacesContext;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
-
-import com.axonivy.portal.components.document.SVGSecurityScanner;
 
 import ch.ivy.addon.portalkit.dto.dashboard.WelcomeDashboardWidget;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
@@ -145,13 +142,13 @@ public class WelcomeWidgetUtils {
     String widgetId = DashboardWidgetUtils.generateNewWidgetId(WELCOME);
     if (StringUtils.isNotBlank(widget.getImageLocation()) && StringUtils.isNotBlank(widget.getImageType())) {
       String rawExtension = WelcomeWidgetUtils.getFileTypeOfImage(widget.getImageType());
-      String fileExtension = normalizeSvgExtension(rawExtension);
+      String fileExtension = SvgUtils.normalizeSvgExtension(rawExtension);
       String imageLocation = widgetId.concat(WelcomeWidgetUtils.DEFAULT_LOCALE_AND_DOT).concat(fileExtension);
       ContentObject newImageObject = WelcomeWidgetUtils.getImageContentObject(getFileNameOfImage(imageLocation), fileExtension);
       if (StringUtils.isNotBlank(widget.getImageContent())) {
         byte[] content = Base64.getDecoder().decode(widget.getImageContent());
-        if (isPotentialSvg(fileExtension, content)) {
-          if (isUnsafeSvg(content)) {
+        if (SvgUtils.isPotentialSvg(fileExtension, content)) {
+          if (SvgUtils.isUnsafeSvg(content)) {
             Ivy.log().warn("WidgetId [{0}] image rejected: unsafe SVG content (base64 path).", widget.getId());
             widget.setImageContent(null);
             widget.setImageLocation(null);
@@ -164,7 +161,7 @@ public class WelcomeWidgetUtils {
       } else {
         byte[] oldFileContent = WelcomeWidgetUtils.getImageAsByteData(widget.getImageLocation());
         if (oldFileContent != null) {
-          if (isPotentialSvg(fileExtension, oldFileContent) && isUnsafeSvg(oldFileContent)) {
+          if (SvgUtils.isPotentialSvg(fileExtension, oldFileContent) && SvgUtils.isUnsafeSvg(oldFileContent)) {
             Ivy.log().warn("WidgetId [{0}] image clone rejected: unsafe SVG content (clone path).", widget.getId());
             widget.setImageLocation(null);
             return;
@@ -181,7 +178,7 @@ public class WelcomeWidgetUtils {
         // If has defined content, create new image
         byte[] content = Base64.getDecoder().decode(widget.getImageContentDarkMode());
         // Handle sanitize SVG
-        if (isUnsafeSvg(content)) {
+        if (SvgUtils.isUnsafeSvg(content)) {
           Ivy.log().warn("WidgetId [{0}] image rejected: unsafe SVG content (base64 path).", widget.getId());
           widget.setImageContent(null);
           widget.setImageLocation(null);
@@ -228,47 +225,4 @@ public class WelcomeWidgetUtils {
     }
   }
 
-  static boolean isPotentialSvg(String extension, byte[] data) {
-    if (isSvgExtension(extension)) {
-      return true;
-    }
-    return isSvgContent(data);
-  }
-
-  static boolean isSvgExtension(String extension) {
-    if (extension == null) {
-      return false;
-    }
-    String lower = extension.toLowerCase();
-    return "svg".equals(lower) || lower.startsWith("svg+") || "svgz".equals(lower);
-  }
-
-  static boolean isSvgContent(byte[] data) {
-    if (data == null || data.length < 4) {
-      return false;
-    }
-    String prefix = new String(data, 0, Math.min(data.length, 200), StandardCharsets.UTF_8).trim().toLowerCase();
-    return prefix.startsWith("<svg");
-  }
-
-  static boolean isUnsafeSvg(byte[] data) {
-    try {
-      String content = new String(data, StandardCharsets.UTF_8);
-      return !SVGSecurityScanner.isSafe(content);
-    } catch (Exception e) {
-      Ivy.log().warn("Error during SVG safety check: {0}", e.getMessage());
-      return true;
-    }
-  }
-
-  static String normalizeSvgExtension(String ext) {
-    if (ext == null) {
-      return EMPTY;
-    }
-    String lower = ext.toLowerCase();
-    if (lower.startsWith("svg")) {
-  return "svg";
-    }
-    return ext;
-  }
 }

@@ -803,7 +803,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     caseWidgetInfo:
       casesByCategory: Anzahl der Vorgänge nach Kategorie
       casesByState: Anzahl der Vorgänge nach Status
-      numberOfCase: Vorfälle
+      numberOfCase: Vorgänge
     category: Kategorie
     columnManagement: Spaltenverwaltung
     columnType:
@@ -1389,6 +1389,7 @@ Dialogs:
               PortalDashboardDetailModification:
                 CreateCustomStatistic: Benutzerdefiniertes Statistik-Widget erstellen
                 DeleteConfirm: Sind Sie sicher, dass Sie löschen möchten?
+                Example: Beispiel
                 RemoveThisStatistic: Diese benutzerdefinierte Statistik entfernen
               component:
                 CustomDashboardWidget:
@@ -1526,6 +1527,7 @@ Dialogs:
               ButtonName: Schaltfläche Name
               NavigationDashboardWidgetConfiguration: Konfiguration des Navigations-Dashboard-Widgets
               NavigationDashboardWidgetDescription: Dieses Widget ermöglicht es den Benutzern, durch einen Klick auf eine Schaltfläche direkt zu einem verknüpften Dashboard zu springen.
+              VisualType: Darstellungsart
             NewsWidget:
               NewsContentPlaceHolder: Nachrichteninhalt eingeben
               NewsContentValidateMessage: Nachrichteninhalt in {0} ist erforderlich

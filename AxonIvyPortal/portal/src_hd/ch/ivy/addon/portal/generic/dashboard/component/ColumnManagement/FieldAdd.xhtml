@@ -94,7 +94,7 @@
             dynamic="true" completeMethod="#{columnManagementBean.completeCustomFields}" dropdown="true"
             required="true" requiredMessage="Field #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/isRequiredMessage')}"
             inputStyleClass="field-add-fieldset__autocomplete-input" validator="duplicateFieldValidator"
-            emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/NoSelection')}">
+            emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/NoSelection')}" scrollHeight="500">
             <f:attribute name="existingFields" value="#{columnManagementBean.existingFields}" />
             <f:attribute name="selectedFieldType" value="#{columnManagementBean.selectedFieldType}" />
             <p:ajax listener="#{columnManagementBean.onSelectCustomField()}" process="@this" update="field-add-fieldset"/>
@@ -106,7 +106,7 @@
             dynamic="true" completeMethod="#{columnManagementBean.completeCustomFields}" dropdown="true"
             required="true" requiredMessage="Field #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/isRequiredMessage')}"
             inputStyleClass="field-add-fieldset__autocomplete-input" validator="duplicateFieldValidator"
-            emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/NoSelection')}">
+            emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/NoSelection')}" scrollHeight="500">
             <f:attribute name="existingFields" value="#{columnManagementBean.existingFields}" />
             <f:attribute name="selectedFieldType" value="#{columnManagementBean.selectedFieldType}" />
             <p:ajax listener="#{columnManagementBean.onSelectCustomField()}" process="@this" update="field-add-fieldset"/>

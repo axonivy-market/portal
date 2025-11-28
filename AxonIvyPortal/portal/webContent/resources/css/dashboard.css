@@ -1439,14 +1439,18 @@ body .ui-widget.new-widget-dialog__introduction {
 .layout-topbar-light .welcome-text-container .default-welcome-image,
 .layout-topbar-dark .welcome-text-container .default-welcome-image-dark, 
 .layout-topbar-light .image-process-item > .default-process-image, 
-.layout-topbar-dark .image-process-item > .default-process-image-dark {
+.layout-topbar-dark .image-process-item > .default-process-image-dark,
+.layout-topbar-light .light-mode,
+.layout-topbar-dark .dark-mode {
   display: block;
 }
 
 .layout-topbar-dark .welcome-text-container .default-welcome-image,
 .layout-topbar-light .welcome-text-container .default-welcome-image-dark, 
 .layout-topbar-dark .image-process-item > .default-process-image, 
-.layout-topbar-light .image-process-item > .default-process-image-dark {
+.layout-topbar-light .image-process-item > .default-process-image-dark,
+.layout-topbar-dark .light-mode,
+.layout-topbar-light .dark-mode {
   display: none;
 }
 
@@ -1944,11 +1948,46 @@ body .widget__content .ui-datatable.dashboard-tasks--table .ui-widget-header the
   width: calc(100% - 35px);
 }
 
+.navigation-dashboard-widget-panel .widget-header-actions {
+  position: absolute;
+  top: 0px;
+  z-index: 1;
+  right: 0;
+  padding: 8px;
+  width: 100%;
+  display: inline-flex;
+  justify-content: flex-end;
+}
+
 .navigate-dashboard-button-truncate > span {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   width: 100%;
+}
+
+.navigation-widget-image {
+  height: 8rem;
+  position: relative;
+  object-fit: cover;
+  width: inherit;
+  border-radius: 10px;
+}
+
+.navigation-widget-image-full {
+  height: 67%;
+  position: relative;
+  object-fit: cover;
+  width: inherit;
+  border-radius: 15px;
+  padding: 8px
+}
+
+.navigation-widget-visual {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 8rem;
 }
 
 /* Drill-down chart styling */

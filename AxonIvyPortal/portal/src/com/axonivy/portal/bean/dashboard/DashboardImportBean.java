@@ -19,6 +19,7 @@ import org.primefaces.model.file.UploadedFile;
 
 import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import com.axonivy.portal.components.util.FacesMessageUtils;
+import com.axonivy.portal.dto.dashboard.NavigationDashboardWidget;
 import com.axonivy.portal.util.UploadDocumentUtils;
 import com.axonivy.portal.util.WelcomeWidgetUtils;
 
@@ -28,6 +29,7 @@ import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.WelcomeDashboardWidget;
 import ch.ivy.addon.portalkit.enums.DashboardDisplayType;
 import ch.ivy.addon.portalkit.util.DashboardUtils;
+import ch.ivy.addon.portalkit.util.NavigationWidgetUtils;
 import ch.ivy.addon.portalkit.util.RoleUtils;
 import ch.ivy.addon.portalkit.util.SecurityMemberUtils;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -133,6 +135,9 @@ public class DashboardImportBean extends DashboardModificationBean implements Se
             if (widget instanceof WelcomeDashboardWidget) {
               WelcomeDashboardWidget welcomeWidget = (WelcomeDashboardWidget) widget;
               WelcomeWidgetUtils.writeWelcomeWidgetImage(welcomeWidget);
+            } else if (widget instanceof NavigationDashboardWidget) {
+              NavigationDashboardWidget navWid = (NavigationDashboardWidget) widget;
+              NavigationWidgetUtils.writeNavigateWidgetImage(navWid);
             }
           }
         }
