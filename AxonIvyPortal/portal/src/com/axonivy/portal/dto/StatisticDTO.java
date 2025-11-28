@@ -1,6 +1,6 @@
 package com.axonivy.portal.dto;
 
-public class StatisticDto {
+public class StatisticDTO {
 
   private String chartId;
 

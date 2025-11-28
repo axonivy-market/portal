@@ -756,6 +756,9 @@ ch.ivy.addon.portalkit.ui.jsf:
       SelectAction: アクションを選択してください
       SomeThingWentWrong: 問題が発生しました
       Title: ダッシュボードの設定
+    DrillDownWidget:
+      caseDrillDown: TODO Drill-down case widget for {0}
+      taskDrillDown: TODO Drill-down task widget for {0}
     EmptyFilterMessage: ウィジェットフィルターが見つかりません
     ExternalPageWidget: 外部ページ
     ExternalPageWidgetIntroduction: このウィジェットは外部Webページを表示できます。
@@ -794,6 +797,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     addField: フィールドの追加
     addWidget: ウィジェットの追加
     canWorkOn: 作業可能
+    caseDrillDownDashboard: Case drill-down dashboard
     caseList: ケースリスト
     caseListIntroduction: このウィジェットは、定義された設定に従って関連するケース情報を表示します。
     caseWidgetInfo:
@@ -917,13 +921,14 @@ ch.ivy.addon.portalkit.ui.jsf:
     statisticChartWidget: 統計チャート
     statisticWidgets: 統計ウィジェット
     switchToViewMode: 表示モード
-    tasWidgetkInfo:
+    taskWidgetInfo:
       expireToday: 今日期限切れ
       expiryThisWeek: 今週期限切れ
       numberOfTasks: タスク
       numberOfTasksByCategory: カテゴリーごとのタスク数
       numberOfTasksByState: 状態別のタスク数
       predefinedFilters: 定義済みフィルター
+      taskDrillDownDashboard: 'TODO: Task drill-down dashboard'
     taskList: タスクリスト
     taskListIntroduction: このウィジェットには、定義された設定に従って関連するタスク情報が表示されます。
     taskStart: タスクの開始
@@ -1571,6 +1576,9 @@ Dialogs:
             AggregationMethod: TODO Aggregation method
             AggregationMethodTooltip: TODO Choose an aggregation method to perform calculations on your KPI field - Sum, Average, Max, or Min. Disabled when 'Counting' is selected
             ChartConfiguration: TODO Chart Configuration
+            ChartDrillDownEnabled: TODO Chart drill-down enabled
+            ChartDrillDownInfo: 'TODO <p>It only works when the user has these permissions: <strong>CaseReadAll</strong> for case and <strong>TaskReadAll</strong> for task.</p>'
+            ChartDrillDownPermissions: TODO Chart drill-down permissions
             ChartType: TODO Chart type
             Color: 色{0}
             ConditionBasedColoring:

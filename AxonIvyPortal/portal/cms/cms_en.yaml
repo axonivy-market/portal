@@ -754,6 +754,9 @@ ch.ivy.addon.portalkit.ui.jsf:
       SelectAction: Select the action
       SomeThingWentWrong: Something went wrong
       Title: Dashboard configuration
+    DrillDownWidget:
+      caseDrillDown: Drill-down case widget for {0}
+      taskDrillDown: Drill-down task widget for {0}
     EmptyFilterMessage: No widget filter found
     ExternalPageWidget: External Page
     ExternalPageWidgetIntroduction: This widget can display an external webpage.
@@ -792,6 +795,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     addField: Add field
     addWidget: Add widget
     canWorkOn: Can work on
+    caseDrillDownDashboard: Case drill-down dashboard
     caseList: Case List
     caseListIntroduction: This widget displays relevant case information according to defined settings
     caseWidgetInfo:
@@ -915,13 +919,14 @@ ch.ivy.addon.portalkit.ui.jsf:
     statisticChartWidget: Statistic chart
     statisticWidgets: Statistic Widgets
     switchToViewMode: View Mode
-    tasWidgetkInfo:
+    taskWidgetInfo:
       expireToday: Expire today
       expiryThisWeek: Expire this week
       numberOfTasks: task(s)
       numberOfTasksByCategory: Number of tasks by category
       numberOfTasksByState: Number of tasks by state
       predefinedFilters: Predefined filters
+      taskDrillDownDashboard: Task drill-down dashboard
     taskList: Task List
     taskListIntroduction: This widget displays relevant task information according to defined settings.
     taskStart: Task start
@@ -1569,6 +1574,9 @@ Dialogs:
             AggregationMethod: Aggregation method
             AggregationMethodTooltip: Choose an aggregation method to perform calculations on your KPI field - Sum, Average, Max, or Min. Disabled when 'Counting' is selected
             ChartConfiguration: Chart Configuration
+            ChartDrillDownEnabled: Chart drill-down enabled
+            ChartDrillDownInfo: '<p>It only works when the user has these permissions: <strong>CaseReadAll</strong> for case and <strong>TaskReadAll</strong> for task.</p>'
+            ChartDrillDownPermissions: Chart drill-down permissions
             ChartType: Chart type
             Color: Color {0}
             ConditionBasedColoring:

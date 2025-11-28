@@ -1,8 +1,13 @@
 package ch.ivy.addon.portalkit.util;
 
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
+import ch.ivy.addon.portalkit.enums.DashboardDisplayType;
 
 public class DefaultDashboardUtils {
+
+  private static final String DEFAULT_TASK_LIST_DRILL_DOWN_DASHBOARD_ID = "default-task-list-drill-down-dashboard";
+
+  private static final String DEFAULT_CASE_LIST_DRILL_DOWN_DASHBOARD_ID = "default-case-list-drill-down-dashboard";
 
   private static String DEFAULT_TASK_LIST_DASHBOARD_JSON = """
       {
@@ -826,6 +831,22 @@ public class DefaultDashboardUtils {
           """;
   public static Dashboard getDefaultTaskListDashboard() {
     return DashboardUtils.jsonToDashboard(DEFAULT_TASK_LIST_DASHBOARD_JSON);
+  }
+
+  public static Dashboard getTaskDrillDownDashboard() {
+    Dashboard dashboard = DashboardUtils.jsonToDashboard(DEFAULT_TASK_LIST_DASHBOARD_JSON);
+    dashboard.setId(DEFAULT_TASK_LIST_DRILL_DOWN_DASHBOARD_ID);
+    dashboard.setDashboardDisplayType(DashboardDisplayType.HIDDEN);
+    dashboard.setIsResponsive(true);
+    return dashboard;
+  }
+
+  public static Dashboard getCaseDrillDownDashboard() {
+    Dashboard dashboard = DashboardUtils.jsonToDashboard(DEFAULT_CASE_LIST_DASHBOARD_JSON);
+    dashboard.setId(DEFAULT_CASE_LIST_DRILL_DOWN_DASHBOARD_ID);
+    dashboard.setDashboardDisplayType(DashboardDisplayType.HIDDEN);
+    dashboard.setIsResponsive(true);
+    return dashboard;
   }
 
   public static Dashboard getDefaultCaseListDashboard() {
