@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Portal Guide ${revision}\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-12 07:57+0000\n"
+"POT-Creation-Date: 2025-11-28 09:55+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: es\n"
@@ -3442,7 +3442,7 @@ msgstr ""
 #: ../../source/portal-user-guide/full-case-list/index.rst:149
 #: ../../source/portal-user-guide/full-task-list/index.rst:212
 msgid ""
-"Portal can preview Word(doc, docx), Excel(xls, xlsx) and email(eml) "
+"Portal can preview Word(doc, docx), Excel(xls, xlsx) and email(eml, msg) "
 "documents if :doc-url:`DocFactory <https://market.axonivy.com/doc-factory"
 "#tab-description>` is deployed in the same security context."
 msgstr ""
@@ -6624,7 +6624,7 @@ msgstr ""
 msgid "|statistic-widget-list-page|"
 msgstr ""
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst:161
+#: ../../source/portal-user-guide/statistic-chart/index.rst:186
 msgid "Statistic widget list"
 msgstr ""
 
@@ -6642,7 +6642,7 @@ msgstr ""
 msgid "|tasks-by-prior-pie-chart|"
 msgstr ""
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst:165
+#: ../../source/portal-user-guide/statistic-chart/index.rst:190
 msgid "Task by priority pie chart"
 msgstr ""
 
@@ -6662,7 +6662,7 @@ msgstr ""
 msgid "|top-prior-chart|"
 msgstr ""
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst:183
+#: ../../source/portal-user-guide/statistic-chart/index.rst:208
 msgid "Top priority tasks chart"
 msgstr ""
 
@@ -6682,7 +6682,7 @@ msgstr ""
 msgid "|tasks-by-prior-bar-chart|"
 msgstr ""
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst:167
+#: ../../source/portal-user-guide/statistic-chart/index.rst:192
 msgid "Task by priority bar chart"
 msgstr ""
 
@@ -6700,7 +6700,7 @@ msgstr ""
 msgid "|avg-runtime-chart|"
 msgstr ""
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst:171
+#: ../../source/portal-user-guide/statistic-chart/index.rst:196
 msgid "Average runtime chart"
 msgstr ""
 
@@ -6716,7 +6716,7 @@ msgstr ""
 msgid "|new-cases-chart|"
 msgstr ""
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst:177
+#: ../../source/portal-user-guide/statistic-chart/index.rst:202
 msgid "Number of new cases chart"
 msgstr ""
 
@@ -6737,7 +6737,7 @@ msgstr ""
 msgid "|completed-cases-chart|"
 msgstr ""
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst:173
+#: ../../source/portal-user-guide/statistic-chart/index.rst:198
 msgid "Completed cases chart"
 msgstr ""
 
@@ -6753,7 +6753,7 @@ msgstr ""
 msgid "|running-cases-chart|"
 msgstr ""
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst:185
+#: ../../source/portal-user-guide/statistic-chart/index.rst:210
 msgid "Running cases chart"
 msgstr ""
 
@@ -6777,7 +6777,7 @@ msgstr ""
 msgid "|tasks-expire-end-week-chart|"
 msgstr ""
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst:181
+#: ../../source/portal-user-guide/statistic-chart/index.rst:206
 msgid "Number of tasks expire this week chart"
 msgstr ""
 
@@ -6789,7 +6789,7 @@ msgstr ""
 msgid "|tasks-by-prior-number-chart|"
 msgstr ""
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst:169
+#: ../../source/portal-user-guide/statistic-chart/index.rst:194
 msgid "Task by priority number chart"
 msgstr ""
 
@@ -6805,7 +6805,7 @@ msgstr ""
 msgid "|open-tasks-chart|"
 msgstr ""
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst:179
+#: ../../source/portal-user-guide/statistic-chart/index.rst:204
 msgid "Number of opening tasks chart"
 msgstr ""
 
@@ -6821,7 +6821,7 @@ msgstr ""
 msgid "|due-today-chart|"
 msgstr ""
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst:175
+#: ../../source/portal-user-guide/statistic-chart/index.rst:200
 msgid "Number of tasks expire today"
 msgstr ""
 
@@ -6843,7 +6843,7 @@ msgstr ""
 msgid "|create-new-custom-statistic-widget|"
 msgstr ""
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst:187
+#: ../../source/portal-user-guide/statistic-chart/index.rst:212
 msgid "Create new custom statistic widget"
 msgstr ""
 
@@ -6857,7 +6857,7 @@ msgstr ""
 msgid "|custom-statistic-widget-configuration-page|"
 msgstr ""
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst:189
+#: ../../source/portal-user-guide/statistic-chart/index.rst:214
 msgid "Custom statistic widet configuration page"
 msgstr ""
 
@@ -7027,6 +7027,91 @@ msgstr ""
 msgid "Toggle to show label of number chart."
 msgstr ""
 
+#: ../../source/portal-user-guide/statistic-chart/index.rst:162
+msgid "Sample: KPI Procurement Overview"
+msgstr ""
+
+#: ../../source/portal-user-guide/statistic-chart/index.rst:164
+msgid ""
+"The dashboards shown in the images below demonstrate the capabilities of "
+"Custom Statistics Widgets, which are available starting from version 13.2"
+" of the Axon Ivy Portal. These widgets enable you to visualize KPIs and "
+"other information in a fully customizable way."
+msgstr ""
+
+#: ../../source/portal-user-guide/statistic-chart/index.rst:167
+msgid ""
+"Specifically, this example is designed for procurement processes, these "
+"dashboards provide insights into various aspects of procurement "
+"activities."
+msgstr ""
+
+#: ../../source/portal-user-guide/statistic-chart/index.rst:169
+msgid "To access the sample dashboard, follow these steps:"
+msgstr ""
+
+#: ../../source/portal-user-guide/statistic-chart/index.rst:171
+msgid ""
+"Run the ``portal-user-examples`` project in your Axon Ivy Portal "
+"installation."
+msgstr ""
+
+#: ../../source/portal-user-guide/statistic-chart/index.rst:172
+msgid ""
+"Navigate to the left menu and select :guilabel:`Sample: KPI Procurement "
+"Overview`."
+msgstr ""
+
+#: ../../source/portal-user-guide/statistic-chart/index.rst:173
+msgid ""
+"Generate data for the charts by clicking the :guilabel:`Start Process` "
+"button in the Process widget on the sample dashboard, or find and run the"
+" ``Procurement`` process manually. You can run the process multiple times"
+" to generate additional data."
+msgstr ""
+
+#: ../../source/portal-user-guide/statistic-chart/index.rst:174
+msgid ""
+"Once data is generated, you will see the sample dashboards as shown in "
+"the image below."
+msgstr ""
+
+#: ../../source/portal-user-guide/statistic-chart/index.rst:176
+msgid "|statistic-sample-dashboard|"
+msgstr ""
+
+#: ../../source/portal-user-guide/statistic-chart/index.rst:216
+msgid "Statistic sample dashboard"
+msgstr ""
+
+#: ../../source/portal-user-guide/statistic-chart/index.rst:178
+msgid ""
+"To view the configuration of these example statistic widgets, follow "
+"these steps:"
+msgstr ""
+
+#: ../../source/portal-user-guide/statistic-chart/index.rst:180
+msgid ""
+"In the dashboard configuration page, click the :guilabel:`Add widget` "
+"button."
+msgstr ""
+
+#: ../../source/portal-user-guide/statistic-chart/index.rst:181
+msgid "Look for widgets labeled as :bdg-secondary:`Example`."
+msgstr ""
+
+#: ../../source/portal-user-guide/statistic-chart/index.rst:182
+msgid "Select :guilabel:`Edit` to view and review their configurations."
+msgstr ""
+
+#: ../../source/portal-user-guide/statistic-chart/index.rst:184
+msgid "|statistic-config|"
+msgstr ""
+
+#: ../../source/portal-user-guide/statistic-chart/index.rst:218
+msgid "Statistic configuration example"
+msgstr ""
+
 #~ msgid "queries e.g. for case widget, global search."
 #~ msgstr ""
 
@@ -7136,5 +7221,13 @@ msgstr ""
 #~ "If true, case/task note does not "
 #~ "display any system notes for "
 #~ "administrator."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Portal can preview Word(doc, docx), "
+#~ "Excel(xls, xlsx) and email(eml) documents "
+#~ "if :doc-url:`DocFactory <https://market.axonivy.com"
+#~ "/doc-factory#tab-description>` is deployed "
+#~ "in the same security context."
 #~ msgstr ""
 
