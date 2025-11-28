@@ -54,7 +54,7 @@ public class SideStepProcessBean implements Serializable {
   private List<SideStepType> sideStepTypes;
   private String comment;
   private SideStepConfigurationDTO sideStepConfigurationInfo;
-  private boolean isTaskDelegatedToUser = true;
+  private boolean isUserDelegated = true;
 
   public List<SideStepProcessDTO> getProcesses() {
     return processes;
@@ -73,7 +73,7 @@ public class SideStepProcessBean implements Serializable {
     this.userRoles = new ArrayList<>();
     this.roles = new ArrayList<>();
     this.selectedProcess = selectedProcess;
-    this.setTaskDelegatedToUser(true);
+    this.isUserDelegated = true;
     if (task != null && selectedProcess != null) {
       String securityMembersCallable = selectedProcess.getCustomSecurityMemberCallable();
 
@@ -162,7 +162,7 @@ public class SideStepProcessBean implements Serializable {
     this.selectedSideStepType = null;
     this.assignedRole = null;
     this.assignee = null;
-    this.setTaskDelegatedToUser(true);
+    this.isUserDelegated = true;
     this.comment = "";
   }
 
@@ -219,6 +219,14 @@ public class SideStepProcessBean implements Serializable {
     this.roles = roles;
   }
 
+  public boolean isUserDelegated() {
+    return isUserDelegated;
+  }
+
+  public void setUserDelegated(boolean isUserDelegated) {
+    this.isUserDelegated = isUserDelegated;
+  }
+
   public List<String> getUserRoles() {
     return userRoles;
   }
@@ -267,13 +275,5 @@ public class SideStepProcessBean implements Serializable {
 
   public void setSideStepTypes(List<SideStepType> sideStepTypes) {
     this.sideStepTypes = sideStepTypes;
-  }
-
-  public boolean isTaskDelegatedToUser() {
-    return isTaskDelegatedToUser;
-  }
-
-  public void setTaskDelegatedToUser(boolean isTaskDelegatedToUser) {
-    this.isTaskDelegatedToUser = isTaskDelegatedToUser;
   }
 }
