@@ -9,15 +9,16 @@ msgstr ""
 "Project-Id-Version: Portal Guide ${revision}\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-11-28 09:55+0000\n"
-"PO-Revision-Date: 2025-10-17 10:38+0000\n"
-"Last-Translator: Thang Huynh <hhqthang@axonactive.com>\n"
+"PO-Revision-Date: 2025-11-28 11:09+0000\n"
+"Last-Translator: Loc Nguyen <loc.nguyenthanh@axonactive.com>\n"
+"Language-Team: Japanese <https://hosted.weblate.org/projects/axonivy-portal/"
+"portal-le/doc/portal-doc-developer-guide/ja/>\n"
 "Language: ja\n"
-"Language-Team: Japanese <https://hosted.weblate.org/projects/axonivy-"
-"portal/portal-le/doc/portal-doc-developer-guide/ja/>\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 5.15-dev\n"
 "Generated-By: Babel 2.17.0\n"
 
 #: ../../source/portal-developer-guide/architecture/index.rst:4
@@ -2021,41 +2022,42 @@ msgstr ""
 
 #: ../../source/portal-developer-guide/customization/page-header-footer-process.rst:4
 msgid "Page Header and Footer"
-msgstr ""
+msgstr "ページヘッダーとフッター"
 
 #: ../../source/portal-developer-guide/customization/page-header-footer-process.rst:11
 msgid "The page header and footer that is shown on each Portal page."
-msgstr ""
+msgstr "各ポータルページに表示されるページのヘッダーとフッター。"
 
 #: ../../source/portal-developer-guide/customization/page-header-footer-process.rst:13
 msgid ""
 "You can easily customize the page header and footer using HTML code. For "
 "example:"
-msgstr ""
+msgstr "ページのヘッダーとフッターは、HTMLコードを使って簡単にカスタマイズできます。"
+"たとえば："
 
 #: ../../source/portal-developer-guide/customization/page-header-footer-process.rst:21
 msgid ""
 "For a complete example, see the process ``CustomPageHeaderAndFooter`` in "
 "the ``portal-developer-examples`` project."
 msgstr ""
+"完全な例については、 ``portal-developer-examples`` プロジェクトの "
+"``CustomPageHeaderAndFooter`` のプロセスを参照してください。"
 
 #: ../../source/portal-developer-guide/customization/page-header-footer-process.rst:24
 msgid "Page header and footer customization function"
-msgstr ""
+msgstr "ページヘッダー・フッターカスタマイズ機能"
 
 #: ../../source/portal-developer-guide/customization/page-header-footer-process.rst:28
-#, fuzzy
 msgid "**Signature**: portalGetPageHeaderAndFooter"
-msgstr "**シグネチャ**：portalGetLogoutPage"
+msgstr "**シグネチャ**：portalGetPageHeaderAndFooter"
 
 #: ../../source/portal-developer-guide/customization/page-header-footer-process.rst:35
-#, fuzzy
 msgid "pageHeader"
-msgstr "portal-header"
+msgstr "pageHeader"
 
 #: ../../source/portal-developer-guide/customization/page-header-footer-process.rst:37
 msgid "pageFooter"
-msgstr ""
+msgstr "pageFooter"
 
 #: ../../source/portal-developer-guide/customization/portal-style-customization-logos-colors-date-patterns.rst:4
 msgid "Portal Styles Customization (Logos, Colors, Date Patterns)"
@@ -4578,7 +4580,8 @@ msgstr "``description``: ウィジェットの説明"
 msgid ""
 "``visualType``: the visual type of the widget. Possible values are "
 "``ICON`` and ``IMAGE``"
-msgstr ""
+msgstr "``visualType``: ウィジェットのビジュアルタイプ。指定できる値は ``ICON`` と "
+"``IMAGE`` です。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:101
 msgid "``icon``: the icon shown on the widget"
@@ -4613,15 +4616,15 @@ msgstr "``imageType``：プロセスの画像の拡張子。基本的にはエ�
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:109
 msgid "``imageContentDarkMode``: the same as ``imageContent`` but for dark mode"
-msgstr ""
+msgstr "``imageContentDarkMode``: ダークモード版 ``imageContent``"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:111
 msgid "``imageLocationDarkMode``: the same as ``imageLocation`` but for dark mode"
-msgstr ""
+msgstr "``imageLocationDarkMode``: ダークモード版 ``imageLocation``"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:113
 msgid "``imageTypeDarkMode``: the same as ``imageType`` but for dark mode"
-msgstr ""
+msgstr "``imageTypeDarkMode``: ダークモード版 ``imageType``"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-notification-widget.rst:4
 msgid "Configure Notifications Widget"
@@ -6866,6 +6869,10 @@ msgid ""
 "instead to control the visibility of system notes in task and case "
 "details."
 msgstr ""
+"2. 全体変数 ``Portal.Histories.HideSystemNotes`` および "
+"``Portal.Histories.HideSystemNotesForAdministrator`` は削除され、サポートされ"
+"なくなりました。代わりに ``NoteReadAllCaseTaskDetails`` を使用し、タスクおよ"
+"びケース詳細におけるシステムノートの可視性を制御してください。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:153
 msgid "Migrate 11.3.2 To 12.0.0"
@@ -7930,15 +7937,21 @@ msgid ""
 "You can rename document in document table of task and case detail page, "
 "and the activity will be logged in history notes."
 msgstr ""
+"**導入ドキュメント名変更機能（** ）をタスクおよびケース詳細ページに追加。タス"
+"ク/ケース詳細ページのドキュメントテーブルでドキュメント名を変更可能。変更履歴"
+"は履歴ノートに記録されます。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:497
-#, fuzzy
 msgid ""
 "Enhanced the document preview feature for the task and case detail. If "
 "you have :dev-url:`DocFactory <https://market.axonivy.com/doc-factory"
 "#tab-description>` in the same security context, you can preview "
 "Word(doc, docx), Excel(xls, xlsx) and email(eml) documents."
-msgstr "タスクとケース詳細のドキュメントプレビュー機能を強化しました。同じセキュリティコンテキストにDocFactoryがある場合。Word(doc、docx)、Excel(xls、xlsx)、Eメール(eml)のドキュメントをプレビューできます。"
+msgstr ""
+"タスクおよびケース詳細のドキュメントプレビュー機能を強化しました。同じセキュ"
+"リティコンテキストに :dev-url:`DocFactory <https://market.axonivy.com/doc-"
+"factory#tab-description>` がある場合、Word（doc、docx）、Excel（xls、xlsx）、"
+"メール（eml）ドキュメントをプレビューできます。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:498
 msgid "Removed the Portal Setting ``Portal.DeepL.AuthKey``."
@@ -7958,6 +7971,9 @@ msgid ""
 "functionality to the Document Table component, enabling efficient data "
 "loading through pagination."
 msgstr ""
+"ドキュメントテーブルコンポーネントに遅延読み込み機能を追加し、ページネーショ"
+"ンによる効率的なデータ読み込みを可能にしたことで、**ドキュメントテーブル** コ"
+"ンポーネントを強化しました。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:503
 msgid "Changes in 13.1.0"
@@ -9467,9 +9483,8 @@ msgid ""
 msgstr "ユーザーがケースオーナーであるケースの関連タスクを委任する権限"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:135
-#, fuzzy
 msgid "_`CaseDisplayCustomFieldsAction`"
-msgstr "_`TaskDisplayCustomFieldsAction`"
+msgstr "_`CaseDisplayCustomFieldsAction`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:139
 msgid "Portal General Permissions"
@@ -9675,14 +9690,12 @@ msgid "Granted to role Everybody by default."
 msgstr "デフォルトでは Everybody ロールに付与"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:233
-#, fuzzy
 msgid "_`NoteReadAllCaseTaskDetails`"
-msgstr "_`TaskReadOwnCaseTasks`"
+msgstr "_`NoteReadAllCaseTaskDetails`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:234
-#, fuzzy
 msgid "Permission allows users to view system notes in case and task details"
-msgstr "タスクの詳細に共有ボタンを表示する権限"
+msgstr "権限により、ユーザーはケースおよびタスクの詳細でシステムノートを閲覧できます"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:239
 msgid "Portal Absence And Substitute Permissions"
@@ -11191,4 +11204,3 @@ msgstr "URL に外部ウェブページが示されている場合、パラメ�
 #~ "view system notes in case and task"
 #~ " details"
 #~ msgstr "管理者以外のユーザがケースとタスクの詳細のシステムノートを閲覧できるようにする権限"
-
