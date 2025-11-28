@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Portal Guide ${revision}\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-12 07:57+0000\n"
+"POT-Creation-Date: 2025-11-28 09:55+0000\n"
 "PO-Revision-Date: 2025-10-17 10:38+0000\n"
 "Last-Translator: Thang Huynh <hhqthang@axonactive.com>\n"
 "Language: ja\n"
@@ -2996,7 +2996,7 @@ msgstr "``type``：ウィジェットのタイプ。ニュースウィジェッ�
 
 #: ../../source/portal-developer-guide/dashboard/dashboard-newsfeed-widget.rst:38
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:82
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:70
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:77
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-notification-widget.rst:54
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-viewer-widget.rst:38
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:39
@@ -3017,7 +3017,7 @@ msgstr "``layout``：ニュースウィジェットのレイアウトの定義�
 #: ../../source/portal-developer-guide/dashboard/dashboard-newsfeed-widget.rst:44
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:88
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-external-page-widget.rst:60
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:80
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:87
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-notification-widget.rst:60
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-viewer-widget.rst:44
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:45
@@ -3028,7 +3028,7 @@ msgstr "``x``：HTML DOMスタイル ``left`` は ``x / 12 * 100%`` として計
 #: ../../source/portal-developer-guide/dashboard/dashboard-newsfeed-widget.rst:46
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:90
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-external-page-widget.rst:62
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:82
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:89
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-notification-widget.rst:62
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-viewer-widget.rst:46
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:47
@@ -3039,7 +3039,7 @@ msgstr "``y``：HTML DOMスタイル ``top`` は ``y / 12 * 100%`` として計�
 #: ../../source/portal-developer-guide/dashboard/dashboard-newsfeed-widget.rst:48
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:92
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-external-page-widget.rst:64
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:84
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:91
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-notification-widget.rst:64
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-viewer-widget.rst:48
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:49
@@ -3052,7 +3052,7 @@ msgstr "``w``：HTML DOMスタイル ``width`` は ``60 * w + 20 * (w - 1)`` と
 #: ../../source/portal-developer-guide/dashboard/dashboard-newsfeed-widget.rst:50
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:94
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-external-page-widget.rst:66
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:86
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:93
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-notification-widget.rst:66
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-viewer-widget.rst:50
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:51
@@ -4539,12 +4539,12 @@ msgid ""
 " Portal dashboard."
 msgstr "以下は、ポータル・ダッシュボードのナビゲーション・ダッシュボード・ウィジェットのJSON定義のサンプルです。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:68
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:75
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:148
 msgid "The basic JSON structure of a statistic widget"
 msgstr "統計ウィジェットの JSON の基本的な構造"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:72
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:79
 msgid ""
 "``type``: type of the widget. Use ``navigation-dashboard`` for a "
 "navigation dashboard widget"
@@ -4552,31 +4552,76 @@ msgstr ""
 "``type``: ウィジェットのタイプ。ナビゲーションダッシュボードウィジェットには を使用してください。``navigation-"
 "dashboard``"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:74
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:81
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-notification-widget.rst:56
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:83
 msgid "``names``: multilingual name of the widget on the UI"
 msgstr "``names``：UI に表示されるウィジェットの複数言語の名前。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:76
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:83
 msgid "``buttonNames``: multilingual button name on the widget"
 msgstr "``buttonNames``: ウィジェットの多言語ボタン名"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:78
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:85
 msgid "``layout``: layout definition of the client statistic widget"
 msgstr "``layout``：クライアントの統計ウィジェットのレイアウトの定義。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:88
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:95
 msgid "``targetDashboardId``: the target dashboard id"
 msgstr "``targetDashboardId``: 対象のダッシュボードの ID"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:90
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:97
 msgid "``description``: the widget description"
 msgstr "``description``: ウィジェットの説明"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:92
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:99
+msgid ""
+"``visualType``: the visual type of the widget. Possible values are "
+"``ICON`` and ``IMAGE``"
+msgstr ""
+
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:101
 msgid "``icon``: the icon shown on the widget"
 msgstr "``icon``: ウィジェットに表示されるアイコン"
+
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:103
+#: ../../source/portal-developer-guide/settings/index.rst:700
+msgid ""
+"``imageContent``: the base64 data format of the process image. If this "
+"value is valid then it will be converted to a physical file. If you want "
+"to configure external link images when deploying, you just need to define"
+" ``imageContent``"
+msgstr ""
+"``imageContent``：プロセスの画像の base64 "
+"データ形式。この値が有効な場合は、物理ファイルに変換されます。展開時に外部リンクの画像を設定する場合は、 ``imageContent`` "
+"を定義するだけで済みます。"
+
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:105
+#: ../../source/portal-developer-guide/settings/index.rst:701
+msgid ""
+"``imageLocation``: the location of the process image. This image is "
+"stored in Application CMS. Basically, this should be handled by the "
+"engine"
+msgstr "``imageLocation``：プロセスの画像の場所。この画像はアプリケーションの CMS に格納されます。基本的にはエンジンで処理されます。"
+
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:107
+#: ../../source/portal-developer-guide/settings/index.rst:702
+msgid ""
+"``imageType``: the extension of the process image. Basically, this should"
+" be handled by the engine"
+msgstr "``imageType``：プロセスの画像の拡張子。基本的にはエンジンで処理されます。"
+
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:109
+msgid "``imageContentDarkMode``: the same as ``imageContent`` but for dark mode"
+msgstr ""
+
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:111
+msgid "``imageLocationDarkMode``: the same as ``imageLocation`` but for dark mode"
+msgstr ""
+
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:113
+msgid "``imageTypeDarkMode``: the same as ``imageType`` but for dark mode"
+msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-notification-widget.rst:4
 msgid "Configure Notifications Widget"
@@ -10673,30 +10718,6 @@ msgstr "``icon``：リンクのアイコンのスタイルクラス。"
 #: ../../source/portal-developer-guide/settings/index.rst:699
 msgid "``description``: the description of a link"
 msgstr "``description``：リンクの説明"
-
-#: ../../source/portal-developer-guide/settings/index.rst:700
-msgid ""
-"``imageContent``: the base64 data format of the process image. If this "
-"value is valid then it will be converted to a physical file. If you want "
-"to configure external link images when deploying, you just need to define"
-" ``imageContent``"
-msgstr ""
-"``imageContent``：プロセスの画像の base64 "
-"データ形式。この値が有効な場合は、物理ファイルに変換されます。展開時に外部リンクの画像を設定する場合は、 ``imageContent`` "
-"を定義するだけで済みます。"
-
-#: ../../source/portal-developer-guide/settings/index.rst:701
-msgid ""
-"``imageLocation``: the location of the process image. This image is "
-"stored in Application CMS. Basically, this should be handled by the "
-"engine"
-msgstr "``imageLocation``：プロセスの画像の場所。この画像はアプリケーションの CMS に格納されます。基本的にはエンジンで処理されます。"
-
-#: ../../source/portal-developer-guide/settings/index.rst:702
-msgid ""
-"``imageType``: the extension of the process image. Basically, this should"
-" be handled by the engine"
-msgstr "``imageType``：プロセスの画像の拡張子。基本的にはエンジンで処理されます。"
 
 #: ../../source/portal-developer-guide/settings/index.rst:703
 msgid ""
