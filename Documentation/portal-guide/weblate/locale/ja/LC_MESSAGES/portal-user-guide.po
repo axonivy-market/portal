@@ -10,7 +10,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-11-28 09:55+0000\n"
 "PO-Revision-Date: 2025-11-28 11:09+0000\n"
-"Last-Translator: Loc Nguyen <loc.nguyenthanh@axonactive.com>\n"
+"Last-Translator: Thang Huynh <hhqthang@axonactive.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/axonivy-portal/"
 "portal-le/doc/portal-doc-user-guide/ja/>\n"
 "Language: ja\n"
@@ -4025,9 +4025,8 @@ msgid "HowTo: Show Case Custom Fields Dialog"
 msgstr "HowTo: カスタムフィールドダイアログの表示方法"
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:352
-#, fuzzy
 msgid "Click on :guilabel:`Custom Fields`"
-msgstr ":guilabel:`アクション` をクリックします。"
+msgstr ":guilabel:`アクション` をクリックします"
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:354
 msgid "Portal opens the custom fields dialog of the case"
@@ -7468,13 +7467,15 @@ msgstr "サンプルダッシュボードにアクセスするには、次の手
 msgid ""
 "Run the ``portal-user-examples`` project in your Axon Ivy Portal "
 "installation."
-msgstr ""
+msgstr "Axon Ivy Portalインストール環境で、``portal-user-examples`` プロジェクトを実"
+"行してください。"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst:172
 msgid ""
 "Navigate to the left menu and select :guilabel:`Sample: KPI Procurement "
 "Overview`."
-msgstr ""
+msgstr "左メニューから「:guilabel:`Sample: KPI Procurement Overview` 」を選択してくだ"
+"さい。"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst:173
 msgid ""
@@ -7483,54 +7484,52 @@ msgid ""
 " ``Procurement`` process manually. You can run the process multiple times"
 " to generate additional data."
 msgstr ""
+"サンプルダッシュボードのプロセスウィジェットにある「:guilabel:`Start Process`"
+" 」ボタンをクリックしてチャート用データを生成するか、手動で ``Procurement`` "
+"プロセスを検索して実行してください。プロセスを複数回実行して追加データを生成"
+"できます。"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst:174
 msgid ""
 "Once data is generated, you will see the sample dashboards as shown in "
 "the image below."
-msgstr ""
+msgstr "データが生成されると、下図のようなサンプルダッシュボードが表示されます。"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst:176
-#, fuzzy
 msgid "|statistic-sample-dashboard|"
-msgstr "|edit-public-dashboards|"
+msgstr "|statistic-sample-dashboard|"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst:216
-#, fuzzy
 msgid "Statistic sample dashboard"
-msgstr "統計チャート"
+msgstr "統計サンプルダッシュボード"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst:178
 msgid ""
 "To view the configuration of these example statistic widgets, follow "
 "these steps:"
-msgstr ""
+msgstr "これらの統計ウィジェットの例の設定を確認するには、次の手順に従ってください："
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst:180
-#, fuzzy
 msgid ""
 "In the dashboard configuration page, click the :guilabel:`Add widget` "
 "button."
-msgstr "ダイアログが開いたら、一番上にある :guilabel:`ウィジェット複製` ボタンをクリックします。"
+msgstr "ダッシュボード設定ページで、:guilabel:`Add widget` ボタンをクリックします。"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst:181
 msgid "Look for widgets labeled as :bdg-secondary:`Example`."
-msgstr ""
+msgstr ":bdg-secondary:`Example` と表示されたウィジェットを探してください。"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst:182
-#, fuzzy
 msgid "Select :guilabel:`Edit` to view and review their configurations."
-msgstr ":guilabel:`リセット` ボタンをクリックして初期設定にリセットします。"
+msgstr ":guilabel:`Edit` を選択して、その設定を表示および確認します。"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst:184
-#, fuzzy
 msgid "|statistic-config|"
-msgstr "|statistic-widget-list-page|"
+msgstr "|statistic-config|"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst:218
-#, fuzzy
 msgid "Statistic configuration example"
-msgstr "カスタム統計ウィジェット設定ページ"
+msgstr "統計設定例"
 
 #~ msgid "queries e.g. for case widget, global search."
 #~ msgstr ""
