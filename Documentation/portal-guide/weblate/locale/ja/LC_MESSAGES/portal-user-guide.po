@@ -9,15 +9,16 @@ msgstr ""
 "Project-Id-Version: Portal Guide ${revision}\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-11-28 09:55+0000\n"
-"PO-Revision-Date: 2025-11-05 08:38+0000\n"
+"PO-Revision-Date: 2025-11-28 11:09+0000\n"
 "Last-Translator: Thang Huynh <hhqthang@axonactive.com>\n"
+"Language-Team: Japanese <https://hosted.weblate.org/projects/axonivy-portal/"
+"portal-le/doc/portal-doc-user-guide/ja/>\n"
 "Language: ja\n"
-"Language-Team: Japanese <https://hosted.weblate.org/projects/axonivy-"
-"portal/portal-le/doc/portal-doc-user-guide/ja/>\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 5.15-dev\n"
 "Generated-By: Babel 2.17.0\n"
 
 #: ../../source/portal-user-guide/accessibility/index.rst:4
@@ -3640,15 +3641,15 @@ msgstr "ポータルでは、画像、プレーンテキスト（txt と log）�
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:149
 #: ../../source/portal-user-guide/full-task-list/index.rst:212
-#, fuzzy
 msgid ""
 "Portal can preview Word(doc, docx), Excel(xls, xlsx) and email(eml, msg) "
 "documents if :doc-url:`DocFactory <https://market.axonivy.com/doc-factory"
 "#tab-description>` is deployed in the same security context."
 msgstr ""
 ":doc-url:`DocFactory <https://market.axonivy.com/doc-factory#tab-"
-"description>` が同じセキュリティ・コンテキストに配置されている場合、Portal は "
-"Word(doc、docx)、Excel(xls、xlsx)、Eメール(eml)のドキュメントをプレビューできます。"
+"description>` が同一セキュリティコンテキストにデプロイされている場合、Portal"
+"はWord(doc, docx)、Excel(xls, xlsx)、メール(eml, msg)文書のプレビューが可能で"
+"す。"
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:151
 #: ../../source/portal-user-guide/full-task-list/index.rst:214
@@ -4020,38 +4021,34 @@ msgstr ""
 "<ShareCaseDetailsLink>` 権限を付与してください。"
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:346
-#, fuzzy
 msgid "HowTo: Show Case Custom Fields Dialog"
-msgstr "ハウツーカスタムフィールドを表示する"
+msgstr "HowTo: カスタムフィールドダイアログの表示方法"
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:352
-#, fuzzy
 msgid "Click on :guilabel:`Custom Fields`"
-msgstr ":guilabel:`アクション` をクリックします。"
+msgstr ":guilabel:`アクション` をクリックします"
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:354
 msgid "Portal opens the custom fields dialog of the case"
-msgstr ""
+msgstr "Portal はケースのカスタムフィールドダイアログを開きます"
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:356
-#, fuzzy
 msgid "|case-custom-fields-dialog|"
-msgstr "|custom-fields-dialog|"
+msgstr "|case-custom-fields-dialog|"
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:402
-#, fuzzy
 msgid "Case Details: custom fields dialog"
-msgstr "ケースの詳細ドキュメントの追加ダイアログ"
+msgstr "ケース詳細：カスタムフィールドダイアログ"
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:360
-#, fuzzy
 msgid ""
 "Grant permission :bdg-ref-warning:`🔑CaseDisplayCustomFieldsAction "
 "<CaseDisplayCustomFieldsAction>` to allow a user to see the custom fields"
 " link."
 msgstr ""
-":bdg-ref-warning:`🔑TaskDisplayCustomFieldsAction "
-"<TaskDisplayCustomFieldsAction>` 、「アクション」パネルの「カスタムフィールド」リンクの表示を許可します。"
+":bdg-ref-warning:`🔑CaseDisplayCustomFieldsAction "
+"<CaseDisplayCustomFieldsAction>` に権限を付与し、ユーザーがカスタムフィールド"
+"リンクを表示できるようにします。"
 
 #: ../../source/portal-user-guide/full-process-list/index.rst:4
 msgid "Full Process List"
@@ -5099,7 +5096,7 @@ msgstr "スペイン語"
 
 #: ../../source/portal-user-guide/my-profile/index.rst:99
 msgid "Japanese"
-msgstr ""
+msgstr "日本語"
 
 #: ../../source/portal-user-guide/my-profile/index.rst:101
 msgid ""
@@ -7440,7 +7437,7 @@ msgstr "数値チャートのラベル表示を切り替える。"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst:162
 msgid "Sample: KPI Procurement Overview"
-msgstr ""
+msgstr "サンプル：KPI調達概要"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst:164
 msgid ""
@@ -7449,30 +7446,36 @@ msgid ""
 " of the Axon Ivy Portal. These widgets enable you to visualize KPIs and "
 "other information in a fully customizable way."
 msgstr ""
+"下記の画像に示されているダッシュボードは、カスタム統計ウィジェットの機能を示"
+"しています。これらのウィジェットはAxon Ivy Portalバージョン13.2以降で利用可能"
+"となり、KPIやその他の情報を完全にカスタマイズ可能な方法で可視化することを可能"
+"にします。"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst:167
 msgid ""
 "Specifically, this example is designed for procurement processes, these "
 "dashboards provide insights into various aspects of procurement "
 "activities."
-msgstr ""
+msgstr "具体的には、この例は調達プロセス向けに設計されており、これらのダッシュボード"
+"は調達活動の様々な側面に関する洞察を提供します。"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst:169
-#, fuzzy
 msgid "To access the sample dashboard, follow these steps:"
-msgstr "ダッシュボード設定で統計機能を使用するには、以下の手順に従ってください。"
+msgstr "サンプルダッシュボードにアクセスするには、次の手順に従ってください："
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst:171
 msgid ""
 "Run the ``portal-user-examples`` project in your Axon Ivy Portal "
 "installation."
-msgstr ""
+msgstr "Axon Ivy Portalインストール環境で、``portal-user-examples`` プロジェクトを実"
+"行してください。"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst:172
 msgid ""
 "Navigate to the left menu and select :guilabel:`Sample: KPI Procurement "
 "Overview`."
-msgstr ""
+msgstr "左メニューから「:guilabel:`Sample: KPI Procurement Overview` 」を選択してくだ"
+"さい。"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst:173
 msgid ""
@@ -7481,54 +7484,52 @@ msgid ""
 " ``Procurement`` process manually. You can run the process multiple times"
 " to generate additional data."
 msgstr ""
+"サンプルダッシュボードのプロセスウィジェットにある「:guilabel:`Start Process`"
+" 」ボタンをクリックしてチャート用データを生成するか、手動で ``Procurement`` "
+"プロセスを検索して実行してください。プロセスを複数回実行して追加データを生成"
+"できます。"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst:174
 msgid ""
 "Once data is generated, you will see the sample dashboards as shown in "
 "the image below."
-msgstr ""
+msgstr "データが生成されると、下図のようなサンプルダッシュボードが表示されます。"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst:176
-#, fuzzy
 msgid "|statistic-sample-dashboard|"
-msgstr "|edit-public-dashboards|"
+msgstr "|statistic-sample-dashboard|"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst:216
-#, fuzzy
 msgid "Statistic sample dashboard"
-msgstr "統計チャート"
+msgstr "統計サンプルダッシュボード"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst:178
 msgid ""
 "To view the configuration of these example statistic widgets, follow "
 "these steps:"
-msgstr ""
+msgstr "これらの統計ウィジェットの例の設定を確認するには、次の手順に従ってください："
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst:180
-#, fuzzy
 msgid ""
 "In the dashboard configuration page, click the :guilabel:`Add widget` "
 "button."
-msgstr "ダイアログが開いたら、一番上にある :guilabel:`ウィジェット複製` ボタンをクリックします。"
+msgstr "ダッシュボード設定ページで、:guilabel:`Add widget` ボタンをクリックします。"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst:181
 msgid "Look for widgets labeled as :bdg-secondary:`Example`."
-msgstr ""
+msgstr ":bdg-secondary:`Example` と表示されたウィジェットを探してください。"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst:182
-#, fuzzy
 msgid "Select :guilabel:`Edit` to view and review their configurations."
-msgstr ":guilabel:`リセット` ボタンをクリックして初期設定にリセットします。"
+msgstr ":guilabel:`Edit` を選択して、その設定を表示および確認します。"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst:184
-#, fuzzy
 msgid "|statistic-config|"
-msgstr "|statistic-widget-list-page|"
+msgstr "|statistic-config|"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst:218
-#, fuzzy
 msgid "Statistic configuration example"
-msgstr "カスタム統計ウィジェット設定ページ"
+msgstr "統計設定例"
 
 #~ msgid "queries e.g. for case widget, global search."
 #~ msgstr ""
@@ -7624,4 +7625,3 @@ msgstr "カスタム統計ウィジェット設定ページ"
 #~ "display any system notes for "
 #~ "administrator."
 #~ msgstr "true の場合、管理者に対してケース／タスクノートは何のシステムノートも表示しません。"
-
