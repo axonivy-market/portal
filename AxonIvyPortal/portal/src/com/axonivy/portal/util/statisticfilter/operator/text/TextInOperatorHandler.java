@@ -15,6 +15,9 @@ import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.util.SecurityMemberUtils;
 
 public class TextInOperatorHandler {
+  private static final String DOUBLE_QUOTE_WITH_SPACE = "\" ";
+  private static final String DOUBLE_QUOTE = "\"";
+  private static final String HASH_PREFIX = "#";
   private static TextInOperatorHandler instance;
 
   public static TextInOperatorHandler getInstance() {
@@ -36,14 +39,14 @@ public class TextInOperatorHandler {
     String prefix, suffix;
 
     if (filter.isCreator()) {
-        prefix = "#";
-        suffix = " ";
+        prefix = HASH_PREFIX;
+        suffix = StringUtils.SPACE;
     } else if (filter.isCategory()) {
-        prefix = "\"";
-        suffix = "\" ";
+        prefix = DOUBLE_QUOTE;
+        suffix = DOUBLE_QUOTE_WITH_SPACE;
     } else {
-        prefix = "";
-        suffix = " ";
+        prefix = StringUtils.EMPTY;
+        suffix = StringUtils.SPACE;
     }
 
     for (String value : filter.getValues()) {
@@ -54,7 +57,7 @@ public class TextInOperatorHandler {
   }
   
   public String buildFilterForCurrentUserOperator(DashboardFilter filter) {
-    String currentUserMemberName = "";
+    String currentUserMemberName = StringUtils.EMPTY;
     if (filter.isCreator()) {
       currentUserMemberName = SecurityMemberUtils.getCurrentSessionUserAsSecurityMemberDTO().getName();
     } else {

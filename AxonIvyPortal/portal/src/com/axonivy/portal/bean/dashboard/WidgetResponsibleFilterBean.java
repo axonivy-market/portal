@@ -48,7 +48,8 @@ public class WidgetResponsibleFilterBean implements Serializable {
   public void onChangeOperator(BaseFilter filter) {
     if (filter.getOperator() == FilterOperator.CURRENT_USER) {
       filter.setValues(new ArrayList<>());
-    }  }
+    }
+  }
 
   public List<SecurityMemberDTO> getSelectedResponsibles() {
     return selectedResponsibles;
