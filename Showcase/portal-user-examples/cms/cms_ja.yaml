@@ -190,21 +190,10 @@ Processes:
   MarketingCampaign:
     name: マーケティングキャンペーン連携
   Procurement:
-    description: 以下のサンプルKPI統計データを生成するため、このプロセスを（複数回）実行してください。支出額、部門、品目、年度月、決定までの日数、決定内容、手直し作業などの調達情報はランダム化され、ケースのカスタムフィールドに割り当てられます。
     name: 調達
   UserExampleGuide:
     DashboardCustomNoteWidget:
-      name: ダッシュボードカスタムウィジェット
+      name: 'TODO: Dashboard Custom Widget'
     comingSoon: まもなく始まります...
     description: ようこそ！　このユーザーサンプルガイドでは、Axon Ivy ポータルで利用できるデモプロセスを紹介します。詳細については、以下の各リンクをクリックしてください。
     name: ユーザーサンプルガイド
-SampleStatisticValue:
-  DaysToDecision: 2,5;6;2;7;4;9,4
-  Decision: 承認;却下;保留
-  Department: 部門A;部門B;部門C;部門D
-  Item: ノートパソコン;モバイル端末;キーボード;テーブル
-  MonthOfYear: 01;02;03;04;05;06;07
-  ReworkCauses: 情報不足;対象外;高すぎる
-  ReworkNoLoops: 0;1;2;0;0
-  ReworkOccurred: はい;いいえ
-  SpendAmount: 250;300.0;400.0;122.0;234.0

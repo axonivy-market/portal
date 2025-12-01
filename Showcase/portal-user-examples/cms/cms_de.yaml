@@ -169,8 +169,6 @@ Processes:
   MarketingCampaign:
     name: Marketingkampagne Koordinieren
   Procurement:
-    description: Führen Sie diesen Prozess (mehrmals) aus, um Daten für die unten stehende Beispiel-KPI-Statistik zu generieren. Beschaffungsinformationen wie Ausgabenbetrag, Abteilung, Artikel, Monat des Jahres, Tage bis zur Entscheidung, Entscheidung, Nacharbeit werden zufällig ausgewählt und benutzerdefinierten
-      Feldern des Falls zugewiesen.
     name: Beschaffung
   UserExampleGuide:
     DashboardCustomNoteWidget:
@@ -178,13 +176,3 @@ Processes:
     comingSoon: Demnächst verfügbar…
     description: 'Herzlich willkommen! In diesem User Example Guide finden Sie einige Demo-Prozesse, die im Axon Ivy Portal verfügbar sind. Klicken Sie einfach auf den entsprechenden Link unten, um weitere Informationen zu erhalten. '
     name: User Example Guide
-SampleStatisticValue:
-  DaysToDecision: 2,5;6;2;7;4;9,4
-  Decision: Genehmigt;Abgelehnt;Ausstehend
-  Department: Dep A;Dep B;Dep C;Dep D
-  Item: Laptop;Mobiltelefon;Tastatur;Tablet
-  MonthOfYear: 01;02;03;04;05;06;07
-  ReworkCauses: Fehlende Informationen;Nicht berechtigt;Zu teuer
-  ReworkNoLoops: 0;1;2;0;0
-  ReworkOccurred: Yes;No
-  SpendAmount: 250;300.0;400.0;122.0;234.0
