@@ -12,12 +12,17 @@ import java.time.Duration;
 import java.util.Objects;
 
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.UnexpectedAlertBehaviour;
 import org.openqa.selenium.WindowType;
+import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.axonivy.ivy.webtest.engine.EngineUrl;
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.Config;
+import com.codeborne.selenide.SelenideConfig;
 import com.codeborne.selenide.WebDriverRunner;
 
 import ch.ivy.addon.portalkit.enums.PortalPermission;
@@ -37,6 +42,11 @@ public class BaseTest {
 
   public BaseTest() {}
 
+  @BeforeAll
+  public static void initConfig() {
+    Config config = new SelenideConfig();
+    config.browserCapabilities().setCapability(CapabilityType.UNHANDLED_PROMPT_BEHAVIOUR, UnexpectedAlertBehaviour.ACCEPT_AND_NOTIFY);
+  }
   @AfterEach
   public void tearDown() {
     WebDriverRunner.getWebDriver().quit();
