@@ -56,7 +56,8 @@ public class ChatScreenshotTest extends ScreenshotBaseTest {
         ScreenshotUtils.CHAT_FOLDER + "chat-group-assignee", new ScreenshotMargin(20));
     taskTemplatePage.clickCreateGroupChatButton();
 
-    showNewDashboard();
+    taskTemplatePage.clickOnLogo();
+    taskTemplatePage.clickReserveButton();
     newDashboardPage = new NewDashboardPage();
     ChatPage chatPage = newDashboardPage.openChatDialog();
     chatPage.openFirstGroupChat();

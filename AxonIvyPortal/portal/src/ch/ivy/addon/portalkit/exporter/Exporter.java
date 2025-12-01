@@ -83,18 +83,18 @@ public abstract class Exporter {
     Date creationDate = new Date();
     StreamedContent file;
     if (data.size() > MAX_ROW_NUMBER_IN_EXCEL) {
-      ByteArrayInputStream inputStream = new ByteArrayInputStream(generateZipContent(data, creationDate));
+      byte[] outputStreamToByteArray = generateZipContent(data, creationDate);
       file = DefaultStreamedContent
           .builder()
-          .stream(() -> inputStream)
+          .stream(() -> new ByteArrayInputStream(outputStreamToByteArray ))
           .contentType("application/zip")
           .name(getFileName(creationDate, ZIP))
           .build();
     } else {
-      ByteArrayInputStream inputStream = new ByteArrayInputStream(generateExcelContent(data));
+      byte[] outputStreamToByteArray = generateExcelContent(data);
       file = DefaultStreamedContent
           .builder()
-          .stream(() -> inputStream)
+          .stream(() -> new ByteArrayInputStream(outputStreamToByteArray))
           .contentType("application/xlsx")
           .name(getFileName(creationDate, XLSX))
           .build();

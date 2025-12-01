@@ -122,6 +122,10 @@ public class WidgetFilterService extends JsonConfigurationService<WidgetFilterMo
     widget.updateQuickSearchKeyword();
     updateFilterOptionsData(widget, userFilterCollection.getLatestFilterOption());
   }
+  
+  public void removeWidgetFilterFromSession(String id, DashboardWidgetType type) {
+    Ivy.session().removeAttribute(buildWidgetKey(id, type));
+  }
 
   public void unifyUserFilters(DashboardWidget widget) {
     updateUserFilterOptionMap(widget);

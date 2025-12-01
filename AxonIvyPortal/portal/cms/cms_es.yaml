@@ -756,6 +756,9 @@ ch.ivy.addon.portalkit.ui.jsf:
       SelectAction: Seleccione la acción
       SomeThingWentWrong: Algo salió mal
       Title: Configuración Dashboard
+    DrillDownWidget:
+      caseDrillDown: Widget de casos detallados para {0}
+      taskDrillDown: Widget de tareas detalladas para {0}
     EmptyFilterMessage: No se ha encontrado ningún filtro de widget
     ExternalPageWidget: Página externa
     ExternalPageWidgetIntroduction: Este widget puede mostrar una página web externa.
@@ -794,6 +797,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     addField: Añadir campo
     addWidget: Añadir widget
     canWorkOn: Puede trabajar en
+    caseDrillDownDashboard: Panel de análisis detallado de casos
     caseList: Lista de casos
     caseListIntroduction: Este widget muestra la información relevante del caso según la configuración definida
     caseWidgetInfo:
@@ -917,13 +921,14 @@ ch.ivy.addon.portalkit.ui.jsf:
     statisticChartWidget: Gráfico estadístico
     statisticWidgets: Widgets estadísticos
     switchToViewMode: Modo de visualización
-    tasWidgetkInfo:
+    taskWidgetInfo:
       expireToday: Expira hoy
       expiryThisWeek: Expira esta semana
       numberOfTasks: tarea(s)
       numberOfTasksByCategory: Número de tareas por categoría
       numberOfTasksByState: Número de tareas por estado
       predefinedFilters: Filtros predefinidos
+      taskDrillDownDashboard: Panel de análisis detallado de tareas
     taskList: Lista de tareas
     taskListIntroduction: Este widget muestra la información relevante de la tarea según la configuración definida.
     taskStart: Iniciar tarea
@@ -1386,6 +1391,7 @@ Dialogs:
               PortalDashboardDetailModification:
                 CreateCustomStatistic: Crear widget de estadísticas personalizado
                 DeleteConfirm: ¿Está seguro de que desea eliminar?
+                Example: Ejemplo
                 RemoveThisStatistic: Eliminar esta estadística personalizada
               component:
                 CustomDashboardWidget:
@@ -1524,6 +1530,7 @@ Dialogs:
                 Configuración del widget del dashboard de navegación
 
               NavigationDashboardWidgetDescription: Este widget permite a los usuarios acceder directamente a un dashboard vinculado haciendo clic en un botón.
+              VisualType: Tipo visual
             NewsWidget:
               NewsContentPlaceHolder: Introduzca el contenido de las noticias
               NewsContentValidateMessage: El contenido de las noticias en {0} es necesario
@@ -1574,6 +1581,9 @@ Dialogs:
             AggregationMethod: Métodos de agregación
             AggregationMethodTooltip: Elige un método de agregación para realizar cálculos sobre tu campo KPI - Suma, Promedio, Máximo o Mínimo. Desactivado cuando se selecciona 'Counting'
             ChartConfiguration: Configuración de gráficos
+            ChartDrillDownEnabled: Desglose de gráficos habilitado
+            ChartDrillDownInfo: '<p>Solo funciona cuando el usuario tiene estos permisos: <strong>CaseReadAll</strong> para casos y <strong>TaskReadAll</strong> para tareas.</p>'
+            ChartDrillDownPermissions: Permisos de desglose de gráficos
             ChartType: Tipo de gráfico
             Color: Color {0}
             ConditionBasedColoring:

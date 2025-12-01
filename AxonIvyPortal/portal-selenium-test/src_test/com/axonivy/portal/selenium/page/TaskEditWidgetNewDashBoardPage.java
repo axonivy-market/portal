@@ -334,7 +334,7 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
     getCustomCaseFieldSelection().click();
     SelenideElement customCaseFieldPanel = $("span[id$='column-management-form:custom-case-field-selection_panel']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     SelenideElement fieldElement =
-        customCaseFieldPanel.$$("li").filter(text(fieldName)).first().shouldBe(getClickableCondition());
+        customCaseFieldPanel.$$("li").filter(text(fieldName)).first().scrollIntoCenter().shouldBe(getClickableCondition());
     fieldElement.getAttribute(FILTER_TASK_NAME);
     fieldElement.click();
     getColumnManagementDialog().$("button[id$='field-add-btn']").click();

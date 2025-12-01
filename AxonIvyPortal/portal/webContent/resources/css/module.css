@@ -4946,6 +4946,11 @@ border-top: 0.14rem dashed;
   max-width: 100%;
 }
 
+.process-action-button {
+  background-color: var(--process-action-button-color) !important;
+  backdrop-filter: blur(2px);
+}
+
 .process-group.grid-process-container .process-grid__header {
   margin-top: 2.5rem;
 }
@@ -4973,11 +4978,12 @@ body .process-compact-mode > .ui-fieldset-content {
   position: absolute;
   right: 0;
   top: -100px;
-  padding: 8px;
+  padding: .5rem;
   width: 100%;
   display: inline-flex;
   justify-content: flex-end;
-}
+  padding-right: .9rem;
+  padding-top: .9rem;}
 
 .process-action-group .process-category.has-menu-button,
 .image-view-action-group-form .process-action-group .image-process-category.has-menu-button {
@@ -5023,8 +5029,7 @@ body .process-compact-mode > .ui-fieldset-content {
   text-align: center;
 }
 
-.process-description .process-description__text,
-.image-view-form .process-description .process-item-description {
+.process-description .process-description__text {
   line-height: 1.5;
   word-break: break-word;
 }
@@ -5113,13 +5118,129 @@ body.light .image-process-container .image-process-item .card-item.card.image-wi
 }
 
 .image-process-container .image-process-item .card-item.card.image-widget-mode .image-view-form .process-description {
+  container-type: size;
+  container-name: process-description-container;
   height: 100%;
 }
 
+.image-process-container .image-process-item .card-item.card.image-widget-mode {
+  container-type: size;
+  container-name: image-process-widget-container;
+}
+
+.image-view-form .process-description .process-item-description {
+  max-height: 16.8em;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 8;
+  -webkit-box-orient: vertical;
+}
+
+.image-view-form .process-name .process-image-view-name {
+  max-height: 4.2em;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+@container process-description-container (height < 100px) {
+  .image-view-form .process-description .process-item-description {
+    max-height: 4.2em;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+}
+
+@container process-description-container (height < 20px) {
+  .image-view-form .process-description .process-item-description {
+    display: none !important;
+  }
+}
+
+@container image-process-widget-container (200px <= height < 300px) {
+  img.image-process-item-image {
+    height: 100% !important;
+  }
+
+  .image-view-form {
+    bottom: 0 !important;
+    padding-bottom: 0 !important;
+  }
+  
+  .image-view-form .process-name {
+    height: 35%;
+  }
+}
+
+@container image-process-widget-container (100px <= height < 200px) {
+  img.image-process-item-image {
+    height: 100% !important;
+  }
+
+  .image-process-container .image-process-item .card-item.card.image-widget-mode .image-process-item-container {
+    height: 40% !important;
+  }
+
+  .image-process-actions {
+    padding-bottom: 0 !important;
+    position: absolute;
+    bottom: inherit;
+  }
+
+  .image-view-form {
+    height: 15vh !important;
+    bottom: 0 !important;
+  }
+}
+
+@container image-process-widget-container (height < 100px) {
+  img.image-process-item-image {
+    height: 4rem !important;
+  }
+
+  .image-process-item .process-name .process-image-view-name {
+    position: absolute;
+    left: 0.5rem;
+    width: 60%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    display: block;
+    overflow: hidden;
+    z-index: 1;
+  }
+
+  .image-view-form {
+    bottom: 0 !important;
+  }
+
+  .image-process-actions,
+  .start-process {
+    position: absolute;
+  }
+}
+
+@container image-process-widget-container (width <= 200px) and (height < 100px) {
+  img.image-process-item-image {
+    display: none !important;
+  }
+  
+  .process-name, .image-process-actions {
+    align-items: center;
+    display: flex;
+  }
+}
+
 @supports (-webkit-touch-callout: none) {
-    .image-process-container .image-process-item .card-item.card.image-widget-mode .image-view-form .process-description {
-      height: -webkit-fill-available;
-    }
+  .image-process-container .image-process-item .card-item.card.image-widget-mode .image-view-form .process-description {
+    height: -webkit-fill-available;
+  }
 }
 
 .image-process-container .image-process-item .card-item.card.image-widget-mode .image-view-form .start-process-image-widget {
@@ -5136,7 +5257,7 @@ body.light .image-process-container .image-process-item .card-item.card.image-wi
   position: relative;
   object-fit: cover;
   width: inherit;
-  border-radius: 10px;
+  border-radius: 15px;
 }
 
 .image-process-item .image-process-item-image-bgc {
@@ -5218,7 +5339,8 @@ body.light .image-process-container .image-process-item .card-item.card.image-wi
 .layout-topbar-light .image-process-item-container > .default-image-mode-process,
 .layout-topbar-dark .image-process-item-container > .default-image-mode-process-dark,
 .layout-topbar-light .card.widget-preview.widget-preview--process .image-process-item-container > .default-image-mode-process,
-.layout-topbar-dark .card.widget-preview.widget-preview--process .image-process-item-container > .default-image-mode-process-dark {
+.layout-topbar-dark .card.widget-preview.widget-preview--process .image-process-item-container > .default-image-mode-process-dark,
+.process-item-image {
   display: block;
   padding: 8px;
 }
@@ -5621,7 +5743,7 @@ a.dashboard-action-container label {
   border-radius: 50%;
 }
 
-.ui-external-link-preview-image-panel, .ui-dashboard-upload-file-panel {
+.ui-external-link-preview-image-panel, .ui-dashboard-upload-file-panel, .ui-navigation-widget-preview-image-panel {
   width: 100%;
   border: 1px solid var(--process-list-item-border-color);
   background-color: var(--process-list-item-background-color);
@@ -5641,7 +5763,10 @@ a.dashboard-action-container label {
   display: flex;
 }
 
-.ui-external-link-preview-image-panel > .ui-external-link-preview-image-label, .ui-dashboard-upload-file-panel > .ui-dashboard-upload-file-label, .ui-document-upload-file-panel > .ui-document-upload-file-label {
+.ui-external-link-preview-image-panel > .ui-external-link-preview-image-label, 
+.ui-dashboard-upload-file-panel > .ui-dashboard-upload-file-label, 
+.ui-document-upload-file-panel > .ui-document-upload-file-label,
+.ui-navigation-widget-preview-image-panel > .ui-navigation-widget-preview-image-label {
   width: 42%;
   display: block;
   text-align: center;
@@ -5650,7 +5775,10 @@ a.dashboard-action-container label {
   top: 12px;
 }
 
-.ui-external-link-preview-image-label > #ui-external-link-preview-image-icon, .ui-dashboard-upload-file-label > #ui-dashboard-upload-file-icon,  .ui-document-upload-file-label > #ui-document-upload-file-icon {
+.ui-external-link-preview-image-label > #ui-external-link-preview-image-icon, 
+.ui-dashboard-upload-file-label > #ui-dashboard-upload-file-icon,  
+.ui-document-upload-file-label > #ui-document-upload-file-icon,
+.ui-navigation-widget-preview-image-label > #ui-navigation-widget-preview-image-icon {
   width: 100%;
   font-size: 2em;
   top: -20px;
@@ -5692,7 +5820,6 @@ body .ui-dialog.ui-widget.import-dashboard-dialog{
     max-width: 35rem;
   }	
 }
-
 
 /* =================== SHARE DIALOG ====================== */
 
