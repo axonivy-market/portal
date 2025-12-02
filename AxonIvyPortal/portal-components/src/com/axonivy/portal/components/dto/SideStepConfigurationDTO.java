@@ -27,7 +27,7 @@ import ch.ivyteam.ivy.workflow.ITask;
  * SideStepConfigurationDTO.builder()
  * .processes({@link List} of {@link SideStepProcessDTO})
  * .isParallelSideStep(true)
- * .customParallelSideStepTitleCmsPath("/Labels/SideStep/ParallelTitle")
+ * .customParallelSideStepTitleCmsPath("/Processes/SideStep/CustomParallelTitle")
  * .build();
  * </pre> 
  */
@@ -125,7 +125,7 @@ public class SideStepConfigurationDTO implements Serializable {
 
     /**
      * Set CMS path for custom parallel side step title. This is optional.
-     * @param customParallelSideStepTitleCmsPath CMS path (e.g., "/Labels/SideStep/ParallelTitle")
+     * @param customParallelSideStepTitleCmsPath CMS path (e.g., "/Processes/SideStep/CustomParallelTitle")
      * @return builder for {@link SideStepConfigurationDTO}
      */
     public Builder customParallelSideStepTitleCmsPath(String customParallelSideStepTitleCmsPath) {
@@ -135,7 +135,7 @@ public class SideStepConfigurationDTO implements Serializable {
 
     /**
      * Set CMS path for custom switch side step title. This is optional.
-     * @param customSwitchSideStepTitleCmsPath CMS path (e.g., "/Labels/SideStep/SwitchTitle")
+     * @param customSwitchSideStepTitleCmsPath CMS path (e.g., "/Processes/SideStep/CustomSwitchTitle")
      * @return builder for {@link SideStepConfigurationDTO}
      */
     public Builder customSwitchSideStepTitleCmsPath(String customSwitchSideStepTitleCmsPath) {
