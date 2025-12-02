@@ -150,7 +150,7 @@ How to Use and Set Up
         ],
         "customParallelSideStepTitles": [
           {
-            "value": "/Processes/SideStep/CustomParallelTitle",e",
+            "value": "/Processes/SideStep/CustomParallelTitle",
             "projectName": "portal-developer-examples"
           }
         ],

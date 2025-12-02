@@ -238,7 +238,7 @@ Processes:
     CEOApproval: 'Paso al margen: Aprobación del director ejecutivo'
     CustomParallelTitle: Título paralelo personalizado
     CustomSwitchTitle: Título del interruptor personalizado
-    InformCustomer: 'Paso lateral: Informar a la cliente'
+    InformCustomer: 'Paso lateral: Informar al cliente'
   TasksForTaskListCustomization:
     Cases:
       Party:
