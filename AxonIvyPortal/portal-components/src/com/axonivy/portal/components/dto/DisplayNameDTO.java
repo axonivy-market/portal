@@ -62,6 +62,11 @@ public class DisplayNameDTO implements Serializable {
     return new DisplayNameDTO(null, cmsPath, Ivy.request().getProcessModel().getName());
   }
 
+  /**
+   * Checks if this DTO represents a CMS path reference (vs locale-value pair).
+   * 
+   * @return true if this is a CMS path reference, false if locale-value pair
+   */
   @JsonIgnore
   public boolean isCmsPath() {
     return locale == null;
