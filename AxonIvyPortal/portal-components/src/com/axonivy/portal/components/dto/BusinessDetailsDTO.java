@@ -1,5 +1,7 @@
 package com.axonivy.portal.components.dto;
 
+import java.util.Map;
+
 import com.axonivy.portal.components.service.exception.PortalException;
 
 import ch.ivyteam.ivy.environment.Ivy;
@@ -12,11 +14,13 @@ public class BusinessDetailsDTO {
   private ICase iCase;
   private String path;
   private boolean isEmbedInFrame;
+  private Map<String, String> parameters;
 
-  private BusinessDetailsDTO(ICase iCase, String path, boolean isEmbedInFrame) {
+  private BusinessDetailsDTO(ICase iCase, String path, boolean isEmbedInFrame, Map<String, String> parameters) {
     this.iCase = iCase;
     this.path = path;
     this.isEmbedInFrame = isEmbedInFrame;
+    this.parameters = parameters;
   }
 
   /**
@@ -42,6 +46,10 @@ public class BusinessDetailsDTO {
   public boolean isEmbedInFrame() {
     return isEmbedInFrame;
   }
+  
+  public Map<String, String> getParameters() {
+    return parameters;
+  }
 
   /**
    * Create new builder for BusinessDetailsDTO
@@ -59,6 +67,7 @@ public class BusinessDetailsDTO {
     private ICase iCase;
     private String path;
     private boolean isEmbedInFrame = Boolean.TRUE;
+    private Map<String, String> parameters;
 
     /**
      * Set {@code ICase}
@@ -94,6 +103,17 @@ public class BusinessDetailsDTO {
     }
     
     /**
+     * Set parameters
+     * @param parameters
+     *
+     * @return Builder
+     */
+    public Builder parameters(Map<String, String> parameters) {  
+      this.parameters = parameters;  
+      return this;
+    }
+    
+    /**
      * Build BusinessDetailsDTO
      *
      * @return BusinessDetailsDTO
@@ -105,7 +125,11 @@ public class BusinessDetailsDTO {
       if (iCase == null) {
         iCase = Ivy.wfCase();
       }
-      return new BusinessDetailsDTO(iCase, path, isEmbedInFrame);
+      
+      if (parameters == null) {
+        parameters = Map.of();
+      }
+      return new BusinessDetailsDTO(iCase, path, isEmbedInFrame, parameters);
     }
 
   }

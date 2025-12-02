@@ -2,13 +2,17 @@ package com.axonivy.portal.components.publicapi;
 
 import static com.axonivy.portal.components.constant.CustomFields.BUSINESS_DETAILS;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.lang3.Strings;
 
 import com.axonivy.portal.components.dto.BusinessDetailsDTO;
 import com.axonivy.portal.components.service.exception.PortalException;
 
+import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.IWorkflowSession;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
@@ -51,8 +55,17 @@ public class BusinessDetailsAPI {
           iWebStartables.stream().filter(startable -> startable.getId().endsWith(path)).findAny().orElseThrow(
               () -> new PortalException(String.format("Cannot find IWebStartable by ID [%s].", path)));
       customField = targetStartable.getId();
+      StringBuilder params = new StringBuilder();
+      if (businessDetailsDTO.getParameters() != null && !businessDetailsDTO.getParameters().isEmpty()) {
+        businessDetailsDTO.getParameters().forEach((key, value) -> params.append("&").append(key).append("=").append(URLEncoder.encode(value, StandardCharsets.ISO_8859_1)));
+      }
+      
       if (businessDetailsDTO.isEmbedInFrame()) {
         customField += "?embedInFrame";
+      }
+
+      if (params.length() > 0) {
+        customField += params.toString();
       }
     }
     businessDetailsDTO.getCase().customFields().stringField(BUSINESS_DETAILS).set(customField);
@@ -69,6 +82,14 @@ public class BusinessDetailsAPI {
    */
   public static void create(String link) {
     BusinessDetailsDTO businessDetailsDTO = BusinessDetailsDTO.builder().path(link).build();
+    create(businessDetailsDTO);
+  }
+  
+  public static void create(String link, Map<String, String> parameters) {
+    BusinessDetailsDTO businessDetailsDTO = BusinessDetailsDTO.builder()
+        .path(link)
+        .parameters(parameters)
+        .build();
     create(businessDetailsDTO);
   }
   
