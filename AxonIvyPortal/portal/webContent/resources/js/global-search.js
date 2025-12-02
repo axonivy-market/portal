@@ -131,7 +131,7 @@ if (document) {
   let lastSearchInput;
 
   document.getElementById(searchId).addEventListener('keydown', event => {
-    if (event.code == undefined) {
+    if (!event.code) {
       return;
     }
     clearTimeout(timer);
