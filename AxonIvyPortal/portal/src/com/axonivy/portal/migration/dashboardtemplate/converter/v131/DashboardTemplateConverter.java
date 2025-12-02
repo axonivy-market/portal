@@ -15,7 +15,7 @@ public class DashboardTemplateConverter implements IJsonConverter {
 
   @Override
   public AbstractJsonVersion version() {
-    return new DashboardTemplateJsonVersion("13.1.0");
+    return new DashboardTemplateJsonVersion("13.2.0");
   }
 
   @Override

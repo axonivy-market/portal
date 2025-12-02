@@ -15,7 +15,7 @@ public class ClientStatisticConverter implements IJsonConverter {
 
   @Override
   public AbstractJsonVersion version() {
-    return new StatisticJsonVersion("13.1.0");
+    return new StatisticJsonVersion("13.2.0");
   }
 
   @Override

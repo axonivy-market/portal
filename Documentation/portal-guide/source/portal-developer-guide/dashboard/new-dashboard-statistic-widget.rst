@@ -16,7 +16,7 @@ Below is a sample JSON definition of a statistic widget in the Portal dashboard
 
   {
     "id": "3e188e86a6534324b864167320ef3831",
-    "version": "13.1.0",
+    "version": "13.2.0",
     "statisticAggregation": {
       "field": "state",
       "type": "standard",
