@@ -17,16 +17,19 @@ import com.axonivy.portal.selenium.page.DashboardConfigurationPage;
 import com.axonivy.portal.selenium.page.MainMenuPage;
 import com.axonivy.portal.selenium.page.NewDashboardDetailsEditPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
+import com.axonivy.portal.selenium.page.ProcessWidgetPage;
 import com.codeborne.selenide.Condition;
 
 @IvyWebTest
 public class SampleDashboardScreenshotTest extends ScreenshotBaseTest {
   
   private final String SAMPLE_STATISTIC_DASHBOARD_MENU = "Sample: KPI Procurement Overview";
+  private final String INIT_SAMPLE_STATISTIC_CONFIG_PROCESS = "Init sample statistic dashboard config";
   
   @Override
   @BeforeEach
   public void setup() {
+    super.setup();
     login(TestAccount.ADMIN_USER);
   }
 
@@ -35,16 +38,15 @@ public class SampleDashboardScreenshotTest extends ScreenshotBaseTest {
     showNewDashboard();
     MainMenuPage mainMenuPage = new MainMenuPage();
 
+    ProcessWidgetPage processWidgetPage = mainMenuPage.openProcessList();
+    processWidgetPage.startProcessByName(INIT_SAMPLE_STATISTIC_CONFIG_PROCESS);
+
     mainMenuPage.clickMainMenuItem(SAMPLE_STATISTIC_DASHBOARD_MENU);
     waitForDashboardLoaded();
 
     ScreenshotUtils.resizeBrowserAndCaptureWholeScreen(ScreenshotUtils.SAMPLE_DASHBOARD_FOLDER + "statistic-sample-dashboard",
         new Dimension(1800, 2400));
-  }
 
-  @Test
-  public void screenshotSampleStatisticChartConfig() throws IOException {
-    showNewDashboard();
     NewDashboardPage dashboardPage = new NewDashboardPage();
     DashboardConfigurationPage dashboardConfigurationPage = dashboardPage.openDashboardConfigurationPage();
     dashboardConfigurationPage.openEditPublicDashboardsPage();

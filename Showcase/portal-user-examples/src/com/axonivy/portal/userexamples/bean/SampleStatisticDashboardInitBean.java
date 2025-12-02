@@ -11,6 +11,8 @@ import ch.ivyteam.ivy.process.extension.ProgramConfig;
 import ch.ivyteam.ivy.server.restricted.EngineMode;
 
 public class SampleStatisticDashboardInitBean extends AbstractProcessStartEventBean {
+  
+  private static final String PORTAL_CUSTOM_STATISTIC_KEY = "Portal.CustomStatistic";
 
   public SampleStatisticDashboardInitBean() {
     super("Init sample config", "Append the sample statistic and dashboard config to Portal json");
@@ -20,12 +22,9 @@ public class SampleStatisticDashboardInitBean extends AbstractProcessStartEventB
   public void initialize(IProcessStartEventBeanRuntime eventRuntime, ProgramConfig configuration) {
     super.initialize(eventRuntime, configuration);
     getEventBeanRuntime().poll().disable();
-    Ivy.log().warn("I'm in initialize method");
     if (EngineMode.isAnyOf(EngineMode.DEMO, EngineMode.DESIGNER_EMBEDDED)) {
-      Ivy.log().warn("I'm before init config");
       initSampleStatisticConfig();
       Ivy.wf().signals().send("createProcurementDataForSampleStatistic");
-      Ivy.log().warn("I'm here");
     }
   }
 
@@ -43,8 +42,8 @@ public class SampleStatisticDashboardInitBean extends AbstractProcessStartEventB
 
   private static void initSampleStatistics() {
     String sampleStatisticJson = Ivy.var().get(PortalUserExamplesVariable.SAMPLE_STATISTIC_KEY.key);
-    String portalStatisticJson = Ivy.var().get(PortalVariable.CUSTOM_STATISTIC.key);
+    String portalStatisticJson = Ivy.var().get(PORTAL_CUSTOM_STATISTIC_KEY);
     String combinedStatistic = JsonUtils.mergeJsonArrays(portalStatisticJson, sampleStatisticJson);
-    Ivy.var().set(PortalVariable.CUSTOM_STATISTIC.key, combinedStatistic);
+    Ivy.var().set(PORTAL_CUSTOM_STATISTIC_KEY, combinedStatistic);
   }
 }

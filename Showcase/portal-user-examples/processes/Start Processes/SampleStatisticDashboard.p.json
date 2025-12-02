@@ -188,8 +188,7 @@
       "config" : {
         "signature" : "initSampleStatisticConfig",
         "request" : {
-          "name" : "<%=ivy.cms.co(\"/Processes/Procurement/InitConfig\")%>",
-          "isVisibleOnStartList" : false
+          "name" : "<%=ivy.cms.co(\"/Processes/Procurement/InitConfig\")%>"
         }
       },
       "visual" : {

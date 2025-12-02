@@ -12,8 +12,7 @@ public enum PortalVariable {
     DASHBOARD_ORDER("Portal.Dashboard.Order"),
     DASHBOARD_TEMPLATES("Portal.DashboardTemplates"),
     USER_MENU("Portal.UserMenu"),
-    SESSION_CACHE_TIMEOUT("Portal.SessionCacheTimeout"),
-    CUSTOM_STATISTIC("Portal.CustomStatistic");
+    SESSION_CACHE_TIMEOUT("Portal.SessionCacheTimeout");
 
     public String key;
 
