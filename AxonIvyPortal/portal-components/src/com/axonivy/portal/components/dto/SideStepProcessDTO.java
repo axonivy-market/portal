@@ -1,11 +1,11 @@
 package com.axonivy.portal.components.dto;
 
 import java.io.Serializable;
-import java.util.Map;
+import java.util.List;
 
-import org.apache.commons.collections4.MapUtils;
 import org.apache.commons.lang3.StringUtils;
 
+import com.axonivy.portal.components.util.DisplayNameUtils;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import ch.ivyteam.ivy.security.ISecurityContext;
@@ -21,7 +21,7 @@ import ch.ivyteam.ivy.security.ISecurityContext;
  * <pre>
  * SideStepProcessDTO.builder()
  * .signal("com:axonivy:portal:developerexample:sideStepProcess")
- * .processNames(Map.ofEntries(entry("en", "name in English"),entry("de", "name in German")))
+ * .processNameCmsPath("/Processes/SideStep/AskForDetails")
  * .customSecurityMemberCallable("getCustomSecurityMemberSubProcessName()")
  * .build();
  * </pre>
@@ -30,15 +30,15 @@ import ch.ivyteam.ivy.security.ISecurityContext;
 public class SideStepProcessDTO implements Serializable {
   private static final long serialVersionUID = 1L;
   private String signal;
-  private Map<String, String> processNames;
+  private List<DisplayNameDTO> processNames;
   private String customSecurityMemberCallable;
   
   public SideStepProcessDTO() {}
 
   private SideStepProcessDTO(Builder builder) {
     this.signal = builder.signal;
-    this.customSecurityMemberCallable = builder.customSecurityMemberCallable;
     this.processNames = builder.processNames;
+    this.customSecurityMemberCallable = builder.customSecurityMemberCallable;
   }
 
   /**
@@ -57,23 +57,25 @@ public class SideStepProcessDTO implements Serializable {
   }
 
   /**
+   * @return list of display names with locale support for the process.
+   */
+  public List<DisplayNameDTO> getProcessNames() {
+    return processNames;
+  }
+
+  /**
    * @return name of Ivy callable subprocess to define custom list of users and roles.
    */
   public String getCustomSecurityMemberCallable() {
     return customSecurityMemberCallable;
   }
 
-  /**
-   * @return display name of the process in multiple languages.
-   */
-  public Map<String, String> getProcessNames() {
-    return processNames;
-  }
-
   public static class Builder {
     private String signal;
+    private String processNameCmsPath;
+    private String cmsProjectName;
+    private List<DisplayNameDTO> processNames;
     private String customSecurityMemberCallable;
-    private Map<String, String> processNames;
 
     /**
      * Set name of Ivy callable subprocess to define custom list of users or roles which side step can be assigned to.
@@ -98,15 +100,25 @@ public class SideStepProcessDTO implements Serializable {
     }
 
     /**
-     * Set a map of multiple locale - title values to support for multiple languages of process name.
-     * This is mandatory
-     * @param processNames A Map where keys are String to store locale value (e.g., "de", "en")
-     * and values are also String to store title value (e.g., "My process name").
-     * This map contains various multiple language values for custom title.
+     * Set CMS path for process name. This is mandatory.
+     * @param processNameCmsPath CMS path (e.g., "/Processes/SideStep/ProcessName")
      * @return builder of {@link SideStepProcessDTO}
      */
-    public Builder processNames(Map<String, String> processNames) {
-      this.processNames = processNames;
+    public Builder processNameCmsPath(String processNameCmsPath) {
+      this.processNameCmsPath = processNameCmsPath;
+      return this;
+    }
+
+
+    /**
+     * Set the project name to locate CMS paths. Optional - if not provided, CMS paths will be resolved from current
+     * project context.
+     * 
+     * @param cmsProjectName project name
+     * @return builder of {@link SideStepProcessDTO}
+     */
+    public Builder cmsProjectName(String cmsProjectName) {
+      this.cmsProjectName = cmsProjectName;
       return this;
     }
 
@@ -116,6 +128,7 @@ public class SideStepProcessDTO implements Serializable {
      */
     public SideStepProcessDTO build() {
       validate();
+      this.processNames = DisplayNameUtils.createCmsDisplayName(processNameCmsPath, cmsProjectName);
       return new SideStepProcessDTO(this);
     }
 
@@ -123,8 +136,8 @@ public class SideStepProcessDTO implements Serializable {
       if (StringUtils.isBlank(signal)) {
         throw new IllegalArgumentException("Signal must be provided");
       }
-      if (MapUtils.isEmpty(processNames)) {
-        throw new IllegalArgumentException("Process name must be provided");
+      if (StringUtils.isBlank(processNameCmsPath)) {
+        throw new IllegalArgumentException("Process name CMS path must be provided");
       }
     }
   }

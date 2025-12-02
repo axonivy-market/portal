@@ -233,6 +233,12 @@ Processes:
       Signal:
         name: Señal de creación de un nuevo pago
     name: Crear un nuevo pago
+  SideStep:
+    AskMoreDetails: 'Paso lateral: Solicita más detalles'
+    CEOApproval: 'Paso al margen: Aprobación del director ejecutivo'
+    CustomParallelTitle: ítulo paralelo personalizado
+    CustomSwitchTitle: Título del interruptor personalizado
+    InformCustomer: 'Paso lateral: Informar a la cliente'
   TasksForTaskListCustomization:
     Cases:
       Party:

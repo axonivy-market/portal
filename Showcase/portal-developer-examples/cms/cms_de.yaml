@@ -233,6 +233,12 @@ Processes:
       Signal:
         name: Signal erstellen Neue Zahlung
     name: Neue Zahlung erstellen
+  SideStep:
+    AskMoreDetails: 'Seitenschritt: Fragen Sie nach weiteren Details'
+    CEOApproval: 'Seitenschritt: Genehmigung durch den CEO'
+    CustomParallelTitle: Benutzerdefinierter Paralleltitel
+    CustomSwitchTitle: Benutzerdefinierter Schaltertitel
+    InformCustomer: 'Nebenschritt: Kunden informieren'
   TasksForTaskListCustomization:
     Cases:
       Party:

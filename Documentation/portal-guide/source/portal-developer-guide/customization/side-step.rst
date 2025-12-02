@@ -61,24 +61,16 @@ How to Use and Set Up
 
     .. code-block:: javascript
       
-        // Create process name in multiple languages by creating a map with key as language code and value as process name title
-        Map processNames1 = new HashMap();
-        processNames1.put("en", "Side step: Ask for more details");
-        processNames1.put("de", "Seitenschritt: Fragen Sie nach weiteren Details");
-        
-        // First configuration option
+        // First configuration option - using CMS path for multilingual process names
         SideStepProcessDTO dto1 = SideStepProcessDTO.builder()
-        .processNames(processNames1)
+        .processNameCmsPath("/Labels/SideStep/AskForMoreDetails")
         .signal("com:axonivy:portal:developerexample:sideStep:askMoreDetails")
         .build();
 
-        Map processNames2 = new HashMap();
-        processNames2.put("en", "Side step: CEO Approval");
-        processNames2.put("de", "Seitenschritt: Genehmigung durch den CEO");
-
-        // Second configuration option
+        // Second configuration option - with project-specific CMS path
         SideStepProcessDTO dto2 = SideStepProcessDTO.builder()
-        .processNames(processNames2)
+        .processNameCmsPath("/Labels/SideStep/CEOApproval")
+        .cmsProjectName("portal-developer-examples")  // Optional - if not provided, uses current project context
         // Set signature name of the process which defines custom users and roles in the previous step
         .customSecurityMembersCallable("getCustomSecurityMemberForSideStep()")  // Optional
         .signal("com:axonivy:portal:developerexample:sideStep:CEOApproval")
@@ -99,21 +91,15 @@ How to Use and Set Up
 
     .. code-block:: javascript
 
-      // Create a SideStepConfigurationDTO object of portal-components from this list created on the above code snippet
+      // Create a SideStepConfigurationDTO object using CMS paths for multilingual titles
       // If the isParallelSideStep value is not defined, on the UI you will see a drop down to select
-      Map customParallelTiles = new HashMap();
-      customParallelTiles.put("en", "Custom parallel title");
-      customParallelTiles.put("de", "Benutzerdefinierter Paralleltitel");
-
-      Map customSwitchTiles = new HashMap();
-      customSwitchTiles.put("en", "Custom switch title");
-      customSwitchTiles.put("de", "Benutzerdefinierter Schaltertitel");
-
+      
       SideStepConfigurationDTO sideStepConfigurationDto = SideStepConfigurationDTO.builder()
         .processes(processes)
         .isParallelSideStep(true)
-        .customParallelSideStepTitles(customParallelTiles) // Optional
-        .customSwitchSideStepTitles(customSwitchTiles) // Optional
+        .customParallelSideStepTitleCmsPath("/Labels/SideStep/CustomParallelTitle") // Optional
+        .customSwitchSideStepTitleCmsPath("/Labels/SideStep/CustomSwitchTitle") // Optional
+        .cmsProjectName("portal-developer-examples") // Optional - if not provided, uses current project context
         .build();
 
       // Convert SideStepConfigurationDTO to Json 
@@ -130,41 +116,51 @@ How to Use and Set Up
 
     .. code-block:: javascript
 
-      [
+      {
         "version": "12.0.0",
         "processes": [
           {
             "signal": "com:axonivy:portal:developerexample:sideStep:askMoreDetails",
-            "processNames": {
-              "de": "Seitenschritt: Fragen Sie nach weiteren Details",
-              "en": "Side step: Ask for more details"
-            }
+            "processNames": [
+              {
+                "value": "/Labels/SideStep/AskForMoreDetails",
+                "projectName": "portal-developer-examples"
+              }
+            ]
           },
           {
             "signal": "com:axonivy:portal:developerexample:sideStep:CEOApproval",
-            "processNames": {
-              "de": "Seitenschritt: Genehmigung durch den CEO",
-              "en": "Side step: CEO Approval"
-            }
+            "processNames": [
+              {
+                "value": "/Labels/SideStep/CEOApproval",
+                "projectName": "portal-developer-examples"
+              }
+            ],
+            "customSecurityMemberCallable": "getCustomSecurityMemberForSideStep()"
           },
           {
             "signal": "com:axonivy:portal:developerexample:sideStep:informCustomer",
-            "processNames": {
-              "de": "Nebenschritt: Kunden informieren",
-              "en": "Side step: Inform customer"
-            },
-            "customSecurityMemberCallable": "getCustomSecurityMemberForSideStep()"
+            "processNames": [
+              {
+                "value": "/Labels/SideStep/InformCustomer",
+                "projectName": "portal-developer-examples"
+              }
+            ]
           }
         ],
-        "customParallelSideStepTitles": {
-          "de": "Benutzerdefinierter Paralleltitel",
-          "en": "Custom parallel title"
-        },
-        "customSwitchSideStepTitles": {
-          "de": "Benutzerdefinierter Schaltertitel",
-          "en": "Custom switch title"        
-        }
-      ]
+        "customParallelSideStepTitles": [
+          {
+            "value": "/Labels/SideStep/CustomParallelTitle",
+            "projectName": "portal-developer-examples"
+          }
+        ],
+        "customSwitchSideStepTitles": [
+          {
+            "value": "/Labels/SideStep/CustomSwitchTitle",
+            "projectName": "portal-developer-examples"
+          }
+        ]
+      }
     ..
 
 
