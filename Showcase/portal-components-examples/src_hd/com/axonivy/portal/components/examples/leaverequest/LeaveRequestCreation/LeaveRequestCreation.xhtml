@@ -8,17 +8,13 @@
 
     <ui:define name="content">
       <h:outputStylesheet library="css" name="leave-request-examples.css" />
-
       <h:form id="leave-request">
-
         <h:panelGroup styleClass="ui-g ui-fluid portal-card-container">
-
-          <div class="ui-g-12 ui-md-12 ui-lg-1 ui-xl-3"></div>
+          <div class="ui-g-12 ui-md-12 ui-lg-1 ui-xl-3" />
           <p:panel styleClass="card ui-g-12 ui-md-12 ui-lg-10 ui-xl-6">
             <h:panelGroup styleClass="ui-g" layout="block">
               <p:messages id="leave-request-validation-msg" styleClass="ui-g-12" />
               <h:panelGrid columns="1" columnClasses="u-text-align-leff ui-g-12" styleClass="ui-g-12 ui-md-12 ui-sm-12">
-
                 <h:panelGroup class="md-inputfield MarTop10">
                   <p:outputLabel for="requester" value="#{ivy.cms.co('/Labels/LeaveRequest/requester')}" />
                   <p:inputText id="requester" disabled="true" value="#{data.requester.displayName}"
@@ -74,15 +70,13 @@
                     partialSubmit="true" id="button-submit" actionListener="#{logic.close}" process=":leave-request"
                     update=":leave-request" />
                 </h:panelGroup>
-
               </h:panelGrid>
             </h:panelGroup>
           </p:panel>
-          <div class="ui-g-12 ui-md-12 ui-lg-1 ui-xl-3"></div>
+          <div class="ui-g-12 ui-md-12 ui-lg-1 ui-xl-3" />
         </h:panelGroup>
       </h:form>
       <ic:com.axonivy.portal.components.IFrameTaskConfig processSteps="#{portalComponentUtilsBean.convertToJSON(data.steps)}" currentProcessStep="0" />
-
     </ui:define>
   </ui:composition>
 </h:body>
