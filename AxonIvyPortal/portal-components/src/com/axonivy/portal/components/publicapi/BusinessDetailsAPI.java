@@ -56,16 +56,23 @@ public class BusinessDetailsAPI {
               () -> new PortalException(String.format("Cannot find IWebStartable by ID [%s].", path)));
       customField = targetStartable.getId();
       StringBuilder params = new StringBuilder();
-      if (businessDetailsDTO.getParameters() != null && !businessDetailsDTO.getParameters().isEmpty()) {
-        businessDetailsDTO.getParameters().forEach((key, value) -> params.append("&").append(key).append("=").append(URLEncoder.encode(value, StandardCharsets.ISO_8859_1)));
+      Map<String, String> parameters = businessDetailsDTO.getParameters();
+
+      if (parameters != null && !parameters.isEmpty()) {
+        parameters.forEach((key, value) -> {
+          params.append("&")
+                .append(key)
+                .append("=")
+                .append(URLEncoder.encode(value, StandardCharsets.UTF_8));
+        });
       }
-      
+
       if (businessDetailsDTO.isEmbedInFrame()) {
-        customField += "?embedInFrame";
+        params.append("&embedInFrame");
       }
 
       if (params.length() > 0) {
-        customField += params.toString();
+        customField += "?" + params.substring(1);
       }
     }
     businessDetailsDTO.getCase().customFields().stringField(BUSINESS_DETAILS).set(customField);
