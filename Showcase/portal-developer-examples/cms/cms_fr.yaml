@@ -234,8 +234,8 @@ Processes:
         name: Signal de création d'un nouveau paiement
     name: Créer un nouveau paiement
   SideStep:
-    AskMoreDetails: 'Détournement : Demandez plus de détails'
-    CEOApproval: 'Pas de côté : Approbation du PDG'
+    AskMoreDetails: 'Étape latérale : Demandez plus de détails'
+    CEOApproval: 'Étape latérale : Approbation du PDG'
     CustomParallelTitle: Titre parallèle personnalisé
     CustomSwitchTitle: Titre du commutateur personnalisé
     InformCustomer: 'Étape latérale : Informer le client'

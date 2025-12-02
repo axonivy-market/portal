@@ -236,7 +236,7 @@ Processes:
   SideStep:
     AskMoreDetails: 'Paso lateral: Solicita más detalles'
     CEOApproval: 'Paso al margen: Aprobación del director ejecutivo'
-    CustomParallelTitle: ítulo paralelo personalizado
+    CustomParallelTitle: Título paralelo personalizado
     CustomSwitchTitle: Título del interruptor personalizado
     InformCustomer: 'Paso lateral: Informar a la cliente'
   TasksForTaskListCustomization:
