@@ -238,7 +238,7 @@ Processes:
     CEOApproval: 'Seitenschritt: Genehmigung durch den CEO'
     CustomParallelTitle: Benutzerdefinierter Paralleltitel
     CustomSwitchTitle: Benutzerdefinierter Schaltertitel
-    InformCustomer: 'Nebenschritt: Kunden informieren'
+    InformCustomer: 'Seitenschritt: Kunden informieren'
   TasksForTaskListCustomization:
     Cases:
       Party:

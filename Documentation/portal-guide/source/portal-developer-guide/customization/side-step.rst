@@ -63,13 +63,13 @@ How to Use and Set Up
       
         // First configuration option - using CMS path for multilingual process names
         SideStepProcessDTO dto1 = SideStepProcessDTO.builder()
-        .processNameCmsPath("/Labels/SideStep/AskForMoreDetails")
+        .processNameCmsPath("/Processes/SideStep/AskMoreDetails")
         .signal("com:axonivy:portal:developerexample:sideStep:askMoreDetails")
         .build();
 
         // Second configuration option - with project-specific CMS path
         SideStepProcessDTO dto2 = SideStepProcessDTO.builder()
-        .processNameCmsPath("/Labels/SideStep/CEOApproval")
+        .processNameCmsPath("/Processes/SideStep/CEOApproval")
         .cmsProjectName("portal-developer-examples")  // Optional - if not provided, uses current project context
         // Set signature name of the process which defines custom users and roles in the previous step
         .customSecurityMembersCallable("getCustomSecurityMemberForSideStep()")  // Optional
@@ -97,8 +97,8 @@ How to Use and Set Up
       SideStepConfigurationDTO sideStepConfigurationDto = SideStepConfigurationDTO.builder()
         .processes(processes)
         .isParallelSideStep(true)
-        .customParallelSideStepTitleCmsPath("/Labels/SideStep/CustomParallelTitle") // Optional
-        .customSwitchSideStepTitleCmsPath("/Labels/SideStep/CustomSwitchTitle") // Optional
+        .customParallelSideStepTitleCmsPath("/Processes/SideStep/CustomParallelTitle") // Optional
+        .customSwitchSideStepTitleCmsPath("/Processes/SideStep/CustomSwitchTitle") // Optional
         .cmsProjectName("portal-developer-examples") // Optional - if not provided, uses current project context
         .build();
 
@@ -123,7 +123,7 @@ How to Use and Set Up
             "signal": "com:axonivy:portal:developerexample:sideStep:askMoreDetails",
             "processNames": [
               {
-                "value": "/Labels/SideStep/AskForMoreDetails",
+                "value": "/Processes/SideStep/AskMoreDetails",
                 "projectName": "portal-developer-examples"
               }
             ]
@@ -132,7 +132,7 @@ How to Use and Set Up
             "signal": "com:axonivy:portal:developerexample:sideStep:CEOApproval",
             "processNames": [
               {
-                "value": "/Labels/SideStep/CEOApproval",
+                "value": "/Processes/SideStep/CEOApproval",
                 "projectName": "portal-developer-examples"
               }
             ],
@@ -142,7 +142,7 @@ How to Use and Set Up
             "signal": "com:axonivy:portal:developerexample:sideStep:informCustomer",
             "processNames": [
               {
-                "value": "/Labels/SideStep/InformCustomer",
+                "value": "/Processes/SideStep/InformCustomer",
                 "projectName": "portal-developer-examples"
               }
             ]
@@ -150,13 +150,13 @@ How to Use and Set Up
         ],
         "customParallelSideStepTitles": [
           {
-            "value": "/Labels/SideStep/CustomParallelTitle",
+            "value": "/Processes/SideStep/CustomParallelTitle",e",
             "projectName": "portal-developer-examples"
           }
         ],
         "customSwitchSideStepTitles": [
           {
-            "value": "/Labels/SideStep/CustomSwitchTitle",
+            "value": "/Processes/SideStep/CustomSwitchTitle",
             "projectName": "portal-developer-examples"
           }
         ]
