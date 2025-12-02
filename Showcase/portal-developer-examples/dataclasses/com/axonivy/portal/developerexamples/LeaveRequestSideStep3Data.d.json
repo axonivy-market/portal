@@ -1,0 +1,25 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/13.2.0/data-class.json",
+  "simpleName" : "LeaveRequestSideStep3Data",
+  "namespace" : "com.axonivy.portal.developerexamples",
+  "fields" : [ {
+    "name" : "members",
+    "type" : "java.util.List<String>"
+  }, {
+    "name" : "caze",
+    "type" : "ch.ivyteam.ivy.workflow.ICase",
+    "modifiers" : [ ]
+  }, {
+    "name" : "originalTaskUuid"
+  }, {
+    "name" : "originalCaseUuid"
+  }, {
+    "name" : "comment"
+  }, {
+    "name" : "stepType",
+    "type" : "com.axonivy.portal.components.enums.SideStepType"
+  }, {
+    "name" : "isParallel",
+    "type" : "Boolean"
+  } ]
+}

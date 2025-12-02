@@ -1,0 +1,21 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/13.2.0/data-class.json",
+  "simpleName" : "LeaveRequestSideStep1Data",
+  "namespace" : "com.axonivy.portal.developerexamples",
+  "fields" : [ {
+    "name" : "originalTaskUuid"
+  }, {
+    "name" : "originalCaseUuid"
+  }, {
+    "name" : "comment"
+  }, {
+    "name" : "caze",
+    "type" : "ch.ivyteam.ivy.workflow.ICase",
+    "modifiers" : [ ]
+  }, {
+    "name" : "securityMember"
+  }, {
+    "name" : "isParallel",
+    "type" : "Boolean"
+  } ]
+}
