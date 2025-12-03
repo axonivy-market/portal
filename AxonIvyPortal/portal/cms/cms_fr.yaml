@@ -1394,7 +1394,6 @@ Dialogs:
               PortalDashboardDetailModification:
                 CreateCustomStatistic: Créer un widget de statistiques personnalisé
                 DeleteConfirm: Êtes-vous sûr de vouloir supprimer ?
-                Example: Exemple
                 RemoveThisStatistic: Supprimer cette statistique personnalisée
               component:
                 CustomDashboardWidget:

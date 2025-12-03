@@ -9,56 +9,18 @@ CustomFields:
   #      Description: This new task custom field can be used to ...
   #      Type: STRING        
   Cases:
-    MyCaseCustomField:
-      Label: My case custom field STRING
-      Description: This new case custom field can be used to ...
-      Type: STRING
-    MyCaseCustomField:
-      Label: My case custom field TEXT
-      Description: This new case custom field can be used to ...
-      Type: TEXT
-    MyCaseCustomField:
-      Label: My case custom field NUMBER
-      Description: This new case custom field can be used to ...
-      Type: NUMBER
-
-    # CustomFields used for KPI sample statistic
-    SpendAmount:
-      Label: Spend Amount
-      Description: Spend amount
-      Type: Number
-    Department:
-      Label: Department
-      Description: Department
-      Type: String
-    Item:
-      Label: Item
-      Description: Item
-      Type: String
-    MonthYear:
-      Label: Month of Year
-      Description: Month of year
-      Type: Timestamp
-    daysToDecision:
-      Label: Days to Decision
-      Description: Days from request to final decision
-      Type: Number
-    decision:
-      Label: Decision
-      Description: Status of decision
-      Type: String
-    reworkNoLoops:
-      Label: Rework loops
-      Description: Number of process loops
-      Type: Number
-    reworkCauses:
-      Label: Rework causes
-      Description: Causes for rework loops
-      Type: String
-    reworkOccurred:
-      Label: Rework necessary
-      Description: Indicates if a loop was necessary
-      Type: String
+     MyCaseCustomField:
+        Label: My case custom field STRING
+        Description: This new case custom field can be used to ...
+        Type: STRING
+     MyCaseCustomField:
+        Label: My case custom field TEXT
+        Description: This new case custom field can be used to ...
+        Type: TEXT
+     MyCaseCustomField:
+        Label: My case custom field NUMBER
+        Description: This new case custom field can be used to ...
+        Type: NUMBER
   Starts:
 #   MyStartCustomField:
 #      Label: My start custom field
