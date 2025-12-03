@@ -14,7 +14,7 @@ import ch.ivyteam.ivy.environment.Ivy;
  * <b>Usage:</b>
  * <ul>
  * <li>Locale-value pairs: {@code new DisplayNameDTO("en", "My Title")} - for user-editable content</li>
- * <li>CMS URI with project: {@code DisplayNameDTO.fromCms("/Processes/SideStep/ProcessName", "portal-developer-examples")} - for project-specific CMS</li>
+ * <li>CMS URI with project name: {@code DisplayNameDTO.fromCms("/Processes/SideStep/ProcessName", "portal-developer-examples")} - for project-specific CMS</li>
  * <li>CMS URI current project: {@code DisplayNameDTO.fromCms("/Processes/SideStep/ProcessName")} - uses current process model</li>
  * </ul>
  */
