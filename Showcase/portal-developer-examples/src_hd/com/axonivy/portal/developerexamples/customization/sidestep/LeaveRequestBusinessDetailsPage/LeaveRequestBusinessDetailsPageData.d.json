@@ -1,0 +1,17 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/13.2.0/data-class.json",
+  "simpleName" : "LeaveRequestBusinessDetailsPageData",
+  "namespace" : "com.axonivy.portal.developerexamples.customization.sidestep.LeaveRequestBusinessDetailsPage",
+  "fields" : [ {
+    "name" : "leaveRequestData",
+    "type" : "com.axonivy.portal.developerexamples.LeaveRequest"
+  }, {
+    "name" : "approver",
+    "type" : "com.axonivy.portal.components.dto.UserDTO"
+  }, {
+    "name" : "requester",
+    "type" : "com.axonivy.portal.components.dto.UserDTO"
+  }, {
+    "name" : "caseUuid"
+  } ]
+}
