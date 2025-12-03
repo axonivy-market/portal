@@ -105,8 +105,8 @@ public class ChatPage extends TemplatePage {
     waitForElementDisplayed(By.xpath("//span[text()='" + name + "']"), true);
     waitForElementClickableThenClick(By.xpath("//span[text()='" + name + "']"));
   }
-  
-  public void waitForChatPanelVisible() {
-    $("[id='chat-form:group-chat-container']").shouldNotHave(Condition.cssValue("visibility", "hidden"), DEFAULT_TIMEOUT);
+
+  public boolean isChatPanelVisible() {
+    return !$("[id='chat-form:group-chat-container']").has(Condition.cssValue("visibility", "hidden"));
   }
 }
