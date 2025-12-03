@@ -11,213 +11,286 @@
 Settings
 ********
 
-This section covers Portal roles, permissions and other settings.
+This guide covers Portal configuration including roles, permissions, variables, and integrations. Settings control global Portal behavior across dashboards, widgets, and administrative features.
+Proper configuration ensures Portal aligns with your organization's security policies, business processes, and user experience requirements.
+
+**What Settings Control:**
+
+- User interface language and translations
+- Security roles and permissions for Portal features
+- Global variables affecting Portal behavior
+- Document upload restrictions and virus scanning
+- External integrations (announcements, third-party apps, external links)
+- Statistical chart configurations for dashboards
+
+**Configuration Methods:**
+
+Portal settings can be configured through multiple interfaces depending on your needs:
+
+#. **Admin Settings UI** - User-friendly interface for common settings (recommended for non-technical admins)
+#. **Engine Cockpit Variables** - Direct variable editing for advanced configuration
+#. **Variable YAML Files** - Development-time configuration that persists across Designer restarts
+#. **JSON Configuration Files** - Complex configurations like dashboards and announcements
+
+**Related Sections:**
+
+- :ref:`Permissions <list-permissions>` - Detailed permission reference
+- :ref:`Dashboard Configuration <customization-new-dashboard>` - Configure dashboards
+- :ref:`Customization <customization>` - Extend Portal functionality
+- :ref:`Deployment <deployment>` - Production deployment settings
+
+Overview
+========
+
+.. table::
+   :widths: 30 70
+
+   +---------------------------+----------------------------------------------------------------+
+   | Setting Category          | Description                                                    |
+   +===========================+================================================================+
+   | **Portal Settings**       | Global configuration via Admin Settings or variables           |
+   +---------------------------+----------------------------------------------------------------+
+   | **Roles & Permissions**   | Access control for Portal features and actions                 |
+   +---------------------------+----------------------------------------------------------------+
+   | **Language Settings**     | Multi-language support and translations                        |
+   +---------------------------+----------------------------------------------------------------+
+   | **Variables**             | Engine-level configuration stored as key-value pairs           |
+   +---------------------------+----------------------------------------------------------------+
+   | **JSON Configuration**    | Advanced settings for announcements, charts, external links    |
+   +---------------------------+----------------------------------------------------------------+
 
 |portal-header|
 
 .. _settings-admin-settings:
 
-Configure Portal Settings
-=========================
+Portal Settings Configuration
+=============================
 
-To manually configure Portal settings, refer to :ref:`update-portal-settings`.
+Portal settings control global behavior and can be configured through multiple methods:
 
-Portal settings are stored as :doc-url:`Variables </designer-guide/configuration/variables.html>`.
+**Configuration Methods:**
 
-In development, it is a quite tedious task to configure Portal settings after
-restarting Designer. Therefore, update your variables in
-``portal/config/variables.yaml`` for the settings that you want to configure.
-This survives restarting Designer.
+- **Admin Settings UI**: See :ref:`update-portal-settings` for user-friendly configuration
+- **Variables File**: Update ``portal/config/variables.yaml`` for development (survives Designer restarts)
+- **Engine Cockpit**: Configure via :doc-url:`Variables </designer-guide/configuration/variables.html>`
 
+.. tip::
+   In development, configure settings in ``portal/config/variables.yaml`` to avoid re-configuring after each Designer restart.
 
 .. _settings-language:
 
 Language Settings
 =================
 
-To add a new language to the Portal, what you have to do is:
+HowTo: Add a New Language to Portal
+------------------------------------
 
--  Export all CMS entries of the Portal to an Excel file.
--  Add one new column to the end of this file, then add the new language locale for example ``it`` for the Italian language to the first cell of this new column. Refer to `Java supported locales <https://www.oracle.com/java/technologies/javase/jdk11-suported-locales.html>`_ for the supported locales.
+#. **Export CMS Entries**
 
+   Export all CMS entries of the Portal to an Excel file
+
+#. **Add Language Column**
+
+   Add a new column at the end of the file with the language locale in the first cell (e.g., ``it`` for Italian)
+   
    |export-cms|
+   
+   Refer to `Java supported locales <https://www.oracle.com/java/technologies/javase/jdk21-suported-locales.html>`_ for supported locale codes
 
--  Add the translations for the new language for all CMS entries.
--  Add the translations for the new language for all json files in the Portal located at Config/variables by adding new locale/value item.
+#. **Add Translations**
 
+   Add translations for the new language for all CMS entries in the Excel file
+
+#. **Update JSON Files**
+
+   Add translations for the new language in all JSON files located at ``Config/variables`` by adding new locale/value items
+   
    |translate-json|
 
--  Add the translations for the new language to DefaultDashboardUtils.java by adding new locale/value item.
+#. **Update Java Files**
 
+   Add translations for the new language to ``DefaultDashboardUtils.java`` by adding new locale/value items
+   
    |translate-java|
 
--  Import the Excel file.
--  Redeploy the Portal.
+#. **Import and Deploy**
+
+   - Import the Excel file back into the Portal
+   - Redeploy the Portal
 
 Role Configuration
 ==================
 
-.. table::
+Portal uses specific roles to control administrative access:
 
-   +-----------------------------------+-----------------------------------+
-   | Portal roles                      | Rights                            |
-   +===================================+===================================+
-   | AXONIVY_PORTAL_ADMIN              | User with this role can access    |
-   |                                   | the Portal Admin page,            |
-   |                                   | configure internal role           |
-   |                                   | properties, and create public     |
-   |                                   | filters. Those who hold this role |
-   |                                   | require some permissions.         |
-   |                                   |                                   |
-   +-----------------------------------+-----------------------------------+
+.. table::
+   :widths: 30 70
+
+   +---------------------------+----------------------------------------------------------------+
+   | Role                      | Description                                                    |
+   +===========================+================================================================+
+   | **AXONIVY_PORTAL_ADMIN**  | Can access Portal Admin page, configure internal role          |
+   |                           | properties, and create public filters. Requires specific       |
+   |                           | permissions for full functionality.                            |
+   +---------------------------+----------------------------------------------------------------+
+
 
 .. _settings-permission-settings:
 
 Permission Settings
 ===================
 
-Configure permissions in the :doc-url:`Engine Cockpit
-</engine-guide/reference/engine-cockpit/security.html>`. In the
-security area, you will find all these permission in group "PortalPermissions".
+Configure permissions in the :doc-url:`Engine Cockpit </engine-guide/reference/engine-cockpit/security.html>`. All Portal permissions are grouped under "PortalPermissions".
+
+.. important::
+   **Portal Permission Support:**
+   
+   The Portal is built as a layer above the Axon Ivy Engine core. Not every core engine permission is automatically honored or supported by the Portal. Supporting every core permission would require significant effort and increase maintenance overhead.
+   If you require a specific engine permission that is not currently supported by the Portal, please contact Axon Ivy support to discuss your requirements.
+
+.. note::
+   **General Permission Rules:**
+   
+   - Normal users can only see tasks and cases they can work on
+   - Administrators with :bdg-ref-warning:`🔑TaskReadAll <TaskReadAll>` and :bdg-ref-warning:`🔑CaseReadAll <CaseReadAll>` can see all tasks/cases
+   - Administrators can interact with, create, update, and delete all workflows
+   - Normal users can only update/delete workflows they created and work on assigned tasks
 
 Task Permissions
 ----------------
-- Add note
 
-   User needs permission: :bdg-ref-warning:`🔑TaskCaseAddNote <TaskCaseAddNote>`.
+**Add Note**
 
-- Delegate
+User needs permission: :bdg-ref-warning:`🔑TaskCaseAddNote <TaskCaseAddNote>`
 
-   To be able to delegate, the user needs permission
-   :bdg-ref-warning:`🔑TaskDisplayDelegateAction <TaskDisplayDelegateAction>` and :bdg-ref-warning:`🔑TaskWriteActivator <TaskWriteActivator>`.
+**Delegate**
 
-   To delegate personal or group tasks, the user needs permission
-   :bdg-ref-warning:`🔑TaskWriteActivatorOwnTasks <TaskWriteActivatorOwnTasks>`. This permission belongs to the
-   PortalPermissions group. It is not assigned to role Everybody by default.
+Required permissions:
 
-   A case owner is able to delegate all related tasks within their case with permission :bdg-ref-warning:`🔑CaseOwnerTaskDelegate <CaseOwnerTaskDelegate>`. This permission belongs to the
-   PortalPermissions group.
+- To see delegate action: :bdg-ref-warning:`🔑TaskDisplayDelegateAction <TaskDisplayDelegateAction>` and :bdg-ref-warning:`🔑TaskWriteActivator <TaskWriteActivator>`
+- To delegate personal/group tasks: :bdg-ref-warning:`🔑TaskWriteActivatorOwnTasks <TaskWriteActivatorOwnTasks>` (not assigned to Everybody by default)
+- Case owner delegation: :bdg-ref-warning:`🔑CaseOwnerTaskDelegate <CaseOwnerTaskDelegate>` allows delegating all related tasks within their case
 
-   .. important::
-      - Only tasks ready for user processing can be delegated. Therefore, the task state cannot be one of the following: CREATED, DONE, DESTROYED, RESUMED, FAILED.
+.. important::
+   Only tasks ready for user processing can be delegated. Task state cannot be: CREATED, DONE, DESTROYED, RESUMED, FAILED
 
-- Reset
+**Reset**
 
-   To see the reset action, the user needs permission
-   :bdg-ref-warning:`🔑TaskDisplayResetAction <TaskDisplayResetAction>`.
+Required permissions:
 
-   To reset tasks, the user needs permission:
-   :bdg-ref-warning:`🔑TaskResetOwnWorkingTask <TaskResetOwnWorkingTask>` or
-   :bdg-ref-warning:`🔑TaskResetReadyForJoin <TaskResetReadyForJoin>` or
-   :bdg-ref-warning:`🔑TaskReset <TaskReset>`.
+- To see reset action: :bdg-ref-warning:`🔑TaskDisplayResetAction <TaskDisplayResetAction>`
+- To reset tasks: :bdg-ref-warning:`🔑TaskResetOwnWorkingTask <TaskResetOwnWorkingTask>` or :bdg-ref-warning:`🔑TaskResetReadyForJoin <TaskResetReadyForJoin>` or :bdg-ref-warning:`🔑TaskReset <TaskReset>`
 
-   .. important::
-      This only works for tasks in one of following states: RESUMED,
-      PARKED, READY_FOR_JOIN, FAILED.
+.. important::
+   Only works for tasks in states: RESUMED, PARKED, READY_FOR_JOIN, FAILED
 
+**Delete**
 
-- Delete
+User needs permission: :bdg-ref-warning:`🔑TaskDestroy <TaskDestroy>`
 
-   To see the Delete Task action, the user needs permission
-   :bdg-ref-warning:`🔑TaskDestroy <TaskDestroy>`.
+.. important::
+   Only works if task state is not DESTROYED or DONE
 
-   .. important::
-      Delete Task only works if the task state is not already DESTROYED
-      or DONE.
+**Reserve**
 
-- Reserve
+Required permissions:
 
-   To see the Reserve action, the user needs permission
-   :bdg-ref-warning:`🔑TaskDisplayReserveAction <TaskDisplayReserveAction>`.
+- To see reserve action: :bdg-ref-warning:`🔑TaskDisplayReserveAction <TaskDisplayReserveAction>`
+- To reserve a task: :bdg-ref-warning:`🔑TaskParkOwnWorkingTask <TaskParkOwnWorkingTask>`
 
-   To reserve a task, the user needs permission
-   :bdg-ref-warning:`🔑TaskParkOwnWorkingTask <TaskParkOwnWorkingTask>`.
+.. important::
+   Only possible if task is in states: CREATED, RESUMED, SUSPENDED
 
-   .. important::
-      Reservation is only possible if the task is in one of the following
-      states: CREATED, RESUMED, SUSPENDED.
+**Change Description**
 
-- Change description
+User needs permission: :bdg-ref-warning:`🔑TaskWriteDescription <TaskWriteDescription>`
 
-   User needs permission:
-   :bdg-ref-warning:`🔑TaskWriteDescription <TaskWriteDescription>`.
+.. important::
+   Terminated tasks cannot be changed. Task state cannot be: DONE, DESTROYED, FAILED
 
-   .. important::
-      A terminated task cannot be changed. Therefore, the task state cannot be one of the following values:
-      DONE, DESTROYED, FAILED.
+**Change Deadline**
 
-- Change deadline
+User needs permission: :bdg-ref-warning:`🔑TaskWriteExpiryTimestamp <TaskWriteExpiryTimestamp>`
 
-   User needs permission
-   :bdg-ref-warning:`🔑TaskWriteExpiryTimestamp <TaskWriteExpiryTimestamp>`.
+.. important::
+   Task cannot be in states: DONE, DESTROYED, FAILED
 
-   .. important::
-      To change an expiry date, the task cannot be in one of the following states:
-      DONE, DESTROYED, FAILED.
+**Change Priority**
 
-- Change priority
+User needs permission: :bdg-ref-warning:`🔑TaskWriteOriginalPriority <TaskWriteOriginalPriority>`
 
-   User needs permission
-   :bdg-ref-warning:`🔑TaskWriteOriginalPriority <TaskWriteOriginalPriority>`.
+.. important::
+   Task cannot be in states: DONE, DESTROYED, FAILED
 
-   .. important::
-      To change task priority, the task cannot be in the following states:
-      DONE, DESTROYED, FAILED.
+**Display Additional Options**
 
-- Display additional options
+User needs permission: :bdg-ref-warning:`🔑TaskDisplayAdditionalOptions <TaskDisplayAdditionalOptions>`
 
-   To see additional actions, the user needs permission
-   :bdg-ref-warning:`🔑TaskDisplayAdditionalOptions <TaskDisplayAdditionalOptions>`.
+**Display Workflow Events**
+
+User needs permission: :bdg-ref-warning:`🔑TaskDisplayWorkflowEventAction <TaskDisplayWorkflowEventAction>`
+
+**Display Custom Fields**
+
+User needs permission: :bdg-ref-warning:`🔑TaskDisplayCustomFieldsAction <TaskDisplayCustomFieldsAction>`
+
+**Share Task Details Link**
+
+User needs permission: :bdg-ref-warning:`🔑ShareTaskDetailsLink <ShareTaskDetailsLink>`
+
+**Change Expiry Activator**
+
+User needs permission: :bdg-ref-warning:`🔑TaskWriteExpiryActivator <TaskWriteExpiryActivator>`
+
+.. important::
+   Task cannot be in states: DONE, DESTROYED, FAILED
+
+**Read System Tasks**
+
+User needs permission: :bdg-ref-warning:`🔑SystemTaskReadAll <SystemTaskReadAll>`
 
 Case Permissions
 ----------------
 
-- Add note
+**Add Note**
 
-   User needs permission :bdg-ref-warning:`🔑TaskCaseAddNote <TaskCaseAddNote>`.
+User needs permission: :bdg-ref-warning:`🔑TaskCaseAddNote <TaskCaseAddNote>`
 
-- Delete
+**Delete**
 
-   User needs permission :bdg-ref-warning:`🔑CaseDestroy <CaseDestroy>`.
+User needs permission: :bdg-ref-warning:`🔑CaseDestroy <CaseDestroy>`
 
-   .. important::
-      Case state has to be RUNNING.
+.. important::
+   Case state must be RUNNING
 
-- Change description
+**Change Description**
 
-   User needs permission :bdg-ref-warning:`🔑CaseWriteDescription <CaseWriteDescription>`.
+User needs permission: :bdg-ref-warning:`🔑CaseWriteDescription <CaseWriteDescription>`
 
-   .. important::
-      Case state cannot be DESTROYED.
+.. important::
+   Case state cannot be DESTROYED
 
-- See related tasks of case
+**See Related Tasks of Case**
 
-   To see the related tasks action, the user needs permission
-   :bdg-ref-warning:`🔑ShowAllTasksOfCase <ShowAllTasksOfCase>`.
+Required permissions:
 
-   To see related tasks, user needs permission
-   :bdg-ref-warning:`🔑TaskReadOwnCaseTasks <TaskReadOwnCaseTasks>` or :bdg-ref-warning:`🔑TaskReadAll <TaskReadAll>`.
+- To see the action: :bdg-ref-warning:`🔑ShowAllTasksOfCase <ShowAllTasksOfCase>`
+- To view related tasks: :bdg-ref-warning:`🔑TaskReadOwnCaseTasks <TaskReadOwnCaseTasks>` or :bdg-ref-warning:`🔑TaskReadAll <TaskReadAll>`
 
-   .. important::
-      Case state cannot be DESTROYED.
+.. important::
+   Case state cannot be DESTROYED
 
-- Display show detail link
+**Display Show Detail Link**
 
-   User needs permission :bdg-ref-warning:`🔑ShowCaseDetails <ShowCaseDetails>`. By default, this permission
-   is not assigned to role Everybody.
+User needs permission: :bdg-ref-warning:`🔑ShowCaseDetails <ShowCaseDetails>` (not assigned to Everybody by default)
 
-.. note::
-      Normal users can only see the tasks and cases that they can work on.
+**Share Case Details Link**
 
-      Administrators can see all tasks/cases in the application. The required
-      permissions :bdg-ref-warning:`🔑TaskReadAll <TaskReadAll>`, :bdg-ref-warning:`🔑CaseReadAll <CaseReadAll>`.
+User needs permission: :bdg-ref-warning:`🔑ShareCaseDetailsLink <ShareCaseDetailsLink>`
 
-      Administrators can interact with all workflows in the application.
+**Display Custom Fields**
 
-      Administrators can create, update, and delete all workflows in the application.
-
-      Normal users can update and delete workflows that they have created and
-      can interact with tasks that have been assigned to them.
+User needs permission: :bdg-ref-warning:`🔑CaseDisplayCustomFieldsAction <CaseDisplayCustomFieldsAction>`
 
 .. _settings-permission-settings-others:
 
@@ -276,6 +349,14 @@ Other Permissions
  |           | Modify notification channels    | :bdg-ref-warning:`🔑NotificationChannelsSetting <NotificationChannelsSetting>`        |
  |           | preferences in :ref:`my-profile`|                                                                                       |
  |           | page                            |                                                                                       |
+ |           +---------------------------------+---------------------------------------------------------------------------------------+
+ |           | Role management (Admin Settings)| :bdg-ref-warning:`🔑RoleManagement <RoleManagement>`                                  |
+ |           +---------------------------------+---------------------------------------------------------------------------------------+
+ |           | News management (Dashboard)     | :bdg-ref-warning:`🔑NewsManagement <NewsManagement>`                                  |
+ |           +---------------------------------+---------------------------------------------------------------------------------------+
+ |           | Password validation settings    | :bdg-ref-warning:`🔑PasswordValidation <PasswordValidation>`                          |
+ |           +---------------------------------+---------------------------------------------------------------------------------------+
+ |           | Read all notes on tasks/cases   | :bdg-ref-warning:`🔑NoteReadAllCaseTaskDetails <NoteReadAllCaseTaskDetails>`          |
  +-----------+---------------------------------+---------------------------------------------------------------------------------------+
 
 .. _settings-virus-scanning-setting:

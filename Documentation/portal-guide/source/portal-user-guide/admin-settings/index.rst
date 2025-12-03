@@ -1,20 +1,38 @@
 .. _admin-settings:
 
-.. raw:: html
-
-    <style>
-      .wy-nav-content {
-         max-width: 1350px;
-      }
-    </style>
-
 Admin Settings
 **************
 
-.. hint::
-   Only users who have granted the role ``AXONIVY_PORTAL_ADMIN`` can see and access 
-   the :guilabel:`Admin settings` on the user menu. They can update Portal settings, 
-   as well as define, show and hide the announcement.
+.. important::
+   **Admin Access Required**: Only users with the role ``AXONIVY_PORTAL_ADMIN`` can access Admin Settings 
+   from the user menu. Without this role, the menu item will not be visible.
+
+Admin Settings provide centralized control over Portal configuration, third-party integrations, 
+announcements, roles, and security policies. The interface is organized into tabs for different 
+administrative functions.
+
+Available Tabs
+==============
+
+.. table::
+   :widths: 20 80
+
+   +------------------------+------------------------------------------------------------------+
+   | Tab                    | Purpose                                                          |
+   +========================+==================================================================+
+   | **Applications**       | Add and manage third-party applications in the Portal menu       |
+   +------------------------+------------------------------------------------------------------+
+   | **Settings**           | Configure Portal behavior and feature toggles                    |
+   +------------------------+------------------------------------------------------------------+
+   | **Announcements**      | Create and display system-wide announcements to users            |
+   +------------------------+------------------------------------------------------------------+
+   | **Role Management**    | Create, edit, and delete dynamic roles (requires permissions)    |
+   +------------------------+------------------------------------------------------------------+
+   | **Password Validation**| Configure password policies and validation rules                 |
+   +------------------------+------------------------------------------------------------------+
+
+Accessing Admin Settings
+=========================
 
 Select the :guilabel:`Admin settings` user menu item.
 
@@ -39,6 +57,8 @@ HowTo: Add a Third Party Application
 
 #. Enter its URL in :guilabel:`Link`, e.g. http://www.google.com.
 
+#. Select :guilabel:`Permissions` to specify the permissions required for the application to be visible.
+
 #. Click on :guilabel:`Save`.
 
 .. _update-portal-settings:
@@ -58,9 +78,18 @@ HowTo: Update Portal Settings
 
 #. To reset all settings to their default values, click on :guilabel:`Restore all to defaults`.
 
-.. hint:: 
+.. note:: 
    Portal settings are stored as Axon Ivy variables and can be configured in the
    :doc-url:`Axon Ivy Cockpit </engine-guide/reference/engine-cockpit/configuration.html#engine-cockpit-variables>`.
+   
+.. deprecated:: 12.0
+   **Scheduled for removal in 13**:
+   
+   - :guilabel:`Portal.Histories.HideSystemNotes`
+   - :guilabel:`Portal.Histories.HideSystemNotesForAdministrator`
+   
+   **Migration**: Use the permission :bdg-ref-warning:`🔑NoteReadAllCaseTaskDetails <NoteReadAllCaseTaskDetails>` 
+   to control visibility of system notes in task and case details instead.
 
 .. _portal-available-settings:
 
@@ -86,15 +115,35 @@ HowTo: Show/Hide the Announcement
 #. Turn off the :guilabel:`Enable announcement` option to hide the announcement.
 
 HowTo: Manage Roles
-------------------------------
-Portal provides the :guilabel:`Role Management` section in the :guilabel:`Admin Settings` area, where the user can manage roles.
+-------------------
 
-| To see the :guilabel:`Role Management` tab, the user has to have the permission :bdg-ref-warning:`🔑RoleManagement <RoleManagement>`.
-| To manage roles, the user also has to own these permissions:
+Portal provides the :guilabel:`Role Management` tab in the :guilabel:`Admin Settings` area for creating 
+and managing dynamic roles.
 
-  - :bdg-ref-warning:`🔑RoleCreate <RoleCreate>`: create a new dynamic role
-  - :bdg-ref-warning:`🔑RoleDelete <RoleDelete>`: delete a dynamic role
-  - :bdg-ref-warning:`🔑RoleMove <RoleMove>`: can select the parent role at the :guilabel:`Create new role` step, by default the system will use ``Everybody``
+Prerequisites
+^^^^^^^^^^^^^
+
+To access and use Role Management, you need specific permissions:
+
+.. table::
+   :widths: 30 70
+
+   +--------------------------------------------------+------------------------------------------------+
+   | Permission                                       | Purpose                                        |
+   +==================================================+================================================+
+   | :bdg-ref-warning:`🔑RoleManagement               | View the Role Management tab                   |
+   | <RoleManagement>`                                |                                                |
+   +--------------------------------------------------+------------------------------------------------+
+   | :bdg-ref-warning:`🔑RoleCreate <RoleCreate>`     | Create new dynamic roles                       |
+   +--------------------------------------------------+------------------------------------------------+
+   | :bdg-ref-warning:`🔑RoleDelete <RoleDelete>`     | Delete existing dynamic roles                  |
+   +--------------------------------------------------+------------------------------------------------+
+   | :bdg-ref-warning:`🔑RoleMove <RoleMove>`         | Select parent role during creation             |
+   |                                                  | (default parent: ``Everybody``)                |
+   +--------------------------------------------------+------------------------------------------------+
+
+Steps to Manage Roles
+^^^^^^^^^^^^^^^^^^^^^^
 
 #. Select the :guilabel:`Role Management` tab.
 
@@ -110,25 +159,47 @@ Portal provides the :guilabel:`Role Management` section in the :guilabel:`Admin 
 
 #. The user can manage this new role by editing role properties, assigning users to the role, and deleting the role using the actions available on the :guilabel:`Actions` column.
 
-.. note::
-   Portal also provides two advanced configurations to control the number of roles that are shown in the :guilabel:`Role Management` tab.
-   Refer to :ref:`Settings Variables <portal-available-settings>` for more information.
+.. tip::
+   Portal provides two advanced configuration variables to control the number of roles displayed 
+   in the Role Management tab. See :ref:`Settings Variables <portal-available-settings>` for details.
 
 HowTo: Enable/Disable Password Validation
------------------------------------------
-Portal provides the :guilabel:`Password Validation` section in the :guilabel:`Admin Settings` area, where you can enable/disable password validation and change password policies as well. 
+------------------------------------------
 
-| To see the :guilabel:`Password Validation` tab, you have to have the permission :bdg-ref-warning:`🔑PasswordValidation <PasswordValidation>`.
+Portal provides the :guilabel:`Password Validation` tab in the :guilabel:`Admin Settings` area to configure 
+password strength requirements and validation rules. This feature works with the Portal's built-in 
+password management (e.g., :ref:`Forgot Password <forgot-password>` and password change functionality).
+
+.. note::
+   **External Authentication**: Password validation does **not** apply when using external identity 
+   providers like Active Directory, Entra ID, or LDAP, as those systems manage their own password policies.
+
+Prerequisites
+^^^^^^^^^^^^^
+
+To access Password Validation settings, you need the :bdg-ref-warning:`🔑PasswordValidation <PasswordValidation>` permission.
+
+Steps to Configure Password Validation
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 #. Select the :guilabel:`Password Validation` tab.
 
    |password-validation-tab|
 
-#. Click :guilabel:`Enable Password Validation` toggle switch to enable/disable the feature.
+#. Toggle the :guilabel:`Enable Password Validation` switch to enable or disable the feature.
 
-#. If :guilabel:`Enable Password Validation` toggle switch is :guilabel:`Enabled`, you can activate/deactivate password policies and change password policy settings, click on the :guilabel:`Save` button to save the configuration.
+#. When enabled, you can:
+   
+   - Activate or deactivate individual password policies
+   - Adjust policy settings (minimum length, required character types, etc.)
 
-#. After saving the configuration, you can verify it by either changing the password or reset password.
+#. Click :guilabel:`Save` to apply the configuration.
+
+#. Verify the configuration by testing password change or reset password functionality.
+
+.. tip::
+   Define password policies that balance security requirements with user experience. 
+   Overly complex requirements may frustrate users and lead to insecure password management practices.
 
 .. include:: ../includes/_common-icon.rst
 

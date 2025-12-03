@@ -3,22 +3,30 @@
 Demo Processes
 **************
 
-When you start the Axon Ivy Engine in demo mode, you will see **portal-user-examples**.
-In this project, we provide some simple examples.
-You can play with them to have the feeling how Axon Ivy and Portal work.
+The Axon Ivy Portal includes example processes to help you understand how Portal and Axon Ivy work together. 
+When you start the Engine in demo mode, the **portal-user-examples** project provides interactive examples 
+you can explore and test.
 
-.. hint:: 
-   You can use these accounts to log in to Portal in demo mode:
+Demo User Accounts
+==================
 
-  +---------------------+---------------------+-------------------------+
-  | Username            | Password            | Role                    |
-  +=====================+=====================+=========================+
-  | admin               | admin               | Portal admin            |
-  +---------------------+---------------------+-------------------------+
-  | demo                | demo                | Normal user             |
-  +---------------------+---------------------+-------------------------+
-  | guest               | guest               | Normal user             |
-  +---------------------+---------------------+-------------------------+
+Use these accounts to log in and test different user roles:
+
+.. table::
+   :widths: 30 30 40
+
+   +---------------------+---------------------+-------------------------+
+   | Username            | Password            | Role                    |
+   +=====================+=====================+=========================+
+   | **admin**           | admin               | Portal administrator    |
+   +---------------------+---------------------+-------------------------+
+   | **demo**            | demo                | Standard user           |
+   +---------------------+---------------------+-------------------------+
+   | **guest**           | guest               | Standard user           |
+   +---------------------+---------------------+-------------------------+
+
+Example Processes
+=================
 
 Leave Request
 -------------
@@ -84,18 +92,9 @@ Lending (Case Map)
    step: create a contract. Once the **Create Contract** task is finished,
    the case is Done. If we reject task, the case will end in status Rejected.
 
-
 .. |example-overview-leave-request| image:: ../../screenshots/demo-processes/example-overview-leave-request.png
-   :alt: Portal examples: Leave request example
+   :alt: Leave request example on overview page
 .. |leave-request-creation| image:: ../../screenshots/demo-processes/leave-request-creation.png
-   :alt: Portal examples: Create leave request example
+   :alt: Create leave request form
 .. |user-example-guide-link| image:: ../../screenshots/demo-processes/user-example-guide-link.png
-   :alt: Link to the user example guide
-.. |example-overview-lending-case| image:: ../../screenshots/demo-processes/example-overview-lending-case.png
-   :alt: Portal examples: Lending
-.. |lending-casemap-collect-personal-data| image:: ../../screenshots/demo-processes/lending-casemap-collect-personal-data.png
-   :alt: Portal examples: Lending case map - collect personal data
-.. |lending-casemap-external-solvency-service| image:: ../../screenshots/demo-processes/lending-casemap-external-solvency-service.png
-   :alt: Portal examples: Lending case map - external solvency service
-.. |lending-casemap-approval-task| image:: ../../screenshots/demo-processes/lending-casemap-approval-task.png
-   :alt: Portal examples: Lending casemap - approval task
+   :alt: Link to user example guide

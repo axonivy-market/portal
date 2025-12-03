@@ -3,14 +3,19 @@
 Configure Statistic Widget
 ===========================
 
+The statistic widget displays charts and statistics on the Portal dashboard, providing visual insights into workflow data through bar charts, line charts, pie charts, and numeric displays.
+
 .. _portal-statistic-widget:
 
 Define Statistic Widget
------------------------
+-------------------------
 
-The Statistic widget of the Portal dashboard displays statistic and charts.
+The statistic widget displays customizable charts with configurable data aggregation, filtering, and visualization options.
 
-Below is a sample JSON definition of a statistic widget in the Portal dashboard
+Configuration Example
+^^^^^^^^^^^^^^^^^^^^^
+
+Below is a sample JSON definition of a statistic widget in the Portal dashboard:
 
 .. code-block:: javascript
 
@@ -145,71 +150,183 @@ Below is a sample JSON definition of a statistic widget in the Portal dashboard
   }
 ..
 
-The basic JSON structure of a statistic widget
+JSON Configuration Reference
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-   ``id``: ID of the widget.
+**Required Properties**
 
-   ``version``: current version of the widget.
+.. list-table::
+   :widths: 20 15 65
+   :header-rows: 1
 
-   ``statisticAggregation``: statistic's aggregation.
+   * - Property
+     - Type
+     - Description
+   * - ``id``
+     - string
+     - Unique identifier for the statistic widget
+   * - ``version``
+     - string
+     - Current version of the widget configuration
+   * - ``chartTarget``
+     - string
+     - Data source. Options: ``"task"`` or ``"case"``
+   * - ``chartType``
+     - string
+     - Chart visualization type. Options: ``"bar"``, ``"line"``, ``"pie"``, ``"number"``
+   * - ``names``
+     - array
+     - Multilingual display names. Each entry: ``{"locale": "en", "value": "Name"}``
 
-      - ``field``: aggregation (group by) field.
+**Data Aggregation**
 
-      - ``type``: type of the field, could be `standard` or `custom`.
+.. list-table::
+   :widths: 20 15 15 50
+   :header-rows: 1
 
-      - ``kpiField`` (optional): the numeric custom field on which to perform calculations.
+   * - Property
+     - Type
+     - Required
+     - Description
+   * - ``statisticAggregation``
+     - object
+     - Yes
+     - Defines how data is grouped and calculated
+   * - ``statisticAggregation.field``
+     - string
+     - Yes
+     - Field to group by (e.g., "state", "priority")
+   * - ``statisticAggregation.type``
+     - string
+     - Yes
+     - Field type: ``"standard"`` or ``"custom"``
+   * - ``statisticAggregation.kpiField``
+     - string
+     - No
+     - Numeric custom field for calculations (e.g., "InvoiceTotalAmount")
+   * - ``statisticAggregation.aggregationMethod``
+     - string
+     - No
+     - Calculation method: ``"sum"``, ``"avg"``, ``"max"``, ``"min"``
 
-      - ``aggregationMethod`` (optional): the calculation method to apply, could be `sum`, `avg`, `max` or `min`.
+.. note::
+   When ``kpiField`` and ``aggregationMethod`` are not provided, the chart displays count statistics (number of tasks or cases). When specified, the chart applies the aggregation method to numeric values in ``kpiField``.
 
-      When ``kpiField`` and ``aggregationMethod`` are not provided, returns count statistics (counting number of tasks or cases).
-      In contrast, the system applies the specified aggregation method to the numeric values in ``kpiField``.
+**Filtering & Permissions**
 
-   ``filters``: filters for the statistic chart.
+.. list-table::
+   :widths: 20 15 65
+   :header-rows: 1
 
-      - ``field``: field to filter.
+   * - Property
+     - Type
+     - Description
+   * - ``filters``
+     - array
+     - Data filters. Each filter: ``{"field": "state", "values": ["OPEN"], "operator": "in", "type": "standard"}``
+   * - ``permissions``
+     - array
+     - Role names that can view this chart (e.g., ``["Everybody"]``)
 
-      - ``values``: value of the filter to query.
+**Display Options**
 
-      - ``operator``: operator for the filter.
+.. list-table::
+   :widths: 20 15 15 50
+   :header-rows: 1
 
-      - ``type``: type of the field.
+   * - Property
+     - Type
+     - Default
+     - Description
+   * - ``descriptions``
+     - array
+     - *(empty)*
+     - Multilingual descriptions. Each entry: ``{"locale": "en", "value": "Description"}``
+   * - ``icon``
+     - string
+     - *(none)*
+     - Icon class (e.g., ``"si-add-circle"``)
+   * - ``refreshInterval``
+     - number
+     - ``300``
+     - Auto-refresh interval in seconds (minimum 60)
 
-   ``permissions``: permissions for statistic chart.
+.. tip::
+   **Recommended statistic widget size:** Width 3-6 columns, Height 4-8 rows for optimal chart display with labels.
 
-   ``chartTarget``: chart's target, could be `case` or `task`.
+Chart-Specific Configuration
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-   ``chartType``: chart's type, could be `bar`, `line`, `pie` or `number`.
+Each chart type supports additional configuration for axis labels and colors:
 
-   ``icon``: icon for the statistic chart.
+**Bar Chart Configuration**
 
-   ``refreshInterval``: number of seconds for the chart auto-refreshed, minimum value is 60.
+For ``chartType: "bar"``, add ``barChartConfig``:
 
-   ``names``: name for the statistic chart, multi-language supported.
+.. list-table::
+   :widths: 20 15 65
+   :header-rows: 1
 
-   ``descriptions``: description for the statistic chart, multi-language supported.
+   * - Property
+     - Type
+     - Description
+   * - ``xTitles``
+     - array
+     - Multilingual x-axis labels. Each entry: ``{"locale": "en", "value": "Label"}``
+   * - ``yTitles``
+     - array
+     - Multilingual y-axis labels
+   * - ``backgroundColors``
+     - array
+     - Hex color codes for bars (e.g., ``["#6299f7", "#8dc261"]``)
 
-For some specific charts such as ``Bar``, ``Pie``, ``Line`` or ``Number``, there are additional fields:
+**Line Chart Configuration**
 
-- ``barChartConfig``: additional fields for configuring the ``Bar`` chart, you can add if chart type is ``bar`` 
+For ``chartType: "line"``, add ``lineChartConfig``:
 
-   - ``xTitles``: the multilingual display title for the x-axis
+.. list-table::
+   :widths: 20 15 65
+   :header-rows: 1
 
-   - ``yTitles``: the multilingual display title for the y-axis
-   
-   - ``backgroundColors`` : the colors to display the chart
+   * - Property
+     - Type
+     - Description
+   * - ``xTitles``
+     - array
+     - Multilingual x-axis labels
+   * - ``yTitles``
+     - array
+     - Multilingual y-axis labels
+   * - ``backgroundColors``
+     - array
+     - Hex color codes for line segments
 
-- ``lineChartConfig``: additional fields for configuring the ``Line`` chart, you can add if chart type is ``line``
+**Pie Chart Configuration**
 
-   - ``xTitles``: the multilingual display title for the x-axis
+For ``chartType: "pie"``, add ``pieChartConfig``:
 
-   - ``yTitles``: the multilingual display title for the y-axis
+.. list-table::
+   :widths: 20 15 65
+   :header-rows: 1
 
-   - ``backgroundColors`` : the colors to display the chart
- 
-- ``pieChartConfig``: additional fields for configuring the ``Pie`` chart, you can add if chart type is ``pie``
+   * - Property
+     - Type
+     - Description
+   * - ``backgroundColors``
+     - array
+     - Hex color codes for pie slices
 
-   - ``backgroundColors`` : the colors to display the chart
+**Number Chart Configuration**
 
-- ``numberChartConfig``: additional fields for configuring the ``Number`` chart, you can add if chart type is ``number``
+For ``chartType: "number"``, add ``numberChartConfig``:
 
-   - ``hideLabel``: toggle to show label of the number chart
+.. list-table::
+   :widths: 20 15 65
+   :header-rows: 1
+
+   * - Property
+     - Type
+     - Description
+   * - ``hideLabel``
+     - boolean
+     - Toggle to show/hide the number chart label

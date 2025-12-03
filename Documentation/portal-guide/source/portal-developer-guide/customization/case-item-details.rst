@@ -3,9 +3,12 @@
 Case Item Details
 =================
 
-CaseItemDetails is a built-in component of the Portal that contains the case
-information which users can interact with. To show additional required case
-information, the Portal supports customizing the CaseItemDetails.
+Introduction
+------------
+
+The Case Item Details customization allows you to configure which widgets appear on the case details page and how they are arranged.
+Portal provides built-in widgets for case information, documents, related tasks, histories, and business details,
+plus the ability to add custom panels at multiple insertion points.
 
 Each CaseItemDetails contains
 

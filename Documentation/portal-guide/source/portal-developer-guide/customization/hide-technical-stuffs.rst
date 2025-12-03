@@ -18,9 +18,9 @@ value on the role.
 .. admonition:: Use the utility method of Portal
       
       - Set property:
-         com.axonivy.portal.components.util.RoleAPI.setProperty([YOUR_ROLE], ch.ivy.addon.portalkit.enums.AdditionalProperty.HIDE.toString(), "HIDE")
+         com.axonivy.portal.components.publicapi.RoleAPI.setProperty([YOUR_ROLE], ch.ivy.addon.portalkit.enums.AdditionalProperty.HIDE.toString(), "HIDE")
       - Reverse it:
-         com.axonivy.portal.components.util.RoleAPI.removeProperty([YOUR_ROLE], ch.ivy.addon.portalkit.enums.AdditionalProperty.HIDE.toString())
+         com.axonivy.portal.components.publicapi.RoleAPI.removeProperty([YOUR_ROLE], ch.ivy.addon.portalkit.enums.AdditionalProperty.HIDE.toString())
 
 
 Hide Technical Tasks
@@ -32,12 +32,12 @@ To mark a task as a technical task, follow one of the two ways below:
 
 .. admonition:: Use the utility methods of the Portal TaskAPI
 
-      If your project depends on Portal
+   If your project depends on portal-components
 
       - Set task as technical:
-         com.axonivy.portal.components.util.TaskAPI.setHidePropertyToHideInPortal(ITask)
+         com.axonivy.portal.components.publicapi.TaskAPI.setHidePropertyToHideInPortal(ITask)
       - Reverse it:
-         com.axonivy.portal.components.util.TaskAPI.removeHidePropertyToDisplayInPortal(ITask)
+         com.axonivy.portal.components.publicapi.TaskAPI.removeHidePropertyToDisplayInPortal(ITask)
 
 .. admonition:: Use the customfields of the ITask API
 
@@ -63,7 +63,7 @@ To mark a case as a technical case, follow one of the two ways below:
 
 .. admonition:: Use the utility methods of the Portal CaseAPI
 
-      If your project depends on Portal
+   If your project depends on portal-components
 
       - Set case as technical:
          com.axonivy.portal.components.publicapi.CaseAPI.setHidePropertyToHideInPortal(ICase)

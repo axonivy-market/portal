@@ -8,11 +8,21 @@ Menu And Default Homepage In User Profile
 Introduction
 ------------
 
-The Portal main menu has four default items: Dashboard, Processes, Tasks and Cases.
+Portal's menu system enables you to extend the default navigation with custom menu items that trigger Ivy processes or open external links.
+You can control menu visibility through permissions and allow users to set custom process pages as their default homepage, creating personalized navigation experiences that align with specific user roles and workflows.
+
+**Default Menu Items:**
+
+The Portal main menu has four default items: Dashboard, Processes, Tasks, and Cases.
 
 |default-menu-items|
 
-Portal allows you to add custom menu items or hide some default items by using the Portal permissions.
+**Customization Options:**
+
+- Add custom menu items (Ivy processes, external links, or dashboards)
+- Hide default menu items using Portal permissions
+- Set menu item order using index values
+- Configure default homepage for user profiles
 
 All menu items except external links can be set as the user profile's default homepage.
 
@@ -52,13 +62,10 @@ To add custom menu items, create a callable subprocess with:
 
 **Signature**: portalLoadSubMenuItems
 
-+-----------------------+-------------------------------------------------------------------------------+
-| Name                  | Type                                                                          |
-+=======================+===============================================================================+
-|**Result**                                                                                             |
-+-----------------------+-------------------------------------------------------------------------------+
-| subMenuItems          | java.util.List<com.axonivy.portal.components.configuration.CustomSubMenuItem> |
-+-----------------------+-------------------------------------------------------------------------------+
+**Result:**
+
+``subMenuItems`` (java.util.List<com.axonivy.portal.components.configuration.CustomSubMenuItem>)
+    List of custom menu items to add to the Portal main menu.
 
 Example of a menu that redirects to an Ivy process.
 
