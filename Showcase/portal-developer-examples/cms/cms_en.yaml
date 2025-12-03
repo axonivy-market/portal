@@ -327,6 +327,12 @@ Processes:
       Signal:
         name: Signal create New Payment
     name: Create New Payment
+  SideStep:
+    AskMoreDetails: 'Side step: Ask for more details'
+    CEOApproval: 'Side step: CEO Approval'
+    CustomParallelTitle: Custom parallel title
+    CustomSwitchTitle: Custom switch title
+    InformCustomer: 'Side step: Inform customer'
   TasksForTaskListCustomization:
     Cases:
       Party:

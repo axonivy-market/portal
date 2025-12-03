@@ -26,6 +26,7 @@ import com.axonivy.portal.components.enums.SideStepType;
 import com.axonivy.portal.components.publicapi.PortalNavigatorInFrameAPI;
 import com.axonivy.portal.components.publicapi.TaskAPI;
 import com.axonivy.portal.components.service.IvyAdapterService;
+import com.axonivy.portal.components.util.DisplayNameUtils;
 import com.axonivy.portal.components.util.FacesMessageUtils;
 import com.axonivy.portal.components.util.TaskUtils;
 
@@ -241,24 +242,15 @@ public class SideStepProcessBean implements Serializable {
   }
 
   public String getProcessName(SideStepProcessDTO dto) {
-    if (dto.getProcessNames() != null) {
-      return dto.getProcessNames().get(Ivy.session().getContentLocale().toString());
-    }
-    return "";
+    return DisplayNameUtils.getDisplayText(dto.getProcessNames());
   }
 
   public String getCustomParallelTitle(SideStepConfigurationDTO dto) {
-    if (dto.getCustomParallelSideStepTitles() != null) {
-      return dto.getCustomParallelSideStepTitles().get(Ivy.session().getContentLocale().toString());
-    }
-    return "";
+    return DisplayNameUtils.getDisplayText(dto.getCustomParallelSideStepTitles());
   }
 
   public String getCustomSwitchTitle(SideStepConfigurationDTO dto) {
-    if (dto.getCustomSwitchSideStepTitles() != null) {
-      return dto.getCustomSwitchSideStepTitles().get(Ivy.session().getContentLocale().toString());
-    }
-    return "";
+    return DisplayNameUtils.getDisplayText(dto.getCustomSwitchSideStepTitles());
   }
 
   public SideStepType getSelectedSideStepType() {

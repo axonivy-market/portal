@@ -2,11 +2,12 @@ package com.axonivy.portal.components.dto;
 
 import java.io.Serializable;
 import java.util.List;
-import java.util.Map;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.components.ivydata.bo.JsonVersion;
+import com.axonivy.portal.components.util.DisplayNameUtils;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import ch.ivyteam.ivy.workflow.ICase;
@@ -26,6 +27,7 @@ import ch.ivyteam.ivy.workflow.ITask;
  * SideStepConfigurationDTO.builder()
  * .processes({@link List} of {@link SideStepProcessDTO})
  * .isParallelSideStep(true)
+ * .customParallelSideStepTitleCmsUri("/Processes/SideStep/CustomParallelTitle")
  * .build();
  * </pre> 
  */
@@ -35,8 +37,8 @@ public class SideStepConfigurationDTO implements Serializable {
   private String version;
   private List<SideStepProcessDTO> processes;
   private Boolean isParallelSideStep;
-  private Map<String, String> customParallelSideStepTitles;
-  private Map<String, String> customSwitchSideStepTitles;
+  private List<DisplayNameDTO> customParallelSideStepTitles;
+  private List<DisplayNameDTO> customSwitchSideStepTitles;
   
   public SideStepConfigurationDTO() {}
 
@@ -73,14 +75,14 @@ public class SideStepConfigurationDTO implements Serializable {
   /**
    * @return custom title for parallel side step.
    */
-  public Map<String, String> getCustomParallelSideStepTitles() {
+  public List<DisplayNameDTO> getCustomParallelSideStepTitles() {
     return customParallelSideStepTitles;
   }
 
   /**
    * @return custom title for switch side step.
    */
-  public Map<String, String> getCustomSwitchSideStepTitles() {
+  public List<DisplayNameDTO> getCustomSwitchSideStepTitles() {
     return customSwitchSideStepTitles;
   }
 
@@ -94,8 +96,11 @@ public class SideStepConfigurationDTO implements Serializable {
   public static class Builder {
     private List<SideStepProcessDTO> processes;
     private Boolean isParallelSideStep;
-    private Map<String, String> customParallelSideStepTitles;
-    private Map<String, String> customSwitchSideStepTitles;
+    private String customParallelSideStepTitleCmsUri;
+    private String customSwitchSideStepTitleCmsUri;
+    private String cmsProjectName;
+    private List<DisplayNameDTO> customParallelSideStepTitles;
+    private List<DisplayNameDTO> customSwitchSideStepTitles;
     private String version = JsonVersion.LATEST.getValue();
 
     /**
@@ -119,36 +124,51 @@ public class SideStepConfigurationDTO implements Serializable {
     }
 
     /**
-     * This set a map of multiple locale - title values to support for multiple languages of parallel side step title.
-     * This is optional.
-     * @param customParallelSideStepTitles A Map where keys are String to store locale value (e.g., "de", "en")
-     * and values are also String to store title value (e.g., "My custom title").
-     * This map contains various multiple language values for custom title.
+     * Set CMS URI for custom parallel side step title. This is optional.
+     * @param customParallelSideStepTitleCmsUri CMS URI (e.g., "/Processes/SideStep/CustomParallelTitle")
      * @return builder for {@link SideStepConfigurationDTO}
      */
-    public Builder customParallelSideStepTitles(Map<String, String> customParallelSideStepTitles) {
-      this.customParallelSideStepTitles = customParallelSideStepTitles;
+    public Builder customParallelSideStepTitleCmsUri(String customParallelSideStepTitleCmsUri) {
+      this.customParallelSideStepTitleCmsUri = customParallelSideStepTitleCmsUri;
       return this;
     }
 
     /**
-     * This set a map of multiple locale - title values to support for multiple languages of switch side step title.
-     * This is optional.
-     * @param customSwitchSideStepTitles A Map where keys are String to store locale value (e.g., "de", "en")
-     * and values are also String to store title value (e.g., "My custom title").
+     * Set CMS URI for custom switch side step title. This is optional.
+     * @param customSwitchSideStepTitleCmsUri CMS URI (e.g., "/Processes/SideStep/CustomSwitchTitle")
      * @return builder for {@link SideStepConfigurationDTO}
      */
-    public Builder customSwitchSideStepTitles(Map<String, String> customSwitchSideStepTitles) {
-      this.customSwitchSideStepTitles = customSwitchSideStepTitles;
+    public Builder customSwitchSideStepTitleCmsUri(String customSwitchSideStepTitleCmsUri) {
+      this.customSwitchSideStepTitleCmsUri = customSwitchSideStepTitleCmsUri;
       return this;
     }
-    
+
+    /**
+     * Set the project name to locate CMS URIs. Optional - if not provided, CMS URIs will be resolved from current
+     * project context.
+     * 
+     * @param cmsProjectName project name
+     * @return builder for {@link SideStepConfigurationDTO}
+     */
+    public Builder cmsProjectName(String cmsProjectName) {
+      this.cmsProjectName = cmsProjectName;
+      return this;
+    }
+
     /**
      * Build a new instance.
      * @return new instance of {@link SideStepConfigurationDTO}
      */
     public SideStepConfigurationDTO build() {
       validate();
+      if (StringUtils.isNotBlank(customParallelSideStepTitleCmsUri)) {
+        this.customParallelSideStepTitles = DisplayNameUtils.createCmsDisplayName(
+            customParallelSideStepTitleCmsUri, cmsProjectName);
+      }
+      if (StringUtils.isNotBlank(customSwitchSideStepTitleCmsUri)) {
+        this.customSwitchSideStepTitles = DisplayNameUtils.createCmsDisplayName(
+            customSwitchSideStepTitleCmsUri, cmsProjectName);
+      }
       return new SideStepConfigurationDTO(this);
     }
     
