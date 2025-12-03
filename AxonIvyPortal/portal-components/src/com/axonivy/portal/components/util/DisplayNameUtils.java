@@ -12,8 +12,6 @@ import org.apache.commons.lang3.StringUtils;
 import com.axonivy.portal.components.dto.DisplayNameDTO;
 
 import ch.ivyteam.ivy.application.app.IApplicationRepository;
-import ch.ivyteam.ivy.cm.ContentObjectReader;
-import ch.ivyteam.ivy.cm.ContentObjectValue;
 import ch.ivyteam.ivy.cm.exec.ContentManagement;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.ISecurityContext;
@@ -26,8 +24,8 @@ public class DisplayNameUtils {
   private DisplayNameUtils() {}
 
   /**
-   * Resolves display text by locale. For CMS URI, uses projectName to locate the correct process model version. For
-   * locale-value pairs, finds matching locale entry.
+   * Resolves display text. For CMS URI, uses projectName to locate the correct process model version and CMS
+   * automatically resolves the locale. For locale-value pairs, finds matching locale entry.
    */
   public static String getDisplayText(List<DisplayNameDTO> displayNames, String locale) {
     if (isEmpty(displayNames)) {
@@ -35,7 +33,7 @@ public class DisplayNameUtils {
     }
 
     if (isDisplayNameBasedOnCms(displayNames)) {
-      return resolveCmsUri(displayNames.get(0), locale);
+      return resolveCmsUri(displayNames.get(0));
     }
 
     return displayNames.stream().filter(dn -> locale.equals(dn.getLocale())).map(DisplayNameDTO::getValue).findFirst()
@@ -43,9 +41,14 @@ public class DisplayNameUtils {
   }
 
   /**
-   * Resolves display text using current user's content locale.
+   * Resolves display text using current session locale. For CMS URI, uses projectName to locate the correct process
+   * model version and CMS automatically resolves the locale. For locale-value pairs, finds matching locale entry.
    */
   public static String getDisplayText(List<DisplayNameDTO> displayNames) {
+    if (isDisplayNameBasedOnCms(displayNames)) {
+      return resolveCmsUri(displayNames.get(0));
+    }
+
     return getDisplayText(displayNames, Ivy.session().getContentLocale().toString());
   }
 
@@ -71,12 +74,10 @@ public class DisplayNameUtils {
     return List.of(DisplayNameDTO.fromCms(cmsUri));
   }
 
-  private static String resolveCmsUri(DisplayNameDTO cmsDisplayName, String locale) {
+  private static String resolveCmsUri(DisplayNameDTO cmsDisplayName) {
     String projectName = cmsDisplayName.getProjectName();
     return IApplicationRepository.of(ISecurityContext.current()).all().stream()
         .map(app -> app.findProcessModelVersion(projectName)).filter(Objects::nonNull).findFirst()
-        .flatMap(pmv -> ContentManagement.cms(pmv).get(cmsDisplayName.getValue()))
-        .flatMap(co -> ofNullable(co.value().get(locale))).map(ContentObjectValue::read)
-        .map(ContentObjectReader::string).orElse(EMPTY);
+        .map(pmv -> ContentManagement.of(pmv).co(cmsDisplayName.getValue())).orElse(EMPTY);
   }
 }
