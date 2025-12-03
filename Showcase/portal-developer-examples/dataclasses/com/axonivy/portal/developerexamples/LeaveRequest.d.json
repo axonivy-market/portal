@@ -1,0 +1,33 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/13.2.0/data-class.json",
+  "simpleName" : "LeaveRequest",
+  "namespace" : "com.axonivy.portal.developerexamples",
+  "isBusinessCaseData" : true,
+  "fields" : [ {
+    "name" : "approverComment"
+  }, {
+    "name" : "approverUsername"
+  }, {
+    "name" : "from",
+    "type" : "java.util.Date"
+  }, {
+    "name" : "to",
+    "type" : "java.util.Date"
+  }, {
+    "name" : "isApproved",
+    "type" : "Boolean"
+  }, {
+    "name" : "leaveType",
+    "type" : "com.axonivy.portal.developerexamples.enums.LeaveType"
+  }, {
+    "name" : "requesterComment"
+  }, {
+    "name" : "requesterUsername"
+  }, {
+    "name" : "id"
+  }, {
+    "name" : "sideStepTasks",
+    "type" : "List<com.axonivy.portal.developerexamples.dto.SideStepExampleDTO>",
+    "modifiers" : [ ]
+  } ]
+}
