@@ -26,7 +26,7 @@ public class ChatPage extends TemplatePage {
 
   public void openFirstGroupChat() {
     ElementsCollection chatNames =
-        $("[id='chat-form:group-chat-container']").shouldBe(Condition.visible, DEFAULT_TIMEOUT).$$(".js-group-card-name");
+        $("[id='chat-form:group-chat-container']").shouldBe(appear, DEFAULT_TIMEOUT).$$(".js-group-card-name");
     if (!chatNames.isEmpty()) {
       chatNames.get(0).shouldBe(appear, DEFAULT_TIMEOUT).click();
     }
@@ -104,5 +104,9 @@ public class ChatPage extends TemplatePage {
   public void selectChatUser(String name) {
     waitForElementDisplayed(By.xpath("//span[text()='" + name + "']"), true);
     waitForElementClickableThenClick(By.xpath("//span[text()='" + name + "']"));
+  }
+  
+  public void waitForChatPanelVisible() {
+    $("[id='chat-form:group-chat-container']").shouldNotHave(Condition.cssValue("visibility", "hidden"), DEFAULT_TIMEOUT);
   }
 }
