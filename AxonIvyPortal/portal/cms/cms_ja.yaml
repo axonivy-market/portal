@@ -760,6 +760,9 @@ ch.ivy.addon.portalkit.ui.jsf:
       SelectAction: アクションを選択してください
       SomeThingWentWrong: 問題が発生しました
       Title: ダッシュボードの設定
+    DrillDownWidget:
+      caseDrillDown: TODO Drill-down case widget for {0}
+      taskDrillDown: TODO Drill-down task widget for {0}
     EmptyFilterMessage: ウィジェットフィルターが見つかりません
     ExternalPageWidget: 外部ページ
     ExternalPageWidgetIntroduction: このウィジェットは外部Webページを表示できます。
@@ -798,6 +801,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     addField: フィールドの追加
     addWidget: ウィジェットの追加
     canWorkOn: 作業可能
+    caseDrillDownDashboard: Case drill-down dashboard
     caseList: ケースリスト
     caseListIntroduction: このウィジェットは、定義された設定に従って関連するケース情報を表示します。
     caseWidgetInfo:
@@ -921,13 +925,14 @@ ch.ivy.addon.portalkit.ui.jsf:
     statisticChartWidget: 統計チャート
     statisticWidgets: 統計ウィジェット
     switchToViewMode: 表示モード
-    tasWidgetkInfo:
+    taskWidgetInfo:
       expireToday: 今日期限切れ
       expiryThisWeek: 今週期限切れ
       numberOfTasks: タスク
       numberOfTasksByCategory: カテゴリーごとのタスク数
       numberOfTasksByState: 状態別のタスク数
       predefinedFilters: 定義済みフィルター
+      taskDrillDownDashboard: 'TODO: Task drill-down dashboard'
     taskList: タスクリスト
     taskListIntroduction: このウィジェットには、定義された設定に従って関連するタスク情報が表示されます。
     taskStart: タスクの開始
@@ -1387,7 +1392,6 @@ Dialogs:
               PortalDashboardDetailModification:
                 CreateCustomStatistic: 'TODO: Create custom statistic widget'
                 DeleteConfirm: 'TODO: Are you sure you want to delete?'
-                Example: 例
                 RemoveThisStatistic: TODO このカスタム統計を削除する
               component:
                 CustomDashboardWidget:
@@ -1460,43 +1464,43 @@ Dialogs:
             AccessibilityShortcuts:
               content: |-
                 <div class="ui-g">
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Alt + 1</span>ダッシュボード タブにフォーカス
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Alt + 5</span>検索にフォーカス
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Alt + A</span>最初のプロセスにフォーカス
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Tab</span>要素の順にタブ移動
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Alt + 2</span>プロセスタブにフォーカス
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Alt + 6</span>ユーザー設定にフォーカス
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Alt + W</span>最初のタスクにフォーカス
                     </div>
-                    <div class="ui-g-3 shortcut-content">
+                    <div class="ui-g-3 shortcut-content" tabindex="1">
                         <span class="shortcut-key">Esc</span>展開されたウィジェットを閉じる
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Alt + 3</span>タスクタブにフォーカス
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Alt + 7</span>メインメニューの表示／非表示を切り替えます
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Alt + Q</span>最初のケースにフォーカス
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Enter</span>選択を確定
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Alt + 4</span>ケース タブにフォーカス
                     </div>
                 </div>
@@ -1575,6 +1579,9 @@ Dialogs:
             AggregationMethod: TODO Aggregation method
             AggregationMethodTooltip: TODO Choose an aggregation method to perform calculations on your KPI field - Sum, Average, Max, or Min. Disabled when 'Counting' is selected
             ChartConfiguration: TODO Chart Configuration
+            ChartDrillDownEnabled: TODO Chart drill-down enabled
+            ChartDrillDownInfo: 'TODO <p>It only works when the user has these permissions: <strong>CaseReadAll</strong> for case and <strong>TaskReadAll</strong> for task.</p>'
+            ChartDrillDownPermissions: TODO Chart drill-down permissions
             ChartType: TODO Chart type
             Color: 色{0}
             ConditionBasedColoring:

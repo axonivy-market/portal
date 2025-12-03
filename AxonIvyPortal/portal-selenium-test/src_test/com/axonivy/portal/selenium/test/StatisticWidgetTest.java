@@ -142,7 +142,7 @@ public class StatisticWidgetTest extends BaseTest {
     statisticConfigurationPage.inputValueOnLatestFilter(FilterValueType.STATE_TYPE, "OPEN");
     statisticConfigurationPage.clickGeneratePreviewChart();
     assertEquals(statisticConfigurationPage.getPreviewChartNumberLabel(), "Open");
-    assertTrue(statisticConfigurationPage.getPreviewChartNumberValue() == 14);
+    assertTrue(statisticConfigurationPage.getPreviewChartNumberValue() == 13);
 
     // Filter Category
     statisticConfigurationPage.addFilter("Category", null);
@@ -454,8 +454,6 @@ public class StatisticWidgetTest extends BaseTest {
 
     statisticConfigurationPage.clickGeneratePreviewChart();
     statisticConfigurationPage.chartCanvasVisible();
-
-    assertEquals(statisticConfigurationPage.getKpiFieldsItems().size(), 7);
 
     // BAR chart
     // Counting

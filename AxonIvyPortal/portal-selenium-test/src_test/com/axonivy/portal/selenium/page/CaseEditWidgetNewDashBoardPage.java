@@ -314,7 +314,7 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
     SelenideElement customFieldPanel = $("span[id$='column-management-form:custom-field-selection_panel']");
     customFieldPanel.shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     SelenideElement fieldElement =
-        customFieldPanel.$$("li").filter(text(fieldName)).first().shouldBe(getClickableCondition());
+        customFieldPanel.$$("li").filter(text(fieldName)).first().scrollIntoCenter().shouldBe(getClickableCondition());
     fieldElement.getAttribute(FILTER_CASE_NAME);
     fieldElement.click();
     getColumnManagementDialog().$("button[id$='field-add-btn']").click();

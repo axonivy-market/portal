@@ -8,16 +8,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Portal Guide ${revision}\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-12 07:57+0000\n"
-"PO-Revision-Date: 2025-10-17 10:38+0000\n"
-"Last-Translator: Thang Huynh <hhqthang@axonactive.com>\n"
+"POT-Creation-Date: 2025-11-28 09:55+0000\n"
+"PO-Revision-Date: 2025-11-28 11:09+0000\n"
+"Last-Translator: Loc Nguyen <loc.nguyenthanh@axonactive.com>\n"
+"Language-Team: Japanese <https://hosted.weblate.org/projects/axonivy-portal/"
+"portal-le/doc/portal-doc-developer-guide/ja/>\n"
 "Language: ja\n"
-"Language-Team: Japanese <https://hosted.weblate.org/projects/axonivy-"
-"portal/portal-le/doc/portal-doc-developer-guide/ja/>\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 5.15-dev\n"
 "Generated-By: Babel 2.17.0\n"
 
 #: ../../source/portal-developer-guide/architecture/index.rst:4
@@ -2021,41 +2022,42 @@ msgstr ""
 
 #: ../../source/portal-developer-guide/customization/page-header-footer-process.rst:4
 msgid "Page Header and Footer"
-msgstr ""
+msgstr "ページヘッダーとフッター"
 
 #: ../../source/portal-developer-guide/customization/page-header-footer-process.rst:11
 msgid "The page header and footer that is shown on each Portal page."
-msgstr ""
+msgstr "各ポータルページに表示されるページのヘッダーとフッター。"
 
 #: ../../source/portal-developer-guide/customization/page-header-footer-process.rst:13
 msgid ""
 "You can easily customize the page header and footer using HTML code. For "
 "example:"
-msgstr ""
+msgstr "ページのヘッダーとフッターは、HTMLコードを使って簡単にカスタマイズできます。"
+"たとえば："
 
 #: ../../source/portal-developer-guide/customization/page-header-footer-process.rst:21
 msgid ""
 "For a complete example, see the process ``CustomPageHeaderAndFooter`` in "
 "the ``portal-developer-examples`` project."
 msgstr ""
+"完全な例については、 ``portal-developer-examples`` プロジェクトの "
+"``CustomPageHeaderAndFooter`` のプロセスを参照してください。"
 
 #: ../../source/portal-developer-guide/customization/page-header-footer-process.rst:24
 msgid "Page header and footer customization function"
-msgstr ""
+msgstr "ページヘッダー・フッターカスタマイズ機能"
 
 #: ../../source/portal-developer-guide/customization/page-header-footer-process.rst:28
-#, fuzzy
 msgid "**Signature**: portalGetPageHeaderAndFooter"
-msgstr "**シグネチャ**：portalGetLogoutPage"
+msgstr "**シグネチャ**：portalGetPageHeaderAndFooter"
 
 #: ../../source/portal-developer-guide/customization/page-header-footer-process.rst:35
-#, fuzzy
 msgid "pageHeader"
-msgstr "portal-header"
+msgstr "pageHeader"
 
 #: ../../source/portal-developer-guide/customization/page-header-footer-process.rst:37
 msgid "pageFooter"
-msgstr ""
+msgstr "pageFooter"
 
 #: ../../source/portal-developer-guide/customization/portal-style-customization-logos-colors-date-patterns.rst:4
 msgid "Portal Styles Customization (Logos, Colors, Date Patterns)"
@@ -2996,7 +2998,7 @@ msgstr "``type``：ウィジェットのタイプ。ニュースウィジェッ�
 
 #: ../../source/portal-developer-guide/dashboard/dashboard-newsfeed-widget.rst:38
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:82
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:70
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:77
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-notification-widget.rst:54
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-viewer-widget.rst:38
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:39
@@ -3017,7 +3019,7 @@ msgstr "``layout``：ニュースウィジェットのレイアウトの定義�
 #: ../../source/portal-developer-guide/dashboard/dashboard-newsfeed-widget.rst:44
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:88
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-external-page-widget.rst:60
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:80
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:87
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-notification-widget.rst:60
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-viewer-widget.rst:44
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:45
@@ -3028,7 +3030,7 @@ msgstr "``x``：HTML DOMスタイル ``left`` は ``x / 12 * 100%`` として計
 #: ../../source/portal-developer-guide/dashboard/dashboard-newsfeed-widget.rst:46
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:90
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-external-page-widget.rst:62
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:82
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:89
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-notification-widget.rst:62
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-viewer-widget.rst:46
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:47
@@ -3039,7 +3041,7 @@ msgstr "``y``：HTML DOMスタイル ``top`` は ``y / 12 * 100%`` として計�
 #: ../../source/portal-developer-guide/dashboard/dashboard-newsfeed-widget.rst:48
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:92
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-external-page-widget.rst:64
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:84
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:91
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-notification-widget.rst:64
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-viewer-widget.rst:48
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:49
@@ -3052,7 +3054,7 @@ msgstr "``w``：HTML DOMスタイル ``width`` は ``60 * w + 20 * (w - 1)`` と
 #: ../../source/portal-developer-guide/dashboard/dashboard-newsfeed-widget.rst:50
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:94
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-external-page-widget.rst:66
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:86
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:93
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-notification-widget.rst:66
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-viewer-widget.rst:50
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:51
@@ -4539,12 +4541,12 @@ msgid ""
 " Portal dashboard."
 msgstr "以下は、ポータル・ダッシュボードのナビゲーション・ダッシュボード・ウィジェットのJSON定義のサンプルです。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:68
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:75
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:148
 msgid "The basic JSON structure of a statistic widget"
 msgstr "統計ウィジェットの JSON の基本的な構造"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:72
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:79
 msgid ""
 "``type``: type of the widget. Use ``navigation-dashboard`` for a "
 "navigation dashboard widget"
@@ -4552,31 +4554,77 @@ msgstr ""
 "``type``: ウィジェットのタイプ。ナビゲーションダッシュボードウィジェットには を使用してください。``navigation-"
 "dashboard``"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:74
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:81
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-notification-widget.rst:56
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:83
 msgid "``names``: multilingual name of the widget on the UI"
 msgstr "``names``：UI に表示されるウィジェットの複数言語の名前。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:76
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:83
 msgid "``buttonNames``: multilingual button name on the widget"
 msgstr "``buttonNames``: ウィジェットの多言語ボタン名"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:78
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:85
 msgid "``layout``: layout definition of the client statistic widget"
 msgstr "``layout``：クライアントの統計ウィジェットのレイアウトの定義。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:88
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:95
 msgid "``targetDashboardId``: the target dashboard id"
 msgstr "``targetDashboardId``: 対象のダッシュボードの ID"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:90
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:97
 msgid "``description``: the widget description"
 msgstr "``description``: ウィジェットの説明"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:92
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:99
+msgid ""
+"``visualType``: the visual type of the widget. Possible values are "
+"``ICON`` and ``IMAGE``"
+msgstr "``visualType``: ウィジェットのビジュアルタイプ。指定できる値は ``ICON`` と "
+"``IMAGE`` です。"
+
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:101
 msgid "``icon``: the icon shown on the widget"
 msgstr "``icon``: ウィジェットに表示されるアイコン"
+
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:103
+#: ../../source/portal-developer-guide/settings/index.rst:700
+msgid ""
+"``imageContent``: the base64 data format of the process image. If this "
+"value is valid then it will be converted to a physical file. If you want "
+"to configure external link images when deploying, you just need to define"
+" ``imageContent``"
+msgstr ""
+"``imageContent``：プロセスの画像の base64 "
+"データ形式。この値が有効な場合は、物理ファイルに変換されます。展開時に外部リンクの画像を設定する場合は、 ``imageContent`` "
+"を定義するだけで済みます。"
+
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:105
+#: ../../source/portal-developer-guide/settings/index.rst:701
+msgid ""
+"``imageLocation``: the location of the process image. This image is "
+"stored in Application CMS. Basically, this should be handled by the "
+"engine"
+msgstr "``imageLocation``：プロセスの画像の場所。この画像はアプリケーションの CMS に格納されます。基本的にはエンジンで処理されます。"
+
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:107
+#: ../../source/portal-developer-guide/settings/index.rst:702
+msgid ""
+"``imageType``: the extension of the process image. Basically, this should"
+" be handled by the engine"
+msgstr "``imageType``：プロセスの画像の拡張子。基本的にはエンジンで処理されます。"
+
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:109
+msgid "``imageContentDarkMode``: the same as ``imageContent`` but for dark mode"
+msgstr "``imageContentDarkMode``: ダークモード版 ``imageContent``"
+
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:111
+msgid "``imageLocationDarkMode``: the same as ``imageLocation`` but for dark mode"
+msgstr "``imageLocationDarkMode``: ダークモード版 ``imageLocation``"
+
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:113
+msgid "``imageTypeDarkMode``: the same as ``imageType`` but for dark mode"
+msgstr "``imageTypeDarkMode``: ダークモード版 ``imageType``"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-notification-widget.rst:4
 msgid "Configure Notifications Widget"
@@ -6821,6 +6869,10 @@ msgid ""
 "instead to control the visibility of system notes in task and case "
 "details."
 msgstr ""
+"2. 全体変数 ``Portal.Histories.HideSystemNotes`` および "
+"``Portal.Histories.HideSystemNotesForAdministrator`` は削除され、サポートされ"
+"なくなりました。代わりに ``NoteReadAllCaseTaskDetails`` を使用し、タスクおよ"
+"びケース詳細におけるシステムノートの可視性を制御してください。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:153
 msgid "Migrate 11.3.2 To 12.0.0"
@@ -7885,15 +7937,21 @@ msgid ""
 "You can rename document in document table of task and case detail page, "
 "and the activity will be logged in history notes."
 msgstr ""
+"**導入ドキュメント名変更機能（** ）をタスクおよびケース詳細ページに追加。タス"
+"ク/ケース詳細ページのドキュメントテーブルでドキュメント名を変更可能。変更履歴"
+"は履歴ノートに記録されます。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:497
-#, fuzzy
 msgid ""
 "Enhanced the document preview feature for the task and case detail. If "
 "you have :dev-url:`DocFactory <https://market.axonivy.com/doc-factory"
 "#tab-description>` in the same security context, you can preview "
 "Word(doc, docx), Excel(xls, xlsx) and email(eml) documents."
-msgstr "タスクとケース詳細のドキュメントプレビュー機能を強化しました。同じセキュリティコンテキストにDocFactoryがある場合。Word(doc、docx)、Excel(xls、xlsx)、Eメール(eml)のドキュメントをプレビューできます。"
+msgstr ""
+"タスクおよびケース詳細のドキュメントプレビュー機能を強化しました。同じセキュ"
+"リティコンテキストに :dev-url:`DocFactory <https://market.axonivy.com/doc-"
+"factory#tab-description>` がある場合、Word（doc、docx）、Excel（xls、xlsx）、"
+"メール（eml）ドキュメントをプレビューできます。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:498
 msgid "Removed the Portal Setting ``Portal.DeepL.AuthKey``."
@@ -7913,6 +7971,9 @@ msgid ""
 "functionality to the Document Table component, enabling efficient data "
 "loading through pagination."
 msgstr ""
+"ドキュメントテーブルコンポーネントに遅延読み込み機能を追加し、ページネーショ"
+"ンによる効率的なデータ読み込みを可能にしたことで、**ドキュメントテーブル** コ"
+"ンポーネントを強化しました。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:503
 msgid "Changes in 13.1.0"
@@ -9422,9 +9483,8 @@ msgid ""
 msgstr "ユーザーがケースオーナーであるケースの関連タスクを委任する権限"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:135
-#, fuzzy
 msgid "_`CaseDisplayCustomFieldsAction`"
-msgstr "_`TaskDisplayCustomFieldsAction`"
+msgstr "_`CaseDisplayCustomFieldsAction`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:139
 msgid "Portal General Permissions"
@@ -9630,14 +9690,12 @@ msgid "Granted to role Everybody by default."
 msgstr "デフォルトでは Everybody ロールに付与"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:233
-#, fuzzy
 msgid "_`NoteReadAllCaseTaskDetails`"
-msgstr "_`TaskReadOwnCaseTasks`"
+msgstr "_`NoteReadAllCaseTaskDetails`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:234
-#, fuzzy
 msgid "Permission allows users to view system notes in case and task details"
-msgstr "タスクの詳細に共有ボタンを表示する権限"
+msgstr "権限により、ユーザーはケースおよびタスクの詳細でシステムノートを閲覧できます"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:239
 msgid "Portal Absence And Substitute Permissions"
@@ -10674,30 +10732,6 @@ msgstr "``icon``：リンクのアイコンのスタイルクラス。"
 msgid "``description``: the description of a link"
 msgstr "``description``：リンクの説明"
 
-#: ../../source/portal-developer-guide/settings/index.rst:700
-msgid ""
-"``imageContent``: the base64 data format of the process image. If this "
-"value is valid then it will be converted to a physical file. If you want "
-"to configure external link images when deploying, you just need to define"
-" ``imageContent``"
-msgstr ""
-"``imageContent``：プロセスの画像の base64 "
-"データ形式。この値が有効な場合は、物理ファイルに変換されます。展開時に外部リンクの画像を設定する場合は、 ``imageContent`` "
-"を定義するだけで済みます。"
-
-#: ../../source/portal-developer-guide/settings/index.rst:701
-msgid ""
-"``imageLocation``: the location of the process image. This image is "
-"stored in Application CMS. Basically, this should be handled by the "
-"engine"
-msgstr "``imageLocation``：プロセスの画像の場所。この画像はアプリケーションの CMS に格納されます。基本的にはエンジンで処理されます。"
-
-#: ../../source/portal-developer-guide/settings/index.rst:702
-msgid ""
-"``imageType``: the extension of the process image. Basically, this should"
-" be handled by the engine"
-msgstr "``imageType``：プロセスの画像の拡張子。基本的にはエンジンで処理されます。"
-
 #: ../../source/portal-developer-guide/settings/index.rst:703
 msgid ""
 "``permissions``: users have these roles can see and start the external "
@@ -11170,4 +11204,3 @@ msgstr "URL に外部ウェブページが示されている場合、パラメ�
 #~ "view system notes in case and task"
 #~ " details"
 #~ msgstr "管理者以外のユーザがケースとタスクの詳細のシステムノートを閲覧できるようにする権限"
-

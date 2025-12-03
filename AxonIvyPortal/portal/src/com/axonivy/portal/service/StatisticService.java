@@ -1,18 +1,17 @@
 package com.axonivy.portal.service;
 
 import static com.axonivy.portal.bean.StatisticConfigurationBean.DEFAULT_COLORS;
+import static com.axonivy.portal.enums.statistic.ChartTarget.CASE;
 
 import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import javax.ws.rs.NotFoundException;
 
@@ -23,9 +22,9 @@ import org.apache.logging.log4j.util.Strings;
 import com.axonivy.portal.bo.PieChartConfig;
 import com.axonivy.portal.bo.Statistic;
 import com.axonivy.portal.bo.StatisticAggregation;
-import com.axonivy.portal.components.service.IvyAdapterService;
 import com.axonivy.portal.constant.StatisticConstants;
-import com.axonivy.portal.dto.StatisticDto;
+import com.axonivy.portal.dto.StatisticDrillDownDTO;
+import com.axonivy.portal.dto.StatisticDTO;
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 import com.axonivy.portal.enums.AdditionalChartConfig;
 import com.axonivy.portal.enums.statistic.AggregationField;
@@ -53,30 +52,11 @@ public class StatisticService {
   private static final String CLIENT_STATISTIC_KEY = "Portal.ClientStatistic";
   private static StatisticService instance;
 
-  private static final String PRECONFIG_STATISTIC_SIGNATURE = "loadPreConfigPortalStatistic()";
-  public static List<Statistic> externalStatistics;
-
   public static StatisticService getInstance() {
     if (instance == null) {
       instance = new StatisticService();
     }
     return StatisticService.instance;
-  }
-
-  public static List<Statistic> getExternalStatistics() {
-    if (externalStatistics == null) {
-      Map<String, Object> response = IvyAdapterService.startSubProcessInSecurityContext(PRECONFIG_STATISTIC_SIGNATURE, null);
-
-      if (response != null && response.get("statisticsJson") != null) {
-        String statisticsJson = (String) response.get("statisticsJson");
-        externalStatistics = BusinessEntityConverter.jsonValueToEntities(statisticsJson, Statistic.class);
-        configDefaultStatisticSettings(externalStatistics);
-      } else {
-        externalStatistics = List.of();
-      }
-    }
-
-    return StatisticService.externalStatistics;
   }
 
   public List<Statistic> findAllCharts() {
@@ -94,7 +74,7 @@ public class StatisticService {
    * @return Ivy statistic data from ElasticSearch
    * @throws NotFoundException
    */
-  public StatisticResponse getStatisticData(StatisticDto payload)
+  public StatisticResponse getStatisticData(StatisticDTO payload)
       throws NotFoundException {
     Statistic chart = findByStatisticId(payload.getChartId());
     validateChart(payload.getChartId(), chart);
@@ -129,9 +109,10 @@ public class StatisticService {
       }
       FilterField filterField = ChartTarget.TASK == chartTarget
           ? TaskFilterFieldFactory.findBy(statisticFilter.getField(), statisticFilter.getFilterType())
-          : CaseFilterFieldFactory.findBy(statisticFilter.getField(), statisticFilter.getFilterType());      
+          : CaseFilterFieldFactory.findBy(statisticFilter.getField(), statisticFilter.getFilterType());
 
       if (filterField != null) {
+        filterField.initFilter(statisticFilter);
         String filterQuery = ChartTarget.TASK == chartTarget 
             ? filterField.generateTaskFilter(statisticFilter)
             : filterField.generateCaseFilter(statisticFilter);
@@ -161,11 +142,15 @@ public class StatisticService {
       filter = chart.getFilter();
     }
 
-    return switch (chart.getChartTarget()) {
-      case CASE -> WorkflowStats.current().caze().aggregate(aggregates, filter);
-      case TASK ->  WorkflowStats.current().task().aggregate(aggregates, filter);
-      default -> throw new PortalException("Cannot parse chartTarget " + chart.getChartTarget());
-    };
+    switch (chart.getChartTarget()) {
+      case CASE:
+        filter = StringUtils.isBlank(filter) ? "isBusinessCase:true" : "isBusinessCase:true," + filter;
+        return WorkflowStats.current().caze().aggregate(aggregates, filter);
+      case TASK:
+        return WorkflowStats.current().task().aggregate(aggregates, filter);
+      default:
+        throw new PortalException("Cannot parse chartTarget " + chart.getChartTarget());
+    }
   }
   
   public List<Entry<String, String>> getAdditionalConfig() {
@@ -192,21 +177,18 @@ public class StatisticService {
   }
   
   private Statistic findByStatisticId(String id) {
-    return Stream.concat(findAllCharts().stream(), getExternalStatistics().stream())
+    return findAllCharts().stream()
         .filter(e -> e.getId().equals(id))
         .findFirst()
         .orElse(null);
   }
 
   public Statistic findByIdCustomStatistic(String id) {
-    return Stream.concat(getCustomStatistic().stream(), getExternalStatistics().stream())
-        .filter(e -> e.getId().equals(id))
-        .findFirst()
-        .orElse(null);
+    return getCustomStatistic().stream().filter(e -> e.getId().equals(id)).findFirst().orElse(null);
   }
 
   public void saveJsonToVariable(List<Statistic> statistics) {
-    String statisticsJson = BusinessEntityConverter.entityToJsonValue(statistics);
+    String statisticsJson = BusinessEntityConverter.entityToJsonValueExcludeInternalView(statistics);
     Ivy.var().set(CUSTOM_STATISTIC_KEY, statisticsJson);
   }
 
@@ -252,7 +234,7 @@ public class StatisticService {
     }
   }
 
-  private static void configDefaultStatisticSettings(List<Statistic> statistics) {
+  private void configDefaultStatisticSettings(List<Statistic> statistics) {
     for (Statistic statistic : statistics) {
       if (ChartType.PIE == statistic.getChartType()) {
         if (statistic.getPieChartConfig() == null) { // could be null due to migration from version 12
@@ -323,5 +305,22 @@ public class StatisticService {
     default -> field;
     };
   }
-  
+
+  public void createDrillDownDashboard(String drillDownDataJson) {
+    if (StringUtils.isBlank(drillDownDataJson)) {
+      return;
+    }
+    StatisticDrillDownDTO drillDownData =
+        BusinessEntityConverter.jsonValueToEntity(drillDownDataJson, StatisticDrillDownDTO.class);
+    Statistic statistic = findByStatisticId(drillDownData.getChartId());
+    validateChart(drillDownData.getChartId(), statistic);
+    AbstractDrillDownService drillDownService;
+    if (CASE == statistic.getChartTarget()) {
+      drillDownService = CaseDrillDownService.getInstance();
+    } else {
+      drillDownService = TaskDrillDownService.getInstance();
+    }
+    drillDownService.createDrillDownDashboardInSession(statistic, drillDownData.getDrillDownValue());
+  }
+
 }

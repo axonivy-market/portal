@@ -82,7 +82,15 @@ function filterOptionsForDateTimeFormatter(pattern) {
   return options;
 }
 
+function isDateValid(date) {
+  return !isNaN(date);
+}
+
 function formatDateFollowLocale(dt) {
+  if (!isDateValid(dt)) {
+    console.warn('Invalid Date object provided for formatting.');
+    return;
+  }
   const options = filterOptionsForDateTimeFormatter(datePattern);
   // Format locale
   let friendlyLocale = contentLocale.replace('_', '-');
@@ -97,16 +105,6 @@ function formatISODate(dt) {
   let date = dt.getDate() < 10 ? '0' + dt.getDate() : dt.getDate();
   return year + '-' + month + '-' + date;
 }
-
-function formatNumberValue(value) {
-  if (value === "null" || value === null || value === undefined) {
-    return "0";
-  }
-
-  const numValue = Number(value);
-  return numValue % 1 === 0 ? numValue.toString() : numValue.toFixed(2);
-}
-
 const convertYValue = (value, config) => {
   if (!value || !config) {
     return value;
@@ -134,17 +132,17 @@ const convertYValue = (value, config) => {
       }
     });
   } catch(error) {
-    return formatNumberValue(value);
+    return value;
   }
   
-  return formatNumberValue(value);
+  return value;
 }
 
 const processYValue = (result, config) => {
   if (result.length > 0 && result[0].aggs.length > 0) {
     const values = [];
     result.forEach((bucket) => {
-      if (bucket.key.trim().length !== 0) {
+      if (bucket.key) {
         bucket.aggs.forEach((item) => {
           values.push({
             key: bucket.key,
@@ -433,7 +431,7 @@ class ClientChart {
     });
 
     return data.map((val) => {
-      if (!val || typeof val.count !== 'number') return defaultBackgroundColor;
+      if (!isNumeric(val.count)) return defaultBackgroundColor;
 
       for (const func of generatedCompareFunctions) {
         const result = func(val.count, val.key);
@@ -467,7 +465,7 @@ getBackgroundColorsWithAllScope(chartConfig, data) {
   });
 
   return data.map((val) => {
-    if (!val || typeof val.count !== 'number') return defaultBackgroundColor;
+    if (!val || !isNumeric(val.count)) return defaultBackgroundColor;
 
     for (const func of generatedCompareFunction) {
       const result = func(val.count);
@@ -487,6 +485,31 @@ getBackgroundColorsWithAllScope(chartConfig, data) {
   }
 
   updateClientChart() { }
+
+  canDrillDown() {
+    const config = this.data.chartConfig;
+    return config.canDrillDown === true;
+  }
+
+  handleChartClick(element, event) {
+    if (!this.canDrillDown()) {
+      return;
+    }
+    const drillDownData = {
+      chartId: this.data.chartConfig.id,
+      drillDownValue: this.data.result.aggs[0].buckets[element.index].key
+    };
+    this.drillDownStatistic(drillDownData);
+  }
+
+  drillDownStatistic(drillDownData) {
+    if (typeof window.openStatisticDrillDown === 'function') {
+      window.openStatisticDrillDown([{
+        name: 'drillDownData',
+        value: JSON.stringify(drillDownData)
+      }]);
+    }
+  }
 
   // Method to render empty chart
   renderEmptyChart(chart, additionalConfig) {
@@ -533,8 +556,9 @@ class ClientCanvasChart extends ClientChart {
   // Method to format chart label
   formatChartLabel(label) {
     let aggregationField = this.data.chartConfig.statisticAggregation?.field;
+    let kpiMethod = this.data.chartConfig.statisticAggregation?.kpiMethod;
 
-    if (typeof label === 'number' || this.isTimestampField(aggregationField)) {
+    if (typeof label === 'number' || this.isTimestampField(aggregationField) || kpiMethod) {
       return formatDateFollowLocale(new Date(label));
     }
     
@@ -625,6 +649,14 @@ class ClientPieChart extends ClientCanvasChart {
         options: {
           responsive: true,
           maintainAspectRatio: false,
+          onHover: (event, elements) => {
+            event.native.target.style.cursor = this.canDrillDown() && elements.length > 0 ? 'pointer' : 'default';
+          },
+          onClick: (event, elements) => {
+            if (this.canDrillDown() && elements.length > 0) {
+              this.handleChartClick(elements[0], event);
+            }
+          },
           plugins: {
             legend: {
               labels: {
@@ -698,6 +730,14 @@ class ClientCartesianChart extends ClientCanvasChart {
         options: {
           responsive: true,
           maintainAspectRatio: false,
+          onHover: (event, elements) => {
+            event.native.target.style.cursor = this.canDrillDown() && elements.length > 0 ? 'pointer' : 'default';
+          },
+          onClick: (event, elements) => {
+            if (this.canDrillDown() && elements.length > 0) {
+              this.handleChartClick(elements[0], event);
+            }
+          },
           plugins: {
             legend: {
               display: false,
@@ -879,7 +919,15 @@ class ClientNumberChart extends ClientChart {
 
     $(this.chart).parents('.statistic-chart-widget__chart').addClass('client-number-chart');
     let multipleKPI = this.renderMultipleNumberChartInHTML(result, config.numberChartConfig.suffixSymbol, config.chartTarget);
-    return $(this.chart).html(multipleKPI);
+    $(this.chart).html(multipleKPI);
+    
+    if (this.canDrillDown()) {
+      $(this.chart).find('.chart-content-card-clickable').each((index, element) => {
+        element.addEventListener('click', (event) => this.handleNumberCardClick(element, event));
+      });
+    }
+    
+    return $(this.chart);
   }
 
   initWidgetHeaderName(chart, widgetName) {
@@ -901,7 +949,7 @@ class ClientNumberChart extends ClientChart {
     let multipleNumberChartInHTML = '';
     if (result?.length > 0) {
         result.forEach((item, index) => {
-          const yValue = item.aggs.length > 0 ? formatNumberValue(item.aggs[0].value) : item.count;
+          const yValue = item.aggs.length > 0 ? this.formatNumberValue(item.aggs[0].value) : item.count;
           const counting = item.aggs.length > 0 ? item.count + " " + chartTarget + (item.count > 1 ? "s" : "") : "";
           let htmlString = this.generateItemHtml(item.key, yValue, suffixSymbold, index, counting);
           multipleNumberChartInHTML += htmlString;
@@ -916,8 +964,9 @@ class ClientNumberChart extends ClientChart {
   generateItemHtml(label, number, suffixSymbol, index, counting) {
     let border = '<div class="chart-border">' + '</div>';
     label = this.data.chartConfig.numberChartConfig?.hideLabel === true ? '' : this.formatChartLabel(label) ;
+    const isClickable = this.canDrillDown() ? 'chart-content-card-clickable' : '';
     let html =
-      '<div class="text-center chart-content-card">' +
+      `<div class="text-center chart-content-card ${isClickable}" data-index="${index}">` +
       '    <div class="chart-number-container">' +
       '        <span class="card-number chart-number-font-size chart-number-animation">' + number + '</span>' +
       '        <i class="card-number chart-number-font-size chart-number-animation ' + suffixSymbol + '"></i>' +
@@ -952,6 +1001,15 @@ class ClientNumberChart extends ClientChart {
       .join(' ');
   }
 
+  formatNumberValue(value) {
+    if (value === "null" || value === null || value === undefined) {
+      return "0";
+    }
+  
+    const numValue = Number(value);
+    return numValue % 1 === 0 ? numValue.toString() : numValue.toFixed(2);
+  }
+
   getItemFromFilters() {
     const aggregateFilter = this.data.chartConfig.aggregates + ':';
     const aggregateFilterRegex = new RegExp('^' + this.data.chartConfig.aggregates + ':');
@@ -969,6 +1027,20 @@ class ClientNumberChart extends ClientChart {
 
   updateClientChart() {
     this.render();
+  }
+
+  handleNumberCardClick(cardElement, event) {
+    if (!this.canDrillDown()) {
+      return;
+    }
+
+    const cardIndex = parseInt(cardElement.getAttribute('data-index'));
+    const item = this.dataResult[cardIndex];
+    const drillDownData = {
+      chartId: this.data.chartConfig.id,
+      drillDownValue: item.key
+    };
+    this.drillDownStatistic(drillDownData);
   }
 }
 

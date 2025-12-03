@@ -762,6 +762,9 @@ ch.ivy.addon.portalkit.ui.jsf:
       SelectAction: Wählen Sie die Aktion
       SomeThingWentWrong: Etwas ist schief gelaufen
       Title: Dashboard-Konfiguration
+    DrillDownWidget:
+      caseDrillDown: Drilldown-Fall-Widget für {0}
+      taskDrillDown: Drilldown-Aufgaben-Widget für {0}
     EmptyFilterMessage: Kein Widget-Filter gefunden
     ExternalPageWidget: Externe Webseite
     ExternalPageWidgetIntroduction: Dieses Widget kann eine externe Webseite anzeigen.
@@ -800,6 +803,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     addField: Feld hinzufügen
     addWidget: Widget hinzufügen
     canWorkOn: Kann arbeiten an
+    caseDrillDownDashboard: Dashboard zur Fall-Detailanalyse
     caseList: Fallliste
     caseListIntroduction: Dieses Widget zeigt relevante Vorgangsinformationen entsprechend einiger definierter Parameter an
     caseWidgetInfo:
@@ -923,13 +927,14 @@ ch.ivy.addon.portalkit.ui.jsf:
     statisticChartWidget: Statistisches Diagramm
     statisticWidgets: Statistik-Widgets
     switchToViewMode: Ansichtsmodus
-    tasWidgetkInfo:
+    taskWidgetInfo:
       expireToday: Fälligkeitsdatum heute
       expiryThisWeek: Fälligkeitsdatum diese Woche
       numberOfTasks: Aufgabe(n)
       numberOfTasksByCategory: Anzahl der Aufgaben nach Kategorie
       numberOfTasksByState: Anzahl der Aufgaben nach Status
       predefinedFilters: Vordefinierte Filter
+      taskDrillDownDashboard: Dashboard zur Aufgaben-Detailanalyse
     taskList: Aufgabenliste
     taskListIntroduction: Dieses Widget zeigt relevante Aufgabeninformationen gemäß der definierten Einstellungen an
     taskStart: Aufgabe starten
@@ -1392,7 +1397,6 @@ Dialogs:
               PortalDashboardDetailModification:
                 CreateCustomStatistic: Benutzerdefiniertes Statistik-Widget erstellen
                 DeleteConfirm: Sind Sie sicher, dass Sie löschen möchten?
-                Example: Beispiel
                 RemoveThisStatistic: Diese benutzerdefinierte Statistik entfernen
               component:
                 CustomDashboardWidget:
@@ -1465,43 +1469,43 @@ Dialogs:
             AccessibilityShortcuts:
               content: |-
                 <div class="ui-g">
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Alt + 1</span>Fokus auf die Dashboards
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Alt + 5</span>Fokus auf die Suche
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Alt + A</span>Fokus auf den ersten Prozess
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Tab</span>Sequentielles Durchlaufen von Elementen
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Alt + 2</span>Fokus auf die Prozesse
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Alt + 6</span>Fokus auf die User Einstellungen
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Alt + W</span>Fokus auf die erste Aufgabe
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Esc</span>Erweiterte Widgets schließen/Kontext Menüs schließen
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Alt + 3</span>Fokus auf die Aufgaben
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Alt + 7</span>Schaltet die Sichtbarkeit des Hauptmenüs um
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Alt + Q</span>Fokus auf den ersten Fall
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Enter</span>Auswahl bestätigen
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Alt + 4</span>Fokus auf die Fälle
                     </div>
                 </div>
@@ -1582,6 +1586,9 @@ Dialogs:
             AggregationMethod: Aggregationsmethode
             AggregationMethodTooltip: Wählen Sie eine Aggregationsmethode, um Berechnungen für Ihr KPI-Feld durchzuführen - Summe, Durchschnitt, Maximum oder Minimum. Deaktiviert, wenn 'Counting' ausgewählt ist
             ChartConfiguration: Diagrammeinstellungen
+            ChartDrillDownEnabled: Drilldown in Diagrammen aktiviert
+            ChartDrillDownInfo: '<p>Es funktioniert nur, wenn der Benutzer über folgende Berechtigungen verfügt: <strong>CaseReadAll</strong> für Fälle und <strong>TaskReadAll</strong> für Aufgaben.</p>'
+            ChartDrillDownPermissions: Berechtigungen für Diagramm-Drilldowns
             ChartType: Diagrammtyp
             Color: Farbe {0}
             ConditionBasedColoring:

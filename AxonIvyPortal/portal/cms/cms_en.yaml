@@ -758,6 +758,9 @@ ch.ivy.addon.portalkit.ui.jsf:
       SelectAction: Select the action
       SomeThingWentWrong: Something went wrong
       Title: Dashboard configuration
+    DrillDownWidget:
+      caseDrillDown: Drill-down case widget for {0}
+      taskDrillDown: Drill-down task widget for {0}
     EmptyFilterMessage: No widget filter found
     ExternalPageWidget: External Page
     ExternalPageWidgetIntroduction: This widget can display an external webpage.
@@ -796,6 +799,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     addField: Add field
     addWidget: Add widget
     canWorkOn: Can work on
+    caseDrillDownDashboard: Case drill-down dashboard
     caseList: Case List
     caseListIntroduction: This widget displays relevant case information according to defined settings
     caseWidgetInfo:
@@ -919,13 +923,14 @@ ch.ivy.addon.portalkit.ui.jsf:
     statisticChartWidget: Statistic chart
     statisticWidgets: Statistic Widgets
     switchToViewMode: View Mode
-    tasWidgetkInfo:
+    taskWidgetInfo:
       expireToday: Expire today
       expiryThisWeek: Expire this week
       numberOfTasks: task(s)
       numberOfTasksByCategory: Number of tasks by category
       numberOfTasksByState: Number of tasks by state
       predefinedFilters: Predefined filters
+      taskDrillDownDashboard: Task drill-down dashboard
     taskList: Task List
     taskListIntroduction: This widget displays relevant task information according to defined settings.
     taskStart: Task start
@@ -1387,7 +1392,6 @@ Dialogs:
               PortalDashboardDetailModification:
                 CreateCustomStatistic: Create custom statistic widget
                 DeleteConfirm: Are you sure you want to delete?
-                Example: Example
                 RemoveThisStatistic: Remove this custom statistic
               component:
                 CustomDashboardWidget:
@@ -1460,43 +1464,43 @@ Dialogs:
             AccessibilityShortcuts:
               content: |-
                 <div class="ui-g">
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Alt + 1</span>Focus on to the Dashboard Tab
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Alt + 5</span>Focus on to the Search
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Alt + A</span>Focus on to the first Process
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Tab</span>Sequential tabbing through elements
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Alt + 2</span>Focus on to the Process Tab
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Alt + 6</span>Focus on to the User Settings
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Alt + W</span>Focus on to the first Task
                     </div>
-                    <div class="ui-g-3 shortcut-content">
+                    <div class="ui-g-3 shortcut-content" tabindex="1">
                         <span class="shortcut-key">Esc</span>Close expanded Widgets
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Alt + 3</span>Focus on to the Tasks Tab
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Alt + 7</span>Toggle the visibility of the main menu
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Alt + Q</span>Focus on to the first Case
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Enter</span>Confirm selection
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Alt + 4</span>Focus on to the Case Tab
                     </div>
                 </div>
@@ -1573,6 +1577,9 @@ Dialogs:
             AggregationMethod: Aggregation method
             AggregationMethodTooltip: Choose an aggregation method to perform calculations on your KPI field - Sum, Average, Max, or Min. Disabled when 'Counting' is selected
             ChartConfiguration: Chart Configuration
+            ChartDrillDownEnabled: Chart drill-down enabled
+            ChartDrillDownInfo: '<p>It only works when the user has these permissions: <strong>CaseReadAll</strong> for case and <strong>TaskReadAll</strong> for task.</p>'
+            ChartDrillDownPermissions: Chart drill-down permissions
             ChartType: Chart type
             Color: Color {0}
             ConditionBasedColoring:

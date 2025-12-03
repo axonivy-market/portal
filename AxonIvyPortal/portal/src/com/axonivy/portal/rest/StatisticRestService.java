@@ -11,7 +11,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
-import com.axonivy.portal.dto.StatisticDto;
+import com.axonivy.portal.dto.StatisticDTO;
 import com.axonivy.portal.service.StatisticService;
 
 import ch.ivy.addon.portalkit.statistics.StatisticResponse;
@@ -35,8 +35,8 @@ public class StatisticRestService {
       @ApiResponse(responseCode = "200", description = "Get chart data by Id", content = {
           @Content(mediaType = "application/json", schema = @Schema(implementation = AggregationResult.class)) }),
       @ApiResponse(responseCode = "406", description = "Invalid call") })
-  public Response getData(StatisticDto payload) {
-    if (Optional.ofNullable(payload).map(StatisticDto::getChartId).isEmpty()) {
+  public Response getData(StatisticDTO payload) {
+    if (Optional.ofNullable(payload).map(StatisticDTO::getChartId).isEmpty()) {
       return Response.status(Status.NOT_ACCEPTABLE).build();
     }
     try {
