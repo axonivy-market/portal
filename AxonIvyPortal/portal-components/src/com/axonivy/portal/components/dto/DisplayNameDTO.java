@@ -9,14 +9,13 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import ch.ivyteam.ivy.environment.Ivy;
 
 /**
- * DTO for multilingual display names supporting both locale-value pairs and CMS path references.
+ * DTO for multilingual display names supporting both locale-value pairs and CMS URI references.
  * <p>
  * <b>Usage:</b>
  * <ul>
  * <li>Locale-value pairs: {@code new DisplayNameDTO("en", "My Title")} - for user-editable content</li>
- * <li>CMS path with project: {@code DisplayNameDTO.fromCms("/Labels/MyPath", "my-project")} - for project-specific
- * CMS</li>
- * <li>CMS path current project: {@code DisplayNameDTO.fromCms("/Labels/MyPath")} - uses current process model</li>
+ * <li>CMS URI with project: {@code DisplayNameDTO.fromCms("/Processes/SideStep/ProcessName", "portal-developer-examples")} - for project-specific CMS</li>
+ * <li>CMS URI current project: {@code DisplayNameDTO.fromCms("/Processes/SideStep/ProcessName")} - uses current process model</li>
  * </ul>
  */
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
@@ -42,33 +41,33 @@ public class DisplayNameDTO implements Serializable {
   }
 
   /**
-   * Creates a CMS path reference with project context.
+   * Creates a CMS URI reference with project context.
    * 
-   * @param cmsPath the CMS path (e.g., "/Labels/MyPath")
+   * @param cmsUri the CMS URI (e.g., "/Processes/SideStep/ProcessName")
    * @param projectName the project name to locate CMS content
-   * @return DisplayNameDTO with CMS path reference
+   * @return DisplayNameDTO with CMS URI reference
    */
-  public static DisplayNameDTO fromCms(String cmsPath, String projectName) {
-    return new DisplayNameDTO(null, cmsPath, projectName);
+  public static DisplayNameDTO fromCms(String cmsUri, String projectName) {
+    return new DisplayNameDTO(null, cmsUri, projectName);
   }
 
   /**
-   * Creates a CMS path reference using current process model.
+   * Creates a CMS URI reference using current process model.
    * 
-   * @param cmsPath the CMS path (e.g., "/Labels/MyPath")
-   * @return DisplayNameDTO with CMS path reference
+   * @param cmsUri the CMS URI (e.g., "/Processes/SideStep/ProcessName")
+   * @return DisplayNameDTO with CMS URI reference
    */
-  public static DisplayNameDTO fromCms(String cmsPath) {
-    return new DisplayNameDTO(null, cmsPath, Ivy.request().getProcessModel().getName());
+  public static DisplayNameDTO fromCms(String cmsUri) {
+    return new DisplayNameDTO(null, cmsUri, Ivy.request().getProcessModel().getName());
   }
 
   /**
-   * Checks if this DTO represents a CMS path reference (vs locale-value pair).
+   * Checks if this DTO represents a CMS URI reference (vs locale-value pair).
    * 
-   * @return true if this is a CMS path reference, false if locale-value pair
+   * @return true if this is a CMS URI reference, false if locale-value pair
    */
   @JsonIgnore
-  public boolean isCmsPath() {
+  public boolean isCmsUri() {
     return locale == null;
   }
 

@@ -21,7 +21,7 @@ import ch.ivyteam.ivy.security.ISecurityContext;
  * <pre>
  * SideStepProcessDTO.builder()
  * .signal("com:axonivy:portal:developerexample:sideStepProcess")
- * .processNameCmsPath("/Processes/SideStep/AskForDetails")
+ * .processNameCmsUri("/Processes/SideStep/AskForDetails")
  * .customSecurityMemberCallable("getCustomSecurityMemberSubProcessName()")
  * .build();
  * </pre>
@@ -72,7 +72,7 @@ public class SideStepProcessDTO implements Serializable {
 
   public static class Builder {
     private String signal;
-    private String processNameCmsPath;
+    private String processNameCmsUri;
     private String cmsProjectName;
     private List<DisplayNameDTO> processNames;
     private String customSecurityMemberCallable;
@@ -100,18 +100,18 @@ public class SideStepProcessDTO implements Serializable {
     }
 
     /**
-     * Set CMS path for process name. This is mandatory.
-     * @param processNameCmsPath CMS path (e.g., "/Processes/SideStep/ProcessName")
+     * Set CMS URI for process name. This is mandatory.
+     * @param processNameCmsUri CMS URI (e.g., "/Processes/SideStep/ProcessName")
      * @return builder of {@link SideStepProcessDTO}
      */
-    public Builder processNameCmsPath(String processNameCmsPath) {
-      this.processNameCmsPath = processNameCmsPath;
+    public Builder processNameCmsUri(String processNameCmsUri) {
+      this.processNameCmsUri = processNameCmsUri;
       return this;
     }
 
 
     /**
-     * Set the project name to locate CMS paths. Optional - if not provided, CMS paths will be resolved from current
+     * Set the project name to locate CMS URIs. Optional - if not provided, CMS URIs will be resolved from current
      * project context.
      * 
      * @param cmsProjectName project name
@@ -128,7 +128,7 @@ public class SideStepProcessDTO implements Serializable {
      */
     public SideStepProcessDTO build() {
       validate();
-      this.processNames = DisplayNameUtils.createCmsDisplayName(processNameCmsPath, cmsProjectName);
+      this.processNames = DisplayNameUtils.createCmsDisplayName(processNameCmsUri, cmsProjectName);
       return new SideStepProcessDTO(this);
     }
 
@@ -136,8 +136,8 @@ public class SideStepProcessDTO implements Serializable {
       if (StringUtils.isBlank(signal)) {
         throw new IllegalArgumentException("Signal must be provided");
       }
-      if (StringUtils.isBlank(processNameCmsPath)) {
-        throw new IllegalArgumentException("Process name CMS path must be provided");
+      if (StringUtils.isBlank(processNameCmsUri)) {
+        throw new IllegalArgumentException("Process name CMS URI must be provided");
       }
     }
   }

@@ -19,14 +19,14 @@ import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.ISecurityContext;
 
 /**
- * Utility for resolving DisplayNameDTO to display text. Supports both locale-value pairs and CMS path references.
+ * Utility for resolving DisplayNameDTO to display text. Supports both locale-value pairs and CMS URI references.
  */
 public class DisplayNameUtils {
 
   private DisplayNameUtils() {}
 
   /**
-   * Resolves display text by locale. For CMS paths, uses projectName to locate the correct process model version. For
+   * Resolves display text by locale. For CMS URI, uses projectName to locate the correct process model version. For
    * locale-value pairs, finds matching locale entry.
    */
   public static String getDisplayText(List<DisplayNameDTO> displayNames, String locale) {
@@ -35,7 +35,7 @@ public class DisplayNameUtils {
     }
 
     if (isDisplayNameBasedOnCms(displayNames)) {
-      return resolveCmsPath(displayNames.get(0), locale);
+      return resolveCmsUri(displayNames.get(0), locale);
     }
 
     return displayNames.stream().filter(dn -> locale.equals(dn.getLocale())).map(DisplayNameDTO::getValue).findFirst()
@@ -50,28 +50,28 @@ public class DisplayNameUtils {
   }
 
   /**
-   * Checks if the list represents a CMS path reference.
+   * Checks if the list represents a CMS URI reference.
    */
   public static boolean isDisplayNameBasedOnCms(List<DisplayNameDTO> displayNames) {
     return ofNullable(displayNames).filter(list -> list.size() == 1).map(list -> list.get(0))
-        .map(DisplayNameDTO::isCmsPath).orElse(false);
+        .map(DisplayNameDTO::isCmsUri).orElse(false);
   }
 
   /**
-   * Creates a single-element list of DisplayNameDTO for CMS path reference.
+   * Creates a single-element list of DisplayNameDTO for CMS URI reference.
    * 
-   * @param cmsPath the CMS path (e.g., "/Labels/MyPath")
+   * @param cmsUri the CMS URI (e.g., "/Processes/SideStep/ProcessName")
    * @param projectName the project name to locate CMS content (optional)
    * @return single-element list containing the DisplayNameDTO with CMS reference
    */
-  public static List<DisplayNameDTO> createCmsDisplayName(String cmsPath, String projectName) {
+  public static List<DisplayNameDTO> createCmsDisplayName(String cmsUri, String projectName) {
     if (StringUtils.isNotBlank(projectName)) {
-      return List.of(DisplayNameDTO.fromCms(cmsPath, projectName));
+      return List.of(DisplayNameDTO.fromCms(cmsUri, projectName));
     }
-    return List.of(DisplayNameDTO.fromCms(cmsPath));
+    return List.of(DisplayNameDTO.fromCms(cmsUri));
   }
 
-  private static String resolveCmsPath(DisplayNameDTO cmsDisplayName, String locale) {
+  private static String resolveCmsUri(DisplayNameDTO cmsDisplayName, String locale) {
     String projectName = cmsDisplayName.getProjectName();
     return IApplicationRepository.of(ISecurityContext.current()).all().stream()
         .map(app -> app.findProcessModelVersion(projectName)).filter(Objects::nonNull).findFirst()
