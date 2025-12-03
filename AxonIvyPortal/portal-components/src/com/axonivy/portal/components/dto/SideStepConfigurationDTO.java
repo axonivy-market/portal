@@ -27,7 +27,7 @@ import ch.ivyteam.ivy.workflow.ITask;
  * SideStepConfigurationDTO.builder()
  * .processes({@link List} of {@link SideStepProcessDTO})
  * .isParallelSideStep(true)
- * .customParallelSideStepTitleCmsPath("/Processes/SideStep/CustomParallelTitle")
+ * .customParallelSideStepTitleCmsUri("/Processes/SideStep/CustomParallelTitle")
  * .build();
  * </pre> 
  */
@@ -96,8 +96,8 @@ public class SideStepConfigurationDTO implements Serializable {
   public static class Builder {
     private List<SideStepProcessDTO> processes;
     private Boolean isParallelSideStep;
-    private String customParallelSideStepTitleCmsPath;
-    private String customSwitchSideStepTitleCmsPath;
+    private String customParallelSideStepTitleCmsUri;
+    private String customSwitchSideStepTitleCmsUri;
     private String cmsProjectName;
     private List<DisplayNameDTO> customParallelSideStepTitles;
     private List<DisplayNameDTO> customSwitchSideStepTitles;
@@ -124,27 +124,27 @@ public class SideStepConfigurationDTO implements Serializable {
     }
 
     /**
-     * Set CMS path for custom parallel side step title. This is optional.
-     * @param customParallelSideStepTitleCmsPath CMS path (e.g., "/Processes/SideStep/CustomParallelTitle")
+     * Set CMS URI for custom parallel side step title. This is optional.
+     * @param customParallelSideStepTitleCmsUri CMS URI (e.g., "/Processes/SideStep/CustomParallelTitle")
      * @return builder for {@link SideStepConfigurationDTO}
      */
-    public Builder customParallelSideStepTitleCmsPath(String customParallelSideStepTitleCmsPath) {
-      this.customParallelSideStepTitleCmsPath = customParallelSideStepTitleCmsPath;
+    public Builder customParallelSideStepTitleCmsUri(String customParallelSideStepTitleCmsUri) {
+      this.customParallelSideStepTitleCmsUri = customParallelSideStepTitleCmsUri;
       return this;
     }
 
     /**
-     * Set CMS path for custom switch side step title. This is optional.
-     * @param customSwitchSideStepTitleCmsPath CMS path (e.g., "/Processes/SideStep/CustomSwitchTitle")
+     * Set CMS URI for custom switch side step title. This is optional.
+     * @param customSwitchSideStepTitleCmsUri CMS URI (e.g., "/Processes/SideStep/CustomSwitchTitle")
      * @return builder for {@link SideStepConfigurationDTO}
      */
-    public Builder customSwitchSideStepTitleCmsPath(String customSwitchSideStepTitleCmsPath) {
-      this.customSwitchSideStepTitleCmsPath = customSwitchSideStepTitleCmsPath;
+    public Builder customSwitchSideStepTitleCmsUri(String customSwitchSideStepTitleCmsUri) {
+      this.customSwitchSideStepTitleCmsUri = customSwitchSideStepTitleCmsUri;
       return this;
     }
 
     /**
-     * Set the project name to locate CMS paths. Optional - if not provided, CMS paths will be resolved from current
+     * Set the project name to locate CMS URIs. Optional - if not provided, CMS URIs will be resolved from current
      * project context.
      * 
      * @param cmsProjectName project name
@@ -161,13 +161,13 @@ public class SideStepConfigurationDTO implements Serializable {
      */
     public SideStepConfigurationDTO build() {
       validate();
-      if (StringUtils.isNotBlank(customParallelSideStepTitleCmsPath)) {
+      if (StringUtils.isNotBlank(customParallelSideStepTitleCmsUri)) {
         this.customParallelSideStepTitles = DisplayNameUtils.createCmsDisplayName(
-            customParallelSideStepTitleCmsPath, cmsProjectName);
+            customParallelSideStepTitleCmsUri, cmsProjectName);
       }
-      if (StringUtils.isNotBlank(customSwitchSideStepTitleCmsPath)) {
+      if (StringUtils.isNotBlank(customSwitchSideStepTitleCmsUri)) {
         this.customSwitchSideStepTitles = DisplayNameUtils.createCmsDisplayName(
-            customSwitchSideStepTitleCmsPath, cmsProjectName);
+            customSwitchSideStepTitleCmsUri, cmsProjectName);
       }
       return new SideStepConfigurationDTO(this);
     }

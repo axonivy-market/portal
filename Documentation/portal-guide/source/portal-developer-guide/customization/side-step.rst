@@ -61,15 +61,15 @@ How to Use and Set Up
 
     .. code-block:: javascript
       
-        // First configuration option - using CMS path for multilingual process names
+        // First configuration option - using CMS URI for multilingual process names
         SideStepProcessDTO dto1 = SideStepProcessDTO.builder()
-        .processNameCmsPath("/Processes/SideStep/AskMoreDetails")
+        .processNameCmsUri("/Processes/SideStep/AskMoreDetails")
         .signal("com:axonivy:portal:developerexample:sideStep:askMoreDetails")
         .build();
 
-        // Second configuration option - with project-specific CMS path
+        // Second configuration option - with project-specific CMS URI
         SideStepProcessDTO dto2 = SideStepProcessDTO.builder()
-        .processNameCmsPath("/Processes/SideStep/CEOApproval")
+        .processNameCmsUri("/Processes/SideStep/CEOApproval")
         .cmsProjectName("portal-developer-examples")  // Optional - if not provided, uses current project context
         // Set signature name of the process which defines custom users and roles in the previous step
         .customSecurityMembersCallable("getCustomSecurityMemberForSideStep()")  // Optional
@@ -91,14 +91,14 @@ How to Use and Set Up
 
     .. code-block:: javascript
 
-      // Create a SideStepConfigurationDTO object using CMS paths for multilingual titles
+      // Create a SideStepConfigurationDTO object using CMS URIs for multilingual titles
       // If the isParallelSideStep value is not defined, on the UI you will see a drop down to select
       
       SideStepConfigurationDTO sideStepConfigurationDto = SideStepConfigurationDTO.builder()
         .processes(processes)
         .isParallelSideStep(true)
-        .customParallelSideStepTitleCmsPath("/Processes/SideStep/CustomParallelTitle") // Optional
-        .customSwitchSideStepTitleCmsPath("/Processes/SideStep/CustomSwitchTitle") // Optional
+        .customParallelSideStepTitleCmsUri("/Processes/SideStep/CustomParallelTitle") // Optional
+        .customSwitchSideStepTitleCmsUri("/Processes/SideStep/CustomSwitchTitle") // Optional
         .cmsProjectName("portal-developer-examples") // Optional - if not provided, uses current project context
         .build();
 
