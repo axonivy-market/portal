@@ -71,7 +71,8 @@
       ],
       "conditionBasedColoringEnabled": false
     },
-    "conditionBasedColoringEnabled": false
+    "conditionBasedColoringEnabled": false,
+    "chartDrillDownEnabled": true
   },
   {
     "id": "12159ba721b94ea7bc4a0c5e0b4c93d0",
@@ -188,7 +189,8 @@
       ]
     },
     "defaultBackgroundColor": "#8dc261",
-    "conditionBasedColoringEnabled": false
+    "conditionBasedColoringEnabled": false,
+    "chartDrillDownEnabled": true
   },
   {
     "id": "f754970742f14a72af3f9215ac86154d",
@@ -305,7 +307,8 @@
         "#f5bf9f"
       ]
     },
-    "conditionBasedColoringEnabled": false
+    "conditionBasedColoringEnabled": false,
+    "chartDrillDownEnabled": true
   },
   {
     "id": "6b3e8ccb484648c8bbe4453cc76292d8",
@@ -422,7 +425,8 @@
         "#f5bf9f"
       ]
     },
-    "conditionBasedColoringEnabled": false
+    "conditionBasedColoringEnabled": false,
+    "chartDrillDownEnabled": true
   },
   {
     "id": "6b3340d8a61c458ba655d697469fc1b4",
@@ -537,7 +541,8 @@
         "#f5bf9f"
       ]
     },
-    "conditionBasedColoringEnabled": false
+    "conditionBasedColoringEnabled": false,
+    "chartDrillDownEnabled": true
   },
   {
     "id": "741ea4131554457e98abda979cdd1a4c",
@@ -654,7 +659,8 @@
         "#f5bf9f"
       ]
     },
-    "conditionBasedColoringEnabled": false
+    "conditionBasedColoringEnabled": false,
+    "chartDrillDownEnabled": true
   },
   {
     "id": "a7353e5b93e4466890466830a65264c5",
@@ -771,7 +777,8 @@
         "#f5bf9f"
       ]
     },
-    "conditionBasedColoringEnabled": false
+    "conditionBasedColoringEnabled": false,
+    "chartDrillDownEnabled": true
   },
   {
     "id": "5116b8b02baa408da1dff648adda024c",
@@ -889,7 +896,8 @@
       ]
     },
     "defaultBackgroundColor": "#8dc261",
-    "conditionBasedColoringEnabled": false
+    "conditionBasedColoringEnabled": false,
+    "chartDrillDownEnabled": true
   },
   {
     "id": "b4968c1cbe3d435c907026a8e7ce83e1",
@@ -962,6 +970,7 @@
       "conditionBasedColoringEnabled": false
     },
     "defaultBackgroundColor": "#8dc261",
-    "conditionBasedColoringEnabled": false
+    "conditionBasedColoringEnabled": false,
+    "chartDrillDownEnabled": true
   }
 ]
