@@ -1,6 +1,7 @@
 [
   {
     "id": "1",
+    "version": "13.1.0",
     "templateId": "default-portal-dashboard-template",
     "title": "Dashboard",
     "widgets": [
@@ -171,6 +172,7 @@
   },
   {
     "id": "cbd2622d18054be39890f27be6bc505d",
+    "version": "13.1.0",
     "templateId": "create-from-scratch",
     "title": "Test process resize",
     "widgets": [
