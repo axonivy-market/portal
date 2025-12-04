@@ -24,7 +24,7 @@ public class DisplayNameUtils {
   private DisplayNameUtils() {}
 
   /**
-   * Resolves display text. For CMS URI, uses projectName to locate the correct process model version and CMS
+   * Gets display text. For CMS URI, uses projectName to locate the correct process model version and CMS
    * automatically resolves the locale. For locale-value pairs, finds matching locale entry.
    */
   public static String getDisplayText(List<DisplayNameDTO> displayNames, String locale) {
@@ -41,7 +41,7 @@ public class DisplayNameUtils {
   }
 
   /**
-   * Resolves display text using current session locale. For CMS URI, uses projectName to locate the correct process
+   * Gets display text using current session locale. For CMS URI, uses projectName to locate the correct process
    * model version and CMS automatically resolves the locale. For locale-value pairs, finds matching locale entry.
    */
   public static String getDisplayText(List<DisplayNameDTO> displayNames) {
@@ -56,6 +56,7 @@ public class DisplayNameUtils {
    * Checks if the list represents a CMS URI reference.
    */
   public static boolean isDisplayNameBasedOnCms(List<DisplayNameDTO> displayNames) {
+    // List of display names is considered as CMS URI reference only if it contains exactly one entry which is a CMS URI.
     return ofNullable(displayNames).filter(list -> list.size() == 1).map(list -> list.get(0))
         .map(DisplayNameDTO::isCmsUri).orElse(false);
   }

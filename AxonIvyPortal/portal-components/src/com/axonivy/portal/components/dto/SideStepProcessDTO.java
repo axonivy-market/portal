@@ -100,7 +100,7 @@ public class SideStepProcessDTO implements Serializable {
     }
 
     /**
-     * Set CMS URI for process name. This is mandatory.
+     * Sets CMS URI for process name. This is mandatory.
      * @param processNameCmsUri CMS URI (e.g., "/Processes/SideStep/ProcessName")
      * @return builder of {@link SideStepProcessDTO}
      */
@@ -111,7 +111,7 @@ public class SideStepProcessDTO implements Serializable {
 
 
     /**
-     * Set the project name to locate CMS URIs. Optional - if not provided, CMS URIs will be resolved from current
+     * Sets the project name to locate CMS URIs. Optional - if not provided, CMS URIs will be resolved from current
      * project context.
      * 
      * @param cmsProjectName project name
