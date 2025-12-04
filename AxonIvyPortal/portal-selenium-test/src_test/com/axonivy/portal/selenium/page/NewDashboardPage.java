@@ -1135,4 +1135,8 @@ public class NewDashboardPage extends TemplatePage {
     $("form#navigation-dashboard-back-button").shouldBe(Condition.appear, DEFAULT_TIMEOUT).
     $("a[id$=':back-to-previous-dashboard-page']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
+  
+  public ElementsCollection collectAvailableWidgets() {
+    return $$("div.widget__header");
+  }
 }

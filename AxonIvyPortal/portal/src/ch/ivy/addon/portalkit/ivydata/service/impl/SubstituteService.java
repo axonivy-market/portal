@@ -11,6 +11,7 @@ import com.axonivy.portal.components.dto.UserDTO;
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivy.addon.portalkit.ivydata.bo.IvySubstitute;
 import ch.ivy.addon.portalkit.util.UserUtils;
+import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.security.IUserSubstitute;
@@ -126,11 +127,10 @@ public class SubstituteService{
 
   public void saveSubstitutes(UserDTO userDTO, List<IvySubstitute> ivySubstitutes) {
     Sudo.get(() -> { 
-      if (userDTO == null) {
-        return Void.class;
+     IUser user = Ivy.session().getSessionUser();
+      if (userDTO != null && null != userDTO.getName()) {
+        user = UserUtils.findUserByUsername(userDTO.getName());
       }
-
-      IUser user = UserUtils.findUserByUsername(userDTO.getName());
       deleteSubstitutes(user);
       createSubstitutes(ivySubstitutes, user);
       return Void.class;

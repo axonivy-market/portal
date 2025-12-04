@@ -15,7 +15,7 @@
   <h:outputText styleClass="ui-g-12 js-loading-expiry-task-#{widget.id}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/loading')}"/>
   <h:panelGroup id="task-expiry-statistic-#{widget.id}" layout="block" styleClass="js-statistic-expiry-task-#{widget.id} hidden">
     <div class="ui-g-8">
-      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/tasWidgetkInfo/expireToday')}" />
+      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/taskWidgetInfo/expireToday')}" />
     </div>
     <h:panelGroup styleClass="ui-g-4 text-right" id="expire-today" layout="block">
       <h:outputText styleClass="expire-today" value="#{widget.numberOfTasksExpireToday}">
@@ -26,10 +26,10 @@
       <h:outputText value="#{widget.numberOfTasksExpireToday}">
         <f:convertNumber locale="#{localeBean.locale}" />
       </h:outputText>
-      <h:outputText value=" #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/tasWidgetkInfo/numberOfTasks')}" />
+      <h:outputText value=" #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/taskWidgetInfo/numberOfTasks')}" />
     </p:tooltip>
     <div class="ui-g-8">
-      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/tasWidgetkInfo/expiryThisWeek')}" />
+      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/taskWidgetInfo/expiryThisWeek')}" />
     </div>
     <h:panelGroup styleClass="ui-g-4 text-right" id="expire-this-week" layout="block">
       <h:outputText styleClass="expire-this-week" value="#{widget.numberOfTasksExpireThisWeek}">
@@ -40,7 +40,7 @@
       <h:outputText value="#{widget.numberOfTasksExpireThisWeek}">
         <f:convertNumber locale="#{localeBean.locale}" />
       </h:outputText>
-      <h:outputText value=" #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/tasWidgetkInfo/numberOfTasks')}"/>
+      <h:outputText value=" #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/taskWidgetInfo/numberOfTasks')}"/>
     </p:tooltip>
   </h:panelGroup>
 
@@ -60,7 +60,7 @@
     update="task-states-statistic-#{widget.id}"
     oncomplete="loadWidgetFirstTime('js-loading-task-states-#{widget.id}', 'js-statistic-task-states-#{widget.id}');"/>
   <f:facet name="title">
-    <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/tasWidgetkInfo/numberOfTasksByState')}" />
+    <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/taskWidgetInfo/numberOfTasksByState')}" />
   </f:facet>
   <h:outputText styleClass="ui-g-12 js-loading-task-states-#{widget.id}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/loading')}"/>
   <h:panelGroup id="task-states-statistic-#{widget.id}" layout="block" styleClass="js-statistic-task-states-#{widget.id} hidden">
@@ -74,11 +74,11 @@
           <f:convertNumber locale="#{localeBean.locale}" />
         </h:outputText>
       </h:panelGroup>
-      <p:tooltip for="tasks-by-state" value="#{entry.value} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/tasWidgetkInfo/numberOfTasks')}" trackMouse="true">
+      <p:tooltip for="tasks-by-state" value="#{entry.value} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/taskWidgetInfo/numberOfTasks')}" trackMouse="true">
         <h:outputText value="#{entry.value}">
           <f:convertNumber locale="#{localeBean.locale}" />
         </h:outputText>
-        <h:outputText value=" #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/tasWidgetkInfo/numberOfTasks')}"/>
+        <h:outputText value=" #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/taskWidgetInfo/numberOfTasks')}"/>
       </p:tooltip>
     </ui:repeat>
   </h:panelGroup>
@@ -91,7 +91,7 @@
     update="task-category-statistic-#{widget.id}"
     oncomplete="loadWidgetFirstTime('js-loading-task-category-#{widget.id}', 'js-statistic-task-category-#{widget.id}');"/>
   <f:facet name="title">
-    <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/tasWidgetkInfo/numberOfTasksByCategory')}" />
+    <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/taskWidgetInfo/numberOfTasksByCategory')}" />
   </f:facet>
   <h:outputText styleClass="ui-g-12 js-loading-task-category-#{widget.id}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/loading')}"/>
   <h:panelGroup id="task-category-statistic-#{widget.id}" layout="block" styleClass="js-statistic-task-category-#{widget.id} hidden">
@@ -111,7 +111,7 @@
           <h:outputText value="#{entry.summary}">
             <f:convertNumber locale="#{localeBean.locale}" />
           </h:outputText>
-          <h:outputText value=" #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/tasWidgetkInfo/numberOfTasks')}" />
+          <h:outputText value=" #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/taskWidgetInfo/numberOfTasks')}" />
         </p:tooltip>
       </ui:repeat>
     </div>

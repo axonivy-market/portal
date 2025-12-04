@@ -26,7 +26,8 @@ public class WidgetResponsibleFilterBean implements Serializable {
   public static final String FILTER = "filter";
 
   private static List<FilterOperator> operators = FilterOperator.RESPONSIBLE_OPERATORS.stream().toList();
-
+  private static List<FilterOperator> statisticOperators = FilterOperator.STATISTIC_RESPONSIBLE_OPERATORS.stream().toList();
+  
   private List<SecurityMemberDTO> selectedResponsibles;
 
   public void init(BaseFilter filter) {
@@ -38,6 +39,10 @@ public class WidgetResponsibleFilterBean implements Serializable {
 
   public List<FilterOperator> getOperators() {
     return operators;
+  }
+  
+  public List<FilterOperator> getStatisticOperators() {
+    return statisticOperators;
   }
 
   public void onChangeOperator(BaseFilter filter) {

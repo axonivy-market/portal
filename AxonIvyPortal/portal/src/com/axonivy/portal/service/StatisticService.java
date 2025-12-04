@@ -1,6 +1,7 @@
 package com.axonivy.portal.service;
 
 import static com.axonivy.portal.bean.StatisticConfigurationBean.DEFAULT_COLORS;
+import static com.axonivy.portal.enums.statistic.ChartTarget.CASE;
 
 import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
@@ -22,7 +23,8 @@ import com.axonivy.portal.bo.PieChartConfig;
 import com.axonivy.portal.bo.Statistic;
 import com.axonivy.portal.bo.StatisticAggregation;
 import com.axonivy.portal.constant.StatisticConstants;
-import com.axonivy.portal.dto.StatisticDto;
+import com.axonivy.portal.dto.StatisticDrillDownDTO;
+import com.axonivy.portal.dto.StatisticDTO;
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 import com.axonivy.portal.enums.AdditionalChartConfig;
 import com.axonivy.portal.enums.statistic.AggregationField;
@@ -72,7 +74,7 @@ public class StatisticService {
    * @return Ivy statistic data from ElasticSearch
    * @throws NotFoundException
    */
-  public StatisticResponse getStatisticData(StatisticDto payload)
+  public StatisticResponse getStatisticData(StatisticDTO payload)
       throws NotFoundException {
     Statistic chart = findByStatisticId(payload.getChartId());
     validateChart(payload.getChartId(), chart);
@@ -107,9 +109,10 @@ public class StatisticService {
       }
       FilterField filterField = ChartTarget.TASK == chartTarget
           ? TaskFilterFieldFactory.findBy(statisticFilter.getField(), statisticFilter.getFilterType())
-          : CaseFilterFieldFactory.findBy(statisticFilter.getField(), statisticFilter.getFilterType());      
+          : CaseFilterFieldFactory.findBy(statisticFilter.getField(), statisticFilter.getFilterType());
 
       if (filterField != null) {
+        filterField.initFilter(statisticFilter);
         String filterQuery = ChartTarget.TASK == chartTarget 
             ? filterField.generateTaskFilter(statisticFilter)
             : filterField.generateCaseFilter(statisticFilter);
@@ -139,11 +142,15 @@ public class StatisticService {
       filter = chart.getFilter();
     }
 
-    return switch (chart.getChartTarget()) {
-      case CASE -> WorkflowStats.current().caze().aggregate(aggregates, filter);
-      case TASK ->  WorkflowStats.current().task().aggregate(aggregates, filter);
-      default -> throw new PortalException("Cannot parse chartTarget " + chart.getChartTarget());
-    };
+    switch (chart.getChartTarget()) {
+      case CASE:
+        filter = StringUtils.isBlank(filter) ? "isBusinessCase:true" : "isBusinessCase:true," + filter;
+        return WorkflowStats.current().caze().aggregate(aggregates, filter);
+      case TASK:
+        return WorkflowStats.current().task().aggregate(aggregates, filter);
+      default:
+        throw new PortalException("Cannot parse chartTarget " + chart.getChartTarget());
+    }
   }
   
   public List<Entry<String, String>> getAdditionalConfig() {
@@ -181,7 +188,7 @@ public class StatisticService {
   }
 
   public void saveJsonToVariable(List<Statistic> statistics) {
-    String statisticsJson = BusinessEntityConverter.entityToJsonValue(statistics);
+    String statisticsJson = BusinessEntityConverter.entityToJsonValueExcludeInternalView(statistics);
     Ivy.var().set(CUSTOM_STATISTIC_KEY, statisticsJson);
   }
 
@@ -298,5 +305,22 @@ public class StatisticService {
     default -> field;
     };
   }
-  
+
+  public void createDrillDownDashboard(String drillDownDataJson) {
+    if (StringUtils.isBlank(drillDownDataJson)) {
+      return;
+    }
+    StatisticDrillDownDTO drillDownData =
+        BusinessEntityConverter.jsonValueToEntity(drillDownDataJson, StatisticDrillDownDTO.class);
+    Statistic statistic = findByStatisticId(drillDownData.getChartId());
+    validateChart(drillDownData.getChartId(), statistic);
+    AbstractDrillDownService drillDownService;
+    if (CASE == statistic.getChartTarget()) {
+      drillDownService = CaseDrillDownService.getInstance();
+    } else {
+      drillDownService = TaskDrillDownService.getInstance();
+    }
+    drillDownService.createDrillDownDashboardInSession(statistic, drillDownData.getDrillDownValue());
+  }
+
 }

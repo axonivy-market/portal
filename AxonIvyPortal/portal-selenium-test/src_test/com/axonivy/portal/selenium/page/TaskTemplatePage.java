@@ -4,6 +4,7 @@ import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Condition.disappear;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.stream.IntStream;
 
@@ -14,6 +15,7 @@ import org.openqa.selenium.WebElement;
 import com.axonivy.portal.selenium.common.NavigationHelper;
 import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.CollectionCondition;
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 
@@ -70,6 +72,7 @@ public class TaskTemplatePage extends TemplatePage {
   }
 
   public void clickActionButton() {
+    driver.switchTo().defaultContent();
     $("[id='horizontal-task-actions']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     $("div[id$='horizontal-task-action-form:horizontal-task-action-menu']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
@@ -201,7 +204,7 @@ public class TaskTemplatePage extends TemplatePage {
     waitForElementDisplayed(By.cssSelector("[id$=':horizontal-task-action-menu']"), true);
   }
 
-  public void startSideStep() {
+  public void startCaseMapSideStep() {
     String actionPanelId = "horizontal-task-action-form:horizontal-task-action-menu";
     waitForElementDisplayed(By.id(actionPanelId), true);
     clickByJavaScript($(By.className("side-step-item")));
@@ -223,6 +226,12 @@ public class TaskTemplatePage extends TemplatePage {
 
   public NewDashboardPage clickSubmitButton() {
     clickOnSubmitButton();
+    return new NewDashboardPage();
+  }
+  
+  public NewDashboardPage clickReserveButton() {
+    clickByJavaScript($("button[id$=':reserve-task-button']"));
+    switchBackToParent();
     return new NewDashboardPage();
   }
 
@@ -269,6 +278,88 @@ public class TaskTemplatePage extends TemplatePage {
     waitForElementClickableThenClick("[id$='form:go-to-case-detail']");
     waitForPageLoad();
     return new CaseDetailsPage();
+  }
+  
+  public void startSideStep() {
+    clickByJavaScript($("a[id$='horizontal-task-action-form:side-steps-process']"));
+    $("button[id='side-step-process-submit-button']").shouldBe(clickable(), DEFAULT_TIMEOUT);
+  }
+
+  public void inputSideStepInfoTaskLevel() {
+    $("div[id='side-step-process-form:side-step-process-select']").click();
+    $("ul[id='side-step-process-form:side-step-process-select_items']").$$("li").filter(Condition.text("Side step: Ask for more details")).first().click();
+
+
+    $("input[id$=':assignee_input']").shouldBe(clickable(), DEFAULT_TIMEOUT).click();
+    $("input[id$=':assignee_input']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).clear();
+    $("input[id$=':assignee_input']").sendKeys("Portal Demo User");
+    ElementsCollection selectionItems = $("span[id$=':assignee_panel']")
+        .shouldBe(Condition.appear, DEFAULT_TIMEOUT).findAll(".ui-autocomplete-item");
+    selectionItems.get(0).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+
+
+    $("div[id='side-step-process-form:step-type']").click();
+    $("ul[id='side-step-process-form:step-type_items']").$$("li").filter(Condition.text("Start a background task (parallel)")).first().click();
+
+    $("button[id='side-step-process-submit-button']").click();
+  }
+
+  public void inputSideStepInfoCaseLevel(int numberOfConfig) {
+    $("div[id='side-step-process-form:side-step-process-select']").click();
+    assertEquals($("ul[id='side-step-process-form:side-step-process-select_items']").$$("li").size(), numberOfConfig);
+
+    $("ul[id='side-step-process-form:side-step-process-select_items']").$$("li").filter(Condition.text("Side step: CEO Approval")).first().click();
+
+
+    $("input[id$=':assignee_input']").shouldBe(clickable(), DEFAULT_TIMEOUT).click();
+    $("input[id$=':assignee_input']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).clear();
+    $("input[id$=':assignee_input']").sendKeys("Portal Admin User");
+    ElementsCollection selectionItems = $("span[id$=':assignee_panel']")
+        .shouldBe(Condition.appear, DEFAULT_TIMEOUT).findAll(".ui-autocomplete-item");
+    selectionItems.get(0).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+
+    $("div[id='side-step-process-form:step-type']").shouldBe(Condition.clickable, DEFAULT_TIMEOUT).click();
+    $("ul[id='side-step-process-form:step-type_items']").$$("li").filter(Condition.text("Custom parallel title")).first().click();
+
+    $("button[id='side-step-process-submit-button']").click();
+  }
+
+  public void approveLeaveRequest() {
+    driver.switchTo().frame("iFrame");
+
+    waitForElementDisplayed(By.id("leave-request:approver-comment"), true);
+    $("textarea[id$='leave-request:approver-comment']").sendKeys("It's OK");
+    waitForElementDisplayed(By.id("leave-request:approved-btn"), true);
+    clickByJavaScript($(By.id("leave-request:approved-btn")));
+
+    driver.switchTo().defaultContent();
+  }
+
+  public int getNumberOfConfigForSideStep() {
+    $("div[id='side-step-process-form:side-step-process-select']").click();
+    return $("ul[id='side-step-process-form:side-step-process-select_items']").$$("li").size();
+  }
+
+  public void inputLeaveRequestInfo() {
+    driver.switchTo().frame("iFrame");
+
+    $("div[id='leave-request:approver']").shouldBe(clickable(), DEFAULT_TIMEOUT).click();
+    $("ul[id='leave-request:approver_items']").$$("li").filter(Condition.text("Portal Admin User")).first().click();
+
+    $("div[id='leave-request:leave-type']").shouldBe(clickable(), DEFAULT_TIMEOUT).click();
+    $("ul[id='leave-request:leave-type_items']").$$("li").filter(Condition.text("Maternity Leave")).first().click();
+
+    $("textarea[id='leave-request:requester-comment']").sendKeys("Requester comment");
+    $("button[id='leave-request:button-submit']").click();
+    driver.switchTo().defaultContent();
+  }
+
+  public WebElement getSideStepConfigDialog() {
+    return $("div[id='side-step-process-dialog']");
+  }
+
+  public WebElement getSideStepMenu() {
+    return $("div[id='horizontal-task-action-form:horizontal-task-action-menu']");
   }
 
 }

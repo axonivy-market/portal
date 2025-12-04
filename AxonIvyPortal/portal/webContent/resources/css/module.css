@@ -623,7 +623,7 @@ span.case-details-document-add-link, span.task-details-document-add-link {
 }
 
 .action-steps-panel {
-  max-width: 220px;
+  white-space: nowrap;
 }
 
 .action-steps-panel .action-icon {
@@ -640,7 +640,11 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   box-sizing: content-box;
   text-align: left;
   color: var(--text-color);
-  min-width: 160px;
+  min-width: 260px;
+}
+
+.action-steps-panel.ui-menu{
+  width: auto;
 }
 
 .case-detail-header {
@@ -5173,9 +5177,9 @@ body.light .image-process-container .image-process-item .card-item.card.image-wi
     bottom: 0 !important;
     padding-bottom: 0 !important;
   }
-
-  .image-process-item .card.image-widget-mode .process-name {
-    padding: 0.6rem 0.6rem !important;
+  
+  .image-view-form .process-name {
+    height: 35%;
   }
 }
 
@@ -5743,7 +5747,7 @@ a.dashboard-action-container label {
   border-radius: 50%;
 }
 
-.ui-external-link-preview-image-panel, .ui-dashboard-upload-file-panel {
+.ui-external-link-preview-image-panel, .ui-dashboard-upload-file-panel, .ui-navigation-widget-preview-image-panel {
   width: 100%;
   border: 1px solid var(--process-list-item-border-color);
   background-color: var(--process-list-item-background-color);
@@ -5763,7 +5767,10 @@ a.dashboard-action-container label {
   display: flex;
 }
 
-.ui-external-link-preview-image-panel > .ui-external-link-preview-image-label, .ui-dashboard-upload-file-panel > .ui-dashboard-upload-file-label, .ui-document-upload-file-panel > .ui-document-upload-file-label {
+.ui-external-link-preview-image-panel > .ui-external-link-preview-image-label, 
+.ui-dashboard-upload-file-panel > .ui-dashboard-upload-file-label, 
+.ui-document-upload-file-panel > .ui-document-upload-file-label,
+.ui-navigation-widget-preview-image-panel > .ui-navigation-widget-preview-image-label {
   width: 42%;
   display: block;
   text-align: center;
@@ -5772,7 +5779,10 @@ a.dashboard-action-container label {
   top: 12px;
 }
 
-.ui-external-link-preview-image-label > #ui-external-link-preview-image-icon, .ui-dashboard-upload-file-label > #ui-dashboard-upload-file-icon,  .ui-document-upload-file-label > #ui-document-upload-file-icon {
+.ui-external-link-preview-image-label > #ui-external-link-preview-image-icon, 
+.ui-dashboard-upload-file-label > #ui-dashboard-upload-file-icon,  
+.ui-document-upload-file-label > #ui-document-upload-file-icon,
+.ui-navigation-widget-preview-image-label > #ui-navigation-widget-preview-image-icon {
   width: 100%;
   font-size: 2em;
   top: -20px;
