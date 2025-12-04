@@ -51,7 +51,7 @@ Portal handles this with the ``Portal.Chat.MaxConnection`` setting (default: 3):
 
 **Tomcat Valve Configuration**
 
-If your system uses an additional Tomcat **Valve**, add ``asyncSupported`` in ``Context.xml``. See :dev-url:`File Reference </doc/12.0/engine-guide/configuration/files/context-xml.html>` for details.
+If your system uses an additional Tomcat **Valve**, add ``asyncSupported`` in ``Context.xml``. See :doc-url:`File Reference </engine-guide/configuration/files/context-xml.html>` for details.
 
 .. code-block:: xml
 
