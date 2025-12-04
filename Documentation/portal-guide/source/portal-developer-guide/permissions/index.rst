@@ -360,11 +360,15 @@ General permissions for dashboards, documents, lists, roles, and Portal features
     - Create and modify public (shared) dashboards
     - Typically restricted to administrators or dashboard managers
 
+.. _DashboardExportOwn:
+
 - _`DashboardExportOwn`
 
   :bdg-ref-warning:`🔑DashboardExportOwn <DashboardExportOwn>`
     - Export private dashboards to JSON files
     - Allows backup and sharing of personal dashboard configurations
+
+.. _DashboardExportPublic:
 
 - _`DashboardExportPublic`
 
@@ -372,17 +376,23 @@ General permissions for dashboards, documents, lists, roles, and Portal features
     - Export public dashboards to JSON files
     - Typically restricted to administrators
 
+.. _DashboardImportOwn:
+
 - _`DashboardImportOwn`
 
   :bdg-ref-warning:`🔑DashboardImportOwn <DashboardImportOwn>`
     - Import private dashboards from JSON files
     - Allows restoring or applying dashboard templates
 
+.. _DashboardImportPublic:
+
 - _`DashboardImportPublic`
 
   :bdg-ref-warning:`🔑DashboardImportPublic <DashboardImportPublic>`
     - Import public dashboards from JSON files
     - Typically restricted to administrators
+
+.. _ShareDashboardLink:
 
 - _`ShareDashboardLink`
 
@@ -419,6 +429,8 @@ General permissions for dashboards, documents, lists, roles, and Portal features
     - View all roles in the system
     - Required for role selection in various features
     - Granted to role Everybody by default
+
+.. _RoleManagement:
 
 - _`RoleManagement`
 
@@ -459,6 +471,8 @@ General permissions for dashboards, documents, lists, roles, and Portal features
     - View "Show more" option to expand long notes
     - Granted to role Everybody by default
 
+.. _NoteReadAllCaseTaskDetails:
+
 - _`NoteReadAllCaseTaskDetails`
 
   :bdg-ref-warning:`🔑NoteReadAllCaseTaskDetails <NoteReadAllCaseTaskDetails>`
@@ -475,17 +489,23 @@ General permissions for dashboards, documents, lists, roles, and Portal features
     - Access Role Management tab in Admin Settings
     - See dynamic role configuration and management
 
+.. _NewsManagement:
+
 - _`NewsManagement`
 
   :bdg-ref-warning:`🔑NewsManagement <NewsManagement>`
     - Manage News widget content on dashboards
     - Create, edit, and delete news items
 
+.. _PasswordValidation:
+
 - _`PasswordValidation`
 
   :bdg-ref-warning:`🔑PasswordValidation <PasswordValidation>`
     - Access Password Validation settings in Admin Settings
     - Configure password complexity requirements
+
+.. _NotificationChannelsSetting:
 
 - _`NotificationChannelsSetting`
 
@@ -504,44 +524,6 @@ General permissions for dashboards, documents, lists, roles, and Portal features
     - Useful for sharing processes with external systems
 
 .. _permission-absence-substitute:
-
-.. _portal-absence-and-sub-permission:
-
-- _`RoleManagement`
-    - Permission to access the Role Management tab
-
-- _`NewsManagement`
-    - Permission to manage the content of the News feed
-
-- _`PasswordValidation`
-    - Permission to access the Password Validation section in the Admin Settings page
-
-- _`DashboardExportOwn`
-    - Permission to export private dashboards
-
-- _`DashboardExportPublic`
-    - Permission to export public dashboards
-
-- _`DashboardImportOwn`
-    - Permission to import private dashboards
-
-- _`DashboardImportPublic`
-    - Permission to import public dashboards
-
-- _`ShareDashboardLink`
-    - Permission to share dashboard links
-
-    - Granted to role Everybody by default
-
-- _`NotificationChannelsSetting`
-    - Permission to customize notification channel preferences in :ref:`my-profile` page
-
-    - Granted to role Everybody by default.
-    
-_`NoteReadAllCaseTaskDetails`
-    - Permission allows users to view system notes in case and task details
-    
-.. _portal-absence-and-sub-permission:
 
 Portal Absence And Substitute Permissions
 -----------------------------------------
