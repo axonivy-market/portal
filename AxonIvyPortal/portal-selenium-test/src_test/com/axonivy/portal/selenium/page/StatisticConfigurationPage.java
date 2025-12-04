@@ -113,6 +113,10 @@ public class StatisticConfigurationPage extends TemplatePage {
   public void autoRefeshToggleVisible() {
     $("div[id$='config-form:refresh-interval-enabled']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
+  
+  public void toggleAutoRefresh() {
+    $("div[id$='config-form:refresh-interval-enabled']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
+  }
 
   public void hideLabelVisible() {
     $("div[id$='config-form:hide-label']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
