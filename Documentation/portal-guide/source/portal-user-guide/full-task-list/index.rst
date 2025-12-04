@@ -62,19 +62,19 @@ At the end of each row you find the `Actions` menu with the following options:
    +===========================+===============================================================+
    | **Details**               | View full task information                                    |
    +---------------------------+---------------------------------------------------------------+
-   | **Reset Task**            | Revert the task to its initial state                          |
+   | **Reset Task**            | Read the task to its initial state                            |
    +---------------------------+---------------------------------------------------------------+
    | **Delegate Task**         | Assign the task to another user or role                       |
    +---------------------------+---------------------------------------------------------------+
    | **Reserve**               | Reserve the task for yourself                                 |
    +---------------------------+---------------------------------------------------------------+
-   | **Destroy**               | Permanently remove the task                                   |
+   | **Destroy**               | Destroy the task                                              |
    +---------------------------+---------------------------------------------------------------+
    | **Trigger Escalation**    | Manually trigger task escalation                              |
    +---------------------------+---------------------------------------------------------------+
    | **Custom Fields**         | View task custom fields                                       |
    +---------------------------+---------------------------------------------------------------+
-   | **Workflow Events**       | View and manage workflow events                               |
+   | **Workflow Events**       | View workflow events                                          |
    +---------------------------+---------------------------------------------------------------+
    | **Process Viewer**        | Visual representation of the process flow                     |
    +---------------------------+---------------------------------------------------------------+
@@ -100,11 +100,6 @@ The task details page is organized into four main sections:
    +---------------------------+---------------------------------------------------------------+
    | **Documents**             | Attached files with add, delete, rename, preview options      |
    +---------------------------+---------------------------------------------------------------+
-
-Detailed Sections
------------------
-
-The task details are separated into 4 different sections:
 
 #. Task status banner to display information that needs attention or that you should take action on.
 
@@ -225,7 +220,7 @@ HowTo: Preview a Document of a Task
    - **Default**: Images (jpg, jpeg, bmp, png), plain text (txt, log), and PDF documents
    - **With DocFactory**: Word (doc, docx), Excel (xls, xlsx), and email (eml) files
    
-   Enable this feature by setting :ref:`Portal settings <update-portal-settings>` :guilabel:`Portal.Document.EnablePreview` to true. 
+   To enable this feature, set :ref:`Portal settings <update-portal-settings>` :guilabel:`Portal.Document.EnablePreview` to true. 
    For Office documents, deploy :dev-url:`DocFactory <https://market.axonivy.com/doc-factory#tab-description>` in the same security context.
 
 

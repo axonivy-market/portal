@@ -30,7 +30,7 @@ Available Menu Options
    +-------------------------------+---------------------------------------------------------------+
    | Menu Option                   | Description                                                   |
    +===============================+===============================================================+
-   | **Admin Settings**            | Portal administration (requires AXONIVY_PORTAL_ADMIN role)    |
+   | **Admin Settings**            | Portal administration (``AXONIVY_PORTAL_ADMIN`` role)         |
    +-------------------------------+---------------------------------------------------------------+
    | **My Profile**                | General settings, language, and notifications                 |
    +-------------------------------+---------------------------------------------------------------+

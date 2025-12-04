@@ -46,8 +46,8 @@ To access the full set of case data, click on the case Name/Description.
 
 |case-details|
 
-Case Details Overview
-=====================
+Case Details
+============
 
 The case details page is organized into four main sections:
 
@@ -65,11 +65,6 @@ The case details page is organized into four main sections:
    +----------------------------------+---------------------------------------------------------------+
    | **Documents**                    | Attached files with add, delete, rename, preview options      |
    +----------------------------------+---------------------------------------------------------------+
-
-Detailed Sections
------------------
-
-The case details are separated into four different sections:
 
 #. Data and Description: Contain various metadata of the case and its description.
 

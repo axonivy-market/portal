@@ -31,7 +31,7 @@ Your company may have defined standard layouts and available widgets.
    +-------------------------------+------------------------------------------------------------+
    | **Case List**                 | Track and monitor case progress and details                |
    +-------------------------------+------------------------------------------------------------+
-   | **Process List**              | Access and start available processes (multiple formats)    |
+   | **Process List**              | Access and start available processes                       |
    +-------------------------------+------------------------------------------------------------+
    | **Process Viewer**            | Visual representation of process flows                     |
    +-------------------------------+------------------------------------------------------------+
@@ -72,9 +72,11 @@ Customizing Your Dashboard
    **Dashboard Configuration** menu item in the user menu. These permissions allow you to add, edit, reorder, 
    show, and hide private or public dashboards.
 
+
 If you have the required permissions, you can personalize your dashboard layout by:
 
 #. Accessing **Dashboard Configuration** from the user menu to enter configuration mode.
+
 |edit-widget|
 
 In configuration mode, you can:
@@ -110,20 +112,14 @@ The following sections describe each widget type and its configuration options i
 Task list widget
 ================
 
-The Task list widget displays tasks with full flexibility over what you see and how it's presented.
+Adding a task list widget will give you total flexibility about what you want to
+see and how.
 
 |task-list-widget|
 
-Configuration Options
----------------------
-
-In the widget configuration panel, you can:
-
-- Define the widget title
-- Enable/disable quick search function
-- Show/hide widget information and fullscreen mode icons
-- Manage columns and filters
-- Set default sort order by clicking column headers
+On the widget configuration panel, you can define the widget name, enable the
+quick search function, show or hide the widget information and fullscreen
+mode icons, manage columns and filters, edit the default sort order of the table columns by clicking on the column headers.
 
 **Filters panel**
 
@@ -155,7 +151,7 @@ In the column management dialog, you find two sections to configure the table co
 
   .. important::
 
-    The Quick search feature is supporting these fields:
+    Quick search feature is supporting these fields:
 
       #. Standard fields: Id, name, description, category, responsible (display name), and application.
       #. Task custom fields: fields that have type ``STRING`` or ``TEXT``.
@@ -376,7 +372,7 @@ You can define a news feed widget to display all news entries to the user
 
 If the user has permission, then the user can:
 
-- **Add news message**:  add a new entry for the news feed by clicking :guilabel:`Add News`: button.
+- **Add news message**: add a new entry for the news feed by clicking :guilabel:`Add News` button.
 
 - **Edit news message**: edit an existing entry for the list by clicking on the |edit-icon| icon in the lower right corner of each entry.
 

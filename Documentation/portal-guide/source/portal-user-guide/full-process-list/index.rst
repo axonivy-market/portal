@@ -79,8 +79,9 @@ be re-directed to the **Dashboard**, not to the :guilabel:`Full Process List`.
 
 .. _values_of_default_image:
 
-Values of Portal Setting **Portal.Processes.DefaultImage**
-----------------------------------------------------------
+Values of Portal Setting Portal.Processes.DefaultImage
+------------------------------------------------------
+
 #. You could refer to project ``portal-developer-examples`` for examples.
 #. Start Process ``PhotoLibraryOfDefaultProcessImageExample``
 
@@ -150,7 +151,7 @@ HowTo: Edit Process Icon in Image Mode
 |edit-process-icon-dialog|
 
 Process Information
--------------------
+===================
 
 The **Process Information** page shows you information about the selected process.
 Besides basic information such as process name and description, you can see
@@ -160,7 +161,7 @@ Process steps are a list of steps you will perform once you start the process.
 These process steps are defined by the process developer.
 
 Basic Information
-^^^^^^^^^^^^^^^^^
+------------------
 
 The **Process Information** page shows you basic information of the selected process such as process name and description, and detailed information in the form of process steps.
 
@@ -175,7 +176,7 @@ The **Process Information** page shows you basic information of the selected pro
   |process-overview-link|
 
 Process Steps
-^^^^^^^^^^^^^
+-------------
 
 |process-information|
 
