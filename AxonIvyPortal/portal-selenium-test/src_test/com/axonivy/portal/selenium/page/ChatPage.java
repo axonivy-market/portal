@@ -14,7 +14,6 @@ import org.openqa.selenium.WebElement;
 
 import com.axonivy.portal.selenium.common.Responsible;
 import com.axonivy.portal.selenium.common.WaitHelper;
-import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 
@@ -26,8 +25,12 @@ public class ChatPage extends TemplatePage {
   }
 
   public void openFirstGroupChat() {
+    $(".chat-panel")
+      .shouldNotHave(Condition.cssValue("visibility", "hidden"), DEFAULT_TIMEOUT);
+
     ElementsCollection chatNames =
-        $$(".js-group-card-name").shouldHave(CollectionCondition.sizeGreaterThan(0), DEFAULT_TIMEOUT);
+        $("[id='chat-form:group-chat-container']").shouldNotHave(Condition.cssValue("visibility", "hidden"), DEFAULT_TIMEOUT)
+        .$$(".js-group-card-name");
     if (!chatNames.isEmpty()) {
       chatNames.get(0).shouldBe(appear, DEFAULT_TIMEOUT).click();
     }
