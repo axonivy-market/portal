@@ -60,9 +60,6 @@ public class ChatScreenshotTest extends ScreenshotBaseTest {
     taskTemplatePage.clickReserveButton();
     newDashboardPage = new NewDashboardPage();
     ChatPage chatPage = newDashboardPage.openChatDialog();
-    if (!chatPage.isChatPanelVisible()) {
-      newDashboardPage.openChatDialog();
-    }
     chatPage.openFirstGroupChat();
     ScreenshotUtils.resizeBrowser(new Dimension(1200, 800));
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.CHAT_FOLDER + "chat");

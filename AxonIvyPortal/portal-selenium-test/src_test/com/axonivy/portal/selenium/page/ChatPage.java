@@ -14,6 +14,7 @@ import org.openqa.selenium.WebElement;
 
 import com.axonivy.portal.selenium.common.Responsible;
 import com.axonivy.portal.selenium.common.WaitHelper;
+import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 
@@ -26,7 +27,8 @@ public class ChatPage extends TemplatePage {
 
   public void openFirstGroupChat() {
     ElementsCollection chatNames =
-        $("[id='chat-form:group-chat-container']").shouldBe(appear, DEFAULT_TIMEOUT).$$(".js-group-card-name");
+        $("[id='chat-form:group-chat-container']").shouldBe(appear, DEFAULT_TIMEOUT)
+        .$$(".js-group-card-name").shouldHave(CollectionCondition.sizeGreaterThan(0), DEFAULT_TIMEOUT);
     if (!chatNames.isEmpty()) {
       chatNames.get(0).shouldBe(appear, DEFAULT_TIMEOUT).click();
     }
@@ -104,9 +106,5 @@ public class ChatPage extends TemplatePage {
   public void selectChatUser(String name) {
     waitForElementDisplayed(By.xpath("//span[text()='" + name + "']"), true);
     waitForElementClickableThenClick(By.xpath("//span[text()='" + name + "']"));
-  }
-
-  public boolean isChatPanelVisible() {
-    return !$("[id='chat-form:group-chat-container']").has(Condition.cssValue("visibility", "hidden"));
   }
 }
