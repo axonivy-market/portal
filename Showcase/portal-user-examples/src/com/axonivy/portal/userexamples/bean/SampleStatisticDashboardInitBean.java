@@ -34,14 +34,14 @@ public class SampleStatisticDashboardInitBean extends AbstractProcessStartEventB
   }
 
   private static void initSampleDashboards() {
-    String sampleDashboardsJson = Ivy.var().get(PortalUserExamplesVariable.SAMPLE_DASHBOARD_KEY.key);
+    String sampleDashboardsJson = Ivy.var().get(PortalUserExamplesVariable.SAMPLE_DASHBOARD_KEY.getKey());
     String portalDashboardsJson = Ivy.var().get(PortalVariable.DASHBOARD.key);
     String combinedDashboard = JsonUtils.mergeJsonArrays(portalDashboardsJson, sampleDashboardsJson);
     Ivy.var().set(PortalVariable.DASHBOARD.key, combinedDashboard);
   }
 
   private static void initSampleStatistics() {
-    String sampleStatisticJson = Ivy.var().get(PortalUserExamplesVariable.SAMPLE_STATISTIC_KEY.key);
+    String sampleStatisticJson = Ivy.var().get(PortalUserExamplesVariable.SAMPLE_STATISTIC_KEY.getKey());
     String portalStatisticJson = Ivy.var().get(PORTAL_CUSTOM_STATISTIC_KEY);
     String combinedStatistic = JsonUtils.mergeJsonArrays(portalStatisticJson, sampleStatisticJson);
     Ivy.var().set(PORTAL_CUSTOM_STATISTIC_KEY, combinedStatistic);

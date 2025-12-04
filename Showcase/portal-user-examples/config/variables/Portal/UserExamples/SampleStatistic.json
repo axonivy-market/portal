@@ -729,19 +729,19 @@
         },
         {
           "locale": "fr",
-          "value": "Rework occurred?"
+          "value": "Une modification a-t-elle été effectuée?"
         },
         {
           "locale": "de",
-          "value": "Rework occurred?"
+          "value": "Wiederholungsarbeit aufgetreten?"
         },
         {
           "locale": "ja",
-          "value": "Rework occurred?"
+          "value": "再加工が行われたのか？"
         },
         {
           "locale": "es",
-          "value": "Rework occurred?"
+          "value": "¿Se ha producido una reelaboración?"
         }
       ],
       "yTitles": [

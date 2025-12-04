@@ -4,9 +4,13 @@ public enum PortalUserExamplesVariable {
   SAMPLE_STATISTIC_KEY("Portal.UserExamples.SampleStatistic"),
   SAMPLE_DASHBOARD_KEY("Portal.UserExamples.SampleDashboard");
 
-  public String key;
+  private final String key;
 
   private PortalUserExamplesVariable(String key) {
     this.key = key;
+  }
+
+  public String getKey() {
+    return key;
   }
 }

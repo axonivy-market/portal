@@ -38,6 +38,7 @@ public class JsonUtils {
 
       return mapper.writeValueAsString(result);
     } catch (Exception e) {
+      // Ignore, log the error and return the existing JSON if merging fails
       Ivy.log().error("Failed to merge JSON arrays", e);
       return existingJson;
     }
