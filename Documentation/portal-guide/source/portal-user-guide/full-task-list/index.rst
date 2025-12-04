@@ -15,50 +15,6 @@ You can reach the page by using the |task-list-icon| :guilabel:`Tasks` link in t
 
 |navigate-to-full-task-list-page|
 
-Permission Reference
-====================
-
-Different task operations require specific permissions:
-
-.. table::
-   :widths: 40 60
-
-   +--------------------------------------+--------------------------------------------------------+
-   | Action                               | Required Permission                                    |
-   +======================================+========================================================+
-   | **Reset task**                       | :bdg-ref-warning:`🔑TaskDisplayResetAction             |
-   |                                      | <TaskDisplayResetAction>`                              |
-   +--------------------------------------+--------------------------------------------------------+
-   | **Reserve task**                     | :bdg-ref-warning:`🔑TaskDisplayReserveAction           |
-   |                                      | <TaskDisplayReserveAction>`                            |
-   +--------------------------------------+--------------------------------------------------------+
-   | **Delegate task**                    | :bdg-ref-warning:`🔑TaskDisplayDelegateAction          |
-   |                                      | <TaskDisplayDelegateAction>`                           |
-   +--------------------------------------+--------------------------------------------------------+
-   | **Destroy task**                     | :bdg-ref-warning:`🔑TaskDisplayDestroyAction           |
-   |                                      | <TaskDisplayDestroyAction>`                            |
-   +--------------------------------------+--------------------------------------------------------+
-   | **View additional options**          | :bdg-ref-warning:`🔑TaskDisplayAdditionalOptions       |
-   |                                      | <TaskDisplayAdditionalOptions>`                        |
-   +--------------------------------------+--------------------------------------------------------+
-   | **View workflow events**             | :bdg-ref-warning:`🔑TaskDisplayWorkflowEventAction     |
-   |                                      | <TaskDisplayWorkflowEventAction>` and                  |
-   |                                      | :bdg-warning:`🔑WorkflowEventReadAll`                  |
-   +--------------------------------------+--------------------------------------------------------+
-   | **View custom fields**               | :bdg-ref-warning:`🔑TaskDisplayCustomFieldsAction      |
-   |                                      | <TaskDisplayCustomFieldsAction>`                       |
-   +--------------------------------------+--------------------------------------------------------+
-   | **Add/delete task documents**        | :bdg-ref-warning:`🔑DocumentOfInvolvedCaseWrite        |
-   |                                      | <DocumentOfInvolvedCaseWrite>` or                      |
-   |                                      | :bdg-ref-warning:`🔑DocumentWrite <DocumentWrite>`     |
-   +--------------------------------------+--------------------------------------------------------+
-   | **Add note to task**                 | :bdg-ref-warning:`🔑TaskCaseAddNote                    |
-   |                                      | <TaskCaseAddNote>`                                     |
-   +--------------------------------------+--------------------------------------------------------+
-   | **Share task details link**          | :bdg-ref-warning:`🔑ShareTaskDetailsLink               |
-   |                                      | <ShareTaskDetailsLink>`                                |
-   +--------------------------------------+--------------------------------------------------------+
-
 Task List Overview
 ==================
 
@@ -346,6 +302,50 @@ HowTo: Share Task Details
 #. Click on the share button |share-icon|
 
 |how-to-share-task-details|
+
+Permission Reference
+====================
+
+Different task operations require specific permissions:
+
+.. table::
+   :widths: 40 60
+
+   +--------------------------------------+--------------------------------------------------------+
+   | Action                               | Required Permission                                    |
+   +======================================+========================================================+
+   | **Reset task**                       | :bdg-ref-warning:`🔑TaskDisplayResetAction             |
+   |                                      | <TaskDisplayResetAction>`                              |
+   +--------------------------------------+--------------------------------------------------------+
+   | **Reserve task**                     | :bdg-ref-warning:`🔑TaskDisplayReserveAction           |
+   |                                      | <TaskDisplayReserveAction>`                            |
+   +--------------------------------------+--------------------------------------------------------+
+   | **Delegate task**                    | :bdg-ref-warning:`🔑TaskDisplayDelegateAction          |
+   |                                      | <TaskDisplayDelegateAction>`                           |
+   +--------------------------------------+--------------------------------------------------------+
+   | **Destroy task**                     | :bdg-ref-warning:`🔑TaskDisplayDestroyAction           |
+   |                                      | <TaskDisplayDestroyAction>`                            |
+   +--------------------------------------+--------------------------------------------------------+
+   | **View additional options**          | :bdg-ref-warning:`🔑TaskDisplayAdditionalOptions       |
+   |                                      | <TaskDisplayAdditionalOptions>`                        |
+   +--------------------------------------+--------------------------------------------------------+
+   | **View workflow events**             | :bdg-ref-warning:`🔑TaskDisplayWorkflowEventAction     |
+   |                                      | <TaskDisplayWorkflowEventAction>` and                  |
+   |                                      | :bdg-warning:`🔑WorkflowEventReadAll`                  |
+   +--------------------------------------+--------------------------------------------------------+
+   | **View custom fields**               | :bdg-ref-warning:`🔑TaskDisplayCustomFieldsAction      |
+   |                                      | <TaskDisplayCustomFieldsAction>`                       |
+   +--------------------------------------+--------------------------------------------------------+
+   | **Add/delete task documents**        | :bdg-ref-warning:`🔑DocumentOfInvolvedCaseWrite        |
+   |                                      | <DocumentOfInvolvedCaseWrite>` or                      |
+   |                                      | :bdg-ref-warning:`🔑DocumentWrite <DocumentWrite>`     |
+   +--------------------------------------+--------------------------------------------------------+
+   | **Add note to task**                 | :bdg-ref-warning:`🔑TaskCaseAddNote                    |
+   |                                      | <TaskCaseAddNote>`                                     |
+   +--------------------------------------+--------------------------------------------------------+
+   | **Share task details link**          | :bdg-ref-warning:`🔑ShareTaskDetailsLink               |
+   |                                      | <ShareTaskDetailsLink>`                                |
+   +--------------------------------------+--------------------------------------------------------+
 
 .. include:: ../includes/_common-icon.rst
 

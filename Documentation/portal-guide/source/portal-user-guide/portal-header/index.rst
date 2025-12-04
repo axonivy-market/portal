@@ -16,40 +16,6 @@ Key Features
 
 |portal-header|
 
-Permission Reference
-====================
-
-Different header features require specific permissions:
-
-.. table::
-   :widths: 40 60
-
-   +--------------------------------------+--------------------------------------------------------+
-   | Action                               | Required Permission                                    |
-   +======================================+========================================================+
-   | **Access admin settings**            | Role ``AXONIVY_PORTAL_ADMIN``                          |
-   +--------------------------------------+--------------------------------------------------------+
-   | **Manage own dashboards**            | :bdg-ref-warning:`🔑DashboardWriteOwn                  |
-   |                                      | <DashboardWriteOwn>`                                   |
-   +--------------------------------------+--------------------------------------------------------+
-   | **Manage public dashboards**         | :bdg-ref-warning:`🔑DashboardWritePublic               |
-   |                                      | <DashboardWritePublic>`                                |
-   +--------------------------------------+--------------------------------------------------------+
-   | **Create own absences**              | :bdg-ref-warning:`🔑UserCreateOwnAbsence               |
-   |                                      | <UserCreateOwnAbsence>`                                |
-   +--------------------------------------+--------------------------------------------------------+
-   | **Create public absences**           | :bdg-ref-warning:`🔑UserCreateAbsence                  |
-   |                                      | <UserCreateAbsence>`                                   |
-   +--------------------------------------+--------------------------------------------------------+
-   | **Create own substitutes**           | :bdg-ref-warning:`🔑UserCreateOwnSubstitute            |
-   |                                      | <UserCreateOwnSubstitute>`                             |
-   +--------------------------------------+--------------------------------------------------------+
-   | **Create all substitutes**           | :bdg-ref-warning:`🔑UserCreateSubstitute               |
-   |                                      | <UserCreateSubstitute>`                                |
-   +--------------------------------------+--------------------------------------------------------+
-   | **Change own password**              | :bdg-warning:`🔑UserSetOwnPassword`                    |
-   +--------------------------------------+--------------------------------------------------------+
-
 User Settings in the Axon Ivy Portal
 ====================================
 
@@ -228,6 +194,40 @@ Available Portal Variables
 
 .. tip::
    Configure these variables in :ref:`admin-settings` to optimize search performance for your Portal instance.
+
+Permission Reference
+====================
+
+Different header features require specific permissions:
+
+.. table::
+   :widths: 40 60
+
+   +--------------------------------------+--------------------------------------------------------+
+   | Action                               | Required Permission                                    |
+   +======================================+========================================================+
+   | **Access admin settings**            | Role ``AXONIVY_PORTAL_ADMIN``                          |
+   +--------------------------------------+--------------------------------------------------------+
+   | **Manage own dashboards**            | :bdg-ref-warning:`🔑DashboardWriteOwn                  |
+   |                                      | <DashboardWriteOwn>`                                   |
+   +--------------------------------------+--------------------------------------------------------+
+   | **Manage public dashboards**         | :bdg-ref-warning:`🔑DashboardWritePublic               |
+   |                                      | <DashboardWritePublic>`                                |
+   +--------------------------------------+--------------------------------------------------------+
+   | **Create own absences**              | :bdg-ref-warning:`🔑UserCreateOwnAbsence               |
+   |                                      | <UserCreateOwnAbsence>`                                |
+   +--------------------------------------+--------------------------------------------------------+
+   | **Create public absences**           | :bdg-ref-warning:`🔑UserCreateAbsence                  |
+   |                                      | <UserCreateAbsence>`                                   |
+   +--------------------------------------+--------------------------------------------------------+
+   | **Create own substitutes**           | :bdg-ref-warning:`🔑UserCreateOwnSubstitute            |
+   |                                      | <UserCreateOwnSubstitute>`                             |
+   +--------------------------------------+--------------------------------------------------------+
+   | **Create all substitutes**           | :bdg-ref-warning:`🔑UserCreateSubstitute               |
+   |                                      | <UserCreateSubstitute>`                                |
+   +--------------------------------------+--------------------------------------------------------+
+   | **Change own password**              | :bdg-warning:`🔑UserSetOwnPassword`                    |
+   +--------------------------------------+--------------------------------------------------------+
 
 .. include:: ../includes/_common-icon.rst
 

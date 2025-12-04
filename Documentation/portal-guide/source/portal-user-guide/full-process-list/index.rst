@@ -13,21 +13,6 @@ the Axon Ivy Portal menu.
 
 |navigate-to-full-process-list|
 
-Permission Reference
-====================
-
-Different process operations require specific permissions:
-
-.. table::
-   :widths: 40 60
-
-   +--------------------------------------+--------------------------------------------------------+
-   | Action                               | Required Permission                                    |
-   +======================================+========================================================+
-   | **Create public external link**      | :bdg-ref-warning:`🔑CreatePublicExternalLink           |
-   |                                      | <CreatePublicExternalLink>`                            |
-   +--------------------------------------+--------------------------------------------------------+
-
 Process List Overview
 =====================
 
@@ -103,6 +88,9 @@ Values of Portal Setting **Portal.Processes.DefaultImage**
 
 HowTo: Add an external link
 ---------------------------
+
+.. note::
+   Creating public external links (visible to all users) requires :bdg-ref-warning:`🔑CreatePublicExternalLink <CreatePublicExternalLink>` permission. Private links can be created by any user.
 
 #. Click on :guilabel:`Add external link` at the top of the page next to the search text box.
 
@@ -195,6 +183,21 @@ At the top of the **Process Information** page, you see basic process informatio
 
 .. note::
    Process steps are defined by developers and provide a clear picture of the process flow to help you work more efficiently.
+
+Permission Reference
+====================
+
+Different process operations require specific permissions:
+
+.. table::
+   :widths: 40 60
+
+   +--------------------------------------+--------------------------------------------------------+
+   | Action                               | Required Permission                                    |
+   +======================================+========================================================+
+   | **Create public external link**      | :bdg-ref-warning:`🔑CreatePublicExternalLink           |
+   |                                      | <CreatePublicExternalLink>`                            |
+   +--------------------------------------+--------------------------------------------------------+
 
 
 .. |navigate-to-full-process-list| image:: ../../screenshots/process/navigate-to-full-process-list.png

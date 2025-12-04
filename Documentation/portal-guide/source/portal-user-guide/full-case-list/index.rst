@@ -15,35 +15,6 @@ You can reach the page by using the |case-icon| :guilabel:`Cases` link in the Ax
 
 |navigate-to-full-cases-list-page|
 
-Permission Reference
-====================
-
-Different case operations require specific permissions:
-
-.. table::
-   :widths: 40 60
-
-   +--------------------------------------+--------------------------------------------------------+
-   | Action                               | Required Permission                                    |
-   +======================================+========================================================+
-   | **View related tasks of case**       | :bdg-ref-warning:`🔑TaskReadOwnCaseTasks               |
-   |                                      | <TaskReadOwnCaseTasks>` or                             |
-   |                                      | :bdg-ref-warning:`🔑TaskReadAll <TaskReadAll>`         |
-   +--------------------------------------+--------------------------------------------------------+
-   | **Add/delete case documents**        | :bdg-ref-warning:`🔑DocumentOfInvolvedCaseWrite        |
-   |                                      | <DocumentOfInvolvedCaseWrite>` or                      |
-   |                                      | :bdg-ref-warning:`🔑DocumentWrite <DocumentWrite>`     |
-   +--------------------------------------+--------------------------------------------------------+
-   | **Add note to case**                 | :bdg-ref-warning:`🔑TaskCaseAddNote                    |
-   |                                      | <TaskCaseAddNote>`                                     |
-   +--------------------------------------+--------------------------------------------------------+
-   | **Share case details link**          | :bdg-ref-warning:`🔑ShareCaseDetailsLink               |
-   |                                      | <ShareCaseDetailsLink>`                                |
-   +--------------------------------------+--------------------------------------------------------+
-   | **View custom fields**               | :bdg-ref-warning:`🔑CaseDisplayCustomFieldsAction      |
-   |                                      | <CaseDisplayCustomFieldsAction>`                       |
-   +--------------------------------------+--------------------------------------------------------+
-
 Case List Information
 =====================
 
@@ -382,6 +353,35 @@ HowTo: Show Case Custom Fields Dialog
 #. Portal opens the custom fields dialog of the case
 
 |case-custom-fields-dialog|
+
+Permission Reference
+====================
+
+Different case operations require specific permissions:
+
+.. table::
+   :widths: 40 60
+
+   +--------------------------------------+--------------------------------------------------------+
+   | Action                               | Required Permission                                    |
+   +======================================+========================================================+
+   | **View related tasks of case**       | :bdg-ref-warning:`🔑TaskReadOwnCaseTasks               |
+   |                                      | <TaskReadOwnCaseTasks>` or                             |
+   |                                      | :bdg-ref-warning:`🔑TaskReadAll <TaskReadAll>`         |
+   +--------------------------------------+--------------------------------------------------------+
+   | **Add/delete case documents**        | :bdg-ref-warning:`🔑DocumentOfInvolvedCaseWrite        |
+   |                                      | <DocumentOfInvolvedCaseWrite>` or                      |
+   |                                      | :bdg-ref-warning:`🔑DocumentWrite <DocumentWrite>`     |
+   +--------------------------------------+--------------------------------------------------------+
+   | **Add note to case**                 | :bdg-ref-warning:`🔑TaskCaseAddNote                    |
+   |                                      | <TaskCaseAddNote>`                                     |
+   +--------------------------------------+--------------------------------------------------------+
+   | **Share case details link**          | :bdg-ref-warning:`🔑ShareCaseDetailsLink               |
+   |                                      | <ShareCaseDetailsLink>`                                |
+   +--------------------------------------+--------------------------------------------------------+
+   | **View custom fields**               | :bdg-ref-warning:`🔑CaseDisplayCustomFieldsAction      |
+   |                                      | <CaseDisplayCustomFieldsAction>`                       |
+   +--------------------------------------+--------------------------------------------------------+
 
 .. include:: ../includes/_common-icon.rst
 

@@ -91,25 +91,33 @@ HowTo: Add a New Language to Portal
 
 #. **Add Language Column**
 
-   Add a new column at the end of the file with the language locale in the first cell (e.g., ``it`` for Italian)
+   - Open the exported Excel file
+   - Add a new column at the end with the language locale code in the **Uri** row (e.g., ``it`` for Italian)
+   - Refer to `Java supported locales <https://www.oracle.com/java/technologies/javase/jdk21-suported-locales.html>`_ for supported locale codes
    
    |export-cms|
+
+#. **Translate CMS Entries**
+
+   - For each row in the Excel file, add the translated text in the new language column
+   - Base your translations on the existing English (``en``) or German (``de``) values
+   - Ensure all cells in the new language column are filled with appropriate translations
+
+#. **Update JSON Configuration Files**
+
+   For each JSON file in ``portal/config/variables/``:
    
-   Refer to `Java supported locales <https://www.oracle.com/java/technologies/javase/jdk21-suported-locales.html>`_ for supported locale codes
-
-#. **Add Translations**
-
-   Add translations for the new language for all CMS entries in the Excel file
-
-#. **Update JSON Files**
-
-   Add translations for the new language in all JSON files located at ``Config/variables`` by adding new locale/value items
+   - Open the file and locate the ``locale`` arrays
+   - Add a new locale/value pair for your language following the existing pattern
+   - Example: ``{"locale": "it", "value": "Translated text"}``
    
    |translate-json|
 
-#. **Update Java Files**
+#. **Update Java Source Files**
 
-   Add translations for the new language to ``DefaultDashboardUtils.java`` by adding new locale/value items
+   In ``DefaultDashboardUtils.java``:
+   
+   - Add new locale/value entries for your language into default dashboard constants.
    
    |translate-java|
 

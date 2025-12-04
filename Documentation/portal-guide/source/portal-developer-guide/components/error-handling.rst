@@ -224,31 +224,6 @@ Shown when an internal server error occurs:
 
    Test by navigating to: ``http://your-server/500``
 
-View Expired Dialog
--------------------
-
-.. _components-error-handling-customize-view-expired-dialog:
-
-The Default Behavior
-^^^^^^^^^^^^^^^^^^^^
-
-Axon Ivy provides a default warning dialog for ``ViewExpiredException``, located in the ``webContent/layouts/includes/exception.xhtml`` file of your project.
-
-If your project dialogs use :ref:`iframe-in-portal` and encounter a ``ViewExpiredException``, the default warning dialog will be displayed.
-
-Using Portal's Custom Dialog
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Portal offers an enhanced dialog for this exception. To use it instead of the default dialog, update the ``onexception`` callback in your project's ``exception.xhtml`` file:
-
-.. code-block:: javascript
-
-    <p:ajaxExceptionHandler
-        type="javax.faces.application.ViewExpiredException"
-        update="viewExpiredExceptionDialog"
-        onexception="parent.PF &amp;&amp; parent.PF('portal-view-expired-exception-dialog') ? 
-            parent.PF('portal-view-expired-exception-dialog').show() :
-            PF('viewExpiredExceptionDialog').show()" />
 
 .. |portal-ajax-error-handler| image:: ../../screenshots/error-handling/portal-ajax-error-handler.png
 .. |default-ivy-error| image:: ../../screenshots/error-handling/default-ivy-error.png

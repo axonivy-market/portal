@@ -17,7 +17,7 @@ Overview
 The Dashboard Configuration page has two tabs:
 
 .. table::
-   :widths: 25 35 40
+   :widths: 20 40 40
 
    +-------------------------+---------------------------------------------------+--------------------------------------------+
    | Tab                     | Required Permission                               | Purpose                                    |
@@ -30,28 +30,6 @@ The Dashboard Configuration page has two tabs:
    +-------------------------+---------------------------------------------------+--------------------------------------------+
 
 |dashboard-configuration-page|
-
-Permission Reference
-====================
-
-Different actions require specific permissions:
-
-.. table::
-   :widths: 40 60
-
-   +---------------------------------------+------------------------------------------------------------------------------+
-   | Action                                | Required Permission                                                          |
-   +=======================================+==============================================================================+
-   | **Import private dashboard**          | :bdg-ref-warning:`🔑DashboardImportOwn <DashboardImportOwn>`                |
-   +---------------------------------------+------------------------------------------------------------------------------+
-   | **Export private dashboard**          | :bdg-ref-warning:`🔑DashboardExportOwn <DashboardExportOwn>`                |
-   +---------------------------------------+------------------------------------------------------------------------------+
-   | **Import public dashboard**           | :bdg-ref-warning:`🔑DashboardImportPublic <DashboardImportPublic>`          |
-   +---------------------------------------+------------------------------------------------------------------------------+
-   | **Export public dashboard**           | :bdg-ref-warning:`🔑DashboardExportPublic <DashboardExportPublic>`          |
-   +---------------------------------------+------------------------------------------------------------------------------+
-   | **Share public dashboard link**       | :bdg-ref-warning:`🔑ShareDashboardLink <ShareDashboardLink>`                |
-   +---------------------------------------+------------------------------------------------------------------------------+
 
 Private dashboards configuration
 ================================
@@ -98,6 +76,9 @@ Available dashboard templates
 HowTo: import private dashboards
 --------------------------------
 
+.. note::
+   Requires :bdg-ref-warning:`🔑DashboardImportOwn <DashboardImportOwn>` permission.
+
 #. Select :guilabel:`Add new Dashboard` button.
 
 #. Select |import-icon| Import.
@@ -132,7 +113,7 @@ Click on |actions-menu-icon| to open the :guilabel:`Actions` menu with these opt
 
 - |edit-icon| **Edit**: Modify dashboard name and description
 - |settings-icon| **Configuration**: Configure dashboard widgets (see: :ref:`Dashboards <new-dashboard>`)
-- |download-icon| **Export**: Download dashboard as JSON file
+- |download-icon| **Export**: Download dashboard as JSON file (requires :bdg-ref-warning:`🔑DashboardExportOwn <DashboardExportOwn>` permission)
 - |trash-icon| **Delete**: Remove the private dashboard
 
 |edit-private-dashboards|
@@ -202,6 +183,9 @@ Available dashboard templates
 HowTo: import public dashboard
 ------------------------------
 
+.. note::
+   Requires :bdg-ref-warning:`🔑DashboardImportPublic <DashboardImportPublic>` permission.
+
 #. Select :guilabel:`Add New Dashboard` button.
 
 #. Select |import-icon| Import.
@@ -238,8 +222,8 @@ Click on |actions-menu-icon| to open the :guilabel:`Actions` menu with these opt
 
 - |edit-icon| **Edit**: Modify dashboard name, permissions, and description
 - |settings-icon| **Configuration**: Configure dashboard widgets (see: :ref:`Dashboards <new-dashboard>`)
-- |download-icon| **Export**: Download dashboard as JSON file
-- |share-icon| **Share**: Generate a shareable link to the dashboard
+- |download-icon| **Export**: Download dashboard as JSON file (requires :bdg-ref-warning:`🔑DashboardExportPublic <DashboardExportPublic>` permission)
+- |share-icon| **Share**: Generate a shareable link to the dashboard (requires :bdg-ref-warning:`🔑ShareDashboardLink <ShareDashboardLink>` permission)
 - |trash-icon| **Delete**: Remove the public dashboard
 
 |edit-public-dashboards|
@@ -247,6 +231,9 @@ Click on |actions-menu-icon| to open the :guilabel:`Actions` menu with these opt
 
 HowTo: share public dashboards
 --------------------------------
+
+.. note::
+   Requires :bdg-ref-warning:`🔑ShareDashboardLink <ShareDashboardLink>` permission.
 
 To generate a public dashboard link, simply click on the |share-icon| Share in the :guilabel:`Actions` menu of the dashboard.
 
@@ -261,6 +248,28 @@ HowTo: reorder public dashboards
 You can rearrange dashboards by dragging and dropping |reorder-dashboard-icon| icon.
 
 |reorder-public-dashboards|
+
+Permission Reference
+====================
+
+Different dashboard actions require specific permissions:
+
+.. table::
+   :widths: 35 65
+
+   +---------------------------------------+------------------------------------------------------------------------------+
+   | Action                                | Required Permission                                                          |
+   +=======================================+==============================================================================+
+   | **Import private dashboard**          | :bdg-ref-warning:`🔑DashboardImportOwn <DashboardImportOwn>`                |
+   +---------------------------------------+------------------------------------------------------------------------------+
+   | **Export private dashboard**          | :bdg-ref-warning:`🔑DashboardExportOwn <DashboardExportOwn>`                |
+   +---------------------------------------+------------------------------------------------------------------------------+
+   | **Import public dashboard**           | :bdg-ref-warning:`🔑DashboardImportPublic <DashboardImportPublic>`          |
+   +---------------------------------------+------------------------------------------------------------------------------+
+   | **Export public dashboard**           | :bdg-ref-warning:`🔑DashboardExportPublic <DashboardExportPublic>`          |
+   +---------------------------------------+------------------------------------------------------------------------------+
+   | **Share public dashboard link**       | :bdg-ref-warning:`🔑ShareDashboardLink <ShareDashboardLink>`                |
+   +---------------------------------------+------------------------------------------------------------------------------+
 
 .. include:: ../includes/_common-icon.rst
 
