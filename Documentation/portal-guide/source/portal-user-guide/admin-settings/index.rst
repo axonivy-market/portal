@@ -88,10 +88,7 @@ HowTo: Update Portal Settings
    - :guilabel:`Portal.Histories.HideSystemNotes`
    - :guilabel:`Portal.Histories.HideSystemNotesForAdministrator`
    
-   **Migration**: Use the permission :bdg-ref-warning:`🔑NoteReadAllCaseTaskDetails <NoteReadAllCaseTaskDetails>` 
-   to control visibility of system notes in task and case details instead.
-
-.. _portal-available-settings:
+   **Migration**: Use the permission :bdg-ref-warning:`🔑NoteReadAllCaseTaskDetails <NoteReadAllCaseTaskDetails>` to control visibility of system notes in task and case details instead... _portal-available-settings:
 
 .. centered:: Available settings
 

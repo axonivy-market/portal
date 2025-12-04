@@ -84,160 +84,184 @@ Permissions controlling task visibility, actions, and property modifications.
 
 **Task Visibility**
 
-- _`TaskReadAll`
+.. _TaskReadAll:
 
-  :bdg-ref-warning:`🔑TaskReadAll <TaskReadAll>`
-    - View all tasks in the system regardless of assignment
-    - Typically granted to administrators
+TaskReadAll
+   :bdg-ref-warning:`🔑TaskReadAll <TaskReadAll>`
+     - View all tasks in the system regardless of assignment
+     - Typically granted to administrators
 
-- _`SystemTaskReadAll`
+.. _SystemTaskReadAll:
 
-  :bdg-ref-warning:`🔑SystemTaskReadAll <SystemTaskReadAll>`
-    - View system tasks (background/automated tasks)
-    - Required for debugging and system monitoring
+SystemTaskReadAll
+   :bdg-ref-warning:`🔑SystemTaskReadAll <SystemTaskReadAll>`
+     - View system tasks (background/automated tasks)
+     - Required for debugging and system monitoring
 
-- _`TaskReadOwnCaseTasks`
+.. _TaskReadOwnCaseTasks:
 
-  :bdg-ref-warning:`🔑TaskReadOwnCaseTasks <TaskReadOwnCaseTasks>`
-    - View tasks related to cases where user is involved
-    - Granted to role Everybody by default
+TaskReadOwnCaseTasks
+   :bdg-ref-warning:`🔑TaskReadOwnCaseTasks <TaskReadOwnCaseTasks>`
+     - View tasks related to cases where user is involved
+     - Granted to role Everybody by default
 
 **Task Actions**
 
-- _`TaskParkOwnWorkingTask`
+.. _TaskParkOwnWorkingTask:
 
-  :bdg-ref-warning:`🔑TaskParkOwnWorkingTask <TaskParkOwnWorkingTask>`
-    - Reserve (park) own working tasks
-    - Allows users to temporarily set aside tasks they're working on
-    - Granted to role Everybody by default
+TaskParkOwnWorkingTask
+   :bdg-ref-warning:`🔑TaskParkOwnWorkingTask <TaskParkOwnWorkingTask>`
+     - Reserve (park) own working tasks
+     - Allows users to temporarily set aside tasks they're working on
+     - Granted to role Everybody by default
 
-- _`TaskResetOwnWorkingTask`
+.. _TaskResetOwnWorkingTask:
 
-  :bdg-ref-warning:`🔑TaskResetOwnWorkingTask <TaskResetOwnWorkingTask>`
-    - Reset own working tasks to their initial state
-    - Only works for tasks in states: RESUMED, PARKED, READY_FOR_JOIN, FAILED
-    - Granted to role Everybody by default
+TaskResetOwnWorkingTask
+   :bdg-ref-warning:`🔑TaskResetOwnWorkingTask <TaskResetOwnWorkingTask>`
+     - Reset own working tasks to their initial state
+     - Only works for tasks in states: RESUMED, PARKED, READY_FOR_JOIN, FAILED
+     - Granted to role Everybody by default
 
-- _`TaskReset`
+.. _TaskReset:
 
-  :bdg-ref-warning:`🔑TaskReset <TaskReset>`
-    - Reset any task in the system (administrative permission)
-    - Typically restricted to administrators
+TaskReset
+   :bdg-ref-warning:`🔑TaskReset <TaskReset>`
+     - Reset any task in the system (administrative permission)
+     - Typically restricted to administrators
 
-- _`TaskResetReadyForJoin`
+.. _TaskResetReadyForJoin:
 
-  :bdg-ref-warning:`🔑TaskResetReadyForJoin <TaskResetReadyForJoin>`
-    - Reset tasks in READY_FOR_JOIN state
-    - Useful for workflow error recovery
+TaskResetReadyForJoin
+   :bdg-ref-warning:`🔑TaskResetReadyForJoin <TaskResetReadyForJoin>`
+     - Reset tasks in READY_FOR_JOIN state
+     - Useful for workflow error recovery
 
-- _`TaskDestroy`
+.. _TaskDestroy:
 
-  :bdg-ref-warning:`🔑TaskDestroy <TaskDestroy>`
-    - Delete tasks permanently
-    - Only works if task state is not DESTROYED or DONE
-    - High-privilege permission for administrators
+TaskDestroy
+   :bdg-ref-warning:`🔑TaskDestroy <TaskDestroy>`
+     - Delete tasks permanently
+     - Only works if task state is not DESTROYED or DONE
+     - High-privilege permission for administrators
 
 **Task Property Modifications**
 
-- _`TaskWriteName`
+.. _TaskWriteName:
 
-  :bdg-ref-warning:`🔑TaskWriteName <TaskWriteName>`
-    - Modify task name/title
+TaskWriteName
+   :bdg-ref-warning:`🔑TaskWriteName <TaskWriteName>`
+     - Modify task name/title
 
-- _`TaskWriteDescription`
+.. _TaskWriteDescription:
 
-  :bdg-ref-warning:`🔑TaskWriteDescription <TaskWriteDescription>`
-    - Modify task description
-    - Cannot change terminated tasks (DONE, DESTROYED, FAILED)
+TaskWriteDescription
+   :bdg-ref-warning:`🔑TaskWriteDescription <TaskWriteDescription>`
+     - Modify task description
+     - Cannot change terminated tasks (DONE, DESTROYED, FAILED)
 
-- _`TaskWriteOriginalPriority`
+.. _TaskWriteOriginalPriority:
 
-  :bdg-ref-warning:`🔑TaskWriteOriginalPriority <TaskWriteOriginalPriority>`
-    - Change task priority level
-    - Cannot change tasks in states: DONE, DESTROYED, FAILED
+TaskWriteOriginalPriority
+   :bdg-ref-warning:`🔑TaskWriteOriginalPriority <TaskWriteOriginalPriority>`
+     - Change task priority level
+     - Cannot change tasks in states: DONE, DESTROYED, FAILED
 
-- _`TaskWriteExpiryTimestamp`
+.. _TaskWriteExpiryTimestamp:
 
-  :bdg-ref-warning:`🔑TaskWriteExpiryTimestamp <TaskWriteExpiryTimestamp>`
-    - Change task deadline/expiry date
-    - Cannot change tasks in states: DONE, DESTROYED, FAILED
+TaskWriteExpiryTimestamp
+   :bdg-ref-warning:`🔑TaskWriteExpiryTimestamp <TaskWriteExpiryTimestamp>`
+     - Change task deadline/expiry date
+     - Cannot change tasks in states: DONE, DESTROYED, FAILED
 
-- _`TaskWriteActivator`
+.. _TaskWriteActivator:
 
-  :bdg-ref-warning:`🔑TaskWriteActivator <TaskWriteActivator>`
-    - Delegate tasks to other users/roles
-    - Granted to role Everybody by default
+TaskWriteActivator
+   :bdg-ref-warning:`🔑TaskWriteActivator <TaskWriteActivator>`
+     - Delegate tasks to other users/roles
+     - Granted to role Everybody by default
 
-- _`TaskWriteExpiryActivator`
+.. _TaskWriteExpiryActivator:
 
-  :bdg-ref-warning:`🔑TaskWriteExpiryActivator <TaskWriteExpiryActivator>`
-    - Change the user responsible when task expires
-    - Cannot change tasks in states: DONE, DESTROYED, FAILED
+TaskWriteExpiryActivator
+   :bdg-ref-warning:`🔑TaskWriteExpiryActivator <TaskWriteExpiryActivator>`
+     - Change the user responsible when task expires
+     - Cannot change tasks in states: DONE, DESTROYED, FAILED
 
-- _`TaskWriteDelayTimestamp`
+.. _TaskWriteDelayTimestamp:
 
-  :bdg-ref-warning:`🔑TaskWriteDelayTimestamp <TaskWriteDelayTimestamp>`
-    - Modify task delay/start time
+TaskWriteDelayTimestamp
+   :bdg-ref-warning:`🔑TaskWriteDelayTimestamp <TaskWriteDelayTimestamp>`
+     - Modify task delay/start time
 
 **Task UI Display Permissions**
 
-- _`TaskWriteActivatorOwnTasks`
+.. _TaskWriteActivatorOwnTasks:
 
-  :bdg-ref-warning:`🔑TaskWriteActivatorOwnTasks <TaskWriteActivatorOwnTasks>`
-    - Delegate personal/group tasks assigned to user
-    - Not assigned to Everybody by default (more restrictive than :bdg-ref-warning:`🔑TaskWriteActivator <TaskWriteActivator>`)
+TaskWriteActivatorOwnTasks
+   :bdg-ref-warning:`🔑TaskWriteActivatorOwnTasks <TaskWriteActivatorOwnTasks>`
+     - Delegate personal/group tasks assigned to user
+     - Not assigned to Everybody by default (more restrictive than :bdg-ref-warning:`🔑TaskWriteActivator <TaskWriteActivator>`)
 
-- _`TaskDisplayAdditionalOptions`
+.. _TaskDisplayAdditionalOptions:
 
-  :bdg-ref-warning:`🔑TaskDisplayAdditionalOptions <TaskDisplayAdditionalOptions>`
-    - Display additional action menu in task lists
-    - Granted to role Everybody by default
+TaskDisplayAdditionalOptions
+   :bdg-ref-warning:`🔑TaskDisplayAdditionalOptions <TaskDisplayAdditionalOptions>`
+     - Display additional action menu in task lists
+     - Granted to role Everybody by default
 
-- _`TaskDisplayResetAction`
+.. _TaskDisplayResetAction:
 
-  :bdg-ref-warning:`🔑TaskDisplayResetAction <TaskDisplayResetAction>`
-    - Show Reset action button in task interface
-    - Requires corresponding :bdg-ref-warning:`🔑TaskReset <TaskReset>` permission to execute
-    - Granted to role Everybody by default
+TaskDisplayResetAction
+   :bdg-ref-warning:`🔑TaskDisplayResetAction <TaskDisplayResetAction>`
+     - Show Reset action button in task interface
+     - Requires corresponding :bdg-ref-warning:`🔑TaskReset <TaskReset>` permission to execute
+     - Granted to role Everybody by default
 
-- _`TaskDisplayReserveAction`
+.. _TaskDisplayReserveAction:
 
-  :bdg-ref-warning:`🔑TaskDisplayReserveAction <TaskDisplayReserveAction>`
-    - Show Reserve (Park) action button in task interface
-    - Requires :bdg-ref-warning:`🔑TaskParkOwnWorkingTask <TaskParkOwnWorkingTask>` to execute
-    - Granted to role Everybody by default
+TaskDisplayReserveAction
+   :bdg-ref-warning:`🔑TaskDisplayReserveAction <TaskDisplayReserveAction>`
+     - Show Reserve (Park) action button in task interface
+     - Requires :bdg-ref-warning:`🔑TaskParkOwnWorkingTask <TaskParkOwnWorkingTask>` to execute
+     - Granted to role Everybody by default
 
-- _`TaskDisplayDelegateAction`
+.. _TaskDisplayDelegateAction:
 
-  :bdg-ref-warning:`🔑TaskDisplayDelegateAction <TaskDisplayDelegateAction>`
-    - Show Delegate action button in task interface
-    - Requires :bdg-ref-warning:`🔑TaskWriteActivator <TaskWriteActivator>` to execute delegation
-    - Granted to role Everybody by default
+TaskDisplayDelegateAction
+   :bdg-ref-warning:`🔑TaskDisplayDelegateAction <TaskDisplayDelegateAction>`
+     - Show Delegate action button in task interface
+     - Requires :bdg-ref-warning:`🔑TaskWriteActivator <TaskWriteActivator>` to execute delegation
+     - Granted to role Everybody by default
 
-- _`TaskDisplayDestroyAction`
+.. _TaskDisplayDestroyAction:
 
-  :bdg-ref-warning:`🔑TaskDisplayDestroyAction <TaskDisplayDestroyAction>`
-    - Show Delete/Destroy action button in task interface
-    - Requires :bdg-ref-warning:`🔑TaskDestroy <TaskDestroy>` permission to execute
+TaskDisplayDestroyAction
+   :bdg-ref-warning:`🔑TaskDisplayDestroyAction <TaskDisplayDestroyAction>`
+     - Show Delete/Destroy action button in task interface
+     - Requires :bdg-ref-warning:`🔑TaskDestroy <TaskDestroy>` permission to execute
 
-- _`TaskDisplayWorkflowEventAction`
+.. _TaskDisplayWorkflowEventAction:
 
-  :bdg-ref-warning:`🔑TaskDisplayWorkflowEventAction <TaskDisplayWorkflowEventAction>`
-    - Show Workflow Events button in task details
-    - Allows viewing task execution history and events
+TaskDisplayWorkflowEventAction
+   :bdg-ref-warning:`🔑TaskDisplayWorkflowEventAction <TaskDisplayWorkflowEventAction>`
+     - Show Workflow Events button in task details
+     - Allows viewing task execution history and events
 
-- _`TaskDisplayCustomFieldsAction`
+.. _TaskDisplayCustomFieldsAction:
 
-  :bdg-ref-warning:`🔑TaskDisplayCustomFieldsAction <TaskDisplayCustomFieldsAction>`
-    - Show Custom Fields button in task interface
-    - Displays additional business data fields
+TaskDisplayCustomFieldsAction
+   :bdg-ref-warning:`🔑TaskDisplayCustomFieldsAction <TaskDisplayCustomFieldsAction>`
+     - Show Custom Fields button in task interface
+     - Displays additional business data fields
 
-- _`ShareTaskDetailsLink`
+.. _ShareTaskDetailsLink:
 
-  :bdg-ref-warning:`🔑ShareTaskDetailsLink <ShareTaskDetailsLink>`
-    - Show Share button in task details page
-    - Allows sharing direct links to specific tasks
-    - Granted to role Everybody by default
+ShareTaskDetailsLink
+   :bdg-ref-warning:`🔑ShareTaskDetailsLink <ShareTaskDetailsLink>`
+     - Show Share button in task details page
+     - Allows sharing direct links to specific tasks
+     - Granted to role Everybody by default
 
 .. _permission-case-permissions:
 
@@ -248,70 +272,79 @@ Permissions controlling case visibility, actions, and business details.
 
 **Case Visibility**
 
-- _`CaseReadAll`
+.. _CaseReadAll:
 
-  :bdg-ref-warning:`🔑CaseReadAll <CaseReadAll>`
-    - View all cases in the system regardless of involvement
-    - Typically granted to administrators
-    - Combined with :bdg-ref-warning:`🔑TaskReadAll <TaskReadAll>` for full system visibility
+CaseReadAll
+   :bdg-ref-warning:`🔑CaseReadAll <CaseReadAll>`
+     - View all cases in the system regardless of involvement
+     - Typically granted to administrators
+     - Combined with :bdg-ref-warning:`🔑TaskReadAll <TaskReadAll>` for full system visibility
 
 **Case Actions**
 
-- _`CaseDestroy`
+.. _CaseDestroy:
 
-  :bdg-ref-warning:`🔑CaseDestroy <CaseDestroy>`
-    - Delete cases permanently
-    - Only works when case state is RUNNING
-    - High-privilege permission for administrators
+CaseDestroy
+   :bdg-ref-warning:`🔑CaseDestroy <CaseDestroy>`
+     - Delete cases permanently
+     - Only works when case state is RUNNING
+     - High-privilege permission for administrators
 
-- _`CaseOwnerTaskDelegate`
+.. _CaseOwnerTaskDelegate:
 
-  :bdg-ref-warning:`🔑CaseOwnerTaskDelegate <CaseOwnerTaskDelegate>`
-    - Delegate all related tasks within cases where user is the case owner
-    - Allows case owners to manage task assignments for their cases
+CaseOwnerTaskDelegate
+   :bdg-ref-warning:`🔑CaseOwnerTaskDelegate <CaseOwnerTaskDelegate>`
+     - Delegate all related tasks within cases where user is the case owner
+     - Allows case owners to manage task assignments for their cases
 
 **Case Property Modifications**
 
-- _`CaseWriteName`
+.. _CaseWriteName:
 
-  :bdg-ref-warning:`🔑CaseWriteName <CaseWriteName>`
-    - Modify case name/title
-    - Cannot change cases in DESTROYED state
+CaseWriteName
+   :bdg-ref-warning:`🔑CaseWriteName <CaseWriteName>`
+     - Modify case name/title
+     - Cannot change cases in DESTROYED state
 
-- _`CaseWriteDescription`
+.. _CaseWriteDescription:
 
-  :bdg-ref-warning:`🔑CaseWriteDescription <CaseWriteDescription>`
-    - Modify case description
-    - Cannot change cases in DESTROYED state
+CaseWriteDescription
+   :bdg-ref-warning:`🔑CaseWriteDescription <CaseWriteDescription>`
+     - Modify case description
+     - Cannot change cases in DESTROYED state
 
 **Case UI Display Permissions**
 
-- _`ShowAllTasksOfCase`
+.. _ShowAllTasksOfCase:
 
-  :bdg-ref-warning:`🔑ShowAllTasksOfCase <ShowAllTasksOfCase>`
-    - Display "Show all tasks" action in case details
-    - Requires :bdg-ref-warning:`🔑TaskReadOwnCaseTasks <TaskReadOwnCaseTasks>` or :bdg-ref-warning:`🔑TaskReadAll <TaskReadAll>` to view tasks
-    - Granted to role Everybody by default
+ShowAllTasksOfCase
+   :bdg-ref-warning:`🔑ShowAllTasksOfCase <ShowAllTasksOfCase>`
+     - Display "Show all tasks" action in case details
+     - Requires :bdg-ref-warning:`🔑TaskReadOwnCaseTasks <TaskReadOwnCaseTasks>` or :bdg-ref-warning:`🔑TaskReadAll <TaskReadAll>` to view tasks
+     - Granted to role Everybody by default
 
-- _`ShowCaseDetails`
+.. _ShowCaseDetails:
 
-  :bdg-ref-warning:`🔑ShowCaseDetails <ShowCaseDetails>`
-    - Display Business Details tab in case interface
-    - Shows additional case information and custom widgets
-    - Granted to role Everybody by default
+ShowCaseDetails
+   :bdg-ref-warning:`🔑ShowCaseDetails <ShowCaseDetails>`
+     - Display Business Details tab in case interface
+     - Shows additional case information and custom widgets
+     - Granted to role Everybody by default
 
-- _`CaseDisplayCustomFieldsAction`
+.. _CaseDisplayCustomFieldsAction:
 
-  :bdg-ref-warning:`🔑CaseDisplayCustomFieldsAction <CaseDisplayCustomFieldsAction>`
-    - Display Custom Fields button in case interface
-    - Shows additional business data fields
+CaseDisplayCustomFieldsAction
+   :bdg-ref-warning:`🔑CaseDisplayCustomFieldsAction <CaseDisplayCustomFieldsAction>`
+     - Display Custom Fields button in case interface
+     - Shows additional business data fields
 
-- _`ShareCaseDetailsLink`
+.. _ShareCaseDetailsLink:
 
-  :bdg-ref-warning:`🔑ShareCaseDetailsLink <ShareCaseDetailsLink>`
-    - Show Share button in case details page
-    - Allows sharing direct links to specific cases
-    - Granted to role Everybody by default
+ShareCaseDetailsLink
+   :bdg-ref-warning:`🔑ShareCaseDetailsLink <ShareCaseDetailsLink>`
+     - Show Share button in case details page
+     - Allows sharing direct links to specific cases
+     - Granted to role Everybody by default
 
 .. _permission-general-permissions:
 
@@ -322,166 +355,173 @@ General permissions for dashboards, documents, lists, roles, and Portal features
 
 **Portal Page Access**
 
-- _`AccessFullProcessList`
+.. _AccessFullProcessList:
 
-  :bdg-ref-warning:`🔑AccessFullProcessList <AccessFullProcessList>`
-    - Access full process list page showing all available processes
-    - Shows "Processes" in left menu and "Show all processes" on Dashboard
-    - See :ref:`full-process-list` for details
-    - Granted to role Everybody by default
+AccessFullProcessList
+   :bdg-ref-warning:`🔑AccessFullProcessList <AccessFullProcessList>`
+     - Access full process list page showing all available processes
+     - Shows "Processes" in left menu and "Show all processes" on Dashboard
+     - See :ref:`full-process-list` for details
+     - Granted to role Everybody by default
 
-- _`AccessFullTaskList`
+.. _AccessFullTaskList:
 
-  :bdg-ref-warning:`🔑AccessFullTaskList <AccessFullTaskList>`
-    - Access full task list page showing all accessible tasks
-    - Shows "Tasks" in left menu and "Show full task list" on Dashboard
-    - See :ref:`full-task-list` for details
-    - Granted to role Everybody by default
+AccessFullTaskList
+   :bdg-ref-warning:`🔑AccessFullTaskList <AccessFullTaskList>`
+     - Access full task list page showing all accessible tasks
+     - Shows "Tasks" in left menu and "Show full task list" on Dashboard
+     - See :ref:`full-task-list` for details
+     - Granted to role Everybody by default
 
-- _`AccessFullCaseList`
+.. _AccessFullCaseList:
 
-  :bdg-ref-warning:`🔑AccessFullCaseList <AccessFullCaseList>`
-    - Access full case list page showing all accessible cases
-    - Shows "Cases" in left menu
-    - See :ref:`full-case-list` for details
-    - Granted to role Everybody by default
+AccessFullCaseList
+   :bdg-ref-warning:`🔑AccessFullCaseList <AccessFullCaseList>`
+     - Access full case list page showing all accessible cases
+     - Shows "Cases" in left menu
+     - See :ref:`full-case-list` for details
+     - Granted to role Everybody by default
 
 **Dashboard Permissions**
 
-- _`DashboardWriteOwn`
+.. _DashboardWriteOwn:
 
-  :bdg-ref-warning:`🔑DashboardWriteOwn <DashboardWriteOwn>`
-    - Create and modify private (personal) dashboards
-    - Granted to role Everybody by default
+DashboardWriteOwn
+   :bdg-ref-warning:`🔑DashboardWriteOwn <DashboardWriteOwn>`
+     - Create and modify private (personal) dashboards
+     - Granted to role Everybody by default
 
-- _`DashboardWritePublic`
+.. _DashboardWritePublic:
 
-  :bdg-ref-warning:`🔑DashboardWritePublic <DashboardWritePublic>`
-    - Create and modify public (shared) dashboards
-    - Typically restricted to administrators or dashboard managers
+DashboardWritePublic
+   :bdg-ref-warning:`🔑DashboardWritePublic <DashboardWritePublic>`
+     - Create and modify public (shared) dashboards
+     - Typically restricted to administrators or dashboard managers
 
 .. _DashboardExportOwn:
 
-- _`DashboardExportOwn`
-
-  :bdg-ref-warning:`🔑DashboardExportOwn <DashboardExportOwn>`
-    - Export private dashboards to JSON files
-    - Allows backup and sharing of personal dashboard configurations
+DashboardExportOwn
+   :bdg-ref-warning:`🔑DashboardExportOwn <DashboardExportOwn>`
+     - Export private dashboards to JSON files
+     - Allows backup and sharing of personal dashboard configurations
 
 .. _DashboardExportPublic:
 
-- _`DashboardExportPublic`
-
-  :bdg-ref-warning:`🔑DashboardExportPublic <DashboardExportPublic>`
-    - Export public dashboards to JSON files
-    - Typically restricted to administrators
+DashboardExportPublic
+   :bdg-ref-warning:`🔑DashboardExportPublic <DashboardExportPublic>`
+     - Export public dashboards to JSON files
+     - Typically restricted to administrators
 
 .. _DashboardImportOwn:
 
-- _`DashboardImportOwn`
-
-  :bdg-ref-warning:`🔑DashboardImportOwn <DashboardImportOwn>`
-    - Import private dashboards from JSON files
-    - Allows restoring or applying dashboard templates
+DashboardImportOwn
+   :bdg-ref-warning:`🔑DashboardImportOwn <DashboardImportOwn>`
+     - Import private dashboards from JSON files
+     - Allows restoring or applying dashboard templates
 
 .. _DashboardImportPublic:
 
-- _`DashboardImportPublic`
-
-  :bdg-ref-warning:`🔑DashboardImportPublic <DashboardImportPublic>`
-    - Import public dashboards from JSON files
-    - Typically restricted to administrators
+DashboardImportPublic
+   :bdg-ref-warning:`🔑DashboardImportPublic <DashboardImportPublic>`
+     - Import public dashboards from JSON files
+     - Typically restricted to administrators
 
 .. _ShareDashboardLink:
 
-- _`ShareDashboardLink`
-
-  :bdg-ref-warning:`🔑ShareDashboardLink <ShareDashboardLink>`
-    - Share dashboard links with other users
-    - Granted to role Everybody by default
+ShareDashboardLink
+   :bdg-ref-warning:`🔑ShareDashboardLink <ShareDashboardLink>`
+     - Share dashboard links with other users
+     - Granted to role Everybody by default
 
 **Document Permissions**
 
-- _`DocumentRead`
+.. _DocumentRead:
 
-  :bdg-ref-warning:`🔑DocumentRead <DocumentRead>`
-    - View all documents across all cases/tasks
-    - Administrative permission for full document visibility
+DocumentRead
+   :bdg-ref-warning:`🔑DocumentRead <DocumentRead>`
+     - View all documents across all cases/tasks
+     - Administrative permission for full document visibility
 
-- _`DocumentWrite`
+.. _DocumentWrite:
 
-  :bdg-ref-warning:`🔑DocumentWrite <DocumentWrite>`
-    - Upload and delete any documents
-    - Administrative permission for document management
+DocumentWrite
+   :bdg-ref-warning:`🔑DocumentWrite <DocumentWrite>`
+     - Upload and delete any documents
+     - Administrative permission for document management
 
-- _`DocumentOfInvolvedCaseWrite`
+.. _DocumentOfInvolvedCaseWrite:
 
-  :bdg-ref-warning:`🔑DocumentOfInvolvedCaseWrite <DocumentOfInvolvedCaseWrite>`
-    - Upload and delete documents in cases where user is involved
-    - Standard permission for case participants
-    - Granted to role Everybody by default
+DocumentOfInvolvedCaseWrite
+   :bdg-ref-warning:`🔑DocumentOfInvolvedCaseWrite <DocumentOfInvolvedCaseWrite>`
+     - Upload and delete documents in cases where user is involved
+     - Standard permission for case participants
+     - Granted to role Everybody by default
 
 **Role Management Permissions**
 
-- _`RoleReadAll`
+.. _RoleReadAll:
 
-  :bdg-ref-warning:`🔑RoleReadAll <RoleReadAll>`
-    - View all roles in the system
-    - Required for role selection in various features
-    - Granted to role Everybody by default
+RoleReadAll
+   :bdg-ref-warning:`🔑RoleReadAll <RoleReadAll>`
+     - View all roles in the system
+     - Required for role selection in various features
+     - Granted to role Everybody by default
 
 .. _RoleManagement:
 
-- _`RoleManagement`
+RoleManagement
+   :bdg-ref-warning:`🔑RoleManagement <RoleManagement>`
+     - Access Role Management tab in Admin Settings
+     - Required to view dynamic role configuration interface
 
-  :bdg-ref-warning:`🔑RoleManagement <RoleManagement>`
-    - Access Role Management tab in Admin Settings
-    - Required to view dynamic role configuration interface
+.. _RoleCreate:
 
-- _`RoleCreate`
+RoleCreate
+   :bdg-ref-warning:`🔑RoleCreate <RoleCreate>`
+     - Create new dynamic roles
+     - Typically restricted to administrators
 
-  :bdg-ref-warning:`🔑RoleCreate <RoleCreate>`
-    - Create new dynamic roles
-    - Typically restricted to administrators
+.. _RoleDelete:
 
-- _`RoleDelete`
+RoleDelete
+   :bdg-ref-warning:`🔑RoleDelete <RoleDelete>`
+     - Delete existing dynamic roles
+     - Typically restricted to administrators
 
-  :bdg-ref-warning:`🔑RoleDelete <RoleDelete>`
-    - Delete existing dynamic roles
-    - Typically restricted to administrators
+.. _RoleMove:
 
-- _`RoleMove`
-
-  :bdg-ref-warning:`🔑RoleMove <RoleMove>`
-    - Change role hierarchy (select parent role)
-    - Affects role inheritance structure
+RoleMove
+   :bdg-ref-warning:`🔑RoleMove <RoleMove>`
+     - Change role hierarchy (select parent role)
+     - Affects role inheritance structure
 
 **Notes and Comments**
 
-- _`TaskCaseAddNote`
+.. _TaskCaseAddNote:
 
-  :bdg-ref-warning:`🔑TaskCaseAddNote <TaskCaseAddNote>`
-    - Add notes/comments to tasks and cases
-    - Enables collaboration and communication
-    - Granted to role Everybody by default
+TaskCaseAddNote
+   :bdg-ref-warning:`🔑TaskCaseAddNote <TaskCaseAddNote>`
+     - Add notes/comments to tasks and cases
+     - Enables collaboration and communication
+     - Granted to role Everybody by default
 
-- _`TaskCaseShowMoreNote`
+.. _TaskCaseShowMoreNote:
 
-  :bdg-ref-warning:`🔑TaskCaseShowMoreNote <TaskCaseShowMoreNote>`
-    - View "Show more" option to expand long notes
-    - Granted to role Everybody by default
+TaskCaseShowMoreNote
+   :bdg-ref-warning:`🔑TaskCaseShowMoreNote <TaskCaseShowMoreNote>`
+     - View "Show more" option to expand long notes
+     - Granted to role Everybody by default
 
 .. _NoteReadAllCaseTaskDetails:
 
-- _`NoteReadAllCaseTaskDetails`
-
-  :bdg-ref-warning:`🔑NoteReadAllCaseTaskDetails <NoteReadAllCaseTaskDetails>`
-    - View system notes in case and task details
-    - Allows non-admin users to see audit and system-generated notes
-    - **New in LTS 12.0+**: Replaces legacy global variables ``Portal.Histories.HideSystemNotes`` and ``Portal.Histories.HideSystemNotesForAdministrator``
-    
-  .. note::
-     **Pre-LTS Versions:** This permission does not exist in Portal versions before 12.0. Use global variables ``Portal.Histories.HideSystemNotes`` and ``Portal.Histories.HideSystemNotesForAdministrator`` instead.
+NoteReadAllCaseTaskDetails
+   :bdg-ref-warning:`🔑NoteReadAllCaseTaskDetails <NoteReadAllCaseTaskDetails>`
+     - View system notes in case and task details
+     - Allows non-admin users to see audit and system-generated notes
+     - **New in LTS 12.0+**: Replaces legacy global variables ``Portal.Histories.HideSystemNotes`` and ``Portal.Histories.HideSystemNotesForAdministrator``
+     
+   .. note::
+      **Pre-LTS Versions:** This permission does not exist in Portal versions before 12.0. Use global variables ``Portal.Histories.HideSystemNotes`` and ``Portal.Histories.HideSystemNotesForAdministrator`` instead.
 
 **Admin Settings & Configuration**
 
@@ -491,37 +531,35 @@ General permissions for dashboards, documents, lists, roles, and Portal features
 
 .. _NewsManagement:
 
-- _`NewsManagement`
-
-  :bdg-ref-warning:`🔑NewsManagement <NewsManagement>`
-    - Manage News widget content on dashboards
-    - Create, edit, and delete news items
+NewsManagement
+   :bdg-ref-warning:`🔑NewsManagement <NewsManagement>`
+     - Manage News widget content on dashboards
+     - Create, edit, and delete news items
 
 .. _PasswordValidation:
 
-- _`PasswordValidation`
-
-  :bdg-ref-warning:`🔑PasswordValidation <PasswordValidation>`
-    - Access Password Validation settings in Admin Settings
-    - Configure password complexity requirements
+PasswordValidation
+   :bdg-ref-warning:`🔑PasswordValidation <PasswordValidation>`
+     - Access Password Validation settings in Admin Settings
+     - Configure password complexity requirements
 
 .. _NotificationChannelsSetting:
 
-- _`NotificationChannelsSetting`
-
-  :bdg-ref-warning:`🔑NotificationChannelsSetting <NotificationChannelsSetting>`
-    - Customize notification channel preferences in :ref:`my-profile`
-    - Control email, browser, and other notification methods
-    - Granted to role Everybody by default
+NotificationChannelsSetting
+   :bdg-ref-warning:`🔑NotificationChannelsSetting <NotificationChannelsSetting>`
+     - Customize notification channel preferences in :ref:`my-profile`
+     - Control email, browser, and other notification methods
+     - Granted to role Everybody by default
 
 **Process & External Links**
 
-- _`CreatePublicExternalLink`
+.. _CreatePublicExternalLink:
 
-  :bdg-ref-warning:`🔑CreatePublicExternalLink <CreatePublicExternalLink>`
-    - Create public external links visible to all users
-    - Links appear in full process list for all users
-    - Useful for sharing processes with external systems
+CreatePublicExternalLink
+   :bdg-ref-warning:`🔑CreatePublicExternalLink <CreatePublicExternalLink>`
+     - Create public external links visible to all users
+     - Links appear in full process list for all users
+     - Useful for sharing processes with external systems
 
 .. _permission-absence-substitute:
 
@@ -532,65 +570,74 @@ Permissions for managing user absences and task substitution.
 
 **Absence Management - Own Absences**
 
-- _`UserReadOwnAbsences`
+.. _UserReadOwnAbsences:
 
-  :bdg-ref-warning:`🔑UserReadOwnAbsences <UserReadOwnAbsences>`
-    - View own absence records
-    - Granted to role Everybody by default
+UserReadOwnAbsences
+   :bdg-ref-warning:`🔑UserReadOwnAbsences <UserReadOwnAbsences>`
+     - View own absence records
+     - Granted to role Everybody by default
 
-- _`UserCreateOwnAbsence`
+.. _UserCreateOwnAbsence:
 
-  :bdg-ref-warning:`🔑UserCreateOwnAbsence <UserCreateOwnAbsence>`
-    - Create and edit own absence periods
-    - Allows users to mark when they are unavailable
-    - Granted to role Everybody by default
+UserCreateOwnAbsence
+   :bdg-ref-warning:`🔑UserCreateOwnAbsence <UserCreateOwnAbsence>`
+     - Create and edit own absence periods
+     - Allows users to mark when they are unavailable
+     - Granted to role Everybody by default
 
-- _`UserDeleteOwnAbsence`
+.. _UserDeleteOwnAbsence:
 
-  :bdg-ref-warning:`🔑UserDeleteOwnAbsence <UserDeleteOwnAbsence>`
-    - Delete own absence records
-    - Granted to role Everybody by default
+UserDeleteOwnAbsence
+   :bdg-ref-warning:`🔑UserDeleteOwnAbsence <UserDeleteOwnAbsence>`
+     - Delete own absence records
+     - Granted to role Everybody by default
 
 **Absence Management - All Users**
 
-- _`UserReadAbsences`
+.. _UserReadAbsences:
 
-  :bdg-ref-warning:`🔑UserReadAbsences <UserReadAbsences>`
-    - View absence records of all users
-    - Administrative permission for HR or management
+UserReadAbsences
+   :bdg-ref-warning:`🔑UserReadAbsences <UserReadAbsences>`
+     - View absence records of all users
+     - Administrative permission for HR or management
 
-- _`UserCreateAbsence`
+.. _UserCreateAbsence:
 
-  :bdg-ref-warning:`🔑UserCreateAbsence <UserCreateAbsence>`
-    - Create and edit absences for any user
-    - Typically restricted to administrators or HR personnel
+UserCreateAbsence
+   :bdg-ref-warning:`🔑UserCreateAbsence <UserCreateAbsence>`
+     - Create and edit absences for any user
+     - Typically restricted to administrators or HR personnel
 
-- _`UserDeleteAbsence`
+.. _UserDeleteAbsence:
 
-  :bdg-ref-warning:`🔑UserDeleteAbsence <UserDeleteAbsence>`
-    - Delete absence records for any user
-    - Administrative permission for absence management
+UserDeleteAbsence
+   :bdg-ref-warning:`🔑UserDeleteAbsence <UserDeleteAbsence>`
+     - Delete absence records for any user
+     - Administrative permission for absence management
 
 **Substitute Management**
 
-- _`UserCreateOwnSubstitute`
+.. _UserCreateOwnSubstitute:
 
-  :bdg-ref-warning:`🔑UserCreateOwnSubstitute <UserCreateOwnSubstitute>`
-    - Create own substitute assignments
-    - Delegate tasks to others during absence
-    - Granted to role Everybody by default
+UserCreateOwnSubstitute
+   :bdg-ref-warning:`🔑UserCreateOwnSubstitute <UserCreateOwnSubstitute>`
+     - Create own substitute assignments
+     - Delegate tasks to others during absence
+     - Granted to role Everybody by default
 
-- _`UserCreateSubstitute`
+.. _UserCreateSubstitute:
 
-  :bdg-ref-warning:`🔑UserCreateSubstitute <UserCreateSubstitute>`
-    - Create substitute assignments for any user
-    - Administrative permission for managing substitutions
+UserCreateSubstitute
+   :bdg-ref-warning:`🔑UserCreateSubstitute <UserCreateSubstitute>`
+     - Create substitute assignments for any user
+     - Administrative permission for managing substitutions
 
-- _`UserReadSubstitutes`
+.. _UserReadSubstitutes:
 
-  :bdg-ref-warning:`🔑UserReadSubstitutes <UserReadSubstitutes>`
-    - View substitute assignments for all users
-    - Required for seeing who is substituting whom
+UserReadSubstitutes
+   :bdg-ref-warning:`🔑UserReadSubstitutes <UserReadSubstitutes>`
+     - View substitute assignments for all users
+     - Required for seeing who is substituting whom
 
 .. _engine-permissions-respected:
 
