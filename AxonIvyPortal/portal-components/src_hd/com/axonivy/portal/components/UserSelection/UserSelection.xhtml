@@ -5,14 +5,16 @@
 
 <cc:interface componentType="IvyComponent">
   <!-- autocomplete attributes -->
+    [Description]. Type: [...]. Default value: [...]. Required: [...].
   <cc:attribute name="fromRoleNames" type="java.util.List"
-    shortDescription="Provide a list of role names (java.util.List&lt;String&gt;). Users belonging to these roles will be loaded. Leave empty to load all users." />
-  <cc:attribute name="componentId" default="user-selection" shortDescription="Unique identifier for this component instance. Default: 'user-selection'." />
+    shortDescription="Provide a list of role names, users belonging to these roles will be loaded. Leave empty to load all users. Type: java.util.List&lt;String&gt;. Required: false." />
+  <cc:attribute name="componentId" default="user-selection" shortDescription="Unique identifier for this component instance. Type: String. Default value: 'user-selection'. Required: false." />
   <cc:attribute name="selectedUser" type="com.axonivy.portal.components.dto.UserDTO" required="true"
-    shortDescription="(Required). Provide an attribute with type com.axonivy.portal.components.dto.UserDTO. Output value for selected user." />
+    shortDescription="Output value for selected user. Type: com.axonivy.portal.components.dto.UserDTO. Required: true." />
   <cc:attribute name="excludedUsernames" type="java.util.List"
-    shortDescription="Provide a list of username  (java.util.List&lt;String&gt;). These users will be excluded from user selection. Do not use if don't use default completeMethod." />
-  <cc:attribute name="requiredMessage" default="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/Common/RequiredFieldMessage')}" />
+    shortDescription="Provide a list of username. These users will be excluded from user selection. Do not use if don't use default completeMethod. Type: java.util.List. Required: false." />
+  <cc:attribute name="requiredMessage" default="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/Common/RequiredFieldMessage')}" 
+  	shortDescription="Validation message when required field is empty. Type: String. Default value: CMS entry. Required: false."/>
   <cc:attribute name="forceSelection" default="true" shortDescription="Only accepts user from the list when it’s enabled. Default: true." />
   <cc:attribute name="minQueryLength" default="1" shortDescription="Number of characters to be typed before starting to query. Default: 1." />
   <cc:attribute name="isDisabled" shortDescription="Disable User Selection. Default: false." />
