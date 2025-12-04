@@ -19,15 +19,15 @@ The Dashboard Configuration page has two tabs:
 .. table::
    :widths: 25 35 40
 
-   +-------------------------+---------------------------------------------+--------------------------------------------+
-   | Tab                     | Required Permission                         | Purpose                                    |
-   +=========================+=============================================+============================================+
-   | **Private Dashboards**  | :bdg-ref-warning:`🔑DashboardWriteOwn      | Manage your personal dashboards               |
-   |                         | <DashboardWriteOwn>`                        | visible only to you                        |
-   +-------------------------+---------------------------------------------+--------------------------------------------+
-   | **Public Dashboards**   | :bdg-ref-warning:`🔑DashboardWritePublic   | Manage shared dashboards visible             |
-   |                         | <DashboardWritePublic>`                     | to users with specific permissions         |
-   +-------------------------+---------------------------------------------+--------------------------------------------+
+   +-------------------------+---------------------------------------------------+--------------------------------------------+
+   | Tab                     | Required Permission                               | Purpose                                    |
+   +=========================+===================================================+============================================+
+   | **Private Dashboards**  | :bdg-ref-warning:`🔑DashboardWriteOwn             | Manage your personal dashboards            |
+   |                         | <DashboardWriteOwn>`                              | visible only to you                        |
+   +-------------------------+---------------------------------------------------+--------------------------------------------+
+   | **Public Dashboards**   | :bdg-ref-warning:`🔑DashboardWritePublic          | Manage shared dashboards visible           |
+   |                         | <DashboardWritePublic>`                           | to users with specific permissions         |
+   +-------------------------+---------------------------------------------------+--------------------------------------------+
 
 |dashboard-configuration-page|
 
@@ -39,19 +39,19 @@ Different actions require specific permissions:
 .. table::
    :widths: 40 60
 
-   +---------------------------------------+--------------------------------------------------------------------------+
-   | Action                                | Required Permission                                                      |
-   +=======================================+==========================================================================+
-   | **Import private dashboard**          | :bdg-ref-warning:`🔑DashboardImportOwn <DashboardImportOwn>`            |
-   +---------------------------------------+--------------------------------------------------------------------------+
-   | **Export private dashboard**          | :bdg-ref-warning:`🔑DashboardExportOwn <DashboardExportOwn>`            |
-   +---------------------------------------+--------------------------------------------------------------------------+
-   | **Import public dashboard**           | :bdg-ref-warning:`🔑DashboardImportPublic <DashboardImportPublic>`      |
-   +---------------------------------------+--------------------------------------------------------------------------+
-   | **Export public dashboard**           | :bdg-ref-warning:`🔑DashboardExportPublic <DashboardExportPublic>`      |
-   +---------------------------------------+--------------------------------------------------------------------------+
-   | **Share public dashboard link**       | :bdg-ref-warning:`🔑ShareDashboardLink <ShareDashboardLink>`            |
-   +---------------------------------------+--------------------------------------------------------------------------+
+   +---------------------------------------+------------------------------------------------------------------------------+
+   | Action                                | Required Permission                                                          |
+   +=======================================+==============================================================================+
+   | **Import private dashboard**          | :bdg-ref-warning:`🔑DashboardImportOwn <DashboardImportOwn>`                |
+   +---------------------------------------+------------------------------------------------------------------------------+
+   | **Export private dashboard**          | :bdg-ref-warning:`🔑DashboardExportOwn <DashboardExportOwn>`                |
+   +---------------------------------------+------------------------------------------------------------------------------+
+   | **Import public dashboard**           | :bdg-ref-warning:`🔑DashboardImportPublic <DashboardImportPublic>`          |
+   +---------------------------------------+------------------------------------------------------------------------------+
+   | **Export public dashboard**           | :bdg-ref-warning:`🔑DashboardExportPublic <DashboardExportPublic>`          |
+   +---------------------------------------+------------------------------------------------------------------------------+
+   | **Share public dashboard link**       | :bdg-ref-warning:`🔑ShareDashboardLink <ShareDashboardLink>`                |
+   +---------------------------------------+------------------------------------------------------------------------------+
 
 Private dashboards configuration
 ================================
