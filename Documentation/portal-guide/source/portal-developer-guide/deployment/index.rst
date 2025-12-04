@@ -211,17 +211,17 @@ Dashboard Configuration
 There are three methods to configure Portal dashboards:
 
 .. table::
-   :widths: 30 70
+   :widths: 35 65
 
-   +--------------------------------+--------------------------------------------------------+
-   | Method                         | Description                                            |
-   +================================+========================================================+
-   | **Deployment Files**           | Include Portal.Dashboard.json in deployment package   |
-   +--------------------------------+--------------------------------------------------------+
-   | **Engine Cockpit UI**          | Configure through Engine Cockpit variables             |
-   +--------------------------------+--------------------------------------------------------+
-   | **Portal Import Feature**      | Import dashboards directly in Portal UI                |
-   +--------------------------------+--------------------------------------------------------+
+   +---------------------------------+---------------------------------------------------------+
+   | Method                          | Description                                             |
+   +=================================+=========================================================+
+   | **Deployment Files**            | Include Portal.Dashboard.json in deployment package     |
+   +---------------------------------+---------------------------------------------------------+
+   | **Engine Cockpit UI**           | Configure through Engine Cockpit variables              |
+   +---------------------------------+---------------------------------------------------------+
+   | **Portal Import Feature**       | Import dashboards directly in Portal UI                 |
+   +---------------------------------+---------------------------------------------------------+
 
 Method 1: Deployment Files
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
