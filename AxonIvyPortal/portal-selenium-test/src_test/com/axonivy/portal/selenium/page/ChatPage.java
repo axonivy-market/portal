@@ -27,8 +27,7 @@ public class ChatPage extends TemplatePage {
 
   public void openFirstGroupChat() {
     ElementsCollection chatNames =
-        $("[id='chat-form:group-chat-container']").shouldBe(appear, DEFAULT_TIMEOUT)
-        .$$(".js-group-card-name").shouldHave(CollectionCondition.sizeGreaterThan(0), DEFAULT_TIMEOUT);
+        $$(".js-group-card-name").shouldHave(CollectionCondition.sizeGreaterThan(0), DEFAULT_TIMEOUT);
     if (!chatNames.isEmpty()) {
       chatNames.get(0).shouldBe(appear, DEFAULT_TIMEOUT).click();
     }
