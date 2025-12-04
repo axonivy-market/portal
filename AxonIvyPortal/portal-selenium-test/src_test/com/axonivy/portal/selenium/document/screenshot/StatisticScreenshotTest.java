@@ -11,7 +11,6 @@ import org.openqa.selenium.WebElement;
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.enums.statistic.ChartType;
 import com.axonivy.portal.selenium.common.FilterOperator;
-import com.axonivy.portal.selenium.common.FilterValueType;
 import com.axonivy.portal.selenium.common.ScreenshotBaseTest;
 import com.axonivy.portal.selenium.common.ScreenshotMargin;
 import com.axonivy.portal.selenium.common.ScreenshotUtils;

@@ -22,6 +22,7 @@ import com.codeborne.selenide.CollectionCondition;
 
 import ch.ivy.addon.portalkit.enums.DashboardDisplayType;
 
+@IvyWebTest
 public class StatisticWidgetTest extends BaseTest {
   private NewDashboardPage newDashboardPage;
 
