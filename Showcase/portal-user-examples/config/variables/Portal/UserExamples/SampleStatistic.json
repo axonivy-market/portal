@@ -1,0 +1,976 @@
+[
+  {
+    "id": "21ef6b6842384c33a787b2a5912257e7",
+    "version": "13.2.0",
+    "statisticAggregation": {
+      "field": "Item",
+      "type": "custom",
+      "kpiField": "SpendAmount",
+      "aggregationMethod": "sum"
+    },
+    "permissions": [
+      "Everybody"
+    ],
+    "chartTarget": "case",
+    "chartType": "pie",
+    "icon": "si-pie-line-graph",
+    "names": [
+      {
+        "locale": "en",
+        "value": "Distribution of Spend by Category"
+      },
+      {
+        "locale": "fr",
+        "value": "Répartition des dépenses par catégorie"
+      },
+      {
+        "locale": "de",
+        "value": "Aufteilung der Ausgaben nach Kategorien"
+      },
+      {
+        "locale": "ja",
+        "value": "支出のカテゴリー別内訳"
+      },
+      {
+        "locale": "es",
+        "value": "Distribución del gasto por categoría"
+      }
+    ],
+    "descriptions": [
+      {
+        "locale": "en",
+        "value": "Illustrates the proportion of total spend by purchase category (e.g. IT equipment, raw materials, services, etc.)."
+      },
+      {
+        "locale": "fr",
+        "value": "Illustre la proportion des dépenses totales par catégorie d'achat (par exemple, équipement informatique, matières premières, services, etc.)."
+      },
+      {
+        "locale": "de",
+        "value": "Veranschaulicht den Anteil der Gesamtausgaben nach Einkaufskategorie (z. B. IT-Ausrüstung, Rohstoffe, Dienstleistungen usw.)."
+      },
+      {
+        "locale": "ja",
+        "value": "購入カテゴリー別（例：IT機器、原材料、サービスなど）の総支出に占める割合を示します。"
+      },
+      {
+        "locale": "es",
+        "value": "Ilustra la proporción del gasto total por categoría de compra (por ejemplo, equipo informático, materias primas, servicios, etc.)."
+      }
+    ],
+    "pieChartConfig": {
+      "backgroundColors": [
+        "#98bffa",
+        "#f8da96",
+        "#bee3cb",
+        "#f9908c",
+        "#c8befa",
+        "#8dc261",
+        "#6299f7",
+        "#f5bf9f"
+      ],
+      "conditionBasedColoringEnabled": false
+    },
+    "conditionBasedColoringEnabled": false,
+    "chartDrillDownEnabled": true
+  },
+  {
+    "id": "12159ba721b94ea7bc4a0c5e0b4c93d0",
+    "version": "13.2.0",
+    "statisticAggregation": {
+      "field": "MonthYear",
+      "type": "custom",
+      "interval": "month"
+    },
+    "permissions": [
+      "Everybody"
+    ],
+    "chartTarget": "case",
+    "chartType": "line",
+    "icon": "si-pie-line-graph",
+    "names": [
+      {
+        "locale": "en",
+        "value": "Number of Purchase Requests / Orders per Month"
+      },
+      {
+        "locale": "fr",
+        "value": "Nombre de demandes d'achat / commandes par mois"
+      },
+      {
+        "locale": "de",
+        "value": "Anzahl der Kaufanfragen/Bestellungen pro Monat"
+      },
+      {
+        "locale": "ja",
+        "value": "月間購入依頼数／発注数"
+      },
+      {
+        "locale": "es",
+        "value": "Número de solicitudes de compra/pedidos por mes"
+      }
+    ],
+    "descriptions": [
+      {
+        "locale": "en",
+        "value": "Tracks procurement activity volume over time, useful for identifying seasonal or operational trends."
+      },
+      {
+        "locale": "fr",
+        "value": "Suivi du volume des activités d'approvisionnement au fil du temps, utile pour identifier les tendances saisonnières ou opérationnelles."
+      },
+      {
+        "locale": "de",
+        "value": "Verfolgt das Volumen der Beschaffungsaktivitäten im Zeitverlauf und ist nützlich, um saisonale oder betriebliche Trends zu erkennen."
+      },
+      {
+        "locale": "ja",
+        "value": "調達活動の量を経時的に追跡し、季節的または業務上の傾向を特定するのに有用である。"
+      },
+      {
+        "locale": "es",
+        "value": "Realiza un seguimiento del volumen de actividad de compras a lo largo del tiempo, lo que resulta útil para identificar tendencias estacionales u operativas."
+      }
+    ],
+    "lineChartConfig": {
+      "xTitles": [
+        {
+          "locale": "en",
+          "value": "Month of year"
+        },
+        {
+          "locale": "fr",
+          "value": "Mois de l'année"
+        },
+        {
+          "locale": "de",
+          "value": "Monat des Jahres"
+        },
+        {
+          "locale": "ja",
+          "value": "年の月"
+        },
+        {
+          "locale": "es",
+          "value": "Mes del año"
+        }
+      ],
+      "yTitles": [
+        {
+          "locale": "en",
+          "value": "Number of orders"
+        },
+        {
+          "locale": "fr",
+          "value": "Nombre de commandes"
+        },
+        {
+          "locale": "de",
+          "value": "Anzahl der Bestellungen"
+        },
+        {
+          "locale": "ja",
+          "value": "注文数"
+        },
+        {
+          "locale": "es",
+          "value": "Número de pedidos"
+        }
+      ],
+      "backgroundColors": [
+        "#98bffa",
+        "#f8da96",
+        "#bee3cb",
+        "#f9908c",
+        "#c8befa",
+        "#8dc261",
+        "#6299f7",
+        "#f5bf9f"
+      ]
+    },
+    "defaultBackgroundColor": "#8dc261",
+    "conditionBasedColoringEnabled": false,
+    "chartDrillDownEnabled": true
+  },
+  {
+    "id": "f754970742f14a72af3f9215ac86154d",
+    "version": "13.2.0",
+    "statisticAggregation": {
+      "field": "Department",
+      "type": "custom",
+      "kpiField": "SpendAmount",
+      "aggregationMethod": "sum"
+    },
+    "permissions": [
+      "Everybody"
+    ],
+    "chartTarget": "case",
+    "chartType": "bar",
+    "icon": "si-pie-line-graph",
+    "names": [
+      {
+        "locale": "en",
+        "value": "Total Procurement Spend per Department"
+      },
+      {
+        "locale": "fr",
+        "value": "Dépenses totales d'approvisionnement par département"
+      },
+      {
+        "locale": "de",
+        "value": "Gesamtbeschaffungsausgaben pro Abteilung"
+      },
+      {
+        "locale": "ja",
+        "value": "部門別総調達支出額"
+      },
+      {
+        "locale": "es",
+        "value": "Gasto total en compras por departamento"
+      }
+    ],
+    "descriptions": [
+      {
+        "locale": "en",
+        "value": "Shows total purchase value or spend per department to identify cost drivers and budget utilization."
+      },
+      {
+        "locale": "fr",
+        "value": "Affiche la valeur totale des achats ou les dépenses par service afin d'identifier les facteurs de coûts et l'utilisation du budget."
+      },
+      {
+        "locale": "de",
+        "value": "Zeigt den Gesamtkaufwert oder die Ausgaben pro Abteilung an, um Kostentreiber und Budgetauslastung zu identifizieren."
+      },
+      {
+        "locale": "ja",
+        "value": "部門ごとの総購入額または支出額を表示し、コスト要因と予算利用状況を特定します。"
+      },
+      {
+        "locale": "es",
+        "value": "Muestra el valor total de las compras o el gasto por departamento para identificar los factores que influyen en los costos y la utilización del presupuesto."
+      }
+    ],
+    "barChartConfig": {
+      "xTitles": [
+        {
+          "locale": "en",
+          "value": "Department"
+        },
+        {
+          "locale": "fr",
+          "value": "Département"
+        },
+        {
+          "locale": "de",
+          "value": "Abteilung"
+        },
+        {
+          "locale": "ja",
+          "value": "部署"
+        },
+        {
+          "locale": "es",
+          "value": "Departamento"
+        }
+      ],
+      "yTitles": [
+        {
+          "locale": "en",
+          "value": "Amount spent"
+        },
+        {
+          "locale": "fr",
+          "value": "Montant dépensé"
+        },
+        {
+          "locale": "de",
+          "value": "Ausgabenbetrag"
+        },
+        {
+          "locale": "ja",
+          "value": "支出額"
+        },
+        {
+          "locale": "es",
+          "value": "Importe gastado"
+        }
+      ],
+      "backgroundColors": [
+        "#98bffa",
+        "#f8da96",
+        "#bee3cb",
+        "#f9908c",
+        "#c8befa",
+        "#8dc261",
+        "#6299f7",
+        "#f5bf9f"
+      ]
+    },
+    "conditionBasedColoringEnabled": false,
+    "chartDrillDownEnabled": true
+  },
+  {
+    "id": "6b3e8ccb484648c8bbe4453cc76292d8",
+    "version": "13.2.0",
+    "statisticAggregation": {
+      "field": "Department",
+      "type": "custom",
+      "kpiField": "DaysToDecision",
+      "aggregationMethod": "avg"
+    },
+    "permissions": [
+      "Everybody"
+    ],
+    "chartTarget": "case",
+    "chartType": "bar",
+    "icon": "si-pie-line-graph",
+    "names": [
+      {
+        "locale": "en",
+        "value": "Average Time from Request to Decision (Lead Time)"
+      },
+      {
+        "locale": "fr",
+        "value": "Délai moyen entre la demande et la décision (délai d'exécution)"
+      },
+      {
+        "locale": "de",
+        "value": "Durchschnittliche Zeit von der Anfrage bis zur Entscheidung (Durchlaufzeit)"
+      },
+      {
+        "locale": "ja",
+        "value": "リクエストから決定までの平均時間（リードタイム）"
+      },
+      {
+        "locale": "es",
+        "value": "Tiempo promedio desde la solicitud hasta la decisión (plazo de entrega)"
+      }
+    ],
+    "descriptions": [
+      {
+        "locale": "en",
+        "value": "Measures responsiveness of the procurement process and helps to identify potential delays."
+      },
+      {
+        "locale": "fr",
+        "value": "Mesure la réactivité du processus d'approvisionnement et aide à identifier les retards potentiels."
+      },
+      {
+        "locale": "de",
+        "value": "Misst die Reaktionsfähigkeit des Beschaffungsprozesses und hilft, potenzielle Verzögerungen zu erkennen."
+      },
+      {
+        "locale": "ja",
+        "value": "調達プロセスの対応速度を測定し、潜在的な遅延要因の特定を支援します。"
+      },
+      {
+        "locale": "es",
+        "value": "Mide la capacidad de respuesta del proceso de adquisición y ayuda a identificar posibles retrasos."
+      }
+    ],
+    "barChartConfig": {
+      "xTitles": [
+        {
+          "locale": "en",
+          "value": "Department"
+        },
+        {
+          "locale": "fr",
+          "value": "Département"
+        },
+        {
+          "locale": "de",
+          "value": "Abteilung"
+        },
+        {
+          "locale": "ja",
+          "value": "部署"
+        },
+        {
+          "locale": "es",
+          "value": "Departamento"
+        }
+      ],
+      "yTitles": [
+        {
+          "locale": "en",
+          "value": "Average number of days"
+        },
+        {
+          "locale": "fr",
+          "value": "Nombre moyen de jours"
+        },
+        {
+          "locale": "de",
+          "value": "Durchschnittliche Anzahl von Tagen"
+        },
+        {
+          "locale": "ja",
+          "value": "平均日数"
+        },
+        {
+          "locale": "es",
+          "value": "Número promedio de días"
+        }
+      ],
+      "backgroundColors": [
+        "#98bffa",
+        "#f8da96",
+        "#bee3cb",
+        "#f9908c",
+        "#c8befa",
+        "#8dc261",
+        "#6299f7",
+        "#f5bf9f"
+      ]
+    },
+    "conditionBasedColoringEnabled": false,
+    "chartDrillDownEnabled": true
+  },
+  {
+    "id": "6b3340d8a61c458ba655d697469fc1b4",
+    "version": "13.2.0",
+    "statisticAggregation": {
+      "field": "Decision",
+      "type": "custom"
+    },
+    "permissions": [
+      "Everybody"
+    ],
+    "chartTarget": "case",
+    "chartType": "bar",
+    "icon": "si-pie-line-graph",
+    "names": [
+      {
+        "locale": "en",
+        "value": "Approval Rate (Approved, Rejected, Pending)"
+      },
+      {
+        "locale": "fr",
+        "value": "Taux d'approbation (approuvé, rejeté, en attente)"
+      },
+      {
+        "locale": "de",
+        "value": "Genehmigungsquote (genehmigt, abgelehnt, ausstehend)"
+      },
+      {
+        "locale": "ja",
+        "value": "承認率（承認済み、却下済み、保留中）"
+      },
+      {
+        "locale": "es",
+        "value": "Tasa de aprobación (aprobados, rechazados, pendientes)"
+      }
+    ],
+    "descriptions": [
+      {
+        "locale": "en",
+        "value": "Indicates efficiency and control levels in the request approval process."
+      },
+      {
+        "locale": "fr",
+        "value": "Indique les niveaux d'efficacité et de contrôle dans le processus d'approbation des demandes."
+      },
+      {
+        "locale": "de",
+        "value": "Zeigt Effizienz- und Kontrollstufen im Genehmigungsprozess für Anfragen an."
+      },
+      {
+        "locale": "ja",
+        "value": "リクエスト承認プロセスにおける効率性と管理レベルを示す。"
+      },
+      {
+        "locale": "es",
+        "value": "Indica los niveles de eficiencia y control en el proceso de aprobación de solicitudes."
+      }
+    ],
+    "barChartConfig": {
+      "xTitles": [
+        {
+          "locale": "en",
+          "value": "Decision"
+        },
+        {
+          "locale": "fr",
+          "value": "Décision"
+        },
+        {
+          "locale": "de",
+          "value": "Entscheidung"
+        },
+        {
+          "locale": "ja",
+          "value": "決定"
+        },
+        {
+          "locale": "es",
+          "value": "Decisión"
+        }
+      ],
+      "yTitles": [
+        {
+          "locale": "en",
+          "value": "Number of orders"
+        },
+        {
+          "locale": "fr",
+          "value": "Nombre de commandes"
+        },
+        {
+          "locale": "de",
+          "value": "Anzahl der Bestellungen"
+        },
+        {
+          "locale": "ja",
+          "value": "注文数"
+        },
+        {
+          "locale": "es",
+          "value": "Número de pedidos"
+        }
+      ],
+      "backgroundColors": [
+        "#98bffa",
+        "#f8da96",
+        "#bee3cb",
+        "#f9908c",
+        "#c8befa",
+        "#8dc261",
+        "#6299f7",
+        "#f5bf9f"
+      ]
+    },
+    "conditionBasedColoringEnabled": false,
+    "chartDrillDownEnabled": true
+  },
+  {
+    "id": "741ea4131554457e98abda979cdd1a4c",
+    "version": "13.2.0",
+    "statisticAggregation": {
+      "field": "Department",
+      "type": "custom",
+      "kpiField": "ReworkNoLoops",
+      "aggregationMethod": "avg"
+    },
+    "permissions": [
+      "Everybody"
+    ],
+    "chartTarget": "case",
+    "chartType": "bar",
+    "icon": "si-pie-line-graph",
+    "names": [
+      {
+        "locale": "en",
+        "value": "Average Number of Approval Loops"
+      },
+      {
+        "locale": "fr",
+        "value": "Nombre moyen de boucles d'approbation"
+      },
+      {
+        "locale": "de",
+        "value": "Durchschnittliche Anzahl der Genehmigungsrunden"
+      },
+      {
+        "locale": "ja",
+        "value": "承認ループの平均回数"
+      },
+      {
+        "locale": "es",
+        "value": "Número promedio de ciclos de aprobación"
+      }
+    ],
+    "descriptions": [
+      {
+        "locale": "en",
+        "value": "Tracks how often requests are sent back or re-evaluated before final approval - a proxy for process maturity."
+      },
+      {
+        "locale": "fr",
+        "value": "Suivi de la fréquence à laquelle les demandes sont renvoyées ou réévaluées avant leur approbation finale - un indicateur de la maturité du processus."
+      },
+      {
+        "locale": "de",
+        "value": "Verfolgt, wie oft Anfragen vor der endgültigen Genehmigung zurückgeschickt oder neu bewertet werden – ein Indikator für die Prozessreife."
+      },
+      {
+        "locale": "ja",
+        "value": "リクエストが最終承認前に返送または再評価される頻度を追跡する - プロセス成熟度の指標。"
+      },
+      {
+        "locale": "es",
+        "value": "Realiza un seguimiento de la frecuencia con la que se devuelven o reevalúan las solicitudes antes de su aprobación definitiva, lo que sirve como indicador de la madurez del proceso."
+      }
+    ],
+    "barChartConfig": {
+      "xTitles": [
+        {
+          "locale": "en",
+          "value": "Department"
+        },
+        {
+          "locale": "fr",
+          "value": "Département"
+        },
+        {
+          "locale": "de",
+          "value": "Abteilung"
+        },
+        {
+          "locale": "ja",
+          "value": "部署"
+        },
+        {
+          "locale": "es",
+          "value": "Departamento"
+        }
+      ],
+      "yTitles": [
+        {
+          "locale": "en",
+          "value": "Average approval loops"
+        },
+        {
+          "locale": "fr",
+          "value": "Boucles d'approbation moyennes"
+        },
+        {
+          "locale": "de",
+          "value": "Durchschnittliche Genehmigungszyklen"
+        },
+        {
+          "locale": "ja",
+          "value": "平均承認ループ"
+        },
+        {
+          "locale": "es",
+          "value": "Bucles de aprobación promedio"
+        }
+      ],
+      "backgroundColors": [
+        "#98bffa",
+        "#f8da96",
+        "#bee3cb",
+        "#f9908c",
+        "#c8befa",
+        "#8dc261",
+        "#6299f7",
+        "#f5bf9f"
+      ]
+    },
+    "conditionBasedColoringEnabled": false,
+    "chartDrillDownEnabled": true
+  },
+  {
+    "id": "a7353e5b93e4466890466830a65264c5",
+    "version": "13.2.0",
+    "statisticAggregation": {
+      "field": "ReworkOccurred",
+      "type": "custom",
+      "kpiField": "DaysToDecision",
+      "aggregationMethod": "avg"
+    },
+    "permissions": [
+      "Everybody"
+    ],
+    "chartTarget": "case",
+    "chartType": "bar",
+    "icon": "si-pie-line-graph",
+    "names": [
+      {
+        "locale": "en",
+        "value": "Cycle Time Comparison time to decision (with vs without rework)"
+      },
+      {
+        "locale": "fr",
+        "value": "Comparaison du temps de cycle nécessaire à la prise de décision (avec et sans reprise)"
+      },
+      {
+        "locale": "de",
+        "value": "Zykluszeit Vergleich der Zeit bis zur Entscheidung (mit vs. ohne Nacharbeit)"
+      },
+      {
+        "locale": "ja",
+        "value": "サイクルタイム比較決定までの時間（手直しあり vs 手直しなし)"
+      },
+      {
+        "locale": "es",
+        "value": "Comparación del tiempo de ciclo: tiempo hasta la decisión (con y sin reelaboración)"
+      }
+    ],
+    "descriptions": [
+      {
+        "locale": "en",
+        "value": "Highlights time lost due to rework or back-and-forth communication."
+      },
+      {
+        "locale": "fr",
+        "value": "Met en évidence le temps perdu en raison des retouches ou des allers-retours dans la communication."
+      },
+      {
+        "locale": "de",
+        "value": "Hebt Zeitverluste aufgrund von Nacharbeiten oder hin- und hergehender Kommunikation hervor."
+      },
+      {
+        "locale": "ja",
+        "value": "再作業や行き来するコミュニケーションによる時間の損失を強調する。"
+      },
+      {
+        "locale": "es",
+        "value": "Destaca el tiempo perdido debido a la repetición del trabajo o a la comunicación de ida y vuelta."
+      }
+    ],
+    "barChartConfig": {
+      "xTitles": [
+        {
+          "locale": "en",
+          "value": "Rework occurred?"
+        },
+        {
+          "locale": "fr",
+          "value": "Une modification a-t-elle été effectuée?"
+        },
+        {
+          "locale": "de",
+          "value": "Wiederholungsarbeit aufgetreten?"
+        },
+        {
+          "locale": "ja",
+          "value": "再加工が行われたのか？"
+        },
+        {
+          "locale": "es",
+          "value": "¿Se ha producido una reelaboración?"
+        }
+      ],
+      "yTitles": [
+        {
+          "locale": "en",
+          "value": "Average days to decision"
+        },
+        {
+          "locale": "fr",
+          "value": "Nombre moyen de jours avant la décision"
+        },
+        {
+          "locale": "de",
+          "value": "Durchschnittliche Tage bis zur Entscheidung"
+        },
+        {
+          "locale": "ja",
+          "value": "平均決定日数"
+        },
+        {
+          "locale": "es",
+          "value": "Promedio de días hasta la decisión"
+        }
+      ],
+      "backgroundColors": [
+        "#98bffa",
+        "#f8da96",
+        "#bee3cb",
+        "#f9908c",
+        "#c8befa",
+        "#8dc261",
+        "#6299f7",
+        "#f5bf9f"
+      ]
+    },
+    "conditionBasedColoringEnabled": false,
+    "chartDrillDownEnabled": true
+  },
+  {
+    "id": "5116b8b02baa408da1dff648adda024c",
+    "version": "13.2.0",
+    "statisticAggregation": {
+      "field": "ReworkCauses",
+      "type": "custom",
+      "kpiField": "DaysToDecision",
+      "aggregationMethod": "avg"
+    },
+    "permissions": [
+      "Everybody"
+    ],
+    "chartTarget": "case",
+    "chartType": "bar",
+    "icon": "si-pie-line-graph",
+    "names": [
+      {
+        "locale": "en",
+        "value": "Average Cycle Time per Cause of Rework"
+      },
+      {
+        "locale": "fr",
+        "value": "Durée moyenne du cycle par cause de reprise"
+      },
+      {
+        "locale": "de",
+        "value": "Durchschnittliche Zykluszeit pro Ursache für Nacharbeit"
+      },
+      {
+        "locale": "ja",
+        "value": "再作業の原因別平均サイクルタイム"
+      },
+      {
+        "locale": "es",
+        "value": "Tiempo promedio del ciclo por causa de reelaboración"
+      }
+    ],
+    "descriptions": [
+      {
+        "locale": "en",
+        "value": "Quantifies impact of specific rework causes on process duration."
+      },
+      {
+        "locale": "fr",
+        "value": "Quantifie l'impact des causes spécifiques de reprise sur la durée du processus."
+      },
+      {
+        "locale": "de",
+        "value": "Quantifiziert die Auswirkungen spezifischer Ursachen für Nacharbeiten auf die Prozessdauer."
+      },
+      {
+        "locale": "ja",
+        "value": "特定のリワーク原因がプロセス期間に与える影響を定量化する。"
+      },
+      {
+        "locale": "es",
+        "value": "Cuantifica el impacto de las causas específicas de reelaboración en la duración del proceso."
+      }
+    ],
+    "barChartConfig": {
+      "xTitles": [
+        {
+          "locale": "en",
+          "value": "Cause for rework"
+        },
+        {
+          "locale": "fr",
+          "value": "Motif de reprise"
+        },
+        {
+          "locale": "de",
+          "value": "Grund für Nacharbeit"
+        },
+        {
+          "locale": "ja",
+          "value": "再作業の原因"
+        },
+        {
+          "locale": "es",
+          "value": "Motivo de la repetición del trabajo"
+        }
+      ],
+      "yTitles": [
+        {
+          "locale": "en",
+          "value": "Average number of days"
+        },
+        {
+          "locale": "fr",
+          "value": "Nombre moyen de jours"
+        },
+        {
+          "locale": "de",
+          "value": "Durchschnittliche Anzahl von Tagen"
+        },
+        {
+          "locale": "ja",
+          "value": "平均日数"
+        },
+        {
+          "locale": "es",
+          "value": "Número promedio de días"
+        }
+      ],
+      "backgroundColors": [
+        "#98bffa",
+        "#f8da96",
+        "#bee3cb",
+        "#f9908c",
+        "#c8befa",
+        "#8dc261",
+        "#6299f7",
+        "#f5bf9f"
+      ]
+    },
+    "defaultBackgroundColor": "#8dc261",
+    "conditionBasedColoringEnabled": false,
+    "chartDrillDownEnabled": true
+  },
+  {
+    "id": "b4968c1cbe3d435c907026a8e7ce83e1",
+    "version": "13.2.0",
+    "statisticAggregation": {
+      "field": "ReworkCauses",
+      "type": "custom"
+    },
+    "permissions": [
+      "Everybody"
+    ],
+    "chartTarget": "case",
+    "chartType": "pie",
+    "icon": "si-pie-line-graph",
+    "names": [
+      {
+        "locale": "en",
+        "value": "Distribution Causes of Rework"
+      },
+      {
+        "locale": "fr",
+        "value": "Causes de la redistribution des retouches"
+      },
+      {
+        "locale": "de",
+        "value": "Verteilungsursachen für Nacharbeit"
+      },
+      {
+        "locale": "ja",
+        "value": "再作業の発生要因"
+      },
+      {
+        "locale": "es",
+        "value": "Causas de la distribución de la reelaboración"
+      }
+    ],
+    "descriptions": [
+      {
+        "locale": "en",
+        "value": "Helps identify recurring issues causing inefficiency or quality problems."
+      },
+      {
+        "locale": "fr",
+        "value": "Aide à identifier les problèmes récurrents à l'origine d'inefficacités ou de problèmes de qualité."
+      },
+      {
+        "locale": "de",
+        "value": "Hilft bei der Identifizierung wiederkehrender Probleme, die zu Ineffizienz oder Qualitätsproblemen führen."
+      },
+      {
+        "locale": "ja",
+        "value": "非効率性や品質問題を引き起こす繰り返される問題の特定を支援します。"
+      },
+      {
+        "locale": "es",
+        "value": "Ayuda a identificar problemas recurrentes que causan ineficiencias o problemas de calidad."
+      }
+    ],
+    "pieChartConfig": {
+      "backgroundColors": [
+        "#98bffa",
+        "#f8da96",
+        "#bee3cb",
+        "#f9908c",
+        "#c8befa",
+        "#8dc261",
+        "#6299f7",
+        "#f5bf9f"
+      ],
+      "conditionBasedColoringEnabled": false
+    },
+    "defaultBackgroundColor": "#8dc261",
+    "conditionBasedColoringEnabled": false,
+    "chartDrillDownEnabled": true
+  }
+]

@@ -1,0 +1,28 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/process/13.2.0/process.json",
+  "id" : "19AEDE495EB24E52",
+  "config" : {
+    "data" : "com.axonivy.portal.userexamples.PortalUserExamplesInitData"
+  },
+  "elements" : [ {
+      "id" : "f3",
+      "type" : "ProgramStart",
+      "name" : "Portal User Examples Init",
+      "config" : {
+        "javaClass" : "com.axonivy.portal.userexamples.bean.PortalUserExamplesInitBean",
+        "link" : "eventLink.ivp"
+      },
+      "visual" : {
+        "at" : { "x" : 296, "y" : 216 }
+      },
+      "connect" : [
+        { "id" : "f4", "to" : "f5" }
+      ]
+    }, {
+      "id" : "f5",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 448, "y" : 216 }
+      }
+    } ]
+}
