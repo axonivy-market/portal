@@ -110,6 +110,55 @@ How to configure new statistic chart
 
     |custom-statistic-widget-configuration-page|
 
+Advanced Configuration
+----------------------
+
+The advanced configuration options allow you to customize your statistic charts with enhanced features for better data visualization and user interaction.
+
+|advanced-settings|
+
+Chart Drill-down Enabled
+========================
+
+Enable drill-down functionality for interactive data exploration. Users can click chart elements to view detailed lists of the underlying tasks or cases.
+
+- **Chart drill-down enabled**: When activated, users can click on chart elements to navigate to a detailed view of the underlying data.
+
+- All chart types support the drill-down feature.
+
+|drill-down dashboard|
+
+- When the user clicks a chart element, the Portal navigates to the drill-down dashboard containing a widget that shows the detailed list filtered by the selected value. Features that the user can use on the widget are the same as those on a standard widget, including sorting, complex filtering, quick search, etc.
+
+- There is a back button on the top left corner to return to the main dashboard. When going back, all configured filters and sorts on the detailed list widget are reset.
+
+.. important::
+
+    - A user must have the necessary permissions **TaskReadAll** and **CaseReadAll** to view the detailed data when using the drill-down feature.
+
+Condition-based Coloring Enabled
+================================
+
+Apply dynamic coloring rules to your charts based on data conditions:
+
+- When deactivated, all chart elements will use the default color scheme.
+- **Condition-based coloring enabled**: When enabled, you can define rules that automatically apply different colors to chart elements based on specific conditions.
+
+There are two scopes for applying condition-based coloring:
+
+    - **All values**: The coloring rules apply to all values in the chart.
+    - **Specific value**: The coloring rules apply only to specific values defined in the conditions.
+
+To make it work effectively, you need:
+
+    - Define clear conditions.
+    - When multiple conditions are satisfied, the first condition defined wins.
+    - Keep it simple.
+
+.. note::
+
+    Condition-based coloring is available for **Bar**, **Line**, and **Pie** charts only.
+
 Available values for configuring statistic chart 
 ------------------------------------------------
 
@@ -153,6 +202,10 @@ Available values for configuring statistic chart
    - | X title for the statistic chart.
  * - Y axis title
    - | Y title for the statistic chart.
+ * - Chart drill-down enabled
+   - | Toggle to enable/disable chart drill-down feature.
+ * - Condition-based coloring enabled
+   - | Toggle to enable/disable condition-based coloring feature. 
  * - Color 1-8
    - | Colors for data in the chart.
  * - Hide label
@@ -187,4 +240,8 @@ Available values for configuring statistic chart
 .. |create-new-custom-statistic-widget| image:: ../../screenshots/statistic/create-new-custom-statistic-widget.png
    :alt: Create new custom statistic widget
 .. |custom-statistic-widget-configuration-page| image:: ../../screenshots/statistic/custom-statistic-widget-configuration-page.png
-   :alt: Custom statistic widet configuration page
+   :alt: Custom statistic widget configuration page
+.. |advanced-settings| image:: ../../screenshots/statistic/advanced-settings.png
+   :alt: Custom statistic widget advanced settings
+.. |drill-down dashboard| image:: ../../screenshots/statistic/drill-down-dashboard.png
+   :alt: Drill-down dashboard

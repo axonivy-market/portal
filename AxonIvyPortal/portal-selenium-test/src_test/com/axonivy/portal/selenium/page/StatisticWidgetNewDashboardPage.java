@@ -1,9 +1,12 @@
 package com.axonivy.portal.selenium.page;
 
 import static com.codeborne.selenide.Condition.appear;
+
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
+
+import java.util.Objects;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -60,5 +63,29 @@ public class StatisticWidgetNewDashboardPage extends TemplatePage {
   
   private SelenideElement getChartWidgetHeader() {
     return $$("div.widget__header").filter(text(widgetName)).first();
+  }
+  
+  public boolean isChartNumberElementClickable() {
+    SelenideElement el = $(widgetId).$("div.chart-number-container").shouldBe(appear, DEFAULT_TIMEOUT).$("span.card-number").shouldBe(appear, DEFAULT_TIMEOUT);
+    String cursorStyle = el.getCssValue("cursor");
+    return Objects.nonNull(cursorStyle) && cursorStyle.equals("pointer");
+  }
+  
+  public NewDashboardPage clickOnElementOnNumberChart(String index) {
+    SelenideElement targetCard = getTargetElementOnNumberChart(index);
+    targetCard.click();
+    return new NewDashboardPage();
+  }
+  
+  public int getValueOfTargetElementOnNumberChart(String index) {
+    SelenideElement cardNumberElement = getTargetElementOnNumberChart(index).$("span.card-number").shouldBe(appear, DEFAULT_TIMEOUT);
+    return Integer.valueOf(cardNumberElement.getText());
+  }
+
+  private SelenideElement getTargetElementOnNumberChart(String index) {
+    ElementsCollection chartCards = $(widgetId).$("div.js-statistic-chart").shouldBe(appear, DEFAULT_TIMEOUT).$$("div.chart-content-card");
+    SelenideElement targetCard = chartCards.filter(Condition.attribute("data-index", index))
+        .first().shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition());
+    return targetCard;
   }
 }

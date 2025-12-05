@@ -113,6 +113,10 @@ public class StatisticConfigurationPage extends TemplatePage {
   public void autoRefeshToggleVisible() {
     $("div[id$='config-form:refresh-interval-enabled']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
+  
+  public void toggleAutoRefresh() {
+    $("div[id$='config-form:refresh-interval-enabled']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
+  }
 
   public void hideLabelVisible() {
     $("div[id$='config-form:hide-label']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
@@ -243,5 +247,30 @@ public class StatisticConfigurationPage extends TemplatePage {
   public void verifyNoDataAvailableMessage() {
     $("div[id$='config-form:condition-background-colors-container'] div.col-12")
       .shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+  
+  public void enableDrillDownFeature() {
+    SelenideElement drillDownToggle = getDrillDownToggle();
+    drillDownToggle.shouldBe(appear, DEFAULT_TIMEOUT);
+    
+    if (!drillDownToggle.$("input[type='checkbox']").isSelected()) {
+      drillDownToggle.shouldBe(getClickableCondition()).click();
+    }
+  }
+
+  public boolean isDrillDownFeatureEnabled() {
+    SelenideElement drillDownToggle = getDrillDownToggle();
+    drillDownToggle.shouldBe(appear, DEFAULT_TIMEOUT);
+    return drillDownToggle.$("input[type='checkbox']").isSelected();
+  }
+  
+  public void saveStatisticConfiguration() {
+    SelenideElement saveButton = $("button[id$='config-form:create-statistic-chart']");
+    saveButton.shouldBe(appear, DEFAULT_TIMEOUT);
+    saveButton.shouldBe(getClickableCondition()).click();
+  }
+
+  private SelenideElement getDrillDownToggle() {
+    return $("div[id$='config-form:chart-drill-down-toggle']");
   }
 }
