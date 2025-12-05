@@ -124,7 +124,59 @@ Dialogs:
                   IsRequired: This field is mandatory
                   Representation: Representation
                   To: To
+  com:
+    axonivy:
+      portal:
+        developerexamples:
+          customization:
+            sidestep:
+              CustomSideStepPrefix: 'My custom task name prefix: '
+              LeaveRequestApproval:
+                Approve: Approve
+                Reject: Reject
+              LeaveRequestBusinessDetailsPage:
+                CompletedTaskNumber: 'Completed side step tasks:'
+                InformCustomer: Inform customer
+                LeaveRequest: Leave Request Business Details
+                SideStepComment: Side step comment
+              LeaveRequestSummary:
+                Finish: Finish
+              SideStepAskMoreDetails:
+                MoreDetails: More details for leave request
+              SideStepCEOApproval:
+                CEOApproval: CEO approval
+              SideStepExample:
+                SideStepExample: Side Step Example
+              SideStepResultExample:
+                SideStepResult: Side step result
+                SideStepTaskIs: Side step task is done by
+Enums:
+  LeaveType:
+    ANNUAL_LEAVE: Annual Leave
+    MATERNITY_LEAVE: Maternity Leave
+    SICK_LEAVE: Sick Leave                  
 Labels:
+  Close: Close
+  LeaveRequest:
+    ApprovalResultTaskIntro: Below is summary of your leave request and feedback from approver.
+    ApprovalTaskIntro: 'There is leave request need your approval, detail is below:'
+    Approver: Approver
+    ApproverComment: Approver comment
+    From: From
+    LeaveSteps:
+      Approval: Approval
+      ApprovalResult: Approval Result
+      Creation: Create leave request
+      RequesterSideStepComment: Requester side step comment
+      SideStepComment: Side step comment
+    LeaveType: Leave type
+    Requester: Requester
+    RequesterComment: Requester comment
+    StepTypeParallelTitle: This is customized parallel title
+    StepTypeSwitchTitle: This is customized switch title
+    SubmitLeaveRequest: Submit leave request
+    To: To
+  OK: OK
   changePasswordWSError: An error occurred while changing your password. Please contact your administrator if this problem persists.
   forgotPasswordError: An error occurred while processing your request. Please try again later.
   passwordResetEmailCantSend: Exception while sending email to you. Please try again later.
@@ -163,6 +215,15 @@ Processes:
       #Summary
       Requester will get a summary of the request
       Acknoledge the result
+  LeaveRequest:
+    LeaveRequest: Leave Request
+    LeaveRequestWithSideStepsCaseLevel: Leave request with side step processes (case level)
+    LeaveRequestWithSideStepsTaskLevel: Leave request with side step processes (task level)
+    approvalTask: Your leave request is approved
+    approvalTaskName: Approval for leave request of {0}
+    createLeaveRequest: 'Create leave request for: {0}'
+    createNewLeaveRequest: 'System task: Start create new leave request'
+    rejectedTask: Your leave request is rejected
   MoreInformation:
     customProcessInfo: |-
       <h3><span class="mw-headline" id="Hello_world_example">Hello world example</span></h3>

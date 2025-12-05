@@ -1,0 +1,31 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/13.2.0/data-class.json",
+  "simpleName" : "SideStepCEOApprovalData",
+  "namespace" : "com.axonivy.portal.developerexamples.customization.sidestep.SideStepCEOApproval",
+  "isBusinessCaseData" : false,
+  "fields" : [ {
+    "name" : "originalTaskUuid",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "caseUuid",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "leaveRequestData",
+    "type" : "com.axonivy.portal.developerexamples.LeaveRequest",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "comment",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "ceoApproval",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "isParallel",
+    "type" : "Boolean",
+    "modifiers" : [ "PERSISTENT" ]
+  } ]
+}

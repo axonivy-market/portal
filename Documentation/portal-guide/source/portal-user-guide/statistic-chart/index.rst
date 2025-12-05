@@ -158,31 +158,6 @@ Available values for configuring statistic chart
  * - Hide label
    - | Toggle to show label of number chart.
 
-Sample: KPI Procurement Overview
---------------------------------
-
-The dashboards shown in the images below demonstrate the capabilities of Custom Statistics Widgets, which are available starting from version 13.2 of the Axon Ivy Portal.
-These widgets enable you to visualize KPIs and other information in a fully customizable way.
-
-Specifically, this example is designed for procurement processes, these dashboards provide insights into various aspects of procurement activities.
-
-To access the sample dashboard, follow these steps:
-
-#. Run the ``portal-user-examples`` project in your Axon Ivy Portal installation.
-#. Navigate to the left menu and select :guilabel:`Sample: KPI Procurement Overview`.
-#. Generate data for the charts by clicking the :guilabel:`Start Process` button in the Process widget on the sample dashboard, or find and run the ``Procurement`` process manually. You can run the process multiple times to generate additional data.
-#. Once data is generated, you will see the sample dashboards as shown in the image below.
-
-  |statistic-sample-dashboard|
-
-To view the configuration of these example statistic widgets, follow these steps:
-
-#. In the dashboard configuration page, click the :guilabel:`Add widget` button.
-#. Look for widgets labeled as :bdg-secondary:`Example`.
-#. Select :guilabel:`Edit` to view and review their configurations.
-
-  |statistic-config|
-
 .. |statistic-widget-list-page| image:: ../../screenshots/statistic/statistic-widget-list.png
    :alt: Statistic widget list
 .. |dashboard-statistic-widget-demo| image:: ../../screenshots/statistic/dashboard-statistic-widget-demo.png
@@ -213,7 +188,3 @@ To view the configuration of these example statistic widgets, follow these steps
    :alt: Create new custom statistic widget
 .. |custom-statistic-widget-configuration-page| image:: ../../screenshots/statistic/custom-statistic-widget-configuration-page.png
    :alt: Custom statistic widet configuration page
-.. |statistic-sample-dashboard| image:: ../../screenshots/sample-dashboard/statistic-sample-dashboard.png
-   :alt: Statistic sample dashboard
-.. |statistic-config| image:: ../../screenshots/sample-dashboard/statistic-config.png
-   :alt: Statistic configuration example

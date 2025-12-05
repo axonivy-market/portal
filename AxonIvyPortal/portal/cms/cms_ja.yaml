@@ -175,6 +175,9 @@ ch.ivy.addon.portalkit.ui.jsf:
     Breadcrumb: '{0} プロセスのプロセスビューアー'
     ProcessViewerText: プロセスビューアー
     Title: プロセスビューアー
+  SideStep:
+    NewSideStepMessage: 新しいサイドステップタスクが作成されます。
+    SideStepProcess: 並列プロセスを開始
   TaskDocuments:
     TaskDocumentsPageTitle: タスクドキュメント
   adminSettings:
@@ -440,6 +443,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     StringFormat:
       DateFromTo: '%s - %s'
       TextListOut: '%s、%s、。。'
+      TextWithColon: '%s：%s'
       TextWithContextInBrackets: 'TODO: %s (%s: %s)'
       TextWithRoundBracket: '%s（%s）'
     TaskCaseInformation: タスク／ケース情報
@@ -1388,7 +1392,6 @@ Dialogs:
               PortalDashboardDetailModification:
                 CreateCustomStatistic: 'TODO: Create custom statistic widget'
                 DeleteConfirm: 'TODO: Are you sure you want to delete?'
-                Example: 例
                 RemoveThisStatistic: TODO このカスタム統計を削除する
               component:
                 CustomDashboardWidget:
@@ -1461,43 +1464,43 @@ Dialogs:
             AccessibilityShortcuts:
               content: |-
                 <div class="ui-g">
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Alt + 1</span>ダッシュボード タブにフォーカス
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Alt + 5</span>検索にフォーカス
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Alt + A</span>最初のプロセスにフォーカス
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Tab</span>要素の順にタブ移動
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Alt + 2</span>プロセスタブにフォーカス
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Alt + 6</span>ユーザー設定にフォーカス
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Alt + W</span>最初のタスクにフォーカス
                     </div>
-                    <div class="ui-g-3 shortcut-content">
+                    <div class="ui-g-3 shortcut-content" tabindex="1">
                         <span class="shortcut-key">Esc</span>展開されたウィジェットを閉じる
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Alt + 3</span>タスクタブにフォーカス
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Alt + 7</span>メインメニューの表示／非表示を切り替えます
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Alt + Q</span>最初のケースにフォーカス
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Enter</span>選択を確定
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Alt + 4</span>ケース タブにフォーカス
                     </div>
                 </div>
@@ -1743,9 +1746,11 @@ Labels:
   AndMore: 'TODO: and {0} more...'
   AppendTask-Explain: このタスクは、自分のタスクの後のシーケンスに追加されます。
   AppendTheTask: タスクを追加
+  AssignToRole: 担当ロールを選択
+  AssignToUser: 担当者を選択
   Chat: TODO Chat
   Collapse: TODO 折りたたむ
-  Comma: '、'
+  Comma: 、
   Configuration: 設定
   CreateNewDashboard: 新しいダッシュボードを作成
   Description: 説明
@@ -1867,6 +1872,8 @@ Labels:
   SelectOperator: TODO Choose Operator
   SelectValues: TODO Select values
   Share: 共有
+  StepType: ステップタイプ
+  Submit: 提出する
   Task: タスク
   TaskItemDetail: タスクの詳細
   TaskUser-Explain: カンマ区切りのユーザーリスト
