@@ -72,7 +72,8 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 544, "y" : 248 }
+        "at" : { "x" : 544, "y" : 248 },
+        "description" : "Signal to create Procurement Case for sample statistic"
       },
       "connect" : [
         { "id" : "f9", "to" : "f4" }
@@ -146,7 +147,8 @@
         "attachToBusinessCase" : false
       },
       "visual" : {
-        "at" : { "x" : 544, "y" : 384 }
+        "at" : { "x" : 544, "y" : 384 },
+        "description" : "Signal to generate data for sample statistic"
       },
       "connect" : [
         { "id" : "f17", "to" : "f10" }
