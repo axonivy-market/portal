@@ -42,11 +42,6 @@ public class BaseTest {
 
   public BaseTest() {}
 
-  @BeforeAll
-  public static void initConfig() {
-    Config config = new SelenideConfig();
-    config.browserCapabilities().setCapability(CapabilityType.UNHANDLED_PROMPT_BEHAVIOUR, UnexpectedAlertBehaviour.ACCEPT_AND_NOTIFY);
-  }
   @AfterEach
   public void tearDown() {
     WebDriverRunner.getWebDriver().quit();
