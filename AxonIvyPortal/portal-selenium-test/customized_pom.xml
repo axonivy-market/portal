@@ -107,7 +107,7 @@
             -Dtest.engine.app=demo-portal
           </argLine>
           <systemPropertyVariables>  
-            <capabilities.unhandledPromptBehavior>accept</capabilities.unhandledPromptBehavior>  
+            <capabilities.unhandledPromptBehavior>accept_and_notify</capabilities.unhandledPromptBehavior>  
           </systemPropertyVariables>  
         </configuration>
         <executions>
