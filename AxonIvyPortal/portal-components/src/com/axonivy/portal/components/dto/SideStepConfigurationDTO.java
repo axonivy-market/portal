@@ -104,7 +104,7 @@ public class SideStepConfigurationDTO implements Serializable {
     private String version = JsonVersion.LATEST.getValue();
 
     /**
-     * Set list of processes for side step. This is mandatory.
+     * Sets list of processes for side step. This is mandatory.
      * @param processes 
      * @return builder for {@link SideStepConfigurationDTO}
      */
@@ -114,7 +114,7 @@ public class SideStepConfigurationDTO implements Serializable {
     }
 
     /**
-     * Set true if this side step runs parallel with current task. This is optional.
+     * Sets true if this side step runs parallel with current task. This is optional.
      * @param isParallelSideStep
      * @return builder for {@link SideStepConfigurationDTO}
      */
@@ -124,7 +124,7 @@ public class SideStepConfigurationDTO implements Serializable {
     }
 
     /**
-     * Set CMS URI for custom parallel side step title. This is optional.
+     * Sets CMS URI for custom parallel side step title. This is optional.
      * @param customParallelSideStepTitleCmsUri CMS URI (e.g., "/Processes/SideStep/CustomParallelTitle")
      * @return builder for {@link SideStepConfigurationDTO}
      */
@@ -134,7 +134,7 @@ public class SideStepConfigurationDTO implements Serializable {
     }
 
     /**
-     * Set CMS URI for custom switch side step title. This is optional.
+     * Sets CMS URI for custom switch side step title. This is optional.
      * @param customSwitchSideStepTitleCmsUri CMS URI (e.g., "/Processes/SideStep/CustomSwitchTitle")
      * @return builder for {@link SideStepConfigurationDTO}
      */
@@ -144,7 +144,7 @@ public class SideStepConfigurationDTO implements Serializable {
     }
 
     /**
-     * Set the project name to locate CMS URIs. Optional - if not provided, CMS URIs will be resolved from current
+     * Sets the project name to locate CMS URIs. Optional - if not provided, CMS URIs will be resolved from current
      * project context.
      * 
      * @param cmsProjectName project name
@@ -156,7 +156,7 @@ public class SideStepConfigurationDTO implements Serializable {
     }
 
     /**
-     * Build a new instance.
+     * Builds a new instance.
      * @return new instance of {@link SideStepConfigurationDTO}
      */
     public SideStepConfigurationDTO build() {

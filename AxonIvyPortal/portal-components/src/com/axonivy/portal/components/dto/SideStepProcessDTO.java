@@ -78,7 +78,7 @@ public class SideStepProcessDTO implements Serializable {
     private String customSecurityMemberCallable;
 
     /**
-     * Set name of Ivy callable subprocess to define custom list of users or roles which side step can be assigned to.
+     * Sets name of Ivy callable subprocess to define custom list of users or roles which side step can be assigned to.
      * This is optional. If it's not defined, side step task can assign to all users or roles of {@link ISecurityContext}
      * @param customSecurityMemberCallable
      * @return builder of {@link SideStepProcessDTO}
@@ -89,7 +89,7 @@ public class SideStepProcessDTO implements Serializable {
     }
 
     /**
-     * Set signal value to trigger the process which start side step task.
+     * Sets signal value to trigger the process which start side step task.
      * This is mandatory.
      * @param signal 
      * @return builder of {@link SideStepProcessDTO}
@@ -123,7 +123,7 @@ public class SideStepProcessDTO implements Serializable {
     }
 
     /**
-     * Build a new instance.
+     * Builds a new instance.
      * @return new instance of {@link SideStepProcessDTO}
      */
     public SideStepProcessDTO build() {
