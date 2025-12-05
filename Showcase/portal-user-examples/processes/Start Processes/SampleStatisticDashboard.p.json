@@ -8,7 +8,7 @@
       "id" : "f3",
       "type" : "TaskEnd",
       "visual" : {
-        "at" : { "x" : 832, "y" : 248 }
+        "at" : { "x" : 840, "y" : 248 }
       }
     }, {
       "id" : "f4",
@@ -21,20 +21,20 @@
         "case" : {
           "name" : "Procurement",
           "customFields" : [
-            { "name" : "daysToDecision", "type" : "NUMBER", "value" : "in1.daysToDecision" },
-            { "name" : "decision", "type" : "STRING", "value" : "in1.decision" },
+            { "name" : "DaysToDecision", "type" : "NUMBER", "value" : "in1.daysToDecision" },
+            { "name" : "Decision", "type" : "STRING", "value" : "in1.decision" },
             { "name" : "Department", "type" : "STRING", "value" : "in1.department" },
             { "name" : "Item", "type" : "STRING", "value" : "in1.item" },
             { "name" : "MonthYear", "type" : "TIMESTAMP", "value" : "in1.monthOfYear" },
-            { "name" : "reworkCauses", "type" : "STRING", "value" : "in1.reworkCauses" },
-            { "name" : "reworkNoLoops", "type" : "NUMBER", "value" : "in1.reworkNoLoops" },
-            { "name" : "reworkOccurred", "type" : "STRING", "value" : "in1.reworkOccurred" },
+            { "name" : "ReworkCauses", "type" : "STRING", "value" : "in1.reworkCauses" },
+            { "name" : "ReworkNoLoops", "type" : "NUMBER", "value" : "in1.reworkNoLoops" },
+            { "name" : "ReworkOccurred", "type" : "STRING", "value" : "in1.reworkOccurred" },
             { "name" : "SpendAmount", "type" : "NUMBER", "value" : "in1.spendAmount" }
           ]
         }
       },
       "visual" : {
-        "at" : { "x" : 696, "y" : 248 }
+        "at" : { "x" : 720, "y" : 248 }
       },
       "connect" : [
         { "id" : "f5", "to" : "f3", "color" : "default" }
@@ -42,7 +42,7 @@
     }, {
       "id" : "f6",
       "type" : "RequestStart",
-      "name" : "createProcurementDataForSampleStatistic",
+      "name" : "Create Procurement Data Process",
       "config" : {
         "signature" : "createProcurementDataForSampleStatistic",
         "request" : {
@@ -58,9 +58,9 @@
     }, {
       "id" : "f8",
       "type" : "SignalStartEvent",
-      "name" : "createProcurementKPIcase",
+      "name" : "Signal to create Procurement Case",
       "config" : {
-        "signalCode" : "createProcurementKPIcase",
+        "signalCode" : "com:axonivy:portal:portaluserexamples:createProcurementKPIcase",
         "attachToBusinessCase" : false,
         "output" : {
           "map" : { },
@@ -120,7 +120,7 @@
             "  List<String> reworkOccurred = ivy.cms.co(\"/Processes/Procurement/SampleStatisticValue/ReworkOccurred\").split(\";\");",
             "  instanceData.reworkOccurred = reworkOccurred.get((Math.random() * reworkOccurred.size()).intValue());  ",
             "",
-            "  ivy.wf.signals().create().data(instanceData).send(\"createProcurementKPIcase\");",
+            "  ivy.wf.signals().create().data(instanceData).send(\"com:axonivy:portal:portaluserexamples:createProcurementKPIcase\");",
             "}"
           ]
         }
@@ -138,31 +138,11 @@
         "at" : { "x" : 912, "y" : 384 }
       }
     }, {
-      "id" : "f13",
-      "type" : "ProgramStart",
-      "name" : "Init sample statistic dashboard",
-      "config" : {
-        "javaClass" : "com.axonivy.portal.userexamples.bean.SampleStatisticDashboardInitBean",
-        "link" : "eventLink.ivp"
-      },
-      "visual" : {
-        "at" : { "x" : 544, "y" : 728 }
-      },
-      "connect" : [
-        { "id" : "f15", "to" : "f14" }
-      ]
-    }, {
-      "id" : "f14",
-      "type" : "TaskEnd",
-      "visual" : {
-        "at" : { "x" : 696, "y" : 728 }
-      }
-    }, {
       "id" : "f16",
       "type" : "SignalStartEvent",
-      "name" : "createProcurementDataForSampleStatistic",
+      "name" : "Signal to generate data for sample statistic",
       "config" : {
-        "signalCode" : "createProcurementDataForSampleStatistic",
+        "signalCode" : "com:axonivy:portal:portaluserexamples:createProcurementDataForSampleStatistic",
         "attachToBusinessCase" : false
       },
       "visual" : {
@@ -174,7 +154,7 @@
     }, {
       "id" : "f18",
       "type" : "RequestStart",
-      "name" : "initSampleStatisticConfig",
+      "name" : "Init configuration for sample statistic dashboard",
       "config" : {
         "signature" : "initSampleStatisticConfig",
         "request" : {
@@ -191,7 +171,7 @@
       "id" : "f19",
       "type" : "TaskEnd",
       "visual" : {
-        "at" : { "x" : 888, "y" : 608 }
+        "at" : { "x" : 912, "y" : 608 }
       }
     }, {
       "id" : "f21",
@@ -200,15 +180,15 @@
       "config" : {
         "output" : {
           "code" : [
+            "import com.axonivy.portal.userexamples.bean.PortalUserExamplesInitBean;",
             "import ch.ivyteam.ivy.environment.Ivy;",
-            "import com.axonivy.portal.userexamples.bean.SampleStatisticDashboardInitBean;",
-            "SampleStatisticDashboardInitBean.initSampleStatisticConfig();",
+            "PortalUserExamplesInitBean.initSampleStatisticConfig();",
             "Ivy.wf().signals().send(\"createProcurementDataForSampleStatistic\");"
           ]
         }
       },
       "visual" : {
-        "at" : { "x" : 728, "y" : 608 },
+        "at" : { "x" : 776, "y" : 608 },
         "size" : { "width" : 152, "height" : 54 }
       },
       "connect" : [

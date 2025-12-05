@@ -1,3 +1,32 @@
+CustomFields:
+  Cases:
+    DaysToDecision:
+      Description: Tage von der Anfrage bis zur endgültigen Entscheidung
+      Label: Tage bis zur Entscheidung
+    Decision:
+      Description: Status der Entscheidung
+      Label: Entscheidung
+    Department:
+      Description: Abteilung
+      Label: Abteilung
+    Item:
+      Description: Artikel
+      Label: Artikel
+    MonthYear:
+      Description: Monat des Jahres
+      Label: Monat des Jahres
+    ReworkCauses:
+      Description: Ursachen für Nacharbeitsschleifen
+      Label: Nacharbeitsursachen
+    ReworkNoLoops:
+      Description: Anzahl der Prozessschleifen
+      Label: Nacharbeitsschleifen
+    ReworkOccurred:
+      Description: Gibt an, ob eine Schleife erforderlich war
+      Label: Nacharbeit erforderlich
+    SpendAmount:
+      Description: Ausgabebetrag
+      Label: Ausgabebetrag
 Dialog:
   Common:
     approve: Genehmigen
@@ -174,7 +203,7 @@ Processes:
     SampleStatisticValue:
       DaysToDecision: 2,5;6;2;7;4;9,4
       Decision: Genehmigt;Abgelehnt;Ausstehend
-      Department: Dep A;Dep B;Dep C;Dep D
+      Department: Abt A;Abt B;Abt C;Abt D
       Item: Laptop;Mobiltelefon;Tastatur;Tablet
       MonthOfYear: 01;02;03;04;05;06;07
       ReworkCauses: Fehlende Informationen;Nicht berechtigt;Zu teuer

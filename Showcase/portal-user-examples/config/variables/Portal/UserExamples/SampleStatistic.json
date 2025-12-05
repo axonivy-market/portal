@@ -316,7 +316,7 @@
     "statisticAggregation": {
       "field": "Department",
       "type": "custom",
-      "kpiField": "daysToDecision",
+      "kpiField": "DaysToDecision",
       "aggregationMethod": "avg"
     },
     "permissions": [
@@ -432,7 +432,7 @@
     "id": "6b3340d8a61c458ba655d697469fc1b4",
     "version": "13.2.0",
     "statisticAggregation": {
-      "field": "decision",
+      "field": "Decision",
       "type": "custom"
     },
     "permissions": [
@@ -550,7 +550,7 @@
     "statisticAggregation": {
       "field": "Department",
       "type": "custom",
-      "kpiField": "reworkNoLoops",
+      "kpiField": "ReworkNoLoops",
       "aggregationMethod": "avg"
     },
     "permissions": [
@@ -666,9 +666,9 @@
     "id": "a7353e5b93e4466890466830a65264c5",
     "version": "13.2.0",
     "statisticAggregation": {
-      "field": "reworkOccurred",
+      "field": "ReworkOccurred",
       "type": "custom",
-      "kpiField": "daysToDecision",
+      "kpiField": "DaysToDecision",
       "aggregationMethod": "avg"
     },
     "permissions": [
@@ -784,9 +784,9 @@
     "id": "5116b8b02baa408da1dff648adda024c",
     "version": "13.2.0",
     "statisticAggregation": {
-      "field": "reworkCauses",
+      "field": "ReworkCauses",
       "type": "custom",
-      "kpiField": "daysToDecision",
+      "kpiField": "DaysToDecision",
       "aggregationMethod": "avg"
     },
     "permissions": [
@@ -903,7 +903,7 @@
     "id": "b4968c1cbe3d435c907026a8e7ce83e1",
     "version": "13.2.0",
     "statisticAggregation": {
-      "field": "reworkCauses",
+      "field": "ReworkCauses",
       "type": "custom"
     },
     "permissions": [

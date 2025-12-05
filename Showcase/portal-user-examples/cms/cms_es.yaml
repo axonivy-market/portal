@@ -1,3 +1,32 @@
+CustomFields:
+  Cases:
+    DaysToDecision:
+      Description: Días desde la solicitud hasta la decisión final
+      Label: Días hasta la decisión
+    Decision:
+      Description: Estado de la decisión
+      Label: Decisión
+    Department:
+      Description: Departamento
+      Label: Departamento
+    Item:
+      Description: Artículo
+      Label: Artículo
+    MonthYear:
+      Description: Mes del año
+      Label: Mes del Año
+    ReworkCauses:
+      Description: Causas de los bucles de retrabajo
+      Label: Causas de retrabajo
+    ReworkNoLoops:
+      Description: Número de bucles del proceso
+      Label: Bucles de retrabajo
+    ReworkOccurred:
+      Description: Indica si fue necesario un bucle
+      Label: Retrabajo necesario
+    SpendAmount:
+      Description: Monto de gasto
+      Label: Monto de Gasto
 Dialog:
   Common:
     approve: Aprobar

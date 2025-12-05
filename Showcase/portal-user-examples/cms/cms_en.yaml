@@ -1,3 +1,32 @@
+CustomFields:
+  Cases:
+    DaysToDecision:
+      Description: Days from request to final decision
+      Label: Days to Decision
+    Decision:
+      Description: Status of decision
+      Label: Decision
+    Department:
+      Description: Department
+      Label: Department
+    Item:
+      Description: Item
+      Label: Item
+    MonthYear:
+      Description: Month of year
+      Label: Month of Year
+    ReworkCauses:
+      Description: Causes for rework loops
+      Label: Rework causes
+    ReworkNoLoops:
+      Description: Number of process loops
+      Label: Rework loops
+    ReworkOccurred:
+      Description: Indicates if a loop was necessary
+      Label: Rework necessary
+    SpendAmount:
+      Description: Spend amount
+      Label: Spend Amount
 Dialog:
   Common:
     approve: Approve
