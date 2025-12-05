@@ -106,6 +106,9 @@
             -Dtest.engine.url=${test.engine.url}
             -Dtest.engine.app=demo-portal
           </argLine>
+          <systemPropertyVariables>  
+            <capabilities.unhandledPromptBehavior>accept</capabilities.unhandledPromptBehavior>  
+          </systemPropertyVariables>  
         </configuration>
         <executions>
           <execution>
