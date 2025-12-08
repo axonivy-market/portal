@@ -71,7 +71,8 @@
       ],
       "conditionBasedColoringEnabled": false
     },
-    "conditionBasedColoringEnabled": false
+    "conditionBasedColoringEnabled": false,
+    "chartDrillDownEnabled": true
   },
   {
     "id": "12159ba721b94ea7bc4a0c5e0b4c93d0",
@@ -188,7 +189,8 @@
       ]
     },
     "defaultBackgroundColor": "#8dc261",
-    "conditionBasedColoringEnabled": false
+    "conditionBasedColoringEnabled": false,
+    "chartDrillDownEnabled": true
   },
   {
     "id": "f754970742f14a72af3f9215ac86154d",
@@ -305,7 +307,8 @@
         "#f5bf9f"
       ]
     },
-    "conditionBasedColoringEnabled": false
+    "conditionBasedColoringEnabled": false,
+    "chartDrillDownEnabled": true
   },
   {
     "id": "6b3e8ccb484648c8bbe4453cc76292d8",
@@ -313,7 +316,7 @@
     "statisticAggregation": {
       "field": "Department",
       "type": "custom",
-      "kpiField": "daysToDecision",
+      "kpiField": "DaysToDecision",
       "aggregationMethod": "avg"
     },
     "permissions": [
@@ -422,13 +425,14 @@
         "#f5bf9f"
       ]
     },
-    "conditionBasedColoringEnabled": false
+    "conditionBasedColoringEnabled": false,
+    "chartDrillDownEnabled": true
   },
   {
     "id": "6b3340d8a61c458ba655d697469fc1b4",
     "version": "13.2.0",
     "statisticAggregation": {
-      "field": "decision",
+      "field": "Decision",
       "type": "custom"
     },
     "permissions": [
@@ -537,7 +541,8 @@
         "#f5bf9f"
       ]
     },
-    "conditionBasedColoringEnabled": false
+    "conditionBasedColoringEnabled": false,
+    "chartDrillDownEnabled": true
   },
   {
     "id": "741ea4131554457e98abda979cdd1a4c",
@@ -545,7 +550,7 @@
     "statisticAggregation": {
       "field": "Department",
       "type": "custom",
-      "kpiField": "reworkNoLoops",
+      "kpiField": "ReworkNoLoops",
       "aggregationMethod": "avg"
     },
     "permissions": [
@@ -654,15 +659,16 @@
         "#f5bf9f"
       ]
     },
-    "conditionBasedColoringEnabled": false
+    "conditionBasedColoringEnabled": false,
+    "chartDrillDownEnabled": true
   },
   {
     "id": "a7353e5b93e4466890466830a65264c5",
     "version": "13.2.0",
     "statisticAggregation": {
-      "field": "reworkOccurred",
+      "field": "ReworkOccurred",
       "type": "custom",
-      "kpiField": "daysToDecision",
+      "kpiField": "DaysToDecision",
       "aggregationMethod": "avg"
     },
     "permissions": [
@@ -723,19 +729,19 @@
         },
         {
           "locale": "fr",
-          "value": "Rework occurred?"
+          "value": "Une modification a-t-elle été effectuée?"
         },
         {
           "locale": "de",
-          "value": "Rework occurred?"
+          "value": "Wiederholungsarbeit aufgetreten?"
         },
         {
           "locale": "ja",
-          "value": "Rework occurred?"
+          "value": "再加工が行われたのか？"
         },
         {
           "locale": "es",
-          "value": "Rework occurred?"
+          "value": "¿Se ha producido una reelaboración?"
         }
       ],
       "yTitles": [
@@ -771,15 +777,16 @@
         "#f5bf9f"
       ]
     },
-    "conditionBasedColoringEnabled": false
+    "conditionBasedColoringEnabled": false,
+    "chartDrillDownEnabled": true
   },
   {
     "id": "5116b8b02baa408da1dff648adda024c",
     "version": "13.2.0",
     "statisticAggregation": {
-      "field": "reworkCauses",
+      "field": "ReworkCauses",
       "type": "custom",
-      "kpiField": "daysToDecision",
+      "kpiField": "DaysToDecision",
       "aggregationMethod": "avg"
     },
     "permissions": [
@@ -889,13 +896,14 @@
       ]
     },
     "defaultBackgroundColor": "#8dc261",
-    "conditionBasedColoringEnabled": false
+    "conditionBasedColoringEnabled": false,
+    "chartDrillDownEnabled": true
   },
   {
     "id": "b4968c1cbe3d435c907026a8e7ce83e1",
     "version": "13.2.0",
     "statisticAggregation": {
-      "field": "reworkCauses",
+      "field": "ReworkCauses",
       "type": "custom"
     },
     "permissions": [
@@ -962,6 +970,7 @@
       "conditionBasedColoringEnabled": false
     },
     "defaultBackgroundColor": "#8dc261",
-    "conditionBasedColoringEnabled": false
+    "conditionBasedColoringEnabled": false,
+    "chartDrillDownEnabled": true
   }
 ]

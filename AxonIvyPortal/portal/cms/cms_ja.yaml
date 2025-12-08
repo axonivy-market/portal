@@ -41,7 +41,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       saveAbsenceSetting: 不在設定の保存に成功しました。
       updateAbsence: 欠席設定の更新に成功しました
     absenceAndDeputy: 不在者と代行者
-    activeAbsence: 積極的欠席
+    activeAbsence: 'TODO: Active absence'
     allAbsences: すべてのユーザーの不在状況
     applicationAndRole: アプリケーションと役割
     definedDeputies: 定義された代行者
@@ -79,7 +79,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       CASE: ケースウィジェット
       CLIENT_STATISTIC: 統計ウィジェット
       CUSTOM: カスタムウィジェット
-      NAVIGATION_DASHBOARD: ナビゲーションダッシュボードウィジェット
+      NAVIGATION_DASHBOARD: 'TODO: Navigation dashboard widget'
       NEW: 新規ウィジェット
       NEWS: ニュースフィード
       NOTIFICATION: 通知
@@ -90,7 +90,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       WELCOME: ウェルカムウィジェット
     DelegationAppendOption:
       NONE: なし
-      PARENT_NAME: 保護者名
+      PARENT_NAME: 'TODO: Parent name'
     GlobalVariable:
       Option:
         DISPLAY_NAME: 表示名
@@ -107,7 +107,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       BY_ALPHABETICALLY: アルファベット順
       BY_CUSTOM_ORDER: ユーザー設定順序
       BY_INDEX: 並べ替えインデックス
-      BY_SMART_ORDER: 最も使用されている
+      BY_SMART_ORDER: 'TODO: Most used'
     ProcessType:
       EXTERNAL_LINK: 外部リンク
       IVY_PROCESS: ビジネスプロセス
@@ -147,18 +147,18 @@ ch.ivy.addon.portalkit.ui.jsf:
       HEADING_3: 見出し 3
       NORMAL_TEXT: 通常のテキスト
   MyProfile:
-    Accessibility: アクセシビリティ
+    Accessibility: 'TODO: Accessibility'
     CaseList: ケースリスト
     DateFormat: 日付の形式
     FormattingLanguage: 書式設定言語
     General: 一般
     Homepage: ホームページ
-    KeyboardShorcutsNavigationInfor: キーボード操作ショートカットを有効または無効にするにはトグルを切り替えてください。
-    KeyboardShortcutsNavigation: ナビゲーション用キーボードショートカット
-    KeyboardShortcutsTooltip: このボタンは現在利用不可であり、設定により使用できません。
+    KeyboardShorcutsNavigationInfor: 'TODO: Toggle to enable or disable keyboard navigation shortcuts.'
+    KeyboardShortcutsNavigation: 'TODO: Keyboard shortcuts for navigation'
+    KeyboardShortcutsTooltip: 'TODO: This button is currently unavailable and cannot be used due to settings.'
     Language: 言語
     ProcessList: プロセスリスト
-    TaskList: タスクリスト
+    TaskList: 'TODO: Task List'
     byDefault: （初期値）
     defaultOption: 初期値（{0}）
     defaultViewMode: 表示モードの初期値
@@ -167,8 +167,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     notificationChannels: 通知チャネル
     notificationChannelsReset: 通知チャネルをリセットしました
     subscribed: 通知する
-    unpinAllPinnedCases: ユーザー {0} の固定済みケースはすべて削除されました。
-    unpinAllPinnedTasks: ユーザー {0} の固定済みタスクはすべて削除されました。
+    unpinAllPinnedCases: 'TODO: All pinned cases have been removed for user: {0}.'
+    unpinAllPinnedTasks: 'TODO: All pinned tasks have been removed for user: {0}'
   PortalManagement:
     AdminSetting: 管理者設定
   ProcessViewer:
@@ -230,16 +230,16 @@ ch.ivy.addon.portalkit.ui.jsf:
       RoleParentLimit: 設定された数値は、ロール管理タブでロールをフィルタリングするときに表示される親ロールの数を制御します。有効な数値：5、10、20
       SearchScopeCaseFields: グローバル検索で一致するケースを見つけるために、ケースIDのほかに使用するフィールドを定義します。（検索のパフォーマンスに影響する可能性があります）
       SearchScopeTaskFields: グローバル検索で一致するタスクを見つけるために、タスクIDのほかに使用するフィールドを定義します。（検索のパフォーマンスに影響する可能性があります）
-      SessionCacheTimeout: ポータルのセッションキャッシュタイムアウト期間（秒単位）を定義します。この値は300（5分）から86,400（24時間）の間で設定できます。
+      SessionCacheTimeout: 'TODO: Defines the session cache timeout duration (in seconds) for the Portal. This value can be set between 300 (5 minutes) and 86,400 (24 hours).'
       ShowLoginPageFooter: ログインページのフッターの表示のオン／オフを切り替えます。
       ShowQRCode: QRコードの表示のオン／オフを切り替えます。
-      allowKeyboardShortcutsConfiguration: trueに設定すると、ユーザーがキーボードショートカットボタンを操作できるようになります。
+      allowKeyboardShortcutsConfiguration: 'TODO: Set to true to allow the user interact with the keyboard shortcuts button.'
       behaviourWhenClickingOnLineInCaseList: ダッシュボード・グローバル検索・関連ケース・または複合モードのプロセスウィジェットの各ケースウィジェットでケースをクリックしたときに、ケースの詳細またはビジネスの詳細へのアクセスを切り替えます。
       behaviourWhenClickingOnLineInTaskList: タスク リスト、ダッシュボードのタスク ウィジェット、およびケース詳細ページの関連タスクの行をクリックしたときの動作（タスクを実行するか、タスクの詳細にアクセスするか）を切り替えます。
       chatMaxConnection: 設定された数値は、アクティブなチャットで許可されるタブの数を制御します。それ以上のタブが開かれると、非アクティブなタブではチャットが無効になります。許可される値は 1 から 5 です。
       chatResponseTimeout: 'チャット応答タイムアウトで単位は秒。初期値は 0 で、これはタイムアウトなしを意味します。チャットメッセージがリバースプロキシ Nginx を通過する場合、チャット応答タイムアウトは Nginx タイムアウトよりも短くする必要があります。（例: 60 秒未満）'
-      checkSystemNotesByDefault: 値が true でシステムノートが表示されている場合、チェックボックスはチェックされた状態で表示されます。
-      checkSystemTasksByDefault: 値が true でシステム タスクが表示されている場合、チェックボックスはチェックされた状態で表示されます。
+      checkSystemNotesByDefault: TODO If the value is true and system notes are visible, the checkbox will appear checked.
+      checkSystemTasksByDefault: TODO If the value is true and system tasks are visible, the checkbox will appear checked.
       dateFilterWithTime: 時間による日付フィルタリングを有効にするには、true に設定してください。この設定は、タスク リスト、ケース リスト、および統計に影響します。
       defaultHomepage: ホームアイコンまたはロゴをクリックしたときにリダイレクトされる標準ホームページを設定します。この設定は、タスク完了後の終了ページにも適用されます。
       defaultProcessImage: 画像処理リストに表示される初期画像の標準設定。
@@ -248,22 +248,22 @@ ch.ivy.addon.portalkit.ui.jsf:
       defaultSortDirectionOfTaskList: タスクリストのソート方向の初期値
       defaultSortFieldOfCaseList: ケースリストのソートフィールドの初期値
       defaultSortFieldOfTaskList: タスクリストのソートフィールドの初期値
-      delegationAppendOption: この設定は、ロール名の書式設定時に含める追加情報を決定します。
+      delegationAppendOption: 'TODO: This setting determines which additional information is included when formatting role names.'
       disableCaseCount: ケース リストでケースのカウントを無効にするには true に設定してください
       disableTaskCount: タスク リストでタスクのカウントを無効にするには true に設定してください
       displayAllUsersOfTaskActivator: この設定は SecurityMemberDisplayName コンポーネントに使用します。SecurityMember がロールである場合、この設定を true に設定すると、このロールのすべてのユーザーが一覧表示されます。true に設定すると、ロール名の横にアイコン情報が表示されます。
       displayMessageAfterFinishOrLeaveTask: ユーザーがタスクを完了または退出すると、フィードバック メッセージが表示されます。
-      documentUploadSizeLimit: アップロードするドキュメントのサイズ制限をメガバイト（MB）単位で設定します。デフォルト値は20MBです。 
+      documentUploadSizeLimit: 'TODO: Set the size limit for uploading documents in megabytes (MB). The default value is 20MB.'
       embedInFrame: プロセス／タスクをIFrameモードで開始するには true に設定してください
       enableCaseOwner: ケースがクエリーされるときに、フィルタリングケースオーナーを有効にするには true に設定します。この設定は、ケースリスト、グローバル検索、統計など、すべてのケースクエリーに影響します。デフォルトでは非表示になっているタスクウィジェットで、「現在のケース所有者でタスクをフィルタする」フィルタも利用可能になります。
-      enableDocumentPreview: 特定のファイル形式のドキュメントプレビューを有効にするにはtrueに設定してください。サポートされているファイル形式は次のとおりです：pdf、png、txt、log。
+      enableDocumentPreview: 'TODO: Set to true to enable document preview for some certain file types. Supported file types are: pdf, png, txt, log.'
       enableGroupChat: グループ チャット機能を有効にするには、このプロパティーを true に設定してください。
-      enablePinCase: このプロパティをtrueに設定すると、ケースを固定する機能が有効になります。
-      enablePinTask: このプロパティをtrueに設定すると、タスクをピン留めする機能が有効になります。
+      enablePinCase: 'TODO: Set this property to true to enable the ability to pin cases.'
+      enablePinTask: 'TODO: Set this property to true to enable the ability to pin tasks.'
       enablePrivateChat: 個人用チャット機能を有効にするには、このプロパティーを true に設定してください。
       enableProcessViewer: タスク／ケースアクションでプロセスビューアーオプションを有効にするには、このプロパティをtrueに設定してください。
       enableScriptCheckingForUploadedDocumentNote: アップロードされたドキュメントのスクリプトチェックを有効にするには、true に設定してください。現在、この機能は PDF、Excel、Word のチェックをサポートしています。
-      enableTranslationService: このプロパティをtrueに設定すると、翻訳サービスのサポートが有効になります
+      enableTranslationService: TODO Set this property to true to enable translation service support
       enableVirusScannerForUploadedDocumentNote: アップロードされたドキュメントへのウイルススキャナーを有効にするには true に設定してください。現在、この機能は API VIRUSTOTAL を使用しています。
       hideCaseCreator: |-
         ケースリスト、ケースウィジェット、ケースの詳細でケースクリエイターを非表示にするには、true に設定してください。
@@ -278,7 +278,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       hideTimeNote: 日付の横の時間と分を非表示にするには、true に設定してください。
       hideUploadDocumentForDoneCaseNote: ケース完了後のドキュメントのアップロード（および削除）を拒否するには、true に設定します。
       hideYear: true に設定すると、年は非表示になり、そうでない場合は表示されます。
-      imageUploadSizeLimit: 画像アップロードのサイズ制限をメガバイト（MB）単位で設定します。デフォルト値は6MBです。
+      imageUploadSizeLimit: 'TODO: Set the size limit for uploading images in megabytes (MB). The default value is 6MB.'
       loggedInUserFormat: ログインしたユーザー形式を表示するオプション
       refreshTaskListIntervalNote: タスクリストの更新間隔。（秒単位）
       showAvatar: ユーザー／ロールのアバターの表示のオン／オフを切り替えます。
@@ -289,7 +289,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       showProcessInformation: プロセスページ（グリッド モード）とケースの詳細にプロセスの情報を表示するためのリンクを無効にするには、false に設定してください。
       showQuickGlobalSearch: クイックグローバル検索の表示のオン/オフを切り替えます。
       showTaskDurationTime: タスク詳細ページでの所要時間の表示のオン／オフを切り替えます。
-      showTooltipTechnicalName: ツールチップにユーザーの技術名を表示できるようにする。
+      showTooltipTechnicalName: TODO Enable to show users' technical name on tooltips.
       uploadDocumentWhiteListExtensionNote: すべての拡張子を許可する場合は、空欄にしてください。一部の拡張子のみを許可する場合は、対象の拡張子をカンマで区切って入力してください。（例：pdf, txt, doc, docx）
     key: キー
     link: リンク
@@ -333,8 +333,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     addDocumentHelpText: ファイルをアップロードするには、ドラッグ＆ドロップするか、ファイルを選択してください
     addNoteHelpText: ここにテキストを入力してください。
     businessDetailsTitle: ビジネスの詳細
-    customFields: カスタムフィールド
-    customFieldsDialog: ケース #{0} のカスタムフィールド 
+    customFields: TODO Custom Fields
+    customFieldsDialog: 'TODO Custom Fields of case #{0}'
     deleteFile: ファイル削除
     documents: ドキュメント
     downloadFile: ファイルをダウンロード
@@ -376,7 +376,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       ID: ケース ID
       NAME: 名前／説明
       OWNER: オーナー
-      PIN: ピン
+      PIN: 'TODO: Pin'
       STATE: 状態
     deletionNoteContent: このケースは{0}によって破棄されました
     destroyCaseMessage: 'この操作は元に戻せません。このケース<b>{0}(ID: {1})</b>とそのすべてのタスクを破棄してもよろしいですか？'
@@ -392,8 +392,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     relatedCaseHeader: 'ケース #{0} {1}'
     relatedCases: 関連するケース
     title: タイトル
-    unknownCase: 不明なケース
-    unknownId: 不明なID
+    unknownCase: 'TODO: Unknown Case'
+    unknownId: 'TODO: Unknown ID'
   caseState:
     CREATED: 作成済み
     CREATED_UPPERCASE: 作成済み
@@ -431,7 +431,7 @@ ch.ivy.addon.portalkit.ui.jsf:
   common:
     All: すべて
     And: と
-    AutoTranslation: 自動翻訳
+    AutoTranslation: TODO Auto translation
     BusinessCaseInformation: ビジネスケース情報
     Clone: 複製
     CollapseAll: すべて折りたたむ
@@ -443,8 +443,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     StringFormat:
       DateFromTo: '%s - %s'
       TextListOut: '%s、%s、。。'
-      TextWithContextInBrackets: '%s (%s: %s)'
       TextWithColon: '%s：%s'
+      TextWithContextInBrackets: 'TODO: %s (%s: %s)'
       TextWithRoundBracket: '%s（%s）'
     TaskCaseInformation: タスク／ケース情報
     Update: 更新
@@ -529,7 +529,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     globalSearch: 検索...
     goToDetail: 詳細へ移動
     growlMessage:
-      PROCESS_VIEWER: プロセスビューアを閉じました。
+      PROCESS_VIEWER: TODO You closed the process viewer.
       TASK_FINISHED: タスクを正常に完了しました
       TASK_LEFT: タスクをキャンセルして正常に終了しました。タスクはダッシュボードまたはタスクリストで見つけることができます。
     hasPrecondition: このプロセスには前提条件があります
@@ -570,7 +570,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     numberOfSelectedFilter: 選択されたフィルター
     ok: OK
     'on': オン
-    pin: ピン
+    pin: 'TODO: Pin'
     pleaseAddDocument: 上記のリンクにドキュメントを追加してください。
     pleaseAddNote: 上記のリンクにノートを追加してください。
     previousStage: 前のステージ
@@ -630,7 +630,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     typeAdmin: すべての管理者
     typeAllUsers: すべてのユーザー
     typeOnlyMe: 自分のみ
-    unpin: 固定解除 
+    unpin: 'TODO: Unpin'
     uploadHere: 有効な日付を入力してください。
     uploadOneHere: ここにアップロード
     user: '{0} ユーザー'
@@ -761,8 +761,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       SomeThingWentWrong: 問題が発生しました
       Title: ダッシュボードの設定
     DrillDownWidget:
-      caseDrillDown: 「{0}」用ドリルダウンケースウィジェット
-      taskDrillDown: 「{0}」用ドリルダウンタスクウィジェット
+      caseDrillDown: TODO Drill-down case widget for {0}
+      taskDrillDown: TODO Drill-down task widget for {0}
     EmptyFilterMessage: ウィジェットフィルターが見つかりません
     ExternalPageWidget: 外部ページ
     ExternalPageWidgetIntroduction: このウィジェットは外部Webページを表示できます。
@@ -772,26 +772,26 @@ ch.ivy.addon.portalkit.ui.jsf:
       NotFound: フィルターが見つかりません
       WidgetNameColumn: ウィジェット名
       WrongDateFormat: 日付が無効です
-    FilterTasksByCurrentCaseOwner: 現在のケース所有者でタスクをフィルタリングする
+    FilterTasksByCurrentCaseOwner: TODO Filter tasks by current case owner
     ManageFilter: フィルターの管理
-    NoColumnsEnabledForQuickSearch: クイック検索用に有効な列はありません 
+    NoColumnsEnabledForQuickSearch: 'TODO: No columns are enabled for quick search'
     NoData: データなし
     NoSavedFilterMessage: 保存されたフィルターが見つかりません。［フィルターを保存］ ボタンをクリックして新しいフィルターを作成してください
     NoWidgetAvailable: ウィジェットがありません。
     QuickSearch: クイック検索
     QuickSearchInfo: ウィジェットの列管理で、クイック検索の範囲をカスタマイズできます。「含む」に基づいて検索しますが、多数の列を追加する場合はパフォーマンスに注意してください。
-    QuickSearchScope: 検索範囲:{0} 
+    QuickSearchScope: 'TODO: Search Scope: {0}'
     RestoreDefaultDashboardMessage: 続行すると、自分で作成したすべてのウィジェットが失われます。<span class="dashboard-template-name-message">{0}</span> の標準設定が適用されます。
     SaveNewWidgetFilterHeader: 新しいウィジェットフィルターを保存
     SavedFilterHeader: 保存されたフィルター
     SearchForFilter: フィルターを検索
     ShareThisDashboard: このダッシュボードを共有
-    ShowPinnedToggle: 「固定タスク」を表示するトグル
+    ShowPinnedToggle: 'TODO: Show ''Pinned Tasks'' Toggle'
     StandardWidgets: 標準ウィジェット
     StatisticWidget:
       EmptyChartDataMessage: 適切なチャートを作成するにはデータが足りません！
-      failToRenderChartMessage: チャートを描画中にエラーが発生しました。設定を変更して再試行してください。
-      firstConfigChartMessage: チャートはまだ利用できません。チャートを生成するには設定を構成してください。
+      failToRenderChartMessage: TODO Error while rendering chart. Please retry with different settings.
+      firstConfigChartMessage: TODO No chart available yet. Please configure your settings to generate a chart.
     WelcomeWidgetIntroduction: このウィジェットは、ダッシュボードにウェルカムテキストと画像を表示します。
     WelcomeWidgetNotFoundMessage: ウィジェットの画像が見つかりません。画像を再設定してください。
     WidgetFilterName: ウィジェットフィルター名
@@ -801,7 +801,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     addField: フィールドの追加
     addWidget: ウィジェットの追加
     canWorkOn: 作業可能
-    caseDrillDownDashboard: ケース詳細分析ダッシュボード
+    caseDrillDownDashboard: Case drill-down dashboard
     caseList: ケースリスト
     caseListIntroduction: このウィジェットは、定義された設定に従って関連するケース情報を表示します。
     caseWidgetInfo:
@@ -894,7 +894,7 @@ ch.ivy.addon.portalkit.ui.jsf:
         EMPTY_MESSAGE: 現在、利用可能なタスクはありません。
         noTasksFoundWhenFilter: 現在、フィルターを適用した後のタスクはありません。
     loading: 読み込み中...
-    navigate: ナビゲート
+    navigate: 'TODO: Navigate'
     noCategory: カテゴリーがありません
     noDashboard: ダッシュボードがありません。少なくとも 1 つのダッシュボードを追加してから、ウィジェットを追加してください。
     noPermission: ダッシュボードを表示する権限がありません。
@@ -932,7 +932,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       numberOfTasksByCategory: カテゴリーごとのタスク数
       numberOfTasksByState: 状態別のタスク数
       predefinedFilters: 定義済みフィルター
-      taskDrillDownDashboard: タスク詳細分析ダッシュボード
+      taskDrillDownDashboard: 'TODO: Task drill-down dashboard'
     taskList: タスクリスト
     taskListIntroduction: このウィジェットには、定義された設定に従って関連するタスク情報が表示されます。
     taskStart: タスクの開始
@@ -943,21 +943,21 @@ ch.ivy.addon.portalkit.ui.jsf:
     widgetType: ウィジェットタイプ
     yourCases: ケース
     yourCustomWidget: カスタムウィジェット
-    yourNavigationDashboardWidget: あなたのナビゲーションダッシュボードウィジェット
+    yourNavigationDashboardWidget: 'TODO: Your navigation dashboard widget'
     yourNotifications: 通知
     yourProcessViewer: プロセス ビューアー
     yourProcesses: プロセス
     yourTasks: タスク
   dashboardProcess:
-    processAriaLabel: プロセス名:{0}プロセス説明:{1}
+    processAriaLabel: 'TODO Process name: {0}. Process description: {1}'
   documentFiles:
-    FilenameEmpty: ファイル名は空にできません。 
+    FilenameEmpty: 'TODO: Filename cannot be empty.'
     PreviewDocument: タスクの詳細にアクセス
-    RenameFile: ファイル名を変更する
-    RenamingDocument: ドキュメントの名前を変更する
-    RenamingDocumentNote: '{0} はファイル {1} の名前を {2} に変更しました'
-    RenamingDocumentSuccess: 名前変更に成功しました。
-    RenamingFailed: ドキュメントの名前変更中にエラーが発生しました。
+    RenameFile: 'TODO: Rename file'
+    RenamingDocument: 'TODO: Rename document'
+    RenamingDocumentNote: 'TODO: {0} has renamed the file {1} to {2}'
+    RenamingDocumentSuccess: 'TODO: Rename successfully.'
+    RenamingFailed: 'TODO: An error occurs while renaming the document.'
     deleteDocumentNote: '{0} が {1} を削除しました'
     deleteSuceed: ファイルの削除に成功しました
     download: ダウンロード
@@ -1191,8 +1191,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     afterEscalation: エスカレーション後
     businessCase: ビジネスケース
     completedOn: 完了日
-    customFields: カスタムフィールド
-    customFieldsDialog: タスク #{0} のカスタムフィールド
+    customFields: TODO Custom Fields
+    customFieldsDialog: 'TODO Custom Fields of task #{0}'
     delayedUntil: この日まで延期
     deleteFile: ファイルを削除
     documents: ドキュメント
@@ -1253,7 +1253,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       EXPIRY_TIME: 有効期限
       ID: タスクID
       NAME: 名前／説明
-      PIN: ピン
+      PIN: 'TODO: Pin'
       PRIORITY: 優先度
       STATE: 状態
       TASK_FOR_UNAVAILABLE_ACTIVATOR: アクティベーターがありません
@@ -1284,8 +1284,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       PRIORITY_DESC: 優先度（低から高）
     triggerEscalationNote: 'タスク #{2} の {0} ({1}) によってエスカレーションされました'
     type: タイプ
-    unknownId: 不明なID
-    unknownTask: 不明なタスク
+    unknownId: 'TODO: Unknown ID'
+    unknownTask: 'TODO: Unknown Task'
   taskPriority:
     EXCEPTION: 例外
     EXCEPTION_LOWERCASE: 例外
@@ -1390,10 +1390,9 @@ Dialogs:
               PortalDashboardConfiguration:
                 NewDashboard: 新規ダッシュボードを追加
               PortalDashboardDetailModification:
-                CreateCustomStatistic: カスタム統計ウィジェットを作成する
-                DeleteConfirm: 削除してもよろしいですか？
-                Example: 例
-                RemoveThisStatistic: このカスタム統計を削除する
+                CreateCustomStatistic: 'TODO: Create custom statistic widget'
+                DeleteConfirm: 'TODO: Are you sure you want to delete?'
+                RemoveThisStatistic: TODO このカスタム統計を削除する
               component:
                 CustomDashboardWidget:
                   CouldNotFindLinkedProcess: リンクされたプロセスが見つかりませんでした。
@@ -1406,11 +1405,11 @@ Dialogs:
                 WelcomeDashboardWidget:
                   WelcomeToAxon: Axon Ivy Portalへようこそ
                 WelcomeWidgetConfiguration:
-                  AltText: 代替テキスト
+                  AltText: TODO Alternative text
           setting:
             UserProfile:
-              unpinAllPinnedCases: 固定されているすべてのケースの固定を解除する
-              unpinAllPinnedTasks: 固定されたタスクをすべて解除する
+              unpinAllPinnedCases: 'TODO: Unpin all pinned cases'
+              unpinAllPinnedTasks: 'TODO: Unpin all pinned tasks'
         portalkit:
           component:
             CaseItemDetails:
@@ -1440,7 +1439,7 @@ Dialogs:
               TaskCompletedByOtherInfo: タスクは、ユーザー <strong>{0}</strong> によって {1} に既に完了しています。
               TaskCompletedByYouInfo: あなたは、このタスクを {0} に完了しています。
             TaskItemGeneralInfo:
-              Expiry: 有効期限責任者
+              Expiry: TODO Expiry Responsible
   com:
     axonivy:
       portal:
@@ -1451,7 +1450,7 @@ Dialogs:
             WelcomeHeaderText: Axon Ivy ポータルへようこそ！
             WelcomeText: ご利用いただき、ありがとうございます。Axon Ivy ポータルは、シームレスで効率的な体験への入り口です。機能を探索する新規ユーザーでも、リピーターでも、私たちはあらゆる段階であなたを支援します。
           Responsibles:
-            Multiple: 複数
+            Multiple: 'TODO: Multiple'
           ShareLinkDialog:
             CopyLink: リンクをコピー
             Link: リンク
@@ -1465,43 +1464,43 @@ Dialogs:
             AccessibilityShortcuts:
               content: |-
                 <div class="ui-g">
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Alt + 1</span>ダッシュボード タブにフォーカス
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Alt + 5</span>検索にフォーカス
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Alt + A</span>最初のプロセスにフォーカス
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Tab</span>要素の順にタブ移動
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Alt + 2</span>プロセスタブにフォーカス
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Alt + 6</span>ユーザー設定にフォーカス
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Alt + W</span>最初のタスクにフォーカス
                     </div>
-                    <div class="ui-g-3 shortcut-content">
+                    <div class="ui-g-3 shortcut-content" tabindex="1">
                         <span class="shortcut-key">Esc</span>展開されたウィジェットを閉じる
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Alt + 3</span>タスクタブにフォーカス
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Alt + 7</span>メインメニューの表示／非表示を切り替えます
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Alt + Q</span>最初のケースにフォーカス
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Enter</span>選択を確定
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Alt + 4</span>ケース タブにフォーカス
                     </div>
                 </div>
@@ -1525,12 +1524,12 @@ Dialogs:
             DashboardSharing:
               ShareDashboard: ダッシュボードを共有
             NavigationDashboardWidget:
-              PermissionsDenied: このダッシュボードにアクセスする権限がありません
+              PermissionsDenied: TODO You don't have permission to access this dashboard
             NavigationDashboardWidgetConfiguration:
-              ButtonName: ボタン名
-              NavigationDashboardWidgetConfiguration: ナビゲーションダッシュボードウィジェットの設定
-              NavigationDashboardWidgetDescription: このウィジェットは、ボタンをクリックすることでリンク先のダッシュボードに直接移動することを可能にします。
-              VisualType: ビジュアルタイプ
+              ButtonName: TODO Button Name
+              NavigationDashboardWidgetConfiguration: Navigation dashboard widget configuration
+              NavigationDashboardWidgetDescription: This widget allows users to jump directly to a linked dashboard via button click.
+              VisualType: 'TODO: Visual Type'
             NewsWidget:
               NewsContentPlaceHolder: ニュースコンテンツを入力
               NewsContentValidateMessage: '{0} のニュースコンテンツは必須です'
@@ -1558,16 +1557,16 @@ Dialogs:
             PortalDashboardDetailModification:
               CloneWidget: ウィジェット複製
             StatisticWidget:
-              IdNotFound: ID {0} のチャートが見つかりません
-              NoPermissionChartMessage: このチャートを表示するには必要な権限がありません。
+              IdNotFound: 'TODO: Chart with ID {0} not found'
+              NoPermissionChartMessage: 'TODO: You do not have the required permission to see this chart.'
             TaskWidgetConfiguration:
               AddFilter: フィルターの追加
               ResetFilter: フィルターのリセット
             filter:
               DashboardFilter:
-                SelectFilterField: フィルターフィールドを選択
+                SelectFilterField: TODO Select Filter Field
               DateFilter:
-                SelectPeriod: 期間を選択
+                SelectPeriod: Select period
         layouts:
           AbstractTaskTemplate:
             CaseDetailsIFrameTitle: ケース詳細フレーム
@@ -1575,54 +1574,54 @@ Dialogs:
             TaskIFrameTitle: タスクフレーム
         page:
           StatisticConfiguration:
-            AddFilter: フィルターを追加
-            Advanced: 上級
-            AggregationMethod: 集計方法
-            AggregationMethodTooltip: KPIフィールドの計算に使用する集計方法を選択してください - 合計、平均、最大値、最小値。「カウント」が選択されている場合は無効になります。
-            ChartConfiguration: チャート設定
-            ChartDrillDownEnabled: チャートドリルダウン機能有効
-            ChartDrillDownInfo: <p>ユーザーが以下の権限を持っている場合にのみ機能します：ケースに対しては<strong>CaseReadAll</strong>、タスクに対しては<strong>TaskReadAll</strong>です。</p>
-            ChartDrillDownPermissions: チャートドリルダウン権限
-            ChartType: チャートタイプ
+            AddFilter: TODO Add filter
+            Advanced: TODO Advanced
+            AggregationMethod: TODO Aggregation method
+            AggregationMethodTooltip: TODO Choose an aggregation method to perform calculations on your KPI field - Sum, Average, Max, or Min. Disabled when 'Counting' is selected
+            ChartConfiguration: TODO Chart Configuration
+            ChartDrillDownEnabled: TODO Chart drill-down enabled
+            ChartDrillDownInfo: 'TODO <p>It only works when the user has these permissions: <strong>CaseReadAll</strong> for case and <strong>TaskReadAll</strong> for task.</p>'
+            ChartDrillDownPermissions: TODO Chart drill-down permissions
+            ChartType: TODO Chart type
             Color: 色{0}
             ConditionBasedColoring:
-              AddCondition: 条件を追加する
-              AllValue: すべての値
-              CategoryValue: 価値
-              Color: 色
-              ConditionBasedColoringEnabled: 条件付きカラーリングを有効化
-              ConditionBasedColoringScopeInformation: 条件が影響する範囲を選択してください：すべての値：チャート内の全データに条件を適用します。特定の値：選択した値のみに色条件を適用します。
-              ConditionValue: 条件値
-              DefaultColor: デフォルトの色
+              AddCondition: 'TODO: Add condition'
+              AllValue: 'TODO: All values'
+              CategoryValue: 'TODO: Value'
+              Color: Color
+              ConditionBasedColoringEnabled: 'TODO: Conditional based coloring enabled'
+              ConditionBasedColoringScopeInformation: 'TODO: Choose the scope that the condition will affect: All values: Apply conditions to all data in the chart.  Specific value: Apply color conditions only to selected value.'
+              ConditionValue: 'TODO: Condition value'
+              DefaultColor: 'TODO: Default color'
               Information: |-
-                条件に基づく色付け機能により、特定の条件に基づいて各チャートごとに色を定義できます。
+                TODO:The condition-based coloring feature allows you to define colors for each chart based on specific conditions.
                 Rules:
-                - 明確な条件を定義する。
-                - 複数の条件が満たされた場合、最初に定義された条件が優先される。
-                - シンプルに保つ。
-              NoDataAvailable: 色条件を定義するためのデータがありません
-              Operator: オペレーター
-              Scope: 範囲
-              SpecificValue: 特定の値
-            Create: 作成
-            EditStatistic: 統計ウィジェットを編集
-            For: For
-            GeneratePreview: プレビューを生成する
-            GroupBy: グループ化
-            GroupbyTooltip: 選択された集計方法は各グループに適用されます
-            HideLabel: ラベルを非表示にする
-            Interval: 間隔
-            KPI: KPI
-            KPITooltip: 測定対象の選択：タスクまたはケースの数をカウントするには「カウント」を選択（デフォルト）、数値カスタムフィールドを選択してその値をKPIとして分析する場合
-            NewStatistic: 新しい統計ウィジェット
-            OutdatedChartMessage: 適用されたグループ分けまたはフィルターが現在のUI設定と一致していません。設定を再構成してください。
-            RefreshInterval: 自動更新を有効化
-            RefreshIntervalInSeconds: 自動更新間隔（秒）
-            RefreshIntervalInSecondsValidationMessage: 自動更新間隔（秒）：指定された属性が{0}から{1}の期待値の範囲外です
-            RefreshIntervalInfo: 統計情報は一定期間後に自動更新されます。有効にするとパフォーマンスに影響する可能性があります。自動更新間隔（秒）は少なくとも{0}以上である必要があります。
-            StatisticConfiguration: 統計設定
-            XAxisTitle: X軸のラベル
-            YAxisTitle: Y軸のラベル
+                - Define clear conditions.
+                - When multiple conditions are satisfied, the first condition defined wins
+                - Keep it simple.
+              NoDataAvailable: 'TODO: No data available to define color conditions'
+              Operator: 'TODO: Operator'
+              Scope: 'TODO: Scope'
+              SpecificValue: 'TODO: Specific value'
+            Create: TODO Create
+            EditStatistic: TODO Edit Statistic Widget
+            For: TODO For
+            GeneratePreview: TODO Generate preview
+            GroupBy: TODO Group by
+            GroupbyTooltip: TODO The selected aggregation method will be applied to each group
+            HideLabel: TODO Hide label
+            Interval: 'TODO: Interval'
+            KPI: TODO KPI
+            KPITooltip: 'TODO Select what to measure: Choose ''Counting'' to count the number of tasks or cases (default), or select a numeric custom field to analyze its values as a KPI'
+            NewStatistic: TODO New Statistic Widget
+            OutdatedChartMessage: TODO The applied group-by or filter does not align with the current UI configuration. Please reconfigure it.
+            RefreshInterval: TODO Auto-refresh enabled
+            RefreshIntervalInSeconds: TODO Auto-refresh interval (seconds)
+            RefreshIntervalInSecondsValidationMessage: 'TODO Auto-refresh interval (seconds): Specified attribute is not between the expected values of {0} and {1}'
+            RefreshIntervalInfo: TODO The statistic can be auto-refreshed after a certain period. If enabled, this may impact performance. Auto-refresh interval (seconds) must be at least {0}.
+            StatisticConfiguration: TODO Statistic configuration
+            XAxisTitle: TODO X axis title
+            YAxisTitle: TODO Y axis title
   components:
     CaseDocument:
       FileDate: 変更日時
@@ -1646,42 +1645,42 @@ Enums:
           statistic:
             AggregationField:
               ACTIVATOR_NAME:
-                name: アクティベーター名
+                name: TODO Activator name
               BUSINESS_RUNTIME:
-                name: ビジネスランタイム
+                name: TODO Business runtime
               CATEGORY:
-                name: カテゴリー
+                name: TODO Category
               CREATOR_NAME:
-                name: クリエイター名
+                name: TODO Creator name
               CUSTOM_FIELD:
-                name: カスタムフィールド
+                name: TODO Custom field
               END_TIMESTAMP:
-                name: 完了日
+                name: TODO Completed date
               EXPIRY_TIMESTAMP:
-                name: 有効期限
+                name: TODO Expiry date
               IS_EXPIRED:
-                name: 期限切れです
+                name: TODO Is expired
               PRIORITY:
-                name: 優先順位
+                name: TODO Priority
               RESPONSIBLES_NAME:
-                name: 責任者
+                name: TODO Responsibles
               START_TIMESTAMP:
-                name: 作成日
+                name: TODO Created date
               STATE:
-                name: 州
+                name: TODO State
               WORKER_NAME:
-                name: 作業員名
+                name: TODO Worker name
               WORKING_TIME:
-                name: 労働時間
+                name: TODO Working time
             AggregationInterval:
               DAY:
-                name: 日
+                name: TODO Day
               MONTH:
-                name: 月
+                name: TODO Month
               WEEK:
-                name: 週
+                name: TODO Week
               YEAR:
-                name: 年
+                name: TODO Year
             ChartTarget:
               CASE:
                 name: ケース
@@ -1689,29 +1688,29 @@ Enums:
                 name: タスク
             ChartType:
               BAR:
-                name: バー
+                name: TODO Bar
               LINE:
-                name: ライン
+                name: TODO Line
               NUMBER:
-                name: 番号
+                name: TODO Number
               PIE:
-                name: パイ
+                name: TODO Pie
             ConditionBasedColoringScope:
               ALL:
-                name: すべての値
+                name: 'TODO: All values'
               SPECIFIC:
-                name: 特定の値
+                name: 'TODO: Specific value'
             OperatorFieldStatistic:
               EQUAL:
-                name: 等しい
+                name: 'TODO: Equal to'
               GREATER:
-                name: より大きい
+                name: 'TODO: Greater than'
               GREATEROREQUAL:
-                name: 以上
+                name: 'TODO: Greater than or equal to'
               LESS:
-                name: 未満
+                name: 'TODO: Less than'
               LESSOREQUAL:
-                name: 以下
+                name: 'TODO: Less or equal'
 Labels:
   AI:
     Error:
@@ -1742,24 +1741,24 @@ Labels:
     TaskDetailsResult: |-
       タスクの詳細 **{0} (#{1})**：
       {2}
-  AIAssistant: AIアシスタント
-  AllTasks: すべてのタスク
-  AndMore: および {0} 以上...
+  AIAssistant: TODO AI Assistant
+  AllTasks: 'TODO: All Tasks'
+  AndMore: 'TODO: and {0} more...'
   AppendTask-Explain: このタスクは、自分のタスクの後のシーケンスに追加されます。
   AppendTheTask: タスクを追加
-  Chat: チャット
-  Collapse: 折りたたむ
   AssignToRole: 担当ロールを選択
   AssignToUser: 担当者を選択
+  Chat: TODO Chat
+  Collapse: TODO 折りたたむ
   Comma: 、
   Configuration: 設定
   CreateNewDashboard: 新しいダッシュボードを作成
   Description: 説明
   EditDescription: 説明を編集
-  EnterFromValue: 値から入力
-  EnterToValue: 値を入力してください
-  EnterValue: 値を入力してください
-  EnterValues: 値を入力してください
+  EnterFromValue: TODO Enter from value
+  EnterToValue: TODO Enter to value
+  EnterValue: TODO Enter value
+  EnterValues: TODO Enter values
   Enums:
     ChatbotCandidateQuestion:
       EXPLORE:
@@ -1782,19 +1781,19 @@ Labels:
       ID: ID
       NAME: 名前
       OWNER: ケースオーナー
-      PIN: ピン
+      PIN: 'TODO: Pin'
       STATE: 状態
     DashboardStandardTaskColumn:
       ACTIONS: アクション
       APPLICATION: アプリケーション
       CATEGORY: カテゴリー
-      COMPLETED: 完了日
+      COMPLETED: 'TODO: Completed Date'
       CREATED: 作成日
       DESCRIPTION: 説明
       EXPIRY: 有効期限
       ID: ID
       NAME: 名前
-      PIN: ピン
+      PIN: 'TODO: Pin'
       PRIORITY: 優先度
       RESPONSIBLE: 責任者
       START: 開始
@@ -1854,9 +1853,9 @@ Labels:
     ThemeMode:
       DARK: 暗い
       LIGHT: 明るい
-  Expand: 展開
+  Expand: TODO 展開
   Filters: フィルター
-  General: 一般
+  General: TODO General
   Icon: アイコン
   InsertTask-Explain: タスクを挿入します。私のタスクは延期されます。
   InsertTheTask: タスクを挿入
@@ -1865,13 +1864,13 @@ Labels:
     Copyright: Copyright Ⓒ Axon Ivy Portal
   Name: 名前
   Permissions: 権限
-  PinnedCases: 固定済みケース
-  PinnedTasks: 固定タスク
+  PinnedCases: 'TODO: Pinned Cases'
+  PinnedTasks: 'TODO: Pinned Tasks'
   Preview: プレビュー
-  RequiredFieldMessage: '{0}: 値が必要です'
+  RequiredFieldMessage: 'TODO {0}: Value is required'
   Save: 保存
-  SelectOperator: オペレーターを選択
-  SelectValues: 値を選択
+  SelectOperator: TODO Choose Operator
+  SelectValues: TODO Select values
   Share: 共有
   StepType: ステップタイプ
   Submit: 提出する

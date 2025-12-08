@@ -105,16 +105,6 @@ function formatISODate(dt) {
   let date = dt.getDate() < 10 ? '0' + dt.getDate() : dt.getDate();
   return year + '-' + month + '-' + date;
 }
-
-function formatNumberValue(value) {
-  if (value === "null" || value === null || value === undefined) {
-    return "0";
-  }
-
-  const numValue = Number(value);
-  return numValue % 1 === 0 ? numValue.toString() : numValue.toFixed(2);
-}
-
 const convertYValue = (value, config) => {
   if (!value || !config) {
     return value;
@@ -142,10 +132,10 @@ const convertYValue = (value, config) => {
       }
     });
   } catch(error) {
-    return formatNumberValue(value);
+    return value;
   }
   
-  return formatNumberValue(value);
+  return value;
 }
 
 const processYValue = (result, config) => {
@@ -959,7 +949,7 @@ class ClientNumberChart extends ClientChart {
     let multipleNumberChartInHTML = '';
     if (result?.length > 0) {
         result.forEach((item, index) => {
-          const yValue = item.aggs.length > 0 ? formatNumberValue(item.aggs[0].value) : item.count;
+          const yValue = item.aggs.length > 0 ? this.formatNumberValue(item.aggs[0].value) : item.count;
           const counting = item.aggs.length > 0 ? item.count + " " + chartTarget + (item.count > 1 ? "s" : "") : "";
           let htmlString = this.generateItemHtml(item.key, yValue, suffixSymbold, index, counting);
           multipleNumberChartInHTML += htmlString;
@@ -1009,6 +999,15 @@ class ClientNumberChart extends ClientChart {
       .split('_')
       .map(word => word.charAt(0).toUpperCase() + word.slice(1))
       .join(' ');
+  }
+
+  formatNumberValue(value) {
+    if (value === "null" || value === null || value === undefined) {
+      return "0";
+    }
+  
+    const numValue = Number(value);
+    return numValue % 1 === 0 ? numValue.toString() : numValue.toFixed(2);
   }
 
   getItemFromFilters() {

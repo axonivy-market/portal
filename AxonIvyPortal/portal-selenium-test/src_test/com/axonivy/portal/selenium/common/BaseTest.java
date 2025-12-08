@@ -12,12 +12,15 @@ import java.time.Duration;
 import java.util.Objects;
 
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WindowType;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.axonivy.ivy.webtest.engine.EngineUrl;
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.WebDriverRunner;
 
 import ch.ivy.addon.portalkit.enums.PortalPermission;
@@ -36,6 +39,18 @@ public class BaseTest {
   protected final static Duration DEFAULT_TIMEOUT = Duration.ofSeconds(45);
 
   public BaseTest() {}
+  
+  @BeforeAll
+  public static void initConfig() {
+    FirefoxOptions options = new FirefoxOptions();
+    options.addPreference("dom.disable_beforeunload", true);
+    
+    if (Configuration.browserCapabilities != null) {
+      Configuration.browserCapabilities = Configuration.browserCapabilities.merge(options);
+    } else {
+      Configuration.browserCapabilities = options;
+    }
+  }
 
   @AfterEach
   public void tearDown() {

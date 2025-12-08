@@ -4,19 +4,19 @@
   "templateId" : "create-from-scratch",
   "titles" : [ {
     "locale" : "en",
-    "value" : "Sample: KPI Procurement Overview"
+    "value" : "KPI Procurement Overview"
   }, {
     "locale" : "fr",
-    "value" : "Exemple : aperçu des indicateurs clés de performance en matière d'approvisionnement"
+    "value" : "Aperçu des indicateurs clés de performance en matière d'approvisionnement"
   }, {
     "locale" : "de",
-    "value" : "Beispiel: KPI-Übersicht Beschaffung"
+    "value" : "KPI-Übersicht Beschaffung"
   }, {
     "locale" : "ja",
-    "value" : "サンプル：調達KPI概要"
+    "value" : "調達 KPI 概要"
   }, {
     "locale" : "es",
-    "value" : "Ejemplo: Resumen de KPI de compras"
+    "value" : "Resumen de KPI de compras"
   } ],
   "icon" : "si-analytics-board-graph-line",
   "widgets" : [ {
@@ -223,19 +223,19 @@
     "id" : "process_1e274010b1ab40bcac0c33a94a2a0e05",
     "names" : [ {
       "locale" : "en",
-      "value" : "Start Processes/ProcurementDataForSampleKPIStatistic/start2.ivp"
+      "value" : "Start Processes/SampleStatisticDashboard/createProcurementDataForSampleStatistic.ivp"
     }, {
       "locale" : "fr",
-      "value" : "Start Processes/ProcurementDataForSampleKPIStatistic/start2.ivp"
+      "value" : "Start Processes/SampleStatisticDashboard/createProcurementDataForSampleStatistic.ivp"
     }, {
       "locale" : "de",
-      "value" : "Start Processes/ProcurementDataForSampleKPIStatistic/start2.ivp"
+      "value" : "Start Processes/SampleStatisticDashboard/createProcurementDataForSampleStatistic.ivp"
     }, {
       "locale" : "ja",
-      "value" : "Start Processes/ProcurementDataForSampleKPIStatistic/start2.ivp"
+      "value" : "Start Processes/SampleStatisticDashboard/createProcurementDataForSampleStatistic.ivp"
     }, {
       "locale" : "es",
-      "value" : "Start Processes/ProcurementDataForSampleKPIStatistic/start2.ivp"
+      "value" : "Start Processes/SampleStatisticDashboard/createProcurementDataForSampleStatistic.ivp"
     } ],
     "layout" : {
       "w" : 7,
@@ -245,7 +245,7 @@
     },
     "showFullscreenMode" : true,
     "showWidgetInfo" : true,
-    "processPath" : "portal-user-examples/Start Processes/ProcurementDataForSampleKPIStatistic/start2.ivp",
+    "processPath" : "portal-user-examples/Start Processes/SampleStatisticDashboard/createProcurementDataForSampleStatistic.ivp",
     "rowsPerPage" : 5
   }, {
     "type" : "welcome",
