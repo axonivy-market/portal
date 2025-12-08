@@ -64,7 +64,7 @@ jobs:
         with:
           workflow: portal-document-screenshot-test.yml
           name: screenshots
-          branch: feature/IVYPORTAL-19607-User-Demos-for-new-Statistics-Features
+          branch: master
           path: Documentation/portal-guide/source/screenshots
 
       - name: install zip
