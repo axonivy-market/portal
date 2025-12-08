@@ -1,0 +1,28 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/13.2.0/data-class.json",
+  "simpleName" : "SampleStatisticDashboardData",
+  "namespace" : "com.axonivy.portal.userexamples",
+  "fields" : [ {
+    "name" : "item"
+  }, {
+    "name" : "monthOfYear",
+    "type" : "DateTime"
+  }, {
+    "name" : "department"
+  }, {
+    "name" : "spendAmount",
+    "type" : "Number"
+  }, {
+    "name" : "decision"
+  }, {
+    "name" : "daysToDecision",
+    "type" : "Number"
+  }, {
+    "name" : "reworkNoLoops",
+    "type" : "Number"
+  }, {
+    "name" : "reworkCauses"
+  }, {
+    "name" : "reworkOccurred"
+  } ]
+}
