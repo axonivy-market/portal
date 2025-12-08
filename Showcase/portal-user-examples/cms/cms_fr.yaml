@@ -195,7 +195,7 @@ Processes:
     name: Coordination des campagnes marketing
   Procurement:
     CreateDataProcess: Données d'approvisionnement pour le tableau de bord statistique des échantillons
-    InitConfig: Configuration du tableau de bord des statistiques d'échantillonnage Init
+    InitConfig: Tableau de bord d'exemple Init (ÉCRITURE AUTOMATIQUE DANS LE TABLEAU DE BORD DU PORTAIL ET LES VARIABLES STATISTIQUES)
     SampleStatisticValue:
       DaysToDecision: 2,5;6;2;7;4;9,4
       Decision: Approuvé;Rejeté;En attente

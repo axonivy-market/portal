@@ -199,7 +199,7 @@ Processes:
     name: Coordinación de la campaña de marketing
   Procurement:
     CreateDataProcess: Datos de compras para el panel de estadísticas de muestras
-    InitConfig: Configuración del panel de estadísticas de muestra inicial
+    InitConfig: Iniciar panel de control de muestra (ESCRIBIR AUTOMÁTICAMENTE EN EL PANEL DE CONTROL DEL PORTAL Y EN LAS VARIABLES ESTADÍSTICAS)
     SampleStatisticValue:
       DaysToDecision: 2,5;6;2;7;4;9,4
       Decision: Aprobado;Rechazado;Pendiente
