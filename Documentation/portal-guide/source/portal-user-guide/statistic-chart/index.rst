@@ -130,11 +130,11 @@ Enable drill-down functionality for interactive data exploration. Users can clic
 
 - When the user clicks a chart element, the Portal navigates to the drill-down dashboard containing a widget that shows the detailed list filtered by the selected value. Features that the user can use on the widget are the same as those on a standard widget, including sorting, complex filtering, quick search, etc.
 
-- There is a back button on the top left corner to return to the main dashboard. When going back, all configured filters and sorts on the detailed list widget are reset.
+- There is a back button on the top left corner to return to the main dashboard. When going back, all configured filters, quick search inputs and sorts on the detailed list widget are reset.
 
 .. important::
 
-    - A user must have the necessary permissions **TaskReadAll** and **CaseReadAll** to view the detailed data when using the drill-down feature.
+    - A user must have the necessary permissions **TaskReadAll** for task and **CaseReadAll** for case to view the detailed data when using the drill-down feature.
 
 Condition-based Coloring Enabled
 ================================
@@ -143,6 +143,7 @@ Apply dynamic coloring rules to your charts based on data conditions:
 
 - When deactivated, all chart elements will use the default color scheme.
 - **Condition-based coloring enabled**: When enabled, you can define rules that automatically apply different colors to chart elements based on specific conditions.
+- Condition-based coloring is available for **Bar**, **Line**, and **Pie** charts only.
 
 There are two scopes for applying condition-based coloring:
 
@@ -154,10 +155,6 @@ To make it work effectively, you need:
     - Define clear conditions.
     - When multiple conditions are satisfied, the first condition defined wins.
     - Keep it simple.
-
-.. note::
-
-    Condition-based coloring is available for **Bar**, **Line**, and **Pie** charts only.
 
 Available values for configuring statistic chart 
 ------------------------------------------------
