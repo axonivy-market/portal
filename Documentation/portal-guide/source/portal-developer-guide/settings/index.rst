@@ -23,41 +23,12 @@ Proper configuration ensures Portal aligns with your organization's security pol
 - External integrations (announcements, third-party apps, external links)
 - Statistical chart configurations for dashboards
 
-**Configuration Methods:**
-
-Portal settings can be configured through multiple interfaces depending on your needs:
-
-#. **Admin Settings UI** - User-friendly interface for common settings (recommended for non-technical admins)
-#. **Engine Cockpit Variables** - Direct variable editing for advanced configuration
-#. **Variable YAML Files** - Development-time configuration that persists across Designer restarts
-#. **JSON Configuration Files** - Complex configurations like dashboards and announcements
-
 **Related Sections:**
 
 - :ref:`Permissions <list-permissions>` - Detailed permission reference
 - :ref:`Dashboard Configuration <customization-new-dashboard>` - Configure dashboards
 - :ref:`Customization <customization>` - Extend Portal functionality
 - :ref:`Deployment <deployment>` - Production deployment settings
-
-Overview
-========
-
-.. table::
-   :widths: 30 70
-
-   +---------------------------+----------------------------------------------------------------+
-   | Setting Category          | Description                                                    |
-   +===========================+================================================================+
-   | **Portal Settings**       | Global configuration via Admin Settings or variables           |
-   +---------------------------+----------------------------------------------------------------+
-   | **Roles & Permissions**   | Access control for Portal features and actions                 |
-   +---------------------------+----------------------------------------------------------------+
-   | **Language Settings**     | Multi-language support and translations                        |
-   +---------------------------+----------------------------------------------------------------+
-   | **Variables**             | Engine-level configuration stored as key-value pairs           |
-   +---------------------------+----------------------------------------------------------------+
-   | **JSON Configuration**    | Advanced settings for announcements, charts, external links    |
-   +---------------------------+----------------------------------------------------------------+
 
 |portal-header|
 
@@ -92,7 +63,7 @@ HowTo: Add a New Language to Portal
 #. **Add Language Column**
 
    - Open the exported Excel file
-   - Add a new column at the end with the language locale code in the **Uri** row (e.g., ``it`` for Italian)
+   - Add a new column at the end with the language locale code (e.g., ``it`` for Italian)
    - Refer to `Java supported locales <https://www.oracle.com/java/technologies/javase/jdk21-suported-locales.html>`_ for supported locale codes
    
    |export-cms|
@@ -138,8 +109,7 @@ Portal uses specific roles to control administrative access:
    | Role                      | Description                                                    |
    +===========================+================================================================+
    | **AXONIVY_PORTAL_ADMIN**  | Can access Portal Admin page, configure internal role          |
-   |                           | properties, and create public filters. Requires specific       |
-   |                           | permissions for full functionality.                            |
+   |                           | properties, and create public filters.                         |
    +---------------------------+----------------------------------------------------------------+
 
 

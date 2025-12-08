@@ -24,10 +24,9 @@ Understanding Portal's structure and how it integrates with your applications is
 
 **Key Concepts for Developers:**
 
-- **Security Context**: All Portal applications must share the same security context for task/case visibility
+- **Security Context**: The Portal and Projects using it should be deployed in different applications but in the same security context for task/case visibility
 - **Component Reuse**: Import portal-components into your apps to use Portal's UI components
 - **Public API**: Use documented APIs and customization points only
-- **Template Pattern**: Use Portal templates for consistent UI in your processes
 
 **Related Sections:**
 
@@ -35,21 +34,6 @@ Understanding Portal's structure and how it integrates with your applications is
 - :ref:`Deployment <deployment>` - Deploy Portal to production
 - :ref:`Customization <customization>` - Extend Portal functionality
 - :ref:`IFrame Integration <iframe-in-portal>` - Embed processes in Portal
-
-Portal provides a modular architecture designed for flexibility and maintainability. Understanding how Portal integrates with your applications is essential for successful implementation.
-
-.. table::
-   :widths: 30 70
-
-   +---------------------------+---------------------------------------------------------------+
-   | Architecture Component    | Purpose                                                       |
-   +===========================+===============================================================+
-   | **Multi-App Setup**       | Separates Portal from custom apps for easier upgrades         |
-   +---------------------------+---------------------------------------------------------------+
-   | **portal-components**     | Public UI components and APIs for reuse                       |
-   +---------------------------+---------------------------------------------------------------+
-   | **portal**                | Portal-specific UI, templates, and pages                      |
-   +---------------------------+---------------------------------------------------------------+
 
 Deployment Strategy
 ===================

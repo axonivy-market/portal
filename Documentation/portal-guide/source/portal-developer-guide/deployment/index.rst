@@ -3,23 +3,12 @@
 Deployment
 **********
 
-Portal deployment to Axon Ivy Engine involves deploying .iar archives or .zip packages containing projects and configuration artifacts. The recommended architecture separates Portal from business applications while sharing a common security system, enabling centralized task and case management across multiple applications.
 
 Overview
 ========
 
-.. table::
-   :widths: 30 70
-
-   +----------------------------+----------------------------------------------------------------+
-   | Deployment Aspect          | Description                                                    |
-   +============================+================================================================+
-   | **Packaging Format**       | .iar (Ivy Archive) or .zip (includes configuration)            |
-   +----------------------------+----------------------------------------------------------------+
-   | **Configuration Methods**  | Deployment files, Engine Cockpit UI, or Portal import          |
-   +----------------------------+----------------------------------------------------------------+
-   | **Architecture**           | Multi-application setup with shared security context           |
-   +----------------------------+----------------------------------------------------------------+
+Portal deployment to Axon Ivy Engine involves deploying .iar archives or .zip packages containing projects and configuration artifacts.
+The recommended architecture separates Portal from business applications while sharing a common security system, enabling centralized task and case management across multiple applications.
 
 For comprehensive deployment information, refer to the :doc-url:`Axon Ivy deployment guidelines </engine-guide/deployment/index.html>`.
 
@@ -52,20 +41,10 @@ Prerequisites
 
 Before deploying Portal, ensure you have:
 
-.. table::
-   :widths: 30 70
-
-   +----------------------------+----------------------------------------------------------------+
-   | Requirement                | Details                                                        |
-   +============================+================================================================+
-   | **Axon Ivy Engine**        | Installed and operational                                      |
-   +----------------------------+----------------------------------------------------------------+
-   | **Database**               | Configured and accessible (e.g., PostgreSQL)                   |
-   +----------------------------+----------------------------------------------------------------+
-   | **Security System**        | Created or use default Axon Ivy security system                |
-   +----------------------------+----------------------------------------------------------------+
-   | **Deployment Packages**    | Portal .iar/.zip files prepared                                |
-   +----------------------------+----------------------------------------------------------------+
+- **Axon Ivy Engine**: Installed and operational
+- **Database**: Configured and accessible (e.g., PostgreSQL)
+- **Security System**: Created or use default Axon Ivy security system
+- **Deployment Packages**: Portal .iar/.zip files prepared
 
 Deployment Process
 ==================
@@ -210,19 +189,6 @@ Dashboard Configuration
 
 There are three methods to configure Portal dashboards:
 
-.. table::
-   :widths: 35 65
-
-   +---------------------------------+---------------------------------------------------------+
-   | Method                          | Description                                             |
-   +=================================+=========================================================+
-   | **Deployment Files**            | Include Portal.Dashboard.json in deployment package     |
-   +---------------------------------+---------------------------------------------------------+
-   | **Engine Cockpit UI**           | Configure through Engine Cockpit variables              |
-   +---------------------------------+---------------------------------------------------------+
-   | **Portal Import Feature**       | Import dashboards directly in Portal UI                 |
-   +---------------------------------+---------------------------------------------------------+
-
 Method 1: Deployment Files
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -261,8 +227,8 @@ Configure dashboards through the Engine Cockpit web interface.
 - Edit the configuration directly in the UI.
 - Save changes.
 
-Method 3: Portal Import Feature
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Method 3: Import dashboards directly in Portal UI
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Import dashboard configurations directly in the Portal user interface.
 
