@@ -43,8 +43,13 @@ public class BaseTest {
   @BeforeAll
   public static void initConfig() {
     FirefoxOptions options = new FirefoxOptions();
-    options.addPreference("dom.disable_beforeunload", true); 
-    Configuration.browserCapabilities = options;
+    options.addPreference("dom.disable_beforeunload", true);
+    
+    if (Configuration.browserCapabilities != null) {
+      Configuration.browserCapabilities = Configuration.browserCapabilities.merge(options);
+    } else {
+      Configuration.browserCapabilities = options;
+    }
   }
 
   @AfterEach
