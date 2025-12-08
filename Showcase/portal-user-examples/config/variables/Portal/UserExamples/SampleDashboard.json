@@ -4,19 +4,19 @@
   "templateId" : "create-from-scratch",
   "titles" : [ {
     "locale" : "en",
-    "value" : "Sample: KPI Procurement Overview"
+    "value" : "KPI Procurement Overview"
   }, {
     "locale" : "fr",
-    "value" : "Exemple : aperçu des indicateurs clés de performance en matière d'approvisionnement"
+    "value" : "Aperçu des indicateurs clés de performance en matière d'approvisionnement"
   }, {
     "locale" : "de",
-    "value" : "Beispiel: KPI-Übersicht Beschaffung"
+    "value" : "KPI-Übersicht Beschaffung"
   }, {
     "locale" : "ja",
-    "value" : "サンプル：調達KPI概要"
+    "value" : "調達 KPI 概要"
   }, {
     "locale" : "es",
-    "value" : "Ejemplo: Resumen de KPI de compras"
+    "value" : "Resumen de KPI de compras"
   } ],
   "icon" : "si-analytics-board-graph-line",
   "widgets" : [ {
