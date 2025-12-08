@@ -92,9 +92,11 @@ public class ChatService {
   private static final String CHAT_RESPONSE_DEACTIVATE_CHAT_STATUS = "DEACTIVATE_CHAT";
   private static final String ERROR = "ERROR";
   private static final String SUCCESSFUL = "SUCCESSFUL";
-  private Map<String, Queue<ResponseInfo>> messageResponses = new ConcurrentHashMap<>();
-  private Map<String, List<GroupChat>> usernameToGroupChats = new ConcurrentHashMap<>();
-  private Map<String, Integer> reachedLimitedConnectionCounters = new ConcurrentHashMap<>();
+  // WORKAROUND: Make properties of this class static so all instances share the same data.
+  // The problem is @Singleton is not respected after Ivy updates.
+  private static final Map<String, Queue<ResponseInfo>> messageResponses = new ConcurrentHashMap<>();
+  private static final Map<String, List<GroupChat>> usernameToGroupChats = new ConcurrentHashMap<>();
+  private static final Map<String, Integer> reachedLimitedConnectionCounters = new ConcurrentHashMap<>();
   /** Only necessary if in cluster */
   private static String nodeName;
   public static final boolean IS_STANDARD_MODE = EngineMode.isNot(EngineMode.ENTERPRISE);
