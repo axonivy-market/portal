@@ -190,7 +190,7 @@ Processes:
     name: Marketing campaign coordination
   Procurement:
     CreateDataProcess: Procurement Data For Sample Statistic Dashboard
-    InitConfig: Init sample dashboard (AUTO WRITE TO PORTAL DASHBOARD AND STATISTIC VARIABLES)
+    InitConfig: Init sample dashboard (UPDATE PORTAL DASHBOARD AND STATISTIC VARIABLES)
     SampleStatisticValue:
       DaysToDecision: 2,5;6;2;7;4;9,4
       Decision: Approved;Rejected;Pending

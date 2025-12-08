@@ -220,7 +220,7 @@ Processes:
     name: マーケティングキャンペーン連携
   Procurement:
     CreateDataProcess: サンプル統計ダッシュボード向け調達データ
-    InitConfig: 初期サンプルダッシュボード（ポータルダッシュボードおよび統計変数への自動書き込み）
+    InitConfig: 初期サンプルダッシュボード（ポータルダッシュボードと統計変数の更新）
     SampleStatisticValue:
       DaysToDecision: 2,5;6;2;7;4;9,4
       Decision: 承認;却下;保留
