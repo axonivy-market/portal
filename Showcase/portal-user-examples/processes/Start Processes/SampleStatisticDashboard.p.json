@@ -185,7 +185,7 @@
             "import com.axonivy.portal.userexamples.bean.PortalUserExamplesInitBean;",
             "import ch.ivyteam.ivy.environment.Ivy;",
             "PortalUserExamplesInitBean.initSampleStatisticConfig();",
-            "Ivy.wf().signals().send(\"createProcurementDataForSampleStatistic\");"
+            "Ivy.wf().signals().send(\"com:axonivy:portal:portaluserexamples:createProcurementDataForSampleStatistic\");"
           ]
         }
       },
