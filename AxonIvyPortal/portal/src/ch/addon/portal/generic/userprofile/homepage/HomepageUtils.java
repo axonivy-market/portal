@@ -13,7 +13,6 @@ import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.components.publicapi.ProcessStartAPI;
 import com.axonivy.portal.components.util.ProcessStartUtils;
-import com.axonivy.portal.util.UserExampleUtils;
 
 import ch.addon.portal.generic.menu.PortalMenuNavigator;
 import ch.addon.portal.generic.menu.SubMenuItem;
@@ -136,7 +135,7 @@ public class HomepageUtils {
     if (StringUtils.isNotBlank(homepageName)) {
       return homepageName;
     }
-    if (UserExampleUtils.isUserExampleAvailable() && !shouldShowUserGuide) {
+    if (!shouldShowUserGuide) {
       return findHomepageSetting();
     }
 
