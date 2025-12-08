@@ -152,7 +152,7 @@ public class AnnouncementService {
     return announcement instanceof Announcement ? (Announcement) announcement : null;
   }
 
-  private void invalidateCache() {
+  public void invalidateCache() {
     IvyCacheService.getInstance()
         .invalidateApplicationCacheForAllAvailableApplications(PORTAL_ANNOUNCEMENT_CACHE_GROUP_NAME);
   }
