@@ -505,7 +505,10 @@
       "name" : "Change assignee type",
       "config" : {
         "output" : {
-          "code" : "out.isDisabledAssignButton = true;"
+          "code" : [
+            "in.isDisabledAssignButton = true;",
+            "in.selectedActivator = null;"
+          ]
         }
       },
       "visual" : {
