@@ -299,18 +299,6 @@ public class CaseService{
       return result;
     });
   }
-
-//  private CaseCategoryStatistic createCaseCategoryStatistic(Recordset recordSet) {
-//    CaseCategoryStatistic caseCategoryStatistic = new CaseCategoryStatistic();
-//    caseCategoryStatistic.setNumberOfCasesByCategory(new HashMap<>());
-//    if (recordSet != null) {
-//      recordSet.getRecords().forEach(record -> {
-//        long numberOfCases = ((Number)(record.getField("COUNT"))).longValue();
-//        caseCategoryStatistic.getNumberOfCasesByCategory().put(record.getField("CATEGORY").toString(), numberOfCases);
-//      });
-//    }
-//    return caseCategoryStatistic;
-//  }
   
   public IvyCaseResultDTO analyzeCasesByCategoryStatistic(CaseSearchCriteria criteria, List<String> selectedCategories) {
     return Sudo.get(() -> {

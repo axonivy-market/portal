@@ -54,6 +54,7 @@ public class NavigationDashboardWidgetConfigurationBean extends NavigationDashbo
   
   /**
    * Remove previous image if exists
+   * @param isDarkMode 
    */
   public void removeImage(boolean isDarkMode) {
     if (StringUtils.isNotBlank(getWidget().getImageLocation()) && !isDarkMode) {
