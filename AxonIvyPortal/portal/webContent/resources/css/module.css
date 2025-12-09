@@ -4141,6 +4141,16 @@ _:-ms-fullscreen, :root .content-link-history {
   opacity: 0.5;
 }
 
+.content-field-after-escalation span.name-after-avatar {
+  text-overflow: ellipsis;
+  max-width: 80%;
+  overflow: hidden;
+}
+
+.content-field-after-escalation .has-avatar {
+  max-width: 80% !important;
+}
+
 .separator-task-detail::before {
   border-top: 1px solid var(--task-detail-separator-border-color);
 }
