@@ -1074,6 +1074,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     notificationTitle: 通知
     olderText: 昨日以前
     onlyUnread: 未読のみ
+    openNotifications: 通知を開く (つうちをひらく)
     todayText: 今日
     xDaysAgo: '%s 日前'
     xHoursAgo: '%s 時間前'
