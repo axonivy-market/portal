@@ -260,11 +260,7 @@ function resizeTableBody() {
             if (tableBody.parents('.js-resizing').length > 0) {
               widget.init(widget.cfg);
             }
-            widget.setupScrolling();
-
-            if (widget.headerTable.length === 1) {
-              $(widget.headerTable[0]).find('th.ui-state-focus').removeClass('ui-state-focus');
-            }
+            widget.refresh(widget.cfg);
           }
         });
 
