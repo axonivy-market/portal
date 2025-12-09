@@ -3,6 +3,7 @@ package com.axonivy.portal.selenium.page;
 import static com.codeborne.selenide.Selenide.$;
 
 import com.axonivy.portal.selenium.common.FileHelper;
+import com.axonivy.portal.selenium.common.Sleeper;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 
@@ -42,6 +43,8 @@ public class NavigationDashboardWidgetConfigurationPage extends TemplatePage {
     
     $("div[id$=':dashboard-link-selection-menu_panel']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
     .$("ul").$$("li").filter(Condition.text(targetDashboard)).first().click();
+    
+    Sleeper.sleep(300);
   }
   
   public void selectVisualType(String visualType) {
