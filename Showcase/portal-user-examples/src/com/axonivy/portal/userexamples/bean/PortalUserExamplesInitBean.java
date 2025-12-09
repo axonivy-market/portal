@@ -27,7 +27,7 @@ public class PortalUserExamplesInitBean extends AbstractProcessStartEventBean {
       initSampleStatisticConfig();
 
       // Avoid generating lots of tasks and cases when re-run in Designer
-      if (historyLengthOfSignal(GENERATE_PROCUREMENT_DATA_SIGNAL_CODE) == 0) {
+      if (!isSignalAlreadyRun(GENERATE_PROCUREMENT_DATA_SIGNAL_CODE)) {
         Ivy.wf().signals().send(GENERATE_PROCUREMENT_DATA_SIGNAL_CODE);
       }
     }
@@ -51,10 +51,10 @@ public class PortalUserExamplesInitBean extends AbstractProcessStartEventBean {
     String combinedStatistic = JsonUtils.mergeJsonArrays(portalStatisticJson, sampleStatisticJson);
     Ivy.var().set(PORTAL_CUSTOM_STATISTIC_KEY, combinedStatistic);
   }
-  
-  public static long historyLengthOfSignal(String signalCode) {
+
+  private static boolean isSignalAlreadyRun(String signalCode) {
     return Ivy.wf().signals().history().createSignalEventQuery()
         .where().signalCode().isEqual(signalCode)
-        .executor().count();
+        .executor().count() > 0;
   }
 }
