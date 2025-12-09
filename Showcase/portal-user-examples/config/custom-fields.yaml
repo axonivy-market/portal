@@ -9,18 +9,57 @@ CustomFields:
   #      Description: This new task custom field can be used to ...
   #      Type: STRING        
   Cases:
-     MyCaseCustomField:
-        Label: My case custom field STRING
-        Description: This new case custom field can be used to ...
-        Type: STRING
-     MyCaseCustomField:
-        Label: My case custom field TEXT
-        Description: This new case custom field can be used to ...
-        Type: TEXT
-     MyCaseCustomField:
-        Label: My case custom field NUMBER
-        Description: This new case custom field can be used to ...
-        Type: NUMBER
+    MyCaseCustomField:
+      Label: My case custom field STRING
+      Description: This new case custom field can be used to ...
+      Type: STRING
+    MyCaseCustomField:
+      Label: My case custom field TEXT
+      Description: This new case custom field can be used to ...
+      Type: TEXT
+    MyCaseCustomField:
+      Label: My case custom field NUMBER
+      Description: This new case custom field can be used to ...
+      Type: NUMBER
+
+    # CustomFields used for KPI sample statistic
+    SpendAmount:
+      Label: SpendAmount
+      Description: SpendAmount
+      Type: NUMBER
+    Department:
+      Label: Department
+      Description: Department
+      Type: STRING
+    Item:
+      Label: Item
+      Description: Item
+      Type: STRING
+    MonthYear:
+      Label: MonthYear
+      Description: MonthYear
+      Type: TIMESTAMP
+    DaysToDecision:
+      Label: DaysToDecision
+      Description: DaysToDecision
+      Type: NUMBER
+    Decision:
+      Label: Decision
+      Description: Decision
+      Type: STRING
+    ReworkNoLoops:
+      Label: ReworkNoLoops
+      Description: ReworkNoLoops
+      Type: NUMBER
+    ReworkCauses:
+      Label: ReworkCauses
+      Description: ReworkCauses
+      Type: STRING
+    ReworkOccurred:
+      Label: ReworkOccurred
+      Description: ReworkOccurred
+      Type: STRING
+
   Starts:
 #   MyStartCustomField:
 #      Label: My start custom field
