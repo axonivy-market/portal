@@ -31,8 +31,7 @@ public class MultiLanguageTranslationSupportScreenshotTest extends ScreenshotBas
     showNewDashboard();
     var dashboardConfigurationPage = new NewDashboardPage().openDashboardConfigurationPage();
     dashboardConfigurationPage.createPrivateDashboardFromScratch();
-    ScreenshotUtils.captureElementScreenshot(dashboardConfigurationPage.getDashboardCreationDialog(),
-        ScreenshotUtils.DASHBOARD_CONFIGURATION_FOLDER + "create-private-dashboard-dialog-ml");
+    dashboardConfigurationPage.getDashboardCreationDialog();
     dashboardConfigurationPage.openMultiLanguageDialog();
     ScreenshotUtils.captureElementScreenshot(dashboardConfigurationPage.getDashboardMultiLanguageDialog(),
         ScreenshotUtils.DASHBOARD_CONFIGURATION_FOLDER + "dashboard-multi-language-dialog-ml");
