@@ -42,5 +42,5 @@ HowTo: Translate a pure text
 
 .. |create-private-dashboard-dialog| image:: ../../screenshots/dashboard-configuration/create-private-dashboard-dialog.png
    :alt: Create private dashboard dialog
-.. |dashboard-multi-language-dialog| image:: ../../screenshots/dashboard-configuration/dashboard-multi-language-dialog-ml.png
+.. |dashboard-multi-language-dialog| image:: ../../screenshots/dashboard-configuration/dashboard-multi-language-dialog.png
    :alt: Multi language dialog
