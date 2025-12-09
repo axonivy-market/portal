@@ -1,3 +1,32 @@
+CustomFields:
+  Cases:
+    DaysToDecision:
+      Description: Días desde la solicitud hasta la decisión final
+      Label: Días hasta la decisión
+    Decision:
+      Description: Estado de la decisión
+      Label: Decisión
+    Department:
+      Description: Departamento
+      Label: Departamento
+    Item:
+      Description: Artículo
+      Label: Artículo
+    MonthYear:
+      Description: Mes del año
+      Label: Mes del Año
+    ReworkCauses:
+      Description: Causas de los bucles de retrabajo
+      Label: Causas de retrabajo
+    ReworkNoLoops:
+      Description: Número de bucles del proceso
+      Label: Bucles de retrabajo
+    ReworkOccurred:
+      Description: Indica si fue necesario un bucle
+      Label: Retrabajo necesario
+    SpendAmount:
+      Description: Monto de gasto
+      Label: Monto de Gasto
 Dialog:
   Common:
     approve: Aprobar
@@ -169,6 +198,20 @@ Processes:
   MarketingCampaign:
     name: Coordinación de la campaña de marketing
   Procurement:
+    CreateDataProcess: Datos de compras para el panel de estadísticas de muestras
+    InitConfig: Iniciar panel de control de muestra (ACTUALIZAR PANEL DE CONTROL DEL PORTAL Y VARIABLES ESTADÍSTICAS)
+    SampleStatisticValue:
+      DaysToDecision: 2,5;6;2;7;4;9,4
+      Decision: Aprobado;Rechazado;Pendiente
+      Department: Dep A;Dep B;Dep C;Dep D
+      Item: Ordenador portátil;Teléfono móvil;Teclado;Tableta
+      MonthOfYear: 01;02;03;04;05;06;07
+      ReworkCauses: Información faltante;No es elegible;Demasiado caro.
+      ReworkNoLoops: 0;1;2;0;0
+      ReworkOccurred: Yes;No
+      SpendAmount: 250;300.0;400.0;122.0;234.0
+    description: Ejecute este proceso (varias veces) para generar datos para la estadística de KPI de muestra que se muestra a continuación. La información de adquisición, como el importe del gasto, el departamento, el artículo, el mes del año, los días hasta la decisión, la decisión y la reelaboración,
+      se aleatoriza y se asigna a campos personalizados del caso.
     name: Adquisición
   UserExampleGuide:
     DashboardCustomNoteWidget:

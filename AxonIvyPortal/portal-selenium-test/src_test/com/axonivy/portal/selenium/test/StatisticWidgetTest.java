@@ -1,18 +1,26 @@
 package com.axonivy.portal.selenium.test;
 
+import java.util.Arrays;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
+import com.axonivy.portal.enums.statistic.ChartType;
 import com.axonivy.portal.selenium.common.BaseTest;
+import com.axonivy.portal.selenium.common.FilterOperator;
 import com.axonivy.portal.selenium.common.FilterValueType;
 import com.axonivy.portal.selenium.common.ScreenshotUtils;
 import com.axonivy.portal.selenium.common.TestAccount;
+import com.axonivy.portal.selenium.page.CaseWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.DashboardConfigurationPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.StatisticConfigurationPage;
 import com.axonivy.portal.selenium.page.StatisticWidgetNewDashboardPage;
+import com.axonivy.portal.selenium.page.TaskWidgetNewDashBoardPage;
 import com.codeborne.selenide.CollectionCondition;
+
+import ch.ivy.addon.portalkit.enums.DashboardDisplayType;
 
 @IvyWebTest
 public class StatisticWidgetTest extends BaseTest {
@@ -495,5 +503,127 @@ public class StatisticWidgetTest extends BaseTest {
     // Add Custom statistic widget
     configurationPage.clickOnAddWidgetButton();
     configurationPage.addNewStatisticWidget("Custom statistic chart CASE with KPI field");
+  }
+  
+  @Test
+  public void testEnableDrillDownOnStatisticConfiguration() {
+    login(TestAccount.ADMIN_USER);
+    redirectToRelativeLink(create12CasesWithCategoryUrl);
+    redirectToNewDashBoard();
+
+    DashboardConfigurationPage configurationPage = newDashboardPage.openDashboardConfigurationPage();
+    configurationPage.openCreatePublicDashboardMenu();
+    configurationPage.createPublicDashboardFromScratch("My Dashboard", "fa-coffee", "description", Arrays.asList("Everybody"), DashboardDisplayType.SUB_MENU);
+    ScreenshotUtils.maximizeBrowser();
+    configurationPage.clickOnAddWidgetButton();
+    StatisticConfigurationPage statisticConfigurationPage = configurationPage
+        .clickOnCreateCustomStatisticWidgetButton();
+    statisticConfigurationPage.setChartName("Case Number Chart");
+    statisticConfigurationPage.changeChartTarget("Case");
+    statisticConfigurationPage.changeChartType(ChartType.NUMBER.getName());
+    statisticConfigurationPage.enableDrillDownFeature();
+    assertTrue(statisticConfigurationPage.isDrillDownFeatureEnabled());
+    statisticConfigurationPage.clickCreateStatisticChart();
+    configurationPage.clickOnAddWidgetButton();
+    configurationPage.addNewStatisticWidget("Case Number Chart");
+    configurationPage.backToHomePage();
+    StatisticWidgetNewDashboardPage statisticWidget = newDashboardPage.selectStatisticChartWidget("Case Number Chart");
+    assertTrue(statisticWidget.isChartNumberElementClickable());
+    // Test with Demo user who does not have TaskReadAll or CaseReadAll permission to use the feature
+    login(TestAccount.DEMO_USER);
+    assertFalse(statisticWidget.isChartNumberElementClickable());
+  }
+  
+  @Test
+  public void testCaseDrillDownDashboardAfterClickingOnElementOfNumberChart() {
+    login(TestAccount.ADMIN_USER);
+    redirectToRelativeLink(createTestDataForCustomFieldsWithCMS);
+    redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
+    redirectToRelativeLink(create12CasesWithCategoryUrl);
+    redirectToRelativeLink(testCaseListPermission);
+    redirectToNewDashBoard();
+
+    DashboardConfigurationPage configurationPage = newDashboardPage.openDashboardConfigurationPage();
+    configurationPage.openCreatePublicDashboardMenu();
+    configurationPage.createPublicDashboardFromScratch("My Dashboard", "fa-coffee", "description", Arrays.asList("Everybody"), DashboardDisplayType.SUB_MENU);
+    ScreenshotUtils.maximizeBrowser();
+    configurationPage.clickOnAddWidgetButton();
+    StatisticConfigurationPage statisticConfigurationPage = configurationPage
+        .clickOnCreateCustomStatisticWidgetButton();
+    statisticConfigurationPage.setChartName("Case Number Chart");
+    statisticConfigurationPage.changeChartTarget("Case");
+    statisticConfigurationPage.changeChartType(ChartType.NUMBER.getName());
+    statisticConfigurationPage.addFilter("State", null);
+    statisticConfigurationPage.inputValueOnLatestFilter(FilterValueType.STATE_TYPE, "Open");
+    statisticConfigurationPage.addFilter("Created Date", FilterOperator.TODAY);
+    statisticConfigurationPage.addFilter("Creator", FilterOperator.CURRENT_USER);
+    statisticConfigurationPage.enableDrillDownFeature();
+    
+    assertTrue(statisticConfigurationPage.isDrillDownFeatureEnabled());
+    statisticConfigurationPage.clickCreateStatisticChart();
+    configurationPage.clickOnAddWidgetButton();
+    configurationPage.addNewStatisticWidget("Case Number Chart");
+    configurationPage.backToHomePage();
+    StatisticWidgetNewDashboardPage statisticWidget = newDashboardPage.selectStatisticChartWidget("Case Number Chart");
+    assertTrue(statisticWidget.isChartNumberElementClickable());
+    int targetNumber = statisticWidget.getValueOfTargetElementOnNumberChart("0");
+    newDashboardPage = statisticWidget.clickOnElementOnNumberChart("0");
+    CaseWidgetNewDashBoardPage drillDownWidget = newDashboardPage.selectCaseWidget("Drill-down case widget for Case Number Chart");
+    // Test widget features
+    assertEquals(targetNumber, drillDownWidget.countAllCases().size());
+    assertTrue(newDashboardPage.isBackButtonAppear());
+    drillDownWidget.openFilterWidget();
+    drillDownWidget.addFilter("Description", FilterOperator.NOT_EMPTY);
+    drillDownWidget.applyFilter();
+    drillDownWidget.setInputForQuickSearch("party");
+    assertTrue(drillDownWidget.isDisplayed());
+    newDashboardPage.clickOnBackButton();
+    assertTrue(newDashboardPage.getWidgetByName("Case Number Chart").exists());
+  }
+  
+  @Test
+  public void testTaskDrillDownDashboardAfterClickingOnElementOfNumberChart() {
+    login(TestAccount.ADMIN_USER);
+    redirectToRelativeLink(createTestDataForCustomFieldsWithCMS);
+    redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
+    redirectToRelativeLink(create12CasesWithCategoryUrl);
+    redirectToRelativeLink(testCaseListPermission);
+    redirectToNewDashBoard();
+
+    DashboardConfigurationPage configurationPage = newDashboardPage.openDashboardConfigurationPage();
+    configurationPage.openCreatePublicDashboardMenu();
+    configurationPage.createPublicDashboardFromScratch("My Dashboard", "fa-coffee", "description", Arrays.asList("Everybody"), DashboardDisplayType.SUB_MENU);
+    ScreenshotUtils.maximizeBrowser();
+    configurationPage.clickOnAddWidgetButton();
+    StatisticConfigurationPage statisticConfigurationPage = configurationPage
+        .clickOnCreateCustomStatisticWidgetButton();
+    statisticConfigurationPage.setChartName("Task Number Chart");
+    statisticConfigurationPage.changeChartTarget("Task");
+    statisticConfigurationPage.changeChartType(ChartType.NUMBER.getName());
+    statisticConfigurationPage.addFilter("Citizenship", FilterOperator.IN);
+    statisticConfigurationPage.inputValueOnLatestFilter(FilterValueType.TEXT, "korea");
+    statisticConfigurationPage.addFilter("Created Date", FilterOperator.TODAY);
+    statisticConfigurationPage.enableDrillDownFeature();
+    
+    assertTrue(statisticConfigurationPage.isDrillDownFeatureEnabled());
+    statisticConfigurationPage.clickCreateStatisticChart();
+    configurationPage.clickOnAddWidgetButton();
+    configurationPage.addNewStatisticWidget("Task Number Chart");
+    configurationPage.backToHomePage();
+    StatisticWidgetNewDashboardPage statisticWidget = newDashboardPage.selectStatisticChartWidget("Case Number Chart");
+    assertTrue(statisticWidget.isChartNumberElementClickable());
+    int targetNumber = statisticWidget.getValueOfTargetElementOnNumberChart("0");
+    newDashboardPage = statisticWidget.clickOnElementOnNumberChart("0");
+    TaskWidgetNewDashBoardPage drillDownWidget = newDashboardPage.selectTaskWidget("Drill-down task widget for Task Number Chart");
+    // Test widget features
+    assertEquals(targetNumber, drillDownWidget.countAllTasks().size());
+    assertTrue(newDashboardPage.isBackButtonAppear());
+    drillDownWidget.openFilterWidget();
+    drillDownWidget.addFilter("Description", FilterOperator.NOT_EMPTY);
+    drillDownWidget.applyFilter();
+    drillDownWidget.setInputForQuickSearch("order");
+    assertTrue(drillDownWidget.isDisplayed());
+    newDashboardPage.clickOnBackButton();
+    assertTrue(newDashboardPage.getWidgetByName("Task Number Chart").exists());
   }
 }

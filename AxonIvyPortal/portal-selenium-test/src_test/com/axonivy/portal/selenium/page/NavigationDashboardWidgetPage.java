@@ -10,7 +10,7 @@ public class NavigationDashboardWidgetPage extends TemplatePage {
   
   @Override
   protected String getLoadedLocator() {
-    return ".js-navigation-dashboard-widget";
+    return ".navigation-dashboard-widget-info";
   }
   
   public NavigationDashboardWidgetPage() {
