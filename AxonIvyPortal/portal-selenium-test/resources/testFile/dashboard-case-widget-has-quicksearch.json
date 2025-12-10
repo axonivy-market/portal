@@ -1,6 +1,7 @@
 [
   {
     "id": "1",
+    "version": "13.1.0",
     "templateId": "default-portal-dashboard-template",
     "titles": [
       {
