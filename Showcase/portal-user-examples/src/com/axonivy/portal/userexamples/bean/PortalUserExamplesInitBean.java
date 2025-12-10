@@ -13,6 +13,7 @@ import ch.ivyteam.ivy.server.restricted.EngineMode;
 public class PortalUserExamplesInitBean extends AbstractProcessStartEventBean {
   
   private static final String PORTAL_CUSTOM_STATISTIC_KEY = "Portal.CustomStatistic";
+  private static final String GENERATE_PROCUREMENT_DATA_SIGNAL_CODE = "com:axonivy:portal:portaluserexamples:createProcurementDataForSampleStatistic";
 
   public PortalUserExamplesInitBean() {
     super("Init sample config", "Append the sample statistic and dashboard config to Portal json");
@@ -24,7 +25,11 @@ public class PortalUserExamplesInitBean extends AbstractProcessStartEventBean {
     getEventBeanRuntime().poll().disable();
     if (EngineMode.isAnyOf(EngineMode.DEMO, EngineMode.DESIGNER_EMBEDDED)) {
       initSampleStatisticConfig();
-      Ivy.wf().signals().send("com:axonivy:portal:portaluserexamples:createProcurementDataForSampleStatistic");
+
+      // Avoid generating lots of tasks and cases when re-run in Designer
+      if (!isSignalAlreadyRun(GENERATE_PROCUREMENT_DATA_SIGNAL_CODE)) {
+        Ivy.wf().signals().send(GENERATE_PROCUREMENT_DATA_SIGNAL_CODE);
+      }
     }
   }
 
@@ -45,5 +50,11 @@ public class PortalUserExamplesInitBean extends AbstractProcessStartEventBean {
     String portalStatisticJson = Ivy.var().get(PORTAL_CUSTOM_STATISTIC_KEY);
     String combinedStatistic = JsonUtils.mergeJsonArrays(portalStatisticJson, sampleStatisticJson);
     Ivy.var().set(PORTAL_CUSTOM_STATISTIC_KEY, combinedStatistic);
+  }
+
+  private static boolean isSignalAlreadyRun(String signalCode) {
+    return Ivy.wf().signals().history().createSignalEventQuery()
+        .where().signalCode().isEqual(signalCode)
+        .executor().count() > 0;
   }
 }

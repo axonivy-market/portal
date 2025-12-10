@@ -311,7 +311,7 @@
             "at" : { "x" : 344, "y" : 160 }
           },
           "connect" : [
-            { "id" : "S10-f1", "to" : "S10-g1" }
+            { "id" : "S10-f1", "to" : "S10-f32" }
           ]
         }, {
           "id" : "S10-g0",
@@ -330,10 +330,29 @@
           "type" : "EmbeddedEnd",
           "name" : "out 1",
           "visual" : {
-            "at" : { "x" : 480, "y" : 160 },
+            "at" : { "x" : 632, "y" : 160 },
             "labelOffset" : { "x" : 21, "y" : 25 }
           },
           "parentConnector" : "f11"
+        }, {
+          "id" : "S10-f32",
+          "type" : "Script",
+          "name" : "Invalidate Announcement cache",
+          "config" : {
+            "output" : {
+              "code" : [
+                "import ch.ivy.addon.portalkit.service.AnnouncementService;",
+                "AnnouncementService.getInstance().invalidateCache();"
+              ]
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 512, "y" : 161 },
+            "size" : { "width" : 128, "height" : 62 }
+          },
+          "connect" : [
+            { "id" : "S10-f33", "to" : "S10-g1", "color" : "default" }
+          ]
         } ],
       "visual" : {
         "at" : { "x" : 248, "y" : 280 }

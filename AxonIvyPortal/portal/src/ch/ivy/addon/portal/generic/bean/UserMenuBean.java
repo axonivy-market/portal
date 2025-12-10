@@ -412,6 +412,7 @@ public class UserMenuBean implements Serializable {
    * JavaScript decodes this to set href attributes for right-click support.
    * 
    * Story ID: IVYPORTAL-19031
+   * @return encoded url
    */
   public String getBase64EncodedHomeUrl() {
     return Base64.getUrlEncoder().encodeToString(getHomePageURL().getBytes());
