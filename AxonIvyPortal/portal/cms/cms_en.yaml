@@ -1072,6 +1072,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     notificationTitle: Notifications
     olderText: Older
     onlyUnread: Only unread
+    openNotifications: Open notifications
     todayText: Today
     xDaysAgo: '%s days ago'
     xHoursAgo: '%s hours ago'
