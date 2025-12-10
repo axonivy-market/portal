@@ -286,7 +286,6 @@ public class TaskDetailsPage extends TemplatePage {
   public void waitForIFrameURLWidgetLoad() {
     SelenideElement iframe = $("iframe[name='custom-widget-iframe-url']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     iframe.shouldHave(Condition.attributeMatching("src", ".*portal01\\.server\\.ivy-cloud\\.com.*"));
-    Sleeper.sleep(60000); // try out to wait
   }
 
   public void waitForIFrameWidgetLoad() {
