@@ -17,7 +17,7 @@
           "h": 5
         },
         "data": {
-          "url": "http://portal01.server.ivy-cloud.com:8000/system/engine-cockpit/faces/login.xhtml"
+          "url": "https://www.example.com"
         }
       }
     ]
