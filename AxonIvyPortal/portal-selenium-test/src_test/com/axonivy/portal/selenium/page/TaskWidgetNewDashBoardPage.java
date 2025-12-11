@@ -15,6 +15,7 @@ import org.openqa.selenium.WebElement;
 import com.axonivy.portal.selenium.common.ComplexFilterHelper;
 import com.axonivy.portal.selenium.common.FilterOperator;
 import com.axonivy.portal.selenium.common.FilterValueType;
+import com.axonivy.portal.selenium.common.Sleeper;
 import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
@@ -587,6 +588,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
     $("div[class*='dashboard-widget-filter__main-panel']").shouldBe(getClickableCondition())
     .$$("div[class*='dashboard-widget-filter__filter-wrapper']").get(index).shouldBe(getClickableCondition())
     .$("div[id$='operator-selection']").shouldBe(getClickableCondition()).click();
+    Sleeper.sleep(300); // Wait for drop-down menu clearly appear before screenshot
   }
   
   public SelenideElement getConfigurationFilter() {

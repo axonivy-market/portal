@@ -35,10 +35,6 @@ public class DashboardConfigurationScreenshotTest extends ScreenshotBaseTest {
     newDashboardPage = new NewDashboardPage();
     DashboardConfigurationPage dashboardConfigurationPage = newDashboardPage.openDashboardConfigurationPage();
     ScreenshotUtils.resizeBrowser(new Dimension(1050, 750));
-    ScreenshotUtils
-        .capturePageScreenshot(ScreenshotUtils.DASHBOARD_CONFIGURATION_FOLDER + "dashboard-configuration-item");
-    ScreenshotUtils.captureElementWithMarginOptionScreenshot(dashboardConfigurationPage.getDashboardConfigurationPage(),
-        ScreenshotUtils.DASHBOARD_CONFIGURATION_FOLDER + "dashboard-configuration-page", new ScreenshotMargin(10));
     ScreenshotUtils.captureElementWithMarginOptionScreenshot(dashboardConfigurationPage.getDashboardConfigurationPage(),
         ScreenshotUtils.DASHBOARD_CONFIGURATION_FOLDER + "private-dashboard-configuration", new ScreenshotMargin(10));
     dashboardConfigurationPage.createPrivateDashboardFromScratch();
