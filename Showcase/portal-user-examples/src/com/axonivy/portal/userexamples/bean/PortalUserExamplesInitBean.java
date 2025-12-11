@@ -23,17 +23,13 @@ public class PortalUserExamplesInitBean extends AbstractProcessStartEventBean {
   public void initialize(IProcessStartEventBeanRuntime eventRuntime, ProgramConfig configuration) {
     super.initialize(eventRuntime, configuration);
     getEventBeanRuntime().poll().disable();
-    if (EngineMode.isAnyOf(EngineMode.DEMO, EngineMode.DESIGNER_EMBEDDED)) {
-      initSampleStatisticConfig();
-
-      // Avoid generating lots of tasks and cases when re-run in Designer
-      if (!isSignalAlreadyRun(GENERATE_PROCUREMENT_DATA_SIGNAL_CODE)) {
-        Ivy.wf().signals().send(GENERATE_PROCUREMENT_DATA_SIGNAL_CODE);
-      }
+    if (EngineMode.is(EngineMode.DEMO)) {
+      initSampleConfig();
+      Ivy.wf().signals().send(GENERATE_PROCUREMENT_DATA_SIGNAL_CODE);
     }
   }
 
-  public static void initSampleStatisticConfig() {
+  public static void initSampleConfig() {
     initSampleDashboards();
     initSampleStatistics();
   }
@@ -50,11 +46,5 @@ public class PortalUserExamplesInitBean extends AbstractProcessStartEventBean {
     String portalStatisticJson = Ivy.var().get(PORTAL_CUSTOM_STATISTIC_KEY);
     String combinedStatistic = JsonUtils.mergeJsonArrays(portalStatisticJson, sampleStatisticJson);
     Ivy.var().set(PORTAL_CUSTOM_STATISTIC_KEY, combinedStatistic);
-  }
-
-  private static boolean isSignalAlreadyRun(String signalCode) {
-    return Ivy.wf().signals().history().createSignalEventQuery()
-        .where().signalCode().isEqual(signalCode)
-        .executor().count() > 0;
   }
 }

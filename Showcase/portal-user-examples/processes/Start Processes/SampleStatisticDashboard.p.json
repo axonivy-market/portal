@@ -156,7 +156,7 @@
     }, {
       "id" : "f18",
       "type" : "RequestStart",
-      "name" : "Init configuration for sample statistic dashboard",
+      "name" : "Init sample dashboard",
       "config" : {
         "signature" : "initSampleStatisticConfig",
         "request" : {
@@ -184,7 +184,7 @@
           "code" : [
             "import com.axonivy.portal.userexamples.bean.PortalUserExamplesInitBean;",
             "import ch.ivyteam.ivy.environment.Ivy;",
-            "PortalUserExamplesInitBean.initSampleStatisticConfig();",
+            "PortalUserExamplesInitBean.initSampleConfig();",
             "Ivy.wf().signals().send(\"com:axonivy:portal:portaluserexamples:createProcurementDataForSampleStatistic\");"
           ]
         }
