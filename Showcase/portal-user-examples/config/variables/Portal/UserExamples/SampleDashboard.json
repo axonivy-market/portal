@@ -1,4 +1,4 @@
-[{
+[ {
   "id" : "87c815fc1817445792a94dd30004d483",
   "version" : "13.2.0",
   "templateId" : "create-from-scratch",
@@ -26,7 +26,7 @@
       "w" : 3,
       "h" : 4,
       "x" : 5,
-      "y" : 8
+      "y" : 7
     },
     "chartId" : "21ef6b6842384c33a787b2a5912257e7",
     "showFullscreenMode" : true
@@ -37,7 +37,7 @@
       "w" : 4,
       "h" : 4,
       "x" : 8,
-      "y" : 8
+      "y" : 7
     },
     "chartId" : "6b3340d8a61c458ba655d697469fc1b4",
     "showFullscreenMode" : true
@@ -48,7 +48,7 @@
       "w" : 5,
       "h" : 4,
       "x" : 0,
-      "y" : 8
+      "y" : 7
     },
     "chartId" : "f754970742f14a72af3f9215ac86154d",
     "showFullscreenMode" : true
@@ -59,7 +59,7 @@
       "w" : 7,
       "h" : 4,
       "x" : 5,
-      "y" : 12
+      "y" : 11
     },
     "chartId" : "12159ba721b94ea7bc4a0c5e0b4c93d0",
     "showFullscreenMode" : true
@@ -70,7 +70,7 @@
       "w" : 5,
       "h" : 4,
       "x" : 0,
-      "y" : 12
+      "y" : 11
     },
     "chartId" : "6b3e8ccb484648c8bbe4453cc76292d8",
     "showFullscreenMode" : true
@@ -81,7 +81,7 @@
       "w" : 7,
       "h" : 4,
       "x" : 5,
-      "y" : 17
+      "y" : 16
     },
     "chartId" : "741ea4131554457e98abda979cdd1a4c",
     "showFullscreenMode" : true
@@ -92,7 +92,7 @@
       "w" : 7,
       "h" : 4,
       "x" : 5,
-      "y" : 21
+      "y" : 20
     },
     "chartId" : "5116b8b02baa408da1dff648adda024c",
     "showFullscreenMode" : true
@@ -103,7 +103,7 @@
       "w" : 5,
       "h" : 4,
       "x" : 0,
-      "y" : 17
+      "y" : 16
     },
     "chartId" : "b4968c1cbe3d435c907026a8e7ce83e1",
     "showFullscreenMode" : true
@@ -114,7 +114,7 @@
       "w" : 5,
       "h" : 4,
       "x" : 0,
-      "y" : 21
+      "y" : 20
     },
     "chartId" : "a7353e5b93e4466890466830a65264c5",
     "showFullscreenMode" : true
@@ -188,8 +188,8 @@
       "value" : "Panel de control con widgets de estadísticas personalizados"
     } ],
     "layout" : {
-      "w" : 5,
-      "h" : 5,
+      "w" : 6,
+      "h" : 4,
       "x" : 0,
       "y" : 2
     },
@@ -219,35 +219,6 @@
     },
     "showFullscreenMode" : true
   }, {
-    "type" : "combined-process",
-    "id" : "process_1e274010b1ab40bcac0c33a94a2a0e05",
-    "names" : [ {
-      "locale" : "en",
-      "value" : "Start Processes/SampleStatisticDashboard/createProcurementDataForSampleStatistic.ivp"
-    }, {
-      "locale" : "fr",
-      "value" : "Start Processes/SampleStatisticDashboard/createProcurementDataForSampleStatistic.ivp"
-    }, {
-      "locale" : "de",
-      "value" : "Start Processes/SampleStatisticDashboard/createProcurementDataForSampleStatistic.ivp"
-    }, {
-      "locale" : "ja",
-      "value" : "Start Processes/SampleStatisticDashboard/createProcurementDataForSampleStatistic.ivp"
-    }, {
-      "locale" : "es",
-      "value" : "Start Processes/SampleStatisticDashboard/createProcurementDataForSampleStatistic.ivp"
-    } ],
-    "layout" : {
-      "w" : 7,
-      "h" : 5,
-      "x" : 5,
-      "y" : 2
-    },
-    "showFullscreenMode" : true,
-    "showWidgetInfo" : true,
-    "processPath" : "portal-user-examples/Start Processes/SampleStatisticDashboard/createProcurementDataForSampleStatistic.ivp",
-    "rowsPerPage" : 5
-  }, {
     "type" : "welcome",
     "id" : "welcome_81a1f932e1d146178602adbad695ef4c",
     "names" : [ {
@@ -270,7 +241,7 @@
       "w" : 12,
       "h" : 1,
       "x" : 0,
-      "y" : 7
+      "y" : 6
     },
     "welcomeTextPosition" : "TOP_LEFT",
     "welcomeTextSize" : "HEADING_3",
@@ -320,7 +291,7 @@
       "w" : 12,
       "h" : 1,
       "x" : 0,
-      "y" : 16
+      "y" : 15
     },
     "welcomeTextPosition" : "TOP_LEFT",
     "welcomeTextSize" : "HEADING_3",
@@ -347,6 +318,34 @@
       "value" : ""
     } ],
     "greeting" : false
+  }, {
+    "type" : "image-process",
+    "id" : "process_024ee9d7ba894235b716b7a50f358055",
+    "names" : [ {
+      "locale" : "en",
+      "value" : "Procurement Data For Sample Statistic Dashboard"
+    }, {
+      "locale" : "fr",
+      "value" : "Procurement Data For Sample Statistic Dashboard"
+    }, {
+      "locale" : "de",
+      "value" : "Procurement Data For Sample Statistic Dashboard"
+    }, {
+      "locale" : "ja",
+      "value" : "Procurement Data For Sample Statistic Dashboard"
+    }, {
+      "locale" : "es",
+      "value" : "Procurement Data For Sample Statistic Dashboard"
+    } ],
+    "layout" : {
+      "w" : 6,
+      "h" : 4,
+      "x" : 6,
+      "y" : 2
+    },
+    "showFullscreenMode" : true,
+    "showWidgetInfo" : true,
+    "processPath" : "designer/portal-user-examples/Start Processes/SampleStatisticDashboard/createProcurementDataForSampleStatistic.ivp"
   } ],
   "permissions" : [ "Everybody" ],
   "dashboardDisplayType" : "top_menu"
