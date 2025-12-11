@@ -14,7 +14,7 @@ Portal provides additional UI components and features that can be configured thr
 Global Growl
 ------------
 
-Portal includes a global growl component in BasicTemplate for displaying notification messages to users.
+Portal includes a global growl component for displaying notification messages to users.
 
 Usage
 ^^^^^

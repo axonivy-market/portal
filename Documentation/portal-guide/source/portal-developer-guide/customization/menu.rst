@@ -94,16 +94,19 @@ Example of an external link:
 
    .. code-block:: javascript
 
+        import com.axonivy.portal.components.publicapi.ApplicationMultiLanguageAPI;
         import com.axonivy.portal.components.configuration.CustomSubMenuItem;
+        import com.axonivy.portal.components.publicapi.ProcessStartAPI;
+        import org.apache.commons.lang3.StringUtils;
 
-        CustomSubMenuItem external = new CustomSubMenuItem();
-        external.setIcon("si si-information-circle");
-        external.setLabel("External page");
-        external.setLink("https://your_external_page.com");
-        external.setIsExternalLink(true);
-        external.setIndex(1);
+        CustomSubMenuItem google = new CustomSubMenuItem();
+        google.setIcon("si si-information-circle");
+        google.setLabel(ApplicationMultiLanguageAPI.getCmsValueByUserLocale("/Processes/google"));
+        google.setLink("www.google.com");
+        google.setIsExternalLink(true);
+        google.setIndex(1);
 
-        in.subMenuItems.add(external);
+        in.subMenuItems.add(google);
 
 .. tip::
    Refer to process ``CustomLoadSubMenuItems`` in project ``portal-developer-examples``
