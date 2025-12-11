@@ -212,7 +212,7 @@ Processes:
     approvalTaskName: '{0} の休暇申請の承認'
     createLeaveRequest: '{0}の休暇申請を作成'
     createNewLeaveRequest: システムタスク：新しい休暇申請の作成を開始
-    description: これは、この「休暇申請」の例に関連して何が期待できるかについての簡単な説明です。詳細な情報を確認するには、下のボタンをクリックしてください。
+    description: このプロセスにより、従業員は休暇申請を提出でき、申請は選択された承認者に送信されます。承認者がタスクを完了すると、承認結果は申請者に返送されます。
     leaveRequest: 休暇申請
     name: 休暇申請
     rejectedTask: あなたの休暇申請は却下されました

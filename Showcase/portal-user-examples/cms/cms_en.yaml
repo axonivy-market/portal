@@ -182,7 +182,7 @@ Processes:
     approvalTaskName: Approval for leave request of {0}
     createLeaveRequest: 'Create leave request for: {0}'
     createNewLeaveRequest: 'System task: Start create new leave request'
-    description: This is a short description what you can expect behind this “Leave Request” example. Please click the button below for further information.
+    description: This process allow employee to submit their leave request, then the request will be sent to selected approver. After approver finish his task, the approval result will be sent back to requester.
     leaveRequest: Leave Request
     name: Leave Request
     rejectedTask: Your leave request is rejected
