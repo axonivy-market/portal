@@ -4143,7 +4143,7 @@ _:-ms-fullscreen, :root .content-link-history {
 
 .content-field-after-escalation span.name-after-avatar {
   text-overflow: ellipsis;
-  max-width: 80%;
+  max-width: 85%;
   overflow: hidden;
 }
 
