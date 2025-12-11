@@ -6,7 +6,6 @@ import java.util.List;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
-import com.axonivy.portal.components.ivydata.bo.JsonVersion;
 import com.axonivy.portal.components.util.DisplayNameUtils;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
@@ -101,7 +100,7 @@ public class SideStepConfigurationDTO implements Serializable {
     private String cmsProjectName;
     private List<DisplayNameDTO> customParallelSideStepTitles;
     private List<DisplayNameDTO> customSwitchSideStepTitles;
-    private String version = JsonVersion.LATEST.getValue();
+    private String version = "12.0.12";
 
     /**
      * Sets list of processes for side step. This is mandatory.
