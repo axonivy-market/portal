@@ -31,11 +31,6 @@ Configuration
 
 The global growl behavior is controlled by the Portal setting ``Portal.DisplayMessageAfterFinishTask``, which can be configured in :ref:`Admin Settings <update-portal-settings>`.
 
-**When Enabled:**
-
-- Displays a growl message after a task is finished
-- Shows a notification when a user cancels a task
-
 **Examples:**
 
 **Growl After Finishing a Task**

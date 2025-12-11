@@ -19,8 +19,6 @@ Overview
    | **Non-Ajax Error**   | HTTP 404, 500, or page load      | Custom user-friendly error pages              |
    |                      | exceptions                       |                                               |
    +----------------------+----------------------------------+-----------------------------------------------+
-   | **View Expired**     | Session expired or invalid view  | Customized dialog for ViewExpiredException    |
-   +----------------------+----------------------------------+-----------------------------------------------+
 
 Error Types
 -----------
@@ -32,10 +30,6 @@ Occurs during a JSF Ajax request, such as when clicking the "Show Full Mode" but
 **Non-Ajax Error**
 
 Occurs when a user accesses the Portal via a URL that cannot be processed successfully by the server, or when navigating to a corrupt URL. For example, clicking a link to start a task that does not exist.
-
-**View Expired Error**
-
-Occurs when a user submits a request for a page that no longer has an active view in the session, or when the user session has expired.
 
 .. _components-error-handling-ajax-error-handling:
 

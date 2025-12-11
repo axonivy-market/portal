@@ -10,27 +10,27 @@ create a callable subprocess with:
 
 **Parameters**
 
-roles (java.util.List<com.axonivy.portal.components.dto.RoleDTO>)
+``roles`` (java.util.List<com.axonivy.portal.components.dto.RoleDTO>)
     List of roles that can be delegated to. Modify this list to create your custom delegate list.
 
-users (java.util.List<com.axonivy.portal.components.dto.UserDTO>)
+``users`` (java.util.List<com.axonivy.portal.components.dto.UserDTO>)
     List of users that can be delegated to. Filter this list rather than creating a new one for better performance.
 
-currentUser (com.axonivy.portal.components.dto.SecurityMemberDTO)
+``currentUser`` (com.axonivy.portal.components.dto.SecurityMemberDTO)
     The user performing the delegation.
 
-task (ch.ivyteam.ivy.workflow.ITask)
+``task`` (ch.ivyteam.ivy.workflow.ITask)
     The task being delegated.
 
 **Result**
 
-status (java.lang.String)
-    Operation status: OK or SKIP. Set to SKIP to exclude this subprocess result from the combined delegate list.
+``status`` (java.lang.String)
+    Operation status: ``OK`` or ``SKIP``. Set to ``SKIP`` to exclude this subprocess result from the combined delegate list.
 
-roles (java.util.List<com.axonivy.portal.components.dto.RoleDTO>)
+``roles`` (java.util.List<com.axonivy.portal.components.dto.RoleDTO>)
     Filtered list of roles that can be delegated to.
 
-users (java.util.List<com.axonivy.portal.components.dto.UserDTO>)
+``users`` (java.util.List<com.axonivy.portal.components.dto.UserDTO>)
     Filtered list of users that can be delegated to.
 
 |calculate-task-delegate|

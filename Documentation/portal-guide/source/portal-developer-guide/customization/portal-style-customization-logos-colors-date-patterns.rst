@@ -115,7 +115,7 @@ You can customize the Portal styles in ``custom.css``.
    :doc-url:`/designer-guide/how-to/overrides.html?#override-new-wizard`
 
 .. warning::
-   - Do not change ``font-family`` property values.
+   - Do not modify component-level ``font-family`` declarations directly. Instead, set ``--portal-font-family`` in ``:root`` within ``custom.css``.
 
 .. |css_variable| raw:: html
 

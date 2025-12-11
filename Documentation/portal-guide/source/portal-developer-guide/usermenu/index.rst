@@ -10,20 +10,9 @@ Introduction
 
 The user menu can be customized to include additional items beyond the Portal's default entries. Custom items support two types of actions:
 
-**Available Item Types:**
-
-- **Open External Link** - Redirect users to external websites or web applications
-- **Start Ivy Process** - Launch Ivy processes directly with optional parameters
-
 **Configuration:**
 
-Custom user menu items are defined using the **Portal.UserMenu** variable. Configure this variable to predefine:
-
-- Menu item identifiers
-- Display titles (single or multilingual)
-- User/role permissions for visibility
-- Target URLs (external or process links)
-- Process parameters (for Ivy process starts)
+Custom user menu items are defined using the **Portal.UserMenu** variable.
 
 .. _customization-user-menu-definition:
 
@@ -82,21 +71,13 @@ JSON Configuration Reference
 
 Each user menu item in the JSON array supports the following properties:
 
-**Required Properties:**
+**Properties:**
 
     ``id`` (string)
         Unique identifier for the menu item
         
         - Must be unique across all menu items
         - Used internally for tracking and configuration
-
-    ``url`` (string)
-        Target URL for the menu item
-        
-        - **External links:** Full URL starting with ``http://`` or ``https://``
-        - **Ivy processes:** Relative path to process start (e.g., ``Start Processes/MyApp/MyProcess.ivp``)
-
-**Title Properties (choose one):**
 
     ``title`` (string)
         Single-language title displayed for all users
@@ -120,8 +101,6 @@ Each user menu item in the JSON array supports the following properties:
                   {"locale": "fr", "value": "Mon tableau de bord"}
               ]
 
-**Optional Properties:**
-
     ``permissions`` (array)
         Users, roles, or groups that can see this menu item
         
@@ -129,6 +108,12 @@ Each user menu item in the JSON array supports the following properties:
         - **Users:** Username prefixed with ``#`` (e.g., ``"#john.doe"``, ``"#admin"``)
         - **Multiple entries:** User sees item if they match ANY permission
         - **Omit for public:** If not specified, all users can see the item
+
+    ``url`` (string)
+        Target URL for the menu item
+        
+        - **External links:** Full URL starting with ``http://`` or ``https://``
+        - **Ivy processes:** Relative path to process start (e.g., ``Start Processes/MyApp/MyProcess.ivp``)
 
     ``params`` (object)
         Parameters passed to Ivy process starts
