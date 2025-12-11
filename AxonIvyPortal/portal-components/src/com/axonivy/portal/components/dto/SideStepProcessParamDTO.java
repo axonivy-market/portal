@@ -2,7 +2,6 @@ package com.axonivy.portal.components.dto;
 
 import java.io.Serializable;
 
-import com.axonivy.portal.components.ivydata.bo.JsonVersion;
 import com.fasterxml.jackson.annotation.JsonInclude;
 /**
  * This class stores information about side step task.
@@ -86,7 +85,7 @@ public class SideStepProcessParamDTO implements Serializable {
   }
 
   public static class Builder{
-    private String version = JsonVersion.LATEST.getValue();
+    private String version = "12.0.12";
     private SideStepProcessDTO sideStepProcessDto;
     private String taskUuid;
     private String securityMemberId;
