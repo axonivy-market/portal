@@ -117,7 +117,7 @@ How to Use and Set Up
     .. code-block:: javascript
 
       {
-        "version": "12.0.0",
+        "version": "12.0.12",
         "processes": [
           {
             "signal": "com:axonivy:portal:developerexample:sideStep:askMoreDetails",
