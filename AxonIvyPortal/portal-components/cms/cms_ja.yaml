@@ -24,7 +24,7 @@ Dialogs:
             'Yes': はい
           DocumentTable:
             Delete: 削除
-            DeleteDocumentNote: '{0} が {1} を削除しました'
+            DeleteDocumentNote: '{0}が{1}を削除しました'
             DeleteSuceed: ファイルが正常に削除されました
             Download: ダウンロード
             EmptyFileMessage: ファイルサイズは空にしないでください
@@ -39,13 +39,13 @@ Dialogs:
             NoFile: ファイルが見つかりません！
             Preview: プレビュー
             RenamingDocument: ドキュメントの名前の変更
-            RenamingDocumentNote: {0}はファイル{1} の名前を{2}に変更しました。
+            RenamingDocumentNote: '{0}はファイル{1}の名前を{2}に変更しました。'
             RenamingDocumentSuccess: 名前変更に成功しました。
             RenamingFailed: ドキュメントの名前変更中にエラーが発生しました。
             Size: ファイルサイズ
             Type: タイプ
             Upload: 新しいファイルをアップロード
-            UploadDocumentNote: '{0} が {1} をアップロードしました'
+            UploadDocumentNote: '{0}が{1}をアップロードしました'
             UploadFailed: このファイルのアップロード中にエラーが発生しました。管理者にお問い合わせください。
             UploadFileExists: ファイル：{0} は既に存在します
             UploadSucceed: ファイルのアップロードに成功しました
