@@ -253,10 +253,10 @@ ch.ivy.addon.portalkit.ui.jsf:
       disableTaskCount: タスク リストでタスクのカウントを無効にするには true に設定してください
       displayAllUsersOfTaskActivator: この設定は SecurityMemberDisplayName コンポーネントに使用します。SecurityMember がロールである場合、この設定を true に設定すると、このロールのすべてのユーザーが一覧表示されます。true に設定すると、ロール名の横にアイコン情報が表示されます。
       displayMessageAfterFinishOrLeaveTask: ユーザーがタスクを完了または退出すると、フィードバック メッセージが表示されます。
-      documentUploadSizeLimit: アップロードするドキュメントのサイズ制限をメガバイト（MB）単位で設定します。デフォルト値は20MBです。 
+      documentUploadSizeLimit: アップロードするドキュメントのサイズ制限をメガバイト（MB）単位で設定します。デフォルト値は20MBです。
       embedInFrame: プロセス／タスクをIFrameモードで開始するには true に設定してください
       enableCaseOwner: ケースがクエリーされるときに、フィルタリングケースオーナーを有効にするには true に設定します。この設定は、ケースリスト、グローバル検索、統計など、すべてのケースクエリーに影響します。デフォルトでは非表示になっているタスクウィジェットで、「現在のケース所有者でタスクをフィルタする」フィルタも利用可能になります。
-      enableDocumentPreview: 'TODO: Set to true to enable document preview for some certain file types. Supported file types are: pdf, png, txt, log.'
+      enableDocumentPreview: 特定のファイル形式のドキュメントプレビューを有効にするには、trueに設定します。サポートされるファイル形式は、pdf、png、txt、logです。
       enableGroupChat: グループ チャット機能を有効にするには、このプロパティーを true に設定してください。
       enablePinCase: このプロパティをtrueに設定すると、ケースをピンする機能が有効になります。
       enablePinTask: このプロパティをtrueに設定すると、タスクをピンする機能が有効になります。
@@ -334,7 +334,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     addNoteHelpText: ここにテキストを入力してください。
     businessDetailsTitle: ビジネスの詳細
     customFields: カスタムフィールド
-    customFieldsDialog: ケース#{0}のカスタムフィールド 
+    customFieldsDialog: ケース#{0}のカスタムフィールド
     deleteFile: ファイル削除
     documents: ドキュメント
     downloadFile: ファイルをダウンロード
@@ -444,7 +444,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       DateFromTo: '%s - %s'
       TextListOut: '%s、%s、。。'
       TextWithColon: '%s：%s'
-      TextWithContextInBrackets: 'TODO: %s (%s: %s)'
+      TextWithContextInBrackets: '%s（%s：%s）'
       TextWithRoundBracket: '%s（%s）'
     TaskCaseInformation: タスク／ケース情報
     Update: 更新
@@ -774,7 +774,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       WrongDateFormat: 日付が無効です
     FilterTasksByCurrentCaseOwner: 現在のケース所有者でタスクをフィルタリングする
     ManageFilter: フィルターの管理
-    NoColumnsEnabledForQuickSearch: クイック検索用に有効な列がありません 
+    NoColumnsEnabledForQuickSearch: クイック検索用に有効な列がありません
     NoData: データなし
     NoSavedFilterMessage: 保存されたフィルターが見つかりません。［フィルターを保存］ ボタンをクリックして新しいフィルターを作成してください
     NoWidgetAvailable: ウィジェットがありません。
@@ -925,6 +925,10 @@ ch.ivy.addon.portalkit.ui.jsf:
     statisticChartWidget: 統計チャート
     statisticWidgets: 統計ウィジェット
     switchToViewMode: 表示モード
+    taskList: タスクリスト
+    taskListIntroduction: このウィジェットには、定義された設定に従って関連するタスク情報が表示されます。
+    taskStart: タスクの開始
+    taskWidgetConfiguration: タスクウィジェットの設定
     taskWidgetInfo:
       expireToday: 今日期限切れ
       expiryThisWeek: 今週期限切れ
@@ -933,10 +937,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       numberOfTasksByState: 状態別のタスク数
       predefinedFilters: 定義済みフィルター
       taskDrillDownDashboard: タスク詳細分析ダッシュボード
-    taskList: タスクリスト
-    taskListIntroduction: このウィジェットには、定義された設定に従って関連するタスク情報が表示されます。
-    taskStart: タスクの開始
-    taskWidgetConfiguration: タスクウィジェットの設定
     widgetInfo: ウィジェット情報
     widgetInfoIcon: ウィジェット情報アイコン
     widgetTitle: ウィジェットタイトル
@@ -951,11 +951,11 @@ ch.ivy.addon.portalkit.ui.jsf:
   dashboardProcess:
     processAriaLabel: プロセス名：{0}。プロセス説明：{1}
   documentFiles:
-    FilenameEmpty: ファイル名は空にできません。 
+    FilenameEmpty: ファイル名は空にできません。
     PreviewDocument: タスクの詳細にアクセス
     RenameFile: ファイル名の変更
     RenamingDocument: ドキュメントの名前の変更
-    RenamingDocumentNote: '{0} はファイル {1} の名前を {2} に変更しました'
+    RenamingDocumentNote: '{0}はファイル{1}の名前を{2}に変更しました'
     RenamingDocumentSuccess: 名前変更に成功しました。
     RenamingFailed: ドキュメントの名前変更中にエラーが発生しました。
     deleteDocumentNote: '{0} が {1} を削除しました'
@@ -1581,7 +1581,7 @@ Dialogs:
             AggregationMethodTooltip: KPIフィールドの計算に使用する集計方法を選択してください - 合計、平均、最大値、最小値。「カウント」が選択されている場合は無効になります。
             ChartConfiguration: チャート設定
             ChartDrillDownEnabled: チャートドリルダウン機能有効
-            ChartDrillDownInfo: '<p>ユーザーが以下の権限を持っている場合にのみ機能します：ケースに対しては<strong>CaseReadAll</strong>、タスクに対しては<strong>TaskReadAll</strong>です。</p>'
+            ChartDrillDownInfo: <p>ユーザーが以下の権限を持っている場合にのみ機能します：ケースに対しては<strong>CaseReadAll</strong>、タスクに対しては<strong>TaskReadAll</strong>です。</p>
             ChartDrillDownPermissions: チャートドリルダウン権限
             ChartType: チャートタイプ
             Color: 色{0}
@@ -1591,7 +1591,7 @@ Dialogs:
               CategoryValue: カテゴリ
               Color: 色
               ConditionBasedColoringEnabled: 条件付きカラーリングを有効化
-              ConditionBasedColoringScopeInformation: '条件が影響する範囲を選択してください：すべての値：チャート内の全データに条件を適用します。特定の値：選択した値のみに色条件を適用します。'
+              ConditionBasedColoringScopeInformation: 条件が影響する範囲を選択してください：すべての値：チャート内の全データに条件を適用します。特定の値：選択した値のみに色条件を適用します。
               ConditionValue: 条件値
               DefaultColor: デフォルトの色
               Information: |-
@@ -1613,7 +1613,7 @@ Dialogs:
             HideLabel: ラベルを非表示にする
             Interval: 間隔
             KPI: KPI
-            KPITooltip: '測定対象の選択：タスクまたはケースの数をカウントするには「カウント」を選択（デフォルト）、数値カスタムフィールドを選択してその値をKPIとして分析する場合'
+            KPITooltip: 測定対象の選択：タスクまたはケースの数をカウントするには「カウント」を選択（デフォルト）、数値カスタムフィールドを選択してその値をKPIとして分析する場合
             NewStatistic: 新しい統計ウィジェット
             OutdatedChartMessage: 適用されたグループ分けまたはフィルターが現在のUI設定と一致していません。設定を再構成してください。
             RefreshInterval: 自動更新を有効化
