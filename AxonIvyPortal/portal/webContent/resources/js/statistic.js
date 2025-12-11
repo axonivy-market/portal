@@ -705,7 +705,7 @@ class ClientCartesianChart extends ClientCanvasChart {
         return this.renderEmptyChart(chart, config.additionalConfigs);
       }
 
-      let stepSize = chartTypeConfig?.yValue === 'time' ? 200 : (config.statisticAggregation?.aggregationMethod ? undefined : 1);
+      let stepSize = chartTypeConfig?.yValue === 'time' ? 200 : undefined;
       let html = this.renderChartCanvas(chart.getAttribute(DATA_CHART_ID));
       let backgroundColors = this.calculateConditionalColors(config, data, config.chartType == 'bar' ? config.barChartConfig.backgroundColors : config.lineChartConfig.backgroundColors);
       $(chart).html(html);
@@ -762,6 +762,7 @@ class ClientCartesianChart extends ClientCanvasChart {
               },
               ticks: {
                 stepSize: stepSize,
+                precision: config.statisticAggregation?.aggregationMethod ? undefined : 0,
                 color: CHART_TEXT_COLOR
               },
               grid: {
