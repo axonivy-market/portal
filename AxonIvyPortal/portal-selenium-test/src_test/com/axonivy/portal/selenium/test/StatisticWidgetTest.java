@@ -578,6 +578,7 @@ public class StatisticWidgetTest extends BaseTest {
     drillDownWidget.setInputForQuickSearch("party");
     assertTrue(drillDownWidget.isDisplayed());
     newDashboardPage.clickOnBackButton();
+    newDashboardPage.waitForElementDisplayed(newDashboardPage.getWidgetByName("Case Number Chart"), true);
     assertTrue(newDashboardPage.getWidgetByName("Case Number Chart").exists());
   }
   
@@ -624,6 +625,7 @@ public class StatisticWidgetTest extends BaseTest {
     drillDownWidget.setInputForQuickSearch("order");
     assertTrue(drillDownWidget.isDisplayed());
     newDashboardPage.clickOnBackButton();
+    newDashboardPage.waitForElementDisplayed(newDashboardPage.getWidgetByName("Case Number Chart"), true);
     assertTrue(newDashboardPage.getWidgetByName("Task Number Chart").exists());
   }
 }
