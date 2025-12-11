@@ -95,14 +95,41 @@
           "config" : {
             "output" : {
               "code" : [
+                "import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;",
+                "import ch.ivyteam.ivy.security.IRole;",
+                "import com.axonivy.portal.components.dto.RoleDTO;",
+                "import ch.ivyteam.ivy.security.IUser;",
+                "import ch.ivyteam.ivy.security.ISecurityMember;",
+                "import ch.ivyteam.ivy.workflow.task.expiry.responsible.ExpiryResponsible;",
+                "import ch.ivy.addon.portalkit.util.TaskUtils;",
+                "import com.axonivy.portal.components.dto.UserDTO;",
+                "",
                 "in.canChangeTaskActivator = !(in.roles.isEmpty() && in.users.isEmpty());",
                 "",
                 "if (in.canChangeTaskActivator) {",
-                "  if (in.roles.isEmpty()) {",
-                "    in.isUserAssigned = true;",
-                "  }",
-                "  if (in.users.isEmpty()) {",
-                "    in.isUserAssigned = false;",
+                "  List<ExpiryResponsible> expiryResponsibleList = in.task.expiry().responsibles().all();",
+                "  if (expiryResponsibleList.size() == 1) {",
+                "      ISecurityMember securityMember = expiryResponsibleList.get(0).get();",
+                "        if (securityMember != null && securityMember.isUser()) {",
+                "          UserDTO userDTO = new UserDTO();",
+                "          userDTO.setDisplayName(securityMember.getDisplayName());",
+                "          userDTO.setName(securityMember.getName());",
+                "          userDTO.setSecurityMemberId(securityMember.getSecurityMemberId());",
+                "          userDTO.setEnabled(securityMember.isEnabled());",
+                "          in.selectedUser = userDTO;",
+                "          in.isUserAssigned = true;",
+                "        } else {",
+                "          RoleDTO roleDTO = new RoleDTO();",
+                "          roleDTO.setDisplayName(securityMember.getDisplayName());",
+                "          roleDTO.setName(securityMember.getName());",
+                "          roleDTO.setSecurityMemberId(securityMember.getSecurityMemberId());",
+                "          in.selectedRole = roleDTO;",
+                "          in.isUserAssigned = false;",
+                "        }",
+                "  } else {",
+                "      in.isUserAssigned = true;",
+                "      in.selectedUser = null;",
+                "      in.selectedRole = null;",
                 "  }",
                 "}"
               ]
@@ -134,14 +161,14 @@
             "at" : { "x" : 1024, "y" : 160 },
             "labelOffset" : { "x" : 14, "y" : 31 }
           },
-          "parentConnector" : "f22"
+          "parentConnector" : "f126"
         } ],
       "visual" : {
         "at" : { "x" : 336, "y" : 160 },
         "size" : { "width" : 224 }
       },
       "connect" : [
-        { "id" : "f22", "to" : "f13" }
+        { "id" : "f126", "to" : "f13" }
       ]
     }, {
       "id" : "f0",
@@ -462,7 +489,7 @@
       "id" : "f13",
       "type" : "HtmlDialogEnd",
       "visual" : {
-        "at" : { "x" : 544, "y" : 160 }
+        "at" : { "x" : 552, "y" : 160 }
       }
     }, {
       "id" : "f16",
@@ -477,12 +504,7 @@
           "map" : {
             "out.isDisabledAssignButton" : "true",
             "out.task" : "param.task"
-          },
-          "code" : [
-            "if (param.task.expiry().responsibles().all().isEmpty()) {",
-            "  out.isUserAssigned = true;",
-            "}"
-          ]
+          }
         },
         "guid" : "178DA529D18507DC"
       },
