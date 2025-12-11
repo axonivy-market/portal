@@ -326,16 +326,16 @@
       "value" : "Procurement Data For Sample Statistic Dashboard"
     }, {
       "locale" : "fr",
-      "value" : "Procurement Data For Sample Statistic Dashboard"
+      "value" : "Données d'approvisionnement pour le tableau de bord statistique des échantillons"
     }, {
       "locale" : "de",
-      "value" : "Procurement Data For Sample Statistic Dashboard"
+      "value" : "Beschaffungsdaten für statistisches Dashboard mit Beispielen"
     }, {
       "locale" : "ja",
-      "value" : "Procurement Data For Sample Statistic Dashboard"
+      "value" : "サンプル統計ダッシュボード向け調達データ"
     }, {
       "locale" : "es",
-      "value" : "Procurement Data For Sample Statistic Dashboard"
+      "value" : "Datos de compras para el panel de estadísticas de muestras"
     } ],
     "layout" : {
       "w" : 6,
