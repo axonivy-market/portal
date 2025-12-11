@@ -13,8 +13,11 @@ the Axon Ivy Portal menu.
 
 |navigate-to-full-process-list|
 
-Process List Overview
-=====================
+Process List 
+============
+
+Overview
+--------
 
 On the **Full Process List** page, you see a list of all processes. They
 are sorted alphabetically and grouped by their initial character. 

@@ -62,7 +62,7 @@ At the end of each row you find the `Actions` menu with the following options:
    +===========================+===============================================================+
    | **Details**               | View full task information                                    |
    +---------------------------+---------------------------------------------------------------+
-   | **Reset Task**            | Read the task to its initial state                            |
+   | **Reset Task**            | Revert the task to its initial state                          |
    +---------------------------+---------------------------------------------------------------+
    | **Delegate Task**         | Assign the task to another user or role                       |
    +---------------------------+---------------------------------------------------------------+

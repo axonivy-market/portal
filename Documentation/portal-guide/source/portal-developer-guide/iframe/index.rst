@@ -109,8 +109,6 @@ Template Parameters Reference
 Task Details
 ^^^^^^^^^^^^
 
-**Properties:**
-
 ``taskName`` (string)
    Custom text for the task name display.
 
@@ -123,8 +121,6 @@ Task Details
 Case Information
 ^^^^^^^^^^^^^^^^
 
-**Properties:**
-
 ``caseId`` (string)
    ID of the case to display in case information dialog.
 
@@ -133,8 +129,6 @@ Case Information
 
 Process Steps
 ^^^^^^^^^^^^^
-
-**Properties:**
 
 ``currentProcessStep`` (string/number)
    Current step index or step name.
@@ -154,8 +148,6 @@ Process Steps
 Task Actions
 ^^^^^^^^^^^^
 
-**Properties:**
-
 ``isHideTaskAction`` (boolean, default: false)
    ``true`` = hide task action button, ``false`` = show.
 
@@ -164,8 +156,6 @@ Task Actions
 
 Miscellaneous
 ^^^^^^^^^^^^^
-
-**Properties:**
 
 ``announcementInvisible`` (boolean, default: false)
    ``true`` = hide announcements, ``false`` = show.
@@ -183,13 +173,13 @@ Miscellaneous
 Configuration Methods
 =====================
 
-Configure iFrame templates using the ``IFrameTaskConfig`` component (recommended) or JavaScript (deprecated).
+Configure iFrame templates using the ``IFrameTaskConfig`` component.
 
 .. note::
    Always sanitize your parameters before passing them to avoid XSS vulnerabilities. Use ``SanitizeAPI.escapeForJavascript`` for dynamic values.
 
-Using IFrameTaskConfig Component (Recommended)
------------------------------------------------
+Using IFrameTaskConfig Component
+--------------------------------
 
 The recommended approach uses the Portal component for type-safe configuration:
 
@@ -224,45 +214,13 @@ The recommended approach uses the Portal component for type-safe configuration:
       </ui:composition>
    </h:body>
 
-Using JavaScript (Deprecated)
-------------------------------
-
-.. warning::
-   This method is deprecated and will be removed in Portal 14. Migrate to ``IFrameTaskConfig`` component.
-
-.. code-block:: xml
-
-   <h:body>
-      <ui:composition template="/layouts/frame-10.xhtml">
-         <ui:define name="content">
-            <script>
-               window.taskName = "Approve Investment";
-               window.taskIcon = "si si-bulb";
-               window.isHideTaskName = false;
-               window.caseId = "123456";
-               window.isHideCaseInfo = false;
-               window.currentProcessStep = 0;
-               window.processSteps = ["Create Investment Request", "Approve Investment Request"];
-               window.isShowAllSteps = true;
-               window.processChainDirection = "VERTICAL";
-               window.processChainShape = "LINE";
-               window.isHideTaskAction = false;
-               window.isWorkingOnATask = true;
-               window.announcementInvisible = false;
-               window.isCardFrame = true;
-               window.viewName = "TASK_DETAIL";
-            </script>
-            
-            <!-- Your custom UI content -->
-         </ui:define>
-      </ui:composition>
-   </h:body>
-
 Configuration Examples
 ======================
 
 Configure Task Details
 ----------------------
+
+You can customize task details, such as the task name and icon.
 
 .. code-block:: xml
 
@@ -274,6 +232,8 @@ Configure Task Details
 
 Configure Case Information
 --------------------------
+
+Customize how case details are displayed and whether to show the “Show Information” button.
 
 .. code-block:: xml
 
@@ -300,6 +260,8 @@ Configure Process Steps
 
 Configure Task Actions
 ----------------------
+
+Control the visibility and behavior of task-related buttons and actions.
 
 .. code-block:: xml
 

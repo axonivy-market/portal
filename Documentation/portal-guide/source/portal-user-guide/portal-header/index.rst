@@ -16,8 +16,8 @@ Key Features
 
 |portal-header|
 
-User Settings in the Axon Ivy Portal
-====================================
+User Settings
+=============
 
 Click on your username in the top right of the Portal to access a menu with options for configuring Portal to your personal needs.
 

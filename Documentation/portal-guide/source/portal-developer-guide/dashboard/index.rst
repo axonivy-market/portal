@@ -110,52 +110,52 @@ Each dashboard in the JSON array supports the following properties:
 
 **Dashboard Properties:**
 
-    ``id`` (string, required)
+    ``id`` (string)
         Unique identifier for the dashboard
         
         - Must be unique across all dashboards
         - Used for internal tracking and configuration
 
-    ``version`` (string, required)
+    ``version`` (string)
         Portal version for compatibility
         
         - Current version: ``"12.0.0"``
         - Used for migration and compatibility checks
 
-    ``templateId`` (string, optional)
+    ``templateId`` (string)
         Reference to predefined dashboard template
         
         - Example: ``"default-portal-dashboard-template"``
         - See :ref:`Dashboard Templates <customization-dashboard-templates>` section
 
-    ``titles`` (array, required)
+    ``titles`` (array)
         Multilingual dashboard tab labels
         
         - Each entry contains ``locale`` and ``value``
         - Portal displays title matching user's language
         - Example languages: en, de, fr, es, it, ja, zh
 
-    ``icon`` (string, optional)
+    ``icon`` (string)
         Dashboard tab icon
         
         - Supports FontAwesome (e.g., ``"fa-play"``, ``"fa-dashboard"``)
         - Supports Streamline (e.g., ``"si si-layout-bullets"``)
 
-    ``widgets`` (array, required)
+    ``widgets`` (array)
         Array of widget configurations for the dashboard
         
         - See widget configuration sections below
         - Each widget must have unique ``id``
         - Widgets positioned using ``layout`` property
 
-    ``permissions`` (array, optional)
+    ``permissions`` (array)
         Roles or users who can access this dashboard
         
         - Roles: ``["Everybody", "Employee", "Manager"]``
         - Users: Prefix with ``#`` (e.g., ``["#john.doe"]``)
         - Default: If omitted, all users can see the dashboard
 
-    ``accessibility`` (boolean, optional)
+    ``accessibility`` (boolean)
         Enable accessibility features for the dashboard
         
         - Default: ``false``
@@ -259,14 +259,14 @@ Customize the Dashboard menu item using the **Portal.Dashboard.MainMenuEntry** v
 
 **Configuration Properties:**
 
-    ``names`` (array, required)
+    ``names`` (array)
         Multilingual menu entry labels
         
         - Each entry contains ``locale`` (language code) and ``value`` (translated text)
         - Portal displays name matching user's language preference
         - Falls back to first entry if user's locale not found
 
-    ``icon`` (string, required)
+    ``icon`` (string)
         Icon displayed next to menu label
         
         - **Streamline Icons**: ``si si-icon-name`` (e.g., ``"si si-layout-bullets"``)
@@ -274,4 +274,3 @@ Customize the Dashboard menu item using the **Portal.Dashboard.MainMenuEntry** v
 
 .. important::
    The menu entry name follows the user's language setting. If no matching locale is found, the first entry in the ``names`` array is used as default.
-
