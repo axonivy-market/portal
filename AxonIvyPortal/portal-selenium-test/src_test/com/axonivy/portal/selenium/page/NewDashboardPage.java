@@ -1127,7 +1127,6 @@ public class NewDashboardPage extends TemplatePage {
   
   public void clickOnBackButton() {
     getBackButton().click();
-    waitForPageLoad();
   }
 
   private SelenideElement getBackButton() {

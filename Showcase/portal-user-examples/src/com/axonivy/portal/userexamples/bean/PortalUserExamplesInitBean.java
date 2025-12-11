@@ -13,6 +13,7 @@ import ch.ivyteam.ivy.server.restricted.EngineMode;
 public class PortalUserExamplesInitBean extends AbstractProcessStartEventBean {
   
   private static final String PORTAL_CUSTOM_STATISTIC_KEY = "Portal.CustomStatistic";
+  private static final String GENERATE_PROCUREMENT_DATA_SIGNAL_CODE = "com:axonivy:portal:portaluserexamples:createProcurementDataForSampleStatistic";
 
   public PortalUserExamplesInitBean() {
     super("Init sample config", "Append the sample statistic and dashboard config to Portal json");
@@ -22,13 +23,13 @@ public class PortalUserExamplesInitBean extends AbstractProcessStartEventBean {
   public void initialize(IProcessStartEventBeanRuntime eventRuntime, ProgramConfig configuration) {
     super.initialize(eventRuntime, configuration);
     getEventBeanRuntime().poll().disable();
-    if (EngineMode.isAnyOf(EngineMode.DEMO, EngineMode.DESIGNER_EMBEDDED)) {
-      initSampleStatisticConfig();
-      Ivy.wf().signals().send("com:axonivy:portal:portaluserexamples:createProcurementDataForSampleStatistic");
+    if (EngineMode.is(EngineMode.DEMO)) {
+      initSampleConfig();
+      Ivy.wf().signals().send(GENERATE_PROCUREMENT_DATA_SIGNAL_CODE);
     }
   }
 
-  public static void initSampleStatisticConfig() {
+  public static void initSampleConfig() {
     initSampleDashboards();
     initSampleStatistics();
   }

@@ -22,14 +22,7 @@
         <div class="task-details-document-title ui-g-6 u-truncate-text u-padding-0 task-details-panel-title" role="heading" aria-level="1">
           <i class="si si-common-file-text" /> #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/documents')}
         </div>
-        <h:panelGroup layout="block" styleClass="task-details-document-add ui-g-6 u-padding-0">
-          <p:link id="show-more-doc-link" rendered="#{caseTaskDocumentBean.showMoreDocument}"
-            styleClass="task-details-document-add-link doc-show-more-link"
-            href="#{caseTaskDocumentBean.getTaskDocumentsLink(task)}" target="_blank">
-            <span class="si si-expand-6 doc-show-more-link-icon" />
-            <span class="display-full-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/showMoreBtn')}</span>
-            <span class="display-short-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}</span>
-          </p:link>
+        <h:panelGroup layout="block" styleClass="ui-g-6 u-padding-0 document-task-detail-section-header-actions">
           <p:commandLink id="add-document-command" global="false"
                          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addDocument')}"
                          rendered="#{caseTaskDocumentBean.canWriteDocument(task)}"
@@ -39,6 +32,13 @@
             <span class="display-full-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addDocument')}</span>
             <span class="display-short-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/add')}</span>
           </p:commandLink>
+          <p:link id="show-more-doc-link" rendered="#{caseTaskDocumentBean.showMoreDocument}"
+            styleClass="task-details-document-add-link doc-show-more-link"
+            href="#{caseTaskDocumentBean.getTaskDocumentsLink(task)}" target="_blank">
+            <span class="si si-expand-6 doc-show-more-link-icon" />
+            <span class="display-full-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/showMoreBtn')}</span>
+            <span class="display-short-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}</span>
+          </p:link>
         </h:panelGroup>
       </div>
 

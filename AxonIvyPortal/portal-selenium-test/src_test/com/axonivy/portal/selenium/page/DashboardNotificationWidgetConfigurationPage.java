@@ -6,6 +6,7 @@ import static com.codeborne.selenide.Condition.disappear;
 import static com.codeborne.selenide.Condition.editable;
 import static com.codeborne.selenide.Selenide.$;
 
+import com.axonivy.portal.selenium.common.Sleeper;
 import com.codeborne.selenide.SelenideElement;
 
 public class DashboardNotificationWidgetConfigurationPage extends TemplatePage {
@@ -25,6 +26,7 @@ public class DashboardNotificationWidgetConfigurationPage extends TemplatePage {
   public void changeFilter() {
     SelenideElement widgetTitle = $(".widget-configuration.notification-widget-configuration").shouldBe(appear, DEFAULT_TIMEOUT).$("[id$=':new-widget-configuration-component:only-unread-filter']").shouldBe(editable, DEFAULT_TIMEOUT);
     widgetTitle.click();
+    Sleeper.sleep(300); // wait for check box clearly blank
   }
 
   public void save() {

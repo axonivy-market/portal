@@ -191,7 +191,7 @@ Processes:
     approvalTaskName: Genehmigung eines Urlaubsantrags von {0}
     createLeaveRequest: 'Urlaubsantrag anlegen für: {0}'
     createNewLeaveRequest: 'Systemaufgabe: Beginn der Erstellung eines neuen Urlaubsantrags'
-    description: Dies ist eine kurze Beschreibung, was Sie hinter dem Abwesenheitsprozessbeispiel erwarten können. Bitte klicken Sie auf die Schaltfläche unten für weitere Informationen.
+    description: Dieser Prozess ermöglicht es Mitarbeitern, ihren Urlaubsantrag einzureichen, der dann an einen ausgewählten Genehmiger weitergeleitet wird. Nachdem der Genehmiger seine Aufgabe erledigt hat, wird das Genehmigungsergebnis an den Antragsteller zurückgesendet.
     leaveRequest: Abwesenheitsprozess
     name: Abwesenheitsprozess
     rejectedTask: Ihr Urlaubsantrag wird abgelehnt
@@ -199,7 +199,7 @@ Processes:
     name: Marketingkampagne Koordinieren
   Procurement:
     CreateDataProcess: Beschaffungsdaten für statistisches Dashboard mit Beispielen
-    InitConfig: Init-Beispielstatistik-Dashboard-Konfiguration
+    InitConfig: Beispiel-Dashboard initialisieren (PORTAL-DASHBOARD UND STATISTISCHE VARIABLEN AKTUALISIEREN)
     SampleStatisticValue:
       DaysToDecision: 2,5;6;2;7;4;9,4
       Decision: Genehmigt;Abgelehnt;Ausstehend

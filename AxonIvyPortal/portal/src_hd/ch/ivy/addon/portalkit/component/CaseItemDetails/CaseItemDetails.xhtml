@@ -126,7 +126,7 @@
 
           <!-- Related cases box -->
           <h:panelGroup id="case-details-technical-case-card"
-            styleClass="card case-related-task-component grid-stack-item-content"
+            styleClass="card grid-stack-item-content"
             rendered="#{widget.type eq 'technicalCase'}">
             <ic:ch.ivy.addon.portalkit.component.CaseItemRelatedCases id="related-cases-widget" case="#{case}"
               isWorkingOnTask="#{isWorkingOnTask}" inFrame="#{inFrame}" readOnly="#{readOnly}" />
@@ -134,7 +134,7 @@
   
           <!-- Related running tasks box -->
           <h:panelGroup id="case-details-related-running-tasks-card"
-            styleClass="card case-related-task-component grid-stack-item-content"
+            styleClass="card grid-stack-item-content"
             rendered="#{widget.type eq 'relatedTask'}">
             <ic:ch.ivy.addon.portalkit.component.CaseItemRelatedTasks id="task-widget" case="#{case}"
               isWorkingOnTask="#{isWorkingOnTask}" inFrame="#{inFrame}" readOnly="#{readOnly}" componentToUpdateTrigger="#{historyWidgetComponent}"/>
@@ -142,7 +142,7 @@
   
           <!-- Histories box -->
           <h:panelGroup id="history-container" layout="block"
-            styleClass="card case-history-component grid-stack-item-content"
+            styleClass="card grid-stack-item-content"
             rendered="#{widget.type eq 'history'}">
             <ic:ch.ivy.addon.portalkit.component.CaseItemHistory id="case-histories" case="#{case}" />
           </h:panelGroup>

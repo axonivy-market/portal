@@ -191,7 +191,9 @@ Processes:
     approvalTaskName: Aprovar solicitud para ausencia del {0}
     createLeaveRequest: 'Crear ausencia para: {0}'
     createNewLeaveRequest: 'Tarea de sistema: Crear nueva solicitud para ausencia'
-    description: Esta es una breve descripción de lo que puede esperar detrás de este ejemplo de "Solicitud de ausencia". Por favor, haga clic en el botón de abajo para obtener más información.
+    description: |-
+      Este proceso permite a los empleados enviar sus solicitudes de vacaciones, que posteriormente se enviarán al responsable de aprobarlas.
+      Una vez que el responsable haya completado su tarea, el resultado de la aprobación se enviará de vuelta al solicitante.
     leaveRequest: Solicitud para ausencia
     name: Solicitud para ausencia
     rejectedTask: Su solicitud para ausencia ha sido denegada
@@ -199,7 +201,7 @@ Processes:
     name: Coordinación de la campaña de marketing
   Procurement:
     CreateDataProcess: Datos de compras para el panel de estadísticas de muestras
-    InitConfig: Configuración del panel de estadísticas de muestra inicial
+    InitConfig: Iniciar panel de control de muestra (ACTUALIZAR PANEL DE CONTROL DEL PORTAL Y VARIABLES ESTADÍSTICAS)
     SampleStatisticValue:
       DaysToDecision: 2,5;6;2;7;4;9,4
       Decision: Aprobado;Rechazado;Pendiente

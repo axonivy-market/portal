@@ -16,7 +16,7 @@ Dialogs:
             Process:
               ProcessName: プロセス名
             RequiredFieldMessage: このフィールドは必須です
-            Save: 'TODO: Save'
+            Save: 保存
             SideStepPrefix: サイドステップ：
             Task:
               Activator: 責任者
@@ -24,7 +24,7 @@ Dialogs:
             'Yes': はい
           DocumentTable:
             Delete: 削除
-            DeleteDocumentNote: '{0} が {1} を削除しました'
+            DeleteDocumentNote: '{0}が{1}を削除しました'
             DeleteSuceed: ファイルが正常に削除されました
             Download: ダウンロード
             EmptyFileMessage: ファイルサイズは空にしないでください
@@ -33,19 +33,19 @@ Dialogs:
             FileContainVirus: アップロードに失敗しました。ウイルス／感染が検出されました。
             FileFunction: 機能
             FileLimitMessage: すでに最大数のファイルがアップロードされています！
-            FilenameEmpty: 'TODO: Filename cannot be empty.'
+            FilenameEmpty: ファイル名は空にできません。
             InvalidFileMessage: このファイルの種類は受け入れられません！
             Name: ファイル名
             NoFile: ファイルが見つかりません！
             Preview: プレビュー
-            RenamingDocument: 'TODO: Rename document'
-            RenamingDocumentNote: 'TODO: {0} has renamed the file {1} to {2}'
-            RenamingDocumentSuccess: 'TODO: Rename successfully.'
-            RenamingFailed: 'TODO: An error occurs while renaming the document.'
+            RenamingDocument: ドキュメントの名前の変更
+            RenamingDocumentNote: '{0}はファイル{1}の名前を{2}に変更しました。'
+            RenamingDocumentSuccess: 名前変更に成功しました。
+            RenamingFailed: ドキュメントの名前変更中にエラーが発生しました。
             Size: ファイルサイズ
             Type: タイプ
             Upload: 新しいファイルをアップロード
-            UploadDocumentNote: '{0} が {1} をアップロードしました'
+            UploadDocumentNote: '{0}が{1}をアップロードしました'
             UploadFailed: このファイルのアップロード中にエラーが発生しました。管理者にお問い合わせください。
             UploadFileExists: ファイル：{0} は既に存在します
             UploadSucceed: ファイルのアップロードに成功しました
@@ -107,12 +107,12 @@ Labels:
   DisabledUserPrefix: （無効）
   Enums:
     NewFilenameValidation:
-      ALREADY_EXIST: 'TODO: There is already a file with the same name in this location.'
-      INVALID_FORMAT: 'TODO: A file name can''t contain any of the following characters: \ / : * ? " < > |'
+      ALREADY_EXIST: この場所には同じ名前のファイルが既にあります。
+      INVALID_FORMAT: 'ファイル名には次の文字は使えません:¥/ :*? "<>|'
   NoName: 名前なし
   NoResults: 結果なし
   None: なし
   NotAvailable: 利用不可
   ParentRole: 親ロール
-  TooltipNoNameFormatted: TODO <{0}> ({1})
-  TooltipUserNameFormatted: TODO {0} ({1})
+  TooltipNoNameFormatted: '＜{0}＞（{1}）'
+  TooltipUserNameFormatted: '{0}（{1}）'
