@@ -25,8 +25,8 @@ import com.codeborne.selenide.Condition;
 public class SampleDashboardScreenshotTest extends ScreenshotBaseTest {
   
   private final String SAMPLE_STATISTIC_DASHBOARD_MENU = "KPI Procurement Overview";
-  private final String INIT_SAMPLE_STATISTIC_CONFIG_PROCESS = "Init sample statistic dashboard config";
-  
+  private final String INIT_SAMPLE_STATISTIC_CONFIG_PROCESS = "Init sample dashboard (UPDATE PORTAL DASHBOARD AND STATISTIC VARIABLES)";
+
   @Override
   @BeforeEach
   public void setup() {
