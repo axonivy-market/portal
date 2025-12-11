@@ -95,13 +95,9 @@
           "config" : {
             "output" : {
               "code" : [
-                "import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;",
-                "import ch.ivyteam.ivy.security.IRole;",
                 "import com.axonivy.portal.components.dto.RoleDTO;",
-                "import ch.ivyteam.ivy.security.IUser;",
                 "import ch.ivyteam.ivy.security.ISecurityMember;",
                 "import ch.ivyteam.ivy.workflow.task.expiry.responsible.ExpiryResponsible;",
-                "import ch.ivy.addon.portalkit.util.TaskUtils;",
                 "import com.axonivy.portal.components.dto.UserDTO;",
                 "",
                 "in.canChangeTaskActivator = !(in.roles.isEmpty() && in.users.isEmpty());",
@@ -363,7 +359,7 @@
         "at" : { "x" : 504, "y" : 448 }
       },
       "connect" : [
-        { "id" : "f112", "to" : "f113" }
+        { "id" : "f127", "to" : "f111" }
       ]
     }, {
       "id" : "f9",
@@ -520,61 +516,6 @@
       "type" : "HtmlDialogEnd",
       "visual" : {
         "at" : { "x" : 800, "y" : 448 }
-      }
-    }, {
-      "id" : "f113",
-      "type" : "Script",
-      "name" : "Change assignee type",
-      "config" : {
-        "output" : {
-          "code" : [
-            "in.isDisabledAssignButton = true;",
-            "in.selectedActivator = null;"
-          ]
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 672, "y" : 448 },
-        "size" : { "width" : 128 }
-      },
-      "connect" : [
-        { "id" : "f114", "to" : "f111", "color" : "default" }
-      ]
-    }, {
-      "id" : "f115",
-      "type" : "Script",
-      "name" : "Update error messages",
-      "config" : {
-        "output" : {
-          "code" : [
-            "import javax.faces.application.FacesMessage;",
-            "import com.axonivy.portal.components.util.FacesMessageUtils;",
-            "import javax.faces.context.FacesContext;",
-            "FacesContext.getCurrentInstance().validationFailed();",
-            "FacesContext.getCurrentInstance().addMessage(\"task-escalation-activator-dialog-messages\", FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR,ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage\"), null));"
-          ]
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 256, "y" : 560 }
-      },
-      "connect" : [
-        { "id" : "f116", "to" : "f119", "color" : "default" }
-      ]
-    }, {
-      "id" : "f117",
-      "type" : "ErrorStartEvent",
-      "visual" : {
-        "at" : { "x" : 256, "y" : 480 }
-      },
-      "connect" : [
-        { "id" : "f118", "to" : "f115" }
-      ]
-    }, {
-      "id" : "f119",
-      "type" : "HtmlDialogEnd",
-      "visual" : {
-        "at" : { "x" : 408, "y" : 560 }
       }
     } ]
 }

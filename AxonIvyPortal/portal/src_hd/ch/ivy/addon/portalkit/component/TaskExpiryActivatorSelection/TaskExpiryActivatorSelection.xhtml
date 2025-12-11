@@ -15,8 +15,10 @@
     <p:remoteCommand name="showTaskEscalationActivatorDialog"
       process="@this" partialSubmit="true" immediate="true" global="false" 
       actionListener="#{logic.calculateTaskDelegateOptions(cc.attrs.task)}"
-      oncomplete="PF('task-escalation-activator-dialog').show();"
-      update="#{cc.clientId}:task-escalation-activator-panel"/>
+      oncomplete="PF('task-escalation-activator-dialog').show();" resetValues="true"
+      update="#{cc.clientId}:task-escalation-activator-panel">
+    </p:remoteCommand>
+      
   </h:form>
 
   <p:dialog id="task-escalation-activator-dialog" closeOnEscape="true"
@@ -44,7 +46,7 @@
         <h:panelGroup id="select-assignee-panel" layout="block"
           styleClass="select-assignee-panel ui-g-12 ui-fluid">
           <ic:com.axonivy.portal.components.UserSelection id="user-expiry-activator-component"
-            componentId="user-expiry-activator-select"
+            componentId="user-expiry-activator-select" isRequired="#{data.isUserAssigned}"
             selectedUser="#{data.selectedUser}"
             rendered="#{data.isUserAssigned}"
             completeMethod="#{logic.autoCompleteForUser}"
@@ -59,7 +61,7 @@
           </ic:com.axonivy.portal.components.UserSelection>
 
           <ic:com.axonivy.portal.components.RoleSelection id="group-expiry-activator-select-component"
-            scrollHeight="400"
+            scrollHeight="400" isRequired="#{!data.isUserAssigned}"
             componentId="group-expiry-activator-select"
             selectedRole="#{data.selectedRole}"
             rendered="#{!data.isUserAssigned}"
