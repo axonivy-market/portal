@@ -69,15 +69,6 @@ public class NavigationDashboardWidgetConfigurationPage extends TemplatePage {
     }
   }
 
-  private void waitForVisualTypeGroup() {
-    $("form#widget-configuration-form").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
-      .$("div[id$=':line']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
-  }
-
-  private SelenideElement getVisualTypeGroup() {
-    return $("form#widget-configuration-form").$("div[id$=':line']");
-  }
-  
   public void save() {
     $("button#widget-configuration-save-button").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
     getDialog().shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
