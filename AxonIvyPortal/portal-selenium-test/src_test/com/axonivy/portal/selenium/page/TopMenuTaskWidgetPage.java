@@ -44,6 +44,10 @@ public class TopMenuTaskWidgetPage extends TaskWidgetNewDashBoardPage {
     return "[id$='dashboard-tasks-container']";
   }
 
+  public WebElement getWebElement() {
+    return $(getLoadedLocator()).shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+  }
+
   public TaskTemplatePage startTaskByIndex(int taskIndex) {
     getColumnOfTaskHasIndex(taskIndex, "Start").shouldBe(getClickableCondition()).click();
     return new TaskTemplatePage();

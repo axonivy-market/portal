@@ -14,8 +14,6 @@ Select the :guilabel:`Dashboard Configuration` user menu item.
 The :guilabel:`Dashboard Configuration` page provides you with private and public dashboard configuration tabs depending on the permissions
 you hold in the application. The usage will be explained in the HowTo’s further down in this chapter.
 
-|dashboard-configuration-page|
-
 Private dashboards configuration
 --------------------------------
 
@@ -244,8 +242,6 @@ You can rearrange dashboards by dragging and dropping |reorder-dashboard-icon| i
 
 .. |dashboard-configuration| image:: ../../screenshots/settings/dashboard-configuration.png
    :alt: Dashboard configuration menu
-.. |dashboard-configuration-page| image:: ../../screenshots/dashboard-configuration/dashboard-configuration-page.png
-   :alt: Dashboard configuration screen
 .. |private-dashboard-configuration| image:: ../../screenshots/dashboard-configuration/private-dashboard-configuration.png
    :alt: Private dashboard configuration
 .. |create-private-dashboard-dialog| image:: ../../screenshots/dashboard-configuration/create-private-dashboard-dialog.png

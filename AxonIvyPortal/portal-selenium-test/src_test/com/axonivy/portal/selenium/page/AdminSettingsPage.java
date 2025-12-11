@@ -31,7 +31,7 @@ public class AdminSettingsPage extends TemplatePage {
   public void openSettingTab() {
     waitForElementClickableThenClick("a[href$='#admin-setting-component:adminTabView:setting-tab']");
     waitForElementDisplayed(By.cssSelector("[id$=':adminTabView:settingForm']"), true);
-    Sleeper.sleep(300);// Wait a bit focus effects, just only use this for capture screenshot
+    waitForFocusEffectComplete();
   }
 
   private void editGlobalVariable(String variableName, String variableValue, boolean isBooleanType) {
@@ -105,6 +105,7 @@ public class AdminSettingsPage extends TemplatePage {
   public AnnouncementPage openAnnouncementTab() {
     waitForElementClickable($(By.xpath("//a[@href='#admin-setting-component:adminTabView:announcement-tab']"))).click();
     waitForElementDisplayed(By.id("admin-setting-component:adminTabView:announcement-tab"), true);
+    waitForFocusEffectComplete();
     return new AnnouncementPage();
   }
 
@@ -113,6 +114,7 @@ public class AdminSettingsPage extends TemplatePage {
     waitForElementClickableThenClick("a[href='#admin-setting-component:adminTabView:role-management-tab']");
     waitForElementDisplayed(By.cssSelector("[id$=':role-management-component:role-management-form:role-tree-table']"),
         true);
+    waitForFocusEffectComplete();
     return new RoleManagementPage();
   }
 
@@ -130,7 +132,12 @@ public class AdminSettingsPage extends TemplatePage {
     waitForElementDisplayed(
         By.cssSelector("[id$=':password-validation-component:password-validation-form:password-policy-setting']"),
         true);
+    waitForFocusEffectComplete();
     return new PasswordValidationPage();
+  }
+  
+  private void waitForFocusEffectComplete() {
+    Sleeper.sleep(300);// Wait for focus effect only on a specific tab before taking screenshot
   }
 
   public WebElement getAdminSettingContainer() {
@@ -140,7 +147,7 @@ public class AdminSettingsPage extends TemplatePage {
   public WebElement getAddApplicationDialog() {
     waitForElementClickableThenClick($(By.id("admin-setting-component:adminTabView:add-application-btn")));
     waitForElementDisplayed(By.id("admin-setting-component:appDialog"), true);
-    Sleeper.sleep(300);// Wait a bit focus effects, just only use this for capture screenshot
+    waitForFocusEffectComplete();
     return findElementById("admin-setting-component:appDialog");
   }
 
@@ -148,7 +155,7 @@ public class AdminSettingsPage extends TemplatePage {
     waitForElementClickableThenClick($(By.id("admin-setting-component:adminTabView:settingTable:0:settings-action-button")));
     $("a[id='admin-setting-component:adminTabView:settingTable:0:edit-application']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     waitForElementDisplayed(By.id("admin-setting-component:settingDialog"), true);
-    Sleeper.sleep(300);// Wait a bit focus effects, just only use this for capture screenshot
+    waitForFocusEffectComplete();
     return findElementById("admin-setting-component:settingDialog");
   }
 
