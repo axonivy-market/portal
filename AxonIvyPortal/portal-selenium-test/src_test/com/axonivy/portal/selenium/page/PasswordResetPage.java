@@ -29,7 +29,7 @@ public class PasswordResetPage extends TemplatePage {
     newPasswordTextField.sendKeys(newPassword);
     $(".login-footer").click();
     passwordConfirmationTextField.sendKeys(newPassword);
-    $("[id='password-reset:reset-password-form:password-confirmation_panel']").shouldBe(Condition.appear,
+    $("[id='password-reset:reset-password-form:new-password_panel']").shouldBe(Condition.appear,
         DEFAULT_TIMEOUT);
     $(".login-footer").click();
     clickByJavaScript(resetButton);
