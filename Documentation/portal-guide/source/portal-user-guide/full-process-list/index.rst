@@ -13,10 +13,11 @@ the Axon Ivy Portal menu.
 
 |navigate-to-full-process-list|
 
-Permission Reference
-====================
+Process List 
+============
 
-Different process operations require specific permissions:
+Overview
+--------
 
 .. table::
    :widths: 40 60
@@ -94,8 +95,9 @@ be re-directed to the **Dashboard**, not to the :guilabel:`Full Process List`.
 
 .. _values_of_default_image:
 
-Values of Portal Setting **Portal.Processes.DefaultImage**
-----------------------------------------------------------
+Values of Portal Setting Portal.Processes.DefaultImage
+------------------------------------------------------
+
 #. You could refer to project ``portal-developer-examples`` for examples.
 #. Start Process ``PhotoLibraryOfDefaultProcessImageExample``
 
@@ -103,6 +105,9 @@ Values of Portal Setting **Portal.Processes.DefaultImage**
 
 HowTo: Add an external link
 ---------------------------
+
+.. note::
+   Creating public external links (visible to all users) requires :bdg-ref-warning:`🔑CreatePublicExternalLink <CreatePublicExternalLink>` permission. Private links can be created by any user.
 
 #. Click on :guilabel:`Add external link` at the top of the page next to the search text box.
 
@@ -162,7 +167,7 @@ HowTo: Edit Process Icon in Image Mode
 |edit-process-icon-dialog|
 
 Process Information
--------------------
+===================
 
 The **Process Information** page shows you information about the selected process.
 Besides basic information such as process name and description, you can see
@@ -172,7 +177,7 @@ Process steps are a list of steps you will perform once you start the process.
 These process steps are defined by the process developer.
 
 Basic Information
-^^^^^^^^^^^^^^^^^
+------------------
 
 The **Process Information** page shows you basic information of the selected process such as process name and description, and detailed information in the form of process steps.
 
@@ -187,7 +192,7 @@ The **Process Information** page shows you basic information of the selected pro
   |process-overview-link|
 
 Process Steps
-^^^^^^^^^^^^^
+-------------
 
 |process-information|
 
@@ -195,6 +200,21 @@ At the top of the **Process Information** page, you see basic process informatio
 
 .. note::
    Process steps are defined by developers and provide a clear picture of the process flow to help you work more efficiently.
+
+Permission Reference
+====================
+
+Different process operations require specific permissions:
+
+.. table::
+   :widths: 40 60
+
+   +--------------------------------------+--------------------------------------------------------+
+   | Action                               | Required Permission                                    |
+   +======================================+========================================================+
+   | **Create public external link**      | :bdg-ref-warning:`🔑CreatePublicExternalLink           |
+   |                                      | <CreatePublicExternalLink>`                            |
+   +--------------------------------------+--------------------------------------------------------+
 
 
 .. |navigate-to-full-process-list| image:: ../../screenshots/process/navigate-to-full-process-list.png

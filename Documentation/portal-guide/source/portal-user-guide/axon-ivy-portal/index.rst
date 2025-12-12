@@ -70,7 +70,7 @@ You will be prompted to enter your login credentials.
    IT department or use your organization's self-service password reset portal.
 
 Understanding the Portal Interface
------------------------------------
+----------------------------------
 
 After successful login, you will see the Axon Ivy Portal Homepage with your personal dashboard. 
 All your activities can be managed from this central entry point.
@@ -107,10 +107,10 @@ Next Steps
 
 Now that you understand the Portal interface, explore these key features:
 
+- **Dashboards**: Customize your workspace → See :ref:`new-dashboard`
 - **Processes**: Start new business processes → See :ref:`full-process-list`
 - **Tasks**: View and complete your assigned work → See :ref:`full-task-list`
 - **Cases**: Track and manage case progress → See :ref:`full-case-list`
-- **Dashboards**: Customize your workspace → See :ref:`new-dashboard`
 - **User Settings**: Configure your preferences → See :ref:`my-profile`
 
 .. include:: ../includes/_common-icon.rst

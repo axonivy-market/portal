@@ -72,7 +72,7 @@ JSON Configuration Reference
    Widget position and size (see Layout Properties below)
 
 ``welcomeTexts`` (array)
-   Multilingual welcome messages. Format: ``[{"locale": "en", "value": "Text"}]``
+   Multilingual welcome messages. Format: ``[{"locale": "en", "value": "Welcome"}]``
 
 **Layout Properties**
 
@@ -170,4 +170,3 @@ Result format: ``"Good morning, Welcome to Your Dashboard"``
 
 .. warning::
    Do not manually modify these internally-managed properties: ``imageLocation``, ``imageType``, ``imageContent``, ``imageLocationDarkMode``, ``imageTypeDarkMode``, ``imageContentDarkMode``. Changes may cause widget errors.
-

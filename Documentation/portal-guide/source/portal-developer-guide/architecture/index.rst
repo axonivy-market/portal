@@ -4,6 +4,7 @@ Architecture
 ************
 
 .. important::
+
    The CSS styles, Java methods, etc. that are not explicitly documented are internal to the Portal. 
    Do not rely on them, as they may change in future versions.
    Only use documented APIs, components, and customization points to ensure compatibility with future Portal releases.
@@ -23,10 +24,9 @@ Understanding Portal's structure and how it integrates with your applications is
 
 **Key Concepts for Developers:**
 
-- **Security Context**: All Portal applications must share the same security context for task/case visibility
+- **Security Context**: The Portal and Projects using it should be deployed in different applications but in the same security context for task/case visibility
 - **Component Reuse**: Import portal-components into your apps to use Portal's UI components
 - **Public API**: Use documented APIs and customization points only
-- **Template Pattern**: Use Portal templates for consistent UI in your processes
 
 **Related Sections:**
 
@@ -34,21 +34,6 @@ Understanding Portal's structure and how it integrates with your applications is
 - :ref:`Deployment <deployment>` - Deploy Portal to production
 - :ref:`Customization <customization>` - Extend Portal functionality
 - :ref:`IFrame Integration <iframe-in-portal>` - Embed processes in Portal
-
-Portal provides a modular architecture designed for flexibility and maintainability. Understanding how Portal integrates with your applications is essential for successful implementation.
-
-.. table::
-   :widths: 30 70
-
-   +---------------------------+---------------------------------------------------------------+
-   | Architecture Component    | Purpose                                                       |
-   +===========================+===============================================================+
-   | **Multi-App Setup**       | Separates Portal from custom apps for easier upgrades         |
-   +---------------------------+---------------------------------------------------------------+
-   | **portal-components**     | Public UI components and APIs for reuse                       |
-   +---------------------------+---------------------------------------------------------------+
-   | **portal**                | Portal-specific UI, templates, and pages                      |
-   +---------------------------+---------------------------------------------------------------+
 
 Deployment Strategy
 ===================
@@ -69,6 +54,7 @@ You can deploy Portal in two ways:
 - Better separation of concerns
 
 .. tip::
+
    We strongly recommend the multi-application setup for production environments.
 
 .. _multi-app-structure:
@@ -94,7 +80,8 @@ Both applications depend on portal-components to reuse Portal UI components, but
 
 |multi-app-structure|
 
-.. warning:: 
+.. warning::
+
    Run only one Portal per security context. Multiple Portal instances in the same security context are not supported.
 
 .. _architecture-portal-process-modules-structure:
@@ -143,6 +130,7 @@ This module provides reusable components that are independent of the Portal core
 - Supports Freya and Serenity themes
 
 .. tip::
+
    Use portal-components in your custom applications to maintain consistent UI patterns.
 
 .. _architecture-portal:
@@ -170,6 +158,7 @@ This module contains Portal's core functionality:
 - Standardized look and feel
 
 .. note::
+
    Portal templates allow your custom processes to seamlessly integrate with the Portal user experience.
 
 Security Integration
@@ -215,9 +204,11 @@ In a multi-app deployment, security works across applications:
      - Compatible with LDAP, Active Directory, and custom security providers
 
 .. tip::
+
    For detailed permission configuration and management, refer to the Portal User Guide's security and admin settings sections.
 
 .. warning::
+
    All applications using Portal must be in the same security context. Cross-context access is not supported.
 
 Integration with Custom Applications
@@ -245,7 +236,6 @@ Integration with Custom Applications
 - Your processes can use Portal templates for consistent UI
 - Portal components can be embedded in your custom pages
 - Both applications share user sessions and permissions
-
 
 .. |process-module-structure| image:: images/process-module-structure.png
 .. |multi-app-structure| image:: images/multi-app-structure.png

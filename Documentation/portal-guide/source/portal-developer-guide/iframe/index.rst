@@ -3,16 +3,7 @@
 IFrame In Portal
 ****************
 
-
-Overview
-========
-
-Since Portal 8, all processes and tasks start inside an iFrame by default. Your HTML dialogs remain independent of Portal's implementation and are automatically rendered in an isolated iFrame context. This architecture provides:
-
-- **Decoupling**: Your UIs are independent of Portal internals
-- **Simplified Migrations**: Easier Portal upgrades without breaking custom UIs
-- **Isolation**: CSS and JavaScript don't interfere between Portal and your apps
-- **Responsive Design**: Full support for modern responsive layouts
+Since Portal 8, all processes and tasks start inside an iFrame by default. Your HTML dialogs are automatically rendered in an isolated iFrame context, providing decoupling from Portal internals, simplified migrations, CSS/JavaScript isolation, and full responsive design support.
 
 .. important::
    By default, processes and tasks start inside an iFrame. No configuration is required unless you want to customize this behavior.
@@ -24,15 +15,24 @@ Use the ``frame-10`` templates provided by Axon Ivy core (using the Freya theme)
 
 **Template Features:**
 
-- Automatic iFrame integration with Portal
-- Responsive layout support
-- Portal UI components (task actions, case info, process steps)
-- Configurable task details and branding
+``Automatic iFrame Integration``
+   Seamless integration with Portal iFrame architecture
+
+``Responsive Layout``
+   Full support for responsive designs across all device sizes
+
+``Portal UI Components``
+   Includes task actions, case information, and process step visualization
+
+``Configurable Details``
+   Customizable task details and branding options
 
 Configuration Levels
 =====================
 
-You can control whether tasks start in an iFrame at multiple levels. Portal evaluates these settings in order, with more specific levels overriding general ones.
+Control whether tasks start in an iFrame at multiple levels. Portal evaluates these settings in priority order, with more specific levels overriding general ones.
+
+**Priority Order:** Request Start (highest) → Task → Case → Engine (lowest, default: ``true``)
 
 .. list-table::
    :widths: 20 15 65
@@ -53,10 +53,6 @@ You can control whether tasks start in an iFrame at multiple levels. Portal eval
    * - **Engine**
      - Lowest
      - Global setting ``Portal.EmbedInFrame`` in Portal admin settings
-
-**Configuration Priority:**
-
-Request Start → Task → Case → Engine (default: ``true``)
 
 Request Start Level
 -------------------
@@ -103,74 +99,70 @@ Refer to :ref:`update-portal-settings` for configuration details.
 Configure IFrame Template
 ==========================
 
-Portal provides extensive configuration options for iFrame templates to customize the appearance and behavior of embedded tasks.
-
-**Configuration Capabilities:**
-
-- Task name and icon customization
-- Process chain visualization
-- Case information display
-- Task action buttons
-- Custom breadcrumb views
-- Card-style frame layout
+Portal provides extensive configuration options for iFrame templates to customize the appearance and behavior of embedded tasks, including task name and icon customization, process chain visualization, case information display, task action buttons, custom breadcrumb views, and card-style frame layout.
 
 Template Parameters Reference
 ------------------------------
 
-**Task Details**
+Task Details
+^^^^^^^^^^^^
 
 ``taskName`` (string)
-   Custom text for the task name display
+   Custom text for the task name display.
 
 ``taskIcon`` (string)
-   Icon using Streamline or Font Awesome (e.g., ``"si si-bulb"``)
+   Icon using Streamline or Font Awesome (e.g., ``"si si-bulb"``).
 
-``isHideTaskName`` (boolean, default: ``false``)
-   ``true`` = hide task name, ``false`` = show
+``isHideTaskName`` (boolean, default: false)
+   ``true`` = hide task name, ``false`` = show.
 
-**Case Information**
+Case Information
+^^^^^^^^^^^^^^^^
 
 ``caseId`` (string)
-   ID of the case to display in case information dialog
+   ID of the case to display in case information dialog.
 
-``isHideCaseInfo`` (boolean, default: ``false``)
-   ``true`` = hide "Show Information" button, ``false`` = show
+``isHideCaseInfo`` (boolean, default: false)
+   ``true`` = hide "Show Information" button, ``false`` = show.
 
-**Process Steps**
+Process Steps
+^^^^^^^^^^^^^
 
 ``currentProcessStep`` (string/number)
-   Current step index or step name
+   Current step index or step name.
 
 ``processSteps`` (string/array)
-   List of step names or JSON string
+   List of step names or JSON string.
 
-``isShowAllSteps`` (boolean, default: ``false``  
-   ``true`` = show all steps on large screens, ``false`` = compact view
+``isShowAllSteps`` (boolean, default: false)
+   ``true`` = show all steps on large screens, ``false`` = compact view.
 
 ``processChainDirection`` (string)
-   ``"VERTICAL"`` or ``"HORIZONTAL"``
+   ``"VERTICAL"`` or ``"HORIZONTAL"``.
 
 ``processChainShape`` (string)
-   ``"LINE"`` or ``"CIRCLE"``
+   ``"LINE"`` or ``"CIRCLE"``.
 
-**Task Actions**
+Task Actions
+^^^^^^^^^^^^
 
-``isHideTaskAction`` (boolean, default: ``false``)
-   ``true`` = hide task action button, ``false`` = show
+``isHideTaskAction`` (boolean, default: false)
+   ``true`` = hide task action button, ``false`` = show.
 
-``isWorkingOnATask`` (boolean, default: ``true``)
-   ``true`` = show navigation warning, ``false`` = no warning
+``isWorkingOnATask`` (boolean, default: true)
+   ``true`` = show navigation warning, ``false`` = no warning.
 
-**Miscellaneous**
+Miscellaneous
+^^^^^^^^^^^^^
 
-``announcementInvisible`` (boolean, default: ``false``)
-   ``true`` = hide announcements, ``false`` = show
+``announcementInvisible`` (boolean, default: false)
+   ``true`` = hide announcements, ``false`` = show.
 
-``isCardFrame`` (boolean, default: ``false``)
-   ``true`` = display content in card-style container, ``false`` = standard
+``isCardFrame`` (boolean, default: false)
+   ``true`` = display content in card-style container, ``false`` = standard.
 
 ``viewName`` (string)
-   Custom breadcrumb view (see View Names below)
+   Custom breadcrumb view (see View Names below).
 
 **Available View Names:**
 
@@ -179,13 +171,13 @@ Template Parameters Reference
 Configuration Methods
 =====================
 
-You can configure iFrame templates using the ``IFrameTaskConfig`` component or JavaScript (deprecated).
+Configure iFrame templates using the ``IFrameTaskConfig`` component.
 
 .. note::
-   Always sanitize your parameters before passing them to avoid XSS vulnerabilities.
+   Always sanitize your parameters before passing them to avoid XSS vulnerabilities. Use ``SanitizeAPI.escapeForJavascript`` for dynamic values.
 
-Using IFrameTaskConfig Component (Recommended)
------------------------------------------------
+Using IFrameTaskConfig Component
+--------------------------------
 
 The recommended approach uses the Portal component for type-safe configuration:
 
@@ -260,7 +252,7 @@ Configuration Examples
 Configure Task Details
 ----------------------
 
-Customize the task name and icon displayed in the Portal header.
+You can customize task details, such as the task name and icon.
 
 .. code-block:: xml
 
@@ -273,7 +265,7 @@ Customize the task name and icon displayed in the Portal header.
 Configure Case Information
 --------------------------
 
-Control case details display and "Show Information" button visibility.
+Customize how case details are displayed and whether to show the “Show Information” button.
 
 .. code-block:: xml
 
@@ -282,15 +274,8 @@ Control case details display and "Show Information" button visibility.
       isHideCaseInfo="false"
    />
 
-When users click "Show Information", Portal displays case details in a modal dialog.
-
 Configure Process Steps
 -----------------------
-
-Display a visual process chain showing the current step and workflow progress.
-
-.. note::
-   Add JSP function tag to your HTML dialog: ``xmlns:fn="http://xmlns.jcp.org/jsp/jstl/functions"``
 
 .. code-block:: xml
 
@@ -302,16 +287,13 @@ Display a visual process chain showing the current step and workflow progress.
       processChainShape="LINE"
    />
 
-**Process Chain Options:**
-
-- **Direction**: ``HORIZONTAL`` (default) or ``VERTICAL``
-- **Shape**: ``LINE`` (default) or ``CIRCLE``
-- **Show All Steps**: ``true`` displays all steps on large screens, ``false`` shows compact view
+.. note::
+   Add JSP function tag to your HTML dialog: ``xmlns:fn="http://xmlns.jcp.org/jsp/jstl/functions"``
 
 Configure Task Actions
 ----------------------
 
-Control task action buttons and navigation warnings.
+Control the visibility and behavior of task-related buttons and actions.
 
 .. code-block:: xml
 
@@ -320,15 +302,8 @@ Control task action buttons and navigation warnings.
       isWorkingOnATask="true"
    />
 
-**Behavior:**
-
-- ``isHideTaskAction="true"``: Hides task action buttons (useful for read-only views)
-- ``isWorkingOnATask="true"``: Shows warning when user navigates away from active task
-
 Configure Card Frame Layout
 ---------------------------
-
-Display iFrame content in a card-style container for better visual separation.
 
 .. code-block:: xml
 
@@ -340,8 +315,6 @@ Display iFrame content in a card-style container for better visual separation.
 
 Complete Configuration Example
 ------------------------------
-
-Full example with all major configuration options:
 
 .. code-block:: xml
 
@@ -399,11 +372,7 @@ If your project has navigation buttons that don't complete a task (e.g., Cancel)
 JavaScript String Sanitization
 -------------------------------
 
-When using Portal features that communicate through JavaScript, always sanitize your data before sending it to prevent XSS attacks.
-
-**Portal provides the public API:**
-
-``SanitizeAPI.escapeForJavascript`` in the ``portal-components`` project
+Always sanitize your data before sending it to prevent XSS attacks. Portal provides the public API ``SanitizeAPI.escapeForJavascript`` in the ``portal-components`` project.
 
 **Example:**
 
@@ -438,13 +407,9 @@ Best Practices
 #. **Task Icons**: Use consistent icon styles (Streamline or Font Awesome) across your application
 #. **Card Frame**: Enable ``isCardFrame`` for better visual separation of embedded content
 
-Whenever you use a Portal feature that communicates through JavaScript, ensure that you sanitize your data before sending it to the Portal
-
-The Portal provides the public API ``SanitizeAPI.escapeForJavascript`` in the ``portal-components`` project to help sanitize JavaScript strings by escaping special characters — one of the most common techniques for JavaScript string sanitization.
-
+.. |request-tab-embedInFrame| image:: images/request-tab-embedInFrame.png
 .. |task-embedInFrame| image:: images/task-embedInFrame.png
 .. |case-embedInFrame| image:: images/case-embedInFrame.png
-.. |request-tab-embedInFrame| image:: images/request-tab-embedInFrame.png
 .. |case-list-template| image:: ../../screenshots/case/case-key-information.png
 .. |task-list-template| image:: ../../screenshots/task/task-key-information.png
 .. |task-name-template| image:: ../../screenshots/layout-template/task-template.png

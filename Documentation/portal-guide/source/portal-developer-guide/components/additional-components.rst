@@ -6,6 +6,7 @@ Additional Components
 Portal provides additional UI components and features that can be configured through the Admin Settings interface.
 
 .. note::
+
    Most Portal features are now configured through :ref:`Admin Settings <admin-settings>` rather than requiring custom component integration. This provides a centralized, user-friendly way to manage Portal behavior.
 
 .. _components-additional-component-global-growl:
@@ -13,7 +14,7 @@ Portal provides additional UI components and features that can be configured thr
 Global Growl
 ------------
 
-Portal includes a global growl component in BasicTemplate for displaying notification messages to users.
+Portal includes a global growl component for displaying notification messages to users.
 
 Usage
 ^^^^^
@@ -30,11 +31,6 @@ Configuration
 
 The global growl behavior is controlled by the Portal setting ``Portal.DisplayMessageAfterFinishTask``, which can be configured in :ref:`Admin Settings <update-portal-settings>`.
 
-**When Enabled:**
-
-- Displays a growl message after a task is finished
-- Shows a notification when a user cancels a task
-
 **Examples:**
 
 **Growl After Finishing a Task**
@@ -44,6 +40,10 @@ The global growl behavior is controlled by the Portal setting ``Portal.DisplayMe
 **Growl After Leaving a Task**
 
 |example-global-growl-cancelled-task|
+
+.. tip::
+
+   Configure Portal behavior through :ref:`Admin Settings <admin-settings>` for easier management without code changes.
 
 .. tip::
    Configure Portal behavior through :ref:`Admin Settings <admin-settings>` for easier management without code changes.

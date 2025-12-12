@@ -3,116 +3,12 @@
 Portal Dashboard
 ================
 
-Create and customize flexible dashboards with drag-and-drop widgets, filters, and multilingual support.
-Portal dashboards enable users to build personalized workspaces that display tasks, cases, processes, statistics, and custom content in configurable layouts.
-
-**When to Use Dashboard Customization:**
-
-- Create role-specific dashboards (e.g., Manager Dashboard, HR Dashboard)
-- Display filtered task/case lists for specific departments or workflows
-- Embed external applications or reports directly into Portal
-- Show custom business metrics and statistics
-- Provide quick access to frequently-used processes
-
-**Related Sections:**
-
-- :ref:`Dashboard Templates <customization-dashboard-templates>` - Pre-built dashboard configurations
-- :ref:`Permissions <permission-general-permissions>` - Control dashboard access
-
-Overview
---------
-
-.. table:: Dashboard Capabilities
-
-   +----------------------------------------+----------------------------------------------------------------+
-   | Capability                             | Description                                                    |
-   +========================================+================================================================+
-   | **Multiple Dashboards**                | Create unlimited dashboards displayed as tabs                  |
-   +----------------------------------------+----------------------------------------------------------------+
-   | **10 Widget Types**                    | Task, Case, Process, Statistic, Custom, and more               |
-   +----------------------------------------+----------------------------------------------------------------+
-   | **Drag-and-Drop Layout**               | Users can customize widget positions and sizes                 |
-   +----------------------------------------+----------------------------------------------------------------+
-   | **Permission-Based Access**            | Control dashboard visibility by roles and users                |
-   +----------------------------------------+----------------------------------------------------------------+
-   | **Predefined Templates**               | Quick dashboard creation from templates                        |
-   +----------------------------------------+----------------------------------------------------------------+
-   | **Multilingual Support**               | Define dashboard and widget names in multiple languages        |
-   +----------------------------------------+----------------------------------------------------------------+
-   | **Widget Filters**                     | Predefined filters for tasks, cases, and processes             |
-   +----------------------------------------+----------------------------------------------------------------+
-   | **Custom Styling**                     | Configure columns, UI elements, and styles                     |
-   +----------------------------------------+----------------------------------------------------------------+
-
-.. _customization-portal-dashboard-introduction:
-
-Introduction
-------------
-
-Portal Dashboard is a flexible, customizable page where users can view and manage their work through configurable widgets. Dashboards support:
-
-**Key Features:**
-
-- **Flexible Layout** - Drag-and-drop widgets to customize dashboard appearance
-- **Multiple Dashboards** - Create unlimited dashboards displayed as tabs
-- **Rich Widget Library** - 10 widget types covering different Portal aspects
-- **User Personalization** - Each user can customize their dashboard layout
-- **Predefined Configuration** - Administrators can configure default dashboards
-
-**Available Dashboard Widgets:**
-
-.. table:: Widget Types
-
-   +---------------------------+---------------------------------------------------------------+
-   | Widget Type               | Description                                                   |
-   +===========================+===============================================================+
-   | **Task Widget**           | Display and manage tasks with filters and actions             |
-   +---------------------------+---------------------------------------------------------------+
-   | **Case Widget**           | View and track cases with customizable columns                |
-   +---------------------------+---------------------------------------------------------------+
-   | **Process Widget**        | Show available processes for starting workflows               |
-   +---------------------------+---------------------------------------------------------------+
-   | **Statistic Widget**      | Display charts and statistics for analytics                   |
-   +---------------------------+---------------------------------------------------------------+
-   | **Custom Widget**         | Embed custom content or external applications                 |
-   +---------------------------+---------------------------------------------------------------+
-   | **Process Viewer Widget** | Visualize process flows and BPMN diagrams                     |
-   +---------------------------+---------------------------------------------------------------+
-   | **Welcome Widget**        | Show welcome messages and quick links                         |
-   +---------------------------+---------------------------------------------------------------+
-   | **News Feed Widget**      | Display announcements and news items                          |
-   +---------------------------+---------------------------------------------------------------+
-   | **External Page Widget**  | Embed external websites or web applications                   |
-   +---------------------------+---------------------------------------------------------------+
-   | **Notifications Widget**  | Show system notifications and alerts                          |
-   +---------------------------+---------------------------------------------------------------+
-
-**Configuration:**
-
-Dashboards are configured using the **Portal.Dashboard** variable. This allows you to predefine:
-
-- Dashboard identifiers and versions
-- Multilingual titles and icons
-- Access permissions by role or user
-- Widget configurations and layouts
-- Default filters and columns
+Configure custom dashboards using the **Portal.Dashboard** variable. Dashboards support multiple widget types, permission-based access, and multilingual configuration.
 
 .. _customization-dashboards-customization:
 
-Define Your Dashboard
----------------------
-
-Portal supports multiple dashboards displayed as tabs. Each dashboard can have different widgets, permissions, and configurations.
-
-**HowTo: Configure Custom Dashboards**
-
-#. Navigate to Engine Cockpit > Configuration > Variables
-#. Find or create the **Portal.Dashboard** variable
-#. Define your dashboard configuration using JSON (see example below)
-#. Save the configuration
-#. Dashboards appear as tabs in Portal
-
-**Configuration Example:**
+Configuration
+-------------
 
 Below is a comprehensive JSON example configuring a dashboard with a task widget:
 
@@ -150,30 +46,57 @@ Below is a comprehensive JSON example configuring a dashboard with a task widget
                   {
                      "locale": "en",
                      "value": "Your Tasks"
-                  },
-                  {
-                     "locale": "de",
-                     "value": "Ihre Aufgaben"
-                  }
-               ],
-               "layout": {
-                  "w": 12,
-                  "h": 5,
-                  "x": 0,
-                  "y": 0
-               },
-               "columns": [
-                  {"field": "start"},
-                  {"field": "priority"},
-                  {"field": "id", "quickSearch": false},
-                  {"field": "name", "quickSearch": true},
-                  {"field": "description", "quickSearch": true},
-                  {"field": "state"},
-                  {"field": "actions"}
-               ]
+                 },
+                 {
+                    "locale": "fr",
+                    "value": "Your Tasks"
+                 },
+                 {
+                    "locale": "de",
+                    "value": "Your Tasks"
+                 },
+                 {
+                    "locale": "es",
+                    "value": "Your Tasks"
+                 }
+              ],
+              "layout": {
+                 "w": 12,
+                 "h": 5,
+                 "x": 0,
+                 "y": 0
+              },
+              "columns": [
+                 {
+                    "field": "start"
+                 },
+                 {
+                    "field": "priority"
+                 },
+                 {
+                    "field": "id",
+                    "quickSearch": false
+                 },
+                 {
+                    "field": "name",
+                    "quickSearch": true
+                 },
+                 {
+                    "field": "description",
+                    "quickSearch": true
+                 },
+                 {
+                    "field": "state"
+                 },
+                 {
+                    "field": "actions"
+                 }
+              ]
             }
          ],
-         "permissions": ["Everybody"],
+         "permissions": [
+            "Everybody"
+         ],
          "accessibility": false
       }
    ]
@@ -187,52 +110,52 @@ Each dashboard in the JSON array supports the following properties:
 
 **Dashboard Properties:**
 
-    ``id`` (string, required)
+    ``id`` (string)
         Unique identifier for the dashboard
         
         - Must be unique across all dashboards
         - Used for internal tracking and configuration
 
-    ``version`` (string, required)
+    ``version`` (string)
         Portal version for compatibility
         
         - Current version: ``"12.0.0"``
         - Used for migration and compatibility checks
 
-    ``templateId`` (string, optional)
+    ``templateId`` (string)
         Reference to predefined dashboard template
         
         - Example: ``"default-portal-dashboard-template"``
         - See :ref:`Dashboard Templates <customization-dashboard-templates>` section
 
-    ``titles`` (array, required)
+    ``titles`` (array)
         Multilingual dashboard tab labels
         
         - Each entry contains ``locale`` and ``value``
         - Portal displays title matching user's language
         - Example languages: en, de, fr, es, it, ja, zh
 
-    ``icon`` (string, optional)
+    ``icon`` (string)
         Dashboard tab icon
         
         - Supports FontAwesome (e.g., ``"fa-play"``, ``"fa-dashboard"``)
         - Supports Streamline (e.g., ``"si si-layout-bullets"``)
 
-    ``widgets`` (array, required)
+    ``widgets`` (array)
         Array of widget configurations for the dashboard
         
         - See widget configuration sections below
         - Each widget must have unique ``id``
         - Widgets positioned using ``layout`` property
 
-    ``permissions`` (array, optional)
+    ``permissions`` (array)
         Roles or users who can access this dashboard
         
         - Roles: ``["Everybody", "Employee", "Manager"]``
         - Users: Prefix with ``#`` (e.g., ``["#john.doe"]``)
         - Default: If omitted, all users can see the dashboard
 
-    ``accessibility`` (boolean, optional)
+    ``accessibility`` (boolean)
         Enable accessibility features for the dashboard
         
         - Default: ``false``
@@ -247,13 +170,7 @@ Each dashboard in the JSON array supports the following properties:
    - Omit permissions to make dashboard visible to all users
 
 .. warning::
-   **Widget ID Uniqueness:**
-   
-   Widget ``id`` must be unique across ALL dashboards. Duplicate IDs will cause configuration errors.
-   
-   - Use descriptive prefixes: ``task_{unique-id}``, ``case_{unique-id}``
-   - Consider using UUIDs or timestamps for uniqueness
-   - Test configuration after adding new widgets
+   Widget ``id`` must be unique across ALL dashboards. Use descriptive prefixes like ``task_{unique-id}`` or UUIDs.
 
 Configure Dashboard Widgets
 ---------------------------
@@ -270,6 +187,7 @@ Each widget type has specific configuration options for customization. Click on 
    new-dashboard-custom-widget
    new-dashboard-process-viewer-widget
    new-dashboard-welcome-widget
+   new-dashboard-navigation-dashboard-widget
    dashboard-newsfeed-widget
    new-dashboard-external-page-widget
    new-dashboard-notification-widget
@@ -297,19 +215,12 @@ Each widget type has specific configuration options for customization. Click on 
 
 Configure Dashboard Templates
 -----------------------------
-
-Dashboard templates allow users to quickly create new dashboards from predefined configurations. Instead of configuring everything from scratch, users select a template and customize only what they need.
-
-**Benefits of Templates:**
-
 - **Fast Dashboard Creation** - Users fill in minimal information (name, permissions)
 - **Consistent Design** - Ensure dashboards follow organizational standards
 - **Reduced Complexity** - Simplify configuration for non-technical users
 - **Best Practices** - Embed proven widget layouts and configurations
 
-**Configuration:**
-
-Templates are configured using the **Portal.DashboardTemplates** variable.
+Configure dashboard templates using the **Portal.DashboardTemplates** variable to provide predefined configurations for users.
 
 .. toctree::
    :maxdepth: 1
@@ -322,19 +233,7 @@ Templates are configured using the **Portal.DashboardTemplates** variable.
 Configure Dashboard Main Menu Item
 ----------------------------------
 
-Customize the parent "Dashboard" menu item that appears in Portal's main navigation.
-When you have multiple dashboards, they are grouped under this menu item as a dropdown.
-This configuration allows you to customize the label and icon of this grouping menu item.
-
-**HowTo: Customize Dashboard Menu Item**
-
-#. Navigate to Engine Cockpit > Configuration > Variables
-#. Find or create the **Portal.Dashboard.MainMenuEntry** variable
-#. Configure menu entry using JSON (see example below)
-#. Save the configuration
-#. Dashboard menu item updates immediately
-
-**Configuration Example:**
+Customize the Dashboard menu item using the **Portal.Dashboard.MainMenuEntry** variable.
 
 .. code-block:: javascript
 
@@ -364,20 +263,18 @@ This configuration allows you to customize the label and icon of this grouping m
 
 **Configuration Properties:**
 
-    ``names`` (array, required)
+    ``names`` (array)
         Multilingual menu entry labels
         
         - Each entry contains ``locale`` (language code) and ``value`` (translated text)
         - Portal displays name matching user's language preference
         - Falls back to first entry if user's locale not found
 
-    ``icon`` (string, required)
+    ``icon`` (string)
         Icon displayed next to menu label
         
         - **Streamline Icons**: ``si si-icon-name`` (e.g., ``"si si-layout-bullets"``)
         - **FontAwesome Icons**: ``fa fa-icon-name`` (e.g., ``"fa fa-dashboard"``)
 
 .. important::
-   **Language Display:**
-   
-   The menu entry name follows the user's language setting configured in their profile. If no matching locale is found, the first entry in the ``names`` array is used as the default.
+   The menu entry name follows the user's language setting. If no matching locale is found, the first entry in the ``names`` array is used as default.

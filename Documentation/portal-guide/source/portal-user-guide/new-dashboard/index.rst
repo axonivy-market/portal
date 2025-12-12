@@ -31,7 +31,7 @@ Your company may have defined standard layouts and available widgets.
    +-------------------------------+------------------------------------------------------------+
    | **Case List**                 | Track and monitor case progress and details                |
    +-------------------------------+------------------------------------------------------------+
-   | **Process List**              | Access and start available processes (multiple formats)    |
+   | **Process List**              | Access and start available processes                       |
    +-------------------------------+------------------------------------------------------------+
    | **Process Viewer**            | Visual representation of process flows                     |
    +-------------------------------+------------------------------------------------------------+
@@ -75,6 +75,7 @@ Customizing Your Dashboard
 If you have the required permissions, you can personalize your dashboard layout by:
 
 #. Accessing **Dashboard Configuration** from the user menu to enter configuration mode.
+
 |edit-widget|
 
 In configuration mode, you can:
@@ -155,7 +156,7 @@ In the column management dialog, you find two sections to configure the table co
 
   .. important::
 
-    The Quick search feature is supporting these fields:
+    Quick search feature is supporting these fields:
 
       #. Standard fields: Id, name, description, category, responsible (display name), and application.
       #. Task custom fields: fields that have type ``STRING`` or ``TEXT``.
@@ -376,7 +377,7 @@ You can define a news feed widget to display all news entries to the user
 
 If the user has permission, then the user can:
 
-- **Add news message**:  add a new entry for the news feed by clicking :guilabel:`Add News`: button.
+- **Add news message**: add a new entry for the news feed by clicking :guilabel:`Add News` button.
 
 - **Edit news message**: edit an existing entry for the list by clicking on the |edit-icon| icon in the lower right corner of each entry.
 

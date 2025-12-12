@@ -21,6 +21,5 @@ When a task is completed, Portal navigates back to the previous page. For exampl
 
 If your project has a navigation button that does not finish a task (e.g., Cancel), you have to implement one of the following:
 
--  **Previous page**: call ``navigateToPortalEndPage()`` from class ``PortalNavigatorInFrameAPI``
--  **A specific URL**: call ``navigateToUrl(String url)`` from class ``PortalNavigatorInFrameAPI``
-
+-  **Previous page**: Use ``PortalNavigatorInFrameAPI.navigateToPortalEndPage()``
+-  **A specific URL**: Use ``PortalNavigatorInFrameAPI.navigateToUrl(String url)``

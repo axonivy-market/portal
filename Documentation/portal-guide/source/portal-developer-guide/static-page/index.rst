@@ -443,6 +443,13 @@ File Organization
 - Organize related pages in subdirectories (e.g., ``help/``, ``documentation/``, ``policies/``)
 - Keep one page per file for maintainability
 
+**Content Guidelines:**
+
+- Keep content focused and relevant
+- Use consistent styling with the Portal theme
+- Ensure responsive design for different screen sizes
+- Include proper navigation breadcrumbs when appropriate
+
 Security Considerations
 -----------------------
 

@@ -12,7 +12,7 @@ This enables you to implement session cleanup operations, audit logging, externa
 Portal allows you to customize:
 
    - Logout function when the user logs out from Portal.
-   - The page that is shown to the user after he has logged out using the default logout process.
+   - The page that is shown to the user after logging out using the default logout process.
 
 .. tip::
 

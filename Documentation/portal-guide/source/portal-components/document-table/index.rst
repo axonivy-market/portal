@@ -39,7 +39,7 @@ Please refer to :ref:`settings-virus-scanning-setting` for more details about vi
 Customize
 ^^^^^^^^^
 
-In your project, create four callable subprocesses with the information below to customize
+In your project, create callable subprocesses with the information below to customize
 the functions of the **Document Table**.
 
 .. tip::
@@ -274,9 +274,7 @@ Changes in 12.0.9
 ------------------
 
 - Introduced **Renaming Document** feature for Document Table component. Follow instructions in :ref:`Customize <components-portal-components-migrate-from-old-document-table>` section to create a callable subprocess to customize the renaming behavior if needed.
-- Enhanced the document preview feature for the task and case detail. If you have :dev-url:`DocFactory <https://market.axonivy.com/doc-factory#tab-description>` in the same security context, you can preview Word(doc, docx), Excel(xls, xlsx) and email(eml) documents.
-
-
+- Enhanced the document preview feature for the task and case detail. If you have :doc-url:`DocFactory <https://market.axonivy.com/doc-factory#tab-description>` in the same security context, you can preview Word(doc, docx), Excel(xls, xlsx) and email(eml) documents.
 Changes in 12.0.11
 ------------------
 - Added lazy loading functionality to the Document Table component, enabling efficient data loading through pagination.

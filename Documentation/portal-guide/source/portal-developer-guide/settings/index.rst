@@ -23,15 +23,6 @@ Proper configuration ensures Portal aligns with your organization's security pol
 - External integrations (announcements, third-party apps, external links)
 - Statistical chart configurations for dashboards
 
-**Configuration Methods:**
-
-Portal settings can be configured through multiple interfaces depending on your needs:
-
-#. **Admin Settings UI** - User-friendly interface for common settings (recommended for non-technical admins)
-#. **Engine Cockpit Variables** - Direct variable editing for advanced configuration
-#. **Variable YAML Files** - Development-time configuration that persists across Designer restarts
-#. **JSON Configuration Files** - Complex configurations like dashboards and announcements
-
 **Related Sections:**
 
 - :ref:`Permissions <list-permissions>` - Detailed permission reference
@@ -39,29 +30,10 @@ Portal settings can be configured through multiple interfaces depending on your 
 - :ref:`Customization <customization>` - Extend Portal functionality
 - :ref:`Deployment <deployment>` - Production deployment settings
 
-This guide covers Portal configuration including roles, permissions, variables, and integrations. Settings control global Portal behavior across dashboards, widgets, and administrative features.
-
-Overview
-========
-
-.. table::
-   :widths: 30 70
-
-   +---------------------------+----------------------------------------------------------------+
-   | Setting Category          | Description                                                    |
-   +===========================+================================================================+
-   | **Portal Settings**       | Global configuration via Admin Settings or variables           |
-   +---------------------------+----------------------------------------------------------------+
-   | **Roles & Permissions**   | Access control for Portal features and actions                 |
-   +---------------------------+----------------------------------------------------------------+
-   | **Language Settings**     | Multi-language support and translations                        |
-   +---------------------------+----------------------------------------------------------------+
-   | **Variables**             | Engine-level configuration stored as key-value pairs           |
-   +---------------------------+----------------------------------------------------------------+
-   | **JSON Configuration**    | Advanced settings for announcements, charts, external links    |
-   +---------------------------+----------------------------------------------------------------+
-
 |portal-header|
+
+Portal Settings Configuration
+=============================
 
 Portal Settings Configuration
 =============================
@@ -77,7 +49,6 @@ Portal settings control global behavior and can be configured through multiple m
 .. tip::
    In development, configure settings in ``portal/config/variables.yaml`` to avoid re-configuring after each Designer restart.
 
-
 .. _settings-language:
 
 Language Settings
@@ -92,25 +63,35 @@ HowTo: Add a New Language to Portal
 
 #. **Add Language Column**
 
-   Add a new column at the end of the file with the language locale in the first cell (e.g., ``it`` for Italian)
+   - Open the exported Excel file
+   - Add a new column at the end with the language locale code (e.g., ``it`` for Italian)
+   - Refer to `Java supported locales <https://www.oracle.com/java/technologies/javase/jdk21-suported-locales.html>`_ for supported locale codes
    
    |export-cms|
    
    Refer to `Java supported locales <https://www.oracle.com/java/technologies/javase/jdk11-suported-locales.html>`_ for supported locale codes
 
-#. **Add Translations**
+#. **Translate CMS Entries**
 
-   Add translations for the new language for all CMS entries in the Excel file
+   - For each row in the Excel file, add the translated text in the new language column
+   - Base your translations on the existing English (``en``) or German (``de``) values
+   - Ensure all cells in the new language column are filled with appropriate translations
 
-#. **Update JSON Files**
+#. **Update JSON Configuration Files**
 
-   Add translations for the new language in all JSON files located at ``Config/variables`` by adding new locale/value items
+   For each JSON file in ``portal/config/variables/``:
+   
+   - Open the file and locate the ``locale`` arrays
+   - Add a new locale/value pair for your language following the existing pattern
+   - Example: ``{"locale": "it", "value": "Translated text"}``
    
    |translate-json|
 
-#. **Update Java Files**
+#. **Update Java Source Files**
 
-   Add translations for the new language to ``DefaultDashboardUtils.java`` by adding new locale/value items
+   In ``DefaultDashboardUtils.java``:
+   
+   - Add new locale/value entries for your language into default dashboard constants.
    
    |translate-java|
 
@@ -131,9 +112,9 @@ Portal uses specific roles to control administrative access:
    | Role                      | Description                                                    |
    +===========================+================================================================+
    | **AXONIVY_PORTAL_ADMIN**  | Can access Portal Admin page, configure internal role          |
-   |                           | properties, and create public filters. Requires specific       |
-   |                           | permissions for full functionality.                            |
+   |                           | properties, and create public filters.                         |
    +---------------------------+----------------------------------------------------------------+
+
 
 .. _settings-permission-settings:
 

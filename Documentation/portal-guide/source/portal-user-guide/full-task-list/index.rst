@@ -15,10 +15,8 @@ You can reach the page by using the |task-list-icon| :guilabel:`Tasks` link in t
 
 |navigate-to-full-task-list-page|
 
-Permission Reference
-====================
-
-Different task operations require specific permissions:
+Task List Overview
+==================
 
 .. table::
    :widths: 40 60
@@ -112,13 +110,13 @@ At the end of each row you find the `Actions` menu with the following options:
    +---------------------------+---------------------------------------------------------------+
    | **Reserve**               | Reserve the task for yourself                                 |
    +---------------------------+---------------------------------------------------------------+
-   | **Destroy**               | Permanently remove the task                                   |
+   | **Destroy**               | Destroy the task                                              |
    +---------------------------+---------------------------------------------------------------+
    | **Trigger Escalation**    | Manually trigger task escalation                              |
    +---------------------------+---------------------------------------------------------------+
    | **Custom Fields**         | View task custom fields                                       |
    +---------------------------+---------------------------------------------------------------+
-   | **Workflow Events**       | View and manage workflow events                               |
+   | **Workflow Events**       | View workflow events                                          |
    +---------------------------+---------------------------------------------------------------+
    | **Process Viewer**        | Visual representation of the process flow                     |
    +---------------------------+---------------------------------------------------------------+
@@ -145,11 +143,6 @@ The task details page is organized into four main sections:
    | **Documents**             | Attached files with add, delete, rename, preview options      |
    +---------------------------+---------------------------------------------------------------+
 
-Detailed Sections
------------------
-
-The task details are separated into 4 different sections:
-
 #. Task status banner to display information that needs attention or that you should take action on.
 
    |task-status-banner|
@@ -172,7 +165,7 @@ The task details are separated into 4 different sections:
 |detailed-task-information|
 
 HowTo: Configure the Full Task List
-------------------------------------
+-----------------------------------
 
 The full task list page functions as a dashboard accessible from the top-level menu. 
 To customize the task list, navigate to :ref:`Dashboard configuration <dashboard-configuration>`.
@@ -215,7 +208,7 @@ HowTo: Attach a Document to a Case
 |how-to-upload-document|
 
 HowTo: Rename a Document of a Case
------------------------------------
+----------------------------------
 
 #. Open the case details
 
@@ -268,17 +261,11 @@ HowTo: Preview a Document of a Task
    - **Default**: Images (jpg, jpeg, bmp, png), plain text (txt, log), and PDF documents
    - **With DocFactory**: Word (doc, docx), Excel (xls, xlsx), and email (eml) files
    
-   Enable this feature by setting :ref:`Portal settings <update-portal-settings>` :guilabel:`Portal.Document.EnablePreview` to true. 
+   To enable this feature, set :ref:`Portal settings <update-portal-settings>` :guilabel:`Portal.Document.EnablePreview` to true. 
    For Office documents, deploy :dev-url:`DocFactory <https://market.axonivy.com/doc-factory#tab-description>` in the same security context.
 
+
 HowTo: Add a Note to a Task
-----------------------------
-
-    - Portal can preview Word(doc, docx), Excel(xls, xlsx) and email(eml, msg) documents if :dev-url:`DocFactory <https://market.axonivy.com/doc-factory#tab-description>` is deployed in the same security context.
-
-    - Change :ref:`Portal settings <update-portal-settings>` :guilabel:`Portal.Document.EnablePreview` to true to enable this feature.
-
-HowTo: Add a note to a task
 ---------------------------
 
 #. Open the task details of a task
@@ -300,7 +287,7 @@ HowTo: Add a note to a task
    - If the task belongs to a technical case, notes are also displayed in the ``History`` table of that technical case
 
 HowTo: Export a Task History
------------------------------
+----------------------------
 
 #. Open the task details of a task
 
@@ -351,6 +338,50 @@ HowTo: Share Task Details
 #. Click on the share button |share-icon|
 
 |how-to-share-task-details|
+
+Permission Reference
+====================
+
+Different task operations require specific permissions:
+
+.. table::
+   :widths: 40 60
+
+   +--------------------------------------+--------------------------------------------------------+
+   | Action                               | Required Permission                                    |
+   +======================================+========================================================+
+   | **Reset task**                       | :bdg-ref-warning:`🔑TaskDisplayResetAction             |
+   |                                      | <TaskDisplayResetAction>`                              |
+   +--------------------------------------+--------------------------------------------------------+
+   | **Reserve task**                     | :bdg-ref-warning:`🔑TaskDisplayReserveAction           |
+   |                                      | <TaskDisplayReserveAction>`                            |
+   +--------------------------------------+--------------------------------------------------------+
+   | **Delegate task**                    | :bdg-ref-warning:`🔑TaskDisplayDelegateAction          |
+   |                                      | <TaskDisplayDelegateAction>`                           |
+   +--------------------------------------+--------------------------------------------------------+
+   | **Destroy task**                     | :bdg-ref-warning:`🔑TaskDisplayDestroyAction           |
+   |                                      | <TaskDisplayDestroyAction>`                            |
+   +--------------------------------------+--------------------------------------------------------+
+   | **View additional options**          | :bdg-ref-warning:`🔑TaskDisplayAdditionalOptions       |
+   |                                      | <TaskDisplayAdditionalOptions>`                        |
+   +--------------------------------------+--------------------------------------------------------+
+   | **View workflow events**             | :bdg-ref-warning:`🔑TaskDisplayWorkflowEventAction     |
+   |                                      | <TaskDisplayWorkflowEventAction>` and                  |
+   |                                      | :bdg-warning:`🔑WorkflowEventReadAll`                  |
+   +--------------------------------------+--------------------------------------------------------+
+   | **View custom fields**               | :bdg-ref-warning:`🔑TaskDisplayCustomFieldsAction      |
+   |                                      | <TaskDisplayCustomFieldsAction>`                       |
+   +--------------------------------------+--------------------------------------------------------+
+   | **Add/delete task documents**        | :bdg-ref-warning:`🔑DocumentOfInvolvedCaseWrite        |
+   |                                      | <DocumentOfInvolvedCaseWrite>` or                      |
+   |                                      | :bdg-ref-warning:`🔑DocumentWrite <DocumentWrite>`     |
+   +--------------------------------------+--------------------------------------------------------+
+   | **Add note to task**                 | :bdg-ref-warning:`🔑TaskCaseAddNote                    |
+   |                                      | <TaskCaseAddNote>`                                     |
+   +--------------------------------------+--------------------------------------------------------+
+   | **Share task details link**          | :bdg-ref-warning:`🔑ShareTaskDetailsLink               |
+   |                                      | <ShareTaskDetailsLink>`                                |
+   +--------------------------------------+--------------------------------------------------------+
 
 .. include:: ../includes/_common-icon.rst
 

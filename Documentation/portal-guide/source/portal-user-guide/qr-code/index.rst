@@ -25,7 +25,7 @@ Configuration
 =============
 
 HowTo: Activate the QR Code Feature
-------------------------------------
+-----------------------------------
 
 Enable the QR code menu item in the user menu:
 
@@ -35,7 +35,7 @@ Enable the QR code menu item in the user menu:
 See :ref:`Update Portal settings <update-portal-settings>`.
 
 HowTo: Configure Base Portal URL for Mobile Application
---------------------------------------------------------
+-------------------------------------------------------
 
 Customize the Portal URL used by the mobile application:
 
@@ -48,7 +48,7 @@ Using QR Codes
 ==============
 
 HowTo: Download the Axon Ivy Mobile Application
-------------------------------------------------
+-----------------------------------------------
 
 #. Select the :guilabel:`Mobile app` user menu item.
 

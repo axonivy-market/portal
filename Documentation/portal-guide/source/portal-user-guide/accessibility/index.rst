@@ -152,9 +152,6 @@ You can also navigate to special dialogs like the reset task confirmation:
 Extended Descriptive Elements in the Task and Case List
 --------------------------------------------------------
 
-Extended Descriptive Elements in the Task and Case List
---------------------------------------------------------
-
 To improve navigation and accessibility in the portal, we have not only implemented shortcuts for quick access to processes, tasks, and cases, but also added more descriptive elements to the widgets. These enhancements provide a clearer and more detailed display of key information, ensuring optimal support for screen readers.
 
 Screen Reader Support

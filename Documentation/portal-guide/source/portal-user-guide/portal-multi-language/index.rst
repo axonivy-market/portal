@@ -8,17 +8,6 @@ The Portal translation service powered by DeepL makes it easy to translate text 
 Translation Overview
 ====================
 
-The Portal multi-language feature provides:
-
-- **Automated Translation**: DeepL-powered translations for supported languages
-- **Manual Translation**: Manual input when DeepL is not configured
-- **Flexible Application**: Available for dashboards, processes, and other customizable text fields
-
-.. note::
-   Portal translation requires both :guilabel:`Portal.DeepL.Enable` set to true and a valid :guilabel:`Portal.DeepL.AuthKey`. Otherwise, you can translate text fields manually.
-
-.. _enable-translation:
-
 HowTo: Enable the Translation Service
 --------------------------------------
 

@@ -27,6 +27,7 @@ How to customize
       </ui:composition>
 
    .. note::
+
       You have to place your css file in a ``<h:outputStylesheet />`` below the component to override defined styles.
 
 2. Within this file you can override default css variables of components. For example, the \--process-history-description-text-color:
@@ -41,7 +42,7 @@ List of css variables that you can override
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Process Chain
-^^^^^^^^^^^^^
+-------------
 
 .. csv-table::
   :file: ../documents/css_variables/process_chain.csv
@@ -49,9 +50,8 @@ Process Chain
   :class: longtable
   :widths: 2 1 2
 
-
 Process History
-^^^^^^^^^^^^^^^
+---------------
 
 .. csv-table::
   :file: ../documents/css_variables/process_history.csv
@@ -59,9 +59,8 @@ Process History
   :class: longtable
   :widths: 2 1 2
 
-
 Process Viewer
-^^^^^^^^^^^^^^
+--------------
 
 .. csv-table::
   :file: ../documents/css_variables/process_viewer.csv

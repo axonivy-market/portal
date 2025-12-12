@@ -15,6 +15,8 @@ Configuration Example
 
 Below is a sample JSON definition of the case widget in the Portal dashboard.
 
+Below is a sample JSON definition of the case widget in the Portal dashboard.
+
 .. code-block:: javascript
 
    {
@@ -266,73 +268,6 @@ The ``filters`` array defines pre-configured filter conditions:
 
 .. note::
    For detailed filter configuration, see the :ref:`Filter Conditions <configure-new-dashboard-case-widget-filter-structure>` section below.
-
-Below is a sample JSON definition of the case widget in the Portal dashboard.
-
-.. code-block:: javascript
-
-   {
-      "type": "case",
-      "id": "case-widget",
-      "names": [
-         {
-            "locale": "en",
-            "value": "Your Cases"
-         },
-         {
-            "locale": "de",
-            "value": "Ihre Vorgänge"
-         }
-      ],
-      "layout": {
-         "x": 0,
-         "y": 0,
-         "w": 10,
-         "h": 9,
-         "style": "text-color: blue;",
-         "styleClass": "your-widget-class"
-      },
-      "sortField": "name",
-      "rowsPerPage": 20,
-      "showWidgetInfo": true,
-      "showFullscreenMode": true,
-      "isTopMenu": false,
-      "columns": [
-         {
-            "field": "id"
-         },
-         {
-            "field": "name",
-            "visible": "false"
-         },
-         {
-            "field": "description"
-         },
-         {
-            "field": "creator"
-         },
-         {
-            "field": "state",
-            "headers": [
-            {
-               "locale": "en",
-               "value": "State"
-            },
-            {
-               "locale": "de",
-               "value": "Status"
-            }
-            ]
-         },
-         {
-            "field": "startTimestamp"
-         },
-         {
-            "field": "actions"
-         }
-      ]
-   }
-..
 
 .. _configure-new-dashboard-case-widget-custom-columns:
 

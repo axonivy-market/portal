@@ -62,7 +62,7 @@ Installation by Environment
 Designer
 ^^^^^^^^
 
-Import Portal modules (portal and portal-components) to your Axon Ivy Designer.
+Import Portal modules (portal and portal-components) or download from The Axon Ivy Marketplace to your Axon Ivy Designer.
 
 Demo Mode (Engine Without License)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -94,70 +94,22 @@ The engine does not deploy Portal automatically. You must deploy and configure P
 Dashboard Configuration
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-To install the Dashboard JSON configuration file to your Axon Ivy Engine, choose one of these methods:
-
-**Method 1: Include in app.zip (Recommended)**
-
-Include the Dashboard.json file in your app.zip under ``<app.zip>/config/variables/Portal.Dashboard.json``:
-
-.. code-block:: text
-
-   app.zip
-   ├── config
-   │   ├── app.yaml
-   │   └── variables
-   │       └── Portal.Dashboard.json
-   ├── portal.iar
-   └── portal-components.iar
-
-.. important::
-   The JSON file must be named ``Portal.Dashboard.json``.
-
-See :dev-url:`Engine Deployment </doc/12.0/engine-guide/deployment/index.html>` for details.
-
-**Method 2: Copy to Application Folder**
-
-Copy the Dashboard.json file directly to: ``<engine>/configuration/applications/<application>/variables.Portal.Dashboard.json``
-
-.. note::
-   The file must be named ``variables.Portal.Dashboard.json`` when using this method.
-
-**Method 3: Use Portal Import Feature**
-
-Use the Portal's import dashboard feature. See :ref:`How to import your public dashboards <howto-import-your-public-dashboards>`.
+For dashboard configuration methods (deployment files, Engine Cockpit UI, or Portal import), see :ref:`Dashboard Configuration <deployment>` in the Deployment guide.
 
 Multi-Application Setup
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-This configuration displays unified task lists across multiple applications within the same security context.
-
-.. important::
-   The Portal running in a security context displays Task/Case lists from all applications in that context.
+Portal supports multi-application deployment where Portal and your business applications run separately within the same security context, enabling unified task and case management.
 
 **Architecture:**
 
 - **Application 1 (Portal)**: portal + portal-components  
 - **Application 2+ (Your Apps)**: your projects + portal-components (only if using Portal UI components)
 
-All applications must be in the same security context. Deploy **portal-components** to your custom applications only if you need to use Portal UI components or APIs. See :ref:`The Portal multi-application setup <multi-app-structure>` for details.
+.. important::
+   All applications must be in the same security context for Portal to display tasks and cases from all applications.
 
-**HowTo: Set Up Multi-Application Deployment**
-
-#. Create a new application for Portal
-
-#. Deploy both Portal modules (portal and portal-components) to this application
-
-#. Create additional applications for your projects (App1, App2, etc.)
-
-#. Deploy your projects to these applications
-
-#. (Optional) Add portal-components as a dependency if you want to reuse Portal UI components in your applications
-
-#. Verify all applications are in the same security context
-
-#. Deploy your projects along with portal-components to these applications
-
-#. Verify all applications are in the same security context
+For detailed multi-app architecture and step-by-step deployment instructions, see :ref:`Deployment <deployment>`.
 
 
 .. _installation-migration-notes:

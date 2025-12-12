@@ -15,35 +15,6 @@ You can reach the page by using the |case-icon| :guilabel:`Cases` link in the Ax
 
 |navigate-to-full-cases-list-page|
 
-Permission Reference
-====================
-
-Different case operations require specific permissions:
-
-.. table::
-   :widths: 40 60
-
-   +--------------------------------------+--------------------------------------------------------+
-   | Action                               | Required Permission                                    |
-   +======================================+========================================================+
-   | **View related tasks of case**       | :bdg-ref-warning:`🔑TaskReadOwnCaseTasks               |
-   |                                      | <TaskReadOwnCaseTasks>` or                             |
-   |                                      | :bdg-ref-warning:`🔑TaskReadAll <TaskReadAll>`         |
-   +--------------------------------------+--------------------------------------------------------+
-   | **Add/delete case documents**        | :bdg-ref-warning:`🔑DocumentOfInvolvedCaseWrite        |
-   |                                      | <DocumentOfInvolvedCaseWrite>` or                      |
-   |                                      | :bdg-ref-warning:`🔑DocumentWrite <DocumentWrite>`     |
-   +--------------------------------------+--------------------------------------------------------+
-   | **Add note to case**                 | :bdg-ref-warning:`🔑TaskCaseAddNote                    |
-   |                                      | <TaskCaseAddNote>`                                     |
-   +--------------------------------------+--------------------------------------------------------+
-   | **Share case details link**          | :bdg-ref-warning:`🔑ShareCaseDetailsLink               |
-   |                                      | <ShareCaseDetailsLink>`                                |
-   +--------------------------------------+--------------------------------------------------------+
-   | **View custom fields**               | :bdg-ref-warning:`🔑CaseDisplayCustomFieldsAction      |
-   |                                      | <CaseDisplayCustomFieldsAction>`                       |
-   +--------------------------------------+--------------------------------------------------------+
-
 Case List Information
 =====================
 
@@ -75,8 +46,8 @@ To access the full set of case data, click on the case Name/Description.
 
 |case-details|
 
-Case Details Overview
-=====================
+Case Details
+============
 
 The case details page is organized into four main sections:
 
@@ -94,11 +65,6 @@ The case details page is organized into four main sections:
    +----------------------------------+---------------------------------------------------------------+
    | **Documents**                    | Attached files with add, delete, rename, preview options      |
    +----------------------------------+---------------------------------------------------------------+
-
-Detailed Sections
------------------
-
-The case details are separated into four different sections:
 
 #. Data and Description: Contain various metadata of the case and its description.
 
@@ -192,17 +158,10 @@ HowTo: Preview a Document of a Case
    - **Default**: Images (jpg, jpeg, bmp, png), plain text (txt, log), and PDF documents
    - **With DocFactory**: Word (doc, docx), Excel (xls, xlsx), and email (eml) files
    
-   Enable this feature by setting :ref:`Portal settings <update-portal-settings>` :guilabel:`Portal.Document.EnablePreview` to true. 
+   Set :ref:`Portal settings <update-portal-settings>` :guilabel:`Portal.Document.EnablePreview` to true to enable this feature. 
    For Office documents, deploy :dev-url:`DocFactory <https://market.axonivy.com/doc-factory#tab-description>` in the same security context.
 
 HowTo: Rename a Document of a Case
------------------------------------
-
-    - Portal can preview Word(doc, docx), Excel(xls, xlsx) and email(eml, msg) documents if :dev-url:`DocFactory <https://market.axonivy.com/doc-factory#tab-description>` is deployed in the same security context.
-
-    - Change :ref:`Portal settings <update-portal-settings>` :guilabel:`Portal.Document.EnablePreview` to true to enable this feature.
-
-HowTo: Rename a document of a case
 ----------------------------------
 
 #. Open the case details
@@ -346,7 +305,7 @@ case list, click on :guilabel:`Export to Excel`.
 .. _how-to-show-process-viewer:
 
 HowTo: Show Process Viewer
----------------------------
+--------------------------
 
 Portal provides a visual representation of the process flow of the current case or task. To open the viewer, select :guilabel:`Process Viewer` in the :guilabel:`Action` menu.
 
@@ -389,6 +348,35 @@ HowTo: Show Case Custom Fields Dialog
 #. Portal opens the custom fields dialog of the case
 
 |case-custom-fields-dialog|
+
+Permission Reference
+====================
+
+Different case operations require specific permissions:
+
+.. table::
+   :widths: 40 60
+
+   +--------------------------------------+--------------------------------------------------------+
+   | Action                               | Required Permission                                    |
+   +======================================+========================================================+
+   | **View related tasks of case**       | :bdg-ref-warning:`🔑TaskReadOwnCaseTasks               |
+   |                                      | <TaskReadOwnCaseTasks>` or                             |
+   |                                      | :bdg-ref-warning:`🔑TaskReadAll <TaskReadAll>`         |
+   +--------------------------------------+--------------------------------------------------------+
+   | **Add/delete case documents**        | :bdg-ref-warning:`🔑DocumentOfInvolvedCaseWrite        |
+   |                                      | <DocumentOfInvolvedCaseWrite>` or                      |
+   |                                      | :bdg-ref-warning:`🔑DocumentWrite <DocumentWrite>`     |
+   +--------------------------------------+--------------------------------------------------------+
+   | **Add note to case**                 | :bdg-ref-warning:`🔑TaskCaseAddNote                    |
+   |                                      | <TaskCaseAddNote>`                                     |
+   +--------------------------------------+--------------------------------------------------------+
+   | **Share case details link**          | :bdg-ref-warning:`🔑ShareCaseDetailsLink               |
+   |                                      | <ShareCaseDetailsLink>`                                |
+   +--------------------------------------+--------------------------------------------------------+
+   | **View custom fields**               | :bdg-ref-warning:`🔑CaseDisplayCustomFieldsAction      |
+   |                                      | <CaseDisplayCustomFieldsAction>`                       |
+   +--------------------------------------+--------------------------------------------------------+
 
 .. include:: ../includes/_common-icon.rst
 
