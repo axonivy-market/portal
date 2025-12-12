@@ -520,15 +520,14 @@ msgid ""
 "to customize the functions of the **Document Table**."
 msgstr ""
 "プロジェクト内で、以下の情報を使用して呼び出し可能なサブプロセスを作成し"
-"、**ドキュメントテーブル（** ）の機能をカスタマイズしてください。"
+"、**ドキュメントテーブル** の機能をカスタマイズしてください。"
 
 #: ../../source/portal-components/document-table/index.rst:47
 msgid ""
 "You can refer to process ``CustomDocumentFeatures`` in project ``portal-"
 "components-examples`` to examine how to customize."
 msgstr ""
-"portal-components-examples`カスタマイズ方法については、プロジェクト`` 内の"
-"プロセス`` および `CustomDocumentFeatures`` を参照いただけます。"
+"カスタマイズ方法を確認するには、プロジェクト ``portal-components-examples`` 内のプロセス ``CustomDocumentFeatures`` を参照してください。"
 
 #: ../../source/portal-components/document-table/index.rst:51
 msgid "Get document list"

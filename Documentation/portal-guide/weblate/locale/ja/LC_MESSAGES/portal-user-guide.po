@@ -32,7 +32,7 @@ msgid ""
 "details."
 msgstr ""
 "**キーボードショートカットの有効化/無効化は、**の「マイプロフィール」** > 「"
-"アクセシビリティ設定」** から行えます。詳細は:ref:`accessibility-settings` を"
+"アクセシビリティ設定」** から行えます。詳細は :ref:`accessibility-settings` を"
 "ご参照ください。"
 
 #: ../../source/portal-user-guide/accessibility/index.rst:11
@@ -181,7 +181,7 @@ msgstr "**キーボードレイアウト**: ヨーロッパ、アジア、およ
 #: ../../source/portal-user-guide/accessibility/index.rst:57
 msgid "**macOS users**: Replace ``Alt`` with ``Option`` key."
 msgstr ""
-"** `Option`macOSをご利用のお客様は、** キーを、`Alt`` キーから ``` キーに変更"
+"**macOS をご利用のお客様は**: ``Alt`` キーを ``Option`` キーに変更"
 "してください。"
 
 #: ../../source/portal-user-guide/accessibility/index.rst:60
@@ -571,7 +571,7 @@ msgstr "**ケース名**: ケースの名称またはタイトル"
 
 #: ../../source/portal-user-guide/accessibility/index.rst:193
 msgid "**State**: The current state (e.g., Open, Done, Deleted)"
-msgstr "**** のステータス：現在の状態（例：Open、Done、Deleted）"
+msgstr "**ステータス**: 現在の状態（例：Open、Done、Deleted）"
 
 #: ../../source/portal-user-guide/accessibility/index.rst:194
 msgid "**Created On**: The creation date of the case"
@@ -579,7 +579,7 @@ msgstr "**作成日時：** ：ケースの作成日時"
 
 #: ../../source/portal-user-guide/accessibility/index.rst:195
 msgid "**Finished On**: The completion date of the case"
-msgstr "**** にて完了：ケースの完了日"
+msgstr "**完了日**: ケースの完了日"
 
 #: ../../source/portal-user-guide/accessibility/index.rst:196
 msgid "**Owners**: The current owners of the case"
@@ -938,7 +938,7 @@ msgstr ""
 
 #: ../../source/portal-user-guide/admin-settings/index.rst:85
 msgid "**Scheduled for removal in 13**:"
-msgstr "**** バージョン13で削除予定："
+msgstr "**バージョン13で削除予定**："
 
 #: ../../source/portal-user-guide/admin-settings/index.rst:88
 msgid ":guilabel:`Portal.Histories.HideSystemNotes`"
@@ -1842,7 +1842,7 @@ msgid ""
 "Variables <portal-available-settings>` for details."
 msgstr ""
 "Portalでは、ロール管理タブに表示されるロールの数を制御するための高度な設定変"
-"数が2つ用意されています。詳細は:ref:`Settings Variables <portal-available-"
+"数が2つ用意されています。詳細は :ref:`Settings Variables <portal-available-"
 "settings>` をご参照ください。"
 
 #: ../../source/portal-user-guide/admin-settings/index.rst:166
@@ -1869,8 +1869,8 @@ msgid ""
 "LDAP, as those systems manage their own password policies."
 msgstr ""
 "**外部認証**: パスワードの検証は、Active Directory、Entra ID、またはLDAPなど"
-"の外部IDプロバイダーを使用する場合、適用されません。これらのシステムは独自の"
-"パスワードポリシーを管理しているためです。****"
+"の外部IDプロバイダーを使用する場合、**適用されません**。これらのシステムは独自の"
+"パスワードポリシーを管理しているためです。"
 
 #: ../../source/portal-user-guide/admin-settings/index.rst:179
 msgid ""
@@ -2181,7 +2181,7 @@ msgstr "グローバル検索、キー情報、および個人アカウント設
 
 #: ../../source/portal-user-guide/axon-ivy-portal/index.rst:86
 msgid "See :ref:`portal-header` for details."
-msgstr "詳細は:ref:`portal-header` をご参照ください。"
+msgstr "詳細は :ref:`portal-header` をご参照ください。"
 
 #: ../../source/portal-user-guide/axon-ivy-portal/index.rst:88
 msgid "**2. Side Menu** (always visible on left)"
@@ -2251,11 +2251,11 @@ msgstr ""
 
 #: ../../source/portal-user-guide/axon-ivy-portal/index.rst:110
 msgid "**Dashboards**: Customize your workspace → See :ref:`new-dashboard`"
-msgstr "**ダッシュボード**: ワークスペースのカスタマイズ → 参照:ref:`new-dashboard`"
+msgstr "**ダッシュボード**: ワークスペースのカスタマイズ → 参照 :ref:`new-dashboard`"
 
 #: ../../source/portal-user-guide/axon-ivy-portal/index.rst:111
 msgid "**Processes**: Start new business processes → See :ref:`full-process-list`"
-msgstr "**** を処理します：新規ビジネスプロセスの開始 → 参照:ref:`full-process-list`"
+msgstr "**プロセス**: 新規ビジネスプロセスの開始 → 参照 :ref:`full-process-list`"
 
 #: ../../source/portal-user-guide/axon-ivy-portal/index.rst:112
 msgid ""
@@ -2263,15 +2263,15 @@ msgid ""
 "list`"
 msgstr ""
 "**タスク**: ご自身の割り当てられた作業を確認し完了してください → 参"
-"照:ref:`full-task-list`"
+"照 :ref:`full-task-list`"
 
 #: ../../source/portal-user-guide/axon-ivy-portal/index.rst:113
 msgid "**Cases**: Track and manage case progress → See :ref:`full-case-list`"
-msgstr "**** のケース：進捗状況を追跡・管理 → 参照:ref:`full-case-list`"
+msgstr "**ケース**: 進捗状況を追跡・管理 → 参照 :ref:`full-case-list`"
 
 #: ../../source/portal-user-guide/axon-ivy-portal/index.rst:114
 msgid "**User Settings**: Configure your preferences → See :ref:`my-profile`"
-msgstr "**ユーザー設定**: 設定を構成する → 参照:ref:`my-profile`"
+msgstr "**ユーザー設定**: 設定を構成する → 参照 :ref:`my-profile`"
 
 #: ../../source/portal-user-guide/complex-filter/index.rst:12
 msgid "Complex Filter"
@@ -2882,8 +2882,8 @@ msgid ""
 "permissions allow you to add, edit, reorder, show, and hide private or "
 "public dashboards."
 msgstr ""
-"**アクセス要件**::bdg-ref-warning:`🔑DashboardWriteOwn <DashboardWriteOwn>` "
-"または:bdg-ref-warning:`🔑DashboardWritePublic <DashboardWritePublic>` の権限"
+"**アクセス要件**: :bdg-ref-warning:`🔑DashboardWriteOwn <DashboardWriteOwn>` "
+"または :bdg-ref-warning:`🔑DashboardWritePublic <DashboardWritePublic>` の権限"
 "を持つユーザーのみが、:guilabel:`Dashboard Configuration` メニュー項目を表示"
 "およびアクセスできます。これらの権限により、非公開または公開ダッシュボードの"
 "追加、編集、並べ替え、表示、非表示が可能となります。"
@@ -3177,7 +3177,7 @@ msgstr "actions-menu-icon"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:112
 msgid "|edit-icon| **Edit**: Modify dashboard name and description"
-msgstr "|edit-icon| **** を編集：ダッシュボード名と説明を変更してください"
+msgstr "|edit-icon| **編集**: ダッシュボード名と説明を変更してください"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:113
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:222
@@ -3197,9 +3197,9 @@ msgid ""
 "|download-icon| **Export**: Download dashboard as JSON file (requires "
 ":bdg-ref-warning:`🔑DashboardExportOwn <DashboardExportOwn>` permission)"
 msgstr ""
-"|download-icon| **** のエクスポート：ダッシュボードをJSONファイルとして"
-"ダウンロード（ 権限が必要です）:bdg-ref-warning:`🔑DashboardExportOwn "
-"<DashboardExportOwn>`"
+"|download-icon| **エクスポート**: ダッシュボードをJSONファイルとして"
+"ダウンロード（ :bdg-ref-warning:`🔑DashboardExportOwn "
+"<DashboardExportOwn>` 権限が必要です）"
 
 #: ../../source/portal-user-guide/includes/_common-icon.rst:49
 msgid "download-icon"
@@ -3207,7 +3207,7 @@ msgstr "download-icon"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:115
 msgid "|trash-icon| **Delete**: Remove the private dashboard"
-msgstr "|trash-icon| **** を削除：非公開ダッシュボードを削除します"
+msgstr "|trash-icon| **削除**: 非公開ダッシュボードを削除します"
 
 #: ../../source/portal-user-guide/includes/_common-icon.rst:1
 msgid "trash-icon"
@@ -3310,9 +3310,9 @@ msgid ""
 "menu item."
 msgstr ""
 "公開ダッシュボードには、必須のタイトル、公開ダッシュボードの閲覧権限、および"
-"任意の説明を入力してください。`トップメニュー項目`チェックボックスがオンの場"
+"任意の説明を入力してください。 `トップメニュー項目` チェックボックスがオンの場"
 "合、ダッシュボードはナビゲーションバーの最上位項目として表示されます。オフの"
-"場合、`ダッシュボード`メニュー項目のサブ項目として表示されます。"
+"場合、 `ダッシュボード` メニュー項目のサブ項目として表示されます。"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:157
 msgid "Create the public dashboard by selecting |add-icon| Create dashboard."
@@ -3419,7 +3419,7 @@ msgstr ""
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:221
 msgid "|edit-icon| **Edit**: Modify dashboard name, permissions, and description"
-msgstr "|edit-icon| **** を編集：ダッシュボード名、権限、説明を変更してください。"
+msgstr "|edit-icon| **編集**: ダッシュボード名、権限、説明を変更してください。"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:223
 msgid ""
@@ -3427,9 +3427,9 @@ msgid ""
 ":bdg-ref-warning:`🔑DashboardExportPublic <DashboardExportPublic>` "
 "permission)"
 msgstr ""
-"|download-icon| **** のエクスポート：ダッシュボードをJSONファイルとして"
-"ダウンロード（ 権限が必要です）:bdg-ref-warning:`🔑DashboardExportPublic "
-"<DashboardExportPublic>`"
+"|download-icon| **エクスポート**: ダッシュボードをJSONファイルとして"
+"ダウンロード（ :bdg-ref-warning:`🔑DashboardExportPublic "
+"<DashboardExportPublic>` 権限が必要です）"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:224
 msgid ""
@@ -3437,9 +3437,9 @@ msgid ""
 "(requires :bdg-ref-warning:`🔑ShareDashboardLink <ShareDashboardLink>` "
 "permission)"
 msgstr ""
-"|share-icon| **** を共有する：ダッシュボードへの共有可能なリンクを生成します"
-"（ の権限が必要です）。:bdg-ref-warning:`🔑ShareDashboardLink "
-"<ShareDashboardLink>`"
+"|share-icon| **共有**: ダッシュボードへの共有可能なリンクを生成します"
+"（ :bdg-ref-warning:`🔑ShareDashboardLink "
+"<ShareDashboardLink>` 権限が必要です）。"
 
 #: ../../source/portal-user-guide/includes/_common-icon.rst:55
 msgid "share-icon"
@@ -3447,7 +3447,7 @@ msgstr "share-icon"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:225
 msgid "|trash-icon| **Delete**: Remove the public dashboard"
-msgstr "|trash-icon| **** を削除：公開ダッシュボードを削除します"
+msgstr "|trash-icon| **削除**: 公開ダッシュボードを削除します"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:227
 msgid "|edit-public-dashboards|"
@@ -4604,7 +4604,7 @@ msgstr "**ビジネス詳細**: ビジネス固有のケースデータを表示
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:300
 msgid "**Side step**: Access additional case operations"
-msgstr "**** の回避：追加のケース操作にアクセスします"
+msgstr "**サイドステップ**: 追加のケース操作にアクセスします"
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:302
 msgid ""
@@ -4723,7 +4723,7 @@ msgid ""
 ":bdg-ref-warning:`🔑TaskReadOwnCaseTasks <TaskReadOwnCaseTasks>` or :bdg-"
 "ref-warning:`🔑TaskReadAll <TaskReadAll>`"
 msgstr ""
-":bdg-ref-warning:`🔑TaskReadOwnCaseTasks <TaskReadOwnCaseTasks>` または:bdg-"
+":bdg-ref-warning:`🔑TaskReadOwnCaseTasks <TaskReadOwnCaseTasks>` または :bdg-"
 "ref-warning:`🔑TaskReadAll <TaskReadAll>`"
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:367
@@ -4738,7 +4738,7 @@ msgid ""
 "<DocumentWrite>`"
 msgstr ""
 ":bdg-ref-warning:`🔑DocumentOfInvolvedCaseWrite <DocumentOfInvolvedCaseWrite>"
-"` または:bdg-ref-warning:`🔑DocumentWrite <DocumentWrite>`"
+"` または :bdg-ref-warning:`🔑DocumentWrite <DocumentWrite>`"
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:371
 msgid "**Add note to case**"
@@ -4897,7 +4897,7 @@ msgid ""
 msgstr ""
 "プロセスのデフォルト画像を変更するには、Portal設定"
 "の**Portal.Processes.DefaultImage** を変更してください。詳細"
-"は:ref:`values_of_default_image` をご参照ください。"
+"は :ref:`values_of_default_image` をご参照ください。"
 
 #: ../../source/portal-user-guide/full-process-list/index.rst:61
 msgid "Grid Mode"
@@ -5392,8 +5392,8 @@ msgstr "タスクの詳細"
 #: ../../source/portal-user-guide/full-task-list/index.rst:85
 msgid "Access the full set of task data by clicking on `Actions` then `Details`."
 msgstr ""
-"タスクデータの全セットにアクセスするには、`Actions`をクリックし、次"
-"に`Details`をクリックしてください。"
+"タスクデータの全セットにアクセスするには、 `Actions` をクリックし、次"
+"に `Details` をクリックしてください。"
 
 #: ../../source/portal-user-guide/full-task-list/index.rst:87
 msgid "The task details page is organized into four main sections:"
@@ -6241,8 +6241,8 @@ msgid ""
 " or public dashboards."
 msgstr ""
 "**必要な権限**: ユーザーメニュー内の「**ダッシュボード設定」** メニュー項目を"
-"表示・操作できるのは、:bdg-ref-warning:`🔑DashboardWriteOwn "
-"<DashboardWriteOwn>` または:bdg-ref-warning:`🔑DashboardWritePublic "
+"表示・操作できるのは、 :bdg-ref-warning:`🔑DashboardWriteOwn "
+"<DashboardWriteOwn>` または :bdg-ref-warning:`🔑DashboardWritePublic "
 "<DashboardWritePublic>` の権限を持つユーザーのみです。これらの権限により、非"
 "公開または公開ダッシュボードの追加、編集、並べ替え、表示、非表示が可能となり"
 "ます。"
@@ -7260,7 +7260,7 @@ msgid ""
 "accessed through the bell icon in the Portal header."
 msgstr ""
 "ポータル通知システムは、重要なイベントや更新情報についてお知らせいたします。"
-"通知は、お客様の:ref:`notification settings <notification-channels>` に基づき"
+"通知は、お客様の :ref:`notification settings <notification-channels>` に基づき"
 "様々なチャネルを通じて配信され、ポータルヘッダーのベルアイコンからアクセス可"
 "能です。"
 
@@ -7285,7 +7285,7 @@ msgid ""
 "Access :ref:`notification settings <notification-channels>` directly from"
 " the panel"
 msgstr ""
-"パネルから直接:ref:`notification settings <notification-channels>` にアクセス"
+"パネルから直接 :ref:`notification settings <notification-channels>` にアクセス"
 "してください。"
 
 #: ../../source/portal-user-guide/notification/index.rst:16
@@ -7483,8 +7483,8 @@ msgid ""
 "Portal`_ for detailed configuration options."
 msgstr ""
 "ユーザー名をクリックすると、ポータルを個人用に設定するための"
-"オプションメニューが表示されます。詳細な設定オプションについては、Axon Ivy "
-"Portal`_ の「`ユーザー設定」をご参照ください。"
+"オプションメニューが表示されます。詳細な設定オプションについては、 `Axon Ivy "
+"Portal のユーザー設定`_ をご参照ください。"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:14
 msgid "**Global Search Bar**"
@@ -7497,7 +7497,7 @@ msgid ""
 " Search`_."
 msgstr ""
 "ユーザー名の横には、|search-icon| 検索バーが配置されており、ポータル全体の検"
-"索機能を提供しております。この機能の詳細については、`グローバル検索`_でご説明"
+"索機能を提供しております。この機能の詳細については、 `グローバル検索`_ でご説明"
 "しております。"
 
 #: ../../source/portal-user-guide/includes/_common-icon.rst:13
@@ -7720,7 +7720,7 @@ msgstr "**置換対象の種類：**"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:99
 msgid "**For roles**: You can choose multiple substitutes for each role"
-msgstr "**** の各役割について：各役割に対して複数の置換語を選択できます"
+msgstr "**役割** の各役割について：各役割に対して複数の置換語を選択できます"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:100
 msgid ""
@@ -8092,7 +8092,7 @@ msgstr "アクソンアイビーの翻訳サービスを利用するには："
 #: ../../source/portal-user-guide/qr-code/index.rst:32
 #: ../../source/portal-user-guide/qr-code/index.rst:42
 msgid "Open :ref:`Admin Settings <admin-settings>`"
-msgstr "開く:ref:`Admin Settings <admin-settings>`"
+msgstr " :ref:`Admin Settings <admin-settings>` を開く"
 
 #: ../../source/portal-user-guide/portal-multi-language/index.rst:29
 msgid "Set :guilabel:`Portal.TranslationService.Enable` to true"

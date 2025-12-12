@@ -244,9 +244,7 @@ msgstr "**主な利点：**"
 msgid ""
 "**Independent Upgrades**: Update Portal without affecting your "
 "applications"
-msgstr ""
-"**** ：アプリケーションに影響を与えずにポータルを更新する独立した"
-"アップグレード"
+msgstr "**独立したアップグレード**: アプリケーションに影響を与えずにポータルを更新"
 
 #: ../../source/portal-developer-guide/architecture/index.rst:77
 msgid "**Clear Boundaries**: Separate Portal functionality from business logic"
@@ -258,7 +256,7 @@ msgstr "**保守性の向上**: コンポーネントを個別にトラブルシ
 
 #: ../../source/portal-developer-guide/architecture/index.rst:79
 msgid "**Better Testing**: Test Portal updates in isolation before deployment"
-msgstr "**** のテスト環境改善：デプロイ前にポータル更新を個別にテストします"
+msgstr "**テストの改善**: テストポータルはデプロイ前に単独で更新される"
 
 #: ../../source/portal-developer-guide/architecture/index.rst:81
 msgid "|multi-app-structure|"
@@ -868,9 +866,9 @@ msgid ""
 "``Portal.DisplayMessageAfterFinishTask``, which can be configured in "
 ":ref:`Admin Settings <update-portal-settings>`."
 msgstr ""
-"グローバルなGrowl動作は、ポータル設定「` "
-"」`Portal.DisplayMessageAfterFinishTask``によって制御されます。この設定"
-"は:ref:`Admin Settings <update-portal-settings>` で構成可能です。"
+"グローバルなGrowl動作は、ポータル設定 "
+"``Portal.DisplayMessageAfterFinishTask`` によって制御されます。この設定"
+"は :ref:`管理者設定 <update-portal-settings>` で構成可能です。"
 
 #: ../../source/portal-developer-guide/components/additional-components.rst:34
 msgid "**Examples:**"
@@ -1050,7 +1048,7 @@ msgid ""
 "``HTTP 500``, or exceptions while loading a page, the Axon Ivy Engine "
 "shows a default error page:"
 msgstr ""
-"デフォルトでは、サーバーが``、HTTP 404``、``、HTTP 500``などのエラーや例外を"
+"デフォルトでは、サーバーが ``HTTP 404``、``HTTP 500`` などのエラーや例外を"
 "ページ読み込み中に検出した場合、Axon Ivy Engineはデフォルトのエラーページを表"
 "示します。"
 
@@ -1218,7 +1216,7 @@ msgid ""
 "development."
 msgstr ""
 "Portalは、ユーザー間のリアルタイムコミュニケーションのための統合チャット機能"
-"を提供します。チャット機能は主に:ref:`Admin Settings <admin-settings>` を通じ"
+"を提供します。チャット機能は主に :ref:`管理者設定 <admin-settings>` を通じ"
 "て設定され、カスタム開発を必要としません。"
 
 #: ../../source/portal-developer-guide/components/portal-chat.rst:11
@@ -1274,7 +1272,7 @@ msgid ""
 "Configure these settings in :ref:`Admin Settings <update-portal-"
 "settings>`."
 msgstr ""
-"これらの設定は:ref:`Admin Settings <update-portal-settings>` で構成してくださ"
+"これらの設定は :ref:`管理者設定 <update-portal-settings>` で構成してくださ"
 "い。"
 
 #: ../../source/portal-developer-guide/components/portal-chat.rst:36
@@ -2791,7 +2789,7 @@ msgid ""
 "implementations. The examples demonstrate correct subprocess signatures, "
 "parameter handling, and return value formats."
 msgstr ""
-"カスタム実装を構築される前に、まず `portal-developer-examples`` の ``` から開"
+"カスタム実装を構築される前に、まず ``portal-developer-examples`` のから開"
 "始してください。これらの例は、正しいサブプロセスのシグネチャ、パラメータ処理"
 "、および戻り値の形式を示しています。"
 
@@ -3814,7 +3812,7 @@ msgid ""
 "capitalized name per standards. Keep the content concise and accessible; "
 "basic HTML is supported."
 msgstr ""
-"HTMLコンテンツは、``cms/``フォルダー内のCMSオブジェクトに配置し、標準に従い大"
+"HTMLコンテンツは、``cms/`` フォルダー内のCMSオブジェクトに配置し、標準に従い大"
 "文字で始まる名前を使用してください。内容は簡潔かつアクセシブルに保ち、基本的"
 "なHTMLがサポートされます。"
 
@@ -4113,8 +4111,8 @@ msgid ""
 msgstr ""
 "Portalは、選択されたプロセスにシグナルを送信します。JSONパラメータには、"
 "タスクのUUID、ケースのUUID、コメントなどの入力情報が含まれます。ユーザー"
-"が``SWITCH``のステップタイプ（同期）を選択した場合、Portalは元のタスクを一時"
-"停止し、``HIDE``プロパティを設定します。これにより、サイドステップが完了する"
+"が ``SWITCH`` のステップタイプ（同期）を選択した場合、Portalは元のタスクを一時"
+"停止し、``HIDE`` プロパティを設定します。これにより、サイドステップが完了する"
 "まで元のタスクは待機状態となります。それ以外の場合は、サイドステップは元の"
 "タスクと並行して実行されます。"
 
@@ -4374,7 +4372,7 @@ msgid ""
 " (task business states)."
 msgstr ""
 "``filters``: レイアウトの使用を許可するタスクを決定する条件です。2種類の"
-"フィルタータイプがあります：``categories``（タスクカテゴリ）と``states``（"
+"フィルタータイプがあります：``categories`` （タスクカテゴリ）と ``states`` （"
 "タスクのビジネス状態）です。"
 
 #: ../../source/portal-developer-guide/customization/task-item-details.rst:96
@@ -4664,7 +4662,7 @@ msgid ""
 "**User Management** - Requires :bdg-ref-warning:`🔑NewsManagement "
 "<NewsManagement>` permission to manage news items"
 msgstr ""
-"**ユーザー管理** - ニュースアイテムを管理するには:bdg-ref-warning:`🔑"
+"**ユーザー管理** - ニュースアイテムを管理するには :bdg-ref-warning:`🔑"
 "NewsManagement <NewsManagement>` の権限が必要です"
 
 #: ../../source/portal-developer-guide/dashboard/dashboard-newsfeed-widget.rst:15
@@ -4961,7 +4959,7 @@ msgstr "**高さ**: 最小``h: 5`` で少なくとも2～3件のニュース項�
 
 #: ../../source/portal-developer-guide/dashboard/dashboard-newsfeed-widget.rst:142
 msgid "**Position**: Place in prominent location (top-right or top-left)"
-msgstr "**** の配置：目立つ位置（右上または左上）に配置してください。"
+msgstr "**の配置**：目立つ位置（右上または左上）に配置してください。"
 
 #: ../../source/portal-developer-guide/dashboard/dashboard-newsfeed-widget.rst:143
 msgid "**Fullscreen**: Keep ``showFullscreenMode: true`` for user convenience"
@@ -4982,7 +4980,7 @@ msgid ""
 "User must have :bdg-ref-warning:`🔑NewsManagement <NewsManagement>` "
 "permission"
 msgstr ""
-"ユーザーは:bdg-ref-warning:`🔑NewsManagement <NewsManagement>` 権限を持ってい"
+"ユーザーは :bdg-ref-warning:`🔑NewsManagement <NewsManagement>` 権限を持ってい"
 "る必要があります。"
 
 #: ../../source/portal-developer-guide/dashboard/dashboard-newsfeed-widget.rst:151
@@ -5089,7 +5087,7 @@ msgstr "例：``\"default-portal-dashboard-template\"``"
 #: ../../source/portal-developer-guide/dashboard/index.rst:129
 msgid "See :ref:`Dashboard Templates <customization-dashboard-templates>` section"
 msgstr ""
-"詳細は:ref:`Dashboard Templates <customization-dashboard-templates>` の"
+"詳細は :ref:`Dashboard Templates <customization-dashboard-templates>` の"
 "セクションをご参照ください。"
 
 #: ../../source/portal-developer-guide/dashboard/index.rst:131
@@ -5334,7 +5332,7 @@ msgid ""
 "Each entry contains ``locale`` (language code) and ``value`` (translated "
 "text)"
 msgstr ""
-"各エントリには、``locale``（言語コード）と``value``（翻訳済みテキスト）が含ま"
+"各エントリには、 ``locale`` （言語コード）と ``value`` （翻訳済みテキスト）が含ま"
 "れます。"
 
 #: ../../source/portal-developer-guide/dashboard/index.rst:266
@@ -5370,7 +5368,7 @@ msgid ""
 "default."
 msgstr ""
 "メニュー項目の名称は、ユーザーの言語設定に従います。一致するロケールが見つか"
-"らない場合、``names``配列の最初の項目がデフォルトとして使用されます。"
+"らない場合、``names`` 配列の最初の項目がデフォルトとして使用されます。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:4
 msgid "Configure Case Widget"
@@ -5970,7 +5968,7 @@ msgstr "**列の設定**"
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:185
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:170
 msgid "Each column object in the ``columns`` array:"
-msgstr "``columns``配列内の各列オブジェクト："
+msgstr "``columns`` 配列内の各列オブジェクト："
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:195
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:245
@@ -7078,9 +7076,9 @@ msgid ""
 "Process for the Custom Widget<define-an-ivy-process-for-the-custom-"
 "widget>`."
 msgstr ""
-"JSONでパラメータを定義する前に、Ivyプロセスパラメータが:ref:`Define An Ivy "
-"Process for the Custom Widget<define-an-ivy-process-for-the-custom-widget>` "
-"に記載されている通り、``type__name``形式に従っていることをご確認ください。"
+"JSONでパラメータを定義する前に、Ivyプロセスパラメータが :ref:`カスタムウィジェットの Ivy プロセスの定義 "
+"<define-an-ivy-process-for-the-custom-widget>` "
+"に記載されている通り、``type__name`` 形式に従っていることをご確認ください。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-custom-widget.rst:223
 msgid "Parameter Type Examples"
@@ -7376,7 +7374,7 @@ msgstr "``visualType`` (文字列、デフォルト:``\"ICON\"``)"
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:128
 msgid "Visual style: ``\"ICON\"`` (icon display) or ``\"IMAGE\"`` (custom image)"
 msgstr ""
-"視覚的スタイル：``\"ICON\"``（アイコン表示）または``\"IMAGE\"``（カスタム画像"
+"視覚的スタイル：``\"ICON\"`` （アイコン表示）または ``\"IMAGE\"`` （カスタム画像"
 "）"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:130
@@ -7471,8 +7469,8 @@ msgid ""
 "For icon-based navigation, browse available Streamline icons in the `HTML"
 " Dialog Demo <https://market.axonivy.com/html-dialog-demo>`_."
 msgstr ""
-"アイコンベースのナビゲーションについては、`HTML ダイアログ デモ（<https://"
-"market.axonivy.com/html-dialog-demo>`_ ）で利用可能な Streamline アイコンをご"
+"アイコンベースのナビゲーションについては、`HTML ダイアログ デモ <https://"
+"market.axonivy.com/html-dialog-demo>`_ で利用可能な Streamline アイコンをご"
 "覧ください。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-notification-widget.rst:4
@@ -7753,7 +7751,7 @@ msgid ""
 "Sort order: ``\"ALPHABETICALLY\"`` or ``\"SORTING_INDEX\"`` (requires "
 "custom field)"
 msgstr ""
-"ソート順序：``、\"ALPHABETICALLY\"``、または``、\"SORTING_INDEX\"``（"
+"ソート順序：``、\"ALPHABETICALLY\"``、または``、\"SORTING_INDEX\"`` （"
 "カスタムフィールドが必要です）"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:196
@@ -8302,7 +8300,7 @@ msgid ""
 "``\"startTimestamp\"``)"
 msgstr ""
 "ソート用のデフォルト列（例"
-"：``\"name\"``,``\"priority\"``,``\"startTimestamp\"``）"
+"：``\"name\"``,``\"priority\"``,``\"startTimestamp\"`` ）"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:144
 msgid "``sortDescending`` (boolean, default: ``false``)"
@@ -8346,7 +8344,7 @@ msgid ""
 "``Portal.Cases.EnableOwner`` setting)"
 msgstr ""
 "現在のユーザーがケース所有者であるタスクのみをフィルタリングします"
-"（``Portal.Cases.EnableOwner``設定が必要です）"
+"（ ``Portal.Cases.EnableOwner`` 設定が必要です）"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:165
 msgid "``isTopMenu`` (boolean, default: ``false``)"
@@ -8809,8 +8807,8 @@ msgid ""
 "demo>`_."
 msgstr ""
 "**アイコンの選択：** PortalはStreamlineアイコンをサポートしております。利用可"
-"能なアイコンは、`HTMLダイアログデモ（<https://market.axonivy.com/html-dialog-"
-"demo>`_ ）でご確認いただけます。"
+"能なアイコンは、`HTMLダイアログデモ <https://market.axonivy.com/html-dialog-"
+"demo>`_ でご確認いただけます。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-template.rst:129
 msgid ""
@@ -9048,7 +9046,7 @@ msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-welcome-widget.rst:161
 msgid "**Morning** (6 AM - 12 PM): \"Good morning\""
-msgstr "**** 朝（午前6時～正午）：「おはようございます」"
+msgstr "**朝** （午前6時～正午） ：おはようございます"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-welcome-widget.rst:162
 msgid "**Afternoon** (12 PM - 6 PM): \"Good afternoon\""
@@ -9073,7 +9071,7 @@ msgid ""
 " etc.) are managed automatically by Portal."
 msgstr ""
 "背景画像は、Portalウィジェットの設定UIから直接アップロードできます。画像の"
-"プロパティ（``、imageLocation``、``、imageType``など）は、Portalによって自動"
+"プロパティ（ ``imageLocation``、``imageType`` など）は、Portalによって自動"
 "的に管理されます。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-welcome-widget.rst:172
@@ -9461,7 +9459,7 @@ msgstr "**ビジネスアプリケーションパッケージ** （例：会計�
 
 #: ../../source/portal-developer-guide/deployment/index.rst:105
 msgid "``portal-components.iar`` (only if using Portal UI components)"
-msgstr "``portal-components.iar``（Portal UI コンポーネントを使用する場合のみ）"
+msgstr "``portal-components.iar`` （Portal UI コンポーネントを使用する場合のみ）"
 
 #: ../../source/portal-developer-guide/deployment/index.rst:106
 msgid "``accounting.iar`` (your project)"
@@ -9589,7 +9587,7 @@ msgstr "ファイルシステム経由："
 #: ../../source/portal-developer-guide/deployment/index.rst:166
 msgid "Copy .zip file to ``<engine>/deploy/`` directory (auto-deployed)"
 msgstr ""
-".zipファイルを``<engine>/deploy/``ディレクトリ（自動デプロイ済み）にコピーし"
+".zipファイルを ``<engine>/deploy/`` ディレクトリ（自動デプロイ済み）にコピーし"
 "てください。"
 
 #: ../../source/portal-developer-guide/deployment/index.rst:168
@@ -9795,7 +9793,7 @@ msgid ""
 "Application-specific settings. See :ref:`Admin Settings <portal-"
 "available-settings>`."
 msgstr ""
-"アプリケーション固有の設定。詳細は:ref:`Admin Settings <portal-available-"
+"アプリケーション固有の設定。詳細は :ref:`管理者設定 <portal-available-"
 "settings>` をご参照ください。"
 
 #: ../../source/portal-developer-guide/deployment/index.rst:260
@@ -9804,7 +9802,7 @@ msgstr "データベース接続"
 
 #: ../../source/portal-developer-guide/deployment/index.rst:261
 msgid "Configure in ``config/databases/`` directory."
-msgstr "設定は `config/databases/`` ディレクトリ内の ``` で行ってください。"
+msgstr "設定は ``config/databases/`` ディレクトリ内ので行ってください。"
 
 #: ../../source/portal-developer-guide/deployment/index.rst:263
 msgid "REST Client Configurations"
@@ -9812,7 +9810,7 @@ msgstr "RESTクライアントの設定"
 
 #: ../../source/portal-developer-guide/deployment/index.rst:264
 msgid "Configure in ``config/rest-clients/`` directory."
-msgstr "設定は `config/rest-clients/`` ディレクトリ内の ``` にて行ってください。"
+msgstr "設定は ``config/rest-clients/`` ディレクトリ内のにて行ってください。"
 
 #: ../../source/portal-developer-guide/deployment/index.rst:266
 #: ../../source/portal-developer-guide/settings/index.rst:42
@@ -10427,7 +10425,7 @@ msgstr "``processChainDirection`` (文字列)"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:143
 msgid "``\"VERTICAL\"`` or ``\"HORIZONTAL\"``."
-msgstr "``\"VERTICAL\"`` または``\"HORIZONTAL\"``。"
+msgstr "``\"VERTICAL\"`` または ``\"HORIZONTAL\"``。"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:145
 msgid "``processChainShape`` (string)"
@@ -10435,7 +10433,7 @@ msgstr "``processChainShape`` (文字列)"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:146
 msgid "``\"LINE\"`` or ``\"CIRCLE\"``."
-msgstr "``\"LINE\"`` または``\"CIRCLE\"``。"
+msgstr "``\"LINE\"`` または ``\"CIRCLE\"``。"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:149
 msgid "Task Actions"
@@ -12740,7 +12738,7 @@ msgid ""
 "<admin-settings>` rather than custom code, making customization easier "
 "and more maintainable."
 msgstr ""
-"ポータルの機能の大半は、カスタムコードではなく:ref:`Admin Settings <admin-"
+"ポータルの機能の大半は、カスタムコードではなく :ref:`管理者設定 <admin-"
 "settings>` を通じて設定されるようになりました。これによりカスタマイズが容易に"
 "なり、保守性も向上しております。"
 
@@ -12783,7 +12781,7 @@ msgid ""
 "Visit the `Axon Ivy Community <https://community.axonivy.com/>`_ for "
 "questions"
 msgstr ""
-"ご質問は、`Axon Ivy Community（<https://community.axonivy.com/>`_ ）までお願"
+"ご質問は、`Axon Ivy コミュニティ <https://community.axonivy.com/>`_ までお願"
 "いいたします。"
 
 #: ../../source/portal-developer-guide/introduction/index.rst:57
@@ -13643,7 +13641,7 @@ msgid ""
 "**Test Thoroughly**: Verify permission configurations with users from "
 "different roles"
 msgstr ""
-"**** を徹底的にテストしてください：異なる役割のユーザーによる権限設定を確認し"
+"**徹底的なテスト**: 異なる役割のユーザーによる権限設定を確認し"
 "てください"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:35
@@ -14100,7 +14098,7 @@ msgstr "タスクインターフェースにリセット操作ボタンを表示
 msgid ""
 "Requires corresponding :bdg-ref-warning:`🔑TaskReset <TaskReset>` "
 "permission to execute"
-msgstr "対応する:bdg-ref-warning:`🔑TaskReset <TaskReset>` 権限が必要です。"
+msgstr "実行するには対応する :bdg-ref-warning:`🔑TaskReset <TaskReset>` 権限が必要です。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:223
 msgid "TaskDisplayReserveAction"
@@ -14119,7 +14117,7 @@ msgid ""
 "Requires :bdg-ref-warning:`🔑TaskParkOwnWorkingTask "
 "<TaskParkOwnWorkingTask>` to execute"
 msgstr ""
-"実行には:bdg-ref-warning:`🔑TaskParkOwnWorkingTask <TaskParkOwnWorkingTask>` "
+"実行には :bdg-ref-warning:`🔑TaskParkOwnWorkingTask <TaskParkOwnWorkingTask>` "
 "が必要です。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:231
@@ -14343,8 +14341,8 @@ msgid ""
 "Requires :bdg-ref-warning:`🔑TaskReadOwnCaseTasks <TaskReadOwnCaseTasks>` "
 "or :bdg-ref-warning:`🔑TaskReadAll <TaskReadAll>` to view tasks"
 msgstr ""
-"タスクを表示するには、:bdg-ref-warning:`🔑TaskReadOwnCaseTasks "
-"<TaskReadOwnCaseTasks>` または:bdg-ref-warning:`🔑TaskReadAll <TaskReadAll>` "
+"タスクを表示するには :bdg-ref-warning:`🔑TaskReadOwnCaseTasks "
+"<TaskReadOwnCaseTasks>` または :bdg-ref-warning:`🔑TaskReadAll <TaskReadAll>` "
 "が必要です。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:328
@@ -14436,7 +14434,7 @@ msgstr ""
 
 #: ../../source/portal-developer-guide/permissions/index.rst:364
 msgid "See :ref:`full-process-list` for details"
-msgstr "詳細は:ref:`full-process-list` をご参照ください。"
+msgstr "詳細は :ref:`full-process-list` をご参照ください。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:369
 msgid "AccessFullTaskList"
@@ -14461,7 +14459,7 @@ msgstr ""
 
 #: ../../source/portal-developer-guide/permissions/index.rst:373
 msgid "See :ref:`full-task-list` for details"
-msgstr "詳細は:ref:`full-task-list` をご参照ください。"
+msgstr "詳細は :ref:`full-task-list` をご参照ください。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:378
 msgid "AccessFullCaseList"
@@ -14484,7 +14482,7 @@ msgstr "左メニューに「ケース」を表示します"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:382
 msgid "See :ref:`full-case-list` for details"
-msgstr "詳細は:ref:`full-case-list` をご参照ください。"
+msgstr "詳細は :ref:`full-case-list` をご参照ください。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:385
 msgid "**Dashboard Permissions**"
@@ -15072,16 +15070,16 @@ msgid ""
 "ref-warning:`🔑TaskWriteActivator <TaskWriteActivator>`, :bdg-ref-"
 "warning:`🔑TaskWriteDelayTimestamp <TaskWriteDelayTimestamp>`"
 msgstr ""
-"**タスク権限:** :bdg-ref-warning:`🔑TaskReadAll <TaskReadAll>`,:bdg-ref-"
-"warning:`🔑TaskReadOwnCaseTasks <TaskReadOwnCaseTasks>`,:bdg-ref-warning:`🔑"
-"TaskParkOwnWorkingTask <TaskParkOwnWorkingTask>`,:bdg-ref-warning:`🔑"
-"TaskResetOwnWorkingTask <TaskResetOwnWorkingTask>`,:bdg-ref-warning:`🔑"
-"TaskReset <TaskReset>`,:bdg-ref-warning:`🔑TaskDestroy <TaskDestroy>`,:bdg-"
-"ref-warning:`🔑TaskWriteName <TaskWriteName>`,:bdg-ref-warning:`🔑"
-"TaskWriteDescription <TaskWriteDescription>`,:bdg-ref-warning:`🔑"
-"TaskWriteOriginalPriority <TaskWriteOriginalPriority>`,:bdg-ref-warning:`🔑"
-"TaskWriteExpiryTimestamp <TaskWriteExpiryTimestamp>`,:bdg-ref-warning:`🔑"
-"TaskWriteActivator <TaskWriteActivator>`,:bdg-ref-warning:`🔑"
+"**タスク権限:** :bdg-ref-warning:`🔑TaskReadAll <TaskReadAll>`, :bdg-ref-"
+"warning:`🔑TaskReadOwnCaseTasks <TaskReadOwnCaseTasks>`, :bdg-ref-warning:`🔑"
+"TaskParkOwnWorkingTask <TaskParkOwnWorkingTask>`, :bdg-ref-warning:`🔑"
+"TaskResetOwnWorkingTask <TaskResetOwnWorkingTask>`, :bdg-ref-warning:`🔑"
+"TaskReset <TaskReset>`, :bdg-ref-warning:`🔑TaskDestroy <TaskDestroy>`, :bdg-"
+"ref-warning:`🔑TaskWriteName <TaskWriteName>`, :bdg-ref-warning:`🔑"
+"TaskWriteDescription <TaskWriteDescription>`, :bdg-ref-warning:`🔑"
+"TaskWriteOriginalPriority <TaskWriteOriginalPriority>`,  :bdg-ref-warning:`🔑"
+"TaskWriteExpiryTimestamp <TaskWriteExpiryTimestamp>`, :bdg-ref-warning:`🔑"
+"TaskWriteActivator <TaskWriteActivator>`, :bdg-ref-warning:`🔑"
 "TaskWriteDelayTimestamp <TaskWriteDelayTimestamp>`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:652
@@ -15092,8 +15090,8 @@ msgid ""
 "warning:`🔑CaseWriteDescription <CaseWriteDescription>`"
 msgstr ""
 "**ケース別アクセス権限：** :bdg-ref-warning:`🔑CaseReadAll <CaseReadAll>"
-"`,:bdg-ref-warning:`🔑CaseDestroy <CaseDestroy>`,:bdg-ref-warning:`🔑"
-"CaseWriteName <CaseWriteName>`,:bdg-ref-warning:`🔑CaseWriteDescription "
+"`, :bdg-ref-warning:`🔑CaseDestroy <CaseDestroy>`, :bdg-ref-warning:`🔑"
+"CaseWriteName <CaseWriteName>`, :bdg-ref-warning:`🔑CaseWriteDescription "
 "<CaseWriteDescription>`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:655
@@ -15114,7 +15112,7 @@ msgid ""
 "ref-warning:`🔑DocumentOfInvolvedCaseWrite <DocumentOfInvolvedCaseWrite>`"
 msgstr ""
 "**ドキュメントの許可:** :bdg-ref-warning:`🔑DocumentRead <DocumentRead>"
-"`,:bdg-ref-warning:`🔑DocumentWrite <DocumentWrite>`,:bdg-ref-warning:`🔑"
+"`, :bdg-ref-warning:`🔑DocumentWrite <DocumentWrite>`, :bdg-ref-warning:`🔑"
 "DocumentOfInvolvedCaseWrite <DocumentOfInvolvedCaseWrite>`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:661
@@ -15238,7 +15236,7 @@ msgid ""
 "**Admin Settings UI**: See :ref:`update-portal-settings` for user-"
 "friendly configuration"
 msgstr ""
-"**管理設定 UI**: ユーザーフレンドリーな設定については:ref:`update-portal-"
+"**管理設定 UI**: ユーザーフレンドリーな設定については :ref:`update-portal-"
 "settings` をご参照ください"
 
 #: ../../source/portal-developer-guide/settings/index.rst:45
@@ -15294,8 +15292,8 @@ msgid ""
 "Add a new column at the end with the language locale code (e.g., ``it`` "
 "for Italian)"
 msgstr ""
-"最後に新しい列を追加し、言語ロケールコードを記載してください（例：``it``（"
-"イタリア語の場合））。"
+"最後に新しい列を追加し、言語ロケールコードを記載してください（例： ``it`` "
+"（イタリア語の場合））。"
 
 #: ../../source/portal-developer-guide/settings/index.rst:67
 msgid ""
@@ -15303,7 +15301,7 @@ msgid ""
 "<https://www.oracle.com/java/technologies/javase/jdk21-suported-"
 "locales.html>`_ for supported locale codes"
 msgstr ""
-"対応ロケールコードについては、`および Java 対応ロケール<https://"
+"対応ロケールコードについては、 `Java 対応ロケール <https://"
 "www.oracle.com/java/technologies/javase/jdk21-suported-locales.html>`_ を参照"
 "してください。"
 
@@ -15481,7 +15479,7 @@ msgid ""
 "Administrators with :bdg-ref-warning:`🔑TaskReadAll <TaskReadAll>` and "
 ":bdg-ref-warning:`🔑CaseReadAll <CaseReadAll>` can see all tasks/cases"
 msgstr ""
-":bdg-ref-warning:`🔑TaskReadAll <TaskReadAll>` および:bdg-ref-warning:`🔑"
+":bdg-ref-warning:`🔑TaskReadAll <TaskReadAll>` および :bdg-ref-warning:`🔑"
 "CaseReadAll <CaseReadAll>` の管理者様は、すべてのタスク/ケースをご覧になれま"
 "す。"
 
@@ -15534,8 +15532,8 @@ msgid ""
 "<TaskDisplayDelegateAction>` and :bdg-ref-warning:`🔑TaskWriteActivator "
 "<TaskWriteActivator>`"
 msgstr ""
-"デリゲートアクションの参照先：:bdg-ref-warning:`🔑TaskDisplayDelegateAction "
-"<TaskDisplayDelegateAction>` および:bdg-ref-warning:`🔑TaskWriteActivator "
+"デリゲートアクションの参照先： :bdg-ref-warning:`🔑TaskDisplayDelegateAction "
+"<TaskDisplayDelegateAction>` および :bdg-ref-warning:`🔑TaskWriteActivator "
 "<TaskWriteActivator>`"
 
 #: ../../source/portal-developer-guide/settings/index.rst:149
@@ -15584,9 +15582,9 @@ msgid ""
 "<TaskResetOwnWorkingTask>` or :bdg-ref-warning:`🔑TaskResetReadyForJoin "
 "<TaskResetReadyForJoin>` or :bdg-ref-warning:`🔑TaskReset <TaskReset>`"
 msgstr ""
-"タスクをリセットするには：:bdg-ref-warning:`🔑TaskResetOwnWorkingTask "
-"<TaskResetOwnWorkingTask>` または:bdg-ref-warning:`🔑TaskResetReadyForJoin "
-"<TaskResetReadyForJoin>` または:bdg-ref-warning:`🔑TaskReset <TaskReset>`"
+"タスクをリセットするには： :bdg-ref-warning:`🔑TaskResetOwnWorkingTask "
+"<TaskResetOwnWorkingTask>` または :bdg-ref-warning:`🔑TaskResetReadyForJoin "
+"<TaskResetReadyForJoin>` または :bdg-ref-warning:`🔑TaskReset <TaskReset>`"
 
 #: ../../source/portal-developer-guide/settings/index.rst:165
 #: ../../source/portal-developer-guide/settings/index.rst:237
@@ -15791,8 +15789,8 @@ msgid ""
 "To view related tasks: :bdg-ref-warning:`🔑TaskReadOwnCaseTasks "
 "<TaskReadOwnCaseTasks>` or :bdg-ref-warning:`🔑TaskReadAll <TaskReadAll>`"
 msgstr ""
-"関連タスクの閲覧はこちら：:bdg-ref-warning:`🔑TaskReadOwnCaseTasks "
-"<TaskReadOwnCaseTasks>` または:bdg-ref-warning:`🔑TaskReadAll <TaskReadAll>`"
+"関連タスクの閲覧はこちら： :bdg-ref-warning:`🔑TaskReadOwnCaseTasks "
+"<TaskReadOwnCaseTasks>` または :bdg-ref-warning:`🔑TaskReadAll <TaskReadAll>`"
 
 #: ../../source/portal-developer-guide/settings/index.rst:261
 msgid "**Display Show Detail Link**"
@@ -16564,7 +16562,7 @@ msgstr "**手順：静的ページの作成方法**"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:35
 msgid "Create XHTML file in ``webContent/view/`` directory"
-msgstr "XHTMLファイルを``ディレクトリの`webContent/view/``に作成してください。"
+msgstr "XHTMLファイルを ``webContent/view/`` ディレクトリに作成してください。"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:36
 msgid "Choose appropriate Portal layout template"
@@ -16603,7 +16601,7 @@ msgid ""
 "Organize related pages in subdirectories (e.g., ``help/``, "
 "``documentation/``) to maintain a clean structure."
 msgstr ""
-"関連するページはサブディレクトリに整理し（例：``help/``,``documentation/``）"
+"関連するページはサブディレクトリに整理し（例： ``help/``, ``documentation/``）"
 "、構造を明確に保ってください。"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:73
@@ -17297,7 +17295,7 @@ msgid ""
 "Check cookie domain/path and ``Secure``/``SameSite`` attributes; align "
 "proxy scheme (HTTPS) and forwarded headers"
 msgstr ""
-"クッキーのドメイン/パスおよび``、`Secure``、```、`SameSite``属性を確認し、"
+"クッキーのドメイン/パスおよび ``Secure``/``SameSite`` 属性を確認し、"
 "プロキシスキーム（HTTPS）と転送ヘッダーを整合させてください。"
 
 #: ../../source/portal-developer-guide/troubleshooting/index.rst:66
@@ -17782,15 +17780,15 @@ msgstr "このメニュー項目を表示できるユーザー、ロール、ま
 msgid ""
 "**Roles:** Role names (e.g., ``\"Employee\"``, "
 "``\"AXONIVY_PORTAL_ADMIN\"``)"
-msgstr "**ロール:** ロール名 (例:``\"Employee\"``,``\"AXONIVY_PORTAL_ADMIN\"``)"
+msgstr "**ロール:** ロール名 (例: ``\"Employee\"``, ``\"AXONIVY_PORTAL_ADMIN\"``)"
 
 #: ../../source/portal-developer-guide/usermenu/index.rst:108
 msgid ""
 "**Users:** Username prefixed with ``#`` (e.g., ``\"#john.doe\"``, "
 "``\"#admin\"``)"
 msgstr ""
-"**#`ユーザー:** ユーザー名は`` で始まるもの "
-"(例:``\"#john.doe\"``,``\"#admin\"``)"
+"**ユーザー:** ユーザー名は ``#`` で始まるもの "
+"(例: ``\"#john.doe\"``, ``\"#admin\"``)"
 
 #: ../../source/portal-developer-guide/usermenu/index.rst:109
 msgid "**Multiple entries:** User sees item if they match ANY permission"
