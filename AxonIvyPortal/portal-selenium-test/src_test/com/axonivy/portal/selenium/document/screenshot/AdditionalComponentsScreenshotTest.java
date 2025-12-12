@@ -73,6 +73,7 @@ public class AdditionalComponentsScreenshotTest extends ScreenshotBaseTest {
     redirectToRelativeLink(viewAlphaCompanyProcessHistoryUrl);
     ProcessHistoryPage processHistoryPage = new ProcessHistoryPage();
     ScreenshotUtils.resizeBrowser(new Dimension(1500, 600));
+    processHistoryPage.clickNameHeader();
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.COMPONENTS_FOLDER + "process-history-example");
 
     redirectToRelativeLink(viewBetaCompanyProcessHistoryInDialogUrl);
@@ -99,6 +100,10 @@ public class AdditionalComponentsScreenshotTest extends ScreenshotBaseTest {
     ScreenshotUtils.resizeBrowser(new Dimension(1920, 1080));
     UserSelectionComponentPage userSelectionComponentPage = new UserSelectionComponentPage();
 
+    // Capture the 'user-selection-component-ajax-event-selected-message' action
+    // Moved here to ensure the animation finishes before the screenshot
+    userSelectionComponentPage.selectFirstItemForAjaxEventUserSelectionComponent("Backend Developer 1");
+
     userSelectionComponentPage.selectFirstItemForNormalUserSelectionComponent("Backend Developer 1");
     ScreenshotUtils.captureElementScreenshot(userSelectionComponentPage.getNormalUserSelectionComponent(),
         ScreenshotUtils.COMPONENTS_FOLDER + "user-selection-component");
@@ -109,7 +114,7 @@ public class AdditionalComponentsScreenshotTest extends ScreenshotBaseTest {
         ScreenshotUtils.COMPONENTS_FOLDER + "user-selection-component-floating-label",
         new ScreenshotMargin(30, 0, 0, 0));
 
-    userSelectionComponentPage.selectFirstItemForAjaxEventUserSelectionComponent("Backend Developer 1");
+
     ScreenshotUtils.captureElementWithMarginOptionScreenshot(
         userSelectionComponentPage.getAjaxEventUserSelectionComponent(),
         ScreenshotUtils.COMPONENTS_FOLDER + "user-selection-component-ajax-event-selected-message",
@@ -131,6 +136,10 @@ public class AdditionalComponentsScreenshotTest extends ScreenshotBaseTest {
     ScreenshotUtils.captureElementScreenshot(roleSelectionComponentPage.getDefaultRoleSelectionComponent(),
         ScreenshotUtils.COMPONENTS_FOLDER + "role-selection-component");
 
+    // Capture the 'role-selection-component-ajax-event-selected-message' action
+    // Moved here to ensure the animation finishes before the screenshot
+    roleSelectionComponentPage.selectFirstItemForAjaxEventRoleSelectionComponent("Backend Developer");
+
     roleSelectionComponentPage.selectFirstItemForFloatingLabelAndExcludeRoleSelectionComponent("Everybody");
     ScreenshotUtils.captureElementWithMarginOptionScreenshot(
         roleSelectionComponentPage.getFloatingLabelAndExcludeRoleSelectionComponent(),
@@ -141,7 +150,6 @@ public class AdditionalComponentsScreenshotTest extends ScreenshotBaseTest {
     ScreenshotUtils.captureElementScreenshot(roleSelectionComponentPage.getRoleFromDefinedRoleSelectionComponent(),
         ScreenshotUtils.COMPONENTS_FOLDER + "role-selection-component-from-defined-role");
 
-    roleSelectionComponentPage.selectFirstItemForAjaxEventRoleSelectionComponent("Backend Developer");
     ScreenshotUtils.captureElementWithMarginOptionScreenshot(
         roleSelectionComponentPage.getAjaxEventRoleSelectionComponent(),
         ScreenshotUtils.COMPONENTS_FOLDER + "role-selection-component-ajax-event-selected-message",

@@ -3,10 +3,7 @@
 Task Item Details
 =================
 
-TaskItemDetails is a built-in component of Portal which contains the
-role, user, task, case and time information which users can interact with.
-To show needed task's information,
-Portal supports you to override concepts of TaskItemDetails component.
+TaskItemDetails is a built-in component of Portal which contains role, user, task, case, and time information that users can interact with. To show the needed task information, configure the TaskItemDetails component via the Portal variable rather than overriding concepts.
 
 Each TaskItemDetails contains
 
@@ -94,11 +91,11 @@ How to configure widgets in task details
 
    ``widgets``: definition of widgets in layout.
 
-   ``filters``: conditions to determine which tasks are able to use the layout. There are 2 types of filter **:** ``categories`` (task categories) and ``states`` (task business states).
+   ``filters``: conditions to determine which tasks can use the layout. There are 2 filter types: ``categories`` (task categories) and ``states`` (task business states).
 
 -  Structure of each widget inside task details layout in variable **Portal.TaskDetails**:
 
-   ``type``: There are 4 types: ``information``, ``document``, ``history``, ``custom``
+   ``type``: Supported values: ``information``, ``document``, ``history``, ``custom``
 
    ``x``: HTML DOM Style ``left`` will be calculated by formula ``x / 12 * 100%``
 
@@ -110,11 +107,11 @@ How to configure widgets in task details
 
    ``styleClass`` (optional): add CSS Classes to HTML DOM
 
-   ``style`` (optional): add inline style to HTML DOM
+   ``style`` (optional): add inline style to HTML DOM (avoid inline styles when possible).
 
    ``data`` (for custom widget): data for custom widget using iframe
 
-      ``type``: type of custom widget which is not using IFrame. There are two type ``taskItemDetailCustomPanelTop`` and ``taskItemDetailCustomPanelBottom``
+      ``type``: type of custom widget which is not using IFrame. Supported values: ``taskItemDetailCustomPanelTop`` and ``taskItemDetailCustomPanelBottom``.
 
       ``url``: URL for external website
 
@@ -216,11 +213,11 @@ There are **two steps** for adding new custom panels.
 
    ..
 
-#. To customize task details use IFrame, please make sure
+#. To customize task details using an IFrame, please make sure
 
    -  Must input parameter ``url`` if you want to use external URL.
 
-   -  Must input parameter ``ivy`` if you want to usestart process.
+   -  Must input parameter ``ivy`` if you want to start an Ivy process.
 
    -  If you usestart process, you can predefine parameter for ``params``.
 
@@ -244,7 +241,7 @@ There are **two steps** for adding new custom panels.
                      "x": 6, "y": 0, "w": 8, "h": 6
                      },
                      "data" : {
-                     "url": "https://www.axonivy.com/"
+                     "url": "https://www.lucide.dev/"
                      }
                   }
                ]
@@ -255,7 +252,7 @@ There are **two steps** for adding new custom panels.
 
       |task-customized-iframe-url|
 
-      Customized task details usingprocess start, please refer to ``TaskDetailsCustomWidgetExample`` process in ``portal-developer-examples`` for details
+      Customized task details using a process start, please refer to ``TaskDetailsCustomWidgetExample`` in ``portal-developer-examples`` for details.
 
       .. code-block:: javascript
 

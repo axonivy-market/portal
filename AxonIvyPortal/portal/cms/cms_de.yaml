@@ -1077,6 +1077,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     notificationTitle: Benachrichtigungen
     olderText: Ältere
     onlyUnread: Nur ungelesen
+    openNotifications: Benachrichtigungen öffnen
     todayText: Heute
     xDaysAgo: vor %s Tagen
     xHoursAgo: vor %s Stunden

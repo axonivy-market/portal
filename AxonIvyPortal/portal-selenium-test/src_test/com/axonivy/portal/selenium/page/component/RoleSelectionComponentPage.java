@@ -61,7 +61,7 @@ public class RoleSelectionComponentPage extends TemplatePage {
   public void openSelectionPanelForAjaxEventRoleSelectionComponent(String keyword) {
     $("input[id$='item-select-event-for-role-selection_input']").clear();
     $("input[id$='item-select-event-for-role-selection_input']").sendKeys(keyword);
-    $("span[id$='item-select-event-for-role-selection_panel']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    $("span[id$='item-select-event-for-role-selection_panel']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).hover();
   }
 
   private SelenideElement selectRoleSelection(String componentId, String keyword) {

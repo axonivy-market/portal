@@ -16,6 +16,7 @@ import org.openqa.selenium.By;
 import com.axonivy.portal.selenium.common.ComplexFilterHelper;
 import com.axonivy.portal.selenium.common.FilterOperator;
 import com.axonivy.portal.selenium.common.FilterValueType;
+import com.axonivy.portal.selenium.common.Sleeper;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
@@ -364,6 +365,7 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
   
   public void clickOnFilterOperator() {
     $("div[id$='text-filter-operator-panel']").shouldBe(getClickableCondition()).click();
+    Sleeper.sleep(300);
   }
   
 

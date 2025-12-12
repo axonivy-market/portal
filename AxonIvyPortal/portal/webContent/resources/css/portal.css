@@ -1,5 +1,26 @@
 @charset "UTF-8";
 
+/* User Settings Menu - WCAG 2.1 SC 1.4.10 Reflow Fix */
+#user-setting-container {
+  max-width: 100vw;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+
+@media screen and (max-width: 320px) {
+  #user-setting-container {
+    min-width: 100vw;
+    max-width: 100vw;
+    left: 0 !important;
+    right: 0 !important;
+  }
+  
+  #user-setting-container li {
+    white-space: normal;
+    word-wrap: break-word;
+  }
+}
+
 .portal-icon.ui-widget.si,
 .portal-icon-container .ui-widget.si,
 .ui-widget.si::before {
@@ -1545,6 +1566,7 @@ body .notification-full-scroll>.ui-datascroller-content  {
   right: 0;
   bottom: 0;
   width: 0;
+  max-width: 100vw;
   visibility: hidden;
   opacity: 0;
   transition: all .3s;
@@ -1557,16 +1579,32 @@ body .notification-full-scroll>.ui-datascroller-content  {
 }
 .notifications-panel.active {
   width: 450px;
+  max-width: 100vw;
   visibility: visible;
   opacity: 1;
   overflow: hidden;
 }
+
+@media screen and (max-width: 450px) {
+  .notifications-panel.active {
+    width: 100vw;
+  }
+}
+
 .notifications-item-list {
-  width: 450px;
+  width: 100%;
+  max-width: 450px;
   position: relative;
   z-index: 999;
   text-align: left;
   min-width: 200px;
+}
+
+@media screen and (max-width: 320px) {
+  .notifications-item-list {
+    min-width: 100%;
+    max-width: 100vw;
+  }
 }
 
 .notifications-item-time-since {

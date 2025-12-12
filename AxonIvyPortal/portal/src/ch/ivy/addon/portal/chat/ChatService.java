@@ -25,6 +25,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
+import javax.inject.Singleton;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -57,7 +58,6 @@ import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.caze.CaseBusinessState;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 import io.swagger.v3.oas.annotations.Hidden;
-import jakarta.inject.Singleton;
 
 /**
  * Chat service uses asynchronous REST communication:
@@ -92,11 +92,9 @@ public class ChatService {
   private static final String CHAT_RESPONSE_DEACTIVATE_CHAT_STATUS = "DEACTIVATE_CHAT";
   private static final String ERROR = "ERROR";
   private static final String SUCCESSFUL = "SUCCESSFUL";
-  // WORKAROUND: Make properties of this class static so all instances share the same data.
-  // The problem is @Singleton is not respected after Ivy updates.
-  private static final Map<String, Queue<ResponseInfo>> messageResponses = new ConcurrentHashMap<>();
-  private static final Map<String, List<GroupChat>> usernameToGroupChats = new ConcurrentHashMap<>();
-  private static final Map<String, Integer> reachedLimitedConnectionCounters = new ConcurrentHashMap<>();
+  private Map<String, Queue<ResponseInfo>> messageResponses = new ConcurrentHashMap<>();
+  private Map<String, List<GroupChat>> usernameToGroupChats = new ConcurrentHashMap<>();
+  private Map<String, Integer> reachedLimitedConnectionCounters = new ConcurrentHashMap<>();
   /** Only necessary if in cluster */
   private static String nodeName;
   public static final boolean IS_STANDARD_MODE = EngineMode.isNot(EngineMode.ENTERPRISE);
