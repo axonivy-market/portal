@@ -345,7 +345,7 @@
     },
     "showFullscreenMode" : true,
     "showWidgetInfo" : true,
-    "processPath" : "designer/portal-user-examples/Start Processes/SampleStatisticDashboard/createProcurementDataForSampleStatistic.ivp"
+    "processPath" : "portal-user-examples/Start Processes/SampleStatisticDashboard/createProcurementDataForSampleStatistic.ivp"
   } ],
   "permissions" : [ "Everybody" ],
   "dashboardDisplayType" : "top_menu"
