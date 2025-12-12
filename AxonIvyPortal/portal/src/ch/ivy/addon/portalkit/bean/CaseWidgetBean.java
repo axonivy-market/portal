@@ -231,11 +231,11 @@ public class CaseWidgetBean implements Serializable {
   }
   
   public String getDestroyCaseMessage() {
-    String taskName = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseList/unknownTask");
-    String taskId = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseList/unknownId");
+    String caseName = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseList/unknownCase");
+    String caseId = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseList/unknownId");
     if (this.selectedCase != null) {
       return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseList/destroyCaseMessage", List.of(this.selectedCase.names().current(), Long.toString(this.selectedCase.getId())));
     }
-    return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseList/destroyCaseMessage", List.of(taskName, taskId));
+    return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseList/destroyCaseMessage", List.of(caseName, caseId));
   }
 }
