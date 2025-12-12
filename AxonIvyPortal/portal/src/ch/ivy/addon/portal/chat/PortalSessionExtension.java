@@ -3,6 +3,7 @@ package ch.ivy.addon.portal.chat;
 import static ch.ivy.addon.portal.chat.ChatReferencesContainer.getChatService;
 import static ch.ivy.addon.portal.chat.ChatReferencesContainer.wf;
 
+import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.CompletableFuture;
 
@@ -13,6 +14,7 @@ import ch.ivyteam.ivy.request.async.IvyAsyncExecutor;
 import ch.ivyteam.ivy.security.ISecurityManager;
 import ch.ivyteam.ivy.security.ISession;
 import ch.ivyteam.ivy.security.ISessionExtension;
+import ch.ivyteam.ivy.security.exec.Sudo;
 import ch.ivyteam.log.Logger;
 
 @SuppressWarnings("restriction")
@@ -97,7 +99,8 @@ public final class PortalSessionExtension implements ISessionExtension {
 
   private boolean isLastSessionBoundToUser(ISession session) {
     String username = session.getSessionUserName();
-    return wf().getSecurityContext().sessions().all().stream()
+    List<ISession> allSessions = Sudo.get(() -> wf().getSecurityContext().sessions().all());
+    return allSessions.stream()
         .noneMatch(s -> s.getSessionUserName().equals(username) && !s.equals(session));
   }
 
