@@ -32,12 +32,12 @@ public class PasswordResetPage extends TemplatePage {
     $("[id='password-reset:reset-password-form:new-password_panel']").shouldBe(Condition.appear,
         DEFAULT_TIMEOUT);
     $(".login-footer").click();
-    $(resetButton).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-    
+    clickByJavaScript(resetButton);
+
     if (strongPasswordEnough) {
       $("[id='password-reset:reset-password-form:result-message']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     } else {
-      $("[id='password-reset:reset-password-form:password-reset-message']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+      $("span[class='ui-messages-error-summary']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     }
   }
 
@@ -51,7 +51,7 @@ public class PasswordResetPage extends TemplatePage {
   }
 
   public void isNewPasswordNotStrongEnough() {
-    findElementByCssSelector("[id='password-reset:reset-password-form:password-reset-message']")
+    findElementByCssSelector("span[class='ui-messages-error-summary']")
         .shouldBe(Condition.text(PASSWORD_WEAK_CUSTOM_MESSAGE), DEFAULT_TIMEOUT);
   }
 }
