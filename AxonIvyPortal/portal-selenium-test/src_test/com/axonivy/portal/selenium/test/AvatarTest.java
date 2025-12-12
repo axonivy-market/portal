@@ -31,8 +31,7 @@ public class AvatarTest extends BaseTest {
 
   @Test
   public void showAvatarAsDefault() {
-    updateGlobalVariable(Variable.SHOW_AVATAR.getKey(), "True"); // IVYPORTAL-19976 - default value is true, this test file run the hideAvatarWhenConfigured first
-                                                                 // then showAvatarAsDefault
+    updateGlobalVariable(Variable.SHOW_AVATAR.getKey(), "True"); 
     updateGlobalVariable(Variable.TASK_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST.getKey(), ACCESS_TASK_DETAILS);
     redirectToRelativeLink(createTestingTasksUrl);
 
@@ -46,7 +45,6 @@ public class AvatarTest extends BaseTest {
 
     // Check task list
     MainMenuPage mainMenuPage = new MainMenuPage();
-
 
     // Check task details
     mainMenuPage.openTaskList();
