@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: Portal Guide ${revision}\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-12-12 03:33+0000\n"
-"PO-Revision-Date: 2025-12-12 05:09+0000\n"
-"Last-Translator: DeepL <noreply-mt-deepl@weblate.org>\n"
+"PO-Revision-Date: 2025-12-12 11:15+0000\n"
+"Last-Translator: Thang Huynh Huu Quyet <hhqthang@axonactive.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/axonivy-portal/"
 "portal-le/doc/portal-doc-user-guide/ja/>\n"
 "Language: ja\n"
@@ -7569,71 +7569,72 @@ msgid "**Change Password**"
 msgstr "**パスワードの変更**"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:41
-#, fuzzy
 msgid "Set a new password"
-msgstr "パスワードの変更"
+msgstr "新しいパスワードを設定します"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:43
-#, fuzzy
 msgid "**Info**"
-msgstr "情報"
+msgstr "**情報**"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:43
-#, fuzzy
 msgid "Version information about Portal and Engine"
-msgstr "バージョン情報ダイアログ"
+msgstr "Portal および Engine のバージョン情報"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:45
-#, fuzzy
 msgid "**Logout**"
-msgstr "ログアウト"
+msgstr "**ログアウト**"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:45
 msgid "End your session"
-msgstr ""
+msgstr "セッションを終了します"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:49
-#, fuzzy
 msgid "Menu Option Details"
-msgstr "ビジネスの詳細"
+msgstr "メニューオプションの詳細"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:54
 msgid ""
 "The :ref:`Admin Settings <admin-settings>` menu entry provides portal "
 "administration features."
 msgstr ""
+":ref:`管理者設定 <admin-settings>` メニュー項目は、ポータル管理機能を提供しま"
+"す。"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:57
 msgid "Only users with role ``AXONIVY_PORTAL_ADMIN`` can access Admin Settings."
 msgstr ""
+"管理者設定には、 ``AXONIVY_PORTAL_ADMIN`` のロールを持つユーザーのみアクセス"
+"できます。"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:62
-#, fuzzy
 msgid ""
 "The :ref:`my-profile` menu entry contains general settings, user "
 "language, and notification channels subscription settings."
-msgstr ":ref:`my-profile` メニューエントリには、一般設定、ユーザーの言語、通知チャネルのサブスクリプションの設定が含まれます。"
+msgstr ""
+":ref:`my-profile` メニュー項目には、一般設定、ユーザー言語、および通知"
+"チャネルの購読設定が含まれています。"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:67
 msgid ""
 "The :ref:`dashboard-configuration` menu entry allows you to manage your "
 "private dashboards and public dashboards (if permitted)."
 msgstr ""
+":ref:`dashboard-configuration` メニュー項目では、プライベートダッシュボードお"
+"よび公開ダッシュボード（許可されている場合）を管理できます。"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:70
 msgid "Absences"
 msgstr "不在"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:72
-#, fuzzy
 msgid ""
 "The :guilabel:`Absences` menu entry provides an absence management "
 "component where you can enter your absences and define delegates for "
 "tasks assigned to you or the roles you hold."
 msgstr ""
-":guilabel:`不在` "
-"メニューエントリには、不在管理コンポーネントがあります。自分の不在を入力し、自分に割り当てられたタスクまたは保有するロールの 1 "
-"つに割り当てられたタスクの委任を定義できます。"
+":guilabel:`Absences` メニュー項目には、欠勤管理コンポーネントが用意されており"
+"ます。こちらではご自身の欠勤を入力し、ご自身に割り当てられたタスクや担当する"
+"役割に対する代理人を定義することが可能です。"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:74
 msgid "|portal-absences|"
@@ -7644,54 +7645,49 @@ msgid "Absences page"
 msgstr "不在ページ"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:76
-#, fuzzy
 msgid ""
 "The absence dialog displays all current and upcoming absences. You can "
 "also view past absences by activating the :guilabel:`Display absences in "
 "the past` option. Edit or delete absences using the |edit-icon| **Edit** "
 "or |trash-icon| **Delete** actions in the respective absence row."
 msgstr ""
-"ダイアログには、現在の不在日程と次の不在日程がすべて表示されます。また、:guilabel:`過去の不在を表示` "
-"オプションをアクティブにして、過去の不在を表示できます。さらに、それぞれの不在の行にある |edit-icon| **編集** または "
-"|trash-icon| **削除** アクションを使用して、不在を編集、削除できます。"
+"欠勤ダイアログでは、現在および今後のすべての欠勤が表示されます。過去の欠勤を"
+"確認するには、 :guilabel:`Display absences in the past` オプションを有効にし"
+"てください。欠勤の編集または削除は、各欠勤行の以下のアクションで行います編集 "
+"|edit-icon| **編集**  削除 |trash-icon| **削除**"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:79
-#, fuzzy
 msgid ""
 "Specify delegates only for tasks assigned directly to you. Roles are "
 "typically held by multiple users, so if you're absent, another member can"
 " handle the task."
-msgstr "保有するロールに対する委任を指定できますが、自分に直接割り当てられたタスクのみ委任を指定することを推奨します。通常、ロールは複数のユーザーが保有するため、自分が不在の場合、自分と同じロールの別のメンバーがそのタスクを引き受けることができます。"
+msgstr ""
+"ご自身に直接割り当てられたタスクについてのみ、担当者を指定してください。役割"
+"は通常複数のユーザーが担うため、ご不在の際には他のメンバーが対応可能です。"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:82
-#, fuzzy
 msgid "HowTo: Add Absence"
-msgstr "ハウツー：不在の追加"
+msgstr "手順: 欠席の追加"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:84
-#, fuzzy
 msgid "Click the :guilabel:`Add absence` button"
-msgstr ":guilabel:`不在の追加` ボタンをクリックします。"
+msgstr ":guilabel:`Add absence` ボタンをクリックしてください。"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:85
-#, fuzzy
 msgid "The :guilabel:`Add absence` dialog opens"
-msgstr ":guilabel:`不在の追加` ダイアログが開きます。"
+msgstr ":guilabel:`Add absence` ダイアログが開きます。"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:86
-#, fuzzy
 msgid "Enter :guilabel:`From` and :guilabel:`Until` dates"
-msgstr ":guilabel:`開始日` と :guilabel:`終了日` を入力します。"
+msgstr ":guilabel:`From` および :guilabel:`Until` の日付を入力してください。"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:87
-#, fuzzy
 msgid "Optionally provide an explanatory comment"
-msgstr "説明のコメントを入力できます。"
+msgstr "必要に応じて説明的なコメントを提供してください。"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:88
-#, fuzzy
 msgid "Confirm your absence by clicking the :guilabel:`Save` button"
-msgstr ":guilabel:`保存` ボタンをクリックして、不在を確定します。"
+msgstr "ご不在の確認には、 :guilabel:`Save` ボタンをクリックしてください。"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:90
 msgid "|how-to-add-an-absence|"
@@ -7702,9 +7698,8 @@ msgid "Absences page: Add new absence dialog"
 msgstr "不在ページ：新しい不在の追加ダイアログ"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:93
-#, fuzzy
 msgid "HowTo: Set Substitute"
-msgstr "ハウツー：代行者を設定する"
+msgstr "手順: 置換の設定"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:95
 msgid ""
