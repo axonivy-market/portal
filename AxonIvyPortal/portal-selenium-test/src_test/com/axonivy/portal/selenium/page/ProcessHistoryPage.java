@@ -33,4 +33,9 @@ public class ProcessHistoryPage extends TemplatePage {
     $("div[id='process-history-dialog_content']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     return $("div[id='process-history-dialog']").shouldBe(Condition.appear);
   }
+
+  public void clickNameHeader() {
+    waitForElementClickableThenClick(By.cssSelector("a[id$='name-desc-column-header']"));
+    waitForElementDisplayed(By.cssSelector("ul.ui-datascroller-list li div.js-case-item.case-list-item"), true);
+  }
 }

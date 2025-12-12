@@ -241,7 +241,7 @@ There are **two steps** for adding new custom panels.
                      "x": 6, "y": 0, "w": 8, "h": 6
                      },
                      "data" : {
-                     "url": "https://www.axonivy.com/"
+                     "url": "https://www.lucide.dev/"
                      }
                   }
                ]

@@ -29,8 +29,6 @@ The Dashboard Configuration page has two tabs:
    |                         | <DashboardWritePublic>`                           | to users with specific permissions         |
    +-------------------------+---------------------------------------------------+--------------------------------------------+
 
-|dashboard-configuration-page|
-
 Private dashboards configuration
 ================================
 
@@ -275,8 +273,6 @@ Different dashboard actions require specific permissions:
 
 .. |dashboard-configuration| image:: ../../screenshots/settings/dashboard-configuration.png
    :alt: Dashboard configuration menu
-.. |dashboard-configuration-page| image:: ../../screenshots/dashboard-configuration/dashboard-configuration-page.png
-   :alt: Dashboard configuration screen
 .. |private-dashboard-configuration| image:: ../../screenshots/dashboard-configuration/private-dashboard-configuration.png
    :alt: Private dashboard configuration
 .. |create-private-dashboard-dialog| image:: ../../screenshots/dashboard-configuration/create-private-dashboard-dialog.png

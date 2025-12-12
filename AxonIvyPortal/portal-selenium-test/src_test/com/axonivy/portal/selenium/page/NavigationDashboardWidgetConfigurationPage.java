@@ -3,6 +3,7 @@ package com.axonivy.portal.selenium.page;
 import static com.codeborne.selenide.Selenide.$;
 
 import com.axonivy.portal.selenium.common.FileHelper;
+import com.axonivy.portal.selenium.common.Sleeper;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 
@@ -42,6 +43,8 @@ public class NavigationDashboardWidgetConfigurationPage extends TemplatePage {
     
     $("div[id$=':dashboard-link-selection-menu_panel']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
     .$("ul").$$("li").filter(Condition.text(targetDashboard)).first().click();
+    
+    Sleeper.sleep(300);
   }
   
   public void selectVisualType(String visualType) {
@@ -66,15 +69,6 @@ public class NavigationDashboardWidgetConfigurationPage extends TemplatePage {
     }
   }
 
-  private void waitForVisualTypeGroup() {
-    $("form#widget-configuration-form").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
-      .$("div[id$=':line']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
-  }
-
-  private SelenideElement getVisualTypeGroup() {
-    return $("form#widget-configuration-form").$("div[id$=':line']");
-  }
-  
   public void save() {
     $("button#widget-configuration-save-button").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
     getDialog().shouldBe(Condition.disappear, DEFAULT_TIMEOUT);

@@ -3,249 +3,233 @@
 Statistic Chart
 ***************
 
-Portal's statistic charts widget empowers users with deeper insights into tasks, cases, and overall productivity through customizable visualizations.
+Introduction
+------------
 
-Overview
-========
+Portal offers an all-new statistic charts widget, designed to empower users with deeper insights into their tasks, cases, overall productivity and more customization capabilities.
 
-The statistic chart feature provides:
+How to use
+----------
 
-- **Standard Charts**: Pre-configured charts for common metrics
-- **Custom Charts**: Create personalized charts with flexible KPI configurations
-- **Multiple Chart Types**: Visualize data as Bar, Line, Pie, or Number charts
-- **Auto-Refresh**: Keep data current with configurable refresh intervals
-- **Dashboard Integration**: Add charts to any dashboard for at-a-glance insights
+To utilize the Statistic feature on the Dashboard Configuration, follow these steps:
 
-Adding Statistic Charts
-=======================
+- Navigate to Dashboard Configuration of the dashboard where you want to add the widget and select :guilabel:`Add Widget` for predefined Standard Charts or :guilabel:`Create custom statistic widget` for configuring new statistic chart.
 
-To add statistic charts to your dashboard:
-
-#. Navigate to Dashboard Configuration
-#. Choose one of the following options:
-   
-   - Select :guilabel:`Add Widget` to add pre-configured Standard Charts
-   - Select :guilabel:`Create custom statistic widget` to configure a new custom chart
-
-#. From the **Statistic Widgets** dropdown, choose your desired chart
+- From the dropdown menu labeled **Statistic Widgets**, choose from a variety of insightful charts.
 
 |statistic-widget-list-page|
 
 Available Standard Charts
-=========================
+-------------------------
 
-Portal provides pre-configured charts for common metrics:
+- Tasks By Priority
 
-.. table::
-   :widths: 25 15 60
+    |tasks-by-prior-pie-chart|
 
-   +--------------------------------------+---------------+---------------------------------------------------------------+
-   | Chart Name                           | Chart Type    | Description                                                   |
-   +======================================+===============+===============================================================+
-   | **Tasks By Priority**                | Pie / Bar /   | Displays tasks grouped by priority                            |
-   |                                      | Number        |                                                               |
-   +--------------------------------------+---------------+---------------------------------------------------------------+
-   | **Top Priority: 3 Days**             | Bar           | Tasks expiring within the next 3 days                         |
-   +--------------------------------------+---------------+---------------------------------------------------------------+
-   | **Case Category Avg. Runtime**       | Bar           | Average processing time of cases by category                  |
-   +--------------------------------------+---------------+---------------------------------------------------------------+
-   | **New Cases Per Day**                | Line          | Number of cases started per day for the last 5 days           |
-   +--------------------------------------+---------------+---------------------------------------------------------------+
-   | **Completed Cases Per Day**          | Line          | Number of cases finished per day for the last 5 days          |
-   +--------------------------------------+---------------+---------------------------------------------------------------+
-   | **Running Cases**                    | Number        | All running cases in which the user is involved               |
-   +--------------------------------------+---------------+---------------------------------------------------------------+
-   | **Tasks Expire by Week End**         | Number        | Tasks that expire by the end of the week                      |
-   +--------------------------------------+---------------+---------------------------------------------------------------+
-   | **Open Tasks**                       | Number        | All tasks the user can work on                                |
-   +--------------------------------------+---------------+---------------------------------------------------------------+
-   | **Tasks Due Today**                  | Number        | All tasks that are due today                                  |
-   +--------------------------------------+---------------+---------------------------------------------------------------+
+    - This pie chart displays all tasks by priority.
+    - Chart type: :bdg-info:`Pie`
 
-Chart Examples
---------------
+- Top Priority: 3 Days
 
-**Tasks By Priority (Pie Chart)**
+    |top-prior-chart|
 
-|tasks-by-prior-pie-chart|
+    - This chart displays all tasks that the user can work on, grouped by expiry within the next 3 days.
+    - Chart type: :bdg-info:`Bar`
 
-Displays all tasks by priority in a pie chart visualization.
+- Tasks By Priority
+ 
+    |tasks-by-prior-bar-chart|
 
-Chart type: :bdg-info:`Pie`
+    - This bar chart displays all tasks that the user can work on grouped by priority.
+    - Chart type: :bdg-info:`Bar`
 
-**Top Priority: 3 Days**
+- Case Category Avg. Runtime
 
-|top-prior-chart|
+    |avg-runtime-chart|
 
-Displays all tasks that the user can work on, grouped by expiry within the next 3 days.
+    - This chart shows the average processing time of cases by category. 
+    - Chart type: :bdg-info:`Bar`
 
-Chart type: :bdg-info:`Bar`
+- New Cases Per Day
 
-**Tasks By Priority (Bar Chart)**
+    |new-cases-chart|
 
-|tasks-by-prior-bar-chart|
+    - This chart shows the number of cases started per day for the last 5 days.
+    - Chart type: :bdg-info:`Line`
 
-Displays all tasks that the user can work on grouped by priority in a bar chart.
+- Completed Cases Per Day
 
-Chart type: :bdg-info:`Bar`
+    |completed-cases-chart|
 
-**Case Category Avg. Runtime**
+    - This chart shows the number of cases finished per day for the last 5 days.
+    - Chart type: :bdg-info:`Line`
 
-|avg-runtime-chart|
+- Running Cases
 
-Shows the average processing time of cases by category.
+    |running-cases-chart|
 
-Chart type: :bdg-info:`Bar`
+    - This chart shows all running cases in which the user is involved.
+    - Chart type: :bdg-info:`Number`
 
-**New Cases Per Day**
+- Tasks that expire by the end of the week
 
-|new-cases-chart|
+    |tasks-expire-end-week-chart|
 
-Shows the number of cases started per day for the last 5 days.
+    - This chart shows all tasks that expire by the end of the week.
+    - Chart type: :bdg-info:`Number`
 
-Chart type: :bdg-info:`Line`
+- Tasks By Priority
 
-**Completed Cases Per Day**
+    |tasks-by-prior-number-chart|
 
-|completed-cases-chart|
+    - This chart shows all tasks the user can work on by priority.
+    - Chart type: :bdg-info:`Number`
 
-Shows the number of cases finished per day for the last 5 days.
+- Open Tasks
 
-Chart type: :bdg-info:`Line`
+    |open-tasks-chart|
 
-**Running Cases**
+    - This chart shows all tasks the user can work on.
+    - Chart type: :bdg-info:`Number`
 
-|running-cases-chart|
+- Tasks Due Today
 
-Shows all running cases in which the user is involved.
+    |due-today-chart|
 
-Chart type: :bdg-info:`Number`
-
-**Tasks that Expire by the End of the Week**
-
-|tasks-expire-end-week-chart|
-
-Shows all tasks that expire by the end of the week.
-
-Chart type: :bdg-info:`Number`
-
-**Tasks By Priority (Number)**
-
-|tasks-by-prior-number-chart|
-
-Shows all tasks the user can work on by priority.
-
-Chart type: :bdg-info:`Number`
-
-**Open Tasks**
-
-|open-tasks-chart|
-
-Shows all tasks the user can work on.
-
-Chart type: :bdg-info:`Number`
-
-**Tasks Due Today**
-
-|due-today-chart|
-
-Shows all tasks that are due today.
-
-Chart type: :bdg-info:`Number`
-
-Creating Custom Statistic Charts
-================================
-
-HowTo: Create Custom Statistic Chart
+    - This chart shows all tasks that are due today.
+    - Chart type: :bdg-info:`Number`
+    
+How to configure new statistic chart
 ------------------------------------
 
-#. Navigate to Dashboard Configuration
-#. Select :guilabel:`Create custom statistic widget`
+- Navigate to Dashboard Configuration of the dashboard and select :guilabel:`Create custom statistic widget`.
 
-   |create-new-custom-statistic-widget|
+    |create-new-custom-statistic-widget|
 
-#. Fill in the configuration form to create your custom chart
+- From the configuration for statistic chart, fill in the form to create new statistic chart.
 
-   |custom-statistic-widget-configuration-page|
+    |custom-statistic-widget-configuration-page|
 
-Configuration Options
----------------------
+Advanced Configuration
+----------------------
 
-.. table::
-   :widths: 35 65
+The advanced configuration options allow you to customize your statistic charts with enhanced features for better data visualization and user interaction.
 
-   +-------------------------------------+-----------------------------------------------------------------------+
-   | Configuration Field                 | Description                                                           |
-   +=====================================+=======================================================================+
-   | **Name**                            | Name of the statistic chart                                           |
-   +-------------------------------------+-----------------------------------------------------------------------+
-   | **Description**                     | Description for the statistic chart                                   |
-   +-------------------------------------+-----------------------------------------------------------------------+
-   | **Icon**                            | Icon for custom statistic chart. Click the plus icon to see full list |
-   +-------------------------------------+-----------------------------------------------------------------------+
-   | **Chart type**                      | Type of chart: Bar, Line, Pie, or Number                              |
-   +-------------------------------------+-----------------------------------------------------------------------+
-   | **For**                             | Chart target: Task or Case                                            |
-   +-------------------------------------+-----------------------------------------------------------------------+
-   | **KPI**                             | Numeric custom fields or ``Counting``. The calculation using          |
-   |                                     | selected aggregation method will be performed on selected KPI. If     |
-   |                                     | ``Counting`` is selected, aggregation method will be disabled         |
-   +-------------------------------------+-----------------------------------------------------------------------+
-   | **Aggregation method**              | Aggregation methods: Sum, Average, Max, or Min                        |
-   +-------------------------------------+-----------------------------------------------------------------------+
-   | **Group by**                        | Aggregation to group results (depends on chart target). Number type   |
-   |                                     | aggregations are not currently supported                              |
-   +-------------------------------------+-----------------------------------------------------------------------+
-   | **Filters**                         | Complex filters (see :ref:`complex-filter`)                           |
-   +-------------------------------------+-----------------------------------------------------------------------+
-   | **Permissions**                     | Permission settings for the statistic chart                           |
-   +-------------------------------------+-----------------------------------------------------------------------+
-   | **Auto-refresh enabled**            | Enable/disable auto-refresh feature                                   |
-   +-------------------------------------+-----------------------------------------------------------------------+
-   | **Auto-refresh interval**           | Time for auto-refresh in seconds (minimum: 60)                        |
-   +-------------------------------------+-----------------------------------------------------------------------+
-   | **X axis title**                    | Title for the X axis                                                  |
-   +-------------------------------------+-----------------------------------------------------------------------+
-   | **Y axis title**                    | Title for the Y axis                                                  |
-   +-------------------------------------+-----------------------------------------------------------------------+
-   | **Color 1-8**                       | Colors for data in the chart                                          |
-   +-------------------------------------+-----------------------------------------------------------------------+
-   | **Hide label**                      | Toggle to show/hide labels on number charts                           |
-   +-------------------------------------+-----------------------------------------------------------------------+
+|advanced-settings|
 
+Chart Drill-down Enabled
+========================
 
-Example: KPI Procurement Overview
-=================================
+Enable drill-down functionality for interactive data exploration. Users can click chart elements to view detailed lists of the underlying tasks or cases.
 
-The dashboards shown below demonstrate Custom Statistics Widgets capabilities, available starting from Portal version 13.2. These widgets enable fully customizable visualization of KPIs and other information.
+- **Chart drill-down enabled**: When activated, users can click on chart elements to navigate to a detailed view of the underlying data.
 
-This example showcases procurement process dashboards that provide insights into various procurement activities.
+- All chart types support the drill-down feature.
 
-Accessing the Sample Dashboard
-------------------------------
+|drill-down dashboard|
 
-#. Run the ``portal-user-examples`` project in your Portal installation
-#. Navigate to the left menu and select :guilabel:`Sample: KPI Procurement Overview`
-#. Generate chart data by:
-   
-   - Clicking the :guilabel:`Start Process` button in the Process widget on the sample dashboard, or
-   - Finding and running the ``Procurement`` process manually
-   - Run the process multiple times to generate additional data
+- When users click a chart element, the Portal navigates to the drill-down dashboard containing a widget that shows the detailed list filtered by the selected value. Features that the user can use on the widget are the same as those on a standard widget, including sorting, complex filtering, quick search, etc.
 
-#. View the sample dashboards as shown below:
+- There is a back button on the top left corner to return to the main dashboard. When going back, all configured filters, quick search inputs and sorts on the detailed list widget are reset.
 
-   |statistic-sample-dashboard|
+.. important::
 
-Reviewing Widget Configuration
-------------------------------
+    - Users must have the necessary permissions **TaskReadAll** for task and **CaseReadAll** for case to view the detailed data when using the drill-down feature.
 
-To view the configuration of these example statistic widgets:
+Condition-based Coloring Enabled
+================================
 
-#. In the dashboard configuration page, click :guilabel:`Add widget`
-#. Look for widgets labeled as :bdg-secondary:`Example`
-#. Select :guilabel:`Edit` to view and review their configurations
+Apply dynamic coloring rules to your charts based on data conditions:
 
-   |statistic-config|
+- When deactivated, all chart elements will use the default color scheme.
+- **Condition-based coloring enabled**: When enabled, you can define rules that automatically apply different colors to chart elements based on specific conditions.
+- Condition-based coloring is available for **Bar**, **Line**, and **Pie** charts only.
+
+There are two scopes for applying condition-based coloring:
+
+    - **All values**: The coloring rules apply to all values in the chart.
+    - **Specific value**: The coloring rules apply only to specific values defined in the conditions.
+
+To make it work effectively, you need to:
+
+    - Define clear conditions.
+    - When multiple conditions are satisfied, the first condition defined wins.
+    - Keep it simple.
+
+Available values for configuring statistic chart 
+------------------------------------------------
+
+.. list-table::
+
+ * - **Value**
+   - **Usage Guideline**
+ * - Name
+   - | Name of the statistic chart.
+ * - Description
+   - | Description for the statistic chart.
+ * - Icon
+   - | Icon for custom statistic chart.
+     | Click on the plus icon at the end of the line to see full list of icons.
+ * - Chart type
+   - | Type of the chart (Bar, Line, Pie, Number).
+ * - For
+   - | Chart target (Task, Case).
+ * - KPI
+   - | List of numeric custom fields is shown alongside with `Counting`.
+     | The calculation using below aggregation method will be performed on selected KPI. 
+     | If `Counting` is selected to count numbers of tasks or cases, the aggregation method 
+     | selection will be disabled.
+ * - Aggregation method
+   - | List of 4 aggregation methods: `Sum`, `Average`, `Max`, `Min`.
+ * - Group by
+   - | Aggregation to group all the results, the drop down values depend on the chart target.
+     | Currently we don't support aggregations have type number.
+ * - Filters
+   - | Works like complex filter of Portal.
+     | Please refer to :ref:`complex-filter` for more details.
+ * - Permissions
+   - | Permission for the current statistic chart.
+ * - Auto-refresh enabled
+   - | The statistic can be auto-refreshed after a certain prediod.
+     | Click on this button to turn on/off the feature.
+ * - Auto-refresh interval (seconds)
+   - | The time for statistic chart to be auto-refreshed in second.
+     | Minimum number is 60.
+ * - X axis title
+   - | X title for the statistic chart.
+ * - Y axis title
+   - | Y title for the statistic chart.
+ * - Chart drill-down enabled
+   - | Toggle to enable/disable chart drill-down feature.
+ * - Condition-based coloring enabled
+   - | Toggle to enable/disable condition-based coloring feature. 
+ * - Color 1-8
+   - | Colors for data in the chart.
+ * - Hide label
+   - | Toggle to show label of number chart.
+
+Sample: KPI Procurement Overview
+--------------------------------
+
+The dashboards shown in the images below demonstrate the capabilities of Custom Statistics Widgets, which are available starting from version 13.2 of the Axon Ivy Portal.
+These widgets enable you to visualize KPIs and other information in a fully customizable way.
+
+Specifically, this example is designed for procurement processes, these dashboards provide insights into various aspects of procurement activities.
+
+You can access this statistic demonstration in Axon Ivy Engine Demo Mode.
+If you are working with Axon Ivy Designer, run the process :guilabel:`Init sample dashboard (UPDATE PORTAL DASHBOARD AND STATISTIC VARIABLES)`
+by yourself to set up the sample dashboards, but please be aware that this action will update the sample's configuration to your **Portal.Dashboard** and **Portal.CustomStatistic** variables.
+
+You will see the item :guilabel:`KPI Procurement Overview` in the left menu, and more data can be generated by starting the process :guilabel:`Procurement Data For Sample Statistic Dashboard`.
+
+  |statistic-sample-dashboard|
+
+You can also view the configuration of these example statistic widgets in a similar way with other statistic widgets, follow these steps:
+
+#. In the dashboard configuration page, click the :guilabel:`Add widget` button.
+#. Select :guilabel:`Edit` to review their configurations.
+
+  |statistic-config|
 
 .. |statistic-widget-list-page| image:: ../../screenshots/statistic/statistic-widget-list.png
    :alt: Statistic widget list
@@ -276,8 +260,13 @@ To view the configuration of these example statistic widgets:
 .. |create-new-custom-statistic-widget| image:: ../../screenshots/statistic/create-new-custom-statistic-widget.png
    :alt: Create new custom statistic widget
 .. |custom-statistic-widget-configuration-page| image:: ../../screenshots/statistic/custom-statistic-widget-configuration-page.png
-   :alt: Custom statistic widet configuration page
+   :alt: Custom statistic widget configuration page
+.. |advanced-settings| image:: ../../screenshots/statistic/advanced-settings.png
+   :alt: Custom statistic widget advanced settings
+.. |drill-down dashboard| image:: ../../screenshots/statistic/drill-down-dashboard.png
+   :alt: Drill-down dashboard
 .. |statistic-sample-dashboard| image:: ../../screenshots/sample-dashboard/statistic-sample-dashboard.png
    :alt: Statistic sample dashboard
 .. |statistic-config| image:: ../../screenshots/sample-dashboard/statistic-config.png
    :alt: Statistic configuration example
+

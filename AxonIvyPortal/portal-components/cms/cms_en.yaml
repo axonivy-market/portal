@@ -17,6 +17,7 @@ Dialogs:
               ProcessName: Process name
             RequiredFieldMessage: This field is required
             Save: Save
+            SideStepPrefix: 'Side step task for: '
             Task:
               Activator: Responsible
             Type: Type
@@ -93,6 +94,9 @@ Dialogs:
               EXTERNAL_LINK: External Link
               IVY_PROCESS: Business Process
             ProcessViewerIFrameTitle: Process viewer frame
+          SideStepType:
+            PARALLEL: Start a background task (parallel)
+            SWITCH: Pause this task and start process (switch)
 Labels:
   AI:
     Error:

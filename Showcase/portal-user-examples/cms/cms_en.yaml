@@ -1,3 +1,32 @@
+CustomFields:
+  Cases:
+    DaysToDecision:
+      Description: Days from request to final decision
+      Label: Days to Decision
+    Decision:
+      Description: Status of decision
+      Label: Decision
+    Department:
+      Description: Department
+      Label: Department
+    Item:
+      Description: Item
+      Label: Item
+    MonthYear:
+      Description: Month of year
+      Label: Month of Year
+    ReworkCauses:
+      Description: Causes for rework loops
+      Label: Rework causes
+    ReworkNoLoops:
+      Description: Number of process loops
+      Label: Rework loops
+    ReworkOccurred:
+      Description: Indicates if a loop was necessary
+      Label: Rework necessary
+    SpendAmount:
+      Description: Spend amount
+      Label: Spend Amount
 Dialog:
   Common:
     approve: Approve
@@ -153,13 +182,25 @@ Processes:
     approvalTaskName: Approval for leave request of {0}
     createLeaveRequest: 'Create leave request for: {0}'
     createNewLeaveRequest: 'System task: Start create new leave request'
-    description: This is a short description what you can expect behind this “Leave Request” example. Please click the button below for further information.
+    description: This process allow employee to submit their leave request, then the request will be sent to selected approver. After approver finish his task, the approval result will be sent back to requester.
     leaveRequest: Leave Request
     name: Leave Request
     rejectedTask: Your leave request is rejected
   MarketingCampaign:
     name: Marketing campaign coordination
   Procurement:
+    CreateDataProcess: Procurement Data For Sample Statistic Dashboard
+    InitConfig: Init sample dashboard (UPDATE PORTAL DASHBOARD AND STATISTIC VARIABLES)
+    SampleStatisticValue:
+      DaysToDecision: 2,5;6;2;7;4;9,4
+      Decision: Approved;Rejected;Pending
+      Department: Dep A;Dep B;Dep C;Dep D
+      Item: Laptop;Mobile;Keyboard;Tablet
+      MonthOfYear: 01;02;03;04;05;06;07
+      ReworkCauses: Missing info;Not eligible;Too expensive
+      ReworkNoLoops: 0;1;2;0;0
+      ReworkOccurred: Yes;No
+      SpendAmount: 250;300.0;400.0;122.0;234.0
     description: Run this process (many times) to generate data for Sample KPI Statistic below. Procurement information such as spend amount, department, item, month of year, days to decision, decision, rework are randomized and assigned to custom fields of case.
     name: Procurement
   UserExampleGuide:
@@ -168,13 +209,3 @@ Processes:
     comingSoon: Coming soon…
     description: 'Welcome! In this User Example Guide you will find some demo processes available in the Axon Ivy Portal. Just click on the corresponding link below to get more information. '
     name: User example guide
-SampleStatisticValue:
-  DaysToDecision: 2,5;6;2;7;4;9,4
-  Decision: Approved;Rejected;Pending
-  Department: Dep A;Dep B;Dep C;Dep D
-  Item: Laptop;Mobile;Keyboard;Tablet
-  MonthOfYear: 01;02;03;04;05;06;07
-  ReworkCauses: Missing info;Not eligible;Too expensive
-  ReworkNoLoops: 0;1;2;0;0
-  ReworkOccurred: Yes;No
-  SpendAmount: 250;300.0;400.0;122.0;234.0

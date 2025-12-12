@@ -66,3 +66,4 @@ The ``portal-developer-examples`` project provides working examples of all custo
    document-processes
    process-image
    process-information
+   side-step

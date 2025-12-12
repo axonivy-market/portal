@@ -1,3 +1,32 @@
+CustomFields:
+  Cases:
+    DaysToDecision:
+      Description: 申請から最終決定までの日数
+      Label: 決定までの日数
+    Decision:
+      Description: 決定のステータス
+      Label: 決定
+    Department:
+      Description: 部門
+      Label: 部門
+    Item:
+      Description: 項目
+      Label: 項目
+    MonthYear:
+      Description: 年月
+      Label: 年月
+    ReworkCauses:
+      Description: 手戻りループの原因
+      Label: 手戻りの原因
+    ReworkNoLoops:
+      Description: プロセスループの回数
+      Label: 手戻りループ数
+    ReworkOccurred:
+      Description: ループが必要だったかどうか
+      Label: 手戻りが必要
+    SpendAmount:
+      Description: 支出額
+      Label: 支出額
 Dialog:
   Common:
     approve: 承認
@@ -183,28 +212,30 @@ Processes:
     approvalTaskName: '{0} の休暇申請の承認'
     createLeaveRequest: '{0}の休暇申請を作成'
     createNewLeaveRequest: システムタスク：新しい休暇申請の作成を開始
-    description: これは、この「休暇申請」の例に関連して何が期待できるかについての簡単な説明です。詳細な情報を確認するには、下のボタンをクリックしてください。
+    description: このプロセスにより、従業員は休暇申請を提出でき、申請は選択された承認者に送信されます。承認者がタスクを完了すると、承認結果は申請者に返送されます。
     leaveRequest: 休暇申請
     name: 休暇申請
     rejectedTask: あなたの休暇申請は却下されました
   MarketingCampaign:
     name: マーケティングキャンペーン連携
   Procurement:
+    CreateDataProcess: サンプル統計ダッシュボード向け調達データ
+    InitConfig: 初期サンプルダッシュボード（ポータルダッシュボードと統計変数の更新）
+    SampleStatisticValue:
+      DaysToDecision: 2,5;6;2;7;4;9,4
+      Decision: 承認;却下;保留
+      Department: 部門A;部門B;部門C;部門D
+      Item: ノートパソコン;モバイル端末;キーボード;テーブル
+      MonthOfYear: 01;02;03;04;05;06;07
+      ReworkCauses: 情報不足;対象外;高すぎる
+      ReworkNoLoops: 0;1;2;0;0
+      ReworkOccurred: はい;いいえ
+      SpendAmount: 250;300.0;400.0;122.0;234.0
     description: 以下のサンプルKPI統計データを生成するため、このプロセスを（複数回）実行してください。支出額、部門、品目、年度月、決定までの日数、決定内容、手直し作業などの調達情報はランダム化され、ケースのカスタムフィールドに割り当てられます。
     name: 調達
   UserExampleGuide:
     DashboardCustomNoteWidget:
-      name: ダッシュボードカスタムウィジェット
+      name: カスタムウィジェット
     comingSoon: まもなく始まります...
     description: ようこそ！　このユーザーサンプルガイドでは、Axon Ivy ポータルで利用できるデモプロセスを紹介します。詳細については、以下の各リンクをクリックしてください。
     name: ユーザーサンプルガイド
-SampleStatisticValue:
-  DaysToDecision: 2,5;6;2;7;4;9,4
-  Decision: 承認;却下;保留
-  Department: 部門A;部門B;部門C;部門D
-  Item: ノートパソコン;モバイル端末;キーボード;テーブル
-  MonthOfYear: 01;02;03;04;05;06;07
-  ReworkCauses: 情報不足;対象外;高すぎる
-  ReworkNoLoops: 0;1;2;0;0
-  ReworkOccurred: はい;いいえ
-  SpendAmount: 250;300.0;400.0;122.0;234.0

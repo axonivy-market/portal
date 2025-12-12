@@ -50,6 +50,7 @@ public class ScreenshotUtils {
   public static final String MOBILE_FOLDER = "/mobile/";
   public static final String ACCESSIBILITY_DASHBOARD_FOLDER = "/accessibility/";
   public static final String SAMPLE_DASHBOARD_FOLDER = "/sample-dashboard/";
+  public static final String SIDE_STEP_FOLDER = "/side-step/";
 
   @PostConstruct
   public void initFolder() {

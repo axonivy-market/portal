@@ -174,6 +174,9 @@ ch.ivy.addon.portalkit.ui.jsf:
     Breadcrumb: Visualización del proceso {0}
     ProcessViewerText: Visualizador de procesos
     Title: Visualizador de procesos
+  SideStep:
+    NewSideStepMessage: Se ha creado una nueva tarea de paso lateral.
+    SideStepProcess: Iniciar proceso paralelo
   TaskDocuments:
     TaskDocumentsPageTitle: Documentos de la tarea
   adminSettings:
@@ -440,6 +443,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     StringFormat:
       DateFromTo: '%s - %s'
       TextListOut: '%s, %s,..'
+      TextWithColon: '%s: %s'
       TextWithContextInBrackets: '%s (%s: %s)'
       TextWithRoundBracket: '%s (%s)'
     TaskCaseInformation: Informaciones de tarea y caso
@@ -1071,6 +1075,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     notificationTitle: Notificaciones
     olderText: Más antiguos
     onlyUnread: Sólo no leídos
+    openNotifications: Abrir las notificaciones
     todayText: Hoy
     xDaysAgo: Hace %s días
     xHoursAgo: Hace %s horas
@@ -1391,7 +1396,6 @@ Dialogs:
               PortalDashboardDetailModification:
                 CreateCustomStatistic: Crear widget de estadísticas personalizado
                 DeleteConfirm: ¿Está seguro de que desea eliminar?
-                Example: Ejemplo
                 RemoveThisStatistic: Eliminar esta estadística personalizada
               component:
                 CustomDashboardWidget:
@@ -1464,43 +1468,43 @@ Dialogs:
             AccessibilityShortcuts:
               content: |-
                 <div class="ui-g">
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Alt + 1</span>Enfocar en la pestaña del Panel de Control
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Alt + 5</span>Enfocar en la búsqueda
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Alt + A</span>Enfocar en el primer proceso
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Tab</span>Tabbing secuencial a través de elementos
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Alt + 2</span>Enfocar en la pestaña de Procesos
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Alt + 6</span>Enfocar en la pestaña del Panel de Control
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Alt + W</span>Enfocar en la primera tarea
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Esc</span>Cerrar widgets expandidos/Cerrar menús contextuales
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Alt + 3</span>Enfocar en la pestaña de Tareas
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Alt + 7</span>Alterna la visibilidad del menú principal
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Alt + Q</span>Enfocar en el primer caso
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Enter</span>Confirmar selección
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Alt + 4</span>Enfocar en la pestaña de Casos
                     </div>
                 </div>
@@ -1763,6 +1767,8 @@ Labels:
   AndMore: 'y {0} más...  '
   AppendTask-Explain: La tarea es añadida a la secuencia después de mi tarea.
   AppendTheTask: Anexar la tarea
+  AssignToRole: Seleccionar grupo asignado
+  AssignToUser: Seleccionar usuario asignado
   Chat: Chat
   Collapse: Contraer
   Comma: ', '
@@ -1887,6 +1893,8 @@ Labels:
   SelectOperator: Seleccionar operador
   SelectValues: Seleccionar valores
   Share: Compartir
+  StepType: Tipo de paso
+  Submit: Presentar
   Task: Tarea
   TaskItemDetail: Detalles de la tarea
   TaskUser-Explain: Lista de usuario separados por coma

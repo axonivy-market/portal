@@ -348,17 +348,6 @@ _:-ms-input-placeholder, :root .task-widget .in-progress-task-checkbox, .case-wi
   vertical-align: top;
 }
 
-.case-details-document-add, .task-details-document-add {
-  display: block;
-  text-align: right;
-  padding-top: 0 !important;
-}
-
-a.case-details-document-add-link, a.task-details-document-add-link,
-span.case-details-document-add-link, span.task-details-document-add-link {
-  float: right;
-}
-
 .related-task-list-item-status {
   margin-right: 5px;
   display: block;
@@ -623,7 +612,7 @@ span.case-details-document-add-link, span.task-details-document-add-link {
 }
 
 .action-steps-panel {
-  max-width: 220px;
+  white-space: nowrap;
 }
 
 .action-steps-panel .action-icon {
@@ -640,7 +629,11 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   box-sizing: content-box;
   text-align: left;
   color: var(--text-color);
-  min-width: 160px;
+  min-width: 260px;
+}
+
+.action-steps-panel.ui-menu{
+  width: auto;
 }
 
 .case-detail-header {
@@ -761,7 +754,6 @@ span.case-details-document-add-link, span.task-details-document-add-link {
 }
 
 .case-history-checkbox, .task-history-checkbox {
-  float: right;
   font-weight: normal;
 }
 
@@ -773,13 +765,6 @@ span.case-details-document-add-link, span.task-details-document-add-link {
 
 .case-task-note-histories {
   white-space: pre-wrap;
-}
-
-.case-history-component .case-details-note-add {
-  width: 100%;
-  display: flex;
-  flex-direction: row-reverse;
-  align-items: center;
 }
 
 .case-details-related-task-table .ui-datatable-tablewrapper tbody tr td .u-truncate-text {
@@ -2695,9 +2680,14 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
   }
 }
 
-@media screen and (min-width: 64.062em) {
+.project-info-dialog {
+  width: 650px !important;
+  max-width: 100%;
+}
+
+@media screen and (max-width: 40em) {
   .project-info-dialog {
-    min-width: 600px;
+    width: 100% !important;
   }
 }
 
@@ -3050,8 +3040,9 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 
 /********************************** CHANGE PASSWORD DIALOG **********************************/
 .change-password-dialog {
-  max-width: 500px;
-  min-width: 350px;
+  width: 500px !important;
+  max-width: 100%;
+  min-width: 300px;
 }
 
 .change-password-new-password-label {
@@ -3060,7 +3051,8 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 }
 
 .change-password-tooltip {
-  width: 300px;
+  max-width: 300px;
+  word-wrap: break-word;
 }
 
 .change-password-dialog .ui-dialog-titlebar {
@@ -3069,12 +3061,26 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 
 @media screen and (max-width: 40em) {
   .change-password-dialog {
-    max-width: 96vw;
+    width: 100% !important;
+    min-width: auto;
   }
 }
 /********************************** END CHANGE PASSWORD DIALOG **********************************/
 
-/********************************** USER PROFILE **********************************/
+/********************************** CREATE NEW DASHBOARD DIALOG **********************************/
+.create-new-dashboard-dialog {
+  width: 500px !important;
+  max-width: 100%;
+}
+
+@media screen and (max-width: 40em) {
+  .create-new-dashboard-dialog {
+    width: 100% !important;
+  }
+}
+/********************************** END CREATE NEW DASHBOARD DIALOG **********************************/
+
+/********************************** USER PROFILE ***********************************/
 @media screen and (max-width: 40em) {
   .my-profile-container .card {
     height: auto !important;
@@ -4137,6 +4143,16 @@ _:-ms-fullscreen, :root .content-link-history {
   opacity: 0.5;
 }
 
+.content-field-after-escalation span.name-after-avatar {
+  text-overflow: ellipsis;
+  max-width: 85%;
+  overflow: hidden;
+}
+
+.content-field-after-escalation .has-avatar {
+  max-width: 80% !important;
+}
+
 .separator-task-detail::before {
   border-top: 1px solid var(--task-detail-separator-border-color);
 }
@@ -4199,7 +4215,11 @@ _:-ms-fullscreen, :root .content-link-history {
 }
 
 .related-task-section-header-actions,
-.related-case-section-header-actions {
+.related-case-section-header-actions,
+.case-detail-history-section-header-actions,
+.note-task-detail-section-header-actions,
+.document-case-detail-section-header-actions,
+.document-task-detail-section-header-actions {
   display: flex !important;
   align-content: start;
   padding: 0 !important;

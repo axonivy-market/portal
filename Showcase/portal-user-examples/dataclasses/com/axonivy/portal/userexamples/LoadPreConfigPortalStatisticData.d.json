@@ -1,5 +1,0 @@
-{
-  "$schema" : "https://json-schema.axonivy.com/data-class/13.2.0/data-class.json",
-  "simpleName" : "LoadPreConfigPortalStatisticData",
-  "namespace" : "com.axonivy.portal.userexamples"
-}

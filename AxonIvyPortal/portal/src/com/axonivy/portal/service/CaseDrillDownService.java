@@ -1,7 +1,6 @@
 package com.axonivy.portal.service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.apache.commons.collections.CollectionUtils;
 
