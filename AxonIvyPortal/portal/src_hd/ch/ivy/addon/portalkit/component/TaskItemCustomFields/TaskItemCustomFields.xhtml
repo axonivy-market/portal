@@ -33,8 +33,7 @@
       <h:outputText id="customFieldType" value="#{field.type()}" title="#{field.type()}" styleClass="custom-field-tooltip-target"/>
     </p:column>
   </p:dataTable>
-  <p:tooltip globalSelector="span.custom-field-tooltip-target"
-             hideEvent="mouseleave click" position="top"/>
+  <p:tooltip globalSelector="span.custom-field-tooltip-target" styleClass="custom-field-dialog-field-tooltip" hideEvent="mouseleave click"/>
   </p:dialog>
 
 </cc:implementation>
