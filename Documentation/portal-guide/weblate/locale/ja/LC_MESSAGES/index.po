@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Portal Guide ${revision}\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-14 09:18+0000\n"
+"POT-Creation-Date: 2025-12-12 03:33+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ja\n"
@@ -20,7 +20,13 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.17.0\n"
 
-#: ../../source/index.rst:2 ../../source/index.rst:4
+#: ../../source/index.rst:2 ../../source/index.rst:7
 msgid "Portal"
 msgstr "Portal"
+
+#: ../../source/index.rst:4
+msgid ""
+"Axon Ivy Portal documentation for end users, developers, and components. "
+"Use the sections below to learn, configure, and extend the Portal."
+msgstr ""
 
