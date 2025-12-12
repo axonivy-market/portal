@@ -46,7 +46,12 @@
       "config" : {
         "signature" : "createProcurementDataForSampleStatistic",
         "request" : {
-          "name" : "<%=ivy.cms.co(\"/Processes/Procurement/CreateDataProcess\")%>"
+          "name" : "<%=ivy.cms.co(\"/Processes/Procurement/CreateDataProcess\")%>",
+          "description" : "<%=ivy.cms.co(\"/Processes/Procurement/description\")%>",
+          "customFields" : [
+            { "name" : "cssIcon", "value" : "si si-shopping-cart-check" },
+            { "name" : "processImage", "value" : "<%=ivy.cms.cr(\"/Images/procurement-process\")%>" }
+          ]
         }
       },
       "visual" : {
