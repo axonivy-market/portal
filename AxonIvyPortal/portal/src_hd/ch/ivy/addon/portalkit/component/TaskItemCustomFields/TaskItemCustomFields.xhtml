@@ -8,7 +8,7 @@
 </cc:interface>
 
 <cc:implementation>
-  <p:remoteCommand name="initCustomFieldListData" actionListener="#{logic.getCustomFieldsData(cc.attrs.taskId)}"
+  <p:remoteCommand name="initCustomFieldTaskListData" actionListener="#{logic.getCustomFieldsData(cc.attrs.taskId)}"
     oncomplete="PF('task-custom-fields-dialog').show()" update="#{cc.clientId}:task-custom-fields-dialog" />
   <p:dialog id="task-custom-fields-dialog" widgetVar="task-custom-fields-dialog"
     header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/customFieldsDialog', [cc.attrs.taskId])}"
@@ -18,27 +18,23 @@
     styleClass="task-custom-fields-dialog">
   <p:dataTable id="customFieldsTable" var="field" value="#{data.customFieldList}" emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}" >
     <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/name')}" styleClass="field-name">
-      <h:outputText id="customFieldLabel" value="#{field.name()}" title="#{field.name()}"/>
-      <p:tooltip for="@previous" value="#{field.name()}" trackMouse="true" hideEvent="mouseleave click" position="bottom" styleClass="w-min"/>
+      <h:outputText id="customFieldLabel" value="#{field.name()}" styleClass="custom-field-tooltip-target" title="#{field.name()}"/>
     </p:column>
     <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/value')}" styleClass="field-value">
-      <h:outputText id="number-value" value="#{field.getOrNull()}" rendered="#{field.type() eq 'NUMBER'}">
+      <h:outputText id="number-value" value="#{field.getOrNull()}" title="#{field.getOrNull()}" styleClass="custom-field-tooltip-target" rendered="#{field.type() eq 'NUMBER'}">
         <f:convertNumber type="number" integerOnly="true" />
       </h:outputText>
-      <p:tooltip for="@previous" value="#{field.getOrNull()}" trackMouse="true" hideEvent="mouseleave click" position="bottom" styleClass="w-min"/>
-      <h:outputText id="timestamp-value" value="#{field.getOrNull()}" rendered="#{field.type() eq 'TIMESTAMP'}">
+      <h:outputText id="timestamp-value" value="#{field.getOrNull()}" title="#{field.getOrNull()}" styleClass="custom-field-tooltip-target" rendered="#{field.type() eq 'TIMESTAMP'}">
         <f:convertDateTime locale="#{localeBean.locale}" pattern="#{dateTimePatternBean.dateTimestampPattern}"/>
       </h:outputText>
-      <p:tooltip for="@previous" value="#{field.getOrNull()}" trackMouse="true" hideEvent="mouseleave click" position="bottom" styleClass="w-min"/>
-      <h:outputText id="value" value="#{field.getOrNull()}" title="#{field.getOrNull()}" rendered="#{field.type() ne 'TIMESTAMP' and field.type() ne 'NUMBER'}" />
-      <p:tooltip for="@previous" value="#{field.getOrNull()}" trackMouse="true" hideEvent="mouseleave click" position="bottom" styleClass="w-min"/>
+      <h:outputText id="value" value="#{field.getOrNull()}" title="#{field.getOrNull()}" styleClass="custom-field-tooltip-target" rendered="#{field.type() ne 'TIMESTAMP' and field.type() ne 'NUMBER'}" />
     </p:column>
     <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/type')}" styleClass="field-type">
-      <h:outputText id="customFieldType" value="#{field.type()}"/>
-      <p:tooltip for="@previous" value="#{field.type()}" trackMouse="true" hideEvent="mouseleave click" position="bottom" styleClass="w-min"/>
+      <h:outputText id="customFieldType" value="#{field.type()}" title="#{field.type()}" styleClass="custom-field-tooltip-target"/>
     </p:column>
   </p:dataTable>
-
+  <p:tooltip globalSelector="span.custom-field-tooltip-target"
+             hideEvent="mouseleave click" position="top"/>
   </p:dialog>
 
 </cc:implementation>
