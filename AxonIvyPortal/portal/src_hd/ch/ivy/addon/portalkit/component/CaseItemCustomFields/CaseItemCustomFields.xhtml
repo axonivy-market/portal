@@ -16,20 +16,25 @@
     modal="true" responsive="true" fitViewport="true"
     styleClass="case-custom-fields-dialog">
   <p:dataTable id="customFieldsTable" var="field" value="#{data.customFieldList}" emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}" >
-    <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/name')}">
+    <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/name')}" styleClass="field-name">
       <h:outputText id="customFieldLabel" value="#{field.name()}"/>
+      <p:tooltip for="@previous" value="#{field.name()}" trackMouse="true" hideEvent="mouseleave click" position="bottom" styleClass="w-min"/>
     </p:column>
-    <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/value')}">
+    <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/value')}" styleClass="field-value">
       <h:outputText id="number-value" value="#{field.getOrNull()}" rendered="#{field.type() eq 'NUMBER'}">
         <f:convertNumber type="number" integerOnly="true" />
       </h:outputText>
+      <p:tooltip for="@previous" value="#{field.getOrNull()}" trackMouse="true" hideEvent="mouseleave click" position="bottom" styleClass="w-min"/>
       <h:outputText id="timestamp-value" value="#{field.getOrNull()}" rendered="#{field.type() eq 'TIMESTAMP'}">
         <f:convertDateTime locale="#{localeBean.locale}" pattern="#{dateTimePatternBean.dateTimestampPattern}"/>
       </h:outputText>
-      <h:outputText id="value" value="#{field.getOrNull()}" rendered="#{field.type() ne 'TIMESTAMP' and field.type() ne 'NUMBER'}" />
+      <p:tooltip for="@previous" value="#{field.getOrNull()}" trackMouse="true" hideEvent="mouseleave click" position="bottom" styleClass="w-min"/>
+      <h:outputText id="value" value="#{field.getOrNull()}" title="#{field.getOrNull()}" rendered="#{field.type() ne 'TIMESTAMP' and field.type() ne 'NUMBER'}" />
+      <p:tooltip for="@previous" value="#{field.getOrNull()}" trackMouse="true" hideEvent="mouseleave click" position="bottom" styleClass="w-min"/>
     </p:column>
-    <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/type')}">
+    <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/type')}" styleClass="field-type">
       <h:outputText id="customFieldType" value="#{field.type()}"/>
+      <p:tooltip for="@previous" value="#{field.type()}" trackMouse="true" hideEvent="mouseleave click" position="bottom" styleClass="w-min"/>
     </p:column>
   </p:dataTable>
 
