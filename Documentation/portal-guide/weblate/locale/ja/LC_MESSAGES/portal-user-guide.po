@@ -10,7 +10,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-12-12 03:33+0000\n"
 "PO-Revision-Date: 2025-12-12 11:15+0000\n"
-"Last-Translator: DeepL <noreply-mt-deepl@weblate.org>\n"
+"Last-Translator: Thang Huynh Huu Quyet <hhqthang@axonactive.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/axonivy-portal/"
 "portal-le/doc/portal-doc-user-guide/ja/>\n"
 "Language: ja\n"
@@ -7597,21 +7597,21 @@ msgid ""
 "The :ref:`Admin Settings <admin-settings>` menu entry provides portal "
 "administration features."
 msgstr ""
-"「:ref:`Admin Settings <admin-settings>` 」メニュー項目は、ポータル管理機能を"
-"提供します。"
+":ref:`管理者設定 <admin-settings>` メニュー項目は、ポータル管理機能を提供しま"
+"す。"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:57
 msgid "Only users with role ``AXONIVY_PORTAL_ADMIN`` can access Admin Settings."
 msgstr ""
-"管理者設定には、``AXONIVY_PORTAL_ADMIN`` のロールを持つユーザーのみアクセスで"
-"きます。"
+"管理者設定には、 ``AXONIVY_PORTAL_ADMIN`` のロールを持つユーザーのみアクセス"
+"できます。"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:62
 msgid ""
 "The :ref:`my-profile` menu entry contains general settings, user "
 "language, and notification channels subscription settings."
 msgstr ""
-"「:ref:`my-profile` 」メニュー項目には、一般設定、ユーザー言語、および通知"
+":ref:`my-profile` メニュー項目には、一般設定、ユーザー言語、および通知"
 "チャネルの購読設定が含まれています。"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:67
@@ -7619,9 +7619,8 @@ msgid ""
 "The :ref:`dashboard-configuration` menu entry allows you to manage your "
 "private dashboards and public dashboards (if permitted)."
 msgstr ""
-"「:ref:`dashboard-configuration` 」メニュー項目では、"
-"プライベートダッシュボードおよび公開ダッシュボード（許可されている場合）を管"
-"理できます。"
+":ref:`dashboard-configuration` メニュー項目では、プライベートダッシュボードお"
+"よび公開ダッシュボード（許可されている場合）を管理できます。"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:70
 msgid "Absences"
@@ -7633,9 +7632,9 @@ msgid ""
 "component where you can enter your absences and define delegates for "
 "tasks assigned to you or the roles you hold."
 msgstr ""
-"「:guilabel:`Absences` 」メニュー項目には、欠勤管理コンポーネントが用意されて"
-"おります。こちらではご自身の欠勤を入力し、ご自身に割り当てられたタスクや担当"
-"する役割に対する代理人を定義することが可能です。"
+":guilabel:`Absences` メニュー項目には、欠勤管理コンポーネントが用意されており"
+"ます。こちらではご自身の欠勤を入力し、ご自身に割り当てられたタスクや担当する"
+"役割に対する代理人を定義することが可能です。"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:74
 msgid "|portal-absences|"
@@ -7653,9 +7652,9 @@ msgid ""
 "or |trash-icon| **Delete** actions in the respective absence row."
 msgstr ""
 "欠勤ダイアログでは、現在および今後のすべての欠勤が表示されます。過去の欠勤を"
-"確認するには、:guilabel:`Display absences in the past` オプションを有効にして"
-"ください。欠勤の編集または削除は、各欠勤行の以下のアクションで行います：編集"
-"：|edit-icon| **編集：** 削除：|trash-icon| **削除：**"
+"確認するには、 :guilabel:`Display absences in the past` オプションを有効にし"
+"てください。欠勤の編集または削除は、各欠勤行の以下のアクションで行います編集 "
+"|edit-icon| **編集**  削除 |trash-icon| **削除**"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:79
 msgid ""
@@ -7676,11 +7675,11 @@ msgstr ":guilabel:`Add absence` ボタンをクリックしてください。"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:85
 msgid "The :guilabel:`Add absence` dialog opens"
-msgstr "「:guilabel:`Add absence` 」ダイアログが開きます。"
+msgstr ":guilabel:`Add absence` ダイアログが開きます。"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:86
 msgid "Enter :guilabel:`From` and :guilabel:`Until` dates"
-msgstr ":guilabel:`From` および:guilabel:`Until` の日付を入力してください。"
+msgstr ":guilabel:`From` および :guilabel:`Until` の日付を入力してください。"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:87
 msgid "Optionally provide an explanatory comment"
@@ -7688,7 +7687,7 @@ msgstr "必要に応じて説明的なコメントを提供してください。
 
 #: ../../source/portal-user-guide/portal-header/index.rst:88
 msgid "Confirm your absence by clicking the :guilabel:`Save` button"
-msgstr "ご不在の確認には、[:guilabel:`Save` ]ボタンをクリックしてください。"
+msgstr "ご不在の確認には、 :guilabel:`Save` ボタンをクリックしてください。"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:90
 msgid "|how-to-add-an-absence|"
