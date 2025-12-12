@@ -37,7 +37,7 @@ public class PasswordResetPage extends TemplatePage {
     if (strongPasswordEnough) {
       $("[id='password-reset:reset-password-form:result-message']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     } else {
-      $("span[class='ui-messages-error']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+      $("div[class='ui-messages-error']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     }
   }
 
