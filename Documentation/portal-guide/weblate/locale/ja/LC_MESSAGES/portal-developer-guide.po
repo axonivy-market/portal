@@ -752,7 +752,7 @@ msgid ""
 "``pom.xml``"
 msgstr ""
 "**Portal依存関係を追加してください：** カスタムアプリケーションでPortal"
-"コンポーネントを使用するには、``pom.xml`` にportal-componentsをプロジェクト依"
+"コンポーネントを使用するには、 ``pom.xml`` にportal-componentsをプロジェクト依"
 "存関係として追加してください。"
 
 #: ../../source/portal-developer-guide/architecture/index.rst:225
@@ -1006,7 +1006,7 @@ msgid ""
 "**Exception Details**: Available by clicking the ``More`` link in the "
 "error message"
 msgstr ""
-"**例外の詳細** ：エラーメッセージ内の``More``リンクをクリックすると表示されま"
+"**例外の詳細** ：エラーメッセージ内の ``More`` リンクをクリックすると表示されま"
 "す。"
 
 #: ../../source/portal-developer-guide/components/error-handling.rst:46
@@ -1015,7 +1015,7 @@ msgid ""
 "``Errors.ShowDetailsToEndUser``"
 msgstr ""
 "**スタックトレース表示**: Ivy "
-"システムプロパティ``Errors.ShowDetailsToEndUser`` によって制御されます。"
+"システムプロパティ ``Errors.ShowDetailsToEndUser`` によって制御されます。"
 
 #: ../../source/portal-developer-guide/components/error-handling.rst:49
 #: ../../source/portal-developer-guide/troubleshooting/index.rst:254
@@ -1080,7 +1080,7 @@ msgstr "Axon Ivy Engine ファイルシステムへのアクセス"
 
 #: ../../source/portal-developer-guide/components/error-handling.rst:73
 msgid "Permission to modify ``web.xml`` in the configuration folder"
-msgstr "設定フォルダ内の``web.xml`` の変更を許可します。"
+msgstr "設定フォルダ内の ``web.xml`` の変更を許可します。"
 
 #: ../../source/portal-developer-guide/components/error-handling.rst:74
 msgid "Portal application deployed and running"
@@ -1105,7 +1105,7 @@ msgstr "**ステップ1：エラーページファイルの作成**"
 #: ../../source/portal-developer-guide/components/error-handling.rst:85
 msgid "Create two XHTML files in your engine's ``webapps/ivy`` folder:"
 msgstr ""
-"エンジンの``webapps/ivy``フォルダ内に、以下の2つのXHTMLファイルを作成してくだ"
+"エンジンの ``webapps/ivy`` フォルダ内に、以下の2つのXHTMLファイルを作成してくだ"
 "さい："
 
 #: ../../source/portal-developer-guide/components/error-handling.rst:87
@@ -1125,8 +1125,8 @@ msgid ""
 "Add the following error page configuration to your ``web.xml`` file "
 "(located in the ``configuration`` folder):"
 msgstr ""
-"以下のエラーページ設定を、`` ディレクトリ内の `web.xml`` ファイル（`` "
-"ディレクトリ内の `configuration`` フォルダ内にあります）に追加してください："
+"以下のエラーページ設定を、 ``configuration`` ディレクトリ内の  ``web.xml`` ファイル（ ``configuration`` "
+"フォルダ内にあります）に追加してください："
 
 #: ../../source/portal-developer-guide/components/error-handling.rst:182
 msgid "**Step 3: Restart Engine**"

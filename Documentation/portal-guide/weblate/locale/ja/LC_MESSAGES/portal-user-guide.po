@@ -734,7 +734,7 @@ msgid ""
 "Without this role, the menu item will not be visible."
 msgstr ""
 "**管理者アクセス権限が必要です**: ユーザーメニューから「管理設定」にアクセス"
-"できるのは、``AXONIVY_PORTAL_ADMIN`` の役割を持つユーザーのみとなります。この"
+"できるのは、 ``AXONIVY_PORTAL_ADMIN`` の役割を持つユーザーのみとなります。この"
 "役割がない場合、メニュー項目は表示されません。"
 
 #: ../../source/portal-user-guide/admin-settings/index.rst:10
@@ -1786,7 +1786,7 @@ msgstr ":bdg-ref-warning:`🔑RoleMove <RoleMove>`"
 
 #: ../../source/portal-user-guide/admin-settings/index.rst:140
 msgid "Select parent role during creation (default parent: ``Everybody``)"
-msgstr "作成時に親ロールを選択してください（デフォルトの親：``Everybody``）"
+msgstr "作成時に親ロールを選択してください（デフォルトの親： ``Everybody`` ）"
 
 #: ../../source/portal-user-guide/admin-settings/index.rst:145
 msgid "Steps to Manage Roles"
@@ -5622,8 +5622,8 @@ msgid ""
 "Task notes are displayed in the ``Notes`` table of the task details and "
 "in the ``History`` table of its business case"
 msgstr ""
-"タスクノートは、タスク詳細の「` 」`Notes`` テーブルおよびそのビジネスケースの"
-"「` 」`History`` テーブルに表示されます。"
+"タスクノートは、タスク詳細の  ``Notes``  テーブルおよびそのビジネスケースの"
+" ``History``  テーブルに表示されます。"
 
 #: ../../source/portal-user-guide/full-task-list/index.rst:246
 msgid ""
@@ -5631,7 +5631,7 @@ msgid ""
 "``History`` table of that technical case"
 msgstr ""
 "当該タスクが技術的なケースに属する場合、注記は当該技術ケース"
-"の``History``テーブルにも表示されます。"
+"の ``History`` テーブルにも表示されます。"
 
 #: ../../source/portal-user-guide/full-task-list/index.rst:249
 msgid "HowTo: Export a Task History"

@@ -587,7 +587,7 @@ msgid ""
 msgstr ""
 "当該ケースに関連する文書のリストです。文書管理システム（DMS）から文書を取得後"
 "、以下の必須フィールドを含む形式に変換してください"
-"：``id``,``uuid``,``name``,``contentType``。"
+"： ``id`` 、 ``uuid`` 、 ``name`` 、 ``contentType`` 。"
 
 #: ../../source/portal-components/document-table/index.rst:67
 #: ../../source/portal-components/document-table/index.rst:100
@@ -778,8 +778,8 @@ msgid ""
 "``true`` if the document's name is successfully updated, otherwise "
 "``false``."
 msgstr ""
-"`ドキュメント名が正常に更新された場合は `true``、そうでない場合は ``` または "
-"`false`` を表示します。"
+"ドキュメント名が正常に更新された場合は ``true`` 、そうでない場合は "
+" ``false`` を表示します。"
 
 #: ../../source/portal-components/document-table/index.rst:173
 msgid ""
@@ -836,8 +836,8 @@ msgid ""
 "``UploadDocumentItem``, ``DeleteDocumentItem``, and "
 "``DownloadDocumentItem`` from your project."
 msgstr ""
-"プロジェクトから ``GetDocumentItems``、 ``UploadDocumentItem``、 "
-"``DeleteDocumentItem``、 ``DownloadDocumentItem`` のサブプロセスのオーバーライドを削除します。"
+"プロジェクトから  ``GetDocumentItems`` 、  ``UploadDocumentItem`` 、 "
+" ``DeleteDocumentItem`` 、  ``DownloadDocumentItem`` のサブプロセスのオーバーライドを削除します。"
 
 #: ../../source/portal-components/document-table/index.rst:224
 msgid "Change the signature of your callable starts as described below."
@@ -912,8 +912,8 @@ msgid ""
 "``enableVirusScannerForUploadedDocument`` and ``allowedUploadFileTypes`` "
 "as required."
 msgstr ""
-"必要に応じて、新しい ``enableScriptCheckingForUploadedDocument``、 "
-"``enableVirusScannerForUploadedDocument``、 ``allowedUploadFileTypes`` "
+"必要に応じて、新しい  ``enableScriptCheckingForUploadedDocument`` 、 "
+" ``enableVirusScannerForUploadedDocument`` 、  ``allowedUploadFileTypes`` "
 "属性の値の更新を検討します。"
 
 #: ../../source/portal-components/document-table/index.rst:247
