@@ -2126,6 +2126,10 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
   width: fit-content;
 }
 
+.custom-field-dialog-field-tooltip {
+  max-width: 50vw;
+  width: fit-content;
+}
 
 .task-workflow-event-command {
   margin-left: 15px;
