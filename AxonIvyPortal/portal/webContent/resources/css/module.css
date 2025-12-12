@@ -2091,6 +2091,46 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
   max-width: 70%;
 }
 
+.task-custom-fields-dialog .field-name,
+.task-custom-fields-dialog .field-value,
+.task-custom-fields-dialog .field-type,
+.case-custom-fields-dialog .field-name,
+.case-custom-fields-dialog .field-value,
+.case-custom-fields-dialog .field-type {
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.task-custom-fields-dialog .field-value,
+.case-custom-fields-dialog .field-value {
+  width: 75%;
+}
+
+.task-custom-fields-dialog .field-name,
+.case-custom-fields-dialog .field-name {
+  width: 15%;
+}
+
+.task-custom-fields-dialog .field-type,
+.case-custom-fields-dialog .field-type {
+  width: 10%;
+}
+
+.task-custom-fields-dialog .field-value > span,
+.case-custom-fields-dialog .field-value > span {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  word-break: break-word;
+  width: fit-content;
+}
+
+.custom-field-dialog-field-tooltip {
+  max-width: 50vw;
+  width: fit-content;
+}
+
 .task-workflow-event-command {
   margin-left: 15px;
 }
