@@ -54,8 +54,7 @@ public class TaskIFrameTemplatePage extends TemplatePage {
         .scrollIntoView(ScrollIntoViewOptions.instant().block(Block.center));
 
     $("a[id$='add-note-command']").shouldBe(appear, DEFAULT_TIMEOUT)
-        .scrollIntoView(ScrollIntoViewOptions.instant().block(Block.center))
-        .click();
+        .scrollIntoView(ScrollIntoViewOptions.instant().block(Block.center)) ;
     
     waitForElementDisplayed(By.cssSelector("div[id$='add-note-dialog']"), true);
     findElementByCssSelector("textarea[id$='note-content']").sendKeys(content);
