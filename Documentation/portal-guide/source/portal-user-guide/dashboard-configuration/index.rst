@@ -3,29 +3,43 @@
 Dashboard Configuration
 ***********************
 
-.. hint::
-   Only users who have the permission :bdg-ref-warning:`🔑DashboardWriteOwn <DashboardWriteOwn>` or :bdg-ref-warning:`🔑DashboardWritePublic <DashboardWritePublic>` can see and access
-   the :guilabel:`Dashboard Configuration` user menu item. They can add, edit, reorder, show and hide the private or public dashboards.
+.. important::
+   **Access Requirements**: Only users with the :bdg-ref-warning:`🔑DashboardWriteOwn <DashboardWriteOwn>` or :bdg-ref-warning:`🔑DashboardWritePublic <DashboardWritePublic>` permission can see and access the :guilabel:`Dashboard Configuration` menu item. These permissions allow you to add, edit, reorder, show, and hide private or public dashboards.
 
-Select the :guilabel:`Dashboard Configuration` user menu item.
+Dashboard Configuration provides centralized management of your personal and organization-wide dashboards. 
+Access it through the :guilabel:`Dashboard Configuration` user menu item.
 
 |dashboard-configuration|
 
-The :guilabel:`Dashboard Configuration` page provides you with private and public dashboard configuration tabs depending on the permissions
-you hold in the application. The usage will be explained in the HowTo’s further down in this chapter.
+Overview
+========
+
+The Dashboard Configuration page has two tabs:
+
+.. table::
+   :widths: 20 40 40
+
+   +-------------------------+---------------------------------------------------+--------------------------------------------+
+   | Tab                     | Required Permission                               | Purpose                                    |
+   +=========================+===================================================+============================================+
+   | **Private Dashboards**  | :bdg-ref-warning:`🔑DashboardWriteOwn             | Manage your personal dashboards            |
+   |                         | <DashboardWriteOwn>`                              | visible only to you                        |
+   +-------------------------+---------------------------------------------------+--------------------------------------------+
+   | **Public Dashboards**   | :bdg-ref-warning:`🔑DashboardWritePublic          | Manage shared dashboards visible           |
+   |                         | <DashboardWritePublic>`                           | to users with specific permissions         |
+   +-------------------------+---------------------------------------------------+--------------------------------------------+
 
 Private dashboards configuration
---------------------------------
+================================
 
-The tab :guilabel:`Private dashboards` is only available for users who have the permission :bdg-ref-warning:`🔑DashboardWriteOwn <DashboardWriteOwn>`. Here you can
-add or edit your private dashboards, and reorder all dashboards visible to you.
+The tab :guilabel:`Private dashboards` allows you to add or edit your private dashboards, and reorder all dashboards visible to you.
 
 |private-dashboard-configuration|
 
 .. _howto-add-private-dashboard:
 
-How to: add private dashboard
-=============================
+HowTo: add private dashboard
+----------------------------
 
 #. Select :guilabel:`Add New Dashboard` button
 
@@ -48,7 +62,7 @@ To set multi languages for the dashboard title, see at :ref:`portal-multi-langua
 .. _private-available-dashboard-template:
 
 Available dashboard templates 
-=============================
+-----------------------------
 
 :guilabel:`Default Template`, :guilabel:`Two Task list dashboard` template and :guilabel:`Accessiblity dashboard` template. Please see the image below for more details.
 
@@ -57,8 +71,11 @@ Available dashboard templates
 .. hint::
    The list of private dashboards shows only the private dashboards that have been created by you.
 
-How to: import private dashboards
-=================================
+HowTo: import private dashboards
+--------------------------------
+
+.. note::
+   Requires :bdg-ref-warning:`🔑DashboardImportOwn <DashboardImportOwn>` permission.
 
 #. Select :guilabel:`Add new Dashboard` button.
 
@@ -78,35 +95,31 @@ How to: import private dashboards
 
 |import-private-dashboard-dialog|
 
-.. note::
 
-   Grant permission :bdg-ref-warning:`🔑DashboardImportOwn <DashboardImportOwn>` to use this feature.
+HowTo: edit private dashboards
+------------------------------
 
+The :guilabel:`Edit private dashboard` section shows your private dashboards in a table with the following columns:
 
-How to: edit private dashboards
-===============================
-The :guilabel:`Edit private dashboard` section shows your private dashboards.
-A table of private dashboards is shown with the following information:
+- **Dashboard title**: The name of the dashboard
+- **Dashboard description**: Optional description text
+- **Actions**: Available operations for each dashboard
 
-#. Dashboard title
+**Available Actions:**
 
-#. Dashboard description
+Click on |actions-menu-icon| to open the :guilabel:`Actions` menu with these options:
 
-#. Actions: click on |actions-menu-icon| to get :guilabel:`Actions` menu for further actions: |edit-icon| Edit (name, description), |settings-icon| Configuration
-   (see: :ref:`Dashboards <new-dashboard>` ), |download-icon| Export dashboard, |trash-icon| Delete a private dashboard.
-
-You can edit your private dashboards by selecting |edit-icon| Edit.
-
-.. note::
-
-   Grant permission :bdg-ref-warning:`🔑DashboardExportOwn <DashboardExportOwn>` to enable the export function for personal dashboards for a user.
+- |edit-icon| **Edit**: Modify dashboard name and description
+- |settings-icon| **Configuration**: Configure dashboard widgets (see: :ref:`Dashboards <new-dashboard>`)
+- |download-icon| **Export**: Download dashboard as JSON file (requires :bdg-ref-warning:`🔑DashboardExportOwn <DashboardExportOwn>` permission)
+- |trash-icon| **Delete**: Remove the private dashboard
 
 |edit-private-dashboards|
 
 .. _howto-reorder-your-dashboards:
 
-How to: reorder private dashboards
-==================================
+HowTo: reorder private dashboards
+---------------------------------
 
 You can rearrange dashboards by dragging and dropping |reorder-dashboard-icon| icon.
 
@@ -120,17 +133,16 @@ You can rearrange dashboards by dragging and dropping |reorder-dashboard-icon| i
    If you create new dashboards, they are automatically added to the end of your personal sort order.
 
 Public dashboards configuration
--------------------------------
+================================
 
-Grant permission :bdg-ref-warning:`🔑DashboardWritePublic <DashboardWritePublic>` to make tab :guilabel:`Public dashboards` visible for a user. Here you can
-add, edit, and reorder public dashboards.
+The tab :guilabel:`Public dashboards` allows you to add, edit, and reorder public dashboards.
 
 |public-dashboard-configuration|
 
 .. _howto-add-public-dashboard:
 
-How to: add public dashboard
-============================
+HowTo: add public dashboard
+---------------------------
 
 #. Select :guilabel:`Add New Dashboard` button.
 
@@ -139,9 +151,8 @@ How to: add public dashboard
 #. The :guilabel:`Create new public dashboard` dialog is opened.
 
 #. Enter the mandatory title, permissions to see the public dashboard and the optional description for the public dashboard.
-
-#. Select one of the display types for your dashboard. There are three types: ``TOP MENU``, ``SUB MENU``, and ``HIDDEN``. The default value is ``SUB MENU``, which places your dashboard inside the `Dashboard` menu item. 
-   If the ``Top Menu`` is selected, the dashboard appears as a top-level item in the navigation bar. The option ``HIDDEN`` will hide the dashboard from the menu.
+   If the `Top Menu Item` checkbox is checked, the dashboard appears as a top-level item in the navigation bar. 
+   If unchecked, it appears as a sub-item under `Dashboard` menu item.
 
 #. Create the public dashboard by selecting |add-icon| Create dashboard.
 
@@ -156,7 +167,7 @@ To set multi languages for the dashboard title, see at :ref:`portal-multi-langua
 .. _public-available-dashboard-template:
 
 Available dashboard templates 
-=============================
+-----------------------------
 
 :guilabel:`Default Template`, :guilabel:`Two Task list dashboard` template and :guilabel:`Accessiblity dashboard` template.
 
@@ -167,8 +178,11 @@ Available dashboard templates
     
 .. _howto-import-your-public-dashboards:
 
-How to: import public dashboard
-===============================
+HowTo: import public dashboard
+------------------------------
+
+.. note::
+   Requires :bdg-ref-warning:`🔑DashboardImportPublic <DashboardImportPublic>` permission.
 
 #. Select :guilabel:`Add New Dashboard` button.
 
@@ -190,53 +204,70 @@ How to: import public dashboard
 
 |import-public-dashboard-dialog|
 
-.. note::
+HowTo: edit public dashboards
+-----------------------------
 
-   Grant permission :bdg-ref-warning:`🔑DashboardImportPublic <DashboardImportPublic>` to enable public dashboard import for a user.
+The :guilabel:`Edit public dashboards` section shows you the public dashboards in a table with the following columns:
 
-How to: edit public dashboards
-==============================
-The :guilabel:`Edit public dashboards` section shows you the public dashboards.
-A table of public dashboards is shown with the following information:
+- **Dashboard title**: The name of the dashboard
+- **Dashboard permissions**: Roles/permissions that can access the dashboard
+- **Dashboard description**: Optional description text
+- **Display as top menu or not**: Whether it appears in the top navigation bar
 
-#. Dashboard title
+**Available Actions:**
 
-#. Dashboard permissions
+Click on |actions-menu-icon| to open the :guilabel:`Actions` menu with these options:
 
-#. Dashboard description
-
-#. Display as top menu or not
-
-#. Actions: click on |actions-menu-icon| to get :guilabel:`Actions` menu for further actions: |edit-icon| Edit (name, description), |settings-icon| Configuration
-   (see: :ref:`Dashboards <new-dashboard>` ), |download-icon| Export dashboard, |share-icon| Share,
-   and |trash-icon| Delete a public dashboard.
-
-You can edit public dashboards by selecting |edit-icon| Edit. 
-
-.. note::
-
-   Grant permission :bdg-ref-warning:`🔑DashboardExportPublic <DashboardExportPublic>` to enable export of public dashboards for users.
+- |edit-icon| **Edit**: Modify dashboard name, permissions, and description
+- |settings-icon| **Configuration**: Configure dashboard widgets (see: :ref:`Dashboards <new-dashboard>`)
+- |download-icon| **Export**: Download dashboard as JSON file (requires :bdg-ref-warning:`🔑DashboardExportPublic <DashboardExportPublic>` permission)
+- |share-icon| **Share**: Generate a shareable link to the dashboard (requires :bdg-ref-warning:`🔑ShareDashboardLink <ShareDashboardLink>` permission)
+- |trash-icon| **Delete**: Remove the public dashboard
 
 |edit-public-dashboards|
 
 
-How to: share public dashboards
-===============================
+HowTo: share public dashboards
+--------------------------------
+
+.. note::
+   Requires :bdg-ref-warning:`🔑ShareDashboardLink <ShareDashboardLink>` permission.
 
 To generate a public dashboard link, simply click on the |share-icon| Share in the :guilabel:`Actions` menu of the dashboard.
 
 |share-public-dashboards|
 
-.. note::
+.. tip::
    To share the dashboard without the menu frame, add the parameter ``openWithoutMenu=true`` to the URL. However, please be aware that this option is only for embedding purposes.
-   Grant permission :bdg-ref-warning:`🔑ShareDashboardLink <ShareDashboardLink>` to allow a user to share dashboard links.
 
-How to: reorder public dashboards
-=================================
+HowTo: reorder public dashboards
+--------------------------------
 
 You can rearrange dashboards by dragging and dropping |reorder-dashboard-icon| icon.
 
 |reorder-public-dashboards|
+
+Permission Reference
+====================
+
+Different dashboard actions require specific permissions:
+
+.. table::
+   :widths: 35 65
+
+   +---------------------------------------+------------------------------------------------------------------------------+
+   | Action                                | Required Permission                                                          |
+   +=======================================+==============================================================================+
+   | **Import private dashboard**          | :bdg-ref-warning:`🔑DashboardImportOwn <DashboardImportOwn>`                |
+   +---------------------------------------+------------------------------------------------------------------------------+
+   | **Export private dashboard**          | :bdg-ref-warning:`🔑DashboardExportOwn <DashboardExportOwn>`                |
+   +---------------------------------------+------------------------------------------------------------------------------+
+   | **Import public dashboard**           | :bdg-ref-warning:`🔑DashboardImportPublic <DashboardImportPublic>`          |
+   +---------------------------------------+------------------------------------------------------------------------------+
+   | **Export public dashboard**           | :bdg-ref-warning:`🔑DashboardExportPublic <DashboardExportPublic>`          |
+   +---------------------------------------+------------------------------------------------------------------------------+
+   | **Share public dashboard link**       | :bdg-ref-warning:`🔑ShareDashboardLink <ShareDashboardLink>`                |
+   +---------------------------------------+------------------------------------------------------------------------------+
 
 .. include:: ../includes/_common-icon.rst
 

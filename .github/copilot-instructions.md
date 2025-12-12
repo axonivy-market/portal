@@ -32,3 +32,4 @@ setTimeout(taskFunction, 3000); // What is 3000? Why?
 - Use consistent hierarchy: `*` (title) → `=` (section) → `-` (subsection) → `^` (sub-subsection)
 - Blank line before/after directives
 - Indentation: 3 spaces for directive content
+- No warning when building docs

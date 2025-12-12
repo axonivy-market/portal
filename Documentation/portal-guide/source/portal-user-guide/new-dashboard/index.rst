@@ -6,76 +6,106 @@ Dashboard
 Introduction
 ------------
 
-The Axon Ivy Portal Dashboard is the first page you encounter after
-successful login. You can always get back to the dashboard using the 
-**Dashboard** link in the Axon Ivy Portal navigation menu.
-Alternatively, you can click on the logo image at the top left of the header.
+The Axon Ivy Portal Dashboard is your central workspace and the first page you see after 
+successful login. It provides an at-a-glance view of your work with customizable widgets 
+showing tasks, cases, processes, and statistics.
 
-The dashboard itself contains a set of widgets arranged on the page,
-according to the defined standards in your company. 
+**Accessing Your Dashboard:**
+
+- Click **Dashboard** in the Portal navigation menu
+- Click the logo image at the top left of the header
+
+Available Widgets
+=================
+
+The dashboard contains a set of widgets you can arrange and configure to match your workflow. 
+Your company may have defined standard layouts and available widgets.
+
+.. table::
+   :widths: 30 70
+
+   +-------------------------------+------------------------------------------------------------+
+   | Widget                        | Purpose                                                    |
+   +===============================+============================================================+
+   | **Task List**                 | Display and manage tasks assigned to you or your roles     |
+   +-------------------------------+------------------------------------------------------------+
+   | **Case List**                 | Track and monitor case progress and details                |
+   +-------------------------------+------------------------------------------------------------+
+   | **Process List**              | Access and start available processes                       |
+   +-------------------------------+------------------------------------------------------------+
+   | **Process Viewer**            | Visual representation of process flows                     |
+   +-------------------------------+------------------------------------------------------------+
+   | **Statistic Chart**           | Graphical display of client statistical data               |
+   +-------------------------------+------------------------------------------------------------+
+   | **Welcome**                   | Personalized greeting based on local time                  |
+   +-------------------------------+------------------------------------------------------------+
+   | **News Feed**                 | Display relevant information and announcements             |
+   +-------------------------------+------------------------------------------------------------+
+   | **External Page**             | Embed external webpages in your dashboard                  |
+   +-------------------------------+------------------------------------------------------------+
+   | **Notifications**             | View all notifications based on your settings              |
+   +-------------------------------+------------------------------------------------------------+
+   | **Custom Widgets**            | Project-specific widgets provided by developers            |
+   +-------------------------------+------------------------------------------------------------+
 
 |dash-board|
 
-The following default widgets are available:
+Standard Widget Features
+========================
 
-#. **Task list widget**: This widget displays relevant task information according to defined settings.
+**Task List, Case List, and Process List (compact mode)** widgets share these standard features:
 
-#. **Case list widget**: This widget displays relevant case information according to defined settings.
+- **Saved filters and filter options**: Customize what data you see
 
-#. **Process list widget**: This widget displays available process starts. You can choose between different formats.
+  |widget-filter|
 
-#. **Process viewer widget**: This widget provides a visual representation of the process flow.
+- **Widget information**: Access additional details and settings
 
-#. **Statistic chart widget**: This widget provides graphical display of statistical data.
+  |widget-info|
 
-#. **Welcome widget**: This widget greets the user based on the local time and enables a friendlier approach.
+Customizing Your Dashboard
+===========================
 
-#. **News feed widget**: This widget shares relevant information as a News Feed into Axon Ivy.
+.. important::
+   **Required Permissions**: Only users with the :bdg-ref-warning:`🔑DashboardWriteOwn <DashboardWriteOwn>` 
+   or :bdg-ref-warning:`🔑DashboardWritePublic <DashboardWritePublic>` permission can see and access the 
+   **Dashboard Configuration** menu item in the user menu. These permissions allow you to add, edit, reorder, 
+   show, and hide private or public dashboards.
 
-#. **External page widget**: This widget displays an external webpage on your dashboard.
 
-#. **Notifications widget**: This widget displays all Notifications based on your notification settings.
+If you have the required permissions, you can personalize your dashboard layout by:
 
-#. **Navigation dashboard widget**: This widget allows users to jump directly to a linked dashboard by clicking a button.
-
-In addition, a developer can provide custom widgets to add relevant project information to your dashboard.
-
-**Task list widget, Case list widget, Process list widget (compact mode)** have the following standard features:
-
-   - Saved filters and Filter options
-
-   |widget-filter|
-
-   - Widget information
-
-   |widget-info|
-
-If you have the permission, you can re-size, re-arrange, create, or delete widgets
-using :guilabel:`Edit` button in the upper right corner of your dashboard:
+#. Accessing **Dashboard Configuration** from the user menu to enter configuration mode.
 
 |edit-widget|
 
-In edit mode, you can:
+In configuration mode, you can:
 
-   - **Move widgets using drag-and-drop**: click on the widget you want to move and drop again. Helper lines will support you.
-
-   - **Edit existing widgets**: open the configuration panel to edit widget by clicking on :guilabel:`Edit` button.
-
-   - **Delete existing widgets**: the widget will be deleted.
-
-   - **Add new widgets**: a wizard will guide you through creating and adding new widgets to your dashboard.
-
-   - **Reset to the standard dashboard**: Do you want to undo your changes? Just reset to the default dashboard.
-
-   - **Resize column width (Task list/Case list widget)**: click on the gridlines of header which you want to resize, then drop again. Helper lines will support you.
+- **Move widgets**: Drag and drop widgets to new positions (helper lines assist placement)
+- **Edit widgets**: Click :guilabel:`Edit` to open the configuration panel
+- **Delete widgets**: Remove widgets you don't need
+- **Add new widgets**: Use the wizard to create and add new widgets
+- **Reset dashboard**: Undo all changes and return to the standard layout
+- **Resize columns**: Adjust column widths in Task List/Case List widgets by dragging gridlines
 
 Add a new widget
 ----------------
 
-To add a new widget in the edit mode, press on the :guilabel:`+ Add widget`
-button and select one of the available widgets to add:
+To add a widget to your dashboard:
+
+#. Enter configuration mode of your desired dashboard.
+#. Click the :guilabel:`+ Add widget` button
+#. A widget selection dialog appears showing all available widgets with their names and descriptions
+#. Select the widget type you want to add
 
 |add-widget|
+
+A configuration wizard will guide you through setting up your chosen widget. After completing the setup, click the save icon to add the new widget to your dashboard.
+
+Widget Details
+==============
+
+The following sections describe each widget type and its configuration options in detail.
 
 .. _new-dashboard-task-list-widget:
 
@@ -121,7 +151,7 @@ In the column management dialog, you find two sections to configure the table co
 
   .. important::
 
-    The Quick search feature is supporting these fields:
+    Quick search feature is supporting these fields:
 
       #. Standard fields: Id, name, description, category, responsible (display name), and application.
       #. Task custom fields: fields that have type ``STRING`` or ``TEXT``.
@@ -342,7 +372,7 @@ You can define a news feed widget to display all news entries to the user
 
 If the user has permission, then the user can:
 
-- **Add news message**:  add a new entry for the news feed by clicking :guilabel:`Add News`: button.
+- **Add news message**: add a new entry for the news feed by clicking :guilabel:`Add News` button.
 
 - **Edit news message**: edit an existing entry for the list by clicking on the |edit-icon| icon in the lower right corner of each entry.
 
