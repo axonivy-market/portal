@@ -122,7 +122,7 @@
                   renderedAdditionalAction="#{taskActionBean.showAdditionalOptions(task)}" task="#{task}"
                   isDisabled="#{taskActionBean.noActionAvailable(task) or cc.attrs.readOnly}" destroyTaskDialogComponent="#{cc.attrs.destroyTaskDialogComponent}"
                   componentToUpdate="#{informationWidgetComponent} #{historyWidgetComponent} #{cc.attrs.componentToUpdate}" onDestroyComplete="PF('destroy-task-dialog').show()"
-                  onEscalationComplete="PF('escalation-task-dialog').show()" onCustomFieldsDialogComplete="initCustomFieldListData()"
+                  onEscalationComplete="PF('escalation-task-dialog').show()" onCustomFieldsDialogComplete="initCustomFieldTaskListData()"
                   showInTaskList="false" onDelegateComplete="initDataToDelegate()" onWorkflowEventComplete="initWorkflowEventData()" />
               </h:panelGroup>
             </div>
