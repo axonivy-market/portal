@@ -52,10 +52,7 @@ public class TaskIFrameTemplatePage extends TemplatePage {
   public void addNewNote(String content) {
     $("div[id$='history-container']").shouldBe(appear, DEFAULT_TIMEOUT)
         .scrollIntoView(ScrollIntoViewOptions.instant().block(Block.center));
-
-    $("a[id$='add-note-command']").shouldBe(appear, DEFAULT_TIMEOUT)
-        .scrollIntoView(ScrollIntoViewOptions.instant().block(Block.center)) ;
-    
+    waitForElementClickableThenClick("a[id$='add-note-command']");
     waitForElementDisplayed(By.cssSelector("div[id$='add-note-dialog']"), true);
     findElementByCssSelector("textarea[id$='note-content']").sendKeys(content);
     int beginCounts = countNoteItems();
