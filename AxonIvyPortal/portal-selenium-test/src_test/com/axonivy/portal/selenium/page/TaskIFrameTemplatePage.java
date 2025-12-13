@@ -16,6 +16,8 @@ import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
+import com.codeborne.selenide.ScrollIntoViewOptions;
+import com.codeborne.selenide.ScrollIntoViewOptions.Block;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
 
@@ -48,6 +50,8 @@ public class TaskIFrameTemplatePage extends TemplatePage {
   }
 
   public void addNewNote(String content) {
+    $("div[id$='history-container']").shouldBe(appear, DEFAULT_TIMEOUT)
+        .scrollIntoView(ScrollIntoViewOptions.instant().block(Block.center));
     waitForElementClickableThenClick("a[id$='add-note-command']");
     waitForElementDisplayed(By.cssSelector("div[id$='add-note-dialog']"), true);
     findElementByCssSelector("textarea[id$='note-content']").sendKeys(content);
