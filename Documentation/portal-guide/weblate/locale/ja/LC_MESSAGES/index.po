@@ -28,5 +28,5 @@ msgstr "Portal"
 msgid ""
 "Axon Ivy Portal documentation for end users, developers, and components. "
 "Use the sections below to learn, configure, and extend the Portal."
-msgstr ""
+msgstr "エンドユーザー、開発者、コンポーネント向けのAxon Ivy Portalドキュメント。以下のセクションを使用して、Portalについて学び、設定し、拡張してください。"
 

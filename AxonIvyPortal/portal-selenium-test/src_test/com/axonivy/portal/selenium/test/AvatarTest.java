@@ -31,6 +31,7 @@ public class AvatarTest extends BaseTest {
 
   @Test
   public void showAvatarAsDefault() {
+    updateGlobalVariable(Variable.SHOW_AVATAR.getKey(), "True"); 
     updateGlobalVariable(Variable.TASK_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST.getKey(), ACCESS_TASK_DETAILS);
     redirectToRelativeLink(createTestingTasksUrl);
 
@@ -44,7 +45,6 @@ public class AvatarTest extends BaseTest {
 
     // Check task list
     MainMenuPage mainMenuPage = new MainMenuPage();
-
 
     // Check task details
     mainMenuPage.openTaskList();
