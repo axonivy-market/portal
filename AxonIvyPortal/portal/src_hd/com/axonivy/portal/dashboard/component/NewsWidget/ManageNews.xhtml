@@ -14,13 +14,15 @@
     <h:panelGroup id="management-news-group" styleClass="management-news__group">
     <h:form>
       <c:set var="defaultLang" value="#{newsWidgetBean.defaultLanguage.toLanguageTag()}" />
+      <c:set var="userLocale" value="#{newsWidgetBean.defaultLanguage}" />
       <p:tabView id="manage-news-tabview" value="#{newsWidgetBean.editingNewsList}" var="news" dynamic="true"
         widgetVar="manage-news-tabview" activeIndex="#{newsWidgetBean.activeTabIndex}">
         <c:set var="newsLanguage" value="#{news.locale.toLanguageTag()}" />
         <c:set var="requiredLanguage" value="#{defaultLang eq newsLanguage}" />
+        <c:set var="isShowTranslation" value="#{newsWidgetBean.isShowTranslation(news.locale) eq 'false'}" />
         <p:ajax event="tabChange" oncomplete="PF('manage-news-dialog').initPosition()"/>
 
-        <p:tab title="#{requiredLanguage ? '* ':''}#{news.locale.displayLanguage}" 
+        <p:tab title="#{requiredLanguage ? '* ':''}#{news.locale.getDisplayName(userLocale)}" 
           titleStyleClass="news-language-tab-#{newsLanguage}">
           <h:panelGroup id="manage-news-details-container" layout="block">
             <p:messages id="management-news-message" redisplay="false">
@@ -37,13 +39,13 @@
                   requiredMessage="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/NewsWidget/NewsTitleValidateMessage', [news.locale.displayLanguage.toLowerCase()])}"
                   maxlength="200">
                   <p:ajax event="click" listener="#{newsWidgetBean.translateTitle(news.locale)}"
-                    disabled="#{requiredLanguage}" process="@form"
+                    disabled="#{isShowTranslation}" process="@form"
                     partialSubmit="true" global="false" update="translated-text-panel, tranlate-link" />
                   <f:param name="skipValidator" value="true" />
                 </p:inputText>
                 <p:overlayPanel for="news-title" appendTo="@(body)" my="right top" at="right bottom"
                   id="overlay-panel-input"
-                  styleClass="filter-name-overlay-panel #{requiredLanguage ? 'hidden' : ''}"
+                  styleClass="filter-name-overlay-panel #{isShowTranslation ? 'hidden' : ''}"
                   dynamic="false" dismissable="true" showCloseIcon="true">
                   <p:commandLink id="tranlate-link" update="@form" process="@this" partialSubmit="true"
                     ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/AutoTranslation')}"
@@ -78,7 +80,7 @@
                     <button class="ql-underline"></button>
                     <button class="ql-strike"></button>
                     <p:commandButton
-                      styleClass="ui-button-flat #{requiredLanguage ? 'hidden' : ''}"
+                      styleClass="ui-button-flat #{isShowTranslation ? 'hidden' : ''}"
                       id="translate-language-button" icon="si si-chat-translate si-lg"
                       ariaLabel="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/NewsWidget/Translate')}"
                       title="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/NewsWidget/Translate')}">
