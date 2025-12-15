@@ -43,7 +43,7 @@ pipeline {
           echo '====================Build Portal modules===================='
           def modules = ['AxonIvyPortal/portal-components', 'AxonIvyPortal/portal', 'AxonIvyPortal/PortalKitTestHelper', 'Showcase/portal-user-examples', 'Showcase/portal-developer-examples', 'Showcase/InternalSupport', 'Showcase/portal-components-examples', 'AxonIvyPortal/PortalApp', 'Showcase/portal-demo-app']
           for (module in modules) {
-            bat "mvn clean install -P-ivy -f ${module}/pom.xml -Divy.engine.directory=%engineDir%" -Divy.deploy.timeout.seconds=200
+            bat "mvn clean install -P-ivy -f ${module}/pom.xml -Divy.engine.directory=%engineDir% -Divy.deploy.timeout.seconds=200" 
           }
 
           echo '====================Deploy Portal modules===================='
