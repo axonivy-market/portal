@@ -217,7 +217,7 @@ public class TaskDetailsPage extends TemplatePage {
     $("div.ui-dialog[aria-hidden='false']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     SelenideElement addNoteDialog = $("div.ui-dialog[aria-hidden='false']").shouldBe(appear, DEFAULT_TIMEOUT);
     addNoteDialog.$("textarea[id$='note-content']").sendKeys(content);
-    addNoteDialog.$("button[id$='save-add-note-command']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();;
+    addNoteDialog.$("button[id$='save-add-note-command']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
 
   public void openAddAttachmentDialog() {
@@ -285,7 +285,7 @@ public class TaskDetailsPage extends TemplatePage {
 
   public void waitForIFrameURLWidgetLoad() {
     SelenideElement iframe = $("iframe[name='custom-widget-iframe-url']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
-    iframe.shouldHave(Condition.attributeMatching("src", ".*example\\.com.*"));
+    iframe.shouldHave(Condition.attributeMatching("src", ".*lucide\\.dev.*"));
   }
 
   public void waitForIFrameWidgetLoad() {

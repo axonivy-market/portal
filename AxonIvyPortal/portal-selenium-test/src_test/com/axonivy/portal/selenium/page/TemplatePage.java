@@ -30,8 +30,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import com.axonivy.portal.selenium.common.NavigationHelper;
 import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.CollectionCondition;
-import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverConditions;
 import com.codeborne.selenide.WebDriverRunner;
@@ -140,6 +140,8 @@ public abstract class TemplatePage extends AbstractPage {
 
   public void waitForGrowlMessageDisplayClearly() {
     $("div[id='portal-global-growl_container']").shouldBe(appear, DEFAULT_TIMEOUT).$("div.ui-growl-message").hover();
+    $("div[id='portal-global-growl_container']").$(".ui-growl-image-info").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+        .click();
   }
 
   public SelenideElement waitForElementClickable(SelenideElement element) {

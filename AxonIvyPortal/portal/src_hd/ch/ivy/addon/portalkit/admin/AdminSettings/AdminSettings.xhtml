@@ -86,7 +86,9 @@
                   oncomplete="PF('appDialog').show()"
                   actionListener="#{thirdPartyApplicationBean.editApplication(app)}"
                   update=":#{p:resolveFirstComponentWithId('appDialog', view).clientId}"
-                  process="@this" />
+                  process="@this">
+                    <p:resetInput target="admin-setting-component:appDialog" />
+                  </p:menuitem>
                 <p:menuitem id="delete-application"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
                   icon="si si-bin-1" styleClass="color-destroy"
@@ -227,7 +229,7 @@
   <p:dialog header="#{thirdPartyApplicationBean.dialogTitle}" id="appDialog" onShow="$('body').css({overflow:'hidden'})"
     styleClass="app-dialog" onHide="PF('cancelButton').jq.click(); $('body').css({overflow:'inherit'})" widgetVar="appDialog" dynamic="true"
     modal="true" resizable="false" appendTo="@(body)" closeOnEscape="true" width="500px" height="auto"
-    responsive="true" fitViewport="true" position="center center" positionType="absolute">
+    responsive="true" fitViewport="true" position="center center" >
     <h:form prependId="false" id="appDialogForm">
       <p:messages id="messages" closable="true" />
       <p:outputPanel id="appOverview">

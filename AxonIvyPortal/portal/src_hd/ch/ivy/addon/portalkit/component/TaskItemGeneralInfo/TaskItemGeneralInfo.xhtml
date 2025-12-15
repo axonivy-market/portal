@@ -149,7 +149,7 @@
           <h:outputText styleClass="task-detail-column-title text-ellipsis"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/afterEscalation')}" />
         </div>
-        <div class="ui-xl-8 ui-lg-8 ui-md-8 ui-sm-8 ui-g-4 u-no-padding-left text-ellipsis">
+        <div class="ui-xl-8 ui-lg-8 ui-md-8 ui-sm-8 ui-g-4 u-no-padding-left text-ellipsis content-field-after-escalation">
           <ic:com.axonivy.portal.component.ExpiryResponsible expiryResponsibles="#{task.expiry().responsibles()}" popupLink="true" onClick="PF('expiry-responsible-dialog').show()"/>
           <p:link rendered="#{taskActionBean.canChangeTaskExpiryActivator(task) and !cc.attrs.readOnly}"
             styleClass="task-expiry-activator-edit"

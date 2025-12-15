@@ -3,119 +3,127 @@
 Portal Header
 *************
 
-Axon Ivy Portal header is always visible. On the top right of the
-header you find two useful features:
+The Portal header is always visible and provides quick access to essential features and settings. The top right section of the header contains two key features:
 
-#. Name of the user you’re logged in with. Additionally, if you
-   click on your username you get a menu with options that allow you to
-   configure the Axon Ivy Portal to your personal needs. See `User Settings in
-   the Axon Ivy Portal`_ for a detailed overview of the configuration options.
+Key Features
+============
 
-#. Next to your username is a |search-icon| **Search Bar** providing you
-   with a portal-wide search. This feature is described in detail in
-   `Global Search`_.
+**Username Menu**
+   Click on your username to access a menu with options for configuring Portal to your personal needs. See `User Settings in the Axon Ivy Portal`_ for detailed configuration options.
+
+**Global Search Bar**
+   Next to your username is the |search-icon| search bar, providing portal-wide search functionality. This feature is described in detail in `Global Search`_.
 
 |portal-header|
 
-User Settings in the Axon Ivy Portal
-------------------------------------
+User Settings
+=============
 
-When you click on your username in the top right of the Axon Ivy Portal,
-a menu is shown allowing you to configure the Portal to your personal
-needs. These features are described in the following sections below.
+Click on your username in the top right of the Portal to access a menu with options for configuring Portal to your personal needs.
+
+Available Menu Options
+----------------------
+
+.. table::
+   :widths: 30 70
+
+   +-------------------------------+---------------------------------------------------------------+
+   | Menu Option                   | Description                                                   |
+   +===============================+===============================================================+
+   | **Admin Settings**            | Portal administration (``AXONIVY_PORTAL_ADMIN`` role)         |
+   +-------------------------------+---------------------------------------------------------------+
+   | **My Profile**                | General settings, language, and notifications                 |
+   +-------------------------------+---------------------------------------------------------------+
+   | **Dashboard Configuration**   | Manage private and public dashboards                          |
+   +-------------------------------+---------------------------------------------------------------+
+   | **Absences**                  | Manage absences and task delegates                            |
+   +-------------------------------+---------------------------------------------------------------+
+   | **Change Password**           | Set a new password                                            |
+   +-------------------------------+---------------------------------------------------------------+
+   | **Info**                      | Version information about Portal and Engine                   |
+   +-------------------------------+---------------------------------------------------------------+
+   | **Logout**                    | End your session                                              |
+   +-------------------------------+---------------------------------------------------------------+
+
+Menu Option Details
+-------------------
 
 Admin Settings
---------------
+^^^^^^^^^^^^^^
 
-Menu entry :ref:`Admin Settings <admin-settings>` is only available for users who have role ``AXONIVY_PORTAL_ADMIN``.
+The :ref:`Admin Settings <admin-settings>` menu entry provides portal administration features.
 
-My profile
-----------
+.. important::
+   Only users with role ``AXONIVY_PORTAL_ADMIN`` can access Admin Settings.
 
-Menu entry :ref:`my-profile` contains general setting, user language and notification channels subscription settings.
+My Profile
+^^^^^^^^^^
+
+.. _User Settings in the Axon Ivy Portal:
+
+The :ref:`my-profile` menu entry contains general settings, user language, and notification channels subscription settings.
 
 Dashboard Configuration
------------------------
+^^^^^^^^^^^^^^^^^^^^^^^
 
-Menu entry :ref:`dashboard-configuration` contains dashboards settings,
-grant either :bdg-ref-warning:`🔑DashboardWriteOwn <DashboardWriteOwn>` or :bdg-ref-warning:`🔑DashboardWritePublic <DashboardWritePublic>` 
-to allow a user to define dashboard settings either for their own private dashboards or public dashboards, respectively.
+The :ref:`dashboard-configuration` menu entry allows you to manage your private dashboards and public dashboards (if permitted).
 
 Absences
---------
+^^^^^^^^
 
-Menu entry :guilabel:`Absences` provides you with an absence management
-component. Here you can enter your absence and define delegate for
-tasks assigned to you or one of the roles you hold.
-
-.. hint::
-   Although you can specify delegates for a role you hold, we recommend specifying delegates only for tasks assigned directly to you. Roles are typically held by a group of users, so if you're absent, another member of your role can still take on the task.
+The :guilabel:`Absences` menu entry provides an absence management component where you can enter your absences and define delegates for tasks assigned to you or the roles you hold.
 
 |portal-absences|
 
-The dialog shows you all current and upcoming absences. You may show also past
-absences by activating the option :guilabel:`Display absences in the past`. Furthermore,
-you can edit or delete absences by using the |edit-icon| **Edit** or |trash-icon|
-**Delete** action in the row of the respective absence.
+The absence dialog displays all current and upcoming absences. You can also view past absences by activating the :guilabel:`Display absences in the past` option. Edit or delete absences using the |edit-icon| **Edit** or |trash-icon| **Delete** actions in the respective absence row.
 
-HowTo: Add absence
-^^^^^^^^^^^^^^^^^^
+.. tip::
+   Specify delegates only for tasks assigned directly to you. Roles are typically held by multiple users, so if you're absent, another member can handle the task.
 
-#. Click on the button :guilabel:`Add absence`
+HowTo: Add Absence
+""""""""""""""""""
 
-#. The :guilabel:`Add absence` dialog is opened
-
-#. Enter :guilabel:`From` and :guilabel:`Until`
-
-#. You may provide an explanatory comment
-
-#. Confirm your absence by clicking button :guilabel:`Save`
+#. Click the :guilabel:`Add absence` button
+#. The :guilabel:`Add absence` dialog opens
+#. Enter :guilabel:`From` and :guilabel:`Until` dates
+#. Optionally provide an explanatory comment
+#. Confirm your absence by clicking the :guilabel:`Save` button
 
 |how-to-add-an-absence|
 
-.. note::
+HowTo: Set Substitute
+"""""""""""""""""""""
 
-   Grant either permission :bdg-ref-warning:`🔑UserCreateOwnAbsence <UserCreateOwnAbsence>` or :bdg-ref-warning:`🔑UserCreateAbsence <UserCreateAbsence>` 
-   to allow a user to create own, personal absences or public absences, respectively.
+The substitute list contains entries for your personal tasks and each role you hold.
 
-HowTo: Set substitute
-^^^^^^^^^^^^^^^^^^^^^
+**Substitute Types:**
 
-#. You see a list with 2 entries for your personal tasks and for each
-   role you hold.
+- **For roles**: You can choose multiple substitutes for each role
+- **For personal tasks**: You can choose multiple substitutes in two categories:
 
-   For each role, you can choose multiple substitutes.
+  - Permanent substitutes for personally assigned tasks
+  - Substitutes for personally assigned tasks during absence
 
-   For your personal tasks, you can choose multiple substitutes and there are two types of substitute:
+  .. note::
+     A substitute can only belong to one type.
 
-   - Permanent substitutes for personally assigned tasks.
-   - Substitutes for personally assigned tasks during the absence.
+**Steps:**
 
-   A substitute can only belonged to one type.
-
-#. Specify substitutes by clicking on link ends with |si-notes-quill|, select substitutes and click :guilabel:`Add` button to add.
-
-#. Confirm your substitutes with the button :guilabel:`Save`.
+#. Click the link ending with |si-notes-quill| to specify substitutes
+#. Select substitutes and click the :guilabel:`Add` button
+#. Confirm your substitutes with the :guilabel:`Save` button
 
 |how-to-set-absence-substitutes|
 
-.. note::
-
-   Grant either permission :bdg-ref-warning:`🔑UserCreateOwnSubstitute <UserCreateOwnSubstitute>` or :bdg-ref-warning:`🔑UserCreateSubstitute <UserCreateSubstitute>`
-   to allow a user to create their own substitute definitions or create substitute definitions for all users, respectively.
-
 Change Password
----------------
+^^^^^^^^^^^^^^^
 
-The menu entry :guilabel:`Change password` allows you to set a new password.
+The :guilabel:`Change password` menu entry allows you to set a new password.
 
 |portal-password-change-dialog|
 
 .. note::
-
-   Grant permission: :bdg-warning:`🔑UserSetOwnPassword` to allow a user to change their password.
-   Configure permissions in the :doc-url:`Engine Cockpit
-   </engine-guide/reference/engine-cockpit/security.html>`. In the security area, open PersonalPermissions -> PersonalSecurityPermissions -> UserSetOwnPassword.
+   Configure the UserSetOwnPassword permission in the :doc-url:`Engine Cockpit </engine-guide/reference/engine-cockpit/security.html>` under PersonalPermissions → PersonalSecurityPermissions → UserSetOwnPassword.
 
 Info
 ----
@@ -140,38 +148,88 @@ Portal.
    time.
 
 Global Search
--------------
+=============
 
-The Global Search is a convenient tool for you to look up
-information in the whole Axon Ivy Portal. You may search for any
-keyword. By default, the Axon Ivy Portal will search for:
+Global Search provides a convenient way to look up information across the entire Portal. You can search for any keyword, and Portal will search across multiple categories.
 
-#. Processes: name, description
+Default Search Scope
+--------------------
 
-#. Cases: id, name, description
+By default, Portal searches the following categories:
 
-#. Tasks: id, name, description and all custom string fields
+.. table::
+   :widths: 25 75
 
-When you confirm the keyword you’re looking for, the Axon Ivy Portal
-will route you to the **Global Search Results** page. For each category
-a tab is provided, giving you the results of your search.
+   +-------------------+---------------------------------------------------------------+
+   | Category          | Searchable Fields                                             |
+   +===================+===============================================================+
+   | **Processes**     | Name, description                                             |
+   +-------------------+---------------------------------------------------------------+
+   | **Cases**         | ID, name, description                                         |
+   +-------------------+---------------------------------------------------------------+
+   | **Tasks**         | ID, name, description, and all custom string fields           |
+   +-------------------+---------------------------------------------------------------+
+
+Search Results
+--------------
+
+When you enter a keyword and confirm your search, Portal routes you to the **Global Search Results** page. Each category has its own tab displaying the matching results.
 
 |portal-global-search-result-page|
 
-HowTo: Limit search scope of Global Search
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+HowTo: Configure Search Scope
+-----------------------------
 
-As an administrator, you may want to limit fields which Global Search should be looking for.
-Portal provides three variables to help you:
+As an administrator, you can limit the fields that Global Search uses to improve performance and relevance.
 
-   - ``Portal.SearchScope.ByCaseFields``: Defining the fields that the global search
-     will use to find matching cases besides case Id (this can influence the performance of the search).
-   - ``Portal.SearchScope.ByTaskFields``: Defining the fields that the global search
-     will use to find matching tasks besides task Id (this can influence the performance of the search).
-   - ``Portal.GlobalSearchScopeCategories``: Defining the types that the global search will search for.
-     (this can influence the performance of the search).
+Available Portal Variables
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-You can configure these variables by :ref:`settings-admin-settings`.
+**Portal.SearchScope.ByCaseFields**
+   Defines the fields that global search uses to find matching cases besides case ID (can influence performance).
+
+**Portal.SearchScope.ByTaskFields**
+   Defines the fields that global search uses to find matching tasks besides task ID (can influence performance).
+
+**Portal.GlobalSearchScopeCategories**
+   Defines the categories that global search will search (can influence performance).
+
+.. tip::
+   Configure these variables in :ref:`admin-settings` to optimize search performance for your Portal instance.
+
+Permission Reference
+====================
+
+Different header features require specific permissions:
+
+.. table::
+   :widths: 40 60
+
+   +--------------------------------------+--------------------------------------------------------+
+   | Action                               | Required Permission                                    |
+   +======================================+========================================================+
+   | **Access admin settings**            | Role ``AXONIVY_PORTAL_ADMIN``                          |
+   +--------------------------------------+--------------------------------------------------------+
+   | **Manage own dashboards**            | :bdg-ref-warning:`🔑DashboardWriteOwn                  |
+   |                                      | <DashboardWriteOwn>`                                   |
+   +--------------------------------------+--------------------------------------------------------+
+   | **Manage public dashboards**         | :bdg-ref-warning:`🔑DashboardWritePublic               |
+   |                                      | <DashboardWritePublic>`                                |
+   +--------------------------------------+--------------------------------------------------------+
+   | **Create own absences**              | :bdg-ref-warning:`🔑UserCreateOwnAbsence               |
+   |                                      | <UserCreateOwnAbsence>`                                |
+   +--------------------------------------+--------------------------------------------------------+
+   | **Create public absences**           | :bdg-ref-warning:`🔑UserCreateAbsence                  |
+   |                                      | <UserCreateAbsence>`                                   |
+   +--------------------------------------+--------------------------------------------------------+
+   | **Create own substitutes**           | :bdg-ref-warning:`🔑UserCreateOwnSubstitute            |
+   |                                      | <UserCreateOwnSubstitute>`                             |
+   +--------------------------------------+--------------------------------------------------------+
+   | **Create all substitutes**           | :bdg-ref-warning:`🔑UserCreateSubstitute               |
+   |                                      | <UserCreateSubstitute>`                                |
+   +--------------------------------------+--------------------------------------------------------+
+   | **Change own password**              | :bdg-warning:`🔑UserSetOwnPassword`                    |
+   +--------------------------------------+--------------------------------------------------------+
 
 .. include:: ../includes/_common-icon.rst
 

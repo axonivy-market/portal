@@ -76,7 +76,7 @@
     <p:commandLink id="show-case-custom-fields" rendered="#{caseActionBean.showCustomFieldsDialog()}"
                    onstart="event.stopPropagation();"
                    ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/customFields')}" 
-                   styleClass="case-command action-step-item ui-menu-items" onclick="initCustomFieldListData();"
+                   styleClass="case-command action-step-item ui-menu-items" onclick="initCustomFieldCaseListData();"
                    update="@parent #{cc.attrs.update}" process="@this">
       <i class="action-icon si si-cog-double-2" />
       <span class="option-item-label">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/customFields')}</span>

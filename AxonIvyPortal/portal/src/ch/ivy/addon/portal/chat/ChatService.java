@@ -25,6 +25,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
+import javax.inject.Singleton;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -57,7 +58,6 @@ import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.caze.CaseBusinessState;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 import io.swagger.v3.oas.annotations.Hidden;
-import jakarta.inject.Singleton;
 
 /**
  * Chat service uses asynchronous REST communication:

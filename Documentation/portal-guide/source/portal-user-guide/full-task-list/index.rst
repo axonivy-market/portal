@@ -6,20 +6,17 @@ Full Task List
 The **Full Task List** page is a dashboard featuring a single, full-width task widget. 
 You can reach the page by using the |task-list-icon| :guilabel:`Tasks` link in the Axon Ivy Portal menu.
 
-.. note::
+.. important::
+   **Access Requirement**: Only users with the :bdg-ref-warning:`🔑AccessFullTaskList <AccessFullTaskList>` 
+   permission can see the |task-list-icon| :guilabel:`Tasks` menu item.
 
-   Grant permission :bdg-ref-warning:`🔑AccessFullTaskList <AccessFullTaskList>` to allow a user to access the full task list ( |task-list-icon| :guilabel:`Tasks`) in the Axon Ivy Portal menu.
-
-
-.. hint:: 
-   Depending on the roles you hold
-   in the application and the     
-   configuration of the Axon Ivy
-   Portal, you might see not only 
-   the tasks belonging to you but 
-   all open tasks.     
+.. tip:: 
+   Depending on your application roles and Portal configuration, you might see not only your tasks but all open tasks.
 
 |navigate-to-full-task-list-page|
+
+Task List Overview
+==================
 
 On the top of the **Full Task List** page you see next to the heading
 :guilabel:`Tasks` in brackets the overall number of tasks shown to you. Below you find the filter feature.
@@ -52,38 +49,57 @@ For each task the following key information is shown in the list:
 
 |task-key-information|
 
-Furthermore, at the end of each row you find the `Actions` menu of key features in
-handling tasks:
+Available Actions
+=================
 
-#. Details
+At the end of each row you find the `Actions` menu with the following options:
 
-#. Reset Task
+.. table::
+   :widths: 30 70
 
-#. Delegate Task
+   +---------------------------+---------------------------------------------------------------+
+   | Action                    | Description                                                   |
+   +===========================+===============================================================+
+   | **Details**               | View full task information                                    |
+   +---------------------------+---------------------------------------------------------------+
+   | **Reset Task**            | Revert the task to its initial state                          |
+   +---------------------------+---------------------------------------------------------------+
+   | **Delegate Task**         | Assign the task to another user or role                       |
+   +---------------------------+---------------------------------------------------------------+
+   | **Reserve**               | Reserve the task for yourself                                 |
+   +---------------------------+---------------------------------------------------------------+
+   | **Destroy**               | Destroy the task                                              |
+   +---------------------------+---------------------------------------------------------------+
+   | **Trigger Escalation**    | Manually trigger task escalation                              |
+   +---------------------------+---------------------------------------------------------------+
+   | **Custom Fields**         | View task custom fields                                       |
+   +---------------------------+---------------------------------------------------------------+
+   | **Workflow Events**       | View workflow events                                          |
+   +---------------------------+---------------------------------------------------------------+
+   | **Process Viewer**        | Visual representation of the process flow                     |
+   +---------------------------+---------------------------------------------------------------+
 
-#. Reserve
+Task Details
+============
 
-#. Destroy
+Access the full set of task data by clicking on `Actions` then `Details`.
 
-#. Trigger Escalation
+The task details page is organized into four main sections:
 
-#. Custom Fields
+.. table::
+   :widths: 30 70
 
-#. Workflow Events
-
-#. Process Viewer
-
-.. note::
-
-   Grant permissions :bdg-ref-warning:`🔑TaskDisplayResetAction <TaskDisplayResetAction>`, 
-   :bdg-ref-warning:`🔑TaskDisplayReserveAction <TaskDisplayReserveAction>`, :bdg-ref-warning:`🔑TaskDisplayDelegateAction <TaskDisplayDelegateAction>`, 
-   :bdg-ref-warning:`🔑TaskDisplayDestroyAction <TaskDisplayDestroyAction>`, :bdg-ref-warning:`🔑TaskDisplayAdditionalOptions <TaskDisplayAdditionalOptions>`,
-   :bdg-ref-warning:`🔑TaskDisplayWorkflowEventAction <TaskDisplayWorkflowEventAction>`, :bdg-ref-warning:`🔑TaskDisplayCustomFieldsAction <TaskDisplayCustomFieldsAction>` to allow a user to see the corresponding buttons and menu items.
-
-Finally, you have the possibility to access the full set of the task
-data by clicking on `Actions` then clicking on the `Details` menu item.
-
-The task details are separated into 4 different sections:
+   +---------------------------+---------------------------------------------------------------+
+   | Section                   | Content                                                       |
+   +===========================+===============================================================+
+   | **Status Banner**         | Information that needs attention or action                    |
+   +---------------------------+---------------------------------------------------------------+
+   | **Data and Description**  | Task metadata and related case information                    |
+   +---------------------------+---------------------------------------------------------------+
+   | **Histories**             | Notes and task history entries                                |
+   +---------------------------+---------------------------------------------------------------+
+   | **Documents**             | Attached files with add, delete, rename, preview options      |
+   +---------------------------+---------------------------------------------------------------+
 
 #. Task status banner to display information that needs attention or that you should take action on.
 
@@ -106,7 +122,7 @@ The task details are separated into 4 different sections:
 
 |detailed-task-information|
 
-HowTo: Configure the full task list
+HowTo: Configure the Full Task List
 -----------------------------------
 
 The full task list page functions as a dashboard accessible from the top-level menu. 
@@ -134,10 +150,11 @@ HowTo: Move and Resize Widgets in Task Details
    |how-to-reset-to-default|
 
 
-HowTo: Attach a document to a case
-------------------------------------
+HowTo: Attach a Document to a Case
+-----------------------------------
 
 #. Open the task details of a task
+
 #. Click the link |add-icon| ``Add document`` 
 
 #. The :guilabel:`Add document` dialog is opened
@@ -149,11 +166,7 @@ HowTo: Attach a document to a case
 
 |how-to-upload-document|
 
-.. note::
-
-   Grant either permission :bdg-ref-warning:`🔑DocumentOfInvolvedCaseWrite <DocumentOfInvolvedCaseWrite>` or :bdg-ref-warning:`🔑DocumentWrite <DocumentWrite>` to allow a user to upload documents.
-
-HowTo: Rename a document of a case
+HowTo: Rename a Document of a Case
 ----------------------------------
 
 #. Open the case details
@@ -172,8 +185,8 @@ HowTo: Rename a document of a case
 |how-to-rename-document|
 
 
-HowTo: Remove an attachment from the case
------------------------------------------
+HowTo: Remove an Attachment from the Case
+------------------------------------------
 
 #. Open the task details of a task
 
@@ -186,12 +199,8 @@ HowTo: Remove an attachment from the case
 
 |how-to-delete-document|
 
-.. note::
 
-   Grant either permission :bdg-ref-warning:`🔑DocumentOfInvolvedCaseWrite <DocumentOfInvolvedCaseWrite>` or :bdg-ref-warning:`🔑DocumentWrite <DocumentWrite>` to allow a user to delete documents.
-
-
-HowTo: Preview a document of a task
+HowTo: Preview a Document of a Task
 ------------------------------------
 
 #. Open the task details of a task
@@ -206,15 +215,16 @@ HowTo: Preview a document of a task
 |how-to-preview-document|
 
 .. note::
+   **Supported Document Types:**
+   
+   - **Default**: Images (jpg, jpeg, bmp, png), plain text (txt, log), and PDF documents
+   - **With DocFactory**: Word (doc, docx), Excel (xls, xlsx), and email (eml) files
+   
+   To enable this feature, set :ref:`Portal settings <update-portal-settings>` :guilabel:`Portal.Document.EnablePreview` to true. 
+   For Office documents, deploy `DocFactory <https://market.axonivy.com/doc-factory#tab-description>`_ in the same security context.
 
-    - Portal can preview images(jpg, jpeg, bmp and png), plain text(txt and log) and pdf documents by default.
 
-    - Portal can preview Word(doc, docx), Excel(xls, xlsx) and email(eml, msg) documents if :doc-url:`DocFactory <https://market.axonivy.com/doc-factory#tab-description>` is deployed in the same security context.
-
-    - Change :ref:`Portal settings <update-portal-settings>` :guilabel:`Portal.Document.EnablePreview` to true to enable this feature.
-
-
-HowTo: Add a note to a task
+HowTo: Add a Note to a Task
 ---------------------------
 
 #. Open the task details of a task
@@ -230,13 +240,12 @@ HowTo: Add a note to a task
 |how-to-add-note|
 
 .. note::
-   Notes of a task are displayed in the ``Notes`` table of the task details, and in the ``History`` table of its business case.
-
-   If the task belongs to a technical case, its notes are also displayed in the ``History`` table of this technical case.
+   **Note Visibility:**
    
-   Grant permission :bdg-ref-warning:`🔑TaskCaseAddNote <TaskCaseAddNote>` to allow a user to add task and case notes.
+   - Task notes are displayed in the ``Notes`` table of the task details and in the ``History`` table of its business case
+   - If the task belongs to a technical case, notes are also displayed in the ``History`` table of that technical case
 
-HowTo: Export a task history
+HowTo: Export a Task History
 ----------------------------
 
 #. Open the task details of a task
@@ -257,9 +266,6 @@ HowTo: Export a task history
 HowTo: Show Workflow Events
 ---------------------------
 
-.. note:: 
-   Grant permission :bdg-warning:`🔑WorkflowEventReadAll` to allow a user to see all workflow events of a task.
-
 #. Open the task details of a task
 
 #. Click on the link ``Actions`` on the right top corner of the **Data and Description** section
@@ -272,9 +278,6 @@ HowTo: Show Workflow Events
 
 HowTo: Show Custom Fields
 ---------------------------
-
-.. note:: 
-   Grant permission :bdg-ref-warning:`🔑TaskDisplayCustomFieldsAction <TaskDisplayCustomFieldsAction>` to allow a user to see Custom Fields link in Actions panel.
 
 #. Open the task details of a task
 
@@ -295,9 +298,49 @@ HowTo: Share Task Details
 
 |how-to-share-task-details|
 
-.. note::
+Permission Reference
+====================
 
-   Grant permission :bdg-ref-warning:`🔑ShareTaskDetailsLink <ShareTaskDetailsLink>` to allow a user to share task details.
+Different task operations require specific permissions:
+
+.. table::
+   :widths: 40 60
+
+   +--------------------------------------+--------------------------------------------------------+
+   | Action                               | Required Permission                                    |
+   +======================================+========================================================+
+   | **Reset task**                       | :bdg-ref-warning:`🔑TaskDisplayResetAction             |
+   |                                      | <TaskDisplayResetAction>`                              |
+   +--------------------------------------+--------------------------------------------------------+
+   | **Reserve task**                     | :bdg-ref-warning:`🔑TaskDisplayReserveAction           |
+   |                                      | <TaskDisplayReserveAction>`                            |
+   +--------------------------------------+--------------------------------------------------------+
+   | **Delegate task**                    | :bdg-ref-warning:`🔑TaskDisplayDelegateAction          |
+   |                                      | <TaskDisplayDelegateAction>`                           |
+   +--------------------------------------+--------------------------------------------------------+
+   | **Destroy task**                     | :bdg-ref-warning:`🔑TaskDisplayDestroyAction           |
+   |                                      | <TaskDisplayDestroyAction>`                            |
+   +--------------------------------------+--------------------------------------------------------+
+   | **View additional options**          | :bdg-ref-warning:`🔑TaskDisplayAdditionalOptions       |
+   |                                      | <TaskDisplayAdditionalOptions>`                        |
+   +--------------------------------------+--------------------------------------------------------+
+   | **View workflow events**             | :bdg-ref-warning:`🔑TaskDisplayWorkflowEventAction     |
+   |                                      | <TaskDisplayWorkflowEventAction>` and                  |
+   |                                      | :bdg-warning:`🔑WorkflowEventReadAll`                  |
+   +--------------------------------------+--------------------------------------------------------+
+   | **View custom fields**               | :bdg-ref-warning:`🔑TaskDisplayCustomFieldsAction      |
+   |                                      | <TaskDisplayCustomFieldsAction>`                       |
+   +--------------------------------------+--------------------------------------------------------+
+   | **Add/delete task documents**        | :bdg-ref-warning:`🔑DocumentOfInvolvedCaseWrite        |
+   |                                      | <DocumentOfInvolvedCaseWrite>` or                      |
+   |                                      | :bdg-ref-warning:`🔑DocumentWrite <DocumentWrite>`     |
+   +--------------------------------------+--------------------------------------------------------+
+   | **Add note to task**                 | :bdg-ref-warning:`🔑TaskCaseAddNote                    |
+   |                                      | <TaskCaseAddNote>`                                     |
+   +--------------------------------------+--------------------------------------------------------+
+   | **Share task details link**          | :bdg-ref-warning:`🔑ShareTaskDetailsLink               |
+   |                                      | <ShareTaskDetailsLink>`                                |
+   +--------------------------------------+--------------------------------------------------------+
 
 .. include:: ../includes/_common-icon.rst
 

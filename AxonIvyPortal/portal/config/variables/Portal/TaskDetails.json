@@ -7,16 +7,16 @@
           "x": 0, "y": 0, "w": 6, "h": 8
         }
       }, {
-        "type": "history",
-        "id": "history",
-        "layout": {
-          "x": 6, "y": 4, "w": 6, "h": 4
-        }
-      }, {
         "type": "document",
         "id": "document",
         "layout": {
           "x": 6, "y": 0, "w": 6, "h": 4
+        }
+      }, {
+        "type": "history",
+        "id": "history",
+        "layout": {
+          "x": 6, "y": 4, "w": 6, "h": 4
         }
       }
     ]

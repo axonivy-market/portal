@@ -1,0 +1,205 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/process/13.2.0/process.json",
+  "id" : "19AD8C687293FAA2",
+  "config" : {
+    "data" : "com.axonivy.portal.userexamples.SampleStatisticDashboardData"
+  },
+  "elements" : [ {
+      "id" : "f3",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 840, "y" : 248 }
+      }
+    }, {
+      "id" : "f4",
+      "type" : "TaskSwitchEvent",
+      "name" : "Review order",
+      "config" : {
+        "task" : {
+          "name" : "Review order"
+        },
+        "case" : {
+          "name" : "Procurement",
+          "customFields" : [
+            { "name" : "DaysToDecision", "type" : "NUMBER", "value" : "in1.daysToDecision" },
+            { "name" : "Decision", "type" : "STRING", "value" : "in1.decision" },
+            { "name" : "Department", "type" : "STRING", "value" : "in1.department" },
+            { "name" : "Item", "type" : "STRING", "value" : "in1.item" },
+            { "name" : "MonthYear", "type" : "TIMESTAMP", "value" : "in1.monthOfYear" },
+            { "name" : "ReworkCauses", "type" : "STRING", "value" : "in1.reworkCauses" },
+            { "name" : "ReworkNoLoops", "type" : "NUMBER", "value" : "in1.reworkNoLoops" },
+            { "name" : "ReworkOccurred", "type" : "STRING", "value" : "in1.reworkOccurred" },
+            { "name" : "SpendAmount", "type" : "NUMBER", "value" : "in1.spendAmount" }
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 720, "y" : 248 }
+      },
+      "connect" : [
+        { "id" : "f5", "to" : "f3", "color" : "default" }
+      ]
+    }, {
+      "id" : "f6",
+      "type" : "RequestStart",
+      "name" : "Create Procurement Data Process",
+      "config" : {
+        "signature" : "createProcurementDataForSampleStatistic",
+        "request" : {
+          "name" : "<%=ivy.cms.co(\"/Processes/Procurement/CreateDataProcess\")%>",
+          "description" : "<%=ivy.cms.co(\"/Processes/Procurement/description\")%>",
+          "customFields" : [
+            { "name" : "cssIcon", "value" : "si si-shopping-cart-check" },
+            { "name" : "processImage", "value" : "<%=ivy.cms.cr(\"/Images/procurement-process\")%>" }
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 544, "y" : 472 }
+      },
+      "connect" : [
+        { "id" : "f7", "to" : "f10", "via" : [ { "x" : 776, "y" : 472 } ] }
+      ]
+    }, {
+      "id" : "f8",
+      "type" : "SignalStartEvent",
+      "name" : "Signal to create Procurement Case",
+      "config" : {
+        "signalCode" : "com:axonivy:portal:portaluserexamples:createProcurementKPIcase",
+        "attachToBusinessCase" : false,
+        "output" : {
+          "map" : { },
+          "code" : [
+            "import com.axonivy.portal.userexamples.SampleStatisticDashboardData;",
+            "",
+            "out = signal.getSignalData() as SampleStatisticDashboardData;"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 544, "y" : 248 },
+        "description" : "Signal to create Procurement Case for sample statistic"
+      },
+      "connect" : [
+        { "id" : "f9", "to" : "f4" }
+      ]
+    }, {
+      "id" : "f10",
+      "type" : "Script",
+      "name" : "create demo data",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.userexamples.SampleStatisticDashboardData;",
+            "import java.time.YearMonth;",
+            "",
+            "SampleStatisticDashboardData instanceData;",
+            "",
+            "for (int i = 0; i < 10; i++) {",
+            "  instanceData = new SampleStatisticDashboardData();",
+            "",
+            "  List<String> departments = ivy.cms.co(\"/Processes/Procurement/SampleStatisticValue/Department\").split(\";\");",
+            "  instanceData.department = departments.get((Math.random() * departments.size()).intValue());",
+            "  ",
+            "  List<String> items = ivy.cms.co(\"/Processes/Procurement/SampleStatisticValue/Item\").split(\";\");",
+            "  instanceData.item = items.get((Math.random() * items.size()).intValue());",
+            "  ",
+            "  List<String> monthOfYears = ivy.cms.co(\"/Processes/Procurement/SampleStatisticValue/MonthOfYear\").split(\";\");",
+            "  int month = Integer.parseInt(monthOfYears.get((Math.random() * monthOfYears.size()).intValue()));",
+            "  instanceData.monthOfYear = new DateTime(2025, month, 1, 7, 1, 1);",
+            "  ",
+            "  List<String> spendAmounts = ivy.cms.co(\"/Processes/Procurement/SampleStatisticValue/SpendAmount\").split(\";\");",
+            "  instanceData.spendAmount = spendAmounts.get((Math.random() * spendAmounts.size()).intValue()).toNumber();",
+            "",
+            "  List<String> daysToDecisions = ivy.cms.co(\"/Processes/Procurement/SampleStatisticValue/DaysToDecision\").split(\";\");",
+            "  instanceData.daysToDecision = daysToDecisions.get((Math.random() * daysToDecisions.size()).intValue()).toNumber();",
+            "",
+            "  List<String> decisions = ivy.cms.co(\"/Processes/Procurement/SampleStatisticValue/Decision\").split(\";\");",
+            "  instanceData.decision = decisions.get((Math.random() * decisions.size()).intValue());",
+            "",
+            "  List<String> reworkCauses = ivy.cms.co(\"/Processes/Procurement/SampleStatisticValue/ReworkCauses\").split(\";\");",
+            "  instanceData.reworkCauses = reworkCauses.get((Math.random() * reworkCauses.size()).intValue());  ",
+            "",
+            "  List<String> reworkNoLoops = ivy.cms.co(\"/Processes/Procurement/SampleStatisticValue/ReworkNoLoops\").split(\";\");",
+            "  instanceData.reworkNoLoops = reworkNoLoops.get((Math.random() * reworkNoLoops.size()).intValue()).toNumber();",
+            "",
+            "  List<String> reworkOccurred = ivy.cms.co(\"/Processes/Procurement/SampleStatisticValue/ReworkOccurred\").split(\";\");",
+            "  instanceData.reworkOccurred = reworkOccurred.get((Math.random() * reworkOccurred.size()).intValue());  ",
+            "",
+            "  ivy.wf.signals().create().data(instanceData).send(\"com:axonivy:portal:portaluserexamples:createProcurementKPIcase\");",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 776, "y" : 384 }
+      },
+      "connect" : [
+        { "id" : "f11", "to" : "f12" }
+      ]
+    }, {
+      "id" : "f12",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 912, "y" : 384 }
+      }
+    }, {
+      "id" : "f16",
+      "type" : "SignalStartEvent",
+      "name" : "Signal to generate data for sample statistic",
+      "config" : {
+        "signalCode" : "com:axonivy:portal:portaluserexamples:createProcurementDataForSampleStatistic",
+        "attachToBusinessCase" : false
+      },
+      "visual" : {
+        "at" : { "x" : 544, "y" : 384 },
+        "description" : "Signal to generate data for sample statistic"
+      },
+      "connect" : [
+        { "id" : "f17", "to" : "f10" }
+      ]
+    }, {
+      "id" : "f18",
+      "type" : "RequestStart",
+      "name" : "Init sample dashboard",
+      "config" : {
+        "signature" : "initSampleStatisticConfig",
+        "request" : {
+          "name" : "<%=ivy.cms.co(\"/Processes/Procurement/InitConfig\")%>"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 544, "y" : 608 }
+      },
+      "connect" : [
+        { "id" : "f20", "to" : "f21" }
+      ]
+    }, {
+      "id" : "f19",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 912, "y" : 608 }
+      }
+    }, {
+      "id" : "f21",
+      "type" : "Script",
+      "name" : "Init dashboard and statistic widgets configuration",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.userexamples.bean.PortalUserExamplesInitBean;",
+            "import ch.ivyteam.ivy.environment.Ivy;",
+            "PortalUserExamplesInitBean.initSampleConfig();",
+            "Ivy.wf().signals().send(\"com:axonivy:portal:portaluserexamples:createProcurementDataForSampleStatistic\");"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 776, "y" : 608 },
+        "size" : { "width" : 152, "height" : 54 }
+      },
+      "connect" : [
+        { "id" : "f22", "to" : "f19", "color" : "default" }
+      ]
+    } ]
+}
