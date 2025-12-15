@@ -25,6 +25,15 @@
       <groupId>com.axonivy.ivy.api</groupId>
       <artifactId>ivy-api</artifactId>
     </dependency>
+
+    <dependency>
+      <groupId>com.axonivy.ivy.api.restricted</groupId>
+      <artifactId>ivy-engine-cleanup-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.axonivy.ivy.api.restricted</groupId>
+      <artifactId>ivy-security-api</artifactId>
+    </dependency>
   </dependencies>
   <repositories>
     <repository>
