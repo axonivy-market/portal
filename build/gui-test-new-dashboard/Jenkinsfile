@@ -28,7 +28,6 @@ pipeline {
   environment {
     engineDir = "$env.WORKSPACE/AxonIvyPortal/portal-selenium-test/engine"
     MAVEN_OPTS = "-Xmx3000m -XX:+HeapDumpOnOutOfMemoryError"
-	JAVA_OPTS="-XX:+FlightRecorder -XX:StartFlightRecording=filename=maven_build.jfr,dumponexit=true"
   }
 
   stages {
@@ -44,7 +43,7 @@ pipeline {
           echo '====================Build Portal modules===================='
           def modules = ['AxonIvyPortal/portal-components', 'AxonIvyPortal/portal', 'AxonIvyPortal/PortalKitTestHelper', 'Showcase/portal-user-examples', 'Showcase/portal-developer-examples', 'Showcase/InternalSupport', 'Showcase/portal-components-examples', 'AxonIvyPortal/PortalApp', 'Showcase/portal-demo-app']
           for (module in modules) {
-            bat "mvn clean install -P-ivy -f ${module}/pom.xml -Divy.engine.directory=%engineDir%"
+            bat "mvn clean install -P-ivy -f ${module}/pom.xml -Divy.engine.directory=%engineDir%" -Divy.deploy.timeout.seconds=200
           }
 
           echo '====================Deploy Portal modules===================='
@@ -58,8 +57,10 @@ pipeline {
           utils.killUnnecessaryProcessesToRunTest()
 
           echo '====================Execute maven for testing===================='
+          echo '====================Set JFR===================='
+          withEnv(["JAVA_OPTS=-XX:+FlightRecorder -XX:StartFlightRecording=filename=maven_build.jfr,dumponexit=true"]){
           bat "mvn clean test -P-ivy -f AxonIvyPortal/portal-selenium-test/customized_pom.xml %engineDownloadURL% -Dtest=${params.testPatternToRun} -DbrowserType=FIREFOX -DtrimStackTrace=false -Divy.engine.directory=%engineDir% -Divy.deploy.timeout.seconds=200 -Divy.engine.start.timeout.seconds=500 -Dsurefire.rerunFailingTestsCount=2"
-          
+          }
           utils.cleanDisk()
           
           echo '====================Archive consoleText file===================='
