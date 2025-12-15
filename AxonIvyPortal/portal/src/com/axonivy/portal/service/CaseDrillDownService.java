@@ -2,7 +2,7 @@ package com.axonivy.portal.service;
 
 import java.util.List;
 
-import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.collections4.CollectionUtils;
 
 import com.axonivy.portal.bo.Statistic;
 import com.axonivy.portal.components.service.LanguageService;
