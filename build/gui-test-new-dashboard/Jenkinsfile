@@ -28,6 +28,7 @@ pipeline {
   environment {
     engineDir = "$env.WORKSPACE/AxonIvyPortal/portal-selenium-test/engine"
     MAVEN_OPTS = "-Xmx3000m -XX:+HeapDumpOnOutOfMemoryError"
+	JAVA_OPTS="-XX:+FlightRecorder -XX:StartFlightRecording=filename=maven_build.jfr,dumponexit=true"
   }
 
   stages {
@@ -57,10 +58,8 @@ pipeline {
           utils.killUnnecessaryProcessesToRunTest()
 
           echo '====================Execute maven for testing===================='
-          echo '====================Set JFR===================='
-          withEnv(["JAVA_OPTS=-XX:+FlightRecorder -XX:StartFlightRecording=filename=maven_build.jfr,dumponexit=true"]){
-          bat "mvn clean test -P-ivy -f AxonIvyPortal/portal-selenium-test/customized_pom.xml %engineDownloadURL% -Dtest=${params.testPatternToRun} -DbrowserType=FIREFOX -DtrimStackTrace=false -Divy.engine.directory=%engineDir% -Divy.deploy.timeout.seconds=60 -Divy.engine.start.timeout.seconds=500 -Dsurefire.rerunFailingTestsCount=2"
-          }
+          bat "mvn clean test -P-ivy -f AxonIvyPortal/portal-selenium-test/customized_pom.xml %engineDownloadURL% -Dtest=${params.testPatternToRun} -DbrowserType=FIREFOX -DtrimStackTrace=false -Divy.engine.directory=%engineDir% -Divy.deploy.timeout.seconds=200 -Divy.engine.start.timeout.seconds=500 -Dsurefire.rerunFailingTestsCount=2"
+          
           utils.cleanDisk()
           
           echo '====================Archive consoleText file===================='
