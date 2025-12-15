@@ -999,7 +999,7 @@ msgid ""
 "Word(doc, docx), Excel(xls, xlsx) and email(eml) documents."
 msgstr ""
 "タスクおよびケース詳細のドキュメントプレビュー機能を強化いたしました。同じ"
-"セキュリティコンテキスト内に:dev-url:`DocFactory <https://market.axonivy.com/"
+"セキュリティコンテキスト内に :dev-url:`DocFactory <https://market.axonivy.com/"
 "doc-factory#tab-description>` が存在する場合、Word（doc、docx）、Excel（xls、"
 "xlsx）、メール（eml）ドキュメントのプレビューが可能となります。"
 
@@ -1427,7 +1427,7 @@ msgstr ""
 
 #: ../../source/portal-components/public-api/index.rst:43
 msgid "``navigateToPortalHome()`` and ``navigateToPortalEndPage()``"
-msgstr "``navigateToPortalHome()`` および``navigateToPortalEndPage()``"
+msgstr "``navigateToPortalHome()`` および ``navigateToPortalEndPage()``"
 
 #: ../../source/portal-components/public-api/index.rst:44
 msgid "``buildUrlToPortalCaseDetailsPageById/ByUUID(...)``"

@@ -131,20 +131,20 @@ msgstr "**関連セクション：**"
 
 #: ../../source/portal-developer-guide/architecture/index.rst:33
 msgid ":ref:`Installation <installation>` - Set up Portal in development"
-msgstr ":ref:`Installation <installation>` - 開発環境におけるポータルの設定"
+msgstr ":ref:`インストール <installation>` - 開発環境におけるポータルの設定"
 
 #: ../../source/portal-developer-guide/architecture/index.rst:34
 msgid ":ref:`Deployment <deployment>` - Deploy Portal to production"
-msgstr ":ref:`Deployment <deployment>` - Portal を本番環境にデプロイする"
+msgstr ":ref:`デプロイメント <deployment>` - Portal を本番環境にデプロイする"
 
 #: ../../source/portal-developer-guide/architecture/index.rst:35
 #: ../../source/portal-developer-guide/settings/index.rst:30
 msgid ":ref:`Customization <customization>` - Extend Portal functionality"
-msgstr ":ref:`Customization <customization>` - ポータル機能の拡張"
+msgstr ":ref:`カスタマイズ <customization>` - ポータル機能の拡張"
 
 #: ../../source/portal-developer-guide/architecture/index.rst:36
 msgid ":ref:`IFrame Integration <iframe-in-portal>` - Embed processes in Portal"
-msgstr ":ref:`IFrame Integration <iframe-in-portal>` - Portalへのプロセスの埋め込み"
+msgstr ":ref:`IFrame統合 <iframe-in-portal>` - Portalへのプロセスの埋め込み"
 
 #: ../../source/portal-developer-guide/architecture/index.rst:39
 msgid "Deployment Strategy"
@@ -1142,8 +1142,8 @@ msgid ""
 "``processModel`` parameter in both XHTML files to match your Portal "
 "application name."
 msgstr ""
-"`Portal をカスタムアプリケーション名でデプロイされる場合、両方の XHTML "
-"ファイル内の `processModel`` パラメータを、お客様の Portal アプリケーション名"
+"Portal をカスタムアプリケーション名でデプロイされる場合、両方の XHTML "
+"ファイル内の ``processModel`` パラメータを、お客様の Portal アプリケーション名"
 "に合わせて更新してください。"
 
 #: ../../source/portal-developer-guide/components/error-handling.rst:193
@@ -1312,7 +1312,7 @@ msgid ""
 "Portal handles this with the ``Portal.Chat.MaxConnection`` setting "
 "(default: 3):"
 msgstr ""
-"Portalでは、` の`Portal.Chat.MaxConnection``設定（デフォルト値：3）でこれを処"
+"Portalでは、 ``Portal.Chat.MaxConnection`` 設定（デフォルト値：3）でこれを処"
 "理します。"
 
 #: ../../source/portal-developer-guide/components/portal-chat.rst:48
@@ -1345,9 +1345,9 @@ msgid ""
 "``asyncSupported`` in ``Context.xml``. See :doc-url:`File Reference "
 "</engine-guide/configuration/files/context-xml.html>` for details."
 msgstr ""
-"お使いのシステムで追加のTomcat**Valve** を使用している場合"
-"、``asyncSupported`` を``Context.xml`` に追加してください。詳細は:doc-"
-"url:`File Reference </engine-guide/configuration/files/context-xml.html>` を"
+"お使いのシステムで追加のTomcat **Valve** を使用している場合"
+"、``asyncSupported`` を ``Context.xml`` に追加してください。詳細は :doc-"
+"url:`リファレンスファイル </engine-guide/configuration/files/context-xml.html>` を"
 "ご参照ください。"
 
 #: ../../source/portal-developer-guide/components/portal-chat.rst:63
@@ -1412,7 +1412,7 @@ msgstr ""
 "ビジネス詳細ページのカスタマイズにより、ポータルのデフォルトの"
 "ケースカスタムフィールド表示を独自のカスタムUIに置き換えることが可能です。こ"
 "れにより、外部連携や高度なレイアウトを含む、特定のワークフロー要件に合致した"
-"ビジネス情報ビューを構築できます。ケース詳細ページ内の``Business details``を"
+"ビジネス情報ビューを構築できます。ケース詳細ページ内の ``Business details`` を"
 "クリックすると開きます。"
 
 #: ../../source/portal-developer-guide/customization/business-details-page.rst:15
@@ -1832,7 +1832,7 @@ msgstr "``x``、 ``y``、 ``w``、 ``h`` は **整数** で指定してくださ
 #: ../../source/portal-developer-guide/customization/case-item-details.rst:150
 #: ../../source/portal-developer-guide/customization/task-item-details.rst:134
 msgid "``x + w`` must **not be larger** than **12**."
-msgstr "``x + w`` は **12** **以下** でなければなりません。"
+msgstr "``x + w`` は **12 以下** でなければなりません。"
 
 #: ../../source/portal-developer-guide/customization/case-item-details.rst:151
 msgid "We support all case business states in filter type ``states``."
@@ -2235,7 +2235,7 @@ msgid ""
 msgstr ""
 "当該ケースに関連する文書のリストです。文書管理システム（DMS）から文書を取得後"
 "、以下の必須フィールドを含む形式に変換してください"
-"：``id``,``name``,``contentType``。"
+"：``id``、``name``、``contentType``。"
 
 #: ../../source/portal-developer-guide/customization/document-processes.rst:40
 msgid "Status or error message from the document retrieval operation."
@@ -2742,8 +2742,7 @@ msgid ""
 "Download ``portal-developer-examples`` from the `Portal download page "
 "<https://market.axonivy.com/portal>`_"
 msgstr ""
-"` `のダウンロード ポータルダウンロードページより` ` をダウンロードしてくださ"
-"い。portal-developer-examples` <https://market.axonivy.com/portal>`_"
+"``portal-developer-examples`` を `Portal ダウンロードページ <https://market.axonivy.com/portal>`_ からダウンロードしてください。"
 
 #: ../../source/portal-developer-guide/customization/index.rst:28
 msgid "Import examples into your designer under ``Ivy Projects``"
@@ -3659,8 +3658,8 @@ msgid ""
 "Do not modify component-level ``font-family`` declarations directly. "
 "Instead, set ``--portal-font-family`` in ``:root`` within ``custom.css``."
 msgstr ""
-"コンポーネントレベルの``font-family``宣言を直接変更しないでください。代わりに"
-"、``custom.css``内の``:root``で``--portal-font-family``を設定してください。"
+"コンポーネントレベルの ``font-family`` 宣言を直接変更しないでください。代わりに"
+"、 ``custom.css`` 内の ``:root`` で ``--portal-font-family`` を設定してください。"
 
 #: ../../source/portal-developer-guide/customization/process-image.rst:4
 msgid "Process Image"
@@ -3703,8 +3702,8 @@ msgid ""
 "entries under the ``cms/`` folder and use capitalized names per "
 "standards."
 msgstr ""
-"`プロジェクト内にタイプが image の CMS オブジェクトを作成してください。新し"
-"い CMS エントリは `cms/`` フォルダ下に配置し、標準に従い大文字で始まる名前を"
+"プロジェクト内にタイプが image の CMS オブジェクトを作成してください。新し"
+"い CMS エントリは ``cms/`` フォルダ下に配置し、標準に従い大文字で始まる名前を"
 "使用してください。"
 
 #: ../../source/portal-developer-guide/customization/process-image.rst:26
@@ -3830,7 +3829,7 @@ msgid ""
 "process start, however we recommend storing it in a CMS object (HTML "
 "supported) for easier maintenance across environments."
 msgstr ""
-"プロセス起動時に``portalProcessInfo``の値を直接定義することも可能ですが、環境"
+"プロセス起動時に ``portalProcessInfo`` の値を直接定義することも可能ですが、環境"
 "をまたいだメンテナンス性を高めるため、CMSオブジェクト（HTML対応）への保存をお"
 "勧めいたします。"
 
@@ -3866,8 +3865,8 @@ msgid ""
 msgstr ""
 "サイドステッププロセスにより、Axon Ivy Portalの既存ビジネスプロセスに、"
 "コアフローを変更することなく、1つ以上の補助的なワークフローステップを追加でき"
-"ます。実行時、Portalはカスタムフィールド``sideStepTask``（タスクレベル）また"
-"は``sideStepCase``（ケースレベル）からJSON定義を読み取り、"
+"ます。実行時、Portalはカスタムフィールド ``sideStepTask`` （タスクレベル）また"
+"は ``sideStepCase`` （ケースレベル）からJSON定義を読み取り、"
 "タスクアクションメニューで利用可能なサイドステップを表示し、それらを起動しま"
 "す。"
 
@@ -3994,8 +3993,8 @@ msgid ""
 "Create a process with no parameter which return 2 lists type "
 "``ch.ivyteam.ivy.security.IRole`` with the following names"
 msgstr ""
-"引数なしでプロセスを作成し、以下の名前を持つ2つのリスト型``およ"
-"び`ch.ivyteam.ivy.security.IRole``を返します。"
+"引数なしでプロセスを作成し、以下の名前を持つ2つのリスト型 ``ch.ivyteam.ivy.security.IUser`` およ"
+"び ``ch.ivyteam.ivy.security.IRole`` を返します。"
 
 #: ../../source/portal-developer-guide/customization/side-step.rst:55
 msgid ""
@@ -4026,7 +4025,7 @@ msgid ""
 "Define configuration for side step by building a list of "
 "``SideStepProcessDTO`` objects."
 msgstr ""
-"サイドステップの設定を定義するには、`` と `SideStepProcessDTO`` オブジェクト"
+"サイドステップの設定を定義するには、 ``SideStepProcessDTO`` オブジェクト"
 "のリストを作成してください。"
 
 #: ../../source/portal-developer-guide/customization/side-step.rst:87
@@ -4035,8 +4034,8 @@ msgid ""
 "from this list created on the above code snippet. Convert it to JSON and "
 "write the value to a custom text field"
 msgstr ""
-"上記のコードスニペットで作成されたリストから、``portal-components`` "
-"の``SideStepConfigurationDTO`` オブジェクトを作成してください。これをJSONに変"
+"上記のコードスニペットで作成されたリストから、 ``portal-components`` "
+"の ``SideStepConfigurationDTO`` オブジェクトを作成してください。これをJSONに変"
 "換し、カスタムテキストフィールドに値を書き込んでください。"
 
 #: ../../source/portal-developer-guide/customization/side-step.rst:89
@@ -4044,16 +4043,16 @@ msgid ""
 "For a single task: save to custom text field ``sideStepTask`` on that "
 "task."
 msgstr ""
-"単一タスクの場合：該当タスクの「カスタムテキストフィールド」に"
-"「``sideStepTask``」を保存してください。"
+"単一タスクの場合：該当タスクのカスタムテキストフィールド "
+" ``sideStepTask`` を保存してください。"
 
 #: ../../source/portal-developer-guide/customization/side-step.rst:90
 msgid ""
 "For every task in a case: save to custom text field ``sideStepCase`` on "
 "that case."
 msgstr ""
-"各ケース内のタスクごとに：該当ケースのカスタムテキストフィールドに「` 」と「"
-"sideStepCase` 」を保存してください。"
+"各ケース内のタスクごとに：該当ケースのカスタムテキストフィールド "
+" ``sideStepCase`` を保存してください。"
 
 #: ../../source/portal-developer-guide/customization/side-step.rst:115
 msgid "The generated Json value will have structure like this"
@@ -4071,8 +4070,8 @@ msgid ""
 "also do this by using ``BusinessDetailsAPI``."
 msgstr ""
 "お客様のプロセスでは、``portal-components`` の"
-"サブプロセス``SetBusinessDetailsPage`` を呼び出す必要がございます。その際、"
-"パラメータ``linkToBusinessDetailsPage`` を、お客様のプロジェクト内の"
+"サブプロセス ``SetBusinessDetailsPage`` を呼び出す必要がございます。その際、"
+"パラメータ ``linkToBusinessDetailsPage`` を、お客様のプロジェクト内の"
 "カスタムビジネス詳細ページのリンクに設定してください。また"
 "、``BusinessDetailsAPI`` を使用する方法でも同様の操作が可能です。"
 
@@ -4126,8 +4125,8 @@ msgid ""
 "class ``SideStepProcessParamDTO`` object of ``portal-components``. This "
 "object contains data send from Portal to use for the process."
 msgstr ""
-"`プロセス開発者はシグナルからJSON文字列としてデータを受け取り、これ"
-"を``SideStepProcessParamDTO`` のクラスである `portal-components`` "
+"プロセス開発者はシグナルからJSON文字列としてデータを受け取り、これ"
+"を ``SideStepProcessParamDTO`` のクラスである ``portal-components`` "
 "オブジェクトに解析します。このオブジェクトには、プロセスで使用するために"
 "ポータルから送信されたデータが含まれています。"
 
@@ -4145,8 +4144,8 @@ msgid ""
 msgstr ""
 "サイドステップ処理が完了しましたら、必ずAPI ```（`SideStepAPI.finishSideStep"
 "(String originalTaskUuid, boolean isParallelSideStep)``）を呼び出して完了"
-"シグナルを送信してください。このAPIは、サイドステップタスクが` （`SWITCH``）"
-"ステップタイプ（同期）の場合、保留中のタスクから```（`HIDE``）プロパティを再"
+"シグナルを送信してください。このAPIは、サイドステップタスクが ``SWITCH`` "
+"ステップタイプ（同期）の場合、保留中のタスクから ``HIDE`` プロパティを再"
 "活性化および削除します。"
 
 #: ../../source/portal-developer-guide/customization/task-delegation.rst:4
@@ -4218,7 +4217,7 @@ msgid ""
 "Operation status: ``OK`` or ``SKIP``. Set to ``SKIP`` to exclude this "
 "subprocess result from the combined delegate list."
 msgstr ""
-"動作状態：``OK`` または``SKIP``。``SKIP`` に設定すると、このサブプロセスの結"
+"動作状態：``OK`` または ``SKIP``。``SKIP`` に設定すると、このサブプロセスの結"
 "果を結合されたデリゲートリストから除外します。"
 
 #: ../../source/portal-developer-guide/customization/task-delegation.rst:31
@@ -4387,7 +4386,7 @@ msgid ""
 "``custom``"
 msgstr ""
 "``type``: サポートされる"
-"値:``information``,``document``,``history``,``custom``"
+"値: ``information``、``document``、``history``、``custom``"
 
 #: ../../source/portal-developer-guide/customization/task-item-details.rst:100
 msgid ""
@@ -4437,7 +4436,7 @@ msgid ""
 msgstr ""
 "``type``: IFrameを使用しないカスタムウィジェットの種類です。サポートされる値"
 "は、``taskItemDetailCustomPanelTop`` およ"
-"び``taskItemDetailCustomPanelBottom`` です。"
+"び ``taskItemDetailCustomPanelBottom`` です。"
 
 #: ../../source/portal-developer-guide/customization/task-item-details.rst:118
 msgid ""
@@ -4573,7 +4572,7 @@ msgstr "外部 URL を使用する場合は、 ``url`` パラメーターを入�
 
 #: ../../source/portal-developer-guide/customization/task-item-details.rst:220
 msgid "Must input parameter ``ivy`` if you want to start an Ivy process."
-msgstr "Ivyプロセスを開始する場合は、入力パラメータ``ivy`` を指定する必要があります。"
+msgstr "Ivyプロセスを開始する場合は、入力パラメータ ``ivy`` を指定する必要があります。"
 
 #: ../../source/portal-developer-guide/customization/task-item-details.rst:222
 msgid "If you usestart process, you can predefine parameter for ``params``."
@@ -4598,7 +4597,7 @@ msgid ""
 "details."
 msgstr ""
 "カスタマイズされたタスクの詳細については、プロセスの開始方法をご参照ください"
-"。詳細は、``TaskDetailsCustomWidgetExample`` および``portal-developer-"
+"。詳細は、``TaskDetailsCustomWidgetExample`` および ``portal-developer-"
 "examples`` をご確認ください。"
 
 #: ../../source/portal-developer-guide/customization/task-item-details.rst:294
@@ -4776,7 +4775,7 @@ msgstr "ヘッダーに表示される多言語対応ウィジェットのタイ
 #: ../../source/portal-developer-guide/dashboard/dashboard-newsfeed-widget.rst:78
 #: ../../source/portal-developer-guide/dashboard/index.rst:134
 msgid "Each entry contains ``locale`` and ``value``"
-msgstr "各エントリには以下の要素が含まれます：``、locale``、および``、value``。"
+msgstr "各エントリには以下の要素が含まれます：``locale``、および ``value``。"
 
 #: ../../source/portal-developer-guide/dashboard/dashboard-newsfeed-widget.rst:79
 msgid "Portal displays name matching user's language"
@@ -4951,11 +4950,11 @@ msgstr "**ニュースウィジェットのレイアウトに関するベスト�
 
 #: ../../source/portal-developer-guide/dashboard/dashboard-newsfeed-widget.rst:140
 msgid "**Width**: Use ``w: 4`` or ``w: 6`` for optimal readability"
-msgstr "**幅** ：最適な可読性のため、``w: 4`` または``w: 6`` をご使用ください。"
+msgstr "**幅** ：最適な可読性のため、``w: 4`` または ``w: 6`` をご使用ください。"
 
 #: ../../source/portal-developer-guide/dashboard/dashboard-newsfeed-widget.rst:141
 msgid "**Height**: Minimum ``h: 5`` to show at least 2-3 news items"
-msgstr "**高さ**: 最小``h: 5`` で少なくとも2～3件のニュース項目を表示"
+msgstr "**高さ**: 最小 ``h: 5`` で少なくとも2～3件のニュース項目を表示"
 
 #: ../../source/portal-developer-guide/dashboard/dashboard-newsfeed-widget.rst:142
 msgid "**Position**: Place in prominent location (top-right or top-left)"
@@ -4964,8 +4963,7 @@ msgstr "**の配置**：目立つ位置（右上または左上）に配置し�
 #: ../../source/portal-developer-guide/dashboard/dashboard-newsfeed-widget.rst:143
 msgid "**Fullscreen**: Keep ``showFullscreenMode: true`` for user convenience"
 msgstr ""
-"**フルスクリーン表示：** ユーザー利便性のため、`` と `showFullscreenMode: "
-"true`` はそのまま維持してください。"
+"**全画面表示**: ユーザーの利便性のため、``showFullscreenMode: true`` を維持してください"
 
 #: ../../source/portal-developer-guide/dashboard/dashboard-newsfeed-widget.rst:146
 msgid "**Managing News Content:**"
@@ -5087,7 +5085,7 @@ msgstr "例：``\"default-portal-dashboard-template\"``"
 #: ../../source/portal-developer-guide/dashboard/index.rst:129
 msgid "See :ref:`Dashboard Templates <customization-dashboard-templates>` section"
 msgstr ""
-"詳細は :ref:`Dashboard Templates <customization-dashboard-templates>` の"
+"詳細は :ref:`ダッシュボードのテンプレートの設定 <customization-dashboard-templates>` の"
 "セクションをご参照ください。"
 
 #: ../../source/portal-developer-guide/dashboard/index.rst:131
@@ -5140,7 +5138,7 @@ msgstr "以下のウィジェット設定セクションをご参照ください
 
 #: ../../source/portal-developer-guide/dashboard/index.rst:148
 msgid "Each widget must have unique ``id``"
-msgstr "各ウィジェットには固有の``id``が必要です。"
+msgstr "各ウィジェットには固有の ``id`` が必要です。"
 
 #: ../../source/portal-developer-guide/dashboard/index.rst:149
 msgid "Widgets positioned using ``layout`` property"
@@ -5163,7 +5161,7 @@ msgstr "役割:``[\"Everybody\", \"Employee\", \"Manager\"]``"
 #: ../../source/portal-developer-guide/dashboard/index.rst:155
 #: ../../source/portal-developer-guide/static-page/index.rst:315
 msgid "Users: Prefix with ``#`` (e.g., ``[\"#john.doe\"]``)"
-msgstr "#`ユーザー様：`` を接頭辞としてご使用ください（例：``[\"#john.doe\"]``）"
+msgstr "ユーザー: ``#`` で始まる（例：``[\"#john.doe\"]``）"
 
 #: ../../source/portal-developer-guide/dashboard/index.rst:156
 msgid "Default: If omitted, all users can see the dashboard"
@@ -5200,8 +5198,8 @@ msgid ""
 "Create role-specific dashboards (e.g., ``[\"Manager\"]`` for management "
 "dashboard)"
 msgstr ""
-"`役割別のダッシュボードを作成してください（例：管理ダッシュボード用 "
-"`[\"Manager\"]``）。"
+"役割別のダッシュボードを作成してください（例：管理ダッシュボード用 "
+"``[\"Manager\"]``）。"
 
 #: ../../source/portal-developer-guide/dashboard/index.rst:169
 msgid "Combine roles for shared access (e.g., ``[\"Employee\", \"Contractor\"]``)"
@@ -5219,7 +5217,7 @@ msgid ""
 "Widget ``id`` must be unique across ALL dashboards. Use descriptive "
 "prefixes like ``task_{unique-id}`` or UUIDs."
 msgstr ""
-"ウィジェットの``id`` は、すべてのダッシュボードで一意である必要があります"
+"ウィジェットの ``id`` は、すべてのダッシュボードで一意である必要があります"
 "。``task_{unique-id}`` のような説明的なプレフィックス、またはUUIDを使用してく"
 "ださい。"
 
@@ -5281,7 +5279,7 @@ msgid ""
 "For variable configuration details, see :doc-url:`Axon Ivy Variables "
 "</designer-guide/configuration/variables.html>`"
 msgstr ""
-"変数設定の詳細については、以下をご参照ください。:doc-url:`Axon Ivy Variables "
+"変数設定の詳細については、以下をご参照ください。:doc-url:`Axon Ivy 変数 "
 "</designer-guide/configuration/variables.html>`"
 
 #: ../../source/portal-developer-guide/dashboard/index.rst:217
@@ -5399,8 +5397,8 @@ msgid ""
 "list-widget>` for widget behavior details."
 msgstr ""
 "ケースウィジェットは、列、フィルター、ソート、レイアウトを完全に制御して"
-"ケースを表示します。ウィジェットの動作の詳細については、:ref:`Case List "
-"Widget <new-dashboard-case-list-widget>` をご参照ください。"
+"ケースを表示します。ウィジェットの動作の詳細については、:ref:`ケースウィジェットの設定 "
+" <new-dashboard-case-list-widget>` をご参照ください。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:14
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-custom-widget.rst:53
@@ -5545,8 +5543,7 @@ msgstr "string"
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:99
 msgid "Widget type. Must be ``\"case\"`` for case widget"
 msgstr ""
-"`ウィジェットタイプ。ケースウィジェットの場合は必ず `\"case\"`` である必要が"
-"あります。"
+"ウィジェットタイプ。ケースウィジェットの場合は ``\"case\"`` でなければならない"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:100
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-custom-widget.rst:117
@@ -5723,7 +5720,7 @@ msgstr "number"
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:119
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-welcome-widget.rst:80
 msgid "Column position in 12-column grid (0-11). CSS left = ``x / 12 * 100%``"
-msgstr "12列グリッドにおける列位置（0-11）。CSS左寄せ =``x / 12 * 100%``"
+msgstr "12列グリッドにおける列位置（0-11）。CSS左寄せ = ``x / 12 * 100%``"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:125
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-custom-widget.rst:142
@@ -5744,7 +5741,7 @@ msgstr "``y``"
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:122
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-welcome-widget.rst:83
 msgid "Row position. CSS top = ``y / 12 * 100%``"
-msgstr "行位置。CSS top =``y / 12 * 100%``"
+msgstr "行位置。CSS top = ``y / 12 * 100%``"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:128
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-custom-widget.rst:145
@@ -5765,7 +5762,7 @@ msgstr "``w``"
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:125
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-welcome-widget.rst:86
 msgid "Width in grid columns (1-12). Pixel width = ``60 * w + 20 * (w - 1)``"
-msgstr "グリッド列幅（1～12）。ピクセル幅 =``60 * w + 20 * (w - 1)``"
+msgstr "グリッド列幅（1～12）。ピクセル幅 = ``60 * w + 20 * (w - 1)``"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:131
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-custom-widget.rst:148
@@ -5779,7 +5776,7 @@ msgstr "``h``"
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:133
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:128
 msgid "Height in grid rows (min 5). Pixel height = ``60 * h + 20 * (h - 1)``"
-msgstr "グリッド行の高さ（最小5行）。ピクセル高 =``60 * h + 20 * (h - 1)``"
+msgstr "グリッド行の高さ（最小5行）。ピクセル高 = ``60 * h + 20 * (h - 1)``"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:134
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-notification-widget.rst:100
@@ -5996,7 +5993,7 @@ msgstr "``\"true\"``"
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:202
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:176
 msgid "Column visibility: ``\"true\"`` or ``\"false\"``"
-msgstr "列の可視性:``\"true\"`` または``\"false\"``"
+msgstr "列の可視性: ``\"true\"`` または ``\"false\"``"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:203
 msgid "``quickSearch``"
@@ -6009,7 +6006,7 @@ msgstr "``\"false\"``"
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:206
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:179
 msgid "Include in quick search: ``\"true\"`` or ``\"false\"``"
-msgstr "クイック検索に含める項目：``\"true\"`` または``\"false\"``"
+msgstr "クイック検索に含める項目： ``\"true\"`` または ``\"false\"``"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:207
 msgid "``headers``"
@@ -6030,7 +6027,7 @@ msgstr "``\"STANDARD\"``"
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:214
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:185
 msgid "Column type: ``\"STANDARD\"`` or ``\"CUSTOM\"``"
-msgstr "列タイプ：``\"STANDARD\"`` または``\"CUSTOM\"``"
+msgstr "列タイプ： ``\"STANDARD\"`` または ``\"CUSTOM\"``"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:218
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:188
@@ -6124,14 +6121,14 @@ msgstr "フィルター演算子（フィルター条件セクションを参照
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:256
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:220
 msgid "``\"standard\"`` or ``\"custom\"``"
-msgstr "``\"standard\"`` または``\"custom\"``"
+msgstr "``\"standard\"`` または ``\"custom\"``"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:259
 msgid ""
 "For detailed filter configuration, see the :ref:`Filter Conditions "
 "<configure-new-dashboard-case-widget-filter-structure>` section below."
 msgstr ""
-"詳細なフィルタ設定については、下記の「:ref:`Filter Conditions <configure-new-"
+"詳細なフィルタ設定については、下記の「:ref:`フィルタ条件 <configure-new-"
 "dashboard-case-widget-filter-structure>` 」セクションをご参照ください。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:264
@@ -6830,8 +6827,8 @@ msgstr "**ダッシュボードのカスタムフィールドを設定してく�
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-custom-widget.rst:22
 msgid "Set custom field ``isDashboardProcess`` to ``true`` for your process."
 msgstr ""
-"ご使用のプロセスに合わせて、カスタムフィールド``isDashboardProcess`` "
-"を``true`` に設定してください。"
+"ご使用のプロセスに合わせて、カスタムフィールド ``isDashboardProcess`` "
+"を ``true`` に設定してください。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-custom-widget.rst:24
 msgid "|dashboard-custom-field|"
@@ -6896,7 +6893,7 @@ msgid ""
 "**Example:** Parameter ``user__customer`` displays a dropdown labeled "
 "\"customer\" to select an Ivy user."
 msgstr ""
-"**例:** パラメータ``user__customer`` は「customer」というラベルの付いた"
+"**例:** パラメータ ``user__customer`` は「customer」というラベルの付いた"
 "ドロップダウンを表示し、Ivyユーザーを選択します。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-custom-widget.rst:45
@@ -6926,7 +6923,7 @@ msgstr "以下はポータルダッシュボードのカスタムウィジェッ
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-custom-widget.rst:116
 msgid "Widget type. Must be ``\"custom\"`` for custom widget"
 msgstr ""
-"`ウィジェットの種類。カスタムウィジェットの場合は必ず `\"custom\"`` である必"
+"ウィジェットの種類。カスタムウィジェットの場合は必ず ``\"custom\"`` である必"
 "要があります。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-custom-widget.rst:126
@@ -7022,8 +7019,8 @@ msgid ""
 "Parameter type: ``\"string\"``, ``\"user\"``, ``\"date\"``, or "
 "``\"boolean\"``"
 msgstr ""
-"パラメータタイプ：``、\"string\"``、``、\"user\"``、``、\"date\"``、また"
-"は``、\"boolean\"``"
+"パラメータタイプ： ``\"string\"`` 、 ``\"user\"`` 、 ``\"date\"`` 、また"
+"は ``\"boolean\"``"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-custom-widget.rst:208
 msgid "``value``"
@@ -7059,7 +7056,7 @@ msgid ""
 "``dd.MM.yyyy`` or ``MM/dd/yyyy``."
 msgstr ""
 "``date`` - 設定ダイアログ内の日付ピッカーです。以下の形式を受け付けます"
-"：``dd.MM.yyyy`` または``MM/dd/yyyy``。"
+"： ``dd.MM.yyyy`` または ``MM/dd/yyyy``。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-custom-widget.rst:217
 msgid ""
@@ -7067,7 +7064,7 @@ msgid ""
 "or ``\"false\"``."
 msgstr ""
 "``boolean`` - 設定ダイアログ内のラジオボタン。``\"true\"`` また"
-"は``\"false\"`` を指定可能です。"
+"は ``\"false\"`` を指定可能です。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-custom-widget.rst:220
 msgid ""
@@ -7109,8 +7106,7 @@ msgid ""
 "Displays as a date picker in the configuration dialog. Accepts formats: "
 "``dd.MM.yyyy`` or ``MM/dd/yyyy``:"
 msgstr ""
-"設定ダイアログでは日付ピッカーとして表示されます。以下の形式を受け付けます"
-"：``、dd.MM.yyyy``、または``、MM/dd/yyyy``："
+"設定ダイアログでは日付ピッカーとして表示されます。以下の形式を受け付けます：``dd.MM.yyyy`` または ``MM/dd/yyyy``："
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-custom-widget.rst:276
 msgid "**Boolean Parameter**"
@@ -7127,7 +7123,7 @@ msgid ""
 "``portal-user-examples`` project."
 msgstr ""
 "詳細な例については、``portal-user-examples`` プロジェクト内"
-"の``variables.Portal.Dashboard.json`` および``DashboardCustomWidgetExample/"
+"の ``variables.Portal.Dashboard.json`` および ``DashboardCustomWidgetExample/"
 "investmentList.ivp`` を参照してください。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-external-page-widget.rst:4
@@ -7198,7 +7194,7 @@ msgid ""
 "``true``."
 msgstr ""
 "``showFullscreenMode``: 全画面モードのアイコンを表示/非表示にします。"
-"デフォルトは``true``です。"
+"デフォルトは ``true`` です。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-external-page-widget.rst:30
 msgid "Define An External Page Widget Using JSON"
@@ -7211,8 +7207,7 @@ msgstr "外部ページウィジェットのJSON構造："
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-external-page-widget.rst:79
 msgid "Widget type. Must be ``\"custom\"`` for external page widget"
 msgstr ""
-"ウィジェットの種類。外部ページ用ウィジェットの場合は、`` または "
-"`\"custom\"`` である必要があります。"
+"ウィジェットタイプ。外部ページウィジェットの場合は ``\"カスタム\"`` でなければならない"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-external-page-widget.rst:91
 msgid "Must contain ``url`` property (see Data Properties below)"
@@ -7236,7 +7231,7 @@ msgid ""
 "Full URL of the external webpage to embed (must start with ``http://`` or"
 " ``https://``)"
 msgstr ""
-"埋め込む外部ウェブページの完全なURL（``http://`` または``https://`` で始まる"
+"埋め込む外部ウェブページの完全なURL（``http://`` または ``https://`` で始まる"
 "必要があります）"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-external-page-widget.rst:147
@@ -7245,7 +7240,7 @@ msgid ""
 "website's ``X-Frame-Options`` and ``Content-Security-Policy`` headers."
 msgstr ""
 "外部URLのサーバーがiframe埋め込みを許可していることをご確認ください。"
-"ウェブサイトの``X-Frame-Options`` および``Content-Security-Policy`` ヘッダー"
+"ウェブサイトの ``X-Frame-Options`` および ``Content-Security-Policy`` ヘッダー"
 "を確認してください。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:4
@@ -7289,8 +7284,7 @@ msgid ""
 "Widget type. Must be ``\"navigation-dashboard\"`` for navigation "
 "dashboard widget"
 msgstr ""
-"ウィジェットの種類。ナビゲーションダッシュボードウィジェットの場合は、必"
-"ず``\"navigation-dashboard\"`` である必要があります。"
+"ウィジェットタイプ。ナビゲーションダッシュボードウィジェットの場合は ``\"navigation-dashboard\"`` でなければならない"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:94
 #, python-brace-format
@@ -7349,7 +7343,7 @@ msgstr "``h`` (数値)"
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:117
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-welcome-widget.rst:89
 msgid "Height in grid rows (min 2). Pixel height = ``60 * h + 20 * (h - 1)``"
-msgstr "グリッド行の高さ（最小2行）。ピクセル高 =``60 * h + 20 * (h - 1)``"
+msgstr "グリッド行の高さ（最小2行）。ピクセル高 = ``60 * h + 20 * (h - 1)``"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:120
 msgid ""
@@ -7387,7 +7381,7 @@ msgid ""
 "Streamline icon class when ``visualType`` is ``\"ICON\"`` (e.g., ``\"si-"
 "task-list-1\"``)"
 msgstr ""
-"``visualType`` が``\"ICON\"`` の場合、アイコンクラスを簡略化してください（例"
+"``visualType`` が ``\"ICON\"`` の場合、アイコンクラスを簡略化してください（例"
 "：``\"si-task-list-1\"``）。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:133
@@ -7396,7 +7390,7 @@ msgstr "**画像のプロパティ**"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:135
 msgid "Used when ``visualType`` is ``\"IMAGE\"``:"
-msgstr "``visualType`` が``\"IMAGE\"`` の場合に使用されます："
+msgstr "``visualType`` が ``\"IMAGE\"`` の場合に使用されます："
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:137
 msgid "``imageContent`` (string, optional)"
@@ -7462,7 +7456,7 @@ msgid ""
 msgstr ""
 "``visualType: \"IMAGE\"`` を使用する際は、``imageContent`` （Base64データ）を"
 "ご提供ください。Portalは自動的にApplication CMSへの保存を処理し"
-"、``imageLocation`` および``imageType`` プロパティを管理します。"
+"、``imageLocation`` および ``imageType`` プロパティを管理します。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:159
 msgid ""
@@ -7500,7 +7494,7 @@ msgid ""
 "notification-widget>` for widget behavior details."
 msgstr ""
 "通知ウィジェットは、設定可能なフィルタリングオプション付きで通知を表示します"
-"。ウィジェットの動作の詳細については、:ref:`Notifications widget <add-new-"
+"。ウィジェットの動作の詳細については、:ref:`通知ウィジェットの設定 <add-new-"
 "notification-widget>` をご参照ください。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-notification-widget.rst:16
@@ -7514,8 +7508,7 @@ msgstr ""
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-notification-widget.rst:68
 msgid "Widget type. Must be ``\"notification\"`` for notifications widget"
 msgstr ""
-"`ウィジェットの種類。通知用ウィジェットの場合は必ず `\"notification\"`` であ"
-"る必要があります。"
+"ウィジェットタイプ。通知ウィジェットの場合は必ず ``\"notification\"`` とする"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-notification-widget.rst:108
 msgid ""
@@ -7582,8 +7575,7 @@ msgstr ""
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-viewer-widget.rst:57
 msgid "Widget type. Must be ``\"process-viewer\"`` for process viewer widget"
 msgstr ""
-"`ウィジェットの種類。プロセスビューアウィジェットの場合は、必ず `\"process-"
-"viewer\"`` である必要があります。"
+"ウィジェットタイプ。プロセスビューアウィジェットの場合は ``\"process-viewer\"`` でなければならない"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-viewer-widget.rst:69
 msgid ""
@@ -7639,7 +7631,7 @@ msgid ""
 " behavior details."
 msgstr ""
 "プロセスウィジェットは、4つのモードのいずれかでプロセスを表示します。"
-"ウィジェットの動作の詳細については、:ref:`Process List Widget <new-dashboard-"
+"ウィジェットの動作の詳細については、:ref:`プロセスリストウィジェット <new-dashboard-"
 "process-list-widget>` をご参照ください。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:16
@@ -7751,7 +7743,7 @@ msgid ""
 "Sort order: ``\"ALPHABETICALLY\"`` or ``\"SORTING_INDEX\"`` (requires "
 "custom field)"
 msgstr ""
-"ソート順序：``、\"ALPHABETICALLY\"``、または``、\"SORTING_INDEX\"`` （"
+"ソート順序：``\"ALPHABETICALLY\"``、または ``\"SORTING_INDEX\"`` （"
 "カスタムフィールドが必要です）"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:196
@@ -7763,8 +7755,8 @@ msgid ""
 "If both ``processPaths`` and ``categories`` are defined, ``processPaths``"
 " takes precedence"
 msgstr ""
-"``processPaths`` と``categories`` の両方が定義されている場合"
-"、``processPaths`` が優先されます。"
+"``processPaths`` と ``categories`` の両方が定義されている場合"
+"、 ``processPaths`` が優先されます。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:200
 msgid "If neither is defined, all available processes are displayed"
@@ -7775,7 +7767,7 @@ msgid ""
 "For ``SORTING_INDEX`` mode, define custom field ``portalSortIndex`` with "
 "numeric value in process start"
 msgstr ""
-"``SORTING_INDEX`` モードでは、カスタムフィールド``portalSortIndex`` を定義し"
+"``SORTING_INDEX`` モードでは、カスタムフィールド ``portalSortIndex`` を定義し"
 "、プロセス開始時に数値で設定してください。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:203
@@ -7971,7 +7963,7 @@ msgstr "``chartTarget``"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:173
 msgid "Data source. Options: ``\"task\"`` or ``\"case\"``"
-msgstr "データソース。オプション：``\"task\"`` または``\"case\"``"
+msgstr "データソース。オプション： ``\"task\"`` または ``\"case\"``"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:174
 msgid "``chartType``"
@@ -8021,7 +8013,7 @@ msgstr "``statisticAggregation.type``"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:202
 msgid "Field type: ``\"standard\"`` or ``\"custom\"``"
-msgstr "フィールドタイプ：``\"standard\"`` または``\"custom\"``"
+msgstr "フィールドタイプ： ``\"standard\"`` または ``\"custom\"``"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:203
 msgid "``statisticAggregation.kpiField``"
@@ -8042,7 +8034,7 @@ msgstr "``statisticAggregation.aggregationMethod``"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:210
 msgid "Calculation method: ``\"sum\"``, ``\"avg\"``, ``\"max\"``, ``\"min\"``"
-msgstr "計算方法：``\"sum\"``,``\"avg\"``,``\"max\"``,``\"min\"``"
+msgstr "計算方法：``\"sum\"``、``\"avg\"``、``\"max\"``、``\"min\"``"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:213
 msgid ""
@@ -8050,9 +8042,9 @@ msgid ""
 "displays count statistics (number of tasks or cases). When specified, the"
 " chart applies the aggregation method to numeric values in ``kpiField``."
 msgstr ""
-"``kpiField`` および``aggregationMethod`` が指定されていない場合、チャートは"
+"``kpiField`` および ``aggregationMethod`` が指定されていない場合、チャートは"
 "カウント統計（タスク数またはケース数）を表示します。指定された場合、チャート"
-"は``kpiField`` 内の数値に対して集計方法を適用します。"
+"は ``kpiField`` 内の数値に対して集計方法を適用します。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:215
 msgid "**Filtering & Permissions**"
@@ -8077,7 +8069,7 @@ msgstr "``permissions``"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:229
 msgid "Role names that can view this chart (e.g., ``[\"Everybody\"]``)"
-msgstr "このチャートを閲覧できるロール名（例：` 、[\"Everybody\"]` ）"
+msgstr "このチャートを閲覧できるロール名（例：``[\"Everybody\"]``）"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:231
 msgid "**Display Options**"
@@ -8247,12 +8239,12 @@ msgstr "タスクウィジェットの定義"
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:11
 msgid ""
 "The task widget displays tasks with full control over columns, filters, "
-"sorting, and layout. Refer to :ref:`Task List Widget <new-dashboard-task-"
+"sorting, and layout. Refer to :ref:`タスクリストウィジェット <new-dashboard-task-"
 "list-widget>` for widget behavior details."
 msgstr ""
 "タスクウィジェットは、列、フィルター、並べ替え、レイアウトを完全に制御して"
-"タスクを表示します。ウィジェットの動作の詳細については、:ref:`Task List "
-"Widget <new-dashboard-task-list-widget>` をご参照ください。"
+"タスクを表示します。ウィジェットの動作の詳細については、:ref:`タスクリストウィジェット "
+"<new-dashboard-task-list-widget>` をご参照ください。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:16
 msgid ""
@@ -8265,8 +8257,7 @@ msgstr ""
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:102
 msgid "Widget type. Must be ``\"task\"`` for task widget"
 msgstr ""
-"`ウィジェットタイプ。タスクウィジェットの場合は必ず `\"task\"`` である必要が"
-"あります。"
+"ウィジェットタイプ。タスクウィジェットの場合は ``\"task\"`` でなければならない"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:113
 msgid "``columns`` (array)"
@@ -8300,7 +8291,7 @@ msgid ""
 "``\"startTimestamp\"``)"
 msgstr ""
 "ソート用のデフォルト列（例"
-"：``\"name\"``,``\"priority\"``,``\"startTimestamp\"`` ）"
+"：``\"name\"``、``\"priority\"``、``\"startTimestamp\"`` ）"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:144
 msgid "``sortDescending`` (boolean, default: ``false``)"
@@ -8433,7 +8424,7 @@ msgid ""
 "For detailed filter configuration, see the :ref:`Filter Conditions "
 "<configure-new-dashboard-task-widget-filter-structure>` section below."
 msgstr ""
-"詳細なフィルタ設定については、下記の「:ref:`Filter Conditions <configure-new-"
+"詳細なフィルタ設定については、下記の「:ref:`フィルタ条件 <configure-new-"
 "dashboard-task-widget-filter-structure>` 」セクションをご参照ください。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:231
@@ -8627,7 +8618,7 @@ msgid ""
 "category-and-values>` to get more information."
 msgstr ""
 "カスタム・フィールドの値を追加するには、以下のパスに従ってください：``/CustomFields/Tasks/{fieldName}/Values/{value}``"
-" :doc-url:`Localize Label, Description, Category and Values </designer-"
+" :doc-url:`ラベル、説明、カテゴリー、値のローカライズ </designer-"
 "guide/configuration/custom-fields.html#localize-label-description-"
 "category-and-values>` に従ってください。"
 
@@ -8734,7 +8725,7 @@ msgstr "``icon`` (文字列、必須)"
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-template.rst:98
 msgid "Streamline icon class for template display (e.g., ``\"si-cog-double-2\"``)"
 msgstr ""
-"テンプレート表示用のアイコンクラスを簡略化してください（例：` 、`\"si-cog-"
+"テンプレート表示用のアイコンクラスを簡略化してください（例：``\"si-cog-"
 "double-2\"``）。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-template.rst:100
@@ -8782,7 +8773,7 @@ msgid ""
 "``[\"#admin\"]``)"
 msgstr ""
 "アクセス権限を持つ役割/ユーザーのリスト（例"
-"：``[\"Everybody\"]``,``[\"#admin\"]``）"
+"：``[\"Everybody\"]``、``[\"#admin\"]``）"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-template.rst:120
 msgid "Array of widget configurations (task, case, process, custom, etc.)"
@@ -8797,7 +8788,7 @@ msgid ""
 "See :ref:`Dashboard Configuration <customization-new-dashboard>` for full"
 " details"
 msgstr ""
-"詳細な仕様については、:ref:`Dashboard Configuration <customization-new-"
+"詳細な仕様については、:ref:`ダッシュボード設定 <customization-new-"
 "dashboard>` をご参照ください。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-template.rst:126
@@ -8858,8 +8849,7 @@ msgstr ""
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-welcome-widget.rst:66
 msgid "Widget type. Must be ``\"welcome\"`` for welcome widget"
 msgstr ""
-"`ウィジェットの種類。ウェルカムウィジェットの場合は必ず `\"welcome\"`` である"
-"必要があります。"
+"ウィジェットタイプ。ウェルカムウィジェットの場合は ``\"welcome\"`` でなければならない"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-welcome-widget.rst:74
 msgid "``welcomeTexts`` (array)"
@@ -8896,7 +8886,7 @@ msgid ""
 "``TOP_RIGHT``, ``CENTER``"
 msgstr ""
 "テキスト位"
-"置:``BOTTOM_LEFT``,``BOTTOM_RIGHT``,``TOP_LEFT``,``TOP_RIGHT``,``CENTER``"
+"置:``BOTTOM_LEFT``、``BOTTOM_RIGHT``、``TOP_LEFT``、``TOP_RIGHT``、``CENTER``"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-welcome-widget.rst:105
 msgid "``welcomeTextSize`` (string, default: ``NORMAL_TEXT``)"
@@ -8956,7 +8946,7 @@ msgstr "``welcomeImageFit`` (文字列、デフォルト:``COVER``)"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-welcome-widget.rst:123
 msgid "Image resize mode: ``NONE``, ``FILL``, ``COVER``, ``CONTAIN``"
-msgstr "画像リサイズモード：``NONE``,``FILL``,``COVER``,``CONTAIN``"
+msgstr "画像リサイズモード：``NONE``、``FILL``、``COVER``、``CONTAIN``"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-welcome-widget.rst:125
 msgid "``imageStyleClass`` (string, optional)"
@@ -9041,7 +9031,7 @@ msgid ""
 "When ``greeting`` is set to ``true``, Portal adds a time-based greeting "
 "before your custom welcome text:"
 msgstr ""
-"``greeting`` が``true`` に設定されている場合、Portal はカスタムの"
+"``greeting`` が ``true`` に設定されている場合、Portal はカスタムの"
 "ウェルカムテキストの前に時間ベースの挨拶文を追加します："
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-welcome-widget.rst:161
@@ -9082,7 +9072,7 @@ msgid ""
 "``imageContentDarkMode``. Changes may cause widget errors."
 msgstr ""
 "以下の内部管理プロパティは手動で変更しないでください"
-"：``imageLocation``,``imageType``,``imageContent``,``imageLocationDarkMode``,``imageTypeDarkMode``,``imageContentDarkMode``。"
+"：``imageLocation``、``imageType``、``imageContent``、``imageLocationDarkMode``、``imageTypeDarkMode``、``imageContentDarkMode``。"
 "変更するとウィジェットエラーが発生する可能性があります。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-welcome-widget.rst:174
@@ -9300,8 +9290,8 @@ msgid ""
 "For comprehensive deployment information, refer to the :doc-url:`Axon Ivy"
 " deployment guidelines </engine-guide/deployment/index.html>`."
 msgstr ""
-"包括的なデプロイメント情報につきましては、:doc-url:`Axon Ivy deployment "
-"guidelines </engine-guide/deployment/index.html>` をご参照ください。"
+"包括的なデプロイメント情報につきましては、:doc-url:`Axon Ivy 展開"
+" </engine-guide/deployment/index.html>` をご参照ください。"
 
 #: ../../source/portal-developer-guide/deployment/index.rst:16
 msgid "Deployment Architecture"
@@ -9409,9 +9399,9 @@ msgid ""
 "guide/deployment/prepare/application-configuration/index.html>` with your"
 " projects."
 msgstr ""
-"本番環境へのデプロイには.zipファイルをご利用ください。これらは:doc-"
-"url:`branding </designer-guide/user-interface/branding/branding-engine.html>"
-"` 、変数、データベース、およびRESTクライアント:doc-url:`configuration </"
+"本番環境へのデプロイには.zipファイルをご利用ください。これらは :doc-"
+"url:`エンジンのブランディング </designer-guide/user-interface/branding/branding-engine.html>"
+"` 、変数、データベース、およびRESTクライアント :doc-url:`アプリケーションの設定 </"
 "engine-guide/deployment/prepare/application-configuration/index.html>` を"
 "プロジェクトにバンドルします。"
 
@@ -9498,7 +9488,7 @@ msgstr "**セキュリティシステムへ移動してください。**"
 #: ../../source/portal-developer-guide/deployment/index.rst:135
 msgid "Create a new security system or select the default ``Axon Ivy``"
 msgstr ""
-"新しいセキュリティシステムを作成するか、デフォルトの``Axon Ivy`` を選択してく"
+"新しいセキュリティシステムを作成するか、デフォルトの ``Axon Ivy`` を選択してく"
 "ださい。"
 
 #: ../../source/portal-developer-guide/deployment/index.rst:136
@@ -9529,7 +9519,7 @@ msgstr "**アプリケーションへ移動してください。**"
 
 #: ../../source/portal-developer-guide/deployment/index.rst:148
 msgid "Click **New Application**"
-msgstr "「**」をクリックし、新規アプリケーションを作成してください。**"
+msgstr "**新規アプリケーション** をクリック"
 
 #: ../../source/portal-developer-guide/deployment/index.rst:149
 msgid "Select the security system created in Step 1"
@@ -9576,9 +9566,8 @@ msgid ""
 "Navigate to **Applications** → Select Application → **Deploy** → Upload "
 ".zip file"
 msgstr ""
-"以下の手順に従ってください：1.**にアクセス2. 「Applications」→「** 」を選択"
-"3. 対象アプリケーションを選択4. 「**」を選択5. 「** 」を選択6. .zipファイルを"
-"アップロード"
+"**Applications** → アプリケーションを選択 → **Deploy** → .zipファイルを"
+"アップロードしてください。"
 
 #: ../../source/portal-developer-guide/deployment/index.rst:165
 msgid "Via File System:"
@@ -9609,7 +9598,7 @@ msgstr "デプロイ後、設定を確認してください："
 #: ../../source/portal-developer-guide/deployment/index.rst:175
 msgid "All applications show ``RUNNING`` status in Engine Cockpit"
 msgstr ""
-"すべてのアプリケーションは、エンジンコックピットに``および`RUNNING``の"
+"すべてのアプリケーションは、エンジンコックピットに ``RUNNING`` の"
 "ステータスを表示します。"
 
 #: ../../source/portal-developer-guide/deployment/index.rst:176
@@ -9624,7 +9613,7 @@ msgstr ""
 
 #: ../../source/portal-developer-guide/deployment/index.rst:178
 msgid "No errors in engine logs (``<engine>/logs/``)"
-msgstr "エンジンログ（` 、<engine>/logs/` ）にエラーが発生しないこと。"
+msgstr "エンジンログ（``<engine>/logs/``）にエラーが発生しないこと。"
 
 #: ../../source/portal-developer-guide/deployment/index.rst:183
 msgid "Portal configuration can be managed through multiple methods."
@@ -9636,8 +9625,8 @@ msgid ""
 "guide/deployment/prepare/application-configuration/index.html>` or the "
 ":doc-url:`Engine Cockpit UI </engine-guide/reference/engine-cockpit>`."
 msgstr ""
-"設定は:doc-url:`deployment files </engine-guide/deployment/prepare/"
-"application-configuration/index.html>` または:doc-url:`Engine Cockpit UI </"
+"設定は :doc-url:`展開 </engine-guide/deployment/prepare/"
+"application-configuration/index.html>` または :doc-url:`エンジンコックピット </"
 "engine-guide/reference/engine-cockpit>` を通じて行えます。"
 
 #: ../../source/portal-developer-guide/deployment/index.rst:188
@@ -9704,11 +9693,11 @@ msgstr "エンジン・コックピットUIにログインする。"
 
 #: ../../source/portal-developer-guide/deployment/index.rst:225
 msgid "Navigate to **Configuration** → **Variables**."
-msgstr "以下のページへ移動してください：**設定：** →**変数：**"
+msgstr "以下のページへ移動してください：**設定：** → **変数：**"
 
 #: ../../source/portal-developer-guide/deployment/index.rst:226
 msgid "Locate the ``Portal.Dashboard`` entry."
-msgstr "`` 内の `Portal.Dashboard`` エントリをお探しください。"
+msgstr "``Portal.Dashboard`` エントリを探してください。"
 
 #: ../../source/portal-developer-guide/deployment/index.rst:227
 msgid "Edit the configuration directly in the UI."
@@ -9734,16 +9723,16 @@ msgstr "ポータル・アプリケーションを開く。"
 
 #: ../../source/portal-developer-guide/deployment/index.rst:238
 msgid "Select **Add new Dashboard** button."
-msgstr "「**」を選択し、新しいダッシュボード「** 」ボタンを追加してください。"
+msgstr "**新しいダッシュボードを追加** ボタンを選択してください。"
 
 #: ../../source/portal-developer-guide/deployment/index.rst:239
 msgid "Click the **Import** icon."
-msgstr "**の「** 」をインポートするアイコンをクリックしてください。"
+msgstr "**インポート** アイコンをクリックしてください。"
 
 #: ../../source/portal-developer-guide/deployment/index.rst:240
 msgid "In the **Import Dashboard** dialog, upload the JSON file."
 msgstr ""
-"**のインポートダッシュボード（** ）ダイアログにて、JSONファイルをアップロード"
+"**インポートダッシュボード** ダイアログにて、JSONファイルをアップロード"
 "してください。"
 
 #: ../../source/portal-developer-guide/deployment/index.rst:241
@@ -9761,7 +9750,7 @@ msgid ""
 "configuration>`."
 msgstr ""
 "ウィジェットの種類、レイアウト、プロパティを含む詳細なダッシュボード設定につ"
-"いては、:ref:`Dashboard Configuration <dashboard-configuration>` をご参照くだ"
+"いては、:ref:`ダッシュボード設定 <dashboard-configuration>` をご参照くだ"
 "さい。"
 
 #: ../../source/portal-developer-guide/deployment/index.rst:248
@@ -9824,8 +9813,7 @@ msgstr "デプロイメントファイル経由で："
 #: ../../source/portal-developer-guide/deployment/index.rst:269
 msgid "Include configuration files in ``config/`` directory of your .zip package"
 msgstr ""
-"設定ファイルは、.zipパッケージ内の`` ディレクトリ（例：`config/``）に含めてく"
-"ださい。"
+".zipパッケージの ``config/`` ディレクトリに設定ファイルを含める"
 
 #: ../../source/portal-developer-guide/deployment/index.rst:271
 msgid "Via Engine Cockpit:"
@@ -9836,8 +9824,8 @@ msgid ""
 "Navigate to **Configuration** → **Variables** / **Databases** / **REST "
 "Clients**"
 msgstr ""
-"以下のページへ移動してください：**設定：** →**変数：** /**データベース：** /"
-"**RESTクライアント：**"
+"以下のページへ移動してください：**設定：** → **変数：** / **データベース：** /"
+" **RESTクライアント：**"
 
 #: ../../source/portal-developer-guide/deployment/index.rst:275
 msgid "User Roles and Permissions"
@@ -9880,7 +9868,7 @@ msgid ""
 "See :ref:`Role Management <admin-settings>` for detailed permission "
 "configuration."
 msgstr ""
-"詳細な権限設定については、:ref:`Role Management <admin-settings>` をご参照く"
+"詳細な権限設定については、:ref:`ロールの管理 <admin-settings>` をご参照く"
 "ださい。"
 
 #: ../../source/portal-developer-guide/deployment/index.rst:291
@@ -9906,13 +9894,12 @@ msgstr "**1. アプリケーションの起動**"
 #: ../../source/portal-developer-guide/deployment/index.rst:300
 msgid "Navigate to **Applications** in Engine Cockpit"
 msgstr ""
-"Engine Cockpit の「アプリケーション」セクションにある「**」へ移動してください"
-"。**"
+"エンジンコックピットの **アプリケーション** に移動してください"
 
 #: ../../source/portal-developer-guide/deployment/index.rst:301
 msgid "Verify all applications show ``RUNNING`` status"
 msgstr ""
-"すべてのアプリケーションで``RUNNING``のステータスが表示されることをご確認くだ"
+"すべてのアプリケーションで ``RUNNING`` のステータスが表示されることをご確認くだ"
 "さい。"
 
 #: ../../source/portal-developer-guide/deployment/index.rst:302
@@ -10101,7 +10088,7 @@ msgid ""
 " theme). These templates are optimized for iFrame rendering and fully "
 "support responsive designs."
 msgstr ""
-"Axon Ivy コアが提供する``frame-10`` テンプレート（Freya テーマ使用）をご利用"
+"Axon Ivy コアが提供する ``frame-10`` テンプレート（Freya テーマ使用）をご利用"
 "ください。これらのテンプレートは iFrame レンダリングに最適化されており、"
 "レスポンシブデザインを完全にサポートしております。"
 
@@ -10181,7 +10168,7 @@ msgid ""
 "Set ``embedInFrame`` in Request tab custom fields. Overrides all other "
 "settings"
 msgstr ""
-"リクエストタブのカスタムフィールドに``embedInFrame``を設定してください。他の"
+"リクエストタブのカスタムフィールドに ``embedInFrame`` を設定してください。他の"
 "すべての設定を上書きします。"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:49
@@ -10197,8 +10184,7 @@ msgid ""
 "Set ``embedInFrame`` in Task custom fields. Overrides Case and Engine "
 "settings"
 msgstr ""
-"`タスクのカスタムフィールドに `embedInFrame`` を設定してください。これにより"
-"、ケース設定およびエンジン設定が上書きされます。"
+"タスクのカスタムフィールドで ``embedInFrame`` を設定します。ケースおよびエンジンの設定を上書きします。"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:52
 msgid "**Case**"
@@ -10211,7 +10197,7 @@ msgstr "Medium"
 #: ../../source/portal-developer-guide/iframe/index.rst:54
 msgid "Set ``embedInFrame`` in Case custom fields. Overrides Engine settings"
 msgstr ""
-"ケースカスタムフィールドに``embedInFrame``を設定してください。エンジン設定を"
+"ケースカスタムフィールドに ``embedInFrame`` を設定してください。エンジン設定を"
 "上書きします。"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:55
@@ -10225,7 +10211,7 @@ msgstr "最低"
 #: ../../source/portal-developer-guide/iframe/index.rst:57
 msgid "Global setting ``Portal.EmbedInFrame`` in Portal admin settings"
 msgstr ""
-"グローバル設定``Portal.EmbedInFrame`` は、ポータル管理設定にてご確認いただけ"
+"グローバル設定 ``Portal.EmbedInFrame`` は、ポータル管理設定にてご確認いただけ"
 "ます。"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:60
@@ -10314,7 +10300,7 @@ msgid ""
 "iFrames by setting the ``Portal.EmbedInFrame`` value in Portal admin "
 "settings."
 msgstr ""
-"ポータル管理者は、ポータル管理設定で``Portal.EmbedInFrame``の値を設定すること"
+"ポータル管理者は、ポータル管理設定で ``Portal.EmbedInFrame`` の値を設定すること"
 "により、すべてのタスクをiFrame内で起動するようグローバルに設定できます。"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:97
@@ -10495,7 +10481,7 @@ msgid ""
 "``EDIT_DASHBOARD_DETAILS``, ``PROCESS_VIEWER``, ``PORTAL_MANAGEMENT``, "
 "``NOTIFICATION``"
 msgstr ""
-"``HOME``,``PROCESS``,``TASK``,``TASK_DETAIL``,``CASE_DETAIL``,``CASE``,``TECHNICAL_CASE``,``RELATED_TASK``,``USER_PROFILE``,``ABSENCES_MANAGEMENT``,``DASHBOARD_CONFIGURATION``,``EDIT_DASHBOARD_DETAILS``,``PROCESS_VIEWER``,``PORTAL_MANAGEMENT``,``NOTIFICATION``"
+"``HOME``、``PROCESS``、``TASK``、``TASK_DETAIL``、``CASE_DETAIL``、``CASE``、``TECHNICAL_CASE``、``RELATED_TASK``、``USER_PROFILE``、``ABSENCES_MANAGEMENT``、``DASHBOARD_CONFIGURATION``、``EDIT_DASHBOARD_DETAILS``、``PROCESS_VIEWER``、``PORTAL_MANAGEMENT``、``NOTIFICATION``"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:174
 msgid "Configuration Methods"
@@ -10514,7 +10500,7 @@ msgid ""
 "values."
 msgstr ""
 "XSS脆弱性を回避するため、パラメータを常に検証してから渡してください。動的値に"
-"は``SanitizeAPI.escapeForJavascript``を使用してください。"
+"は ``SanitizeAPI.escapeForJavascript`` を使用してください。"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:182
 msgid "Using IFrameTaskConfig Component"
@@ -10648,7 +10634,7 @@ msgid ""
 "dynamic values"
 msgstr ""
 "**すべてのパラメータをサニタイズしてください。**: 動的値に"
-"は``SanitizeAPI.escapeForJavascript`` を使用してください。"
+"は ``SanitizeAPI.escapeForJavascript`` を使用してください。"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:374
 msgid ""
@@ -10740,9 +10726,9 @@ msgid ""
 "installation>` section. For existing Portal installations, refer to "
 ":ref:`Migration Notes <installation-migration-notes>`."
 msgstr ""
-"初めてのインストールについては、:ref:`Basic Installation <basic-installation>"
+"初めてのインストールについては、:ref:`基本インストール <basic-installation>"
 "` のセクションに従ってください。既存のポータルインストールについては"
-"、:ref:`Migration Notes <installation-migration-notes>` を参照してください。"
+"、:ref:`移行に関する注記 <installation-migration-notes>` を参照してください。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:30
 msgid "Basic Installation"
@@ -10754,7 +10740,7 @@ msgstr "Axon Ivy Designer または Engine"
 
 #: ../../source/portal-developer-guide/installation/index.rst:36
 msgid "Understanding of :ref:`Portal architecture <architecture>`"
-msgstr "以下の理解が必要です：:ref:`Portal architecture <architecture>`"
+msgstr "以下の理解が必要です：:ref:`アーキテクチャ <architecture>`"
 
 #: ../../source/portal-developer-guide/installation/index.rst:37
 msgid "For production: Valid Axon Ivy Engine license"
@@ -10785,7 +10771,7 @@ msgid ""
 "For project deployment procedures, see :doc-url:`project deployment "
 "</engine-guide/deployment/index.html>`."
 msgstr ""
-"プロジェクトのデプロイ手順については、:doc-url:`project deployment </engine-"
+"プロジェクトのデプロイ手順については、:doc-url:`展開 </engine-"
 "guide/deployment/index.html>` をご参照ください。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:60
@@ -10885,8 +10871,8 @@ msgid ""
 "the Deployment guide."
 msgstr ""
 "ダッシュボードの設定方法（デプロイメントファイル、Engine Cockpit UI、または"
-"ポータルインポート）については、デプロイメントガイドの「:ref:`Dashboard "
-"Configuration <deployment>` 」をご参照ください。"
+"ポータルインポート）については、デプロイメントガイドの「:ref:`ダッシュボード設定 "
+" <deployment>` 」をご参照ください。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:100
 msgid "Multi-Application Setup"
@@ -10932,7 +10918,7 @@ msgid ""
 "instructions, see :ref:`Deployment <deployment>`."
 msgstr ""
 "詳細なマルチアプリケーションアーキテクチャおよび段階的なデプロイ手順について"
-"は、:ref:`Deployment <deployment>` をご参照ください。"
+"は、:ref:`デプロイメント <deployment>` をご参照ください。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:118
 msgid "Migration Notes"
@@ -12111,8 +12097,8 @@ msgid ""
 "You can rename document in document table of task and case detail page, "
 "and the activity will be logged in history notes."
 msgstr ""
-"**導入ドキュメント名変更機能（** "
-"）をタスクおよびケース詳細ページに追加。タスク/ケース詳細ページのドキュメントテーブルでドキュメント名を変更可能。変更履歴は履歴ノートに記録されます。"
+"**ドキュメント名変更** 機能"
+"をタスクおよびケース詳細ページに追加。タスク/ケース詳細ページのドキュメントテーブルでドキュメント名を変更可能。変更履歴は履歴ノートに記録されます。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:510
 msgid ""
@@ -13612,9 +13598,9 @@ msgid ""
 "PortalPermissions. For detailed configuration instructions and examples, "
 "see :ref:`Permission Settings <settings-permission-settings>`."
 msgstr ""
-"すべての権限は、:doc-url:`Engine Cockpit </engine-guide/reference/engine-"
+"すべての権限は、:doc-url:`エンジンコックピット </engine-guide/reference/engine-"
 "cockpit/security.html>` の「セキュリティ」＞「PortalPermissions」で設定されま"
-"す。詳細な設定手順と例については、:ref:`Permission Settings <settings-"
+"す。詳細な設定手順と例については、:ref:`権限設定 <settings-"
 "permission-settings>` をご参照ください。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:30
@@ -13656,13 +13642,13 @@ msgstr ""
 msgid ""
 ":ref:`Settings <settings-permission-settings>` - Permission configuration"
 " examples and detailed explanations"
-msgstr ":ref:`Settings <settings-permission-settings>` - 権限設定の例と詳細な説明"
+msgstr ":ref:`権限設定 <settings-permission-settings>` - 権限設定の例と詳細な説明"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:40
 msgid ""
 ":ref:`Customization <customization>` - Build custom permission-based "
 "features"
-msgstr ":ref:`Customization <customization>` - カスタム権限ベースの機能を構築する"
+msgstr ":ref:`カスタマイズ <customization>` - カスタム権限ベースの機能を構築する"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:45
 msgid ""
@@ -14783,8 +14769,8 @@ msgid ""
 "``Portal.Histories.HideSystemNotesForAdministrator``"
 msgstr ""
 "**LTS 12.0以降の新機能**: 従来のグローバル変"
-"数``Portal.Histories.HideSystemNotes`` およ"
-"び``Portal.Histories.HideSystemNotesForAdministrator`` を置き換えます。"
+"数 ``Portal.Histories.HideSystemNotes`` およ"
+"び ``Portal.Histories.HideSystemNotesForAdministrator`` を置き換えます。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:524
 msgid ""
@@ -14793,8 +14779,8 @@ msgid ""
 "and ``Portal.Histories.HideSystemNotesForAdministrator`` instead."
 msgstr ""
 "**LTS以前のバージョン:** この権限はPortal 12.0以前のバージョンには存在しませ"
-"ん。代わりにグローバル変数``Portal.Histories.HideSystemNotes`` およ"
-"び``Portal.Histories.HideSystemNotesForAdministrator`` をご利用ください。"
+"ん。代わりにグローバル変数 ``Portal.Histories.HideSystemNotes`` およ"
+"び ``Portal.Histories.HideSystemNotesForAdministrator`` をご利用ください。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:526
 msgid "**Admin Settings & Configuration**"
@@ -15199,19 +15185,19 @@ msgstr "ダッシュボード向け統計図の設定"
 
 #: ../../source/portal-developer-guide/settings/index.rst:28
 msgid ":ref:`Permissions <list-permissions>` - Detailed permission reference"
-msgstr ":ref:`Permissions <list-permissions>` - 詳細な権限リファレンス"
+msgstr ":ref:`権限リスト <list-permissions>` - 詳細な権限リファレンス"
 
 #: ../../source/portal-developer-guide/settings/index.rst:29
 msgid ""
 ":ref:`Dashboard Configuration <customization-new-dashboard>` - Configure "
 "dashboards"
 msgstr ""
-":ref:`Dashboard Configuration <customization-new-dashboard>` - ダッシュボード"
+":ref:`ダッシュボード設定 <customization-new-dashboard>` - ダッシュボード"
 "の設定"
 
 #: ../../source/portal-developer-guide/settings/index.rst:31
 msgid ":ref:`Deployment <deployment>` - Production deployment settings"
-msgstr ":ref:`Deployment <deployment>` - 本番環境デプロイ設定"
+msgstr ":ref:`デプロイメント <deployment>` - 本番環境デプロイ設定"
 
 #: ../../source/portal-developer-guide/settings/index.rst:33
 msgid "|portal-header|"
@@ -15244,7 +15230,7 @@ msgid ""
 "**Variables File**: Update ``portal/config/variables.yaml`` for "
 "development (survives Designer restarts)"
 msgstr ""
-"**変数ファイル**: 開発用に``portal/config/variables.yaml`` を更新してください"
+"**変数ファイル**: 開発用に ``portal/config/variables.yaml`` を更新してください"
 "（Designerの再起動後も維持されます）"
 
 #: ../../source/portal-developer-guide/settings/index.rst:46
@@ -15252,7 +15238,7 @@ msgid ""
 "**Engine Cockpit**: Configure via :doc-url:`Variables </designer-"
 "guide/configuration/variables.html>`"
 msgstr ""
-"**Engine Cockpit**: 設定は以下より行ってください:doc-url:`Variables </"
+"**Engine Cockpit**: 設定は以下より行ってください :doc-url:`変数 </"
 "designer-guide/configuration/variables.html>`"
 
 #: ../../source/portal-developer-guide/settings/index.rst:49
@@ -15348,8 +15334,7 @@ msgstr "**JSON設定ファイルの更新**"
 #: ../../source/portal-developer-guide/settings/index.rst:79
 msgid "For each JSON file in ``portal/config/variables/``:"
 msgstr ""
-"`` ディレクトリ内の各 JSON ファイル（例: `portal/config/variables/``）につい"
-"て："
+"``portal/config/variables/`` 内の各JSONファイルについて："
 
 #: ../../source/portal-developer-guide/settings/index.rst:81
 msgid "Open the file and locate the ``locale`` arrays"
@@ -15382,7 +15367,7 @@ msgstr "**Javaソースファイルの更新**"
 
 #: ../../source/portal-developer-guide/settings/index.rst:89
 msgid "In ``DefaultDashboardUtils.java``:"
-msgstr "`` 内の `DefaultDashboardUtils.java``:"
+msgstr "``DefaultDashboardUtils.java`` において："
 
 #: ../../source/portal-developer-guide/settings/index.rst:91
 msgid ""
@@ -15446,7 +15431,7 @@ msgid ""
 "guide/reference/engine-cockpit/security.html>`. All Portal permissions "
 "are grouped under \"PortalPermissions\"."
 msgstr ""
-"権限の設定は:doc-url:`Engine Cockpit </engine-guide/reference/engine-cockpit/"
+"権限の設定は :doc-url:`エンジンコックピット </engine-guide/reference/engine-cockpit/"
 "security.html>` にて行ってください。すべてのポータル権限は「PortalPermissions"
 "」グループにまとめられています。"
 
@@ -16366,7 +16351,7 @@ msgstr "``Bar``、``Pie``、``Line``、``Number`` のような特定のチャー
 msgid ""
 "``barChartConfig``: additional fields for configuring the ``Bar`` chart, "
 "you can add if chart type is ``bar``"
-msgstr "``barChartConfig``: チャートを設定するための追加フィールド。チャートのタイプが の場合に追加できる ``bar``"
+msgstr "``barChartConfig``: ``Bar`` チャートを設定するための追加フィールド。チャートタイプが ``bar`` の場合に追加できます。"
 
 #: ../../source/portal-developer-guide/settings/index.rst:700
 #: ../../source/portal-developer-guide/settings/index.rst:708
@@ -16589,8 +16574,7 @@ msgid ""
 "Static pages should be organized in the ``webContent/view/`` directory of"
 " your project or custom application."
 msgstr ""
-"`静的ページは、プロジェクトまたはカスタムアプリケーション内の `webContent/"
-"view/`` ディレクトリに配置してください。"
+"静的ページは、プロジェクトまたはカスタムアプリケーションの ``webContent/view/`` ディレクトリに配置してください。"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:46
 msgid "**Recommended Structure:**"
@@ -16700,8 +16684,7 @@ msgid ""
 "Add the following JSON configuration to the ``Portal.CustomMenuItems`` "
 "variable:"
 msgstr ""
-"`` 内の `Portal.CustomMenuItems`` 変数に、以下の JSON 設定を追加してください"
-"："
+"以下のJSON設定を ``Portal.CustomMenuItems`` 変数に追加してください："
 
 #: ../../source/portal-developer-guide/static-page/index.rst:185
 #: ../../source/portal-developer-guide/static-page/index.rst:302
@@ -16759,7 +16742,7 @@ msgstr "Streamline アイコンを使用してください：``si si-icon-name``
 
 #: ../../source/portal-developer-guide/static-page/index.rst:204
 msgid "Example: ``si si-book-open-1``, ``si si-common-file-text``"
-msgstr "例：``si si-book-open-1``,``si si-common-file-text``"
+msgstr "例：``si si-book-open-1``、``si si-common-file-text``"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:205
 msgid "Browse available icons in Portal UI or Streamline documentation"
@@ -16864,7 +16847,7 @@ msgstr "キャメルケース命名規則を使用してください。"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:305
 msgid "``title`` or ``titles`` (required)"
-msgstr "``title`` または``titles`` (必須)"
+msgstr "``title`` または ``titles`` (必須)"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:306
 msgid "Menu item display text"
@@ -16924,7 +16907,7 @@ msgstr "**入力形式**: アプリケーションビューディレクトリか
 
 #: ../../source/portal-developer-guide/static-page/index.rst:337
 msgid "**Conversion**: Portal uses ``StaticPageUtils.buildUrl()`` method"
-msgstr "**変換方法：**: Portal は``StaticPageUtils.buildUrl()`` の方法を使用します。"
+msgstr "**変換方法：**: Portal は ``StaticPageUtils.buildUrl()`` の方法を使用します。"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:339
 msgid "Wraps page in Portal's iframe container"
@@ -16985,7 +16968,7 @@ msgid ""
 "reference.xhtml``)"
 msgstr ""
 "説明的なケバブケースのファイル名を使用してください（例：``user-"
-"guide.xhtml``,``api-reference.xhtml``）"
+"guide.xhtml``、``api-reference.xhtml``）"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:452
 msgid ""
@@ -17029,7 +17012,7 @@ msgstr "**アクセス制御：**"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:467
 msgid "Always define appropriate ``permissions`` in menu configuration"
-msgstr "メニュー設定では、常に適切な``permissions`` を定義してください。"
+msgstr "メニュー設定では、常に適切な ``permissions`` を定義してください。"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:468
 msgid "Use role-based access control for sensitive content"
@@ -17150,7 +17133,7 @@ msgid ""
 "questions and answers about Portal, Designer, and Engine. Search existing"
 " topics or ask new questions."
 msgstr ""
-"`Axon Ivy Community<https://community.axonivy.com/>`__ には、Portal、Designer"
+"`Axon Ivy Community <https://community.axonivy.com/>`__ には、Portal、Designer"
 "、Engine に関する質問と回答が掲載されております。既存のトピックを検索するか、"
 "新しい質問をお寄せください。"
 
@@ -17208,7 +17191,7 @@ msgid ""
 "headers."
 msgstr ""
 "**ヘッダーの転送** ：プロキシが以下のヘッダーを転送することを確認してください"
-"：``Host``,``X-Forwarded-Proto``,``X-Forwarded-For``。また、元のスキーマ/"
+"：``Host``、``X-Forwarded-Proto``、``X-Forwarded-For``。また、元のスキーマ/"
 "ホストを尊重します。エンジンを設定し、これらのヘッダーから絶対リンクを導出し"
 "てください。"
 
@@ -17228,7 +17211,7 @@ msgid ""
 "cookie ``SameSite`` and ``Secure`` attributes and use HTTPS."
 msgstr ""
 "**クッキー**: ポータルとアプリが異なるサブドメインにある場合、クッキー"
-"の``SameSite`` および``Secure`` 属性を検証し、HTTPS を使用してください。"
+"の ``SameSite`` および ``Secure`` 属性を検証し、HTTPS を使用してください。"
 
 #: ../../source/portal-developer-guide/troubleshooting/index.rst:43
 msgid ""
@@ -17271,7 +17254,7 @@ msgid ""
 "Forward ``X-Forwarded-Proto`` and ``Host``; configure Engine to trust "
 "these headers when generating absolute URLs"
 msgstr ""
-"``X-Forwarded-Proto`` および``Host`` を転送してください。絶対URLを生成する際"
+"``X-Forwarded-Proto`` および ``Host`` を転送してください。絶対URLを生成する際"
 "、Engineがこれらのヘッダーを信頼するよう設定してください。"
 
 #: ../../source/portal-developer-guide/troubleshooting/index.rst:59
@@ -17426,8 +17409,8 @@ msgid ""
 "additional property ``HIDE`` is set. Portal excludes hidden tasks and "
 "cases from default queries."
 msgstr ""
-"タスクまたはケースがポータルのリストに表示されない場合は、追加プロパティ「` "
-"」`HIDE`` が設定されているかご確認ください。ポータルでは、デフォルトのクエリ"
+"タスクまたはケースがポータルのリストに表示されない場合は、追加プロパティ"
+" ``HIDE`` が設定されているかご確認ください。ポータルでは、デフォルトのクエリ"
 "から非表示のタスクおよびケースを除外しております。"
 
 #: ../../source/portal-developer-guide/troubleshooting/index.rst:124
@@ -17631,7 +17614,7 @@ msgstr ""
 #: ../../source/portal-developer-guide/troubleshooting/index.rst:268
 msgid "**Use parameterized APIs** when possible instead of string concatenation"
 msgstr ""
-"**可能な限り文字列連結ではなく、パラメータ化されたAPI（** ）をご利用ください"
+"**可能な限り文字列連結ではなく、パラメータ化されたAPIをご利用ください** "
 "。"
 
 #: ../../source/portal-developer-guide/troubleshooting/index.rst:269
@@ -17640,13 +17623,13 @@ msgstr "**入力の検証は、サーバー側で** を実行し、その後で�
 
 #: ../../source/portal-developer-guide/troubleshooting/index.rst:270
 msgid "**Use CSP headers** as an additional security layer"
-msgstr "**追加のセキュリティ層として、CSPヘッダー（** ）をご使用ください。"
+msgstr "**追加のセキュリティ層として、CSPヘッダーをご使用ください** 。"
 
 #: ../../source/portal-developer-guide/troubleshooting/index.rst:271
 msgid "**Review security guidelines** regularly for new attack vectors"
 msgstr ""
-"**新たな攻撃ベクトルについて、セキュリティガイドライン（** ）を定期的にご確認"
-"ください。"
+"**新たな攻撃ベクトルについて、セキュリティガイドラインを定期的にご確認ください** "
+"。"
 
 #: ../../source/portal-developer-guide/troubleshooting/index.rst:273
 msgid "**Example: Safe Dynamic JavaScript:**"
@@ -17810,7 +17793,7 @@ msgstr "メニュー項目の対象URL"
 
 #: ../../source/portal-developer-guide/usermenu/index.rst:115
 msgid "**External links:** Full URL starting with ``http://`` or ``https://``"
-msgstr "** `外部リンク：** 完全なURL（例：`http://``、```、`https://``）"
+msgstr "**外部リンク：** URLの先頭が ``http://`` または ``https://`` で始まるもの"
 
 #: ../../source/portal-developer-guide/usermenu/index.rst:116
 msgid ""
