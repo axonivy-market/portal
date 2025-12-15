@@ -28,3 +28,5 @@ Labels:
   Close: Close
   NoName: no name
   NotAvailable: N/A
+Patterns:
+  timePattern: HH:mm

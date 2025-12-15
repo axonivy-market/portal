@@ -116,3 +116,5 @@ Labels:
   ParentRole: Rol superior
   TooltipNoNameFormatted: <{0}> ({1})
   TooltipUserNameFormatted: '{0} ({1})'
+Patterns:
+  timePattern: HH:mm
