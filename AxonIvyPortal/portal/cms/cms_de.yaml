@@ -927,10 +927,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     statisticChartWidget: Statistisches Diagramm
     statisticWidgets: Statistik-Widgets
     switchToViewMode: Ansichtsmodus
-    taskList: Aufgabenliste
-    taskListIntroduction: Dieses Widget zeigt relevante Aufgabeninformationen gemäß der definierten Einstellungen an
-    taskStart: Aufgabe starten
-    taskWidgetConfiguration: Aufgaben-Widget-Konfiguration
     taskWidgetInfo:
       expireToday: Fälligkeitsdatum heute
       expiryThisWeek: Fälligkeitsdatum diese Woche
@@ -939,6 +935,10 @@ ch.ivy.addon.portalkit.ui.jsf:
       numberOfTasksByState: Anzahl der Aufgaben nach Status
       predefinedFilters: Vordefinierte Filter
       taskDrillDownDashboard: Dashboard zur Aufgaben-Detailanalyse
+    taskList: Aufgabenliste
+    taskListIntroduction: Dieses Widget zeigt relevante Aufgabeninformationen gemäß der definierten Einstellungen an
+    taskStart: Aufgabe starten
+    taskWidgetConfiguration: Aufgaben-Widget-Konfiguration
     widgetInfo: Widget-Informationen
     widgetInfoIcon: Widget-Informations-Symbol
     widgetTitle: Widget-Titel

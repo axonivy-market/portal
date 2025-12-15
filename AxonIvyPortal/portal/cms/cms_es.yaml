@@ -925,10 +925,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     statisticChartWidget: Gráfico estadístico
     statisticWidgets: Widgets estadísticos
     switchToViewMode: Modo de visualización
-    taskList: Lista de tareas
-    taskListIntroduction: Este widget muestra la información relevante de la tarea según la configuración definida.
-    taskStart: Iniciar tarea
-    taskWidgetConfiguration: Configuración del widget de tareas
     taskWidgetInfo:
       expireToday: Expira hoy
       expiryThisWeek: Expira esta semana
@@ -937,6 +933,10 @@ ch.ivy.addon.portalkit.ui.jsf:
       numberOfTasksByState: Número de tareas por estado
       predefinedFilters: Filtros predefinidos
       taskDrillDownDashboard: Panel de análisis detallado de tareas
+    taskList: Lista de tareas
+    taskListIntroduction: Este widget muestra la información relevante de la tarea según la configuración definida.
+    taskStart: Iniciar tarea
+    taskWidgetConfiguration: Configuración del widget de tareas
     widgetInfo: Información del widget
     widgetInfoIcon: Icono de información del widget
     widgetTitle: Título del widget
