@@ -57,7 +57,10 @@ pipeline {
           utils.killUnnecessaryProcessesToRunTest()
 
           echo '====================Execute maven for testing===================='
+          echo '====================Set JFR===================='
+          withEnv(["JAVA_OPTS=-XX:+FlightRecorder -XX:StartFlightRecording=filename=maven_build.jfr,dumponexit=true"]){
           bat "mvn clean test -P-ivy -f AxonIvyPortal/portal-selenium-test/customized_pom.xml %engineDownloadURL% -Dtest=${params.testPatternToRun} -DbrowserType=FIREFOX -DtrimStackTrace=false -Divy.engine.directory=%engineDir% -Divy.deploy.timeout.seconds=60 -Divy.engine.start.timeout.seconds=500 -Dsurefire.rerunFailingTestsCount=2"
+          }
           utils.cleanDisk()
           
           echo '====================Archive consoleText file===================='
@@ -76,7 +79,7 @@ pipeline {
 
   post {
     always {
-      archiveArtifacts artifacts: 'AxonIvyPortal/portal-selenium-test/target/selenide/reports/**/*.*, AxonIvyPortal/portal-selenium-test/target/testEngineOut.log, testReport.txt, logText.txt', allowEmptyArchive: true
+      archiveArtifacts artifacts: 'AxonIvyPortal/portal-selenium-test/target/selenide/reports/**/*.*, AxonIvyPortal/portal-selenium-test/target/testEngineOut.log, testReport.txt, logText.txt, maven_build.jfr', allowEmptyArchive: true
       junit allowEmptyResults: true, testResults: '**/surefire-reports/TEST-*.xml'
     }
   }
