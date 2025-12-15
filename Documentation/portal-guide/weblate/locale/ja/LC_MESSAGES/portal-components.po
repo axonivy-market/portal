@@ -994,13 +994,13 @@ msgstr ""
 #: ../../source/portal-components/document-table/index.rst:277
 msgid ""
 "Enhanced the document preview feature for the task and case detail. If "
-"you have :dev-url:`DocFactory <https://market.axonivy.com/doc-factory"
-"#tab-description>` in the same security context, you can preview "
+"you have `DocFactory <https://market.axonivy.com/doc-factory"
+"#tab-description>`_ in the same security context, you can preview "
 "Word(doc, docx), Excel(xls, xlsx) and email(eml) documents."
 msgstr ""
 "タスクおよびケース詳細のドキュメントプレビュー機能を強化いたしました。同じ"
-"セキュリティコンテキスト内に:dev-url:`DocFactory <https://market.axonivy.com/"
-"doc-factory#tab-description>` が存在する場合、Word（doc、docx）、Excel（xls、"
+"セキュリティコンテキスト内に `DocFactory <https://market.axonivy.com/"
+"doc-factory#tab-description>`_ が存在する場合、Word（doc、docx）、Excel（xls、"
 "xlsx）、メール（eml）ドキュメントのプレビューが可能となります。"
 
 #: ../../source/portal-components/document-table/index.rst:280
@@ -1427,7 +1427,7 @@ msgstr ""
 
 #: ../../source/portal-components/public-api/index.rst:43
 msgid "``navigateToPortalHome()`` and ``navigateToPortalEndPage()``"
-msgstr "``navigateToPortalHome()`` および``navigateToPortalEndPage()``"
+msgstr "``navigateToPortalHome()`` および ``navigateToPortalEndPage()``"
 
 #: ../../source/portal-components/public-api/index.rst:44
 msgid "``buildUrlToPortalCaseDetailsPageById/ByUUID(...)``"

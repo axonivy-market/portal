@@ -507,7 +507,7 @@ Changes in 13.2.0
 -----------------
 
 - Introduced **Renaming Document** feature for the task and case detail. You can rename document in document table of task and case detail page, and the activity will be logged in history notes.
-- Enhanced the document preview feature for the task and case detail. If you have :dev-url:`DocFactory <https://market.axonivy.com/doc-factory#tab-description>` in the same security context, you can preview Word(doc, docx), Excel(xls, xlsx) and email(eml) documents.
+- Enhanced the document preview feature for the task and case detail. If you have `DocFactory <https://market.axonivy.com/doc-factory#tab-description>`_ in the same security context, you can preview Word(doc, docx), Excel(xls, xlsx) and email(eml) documents.
 - Removed the Portal Setting ``Portal.DeepL.AuthKey``.
 - Renamed the Portal Setting ``Portal.DeepL.Enable`` to ``Portal.TranslationService.Enable``.
 - Enhanced the **Document Table** component by adding the lazy loading functionality to the Document Table component, enabling efficient data loading through pagination.

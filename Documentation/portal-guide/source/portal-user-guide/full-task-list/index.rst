@@ -221,7 +221,7 @@ HowTo: Preview a Document of a Task
    - **With DocFactory**: Word (doc, docx), Excel (xls, xlsx), and email (eml) files
    
    To enable this feature, set :ref:`Portal settings <update-portal-settings>` :guilabel:`Portal.Document.EnablePreview` to true. 
-   For Office documents, deploy :dev-url:`DocFactory <https://market.axonivy.com/doc-factory#tab-description>` in the same security context.
+   For Office documents, deploy `DocFactory <https://market.axonivy.com/doc-factory#tab-description>`_ in the same security context.
 
 
 HowTo: Add a Note to a Task
