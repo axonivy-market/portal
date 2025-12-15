@@ -159,7 +159,7 @@ HowTo: Preview a Document of a Case
    - **With DocFactory**: Word (doc, docx), Excel (xls, xlsx), and email (eml) files
    
    Set :ref:`Portal settings <update-portal-settings>` :guilabel:`Portal.Document.EnablePreview` to true to enable this feature. 
-   For Office documents, deploy :dev-url:`DocFactory <https://market.axonivy.com/doc-factory#tab-description>` in the same security context.
+   For Office documents, deploy `DocFactory <https://market.axonivy.com/doc-factory#tab-description>`_ in the same security context.
 
 HowTo: Rename a Document of a Case
 ----------------------------------

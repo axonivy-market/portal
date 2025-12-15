@@ -12103,12 +12103,12 @@ msgstr ""
 #: ../../source/portal-developer-guide/installation/index.rst:510
 msgid ""
 "Enhanced the document preview feature for the task and case detail. If "
-"you have :dev-url:`DocFactory <https://market.axonivy.com/doc-factory"
-"#tab-description>` in the same security context, you can preview "
+"you have `DocFactory <https://market.axonivy.com/doc-factory"
+"#tab-description>`_ in the same security context, you can preview "
 "Word(doc, docx), Excel(xls, xlsx) and email(eml) documents."
 msgstr ""
-"タスクおよびケース詳細のドキュメントプレビュー機能を強化しました。同じセキュリティコンテキストに :dev-url:`DocFactory "
-"<https://market.axonivy.com/doc-factory#tab-description>` "
+"タスクおよびケース詳細のドキュメントプレビュー機能を強化しました。同じセキュリティコンテキストに `DocFactory "
+"<https://market.axonivy.com/doc-factory#tab-description>`_ "
 "がある場合、Word（doc、docx）、Excel（xls、xlsx）、メール（eml）ドキュメントをプレビューできます。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:511
