@@ -923,6 +923,10 @@ ch.ivy.addon.portalkit.ui.jsf:
     statisticChartWidget: Statistic chart
     statisticWidgets: Statistic Widgets
     switchToViewMode: View Mode
+    taskList: Task List
+    taskListIntroduction: This widget displays relevant task information according to defined settings.
+    taskStart: Task start
+    taskWidgetConfiguration: Task Widget Configuration
     taskWidgetInfo:
       expireToday: Expire today
       expiryThisWeek: Expire this week
@@ -931,10 +935,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       numberOfTasksByState: Number of tasks by state
       predefinedFilters: Predefined filters
       taskDrillDownDashboard: Task drill-down dashboard
-    taskList: Task List
-    taskListIntroduction: This widget displays relevant task information according to defined settings.
-    taskStart: Task start
-    taskWidgetConfiguration: Task Widget Configuration
     widgetInfo: Widget information
     widgetInfoIcon: Widget Information Icon
     widgetTitle: Widget Title
@@ -1563,6 +1563,7 @@ Dialogs:
               ResetFilter: Reset filter
             filter:
               DashboardFilter:
+                HasCmsValuesEnabledTooltip: This field only allows to use Contains operator
                 SelectFilterField: Select Filter Field
               DateFilter:
                 SelectPeriod: Select period

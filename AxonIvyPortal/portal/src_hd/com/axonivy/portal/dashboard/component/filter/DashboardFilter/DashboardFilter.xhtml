@@ -31,6 +31,9 @@
           <p:ajax event="itemSelect" listener="#{cc.attrs.managedBean.onSelectFilter(filter)}"
             update="filter-selection-panel" global="false" />
         </p:selectOneMenu>
+        <p:tooltip for="field-selection"
+          rendered="#{filter.isTextField() and widgetTextFilterBean.isCustomFieldWithCms(filter)}"
+          value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/filter/DashboardFilter/HasCmsValuesEnabledTooltip')}" />
       </div>
   
       <h:panelGroup layout="block" rendered="#{filter.isCustomDateField() or filter.isFinishedDateField() or filter.isExpiryDateField()}">
