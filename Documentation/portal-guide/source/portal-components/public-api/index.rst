@@ -180,6 +180,26 @@ Example::
    // Handle errors
    AiResultDTO errorResult = AiAssistantAPI.createSomethingWentWrongError();
 
+PortalDateTimePatternAPI
+========================
+
+Get date/time patterns based on Portal's variables and formatting locale.
+
+- ``getDateTimePattern()``: Get date time pattern based on these variables Portal.DateTimeFormat.HideTime and Portal.DateTimeFormat.HideYear.
+- ``getDatePattern()``: Get date pattern based on the variable Portal.DateTimeFormat.HideYear.
+- ``getDateTimePatternForFiltering(boolean isDateFilter, int dateFormat)``: Get date time pattern for filtering based on the variable Portal.DateTimeFormat.DateFilterWithTime.
+
+Example::
+
+   import com.axonivy.portal.components.publicapi.PortalDateTimePatternAPI;
+
+   // Use for displaying dates/times
+   String dateTimePattern = PortalDateTimePatternAPI.getDateTimePattern();
+   String datePattern = PortalDateTimePatternAPI.getDatePattern();
+
+   // Use for filtering dates/times
+   String filterPattern = PortalDateTimePatternAPI.getDateTimePatternForFiltering(true, DateFormat.SHORT);
+
 Notes
 =====
 
