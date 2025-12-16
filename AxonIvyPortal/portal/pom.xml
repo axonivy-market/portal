@@ -37,12 +37,39 @@
     </dependency>
     <dependency>
       <groupId>com.axonivy.ivy.api</groupId>
+      <artifactId>ivy-poi-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.axonivy.ivy.api</groupId>
       <artifactId>ivy-notification-channel-api</artifactId>
     </dependency>
+    <dependency>
+      <groupId>com.axonivy.ivy.api</groupId>
+      <artifactId>ivy-notification-web-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.axonivy.ivy.api</groupId>
+      <artifactId>ivy-workflow-index-api</artifactId>
+    </dependency>
+
     <dependency>
       <groupId>com.axonivy.ivy.api.restricted</groupId>
       <artifactId>ivy-cluster-api</artifactId>
     </dependency>
+    <dependency>
+      <groupId>com.axonivy.ivy.api.restricted</groupId>
+      <artifactId>ivy-security-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.axonivy.ivy.api.restricted</groupId>
+      <artifactId>ivy-translation-service-api</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>com.axonivy.ivy.spi</groupId>
+      <artifactId>ivy-process-extension-spi</artifactId>
+    </dependency>
+
     <dependency>
       <groupId>com.google.code.gson</groupId>
       <artifactId>gson</artifactId>

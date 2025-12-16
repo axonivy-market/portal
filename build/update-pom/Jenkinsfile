@@ -60,7 +60,7 @@ pipeline {
             sh """
               if [ -d /home/build/.m2/repository/.cache/ivy/${ivyEngineVersion} ]; then rm -Rf /home/build/.m2/repository/.cache/ivy/${ivyEngineVersion}; fi
             """
-            maven cmd: 'clean install -P-ivy -f AxonIvyPortal/portal-components/pom.xml'
+            maven cmd: 'clean install -f AxonIvyPortal/portal-components/pom.xml'
           }
         }
       }
