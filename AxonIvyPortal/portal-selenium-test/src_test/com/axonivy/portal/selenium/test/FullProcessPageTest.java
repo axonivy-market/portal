@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
+import com.axonivy.portal.selenium.common.Sleeper;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.TestRole;
 import com.axonivy.portal.selenium.page.MainMenuPage;
@@ -56,7 +57,6 @@ public class FullProcessPageTest extends BaseTest {
     processWidgetPage = mainMenuPage.selectProcessesMenu();
     createPublicExternalTestProcess(AAGOOGLE_LINK, AAGOOGLE_LINK, TestRole.TESTER_ROLE);
 
-    refreshPage();
     processWidgetPage.selectGridMode();
     processWidgetPage.waitForGridProcessListDisplayed();
     processWidgetPage.enterSearchKeyword("link");
@@ -70,7 +70,6 @@ public class FullProcessPageTest extends BaseTest {
     processWidgetPage.addNewRolePermission(TestRole.HR_ROLE);
     processWidgetPage.saveEditProcessDialog();
     
-    refreshPage();
     processWidgetPage.selectGridMode();
     processWidgetPage.waitForGridProcessListDisplayed();
     processWidgetPage.enterSearchKeyword("link");
@@ -108,5 +107,6 @@ public class FullProcessPageTest extends BaseTest {
     AddNewExternalLinkDialog addNewExternalLinkDialog = processWidgetPage.openNewExternalLinkDialog();
     addNewExternalLinkDialog.inputDataForPublicExternalLink(processName, processLink, rolePermission);
     addNewExternalLinkDialog.submitForm();
+    Sleeper.sleep(2000);
   }
 }
