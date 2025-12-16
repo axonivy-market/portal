@@ -77,13 +77,13 @@ pipeline {
           echo '====================Build PortalKitTestHelper and InternalSupport===================='
           def extraModules = ['AxonIvyPortal/PortalKitTestHelper', 'Showcase/InternalSupport']
           for (module in extraModules) {
-            bat "mvn clean install -P-ivy -f ${module}/pom.xml -Divy.engine.directory=%engineDir% -Divy.compiler.engine.start.timeout=120"
+            bat "mvn clean install -f ${module}/pom.xml -Divy.engine.directory=%engineDir% -Divy.compiler.engine.start.timeout=120"
           }
 
           utils.killUnnecessaryProcessesToRunTest()
 
           echo '====================Test Portal===================='
-          bat "mvn clean test -P-ivy -f AxonIvyPortal/portal-selenium-test/customized_pom.xml -Dtest=${params.testPatternToRun} -DbrowserType=${props.browserType} -DtrimStackTrace=false -Divy.engine.directory=%engineDir% -Divy.deploy.timeout.seconds=60 -Divy.engine.start.timeout.seconds=500"
+          bat "mvn clean test -f AxonIvyPortal/portal-selenium-test/customized_pom.xml -Dtest=${params.testPatternToRun} -DbrowserType=${props.browserType} -DtrimStackTrace=false -Divy.engine.directory=%engineDir% -Divy.deploy.timeout.seconds=60 -Divy.engine.start.timeout.seconds=500"
           utils.cleanDisk()
         }
       }

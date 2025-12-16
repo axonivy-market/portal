@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Portal Guide ${revision}\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-12 03:33+0000\n"
+"POT-Creation-Date: 2025-12-16 07:26+0000\n"
 "PO-Revision-Date: 2025-09-19 06:44+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language: fr\n"
@@ -930,9 +930,9 @@ msgstr ""
 #: ../../source/portal-components/document-table/index.rst:277
 msgid ""
 "Enhanced the document preview feature for the task and case detail. If "
-"you have :dev-url:`DocFactory <https://market.axonivy.com/doc-factory"
-"#tab-description>` in the same security context, you can preview "
-"Word(doc, docx), Excel(xls, xlsx) and email(eml) documents."
+"you have `DocFactory <https://market.axonivy.com/doc-factory#tab-"
+"description>`_ in the same security context, you can preview Word(doc, "
+"docx), Excel(xls, xlsx) and email(eml) documents."
 msgstr ""
 
 #: ../../source/portal-components/document-table/index.rst:280
@@ -965,7 +965,7 @@ msgid ""
 "will be removed in Portal 13."
 msgstr ""
 
-#: ../../source/portal-components/index.rst:23
+#: ../../source/portal-components/index.rst:22
 msgid ""
 "Refer to the ``portal-components-examples`` project for usage, "
 "customization, and visual examples across supported themes."
@@ -1255,236 +1255,6 @@ msgstr ""
 msgid ""
 "Refer to process ``ProcessViewerExample`` in project ``portal-components-"
 "examples`` for more details."
-msgstr ""
-
-#: ../../source/portal-components/public-api/index.rst:4
-msgid "Public API"
-msgstr ""
-
-#: ../../source/portal-components/public-api/index.rst:6
-msgid ""
-"The Portal exposes a focused Java Public API in the "
-"``com.axonivy.portal.components.publicapi`` package (module: ``portal-"
-"components``). Use these helpers to integrate with Portal pages, "
-"navigate, and control visibility or behavior from your own processes and "
-"beans."
-msgstr ""
-
-#: ../../source/portal-components/public-api/index.rst:13
-msgid ""
-"Only the APIs documented here are supported and stable. Classes and "
-"methods not explicitly documented are internal implementation details and"
-" may change without notice."
-msgstr ""
-
-#: ../../source/portal-components/public-api/index.rst:18
-msgid "ProcessStartAPI"
-msgstr ""
-
-#: ../../source/portal-components/public-api/index.rst:20
-msgid ""
-"Find startable process links by a friendly request path (IWebStartable "
-"ID)."
-msgstr ""
-
-#: ../../source/portal-components/public-api/index.rst:22
-msgid ""
-"``findStartableLinkByUserFriendlyRequestPath(String)``: returns a "
-"relative link if the current user may start it, otherwise an empty "
-"string."
-msgstr ""
-
-#: ../../source/portal-components/public-api/index.rst:24
-msgid ""
-"``findRelativeUrlByProcessStartFriendlyRequestPath(String)``: returns the"
-" relative link regardless of start permissions, or an empty string if not"
-" found."
-msgstr ""
-
-#: ../../source/portal-components/public-api/index.rst:27
-#: ../../source/portal-components/public-api/index.rst:48
-#: ../../source/portal-components/public-api/index.rst:77
-#: ../../source/portal-components/public-api/index.rst:119
-#: ../../source/portal-components/public-api/index.rst:133
-#: ../../source/portal-components/public-api/index.rst:149
-#: ../../source/portal-components/public-api/index.rst:167
-msgid "Example::"
-msgstr ""
-
-#: ../../source/portal-components/public-api/index.rst:38
-msgid "PortalNavigatorAPI (no iFrame)"
-msgstr ""
-
-#: ../../source/portal-components/public-api/index.rst:40
-msgid ""
-"Navigate between Portal pages and build deep links when your UI is not "
-"embedded in the Portal iFrame."
-msgstr ""
-
-#: ../../source/portal-components/public-api/index.rst:43
-msgid "``navigateToPortalHome()`` and ``navigateToPortalEndPage()``"
-msgstr ""
-
-#: ../../source/portal-components/public-api/index.rst:44
-msgid "``buildUrlToPortalCaseDetailsPageById/ByUUID(...)``"
-msgstr ""
-
-#: ../../source/portal-components/public-api/index.rst:45
-msgid "``buildUrlToPortalTaskDetailsPageById/ByUUID(...)``"
-msgstr ""
-
-#: ../../source/portal-components/public-api/index.rst:46
-msgid "``getPasswordResetUrl(String token, String username)``"
-msgstr ""
-
-#: ../../source/portal-components/public-api/index.rst:57
-msgid "PortalNavigatorInFrameAPI (inside iFrame)"
-msgstr ""
-
-#: ../../source/portal-components/public-api/index.rst:59
-msgid "Control navigation from a page running inside Portal's iFrame."
-msgstr ""
-
-#: ../../source/portal-components/public-api/index.rst:61
-msgid "``navigateToUrl(String)``"
-msgstr ""
-
-#: ../../source/portal-components/public-api/index.rst:62
-msgid "``navigateToPortalHome()``"
-msgstr ""
-
-#: ../../source/portal-components/public-api/index.rst:63
-msgid "``navigateToPortalEndPage()``"
-msgstr ""
-
-#: ../../source/portal-components/public-api/index.rst:65
-msgid "Example (bean code)::"
-msgstr ""
-
-#: ../../source/portal-components/public-api/index.rst:72
-msgid "TaskAPI and CaseAPI"
-msgstr ""
-
-#: ../../source/portal-components/public-api/index.rst:74
-msgid ""
-"Hide or show specific tasks/cases in the Portal lists by setting/clearing"
-" the ``HIDE`` additional property."
-msgstr ""
-
-#: ../../source/portal-components/public-api/index.rst:93
-msgid "BusinessDetailsAPI"
-msgstr ""
-
-#: ../../source/portal-components/public-api/index.rst:95
-msgid ""
-"Define a business details page for a case. Supports either an "
-"``IWebStartable`` ID or an external URL, with optional \"embed in "
-"frame\"."
-msgstr ""
-
-#: ../../source/portal-components/public-api/index.rst:98
-msgid "Examples::"
-msgstr ""
-
-#: ../../source/portal-components/public-api/index.rst:115
-msgid "SanitizeAPI"
-msgstr ""
-
-#: ../../source/portal-components/public-api/index.rst:117
-msgid "Escape strings for safe embedding in JavaScript to prevent injections/XSS."
-msgstr ""
-
-#: ../../source/portal-components/public-api/index.rst:126
-msgid "RoleAPI"
-msgstr ""
-
-#: ../../source/portal-components/public-api/index.rst:128
-msgid "Manage properties for roles programmatically."
-msgstr ""
-
-#: ../../source/portal-components/public-api/index.rst:130
-msgid ""
-"``setProperty(IRole role, String key, String value)``: Set a property on "
-"a role."
-msgstr ""
-
-#: ../../source/portal-components/public-api/index.rst:131
-msgid "``removeProperty(IRole role, String key)``: Remove a property from a role."
-msgstr ""
-
-#: ../../source/portal-components/public-api/index.rst:143
-msgid "ApplicationMultiLanguageAPI"
-msgstr ""
-
-#: ../../source/portal-components/public-api/index.rst:145
-msgid ""
-"Retrieve CMS values based on the current user's locale for multilingual "
-"menu support."
-msgstr ""
-
-#: ../../source/portal-components/public-api/index.rst:147
-msgid ""
-"``getCmsValueByUserLocale(String cmsURI)``: Get CMS value for specific "
-"URI based on current locale."
-msgstr ""
-
-#: ../../source/portal-components/public-api/index.rst:156
-msgid "AiAssistantAPI"
-msgstr ""
-
-#: ../../source/portal-components/public-api/index.rst:158
-msgid ""
-"Helper methods for integrating AI assistant features with Portal "
-"processes."
-msgstr ""
-
-#: ../../source/portal-components/public-api/index.rst:160
-msgid ""
-"``addIframeIvyProcessLinkToAiResult(String link, Map<String, String> "
-"params, AiResultDTO result)``: Add an iframe-embedded Ivy process link to"
-" AI result."
-msgstr ""
-
-#: ../../source/portal-components/public-api/index.rst:162
-msgid ""
-"``generateExecutableResult(String link)``: Generate an executable result "
-"pattern."
-msgstr ""
-
-#: ../../source/portal-components/public-api/index.rst:163
-msgid ""
-"``generateErrorAiResult(Throwable error, String errorDescription)``: "
-"Create error result from exception."
-msgstr ""
-
-#: ../../source/portal-components/public-api/index.rst:164
-msgid ""
-"``generateErrorAiResult(String error)``: Create error result from error "
-"message."
-msgstr ""
-
-#: ../../source/portal-components/public-api/index.rst:165
-msgid "``createSomethingWentWrongError()``: Create a generic error result."
-msgstr ""
-
-#: ../../source/portal-components/public-api/index.rst:184
-msgid "Notes"
-msgstr ""
-
-#: ../../source/portal-components/public-api/index.rst:186
-msgid ""
-"Ensure the target startables are active and accessible for the current "
-"user."
-msgstr ""
-
-#: ../../source/portal-components/public-api/index.rst:187
-msgid "Portal and your projects should run in the same security context."
-msgstr ""
-
-#: ../../source/portal-components/public-api/index.rst:188
-msgid ""
-"Prefer the ``portal-components`` module's public APIs over internal "
-"classes."
 msgstr ""
 
 #: ../../source/portal-components/role-selection/index.rst:4
@@ -2809,5 +2579,213 @@ msgstr ""
 #~ "Please refer to project ``portal-"
 #~ "components-examples`` for more details on"
 #~ " use, and customization."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Enhanced the document preview feature "
+#~ "for the task and case detail. If"
+#~ " you have :dev-url:`DocFactory "
+#~ "<https://market.axonivy.com/doc-factory#tab-description>`"
+#~ " in the same security context, you"
+#~ " can preview Word(doc, docx), Excel(xls,"
+#~ " xlsx) and email(eml) documents."
+#~ msgstr ""
+
+#~ msgid "Public API"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "The Portal exposes a focused Java "
+#~ "Public API in the "
+#~ "``com.axonivy.portal.components.publicapi`` package "
+#~ "(module: ``portal-components``). Use these "
+#~ "helpers to integrate with Portal pages,"
+#~ " navigate, and control visibility or "
+#~ "behavior from your own processes and "
+#~ "beans."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Only the APIs documented here are "
+#~ "supported and stable. Classes and "
+#~ "methods not explicitly documented are "
+#~ "internal implementation details and may "
+#~ "change without notice."
+#~ msgstr ""
+
+#~ msgid "ProcessStartAPI"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Find startable process links by a "
+#~ "friendly request path (IWebStartable ID)."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "``findStartableLinkByUserFriendlyRequestPath(String)``: returns"
+#~ " a relative link if the current "
+#~ "user may start it, otherwise an "
+#~ "empty string."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "``findRelativeUrlByProcessStartFriendlyRequestPath(String)``: "
+#~ "returns the relative link regardless of"
+#~ " start permissions, or an empty "
+#~ "string if not found."
+#~ msgstr ""
+
+#~ msgid "Example::"
+#~ msgstr ""
+
+#~ msgid "PortalNavigatorAPI (no iFrame)"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Navigate between Portal pages and build"
+#~ " deep links when your UI is not"
+#~ " embedded in the Portal iFrame."
+#~ msgstr ""
+
+#~ msgid "``navigateToPortalHome()`` and ``navigateToPortalEndPage()``"
+#~ msgstr ""
+
+#~ msgid "``buildUrlToPortalCaseDetailsPageById/ByUUID(...)``"
+#~ msgstr ""
+
+#~ msgid "``buildUrlToPortalTaskDetailsPageById/ByUUID(...)``"
+#~ msgstr ""
+
+#~ msgid "``getPasswordResetUrl(String token, String username)``"
+#~ msgstr ""
+
+#~ msgid "PortalNavigatorInFrameAPI (inside iFrame)"
+#~ msgstr ""
+
+#~ msgid "Control navigation from a page running inside Portal's iFrame."
+#~ msgstr ""
+
+#~ msgid "``navigateToUrl(String)``"
+#~ msgstr ""
+
+#~ msgid "``navigateToPortalHome()``"
+#~ msgstr ""
+
+#~ msgid "``navigateToPortalEndPage()``"
+#~ msgstr ""
+
+#~ msgid "Example (bean code)::"
+#~ msgstr ""
+
+#~ msgid "TaskAPI and CaseAPI"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Hide or show specific tasks/cases in "
+#~ "the Portal lists by setting/clearing the"
+#~ " ``HIDE`` additional property."
+#~ msgstr ""
+
+#~ msgid "BusinessDetailsAPI"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Define a business details page for "
+#~ "a case. Supports either an "
+#~ "``IWebStartable`` ID or an external URL,"
+#~ " with optional \"embed in frame\"."
+#~ msgstr ""
+
+#~ msgid "Examples::"
+#~ msgstr ""
+
+#~ msgid "SanitizeAPI"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Escape strings for safe embedding in "
+#~ "JavaScript to prevent injections/XSS."
+#~ msgstr ""
+
+#~ msgid "RoleAPI"
+#~ msgstr ""
+
+#~ msgid "Manage properties for roles programmatically."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "``setProperty(IRole role, String key, String"
+#~ " value)``: Set a property on a "
+#~ "role."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "``removeProperty(IRole role, String key)``: "
+#~ "Remove a property from a role."
+#~ msgstr ""
+
+#~ msgid "ApplicationMultiLanguageAPI"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Retrieve CMS values based on the "
+#~ "current user's locale for multilingual "
+#~ "menu support."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "``getCmsValueByUserLocale(String cmsURI)``: Get CMS"
+#~ " value for specific URI based on "
+#~ "current locale."
+#~ msgstr ""
+
+#~ msgid "AiAssistantAPI"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Helper methods for integrating AI "
+#~ "assistant features with Portal processes."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "``addIframeIvyProcessLinkToAiResult(String link, "
+#~ "Map<String, String> params, AiResultDTO "
+#~ "result)``: Add an iframe-embedded Ivy"
+#~ " process link to AI result."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "``generateExecutableResult(String link)``: Generate "
+#~ "an executable result pattern."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "``generateErrorAiResult(Throwable error, String "
+#~ "errorDescription)``: Create error result from"
+#~ " exception."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "``generateErrorAiResult(String error)``: Create "
+#~ "error result from error message."
+#~ msgstr ""
+
+#~ msgid "``createSomethingWentWrongError()``: Create a generic error result."
+#~ msgstr ""
+
+#~ msgid "Notes"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Ensure the target startables are active"
+#~ " and accessible for the current user."
+#~ msgstr ""
+
+#~ msgid "Portal and your projects should run in the same security context."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Prefer the ``portal-components`` module's "
+#~ "public APIs over internal classes."
 #~ msgstr ""
 
