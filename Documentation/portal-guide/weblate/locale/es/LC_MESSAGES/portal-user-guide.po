@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Portal Guide ${revision}\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-16 07:26+0000\n"
+"POT-Creation-Date: 2025-12-16 10:37+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: es\n"
@@ -40,6 +40,7 @@ msgid "Shortcut"
 msgstr ""
 
 #: ../../source/portal-user-guide/accessibility/index.rst:17
+#: ../../source/portal-user-guide/dashboard-configuration/index.rst:259
 #: ../../source/portal-user-guide/full-case-list/index.rst:361
 #: ../../source/portal-user-guide/full-process-list/index.rst:200
 #: ../../source/portal-user-guide/full-task-list/index.rst:61
@@ -1029,8 +1030,8 @@ msgstr ""
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid ""
-"Set to true to enable date filtering with time. This setting affects task"
-" widget and case widget."
+"Set to true to enable date filtering with time. This setting affects on "
+"task list, case list, and statistics."
 msgstr ""
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
@@ -2725,6 +2726,7 @@ msgid "The Dashboard Configuration page has two tabs:"
 msgstr ""
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:23
+#: ../../source/portal-user-guide/dashboard-configuration/index.rst:259
 #: ../../source/portal-user-guide/full-case-list/index.rst:361
 #: ../../source/portal-user-guide/full-process-list/index.rst:200
 #: ../../source/portal-user-guide/full-task-list/index.rst:310
@@ -3274,6 +3276,46 @@ msgstr ""
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:253
 msgid "Different dashboard actions require specific permissions:"
+msgstr ""
+
+#: ../../source/portal-user-guide/dashboard-configuration/index.rst:261
+msgid "**Import private dashboard**"
+msgstr ""
+
+#: ../../source/portal-user-guide/dashboard-configuration/index.rst:261
+msgid ":bdg-ref-warning:`🔑DashboardImportOwn <DashboardImportOwn>`"
+msgstr ""
+
+#: ../../source/portal-user-guide/dashboard-configuration/index.rst:263
+msgid "**Export private dashboard**"
+msgstr ""
+
+#: ../../source/portal-user-guide/dashboard-configuration/index.rst:263
+msgid ":bdg-ref-warning:`🔑DashboardExportOwn <DashboardExportOwn>`"
+msgstr ""
+
+#: ../../source/portal-user-guide/dashboard-configuration/index.rst:265
+msgid "**Import public dashboard**"
+msgstr ""
+
+#: ../../source/portal-user-guide/dashboard-configuration/index.rst:265
+msgid ":bdg-ref-warning:`🔑DashboardImportPublic <DashboardImportPublic>`"
+msgstr ""
+
+#: ../../source/portal-user-guide/dashboard-configuration/index.rst:267
+msgid "**Export public dashboard**"
+msgstr ""
+
+#: ../../source/portal-user-guide/dashboard-configuration/index.rst:267
+msgid ":bdg-ref-warning:`🔑DashboardExportPublic <DashboardExportPublic>`"
+msgstr ""
+
+#: ../../source/portal-user-guide/dashboard-configuration/index.rst:269
+msgid "**Share public dashboard link**"
+msgstr ""
+
+#: ../../source/portal-user-guide/dashboard-configuration/index.rst:269
+msgid ":bdg-ref-warning:`🔑ShareDashboardLink <ShareDashboardLink>`"
 msgstr ""
 
 #: ../../source/portal-user-guide/demo-processes/index.rst:4
@@ -10337,5 +10379,11 @@ msgstr ""
 #~ "enabled, the text will be automatically"
 #~ " translated. Click :guilabel:`Auto. translation`"
 #~ " to accept the translated text."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Set to true to enable date "
+#~ "filtering with time. This setting "
+#~ "affects task widget and case widget."
 #~ msgstr ""
 
