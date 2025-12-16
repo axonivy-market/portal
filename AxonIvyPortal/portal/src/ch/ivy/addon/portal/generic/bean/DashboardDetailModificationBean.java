@@ -1131,6 +1131,9 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   }
 
   public List<Statistic> getStatisticWidgets() {
+    if (Objects.isNull(statisticWidgets)) {
+      initStatisticWidgets();
+    }
     return statisticWidgets;
   }
 
