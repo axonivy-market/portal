@@ -9,15 +9,16 @@ msgstr ""
 "Project-Id-Version: Portal Guide ${revision}\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-12-16 07:26+0000\n"
-"PO-Revision-Date: 2025-12-12 05:07+0000\n"
-"Last-Translator: DeepL <noreply-mt-deepl@weblate.org>\n"
+"PO-Revision-Date: 2025-12-16 07:45+0000\n"
+"Last-Translator: Thang Huynh Huu Quyet <hhqthang@axonactive.com>\n"
+"Language-Team: Japanese <https://hosted.weblate.org/projects/axonivy-portal/"
+"portal-le/doc/portal-doc-developer-guide/ja/>\n"
 "Language: ja\n"
-"Language-Team: Japanese <https://hosted.weblate.org/projects/axonivy-"
-"portal/portal-le/doc/portal-doc-developer-guide/ja/>\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 5.15.1-dev\n"
 "Generated-By: Babel 2.17.0\n"
 
 #: ../../source/portal-developer-guide/architecture/index.rst:4
@@ -7764,14 +7765,15 @@ msgid "Define Task Widget"
 msgstr "タスクウィジェットの定義"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:11
-#, fuzzy
 msgid ""
 "The task widget displays tasks with full control over columns, filters, "
 "sorting, and layout. Refer to :ref:`Task List Widget <new-dashboard-task-"
 "list-widget>` for widget behavior details."
 msgstr ""
-"ケースウィジェットは、列、フィルター、ソート、レイアウトを完全に制御してケースを表示します。ウィジェットの動作の詳細については、:ref:`ケースウィジェットの設定"
-"  <new-dashboard-case-list-widget>` をご参照ください。"
+"タスクウィジェットは、列、フィルター、並べ替え、レイアウトを完全に制御して"
+"タスクを表示します。ウィジェットの動作の詳細については"
+"、:ref:`タスクリストウィジェット <new-dashboard-task-list-widget>` を参照して"
+"ください。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:16
 msgid ""
@@ -19120,4 +19122,3 @@ msgstr "Portal.UserMenu変数の変更は即時反映されます。更新内容
 #~ "タスクウィジェットは、列、フィルター、並べ替え、レイアウトを完全に制御してタスクを表示します。ウィジェットの動作の詳細については、:ref:`タスクリストウィジェット"
 #~ " <new-dashboard-task-list-widget>` "
 #~ "をご参照ください。"
-
