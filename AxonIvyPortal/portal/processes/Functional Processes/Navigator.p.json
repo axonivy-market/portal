@@ -110,7 +110,6 @@
         "output" : {
           "code" : [
             "import ch.ivyteam.ivy.workflow.ITask;",
-            "import ch.ivyteam.ivy.workflow.query.TaskQuery;",
             "",
             "out.task = ivy.wf.findTask(in.uuid) as ITask;"
           ]
@@ -200,9 +199,8 @@
         "output" : {
           "code" : [
             "import ch.ivyteam.ivy.workflow.ITask;",
-            "import ch.ivyteam.ivy.workflow.query.TaskQuery;",
             "",
-            "out.task = ivy.wf.getTaskQueryExecutor().createTaskQuery().where().uuid().isEqual(in.uuid).executor().firstResult() as ITask;"
+            "out.task = ivy.wf.findTask(in.uuid) as ITask;"
           ]
         }
       },
