@@ -1,0 +1,1043 @@
+Started by an SCM change
+ > /usr/bin/git rev-parse --resolve-git-dir /var/jenkins_home/caches/git-339114f17f456090e6575ab6d02d6bb2/.git # timeout=10
+Setting origin to https://github.com/axonivy-market/portal.git
+ > /usr/bin/git config remote.origin.url https://github.com/axonivy-market/portal.git # timeout=10
+Fetching origin...
+Fetching upstream changes from origin
+ > /usr/bin/git --version # timeout=10
+ > git --version # 'git version 2.30.2'
+ > /usr/bin/git config --get remote.origin.url # timeout=10
+using GIT_ASKPASS to set credentials github.com
+ > /usr/bin/git fetch --tags --force --progress -- origin +refs/heads/*:refs/remotes/origin/* # timeout=10
+Seen branch in repository origin/IVYPORTAL-19756-Different-operators-for-custom-field-STRING-LE
+Seen branch in repository origin/add-initial-config-for-gui-test
+Seen branch in repository origin/bug/IVYPORTAL-18416-Process-Widget-in-Top-Menu-Fails-to-Redirect-to-Corresponding-Menu-Item-12
+Seen branch in repository origin/bug/IVYPORTAL-19973-JS-error-when-open-User-Guide-Dashboard
+Seen branch in repository origin/chnam-axonivy-patch-1
+Seen branch in repository origin/chnam-axonivy-patch-2
+Seen branch in repository origin/feature/IVYPORTAL-17012-Paging-is-outside-of-panel-in-case-details-LTS10
+Seen branch in repository origin/feature/IVYPORTAL-17954-Implement-Menu-Management-1-SPIKE
+Seen branch in repository origin/feature/IVYPORTAL-19239-JmeterDSL-performance-test-build
+Seen branch in repository origin/feature/IVYPORTAL-19456-Fix-build-jobs
+Seen branch in repository origin/feature/IVYPORTAL-19528-Adapt-mulit-language-capabilities-in-Sidestep-Process-v12
+Seen branch in repository origin/feature/IVYPORTAL-19551-Improve-demo-Leave-request-in-portal-user-example-LE
+Seen branch in repository origin/feature/IVYPORTAL-19699-fix-document-screenshot
+Seen branch in repository origin/feature/IVYPORTAL-19804-Enhance-Portal-Components-for-Neo-Designer-13
+Seen branch in repository origin/feature/IVYPORTAL-19808-Documentation-Enhancement-SPIKE-12
+Seen branch in repository origin/feature/IVYPORTAL-19814-Improve-portal-components-to-simplify-customer-project-migration-LE
+Seen branch in repository origin/feature/IVYPORTAL-19892-Stabilize-screenshot-on-12
+Seen branch in repository origin/feature/IVYPORTAL-19976-Handle-getGlobalContext-issue
+Seen branch in repository origin/feature/IVYPORTAL-19983-Fix-selenium-test-for-13.2
+Seen branch in repository origin/feature/ivyportal-19536-content-spoofing-and-svg-cross-site-scripting
+Seen branch in repository origin/guitest-use-sprint-release
+Seen branch in repository origin/master
+Seen branch in repository origin/release/10.0
+Seen branch in repository origin/release/11.2
+Seen branch in repository origin/release/11.3
+Seen branch in repository origin/release/12.0
+Seen branch in repository origin/release/13.1
+Seen branch in repository origin/release/8.0
+Seen branch in repository origin/renovate/master-com.codeborne-selenide-proxy-7.x
+Seen branch in repository origin/renovate/master-major-github-artifact-actions
+Seen branch in repository origin/renovate/master-node-24.x
+Seen branch in repository origin/renovate/release/10.0-maven-3.x
+Seen branch in repository origin/renovate/release/10.0-org.apache.maven.plugins-maven-javadoc-plugin-3.x
+Seen branch in repository origin/renovate/release/10.0-org.apache.maven.plugins-maven-resources-plugin-2.x
+Seen branch in repository origin/renovate/release/10.0-org.codehaus.mojo-build-helper-maven-plugin-3.x
+Seen branch in repository origin/renovate/release/10.0-org.codehaus.mojo-flatten-maven-plugin-1.x
+Seen branch in repository origin/renovate/release/10.0-quartz.version
+Seen branch in repository origin/renovate/release/12.0-com.codeborne-selenide-proxy-7.x
+Seen branch in repository origin/translate
+Seen branch in repository origin/update-document-before-release-LE
+Seen branch in repository origin/weblate/bug/Fix-fail-document-build
+Seen branch in repository origin/weblate/feature/IVYPORTAL-19319-History-card-in-case-detail-shown-only-for-role-portal-admin-LE
+Seen branch in repository origin/weblate/feature/IVYPORTAL-19319-History-card-in-case-detail-shown-only-for-role-portal-admin-LTS12
+Seen branch in repository origin/weblate/feature/IVYPORTAL-19319-Revert-History-card-in-case-detail-shown-only-for-role-portal-admin-LE
+Seen branch in repository origin/weblate/feature/IVYPORTAL-19319-new-permission-show-system-notes-remove-old-global-variables-LE
+Seen branch in repository origin/weblate/feature/IVYPORTAL-19319-update-document-LTS12
+Seen branch in repository origin/weblate/feature/IVYPORTAL-19350-Implement-Doc-Viewer-with-sub-process-and-signature-search-mechanism-12
+Seen branch in repository origin/weblate/feature/IVYPORTAL-19354-Optimize-embedInFrame-Handling-in-the-Portal
+Seen branch in repository origin/weblate/feature/IVYPORTAL-19354-Optimize-embedInFrame-Handling-in-the-Portal-v12
+Seen branch in repository origin/weblate/feature/IVYPORTAL-19632-improve-destroy-task-documentation-LE
+Seen branch in repository origin/weblate/feature/IVYPORTAL-19637-Enable-Language-Version-switcher-in-Documentation-12
+Seen branch in repository origin/weblate/feature/IVYPORTAL-19637-Enable-Language-Version-switcher-in-Documentation-LE
+Seen branch in repository origin/weblate/imgbot
+Seen branch in repository origin/weblate/update-language-files-20251110-075602
+Seen 54 remote branches
+Obtained build/ci/Jenkinsfile from dd5f2dfdd2511da84ee5157b28cc77adb28da5a1
+Loading library ivy-pipeline-shared-libs@master
+Attempting to resolve master from remote references...
+ > /usr/bin/git --version # timeout=10
+ > git --version # 'git version 2.30.2'
+using GIT_ASKPASS to set credentials github.com
+ > /usr/bin/git ls-remote -- https://github.com/axonivy/pipeline-shared-libs # timeout=10
+Found match: refs/heads/master revision fec5d120e158b20b382cbe62e459e9c85c1736c4
+The recommended git tool is: NONE
+using credential lttung-axonivy--github
+ > /usr/bin/git rev-parse --resolve-git-dir /var/jenkins_home/workspace/portal_master@libs/c5be0b8ea55c71e4ac3ad0e00cf471b4c3ac3634152cf8152f43c3e0cb5e5d82/.git # timeout=10
+Fetching changes from the remote Git repository
+ > /usr/bin/git config remote.origin.url https://github.com/axonivy/pipeline-shared-libs # timeout=10
+Fetching without tags
+Fetching upstream changes from https://github.com/axonivy/pipeline-shared-libs
+ > /usr/bin/git --version # timeout=10
+ > git --version # 'git version 2.30.2'
+using GIT_ASKPASS to set credentials github.com
+ > /usr/bin/git fetch --no-tags --force --progress -- https://github.com/axonivy/pipeline-shared-libs +refs/heads/*:refs/remotes/origin/* # timeout=10
+Checking out Revision fec5d120e158b20b382cbe62e459e9c85c1736c4 (master)
+ > /usr/bin/git config core.sparsecheckout # timeout=10
+ > /usr/bin/git checkout -f fec5d120e158b20b382cbe62e459e9c85c1736c4 # timeout=10
+Commit message: "Merge pull request #40 from axonivy/revert-39-alexsuter-patch-1"
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on linux in /var/tools/jenkins-linux/workspace/portal_master
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Declarative: Checkout SCM)
+[Pipeline] checkout
+The recommended git tool is: /usr/bin/git
+using credential wawa-axonivy--github
+Fetching changes from the remote Git repository
+Cleaning workspace
+Fetching without tags
+Checking out Revision dd5f2dfdd2511da84ee5157b28cc77adb28da5a1 (master)
+Commit message: "IVYPORTAL-19976 Revert getGlobalContext usages in Portal Processes (#2931)"
+ > /usr/bin/git rev-parse --resolve-git-dir /var/tools/jenkins-linux/workspace/portal_master/.git # timeout=10
+ > /usr/bin/git config remote.origin.url https://github.com/axonivy-market/portal.git # timeout=10
+ > /usr/bin/git rev-parse --verify HEAD # timeout=10
+Resetting working tree
+ > /usr/bin/git reset --hard # timeout=10
+ > /usr/bin/git clean -fdx # timeout=10
+Fetching upstream changes from https://github.com/axonivy-market/portal.git
+ > /usr/bin/git --version # timeout=10
+ > git --version # 'git version 2.25.1'
+using GIT_ASKPASS to set credentials github.com
+ > /usr/bin/git fetch --no-tags --force --progress -- https://github.com/axonivy-market/portal.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > /usr/bin/git config core.sparsecheckout # timeout=10
+ > /usr/bin/git checkout -f dd5f2dfdd2511da84ee5157b28cc77adb28da5a1 # timeout=10
+ > /usr/bin/git rev-list --no-walk 01bbe762a28b337494bcf59920087ebb75ec93a1 # timeout=10
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (build)
+[Pipeline] script
+[Pipeline] {
+[Pipeline] isUnix
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] sh
++ docker build -t build-portal-modules -f build/Dockerfile.python .
+DEPRECATED: The legacy builder is deprecated and will be removed in a future release.
+            Install the buildx component to build images with BuildKit:
+            https://docs.docker.com/go/buildx/
+
+Sending build context to Docker daemon  188.2MB
+
+Step 1/2 : FROM maven:3.9.9-eclipse-temurin-21
+ ---> 8a86afd6b5ed
+Step 2/2 : RUN apt-get update && apt-get install -y --no-install-recommends     passwd adduser    && apt-get install -y openssh-client    && addgroup --gid 1001 build && adduser --uid 1001 --gid 1001 --disabled-password --gecos "" build    && apt-get install -y python3
+ ---> Using cache
+ ---> a1f2899e0a22
+Successfully built a1f2899e0a22
+Successfully tagged build-portal-modules:latest
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] isUnix
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] sh
++ docker inspect -f . build-portal-modules
+.
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] withDockerContainer
+linux does not seem to be running inside a container
+$ docker run -t -d -u 1001:1001 -v /var/tools/maven-cache:/home/build/ -w /var/tools/jenkins-linux/workspace/portal_master -v /var/tools/jenkins-linux/workspace/portal_master:/var/tools/jenkins-linux/workspace/portal_master:rw,z -v /var/tools/jenkins-linux/workspace/portal_master@tmp:/var/tools/jenkins-linux/workspace/portal_master@tmp:rw,z -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** build-portal-modules cat
+$ docker top f97fe2a8ee00ca41420b60051e57344183e143f688bb5e507f2e66aa111cdb5f -eo pid,comm
+[Pipeline] {
+[Pipeline] sh
++ git diff --name-only dd5f2dfdd2511da84ee5157b28cc77adb28da5a1 d36a613f4b9f14a1653a486dc1493237dadd91ea
+[Pipeline] load
+[Pipeline] { (build/common/utils.groovy)
+[Pipeline] }
+[Pipeline] // load
+[Pipeline] sh
+[Pipeline] configFileProvider
+provisioning config files...
+copy managed file [global-maven-settings] to file:/var/tools/jenkins-linux/workspace/portal_master@tmp/config13906378527228910988tmp
+[Pipeline] {
+[Pipeline] isUnix
+[Pipeline] sh
++ mvn --batch-mode --update-snapshots -s /var/tools/jenkins-linux/workspace/portal_master@tmp/config13906378527228910988tmp -e -Duser.timezone=Europe/Zurich clean install -f AxonIvyPortal/portal-components/pom.xml
+[INFO] Error stacktraces are turned on.
+[INFO] Scanning for projects...
+[INFO] Downloading from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/ivy-project-parent/13.2.0-SNAPSHOT/maven-metadata.xml
+[INFO] Downloaded from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/ivy-project-parent/13.2.0-SNAPSHOT/maven-metadata.xml (620 B at 1.2 kB/s)
+[INFO] Downloading from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/ivy-project-parent/13.2.0-SNAPSHOT/ivy-project-parent-13.2.0-20251216.111527-779.pom
+[INFO] Downloaded from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/ivy-project-parent/13.2.0-SNAPSHOT/ivy-project-parent-13.2.0-20251216.111527-779.pom (9.9 kB at 28 kB/s)
+[INFO] Downloading from central.snapshots: https://oss.sonatype.org/content/repositories/snapshots/com/axonivy/ivy/ci/project-build-plugin/13.2.0-SNAPSHOT/maven-metadata.xml
+[INFO] Downloading from central.sonatype.snapshots: https://central.sonatype.com/repository/maven-snapshots/com/axonivy/ivy/ci/project-build-plugin/13.2.0-SNAPSHOT/maven-metadata.xml
+[INFO] Downloaded from central.sonatype.snapshots: https://central.sonatype.com/repository/maven-snapshots/com/axonivy/ivy/ci/project-build-plugin/13.2.0-SNAPSHOT/maven-metadata.xml (1.0 kB at 1.2 kB/s)
+[INFO] Downloading from central.sonatype.snapshots: https://central.sonatype.com/repository/maven-snapshots/com/axonivy/ivy/api/restricted/ivy-project-build-plugin-api/13.2.0-SNAPSHOT/maven-metadata.xml
+[INFO] Downloading from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/restricted/ivy-project-build-plugin-api/13.2.0-SNAPSHOT/maven-metadata.xml
+[INFO] Downloading from central.snapshots: https://oss.sonatype.org/content/repositories/snapshots/com/axonivy/ivy/api/restricted/ivy-project-build-plugin-api/13.2.0-SNAPSHOT/maven-metadata.xml
+[INFO] Downloaded from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/restricted/ivy-project-build-plugin-api/13.2.0-SNAPSHOT/maven-metadata.xml (817 B at 3.8 kB/s)
+[INFO] Downloading from central.snapshots: https://oss.sonatype.org/content/repositories/snapshots/com/axonivy/ivy/api/restricted/ivy-project-build-plugin-api/13.2.0-SNAPSHOT/ivy-project-build-plugin-api-13.2.0-20251216.111527-490.pom
+[INFO] Downloading from central.sonatype.snapshots: https://central.sonatype.com/repository/maven-snapshots/com/axonivy/ivy/api/restricted/ivy-project-build-plugin-api/13.2.0-SNAPSHOT/ivy-project-build-plugin-api-13.2.0-20251216.111527-490.pom
+[INFO] Downloading from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/restricted/ivy-project-build-plugin-api/13.2.0-SNAPSHOT/ivy-project-build-plugin-api-13.2.0-20251216.111527-490.pom
+[INFO] Downloaded from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/restricted/ivy-project-build-plugin-api/13.2.0-SNAPSHOT/ivy-project-build-plugin-api-13.2.0-20251216.111527-490.pom (1.1 kB at 3.2 kB/s)
+[INFO] Downloading from central.snapshots: https://oss.sonatype.org/content/repositories/snapshots/com/axonivy/ivy/api/restricted/ivy-generate-data-class-api/13.2.0-SNAPSHOT/maven-metadata.xml
+[INFO] Downloading from central.sonatype.snapshots: https://central.sonatype.com/repository/maven-snapshots/com/axonivy/ivy/api/restricted/ivy-generate-data-class-api/13.2.0-SNAPSHOT/maven-metadata.xml
+[INFO] Downloading from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/restricted/ivy-generate-data-class-api/13.2.0-SNAPSHOT/maven-metadata.xml
+[INFO] Downloaded from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/restricted/ivy-generate-data-class-api/13.2.0-SNAPSHOT/maven-metadata.xml (1.0 kB at 4.8 kB/s)
+[INFO] Downloading from central.snapshots: https://oss.sonatype.org/content/repositories/snapshots/com/axonivy/ivy/api/restricted/ivy-generate-data-class-api/13.2.0-SNAPSHOT/ivy-generate-data-class-api-13.2.0-20251216.111527-490.pom
+[INFO] Downloading from central.sonatype.snapshots: https://central.sonatype.com/repository/maven-snapshots/com/axonivy/ivy/api/restricted/ivy-generate-data-class-api/13.2.0-SNAPSHOT/ivy-generate-data-class-api-13.2.0-20251216.111527-490.pom
+[INFO] Downloading from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/restricted/ivy-generate-data-class-api/13.2.0-SNAPSHOT/ivy-generate-data-class-api-13.2.0-20251216.111527-490.pom
+[INFO] Downloaded from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/restricted/ivy-generate-data-class-api/13.2.0-SNAPSHOT/ivy-generate-data-class-api-13.2.0-20251216.111527-490.pom (440 B at 1.2 kB/s)
+[INFO] Downloading from central.snapshots: https://oss.sonatype.org/content/repositories/snapshots/com/axonivy/ivy/api/restricted/ivy-json-history-api/13.2.0-SNAPSHOT/maven-metadata.xml
+[INFO] Downloading from central.sonatype.snapshots: https://central.sonatype.com/repository/maven-snapshots/com/axonivy/ivy/api/restricted/ivy-json-history-api/13.2.0-SNAPSHOT/maven-metadata.xml
+[INFO] Downloading from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/restricted/ivy-json-history-api/13.2.0-SNAPSHOT/maven-metadata.xml
+[INFO] Downloaded from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/restricted/ivy-json-history-api/13.2.0-SNAPSHOT/maven-metadata.xml (1.0 kB at 4.8 kB/s)
+[INFO] Downloading from central.snapshots: https://oss.sonatype.org/content/repositories/snapshots/com/axonivy/ivy/api/restricted/ivy-json-history-api/13.2.0-SNAPSHOT/ivy-json-history-api-13.2.0-20251216.111527-490.pom
+[INFO] Downloading from central.sonatype.snapshots: https://central.sonatype.com/repository/maven-snapshots/com/axonivy/ivy/api/restricted/ivy-json-history-api/13.2.0-SNAPSHOT/ivy-json-history-api-13.2.0-20251216.111527-490.pom
+[INFO] Downloading from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/restricted/ivy-json-history-api/13.2.0-SNAPSHOT/ivy-json-history-api-13.2.0-20251216.111527-490.pom
+[INFO] Downloaded from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/restricted/ivy-json-history-api/13.2.0-SNAPSHOT/ivy-json-history-api-13.2.0-20251216.111527-490.pom (433 B at 1.2 kB/s)
+[INFO] Downloading from central.snapshots: https://oss.sonatype.org/content/repositories/snapshots/com/axonivy/ivy/api/restricted/ivy-process-model-api/13.2.0-SNAPSHOT/maven-metadata.xml
+[INFO] Downloading from central.sonatype.snapshots: https://central.sonatype.com/repository/maven-snapshots/com/axonivy/ivy/api/restricted/ivy-process-model-api/13.2.0-SNAPSHOT/maven-metadata.xml
+[INFO] Downloading from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/restricted/ivy-process-model-api/13.2.0-SNAPSHOT/maven-metadata.xml
+[INFO] Downloaded from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/restricted/ivy-process-model-api/13.2.0-SNAPSHOT/maven-metadata.xml (1.0 kB at 4.5 kB/s)
+[INFO] Downloading from central.snapshots: https://oss.sonatype.org/content/repositories/snapshots/com/axonivy/ivy/api/restricted/ivy-process-model-api/13.2.0-SNAPSHOT/ivy-process-model-api-13.2.0-20251216.111527-490.pom
+[INFO] Downloading from central.sonatype.snapshots: https://central.sonatype.com/repository/maven-snapshots/com/axonivy/ivy/api/restricted/ivy-process-model-api/13.2.0-SNAPSHOT/ivy-process-model-api-13.2.0-20251216.111527-490.pom
+[INFO] Downloading from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/restricted/ivy-process-model-api/13.2.0-SNAPSHOT/ivy-process-model-api-13.2.0-20251216.111527-490.pom
+[INFO] Downloaded from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/restricted/ivy-process-model-api/13.2.0-SNAPSHOT/ivy-process-model-api-13.2.0-20251216.111527-490.pom (434 B at 1.2 kB/s)
+[INFO] Downloading from central.snapshots: https://oss.sonatype.org/content/repositories/snapshots/com/axonivy/ivy/api/ivy-core-api/13.2.0-SNAPSHOT/maven-metadata.xml
+[INFO] Downloading from central.sonatype.snapshots: https://central.sonatype.com/repository/maven-snapshots/com/axonivy/ivy/api/ivy-core-api/13.2.0-SNAPSHOT/maven-metadata.xml
+[INFO] Downloading from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/ivy-core-api/13.2.0-SNAPSHOT/maven-metadata.xml
+[INFO] Downloaded from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/ivy-core-api/13.2.0-SNAPSHOT/maven-metadata.xml (1.0 kB at 5.2 kB/s)
+[INFO] Downloading from central.snapshots: https://oss.sonatype.org/content/repositories/snapshots/com/axonivy/ivy/api/ivy-core-api/13.2.0-SNAPSHOT/ivy-core-api-13.2.0-20251216.111527-779.pom
+[INFO] Downloading from central.sonatype.snapshots: https://central.sonatype.com/repository/maven-snapshots/com/axonivy/ivy/api/ivy-core-api/13.2.0-SNAPSHOT/ivy-core-api-13.2.0-20251216.111527-779.pom
+[INFO] Downloading from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/ivy-core-api/13.2.0-SNAPSHOT/ivy-core-api-13.2.0-20251216.111527-779.pom
+[INFO] Downloaded from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/ivy-core-api/13.2.0-SNAPSHOT/ivy-core-api-13.2.0-20251216.111527-779.pom (4.9 kB at 14 kB/s)
+[INFO] Downloading from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/restricted/ivy-project-build-plugin-api/13.2.0-SNAPSHOT/ivy-project-build-plugin-api-13.2.0-20251216.111527-490.jar
+[INFO] Downloaded from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/restricted/ivy-project-build-plugin-api/13.2.0-SNAPSHOT/ivy-project-build-plugin-api-13.2.0-20251216.111527-490.jar (319 B at 906 B/s)
+[INFO] Downloading from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/restricted/ivy-generate-data-class-api/13.2.0-SNAPSHOT/ivy-generate-data-class-api-13.2.0-20251216.111527-490.jar
+[INFO] Downloading from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/restricted/ivy-json-history-api/13.2.0-SNAPSHOT/ivy-json-history-api-13.2.0-20251216.111527-490.jar
+[INFO] Downloading from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/restricted/ivy-process-model-api/13.2.0-SNAPSHOT/ivy-process-model-api-13.2.0-20251216.111527-490.jar
+[INFO] Downloading from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/ivy-core-api/13.2.0-SNAPSHOT/ivy-core-api-13.2.0-20251216.111527-779.jar
+[INFO] Downloaded from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/restricted/ivy-generate-data-class-api/13.2.0-SNAPSHOT/ivy-generate-data-class-api-13.2.0-20251216.111527-490.jar (63 kB at 176 kB/s)
+[INFO] Downloaded from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/restricted/ivy-process-model-api/13.2.0-SNAPSHOT/ivy-process-model-api-13.2.0-20251216.111527-490.jar (11 kB at 31 kB/s)
+[INFO] Downloaded from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/restricted/ivy-json-history-api/13.2.0-SNAPSHOT/ivy-json-history-api-13.2.0-20251216.111527-490.jar (11 kB at 30 kB/s)
+[INFO] Downloaded from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/ivy-core-api/13.2.0-SNAPSHOT/ivy-core-api-13.2.0-20251216.111527-779.jar (1.2 MB at 2.8 MB/s)
+[INFO] Downloading from central.sonatype.snapshots: https://central.sonatype.com/repository/maven-snapshots/com/axonivy/ivy/api/ivy-api-bom/13.2.0-SNAPSHOT/maven-metadata.xml
+[INFO] Downloading from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/ivy-api-bom/13.2.0-SNAPSHOT/maven-metadata.xml
+[INFO] Downloaded from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/ivy-api-bom/13.2.0-SNAPSHOT/maven-metadata.xml (613 B at 2.5 kB/s)
+[INFO] Downloading from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/ivy-api-bom/13.2.0-SNAPSHOT/ivy-api-bom-13.2.0-20251216.111527-779.pom
+[INFO] Downloaded from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/ivy-api-bom/13.2.0-SNAPSHOT/ivy-api-bom-13.2.0-20251216.111527-779.pom (105 kB at 243 kB/s)
+[INFO] Downloading from central.sonatype.snapshots: https://central.sonatype.com/repository/maven-snapshots/com/axonivy/ivy/api/ivy-project-parent/13.2.0-SNAPSHOT/maven-metadata.xml
+[INFO] 
+[INFO] ----------------< com.axonivy.portal:portal-components >----------------
+[INFO] Building portal-components 13.2.0-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ iar ]---------------------------------
+[INFO] Downloading from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/ivy-api/13.2.0-SNAPSHOT/maven-metadata.xml
+[INFO] Downloading from central.sonatype.snapshots: https://central.sonatype.com/repository/maven-snapshots/com/axonivy/ivy/api/ivy-api/13.2.0-SNAPSHOT/maven-metadata.xml
+[INFO] Downloaded from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/ivy-api/13.2.0-SNAPSHOT/maven-metadata.xml (785 B at 3.4 kB/s)
+[INFO] Downloading from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/ivy-api/13.2.0-SNAPSHOT/ivy-api-13.2.0-20251216.111527-779.pom
+[INFO] Downloaded from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/ivy-api/13.2.0-SNAPSHOT/ivy-api-13.2.0-20251216.111527-779.pom (1.6 kB at 4.8 kB/s)
+[INFO] Downloading from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/ivy-persistence-jpa-api/13.2.0-SNAPSHOT/maven-metadata.xml
+[INFO] Downloading from central.sonatype.snapshots: https://central.sonatype.com/repository/maven-snapshots/com/axonivy/ivy/api/ivy-persistence-jpa-api/13.2.0-SNAPSHOT/maven-metadata.xml
+[INFO] Downloaded from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/ivy-persistence-jpa-api/13.2.0-SNAPSHOT/maven-metadata.xml (1.0 kB at 5.1 kB/s)
+[INFO] Downloading from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/ivy-persistence-jpa-api/13.2.0-SNAPSHOT/ivy-persistence-jpa-api-13.2.0-20251216.111527-779.pom
+[INFO] Downloaded from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/ivy-persistence-jpa-api/13.2.0-SNAPSHOT/ivy-persistence-jpa-api-13.2.0-20251216.111527-779.pom (1.1 kB at 3.0 kB/s)
+[INFO] Downloading from central.sonatype.snapshots: https://central.sonatype.com/repository/maven-snapshots/com/axonivy/ivy/api/ivy-htmldialog-api/13.2.0-SNAPSHOT/maven-metadata.xml
+[INFO] Downloading from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/ivy-htmldialog-api/13.2.0-SNAPSHOT/maven-metadata.xml
+[INFO] Downloaded from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/ivy-htmldialog-api/13.2.0-SNAPSHOT/maven-metadata.xml (796 B at 3.5 kB/s)
+[INFO] Downloading from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/ivy-htmldialog-api/13.2.0-SNAPSHOT/ivy-htmldialog-api-13.2.0-20251216.111527-779.pom
+[INFO] Downloaded from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/ivy-htmldialog-api/13.2.0-SNAPSHOT/ivy-htmldialog-api-13.2.0-20251216.111527-779.pom (871 B at 2.5 kB/s)
+[INFO] Downloading from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/ivy-htmldialog-jsf-api/13.2.0-SNAPSHOT/maven-metadata.xml
+[INFO] Downloading from central.sonatype.snapshots: https://central.sonatype.com/repository/maven-snapshots/com/axonivy/ivy/api/ivy-htmldialog-jsf-api/13.2.0-SNAPSHOT/maven-metadata.xml
+[INFO] Downloaded from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/ivy-htmldialog-jsf-api/13.2.0-SNAPSHOT/maven-metadata.xml (800 B at 4.2 kB/s)
+[INFO] Downloading from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/ivy-htmldialog-jsf-api/13.2.0-SNAPSHOT/ivy-htmldialog-jsf-api-13.2.0-20251216.111527-779.pom
+[INFO] Downloaded from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/ivy-htmldialog-jsf-api/13.2.0-SNAPSHOT/ivy-htmldialog-jsf-api-13.2.0-20251216.111527-779.pom (987 B at 2.6 kB/s)
+[INFO] Downloading from central.sonatype.snapshots: https://central.sonatype.com/repository/maven-snapshots/com/axonivy/ivy/api/ivy-htmldialog-primefaces-api/13.2.0-SNAPSHOT/maven-metadata.xml
+[INFO] Downloading from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/ivy-htmldialog-primefaces-api/13.2.0-SNAPSHOT/maven-metadata.xml
+[INFO] Downloaded from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/ivy-htmldialog-primefaces-api/13.2.0-SNAPSHOT/maven-metadata.xml (1.0 kB at 4.9 kB/s)
+[INFO] Downloading from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/ivy-htmldialog-primefaces-api/13.2.0-SNAPSHOT/ivy-htmldialog-primefaces-api-13.2.0-20251216.111527-779.pom
+[INFO] Downloaded from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/ivy-htmldialog-primefaces-api/13.2.0-SNAPSHOT/ivy-htmldialog-primefaces-api-13.2.0-20251216.111527-779.pom (1.2 kB at 3.6 kB/s)
+[INFO] Downloading from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/ivy-rest-api/13.2.0-SNAPSHOT/maven-metadata.xml
+[INFO] Downloading from central.sonatype.snapshots: https://central.sonatype.com/repository/maven-snapshots/com/axonivy/ivy/api/ivy-rest-api/13.2.0-SNAPSHOT/maven-metadata.xml
+[INFO] Downloaded from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/ivy-rest-api/13.2.0-SNAPSHOT/maven-metadata.xml (1.0 kB at 1.9 kB/s)
+[INFO] Downloading from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/ivy-rest-api/13.2.0-SNAPSHOT/ivy-rest-api-13.2.0-20251216.111527-779.pom
+[INFO] Downloaded from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/ivy-rest-api/13.2.0-SNAPSHOT/ivy-rest-api-13.2.0-20251216.111527-779.pom (648 B at 1.8 kB/s)
+[INFO] Downloading from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/ivy-rule-api/13.2.0-SNAPSHOT/maven-metadata.xml
+[INFO] Downloading from central.sonatype.snapshots: https://central.sonatype.com/repository/maven-snapshots/com/axonivy/ivy/api/ivy-rule-api/13.2.0-SNAPSHOT/maven-metadata.xml
+[INFO] Downloaded from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/ivy-rule-api/13.2.0-SNAPSHOT/maven-metadata.xml (1.0 kB at 5.2 kB/s)
+[INFO] Downloading from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/ivy-rule-api/13.2.0-SNAPSHOT/ivy-rule-api-13.2.0-20251216.111527-779.pom
+[INFO] Downloaded from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/ivy-rule-api/13.2.0-SNAPSHOT/ivy-rule-api-13.2.0-20251216.111527-779.pom (414 B at 1.1 kB/s)
+[INFO] Downloading from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/ivy-webservice-api/13.2.0-SNAPSHOT/maven-metadata.xml
+[INFO] Downloading from central.sonatype.snapshots: https://central.sonatype.com/repository/maven-snapshots/com/axonivy/ivy/api/ivy-webservice-api/13.2.0-SNAPSHOT/maven-metadata.xml
+[INFO] Downloaded from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/ivy-webservice-api/13.2.0-SNAPSHOT/maven-metadata.xml (1.0 kB at 2.0 kB/s)
+[INFO] Downloading from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/ivy-webservice-api/13.2.0-SNAPSHOT/ivy-webservice-api-13.2.0-20251216.111527-779.pom
+[INFO] Downloaded from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/ivy-webservice-api/13.2.0-SNAPSHOT/ivy-webservice-api-13.2.0-20251216.111527-779.pom (833 B at 2.3 kB/s)
+[INFO] Downloading from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/ivy-api/13.2.0-SNAPSHOT/ivy-api-13.2.0-20251216.111527-779.jar
+[INFO] Downloaded from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/ivy-api/13.2.0-SNAPSHOT/ivy-api-13.2.0-20251216.111527-779.jar (319 B at 916 B/s)
+[INFO] Downloading from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/ivy-persistence-jpa-api/13.2.0-SNAPSHOT/ivy-persistence-jpa-api-13.2.0-20251216.111527-779.jar
+[INFO] Downloading from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/ivy-htmldialog-api/13.2.0-SNAPSHOT/ivy-htmldialog-api-13.2.0-20251216.111527-779.jar
+[INFO] Downloading from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/ivy-htmldialog-jsf-api/13.2.0-SNAPSHOT/ivy-htmldialog-jsf-api-13.2.0-20251216.111527-779.jar
+[INFO] Downloading from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/ivy-htmldialog-primefaces-api/13.2.0-SNAPSHOT/ivy-htmldialog-primefaces-api-13.2.0-20251216.111527-779.jar
+[INFO] Downloading from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/ivy-rest-api/13.2.0-SNAPSHOT/ivy-rest-api-13.2.0-20251216.111527-779.jar
+[INFO] Downloaded from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/ivy-persistence-jpa-api/13.2.0-SNAPSHOT/ivy-persistence-jpa-api-13.2.0-20251216.111527-779.jar (14 kB at 39 kB/s)
+[INFO] Downloading from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/ivy-rule-api/13.2.0-SNAPSHOT/ivy-rule-api-13.2.0-20251216.111527-779.jar
+[INFO] Downloaded from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/ivy-htmldialog-api/13.2.0-SNAPSHOT/ivy-htmldialog-api-13.2.0-20251216.111527-779.jar (319 B at 908 B/s)
+[INFO] Downloading from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/ivy-webservice-api/13.2.0-SNAPSHOT/ivy-webservice-api-13.2.0-20251216.111527-779.jar
+[INFO] Downloaded from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/ivy-htmldialog-jsf-api/13.2.0-SNAPSHOT/ivy-htmldialog-jsf-api-13.2.0-20251216.111527-779.jar (319 B at 898 B/s)
+[INFO] Downloaded from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/ivy-htmldialog-primefaces-api/13.2.0-SNAPSHOT/ivy-htmldialog-primefaces-api-13.2.0-20251216.111527-779.jar (101 kB at 278 kB/s)
+[INFO] Downloaded from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/ivy-rest-api/13.2.0-SNAPSHOT/ivy-rest-api-13.2.0-20251216.111527-779.jar (45 kB at 123 kB/s)
+[INFO] Downloaded from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/ivy-rule-api/13.2.0-SNAPSHOT/ivy-rule-api-13.2.0-20251216.111527-779.jar (3.9 kB at 5.7 kB/s)
+[INFO] Downloaded from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/ivy-webservice-api/13.2.0-SNAPSHOT/ivy-webservice-api-13.2.0-20251216.111527-779.jar (36 kB at 51 kB/s)
+[INFO] 
+[INFO] --- ivy:13.2.0-SNAPSHOT:ivy-cleanup (default-ivy-cleanup) @ portal-components ---
+[INFO] 
+[INFO] --- clean:3.5.0:clean (default-clean) @ portal-components ---
+[INFO] 
+[INFO] --- ivy:13.2.0-SNAPSHOT:validate (default-validate) @ portal-components ---
+[INFO] 
+[INFO] --- ivy:13.2.0-SNAPSHOT:installEngine (default-installEngine) @ portal-components ---
+[INFO] Provide engine for ivy version 13.2.0
+[INFO] Using engine in '/home/build/.m2/repository/.cache/ivy/13.2.0'
+[INFO] 
+[INFO] --- ivy:13.2.0-SNAPSHOT:generate-data-class-sources (default-generate-data-class-sources) @ portal-components ---
+[INFO] Generating Ivy data class sources...
+[INFO] converting DataClass '"RoleSelectionData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"ProcessViewerData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"ProcessHistoryData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"IFrameTaskConfigData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"UserSelectionData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"ProcessChainData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"DocumentTableData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"UploadDocumentItemCheckerData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"OpenCaseDetailsHookData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"RenameDocumentItemData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"DeleteDocumentItemData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"SetBusinessDetailsPageData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"PortalConponentCaseServiceData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"PortalComponentSecurityServiceData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"ErrorHandlerData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"GetDocumentItemsData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"SetCaseBusinessEntityData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"UploadDocumentItemData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"DownloadDocumentItemData"' to version 13.2.0 using DefaultDietConverter
+[INFO] 
+[INFO] --- ivy:13.2.0-SNAPSHOT:generate-dialog-form-sources (default-generate-dialog-form-sources) @ portal-components ---
+[INFO] Generating Ivy dialog form sources...
+[INFO] 
+[INFO] --- ivy:13.2.0-SNAPSHOT:generate-web-service-sources (default-generate-web-service-sources) @ portal-components ---
+[INFO] Generating Ivy web service process sources...
+[INFO] 
+[INFO] --- ivy:13.2.0-SNAPSHOT:unpack-libs (default-unpack-libs) @ portal-components ---
+[INFO] 
+[INFO] --- build-helper:3.6.1:add-source (add-source) @ portal-components ---
+[INFO] Source directory: /var/tools/jenkins-linux/workspace/portal_master/AxonIvyPortal/portal-components/src added.
+[INFO] Source directory: /var/tools/jenkins-linux/workspace/portal_master/AxonIvyPortal/portal-components/src_dataClasses added.
+[INFO] 
+[INFO] --- ivy:13.2.0-SNAPSHOT:ivy-resources-properties (default-ivy-resources-properties) @ portal-components ---
+[INFO] 'project.build.sourceEncoding' is already set to 'UTF-8', so it will not be overwritten to UTF-8
+[INFO] 
+[INFO] --- resources:3.4.0:resources (default-resources) @ portal-components ---
+[INFO] Copying 0 resource from src to target/classes
+[INFO] 
+[INFO] --- compiler:3.14.1:compile (default-compile) @ portal-components ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling with eclipse [debug deprecation release 21] to target/classes
+[WARNING] /var/tools/jenkins-linux/workspace/portal_master/AxonIvyPortal/portal-components/src/com/axonivy/portal/components/document/IvyDocumentTransformer.java:[19,43] The method getId() from the type ch.ivyteam.ivy.workflow.document.IDocument has been deprecated since version 11.2 and marked for removal
+[WARNING] /var/tools/jenkins-linux/workspace/portal_master/AxonIvyPortal/portal-components/src/com/axonivy/portal/components/dto/RoleDTO.java:[26,21] The method getId() from the type ch.ivyteam.ivy.security.ISecurityMember has been deprecated since version 9.4 and marked for removal
+[WARNING] /var/tools/jenkins-linux/workspace/portal_master/AxonIvyPortal/portal-components/src/com/axonivy/portal/components/dto/SecurityMemberDTO.java:[26,30] The method getId() from the type ch.ivyteam.ivy.security.ISecurityMember has been deprecated since version 9.4 and marked for removal
+[WARNING] /var/tools/jenkins-linux/workspace/portal_master/AxonIvyPortal/portal-components/src/com/axonivy/portal/components/dto/UserDTO.java:[28,20] The method getId() from the type ch.ivyteam.ivy.security.ISecurityMember has been deprecated since version 9.4 and marked for removal
+[WARNING] /var/tools/jenkins-linux/workspace/portal_master/AxonIvyPortal/portal-components/src/com/axonivy/portal/components/publicapi/PortalNavigatorInFrameAPI.java:[35,30] The method applicationHomeLink() from the type ch.ivyteam.ivy.htmldialog.IHtmlDialogContext is deprecated since version 12.0.10
+[WARNING] /var/tools/jenkins-linux/workspace/portal_master/AxonIvyPortal/portal-components/src/com/axonivy/portal/components/publicapi/ProcessStartAPI.java:[82,6] The method findStartElementByUserFriendlyRequestPath(java.lang.String) from the type ch.ivyteam.ivy.workflow.IWorkflowProcessModelVersion has been deprecated since version 12.0.0 and marked for removal
+[WARNING] /var/tools/jenkins-linux/workspace/portal_master/AxonIvyPortal/portal-components/src/com/axonivy/portal/components/service/CaseDocumentService.java:[66,42] The method get(long) from the type ch.ivyteam.ivy.workflow.document.IDocumentService has been deprecated since version 11.2 and marked for removal
+[WARNING] /var/tools/jenkins-linux/workspace/portal_master/AxonIvyPortal/portal-components/src/com/axonivy/portal/components/service/CaseDocumentService.java:[66,68] The method getId() from the type com.axonivy.portal.components.ivydata.bo.IvyDocument has been deprecated since version 11.2.0 and marked for removal
+[WARNING] /var/tools/jenkins-linux/workspace/portal_master/AxonIvyPortal/portal-components/src/com/axonivy/portal/components/service/IvyAdapterService.java:[65,53] The method find(ch.ivyteam.ivy.process.call.SubProcessSearchFilter) from the type ch.ivyteam.ivy.process.call.SubProcessCallStart has been deprecated since version 13.2 and marked for removal
+[WARNING] /var/tools/jenkins-linux/workspace/portal_master/AxonIvyPortal/portal-components/src/com/axonivy/portal/components/service/IvyAdapterService.java:[96,53] The method find(ch.ivyteam.ivy.process.call.SubProcessSearchFilter) from the type ch.ivyteam.ivy.process.call.SubProcessCallStart has been deprecated since version 13.2 and marked for removal
+[WARNING] /var/tools/jenkins-linux/workspace/portal_master/AxonIvyPortal/portal-components/src/com/axonivy/portal/components/service/IvyAdapterService.java:[133,53] The method find(ch.ivyteam.ivy.process.call.SubProcessSearchFilter) from the type ch.ivyteam.ivy.process.call.SubProcessCallStart has been deprecated since version 13.2 and marked for removal
+[WARNING] /var/tools/jenkins-linux/workspace/portal_master/AxonIvyPortal/portal-components/src/com/axonivy/portal/components/util/DocumentUtils.java:[34,73] The method find(ch.ivyteam.ivy.process.call.SubProcessSearchFilter) from the type ch.ivyteam.ivy.process.call.SubProcessCallStart has been deprecated since version 13.2 and marked for removal
+[WARNING] /var/tools/jenkins-linux/workspace/portal_master/AxonIvyPortal/portal-components/src/com/axonivy/portal/components/util/ProcessStartUtils.java:[60,65] The method findStartElementByUserFriendlyRequestPath(java.lang.String) from the type ch.ivyteam.ivy.workflow.IWorkflowProcessModelVersion has been deprecated since version 12.0.0 and marked for removal
+[WARNING] /var/tools/jenkins-linux/workspace/portal_master/AxonIvyPortal/portal-components/src/com/axonivy/portal/components/util/ProcessStartUtils.java:[105,24] The method getProcessStarts() from the type ch.ivyteam.ivy.workflow.IWorkflowProcessModelVersion has been deprecated since version 12.0.0 and marked for removal
+[WARNING] /var/tools/jenkins-linux/workspace/portal_master/AxonIvyPortal/portal-components/src/com/axonivy/portal/components/util/RoleUtils.java:[165,83] The method getId() from the type com.axonivy.portal.components.dto.RoleDTO has been deprecated since version 11.2.0 and marked for removal
+[WARNING] /var/tools/jenkins-linux/workspace/portal_master/AxonIvyPortal/portal-components/src/com/axonivy/portal/components/util/UserUtils.java:[91,83] The method getId() from the type com.axonivy.portal.components.dto.UserDTO has been deprecated since version 11.2.0 and marked for removal
+[INFO] 
+[INFO] --- ivy:13.2.0-SNAPSHOT:validateProject (default-validateProject) @ portal-components ---
+[WARNING] src_hd/com/axonivy/portal/components/ProcessViewer/ProcessViewerProcess.p.json /element=181FC5E5ED6EAE2A-f10 : Output code: Method getActivator of class ch.ivyteam.ivy.workflow.start.IWebStartable is deprecated
+[WARNING] processes/Functional Processes/DeleteDocumentItem.p.json /element=1818A90AC6618738-f3 : Output code: Method delete of class ch.ivyteam.ivy.workflow.document.IDocumentService is deprecated
+[WARNING] processes/Functional Processes/DeleteDocumentItem.p.json /element=1818A90AC6618738-f3 : Output code: Field id of class com.axonivy.portal.components.ivydata.bo.IvyDocument is deprecated
+[WARNING] processes/Functional Processes/GetDocumentItems.p.json /element=180CBDED29C1D2F8-f3 : Output code: Field id of class com.axonivy.portal.components.ivydata.bo.IvyDocument is deprecated
+[INFO]  + [validated processes in 720 ms ]
+[INFO] 
+[INFO] --- build-helper:3.6.1:add-test-source (add-test-source) @ portal-components ---
+[INFO] 
+[INFO] --- resources:3.4.0:testResources (default-testResources) @ portal-components ---
+[INFO] skip non existing resourceDirectory /var/tools/jenkins-linux/workspace/portal_master/AxonIvyPortal/portal-components/src_test
+[INFO] 
+[INFO] --- compiler:3.14.1:testCompile (default-testCompile) @ portal-components ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- ivy:13.2.0-SNAPSHOT:ivy-test-properties (default-ivy-test-properties) @ portal-components ---
+[INFO] 
+[INFO] --- ivy:13.2.0-SNAPSHOT:ivy-test-vm-runtime (default-ivy-test-vm-runtime) @ portal-components ---
+[INFO] 
+[INFO] --- surefire:3.5.4:test (default-test) @ portal-components ---
+[INFO] No tests to run.
+[INFO] 
+[INFO] --- ivy:13.2.0-SNAPSHOT:maven-dependency (default-maven-dependency) @ portal-components ---
+[INFO] Copy maven dependencies...
+[INFO] Maven dependecies: 2 copied.
+[INFO] 
+[INFO] --- ivy:13.2.0-SNAPSHOT:pack-iar (default-pack-iar) @ portal-components ---
+[INFO] Building zip: /var/tools/jenkins-linux/workspace/portal_master/AxonIvyPortal/portal-components/target/portal-components-13.2.0-SNAPSHOT.iar
+[INFO] Attached com.axonivy.portal:portal-components:iar:13.2.0-SNAPSHOT.
+[INFO] 
+[INFO] --- assembly:3.7.1:single (make-assembly) @ portal-components ---
+[INFO] Reading assembly descriptor: jar.xml
+[INFO] Building jar: /var/tools/jenkins-linux/workspace/portal_master/AxonIvyPortal/portal-components/target/portal-components-13.2.0-SNAPSHOT.jar
+[INFO] 
+[INFO] --- source:3.3.1:jar-no-fork (attach-sources) @ portal-components ---
+[INFO] Building jar: /var/tools/jenkins-linux/workspace/portal_master/AxonIvyPortal/portal-components/target/portal-components-13.2.0-SNAPSHOT-sources.jar
+[INFO] 
+[INFO] --- install:3.1.4:install (default-install) @ portal-components ---
+[INFO] Installing /var/tools/jenkins-linux/workspace/portal_master/AxonIvyPortal/portal-components/pom.xml to /home/build/.m2/repository/com/axonivy/portal/portal-components/13.2.0-SNAPSHOT/portal-components-13.2.0-SNAPSHOT.pom
+[INFO] Installing /var/tools/jenkins-linux/workspace/portal_master/AxonIvyPortal/portal-components/target/portal-components-13.2.0-SNAPSHOT.iar to /home/build/.m2/repository/com/axonivy/portal/portal-components/13.2.0-SNAPSHOT/portal-components-13.2.0-SNAPSHOT.iar
+[INFO] Installing /var/tools/jenkins-linux/workspace/portal_master/AxonIvyPortal/portal-components/target/portal-components-13.2.0-SNAPSHOT.jar to /home/build/.m2/repository/com/axonivy/portal/portal-components/13.2.0-SNAPSHOT/portal-components-13.2.0-SNAPSHOT.jar
+[INFO] Installing /var/tools/jenkins-linux/workspace/portal_master/AxonIvyPortal/portal-components/target/portal-components-13.2.0-SNAPSHOT-sources.jar to /home/build/.m2/repository/com/axonivy/portal/portal-components/13.2.0-SNAPSHOT/portal-components-13.2.0-SNAPSHOT-sources.jar
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  31.115 s
+[INFO] Finished at: 2025-12-16T12:44:49+01:00
+[INFO] ------------------------------------------------------------------------
+[Pipeline] }
+Deleting 1 temporary files
+[Pipeline] // configFileProvider
+[Pipeline] configFileProvider
+provisioning config files...
+copy managed file [global-maven-settings] to file:/var/tools/jenkins-linux/workspace/portal_master@tmp/config15069435462932063906tmp
+[Pipeline] {
+[Pipeline] isUnix
+[Pipeline] sh
++ mvn --batch-mode --update-snapshots -s /var/tools/jenkins-linux/workspace/portal_master@tmp/config15069435462932063906tmp -e -Duser.timezone=Europe/Zurich clean install -f AxonIvyPortal/portal/pom.xml
+[INFO] Error stacktraces are turned on.
+[INFO] Scanning for projects...
+[INFO] Downloading from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/ivy-project-parent/13.2.0-SNAPSHOT/maven-metadata.xml
+[INFO] Downloaded from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/ivy-project-parent/13.2.0-SNAPSHOT/maven-metadata.xml (620 B at 1.2 kB/s)
+[INFO] Downloading from central.snapshots: https://oss.sonatype.org/content/repositories/snapshots/com/axonivy/ivy/ci/project-build-plugin/13.2.0-SNAPSHOT/maven-metadata.xml
+[INFO] Downloading from central.sonatype.snapshots: https://central.sonatype.com/repository/maven-snapshots/com/axonivy/ivy/ci/project-build-plugin/13.2.0-SNAPSHOT/maven-metadata.xml
+[INFO] Downloaded from central.sonatype.snapshots: https://central.sonatype.com/repository/maven-snapshots/com/axonivy/ivy/ci/project-build-plugin/13.2.0-SNAPSHOT/maven-metadata.xml (1.0 kB at 1.2 kB/s)
+[INFO] Downloading from central.snapshots: https://oss.sonatype.org/content/repositories/snapshots/com/axonivy/ivy/api/restricted/ivy-project-build-plugin-api/13.2.0-SNAPSHOT/maven-metadata.xml
+[INFO] Downloading from central.sonatype.snapshots: https://central.sonatype.com/repository/maven-snapshots/com/axonivy/ivy/api/restricted/ivy-project-build-plugin-api/13.2.0-SNAPSHOT/maven-metadata.xml
+[INFO] Downloading from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/restricted/ivy-project-build-plugin-api/13.2.0-SNAPSHOT/maven-metadata.xml
+[INFO] Downloaded from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/restricted/ivy-project-build-plugin-api/13.2.0-SNAPSHOT/maven-metadata.xml (817 B at 4.0 kB/s)
+[INFO] Downloading from central.sonatype.snapshots: https://central.sonatype.com/repository/maven-snapshots/com/axonivy/ivy/api/restricted/ivy-generate-data-class-api/13.2.0-SNAPSHOT/maven-metadata.xml
+[INFO] Downloading from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/restricted/ivy-generate-data-class-api/13.2.0-SNAPSHOT/maven-metadata.xml
+[INFO] Downloading from central.snapshots: https://oss.sonatype.org/content/repositories/snapshots/com/axonivy/ivy/api/restricted/ivy-generate-data-class-api/13.2.0-SNAPSHOT/maven-metadata.xml
+[INFO] Downloaded from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/restricted/ivy-generate-data-class-api/13.2.0-SNAPSHOT/maven-metadata.xml (1.0 kB at 4.2 kB/s)
+[INFO] Downloading from central.snapshots: https://oss.sonatype.org/content/repositories/snapshots/com/axonivy/ivy/api/restricted/ivy-json-history-api/13.2.0-SNAPSHOT/maven-metadata.xml
+[INFO] Downloading from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/restricted/ivy-json-history-api/13.2.0-SNAPSHOT/maven-metadata.xml
+[INFO] Downloading from central.sonatype.snapshots: https://central.sonatype.com/repository/maven-snapshots/com/axonivy/ivy/api/restricted/ivy-json-history-api/13.2.0-SNAPSHOT/maven-metadata.xml
+[INFO] Downloaded from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/restricted/ivy-json-history-api/13.2.0-SNAPSHOT/maven-metadata.xml (1.0 kB at 4.9 kB/s)
+[INFO] Downloading from central.snapshots: https://oss.sonatype.org/content/repositories/snapshots/com/axonivy/ivy/api/restricted/ivy-process-model-api/13.2.0-SNAPSHOT/maven-metadata.xml
+[INFO] Downloading from central.sonatype.snapshots: https://central.sonatype.com/repository/maven-snapshots/com/axonivy/ivy/api/restricted/ivy-process-model-api/13.2.0-SNAPSHOT/maven-metadata.xml
+[INFO] Downloading from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/restricted/ivy-process-model-api/13.2.0-SNAPSHOT/maven-metadata.xml
+[INFO] Downloaded from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/restricted/ivy-process-model-api/13.2.0-SNAPSHOT/maven-metadata.xml (1.0 kB at 5.1 kB/s)
+[INFO] Downloading from central.sonatype.snapshots: https://central.sonatype.com/repository/maven-snapshots/com/axonivy/ivy/api/ivy-core-api/13.2.0-SNAPSHOT/maven-metadata.xml
+[INFO] Downloading from central.snapshots: https://oss.sonatype.org/content/repositories/snapshots/com/axonivy/ivy/api/ivy-core-api/13.2.0-SNAPSHOT/maven-metadata.xml
+[INFO] Downloading from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/ivy-core-api/13.2.0-SNAPSHOT/maven-metadata.xml
+[INFO] Downloaded from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/ivy-core-api/13.2.0-SNAPSHOT/maven-metadata.xml (1.0 kB at 4.3 kB/s)
+[INFO] Downloading from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/ivy-api-bom/13.2.0-SNAPSHOT/maven-metadata.xml
+[INFO] Downloading from central.sonatype.snapshots: https://central.sonatype.com/repository/maven-snapshots/com/axonivy/ivy/api/ivy-api-bom/13.2.0-SNAPSHOT/maven-metadata.xml
+[INFO] Downloaded from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/ivy-api-bom/13.2.0-SNAPSHOT/maven-metadata.xml (613 B at 1.1 kB/s)
+[INFO] Downloading from central.sonatype.snapshots: https://central.sonatype.com/repository/maven-snapshots/com/axonivy/ivy/api/ivy-project-parent/13.2.0-SNAPSHOT/maven-metadata.xml
+[INFO] 
+[INFO] ---------------------< com.axonivy.portal:portal >----------------------
+[INFO] Building portal 13.2.0-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ iar ]---------------------------------
+[INFO] Downloading from central: https://repo.maven.apache.org/maven2/com/axonivy/portal/portal-components/maven-metadata.xml
+[INFO] Downloading from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/portal/portal-components/maven-metadata.xml
+[INFO] Downloading from central.sonatype.snapshots: https://central.sonatype.com/repository/maven-snapshots/com/axonivy/portal/portal-components/maven-metadata.xml
+[INFO] Downloaded from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/portal/portal-components/maven-metadata.xml (4.6 kB at 19 kB/s)
+[INFO] Downloading from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/portal/portal-components/13.2.0-SNAPSHOT/maven-metadata.xml
+[INFO] Downloading from central.sonatype.snapshots: https://central.sonatype.com/repository/maven-snapshots/com/axonivy/portal/portal-components/13.2.0-SNAPSHOT/maven-metadata.xml
+[INFO] Downloading from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/ivy-api/13.2.0-SNAPSHOT/maven-metadata.xml
+[INFO] Downloading from central.sonatype.snapshots: https://central.sonatype.com/repository/maven-snapshots/com/axonivy/ivy/api/ivy-api/13.2.0-SNAPSHOT/maven-metadata.xml
+[INFO] Downloaded from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/ivy-api/13.2.0-SNAPSHOT/maven-metadata.xml (785 B at 1.4 kB/s)
+[INFO] Downloading from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/ivy-persistence-jpa-api/13.2.0-SNAPSHOT/maven-metadata.xml
+[INFO] Downloading from central.sonatype.snapshots: https://central.sonatype.com/repository/maven-snapshots/com/axonivy/ivy/api/ivy-persistence-jpa-api/13.2.0-SNAPSHOT/maven-metadata.xml
+[INFO] Downloaded from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/ivy-persistence-jpa-api/13.2.0-SNAPSHOT/maven-metadata.xml (1.0 kB at 5.2 kB/s)
+[INFO] Downloading from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/ivy-htmldialog-api/13.2.0-SNAPSHOT/maven-metadata.xml
+[INFO] Downloading from central.sonatype.snapshots: https://central.sonatype.com/repository/maven-snapshots/com/axonivy/ivy/api/ivy-htmldialog-api/13.2.0-SNAPSHOT/maven-metadata.xml
+[INFO] Downloaded from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/ivy-htmldialog-api/13.2.0-SNAPSHOT/maven-metadata.xml (796 B at 1.5 kB/s)
+[INFO] Downloading from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/ivy-htmldialog-jsf-api/13.2.0-SNAPSHOT/maven-metadata.xml
+[INFO] Downloading from central.sonatype.snapshots: https://central.sonatype.com/repository/maven-snapshots/com/axonivy/ivy/api/ivy-htmldialog-jsf-api/13.2.0-SNAPSHOT/maven-metadata.xml
+[INFO] Downloaded from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/ivy-htmldialog-jsf-api/13.2.0-SNAPSHOT/maven-metadata.xml (800 B at 4.5 kB/s)
+[INFO] Downloading from central.sonatype.snapshots: https://central.sonatype.com/repository/maven-snapshots/com/axonivy/ivy/api/ivy-htmldialog-primefaces-api/13.2.0-SNAPSHOT/maven-metadata.xml
+[INFO] Downloading from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/ivy-htmldialog-primefaces-api/13.2.0-SNAPSHOT/maven-metadata.xml
+[INFO] Downloaded from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/ivy-htmldialog-primefaces-api/13.2.0-SNAPSHOT/maven-metadata.xml (1.0 kB at 1.9 kB/s)
+[INFO] Downloading from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/ivy-rest-api/13.2.0-SNAPSHOT/maven-metadata.xml
+[INFO] Downloading from central.sonatype.snapshots: https://central.sonatype.com/repository/maven-snapshots/com/axonivy/ivy/api/ivy-rest-api/13.2.0-SNAPSHOT/maven-metadata.xml
+[INFO] Downloaded from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/ivy-rest-api/13.2.0-SNAPSHOT/maven-metadata.xml (1.0 kB at 1.8 kB/s)
+[INFO] Downloading from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/ivy-rule-api/13.2.0-SNAPSHOT/maven-metadata.xml
+[INFO] Downloading from central.sonatype.snapshots: https://central.sonatype.com/repository/maven-snapshots/com/axonivy/ivy/api/ivy-rule-api/13.2.0-SNAPSHOT/maven-metadata.xml
+[INFO] Downloaded from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/ivy-rule-api/13.2.0-SNAPSHOT/maven-metadata.xml (1.0 kB at 2.0 kB/s)
+[INFO] Downloading from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/ivy-webservice-api/13.2.0-SNAPSHOT/maven-metadata.xml
+[INFO] Downloading from central.sonatype.snapshots: https://central.sonatype.com/repository/maven-snapshots/com/axonivy/ivy/api/ivy-webservice-api/13.2.0-SNAPSHOT/maven-metadata.xml
+[INFO] Downloaded from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/ivy-webservice-api/13.2.0-SNAPSHOT/maven-metadata.xml (1.0 kB at 1.9 kB/s)
+[INFO] Downloading from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/ivy-poi-api/13.2.0-SNAPSHOT/maven-metadata.xml
+[INFO] Downloading from central.sonatype.snapshots: https://central.sonatype.com/repository/maven-snapshots/com/axonivy/ivy/api/ivy-poi-api/13.2.0-SNAPSHOT/maven-metadata.xml
+[INFO] Downloaded from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/ivy-poi-api/13.2.0-SNAPSHOT/maven-metadata.xml (789 B at 3.7 kB/s)
+[INFO] Downloading from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/ivy-poi-api/13.2.0-SNAPSHOT/ivy-poi-api-13.2.0-20251216.111527-318.pom
+[INFO] Downloaded from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/ivy-poi-api/13.2.0-SNAPSHOT/ivy-poi-api-13.2.0-20251216.111527-318.pom (795 B at 2.2 kB/s)
+[INFO] Downloading from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/ivy-notification-channel-api/13.2.0-SNAPSHOT/maven-metadata.xml
+[INFO] Downloading from central.sonatype.snapshots: https://central.sonatype.com/repository/maven-snapshots/com/axonivy/ivy/api/ivy-notification-channel-api/13.2.0-SNAPSHOT/maven-metadata.xml
+[INFO] Downloaded from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/ivy-notification-channel-api/13.2.0-SNAPSHOT/maven-metadata.xml (1.0 kB at 2.0 kB/s)
+[INFO] Downloading from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/ivy-notification-channel-api/13.2.0-SNAPSHOT/ivy-notification-channel-api-13.2.0-20251216.111527-678.pom
+[INFO] Downloaded from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/ivy-notification-channel-api/13.2.0-SNAPSHOT/ivy-notification-channel-api-13.2.0-20251216.111527-678.pom (430 B at 1.2 kB/s)
+[INFO] Downloading from central.sonatype.snapshots: https://central.sonatype.com/repository/maven-snapshots/com/axonivy/ivy/api/ivy-notification-web-api/13.2.0-SNAPSHOT/maven-metadata.xml
+[INFO] Downloading from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/ivy-notification-web-api/13.2.0-SNAPSHOT/maven-metadata.xml
+[INFO] Downloaded from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/ivy-notification-web-api/13.2.0-SNAPSHOT/maven-metadata.xml (1.0 kB at 1.9 kB/s)
+[INFO] Downloading from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/ivy-notification-web-api/13.2.0-SNAPSHOT/ivy-notification-web-api-13.2.0-20251216.111527-678.pom
+[INFO] Downloaded from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/ivy-notification-web-api/13.2.0-SNAPSHOT/ivy-notification-web-api-13.2.0-20251216.111527-678.pom (426 B at 1.2 kB/s)
+[INFO] Downloading from central.sonatype.snapshots: https://central.sonatype.com/repository/maven-snapshots/com/axonivy/ivy/api/ivy-workflow-index-api/13.2.0-SNAPSHOT/maven-metadata.xml
+[INFO] Downloading from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/ivy-workflow-index-api/13.2.0-SNAPSHOT/maven-metadata.xml
+[INFO] Downloaded from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/ivy-workflow-index-api/13.2.0-SNAPSHOT/maven-metadata.xml (1.0 kB at 4.8 kB/s)
+[INFO] Downloading from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/ivy-workflow-index-api/13.2.0-SNAPSHOT/ivy-workflow-index-api-13.2.0-20251216.111527-678.pom
+[INFO] Downloaded from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/ivy-workflow-index-api/13.2.0-SNAPSHOT/ivy-workflow-index-api-13.2.0-20251216.111527-678.pom (424 B at 1.2 kB/s)
+[INFO] Downloading from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/restricted/ivy-cluster-api/13.2.0-SNAPSHOT/maven-metadata.xml
+[INFO] Downloading from central.sonatype.snapshots: https://central.sonatype.com/repository/maven-snapshots/com/axonivy/ivy/api/restricted/ivy-cluster-api/13.2.0-SNAPSHOT/maven-metadata.xml
+[INFO] Downloaded from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/restricted/ivy-cluster-api/13.2.0-SNAPSHOT/maven-metadata.xml (1.0 kB at 2.0 kB/s)
+[INFO] Downloading from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/restricted/ivy-cluster-api/13.2.0-SNAPSHOT/ivy-cluster-api-13.2.0-20251216.111527-779.pom
+[INFO] Downloaded from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/restricted/ivy-cluster-api/13.2.0-SNAPSHOT/ivy-cluster-api-13.2.0-20251216.111527-779.pom (428 B at 25 kB/s)
+[INFO] Downloading from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/restricted/ivy-security-api/13.2.0-SNAPSHOT/maven-metadata.xml
+[INFO] Downloading from central.sonatype.snapshots: https://central.sonatype.com/repository/maven-snapshots/com/axonivy/ivy/api/restricted/ivy-security-api/13.2.0-SNAPSHOT/maven-metadata.xml
+[INFO] Downloaded from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/restricted/ivy-security-api/13.2.0-SNAPSHOT/maven-metadata.xml (1.0 kB at 2.0 kB/s)
+[INFO] Downloading from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/restricted/ivy-security-api/13.2.0-SNAPSHOT/ivy-security-api-13.2.0-20251216.111527-28.pom
+[INFO] Downloaded from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/restricted/ivy-security-api/13.2.0-SNAPSHOT/ivy-security-api-13.2.0-20251216.111527-28.pom (429 B at 1.2 kB/s)
+[INFO] Downloading from central.sonatype.snapshots: https://central.sonatype.com/repository/maven-snapshots/com/axonivy/ivy/api/restricted/ivy-translation-service-api/13.2.0-SNAPSHOT/maven-metadata.xml
+[INFO] Downloading from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/restricted/ivy-translation-service-api/13.2.0-SNAPSHOT/maven-metadata.xml
+[INFO] Downloaded from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/restricted/ivy-translation-service-api/13.2.0-SNAPSHOT/maven-metadata.xml (1.0 kB at 4.7 kB/s)
+[INFO] Downloading from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/restricted/ivy-translation-service-api/13.2.0-SNAPSHOT/ivy-translation-service-api-13.2.0-20251216.111527-609.pom
+[INFO] Downloaded from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/restricted/ivy-translation-service-api/13.2.0-SNAPSHOT/ivy-translation-service-api-13.2.0-20251216.111527-609.pom (440 B at 1.3 kB/s)
+[INFO] Downloading from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/spi/ivy-process-extension-spi/13.2.0-SNAPSHOT/maven-metadata.xml
+[INFO] Downloading from central.sonatype.snapshots: https://central.sonatype.com/repository/maven-snapshots/com/axonivy/ivy/spi/ivy-process-extension-spi/13.2.0-SNAPSHOT/maven-metadata.xml
+[INFO] Downloaded from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/spi/ivy-process-extension-spi/13.2.0-SNAPSHOT/maven-metadata.xml (1.0 kB at 4.5 kB/s)
+[INFO] Downloading from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/spi/ivy-process-extension-spi/13.2.0-SNAPSHOT/ivy-process-extension-spi-13.2.0-20251216.111527-73.pom
+[INFO] Downloaded from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/spi/ivy-process-extension-spi/13.2.0-SNAPSHOT/ivy-process-extension-spi-13.2.0-20251216.111527-73.pom (427 B at 1.2 kB/s)
+[INFO] Downloading from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/ivy-poi-api/13.2.0-SNAPSHOT/ivy-poi-api-13.2.0-20251216.111527-318.jar
+[INFO] Downloaded from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/ivy-poi-api/13.2.0-SNAPSHOT/ivy-poi-api-13.2.0-20251216.111527-318.jar (319 B at 327 B/s)
+[INFO] Downloading from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/ivy-notification-channel-api/13.2.0-SNAPSHOT/ivy-notification-channel-api-13.2.0-20251216.111527-678.jar
+[INFO] Downloading from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/ivy-notification-web-api/13.2.0-SNAPSHOT/ivy-notification-web-api-13.2.0-20251216.111527-678.jar
+[INFO] Downloading from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/ivy-workflow-index-api/13.2.0-SNAPSHOT/ivy-workflow-index-api-13.2.0-20251216.111527-678.jar
+[INFO] Downloading from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/restricted/ivy-cluster-api/13.2.0-SNAPSHOT/ivy-cluster-api-13.2.0-20251216.111527-779.jar
+[INFO] Downloading from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/restricted/ivy-security-api/13.2.0-SNAPSHOT/ivy-security-api-13.2.0-20251216.111527-28.jar
+[INFO] Downloaded from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/restricted/ivy-cluster-api/13.2.0-SNAPSHOT/ivy-cluster-api-13.2.0-20251216.111527-779.jar (7.5 kB at 242 kB/s)
+[INFO] Downloading from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/restricted/ivy-translation-service-api/13.2.0-SNAPSHOT/ivy-translation-service-api-13.2.0-20251216.111527-609.jar
+[INFO] Downloaded from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/ivy-notification-channel-api/13.2.0-SNAPSHOT/ivy-notification-channel-api-13.2.0-20251216.111527-678.jar (8.5 kB at 10 kB/s)
+[INFO] Downloading from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/spi/ivy-process-extension-spi/13.2.0-SNAPSHOT/ivy-process-extension-spi-13.2.0-20251216.111527-73.jar
+[INFO] Downloaded from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/ivy-notification-web-api/13.2.0-SNAPSHOT/ivy-notification-web-api-13.2.0-20251216.111527-678.jar (2.6 kB at 2.9 kB/s)
+[INFO] Downloaded from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/ivy-workflow-index-api/13.2.0-SNAPSHOT/ivy-workflow-index-api-13.2.0-20251216.111527-678.jar (17 kB at 19 kB/s)
+[INFO] Downloaded from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/restricted/ivy-security-api/13.2.0-SNAPSHOT/ivy-security-api-13.2.0-20251216.111527-28.jar (5.2 kB at 5.5 kB/s)
+[INFO] Downloaded from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/api/restricted/ivy-translation-service-api/13.2.0-SNAPSHOT/ivy-translation-service-api-13.2.0-20251216.111527-609.jar (4.1 kB at 4.1 kB/s)
+[INFO] Downloaded from maven.axonivy.com: https://maven.axonivy.com/com/axonivy/ivy/spi/ivy-process-extension-spi/13.2.0-SNAPSHOT/ivy-process-extension-spi-13.2.0-20251216.111527-73.jar (137 kB at 77 kB/s)
+[INFO] 
+[INFO] --- ivy:13.2.0-SNAPSHOT:ivy-cleanup (default-ivy-cleanup) @ portal ---
+[INFO] 
+[INFO] --- clean:3.5.0:clean (default-clean) @ portal ---
+[INFO] 
+[INFO] --- ivy:13.2.0-SNAPSHOT:validate (default-validate) @ portal ---
+[INFO] 
+[INFO] --- ivy:13.2.0-SNAPSHOT:installEngine (default-installEngine) @ portal ---
+[INFO] Provide engine for ivy version 13.2.0
+[INFO] Using engine in '/home/build/.m2/repository/.cache/ivy/13.2.0'
+[INFO] 
+[INFO] --- ivy:13.2.0-SNAPSHOT:generate-data-class-sources (default-generate-data-class-sources) @ portal ---
+[INFO] Generating Ivy data class sources...
+[INFO] converting DataClass '"CaseInformationInIFrameData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"PortalTaskItemDetailsInIFrameData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"ProcessInformationData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"CaseInformationData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"ColumnManagementData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"ProcessCaseWidgetData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"CaseDashboardWidgetData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"CustomWidgetConfigurationData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"TaskDashboardWidgetData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"DashboardDetailsData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"WelcomeWidgetConfigurationData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"ProcessTaskWidgetData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"ProcessWidgetData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"CaseWidgetConfigurationData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"TaskWidgetData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"ProcessViewerWidgetConfigurationData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"CaseWidgetData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"WelcomeDashboardWidgetData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"DashboardModificationData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"ProcessWidgetConfigurationData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"ProcessViewerWidgetData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"DashboardTemplateSelectionData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"MultiLanguageConfigurationData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"TaskWidgetConfigurationData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"ProcessDashboardWidgetData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"CustomDashboardWidgetData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"PortalDashboardConfigurationData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"PortalDashboardDetailModificationData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"PortalMainDashboardData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"PortalDashboardData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"PortalTaskDetailsData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"LoginData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"GlobalSearchData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"PortalBreadcrumbData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"PortalCaseDetailsData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"ProcessViewerData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"CaseDocumentsData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"PortalFinishTaskHandleData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"TaskDocumentsData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"CaseNoteHistoryData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"TaskNoteHistoryData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"PasswordResetData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"GlobalSearchLeftMenuData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"ProcessesData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"FindProcessWidgetData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"FindTaskWidgetData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"FindCaseWidgetData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"AdditionalCaseDetailsData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"PortalUrlCallbackData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"StaticPageTemplateIFrameData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"TaskTemplateIFrameData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"SearchResultsData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"ApplicationSelectionMenuData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"ForgotPasswordData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"ErrorPageData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"AbsenceManagementData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"UserProfileData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"PortalManagementData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"ProjectVersionData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"ActivatorFilterColumnData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"PriorityFilterColumnData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"StateFilterColumnData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"TimestampFilterColumnData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"CategoryFilterColumnData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"ApplicationFilterColumnData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"TextFilterColumnData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"NumberFilterColumnData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"OwnerFilterColumnData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"CaseItemHistoryData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"CustomIFrameWidgetData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"SideStepData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"IconSelectionData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"ProcessItemActionData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"ProcessGridItemData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"UserProcessWidgetData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"TaskItemWorkflowEventsData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"WarningBeforeLostSessionData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"TaskItemGeneralInfoData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"TaskItemData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"PageHeaderData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"FilterData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"TaskItemDetailsData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"CaseItemGeneralInformationData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"GlobalAjaxStatusData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"TaskItemDescriptionData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"CaseItemData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"CaseItemCustomFieldsData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"PageFooterData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"TaskItemNotesData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"ExceptionDialogData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"ColumnsConfigurationData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"ProcessWidgetData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"CaseItemRelatedCasesData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"CaseListHeaderData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"CaseItemBusinessDetailsData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"CaseItemDescriptionData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"CaseItemRelatedTasksData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"TaskItemCustomFieldsData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"WarningBeforeLeavingTaskData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"SecurityMemberDisplayNameData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"TaskNameData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"TaskCategoryData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"TaskPriorityData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"TaskStateData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"TaskApplicationData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"TaskCustomFieldData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"TaskPinData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"TaskColumnHeaderData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"TaskDateData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"TaskResponsibleData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"TaskListHeaderData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"TaskIdData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"TaskWidgetData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"ActionStepData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"CaseWidgetData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"GlobalFooterInfoData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"RoleManagementData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"TaskExpiryActivatorSelectionData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"AccessibilityShortcutData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"CaseItemDetailsData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"TaskItemDelegateData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"UserMenuData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"CaseCategoryData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"CaseDateData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"CaseOwnerData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"CaseApplicationData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"CasePinData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"CaseNameData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"CaseCreatorData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"CaseStateData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"CaseIdData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"CaseColumnHeaderData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"CaseCustomFieldData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"PasswordValidationData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"DocumentNameWithIconData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"WarnOnClosingBrowserTabData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"LoginErrorPageData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"PasswordSettingData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"LogoutSettingData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"AdminSettingsData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"LoginData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"PasswordResetData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"SetLanguageData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"ForgotPasswordData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"PasswordResetErrorPageData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"NotificationWidgetData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"NewsWidgetData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"StatisticWidgetData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"CloneWidgetFromDashboardDialogData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"NavigationDashboardWidgetConfigurationData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"DashboardImportDetailsData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"NavigationDashboardWidgetData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"NotificationWidgetConfigurationData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"ApplicationFilterData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"CreatedDateFilterData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"StateFilterData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"DashboardFilterData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"CanWorkOnFilterData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"PriorityFilterData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"IdFilterData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"ResponsibleFilterData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"CategoryFilterData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"CreatorFilterData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"NumberFilterData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"TextFilterData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"DateFilterData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"NewsWidgetConfigurationData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"CloneWidgetDialogData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"ShareLinkDialogData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"ExpiryResponsibleData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"NotificationFullPageData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"ResponsiblesData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"StatisticConfigurationData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"ThresholdStatisticChartData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"StatisticFilterData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"PortalToolsData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"ExportCaseToExcelData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"ResetPasswordData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"GrowlMessageData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"PageHeaderAndFooterData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"PortalCallableToolsData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"SendPasswordResetEmailData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"ExportTaskToExcelData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"CheckIvySecuritySystemData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"UserProfileData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"ProcessServiceData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"SecurityServiceData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"SideStepServiceData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"LanguageServiceData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"TaskServiceData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"AbsenceServiceData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"FindApplicationsByUserData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"SubstituteServiceData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"PasswordServiceData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"CaseServiceData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"NewTaskMailContentData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"PortalStartData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"StatisticData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"OpenPortalTaskDetailsData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"InitializeTaskDataModelData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"Data"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"OpenPortalSearchData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"NavigatorData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"InitializeCaseDataModel"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"PortalDashboardData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"DailyTaskSummaryMailContentData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"SetBusinessEntityIdData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"OpenPortalCaseDetailsData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"DownloadDocumentData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"UploadDocumentData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"CaculateTaskDelegateData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"LoginData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"LogoutData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"Data"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"NavigatorData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"GetDocumentListData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"ChangePasswordData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"BuildTaskQueryData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"UploadDocumentCheckerData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"HideSystemCaseData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"DeleteDocumentData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"BuildCaseQueryData"' to version 13.2.0 using DefaultDietConverter
+[INFO] converting DataClass '"AnalyzeStatisticData"' to version 13.2.0 using DefaultDietConverter
+[INFO] 
+[INFO] --- ivy:13.2.0-SNAPSHOT:generate-dialog-form-sources (default-generate-dialog-form-sources) @ portal ---
+[INFO] Generating Ivy dialog form sources...
+[INFO] 
+[INFO] --- ivy:13.2.0-SNAPSHOT:generate-web-service-sources (default-generate-web-service-sources) @ portal ---
+[INFO] Generating Ivy web service process sources...
+[INFO] 
+[INFO] --- ivy:13.2.0-SNAPSHOT:unpack-libs (default-unpack-libs) @ portal ---
+[INFO] 
+[INFO] --- build-helper:3.6.1:add-source (add-source) @ portal ---
+[INFO] Source directory: /var/tools/jenkins-linux/workspace/portal_master/AxonIvyPortal/portal/src added.
+[INFO] Source directory: /var/tools/jenkins-linux/workspace/portal_master/AxonIvyPortal/portal/src_dataClasses added.
+[INFO] 
+[INFO] --- ivy:13.2.0-SNAPSHOT:ivy-resources-properties (default-ivy-resources-properties) @ portal ---
+[INFO] 'project.build.sourceEncoding' is already set to 'UTF-8', so it will not be overwritten to UTF-8
+[INFO] 
+[INFO] --- resources:3.4.0:resources (default-resources) @ portal ---
+[INFO] Copying 0 resource from src to target/classes
+[INFO] 
+[INFO] --- compiler:3.14.1:compile (default-compile) @ portal ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling with eclipse [debug deprecation release 21] to target/classes
+[WARNING] /var/tools/jenkins-linux/workspace/portal_master/AxonIvyPortal/portal/src/ch/ivy/addon/portal/chat/GroupChat.java:[84,48] The method find(long) from the type ch.ivyteam.ivy.security.user.IUserRepository has been deprecated since version 9.4 and marked for removal
+[WARNING] /var/tools/jenkins-linux/workspace/portal_master/AxonIvyPortal/portal/src/ch/ivy/addon/portal/chat/GroupChat.java:[100,68] The method getId() from the type com.axonivy.portal.components.dto.SecurityMemberDTO has been deprecated since version 11.2.0 and marked for removal
+[WARNING] /var/tools/jenkins-linux/workspace/portal_master/AxonIvyPortal/portal/src/ch/ivy/addon/portal/chat/PortalSessionExtension.java:[20,19] Unnecessary @SuppressWarnings("restriction")
+[WARNING] /var/tools/jenkins-linux/workspace/portal_master/AxonIvyPortal/portal/src/ch/ivy/addon/portalkit/bean/CombinedDashboardProcessBean.java:[85,32] The method setProcessStartId(java.lang.Long) from the type ch.ivy.addon.portalkit.dto.dashboard.process.DashboardProcess has been deprecated since version 11.2.0 and marked for removal
+[WARNING] /var/tools/jenkins-linux/workspace/portal_master/AxonIvyPortal/portal/src/ch/ivy/addon/portalkit/bean/CombinedDashboardProcessBean.java:[85,63] The method getId() from the type ch.ivyteam.ivy.workflow.IProcessStart has been deprecated since version 10.0.4 and marked for removal
+[WARNING] /var/tools/jenkins-linux/workspace/portal_master/AxonIvyPortal/portal/src/ch/ivy/addon/portalkit/bean/ExternalLinkBean.java:[62,18] The method setCreatorId(java.lang.Long) from the type ch.ivy.addon.portalkit.configuration.ExternalLink has been deprecated since version 11.2.0 and marked for removal
+[WARNING] /var/tools/jenkins-linux/workspace/portal_master/AxonIvyPortal/portal/src/ch/ivy/addon/portalkit/bean/ExternalLinkBean.java:[62,43] The method getId() from the type ch.ivyteam.ivy.security.ISecurityMember has been deprecated since version 9.4 and marked for removal
+[WARNING] /var/tools/jenkins-linux/workspace/portal_master/AxonIvyPortal/portal/src/ch/ivy/addon/portalkit/configuration/ExternalLink.java:[89,142] The method getId() from the type ch.ivyteam.ivy.security.ISecurityMember has been deprecated since version 9.4 and marked for removal
+[WARNING] /var/tools/jenkins-linux/workspace/portal_master/AxonIvyPortal/portal/src/ch/ivy/addon/portalkit/datamodel/CaseLazyDataModel.java:[210,75] The method getId() from the type ch.ivyteam.ivy.security.ISecurityMember has been deprecated since version 9.4 and marked for removal
+[WARNING] /var/tools/jenkins-linux/workspace/portal_master/AxonIvyPortal/portal/src/ch/ivy/addon/portalkit/datamodel/CaseLazyDataModel.java:[238,40] The method getId() from the type ch.ivyteam.ivy.security.ISecurityMember has been deprecated since version 9.4 and marked for removal
+[WARNING] /var/tools/jenkins-linux/workspace/portal_master/AxonIvyPortal/portal/src/ch/ivy/addon/portalkit/datamodel/CaseLazyDataModel.java:[252,30] The method setUserId(java.lang.Long) from the type ch.ivy.addon.portalkit.bo.ColumnsConfiguration has been deprecated since version 11.2.0 and marked for removal
+[WARNING] /var/tools/jenkins-linux/workspace/portal_master/AxonIvyPortal/portal/src/ch/ivy/addon/portalkit/datamodel/CaseLazyDataModel.java:[252,71] The method getId() from the type ch.ivyteam.ivy.security.ISecurityMember has been deprecated since version 9.4 and marked for removal
+[WARNING] /var/tools/jenkins-linux/workspace/portal_master/AxonIvyPortal/portal/src/ch/ivy/addon/portalkit/datamodel/TaskLazyDataModel.java:[264,75] The method getId() from the type ch.ivyteam.ivy.security.ISecurityMember has been deprecated since version 9.4 and marked for removal
+[WARNING] /var/tools/jenkins-linux/workspace/portal_master/AxonIvyPortal/portal/src/ch/ivy/addon/portalkit/datamodel/TaskLazyDataModel.java:[367,80] The method getId() from the type ch.ivyteam.ivy.security.ISecurityMember has been deprecated since version 9.4 and marked for removal
+[WARNING] /var/tools/jenkins-linux/workspace/portal_master/AxonIvyPortal/portal/src/ch/ivy/addon/portalkit/datamodel/TaskLazyDataModel.java:[380,30] The method setUserId(java.lang.Long) from the type ch.ivy.addon.portalkit.bo.ColumnsConfiguration has been deprecated since version 11.2.0 and marked for removal
+[WARNING] /var/tools/jenkins-linux/workspace/portal_master/AxonIvyPortal/portal/src/ch/ivy/addon/portalkit/datamodel/TaskLazyDataModel.java:[380,71] The method getId() from the type ch.ivyteam.ivy.security.ISecurityMember has been deprecated since version 9.4 and marked for removal
+[WARNING] /var/tools/jenkins-linux/workspace/portal_master/AxonIvyPortal/portal/src/ch/ivy/addon/portalkit/dto/dashboard/CombinedProcessDashboardWidget.java:[59,62] The method getProcessStartId() from the type ch.ivy.addon.portalkit.dto.dashboard.process.DashboardProcess has been deprecated since version 11.2.0 and marked for removal
+[WARNING] /var/tools/jenkins-linux/workspace/portal_master/AxonIvyPortal/portal/src/ch/ivy/addon/portalkit/dto/dashboard/CombinedProcessDashboardWidget.java:[61,62] The method getProcessStartId() from the type ch.ivy.addon.portalkit.dto.dashboard.process.DashboardProcess has been deprecated since version 11.2.0 and marked for removal
+[WARNING] /var/tools/jenkins-linux/workspace/portal_master/AxonIvyPortal/portal/src/ch/ivy/addon/portalkit/ivydata/mapper/SecurityMemberDTOMapper.java:[19,12] The method setId(long) from the type com.axonivy.portal.components.dto.SecurityMemberDTO has been deprecated since version 11.2.0 and marked for removal
+[WARNING] /var/tools/jenkins-linux/workspace/portal_master/AxonIvyPortal/portal/src/ch/ivy/addon/portalkit/ivydata/mapper/SecurityMemberDTOMapper.java:[19,26] The method getId() from the type com.axonivy.portal.components.dto.UserDTO has been deprecated since version 11.2.0 and marked for removal
+[WARNING] /var/tools/jenkins-linux/workspace/portal_master/AxonIvyPortal/portal/src/ch/ivy/addon/portalkit/ivydata/mapper/SecurityMemberDTOMapper.java:[34,12] The method setId(long) from the type com.axonivy.portal.components.dto.SecurityMemberDTO has been deprecated since version 11.2.0 and marked for removal
+[WARNING] /var/tools/jenkins-linux/workspace/portal_master/AxonIvyPortal/portal/src/ch/ivy/addon/portalkit/ivydata/mapper/SecurityMemberDTOMapper.java:[34,26] The method getId() from the type com.axonivy.portal.components.dto.RoleDTO has been deprecated since version 11.2.0 and marked for removal
+[WARNING] /var/tools/jenkins-linux/workspace/portal_master/AxonIvyPortal/portal/src/ch/ivy/addon/portalkit/ivydata/searchcriteria/DashboardCaseSearchCriteria.java:[70,52] The method findBy(java.lang.String) from the type com.axonivy.portal.util.filter.field.FilterFieldFactory is deprecated
+[WARNING] /var/tools/jenkins-linux/workspace/portal_master/AxonIvyPortal/portal/src/ch/ivy/addon/portalkit/ivydata/searchcriteria/DashboardCaseSearchCriteria.java:[114,50] The method findBy(java.lang.String) from the type com.axonivy.portal.util.filter.field.FilterFieldFactory is deprecated
+[WARNING] /var/tools/jenkins-linux/workspace/portal_master/AxonIvyPortal/portal/src/ch/ivy/addon/portalkit/ivydata/searchcriteria/DashboardTaskSearchCriteria.java:[79,56] The method findBy(java.lang.String, ch.ivy.addon.portalkit.enums.DashboardColumnType) from the type com.axonivy.portal.util.filter.field.TaskFilterFieldFactory is deprecated
+[WARNING] /var/tools/jenkins-linux/workspace/portal_master/AxonIvyPortal/portal/src/ch/ivy/addon/portalkit/ivydata/searchcriteria/DashboardTaskSearchCriteria.java:[91,54] The method findBy(java.lang.String, ch.ivy.addon.portalkit.enums.DashboardColumnType) from the type com.axonivy.portal.util.filter.field.TaskFilterFieldFactory is deprecated
+[WARNING] /var/tools/jenkins-linux/workspace/portal_master/AxonIvyPortal/portal/src/ch/ivy/addon/portalkit/ivydata/searchcriteria/DashboardTaskSearchCriteria.java:[101,50] The method findBy(java.lang.String) from the type com.axonivy.portal.util.filter.field.FilterFieldFactory is deprecated
+[WARNING] /var/tools/jenkins-linux/workspace/portal_master/AxonIvyPortal/portal/src/ch/ivy/addon/portalkit/ivydata/service/impl/TaskService.java:[161,52] The method expiryTimestamp() from the type ch.ivyteam.ivy.workflow.query.TaskQuery.IGroupByQueryColumns has been deprecated since version 13.1.0 and marked for removal
+[WARNING] /var/tools/jenkins-linux/workspace/portal_master/AxonIvyPortal/portal/src/ch/ivy/addon/portalkit/service/CaseDocumentService.java:[58,42] The method get(long) from the type ch.ivyteam.ivy.workflow.document.IDocumentService has been deprecated since version 11.2 and marked for removal
+[WARNING] /var/tools/jenkins-linux/workspace/portal_master/AxonIvyPortal/portal/src/ch/ivy/addon/portalkit/service/CaseDocumentService.java:[58,68] The method getId() from the type com.axonivy.portal.components.ivydata.bo.IvyDocument has been deprecated since version 11.2.0 and marked for removal
+[WARNING] /var/tools/jenkins-linux/workspace/portal_master/AxonIvyPortal/portal/src/ch/ivy/addon/portalkit/service/ExternalLinkService.java:[38,29] The method getCreatorId() from the type ch.ivy.addon.portalkit.configuration.ExternalLink has been deprecated since version 11.2.0 and marked for removal
+[WARNING] /var/tools/jenkins-linux/workspace/portal_master/AxonIvyPortal/portal/src/ch/ivy/addon/portalkit/service/ExternalLinkService.java:[38,59] The method getId() from the type ch.ivyteam.ivy.security.ISecurityMember has been deprecated since version 9.4 and marked for removal
+[WARNING] /var/tools/jenkins-linux/workspace/portal_master/AxonIvyPortal/portal/src/ch/ivy/addon/portalkit/service/ExternalLinkService.java:[46,29] The method getCreatorId() from the type ch.ivy.addon.portalkit.configuration.ExternalLink has been deprecated since version 11.2.0 and marked for removal
+[WARNING] /var/tools/jenkins-linux/workspace/portal_master/AxonIvyPortal/portal/src/ch/ivy/addon/portalkit/service/ExternalLinkService.java:[46,59] The method getId() from the type ch.ivyteam.ivy.security.ISecurityMember has been deprecated since version 9.4 and marked for removal
+[WARNING] /var/tools/jenkins-linux/workspace/portal_master/AxonIvyPortal/portal/src/ch/ivy/addon/portalkit/util/CustomWidgetUtils.java:[65,41] The method getId() from the type ch.ivyteam.ivy.security.ISecurityMember has been deprecated since version 9.4 and marked for removal
+[WARNING] /var/tools/jenkins-linux/workspace/portal_master/AxonIvyPortal/portal/src/ch/ivy/addon/portalkit/util/CustomWidgetUtils.java:[108,29] The method findUserByUserId(java.lang.Long) from the type ch.ivy.addon.portalkit.util.UserUtils has been deprecated since version 11.2.0 and marked for removal
+[WARNING] /var/tools/jenkins-linux/workspace/portal_master/AxonIvyPortal/portal/src/ch/ivy/addon/portalkit/util/DashboardWidgetUtils.java:[595,86] The method getProcessStartId() from the type ch.ivy.addon.portalkit.dto.dashboard.process.DashboardProcess has been deprecated since version 11.2.0 and marked for removal
+[WARNING] /var/tools/jenkins-linux/workspace/portal_master/AxonIvyPortal/portal/src/ch/ivy/addon/portalkit/util/DashboardWidgetUtils.java:[599,21] The method setProcessStartId(java.lang.Long) from the type ch.ivy.addon.portalkit.dto.dashboard.process.DashboardProcess has been deprecated since version 11.2.0 and marked for removal
+[WARNING] /var/tools/jenkins-linux/workspace/portal_master/AxonIvyPortal/portal/src/ch/ivy/addon/portalkit/util/DashboardWidgetUtils.java:[599,48] The method getId() from the type ch.ivyteam.ivy.workflow.IProcessStart has been deprecated since version 10.0.4 and marked for removal
+[WARNING] /var/tools/jenkins-linux/workspace/portal_master/AxonIvyPortal/portal/src/ch/ivy/addon/portalkit/util/DeputyRoleUtils.java:[36,59] The method getId() from the type ch.ivyteam.ivy.security.ISecurityMember has been deprecated since version 9.4 and marked for removal
+[WARNING] /var/tools/jenkins-linux/workspace/portal_master/AxonIvyPortal/portal/src/com/axonivy/portal/bean/dashboard/WidgetDateFilterBean.java:[60,28] The method findBy(java.lang.String) from the type com.axonivy.portal.util.filter.field.FilterFieldFactory is deprecated
+[WARNING] /var/tools/jenkins-linux/workspace/portal_master/AxonIvyPortal/portal/src/com/axonivy/portal/bean/dashboard/WidgetDateFilterBean.java:[64,55] The method findBy(java.lang.String) from the type com.axonivy.portal.util.filter.field.TaskFilterFieldFactory is deprecated
+[WARNING] /var/tools/jenkins-linux/workspace/portal_master/AxonIvyPortal/portal/src/com/axonivy/portal/migration/dashboard/converter/v113/DashboardCaseWidgetConverter.java:[58,50] The method findBy(java.lang.String) from the type com.axonivy.portal.util.filter.field.FilterFieldFactory is deprecated
+[WARNING] /var/tools/jenkins-linux/workspace/portal_master/AxonIvyPortal/portal/src/com/axonivy/portal/migration/dashboard/converter/v113/DashboardTaskWidgetConverter.java:[72,54] The method findBy(java.lang.String, ch.ivy.addon.portalkit.enums.DashboardColumnType) from the type com.axonivy.portal.util.filter.field.TaskFilterFieldFactory is deprecated
+[WARNING] /var/tools/jenkins-linux/workspace/portal_master/AxonIvyPortal/portal/src/com/axonivy/portal/migration/dashboardfilter/converter/v113/DashboardCaseWidgetFilterConverter.java:[54,50] The method findBy(java.lang.String) from the type com.axonivy.portal.util.filter.field.FilterFieldFactory is deprecated
+[WARNING] /var/tools/jenkins-linux/workspace/portal_master/AxonIvyPortal/portal/src/com/axonivy/portal/migration/dashboardfilter/converter/v113/DashboardTaskWidgetFilterConverter.java:[63,54] The method findBy(java.lang.String, ch.ivy.addon.portalkit.enums.DashboardColumnType) from the type com.axonivy.portal.util.filter.field.TaskFilterFieldFactory is deprecated
+[WARNING] /var/tools/jenkins-linux/workspace/portal_master/AxonIvyPortal/portal/src/com/axonivy/portal/migration/dashboardtemplate/converter/v113/DashboardTemplateCaseWidgetConverter.java:[57,50] The method findBy(java.lang.String) from the type com.axonivy.portal.util.filter.field.FilterFieldFactory is deprecated
+[WARNING] /var/tools/jenkins-linux/workspace/portal_master/AxonIvyPortal/portal/src/com/axonivy/portal/migration/dashboardtemplate/converter/v113/DashboardTemplateTaskWidgetConverter.java:[65,54] The method findBy(java.lang.String, ch.ivy.addon.portalkit.enums.DashboardColumnType) from the type com.axonivy.portal.util.filter.field.TaskFilterFieldFactory is deprecated
+[WARNING] /var/tools/jenkins-linux/workspace/portal_master/AxonIvyPortal/portal/src/com/axonivy/portal/service/CustomSubMenuItemService.java:[54,53] The method find(ch.ivyteam.ivy.process.call.SubProcessSearchFilter) from the type ch.ivyteam.ivy.process.call.SubProcessCallStart has been deprecated since version 13.2 and marked for removal
+[WARNING] /var/tools/jenkins-linux/workspace/portal_master/AxonIvyPortal/portal/src/com/axonivy/portal/util/AiToolUtils.java:[309,10] The method findBy(java.lang.String) from the type com.axonivy.portal.util.filter.field.FilterFieldFactory is deprecated
+[WARNING] /var/tools/jenkins-linux/workspace/portal_master/AxonIvyPortal/portal/src/com/axonivy/portal/util/AiToolUtils.java:[322,10] The method findBy(java.lang.String) from the type com.axonivy.portal.util.filter.field.FilterFieldFactory is deprecated
+[WARNING] /var/tools/jenkins-linux/workspace/portal_master/AxonIvyPortal/portal/src/com/axonivy/portal/util/AiToolUtils.java:[342,10] The method findBy(java.lang.String) from the type com.axonivy.portal.util.filter.field.FilterFieldFactory is deprecated
+[WARNING] /var/tools/jenkins-linux/workspace/portal_master/AxonIvyPortal/portal/src/com/axonivy/portal/validator/filter/DashboardDateFilterValidator.java:[87,51] The method findBy(java.lang.String) from the type com.axonivy.portal.util.filter.field.FilterFieldFactory is deprecated
+[WARNING] /var/tools/jenkins-linux/workspace/portal_master/AxonIvyPortal/portal/src/com/axonivy/portal/validator/filter/DashboardDefaultListFilterValidator.java:[52,51] The method findBy(java.lang.String) from the type com.axonivy.portal.util.filter.field.FilterFieldFactory is deprecated
+[WARNING] /var/tools/jenkins-linux/workspace/portal_master/AxonIvyPortal/portal/src/com/axonivy/portal/validator/filter/DashboardNumberFilterValidator.java:[86,51] The method findBy(java.lang.String) from the type com.axonivy.portal.util.filter.field.FilterFieldFactory is deprecated
+[WARNING] /var/tools/jenkins-linux/workspace/portal_master/AxonIvyPortal/portal/src/com/axonivy/portal/validator/filter/DashboardTextFilterValidator.java:[72,51] The method findBy(java.lang.String) from the type com.axonivy.portal.util.filter.field.FilterFieldFactory is deprecated
+[INFO] 
+[INFO] --- ivy:13.2.0-SNAPSHOT:validateProject (default-validateProject) @ portal ---
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  31.308 s
+[INFO] Finished at: 2025-12-16T12:45:23+01:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal com.axonivy.ivy.ci:project-build-plugin:13.2.0-SNAPSHOT:validateProject (default-validateProject) on project portal: Failed to compile project '/var/tools/jenkins-linux/workspace/portal_master/AxonIvyPortal/portal'. InvocationTargetException: FileSystemAlreadyExistsException -> [Help 1]
+org.apache.maven.lifecycle.LifecycleExecutionException: Failed to execute goal com.axonivy.ivy.ci:project-build-plugin:13.2.0-SNAPSHOT:validateProject (default-validateProject) on project portal: Failed to compile project '/var/tools/jenkins-linux/workspace/portal_master/AxonIvyPortal/portal'.
+    at org.apache.maven.lifecycle.internal.MojoExecutor.doExecute2 (MojoExecutor.java:333)
+    at org.apache.maven.lifecycle.internal.MojoExecutor.doExecute (MojoExecutor.java:316)
+    at org.apache.maven.lifecycle.internal.MojoExecutor.execute (MojoExecutor.java:212)
+    at org.apache.maven.lifecycle.internal.MojoExecutor.execute (MojoExecutor.java:174)
+    at org.apache.maven.lifecycle.internal.MojoExecutor.access$000 (MojoExecutor.java:75)
+    at org.apache.maven.lifecycle.internal.MojoExecutor$1.run (MojoExecutor.java:162)
+    at org.apache.maven.plugin.DefaultMojosExecutionStrategy.execute (DefaultMojosExecutionStrategy.java:39)
+    at org.apache.maven.lifecycle.internal.MojoExecutor.execute (MojoExecutor.java:159)
+    at org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject (LifecycleModuleBuilder.java:105)
+    at org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject (LifecycleModuleBuilder.java:73)
+    at org.apache.maven.lifecycle.internal.builder.singlethreaded.SingleThreadedBuilder.build (SingleThreadedBuilder.java:53)
+    at org.apache.maven.lifecycle.internal.LifecycleStarter.execute (LifecycleStarter.java:118)
+    at org.apache.maven.DefaultMaven.doExecute (DefaultMaven.java:261)
+    at org.apache.maven.DefaultMaven.doExecute (DefaultMaven.java:173)
+    at org.apache.maven.DefaultMaven.execute (DefaultMaven.java:101)
+    at org.apache.maven.cli.MavenCli.execute (MavenCli.java:906)
+    at org.apache.maven.cli.MavenCli.doMain (MavenCli.java:283)
+    at org.apache.maven.cli.MavenCli.main (MavenCli.java:206)
+    at jdk.internal.reflect.DirectMethodHandleAccessor.invoke (DirectMethodHandleAccessor.java:103)
+    at java.lang.reflect.Method.invoke (Method.java:580)
+    at org.codehaus.plexus.classworlds.launcher.Launcher.launchEnhanced (Launcher.java:255)
+    at org.codehaus.plexus.classworlds.launcher.Launcher.launch (Launcher.java:201)
+    at org.codehaus.plexus.classworlds.launcher.Launcher.mainWithExitCode (Launcher.java:361)
+    at org.codehaus.plexus.classworlds.launcher.Launcher.main (Launcher.java:314)
+Caused by: org.apache.maven.plugin.MojoExecutionException: Failed to compile project '/var/tools/jenkins-linux/workspace/portal_master/AxonIvyPortal/portal'.
+    at ch.ivyteam.ivy.maven.compile.AbstractEngineInstanceMojo.execute (AbstractEngineInstanceMojo.java:70)
+    at org.apache.maven.plugin.DefaultBuildPluginManager.executeMojo (DefaultBuildPluginManager.java:126)
+    at org.apache.maven.lifecycle.internal.MojoExecutor.doExecute2 (MojoExecutor.java:328)
+    at org.apache.maven.lifecycle.internal.MojoExecutor.doExecute (MojoExecutor.java:316)
+    at org.apache.maven.lifecycle.internal.MojoExecutor.execute (MojoExecutor.java:212)
+    at org.apache.maven.lifecycle.internal.MojoExecutor.execute (MojoExecutor.java:174)
+    at org.apache.maven.lifecycle.internal.MojoExecutor.access$000 (MojoExecutor.java:75)
+    at org.apache.maven.lifecycle.internal.MojoExecutor$1.run (MojoExecutor.java:162)
+    at org.apache.maven.plugin.DefaultMojosExecutionStrategy.execute (DefaultMojosExecutionStrategy.java:39)
+    at org.apache.maven.lifecycle.internal.MojoExecutor.execute (MojoExecutor.java:159)
+    at org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject (LifecycleModuleBuilder.java:105)
+    at org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject (LifecycleModuleBuilder.java:73)
+    at org.apache.maven.lifecycle.internal.builder.singlethreaded.SingleThreadedBuilder.build (SingleThreadedBuilder.java:53)
+    at org.apache.maven.lifecycle.internal.LifecycleStarter.execute (LifecycleStarter.java:118)
+    at org.apache.maven.DefaultMaven.doExecute (DefaultMaven.java:261)
+    at org.apache.maven.DefaultMaven.doExecute (DefaultMaven.java:173)
+    at org.apache.maven.DefaultMaven.execute (DefaultMaven.java:101)
+    at org.apache.maven.cli.MavenCli.execute (MavenCli.java:906)
+    at org.apache.maven.cli.MavenCli.doMain (MavenCli.java:283)
+    at org.apache.maven.cli.MavenCli.main (MavenCli.java:206)
+    at jdk.internal.reflect.DirectMethodHandleAccessor.invoke (DirectMethodHandleAccessor.java:103)
+    at java.lang.reflect.Method.invoke (Method.java:580)
+    at org.codehaus.plexus.classworlds.launcher.Launcher.launchEnhanced (Launcher.java:255)
+    at org.codehaus.plexus.classworlds.launcher.Launcher.launch (Launcher.java:201)
+    at org.codehaus.plexus.classworlds.launcher.Launcher.mainWithExitCode (Launcher.java:361)
+    at org.codehaus.plexus.classworlds.launcher.Launcher.main (Launcher.java:314)
+Caused by: java.lang.reflect.InvocationTargetException
+    at jdk.internal.reflect.DirectMethodHandleAccessor.invoke (DirectMethodHandleAccessor.java:118)
+    at java.lang.reflect.Method.invoke (Method.java:580)
+    at ch.ivyteam.ivy.maven.engine.MavenProjectBuilderProxy.lambda$validate$3 (MavenProjectBuilderProxy.java:149)
+    at ch.ivyteam.ivy.maven.engine.MavenProjectBuilderProxy.executeInEngineDir (MavenProjectBuilderProxy.java:180)
+    at ch.ivyteam.ivy.maven.engine.MavenProjectBuilderProxy.validate (MavenProjectBuilderProxy.java:148)
+    at ch.ivyteam.ivy.maven.compile.ValidateProjectMojo.engineExec (ValidateProjectMojo.java:33)
+    at ch.ivyteam.ivy.maven.compile.AbstractEngineInstanceMojo.execute (AbstractEngineInstanceMojo.java:68)
+    at org.apache.maven.plugin.DefaultBuildPluginManager.executeMojo (DefaultBuildPluginManager.java:126)
+    at org.apache.maven.lifecycle.internal.MojoExecutor.doExecute2 (MojoExecutor.java:328)
+    at org.apache.maven.lifecycle.internal.MojoExecutor.doExecute (MojoExecutor.java:316)
+    at org.apache.maven.lifecycle.internal.MojoExecutor.execute (MojoExecutor.java:212)
+    at org.apache.maven.lifecycle.internal.MojoExecutor.execute (MojoExecutor.java:174)
+    at org.apache.maven.lifecycle.internal.MojoExecutor.access$000 (MojoExecutor.java:75)
+    at org.apache.maven.lifecycle.internal.MojoExecutor$1.run (MojoExecutor.java:162)
+    at org.apache.maven.plugin.DefaultMojosExecutionStrategy.execute (DefaultMojosExecutionStrategy.java:39)
+    at org.apache.maven.lifecycle.internal.MojoExecutor.execute (MojoExecutor.java:159)
+    at org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject (LifecycleModuleBuilder.java:105)
+    at org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject (LifecycleModuleBuilder.java:73)
+    at org.apache.maven.lifecycle.internal.builder.singlethreaded.SingleThreadedBuilder.build (SingleThreadedBuilder.java:53)
+    at org.apache.maven.lifecycle.internal.LifecycleStarter.execute (LifecycleStarter.java:118)
+    at org.apache.maven.DefaultMaven.doExecute (DefaultMaven.java:261)
+    at org.apache.maven.DefaultMaven.doExecute (DefaultMaven.java:173)
+    at org.apache.maven.DefaultMaven.execute (DefaultMaven.java:101)
+    at org.apache.maven.cli.MavenCli.execute (MavenCli.java:906)
+    at org.apache.maven.cli.MavenCli.doMain (MavenCli.java:283)
+    at org.apache.maven.cli.MavenCli.main (MavenCli.java:206)
+    at jdk.internal.reflect.DirectMethodHandleAccessor.invoke (DirectMethodHandleAccessor.java:103)
+    at java.lang.reflect.Method.invoke (Method.java:580)
+    at org.codehaus.plexus.classworlds.launcher.Launcher.launchEnhanced (Launcher.java:255)
+    at org.codehaus.plexus.classworlds.launcher.Launcher.launch (Launcher.java:201)
+    at org.codehaus.plexus.classworlds.launcher.Launcher.mainWithExitCode (Launcher.java:361)
+    at org.codehaus.plexus.classworlds.launcher.Launcher.main (Launcher.java:314)
+Caused by: java.nio.file.FileSystemAlreadyExistsException
+    at jdk.nio.zipfs.ZipFileSystemProvider.newFileSystem (ZipFileSystemProvider.java:104)
+    at java.nio.file.FileSystems.newFileSystem (FileSystems.java:339)
+    at java.nio.file.FileSystems.newFileSystem (FileSystems.java:288)
+    at ch.ivyteam.ivy.persistence.filesystem.ZipFs.open (ZipFs.java:127)
+    at ch.ivyteam.ivy.persistence.filesystem.ZipFs.open (ZipFs.java:121)
+    at ch.ivyteam.ivy.persistence.filesystem.ZipFs.open (ZipFs.java:38)
+    at ch.ivyteam.ivy.persistence.filesystem.ZipFs.open (ZipFs.java:33)
+    at ch.ivyteam.ivy.persistence.filesystem.ZipFs.executeInZipFs (ZipFs.java:59)
+    at ch.ivyteam.ivy.deployment.synch.impl.ProjectLocation.executeInZipFs (ProjectLocation.java:105)
+    at ch.ivyteam.ivy.deployment.synch.impl.ProjectLocation.containsProjectDescriptor (ProjectLocation.java:131)
+    at ch.ivyteam.ivy.deployment.impl.ServerToServerProjectDeployer.deployAsSystem (ServerToServerProjectDeployer.java:37)
+    at ch.ivyteam.ivy.deployment.impl.ServerToServerProjectDeployer.lambda$0 (ServerToServerProjectDeployer.java:32)
+    at ch.ivyteam.ivy.security.exec.Sudo.execute (Sudo.java:107)
+    at ch.ivyteam.ivy.deployment.impl.ServerToServerProjectDeployer.deploy (ServerToServerProjectDeployer.java:32)
+    at ch.ivyteam.ivy.deployment.InternalDeploymentService.deployToPmv (InternalDeploymentService.java:22)
+    at ch.ivyteam.ivy.server.build.BuildAppProjectDeployer.deployInternal (BuildAppProjectDeployer.java:77)
+    at ch.ivyteam.ivy.server.build.BuildAppProjectDeployer.deployToApp (BuildAppProjectDeployer.java:37)
+    at ch.ivyteam.ivy.project.build.InMemoryAppProjects.lambda$1 (InMemoryAppProjects.java:46)
+    at ch.ivyteam.util.context.IExecutionContext.lambda$0 (IExecutionContext.java:15)
+    at ch.ivyteam.util.context.AbstractExecutionContext.callInContext (AbstractExecutionContext.java:11)
+    at ch.ivyteam.util.context.IExecutionContext.executeInContext (IExecutionContext.java:14)
+    at ch.ivyteam.ivy.security.exec.Sudo.execute (Sudo.java:111)
+    at ch.ivyteam.ivy.project.build.InMemoryAppProjects.deployDependencies (InMemoryAppProjects.java:42)
+    at ch.ivyteam.ivy.project.build.MavenProjectBuilder.validate (MavenProjectBuilder.java:89)
+    at jdk.internal.reflect.DirectMethodHandleAccessor.invoke (DirectMethodHandleAccessor.java:103)
+    at java.lang.reflect.Method.invoke (Method.java:580)
+    at ch.ivyteam.ivy.maven.engine.MavenProjectBuilderProxy.lambda$validate$3 (MavenProjectBuilderProxy.java:149)
+    at ch.ivyteam.ivy.maven.engine.MavenProjectBuilderProxy.executeInEngineDir (MavenProjectBuilderProxy.java:180)
+    at ch.ivyteam.ivy.maven.engine.MavenProjectBuilderProxy.validate (MavenProjectBuilderProxy.java:148)
+    at ch.ivyteam.ivy.maven.compile.ValidateProjectMojo.engineExec (ValidateProjectMojo.java:33)
+    at ch.ivyteam.ivy.maven.compile.AbstractEngineInstanceMojo.execute (AbstractEngineInstanceMojo.java:68)
+    at org.apache.maven.plugin.DefaultBuildPluginManager.executeMojo (DefaultBuildPluginManager.java:126)
+    at org.apache.maven.lifecycle.internal.MojoExecutor.doExecute2 (MojoExecutor.java:328)
+    at org.apache.maven.lifecycle.internal.MojoExecutor.doExecute (MojoExecutor.java:316)
+    at org.apache.maven.lifecycle.internal.MojoExecutor.execute (MojoExecutor.java:212)
+    at org.apache.maven.lifecycle.internal.MojoExecutor.execute (MojoExecutor.java:174)
+    at org.apache.maven.lifecycle.internal.MojoExecutor.access$000 (MojoExecutor.java:75)
+    at org.apache.maven.lifecycle.internal.MojoExecutor$1.run (MojoExecutor.java:162)
+    at org.apache.maven.plugin.DefaultMojosExecutionStrategy.execute (DefaultMojosExecutionStrategy.java:39)
+    at org.apache.maven.lifecycle.internal.MojoExecutor.execute (MojoExecutor.java:159)
+    at org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject (LifecycleModuleBuilder.java:105)
+    at org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject (LifecycleModuleBuilder.java:73)
+    at org.apache.maven.lifecycle.internal.builder.singlethreaded.SingleThreadedBuilder.build (SingleThreadedBuilder.java:53)
+    at org.apache.maven.lifecycle.internal.LifecycleStarter.execute (LifecycleStarter.java:118)
+    at org.apache.maven.DefaultMaven.doExecute (DefaultMaven.java:261)
+    at org.apache.maven.DefaultMaven.doExecute (DefaultMaven.java:173)
+    at org.apache.maven.DefaultMaven.execute (DefaultMaven.java:101)
+    at org.apache.maven.cli.MavenCli.execute (MavenCli.java:906)
+    at org.apache.maven.cli.MavenCli.doMain (MavenCli.java:283)
+    at org.apache.maven.cli.MavenCli.main (MavenCli.java:206)
+    at jdk.internal.reflect.DirectMethodHandleAccessor.invoke (DirectMethodHandleAccessor.java:103)
+    at java.lang.reflect.Method.invoke (Method.java:580)
+    at org.codehaus.plexus.classworlds.launcher.Launcher.launchEnhanced (Launcher.java:255)
+    at org.codehaus.plexus.classworlds.launcher.Launcher.launch (Launcher.java:201)
+    at org.codehaus.plexus.classworlds.launcher.Launcher.mainWithExitCode (Launcher.java:361)
+    at org.codehaus.plexus.classworlds.launcher.Launcher.main (Launcher.java:314)
+[ERROR] 
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException
+[Pipeline] }
+Deleting 1 temporary files
+[Pipeline] // configFileProvider
+[Pipeline] }
+$ docker stop --time=1 f97fe2a8ee00ca41420b60051e57344183e143f688bb5e507f2e66aa111cdb5f
+$ docker rm -f f97fe2a8ee00ca41420b60051e57344183e143f688bb5e507f2e66aa111cdb5f
+[Pipeline] // withDockerContainer
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (deploy)
+Stage "deploy" skipped due to earlier failure(s)
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+ERROR: script returned exit code 1
+Finished: FAILURE
+
