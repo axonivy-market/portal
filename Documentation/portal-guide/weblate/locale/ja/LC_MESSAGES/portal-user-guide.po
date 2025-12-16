@@ -9,15 +9,16 @@ msgstr ""
 "Project-Id-Version: Portal Guide ${revision}\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-12-16 07:26+0000\n"
-"PO-Revision-Date: 2025-12-12 11:15+0000\n"
+"PO-Revision-Date: 2025-12-16 07:45+0000\n"
 "Last-Translator: Thang Huynh Huu Quyet <hhqthang@axonactive.com>\n"
+"Language-Team: Japanese <https://hosted.weblate.org/projects/axonivy-portal/"
+"portal-le/doc/portal-doc-user-guide/ja/>\n"
 "Language: ja\n"
-"Language-Team: Japanese <https://hosted.weblate.org/projects/axonivy-"
-"portal/portal-le/doc/portal-doc-user-guide/ja/>\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 5.15.1-dev\n"
 "Generated-By: Babel 2.17.0\n"
 
 #: ../../source/portal-user-guide/accessibility/index.rst:4
@@ -7883,14 +7884,13 @@ msgid "Click on the input text field of your target language."
 msgstr "対象言語の入力テキストフィールドをクリックしてください。"
 
 #: ../../source/portal-user-guide/portal-multi-language/index.rst:46
-#, fuzzy
 msgid ""
 "If the translation service is enabled, the text will be automatically "
 "translated. Click :guilabel:`Auto translation` to accept the translated "
 "text."
 msgstr ""
-"#. 翻訳サービスが有効な場合、テキストは自動的に翻訳されます。翻訳されたテキストを受け入れるには、:guilabel:`自動翻訳` "
-"をクリックしてください。"
+"翻訳サービスが有効な場合、テキストは自動的に翻訳されます。翻訳されたテキスト"
+"を受け入れるには、:guilabel:`自動翻訳` をクリックしてください。"
 
 #: ../../source/portal-user-guide/portal-multi-language/index.rst:48
 msgid ""
@@ -9853,4 +9853,3 @@ msgstr "統計設定例"
 
 #~ msgid "Look for widgets labeled as :bdg-secondary:`Example`."
 #~ msgstr ":bdg-secondary:`Example` と表示されたウィジェットを探してください。"
-
