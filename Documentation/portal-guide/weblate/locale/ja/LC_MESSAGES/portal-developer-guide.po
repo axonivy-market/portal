@@ -12857,7 +12857,7 @@ msgstr "すべてのポータル権限に関する包括的なリファレンス
 
 #: ../../source/portal-developer-guide/permissions/index.rst:9
 msgid "**Permission Architecture:**"
-msgstr "**Permission Architecture:**"
+msgstr "**権限アーキテクチャ:**"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:11
 msgid ""
