@@ -231,7 +231,7 @@ function resizeTableBody() {
             if (tableBody.parents('.js-resizing').length > 0) {
               widget.init(widget.cfg);
             }
-            widget.setupScrolling();
+            widget.refresh(widget.cfg);
           }
         });
 
