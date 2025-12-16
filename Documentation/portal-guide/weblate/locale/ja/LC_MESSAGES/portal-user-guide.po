@@ -9,15 +9,16 @@ msgstr ""
 "Project-Id-Version: Portal Guide ${revision}\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-12-16 10:37+0000\n"
-"PO-Revision-Date: 2025-12-16 07:45+0000\n"
-"Last-Translator: Thang Huynh Huu Quyet <hhqthang@axonactive.com>\n"
+"PO-Revision-Date: 2025-12-16 10:47+0000\n"
+"Last-Translator: Thinh Nguyen <nht.8299@gmail.com>\n"
+"Language-Team: Japanese <https://hosted.weblate.org/projects/axonivy-portal/"
+"portal-le/doc/portal-doc-user-guide/ja/>\n"
 "Language: ja\n"
-"Language-Team: Japanese <https://hosted.weblate.org/projects/axonivy-"
-"portal/portal-le/doc/portal-doc-user-guide/ja/>\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 5.15.1-dev\n"
 "Generated-By: Babel 2.17.0\n"
 
 #: ../../source/portal-user-guide/accessibility/index.rst:4
@@ -1066,11 +1067,12 @@ msgid "Portal.DateTimeFormat.DateFilterWithTime"
 msgstr "Portal.DateTimeFormat.DateFilterWithTime"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
-#, fuzzy
 msgid ""
 "Set to true to enable date filtering with time. This setting affects on "
 "task list, case list, and statistics."
-msgstr "時間による日付フィルタリングを有効にするにはtrueを設定します。この設定はタスクウィジェットとケースウィジェットに影響します。"
+msgstr ""
+"trueに設定すると、日付と時刻によるフィルタリングが可能になります。この設定は"
+"タスクリスト、ケースリスト、統計に影響します。"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.DateTimeFormat.HideTime"
@@ -3404,54 +3406,44 @@ msgid "Different dashboard actions require specific permissions:"
 msgstr "ダッシュボードの操作内容によって、必要な権限が異なります："
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:261
-#, fuzzy
 msgid "**Import private dashboard**"
-msgstr "**プライベートダッシュボード**"
+msgstr "**プライベートダッシュボードをインポート**"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:261
-#, fuzzy
 msgid ":bdg-ref-warning:`🔑DashboardImportOwn <DashboardImportOwn>`"
-msgstr ":bdg-ref-warning:`🔑DashboardWriteOwn <DashboardWriteOwn>`"
+msgstr ":bdg-ref-warning:`🔑DashboardImportOwn <DashboardImportOwn>`"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:263
-#, fuzzy
 msgid "**Export private dashboard**"
-msgstr "**プライベートダッシュボード**"
+msgstr "**非公開ダッシュボードのエクスポート**"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:263
-#, fuzzy
 msgid ":bdg-ref-warning:`🔑DashboardExportOwn <DashboardExportOwn>`"
-msgstr ":bdg-ref-warning:`🔑DashboardWriteOwn <DashboardWriteOwn>`"
+msgstr ":bdg-ref-warning:`🔑DashboardExportOwn <DashboardExportOwn>`"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:265
-#, fuzzy
 msgid "**Import public dashboard**"
-msgstr "**公開ダッシュボード**"
+msgstr "**公開ダッシュボードのインポート**"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:265
-#, fuzzy
 msgid ":bdg-ref-warning:`🔑DashboardImportPublic <DashboardImportPublic>`"
-msgstr ":bdg-ref-warning:`🔑DashboardWritePublic <DashboardWritePublic>`"
+msgstr ":bdg-ref-warning:`🔑DashboardImportPublic <DashboardImportPublic>`"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:267
-#, fuzzy
 msgid "**Export public dashboard**"
-msgstr "**公開ダッシュボード**"
+msgstr "**公開ダッシュボードのエクスポート**"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:267
-#, fuzzy
 msgid ":bdg-ref-warning:`🔑DashboardExportPublic <DashboardExportPublic>`"
-msgstr ":bdg-ref-warning:`🔑DashboardWritePublic <DashboardWritePublic>`"
+msgstr ":bdg-ref-warning:`🔑DashboardExportPublic <DashboardExportPublic>`"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:269
-#, fuzzy
 msgid "**Share public dashboard link**"
-msgstr "**公開ダッシュボードの管理**"
+msgstr "**公開ダッシュボードのリンクを共有する**"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:269
-#, fuzzy
 msgid ":bdg-ref-warning:`🔑ShareDashboardLink <ShareDashboardLink>`"
-msgstr ":bdg-ref-warning:`🔑ShareDashboardLink <ShareDashboardLink>` の権限が必要です。"
+msgstr ":bdg-ref-warning:`🔑ShareDashboardLink <ShareDashboardLink>`"
 
 #: ../../source/portal-user-guide/demo-processes/index.rst:4
 msgid "Demo Processes"
@@ -9906,4 +9898,3 @@ msgstr "統計設定例"
 
 #~ msgid "Look for widgets labeled as :bdg-secondary:`Example`."
 #~ msgstr ":bdg-secondary:`Example` と表示されたウィジェットを探してください。"
-
