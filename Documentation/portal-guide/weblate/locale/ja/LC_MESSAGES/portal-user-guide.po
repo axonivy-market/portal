@@ -3395,7 +3395,7 @@ msgstr "公開用ダッシュボードを並び替える"
 #: ../../source/portal-user-guide/full-task-list/index.rst:302
 #: ../../source/portal-user-guide/portal-header/index.rst:201
 msgid "Permission Reference"
-msgstr "Permission Reference"
+msgstr "権限リファレンス"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:253
 msgid "Different dashboard actions require specific permissions:"
@@ -5620,7 +5620,8 @@ msgid ""
 "warning:`🔑WorkflowEventReadAll`"
 msgstr ""
 ":bdg-ref-warning:`🔑TaskDisplayWorkflowEventAction "
-"<TaskDisplayWorkflowEventAction>` および:bdg-warning:`🔑WorkflowEventReadAll`"
+"<TaskDisplayWorkflowEventAction>` および :bdg-"
+"warning:`🔑WorkflowEventReadAll`"
 
 #: ../../source/portal-user-guide/full-task-list/index.rst:331
 msgid ""

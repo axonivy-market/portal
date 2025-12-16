@@ -573,7 +573,7 @@ public class DashboardWidgetUtils {
     processWidget.setHasPermissionToSee(true);
 
     Optional<DashboardProcess> foundProcess = getAllPortalProcesses().stream()
-        .filter(process -> process.getId() != null && process.getId().equals(processPath)).findFirst();
+        .filter(process -> process.getId() != null && process.getId().contains(processPath)).findFirst();
 
     if (foundProcess.isPresent()) {
       DashboardProcess process = foundProcess.get();

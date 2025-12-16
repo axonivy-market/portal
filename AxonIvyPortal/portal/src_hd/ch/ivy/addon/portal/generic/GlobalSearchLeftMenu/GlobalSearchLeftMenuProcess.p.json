@@ -34,7 +34,7 @@
         "call" : {
           "map" : {
             "param.keyword" : "in.keyword",
-            "param.activeTabIndex" : "org.apache.commons.lang.StringUtils.defaultIfBlank(in.activeTabIndex, \"0\")"
+            "param.activeTabIndex" : "org.apache.commons.lang3.StringUtils.defaultIfBlank(in.activeTabIndex, \"0\").toString()"
           }
         }
       },

@@ -258,15 +258,15 @@ Different dashboard actions require specific permissions:
    +---------------------------------------+------------------------------------------------------------------------------+
    | Action                                | Required Permission                                                          |
    +=======================================+==============================================================================+
-   | **Import private dashboard**          | :bdg-ref-warning:`🔑DashboardImportOwn <DashboardImportOwn>`                |
+   | **Import private dashboard**          | :bdg-ref-warning:`🔑DashboardImportOwn <DashboardImportOwn>`                 |
    +---------------------------------------+------------------------------------------------------------------------------+
-   | **Export private dashboard**          | :bdg-ref-warning:`🔑DashboardExportOwn <DashboardExportOwn>`                |
+   | **Export private dashboard**          | :bdg-ref-warning:`🔑DashboardExportOwn <DashboardExportOwn>`                 |
    +---------------------------------------+------------------------------------------------------------------------------+
-   | **Import public dashboard**           | :bdg-ref-warning:`🔑DashboardImportPublic <DashboardImportPublic>`          |
+   | **Import public dashboard**           | :bdg-ref-warning:`🔑DashboardImportPublic <DashboardImportPublic>`           |
    +---------------------------------------+------------------------------------------------------------------------------+
-   | **Export public dashboard**           | :bdg-ref-warning:`🔑DashboardExportPublic <DashboardExportPublic>`          |
+   | **Export public dashboard**           | :bdg-ref-warning:`🔑DashboardExportPublic <DashboardExportPublic>`           |
    +---------------------------------------+------------------------------------------------------------------------------+
-   | **Share public dashboard link**       | :bdg-ref-warning:`🔑ShareDashboardLink <ShareDashboardLink>`                |
+   | **Share public dashboard link**       | :bdg-ref-warning:`🔑ShareDashboardLink <ShareDashboardLink>`                 |
    +---------------------------------------+------------------------------------------------------------------------------+
 
 .. include:: ../includes/_common-icon.rst
