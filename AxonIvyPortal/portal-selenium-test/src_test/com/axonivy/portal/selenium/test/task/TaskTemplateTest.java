@@ -19,6 +19,8 @@ import com.axonivy.portal.selenium.page.TaskTemplatePage;
 import com.axonivy.portal.selenium.page.TopMenuTaskWidgetPage;
 import com.axonivy.portal.selenium.page.WorkingTaskDialogPage;
 
+import ch.ivy.addon.portalkit.enums.PortalPermission;
+
 @IvyWebTest
 public class TaskTemplateTest extends BaseTest {
 
@@ -40,6 +42,8 @@ public class TaskTemplateTest extends BaseTest {
   @Test
   public void testAddingANote() {
     createTestData();
+    // Fix test failed due to lacking permissions
+    grantSpecificPortalPermission(PortalPermission.TASK_CASE_ADD_NOTE);
     TaskIFrameTemplatePage taskTemplatePage = startATaskAndOpenCaseInfo();
     assertEquals(0, taskTemplatePage.countNoteItems());
     taskTemplatePage.addNewNote("Sample note message");

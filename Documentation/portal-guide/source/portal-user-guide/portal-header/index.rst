@@ -59,6 +59,8 @@ The :ref:`Admin Settings <admin-settings>` menu entry provides portal administra
 My Profile
 ^^^^^^^^^^
 
+.. _User Settings in the Axon Ivy Portal:
+
 The :ref:`my-profile` menu entry contains general settings, user language, and notification channels subscription settings.
 
 Dashboard Configuration

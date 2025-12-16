@@ -144,7 +144,7 @@
             <ui:param name="onDelegateComplete" value="initDataToDelegate()" />
             <ui:param name="onEscalationComplete" value="PF('escalation-task-dialog').show()" />
             <ui:param name="onWorkflowEventComplete" value="initWorkflowEventData()" />
-            <ui:param name="onCustomFieldsDialogComplete" value="initCustomFieldListData()" />
+            <ui:param name="onCustomFieldsDialogComplete" value="initCustomFieldTaskListData()" />
             <ui:param name="inFrame" value="#{cc.attrs.inFrame}" />
             <ui:param name="destroyTaskDialogComponent" value="#{cc.clientId}:destroy-task-confirmation-dialog" />
           </ui:include>
@@ -159,7 +159,7 @@
     <ui:param name="appendTo" value="@(body)" />
     <ui:param name="iconClass" value="si si-road-sign-warning" />
     <ui:param name="iconStyleClass" value="portal-dialog-warning-icon" />
-    <ui:param name="headerText" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/restTaskHeaderText')}" />
+    <ui:param name="headerText" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/resetTaskHeaderText')}" />
     <ui:param name="dialogContent" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/resetTaskWarning')}" />
 
     <ui:define name="dialogFooter">
@@ -182,7 +182,7 @@
     <ui:param name="appendTo" value="@(body)" />
     <ui:param name="iconClass" value="si si-road-sign-warning" />
     <ui:param name="iconStyleClass" value="portal-dialog-warning-icon" />
-    <ui:param name="headerText" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/restTaskHeaderText')}" />
+    <ui:param name="headerText" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/resetTaskHeaderText')}" />
     <ui:param name="dialogContent" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/resetTaskWarning')}" />
 
     <ui:define name="dialogFooter">
