@@ -595,6 +595,6 @@ jobs:
           with:
             artifact: artifacts
             name: Selenium tests
-            path: '*.xml'
+            path: 'surefire-reports/*.xml'
             reporter: java-junit
             only-summary: 'false'
