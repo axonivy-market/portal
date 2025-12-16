@@ -5620,7 +5620,8 @@ msgid ""
 "warning:`🔑WorkflowEventReadAll`"
 msgstr ""
 ":bdg-ref-warning:`🔑TaskDisplayWorkflowEventAction "
-"<TaskDisplayWorkflowEventAction>` および:bdg-warning:`🔑WorkflowEventReadAll`"
+"<TaskDisplayWorkflowEventAction>` および :bdg-"
+"warning:`🔑WorkflowEventReadAll`"
 
 #: ../../source/portal-user-guide/full-task-list/index.rst:331
 msgid ""
