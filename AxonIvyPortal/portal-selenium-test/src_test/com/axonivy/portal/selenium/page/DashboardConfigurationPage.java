@@ -17,6 +17,7 @@ import com.axonivy.portal.selenium.common.Sleeper;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
+import com.codeborne.selenide.conditions.CssClass;
 
 public class DashboardConfigurationPage extends TemplatePage {
 
@@ -37,6 +38,7 @@ public class DashboardConfigurationPage extends TemplatePage {
   public SelenideElement getDashboardConfigurationPageWithActionsMenu() {
     waitForDashboardConfigurationTypeSelectionAppear();
     getDashboardConfigurationActionMenu();
+    $("div[id$='dashboard-configuration-action-menu']").shouldNotHave(Condition.cssClass("ui-connected-overlay-enter"));
     return $("div[id$='configuration-group']"); 
   }
 
