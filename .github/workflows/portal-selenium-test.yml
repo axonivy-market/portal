@@ -383,21 +383,15 @@ jobs:
           run: |
             cat AxonIvyPortal/portal-selenium-test/target/testEngineOut.log 
 
-        - name: Archive screenshot image
+        - name: Archive artifacts
           uses: actions/upload-artifact@v4
           with:
-            name: screenshots
+            name: artifacts
             retention-days: 5
             path: |
               AxonIvyPortal/portal-selenium-test/target/selenide/reports/*
-
-        - name: Archive test reports
-          uses: actions/upload-artifact@v4
-          with:
-            name: selenium-test-reports
-            retention-days: 5
-            path: |
               AxonIvyPortal/portal-selenium-test/target/surefire-reports/*
+              AxonIvyPortal/portal-selenium-test/target/testEngineOut.log
 
         - name: Show inputs
           run: |
