@@ -71,18 +71,7 @@
               <goal>stop-test-engine</goal>
             </goals>
             <phase>post-integration-test</phase>
-          </execution>
-          <execution>
-            <id>portaltesthelper.deploy</id>
-            <goals>
-              <goal>deploy-to-engine</goal>
-            </goals>
-            <configuration>
-              <deployFile>..\PortalKitTestHelper\target\portalKitTestHelper-${project.version}.iar</deployFile>
-              <deployToEngineApplication>demo-portal</deployToEngineApplication>
-            </configuration>
-            <phase>process-test-classes</phase>
-          </execution>
+          </execution>          
           <execution>
             <id>internalsupport.deploy</id>
             <goals>
