@@ -89,7 +89,7 @@ public final class PortalDateTimePatternAPI {
     return GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.HIDE_TIME, Boolean.FALSE);
   }
   
-  private static boolean isDateFilterWithTime() {
+  private static Boolean isDateFilterWithTime() {
     return GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.DATE_FILTER_WITH_TIME, Boolean.FALSE);
   }
 }

@@ -32,7 +32,7 @@
                 <h:panelGroup class="MarTop20">
                   <p:outputLabel for="from" value="#{ivy.cms.co('/Labels/LeaveRequest/from')}" />
                   <p:datePicker id="from" value="#{data.leaveRequestData.from}"
-                    styleClass="MarTop10" pattern="#{}"
+                    styleClass="MarTop10" pattern="#{dateTimeExampleBean.dateTimePattern}"
                     disabled="true" />
                 </h:panelGroup>
 

@@ -12,7 +12,6 @@ import org.apache.commons.lang3.Strings;
 import com.axonivy.portal.components.dto.BusinessDetailsDTO;
 import com.axonivy.portal.components.service.exception.PortalException;
 
-import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.IWorkflowSession;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
@@ -61,7 +60,7 @@ public class BusinessDetailsAPI {
       if (parameters != null && !parameters.isEmpty()) {
         parameters.forEach((key, value) -> {
           params.append("&")
-                .append(key)
+                .append(URLEncoder.encode(key, StandardCharsets.UTF_8))
                 .append("=")
                 .append(URLEncoder.encode(value, StandardCharsets.UTF_8));
         });
@@ -92,6 +91,25 @@ public class BusinessDetailsAPI {
     create(businessDetailsDTO);
   }
   
+  /**
+   * Creates and sets path to case custom string field {@code businessDetails} of current case 
+   * for displaying business case details page with URL parameters.
+   *
+   * <p>This method builds a {@link BusinessDetailsDTO} with the 
+   * provided link and parameters, then delegates to {@link #create(BusinessDetailsDTO)}.</p>
+   *
+   * <p>Examples:</p>
+   * <pre><code>Map&lt;String, String&gt; params = new HashMap&lt;&gt;();
+   * params.put("customerName", "John Doe");
+   * params.put("mode", "view");
+   * BusinessDetailsAPI.create(
+   *   "designer/portal-components-examples/Start Processes/BusinessDetails/showInvestmentRequestCustomFields.ivp",
+   *   params
+   * );</code></pre>
+   *
+   * @param link String could be an external link or {@link IWebStartable#getId() IWebStartable ID}
+   * @param parameters URL parameters to append to the business details link, can be null or empty
+   */
   public static void create(String link, Map<String, String> parameters) {
     BusinessDetailsDTO businessDetailsDTO = BusinessDetailsDTO.builder()
         .path(link)

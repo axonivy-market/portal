@@ -47,6 +47,10 @@ public class BusinessDetailsDTO {
     return isEmbedInFrame;
   }
   
+  /**
+   * Gets the parameters map
+   * @return map of parameters as key-value pairs
+   */
   public Map<String, String> getParameters() {
     return parameters;
   }
@@ -108,8 +112,8 @@ public class BusinessDetailsDTO {
      *
      * @return Builder
      */
-    public Builder parameters(Map<String, String> parameters) {  
-      this.parameters = parameters;  
+    public Builder parameters(Map<String, String> parameters) {
+      this.parameters = parameters;
       return this;
     }
     
