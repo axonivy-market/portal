@@ -1,6 +1,7 @@
 package com.axonivy.portal.components.publicapi;
 
 import java.text.DateFormat;
+
 import java.text.SimpleDateFormat;
 
 import com.axonivy.portal.components.enums.GlobalVariable;
@@ -8,6 +9,10 @@ import com.axonivy.portal.components.service.GlobalSettingService;
 
 import ch.ivyteam.ivy.environment.Ivy;
 
+/**
+ * Portal API for date time pattern settings
+ *
+ */
 public final class PortalDateTimePatternAPI {
   private static final String SPACE_CHARACTER = " ";
   private static final String COMMA_CHARACTER = ",";
@@ -15,25 +20,42 @@ public final class PortalDateTimePatternAPI {
   
   private PortalDateTimePatternAPI() {}
   
-  public static String getGlobalDateTimePattern() {
-    return isTimeHidden() ? getDatePattern() : getDateTimePattern();
-  }
-  
-  public static String getDateTimePatternForDatePicker(boolean isDateFilter) {
-    return isYearHidden() ? getDateWithoutYearPattern(getDefaultDateTimePattern(isDateFilter, DateFormat.SHORT)) :
-            getDefaultDateTimePattern(isDateFilter, DateFormat.SHORT);
-  }
-
-  public static String getDatePatternForDatePicker() {
-    return isYearHidden() ? getDateWithoutYearPattern(getDefaultDatePattern(DateFormat.SHORT)) :
-            getDefaultDatePattern(DateFormat.SHORT);
+  /**
+   * Get date time pattern based on these variables Portal.DateTimeFormat.HideTime and Portal.DateTimeFormat.HideYear
+   * 
+   * @return date time pattern string
+   */
+  public static String getDateTimePattern() {
+    return isTimeHidden() ? getDatePattern() : getFullDateTimePattern();
   }
 
+  /**
+   * Get the date pattern based on the variable Portal.DateTimeFormat.HideYear
+   * 
+   * @return date pattern string
+   */
   public static String getDatePattern() {
     return getDatePatternByYearSetting();
   }
+  
+  /**
+   * Get the date time pattern for filtering based on the variable Portal.DateTimeFormat.DateFilterWithTime
+   * 
+   * @param isDateFilter - true if this is for date filter
+   * @param dateFormat - the formatting style from DateFormat (e.g., DateFormat.SHORT or DateFormat.MEDIUM)
+   * @return date time pattern string
+   */
+  public static String getDateTimePatternForFiltering(boolean isDateFilter, int dateFormat) {
+    String pattern = ((SimpleDateFormat) getDefaultDateFormatter(dateFormat)).toPattern().replaceAll("y+", "yyyy");
 
-  public static String getDateTimePattern() {
+    if (isDateFilter) {
+      return isDateFilterWithTime() ? pattern + SPACE_CHARACTER + Ivy.cms().co("/patterns/timePattern") : pattern;
+    }
+
+    return !isTimeHidden() ? pattern + SPACE_CHARACTER + Ivy.cms().co("/patterns/timePattern") : pattern;
+  }
+
+  private static String getFullDateTimePattern() {
     return getDatePatternByYearSetting() + SPACE_CHARACTER + Ivy.cms().co("/patterns/timePattern");
   }
   
@@ -50,27 +72,13 @@ public final class PortalDateTimePatternAPI {
   private static String getDefaultDatePattern() {
     return ((SimpleDateFormat) getDefaultDateFormatter()).toPattern();
   }
-  
-  private static String getDefaultDatePattern(int dateFormat) {
-    return ((SimpleDateFormat) getDefaultDateFormatter(dateFormat)).toPattern().replaceAll("y+", "yyyy");
-  }
-  
+
   private static DateFormat getDefaultDateFormatter() {
     return DateFormat.getDateInstance(DateFormat.MEDIUM, Ivy.session().getFormattingLocale());
   }
   
   private static DateFormat getDefaultDateFormatter(int dateFormat) {
     return DateFormat.getDateInstance(dateFormat, Ivy.session().getFormattingLocale());
-  }
-  
-  private static String getDefaultDateTimePattern(boolean isDateFilter, int dateFormat) {
-    String pattern = ((SimpleDateFormat) getDefaultDateFormatter(dateFormat)).toPattern().replaceAll("y+", "yyyy");
-
-    if (isDateFilter) {
-      return isDateFilterWithTime() ? pattern + SPACE_CHARACTER + Ivy.cms().co("/patterns/timePattern") : pattern;
-    }
-
-    return !isTimeHidden() ? pattern + SPACE_CHARACTER + Ivy.cms().co("/patterns/timePattern") : pattern;
   }
   
   private static Boolean isYearHidden() {
@@ -81,7 +89,7 @@ public final class PortalDateTimePatternAPI {
     return GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.HIDE_TIME, Boolean.FALSE);
   }
   
-  private static Boolean isDateFilterWithTime() {
+  private static boolean isDateFilterWithTime() {
     return GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.DATE_FILTER_WITH_TIME, Boolean.FALSE);
   }
 }
