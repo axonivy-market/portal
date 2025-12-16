@@ -433,7 +433,7 @@
       "name" : "valid file?",
       "config" : {
         "conditions" : {
-          "f78" : "org.apache.commons.lang.StringUtils.isBlank(in.message)"
+          "f78" : "org.apache.commons.lang3.StringUtils.isBlank(in.message)"
         }
       },
       "visual" : {
