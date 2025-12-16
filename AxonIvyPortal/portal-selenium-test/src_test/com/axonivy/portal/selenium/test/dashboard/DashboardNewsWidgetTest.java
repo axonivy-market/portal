@@ -45,6 +45,7 @@ public class DashboardNewsWidgetTest extends BaseTest {
     newDashboardPage = new NewDashboardPage();
     resetLanguageOfCurrentUser();
     updatePortalSetting(ENABLE_TRANSLATION_SERVICE.getKey(), "true");
+    updateTranslationVariable("DeeL");
   }
 
   @Test
