@@ -10,6 +10,7 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 
 import com.axonivy.portal.selenium.common.FileHelper;
+import com.axonivy.portal.selenium.common.Sleeper;
 import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
@@ -172,6 +173,7 @@ public class ProcessWidgetPage extends TemplatePage {
     $("[id='process-widget:process-view-mode:view-mode-selection:0']").ancestor(".ui-button")
         .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     $("[id$='process-widget:image-process-container']").shouldBe(appear, DEFAULT_TIMEOUT);
+    Sleeper.sleep(1000); // wait loading stable
   }
 
   public void selectGridMode() {
@@ -230,6 +232,7 @@ public class ProcessWidgetPage extends TemplatePage {
   public void enterSearchKeyword(String keyword) {
     liveSearchTextField = $(By.id(processWidgetId + ":process-search:non-ajax-keyword-filter"));
     liveSearchTextField.sendKeys(keyword);
+    Sleeper.sleep(1000); // wait for ajax finish loading after enter key
   }
 
   public SelenideElement getStartImageProcess(String processName, SelenideElement processListElement) {
