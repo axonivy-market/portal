@@ -17,7 +17,7 @@ pipeline {
           docker.build('build-portal-modules', '-f build/Dockerfile .').inside('-v /var/tools/maven-cache:/home/build/') {
             def modules = ['AxonIvyPortal/portal-components', 'AxonIvyPortal/portal', 'Showcase/portal-user-examples', 'Showcase/portal-developer-examples', 'Showcase/portal-components-examples']
             for (module in modules) {
-              maven cmd: "clean install -P-ivy -f ${module}/pom.xml"
+              maven cmd: "clean install -f ${module}/pom.xml"
             }
           }
         }
