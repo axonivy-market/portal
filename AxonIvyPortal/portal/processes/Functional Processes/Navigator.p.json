@@ -62,7 +62,7 @@
             "import ch.ivyteam.ivy.workflow.query.CaseQuery;",
             "import ch.ivyteam.ivy.workflow.ICase;",
             "",
-            "out.caze = ivy.wf.getCaseQueryExecutor().createCaseQuery().where().uuid().isEqual(in.caseId.uuid()).executor().firstResult() as ICase;"
+            "out.caze = ivy.wf.findCase(in.caseId.uuid()) as ICase;"
           ]
         }
       },
