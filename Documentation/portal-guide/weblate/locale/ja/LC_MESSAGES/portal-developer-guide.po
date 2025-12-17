@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Portal Guide ${revision}\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-12-16 07:26+0000\n"
-"PO-Revision-Date: 2025-12-17 02:13+0000\n"
+"PO-Revision-Date: 2025-12-17 04:00+0000\n"
 "Last-Translator: Thinh Nguyen <nht.8299@gmail.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/axonivy-portal/"
 "portal-le/doc/portal-doc-developer-guide/ja/>\n"
@@ -6499,7 +6499,9 @@ msgstr "**特別な形式でパラメータを定義します**"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-custom-widget.rst:28
 msgid "Parameters must be String variables named in format: ``type__name``"
-msgstr "パラメータは、``type__name`` の形式で命名された文字列変数である必要があります。"
+msgstr ""
+"パラメータは、``type__name`` の形式で命名された文字列変数である必要があります"
+"。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-custom-widget.rst:30
 msgid "|dashboard-custom-params|"
@@ -6683,7 +6685,9 @@ msgstr "**パラメータの種類**"
 msgid ""
 "``string`` - Text input field in configuration dialog. Accepts any string"
 " value."
-msgstr "``string`` - 設定ダイアログ内のテキスト入力フィールド。任意の文字列値を受け付けます。"
+msgstr ""
+"``string`` - 設定ダイアログ内のテキスト入力フィールド。任意の文字列値を受け付"
+"けます。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-custom-widget.rst:215
 msgid ""
@@ -9664,7 +9668,9 @@ msgstr "ケースレベル"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:84
 msgid "Set the ``embedInFrame`` String field in Case custom fields:"
-msgstr "ケースのカスタムフィールドで、``embedInFrame`` 文字列フィールドを設定してください。"
+msgstr ""
+"ケースのカスタムフィールドで、``embedInFrame`` 文字列フィールドを設定してくだ"
+"さい。"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:88
 msgid "Unset: Use Engine configuration"
@@ -9718,7 +9724,7 @@ msgstr "タスクの詳細"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:112
 msgid "``taskName`` (string)"
-msgstr "``taskName`` (文字列)"
+msgstr "``taskName`` (string)"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:113
 msgid "Custom text for the task name display."
@@ -9726,7 +9732,7 @@ msgstr "タスク名表示用のカスタムテキスト。"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:115
 msgid "``taskIcon`` (string)"
-msgstr "``taskIcon`` (文字列)"
+msgstr "``taskIcon`` (string)"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:116
 msgid "Icon using Streamline or Font Awesome (e.g., ``\"si si-bulb\"``)."
@@ -9746,7 +9752,7 @@ msgstr "大文字小文字に関する情報"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:124
 msgid "``caseId`` (string)"
-msgstr "``caseId`` (文字列)"
+msgstr "``caseId`` (string)"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:125
 msgid "ID of the case to display in case information dialog."
@@ -9766,7 +9772,7 @@ msgstr "処理手順"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:133
 msgid "``currentProcessStep`` (string/number)"
-msgstr "``currentProcessStep`` (文字列/数値)"
+msgstr "``currentProcessStep`` (string/number)"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:134
 msgid "Current step index or step name."
@@ -9774,7 +9780,7 @@ msgstr "現在のステップインデックスまたはステップ名。"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:136
 msgid "``processSteps`` (string/array)"
-msgstr "``processSteps`` (文字列/配列)"
+msgstr "``processSteps`` (string/array)"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:137
 msgid "List of step names or JSON string."
@@ -9790,7 +9796,7 @@ msgstr "``true`` = 大画面で全ステップを表示、``false`` = コンパ�
 
 #: ../../source/portal-developer-guide/iframe/index.rst:142
 msgid "``processChainDirection`` (string)"
-msgstr "``processChainDirection`` (文字列)"
+msgstr "``processChainDirection`` (string)"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:143
 msgid "``\"VERTICAL\"`` or ``\"HORIZONTAL\"``."
@@ -9798,7 +9804,7 @@ msgstr "``\"VERTICAL\"`` または ``\"HORIZONTAL\"``。"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:145
 msgid "``processChainShape`` (string)"
-msgstr "``processChainShape`` (文字列)"
+msgstr "``processChainShape`` (string)"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:146
 msgid "``\"LINE\"`` or ``\"CIRCLE\"``."
@@ -9846,7 +9852,7 @@ msgstr "``true`` = カード形式のコンテナで表示、``false`` = 標準�
 
 #: ../../source/portal-developer-guide/iframe/index.rst:166
 msgid "``viewName`` (string)"
-msgstr "``viewName`` (文字列)"
+msgstr "``viewName`` (string)"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:167
 msgid "Custom breadcrumb view (see View Names below)."
@@ -15923,7 +15929,7 @@ msgstr "以下のJSON設定を ``Portal.CustomMenuItems`` 変数に追加して�
 #: ../../source/portal-developer-guide/static-page/index.rst:185
 #: ../../source/portal-developer-guide/static-page/index.rst:302
 msgid "``menuKind`` (string, required)"
-msgstr "``menuKind`` (文字列、必須)"
+msgstr "``menuKind`` (string、必須)"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:186
 #: ../../source/portal-developer-guide/static-page/index.rst:303
@@ -15932,7 +15938,7 @@ msgstr "静的ページメニュー項目には、``\"STATIC_PAGE\"`` に設定�
 
 #: ../../source/portal-developer-guide/static-page/index.rst:188
 msgid "``link`` (string, required)"
-msgstr "``link`` (文字列、必須)"
+msgstr "``link`` (string、必須)"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:189
 msgid "Relative path to your static page from the application view directory"
@@ -15952,7 +15958,7 @@ msgstr "例：``portal-components-examples/faces/view/help/user-guide.xhtml``"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:194
 msgid "``label`` (string, required)"
-msgstr "``label`` (文字列、必須)"
+msgstr "``label`` (string、必須)"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:195
 msgid "Display name shown in the main menu"
@@ -16000,7 +16006,7 @@ msgstr "メニュー項目の順序制御に使用します"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:213
 msgid "``version`` (string, optional)"
-msgstr "``version`` (文字列、オプション)"
+msgstr "``version`` (string、オプション)"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:214
 msgid "Portal version for compatibility tracking"
