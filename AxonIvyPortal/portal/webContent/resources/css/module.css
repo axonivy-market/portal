@@ -5612,6 +5612,10 @@ a.dashboard-action-container label {
   align-items: center;
 }
 
+.task-security-member-container {
+  max-width: 80% !important;
+}
+
 .user-fullname-container {
   margin-left: 3px;
 }
