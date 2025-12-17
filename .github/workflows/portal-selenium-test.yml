@@ -18,7 +18,6 @@ on:
 
 env:
   ENGINE_DIR: $GITHUB_WORKSPACE/ivy/engine
-  ENGINE_URL: https://developer.axonivy.com/permalink/nightly/axonivy-engine.zip
 
 jobs:
   show-branch-info:
@@ -336,7 +335,7 @@ jobs:
         - name: Download engine
           run: |
             cd $ENGINE_DIR
-            wget $ENGINE_URL -O axonivy-engine.zip
+            wget ${{ inputs.engineDownloadURL }} -O axonivy-engine.zip
             unzip -o axonivy-engine.zip -d .
             rm axonivy-engine.zip
 
