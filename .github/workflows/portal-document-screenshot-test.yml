@@ -24,7 +24,7 @@ on:
       engineDownloadURL:
         description: 'url to download engine'
         type: string
-        default: 'https://developer.axonivy.com/permalink/nightly/axonivy-engine.zip'
+        default: 'https://developer.axonivy.com/permalink/nightly-13.2/axonivy-engine.zip'
         required: true
 
 env:
@@ -53,7 +53,7 @@ jobs:
           echo "Check out code from ${{ github.ref_name }}" >> $GITHUB_STEP_SUMMARY
           echo "Build screenshot for document. Use 2 inputs:" >> $GITHUB_STEP_SUMMARY
           echo "- engineDownloadURL: ${{ inputs.engineDownloadURL }}" >>  $GITHUB_STEP_SUMMARY
-          echo "Default value: https://developer.axonivy.com/permalink/nightly/axonivy-engine.zip" >> $GITHUB_STEP_SUMMARY
+          echo "Default value: https://developer.axonivy.com/permalink/nightly-13.2/axonivy-engine.zip" >> $GITHUB_STEP_SUMMARY
           echo "- testPatternToRun: ${{ inputs.testPatternToRun }} " >> $GITHUB_STEP_SUMMARY
           echo "Default value: com.axonivy.portal.selenium.document.screenshot.*Test" >> $GITHUB_STEP_SUMMARY
 

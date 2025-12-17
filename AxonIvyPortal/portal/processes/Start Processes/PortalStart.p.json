@@ -2177,7 +2177,7 @@
                 "  ITask task = ivy.wf.findTask(Long.valueOf(in.endedTaskId));",
                 "  caseId = task.getCase().getId();",
                 "}",
-                "out.caseSelected = ivy.wf.getGlobalContext().getCaseQueryExecutor().createCaseQuery().where().caseId().isEqual(caseId).executor().firstResult() as ICase;"
+                "out.caseSelected = ivy.wf.getCaseQueryExecutor().createCaseQuery().where().caseId().isEqual(caseId).executor().firstResult() as ICase;"
               ]
             },
             "sudo" : true

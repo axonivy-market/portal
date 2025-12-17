@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Portal Guide ${revision}\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-16 07:26+0000\n"
-"PO-Revision-Date: 2025-12-16 07:45+0000\n"
-"Last-Translator: Thang Huynh Huu Quyet <hhqthang@axonactive.com>\n"
+"POT-Creation-Date: 2025-12-16 10:37+0000\n"
+"PO-Revision-Date: 2025-12-16 10:47+0000\n"
+"Last-Translator: Thinh Nguyen <nht.8299@gmail.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/axonivy-portal/"
 "portal-le/doc/portal-doc-user-guide/ja/>\n"
 "Language: ja\n"
@@ -43,6 +43,7 @@ msgid "Shortcut"
 msgstr "ショートカット"
 
 #: ../../source/portal-user-guide/accessibility/index.rst:17
+#: ../../source/portal-user-guide/dashboard-configuration/index.rst:259
 #: ../../source/portal-user-guide/full-case-list/index.rst:361
 #: ../../source/portal-user-guide/full-process-list/index.rst:200
 #: ../../source/portal-user-guide/full-task-list/index.rst:61
@@ -1067,9 +1068,11 @@ msgstr "Portal.DateTimeFormat.DateFilterWithTime"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid ""
-"Set to true to enable date filtering with time. This setting affects task"
-" widget and case widget."
-msgstr "時間による日付フィルタリングを有効にするにはtrueを設定します。この設定はタスクウィジェットとケースウィジェットに影響します。"
+"Set to true to enable date filtering with time. This setting affects on "
+"task list, case list, and statistics."
+msgstr ""
+"trueに設定すると、日付と時刻によるフィルタリングが可能になります。この設定は"
+"タスクリスト、ケースリスト、統計に影響します。"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.DateTimeFormat.HideTime"
@@ -2816,6 +2819,7 @@ msgid "The Dashboard Configuration page has two tabs:"
 msgstr "ダッシュボード設定ページには、以下の2つのタブがございます："
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:23
+#: ../../source/portal-user-guide/dashboard-configuration/index.rst:259
 #: ../../source/portal-user-guide/full-case-list/index.rst:361
 #: ../../source/portal-user-guide/full-process-list/index.rst:200
 #: ../../source/portal-user-guide/full-task-list/index.rst:310
@@ -3400,6 +3404,46 @@ msgstr "権限リファレンス"
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:253
 msgid "Different dashboard actions require specific permissions:"
 msgstr "ダッシュボードの操作内容によって、必要な権限が異なります："
+
+#: ../../source/portal-user-guide/dashboard-configuration/index.rst:261
+msgid "**Import private dashboard**"
+msgstr "**プライベートダッシュボードをインポート**"
+
+#: ../../source/portal-user-guide/dashboard-configuration/index.rst:261
+msgid ":bdg-ref-warning:`🔑DashboardImportOwn <DashboardImportOwn>`"
+msgstr ":bdg-ref-warning:`🔑DashboardImportOwn <DashboardImportOwn>`"
+
+#: ../../source/portal-user-guide/dashboard-configuration/index.rst:263
+msgid "**Export private dashboard**"
+msgstr "**非公開ダッシュボードのエクスポート**"
+
+#: ../../source/portal-user-guide/dashboard-configuration/index.rst:263
+msgid ":bdg-ref-warning:`🔑DashboardExportOwn <DashboardExportOwn>`"
+msgstr ":bdg-ref-warning:`🔑DashboardExportOwn <DashboardExportOwn>`"
+
+#: ../../source/portal-user-guide/dashboard-configuration/index.rst:265
+msgid "**Import public dashboard**"
+msgstr "**公開ダッシュボードのインポート**"
+
+#: ../../source/portal-user-guide/dashboard-configuration/index.rst:265
+msgid ":bdg-ref-warning:`🔑DashboardImportPublic <DashboardImportPublic>`"
+msgstr ":bdg-ref-warning:`🔑DashboardImportPublic <DashboardImportPublic>`"
+
+#: ../../source/portal-user-guide/dashboard-configuration/index.rst:267
+msgid "**Export public dashboard**"
+msgstr "**公開ダッシュボードのエクスポート**"
+
+#: ../../source/portal-user-guide/dashboard-configuration/index.rst:267
+msgid ":bdg-ref-warning:`🔑DashboardExportPublic <DashboardExportPublic>`"
+msgstr ":bdg-ref-warning:`🔑DashboardExportPublic <DashboardExportPublic>`"
+
+#: ../../source/portal-user-guide/dashboard-configuration/index.rst:269
+msgid "**Share public dashboard link**"
+msgstr "**公開ダッシュボードのリンクを共有する**"
+
+#: ../../source/portal-user-guide/dashboard-configuration/index.rst:269
+msgid ":bdg-ref-warning:`🔑ShareDashboardLink <ShareDashboardLink>`"
+msgstr ":bdg-ref-warning:`🔑ShareDashboardLink <ShareDashboardLink>`"
 
 #: ../../source/portal-user-guide/demo-processes/index.rst:4
 msgid "Demo Processes"
@@ -7890,8 +7934,8 @@ msgid ""
 "translated. Click :guilabel:`Auto translation` to accept the translated "
 "text."
 msgstr ""
-"翻訳サービスが有効な場合、テキストは自動的に翻訳されます。翻訳されたテキスト"
-"を受け入れるには、:guilabel:`自動翻訳` をクリックしてください。"
+"翻訳サービスが有効な場合、テキストは自動的に翻訳されます。翻訳されたテキストを受け入れるには、:guilabel:`自動翻訳` "
+"をクリックしてください。"
 
 #: ../../source/portal-user-guide/portal-multi-language/index.rst:48
 msgid ""
