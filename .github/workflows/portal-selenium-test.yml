@@ -13,12 +13,12 @@ on:
         description: |
           url to download engine, default is the nightly build.
         type: string
-        default: 'https://developer.axonivy.com/permalink/nightly/axonivy-engine.zip'
+        default: 'https://developer.axonivy.com/permalink/nightly-13.2/axonivy-engine.zip'
         required: true
 
 env:
   ENGINE_DIR: $GITHUB_WORKSPACE/ivy/engine
-  ENGINE_URL: https://developer.axonivy.com/permalink/nightly/axonivy-engine.zip
+  ENGINE_URL: https://developer.axonivy.com/permalink/nightly-13.2/axonivy-engine.zip
 
 jobs:
   show-branch-info:
