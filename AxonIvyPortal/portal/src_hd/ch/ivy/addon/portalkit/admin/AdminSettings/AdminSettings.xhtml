@@ -83,11 +83,13 @@
                 <p:menuitem id="edit-application"
                   global="false"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}"
-                  icon="si si-graphic-tablet-drawing-pen"
+                  icon="si si-graphic-tablet-drawing-pen" 
                   oncomplete="PF('appDialog').show()"
                   actionListener="#{thirdPartyApplicationBean.editApplication(app)}"
                   update=":#{p:resolveFirstComponentWithId('appDialog', view).clientId}"
-                  process="@this" />
+                  process="@this">
+                  <p:resetInput target="admin-setting-component:appDialog" />
+                  </p:menuitem>
                 <p:menuitem id="delete-application"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
                   icon="si si-bin-1" styleClass="color-destroy"
