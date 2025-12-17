@@ -499,6 +499,7 @@ jobs:
                     // === Find all testcase elements that have failures, errors, or flaky failures ===
                     let testcaseMatches = [];
                     const parts = content.split('<testcase');
+                    const closingTag = '</testcase>';
                     for (let i = 1; i < parts.length; i++) {
                       let testcaseContent = '<testcase' + parts[i];
                       const selfClosingMatch = testcaseContent.match(/<testcase[^>]*\/>/);
@@ -506,9 +507,9 @@ jobs:
                         testcaseMatches.push(selfClosingMatch[0]);
                         continue;
                       }
-                      const closingIndex = testcaseContent.indexOf('</testcase>');
+                      const closingIndex = testcaseContent.indexOf(closingTag);
                       if (closingIndex !== -1) {
-                        testcaseMatches.push(testcaseContent.substring(0, closingIndex + 11)); // +11 for '</testcase>'
+                        testcaseMatches.push(testcaseContent.substring(0, closingIndex + closingTag.length));
                       }
                     }
 
@@ -573,16 +574,18 @@ jobs:
                     summaryText += formatTestsByClass(flakyTests);
                   }
 
-                  summaryText += `\n### 📋 List of Test Methods for Re-running Failed Tests\n\n`;
-                  
-                  const mavenTestList = failedTests
-                    .map(test => {
-                      const simpleClassName = test.class.split('.').pop();
-                      return `${simpleClassName}#${test.test}`;
-                    })
-                    .join(',');
-                  
-                  summaryText += `\`\`\`\n${mavenTestList}\n\`\`\`\n`;
+                  if (failedTests.length > 0) {
+                    summaryText += `\n### 📋 List of Test Methods for Re-running Failed Tests\n\n`;
+                    
+                    const mavenTestList = failedTests
+                      .map(test => {
+                        const simpleClassName = test.class.split('.').pop();
+                        return `${simpleClassName}#${test.test}`;
+                      })
+                      .join(',');
+                    
+                    summaryText += `\`\`\`\n${mavenTestList}\n\`\`\`\n`;
+                  }
                   
                   if (flakyTests.length > 0) {
                     summaryText += `\n### 📋 List of Test Methods for Re-running Flaky Tests\n\n`;
@@ -598,7 +601,7 @@ jobs:
                   }
                 }
 
-                // === HELPER FUNCTION to sort tests by simple class name, without package names ===
+                // === HELPER FUNCTION: group tests by class, sort by simple class name, and format as a markdown code block ===
                 function formatTestsByClass(tests) {
                   const grouped = {};
                   tests.forEach(test => {
