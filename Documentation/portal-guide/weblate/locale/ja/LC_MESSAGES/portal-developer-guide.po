@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Portal Guide ${revision}\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-12-16 07:26+0000\n"
-"PO-Revision-Date: 2025-12-17 04:00+0000\n"
+"PO-Revision-Date: 2025-12-17 04:17+0000\n"
 "Last-Translator: Thinh Nguyen <nht.8299@gmail.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/axonivy-portal/"
 "portal-le/doc/portal-doc-developer-guide/ja/>\n"
@@ -1666,11 +1666,11 @@ msgstr "``h``：HTML DOMスタイル ``height`` は ``60 * h + 20 * (高さ - 1)
 
 #: ../../source/portal-developer-guide/customization/case-item-details.rst:139
 msgid "``styleClass`` (optional): add CSS Classes to HTML DOM."
-msgstr "``styleClass`` （オプション）：CSS クラスを HTML DOM に追加します。"
+msgstr "``styleClass`` （任意）：CSS クラスを HTML DOM に追加します。"
 
 #: ../../source/portal-developer-guide/customization/case-item-details.rst:141
 msgid "``style`` (optional): add inline style to HTML DOM."
-msgstr "``style`` （オプション）：インラインスタイルを HTML DOM に追加します。"
+msgstr "``style`` （任意）：インラインスタイルを HTML DOM に追加します。"
 
 #: ../../source/portal-developer-guide/customization/case-item-details.rst:143
 msgid ""
@@ -4128,13 +4128,15 @@ msgstr "``h``：HTML DOM スタイル ``height`` は ``60 * h + 20 * (h - 1)`` �
 
 #: ../../source/portal-developer-guide/customization/task-item-details.rst:108
 msgid "``styleClass`` (optional): add CSS Classes to HTML DOM"
-msgstr "``styleClass`` （オプション）：CSS クラスを HTML DOM に追加します。"
+msgstr "``styleClass`` （任意）：CSS クラスを HTML DOM に追加します。"
 
 #: ../../source/portal-developer-guide/customization/task-item-details.rst:110
 msgid ""
 "``style`` (optional): add inline style to HTML DOM (avoid inline styles "
 "when possible)."
-msgstr "``style`` (オプション): HTML DOM にインラインスタイルを追加します（可能な限りインラインスタイルは避けてください）。"
+msgstr ""
+"``style`` (任意): HTML DOM にインラインスタイルを追加します（可能な限り"
+"インラインスタイルは避けてください）。"
 
 #: ../../source/portal-developer-guide/customization/task-item-details.rst:112
 msgid "``data`` (for custom widget): data for custom widget using iframe"
@@ -4588,7 +4590,7 @@ msgstr "推奨：ニュース表示に適した5～8行"
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:130
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-welcome-widget.rst:91
 msgid "``styleClass`` (string, optional)"
-msgstr "``styleClass`` (文字列、オプション)"
+msgstr "``styleClass`` (文字列、任意)"
 
 #: ../../source/portal-developer-guide/dashboard/dashboard-newsfeed-widget.rst:117
 msgid "Custom CSS classes applied to widget container"
@@ -4607,7 +4609,7 @@ msgstr "例：``\"news-widget-custom highlight-border\"``"
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:187
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-welcome-widget.rst:94
 msgid "``style`` (string, optional)"
-msgstr "``style`` (文字列、オプション)"
+msgstr "``style`` (文字列、任意)"
 
 #: ../../source/portal-developer-guide/dashboard/dashboard-newsfeed-widget.rst:123
 msgid "Inline CSS styles applied to widget container"
@@ -6981,7 +6983,7 @@ msgstr "視覚的スタイル：``\"ICON\"`` （アイコン表示）または `
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:130
 #: ../../source/portal-developer-guide/static-page/index.rst:200
 msgid "``icon`` (string, optional)"
-msgstr "``icon`` (文字列、オプション)"
+msgstr "``icon`` (文字列、任意)"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:131
 msgid ""
@@ -7001,7 +7003,7 @@ msgstr "``visualType`` が ``\"IMAGE\"`` の場合に使用されます："
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:137
 msgid "``imageContent`` (string, optional)"
-msgstr "``imageContent`` (文字列、オプション)"
+msgstr "``imageContent`` (文字列、任意)"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:138
 msgid ""
@@ -7029,7 +7031,7 @@ msgstr "画像ファイルの拡張子（例：``、\"jpeg\"``、``、\"png\"``�
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:146
 msgid "``imageContentDarkMode`` (string, optional)"
-msgstr "``imageContentDarkMode`` (文字列、オプション)"
+msgstr "``imageContentDarkMode`` (文字列、任意)"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:147
 msgid "Base64-encoded image data for dark mode"
@@ -7813,7 +7815,7 @@ msgstr "**推奨タスクウィジェットサイズ：** 幅8～12列、高さ8
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:141
 msgid "``sortField`` (string, optional)"
-msgstr "``sortField`` (文字列、オプション)"
+msgstr "``sortField`` (文字列、任意)"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:142
 msgid ""
@@ -7881,7 +7883,7 @@ msgstr "``quickSearch`` (文字列、デフォルト:``\"false\"``)"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:181
 msgid "``headers`` (array, optional)"
-msgstr "``headers`` (配列、オプション)"
+msgstr "``headers`` (配列、任意)"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:184
 msgid "``type`` (string, default: ``\"STANDARD\"``)"
@@ -8244,7 +8246,7 @@ msgstr "テンプレート表示用のアイコンクラスを簡略化してく
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-template.rst:100
 msgid "``dashboard`` (object, required)"
-msgstr "``dashboard`` (object, 必須)"
+msgstr "``dashboard``（オブジェクト、必須）"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-template.rst:101
 msgid "Complete dashboard configuration (see Dashboard Configuration below)"
@@ -8387,7 +8389,7 @@ msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-welcome-widget.rst:108
 msgid "``welcomeTextColor`` (string, optional)"
-msgstr "``welcomeTextColor`` (文字列、オプション)"
+msgstr "``welcomeTextColor`` (文字列、任意)"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-welcome-widget.rst:109
 msgid "Text color in light mode (CSS color value, e.g., ``#FFFFFF``)"
@@ -8395,7 +8397,7 @@ msgstr "ライトモードでのテキスト色（CSSカラー値、例：``#FFF
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-welcome-widget.rst:111
 msgid "``welcomeTextColorDarkMode`` (string, optional)"
-msgstr "``welcomeTextColorDarkMode`` (文字列、オプション)"
+msgstr "``welcomeTextColorDarkMode`` (文字列、任意)"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-welcome-widget.rst:112
 msgid "Text color in dark mode (CSS color value)"
@@ -8413,7 +8415,7 @@ msgstr "``true`` = 時間ベースの挨拶＋カスタムテキストを表示�
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-welcome-widget.rst:117
 msgid "``welcomeTextStyleClass`` (string, optional)"
-msgstr "``welcomeTextStyleClass`` (文字列、オプション)"
+msgstr "``welcomeTextStyleClass`` (文字列、任意)"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-welcome-widget.rst:118
 msgid "CSS class for text styling"
@@ -8433,7 +8435,7 @@ msgstr "画像リサイズモード：``NONE``、``FILL``、``COVER``、``CONTAI
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-welcome-widget.rst:125
 msgid "``imageStyleClass`` (string, optional)"
-msgstr "``imageStyleClass`` (文字列、オプション)"
+msgstr "``imageStyleClass`` (文字列、任意)"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-welcome-widget.rst:126
 msgid "CSS class for image container"
@@ -8441,7 +8443,7 @@ msgstr "画像コンテナ用のCSSクラス"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-welcome-widget.rst:128
 msgid "``imageInlineStyle`` (string, optional)"
-msgstr "``imageInlineStyle`` (文字列、オプション)"
+msgstr "``imageInlineStyle`` (文字列、任意)"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-welcome-widget.rst:129
 msgid "Inline CSS for image container"
@@ -8582,11 +8584,13 @@ msgstr "``h``：HTML DOMスタイル ``height`` は ``60 * h + 20 * (h - 1)`` �
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-welcome-widget.rst:188
 msgid "``styleClass`` (optional): add CSS Classes to HTML DOM of the widget"
-msgstr "``styleClass`` （オプション）：CSS クラスをウィジェットの HTML DOM に追加します。"
+msgstr "``styleClass`` （任意）：CSS クラスをウィジェットの HTML DOM に追加します。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-welcome-widget.rst:190
 msgid "``style`` (optional): add inline style to HTML DOM of the widget"
-msgstr "``style`` （オプション）：インラインスタイルをウィジェットの HTML DOM に追加します。"
+msgstr ""
+"``style`` （任意）：インラインスタイルをウィジェットの HTML DOM に追加します"
+"。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-welcome-widget.rst:192
 msgid ""
@@ -8785,7 +8789,9 @@ msgstr "**ポータルアプリケーション**: portal-components + portal"
 
 #: ../../source/portal-developer-guide/deployment/index.rst:23
 msgid "**Business Application(s)**: portal-components (optional) + your projects"
-msgstr "**ビジネスアプリケーション** ：portal-components（オプション）＋お客様のプロジェクト"
+msgstr ""
+"**ビジネスアプリケーション** ：portal-components（任意）＋お客様の"
+"プロジェクト"
 
 #: ../../source/portal-developer-guide/deployment/index.rst:42
 msgid "Before deploying Portal, ensure you have:"
@@ -9724,7 +9730,7 @@ msgstr "タスクの詳細"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:112
 msgid "``taskName`` (string)"
-msgstr "``taskName`` (string)"
+msgstr "``taskName`` (文字列)"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:113
 msgid "Custom text for the task name display."
@@ -9732,7 +9738,7 @@ msgstr "タスク名表示用のカスタムテキスト。"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:115
 msgid "``taskIcon`` (string)"
-msgstr "``taskIcon`` (string)"
+msgstr "``taskIcon`` (文字列)"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:116
 msgid "Icon using Streamline or Font Awesome (e.g., ``\"si si-bulb\"``)."
@@ -9752,7 +9758,7 @@ msgstr "大文字小文字に関する情報"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:124
 msgid "``caseId`` (string)"
-msgstr "``caseId`` (string)"
+msgstr "``caseId`` (文字列)"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:125
 msgid "ID of the case to display in case information dialog."
@@ -9772,7 +9778,7 @@ msgstr "処理手順"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:133
 msgid "``currentProcessStep`` (string/number)"
-msgstr "``currentProcessStep`` (string/number)"
+msgstr "``currentProcessStep`` (文字列/数値)"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:134
 msgid "Current step index or step name."
@@ -9780,7 +9786,7 @@ msgstr "現在のステップインデックスまたはステップ名。"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:136
 msgid "``processSteps`` (string/array)"
-msgstr "``processSteps`` (string/array)"
+msgstr "``processSteps`` (文字列/配列)"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:137
 msgid "List of step names or JSON string."
@@ -9796,7 +9802,7 @@ msgstr "``true`` = 大画面で全ステップを表示、``false`` = コンパ�
 
 #: ../../source/portal-developer-guide/iframe/index.rst:142
 msgid "``processChainDirection`` (string)"
-msgstr "``processChainDirection`` (string)"
+msgstr "``processChainDirection`` (文字列)"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:143
 msgid "``\"VERTICAL\"`` or ``\"HORIZONTAL\"``."
@@ -9804,7 +9810,7 @@ msgstr "``\"VERTICAL\"`` または ``\"HORIZONTAL\"``。"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:145
 msgid "``processChainShape`` (string)"
-msgstr "``processChainShape`` (string)"
+msgstr "``processChainShape`` (文字列)"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:146
 msgid "``\"LINE\"`` or ``\"CIRCLE\"``."
@@ -9852,7 +9858,7 @@ msgstr "``true`` = カード形式のコンテナで表示、``false`` = 標準�
 
 #: ../../source/portal-developer-guide/iframe/index.rst:166
 msgid "``viewName`` (string)"
-msgstr "``viewName`` (string)"
+msgstr "``viewName`` (文字列)"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:167
 msgid "Custom breadcrumb view (see View Names below)."
@@ -15469,15 +15475,15 @@ msgstr "``type``: フィールドのタイプ。`standard` または `custom` �
 msgid ""
 "``kpiField`` (optional): the numeric custom field on which to perform "
 "calculations."
-msgstr "``kpiField`` (オプション): 計算を行う数値カスタムフィールド。"
+msgstr "``kpiField`` (任意): 計算を行う数値カスタムフィールド。"
 
 #: ../../source/portal-developer-guide/settings/index.rst:651
 msgid ""
 "``aggregationMethod`` (optional): the calculation method to apply, could "
 "be `sum`, `avg`, `max` or `min`."
 msgstr ""
-"``aggregationMethod`` (オプション): 適用する計算方法。`sum`, `avg`, `max` または `min` "
-"を指定する。"
+"``aggregationMethod`` (任意): 適用する計算方法。`sum`, `avg`, `max` または "
+"`min` を指定する。"
 
 #: ../../source/portal-developer-guide/settings/index.rst:653
 msgid ""
@@ -15929,7 +15935,7 @@ msgstr "以下のJSON設定を ``Portal.CustomMenuItems`` 変数に追加して�
 #: ../../source/portal-developer-guide/static-page/index.rst:185
 #: ../../source/portal-developer-guide/static-page/index.rst:302
 msgid "``menuKind`` (string, required)"
-msgstr "``menuKind`` (string、必須)"
+msgstr "``menuKind`` (文字列、必須)"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:186
 #: ../../source/portal-developer-guide/static-page/index.rst:303
@@ -15938,7 +15944,7 @@ msgstr "静的ページメニュー項目には、``\"STATIC_PAGE\"`` に設定�
 
 #: ../../source/portal-developer-guide/static-page/index.rst:188
 msgid "``link`` (string, required)"
-msgstr "``link`` (string、必須)"
+msgstr "``link`` (文字列、必須)"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:189
 msgid "Relative path to your static page from the application view directory"
@@ -15958,7 +15964,7 @@ msgstr "例：``portal-components-examples/faces/view/help/user-guide.xhtml``"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:194
 msgid "``label`` (string, required)"
-msgstr "``label`` (string、必須)"
+msgstr "``label`` (文字列、必須)"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:195
 msgid "Display name shown in the main menu"
@@ -15990,7 +15996,7 @@ msgstr "ポータルUIまたはStreamlineドキュメントで利用可能なア
 
 #: ../../source/portal-developer-guide/static-page/index.rst:207
 msgid "``index`` (number, optional)"
-msgstr "``index`` (数値、オプション)"
+msgstr "``index`` (数値、任意)"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:208
 msgid "Menu position order (lower numbers appear first)"
@@ -16006,7 +16012,7 @@ msgstr "メニュー項目の順序制御に使用します"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:213
 msgid "``version`` (string, optional)"
-msgstr "``version`` (string、オプション)"
+msgstr "``version`` (文字列、任意)"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:214
 msgid "Portal version for compatibility tracking"
@@ -16101,7 +16107,7 @@ msgstr "**タイトル** ：多言語対応のためのロケール値ペアの�
 
 #: ../../source/portal-developer-guide/static-page/index.rst:311
 msgid "``permissions`` (array, optional)"
-msgstr "``permissions`` (配列、オプション)"
+msgstr "``permissions`` (配列、任意)"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:312
 msgid "Roles or users who can see this menu item"
