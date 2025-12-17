@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Portal Guide ${revision}\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-12-16 07:26+0000\n"
-"PO-Revision-Date: 2025-12-17 04:31+0000\n"
+"PO-Revision-Date: 2025-12-17 10:24+0000\n"
 "Last-Translator: Thinh Nguyen <nht.8299@gmail.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/axonivy-portal/"
 "portal-le/doc/portal-doc-developer-guide/ja/>\n"
@@ -4428,7 +4428,7 @@ msgstr "**必須のプロパティ：**"
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:219
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-welcome-widget.rst:65
 msgid "``type`` (string)"
-msgstr "``type`` (文字列)"
+msgstr "``type`` (string)"
 
 #: ../../source/portal-developer-guide/dashboard/dashboard-newsfeed-widget.rst:64
 msgid "Widget type identifier"
@@ -4446,7 +4446,7 @@ msgstr "ニュースウィジェット用に、``\"news\"`` に設定する必�
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-welcome-widget.rst:68
 #: ../../source/portal-developer-guide/usermenu/index.rst:76
 msgid "``id`` (string)"
-msgstr "``id`` (文字列)"
+msgstr "``id`` (string)"
 
 #: ../../source/portal-developer-guide/dashboard/dashboard-newsfeed-widget.rst:69
 msgid "Unique widget identifier"
@@ -4471,7 +4471,7 @@ msgstr "例：``\"news_18459642ba614d79bddea3f57e800bcf\"``"
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:93
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:107
 msgid "``names`` (array)"
-msgstr "``names`` (配列)"
+msgstr "``names`` (array)"
 
 #: ../../source/portal-developer-guide/dashboard/dashboard-newsfeed-widget.rst:76
 msgid "Multilingual widget title displayed in the header"
@@ -4496,7 +4496,7 @@ msgstr "例：``[{\"locale\": \"en\", \"value\": \"Company News\"}]``"
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:110
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-welcome-widget.rst:71
 msgid "``layout`` (object)"
-msgstr "``layout`` (オブジェクト)"
+msgstr "``layout`` (object)"
 
 #: ../../source/portal-developer-guide/dashboard/dashboard-newsfeed-widget.rst:83
 msgid "Widget position and size configuration"
@@ -4512,7 +4512,7 @@ msgstr "**レイアウトプロパティ：**"
 
 #: ../../source/portal-developer-guide/dashboard/dashboard-newsfeed-widget.rst:89
 msgid "``x`` (number, required)"
-msgstr "``x`` (数値、必須)"
+msgstr "``x`` (number、必須)"
 
 #: ../../source/portal-developer-guide/dashboard/dashboard-newsfeed-widget.rst:90
 msgid "Horizontal position in grid (0-11)"
@@ -4528,7 +4528,7 @@ msgstr "計算式：``left = x / 12 * 100%``"
 
 #: ../../source/portal-developer-guide/dashboard/dashboard-newsfeed-widget.rst:95
 msgid "``y`` (number, required)"
-msgstr "``y`` (数値、必須)"
+msgstr "``y`` (number、必須)"
 
 #: ../../source/portal-developer-guide/dashboard/dashboard-newsfeed-widget.rst:96
 msgid "Vertical position in grid"
@@ -4548,7 +4548,7 @@ msgstr "例：``y: 0`` によりウィジェットが最上部に配置されま
 
 #: ../../source/portal-developer-guide/dashboard/dashboard-newsfeed-widget.rst:102
 msgid "``w`` (number, required)"
-msgstr "``w`` (数値、必須)"
+msgstr "``w`` (number、必須)"
 
 #: ../../source/portal-developer-guide/dashboard/dashboard-newsfeed-widget.rst:103
 msgid "Widget width in grid units (1-12)"
@@ -4568,7 +4568,7 @@ msgstr "推奨：ニュースウィジェット向け 4～6行"
 
 #: ../../source/portal-developer-guide/dashboard/dashboard-newsfeed-widget.rst:109
 msgid "``h`` (number, required)"
-msgstr "``h`` (数値、必須)"
+msgstr "``h`` (number、必須)"
 
 #: ../../source/portal-developer-guide/dashboard/dashboard-newsfeed-widget.rst:110
 msgid "Widget height in grid units"
@@ -4590,7 +4590,7 @@ msgstr "推奨：ニュース表示に適した5～8行"
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:130
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-welcome-widget.rst:91
 msgid "``styleClass`` (string, optional)"
-msgstr "``styleClass`` (文字列、任意)"
+msgstr "``styleClass`` (string、任意)"
 
 #: ../../source/portal-developer-guide/dashboard/dashboard-newsfeed-widget.rst:117
 msgid "Custom CSS classes applied to widget container"
@@ -4609,7 +4609,7 @@ msgstr "例：``\"news-widget-custom highlight-border\"``"
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:187
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-welcome-widget.rst:94
 msgid "``style`` (string, optional)"
-msgstr "``style`` (文字列、任意)"
+msgstr "``style`` (string、任意)"
 
 #: ../../source/portal-developer-guide/dashboard/dashboard-newsfeed-widget.rst:123
 msgid "Inline CSS styles applied to widget container"
@@ -4631,7 +4631,7 @@ msgstr "**オプションのプロパティ：**"
 
 #: ../../source/portal-developer-guide/dashboard/dashboard-newsfeed-widget.rst:130
 msgid "``showFullscreenMode`` (boolean)"
-msgstr "``showFullscreenMode`` (真偽値)"
+msgstr "``showFullscreenMode`` (boolean)"
 
 #: ../../source/portal-developer-guide/dashboard/dashboard-newsfeed-widget.rst:131
 msgid "Display fullscreen mode icon in widget header"
@@ -4751,7 +4751,7 @@ msgstr "内部追跡および設定に使用されます"
 
 #: ../../source/portal-developer-guide/dashboard/index.rst:119
 msgid "``version`` (string)"
-msgstr "``version`` (文字列)"
+msgstr "``version`` (string)"
 
 #: ../../source/portal-developer-guide/dashboard/index.rst:120
 msgid "Portal version for compatibility"
@@ -4768,7 +4768,7 @@ msgstr "移行および互換性チェックに使用されます。"
 #: ../../source/portal-developer-guide/dashboard/index.rst:125
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-template.rst:110
 msgid "``templateId`` (string)"
-msgstr "``templateId`` (文字列)"
+msgstr "``templateId`` (string)"
 
 #: ../../source/portal-developer-guide/dashboard/index.rst:126
 msgid "Reference to predefined dashboard template"
@@ -4788,7 +4788,7 @@ msgstr ""
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-template.rst:113
 #: ../../source/portal-developer-guide/usermenu/index.rst:88
 msgid "``titles`` (array)"
-msgstr "``titles`` (配列)"
+msgstr "``titles`` (array)"
 
 #: ../../source/portal-developer-guide/dashboard/index.rst:132
 msgid "Multilingual dashboard tab labels"
@@ -4805,7 +4805,7 @@ msgstr "対応言語例：en、de、fr、es、it、ja、zh"
 #: ../../source/portal-developer-guide/dashboard/index.rst:138
 #: ../../source/portal-developer-guide/dashboard/index.rst:269
 msgid "``icon`` (string)"
-msgstr "``icon`` (文字列)"
+msgstr "``icon`` (string)"
 
 #: ../../source/portal-developer-guide/dashboard/index.rst:139
 msgid "Dashboard tab icon"
@@ -4822,7 +4822,7 @@ msgstr "Streamlineをサポートします（例：``\"si si-layout-bullets\"``�
 #: ../../source/portal-developer-guide/dashboard/index.rst:144
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-template.rst:119
 msgid "``widgets`` (array)"
-msgstr "``widgets`` (配列)"
+msgstr "``widgets`` (array)"
 
 #: ../../source/portal-developer-guide/dashboard/index.rst:145
 msgid "Array of widget configurations for the dashboard"
@@ -4844,7 +4844,7 @@ msgstr "``layout`` プロパティを使用して配置されたウィジェッ�
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-template.rst:116
 #: ../../source/portal-developer-guide/usermenu/index.rst:104
 msgid "``permissions`` (array)"
-msgstr "``permissions`` (配列)"
+msgstr "``permissions`` (array)"
 
 #: ../../source/portal-developer-guide/dashboard/index.rst:152
 msgid "Roles or users who can access this dashboard"
@@ -4865,7 +4865,7 @@ msgstr "デフォルト：省略された場合、すべてのユーザーがダ
 
 #: ../../source/portal-developer-guide/dashboard/index.rst:158
 msgid "``accessibility`` (boolean)"
-msgstr "``accessibility`` (真偽値)"
+msgstr "``accessibility`` (boolean)"
 
 #: ../../source/portal-developer-guide/dashboard/index.rst:159
 msgid "Enable accessibility features for the dashboard"
@@ -5058,7 +5058,12 @@ msgid ""
 "columns (including custom action buttons), pre-configured filters, quick "
 "search across multiple fields, and multi-language support for custom "
 "string fields via CMS."
-msgstr "ケースウィジェットは、高度なフィルタリング、ソート、検索機能を備えたインタラクティブでカスタマイズ可能なケース一覧を表示します。カスタム列（カスタムアクションボタンを含む）、事前設定済みフィルター、複数フィールドをまたいだクイック検索、CMS経由でのカスタム文字列フィールドに対する多言語サポートに対応しております。"
+msgstr ""
+"ケースウィジェットは、高度なフィルタリング、ソート、検索機能を備えた"
+"インタラクティブでカスタマイズ可能なケース一覧を表示します。カスタム列（"
+"カスタムアクションボタンを含む）、事前設定済みフィルター、複数フィールドをま"
+"たいだクイック検索、CMS経由でのカスタム文字列フィールドに対する多言語サポート"
+"に対応しております。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:9
 msgid "Define Case Widget"
@@ -5273,7 +5278,7 @@ msgstr "``names``"
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:301
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:316
 msgid "array"
-msgstr "配列"
+msgstr "array"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:105
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-custom-widget.rst:122
@@ -5308,7 +5313,7 @@ msgstr "``layout``"
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:66
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:192
 msgid "object"
-msgstr "オブジェクト"
+msgstr "object"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:108
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-custom-widget.rst:125
@@ -5380,7 +5385,7 @@ msgstr "``x``"
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:262
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:250
 msgid "number"
-msgstr "数値"
+msgstr "number"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:124
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-custom-widget.rst:141
@@ -5537,7 +5542,7 @@ msgstr "``sortDescending``"
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:194
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:331
 msgid "boolean"
-msgstr "真偽値"
+msgstr "boolean"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:160
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:176
@@ -6918,7 +6923,7 @@ msgstr "多言語対応のウィジェットタイトル。形式：``[{\"locale
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:96
 msgid "``buttonNames`` (array)"
-msgstr "``buttonNames`` (配列)"
+msgstr "``buttonNames`` (array)"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:97
 #, python-brace-format
@@ -6929,7 +6934,7 @@ msgstr "多言語対応のボタンラベル。書式：``[{\"locale\": \"en\", 
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:102
 msgid "``targetDashboardId`` (string)"
-msgstr "``targetDashboardId`` (文字列)"
+msgstr "``targetDashboardId`` (string )"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:103
 msgid "ID of the dashboard to navigate to when clicked"
@@ -6939,25 +6944,25 @@ msgstr "クリック時に移動するダッシュボードのID"
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:118
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-welcome-widget.rst:79
 msgid "``x`` (number)"
-msgstr "``x`` (数値)"
+msgstr "``x`` (number)"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:110
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:121
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-welcome-widget.rst:82
 msgid "``y`` (number)"
-msgstr "``y`` (数値)"
+msgstr "``y`` (number)"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:113
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:124
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-welcome-widget.rst:85
 msgid "``w`` (number)"
-msgstr "``w`` (数値)"
+msgstr "``w`` (number)"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:116
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:127
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-welcome-widget.rst:88
 msgid "``h`` (number)"
-msgstr "``h`` (数値)"
+msgstr "``h`` (number)"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:117
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-welcome-widget.rst:89
@@ -6972,7 +6977,7 @@ msgstr "**推奨ナビゲーションウィジェットサイズ：** 幅3～4�
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:124
 msgid "``description`` (string, optional)"
-msgstr "``description`` (文字列、任意)"
+msgstr "``description`` (string 、任意)"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:125
 msgid "Descriptive text shown on the navigation card"
@@ -6980,7 +6985,7 @@ msgstr "ナビゲーションカードに表示される説明文"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:127
 msgid "``visualType`` (string, default: ``\"ICON\"``)"
-msgstr "``visualType`` (文字列、デフォルト:``\"ICON\"``)"
+msgstr "``visualType`` (string 、デフォルト:``\"ICON\"``)"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:128
 msgid "Visual style: ``\"ICON\"`` (icon display) or ``\"IMAGE\"`` (custom image)"
@@ -6989,7 +6994,7 @@ msgstr "視覚的スタイル：``\"ICON\"`` （アイコン表示）または `
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:130
 #: ../../source/portal-developer-guide/static-page/index.rst:200
 msgid "``icon`` (string, optional)"
-msgstr "``icon`` (文字列、任意)"
+msgstr "``icon`` (string 、任意)"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:131
 msgid ""
@@ -7009,7 +7014,7 @@ msgstr "``visualType`` が ``\"IMAGE\"`` の場合に使用されます："
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:137
 msgid "``imageContent`` (string, optional)"
-msgstr "``imageContent`` (文字列、任意)"
+msgstr "``imageContent`` (string 、任意)"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:138
 msgid ""
@@ -7020,7 +7025,7 @@ msgstr "ライトモード用のBase64エンコードされた画像データ。
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:140
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-welcome-widget.rst:131
 msgid "``imageLocation`` (string, managed by Portal)"
-msgstr "``imageLocation`` (文字列、Portalによって管理されます)"
+msgstr "``imageLocation`` (string 、Portalによって管理されます)"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:141
 msgid "CMS path to stored image in light mode"
@@ -7029,7 +7034,7 @@ msgstr "ライトモードで保存された画像のCMSパス"
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:143
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-welcome-widget.rst:134
 msgid "``imageType`` (string, managed by Portal)"
-msgstr "``imageType`` (文字列、Portalによって管理されます)"
+msgstr "``imageType`` (string 、Portalによって管理されます)"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:144
 msgid "Image file extension (e.g., ``\"jpeg\"``, ``\"png\"``)"
@@ -7037,7 +7042,7 @@ msgstr "画像ファイルの拡張子（例：``、\"jpeg\"``、``、\"png\"``�
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:146
 msgid "``imageContentDarkMode`` (string, optional)"
-msgstr "``imageContentDarkMode`` (文字列、任意)"
+msgstr "``imageContentDarkMode`` (string 、任意)"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:147
 msgid "Base64-encoded image data for dark mode"
@@ -7046,7 +7051,7 @@ msgstr "ダークモード用のBase64エンコードされた画像データ"
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:149
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-welcome-widget.rst:137
 msgid "``imageLocationDarkMode`` (string, managed by Portal)"
-msgstr "``imageLocationDarkMode`` (文字列、Portalによって管理されます)"
+msgstr "``imageLocationDarkMode`` (string 、Portalによって管理されます)"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:150
 msgid "CMS path to stored image in dark mode"
@@ -7055,7 +7060,7 @@ msgstr "ダークモードにおける保存済み画像のCMSパス"
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:152
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-welcome-widget.rst:140
 msgid "``imageTypeDarkMode`` (string, managed by Portal)"
-msgstr "``imageTypeDarkMode`` (文字列、Portalによって管理されます)"
+msgstr "``imageTypeDarkMode`` (string 、Portalによって管理されます)"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:153
 msgid "Dark mode image file extension"
@@ -7801,7 +7806,7 @@ msgstr "ウィジェットタイプ。タスクウィジェットの場合は ``
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:113
 msgid "``columns`` (array)"
-msgstr "``columns`` (配列)"
+msgstr "``columns`` (array)"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:131
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-welcome-widget.rst:92
@@ -7821,7 +7826,7 @@ msgstr "**推奨タスクウィジェットサイズ：** 幅8～12列、高さ8
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:141
 msgid "``sortField`` (string, optional)"
-msgstr "``sortField`` (文字列、任意)"
+msgstr "``sortField`` (string 、任意)"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:142
 msgid ""
@@ -7831,11 +7836,11 @@ msgstr "ソート用のデフォルト列（例：``\"name\"``、``\"priority\"`
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:144
 msgid "``sortDescending`` (boolean, default: ``false``)"
-msgstr "``sortDescending`` (真偽値、デフォルト: ``` `false``)"
+msgstr "``sortDescending`` (boolean、デフォルト: ``` `false``)"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:147
 msgid "``rowsPerPage`` (number, default: ``10``)"
-msgstr "``rowsPerPage`` (数値、デフォルト:``10``)"
+msgstr "``rowsPerPage`` (number、デフォルト:``10``)"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:148
 msgid "Number of tasks displayed per page"
@@ -7843,19 +7848,19 @@ msgstr "1ページに表示されるタスク数"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:150
 msgid "``showWidgetInfo`` (boolean, default: ``true``)"
-msgstr "``showWidgetInfo`` (真偽値、デフォルト: ``` `true``)"
+msgstr "``showWidgetInfo`` (boolean、デフォルト: ``` `true``)"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:153
 msgid "``showFullscreenMode`` (boolean, default: ``true``)"
-msgstr "``showFullscreenMode`` (真偽値、デフォルト: ``` `true``)"
+msgstr "``showFullscreenMode`` (boolean、デフォルト: ``` `true``)"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:156
 msgid "``enableQuickSearch`` (boolean, default: ``false``)"
-msgstr "``enableQuickSearch`` (真偽値、デフォルト: ``` `false``)"
+msgstr "``enableQuickSearch`` (boolean、デフォルト: ``` `false``)"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:159
 msgid "``canWorkOn`` (boolean, default: ``false``)"
-msgstr "``canWorkOn`` (真偽値、デフォルト: ``` `false``)"
+msgstr "``canWorkOn`` (boolean、デフォルト: ``` `false``)"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:160
 msgid "Filter only tasks the current user can work on"
@@ -7863,7 +7868,7 @@ msgstr "現在のユーザーが作業可能なタスクのみをフィルタリ
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:162
 msgid "``filterTasksByCurrentCaseOwner`` (boolean, default: ``false``)"
-msgstr "``filterTasksByCurrentCaseOwner`` (真偽値、デフォルト: ``` `false``)"
+msgstr "``filterTasksByCurrentCaseOwner`` (boolean、デフォルト: ``` `false``)"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:163
 msgid ""
@@ -7873,27 +7878,27 @@ msgstr "現在のユーザーがケース所有者であるタスクのみをフ
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:165
 msgid "``isTopMenu`` (boolean, default: ``false``)"
-msgstr "``isTopMenu`` (真偽値、デフォルト: ``` `false``)"
+msgstr "``isTopMenu`` (boolean、デフォルト: ``` `false``)"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:172
 msgid "``field`` (string, required)"
-msgstr "``field`` (文字列、必須)"
+msgstr "``field`` (string 、必須)"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:175
 msgid "``visible`` (string, default: ``\"true\"``)"
-msgstr "``visible`` (文字列、デフォルト:``\"true\"``)"
+msgstr "``visible`` (string 、デフォルト:``\"true\"``)"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:178
 msgid "``quickSearch`` (string, default: ``\"false\"``)"
-msgstr "``quickSearch`` (文字列、デフォルト:``\"false\"``)"
+msgstr "``quickSearch`` (string 、デフォルト:``\"false\"``)"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:181
 msgid "``headers`` (array, optional)"
-msgstr "``headers`` (配列、任意)"
+msgstr "``headers`` (array、任意)"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:184
 msgid "``type`` (string, default: ``\"STANDARD\"``)"
-msgstr "``type`` (文字列、デフォルト:``\"STANDARD\"``)"
+msgstr "``type`` (string 、デフォルト:``\"STANDARD\"``)"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:192
 msgid "``start`` - Start button to begin task execution"
@@ -7943,15 +7948,15 @@ msgstr "``actions`` - アクションボタン（詳細、リセット、委任�
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:210
 msgid "``field`` (string)"
-msgstr "``field`` (文字列)"
+msgstr "``field`` (string )"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:213
 msgid "``values`` (array)"
-msgstr "``values`` (配列)"
+msgstr "``values`` (array)"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:216
 msgid "``operator`` (string)"
-msgstr "``operator`` (文字列)"
+msgstr "``operator`` (string )"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:223
 msgid ""
@@ -8212,7 +8217,7 @@ msgstr "**テンプレートプロパティ**"
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-template.rst:88
 #: ../../source/portal-developer-guide/static-page/index.rst:296
 msgid "``id`` (string, required)"
-msgstr "``id`` (文字列、必須)"
+msgstr "``id`` (string 、必須)"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-template.rst:89
 msgid "Unique identifier for the template. Must be unique across all templates"
@@ -8220,7 +8225,7 @@ msgstr "テンプレート固有の識別子。すべてのテンプレートに
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-template.rst:91
 msgid "``titles`` (array, required)"
-msgstr "``titles`` (配列、必須)"
+msgstr "``titles`` (array、必須)"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-template.rst:92
 #, python-brace-format
@@ -8231,7 +8236,7 @@ msgstr "テンプレート選択時に表示される多言語タイトル。形
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-template.rst:94
 msgid "``descriptions`` (array, required)"
-msgstr "``descriptions`` (配列、必須)"
+msgstr "``descriptions`` (array、必須)"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-template.rst:95
 #, python-brace-format
@@ -8244,7 +8249,7 @@ msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-template.rst:97
 msgid "``icon`` (string, required)"
-msgstr "``icon`` (文字列、必須)"
+msgstr "``icon`` (string 、必須)"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-template.rst:98
 msgid "Streamline icon class for template display (e.g., ``\"si-cog-double-2\"``)"
@@ -8252,7 +8257,7 @@ msgstr "テンプレート表示用のアイコンクラスを簡略化してく
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-template.rst:100
 msgid "``dashboard`` (object, required)"
-msgstr "``dashboard``（オブジェクト、必須）"
+msgstr "``dashboard``（object、必須）"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-template.rst:101
 msgid "Complete dashboard configuration (see Dashboard Configuration below)"
@@ -8352,7 +8357,7 @@ msgstr "ウィジェットタイプ。ウェルカムウィジェットの場合
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-welcome-widget.rst:74
 msgid "``welcomeTexts`` (array)"
-msgstr "``welcomeTexts`` (配列)"
+msgstr "``welcomeTexts`` (array)"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-welcome-widget.rst:75
 #, python-brace-format
@@ -8373,7 +8378,7 @@ msgstr "**テキスト設定プロパティ**"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-welcome-widget.rst:102
 msgid "``welcomeTextPosition`` (string, default: ``BOTTOM_LEFT``)"
-msgstr "``welcomeTextPosition`` (文字列、デフォルト:``BOTTOM_LEFT``)"
+msgstr "``welcomeTextPosition`` (string 、デフォルト:``BOTTOM_LEFT``)"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-welcome-widget.rst:103
 msgid ""
@@ -8383,7 +8388,7 @@ msgstr "テキスト位置:``BOTTOM_LEFT``、``BOTTOM_RIGHT``、``TOP_LEFT``、`
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-welcome-widget.rst:105
 msgid "``welcomeTextSize`` (string, default: ``NORMAL_TEXT``)"
-msgstr "``welcomeTextSize`` (文字列、デフォルト:``NORMAL_TEXT``)"
+msgstr "``welcomeTextSize`` (string 、デフォルト:``NORMAL_TEXT``)"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-welcome-widget.rst:106
 msgid ""
@@ -8395,7 +8400,7 @@ msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-welcome-widget.rst:108
 msgid "``welcomeTextColor`` (string, optional)"
-msgstr "``welcomeTextColor`` (文字列、任意)"
+msgstr "``welcomeTextColor`` (string 、任意)"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-welcome-widget.rst:109
 msgid "Text color in light mode (CSS color value, e.g., ``#FFFFFF``)"
@@ -8403,7 +8408,7 @@ msgstr "ライトモードでのテキスト色（CSSカラー値、例：``#FFF
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-welcome-widget.rst:111
 msgid "``welcomeTextColorDarkMode`` (string, optional)"
-msgstr "``welcomeTextColorDarkMode`` (文字列、任意)"
+msgstr "``welcomeTextColorDarkMode`` (string 、任意)"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-welcome-widget.rst:112
 msgid "Text color in dark mode (CSS color value)"
@@ -8411,7 +8416,7 @@ msgstr "ダークモードでのテキスト色（CSSカラー値）"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-welcome-widget.rst:114
 msgid "``greeting`` (boolean, default: ``false``)"
-msgstr "``greeting`` (真偽値、デフォルト: ``` `false``)"
+msgstr "``greeting`` (boolean、デフォルト: ``` `false``)"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-welcome-widget.rst:115
 msgid ""
@@ -8421,7 +8426,7 @@ msgstr "``true`` = 時間ベースの挨拶＋カスタムテキストを表示�
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-welcome-widget.rst:117
 msgid "``welcomeTextStyleClass`` (string, optional)"
-msgstr "``welcomeTextStyleClass`` (文字列、任意)"
+msgstr "``welcomeTextStyleClass`` (string 、任意)"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-welcome-widget.rst:118
 msgid "CSS class for text styling"
@@ -8433,7 +8438,7 @@ msgstr "**画像設定プロパティ**"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-welcome-widget.rst:122
 msgid "``welcomeImageFit`` (string, default: ``COVER``)"
-msgstr "``welcomeImageFit`` (文字列、デフォルト:``COVER``)"
+msgstr "``welcomeImageFit`` (string 、デフォルト:``COVER``)"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-welcome-widget.rst:123
 msgid "Image resize mode: ``NONE``, ``FILL``, ``COVER``, ``CONTAIN``"
@@ -8441,7 +8446,7 @@ msgstr "画像リサイズモード：``NONE``、``FILL``、``COVER``、``CONTAI
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-welcome-widget.rst:125
 msgid "``imageStyleClass`` (string, optional)"
-msgstr "``imageStyleClass`` (文字列、任意)"
+msgstr "``imageStyleClass`` (string 、任意)"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-welcome-widget.rst:126
 msgid "CSS class for image container"
@@ -8449,7 +8454,7 @@ msgstr "画像コンテナ用のCSSクラス"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-welcome-widget.rst:128
 msgid "``imageInlineStyle`` (string, optional)"
-msgstr "``imageInlineStyle`` (文字列、任意)"
+msgstr "``imageInlineStyle`` (string 、任意)"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-welcome-widget.rst:129
 msgid "Inline CSS for image container"
@@ -9736,7 +9741,7 @@ msgstr "タスクの詳細"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:112
 msgid "``taskName`` (string)"
-msgstr "``taskName`` (文字列)"
+msgstr "``taskName`` (string )"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:113
 msgid "Custom text for the task name display."
@@ -9744,7 +9749,7 @@ msgstr "タスク名表示用のカスタムテキスト。"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:115
 msgid "``taskIcon`` (string)"
-msgstr "``taskIcon`` (文字列)"
+msgstr "``taskIcon`` (string )"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:116
 msgid "Icon using Streamline or Font Awesome (e.g., ``\"si si-bulb\"``)."
@@ -9752,7 +9757,7 @@ msgstr "StreamlineまたはFont Awesomeを使用したアイコン（例：``\"s
 
 #: ../../source/portal-developer-guide/iframe/index.rst:118
 msgid "``isHideTaskName`` (boolean, default: false)"
-msgstr "``isHideTaskName`` (真偽値、デフォルト: false)"
+msgstr "``isHideTaskName`` (boolean、デフォルト: false)"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:119
 msgid "``true`` = hide task name, ``false`` = show."
@@ -9764,7 +9769,7 @@ msgstr "大文字小文字に関する情報"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:124
 msgid "``caseId`` (string)"
-msgstr "``caseId`` (文字列)"
+msgstr "``caseId`` (string )"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:125
 msgid "ID of the case to display in case information dialog."
@@ -9772,7 +9777,7 @@ msgstr "ケース情報ダイアログに表示するケースのIDです。"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:127
 msgid "``isHideCaseInfo`` (boolean, default: false)"
-msgstr "``isHideCaseInfo`` (真偽値、デフォルト: false)"
+msgstr "``isHideCaseInfo`` (boolean、デフォルト: false)"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:128
 msgid "``true`` = hide \"Show Information\" button, ``false`` = show."
@@ -9784,7 +9789,7 @@ msgstr "処理手順"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:133
 msgid "``currentProcessStep`` (string/number)"
-msgstr "``currentProcessStep`` (文字列/数値)"
+msgstr "``currentProcessStep`` (string /number)"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:134
 msgid "Current step index or step name."
@@ -9792,7 +9797,7 @@ msgstr "現在のステップインデックスまたはステップ名。"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:136
 msgid "``processSteps`` (string/array)"
-msgstr "``processSteps`` (文字列/配列)"
+msgstr "``processSteps`` (string/array)"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:137
 msgid "List of step names or JSON string."
@@ -9800,7 +9805,7 @@ msgstr "ステップ名のリストまたはJSON文字列。"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:139
 msgid "``isShowAllSteps`` (boolean, default: false)"
-msgstr "``isShowAllSteps`` (真偽値、デフォルト: false)"
+msgstr "``isShowAllSteps`` (boolean、デフォルト: false)"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:140
 msgid "``true`` = show all steps on large screens, ``false`` = compact view."
@@ -9808,7 +9813,7 @@ msgstr "``true`` = 大画面で全ステップを表示、``false`` = コンパ�
 
 #: ../../source/portal-developer-guide/iframe/index.rst:142
 msgid "``processChainDirection`` (string)"
-msgstr "``processChainDirection`` (文字列)"
+msgstr "``processChainDirection`` (string)"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:143
 msgid "``\"VERTICAL\"`` or ``\"HORIZONTAL\"``."
@@ -9816,7 +9821,7 @@ msgstr "``\"VERTICAL\"`` または ``\"HORIZONTAL\"``。"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:145
 msgid "``processChainShape`` (string)"
-msgstr "``processChainShape`` (文字列)"
+msgstr "``processChainShape`` (string)"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:146
 msgid "``\"LINE\"`` or ``\"CIRCLE\"``."
@@ -9828,7 +9833,7 @@ msgstr "タスクアクション"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:151
 msgid "``isHideTaskAction`` (boolean, default: false)"
-msgstr "``isHideTaskAction`` (真偽値、デフォルト: false)"
+msgstr "``isHideTaskAction`` (boolean、デフォルト: false)"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:152
 msgid "``true`` = hide task action button, ``false`` = show."
@@ -9836,7 +9841,7 @@ msgstr "``true`` = タスクアクションボタンを非表示にします。`
 
 #: ../../source/portal-developer-guide/iframe/index.rst:154
 msgid "``isWorkingOnATask`` (boolean, default: true)"
-msgstr "``isWorkingOnATask`` (真偽値、デフォルト: true)"
+msgstr "``isWorkingOnATask`` (boolean、デフォルト: true)"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:155
 msgid "``true`` = show navigation warning, ``false`` = no warning."
@@ -9848,7 +9853,7 @@ msgstr "その他"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:160
 msgid "``announcementInvisible`` (boolean, default: false)"
-msgstr "``announcementInvisible`` (真偽値、デフォルト: false)"
+msgstr "``announcementInvisible`` (boolean、デフォルト: false)"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:161
 msgid "``true`` = hide announcements, ``false`` = show."
@@ -9856,7 +9861,7 @@ msgstr "``true`` = お知らせを非表示にします。``false`` = 表示し�
 
 #: ../../source/portal-developer-guide/iframe/index.rst:163
 msgid "``isCardFrame`` (boolean, default: false)"
-msgstr "``isCardFrame`` (真偽値、デフォルト: false)"
+msgstr "``isCardFrame`` (boolean、デフォルト: false)"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:164
 msgid "``true`` = display content in card-style container, ``false`` = standard."
@@ -9864,7 +9869,7 @@ msgstr "``true`` = カード形式のコンテナで表示、``false`` = 標準�
 
 #: ../../source/portal-developer-guide/iframe/index.rst:166
 msgid "``viewName`` (string)"
-msgstr "``viewName`` (文字列)"
+msgstr "``viewName`` (string)"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:167
 msgid "Custom breadcrumb view (see View Names below)."
@@ -15941,7 +15946,7 @@ msgstr "以下のJSON設定を ``Portal.CustomMenuItems`` 変数に追加して�
 #: ../../source/portal-developer-guide/static-page/index.rst:185
 #: ../../source/portal-developer-guide/static-page/index.rst:302
 msgid "``menuKind`` (string, required)"
-msgstr "``menuKind`` (文字列、必須)"
+msgstr "``menuKind`` (string、必須)"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:186
 #: ../../source/portal-developer-guide/static-page/index.rst:303
@@ -15950,7 +15955,7 @@ msgstr "静的ページメニュー項目には、``\"STATIC_PAGE\"`` に設定�
 
 #: ../../source/portal-developer-guide/static-page/index.rst:188
 msgid "``link`` (string, required)"
-msgstr "``link`` (文字列、必須)"
+msgstr "``link`` (string、必須)"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:189
 msgid "Relative path to your static page from the application view directory"
@@ -15970,7 +15975,7 @@ msgstr "例：``portal-components-examples/faces/view/help/user-guide.xhtml``"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:194
 msgid "``label`` (string, required)"
-msgstr "``label`` (文字列、必須)"
+msgstr "``label`` (string、必須)"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:195
 msgid "Display name shown in the main menu"
@@ -16002,7 +16007,7 @@ msgstr "ポータルUIまたはStreamlineドキュメントで利用可能なア
 
 #: ../../source/portal-developer-guide/static-page/index.rst:207
 msgid "``index`` (number, optional)"
-msgstr "``index`` (数値、任意)"
+msgstr "``index`` (number、任意)"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:208
 msgid "Menu position order (lower numbers appear first)"
@@ -16018,7 +16023,7 @@ msgstr "メニュー項目の順序制御に使用します"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:213
 msgid "``version`` (string, optional)"
-msgstr "``version`` (文字列、任意)"
+msgstr "``version`` (string、任意)"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:214
 msgid "Portal version for compatibility tracking"
@@ -16113,7 +16118,7 @@ msgstr "**タイトル** ：多言語対応のためのロケール値ペアの�
 
 #: ../../source/portal-developer-guide/static-page/index.rst:311
 msgid "``permissions`` (array, optional)"
-msgstr "``permissions`` (配列、任意)"
+msgstr "``permissions`` (array、任意)"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:312
 msgid "Roles or users who can see this menu item"
@@ -16129,7 +16134,7 @@ msgstr "デフォルト: 指定がない場合、すべてのユーザーが項�
 
 #: ../../source/portal-developer-guide/static-page/index.rst:318
 msgid "``url`` (string, required)"
-msgstr "``url`` (文字列、必須)"
+msgstr "``url`` (string、必須)"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:319
 msgid "Relative path to your static page"
@@ -16913,7 +16918,7 @@ msgstr "内部での追跡および設定に使用されます。"
 
 #: ../../source/portal-developer-guide/usermenu/index.rst:82
 msgid "``title`` (string)"
-msgstr "``title`` (文字列)"
+msgstr "``title`` (string)"
 
 #: ../../source/portal-developer-guide/usermenu/index.rst:83
 msgid "Single-language title displayed for all users"
@@ -16965,7 +16970,7 @@ msgstr "**公開対象外の場合：** 指定がない場合、すべてのユ�
 
 #: ../../source/portal-developer-guide/usermenu/index.rst:112
 msgid "``url`` (string)"
-msgstr "``url`` (文字列)"
+msgstr "``url`` (string)"
 
 #: ../../source/portal-developer-guide/usermenu/index.rst:113
 msgid "Target URL for the menu item"
@@ -16983,7 +16988,7 @@ msgstr "**Ivy プロセス:** プロセスの開始位置への相対パス (例
 
 #: ../../source/portal-developer-guide/usermenu/index.rst:118
 msgid "``params`` (object)"
-msgstr "``params`` (オブジェクト)"
+msgstr "``params`` (object)"
 
 #: ../../source/portal-developer-guide/usermenu/index.rst:119
 msgid "Parameters passed to Ivy process starts"
