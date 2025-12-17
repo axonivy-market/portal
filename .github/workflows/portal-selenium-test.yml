@@ -575,7 +575,7 @@ jobs:
                   }
 
                   if (failedTests.length > 0) {
-                    summaryText += `\n### 📋 List of Test Methods for Re-running Failed Tests\n\n`;
+                    summaryText += `\n📋 **Test Methods for Re-running Failed Tests**\n\n`;
                     
                     const mavenTestList = failedTests
                       .map(test => {
@@ -588,7 +588,7 @@ jobs:
                   }
                   
                   if (flakyTests.length > 0) {
-                    summaryText += `\n### 📋 List of Test Methods for Re-running Flaky Tests\n\n`;
+                    summaryText += `\n📋 **Test Methods for Re-running Flaky Tests**\n\n`;
                     
                     const flakyTestList = flakyTests
                       .map(test => {
