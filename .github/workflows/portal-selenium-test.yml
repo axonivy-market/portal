@@ -496,7 +496,7 @@ jobs:
                     totalFailures += suiteFailures;
                     totalErrors += suiteErrors;
 
-                    // === Find all testcase elements that have failures,  errors,  or flaky failures ===
+                    // === Find all testcase elements that have failures, errors, or flaky failures ===
                     let testcaseMatches = [];
                     const parts = content.split('<testcase');
                     for (let i = 1; i < parts.length; i++) {
@@ -548,7 +548,6 @@ jobs:
                           class: className,
                           test: testName
                         });
-                        }
                       }
                     });
 
