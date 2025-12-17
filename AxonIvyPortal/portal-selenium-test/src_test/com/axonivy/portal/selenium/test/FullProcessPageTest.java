@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
-import com.axonivy.portal.selenium.common.Sleeper;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.TestRole;
 import com.axonivy.portal.selenium.page.MainMenuPage;
@@ -107,6 +106,5 @@ public class FullProcessPageTest extends BaseTest {
     AddNewExternalLinkDialog addNewExternalLinkDialog = processWidgetPage.openNewExternalLinkDialog();
     addNewExternalLinkDialog.inputDataForPublicExternalLink(processName, processLink, rolePermission);
     addNewExternalLinkDialog.submitForm();
-    Sleeper.sleep(2000);
   }
 }
