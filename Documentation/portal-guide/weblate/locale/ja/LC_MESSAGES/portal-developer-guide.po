@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Portal Guide ${revision}\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-12-16 07:26+0000\n"
-"PO-Revision-Date: 2025-12-17 04:17+0000\n"
+"PO-Revision-Date: 2025-12-17 04:31+0000\n"
 "Last-Translator: Thinh Nguyen <nht.8299@gmail.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/axonivy-portal/"
 "portal-le/doc/portal-doc-developer-guide/ja/>\n"
@@ -4496,7 +4496,7 @@ msgstr "例：``[{\"locale\": \"en\", \"value\": \"Company News\"}]``"
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:110
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-welcome-widget.rst:71
 msgid "``layout`` (object)"
-msgstr "``layout`` (object)"
+msgstr "``layout`` (オブジェクト)"
 
 #: ../../source/portal-developer-guide/dashboard/dashboard-newsfeed-widget.rst:83
 msgid "Widget position and size configuration"
@@ -4631,7 +4631,7 @@ msgstr "**オプションのプロパティ：**"
 
 #: ../../source/portal-developer-guide/dashboard/dashboard-newsfeed-widget.rst:130
 msgid "``showFullscreenMode`` (boolean)"
-msgstr "``showFullscreenMode`` (ブール値)"
+msgstr "``showFullscreenMode`` (真偽値)"
 
 #: ../../source/portal-developer-guide/dashboard/dashboard-newsfeed-widget.rst:131
 msgid "Display fullscreen mode icon in widget header"
@@ -4865,7 +4865,7 @@ msgstr "デフォルト：省略された場合、すべてのユーザーがダ
 
 #: ../../source/portal-developer-guide/dashboard/index.rst:158
 msgid "``accessibility`` (boolean)"
-msgstr "``accessibility`` (ブール値)"
+msgstr "``accessibility`` (真偽値)"
 
 #: ../../source/portal-developer-guide/dashboard/index.rst:159
 msgid "Enable accessibility features for the dashboard"
@@ -4984,7 +4984,9 @@ msgstr ""
 msgid ""
 "Template configuration is optional. Portal provides default templates out"
 " of the box."
-msgstr "テンプレートの設定は任意です。Portalは初期状態でデフォルトのテンプレートを提供します。"
+msgstr ""
+"テンプレートの設定は任意です。Portalは初期状態でデフォルトのテンプレートを提"
+"供します。"
 
 #: ../../source/portal-developer-guide/dashboard/index.rst:230
 msgid "Configure Dashboard Main Menu Item"
@@ -5271,7 +5273,7 @@ msgstr "``names``"
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:301
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:316
 msgid "array"
-msgstr "array"
+msgstr "配列"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:105
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-custom-widget.rst:122
@@ -5378,7 +5380,7 @@ msgstr "``x``"
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:262
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:250
 msgid "number"
-msgstr "number"
+msgstr "数値"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:124
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-custom-widget.rst:141
@@ -5460,7 +5462,7 @@ msgstr "``styleClass``"
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-viewer-widget.rst:94
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:92
 msgid "*(Optional)* CSS classes for custom styling"
-msgstr "*（任意）カスタムスタイリング用の* CSSクラス"
+msgstr "*（任意）* カスタムスタイリング用の* CSSクラス"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:137
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:215
@@ -5535,7 +5537,7 @@ msgstr "``sortDescending``"
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:194
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:331
 msgid "boolean"
-msgstr "ブール値"
+msgstr "真偽値"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:160
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:176
@@ -6640,7 +6642,9 @@ msgstr "``params``"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-custom-widget.rst:186
 msgid "*(Optional)* Process parameters (see Parameter Configuration below)"
-msgstr "*（任意）* プロセスパラメータを処理します（下記「パラメータ設定」をご参照ください）"
+msgstr ""
+"*（任意）* プロセスパラメータを処理します（下記「パラメータ設定」をご参照くだ"
+"さい）"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-custom-widget.rst:187
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-external-page-widget.rst:142
@@ -6709,7 +6713,9 @@ msgstr ""
 msgid ""
 "``boolean`` - Radio button in configuration dialog. Accepts ``\"true\"`` "
 "or ``\"false\"``."
-msgstr "``boolean`` - 設定ダイアログ内のラジオボタン。``\"true\"`` または ``\"false\"`` を指定可能です。"
+msgstr ""
+"``boolean`` - 設定ダイアログ内のラジオボタン。``\"true\"`` または "
+"``\"false\"`` を指定可能です。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-custom-widget.rst:220
 msgid ""
@@ -6966,7 +6972,7 @@ msgstr "**推奨ナビゲーションウィジェットサイズ：** 幅3～4�
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:124
 msgid "``description`` (string, optional)"
-msgstr "``description`` (文字列、オプション)"
+msgstr "``description`` (文字列、任意)"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:125
 msgid "Descriptive text shown on the navigation card"
@@ -7825,7 +7831,7 @@ msgstr "ソート用のデフォルト列（例：``\"name\"``、``\"priority\"`
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:144
 msgid "``sortDescending`` (boolean, default: ``false``)"
-msgstr "``sortDescending`` (ブール値、デフォルト: ``` `false``)"
+msgstr "``sortDescending`` (真偽値、デフォルト: ``` `false``)"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:147
 msgid "``rowsPerPage`` (number, default: ``10``)"
@@ -7837,19 +7843,19 @@ msgstr "1ページに表示されるタスク数"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:150
 msgid "``showWidgetInfo`` (boolean, default: ``true``)"
-msgstr "``showWidgetInfo`` (ブール値、デフォルト: ``` `true``)"
+msgstr "``showWidgetInfo`` (真偽値、デフォルト: ``` `true``)"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:153
 msgid "``showFullscreenMode`` (boolean, default: ``true``)"
-msgstr "``showFullscreenMode`` (ブール値、デフォルト: ``` `true``)"
+msgstr "``showFullscreenMode`` (真偽値、デフォルト: ``` `true``)"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:156
 msgid "``enableQuickSearch`` (boolean, default: ``false``)"
-msgstr "``enableQuickSearch`` (ブール値、デフォルト: ``` `false``)"
+msgstr "``enableQuickSearch`` (真偽値、デフォルト: ``` `false``)"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:159
 msgid "``canWorkOn`` (boolean, default: ``false``)"
-msgstr "``canWorkOn`` (ブール値、デフォルト: ``` `false``)"
+msgstr "``canWorkOn`` (真偽値、デフォルト: ``` `false``)"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:160
 msgid "Filter only tasks the current user can work on"
@@ -7857,7 +7863,7 @@ msgstr "現在のユーザーが作業可能なタスクのみをフィルタリ
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:162
 msgid "``filterTasksByCurrentCaseOwner`` (boolean, default: ``false``)"
-msgstr "``filterTasksByCurrentCaseOwner`` (ブール値、デフォルト: ``` `false``)"
+msgstr "``filterTasksByCurrentCaseOwner`` (真偽値、デフォルト: ``` `false``)"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:163
 msgid ""
@@ -7867,7 +7873,7 @@ msgstr "現在のユーザーがケース所有者であるタスクのみをフ
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:165
 msgid "``isTopMenu`` (boolean, default: ``false``)"
-msgstr "``isTopMenu`` (ブール値、デフォルト: ``` `false``)"
+msgstr "``isTopMenu`` (真偽値、デフォルト: ``` `false``)"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:172
 msgid "``field`` (string, required)"
@@ -8405,7 +8411,7 @@ msgstr "ダークモードでのテキスト色（CSSカラー値）"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-welcome-widget.rst:114
 msgid "``greeting`` (boolean, default: ``false``)"
-msgstr "``greeting`` (ブール値、デフォルト: ``` `false``)"
+msgstr "``greeting`` (真偽値、デフォルト: ``` `false``)"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-welcome-widget.rst:115
 msgid ""
@@ -9746,7 +9752,7 @@ msgstr "StreamlineまたはFont Awesomeを使用したアイコン（例：``\"s
 
 #: ../../source/portal-developer-guide/iframe/index.rst:118
 msgid "``isHideTaskName`` (boolean, default: false)"
-msgstr "``isHideTaskName`` (ブール値、デフォルト: false)"
+msgstr "``isHideTaskName`` (真偽値、デフォルト: false)"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:119
 msgid "``true`` = hide task name, ``false`` = show."
@@ -9766,7 +9772,7 @@ msgstr "ケース情報ダイアログに表示するケースのIDです。"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:127
 msgid "``isHideCaseInfo`` (boolean, default: false)"
-msgstr "``isHideCaseInfo`` (ブール値、デフォルト: false)"
+msgstr "``isHideCaseInfo`` (真偽値、デフォルト: false)"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:128
 msgid "``true`` = hide \"Show Information\" button, ``false`` = show."
@@ -9794,7 +9800,7 @@ msgstr "ステップ名のリストまたはJSON文字列。"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:139
 msgid "``isShowAllSteps`` (boolean, default: false)"
-msgstr "``isShowAllSteps`` (ブール値、デフォルト: false)"
+msgstr "``isShowAllSteps`` (真偽値、デフォルト: false)"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:140
 msgid "``true`` = show all steps on large screens, ``false`` = compact view."
@@ -9822,7 +9828,7 @@ msgstr "タスクアクション"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:151
 msgid "``isHideTaskAction`` (boolean, default: false)"
-msgstr "``isHideTaskAction`` (ブール値、デフォルト: false)"
+msgstr "``isHideTaskAction`` (真偽値、デフォルト: false)"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:152
 msgid "``true`` = hide task action button, ``false`` = show."
@@ -9830,7 +9836,7 @@ msgstr "``true`` = タスクアクションボタンを非表示にします。`
 
 #: ../../source/portal-developer-guide/iframe/index.rst:154
 msgid "``isWorkingOnATask`` (boolean, default: true)"
-msgstr "``isWorkingOnATask`` (ブール値、デフォルト: true)"
+msgstr "``isWorkingOnATask`` (真偽値、デフォルト: true)"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:155
 msgid "``true`` = show navigation warning, ``false`` = no warning."
@@ -9842,7 +9848,7 @@ msgstr "その他"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:160
 msgid "``announcementInvisible`` (boolean, default: false)"
-msgstr "``announcementInvisible`` (ブール値、デフォルト: false)"
+msgstr "``announcementInvisible`` (真偽値、デフォルト: false)"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:161
 msgid "``true`` = hide announcements, ``false`` = show."
@@ -9850,7 +9856,7 @@ msgstr "``true`` = お知らせを非表示にします。``false`` = 表示し�
 
 #: ../../source/portal-developer-guide/iframe/index.rst:163
 msgid "``isCardFrame`` (boolean, default: false)"
-msgstr "``isCardFrame`` (ブール値、デフォルト: false)"
+msgstr "``isCardFrame`` (真偽値、デフォルト: false)"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:164
 msgid "``true`` = display content in card-style container, ``false`` = standard."
@@ -16977,7 +16983,7 @@ msgstr "**Ivy プロセス:** プロセスの開始位置への相対パス (例
 
 #: ../../source/portal-developer-guide/usermenu/index.rst:118
 msgid "``params`` (object)"
-msgstr "``params`` (object)"
+msgstr "``params`` (オブジェクト)"
 
 #: ../../source/portal-developer-guide/usermenu/index.rst:119
 msgid "Parameters passed to Ivy process starts"
