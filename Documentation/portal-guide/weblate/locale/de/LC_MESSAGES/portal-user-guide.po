@@ -4,25 +4,26 @@
 # package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2025.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: Portal Guide ${revision}\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-12-16 10:37+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2025-12-18 04:37+0000\n"
+"Last-Translator: Thang Huynh Huu Quyet <hhqthang@axonactive.com>\n"
+"Language-Team: German <https://hosted.weblate.org/projects/axonivy-portal/"
+"portal-le/doc/portal-doc-user-guide/de/>\n"
 "Language: de\n"
-"Language-Team: de <LL@li.org>\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.15.1-dev\n"
 "Generated-By: Babel 2.17.0\n"
 
 #: ../../source/portal-user-guide/accessibility/index.rst:4
 msgid "Accessibility"
-msgstr ""
+msgstr "Barrierefreiheit"
 
 #: ../../source/portal-user-guide/accessibility/index.rst:7
 msgid ""
@@ -30,6 +31,9 @@ msgid ""
 "**Accessibility settings**. See :ref:`accessibility-settings` for "
 "details."
 msgstr ""
+"Um Tastaturkürzel zu aktivieren/deaktivieren, gehen Sie zu **Mein Profil** > "
+"**Einstellungen für Barrierefreiheit**. Weitere Informationen finden Sie "
+"unter :ref:`accessibility-settings`."
 
 #: ../../source/portal-user-guide/accessibility/index.rst:11
 msgid "Keyboard Shortcuts Quick Reference"
@@ -10386,4 +10390,3 @@ msgstr ""
 #~ "filtering with time. This setting "
 #~ "affects task widget and case widget."
 #~ msgstr ""
-
