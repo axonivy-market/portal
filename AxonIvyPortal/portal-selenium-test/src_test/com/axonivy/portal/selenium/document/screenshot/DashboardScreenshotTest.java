@@ -419,6 +419,7 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
     caseWidget.openFilterWidget();
     caseWidget.addFilter("Name", FilterOperator.CONTAINS);
     caseWidget.clickOnFilterOperator();
+    caseWidget.waitDropdownOperator();
     ScreenshotUtils.captureElementWithMarginOptionScreenshot(caseWidget.getConfigurationFilter(),
         ScreenshotUtils.NEW_DASHBOARD_FOLDER + "filter-operator-dropdown", new ScreenshotMargin(25));
     

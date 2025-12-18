@@ -459,6 +459,7 @@ public class DashboardConfigurationPage extends TemplatePage {
 
   public SelenideElement getShareDashboardDialog() {
     clickButtonOnDashboardConfigurationActionMenu("Share");
+    $("div[id$=':share-dashboard-dialog']").shouldBe(Condition.appear).shouldHave(Condition.cssValue("opacity", "1"));
     return $("div[id$=':share-dashboard-dialog']");
   }
 
