@@ -138,9 +138,9 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
     detailsEditPage.addWidget();
 
     DashboardNotificationWidgetConfigurationPage notiWidgetPage = detailsEditPage.addNotificationWidget();
-    notiWidgetPage.changeFilter();
-    ScreenshotUtils.captureElementScreenshot(notiWidgetPage.getConfigurationDialog(),
-        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "notification-widget-configuration");
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(notiWidgetPage.getConfigurationDialog(),
+        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "notification-widget-configuration", 
+        new ScreenshotMargin(20));
     notiWidgetPage.save();
     redirectToRelativeLink(PORTAL_HOME_PAGE_URL);
     DashboardNotificationWidgetPage notiPage = new DashboardNotificationWidgetPage();
@@ -479,11 +479,6 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
     TaskWidgetNewDashBoardPage taskWidget = homePage.selectTaskWidget("Your Tasks");
     ScreenshotUtils.maximizeBrowser();
     taskWidget.openFilterWidget();
-    taskWidget.addFilter("Description", FilterOperator.EMPTY);
-    taskWidget.clickOnFilterOperator(0);
-    ScreenshotUtils.captureElementWithMarginOptionScreenshot(taskWidget.getConfigurationFilter(),ScreenshotUtils.NEW_DASHBOARD_FOLDER + "filter-operator-dropdown", new ScreenshotMargin(25));
-    taskWidget.removeFilter(0);
-    taskWidget.removeFilter(0);
     taskWidget.addFilter("Name", FilterOperator.IS);
     taskWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "Annual Leave Request");
     taskWidget.addFilter("Description", FilterOperator.NOT_EMPTY);
