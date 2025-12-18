@@ -4,25 +4,26 @@
 # package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2025.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: Portal Guide ${revision}\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-12-16 07:26+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2025-12-18 03:40+0000\n"
+"Last-Translator: Thang Huynh Huu Quyet <hhqthang@axonactive.com>\n"
+"Language-Team: German <https://hosted.weblate.org/projects/axonivy-portal/"
+"portal-le/doc/portal-doc-developer-guide/de/>\n"
 "Language: de\n"
-"Language-Team: de <LL@li.org>\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.15.1-dev\n"
 "Generated-By: Babel 2.17.0\n"
 
 #: ../../source/portal-developer-guide/architecture/index.rst:4
 msgid "Architecture"
-msgstr ""
+msgstr "Architektur"
 
 #: ../../source/portal-developer-guide/architecture/index.rst:8
 msgid ""
@@ -31,6 +32,11 @@ msgid ""
 "future versions. Only use documented APIs, components, and customization "
 "points to ensure compatibility with future Portal releases."
 msgstr ""
+"Die CSS-Stile, Java-Methoden usw., die nicht ausdrücklich dokumentiert sind, "
+"sind intern für das Portal. Verlassen Sie sich nicht auf sie, da sie sich in "
+"zukünftigen Versionen ändern können. Verwenden Sie nur dokumentierte APIs, "
+"Komponenten und Anpassungspunkte, um die Kompatibilität mit zukünftigen "
+"Portal-Versionen sicherzustellen."
 
 #: ../../source/portal-developer-guide/architecture/index.rst:13
 #: ../../source/portal-developer-guide/components/error-handling.rst:9
@@ -19540,4 +19546,3 @@ msgstr ""
 #~ " can preview Word(doc, docx), Excel(xls,"
 #~ " xlsx) and email(eml) documents."
 #~ msgstr ""
-
