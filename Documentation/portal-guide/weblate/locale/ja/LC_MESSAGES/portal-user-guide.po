@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Portal Guide ${revision}\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-12-16 10:37+0000\n"
-"PO-Revision-Date: 2025-12-17 02:13+0000\n"
+"PO-Revision-Date: 2025-12-18 02:51+0000\n"
 "Last-Translator: Thinh Nguyen <nht.8299@gmail.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/axonivy-portal/"
 "portal-le/doc/portal-doc-user-guide/ja/>\n"
@@ -2126,7 +2126,7 @@ msgstr "**展開状態の** ：左上のピンボタンをクリックすると�
 
 #: ../../source/portal-user-guide/axon-ivy-portal/index.rst:97
 msgid "**3. Main Content Area** (center)"
-msgstr "**3. メインコンテンツ領域**（中央）"
+msgstr "**3. メインコンテンツ領域** （中央）"
 
 #: ../../source/portal-user-guide/axon-ivy-portal/index.rst:99
 msgid "|axon-ivy-portal|"
