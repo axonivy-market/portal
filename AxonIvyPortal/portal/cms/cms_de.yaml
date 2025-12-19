@@ -206,7 +206,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       thirdPartyApplication: 3rd Party Anwendung
     currentValue: Aktueller Wert
     defaultValue: Standard Wert
-    deleteAppConfirmation: Sind Sie sicher, dass Sie diese Anwendung entfernen möchten?
+    deleteAppConfirmation: Sind Sie sicher, dass Sie diese {0} Anwendung entfernen möchten?
     dialogclosinginformation:
       dialogHeader: Einstellungen abgeschlossen
       informMessage: Änderungen an den Portaleinstellungen erfordern eine Aktualisierung der aktuellen Seite, damit die neue Konfiguration wirksam wird.
