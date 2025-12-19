@@ -335,7 +335,7 @@ jobs:
         - name: Download engine
           run: |
             cd $ENGINE_DIR
-            wget $ENGINE_URL -O axonivy-engine.zip
+            wget ${{ inputs.engineDownloadURL }} -O axonivy-engine.zip
             unzip -o axonivy-engine.zip -d .
             rm axonivy-engine.zip
 
@@ -382,21 +382,15 @@ jobs:
           run: |
             cat AxonIvyPortal/portal-selenium-test/target/testEngineOut.log 
 
-        - name: Archive screenshot image
+        - name: Archive artifacts
           uses: actions/upload-artifact@v4
           with:
-            name: screenshots
-            retention-days: 5
+            name: artifacts
+            retention-days: 10
             path: |
               AxonIvyPortal/portal-selenium-test/target/selenide/reports/*
-
-        - name: Archive test reports
-          uses: actions/upload-artifact@v4
-          with:
-            name: selenium-test-reports
-            retention-days: 5
-            path: |
               AxonIvyPortal/portal-selenium-test/target/surefire-reports/*
+              AxonIvyPortal/portal-selenium-test/target/testEngineOut.log
 
         - name: Show inputs
           run: |
@@ -598,8 +592,8 @@ jobs:
         - name: Report
           uses: dorny/test-reporter@v2.1.1
           with:
-            artifact: selenium-test-reports
+            artifact: artifacts
             name: Selenium tests
-            path: '*.xml'
+            path: 'surefire-reports/*.xml'
             reporter: java-junit
             only-summary: 'false'
