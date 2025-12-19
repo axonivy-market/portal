@@ -3,54 +3,86 @@
   xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
   xmlns:pe="http://primefaces.org/ui/extensions" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 <cc:interface componentType="IvyComponent">
-  <cc:attribute name="nameColumnRendered" default="true" />
-  <cc:attribute name="sizeColumnRendered" default="true" />
-  <cc:attribute name="typeColumnRendered" default="true" />
-  <cc:attribute name="functionColumnRendered" default="true" />
-  <cc:attribute name="previewRendered" default="true"/>
-  <cc:attribute name="uploadRendered" default="true" />
-  <cc:attribute name="downloadRendered" default="true" />
-  <cc:attribute name="deleteRendered" default="true" />
-  <cc:attribute name="renameRendered" default="true" />
-  <cc:attribute name="messageRendered" default="true" />
-  <cc:attribute name="renderChooseUploadIcon" default="true" />
-  <cc:attribute name="lazy" default="false" />
+  <cc:attribute name="nameColumnRendered" default="true" type="Boolean"
+    shortDescription="Boolean value to specify the rendering of the name column, when set to false name column will not be rendered. Type: Boolean. Default value: true. Required: false." />
+  <cc:attribute name="sizeColumnRendered" default="true" type="Boolean"
+    shortDescription="Boolean value to specify the rendering of the size column, when set to false size column will not be rendered. Type: Boolean. Default value: true. Required: false." />
+  <cc:attribute name="typeColumnRendered" default="true" type="Boolean"
+    shortDescription="Boolean value to specify the rendering of the type column, when set to false type column will not be rendered. Type: Boolean. Default value: true. Required: false." />
+  <cc:attribute name="functionColumnRendered" default="true" type="Boolean"
+    shortDescription="Boolean value to specify the rendering of the function column, when set to false function column will not be rendered. Type: Boolean. Default value: true. Required: false." />
+  <cc:attribute name="previewRendered" default="true" type="Boolean"
+    shortDescription="Boolean value to specify the rendering of the preview icon, when set to false preview icon will not be rendered. Type: Boolean. Default value: true. Required: false." />
+  <cc:attribute name="uploadRendered" default="true" type="Boolean"
+    shortDescription="Boolean value to specify the rendering of the upload icon, when set to false upload icon will not be rendered. Type: Boolean. Default value: true. Required: false." />
+  <cc:attribute name="downloadRendered" default="true" type="Boolean"
+    shortDescription="Boolean value to specify the rendering of the download icon, when set to false download icon will not be rendered. Type: Boolean. Default value: true. Required: false." />
+  <cc:attribute name="deleteRendered" default="true" type="Boolean"
+    shortDescription="Boolean value to specify the rendering of the delete icon, when set to false delete icon will not be rendered. Type: Boolean. Default value: true. Required: false." />
+  <cc:attribute name="renameRendered" default="true" type="Boolean"
+    shortDescription="Boolean value to specify the rendering of the edit filename icon, when set to false the icon will not be rendered. Type: Boolean. Default value: true. Required: false." />
+  <cc:attribute name="messageRendered" default="true" type="Boolean"
+    shortDescription="Boolean value to specify the rendering of the message, when set to false message will not be rendered. Type: Boolean. Default value: true. Required: false." />
+  <cc:attribute name="renderChooseUploadIcon" default="true" type="Boolean"
+    shortDescription="Defines if the button to upload document is displayed or not. Type: Boolean. Default value: true. Required: false." />
+  <cc:attribute name="lazy" default="false" type="Boolean"
+    shortDescription="Boolean value to specify whether the table should load data lazily and enable pagination. Type: Boolean. Default value: false. Required: false." />
   
-  <cc:attribute name="fileLimit" type="Integer" shortDescription="Number of files are in the given ICase" default="-1" />
-  <cc:attribute name="sizeLimit" type="Long" shortDescription="Individual file size limit in bytes" />
-  <cc:attribute name="uploadText" default="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/Upload')}" />
-  <cc:attribute name="updatedComponentAfterUploaded" />
+  <cc:attribute name="fileLimit" type="Integer" shortDescription="Maximum number of files that can be uploaded. Type: Integer. Default value: -1 (unlimited). Required: false." default="-1" />
+  <cc:attribute name="sizeLimit" type="Long" shortDescription="Maximum size of an individual file in bytes. Type: Long. Required: false." />
+  <cc:attribute name="uploadText" default="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/Upload')}" type="String"
+    shortDescription="Label text displayed on the upload button. Type: String. Default value: 'Upload new file'. Required: false." />
+  <cc:attribute name="updatedComponentAfterUploaded" type="String" shortDescription="Comma-separated clientIds (or EL expressions) of components to update after a successful upload. Example: 'document-table document-messages'. Required: false." />
   
-  <cc:attribute name="previewText" default="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/Preview')}"/>
-  <cc:attribute name="previewTitle" default="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/Preview')}"/>
-  <cc:attribute name="previewIcon" default="si si-view-1"/>
-  <cc:attribute name="previewStyleClass" />
-  <cc:attribute name="previewDialogStyleClass" />
-  <cc:attribute name="previewPDFStyleClass" />
-  <cc:attribute name="previewImageStyleClass" />
+  <cc:attribute name="previewTitle" default="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/Preview')}" type="String"
+    shortDescription="Tooltip text displayed when hovering over the preview icon. Type: String. Default value: 'Preview'. Required: false."/>
+  <cc:attribute name="previewIcon" default="si si-view-1" type="String"
+    shortDescription="Icon class for the preview link. Type: String. Default value: 'si si-view-1'. Required: false."/>
+  <cc:attribute name="previewStyleClass" type="String"
+    shortDescription="Custom CSS style class to apply to the preview link. Type: String. Required: false."/>
+  <cc:attribute name="previewDialogStyleClass" type="String"
+    shortDescription="Custom CSS style class to apply to the preview dialog. Type: String. Required: false."/>
+  <cc:attribute name="previewPDFStyleClass" type="String"
+    shortDescription="Custom CSS style class to apply to PDF preview media element. Type: String. Required: false."/>
+  <cc:attribute name="previewImageStyleClass" type="String"
+    shortDescription="Custom CSS style class to apply to image preview element. Type: String. Required: false."/>
 
-  <cc:attribute name="downloadText" default="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/Download')}" />
-  <cc:attribute name="downloadTitle" default="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/Download')}" />
-  <cc:attribute name="downloadIcon" default="si si-download-bottom" />
-  <cc:attribute name="downloadStyleClass" />
+  <cc:attribute name="downloadTitle" default="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/Download')}" type="String"
+    shortDescription="Tooltip text displayed when hovering over the download icon. Type: String. Default value: 'Download'. Required: false."/>
+  <cc:attribute name="downloadIcon" default="si si-download-bottom" type="String"
+    shortDescription="Icon class for the download link. Type: String. Default value: 'si si-download-bottom'. Required: false."/>
+  <cc:attribute name="downloadStyleClass" type="String"
+    shortDescription="Custom CSS style class to apply to the download link. Type: String. Required: false."/>
 
-  <cc:attribute name="deleteText" default="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/Delete')}" />
-  <cc:attribute name="deleteTitle" default="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/Delete')}" />
-  <cc:attribute name="deleteIcon" default="si si-bin-1" />
-  <cc:attribute name="deleteStyleClass" />
-  <cc:attribute name="updatedComponentAfterDeleted" />
+  <cc:attribute name="deleteTitle" default="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/Delete')}" type="String"
+    shortDescription="Tooltip text displayed when hovering over the delete icon. Type: String. Default value: 'Delete'. Required: false."/>
+  <cc:attribute name="deleteIcon" default="si si-bin-1" type="String"
+    shortDescription="Icon class for the delete link. Type: String. Default value: 'si si-bin-1'. Required: false."/>
+  <cc:attribute name="deleteStyleClass" type="String"
+    shortDescription="Custom CSS style class to apply to the delete link. Type: String. Required: false."/>
+  <cc:attribute name="updatedComponentAfterDeleted" type="String"
+    shortDescription="Comma-separated clientIds (or EL expressions) of components to update after a successful deletion. Example: 'document-table document-messages'. Required: false."/>
 
-  <cc:attribute name="renameText" default="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/RenamingDocument')}" />
-  <cc:attribute name="renameTitle" default="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/RenamingDocument')}" />
-  <cc:attribute name="renameStyleClass" />
-  <cc:attribute name="updatedComponentAfterRenamed" />
+  <cc:attribute name="renameText" default="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/RenamingDocument')}" type="String"
+    shortDescription="Tooltip text displayed when hovering over the rename icon. Type: String. Default value: 'Rename document'. Required: false."/>
+  <cc:attribute name="renameTitle" default="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/RenamingDocument')}" type="String"
+    shortDescription="Title text displayed in the rename dialog header. Type: String. Default value: 'Rename document'. Required: false."/>
+  <cc:attribute name="renameStyleClass" type="String"
+    shortDescription="Custom CSS style class to apply to the rename link. Type: String. Required: false."/>
+  <cc:attribute name="updatedComponentAfterRenamed" type="String"
+    shortDescription="Comma-separated clientIds (or EL expressions) of components to update after a successful rename. Example: 'document-table document-messages'. Required: false."/>
 
-  <cc:attribute name="selectedType" />
-  <cc:attribute name="typeSelectionItems" shortDescription="Use #{documentUploadBean.documentTypes} if there are no custom Document Type" />
+  <cc:attribute name="selectedType" type="com.axonivy.portal.components.enums.DocumentType"
+    shortDescription="Default document type to be selected. If not provided, the first item of typeSelectionItems will be used. Type: com.axonivy.portal.components.enums.DocumentType. Required: false."/>
+  <cc:attribute name="typeSelectionItems" type="com.axonivy.portal.components.enums.DocumentType[]"
+    shortDescription="Array of DocumentType objects for the type selection dropdown. Default is #{documentUploadBean.documentTypes} which returns BasicDocumentType enum values (DOCUMENTATION, CONTRACT, INFORMATION, EMAIL, OTHERS). Type: com.axonivy.portal.components.enums.DocumentType[]. Required: false."/>
   
-  <cc:attribute name="enableScriptCheckingForUploadedDocument" default="#{documentUploadBean.getPortalScriptCheckingSettingOrDefault(false)}" />
-  <cc:attribute name="enableVirusScannerForUploadedDocument" default="#{documentUploadBean.getPortalVirusScannerSettingOrDefault(false)}" />
-  <cc:attribute name="allowedUploadFileTypes" default="#{documentUploadBean.getPortalAllowedUploadFileTypesSettingOrDefault('doc,docx,xls,xlsx,xlsm,csv,pdf,ppt,pptx,txt,zip,jpg,jpeg,bmp,png')}" type="java.lang.String"/>
+  <cc:attribute name="enableScriptCheckingForUploadedDocument" type="Boolean" default="#{documentUploadBean.getPortalScriptCheckingSettingOrDefault(false)}"
+    shortDescription="Boolean value to specify script checking. The setting will detect Portal setting Portal.Document.EnableScriptChecking as its default value. If the Portal setting is not available, defaults to false. Type: Boolean. Required: false." />
+  <cc:attribute name="enableVirusScannerForUploadedDocument" type="Boolean" default="#{documentUploadBean.getPortalVirusScannerSettingOrDefault(false)}"
+    shortDescription="Boolean value to specify virus scanner checking. The setting will detect Portal setting Portal.Document.EnableVirusScanner as its default value. If the Portal setting is not available, defaults to false. Type: Boolean. Required: false." />
+  <cc:attribute name="allowedUploadFileTypes" type="String" default="#{documentUploadBean.getPortalAllowedUploadFileTypesSettingOrDefault('doc,docx,xls,xlsx,xlsm,csv,pdf,ppt,pptx,txt,zip,jpg,jpeg,bmp,png')}" type="java.lang.String"
+    shortDescription="List of file extension that can be uploaded separated by comma. The setting will detect Portal setting Portal.Document.WhitelistExtension as its default value. If Portal setting is not available, default value is doc,docx,xls,xlsx,xlsm,csv,pdf,ppt,pptx,txt,zip,jpg,jpeg,bmp,png. Type: String. Required: false."/>
 </cc:interface>
 
 <cc:implementation>
@@ -93,7 +125,6 @@
         <div class="flex align-items-center justify-content-around col-12">
         <p:commandLink id="document-preview" ariaLabel="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/Preview')}" 
           process="@this"
-          title="#{cc.attrs.previewTitle}"
           styleClass="#{cc.attrs.previewStyleClass}"
           actionListener="#{logic.preview(document)}"
           rendered="#{documentUploadBean.canPreviewDocument(document,cc.attrs.previewRendered)}"
@@ -101,7 +132,7 @@
           oncomplete="PF('preview-document-dialog').show()">
           <i class="fa #{cc.attrs.previewIcon}" />
           <p:tooltip for="document-preview" trackMouse="true" hideEvent="mouseleave click"
-            value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/Preview')}" />
+            value="#{cc.attrs.previewTitle}" />
         </p:commandLink>
         <p:commandLink id="edit-filename" ariaLabel="#{cc.attrs.renameText}"
           rendered="#{cc.attrs.renameRendered}" styleClass="#{cc.attrs.renameStyleClass}" immediate="true"

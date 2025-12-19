@@ -4,10 +4,10 @@
   xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
   xmlns:pc="http://xmlns.jcp.org/jsf/composite/components">
 <cc:interface componentType="IvyComponent">
-  <cc:attribute name="taskId" />
-  <cc:attribute name="caseId" />
-  <cc:attribute name="processLink" />
-  <cc:attribute name="containerStyleClass" />
+  <cc:attribute name="taskId" type="Long" required="true" shortDescription="Task ID. Type: Long. Required: true." />
+  <cc:attribute name="caseId" type="Long" required="true" shortDescription="Case ID. Type: Long. Required: true." />
+  <cc:attribute name="processLink" type="String" required="true" shortDescription="Process or Case Map relative link. Type: String. Required: true." />
+  <cc:attribute name="containerStyleClass" type="String" shortDescription="Component container style class. Type: String. Required: false." />
 </cc:interface>
 
 <cc:implementation>
