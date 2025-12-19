@@ -507,36 +507,11 @@ public class DashboardConfigurationPage extends TemplatePage {
         "[id='dashboard-template-selection-component:dashboard-creation-component:title-language-config:multiple-languages-dialog']");
   }
 
-  public void clickOnTextToTranslate(int index) {
-    $(String.format("input[id$=':add-language-detail-form:table-titles:%s:title-input']", index))
-        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-    $("div[id$=':overlay-panel-input']").shouldBe(appear, DEFAULT_TIMEOUT);
-  }
-
-  public void setTranslatedTitle() {
-    $(String.format("input[id$=':add-language-detail-form:table-titles:%s:title-input']", 1)).sendKeys(Keys.CONTROL,
-        "a");
-    $(String.format("input[id$=':add-language-detail-form:table-titles:%s:title-input']", 1))
-        .sendKeys("Mon tableau de bord");
-    $(String.format("input[id$=':add-language-detail-form:table-titles:%s:title-input']", 2)).sendKeys(Keys.CONTROL,
-        "a");
-    $(String.format("input[id$=':add-language-detail-form:table-titles:%s:title-input']", 2))
-        .sendKeys("Mein Armaturenbrett");
-    $(String.format("input[id$=':add-language-detail-form:table-titles:%s:title-input']", 3)).sendKeys(Keys.CONTROL,
-        "a");
-    $(String.format("input[id$=':add-language-detail-form:table-titles:%s:title-input']", 3))
-        .sendKeys("Mi cuadro de mandos");
-  }
-
   public void clickOkMultiLanguageDialog() {
     $("button[id$=':multi-language-ok-button']").shouldBe(appear, DEFAULT_TIMEOUT);
     $("button[id$=':multi-language-ok-button']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
-  public void clickOkCreateDashboard() {
-    $("button[id$='dashboard-creation-component:dashboard-create-button']").shouldBe(appear, DEFAULT_TIMEOUT);
-  }
-  
   public void clickOnAddWidgetButton() {
     $("span#dashboard-header-action").shouldBe(appear, DEFAULT_TIMEOUT).$("button#add-button").shouldBe(appear, DEFAULT_TIMEOUT).click();
     $("div#new-widget-dialog").shouldBe(appear, DEFAULT_TIMEOUT);
