@@ -1540,6 +1540,7 @@ Dialogs:
               ResetFilter: フィルターのリセット
             filter:
               DashboardFilter:
+                HasCmsValuesEnabledTooltip: このフィールドは「含む」演算子のみ使用できます
                 SelectFilterField: TODO Select Filter Field
               DateFilter:
                 SelectPeriod: TODO Select period

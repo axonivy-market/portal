@@ -1545,6 +1545,7 @@ Dialogs:
               ResetFilter: Réinitialiser le filtre
             filter:
               DashboardFilter:
+                HasCmsValuesEnabledTooltip: Ce champ permet uniquement d'utiliser l'opérateur Contient
                 SelectFilterField: Sélectionner le champ de filtre
               DateFilter:
                 SelectPeriod: Sélectionner la période

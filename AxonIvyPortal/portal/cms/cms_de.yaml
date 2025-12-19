@@ -1544,6 +1544,7 @@ Dialogs:
               ResetFilter: Filter zurücksetzen
             filter:
               DashboardFilter:
+                HasCmsValuesEnabledTooltip: Dieses Feld erlaubt nur die Verwendung des Operators „Enthält"
                 SelectFilterField: Filterfeld auswählen
               DateFilter:
                 SelectPeriod: |
