@@ -1,8 +1,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
-	xmlns:p="http://primefaces.org/ui" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
-	xmlns:pe="http://primefaces.org/ui/extensions" xmlns:pc="http://xmlns.jcp.org/jsf/composite/components">
+    xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
+    xmlns:p="http://primefaces.org/ui" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+    xmlns:pe="http://primefaces.org/ui/extensions" xmlns:pc="http://xmlns.jcp.org/jsf/composite/components">
 
 <cc:interface componentType="IvyComponent">
 </cc:interface>
@@ -83,11 +83,13 @@
                 <p:menuitem id="edit-application"
                   global="false"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}"
-                  icon="si si-graphic-tablet-drawing-pen"
+                  icon="si si-graphic-tablet-drawing-pen" 
                   oncomplete="PF('appDialog').show()"
                   actionListener="#{thirdPartyApplicationBean.editApplication(app)}"
                   update=":#{p:resolveFirstComponentWithId('appDialog', view).clientId}"
-                  process="@this" />
+                  process="@this">
+                  <p:resetInput target="admin-setting-component:appDialog" />
+                  </p:menuitem>
                 <p:menuitem id="delete-application"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
                   icon="si si-bin-1" styleClass="color-destroy"
@@ -228,7 +230,7 @@
   <p:dialog header="#{thirdPartyApplicationBean.dialogTitle}" id="appDialog" onShow="$('body').css({overflow:'hidden'})"
     styleClass="app-dialog" onHide="PF('cancelButton').jq.click(); $('body').css({overflow:'inherit'})" widgetVar="appDialog" dynamic="true"
     modal="true" resizable="false" appendTo="@(body)" closeOnEscape="true" width="500px" height="auto"
-    responsive="true" fitViewport="true" position="center center" positionType="absolute">
+    responsive="true" fitViewport="true" position="center center">
     <h:form prependId="false" id="appDialogForm">
       <p:messages id="messages" closable="true" />
       <p:outputPanel id="appOverview">
