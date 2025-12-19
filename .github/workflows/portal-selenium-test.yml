@@ -13,7 +13,7 @@ on:
         description: |
           url to download engine, default is the nightly build.
         type: string
-        default: 'https://developer.axonivy.com/permalink/nightly-13.2/axonivy-engine.zip'
+        default: 'https://developer.axonivy.com/permalink/nightly/axonivy-engine.zip'
         required: true
 
 env:
@@ -335,7 +335,7 @@ jobs:
         - name: Download engine
           run: |
             cd $ENGINE_DIR
-            wget ${{ inputs.engineDownloadURL }} -O axonivy-engine.zip
+            wget $ENGINE_URL -O axonivy-engine.zip
             unzip -o axonivy-engine.zip -d .
             rm axonivy-engine.zip
 
@@ -382,15 +382,21 @@ jobs:
           run: |
             cat AxonIvyPortal/portal-selenium-test/target/testEngineOut.log 
 
-        - name: Archive artifacts
+        - name: Archive screenshot image
           uses: actions/upload-artifact@v4
           with:
-            name: artifacts
-            retention-days: 10
+            name: screenshots
+            retention-days: 5
             path: |
               AxonIvyPortal/portal-selenium-test/target/selenide/reports/*
+
+        - name: Archive test reports
+          uses: actions/upload-artifact@v4
+          with:
+            name: selenium-test-reports
+            retention-days: 5
+            path: |
               AxonIvyPortal/portal-selenium-test/target/surefire-reports/*
-              AxonIvyPortal/portal-selenium-test/target/testEngineOut.log
 
         - name: Show inputs
           run: |
@@ -592,8 +598,8 @@ jobs:
         - name: Report
           uses: dorny/test-reporter@v2.1.1
           with:
-            artifact: artifacts
+            artifact: selenium-test-reports
             name: Selenium tests
-            path: 'surefire-reports/*.xml'
+            path: '*.xml'
             reporter: java-junit
             only-summary: 'false'
