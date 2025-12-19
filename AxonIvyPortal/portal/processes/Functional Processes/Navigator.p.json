@@ -59,10 +59,9 @@
       "config" : {
         "output" : {
           "code" : [
-            "import ch.ivyteam.ivy.workflow.query.CaseQuery;",
             "import ch.ivyteam.ivy.workflow.ICase;",
             "",
-            "out.caze = ivy.wf.getGlobalContext().getCaseQueryExecutor().createCaseQuery().where().uuid().isEqual(in.caseId.uuid()).executor().firstResult() as ICase;"
+            "out.caze = ivy.wf.findCase(in.caseId.uuid()) as ICase;"
           ]
         }
       },
@@ -110,9 +109,8 @@
         "output" : {
           "code" : [
             "import ch.ivyteam.ivy.workflow.ITask;",
-            "import ch.ivyteam.ivy.workflow.query.TaskQuery;",
             "",
-            "out.task = ivy.wf.getGlobalContext().getTaskQueryExecutor().createTaskQuery().where().uuid().isEqual(in.uuid).executor().firstResult() as ITask;"
+            "out.task = ivy.wf.findTask(in.uuid) as ITask;"
           ]
         }
       },
@@ -200,9 +198,8 @@
         "output" : {
           "code" : [
             "import ch.ivyteam.ivy.workflow.ITask;",
-            "import ch.ivyteam.ivy.workflow.query.TaskQuery;",
             "",
-            "out.task = ivy.wf.getGlobalContext().getTaskQueryExecutor().createTaskQuery().where().uuid().isEqual(in.uuid).executor().firstResult() as ITask;"
+            "out.task = ivy.wf.findTask(in.uuid) as ITask;"
           ]
         }
       },
