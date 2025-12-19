@@ -76,6 +76,10 @@ public class TaskTemplatePage extends TemplatePage {
     $("[id='horizontal-task-actions']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     $("div[id$='horizontal-task-action-form:horizontal-task-action-menu']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
+  
+  public void waitForHorizontalSidestepMenu() {
+	  $("[id$=':horizontal-task-action-menu'][style*='display: block']").shouldHave(Condition.cssClass("ui-connected-overlay-enter-done"));
+  }
 
   // moved
   public void clickChatGroup() {

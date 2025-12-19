@@ -209,14 +209,14 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
 
     // Take screenshot of task widget table in edit mode
     NewDashboardPage newDashboardPage = new NewDashboardPage();
-    ScreenshotUtils.captureElementScreenshot(
-        newDashboardPage.getTaskWidgetTable(),
-        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "task-list-widget-edit-mode");
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(
+        newDashboardPage.getTaskWidgetPanel(),
+        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "task-list-widget-edit-mode", new ScreenshotMargin(10));
 
     // Take screenshot of case widget table in edit mode
-    ScreenshotUtils.captureElementScreenshot(
-        newDashboardPage.getCaseWidgetTable(),
-        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "case-list-widget-edit-mode");
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(
+        newDashboardPage.getCaseWidgetPanel(),
+        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "case-list-widget-edit-mode", new ScreenshotMargin(10));
 
     // Take screenshot of Add new widget dialog
     WebElement newWidgetDialog = detailsEditPage.addWidget();
@@ -368,7 +368,7 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
 
   @Test
   public void screenshotWelcomeWidget() throws IOException {
-    ScreenshotUtils.maximizeBrowser();
+    ScreenshotUtils.resizeBrowser(new Dimension(1920, 1080));    
     addPublicWidget(NewDashboardDetailsEditPage.WELCOME_WIDGET);
     WelcomeEditWidgetNewDashboardPage welcomeWidgetPage = new WelcomeEditWidgetNewDashboardPage();
     welcomeWidgetPage.waitForDialogLoaded();
