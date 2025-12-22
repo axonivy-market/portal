@@ -514,17 +514,22 @@ function removeStyle(element) {
 
 function searchNewWidgetByNameOrDescription(input) {
   var keyword = input.value.toLowerCase();
+  
   $('.js-widget').each(function() {
-    if ($(this).find('.new-widget-dialog__item-title span').text().toLowerCase().includes(keyword)) {
-      $(this).removeClass('hidden');
+    var widgetName = $(this).find('.new-widget-dialog__widget-name').text().toLowerCase();
+    var widgetIntro = $(this).find('.new-widget-dialog__introduction').text().toLowerCase();
+    
+    // Match if keyword found in name or intro (intro can be empty for CreateCustomStatistic)
+    if (widgetName.includes(keyword) || widgetIntro.includes(keyword)) {
+      $(this).closest('.col-12').removeClass('hidden');
     } else {
-      $(this).addClass('hidden');
+      $(this).closest('.col-12').addClass('hidden');
     }
   });
 
   var noResult = true;
-  $('.js-widget-fieldset').each(function() {
-    if ($(this).find('.js-widget:not(".hidden")').length == 0) {
+  $('.new-widget-dialog__section').each(function() {
+    if ($(this).find('.col-12:not(.hidden)').length == 0) {
       $(this).addClass('hidden');
     } else {
       $(this).removeClass('hidden');
@@ -533,6 +538,25 @@ function searchNewWidgetByNameOrDescription(input) {
   });
 
   noResult ? $('.js-no-widget').removeClass('hidden') : $('.js-no-widget').addClass('hidden');
+}
+
+function filterWidgetsByTab(tab) {
+  // Update active tab button
+  $('.new-widget-dialog__tab').removeClass('new-widget-dialog__tab--active').addClass('ui-button-outlined');
+  event.target.classList.remove('ui-button-outlined');
+  event.target.classList.add('new-widget-dialog__tab--active');
+  
+  // Show/hide sections based on tab
+  if (tab === 'all') {
+    $('.new-widget-dialog__section').removeClass('hidden');
+  } else {
+    $('.new-widget-dialog__section').addClass('hidden');
+    $('.new-widget-dialog__section--' + tab).removeClass('hidden');
+  }
+  
+  // Check if there are visible widgets
+  var hasVisibleWidgets = $('.new-widget-dialog__section:not(.hidden)').length > 0;
+  hasVisibleWidgets ? $('.js-no-widget').addClass('hidden') : $('.js-no-widget').removeClass('hidden');
 }
 
 function udateResizableTablesWhenResizeWidget() {

@@ -11,158 +11,86 @@
   modal="true" dynamic="true"
   position="center center"
   onShow="PF('new-widget-dialog').initPosition()"
-  focus="@(.new-widget-dialog__content .ui-button:first)">
-  <h:form class="w-full flex justify-content-between align-items-center mb-4">
+  focus="@(.new-widget-dialog__tabs .ui-button:first)">
+  <h:form class="w-full mb-4">
     <div class="new-widget-dialog__search">
       <p:inputText id="search-input" styleClass="js-search-input new-widget-dialog__search-input"
         placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/name')}, #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/description')}"
+        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/search')}"
         onkeyup="searchNewWidgetByNameOrDescription(this);" />
-        <span class="si si-search new-widget-dialog__search-icon" />
-    </div>
-    <div class="flex flex-row-reverse flex-wrap gap-2">
-      <p:commandButton id="create-custom-statistic"
-        ariaLabel="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/generic/dashboard/PortalDashboardDetailModification/CreateCustomStatistic')}"
-        value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/generic/dashboard/PortalDashboardDetailModification/CreateCustomStatistic')}"
-        icon="si si-analytics-bars" styleClass="primary-color-light-button"
-        actionListener="#{dashboardDetailModificationBean.navigateToCustomStatisticWidgetPage(null)}"
-        rendered="#{dashboardDetailModificationBean.canEditStatistic()}" />
+      <span class="si si-search new-widget-dialog__search-icon" />
     </div>
   </h:form>
+  
+  <div class="new-widget-dialog__tabs flex flex-wrap gap-2 mb-4">
+    <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/All')}" styleClass="new-widget-dialog__tab new-widget-dialog__tab--active" 
+      ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/All')}"
+      type="button" onclick="filterWidgetsByTab('all'); return false;" />
+    <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/StandardWidgets')}" styleClass="new-widget-dialog__tab ui-button-outlined" 
+      ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/StandardWidgets')}"
+      type="button" onclick="filterWidgetsByTab('standard'); return false;" />
+    <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/statisticWidgets')}" styleClass="new-widget-dialog__tab ui-button-outlined" 
+      ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/statisticWidgets')}"
+      type="button" onclick="filterWidgetsByTab('statistics'); return false;" />
+    <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/CustomWidgets')}" styleClass="new-widget-dialog__tab ui-button-outlined" 
+      ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/CustomWidgets')}"
+      type="button" onclick="filterWidgetsByTab('custom'); return false;" />
+  </div>
+  
   <div class="new-widget-dialog__content">
-    <p:fieldset id="standard-widget-fieldset" toggleable="true"
-      rendered="#{not empty dashboardDetailModificationBean.samples}"
-      legend="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/StandardWidgets')}"
-      styleClass="new-widget-dialog__fieldset js-widget-fieldset">
-      <div class="new-widget-dialog__item-container">
+    <h:panelGroup layout="block" styleClass="new-widget-dialog__section new-widget-dialog__section--standard" rendered="#{not empty dashboardDetailModificationBean.samples}">
+      <h4 class="new-widget-dialog__section-title mb-3">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/StandardWidgets')}</h4>
+      <div class="grid">
         <ui:repeat id="new-widget-dialog-content"
           var="sample"
           value="#{dashboardDetailModificationBean.samples}">
-          <div class="new-widget-dialog__item card js-widget">
-            <div class="new-widget-dialog__item-title">
-              <h:outputText id="widget-name" value="#{sample.name}" styleClass="new-widget-dialog__widget-name"/>
-            </div>
-            <div class="new-widget-dialog__item-details">
-              <p:graphicImage library="images" name="#{sample.image}" styleClass="new-widget-dialog__image" rendered="#{!sample.useIcon}" />
-              <h:panelGroup layout="block" rendered="#{sample.useIcon}" styleClass="new-widget-dialog__image" >
-                <span class="#{sample.image} new-widget-dialog__icon" />
-              </h:panelGroup>
-
-              <h:panelGroup layout="block" styleClass="ui-panelgrid-blank new-widget-dialog__item-content">
-                <h:outputText value="#{sample.introduction}" styleClass="new-widget-dialog__introduction"/>
-                <p:commandButton id="add-widget" styleClass="new-widget-dialog__add-widget-button"
-                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/addWidget')}"
-                  ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/addWidget')}"
-                  actionListener="#{dashboardDetailModificationBean.create(sample)}" update="new-widget-configuration-dialog widget-configuration-form"
-                  oncomplete="PF('new-widget-configuration-dialog').show(); PF('new-widget-dialog').hide();"
-                  icon="si si-add" onstart="getPortalGridsCurrentRow();"
-                  process="@this"/>
-              </h:panelGroup>
-              
-            </div>
+          <div class="col-12 md:col-6 lg:col-4">
+            <ic:ch.ivy.addon.portal.generic.dashboard.component.WidgetSelectionItem
+              widget="#{sample}"
+              widgetType="standard" />
           </div>
         </ui:repeat>
       </div>
-    </p:fieldset>
+    </h:panelGroup>
     
-    <p:fieldset id="statistic-widget-fieldset" toggleable="true"
-      rendered="#{not empty dashboardDetailModificationBean.statisticWidgets}"
-      legend="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/statisticWidgets')}"
-      styleClass="new-widget-dialog__fieldset js-widget-fieldset">
-      <div class="new-widget-dialog__item-container">
+    <h:panelGroup id="statistic-widget-fieldset" layout="block" styleClass="new-widget-dialog__section new-widget-dialog__section--statistics" rendered="#{not empty dashboardDetailModificationBean.statisticWidgets}">
+      <h4 class="new-widget-dialog__section-title mb-3">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/statisticWidgets')}</h4>
+      <div class="grid">
+        <h:panelGroup layout="block" styleClass="col-12 md:col-6 lg:col-4" rendered="#{dashboardDetailModificationBean.canEditStatistic()}">
+          <p:commandLink styleClass="new-widget-dialog__item new-widget-dialog__item--create js-widget card block w-full h-full"
+            ariaLabel="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/generic/dashboard/PortalDashboardDetailModification/CreateCustomStatistic')}"
+            actionListener="#{dashboardDetailModificationBean.navigateToCustomStatisticWidgetPage(null)}">
+            <div class="flex flex-column align-items-center justify-content-center h-full">
+              <span class="si si-add new-widget-dialog__icon mb-2"/>
+              <h:outputText value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/generic/dashboard/PortalDashboardDetailModification/CreateCustomStatistic')}" 
+                styleClass="new-widget-dialog__widget-name text-center"/>
+            </div>
+          </p:commandLink>
+        </h:panelGroup>
         <ui:repeat id="new-statistic-widget-dialog-content"
          var="widget" value="#{dashboardDetailModificationBean.statisticWidgets}">
-          <div class="new-widget-dialog__item card js-widget">
-
-            <div class="new-widget-dialog__item-title">
-              <div class="w-full">
-                <div class="flex gap-3">
-                  <div class="flex flex-1">
-                    <h:outputText id="statistic-widget-name" value="#{widget.name}" styleClass="new-widget-dialog__widget-name"/>
-                    <p:tooltip id="statistic-widget-name-tooltip" for="statistic-widget-name" value="#{widget.name}" trackMouse="true" />
-                  </div>
-                  <h:panelGroup styleClass="flex flex-none align-items-center"
-                    rendered="#{widget.isCustom and dashboardDetailModificationBean.canEditStatistic()}">
-                    <p:commandButton id="custom-statistic-action-button" icon="fa fa-ellipsis-h"
-                      ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}"
-                      styleClass="rounded-button icon-more-menu-button ui-no-rounded-button-process-page"
-                      type="button" />
-                    <p:menu id="custom-statistic-action-menu" styleClass="w-auto" overlay="true"
-                      trigger="custom-statistic-action-button" my="right top" at="right bottom">
-                      <p:menuitem id="edit" process="@this" icon="si si-graphic-tablet-drawing-pen" styleClass=""
-                        actionListener="#{dashboardDetailModificationBean.navigateToCustomStatisticWidgetPage(widget.id)}"
-                        global="false" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}"
-                        target="_blank" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}" />
-                      <p:menuitem id="delete-dashboard" process="@this"
-                        styleClass="rounded-button ui-button-outlined ui-button-danger color-destroy" icon="si si-bin-1"
-                        global="false"
-                        actionListener="#{dashboardDetailModificationBean.onSelectedDeleteStatistic(widget)}"
-                        title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
-                        oncomplete="PF('remove-statistic-widget-dialog').show()"
-                        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}" />
-                    </p:menu>
-                  </h:panelGroup>
-                </div>
-              </div>
-            </div>
-
-            <div class="new-widget-dialog__item-details">
-              <h:panelGroup layout="block" styleClass="new-widget-dialog__image" >
-                <span class="#{iconSelectionBean.generateIconWithFontFamily(htmlSanitizerBean.sanitize(widget.icon))} new-widget-dialog__icon" />
-              </h:panelGroup>
-              <h:panelGroup layout="block" styleClass="ui-panelgrid-blank new-widget-dialog__item-content">
-                <h:outputText id="statistic-widget-description" value="#{widget.description}" styleClass="new-widget-dialog__introduction h-3rem"/>
-                <p:tooltip id="statistic-widget-description-tooltip" for="statistic-widget-description" value="#{widget.description}" trackMouse="true" />
-                <p:commandButton id="add-widget" styleClass="new-widget-dialog__add-widget-button"
-                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/addWidget')}"
-                  ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/addWidget')}"
-                  actionListener="#{dashboardDetailModificationBean.saveStatisticWidget(widget)}"
-                  oncomplete="loadGridAfterAddedNewWidget(); initStatistics();"
-                  update="widget-configuration-form load-grid-after-added-new-widget-cmd"
-                  partialSubmit="true"
-                  icon="si si-add"/>
-              </h:panelGroup>
-              
-            </div>
+          <div class="col-12 md:col-6 lg:col-4">
+            <ic:ch.ivy.addon.portal.generic.dashboard.component.WidgetSelectionItem
+              widget="#{widget}"
+              widgetType="statistic" />
           </div>
         </ui:repeat>
       </div>
-    </p:fieldset>
+    </h:panelGroup>
 
-    <p:fieldset id="custom-widget-fieldset" toggleable="true"
-      rendered="#{not empty dashboardDetailModificationBean.customWidgets}"
-      legend="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/CustomWidgets')}"
-      styleClass="new-widget-dialog__fieldset js-widget-fieldset">
-      <div class="new-widget-dialog__item-container">
+    <h:panelGroup layout="block" styleClass="new-widget-dialog__section new-widget-dialog__section--custom" rendered="#{not empty dashboardDetailModificationBean.customWidgets}">
+      <h4 class="new-widget-dialog__section-title mb-3">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/CustomWidgets')}</h4>
+      <div class="grid">
         <ui:repeat id="new-custom-widget-dialog-content"
          var="widget" value="#{dashboardDetailModificationBean.customWidgets}">
-          <div class="new-widget-dialog__item card js-widget">
-
-            <div class="new-widget-dialog__item-title">
-              <h:outputText id="widget-name" value="#{widget.name}" styleClass="new-widget-dialog__widget-name"/>
-              <p:tooltip id="widget-name-tooltip" for="widget-name" value="#{widget.name}" trackMouse="true" />
-            </div>
-
-            <div class="new-widget-dialog__item-details">
-              <h:panelGroup layout="block" styleClass="new-widget-dialog__image" >
-                <span class="#{widget.icon} new-widget-dialog__icon" />
-              </h:panelGroup>
-
-              <h:panelGroup layout="block" styleClass="ui-panelgrid-blank new-widget-dialog__item-content">
-                <h:outputText value="#{widget.description}" styleClass="new-widget-dialog__introduction"/>
-                <p:commandButton id="add-widget" styleClass="new-widget-dialog__add-widget-button"
-                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/addWidget')}"
-                  ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/addWidget')}"
-                  actionListener="#{dashboardDetailModificationBean.createCustomDashboardWidget(widget)}" 
-                  update="new-widget-configuration-dialog widget-configuration-form"
-                  oncomplete="PF('new-widget-configuration-dialog').show(); PF('new-widget-dialog').hide();"
-                  icon="si si-add" onstart="getPortalGridsCurrentRow();"/>
-              </h:panelGroup>
-              
-            </div>
+          <div class="col-12 md:col-6 lg:col-4">
+            <ic:ch.ivy.addon.portal.generic.dashboard.component.WidgetSelectionItem
+              widget="#{widget}"
+              widgetType="custom" />
           </div>
         </ui:repeat>
       </div>
-    </p:fieldset>
+    </h:panelGroup>
     <div class="js-no-widget hidden new-widget-dialog__no-widget-text">
       <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/NoWidgetAvailable')}</span>
     </div>

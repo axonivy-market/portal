@@ -1,0 +1,116 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
+  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions">
+<cc:interface componentType="IvyComponent">
+  <cc:attribute name="widget" required="true" />
+  <cc:attribute name="widgetType" type="java.lang.String" default="standard" />
+</cc:interface>
+
+<cc:implementation>
+  <!-- Standard widget -->
+  <ui:fragment rendered="#{cc.attrs.widgetType eq 'standard'}">
+    <p:commandLink styleClass="new-widget-dialog__item card js-widget block w-full h-full" 
+      ariaLabel="#{cc.attrs.widget.name}"
+      actionListener="#{dashboardDetailModificationBean.create(cc.attrs.widget)}"
+      update="new-widget-configuration-dialog widget-configuration-form"
+      oncomplete="PF('new-widget-configuration-dialog').show(); PF('new-widget-dialog').hide();"
+      onstart="getPortalGridsCurrentRow();"
+      process="@this">
+      
+      <div class="flex align-items-center">
+        <p:graphicImage library="images" name="#{cc.attrs.widget.image}" 
+          styleClass="new-widget-dialog__image flex-shrink-0" 
+          rendered="#{!cc.attrs.widget.useIcon}" />
+        
+        <h:panelGroup layout="block" 
+          rendered="#{cc.attrs.widget.useIcon}" 
+          styleClass="new-widget-dialog__image flex align-items-center justify-content-center flex-shrink-0">
+          <span class="#{cc.attrs.widget.image} new-widget-dialog__icon" />
+        </h:panelGroup>
+        
+        <div class="flex-1 min-w-0">
+          <h:outputText id="standard-widget-name" value="#{cc.attrs.widget.name}" styleClass="new-widget-dialog__widget-name block mb-2"/>
+          <p:tooltip id="standard-widget-name-tooltip" for="standard-widget-name" value="#{cc.attrs.widget.name}" trackMouse="true" />
+          <h:outputText id="standard-widget-introduction" value="#{cc.attrs.widget.introduction}" styleClass="new-widget-dialog__introduction block"/>
+          <p:tooltip id="standard-widget-introduction-tooltip" for="standard-widget-introduction" value="#{cc.attrs.widget.introduction}" trackMouse="true" />
+        </div>
+      </div>
+    </p:commandLink>
+  </ui:fragment>
+  
+  <!-- Custom widget -->
+  <ui:fragment rendered="#{cc.attrs.widgetType eq 'custom'}">
+    <p:commandLink styleClass="new-widget-dialog__item card js-widget block w-full h-full" 
+      ariaLabel="#{cc.attrs.widget.name}"
+      actionListener="#{dashboardDetailModificationBean.createCustomDashboardWidget(cc.attrs.widget)}"
+      update="new-widget-configuration-dialog widget-configuration-form"
+      oncomplete="PF('new-widget-configuration-dialog').show(); PF('new-widget-dialog').hide();"
+      onstart="getPortalGridsCurrentRow();"
+      process="@this">
+      
+      <div class="flex align-items-center">
+        <h:panelGroup layout="block" styleClass="new-widget-dialog__image flex align-items-center justify-content-center flex-shrink-0">
+          <span class="#{cc.attrs.widget.icon} new-widget-dialog__icon" />
+        </h:panelGroup>
+        
+        <div class="flex-1 min-w-0">
+          <h:outputText id="custom-widget-name" value="#{cc.attrs.widget.name}" styleClass="new-widget-dialog__widget-name block mb-2"/>
+          <p:tooltip id="custom-widget-name-tooltip" for="custom-widget-name" value="#{cc.attrs.widget.name}" trackMouse="true" />
+          <h:outputText id="custom-widget-description" value="#{cc.attrs.widget.description}" styleClass="new-widget-dialog__introduction block"/>
+          <p:tooltip id="custom-widget-description-tooltip" for="custom-widget-description" value="#{cc.attrs.widget.description}" trackMouse="true" />
+        </div>
+      </div>
+    </p:commandLink>
+  </ui:fragment>
+  
+  <!-- Statistic widget -->
+  <ui:fragment rendered="#{cc.attrs.widgetType eq 'statistic'}">
+    <div class="new-widget-dialog__item new-widget-dialog__item--statistic-wrapper card block w-full h-full">
+      <p:commandLink styleClass="new-widget-dialog__item-content js-widget block w-full h-full" 
+        ariaLabel="#{cc.attrs.widget.name}"
+        actionListener="#{dashboardDetailModificationBean.saveStatisticWidget(cc.attrs.widget)}"
+        oncomplete="loadGridAfterAddedNewWidget(); initStatistics();"
+        update="widget-configuration-form load-grid-after-added-new-widget-cmd"
+        partialSubmit="true"
+        process="@this">
+        
+        <div class="flex align-items-center">
+          <h:panelGroup layout="block" styleClass="new-widget-dialog__image flex align-items-center justify-content-center flex-shrink-0">
+            <span class="#{iconSelectionBean.generateIconWithFontFamily(htmlSanitizerBean.sanitize(cc.attrs.widget.icon))} new-widget-dialog__icon" />
+          </h:panelGroup>
+          
+          <div class="flex-1 min-w-0">
+            <h:outputText id="statistic-widget-name" value="#{cc.attrs.widget.name}" styleClass="new-widget-dialog__widget-name block mb-2"/>
+            <p:tooltip id="statistic-widget-name-tooltip" for="statistic-widget-name" value="#{cc.attrs.widget.name}" trackMouse="true" />
+            <h:outputText id="statistic-widget-description" value="#{cc.attrs.widget.description}" styleClass="new-widget-dialog__introduction block"/>
+            <p:tooltip id="statistic-widget-description-tooltip" for="statistic-widget-description" value="#{cc.attrs.widget.description}" trackMouse="true" />
+          </div>
+        </div>
+      </p:commandLink>
+      
+      <h:panelGroup layout="block" styleClass="new-widget-dialog__item-menu-wrapper" rendered="#{cc.attrs.widget.isCustom and dashboardDetailModificationBean.canEditStatistic()}">
+        <p:commandButton id="custom-statistic-action-button" icon="fa fa-ellipsis-h"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}"
+          styleClass="rounded-button icon-more-menu-button ui-no-rounded-button-process-page"
+          type="button" />
+        <p:menu id="custom-statistic-action-menu" styleClass="w-auto" overlay="true"
+          trigger="custom-statistic-action-button" my="right top" at="right bottom">
+          <p:menuitem id="edit" process="@this" icon="si si-graphic-tablet-drawing-pen"
+            actionListener="#{dashboardDetailModificationBean.navigateToCustomStatisticWidgetPage(cc.attrs.widget.id)}"
+            global="false" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}"
+            target="_blank" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}" />
+          <p:menuitem id="delete-dashboard" process="@this"
+            styleClass="rounded-button ui-button-outlined ui-button-danger color-destroy" icon="si si-bin-1"
+            global="false"
+            actionListener="#{dashboardDetailModificationBean.onSelectedDeleteStatistic(cc.attrs.widget)}"
+            title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
+            oncomplete="PF('remove-statistic-widget-dialog').show()"
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}" />
+        </p:menu>
+      </h:panelGroup>
+    </div>
+  </ui:fragment>
+</cc:implementation>
+
+</html>

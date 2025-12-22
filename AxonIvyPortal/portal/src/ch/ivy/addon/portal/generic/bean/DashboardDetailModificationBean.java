@@ -202,17 +202,17 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
 
   private WidgetSample taskSample() {
     return new WidgetSample(translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/taskList"), TASK,
-        "task-widget-sample.png", translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/taskListIntroduction"));
+        "si si-checklist-pen", translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/taskListIntroduction"), true);
   }
 
   private WidgetSample caseSample() {
     return new WidgetSample(translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/caseList"), CASE,
-        "case-widget-sample.png", translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/caseListIntroduction"));
+        "si si-list-bullets", translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/caseListIntroduction"), true);
   }
 
   private WidgetSample processSample() {
     return new WidgetSample(translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/processList"), PROCESS,
-        "process-widget-sample.png", translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/processListIntroduction"));
+        "fa fa-th-list", translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/processListIntroduction"), true);
   }
 
   private WidgetSample externalPageSample() {
@@ -227,7 +227,8 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
 
   private WidgetSample welcomeWidgetSample() {
     return new WidgetSample(translate("/ch.ivy.addon.portalkit.ui.jsf/Enums/DashboardWidgetType/WELCOME"), WELCOME,
-        "welcome-widget-sample.png", translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/WelcomeWidgetIntroduction"));
+        "si si-image-file-landscape", translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/WelcomeWidgetIntroduction"),
+        true);
   }
 
   private WidgetSample newsSample() {

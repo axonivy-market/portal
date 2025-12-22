@@ -335,6 +335,8 @@
   --combined-button-tab-background-focus: rgba(144, 221, 233, 0.5);
   /* News Widget */
   --news-item-background: rgb(62, 71, 84);
+  /* New Widget Dialog */
+  --new-widget-dialog-item-background: inherit;
   /* Notification */
   --notification-panel-color: var(--notification-background-color);
   --notification-hover-message-color: #394457;
