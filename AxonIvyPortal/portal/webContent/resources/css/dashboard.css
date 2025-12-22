@@ -111,7 +111,7 @@
 .new-widget-dialog__tab {
   color: var(--text-color) !important;
   background-color: var(--new-widget-dialog-item-background) !important;
-  border: 1px solid var(--text-color) !important;
+  border: 1px solid var(--card-dialog-border-color) !important;
   transition: all 0.2s ease;
 }
 
