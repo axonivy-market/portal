@@ -65,11 +65,13 @@ HowTo: Add a New Language to Portal
 
    - Open the exported Excel file
    - Add a new column at the end with the language locale code (e.g., ``it`` for Italian)
-   - Refer to `Java supported locales <https://www.oracle.com/java/technologies/javase/jdk21-suported-locales.html>`_ for supported locale codes
+   - Refer to `Java supported locales (JDK 21) <https://www.oracle.com/java/technologies/javase/jdk21-suported-locales.html>`_ for supported locale codes
    
    |export-cms|
    
-   Refer to `Java supported locales <https://www.oracle.com/java/technologies/javase/jdk11-suported-locales.html>`_ for supported locale codes
+   For JDK 11:
+   
+   Refer to `Java supported locales (JDK 11) <https://www.oracle.com/java/technologies/javase/jdk11-suported-locales.html>`_ for supported locale codes
 
 #. **Translate CMS Entries**
 

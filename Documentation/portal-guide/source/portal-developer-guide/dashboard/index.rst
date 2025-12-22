@@ -187,7 +187,6 @@ Each widget type has specific configuration options for customization. Click on 
    new-dashboard-custom-widget
    new-dashboard-process-viewer-widget
    new-dashboard-welcome-widget
-   new-dashboard-navigation-dashboard-widget
    dashboard-newsfeed-widget
    new-dashboard-external-page-widget
    new-dashboard-notification-widget
