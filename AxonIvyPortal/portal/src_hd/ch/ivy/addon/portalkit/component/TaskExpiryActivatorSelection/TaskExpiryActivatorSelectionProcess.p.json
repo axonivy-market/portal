@@ -403,7 +403,7 @@
                 "import ch.ivy.addon.portalkit.util.TaskUtils;",
                 "import org.apache.commons.collections4.CollectionUtils;",
                 "import ch.ivy.addon.portalkit.util.SecurityMemberUtils;",
-                "import org.apache.commons.lang.StringUtils;",
+                "import org.apache.commons.lang3.StringUtils;",
                 "",
                 "if (in.#selectedUser != null) {",
                 "  in.selectedActivator = SecurityMemberUtils.findISecurityMemberFromUserDTO(in.selectedUser);",

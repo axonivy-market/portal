@@ -1,11 +1,12 @@
 package ch.ivy.addon.portalkit.test.util;
 
-import ch.ivyteam.ivy.business.data.store.restricted.BusinessDataPersistence;
+import java.util.List;
 
-@SuppressWarnings("restriction")
+import ch.ivyteam.ivy.engine.cleanup.EngineCleanup;
+
 public final class BusinessDataUtils {
   private BusinessDataUtils(){}
   public static void clearAllBusinessData() {
-    BusinessDataPersistence.instance().clearAll();
+    EngineCleanup.clean(List.of("business-data"));
   }
 }

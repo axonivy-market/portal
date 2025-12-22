@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Portal Guide ${revision}\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-12 03:33+0000\n"
+"POT-Creation-Date: 2025-12-16 10:37+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: fr\n"
@@ -40,11 +40,12 @@ msgid "Shortcut"
 msgstr ""
 
 #: ../../source/portal-user-guide/accessibility/index.rst:17
+#: ../../source/portal-user-guide/dashboard-configuration/index.rst:259
 #: ../../source/portal-user-guide/full-case-list/index.rst:361
 #: ../../source/portal-user-guide/full-process-list/index.rst:200
 #: ../../source/portal-user-guide/full-task-list/index.rst:61
 #: ../../source/portal-user-guide/full-task-list/index.rst:310
-#: ../../source/portal-user-guide/portal-header/index.rst:207
+#: ../../source/portal-user-guide/portal-header/index.rst:209
 msgid "Action"
 msgstr ""
 
@@ -1029,8 +1030,8 @@ msgstr ""
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid ""
-"Set to true to enable date filtering with time. This setting affects task"
-" widget and case widget."
+"Set to true to enable date filtering with time. This setting affects on "
+"task list, case list, and statistics."
 msgstr ""
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
@@ -2686,7 +2687,7 @@ msgid ""
 msgstr ""
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:4
-#: ../../source/portal-user-guide/portal-header/index.rst:65
+#: ../../source/portal-user-guide/portal-header/index.rst:67
 msgid "Dashboard Configuration"
 msgstr ""
 
@@ -2725,10 +2726,11 @@ msgid "The Dashboard Configuration page has two tabs:"
 msgstr ""
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:23
+#: ../../source/portal-user-guide/dashboard-configuration/index.rst:259
 #: ../../source/portal-user-guide/full-case-list/index.rst:361
 #: ../../source/portal-user-guide/full-process-list/index.rst:200
 #: ../../source/portal-user-guide/full-task-list/index.rst:310
-#: ../../source/portal-user-guide/portal-header/index.rst:207
+#: ../../source/portal-user-guide/portal-header/index.rst:209
 msgid "Required Permission"
 msgstr ""
 
@@ -2737,7 +2739,7 @@ msgid "**Private Dashboards**"
 msgstr ""
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:25
-#: ../../source/portal-user-guide/portal-header/index.rst:211
+#: ../../source/portal-user-guide/portal-header/index.rst:213
 msgid ":bdg-ref-warning:`🔑DashboardWriteOwn <DashboardWriteOwn>`"
 msgstr ""
 
@@ -2750,7 +2752,7 @@ msgid "**Public Dashboards**"
 msgstr ""
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:28
-#: ../../source/portal-user-guide/portal-header/index.rst:214
+#: ../../source/portal-user-guide/portal-header/index.rst:216
 msgid ":bdg-ref-warning:`🔑DashboardWritePublic <DashboardWritePublic>`"
 msgstr ""
 
@@ -2824,7 +2826,7 @@ msgid "|create-private-dashboard-dialog|"
 msgstr ""
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:278
-#: ../../source/portal-user-guide/portal-multi-language/index.rst:53
+#: ../../source/portal-user-guide/portal-multi-language/index.rst:52
 msgid "Create private dashboard dialog"
 msgstr ""
 
@@ -3268,12 +3270,52 @@ msgstr ""
 #: ../../source/portal-user-guide/full-case-list/index.rst:353
 #: ../../source/portal-user-guide/full-process-list/index.rst:192
 #: ../../source/portal-user-guide/full-task-list/index.rst:302
-#: ../../source/portal-user-guide/portal-header/index.rst:199
+#: ../../source/portal-user-guide/portal-header/index.rst:201
 msgid "Permission Reference"
 msgstr ""
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:253
 msgid "Different dashboard actions require specific permissions:"
+msgstr ""
+
+#: ../../source/portal-user-guide/dashboard-configuration/index.rst:261
+msgid "**Import private dashboard**"
+msgstr ""
+
+#: ../../source/portal-user-guide/dashboard-configuration/index.rst:261
+msgid ":bdg-ref-warning:`🔑DashboardImportOwn <DashboardImportOwn>`"
+msgstr ""
+
+#: ../../source/portal-user-guide/dashboard-configuration/index.rst:263
+msgid "**Export private dashboard**"
+msgstr ""
+
+#: ../../source/portal-user-guide/dashboard-configuration/index.rst:263
+msgid ":bdg-ref-warning:`🔑DashboardExportOwn <DashboardExportOwn>`"
+msgstr ""
+
+#: ../../source/portal-user-guide/dashboard-configuration/index.rst:265
+msgid "**Import public dashboard**"
+msgstr ""
+
+#: ../../source/portal-user-guide/dashboard-configuration/index.rst:265
+msgid ":bdg-ref-warning:`🔑DashboardImportPublic <DashboardImportPublic>`"
+msgstr ""
+
+#: ../../source/portal-user-guide/dashboard-configuration/index.rst:267
+msgid "**Export public dashboard**"
+msgstr ""
+
+#: ../../source/portal-user-guide/dashboard-configuration/index.rst:267
+msgid ":bdg-ref-warning:`🔑DashboardExportPublic <DashboardExportPublic>`"
+msgstr ""
+
+#: ../../source/portal-user-guide/dashboard-configuration/index.rst:269
+msgid "**Share public dashboard link**"
+msgstr ""
+
+#: ../../source/portal-user-guide/dashboard-configuration/index.rst:269
+msgid ":bdg-ref-warning:`🔑ShareDashboardLink <ShareDashboardLink>`"
 msgstr ""
 
 #: ../../source/portal-user-guide/demo-processes/index.rst:4
@@ -3722,7 +3764,7 @@ msgstr ""
 #: ../../source/portal-user-guide/full-case-list/index.rst:39
 #: ../../source/portal-user-guide/full-case-list/index.rst:294
 #: ../../source/portal-user-guide/full-task-list/index.rst:46
-#: ../../source/portal-user-guide/portal-header/index.rst:162
+#: ../../source/portal-user-guide/portal-header/index.rst:164
 msgid "Category"
 msgstr ""
 
@@ -4051,9 +4093,8 @@ msgstr ""
 msgid ""
 "Set :ref:`Portal settings <update-portal-settings>` "
 ":guilabel:`Portal.Document.EnablePreview` to true to enable this feature."
-" For Office documents, deploy :dev-url:`DocFactory "
-"<https://market.axonivy.com/doc-factory#tab-description>` in the same "
-"security context."
+" For Office documents, deploy `DocFactory <https://market.axonivy.com"
+"/doc-factory#tab-description>`_ in the same security context."
 msgstr ""
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:165
@@ -4332,7 +4373,7 @@ msgid "Full task list"
 msgstr ""
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:319
-#: ../../source/portal-user-guide/portal-header/index.rst:108
+#: ../../source/portal-user-guide/portal-header/index.rst:110
 msgid "**Steps:**"
 msgstr ""
 
@@ -5205,8 +5246,8 @@ msgstr ""
 msgid ""
 "To enable this feature, set :ref:`Portal settings <update-portal-"
 "settings>` :guilabel:`Portal.Document.EnablePreview` to true. For Office "
-"documents, deploy :dev-url:`DocFactory <https://market.axonivy.com/doc-"
-"factory#tab-description>` in the same security context."
+"documents, deploy `DocFactory <https://market.axonivy.com/doc-factory"
+"#tab-description>`_ in the same security context."
 msgstr ""
 
 #: ../../source/portal-user-guide/full-task-list/index.rst:228
@@ -7006,7 +7047,7 @@ msgstr ""
 msgid "|portal-header|"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:235
+#: ../../source/portal-user-guide/portal-header/index.rst:237
 msgid "Portal header items"
 msgstr ""
 
@@ -7098,38 +7139,38 @@ msgstr ""
 msgid "Only users with role ``AXONIVY_PORTAL_ADMIN`` can access Admin Settings."
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:62
+#: ../../source/portal-user-guide/portal-header/index.rst:64
 msgid ""
 "The :ref:`my-profile` menu entry contains general settings, user "
 "language, and notification channels subscription settings."
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:67
+#: ../../source/portal-user-guide/portal-header/index.rst:69
 msgid ""
 "The :ref:`dashboard-configuration` menu entry allows you to manage your "
 "private dashboards and public dashboards (if permitted)."
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:70
+#: ../../source/portal-user-guide/portal-header/index.rst:72
 msgid "Absences"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:72
+#: ../../source/portal-user-guide/portal-header/index.rst:74
 msgid ""
 "The :guilabel:`Absences` menu entry provides an absence management "
 "component where you can enter your absences and define delegates for "
 "tasks assigned to you or the roles you hold."
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:74
+#: ../../source/portal-user-guide/portal-header/index.rst:76
 msgid "|portal-absences|"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:237
+#: ../../source/portal-user-guide/portal-header/index.rst:239
 msgid "Absences page"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:76
+#: ../../source/portal-user-guide/portal-header/index.rst:78
 msgid ""
 "The absence dialog displays all current and upcoming absences. You can "
 "also view past absences by activating the :guilabel:`Display absences in "
@@ -7137,82 +7178,82 @@ msgid ""
 "or |trash-icon| **Delete** actions in the respective absence row."
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:79
+#: ../../source/portal-user-guide/portal-header/index.rst:81
 msgid ""
 "Specify delegates only for tasks assigned directly to you. Roles are "
 "typically held by multiple users, so if you're absent, another member can"
 " handle the task."
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:82
+#: ../../source/portal-user-guide/portal-header/index.rst:84
 msgid "HowTo: Add Absence"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:84
+#: ../../source/portal-user-guide/portal-header/index.rst:86
 msgid "Click the :guilabel:`Add absence` button"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:85
+#: ../../source/portal-user-guide/portal-header/index.rst:87
 msgid "The :guilabel:`Add absence` dialog opens"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:86
+#: ../../source/portal-user-guide/portal-header/index.rst:88
 msgid "Enter :guilabel:`From` and :guilabel:`Until` dates"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:87
+#: ../../source/portal-user-guide/portal-header/index.rst:89
 msgid "Optionally provide an explanatory comment"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:88
+#: ../../source/portal-user-guide/portal-header/index.rst:90
 msgid "Confirm your absence by clicking the :guilabel:`Save` button"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:90
+#: ../../source/portal-user-guide/portal-header/index.rst:92
 msgid "|how-to-add-an-absence|"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:239
+#: ../../source/portal-user-guide/portal-header/index.rst:241
 msgid "Absences page: Add new absence dialog"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:93
+#: ../../source/portal-user-guide/portal-header/index.rst:95
 msgid "HowTo: Set Substitute"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:95
+#: ../../source/portal-user-guide/portal-header/index.rst:97
 msgid ""
 "The substitute list contains entries for your personal tasks and each "
 "role you hold."
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:97
+#: ../../source/portal-user-guide/portal-header/index.rst:99
 msgid "**Substitute Types:**"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:99
+#: ../../source/portal-user-guide/portal-header/index.rst:101
 msgid "**For roles**: You can choose multiple substitutes for each role"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:100
+#: ../../source/portal-user-guide/portal-header/index.rst:102
 msgid ""
 "**For personal tasks**: You can choose multiple substitutes in two "
 "categories:"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:102
+#: ../../source/portal-user-guide/portal-header/index.rst:104
 msgid "Permanent substitutes for personally assigned tasks"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:103
+#: ../../source/portal-user-guide/portal-header/index.rst:105
 msgid "Substitutes for personally assigned tasks during absence"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:106
+#: ../../source/portal-user-guide/portal-header/index.rst:108
 msgid "A substitute can only belong to one type."
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:110
+#: ../../source/portal-user-guide/portal-header/index.rst:112
 msgid "Click the link ending with |si-notes-quill| to specify substitutes"
 msgstr ""
 
@@ -7220,52 +7261,52 @@ msgstr ""
 msgid "si-notes-quill"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:111
+#: ../../source/portal-user-guide/portal-header/index.rst:113
 msgid "Select substitutes and click the :guilabel:`Add` button"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:112
+#: ../../source/portal-user-guide/portal-header/index.rst:114
 msgid "Confirm your substitutes with the :guilabel:`Save` button"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:114
+#: ../../source/portal-user-guide/portal-header/index.rst:116
 msgid "|how-to-set-absence-substitutes|"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:241
+#: ../../source/portal-user-guide/portal-header/index.rst:243
 msgid "Absences page: Set deputy section"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:117
+#: ../../source/portal-user-guide/portal-header/index.rst:119
 msgid "Change Password"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:119
+#: ../../source/portal-user-guide/portal-header/index.rst:121
 msgid ""
 "The :guilabel:`Change password` menu entry allows you to set a new "
 "password."
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:121
+#: ../../source/portal-user-guide/portal-header/index.rst:123
 msgid "|portal-password-change-dialog|"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:243
+#: ../../source/portal-user-guide/portal-header/index.rst:245
 msgid "Change password dialog"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:124
+#: ../../source/portal-user-guide/portal-header/index.rst:126
 msgid ""
 "Configure the UserSetOwnPassword permission in the :doc-url:`Engine "
 "Cockpit </engine-guide/reference/engine-cockpit/security.html>` under "
 "PersonalPermissions → PersonalSecurityPermissions → UserSetOwnPassword."
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:127
+#: ../../source/portal-user-guide/portal-header/index.rst:129
 msgid "Info"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:129
+#: ../../source/portal-user-guide/portal-header/index.rst:131
 msgid ""
 "The menu entry :guilabel:`Info` provides you with detailed information "
 "about the Axon Ivy Engine, the Axon Ivy Portal and your company's "
@@ -7273,204 +7314,204 @@ msgid ""
 "support request."
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:133
+#: ../../source/portal-user-guide/portal-header/index.rst:135
 msgid "|portal-version-information|"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:245
+#: ../../source/portal-user-guide/portal-header/index.rst:247
 msgid "Version information dialog"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:136
+#: ../../source/portal-user-guide/portal-header/index.rst:138
 msgid "Logout"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:138
+#: ../../source/portal-user-guide/portal-header/index.rst:140
 msgid ""
 "The menu entry :guilabel:`Logout` will terminate your session in the Axon"
 " Ivy Portal. You’ll be routed back to the login page of the Axon Ivy "
 "Portal."
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:143
+#: ../../source/portal-user-guide/portal-header/index.rst:145
 msgid ""
 "The Axon Ivy Portal will also do an automatic logout if you’re inactive "
 "for a certain amount of time."
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:149
+#: ../../source/portal-user-guide/portal-header/index.rst:151
 msgid "Global Search"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:151
+#: ../../source/portal-user-guide/portal-header/index.rst:153
 msgid ""
 "Global Search provides a convenient way to look up information across the"
 " entire Portal. You can search for any keyword, and Portal will search "
 "across multiple categories."
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:154
+#: ../../source/portal-user-guide/portal-header/index.rst:156
 msgid "Default Search Scope"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:156
+#: ../../source/portal-user-guide/portal-header/index.rst:158
 msgid "By default, Portal searches the following categories:"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:162
+#: ../../source/portal-user-guide/portal-header/index.rst:164
 msgid "Searchable Fields"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:164
+#: ../../source/portal-user-guide/portal-header/index.rst:166
 msgid "**Processes**"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:164
+#: ../../source/portal-user-guide/portal-header/index.rst:166
 msgid "Name, description"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:166
+#: ../../source/portal-user-guide/portal-header/index.rst:168
 msgid "**Cases**"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:166
+#: ../../source/portal-user-guide/portal-header/index.rst:168
 msgid "ID, name, description"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:168
+#: ../../source/portal-user-guide/portal-header/index.rst:170
 msgid "**Tasks**"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:168
+#: ../../source/portal-user-guide/portal-header/index.rst:170
 msgid "ID, name, description, and all custom string fields"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:172
+#: ../../source/portal-user-guide/portal-header/index.rst:174
 msgid "Search Results"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:174
+#: ../../source/portal-user-guide/portal-header/index.rst:176
 msgid ""
 "When you enter a keyword and confirm your search, Portal routes you to "
 "the **Global Search Results** page. Each category has its own tab "
 "displaying the matching results."
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:176
+#: ../../source/portal-user-guide/portal-header/index.rst:178
 msgid "|portal-global-search-result-page|"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:247
+#: ../../source/portal-user-guide/portal-header/index.rst:249
 msgid "Global search results page"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:179
+#: ../../source/portal-user-guide/portal-header/index.rst:181
 msgid "HowTo: Configure Search Scope"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:181
+#: ../../source/portal-user-guide/portal-header/index.rst:183
 msgid ""
 "As an administrator, you can limit the fields that Global Search uses to "
 "improve performance and relevance."
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:184
+#: ../../source/portal-user-guide/portal-header/index.rst:186
 msgid "Available Portal Variables"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:186
+#: ../../source/portal-user-guide/portal-header/index.rst:188
 msgid "**Portal.SearchScope.ByCaseFields**"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:187
+#: ../../source/portal-user-guide/portal-header/index.rst:189
 msgid ""
 "Defines the fields that global search uses to find matching cases besides"
 " case ID (can influence performance)."
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:189
+#: ../../source/portal-user-guide/portal-header/index.rst:191
 msgid "**Portal.SearchScope.ByTaskFields**"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:190
+#: ../../source/portal-user-guide/portal-header/index.rst:192
 msgid ""
 "Defines the fields that global search uses to find matching tasks besides"
 " task ID (can influence performance)."
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:192
+#: ../../source/portal-user-guide/portal-header/index.rst:194
 msgid "**Portal.GlobalSearchScopeCategories**"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:193
+#: ../../source/portal-user-guide/portal-header/index.rst:195
 msgid ""
 "Defines the categories that global search will search (can influence "
 "performance)."
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:196
+#: ../../source/portal-user-guide/portal-header/index.rst:198
 msgid ""
 "Configure these variables in :ref:`admin-settings` to optimize search "
 "performance for your Portal instance."
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:201
+#: ../../source/portal-user-guide/portal-header/index.rst:203
 msgid "Different header features require specific permissions:"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:209
+#: ../../source/portal-user-guide/portal-header/index.rst:211
 msgid "**Access admin settings**"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:209
+#: ../../source/portal-user-guide/portal-header/index.rst:211
 msgid "Role ``AXONIVY_PORTAL_ADMIN``"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:211
+#: ../../source/portal-user-guide/portal-header/index.rst:213
 msgid "**Manage own dashboards**"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:214
+#: ../../source/portal-user-guide/portal-header/index.rst:216
 msgid "**Manage public dashboards**"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:217
+#: ../../source/portal-user-guide/portal-header/index.rst:219
 msgid "**Create own absences**"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:217
+#: ../../source/portal-user-guide/portal-header/index.rst:219
 msgid ":bdg-ref-warning:`🔑UserCreateOwnAbsence <UserCreateOwnAbsence>`"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:220
+#: ../../source/portal-user-guide/portal-header/index.rst:222
 msgid "**Create public absences**"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:220
+#: ../../source/portal-user-guide/portal-header/index.rst:222
 msgid ":bdg-ref-warning:`🔑UserCreateAbsence <UserCreateAbsence>`"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:223
+#: ../../source/portal-user-guide/portal-header/index.rst:225
 msgid "**Create own substitutes**"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:223
+#: ../../source/portal-user-guide/portal-header/index.rst:225
 msgid ":bdg-ref-warning:`🔑UserCreateOwnSubstitute <UserCreateOwnSubstitute>`"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:226
+#: ../../source/portal-user-guide/portal-header/index.rst:228
 msgid "**Create all substitutes**"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:226
+#: ../../source/portal-user-guide/portal-header/index.rst:228
 msgid ":bdg-ref-warning:`🔑UserCreateSubstitute <UserCreateSubstitute>`"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:229
+#: ../../source/portal-user-guide/portal-header/index.rst:231
 msgid "**Change own password**"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:229
+#: ../../source/portal-user-guide/portal-header/index.rst:231
 msgid ":bdg-warning:`🔑UserSetOwnPassword`"
 msgstr ""
 
@@ -7564,7 +7605,7 @@ msgstr ""
 msgid "|dashboard-multi-language-dialog|"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-multi-language/index.rst:55
+#: ../../source/portal-user-guide/portal-multi-language/index.rst:54
 msgid "Multi language dialog"
 msgstr ""
 
@@ -7574,12 +7615,12 @@ msgstr ""
 
 #: ../../source/portal-user-guide/portal-multi-language/index.rst:46
 msgid ""
-"#. If the translation service is enabled, the text will be automatically "
-"translated. Click :guilabel:`Auto. translation` to accept the translated "
+"If the translation service is enabled, the text will be automatically "
+"translated. Click :guilabel:`Auto translation` to accept the translated "
 "text."
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-multi-language/index.rst:49
+#: ../../source/portal-user-guide/portal-multi-language/index.rst:48
 msgid ""
 "If the translation service is not configured, enter translations manually"
 " for each language."
@@ -10311,5 +10352,38 @@ msgstr ""
 #~ msgstr ""
 
 #~ msgid "Select :guilabel:`Edit` to view and review their configurations."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Set :ref:`Portal settings <update-portal-"
+#~ "settings>` :guilabel:`Portal.Document.EnablePreview` to"
+#~ " true to enable this feature. For "
+#~ "Office documents, deploy :dev-url:`DocFactory"
+#~ " <https://market.axonivy.com/doc-factory#tab-"
+#~ "description>` in the same security "
+#~ "context."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "To enable this feature, set :ref:`Portal"
+#~ " settings <update-portal-settings>` "
+#~ ":guilabel:`Portal.Document.EnablePreview` to true. "
+#~ "For Office documents, deploy :dev-"
+#~ "url:`DocFactory <https://market.axonivy.com/doc-factory"
+#~ "#tab-description>` in the same security "
+#~ "context."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "#. If the translation service is "
+#~ "enabled, the text will be automatically"
+#~ " translated. Click :guilabel:`Auto. translation`"
+#~ " to accept the translated text."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Set to true to enable date "
+#~ "filtering with time. This setting "
+#~ "affects task widget and case widget."
 #~ msgstr ""
 

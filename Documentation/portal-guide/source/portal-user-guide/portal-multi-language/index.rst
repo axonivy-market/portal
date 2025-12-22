@@ -43,8 +43,7 @@ HowTo: Translate Text
 
 #. Click on the input text field of your target language.
 
-#. If the translation service is enabled, the text will be automatically translated. 
-Click :guilabel:`Auto. translation` to accept the translated text.
+#. If the translation service is enabled, the text will be automatically translated. Click :guilabel:`Auto translation` to accept the translated text.
 
 #. If the translation service is not configured, enter translations manually for each language.
 
