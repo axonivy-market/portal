@@ -93,7 +93,8 @@
         <p:commandButton id="custom-statistic-action-button" icon="fa fa-ellipsis-h"
           ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}"
           styleClass="rounded-button icon-more-menu-button ui-no-rounded-button-process-page"
-          type="button" />
+          type="button"
+          onkeydown="if(event.keyCode === 13 || event.keyCode === 32) { event.preventDefault(); this.click(); return false; }" />
         <p:menu id="custom-statistic-action-menu" styleClass="w-auto" overlay="true"
           trigger="custom-statistic-action-button" my="right top" at="right bottom">
           <p:menuitem id="edit" process="@this" icon="si si-graphic-tablet-drawing-pen"
