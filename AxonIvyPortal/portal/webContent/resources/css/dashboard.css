@@ -880,7 +880,7 @@ span.new-widget-dialog__icon.si, span.new-widget-dialog__icon.fa {
 .new-widget-dialog__widget-name {
   font-weight: var(--new-widget-dialog-title-font-weight);
   font-style: var(--new-widget-dialog-title-font-style);
-  font-size: 1rem;
+  font-size: var(--new-widget-dialog-title-font-size);
   display: block;
   overflow: hidden;
   word-break: break-word;
