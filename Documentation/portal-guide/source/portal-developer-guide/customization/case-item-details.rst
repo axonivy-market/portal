@@ -403,7 +403,7 @@ The following two steps are necessary to add new custom panels:
                      "x": 6, "y": 0, "w": 6, "h": 8
                   },
                   "data" : {
-                      "url": "https://www.axonivy.com/"
+                      "url": "https://www.lucide.dev/"
                   }
                }
              ]
