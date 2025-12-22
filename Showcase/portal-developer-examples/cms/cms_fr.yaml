@@ -124,7 +124,59 @@ Dialogs:
                   IsRequired: Ce champ est obligatoire
                   Representation: Représentation
                   To: À l'adresse suivante
+  com:
+    axonivy:
+      portal:
+        developerexamples:
+          customization:
+            sidestep:
+              CustomSideStepPrefix: 'Préfixe de mon nom de tâche personnalisé :'
+              LeaveRequestApproval:
+                Approve: Approuver
+                Reject: Refuser
+              LeaveRequestBusinessDetailsPage:
+                CompletedTaskNumber: 'Tâches de contournement terminées :'
+                InformCustomer: Informer le client
+                LeaveRequest: Demande de congé Détails de l'entreprise
+                SideStepComment: Commentaire sur le pas de côté
+              LeaveRequestSummary:
+                Finish: Terminer
+              SideStepAskMoreDetails:
+                MoreDetails: Plus de détails sur la demande de congé
+              SideStepCEOApproval:
+                CEOApproval: Approbation du PDG
+              SideStepExample:
+                SideStepExample: Exemple de pas de côté
+              SideStepResultExample:
+                SideStepResult: Résultat du pas de côté
+                SideStepTaskIs: La tâche latérale est effectuée par
+Enums:
+  LeaveType:
+    ANNUAL_LEAVE: Congé annuel
+    MATERNITY_LEAVE: Congé de maternité
+    SICK_LEAVE: Congés de maladie
 Labels:
+  Close: Fermer
+  LeaveRequest:
+    ApprovalResultTaskIntro: Vous trouverez ci-dessous un résumé de votre demande de congé et les commentaires de l'approbateur.
+    ApprovalTaskIntro: 'Toute demande de congé doit être approuvée par vous, dont les détails figurent ci-dessous :'
+    Approver: Approbateur
+    ApproverComment: Commentaire d'approbation
+    From: Du
+    LeaveSteps:
+      Approval: Approbation
+      ApprovalResult: Résultat de l'approbation
+      Creation: Créer une demande de congé
+      RequesterSideStepComment: Commentaire du demandeur sur le pas de côté
+      SideStepComment: Commentaire sur le pas de côté
+    LeaveType: Type de congé
+    Requester: Demandeur
+    RequesterComment: Commentaire du demandeur
+    StepTypeParallelTitle: Il s'agit d'un titre parallèle personnalisé
+    StepTypeSwitchTitle: Il s'agit d'un titre de commutateur personnalisé
+    SubmitLeaveRequest: Soumettre une demande de congé
+    To: Au
+  OK: OK
   changePasswordWSError: Une error s'est produite lors du changement de mot de passe. Veuillez contacter votre administrateur si le problème persiste après plusieurs essais.
   forgotPasswordError: Une erreur s'est produite lors du traitement de votre demande. Veuillez réessayer plus tard.
   passwordResetEmailCantSend: Exception lors de l'envoi d'un courrier électronique. Veuillez réessayer plus tard.
@@ -163,6 +215,15 @@ Processes:
       #Résumé
       Le demandeur recevra un résumé de la demande
       Connaître le résultat
+  LeaveRequest:
+    LeaveRequest: Demande de congé
+    LeaveRequestWithSideStepsCaseLevel: Demande de congé avec processus parallèles (au niveau du dossier)
+    LeaveRequestWithSideStepsTaskLevel: Demande de congé avec processus parallèles (niveau tâche)
+    approvalTask: Votre demande de congé est approuvée
+    approvalTaskName: Approbation de la demande de congé de {0}
+    createLeaveRequest: 'Créer une demande de congé pour : {0}'
+    createNewLeaveRequest: 'Tâche du système : Commencer à créer une nouvelle demande de congé'
+    rejectedTask: Votre demande de congé est rejetée
   MoreInformation:
     description: Cliquez sur Plus d'informations pour afficher la page d'information personnalisée sur le processus.
   Payment:

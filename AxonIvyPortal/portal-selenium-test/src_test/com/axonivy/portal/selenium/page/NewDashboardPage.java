@@ -784,6 +784,14 @@ public class NewDashboardPage extends TemplatePage {
   private SelenideElement getCaseWidgetContainer() {
     return $("div[id$='dashboard-cases-container']");
   }
+  
+  public SelenideElement getCaseWidgetPanel() {
+	return $(".case-dashboard-widget__panel");
+  }
+
+  public SelenideElement getTaskWidgetPanel() {
+	  return $(".task-dashboard-widget__panel");
+  }
 
   public SelenideElement getCaseWidgetTable() {
     return getCaseWidgetContainer().$("div[id$='dashboard-cases']");

@@ -274,6 +274,13 @@ HowTo: Preview a Document of a Task
 HowTo: Add a Note to a Task
 ----------------------------
 
+    - Portal can preview Word(doc, docx), Excel(xls, xlsx) and email(eml, msg) documents if :dev-url:`DocFactory <https://market.axonivy.com/doc-factory#tab-description>` is deployed in the same security context.
+
+    - Change :ref:`Portal settings <update-portal-settings>` :guilabel:`Portal.Document.EnablePreview` to true to enable this feature.
+
+HowTo: Add a note to a task
+---------------------------
+
 #. Open the task details of a task
 
 #. Click on the link |add-icon| ``Add note`` below the notes section

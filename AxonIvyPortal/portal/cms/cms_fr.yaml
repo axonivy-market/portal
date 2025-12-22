@@ -173,6 +173,9 @@ ch.ivy.addon.portalkit.ui.jsf:
     Breadcrumb: Visualisation du processus {0}
     ProcessViewerText: Visualisation du processus
     Title: Visualisation du processus
+  SideStep:
+    NewSideStepMessage: Une nouvelle tâche d'étape secondaire est créée
+    SideStepProcess: Lancer un processus parallèle
   TaskDocuments:
     TaskDocumentsPageTitle: Documents de tâches
   adminSettings:
@@ -442,6 +445,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     StringFormat:
       DateFromTo: '%s - %s'
       TextListOut: '%s, %s,..'
+      TextWithColon: '%s: %s'
       TextWithContextInBrackets: '%s (%s: %s)'
       TextWithRoundBracket: '%s (%s)'
     TaskCaseInformation: Informations sur les tâches et les cas
@@ -1450,43 +1454,43 @@ Dialogs:
             AccessibilityShortcuts:
               content: |-
                 <div class="ui-g">
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Alt + 1</span>Se focaliser sur l’onglet du Dashboard
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Alt + 5</span>Se focaliser sur la recherche
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Alt + A</span>Se focaliser sur le premier processus
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Tab</span>Navigation séquentielle entre les éléments
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Alt + 2</span>Se focaliser sur l’onglet des processus
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Alt + 6</span>Se focaliser sur les paramètres utilisateur
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Alt + W</span>Se focaliser sur la première tâche
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Esc</span>Fermer les widgets agrandis/Fermer les menus contextuels
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Alt + 3</span>Se focaliser sur l’onglet des tâches
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Alt + 7</span>Permet d’afficher ou de masquer le menu principal
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Alt + Q</span>Se focaliser sur le premier cas
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Enter</span>Confirmer la sélection
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Alt + 4</span>Se focaliser sur l’onglet des cas
                     </div>
                 </div>
@@ -1541,6 +1545,7 @@ Dialogs:
               ResetFilter: Réinitialiser le filtre
             filter:
               DashboardFilter:
+                HasCmsValuesEnabledTooltip: Ce champ permet uniquement d'utiliser l'opérateur Contient
                 SelectFilterField: Sélectionner le champ de filtre
               DateFilter:
                 SelectPeriod: Sélectionner la période
@@ -1601,6 +1606,8 @@ Labels:
   AllTasks: Toutes les tâches
   AppendTask-Explain: La tâche est ajoutée à la séquence après ma tâche.
   AppendTheTask: Ajouter la tâche
+  AssignToRole: Sélectionner le groupe attribué
+  AssignToUser: Sélectionner l'utilisateur assigné
   Chat: Chat
   Collapse: Réduire
   Comma: ','
@@ -1716,8 +1723,11 @@ Labels:
   PinnedTasks: Tâches épinglées
   RequiredFieldMessage: '{0} : La valeur est obligatoire'
   SelectOperator: Sélectionner l'opérateur
+  SelectProcess: Sélectionner un processus
   SelectValues: Sélectionner les valeurs
   Share: Partager
+  StepType: Type d'étape
+  Submit: Soumettre
   Task: Tâche
   TaskItemDetail: Détails de la tâche
   TaskUser-Explain: Liste d’utilisateurs séparés par des virgules

@@ -198,6 +198,13 @@ HowTo: Preview a Document of a Case
 HowTo: Rename a Document of a Case
 -----------------------------------
 
+    - Portal can preview Word(doc, docx), Excel(xls, xlsx) and email(eml, msg) documents if :dev-url:`DocFactory <https://market.axonivy.com/doc-factory#tab-description>` is deployed in the same security context.
+
+    - Change :ref:`Portal settings <update-portal-settings>` :guilabel:`Portal.Document.EnablePreview` to true to enable this feature.
+
+HowTo: Rename a document of a case
+----------------------------------
+
 #. Open the case details
 
 #. Click on the |edit-icon| button next to the

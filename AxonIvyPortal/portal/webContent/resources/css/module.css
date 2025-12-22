@@ -636,7 +636,7 @@ span.case-details-document-add-link, span.task-details-document-add-link {
 }
 
 .action-steps-panel {
-  max-width: 220px;
+  white-space: nowrap;
 }
 
 .action-steps-panel .action-icon {
@@ -653,7 +653,11 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   box-sizing: content-box;
   text-align: left;
   color: var(--text-color);
-  min-width: 160px;
+  min-width: 260px;
+}
+
+.action-steps-panel.ui-menu{
+  width: auto;
 }
 
 .case-detail-header {
@@ -2101,8 +2105,44 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
   right: -2px;
 }
 
-.workflow-events-dialog, .task-custom-fields-dialog, .case-custom-fields-dialog {
+.workflow-events-dialog, .custom-fields-dialog {
   max-width: 70%;
+}
+
+.custom-fields-dialog .field-name,
+.custom-fields-dialog .field-value,
+.custom-fields-dialog .field-type {
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.custom-fields-dialog .field-value {
+  width: 75%;
+}
+
+.custom-fields-dialog .field-name {
+  width: 15%;
+}
+
+.custom-fields-dialog .field-type {
+  width: 10%;
+}
+
+.custom-fields-dialog .field-value > span {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-word;
+  width: fit-content;
+}
+
+.custom-field-dialog-field-tooltip {
+  max-width: 50vw;
+  width: fit-content;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 .task-workflow-event-command {
@@ -2110,13 +2150,13 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
 }
 
 @media screen and (max-width: 40em) {
-  .workflow-events-dialog, .task-custom-fields-dialog, .case-custom-fields-dialog {
+  .workflow-events-dialog, .custom-fields-dialog {
     max-width: 90%;
   }
 }
 
 @media screen and (min-width: 40.063em) and (max-width: 64.062em) {
-  .workflow-events-dialog, .task-custom-fields-dialog, .case-custom-fields-dialog {
+  .workflow-events-dialog, .custom-fields-dialog {
     max-width: 80%;
   }
 }
@@ -5140,8 +5180,15 @@ body.light .image-process-container .image-process-item .card-item.card.image-wi
   container-name: image-process-widget-container;
 }
 
-/* Shared text truncation styles */
-.image-view-form .process-description .process-item-description,
+.image-view-form .process-description .process-item-description {
+  max-height: 16.8em;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 8;
+  -webkit-box-orient: vertical;
+}
+
 .image-view-form .process-name .process-image-view-name {
   max-height: 4.2em;
   text-overflow: ellipsis;
@@ -5176,6 +5223,10 @@ body.light .image-process-container .image-process-item .card-item.card.image-wi
   .image-view-form {
     bottom: 0 !important;
     padding-bottom: 0 !important;
+  }
+  
+  .image-view-form .process-name {
+    height: 35%;
   }
 }
 
@@ -5595,6 +5646,10 @@ a.dashboard-action-container label {
 .security-member-container {
   display: inline-flex;
   align-items: center;
+}
+
+.task-security-member-container {
+  max-width: 80% !important;
 }
 
 .user-fullname-container {
