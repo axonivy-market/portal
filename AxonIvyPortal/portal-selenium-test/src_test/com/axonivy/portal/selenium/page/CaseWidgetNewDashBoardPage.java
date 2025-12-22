@@ -365,6 +365,9 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
     $("div[id$='text-filter-operator-panel']").shouldBe(getClickableCondition()).click();
   }
   
+  public void waitDropdownOperator() {
+	  $("div[id$='operator-selection_panel'][style*='display: block']").shouldHave(Condition.cssClass("ui-connected-overlay-enter-done"));
+  }
 
   public boolean isQuickSearchInputShow(String widgetIndex) {
     String taskWidgetIndex = String.format("div[id*='case-case_%s']", widgetIndex);

@@ -77,6 +77,7 @@ public class NewAbsencePage extends TemplatePage {
     $("div[id='absence-dialog']").$("span.ui-icon-closethick").shouldBe(appear, DEFAULT_TIMEOUT)
         .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     $("[id$='absence-dialog']").shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
+    $(".ui-datepicker").shouldBe(Condition.disappear);
   }
 
   public void enterCommentForAbsence(String comment) {

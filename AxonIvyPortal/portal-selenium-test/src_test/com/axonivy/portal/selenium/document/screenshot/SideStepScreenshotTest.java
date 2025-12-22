@@ -45,6 +45,7 @@ public class SideStepScreenshotTest extends ScreenshotBaseTest {
     taskWidget.startTaskByNameInIFrame("Approval for leave request of Portal Demo User");
 
     taskTemplatePage.clickActionButton();
+    taskTemplatePage.waitForHorizontalSidestepMenu();
     
     ScreenshotUtils.captureHalfTopRightPageScreenShot(ScreenshotUtils.SIDE_STEP_FOLDER + "side-step-menu");
     taskTemplatePage.startSideStep();

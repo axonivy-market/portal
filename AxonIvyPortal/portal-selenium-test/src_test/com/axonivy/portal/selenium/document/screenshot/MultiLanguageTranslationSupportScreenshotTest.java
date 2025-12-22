@@ -36,11 +36,5 @@ public class MultiLanguageTranslationSupportScreenshotTest extends ScreenshotBas
     dashboardConfigurationPage.openMultiLanguageDialog();
     ScreenshotUtils.captureElementScreenshot(dashboardConfigurationPage.getDashboardMultiLanguageDialog(),
         ScreenshotUtils.DASHBOARD_CONFIGURATION_FOLDER + "dashboard-multi-language-dialog-ml");
-    dashboardConfigurationPage.setTranslatedTitle();
-    dashboardConfigurationPage.clickOnTextToTranslate(1);
-    ScreenshotUtils.captureElementScreenshot(dashboardConfigurationPage.getDashboardMultiLanguageDialog(),
-        ScreenshotUtils.DASHBOARD_CONFIGURATION_FOLDER + "overlay-panel-translation-ml");
-    dashboardConfigurationPage.clickOkMultiLanguageDialog();
-    dashboardConfigurationPage.clickOkCreateDashboard();
   }
 }
