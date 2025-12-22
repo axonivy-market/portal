@@ -9,13 +9,13 @@
   </parent>
   <groupId>com.axonivy.portal</groupId>
   <artifactId>portal-selenium-test</artifactId>
-  <version>13.2.0-SNAPSHOT</version>
+  <version>13.2.1-SNAPSHOT</version>
   <packaging>iar</packaging>
   <dependencies>
     <dependency>
       <groupId>com.axonivy.portal</groupId>
       <artifactId>portal</artifactId>
-      <version>13.2.0-SNAPSHOT</version>
+      <version>13.2.1-SNAPSHOT</version>
       <type>iar</type>
     </dependency>
      <dependency>
