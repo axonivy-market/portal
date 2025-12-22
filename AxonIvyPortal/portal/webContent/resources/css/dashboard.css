@@ -76,7 +76,6 @@
 .new-widget-dialog__item-menu-wrapper .icon-more-menu-button {
   min-width: 2.75rem;
   min-height: 2.75rem;
-  padding: 0.625rem;
   background: transparent !important;
   border: 1px solid transparent !important;
   color: var(--text-color);
