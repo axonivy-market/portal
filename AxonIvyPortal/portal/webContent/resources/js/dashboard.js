@@ -542,8 +542,7 @@ function searchNewWidgetByNameOrDescription(input) {
 
 function filterWidgetsByTab(tab) {
   // Update active tab button
-  $('.new-widget-dialog__tab').removeClass('new-widget-dialog__tab--active').addClass('ui-button-outlined');
-  event.target.classList.remove('ui-button-outlined');
+  $('.new-widget-dialog__tab').removeClass('new-widget-dialog__tab--active');
   event.target.classList.add('new-widget-dialog__tab--active');
   
   // Show/hide sections based on tab
