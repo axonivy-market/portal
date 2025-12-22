@@ -39,7 +39,7 @@
   
   <div class="new-widget-dialog__content">
     <h:panelGroup layout="block" styleClass="new-widget-dialog__section new-widget-dialog__section--standard" rendered="#{not empty dashboardDetailModificationBean.samples}">
-      <h4 class="new-widget-dialog__section-title mb-3">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/StandardWidgets')}</h4>
+      <div class="new-widget-dialog__section-title mb-3">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/StandardWidgets')}</div>
       <div class="grid">
         <ui:repeat id="new-widget-dialog-content"
           var="sample"
@@ -54,7 +54,7 @@
     </h:panelGroup>
     
     <h:panelGroup id="statistic-widget-fieldset" layout="block" styleClass="new-widget-dialog__section new-widget-dialog__section--statistics" rendered="#{not empty dashboardDetailModificationBean.statisticWidgets}">
-      <h4 class="new-widget-dialog__section-title mb-3">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/statisticWidgets')}</h4>
+      <div class="new-widget-dialog__section-title mb-3">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/statisticWidgets')}</div>
       <div class="grid">
         <h:panelGroup layout="block" styleClass="col-12 md:col-6 lg:col-4" rendered="#{dashboardDetailModificationBean.canEditStatistic()}">
           <p:commandLink styleClass="new-widget-dialog__item new-widget-dialog__item--create js-widget card block w-full h-full"
@@ -79,7 +79,7 @@
     </h:panelGroup>
 
     <h:panelGroup layout="block" styleClass="new-widget-dialog__section new-widget-dialog__section--custom" rendered="#{not empty dashboardDetailModificationBean.customWidgets}">
-      <h4 class="new-widget-dialog__section-title mb-3">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/CustomWidgets')}</h4>
+      <div class="new-widget-dialog__section-title mb-3">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/CustomWidgets')}</div>
       <div class="grid">
         <ui:repeat id="new-custom-widget-dialog-content"
          var="widget" value="#{dashboardDetailModificationBean.customWidgets}">
