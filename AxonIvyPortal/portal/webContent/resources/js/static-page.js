@@ -5,8 +5,7 @@ $(document).ready(() => {
 
   // Calculate and set height for Iframe once the document is ready
   setTimeout(() => {
-    const availableHeight = calculateAvailableHeight();
-    $('#iFrame').outerHeight(availableHeight);
+    updateIframeHeight(calculateAvailableHeight());
   }, 100);
 
   // resize timeout ID
@@ -19,8 +18,7 @@ $(document).ready(() => {
     resizeTimeout = setTimeout(function () {
       // If window height is changed, update the Iframe height
       if (window.innerHeight !== windowHeight) {
-        const availableHeight = calculateAvailableHeight();
-        $('#iFrame').outerHeight(availableHeight);
+        updateIframeHeight(calculateAvailableHeight());
         windowHeight = window.innerHeight;
       }
     }, 1000); // Delay execution by 1 sec to avoid multiple DOM recalculations during resize
@@ -47,3 +45,11 @@ const calculateAvailableHeight = () => {
 
   return window.innerHeight - layoutMainPaddings - announcementHeight - announcementMargins - layoutContentPaddings;
 };
+
+function updateIframeHeight(availableHeight) {
+  var iframe = $('#iFrame');
+  if (iframe.length > 0) {
+    iframe.outerHeight(availableHeight);
+    iframe.parent('.js-layout-content').addClass('flex flex-column');
+  }
+}
