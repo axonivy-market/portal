@@ -10,7 +10,7 @@ Overview
 Portal deployment to Axon Ivy Engine involves deploying .iar archives or .zip packages containing projects and configuration artifacts.
 The recommended architecture separates Portal from business applications while sharing a common security system, enabling centralized task and case management across multiple applications.
 
-For comprehensive deployment information, refer to the :doc-url:`Axon Ivy deployment guidelines </engine-guide/deployment/index.html>`.
+For comprehensive deployment information, refer to the :dev-url:`Axon Ivy deployment guidelines </12.0/engine-guide/deployment/index.html>`.
 
 Deployment Architecture
 =======================
@@ -68,7 +68,7 @@ Axon Ivy projects can be packaged in two formats:
    +----------------+--------------------------------+----------------------------------------+
 
 .. tip::
-   Use .zip files for production deployments. They bundle :dev-url:`branding </12.0/designer-guide/user-interface/branding/branding-engine.html>`, variables, databases, and REST clients :doc-url:`configuration </engine-guide/deployment/prepare/application-configuration/index.html>` with your projects.
+   Use .zip files for production deployments. They bundle :dev-url:`branding </12.0/designer-guide/user-interface/branding/branding-engine.html>`, variables, databases, and REST clients :dev-url:`configuration </12.0/engine-guide/deployment/prepare/application-configuration/index.html>` with your projects.
 
 Prepare Deployment Packages
 ---------------------------
@@ -182,7 +182,7 @@ Configuration
 
 Portal configuration can be managed through multiple methods.
 
-Configuration can be done through :doc-url:`deployment files </engine-guide/deployment/prepare/application-configuration/index.html>` or the :doc-url:`Engine Cockpit UI </engine-guide/reference/engine-cockpit>`.
+Configuration can be done through :dev-url:`deployment files </12.0/engine-guide/deployment/prepare/application-configuration/index.html>` or the :dev-url:`Engine Cockpit UI </12.0/engine-guide/reference/engine-cockpit>`.
 
 Dashboard Configuration
 -----------------------

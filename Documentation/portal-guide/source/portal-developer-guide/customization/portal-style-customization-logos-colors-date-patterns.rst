@@ -116,7 +116,7 @@ You can customize the Portal styles in ``custom.css``.
 
 .. tip::
    If you are using IFrames and you want to customize the colors of the project specific UIs, then refer to this documentation 
-   :doc-url:`/designer-guide/how-to/overrides.html?#override-new-wizard`
+   :dev-url:`/12.0/designer-guide/how-to/overrides.html?#override-new-wizard`
 
 .. warning::
    - Do not modify component-level ``font-family`` declarations directly. Instead, set ``--portal-font-family`` in ``:root`` within ``custom.css``.
