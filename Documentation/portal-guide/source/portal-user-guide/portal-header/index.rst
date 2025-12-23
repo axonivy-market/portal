@@ -9,7 +9,7 @@ Key Features
 ============
 
 **Username Menu**
-   Click on your username to access a menu with options for configuring Portal to your personal needs. See :ref:`User Settings` for detailed configuration options.
+   Click on your username to access a menu with options for configuring Portal to your personal needs. See :ref:`user-settings` for detailed configuration options.
 
 **Global Search Bar**
    Next to your username is the |search-icon| search bar, providing portal-wide search functionality. This feature is described in detail in `Global Search`_.
