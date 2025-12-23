@@ -25,8 +25,8 @@
   <cc:attribute name="shape" type="java.lang.String" default="CIRCLE" shortDescription="Shape of process chain: CIRCLE, LINE. Type: String. Default value: CIRCLE. Required: false." />
   <cc:attribute name="isShowAllSteps" type="java.lang.Boolean" default="false" shortDescription="Show all steps of the process chain. Type: Boolean. Default value: false. Required: false." />
 
-  <cc:attribute name="stages" type="java.util.List&lt;ch.ivyteam.ivy.casemap.runtime.model.IStage&gt;" />
-  <cc:attribute name="currentIndex" type="java.lang.Integer" />
+  <cc:attribute name="stages" type="java.util.List&lt;ch.ivyteam.ivy.casemap.runtime.model.IStage&gt;" shortDescription="List of casemap stages required to render the process chain. Type: java.util.List&lt;ch.ivyteam.ivy.casemap.runtime.model.IStage&gt;. Required: false." />
+  <cc:attribute name="currentIndex" type="java.lang.Integer" shortDescription="Index of the current casemap stage. Type: Integer. Required: false." />
 </cc:interface>
 
 <cc:implementation>
