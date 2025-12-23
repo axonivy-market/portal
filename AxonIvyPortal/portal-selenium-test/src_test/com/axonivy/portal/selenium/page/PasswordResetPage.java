@@ -27,11 +27,7 @@ public class PasswordResetPage extends TemplatePage {
 
   public void resetPassword(String newPassword, Boolean strongPasswordEnough) {
     newPasswordTextField.sendKeys(newPassword);
-    $(".login-footer").click();
     passwordConfirmationTextField.sendKeys(newPassword);
-    $("[id='password-reset:reset-password-form:new-password_panel']").shouldBe(Condition.appear,
-        DEFAULT_TIMEOUT);
-    $(".login-footer").click();
     $(resetButton).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     
     if (strongPasswordEnough) {
