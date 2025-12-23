@@ -222,7 +222,7 @@ Processes:
     CreateDataProcess: サンプル統計ダッシュボード向け調達データ
     InitConfig: 初期サンプルダッシュボード（ポータルダッシュボードと統計変数の更新）
     SampleStatisticValue:
-      DaysToDecision: 2,5;6;2;7;4;9,4
+      DaysToDecision: 2;5;6;2;7;4;9;4
       Decision: 承認;却下;保留
       Department: 部門A;部門B;部門C;部門D
       Item: ノートパソコン;モバイル端末;キーボード;テーブル

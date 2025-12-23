@@ -201,7 +201,7 @@ Processes:
     CreateDataProcess: Beschaffungsdaten für statistisches Dashboard mit Beispielen
     InitConfig: Beispiel-Dashboard initialisieren (PORTAL-DASHBOARD UND STATISTISCHE VARIABLEN AKTUALISIEREN)
     SampleStatisticValue:
-      DaysToDecision: 2,5;6;2;7;4;9,4
+      DaysToDecision: 2;5;6;2;7;4;9;4
       Decision: Genehmigt;Abgelehnt;Ausstehend
       Department: Abt A;Abt B;Abt C;Abt D
       Item: Laptop;Mobiltelefon;Tastatur;Tablet

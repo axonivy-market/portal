@@ -203,7 +203,7 @@ Processes:
     CreateDataProcess: Datos de compras para el panel de estadísticas de muestras
     InitConfig: Iniciar panel de control de muestra (ACTUALIZAR PANEL DE CONTROL DEL PORTAL Y VARIABLES ESTADÍSTICAS)
     SampleStatisticValue:
-      DaysToDecision: 2,5;6;2;7;4;9,4
+      DaysToDecision: 2;5;6;2;7;4;9;4
       Decision: Aprobado;Rechazado;Pendiente
       Department: Dep A;Dep B;Dep C;Dep D
       Item: Ordenador portátil;Teléfono móvil;Teclado;Tableta

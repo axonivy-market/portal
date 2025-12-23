@@ -192,7 +192,7 @@ Processes:
     CreateDataProcess: Données d'approvisionnement pour le tableau de bord statistique des échantillons
     InitConfig: Tableau de bord d'exemple Init (MISE À JOUR DU TABLEAU DE BORD DU PORTAIL ET DES VARIABLES STATISTIQUES)
     SampleStatisticValue:
-      DaysToDecision: 2,5;6;2;7;4;9,4
+      DaysToDecision: 2;5;6;2;7;4;9;4
       Decision: Approuvé;Rejeté;En attente
       Department: Dép A;Dép B;Dép C;Dép D
       Item: Ordinateur portable ;Téléphone portable;Clavier;Tablette
