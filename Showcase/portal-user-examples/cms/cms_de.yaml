@@ -209,7 +209,7 @@ Processes:
       ReworkCauses: Fehlende Informationen;Nicht berechtigt;Zu teuer
       ReworkNoLoops: 0;1;2;0;0
       ReworkOccurred: Yes;No
-      SpendAmount: 250;300.0;400.0;122.0;234.0
+      SpendAmount: 250;300;400;122;234
     description: Führen Sie diesen Prozess (mehrmals) aus, um Daten für die unten stehende Beispiel-KPI-Statistik zu generieren. Beschaffungsinformationen wie Ausgabenbetrag, Abteilung, Artikel, Monat des Jahres, Tage bis zur Entscheidung, Entscheidung, Nacharbeit werden zufällig ausgewählt und benutzerdefinierten
       Feldern des Falls zugewiesen.
     name: Beschaffung
