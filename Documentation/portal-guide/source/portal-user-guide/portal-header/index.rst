@@ -16,6 +16,8 @@ Key Features
 
 |portal-header|
 
+.. _user-settings:
+
 User Settings
 =============
 
