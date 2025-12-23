@@ -81,7 +81,7 @@
     shortDescription="Boolean value to specify script checking. The setting will detect Portal setting Portal.Document.EnableScriptChecking as its default value. If the Portal setting is not available, defaults to false. Type: Boolean. Required: false." />
   <cc:attribute name="enableVirusScannerForUploadedDocument" type="Boolean" default="#{documentUploadBean.getPortalVirusScannerSettingOrDefault(false)}"
     shortDescription="Boolean value to specify virus scanner checking. The setting will detect Portal setting Portal.Document.EnableVirusScanner as its default value. If the Portal setting is not available, defaults to false. Type: Boolean. Required: false." />
-  <cc:attribute name="allowedUploadFileTypes" type="String" default="#{documentUploadBean.getPortalAllowedUploadFileTypesSettingOrDefault('doc,docx,xls,xlsx,xlsm,csv,pdf,ppt,pptx,txt,zip,jpg,jpeg,bmp,png')}" type="java.lang.String"
+  <cc:attribute name="allowedUploadFileTypes" type="String" default="#{documentUploadBean.getPortalAllowedUploadFileTypesSettingOrDefault('doc,docx,xls,xlsx,xlsm,csv,pdf,ppt,pptx,txt,zip,jpg,jpeg,bmp,png')}"
     shortDescription="List of file extension that can be uploaded separated by comma. The setting will detect Portal setting Portal.Document.WhitelistExtension as its default value. If Portal setting is not available, default value is doc,docx,xls,xlsx,xlsm,csv,pdf,ppt,pptx,txt,zip,jpg,jpeg,bmp,png. Type: String. Required: false."/>
 </cc:interface>
 
