@@ -1565,6 +1565,7 @@ Dialogs:
               ResetFilter: フィルターのリセット
             filter:
               DashboardFilter:
+                HasCmsValuesEnabledTooltip: このフィールドは「含む」演算子のみ使用できます
                 SelectFilterField: フィルターフィールドの選択
               DateFilter:
                 SelectPeriod: 期間を選択
