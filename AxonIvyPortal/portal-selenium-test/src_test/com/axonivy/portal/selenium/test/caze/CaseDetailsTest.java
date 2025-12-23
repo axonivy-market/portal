@@ -482,7 +482,7 @@ public class CaseDetailsTest extends BaseTest {
 
     setupCaseDetailsWithIFrameURL();
     String url = detailsPage.getIFrameURLOfCustomWidget();
-    assertTrue(url.contains("www.example.com"));
+    assertTrue(url.contains("www.lucide.dev"));
 
     setupCaseDetailsWith2Panels();
     assertTrue(detailsPage.isCustomMiddlePanelDisplay());

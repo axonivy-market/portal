@@ -309,7 +309,7 @@ public class CaseDetailsPage extends TemplatePage {
 
   public void waitForIFrameURLWidgetLoad() {
     SelenideElement iframe = $("iframe[name='custom-widget-iframe-url']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
-    iframe.shouldHave(Condition.attributeMatching("src", ".*lucide\\\\.dev.*"));
+    iframe.shouldHave(Condition.attributeMatching("src", ".*lucide\\.dev.*"));
   }
 
   public SelenideElement getSharePageButtonElement() {
