@@ -20,8 +20,12 @@ public class DateTimeExampleBean implements Serializable {
     return DateTimeGlobalSettingService.getInstance().getDateTimePattern();
   }
 
-  public String getDatePatteStringrn() {
+  public String getDatePattern() {
     return DateTimeGlobalSettingService.getInstance().getDatePattern();
+  }
+  
+  public String getShortDateTimePattern(boolean isDateFilter) {
+    return DateTimeGlobalSettingService.getInstance().getDateTimePatternForDatePicker(isDateFilter);
   }
 
   public boolean getIsTimeHidden() {
