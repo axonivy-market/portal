@@ -63,12 +63,24 @@ jobs:
           echo "Version is $VERSION"
           echo "Release is $RELEASE"
 
-      - name: Download artifacts from screenshot workflow
+      - name: Download screenshot artifact from PR branch
+        id: get_screenshot_from_pr_branch
+        if: github.event_name == 'pull_request'
+        continue-on-error: true
         uses: dawidd6/action-download-artifact@v11
         with:
           workflow: portal-document-screenshot-test.yml
           name: screenshots
-          branch: master
+          branch: ${{ github.head_ref }}
+          path: Documentation/portal-guide/source/screenshots
+
+      - name: Download screenshot artifact from base branch (fallback)
+        if: steps.get_screenshot_from_pr_branch.outcome != 'success'
+        uses: dawidd6/action-download-artifact@v11
+        with:
+          workflow: portal-document-screenshot-test.yml
+          name: screenshots
+          branch: ${{ github.base_ref || github.ref_name }}
           path: Documentation/portal-guide/source/screenshots
 
       - name: install zip
