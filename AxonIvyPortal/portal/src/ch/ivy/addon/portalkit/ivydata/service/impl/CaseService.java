@@ -415,7 +415,7 @@ public class CaseService implements ICaseService {
       if (isHiddenTasksCasesExcluded()) {
         caseQuery.where().and(queryExcludeHiddenCases());
       }
-      ICase caze = Ivy.wf().getFirstResult(caseQuery);
+      ICase caze = Ivy.wf().getCaseQueryExecutor().getFirstResult(caseQuery);
       if (caze == null) {
         caze = findNonpersistentInvolvedCase(caseId);
       }
