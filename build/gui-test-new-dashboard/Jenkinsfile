@@ -53,6 +53,8 @@ pipeline {
             Copy-Item Showcase/portal-demo-app/target/*zip -Destination \$DEPLOYMENT
             Copy-Item Showcase/portal-developer-examples/target/*iar -Destination \$DEPLOYMENT
             Copy-Item Showcase/portal-components-examples/target/*iar -Destination \$DEPLOYMENT
+            Copy-Item AxonIvyPortal/PortalKitTestHelper/target/*iar -Destination \$DEPLOYMENT
+            Copy-Item Showcase/InternalSupport/target/*iar -Destination \$DEPLOYMENT
           """
           utils.killUnnecessaryProcessesToRunTest()
 
