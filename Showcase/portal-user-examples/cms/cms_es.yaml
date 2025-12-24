@@ -211,7 +211,7 @@ Processes:
       ReworkCauses: Información faltante;No es elegible;Demasiado caro.
       ReworkNoLoops: 0;1;2;0;0
       ReworkOccurred: Yes;No
-      SpendAmount: 250.0;300.0;400.0;122.0;234.5
+      SpendAmount: 250.5;300.5;400.5;122.5;234.5
     description: Ejecute este proceso (varias veces) para generar datos para la estadística de KPI de muestra que se muestra a continuación. La información de adquisición, como el importe del gasto, el departamento, el artículo, el mes del año, los días hasta la decisión, la decisión y la reelaboración,
       se aleatoriza y se asigna a campos personalizados del caso.
     name: Adquisición

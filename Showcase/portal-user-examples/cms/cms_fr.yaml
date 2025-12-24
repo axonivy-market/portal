@@ -200,7 +200,7 @@ Processes:
       ReworkCauses: Informations manquantes;Non éligible;Trop cher
       ReworkNoLoops: 0;1;2;0;0
       ReworkOccurred: Yes;No
-      SpendAmount: 250.0;300.0;400.0;122.0;234.5
+      SpendAmount: 250.5;300.5;400.5;122.5;234.5
     description: Exécutez ce processus (à plusieurs reprises) pour générer les données utilisées dans l'exemple de statistiques KPI ci-dessous. Les informations relatives aux achats, telles que le montant des dépenses, le service, l'article, le mois de l'année, le délai de décision, la décision et les
       retouches, sont randomisées et attribuées à des champs personnalisés du dossier.
     name: Approvisionnement
