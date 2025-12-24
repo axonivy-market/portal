@@ -11,15 +11,15 @@
     "name" : "department"
   }, {
     "name" : "spendAmount",
-    "type" : "Number"
+    "type" : "java.lang.Double"
   }, {
     "name" : "decision"
   }, {
     "name" : "daysToDecision",
-    "type" : "Number"
+    "type" : "java.lang.Integer"
   }, {
     "name" : "reworkNoLoops",
-    "type" : "Number"
+    "type" : "java.lang.Integer"
   }, {
     "name" : "reworkCauses"
   }, {
