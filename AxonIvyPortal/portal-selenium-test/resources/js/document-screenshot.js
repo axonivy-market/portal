@@ -386,5 +386,5 @@ function highlightCloneFromButton() {
 }
 
 function highlightCreateCustomStatisticWidgetButton() {
-  createRedMediumOutline($("button[id$=':create-custom-statistic']"));
+  createRedMediumOutline($("a[id$='create-custom-statistic-button']"));
 }

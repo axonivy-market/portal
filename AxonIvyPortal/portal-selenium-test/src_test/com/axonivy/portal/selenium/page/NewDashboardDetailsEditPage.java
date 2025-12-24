@@ -31,12 +31,16 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
 
   public WebElement addWidget() {
     $("button[id='add-button']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-    return $("div[id$='new-widget-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
+    $("div[id$='new-widget-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
+    $("div[id$='new-widget-dialog_content']").shouldBe(appear, DEFAULT_TIMEOUT);
+    return $("div[id$='new-widget-dialog']");
   }
 
-  public void collapseStandardWidgets() {
-    $(".ui-fieldset-legend.ui-corner-all.ui-state-default").click();
-    $(".ui-fieldset-content").shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
+  public void filterStatisticWidgets() {
+    $("div[id$='new-widget-dialog']").shouldBe(appear, DEFAULT_TIMEOUT)
+        .$$("button.new-widget-dialog__tab")
+        .filter(text("Statistic")).first()
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
 
   public TaskEditWidgetNewDashBoardPage addNewTaskWidget() {
@@ -412,7 +416,8 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
     $("[id$='clone-widget-component:clone-to-dashboard-dialog']")
         .shouldBe(disappear, DEFAULT_TIMEOUT);
   }
+  
   public void clickOnCreateCustomStatisiticWidget() {
-    $("button[id$=':create-custom-statistic']").shouldBe(getClickableCondition()).click();
+    $("a[id$='create-custom-statistic-button']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
 }

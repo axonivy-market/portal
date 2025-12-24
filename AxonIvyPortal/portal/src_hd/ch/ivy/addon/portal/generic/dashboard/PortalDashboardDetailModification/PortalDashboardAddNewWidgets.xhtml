@@ -57,7 +57,7 @@
       <div class="new-widget-dialog__section-title mb-3">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/statisticWidgets')}</div>
       <div class="grid">
         <h:panelGroup layout="block" styleClass="col-12 md:col-6 lg:col-4" rendered="#{dashboardDetailModificationBean.canEditStatistic()}">
-          <p:commandLink styleClass="new-widget-dialog__item new-widget-dialog__item--create js-widget card block w-full h-full"
+          <p:commandLink id="create-custom-statistic-button" styleClass="new-widget-dialog__item new-widget-dialog__item--create js-widget card block w-full h-full"
             ariaLabel="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/generic/dashboard/PortalDashboardDetailModification/CreateCustomStatistic')}"
             actionListener="#{dashboardDetailModificationBean.navigateToCustomStatisticWidgetPage(null)}">
             <div class="flex flex-column align-items-center justify-content-center h-full">
