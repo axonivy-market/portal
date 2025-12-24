@@ -382,7 +382,7 @@ function highlightCloneButtonByIndex(index) {
 }
 
 function highlightCloneFromButton() {
-  createRedMediumOutline($("[id $= ':clone-from']"));
+  createRedMediumOutline($("[id$= 'clone-from']"));
 }
 
 function highlightCreateCustomStatisticWidgetButton() {
