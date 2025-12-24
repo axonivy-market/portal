@@ -1563,6 +1563,7 @@ Dialogs:
               ResetFilter: Reset filter
             filter:
               DashboardFilter:
+                HasCmsValuesEnabledTooltip: This field only allows to use Contains operator
                 SelectFilterField: Select Filter Field
               DateFilter:
                 SelectPeriod: Select period

@@ -548,41 +548,30 @@ public class DashboardWidgetUtils {
   private static void loadProcessByPath(SingleProcessDashboardWidget processWidget) {
     String processPath = processWidget.getProcessPath();
     if (processPath == null || processWidget.getProcess() != null) {
-      processWidget
-          .setEmptyProcessMessage(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/processes/noProcessSelected"));
-      return;
-    }
-    boolean hasPermission = Ivy.session().getStartableProcessStarts().stream()
-        .anyMatch(p -> processPath.contains(p.getUserFriendlyRequestPath()));
-
-    if (!hasPermission) {
-      processWidget.setHasPermissionToSee(false);
-      processWidget
-          .setEmptyProcessMessage(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/processes/noPermissionToSee"));
+      processWidget.setEmptyProcessMessage(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/processes/noProcessSelected"));
       return;
     }
 
     List<String> publicExternalLinkIdsNotForIvySessionUser = getPublicExternalLinkIdsNotForIvySessionUser();
-    if (publicExternalLinkIdsNotForIvySessionUser.contains(processPath)) {
+    // check permission with external processes
+    if (publicExternalLinkIdsNotForIvySessionUser.indexOf(processPath) > -1) {
       processWidget.setHasPermissionToSee(false);
       processWidget
           .setEmptyProcessMessage(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/processes/noPermissionToSee"));
       return;
-    }
-
-    processWidget.setHasPermissionToSee(true);
-
-    Optional<DashboardProcess> foundProcess = getAllPortalProcesses().stream()
-        .filter(process -> process.getId() != null && process.getId().contains(processPath)).findFirst();
-
-    if (foundProcess.isPresent()) {
-      DashboardProcess process = foundProcess.get();
-      updateProcessStartIdForCombined(processWidget, process);
-      processWidget.setProcess(process);
     } else {
-      processWidget
-          .setEmptyProcessMessage(Ivy.cms().co("/Dialogs/com/axonivy/portal/components/ProcessViewer/ProcessNotFound"));
+      processWidget.setHasPermissionToSee(true);
     }
+
+    for (DashboardProcess process : getAllPortalProcesses()) {
+      if (process.getId() != null && process.getId().contains(processPath)) {
+        updateProcessStartIdForCombined(processWidget, process);
+        processWidget.setProcess(process);
+        return;
+      }
+    }
+    processWidget
+        .setEmptyProcessMessage(Ivy.cms().co("/Dialogs/com/axonivy/portal/components/ProcessViewer/ProcessNotFound"));
   }
 
   private static List<String> getPublicExternalLinkIdsNotForIvySessionUser() {

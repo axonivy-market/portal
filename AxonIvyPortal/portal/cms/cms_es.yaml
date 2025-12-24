@@ -1569,6 +1569,7 @@ Dialogs:
               ResetFilter: Restablecer filtro
             filter:
               DashboardFilter:
+                HasCmsValuesEnabledTooltip: Este campo solo permite usar el operador Contiene
                 SelectFilterField: |
                   Seleccionar campo de filtro
               DateFilter:
