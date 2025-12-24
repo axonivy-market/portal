@@ -87,7 +87,6 @@ public class TaskFilterFieldFactory {
   }
   
   
-  @Deprecated
   public static FilterField findBy(String field, DashboardColumnType type) {
     initCustomFields();
 
@@ -101,7 +100,6 @@ public class TaskFilterFieldFactory {
   }
   
  
-  @Deprecated
   public static FilterField findBy(String field) {
     if (STANDARD_FILTER_FIELD.containsKey(field)) {
       return STANDARD_FILTER_FIELD.get(field);
