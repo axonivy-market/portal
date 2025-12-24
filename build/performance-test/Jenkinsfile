@@ -96,9 +96,9 @@ def updateConfigFile(acccountFilePath, numberOfUser) {
 def executeJMeter(resultFileName) {
   def binDir = '/opt/apache-jmeter-5.5/bin'
   docker.build('jmeter-performance-10-test', '-f build/performance-test/Dockerfile .').inside("""
-        -v ${WORKSPACE}/${jmeterSourceDir}:${binDir}/portal-jmeter-10
+        -v ${WORKSPACE}/${jmeterSourceDir}:${binDir}/portal-jmeter
         -v ${resultDir}:${binDir}/result
       """) {
-    sh "${binDir}/jmeter -Jjmeter.save.saveservice.subresults=false -n -t ${binDir}/portal-jmeter-10/portal_walkthrough_testplan.jmx -l ${binDir}/result/${resultFileName}"
+    sh "${binDir}/jmeter -Jjmeter.save.saveservice.subresults=false -n -t ${binDir}/portal-jmeter/portal_walkthrough_testplan.jmx -q ${binDir}/portal-jmeter/test.properties -l ${binDir}/result/${resultFileName}"
   }
 }
