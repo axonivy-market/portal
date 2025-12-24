@@ -14,11 +14,6 @@ RUN tar -xzf apache-jmeter-${JMETER_VERSION}.tgz
 RUN mv apache-jmeter-${JMETER_VERSION}/* /opt/apache-jmeter-${JMETER_VERSION}
 RUN rm -r /opt/apache-jmeter-${JMETER_VERSION}/apache-jmeter-${JMETER_VERSION}
 
-# Download Property File Reader plugin
-RUN wget -O tag-jmeter-extn-1.1.zip https://www.vinsguru.com/download/87/
-RUN unzip tag-jmeter-extn-1.1.zip
-RUN mv tag-jmeter-extn-1.1.jar lib/ext
-
 # Download JDK
 RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \
 && apt-get update \
