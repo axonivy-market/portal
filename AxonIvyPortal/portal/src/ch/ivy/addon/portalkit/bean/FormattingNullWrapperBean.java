@@ -7,7 +7,8 @@ import java.util.Date;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 
-import ch.ivy.addon.portalkit.service.DateTimeGlobalSettingService;
+import com.axonivy.portal.components.service.DateTimeGlobalSettingService;
+
 import ch.ivyteam.ivy.environment.Ivy;
 
 @ManagedBean

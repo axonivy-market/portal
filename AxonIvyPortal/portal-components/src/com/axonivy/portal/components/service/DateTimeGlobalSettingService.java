@@ -1,9 +1,10 @@
-package ch.ivy.addon.portalkit.service;
+package com.axonivy.portal.components.service;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
-import ch.ivy.addon.portalkit.enums.GlobalVariable;
+import com.axonivy.portal.components.enums.GlobalVariable;
+
 import ch.ivyteam.ivy.environment.Ivy;
 
 public class DateTimeGlobalSettingService {
@@ -29,7 +30,7 @@ public class DateTimeGlobalSettingService {
   }
 
   public boolean isTimeHidden() {
-    String dateTimeGlobalSetting = globalSettingService.findGlobalSettingValue(GlobalVariable.HIDE_TIME);
+    String dateTimeGlobalSetting = globalSettingService.findGlobalSettingValueAsString(GlobalVariable.HIDE_TIME, Boolean.FALSE.toString());
     return Boolean.valueOf(dateTimeGlobalSetting);
   }
 
@@ -46,7 +47,7 @@ public class DateTimeGlobalSettingService {
   }
 
   private boolean isYearHidden() {
-    return Boolean.parseBoolean(globalSettingService.findGlobalSettingValue(GlobalVariable.HIDE_YEAR));
+    return Boolean.parseBoolean(globalSettingService.findGlobalSettingValueAsString(GlobalVariable.HIDE_YEAR, Boolean.FALSE.toString()));
   }
 
   private String getDateWithoutYearPattern(String pattern) {
@@ -56,7 +57,7 @@ public class DateTimeGlobalSettingService {
   }
 
   public boolean isDateFilterWithTime() {
-    String dateFilterGlobalSetting = globalSettingService.findGlobalSettingValue(GlobalVariable.DATE_FILTER_WITH_TIME);
+    String dateFilterGlobalSetting = globalSettingService.findGlobalSettingValueAsString(GlobalVariable.DATE_FILTER_WITH_TIME, Boolean.FALSE.toString());
     return Boolean.valueOf(dateFilterGlobalSetting);
   }
 
