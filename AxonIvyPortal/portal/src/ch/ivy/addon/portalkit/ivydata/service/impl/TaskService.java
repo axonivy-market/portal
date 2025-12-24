@@ -273,7 +273,7 @@ public class TaskService implements ITaskService {
   public ITask findTaskById(long taskId) {
     return Sudo.get(() -> {
       if (PermissionUtils.checkSkipPermission()) {
-        return Ivy.wf().getGlobalContext().getTaskQueryExecutor()
+        return Ivy.wf().getTaskQueryExecutor()
             .createTaskQuery().where().taskId().isEqual(taskId).executor()
             .firstResult();
       }

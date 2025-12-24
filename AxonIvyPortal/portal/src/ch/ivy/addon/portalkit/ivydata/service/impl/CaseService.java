@@ -399,7 +399,7 @@ public class CaseService implements ICaseService {
   public ICase findCaseById(long caseId) {
     return Sudo.get(() -> {
       if (PermissionUtils.checkSkipPermission()) {
-        return Ivy.wf().getGlobalContext().getCaseQueryExecutor()
+        return Ivy.wf().getCaseQueryExecutor()
             .createCaseQuery().where().caseId().isEqual(caseId).executor()
             .firstResult();
       }
@@ -415,7 +415,7 @@ public class CaseService implements ICaseService {
       if (isHiddenTasksCasesExcluded()) {
         caseQuery.where().and(queryExcludeHiddenCases());
       }
-      ICase caze = Ivy.wf().getCaseQueryExecutor().getFirstResult(caseQuery);
+      ICase caze = Ivy.wf().getFirstResult(caseQuery);
       if (caze == null) {
         caze = findNonpersistentInvolvedCase(caseId);
       }
