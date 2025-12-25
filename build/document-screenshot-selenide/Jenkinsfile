@@ -72,7 +72,7 @@ pipeline {
           }
 
           echo '====================Build and deploy test package===================='
-          bat "mvn clean install -f AxonIvyPortal/portal-selenium-test/deployment-pom.xml -Divy.engine.directory=%engineDir%"
+          bat "mvn clean package -f AxonIvyPortal/portal-selenium-test/deployment-pom.xml -Divy.engine.directory=%engineDir%"
           powershell """
             \$DEPLOYMENT= \$env:engineDir + "/system/demo-applications/demo-portal"
             rmdir \$DEPLOYMENT/* -recurse

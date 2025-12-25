@@ -363,7 +363,7 @@ jobs:
 
         - name: Build and deploy test package
           run: |
-            mvn clean install -f AxonIvyPortal/portal-selenium-test/deployment-pom.xml -Divy.engine.directory=$ENGINE_DIR
+            mvn clean package -f AxonIvyPortal/portal-selenium-test/deployment-pom.xml -Divy.engine.directory=$ENGINE_DIR
             DEPLOYMENT=$ENGINE_DIR/system/demo-applications/demo-portal
             rm -rf $DEPLOYMENT/*
             cp AxonIvyPortal/portal-selenium-test/target/*.zip $DEPLOYMENT
