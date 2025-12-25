@@ -23,10 +23,8 @@ You can insert this component into any page. This component supports two styles 
 
    .. code-block:: html
 
-      <ic:com.axonivy.portal.components.UserSelection componentId="default-user-autocomplete"
-         selectedUser="#{data.selectedUser}" label="Default user selection"
-         isRequired="true" labelPanelStyleClass="ui-g-6 ui-md-6 ui-sm-12"
-         autoCompleteStyleClass="width-100" autoCompletePanelStyleClass="ui-g-6 ui-sm-12" />
+      <ic:com.axonivy.portal.components.UserSelection componentId="default-user-autocomplete" selectedUser="#{data.selectedUser}"
+         label="Default user selection" isRequired="true" />
 
 #. Floating Label
 
@@ -36,10 +34,8 @@ You can insert this component into any page. This component supports two styles 
 
    .. code-block:: html
 
-      <ic:com.axonivy.portal.components.UserSelection componentId="all-user-autocomplete"
-         hightlight="false" selectedUser="#{data.selectedUserForExcludingUsers}"
-         label="Loading users (exclude gm1, gm2, admin)" autoCompleteStyleClass="width-100"
-         autoCompletePanelStyleClass="ui-g-12 floating-label-margin-top"
+      <ic:com.axonivy.portal.components.UserSelection componentId="all-user-autocomplete" hightlight="false"
+         selectedUser="#{data.selectedUserForExcludingUsers}" label="Loading users (exclude supporter, tester)" 
          excludedUsernames="#{data.excludedUsernames}" floatingLabel="true" />
 
 .. tip::
@@ -61,19 +57,15 @@ I want to display users in a dropdown list formatted as "<Full name>
 
 .. code-block:: html
 
-   <ic:com.axonivy.portal.components.UserSelection id="item-select-event-component"
-      componentId="item-select-event-for-user-selection" floatingLabel="true"
-      fromRoleNames="#{data.definedRoleNames}" label="Demonstrate facet and children"
-         selectedUser="#{data.selectedUserForInsertChildren}"
-      autoCompleteStyleClass="width-100"
-      autoCompletePanelStyleClass="ui-g-12 floating-label-margin-top" hasCustomizedSelectionList="true">
-         <p:column>
-            <pc:securityMemberNameAndAvatar displayName="#{user.getDisplayName()} (#{user.getMemberName()})" securityMember="#{user}" isStandAlone="false" />
-         </p:column>
-         <f:facet name="event">
-            <p:ajax event="itemSelect" listener="#{logic.showSelectedUser}"
-               update="#{p:component('item-select-event-for-user-selection-message')}"/>
-         </f:facet>
+   <ic:com.axonivy.portal.components.UserSelection id="item-select-event-component" componentId="item-select-event-for-user-selection"
+      fromRoleNames="#{data.definedRoleNames}" selectedUser="#{data.selectedUserForInsertChildren}" label="Demonstrate facet and children" floatingLabel="true" hasCustomizedSelectionList="true">
+      <p:column>
+         <pc:securityMemberNameAndAvatar displayName="#{user.getDisplayName()} (#{user.getMemberName()})" securityMember="#{user}" isStandAlone="false" />
+      </p:column>
+      <f:facet name="event">
+         <p:ajax event="itemSelect" listener="#{logic.showSelectedUser}"
+            update="#{p:resolveFirstComponentWithId('item-select-event-for-user-selection-message', view).clientId}" />
+      </f:facet>
    </ic:com.axonivy.portal.components.UserSelection>
 
 Please refer to ``UserSelectionExample.xhtml`` in project ``portal-components-examples`` for more details.
@@ -96,6 +88,8 @@ Migrate from Deprecated User Selection
 #. Replace ``ch.ivy.addon.portalkit.dto.UserDTO`` with ``com.axonivy.portal.components.dto.UserDTO``.
 
    .. note:: If you stored class ``ch.ivy.addon.portalkit.dto.UserDTO`` in your database, you have to update the database manually.
+
+#. Since 14.0, the attribute ``labelPanelStyleClass`` has been removed. If you used this attribute, you have to remove it from your code.
 
 .. |user-selection| image:: ../../screenshots/components/user-selection-component.png
 .. |user-selection-floating-label| image:: ../../screenshots/components/user-selection-component-floating-label.png
