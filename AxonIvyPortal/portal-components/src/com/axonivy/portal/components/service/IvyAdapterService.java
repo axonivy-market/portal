@@ -10,7 +10,7 @@ import java.util.function.Predicate;
 
 import org.apache.commons.collections4.CollectionUtils;
 
-import ch.ivyteam.ivy.process.call.SubProcessCallStart;
+import ch.ivyteam.ivy.process.call.SubProcessCallStartEvent;
 import ch.ivyteam.ivy.process.call.SubProcessSearchFilter;
 import ch.ivyteam.ivy.process.call.SubProcessSearchFilter.SearchScope;
 import ch.ivyteam.ivy.security.exec.Sudo;
@@ -62,7 +62,7 @@ public class IvyAdapterService {
           .setSearchScope(SearchScope.SECURITY_CONTEXT)
           .setSignature(signature).toFilter();
 
-      var subProcessStartList = SubProcessCallStart.find(filter);
+      var subProcessStartList = SubProcessCallStartEvent.find(filter);
       if (CollectionUtils.isEmpty(subProcessStartList)) {
         return null;
       }
@@ -93,12 +93,12 @@ public class IvyAdapterService {
           .setSearchScope(SearchScope.SECURITY_CONTEXT)
           .setSignature(signature).toFilter();
 
-      var subProcessStartList = SubProcessCallStart.find(filter);
+      var subProcessStartList = SubProcessCallStartEvent.find(filter);
       if (CollectionUtils.isEmpty(subProcessStartList)) {
         return new HashMap<>();
       }
 
-      for (SubProcessCallStart subProcess : subProcessStartList) {
+      for (SubProcessCallStartEvent subProcess : subProcessStartList) {
         Map<String, Object> result =  Optional.ofNullable(params).map(Map::entrySet).isEmpty() ?
             subProcess.call().asMap() : startSubProcessWithParams(subProcess, params);
         if (collectCondition.test(result)) {
@@ -130,7 +130,7 @@ public class IvyAdapterService {
           .setSignature(signature).toFilter();
 
       // Find subprocess
-      var subProcessStartList = SubProcessCallStart.find(filter);
+      var subProcessStartList = SubProcessCallStartEvent.find(filter);
       if (CollectionUtils.isEmpty(subProcessStartList)) {
         return null;
       }
@@ -143,7 +143,7 @@ public class IvyAdapterService {
     });
   }
 
-  private static Map<String, Object> startSubProcessWithParams(SubProcessCallStart subProcess, Map<String, Object> params) {
+  private static Map<String, Object> startSubProcessWithParams(SubProcessCallStartEvent subProcess, Map<String, Object> params) {
     Map<String, Object> result = null;
     List<Entry<String, Object>> entryList = new ArrayList<>(params.entrySet());
 

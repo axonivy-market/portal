@@ -21,8 +21,10 @@ import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
+import com.codeborne.selenide.ScrollIntoViewOptions;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
+import com.codeborne.selenide.ScrollIntoViewOptions.Block;
 
 public class TaskDetailsPage extends TemplatePage {
 
@@ -313,7 +315,7 @@ public class TaskDetailsPage extends TemplatePage {
   }
 
   public void clickBackButton() {
-    $("[id$=':task-detail-title-form:back-to-previous-page']").scrollIntoView(false);
+    $("[id$=':task-detail-title-form:back-to-previous-page']").scrollIntoView(ScrollIntoViewOptions.instant().block(Block.center));
     waitForElementClickableThenClick($("[id$=':task-detail-title-form:back-to-previous-page']"));
   }
 

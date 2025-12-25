@@ -23,7 +23,7 @@ import ch.addon.portal.generic.userprofile.homepage.HomepageType;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.process.call.SubProcessCallStart;
+import ch.ivyteam.ivy.process.call.SubProcessCallStartEvent;
 import ch.ivyteam.ivy.process.call.SubProcessSearchFilter;
 import ch.ivyteam.ivy.process.call.SubProcessSearchFilter.SearchScope;
 import ch.ivyteam.ivy.security.exec.Sudo;
@@ -51,7 +51,7 @@ public class CustomSubMenuItemService {
           .setSearchScope(SearchScope.SECURITY_CONTEXT)
           .setSignature(PortalCustomSignature.LOAD_SUB_MENU_ITEMS.getSignature()).toFilter();
 
-      var subProcessStartList = SubProcessCallStart.find(filter);
+      var subProcessStartList = SubProcessCallStartEvent.find(filter);
       if (CollectionUtils.isEmpty(subProcessStartList)) {
         return new ArrayList<>();
       }

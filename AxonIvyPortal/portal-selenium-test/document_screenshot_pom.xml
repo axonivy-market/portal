@@ -130,28 +130,6 @@
             <phase>post-integration-test</phase>
           </execution>
           <execution>
-            <id>portaltesthelper.deploy</id>
-            <goals>
-              <goal>deploy-to-engine</goal>
-            </goals>
-            <configuration>
-              <deployFile>..\PortalKitTestHelper\target\portalKitTestHelper-${project.version}.iar</deployFile>
-              <deployToEngineApplication>demo-portal</deployToEngineApplication>
-            </configuration>
-            <phase>process-test-classes</phase>
-          </execution>
-          <execution>
-            <id>internalsupport.deploy</id>
-            <goals>
-              <goal>deploy-to-engine</goal>
-            </goals>
-            <configuration>
-              <deployFile>..\..\Showcase\InternalSupport\target\internalSupport-${project.version}.iar</deployFile>
-              <deployToEngineApplication>demo-portal</deployToEngineApplication>
-            </configuration>
-            <phase>process-test-classes</phase>
-          </execution>
-          <execution>
             <id>default-pack-iar</id>
             <goals>
               <goal>pack-iar</goal>
