@@ -15,50 +15,8 @@ You can reach the page by using the |task-list-icon| :guilabel:`Tasks` link in t
 
 |navigate-to-full-task-list-page|
 
-Task List Overview
-==================
-
-.. table::
-   :widths: 40 60
-
-   +--------------------------------------+--------------------------------------------------------+
-   | Action                               | Required Permission                                    |
-   +======================================+========================================================+
-   | **Reset task**                       | :bdg-ref-warning:`🔑TaskDisplayResetAction             |
-   |                                      | <TaskDisplayResetAction>`                              |
-   +--------------------------------------+--------------------------------------------------------+
-   | **Reserve task**                     | :bdg-ref-warning:`🔑TaskDisplayReserveAction           |
-   |                                      | <TaskDisplayReserveAction>`                            |
-   +--------------------------------------+--------------------------------------------------------+
-   | **Delegate task**                    | :bdg-ref-warning:`🔑TaskDisplayDelegateAction          |
-   |                                      | <TaskDisplayDelegateAction>`                           |
-   +--------------------------------------+--------------------------------------------------------+
-   | **Destroy task**                     | :bdg-ref-warning:`🔑TaskDisplayDestroyAction           |
-   |                                      | <TaskDisplayDestroyAction>`                            |
-   +--------------------------------------+--------------------------------------------------------+
-   | **View additional options**          | :bdg-ref-warning:`🔑TaskDisplayAdditionalOptions       |
-   |                                      | <TaskDisplayAdditionalOptions>`                        |
-   +--------------------------------------+--------------------------------------------------------+
-   | **View workflow events**             | :bdg-ref-warning:`🔑TaskDisplayWorkflowEventAction     |
-   |                                      | <TaskDisplayWorkflowEventAction>` and                  |
-   |                                      | :bdg-warning:`🔑WorkflowEventReadAll`                  |
-   +--------------------------------------+--------------------------------------------------------+
-   | **View custom fields**               | :bdg-ref-warning:`🔑TaskDisplayCustomFieldsAction      |
-   |                                      | <TaskDisplayCustomFieldsAction>`                       |
-   +--------------------------------------+--------------------------------------------------------+
-   | **Add/delete task documents**        | :bdg-ref-warning:`🔑DocumentOfInvolvedCaseWrite        |
-   |                                      | <DocumentOfInvolvedCaseWrite>` or                      |
-   |                                      | :bdg-ref-warning:`🔑DocumentWrite <DocumentWrite>`     |
-   +--------------------------------------+--------------------------------------------------------+
-   | **Add note to task**                 | :bdg-ref-warning:`🔑TaskCaseAddNote                    |
-   |                                      | <TaskCaseAddNote>`                                     |
-   +--------------------------------------+--------------------------------------------------------+
-   | **Share task details link**          | :bdg-ref-warning:`🔑ShareTaskDetailsLink               |
-   |                                      | <ShareTaskDetailsLink>`                                |
-   +--------------------------------------+--------------------------------------------------------+
-
-Task List Overview
-==================
+Overview
+========
 
 On the top of the **Full Task List** page you see next to the heading
 :guilabel:`Tasks` in brackets the overall number of tasks shown to you. Below you find the filter feature.
@@ -92,7 +50,7 @@ For each task the following key information is shown in the list:
 |task-key-information|
 
 Available Actions
-=================
+-----------------
 
 At the end of each row you find the `Actions` menu with the following options:
 
@@ -163,6 +121,9 @@ The task details page is organized into four main sections:
    |detailed-task-information-documents|
 
 |detailed-task-information|
+
+How-to
+======
 
 HowTo: Configure the Full Task List
 -----------------------------------

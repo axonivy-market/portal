@@ -83,7 +83,7 @@ HowTo: Update Portal Settings
    :dev-url:`Axon Ivy Cockpit </doc/12.0/engine-guide/reference/engine-cockpit/configuration.html#engine-cockpit-variables>`.
    
 .. deprecated:: 12.0
-   **Scheduled for removal in LTS 13**:
+   **Scheduled for removal in LTS 14**:
    
    - :guilabel:`Portal.Histories.HideSystemNotes`
    - :guilabel:`Portal.Histories.HideSystemNotesForAdministrator`

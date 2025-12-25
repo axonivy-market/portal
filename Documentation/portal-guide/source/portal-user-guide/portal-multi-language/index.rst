@@ -5,11 +5,22 @@ Portal Multi Language
 
 The Portal translation service powered by DeepL makes it easy to translate text content into your end user's language, eliminating language barriers in process automation.
 
-Translation Overview
-====================
+Overview
+========
+
+The Portal multi-language feature provides:
+
+- **Automated Translation**: DeepL-powered translations for supported languages
+- **Manual Translation**: Manual input when DeepL is not configured
+- **Flexible Application**: Available for dashboards, processes, and other customizable text fields
+
+.. note::
+   Portal translation requires both :guilabel:`Portal.DeepL.Enable` set to true and a valid :guilabel:`Portal.DeepL.AuthKey`. Otherwise, you can translate text fields manually.
+
+.. _enable-translation:
 
 HowTo: Enable the Translation Service
---------------------------------------
+=====================================
 
 To use DeepL-powered translations:
 
@@ -25,7 +36,7 @@ To use DeepL-powered translations:
    The DeepL free tier supports up to 500,000 characters per month, suitable for most Portal translation needs.
 
 HowTo: Translate Text
----------------------
+=====================
 
 #. Look for the :guilabel:`translator icon` on supported input text fields. For example, when creating a private dashboard:
 

@@ -69,61 +69,6 @@ Static pages should be organized in the ``webContent/view/`` directory of your p
 .. tip::
    Organize related pages in subdirectories (e.g., ``help/``, ``documentation/``) to maintain a clean structure.
 
-Basic Static Page Template
-==========================
-
-Here's a complete template demonstrating best practices for creating a static page:
-
-.. code-block:: xml
-
-    <?xml version="1.0" encoding="UTF-8"?>
-    <!DOCTYPE html>
-    <html xmlns="http://www.w3.org/1999/xhtml"
-        xmlns:h="http://xmlns.jcp.org/jsf/html"
-        xmlns:f="http://xmlns.jcp.org/jsf/core"
-        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-        xmlns:p="http://primefaces.org/ui">
-
-    <h:head>
-        <title>Your Page Title</title>
-        <style>
-            /* Custom CSS styles for this page */
-            .custom-content {
-                padding: 20px;
-            }
-            .info-box {
-                background-color: #f0f8ff;
-                border-left: 4px solid var(--ivy-primary-color);
-                padding: 15px;
-                margin: 20px 0;
-            }
-        </style>
-    </h:head>
-
-    <h:body>
-        <!-- Use Portal layout template for consistent styling -->
-        <ui:composition template="/layouts/frame-10-full-width.xhtml">
-            <ui:define name="content">
-                <div class="card custom-content">
-                    <h1>Your Content Title</h1>
-                    
-                    <div class="info-box">
-                        <p>Important information or notice.</p>
-                    </div>
-                    
-                    <p>Your static content goes here.</p>
-                    
-                    <!-- Add more content sections as needed -->
-                    <h2>Section Title</h2>
-                    <p>Additional content...</p>
-                </div>
-            </ui:define>
-        </ui:composition>
-    </h:body>
-
-    </html>
-
-
 .. _static-page-integration:
 
 Integrating Static Pages into Portal
@@ -132,7 +77,7 @@ Integrating Static Pages into Portal
 Static pages can be integrated into Portal navigation through two primary methods: Main Menu integration and User Menu integration.
 
 Main Menu Integration
-=====================
+---------------------
 
 Add static pages to the main left-side navigation menu using the ``Portal.CustomMenuItems`` variable configuration.
 
@@ -145,7 +90,7 @@ Add static pages to the main left-side navigation menu using the ``Portal.Custom
 #. Static page appears in the main menu
 
 Configuration Method
---------------------
+^^^^^^^^^^^^^^^^^^^^
 
 Add the following JSON configuration to the ``Portal.CustomMenuItems`` variable:
 
@@ -206,7 +151,7 @@ Add the following JSON configuration to the ``Portal.CustomMenuItems`` variable:
         - Recommended: Current Portal version (e.g., ``"12.0.0"``)
 
 Programmatic Method
--------------------
+^^^^^^^^^^^^^^^^^^^
 
 For dynamic menu generation, add static pages programmatically using Java code in a callable subprocess:
 
@@ -235,7 +180,7 @@ For dynamic menu generation, add static pages programmatically using Java code i
    - Integration with external systems for menu configuration
 
 User Menu Integration
-=====================
+---------------------
 
 Add static pages to the user menu (accessed via user avatar in top-right corner) using the ``Portal.UserMenu`` variable.
 

@@ -100,10 +100,6 @@ To add a widget to your dashboard:
 |add-widget|
 
 A configuration wizard will guide you through setting up your chosen widget. After completing the setup, click the save icon to add the new widget to your dashboard.
-
-Widget Details
-==============
-
 The following sections describe each widget type and its configuration options in detail.
 
 .. _new-dashboard-task-list-widget:
@@ -111,20 +107,9 @@ The following sections describe each widget type and its configuration options i
 Task list widget
 ================
 
-The Task list widget displays tasks with full flexibility over what you see and how it's presented.
-
-|task-list-widget|
-
-Configuration Options
----------------------
-
-In the widget configuration panel, you can:
-
-- Define the widget title
-- Enable/disable quick search function
-- Show/hide widget information and fullscreen mode icons
-- Manage columns and filters
-- Set default sort order by clicking column headers
+On the widget configuration panel, you can define the widget name, enable the
+quick search function, show or hide the widget information and fullscreen
+mode icons, manage columns and filters, edit the default sort order of the table columns by clicking on the column headers.
 
 **Filters panel**
 

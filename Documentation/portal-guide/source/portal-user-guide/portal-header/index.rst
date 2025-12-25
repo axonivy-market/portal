@@ -127,7 +127,7 @@ The :guilabel:`Change password` menu entry allows you to set a new password.
    </doc/12.0/engine-guide/reference/engine-cockpit/security.html>` under PersonalPermissions → PersonalSecurityPermissions → UserSetOwnPassword.
 
 Info
-----
+^^^^
 
 The menu entry :guilabel:`Info` provides you with detailed information about the
 Axon Ivy Engine, the Axon Ivy Portal and your company's application. You
@@ -136,7 +136,7 @@ might be asked for this information in case you issue a support request.
 |portal-version-information|
 
 Logout
-------
+^^^^^^
 
 The menu entry :guilabel:`Logout` will terminate your session in the Axon Ivy
 Portal. You'll be routed back to the login page of the Axon Ivy

@@ -19,19 +19,6 @@ Process List
 Overview
 --------
 
-.. table::
-   :widths: 40 60
-
-   +--------------------------------------+--------------------------------------------------------+
-   | Action                               | Required Permission                                    |
-   +======================================+========================================================+
-   | **Create public external link**      | :bdg-ref-warning:`🔑CreatePublicExternalLink           |
-   |                                      | <CreatePublicExternalLink>`                            |
-   +--------------------------------------+--------------------------------------------------------+
-
-Process List Overview
-=====================
-
 On the **Full Process List** page, you see a list of all processes. They
 are sorted alphabetically and grouped by their initial character. 
 
