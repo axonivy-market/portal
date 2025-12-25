@@ -134,7 +134,8 @@ public abstract class TemplatePage extends AbstractPage {
   }
 
   public void waitForGrowlMessageDisplayClearly() {
-    $("div[id='portal-global-growl_container']").shouldBe(appear, DEFAULT_TIMEOUT).$("div.ui-growl-message").hover();
+    $("div[id='portal-global-growl_container']").shouldBe(appear, DEFAULT_TIMEOUT)
+        .shouldBe(interactable, DEFAULT_TIMEOUT).$("div.ui-growl-message").hover();
   }
 
   public SelenideElement waitForElementClickable(SelenideElement element) {
