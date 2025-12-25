@@ -10,7 +10,7 @@
 <cc:implementation>
   <!-- Standard widget -->
   <ui:fragment rendered="#{cc.attrs.widgetType eq 'standard'}">
-    <p:commandLink styleClass="new-widget-dialog__item card js-widget block w-full h-full" 
+    <p:commandLink styleClass="new-widget-dialog__item card js-widget block w-full h-full pl-0"
       ariaLabel="#{cc.attrs.widget.name}"
       actionListener="#{dashboardDetailModificationBean.create(cc.attrs.widget)}"
       update="new-widget-configuration-dialog widget-configuration-form"
@@ -18,7 +18,7 @@
       onstart="getPortalGridsCurrentRow();"
       process="@this">
       
-      <div class="flex align-items-center">
+      <div class="flex align-items-center h-full">
         <p:graphicImage library="images" name="#{cc.attrs.widget.image}" 
           styleClass="new-widget-dialog__image flex-shrink-0" 
           rendered="#{!cc.attrs.widget.useIcon}" />
@@ -29,7 +29,7 @@
           <span class="#{cc.attrs.widget.image} new-widget-dialog__icon" />
         </h:panelGroup>
         
-        <div class="flex-1 min-w-0">
+        <div class="flex-1 min-w-0 align-self-start">
           <h:outputText id="standard-widget-name" value="#{cc.attrs.widget.name}" styleClass="new-widget-dialog__widget-name block mb-2"/>
           <p:tooltip id="standard-widget-name-tooltip" for="standard-widget-name" value="#{cc.attrs.widget.name}" trackMouse="true" />
           <h:outputText id="standard-widget-introduction" value="#{cc.attrs.widget.introduction}" styleClass="new-widget-dialog__introduction block"/>
@@ -41,7 +41,7 @@
   
   <!-- Custom widget -->
   <ui:fragment rendered="#{cc.attrs.widgetType eq 'custom'}">
-    <p:commandLink styleClass="new-widget-dialog__item card js-widget block w-full h-full" 
+    <p:commandLink styleClass="new-widget-dialog__item card js-widget block w-full h-full pl-0"
       ariaLabel="#{cc.attrs.widget.name}"
       actionListener="#{dashboardDetailModificationBean.createCustomDashboardWidget(cc.attrs.widget)}"
       update="new-widget-configuration-dialog widget-configuration-form"
@@ -49,12 +49,12 @@
       onstart="getPortalGridsCurrentRow();"
       process="@this">
       
-      <div class="flex align-items-center">
+      <div class="flex align-items-center h-full">
         <h:panelGroup layout="block" styleClass="new-widget-dialog__image flex align-items-center justify-content-center flex-shrink-0">
           <span class="#{cc.attrs.widget.icon} new-widget-dialog__icon" />
         </h:panelGroup>
         
-        <div class="flex-1 min-w-0">
+        <div class="flex-1 min-w-0 align-self-start">
           <h:outputText id="custom-widget-name" value="#{cc.attrs.widget.name}" styleClass="new-widget-dialog__widget-name block mb-2"/>
           <p:tooltip id="custom-widget-name-tooltip" for="custom-widget-name" value="#{cc.attrs.widget.name}" trackMouse="true" />
           <h:outputText id="custom-widget-description" value="#{cc.attrs.widget.description}" styleClass="new-widget-dialog__introduction block"/>
@@ -67,7 +67,7 @@
   <!-- Statistic widget -->
   <ui:fragment rendered="#{cc.attrs.widgetType eq 'statistic'}">
     <div class="new-widget-dialog__item new-widget-dialog__item--statistic-wrapper card block w-full h-full">
-      <p:commandLink styleClass="new-widget-dialog__item-content js-widget block w-full h-full" 
+      <p:commandLink styleClass="new-widget-dialog__item-content js-widget block w-full h-full pl-0"
         ariaLabel="#{cc.attrs.widget.name}"
         actionListener="#{dashboardDetailModificationBean.saveStatisticWidget(cc.attrs.widget)}"
         oncomplete="loadGridAfterAddedNewWidget(); initStatistics();"
@@ -75,12 +75,12 @@
         partialSubmit="true"
         process="@this">
         
-        <div class="flex align-items-center">
+        <div class="flex align-items-center h-full">
           <h:panelGroup layout="block" styleClass="new-widget-dialog__image flex align-items-center justify-content-center flex-shrink-0">
             <span class="#{iconSelectionBean.generateIconWithFontFamily(htmlSanitizerBean.sanitize(cc.attrs.widget.icon))} new-widget-dialog__icon" />
           </h:panelGroup>
           
-          <div class="flex-1 min-w-0">
+          <div class="flex-1 min-w-0 align-self-start">
             <h:outputText id="statistic-widget-name" value="#{cc.attrs.widget.name}" styleClass="new-widget-dialog__widget-name block mb-2"/>
             <p:tooltip id="statistic-widget-name-tooltip" for="statistic-widget-name" value="#{cc.attrs.widget.name}" trackMouse="true" />
             <h:outputText id="statistic-widget-description" value="#{cc.attrs.widget.description}" styleClass="new-widget-dialog__introduction block"/>

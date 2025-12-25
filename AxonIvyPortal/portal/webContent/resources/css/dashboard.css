@@ -828,9 +828,7 @@ body .dashboard__table--preview.ui-datatable tbody tr.ui-state-hover {
 }
 
 .new-widget-dialog__image {
-  width: 120px;
-  height: 75px;
-  margin-right: 1em;
+  width: 7rem;
 }
 
 span.new-widget-dialog__icon.si, span.new-widget-dialog__icon.fa {
