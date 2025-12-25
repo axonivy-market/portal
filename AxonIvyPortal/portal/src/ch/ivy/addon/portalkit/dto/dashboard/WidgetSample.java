@@ -7,23 +7,13 @@ public class WidgetSample {
   private String name;
   private DashboardWidgetType type;
   private String image;
-  private boolean useIcon;
   private String introduction;
   
-  public WidgetSample(String name, DashboardWidgetType type, String image,String introduction) {
+  public WidgetSample(String name, DashboardWidgetType type, String image, String introduction) {
     this.name = name;
     this.type = type;
     this.image = image;
     this.introduction = introduction;
-    this.useIcon = false;
-  }
-  
-  public WidgetSample(String name, DashboardWidgetType type, String image, String introduction, boolean useIcon) {
-      this.name = name;
-      this.type = type;
-      this.image = image;
-      this.introduction = introduction;
-      this.useIcon = useIcon;
   }
 
   public String getName() {
@@ -56,13 +46,5 @@ public class WidgetSample {
 
   public void setIntroduction(String introduction) {
     this.introduction = introduction;
-  }
-
-  public boolean isUseIcon() {
-    return useIcon;
-  }
-
-  public void setUseIcon(boolean useIcon) {
-    this.useIcon = useIcon;
   }
 }

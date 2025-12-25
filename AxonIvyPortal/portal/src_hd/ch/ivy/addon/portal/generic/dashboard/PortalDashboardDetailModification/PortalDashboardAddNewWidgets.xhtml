@@ -25,16 +25,16 @@
   <div class="new-widget-dialog__tabs flex flex-wrap gap-2 mb-4">
     <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/All')}" styleClass="new-widget-dialog__tab new-widget-dialog__tab--active" 
       ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/All')}"
-      type="button" onclick="filterWidgetsByTab('all'); return false;" />
+      type="button" onclick="filterWidgetsByTab('all');" />
     <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/StandardWidgets')}" styleClass="new-widget-dialog__tab" 
       ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/StandardWidgets')}"
-      type="button" onclick="filterWidgetsByTab('standard'); return false;" />
+      type="button" onclick="filterWidgetsByTab('standard');" />
     <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/statisticWidgets')}" styleClass="new-widget-dialog__tab" 
       ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/statisticWidgets')}"
-      type="button" onclick="filterWidgetsByTab('statistics'); return false;" />
+      type="button" onclick="filterWidgetsByTab('statistics');" />
     <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/CustomWidgets')}" styleClass="new-widget-dialog__tab" 
       ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/CustomWidgets')}"
-      type="button" onclick="filterWidgetsByTab('custom'); return false;" />
+      type="button" onclick="filterWidgetsByTab('custom');" />
   </div>
   
   <div class="new-widget-dialog__content">
@@ -182,7 +182,7 @@
     <p:commandLink id="task-configuration-cancel-link" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
       styleClass="u-mar-right-10" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
       rendered="#{widgetType ne 'WELCOME'}"
-      onclick="PF('new-widget-configuration-dialog').hide(); return false;">
+      onclick="PF('new-widget-configuration-dialog').hide();">
       <p:resetInput target="widget-configuration-form" />
     </p:commandLink>
 

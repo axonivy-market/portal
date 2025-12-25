@@ -50,7 +50,7 @@
       </h:panelGroup>
 
       <p:commandButton id="clone-from" type="button" icon="si si-copy-paste" 
-        styleClass="ui-button-secondary"
+        styleClass="ui-button-secondary u-hidden-md-down"
         ariaLabel="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/PortalDashboardDetailModification/CloneWidget')}"
         value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/PortalDashboardDetailModification/CloneWidget')}">
           <p:ajax event="click" listener="#{dashboardDetailModificationBean.initCloneWidgetDialog()}"

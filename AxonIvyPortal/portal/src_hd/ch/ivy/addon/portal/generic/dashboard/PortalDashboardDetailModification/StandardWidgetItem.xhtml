@@ -4,7 +4,7 @@
   xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
   <div class="col-12 md:col-6 lg:col-4">
     <p:commandLink styleClass="new-widget-dialog__item card js-widget block w-full h-full pl-0"
-      ariaLabel="#{sample.name}"
+      ariaLabel="#{sample.name} #{sample.introduction}"
       actionListener="#{dashboardDetailModificationBean.create(sample)}"
       update="new-widget-configuration-dialog widget-configuration-form"
       oncomplete="PF('new-widget-configuration-dialog').show(); PF('new-widget-dialog').hide();"
@@ -12,12 +12,7 @@
       process="@this">
       
       <div class="flex align-items-center h-full">
-        <p:graphicImage library="images" name="#{sample.image}" 
-          styleClass="new-widget-dialog__image flex-shrink-0" 
-          rendered="#{!sample.useIcon}" />
-        
         <h:panelGroup layout="block" 
-          rendered="#{sample.useIcon}" 
           styleClass="new-widget-dialog__image flex align-items-center justify-content-center flex-shrink-0">
           <span class="#{sample.image} new-widget-dialog__icon" />
         </h:panelGroup>

@@ -4,7 +4,7 @@
   xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
   <div class="col-12 md:col-6 lg:col-4">
     <p:commandLink styleClass="new-widget-dialog__item card js-widget block w-full h-full pl-0"
-      ariaLabel="#{widget.name}"
+      ariaLabel="#{widget.name} #{widget.description}"
       actionListener="#{dashboardDetailModificationBean.createCustomDashboardWidget(widget)}"
       update="new-widget-configuration-dialog widget-configuration-form"
       oncomplete="PF('new-widget-configuration-dialog').show(); PF('new-widget-dialog').hide();"

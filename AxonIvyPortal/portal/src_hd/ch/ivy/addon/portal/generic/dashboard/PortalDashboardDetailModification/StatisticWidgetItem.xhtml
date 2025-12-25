@@ -3,9 +3,9 @@
   xmlns:pe="http://primefaces.org/ui/extensions" xmlns:fn="http://xmlns.jcp.org/jsp/jstl/functions" xmlns:jsf="http://xmlns.jcp.org/jsf"
   xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
   <div class="col-12 md:col-6 lg:col-4">
-    <div class="new-widget-dialog__item new-widget-dialog__item--statistic-wrapper card block w-full h-full">
-      <p:commandLink styleClass="new-widget-dialog__item-content js-widget block w-full h-full pl-0"
-        ariaLabel="#{widget.name}"
+    <div class="new-widget-dialog__item new-widget-dialog__item--statistic-wrapper card block w-full h-full relative">
+      <p:commandLink styleClass="new-widget-dialog__item-content js-widget block w-full h-full pl-0 pr-6"
+        ariaLabel="#{widget.name} #{widget.description}"
         actionListener="#{dashboardDetailModificationBean.saveStatisticWidget(widget)}"
         oncomplete="loadGridAfterAddedNewWidget(); initStatistics();"
         update="widget-configuration-form load-grid-after-added-new-widget-cmd"
@@ -26,8 +26,8 @@
         </div>
       </p:commandLink>
       
-      <h:panelGroup layout="block" styleClass="new-widget-dialog__item-menu-wrapper" rendered="#{widget.isCustom and dashboardDetailModificationBean.canEditStatistic()}">
-        <p:commandButton id="custom-statistic-action-button" icon="fa fa-ellipsis-h"
+      <h:panelGroup layout="block" styleClass="new-widget-dialog__item-menu-wrapper absolute top-0 right-0 mt-2 mr-2 z-5" rendered="#{widget.isCustom and dashboardDetailModificationBean.canEditStatistic()}">
+        <p:commandButton id="custom-statistic-action-button" icon="si si-navigation-menu-horizontal-filled"
           ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}"
           styleClass="rounded-button icon-more-menu-button ui-no-rounded-button-process-page"
           type="button"
