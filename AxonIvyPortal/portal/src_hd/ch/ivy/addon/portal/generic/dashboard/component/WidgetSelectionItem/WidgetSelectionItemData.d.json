@@ -1,5 +1,0 @@
-{
-  "$schema" : "https://json-schema.axonivy.com/data-class/13.2.0/data-class.json",
-  "simpleName" : "WidgetSelectionItemData",
-  "namespace" : "ch.ivy.addon.portal.generic.dashboard.component.WidgetSelectionItem"
-}

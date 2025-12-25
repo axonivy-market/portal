@@ -44,11 +44,7 @@
         <ui:repeat id="new-widget-dialog-content"
           var="sample"
           value="#{dashboardDetailModificationBean.samples}">
-          <div class="col-12 md:col-6 lg:col-4">
-            <ic:ch.ivy.addon.portal.generic.dashboard.component.WidgetSelectionItem
-              widget="#{sample}"
-              widgetType="standard" />
-          </div>
+          <ui:include src="StandardWidgetItem.xhtml" />
         </ui:repeat>
       </div>
     </h:panelGroup>
@@ -69,11 +65,7 @@
         </h:panelGroup>
         <ui:repeat id="new-statistic-widget-dialog-content"
          var="widget" value="#{dashboardDetailModificationBean.statisticWidgets}">
-          <div class="col-12 md:col-6 lg:col-4">
-            <ic:ch.ivy.addon.portal.generic.dashboard.component.WidgetSelectionItem
-              widget="#{widget}"
-              widgetType="statistic" />
-          </div>
+          <ui:include src="StatisticWidgetItem.xhtml" />
         </ui:repeat>
       </div>
     </h:panelGroup>
@@ -83,11 +75,7 @@
       <div class="grid">
         <ui:repeat id="new-custom-widget-dialog-content"
          var="widget" value="#{dashboardDetailModificationBean.customWidgets}">
-          <div class="col-12 md:col-6 lg:col-4">
-            <ic:ch.ivy.addon.portal.generic.dashboard.component.WidgetSelectionItem
-              widget="#{widget}"
-              widgetType="custom" />
-          </div>
+          <ui:include src="CustomWidgetItem.xhtml" />
         </ui:repeat>
       </div>
     </h:panelGroup>
