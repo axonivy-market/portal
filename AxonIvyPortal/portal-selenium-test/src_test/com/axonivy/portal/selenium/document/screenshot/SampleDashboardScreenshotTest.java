@@ -60,7 +60,7 @@ public class SampleDashboardScreenshotTest extends ScreenshotBaseTest {
   }
 
   private void scrollToExampleStatisticInAddWidgetDialog() {
-    $$("span[id$='statistic-widget-name']")
+    $$("a.new-widget-dialog__item-content")
       .findBy(Condition.text("Total Procurement Spend per Department"))
       .shouldBe(Condition.visible, DEFAULT_TIMEOUT)
       .scrollIntoCenter();
