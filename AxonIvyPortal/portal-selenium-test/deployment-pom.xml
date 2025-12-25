@@ -54,7 +54,7 @@
         <version>3.7.1</version>
         <configuration>
           <descriptors>
-            <descriptor>../../Showcase/portal-demo-app/assembly.xml</descriptor>
+            <descriptor>deployment-assembly.xml</descriptor>
           </descriptors>
           <appendAssemblyId>false</appendAssemblyId>
         </configuration>
