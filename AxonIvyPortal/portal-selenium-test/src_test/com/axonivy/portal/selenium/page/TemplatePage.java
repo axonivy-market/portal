@@ -136,7 +136,7 @@ public abstract class TemplatePage extends AbstractPage {
   public void waitForGrowlMessageDisplayClearly() {
     $("div[id='portal-global-growl_container']").shouldBe(appear, DEFAULT_TIMEOUT)
         .shouldBe(interactable, DEFAULT_TIMEOUT).$("div.ui-growl-message").hover();
-    $(".ui-growl-item").$(".ui-growl-icon-close.ui-icon.ui-icon-closethick").shouldBe(interactable, DEFAULT_TIMEOUT).hover();
+    $(".ui-growl-icon-close.ui-icon.ui-icon-closethick").shouldBe(interactable, DEFAULT_TIMEOUT).hover();
   }
 
   public SelenideElement waitForElementClickable(SelenideElement element) {
