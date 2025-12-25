@@ -128,5 +128,7 @@ public class LeaveRequestPage extends TaskTemplateIFramePage {
   public void waitForLeaveRequestFormVisible() {
     $("form[id='leave-request']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     $("input[id='leave-request:requester'").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    $("input[id='leave-request:requester'").shouldBe(Condition.interactable, DEFAULT_TIMEOUT);
+
   }
 }
