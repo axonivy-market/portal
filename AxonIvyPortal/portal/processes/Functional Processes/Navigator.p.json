@@ -266,7 +266,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 1930, "y" : 1159 }
+        "at" : { "x" : 1928, "y" : 1160 }
       },
       "connect" : { "id" : "f37", "to" : "f35" }
     }, {
@@ -541,12 +541,13 @@
       "type" : "Script",
       "name" : "prepare case view",
       "config" : {
+        "security" : "system",
         "output" : {
           "code" : [
             "import ch.ivyteam.ivy.workflow.query.CaseQuery;",
             "import ch.ivyteam.ivy.workflow.ICase;",
             "",
-            "out.iCase = ivy.wf.getGlobalContext().getCaseQueryExecutor().createCaseQuery().where().caseId().isEqual(in.caseId.id()).executor().firstResult() as ICase;"
+            "out.iCase = ivy.wf.getCaseQueryExecutor().createCaseQuery().where().caseId().isEqual(in.caseId.id()).executor().firstResult() as ICase;"
           ]
         }
       },
@@ -601,12 +602,13 @@
       "type" : "Script",
       "name" : "prepare task view",
       "config" : {
+        "security" : "system",
         "output" : {
           "code" : [
             "import ch.ivyteam.ivy.workflow.ITask;",
             "import ch.ivyteam.ivy.workflow.query.TaskQuery;",
             "",
-            "out.iTask = ivy.wf.getGlobalContext().getTaskQueryExecutor().createTaskQuery().where().taskId().isEqual(in.taskId).executor().firstResult() as ITask;"
+            "out.iTask = ivy.wf.getTaskQueryExecutor().createTaskQuery().where().taskId().isEqual(in.taskId).executor().firstResult() as ITask;"
           ]
         }
       },
@@ -820,12 +822,13 @@
       "type" : "Script",
       "name" : "prepare task view",
       "config" : {
+        "security" : "system",
         "output" : {
           "code" : [
             "import ch.ivyteam.ivy.workflow.ITask;",
             "import ch.ivyteam.ivy.workflow.query.TaskQuery;",
             "",
-            "out.iTask = ivy.wf.getGlobalContext().getTaskQueryExecutor().createTaskQuery().where().taskId().isEqual(in.taskId).executor().firstResult() as ITask;"
+            "out.iTask = ivy.wf.getTaskQueryExecutor().createTaskQuery().where().taskId().isEqual(in.taskId).executor().firstResult() as ITask;"
           ]
         }
       },
