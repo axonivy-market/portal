@@ -572,26 +572,46 @@ $(document).ready(function () {
     }
   }
 
+  function initShortcutsNavigationOnIframe(iframe) {
+    const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
+    iframeDocument.addEventListener('keydown', function (event) {
+      if (isKeyboardShortcutsEnabled && onlyAltPressed(event)) {
+        if (event.code === 'KeyW' || event.code === 'KeyQ' || event.code === 'KeyA') {
+          event.preventDefault();
+          window.focus();
+          document.body.focus();
+          
+          const parentEvent = new KeyboardEvent('keydown', {
+            code: event.code,
+            key: event.key,
+            altKey: event.altKey,
+          });
+          
+          document.dispatchEvent(parentEvent);
+          return;
+        }
+        
+        if(toggleLeftMenu(event.code)) {
+          return;
+        }
+        handleFocusOnMainElement(event);
+      }
+    });
+  }
+
   function onlyAltPressed(event) {
     return event ? event.altKey && !event.ctrlKey && !event.shiftKey && !event.metaKey : false;
   }
 
-  const iframe = document.getElementById('iFrame');
-
-  if (iframe) {
-    iframe.onload = function () {
-      const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
-      iframeDocument.addEventListener('keydown', function (event) {
-        if (isKeyboardShortcutsEnabled && onlyAltPressed(event)) {
-          if(toggleLeftMenu(event.code)) {
-            return;
-          }
-          handleFocusOnMainElement(event);
-        }
-      });
-      handleExpandButtonInFilePreview(document.getElementById("iFrame").contentWindow);
-
-    };
+  const iframes = document.getElementsByTagName('iframe');
+  
+  if (iframes.length > 0) {
+    Array.from(iframes).forEach(function(iframe) {
+      iframe.onload = function () {
+        initShortcutsNavigationOnIframe(iframe);
+        handleExpandButtonInFilePreview(iframe.contentWindow);
+      }
+    });
   }
 
   let taskIndex = 0;
@@ -800,19 +820,6 @@ $(document).ready(function () {
   // END OF HANDLE EXPAND BUTTON IN FILE PREVIEW
 
   // START: FIX ACCESSIBILITY ISSUES
-  let parentMenu = $("[id$='user-menu-required-login:main-navigator:main-menu']");
-  if (parentMenu) {
-    if (parentMenu.attr('role') === undefined) {
-      parentMenu.attr('role', 'menu');
-    }
-    parentMenu.find('li').each((index, item) => {
-      let linkItem = $(item).find('a');
-      if (linkItem && linkItem.attr('aria-label') === undefined) {
-        linkItem.attr('aria-label', linkItem.text());
-      }
-    })
-  }
-
   setTimeout(function () {
     let combobox = $("span[role='combobox']");
     combobox.each((index, item) => {
@@ -855,6 +862,29 @@ function focusFirstVisibleElementInPanel(widgetVar, selector) {
   
   if (first.length) {
     first.focus();
+  }
+}
+
+function updateMainMenuAriaLabel() {
+  let parentMenu = $("[id$='user-menu-required-login:main-navigator:main-menu']");
+  if (parentMenu) {
+    if (parentMenu.attr('role') === undefined) {
+      parentMenu.attr('role', 'menu');
+    }
+    parentMenu.find('li').each((__, item) => {
+      let linkItem = $(item).find('a');
+      if (linkItem && linkItem.attr('aria-label') === undefined) {
+        if (linkItem.length > 1) {
+          $(linkItem).each((__, link) => {
+            if ($(link).attr('aria-label') === undefined) { 
+              $(link).attr('aria-label', $(link).text());
+            }
+          })
+        } else {
+          linkItem.attr('aria-label', linkItem.text());
+        }
+      }
+    })
   }
 }
 

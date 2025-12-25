@@ -16,6 +16,8 @@ Dialogs:
             Process:
               ProcessName: Prozessname
             RequiredFieldMessage: Dies ist ein Pflichtfeld
+            Save: Speichern
+            SideStepPrefix: 'Seitenschrittaufgabe für: '
             Task:
               Activator: Verantwortlich
             Type: Typ
@@ -31,10 +33,15 @@ Dialogs:
             FileContainVirus: Upload fehlgeschlagen, Virus/Infektion entdeckt!
             FileFunction: Funktionen
             FileLimitMessage: Limit an hochgeladenen Dateien erreicht!
+            FilenameEmpty: Dateiname darf nicht leer sein.
             InvalidFileMessage: Dateityp nicht gültig!
             Name: Dateiname
             NoFile: Keine Dateien vorhanden!
             Preview: Vorschau
+            RenamingDocument: Dokument umbenennen
+            RenamingDocumentNote: '{0} hat die Datei {1} in {2} umbenannt'
+            RenamingDocumentSuccess: Erfolgreich umbenannt.
+            RenamingFailed: Beim Umbenennen des Dokuments ist ein Fehler aufgetreten.
             Size: Dateigröße
             Type: Typ
             Upload: Neue Datei hochladen
@@ -64,10 +71,10 @@ Dialogs:
               CREATED: Erstellt
               DESTROYED: Gelöscht
               DONE: Erledigt
+              FAILED: Gescheitert
               OPEN: Offen
               RUNNING: in Bearbeitung
               ZOMBIE: Zombie
-              FAILED: Gescheitert
             DefaultEmptyMessage: Keine Vorgänge verfügbar
             NoDescription: Keine Beschreibung vorhanden
             NoName: kein Name
@@ -87,13 +94,21 @@ Dialogs:
               EXTERNAL_LINK: External Link
               IVY_PROCESS: Geschäftsprozess
             ProcessViewerIFrameTitle: Prozessbetrachterrahmen
+          SideStepType:
+            PARALLEL: Eine Hintergrundaufgabe starten (parallel)
+            SWITCH: Diese Aufgabe anhalten und Prozess starten (umschalten)
 Labels:
   AI:
     Error:
       CanceledFlow: You have canceled the flow. If you have any requests, please let me know.
       ErrorWhenProceedRequest: An error has occurred while trying to process your request. Please try again later.
       SomethingWentWrong: Something went wrong when proceed your request. Please try again later.
+  Close: Schließen
   DisabledUserPrefix: (inaktiv)
+  Enums:
+    NewFilenameValidation:
+      ALREADY_EXIST: Es gibt bereits eine Datei mit diesem Namen an diesem Speicherort.
+      INVALID_FORMAT: 'Ein Dateiname darf keines der folgenden Zeichen enthalten: \ / : * ? " < > |'
   NoName: kein Name
   NoResults: Keine Ergebnisse
   None: Keine

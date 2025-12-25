@@ -12,17 +12,19 @@ import java.time.Duration;
 import java.util.Objects;
 
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WindowType;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.axonivy.ivy.webtest.engine.EngineUrl;
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.WebDriverRunner;
 
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
-import ch.ivyteam.ivy.project.portal.test.Responsible;
 
 /**
  * A base test that other tests extend it. It will test on browser IE by default. It provides feature to take screenshot
@@ -37,6 +39,18 @@ public class BaseTest {
   protected final static Duration DEFAULT_TIMEOUT = Duration.ofSeconds(45);
 
   public BaseTest() {}
+  
+  @BeforeAll
+  public static void initConfig() {
+    FirefoxOptions options = new FirefoxOptions();
+    options.addPreference("dom.disable_beforeunload", true);
+    
+    if (Configuration.browserCapabilities != null) {
+      Configuration.browserCapabilities = Configuration.browserCapabilities.merge(options);
+    } else {
+      Configuration.browserCapabilities = options;
+    }
+  }
 
   @AfterEach
   public void tearDown() {
@@ -158,6 +172,7 @@ public class BaseTest {
   protected String multipleOwnersUrl = "InternalSupport/16A68510A341BE6E/multipleOwners.ivp";
   protected String displayCustomFieldCaseOnTaskWidget = "PortalKitTestHelper/153CACC26D0D4C3D/displayCustomFieldCaseOnTaskWidget.ivp";
   protected String taskWithMultiResponsibles = "InternalSupport/14B2FC03D2E87141/TaskWithMultiResponsible.ivp";
+  protected String createSideStepUrl = "portal-developer-examples/182E92730FF57036/start.ivp";
   
   protected void redirectToNewDashBoard() {
     open(EngineUrl.createProcessUrl(PORTAL_HOME_PAGE_URL));
@@ -329,6 +344,16 @@ public class BaseTest {
     }
   }
 
+  public void updateTranslationVariable(String defaultInstance) {
+    try {
+      String encodeVariableValue = URLEncoder.encode(defaultInstance, "UTF-8");
+      String updateGlobalVariableLink = "portalKitTestHelper/1996F2D4E272FDB2/updateTranslationServiceVariable.ivp?variableValue=%s";
+      redirectToRelativeLink(String.format(updateGlobalVariableLink, encodeVariableValue));
+    } catch (UnsupportedEncodingException e) {
+      e.printStackTrace();
+    }
+  }
+
   public void goToTaskNoteHistoryPage(String taskId) {
     redirectToRelativeLink(String.format(showTaskNoteHistoryUrl, taskId));
   }
@@ -362,13 +387,6 @@ public class BaseTest {
 
   public WebDriverWait webDriverWait() {
     return new WebDriverWait(WebDriverRunner.getWebDriver(), DEFAULT_TIMEOUT);
-  }
-
-  public Responsible setResponsible(String userName, boolean isGroup) {
-    Responsible user = new Responsible();
-    user.setResponsibleName(userName);
-    user.setIsGroup(isGroup);
-    return user;
   }
 
   public void resizeBrowserTo2kResolution() {

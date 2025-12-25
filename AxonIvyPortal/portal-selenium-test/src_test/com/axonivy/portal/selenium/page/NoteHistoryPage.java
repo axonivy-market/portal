@@ -1,5 +1,6 @@
 package com.axonivy.portal.selenium.page;
 
+import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
 import java.util.List;
@@ -66,7 +67,11 @@ public class NoteHistoryPage extends TemplatePage {
   }
 
   public void clickOnCheckboxShowSystemNotes() {
-    findElementByCssSelector("[id$=':show-system-notes-checkbox']").click();
+    $("[id$=':show-system-notes-checkbox']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+  }
+  
+  public boolean isTaskNoteTableVisible() {
+    return findElementByCssSelector("[id$=':task-note-table']").isDisplayed();
   }
 
   public void waitForNoteTableDisplayed() {

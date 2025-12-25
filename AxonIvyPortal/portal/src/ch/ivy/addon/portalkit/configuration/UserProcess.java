@@ -4,11 +4,12 @@ import java.util.List;
 import java.util.Locale;
 
 import org.apache.commons.collections4.CollectionUtils;
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 
 import ch.ivy.addon.portalkit.constant.DashboardConfigurationPrefix;
 import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.enums.ProcessType;
+import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
 import ch.ivyteam.ivy.environment.Ivy;
 
 public class UserProcess {
@@ -61,7 +62,7 @@ public class UserProcess {
   }
 
   private String getActiveDisplayName() {
-    Locale currentLocale = Ivy.session().getContentLocale();
+    Locale currentLocale = LanguageService.getInstance().getUserLocale();
     return names.stream().filter(displayName -> displayName.getLocale().equals(currentLocale))
         .map(DisplayName::getValue).findFirst().orElse(getDisplayNameWithCms());
   }
@@ -116,8 +117,8 @@ public class UserProcess {
   }
 
   private String getDisplayNameWithCms() {
-    return StringUtils.startsWithIgnoreCase(processName, DashboardConfigurationPrefix.CMS)
-        ? Ivy.cms().co(StringUtils.removeStart(processName, DashboardConfigurationPrefix.CMS))
+    return Strings.CI.startsWith(processName, DashboardConfigurationPrefix.CMS)
+        ? Ivy.cms().co(Strings.CS.removeStart(processName, DashboardConfigurationPrefix.CMS))
         : processName;
   }
 }

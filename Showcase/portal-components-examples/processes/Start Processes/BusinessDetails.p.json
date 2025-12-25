@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/13.1.2/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/13.2.0/process.json",
   "id" : "176465FBFE257CF3",
   "config" : {
     "data" : "com.axonivy.portal.components.examples.BusinessDetailsData"
@@ -167,10 +167,7 @@
       ],
       "visual" : {
         "at" : { "x" : 1144, "y" : 192 },
-        "size" : { "width" : 768, "height" : 316 },
-        "description" : "",
-        "color" : "",
-        "icon" : ""
+        "size" : { "width" : 768, "height" : 316 }
       }
     }, {
       "id" : "f15",

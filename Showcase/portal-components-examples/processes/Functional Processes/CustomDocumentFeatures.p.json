@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/13.1.2/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/13.2.0/process.json",
   "id" : "189F33E127423286",
   "kind" : "CALLABLE_SUB",
   "config" : {
@@ -195,8 +195,14 @@
             "  in.documents = transformer.transform(iDocuments);",
             "  for(CustomizedIvyDocument doc : in.documents) {",
             "    doc.setName(\"Overridden: \" + doc.getName());",
+            "    String typeString = null;",
             "    String typeStringField = DocumentCustomField.TYPE_PREFIX + doc.uuid;",
-            "    String typeString = in.businessCase.customFields().stringField(typeStringField).getOrNull();",
+            "    typeString = in.businessCase.customFields().stringField(typeStringField).getOrNull();",
+            "    if (StringUtils.isBlank(typeString)) {",
+            "      typeStringField = DocumentCustomField.TYPE_PREFIX + doc.id;",
+            "      typeString = in.businessCase.customFields().stringField(typeStringField).getOrNull();",
+            "    }",
+            "",
             "    if (StringUtils.isNotBlank(typeString)) {",
             "      doc.setType(ExtendedDocumentType.valueOf(typeString.toUpperCase()));",
             "    }",
@@ -427,7 +433,7 @@
       "name" : "valid file?",
       "config" : {
         "conditions" : {
-          "f78" : "org.apache.commons.lang.StringUtils.isBlank(in.message)"
+          "f78" : "org.apache.commons.lang3.StringUtils.isBlank(in.message)"
         }
       },
       "visual" : {
@@ -880,6 +886,246 @@
       },
       "connect" : [
         { "id" : "f100", "to" : "f37", "via" : [ { "x" : 272, "y" : 784 } ] }
+      ]
+    }, {
+      "id" : "f101",
+      "type" : "CallSubStart",
+      "name" : "portalRenameDocumentItem(ICase,IvyDocument)",
+      "config" : {
+        "signature" : "portalRenameDocumentItem",
+        "input" : {
+          "params" : [
+            { "name" : "businessCase", "type" : "ch.ivyteam.ivy.workflow.ICase", "desc" : "" },
+            { "name" : "document", "type" : "com.axonivy.portal.components.ivydata.bo.IvyDocument", "desc" : "" }
+          ],
+          "map" : {
+            "out.businessCase" : "param.businessCase",
+            "out.document" : "param.document"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "message", "type" : "String", "desc" : "" },
+            { "name" : "status", "type" : "String", "desc" : "" },
+            { "name" : "isSuccess", "type" : "Boolean", "desc" : "" }
+          ],
+          "map" : {
+            "result.message" : "in.message",
+            "result.status" : "in.skip ? com.axonivy.portal.components.enums.CustomProcessStatus.SKIP.name() : com.axonivy.portal.components.enums.CustomProcessStatus.OK.name()",
+            "result.isSuccess" : "in.isRenamingSuccess"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 144, "y" : 912 },
+        "labelOffset" : { "x" : 17, "y" : 33 }
+      },
+      "connect" : [
+        { "id" : "f103", "to" : "f102" }
+      ]
+    }, {
+      "id" : "f102",
+      "type" : "Script",
+      "name" : "detect if need to skip rename",
+      "config" : {
+        "output" : {
+          "code" : "in.skip = !Boolean.parseBoolean(in.businessCase.customFields().stringField(\"custom\").getOrDefault(\"false\"));"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 352, "y" : 912 }
+      },
+      "connect" : [
+        { "id" : "f105", "to" : "f104" }
+      ]
+    }, {
+      "id" : "f104",
+      "type" : "Alternative",
+      "name" : "skip custom rename?",
+      "config" : {
+        "conditions" : {
+          "f111" : "in.skip",
+          "f106" : ""
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 480, "y" : 912 },
+        "labelOffset" : { "y" : -24 }
+      },
+      "connect" : [
+        { "id" : "f106", "to" : "S0", "label" : {
+            "name" : "No"
+          } },
+        { "id" : "f111", "to" : "f108", "via" : [ { "x" : 480, "y" : 960 }, { "x" : 728, "y" : 960 } ], "label" : {
+            "name" : "Yes",
+            "segment" : 1.5
+          } }
+      ]
+    }, {
+      "id" : "S0",
+      "type" : "EmbeddedProcess",
+      "name" : "Custom update filename",
+      "elements" : [ {
+          "id" : "S0-f9",
+          "type" : "Script",
+          "name" : "Update filename and create note",
+          "config" : {
+            "output" : {
+              "code" : [
+                "import com.axonivy.portal.components.service.CaseDocumentService;",
+                "import java.util.Arrays;",
+                "import ch.ivyteam.ivy.environment.Ivy;",
+                "import ch.ivyteam.ivy.workflow.document.IDocument;",
+                "",
+                "Ivy.log().info(\"Updating filename in customized sub process\");",
+                "",
+                "IDocument document = in.businessCase.documents().get(in.document.uuid);",
+                "",
+                "if (!document.getName().equals(in.document.name)) {",
+                "  String note = \"Customized sub process: \" +  ivy.cms.co(\"/Dialogs/com/axonivy/portal/components/DocumentTable/RenamingDocumentNote\", Arrays.asList(ivy.session.getSessionUserName(), document.getName(), in.document.getName()));",
+                "  ",
+                "  try {",
+                "    if (document.getName().equalsIgnoreCase(in.document.name)) {",
+                "      in.businessCase.documents().move(document, CaseDocumentService.getPathAfterRename(document.getRelativePath(), in.document.name + System.currentTimeMillis().toString()));",
+                "    }",
+                "    ",
+                "    in.businessCase.documents().move(document, CaseDocumentService.getPathAfterRename(document.getRelativePath(), in.document.name));",
+                "    in.businessCase.createNote(ivy.session, note);",
+                "  } catch (Exception e) {   ",
+                "    in.isRenamingSuccess = false;",
+                "    in.message = ivy.cms.co(\"/Dialogs/com/axonivy/portal/components/DocumentTable/RenamingFailed\");",
+                "  }",
+                "}"
+              ]
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 488, "y" : 160 },
+            "size" : { "width" : 144, "height" : 62 }
+          },
+          "connect" : [
+            { "id" : "S0-f10", "to" : "S0-f13", "color" : "default" }
+          ]
+        }, {
+          "id" : "S0-f7",
+          "type" : "Script",
+          "name" : "Validate new filename",
+          "config" : {
+            "output" : {
+              "code" : [
+                "import com.axonivy.portal.components.enums.NewFilenameValidation;",
+                "import com.axonivy.portal.components.service.CaseDocumentService;",
+                "",
+                "NewFilenameValidation filenameValidation = CaseDocumentService.newInstance(in.businessCase).isNewFilenameValid(in.document);",
+                "",
+                "in.isRenamingSuccess = NewFilenameValidation.VALID == filenameValidation;",
+                "",
+                "if (!in.isRenamingSuccess) {",
+                "  in.message = filenameValidation.getLabel();",
+                "}"
+              ]
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 200, "y" : 160 },
+            "size" : { "width" : 128, "height" : 62 }
+          },
+          "connect" : [
+            { "id" : "S0-f8", "to" : "S0-f11", "color" : "default" }
+          ]
+        }, {
+          "id" : "S0-f11",
+          "type" : "Alternative",
+          "name" : "valid?",
+          "config" : {
+            "conditions" : {
+              "S0-f12" : "in.isRenamingSuccess"
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 336, "y" : 160 },
+            "labelOffset" : { "y" : -24 }
+          },
+          "connect" : [
+            { "id" : "S0-f12", "to" : "S0-f9", "label" : {
+                "name" : "Yes"
+              }, "color" : "default" },
+            { "id" : "S0-f15", "to" : "S0-f13", "via" : [ { "x" : 336, "y" : 215 }, { "x" : 648, "y" : 215 } ], "label" : {
+                "name" : "No",
+                "segment" : 1.5
+              } }
+          ]
+        }, {
+          "id" : "S0-f13",
+          "type" : "Alternative",
+          "visual" : {
+            "at" : { "x" : 648, "y" : 160 },
+            "labelOffset" : { "x" : 14, "y" : 34 }
+          },
+          "connect" : [
+            { "id" : "S0-f1", "to" : "S0-g1", "color" : "default" }
+          ]
+        }, {
+          "id" : "S0-g0",
+          "type" : "EmbeddedStart",
+          "name" : "in 1",
+          "visual" : {
+            "at" : { "x" : 64, "y" : 160 },
+            "labelOffset" : { "x" : 3, "y" : 23 }
+          },
+          "parentConnector" : "f106",
+          "connect" : [
+            { "id" : "S0-f0", "to" : "S0-f7" }
+          ]
+        }, {
+          "id" : "S0-g1",
+          "type" : "EmbeddedEnd",
+          "name" : "out 1",
+          "visual" : {
+            "at" : { "x" : 736, "y" : 160 },
+            "labelOffset" : { "x" : 3, "y" : 23 }
+          },
+          "parentConnector" : "f109"
+        } ],
+      "visual" : {
+        "at" : { "x" : 616, "y" : 912 }
+      },
+      "connect" : [
+        { "id" : "f109", "to" : "f108" }
+      ]
+    }, {
+      "id" : "f107",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 800, "y" : 912 }
+      }
+    }, {
+      "id" : "f108",
+      "type" : "Alternative",
+      "visual" : {
+        "at" : { "x" : 728, "y" : 912 }
+      },
+      "connect" : [
+        { "id" : "f110", "to" : "f107" }
+      ]
+    }, {
+      "id" : "f112",
+      "type" : "ProcessAnnotation",
+      "name" : [
+        "Note",
+        "In previous versions, document type was stored using the \"id\" as the key.",
+        "",
+        "From version 11, id is deprecated and we use \"uuid\" instead of \"id\".",
+        "",
+        "To ensure compatibility, we first check for the type using \"uuid\".",
+        "If not found, we then check using \"id\"."
+      ],
+      "visual" : {
+        "at" : { "x" : 1072, "y" : 857 },
+        "size" : { "width" : 432, "height" : 147 }
+      },
+      "connect" : [
+        { "id" : "f113", "to" : "f12" }
       ]
     } ]
 }

@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/13.1.2/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/13.2.0/process.json",
   "id" : "172546E1FDEB1FF7",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -76,6 +76,7 @@
                 "import ch.ivy.addon.portalkit.configuration.GlobalSetting;",
                 "import ch.ivy.addon.portalkit.service.GlobalSettingService;",
                 "import org.apache.commons.lang3.StringUtils;",
+                "import org.apache.commons.lang3.Strings;",
                 "import ch.ivy.addon.portalkit.ivydata.service.impl.UserSettingService;",
                 "import ch.ivy.addon.portalkit.enums.ProcessMode;",
                 "",
@@ -93,7 +94,7 @@
                 "}",
                 "",
                 "String userProcessSetting = UserSettingService.newInstance().getDefaultProcessMode();",
-                "if (StringUtils.isBlank(userProcessSetting) || StringUtils.equalsIgnoreCase(userProcessSetting, UserSettingService.DEFAULT)) {",
+                "if (StringUtils.isBlank(userProcessSetting) || Strings.CI.equals(userProcessSetting, UserSettingService.DEFAULT)) {",
                 "  userProcessSetting = defaultProcessModeSetting;",
                 "}",
                 "",
@@ -310,7 +311,7 @@
             "at" : { "x" : 344, "y" : 160 }
           },
           "connect" : [
-            { "id" : "S10-f1", "to" : "S10-g1" }
+            { "id" : "S10-f1", "to" : "S10-f32" }
           ]
         }, {
           "id" : "S10-g0",
@@ -329,10 +330,29 @@
           "type" : "EmbeddedEnd",
           "name" : "out 1",
           "visual" : {
-            "at" : { "x" : 480, "y" : 160 },
+            "at" : { "x" : 632, "y" : 160 },
             "labelOffset" : { "x" : 21, "y" : 25 }
           },
           "parentConnector" : "f11"
+        }, {
+          "id" : "S10-f32",
+          "type" : "Script",
+          "name" : "Invalidate Announcement cache",
+          "config" : {
+            "output" : {
+              "code" : [
+                "import ch.ivy.addon.portalkit.service.AnnouncementService;",
+                "AnnouncementService.getInstance().invalidateCache();"
+              ]
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 512, "y" : 161 },
+            "size" : { "width" : 128, "height" : 62 }
+          },
+          "connect" : [
+            { "id" : "S10-f33", "to" : "S10-g1", "color" : "default" }
+          ]
         } ],
       "visual" : {
         "at" : { "x" : 248, "y" : 280 }
@@ -547,13 +567,13 @@
       "config" : {
         "output" : {
           "code" : [
-            "import org.apache.commons.lang3.StringUtils;",
+            "import org.apache.commons.lang3.Strings;",
             "import javax.faces.model.SelectItem;",
             "",
             "List<SelectItem> items = in.language.getFormattingLanguages();",
             "in.formatLanguages.clear();",
             "for (SelectItem item: items){",
-            "  if (StringUtils.containsIgnoreCase(item.label, in.queryLanguage)){",
+            "  if (Strings.CI.contains(item.label, in.queryLanguage)){",
             "    in.formatLanguages.add(item);",
             "  }",
             "}"

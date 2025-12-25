@@ -174,6 +174,9 @@ ch.ivy.addon.portalkit.ui.jsf:
     Breadcrumb: Process Viewer of {0} process
     ProcessViewerText: Process Viewer
     Title: Process Viewer
+  SideStep:
+    NewSideStepMessage: New side step task is created.
+    SideStepProcess: Start parallel process
   TaskDocuments:
     TaskDocumentsPageTitle: Task Documents
   adminSettings:
@@ -233,8 +236,9 @@ ch.ivy.addon.portalkit.ui.jsf:
       behaviourWhenClickingOnLineInTaskList: For switch behaviours (run the task or access task details) when clicking on a line in task list, task widget of dashboard and related tasks  in case details page.
       chatMaxConnection: 'The set number controls the amount of tabs allowed with active chat. If more tabs are opened, the chat will be disabled in inactive tabs. Allowed values between 1-5 '
       chatResponseTimeout: Chat response timeout in seconds, default value is 0 and means no timeout. If chat messages go through the reverse proxy Nginx, chat response timeout must be less than the Nginx timeout, e.g. less than 60 seconds.
+      checkSystemNotesByDefault: If the value is true and system notes are visible, the checkbox will appear checked.
+      checkSystemTasksByDefault: If the value is true and system tasks are visible, the checkbox will appear checked.
       dateFilterWithTime: Set to true to enable date filtering with time. This setting affects on task list, case list, and statistics.
-      deepLAuthKey: DeepL Authentication Key (should end with :fx)
       defaultHomepage: To set the standard homepage which will be redirect to when clicking on home icon or logo. This setting also applies to the ends page after finished a task.
       defaultProcessImage: The standard setting of default image that will be displayed in the image process list.
       defaultProcessMode: The standard setting of view mode in the process list.
@@ -249,8 +253,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       displayMessageAfterFinishOrLeaveTask: A feedback message will be displayed after user finishes or leaves a task.
       documentUploadSizeLimit: Set the size limit for uploading documents in megabytes (MB). The default value is 20MB.
       embedInFrame: Set to true to start a process/task in IFrame mode
-      enableCaseOwner: Set to true to enable filtering case owner when cases are queried. This setting affects all case queries, e.g. for case list, global search, statistic.
-      enableDeepLTranslation: Set this property to true to enable the DeepL translation support
+      enableCaseOwner: Set to true to enable filtering case owner when cases are queried. This setting affects all case queries, e.g. for case list, global search, statistic. It also makes the "Filter tasks by current case owner" filter available in the task widget, which is hidden by default.
       enableDocumentPreview: 'Set to true to enable document preview for some certain file types. Supported file types are: pdf, png, txt, log.'
       enableGroupChat: Set this property to true to enable group chat function
       enablePinCase: Set this property to true to enable the ability to pin cases.
@@ -258,6 +261,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       enablePrivateChat: Set this property to true to enable private chat function
       enableProcessViewer: Set this property to true to enable process viewer option in Task/Case actions
       enableScriptCheckingForUploadedDocumentNote: Set to true to enable script checking for uploaded document. Currently this function supports checking for PDF, Excel, Word.
+      enableTranslationService: Set this property to true to enable translation service support
       enableVirusScannerForUploadedDocumentNote: Set to true to enable virus scanner for uploaded document. Currently this function is using API VIRUSTOTAL.
       hideCaseCreator: |-
         Set to true to hide case creator in case list, case widget and case details.
@@ -266,8 +270,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       hideChangePasswordButtonNote: Set this variable to true to hide the "Change Password" option in the top menu and the "Forgotten Password" option on the login page. If set to false, these options will be shown.
       hideLogoutButtonNote: If true, the logout button on top menu will be hidden, otherwise it will be shown.
       hideRelatedCaseInfoFromHistory: If true, case history does not display the related case information in the history table.
-      hideSystemNotesFromHistory: If true, case/task note does not display any system notes for non-administrator users.
-      hideSystemNotesFromHistoryAdministrator: If true, case/task note does not display any system notes for administrator.
       hideSystemTasksFromHistory: If true, case note does not display any system tasks for non-administrator users.
       hideSystemTasksFromHistoryAdministrator: If true, case note does not display any system tasks for administrator.
       hideTaskDocument: Set to true, the document section in task detail page will be hidden, otherwise it will be shown.
@@ -329,6 +331,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     addDocumentHelpText: To upload files, drag & drop or select files
     addNoteHelpText: Write your text here.
     businessDetailsTitle: Business Details
+    customFields: Custom Fields
+    customFieldsDialog: 'Custom Fields of case #{0}'
     deleteFile: Delete file
     documents: Documents
     downloadFile: Download file
@@ -437,6 +441,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     StringFormat:
       DateFromTo: '%s - %s'
       TextListOut: '%s, %s,..'
+      TextWithColon: '%s: %s'
       TextWithContextInBrackets: '%s (%s: %s)'
       TextWithRoundBracket: '%s (%s)'
     TaskCaseInformation: Task and Case Information
@@ -753,6 +758,9 @@ ch.ivy.addon.portalkit.ui.jsf:
       SelectAction: Select the action
       SomeThingWentWrong: Something went wrong
       Title: Dashboard configuration
+    DrillDownWidget:
+      caseDrillDown: Drill-down case widget for {0}
+      taskDrillDown: Drill-down task widget for {0}
     EmptyFilterMessage: No widget filter found
     ExternalPageWidget: External Page
     ExternalPageWidgetIntroduction: This widget can display an external webpage.
@@ -762,6 +770,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       NotFound: No filter found
       WidgetNameColumn: Widget name
       WrongDateFormat: The date is invalid
+    FilterTasksByCurrentCaseOwner: Filter tasks by current case owner
     ManageFilter: Manage filters
     NoColumnsEnabledForQuickSearch: No columns are enabled for quick search
     NoData: No data
@@ -790,6 +799,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     addField: Add field
     addWidget: Add widget
     canWorkOn: Can work on
+    caseDrillDownDashboard: Case drill-down dashboard
     caseList: Case List
     caseListIntroduction: This widget displays relevant case information according to defined settings
     caseWidgetInfo:
@@ -913,13 +923,14 @@ ch.ivy.addon.portalkit.ui.jsf:
     statisticChartWidget: Statistic chart
     statisticWidgets: Statistic Widgets
     switchToViewMode: View Mode
-    tasWidgetkInfo:
+    taskWidgetInfo:
       expireToday: Expire today
       expiryThisWeek: Expire this week
       numberOfTasks: task(s)
       numberOfTasksByCategory: Number of tasks by category
       numberOfTasksByState: Number of tasks by state
       predefinedFilters: Predefined filters
+      taskDrillDownDashboard: Task drill-down dashboard
     taskList: Task List
     taskListIntroduction: This widget displays relevant task information according to defined settings.
     taskStart: Task start
@@ -938,11 +949,17 @@ ch.ivy.addon.portalkit.ui.jsf:
   dashboardProcess:
     processAriaLabel: 'Process name: {0}. Process description: {1}'
   documentFiles:
+    FilenameEmpty: Filename cannot be empty.
     PreviewDocument: Preview
+    RenameFile: Rename file
+    RenamingDocument: Rename document
+    RenamingDocumentNote: '{0} has renamed the file {1} to {2}'
+    RenamingDocumentSuccess: Rename successfully.
+    RenamingFailed: An error occurs while renaming the document.
     deleteDocumentNote: '{0} has deleted {1}'
     deleteSuceed: File deleted successfully
     download: Download
-    fileContainScript: This file is not allowed to upload because it contains some script!
+    fileContainScript: File contains potentially malicious content and cannot be uploaded!
     fileContainVirus: Upload failed, virus/infection detected!
     fileCouldNotParse: Could not parse the file
     fileEmptyMessage: File is empty
@@ -1055,6 +1072,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     notificationTitle: Notifications
     olderText: Older
     onlyUnread: Only unread
+    openNotifications: Open notifications
     todayText: Today
     xDaysAgo: '%s days ago'
     xHoursAgo: '%s hours ago'
@@ -1172,6 +1190,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     afterEscalation: After escalation
     businessCase: Business Case
     completedOn: Completed on
+    customFields: Custom Fields
+    customFieldsDialog: 'Custom Fields of task #{0}'
     delayedUntil: Delayed until
     deleteFile: Delete file
     documents: Documents
@@ -1445,43 +1465,43 @@ Dialogs:
             AccessibilityShortcuts:
               content: |-
                 <div class="ui-g">
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Alt + 1</span>Focus on to the Dashboard Tab
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Alt + 5</span>Focus on to the Search
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Alt + A</span>Focus on to the first Process
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Tab</span>Sequential tabbing through elements
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Alt + 2</span>Focus on to the Process Tab
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Alt + 6</span>Focus on to the User Settings
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Alt + W</span>Focus on to the first Task
                     </div>
-                    <div class="ui-g-3 shortcut-content">
+                    <div class="ui-g-3 shortcut-content" tabindex="1">
                         <span class="shortcut-key">Esc</span>Close expanded Widgets
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Alt + 3</span>Focus on to the Tasks Tab
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Alt + 7</span>Toggle the visibility of the main menu
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Alt + Q</span>Focus on to the first Case
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Enter</span>Confirm selection
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Alt + 4</span>Focus on to the Case Tab
                     </div>
                 </div>
@@ -1508,6 +1528,7 @@ Dialogs:
               ButtonName: Button Name
               NavigationDashboardWidgetConfiguration: Navigation dashboard widget configuration
               NavigationDashboardWidgetDescription: This widget allows users to jump directly to a linked dashboard by clicking a button.
+              VisualType: Visual Type
             NewsWidget:
               NewsContentPlaceHolder: Enter News content
               NewsContentValidateMessage: News content in {0} is required
@@ -1542,6 +1563,7 @@ Dialogs:
               ResetFilter: Reset filter
             filter:
               DashboardFilter:
+                HasCmsValuesEnabledTooltip: This field only allows to use Contains operator
                 SelectFilterField: Select Filter Field
               DateFilter:
                 SelectPeriod: Select period
@@ -1561,6 +1583,9 @@ Dialogs:
             AggregationMethod: Aggregation method
             AggregationMethodTooltip: Choose an aggregation method to perform calculations on your KPI field - Sum, Average, Max, or Min. Disabled when 'Counting' is selected
             ChartConfiguration: Chart Configuration
+            ChartDrillDownEnabled: Chart drill-down enabled
+            ChartDrillDownInfo: '<p>It only works when the user has these permissions: <strong>CaseReadAll</strong> for case and <strong>TaskReadAll</strong> for task.</p>'
+            ChartDrillDownPermissions: Chart drill-down permissions
             ChartType: Chart type
             Color: Color {0}
             ConditionBasedColoring:
@@ -1728,6 +1753,8 @@ Labels:
   AndMore: and {0} more...
   AppendTask-Explain: The task is added to the sequence after my task.
   AppendTheTask: Append the task
+  AssignToRole: Select assigned group
+  AssignToUser: Select assigned user
   Chat: Chat
   Collapse: Collapse
   Comma: ', '
@@ -1860,6 +1887,8 @@ Labels:
   SelectOperator: Select Operator
   SelectValues: Select values
   Share: Share
+  StepType: Step type
+  Submit: Submit
   Task: Task
   TaskItemDetail: Task Details
   TaskUser-Explain: Comma separated list of users

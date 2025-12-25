@@ -9,6 +9,7 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 
 import com.axonivy.portal.components.dto.UserDTO;
 
@@ -188,7 +189,7 @@ public class UserUtils {
   }
 
   public static List<UserDTO> filterOut(List<UserDTO> users, UserDTO excludedUser) {
-    return users.stream().filter(user -> !StringUtils.equals(user.getName(), excludedUser.getName())).collect(Collectors.toList());
+    return users.stream().filter(user -> !Strings.CS.equals(user.getName(), excludedUser.getName())).collect(Collectors.toList());
   }
 
   public static String getUserName(IUser user) {
@@ -239,7 +240,7 @@ public class UserUtils {
   }
 
   public static String getUserLanguage() {
-    String userLanguage = LanguageService.getInstance().getIvyLanguageOfUser().getUserLanguage();
+    String userLanguage = LanguageService.getInstance().getUserLanguage();
     String systemLanguage = LanguageManager.instance().configurator(ISecurityContext.current()).content().toString();
     return StringUtils.defaultIfBlank(userLanguage, systemLanguage);
   }

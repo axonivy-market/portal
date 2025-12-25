@@ -19,15 +19,24 @@
         <i class="si si-synchronize-arrow-clock" /> #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/history')}
       </div>
       <div class="ui-g-9 u-padding-0">
-        <h:panelGroup layout="block" styleClass="case-details-note-add">
-          <p:link id="show-more-note-link" disabled="#{empty data.histories}"
-            styleClass="case-details-document-add-link note-show-more-link js-note-show-more-link" target="_blank"
-            href="#{caseTaskNoteHistoryBean.getCaseNoteHistoryLink(case.uuid())}"
-            rendered="#{caseTaskNoteHistoryBean.showMoreNote}">
-            <span class="si si-expand-6 note-show-more-link-icon" />
-            <span class="display-full-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/showMoreBtn')}</span>
-            <span class="display-short-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}</span>
-          </p:link>
+        <h:panelGroup layout="block" styleClass="case-detail-history-section-header-actions">
+          <p:selectBooleanCheckbox id="related-case-checkbox" value="#{data.showRelatedCaseInfo}" 
+            itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/showRelatedCaseInfo')}"
+            rendered="#{data.showRelatedCaseInfoCheckbox}"
+            styleClass="case-history-checkbox u-hidden-md-down u-hidden-sm-down">
+            <p:ajax update="case-histories-table" process="@this" partialSubmit="true" oncomplete="ResponsiveTable.init(':case-histories');"/>
+          </p:selectBooleanCheckbox>
+          <p:selectBooleanCheckbox id="system-task-checkbox" value="#{data.showSystemTasksChkbox}" 
+            itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/showSystemTasks')}" rendered="#{data.showSystemTasks}"
+            styleClass="case-history-checkbox u-hidden-md-down u-hidden-sm-down">
+            <p:ajax update="case-histories-table" process="@this" partialSubmit="true" listener="#{logic.loadHistories}" oncomplete="ResponsiveTable.init(':case-histories');"/>
+          </p:selectBooleanCheckbox>
+          <p:selectBooleanCheckbox id="system-note-checkbox" value="#{data.showSystemNotesChkbox}" 
+          itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/showSystemNotes')}" 
+          rendered="#{data.showSystemNotes}"
+            styleClass="case-history-checkbox u-hidden-md-down u-hidden-sm-down">
+            <p:ajax update="case-histories-table" process="@this" partialSubmit="true" listener="#{logic.loadHistories}" oncomplete="ResponsiveTable.init(':case-histories');"/>
+          </p:selectBooleanCheckbox>
           <p:commandLink id="add-note-command" styleClass="case-details-document-add-link"
             ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addNote')}"
             rendered="#{caseTaskNoteHistoryBean.showAddNote}" onclick="PF('add-note-dialog-#{case.id}').show()"
@@ -36,19 +45,14 @@
             <span class="display-full-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addNote')}</span>
             <span class="display-short-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/add')}</span>
           </p:commandLink>
-          <p:selectBooleanCheckbox id="system-note-checkbox" value="#{data.showSystemNotes}" itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/showSystemNotes')}" rendered="#{data.showSystemNotesChkbox}"
-            styleClass="case-history-checkbox u-hidden-md-down u-hidden-sm-down">
-            <p:ajax update="case-histories-table" process="@this" partialSubmit="true" listener="#{logic.loadHistories}" oncomplete="ResponsiveTable.init(':case-histories');"/>
-          </p:selectBooleanCheckbox>
-          <p:selectBooleanCheckbox id="system-task-checkbox" value="#{data.showSystemTasks}" itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/showSystemTasks')}" rendered="#{data.showSystemTasksChkbox}"
-            styleClass="case-history-checkbox u-hidden-md-down u-hidden-sm-down">
-            <p:ajax update="case-histories-table" process="@this" partialSubmit="true" listener="#{logic.loadHistories}" oncomplete="ResponsiveTable.init(':case-histories');"/>
-          </p:selectBooleanCheckbox>
-          <p:selectBooleanCheckbox id="related-case-checkbox" value="#{data.showRelatedCaseInfo}" itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/showRelatedCaseInfo')}"
-            rendered="#{data.showRelatedCaseInfoCheckbox}"
-            styleClass="case-history-checkbox u-hidden-md-down u-hidden-sm-down">
-            <p:ajax update="case-histories-table" process="@this" partialSubmit="true" oncomplete="ResponsiveTable.init(':case-histories');"/>
-          </p:selectBooleanCheckbox>
+          <p:link id="show-more-note-link" disabled="#{empty data.histories}"
+            styleClass="case-details-document-add-link note-show-more-link js-note-show-more-link" target="_blank"
+            href="#{caseTaskNoteHistoryBean.getCaseNoteHistoryLink(case.uuid())}"
+            rendered="#{caseTaskNoteHistoryBean.showMoreNote}">
+            <span class="si si-expand-6 note-show-more-link-icon" />
+            <span class="display-full-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/showMoreBtn')}</span>
+            <span class="display-short-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}</span>
+          </p:link>
         </h:panelGroup>
       </div>
     </div>

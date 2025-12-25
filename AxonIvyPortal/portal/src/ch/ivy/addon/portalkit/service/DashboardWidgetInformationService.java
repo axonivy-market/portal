@@ -126,6 +126,7 @@ public class DashboardWidgetInformationService {
     taskSearchCriteria.setCustomTaskQuery(
         dataModel.getCriteria().buildQueryWithoutOrderByClause());
     taskSearchCriteria.setAdminQuery(PermissionUtils.checkReadAllCasesPermission());
+    taskSearchCriteria.setFilterTasksByCurrentCaseOwner(dataModel.getCriteria().isFilterTasksByCurrentCaseOwner());
     return taskSearchCriteria;
   }
 

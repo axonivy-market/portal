@@ -3,100 +3,113 @@
 Installation
 ************
 
-The Installation section describes all steps necessary to install and configure
-the Portal. If you install your application the first time, then it is important
-to start with the Basic installation. This section describes all initial steps
-that must be done for the first installation. If the application is already
-installed and configured, refer to `Migration notes`_ to migrate it.
+This guide covers Portal installation, configuration, and migration procedures. Whether you're installing Portal for the first time or upgrading from a previous version, follow the appropriate sections below.
+
+Overview
+========
+
+.. table::
+   :widths: 30 70
+
+   +---------------------------+----------------------------------------------------------------+
+   | Installation Type         | Description                                                    |
+   +===========================+================================================================+
+   | **Basic Installation**    | First-time Portal setup with initial configuration             |
+   +---------------------------+----------------------------------------------------------------+
+   | **Migration**             | Upgrade existing Portal to a new version                       |
+   +---------------------------+----------------------------------------------------------------+
+   | **Multi-App Setup**       | Deploy Portal across multiple applications                     |
+   +---------------------------+----------------------------------------------------------------+
+
+.. important::
+   For first-time installations, follow the :ref:`Basic Installation <basic-installation>` section. For existing Portal installations, refer to :ref:`Migration Notes <installation-migration-notes>`.
+
+.. _basic-installation:
 
 Basic Installation
 ==================
 
-Project Modules
----------------
+Prerequisites
+-------------
 
-The application consists of 2 process modules. For detailed information
-on each module, refer to :ref:`architecture`.
+- Axon Ivy Designer or Engine
+- Understanding of :ref:`Portal architecture <architecture>`
+- For production: Valid Axon Ivy Engine license
 
--  portal-components
--  portal
+Portal Modules
+--------------
 
-The deployment of Ivy projects is described in :dev-url:`project
-deployment </doc/|version|/engine-guide/deployment/index.html>`
-.
+The Portal application consists of 2 process modules:
 
-Installation
-------------
+.. table::
+   :widths: 30 70
+
+   +-------------------------+-----------------------------------------------------------+
+   | Module                  | Purpose                                                   |
+   +=========================+===========================================================+
+   | **portal-components**   | Public UI components and APIs for reuse                   |
+   +-------------------------+-----------------------------------------------------------+
+   | **portal**              | Portal-specific UI, templates, and pages                  |
+   +-------------------------+-----------------------------------------------------------+
+
+For detailed module information, refer to :ref:`architecture`.
+
+For project deployment procedures, see :doc-url:`project deployment </engine-guide/deployment/index.html>`.
+
+Installation by Environment
+---------------------------
 
 Designer
 ^^^^^^^^
 
-Import Portal modules to Designer.
+Import Portal modules (portal and portal-components) or download from The Axon Ivy Marketplace to your Axon Ivy Designer.
 
-Engine Without License (Demo Mode)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Demo Mode (Engine Without License)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The engine automatically deploys the Portal application with the following set
-of default users:
+The engine automatically deploys the Portal application with pre-configured demo users:
 
 .. table::
+   :widths: 20 20 60
 
-   +-----------------------+-----------------------+-----------------------+
-   | Username              | Password              | Description           |
-   +=======================+=======================+=======================+
-   | admin                 | admin                 | This user has all     |
-   |                       |                       | Portal permissions,   |
-   |                       |                       | can access Portal     |
-   |                       |                       | Admin Settings.       |
-   +-----------------------+-----------------------+-----------------------+
-   | demo                  | demo                  | This user has         |
-   |                       |                       | permission to manage  |
-   |                       |                       | user absences.        |
-   +-----------------------+-----------------------+-----------------------+
-   | guest                 | guest                 | Default standard user |
-   |                       |                       | of the portal.        |
-   +-----------------------+-----------------------+-----------------------+
+   +-----------------------+-----------------------+-----------------------------------------------+
+   | Username              | Password              | Description                                   |
+   +=======================+=======================+===============================================+
+   | **admin**             | admin                 | Full Portal permissions, can access           |
+   |                       |                       | Admin Settings                                |
+   +-----------------------+-----------------------+-----------------------------------------------+
+   | **demo**              | demo                  | Can manage user absences                      |
+   +-----------------------+-----------------------+-----------------------------------------------+
+   | **guest**             | guest                 | Standard Portal user                          |
+   +-----------------------+-----------------------+-----------------------------------------------+
 
+.. warning::
+   Demo users are for development/testing only. Do not use in production environments.
 
-Engine With License (Production Mode)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Production Mode (Engine With License)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The engine does not deploy anything, you need to deploy and configure the Portal
-application manually.
+The engine does not deploy Portal automatically. You must deploy and configure Portal manually.
 
-Install Dashboard configuration file to engine (Production Mode)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-To install Dashboard JSON configuration file to the Axon Ivy Engine, you can choose 1 of these ways
+Dashboard Configuration
+^^^^^^^^^^^^^^^^^^^^^^^
 
-- Include the Dashboard.json file in the app.zip under ``<app.zip>/config/variables/Portal.Dashboard.json`` as shown in the structure below
+For dashboard configuration methods (deployment files, Engine Cockpit UI, or Portal import), see :ref:`Dashboard Configuration <deployment>` in the Deployment guide.
 
-   .. code-block:: 
+Multi-Application Setup
+^^^^^^^^^^^^^^^^^^^^^^^
 
-      app.zip
-      ├── config
-      │   └── app.yaml
-      |   └── variables
-      |       └── Portal.Dashboard.json
-      ├── portal.iar
-      ├── portal-components.iar    
-   ..
+Portal supports multi-application deployment where Portal and your business applications run separately within the same security context, enabling unified task and case management.
 
-   The JSON file name has to be Portal.Dashboard.json. Refer to :dev-url:`Engine Deployment</doc/|version|/engine-guide/deployment/index.html>` 
-- Copy the Dashboard.json file directly into your ``<application>`` folder following this path ``<engine>/configuration/applications/<application>``. The Json file name has to be named ``variables.Portal.Dashboard.json``
+**Architecture:**
 
-- Use the import dashboard feature of the Portal. Refer to :ref:`How to import your public dashboards<howto-import-your-public-dashboards>`
+- **Application 1 (Portal)**: portal + portal-components  
+- **Application 2+ (Your Apps)**: your projects + portal-components (only if using Portal UI components)
 
-Setup Portal multi applications
-"""""""""""""""""""""""""""""""
 .. important::
+   All applications must be in the same security context for Portal to display tasks and cases from all applications.
 
-   This is used to display common task lists for each user in several applications. The Task/Case lists of all applications installed in a security context are displayed by the Portal running in this security context.
-
-All applications are in the same security context and the **portal-components** should be the only part being deployed in the other applications. See :ref:`The Portal multi applications <multi-app-structure>` overview.
-
--  Create a new application. Deploy Portal (portal, portal-components) to this application.
-
--  Create new applications: App 1, App 2,... Deploy your projects to the new applications.
+For detailed multi-app architecture and step-by-step deployment instructions, see :ref:`Deployment <deployment>`.
 
 
 .. _installation-migration-notes:
@@ -106,7 +119,7 @@ Migration Notes
 
 This document informs you in detail about incompatibilities that were
 introduced between Portal versions and tells you what needs to be done
-to make your existing Portal working with current |ivy-engine|.
+to make your existing Portal working with current Axon Ivy Engine.
 
 How To Migrate
 --------------
@@ -116,16 +129,16 @@ How To Migrate
    it may have changed or have been removed. Don't forget to re-implement the
    APIs concerned in your own project.
 
-   To migrate the Portal, you need to migrate |ivy| first. Refer to the
-   :dev-url:`|ivy| Migration Notes
-   </doc/|version|/axonivy/migration/index.html>`. Changes in |ivy| could lead
+   To migrate the Portal, you need to migrate Axon Ivy first. Refer to the
+   :doc-url:`Axon Ivy Migration Notes
+   </axonivy/migration/index.html>`. Changes in Axon Ivy could lead
    to problems if a customer project is not migrated properly.
 
 In Designer
 -----------
 
 #. Replace all Portal projects with the versions of the new release.
-#. Upgrade your projects to use the latest portal version by using the **Convert Project** feature. Please find more information here: :dev-url:`Converting Projects </doc/|version|/designer-guide/process-modeling/projects/converting.html#converting-projects>`
+#. Upgrade your projects to use the latest portal version by using the **Convert Project** feature. Please find more information here: :doc-url:`Converting Projects </designer-guide/process-modeling/projects/converting.html#converting-projects>`
 #. Follow detailed migration notes for each version below.
 #. If customization needs copying code from Portal, merge changes between the
    two versions of the Portal for copied code.
@@ -141,11 +154,19 @@ In Engine
 
 #. Follow detailed migration notes for each version below.
 
+Migrate 13.1 To 13.2
+--------------------
+
+1. If you are using DeepL translation service in the Portal, please reconfigure it according to the instructions provided here: :doc-url:`Axon Ivy Translation service </engine-guide/configuration/translation-service/index.html>`
+
+2. Global variables ``Portal.Histories.HideSystemNotes`` and ``Portal.Histories.HideSystemNotesForAdministrator`` have been removed and no longer supported.
+Use permission ``NoteReadAllCaseTaskDetails`` instead to control the visibility of system notes in task and case details.
+
 Migrate 11.3.2 To 12.0.0
 ------------------------
 
 1. Custom field values for business details pages are migrated silently from the process link relative path 
-to its :dev-url:`IWebStartable ID </doc/|version|/public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html#getId()>`. 
+to its :doc-url:`IWebStartable ID </public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html#getId()>`.
 You don't need to do anything, this is just for your information.
 
 2. We implemented a new feature to adjusting column widths in the Task and Case widgets.
@@ -166,7 +187,7 @@ The ``AxonIvyExpress`` module is renamed to ``axonivy-express`` and becomes an i
 
 
 - If you override ``PortalStartTimeCleanObsoletedDataExpression`` variable, please update it to new Ivy CRON job pattern.
-- Refer to Axon Ivy CRON job pattern: `CRON Expression <https://developer.axonivy.com/doc/|version|/engine-guide/configuration/advanced-configuration.html#cron-expression>`_.
+- Refer to Axon Ivy CRON job pattern: `CRON Expression <https://developer.axonivy.com/engine-guide/configuration/advanced-configuration.html#cron-expression>`_.
 - Example: Change ``0 0 1 * * ?`` to ``0 1 * * *`` for job trigger 01:00 AM everyday.
 
 Migrate 10.0.19 To 10.0.20
@@ -288,7 +309,7 @@ Migrate 9.3 To 9.4
    If you have changed the CMS in ``PortalStyle``, please adapt the ``portal`` CMS accordingly.
 
 #. The ``customization.css`` file has been removed, in case you use it in your project, please switch to using
-   :dev-url:`Engine Branding </doc/|version|/designer-guide/user-interface/branding/branding-engine.html>` to customize styling
+   :doc-url:`Engine Branding </designer-guide/user-interface/branding/branding-engine.html>` to customize styling
 
 #. Subprocesses related to documents are moved to the independent project ``portal-components``.
    If you customized these processes, please override the correspond subprocess again and added your customization to it.
@@ -326,10 +347,10 @@ Migrate 9.3 To 9.4
    - :ref:`Migration steps <components-portal-components-migrate-from-old-process-chain>` for the new :ref:`Process Chain <components-portal-components-process-chain>` component.
 
 #. Portal dashboard widgets only support the ``CustomFields`` declared in the ``custom-fields.yaml`` file.
-   If your ``CustomFields`` are used in the dashboard widget, please follow the :dev-url:`Custom Fields Meta Information </doc/|version|/designer-guide/how-to/workflow/custom-fields.html#meta-information>` to adapt the data.
+   If your ``CustomFields`` are used in the dashboard widget, please follow the :doc-url:`Custom Fields Meta Information </designer-guide/how-to/workflow/custom-fields.html#meta-information>` to adapt the data.
 
 #. The ``DefaultChartColor.p.json`` subprocess has been removed, in case you use it in your project, please remove override this subprocess and switch to using
-   :dev-url:`Engine Branding </doc/|version|/designer-guide/user-interface/branding/branding-engine.html>` to customize chart, data labels, legend color.
+   :doc-url:`Engine Branding </designer-guide/user-interface/branding/branding-engine.html>` to customize chart, data labels, legend color.
 
 #. Deploy :download:`portal-migration-9.4.0.iar <documents/portal-migration-9.4-9.4.0.iar>` project to your Ivy application and run it by access link
    ``your_host/your_application/pro/portal-migration/175F92F71BC45295/startMigrateConfiguration.ivp``
@@ -366,7 +387,7 @@ Migrate 9.2 To 9.3
    If you use have any customized date filters in your project, update template accordingly.
 
 #. The callable process ``DefaultChart.p.json``, ``DefaultUserProcess.p.json`` has been removed. They are replaced by
-   the :dev-url:`Variables </doc/|version|/designer-guide/configuration/variables.html>` configuration approach.
+   the :doc-url:`Variables </designer-guide/configuration/variables.html>` configuration approach.
    
 
 Migrate 9.1 To 9.2
@@ -394,7 +415,7 @@ Migrate 9.1 To 9.2
 
 #. Deprecated callable processes: ``OpenPortalSearch.mod``, ``OpenPortalTasks.mod``, ``OpenPortalTaskDetails.mod``, ``OpenPortalCases.mod``, ``OpenPortalCaseDetails.mod`` process.
 
-   Portal recommends using :dev-url:`|ivy| HtmlOverride wizard </doc/|version|/designer-guide/how-to/overrides.html?#override-new-wizard>` to customize ``Portal HTML Dialog``
+   Portal recommends using :doc-url:`Axon Ivy HtmlOverride wizard </designer-guide/how-to/overrides.html?#override-new-wizard>` to customize ``Portal HTML Dialog``
 
    .. important:: The callable process which is supporting to open customization dialog will be removed in the future, do not use it in the new project
 
@@ -428,7 +449,7 @@ Migrate 8.x To 9.1
    Portal app mode) are not available anymore. To let Portal know where your new
    Portal home page is, you have to set default pages in your project.
    Follow this chapter to customize default-pages:
-   :dev-url:`Default Pages </doc/|version|/designer-guide/user-interface/default-pages/index.html>`
+   :doc-url:`Default Pages </designer-guide/user-interface/default-pages/index.html>`
 
 #. Portal now uses |css_variable| instead of SASS. Therefore, you have to convert
    the SASS syntax to the new CSS variables or use online tools such as
@@ -480,7 +501,16 @@ Release notes
 =============
 
 This part lists all relevant changes since the last official product
-releases of |ivy|.
+releases of Axon Ivy.
+
+Changes in 13.2.0
+-----------------
+
+- Introduced **Renaming Document** feature for the task and case detail. You can rename document in document table of task and case detail page, and the activity will be logged in history notes.
+- Enhanced the document preview feature for the task and case detail. If you have `DocFactory <https://market.axonivy.com/doc-factory#tab-description>`_ in the same security context, you can preview Word(doc, docx), Excel(xls, xlsx) and email(eml) documents.
+- Removed the Portal Setting ``Portal.DeepL.AuthKey``.
+- Renamed the Portal Setting ``Portal.DeepL.Enable`` to ``Portal.TranslationService.Enable``.
+- Enhanced the **Document Table** component by adding the lazy loading functionality to the Document Table component, enabling efficient data loading through pagination.
 
 Changes in 13.1.0
 -----------------

@@ -10,11 +10,11 @@ public class NavigationDashboardWidgetPage extends TemplatePage {
   
   @Override
   protected String getLoadedLocator() {
-    return ".js-navigation-dashboard-widget";
+    return ".navigation-dashboard-widget-info";
   }
   
   public NavigationDashboardWidgetPage() {
-    this.widgetId = "#navigation-dashboard-widget-footer";
+    this.setWidgetId("#navigation-dashboard-widget-footer");
   }
   
   public void clickOnNavigateButton() {
@@ -25,5 +25,13 @@ public class NavigationDashboardWidgetPage extends TemplatePage {
   
   public SelenideElement getWidgetDialog() {
     return $("div[class*='navigation-dashboard-widget-panel']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+  }
+
+  public String getWidgetId() {
+    return widgetId;
+  }
+
+  public void setWidgetId(String widgetId) {
+    this.widgetId = widgetId;
   }
 }

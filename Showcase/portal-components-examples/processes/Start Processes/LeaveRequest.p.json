@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/13.1.2/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/13.2.0/process.json",
   "id" : "182E92730FF57035",
   "config" : {
     "data" : "com.axonivy.portal.components.examples.LeaveRequestProcessData"
@@ -134,10 +134,7 @@
       ],
       "visual" : {
         "at" : { "x" : 928, "y" : 64 },
-        "size" : { "width" : 336, "height" : 60 },
-        "description" : "",
-        "color" : "",
-        "icon" : ""
+        "size" : { "width" : 336 }
       },
       "connect" : [
         { "id" : "f3", "to" : "f29" }
@@ -148,10 +145,7 @@
       "name" : "Approval task for leave request, which is assigned to the selected approver in first task",
       "visual" : {
         "at" : { "x" : 1008, "y" : 288 },
-        "size" : { "width" : 480, "height" : 30 },
-        "description" : "",
-        "color" : "",
-        "icon" : ""
+        "size" : { "width" : 480, "height" : 30 }
       },
       "connect" : [
         { "id" : "f2", "to" : "f23" }
@@ -165,10 +159,7 @@
       ],
       "visual" : {
         "at" : { "x" : 352, "y" : 64 },
-        "size" : { "width" : 528, "height" : 44 },
-        "description" : "",
-        "color" : "",
-        "icon" : ""
+        "size" : { "width" : 528, "height" : 44 }
       },
       "connect" : [
         { "id" : "f1", "to" : "f25" }
@@ -182,10 +173,7 @@
       ],
       "visual" : {
         "at" : { "x" : 384, "y" : 288 },
-        "size" : { "width" : 608, "height" : 44 },
-        "description" : "",
-        "color" : "",
-        "icon" : ""
+        "size" : { "width" : 608, "height" : 44 }
       },
       "connect" : [
         { "id" : "f0", "to" : "f24" }

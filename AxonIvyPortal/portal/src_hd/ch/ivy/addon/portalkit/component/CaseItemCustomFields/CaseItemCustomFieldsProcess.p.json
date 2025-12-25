@@ -1,0 +1,106 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/process/13.2.0/process.json",
+  "id" : "199FFFCDA85441E4",
+  "kind" : "HTML_DIALOG",
+  "config" : {
+    "data" : "ch.ivy.addon.portalkit.component.CaseItemCustomFields.CaseItemCustomFieldsData"
+  },
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "HtmlDialogStart",
+      "name" : "start()",
+      "config" : {
+        "signature" : "start",
+        "guid" : "199FFFCDA875CE7A"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f2", "to" : "f1" }
+      ]
+    }, {
+      "id" : "f1",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 344, "y" : 64 },
+        "labelOffset" : { "x" : 10, "y" : 30 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "HtmlDialogEventStart",
+      "name" : "close",
+      "config" : {
+        "guid" : "199FFFCDA8830C0F"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 312 }
+      },
+      "connect" : [
+        { "id" : "f5", "to" : "f4" }
+      ]
+    }, {
+      "id" : "f4",
+      "type" : "HtmlDialogExit",
+      "visual" : {
+        "at" : { "x" : 224, "y" : 312 },
+        "labelOffset" : { "x" : 10, "y" : 30 }
+      }
+    }, {
+      "id" : "f7",
+      "type" : "Script",
+      "name" : "Find custom field list of case",
+      "config" : {
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.customFieldList" : "in.customFieldList"
+          },
+          "code" : [
+            "import org.apache.commons.collections4.ListUtils;",
+            "import java.util.ArrayList;",
+            "if (in.caze == null) {",
+            "  in.customFieldList = new ArrayList();",
+            "} else {",
+            "  in.customFieldList = ListUtils.emptyIfNull(in.caze.customFields().all());",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 328, "y" : 200 }
+      },
+      "connect" : [
+        { "id" : "f9", "to" : "f8" }
+      ]
+    }, {
+      "id" : "f8",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 504, "y" : 200 },
+        "labelOffset" : { "x" : 10, "y" : 30 }
+      }
+    }, {
+      "id" : "f6",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "getCustomFieldsData(ICase)",
+      "config" : {
+        "signature" : "getCustomFieldsData",
+        "input" : {
+          "params" : [
+            { "name" : "caze", "type" : "ch.ivyteam.ivy.workflow.ICase", "desc" : "" }
+          ],
+          "map" : {
+            "out.caze" : "param.caze"
+          }
+        },
+        "guid" : "19A00BD4F90CD220"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 200 }
+      },
+      "connect" : [
+        { "id" : "f10", "to" : "f7" }
+      ]
+    } ]
+}

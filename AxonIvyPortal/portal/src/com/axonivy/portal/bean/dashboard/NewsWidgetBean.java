@@ -20,9 +20,10 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.logging.log4j.util.Strings;
 
 import com.axonivy.portal.dto.News;
-import com.axonivy.portal.service.DeepLTranslationService;
+import com.axonivy.portal.service.IvyTranslationService;
 import com.axonivy.portal.service.NewsService;
 
+import ch.ivy.addon.portal.generic.bean.IMultiLanguage;
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
@@ -30,7 +31,7 @@ import ch.ivyteam.ivy.environment.Ivy;
 
 @ManagedBean
 @ViewScoped
-public class NewsWidgetBean implements Serializable {
+public class NewsWidgetBean implements Serializable, IMultiLanguage {
 
   private static final long serialVersionUID = 2567936194197940599L;
 
@@ -79,7 +80,7 @@ public class NewsWidgetBean implements Serializable {
     if (CollectionUtils.isEmpty(supportLanguages)) {
       supportLanguages = LanguageService.getInstance().getContentLocales().stream()
           .filter(distinctBylanguageTag(Locale::toLanguageTag)).collect(Collectors.toList());
-      defaultLanguage = LanguageService.getInstance().getDefaultLanguage();
+      defaultLanguage = getSupportedUserLanguage();
     }
   }
 
@@ -135,15 +136,19 @@ public class NewsWidgetBean implements Serializable {
     String translatedText = Strings.EMPTY;
     warningText = Strings.EMPTY;
     try {
-      translatedText = DeepLTranslationService.getInstance().translate(text, defaultLanguage, target);
+      translatedText = IvyTranslationService.getInstance().translate(text, defaultLanguage, target);
     } catch (Exception e) {
       warningText = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/SomeThingWentWrong");
-      Ivy.log().error("DeepL Translation Service error: ", e.getMessage());
+      Ivy.log().error("Ivy Translation Service error: ", e.getMessage());
     }
     return translatedText;
 
   }
   
+  public boolean isShowTranslation(Locale language) {
+    return IvyTranslationService.getInstance().isShowTranslation(language);
+  }
+
   private Optional<News> getDefaultNews() {
     return editingNewsList.stream()
         .filter(lang -> defaultLanguage.getLanguage().equals(lang.getLocale().getLanguage())).findFirst();

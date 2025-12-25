@@ -4,17 +4,17 @@
 # package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2025.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: Portal Guide ${revision}\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-19 04:17+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2025-12-16 07:26+0000\n"
+"PO-Revision-Date: 2025-09-19 06:44+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language: de\n"
-"Language-Team: de <LL@li.org>\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language-Team: German <https://hosted.weblate.org/projects/axonivy-portal"
+"/portal-le/doc/portal-doc-components/de/>\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -34,7 +34,7 @@ msgstr ""
 msgid "|document-table|"
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:246
+#: ../../source/portal-components/document-table/index.rst:284
 msgid "document-table"
 msgstr ""
 
@@ -42,10 +42,6 @@ msgstr ""
 msgid "Attributes"
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:58
-#: ../../source/portal-components/document-table/index.rst:85
-#: ../../source/portal-components/document-table/index.rst:117
-#: ../../source/portal-components/document-table/index.rst:139
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 #: ../../source/portal-components/documents/process_chain_component_attributes.csv:1
 #: ../../source/portal-components/documents/process_viewer_component_attributes.csv:1
@@ -64,10 +60,6 @@ msgstr ""
 msgid "Default"
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:58
-#: ../../source/portal-components/document-table/index.rst:85
-#: ../../source/portal-components/document-table/index.rst:117
-#: ../../source/portal-components/document-table/index.rst:139
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 #: ../../source/portal-components/documents/process_chain_component_attributes.csv:1
 #: ../../source/portal-components/documents/process_viewer_component_attributes.csv:1
@@ -182,6 +174,16 @@ msgid ""
 msgstr ""
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
+msgid "renameRendered"
+msgstr ""
+
+#: ../../source/portal-components/documents/document_table_component_attributes.csv:1
+msgid ""
+"Boolean value to specify the rendering of the edit filename icon, when "
+"set to false the icon will not be rendered."
+msgstr ""
+
+#: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "messageRendered"
 msgstr ""
 
@@ -189,6 +191,20 @@ msgstr ""
 msgid ""
 "Boolean value to specify the rendering of the message, when set to false "
 "message will not be rendered."
+msgstr ""
+
+#: ../../source/portal-components/documents/document_table_component_attributes.csv:1
+msgid "lazy"
+msgstr ""
+
+#: ../../source/portal-components/documents/document_table_component_attributes.csv:1
+msgid "FALSE"
+msgstr ""
+
+#: ../../source/portal-components/documents/document_table_component_attributes.csv:1
+msgid ""
+"Boolean value to specify whether the table should load data lazily and "
+"enable pagination."
 msgstr ""
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
@@ -340,6 +356,22 @@ msgid "Component will be triggered the update after document is deleted."
 msgstr ""
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
+msgid "renameStyleClass"
+msgstr ""
+
+#: ../../source/portal-components/documents/document_table_component_attributes.csv:1
+msgid "Styles for edit filename link."
+msgstr ""
+
+#: ../../source/portal-components/documents/document_table_component_attributes.csv:1
+msgid "updatedComponentAfterRenamed"
+msgstr ""
+
+#: ../../source/portal-components/documents/document_table_component_attributes.csv:1
+msgid "Component will be triggered the update after document is renamed."
+msgstr ""
+
+#: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "selectedType"
 msgstr ""
 
@@ -361,7 +393,6 @@ msgstr ""
 msgid "String value to specify the list of document type."
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:93
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "enableScriptCheckingForUploadedDocument"
 msgstr ""
@@ -383,7 +414,6 @@ msgstr ""
 msgid "If the Portal setting is not available, defaults to ``false``."
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:95
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "enableVirusScannerForUploadedDocument"
 msgstr ""
@@ -406,7 +436,6 @@ msgstr ""
 msgid "If Portal setting is not available, default value is ``false``."
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:97
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "allowedUploadFileTypes"
 msgstr ""
@@ -470,14 +499,14 @@ msgstr ""
 
 #: ../../source/portal-components/document-table/index.rst:42
 msgid ""
-"In your project, create four callable subprocesses with the information "
-"below to customize the functions of the **Document Table**."
+"In your project, create callable subprocesses with the information below "
+"to customize the functions of the **Document Table**."
 msgstr ""
 
 #: ../../source/portal-components/document-table/index.rst:47
 msgid ""
 "You can refer to process ``CustomDocumentFeatures`` in project ``portal-"
-"component-examples`` to examnine how to customize."
+"components-examples`` to examine how to customize."
 msgstr ""
 
 #: ../../source/portal-components/document-table/index.rst:51
@@ -494,264 +523,339 @@ msgstr ""
 msgid "**Signature**: portalGetDocumentItems"
 msgstr ""
 
+#: ../../source/portal-components/document-table/index.rst:57
+#: ../../source/portal-components/document-table/index.rst:78
+#: ../../source/portal-components/document-table/index.rst:114
+#: ../../source/portal-components/document-table/index.rst:135
+#: ../../source/portal-components/document-table/index.rst:156
+msgid "**Parameters:**"
+msgstr ""
+
+#: ../../source/portal-components/document-table/index.rst:59
+#: ../../source/portal-components/document-table/index.rst:80
+#: ../../source/portal-components/document-table/index.rst:116
+#: ../../source/portal-components/document-table/index.rst:137
+#: ../../source/portal-components/document-table/index.rst:158
+msgid "``businessCase`` (ch.ivyteam.ivy.workflow.ICase)"
+msgstr ""
+
 #: ../../source/portal-components/document-table/index.rst:60
-#: ../../source/portal-components/document-table/index.rst:87
-#: ../../source/portal-components/document-table/index.rst:119
-#: ../../source/portal-components/document-table/index.rst:141
-msgid "**Parameter**"
+msgid "The case for which to retrieve documents."
 msgstr ""
 
 #: ../../source/portal-components/document-table/index.rst:62
-#: ../../source/portal-components/document-table/index.rst:89
-#: ../../source/portal-components/document-table/index.rst:121
+#: ../../source/portal-components/document-table/index.rst:95
+#: ../../source/portal-components/document-table/index.rst:122
 #: ../../source/portal-components/document-table/index.rst:143
-msgid "businessCase"
-msgstr ""
-
-#: ../../source/portal-components/document-table/index.rst:62
-#: ../../source/portal-components/document-table/index.rst:89
-#: ../../source/portal-components/document-table/index.rst:121
-#: ../../source/portal-components/document-table/index.rst:143
-msgid "ch.ivyteam.ivy.workflow.ICase"
+#: ../../source/portal-components/document-table/index.rst:164
+msgid "**Result:**"
 msgstr ""
 
 #: ../../source/portal-components/document-table/index.rst:64
-#: ../../source/portal-components/document-table/index.rst:99
-#: ../../source/portal-components/document-table/index.rst:125
-#: ../../source/portal-components/document-table/index.rst:147
-msgid "**Result**"
-msgstr ""
-
-#: ../../source/portal-components/document-table/index.rst:66
-msgid "documents"
-msgstr ""
-
-#: ../../source/portal-components/document-table/index.rst:66
-msgid "java.util.List<com.axonivy.portal.components.ivydata.bo.IvyDocument>"
-msgstr ""
-
-#: ../../source/portal-components/document-table/index.rst:68
-#: ../../source/portal-components/document-table/index.rst:103
-#: ../../source/portal-components/document-table/index.rst:149
-msgid "message"
-msgstr ""
-
-#: ../../source/portal-components/document-table/index.rst:68
-#: ../../source/portal-components/document-table/index.rst:97
-#: ../../source/portal-components/document-table/index.rst:103
-#: ../../source/portal-components/document-table/index.rst:105
-#: ../../source/portal-components/document-table/index.rst:149
-msgid "java.lang.String"
-msgstr ""
-
-#: ../../source/portal-components/document-table/index.rst:73
 msgid ""
-"After you get the document list from DMS, convert it into "
-"``List<ch.ivy.addon.portal.component.ivydata.bo.IvyDocument>`` These "
-"fields are mandatory when mapping: ``id``, ``name``, ``contentType``"
+"``documents`` "
+"(java.util.List<com.axonivy.portal.components.ivydata.bo.IvyDocument>)"
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:77
+#: ../../source/portal-components/document-table/index.rst:65
+msgid ""
+"List of documents associated with the case. After retrieving documents "
+"from your DMS, convert them into this type with mandatory fields: ``id``,"
+" ``uuid``, ``name``, ``contentType``."
+msgstr ""
+
+#: ../../source/portal-components/document-table/index.rst:67
+#: ../../source/portal-components/document-table/index.rst:100
+#: ../../source/portal-components/document-table/index.rst:145
+#: ../../source/portal-components/document-table/index.rst:166
+msgid "``message`` (java.lang.String)"
+msgstr ""
+
+#: ../../source/portal-components/document-table/index.rst:68
+msgid "Status or error message from the document retrieval operation."
+msgstr ""
+
+#: ../../source/portal-components/document-table/index.rst:71
 msgid "Upload document"
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:79
+#: ../../source/portal-components/document-table/index.rst:73
 msgid ""
 "To customize what **Document Table** should do when a user uploads a "
 "document, create a callable subprocess with:"
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:82
+#: ../../source/portal-components/document-table/index.rst:76
 msgid "**Signature**: portalUploadDocumentItem"
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:85
-msgid "Note"
+#: ../../source/portal-components/document-table/index.rst:81
+msgid "The case to upload the document to."
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:91
-msgid "uploadedFile"
+#: ../../source/portal-components/document-table/index.rst:83
+msgid "``uploadedFile`` (org.primefaces.model.file.UploadedFile)"
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:91
-msgid "org.primefaces.model.file.UploadedFile"
+#: ../../source/portal-components/document-table/index.rst:84
+msgid "The file being uploaded by the user."
+msgstr ""
+
+#: ../../source/portal-components/document-table/index.rst:86
+msgid "``enableScriptCheckingForUploadedDocument`` (java.lang.Boolean)"
+msgstr ""
+
+#: ../../source/portal-components/document-table/index.rst:87
+msgid "Whether to check uploaded files for embedded scripts."
+msgstr ""
+
+#: ../../source/portal-components/document-table/index.rst:89
+msgid "``enableVirusScannerForUploadedDocument`` (java.lang.Boolean)"
+msgstr ""
+
+#: ../../source/portal-components/document-table/index.rst:90
+msgid "Whether to scan uploaded files for viruses."
+msgstr ""
+
+#: ../../source/portal-components/document-table/index.rst:92
+msgid "``allowedUploadFileTypes`` (java.lang.String)"
 msgstr ""
 
 #: ../../source/portal-components/document-table/index.rst:93
-#: ../../source/portal-components/document-table/index.rst:95
-msgid "java.lang.Boolean"
+msgid "Comma-separated list of allowed file extensions."
+msgstr ""
+
+#: ../../source/portal-components/document-table/index.rst:97
+msgid "``uploadedDocument`` (ch.ivyteam.ivy.workflow.document.IDocument)"
+msgstr ""
+
+#: ../../source/portal-components/document-table/index.rst:98
+msgid "The uploaded document object."
 msgstr ""
 
 #: ../../source/portal-components/document-table/index.rst:101
-msgid "uploadedDocument"
+msgid "Status or error message from the upload operation."
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:101
-msgid "ch.ivyteam.ivy.workflow.document.IDocument"
+#: ../../source/portal-components/document-table/index.rst:103
+#: ../../source/portal-components/document-table/index.rst:172
+msgid "``status`` (java.lang.String)"
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:105
-msgid "status"
+#: ../../source/portal-components/document-table/index.rst:104
+msgid "Operation status: OK or FAIL."
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:105
-msgid "OK or FAIL"
-msgstr ""
-
-#: ../../source/portal-components/document-table/index.rst:109
+#: ../../source/portal-components/document-table/index.rst:107
 msgid "Download document"
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:111
+#: ../../source/portal-components/document-table/index.rst:109
 msgid ""
 "To customize behavior when a user downloads a document from **Document "
 "Table**, create a callable subprocess with:"
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:114
+#: ../../source/portal-components/document-table/index.rst:112
 msgid "**Signature**: portalDownloadDocumentItem"
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:123
-#: ../../source/portal-components/document-table/index.rst:145
-msgid "document"
+#: ../../source/portal-components/document-table/index.rst:117
+#: ../../source/portal-components/document-table/index.rst:138
+#: ../../source/portal-components/document-table/index.rst:159
+msgid "The case containing the document."
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:123
-#: ../../source/portal-components/document-table/index.rst:145
-msgid "com.axonivy.portal.components.ivydata.bo.IvyDocument"
+#: ../../source/portal-components/document-table/index.rst:119
+#: ../../source/portal-components/document-table/index.rst:140
+#: ../../source/portal-components/document-table/index.rst:161
+msgid "``document`` (com.axonivy.portal.components.ivydata.bo.IvyDocument)"
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:127
-msgid "streamedContent"
+#: ../../source/portal-components/document-table/index.rst:120
+msgid "The document to be downloaded."
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:127
-msgid "org.primefaces.model.StreamedContent"
+#: ../../source/portal-components/document-table/index.rst:124
+msgid "``streamedContent`` (org.primefaces.model.StreamedContent)"
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:131
+#: ../../source/portal-components/document-table/index.rst:125
+msgid "The document content stream for download."
+msgstr ""
+
+#: ../../source/portal-components/document-table/index.rst:128
 msgid "Delete document"
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:133
+#: ../../source/portal-components/document-table/index.rst:130
 msgid ""
 "To customize behavior when a user deletes a document from **Document "
 "Table**, create a callable subprocess with:"
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:136
+#: ../../source/portal-components/document-table/index.rst:133
 msgid "**Signature**: portalDeleteDocumentItem"
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:153
+#: ../../source/portal-components/document-table/index.rst:141
+msgid "The document to be deleted."
+msgstr ""
+
+#: ../../source/portal-components/document-table/index.rst:146
+msgid "Status or error message from the delete operation."
+msgstr ""
+
+#: ../../source/portal-components/document-table/index.rst:149
+msgid "Rename document"
+msgstr ""
+
+#: ../../source/portal-components/document-table/index.rst:151
+msgid ""
+"To customize behavior when a user rename a document from **Document "
+"Table**, create a callable subprocess with:"
+msgstr ""
+
+#: ../../source/portal-components/document-table/index.rst:154
+msgid "**Signature**: portalRenameDocumentItem"
+msgstr ""
+
+#: ../../source/portal-components/document-table/index.rst:162
+msgid ""
+"The document to be renamed. The new filename should already be modified "
+"in the document's name attribute."
+msgstr ""
+
+#: ../../source/portal-components/document-table/index.rst:167
+msgid ""
+"Message to inform the user that their new filename is successfully "
+"updated or invalid to use."
+msgstr ""
+
+#: ../../source/portal-components/document-table/index.rst:169
+msgid "``isSuccess`` (java.lang.Boolean)"
+msgstr ""
+
+#: ../../source/portal-components/document-table/index.rst:170
+msgid ""
+"``true`` if the document's name is successfully updated, otherwise "
+"``false``."
+msgstr ""
+
+#: ../../source/portal-components/document-table/index.rst:173
+msgid ""
+"Operation status: OK or SKIP (if customized process skipped updating the "
+"filename)."
+msgstr ""
+
+#: ../../source/portal-components/document-table/index.rst:176
 msgid "User interface"
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:155
+#: ../../source/portal-components/document-table/index.rst:178
 msgid ""
 "Not only the functions, but you can also customize the UI of the "
-"**Document Table** such as adding a new column or removing default "
-"columns."
+"**Document Table** such as adding a new column, removing default columns "
+"or enable the lazy loading and pagination."
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:158
-#: ../../source/portal-components/style-customization/index.rst:11
+#: ../../source/portal-components/document-table/index.rst:181
+#: ../../source/portal-components/style-customization/index.rst:17
 msgid "Code Example:"
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:186
+#: ../../source/portal-components/document-table/index.rst:210
 msgid ""
 "Refer to process ``DocumentTableExample`` in project ``portal-components-"
 "examples`` for more details."
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:189
+#: ../../source/portal-components/document-table/index.rst:213
 msgid "Migration Notes"
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:192
+#: ../../source/portal-components/document-table/index.rst:216
 msgid "Migrate 10.0.x to 10.0.12"
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:194
+#: ../../source/portal-components/document-table/index.rst:218
 msgid ""
 "Since this version, we no longer support the override process approach "
 "for functions of **Document Table**. Please follow our guidelines below "
 "to migrate your override subprocesses."
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:197
+#: ../../source/portal-components/document-table/index.rst:221
 msgid ""
 "Remove Subprocess Override of ``GetDocumentItems``, "
 "``UploadDocumentItem``, ``DeleteDocumentItem``, and "
 "``DownloadDocumentItem`` from your project."
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:200
+#: ../../source/portal-components/document-table/index.rst:224
 msgid "Change the signature of your callable starts as described below."
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:203
+#: ../../source/portal-components/document-table/index.rst:227
 msgid "Subprocess"
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:203
+#: ../../source/portal-components/document-table/index.rst:227
 msgid "New signature"
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:205
-#: ../../source/portal-components/document-table/index.rst:228
+#: ../../source/portal-components/document-table/index.rst:229
+#: ../../source/portal-components/document-table/index.rst:252
 msgid "GetDocumentItems"
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:205
+#: ../../source/portal-components/document-table/index.rst:229
 msgid "portalGetDocumentItems"
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:207
-#: ../../source/portal-components/document-table/index.rst:230
+#: ../../source/portal-components/document-table/index.rst:231
+#: ../../source/portal-components/document-table/index.rst:254
 msgid "UploadDocumentItem"
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:207
+#: ../../source/portal-components/document-table/index.rst:231
 msgid "portalUploadDocumentItem"
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:209
-#: ../../source/portal-components/document-table/index.rst:232
+#: ../../source/portal-components/document-table/index.rst:233
+#: ../../source/portal-components/document-table/index.rst:256
 msgid "DeleteDocumentItem"
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:209
+#: ../../source/portal-components/document-table/index.rst:233
 msgid "portalDownloadDocumentItem"
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:211
-#: ../../source/portal-components/document-table/index.rst:234
+#: ../../source/portal-components/document-table/index.rst:235
+#: ../../source/portal-components/document-table/index.rst:258
 msgid "DownloadDocumentItem"
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:211
+#: ../../source/portal-components/document-table/index.rst:235
 msgid "portalDeleteDocumentItem"
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:214
+#: ../../source/portal-components/document-table/index.rst:238
 msgid "Now your **Document Table** should work as before."
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:217
+#: ../../source/portal-components/document-table/index.rst:241
 msgid "Migrate to 10.0.0"
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:219
+#: ../../source/portal-components/document-table/index.rst:243
 msgid ""
 "Replace code in HTML files: replace "
 "``ic:ch.ivy.addon.portalkit.component.document.DocumentTable`` with "
 "``ic:com.axonivy.portal.components.DocumentTable``."
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:221
+#: ../../source/portal-components/document-table/index.rst:245
 msgid ""
 "Consider updating value of the new attributes "
 "``enableScriptCheckingForUploadedDocument``, "
@@ -759,41 +863,41 @@ msgid ""
 "as required."
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:223
+#: ../../source/portal-components/document-table/index.rst:247
 msgid "Override subprocesses if you want and adapt your business accordingly."
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:226
+#: ../../source/portal-components/document-table/index.rst:250
 msgid "New subprocess"
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:226
+#: ../../source/portal-components/document-table/index.rst:250
 msgid "Deprecated subprocess"
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:228
+#: ../../source/portal-components/document-table/index.rst:252
 msgid "GetDocumentList"
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:230
+#: ../../source/portal-components/document-table/index.rst:254
 msgid "UploadDocument"
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:232
+#: ../../source/portal-components/document-table/index.rst:256
 msgid "DeleteDocument"
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:234
+#: ../../source/portal-components/document-table/index.rst:258
 msgid "DownloadDocument"
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:237
+#: ../../source/portal-components/document-table/index.rst:261
 msgid ""
 "If you have customized IvyDocument make sure to extend it from class "
 "``com.axonivy.portal.components.ivydata.bo.IvyDocument``."
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:239
+#: ../../source/portal-components/document-table/index.rst:263
 msgid ""
 "Attributes ``typeSelectionItems`` and ``selectedType`` now use "
 "``com.axonivy.portal.components.enums.DocumentType``. Please replace "
@@ -801,10 +905,44 @@ msgid ""
 "``com.axonivy.portal.components.enums.DocumentType``."
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:243
+#: ../../source/portal-components/document-table/index.rst:267
 msgid ""
 "Please remove redundant overridden configurations, subprocesses, and data"
 " classes such as GetDocumentListOverride, UploadDocumentOverride, etc."
+msgstr ""
+
+#: ../../source/portal-components/document-table/index.rst:271
+msgid "Release Notes"
+msgstr ""
+
+#: ../../source/portal-components/document-table/index.rst:274
+msgid "Changes in 12.0.9"
+msgstr ""
+
+#: ../../source/portal-components/document-table/index.rst:276
+msgid ""
+"Introduced **Renaming Document** feature for Document Table component. "
+"Follow instructions in :ref:`Customize <components-portal-components-"
+"migrate-from-old-document-table>` section to create a callable subprocess"
+" to customize the renaming behavior if needed."
+msgstr ""
+
+#: ../../source/portal-components/document-table/index.rst:277
+msgid ""
+"Enhanced the document preview feature for the task and case detail. If "
+"you have `DocFactory <https://market.axonivy.com/doc-factory#tab-"
+"description>`_ in the same security context, you can preview Word(doc, "
+"docx), Excel(xls, xlsx) and email(eml) documents."
+msgstr ""
+
+#: ../../source/portal-components/document-table/index.rst:280
+msgid "Changes in 12.0.11"
+msgstr ""
+
+#: ../../source/portal-components/document-table/index.rst:282
+msgid ""
+"Added lazy loading functionality to the Document Table component, "
+"enabling efficient data loading through pagination."
 msgstr ""
 
 #: ../../source/portal-components/index.rst:4
@@ -813,18 +951,28 @@ msgstr ""
 
 #: ../../source/portal-components/index.rst:6
 msgid ""
-"In ``portal-components``, we introduced some components independent of "
-"the Portal. You don't need to import the Portal projects to use them."
+"Portal Components are reusable UI components and Java APIs that you can "
+"integrate into your own Axon Ivy projects without importing the full "
+"Portal. These components provide enterprise-ready functionality for user "
+"selection, role management, document handling, process visualization, and"
+" more."
 msgstr ""
 
-#: ../../source/portal-components/index.rst:20
+#: ../../source/portal-components/index.rst:9
 msgid ""
-"Please refer to project ``portal-components-examples`` for more details "
-"on use, and customization."
+"Portal Components support both Freya and Serenity themes of PrimeFaces, "
+"though we strongly recommend using Freya as Serenity is deprecated and "
+"will be removed in Portal 13."
+msgstr ""
+
+#: ../../source/portal-components/index.rst:22
+msgid ""
+"Refer to the ``portal-components-examples`` project for usage, "
+"customization, and visual examples across supported themes."
 msgstr ""
 
 #: ../../source/portal-components/process-chain/index.rst:4
-#: ../../source/portal-components/style-customization/index.rst:38
+#: ../../source/portal-components/style-customization/index.rst:45
 msgid "Process Chain"
 msgstr ""
 
@@ -832,6 +980,7 @@ msgstr ""
 #: ../../source/portal-components/process-viewer/index.rst:7
 #: ../../source/portal-components/role-selection/index.rst:7
 #: ../../source/portal-components/security-member-name-and-avatar/index.rst:7
+#: ../../source/portal-components/style-customization/index.rst:7
 #: ../../source/portal-components/user-selection/index.rst:7
 msgid "Introduction"
 msgstr ""
@@ -1003,7 +1152,7 @@ msgid ""
 msgstr ""
 
 #: ../../source/portal-components/process-viewer/index.rst:4
-#: ../../source/portal-components/style-customization/index.rst:58
+#: ../../source/portal-components/style-customization/index.rst:63
 msgid "Process Viewer"
 msgstr ""
 
@@ -1758,29 +1907,37 @@ msgstr ""
 msgid "Style Customization"
 msgstr ""
 
-#: ../../source/portal-components/style-customization/index.rst:7
+#: ../../source/portal-components/style-customization/index.rst:9
+msgid ""
+"Portal Components use CSS custom properties (variables) for styling, "
+"allowing you to customize colors, fonts, spacing, and other visual "
+"aspects without modifying component code. Override these CSS variables in"
+" your own stylesheet to match your corporate design or application theme."
+msgstr ""
+
+#: ../../source/portal-components/style-customization/index.rst:13
 msgid "How to customize"
 msgstr ""
 
-#: ../../source/portal-components/style-customization/index.rst:9
+#: ../../source/portal-components/style-customization/index.rst:15
 msgid ""
 "You have to add a new css file to your resources and import it into your "
 "template."
 msgstr ""
 
-#: ../../source/portal-components/style-customization/index.rst:24
+#: ../../source/portal-components/style-customization/index.rst:31
 msgid ""
 "You have to place your css file in a ``<h:outputStylesheet />`` below the"
 " component to override defined styles."
 msgstr ""
 
-#: ../../source/portal-components/style-customization/index.rst:26
+#: ../../source/portal-components/style-customization/index.rst:33
 msgid ""
 "Within this file you can override default css variables of components. "
 "For example, the \\--process-history-description-text-color:"
 msgstr ""
 
-#: ../../source/portal-components/style-customization/index.rst:35
+#: ../../source/portal-components/style-customization/index.rst:42
 msgid "List of css variables that you can override"
 msgstr ""
 
@@ -1882,7 +2039,7 @@ msgstr ""
 msgid "Font weight of line vertical process step title."
 msgstr ""
 
-#: ../../source/portal-components/style-customization/index.rst:48
+#: ../../source/portal-components/style-customization/index.rst:54
 msgid "Process History"
 msgstr ""
 
@@ -2253,4 +2410,382 @@ msgid ""
 "If you stored class ``ch.ivy.addon.portalkit.dto.UserDTO`` in your "
 "database, you have to update the database manually."
 msgstr ""
+
+#~ msgid ""
+#~ "You can refer to process "
+#~ "``CustomDocumentFeatures`` in project ``portal-"
+#~ "component-examples`` to examnine how to"
+#~ " customize."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "After you get the document list "
+#~ "from DMS, convert it into "
+#~ "``List<ch.ivy.addon.portal.component.ivydata.bo.IvyDocument>`` "
+#~ "These fields are mandatory when mapping:"
+#~ " ``id``, ``name``, ``contentType``"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Not only the functions, but you "
+#~ "can also customize the UI of the"
+#~ " **Document Table** such as adding a"
+#~ " new column or removing default "
+#~ "columns."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "In your project, create four callable"
+#~ " subprocesses with the information below"
+#~ " to customize the functions of the"
+#~ " **Document Table**."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "You can refer to process "
+#~ "``CustomDocumentFeatures`` in project ``portal-"
+#~ "component-examples`` to examine how to"
+#~ " customize."
+#~ msgstr ""
+
+#~ msgid "**Parameter**"
+#~ msgstr ""
+
+#~ msgid "businessCase"
+#~ msgstr ""
+
+#~ msgid "ch.ivyteam.ivy.workflow.ICase"
+#~ msgstr ""
+
+#~ msgid "**Result**"
+#~ msgstr ""
+
+#~ msgid "documents"
+#~ msgstr ""
+
+#~ msgid "java.util.List<com.axonivy.portal.components.ivydata.bo.IvyDocument>"
+#~ msgstr ""
+
+#~ msgid "message"
+#~ msgstr ""
+
+#~ msgid "java.lang.String"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "After you get the document list "
+#~ "from DMS, convert it into "
+#~ "``List<ch.ivy.addon.portal.component.ivydata.bo.IvyDocument>`` "
+#~ "These fields are mandatory when mapping:"
+#~ " ``id``, ``uuid``, ``name``, ``contentType``"
+#~ msgstr ""
+
+#~ msgid "Note"
+#~ msgstr ""
+
+#~ msgid "uploadedFile"
+#~ msgstr ""
+
+#~ msgid "org.primefaces.model.file.UploadedFile"
+#~ msgstr ""
+
+#~ msgid "java.lang.Boolean"
+#~ msgstr ""
+
+#~ msgid "uploadedDocument"
+#~ msgstr ""
+
+#~ msgid "ch.ivyteam.ivy.workflow.document.IDocument"
+#~ msgstr ""
+
+#~ msgid "status"
+#~ msgstr ""
+
+#~ msgid "OK or FAIL"
+#~ msgstr ""
+
+#~ msgid "document"
+#~ msgstr ""
+
+#~ msgid "com.axonivy.portal.components.ivydata.bo.IvyDocument"
+#~ msgstr ""
+
+#~ msgid "streamedContent"
+#~ msgstr ""
+
+#~ msgid "org.primefaces.model.StreamedContent"
+#~ msgstr ""
+
+#~ msgid "isSuccess"
+#~ msgstr ""
+
+#~ msgid "rename successfully or not"
+#~ msgstr ""
+
+#~ msgid "OK or SKIP"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "The parameters of the callable "
+#~ "subprocess data contain the Ivy "
+#~ "``document`` to update, the new filename"
+#~ " should be already modified in the"
+#~ " document's name attribute."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Portal will call subprocesses with the"
+#~ " above details in the same security"
+#~ " context and then get result where:"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "``message``: the message to inform the"
+#~ " user that their new filename is "
+#~ "successfully updated or invalid to use."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "``isSuccess``: ``true`` if the document's "
+#~ "name is successfully updated, otherwise "
+#~ "``false``."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "``status``: ``SKIP`` if customized process "
+#~ "skipped updating the filename."
+#~ msgstr ""
+
+#~ msgid "Changes in 13.2.0"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Enhanced the document preview feature "
+#~ "for the task and case detail. If"
+#~ " you have DocFactory in the same "
+#~ "security context, you can preview "
+#~ "Word(doc, docx), Excel(xls, xlsx) and "
+#~ "email(eml) documents."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "In ``portal-components``, we introduced "
+#~ "some components independent of the "
+#~ "Portal. You don't need to import "
+#~ "the Portal projects to use them."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Please refer to project ``portal-"
+#~ "components-examples`` for more details on"
+#~ " use, and customization."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Enhanced the document preview feature "
+#~ "for the task and case detail. If"
+#~ " you have :dev-url:`DocFactory "
+#~ "<https://market.axonivy.com/doc-factory#tab-description>`"
+#~ " in the same security context, you"
+#~ " can preview Word(doc, docx), Excel(xls,"
+#~ " xlsx) and email(eml) documents."
+#~ msgstr ""
+
+#~ msgid "Public API"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "The Portal exposes a focused Java "
+#~ "Public API in the "
+#~ "``com.axonivy.portal.components.publicapi`` package "
+#~ "(module: ``portal-components``). Use these "
+#~ "helpers to integrate with Portal pages,"
+#~ " navigate, and control visibility or "
+#~ "behavior from your own processes and "
+#~ "beans."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Only the APIs documented here are "
+#~ "supported and stable. Classes and "
+#~ "methods not explicitly documented are "
+#~ "internal implementation details and may "
+#~ "change without notice."
+#~ msgstr ""
+
+#~ msgid "ProcessStartAPI"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Find startable process links by a "
+#~ "friendly request path (IWebStartable ID)."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "``findStartableLinkByUserFriendlyRequestPath(String)``: returns"
+#~ " a relative link if the current "
+#~ "user may start it, otherwise an "
+#~ "empty string."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "``findRelativeUrlByProcessStartFriendlyRequestPath(String)``: "
+#~ "returns the relative link regardless of"
+#~ " start permissions, or an empty "
+#~ "string if not found."
+#~ msgstr ""
+
+#~ msgid "Example::"
+#~ msgstr ""
+
+#~ msgid "PortalNavigatorAPI (no iFrame)"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Navigate between Portal pages and build"
+#~ " deep links when your UI is not"
+#~ " embedded in the Portal iFrame."
+#~ msgstr ""
+
+#~ msgid "``navigateToPortalHome()`` and ``navigateToPortalEndPage()``"
+#~ msgstr ""
+
+#~ msgid "``buildUrlToPortalCaseDetailsPageById/ByUUID(...)``"
+#~ msgstr ""
+
+#~ msgid "``buildUrlToPortalTaskDetailsPageById/ByUUID(...)``"
+#~ msgstr ""
+
+#~ msgid "``getPasswordResetUrl(String token, String username)``"
+#~ msgstr ""
+
+#~ msgid "PortalNavigatorInFrameAPI (inside iFrame)"
+#~ msgstr ""
+
+#~ msgid "Control navigation from a page running inside Portal's iFrame."
+#~ msgstr ""
+
+#~ msgid "``navigateToUrl(String)``"
+#~ msgstr ""
+
+#~ msgid "``navigateToPortalHome()``"
+#~ msgstr ""
+
+#~ msgid "``navigateToPortalEndPage()``"
+#~ msgstr ""
+
+#~ msgid "Example (bean code)::"
+#~ msgstr ""
+
+#~ msgid "TaskAPI and CaseAPI"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Hide or show specific tasks/cases in "
+#~ "the Portal lists by setting/clearing the"
+#~ " ``HIDE`` additional property."
+#~ msgstr ""
+
+#~ msgid "BusinessDetailsAPI"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Define a business details page for "
+#~ "a case. Supports either an "
+#~ "``IWebStartable`` ID or an external URL,"
+#~ " with optional \"embed in frame\"."
+#~ msgstr ""
+
+#~ msgid "Examples::"
+#~ msgstr ""
+
+#~ msgid "SanitizeAPI"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Escape strings for safe embedding in "
+#~ "JavaScript to prevent injections/XSS."
+#~ msgstr ""
+
+#~ msgid "RoleAPI"
+#~ msgstr ""
+
+#~ msgid "Manage properties for roles programmatically."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "``setProperty(IRole role, String key, String"
+#~ " value)``: Set a property on a "
+#~ "role."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "``removeProperty(IRole role, String key)``: "
+#~ "Remove a property from a role."
+#~ msgstr ""
+
+#~ msgid "ApplicationMultiLanguageAPI"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Retrieve CMS values based on the "
+#~ "current user's locale for multilingual "
+#~ "menu support."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "``getCmsValueByUserLocale(String cmsURI)``: Get CMS"
+#~ " value for specific URI based on "
+#~ "current locale."
+#~ msgstr ""
+
+#~ msgid "AiAssistantAPI"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Helper methods for integrating AI "
+#~ "assistant features with Portal processes."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "``addIframeIvyProcessLinkToAiResult(String link, "
+#~ "Map<String, String> params, AiResultDTO "
+#~ "result)``: Add an iframe-embedded Ivy"
+#~ " process link to AI result."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "``generateExecutableResult(String link)``: Generate "
+#~ "an executable result pattern."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "``generateErrorAiResult(Throwable error, String "
+#~ "errorDescription)``: Create error result from"
+#~ " exception."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "``generateErrorAiResult(String error)``: Create "
+#~ "error result from error message."
+#~ msgstr ""
+
+#~ msgid "``createSomethingWentWrongError()``: Create a generic error result."
+#~ msgstr ""
+
+#~ msgid "Notes"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Ensure the target startables are active"
+#~ " and accessible for the current user."
+#~ msgstr ""
+
+#~ msgid "Portal and your projects should run in the same security context."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Prefer the ``portal-components`` module's "
+#~ "public APIs over internal classes."
+#~ msgstr ""
 

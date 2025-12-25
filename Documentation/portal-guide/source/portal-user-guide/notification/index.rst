@@ -3,16 +3,29 @@
 Notification
 ************
 
-Portal notification displays all notifications based on your notification settings. 
+The Portal notification system keeps you informed about important events and updates. Notifications are delivered through various channels based on your :ref:`notification settings <notification-channels>` and can be accessed through the bell icon in the Portal header.
+
+Accessing Notifications
+=======================
+
+The notification panel provides quick access to your recent notifications:
+
+- Click the bell icon in the top right corner to open the notification panel
+- View all your notifications in a convenient dropdown panel
+- Access :ref:`notification settings <notification-channels>` directly from the panel
+- Navigate to the full notification page using the More actions icon
+- Click the |show-more-icon| icon to view all notifications
 
 |notification-panel|
-   #. To open the notification, click  on the bell icon in the top right corner. A panel contains all your notifications will be displayed.
-   #. On the panel, you can access :ref:`notification settings <notification-channels>` or go to a full page notification by clicking on More actions icon in the top right of the panel.
-   #. Navigate to a full page notification by clicking on the |show-more-icon| icon.
 
 .. note::
 
-   The bell icon will automatically be hidden if the web notification channel is disabled either by the administrator or the user.
+   The bell icon is automatically hidden if the web notification channel is disabled by either the administrator or the user.
+
+Full Notification Page
+======================
+
+For a comprehensive view of all your notifications, navigate to the full notification page by clicking the |show-more-icon| icon in the notification panel.
 
 |notification-full-page|
 

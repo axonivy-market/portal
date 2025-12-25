@@ -56,7 +56,6 @@ public class FilterFieldFactory {
     return BaseFilter.DEFAULT.contentEquals(field) ? new FilterFieldDefault() : result;
   }
 
-  @Deprecated
   public static FilterField findBy(String field) {
     FilterField result = STANDARD_FILTER_FIELD.get(field);
     if (result == null) {

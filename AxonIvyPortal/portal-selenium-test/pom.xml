@@ -1,23 +1,21 @@
-<?xml version='1.0' encoding='utf-8'?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<?xml version="1.0" encoding="utf-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>com.axonivy.ivy.api</groupId>
     <artifactId>ivy-project-parent</artifactId>
-    <version>13.2.0-SNAPSHOT</version>
-    <relativePath />
+    <version>14.0.0-SNAPSHOT</version>
+    <relativePath></relativePath>
   </parent>
   <groupId>com.axonivy.portal</groupId>
   <artifactId>portal-selenium-test</artifactId>
-  <version>13.2.0-SNAPSHOT</version>
+  <version>14.0.0-SNAPSHOT</version>
   <packaging>iar</packaging>
-  <properties>
-    <ivy.engine.version>13.2.0</ivy.engine.version>
-  </properties>
   <dependencies>
     <dependency>
-      <groupId>com.axonivy.ivy.webtest</groupId>
-      <artifactId>web-tester</artifactId>
+      <groupId>com.axonivy.ivy.api.test</groupId>
+      <artifactId>ivy-web-test-api</artifactId>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -29,7 +27,7 @@
     <dependency>
       <groupId>com.axonivy.portal</groupId>
       <artifactId>portal</artifactId>
-      <version>13.2.0-SNAPSHOT</version>
+      <version>14.0.0-SNAPSHOT</version>
       <type>iar</type>
     </dependency>
     <dependency>

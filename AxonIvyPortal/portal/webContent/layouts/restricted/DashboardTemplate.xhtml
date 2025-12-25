@@ -19,7 +19,7 @@
     <ui:define name="pageContent">
         <script>
           function initStatistics() {
-            initClientCharts("#{managedBean.statisticApiUri}" , "#{localeBean.locale}", "#{dateTimePatternBean.datePattern}", "#{ivy.session.contentLocale}");
+            initClientCharts("#{managedBean.statisticApiUri}" , "#{managedBean.getSupportedUserLanguage()}", "#{dateTimePatternBean.datePattern}", "#{localeBean.locale}");
           }
 
           $(document).ready(function () {
@@ -62,6 +62,9 @@
             global="false" process="@this" immediate="true" partialSubmit="true"
             update="delete-saved-filter-form:quick-filter-table"
             oncomplete="PF('quick-filter-table').clearFilters(); PF('manage-filter-dialog').initPosition();"/>
+          <p:remoteCommand name="openStatisticDrillDown"
+            actionListener="#{statisticDrillDownBean.drillDownToDashboard(param.drillDownData)}" oncomplete="navigateToDrillDownDashboard();" process="@this" />
+          <p:remoteCommand name="navigateToDrillDownDashboard" update="grid-stack" actionListener="#{navigationDashboardWidgetBean.navigateToDrillDownDashboard(managedBean.selectedDashboard.id)}" />
 
           <ui:insert name="additionalRemoteCommand" />
         </h:form>
@@ -237,6 +240,10 @@
            
            <!-- Workflow Event of Task Dialog -->
            <ic:ch.ivy.addon.portalkit.component.TaskItemWorkflowEvents id="dashboard-tasks-workflow-event"
+            taskId="#{taskWidgetBean.selectedTaskItemId}"/>
+            
+           <!-- Custom fields of Task Dialog -->
+           <ic:ch.ivy.addon.portalkit.component.TaskItemCustomFields id="dashboard-tasks-custom-fields"
             taskId="#{taskWidgetBean.selectedTaskItemId}"/>
            
            <!-- Destroy case dialog -->

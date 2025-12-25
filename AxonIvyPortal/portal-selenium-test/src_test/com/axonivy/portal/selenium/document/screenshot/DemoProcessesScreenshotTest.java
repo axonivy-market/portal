@@ -8,7 +8,6 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Dimension;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
-import com.axonivy.portal.selenium.common.NavigationHelper;
 import com.axonivy.portal.selenium.common.ScreenshotBaseTest;
 import com.axonivy.portal.selenium.common.ScreenshotUtils;
 import com.axonivy.portal.selenium.common.TestAccount;
@@ -96,12 +95,12 @@ public class DemoProcessesScreenshotTest extends ScreenshotBaseTest {
     caseMapPage = new CaseMapPage();
     caseMapPage.switchToIFrameOfTask();
     caseMapPage.clickSubmitButtonAndBackToTaskList();
-    NavigationHelper.navigateToTaskList();
     TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
     taskWidget.clickOnTaskActionLink(0);
     assertTrue(taskWidget.isTaskAdditionActionDisplay("External solvency service"));
     ScreenshotUtils.executeDecorateJs("highlightTaskAdditionalActionItem(0)");
-    ScreenshotUtils.captureHalfTopPageScreenShot(ScreenshotUtils.DEMO_FOLDER + "lending-casemap-external-solvency-service");
+    ScreenshotUtils.captureElementScreenshot(taskWidget.getWebElement(),
+        (ScreenshotUtils.DEMO_FOLDER + "lending-casemap-external-solvency-service"));
     taskWidget.clickOnSideStepAction(0);
     ScreenshotUtils.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 1150));
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.DEMO_FOLDER + "lending-casemap-approval-task");

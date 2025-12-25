@@ -17,6 +17,7 @@ import javax.faces.context.FacesContext;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 import org.primefaces.PrimeFaces;
 
 import com.axonivy.portal.components.util.FacesMessageUtils;
@@ -219,7 +220,7 @@ public final class TaskUtils {
     } else {
       states.add(TaskBusinessState.DONE);
     }
-    return states.stream().sorted((s1, s2) -> StringUtils.compare(s1.toString(), s2.toString())).distinct()
+    return states.stream().sorted((s1, s2) -> Strings.CS.compare(s1.toString(), s2.toString())).distinct()
         .collect(Collectors.toList());
   }
 
@@ -231,7 +232,7 @@ public final class TaskUtils {
     } else {
       states.add(TaskState.DONE);
     }
-    return states.stream().sorted((s1, s2) -> StringUtils.compare(s1.toString(), s2.toString()))
+    return states.stream().sorted((s1, s2) -> Strings.CS.compare(s1.toString(), s2.toString()))
         .collect(Collectors.toList());
   }
 
@@ -351,7 +352,7 @@ public final class TaskUtils {
   }
   
   public static void setResonsibleToExpiryResponsible(ITask task) {
-    task.expiry().responsibles().all().clear();
+    task.expiry().responsibles().set(null);
     for (Responsible responsible : task.responsibles().all()) {
       if(responsible != null) {
         task.expiry().responsibles().add(responsible.get());

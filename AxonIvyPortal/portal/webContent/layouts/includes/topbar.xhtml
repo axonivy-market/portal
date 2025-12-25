@@ -32,18 +32,18 @@
                     task="#{task}" case="#{case}" />
             <h:form id="navigation-dashboard-back-button" styleClass="flex justify-content-center"
              rendered="#{isInDashboard}">
-        <li class="topbar-item">
-          <h:panelGroup rendered="#{isInDashboard}">
-            <p:commandLink id="back-to-previous-dashboard-page" action="#{navigationDashboardWidgetBean.backToPreviousDashboard()}"
-              ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}"
-              styleClass="inline-flex align-items-center hover:underline" rendered="#{navigationDashboardWidgetBean.isNavigateToTargetDashboard}" process="@this">
-              <i class="si si-arrow-left-1" />
-              <p:spacer width="3px" />
-              <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}" />
-            </p:commandLink>
-            <h:inputHidden/>
-          </h:panelGroup>
-        </li>
+             <li class="topbar-item">
+               <h:panelGroup rendered="#{isInDashboard}">
+                 <p:commandLink id="back-to-previous-dashboard-page" action="#{navigationDashboardWidgetBean.backToPreviousDashboard()}"
+                   ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}"
+                   styleClass="inline-flex align-items-center hover:underline" rendered="#{topBarBean.showNavigationBackButton}" process="@this">
+                   <i class="si si-arrow-left-1" />
+                   <p:spacer width="3px" />
+                   <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}" />
+                 </p:commandLink>
+                 <h:inputHidden/>
+               </h:panelGroup>
+             </li>
             </h:form>
            </h:panelGroup>
         </li>
@@ -62,7 +62,7 @@
         </li>
         <li class="topbar-item">
           <p:commandLink id="open-notifications-panel" global="false" update="#{p:resolveFirstComponentWithId('has-notifications', view).clientId}" 
-          rendered="#{notificationBean.isBellIconNeeded}" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/chat/toggleChat')}"
+          rendered="#{notificationBean.isBellIconNeeded}" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/openNotifications')}"
           actionListener="#{notificationBean.setRender(true)}" onclick="openNotificationPanel()" process="@this">
             <i class="topbar-icon pi pi-bell" />
             <h:panelGroup class="notifications-badge" id="topbar-unread-notifications-container">
@@ -164,15 +164,15 @@
         <div class="third-header-bar" />
       </div>
 
-      <p:dialog header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/applicationMenuHeader/changePassword')}" width="50%" closeOnEscape="true"
+      <p:dialog header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/applicationMenuHeader/changePassword')}" closeOnEscape="true"
         widgetVar="changePasswordDialog" id="change-password-dialog" resizable="false" modal="true" draggable="false" appendTo="@(body)" dynamic="true"
-        styleClass="change-password-dialog" responsive="true">
+        styleClass="change-password-dialog" responsive="true" fitViewport="true">
         <h:form id="change-password-form">
           <ic:ch.ivy.addon.portalkit.multiapp.settings.PasswordSetting id="password-setting" dialogName="changePasswordDialog" />
         </h:form>
       </p:dialog>
 
-      <p:dialog header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/projectInfo/header')}" styleClass="project-info-dialog" width="650"
+      <p:dialog header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/projectInfo/header')}" styleClass="project-info-dialog"
         closeOnEscape="true" widgetVar="project-info-dialog" id="project-info-dialog" resizable="false" modal="true" draggable="false"
         appendTo="@(body)" dynamic="true" responsive="true" fitViewport="true">
         <ic:ch.ivy.addon.portalkit.component.ProjectVersion id="project-version" />

@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/13.1.2/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/13.2.0/process.json",
   "id" : "17C597F3BE08B8C1",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -70,7 +70,7 @@
           "code" : [
             "import com.axonivy.portal.components.publicapi.PortalNavigatorInFrameAPI;",
             "ivy.task.reset();",
-            "PortalNavigatorInFrameAPI.navigateToUrl(ivy.html.applicationHomeLink().getAbsoluteEncoded());"
+            "PortalNavigatorInFrameAPI.navigateToUrl(ivy.html.appHomeLink().getAbsoluteEncoded());"
           ]
         },
         "sudo" : true

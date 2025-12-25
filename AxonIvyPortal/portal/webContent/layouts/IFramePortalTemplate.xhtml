@@ -6,8 +6,11 @@
   xmlns:pe="http://primefaces.org/ui/extensions" xmlns:pc="http://xmlns.jcp.org/jsf/composite/components" >
 <h:body>
   <ui:composition template="/layouts/BasicTemplate.xhtml">
+    <ui:define name="head">
+      <ui:insert name="head" />
+    </ui:define>
     <ui:define name="pageContent">
-      <iframe id="iFrame" src="#{url}" class="w-full h-full min-h-screen border-none" />
+      <iframe id="iFrame" src="#{url}" class="w-full border-none #{iframeStyleClass}" />
     </ui:define>
   </ui:composition>
 </h:body>

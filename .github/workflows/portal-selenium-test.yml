@@ -18,68 +18,298 @@ on:
 
 env:
   ENGINE_DIR: $GITHUB_WORKSPACE/ivy/engine
-  ENGINE_URL: https://developer.axonivy.com/permalink/nightly/axonivy-engine.zip
 
 jobs:
-  pull-request-merged:
+  show-branch-info:
     runs-on: ubuntu-latest
     steps:
-      - name: Show PRs merged into this branch
-        uses: actions/github-script@v7
+      - name: Checkout code
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 20  # Fetch more commits for history
+
+      - name: Show commits since last successful build
+        uses: actions/github-script@v8
         with:
           script: |
-            const branch = context.ref;
-            const { data: prs } = await github.rest.pulls.list({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              base: branch,
-              state: 'closed',
-              per_page: 50,
-              page: 1
-            });
+            const branch = context.ref.replace('refs/heads/', ''); // Extract the branch name from the GitHub context (removes 'refs/heads/' prefix)
+            try {
+              // === STEP 1: FIND THE LAST SUCCESSFUL WORKFLOW RUN ==============================
+              // Query GitHub API to get the most recent successful workflow run for this branch
+              const { data: workflowRuns } = await github.rest.actions.listWorkflowRuns({
+                owner: context.repo.owner,           // Repository owner (e.g., 'axonivy-market')
+                repo: context.repo.repo,             // Repository name (e.g., 'portal')
+                workflow_id: 'portal-selenium-test.yml', // This specific workflow file
+                branch: branch,                      // Only runs from current branch
+                status: 'success',                   // Only successful runs
+                per_page: 1                          // We only need the most recent one
+              });
 
-            const mergedPrs = prs
-              .filter(pr => pr.merged_at !== null)
-              .sort((a, b) => new Date(b.merged_at) - new Date(a.merged_at))
-              .slice(0, 10);
+              // Initialize variables to store last successful build information
+              let lastSuccessfulSha = null;         // SHA of the last successful commit
+              let lastSuccessfulDate = null;        // Date when last successful build ran
+              
+              // Check if we found any successful workflow runs
+              if (workflowRuns.workflow_runs && workflowRuns.workflow_runs.length > 0) {
+                const lastRun = workflowRuns.workflow_runs[0]; // Get the most recent successful run
+                lastSuccessfulSha = lastRun.head_sha;          // Store the commit SHA that was tested
+                lastSuccessfulDate = lastRun.created_at;       // Store when the run was created
+              }
 
-            if (!prs || prs.length === 0) {
+              // Initialize arrays to store commit data and comparison info
+              let commits = [];                      // Will hold the list of commits to display
+              let comparisonInfo = '';               // Will hold information about what we're comparing
+              
+
+              // === STEP 2: DETERMINE WHAT COMMITS TO SHOW BASED ON LAST SUCCESSFUL BUILD ==============================
+              if (lastSuccessfulSha && lastSuccessfulSha !== context.sha) {
+                // Case A: We have a previous successful build and current commit is different
+                // Compare commits between last successful build and current commit
+                try {
+                  // Use GitHub API to compare two commits and get all commits in between
+                  const { data: comparison } = await github.rest.repos.compareCommits({
+                    owner: context.repo.owner,        // Repository owner
+                    repo: context.repo.repo,          // Repository name
+                    base: lastSuccessfulSha,          // Starting point (last successful commit)
+                    head: context.sha                 // Ending point (current commit being tested)
+                  });
+                  commits = comparison.commits || []; // Extract the commits array (fallback to empty array)
+                  
+                  // Format the date of last successful build for display
+                  const lastSuccessfulDateFormatted = new Date(lastSuccessfulDate).toLocaleString('vi-VN', {
+                    timeZone: 'Asia/Ho_Chi_Minh',     // Use Vietnam timezone
+                    hour12: false                     // Use 24-hour format
+                  });
+                  
+                  // Get reference to the last successful workflow run for building URL
+                  const lastRun = workflowRuns.workflow_runs[0];
+                  const buildUrl = `${lastRun.html_url}`;        // URL to the last successful build
+                  
+                  // Create informational text showing what we're comparing against
+                  comparisonInfo = `📊 Comparing with last successful build: [#${lastRun.run_number}](${buildUrl}) - [${lastSuccessfulSha.substring(0, 7)}](https://github.com/${context.repo.owner}/${context.repo.repo}/commit/${lastSuccessfulSha}) (${lastSuccessfulDateFormatted})`;
+                } catch (compareError) {
+                  // If comparison fails (e.g., commits are too far apart), fallback to recent commits
+                  const { data: recentCommits } = await github.rest.repos.listCommits({
+                    owner: context.repo.owner,        // Repository owner
+                    repo: context.repo.repo,          // Repository name
+                    sha: context.sha,                 // Starting from current commit
+                    per_page: 10                      // Limit to 10 most recent commits
+                  });
+                  commits = recentCommits;            // Use recent commits instead of comparison
+                  comparisonInfo = '⚠️ Could not compare with last build, showing recent commits';
+                }
+              } else if (lastSuccessfulSha === context.sha) {
+                // Case B: Current commit is the same as last successful build (re-running same commit)
+                comparisonInfo = '✅ This commit was the last successful build - no new changes';
+              } else {
+                // Case C: No previous successful build found (first run or all previous runs failed)
+                // Show recent commits instead
+                const { data: recentCommits } = await github.rest.repos.listCommits({
+                  owner: context.repo.owner,          // Repository owner
+                  repo: context.repo.repo,            // Repository name
+                  sha: context.sha,                   // Starting from current commit
+                  per_page: 10                        // Limit to 10 most recent commits
+                });
+                commits = recentCommits;              // Use recent commits
+                comparisonInfo = '🆕 No previous successful build found - showing recent commits';
+              }
+
+              // === STEP 3: BUILD AND DISPLAY THE SUMMARY ==============================
+              // Handle case where no commits were found
+              if (!commits || commits.length === 0) {
+                await core.summary
+                  .addHeading(`📝 Changes since last successful build on '${branch}'`) // Add section heading
+                  .addRaw(comparisonInfo)                                              // Add comparison context
+                  .addRaw('\n\n*No new commits found*')                                // Add "no commits" message
+                  .write();                                                            // Write to GitHub summary
+                return;                                                                // Exit early
+              }
+
+              // Calculate how many commits to display
+              const commitCount = commits.length;     // Total number of commits found
+              const maxDisplay = commitCount;         // Show all commits (no limit)
+              
+              // Build the main summary table with commit information
               await core.summary
-                .addHeading(`🔗 No PRs merged into '${branch}'`)
-                .write();
-              return;
-            }
-
-            await core.summary
-              .addHeading(`🔗 PRs merged into '${branch}' (maximum: 10)`)
-              .addTable([
-                [
-                  { data: 'PR Number', header: true },
-                  { data: 'Title', header: true },
-                  { data: 'Author', header: true },
-                  { data: 'Merged At', header: true }
-                ],
-                ...mergedPrs.map(pr => [
-                  `[${pr.number}](${pr.html_url})`,
-                  pr.title.replace(/\|/g, '\\|'),
-                  `@${pr.user.login}`,
-                  new Date(pr.merged_at).toLocaleString('vi-VN', {
-                    timeZone: 'Asia/Ho_Chi_Minh',
-                    hour12: false
+                // Add heading with branch name and commit count (with proper pluralization)
+                .addHeading(`📝 Changes since last successful build on '${branch}' (${commitCount} commit${commitCount !== 1 ? 's' : ''})`)
+                .addRaw(comparisonInfo)                // Add the comparison context information
+                .addTable([                            // Create a table with commit details
+                  [                                    // Table header row
+                    { data: 'Commit', header: true },   // Column 1: Commit SHA (as link)
+                    { data: 'Message', header: true },  // Column 2: Commit message
+                    { data: 'Author', header: true },   // Column 3: Commit author
+                    { data: 'Date', header: true }      // Column 4: Commit date
+                  ],
+                  // Map each commit to a table row (spread operator to flatten the array)
+                  ...commits.slice(0, maxDisplay).map(commit => {
+                    // === Process commit message ===
+                    // Get the full commit message and remove leading/trailing whitespace
+                    const fullMessage = commit.commit.message.trim();
+                    const lines = fullMessage.split('\n');   // Split into lines
+                    const title = lines[0];                  // First line is the title
+                    
+                    // Extract description from remaining lines (skip empty lines after title)
+                    let description = '';
+                    if (lines.length > 1) {                  // Check if there are more lines after title
+                      // Filter out empty lines and join remaining lines
+                      const descLines = lines.slice(1).filter(line => line.trim() !== '');
+                      if (descLines.length > 0) {
+                        description = descLines.join(' ').trim(); // Join description lines with spaces
+                        // Truncate description if too long to prevent table from becoming too wide
+                        if (description.length > 200) {
+                          description = description.substring(0, 200) + '...';
+                        }
+                      }
+                    }
+                    
+                    // Build the message column content (title + description if available)
+                    // Escape pipe characters that would break markdown table formatting
+                    const messageColumn = description ? 
+                      `${title.replace(/\|/g, '\\|')}<br/>${description.replace(/\|/g, '\\|')}` : 
+                      title.replace(/\|/g, '\\|');
+                    
+                    // Return table row array with formatted data
+                    return [
+                      
+                      `[${commit.sha.substring(0, 7)}](${commit.html_url})`,        // Column 1: Commit SHA as clickable link (shortened to 7 characters)
+                      
+                      messageColumn,                                                // Column 2: Commit message (title + description)
+                      
+                      `@${commit.author?.login || commit.commit.author.name}`,      // Column 3: Author username (with @ prefix) or fallback to name
+                      
+                      new Date(commit.commit.author.date).toLocaleString('vi-VN', { // Column 4: Formatted commit date in Vietnam timezone
+                        timeZone: 'Asia/Ho_Chi_Minh',   // Use Vietnam timezone
+                        hour12: false                   // Use 24-hour format
+                      })
+                    ];
                   })
                 ])
-              ])
-              .write();
+                .write();                               // Write the complete summary to GitHub
+                
+            } catch (error) {
+              // === Error handling ==============================
+              console.error('Error fetching commits since last build:', error);
+
+              // Display user-friendly error message in the summary
+              await core.summary
+                .addHeading(`📝 Error fetching commits for branch '${branch}'`)     // Error heading
+                .addRaw(`Could not retrieve commit information: ${error.message}`)  // Error details
+                .write();                                                           // Write error summary
+            }
+
+      - name: Show PRs merged since last successful build
+        uses: actions/github-script@v8
+        with:
+          script: |
+            const branch = context.ref.replace('refs/heads/', '');
+            
+            try {
+              // Get the last successful workflow run for this branch (same logic as commits)
+              const { data: workflowRuns } = await github.rest.actions.listWorkflowRuns({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                workflow_id: 'portal-selenium-test.yml',
+                branch: branch,
+                status: 'success',
+                per_page: 1
+              });
+
+              let lastSuccessfulDate = null;
+              let prComparisonInfo = '';
+              
+              if (workflowRuns.workflow_runs && workflowRuns.workflow_runs.length > 0) {
+                const lastRun = workflowRuns.workflow_runs[0];
+                lastSuccessfulDate = new Date(lastRun.created_at);
+                
+                const lastSuccessfulDateFormatted = lastSuccessfulDate.toLocaleString('vi-VN', {
+                  timeZone: 'Asia/Ho_Chi_Minh',
+                  hour12: false
+                });
+                
+                const buildUrl = `${lastRun.html_url}`;
+                
+                prComparisonInfo = `📊 PRs merged since last successful build: [#${lastRun.run_number}](${buildUrl}) (${lastSuccessfulDateFormatted})`;
+              } else {
+                prComparisonInfo = '🆕 No previous successful build found - showing recent merged PRs';
+              }
+
+              // Get all merged PRs for this branch
+              const { data: prs } = await github.rest.pulls.list({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                base: branch,
+                state: 'closed',
+                per_page: 50,
+                page: 1
+              });
+
+              let relevantPrs = [];
+              
+              if (lastSuccessfulDate) {
+                // Filter PRs merged after the last successful build
+                relevantPrs = prs
+                  .filter(pr => pr.merged_at !== null && new Date(pr.merged_at) > lastSuccessfulDate)
+                  .sort((a, b) => new Date(b.merged_at) - new Date(a.merged_at));
+              } else {
+                // No previous successful build, show recent merged PRs
+                relevantPrs = prs
+                  .filter(pr => pr.merged_at !== null)
+                  .sort((a, b) => new Date(b.merged_at) - new Date(a.merged_at))
+                  .slice(0, 10);
+              }
+
+              if (relevantPrs.length === 0) {
+                await core.summary
+                  .addHeading(`🔗 PRs merged since last successful build on '${branch}'`)
+                  .addRaw(prComparisonInfo)
+                  .addRaw('\n\n*No PRs merged since last successful build*')
+                  .write();
+                return;
+              }
+
+              const maxDisplay = relevantPrs.length; // Show all PRs
+              
+              await core.summary
+                .addHeading(`🔗 PRs merged since last successful build on '${branch}' (${relevantPrs.length} PR${relevantPrs.length !== 1 ? 's' : ''})`)
+                .addRaw(prComparisonInfo)
+                .addTable([
+                  [
+                    { data: 'PR Number', header: true },
+                    { data: 'Title', header: true },
+                    { data: 'Author', header: true },
+                    { data: 'Merged At', header: true }
+                  ],
+                  ...relevantPrs.slice(0, maxDisplay).map(pr => [
+                    `[#${pr.number}](${pr.html_url})`,
+                    pr.title.replace(/\|/g, '\\|'),
+                    `@${pr.user.login}`,
+                    new Date(pr.merged_at).toLocaleString('vi-VN', {
+                      timeZone: 'Asia/Ho_Chi_Minh',
+                      hour12: false
+                    })
+                  ])
+                ])
+                .write();
+                
+            } catch (error) {
+              console.error('Error fetching PRs since last build:', error);
+              await core.summary
+                .addHeading(`🔗 Error fetching PRs for branch '${branch}'`)
+                .addRaw(`Could not retrieve PR information: ${error.message}`)
+                .write();
+            }
 
 
   portal-selenium-test:
       runs-on: ubuntu-latest
+      needs: show-branch-info
       steps:
         - name: Checkout code
-          uses: actions/checkout@v4
+          uses: actions/checkout@v5
 
         - name: Set up Java
-          uses: actions/setup-java@v4
+          uses: actions/setup-java@v5
           with:
             distribution: 'temurin'
             java-version: '21'
@@ -105,7 +335,7 @@ jobs:
         - name: Download engine
           run: |
             cd $ENGINE_DIR
-            wget $ENGINE_URL -O axonivy-engine.zip
+            wget ${{ inputs.engineDownloadURL }} -O axonivy-engine.zip
             unzip -o axonivy-engine.zip -d .
             rm axonivy-engine.zip
 
@@ -126,59 +356,295 @@ jobs:
               "Showcase/portal-developer-examples"
               "Showcase/InternalSupport"
               "Showcase/portal-components-examples"
-              "AxonIvyPortal/PortalApp"
-              "Showcase/portal-demo-app"
             )
             for module in "${modules[@]}"; do
               mvn clean install -f $module/pom.xml -Divy.engine.directory=$ENGINE_DIR
             done
 
-        - name: Deploy Portal Modules
+        - name: Build and deploy test package
           run: |
+            mvn clean package -f AxonIvyPortal/portal-selenium-test/deployment-pom.xml -Divy.engine.directory=$ENGINE_DIR
             DEPLOYMENT=$ENGINE_DIR/system/demo-applications/demo-portal
             rm -rf $DEPLOYMENT/*
-            cp Showcase/portal-demo-app/target/*.zip $DEPLOYMENT
-            cp Showcase/portal-developer-examples/target/*.iar $DEPLOYMENT
-            cp Showcase/portal-components-examples/target/*.iar $DEPLOYMENT
+            cp AxonIvyPortal/portal-selenium-test/target/*.zip $DEPLOYMENT
       
         - name: Run test
           id: run-test        
           run: |
-            mvn clean test -f AxonIvyPortal/portal-selenium-test/customized_pom.xml -Divy.engine.download.url=${{ inputs.engineDownloadURL }} -Dtest=${{ inputs.testPatternToRun }} -DbrowserType=FIREFOX -DtrimStackTrace=false -Divy.engine.directory=$ENGINE_DIR -Divy.deploy.timeout.seconds=60 -Divy.engine.start.timeout.seconds=500 -Dsurefire.rerunFailingTestsCount=2
+            mvn clean test -f AxonIvyPortal/portal-selenium-test/customized_pom.xml -Divy.engine.download.url=${{ inputs.engineDownloadURL }} -Dtest=${{ inputs.testPatternToRun }} -DbrowserType=FIREFOX -Dcapabilities.unhandledPromptBehavior=accept -DtrimStackTrace=false -Divy.engine.directory=$ENGINE_DIR -Divy.deploy.timeout.seconds=60 -Divy.engine.start.timeout.seconds=500 -Dsurefire.rerunFailingTestsCount=2
           continue-on-error: true
 
         - name: Log out on failures
-          if: job.steps.run-test.status == failure()
+          if: steps.run-test.outcome == 'failure'
           run: |
             cat AxonIvyPortal/portal-selenium-test/target/testEngineOut.log 
 
-        - name: Archive screenshot image
+        - name: Archive artifacts
           uses: actions/upload-artifact@v4
           with:
-            name: screenshots
-            retention-days: 5
+            name: artifacts
+            retention-days: 10
             path: |
               AxonIvyPortal/portal-selenium-test/target/selenide/reports/*
-
-        - name: Archive test reports
-          uses: actions/upload-artifact@v4
-          with:
-            name: selenium-test-reports
-            retention-days: 5
-            path: |
               AxonIvyPortal/portal-selenium-test/target/surefire-reports/*
+              AxonIvyPortal/portal-selenium-test/target/testEngineOut.log
 
         - name: Show inputs
           run: |
             echo "## Inputs" >> $GITHUB_STEP_SUMMARY
             echo "- Test pattern: ${{inputs.testPatternToRun}}" >> $GITHUB_STEP_SUMMARY
             echo "- Engine download url: ${{inputs.engineDownloadURL}}" >> $GITHUB_STEP_SUMMARY
+
+        - name: Parse and show failed tests
+          if: always()
+          uses: actions/github-script@v8
+          with:
+            script: |
+              const fs = require('fs');                         // File system operations (read files, check existence)
+              const path = require('path');                     // Path manipulation utilities
+
+              try {
+                // === STEP 1: LOCATE TEST RESULT XML FILES ====================================
+                const reportsDir = 'AxonIvyPortal/portal-selenium-test/target/surefire-reports';
+                let testResultFiles = [];             // Array to store paths of found XML files
+
+                // Check if the reports directory exists (tests may not have run)
+                if (fs.existsSync(reportsDir)) {
+                  // Read all files in the reports directory
+                  const files = fs.readdirSync(reportsDir);
+                  // Filter for JUnit XML files (pattern: TEST-*.xml)
+                  testResultFiles = files
+                    .filter(file => file.startsWith('TEST-') && file.endsWith('.xml')) // Only JUnit XML files
+                    .map(file => path.join(reportsDir, file));                         // Convert to full paths
+                } else {
+                  // Log warning if reports directory doesn't exist
+                  console.log(`Reports directory does not exist: ${reportsDir}`);
+                }
+
+                // === STEP 2: HANDLE CASE WHERE NO TEST FILES ARE FOUND ====================================
+                if (testResultFiles.length === 0) {
+                  // Display message indicating no test results were found
+                  await core.summary
+                    .addHeading('🔍 Test Results')                    // Add section heading
+                    .addRaw('No test result files found.')            // Add explanation message
+                    .write();                                         // Write to GitHub summary
+                  return;                                             // Exit early - nothing to process
+                }
+
+                // === STEP 3: INITIALIZE VARIABLES FOR TEST RESULT ANALYSIS ====================================
+                let totalFailures = 0;
+                let totalErrors = 0;
+                let failedTests = [];                       // Array to store detailed info about failed tests
+                let flakyTests = [];
+
+                // === HELPER FUNCTION to extract attribute value from XML tag ===
+                function extractAttribute(xmlContent, tagName, attributeName) {
+                  // Create regex to find the tag and extract the attribute value
+                  const regex = new RegExp(`<${tagName}[^>]*\\s${attributeName}=["']([^"']*)["']`, 'i');
+                  /*
+                  *  <${tagName} - Matches the opening of an XML tag with the specified tag name
+                  *  [^>]* - Matches any characters except > (other attributes or spaces)
+                  *  \\s - Matches whitespace (space, tab, newline) before the target attribute
+                  *  ${attributeName}= - Matches the attribute name followed by equals sign
+                  *  ["'] - Matches either a double quote " or single quote '
+                  *  ([^"']*) - Capture group that matches any characters except quotes
+                  *  ["'] - Matches the closing quote (either " or ')
+                  */
+                  const match = xmlContent.match(regex);
+                  return match ? match[1] : null;
+                }
+
+                // === HELPER FUNCTION to extract text content between XML tags ===
+                function extractTextContent(xmlContent, tagName) {
+                  const regex = new RegExp(`<${tagName}[^>]*>([\\s\\S]*?)<\\/${tagName}>`, 'i');
+                  /*
+                  * <${tagName} - Matches the opening of an XML tag with the specified tag name
+                  * [^>]* - Matches any characters except > (handles attributes in the opening tag)
+                  * > - Matches the closing > of the opening tag
+                  * ([\\s\\S]*?) - Capture group to extract text content inside the tag
+                  *
+                  *     ( and ) - Creates a capture group to extract the content
+                  *     \\s - Matches any whitespace character (space, tab, newline, etc.)
+                  *     \\S - Matches any non-whitespace character
+                  *     [\\s\\S] - Matches ANY character (whitespace OR non-whitespace = everything)
+                  *     * - Zero or more of the previous pattern
+                  *     ? - Makes it non-greedy (matches as little as possible)
+                  *
+                  * <\\/${tagName}> - Matches the closing tag
+                  */
+                  const match = xmlContent.match(regex);
+                  return match ? match[1].trim() : null;
+                }
+
+                // === STEP 4: PROCESS EACH TEST RESULT XML FILE ====================================
+                for (const file of testResultFiles) {
+                  try {
+                    const content = fs.readFileSync(file, 'utf8');
+
+                    // === Extract test suite information using regex ===
+                    // Get suite name from testsuite tag
+                    const suiteName = extractAttribute(content, 'testsuite', 'name') || 'Unknown Suite';
+                    
+                    // Get failure and error counts from testsuite tag
+                    const suiteFailures = parseInt(extractAttribute(content, 'testsuite', 'failures') || '0');
+                    const suiteErrors = parseInt(extractAttribute(content, 'testsuite', 'errors') || '0');
+                    
+                    // Add to global counters
+                    totalFailures += suiteFailures;
+                    totalErrors += suiteErrors;
+
+                    // === Find all testcase elements that have failures, errors, or flaky failures ===
+                    let testcaseMatches = [];
+                    const parts = content.split('<testcase');
+                    const closingTag = '</testcase>';
+                    for (let i = 1; i < parts.length; i++) {
+                      let testcaseContent = '<testcase' + parts[i];
+                      const selfClosingMatch = testcaseContent.match(/<testcase[^>]*\/>/);
+                      if (selfClosingMatch) {
+                        testcaseMatches.push(selfClosingMatch[0]);
+                        continue;
+                      }
+                      const closingIndex = testcaseContent.indexOf(closingTag);
+                      if (closingIndex !== -1) {
+                        testcaseMatches.push(testcaseContent.substring(0, closingIndex + closingTag.length));
+                      }
+                    }
+
+                    // Process each test case
+                    testcaseMatches.forEach(testcaseXml => {
+                      const className = extractAttribute(testcaseXml, 'testcase', 'classname') || 'UnknownClass';
+                      const testName = extractAttribute(testcaseXml, 'testcase', 'name') || 'UnknownTest';
+                      
+                      const isFailed = testcaseXml.includes('<failure') || testcaseXml.includes('<error');
+                      const isFlaky = testcaseXml.includes('<flakyFailure');
+                      
+                      if (isFailed) {
+                        let message = 'Test failed';
+                        const failureText = extractTextContent(testcaseXml, 'failure');
+                        const errorText = extractTextContent(testcaseXml, 'error');
+                        
+                        if (failureText) {
+                          message = failureText;
+                        } else if (errorText) {
+                          message = errorText;
+                        }
+                        
+                        // Truncate message if too long for display
+                        if (message.length > 200) {
+                          message = message.substring(0, 200) + '...';
+                        }
+
+                        // Store detailed information about the failed test
+                        failedTests.push({
+                          class: className,
+                          test: testName
+                        });
+                      }
+                      
+                      if (isFlaky) {
+                        flakyTests.push({
+                          class: className,
+                          test: testName
+                        });
+                      }
+                    });
+
+                  } catch (parseError) {
+                    // Log parsing errors but continue processing other files
+                    console.error(`Error parsing ${file}:`, parseError.message);
+                  }
+                }
+
+                // === STEP 5: BUILD SUMMARY TEXT FOR DISPLAY ==============================
+                let summaryText = `## 🧪 Test Results Summary\n\n`;       // Start with heading
+
+                // === Case A: All tests passed ===
+                if (totalFailures === 0 && totalErrors === 0) {
+                  summaryText += `🎉 **All tests passed!**`;               // Success message
+                } else {
+                  // === Case B: Some tests failed ===
+                  summaryText += `❌ **Failed Tests (${failedTests.length})**\n\n`;
+                  summaryText += formatTestsByClass(failedTests);
+
+                  if (flakyTests.length > 0) {
+                    summaryText += `\n⚠️ **Flaky Tests (${flakyTests.length})**\n\n`;
+                    summaryText += formatTestsByClass(flakyTests);
+                  }
+
+                  if (failedTests.length > 0) {
+                    summaryText += `\n📋 **Test Methods for Re-running Failed Tests**\n\n`;
+                    
+                    const mavenTestList = failedTests
+                      .map(test => {
+                        const simpleClassName = test.class.split('.').pop();
+                        return `${simpleClassName}#${test.test}`;
+                      })
+                      .join(',');
+                    
+                    summaryText += `\`\`\`\n${mavenTestList}\n\`\`\`\n`;
+                  }
+                  
+                  if (flakyTests.length > 0) {
+                    summaryText += `\n📋 **Test Methods for Re-running Flaky Tests**\n\n`;
+                    
+                    const flakyTestList = flakyTests
+                      .map(test => {
+                        const simpleClassName = test.class.split('.').pop();
+                        return `${simpleClassName}#${test.test}`;
+                      })
+                      .join(',');
+                    
+                    summaryText += `\`\`\`\n${flakyTestList}\n\`\`\`\n`;
+                  }
+                }
+
+                // === HELPER FUNCTION: group tests by class, sort by simple class name, and format as a markdown code block ===
+                function formatTestsByClass(tests) {
+                  const grouped = {};
+                  tests.forEach(test => {
+                    const key = test.class;
+                    if (!grouped[key]) {
+                      grouped[key] = [];
+                    }
+                    grouped[key].push(test);
+                  });
+                  
+                  const sorted = Object.entries(grouped).sort((a, b) => {
+                    const simpleA = a[0].split('.').pop();
+                    const simpleB = b[0].split('.').pop();
+                    return simpleA.localeCompare(simpleB);
+                  });
+                  
+                  let output = '```\n';
+                  for (const [className, classTests] of sorted) {
+                    const simpleClassName = className.split('.').pop();
+                    output += `${simpleClassName}\n`;
+                    output += classTests.map(t => `- ${t.test}`).join('\n');
+                    output += '\n\n';
+                  }
+                  output += '```\n';
+                  return output;
+                }
+
+                // === STEP 6: WRITE THE COMPLETE SUMMARY TO GITHUB =============================
+                await core.summary
+                  .addRaw(summaryText)                                    // Add the formatted summary text
+                  .write();                                               // Write to GitHub Actions summary
+
+              } catch (error) {
+                console.error('Error parsing test results:', error);     
+                // Display user-friendly error message in summary
+                await core.summary
+                  .addHeading('🔍 Test Results')                          // Error section heading
+                  .addRaw(`Error parsing test results: ${error.message}`) // Error details
+                  .write();                                               // Write error summary
+              }
         
         - name: Report
-          uses: dorny/test-reporter@v2.0.0
+          uses: dorny/test-reporter@v2.1.1
           with:
-            artifact: selenium-test-reports
+            artifact: artifacts
             name: Selenium tests
-            path: '*.xml'
+            path: 'surefire-reports/*.xml'
             reporter: java-junit
             only-summary: 'false'

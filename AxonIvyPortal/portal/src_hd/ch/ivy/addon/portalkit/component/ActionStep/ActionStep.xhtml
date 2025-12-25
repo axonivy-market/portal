@@ -18,6 +18,7 @@
   <cc:attribute name="isPreviewMode" default="false" type="java.lang.Boolean"/>
   <cc:attribute name="ariaLabel" />
   <cc:attribute name="destroyCaseDialogComponent" default=""/>
+  <cc:attribute name="onShowCaseCustomFieldsComplete" />
 </cc:interface>
 
 <cc:implementation>
@@ -71,6 +72,16 @@
       <i class="action-icon si si-business-contract-handshake-sign" />
       <h:outputText value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/ShowBusinessDetails')}" />
     </p:link>
+    
+    <p:commandLink id="show-case-custom-fields" rendered="#{caseActionBean.showCustomFieldsDialog()}"
+                   onstart="event.stopPropagation();"
+                   ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/customFields')}" 
+                   styleClass="case-command action-step-item ui-menu-items" onclick="initCustomFieldCaseListData();"
+                   update="@parent #{cc.attrs.update}" process="@this">
+      <i class="action-icon si si-cog-double-2" />
+      <span class="option-item-label">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/customFields')}</span>
+    </p:commandLink>
+    <ic:ch.ivy.addon.portalkit.component.CaseItemCustomFields id="custom-fields-component" case="#{case}" />
 
     <p:link id="show-process-viewer-link" target="_blank"
       styleClass="show-process-viewer-link case-command action-step-item"

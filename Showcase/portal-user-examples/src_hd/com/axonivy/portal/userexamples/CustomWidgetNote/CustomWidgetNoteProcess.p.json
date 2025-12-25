@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/13.1.2/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/13.2.0/process.json",
   "id" : "195F9D8A2A5E73ED",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -67,10 +67,11 @@
       "config" : {
         "output" : {
           "code" : [
+            "import com.axonivy.portal.components.service.LanguageService;",
             "import com.sun.org.apache.xalan.internal.xsltc.compiler.Param;",
             "import ch.ivyteam.ivy.workflow.internal.caze.Case;",
             "import java.util.Locale;",
-            "Locale sessionLocale = ivy.session.contentLocale;",
+            "Locale sessionLocale = LanguageService.getInstance().convertToPortalUserLocale(ivy.session.contentLocale);",
             "",
             "if (sessionLocale == Locale.ENGLISH){",
             "  in.note = in.noteEN;",

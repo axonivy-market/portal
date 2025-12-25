@@ -14,7 +14,9 @@ import com.axonivy.portal.selenium.common.FilterValueType;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
+import com.codeborne.selenide.ScrollIntoViewOptions;
 import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.ScrollIntoViewOptions.Block;
 
 public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
 
@@ -334,7 +336,7 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
     getCustomCaseFieldSelection().click();
     SelenideElement customCaseFieldPanel = $("span[id$='column-management-form:custom-case-field-selection_panel']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     SelenideElement fieldElement =
-        customCaseFieldPanel.$$("li").filter(text(fieldName)).first().shouldBe(getClickableCondition());
+        customCaseFieldPanel.$$("li").filter(text(fieldName)).first().scrollIntoCenter().shouldBe(getClickableCondition());
     fieldElement.getAttribute(FILTER_TASK_NAME);
     fieldElement.click();
     getColumnManagementDialog().$("button[id$='field-add-btn']").click();
@@ -390,7 +392,8 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
   }
   
   public void closeFilter() {
-    $("span[id$=':widget-title-group']").$("label").scrollIntoView(("{block: \"start\"}")).click();
+    $("span[id$=':widget-title-group']").$("label").scrollIntoView(ScrollIntoViewOptions.instant().block(Block.start))
+        .click();
     $("div[id$=':widget-filter-content']").shouldBe(disappear, DEFAULT_TIMEOUT);
     waitPreviewTableLoaded();
   }

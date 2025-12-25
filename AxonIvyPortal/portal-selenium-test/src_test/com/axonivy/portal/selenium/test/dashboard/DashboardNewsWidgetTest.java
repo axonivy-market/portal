@@ -1,7 +1,6 @@
 package com.axonivy.portal.selenium.test.dashboard;
 
-import static com.axonivy.portal.selenium.common.Variable.DEEPL_AUTH_KEY;
-import static com.axonivy.portal.selenium.common.Variable.ENABLE_DEEPL_TRANSLATION;
+import static com.axonivy.portal.selenium.common.Variable.ENABLE_TRANSLATION_SERVICE;
 import static com.codeborne.selenide.CollectionCondition.size;
 
 import org.junit.jupiter.api.AfterEach;
@@ -45,8 +44,8 @@ public class DashboardNewsWidgetTest extends BaseTest {
     super.setup();
     newDashboardPage = new NewDashboardPage();
     resetLanguageOfCurrentUser();
-    updatePortalSetting(ENABLE_DEEPL_TRANSLATION.getKey(), "true");
-    updatePortalSetting(DEEPL_AUTH_KEY.getKey(), "deepLAuthKey");
+    updatePortalSetting(ENABLE_TRANSLATION_SERVICE.getKey(), "true");
+    updateTranslationVariable("DeepL");
   }
 
   @Test

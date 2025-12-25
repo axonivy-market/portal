@@ -36,7 +36,7 @@
     <h:panelGroup layout="block" rendered="#{!hideActionButton}">
       <p:commandButton id="process-action-button" icon="fa fa-ellipsis-h"
         ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}"
-        styleClass="ui-button-flat icon-more-menu-button #{buttonStyle} ui-no-rounded-button-process-page" type="button"/>
+        styleClass="rounded-button icon-more-menu-button #{buttonStyle} ui-no-rounded-button-process-page process-action-button" type="button"/>
 
       <p:menu id="process-action-menu" overlay="true"
         trigger="process-action-button"
@@ -83,7 +83,7 @@
         <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/startProcess')}" id="start-button" 
           actionListener="#{processWidgetBean.startProcess(process)}" 
           styleClass="ui-no-rounded-button-process-page"
-          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/startProcess')}"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/startProcess')} #{process.name}"
           icon="si si-arrow-right-1" iconPos="right" ajax="#{!isExternalLink}" 
           rendered="#{!cc.attrs.isProcessGridMode and !cc.attrs.isDashboardProcessWidget}" />
     </div>

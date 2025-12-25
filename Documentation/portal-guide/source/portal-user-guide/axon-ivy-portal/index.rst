@@ -1,71 +1,117 @@
 .. _axon-ivy-portal:
 
-|ivy| Portal
+Axon Ivy Portal
 ***************
 
-**|ivy| Portal** is the centerpiece for your daily work with the
-applications you or your company implemented using |ivy|.
-With a web-based, modern interface, the Portal provides you with key
-functionalities on all your devices:
+**Axon Ivy Portal** is the centerpiece for your daily work with applications implemented 
+using Axon Ivy. With a web-based, modern interface, the Portal provides key functionalities 
+on all your devices to help you manage your work efficiently.
 
--  Access your applications and start new cases
+What You Can Do With Portal
+============================
 
--  Manage and fulfill tasks assigned to you or your roles
+.. table::
+   :widths: 30 70
 
--  Understand what is going on by using on-the-spot statistics and
-   historic data on all your cases and tasks
+   +--------------------------------+------------------------------------------------------------+
+   | Feature                        | Description                                                |
+   +================================+============================================================+
+   | **Start Processes**            | Access your applications and start new cases               |
+   +--------------------------------+------------------------------------------------------------+
+   | **Manage Tasks**               | View, work on, and complete tasks assigned to you or       |
+   |                                | your roles                                                 |
+   +--------------------------------+------------------------------------------------------------+
+   | **Track Cases**                | Monitor case progress with real-time statistics and        |
+   |                                | historical data                                            |
+   +--------------------------------+------------------------------------------------------------+
+   | **View Statistics**            | Analyze performance with charts, dashboards, and           |
+   |                                | reports on tasks, cases, and processes                     |
+   +--------------------------------+------------------------------------------------------------+
+   | **Customize Your Experience**  | Personalize dashboards, widgets, and settings to match     |
+   |                                | your workflow                                              |
+   +--------------------------------+------------------------------------------------------------+
+   | **Search & Filter**            | Quickly find tasks, cases, and processes with powerful     |
+   |                                | search capabilities                                        |
+   +--------------------------------+------------------------------------------------------------+
 
--  Improve your |ivy| Portal experience and efficiency through the
-   built-in customization options
+About This Guide
+================
 
-This document provides you – as a business user – with a comprehensive
-overview of the |ivy| Portal, its features and functionalities.
+This document provides you—as a business user—with a comprehensive overview of the 
+Axon Ivy Portal, its features, and functionalities.
 
-.. Hint::
-	The look and feel shown in the screenshots of this document, as well as the
-	features presented are part of the standard |ivy| Portal. However,
-	the |ivy| Portal is highly configurable, thus, the Portal of your company might
-	have a different look and feel, and some features might be disabled by your
-	administrator.
+.. note::
+   The look and feel shown in the screenshots, as well as the features presented, are part 
+   of the standard Axon Ivy Portal. However, Portal is highly configurable—your company's 
+   Portal might have a different appearance, and some features might be disabled by your 
+   administrator.
 
-To start your |ivy| Portal experience, open the link provided by your
-administrator in a web browser. The |ivy| Portal will ask you to enter your
-login credentials.
+Getting Started
+===============
+
+Logging In
+----------
+
+To access the Portal, open the link provided by your administrator in a web browser. 
+You will be prompted to enter your login credentials.
 
 |login-screen|
 
-.. Hint::
-   Depending on your infrastructure, you might be automatically logged in
-   using single-sign-on (SSO). In this case, you will be forwarded directly to the
-   |ivy| Portal Dashboard.
+.. tip::
+   **Single Sign-On (SSO)**: If your organization uses SSO, you may be automatically logged in 
+   and forwarded directly to the Portal Dashboard without entering credentials.
 
-   If the Ivy Security System is used, you can click on
-   :guilabel:`Forgot my password` to reset it.
+.. note::
+   **Password Reset**: If your organization uses the Ivy Security System, you can reset 
+   your password using the :guilabel:`Forgot my password` link. See :ref:`forgot-password` 
+   for detailed instructions.
+   
+   For external authentication systems (Active Directory, Entra ID, LDAP), contact your 
+   IT department or use your organization's self-service password reset portal.
 
-After successful login, you will see the |ivy| Portal Homepage and your
-personal dashboard. All your activities can be managed from this central entry
-point. The Portal Homepage has the following elements:
+Understanding the Portal Interface
+----------------------------------
 
-#. The |ivy| Portal header at the top is always visible and provides
-   you with a global search field, key information about the Portal and options to
-   configure your personal user account. See :ref:`portal-header` for
-   details.
+After successful login, you will see the Axon Ivy Portal Homepage with your personal dashboard. 
+All your activities can be managed from this central entry point.
+
+The Portal interface has three main areas:
+
+**1. Portal Header** (always visible at top)
 
    |axon-ivy-portal-header|
 
-#. The menu on the left side is always visible and gives you access to
-   all processes, cases, tasks and other features of the |ivy| Portal.
-   If the menu is minimized, hover over the menu to enlarge it. You
-   may permanently enlarge the menu by clicking on the |pin-icon| icon in
-   the top left hand corner.
+   Provides global search, key information, and personal account settings.
+   
+   See :ref:`portal-header` for details.
+
+**2. Side Menu** (always visible on left)
 
    |axon-ivy-portal-menu|
 
-#. In the center, you see your personal dashboard providing you access to your
-   processes, cases, tasks and performance indicators. See :ref:`new-dashboard` for
-   a detailed description.
+   Access to all processes, cases, tasks, and Portal features.
+   
+   - **Minimized**: Hover over the menu to temporarily enlarge it
+   - **Expanded**: Click the pin button in the top left to permanently keep the menu expanded
+
+**3. Main Content Area** (center)
 
    |axon-ivy-portal|
+
+   Your personal dashboard with processes, cases, tasks, and performance indicators.
+   
+   See :ref:`new-dashboard` for a detailed description of dashboards and widgets.
+
+Next Steps
+----------
+
+Now that you understand the Portal interface, explore these key features:
+
+- **Dashboards**: Customize your workspace → See :ref:`new-dashboard`
+- **Processes**: Start new business processes → See :ref:`full-process-list`
+- **Tasks**: View and complete your assigned work → See :ref:`full-task-list`
+- **Cases**: Track and manage case progress → See :ref:`full-case-list`
+- **User Settings**: Configure your preferences → See :ref:`my-profile`
 
 .. include:: ../includes/_common-icon.rst
 

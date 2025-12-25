@@ -32,8 +32,8 @@ public enum GlobalVariable {
   DATE_FILTER_WITH_TIME("Portal.DateTimeFormat.DateFilterWithTime", GlobalVariableType.SELECTION, Option.FALSE.toString(), "dateFilterWithTime"),
   HIDE_SYSTEM_TASKS_FROM_HISTORY("Portal.Histories.HideSystemTasks", GlobalVariableType.SELECTION, Option.TRUE.toString(), "hideSystemTasksFromHistory"),
   HIDE_SYSTEM_TASKS_FROM_HISTORY_ADMINISTRATOR("Portal.Histories.HideSystemTasksForAdministrator", GlobalVariableType.SELECTION, Option.FALSE.toString(), "hideSystemTasksFromHistoryAdministrator"),
-  HIDE_SYSTEM_NOTES_FROM_HISTORY("Portal.Histories.HideSystemNotes", GlobalVariableType.SELECTION, Option.TRUE.toString(), "hideSystemNotesFromHistory"),
-  HIDE_SYSTEM_NOTES_FROM_HISTORY_ADMINISTRATOR("Portal.Histories.HideSystemNotesForAdministrator", GlobalVariableType.SELECTION, Option.FALSE.toString(), "hideSystemNotesFromHistoryAdministrator"),
+  CHECK_SYSTEM_TASKS_FROM_HISTORY("Portal.Histories.CheckSystemTasksByDefault", GlobalVariableType.SELECTION, Option.TRUE.toString(), "checkSystemTasksByDefault"),
+  CHECK_SYSTEM_NOTES_FROM_HISTORY("Portal.Histories.CheckSystemNotesByDefault", GlobalVariableType.SELECTION, Option.TRUE.toString(), "checkSystemNotesByDefault"),
   ENABLE_GROUP_CHAT("Portal.Chat.EnableGroup", GlobalVariableType.SELECTION, Option.FALSE.toString(), "enableGroupChat"),
   ENABLE_PRIVATE_CHAT("Portal.Chat.EnablePrivate", GlobalVariableType.SELECTION, Option.FALSE.toString(), "enablePrivateChat"),
   CHAT_RESPONSE_TIMEOUT("Portal.Chat.ResponseTimeout", GlobalVariableType.NUMBER, "0", "chatResponseTimeout"),
@@ -74,8 +74,7 @@ public enum GlobalVariable {
   GLOBAL_SEARCH_SCOPE_BY_CATEGORIES("Portal.GlobalSearchScopeCategories", GlobalVariableType.MULTI_EXTERNAL_SELECTIONS,
           getGlobalSearchScopeCategories(), "GlobalSearchScopeCategoriesNote", getGlobalSearchScopeCategories()),
   GLOBAL_FOOTER_INFO("Portal.GlobalFooterInfo", GlobalVariableType.TEXT, "GlobalFooterInfo"),
-  DEEPL_AUTH_KEY("Portal.DeepL.AuthKey", GlobalVariableType.PASSWORD, "", "deepLAuthKey"), ENABLE_DEEPL_TRANSLATION(
-      "Portal.DeepL.Enable", GlobalVariableType.SELECTION, Option.FALSE.toString(), "enableDeepLTranslation"),
+  ENABLE_TRANSLATION_SERVICE("Portal.TranslationService.Enable", GlobalVariableType.SELECTION, Option.FALSE.toString(), "enableTranslationService"),
   SHOW_QR_CODE("Portal.UserMenu.ShowQRCode", GlobalVariableType.SELECTION, Option.FALSE.toString(),
       "ShowQRCode"),
   BASE_QR_CODE_URL("Portal.UserMenu.BaseQRCodeUrl", GlobalVariableType.TEXT, "baseQRCodeUrl"), APPLE_STORE_URL(

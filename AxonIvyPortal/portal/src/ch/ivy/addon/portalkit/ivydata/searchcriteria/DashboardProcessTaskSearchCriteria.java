@@ -26,7 +26,7 @@ public class DashboardProcessTaskSearchCriteria {
     TaskQuery query = TaskQuery.create();
     CaseQuery caseQuery = CaseQuery.businessCases();
     if (this.processStartId != null) {
-      queryProcessStartId();
+      caseQuery = queryProcessStartId();
     }
     query.where().cases(caseQuery);
     queryCanWorkOn(query);

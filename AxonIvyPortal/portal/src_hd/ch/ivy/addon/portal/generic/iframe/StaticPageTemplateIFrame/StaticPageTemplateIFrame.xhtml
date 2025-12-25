@@ -4,6 +4,8 @@
   xmlns:pe="http://primefaces.org/ui/extensions">
 <h:body>
   <ui:composition template="/layouts/IFramePortalTemplate.xhtml">
+    <ui:param name="layoutContentStyleClass" value="flex flex-column" />
+    <ui:param name="iframeStyleClass" value="flex-auto" />
     <ui:param name="url" value="#{data.url}" />
   </ui:composition>
 </h:body>

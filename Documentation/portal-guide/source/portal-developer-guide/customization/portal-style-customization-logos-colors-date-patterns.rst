@@ -3,13 +3,19 @@
 Portal Styles Customization (Logos, Colors, Date Patterns)
 ==========================================================
 
+Introduction
+------------
+
+Customize Portal's visual appearance to match your corporate identity by configuring logos, colors, and date formats.
+Portal uses CSS variables for upgrade-safe theming and supports Axon Ivy's engine branding system for logo management.
+
 .. _customization-portal-logos-and-colors-change-portal-logos:
 
 Change Logos in Portal
 ----------------------
 
 You can change both the top-left corner logo in the menu and the login logo by
-using :dev-url:`Engine Branding </doc/|version|/designer-guide/user-interface/branding/branding-engine.html>`.
+using :doc-url:`Engine Branding </designer-guide/user-interface/branding/branding-engine.html>`.
 
 We have two different logo graphics for the expanded and the collapsed
 menu. You can use one "pure" logo for the small, quadratic format (default: 42x42 pixels), and a logo
@@ -30,7 +36,7 @@ We recommend using images with a transparent background, if your Corporate
 Identity does not define a mandatory background color. 
 
 To change the logos used in the Portal, please use resources that are described at 
-:dev-url:`User Interface Branding </doc/|version|/designer-guide/user-interface/branding/branding-user-interface.html#resources>` and follow the guidelines below.
+:doc-url:`User Interface Branding </designer-guide/user-interface/branding/branding-user-interface.html#resources>` and follow the guidelines below.
 
 Expanded Menu Logo
 ^^^^^^^^^^^^^^^^^^
@@ -72,8 +78,8 @@ The Portal uses modern |css_variable| to support style customization.
 To customize the Portal styles in an upgrade safe way, we suggest that you copy all CSS variables and styles
 which you plan to override from the files ``portal-root-variables.css``, ``portal-variables-light.css``, and ``portal-variables-dark.css`` to file ``custom.css``.
 
-Refer to :dev-url:`Engine Branding </doc/|version|/designer-guide/user-interface/branding/branding-engine.html>` for the
-location of :dev-url:`custom.css </doc/|version|/engine-guide/configuration/files/custom-css.html>`.
+Refer to :doc-url:`Engine Branding </designer-guide/user-interface/branding/branding-engine.html>` for the
+location of :doc-url:`custom.css </engine-guide/configuration/files/custom-css.html>`.
 
 .. caution:: Please do not modify ``portal-root-variables.css``, ``portal-variables-light.css``, ``portal-variables-dark.css`` and ``portal.css`` directly because they may change in a future Portal version.
 
@@ -89,15 +95,15 @@ Below is the list of some Portal elements which are using customizable colors:
 
 You can customize the Portal styles in ``custom.css``.
 
-   For example, to edit the ``--first-header-bar`` you need to insert this for example in the ``custom.css``:
+    For example, to edit the ``--first-header-bar`` you need to insert this for example in the ``custom.css``:
 
-   .. code-block:: css
-
-      body .first-header-bar {
-         width: 60%;
-         background-color: #1ea2b1;
-      }
-   ..
+    .. code-block:: css
+ 
+       body .first-header-bar {
+          width: 60%;
+          background-color: #1ea2b1;
+       }
+    ..
 
 .. tip::
    - As the size measure unit for ``font-size``, the Portal uses ``rem``. 
@@ -108,10 +114,10 @@ You can customize the Portal styles in ``custom.css``.
 
 .. tip::
    If you are using IFrames and you want to customize the colors of the project specific UIs, then refer to this documentation 
-   :dev-url:`/doc/|version|/designer-guide/how-to/overrides.html?#override-new-wizard`
+   :doc-url:`/designer-guide/how-to/overrides.html?#override-new-wizard`
 
 .. warning::
-   - Do not change ``font-family`` property values.
+   - Do not modify component-level ``font-family`` declarations directly. Instead, set ``--portal-font-family`` in ``:root`` within ``custom.css``.
 
 .. |css_variable| raw:: html
 

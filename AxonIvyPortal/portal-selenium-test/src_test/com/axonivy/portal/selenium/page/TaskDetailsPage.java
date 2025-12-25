@@ -16,12 +16,15 @@ import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 
 import com.axonivy.portal.selenium.common.ScreenshotUtils;
+import com.axonivy.portal.selenium.common.Sleeper;
 import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
+import com.codeborne.selenide.ScrollIntoViewOptions;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
+import com.codeborne.selenide.ScrollIntoViewOptions.Block;
 
 public class TaskDetailsPage extends TemplatePage {
 
@@ -31,11 +34,11 @@ public class TaskDetailsPage extends TemplatePage {
   }
 
   public void addNote(String noteContent) {
-    $("a[id$=':task-notes:add-note-command']").shouldBe(appear, DEFAULT_TIMEOUT);
-    $("a[id$=':task-notes:add-note-command']").click();
+    $("a[id$=':task-notes:add-note-command']").shouldBe(appear, DEFAULT_TIMEOUT).scrollIntoCenter();
+    $("a[id$=':task-notes:add-note-command']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     $("div[id$=':task-notes:add-new-note-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
     $("div[id$=':task-notes:add-new-note-dialog']").find("textarea").sendKeys(noteContent);
-    $("button[id$=':task-notes:task-add-new-note-form:save-add-note-command']").click();
+    $("button[id$=':task-notes:task-add-new-note-form:save-add-note-command']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     $("div[id$=':task-notes:task-add-new-note-form:save-add-note-command']").shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 
@@ -129,7 +132,7 @@ public class TaskDetailsPage extends TemplatePage {
     return actionPanel.findElements(By.cssSelector("a[class*='option-item']"))
         .stream()
         .filter(
-            elem -> !elem.getAttribute("class").contains("ui-state-disabled"))
+            elem -> !elem.getDomAttribute("class").contains("ui-state-disabled"))
         .map(WebElement::getText)
         .collect(Collectors.toList());
   }
@@ -203,7 +206,8 @@ public class TaskDetailsPage extends TemplatePage {
 
   public SelenideElement getAddNoteDialog() {
     var noteDialog = $("[id$=':task-notes:add-new-note-dialog']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
-    noteDialog.$(".ui-dialog-title").shouldBe(appear, DEFAULT_TIMEOUT).click();
+    noteDialog.$("button[id$=':save-add-note-command']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
+    Sleeper.sleep(500); // Explicitly wait for better screenshots
     return noteDialog;
   }
 
@@ -214,19 +218,21 @@ public class TaskDetailsPage extends TemplatePage {
   public void addNoteToTaskWithContent(String content) {
     $("div.ui-dialog[aria-hidden='false']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     SelenideElement addNoteDialog = $("div.ui-dialog[aria-hidden='false']").shouldBe(appear, DEFAULT_TIMEOUT);
-    addNoteDialog.findElement(By.cssSelector("textarea[id$='note-content']")).sendKeys(content);
-    addNoteDialog.findElement(By.cssSelector("button[id$='save-add-note-command']")).click();
+    addNoteDialog.$("textarea[id$='note-content']").sendKeys(content);
+    addNoteDialog.$("button[id$='save-add-note-command']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
 
   public void openAddAttachmentDialog() {
     $("[id$=':task-documents:add-document-command']").shouldBe(appear, DEFAULT_TIMEOUT)
         .shouldBe(getClickableCondition()).click();
     $("[id$=':task-documents:document-upload-dialog']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    $("button[id$=':task-documents:document-upload-close-command']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
   }
 
   public SelenideElement getAddAttachmentDialog() {
     var uploadDialog = $("[id$=':task-documents:document-upload-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
     uploadDialog.$(".ui-dialog-title").shouldBe(appear, DEFAULT_TIMEOUT).click();
+    Sleeper.sleep(500); // Explicitly wait for better screenshots
     return uploadDialog;
   }
 
@@ -280,10 +286,8 @@ public class TaskDetailsPage extends TemplatePage {
   }
 
   public void waitForIFrameURLWidgetLoad() {
-    switchToIframeWithNameOrId("custom-widget-iframe-url");
-    $("a[href='https://www.iana.org/domains/example']").shouldBe(Condition.visible, DEFAULT_TIMEOUT);
-    switchBackToParent();
-
+    SelenideElement iframe = $("iframe[name='custom-widget-iframe-url']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    iframe.shouldHave(Condition.attributeMatching("src", ".*lucide\\.dev.*"));
   }
 
   public void waitForIFrameWidgetLoad() {
@@ -311,7 +315,7 @@ public class TaskDetailsPage extends TemplatePage {
   }
 
   public void clickBackButton() {
-    $("[id$=':task-detail-title-form:back-to-previous-page']").scrollIntoView(false);
+    $("[id$=':task-detail-title-form:back-to-previous-page']").scrollIntoView(ScrollIntoViewOptions.instant().block(Block.center));
     waitForElementClickableThenClick($("[id$=':task-detail-title-form:back-to-previous-page']"));
   }
 
@@ -387,5 +391,38 @@ public class TaskDetailsPage extends TemplatePage {
 
   public SelenideElement getExpiryResponsibleDialog() {
     return $("[id$=':expiry-responsible-dialog']");
+  }
+  
+  public void clickOnSystemNotesCheckbox(boolean checkboxShouldBeChecked) {
+    waitForElementDisplayed(By.cssSelector("[id$=':task-history-content-container']"), true);
+    var systemNotesCheckbox = findElementByCssSelector("[id$=':task-notes:show-system-notes-checkbox']");
+    var checkbox = systemNotesCheckbox.findElement(By.cssSelector("div.ui-chkbox-box.ui-widget"));
+    if ((checkboxShouldBeChecked && checkbox.getDomAttribute("class").contains("ui-state-active"))
+        || (!checkboxShouldBeChecked && !checkbox.getDomAttribute("class").contains("ui-state-active"))) {
+      return;
+    } else {
+      systemNotesCheckbox.findElement(By.cssSelector("span.ui-chkbox-label")).click();
+      // Cannot identify when the ajax request of select checkbox is finished
+      // So we need to wait for Ajax Indicator disappear
+      clickOnSystemNotesCheckbox(checkboxShouldBeChecked);
+    }
+  }
+  
+  public void clickOnShowCustomFieldsDialog() {
+    $("a[id$=':task-custom-fields-command']").shouldBe(getClickableCondition()).click();
+    $("div[id$='task-custom-fields-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+  
+  public SelenideElement getCustomFieldsDialog() {
+    return $("div[id$='task-custom-fields-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  public List<String> getCustomFieldNames() {
+    return $$("span[id$='customFieldLabel']")
+        .shouldBe(CollectionCondition.sizeGreaterThanOrEqual(0), DEFAULT_TIMEOUT)
+        .asFixedIterable()
+        .stream()
+        .map(SelenideElement::getText)
+        .collect(Collectors.toList());
   }
 }

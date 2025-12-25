@@ -7,7 +7,9 @@ previewRendered,TRUE,Boolean,"Boolean value to specify the rendering of the prev
 uploadRendered,TRUE,Boolean,"Boolean value to specify the rendering of the upload icon, when set to false upload icon will not be rendered."
 downloadRendered,TRUE,Boolean,"Boolean value to specify the rendering of the download icon, when set to false download icon will not be rendered."
 deleteRendered,TRUE,Boolean,"Boolean value to specify the rendering of the delete icon, when set to false delete icon will not be rendered."
+renameRendered,TRUE,Boolean,"Boolean value to specify the rendering of the edit filename icon, when set to false the icon will not be rendered."
 messageRendered,TRUE,Boolean,"Boolean value to specify the rendering of the message, when set to false message will not be rendered."
+lazy,FALSE,Boolean,Boolean value to specify whether the table should load data lazily and enable pagination.
 fileLimit,-1,Integer,Number of files are in the given ICase.
 sizeLimit,null,Long,Individual uploading file size limit in bytes.
 updatedComponentAfterUploaded,null,String,Component will be triggered the update after document is uploaded.
@@ -21,6 +23,8 @@ downloadStyleClass,null,String,Styles for download link.
 deleteIcon,fa-trash-o,String,Icon class will be displayed in delete link.
 deleteStyleClass,null,String,Styles for delete link.
 updatedComponentAfterDeleted,null,String,Component will be triggered the update after document is deleted.
+renameStyleClass,null,String,Styles for edit filename link.
+updatedComponentAfterRenamed,null,String,Component will be triggered the update after document is renamed.
 selectedType,,String,"String value to specify the selected document types, by default it will be first element in ``typeSelectionItems``."
 typeSelectionItems,"DOCUMENTATION,CONTRACT,INFORMATION,EMAIL,OTHERS",String,String value to specify the list of document type.
 enableScriptCheckingForUploadedDocument,,Boolean,"| Boolean value to specify script checking. Set to ``true`` to enable script checking.

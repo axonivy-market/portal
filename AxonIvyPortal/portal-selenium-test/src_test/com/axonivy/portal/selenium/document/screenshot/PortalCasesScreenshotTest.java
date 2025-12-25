@@ -38,6 +38,7 @@ public class PortalCasesScreenshotTest extends ScreenshotBaseTest {
   public void setup() {
     super.setup();
     grantSpecificPortalPermission(PortalPermission.TASK_CASE_ADD_NOTE);
+    grantSpecificPortalPermission(PortalPermission.CASE_DISPLAY_CUSTOM_FIELDS_ACTION);
     redirectToRelativeLink(createTestingTasksUrl);
     redirectToRelativeLink(createTestingCaseMapUrl);
     redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
@@ -102,6 +103,11 @@ public class PortalCasesScreenshotTest extends ScreenshotBaseTest {
 
     refreshPage();
     detailsPage.waitForCaseDetailsDisplay();
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(detailsPage.getRenameDocumentDialog(),
+        ScreenshotUtils.CASE_DETAIL_FOLDER + "how-to-rename-document", new ScreenshotMargin(10));
+
+    refreshPage();
+    detailsPage.waitForCaseDetailsDisplay();
     ScreenshotUtils.executeDecorateJs("scrollToBottomOfLayoutContent()");
     ScreenshotUtils.executeDecorateJs("highlightShowMoreNoteLink()");
     detailsPage.getHistoriesBox();
@@ -113,6 +119,15 @@ public class PortalCasesScreenshotTest extends ScreenshotBaseTest {
     detailsPage.waitForShowNoteHistory();
     ScreenshotUtils.captureHalfTopPageScreenShot(ScreenshotUtils.CASE_WIDGET_FOLDER + "export-case-history",
         new Dimension(SCREENSHOT_MEDIUM_WIDTH, 1000));
+    
+    mainMenuPage.openCaseList();
+    caseWidget.openCaseDetailsViaAction(2);
+    detailsPage.openActionMenu();
+    detailsPage.clickOnCaseCustomFieldsAction();
+    SelenideElement customFieldsDialog = detailsPage.getCaseCustomFieldsDialog();
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(customFieldsDialog,
+        ScreenshotUtils.CASE_DETAIL_FOLDER + "case-custom-fields-dialog", new ScreenshotMargin(100, 200));
+    
   }
 
   @Test

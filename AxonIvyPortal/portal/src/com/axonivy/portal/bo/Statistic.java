@@ -1,11 +1,15 @@
 package com.axonivy.portal.bo;
 
 import java.io.Serializable;
+
 import java.util.List;
 import java.util.Map.Entry;
 
+import org.apache.commons.lang3.StringUtils;
+
 import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
+import com.axonivy.portal.enums.statistic.AggregationField;
 import com.axonivy.portal.enums.statistic.ChartTarget;
 import com.axonivy.portal.enums.statistic.ChartType;
 import com.axonivy.portal.enums.statistic.ConditionBasedColoringScope;
@@ -14,11 +18,14 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
+import com.fasterxml.jackson.annotation.JsonView;
 
+import ch.ivy.addon.portalkit.bo.PortalJsonViews;
 import ch.ivy.addon.portalkit.configuration.AbstractConfiguration;
 import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.util.LanguageUtils;
 import ch.ivy.addon.portalkit.util.LanguageUtils.NameResult;
+import ch.ivy.addon.portalkit.util.PermissionUtils;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class Statistic extends AbstractConfiguration implements Serializable {
@@ -55,6 +62,7 @@ public class Statistic extends AbstractConfiguration implements Serializable {
   private String defaultBackgroundColor;
   private boolean conditionBasedColoringEnabled;
   private ConditionBasedColoringScope conditionBasedColoringScope;
+  private boolean chartDrillDownEnabled;
   
   public Statistic() {
     icon = DEFAULT_ICON;
@@ -272,4 +280,21 @@ public class Statistic extends AbstractConfiguration implements Serializable {
   public void setConditionBasedColoringScope(ConditionBasedColoringScope conditionBasedColoringScope) {
     this.conditionBasedColoringScope = conditionBasedColoringScope;
   }
+
+  @JsonView(PortalJsonViews.Internal.class)
+  public boolean getCanDrillDown() {
+    boolean supportedDrillDownAggregation =
+        !AggregationField.AGGREGATES_HAS_NO_MATCHED_FILTERS.contains(statisticAggregation.getField());
+    boolean hasRequiredReadAllPermission = chartTarget.equals(ChartTarget.CASE) ? PermissionUtils.checkReadAllCasesPermission() : PermissionUtils.checkReadAllTasksPermission();
+    return chartDrillDownEnabled && StringUtils.isEmpty(aggregates) && StringUtils.isEmpty(filter) && supportedDrillDownAggregation && hasRequiredReadAllPermission;
+  }
+
+  public boolean getChartDrillDownEnabled() {
+    return chartDrillDownEnabled;
+  }
+
+  public void setChartDrillDownEnabled(boolean chartDrillDownEnabled) {
+    this.chartDrillDownEnabled = chartDrillDownEnabled;
+  }
+  
 }

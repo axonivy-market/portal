@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/13.1.2/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/13.2.0/process.json",
   "id" : "170321BD7F5539D6",
   "config" : {
     "data" : "com.axonivy.portal.userexamples.leaverequest.LeaveRequestProcessData"
@@ -12,10 +12,7 @@
         "signature" : "start",
         "request" : {
           "name" : "<%=ivy.cms.co(\"/Processes/LeaveRequest/leaveRequest\")%>",
-          "description" : [
-            "This process allow employee to submit their leave request, then the request will be sent to selected approver.",
-            "After approver finish his task, the approval result will be sent back to requester"
-          ],
+          "description" : "<%=ivy.cms.co(\"/Processes/LeaveRequest/description\")%>",
           "customFields" : [
             { "name" : "cssIcon", "value" : "si si-advertising-megaphone-2" },
             { "name" : "processImage", "value" : "<%=ivy.cms.cr(\"/Images/process/NASASTART\")%>" }
@@ -130,10 +127,7 @@
       ],
       "visual" : {
         "at" : { "x" : 360, "y" : 64 },
-        "size" : { "width" : 528, "height" : 76 },
-        "description" : "",
-        "color" : "",
-        "icon" : ""
+        "size" : { "width" : 528, "height" : 76 }
       },
       "connect" : [
         { "id" : "f6", "to" : "f18" }
@@ -144,10 +138,7 @@
       "name" : "Approval task for leave request, which is assigned to the selected approver in first task",
       "visual" : {
         "at" : { "x" : 584, "y" : 408 },
-        "size" : { "width" : 480, "height" : 30 },
-        "description" : "",
-        "color" : "",
-        "icon" : ""
+        "size" : { "width" : 480, "height" : 30 }
       },
       "connect" : [
         { "id" : "f8", "to" : "f4" }
@@ -162,10 +153,7 @@
       ],
       "visual" : {
         "at" : { "x" : 984, "y" : 64 },
-        "size" : { "width" : 336, "height" : 60 },
-        "description" : "",
-        "color" : "",
-        "icon" : ""
+        "size" : { "width" : 336 }
       },
       "connect" : [
         { "id" : "f10", "to" : "f16" }
@@ -179,10 +167,7 @@
       ],
       "visual" : {
         "at" : { "x" : 304, "y" : 552 },
-        "size" : { "width" : 608, "height" : 44 },
-        "description" : "",
-        "color" : "",
-        "icon" : ""
+        "size" : { "width" : 608, "height" : 44 }
       },
       "connect" : [
         { "id" : "f12", "to" : "f0" }

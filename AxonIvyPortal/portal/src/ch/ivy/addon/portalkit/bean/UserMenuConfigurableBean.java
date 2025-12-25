@@ -7,7 +7,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 
 import ch.ivy.addon.portalkit.dto.UserMenu;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
@@ -36,7 +36,7 @@ public class UserMenuConfigurableBean implements Serializable {
         return false;
       } else {
         for (String permission : permissions) {
-          if (isSessionUserHasPermisson(permission)) {
+          if (isSessionUserHasPermission(permission)) {
             return false;
           }
         }
@@ -46,8 +46,8 @@ public class UserMenuConfigurableBean implements Serializable {
     return userMenus;
   }
   
-  private static boolean isSessionUserHasPermisson(String permission) {
-    return StringUtils.startsWith(permission, "#") ? StringUtils.equals(Ivy.session().getSessionUser().getMemberName(), permission)
+  private static boolean isSessionUserHasPermission(String permission) {
+    return Strings.CS.startsWith(permission, "#") ? Strings.CS.equals(Ivy.session().getSessionUser().getMemberName(), permission)
         : PermissionUtils.doesSessionUserHaveRole(permission);
   }
 

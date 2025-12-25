@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/13.1.2/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/13.2.0/process.json",
   "id" : "16AB53A8F6EAADFB",
   "kind" : "CALLABLE_SUB",
   "config" : {
@@ -117,7 +117,7 @@
           "name" : "valid file?",
           "config" : {
             "conditions" : {
-              "S10-f78" : "org.apache.commons.lang.StringUtils.isBlank(in.message)"
+              "S10-f78" : "org.apache.commons.lang3.StringUtils.isBlank(in.message)"
             }
           },
           "visual" : {

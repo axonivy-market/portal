@@ -6,17 +6,23 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 
 import com.axonivy.portal.selenium.common.ComplexFilterHelper;
 import com.axonivy.portal.selenium.common.FilterOperator;
 import com.axonivy.portal.selenium.common.FilterValueType;
+import com.axonivy.portal.selenium.common.Sleeper;
 import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
+import com.codeborne.selenide.ScrollIntoViewOptions;
 import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.ScrollIntoViewOptions.Block;
 
 public class TaskWidgetNewDashBoardPage extends TemplatePage {
 
@@ -584,6 +590,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
     $("div[class*='dashboard-widget-filter__main-panel']").shouldBe(getClickableCondition())
     .$$("div[class*='dashboard-widget-filter__filter-wrapper']").get(index).shouldBe(getClickableCondition())
     .$("div[id$='operator-selection']").shouldBe(getClickableCondition()).click();
+    Sleeper.sleep(300); // Wait for drop-down menu clearly appear before screenshot
   }
   
   public SelenideElement getConfigurationFilter() {
@@ -592,7 +599,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   
   public void removeFocusFilterDialog() {
     $("[id$=':widget-filter-content']").$("strong").click();
-    $("[id$=':widget-filter-content']").scrollIntoView("{block: \"end\"}");
+    $("[id$=':widget-filter-content']").scrollIntoView(ScrollIntoViewOptions.instant().block(Block.end));
   }
   
   public WebElement getFilterOverlayPanel(Integer index) {
@@ -695,5 +702,28 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
     SelenideElement tableRow = $("tbody[id$='dashboard-tasks_data']").$("tr[data-ri='" + dataRowIndex + "']").shouldBe(appear, DEFAULT_TIMEOUT);
     String rowCustomBusinessCaseFieldValue = tableRow.$$("td").last().$("span[id$='custom-column']").getText();
     return rowCustomBusinessCaseFieldValue ;
+  }
+  
+  public void clickCustomFieldsButtonOnActions(int taskIndex) {
+    getActiveTaskActions(taskIndex).filter(text("Custom Fields")).first().shouldBe(getClickableCondition()).click();
+    getCustomFieldsPanelOfTask().shouldBe(appear);
+  }
+  
+  public List<String> getCustomFieldNamesOnTaskCustomFieldsDialog() {
+    return $$("span[id$='customFieldLabel']")
+        .shouldBe(CollectionCondition.sizeGreaterThanOrEqual(0), DEFAULT_TIMEOUT)
+        .asFixedIterable()
+        .stream()
+        .map(SelenideElement::getText)
+        .collect(Collectors.toList());
+  }
+  
+  public SelenideElement getCustomFieldsPanelOfTask() {
+    return $("div[id$='task-custom-fields-dialog']");
+  }
+  
+  public boolean isCustomFieldsDialogDisplayed() {
+    return getCustomFieldsPanelOfTask().isDisplayed();
+
   }
 }

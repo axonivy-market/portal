@@ -15,6 +15,8 @@ import com.axonivy.portal.selenium.common.FilterValueType;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
+import com.codeborne.selenide.ScrollIntoViewOptions;
+import com.codeborne.selenide.ScrollIntoViewOptions.Block;
 import com.codeborne.selenide.SelenideElement;
 
 public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
@@ -149,7 +151,7 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public SelenideElement getAddedFieldRemoveLink(String field) {
-    return getColumnManagementDialog().$("tbody td.js-column-field-" + field + " a");
+    return getColumnManagementDialog().$("tbody td.js-column-field-" + field + " a").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public SelenideElement getCustomField(String field) {
@@ -261,12 +263,6 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
     return translationOverlay;
   }
 
-  public SelenideElement getConfigurationFilter() {
-    $("[id$=':widget-filter-content']").$(".filter-panel-title").click();
-    $("[id$=':widget-filter-content']").scrollIntoView("{block: \"end\"}");
-    return $("[id$=':widget-filter-content']").shouldBe(appear, DEFAULT_TIMEOUT);
-  }
-
   public SelenideElement getConfigurationDialog() {
     return $("div[id='new-widget-configuration-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
@@ -285,7 +281,8 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void closeFilter() {
-    $("span[id$=':widget-title-group']").$("label").scrollIntoView(("{block: \"start\"}")).click();
+    $("span[id$=':widget-title-group']").$("label").scrollIntoView(ScrollIntoViewOptions.instant().block(Block.start))
+        .click();
     $("div[id$=':widget-filter-content']").shouldBe(disappear, DEFAULT_TIMEOUT);
     waitPreviewTableLoaded();
   }
@@ -314,7 +311,7 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
     SelenideElement customFieldPanel = $("span[id$='column-management-form:custom-field-selection_panel']");
     customFieldPanel.shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     SelenideElement fieldElement =
-        customFieldPanel.$$("li").filter(text(fieldName)).first().shouldBe(getClickableCondition());
+        customFieldPanel.$$("li").filter(text(fieldName)).first().scrollIntoCenter().shouldBe(getClickableCondition());
     fieldElement.getAttribute(FILTER_CASE_NAME);
     fieldElement.click();
     getColumnManagementDialog().$("button[id$='field-add-btn']").click();

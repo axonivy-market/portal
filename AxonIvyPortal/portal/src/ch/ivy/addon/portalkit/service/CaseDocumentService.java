@@ -53,10 +53,9 @@ public class CaseDocumentService {
    * @return streamed content
    */
   public StreamedContent download(IvyDocument document) {
-    InputStream inputStream = documentsOf(iCase).get(Long.valueOf(document.getId())).read().asStream();
     return DefaultStreamedContent
         .builder()
-        .stream(() -> inputStream)
+        .stream(() -> documentsOf(iCase).get(Long.valueOf(document.getId())).read().asStream())
         .contentType(document.getContentType())
         .name(document.getName())
         .build();

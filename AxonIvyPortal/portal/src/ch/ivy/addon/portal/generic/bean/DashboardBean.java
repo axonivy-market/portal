@@ -52,7 +52,6 @@ import ch.ivy.addon.portalkit.service.WidgetFilterService;
 import ch.ivy.addon.portalkit.support.HtmlParser;
 import ch.ivy.addon.portalkit.util.DashboardUtils;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
-import ch.ivy.addon.portalkit.util.DefaultDashboardUtils;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivy.addon.portalkit.util.UrlUtils;
@@ -118,7 +117,12 @@ public class DashboardBean implements Serializable, IMultiLanguage {
 
     buildStatisticApiUri();
   }
-  
+
+  private Dashboard retrieveDrillDownDashboard() {
+    Object drillDownDashboard = Ivy.session().getAttribute(SessionAttribute.DRILL_DOWN_DASHBOARD.name());
+    return drillDownDashboard instanceof Dashboard ? (Dashboard) drillDownDashboard : null;
+  }
+
   private boolean isNavigateToDashboard() {
     Object attr = Ivy.session().getAttribute(SessionAttribute.NAVIGATE_TO_DASHBOARD.name());
     return attr != null && (boolean) attr;
@@ -140,7 +144,7 @@ public class DashboardBean implements Serializable, IMultiLanguage {
     selectedDashboard = dashboards.get(currentDashboardIndex);
 
     String selectedDashboardName = selectedDashboard.getTitles().stream()
-        .filter(displayName -> displayName.getLocale().equals(Ivy.session().getContentLocale())).findFirst()
+        .filter(displayName -> displayName.getLocale().equals(LanguageService.getInstance().getUserLocale())).findFirst()
         .orElseGet(() -> selectedDashboard.getTitles().get(0)).getValue();
     setSelectedDashboardName(selectedDashboardName);
     initShareDashboardLink(selectedDashboard);
@@ -158,7 +162,10 @@ public class DashboardBean implements Serializable, IMultiLanguage {
 
   protected List<Dashboard> collectDashboards() {
     List<Dashboard> dashboards = DashboardUtils.collectDashboards();
-    dashboards.add(DefaultDashboardUtils.getDefaultUserExampleDashboard());
+    Dashboard drillDownDashboard = retrieveDrillDownDashboard();
+    if (drillDownDashboard != null) {
+      dashboards.add(drillDownDashboard);
+    }
     return dashboards;
   }
 
@@ -446,6 +453,7 @@ public class DashboardBean implements Serializable, IMultiLanguage {
     }
   }
 
+  @Override
   public boolean isRequiredField(DisplayName displayName) {
     String currentLanguage = UserUtils.getUserLanguage();
     String displayLanguage = displayName.getLocale().getLanguage();
@@ -536,32 +544,29 @@ public class DashboardBean implements Serializable, IMultiLanguage {
   }
   
   public void setSearchScope(DashboardWidget widget) {
+    List<String> columnList = new ArrayList<>();
     if (widget instanceof TaskDashboardWidget taskWidget) {
-      this.searchScope = getSearchScopeFromWidget(taskWidget.getFilterableColumns());
+      columnList = taskWidget.getColumns().stream().filter(col -> Boolean.TRUE.equals(col.getQuickSearch()))
+          .map(ColumnModel::getHeaderText).collect(Collectors.toList());
+    } else if (widget instanceof CaseDashboardWidget caseWidget) {
+      columnList = caseWidget.getColumns().stream().filter(col -> Boolean.TRUE.equals(col.getQuickSearch()))
+          .map(ColumnModel::getHeaderText).collect(Collectors.toList());
+    } else if (widget instanceof ProcessDashboardWidget processWidget) {
+      columnList = processWidget.getFilterableColumns().stream().filter(col -> Boolean.TRUE.equals(col.getQuickSearch()))
+          .map(ColumnModel::getHeaderText).collect(Collectors.toList());
     }
     
-    if (widget instanceof CaseDashboardWidget caseWidget) {
-      this.searchScope = getSearchScopeFromWidget(caseWidget.getFilterableColumns());
+    if (columnList.isEmpty()) {
+      this.searchScope = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/NoColumnsEnabledForQuickSearch");
+    } else {
+      StringBuilder fieldNameList = appendFieldNameList(columnList);
+      this.searchScope = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/QuickSearchScope",
+          Arrays.asList(fieldNameList.toString()));
     }
-    
-    if (widget instanceof ProcessDashboardWidget processWidget) {
-      this.searchScope = getSearchScopeFromWidget(processWidget.getFilterableColumns());
-    }
-  }
-
-  private String getSearchScopeFromWidget(List<ColumnModel> filterableColumns) {
-    List<String> fieldList = filterableColumns.stream().filter(col -> Boolean.TRUE.equals(col.getQuickSearch()))
-        .map(ColumnModel::getHeaderText).collect(Collectors.toList());
-    if (fieldList.isEmpty()) {
-      return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/NoColumnsEnabledForQuickSearch");
-    }
-    StringBuilder fieldNameList = appendFieldNameList(fieldList);
-    return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/QuickSearchScope",
-        Arrays.asList(fieldNameList.toString()));
   }
 
   private StringBuilder appendFieldNameList(List<String> fieldList) {
-    return new StringBuilder(String.join(", ", fieldList));
+    return new StringBuilder(String.join(Ivy.cms().co("/Labels/Comma"), fieldList));
 }
 
   public String getSearchScope() {

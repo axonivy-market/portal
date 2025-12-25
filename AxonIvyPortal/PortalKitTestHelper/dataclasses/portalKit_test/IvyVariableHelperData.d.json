@@ -1,0 +1,10 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/13.2.0/data-class.json",
+  "simpleName" : "IvyVariableHelperData",
+  "namespace" : "portalKit_test",
+  "fields" : [ {
+    "name" : "variableValue",
+    "type" : "java.lang.Object",
+    "modifiers" : [ ]
+  } ]
+}

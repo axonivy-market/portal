@@ -1,7 +1,5 @@
 package ch.ivy.addon.portal.generic.bean;
 
-import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.WELCOME;
-
 import java.io.ByteArrayInputStream;
 import java.io.Serializable;
 import java.nio.charset.StandardCharsets;
@@ -30,7 +28,9 @@ import org.primefaces.model.StreamedContent;
 import com.axonivy.portal.bo.jsonversion.DashboardJsonVersion;
 import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import com.axonivy.portal.components.util.RoleUtils;
-import com.axonivy.portal.service.DeepLTranslationService;
+import com.axonivy.portal.dto.dashboard.NavigationDashboardWidget;
+import com.axonivy.portal.service.IvyTranslationService;
+import com.axonivy.portal.util.ImageUploadUtils;
 import com.axonivy.portal.util.WelcomeWidgetUtils;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
@@ -45,6 +45,7 @@ import ch.ivy.addon.portalkit.ivydata.mapper.SecurityMemberDTOMapper;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
 import ch.ivy.addon.portalkit.util.DashboardUtils;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
+import ch.ivy.addon.portalkit.util.NavigationWidgetUtils;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivy.addon.portalkit.util.UserUtils;
@@ -150,7 +151,8 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
   }
   
   public void removeDashboard() {
-    removeWelcomeWidgetImagesOfDashboard(selectedDashboard);
+    removeWidgetImagesOfDashboard(selectedDashboard);
+    
     this.dashboards.remove(selectedDashboard);
     saveDashboards(new ArrayList<>(this.dashboards));
   }
@@ -159,13 +161,21 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
    * Remove images of welcome widgets of a dashboard
    * @param selectedDashboard
    */
-  private void removeWelcomeWidgetImagesOfDashboard(Dashboard selectedDashboard) {
+  private void removeWidgetImagesOfDashboard(Dashboard selectedDashboard) {
     if (CollectionUtils.isEmpty(selectedDashboard.getWidgets())) {
       return;
     }
     for (DashboardWidget selectedWidget : selectedDashboard.getWidgets()) {
-      if (WELCOME == selectedWidget.getType()) {
-        removeWelcomeWidgetImage(selectedWidget);
+      switch (selectedWidget.getType()) {
+        case WELCOME:
+          removeWelcomeWidgetImage(selectedWidget);
+          break;
+        case NAVIGATION_DASHBOARD:
+          NavigationDashboardWidget navWid = (NavigationDashboardWidget) selectedWidget;
+          NavigationWidgetUtils.removeNavigateWidgetImage(navWid);
+          break;
+        default:
+          break;
       }
     }
   }
@@ -314,12 +324,12 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
       DisplayName defaultTitle = languages.get(currentLanguage);
       if (defaultTitle != null) {
         try {
-          translatedText = DeepLTranslationService.getInstance().translate(defaultTitle.getValue(),
+          translatedText = IvyTranslationService.getInstance().translate(defaultTitle.getValue(),
               defaultTitle.getLocale(), title.getLocale());
         } catch (Exception e) {
           warningText = Ivy.cms()
               .co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/SomeThingWentWrong");
-          Ivy.log().error("DeepL Translation Service error: ", e.getMessage());
+          Ivy.log().error("Ivy Translation Service error: ", e.getMessage());
         }
       }
     }
@@ -352,6 +362,12 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
         
         welcomeWidget.setImageTypeDarkMode(WelcomeWidgetUtils.getFileTypeOfImage(welcomeWidget.getImageTypeDarkMode()));
         welcomeWidget.setImageContentDarkMode(encodeWelcomeWidgetImage(welcomeWidget.getImageLocationDarkMode(), welcomeWidget.getImageTypeDarkMode()));
+      } else if (widget instanceof NavigationDashboardWidget) {
+        NavigationDashboardWidget navWid = (NavigationDashboardWidget) widget;
+        navWid.setImageContent(ImageUploadUtils.imageToBase64(navWid.getImageLocation(), 
+            navWid.getImageType(), ImageUploadUtils.NAVIGATION_WIDGET_IMAGE_DIRECTORY));
+        navWid.setImageContentDarkMode(ImageUploadUtils.imageToBase64(navWid.getImageLocationDarkMode(), 
+            navWid.getImageTypeDarkMode(), ImageUploadUtils.NAVIGATION_WIDGET_IMAGE_DIRECTORY));
       }
     });
 
@@ -362,11 +378,10 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
     }
     dashboardList.add(dashboard);
 
-    var inputStream = new ByteArrayInputStream(
-        BusinessEntityConverter.prettyPrintEntityToJsonValue(dashboardList).getBytes(StandardCharsets.UTF_8));
     return DefaultStreamedContent
         .builder()
-        .stream(() -> inputStream)
+        .stream(() -> new ByteArrayInputStream(
+            BusinessEntityConverter.prettyPrintEntityToJsonValue(dashboardList).getBytes(StandardCharsets.UTF_8)))
         .contentType(MediaType.APPLICATION_JSON)
         .name(getFileName(dashboard.getTitle()))
         .build();

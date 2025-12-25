@@ -1,20 +1,17 @@
 <?xml version='1.0' encoding='utf-8'?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>com.axonivy.ivy.api</groupId>
     <artifactId>ivy-project-parent</artifactId>
-    <version>13.2.0-SNAPSHOT</version>
+    <version>14.0.0-SNAPSHOT</version>
     <relativePath />
   </parent>
   <groupId>com.axonivy.portal</groupId>
   <artifactId>portal-document-screenshots-selenide</artifactId>
-  <version>13.2.0-SNAPSHOT</version>
+  <version>14.0.0-SNAPSHOT</version>
   <packaging>pom</packaging>
-  <properties>
-    <ivy.engine.version>13.2.0</ivy.engine.version>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-  </properties>
   <distributionManagement>
     <repository>
       <id>repo.axongroupio.ch</id>
@@ -29,14 +26,17 @@
     <dependency>
       <groupId>com.axonivy.portal</groupId>
       <artifactId>portal</artifactId>
-      <version>13.2.0-SNAPSHOT</version>
+      <version>14.0.0-SNAPSHOT</version>
       <type>iar</type>
     </dependency>
-    <dependency>
-      <groupId>com.axonivy.ivy.webtest</groupId>
-      <artifactId>web-tester</artifactId>
-      <version>11.3.0</version>
+     <dependency>
+      <groupId>com.axonivy.ivy.api.test</groupId>
+      <artifactId>ivy-web-test-api</artifactId>
       <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.axonivy.ivy.api</groupId>
+      <artifactId>ivy-api</artifactId>
     </dependency>
     <dependency>
       <groupId>com.codeborne</groupId>
@@ -116,13 +116,6 @@
             <phase>test-compile</phase>
           </execution>
           <execution>
-            <id>default-ivy-test-properties</id>
-            <goals>
-              <goal>ivy-test-properties</goal>
-            </goals>
-            <phase>test</phase>
-          </execution>
-          <execution>
             <id>start.test.engine</id>
             <phase>process-test-classes</phase>
             <goals>
@@ -137,28 +130,6 @@
             <phase>post-integration-test</phase>
           </execution>
           <execution>
-            <id>portaltesthelper.deploy</id>
-            <goals>
-              <goal>deploy-to-engine</goal>
-            </goals>
-            <configuration>
-              <deployFile>..\PortalKitTestHelper\target\portalKitTestHelper-${project.version}.iar</deployFile>
-              <deployToEngineApplication>demo-portal</deployToEngineApplication>
-            </configuration>
-            <phase>process-test-classes</phase>
-          </execution>
-          <execution>
-            <id>internalsupport.deploy</id>
-            <goals>
-              <goal>deploy-to-engine</goal>
-            </goals>
-            <configuration>
-              <deployFile>..\..\Showcase\InternalSupport\target\internalSupport-${project.version}.iar</deployFile>
-              <deployToEngineApplication>demo-portal</deployToEngineApplication>
-            </configuration>
-            <phase>process-test-classes</phase>
-          </execution>
-          <execution>
             <id>default-pack-iar</id>
             <goals>
               <goal>pack-iar</goal>
@@ -170,7 +141,6 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
-        <version>3.0.0-M4</version>
         <configuration>
           <testFailureIgnore>false</testFailureIgnore>
           <argLine>
@@ -191,7 +161,6 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-assembly-plugin</artifactId>
-        <version>3.1.1</version>
         <executions>
           <execution>
             <phase>package</phase>

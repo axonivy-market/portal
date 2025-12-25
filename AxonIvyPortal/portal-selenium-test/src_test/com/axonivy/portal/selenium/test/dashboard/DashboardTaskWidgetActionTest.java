@@ -19,6 +19,7 @@ import com.axonivy.portal.selenium.page.TaskTemplateIFramePage;
 import com.axonivy.portal.selenium.page.TaskWidgetNewDashBoardPage;
 import com.codeborne.selenide.ElementsCollection;
 
+import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 
 @IvyWebTest
@@ -45,6 +46,7 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
   static final String RESET = "Reset";
   static final String DESTROY = "Destroy";
   static final String WORKFLOW_EVENTS = "Workflow Events";
+  static final String CUSTOM_FIELDS = "Custom Fields";
   static final String TRIGGER_ESCALATION = "Trigger Escalation";
   static final String CLEAR_DELAY = "Clear delay";
 
@@ -92,35 +94,35 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
 
     // Ready for Join
     assertTaskActionsByTaskStateAndName(DONE, "Task Switch A",
-        Arrays.asList(DETAILS, PIN, RESET, DESTROY, TRIGGER_ESCALATION, WORKFLOW_EVENTS, PROCESS_VIEWER));
+        Arrays.asList(DETAILS, PIN, RESET, DESTROY, TRIGGER_ESCALATION, WORKFLOW_EVENTS, CUSTOM_FIELDS, PROCESS_VIEWER));
 
     // Suspended
     taskWidget.openFilterWidget();
     removeAllExistingFilter();
     taskWidget.applyFilter();
     assertTaskActionsByTaskStateAndName(OPEN, "Sick Leave Request", Arrays.asList(DETAILS, PIN, DELEGATE, RESERVE,
-        CLEAR_EXPIRY, DESTROY, TRIGGER_ESCALATION, WORKFLOW_EVENTS, PROCESS_VIEWER));
+        CLEAR_EXPIRY, DESTROY, TRIGGER_ESCALATION, WORKFLOW_EVENTS, CUSTOM_FIELDS, PROCESS_VIEWER));
 
     // Done
     taskWidget.openFilterWidget();
     removeAllExistingFilter();
     taskWidget.applyFilter();
     assertTaskActionsByTaskStateAndName(DONE, "Categoried Leave Request",
-        Arrays.asList(DETAILS, PIN, WORKFLOW_EVENTS, PROCESS_VIEWER));
+        Arrays.asList(DETAILS, PIN, WORKFLOW_EVENTS, CUSTOM_FIELDS, PROCESS_VIEWER));
 
     // Delayed
     taskWidget.openFilterWidget();
     removeAllExistingFilter();
     taskWidget.applyFilter();
     assertTaskActionsByTaskStateAndName(DELAYED, "Task Switch C",
-        Arrays.asList(DETAILS, PIN, DELEGATE, CLEAR_DELAY, DESTROY, WORKFLOW_EVENTS, PROCESS_VIEWER));
+        Arrays.asList(DETAILS, PIN, DELEGATE, CLEAR_DELAY, DESTROY, WORKFLOW_EVENTS, CUSTOM_FIELDS, PROCESS_VIEWER));
 
     // Destroyed
     taskWidget.openFilterWidget();
     removeAllExistingFilter();
     taskWidget.applyFilter();
     assertTaskActionsByTaskStateAndName(DESTROYED, "Task Switch B",
-        Arrays.asList(DETAILS, PIN, WORKFLOW_EVENTS, PROCESS_VIEWER));
+        Arrays.asList(DETAILS, PIN, WORKFLOW_EVENTS, CUSTOM_FIELDS, PROCESS_VIEWER));
   }
 
   @Test
@@ -144,7 +146,7 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
     taskWidget.removeFilter(0);
     taskWidget.applyFilter();
     assertTaskActionsByTaskState(IN_PROGRESS, Arrays.asList(DETAILS, PIN, RESERVE, RESET, CLEAR_EXPIRY, DESTROY,
-        WORKFLOW_EVENTS, PROCESS_VIEWER));
+        WORKFLOW_EVENTS, CUSTOM_FIELDS, PROCESS_VIEWER));
 
     login(TestAccount.DEMO_USER);
     createTasksForTesting();
@@ -183,7 +185,7 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
 
     // Reserved for admin user
     assertTaskActionsByTaskState(OPEN, Arrays.asList(DETAILS, PIN, DELEGATE, RESET, CLEAR_EXPIRY, DESTROY,
-        TRIGGER_ESCALATION, WORKFLOW_EVENTS, PROCESS_VIEWER));
+        TRIGGER_ESCALATION, WORKFLOW_EVENTS, CUSTOM_FIELDS, PROCESS_VIEWER));
 
     login(TestAccount.DEMO_USER);
     createTasksForTesting();
@@ -202,21 +204,21 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
   @Test
   public void testVisibilityTaskActionForTechnicalStates() {
     login(TestAccount.ADMIN_USER);
+    createTasksForTesting();
     redirectToRelativeLink(createTechnicalStateUrl);
-    redirectToNewDashBoard();
-    TaskWidgetNewDashBoardPage taskWidget = new TaskWidgetNewDashBoardPage();
-    taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
+    grantSpecificPortalPermission(PortalPermission.SYSTEM_TASK_READ_ALL);
+
+    TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
     taskWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
-    // Failed
     resizeBrowserTo2kResolution();
-    assertTaskActionsByTaskStateAndName(ERROR, "Signal create Task failed",
-        Arrays.asList(DETAILS, PIN, RESET, DESTROY, WORKFLOW_EVENTS, PROCESS_VIEWER));
+
+    // Failed
+    assertTaskActionsByTaskStateAndName(ERROR, "Signal create Task failed", Arrays.asList(DETAILS, PIN, RESET, DESTROY, WORKFLOW_EVENTS, CUSTOM_FIELDS, PROCESS_VIEWER));
+
     // Join failed
     taskWidget.openFilterWidget();
-    removeAllExistingFilter();
-    taskWidget.applyFilter();
-    assertTaskActionsByTaskStateAndName(ERROR, "Signal create Technical task",
-        Arrays.asList(DETAILS, PIN, DESTROY, WORKFLOW_EVENTS, PROCESS_VIEWER));
+    taskWidget.resetFilter();
+    assertTaskActionsByTaskStateAndName(ERROR, "Signal create Technical task", Arrays.asList(DETAILS, PIN, DESTROY, WORKFLOW_EVENTS, CUSTOM_FIELDS, PROCESS_VIEWER));
   }
 
   private void assertTaskActionsByTaskState(String state, List<String> taskActionsInTask) {

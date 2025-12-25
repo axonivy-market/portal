@@ -15,19 +15,15 @@ permissions:
   pages: write
 on:
   workflow_dispatch:
-    inputs:
-      ivyVersion:
-        description: 'Ivy version use to replace |version| placeholder of the links which navigate to ivy documentation. e.g.: https://developer.axonivy.com/doc/nightly/designer-guide/configuration/variables.html'
-        default: 'nightly'
-        required: true
+
 jobs:
   build-document:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Set up Java
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v5
         with:
           distribution: 'temurin'
           java-version: '21'
@@ -43,58 +39,90 @@ jobs:
       - name: Get current version
         id: get_version
         run: |
-          echo "Build portal document. Use input 'ivyVersion' with default value is 'nightly'" >> $GITHUB_STEP_SUMMARY
           VERSION=$(mvn help:evaluate -Dexpression=revision -q -DforceStdout -f Documentation/pom.xml)
           if [[ "$VERSION" == "null object or invalid expression" ]]; then
             echo "Error: could not evaluate maven revision property"
             # Stops the workflow if the condition is met
             exit 1
           fi
+
+          # Check if it's a sprint release
+          if [[ "$VERSION" == *-* ]]; then
+            RELEASE="dev"
+          else
+            # Extract only major.minor
+            RELEASE=$(echo "$VERSION" | cut -d. -f1,2)
+          fi
+
           echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "release=$RELEASE" >> "$GITHUB_OUTPUT"
           echo "Version is $VERSION"
-      
+          echo "Release is $RELEASE"
+
       - name: Download artifacts from screenshot workflow
-        uses: dawidd6/action-download-artifact@v9
+        uses: dawidd6/action-download-artifact@v11
         with:
           workflow: portal-document-screenshot-test.yml
           name: screenshots
           branch: master
           path: Documentation/portal-guide/source/screenshots
-            
+
       - name: install zip
         uses: montudor/action-zip@v1
-        with: 
+        with:
           args: unzip -qq Documentation/portal-guide/source/screenshots/*.zip -d Documentation/portal-guide/source/screenshots/
 
       - name: Generate resources
         run: |
           mvn clean process-resources -Divy.engine.version=[13.1.0,] -Divy.engine.download.url=https://developer.axonivy.com/permalink/nightly/axonivy-engine.zip -f Documentation/public-api/pom.xml
           mvn clean generate-resources -f Documentation/pom.xml
-      
-      - name: Run substitute
-        shell: bash
-        run: chmod +x Documentation/portal-guide/substitute.sh && Documentation/portal-guide/substitute.sh ${{ inputs.ivyVersion }}
 
-      - name: Build Documentation HTML
-        id: build-html
+      - name: Build English Documentation HTML
+        id: build-en-html
         run: |
           docker run -u root:root --rm -v ${{ github.workspace }}:/workspace -w /workspace/Documentation/portal-guide \
-            axonivy/build-container:read-the-docs-2 make -C /doc-build html BASEDIR='/workspace/Documentation/portal-guide' VERSION=${{ steps.get_version.outputs.version }} 2> sphinx-warnings.log
-            WARNINGS=$(grep -c "WARNING" sphinx-warnings.log || echo 0)
-            echo "Found $WARNINGS warnings."
-            if [ "$WARNINGS" -ge 1 ]; then
-              echo "Documentation build has warnings. Adding to summary..."
-              echo "### Documentation Build Warnings" >> $GITHUB_STEP_SUMMARY
-              echo "Found $WARNINGS warnings during the documentation build." >> $GITHUB_STEP_SUMMARY
-              echo "" >> $GITHUB_STEP_SUMMARY
-              echo "#### Warning Details" >> $GITHUB_STEP_SUMMARY
-              echo '```' >> $GITHUB_STEP_SUMMARY
-              cat sphinx-warnings.log >> $GITHUB_STEP_SUMMARY
-              cat sphinx-warnings.log
-              echo '```' >> $GITHUB_STEP_SUMMARY
-              exit 1
-            fi
+            axonivy/build-container:read-the-docs-2 make -C /doc-build html BASEDIR='/workspace/Documentation/portal-guide' \
+            VERSION=${{ steps.get_version.outputs.release }} VERSION_SWITCHER=true 2> sphinx-warnings-en.log
+          WARNINGS=$(grep -c "WARNING" sphinx-warnings-en.log || echo 0)
+          echo "Found $WARNINGS warnings in English documentation."
+          if [ "$WARNINGS" -ge 1 ]; then
+            echo "English documentation build has warnings. Adding to summary..."
+            echo "### English Documentation Build Warnings" >> $GITHUB_STEP_SUMMARY
+            echo "Found $WARNINGS warnings during the documentation build." >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "#### Warning Details" >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+            cat sphinx-warnings-en.log >> $GITHUB_STEP_SUMMARY
+            cat sphinx-warnings-en.log
+            echo '```' >> $GITHUB_STEP_SUMMARY
+            exit 1
+          fi
+          sudo mkdir -p Documentation/portal-guide/build/doc/en
+          sudo mv Documentation/portal-guide/build/html/* Documentation/portal-guide/build/doc/en/
 
+      - name: Build Japanese Documentation HTML
+        id: build-ja-html
+        run: |
+          docker run -u root:root --rm -v ${{ github.workspace }}:/workspace -w /workspace/Documentation/portal-guide \
+            axonivy/build-container:read-the-docs-2 make -C /doc-build html BASEDIR='/workspace/Documentation/portal-guide' \
+            LOCALEDIR=/workspace/Documentation/portal-guide/weblate/locale SPHINXOPTS="-D language='ja'" \
+            VERSION=${{ steps.get_version.outputs.release }} VERSION_SWITCHER=true 2> sphinx-warnings-ja.log
+          WARNINGS=$(grep -c "WARNING" sphinx-warnings-ja.log || echo 0)
+          echo "Found $WARNINGS warnings in Japanese documentation."
+          if [ "$WARNINGS" -ge 1 ]; then
+            echo "Japanese documentation build has warnings. Adding to summary..."
+            echo "### Japanese Documentation Build Warnings" >> $GITHUB_STEP_SUMMARY
+            echo "Found $WARNINGS warnings during the documentation build." >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "#### Warning Details" >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+            cat sphinx-warnings-ja.log >> $GITHUB_STEP_SUMMARY
+            cat sphinx-warnings-ja.log
+            echo '```' >> $GITHUB_STEP_SUMMARY
+            exit 1
+          fi
+          sudo mkdir -p Documentation/portal-guide/build/doc/ja
+          sudo mv Documentation/portal-guide/build/html/* Documentation/portal-guide/build/doc/ja/
 
       - name: Install or deploy document
         run: |
@@ -116,4 +144,3 @@ jobs:
           name: Documentation-${{ steps.get_version.outputs.version }}
           path: |
             Documentation/portal-guide/target/*.zip
-    

@@ -3,8 +3,58 @@
 Introduction
 ************
 
-Portal Developer Guide provides information to set up, configure, customize
-Portal so that it could fit customer need.
+This guide explains how to set up, configure, and customize the Portal to fit your needs. It highlights key concepts, supported extension points, and best practices for building on top of Portal.
+
+Getting Started
+===============
+
+Follow this recommended path to get started with Portal development:
+
+.. table::
+   :widths: 15 25 60
+
+   +--------+---------------------------+-----------------------------------------------------+
+   | Order  | Topic                     | What You'll Learn                                   |
+   +========+===========================+=====================================================+
+   | **1**  | :ref:`architecture`       | Understand Portal modules, multi-app setup, and     |
+   |        |                           | integration with customer applications              |
+   +--------+---------------------------+-----------------------------------------------------+
+   | **2**  | :ref:`installation`       | Install Portal in your development environment      |
+   +--------+---------------------------+-----------------------------------------------------+
+   | **3**  | :ref:`deployment`         | Deploy Portal to different environments             |
+   +--------+---------------------------+-----------------------------------------------------+
+   | **4**  | :ref:`customization`      | Customize Portal UI, themes, and features           |
+   +--------+---------------------------+-----------------------------------------------------+
+   | **5**  | :ref:`public-api`         | Use portal-components APIs in your applications     |
+   +--------+---------------------------+-----------------------------------------------------+
+
+Key Concepts
+============
+
+**Portal Architecture**
+
+- **Multi-Application Setup**: Portal and your projects in separate applications
+- **portal-components**: Reusable UI components and public APIs
+- **portal**: Portal-specific UI, templates, and pages
+
+**Configuration-First Approach**
+
+Most Portal features are now configured through :ref:`Admin Settings <admin-settings>` rather than custom code, making customization easier and more maintainable.
+
+**Integration Points**
+
+- Use Portal templates for consistent UI in your processes
+- Integrate portal-components into your custom applications
+- Call Portal APIs for navigation and task management
+
+**Need Help?**
+
+If you encounter issues during development or deployment:
+
+- Check :ref:`troubleshooting` for common problems and solutions
+- Review :ref:`installation-migration-notes` when upgrading Portal versions
+- Visit the `Axon Ivy Community <https://community.axonivy.com/>`_ for questions
+- Contact support@axonivy.com for licensed support
 
 .. _introduction-new-and-note-worthy-12.0:
 
@@ -25,7 +75,7 @@ Check out more information on `release 11.3 <https://dev.axonivy.com/news/11.3>`
 New & Noteworthy 10
 -------------------
 
-The focus with Release 10 was to finalize the new portal approach of enabling the portal users to configure the portal to their custom needs and make the portal more adaptable to the various use cases of the |ivy| Platform.
+The focus with Release 10 was to finalize the new portal approach of enabling the portal users to configure the portal to their custom needs and make the portal more adaptable to the various use cases of the Axon Ivy Platform.
 
 As part of this journey, the portal dashboards were completely redesigned giving more power to the end user in making the portal his own workbench, interacting with processes and tasks, reporting on process progress and managing workloads. With the update of the overall theme, the portal now also supports dark mode giving the portal a more modern overall look & feel.
 
@@ -53,10 +103,10 @@ Also other parts of the portal have improved:
 Not only for the end user but also for developers, the portal was updated:
 
 - The portal projects have been simplified, two projects are left:  Portal & Portal-Components
-- The multiapp approach is now covered by the |ivy| core, making the use of the portal for displaying tasks from more than one application much easier
+- The multiapp approach is now covered by the Axon Ivy core, making the use of the portal for displaying tasks from more than one application much easier
 - Through the separation of process and portal by the iframe approach, supported by the portal templates on portal, can serve multiple applications
 - Dialog Templates now offer portal functions, e.g., forwarding the user in an exit event, or interacting with the portal from within the iframe template.
-- The portal-components project now offers ready to use components like a documents-component or user choosers that can be reused in your |ivy| Projects
+- The portal-components project now offers ready to use components like a documents-component or user choosers that can be reused in your Axon Ivy Projects
 
 New Welcome Widget
 ^^^^^^^^^^^^^^^^^^
@@ -67,21 +117,21 @@ The new welcome widget greets the user based on the local time and enables a fri
 
 |
 
-Inviting and modern Look & Feel for |ivy| Portal 9.4. Refer to :ref:`introduction-new-and-note-worthy-9.4`.
+Inviting and modern Look & Feel for Axon Ivy Portal 9.4. Refer to :ref:`introduction-new-and-note-worthy-9.4`.
 
 - Welcome Screen
 - Dashboard Wizards
 - New Portal Theme Freya
 - Change password validations
 
-The Individual Dashboard for |ivy| Portal 9.3. Refers to :ref:`introduction-new-and-note-worthy-9.3`.
+The Individual Dashboard for Axon Ivy Portal 9.3. Refers to :ref:`introduction-new-and-note-worthy-9.3`.
 
 - Customizable Dashboard
 - Default Widgets
 - Custom Widgets
 - Adjustable Look for Process List
 
-More UX for |ivy| Portal 9.2. Refer to :ref:`introduction-new-and-note-worthy-9.2`.
+More UX for Axon Ivy Portal 9.2. Refer to :ref:`introduction-new-and-note-worthy-9.2`.
 
 - Enhanced forgot password features
 - Simplified tasks and cases export
@@ -108,7 +158,7 @@ Freya Theme featuring Dark Mode
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Another step in this direction is the upgrade to a new UI theme. The latest trends and design patterns are ideally included in the fresh `Freya <https://www.primefaces.org/freya/>`_ theme by PrimeFaces.
-Moreover, the entire |ivy| Portal can now be used in Dark Mode.
+Moreover, the entire Axon Ivy Portal can now be used in Dark Mode.
 
 |dashboard-dark-mode|
 
@@ -117,7 +167,7 @@ A dark mode color scheme can be more visually appealing and easier on the eyes. 
 Dashboard Configuration Wizard
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-All dashboards within the |ivy| Portal can now be configured and arranged with a wizard according to individual preferences.
+All dashboards within the Axon Ivy Portal can now be configured and arranged with a wizard according to individual preferences.
 
 |dashboard-configuration-wizard|
 
@@ -131,9 +181,9 @@ When creating new dashboards, the wizard goes one step further and offers predef
 Password Validation
 ^^^^^^^^^^^^^^^^^^^
 
-Password policies are different in each company. This fact is fully taken into account in the |ivy| Portal.
+Password policies are different in each company. This fact is fully taken into account in the Axon Ivy Portal.
 
-This applies to users managed by the |ivy-engine| only. If users are imported from an external Identity Provider (IDP), this IDP manages passwords as well as password policy.
+This applies to users managed by the Axon Ivy Engine only. If users are imported from an external Identity Provider (IDP), this IDP manages passwords as well as password policy.
 
 |password-validation|
 
@@ -162,11 +212,11 @@ For example, separating HR tasks from Finance tasks provides a better overview a
 
 Default Widgets
 ^^^^^^^^^^^^^^^
-|ivy| Portal supports a sophisticated concept featuring default widgets for Process Starts, Task Lists, and Case Lists.
+Axon Ivy Portal supports a sophisticated concept featuring default widgets for Process Starts, Task Lists, and Case Lists.
 
 |default-widgets|
 
-Processes, tasks, and cases are essential when it comes to business process automation and workflow management. Therefore, the |ivy| Portal gives you full power by providing these standard widgets out-of-the-box.
+Processes, tasks, and cases are essential when it comes to business process automation and workflow management. Therefore, the Axon Ivy Portal gives you full power by providing these standard widgets out-of-the-box.
 
 |default-widgets-configuration|
 
@@ -180,12 +230,12 @@ Individuality is king. End-users can easily create custom widgets in the dashboa
 
 There are two different widgets types available:
 
-- |ivy| Process
+- Axon Ivy Process
 - External URL
 
 An external URL embeds the corresponding website into your dashboard. This feature is helpful to integrate enterprise content management systems or knowledge sites.
 
-Specify your |ivy| Process as a widget element and display your process directly in your custom dashboard.
+Specify your Axon Ivy Process as a widget element and display your process directly in your custom dashboard.
 
 Adjustable Look for Process List
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -212,14 +262,14 @@ Task/Case details are well structured, user can drag and drop the widgets and th
 
 Enhanced forgot password features
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Users can reset their passwords easily using the standard password reset feature integrated in |ivy| Portal
+Users can reset their passwords easily using the standard password reset feature integrated in Axon Ivy Portal
 
 |login-screen|
 |send-email-screen|
 
 Simplified tasks and cases export
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-We have listened to you! Business users requested to export specific lists from |ivy| Portal to perform further analysis in Microsoft Excel.
+We have listened to you! Business users requested to export specific lists from Axon Ivy Portal to perform further analysis in Microsoft Excel.
 Now they have the possibility to export any list with one mouse click.
 
 |task-key-information|
@@ -241,7 +291,7 @@ Only you know the details and therefore, any detail page for tasks or cases can 
 Advanced user specific settings
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Make it your own way with the |ivy| Portal. Users can optimize process work and customize the |ivy| Portal to their own taste.
+Make it your own way with the Axon Ivy Portal. Users can optimize process work and customize the Axon Ivy Portal to their own taste.
 
 |my-profile-save|
 

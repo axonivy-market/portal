@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/13.1.2/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/13.2.0/process.json",
   "id" : "17868983759ED156",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -148,7 +148,7 @@
             "import ch.ivyteam.ivy.environment.Ivy;",
             "import org.primefaces.PrimeFaces;",
             "",
-            "in.totalTasks = DashboardTaskService.getInstance().countByTaskQuery(in.widget.dataModel.criteria.buildQuery());"
+            "in.totalTasks = DashboardTaskService.getInstance().countDashboardTaskByCriteria(in.widget.dataModel.criteria);"
           ]
         },
         "sudo" : true
@@ -169,7 +169,7 @@
             "import ch.ivy.addon.portalkit.ivydata.service.impl.DashboardTaskService;",
             "",
             "int startIndex = in.loopCounter * in.maxResultNumberPerQuery;",
-            "in.collectedTasksForExporting.addAll(DashboardTaskService.getInstance().findByTaskQuery(in.widget.dataModel.getCriteria().buildQuery(), startIndex, in.maxResultNumberPerQuery));"
+            "in.collectedTasksForExporting.addAll(DashboardTaskService.getInstance().findDashboardTaskByCriteria(in.widget.dataModel.getCriteria(), startIndex, in.maxResultNumberPerQuery));"
           ]
         },
         "sudo" : true

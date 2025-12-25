@@ -16,6 +16,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
@@ -23,16 +24,17 @@ import javax.faces.context.FacesContext;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.logging.log4j.util.Strings;
+import org.apache.commons.lang3.Strings;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
 
 import com.axonivy.portal.components.dto.SecurityMemberDTO;
+import com.axonivy.portal.components.util.ImageUploadResult;
 import com.axonivy.portal.components.util.RoleUtils;
-import com.axonivy.portal.service.DeepLTranslationService;
 import com.axonivy.portal.service.GlobalSearchService;
-import com.axonivy.portal.util.ExternalLinkUtils;
+import com.axonivy.portal.service.IvyTranslationService;
+import com.axonivy.portal.util.ImageUploadUtils;
 import com.axonivy.portal.util.UploadDocumentUtils;
 
 import ch.ivy.addon.portal.generic.bean.IMultiLanguage;
@@ -57,7 +59,6 @@ import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
-import ch.ivyteam.util.Pair;
 
 @ManagedBean
 @ViewScoped
@@ -109,7 +110,7 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
 
   private String getProcessModeByLabel(String processLabel) {
     return Stream.of(ProcessMode.values())
-        .filter(e -> StringUtils.equalsIgnoreCase(processLabel, e.getLabel()) || StringUtils.equalsIgnoreCase(e.name(), processLabel))
+        .filter(e -> Strings.CI.equals(processLabel, e.getLabel()) || Strings.CI.equals(e.name(), processLabel))
         .findFirst()
         .orElse(ProcessMode.IMAGE).toString();
   }
@@ -293,19 +294,24 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
   }
 
   public void handleExternalLinkImageUpload(FileUploadEvent event) {
-    if(this.editedExternalLink == null) {
+    if (this.editedExternalLink == null) {
       return;
     }
     removeTempExternalLinkImage();
-    Pair<String, String> imageInfo = ExternalLinkUtils.handleImageUpload(event);
-    this.editedExternalLink.setImageLocation(imageInfo.getLeft());
-    this.editedExternalLink.setImageType(imageInfo.getRight());
+    ImageUploadResult imageInfo = ImageUploadUtils.handleImageUpload(event, ImageUploadUtils.EXTERNAL_LINK_IMAGE_DIRECTORY);    if (imageInfo.isInvalid()) {
+      FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+          Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/documentFiles/fileContainScript"), null);
+      FacesContext.getCurrentInstance().addMessage("edit-external-link-error-message", message);
+    } else {
+      this.editedExternalLink.setImageLocation(imageInfo.imageLocation());
+      this.editedExternalLink.setImageType(imageInfo.imageType());
+    }
   }
 
   public void removeTempExternalLinkImage() {
     if (this.editedExternalLink != null && StringUtils.isNoneBlank(this.editedExternalLink.getImageLocation())) {
       if (!Objects.equals(this.editedExternalLink.getImageLocation(), this.originalExternalLinkImage)) {
-        ExternalLinkUtils.removeImage(this.editedExternalLink.getImageLocation(), this.editedExternalLink.getImageType());
+        ImageUploadUtils.removeImage(this.editedExternalLink.getImageLocation(), this.editedExternalLink.getImageType());
       }
       this.editedExternalLink.setImageLocation(null);
       this.editedExternalLink.setImageType(null);
@@ -314,7 +320,7 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
 
   public void removeOriginalExternalLinkImage(String imageUrl, String imageType) {
     if (StringUtils.isNoneBlank(imageUrl) && !isDefaultProcessImage(imageUrl)) {
-      ExternalLinkUtils.removeImage(imageUrl, imageType);
+      ImageUploadUtils.removeImage(imageUrl, imageType);
     }
   }
 
@@ -322,7 +328,7 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
     String processId = this.editedProcess.getId();
     String oldProcessNameFirstLetter = extractProcessFirstLetter(oldProcessName);
     String firstLetter = extractProcessFirstLetter(this.editedProcess.getName());
-    if (!StringUtils.equals(oldProcessNameFirstLetter, firstLetter)) {
+    if (!Strings.CS.equals(oldProcessNameFirstLetter, firstLetter)) {
       if (StringUtils.isNotEmpty(oldProcessNameFirstLetter)
           && this.processesByAlphabet.containsKey(oldProcessNameFirstLetter)) {
         List<Process> processes = this.processesByAlphabet.get(oldProcessNameFirstLetter);
@@ -450,7 +456,7 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
       return processGroups;
     }
     for (String processGroupName : CollectionUtils.emptyIfNull(processesByAlphabet.keySet())) {
-      if (!processGroupName.equals(SPECIAL_CHARACTER_KEY)) {
+      if (!SPECIAL_CHARACTER_KEY.equals(processGroupName)) {
         processGroups.put(processGroupName, processGroupName);
       } else {
         processGroups.put(SPECIAL_CHARACTER_KEY, "#");
@@ -497,7 +503,7 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
   }
 
   public boolean isCompactMode() {
-    return StringUtils.equalsIgnoreCase(this.viewMode, ProcessMode.COMPACT.name());
+    return Strings.CI.equals(this.viewMode, ProcessMode.COMPACT.name());
   }
 
   public List<SecurityMemberDTO> getSelectedSecurityMemberDTOsWhenCreatingExternalLink() {
@@ -567,8 +573,8 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
   }
   
   private void translateValues(DisplayName title, List<DisplayName> languages) {
-    translatedText = Strings.EMPTY;
-    warningText = Strings.EMPTY;
+    translatedText = "";
+    warningText = "";
 
     String currentLanguage = UserUtils.getUserLanguage();
     if (!title.getLocale().getLanguage().equals(currentLanguage)) {
@@ -576,12 +582,12 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
           .filter(lang -> currentLanguage.equals(lang.getLocale().getLanguage())).findFirst();
       if (optional.isPresent()) {
         try {
-          translatedText = DeepLTranslationService.getInstance().translate(optional.get().getValue(),
+          translatedText = IvyTranslationService.getInstance().translate(optional.get().getValue(),
               optional.get().getLocale(), title.getLocale());
         } catch (Exception e) {
           warningText = Ivy.cms()
               .co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/SomeThingWentWrong");
-          Ivy.log().error("DeepL Translation Service error: ", e.getMessage());
+          Ivy.log().error("Ivy Translation Service error: ", e.getMessage());
         }
       }
     }

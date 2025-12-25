@@ -1,4 +1,4 @@
-# yaml-language-server: $schema=https://json-schema.axonivy.com/app/13.2.0/variables.json
+# yaml-language-server: $schema=https://json-schema.axonivy.com/app/13.2.1/variables.json
 Variables:
   Portal:
     # To set the standard homepage which will be redirect to when click on home icon or logo.
@@ -90,7 +90,7 @@ Variables:
       ShowDurationTime: "true"
     Cases:
       # Set to true to enable filtering case owner when cases are queried.
-      # This setting affects all case queries, e.g. for case widget, global search, statistic.
+      # This setting affects all case queries, e.g. for case widget, global search, statistic. It also makes the "Filter tasks by current case owner" filter available in the task widget, which is hidden by default.
       EnableOwner: "false"
       # Set to true to hide case creator in case widget and case details.
       # This setting affects all case queries, e.g. for case widget, global search, statistic.
@@ -126,14 +126,14 @@ Variables:
     Histories:
       # If true, case note does not display any system tasks for non-administrator users.
       HideSystemTasks: "true"
-      # If true, case/task note does not display any system notes for non-administrator users.
-      HideSystemNotes: "true"
       # If true, case note does not display any system tasks for administrator.
       HideSystemTasksForAdministrator: "false"
-      # If true, case/task note does not display any system notes for administrator.
-      HideSystemNotesForAdministrator: "false"
       # If true, case history does not display the related case information in the history table.
       HideRelatedCaseInfo: "false"
+      # If the value is true and system notes are visible, the checkbox will appear checked.
+      CheckSystemNotesByDefault: "true"
+      # If the value is true and system tasks are visible, the checkbox will appear checked.
+      CheckSystemTasksByDefault: "true"
     Document:
       # Set to true to enable script checking for uploaded document. Currently this function supports checking for PDF, Excel, Word.
       EnableScriptChecking: "true"
@@ -190,15 +190,13 @@ Variables:
     # Global footer info that is displayed in bottom right corner can be set in the portal admin settings.
     GlobalFooterInfo: ""
     # Support the translation from English to the other languages or from German to the other languages (German, English, French, Spanish)
-    DeepL:
-      # DeepL Authentication Key (should end with :fx)
-      #[password]
-      AuthKey: ${decrypt:}
-      # Set this property to true to enable the DeepL translation support
+    TranslationService:
+      # Set this property to true to enable the translation service support
       Enable: "false"
     # You can define the application name via this JSON file.
     # It will be shown with the page title
     ApplicationName: Axon Ivy
+    LogoDescription: ''
     Upload:
       # Set the size limit for uploading documents in megabytes (MB). The default value is 20MB.
       DocumentUploadSizeLimit: "20"

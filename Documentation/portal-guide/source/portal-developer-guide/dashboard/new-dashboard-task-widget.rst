@@ -3,13 +3,17 @@
 Configure Task Widget
 =====================
 
+The task widget displays an interactive, customizable list of tasks with advanced filtering, sorting, and search capabilities. It supports custom columns, pre-configured filters, quick search across multiple fields, and multi-language support for custom string fields via CMS.
+
 Define Task Widget
 ------------------
 
-The Task widget of the Portal dashboard is an interactive task list. Refer
-to :ref:`Task List Widget <new-dashboard-task-list-widget>` for details.
+The task widget displays tasks with full control over columns, filters, sorting, and layout. Refer to :ref:`Task List Widget <new-dashboard-task-list-widget>` for widget behavior details.
 
-Below is a sample JSON definition of a task widget in the Portal dashboard
+Configuration Example
+^^^^^^^^^^^^^^^^^^^^^
+
+Below is a sample JSON definition of a task widget in the Portal dashboard:
 
 .. code-block:: javascript
 
@@ -19,7 +23,11 @@ Below is a sample JSON definition of a task widget in the Portal dashboard
       "names": [
          {
             "locale": "en",
-            "value": "Task Widget"
+            "value": "My Tasks"
+         },
+         {
+            "locale": "de",
+            "value": "Meine Aufgaben"
          }
       ],
       "layout": {
@@ -31,35 +39,39 @@ Below is a sample JSON definition of a task widget in the Portal dashboard
          "styleClass": "your-widget-class"
       },
       "sortField": "name",
+      "sortDescending": false,
       "rowsPerPage": 20,
       "showWidgetInfo": true,
       "showFullscreenMode": true,
-      "isTopMenu": false,
+      "filterTasksByCurrentCaseOwner": false,
+      "canWorkOn": false,
+      "enableQuickSearch": true,
       "columns": [
          {
             "field": "start"
          },
          {
             "field": "priority",
-            "visible": "false"
+            "visible": "true"
          },
          {
             "field": "id"
          },
          {
-            "field": "name"
+            "field": "name",
+            "quickSearch": "true"
          },
          {
             "field": "state",
             "headers": [
-            {
-               "locale": "en",
-               "value": "State"
-            },
-            {
-               "locale": "de",
-               "value": "Status"
-            }
+               {
+                  "locale": "en",
+                  "value": "State"
+               },
+               {
+                  "locale": "de",
+                  "value": "Status"
+               }
             ]
          },
          {
@@ -68,98 +80,155 @@ Below is a sample JSON definition of a task widget in the Portal dashboard
          {
             "field": "actions"
          }
+      ],
+      "filters": [
+         {
+            "field": "state",
+            "values": ["OPEN", "IN_PROGRESS"],
+            "operator": "in",
+            "type": "standard"
+         }
       ]
    }
+
 ..
 
-The basic JSON structure of a Task widget
+JSON Configuration Reference
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-   ``type``: type of the widget. Use ``task`` for a task widget
+**Required Properties**
 
-   ``id``: ID of the widget
+``type`` (string)
+   Widget type. Must be ``"task"`` for task widget
 
-   ``names``: multilingual name of the widget on the UI
+``id`` (string)
+   Unique identifier for the widget
 
-   ``layout``: layout definition of the widget
+``names`` (array)
+   Multilingual display names. Each entry: ``{"locale": "en", "value": "Name"}``
 
-      ``x``: HTML DOM Style ``left`` is calculated as formula ``x / 12 * 100%``
+``layout`` (object)
+   Widget position and size (see Layout Properties below)
 
-      ``y``: HTML DOM Style ``top`` is calculated as formula ``y / 12 * 100%``
+``columns`` (array)
+   Column configurations (see Columns section below)
 
-      ``w``: HTML DOM Style ``width`` is calculated as formula ``60 * w + 20 * (w - 1)``
+**Layout Properties**
 
-      ``h``: HTML DOM Style ``height`` is calculated as formula ``60 * h + 20 * (h - 1)``
+``x`` (number)
+   Column position in 12-column grid (0-11). CSS left = ``x / 12 * 100%``
 
-      ``styleClass`` (optional): add CSS Classes to HTML DOM of the widget
+``y`` (number)
+   Row position. CSS top = ``y / 12 * 100%``
 
-      ``style`` (optional): add inline style to HTML DOM of the widget
+``w`` (number)
+   Width in grid columns (1-12). Pixel width = ``60 * w + 20 * (w - 1)``
 
-   ``sortField``: default sort field for the widget
+``h`` (number)
+   Height in grid rows (min 5). Pixel height = ``60 * h + 20 * (h - 1)``
 
-   ``sortDescending``: sort direction of the default sort field. The default value is ``false`` (sort ascending)
+``styleClass`` (string, optional)
+   CSS classes for custom styling
 
-   ``rowsPerPage``: maximum number of tasks can be displayed on one page of the task widget. 
-   The default value is 10 rows per page
+``style`` (string, optional)
+   Inline CSS styles
 
-   ``showWidgetInfo``: visibility of the widget information icon. The default value is ``true``, set to ``false`` to hide the icon
+.. tip::
+   **Recommended task widget size:** Width 8-12 columns, Height 8-12 rows for optimal table display with pagination.
 
-   ``showFullscreenMode``: visibility of the fullscreen mode icon. The default value is ``true``, set to ``false`` to hide the icon
+**Display & Behavior Properties**
 
-   ``isTopMenu``: if the value is ``true``, the dashboard appears as a top-level item in the navigation bar. 
-   If the value is ``false``, it appears as a sub-item under the `Dashboard` menu. 
-   The default value is ``false``.
+``sortField`` (string, optional)
+   Default column for sorting (e.g., ``"name"``, ``"priority"``, ``"startTimestamp"``)
 
-   ``columns``: column configurations for each of the columns in the widget. You
-   can predefine filters, styles, visibility,... of columns and define custom
-   columns, too:
+``sortDescending`` (boolean, default: ``false``)
+   Sort direction. ``false`` = ascending, ``true`` = descending
 
-      ``field``: the field name of the column
-         
-         For standard columns, ``field`` must be one of these:
-         
-            - ``start``: column which contains start button to start the task directly.
+``rowsPerPage`` (number, default: ``10``)
+   Number of tasks displayed per page
 
-            - ``Pin``: column which contains Pin button to Pin your task.
-  
-            - ``priority``: task priority
+``showWidgetInfo`` (boolean, default: ``true``)
+   Show/hide widget information icon
 
-            - ``id``: task ID
+``showFullscreenMode`` (boolean, default: ``true``)
+   Show/hide fullscreen mode icon
 
-            - ``name``: task name
+``enableQuickSearch`` (boolean, default: ``false``)
+   Enable quick search text box
 
-            - ``description``: task description
+``canWorkOn`` (boolean, default: ``false``)
+   Filter only tasks the current user can work on
 
-            - ``activator``: task activator
+``filterTasksByCurrentCaseOwner`` (boolean, default: ``false``)
+   Filter only tasks where current user is case owner (requires ``Portal.Cases.EnableOwner`` setting)
 
-            - ``state``: task business state
+``isTopMenu`` (boolean, default: ``false``)
+   ``true`` = top-level nav item, ``false`` = under Dashboard menu
 
-            - ``startTimestamp``: created date and time of the task
+**Columns Configuration**
 
-            - ``endTimestamp``: end date and time of the task
+Each column object in the ``columns`` array:
 
-            - ``expiryTimestamp``: expiry date and time of the task
-            
-            - ``actions``: for further actions: access task details, reset task, delegate task, reserve, destroy task, trigger escalation task and add Ad-hoc task
+``field`` (string, required)
+   Column field name (see Standard Columns below)
 
-         For custom columns, ``field`` is the name of a task custom field.
-         Portal will use the value of ``field`` to get the value of the column.
+``visible`` (string, default: ``"true"``)
+   Column visibility: ``"true"`` or ``"false"``
 
-      ``canWorkOn``: filter only tasks that the current user can work on. The default value is "false".
+``quickSearch`` (string, default: ``"false"``)
+   Include in quick search: ``"true"`` or ``"false"``
 
-      ``visible``: visibility of a column. The default value is "true".
-      Set to "false" to hide the column.
+``headers`` (array, optional)
+   Multilingual column headers: ``[{"locale": "en", "value": "Header"}]``
 
-      ``quickSearch``: Adds this field to the search scope of the quick search. The default value is ``false``.
-      Set it to ``true`` to apply search condition for the column.
+``type`` (string, default: ``"STANDARD"``)
+   Column type: ``"STANDARD"`` or ``"CUSTOM"``
 
-   -  ``headers``: multilingual header of the column.
+``style`` (string, optional)
+   Inline CSS for custom columns (e.g., ``"width: 110px"``)
+
+**Standard Column Fields**
+
+- ``start`` - Start button to begin task execution
+- ``Pin`` - Pin button for task
+- ``priority`` - Task priority
+- ``id`` - Task ID
+- ``name`` - Task name
+- ``description`` - Task description
+- ``activator`` - Task activator
+- ``state`` - Task business state
+- ``startTimestamp`` - Creation date and time
+- ``endTimestamp`` - End date and time
+- ``expiryTimestamp`` - Expiry date and time
+- ``application`` - Application name
+- ``actions`` - Action buttons (details, reset, delegate, reserve, destroy, etc.)
+
+**Filters Configuration**
+
+The ``filters`` array defines pre-configured filter conditions:
+
+``field`` (string)
+   Column field name to filter
+
+``values`` (array)
+   Filter values (format depends on field type)
+
+``operator`` (string)
+   Filter operator (see Filter Conditions section)
+
+``type`` (string)
+   ``"standard"`` or ``"custom"``
+
+.. note::
+   For detailed filter configuration, see the :ref:`Filter Conditions <configure-new-dashboard-task-widget-filter-structure>` section below.
+
 
 .. _configure-new-dashboard-task-widget-custom-columns:
 
 Custom Columns
 --------------
 
-|ivy| supports custom fields for tasks. You can show them in the Task widget
+Axon Ivy supports custom fields for tasks. You can show them in the Task widget
 as a column.
 
 You can predefine which column to show, and other attributes such as filter, format, and style. Below is a standard JSON of a custom column.
@@ -190,7 +259,7 @@ differences:
 
 .. important::
    Portal only displays custom fields declared in the ``custom-fields.yaml`` file.
-   Refer to :dev-url:`Custom Fields Meta Information </doc/|version|/designer-guide/how-to/workflow/custom-fields.html#meta-information>` for more information.
+   Refer to :doc-url:`Custom Fields Meta Information </designer-guide/how-to/workflow/custom-fields.html#meta-information>` for more information.
 
 Filter Conditions
 -----------------
@@ -364,7 +433,7 @@ Standard Column:
       This column only accepts a list of priorities' names as the filter
       condition. The available filter operator is ``in``.
 
-      Refer to :dev-url:`Task Priority </doc/|version|/public-api/ch/ivyteam/ivy/workflow/WorkflowPriority.html>` for
+      Refer to :doc-url:`Task Priority </public-api/ch/ivyteam/ivy/workflow/WorkflowPriority.html>` for
       available task priorities.
 
    - ``state``
@@ -393,7 +462,7 @@ Standard Column:
       This column only accepts a list of task business state names as its filter
       condition. The available filter operator is ``in``. 
 
-      Refer to :dev-url:`Task Business States </doc/|version|/public-api/ch/ivyteam/ivy/workflow/TaskBusinessState.html>` for
+      Refer to :doc-url:`Task Business States </public-api/ch/ivyteam/ivy/workflow/TaskBusinessState.html>` for
       available task business states.
 
 
@@ -583,8 +652,8 @@ Otherwise, the logic remains unchanged, and the custom field uses the static val
 Additionally, the value must be entered and maintained in the CMS in multiple languages.
 
 Following this path to add your custom field values: ``/CustomFields/Tasks/{fieldName}/Values/{value}``
-Please follow this :dev-url:`Localize Label, Description, Category
-and Values </doc/|version|/designer-guide/configuration/custom-fields.html#localize-label-description-category-and-values>`
+Please follow this :doc-url:`Localize Label, Description, Category
+and Values </designer-guide/configuration/custom-fields.html#localize-label-description-category-and-values>`
 to get more information.
 
 Example YAML Configuration

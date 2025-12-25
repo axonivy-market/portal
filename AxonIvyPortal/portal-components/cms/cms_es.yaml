@@ -16,6 +16,8 @@ Dialogs:
             Process:
               ProcessName: Nombre del proceso
             RequiredFieldMessage: este campo es obligatorio
+            Save: Guardar
+            SideStepPrefix: 'Tarea de paso lateral para: '
             Task:
               Activator: Responsable
             Type: Tipo
@@ -31,10 +33,15 @@ Dialogs:
             FileContainVirus: 'Carga fallida, ¡se ha detectado un virus/infección! '
             FileFunction: Funciones
             FileLimitMessage: ¡El máximo numero de archivos ha sido subido!
+            FilenameEmpty: El nombre del archivo no puede estar vacío.
             InvalidFileMessage: Tipo de archivo no permitido
             Name: Nombre de archivo
             NoFile: ¡No se encuentran archivos!
             Preview: Vista previa
+            RenamingDocument: Renombrar documento
+            RenamingDocumentNote: '{0} ha renombrado el archivo {1} a {2}'
+            RenamingDocumentSuccess: Renombrado exitosamente.
+            RenamingFailed: Se ha producido un error al renombrar el documento.
             Size: Tamaño de archivo
             Type: Tipo
             Upload: Cargar archivo nuevo
@@ -87,13 +94,21 @@ Dialogs:
               EXTERNAL_LINK: Link externo
               IVY_PROCESS: Proceso de negocio
             ProcessViewerIFrameTitle: Marco del visor de procesos
+          SideStepType:
+            PARALLEL: Iniciar una tarea en segundo plano (paralela)
+            SWITCH: Pausar esta tarea e iniciar el proceso (cambiar)
 Labels:
   AI:
     Error:
       CanceledFlow: You have canceled the flow. If you have any requests, please let me know.
       ErrorWhenProceedRequest: An error has occurred while trying to process your request. Please try again later.
       SomethingWentWrong: Something went wrong when proceed your request. Please try again later.
+  Close: Cerrar
   DisabledUserPrefix: (inactivo)
+  Enums:
+    NewFilenameValidation:
+      ALREADY_EXIST: Ya existe un archivo con el mismo nombre en esta ubicación.
+      INVALID_FORMAT: 'Un nombre de archivo no puede contener ninguno de los siguientes caracteres: \ / : * ? " < > |'
   NoName: Sin nombre
   NoResults: Sin resultados
   None: Ninguno

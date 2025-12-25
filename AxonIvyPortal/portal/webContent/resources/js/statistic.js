@@ -82,10 +82,18 @@ function filterOptionsForDateTimeFormatter(pattern) {
   return options;
 }
 
+function isDateValid(date) {
+  return !isNaN(date);
+}
+
 function formatDateFollowLocale(dt) {
+  if (!isDateValid(dt)) {
+    console.warn('Invalid Date object provided for formatting.');
+    return;
+  }
   const options = filterOptionsForDateTimeFormatter(datePattern);
   // Format locale
-  let friendlyLocale = locale.replace('_', '-');
+  let friendlyLocale = contentLocale.replace('_', '-');
   const formatter = new Intl.DateTimeFormat(friendlyLocale, options);
   return formatter.format(dt);
 }
@@ -130,6 +138,44 @@ const convertYValue = (value, config) => {
   return value;
 }
 
+const processYValue = (result, config) => {
+  if (result.length > 0 && result[0].aggs.length > 0) {
+    const values = [];
+    result.forEach((bucket) => {
+      if (bucket.key) {
+        bucket.aggs.forEach((item) => {
+          values.push({
+            key: bucket.key,
+            count: convertYValue(item.value, config)
+          });
+        });
+      }
+    })
+    return values;
+  }
+
+  return result;
+}
+
+function shouldRenderEmptyChart(data) {
+  var result = data.result.aggs?.[0]?.buckets ?? [];
+  if (result.length == 0) {
+    return true;
+  }
+
+  if (data.chartConfig.statisticAggregation.kpiField) {
+    var objects = result;
+    const allNestedValuesAreZero = objects.every(obj => 
+      Object.values(obj.aggs).every(val => {
+        return val.value == 0 || val.value == null || val.value == undefined || val.value === "null";
+      })
+    );
+    return allNestedValuesAreZero;
+  }
+
+  return false;
+}
+
 async function fetchChartData(chart, chartId) {
   let data;
   let cloneResponse;
@@ -164,7 +210,9 @@ function initRefresh() {
           refreshInfo.refreshInterval = MIN_REFRESH_INTERVAL;
         }
         refreshInfo.refreshIntervalId = setInterval(() => {
-          refreshChart(refreshInfo);
+          if (!(document.hidden || document.msHidden || document.webkitHidden)) {
+            refreshChart(refreshInfo);
+          }
         }, refreshInfo.refreshInterval * 1000);
       }
     }
@@ -309,7 +357,7 @@ function initConfig(defaultLocale, defaultContentLocale, datePatternConfig) {
 }
 
 function getFormatedTitle(titles) { 
-  const matchingItem = titles.find(item => item.locale === contentLocale);
+  const matchingItem = titles.find(item => item.locale === locale);
   if (matchingItem) {
     return matchingItem.value;
   }
@@ -383,7 +431,7 @@ class ClientChart {
     });
 
     return data.map((val) => {
-      if (!val || typeof val.count !== 'number') return defaultBackgroundColor;
+      if (!isNumeric(val.count)) return defaultBackgroundColor;
 
       for (const func of generatedCompareFunctions) {
         const result = func(val.count, val.key);
@@ -417,7 +465,7 @@ getBackgroundColorsWithAllScope(chartConfig, data) {
   });
 
   return data.map((val) => {
-    if (!val || typeof val.count !== 'number') return defaultBackgroundColor;
+    if (!val || !isNumeric(val.count)) return defaultBackgroundColor;
 
     for (const func of generatedCompareFunction) {
       const result = func(val.count);
@@ -437,6 +485,31 @@ getBackgroundColorsWithAllScope(chartConfig, data) {
   }
 
   updateClientChart() { }
+
+  canDrillDown() {
+    const config = this.data.chartConfig;
+    return config.canDrillDown === true;
+  }
+
+  handleChartClick(element, event) {
+    if (!this.canDrillDown()) {
+      return;
+    }
+    const drillDownData = {
+      chartId: this.data.chartConfig.id,
+      drillDownValue: this.data.result.aggs[0].buckets[element.index].key
+    };
+    this.drillDownStatistic(drillDownData);
+  }
+
+  drillDownStatistic(drillDownData) {
+    if (typeof window.openStatisticDrillDown === 'function') {
+      window.openStatisticDrillDown([{
+        name: 'drillDownData',
+        value: JSON.stringify(drillDownData)
+      }]);
+    }
+  }
 
   // Method to render empty chart
   renderEmptyChart(chart, additionalConfig) {
@@ -483,8 +556,9 @@ class ClientCanvasChart extends ClientChart {
   // Method to format chart label
   formatChartLabel(label) {
     let aggregationField = this.data.chartConfig.statisticAggregation?.field;
+    let kpiMethod = this.data.chartConfig.statisticAggregation?.kpiMethod;
 
-    if (typeof label === 'number' || this.isTimestampField(aggregationField)) {
+    if (typeof label === 'number' || this.isTimestampField(aggregationField) || kpiMethod) {
       return formatDateFollowLocale(new Date(label));
     }
     
@@ -519,7 +593,7 @@ class ClientCanvasChart extends ClientChart {
     let chart = this.chart;
 
     // Render empty chart when result empty 
-    if (result.length == 0) {
+    if (shouldRenderEmptyChart(this.data)) {
       return this.renderEmptyChart(chart, config.additionalConfigs);
     }
 
@@ -547,8 +621,10 @@ class ClientPieChart extends ClientCanvasChart {
     let result = this.data.result.aggs?.[0]?.buckets ?? [];
     let config = this.data.chartConfig;
     let chart = this.chart;
+    
+    const data = processYValue(result, this.data.chartConfig.additionalConfigs);
 
-    if (result.length == 0) {
+    if (shouldRenderEmptyChart(this.data)) {
       return this.renderEmptyChart(chart, config.additionalConfigs);
     } else {
       let html = this.renderChartCanvas(chart.getAttribute(DATA_CHART_ID));
@@ -562,7 +638,7 @@ class ClientPieChart extends ClientCanvasChart {
           labels: result.map(bucket => this.formatChartLabel(bucket.key)),
           datasets: [{
             label: config.name,
-            data: config.statisticAggregation.kpiField ? result.map(bucket => bucket.aggs[0].value) : result.map(bucket => bucket.count),
+            data: data.map(bucket => bucket.count),
             counting: result.map(bucket => bucket.count),
             chartTarget: config.chartTarget,
             aggregation: config.statisticAggregation,
@@ -573,6 +649,14 @@ class ClientPieChart extends ClientCanvasChart {
         options: {
           responsive: true,
           maintainAspectRatio: false,
+          onHover: (event, elements) => {
+            event.native.target.style.cursor = this.canDrillDown() && elements.length > 0 ? 'pointer' : 'default';
+          },
+          onClick: (event, elements) => {
+            if (this.canDrillDown() && elements.length > 0) {
+              this.handleChartClick(elements[0], event);
+            }
+          },
           plugins: {
             legend: {
               labels: {
@@ -610,18 +694,18 @@ class ClientCartesianChart extends ClientCanvasChart {
     let config = this.data.chartConfig;
     let chart = this.chart;
 
-    if (result.length == 0) {
+    if (shouldRenderEmptyChart(this.data)) {
       return this.renderEmptyChart(chart, config.additionalConfigs);
     } else {
       //If the target type for the Y axis is 'time', get average time from sub aggregate of the result.
       const chartTypeConfig = this.getChartTypeConfig();
-      let data = chartTypeConfig?.yValue ? this.processYValue(result, chartTypeConfig?.yValue) : result;
+      let data = processYValue(result, this.data.chartConfig.additionalConfigs);
       // Because processYValue removes bucket which has empty key, if the returned result is empty, render empty chart
       if (data.length == 0) {
         return this.renderEmptyChart(chart, config.additionalConfigs);
       }
 
-      let stepSize = chartTypeConfig?.yValue === 'time' ? 200 : 2;
+      let stepSize = chartTypeConfig?.yValue === 'time' ? 200 : undefined;
       let html = this.renderChartCanvas(chart.getAttribute(DATA_CHART_ID));
       let backgroundColors = this.calculateConditionalColors(config, data, config.chartType == 'bar' ? config.barChartConfig.backgroundColors : config.lineChartConfig.backgroundColors);
       $(chart).html(html);
@@ -632,8 +716,8 @@ class ClientCartesianChart extends ClientCanvasChart {
           labels: data.map(bucket => this.formatChartLabel(bucket.key)),
           datasets: [{
             label: config.name,
-            data: config.statisticAggregation.kpiField ? data.map(bucket => bucket.aggs[0].value) : data.map(bucket => bucket.count),
-            counting: data.map(bucket => bucket.count),
+            data: data.map(bucket => bucket.count),
+            counting: result.map(bucket => bucket.count),
             chartTarget: config.chartTarget,
             aggregation: config.statisticAggregation,
             backgroundColor: backgroundColors,
@@ -646,6 +730,14 @@ class ClientCartesianChart extends ClientCanvasChart {
         options: {
           responsive: true,
           maintainAspectRatio: false,
+          onHover: (event, elements) => {
+            event.native.target.style.cursor = this.canDrillDown() && elements.length > 0 ? 'pointer' : 'default';
+          },
+          onClick: (event, elements) => {
+            if (this.canDrillDown() && elements.length > 0) {
+              this.handleChartClick(elements[0], event);
+            }
+          },
           plugins: {
             legend: {
               display: false,
@@ -670,6 +762,7 @@ class ClientCartesianChart extends ClientCanvasChart {
               },
               ticks: {
                 stepSize: stepSize,
+                precision: config.statisticAggregation?.aggregationMethod ? undefined : 0,
                 color: CHART_TEXT_COLOR
               },
               grid: {
@@ -699,29 +792,6 @@ class ClientCartesianChart extends ClientCanvasChart {
   getChartTitleConfig() { }
 
   getBackgoundColors() { }
-
-  processYValue(result, yValue) {
-    switch (yValue) {
-      case 'time': {
-        const values = [];
-        result.forEach((bucket) => {
-          if (bucket.key.trim().length !== 0) {
-            bucket.aggs.forEach((item) => {
-              if (item['name'] === AVERAGE_BUSINESS_RUNTIME) {
-                values.push({
-                  key: bucket.key,
-                  count: convertYValue(item.value, this.data.chartConfig.additionalConfigs)
-                });
-              }
-            });
-          }
-        });
-        return values;
-      };
-      default:
-        return result;
-    }
-  }
 }
 
 // Class for bar chart
@@ -736,13 +806,13 @@ class ClientBarChart extends ClientCartesianChart {
     let chart = this.chart;
 
     // Render empty chart when result empty 
-    if (result.length == 0) {
+    if (shouldRenderEmptyChart(this.data)) {
       return this.renderEmptyChart(chart, config.additionalConfigs);
     } 
     else if (result.length > 0) {
       // Update y value in case y value is time
       if (config.barChartConfig?.yValue === 'time') {
-        result = this.processYValue(result, config.barChartConfig.yValue);
+        result = processYValue(result, config.barChartConfig.yValue);
 
         // Because processYValue removes bucket which has empty key, if the returned result is empty, render empty chart
         if (result.length == 0) {
@@ -850,7 +920,15 @@ class ClientNumberChart extends ClientChart {
 
     $(this.chart).parents('.statistic-chart-widget__chart').addClass('client-number-chart');
     let multipleKPI = this.renderMultipleNumberChartInHTML(result, config.numberChartConfig.suffixSymbol, config.chartTarget);
-    return $(this.chart).html(multipleKPI);
+    $(this.chart).html(multipleKPI);
+    
+    if (this.canDrillDown()) {
+      $(this.chart).find('.chart-content-card-clickable').each((index, element) => {
+        element.addEventListener('click', (event) => this.handleNumberCardClick(element, event));
+      });
+    }
+    
+    return $(this.chart);
   }
 
   initWidgetHeaderName(chart, widgetName) {
@@ -872,9 +950,8 @@ class ClientNumberChart extends ClientChart {
     let multipleNumberChartInHTML = '';
     if (result?.length > 0) {
         result.forEach((item, index) => {
-          const yValue = item.aggs.length > 0 ?
-              (item.aggs[0].value === "null" ? "0" : Number(item.aggs[0].value)) : item.count;
-          const counting = item.aggs.length > 0 ? item.count + " " + chartTarget + "s" : "";
+          const yValue = item.aggs.length > 0 ? this.formatNumberValue(item.aggs[0].value) : item.count;
+          const counting = item.aggs.length > 0 ? item.count + " " + chartTarget + (item.count > 1 ? "s" : "") : "";
           let htmlString = this.generateItemHtml(item.key, yValue, suffixSymbold, index, counting);
           multipleNumberChartInHTML += htmlString;
         })
@@ -888,19 +965,26 @@ class ClientNumberChart extends ClientChart {
   generateItemHtml(label, number, suffixSymbol, index, counting) {
     let border = '<div class="chart-border">' + '</div>';
     label = this.data.chartConfig.numberChartConfig?.hideLabel === true ? '' : this.formatChartLabel(label) ;
+    const isClickable = this.canDrillDown() ? 'chart-content-card-clickable' : '';
     let html =
-      '<div class="text-center chart-content-card">' +
+      `<div class="text-center chart-content-card ${isClickable}" data-index="${index}">` +
       '    <div class="chart-number-container">' +
       '        <span class="card-number chart-number-font-size chart-number-animation">' + number + '</span>' +
       '        <i class="card-number chart-number-font-size chart-number-animation ' + suffixSymbol + '"></i>' +
-      '    </div>' +
-      '    <h4 class="chart-number-animation">' + counting + '</h4>' +
+      '    </div>' + this.generateCountingHTML(counting) +
       '    <div class="chart-label-container">' +
       '        <span class="card-name chart-name-font-size chart-number-animation">' + label + '</span>' +
       '    </div>' +
       '</div>';
     return index > 0 ? border + html : html;
   };
+
+  generateCountingHTML(counting) {
+    if (counting) {
+      return '<div class="chart-number-animation chart-number-counting" style="padding-top: 10px;">' + counting + '</div>';
+    }
+    return '';
+  }
 
   // Method to format chart label.
   formatChartLabel(label) {
@@ -916,6 +1000,15 @@ class ClientNumberChart extends ClientChart {
       .split('_')
       .map(word => word.charAt(0).toUpperCase() + word.slice(1))
       .join(' ');
+  }
+
+  formatNumberValue(value) {
+    if (value === "null" || value === null || value === undefined) {
+      return "0";
+    }
+  
+    const numValue = Number(value);
+    return numValue % 1 === 0 ? numValue.toString() : numValue.toFixed(2);
   }
 
   getItemFromFilters() {
@@ -936,19 +1029,33 @@ class ClientNumberChart extends ClientChart {
   updateClientChart() {
     this.render();
   }
+
+  handleNumberCardClick(cardElement, event) {
+    if (!this.canDrillDown()) {
+      return;
+    }
+
+    const cardIndex = parseInt(cardElement.getAttribute('data-index'));
+    const item = this.dataResult[cardIndex];
+    const drillDownData = {
+      chartId: this.data.chartConfig.id,
+      drillDownValue: item.key
+    };
+    this.drillDownStatistic(drillDownData);
+  }
 }
 
 const customFooterChartTooltip = (tooltipItems) => {
   let total = 0;
-  if (tooltipItems.length === 0 || !tooltipItems[0].dataset.aggregation.kpiField) {
+  if (tooltipItems.length === 0 || !tooltipItems[0].dataset.aggregation?.kpiField) {
     return;
   }
   tooltipItems.forEach((tooltipItem) => total += tooltipItem.dataset.counting[tooltipItem.dataIndex]);
-  return 'Total: ' + total + ' ' + tooltipItems[0].dataset.chartTarget + "s";
+  return `Total: ${total} ${tooltipItems[0].dataset.chartTarget}${total !== 1 ? "s" : ""}`;
 };
 
 const customBeforeBodyChartTooltip = (tooltipItems) => {
-  if (tooltipItems.length === 0 || !tooltipItems[0].dataset.aggregation.kpiField) {
+  if (tooltipItems.length === 0 || !tooltipItems[0].dataset.aggregation?.kpiField) {
     return;
   }
   const aggregation = tooltipItems[0].dataset.aggregation;

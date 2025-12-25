@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 import com.axonivy.portal.enums.dashboard.filter.FilterOperator;
@@ -31,6 +32,7 @@ import ch.ivyteam.ivy.workflow.query.TaskQuery.OrderByColumnQuery;
 public class DashboardTaskSearchCriteria {
 
   private boolean canWorkOn;
+  private boolean filterTasksByCurrentCaseOwner;
   private List<TaskColumnModel> columns;
   private List<DashboardFilter> filters;
   private List<DashboardFilter> userFilters;
@@ -291,7 +293,7 @@ public class DashboardTaskSearchCriteria {
       }
       
       DashboardColumnFormat format =
-          columns.stream().filter(c -> StringUtils.equalsIgnoreCase(sortField, c.getField()))
+          columns.stream().filter(c -> Strings.CI.equals(sortField, c.getField()))
               .map(ColumnModel::getFormat).findFirst().orElse(DashboardColumnFormat.STRING);
       final ICustomFieldOrderBy customField = query.orderBy().customField();
 
@@ -318,6 +320,14 @@ public class DashboardTaskSearchCriteria {
 
   public void setCanWorkOn(boolean canWorkOn) {
     this.canWorkOn = canWorkOn;
+  }
+
+  public boolean isFilterTasksByCurrentCaseOwner() {
+    return filterTasksByCurrentCaseOwner;
+  }
+
+  public void setFilterTasksByCurrentCaseOwner(boolean filterTasksByCurrentCaseOwner) {
+    this.filterTasksByCurrentCaseOwner = filterTasksByCurrentCaseOwner;
   }
 
   public List<TaskColumnModel> getColumns() {

@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/13.1.2/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/13.2.0/process.json",
   "id" : "15493A537A91F8FC",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -64,8 +64,8 @@
             "// Behind the scene, Portal sets expiry activator to the current responsible",
             "// then set expiry time in case the task has expiry handler.",
             "boolean isUpdateExpiryActivator = false;",
-            "if (CollectionUtils.isEmpty(in.task.expiry().responsibles().all()) &&",
-            "    StringUtils.isNotBlank(in.task.getExpiryTaskStartElementPid())) {",
+            "boolean isNobodyAndDeleteSelected = in.task.expiry().responsibles().all().isEmpty();",
+            "if (!isNobodyAndDeleteSelected && StringUtils.isNotBlank(in.task.getExpiryTaskStartElementPid())) {",
             "  TaskUtils.setResonsibleToExpiryResponsible(in.task);",
             "  isUpdateExpiryActivator = true;",
             "}",

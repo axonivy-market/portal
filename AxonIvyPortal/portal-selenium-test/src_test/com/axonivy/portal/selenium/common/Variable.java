@@ -10,8 +10,6 @@ public enum Variable {
   HIDE_TIME("Portal.DateTimeFormat.HideTime"), HIDE_YEAR("Portal.DateTimeFormat.HideYear"),
   HIDE_SYSTEM_TASKS_FROM_HISTORY("Portal.Histories.HideSystemTasks"),
   HIDE_SYSTEM_TASKS_FROM_HISTORY_ADMINISTRATOR("Portal.Histories.HideSystemTasksForAdministrator"),
-  HIDE_SYSTEM_NOTES_FROM_HISTORY("Portal.Histories.HideSystemNotes"),
-  HIDE_SYSTEM_NOTES_FROM_HISTORY_ADMINISTRATOR("Portal.Histories.HideSystemNotesForAdministrator"),
   ENABLE_GROUP_CHAT("Portal.Chat.EnableGroup"),
   ENABLE_PRIVATE_CHAT("Portal.Chat.EnablePrivate"), CHAT_RESPONSE_TIMEOUT("Portal.Chat.ResponseTimeout"),
   CHAT_MAX_CONNECTION("Portal.Chat.MaxConnection"), ENABLE_CASE_OWNER("Portal.Cases.EnableOwner"),
@@ -31,8 +29,8 @@ public enum Variable {
   TASK_DETAIL("Portal.TaskDetails"), CASE_COLUMN("Portal.Cases.CaseColumn"), CASE_FILTER("Portal.Cases.CaseFilters"),
   CASE_DETAIL("Portal.CaseDetails"), SHOW_AVATAR("Portal.ShowAvatar"),
   GLOBAL_SEARCH_BY_TASK_FIELDS("Portal.SearchScope.ByTaskFields"),
-  GLOBAL_SEARCH_BY_CASE_FIELDS("Portal.SearchScope.ByCaseFields"), DEEPL_AUTH_KEY("Portal.DeepL.AuthKey"),
-  ENABLE_DEEPL_TRANSLATION("Portal.DeepL.Enable"), DASHBOARD("Portal.Dashboard"),
+  GLOBAL_SEARCH_BY_CASE_FIELDS("Portal.SearchScope.ByCaseFields"),
+  ENABLE_TRANSLATION_SERVICE("Portal.TranslationService.Enable"), DASHBOARD("Portal.Dashboard"),
   GLOBAL_FOOTER_INFO("Portal.GlobalFooterInfo"), USER_MENU("Portal.UserMenu"), DEFAULT_THEME_MODE("Portal.Theme.Mode"),
   GLOBAL_SEARCH_SCOPE_BY_CATEGORIES("Portal.GlobalSearchScopeCategories"),
   SHOW_QUICK_GLOBAL_SEARCH("Portal.ShowQuickGlobalSearch"),
@@ -41,7 +39,9 @@ public enum Variable {
   APPLICATION_NAME("Portal.ApplicationName"),
   ENABLE_DOCUMENT_PREVIEW("Portal.Document.EnablePreview"),
   ENABLE_PROCESS_VIEWER("Portal.ProcessViewer"),
-  ENABLE_PINNED_TASK("Portal.Tasks.EnablePinnedTask"), ENABLE_PINNED_CASE("Portal.Cases.EnablePinnedCase");
+  ENABLE_PINNED_TASK("Portal.Tasks.EnablePinnedTask"), ENABLE_PINNED_CASE("Portal.Cases.EnablePinnedCase"),
+  CHECK_SYSTEM_NOTES_BY_DEFAULT("Portal.Histories.CheckSystemNotesByDefault"),
+  CHECK_SYSTEM_TASKS_BY_DEFAULT("Portal.Histories.CheckSystemTasksByDefault");
 
   private String key;
 

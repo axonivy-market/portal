@@ -182,7 +182,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       displayAllUsersOfTaskActivator: This setting is using for SecurityMemberDisplayName component. If the SecurityMember is a role, set this setting to true to list out all users of this role. If set to true, icon info is shown beside the role name.
       displayMessageAfterFinishOrLeaveTask: A feedback message will be displayed after user finishes or leaves a task.
       embedInFrame: Set to true to start a process/task in IFrame mode
-      enableCaseOwner: Set to true to enable filtering case owner when cases are queried. This setting affects all case queries, e.g. for case list, global search, statistic.
+      enableCaseOwner: Set to true to enable filtering case owner when cases are queried. This setting affects all case queries, e.g. for case list, global search, statistic. It also makes the "Filter tasks by current case owner" filter available in the task widget, which is hidden by default.
       enableGroupChat: Set this property to true to enable group chat function
       enablePrivateChat: Set this property to true to enable private chat function
       enableProcessViewer: Set this property to true to enable process viewer option in Task/Case actions
@@ -192,8 +192,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       hideChangePasswordButtonNote: Set this variable to true to hide the "Change Password" option in the top menu and the "Forgotten Password" option on the login page. If set to false, these options will be shown.
       hideLogoutButtonNote: If true, the logout button on top menu will be hidden, otherwise it will be shown.
       hideRelatedCaseInfoFromHistory: If true, case history does not display the related case information in the history table.
-      hideSystemNotesFromHistory: If true, case/task note does not display any system notes for non-administrator users.
-      hideSystemNotesFromHistoryAdministrator: If true, case/task note does not display any system notes for administrator.
       hideSystemTasksFromHistory: If true, case note does not display any system tasks for non-administrator users.
       hideSystemTasksFromHistoryAdministrator: If true, case note does not display any system tasks for administrator.
       hideTaskDocument: Set to true, the document section in task detail page will be hidden, otherwise it will be shown.
@@ -671,7 +669,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     statisticChartIntroduction: This widget displays available statistic charts.
     statisticChartWidget: Statistic chart
     switchToViewMode: View Mode
-    tasWidgetkInfo:
+    taskWidgetInfo:
       expireToday: Expire today
       expiryThisWeek: Expire this week
       numberOfTasks: task(s)
@@ -1113,6 +1111,7 @@ Dialogs:
               PermissionsDenied: You don't have permission to access this dashboard
             NavigationDashboardWidgetConfiguration:
               ButtonName: Button Name
+              VisualType: Visual Type
             NewsWidget:
               NewsContentPlaceHolder: Enter News content
               NewsContentValidateMessage: News content in {0} is required

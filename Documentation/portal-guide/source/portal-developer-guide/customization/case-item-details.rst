@@ -3,9 +3,12 @@
 Case Item Details
 =================
 
-CaseItemDetails is a built-in component of the Portal that contains the case
-information which users can interact with. To show additional required case
-information, the Portal supports customizing the CaseItemDetails.
+Introduction
+------------
+
+The Case Item Details customization allows you to configure which widgets appear on the case details page and how they are arranged.
+Portal provides built-in widgets for case information, documents, related tasks, histories, and business details,
+plus the ability to add custom panels at multiple insertion points.
 
 Each CaseItemDetails contains
 
@@ -107,7 +110,7 @@ How to Configure Widgets in Case Details
       -  ``categories`` (case categories)
       -  ``states`` (case business states).
 
-         Refer to :dev-url:`Case business states </doc/|version|/public-api/ch/ivyteam/ivy/workflow/caze/CaseBusinessState.html>` for
+         Refer to :doc-url:`Case business states </public-api/ch/ivyteam/ivy/workflow/caze/CaseBusinessState.html>` for
          available case business states.
 
    -  The structure of each widget inside the case details layout is stored in variable **Portal.CaseDetails**:
@@ -184,7 +187,7 @@ For the custom widget, we have a new node is ``data`` inside of case details wid
       - Go to the homepage.
       - And then go to case details to check the new custom layout.
    
-      About how to configure Variables, refer to :dev-url:`|ivy| Variables </doc/|version|/designer-guide/configuration/variables.html>`
+      About how to configure Variables, refer to :doc-url:`Axon Ivy Variables </designer-guide/configuration/variables.html>`
    
 
 Adding New Custom Panels
@@ -318,7 +321,7 @@ The following two steps are necessary to add new custom panels:
                      "h": 8
                   },
                   "data": {
-                     "url": "https://www.axonivy.com/"
+                     "url": "https://www.lucide.dev/"
                   }
                   }
                ]

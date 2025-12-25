@@ -1,12 +1,12 @@
 package com.axonivy.portal.util;
 
 import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.CASE;
-import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.STATISTIC;
 import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.CUSTOM;
 import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.NEWS;
 import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.NOTIFICATION;
 import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.PROCESS;
 import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.PROCESS_VIEWER;
+import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.STATISTIC;
 import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.TASK;
 import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.WELCOME;
 
@@ -17,7 +17,6 @@ import com.axonivy.portal.dto.dashboard.NewsDashboardWidget;
 import com.axonivy.portal.dto.dashboard.NotificationDashboardWidget;
 
 import ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget;
-import ch.ivy.addon.portalkit.dto.dashboard.StatisticDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.CombinedProcessDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.CompactProcessDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.CustomDashboardWidget;
@@ -25,11 +24,13 @@ import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.FullProcessDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.ImageProcessDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.ProcessViewerDashboardWidget;
+import ch.ivy.addon.portalkit.dto.dashboard.StatisticDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.WelcomeDashboardWidget;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 import ch.ivy.addon.portalkit.util.CustomWidgetUtils;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
+import ch.ivy.addon.portalkit.util.NavigationWidgetUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 
 public class DashboardCloneUtils {
@@ -102,6 +103,14 @@ public class DashboardCloneUtils {
       case NavigationDashboardWidget navigationDashboardWidget -> {
         widget = navigationDashboardWidget;
         widget.setId(DashboardWidgetUtils.generateNewWidgetId(DashboardWidgetType.NAVIGATION_DASHBOARD));
+        try {
+          NavigationWidgetUtils.cloneLightModeImage(navigationDashboardWidget.getImageType(), 
+              navigationDashboardWidget.getImageLocation(), (NavigationDashboardWidget) widget);
+          NavigationWidgetUtils.cloneDarkModeImage(navigationDashboardWidget.getImageTypeDarkMode(), 
+              navigationDashboardWidget.getImageLocationDarkMode(), (NavigationDashboardWidget) widget);
+        } catch (IOException e) {
+          Ivy.log().error(e);
+        }
       }
       default -> {}
     }

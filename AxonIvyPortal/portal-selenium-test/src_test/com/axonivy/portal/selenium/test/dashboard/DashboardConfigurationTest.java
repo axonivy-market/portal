@@ -239,7 +239,7 @@ public class DashboardConfigurationTest extends BaseTest {
     taskWidget.deleteTaskWidget();
     NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
     newDashboardDetailsEditPage.clickOnRemoveWidgetButton();
-    newDashboardPage.selectCaseWidget(" ").expand().shouldHave(size(8));
+    newDashboardPage.collectAvailableWidgets().shouldHave(size(8));
   }
 
   @Test
@@ -251,7 +251,7 @@ public class DashboardConfigurationTest extends BaseTest {
     caseWidget.deleteCaseWidget();
     NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
     newDashboardDetailsEditPage.clickOnRemoveWidgetButton();
-    newDashboardPage.selectTaskWidget(" ").expand().shouldHave(size(8));
+    newDashboardPage.collectAvailableWidgets().shouldHave(size(8));
   }
 
   @Test
@@ -263,7 +263,7 @@ public class DashboardConfigurationTest extends BaseTest {
     processWidget.deleteProcessWidget();
     NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
     newDashboardDetailsEditPage.clickOnRemoveWidgetButton();
-    newDashboardPage.selectTaskWidget(" ").expand().shouldHave(size(8));
+    newDashboardPage.collectAvailableWidgets().shouldHave(size(8));
   }
 
   @Test
@@ -275,7 +275,7 @@ public class DashboardConfigurationTest extends BaseTest {
     taskWidget.deleteTaskWidget();
     NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
     newDashboardDetailsEditPage.clickOnRemoveWidgetButton();
-    newDashboardPage.selectCaseWidget(" ").expand().shouldHave(size(8));
+    newDashboardPage.collectAvailableWidgets().shouldHave(size(8));
   }
 
   @Test
@@ -288,7 +288,7 @@ public class DashboardConfigurationTest extends BaseTest {
     caseWidget.deleteCaseWidget();
     NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
     newDashboardDetailsEditPage.clickOnRemoveWidgetButton();
-    newDashboardPage.selectTaskWidget(" ").expand().shouldHave(size(8));
+    newDashboardPage.collectAvailableWidgets().shouldHave(size(8));
   }
 
   @Test
@@ -301,7 +301,7 @@ public class DashboardConfigurationTest extends BaseTest {
     processWidget.deleteProcessWidget();
     NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
     newDashboardDetailsEditPage.clickOnRemoveWidgetButton();
-    newDashboardPage.selectTaskWidget(" ").expand().shouldHave(size(8));
+    newDashboardPage.collectAvailableWidgets().shouldHave(size(8));
   }
 
   @Test
@@ -323,10 +323,15 @@ public class DashboardConfigurationTest extends BaseTest {
     createPublicDashboardUseTemplate();
     redirectToRelativeLink(denyDashboardExportOwnPermissionUrl);
     redirectToRelativeLink(grantDashboardExportPublicPermissionUrl);
-    var configurationPage = LinkNavigator.navigateToPortalDashboardConfiguration();
-    configurationPage.openEditPublicDashboardsPage().getDashboardExportButtonOfDashboard("New public dashboard")
+    DashboardConfigurationPage configurationPage = LinkNavigator.navigateToPortalDashboardConfiguration();
+    DashboardModificationPage publicDashboardPage = configurationPage.openEditPublicDashboardsPage();
+    publicDashboardPage.waitForDashboardTableToLoad();
+    publicDashboardPage.getDashboardExportButtonOfDashboard("New public dashboard")
         .shouldBe(Condition.appear);
-    configurationPage.openEditPrivateDashboardsPage().getDashboardExportButtonOfDashboard("New private dashboard")
+    refreshPage(); // refresh to make the edit menu disappear
+    DashboardModificationPage privateDashboardPage = configurationPage.openEditPrivateDashboardsPage();
+    privateDashboardPage.waitForDashboardTableToLoad();
+    privateDashboardPage.getDashboardExportButtonOfDashboard("New private dashboard")
         .shouldBe(Condition.disappear);
   }
 

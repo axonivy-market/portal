@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
@@ -16,18 +17,24 @@ import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 import org.primefaces.PrimeFaces;
 
 import com.axonivy.portal.migration.dashboard.migrator.JsonDashboardMigrator;
 import com.axonivy.portal.migration.dashboardtemplate.migrator.JsonDashboardTemplateMigrator;
-import com.axonivy.portal.util.UserExampleUtils;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.constant.IvyCacheIdentifier;
+import ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget;
+import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardOrder;
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardTemplate;
+import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
+import ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget;
+import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.DashboardDisplayType;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
@@ -63,7 +70,7 @@ public class DashboardUtils {
       if (permissions == null) {
         return false;
       }
-      return permissions.stream().noneMatch(DashboardUtils::isSessionUserHasPermisson);
+      return permissions.stream().noneMatch(DashboardUtils::isSessionUserHasPermission);
     });
     return dashboards;
   }
@@ -74,14 +81,37 @@ public class DashboardUtils {
       if (permissions == null) {
         return false;
       }
-      return permissions.stream().noneMatch(DashboardUtils::isSessionUserHasPermisson);
+      return permissions.stream().noneMatch(DashboardUtils::isSessionUserHasPermission);
     });
     return dashboards;
   }
 
-  private static boolean isSessionUserHasPermisson(String permission) {
-    return StringUtils.startsWith(permission, "#") ? StringUtils.equals(currentUser().getMemberName(), permission)
+  private static boolean isSessionUserHasPermission(String permission) {
+    return Strings.CS.startsWith(permission, "#") ? Strings.CS.equals(currentUser().getMemberName(), permission)
         : PermissionUtils.doesSessionUserHaveRole(permission);
+  }
+
+  /**
+   * Determines whether the session user has access to the specified dashboard.
+   * 
+   * @param dashboard the {@link Dashboard} instance to check access for
+   * @return {@code true} if the session user can access the dashboard.
+   */
+  public static boolean canSessionUserAccessDashboard(Dashboard dashboard) {
+    if (Optional.ofNullable(dashboard).map(Dashboard::getPermissions)
+        .orElse(new ArrayList<>()).isEmpty()) {
+      return false;
+    }
+    if (dashboard.getPermissions().contains(ISecurityConstants.TOP_LEVEL_ROLE_NAME)) {
+      return true;
+    }
+
+    for (String permission : dashboard.getPermissions()) {
+      if (isSessionUserHasPermission(permission)) {
+        return true;
+      }
+    }
+    return false;
   }
 
   public static List<Dashboard> jsonToDashboards(String dashboardJSON) {
@@ -185,9 +215,6 @@ public class DashboardUtils {
   public static List<Dashboard> collectMainDashboards() {
     List<Dashboard> collectedDashboards =
         new ArrayList<>(getPublicDashboards().stream().filter(dashboard -> DashboardDisplayType.TOP_MENU.equals(dashboard.getDashboardDisplayType())).toList());
-    if (UserExampleUtils.isUserExampleAvailable()) {
-      collectedDashboards.add(DefaultDashboardUtils.getDefaultUserExampleDashboard());
-    }
     return collectedDashboards;
   }
 
@@ -315,8 +342,59 @@ public class DashboardUtils {
     if (CollectionUtils.isEmpty(dashboards)) {
       return;
     }
+    dashboards.stream()
+    .filter(Objects::nonNull)
+    .forEach(dashboard -> {
+      if (CollectionUtils.isNotEmpty(dashboard.getWidgets())) {
+        updatePropertiesForWidgets(dashboard.getWidgets());
+      }
+    });
   }
-
+  
+  private static void updatePropertiesForWidgets(List<DashboardWidget> widgetList) {
+    widgetList.stream()
+        .map(DashboardUtils::getColumnsFromWidget)
+        .filter(CollectionUtils::isNotEmpty)
+        .flatMap(List::stream)
+        .forEach(column -> column.setHeaders(new ArrayList<>()));
+  }
+  
+  private static List<ColumnModel> getColumnsFromWidget(DashboardWidget widget) {
+    if (widget == null || widget.getType() == null) {
+      return List.of();
+    }
+    
+    return switch (widget.getType()) {
+      case TASK -> {
+        TaskDashboardWidget taskWidget = (TaskDashboardWidget) widget;
+        yield taskWidget.getColumns().stream()
+            .filter(Objects::nonNull)
+            .filter(item -> isCustomField(item.getType()))
+            .map(ColumnModel.class::cast)
+            .toList();
+      }
+      case CASE -> {
+        CaseDashboardWidget caseWidget = (CaseDashboardWidget) widget;
+        yield caseWidget.getColumns().stream()
+            .filter(Objects::nonNull)
+            .filter(item -> isCustomField(item.getType()))
+            .map(ColumnModel.class::cast)
+            .toList();
+      }
+      default -> List.of();
+    };
+  }
+  
+  private static boolean isCustomField(DashboardColumnType type) {
+    if (type == null) {
+      return false;
+    }
+    return switch (type) {
+      case CUSTOM, CUSTOM_CASE, CUSTOM_BUSINESS_CASE -> true;
+      default -> false;
+    };
+  }
+  
   public static boolean isDefaultTaskListDashboard(Dashboard dashboard) {
     return Optional.ofNullable(dashboard).map(Dashboard::getId).orElseGet(() -> "")
         .contentEquals(DEFAULT_TASK_LIST_DASHBOARD);
@@ -478,4 +556,7 @@ public class DashboardUtils {
   public record PortalDashboardItemWrapper(List<Dashboard> dashboards) {
   }
 
+  public static String buildDashboardLink(Dashboard dashboard) {
+    return UrlUtils.getServerUrl() + PortalNavigator.getDashboardPageUrl(dashboard.getId());
+  }
 }

@@ -182,16 +182,16 @@ public class DashboardCaseWidgetFilterTest extends BaseTest {
     login(TestAccount.ADMIN_USER);
     redirectToNewDashBoard();
     CaseWidgetNewDashBoardPage caseWidget = newDashboardPage.selectCaseWidget(YOUR_CASES_WIDGET);
+    caseWidget.scrollToCaseWidget();
 
     caseWidget.destroyCase(0);
-    caseWidget.waitTableLoaded();
+    caseWidget.scrollToCaseWidget();
     caseWidget.destroyCase(1);
-    caseWidget.waitTableLoaded();
     caseWidget.openFilterWidget();
     caseWidget.addFilter("Name", null);
     caseWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "TestCase");
     caseWidget.applyFilter();
-
+    caseWidget.scrollToCaseWidget();
     caseWidget.countCases("TestCase").shouldHave(CollectionCondition.size(10));
   }
 
@@ -224,6 +224,7 @@ public class DashboardCaseWidgetFilterTest extends BaseTest {
 
   @Test
   public void testFilterAddComplexCustomFields() {
+    login(TestAccount.ADMIN_USER);
     redirectToRelativeLink(testCaseListPermission);
     CaseWidgetNewDashBoardPage caseWidget = newDashboardPage.selectCaseWidget(YOUR_CASES_WIDGET);
     addCustomFields(caseWidget, List.of("AccountNumber", "CustomerName", "ShipmentDate", "SupportData"));
@@ -243,6 +244,7 @@ public class DashboardCaseWidgetFilterTest extends BaseTest {
 
   @Test
   public void testSavedFilterItemsWithCustomFields() {
+    login(TestAccount.ADMIN_USER);
     redirectToRelativeLink(testCaseListPermission);
     CaseWidgetNewDashBoardPage caseWidget = newDashboardPage.selectCaseWidget(YOUR_CASES_WIDGET);
     addCustomFields(caseWidget, List.of("AccountNumber", "CustomerName"));

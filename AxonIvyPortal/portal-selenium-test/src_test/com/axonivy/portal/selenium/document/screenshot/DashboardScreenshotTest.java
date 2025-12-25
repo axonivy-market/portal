@@ -1,7 +1,6 @@
 package com.axonivy.portal.selenium.document.screenshot;
 
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThanOrEqual;
-
 import static com.codeborne.selenide.Selenide.$;
 
 import java.io.IOException;
@@ -171,6 +170,7 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
     redirectToRelativeLink(businessCaseUrl);
     redirectToRelativeLink(complexPaymentUrl);
     redirectToRelativeLink(PORTAL_HOME_PAGE_URL);
+    updatePortalSetting(Variable.ENABLE_CASE_OWNER.getKey(), "true");
     showNewDashboard();
     ScreenshotUtils.resizeBrowser(new Dimension(1800, 1400));
     homePage = new NewDashboardPage();
@@ -493,7 +493,6 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
     taskWidget.openFilterWidget();
     taskWidget.addFilter("Description", FilterOperator.EMPTY);
     taskWidget.clickOnFilterOperator(0);
-    ScreenshotUtils.captureElementWithMarginOptionScreenshot(taskWidget.getConfigurationFilter(),ScreenshotUtils.NEW_DASHBOARD_FOLDER + "filter-operator-dropdown", new ScreenshotMargin(25));
     taskWidget.removeFilter(0);
     taskWidget.removeFilter(0);
     taskWidget.addFilter("Name", FilterOperator.IS);
@@ -631,14 +630,4 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
     detailsEditPage.addWidgetByName(widgetName);
   }
 
-  private void addPublicStatisticWidget(String widgetName) {
-    redirectToDashboardConfiguration();
-    DashboardConfigurationPage configPage = new DashboardConfigurationPage();
-    configPage.selectPublicDashboardType();
-    DashboardModificationPage editPage = new DashboardModificationPage();
-    NewDashboardDetailsEditPage detailsEditPage = editPage.navigateToEditDashboardDetailsByName("Dashboard");
-    detailsEditPage.waitPageLoaded();
-    detailsEditPage.addWidget();
-    detailsEditPage.addStatisticWidgetByName(widgetName);
-  }
 }

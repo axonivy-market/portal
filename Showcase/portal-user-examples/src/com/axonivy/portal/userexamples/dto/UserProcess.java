@@ -1,10 +1,11 @@
 package com.axonivy.portal.userexamples.dto;
 
 import java.util.List;
+
 import java.util.Locale;
 
 import org.apache.commons.collections4.CollectionUtils;
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 
 import com.axonivy.portal.components.enums.ProcessType;
 
@@ -59,7 +60,7 @@ public class UserProcess {
   }
 
   private String getActiveDisplayName() {
-    Locale currentLocale = Ivy.session().getContentLocale();
+    Locale currentLocale = com.axonivy.portal.components.service.LanguageService.getInstance().getUserLocale();
     return names.stream().filter(displayName -> displayName.getLocale().equals(currentLocale))
         .map(DisplayName::getValue).findFirst().orElse(getDisplayNameWithCms());
   }
@@ -114,8 +115,8 @@ public class UserProcess {
   }
 
   private String getDisplayNameWithCms() {
-    return StringUtils.startsWithIgnoreCase(processName, "cms")
-        ? Ivy.cms().co(StringUtils.removeStart(processName, "cms"))
+    return Strings.CI.startsWith(processName, "cms")
+        ? Ivy.cms().co(Strings.CS.removeStart(processName, "cms"))
         : processName;
   }
 }

@@ -174,6 +174,9 @@ ch.ivy.addon.portalkit.ui.jsf:
     Breadcrumb: Visualisation du processus {0}
     ProcessViewerText: Visualisation du processus
     Title: Visualisation du processus
+  SideStep:
+    NewSideStepMessage: Une nouvelle tâche d'étape secondaire est créée.
+    SideStepProcess: Lancer un processus parallèle
   TaskDocuments:
     TaskDocumentsPageTitle: Documents de tâches
   adminSettings:
@@ -233,8 +236,9 @@ ch.ivy.addon.portalkit.ui.jsf:
       behaviourWhenClickingOnLineInTaskList: Pour changer de comportement (exécuter la tâche ou accéder aux détails de la tâche) en cliquant sur une ligne dans la liste des tâches, le widget des tâches du tableau de bord et les tâches liées dans la page des détails du cas.
       chatMaxConnection: Si le nombre de tabs du browser est supérieur à ce nombre maximum, le chat sera désactivé sur les tabs inactifs du browser. Les valeurs valides sont 1, 2, 3, 4, 5.
       chatResponseTimeout: Délai de réponse au chat en secondes, la valeur par défaut est 0 et signifie aucun délai. Si les messages de chat passent par le proxy inverse Nginx, le délai de réponse du chat doit être inférieur au délai de Nginx, par exemple moins de 60 secondes.
+      checkSystemNotesByDefault: Si la valeur est vraie et que les notes système sont visibles, la case à cocher apparaîtra comme cochée.
+      checkSystemTasksByDefault: Si la valeur est vraie et que les tâches système sont visibles, la case à cocher apparaîtra cochée.
       dateFilterWithTime: Défini à true pour activer le filtrage de la date avec l'heure. Ce paramètre s'applique à la liste des tâches, à la liste des cas et aux statistiques.
-      deepLAuthKey: DeepL Clé d'authentification (doit se terminer par :fx)
       defaultHomepage: Pour définir la page d'accueil standard vers laquelle sera redirigée la personne qui clique sur l'icône d'accueil ou le logo. Ce paramètre s'applique également à la page de fin après avoir terminé une tâche.
       defaultProcessImage: Le paramètre standard de l'image par défaut qui sera affichée dans la liste de traitement des images.
       defaultProcessMode: Le paramètre standard du mode d'affichage dans la liste des processus.
@@ -250,8 +254,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       displayMessageAfterFinishOrLeaveTask: Un message de retour d'information sera affiché lorsque l'utilisateur aura terminé ou quitté une tâche.
       documentUploadSizeLimit: Définissez la limite de taille pour le téléchargement de documents en mégaoctets (Mo). La valeur par défaut est de 20 Mo.
       embedInFrame: Régler sur true pour démarrer un processus/tâche en mode IFrame
-      enableCaseOwner: Réglé sur true pour activer le filtrage du propriétaire de cas lorsque les cas sont interrogés. Ce paramètre affecte toutes les requêtes de cas, par exemple pour la liste des cas, la recherche globale, les statistiques.
-      enableDeepLTranslation: Attribuez la valeur true à cette propriété pour activer la prise en charge de la traduction de DeepL.
+      enableCaseOwner: Réglé sur true pour activer le filtrage du propriétaire de cas lorsque les cas sont interrogés. Ce paramètre affecte toutes les requêtes de cas, par exemple pour la liste des cas, la recherche globale, les statistiques. Cela rend également disponible le filtre "Filtrer les tâches
+        par propriétaire actuel du dossier" dans le widget de tâches, qui est masqué par défaut.
       enableDocumentPreview: 'Définir sur "true" pour activer l''aperçu des documents pour certains types de fichiers. Les types de fichiers pris en charge sont : pdf, png, jpeg, jpg, txt, log.'
       enableGroupChat: Définissez cette propriété sur true pour activer la fonction de chat de groupe
       enablePinCase: Définissez cette propriété sur true pour activer la possibilité d’épingler des cas.
@@ -259,6 +263,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       enablePrivateChat: Définissez cette propriété à true pour activer la fonction de chat privé
       enableProcessViewer: Définissez cette propriété à true pour activer l'option de visualisation de processus dans les actions de Task/Case.
       enableScriptCheckingForUploadedDocumentNote: Défini sur true pour activer la vérification de script pour le document téléchargé. Actuellement, cette fonction prend en charge la vérification de PDF, Excel, Word.
+      enableTranslationService: Définissez cette propriété sur true pour activer le service de traduction
       enableVirusScannerForUploadedDocumentNote: Définie sur true pour activer le scanner de virus pour le document téléchargé. Actuellement, cette fonction utilise l'API VIRUSTOTAL.
       hideCaseCreator: |-
         La valeur "true" permet de masquer le créateur du dossier dans la liste des dossiers, le widget du dossier et les détails du dossier.
@@ -267,8 +272,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       hideChangePasswordButtonNote: Attribuez la valeur true à cette variable pour masquer l'option "Changer de mot de passe" dans le menu supérieur et l'option "Mot de passe oublié" sur la page de connexion. Si elle vaut false, ces options seront affichées.
       hideLogoutButtonNote: Si true, le bouton de déconnexion du menu supérieur sera masqué, sinon il sera affiché.
       hideRelatedCaseInfoFromHistory: Si la valeur est vraie, l'historique des cas n'affiche pas les informations relatives aux cas dans le tableau de l'historique.
-      hideSystemNotesFromHistory: Si vrai, la remarque sur le cas/la tâche n'affiche aucune note de système pour les utilisateurs non administrateurs.
-      hideSystemNotesFromHistoryAdministrator: Si vrai, la remarque sur le cas/la tâche n'affiche aucune note de système pour l'administrateur.
       hideSystemTasksFromHistory: Si vrai, la remarque sure le cas / de la tâche n'affiche aucune tâche du système pour les utilisateurs non administrateurs.
       hideSystemTasksFromHistoryAdministrator: Si vrai, la remarque sure le cas / de la tâche n'affiche aucune tâche système pour l'administrateur.
       hideTaskDocument: Si vous sélectionnez "true", la section du document dans la page de détail de la tâche sera invisible, sinon elle sera visible.
@@ -330,6 +333,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     addDocumentHelpText: Pour ajouter des fichiers, glissez-les ou sélectionnez-les
     addNoteHelpText: Ecrivez votre texte ici
     businessDetailsTitle: Détails de l'entreprise
+    customFields: Champs personnalisés
+    customFieldsDialog: 'Champs personnalisés du cas #{0}'
     deleteFile: Supprimer le fichier
     documents: Documents
     downloadFile: Télécharger le fichier
@@ -438,6 +443,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     StringFormat:
       DateFromTo: '%s - %s'
       TextListOut: '%s, %s,..'
+      TextWithColon: '%s: %s'
       TextWithContextInBrackets: '%s (%s: %s)'
       TextWithRoundBracket: '%s (%s)'
     TaskCaseInformation: Informations sur les tâches et les cas
@@ -476,7 +482,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     continue: Continuer
     create: Créé
     creationDate: Date de création
-    dashboard: Dashboard
+    dashboard: Tableau de bord
     data: Données
     dateFromBiggerThanTo: '"Au" doit être ultérieur à "Depuis"'
     dateRequired: La date doit être remplie
@@ -754,6 +760,9 @@ ch.ivy.addon.portalkit.ui.jsf:
       SelectAction: Sélectionnez l'action
       SomeThingWentWrong: Quelque chose n'a pas fonctionné
       Title: Configuration du tableau de bord
+    DrillDownWidget:
+      caseDrillDown: Widget de cas détaillé pour {0}
+      taskDrillDown: Widget de tâche détaillé pour {0}
     EmptyFilterMessage: Aucun filtre de widget trouvé
     ExternalPageWidget: Page externe
     ExternalPageWidgetIntroduction: Ce widget peut afficher une page web externe.
@@ -763,6 +772,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       NotFound: Aucun filtre trouvé
       WidgetNameColumn: Nom du widget
       WrongDateFormat: La date n'est pas valide
+    FilterTasksByCurrentCaseOwner: Filtrer les tâches par propriétaire actuel du dossier
     ManageFilter: Gérer les filtres
     NoColumnsEnabledForQuickSearch: Aucune colonne n'est activée pour la recherche rapide
     NoData: Pas de données
@@ -791,6 +801,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     addField: Ajouter un champ
     addWidget: Ajouter un widget
     canWorkOn: Peut travailler sur
+    caseDrillDownDashboard: Tableau de bord d’analyse détaillée des cas
     caseList: Liste des cas
     caseListIntroduction: Ce widget affiche les informations pertinentes sur l'affaire en fonction des paramètres définis.
     caseWidgetInfo:
@@ -914,13 +925,14 @@ ch.ivy.addon.portalkit.ui.jsf:
     statisticChartWidget: Graphique de statistiques
     statisticWidgets: Widgets Statistiques
     switchToViewMode: Mode d'affichage
-    tasWidgetkInfo:
+    taskWidgetInfo:
       expireToday: Expire aujourd'hui
       expiryThisWeek: Expire cette semaine
       numberOfTasks: tâche(s)
       numberOfTasksByCategory: Nombre de tâches par catégorie
       numberOfTasksByState: Nombre de tâches par état
       predefinedFilters: Filtres prédéfinis
+      taskDrillDownDashboard: Tableau de bord d’analyse détaillée des tâches
     taskList: Liste des tâches
     taskListIntroduction: Ce widget affiche des informations pertinentes sur les tâches selon les paramètres définis.
     taskStart: Commencer la tâche
@@ -939,11 +951,17 @@ ch.ivy.addon.portalkit.ui.jsf:
   dashboardProcess:
     processAriaLabel: 'Nom du processus : {0}. Description du processus : {1}'
   documentFiles:
+    FilenameEmpty: Le nom du fichier ne peut pas être vide.
     PreviewDocument: Aperçu
+    RenameFile: Renommer le fichier
+    RenamingDocument: Renommer le document
+    RenamingDocumentNote: '{0} a renommé le fichier {1} en {2}'
+    RenamingDocumentSuccess: Renommé avec succès.
+    RenamingFailed: Une erreur s'est produite lors du renommage du document.
     deleteDocumentNote: '{0} a supprimé(e) {1}'
     deleteSuceed: Le fichier a été supprimé avec succès
     download: Télécharger
-    fileContainScript: Ce fichier n'est pas autorisé à être téléchargé en raison du contenu du script!
+    fileContainScript: Le fichier contient un contenu potentiellement malveillant et ne peut pas être téléversé !
     fileContainVirus: Erreur de téléchargement, virus/infection détecté !
     fileCouldNotParse: Impossible d'analyser le fichier
     fileEmptyMessage: Le fichier est vide
@@ -1056,6 +1074,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     notificationTitle: Notifications
     olderText: Plus ancien
     onlyUnread: Uniquement non lu
+    openNotifications: Ouvrir les notifications
     todayText: Aujourd'hui
     xDaysAgo: Il y a %s jours
     xHoursAgo: Il y a %s heures
@@ -1173,6 +1192,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     afterEscalation: Après escalade
     businessCase: Dossier
     completedOn: Fini le
+    customFields: Champs personnalisés
+    customFieldsDialog: 'Champs personnalisés de la tâche #{0}'
     delayedUntil: Retardé jusqu'au
     deleteFile: Supprimer le fichier
     documents: Documents
@@ -1446,43 +1467,43 @@ Dialogs:
             AccessibilityShortcuts:
               content: |-
                 <div class="ui-g">
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Alt + 1</span>Se focaliser sur l’onglet du Dashboard
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Alt + 5</span>Se focaliser sur la recherche
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Alt + A</span>Se focaliser sur le premier processus
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Tab</span>Navigation séquentielle entre les éléments
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Alt + 2</span>Se focaliser sur l’onglet des processus
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Alt + 6</span>Se focaliser sur les paramètres utilisateur
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Alt + W</span>Se focaliser sur la première tâche
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Esc</span>Fermer les widgets agrandis/Fermer les menus contextuels
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Alt + 3</span>Se focaliser sur l’onglet des tâches
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Alt + 7</span>Permet d’afficher ou de masquer le menu principal
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Alt + Q</span>Se focaliser sur le premier cas
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Enter</span>Confirmer la sélection
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Alt + 4</span>Se focaliser sur l’onglet des cas
                     </div>
                 </div>
@@ -1511,6 +1532,7 @@ Dialogs:
               ButtonName: Nom du bouton
               NavigationDashboardWidgetConfiguration: Configuration du widget du tableau de bord de navigation
               NavigationDashboardWidgetDescription: Ce widget permet aux utilisateurs d'accéder directement à un tableau de bord lié en cliquant sur un bouton.
+              VisualType: Type visuel
             NewsWidget:
               NewsContentPlaceHolder: Saisir le contenu de l'actualité
               NewsContentValidateMessage: Le contenu de l'actualité dans {0} est requis
@@ -1545,6 +1567,7 @@ Dialogs:
               ResetFilter: Réinitialiser le filtre
             filter:
               DashboardFilter:
+                HasCmsValuesEnabledTooltip: Ce champ permet uniquement d'utiliser l'opérateur Contient
                 SelectFilterField: Sélectionner le champ de filtre
               DateFilter:
                 SelectPeriod: Select period
@@ -1564,6 +1587,9 @@ Dialogs:
             AggregationMethod: Méthodes d'agrégation
             AggregationMethodTooltip: Choisissez une méthode d’agrégation pour effectuer des calculs sur votre champ KPI - Somme, Moyenne, Maximum ou Minimum. Désactivé lorsque 'Counting' est sélectionné
             ChartConfiguration: Configuration des graphiques
+            ChartDrillDownEnabled: Exploration approfondie des graphiques activée
+            ChartDrillDownInfo: '<p>Cela ne fonctionne que si l''utilisateur dispose des autorisations suivantes : <strong>CaseReadAll</strong> pour les cas et <strong>TaskReadAll</strong> pour les tâches.</p>'
+            ChartDrillDownPermissions: Autorisations d'exploration des graphiques
             ChartType: Type de graphique
             Color: Couleur {0}
             ConditionBasedColoring:
@@ -1741,6 +1767,8 @@ Labels:
   AndMore: 'et {0} de plus...  '
   AppendTask-Explain: La tâche est ajoutée à la séquence après ma tâche.
   AppendTheTask: Ajouter la tâche
+  AssignToRole: Sélectionner le groupe attribué
+  AssignToUser: Sélectionner l'utilisateur assigné
   Chat: Chat
   Collapse: Réduire
   Comma: ', '
@@ -1874,6 +1902,8 @@ Labels:
   SelectOperator: Sélectionner l'opérateur
   SelectValues: Sélectionner les valeurs
   Share: Partager
+  StepType: Type d'étape
+  Submit: Soumettre
   Task: Tâche
   TaskItemDetail: Détails de la tâche
   TaskUser-Explain: Liste d’utilisateurs séparés par des virgules

@@ -139,7 +139,7 @@
             onDestroyComplete="PF('destroy-task-dialog').show()"
             onDelegateComplete="initDataToDelegate()" destroyTaskDialogComponent="#{cc.attrs.destroyTaskDialogComponent}"
             onEscalationComplete="PF('escalation-task-dialog').show()"
-            onWorkflowEventComplete="initWorkflowEventData()"
+            onWorkflowEventComplete="initWorkflowEventData()" onCustomFieldsDialogComplete="initCustomFieldTaskListData()"
             readOnly="#{cc.attrs.readOnly}"
             inFrame="#{cc.attrs.inFrame}">
             <cc:insertFacet name="taskHeader" />
@@ -236,6 +236,10 @@
 
   <!-- Workflow Event of Task Dialog -->
   <ic:ch.ivy.addon.portalkit.component.TaskItemWorkflowEvents id="task-workflow-event-component"
+    taskId="#{taskWidgetBean.selectedTaskItemId}"/>
+    
+  <!--Custom fields of Task Dialog -->
+  <ic:ch.ivy.addon.portalkit.component.TaskItemCustomFields id="task-custom-fields-component"
     taskId="#{taskWidgetBean.selectedTaskItemId}"/>
 
   <!-- hidden row count to update breadcrumb -->

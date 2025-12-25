@@ -1,20 +1,28 @@
 package com.axonivy.portal.selenium.page;
 
 import static com.codeborne.selenide.Condition.appear;
+
 import static com.codeborne.selenide.Condition.disappear;
 import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.openqa.selenium.By;
 
 import com.axonivy.portal.selenium.common.ComplexFilterHelper;
 import com.axonivy.portal.selenium.common.FilterOperator;
 import com.axonivy.portal.selenium.common.FilterValueType;
+import com.axonivy.portal.selenium.common.Sleeper;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
+import com.codeborne.selenide.ScrollIntoViewOptions;
 import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.ScrollIntoViewOptions.Block;
 
 public class CaseWidgetNewDashBoardPage extends TemplatePage {
 
@@ -186,6 +194,31 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
   public void clickOnCaseActionLink(int caseIndex) {
     getColumnOfCaseHasActionIndex(caseIndex, "Actions").shouldBe(getClickableCondition()).click();
   }
+  
+  public SelenideElement getActionsPanelOfCase() {
+    return $("div[id$=':action-steps-panel']").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+  
+  public void clickOnCustomFieldsLink() {
+    getActionsPanelOfCase().$$("a").filter(text("Custom Fields"))
+      .first()
+      .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT)
+      .click();
+    waitForElementDisplayed(getCaseCustomFieldsDialog(), true);
+  }
+  
+  public SelenideElement getCaseCustomFieldsDialog() {
+    return $("div[id$='case-custom-fields-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+  
+  public List<String> getCaseCustomFieldNames() {
+    return $$("span[id$='customFieldLabel']")
+        .shouldBe(CollectionCondition.sizeGreaterThanOrEqual(0), DEFAULT_TIMEOUT)
+        .asFixedIterable()
+        .stream()
+        .map(SelenideElement::getText)
+        .collect(Collectors.toList());
+  }
 
   public CaseDetailsPage openCaseDetailsViaAction(int index) {
     clickOnCaseActionLink(index);
@@ -325,7 +358,7 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
   
   public void removeFocusFilterDialog() {
     $("[id$=':widget-filter-content']").$("strong").click();
-    $("[id$=':widget-filter-content']").scrollIntoView("{block: \"end\"}");
+    $("[id$=':widget-filter-content']").scrollIntoView(ScrollIntoViewOptions.instant().block(Block.end));
   }
 
   public SelenideElement getConfigurationFilter() {
@@ -334,6 +367,7 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
   
   public void clickOnFilterOperator() {
     $("div[id$='text-filter-operator-panel']").shouldBe(getClickableCondition()).click();
+    Sleeper.sleep(300);
   }
   
 
@@ -432,5 +466,10 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
 
   public ElementsCollection countFilterSelect() {
     return $$("[id$=':filter-component:field-selection_panel']");
+  }
+  
+  public void scrollToCaseWidget() {
+    $(byText(YOUR_CASES_WIDGET)).shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+        .scrollIntoView(ScrollIntoViewOptions.instant().block(Block.start));
   }
 }

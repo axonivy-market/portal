@@ -6,6 +6,7 @@ import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
 import java.util.Optional;
@@ -22,6 +23,7 @@ import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 
 import com.axonivy.portal.selenium.common.ScreenshotUtils;
+import com.axonivy.portal.selenium.common.Sleeper;
 import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
@@ -83,23 +85,23 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public void addNoteContent(String noteContent) {
-    waitForElementDisplayed(By.cssSelector("div.ui-dialog[aria-hidden='false']"), true);
-    SelenideElement addNoteDialog = findElementByCssSelector("div.ui-dialog[aria-hidden='false']");
-    waitForElementDisplayed(By.cssSelector("div.ui-dialog[aria-hidden='false']"), true);
-    SelenideElement textArea =
-        addNoteDialog.$(By.cssSelector("textarea[id$='note-content']")).shouldBe(appear, DEFAULT_TIMEOUT);
-    textArea.shouldBe(clickable(), DEFAULT_TIMEOUT).click();
+    $("div.ui-dialog[aria-hidden='false']").shouldBe(appear, DEFAULT_TIMEOUT);
+    SelenideElement addNoteDialog = $("div.ui-dialog[aria-hidden='false']").shouldBe(appear, DEFAULT_TIMEOUT);
+    SelenideElement textArea = addNoteDialog.$("textarea[id$='note-content']").shouldBe(appear, DEFAULT_TIMEOUT);
+    textArea.shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     textArea.sendKeys(noteContent);
-    SelenideElement saveButton = addNoteDialog.$(By.cssSelector("button[id$='save-add-note-command']"));
-    waitForElementClickableThenClick(saveButton);
-    saveButton.shouldBe(disappear, DEFAULT_TIMEOUT);
+    SelenideElement saveButton = addNoteDialog.$("button[id$='save-add-note-command']");
+    saveButton.shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    Sleeper.sleep(1000);
   }
 
   public ElementsCollection getNotesWithContent(String content) {
+    $("[id$='history-container']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).scrollTo();
     return $$("span[id$=':case-histories:case-histories-table'] table tbody tr td a").filter(text(content));
   }
 
   public void gotoTaskDetailsPageOfRelatedTask(String taskName) {
+    $("div[id$='case-details-related-task-table']").shouldBe(appear, DEFAULT_TIMEOUT).scrollTo();
     $$("div[id$='case-details-related-task-table'] table tbody tr td span")
         .filter(text(taskName)).first().click();
   }
@@ -156,6 +158,7 @@ public class CaseDetailsPage extends TemplatePage {
     $("div[id$='\\:escalation-task-confirmation-dialog']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     $("button[id$='\\:confirm-escalation']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
         .shouldBe(getClickableCondition()).click();
+    $("div[id$='\\:escalation-task-confirmation-dialog']").shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 
   public SelenideElement getCreatorAvatar() {
@@ -236,6 +239,7 @@ public class CaseDetailsPage extends TemplatePage {
     onClickHistoryIcon();
     var result = $("div[id$=':case-histories:add-note-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
     result.$(".ui-dialog-title").shouldBe(appear, DEFAULT_TIMEOUT).click();
+    Sleeper.sleep(500); // Explicitly wait for better screenshots
     return result.shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
@@ -243,6 +247,7 @@ public class CaseDetailsPage extends TemplatePage {
     SelenideElement dialog = getAddAttachmentDialog();
     dialog.shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     $("[id$='document:document-upload-dialog_title']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    Sleeper.sleep(500); // Explicitly wait for better screenshots
     return dialog;
   }
 
@@ -260,6 +265,34 @@ public class CaseDetailsPage extends TemplatePage {
     return $("div[id$='document-deletion-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
+  public SelenideElement getRenameDocumentDialog() {
+    $("a[id$='edit-filename']").shouldBe(getClickableCondition()).click();
+    $(By.cssSelector("div[id$='document-renaming-dialog']")).shouldBe(appear, DEFAULT_TIMEOUT);
+    $("[id$='document-renaming-dialog_title']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    return $("div[id$='document-renaming-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  public String renameDocument(String newFilename) {
+    if ($("[id$='document-renaming-dialog_title']").isDisplayed()) {
+      $("[id$='document-rename-cancel-button']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    }
+    SelenideElement renameDialog = this.getRenameDocumentDialog();
+    renameDialog.$("input[id*='new-filename']").clear();
+    renameDialog.$("input[id*='new-filename']").setValue(newFilename);
+    renameDialog.$("button[id*='document-rename-save-button']").click();
+
+    // Wait for either the dialog to disappear OR error message to appear
+    WaitHelper.assertTrueWithWait(() ->
+      !renameDialog.isDisplayed() || $("span.ui-messages-error-summary").isDisplayed()
+    );
+
+    return $("span.js-document-name").getText();
+  }
+
+  public String getRenamingFileMessage() {
+    return $("span.ui-messages-error-summary").getText();
+  }
+
   public void waitForShowNoteHistory() {
     $(".note-history-container").shouldBe(Condition.visible, DEFAULT_TIMEOUT);
   }
@@ -272,10 +305,8 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public void waitForIFrameURLWidgetLoad() {
-    $("[name='custom-widget-iframe-url']").shouldBe(appear, DEFAULT_TIMEOUT);
-    switchToIframeWithNameOrId("custom-widget-iframe-url");
-    $("a[href='https://www.iana.org/domains/example']").shouldBe(Condition.visible, DEFAULT_TIMEOUT);
-    switchBackToParent();
+    SelenideElement iframe = $("iframe[name='custom-widget-iframe-url']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    iframe.shouldHave(Condition.attributeMatching("src", ".*lucide\\.dev.*"));
   }
 
   public SelenideElement getSharePageButtonElement() {
@@ -332,9 +363,36 @@ public class CaseDetailsPage extends TemplatePage {
     waitForElementClickableThenClick($("[id$=':action-group:case-details-action-link']"));
     waitForElementDisplayed(By.cssSelector("[id$=':action-group:action-steps-panel'].action-steps-panel"), true);
   }
+  
+  public void clickOnCaseCustomFieldsAction() {
+    getCaseCustomFieldsButton()
+      .shouldBe(appear, DEFAULT_TIMEOUT)
+      .shouldBe(getClickableCondition())
+      .click();
+      
+    getCaseCustomFieldsDialog().shouldBe(appear, DEFAULT_TIMEOUT);
+  }
 
+  public SelenideElement getCaseCustomFieldsButton() {
+    return $("a[id$=':show-case-custom-fields']");
+  }
+  
+  public List<String> getCaseCustomFieldNames() {
+    return $$("span[id$='customFieldLabel']")
+        .shouldBe(CollectionCondition.sizeGreaterThanOrEqual(0), DEFAULT_TIMEOUT)
+        .asFixedIterable()
+        .stream()
+        .map(SelenideElement::getText)
+        .collect(Collectors.toList());
+  }
+
+  public SelenideElement getCaseCustomFieldsDialog() {
+    return $("div[id$='case-custom-fields-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+  
   public void onClickHistoryIcon() {
-    waitForElementClickableThenClick($("a[id$=':case-histories:add-note-command']"));
+    $("a[id$=':case-histories:add-note-command']").shouldBe(appear, DEFAULT_TIMEOUT).scrollIntoCenter();
+    $("a[id$=':case-histories:add-note-command']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
 
   public void onClickDestroyCase() {
@@ -451,8 +509,8 @@ public class CaseDetailsPage extends TemplatePage {
     waitForElementDisplayed(By.cssSelector("[id$=':history-container']"), true);
     var relatedCaseCheckbox = findElementByCssSelector("[id$=':case-histories:related-case-checkbox']");
     var checkbox = relatedCaseCheckbox.findElement(By.cssSelector("div.ui-chkbox-box.ui-widget"));
-    if ((checkboxShouldBeChecked && checkbox.getAttribute(CLASS).contains("ui-state-active"))
-        || (!checkboxShouldBeChecked && !checkbox.getAttribute(CLASS).contains("ui-state-active"))) {
+    if ((checkboxShouldBeChecked && checkbox.getDomAttribute(CLASS).contains("ui-state-active"))
+        || (!checkboxShouldBeChecked && !checkbox.getDomAttribute(CLASS).contains("ui-state-active"))) {
       return;
     } else {
       relatedCaseCheckbox.findElement(By.cssSelector("span.ui-chkbox-label")).click();
@@ -476,10 +534,10 @@ public class CaseDetailsPage extends TemplatePage {
     WebElement breadcrumb = findElementByCssSelector(CURRENT_BREADCRUMB_SELECTOR);
     String result = "";
     if (CollectionUtils.isNotEmpty(breadcrumb.findElements(By.cssSelector(".js-count")))) {
-      result = breadcrumb.findElement(By.cssSelector(".ui-menuitem-text")).getAttribute("innerHTML")
-          + breadcrumb.findElement(By.cssSelector(".js-count")).getAttribute("innerHTML");
+      result = breadcrumb.findElement(By.cssSelector(".ui-menuitem-text")).getDomProperty("innerHTML")
+          + breadcrumb.findElement(By.cssSelector(".js-count")).getDomProperty("innerHTML");
     } else {
-      result = breadcrumb.findElement(By.cssSelector(".ui-menuitem-text")).getAttribute("innerHTML");
+      result = breadcrumb.findElement(By.cssSelector(".ui-menuitem-text")).getDomProperty("innerHTML");
     }
     return result;
 
@@ -532,12 +590,12 @@ public class CaseDetailsPage extends TemplatePage {
 
   public String getProcessLinkInCustomIFrameWidget() {
     WebElement formInFrame = findElementByCssSelector("form[id='custom-widget-iframe-data']");
-    return formInFrame.getAttribute("action");
+    return formInFrame.getDomAttribute("action");
   }
 
   public String getIFrameURLOfCustomWidget() {
     WebElement iframe = findElementByCssSelector("[id$=':custom-iframe']");
-    return iframe.findElement(By.tagName("iframe")).getAttribute("src");
+    return iframe.findElement(By.tagName("iframe")).getDomAttribute("src");
   }
 
   public boolean isCustomMiddlePanelDisplay() {
@@ -653,8 +711,9 @@ public class CaseDetailsPage extends TemplatePage {
 
   public boolean isDownloadCompleted(String statusDialogId) {
     WebElement statusDialog = driver.findElement(By.cssSelector("div[id$=':" + statusDialogId + "']"));
-    WaitHelper.assertTrueWithWait(() -> StringUtils.isNotBlank(statusDialog.getAttribute("download-status")));
-    return StringUtils.equals(statusDialog.getAttribute("download-status"), "completed");
+    WaitHelper.assertTrueWithWait(() -> StringUtils.isNotBlank(statusDialog.getDomAttribute("download-status")));
+    assertEquals(statusDialog.getDomAttribute("download-status"), "completed");
+    return true;
   }
 
   public Integer getTaskRowIndex(String taskName) {
@@ -680,7 +739,11 @@ public class CaseDetailsPage extends TemplatePage {
         String.format("[id$='task-widget:related-tasks:%d:additional-options:side-steps-panel']", index);
     waitForElementDisplayed(By.cssSelector(actionPanel), true);
   }
-
+  
+  public SelenideElement getTaskCustomFieldsDialog() {
+    return $("div[id$='task-custom-fields-dialog']");
+  }
+  
   public int getTaskRowIndexFromDetailPage(String taskName) {
     ElementsCollection taskNames = $$(".task-name-value");
     int taskIndex = IntStream.range(0, taskNames.size()).filter(i -> taskNames.get(i).getText().equals(taskName))
@@ -749,12 +812,12 @@ public class CaseDetailsPage extends TemplatePage {
         String.format("[id$='task-widget:related-tasks:%d:additional-options:task-delegate-command", index);
     waitForElementDisplayed(By.cssSelector(commandButton), true);
     WebElement delegateButton = findElementByCssSelector(commandButton);
-    return delegateButton.getAttribute(CLASS).contains("ui-state-disabled");
+    return delegateButton.getDomAttribute(CLASS).contains("ui-state-disabled");
   }
 
   public boolean isRelatedTaskDestroyEnabled(String taskName) {
     WebElement destroyButton = findDestroyCommand(taskName);
-    return !destroyButton.getAttribute(CLASS).contains("ui-state-disabled");
+    return !destroyButton.getDomAttribute(CLASS).contains("ui-state-disabled");
   }
 
   public void selectDelegateResponsible(String responsibleName, boolean isRole) {
@@ -808,7 +871,7 @@ public class CaseDetailsPage extends TemplatePage {
     Integer index = getTaskRowIndex(taskName);
     WebElement element = $$("td.related-task-state-column span.task-state").get(index);
     if (element != null) {
-      String stateClass = element.getAttribute(CLASS);
+      String stateClass = element.getDomAttribute(CLASS);
       return stateClass.contains(taskState.toString().toLowerCase() + "-task-state");
     }
     return false;
@@ -1043,5 +1106,55 @@ public class CaseDetailsPage extends TemplatePage {
   public boolean getFirstItemPreviewDocumentVisible() {
     return $("a[id$=':0:preview-file']").exists();
   }
+  
+  public void clickOnSystemNotesCheckbox(boolean checkboxShouldBeChecked) {
+    waitForElementDisplayed(By.cssSelector("[id$=':history-container']"), true);
+    var systemNotesCheckbox = findElementByCssSelector("[id$=':case-histories:system-note-checkbox']");
+    var checkbox = systemNotesCheckbox.findElement(By.cssSelector("div.ui-chkbox-box.ui-widget"));
+    if ((checkboxShouldBeChecked && checkbox.getDomAttribute(CLASS).contains("ui-state-active"))
+        || (!checkboxShouldBeChecked && !checkbox.getDomAttribute(CLASS).contains("ui-state-active"))) {
+      return;
+    } else {
+      systemNotesCheckbox.findElement(By.cssSelector("span.ui-chkbox-label")).click();
+      // Cannot identify when the ajax request of select checkbox is finished
+      // So we need to wait for Ajax Indicator disappear
+      clickOnSystemNotesCheckbox(checkboxShouldBeChecked);
+    }
+  }
+
+  public void clickOnSystemTasksCheckbox(boolean checkboxShouldBeChecked) {
+    waitForElementDisplayed(By.cssSelector("[id$=':history-container']"), true);
+    var systemNotesCheckbox = findElementByCssSelector("[id$=':case-histories:system-task-checkbox']");
+    var checkbox = systemNotesCheckbox.findElement(By.cssSelector("div.ui-chkbox-box.ui-widget"));
+    if ((checkboxShouldBeChecked && checkbox.getDomAttribute(CLASS).contains("ui-state-active"))
+        || (!checkboxShouldBeChecked && !checkbox.getDomAttribute(CLASS).contains("ui-state-active"))) {
+      return;
+    } else {
+      systemNotesCheckbox.findElement(By.cssSelector("span.ui-chkbox-label")).click();
+      // Cannot identify when the ajax request of select checkbox is finished
+      // So we need to wait for Ajax Indicator disappear
+      clickOnSystemTasksCheckbox(checkboxShouldBeChecked);
+    }
+  }
+  
+  public SelenideElement getCustomFieldsDialog() {
+    return $("div[id$='task-custom-fields-dialog']");
+  }
+
+  public void clickCustomFieldsButtonOnActions(String taskName) {
+    clickRelatedTaskActionButton(taskName);
+    $("[id$='additional-options:task-custom-fields-command']").shouldBe(getClickableCondition()).click();
+    waitForElementDisplayed(getTaskCustomFieldsDialog(), true);
+  }
+  
+  public List<String> getCustomFieldNamesOnTaskCustomFieldsDialog() {
+    return $$("span[id$='customFieldLabel']")
+        .shouldBe(CollectionCondition.sizeGreaterThanOrEqual(0), DEFAULT_TIMEOUT)
+        .asFixedIterable()
+        .stream()
+        .map(SelenideElement::getText)
+        .collect(Collectors.toList());
+  }
+  
 }
 

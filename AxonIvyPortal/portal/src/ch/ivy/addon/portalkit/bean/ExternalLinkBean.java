@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
@@ -17,8 +18,9 @@ import org.apache.logging.log4j.util.Strings;
 import org.primefaces.PrimeFaces;
 import org.primefaces.event.FileUploadEvent;
 
-import com.axonivy.portal.service.DeepLTranslationService;
-import com.axonivy.portal.util.ExternalLinkUtils;
+import com.axonivy.portal.components.util.ImageUploadResult;
+import com.axonivy.portal.service.IvyTranslationService;
+import com.axonivy.portal.util.ImageUploadUtils;
 import com.axonivy.portal.util.UploadDocumentUtils;
 
 import ch.ivy.addon.portal.generic.bean.IMultiLanguage;
@@ -33,7 +35,6 @@ import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IUser;
-import ch.ivyteam.util.Pair;
 
 @ManagedBean
 @ViewScoped
@@ -88,14 +89,20 @@ public class ExternalLinkBean implements Serializable, IMultiLanguage {
 
   public void handleImageUpload(FileUploadEvent event) {
     removeImage();
-    Pair<String, String> imageInfo = ExternalLinkUtils.handleImageUpload(event);
-    externalLink.setImageLocation(imageInfo.getLeft());
-    externalLink.setImageType(imageInfo.getRight());
+    ImageUploadResult imageInfo = ImageUploadUtils.handleImageUpload(event, ImageUploadUtils.EXTERNAL_LINK_IMAGE_DIRECTORY);
+    if (imageInfo.isInvalid()) {
+      FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+          Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/documentFiles/fileContainScript"), null);
+      FacesContext.getCurrentInstance().addMessage("external-link-dialog-message", message);
+      return;
+    }
+    externalLink.setImageLocation(imageInfo.imageLocation());
+    externalLink.setImageType(imageInfo.imageType());
   }
   
   public void removeImage() {
     if (StringUtils.isNoneBlank(externalLink.getImageLocation())) {
-      ExternalLinkUtils.removeImage(externalLink.getImageLocation(), externalLink.getImageType());
+      ImageUploadUtils.removeImage(externalLink.getImageLocation(), externalLink.getImageType());
       externalLink.setImageLocation(null);
       externalLink.setImageType(null);
     }
@@ -163,12 +170,12 @@ public class ExternalLinkBean implements Serializable, IMultiLanguage {
           .filter(lang -> currentLanguage.equals(lang.getLocale().getLanguage())).findFirst();
       if (optional.isPresent()) {
         try {
-          translatedText = DeepLTranslationService.getInstance().translate(optional.get().getValue(),
+          translatedText = IvyTranslationService.getInstance().translate(optional.get().getValue(),
               optional.get().getLocale(), title.getLocale());
         } catch (Exception e) {
           warningText = Ivy.cms()
               .co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/SomeThingWentWrong");
-          Ivy.log().error("DeepL Translation Service error: ", e.getMessage());
+          Ivy.log().error("Ivy Translation Service error: ", e.getMessage());
         }
       }
     }

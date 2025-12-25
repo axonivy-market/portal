@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/13.1.2/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/13.2.0/process.json",
   "id" : "15D4E5494B0DFC50",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -45,7 +45,7 @@
             "import ch.ivyteam.ivy.workflow.INote;",
             "ICase wfCase = ivy.wf.findCase(in.caseId);",
             "String cancelNote = \"Cancel Reason: \" +  out.cancelReason;",
-            "INote note = wfCase.createNote(ivy.session, cancelNote);"
+            "wfCase.createNote(ivy.session, cancelNote);"
           ]
         },
         "sudo" : true

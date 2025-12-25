@@ -5,6 +5,8 @@ import static com.codeborne.selenide.CollectionCondition.sizeGreaterThanOrEqual;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 
+import java.util.List;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -15,6 +17,7 @@ import com.axonivy.portal.selenium.common.FilterValueType;
 import com.axonivy.portal.selenium.common.LinkNavigator;
 import com.axonivy.portal.selenium.common.ScreenshotUtils;
 import com.axonivy.portal.selenium.common.TestAccount;
+import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.page.DashboardModificationPage;
 import com.axonivy.portal.selenium.page.MainMenuPage;
 import com.axonivy.portal.selenium.page.NewDashboardDetailsEditPage;
@@ -168,6 +171,23 @@ public class DashboardTaskWidgetTest extends BaseTest {
     TaskWidgetNewDashBoardPage taskWidgetEdited = newDashboardPage.selectTaskWidget(NEW_YOUR_TASK);
     taskWidgetEdited.expand().shouldHave(sizeGreaterThanOrEqual(1));
     taskWidgetEdited.countAllTasks().shouldHave(sizeGreaterThanOrEqual(1));
+  }
+
+  @Test
+  public void testCaseOwnerFilterOnTaskWidget() {
+    createJSonFile("dashboard-has-one-task-widget.json", PortalVariable.DASHBOARD.key);
+    redirectToRelativeLink(multipleOwnersUrl);
+    login(TestAccount.ADMIN_USER);
+    updatePortalSetting(Variable.ENABLE_CASE_OWNER.getKey(), "true");
+    redirectToNewDashBoard();
+    newDashboardPage = new NewDashboardPage();
+    TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
+    taskWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
+    taskWidget.countAllTasks().shouldHave(sizeGreaterThanOrEqual(2));
+
+    login(TestAccount.CASE_OWNER_USER);
+    taskWidget.countAllTasks().shouldHave(sizeGreaterThanOrEqual(2));
+    updatePortalSetting(Variable.ENABLE_CASE_OWNER.getKey(), "false");
   }
 
   @Test
@@ -344,5 +364,20 @@ public class DashboardTaskWidgetTest extends BaseTest {
     redirectToNewDashBoard();
     TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
     taskWidget.getTheFirstTaskWidgetByColumn("Responsible").text().contains("8");
+  }
+  
+  @Test
+  public void testShowCustomFieldsOnActionButtonOfTaskWidget() {
+    redirectToRelativeLink(displayCustomFieldCaseOnTaskWidget);
+    redirectToRelativeLink(createTestingTasksUrl);
+    login(TestAccount.ADMIN_USER);
+    redirectToNewDashBoard();
+    TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
+
+    taskWidget.clickCustomFieldsButtonOnActions(0);
+    taskWidget.waitForPageLoad();
+    assertTrue(taskWidget.isCustomFieldsDialogDisplayed());
+    List<String> taskCustomFieldNames = taskWidget.getCustomFieldNamesOnTaskCustomFieldsDialog();
+    assertFalse(taskCustomFieldNames.isEmpty());
   }
 }
