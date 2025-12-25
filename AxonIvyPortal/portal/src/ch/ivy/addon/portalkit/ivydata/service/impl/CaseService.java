@@ -399,7 +399,7 @@ public class CaseService implements ICaseService {
   public ICase findCaseById(long caseId) {
     return Sudo.get(() -> {
       if (PermissionUtils.checkSkipPermission()) {
-        return Ivy.wf().getGlobalContext().getCaseQueryExecutor()
+        return Ivy.wf().getCaseQueryExecutor()
             .createCaseQuery().where().caseId().isEqual(caseId).executor()
             .firstResult();
       }
