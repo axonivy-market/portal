@@ -76,10 +76,8 @@ public class DashboardCloneWidgetScreenshotTest extends ScreenshotBaseTest {
     detailsEditPage.closeCloneWidgetDialog();
 
     ScreenshotUtils.executeDecorateJs("highlightCloneFromButton()");
-    ScreenshotUtils.captureElementScreenshot(
-        detailsEditPage.getDashboardHeaderAction().getWrappedElement(),
-        ScreenshotUtils.DASHBOARD_CONFIGURATION_FOLDER
-            + "clone-widget-from-button");
+    ScreenshotUtils
+        .captureHalfTopPageScreenShot(ScreenshotUtils.DASHBOARD_CONFIGURATION_FOLDER + "clone-widget-from-button");
 
     detailsEditPage.openCloneFromDialog();
     detailsEditPage.fillCloneWidgetDialog("Dashboard", "Your Tasks");

@@ -12,8 +12,8 @@ import org.openqa.selenium.WebElement;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.ScrollIntoViewOptions;
-import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.ScrollIntoViewOptions.Block;
+import com.codeborne.selenide.SelenideElement;
 public class NewDashboardDetailsEditPage extends TemplatePage {
 
   public static final String TASK_WIDGET = "Task List";
@@ -395,10 +395,6 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
 
   public SelenideElement getNewWidgetDialog() {
     return $("[id$='new-widget-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
-  }
-
-  public SelenideElement getDashboardHeaderAction() {
-    return $("[id$='dashboard-header-action']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public SelenideElement getCloneWidgetDialog() {
