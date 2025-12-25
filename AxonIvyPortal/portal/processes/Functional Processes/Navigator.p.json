@@ -602,6 +602,7 @@
       "type" : "Script",
       "name" : "prepare task view",
       "config" : {
+        "security" : "system",
         "output" : {
           "code" : [
             "import ch.ivyteam.ivy.workflow.ITask;",
@@ -821,6 +822,7 @@
       "type" : "Script",
       "name" : "prepare task view",
       "config" : {
+        "security" : "system",
         "output" : {
           "code" : [
             "import ch.ivyteam.ivy.workflow.ITask;",
