@@ -41,8 +41,7 @@ public class TaskAnalysisScreenshotTest extends ScreenshotBaseTest {
 
     ScreenshotUtils.executeDecorateJs("highlightTaskAnalysisNavigationLink()");
     ScreenshotUtils.resizeBrowser(new Dimension(1200, 800));
-    ScreenshotUtils
-        .captureHalfTopRightPageScreenShot(ScreenshotUtils.TASK_ANALYSIS_FOLDER + "navigate-to-task-analysis");
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_ANALYSIS_FOLDER + "navigate-to-task-analysis");
     TaskAnalysisWidgetPage taskAnalysisWidgetPage = statisticWidgetPage.navigateToTaskAnalysisPage();
 
     ScreenshotUtils.resizeBrowser(new Dimension(1400, 900));
