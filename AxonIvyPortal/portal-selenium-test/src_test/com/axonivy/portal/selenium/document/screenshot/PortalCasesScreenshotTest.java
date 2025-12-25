@@ -153,7 +153,7 @@ public class PortalCasesScreenshotTest extends ScreenshotBaseTest {
     caseWidget.filterByCreator(DEMO);
     caseWidget.getCreator();
     ScreenshotUtils.executeDecorateJs("highlightCaseCreatorFilter()");
-    ScreenshotUtils.captureHalfCenterTopPageScreenShot(ScreenshotUtils.CASE_WIDGET_CUSTOMIZATION_FOLDER + "case-filter");
+    ScreenshotUtils.captureHalfTopRightPageScreenShot(ScreenshotUtils.CASE_WIDGET_CUSTOMIZATION_FOLDER + "case-filter");
   }
 
   @Test
