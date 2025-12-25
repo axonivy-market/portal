@@ -1,0 +1,63 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/process/12.0.0/process.json",
+  "id" : "19B54B13888B3D18",
+  "kind" : "CALLABLE_SUB",
+  "config" : {
+    "data" : "portalkit.ExtendTaskLeaveData"
+  },
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "CallSubStart",
+      "name" : "call(ITask)",
+      "config" : {
+        "signature" : "call",
+        "input" : {
+          "params" : [
+            { "name" : "workingTask", "type" : "ch.ivyteam.ivy.workflow.ITask", "desc" : "" }
+          ],
+          "map" : {
+            "out.workingTask" : "param.workingTask"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f2", "to" : "f3" }
+      ]
+    }, {
+      "id" : "f1",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 408, "y" : 64 },
+        "labelOffset" : { "x" : 13, "y" : 33 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "Script",
+      "name" : "Call customized process if exist",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.enums.PortalCustomSignature;",
+            "import com.axonivy.portal.components.service.IvyAdapterService;",
+            "",
+            "import java.util.HashMap;",
+            "import java.util.Map;",
+            "",
+            "Map params = new HashMap();",
+            "params.put(\"workingTask\", in.workingTask);",
+            "",
+            "IvyAdapterService.startSubProcessesInSecurityContext(PortalCustomSignature.EXTEND_TASK_LEAVE.getSignature(), params);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 248, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f4", "to" : "f1", "color" : "default" }
+      ]
+    } ]
+}
