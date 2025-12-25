@@ -215,8 +215,15 @@ public class UserMenuBean implements Serializable {
     ITask relatedTask = task != null ? task : Ivy.wfTask();
     String componentId = Attrs.currentContext().getBuildInAttribute("clientId");
     leaveTask.invokeComponentLogic(componentId, "#{logic.leave}", new Object[] {relatedTask.getCase()});
+    executeCustomizedProcessOnLeave(relatedTask);
     TaskUtils.resetTask(relatedTask);
     navigateToTargetPage();
+  }
+  
+  private void executeCustomizedProcessOnLeave(ITask task) {
+    Map<String, Object> params = new HashMap<>();
+    params.put("workingTask", task);
+    IvyAdapterService.startSubProcessesInSecurityContext(PortalCustomSignature.EXTEND_TASK_LEAVE.getSignature(), params);
   }
 
   private void executeJSResetPortalMenuState() {
