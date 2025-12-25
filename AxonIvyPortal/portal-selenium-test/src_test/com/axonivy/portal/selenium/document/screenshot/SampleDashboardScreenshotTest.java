@@ -54,6 +54,7 @@ public class SampleDashboardScreenshotTest extends ScreenshotBaseTest {
     dashboardConfigurationPage.clickButtonOnDashboardConfigurationActionMenu("Configuration", 2);
     NewDashboardDetailsEditPage dashboardConfigPage = new NewDashboardDetailsEditPage();
     dashboardConfigPage.addWidget().click();
+    dashboardConfigPage.filterStatisticWidgets();
     scrollToExampleStatisticInAddWidgetDialog();
     ScreenshotUtils.resizeBrowserAndCaptureWholeScreen(ScreenshotUtils.SAMPLE_DASHBOARD_FOLDER + "statistic-config",
         new Dimension(1500, 1500));
