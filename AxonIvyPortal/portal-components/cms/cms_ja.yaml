@@ -108,11 +108,13 @@ Labels:
   Enums:
     NewFilenameValidation:
       ALREADY_EXIST: この場所には同じ名前のファイルが既にあります。
-      INVALID_FORMAT: 'ファイル名には次の文字は使えません:¥/ :*? "<>|'
+      INVALID_FORMAT: ファイル名には次の文字は使えません:¥/ :*? "<>|
   NoName: 名前なし
   NoResults: 結果なし
   None: なし
   NotAvailable: 利用不可
   ParentRole: 親ロール
-  TooltipNoNameFormatted: '＜{0}＞（{1}）'
+  TooltipNoNameFormatted: ＜{0}＞（{1}）
   TooltipUserNameFormatted: '{0}（{1}）'
+patterns:
+  timePattern: HH:mm

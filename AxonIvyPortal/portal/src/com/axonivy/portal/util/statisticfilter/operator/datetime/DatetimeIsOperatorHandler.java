@@ -2,12 +2,12 @@ package com.axonivy.portal.util.statisticfilter.operator.datetime;
 
 import java.util.Date;
 
+import com.axonivy.portal.components.service.DateTimeGlobalSettingService;
 import com.axonivy.portal.constant.StatisticConstants;
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 import com.axonivy.portal.util.PortalDateUtils;
 
 import ch.ivy.addon.portalkit.constant.PortalConstants;
-import ch.ivy.addon.portalkit.service.DateTimeGlobalSettingService;
 
 public class DatetimeIsOperatorHandler {
   private static DatetimeIsOperatorHandler instance;
