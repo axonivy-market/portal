@@ -32,7 +32,7 @@
   <cc:attribute name="sizeLimit" type="Long" shortDescription="Maximum size of an individual file in bytes. Type: Long. Required: false." />
   <cc:attribute name="uploadText" default="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/Upload')}" type="String"
     shortDescription="Label text displayed on the upload button. Type: String. Default value: 'Upload new file'. Required: false." />
-  <cc:attribute name="updatedComponentAfterUploaded" type="String" shortDescription="Comma-separated clientIds (or EL expressions) of components to update after a successful upload. Example: 'document-table document-messages'. Required: false." />
+  <cc:attribute name="updatedComponentAfterUploaded" type="String" shortDescription="Space-separated clientIds (or EL expressions) of components to update after a successful upload. Example: 'document-table document-messages'. Required: false." />
   
   <cc:attribute name="previewTitle" default="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/Preview')}" type="String"
     shortDescription="Tooltip text displayed when hovering over the preview icon. Type: String. Default value: 'Preview'. Required: false."/>
@@ -61,7 +61,7 @@
   <cc:attribute name="deleteStyleClass" type="String"
     shortDescription="Custom CSS style class to apply to the delete link. Type: String. Required: false."/>
   <cc:attribute name="updatedComponentAfterDeleted" type="String"
-    shortDescription="Comma-separated clientIds (or EL expressions) of components to update after a successful deletion. Example: 'document-table document-messages'. Required: false."/>
+    shortDescription="Space-separated clientIds (or EL expressions) of components to update after a successful deletion. Example: 'document-table document-messages'. Required: false."/>
 
   <cc:attribute name="renameText" default="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/RenamingDocument')}" type="String"
     shortDescription="Tooltip text displayed when hovering over the rename icon. Type: String. Default value: 'Rename document'. Required: false."/>
@@ -70,7 +70,7 @@
   <cc:attribute name="renameStyleClass" type="String"
     shortDescription="Custom CSS style class to apply to the rename link. Type: String. Required: false."/>
   <cc:attribute name="updatedComponentAfterRenamed" type="String"
-    shortDescription="Comma-separated clientIds (or EL expressions) of components to update after a successful rename. Example: 'document-table document-messages'. Required: false."/>
+    shortDescription="Space-separated clientIds (or EL expressions) of components to update after a successful rename. Example: 'document-table document-messages'. Required: false."/>
 
   <cc:attribute name="selectedType" type="com.axonivy.portal.components.enums.DocumentType"
     shortDescription="Default document type to be selected. If not provided, the first item of typeSelectionItems will be used. Type: com.axonivy.portal.components.enums.DocumentType. Required: false."/>

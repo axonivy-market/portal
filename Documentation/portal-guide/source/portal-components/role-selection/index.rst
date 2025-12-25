@@ -66,21 +66,15 @@ Name>)". When I select a role, a message shall be displayed.
 
 .. code-block:: html
 
-      <ic:com.axonivy.portal.components.RoleSelection
-         id="item-select-event-component"
-         componentId="item-select-event-for-role-selection"
-         fromRoleNames="#{data.definedRoleNames}"
-         selectedRole="#{data.selectedRoleForInsertChildren}"
-         label="Demonstrate facet and children"
-         autoCompleteStyleClass="width-100"
-         autoCompletePanelStyleClass="ui-g-12 floating-label-margin-top"
-         isRequired="true" floatingLabel="true" hasCustomizedSelectionList="true">
+      <ic:com.axonivy.portal.components.RoleSelection id="role-item-select-event-component" componentId="item-select-event-for-role-selection"
+         fromRoleNames="#{data.definedRoleNames}" selectedRole="#{data.selectedRoleForInsertChildren}" label="Demonstrate facet and children"
+         floatingLabel="true" hasCustomizedSelectionList="true">
          <p:column>
             <pc:securityMemberNameAndAvatar displayName="#{role.getDisplayName()} (#{role.getMemberName()})" securityMember="#{role}" isStandAlone="false" />
          </p:column>
          <f:facet name="event">
             <p:ajax event="itemSelect" listener="#{logic.showSelectedRole}"
-               update="#{p:component('item-select-event-for-role-selection-message')}" />
+               update="#{p:resolveFirstComponentWithId('item-select-event-for-role-selection-message', view).clientId}" />
          </f:facet>
       </ic:com.axonivy.portal.components.RoleSelection>
 
@@ -103,6 +97,8 @@ Migrate from Deprecated Role Selection
 #. Replace ``ch.ivy.addon.portalkit.dto.RoleDTO`` with ``com.axonivy.portal.components.dto.RoleDTO``.
 
    .. note:: If you stored class ``ch.ivy.addon.portalkit.dto.RoleDTO`` in your database, you have to update the database manually.
+
+#. Since 14.0, the attribute ``labelPanelStyleClass`` has been removed. If you used this attribute, please remove it from your code.
 
 .. |role-selection| image:: ../../screenshots/components/role-selection-component-from-defined-role.png
 .. |role-selection-floating-label| image:: ../../screenshots/components/role-selection-component-floating-label-and-exclude-role.png
