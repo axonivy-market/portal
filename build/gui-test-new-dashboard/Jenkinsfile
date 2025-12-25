@@ -41,18 +41,17 @@ pipeline {
           utils.extractEngine(env.engineDir, params.engineDownloadURL)
 
           echo '====================Build Portal modules===================='
-          def modules = ['AxonIvyPortal/portal-components', 'AxonIvyPortal/portal', 'AxonIvyPortal/PortalKitTestHelper', 'Showcase/portal-user-examples', 'Showcase/portal-developer-examples', 'Showcase/InternalSupport', 'Showcase/portal-components-examples', 'AxonIvyPortal/PortalApp', 'Showcase/portal-demo-app']
+          def modules = ['AxonIvyPortal/portal-components', 'AxonIvyPortal/portal', 'AxonIvyPortal/PortalKitTestHelper', 'Showcase/portal-user-examples', 'Showcase/portal-developer-examples', 'Showcase/InternalSupport', 'Showcase/portal-components-examples']
           for (module in modules) {
             bat "mvn clean install -f ${module}/pom.xml -Divy.engine.directory=%engineDir%"
           }
 
-          echo '====================Deploy Portal modules===================='
+          echo '====================Build and deploy test package===================='
+          bat "mvn clean package -f AxonIvyPortal/portal-selenium-test/deployment-pom.xml -Divy.engine.directory=%engineDir%"
           powershell """
             \$DEPLOYMENT= \$env:engineDir + "/system/demo-applications/demo-portal"
             rmdir \$DEPLOYMENT/* -recurse
-            Copy-Item Showcase/portal-demo-app/target/*zip -Destination \$DEPLOYMENT
-            Copy-Item Showcase/portal-developer-examples/target/*iar -Destination \$DEPLOYMENT
-            Copy-Item Showcase/portal-components-examples/target/*iar -Destination \$DEPLOYMENT
+            Copy-Item AxonIvyPortal/portal-selenium-test/target/*zip -Destination \$DEPLOYMENT
           """
           utils.killUnnecessaryProcessesToRunTest()
 
