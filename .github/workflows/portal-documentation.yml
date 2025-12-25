@@ -64,7 +64,7 @@ jobs:
         with:
           workflow: portal-document-screenshot-test.yml
           name: screenshots
-          branch: master
+          branch: feature/IVYPORTAL-19804-Enhance-Portal-Components-for-Neo-Designer-13
           path: Documentation/portal-guide/source/screenshots
 
       - name: install zip
