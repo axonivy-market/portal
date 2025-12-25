@@ -222,6 +222,12 @@ Processes:
       Signal:
         name: 新しい支払いを作成するシグナル
     name: 新しい支払いを作成
+  SideStep:
+    AskMoreDetails: サイドステップ：詳細を問い合わせる
+    CEOApproval: サイドステップ：CEOの承認
+    CustomParallelTitle: カスタムパラレルタイトル
+    CustomSwitchTitle: カスタムスイッチタイトル
+    InformCustomer: サイドステップ：顧客に通知する
   TasksForTaskListCustomization:
     Cases:
       Party:
