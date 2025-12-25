@@ -3,19 +3,23 @@
 Configure Notifications Widget
 ==============================
 
+The notifications widget displays user notifications based on notification settings. It can show all notifications or filter to display only unread items, providing quick access to important alerts and messages directly from the dashboard.
+
 Define Notifications Widget
 ---------------------------
 
-The Notifications widget of the Portal dashboard displays all notifications based on your notification settings. Refer
-to :ref:`Notifications widget <add-new-notification-widget>` for details.
+The notifications widget displays notifications with configurable filtering options. Refer to :ref:`Notifications widget <add-new-notification-widget>` for widget behavior details.
 
-Below is a sample JSON definition of a notification widget in the Portal dashboard
+Configuration Example
+^^^^^^^^^^^^^^^^^^^^^
+
+Below is a sample JSON definition of a notification widget in the Portal dashboard:
 
 .. code-block:: javascript
 
    {
       "type": "notification",
-      "id": "notification_848ba48391014fcb801a14fb841a879a",
+      "id": "notification-widget",
       "names": [
          {
             "locale": "en",
@@ -35,10 +39,10 @@ Below is a sample JSON definition of a notification widget in the Portal dashboa
          }
       ],
       "layout": {
+         "x": 0,
+         "y": 0,
          "w": 4,
          "h": 6,
-         "x": 0,
-         "y": 12,
          "style": "text-color: blue;",
          "styleClass": "your-widget-class"
       },
@@ -47,28 +51,80 @@ Below is a sample JSON definition of a notification widget in the Portal dashboa
    }
 ..
 
-The basic JSON structure of a Notifications widget
+JSON Configuration Reference
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-   ``type``: type of the widget. Use ``notification`` for a notification widget
+**Required Properties**
 
-   ``id``: ID of the widget
+.. list-table::
+   :widths: 20 15 65
+   :header-rows: 1
 
-   ``names``: multilingual name of the widget on the UI
+   * - Property
+     - Type
+     - Description
+   * - ``type``
+     - string
+     - Widget type. Must be ``"notification"`` for notifications widget
+   * - ``id``
+     - string
+     - Unique identifier for the widget
+   * - ``names``
+     - array
+     - Multilingual display names. Each entry: ``{"locale": "en", "value": "Name"}``
+   * - ``layout``
+     - object
+     - Widget position and size (see Layout Properties below)
 
-   ``layout``: layout definition of the widget
+**Layout Properties**
 
-      ``x``: HTML DOM Style ``left`` is calculated as formula ``x / 12 * 100%``
+.. list-table::
+   :widths: 20 15 65
+   :header-rows: 1
 
-      ``y``: HTML DOM Style ``top`` is calculated as formula ``y / 12 * 100%``
+   * - Property
+     - Type
+     - Description
+   * - ``x``
+     - number
+     - Column position in 12-column grid (0-11). CSS left = ``x / 12 * 100%``
+   * - ``y``
+     - number
+     - Row position. CSS top = ``y / 12 * 100%``
+   * - ``w``
+     - number
+     - Width in grid columns (1-12). Pixel width = ``60 * w + 20 * (w - 1)``
+   * - ``h``
+     - number
+     - Height in grid rows (min 4). Pixel height = ``60 * h + 20 * (h - 1)``
+   * - ``styleClass``
+     - string
+     - *(Optional)* CSS classes for custom styling
+   * - ``style``
+     - string
+     - *(Optional)* Inline CSS styles
 
-      ``w``: HTML DOM Style ``width`` is calculated as formula ``60 * w + 20 * (w - 1)``
+.. tip::
+   **Recommended notifications widget size:** Width 3-5 columns, Height 5-8 rows for optimal notification list display.
 
-      ``h``: HTML DOM Style ``height`` is calculated as formula ``60 * h + 20 * (h - 1)``
+**Filtering & Display Properties**
 
-      ``styleClass`` (optional): add CSS Classes to HTML DOM of the widget
+.. list-table::
+   :widths: 20 15 15 50
+   :header-rows: 1
 
-      ``style`` (optional): add inline style to HTML DOM of the widget
+   * - Property
+     - Type
+     - Default
+     - Description
+   * - ``onlyUnread``
+     - boolean
+     - ``false``
+     - Filter notifications. ``true`` = show only unread, ``false`` = show all
+   * - ``showFullscreenMode``
+     - boolean
+     - ``true``
+     - Show/hide fullscreen mode icon
 
-   ``onlyUnread``: filter only unread notifications. The default value is "false"
-
-   ``showFullscreenMode``: visibility of the fullscreen mode icon. The default value is ``true``, set to ``false`` to hide the icon
+.. note::
+   Notifications displayed depend on the user's notification settings. Users can manage notification preferences in their user profile.

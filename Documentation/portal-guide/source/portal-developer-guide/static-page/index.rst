@@ -3,190 +3,282 @@
 Static Pages
 ************
 
+Create custom JSF pages integrated into Portal's navigation system for displaying documentation, help pages, or any static content.
+
 .. _static-page-introduction:
 
 Introduction
 ============
 
-Static pages in Axon Ivy Portal allow developers to create custom JSF pages that can be integrated into the portal's navigation system. These pages are useful for displaying static content, documentation, help pages, or any custom content that doesn't require dynamic process execution.
+Static pages in Axon Ivy Portal allow developers to create custom JSF (JavaServer Faces) pages that integrate into the portal's navigation system. These pages are ideal for:
 
-Static pages are JSF (JavaServer Faces) pages that use the portal's layout templates and styling, providing a consistent user experience while allowing for custom content.
+- **Documentation** - User guides, API documentation, or technical references
+- **Help Pages** - Contextual help, FAQs, or tutorials
+- **Static Content** - Company policies, announcements, or informational pages
+- **Custom Views** - Any content that doesn't require dynamic process execution
+
+**Key Benefits:**
+
+- Consistent styling and layout with Portal theme
+- No process execution overhead
+- Easy integration into Portal navigation
+- Support for multilingual content
+- Role-based access control
 
 .. _static-page-creation:
 
 Creating Static Pages
 =====================
 
+**HowTo: Create a Static Page**
+
+#. Create XHTML file in ``webContent/view/`` directory
+#. Choose appropriate Portal layout template
+#. Add your content within the template's content area
+#. Configure menu integration (see integration sections below)
+#. Test page access and styling
+
 File Structure
 --------------
 
-Static pages should be placed in the `webContent/view/` directory of your project. The recommended structure is:
+Static pages should be organized in the ``webContent/view/`` directory of your project or custom application.
+
+**Recommended Structure:**
 
 .. code-block:: text
 
     webContent/
     ├── view/
+    │   ├── help/
+    │   │   ├── user-guide.xhtml
+    │   │   └── faq.xhtml
+    │   ├── documentation/
+    │   │   ├── api-reference.xhtml
+    │   │   └── tutorials.xhtml
     │   └── static.xhtml
     ├── layouts/
-    │   ├── frame-10.xhtml
-    │   ├── frame-10-full-width.xhtml
-    │   └── basic-10.xhtml
+    │   ├── frame-10.xhtml              # Standard layout with sidebar
+    │   ├── frame-10-full-width.xhtml   # Full-width layout
+    │   └── basic-10.xhtml              # Minimal layout
     └── resources/
-        ├── css/
-        └── js/
+        ├── css/                         # Custom stylesheets
+        │   └── custom-static.css
+        └── js/                          # Custom JavaScript
+            └── custom-static.js
 
-Basic Static Page Template
-==========================
-
-Here's a basic template for creating a static page:
-
-.. code-block:: xml
-
-    <!DOCTYPE html>
-    <html xmlns="http://www.w3.org/1999/xhtml"
-        xmlns:h="http://xmlns.jcp.org/jsf/html"
-        xmlns:f="http://xmlns.jcp.org/jsf/core"
-        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-        xmlns:p="http://primefaces.org/ui">
-
-    <h:head>
-        <title>Your Page Title</title>
-        <style>
-            /* Your custom CSS styles */
-        </style>
-    </h:head>
-
-    <h:body>
-        <ui:composition template="/layouts/frame-10-full-width.xhtml">
-            <ui:define name="content">
-                <div class="card">
-                    <h1>Your Content Title</h1>
-                    <p>Your static content goes here.</p>
-                </div>
-            </ui:define>
-        </ui:composition>
-    </h:body>
-
-    </html>
-
-Layout Templates
-----------------
-
-Portal provides several layout templates you can use:
-
-- **frame-10.xhtml**: Standard portal layout with sidebar
-- **frame-10-full-width.xhtml**: Full-width layout without sidebar
-- **basic-10.xhtml**: Basic layout for simple pages
-
-Choose the appropriate template based on your content needs.
+.. tip::
+   Organize related pages in subdirectories (e.g., ``help/``, ``documentation/``) to maintain a clean structure.
 
 .. _static-page-integration:
 
 Integrating Static Pages into Portal
 ====================================
 
-There are several ways to integrate static pages into the portal navigation system.
+Static pages can be integrated into Portal navigation through two primary methods: Main Menu integration and User Menu integration.
 
 Main Menu Integration
-=====================
+---------------------
 
-You can add static pages to the main menu using the `Portal.CustomMenuItems` configuration.
+Add static pages to the main left-side navigation menu using the ``Portal.CustomMenuItems`` variable configuration.
+
+**HowTo: Add Static Page to Main Menu**
+
+#. Navigate to Engine Cockpit > Configuration > Variables
+#. Find or create the ``Portal.CustomMenuItems`` variable
+#. Add your static page configuration (see JSON example below)
+#. Save the configuration
+#. Static page appears in the main menu
 
 Configuration Method
---------------------
+^^^^^^^^^^^^^^^^^^^^
 
-Add the following JSON configuration to the `Portal.CustomMenuItems` variable:
+Add the following JSON configuration to the ``Portal.CustomMenuItems`` variable:
 
 .. code-block:: json
 
     [
         {
             "menuKind": "STATIC_PAGE",
-            "link": "app/faces/view/portal-components-examples/static.xhtml",
-            "label": "Static Page Example",
-            "icon": "si si-task-list-edit",
+            "link": "portal-components-examples/faces/view/help/user-guide.xhtml",
+            "label": "User Guide",
+            "icon": "si si-book-open-1",
             "index": 0,
+            "version": "12.0.0"
+        },
+        {
+            "menuKind": "STATIC_PAGE",
+            "link": "portal-components-examples/faces/view/documentation/api-reference.xhtml",
+            "label": "API Reference",
+            "icon": "si si-common-file-text",
+            "index": 1,
             "version": "12.0.0"
         }
     ]
 
-Parameters:
+**Configuration Properties:**
 
-- **menuKind**: Must be set to `"STATIC_PAGE"`
-- **link**: Path to your static page relative to the view directory
-- **label**: Display name in the menu
-- **icon**: Icon class
-- **index**: Menu position (optional, defaults to 0)
-- **version**: Portal version
+    ``menuKind`` (string, required)
+        Must be set to ``"STATIC_PAGE"`` for static page menu items
+
+    ``link`` (string, required)
+        Relative path to your static page from the application view directory
+        
+        - Format: ``{pmv-name}/faces/view/{path-to-file}.xhtml``
+        - Example: ``portal-components-examples/faces/view/help/user-guide.xhtml``
+
+    ``label`` (string, required)
+        Display name shown in the main menu
+        
+        - Use clear, descriptive names
+        - Keep labels concise (2-3 words recommended)
+
+    ``icon`` (string, optional)
+        Icon class for menu item
+        
+        - Use Streamline Icons: ``si si-icon-name``
+        - Example: ``si si-book-open-1``, ``si si-common-file-text``
+        - Browse available icons in Portal UI or Streamline documentation
+
+    ``index`` (number, optional)
+        Menu position order (lower numbers appear first)
+        
+        - Default: 0
+        - Use for controlling menu item order
+
+    ``version`` (string, optional)
+        Portal version for compatibility tracking
+        
+        - Recommended: Current Portal version (e.g., ``"12.0.0"``)
 
 Programmatic Method
--------------------
+^^^^^^^^^^^^^^^^^^^
 
-You can also add static pages programmatically using a callable subprocess:
+For dynamic menu generation, add static pages programmatically using Java code in a callable subprocess:
 
-.. code-block:: javascript
+.. code-block:: java
 
     import com.axonivy.portal.components.configuration.CustomSubMenuItem;
+    import com.axonivy.portal.components.enums.MenuKind;
 
+    // Create new static page menu item
     CustomSubMenuItem staticPage = new CustomSubMenuItem();
     staticPage.setMenuKind(MenuKind.STATIC_PAGE);
-    staticPage.setIcon("si si-task-list-edit");
-    staticPage.setLabel("Static Page Example");
-    staticPage.setLink("app/faces/view/portal-components-examples/static.xhtml");
+    staticPage.setIcon("si si-book-open-1");
+    staticPage.setLabel("User Guide");
+    staticPage.setLink("portal-components-examples/faces/view/help/user-guide.xhtml");
     staticPage.setIndex(0);
 
+    // Add to menu items collection
     in.subMenuItems.add(staticPage);
 
-User Menu Integration
-=====================
+.. tip::
+   **When to Use Programmatic Method:**
+   
+   - Dynamic menu items based on user roles or permissions
+   - Conditional menu display based on business logic
+   - Runtime configuration changes
+   - Integration with external systems for menu configuration
 
-Static pages can also be added to the user menu using the `Portal.UserMenu` configuration:
+User Menu Integration
+---------------------
+
+Add static pages to the user menu (accessed via user avatar in top-right corner) using the ``Portal.UserMenu`` variable.
+
+**HowTo: Add Static Page to User Menu**
+
+#. Navigate to Engine Cockpit > Configuration > Variables
+#. Find or create the ``Portal.UserMenu`` variable
+#. Add your static page configuration (see JSON example below)
+#. Save the configuration
+#. Static page appears in the user menu dropdown
+
+**Configuration Example:**
 
 .. code-block:: json
 
     [
         {
-            "id": "staticPageExample",
+            "id": "userGuide",
             "menuKind": "STATIC_PAGE",
             "titles": [
                 {
                     "locale": "en",
-                    "value": "Static Page Example"
+                    "value": "User Guide"
                 },
                 {
                     "locale": "de",
-                    "value": "Statische Seite Beispiel"
+                    "value": "Benutzerhandbuch"
+                },
+                {
+                    "locale": "fr",
+                    "value": "Guide d'utilisateur"
                 }
             ],
             "permissions": ["Everybody"],
-            "url": "app/faces/view/portal-components-examples/static.xhtml"
+            "url": "portal-components-examples/faces/view/help/user-guide.xhtml"
+        },
+        {
+            "id": "apiReference",
+            "menuKind": "STATIC_PAGE",
+            "title": "API Reference",
+            "permissions": ["Developer", "AXONIVY_PORTAL_ADMIN"],
+            "url": "portal-components-examples/faces/view/documentation/api-reference.xhtml"
         }
     ]
 
-Parameters:
+**Configuration Properties:**
 
-- **id**: Unique identifier for the menu item
-- **menuKind**: Must be set to `"STATIC_PAGE"`
-- **titles**: Multilingual titles
-- **permissions**: Array of roles or users who can see this item
-- **url**: Path to your static page
+    ``id`` (string, required)
+        Unique identifier for the menu item
+        
+        - Must be unique across all user menu items
+        - Use camelCase naming convention
+
+    ``menuKind`` (string, required)
+        Must be set to ``"STATIC_PAGE"`` for static page menu items
+
+    ``title`` or ``titles`` (required)
+        Menu item display text
+        
+        - **title**: Single-language string (e.g., ``"title": "User Guide"``)
+        - **titles**: Array of locale-value pairs for multilingual support
+
+    ``permissions`` (array, optional)
+        Roles or users who can see this menu item
+        
+        - Roles: ``["Employee", "Manager", "AXONIVY_PORTAL_ADMIN"]``
+        - Users: Prefix with ``#`` (e.g., ``["#john.doe"]``)
+        - Default: If omitted, all users can see the item
+
+    ``url`` (string, required)
+        Relative path to your static page
+        
+        - Format: ``{pmv-name}/faces/view/{path-to-file}.xhtml``
+        - Example: ``portal-components-examples/faces/view/help/user-guide.xhtml``
 
 .. _static-page-url-conversion:
 
-URL Conversion
---------------
+URL Conversion and Access
+-------------------------
 
-Portal automatically converts static page links to the proper format when used in menus. The conversion process:
+Portal automatically converts static page links to the proper format when displaying them through the menu system.
 
-1. **Input**: `app/faces/view/portal-components-examples/static.xhtml`
-2. **Conversion**: Uses `StaticPageUtils.buildUrl()` method
-3. **Output**: Full portal URL with iframe wrapper
+**Conversion Process:**
 
-The conversion formula:
+#. **Input Format**: Relative path from application view directory
+   
+   - Example: ``portal-components-examples/faces/view/help/user-guide.xhtml``
 
-.. code-block:: text
+#. **Conversion**: Portal uses ``StaticPageUtils.buildUrl()`` method
+   
+   - Wraps page in Portal's iframe container
+   - Applies Portal styling and navigation
 
-    {baseUrl}?relativeUrl=/{applicationName}/faces/view/{PM}/{staticPage}
+#. **Output Format**: Full Portal URL with proper context
+   
+   - Template: ``{baseUrl}?relativeUrl=/{applicationName}/faces/view/{PM}/{staticPage}``
+   - Example: ``https://server/ivy/pro/portal/?relativeUrl=/portal-components-examples/faces/view/help/user-guide.xhtml``
+
 
 .. _static-page-examples:
 
@@ -289,26 +381,43 @@ Best Practices
 File Organization
 -----------------
 
-- Place static pages in `webContent/view/` directory
-- Use descriptive file names (e.g., `help-documentation.xhtml`, `user-guide.xhtml`)
-- Organize related pages in subdirectories if needed
+**Directory Structure:**
 
+- Place all static pages in ``webContent/view/`` directory
+- Use descriptive, kebab-case filenames (e.g., ``user-guide.xhtml``, ``api-reference.xhtml``)
+- Organize related pages in subdirectories (e.g., ``help/``, ``documentation/``, ``policies/``)
+- Keep one page per file for maintainability
 
-Content Guidelines
-------------------
+**Content Guidelines:**
 
 - Keep content focused and relevant
-- Use consistent styling with the portal theme
+- Use consistent styling with the Portal theme
 - Ensure responsive design for different screen sizes
 - Include proper navigation breadcrumbs when appropriate
 
 Security Considerations
 -----------------------
 
+**Access Control:**
+
+- Always define appropriate ``permissions`` in menu configuration
+- Use role-based access control for sensitive content
+- Test page access with different user roles
+- Document permission requirements
+
+**Input Validation:**
+
 - Validate all user inputs if forms are included
-- Use proper access controls through menu permissions
-- Sanitize any dynamic content
-- Follow portal security guidelines
+- Sanitize any dynamic content before display
+- Use CSRF tokens for form submissions
+- Follow OWASP security guidelines
+
+**Content Security:**
+
+- Avoid storing sensitive data in static pages
+- Use HTTPS for external resource links
+- Implement proper authentication checks
+- Follow Portal security guidelines
 
 .. _static-page-references:
 

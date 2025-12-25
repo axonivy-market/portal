@@ -12,6 +12,10 @@ import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
 import ch.ivyteam.util.ExceptionUtil;
 
+/**
+ * Portal API for AI Assistant
+ *
+ */
 public class AiAssistantAPI {
   private static final String IFRAME_RESULT_PATTERN = "<iframe>%s</iframe>";
   private static final String EXECUTE_RESULT_PATTERN = "<execute>%s</execute>";

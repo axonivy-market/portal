@@ -3,22 +3,30 @@
 Demo Processes
 **************
 
-When you start the Axon Ivy Engine in demo mode, you will see **portal-user-examples**.
-In this project, we provide some simple examples.
-You can play with them to have the feeling how Axon Ivy and Portal work.
+The Axon Ivy Portal includes example processes to help you understand how Portal and Axon Ivy work together. 
+When you start the Engine in demo mode, the **portal-user-examples** project provides interactive examples 
+you can explore and test.
 
-.. hint:: 
-   You can use these accounts to log in to Portal in demo mode:
+Demo User Accounts
+==================
 
-  +---------------------+---------------------+-------------------------+
-  | Username            | Password            | Role                    |
-  +=====================+=====================+=========================+
-  | admin               | admin               | Portal admin            |
-  +---------------------+---------------------+-------------------------+
-  | demo                | demo                | Normal user             |
-  +---------------------+---------------------+-------------------------+
-  | guest               | guest               | Normal user             |
-  +---------------------+---------------------+-------------------------+
+Use these accounts to log in and test different user roles:
+
+.. table::
+   :widths: 30 30 40
+
+   +---------------------+---------------------+-------------------------+
+   | Username            | Password            | Role                    |
+   +=====================+=====================+=========================+
+   | **admin**           | admin               | Portal administrator    |
+   +---------------------+---------------------+-------------------------+
+   | **demo**            | demo                | Standard user           |
+   +---------------------+---------------------+-------------------------+
+   | **guest**           | guest               | Standard user           |
+   +---------------------+---------------------+-------------------------+
+
+Example Processes
+=================
 
 Leave Request
 -------------
