@@ -21,7 +21,7 @@ public final class PortalDateTimeAPI {
   }
   
   /**
-   * Get the date time pattern based on the following variables:
+   * Get the date time pattern for filtering based on the following variables:
    * - Portal.DateTimeFormat.HideYear: If true, the year part will be removed from the pattern.
    * - Portal.DateTimeFormat.HideTime: If true, the time part will be excluded.
    * - Portal.DateTimeFormat.DateFilterWithTime: If true, the time part will be included.
