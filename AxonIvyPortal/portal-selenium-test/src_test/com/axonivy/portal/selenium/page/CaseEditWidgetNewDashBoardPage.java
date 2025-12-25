@@ -15,6 +15,8 @@ import com.axonivy.portal.selenium.common.FilterValueType;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
+import com.codeborne.selenide.ScrollIntoViewOptions;
+import com.codeborne.selenide.ScrollIntoViewOptions.Block;
 import com.codeborne.selenide.SelenideElement;
 
 public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
@@ -261,12 +263,6 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
     return translationOverlay;
   }
 
-  public SelenideElement getConfigurationFilter() {
-    $("[id$=':widget-filter-content']").$(".filter-panel-title").click();
-    $("[id$=':widget-filter-content']").scrollIntoView("{block: \"end\"}");
-    return $("[id$=':widget-filter-content']").shouldBe(appear, DEFAULT_TIMEOUT);
-  }
-
   public SelenideElement getConfigurationDialog() {
     return $("div[id='new-widget-configuration-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
@@ -285,7 +281,8 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void closeFilter() {
-    $("span[id$=':widget-title-group']").$("label").scrollIntoView(("{block: \"start\"}")).click();
+    $("span[id$=':widget-title-group']").$("label").scrollIntoView(ScrollIntoViewOptions.instant().block(Block.start))
+        .click();
     $("div[id$=':widget-filter-content']").shouldBe(disappear, DEFAULT_TIMEOUT);
     waitPreviewTableLoaded();
   }

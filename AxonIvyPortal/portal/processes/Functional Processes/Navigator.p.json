@@ -59,7 +59,6 @@
       "config" : {
         "output" : {
           "code" : [
-            "import ch.ivyteam.ivy.workflow.query.CaseQuery;",
             "import ch.ivyteam.ivy.workflow.ICase;",
             "",
             "out.caze = ivy.wf.findCase(in.caseId.uuid()) as ICase;"

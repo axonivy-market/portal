@@ -15,7 +15,7 @@ import org.primefaces.model.StreamedContent;
 import com.axonivy.portal.components.ivydata.bo.IvyDocument;
 import com.axonivy.portal.components.service.IvyAdapterService;
 
-import ch.ivyteam.ivy.process.call.SubProcessCallStart;
+import ch.ivyteam.ivy.process.call.SubProcessCallStartEvent;
 import ch.ivyteam.ivy.process.call.SubProcessSearchFilter;
 import ch.ivyteam.ivy.process.call.SubProcessSearchFilter.SearchScope;
 
@@ -31,7 +31,7 @@ public final class DocumentUtils {
     SubProcessSearchFilter filter = SubProcessSearchFilter.create().setSearchScope(SearchScope.SECURITY_CONTEXT)
         .setSignature(DOC_FACTORY_SIGNATURE).toFilter();
 
-    List<SubProcessCallStart> subProcessStartList = SubProcessCallStart.find(filter);
+    List<SubProcessCallStartEvent> subProcessStartList = SubProcessCallStartEvent.find(filter);
     isDocFactoryFound = CollectionUtils.isNotEmpty(subProcessStartList);
 
     DOC_FACTORY_SUPPORTED_PREVIEW_FILE_TYPES = getDocFactorySupportedFileTypes();
