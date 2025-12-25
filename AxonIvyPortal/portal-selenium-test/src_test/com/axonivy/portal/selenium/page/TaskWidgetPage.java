@@ -254,11 +254,6 @@ public class TaskWidgetPage extends TemplatePage {
     WaitHelper.assertTrueWithWait(() -> this.countTasks().size() == expectedNumber);
   }
 
-  private void waitForNumberOfTasksDifferent(int... expectedNumberOfTasksAfterFiltering) {
-    int expectedNumber = getExpectedNumberOfTasks(expectedNumberOfTasksAfterFiltering);
-    WaitHelper.assertTrueWithWait(() -> this.countTasks().size() == expectedNumber);
-  }
-
   public void startTaskWithoutUI(int index) {
     waitTaskAppearThenClick(index);
   }
@@ -470,6 +465,7 @@ public class TaskWidgetPage extends TemplatePage {
   public void closeSaveFilterDialog() {
     $("a[id^='task-widget:filter-save-form']").shouldBe(getClickableCondition()).click();
     $(By.id("task-widget:save-filter-set-dialog")).shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
+    $(".ajax-status-position").shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
   }
 
   public TaskDetailsPage openTaskDetail(int index) {
