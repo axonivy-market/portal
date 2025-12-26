@@ -12,6 +12,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 
 import com.axonivy.portal.selenium.common.NavigationHelper;
+import com.axonivy.portal.selenium.common.Sleeper;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
@@ -129,6 +130,6 @@ public class LeaveRequestPage extends TaskTemplateIFramePage {
     $("form[id='leave-request']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     $("input[id='leave-request:requester'").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     $("input[id='leave-request:requester'").shouldBe(Condition.interactable, DEFAULT_TIMEOUT);
-
+    Sleeper.sleep(1000); // wait Iframe render content
   }
 }
