@@ -30,30 +30,25 @@
       "id" : "f1",
       "type" : "CallSubEnd",
       "visual" : {
-        "at" : { "x" : 440, "y" : 64 },
+        "at" : { "x" : 504, "y" : 64 },
         "labelOffset" : { "x" : 13, "y" : 33 }
       }
     }, {
       "id" : "f3",
       "type" : "Script",
+      "name" : "Update value of leaveCount number field",
       "config" : {
         "output" : {
           "code" : [
-            "import ch.ivyteam.ivy.security.ISecurityContext;",
-            "import java.time.LocalDateTime;",
-            "import java.time.format.DateTimeFormatter;",
-            "import java.text.SimpleDateFormat;",
-            "if (in.#workingTask != null) {",
-            "  DateTimeFormatter formatter = DateTimeFormatter.ofPattern(\"dd.MM.yyyy HH:mm\");",
-            "  String currentDateTime = LocalDateTime.now().format(formatter);",
-            "  String content = String.format(\"The user who has recently worked on the task: %s on %s\", ivy.session.getSessionUserName(), currentDateTime);",
-            "  in.workingTask.getCase().createNote(ivy.session, content);",
-            "}"
+            "int leaveCount = in.workingTask.customFields().numberField(\"leaveCount\").getOrDefault(0);",
+            "leaveCount++;",
+            "in.workingTask.customFields().numberField(\"leaveCount\").set(leaveCount);"
           ]
         }
       },
       "visual" : {
-        "at" : { "x" : 264, "y" : 64 }
+        "at" : { "x" : 304, "y" : 64 },
+        "size" : { "width" : 160, "height" : 70 }
       },
       "connect" : [
         { "id" : "f4", "to" : "f1", "color" : "default" }
@@ -77,7 +72,7 @@
         "at" : { "x" : 96, "y" : 192 }
       },
       "connect" : [
-        { "id" : "f6", "to" : "f3", "via" : [ { "x" : 96, "y" : 128 }, { "x" : 264, "y" : 128 } ] }
+        { "id" : "f6", "to" : "f11" }
       ]
     }, {
       "id" : "f10",
@@ -89,8 +84,40 @@
         "portalExtendTaskReserve: Triggered upon clicking 'Reserve'."
       ],
       "visual" : {
-        "at" : { "x" : 727, "y" : 119 },
+        "at" : { "x" : 871, "y" : 127 },
         "size" : { "width" : 467, "height" : 155 }
       }
+    }, {
+      "id" : "f8",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 504, "y" : 192 },
+        "labelOffset" : { "x" : 13, "y" : 33 }
+      }
+    }, {
+      "id" : "f11",
+      "type" : "Script",
+      "name" : "Add new note who has worked on the task",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import java.time.LocalDateTime;",
+            "import java.time.format.DateTimeFormatter;",
+            "if (in.#workingTask != null) {",
+            "  DateTimeFormatter formatter = DateTimeFormatter.ofPattern(\"dd.MM.yyyy HH:mm\");",
+            "  String currentDateTime = LocalDateTime.now().format(formatter);",
+            "  String content = String.format(\"The user who has recently worked on the task: %s on %s\", ivy.session.getSessionUserName(), currentDateTime);",
+            "  in.workingTask.getCase().createNote(ivy.session, content);",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 304, "y" : 192 },
+        "size" : { "width" : 152, "height" : 70 }
+      },
+      "connect" : [
+        { "id" : "f9", "to" : "f8" }
+      ]
     } ]
 }
