@@ -59,11 +59,6 @@
   text-decoration: none !important;
 }
 
-.new-widget-dialog__item-content:focus {
-  outline: 2px solid var(--primary-color);
-  outline-offset: -2px;
-}
-
 /* Menu wrapper - absolute positioned */
 .new-widget-dialog__item-menu-wrapper {
   position: absolute;
