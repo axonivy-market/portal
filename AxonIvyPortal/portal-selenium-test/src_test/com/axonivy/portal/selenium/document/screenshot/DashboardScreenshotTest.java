@@ -379,7 +379,7 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
     NewDashboardDetailsEditPage detailsEditPage = editPage.navigateToEditDashboardDetailsByName("Dashboard");
     detailsEditPage.waitPageLoaded();
     WebElement newWidgetDialog = detailsEditPage.addWidget();
-    detailsEditPage.collapseStandardWidgets();
+    detailsEditPage.filterStatisticWidgets();
     ScreenshotUtils.resizeBrowser(new Dimension(1920, 1080));
     ScreenshotUtils.captureElementWithMarginOptionScreenshot(newWidgetDialog,
         ScreenshotUtils.NEW_DASHBOARD_FOLDER + "add-statistic-widget", new ScreenshotMargin(20));

@@ -26,7 +26,7 @@
     </ui:define>
 
     <ui:define name="headerAction">
-      <p:commandLink id="back-to-configuration" styleClass="dashboard__switch-mode u-mar-right-5 pr-2"
+      <p:commandLink id="back-to-configuration" styleClass="dashboard__switch-mode"
         actionListener="#{dashboardDetailModificationBean.navigatetoDashboardConfigurationPage}"
         update="grid-stack @this" process="@this" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}">
           <i class="relative si si-arrow-left-1" style="top: 2px;"/>
@@ -34,7 +34,7 @@
       </p:commandLink>
 
       <c:set var="showRestoreButton" value="#{dashboardDetailModificationBean.foundTemplate.isPresent()}"/>
-      <h:panelGroup id="restore-button-group" styleClass="restore-button-group u-mar-right-15">
+      <h:panelGroup id="restore-button-group" styleClass="restore-button-group">
         <p:commandButton id="restore-button" styleClass="ui-button-secondary dashboard__restore-button"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/restore')}"
           ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/restore')}"
@@ -48,6 +48,15 @@
           rendered="#{!showRestoreButton}"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/RestoreDefaultDashboardTemplateTooltip')}"/>
       </h:panelGroup>
+
+      <p:commandButton id="clone-from" type="button" icon="si si-copy-paste" 
+        styleClass="ui-button-secondary u-hidden-md-down"
+        ariaLabel="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/PortalDashboardDetailModification/CloneWidget')}"
+        value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/PortalDashboardDetailModification/CloneWidget')}">
+          <p:ajax event="click" listener="#{dashboardDetailModificationBean.initCloneWidgetDialog()}"
+            global="false" update="clone-widget-from-dashboard:clone-widget-dialog"
+            oncomplete="PF('clone-widget-dialog').show();" />
+      </p:commandButton>
 
       <p:commandButton id="add-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/addWidget')}"
         icon="si si-add" 
@@ -73,6 +82,9 @@
       <ui:include src="PortalDashboardAddNewWidgets.xhtml">
         <ui:param name="isPublicDashboard" value="#{dashboardDetailModificationBean.publicDashboard}"/>
       </ui:include>
+
+      <ic:com.axonivy.portal.dashboard.component.CloneWidgetFromDashboardDialog id="clone-widget-from-dashboard"
+        managedBean="#{dashboardDetailModificationBean}" />
 
       <ui:decorate template="/layouts/decorator/portal-dialog-with-icon.xhtml">
         <ui:param name="id" value="restore-confirm-dialog" />

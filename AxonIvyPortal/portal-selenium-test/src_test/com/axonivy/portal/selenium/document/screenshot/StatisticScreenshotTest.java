@@ -124,7 +124,7 @@ public class StatisticScreenshotTest extends ScreenshotBaseTest {
     var modificationPage = configurationPage.openEditPublicDashboardsPage();
     var newDashboardDetailsEditPage = modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
     WebElement newWidgetDialog = newDashboardDetailsEditPage.addWidget();
-    newDashboardDetailsEditPage.collapseStandardWidgets();
+    newDashboardDetailsEditPage.filterStatisticWidgets();
     ScreenshotUtils.executeDecorateJs("highlightCreateCustomStatisticWidgetButton()");
     ScreenshotUtils.captureElementWithMarginOptionScreenshot(newWidgetDialog,
         ScreenshotUtils.STATISTIC_WIDGET_FOLDER + "create-new-custom-statistic-widget", new ScreenshotMargin(20));

@@ -438,9 +438,7 @@ Clone a widget
 Clone a widget from existing dashboard
 ======================================
 
-When editing a dashboard, you can clone a widget from another dashboard by opening the :guilabel:`Add a widget` dialog by press on the :guilabel:`+ Add widget` button.
-
-Once the dialog opens, click the :guilabel:`Clone widget` button at the top.
+When editing a dashboard, you can clone a widget from another dashboard by clicking the :guilabel:`Clone widget` button at the top of the page.
 
 |clone-widget-from-button|
 

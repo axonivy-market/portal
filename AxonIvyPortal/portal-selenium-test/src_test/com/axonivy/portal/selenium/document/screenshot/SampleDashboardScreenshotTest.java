@@ -53,14 +53,15 @@ public class SampleDashboardScreenshotTest extends ScreenshotBaseTest {
     dashboardConfigurationPage.openEditPublicDashboardsPage();
     dashboardConfigurationPage.clickButtonOnDashboardConfigurationActionMenu("Configuration", 2);
     NewDashboardDetailsEditPage dashboardConfigPage = new NewDashboardDetailsEditPage();
-    dashboardConfigPage.addWidget().click();
+    dashboardConfigPage.addWidget();
+    dashboardConfigPage.filterStatisticWidgets();
     scrollToExampleStatisticInAddWidgetDialog();
     ScreenshotUtils.resizeBrowserAndCaptureWholeScreen(ScreenshotUtils.SAMPLE_DASHBOARD_FOLDER + "statistic-config",
         new Dimension(1500, 1500));
   }
 
   private void scrollToExampleStatisticInAddWidgetDialog() {
-    $$("span[id$='statistic-widget-name']")
+    $$("a.new-widget-dialog__item-content")
       .findBy(Condition.text("Total Procurement Spend per Department"))
       .shouldBe(Condition.visible, DEFAULT_TIMEOUT)
       .scrollIntoCenter();

@@ -550,22 +550,22 @@ public class DashboardConfigurationPage extends TemplatePage {
   }
   
   public StatisticConfigurationPage clickOnCreateCustomStatisticWidgetButton() {
-    $("button[id$='create-custom-statistic']").shouldBe(appear, DEFAULT_TIMEOUT).click();
+    $("a[id$='create-custom-statistic-button']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     return new StatisticConfigurationPage();
   }
 
   public StatisticWidgetNewDashboardPage addNewStatisticWidget(String widgetName) {
     setSearchInput(widgetName);
-    $("div.new-widget-dialog__content").shouldBe(appear, DEFAULT_TIMEOUT)
-    .$$("div.new-widget-dialog__item").filter(Condition.visible).first().shouldBe(appear, DEFAULT_TIMEOUT)
-    .$("div.new-widget-dialog__item-details").shouldBe(appear, DEFAULT_TIMEOUT)
-    .$("button[id$='add-widget']").shouldBe(appear, DEFAULT_TIMEOUT).click();
+    $("div[id$='new-widget-dialog_content']").shouldBe(appear, DEFAULT_TIMEOUT)
+        .$$("a.new-widget-dialog__item-content")
+        .filter(Condition.text(widgetName)).first()
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     return new NewDashboardPage().selectStatisticChartWidget(widgetName);
   }
   
   public void setSearchInput(String widgetName) {
     $("div.new-widget-dialog__search").shouldBe(appear, DEFAULT_TIMEOUT)
-        .$("[id $= 'search-input'").shouldBe(appear, DEFAULT_TIMEOUT)
+        .$("[id $= 'search-input']").shouldBe(appear, DEFAULT_TIMEOUT)
         .sendKeys(widgetName);
   }
 }

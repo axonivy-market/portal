@@ -801,7 +801,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     canWorkOn: Can work on
     caseDrillDownDashboard: Case drill-down dashboard
     caseList: Case List
-    caseListIntroduction: This widget displays relevant case information according to defined settings
+    caseListIntroduction: This widget displays relevant case information according to defined settings.
     caseWidgetInfo:
       casesByCategory: Number of cases by category
       casesByState: Number of cases by state

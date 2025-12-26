@@ -1,0 +1,52 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:fn="http://xmlns.jcp.org/jsp/jstl/functions" xmlns:jsf="http://xmlns.jcp.org/jsf"
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+  <div class="col-12 md:col-6 lg:col-4">
+    <div class="new-widget-dialog__item new-widget-dialog__item--statistic-wrapper card block w-full h-full relative">
+      <p:commandLink styleClass="new-widget-dialog__item-content js-widget block w-full h-full pl-0 pr-6"
+        ariaLabel="#{widget.name} #{widget.description}"
+        actionListener="#{dashboardDetailModificationBean.saveStatisticWidget(widget)}"
+        oncomplete="loadGridAfterAddedNewWidget(); initStatistics();"
+        update="widget-configuration-form load-grid-after-added-new-widget-cmd"
+        partialSubmit="true"
+        process="@this">
+        
+        <div class="flex align-items-center h-full">
+          <h:panelGroup layout="block" styleClass="new-widget-dialog__image flex align-items-center justify-content-center flex-shrink-0">
+            <span class="#{iconSelectionBean.generateIconWithFontFamily(htmlSanitizerBean.sanitize(widget.icon))} new-widget-dialog__icon" />
+          </h:panelGroup>
+          
+          <div class="flex-1 min-w-0 align-self-start">
+            <h:outputText id="statistic-widget-name" value="#{widget.name}" styleClass="new-widget-dialog__widget-name block mb-2"/>
+            <p:tooltip id="statistic-widget-name-tooltip" for="statistic-widget-name" value="#{widget.name}" trackMouse="true" />
+            <h:outputText id="statistic-widget-description" value="#{widget.description}" styleClass="new-widget-dialog__introduction block"/>
+            <p:tooltip id="statistic-widget-description-tooltip" for="statistic-widget-description" value="#{widget.description}" trackMouse="true" />
+          </div>
+        </div>
+      </p:commandLink>
+      
+      <h:panelGroup layout="block" styleClass="new-widget-dialog__item-menu-wrapper absolute top-0 right-0 mt-2 mr-2 z-5" rendered="#{widget.isCustom and dashboardDetailModificationBean.canEditStatistic()}">
+        <p:commandButton id="custom-statistic-action-button" icon="si si-navigation-menu-horizontal-filled"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}"
+          styleClass="rounded-button icon-more-menu-button ui-no-rounded-button-process-page"
+          type="button"
+          onkeydown="if(event.keyCode === 13 || event.keyCode === 32) { event.preventDefault(); this.click(); return false; }" />
+        <p:menu id="custom-statistic-action-menu" styleClass="w-auto" overlay="true"
+          trigger="custom-statistic-action-button" my="right top" at="right bottom">
+          <p:menuitem id="edit" process="@this" icon="si si-graphic-tablet-drawing-pen"
+            actionListener="#{dashboardDetailModificationBean.navigateToCustomStatisticWidgetPage(widget.id)}"
+            global="false" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}"
+            target="_blank" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}" />
+          <p:menuitem id="delete-dashboard" process="@this"
+            styleClass="rounded-button ui-button-outlined ui-button-danger color-destroy" icon="si si-bin-1"
+            global="false"
+            actionListener="#{dashboardDetailModificationBean.onSelectedDeleteStatistic(widget)}"
+            title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
+            oncomplete="PF('remove-statistic-widget-dialog').show()"
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}" />
+        </p:menu>
+      </h:panelGroup>
+    </div>
+  </div>
+</html>

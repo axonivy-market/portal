@@ -1,7 +1,6 @@
 package com.axonivy.portal.selenium.page;
 
 import static com.codeborne.selenide.Condition.appear;
-
 import static com.codeborne.selenide.Condition.disappear;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
@@ -13,8 +12,8 @@ import org.openqa.selenium.WebElement;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.ScrollIntoViewOptions;
-import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.ScrollIntoViewOptions.Block;
+import com.codeborne.selenide.SelenideElement;
 public class NewDashboardDetailsEditPage extends TemplatePage {
 
   public static final String TASK_WIDGET = "Task List";
@@ -34,12 +33,16 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
 
   public WebElement addWidget() {
     $("button[id='add-button']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-    return $("div[id$='new-widget-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
+    $("div[id$='new-widget-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
+    $("div[id$='new-widget-dialog_content']").shouldBe(appear, DEFAULT_TIMEOUT);
+    return $("div[id$='new-widget-dialog']");
   }
 
-  public void collapseStandardWidgets() {
-    $(".ui-fieldset-legend.ui-corner-all.ui-state-default").click();
-    $(".ui-fieldset-content").shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
+  public void filterStatisticWidgets() {
+    $("div[id$='new-widget-dialog']").shouldBe(appear, DEFAULT_TIMEOUT)
+        .$$("button.new-widget-dialog__tab")
+        .filter(text("Statistic")).first()
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
 
   public TaskEditWidgetNewDashBoardPage addNewTaskWidget() {
@@ -77,21 +80,25 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
   }
 
   public void addWidgetByName(String name) {
-    $("div[id$='new-widget-dialog_content']").shouldBe(appear, DEFAULT_TIMEOUT).$$("div.new-widget-dialog__item")
-        .filter(text(name)).first().$("button[id^='new-widget-dialog-content']").shouldBe(getClickableCondition())
+    $("div[id$='new-widget-dialog_content']").shouldBe(appear, DEFAULT_TIMEOUT)
+        .$$("a.new-widget-dialog__item")
+        .filter(text(name)).first().shouldBe(getClickableCondition())
         .click();
   }
 
   public void addStatisticWidgetByName(String name) {
     $("[id $= 'search-input']").shouldBe(appear, DEFAULT_TIMEOUT)
         .sendKeys(name);
-    $("div[id$='new-widget-dialog_content']").shouldBe(appear, DEFAULT_TIMEOUT).$$("div.new-widget-dialog__item").filter(text(name)).first()
-        .$("button[id^='new-statistic-widget-dialog-content']").shouldBe(getClickableCondition()).click();
+    $("div[id$='new-widget-dialog_content']").shouldBe(appear, DEFAULT_TIMEOUT)
+        .$$("a.new-widget-dialog__item-content")
+        .filter(text(name)).first()
+        .shouldBe(getClickableCondition()).click();
     $("[id='new-widget-dialog']").shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
   }
   private void addCustomWidgetByName(String name) {
-    $("div[id$='new-widget-dialog_content']").shouldBe(appear, DEFAULT_TIMEOUT).$$("div.new-widget-dialog__item")
-        .filter(text(name)).first().$("button[id^='new-custom-widget-dialog-content']")
+    $("div[id$='new-widget-dialog_content']").shouldBe(appear, DEFAULT_TIMEOUT)
+        .$$("a.new-widget-dialog__item")
+        .filter(text(name)).first()
         .shouldBe(getClickableCondition()).click();
   }
 
@@ -227,8 +234,7 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
   }
   
   public void clickToAddStatisticWidget() {
-    $("button[id$='new-statistic-widget-dialog-content:0:add-widget']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
-    
+    addStatisticWidgetByName(TASK_BY_PRIORITY);
   }
 
   public ElementsCollection countStatisticCharts() {
@@ -262,7 +268,6 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
   }
   
   public void openCloneFromDialog() {
-    $("div.new-widget-dialog__content").shouldBe(appear, DEFAULT_TIMEOUT);
     $("[id $= 'clone-from']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT)
         .click();
     $("[id $= 'clone-widget-from-dashboard:clone-widget-dialog']")
@@ -410,7 +415,8 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
     $("[id$='clone-widget-component:clone-to-dashboard-dialog']")
         .shouldBe(disappear, DEFAULT_TIMEOUT);
   }
+  
   public void clickOnCreateCustomStatisiticWidget() {
-    $("button[id$=':create-custom-statistic']").shouldBe(getClickableCondition()).click();
+    $("a[id$='create-custom-statistic-button']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
 }
