@@ -12,6 +12,7 @@ import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.ScreenshotBaseTest;
 import com.axonivy.portal.selenium.common.ScreenshotMargin;
 import com.axonivy.portal.selenium.common.ScreenshotUtils;
+import com.axonivy.portal.selenium.common.Sleeper;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.page.MainMenuPage;
@@ -41,8 +42,8 @@ public class TaskAnalysisScreenshotTest extends ScreenshotBaseTest {
 
     ScreenshotUtils.executeDecorateJs("highlightTaskAnalysisNavigationLink()");
     ScreenshotUtils.resizeBrowser(new Dimension(1200, 800));
-    ScreenshotUtils
-        .captureHalfTopRightPageScreenShot(ScreenshotUtils.TASK_ANALYSIS_FOLDER + "navigate-to-task-analysis");
+    Sleeper.sleep(1000); // wait for chart rendered completely
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_ANALYSIS_FOLDER + "navigate-to-task-analysis");
     TaskAnalysisWidgetPage taskAnalysisWidgetPage = statisticWidgetPage.navigateToTaskAnalysisPage();
 
     ScreenshotUtils.resizeBrowser(new Dimension(1400, 900));

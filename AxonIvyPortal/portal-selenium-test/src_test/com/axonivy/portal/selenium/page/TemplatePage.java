@@ -29,6 +29,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.axonivy.portal.selenium.common.NavigationHelper;
+import com.axonivy.portal.selenium.common.Sleeper;
 import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
@@ -134,7 +135,9 @@ public abstract class TemplatePage extends AbstractPage {
   }
 
   public void waitForGrowlMessageDisplayClearly() {
-    $("div[id='portal-global-growl_container']").shouldBe(appear, DEFAULT_TIMEOUT).$("div.ui-growl-message").hover();
+    $("div[id='portal-global-growl_container']").shouldBe(appear, DEFAULT_TIMEOUT)
+        .shouldBe(interactable, DEFAULT_TIMEOUT).$("div.ui-growl-message").hover();
+    Sleeper.sleep(200);
   }
 
   public SelenideElement waitForElementClickable(SelenideElement element) {

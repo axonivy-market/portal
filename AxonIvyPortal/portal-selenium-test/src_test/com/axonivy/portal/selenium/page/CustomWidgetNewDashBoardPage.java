@@ -141,6 +141,7 @@ public class CustomWidgetNewDashBoardPage extends TemplatePage {
   public void inputNote(String name) {
     $("[id='widget-configuration-form:new-widget-configuration-component:parammeters:2:param-string-']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(editable, DEFAULT_TIMEOUT)
     .sendKeys(name);
+    $(".ajax-status-position").shouldBe(Condition.disappear, DEFAULT_TIMEOUT); // wait for ajax disappear before taking picture
   }
   
   public void selectWidgetType(String type) {
