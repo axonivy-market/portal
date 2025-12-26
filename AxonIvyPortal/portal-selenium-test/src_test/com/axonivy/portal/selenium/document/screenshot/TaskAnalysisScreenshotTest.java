@@ -42,7 +42,7 @@ public class TaskAnalysisScreenshotTest extends ScreenshotBaseTest {
 
     ScreenshotUtils.executeDecorateJs("highlightTaskAnalysisNavigationLink()");
     ScreenshotUtils.resizeBrowser(new Dimension(1200, 800));
-    Sleeper.sleep(200); // wait for chart rendered completely
+    Sleeper.sleep(1000); // wait for chart rendered completely
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_ANALYSIS_FOLDER + "navigate-to-task-analysis");
     TaskAnalysisWidgetPage taskAnalysisWidgetPage = statisticWidgetPage.navigateToTaskAnalysisPage();
 
