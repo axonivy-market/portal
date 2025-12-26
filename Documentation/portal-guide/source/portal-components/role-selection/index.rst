@@ -66,11 +66,20 @@ Name>)". When I select a role, a message shall be displayed.
 
 .. code-block:: html
 
-      <ic:com.axonivy.portal.components.RoleSelection id="role-item-select-event-component" componentId="item-select-event-for-role-selection"
-         fromRoleNames="#{data.definedRoleNames}" selectedRole="#{data.selectedRoleForInsertChildren}" label="Demonstrate facet and children"
-         floatingLabel="true" hasCustomizedSelectionList="true">
+      <ic:com.axonivy.portal.components.RoleSelection
+         id="role-item-select-event-component"
+         componentId="item-select-event-for-role-selection"
+         fromRoleNames="#{data.definedRoleNames}"
+         selectedRole="#{data.selectedRoleForInsertChildren}"
+         label="Demonstrate facet and children"
+         floatingLabel="true"
+         hasCustomizedSelectionList="true">
          <p:column>
-            <pc:securityMemberNameAndAvatar displayName="#{role.getDisplayName()} (#{role.getMemberName()})" securityMember="#{role}" isStandAlone="false" />
+            <pc:securityMemberNameAndAvatar
+               displayName="#{role.getDisplayName()} (#{role.getMemberName()})"
+               securityMember="#{role}"
+               isStandAlone="false"
+            />
          </p:column>
          <f:facet name="event">
             <p:ajax event="itemSelect" listener="#{logic.showSelectedRole}"
@@ -90,6 +99,11 @@ This component offers the following attributes:
 
 .. _components-portal-components-migrate-from-old-role-selection:
 
+Migrate to 14.0
+^^^^^^^^^^^^^^^
+
+#. The attribute ``labelPanelStyleClass`` has been removed since 14.0. If you used this attribute, please remove it from your code.
+
 Migrate from Deprecated Role Selection
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 #. Replace code in HTML files: replace ``ic:ch.ivy.addon.portalkit.component.RoleSelection`` with ``ic:com.axonivy.portal.components.RoleSelection``.
@@ -97,8 +111,6 @@ Migrate from Deprecated Role Selection
 #. Replace ``ch.ivy.addon.portalkit.dto.RoleDTO`` with ``com.axonivy.portal.components.dto.RoleDTO``.
 
    .. note:: If you stored class ``ch.ivy.addon.portalkit.dto.RoleDTO`` in your database, you have to update the database manually.
-
-#. Since 14.0, the attribute ``labelPanelStyleClass`` has been removed. If you used this attribute, please remove it from your code.
 
 .. |role-selection| image:: ../../screenshots/components/role-selection-component-from-defined-role.png
 .. |role-selection-floating-label| image:: ../../screenshots/components/role-selection-component-floating-label-and-exclude-role.png
