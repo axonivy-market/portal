@@ -77,7 +77,7 @@ pipeline {
     always {
       archiveArtifacts artifacts: 'AxonIvyPortal/portal-selenium-test/target/selenide/reports/**/*.*, AxonIvyPortal/portal-selenium-test/target/testEngineOut.log, testReport.txt, logText.txt', allowEmptyArchive: true
       junit allowEmptyResults: true, testResults: '**/surefire-reports/TEST-*.xml'
-      sleep(time: 30, unit: 'SECONDS')
+      sleep(time: 120, unit: 'SECONDS')
     }
   }
 }
