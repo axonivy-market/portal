@@ -37,15 +37,8 @@ The global growl behavior is controlled by the Portal setting ``Portal.DisplayMe
 
 |example-global-growl-finished-task|
 
-**Growl After Leaving a Task**
-
-|example-global-growl-cancelled-task|
-
 .. tip::
 
-   Configure Portal behavior through :ref:`Admin Settings <admin-settings>` for easier management without code changes.
-
-.. tip::
    Configure Portal behavior through :ref:`Admin Settings <admin-settings>` for easier management without code changes.
 
 .. |example-global-growl-finished-task| image:: ../../screenshots/components/example-global-growl-finished-task.png

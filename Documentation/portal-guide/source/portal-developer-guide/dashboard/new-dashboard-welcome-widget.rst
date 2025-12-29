@@ -161,7 +161,6 @@ When ``greeting`` is set to ``true``, Portal adds a time-based greeting before y
 - **Morning** (6 AM - 12 PM): "Good morning"
 - **Afternoon** (12 PM - 6 PM): "Good afternoon"
 - **Evening** (6 PM - 12 AM): "Good evening"
-- **Night** (12 AM - 6 AM): "Good night"
 
 Result format: ``"Good morning, Welcome to Your Dashboard"``
 

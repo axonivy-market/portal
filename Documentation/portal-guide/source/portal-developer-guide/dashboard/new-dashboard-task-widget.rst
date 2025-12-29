@@ -170,7 +170,22 @@ JSON Configuration Reference
 Each column object in the ``columns`` array:
 
 ``field`` (string, required)
-   Column field name (see Standard Columns below)
+   Column field name. Use one of the standard fields below for built-in values, or the name of your custom field.
+
+   Standard column fields :
+   - ``start`` - Start button to begin task execution
+   - ``Pin`` - Pin button for task
+   - ``priority`` - Task priority
+   - ``id`` - Task ID
+   - ``name`` - Task name
+   - ``description`` - Task description
+   - ``activator`` - Task activator
+   - ``state`` - Task business state
+   - ``startTimestamp`` - Creation date and time
+   - ``endTimestamp`` - End date and time
+   - ``expiryTimestamp`` - Expiry date and time
+   - ``application`` - Application name
+   - ``actions`` - Action buttons (details, reset, delegate, reserve, destroy, etc.)
 
 ``visible`` (string, default: ``"true"``)
    Column visibility: ``"true"`` or ``"false"``
@@ -186,22 +201,6 @@ Each column object in the ``columns`` array:
 
 ``style`` (string, optional)
    Inline CSS for custom columns (e.g., ``"width: 110px"``)
-
-**Standard Column Fields**
-
-- ``start`` - Start button to begin task execution
-- ``Pin`` - Pin button for task
-- ``priority`` - Task priority
-- ``id`` - Task ID
-- ``name`` - Task name
-- ``description`` - Task description
-- ``activator`` - Task activator
-- ``state`` - Task business state
-- ``startTimestamp`` - Creation date and time
-- ``endTimestamp`` - End date and time
-- ``expiryTimestamp`` - Expiry date and time
-- ``application`` - Application name
-- ``actions`` - Action buttons (details, reset, delegate, reserve, destroy, etc.)
 
 **Filters Configuration**
 
