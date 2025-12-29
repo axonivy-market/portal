@@ -170,9 +170,7 @@ JSON Configuration Reference
 Each column object in the ``columns`` array:
 
 ``field`` (string, required)
-   Column field name (see Standard Columns below)
-
-   Standard column fields:
+   Column field name. Use one of the standard fields below for built-in values, or the name of your custom field:
 
    - ``start`` - Start button to begin task execution
    - ``Pin`` - Pin button for task
