@@ -1,5 +1,7 @@
 package com.axonivy.portal.selenium.test.dashboard;
 
+import static com.codeborne.selenide.CollectionCondition.size;
+
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -184,9 +186,12 @@ public class DashboardCaseWidgetFilterTest extends BaseTest {
     CaseWidgetNewDashBoardPage caseWidget = newDashboardPage.selectCaseWidget(YOUR_CASES_WIDGET);
     caseWidget.scrollToCaseWidget();
 
+    int numberOfCases = caseWidget.countAllCases().size();
     caseWidget.destroyCase(0);
+    caseWidget.countAllCases().shouldHave(size(numberOfCases - 1));
     caseWidget.scrollToCaseWidget();
     caseWidget.destroyCase(1);
+    caseWidget.countAllCases().shouldHave(size(numberOfCases - 2));
     caseWidget.openFilterWidget();
     caseWidget.addFilter("Name", null);
     caseWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "TestCase");
