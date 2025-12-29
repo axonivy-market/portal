@@ -18,7 +18,7 @@ import com.axonivy.portal.selenium.page.WorkingTaskDialogPage;
 import com.codeborne.selenide.CollectionCondition;
 
 @IvyWebTest
-public class CustomBehaviorsOnLeavingTask extends BaseTest {
+public class CustomBehavioursOnLeavingTask extends BaseTest {
 
   @Override
   @BeforeEach
@@ -27,7 +27,7 @@ public class CustomBehaviorsOnLeavingTask extends BaseTest {
   }
 
   @Test
-  public void testExtendLeaveLogicOnLeavingWorkingTask() {
+  public void testCustomizedLogicWhenLeavingAWorkingTask() {
     login(TestAccount.DEMO_USER);
     createStockInvestment();
     openDashboard();
@@ -45,7 +45,7 @@ public class CustomBehaviorsOnLeavingTask extends BaseTest {
   }
   
   @Test
-  public void testExtendReserveLogicOnLeavingWorkingTask() {
+  public void testCustomizedLogicWhenReservingAWorkingTask() {
     login(TestAccount.DEMO_USER);
     createStockInvestment();
     openDashboard();
@@ -59,8 +59,26 @@ public class CustomBehaviorsOnLeavingTask extends BaseTest {
     dialogPage.reserveTask();
     login(TestAccount.ADMIN_USER);
     NavigationHelper.navigateToTaskList();
-    taskWidget.clickCustomFieldsButtonOnActions(0);
+    taskWidget.clickOnCustomFieldsActionOfTask(0);
     assertTrue(taskWidget.isCustomFieldsDialogDisplayed());
+    List<String> taskCustomFieldNames = taskWidget.getCustomFieldNamesOnTaskCustomFieldsDialog();
+    List<String> taskCusotmFieldValues = taskWidget.getCustomFieldValuesOnTaskCustomFieldsDialog();
+    assertFalse(taskCustomFieldNames.isEmpty());
+    assertFalse(taskCusotmFieldValues.isEmpty());
+    assertEquals(taskCustomFieldNames.getFirst(), "reserveTask");
+    assertEquals(taskCusotmFieldValues.getFirst(), "1");
+  }
+  
+  @Test
+  public void testCustomizedLogicWhenReservingATask() {
+    login(TestAccount.ADMIN_USER);
+    createStockInvestment();
+    openDashboard();
+    MainMenuPage menu = new MainMenuPage();
+    menu.openTaskList();
+    TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
+    taskWidget.reserveTask(0);
+    taskWidget.clickOnCustomFieldsActionOfTask(0);
     List<String> taskCustomFieldNames = taskWidget.getCustomFieldNamesOnTaskCustomFieldsDialog();
     List<String> taskCusotmFieldValues = taskWidget.getCustomFieldValuesOnTaskCustomFieldsDialog();
     assertFalse(taskCustomFieldNames.isEmpty());
