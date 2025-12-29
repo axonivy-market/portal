@@ -12,7 +12,9 @@ import org.openqa.selenium.WebElement;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
+import com.codeborne.selenide.ScrollIntoViewOptions;
 import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.ScrollIntoViewOptions.Block;
 public class NewDashboardDetailsEditPage extends TemplatePage {
 
   public static final String TASK_WIDGET = "Task List";
@@ -251,7 +253,8 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
   }
   
   public void scrollToStatistic() {
-    $(byText("Statistic Widgets")).shouldBe(Condition.appear, DEFAULT_TIMEOUT).scrollIntoView("{block: \"start\", inline: \"start\"}");
+    $(byText("Statistic Widgets")).shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+        .scrollIntoView(ScrollIntoViewOptions.instant().block(Block.start));
   }
   
   public SelenideElement getAccessibilityWidget() {
