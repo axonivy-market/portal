@@ -3,7 +3,7 @@
   "id" : "19B54C55082648B9",
   "kind" : "CALLABLE_SUB",
   "config" : {
-    "data" : "com.axonivy.portal.developerexamples.CustomLeaveTaskData"
+    "data" : "com.axonivy.portal.developerexamples.CustomExtendLeaveTaskData"
   },
   "elements" : [ {
       "id" : "f0",
@@ -48,8 +48,8 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 304, "y" : 64 },
-        "size" : { "width" : 160, "height" : 70 }
+        "at" : { "x" : 320, "y" : 62 },
+        "size" : { "width" : 192, "height" : 67 }
       },
       "connect" : [
         { "id" : "f4", "to" : "f1", "color" : "default" }
@@ -98,22 +98,22 @@
     }, {
       "id" : "f11",
       "type" : "Script",
-      "name" : "update custom field value",
+      "name" : "update custom field 'reserveTask'",
       "config" : {
         "output" : {
           "code" : [
             "if (\"CreateInvestment\".equals(in.workingTask.getCategoryPath())) {",
-            "  int reserveCount = in.workingTask.customFields().numberField(\"reserveTaskWhenWorking\").getOrDefault(0);",
+            "  int reserveCount = in.workingTask.customFields().numberField(\"reserveTask\").getOrDefault(0);",
             "  reserveCount++;",
-            "  in.workingTask.customFields().numberField(\"reserveTaskWhenWorking\").set(reserveCount);",
+            "  in.workingTask.customFields().numberField(\"reserveTask\").set(reserveCount);",
             "}"
           ]
         },
         "sudo" : true
       },
       "visual" : {
-        "at" : { "x" : 304, "y" : 192 },
-        "size" : { "width" : 152, "height" : 70 }
+        "at" : { "x" : 322, "y" : 190 },
+        "size" : { "width" : 188, "height" : 67 }
       },
       "connect" : [
         { "id" : "f9", "to" : "f8" }

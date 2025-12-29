@@ -65,7 +65,7 @@ public class CustomBehaviorsOnLeavingTask extends BaseTest {
     List<String> taskCusotmFieldValues = taskWidget.getCustomFieldValuesOnTaskCustomFieldsDialog();
     assertFalse(taskCustomFieldNames.isEmpty());
     assertFalse(taskCusotmFieldValues.isEmpty());
-    assertEquals(taskCustomFieldNames.getFirst(), "reserveTaskWhenWorking");
+    assertEquals(taskCustomFieldNames.getFirst(), "reserveTask");
     assertEquals(taskCusotmFieldValues.getFirst(), "1");
   }
 
