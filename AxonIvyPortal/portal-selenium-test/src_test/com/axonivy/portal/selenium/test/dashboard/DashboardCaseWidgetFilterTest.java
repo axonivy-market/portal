@@ -188,10 +188,10 @@ public class DashboardCaseWidgetFilterTest extends BaseTest {
 
     int numberOfCases = caseWidget.countAllCases().size();
     caseWidget.destroyCase(0);
-    caseWidget.countAllCases().shouldHave(size(numberOfCases - 1));
+    new CaseWidgetNewDashBoardPage(YOUR_CASES_WIDGET).countAllCases().shouldHave(size(numberOfCases - 1));
     caseWidget.scrollToCaseWidget();
     caseWidget.destroyCase(1);
-    caseWidget.countAllCases().shouldHave(size(numberOfCases - 2));
+    new CaseWidgetNewDashBoardPage(YOUR_CASES_WIDGET).countAllCases().shouldHave(size(numberOfCases - 2));
     caseWidget.openFilterWidget();
     caseWidget.addFilter("Name", null);
     caseWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "TestCase");
