@@ -36,13 +36,13 @@
     }, {
       "id" : "f3",
       "type" : "Script",
-      "name" : "update note who has worked on the task recently",
+      "name" : "update note who has left the task recently",
       "config" : {
         "output" : {
           "code" : [
             "import ch.ivyteam.ivy.security.IUser;",
             "if (\"CreateInvestment\".equals(in.workingTask.getCategoryPath())) {",
-            "  in.workingTask.getCase().notes().add().content(String.format(\"%s has worked on the task recently\",ivy.session.getSessionUserName())).execute();",
+            "  in.workingTask.getCase().notes().add().content(String.format(\"%s has left the task recently\",ivy.session.getSessionUserName())).execute();",
             "}"
           ]
         }

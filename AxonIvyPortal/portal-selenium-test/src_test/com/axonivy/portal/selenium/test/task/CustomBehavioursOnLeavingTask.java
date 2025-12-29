@@ -41,7 +41,7 @@ public class CustomBehavioursOnLeavingTask extends BaseTest {
     dialogPage.leaveTask();
     NavigationHelper.navigateToTaskList();
     TaskDetailsPage taskDetailsPage = taskWidget.openTaskDetailsPageByAction(0);
-    taskDetailsPage.getNotesWithContent("Demo has worked on the task recently").shouldHave(CollectionCondition.size(1));
+    taskDetailsPage.getNotesWithContent("Demo has left the task recently").shouldHave(CollectionCondition.size(1));
   }
   
   @Test
