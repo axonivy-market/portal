@@ -55,6 +55,7 @@ public class HomePage extends TemplatePage {
     $("div[class*='compact-process-widget']").shouldBe(appear, DEFAULT_TIMEOUT);
     $("div[class*='dashboard-task-widget-container']").shouldBe(appear, DEFAULT_TIMEOUT);
     $("div[class*='statistic-widget-container']").shouldBe(appear, DEFAULT_TIMEOUT);
+    Sleeper.sleep(1000); // wait for chart rendered completely
   }
   
   public void waitUntilProcessWidgetDisplayed() {
