@@ -89,5 +89,56 @@
       "visual" : {
         "at" : { "x" : 352, "y" : 208 }
       }
+    }, {
+      "id" : "f8",
+      "type" : "HtmlDialogStart",
+      "name" : "startCreateStockInvestment()",
+      "config" : {
+        "signature" : "startCreateStockInvestment",
+        "guid" : "19B6817246D98134"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 352 }
+      },
+      "connect" : [
+        { "id" : "f10", "to" : "f11" }
+      ]
+    }, {
+      "id" : "f9",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 448, "y" : 352 },
+        "labelOffset" : { "x" : 10, "y" : 30 }
+      }
+    }, {
+      "id" : "f11",
+      "type" : "Script",
+      "name" : "Init dummy data",
+      "config" : {
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.investmentRequest" : "in.investmentRequest",
+            "out.investmentRequest.decision" : "in.investmentRequest.decision",
+            "out.investmentRequest.decision.isApproved" : "true",
+            "out.investmentRequest.investment" : "in.investmentRequest.investment",
+            "out.investmentRequest.investment.company.description" : "\"With over 10 years of experience, we have established a reputation for delivering sustainable value and superior returns for our clients.\"",
+            "out.investmentRequest.investment.company.id" : "\"0001\"",
+            "out.investmentRequest.investment.company.name" : "\"Wawa company\"",
+            "out.investmentRequest.investment.id" : "\"007\""
+          },
+          "code" : [
+            "in.steps = [\"Create Investment Request\", \"Approve Investment Request\", \"Review Request\"];",
+            "in.investmentRequest.investment.investedMoney = \"1000\";",
+            "in.investmentRequest.investment.startDate = new Date();"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 296, "y" : 352 }
+      },
+      "connect" : [
+        { "id" : "f12", "to" : "f9", "color" : "default" }
+      ]
     } ]
 }

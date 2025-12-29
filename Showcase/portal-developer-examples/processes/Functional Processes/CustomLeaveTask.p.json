@@ -36,13 +36,14 @@
     }, {
       "id" : "f3",
       "type" : "Script",
-      "name" : "Update value of leaveCount number field",
+      "name" : "update note who has worked on the task recently",
       "config" : {
         "output" : {
           "code" : [
-            "int leaveCount = in.workingTask.customFields().numberField(\"leaveCount\").getOrDefault(0);",
-            "leaveCount++;",
-            "in.workingTask.customFields().numberField(\"leaveCount\").set(leaveCount);"
+            "import ch.ivyteam.ivy.security.IUser;",
+            "if (\"CreateInvestment\".equals(in.workingTask.getCategoryPath())) {",
+            "  in.workingTask.getCase().notes().add().content(String.format(\"%s has worked on the task recently\",ivy.session.getSessionUserName())).execute();",
+            "}"
           ]
         }
       },
@@ -97,20 +98,18 @@
     }, {
       "id" : "f11",
       "type" : "Script",
-      "name" : "Add new note who has worked on the task",
+      "name" : "update custom field value",
       "config" : {
         "output" : {
           "code" : [
-            "import java.time.LocalDateTime;",
-            "import java.time.format.DateTimeFormatter;",
-            "if (in.#workingTask != null) {",
-            "  DateTimeFormatter formatter = DateTimeFormatter.ofPattern(\"dd.MM.yyyy HH:mm\");",
-            "  String currentDateTime = LocalDateTime.now().format(formatter);",
-            "  String content = String.format(\"The user who has recently worked on the task: %s on %s\", ivy.session.getSessionUserName(), currentDateTime);",
-            "  in.workingTask.getCase().createNote(ivy.session, content);",
+            "if (\"CreateInvestment\".equals(in.workingTask.getCategoryPath())) {",
+            "  int reserveCount = in.workingTask.customFields().numberField(\"reserveTaskWhenWorking\").getOrDefault(0);",
+            "  reserveCount++;",
+            "  in.workingTask.customFields().numberField(\"reserveTaskWhenWorking\").set(reserveCount);",
             "}"
           ]
-        }
+        },
+        "sudo" : true
       },
       "visual" : {
         "at" : { "x" : 304, "y" : 192 },

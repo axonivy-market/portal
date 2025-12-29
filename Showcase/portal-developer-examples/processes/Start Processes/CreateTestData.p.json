@@ -2014,5 +2014,82 @@
       "visual" : {
         "at" : { "x" : 338, "y" : 2450 }
       }
+    }, {
+      "id" : "f128",
+      "type" : "RequestStart",
+      "name" : "createStockInvestment",
+      "config" : {
+        "signature" : "createStockInvestment",
+        "case" : {
+          "name" : "Create Stock Investment",
+          "category" : "StockInvestment"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 40, "y" : 2640 }
+      },
+      "connect" : [
+        { "id" : "f134", "to" : "f135", "var" : "in1" }
+      ]
+    }, {
+      "id" : "f129",
+      "type" : "DialogCall",
+      "config" : {
+        "dialog" : "com.axonivy.portal.developerexamples.testdata.CreateInvestment:startCreateStockInvestment()"
+      },
+      "visual" : {
+        "at" : { "x" : 368, "y" : 2640 }
+      },
+      "connect" : [
+        { "id" : "f132", "to" : "f131" }
+      ]
+    }, {
+      "id" : "f131",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 536, "y" : 2640 },
+        "labelOffset" : { "x" : 13, "y" : 33 }
+      }
+    }, {
+      "id" : "f133",
+      "type" : "TaskSwitchEvent",
+      "config" : {
+        "output" : {
+          "map" : { }
+        }
+      },
+      "visual" : {
+        "size" : { "width" : 28, "height" : 28 },
+        "labelOffset" : { "x" : 14, "y" : 0 }
+      }
+    }, {
+      "id" : "f130",
+      "type" : "TaskSwitchGateway",
+      "config" : {
+        "output" : {
+          "map" : { }
+        }
+      },
+      "visual" : {
+        "size" : { "width" : 28, "height" : 28 },
+        "labelOffset" : { "x" : 14, "y" : 0 }
+      }
+    }, {
+      "id" : "f135",
+      "type" : "TaskSwitchGateway",
+      "config" : {
+        "tasks" : [ {
+            "id" : "TaskA",
+            "name" : "Create stock investment",
+            "category" : "CreateInvestment"
+          } ]
+      },
+      "visual" : {
+        "at" : { "x" : 176, "y" : 2640 },
+        "labelOffset" : { "x" : 14, "y" : 34 }
+      },
+      "connect" : [
+        { "id" : "f136", "to" : "f129", "color" : "default", "condition" : "ivp==\"TaskA.ivp\"" }
+      ]
     } ]
 }
