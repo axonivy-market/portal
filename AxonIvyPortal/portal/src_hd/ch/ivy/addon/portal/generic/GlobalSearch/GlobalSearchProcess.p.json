@@ -395,7 +395,7 @@
     }, {
       "id" : "f42",
       "type" : "SubProcessCall",
-      "name" : "Call additional logic if exist before leaving task",
+      "name" : "Call customized process if exist",
       "config" : {
         "processCall" : "Functional Processes/ExtendTaskLeave:call(ch.ivyteam.ivy.workflow.ITask)",
         "call" : {
@@ -413,12 +413,12 @@
     }, {
       "id" : "f44",
       "type" : "SubProcessCall",
-      "name" : "Call additional logic if exist before reserving task",
+      "name" : "Call customized process if exist",
       "config" : {
         "processCall" : "Functional Processes/ExtendTaskReserve:call(ch.ivyteam.ivy.workflow.ITask)",
         "call" : {
           "map" : {
-            "param.workingTask" : "in.#workingTask != null ? in.workingTask : ivy.task"
+            "param.workingTask" : "in.workingTask"
           }
         }
       },
