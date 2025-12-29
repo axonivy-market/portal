@@ -776,4 +776,4 @@ Data model:
 .. |number-chart| image:: ../../screenshots/statistic/tasks-by-prior-number-chart.png
 .. |line-chart| image:: ../../screenshots/statistic/completed-cases-chart.png
 .. |translate-json| image:: images/translate-json.png
-.. |translate-java| image:: images/translate-java.png   
+.. |translate-java| image:: images/translate-java.png

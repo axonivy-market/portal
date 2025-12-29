@@ -9,12 +9,14 @@ Key Features
 ============
 
 **Username Menu**
-   Click on your username to access a menu with options for configuring Portal to your personal needs. See `User Settings in the Axon Ivy Portal`_ for detailed configuration options.
+   Click on your username to access a menu with options for configuring Portal to your personal needs. See :ref:`user-settings` for detailed configuration options.
 
 **Global Search Bar**
    Next to your username is the |search-icon| search bar, providing portal-wide search functionality. This feature is described in detail in `Global Search`_.
 
 |portal-header|
+
+.. _user-settings:
 
 User Settings
 =============
@@ -58,8 +60,6 @@ The :ref:`Admin Settings <admin-settings>` menu entry provides portal administra
 
 My Profile
 ^^^^^^^^^^
-
-.. _User Settings in the Axon Ivy Portal:
 
 The :ref:`my-profile` menu entry contains general settings, user language, and notification channels subscription settings.
 
@@ -126,7 +126,7 @@ The :guilabel:`Change password` menu entry allows you to set a new password.
    Configure the UserSetOwnPassword permission in the :doc-url:`Engine Cockpit </engine-guide/reference/engine-cockpit/security.html>` under PersonalPermissions → PersonalSecurityPermissions → UserSetOwnPassword.
 
 Info
-----
+^^^^
 
 The menu entry :guilabel:`Info` provides you with detailed information about the
 Axon Ivy Engine, the Axon Ivy Portal and your company's application. You
@@ -135,17 +135,14 @@ might be asked for this information in case you issue a support request.
 |portal-version-information|
 
 Logout
-------
+^^^^^^
 
 The menu entry :guilabel:`Logout` will terminate your session in the Axon Ivy
-Portal. You’ll be routed back to the login page of the Axon Ivy
+Portal. You'll be routed back to the login page of the Axon Ivy
 Portal.
 
-.. hint::
-   The Axon Ivy Portal will also do
-   an automatic logout if you’re
-   inactive for a certain amount of
-   time.
+.. tip::
+   The Axon Ivy Portal will automatically log you out after a period of inactivity.
 
 Global Search
 =============

@@ -34,8 +34,6 @@ Control whether tasks start in an iFrame at multiple levels. Portal evaluates th
 
 **Priority Order:** Request Start (highest) → Task → Case → Engine (lowest, default: ``true``)
 
-**Priority Order:** Request Start (highest) → Task → Case → Engine (lowest, default: ``true``)
-
 .. list-table::
    :widths: 20 15 65
    :header-rows: 1

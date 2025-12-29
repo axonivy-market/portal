@@ -56,6 +56,9 @@ If you encounter issues during development or deployment:
 - Visit the `Axon Ivy Community <https://community.axonivy.com/>`_ for questions
 - Contact support@axonivy.com for licensed support
 
+New & Noteworthy
+================
+
 .. _introduction-new-and-note-worthy-12.0:
 
 New & Noteworthy 12

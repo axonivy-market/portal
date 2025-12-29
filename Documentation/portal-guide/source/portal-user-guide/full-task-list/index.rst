@@ -15,12 +15,12 @@ You can reach the page by using the |task-list-icon| :guilabel:`Tasks` link in t
 
 |navigate-to-full-task-list-page|
 
-Task List Overview
-==================
+Overview
+========
 
 On the top of the **Full Task List** page you see next to the heading
 :guilabel:`Tasks` in brackets the overall number of tasks shown to you. Below you find the filter feature.
-The usage will be explained in the HowTo’s further down this chapter.
+The usage will be explained in the HowTo's further down this chapter.
 Finally, you see the list of tasks.
 
 For each task the following key information is shown in the list:
@@ -50,7 +50,7 @@ For each task the following key information is shown in the list:
 |task-key-information|
 
 Available Actions
-=================
+-----------------
 
 At the end of each row you find the `Actions` menu with the following options:
 
@@ -122,6 +122,9 @@ The task details page is organized into four main sections:
 
 |detailed-task-information|
 
+How-to
+======
+
 HowTo: Configure the Full Task List
 -----------------------------------
 
@@ -133,17 +136,16 @@ recreate the dashboard with the default settings.
 
 HowTo: Move and Resize Widgets in Task Details
 ----------------------------------------------
+
 #. Open the task details of a task
 
 #. Click on the :guilabel:`Edit` button to drag, drop and resize widgets.
 
    |how-to-switch-to-edit-mode|
 
-
 #. Click on the :guilabel:`Save` button to save current state of page and switch to readonly mode.
 
    |how-to-switch-to-view-mode|
-
 
 #. Click :guilabel:`Reset` button to reset to default configuration.
 

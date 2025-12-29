@@ -15,8 +15,8 @@ You can reach the page by using the |case-icon| :guilabel:`Cases` link in the Ax
 
 |navigate-to-full-cases-list-page|
 
-Case List Information
-=====================
+Overview
+========
 
 For each case, the list shows the following key information:
 
@@ -87,6 +87,9 @@ The case details page is organized into four main sections:
    |case-details-documents|
 
 .. _howto-move-resize-widgets-case-details:
+
+How-to
+======
 
 HowTo: Move and Resize Widgets in Case Details
 ------------------------------------------------

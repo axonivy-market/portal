@@ -6,8 +6,6 @@ Portal Components
 Portal Components are reusable UI components and Java APIs that you can integrate into your own Axon Ivy projects without importing the full Portal.
 These components provide enterprise-ready functionality for user selection, role management, document handling, process visualization, and more.
 
-Portal Components support both Freya and Serenity themes of PrimeFaces, though we strongly recommend using Freya as Serenity is deprecated and will be removed in Portal 13.
-
 .. toctree::
    :maxdepth: 1
 
