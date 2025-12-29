@@ -3,129 +3,189 @@
 IFrame In Portal
 ****************
 
-Do you want to decouple your project and the **Portal** when starting a task to reduce your migration efforts?
-If the answer is yes, this chapter will help you.
-
-Since **Portal** 8, we introduced a new feature that a process/task can be started inside an IFrame This means that you can design
-your HTML dialog independent of the  **Portal**. It is rendered automatically inside an IFrame by default.
-
-.. _iframe-usage:
-
-Templates to Use with IFrame
-============================
-
-Use the ``frame-10`` templates (provided by the core and using the Freya theme).  
-These templates fully support responsive designs.
-
-How To Use
-==========
+Since Portal 8, all processes and tasks start inside an iFrame by default. Your HTML dialogs are automatically rendered in an isolated iFrame context, providing decoupling from Portal internals, simplified migrations, CSS/JavaScript isolation, and full responsive design support.
 
 .. important::
-	By default, i.e. if there is no configuration, a process/task is started inside an IFrame.
+   By default, processes and tasks start inside an iFrame. No configuration is required unless you want to customize this behavior.
 
-Follow these steps to use the IFrame approach:
- 
-#. **HTML Dialog Independence**
+Templates to Use with IFrame
+=============================
 
-   Ensure your HTML User Dialog is independent of the **Portal**. You can use the ``frame-_x_`` 
-   template in the designer or your own custom template. **Portal** will automatically render it in an IFrame.
+Use the ``frame-10`` templates provided by Axon Ivy core (using the Freya theme). These templates are optimized for iFrame rendering and fully support responsive designs.
 
-#. **Configuration Levels**  
-   If you want custom behavior, configure at one of the following levels to open your tasks in an IFrame:
+**Template Features:**
 
-   - **Request start Level**: Set the ``embedInFrame`` field in Request tab custom fields to:
+``Automatic iFrame Integration``
+   Seamless integration with Portal iFrame architecture
 
-     - ``true``: Start inside IFrame.
-     - ``false``: Do not start inside IFrame.
-     - Leave unset to use task, case or engine-level configuration.
+``Responsive Layout``
+   Full support for responsive designs across all device sizes
 
-     |request-tab-embedInFrame|
+``Portal UI Components``
+   Includes task actions, case information, and process step visualization
 
-   - **Task Level**: Set the ``embedInFrame`` field in Task custom fields to:
+``Configurable Details``
+   Customizable task details and branding options
 
-     - ``true``: Start inside IFrame.
-     - ``false``: Do not start inside IFrame.
-     - Leave unset to use case or engine-level configuration.
+Configuration Levels
+=====================
 
-     |task-embedInFrame|
+Control whether tasks start in an iFrame at multiple levels. Portal evaluates these settings in priority order, with more specific levels overriding general ones.
 
-   - **Case Level**: Set the ``embedInFrame`` String field in Case custom fields to:
+**Priority Order:** Request Start (highest) → Task → Case → Engine (lowest, default: ``true``)
 
-     - ``true``: Start inside IFrame.
-     - ``false``: Do not start inside IFrame.
-     - Leave unset to use engine-level configuration.
+.. list-table::
+   :widths: 20 15 65
+   :header-rows: 1
 
-     |case-embedInFrame|
+   * - Level
+     - Priority
+     - Description
+   * - **Request Start**
+     - Highest
+     - Set ``embedInFrame`` in Request tab custom fields. Overrides all other settings
+   * - **Task**
+     - High
+     - Set ``embedInFrame`` in Task custom fields. Overrides Case and Engine settings
+   * - **Case**
+     - Medium
+     - Set ``embedInFrame`` in Case custom fields. Overrides Engine settings
+   * - **Engine**
+     - Lowest
+     - Global setting ``Portal.EmbedInFrame`` in Portal admin settings
 
-   - **Engine Level**:
+Request Start Level
+-------------------
 
-     The **Portal Administrator** can globally configure all tasks to start inside IFrames by setting the ``Portal.EmbedInFrame`` value in the Portal settings.  
-     Refer to :ref:`update-portal-settings`.
+Set the ``embedInFrame`` field in Request tab custom fields:
+
+- ``true``: Start inside iFrame
+- ``false``: Do not start inside iFrame
+- Unset: Use Task, Case, or Engine configuration
+
+|request-tab-embedInFrame|
+
+Task Level
+----------
+
+Set the ``embedInFrame`` field in Task custom fields:
+
+- ``true``: Start inside iFrame
+- ``false``: Do not start inside iFrame  
+- Unset: Use Case or Engine configuration
+
+|task-embedInFrame|
+
+Case Level
+----------
+
+Set the ``embedInFrame`` String field in Case custom fields:
+
+- ``true``: Start inside iFrame
+- ``false``: Do not start inside iFrame
+- Unset: Use Engine configuration
+
+|case-embedInFrame|
+
+Engine Level
+------------
+
+Portal Administrators can globally configure all tasks to start inside iFrames by setting the ``Portal.EmbedInFrame`` value in Portal admin settings.
+
+Refer to :ref:`update-portal-settings` for configuration details.
 
 .. _iframe-configure-template:
 
-Configure Template
-==================
+Configure IFrame Template
+==========================
 
-The **Portal** allows configuration of templates with the following options:
+Portal provides extensive configuration options for iFrame templates to customize the appearance and behavior of embedded tasks, including task name and icon customization, process chain visualization, case information display, task action buttons, custom breadcrumb views, and card-style frame layout.
 
-#. Name and icon for the working task.  
-#. Process chain configuration.  
-   (See: :ref:`components-portal-components-process-chain`).  
-#. Show/hide case details and other actions.
+Template Parameters Reference
+------------------------------
 
+Task Details
+^^^^^^^^^^^^
 
-Template Parameters
--------------------
+``taskName`` (string)
+   Custom text for the task name display.
 
-The following parameters are available for this template:
+``taskIcon`` (string)
+   Icon using Streamline or Font Awesome (e.g., ``"si si-bulb"``).
 
-**Task Details**
+``isHideTaskName`` (boolean, default: false)
+   ``true`` = hide task name, ``false`` = show.
 
-- ``taskName``: Custom text for the task name.
-- ``taskIcon``: Icon for the task, using Streamline or Awesome font.
-- ``isHideTaskName``: Hides the task name when true.
+Case Information
+^^^^^^^^^^^^^^^^
 
-**Case Information**
+``caseId`` (string)
+   ID of the case to display in case information dialog.
 
-- ``caseId``: ID of the case to be displayed in the case information dialog.
-- ``isHideCaseInfo``: Hides the ``Show Information`` button when true.
+``isHideCaseInfo`` (boolean, default: false)
+   ``true`` = hide "Show Information" button, ``false`` = show.
 
-**Process Steps**
+Process Steps
+^^^^^^^^^^^^^
 
-- ``currentProcessStep``: Current step in the process, either as an index or step name.
-- ``processSteps``: List of process steps or JSON.
-- ``isShowAllSteps``: Displays all steps on large screens when true.
-- ``processChainDirection``: Orientation of the process chain, either ``VERTICAL`` or ``HORIZONTAL``.
-- ``processChainShape``: Shape of the process chain, either ``LINE`` or ``CIRCLE``.
+``currentProcessStep`` (string/number)
+   Current step index or step name.
 
-**Task Actions**
+``processSteps`` (string/array)
+   List of step names or JSON string.
 
-- ``isHideTaskAction``: Hides the task action button when true.
-- ``isWorkingOnATask``: Indicates if a task is currently being worked on, 
-  useful for displaying a warning when leaving the page.
+``isShowAllSteps`` (boolean, default: false)
+   ``true`` = show all steps on large screens, ``false`` = compact view.
 
-**Miscellaneous**
+``processChainDirection`` (string)
+   ``"VERTICAL"`` or ``"HORIZONTAL"``.
 
-- ``announcementInvisible``: Makes the announcement invisible.
-- ``isCardFrame``: Displays content of the IFrame inside a card-style container.
-- ``viewName``: Defines a custom breadcrumb view.
+``processChainShape`` (string)
+   ``"LINE"`` or ``"CIRCLE"``.
+
+Task Actions
+^^^^^^^^^^^^
+
+``isHideTaskAction`` (boolean, default: false)
+   ``true`` = hide task action button, ``false`` = show.
+
+``isWorkingOnATask`` (boolean, default: true)
+   ``true`` = show navigation warning, ``false`` = no warning.
+
+Miscellaneous
+^^^^^^^^^^^^^
+
+``announcementInvisible`` (boolean, default: false)
+   ``true`` = hide announcements, ``false`` = show.
+
+``isCardFrame`` (boolean, default: false)
+   ``true`` = display content in card-style container, ``false`` = standard.
+
+``viewName`` (string)
+   Custom breadcrumb view (see View Names below).
+
+**Available View Names:**
+
+``HOME``, ``PROCESS``, ``TASK``, ``TASK_DETAIL``, ``CASE_DETAIL``, ``CASE``, ``TECHNICAL_CASE``, ``RELATED_TASK``, ``USER_PROFILE``, ``ABSENCES_MANAGEMENT``, ``DASHBOARD_CONFIGURATION``, ``EDIT_DASHBOARD_DETAILS``, ``PROCESS_VIEWER``, ``PORTAL_MANAGEMENT``, ``NOTIFICATION``
 
 Configuration Methods
----------------------
+=====================
 
-You can configure the UI in one of two ways:
+Configure iFrame templates using the ``IFrameTaskConfig`` component.
 
 .. note::
-       We recommend to sanitize your parameters before passing them.
+   Always sanitize your parameters before passing them to avoid XSS vulnerabilities. Use ``SanitizeAPI.escapeForJavascript`` for dynamic values.
 
-#. **Using ``IFrameTaskConfig`` Component** (Recommended)
+Using IFrameTaskConfig Component
+--------------------------------
 
-   .. code-block:: xml
+The recommended approach uses the Portal component for type-safe configuration:
 
-      <h:body>
-         <ui:composition template="/layouts/frame-10.xhtml">
-            ...
+.. code-block:: xml
+
+   <h:body>
+      <ui:composition template="/layouts/frame-10.xhtml">
+         <ui:define name="content">
             <ic:com.axonivy.portal.components.IFrameTaskConfig 
                taskName="Approve Investment" 
                taskIcon="si si-bulb"
@@ -137,27 +197,32 @@ You can configure the UI in one of two ways:
                isShowAllSteps="true"
                processChainDirection="VERTICAL"
                processChainShape="LINE"
-               isHideTaskAction="true"
-               isWorkingOnATask="false"
+               isHideTaskAction="false"
+               isWorkingOnATask="true"
                announcementInvisible="false"
                isCardFrame="true"
                viewName="TASK_DETAIL"
             />
-            ...
-         </ui:composition>
-      </h:body>
+            
+            <!-- Your custom UI content -->
+            <h:form>
+               <!-- ... -->
+            </h:form>
+         </ui:define>
+      </ui:composition>
+   </h:body>
 
-#. **Using JavaScript (Deprecated)**
+Using JavaScript (Deprecated)
+------------------------------
 
-   .. warning::
-      This feature is deprecated and will be removed in Portal 14.
+.. warning::
+   This method is deprecated and will be removed in Portal 14. Migrate to ``IFrameTaskConfig`` component.
 
+.. code-block:: xml
 
-   .. code-block:: xml
-
-      <h:body>
-         <ui:composition template="/layouts/frame-10.xhtml">
-            ...
+   <h:body>
+      <ui:composition template="/layouts/frame-10.xhtml">
+         <ui:define name="content">
             <script>
                window.taskName = "Approve Investment";
                window.taskIcon = "si si-bulb";
@@ -166,239 +231,185 @@ You can configure the UI in one of two ways:
                window.isHideCaseInfo = false;
                window.currentProcessStep = 0;
                window.processSteps = ["Create Investment Request", "Approve Investment Request"];
-               // Convert Java List of steps to JSON format if needed:
-               window.processSteps = #{portalComponentUtilsBean.convertToJSON(data.steps)};
                window.isShowAllSteps = true;
                window.processChainDirection = "VERTICAL";
                window.processChainShape = "LINE";
-               window.isHideTaskAction = true;
-               window.isWorkingOnATask = false;
+               window.isHideTaskAction = false;
+               window.isWorkingOnATask = true;
                window.announcementInvisible = false;
                window.isCardFrame = true;
                window.viewName = "TASK_DETAIL";
             </script>
-            ...
-         </ui:composition>
-      </h:body>
+            
+            <!-- Your custom UI content -->
+         </ui:define>
+      </ui:composition>
+   </h:body>
+
+Configuration Examples
+======================
 
 Configure Task Details
 ----------------------
-You can customize task details, such as the task name and icon. 
 
-**Parameters:**
-   - ``taskName``: Custom text for the task name.
-   - ``taskIcon``: Using Streamline or Awesome font (e.g., `si si-arrow-right`).
-   - ``isHideTaskName``: Set to ``true`` to hide the task name. Default is ``false``.
-
-**Example:**
+You can customize task details, such as the task name and icon.
 
 .. code-block:: xml
 
-   <h:body>
-      <ui:composition template="/layouts/frame-10.xhtml">
-         ...
-         <ic:com.axonivy.portal.components.IFrameTaskConfig
-            taskName="Approve Investment"
-            taskIcon="si si-bulb"
-            isHideTaskName="false"
-         />
-         ...
-      </ui:composition>
-   </h:body>
-
+   <ic:com.axonivy.portal.components.IFrameTaskConfig
+      taskName="Approve Investment Request"
+      taskIcon="si si-bulb"
+      isHideTaskName="false"
+   />
 
 Configure Case Information
 --------------------------
-Customize how case details are displayed and whether to show the "Show Information" button.
 
-**Parameters:**
-   - ``caseId``: The ID of the case to display in the information dialog.
-   - ``isHideCaseInfo``: Set to ``true`` to hide the "Show Information" button.
-     Default is ``false``.
-
-**Example:**
+Customize how case details are displayed and whether to show the “Show Information” button.
 
 .. code-block:: xml
 
-   <h:body>
-      <ui:composition template="/layouts/frame-10.xhtml">
-         ...
-         <ic:com.axonivy.portal.components.IFrameTaskConfig
-            caseId="123456"
-            isHideCaseInfo="false"
-         />
-         ...
-      </ui:composition>
-   </h:body>
+   <ic:com.axonivy.portal.components.IFrameTaskConfig
+      caseId="#{ivy.case.uuid}"
+      isHideCaseInfo="false"
+   />
+
+Configure Process Steps
+-----------------------
+
+.. code-block:: xml
+
+   <ic:com.axonivy.portal.components.IFrameTaskConfig 
+      currentProcessStep="1"
+      processSteps='["Create Request", "Manager Approval", "Finance Review", "Complete"]'
+      isShowAllSteps="true"
+      processChainDirection="HORIZONTAL"
+      processChainShape="LINE"
+   />
+
+.. note::
+   Add JSP function tag to your HTML dialog: ``xmlns:fn="http://xmlns.jcp.org/jsp/jstl/functions"``
 
 Configure Task Actions
 ----------------------
+
 Control the visibility and behavior of task-related buttons and actions.
 
-**Parameters:**
-   - ``isHideTaskAction``: Set to ``true`` to hide the task action button. 
-     Default is ``false``.
-   - ``isWorkingOnATask``: Indicates if the task is active. 
-     Useful for displaying a warning when leaving the page. Default is ``true``.
+.. code-block:: xml
+
+   <ic:com.axonivy.portal.components.IFrameTaskConfig
+      isHideTaskAction="false"
+      isWorkingOnATask="true"
+   />
+
+Configure Card Frame Layout
+---------------------------
+
+.. code-block:: xml
+
+   <ic:com.axonivy.portal.components.IFrameTaskConfig
+      isCardFrame="true"
+      announcementInvisible="false"
+      viewName="TASK_DETAIL"
+   />
+
+Complete Configuration Example
+------------------------------
+
+.. code-block:: xml
+
+   <h:body>
+      <ui:composition template="/layouts/frame-10.xhtml">
+         <ui:define name="content">
+            <ic:com.axonivy.portal.components.IFrameTaskConfig 
+               taskName="#{data.taskName}"
+               taskIcon="si si-file-edit"
+               isHideTaskName="false"
+               caseId="#{ivy.case.uuid}"
+               isHideCaseInfo="false"
+               currentProcessStep="#{data.currentStep}"
+               processSteps="#{portalComponentUtilsBean.convertToJSON(data.processSteps)}"
+               isShowAllSteps="true"
+               processChainDirection="HORIZONTAL"
+               processChainShape="LINE"
+               isHideTaskAction="false"
+               isWorkingOnATask="true"
+               announcementInvisible="false"
+               isCardFrame="true"
+               viewName="TASK_DETAIL"
+            />
+            
+            <h:form id="investmentForm">
+               <p:panel header="Investment Request">
+                  <!-- Your form fields -->
+               </p:panel>
+               
+               <p:commandButton value="Submit" action="#{logic.submit}" />
+               <p:commandButton value="Cancel" action="#{logic.cancel}" />
+            </h:form>
+         </ui:define>
+      </ui:composition>
+   </h:body>
+
+Developer Tips
+==============
+
+Navigation Without Task Completion
+-----------------------------------
+
+If your project has navigation buttons that don't complete a task (e.g., Cancel), redirect users to the desired page (application home, task list, process list, etc.) directly in the HTML dialog.
 
 **Example:**
 
-.. code-block:: xml
+.. code-block:: java
 
-   <h:body>
-      <ui:composition template="/layouts/frame-10.xhtml">
-         ...
-         <ic:com.axonivy.portal.components.IFrameTaskConfig
-            isHideTaskAction="true"
-            isWorkingOnATask="true"
-         />
-         ...
-      </ui:composition>
-   </h:body>
+   public void cancelTask() {
+      // Redirect to task list instead of completing task
+      String taskListUrl = PortalNavigatorAPI.buildUrlByKeyword("TASK");
+      Ivy.html().sendRedirect(taskListUrl);
+   }
 
-
-Configure Miscellaneous Options
+JavaScript String Sanitization
 -------------------------------
-Additional settings can influence the layout and visibility of elements.
 
-**Parameters:**
-   - ``announcementInvisible``: Set to ``true`` to hide announcements. 
-     Default is ``false``.
-   - ``isCardFrame``: Set to ``true`` to display the IFrame 
-     content inside a card-style container.
-   - ``viewName``: Custom breadcrumb view. Possible values are: 
-     ``HOME, PROCESS, TASK, TASK_DETAIL, CASE_DETAIL, CASE, TECHNICAL_CASE, RELATED_TASK, 
-     USER_PROFILE, ABSENCES_MANAGEMENT, DASHBOARD_CONFIGURATION, EDIT_DASHBOARD_DETAILS, 
-     PROCESS_VIEWER, PORTAL_MANAGEMENT, NOTIFICATION``.
+Always sanitize your data before sending it to prevent XSS attacks. Portal provides the public API ``SanitizeAPI.escapeForJavascript`` in the ``portal-components`` project.
 
-**Example:**   
+**Example:**
 
-.. code-block:: xml
+.. code-block:: java
 
-   <h:body>
-      <ui:composition template="/layouts/frame-10.xhtml">
-         ...
-         <ic:com.axonivy.portal.components.IFrameTaskConfig
-            announcementInvisible="false"
-            isCardFrame="true"
-            viewName="TASK_DETAIL"
-         />
-         ...
-      </ui:composition>
-   </h:body>
+   import ch.ivy.addon.portalkit.publicapi.SanitizeAPI;
 
-Configure Show Information
---------------------------
+   public class TaskBean {
+      public String getSafeTaskName() {
+         String rawTaskName = getUserInputTaskName();
+         return SanitizeAPI.escapeForJavascript(rawTaskName);
+      }
+   }
 
-When you click the ``Show Information`` button, **Portal** will show  details of the
-running case in a modal dialog.
-
-Options for ``Show Information``
-
-   - ``caseId``: Case ID of the case you want to show in the modal dialog.
-   - ``isHideCaseInfo``: Hide the ``Show Information`` button
-
-.. csv-table::
-  :file: documents/available_show_information_options.csv
-  :widths: 20 50
-  :header-rows: 1
-  :class: longtable
-
-Example using IFrameTaskConfig:
+**In your HTML dialog:**
 
 .. code-block:: xml
 
-   <h:body>
-      <ui:composition template="/layouts/frame-10.xhtml">
-         ...
-         <ic:com.axonivy.portal.components.IFrameTaskConfig 
-            caseId="123456"
-         />
-         ...
-      </ui:composition>
-   </h:body>
+   <ic:com.axonivy.portal.components.IFrameTaskConfig 
+      taskName="#{taskBean.safeTaskName}"
+   />
 
-Configure Process steps
------------------------
+.. tip::
+   Always sanitize user input, database values, or any dynamic content before passing to Portal components or JavaScript.
 
-``Process steps`` have many options to be configured from the list of steps to layout and shape.
-
-Options for ``Process steps``
-
-.. csv-table::
-  :file: documents/available_process_steps_options.csv
-  :widths: 20 50
-  :header-rows: 1
-  :class: longtable
-
-
-.. note::
-
-       When defining parameter ``processSteps``, please make sure that you add this JSP function tag to your HTML dialog:
-       ``xmlns:fn="http://xmlns.jcp.org/jsp/jstl/functions"``
-
-Example using IFrameTaskConfig:
-
-.. code-block:: xml
-
-   <h:body>
-      <ui:composition template="/layouts/frame-10.xhtml">
-         ...
-         <ic:com.axonivy.portal.components.IFrameTaskConfig 
-            currentProcessStep="0"
-            processSteps='["Create Investment Request", "Approve Investment Request"]'
-            processChainDirection="VERTICAL"
-            processChainShape="LINE"
-         />
-         ...
-      </ui:composition>
-   </h:body>
-
-Other options
--------------
-
-Various options can affect functions and layout.
-
-.. csv-table::
-  :file: documents/available_other_options.csv
-  :widths: 20 50
-  :header-rows: 1
-  :class: longtable
-
-Example using IFrameTaskConfig:
-
-.. code-block:: xml
-
-   <h:body>
-      <ui:composition template="/layouts/frame-10.xhtml">
-         ...
-         <ic:com.axonivy.portal.components.IFrameTaskConfig 
-            isHideTaskAction="true"
-            isWorkingOnATask="false"
-            announcementInvisible="false"
-            isCardFrame="true"
-         />
-         ...
-      </ui:composition>
-   </h:body>
-
-Developer tips
+Best Practices
 ==============
 
-If your project has a navigation button that does not complete a task (e.g.,
-Cancel), redirect the user to the desired page (e.g., the application home, task
-list, process list, etc.) in the HTML dialog.
+#. **Use IFrameTaskConfig Component**: Prefer the component-based approach over JavaScript configuration
+#. **Sanitize All Parameters**: Use ``SanitizeAPI.escapeForJavascript`` for dynamic values
+#. **Process Steps**: Provide clear, descriptive step names for better user experience
+#. **Task Icons**: Use consistent icon styles (Streamline or Font Awesome) across your application
+#. **Card Frame**: Enable ``isCardFrame`` for better visual separation of embedded content
 
-Sanitize JavaScript string
---------------------------
-
-Whenever you use a Portal feature that communicates through JavaScript, ensure that you sanitize your data before sending it to the Portal
-
-The Portal provides the public API ``SanitizeAPI.escapeForJavascript`` in the ``portal-components`` project to help sanitize JavaScript strings by escaping special characters — one of the most common techniques for JavaScript string sanitization.
-
+.. |request-tab-embedInFrame| image:: images/request-tab-embedInFrame.png
 .. |task-embedInFrame| image:: images/task-embedInFrame.png
 .. |case-embedInFrame| image:: images/case-embedInFrame.png
-.. |request-tab-embedInFrame| image:: images/request-tab-embedInFrame.png
 .. |case-list-template| image:: ../../screenshots/case/case-key-information.png
 .. |task-list-template| image:: ../../screenshots/task/task-key-information.png
 .. |task-name-template| image:: ../../screenshots/layout-template/task-template.png

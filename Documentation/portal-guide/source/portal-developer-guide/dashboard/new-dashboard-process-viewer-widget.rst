@@ -3,56 +3,116 @@
 Configure Process Viewer Widget
 ===============================
 
+The process viewer widget provides a visual representation of a process flow diagram, enabling users to view process structures, steps, and workflow logic directly from the dashboard without opening the Designer.
+
 Define Process Viewer Widget
 ----------------------------
 
-The Process Viewer Widget of the Portal dashboard provides a visual representation of the process flow.
+The process viewer widget displays an interactive process flow diagram for a specified process.
 
-Below is a sample JSON definition of a process viewer widget in the Portal dashboard
+Configuration Example
+^^^^^^^^^^^^^^^^^^^^^
+
+Below is a sample JSON definition of a process viewer widget in the Portal dashboard:
 
 .. code-block:: javascript
 
    {
       "type": "process-viewer",
-      "id": "process_viewer_1",
+      "id": "process-viewer-widget",
       "names": [
          {
             "locale": "en",
-            "value": "Your Process Viewer"
+            "value": "Payment Process Viewer"
+         },
+         {
+            "locale": "de",
+            "value": "Zahlungsprozess-Viewer"
          }
       ],
       "layout": {
          "x": 0,
          "y": 0,
          "w": 12,
-         "h": 6
+         "h": 8
       },
       "processPath": "designer/portal-developer-examples/Start Processes/CreateTestData/createNewPayment.ivp",
       "showFullscreenMode": true
    }
 
-The basic JSON structure of a process viewer widget
+JSON Configuration Reference
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-   ``type``: type the of widget. Use ``process-viewer`` for a process viewer widget
+**Required Properties**
 
-   ``id``: ID of the widget
+.. list-table::
+   :widths: 20 15 65
+   :header-rows: 1
 
-   ``names``: multilingual name of the widget on UI.
+   * - Property
+     - Type
+     - Description
+   * - ``type``
+     - string
+     - Widget type. Must be ``"process-viewer"`` for process viewer widget
+   * - ``id``
+     - string
+     - Unique identifier for the widget
+   * - ``names``
+     - array
+     - Multilingual display names. Each entry: ``{"locale": "en", "value": "Name"}``
+   * - ``layout``
+     - object
+     - Widget position and size (see Layout Properties below)
+   * - ``processPath``
+     - string
+     - :dev-url:`IWebStartable </doc/12.0/public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html>` identifier of the process to display
 
-   ``layout``: layout definition of the process viewer widget
+**Layout Properties**
 
-      ``x``: HTML DOM Style ``left`` is calculated as formula ``x / 12 * 100%``
+.. list-table::
+   :widths: 20 15 65
+   :header-rows: 1
 
-      ``y``: HTML DOM Style ``top`` is calculated as formula ``y / 12 * 100%``
+   * - Property
+     - Type
+     - Description
+   * - ``x``
+     - number
+     - Column position in 12-column grid (0-11). CSS left = ``x / 12 * 100%``
+   * - ``y``
+     - number
+     - Row position. CSS top = ``y / 12 * 100%``
+   * - ``w``
+     - number
+     - Width in grid columns (1-12). Pixel width = ``60 * w + 20 * (w - 1)``
+   * - ``h``
+     - number
+     - Height in grid rows (min 6). Pixel height = ``60 * h + 20 * (h - 1)``
+   * - ``styleClass``
+     - string
+     - *(Optional)* CSS classes for custom styling
+   * - ``style``
+     - string
+     - *(Optional)* Inline CSS styles
 
-      ``w``: HTML DOM Style ``width`` is calculated as formula ``60 * w + 20 * (w - 1)``
+.. tip::
+   **Recommended process viewer widget size:** Width 8-12 columns, Height 8-12 rows for optimal process diagram visibility.
 
-      ``h``: HTML DOM Style ``height`` is calculated as formula ``60 * h + 20 * (h - 1)``
+**Display Properties**
 
-      ``styleClass`` (optional): add CSS Classes to HTML DOM of the widget
+.. list-table::
+   :widths: 20 15 15 50
+   :header-rows: 1
 
-      ``style`` (optional): add inline style to HTML DOM of the widget
+   * - Property
+     - Type
+     - Default
+     - Description
+   * - ``showFullscreenMode``
+     - boolean
+     - ``true``
+     - Show/hide fullscreen mode icon
 
-   ``processPath``: the :dev-url:`Axon Ivy IWebStartable </doc/12.0/public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html>` identifier of the process you want to display
-
-   ``showFullscreenMode``: visibility of the fullscreen mode icon. The default value is ``true``, set to ``false`` to hide the icon
+.. note::
+   The process viewer displays the process diagram in read-only mode. Users can zoom and pan to explore the process flow but cannot edit the process structure.

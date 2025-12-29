@@ -3,11 +3,17 @@
 Configure Case Widget
 =====================
 
+The case widget displays an interactive, customizable list of cases with advanced filtering, sorting, and search capabilities. It supports custom columns (including custom action buttons), pre-configured filters, quick search across multiple fields, and multi-language support for custom string fields via CMS.
+
 Define Case Widget
 ------------------
 
-The case widget of the Portal dashboard is an interactive case list. Refer
-to :ref:`Case List Widget <new-dashboard-case-list-widget>` for details.
+The case widget displays cases with full control over columns, filters, sorting, and layout. Refer to :ref:`Case List Widget <new-dashboard-case-list-widget>` for widget behavior details.
+
+Configuration Example
+^^^^^^^^^^^^^^^^^^^^^
+
+Below is a sample JSON definition of the case widget in the Portal dashboard.
 
 Below is a sample JSON definition of the case widget in the Portal dashboard.
 
@@ -35,20 +41,23 @@ Below is a sample JSON definition of the case widget in the Portal dashboard.
          "styleClass": "your-widget-class"
       },
       "sortField": "name",
+      "sortDescending": false,
       "rowsPerPage": 20,
       "showWidgetInfo": true,
       "showFullscreenMode": true,
-      "isTopMenu": false,
+      "enableQuickSearch": true,
       "columns": [
          {
             "field": "id"
          },
          {
             "field": "name",
-            "visible": "false"
+            "visible": "true",
+            "quickSearch": "true"
          },
          {
-            "field": "description"
+            "field": "description",
+            "quickSearch": "true"
          },
          {
             "field": "creator"
@@ -56,14 +65,14 @@ Below is a sample JSON definition of the case widget in the Portal dashboard.
          {
             "field": "state",
             "headers": [
-            {
-               "locale": "en",
-               "value": "State"
-            },
-            {
-               "locale": "de",
-               "value": "Status"
-            }
+               {
+                  "locale": "en",
+                  "value": "State"
+               },
+               {
+                  "locale": "de",
+                  "value": "Status"
+               }
             ]
          },
          {
@@ -72,87 +81,193 @@ Below is a sample JSON definition of the case widget in the Portal dashboard.
          {
             "field": "actions"
          }
+      ],
+      "filters": [
+         {
+            "field": "state",
+            "values": ["OPEN", "DONE"],
+            "operator": "in",
+            "type": "standard"
+         }
       ]
    }
 ..
 
-The basic JSON structure of the case widget
--  ``type``: type of the widget. Use ``case`` for a case widget
+JSON Configuration Reference
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
--  ``id``: ID of the widget
+**Required Properties**
 
--  ``names``: multilingual name of the widget on the UI.
+.. list-table::
+   :widths: 20 15 65
+   :header-rows: 1
 
--  ``layout``: layout definition of the case widget
+   * - Property
+     - Type
+     - Description
+   * - ``type``
+     - string
+     - Widget type. Must be ``"case"`` for case widget
+   * - ``id``
+     - string
+     - Unique identifier for the widget
+   * - ``names``
+     - array
+     - Multilingual display names. Each entry: ``{"locale": "en", "value": "Name"}``
+   * - ``layout``
+     - object
+     - Widget position and size (see Layout Properties below)
+   * - ``columns``
+     - array
+     - Column configurations (see Columns section below)
 
-   -  ``x``: HTML DOM Style ``left`` is calculated as formula ``x / 12 * 100%``
+**Layout Properties**
 
-   -  ``y``: HTML DOM Style ``top`` is calculated as formula ``y / 12 * 100%``
+.. list-table::
+   :widths: 20 15 65
+   :header-rows: 1
 
-   -  ``w``: HTML DOM Style ``width`` is calculated as formula ``60 * w + 20 * (w - 1)``
+   * - Property
+     - Type
+     - Description
+   * - ``x``
+     - number
+     - Column position in 12-column grid (0-11). CSS left = ``x / 12 * 100%``
+   * - ``y``
+     - number
+     - Row position. CSS top = ``y / 12 * 100%``
+   * - ``w``
+     - number
+     - Width in grid columns (1-12). Pixel width = ``60 * w + 20 * (w - 1)``
+   * - ``h``
+     - number
+     - Height in grid rows (min 5). Pixel height = ``60 * h + 20 * (h - 1)``
+   * - ``styleClass``
+     - string
+     - *(Optional)* CSS classes for custom styling
+   * - ``style``
+     - string
+     - *(Optional)* Inline CSS styles
 
-   -  ``h``: HTML DOM Style ``height`` is calculated as formula ``60 * h + 20 * (h - 1)``
+.. tip::
+   **Recommended case widget size:** Width 8-12 columns, Height 8-12 rows for optimal table display with pagination.
 
-   -  ``styleClass`` (optional): add CSS classes to HTML DOM of the Case widget
+**Display & Behavior Properties**
 
-   -  ``style`` (optional): add inline style to HTML DOM of the Case widget
+.. list-table::
+   :widths: 20 15 15 50
+   :header-rows: 1
 
--  ``sortField``: default sort field for the Case widget
+   * - Property
+     - Type
+     - Default
+     - Description
+   * - ``sortField``
+     - string
+     - *(none)*
+     - Default column for sorting (e.g., ``"name"``, ``"startTimestamp"``)
+   * - ``sortDescending``
+     - boolean
+     - ``false``
+     - Sort direction. ``false`` = ascending, ``true`` = descending
+   * - ``rowsPerPage``
+     - number
+     - ``10``
+     - Number of cases displayed per page
+   * - ``showWidgetInfo``
+     - boolean
+     - ``true``
+     - Show/hide widget information icon
+   * - ``showFullscreenMode``
+     - boolean
+     - ``true``
+     - Show/hide fullscreen mode icon
+   * - ``enableQuickSearch``
+     - boolean
+     - ``false``
+     - Enable quick search text box
+   * - ``isTopMenu``
+     - boolean
+     - ``false``
+     - ``true`` = top-level nav item, ``false`` = under Dashboard menu
 
--  ``sortDescending``: sort direction of the default sort field. The 
-   default value is ``false`` (sort ascending)
+**Columns Configuration**
 
--  ``rowsPerPage``: maximum number of cases that are displayed on one page of
-   the case widget. The default is 10 rows per page
+Each column object in the ``columns`` array:
 
--  ``showWidgetInfo``: visibility of the widget information icon. The default value is ``true``, set to ``false`` to hide the icon
+.. list-table::
+   :widths: 20 15 15 50
+   :header-rows: 1
 
--  ``showFullscreenMode``: visibility of the fullscreen mode icon. The default value is ``true``, set to ``false`` to hide the icon
+   * - Property
+     - Type
+     - Default
+     - Description
+   * - ``field``
+     - string
+     - *(required)*
+     - Column field name (see Standard Columns below)
+   * - ``visible``
+     - string
+     - ``"true"``
+     - Column visibility: ``"true"`` or ``"false"``
+   * - ``quickSearch``
+     - string
+     - ``"false"``
+     - Include in quick search: ``"true"`` or ``"false"``
+   * - ``headers``
+     - array
+     - *(none)*
+     - Multilingual column headers: ``[{"locale": "en", "value": "Header"}]``
+   * - ``type``
+     - string
+     - ``"STANDARD"``
+     - Column type: ``"STANDARD"`` or ``"CUSTOM"``
+   * - ``style``
+     - string
+     - *(none)*
+     - Inline CSS for custom columns (e.g., ``"width: 110px"``)
 
--  ``isTopMenu``: if the value is ``true``, the dashboard appears as a top-level item in the navigation bar. 
-   If the value is ``false``, it appears as a sub-item under the `Dashboard` menu. 
-   The default value is ``false``.
+**Standard Column Fields**
 
--  ``columns``: column configurations for each column in the case widget. You
-   can predefine filters, styles, visibility,... of columns and define custom
-   columns, too.
+- ``id`` - Case ID
+- ``Pin`` - Pin button for case
+- ``name`` - Case name
+- ``description`` - Case description
+- ``state`` - Case business state
+- ``creator`` - Case creator
+- ``startTimestamp`` - Creation date and time
+- ``endTimestamp`` - End date and time
+- ``owner`` - List of case owners
+- ``category`` - Case category
+- ``actions`` - Action buttons (details, destroy, etc.)
 
-   -  ``field``: field name of the column
-         
-         For a standard column, ``field`` must be one of these:
+**Filters Configuration**
 
-            - ``id``: case ID
+The ``filters`` array defines pre-configured filter conditions:
 
-            - ``Pin``: column which contains Pin button to Pin your case.
+.. list-table::
+   :widths: 20 15 65
+   :header-rows: 1
 
-            - ``name``: case name
+   * - Property
+     - Type
+     - Description
+   * - ``field``
+     - string
+     - Column field name to filter
+   * - ``values``
+     - array
+     - Filter values (format depends on field type)
+   * - ``operator``
+     - string
+     - Filter operator (see Filter Conditions section)
+   * - ``type``
+     - string
+     - ``"standard"`` or ``"custom"``
 
-            - ``description``: case description
-
-            - ``state``: case business state
-
-            - ``creator``: case creator
-
-            - ``startTimestamp``: creation date and time of the case
-
-            - ``endTimestamp``: end date and time of the case
-
-            - ``owner``: list of case owners
-
-            - ``actions``: for further actions like ``access case details``,
-              ``case business details``, ``destroy case``
-
-         For custom columns, ``field`` is the name of a case custom field.
-         Portal will use the value of the ``field`` attribute to get the value
-         of the column.
-
-   -  ``visible``: visibility of a column. The default value is "true". Set to
-      "false" to hide the column.
-
-   -  ``quickSearch``: Adds this field to the search scope of the quick search. The default value is ``false``.
-      Set it to ``true`` to apply search condition for the column.
-
-   -  ``headers``: multilingual header of the column.
+.. note::
+   For detailed filter configuration, see the :ref:`Filter Conditions <configure-new-dashboard-case-widget-filter-structure>` section below.
 
 .. _configure-new-dashboard-case-widget-custom-columns:
 
