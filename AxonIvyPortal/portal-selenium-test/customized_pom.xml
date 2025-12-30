@@ -11,7 +11,7 @@
   <groupId>com.axonivy.portal</groupId>
   <artifactId>portal-selenium-test</artifactId>
   <version>14.0.0-SNAPSHOT</version>
-  <packaging>iar</packaging>
+  <packaging>jar</packaging>
   <dependencies>
     <dependency>
       <groupId>com.axonivy.portal</groupId>
@@ -93,13 +93,6 @@
             <goals>
               <goal>test</goal>
             </goals>
-          </execution>
-          <execution>
-            <id>default-pack-iar</id>
-            <goals>
-              <goal>pack-iar</goal>
-            </goals>
-            <phase>none</phase>
           </execution>
         </executions>
       </plugin>
