@@ -806,35 +806,6 @@
     "chartId" : "4",
     "showFullscreenMode" : true
   }, {
-    "type" : "custom",
-    "id" : "custom_2ff4b189c4df450581e6956d6522e7f6",
-    "names" : [ {
-      "locale" : "en",
-      "value" : "Axon Ivy Portal Documentation"
-    }, {
-      "locale" : "fr",
-      "value" : "Documentation Axon Ivy Portal"
-    }, {
-      "locale" : "de",
-      "value" : "Axon Ivy Portal Dokumentation"
-    }, {
-      "locale" : "ja",
-      "value" : "Axon Ivy Portal ドキュメント"
-    }, {
-      "locale" : "es",
-      "value" : "Documentación de Axon Ivy Portal"
-    } ],
-    "layout" : {
-      "w" : 7,
-      "h" : 7,
-      "x" : 5,
-      "y" : 31
-    },
-    "data" : {
-      "url" : "https://market.axonivy.com/portal/dev/doc"
-    },
-    "showFullscreenMode" : true
-  }, {
     "type" : "combined-process",
     "id" : "process_fc892608928a4b05b84c72cb035aaafb",
     "names" : [ {
