@@ -71,7 +71,7 @@
             <goals>
               <goal>stop-test-engine</goal>
             </goals>
-            <phase>test</phase>
+            <phase>post-integration-test</phase>
           </execution>
         </executions>
       </plugin>
@@ -89,7 +89,7 @@
         <executions>
           <execution>
             <id>selenium.web.tests</id>
-            <phase>post-integration-test</phase>
+            <phase>test</phase>
             <goals>
               <goal>test</goal>
             </goals>
