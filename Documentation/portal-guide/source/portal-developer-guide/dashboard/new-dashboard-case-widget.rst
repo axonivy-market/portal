@@ -41,9 +41,11 @@ Below is a sample JSON definition of the case widget in the Portal dashboard.
          "styleClass": "your-widget-class"
       },
       "sortField": "name",
+      "sortDescending": false,
       "rowsPerPage": 20,
       "showWidgetInfo": true,
       "showFullscreenMode": true,
+      "enableQuickSearch": true,
       "isTopMenu": false,
       "columns": [
          {
@@ -51,10 +53,12 @@ Below is a sample JSON definition of the case widget in the Portal dashboard.
          },
          {
             "field": "name",
-            "visible": "false"
+            "visible": "true",
+            "quickSearch": "true"
          },
          {
-            "field": "description"
+            "field": "description",
+            "quickSearch": "true"
          },
          {
             "field": "creator"
@@ -62,14 +66,14 @@ Below is a sample JSON definition of the case widget in the Portal dashboard.
          {
             "field": "state",
             "headers": [
-            {
-               "locale": "en",
-               "value": "State"
-            },
-            {
-               "locale": "de",
-               "value": "Status"
-            }
+               {
+                  "locale": "en",
+                  "value": "State"
+               },
+               {
+                  "locale": "de",
+                  "value": "Status"
+               }
             ]
          },
          {
@@ -77,6 +81,14 @@ Below is a sample JSON definition of the case widget in the Portal dashboard.
          },
          {
             "field": "actions"
+         }
+      ],
+      "filters": [
+         {
+            "field": "state",
+            "values": ["OPEN", "DONE"],
+            "operator": "in",
+            "type": "standard"
          }
       ]
    }
