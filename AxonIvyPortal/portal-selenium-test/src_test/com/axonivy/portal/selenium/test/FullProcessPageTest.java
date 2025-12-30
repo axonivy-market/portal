@@ -61,7 +61,7 @@ public class FullProcessPageTest extends BaseTest {
     processWidgetPage = mainMenuPage.selectProcessesMenu();
     createPublicExternalTestProcess(AAGOOGLE_LINK, AAGOOGLE_LINK, TestRole.TESTER_ROLE);
     $("[id$='process-item-name']").shouldHave(text(AAGOOGLE_LINK));
-    NavigationHelper.navigateToProcessList();
+    processWidgetPage = NavigationHelper.navigateToProcessList();
 
     processWidgetPage.selectGridMode();
     processWidgetPage.waitForGridProcessListDisplayed();
