@@ -162,8 +162,8 @@
     value="##{case.getBusinessCase().id} #{case.getBusinessCase().names().current()} (#{caseBean.getState(case.getBusinessCase()).toUpperCase()})"
     trackMouse="true" hideEvent="mouseleave click" />
   <p:dialog id="case-owners-dialog" widgetVar="case-owners-dialog" header="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/CaseOwner')}"
-    appendTo="@(body)" fitViewport="true" width="350" closeOnEscape="true" dynamic="true" height="400"
-    responsive="true" modal="true" closable="true">
+    appendTo="@(body)" width="350" height="400" fitViewport="true" closeOnEscape="true" dynamic="true"
+    responsive="true" modal="true" closable="true" styleClass="dialog--responsive">
     <div class="ui-g">
       <ui:repeat var="caseOwner" value="#{caseDetailsBean.caseOwners}" >
         <div class="ui-g-12">

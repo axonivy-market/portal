@@ -1039,9 +1039,14 @@ ch.ivy.addon.portalkit.ui.jsf:
     logout: Se déconnecter
   mobile:
     AppleStore: Apple Store
+    AppleStoreDownload: Télécharger sur l'Apple Store
+    AppleStoreQRCode: Code QR pour télécharger depuis l'Apple Store
     AxonIvyMobile: Axon Ivy Mobile
+    AxonIvyMobileQRCode: Code QR pour l'application Axon Ivy Mobile
     DownloadMobileApp: 'Pour télécharger l''application Axon Ivy Mobile '
     GooglePlay: Google Play
+    GooglePlayDownload: Disponible sur Google Play
+    GooglePlayQRCode: Code QR pour télécharger depuis Google Play
     MenuName: Application mobile Connect
     Platform: 'Plate-forme :'
     QRCodeDescription: Pour vous connecter à l'application mobile Axon Ivy, scannez ce code QR et entrez vos informations d'identification dans l'application.
@@ -1125,6 +1130,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     goTo: 'Aller à:'
     icon: Icône
     image: Image
+    externalLinkImage: Image du lien externe
     isRequiredMessage: doit être défini
     linkDescription: Description du lien
     noProcess: Aucun processus trouvé.

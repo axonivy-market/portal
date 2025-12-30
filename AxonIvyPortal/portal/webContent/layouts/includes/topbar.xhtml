@@ -2,7 +2,7 @@
   xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
   xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:cc="http://xmlns.jcp.org/jsf/composite"
   xmlns:c="http://xmlns.jcp.org/jsp/jstl/core" xmlns:p="http://primefaces.org/ui" xmlns:jsf="http://xmlns.jcp.org/jsf"
-  xmlns:pe="http://primefaces.org/ui/extensions" 
+  xmlns:pe="http://primefaces.org/ui/extensions"
   xmlns:pc="http://xmlns.jcp.org/jsf/composite/components">
   <!-- TOPBAR START -->
   <div class="layout-topbar-left">
@@ -79,6 +79,7 @@
            <p:graphicImage styleClass="topbar-item-image topbar-icon"
              name="/images/AIAssistant/DefaultLogo"
              width="30" height="30"
+             alt="#{ivy.cms.co('/Labels/AIAssisstant')}"
              library="ivy-cms" />
           </p:commandLink>
         </li>
@@ -171,9 +172,9 @@
         <ic:ch.ivy.addon.portalkit.component.ProjectVersion id="project-version" />
       </p:dialog>
       
-      <p:dialog header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/applicationMenuHeader/MobileApp')}" width="650" 
+      <p:dialog header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/applicationMenuHeader/MobileApp')}" width="650"
         closeOnEscape="true" widgetVar="mobile-app-dialog" id="mobile-app-dialog" resizable="false" modal="true" draggable="false"
-        appendTo="@(body)" dynamic="true" responsive="true" fitViewport="true" closable="false">
+        appendTo="@(body)" dynamic="true" responsive="true" fitViewport="true" closable="false" styleClass="dialog--responsive">
         <p:tabView>
 
           <div class="ui-g-12">
@@ -182,10 +183,12 @@
               styleClass="MarLeft10" id="axon-ivy-tab">
               <div class="ui-g-5 qr-container">
                 <p:barcode id="qr-code" value="#{userMenuBean.getQRcodeData()}"
-                  type="qr" styleClass="qr-code"/>
+                  type="qr" styleClass="qr-code"
+                  alt="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/mobile/AxonIvyMobileQRCode')}"/>
                 <div class="qr-logo-background"></div>
                 <p:graphicImage id="qr-code-image" cache="true"
                   library="ivy-cms" name="#{userMenuBean.mobileImageLink}"
+                  alt="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/mobile/AxonIvyMobile')}"
                   styleClass="qr-code-image" />
               </div>
               <div class="ui-g-7">
@@ -201,7 +204,8 @@
               styleClass="MarLeft10" id="apple-tab">
               <div class="ui-g-5 apple-container">
                 <p:barcode id="apple-qr-code" type="qr"
-                  value="#{userMenuBean.appleStoreDownloadLink}" styleClass="qr-code" />
+                  value="#{userMenuBean.appleStoreDownloadLink}" styleClass="qr-code"
+                  alt="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/mobile/AppleStoreQRCode')}" />
               </div>
               <div class="ui-g-7">
                 <div class="ui-g-12">
@@ -213,7 +217,8 @@
                 <div class="ui-g-12">
                   <p:link id="apple-download-link" href="#{userMenuBean.getAppleStoreDownloadLink()}" target="_blank">
                     <p:graphicImage styleClass="platform-image" id="apple-download-image" cache="true"
-                      library="ivy-cms" name="#{userMenuBean.appleStoreImageLink}" />
+                      library="ivy-cms" name="#{userMenuBean.appleStoreImageLink}"
+                      alt="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/mobile/AppleStoreDownload')}" />
                   </p:link>
                 </div>
               </div>
@@ -224,7 +229,8 @@
               styleClass="MarLeft10" id="google-tab">
               <div class="ui-g-5 apple-container">
                 <p:barcode id="google-qr-code" type="qr"
-                  value="#{userMenuBean.googlePlayDownloadLink}" styleClass="qr-code" />
+                  value="#{userMenuBean.googlePlayDownloadLink}" styleClass="qr-code"
+                  alt="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/mobile/GooglePlayQRCode')}" />
               </div>
               <div class="ui-g-7">
                 <div class="ui-g-12">
@@ -234,7 +240,8 @@
                 <div class="ui-g-12">
                   <p:link id="google-download-link" href="#{userMenuBean.getGooglePlayDownloadLink()}" target="_blank">
                     <p:graphicImage styleClass="platform-image" id="google-download-image" cache="true"
-                      library="ivy-cms" name="#{userMenuBean.googlePlayImageLink}" />
+                      library="ivy-cms" name="#{userMenuBean.googlePlayImageLink}"
+                      alt="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/mobile/GooglePlayDownload')}" />
                   </p:link>
                 </div>
               </div>

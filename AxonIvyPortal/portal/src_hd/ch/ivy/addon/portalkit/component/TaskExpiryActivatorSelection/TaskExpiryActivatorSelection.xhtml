@@ -24,9 +24,9 @@
   <p:dialog id="task-escalation-activator-dialog" closeOnEscape="true"
     widgetVar="task-escalation-activator-dialog"
     header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskActivator/escalationActivatorHeader')}"
-    dynamic="true" modal="true" resizable="false"
-    appendTo="@(body)" responsive="true"
-    styleClass="task-escalation-activator-dialog" width="600">
+    dynamic="true" modal="true" resizable="false" width="600"
+    appendTo="@(body)" responsive="true" fitViewport="true"
+    styleClass="task-escalation-activator-dialog dialog--responsive">
     <h:panelGroup id="task-escalation-activator-panel" layout="block"
       styleClass="escalation-activator-selection-js ui-g-12 u-padding-0">
       <h:form id="task-escalation-activator-form" rendered="#{data.canChangeTaskActivator}"
