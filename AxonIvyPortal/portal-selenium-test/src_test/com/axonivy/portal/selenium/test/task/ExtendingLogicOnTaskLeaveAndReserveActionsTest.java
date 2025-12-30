@@ -18,7 +18,7 @@ import com.axonivy.portal.selenium.page.WorkingTaskDialogPage;
 import com.codeborne.selenide.CollectionCondition;
 
 @IvyWebTest
-public class CustomBehavioursOnLeavingTask extends BaseTest {
+public class ExtendingLogicOnTaskLeaveAndReserveActionsTest extends BaseTest {
 
   @Override
   @BeforeEach
@@ -27,7 +27,7 @@ public class CustomBehavioursOnLeavingTask extends BaseTest {
   }
 
   @Test
-  public void testCustomizedLogicWhenLeavingAWorkingTask() {
+  public void testExecutingCustomizedLogicOnTaskLeaveAction() {
     login(TestAccount.DEMO_USER);
     createStockInvestment();
     openDashboard();
@@ -45,7 +45,7 @@ public class CustomBehavioursOnLeavingTask extends BaseTest {
   }
   
   @Test
-  public void testCustomizedLogicWhenReservingAWorkingTask() {
+  public void testExecutingCustomizedLogicOnTaskReserveAction() {
     login(TestAccount.DEMO_USER);
     createStockInvestment();
     openDashboard();
@@ -70,7 +70,7 @@ public class CustomBehavioursOnLeavingTask extends BaseTest {
   }
   
   @Test
-  public void testCustomizedLogicWhenReservingATask() {
+  public void testExecutingCustomizedLogicOnTaskReserveInActionPanel() {
     login(TestAccount.ADMIN_USER);
     createStockInvestment();
     openDashboard();
