@@ -221,10 +221,10 @@ public class UserMenuBean implements Serializable {
     navigateToTargetPage();
   }
   
-  private void executeCustomizedLogicIfExist(ITask task, PortalCustomSignature portaCustomSignature) {
+  private void executeCustomizedLogicIfExist(ITask task, PortalCustomSignature portalCustomSignature) {
     Map<String, Object> params = new HashMap<>();
     params.put("workingTask", task);
-    IvyAdapterService.startSubProcessesInSecurityContext(portaCustomSignature.getSignature(), params);
+    IvyAdapterService.startSubProcessesInSecurityContext(portalCustomSignature.getSignature(), params);
   }
 
   private void executeJSResetPortalMenuState() {

@@ -371,7 +371,12 @@
       "type" : "SubProcessCall",
       "name" : "Call customized process if exist",
       "config" : {
-        "processCall" : "Functional Processes/ExtendTaskReserve:call(ch.ivyteam.ivy.workflow.ITask)"
+        "processCall" : "Functional Processes/ExtendTaskReserve:call(ch.ivyteam.ivy.workflow.ITask)",
+        "call" : {
+          "map" : {
+            "param.workingTask" : "in.workingTask"
+          }
+        }
       },
       "visual" : {
         "at" : { "x" : 224, "y" : 496 }

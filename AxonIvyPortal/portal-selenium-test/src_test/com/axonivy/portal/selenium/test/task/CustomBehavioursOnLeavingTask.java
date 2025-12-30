@@ -62,11 +62,11 @@ public class CustomBehavioursOnLeavingTask extends BaseTest {
     taskWidget.clickOnCustomFieldsActionOfTask(0);
     assertTrue(taskWidget.isCustomFieldsDialogDisplayed());
     List<String> taskCustomFieldNames = taskWidget.getCustomFieldNamesOnTaskCustomFieldsDialog();
-    List<String> taskCusotmFieldValues = taskWidget.getCustomFieldValuesOnTaskCustomFieldsDialog();
+    List<String> taskCustomFieldValues = taskWidget.getCustomFieldValuesOnTaskCustomFieldsDialog();
     assertFalse(taskCustomFieldNames.isEmpty());
-    assertFalse(taskCusotmFieldValues.isEmpty());
+    assertFalse(taskCustomFieldValues.isEmpty());
     assertEquals(taskCustomFieldNames.getFirst(), "reserveTask");
-    assertEquals(taskCusotmFieldValues.getFirst(), "1");
+    assertEquals(taskCustomFieldValues.getFirst(), "1");
   }
   
   @Test
@@ -80,11 +80,11 @@ public class CustomBehavioursOnLeavingTask extends BaseTest {
     taskWidget.reserveTask(0);
     taskWidget.clickOnCustomFieldsActionOfTask(0);
     List<String> taskCustomFieldNames = taskWidget.getCustomFieldNamesOnTaskCustomFieldsDialog();
-    List<String> taskCusotmFieldValues = taskWidget.getCustomFieldValuesOnTaskCustomFieldsDialog();
+    List<String> taskCustomFieldValues = taskWidget.getCustomFieldValuesOnTaskCustomFieldsDialog();
     assertFalse(taskCustomFieldNames.isEmpty());
-    assertFalse(taskCusotmFieldValues.isEmpty());
+    assertFalse(taskCustomFieldValues.isEmpty());
     assertEquals(taskCustomFieldNames.getFirst(), "reserveTask");
-    assertEquals(taskCusotmFieldValues.getFirst(), "1");
+    assertEquals(taskCustomFieldValues.getFirst(), "1");
   }
 
   private void openDashboard() {
