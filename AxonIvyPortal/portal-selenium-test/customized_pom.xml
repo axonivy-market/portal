@@ -55,27 +55,6 @@
     <testSourceDirectory>${basedir}/src_test/</testSourceDirectory>
     <plugins>
       <plugin>
-        <groupId>com.axonivy.ivy.ci</groupId>
-        <artifactId>project-build-plugin</artifactId>
-        <extensions>true</extensions>
-        <executions>
-          <execution>
-            <id>start.test.engine</id>
-            <phase>process-test-classes</phase>
-            <goals>
-              <goal>start-test-engine</goal>
-            </goals>
-          </execution>
-          <execution>
-            <id>stop.test.engine</id>
-            <goals>
-              <goal>stop-test-engine</goal>
-            </goals>
-            <phase>post-integration-test</phase>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
         <configuration>
@@ -93,6 +72,27 @@
             <goals>
               <goal>test</goal>
             </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>com.axonivy.ivy.ci</groupId>
+        <artifactId>project-build-plugin</artifactId>
+        <extensions>true</extensions>
+        <executions>
+          <execution>
+            <id>start.test.engine</id>
+            <phase>process-test-classes</phase>
+            <goals>
+              <goal>start-test-engine</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>stop.test.engine</id>
+            <goals>
+              <goal>stop-test-engine</goal>
+            </goals>
+            <phase>test</phase>
           </execution>
         </executions>
       </plugin>
