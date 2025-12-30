@@ -278,7 +278,7 @@
           "name" : "valid file?",
           "config" : {
             "conditions" : {
-              "S10-f78" : "org.apache.commons.lang.StringUtils.isBlank(in.message)"
+              "S10-f78" : "org.apache.commons.lang3.StringUtils.isBlank(in.message)"
             }
           },
           "visual" : {

@@ -59,12 +59,12 @@
       "config" : {
         "output" : {
           "code" : [
-            "import ch.ivyteam.ivy.workflow.query.CaseQuery;",
             "import ch.ivyteam.ivy.workflow.ICase;",
             "",
-            "out.caze = ivy.wf.getGlobalContext().getCaseQueryExecutor().createCaseQuery().where().uuid().isEqual(in.caseId.uuid()).executor().firstResult() as ICase;"
+            "out.caze = ivy.wf.getCaseQueryExecutor().createCaseQuery().where().uuid().isEqual(in.caseId.uuid()).executor().firstResult() as ICase;"
           ]
-        }
+        },
+        "sudo" : true
       },
       "visual" : {
         "at" : { "x" : 1928, "y" : 1408 }
@@ -110,11 +110,11 @@
         "output" : {
           "code" : [
             "import ch.ivyteam.ivy.workflow.ITask;",
-            "import ch.ivyteam.ivy.workflow.query.TaskQuery;",
             "",
-            "out.task = ivy.wf.getGlobalContext().getTaskQueryExecutor().createTaskQuery().where().uuid().isEqual(in.uuid).executor().firstResult() as ITask;"
+            "out.task = ivy.wf.getTaskQueryExecutor().createTaskQuery().where().uuid().isEqual(in.uuid).executor().firstResult() as ITask;"
           ]
-        }
+        },
+        "sudo" : true
       },
       "visual" : {
         "at" : { "x" : 2856, "y" : 1520 }
@@ -200,11 +200,11 @@
         "output" : {
           "code" : [
             "import ch.ivyteam.ivy.workflow.ITask;",
-            "import ch.ivyteam.ivy.workflow.query.TaskQuery;",
             "",
-            "out.task = ivy.wf.getGlobalContext().getTaskQueryExecutor().createTaskQuery().where().uuid().isEqual(in.uuid).executor().firstResult() as ITask;"
+            "out.task = ivy.wf.getTaskQueryExecutor().createTaskQuery().where().uuid().isEqual(in.uuid).executor().firstResult() as ITask;"
           ]
-        }
+        },
+        "sudo" : true
       },
       "visual" : {
         "at" : { "x" : 2440, "y" : 1896 }

@@ -3,14 +3,19 @@
 Configure Navigation Dashboard Widget
 =====================================
 
+The navigation dashboard widget provides quick access to other dashboards through clickable cards. Users can navigate to target dashboards with a single click, using either icon-based or image-based visual styles.
+
 .. _portal-navigation-dashboard-widget:
 
 Define Navigation Dashboard Widget
 ----------------------------------
 
-The Navigation Dashboard widget of the Portal dashboard allows users to navigate to a target dashboard quickly with a single click.
+Navigation widgets display as cards with customizable visuals (icons or images) and multilingual text, enabling quick dashboard switching.
 
-Below is a sample JSON definition of a navigation dashboard widget in the Portal dashboard.
+Configuration Example
+^^^^^^^^^^^^^^^^^^^^^
+
+Below is a sample JSON definition of a navigation dashboard widget in the Portal dashboard:
 
 .. code-block:: javascript
 
@@ -72,42 +77,83 @@ Below is a sample JSON definition of a navigation dashboard widget in the Portal
     }
 ..
 
-The basic JSON structure of a statistic widget
+..
 
-   ``id``: ID of the widget
+JSON Configuration Reference
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-   ``type``: type of the widget. Use ``navigation-dashboard`` for a navigation dashboard widget
-   
-   ``names``: multilingual name of the widget on the UI
+**Required Properties**
 
-   ``buttonNames``: multilingual button name on the widget
+``type`` (string)
+   Widget type. Must be ``"navigation-dashboard"`` for navigation dashboard widget
 
-   ``layout``: layout definition of the client statistic widget
+``id`` (string)
+   Unique identifier for the widget
 
-      - ``x``: HTML DOM Style ``left`` is calculated as formula ``x / 12 * 100%``
+``names`` (array)
+   Multilingual widget titles. Format: ``[{"locale": "en", "value": "Title"}]``
 
-      - ``y``: HTML DOM Style ``top`` is calculated as formula ``y / 12 * 100%``
+``buttonNames`` (array)
+   Multilingual button labels. Format: ``[{"locale": "en", "value": "Button Text"}]``
 
-      - ``w``: HTML DOM Style ``width`` is calculated as formula ``60 * w + 20 * (w - 1)``
+``layout`` (object)
+   Widget position and size (see Layout Properties below)
 
-      - ``h``: HTML DOM Style ``height`` is calculated as formula ``60 * h + 20 * (h - 1)``
-   
-   ``targetDashboardId``: the target dashboard id
+``targetDashboardId`` (string)
+   ID of the dashboard to navigate to when clicked
 
-   ``description``: the widget description
+**Layout Properties**
 
-   ``visualType``: the visual type of the widget. Possible values are ``ICON`` and ``IMAGE``
+``x`` (number)
+   Column position in 12-column grid (0-11). CSS left = ``x / 12 * 100%``
 
-   ``icon``: the icon shown on the widget
+``y`` (number)
+   Row position. CSS top = ``y / 12 * 100%``
 
-   ``imageContent``: the base64 data format of the process image. If this value is valid then it will be converted to a physical file. If you want to configure external link images when deploying, you just need to define ``imageContent``
-   
-   ``imageLocation``: the location of the process image. This image is stored in Application CMS. Basically, this should be handled by the engine
-   
-   ``imageType``: the extension of the process image. Basically, this should be handled by the engine
+``w`` (number)
+   Width in grid columns (1-12). Pixel width = ``60 * w + 20 * (w - 1)``
 
-   ``imageContentDarkMode``: the same as ``imageContent`` but for dark mode
+``h`` (number)
+   Height in grid rows (min 2). Pixel height = ``60 * h + 20 * (h - 1)``
 
-   ``imageLocationDarkMode``: the same as ``imageLocation`` but for dark mode
+.. tip::
+   **Recommended navigation widget size:** Width 3-4 columns, Height 3-4 rows for balanced card display.
 
-   ``imageTypeDarkMode``: the same as ``imageType`` but for dark mode
+**Display Properties**
+
+``description`` (string, optional)
+   Descriptive text shown on the navigation card
+
+``visualType`` (string, default: ``"ICON"``)
+   Visual style: ``"ICON"`` (icon display) or ``"IMAGE"`` (custom image)
+
+``icon`` (string, optional)
+   Streamline icon class when ``visualType`` is ``"ICON"`` (e.g., ``"si-task-list-1"``)
+
+**Image Properties**
+
+Used when ``visualType`` is ``"IMAGE"``:
+
+``imageContent`` (string, optional)
+   Base64-encoded image data for light mode. Automatically converted to physical file
+
+``imageLocation`` (string, managed by Portal)
+   CMS path to stored image in light mode
+
+``imageType`` (string, managed by Portal)
+   Image file extension (e.g., ``"jpeg"``, ``"png"``)
+
+``imageContentDarkMode`` (string, optional)
+   Base64-encoded image data for dark mode
+
+``imageLocationDarkMode`` (string, managed by Portal)
+   CMS path to stored image in dark mode
+
+``imageTypeDarkMode`` (string, managed by Portal)
+   Dark mode image file extension
+
+.. note::
+   When using ``visualType: "IMAGE"``, provide ``imageContent`` (base64 data). Portal automatically handles storage in Application CMS and manages ``imageLocation`` and ``imageType`` properties.
+
+.. tip::
+   For icon-based navigation, browse available Streamline icons in the `HTML Dialog Demo <https://market.axonivy.com/html-dialog-demo>`_.

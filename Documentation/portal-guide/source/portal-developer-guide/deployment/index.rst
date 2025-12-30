@@ -3,152 +3,353 @@
 Deployment
 **********
 
-This section provides a step-by-step guide for deploying the Portal for the first time.
-It includes examples and best practices. For more comprehensive deployment information, refer to the
-:doc-url:`Axon Ivy deployment guidelines </engine-guide/deployment/index.html>`
 
-The following is an overview of a sample deployment setup:
+Overview
+========
 
-- The Portal application includes the portal-components and portal projects.
-- The Business application includes the shared portal-components and customer-specific projects (e.g., accounting).
+Portal deployment to Axon Ivy Engine involves deploying .iar archives or .zip packages containing projects and configuration artifacts.
+The recommended architecture separates Portal from business applications while sharing a common security system, enabling centralized task and case management across multiple applications.
+
+For comprehensive deployment information, refer to the :doc-url:`Axon Ivy deployment guidelines </engine-guide/deployment/index.html>`.
+
+Deployment Architecture
+=======================
+
+The recommended deployment setup separates Portal from business applications within a shared security system.
+
+**Sample Setup:**
+
+- **Portal Application**: portal-components + portal
+- **Business Application(s)**: portal-components (optional) + your projects
 
 .. code-block:: text
 
-  +----------------------------------------------------+
-  |                   Security system                  |
-  |                                                    |
-  |  +---------------------+  +---------------------+  |
-  |  | Portal              |  | Accounting          |  |
-  |  |                     |  |                     |  |
-  |  |   portal-components |  |   portal-components |  |
-  |  |   portal            |  |   accounting        |  |
-  |  +---------------------+  +---------------------+  |
-  |                                                    |
-  +----------------------------------------------------+
+   +----------------------------------------------------+
+   |                   Security System                  |
+   |                                                    |
+   |  +---------------------+  +---------------------+  |
+   |  | Portal              |  | Accounting          |  |
+   |  |                     |  |                     |  |
+   |  |   portal-components |  |   portal-components |  |
+   |  |   portal            |  |   accounting        |  |
+   |  +---------------------+  +---------------------+  |
+   |                                                    |
+   +----------------------------------------------------+
 
 Prerequisites
 =============
 
-Before you begin, ensure you have:
+Before deploying Portal, ensure you have:
 
-- Properly configured databases (e.g., PostgreSQL) ready for connection.
-- The Axon Ivy Engine is installed and operational.
+- **Axon Ivy Engine**: Installed and operational
+- **Database**: Configured and accessible (e.g., PostgreSQL)
+- **Security System**: Created or use default Axon Ivy security system
+- **Deployment Packages**: Portal .iar/.zip files prepared
 
-Installation
-============
+Deployment Process
+==================
 
-Preparation
------------
+Packaging Formats
+-----------------
 
-- Axon Ivy projects are packaged as either .iar (Ivy Archive) files or .zip files for deployment.
-- We recommend using .zip files, as they can include:
-  :doc-url:`branding </designer-guide/user-interface/branding/branding-engine.html>`,
-  variables, databases, REST clients :doc-url:`configuration </engine-guide/deployment/prepare/application-configuration/index.html>`.
+Axon Ivy projects can be packaged in two formats:
 
-Recommended Deployment Setup (Sample)
--------------------------------------
+.. table::
+   :widths: 20 40 40
 
-Prepare two zip files for deployment:
+   +----------------+--------------------------------+----------------------------------------+
+   | Format         | Contents                       | Use Case                               |
+   +================+================================+========================================+
+   | **.iar**       | Project archive only           | Development, simple deployments        |
+   +----------------+--------------------------------+----------------------------------------+
+   | **.zip**       | Projects + configuration       | Production deployments                 |
+   |                | (branding, variables,          | (includes all configuration artifacts) |
+   |                | databases, REST clients)       |                                        |
+   +----------------+--------------------------------+----------------------------------------+
 
-- Portal Application Zip File, containing:
+.. tip::
+   Use .zip files for production deployments. They bundle :doc-url:`branding </designer-guide/user-interface/branding/branding-engine.html>`, variables, databases, and REST clients :doc-url:`configuration </engine-guide/deployment/prepare/application-configuration/index.html>` with your projects.
 
-  - portal-components
-  - portal
-  - Branding, variables configuration
-- Business Application Zip File (e.g., Accounting), containing:
+Prepare Deployment Packages
+---------------------------
 
-  - portal-components
-  - accounting
-  - Branding, variables, database, REST clients configuration
+Create separate deployment packages for each application.
 
-Deployment
-----------
+**Portal Application Package**
 
-- Create a security system, or use the default one provided by Axon Ivy. This security system will be shared across applications.
-- Create applications:
+Contains:
 
-  - One for the Portal, e.g., named Portal
-  - One or more for business projects, e.g., named Accounting
-- Deploy the application packages:
+- ``portal-components.iar``
+- ``portal.iar``
+- Branding configuration (optional)
+- Variables configuration (optional)
 
-  - Deploy the Portal application zip file (or .iar files) to the Portal application.
-  - Deploy the business application zip file (or .iar files) to the corresponding business application (e.g., Accounting).
+**Example Structure:**
+
+.. code-block:: text
+
+   portal-app.zip
+   ├── config
+   │   ├── app.yaml
+   │   ├── branding
+   │   │   └── logo.png
+   │   └── variables
+   │       └── Portal.Dashboard.json
+   ├── portal-components.iar
+   └── portal.iar
+
+**Business Application Package** (e.g., Accounting)
+
+Contains:
+
+- ``portal-components.iar`` (only if using Portal UI components)
+- ``accounting.iar`` (your project)
+- Branding, variables, database, REST clients configuration
+
+**Example Structure:**
+
+.. code-block:: text
+
+   accounting-app.zip
+   ├── config
+   │   ├── app.yaml
+   │   ├── databases
+   │   │   └── accounting-db.yaml
+   │   ├── rest-clients
+   │   │   └── external-api.yaml
+   │   └── variables
+   │       └── Accounting.Settings.json
+   ├── portal-components.iar
+   └── accounting.iar
+
+Deploy to Engine
+----------------
+
+**Step 1: Create or Select Security System**
+
+Create a new security system or use the default one provided by Axon Ivy. This security system will be shared across all applications.
+
+In Engine Cockpit:
+
+- Navigate to **Security Systems**
+- Create a new security system or select the default ``Axon Ivy``
+- Note the security system name for application creation
+
+**Step 2: Create Applications**
+
+Create separate applications within the security system:
+
+- One application for Portal (e.g., named ``Portal``)
+- One or more applications for business projects (e.g., ``Accounting``, ``HR``)
+
+In Engine Cockpit:
+
+- Navigate to **Applications**
+- Click **New Application**
+- Select the security system created in Step 1
+- Provide application name and settings
+- Repeat for each application
+
+**Step 3: Deploy Packages**
+
+Deploy the prepared .zip packages to their corresponding applications:
+
+- Deploy the Portal application package to the Portal application
+- Deploy business application packages to their corresponding applications
+
+**Deployment Methods:**
+
+Via Engine Cockpit UI:
+   Navigate to **Applications** → Select Application → **Deploy** → Upload .zip file
+
+Via File System:
+   Copy .zip file to ``<engine>/deploy/`` directory (auto-deployed)
+
+Via Command Line:
+   Use Axon Ivy CLI deployment commands
+
+**Step 4: Verify Deployment**
+
+After deployment, verify the setup:
+
+- All applications show ``RUNNING`` status in Engine Cockpit
+- All applications are in the same security system
+- All .iar files are properly deployed and visible in application details
+- No errors in engine logs (``<engine>/logs/``)
 
 Configuration
 =============
 
-Configuration can be done either through 
-:doc-url:`deployment </engine-guide/deployment/prepare/application-configuration/index.html>`
-or via the :doc-url:`Engine Cockpit UI </engine-guide/reference/engine-cockpit>`.
-This section highlights the most important configuration settings.
+Portal configuration can be managed through multiple methods.
+
+Configuration can be done through :doc-url:`deployment files </engine-guide/deployment/prepare/application-configuration/index.html>` or the :doc-url:`Engine Cockpit UI </engine-guide/reference/engine-cockpit>`.
 
 Dashboard Configuration
 -----------------------
 
-There are three ways to configure the Portal Dashboard:
+There are three methods to configure Portal dashboards:
 
-- Deployment - using pre-configured .zip files
-- Engine Cockpit UI - via the Axon Ivy Engine's administrative interface
-- Portal Import Feature - using the built-in import functionality within the Portal
-
-**Deployment Configuration**
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-To configure the Portal Dashboard via deployment, include the configuration file in the deployment package:
-
-- Place the `Portal.Dashboard.json` file within the `config/variables/` directory inside the application zip.
-  
-  .. code-block::
-
-     your-app.zip
-     ├── config
-     │   └── app.yaml
-     │   └── variables
-     │       └── Portal.Dashboard.json
-     ├── portal.iar
-     ├── portal-components.iar
-
-- Alternatively, copy the configuration file directly into the engine's application folder:
-  ``<engine>/configuration/applications/<application>/variables.Portal.Dashboard.json``
-
-**Using Engine Cockpit UI**
+Method 1: Deployment Files
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-To configure the Portal Dashboard via the Engine Cockpit UI:
+Include the dashboard configuration in your deployment package.
+
+**Package Structure:**
+
+Place the ``Portal.Dashboard.json`` file in the ``config/variables/`` directory:
+
+.. code-block:: text
+
+   your-app.zip
+   ├── config
+   │   ├── app.yaml
+   │   └── variables
+   │       └── Portal.Dashboard.json
+   ├── portal.iar
+   └── portal-components.iar
+
+**Alternative: Direct File Copy**
+
+Copy directly to the engine configuration directory:
+
+``<engine>/configuration/applications/<application>/variables.Portal.Dashboard.json``
+
+Method 2: Engine Cockpit UI
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Configure dashboards through the Engine Cockpit web interface.
+
+**Steps:**
 
 - Log in to the Engine Cockpit UI.
-- Navigate to the **Configuration** section.
-- Select **Variables** and locate the `Portal.Dashboard` entry.
-- Edit the configuration in the UI.
+- Navigate to **Configuration** → **Variables**.
+- Locate the ``Portal.Dashboard`` entry.
+- Edit the configuration directly in the UI.
+- Save changes.
 
-**Using Portal Import Dashboard Feature**
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Method 3: Import dashboards directly in Portal UI
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-To import dashboards using the Portal interface:
+Import dashboard configurations directly in the Portal user interface.
+
+**Steps:**
 
 - Open the Portal application.
-- Select the **Add new Dashboard** button.
-- Click on the **Import** icon.
-- In the **Import Dashboard** dialog, drag and drop or upload the JSON file containing the dashboard configuration.
-- Edit the mandatory title and optional description for the dashboard.
-- Click **Create Dashboard** to finalize the import.
-- Configure the dashboard as needed and ensure it appears in the dashboard list.
+- Select **Add new Dashboard** button.
+- Click the **Import** icon.
+- In the **Import Dashboard** dialog, upload the JSON file.
+- Edit the title and description.
+- Click **Create Dashboard**.
 
-.. hint::
-   For more details, refer to the Dashboard configuration: :ref:`Dashboard Configuration <dashboard-configuration>`.
+.. tip::
+   For detailed dashboard configuration including widget types, layouts, and properties, see :ref:`Dashboard Configuration <dashboard-configuration>`.
 
-Other Configurations
---------------------
+Additional Configuration
+------------------------
 
-- Configure the variables, databases, REST clients either through deployment or via the Cockpit UI.
-- Configure necessary user roles and permissions.
+Variables and Settings
+^^^^^^^^^^^^^^^^^^^^^^
 
-Final Steps
-===========
+Configure Portal variables and settings through deployment files or Engine Cockpit.
 
-- Start the application and verify successful deployment.
-- Check logs for potential issues and resolve any errors.
-- Validate that the Portal functions correctly and that all users have appropriate access.
+**Configuration Options:**
 
-Following these best practices ensures a smooth and efficient Portal deployment.
+Portal Variables
+   Application-specific settings. See :ref:`Admin Settings <portal-available-settings>`.
+
+Database Connections
+   Configure in ``config/databases/`` directory.
+
+REST Client Configurations
+   Configure in ``config/rest-clients/`` directory.
+
+**Configuration Methods:**
+
+Via Deployment Files:
+   Include configuration files in ``config/`` directory of your .zip package
+
+Via Engine Cockpit:
+   Navigate to **Configuration** → **Variables** / **Databases** / **REST Clients**
+
+User Roles and Permissions
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Set up appropriate roles and permissions for Portal features.
+
+Portal uses Axon Ivy's built-in security system. Users, roles, and permissions are managed at the security system level.
+
+**Configuration Areas:**
+
+- User role assignments
+- Permission mappings for Portal features
+- Task and case visibility rules
+- Dashboard access controls
+
+See :ref:`Role Management <admin-settings>` for detailed permission configuration.
+
+Verification
+============
+
+After deployment, perform verification to ensure Portal and business applications are properly configured.
+
+Post-Deployment Checklist
+--------------------------
+
+**1. Start Applications**
+
+- Navigate to **Applications** in Engine Cockpit
+- Verify all applications show ``RUNNING`` status
+- Check application startup time
+
+**2. Check Logs**
+
+Review engine logs for any errors or warnings:
+
+- Engine logs: ``<engine>/logs/ivy.log``
+- Application logs: ``<engine>/logs/<application>/``
+- Look for deployment errors, configuration issues, or startup warnings
+
+**3. Test Portal Access**
+
+- Navigate to Portal URL (e.g., ``http://localhost:8080/portal``)
+- Log in with a valid user account
+- Verify dashboard displays correctly with configured widgets
+- Test task and case lists load without errors
+- Verify navigation and menu items are accessible
+
+**4. Verify Multi-App Integration**
+
+- Tasks from all applications appear in Portal task list
+- Cases from all applications appear in Portal case list
+- Security context is shared correctly
+- Users see only tasks/cases they have permission to access
+- Processes can be started from Portal
+
+**5. Test User Permissions**
+
+- Log in as different user roles
+- Verify role-specific feature access
+- Test permission-based task visibility
+- Verify dashboard and widget access controls
+
+Troubleshooting Common Issues
+------------------------------
+
+**Applications Not Starting**
+
+- Check for dependency issues in logs
+- Verify all required .iar files are deployed
+- Ensure database connections are configured correctly
+
+**Tasks Not Appearing**
+
+- Verify applications are in the same security system
+- Check user role assignments and permissions
+- Review task visibility rules in business applications
+
+**Configuration Not Applied**
+
+- Verify configuration files are in correct directory
+- Check variable names match expected format (case-sensitive)
+- Restart applications after configuration changes
 

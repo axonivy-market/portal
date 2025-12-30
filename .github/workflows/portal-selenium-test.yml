@@ -18,7 +18,6 @@ on:
 
 env:
   ENGINE_DIR: $GITHUB_WORKSPACE/ivy/engine
-  ENGINE_URL: https://developer.axonivy.com/permalink/nightly/axonivy-engine.zip
 
 jobs:
   show-branch-info:
@@ -336,7 +335,7 @@ jobs:
         - name: Download engine
           run: |
             cd $ENGINE_DIR
-            wget $ENGINE_URL -O axonivy-engine.zip
+            wget ${{ inputs.engineDownloadURL }} -O axonivy-engine.zip
             unzip -o axonivy-engine.zip -d .
             rm axonivy-engine.zip
 
@@ -357,25 +356,22 @@ jobs:
               "Showcase/portal-developer-examples"
               "Showcase/InternalSupport"
               "Showcase/portal-components-examples"
-              "AxonIvyPortal/PortalApp"
-              "Showcase/portal-demo-app"
             )
             for module in "${modules[@]}"; do
-              mvn clean install -P-ivy -f $module/pom.xml -Divy.engine.directory=$ENGINE_DIR
+              mvn clean install -f $module/pom.xml -Divy.engine.directory=$ENGINE_DIR
             done
 
-        - name: Deploy Portal Modules
+        - name: Build and deploy test package
           run: |
+            mvn clean package -f AxonIvyPortal/portal-selenium-test/deployment-pom.xml -Divy.engine.directory=$ENGINE_DIR
             DEPLOYMENT=$ENGINE_DIR/system/demo-applications/demo-portal
             rm -rf $DEPLOYMENT/*
-            cp Showcase/portal-demo-app/target/*.zip $DEPLOYMENT
-            cp Showcase/portal-developer-examples/target/*.iar $DEPLOYMENT
-            cp Showcase/portal-components-examples/target/*.iar $DEPLOYMENT
+            cp AxonIvyPortal/portal-selenium-test/target/*.zip $DEPLOYMENT
       
         - name: Run test
           id: run-test        
           run: |
-            mvn clean test -P-ivy -f AxonIvyPortal/portal-selenium-test/customized_pom.xml -Divy.engine.download.url=${{ inputs.engineDownloadURL }} -Dtest=${{ inputs.testPatternToRun }} -DbrowserType=FIREFOX -Dcapabilities.unhandledPromptBehavior=accept -DtrimStackTrace=false -Divy.engine.directory=$ENGINE_DIR -Divy.deploy.timeout.seconds=60 -Divy.engine.start.timeout.seconds=500 -Dsurefire.rerunFailingTestsCount=2
+            mvn clean test -f AxonIvyPortal/portal-selenium-test/customized_pom.xml -Divy.engine.download.url=${{ inputs.engineDownloadURL }} -Dtest=${{ inputs.testPatternToRun }} -DbrowserType=FIREFOX -Dcapabilities.unhandledPromptBehavior=accept -DtrimStackTrace=false -Divy.engine.directory=$ENGINE_DIR -Divy.deploy.timeout.seconds=60 -Divy.engine.start.timeout.seconds=500 -Dsurefire.rerunFailingTestsCount=2
           continue-on-error: true
 
         - name: Log out on failures
@@ -383,21 +379,15 @@ jobs:
           run: |
             cat AxonIvyPortal/portal-selenium-test/target/testEngineOut.log 
 
-        - name: Archive screenshot image
+        - name: Archive artifacts
           uses: actions/upload-artifact@v4
           with:
-            name: screenshots
-            retention-days: 5
+            name: artifacts
+            retention-days: 10
             path: |
               AxonIvyPortal/portal-selenium-test/target/selenide/reports/*
-
-        - name: Archive test reports
-          uses: actions/upload-artifact@v4
-          with:
-            name: selenium-test-reports
-            retention-days: 5
-            path: |
               AxonIvyPortal/portal-selenium-test/target/surefire-reports/*
+              AxonIvyPortal/portal-selenium-test/target/testEngineOut.log
 
         - name: Show inputs
           run: |
@@ -445,6 +435,7 @@ jobs:
                 let totalFailures = 0;
                 let totalErrors = 0;
                 let failedTests = [];                       // Array to store detailed info about failed tests
+                let flakyTests = [];
 
                 // === HELPER FUNCTION to extract attribute value from XML tag ===
                 function extractAttribute(xmlContent, tagName, attributeName) {
@@ -502,23 +493,32 @@ jobs:
                     totalFailures += suiteFailures;
                     totalErrors += suiteErrors;
 
-                    // === Find all testcase elements that have failures or errors ===
-                    // Regex to match testcase tags with their content
-                    const testcaseRegex = /<testcase[^>]*>[\s\S]*?<\/testcase>/gi;
-                    const testcaseMatches = content.match(testcaseRegex) || [];
+                    // === Find all testcase elements that have failures, errors, or flaky failures ===
+                    let testcaseMatches = [];
+                    const parts = content.split('<testcase');
+                    const closingTag = '</testcase>';
+                    for (let i = 1; i < parts.length; i++) {
+                      let testcaseContent = '<testcase' + parts[i];
+                      const selfClosingMatch = testcaseContent.match(/<testcase[^>]*\/>/);
+                      if (selfClosingMatch) {
+                        testcaseMatches.push(selfClosingMatch[0]);
+                        continue;
+                      }
+                      const closingIndex = testcaseContent.indexOf(closingTag);
+                      if (closingIndex !== -1) {
+                        testcaseMatches.push(testcaseContent.substring(0, closingIndex + closingTag.length));
+                      }
+                    }
 
                     // Process each test case
                     testcaseMatches.forEach(testcaseXml => {
-                      // Check if this test case has failure or error elements
-                      const hasFailure = testcaseXml.includes('<failure') || testcaseXml.includes('<error');
+                      const className = extractAttribute(testcaseXml, 'testcase', 'classname') || 'UnknownClass';
+                      const testName = extractAttribute(testcaseXml, 'testcase', 'name') || 'UnknownTest';
                       
-                      if (hasFailure) {
-                        // Extract test case attributes
-                        const className = extractAttribute(testcaseXml, 'testcase', 'classname') || 'UnknownClass';
-                        const testName = extractAttribute(testcaseXml, 'testcase', 'name') || 'UnknownTest';
-                        const testTime = extractAttribute(testcaseXml, 'testcase', 'time') || '0';
-                        
-                        // Extract failure or error message
+                      const isFailed = testcaseXml.includes('<failure') || testcaseXml.includes('<error');
+                      const isFlaky = testcaseXml.includes('<flakyFailure');
+                      
+                      if (isFailed) {
                         let message = 'Test failed';
                         const failureText = extractTextContent(testcaseXml, 'failure');
                         const errorText = extractTextContent(testcaseXml, 'error');
@@ -536,11 +536,15 @@ jobs:
 
                         // Store detailed information about the failed test
                         failedTests.push({
-                          suite: suiteName,                     // Which test suite this belongs to
-                          class: className,                     // Java class name
-                          test: testName,                       // Test method name
-                          time: testTime,                       // Test execution time
-                          message: message                      // Error/failure message
+                          class: className,
+                          test: testName
+                        });
+                      }
+                      
+                      if (isFlaky) {
+                        flakyTests.push({
+                          class: className,
+                          test: testName
                         });
                       }
                     });
@@ -559,27 +563,67 @@ jobs:
                   summaryText += `🎉 **All tests passed!**`;               // Success message
                 } else {
                   // === Case B: Some tests failed ===
-                  summaryText += `❌ **Failed Tests (${failedTests.length})**\n\n`; // Failure header with count
+                  summaryText += `❌ **Failed Tests (${failedTests.length})**\n\n`;
+                  summaryText += formatTestsByClass(failedTests);
 
-                  // === Group failed tests by class for better organization ===
-                  const groupedFailures = {};                             // Object to group tests by class name
-                  failedTests.forEach(test => {
-                    const key = test.class;                               // Use class name as grouping key
-                    if (!groupedFailures[key]) {
-                      groupedFailures[key] = [];                          // Initialize array for new class
-                    }
-                    groupedFailures[key].push(test);                      // Add test to appropriate class group
-                  });
-
-                  // === Format grouped failures for display ===
-                  summaryText += '```\n';                                 // Start code block for formatting
-                  for (const [className, tests] of Object.entries(groupedFailures)) {
-                    summaryText += `${className}\n`;                      // Class name header
-                    // List all failed test methods in this class
-                    summaryText += tests.map(test => `- ${test.test}`).join('\n');
-                    summaryText += '\n\n';                                // Add spacing between classes
+                  if (flakyTests.length > 0) {
+                    summaryText += `\n⚠️ **Flaky Tests (${flakyTests.length})**\n\n`;
+                    summaryText += formatTestsByClass(flakyTests);
                   }
-                  summaryText += '```\n';                                 // End code block
+
+                  if (failedTests.length > 0) {
+                    summaryText += `\n📋 **Test Methods for Re-running Failed Tests**\n\n`;
+                    
+                    const mavenTestList = failedTests
+                      .map(test => {
+                        const simpleClassName = test.class.split('.').pop();
+                        return `${simpleClassName}#${test.test}`;
+                      })
+                      .join(',');
+                    
+                    summaryText += `\`\`\`\n${mavenTestList}\n\`\`\`\n`;
+                  }
+                  
+                  if (flakyTests.length > 0) {
+                    summaryText += `\n📋 **Test Methods for Re-running Flaky Tests**\n\n`;
+                    
+                    const flakyTestList = flakyTests
+                      .map(test => {
+                        const simpleClassName = test.class.split('.').pop();
+                        return `${simpleClassName}#${test.test}`;
+                      })
+                      .join(',');
+                    
+                    summaryText += `\`\`\`\n${flakyTestList}\n\`\`\`\n`;
+                  }
+                }
+
+                // === HELPER FUNCTION: group tests by class, sort by simple class name, and format as a markdown code block ===
+                function formatTestsByClass(tests) {
+                  const grouped = {};
+                  tests.forEach(test => {
+                    const key = test.class;
+                    if (!grouped[key]) {
+                      grouped[key] = [];
+                    }
+                    grouped[key].push(test);
+                  });
+                  
+                  const sorted = Object.entries(grouped).sort((a, b) => {
+                    const simpleA = a[0].split('.').pop();
+                    const simpleB = b[0].split('.').pop();
+                    return simpleA.localeCompare(simpleB);
+                  });
+                  
+                  let output = '```\n';
+                  for (const [className, classTests] of sorted) {
+                    const simpleClassName = className.split('.').pop();
+                    output += `${simpleClassName}\n`;
+                    output += classTests.map(t => `- ${t.test}`).join('\n');
+                    output += '\n\n';
+                  }
+                  output += '```\n';
+                  return output;
                 }
 
                 // === STEP 6: WRITE THE COMPLETE SUMMARY TO GITHUB =============================
@@ -599,8 +643,8 @@ jobs:
         - name: Report
           uses: dorny/test-reporter@v2.1.1
           with:
-            artifact: selenium-test-reports
+            artifact: artifacts
             name: Selenium tests
-            path: '*.xml'
+            path: 'surefire-reports/*.xml'
             reporter: java-junit
             only-summary: 'false'

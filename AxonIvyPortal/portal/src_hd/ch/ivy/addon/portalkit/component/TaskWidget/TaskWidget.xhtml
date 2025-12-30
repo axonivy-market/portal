@@ -139,7 +139,7 @@
             onDestroyComplete="PF('destroy-task-dialog').show()"
             onDelegateComplete="initDataToDelegate()" destroyTaskDialogComponent="#{cc.attrs.destroyTaskDialogComponent}"
             onEscalationComplete="PF('escalation-task-dialog').show()"
-            onWorkflowEventComplete="initWorkflowEventData()" onCustomFieldsDialogComplete="initCustomFieldListData()"
+            onWorkflowEventComplete="initWorkflowEventData()" onCustomFieldsDialogComplete="initCustomFieldTaskListData()"
             readOnly="#{cc.attrs.readOnly}"
             inFrame="#{cc.attrs.inFrame}">
             <cc:insertFacet name="taskHeader" />

@@ -174,6 +174,9 @@ ch.ivy.addon.portalkit.ui.jsf:
     Breadcrumb: Process Viewer of {0} process
     ProcessViewerText: Process Viewer
     Title: Process Viewer
+  SideStep:
+    NewSideStepMessage: New side step task is created.
+    SideStepProcess: Start parallel process
   TaskDocuments:
     TaskDocumentsPageTitle: Task Documents
   adminSettings:
@@ -438,6 +441,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     StringFormat:
       DateFromTo: '%s - %s'
       TextListOut: '%s, %s,..'
+      TextWithColon: '%s: %s'
       TextWithContextInBrackets: '%s (%s: %s)'
       TextWithRoundBracket: '%s (%s)'
     TaskCaseInformation: Task and Case Information
@@ -1068,6 +1072,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     notificationTitle: Notifications
     olderText: Older
     onlyUnread: Only unread
+    openNotifications: Open notifications
     todayText: Today
     xDaysAgo: '%s days ago'
     xHoursAgo: '%s hours ago'
@@ -1388,7 +1393,6 @@ Dialogs:
               PortalDashboardDetailModification:
                 CreateCustomStatistic: Create custom statistic widget
                 DeleteConfirm: Are you sure you want to delete?
-                Example: Example
                 RemoveThisStatistic: Remove this custom statistic
               component:
                 CustomDashboardWidget:
@@ -1461,43 +1465,43 @@ Dialogs:
             AccessibilityShortcuts:
               content: |-
                 <div class="ui-g">
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Alt + 1</span>Focus on to the Dashboard Tab
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Alt + 5</span>Focus on to the Search
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Alt + A</span>Focus on to the first Process
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Tab</span>Sequential tabbing through elements
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Alt + 2</span>Focus on to the Process Tab
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Alt + 6</span>Focus on to the User Settings
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Alt + W</span>Focus on to the first Task
                     </div>
-                    <div class="ui-g-3 shortcut-content">
+                    <div class="ui-g-3 shortcut-content" tabindex="1">
                         <span class="shortcut-key">Esc</span>Close expanded Widgets
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Alt + 3</span>Focus on to the Tasks Tab
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Alt + 7</span>Toggle the visibility of the main menu
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Alt + Q</span>Focus on to the first Case
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Enter</span>Confirm selection
                     </div>
-                    <div class="ui-g-3 shortcut-content ">
+                    <div class="ui-g-3 shortcut-content " tabindex="1">
                         <span class="shortcut-key">Alt + 4</span>Focus on to the Case Tab
                     </div>
                 </div>
@@ -1559,6 +1563,7 @@ Dialogs:
               ResetFilter: Reset filter
             filter:
               DashboardFilter:
+                HasCmsValuesEnabledTooltip: This field only allows to use Contains operator
                 SelectFilterField: Select Filter Field
               DateFilter:
                 SelectPeriod: Select period
@@ -1744,6 +1749,8 @@ Labels:
   AndMore: and {0} more...
   AppendTask-Explain: The task is added to the sequence after my task.
   AppendTheTask: Append the task
+  AssignToRole: Select assigned group
+  AssignToUser: Select assigned user
   Chat: Chat
   Collapse: Collapse
   Comma: ', '
@@ -1868,6 +1875,8 @@ Labels:
   SelectOperator: Select Operator
   SelectValues: Select values
   Share: Share
+  StepType: Step type
+  Submit: Submit
   Task: Task
   TaskItemDetail: Task Details
   TaskUser-Explain: Comma separated list of users

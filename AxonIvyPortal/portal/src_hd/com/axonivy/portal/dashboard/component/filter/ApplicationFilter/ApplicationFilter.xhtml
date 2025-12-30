@@ -39,7 +39,7 @@
       multiple="true" filter="true" filterMatchMode="contains"
       panelStyleClass="task-configuration__selectcheckboxmenu-panel"
       styleClass="task-configuration__selectcheckboxmenu" disabled="#{readOnly}" pt:aria-label="#{ivy.cms.co('/Labels/SelectValues')}">
-      <p:ajax event="change" update="application-list-panel" listener="#{widgetApplicationFilterBean.updateApplicationsString(cc.attrs.filter.values)}" />
+      <p:ajax event="change" update="applications-hidden" listener="#{widgetApplicationFilterBean.updateApplicationsString(cc.attrs.filter.values)}" />
       <f:param name="skipValidator" value="true" />
       <f:selectItems value="#{widgetApplicationFilterBean.applications}" var="app" itemValue="#{app}" itemLabel="#{app}" />
     </p:selectCheckboxMenu>

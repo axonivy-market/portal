@@ -3,22 +3,30 @@
 Demo Processes
 **************
 
-When you start the Axon Ivy Engine in demo mode, you will see **portal-user-examples**.
-In this project, we provide some simple examples.
-You can play with them to have the feeling how Axon Ivy and Portal work.
+The Axon Ivy Portal includes example processes to help you understand how Portal and Axon Ivy work together. 
+When you start the Engine in demo mode, the **portal-user-examples** project provides interactive examples 
+you can explore and test.
 
-.. hint:: 
-   You can use these accounts to log in to Portal in demo mode:
+Demo User Accounts
+==================
 
-  +---------------------+---------------------+-------------------------+
-  | Username            | Password            | Role                    |
-  +=====================+=====================+=========================+
-  | admin               | admin               | Portal admin            |
-  +---------------------+---------------------+-------------------------+
-  | demo                | demo                | Normal user             |
-  +---------------------+---------------------+-------------------------+
-  | guest               | guest               | Normal user             |
-  +---------------------+---------------------+-------------------------+
+Use these accounts to log in and test different user roles:
+
+.. table::
+   :widths: 30 30 40
+
+   +---------------------+---------------------+-------------------------+
+   | Username            | Password            | Role                    |
+   +=====================+=====================+=========================+
+   | **admin**           | admin               | Portal administrator    |
+   +---------------------+---------------------+-------------------------+
+   | **demo**            | demo                | Standard user           |
+   +---------------------+---------------------+-------------------------+
+   | **guest**           | guest               | Standard user           |
+   +---------------------+---------------------+-------------------------+
+
+Example Processes
+=================
 
 Leave Request
 -------------
@@ -84,6 +92,34 @@ Lending (Case Map)
    step: create a contract. Once the **Create Contract** task is finished,
    the case is Done. If we reject task, the case will end in status Rejected.
 
+Side step
+---------
+
+#. Login to Portal.
+
+#. Go to process list, select :guilabel:`Leave request with side step processes (task level)` or :guilabel:`Leave request with side step processes (case level)` to start a leave request.
+
+#. You will go directly to the first task **Create leave request for: <user>**.
+
+   |leave-request-creation|
+
+#. Input your data and submit your leave request. Based on your selected
+   approver, the next task will be assigned to that user.
+
+#. The second task is **Leave request approval**. You can start a side step task by selecting **Start parallel process** with the approval task. For more details about this concept, please refer to :ref:`side-step`
+
+   - With task level, each task will have different process list to select.
+   - With case level, all tasks will have same process list to select.
+   - The side step can be started asynchronously or synchronously by selecting **Step type**
+
+   |side-step-menu|
+
+   |side-step-config|
+
+#. After the requester finishes the side step tasks and open again the original task (the task which you start side step task from it), a **summary dialog** will be shown. This dialog will list out information about all relevant completed side step tasks.
+
+
+
 
 .. |example-overview-leave-request| image:: ../../screenshots/demo-processes/example-overview-leave-request.png
    :alt: Portal examples: Leave request example
@@ -99,3 +135,5 @@ Lending (Case Map)
    :alt: Portal examples: Lending case map - external solvency service
 .. |lending-casemap-approval-task| image:: ../../screenshots/demo-processes/lending-casemap-approval-task.png
    :alt: Portal examples: Lending casemap - approval task
+.. |side-step-menu| image:: ../../screenshots/side-step/side-step-menu.png
+.. |side-step-config| image:: ../../screenshots/side-step/side-step-config.png

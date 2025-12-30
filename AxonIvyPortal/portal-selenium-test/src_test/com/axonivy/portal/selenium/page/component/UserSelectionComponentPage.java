@@ -72,7 +72,7 @@ public class UserSelectionComponentPage extends TemplatePage {
   public void openSelectionPanelForAjaxEventUserSelectionComponent(String keyword) {
     $("input[id$='item-select-event-for-user-selection_input']").clear();
     $("input[id$='item-select-event-for-user-selection_input']").sendKeys(keyword);
-    $("span[id$='item-select-event-for-user-selection_panel']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    $("span[id$='item-select-event-for-user-selection_panel']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).hover();
   }
 
   private SelenideElement selectUserComponent(String componentId, String keyword) {

@@ -39,12 +39,12 @@ Please refer to :ref:`settings-virus-scanning-setting` for more details about vi
 Customize
 ^^^^^^^^^
 
-In your project, create four callable subprocesses with the information below to customize
+In your project, create callable subprocesses with the information below to customize
 the functions of the **Document Table**.
 
 .. tip::
 
-   You can refer to process ``CustomDocumentFeatures`` in project ``portal-component-examples``
+   You can refer to process ``CustomDocumentFeatures`` in project ``portal-components-examples``
    to examine how to customize.
 
 Get document list
@@ -54,24 +54,18 @@ To customize how **Document Table** gets documents, create a callable subprocess
 
 **Signature**: portalGetDocumentItems
 
-+------------------------+----------------------------------------------------------------------+
-| Name                   | Type                                                                 |
-+========================+======================================================================+
-| **Parameter**                                                                                 |
-+------------------------+----------------------------------------------------------------------+
-| businessCase           | ch.ivyteam.ivy.workflow.ICase                                        |
-+------------------------+----------------------------------------------------------------------+
-|**Result**                                                                                     |
-+------------------------+----------------------------------------------------------------------+
-| documents              | java.util.List<com.axonivy.portal.components.ivydata.bo.IvyDocument> |
-+------------------------+----------------------------------------------------------------------+
-| message                | java.lang.String                                                     |
-+------------------------+----------------------------------------------------------------------+
+**Parameters:**
 
-.. important::
+``businessCase`` (ch.ivyteam.ivy.workflow.ICase)
+   The case for which to retrieve documents.
 
-   After you get the document list from DMS, convert it into ``List<ch.ivy.addon.portal.component.ivydata.bo.IvyDocument>``
-   These fields are mandatory when mapping: ``id``, ``uuid``, ``name``, ``contentType``
+**Result:**
+
+``documents`` (java.util.List<com.axonivy.portal.components.ivydata.bo.IvyDocument>)
+   List of documents associated with the case. After retrieving documents from your DMS, convert them into this type with mandatory fields: ``id``, ``uuid``, ``name``, ``contentType``.
+
+``message`` (java.lang.String)
+   Status or error message from the document retrieval operation.
 
 Upload document
 ---------------
@@ -81,29 +75,33 @@ create a callable subprocess with:
 
 **Signature**: portalUploadDocumentItem
 
-+-----------------------------------------+-----------------------------------------------+---------------+
-| Name                                    | Type                                          | Note          |
-+=========================================+===============================================+===============+
-| **Parameter**                                                                                           |
-+-----------------------------------------+-----------------------------------------------+---------------+
-| businessCase                            | ch.ivyteam.ivy.workflow.ICase                 |               |
-+-----------------------------------------+-----------------------------------------------+---------------+
-| uploadedFile                            | org.primefaces.model.file.UploadedFile        |               |
-+-----------------------------------------+-----------------------------------------------+---------------+
-| enableScriptCheckingForUploadedDocument | java.lang.Boolean                             |               |
-+-----------------------------------------+-----------------------------------------------+---------------+
-| enableVirusScannerForUploadedDocument   | java.lang.Boolean                             |               |
-+-----------------------------------------+-----------------------------------------------+---------------+
-| allowedUploadFileTypes                  | java.lang.String                              |               |
-+-----------------------------------------+-----------------------------------------------+---------------+
-| **Result**                                                                                              |
-+-----------------------------------------+-----------------------------------------------+---------------+
-| uploadedDocument                        | ch.ivyteam.ivy.workflow.document.IDocument    |               |
-+-----------------------------------------+-----------------------------------------------+---------------+
-| message                                 | java.lang.String                              |               |
-+-----------------------------------------+-----------------------------------------------+---------------+
-| status                                  | java.lang.String                              | OK or FAIL    |
-+-----------------------------------------+-----------------------------------------------+---------------+
+**Parameters:**
+
+``businessCase`` (ch.ivyteam.ivy.workflow.ICase)
+   The case to upload the document to.
+
+``uploadedFile`` (org.primefaces.model.file.UploadedFile)
+   The file being uploaded by the user.
+
+``enableScriptCheckingForUploadedDocument`` (java.lang.Boolean)
+   Whether to check uploaded files for embedded scripts.
+
+``enableVirusScannerForUploadedDocument`` (java.lang.Boolean)
+   Whether to scan uploaded files for viruses.
+
+``allowedUploadFileTypes`` (java.lang.String)
+   Comma-separated list of allowed file extensions.
+
+**Result:**
+
+``uploadedDocument`` (ch.ivyteam.ivy.workflow.document.IDocument)
+   The uploaded document object.
+
+``message`` (java.lang.String)
+   Status or error message from the upload operation.
+
+``status`` (java.lang.String)
+   Operation status: OK or FAIL.
 
 Download document
 -----------------
@@ -113,19 +111,18 @@ create a callable subprocess with:
 
 **Signature**: portalDownloadDocumentItem
 
-+------------------------+------------------------------------------------------+
-| Name                   | Type                                                 |
-+========================+======================================================+
-| **Parameter**                                                                 |
-+------------------------+------------------------------------------------------+
-| businessCase           | ch.ivyteam.ivy.workflow.ICase                        |
-+------------------------+------------------------------------------------------+
-| document               | com.axonivy.portal.components.ivydata.bo.IvyDocument |
-+------------------------+------------------------------------------------------+
-|**Result**                                                                     |
-+------------------------+------------------------------------------------------+
-| streamedContent        | org.primefaces.model.StreamedContent                 |
-+------------------------+------------------------------------------------------+
+**Parameters:**
+
+``businessCase`` (ch.ivyteam.ivy.workflow.ICase)
+   The case containing the document.
+
+``document`` (com.axonivy.portal.components.ivydata.bo.IvyDocument)
+   The document to be downloaded.
+
+**Result:**
+
+``streamedContent`` (org.primefaces.model.StreamedContent)
+   The document content stream for download.
 
 Delete document
 ---------------
@@ -135,19 +132,18 @@ create a callable subprocess with:
 
 **Signature**: portalDeleteDocumentItem
 
-+------------------------+------------------------------------------------------+
-| Name                   | Type                                                 |
-+========================+======================================================+
-| **Parameter**                                                                 |
-+------------------------+------------------------------------------------------+
-| businessCase           | ch.ivyteam.ivy.workflow.ICase                        |
-+------------------------+------------------------------------------------------+
-| document               | com.axonivy.portal.components.ivydata.bo.IvyDocument |
-+------------------------+------------------------------------------------------+
-|**Result**                                                                     |
-+------------------------+------------------------------------------------------+
-| message                | java.lang.String                                     |
-+------------------------+------------------------------------------------------+
+**Parameters:**
+
+``businessCase`` (ch.ivyteam.ivy.workflow.ICase)
+   The case containing the document.
+
+``document`` (com.axonivy.portal.components.ivydata.bo.IvyDocument)
+   The document to be deleted.
+
+**Result:**
+
+``message`` (java.lang.String)
+   Status or error message from the delete operation.
 
 Rename document
 ---------------
@@ -157,34 +153,24 @@ create a callable subprocess with:
 
 **Signature**: portalRenameDocumentItem
 
-+------------------------+------------------------------------------------------+--------------------------------+
-| Name                   | Type                                                 | Note                           |
-+========================+======================================================+================================+
-| **Parameter**                                                                                                  |
-+------------------------+------------------------------------------------------+--------------------------------+
-| businessCase           | ch.ivyteam.ivy.workflow.ICase                        |                                |
-+------------------------+------------------------------------------------------+--------------------------------+
-| document               | com.axonivy.portal.components.ivydata.bo.IvyDocument |                                |
-+------------------------+------------------------------------------------------+--------------------------------+
-|**Result**                                                                                                      |
-+------------------------+------------------------------------------------------+--------------------------------+
-| message                | java.lang.String                                     |                                |
-+------------------------+------------------------------------------------------+--------------------------------+
-| isSuccess              | java.lang.Boolean                                    | rename successfully or not     |
-+------------------------+------------------------------------------------------+--------------------------------+
-| status                 | java.lang.String                                     | OK or SKIP                     |
-+------------------------+------------------------------------------------------+--------------------------------+
+**Parameters:**
 
+``businessCase`` (ch.ivyteam.ivy.workflow.ICase)
+   The case containing the document.
 
-The parameters of the callable subprocess data contain the Ivy ``document`` to update, the new filename
-should be already modified in the document's name attribute.
+``document`` (com.axonivy.portal.components.ivydata.bo.IvyDocument)
+   The document to be renamed. The new filename should already be modified in the document's name attribute.
 
-Portal will call subprocesses with the above details in the same security context and then
-get result where:
+**Result:**
 
-   - ``message``: the message to inform the user that their new filename is successfully updated or invalid to use.
-   - ``isSuccess``: ``true`` if the document's name is successfully updated, otherwise ``false``.
-   - ``status``: ``SKIP`` if customized process skipped updating the filename.
+``message`` (java.lang.String)
+   Message to inform the user that their new filename is successfully updated or invalid to use.
+
+``isSuccess`` (java.lang.Boolean)
+   ``true`` if the document's name is successfully updated, otherwise ``false``.
+
+``status`` (java.lang.String)
+   Operation status: OK or SKIP (if customized process skipped updating the filename).
 
 User interface
 --------------
@@ -284,11 +270,15 @@ Migrate to 10.0.0
 Release Notes
 ^^^^^^^^^^^^^
 
-Changes in 13.2.0
+Changes in 12.0.9
 -----------------
 
 - Introduced **Renaming Document** feature for Document Table component. Follow instructions in :ref:`Customize <components-portal-components-migrate-from-old-document-table>` section to create a callable subprocess to customize the renaming behavior if needed.
-- Enhanced the document preview feature for the task and case detail. If you have DocFactory in the same security context, you can preview Word(doc, docx), Excel(xls, xlsx) and email(eml) documents.
+- Enhanced the document preview feature for the task and case detail. If you have `DocFactory <https://market.axonivy.com/doc-factory#tab-description>`_ in the same security context, you can preview Word(doc, docx), Excel(xls, xlsx) and email(eml) documents.
+
+Changes in 12.0.11
+------------------
+
 - Added lazy loading functionality to the Document Table component, enabling efficient data loading through pagination.
 
 .. |document-table| image:: ../../screenshots/components/document-table.png

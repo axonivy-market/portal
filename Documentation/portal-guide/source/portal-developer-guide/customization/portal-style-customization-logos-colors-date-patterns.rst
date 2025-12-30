@@ -3,6 +3,12 @@
 Portal Styles Customization (Logos, Colors, Date Patterns)
 ==========================================================
 
+Introduction
+------------
+
+Customize Portal's visual appearance to match your corporate identity by configuring logos, colors, and date formats.
+Portal uses CSS variables for upgrade-safe theming and supports Axon Ivy's engine branding system for logo management.
+
 .. _customization-portal-logos-and-colors-change-portal-logos:
 
 Change Logos in Portal
@@ -89,15 +95,15 @@ Below is the list of some Portal elements which are using customizable colors:
 
 You can customize the Portal styles in ``custom.css``.
 
-   For example, to edit the ``--first-header-bar`` you need to insert this for example in the ``custom.css``:
+    For example, to edit the ``--first-header-bar`` you need to insert this for example in the ``custom.css``:
 
-   .. code-block:: css
-
-      body .first-header-bar {
-         width: 60%;
-         background-color: #1ea2b1;
-      }
-   ..
+    .. code-block:: css
+ 
+       body .first-header-bar {
+          width: 60%;
+          background-color: #1ea2b1;
+       }
+    ..
 
 .. tip::
    - As the size measure unit for ``font-size``, the Portal uses ``rem``. 
@@ -111,7 +117,7 @@ You can customize the Portal styles in ``custom.css``.
    :doc-url:`/designer-guide/how-to/overrides.html?#override-new-wizard`
 
 .. warning::
-   - Do not change ``font-family`` property values.
+   - Do not modify component-level ``font-family`` declarations directly. Instead, set ``--portal-font-family`` in ``:root`` within ``custom.css``.
 
 .. |css_variable| raw:: html
 

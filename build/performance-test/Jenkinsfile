@@ -37,7 +37,7 @@ pipeline {
             utils.updatePortalDependenciesAsRangeVersion()
             def engineUrl = 'http://' + utils.getJenkinsMasterDomain() + ':9000'
             for (module in modules) {
-              maven cmd: "clean install -P-ivy -f ${module}/pom.xml"
+              maven cmd: "clean install -f ${module}/pom.xml"
               maven cmd: "com.axonivy.ivy.ci:project-build-plugin:${buildPluginVersion}:deploy-to-engine -f ${module}/pom.xml -Divy.deploy.server.id=engine-cockpit -Divy.deploy.engine.app=Portal -Divy.deploy.method=HTTP -Divy.deploy.engine.url=${engineUrl} -Divy.test.engine=MODIFY_EXISTING -Divy.deploy.target.version=RELEASED"
             }
           }
@@ -103,6 +103,6 @@ def executeJMeter(resultFileName) {
         -v ${WORKSPACE}/${jmeterSourceDir}:${binDir}/portal-jmeter
         -v ${resultDir}:${binDir}/result
       """) {
-    sh "${binDir}/jmeter -Jjmeter.save.saveservice.subresults=false -n -t ${binDir}/portal-jmeter/portal_walkthrough_testplan.jmx -l ${binDir}/result/${resultFileName}"
+    sh "${binDir}/jmeter -Jjmeter.save.saveservice.subresults=false -n -t ${binDir}/portal-jmeter/portal_walkthrough_testplan.jmx -q ${binDir}/portal-jmeter/test.properties -l ${binDir}/result/${resultFileName}"
   }
 }

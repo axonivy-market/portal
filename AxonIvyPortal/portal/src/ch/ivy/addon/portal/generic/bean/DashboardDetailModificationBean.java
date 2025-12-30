@@ -28,6 +28,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
@@ -55,7 +56,6 @@ import com.axonivy.portal.service.StatisticService;
 import com.axonivy.portal.util.DashboardCloneUtils;
 import com.axonivy.portal.util.ImageUploadUtils;
 import com.axonivy.portal.util.WelcomeWidgetUtils;
-import com.google.common.base.Predicate;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.bean.DashboardProcessBean;
@@ -128,7 +128,6 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   private Optional<DashboardTemplate> foundTemplate;
   private List<DashboardProcess> customWidgets;
   private List<Statistic> statisticWidgets;
-  private List<Statistic> statisticExampleWidgets;
 
   // Clone widget function
   private Dashboard cloneFromDashboard;
@@ -157,7 +156,6 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     }
     initCustomWidgets();
     initStatisticWidgets();
-    statisticExampleWidgets = StatisticService.getExternalStatistics();
   }
 
   protected void initStatisticWidgets() {
@@ -1139,13 +1137,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   public void setStatisticWidgets(List<Statistic> statisticWidgets) {
     this.statisticWidgets = statisticWidgets;
   }
-
-  public List<Statistic> getStatisticExampleWidgets() { return statisticExampleWidgets; }
-
-  public void setStatisticExampleWidgets(List<Statistic> statisticExampleWidgets) {
-    this.statisticExampleWidgets = statisticExampleWidgets;
-  }
-
+  
   public boolean canEnableQuickSearch() {
     return Optional.ofNullable(this.widget).map(DashboardWidget::getType)
         .map(DashboardWidgetType::canEnableQuickSearch)

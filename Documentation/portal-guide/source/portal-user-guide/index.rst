@@ -1,6 +1,9 @@
 User Guide
 **********
 
+How to use the Portal features as an end user. Explore dashboards, lists,
+notifications, profile settings, and accessibility options.
+
 .. toctree::
    :maxdepth: 2
    :caption: Portal User Guide

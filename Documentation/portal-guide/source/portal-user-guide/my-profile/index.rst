@@ -21,14 +21,8 @@ Process list configuration
 This section has available options which help you to configure your Process list.
 These are options you can modify:
 
-.. table::
-
-   +-----------------------+-----------------------------------------------+
-   | Option                | Description                                   |
-   +=======================+===============================================+
-   | Default view mode     | Standard view mode when you open the process  |
-   |                       | list.                                         |
-   +-----------------------+-----------------------------------------------+
+**Default view mode**
+   Standard view mode when you open the process list.
 
 Portal will use the default value defined by the administrator if you don't select an option.  
 
@@ -40,13 +34,8 @@ Task list configuration
 This section has available options which help you to configure your Task list.
 These are options you can modify:
 
-.. table::
-
-   +---------------------------+---------------------------------+
-   | Option                    | Description                     |
-   +===========================+=================================+
-   | Unpin all pinned tasks    | Unpin all of your pinned tasks  |
-   +---------------------------+---------------------------------+
+**Unpin all pinned tasks (If enabled)**
+   Unpin all of your pinned tasks
 
 .. _case-list-configuration:
 
@@ -56,13 +45,8 @@ Case list configuration
 This section has available options which help you to configure your Case list.
 These are options you can modify:
 
-.. table::
-
-   +---------------------------+---------------------------------+
-   | Option                    | Description                     |
-   +===========================+=================================+
-   | Unpin all pinned cases    | Unpin all of your pinned cases  |
-   +---------------------------+---------------------------------+
+**Unpin all pinned cases (If enabled)**
+   Unpin all of your pinned cases
 
 
 .. _accessibility-settings:
@@ -73,13 +57,8 @@ Accessibility settings
 Accessibility settings help you customize your experience to meet your specific
 needs. These are options you can modify:
 
-.. table::
-
-   +-----------------------------------+-----------------------------------------------------+
-   | Option                            | Description                                         |
-   +===================================+=====================================================+
-   | Keyboard shortcuts for navigation | Enable or disable keyboard shortcuts for navigation |
-   +-----------------------------------+-----------------------------------------------------+
+**Keyboard shortcuts for navigation**
+   Enable or disable keyboard shortcuts for navigation
 
 .. _language-settings:
 
