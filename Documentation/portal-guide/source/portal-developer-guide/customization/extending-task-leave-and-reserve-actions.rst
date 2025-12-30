@@ -7,53 +7,47 @@ The Portal provides a feature to execute custom logic when a user leaves or rese
 
 This custom logic runs just before the leave or reserve action is completed. The primary trigger points are:
    
-   - Clicking **Leave** or **Reserve** in the "unsaved changes" warning dialog.
-   - Clicking the **Reserve** button in the task action menu.
+   - Clicking **leave** or **reserve** in the unsaved changes warning dialog when leaving a task.
+   - Clicking the **reserve** button in the task action menu.
 
 Common use cases for this feature include:
    
    - Logging specific details about when a task is left or reserved.
    - Updating custom fields or performing data validation.
 
-Extend logic on leaving a task
-------------------------------
+1. To execute logic on task **leave** action, you create a callable subprocess with
 
-Create a callable subprocess with
+   **Signature**: portalExtendTaskLeave
 
-**Signature**: portalExtendTaskLeave
+   +--------------------+-----------------------------------------------------------+---------------+
+   | Name               | Type                                                      | Note          |
+   +====================+===========================================================+===============+
+   | **Parameter**                                                                                  |
+   +--------------------+-----------------------------------------------------------+---------------+
+   | workingTask        | ch.ivyteam.ivy.workflow.ITask                             |               |
+   +--------------------+-----------------------------------------------------------+---------------+
 
-+--------------------+-----------------------------------------------------------+---------------+
-| Name               | Type                                                      | Note          |
-+====================+===========================================================+===============+
-| **Parameter**                                                                                  |
-+--------------------+-----------------------------------------------------------+---------------+
-| workingTask        | ch.ivyteam.ivy.workflow.ITask                             |               |
-+--------------------+-----------------------------------------------------------+---------------+
+   |portal-extend-task-leave|
 
-|portal-extend-task-leave|
+   The parameter of the callable subprocess is the current ``workingTask``.
+   Implement your custom logic in this callable subprocess.
 
-The parameter of the callable subprocess is the current ``workingTask``.
-Implement your custom logic in this callable subprocess.
+2. To execute logic on task **reserve** action, you create a callable subprocess with
 
-Extend logic on reserving a task
----------------------------------
+   **Signature**: portalExtendTaskReserve
 
-Create a callable subprocess with
+   +--------------------+-----------------------------------------------------------+---------------+
+   | Name               | Type                                                      | Note          |
+   +====================+===========================================================+===============+
+   | **Parameter**                                                                                  |
+   +--------------------+-----------------------------------------------------------+---------------+
+   | workingTask        | ch.ivyteam.ivy.workflow.ITask                             |               |
+   +--------------------+-----------------------------------------------------------+---------------+
 
-**Signature**: portalExtendTaskReserve
+   |portal-extend-task-reserve|
 
-+--------------------+-----------------------------------------------------------+---------------+
-| Name               | Type                                                      | Note          |
-+====================+===========================================================+===============+
-| **Parameter**                                                                                  |
-+--------------------+-----------------------------------------------------------+---------------+
-| workingTask        | ch.ivyteam.ivy.workflow.ITask                             |               |
-+--------------------+-----------------------------------------------------------+---------------+
-
-|portal-extend-task-reserve|
-
-The parameter of the callable subprocess is the current ``workingTask``.
-Implement your custom logic in this callable subprocess.
+   The parameter of the callable subprocess is the current ``workingTask``.
+   Implement your custom logic in this callable subprocess.
 
 There is an example implementation in the project ``portal-developer-examples`` under the process name
 ``CustomExtendTaskLeave``. 
