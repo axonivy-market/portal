@@ -490,16 +490,16 @@
       "value" : "About Axon Ivy Portal"
     }, {
       "locale" : "fr",
-      "value" : "Documentation"
+      "value" : "À propos du portail Axon Ivy"
     }, {
       "locale" : "de",
-      "value" : "Documentation"
+      "value" : "Über das Axon Ivy Portal"
     }, {
       "locale" : "ja",
-      "value" : "Documentation"
+      "value" : "Axon Ivy ポータルについて"
     }, {
       "locale" : "es",
-      "value" : "Documentation"
+      "value" : "Acerca del Portal Axon Ivy"
     } ],
     "layout" : {
       "w" : 12,
