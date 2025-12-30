@@ -1,5 +1,5 @@
 [ {
-"id" : "87c815fc1817445792a94dd30004d483",
+  "id" : "87c815fc1817445792a94dd30004d483",
   "version" : "13.2.0",
   "templateId" : "create-from-scratch",
   "titles" : [ {
@@ -350,7 +350,7 @@
   "permissions" : [ "Everybody" ],
   "dashboardDisplayType" : "top_menu"
 }, {
-  "id" : "87c815fc1817445792a94dd30004d483",
+  "id" : "default-user-guide-dashboard",
   "version" : "13.2.0",
   "templateId" : "create-from-scratch",
   "titles" : [ {
@@ -550,13 +550,14 @@
       "width" : "100"
     }, {
       "field" : "application",
+      "styleClass" : "dashboard-tasks__priority text-center",
       "quickSearch" : false
     }, {
       "field" : "actions",
       "width" : "100"
     } ],
-    "sortDescending" : true,
-    "sortField" : "ID"
+    "sortField" : "ID",
+    "sortDescending" : true
   }, {
     "type" : "custom",
     "id" : "custom_e0861bc1bfe247a988e033bd57909719",
@@ -663,14 +664,14 @@
       "quickSearch" : false
     }, {
       "field" : "application",
+      "styleClass" : "dashboard-tasks__priority text-center widget-column",
       "quickSearch" : false
     }, {
       "field" : "actions"
     } ],
     "canWorkOn" : false,
-    "sortDescending" : true,
     "sortField" : "ID",
-    "filterTasksByCurrentCaseOwner" : false
+    "sortDescending" : true
   }, {
     "type" : "custom",
     "id" : "custom_1babc4cdc40a40f5b1415f17f4320884",
