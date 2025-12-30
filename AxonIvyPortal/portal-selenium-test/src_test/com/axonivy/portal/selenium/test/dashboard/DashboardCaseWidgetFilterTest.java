@@ -2,6 +2,7 @@ package com.axonivy.portal.selenium.test.dashboard;
 
 import static com.axonivy.portal.selenium.common.WaitHelper.SHORT_TIMEOUT;
 import static com.codeborne.selenide.CollectionCondition.size;
+import static com.codeborne.selenide.Selenide.$$;
 
 import java.util.List;
 
@@ -22,7 +23,6 @@ import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
-import com.codeborne.selenide.Selenide;
 
 @IvyWebTest
 public class DashboardCaseWidgetFilterTest extends BaseTest {
@@ -189,12 +189,12 @@ public class DashboardCaseWidgetFilterTest extends BaseTest {
     caseWidget.scrollToCaseWidget();
 
     String caseItemSelector = ".dashboard-cases__name";
-    int numberOfCases = Selenide.$$(caseItemSelector).size();
+    int numberOfCases = $$(caseItemSelector).size();
     caseWidget.destroyCase(0);
-    Selenide.$$(caseItemSelector).shouldHave(size(numberOfCases - 1), SHORT_TIMEOUT);
+    $$(caseItemSelector).shouldHave(size(numberOfCases - 1), SHORT_TIMEOUT);
     caseWidget.scrollToCaseWidget();
     caseWidget.destroyCase(1);
-    Selenide.$$(caseItemSelector).shouldHave(size(numberOfCases - 2), SHORT_TIMEOUT);
+    $$(caseItemSelector).shouldHave(size(numberOfCases - 2), SHORT_TIMEOUT);
     caseWidget.openFilterWidget();
     caseWidget.addFilter("Name", null);
     caseWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "TestCase");
