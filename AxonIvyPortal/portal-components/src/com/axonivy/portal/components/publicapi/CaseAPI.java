@@ -9,26 +9,23 @@ import ch.ivyteam.ivy.workflow.ICase;
  *
  */
 public final class CaseAPI {
-	private CaseAPI() {
-	}
+  private CaseAPI() {}
 
-	/**
-	 * Set the "HIDE" additional property to the given case to hide it in case list
-	 * of Portal.
-	 * 
-	 * @param iCase target case
-	 */
-	public static void setHidePropertyToHideInPortal(ICase iCase) {
-		iCase.customFields().stringField(AdditionalProperty.HIDE.toString()).set(AdditionalProperty.HIDE.toString());
-	}
+  /**
+   * Set the "HIDE" additional property to the given case to hide it in case list of Portal.
+   * 
+   * @param iCase target case
+   */
+  public static void setHidePropertyToHideInPortal(ICase iCase) {
+    iCase.customFields().stringField(AdditionalProperty.HIDE.toString()).set(AdditionalProperty.HIDE.toString());
+  }
 
-	/**
-	 * Remove the "HIDE" additional property to the given case to display it in case
-	 * list of Portal.
-	 * 
-	 * @param iCase target case
-	 */
-	public static void removeHidePropertyToDisplayInPortal(ICase iCase) {
-		iCase.customFields().stringField(AdditionalProperty.HIDE.toString()).set(null);
-	}
+  /**
+   * Remove the "HIDE" additional property to the given case to display it in case list of Portal.
+   * 
+   * @param iCase target case
+   */
+  public static void removeHidePropertyToDisplayInPortal(ICase iCase) {
+    iCase.customFields().stringField(AdditionalProperty.HIDE.toString()).set(null);
+  }
 }

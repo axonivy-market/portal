@@ -3,7 +3,7 @@ package com.axonivy.portal.components.publicapi;
 import com.axonivy.portal.components.service.DateTimeGlobalSettingService;
 
 /**
- * Portal API for date time pattern settings
+ * Portal API for date time pattern
  *
  */
 public final class PortalDateTimeAPI {
