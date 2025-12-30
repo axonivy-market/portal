@@ -1,5 +1,8 @@
 package com.axonivy.portal.selenium.test.task;
 
+import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Selenide.$;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
@@ -98,6 +101,7 @@ public class TaskTemplateIFrameTest extends BaseTest {
     taskWidget.addFilter("Name", FilterOperator.CONTAINS);
     taskWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "Approve Investment");
     taskWidget.applyFilter();
+    $(".widget__filter-noti-number").shouldHave(text("1"));
     TaskIFrameTemplatePage taskTemplatePage2 = taskWidget.startTaskIFrameByIndex(0);
     NewDashboardPage taskWidgetPage2 = taskTemplatePage2.finishIFrameReviewTask();
     WaitHelper.assertTrueWithWait(() -> taskWidgetPage2
