@@ -12,24 +12,22 @@ public final class PortalDateTimeAPI {
   
   /**
    * Get the date pattern based on the variable Portal.DateTimeFormat.HideYear. 
-   * If it is true, the year part will be removed from the date pattern.
+   * If it is true, the year part will be removed.
    * 
    * @return date pattern string
    */
-  public static String getShortDatePattern() {
+  public static String getDatePattern() {
     return DateTimeGlobalSettingService.getInstance().getDatePatternForDatePicker();
   }
   
   /**
-   * Get the date time pattern for filtering based on the following variables:
-   * - Portal.DateTimeFormat.HideYear: If true, the year part will be removed from the pattern.
+   * Get the date time pattern based on the following variables:
+   * - Portal.DateTimeFormat.HideYear: If true, the year part will be excluded.
    * - Portal.DateTimeFormat.HideTime: If true, the time part will be excluded.
-   * - Portal.DateTimeFormat.DateFilterWithTime: If true, the time part will be included.
    * 
-   * @param isDateFilter - true if this is for date filter
    * @return date time pattern string
    */
-  public static String getShortDateTimePattern(boolean isDateFilter) {
-    return DateTimeGlobalSettingService.getInstance().getDateTimePatternForDatePicker(isDateFilter);
+  public static String getDateTimePattern() {
+    return DateTimeGlobalSettingService.getInstance().getDateTimePatternForDatePicker(false);
   }
 }
