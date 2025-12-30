@@ -55,27 +55,6 @@
     <testSourceDirectory>${basedir}/src_test/</testSourceDirectory>
     <plugins>
       <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-surefire-plugin</artifactId>
-        <configuration>
-          <testFailureIgnore>true</testFailureIgnore>
-          <rerunFailingTestsCount>2</rerunFailingTestsCount>
-          <argLine>
-            -Dtest.engine.url=${test.engine.url}
-            -Dtest.engine.app=demo-portal
-          </argLine>
-        </configuration>
-        <executions>
-          <execution>
-            <id>selenium.web.tests</id>
-            <phase>test</phase>
-            <goals>
-              <goal>test</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
         <groupId>com.axonivy.ivy.ci</groupId>
         <artifactId>project-build-plugin</artifactId>
         <extensions>true</extensions>
@@ -93,6 +72,34 @@
               <goal>stop-test-engine</goal>
             </goals>
             <phase>test</phase>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <configuration>
+          <testFailureIgnore>true</testFailureIgnore>
+          <rerunFailingTestsCount>2</rerunFailingTestsCount>
+          <argLine>
+            -Dtest.engine.url=${test.engine.url}
+            -Dtest.engine.app=demo-portal
+          </argLine>
+        </configuration>
+        <executions>
+          <execution>
+            <id>selenium.web.tests</id>
+            <phase>post-integration-test</phase>
+            <goals>
+              <goal>test</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>default-pack-iar</id>
+            <goals>
+              <goal>pack-iar</goal>
+            </goals>
+            <phase>none</phase>
           </execution>
         </executions>
       </plugin>
