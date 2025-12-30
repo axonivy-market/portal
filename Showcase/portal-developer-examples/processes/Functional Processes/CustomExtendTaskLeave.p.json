@@ -41,7 +41,7 @@
         "output" : {
           "code" : [
             "import ch.ivyteam.ivy.security.IUser;",
-            "if (\"CreateInvestment\".equals(in.workingTask.getCategoryPath())) {",
+            "if (\"CreateStockInvestment\".equals(in.workingTask.getCategoryPath())) {",
             "  in.workingTask.getCase().notes().add().content(String.format(\"%s has left the task recently\",ivy.session.getSessionUserName())).execute();",
             "}"
           ]
@@ -79,7 +79,7 @@
       "id" : "f10",
       "type" : "ProcessAnnotation",
       "name" : [
-        "These processes define the additional logic triggered when a user selects 'Leave' or 'Reserve' from the exit warning dialog.",
+        "These processes define the additional logic triggered when a user selects 'Leave' or 'Reserve' from the exit warning dialog or clicks on 'Reserve' button in the task action menu.",
         "",
         "portalExtendTaskLeave: Triggered upon clicking 'Leave'.",
         "portalExtendTaskReserve: Triggered upon clicking 'Reserve'."
@@ -102,7 +102,7 @@
       "config" : {
         "output" : {
           "code" : [
-            "if (\"CreateInvestment\".equals(in.workingTask.getCategoryPath())) {",
+            "if (\"CreateStockInvestment\".equals(in.workingTask.getCategoryPath())) {",
             "  int reserveCount = in.workingTask.customFields().numberField(\"reserveTask\").getOrDefault(0);",
             "  reserveCount++;",
             "  in.workingTask.customFields().numberField(\"reserveTask\").set(reserveCount);",
@@ -112,7 +112,7 @@
         "sudo" : true
       },
       "visual" : {
-        "at" : { "x" : 322, "y" : 190 },
+        "at" : { "x" : 320, "y" : 191 },
         "size" : { "width" : 188, "height" : 67 }
       },
       "connect" : [

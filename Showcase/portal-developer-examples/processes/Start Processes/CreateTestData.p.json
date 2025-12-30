@@ -2029,25 +2029,13 @@
         "at" : { "x" : 40, "y" : 2640 }
       },
       "connect" : [
-        { "id" : "f134", "to" : "f135", "var" : "in1" }
-      ]
-    }, {
-      "id" : "f129",
-      "type" : "DialogCall",
-      "config" : {
-        "dialog" : "com.axonivy.portal.developerexamples.testdata.CreateInvestment:startCreateStockInvestment()"
-      },
-      "visual" : {
-        "at" : { "x" : 368, "y" : 2640 }
-      },
-      "connect" : [
-        { "id" : "f132", "to" : "f131" }
+        { "id" : "f129", "to" : "f137" }
       ]
     }, {
       "id" : "f131",
       "type" : "TaskEnd",
       "visual" : {
-        "at" : { "x" : 536, "y" : 2640 },
+        "at" : { "x" : 344, "y" : 2640 },
         "labelOffset" : { "x" : 13, "y" : 33 }
       }
     }, {
@@ -2075,21 +2063,20 @@
         "labelOffset" : { "x" : 14, "y" : 0 }
       }
     }, {
-      "id" : "f135",
-      "type" : "TaskSwitchGateway",
+      "id" : "f137",
+      "type" : "UserTask",
       "config" : {
-        "tasks" : [ {
-            "id" : "TaskA",
-            "name" : "Create stock investment",
-            "category" : "CreateInvestment"
-          } ]
+        "dialog" : "com.axonivy.portal.developerexamples.testdata.CreateInvestment:start()",
+        "task" : {
+          "name" : "Create stock investment",
+          "category" : "CreateStockInvestment"
+        }
       },
       "visual" : {
-        "at" : { "x" : 176, "y" : 2640 },
-        "labelOffset" : { "x" : 14, "y" : 34 }
+        "at" : { "x" : 192, "y" : 2640 }
       },
       "connect" : [
-        { "id" : "f136", "to" : "f129", "color" : "default", "condition" : "ivp==\"TaskA.ivp\"" }
+        { "id" : "f132", "to" : "f131" }
       ]
     } ]
 }
