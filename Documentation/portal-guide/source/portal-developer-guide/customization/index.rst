@@ -27,4 +27,4 @@ arftifact, or import them into your designer under ``Ivy Projects``.
    process-image
    process-information
    side-step
-   execute-customized-logic-on-leaving-task
+   extending-task-leave-and-reserve-actions
