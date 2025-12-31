@@ -227,7 +227,7 @@
     </p:tabView>
   <!-- APPLICATION DIALOG-->
   <p:dialog header="#{thirdPartyApplicationBean.dialogTitle}" id="appDialog" onShow="$('body').css({overflow:'hidden'})"
-    styleClass="app-dialog" onHide="PF('cancelButton').jq.click(); $('body').css({overflow:'inherit'})" widgetVar="appDialog" dynamic="true"
+    styleClass="app-dialog dialog-responsive" onHide="PF('cancelButton').jq.click(); $('body').css({overflow:'inherit'})" widgetVar="appDialog" dynamic="true"
     modal="true" resizable="false" appendTo="@(body)" closeOnEscape="true" width="500px" height="auto"
     responsive="true" fitViewport="true" position="center center" >
     <h:form prependId="false" id="appDialogForm">
