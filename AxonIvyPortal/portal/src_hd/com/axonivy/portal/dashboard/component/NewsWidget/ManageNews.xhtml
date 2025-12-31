@@ -4,8 +4,8 @@
   xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
   xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
-<p:dialog id="manage-news-dialog" widgetVar="manage-news-dialog" dynamic="true" fitViewport="true" responsive="true"
-  styleClass="manage-news-dialog" appendTo="@(body)" modal="true" resizable="false" width="700"
+<p:dialog id="manage-news-dialog" widgetVar="manage-news-dialog" dynamic="true" width="700" fitViewport="true" responsive="true"
+  styleClass="manage-news-dialog dialog-responsive" appendTo="@(body)" modal="true" resizable="false"
   onShow="PF('manage-news-dialog').initPosition()" rendered="#{newsWidgetBean.canManageNews and isReadOnlyMode}">
   <f:facet name="header">
     <h:outputText value="#{newsWidgetBean.manageNewsDialogTitle}" />

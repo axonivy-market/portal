@@ -176,7 +176,8 @@
                 <p:graphicImage id="editing-external-link-preview-image"
                   rendered="#{not empty processWidgetBean.editedExternalLink.imageLocation}"
                   styleClass="external-link-preview-image" library="ivy-cms"
-                  name="#{processWidgetBean.editedExternalLink.imageLocation}" />
+                  name="#{processWidgetBean.editedExternalLink.imageLocation}"
+                  alt="#{processWidgetBean.editedExternalLink.name}" />
               </p:outputPanel>
             <h:panelGroup
               class="external-link-preview-image-overlay-panel"
@@ -380,7 +381,8 @@
             <p:graphicImage id="external-link-preview-image"
                rendered="#{not empty externalLinkBean.externalLink.imageLocation}"
                styleClass="external-link-preview-image" library="ivy-cms"
-               name="#{externalLinkBean.externalLink.imageLocation}" />
+               name="#{externalLinkBean.externalLink.imageLocation}"
+               alt="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/externalLinkImage')}" />
         </p:outputPanel>
 
         <h:panelGroup class="external-link-preview-image-overlay-panel"

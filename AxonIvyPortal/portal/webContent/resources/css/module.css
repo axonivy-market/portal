@@ -3939,6 +3939,7 @@ width:320px;
 .ui-inputfield.search-icon-input {
   display: block;
   width: 300px;
+  max-width: 100%;
 }
 
 .search-icon-input::-ms-clear {
@@ -5702,11 +5703,6 @@ a.dashboard-action-container label {
 
 .role-details-header {
   font-size: large;
-}
-
-.role-details-dialog {
-  min-width: 450px;
-  max-width: 750px;
 }
 
 .role-tree-table-header,
