@@ -59,7 +59,7 @@ public class ExtendingLogicOnTaskLeaveAndReserveActionsTest extends BaseTest {
     dialogPage.reserveTask();
     login(TestAccount.ADMIN_USER);
     NavigationHelper.navigateToTaskList();
-    taskWidget.clickOnCustomFieldsActionOfTask(0);
+    taskWidget.clickCustomFieldsButtonOnActions(0);
     assertTrue(taskWidget.isCustomFieldsDialogDisplayed());
     List<String> taskCustomFieldNames = taskWidget.getCustomFieldNamesOnTaskCustomFieldsDialog();
     List<String> taskCustomFieldValues = taskWidget.getCustomFieldValuesOnTaskCustomFieldsDialog();
@@ -78,7 +78,7 @@ public class ExtendingLogicOnTaskLeaveAndReserveActionsTest extends BaseTest {
     menu.openTaskList();
     TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
     taskWidget.reserveTask(0);
-    taskWidget.clickOnCustomFieldsActionOfTask(0);
+    taskWidget.clickCustomFieldsButtonOnActions(0);
     List<String> taskCustomFieldNames = taskWidget.getCustomFieldNamesOnTaskCustomFieldsDialog();
     List<String> taskCustomFieldValues = taskWidget.getCustomFieldValuesOnTaskCustomFieldsDialog();
     assertFalse(taskCustomFieldNames.isEmpty());

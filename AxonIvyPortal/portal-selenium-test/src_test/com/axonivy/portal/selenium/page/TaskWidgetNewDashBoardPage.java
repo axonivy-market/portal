@@ -320,7 +320,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
     getActiveTaskActions(taskIndex).filter(text("Reserve")).first().shouldBe(getClickableCondition()).click();
   }
   
-  public void clickOnCustomFieldsActionOfTask(int taskIndex) {
+  public void clickCustomFieldsButtonOnActions(int taskIndex) {
     getActiveTaskActions(taskIndex).filter(text("Custom Fields")).first().shouldBe(getClickableCondition()).click();
     getCustomFieldsPanelOfTask().shouldBe(appear);
   }

@@ -50,10 +50,13 @@ Common use cases for this feature include:
    Implement your custom logic in this callable subprocess.
 
 There is an example implementation in the project ``portal-developer-examples`` under the process name
-``CustomExtendTaskLeave``. 
+``CustomExtendTaskLeave``.
+
 There are 2 simple callable subprocesses:
+
    - The first one is for extending logic on leaving a task. It checks the category of the task, if it is ``CreateStockInvestment``, it creates a note indicating who has left the task.
    - The second one is for extending logic on reserving a task. It checks the category of the task, if it is ``CreateStockInvestment``, it updates a custom field ``reserveTask`` to count how many times the task has been reserved.
+
 To see how it works, run the process ``portal-developer-examples: Start Processes/CreateTestData:createStockInvestment()``, start the created task ``Create stock investment``, then leave the task with unsaved changes and click on the **leave** or **reserve** button.
 
 .. hint::
@@ -67,5 +70,5 @@ To see how it works, run the process ``portal-developer-examples: Start Processe
 
 
 
-.. |portal-extend-task-leave| image:: images/execute-customized-logic-on-leaving-task/portal-extend-task-leave.png
-.. |portal-extend-task-reserve| image:: images/execute-customized-logic-on-leaving-task/portal-extend-task-reserve.png
+.. |portal-extend-task-leave| image:: images/extending-task-leave-and-reserve-actions/portal-extend-task-leave.png
+.. |portal-extend-task-reserve| image:: images/extending-task-leave-and-reserve-actions/portal-extend-task-reserve.png
