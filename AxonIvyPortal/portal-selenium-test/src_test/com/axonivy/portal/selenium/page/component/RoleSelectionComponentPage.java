@@ -1,5 +1,6 @@
 package com.axonivy.portal.selenium.page.component;
 
+import static com.axonivy.portal.selenium.common.WaitHelper.SHORT_TIMEOUT;
 import static com.codeborne.selenide.Selenide.$;
 
 import com.axonivy.portal.selenium.page.TemplatePage;
@@ -55,7 +56,8 @@ public class RoleSelectionComponentPage extends TemplatePage {
     SelenideElement roleElement = selectRoleSelection("item-select-event-for-role-selection", keyword);
     roleElement.shouldBe(getClickableCondition()).click();
     $("[id$='item-select-event-for-role-selection-message_info-detail']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
-    $("span[id$='item-select-event-for-role-selection_panel']").shouldHave(Condition.cssClass("ui-connected-overlay-exit-done"));
+    $("span[id$='item-select-event-for-role-selection_panel']")
+        .shouldHave(Condition.cssClass("ui-connected-overlay-exit-done"), SHORT_TIMEOUT);
     return roleElement.attr("data-item-value");
   }
 
