@@ -4,7 +4,7 @@
   <groupId>com.axonivy.portal</groupId>
   <artifactId>portal-selenium-test</artifactId>
   <version>12.0.12-SNAPSHOT</version>
-  <packaging>jar</packaging>
+  <packaging>iar</packaging>
   <properties>
     <build.plugin.version>12.0.8</build.plugin.version>
     <ivy.engine.version>12.0.12</ivy.engine.version>
@@ -78,6 +78,13 @@
               <deployToEngineApplication>demo-portal</deployToEngineApplication>
             </configuration>
             <phase>process-test-classes</phase>
+          </execution>
+          <execution>
+            <id>default-pack-iar</id>
+            <goals>
+              <goal>pack-iar</goal>
+            </goals>
+            <phase>none</phase>
           </execution>
         </executions>
       </plugin>
