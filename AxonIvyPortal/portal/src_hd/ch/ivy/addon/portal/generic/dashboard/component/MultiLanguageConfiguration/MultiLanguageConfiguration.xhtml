@@ -31,7 +31,7 @@
   <p:dialog rendered="#{cc.attrs.rendered}" appendTo="@(body)" width="500" fitViewport="true" closeOnEscape="true"
     header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/settingMultipleLanguages')}" resizable="false"
     id="multiple-languages-dialog" widgetVar="multiple-languages-dialog" modal="true" responsive="true"
-    dynamic="#{cc.attrs.dynamic}" styleClass="dialog--responsive">
+    dynamic="#{cc.attrs.dynamic}" styleClass="dialog-responsive">
     <h:form id="add-language-detail-form">
       <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/emptySupportedLanguages')}"
         rendered="#{titles.isEmpty()}" />

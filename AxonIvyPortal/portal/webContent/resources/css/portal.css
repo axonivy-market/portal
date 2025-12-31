@@ -2027,6 +2027,6 @@ canvas#preview-statistic-chart {
   height: calc(100% - 20px) !important;
 }
 
-.dialog--responsive.ui-dialog {
+.dialog-responsive.ui-dialog {
   max-width: 100vw;
 }
