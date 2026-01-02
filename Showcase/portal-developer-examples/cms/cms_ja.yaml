@@ -182,12 +182,15 @@ Processes:
       name: 休暇申請
     Tasks:
       AnnualLeave:
+        category: AnnualLeave
         description: 年次有給休暇申請の説明
         name: 年次有給休暇申請
       MaternityLeave:
+        category: OtherLeave/Maternity
         description: 産休申請の説明
         name: 産休申請
       SickLeave:
+        category: OtherLeave/SickLeave/Long
         description: 病欠申請の説明
         name: 病欠申請
     description: これは、この「休暇申請」の例に関連して何が期待できるかについての簡単な説明です。

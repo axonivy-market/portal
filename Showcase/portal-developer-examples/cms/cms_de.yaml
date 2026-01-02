@@ -194,12 +194,15 @@ Processes:
       name: Urlaubsantrag
     Tasks:
       AnnualLeave:
+        category: AnnualLeave
         description: Antrag auf Jahresurlaub Beschreibung
         name: Antrag auf Jahresurlaub
       MaternityLeave:
+        category: OtherLeave/Maternity
         description: Antrag auf Mutterschaftsurlaub Beschreibung
         name: Antrag auf Mutterschaftsurlaub
       SickLeave:
+        category: OtherLeave/SickLeave/Long
         description: Antrag auf Krankheitsurlaub Beschreibung
         name: Antrag auf Krankheitsurlaub
     description: Dies ist eine kurze Beschreibung dessen, was Sie hinter diesem Beispiel "Urlaubsantrag" erwarten können.
