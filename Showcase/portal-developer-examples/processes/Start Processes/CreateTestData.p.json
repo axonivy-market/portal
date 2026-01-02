@@ -600,7 +600,7 @@
             "id" : "TaskB",
             "name" : "<%=ivy.cms.co(\"/Processes/CategoriedLeaveRequest/Tasks/SickLeave/name\")%>",
             "description" : "<%=ivy.cms.co(\"/Processes/CategoriedLeaveRequest/Tasks/SickLeave/description\")%>",
-            "category" : "OtherLeave/SickLeave/Long",
+            "category" : "<%=ivy.cms.co(\"/Processes/CategoriedLeaveRequest/Tasks/SickLeave/category\")%>",
             "priority" : {
               "level" : "HIGH"
             },
@@ -618,7 +618,7 @@
             "id" : "TaskA",
             "name" : "<%=ivy.cms.co(\"/Processes/CategoriedLeaveRequest/Tasks/AnnualLeave/name\")%>",
             "description" : "<%=ivy.cms.co(\"/Processes/CategoriedLeaveRequest/Tasks/AnnualLeave/description\")%>",
-            "category" : "AnnualLeave",
+            "category" : "<%=ivy.cms.co(\"/Processes/CategoriedLeaveRequest/Tasks/AnnualLeave/category\")%>",
             "responsible" : {
               "type" : "USER_FROM_ATTRIBUTE",
               "activator" : "\"demo\""
@@ -637,7 +637,7 @@
             "id" : "TaskC",
             "name" : "<%=ivy.cms.co(\"/Processes/CategoriedLeaveRequest/Tasks/MaternityLeave/name\")%>",
             "description" : "<%=ivy.cms.co(\"/Processes/CategoriedLeaveRequest/Tasks/MaternityLeave/description\")%>",
-            "category" : "OtherLeave/Maternity",
+            "category" : "<%=ivy.cms.co(\"/Processes/CategoriedLeaveRequest/Tasks/MaternityLeave/category\")%>",
             "priority" : {
               "level" : "LOW"
             },
@@ -2015,30 +2015,6 @@
         "at" : { "x" : 338, "y" : 2450 }
       }
     }, {
-      "id" : "f128",
-      "type" : "RequestStart",
-      "name" : "createStockInvestment",
-      "config" : {
-        "signature" : "createStockInvestment",
-        "case" : {
-          "name" : "Create Stock Investment",
-          "category" : "StockInvestment"
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 40, "y" : 2640 }
-      },
-      "connect" : [
-        { "id" : "f129", "to" : "f137" }
-      ]
-    }, {
-      "id" : "f131",
-      "type" : "TaskEnd",
-      "visual" : {
-        "at" : { "x" : 344, "y" : 2640 },
-        "labelOffset" : { "x" : 13, "y" : 33 }
-      }
-    }, {
       "id" : "f133",
       "type" : "TaskSwitchEvent",
       "config" : {
@@ -2062,21 +2038,5 @@
         "size" : { "width" : 28, "height" : 28 },
         "labelOffset" : { "x" : 14, "y" : 0 }
       }
-    }, {
-      "id" : "f137",
-      "type" : "UserTask",
-      "config" : {
-        "dialog" : "com.axonivy.portal.developerexamples.testdata.CreateInvestment:start()",
-        "task" : {
-          "name" : "Create stock investment",
-          "category" : "CreateStockInvestment"
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 192, "y" : 2640 }
-      },
-      "connect" : [
-        { "id" : "f132", "to" : "f131" }
-      ]
     } ]
 }

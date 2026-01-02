@@ -41,7 +41,10 @@
         "output" : {
           "code" : [
             "import ch.ivyteam.ivy.security.IUser;",
-            "if (\"CreateStockInvestment\".equals(in.workingTask.getCategoryPath())) {",
+            "",
+            "String targetCategory = ivy.cms.co(\"/Processes/CategoriedLeaveRequest/Tasks/SickLeave/category\");",
+            "",
+            "if (targetCategory.equals(in.workingTask.getCategoryPath())) {",
             "  in.workingTask.getCase().notes().add().content(String.format(\"%s has left the task recently\",ivy.session.getSessionUserName())).execute();",
             "}"
           ]
@@ -102,7 +105,9 @@
       "config" : {
         "output" : {
           "code" : [
-            "if (\"CreateStockInvestment\".equals(in.workingTask.getCategoryPath())) {",
+            "String targetCategory = ivy.cms.co(\"/Processes/CategoriedLeaveRequest/Tasks/SickLeave/category\");",
+            "",
+            "if (targetCategory.equals(in.workingTask.getCategoryPath())) {",
             "  int reserveCount = in.workingTask.customFields().numberField(\"reserveTask\").getOrDefault(0);",
             "  reserveCount++;",
             "  in.workingTask.customFields().numberField(\"reserveTask\").set(reserveCount);",
