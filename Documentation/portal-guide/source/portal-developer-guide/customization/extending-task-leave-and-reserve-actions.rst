@@ -10,11 +10,6 @@ This custom logic runs just before the leave or reserve action is completed. The
    - Clicking **leave** or **reserve** in the unsaved changes warning dialog when leaving a task.
    - Clicking the **reserve** button in the task action menu.
 
-Common use cases for this feature include:
-   
-   - Logging specific details about when a task is left or reserved.
-   - Updating custom fields or performing data validation.
-
 1. To execute logic on task **leave** action, you create a callable subprocess with
 
    **Signature**: portalExtendTaskLeave
@@ -54,21 +49,15 @@ There is an example implementation in the project ``portal-developer-examples`` 
 
 There are 2 simple callable subprocesses:
 
-   - The first one is for extending logic on leaving a task. It checks the category of the task, if it is ``CreateStockInvestment``, it creates a note indicating who has left the task.
-   - The second one is for extending logic on reserving a task. It checks the category of the task, if it is ``CreateStockInvestment``, it updates a custom field ``reserveTask`` to count how many times the task has been reserved.
+   - The first one is for extending logic on leaving a task. It checks the category of the task, if it is ``OtherLeave/SickLeave/Long``, it creates a note indicating who has left the task.
+   - The second one is for extending logic on reserving a task. It checks the category of the task, if it is ``OtherLeave/SickLeave/Long``, it updates a custom field ``reserveTask`` to count how many times the task has been reserved.
 
-To see how it works, run the process ``portal-developer-examples: Start Processes/CreateTestData:createStockInvestment()``, start the created task ``Create stock investment``, then leave the task with unsaved changes and click on the **leave** or **reserve** button.
+To see how it works, run the process ``portal-developer-examples: Start Processes/CreateTestData:CategoriedLeaveRequest()``, start the created task ``Sick Leave Request``, then leave the task with unsaved changes and click on the **leave** or **reserve** button.
 
 .. hint::
 
    - If there are many customized callable subprocesses defined for the same signature, they will be executed in order.
    - If you want to execute customized logic only for specific tasks, you must check the task properties such as category, name, or id in the callable subprocess implementation.
-
-.. important::
-
-   - You have to handle exceptions in the callable subprocess implementation to avoid breaking the **leave** or **reserve** action.
-
-
 
 .. |portal-extend-task-leave| image:: images/extending-task-leave-and-reserve-actions/portal-extend-task-leave.png
 .. |portal-extend-task-reserve| image:: images/extending-task-leave-and-reserve-actions/portal-extend-task-reserve.png
