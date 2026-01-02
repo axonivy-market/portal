@@ -44,7 +44,7 @@
         "at" : { "x" : 96, "y" : 288 }
       },
       "connect" : [
-        { "id" : "f26", "to" : "f28" }
+        { "id" : "f27", "to" : "f26" }
       ]
     }, {
       "id" : "f48",
@@ -333,22 +333,30 @@
         { "id" : "f23", "to" : "f21" }
       ]
     }, {
-      "id" : "f28",
-      "type" : "SubProcessCall",
+      "id" : "f26",
+      "type" : "Script",
       "name" : "Call customized process if exist",
       "config" : {
-        "processCall" : "Functional Processes/ExtendTaskReserve:call(ch.ivyteam.ivy.workflow.ITask)",
-        "call" : {
-          "map" : {
-            "param.workingTask" : "in.task"
-          }
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.enums.PortalCustomSignature;",
+            "import com.axonivy.portal.components.service.IvyAdapterService;",
+            "",
+            "import java.util.HashMap;",
+            "import java.util.Map;",
+            "",
+            "Map params = new HashMap();",
+            "params.put(\"workingTask\", in.task);",
+            "",
+            "IvyAdapterService.startSubProcessesInSecurityContext(PortalCustomSignature.EXTEND_TASK_RESERVE.getSignature(), params);"
+          ]
         }
       },
       "visual" : {
-        "at" : { "x" : 224, "y" : 288 }
+        "at" : { "x" : 216, "y" : 288 }
       },
       "connect" : [
-        { "id" : "f27", "to" : "f48" }
+        { "id" : "f28", "to" : "f48" }
       ]
     } ]
 }

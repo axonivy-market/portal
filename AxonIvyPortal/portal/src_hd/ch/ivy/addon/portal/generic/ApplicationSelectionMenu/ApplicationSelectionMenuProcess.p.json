@@ -111,7 +111,7 @@
         "labelOffset" : { "x" : 17, "y" : 34 }
       },
       "connect" : [
-        { "id" : "f8", "to" : "f28" }
+        { "id" : "f28", "to" : "f8" }
       ]
     }, {
       "id" : "f12",
@@ -134,7 +134,7 @@
         "labelOffset" : { "x" : 14, "y" : 36 }
       },
       "connect" : [
-        { "id" : "f18", "to" : "f24" }
+        { "id" : "f24", "to" : "f18" }
       ]
     }, {
       "id" : "f19",
@@ -367,40 +367,56 @@
         { "id" : "f21", "to" : "f16" }
       ]
     }, {
-      "id" : "f24",
-      "type" : "SubProcessCall",
+      "id" : "f8",
+      "type" : "Script",
       "name" : "Call customized process if exist",
       "config" : {
-        "processCall" : "Functional Processes/ExtendTaskReserve:call(ch.ivyteam.ivy.workflow.ITask)",
-        "call" : {
-          "map" : {
-            "param.workingTask" : "in.workingTask"
-          }
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 224, "y" : 496 }
-      },
-      "connect" : [
-        { "id" : "f27", "to" : "f91", "color" : "default" }
-      ]
-    }, {
-      "id" : "f28",
-      "type" : "SubProcessCall",
-      "name" : "Call customized process if exist",
-      "config" : {
-        "processCall" : "Functional Processes/ExtendTaskLeave:call(ch.ivyteam.ivy.workflow.ITask)",
-        "call" : {
-          "map" : {
-            "param.workingTask" : "in.workingTask"
-          }
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.enums.PortalCustomSignature;",
+            "import com.axonivy.portal.components.service.IvyAdapterService;",
+            "",
+            "import java.util.HashMap;",
+            "import java.util.Map;",
+            "",
+            "Map params = new HashMap();",
+            "params.put(\"workingTask\", in.workingTask);",
+            "",
+            "IvyAdapterService.startSubProcessesInSecurityContext(PortalCustomSignature.EXTEND_TASK_LEAVE.getSignature(), params);"
+          ]
         }
       },
       "visual" : {
         "at" : { "x" : 224, "y" : 592 }
       },
       "connect" : [
-        { "id" : "f31", "to" : "f14", "color" : "default" }
+        { "id" : "f31", "to" : "f14" }
+      ]
+    }, {
+      "id" : "f18",
+      "type" : "Script",
+      "name" : "Call customized process if exist",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.enums.PortalCustomSignature;",
+            "import com.axonivy.portal.components.service.IvyAdapterService;",
+            "",
+            "import java.util.HashMap;",
+            "import java.util.Map;",
+            "",
+            "Map params = new HashMap();",
+            "params.put(\"workingTask\", in.workingTask);",
+            "",
+            "IvyAdapterService.startSubProcessesInSecurityContext(PortalCustomSignature.EXTEND_TASK_RESERVE.getSignature(), params);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 496 }
+      },
+      "connect" : [
+        { "id" : "f27", "to" : "f91" }
       ]
     } ],
   "layout" : {

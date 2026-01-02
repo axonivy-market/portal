@@ -1,7 +1,9 @@
 package com.axonivy.portal.bean;
 
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Consumer;
 
 import javax.faces.bean.ManagedBean;
@@ -10,8 +12,10 @@ import javax.faces.context.FacesContext;
 
 import org.primefaces.PrimeFaces;
 
+import com.axonivy.portal.components.service.IvyAdapterService;
 import com.axonivy.portal.datamodel.NotificationLazyModel;
 import com.axonivy.portal.dto.NotificationDto;
+import com.axonivy.portal.enums.PortalCustomSignature;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.ivydata.dto.IvyNotificationChannelDTO;
@@ -207,6 +211,12 @@ public class NotificationBean implements Serializable {
 
   public boolean isActionAvailible(NotificationDto dto) {
     return dto.getRunAction() != null;
+  }
+  
+  public void executeCustomizedLogicIfExists(ITask task, PortalCustomSignature portalCustomSignature) {
+    Map<String, Object> params = new HashMap<>();
+    params.put("workingTask", task);
+    IvyAdapterService.startSubProcessesInSecurityContext(portalCustomSignature.getSignature(), params);
   }
 
 }
