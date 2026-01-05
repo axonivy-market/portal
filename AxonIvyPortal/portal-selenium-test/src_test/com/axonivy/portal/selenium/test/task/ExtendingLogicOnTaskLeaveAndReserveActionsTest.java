@@ -77,17 +77,17 @@ public class ExtendingLogicOnTaskLeaveAndReserveActionsTest extends BaseTest {
   
   @Test
   public void testExecutingCustomizedLogicOnTaskReserveAction() {
-    login(TestAccount.DEMO_USER);
+    login(TestAccount.ADMIN_USER);
     createTestingTasks();
     redirectToNewDashBoard();
     MainMenuPage menu = new MainMenuPage();
     menu.openTaskList();
     TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
-    taskWidget.setInputForQuickSearch("Sick Leave Request");
+    taskWidget.openFilterWidget();
+    taskWidget.addFilter("Task name", FilterOperator.CONTAINS);
+    taskWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "Sick Leave Request");
+    taskWidget.applyFilter();
     taskWidget.reserveTask(0);
-    login(TestAccount.ADMIN_USER);
-    NavigationHelper.navigateToTaskList();
-    taskWidget.setInputForQuickSearch("Sick Leave Request");
     taskWidget.clickCustomFieldsButtonOnActions(0);
     assertTrue(taskWidget.isCustomFieldsDialogDisplayed());
     List<String> taskCustomFieldNames = taskWidget.getCustomFieldNamesOnTaskCustomFieldsDialog();
