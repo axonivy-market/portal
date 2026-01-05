@@ -3,47 +3,100 @@
 Configure Statistic Widget
 ===========================
 
+The statistic widget displays charts and statistics on the Portal dashboard, providing visual insights into workflow data. Charts are predefined and referenced by their chart ID.
+
 .. _portal-statistic-widget:
 
 Define Statistic Widget
 -------------------------
 
-The Statistic widget of the Portal dashboard displays statistic and charts.
+The statistic widget displays standard charts configured in the Portal. Refer to :ref:`Portal.StatisticCharts <portal-statistic-charts>` for available chart definitions.
 
-Below is a sample JSON definition of a statistic widget in the Portal dashboard
+Configuration Example
+^^^^^^^^^^^^^^^^^^^^^
+
+Below is a sample JSON definition of a statistic widget in the Portal dashboard:
 
 .. code-block:: javascript
 
    {
       "type": "client-statistic",
-      "id": "client_statistic_1",
+      "id": "client-statistic-widget",
       "layout": {
-         "w" : 2,
-         "h" : 2,
-         "x" : 8,
-         "y" : 2
+         "x": 0,
+         "y": 0,
+         "w": 4,
+         "h": 6
       },
       "chartId": "10",
       "showFullscreenMode": true
    }
 ..
 
-The basic JSON structure of a statistic widget
+JSON Configuration Reference
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-   ``id``: ID of the widget
+**Required Properties**
 
-   ``type``: type of the widget. Use ``client-statistic`` for a client statistic widget
+.. list-table::
+   :widths: 20 15 65
+   :header-rows: 1
 
-   ``layout``: layout definition of the client statistic widget
+   * - Property
+     - Type
+     - Description
+   * - ``type``
+     - string
+     - Widget type. Must be ``"client-statistic"`` for statistic widget
+   * - ``id``
+     - string
+     - Unique identifier for the widget
+   * - ``layout``
+     - object
+     - Widget position and size (see Layout Properties below)
+   * - ``chartId``
+     - string
+     - ID of the standard client statistic chart (see :ref:`Portal.StatisticCharts <portal-statistic-charts>`)
 
-      - ``x``: HTML DOM Style ``left`` is calculated as formula ``x / 12 * 100%``
+**Layout Properties**
 
-      - ``y``: HTML DOM Style ``top`` is calculated as formula ``y / 12 * 100%``
+.. list-table::
+   :widths: 20 15 65
+   :header-rows: 1
 
-      - ``w``: HTML DOM Style ``width`` is calculated as formula ``60 * w + 20 * (w - 1)``
+   * - Property
+     - Type
+     - Description
+   * - ``x``
+     - number
+     - Column position in 12-column grid (0-11). CSS left = ``x / 12 * 100%``
+   * - ``y``
+     - number
+     - Row position. CSS top = ``y / 12 * 100%``
+   * - ``w``
+     - number
+     - Width in grid columns (1-12). Pixel width = ``60 * w + 20 * (w - 1)``
+   * - ``h``
+     - number
+     - Height in grid rows (min 4). Pixel height = ``60 * h + 20 * (h - 1)``
 
-      - ``h``: HTML DOM Style ``height`` is calculated as formula ``60 * h + 20 * (h - 1)``
-   
-   ``chartId``: ID of the standard client statistic chart. For more information, please refer to :ref:`Portal.StatisticCharts <portal-statistic-charts>`.
+.. tip::
+   **Recommended statistic widget size:** Width 3-6 columns, Height 4-8 rows for optimal chart display with labels.
 
-   ``showFullscreenMode``: visibility of the fullscreen mode icon. The default value is ``true``, set to ``false`` to hide the icon.
+**Display Properties**
+
+.. list-table::
+   :widths: 20 15 15 50
+   :header-rows: 1
+
+   * - Property
+     - Type
+     - Default
+     - Description
+   * - ``showFullscreenMode``
+     - boolean
+     - ``true``
+     - Show/hide fullscreen mode icon
+
+.. note::
+   Chart definitions including chart types, data sources, and configurations are managed separately in Portal.StatisticCharts. The widget references these charts by their ``chartId``.

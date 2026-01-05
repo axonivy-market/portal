@@ -79,6 +79,13 @@
             </configuration>
             <phase>process-test-classes</phase>
           </execution>
+          <execution>
+            <id>default-pack-iar</id>
+            <goals>
+              <goal>pack-iar</goal>
+            </goals>
+            <phase>none</phase>
+          </execution>
         </executions>
       </plugin>
       <plugin>

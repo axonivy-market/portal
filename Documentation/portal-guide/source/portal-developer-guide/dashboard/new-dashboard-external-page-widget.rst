@@ -3,74 +3,147 @@
 Configure External Page Widget
 ==============================
 
+The external page widget embeds external webpages into the Portal dashboard using iframes. This enables users to interact with multiple systems (e.g., monitoring tools, analytics dashboards, documentation sites) directly from the Portal without switching applications.
+
+.. warning::
+   Some external websites block iframe embedding through security policies (X-Frame-Options, CSP). Verify the target website allows embedding before configuration.
+
 .. _define-an-external-page-widget:
 
 Define An External Page Widget
 ------------------------------
 
-You can use this widget to embed an external webpage into the Portal dashboard.
-This feature is especially useful for a company using other applications besides Axon Ivy.
-It allows user to interact with multiple systems directly from the Portal dashboard.
+The external page widget displays an external URL within the dashboard.
+
+Configuration Dialog
+^^^^^^^^^^^^^^^^^^^^
 
    |external-page-widget-configuration|
 
-   ``Widget title``: Title of the widget. Leave it blank to hide header of the widget.
+   ``Widget title``: Widget display name. Leave blank to hide the widget header.
 
-   ``External URL``: External page link.
+   ``External URL``: Full URL of the external webpage to embed (e.g., ``https://www.example.com``).
 
-   ``showFullscreenMode``: visibility of the fullscreen mode icon. The default
-   value is ``true``, set to ``false`` to hide the icon.
+   ``showFullscreenMode``: Show/hide fullscreen mode icon. Default is ``true``.
 
 Define An External Page Widget Using JSON
 -----------------------------------------
 
-The JSON structure is the following:
+Configuration Example
+^^^^^^^^^^^^^^^^^^^^^
+
+The JSON structure for an external page widget:
 
    .. code-block:: javascript
 
       {
          "type": "custom",
-         "id": "custom-widget",
+         "id": "external-page-widget",
          "showFullscreenMode": true,
          "names": [
             {
                "locale": "en",
-               "value": "Custom Widget"
+               "value": "Axon Ivy Website"
+            },
+            {
+               "locale": "de",
+               "value": "Axon Ivy Webseite"
             }
          ],
          "layout": {
-            "x": 10, "y": 0, "w": 2, "h": 4
+            "x": 0,
+            "y": 0,
+            "w": 8,
+            "h": 10
          },
          "data": {
-            "url" : "https://www.axonivy.com/"
+            "url": "https://www.axonivy.com/"
          }
       }
    ..
 
-Attribute explanation:
+JSON Configuration Reference
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-   ``type``: type of the widget. Use ``custom`` for an external page widget.
+**Required Properties**
 
-   ``id``: ID of the widget.
+.. list-table::
+   :widths: 20 15 65
+   :header-rows: 1
 
-   ``names``: multi-language names of the widget on the UI
+   * - Property
+     - Type
+     - Description
+   * - ``type``
+     - string
+     - Widget type. Must be ``"custom"`` for external page widget
+   * - ``id``
+     - string
+     - Unique identifier for the widget
+   * - ``names``
+     - array
+     - Multilingual display names. Each entry: ``{"locale": "en", "value": "Name"}``
+   * - ``layout``
+     - object
+     - Widget position and size (see Layout Properties below)
+   * - ``data``
+     - object
+     - Must contain ``url`` property (see Data Properties below)
 
-   ``layout``: layout definition of the client statistic widget
+**Layout Properties**
 
-      - ``x``: HTML DOM Style ``left`` is calculated as formula ``x / 12 * 100%``
+.. list-table::
+   :widths: 20 15 65
+   :header-rows: 1
 
-      - ``y``: HTML DOM Style ``top`` is calculated as formula ``y / 12 * 100%``
+   * - Property
+     - Type
+     - Description
+   * - ``x``
+     - number
+     - Column position in 12-column grid (0-11). CSS left = ``x / 12 * 100%``
+   * - ``y``
+     - number
+     - Row position. CSS top = ``y / 12 * 100%``
+   * - ``w``
+     - number
+     - Width in grid columns (1-12). Pixel width = ``60 * w + 20 * (w - 1)``
+   * - ``h``
+     - number
+     - Height in grid rows (min 6). Pixel height = ``60 * h + 20 * (h - 1)``
 
-      - ``w``: HTML DOM Style ``width`` is calculated as formula ``60 * w + 20 * (w - 1)``
+.. tip::
+   **Recommended external page widget size:** Width 6-12 columns, Height 8-12 rows for optimal external content display.
 
-      - ``h``: HTML DOM Style ``height`` is calculated as formula ``60 * h + 20 * (h - 1)``
+**Display Properties**
 
-   ``url``: the URL of the external webpage you want to show.
+.. list-table::
+   :widths: 20 15 15 50
+   :header-rows: 1
 
-   ``showFullscreenMode``: visibility of the fullscreen mode icon. The default value is ``true``, set to ``false`` to hide the icon
+   * - Property
+     - Type
+     - Default
+     - Description
+   * - ``showFullscreenMode``
+     - boolean
+     - ``true``
+     - Show/hide fullscreen mode icon
 
-.. warning::
-   Some external websites do not allow to be loaded in IFrames. You have to make sure 
-   that their security policy allows the embedding if you want to use these pages in your custom widget.
+**Data Properties**
+
+.. list-table::
+   :widths: 20 15 65
+   :header-rows: 1
+
+   * - Property
+     - Type
+     - Description
+   * - ``url``
+     - string
+     - Full URL of the external webpage to embed (must start with ``http://`` or ``https://``)
+
+.. important::
+   Ensure the external URL's server allows iframe embedding. Check the website's ``X-Frame-Options`` and ``Content-Security-Policy`` headers.
 
 .. |external-page-widget-configuration| image:: ../../screenshots/dashboard/external-page-widget-configuration.png

@@ -8,8 +8,9 @@ Business Details Page
 Introduction
 ------------
 
-The default business details page shows all custom fields of a case. Clicking on
-``Business details`` in the case details page to open.
+The Business Details Page customization allows you to replace Portal's default case custom fields display with your own custom UI.
+This enables you to create tailored business information views that match your specific workflow requirements, including external integrations and advanced layouts.
+Clicking on ``Business details`` in the case details page to open.
 
 Portal supports customizing this page for each case.
 
