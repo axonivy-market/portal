@@ -28,7 +28,8 @@ pipeline {
 
             docker.image('maven:3.9.8-eclipse-temurin-21').inside('-u root:root') {
               def phase = version.contains('SNAPSHOT') ? 'install' : 'deploy'
-              maven cmd: "clean ${phase} -f Documentation/pom.xml"            }
+              maven cmd: "clean ${phase} -f Documentation/pom.xml"
+            }
           }
         }
         archiveArtifacts 'Documentation/*/build/html/**/*, Documentation/*/target/*.zip'
