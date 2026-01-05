@@ -3,7 +3,7 @@
   "id" : "19B54C55082648B9",
   "kind" : "CALLABLE_SUB",
   "config" : {
-    "data" : "com.axonivy.portal.developerexamples.CustomExtendLeaveTaskData"
+    "data" : "com.axonivy.portal.developerexamples.CustomExtendTaskLeaveData"
   },
   "elements" : [ {
       "id" : "f0",
