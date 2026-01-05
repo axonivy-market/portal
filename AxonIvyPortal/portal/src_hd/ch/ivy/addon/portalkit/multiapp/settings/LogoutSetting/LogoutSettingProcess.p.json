@@ -94,7 +94,7 @@
         "labelOffset" : { "x" : 23, "y" : 35 }
       },
       "connect" : [
-        { "id" : "f14", "to" : "f28" }
+        { "id" : "f14", "to" : "f11" }
       ]
     }, {
       "id" : "f11",
@@ -110,7 +110,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 352, "y" : 448 }
+        "at" : { "x" : 184, "y" : 448 }
       },
       "connect" : [
         { "id" : "f6", "to" : "f15" }
@@ -119,7 +119,7 @@
       "id" : "f15",
       "type" : "HtmlDialogEnd",
       "visual" : {
-        "at" : { "x" : 496, "y" : 448 }
+        "at" : { "x" : 328, "y" : 448 }
       }
     }, {
       "id" : "f7",
@@ -252,31 +252,5 @@
       "visual" : {
         "at" : { "x" : 640, "y" : 64 }
       }
-    }, {
-      "id" : "f28",
-      "type" : "Script",
-      "name" : "Call customized process if exist",
-      "config" : {
-        "output" : {
-          "code" : [
-            "import com.axonivy.portal.enums.PortalCustomSignature;",
-            "import com.axonivy.portal.components.service.IvyAdapterService;",
-            "",
-            "import java.util.HashMap;",
-            "import java.util.Map;",
-            "",
-            "Map params = new HashMap();",
-            "params.put(\"workingTask\", in.task);",
-            "",
-            "IvyAdapterService.startSubProcessesInSecurityContext(PortalCustomSignature.EXTEND_TASK_RESERVE.getSignature(), params);"
-          ]
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 192, "y" : 448 }
-      },
-      "connect" : [
-        { "id" : "f29", "to" : "f11", "color" : "default" }
-      ]
     } ]
 }
