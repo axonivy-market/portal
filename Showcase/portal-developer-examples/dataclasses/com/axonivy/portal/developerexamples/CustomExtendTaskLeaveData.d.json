@@ -4,7 +4,6 @@
   "namespace" : "com.axonivy.portal.developerexamples",
   "fields" : [ {
     "name" : "workingTask",
-    "type" : "ch.ivyteam.ivy.workflow.ITask",
-    "modifiers" : [ ]
+    "type" : "ch.ivyteam.ivy.workflow.ITask"
   } ]
 }

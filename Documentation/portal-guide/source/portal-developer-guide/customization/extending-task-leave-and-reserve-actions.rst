@@ -3,7 +3,7 @@
 Extending Task Leave and Reserve Actions
 ========================================
 
-The Portal provides a feature to execute custom logic when a user leaves or reserves a task. This allows developers to inject their own business rules to perform additional operations.
+Portal provides a feature to execute custom logic when a user leaves or reserves a task. This allows developers to inject their own business rules to perform additional operations.
 
 This custom logic runs just before the leave or reserve action is completed. The primary trigger points are:
    
