@@ -1,7 +1,7 @@
 ch.ivy.addon.portal.generic:
   CaseDetailsTemplate:
     noCaseFound: ケースが見つからない、またはこのケースを表示する権限がありません。
-    requestTabTitle: リクエスト
+    requestTabTitle: リクエスト test
     statusTabTitle: ケース情報
   OpenTaskTemplate:
     browserTabClosingWarning: 進行中のワークが失われます。このまま続けますか？
@@ -1780,3 +1780,4 @@ Texts:
 
     </P>
 
+...
