@@ -134,7 +134,7 @@ jobs:
         run: |
           sudo chmod -R a+rwx Documentation/
           PHASE="install"
-          if [[ "${{ steps.get_version.outputs.version }}" != *SNAPSHOT || "${{ github.event.inputs.deploySnapshot }}" == "true" ]]; then
+          if [[ "${{ steps.get_version.outputs.version }}" != *SNAPSHOT* ]] || [[ "${{ github.event.inputs.deploySnapshot }}" == "true" ]]; then
             PHASE="deploy"
           fi
           echo "Running 'clean $PHASE' for version ${{ steps.get_version.outputs.version }}"
