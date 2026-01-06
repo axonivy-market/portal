@@ -2014,29 +2014,5 @@
       "visual" : {
         "at" : { "x" : 338, "y" : 2450 }
       }
-    }, {
-      "id" : "f133",
-      "type" : "TaskSwitchEvent",
-      "config" : {
-        "output" : {
-          "map" : { }
-        }
-      },
-      "visual" : {
-        "size" : { "width" : 28, "height" : 28 },
-        "labelOffset" : { "x" : 14, "y" : 0 }
-      }
-    }, {
-      "id" : "f130",
-      "type" : "TaskSwitchGateway",
-      "config" : {
-        "output" : {
-          "map" : { }
-        }
-      },
-      "visual" : {
-        "size" : { "width" : 28, "height" : 28 },
-        "labelOffset" : { "x" : 14, "y" : 0 }
-      }
     } ]
 }
