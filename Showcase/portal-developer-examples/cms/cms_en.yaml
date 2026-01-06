@@ -194,15 +194,12 @@ Processes:
       name: Leave Request
     Tasks:
       AnnualLeave:
-        category: AnnualLeave
         description: Annual Leave Request Description
         name: Annual Leave Request
       MaternityLeave:
-        category: OtherLeave/Maternity
         description: Maternity Leave Request Description
         name: Maternity Leave Request
       SickLeave:
-        category: OtherLeave/SickLeave/Long
         description: Sick Leave Request Description
         name: Sick Leave Request
     description: This is a short description what you can expect behind this “Leave Request” example.

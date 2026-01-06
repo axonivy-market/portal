@@ -194,15 +194,12 @@ Processes:
       name: Demande de congé
     Tasks:
       AnnualLeave:
-        category: AnnualLeave
         description: Demande de congé annuel Description
         name: Demande de congé annuel
       MaternityLeave:
-        category: OtherLeave/Maternity
         description: Description de la demande de congé de maternité
         name: Demande de congé de maternité
       SickLeave:
-        category: OtherLeave/SickLeave/Long
         description: Demande de congé de maladie Description
         name: Demande de congé de maladie
     description: Voici une brève description de ce à quoi vous pouvez vous attendre derrière cet exemple de "demande de congé".

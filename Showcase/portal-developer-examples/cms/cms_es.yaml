@@ -194,15 +194,12 @@ Processes:
       name: Solicitud de licencia
     Tasks:
       AnnualLeave:
-        category: AnnualLeave
         description: Solicitud de vacaciones anuales Descripción
         name: Solicitud de vacaciones anuales
       MaternityLeave:
-        category: OtherLeave/Maternity
         description: Descripción de la solicitud de baja por maternidad
         name: Solicitud de baja por maternidad
       SickLeave:
-        category: OtherLeave/SickLeave/Long
         description: Descripción de la solicitud de baja por enfermedad
         name: Solicitud de baja por enfermedad
     description: Esta es una breve descripción de lo que puede esperar detrás de este ejemplo de "Solicitud de licencia".
