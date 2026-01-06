@@ -600,7 +600,7 @@
             "id" : "TaskB",
             "name" : "<%=ivy.cms.co(\"/Processes/CategoriedLeaveRequest/Tasks/SickLeave/name\")%>",
             "description" : "<%=ivy.cms.co(\"/Processes/CategoriedLeaveRequest/Tasks/SickLeave/description\")%>",
-            "category" : "<%=ivy.cms.co(\"/Processes/CategoriedLeaveRequest/Tasks/SickLeave/category\")%>",
+            "category" : "OtherLeave/SickLeave/Long",
             "priority" : {
               "level" : "HIGH"
             },
@@ -618,7 +618,7 @@
             "id" : "TaskA",
             "name" : "<%=ivy.cms.co(\"/Processes/CategoriedLeaveRequest/Tasks/AnnualLeave/name\")%>",
             "description" : "<%=ivy.cms.co(\"/Processes/CategoriedLeaveRequest/Tasks/AnnualLeave/description\")%>",
-            "category" : "<%=ivy.cms.co(\"/Processes/CategoriedLeaveRequest/Tasks/AnnualLeave/category\")%>",
+            "category" : "AnnualLeave",
             "responsible" : {
               "type" : "USER_FROM_ATTRIBUTE",
               "activator" : "\"demo\""
@@ -637,7 +637,7 @@
             "id" : "TaskC",
             "name" : "<%=ivy.cms.co(\"/Processes/CategoriedLeaveRequest/Tasks/MaternityLeave/name\")%>",
             "description" : "<%=ivy.cms.co(\"/Processes/CategoriedLeaveRequest/Tasks/MaternityLeave/description\")%>",
-            "category" : "<%=ivy.cms.co(\"/Processes/CategoriedLeaveRequest/Tasks/MaternityLeave/category\")%>",
+            "category" : "OtherLeave/Maternity",
             "priority" : {
               "level" : "LOW"
             },
