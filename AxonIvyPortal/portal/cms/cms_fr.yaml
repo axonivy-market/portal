@@ -279,6 +279,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       hideUploadDocumentForDoneCaseNote: Définissez la valeur true pour refuser le téléchargement (également supprimer) du document une fois la requête terminée.
       hideYear: Définissez la valeur true, l'année sera cachée, sinon elle sera montrée.
       imageUploadSizeLimit: Définissez la limite de taille pour le téléchargement d’images en mégaoctets (Mo). La valeur par défaut est de 6 Mo.
+      keepSidebarExpanded: Toujours garder la barre latérale (menu de gauche) développée
       loggedInUserFormat: L'option pour afficher le format de l'utilisateur connecté
       refreshTaskListIntervalNote: Intervalle d'actualisation de la liste des tâches en secondes.
       showAvatar: Pour activer/désactiver l'affichage des avatars des utilisateurs/rôles.
