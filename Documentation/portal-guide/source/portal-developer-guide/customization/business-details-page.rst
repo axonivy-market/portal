@@ -33,7 +33,7 @@ How to customize the business details page
      but you need to ensure that only one process in the security context has the IWebStartable ID that ends with the parameter.
      
      Alternatively, use the ``Functional Processes/SetBusinessDetailsPage:callWithParams(String,Map)`` callable process to pass both the IWebStartable ID and 
-     a map of parameters. The parameters are attached to the URL like this: ``Start Processes/BusinessDetails/showInvestmentRequestCustomFields.ivp?company=Wawa+Company&location=HCMC&embedInFrame``.
+     a map of parameters. For example, the parameters are attached to the URL like this: ``Start Processes/BusinessDetails/showInvestmentRequestCustomFields.ivp?company=Wawa+Company&location=HCMC&embedInFrame``.
 
       |set-business-details-page-callable-process|
 
