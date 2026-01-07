@@ -30,7 +30,7 @@
       "id" : "f1",
       "type" : "CallSubEnd",
       "visual" : {
-        "at" : { "x" : 352, "y" : 64 }
+        "at" : { "x" : 408, "y" : 64 }
       }
     }, {
       "id" : "f3",
@@ -47,7 +47,7 @@
         "sudo" : true
       },
       "visual" : {
-        "at" : { "x" : 224, "y" : 64 },
+        "at" : { "x" : 264, "y" : 64 },
         "size" : { "width" : 176 }
       },
       "connect" : [
@@ -90,7 +90,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 224, "y" : 249 },
+        "at" : { "x" : 264, "y" : 248 },
         "size" : { "width" : 176, "height" : 62 }
       },
       "connect" : [
@@ -100,7 +100,7 @@
       "id" : "f7",
       "type" : "CallSubEnd",
       "visual" : {
-        "at" : { "x" : 352, "y" : 248 },
+        "at" : { "x" : 408, "y" : 248 },
         "labelOffset" : { "x" : 13, "y" : 33 }
       }
     } ]
