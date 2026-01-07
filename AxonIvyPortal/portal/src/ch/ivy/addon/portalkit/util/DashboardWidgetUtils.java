@@ -551,10 +551,16 @@ public class DashboardWidgetUtils {
       processWidget.setEmptyProcessMessage(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/processes/noProcessSelected"));
       return;
     }
-
+    boolean hasProcessPermission = Ivy.session().getStartableProcessStarts().stream()
+        .anyMatch(p -> processPath.contains(p.getUserFriendlyRequestPath()));
     List<String> publicExternalLinkIdsNotForIvySessionUser = getPublicExternalLinkIdsNotForIvySessionUser();
     // check permission with external processes
     if (publicExternalLinkIdsNotForIvySessionUser.indexOf(processPath) > -1) {
+      processWidget.setHasPermissionToSee(false);
+      processWidget
+          .setEmptyProcessMessage(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/processes/noPermissionToSee"));
+      return;
+    } else if (!hasProcessPermission) {
       processWidget.setHasPermissionToSee(false);
       processWidget
           .setEmptyProcessMessage(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/processes/noPermissionToSee"));
@@ -563,6 +569,7 @@ public class DashboardWidgetUtils {
       processWidget.setHasPermissionToSee(true);
     }
 
+    
     for (DashboardProcess process : getAllPortalProcesses()) {
       if (process.getId() != null && process.getId().contains(processPath)) {
         updateProcessStartIdForCombined(processWidget, process);
