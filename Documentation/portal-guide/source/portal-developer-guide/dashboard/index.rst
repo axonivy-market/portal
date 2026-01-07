@@ -21,77 +21,77 @@ Below is a comprehensive JSON example configuring a dashboard with a task widget
          "templateId": "default-portal-dashboard-template",
          "titles": [
             {
-            "locale": "en",
-            "value": "Dashboard"
+               "locale": "en",
+               "value": "Dashboard"
             },
             {
-            "locale": "fr",
-            "value": "Tableau de bord"
+               "locale": "fr",
+               "value": "Tableau de bord"
             },
             {
-            "locale": "de",
-            "value": "Dashboard"
+               "locale": "de",
+               "value": "Dashboard"
             },
             {
-            "locale": "es",
-            "value": "Tablero de mandos"
+               "locale": "es",
+               "value": "Tablero de mandos"
             }
          ],
          "icon": "fa-play",
          "widgets": [
             {
-            "type": "task",
-            "id": "task_18459642ba614d79bddea3f57e800bcf",
-            "names": [
-               {
-                  "locale": "en",
-                  "value": "Your Tasks"
-               },
-               {
-                  "locale": "fr",
-                  "value": "Your Tasks"
-               },
-               {
-                  "locale": "de",
-                  "value": "Your Tasks"
-               },
-               {
-                  "locale": "es",
-                  "value": "Your Tasks"
-               }
-            ],
-            "layout": {
-               "w": 12,
-               "h": 5,
-               "x": 0,
-               "y": 0
-            },
-            "columns": [
-               {
-                  "field": "start"
-               },
-               {
-                  "field": "priority"
-               },
-               {
-                  "field": "id",
-                  "quickSearch": false
-               },
-               {
-                  "field": "name",
-                  "quickSearch": true
-               },
-               {
-                  "field": "description",
-                  "quickSearch": true
-               },
-               {
-                  "field": "state"
-               },
-               {
-                  "field": "actions"
-               }
-            ]
+               "type": "task",
+               "id": "task_18459642ba614d79bddea3f57e800bcf",
+               "names": [
+                  {
+                     "locale": "en",
+                     "value": "Your Tasks"
+                 },
+                 {
+                    "locale": "fr",
+                    "value": "Your Tasks"
+                 },
+                 {
+                    "locale": "de",
+                    "value": "Your Tasks"
+                 },
+                 {
+                    "locale": "es",
+                    "value": "Your Tasks"
+                 }
+              ],
+              "layout": {
+                 "w": 12,
+                 "h": 5,
+                 "x": 0,
+                 "y": 0
+              },
+              "columns": [
+                 {
+                    "field": "start"
+                 },
+                 {
+                    "field": "priority"
+                 },
+                 {
+                    "field": "id",
+                    "quickSearch": false
+                 },
+                 {
+                    "field": "name",
+                    "quickSearch": true
+                 },
+                 {
+                    "field": "description",
+                    "quickSearch": true
+                 },
+                 {
+                    "field": "state"
+                 },
+                 {
+                    "field": "actions"
+                 }
+              ]
             }
          ],
          "permissions": [

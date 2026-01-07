@@ -106,8 +106,8 @@ The Portal application consists of two main modules:
 
 .. _architecture-portal-components:
 
-portal-components
-=================
+Portal-components
+-----------------
 
 **Public UI Components and APIs**
 
@@ -135,8 +135,8 @@ This module provides reusable components that are independent of the Portal core
 
 .. _architecture-portal:
 
-portal
-======
+Portal
+------
 
 **Portal-Specific Implementation**
 

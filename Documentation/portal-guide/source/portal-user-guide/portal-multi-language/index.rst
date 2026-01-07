@@ -5,8 +5,11 @@ Portal Multi Language
 
 The translation service integrated from Axon Ivy makes it easy to translate text content into your end user's language, eliminating language barriers in process automation.
 
-Translation Overview
-====================
+How-To
+======
+
+HowTo: Enable the translation
+-----------------------------
 
 The Portal multi-language feature provides:
 

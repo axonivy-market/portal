@@ -1039,9 +1039,14 @@ ch.ivy.addon.portalkit.ui.jsf:
     logout: ログアウト
   mobile:
     AppleStore: Apple Store
+    AppleStoreDownload: Apple Storeでダウンロード
+    AppleStoreQRCode: Apple StoreからダウンロードするたQRコード
     AxonIvyMobile: Axon Ivy Mobile
+    AxonIvyMobileQRCode: Axon Ivy MobileアプリのQRコード
     DownloadMobileApp: Axon Ivy Mobile アプリをダウンロードするには
     GooglePlay: Google Play
+    GooglePlayDownload: Google Playで手に入れよう
+    GooglePlayQRCode: Google PlayからダウンロードするたQRコード
     MenuName: モバイルアプリを接続
     Platform: プラットフォーム：
     QRCodeDescription: Axon Ivy モバイルアプリを接続するには、この QR コードをスキャンし、アプリ内で認証情報を入力してください。
@@ -1125,6 +1130,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     goTo: '移動先:'
     icon: アイコン
     image: 画像
+    externalLinkImage: 外部リンクの画像
     isRequiredMessage: を設定する必要があります
     linkDescription: リンクの説明
     noProcess: プロセスがありません。

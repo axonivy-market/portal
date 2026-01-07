@@ -155,7 +155,8 @@
     modal="true"
     fitViewport="true"
     responsive="true"
-    styleClass="role-details-dialog"
+    width="750"
+    styleClass="role-details-dialog dialog-responsive"
     appendTo="@(body)"
     blockScroll="true">
     <c:set var="creationMode" value="#{roleManagementBean.creationMode}" scope="request"/>
@@ -182,7 +183,6 @@
             isRequired="#{roleManagementBean.canMoveRole}"
             isDisabled="#{!roleManagementBean.canMoveRole}"
             label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/RoleManagement/ParentRole')}"
-            labelPanelStyleClass="mb-2 role-management-label font-medium"
             autoCompletePanelStyleClass="w-full role-management-value ui-fluid"
             requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/RoleManagement/Messages/ParentRoleIsRequired')}"
             isRenderedMessage="false" displayNameInSelectionListStyleClass="u-truncate-text" />

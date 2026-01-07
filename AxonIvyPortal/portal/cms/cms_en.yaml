@@ -801,7 +801,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     canWorkOn: Can work on
     caseDrillDownDashboard: Case drill-down dashboard
     caseList: Case List
-    caseListIntroduction: This widget displays relevant case information according to defined settings
+    caseListIntroduction: This widget displays relevant case information according to defined settings.
     caseWidgetInfo:
       casesByCategory: Number of cases by category
       casesByState: Number of cases by state
@@ -1037,9 +1037,14 @@ ch.ivy.addon.portalkit.ui.jsf:
     logout: Logout
   mobile:
     AppleStore: Apple Store
+    AppleStoreDownload: Download on the Apple Store
+    AppleStoreQRCode: QR code to download from Apple Store
     AxonIvyMobile: Axon Ivy Mobile
+    AxonIvyMobileQRCode: QR code for Axon Ivy Mobile app
     DownloadMobileApp: To download your Axon Ivy Mobile App
     GooglePlay: Google Play
+    GooglePlayDownload: Get it on Google Play
+    GooglePlayQRCode: QR code to download from Google Play
     MenuName: Connect Mobile App
     Platform: 'Platform:'
     QRCodeDescription: To connect your Axon Ivy Mobile App, please scan this QR Code and enter your credentials in the inside the app.
@@ -1123,6 +1128,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     goTo: 'Go to: '
     icon: Icon
     image: Image
+    externalLinkImage: External link image
     isRequiredMessage: has to be set
     linkDescription: Link description
     noProcess: There are no processes.
