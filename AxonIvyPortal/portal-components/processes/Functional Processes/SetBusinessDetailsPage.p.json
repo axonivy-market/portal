@@ -53,5 +53,55 @@
       "connect" : [
         { "id" : "f2", "to" : "f1" }
       ]
+    }, {
+      "id" : "f5",
+      "type" : "CallSubStart",
+      "name" : "callWithParams(String,Map)",
+      "config" : {
+        "signature" : "callWithParams",
+        "input" : {
+          "params" : [
+            { "name" : "linkToBusinessDetailsPage", "type" : "String", "desc" : "" },
+            { "name" : "params", "type" : "java.util.Map", "desc" : "" }
+          ],
+          "map" : {
+            "out.linkToBusinessDetailsPage" : "param.linkToBusinessDetailsPage",
+            "out.params" : "param.params"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 248 }
+      },
+      "connect" : [
+        { "id" : "f8", "to" : "f6" }
+      ]
+    }, {
+      "id" : "f6",
+      "type" : "Script",
+      "name" : "Set business details page with params",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.components.publicapi.BusinessDetailsAPI;",
+            "",
+            "BusinessDetailsAPI.create(in.linkToBusinessDetailsPage, in.params);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 249 },
+        "size" : { "width" : 176, "height" : 62 }
+      },
+      "connect" : [
+        { "id" : "f9", "to" : "f7" }
+      ]
+    }, {
+      "id" : "f7",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 352, "y" : 248 },
+        "labelOffset" : { "x" : 13, "y" : 33 }
+      }
     } ]
 }
