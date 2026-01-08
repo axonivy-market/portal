@@ -1,1 +1,18 @@
-[]
+[
+    {
+        "index": 0,
+        "link": "https://your_external_page.com",
+        "label": "External link",
+        "isExternal": "true",
+        "icon": "si si-bulb",
+        "version": "11.2.0",
+        "id":"3434"
+    }, {
+        "index": 1,
+        "link": "/designer/pro/portal-user-examples/17236DB1D3DA14C0/userExampleGuide.ivp",
+        "label": "Guideline Ivy process",
+        "isExternal": "false",
+        "version": "11.2.0",
+        "id":"33454"
+    }
+]

@@ -1,5 +1,9 @@
 package com.axonivy.portal.components.enums;
 
+import java.util.Collections;
+import java.util.EnumSet;
+import java.util.Set;
+
 import com.fasterxml.jackson.annotation.JsonValue;
 
 public enum MenuKind {
@@ -23,4 +27,7 @@ public enum MenuKind {
   public String getCmsUri() {
     return "/Labels/Enums/MenuKind/" + name();
   }
+
+  public static final Set<MenuKind> CREATABLE_MENU_KINDS = Collections
+      .unmodifiableSet(EnumSet.of(EXTERNAL_LINK, CUSTOM, MAIN_DASHBOARD, STATIC_PAGE));
 }

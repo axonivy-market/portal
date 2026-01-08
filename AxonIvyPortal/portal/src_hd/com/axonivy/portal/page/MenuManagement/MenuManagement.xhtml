@@ -14,7 +14,7 @@
           </div>
           <div class="col-12 flex flex-row-reverse">
             <h:form class="w-full">
-              <p:commandButton id="create-menu-action" actionListener="#{menuManagementBean.onCreateNewMenu}"
+              <p:commandButton id="create-menu-action" actionListener="#{menuDetailsBean.onCreateNewMenu(menuManagementBean.getLastIndex())}"
                   value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/MenuManagement/AddNewMenu')}" 
                   styleClass="dashboard-action-container-icon #{selectedDashboardTypeStyleClass} w-full primary-color-light-button"
                   partialSubmit="true" global="false"
@@ -47,15 +47,19 @@
               width="100" styleClass="text-center">
               <div class="w-full flex justify-content-center">
                 <p:commandButton id="action-button" icon="fa fa-ellipsis-h"
+                  rendered="#{menuManagementBean.hasAction(menu)}"
                   ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}"
                   styleClass="rounded-button icon-more-menu-button #{buttonStyle} ui-no-rounded-button-process-page" type="button" />
                   <p:menu id="configuration-action-menu" styleClass="w-10rem" overlay="true" trigger="action-button"
                     my="right top" at="right bottom">
-                    <p:menuitem id="edit" process="@this" actionListener="#{menuManagementBean.onEditMenu(menu)}"
+                    <p:menuitem id="edit" process="@this"
+                      actionListener="#{menuDetailsBean.onEditMenu(menu)}"
                       icon="si si-graphic-tablet-drawing-pen" styleClass="dashboard-configuration-action-menu-icon"
                       update="menu-configuration-dialog" global="false"
-                      value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}" oncomplete="PF('menu-configuration-dialog').show()"
-                      target="_blank" resetValues="true" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}" rendered="true" />
+                      oncomplete="PF('menu-configuration-dialog').show()"
+                      target="_blank" resetValues="true"
+                      title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}"
+                      value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}" />
                     <p:menuitem id="delete" process="@this" styleClass="rounded-button ui-button-outlined ui-button-danger color-destroy"
                       rendered="#{menu.type ne 'STANDARD'}"
                       icon="si si-bin-1" actionListener="#{menuManagementBean.setSelectedMenuDefinition(menu)}" global="false"

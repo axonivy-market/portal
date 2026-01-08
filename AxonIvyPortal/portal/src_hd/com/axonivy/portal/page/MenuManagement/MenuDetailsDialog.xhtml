@@ -5,223 +5,237 @@
   xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
 <ui:composition>
-<c:set var="isReadOnly" value="#{menuManagementBean.selectedMenuDefinition.source eq 'CALLABLE'}" />
+  <c:set var="isReadOnly" value="#{menuDetailsBean.readOnly}" />
+  <c:set var="contentState" value="#{menuDetailsBean.contentState}" />
+
 <p:dialog id="menu-configuration-dialog" widgetVar="menu-configuration-dialog"
-        header="#{menuManagementBean.configurationDialogHeader}"
-        appendTo="@(body)" closeOnEscape="true"
-        fitViewport="true" responsive="true"
-        resizable="false" width="650px"
-        modal="true" dynamic="true"
-        position="center center"
-        onShow="PF('menu-configuration-dialog').initPosition()">
-        <h:form id="menu-configuration-form" class="flex w-full flex-column">
-          <c:set var="selectedMenu" value="#{menuManagementBean.selectedMenuDefinition}" />
-          <div id="clone-widget-panel" class="flex w-full flex-column">
-            <div class="mb-3">
-              <h:outputLabel value="Menu tpye" for="menu-type" />
-            </div>
-            <div class="mb-3 ui-fluid">
-              <p:selectOneMenu id="menu-type" value="#{menuManagementBean.selectedMenuKind}"
-                disabled="#{isReadOnly or !menuManagementBean.create}">
-                <f:selectItem noSelectionOption="true" value="#{null}" />
-                <f:selectItems value="#{menuManagementBean.menuKinds}" var="menuKind"
-                  itemValue="#{menuKind}" itemLabel="#{menuManagementBean.getMenuKindLabel(menuKind)}" />
-                  <p:ajax event="change" process="@(this)" global="false" update="@(form)"
-                    listener="#{menuManagementBean.onSelectMenuKind}"
-                    oncomplete="PF('menu-configuration-dialog').initPosition();" />
-                  <f:param name="skipValidator" value="true" />
-              </p:selectOneMenu>
-            </div>
-          </div>
-
-          <!-- Dashboard selection -->
-          <h:panelGroup id="dashboard-selection-panel" layout="block"
-            styleClass="flex flex-column w-full"
-            rendered="#{selectedMenu.type eq 'MAIN_DASHBOARD'}">
-            <div class="col-12 mb-3 p-0">
-              <p:outputLabel value="Dashboard" for="dashboard-selection" />
-            </div>
-            <div class="col-12 mb-3 ui-fluid p-0">
-              <p:selectOneMenu id="dashboard-selection" value="#{menuManagementBean.selectedDashboard}"
-                converter="pojoConverter" disabled="#{isReadOnly}">
-                <f:selectItem noSelectionOption="true" value="#{null}" />
-                <f:selectItems  value="#{menuManagementBean.visibleDashboards}" var="dashboard"
-                  itemValue="#{dashboard}" itemLabel="#{dashboard.title}" />
-                <p:ajax event="change" update="@(form)" process="dashboard-selection" global="false"
-                  listener="#{menuManagementBean.onSelectDashboard}"
-                  oncomplete="PF('menu-configuration-dialog').initPosition();" />
-              </p:selectOneMenu>
-            </div>
-          </h:panelGroup>
-
-          <!-- Application selection -->
-          <h:panelGroup id="application-selection-panel" layout="block"
-            styleClass="flex flex-column w-full"
-            rendered="#{selectedMenu.type eq 'CUSTOM'}">
-            <div class="col-12 mb-3 p-0">
-              <p:outputLabel value="Application" for="application-selection" />
-            </div>
-            <div class="col-12 mb-3 ui-fluid p-0">
-              <p:selectOneMenu id="application-selection" value="#{menuManagementBean.selectedApplication}"
-               disabled="#{isReadOnly}">
-                <f:selectItem noSelectionOption="true" value="#{null}" />
-                <f:selectItems  value="#{menuManagementBean.applications}" var="app"
-                  itemValue="#{app}" itemLabel="#{app}" />
-                <f:param name="skipValidator" value="true" />
-                <p:ajax event="change" update="@(form)" process="@(this)" global="false" oncomplete="onSelectApplication();" />
-              </p:selectOneMenu>
-              <p:remoteCommand name="onSelectApplication"
-                actionListener="#{menuManagementBean.onSelectApplication}"
-                process="application-selection" update="@(form)" global="false"
+    header="#{menuDetailsBean.configurationDialogHeader}"
+    appendTo="@(body)" closeOnEscape="true"
+    fitViewport="true" responsive="true"
+    resizable="false" width="650px"
+    modal="true" dynamic="true"
+    position="center center"
+    onShow="PF('menu-configuration-dialog').initPosition()">
+    <h:form id="menu-configuration-form" class="flex w-full flex-column">
+      <c:set var="selectedMenu" value="#{menuDetailsBean.selectedMenuDefinition}" />
+      <p:messages id="menu-configuration-messages" />
+      <div id="clone-widget-panel" class="flex w-full flex-column">
+        <h:panelGroup layout="block" styleClass="w-full mb-5"
+          rendered="#{selectedMenu.source eq 'CALLABLE'}">
+          <span>#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/MenuManagement/CallableMenuMessage')}</span>
+        </h:panelGroup>
+        <div class="mb-3">
+          <p:outputLabel for="menu-type" styleClass="font-semibold"
+            value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/MenuManagement/MenuType')}" />
+        </div>
+        <div class="mb-3 ui-fluid">
+          <p:selectOneMenu id="menu-type" value="#{menuDetailsBean.selectedMenuKind}"
+            disabled="#{isReadOnly or menuDetailsBean.isEdit()}"
+            required="true"
+            requiredMessage="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/MenuManagement/MenuType')}: #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}">
+            <f:selectItem noSelectionOption="true" value="#{null}" />
+            <f:selectItems value="#{menuDetailsBean.menuKinds}" var="menuKind"
+              itemValue="#{menuKind}" itemLabel="#{menuDetailsBean.getMenuKindLabel(menuKind)}" />
+              <p:ajax event="change" process="@(this)" global="false" update="@(form) menu-configuration-messages"
+                listener="#{menuDetailsBean.onSelectMenuKind}"
                 oncomplete="PF('menu-configuration-dialog').initPosition();" />
-            </div>
-          </h:panelGroup>
-
-          <!-- Process selection -->
-          <h:panelGroup id="process-selection-panel" layout="block"
-            styleClass="flex flex-column w-full"
-            rendered="#{selectedMenu.type eq 'CUSTOM' and (menuManagementBean.selectedApplication ne null)}">
-            <div class="col-12 mb-3 p-0">
-              <p:outputLabel value="Process" for="process-selection" />
-            </div>
-            <div class="col-12 mb-3 ui-fluid p-0">
-              <p:selectOneMenu id="process-selection" value="#{menuManagementBean.selectedProcess}"
-                converter="pojoConverter" disabled="#{isReadOnly}">
-                <f:selectItem noSelectionOption="true" value="#{null}" />
-                <f:selectItems  value="#{menuManagementBean.processStarts}" var="process"
-                  itemValue="#{process}" itemLabel="#{menuManagementBean.getProcessStartDisplayName(process)}" />
-                <f:param name="skipValidator" value="true" />
-                <p:ajax event="change" update="@(form)" process="@(this)" global="false" oncomplete="onSelectProcess();" />
-              </p:selectOneMenu>
-              <p:remoteCommand name="onSelectProcess"
-                actionListener="#{menuManagementBean.onSelectProcess}"
-                process="process-selection" update="@(form)" global="false"
-                oncomplete="PF('menu-configuration-dialog').initPosition();" />
-            </div>
-          </h:panelGroup>
-          
-          <!-- External link -->
-          <h:panelGroup id="external-link-panel" layout="block"
-            styleClass="flex flex-column w-full"
-            rendered="#{selectedMenu.type eq 'EXTERNAL_LINK'}">
-            <div class="col-12 mb-3 p-0">
-              <p:outputLabel value="External link" for="external-link" />
-            </div>
-            <div class="col-12 mb-3 ui-fluid p-0">
-              <p:inputText id="external-link" value="#{menuManagementBean.externalLink}"
-                required="#{param['skipValidator'] == null}" disabled="#{isReadOnly}">
-                <p:ajax event="blur" process="@this" update="@this" global="false" immediate="true" />
-              </p:inputText>
-            </div>
-            <div class="col-12 mb-3 p-0 flex align-items-center">
-              <p:toggleSwitch id="is-new-tab" styleClass="mr-2" value="#{menuManagementBean.openInNewTab}"
-                disabled="#{isReadOnly}">
-                <p:ajax process="@this" update="@this" oncomplete="onToggleOpenInNewTab();" />
-                <f:param name="skipValidator" value="true" />
-              </p:toggleSwitch>
-              <p:outputLabel value="Open in new tab" for="is-new-tab" />
-              <p:remoteCommand name="onToggleOpenInNewTab"
-                actionListener="#{menuManagementBean.onToggleOpenInNewTab}"
-                process="is-new-tab" global="false"
-                oncomplete="PF('menu-configuration-dialog').initPosition();" />
-            </div>
-          </h:panelGroup>
-
-          <!-- Menu Icon -->
-          <h:panelGroup id="menu-icon-label" styleClass="col-12 mb-3 p-0"
-            rendered="#{menuManagementBean.isRenderDashboardIcon() or menuManagementBean.isRenderIconSelection()}">
-              <h:outputText value="Menu icon" />
-          </h:panelGroup>
-          <h:panelGroup id="non-dashboard-menu-icon-panel" layout="block"
-            rendered="#{menuManagementBean.isRenderIconSelection()}"
-            styleClass="col-12 mb-3 ui-fluid p-0">
-            <ic:ch.ivy.addon.portalkit.component.IconSelection
-              value="#{menuManagementBean.selectedIcon}" isReadOnly="#{isReadOnly or selectedMenu.type eq 'MAIN_DASHBOARD'}" />
-          </h:panelGroup>
-
-          <!-- Menu Title -->
-          <h:panelGroup id="menu-titles-label" styleClass="col-12 mb-3 p-0"
-            rendered="#{menuManagementBean.isRenderDashboardIcon() or menuManagementBean.isRenderIconSelection()}">
-              <h:outputText value="Menu title" />
-          </h:panelGroup>
-          <h:panelGroup id="menu-titles-panel" styleClass="col-12 mb-3 ui-fluid p-0 ui-inputgroup"
-            rendered="#{menuManagementBean.isRenderDashboardIcon() or menuManagementBean.isRenderIconSelection()}">
-            <p:inputText id="menu-titles" value="#{selectedMenu.displayTitle}"
-              disabled="#{isReadOnly or selectedMenu.type eq 'MAIN_DASHBOARD'}"
-              required="#{param['skipValidator'] == null}" styleClass="manage-dashboard__input">
-              <p:ajax event="blur" process="@this" update="@this" global="false" immediate="true" />
-            </p:inputText>
-            <p:commandButton id="add-language-button" icon="si si-chat-translate"
-              actionListener="#{menuManagementBean.updateTitlesByLocale()}"
-              process="menu-titles"
-              disabled="#{isReadOnly or selectedMenu.type eq 'MAIN_DASHBOARD'}"
-              update="title-language-config:multiple-languages-dialog"
-              oncomplete="PF('multiple-languages-dialog').show();">
               <f:param name="skipValidator" value="true" />
-            </p:commandButton>
-          </h:panelGroup>
-        
-          <!-- Permissions -->
-          <h:panelGroup id="permissions-label" styleClass="col-12 mb-3 p-0"
-            rendered="#{menuManagementBean.isRenderDashboardIcon() or menuManagementBean.isRenderIconSelection()}">
-              <h:outputText value="Permissions" />
-          </h:panelGroup>
-          <h:panelGroup id="permissions-panel" styleClass="col-12 mb-3 ui-fluid p-0"
-            rendered="#{menuManagementBean.isRenderDashboardIcon() or menuManagementBean.isRenderIconSelection()}">
-            <p:autoComplete id="menu-permission" scrollHeight="210" dropdown="true" required="#{param['skipValidator'] == null}"
-              disabled="#{(selectedMenu.type eq 'MAIN_DASHBOARD') or isReadOnly}"
-              completeMethod="#{menuManagementBean.completePermissions}" styleClass="manage-dashboard__input"
-              inputStyleClass="manage-dashboard__autocomplete-input"
-              value="#{menuManagementBean.selectedMenuDefinition.permissionDTOs}" var="responsible"
-              itemValue="#{responsible}" itemLabel="#{responsible.briefDisplayNameWithState}" converter="pojoConverter"
-              cache="true" maxResults="100" multiple="true"
-              moreText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}..." dynamic="true" forceSelection="true">
-              <p:ajax event="itemSelect" listener="#{menuManagementBean.onSelectPermission}"
-                disabled="#{selectedMenu.type eq 'MAIN_DASHBOARD'}"
-                update="permissions-panel" global="false" process="permissions-panel" immediate="true"/>
-              <p:ajax event="itemUnselect" listener="#{managedBean.onUnSelectPermission}"
-                disabled="#{selectedMenu.type eq 'MAIN_DASHBOARD'}"
-                global="false" process="permissions-panel" update="permissions-panel" immediate="true"/>
-                <f:param name="skipValidator" value="true" />
+          </p:selectOneMenu>
+        </div>
+      </div>
+
+      <!-- Dashboard selection -->
+      <h:panelGroup id="dashboard-selection-panel" layout="block"
+        styleClass="flex flex-column w-full"
+        rendered="#{contentState.showDashboardSelection}">
+        <div class="col-12 mb-3 p-0">
+          <p:outputLabel value="#{ivy.cms.co('/Labels/Enums/MenuKind/MAIN_DASHBOARD')}" styleClass="font-semibold"
+            for="dashboard-selection" />
+        </div>
+        <div class="col-12 mb-3 ui-fluid p-0">
+          <p:selectOneMenu id="dashboard-selection" value="#{menuDetailsBean.selectedDashboard}"
+            converter="pojoConverter" disabled="#{!contentState.enableDashboardSelection}"
+            required="#{param['skipValidator'] == null}"
+            requiredMessage="#{ivy.cms.co('/Labels/Enums/MenuKind/MAIN_DASHBOARD')}: #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}">
+            <f:selectItem noSelectionOption="true" value="#{null}" />
+            <f:selectItems  value="#{menuDetailsBean.visibleDashboards}" var="dashboard"
+              itemValue="#{dashboard}" itemLabel="#{dashboard.title}" />
+            <p:ajax event="change" update="@(form)" process="dashboard-selection" global="false"
+              listener="#{menuDetailsBean.onSelectDashboard}"
+              oncomplete="PF('menu-configuration-dialog').initPosition();" />
+          </p:selectOneMenu>
+        </div>
+      </h:panelGroup>
+
+      <!-- Process selection -->
+      <h:panelGroup id="process-selection-panel" layout="block"
+        styleClass="flex flex-column w-full"
+        rendered="#{contentState.showProcessSelection}">
+        <div class="col-12 mb-3 p-0">
+          <p:outputLabel for="process-selection" styleClass="font-semibold"
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/process')}" />
+        </div>
+        <div class="col-12 mb-3 ui-fluid p-0">
+        <p:autoComplete id="process-selection"
+          disabled="#{!contentState.enableProcessSelection}"
+          dropdown="true" scrollHeight="300" forceSelection="true"
+          completeMethod="#{menuDetailsBean.findProcess}"
+          value="#{menuDetailsBean.selectedProcess}" var="process"
+          itemValue="#{process}" itemLabel="#{process.name}" queryDelay="500" cache="true"
+          minQueryLength="2" itemtipAtPosition="right top" converter="pojoConverter"
+          required="#{param['skipValidator'] == null}"
+          requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/processes/noProcessSelected')}">
+              <p:ajax event="query" global="false" />
+              <p:ajax event="change" update="@(form)" process="@(this)" global="false" oncomplete="onSelectProcess();" />
+              <f:param name="skipValidator" value="true" />
               <p:column>
-                <pc:securityMemberNameAndAvatar
-                  displayName="#{menuManagementBean.formatName(responsible)}" securityMember="#{responsible}">
-                  <f:facet name="alternativeAvatar">
-                    <h:outputText rendered="#{not avatarBean.isShowAvatar()}" styleClass="fa #{responsible.isUser() ? 'fa-user' : 'fa-users'} u-mar-right-5" />
-                  </f:facet>
-                </pc:securityMemberNameAndAvatar>
+                <h:outputText styleClass="autocomplete-tooltip" value="#{process.name}" title="#{process.description}" />
               </p:column>
-            </p:autoComplete>
-          </h:panelGroup>
+          </p:autoComplete>
+          <p:remoteCommand name="onSelectProcess"
+            actionListener="#{menuDetailsBean.onSelectProcess}"
+            process="process-selection" update="@(form)" global="false"
+            oncomplete="PF('menu-configuration-dialog').initPosition();" />
+        </div>
+      </h:panelGroup>
+      
+      <!-- External link -->
+      <h:panelGroup id="external-link-panel" layout="block"
+        styleClass="flex flex-column w-full"
+        rendered="#{contentState.showExternalLinkInput and menuDetailsBean.selectedMenuKind ne 'STATIC_PAGE'}">
+        <div class="col-12 mb-3 p-0">
+          <p:outputLabel for="external-link" styleClass="font-semibold"
+            value="#{ivy.cms.co('/Labels/Enums/MenuKind/EXTERNAL_LINK')}" />
+        </div>
+        <div class="col-12 mb-3 ui-fluid p-0">
+          <p:inputText id="external-link" value="#{menuDetailsBean.externalLink}"
+            required="#{param['skipValidator'] == null}"
+            requiredMessage="#{ivy.cms.co('/Labels/Enums/MenuKind/EXTERNAL_LINK')}: #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}"
+            disabled="#{!contentState.enableExternalLinkInput}" autocomplete="off">
+            <p:ajax event="blur" process="@this" update="@this" global="false" immediate="true" />
+          </p:inputText>
+        </div>
+        <div class="col-12 mb-3 p-0 flex align-items-center">
+          <p:toggleSwitch id="is-new-tab" styleClass="mr-2" value="#{menuDetailsBean.openInNewTab}"
+            disabled="#{!contentState.enableExternalLinkInput or (selectedMenu.source eq 'THIRD_PARTY_APP_CONFIGURATION')}" />
+          <p:outputLabel for="is-new-tab" styleClass="font-semibold"
+            value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/MenuManagement/OpenInNewTab')}" />
+        </div>
+      </h:panelGroup>
+
+      <!-- Static Page Path -->
+      <h:panelGroup id="static-page-path-panel" layout="block"
+        styleClass="flex flex-column w-full"
+        rendered="#{contentState.showStaticPageInput}">
+        <div class="col-12 mb-3 p-0">
+          <p:outputLabel for="static-page-path" styleClass="font-semibold"
+            value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/MenuManagement/StaticPagePath')}" />
+        </div>
+        <div class="col-12 mb-3 ui-fluid p-0">
+          <p:inputText id="static-page-path" value="#{menuDetailsBean.staticPagePath}"
+            required="#{param['skipValidator'] == null}"
+            requiredMessage="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/MenuManagement/StaticPagePath')}: #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}"
+            disabled="#{!contentState.enableStaticPageInput}" autocomplete="off">
+            <p:ajax event="blur" process="@this" update="@this" global="false" immediate="true" />
+          </p:inputText>
+        </div>
+      </h:panelGroup>
+
+      <!-- Menu Icon -->
+      <h:panelGroup id="menu-icon-label" styleClass="col-12 mb-3 p-0">
+          <h:outputText styleClass="font-semibold"
+            value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/MenuManagement/MenuIcon')}" />
+      </h:panelGroup>
+      <h:panelGroup id="non-dashboard-menu-icon-panel" layout="block"
+        styleClass="col-12 mb-3 ui-fluid p-0">
+        <ic:ch.ivy.addon.portalkit.component.IconSelection
+          value="#{menuDetailsBean.selectedIcon}" isReadOnly="#{!contentState.enableIconSelection}" />
+      </h:panelGroup>
+
+      <!-- Menu Title -->
+      <h:panelGroup id="menu-titles-label" styleClass="col-12 mb-3 p-0">
+          <p:outputLabel for="menu-titles" styleClass="font-semibold"
+            value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/MenuManagement/MenuTitle')}" />
+      </h:panelGroup>
+      <h:panelGroup id="menu-titles-panel" styleClass="col-12 mb-3 ui-fluid p-0 ui-inputgroup">
+        <p:inputText id="menu-titles" value="#{selectedMenu.displayTitle}"
+          disabled="#{!contentState.enableTitleInput}" autocomplete="off"
+          required="#{param['skipValidator'] == null}" styleClass="manage-dashboard__input">
+          <p:ajax event="blur" process="@this" update="@this" global="false" immediate="true" />
+        </p:inputText>
+        <p:commandButton id="add-language-button" icon="si si-chat-translate"
+          actionListener="#{menuDetailsBean.updateSelectedMenuTitlesByLocale()}"
+          process="menu-titles"
+          disabled="#{!contentState.enableTitleInput or !contentState.enableMultiLanguage}"
+          update="title-language-config:multiple-languages-dialog"
+          oncomplete="PF('multiple-languages-dialog').show();">
+          <f:param name="skipValidator" value="true" />
+        </p:commandButton>
+      </h:panelGroup>
+    
+      <!-- Permissions -->
+      <h:panelGroup id="permissions-label" styleClass="col-12 mb-3 p-0">
+          <p:outputLabel for="menu-permission" styleClass="font-semibold"
+            value="#{ivy.cms.co('/Labels/Permissions')}" />
+      </h:panelGroup>
+      <h:panelGroup id="permissions-panel" styleClass="col-12 mb-3 ui-fluid p-0">
+        <p:autoComplete id="menu-permission" scrollHeight="210"
+          dropdown="true" required="#{param['skipValidator'] == null}"
+          disabled="#{!contentState.enablePermissionSelection}"
+          completeMethod="#{menuDetailsBean.completePermissions}" styleClass="manage-dashboard__input"
+          inputStyleClass="manage-dashboard__autocomplete-input"
+          value="#{selectedMenu.permissionDTOs}" var="responsible"
+          itemValue="#{responsible}" itemLabel="#{responsible.briefDisplayNameWithState}" converter="pojoConverter"
+          cache="true" maxResults="100" multiple="true"
+          moreText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}..." dynamic="true" forceSelection="true">
+          <p:ajax event="itemSelect" listener="#{menuDetailsBean.onSelectPermission}"
+            update="permissions-panel" global="false" process="permissions-panel" immediate="true"/>
+          <p:ajax event="itemUnselect" listener="#{menuDetailsBean.onUnSelectPermission}"
+            global="false" process="permissions-panel" update="permissions-panel" immediate="true"/>
+            <f:param name="skipValidator" value="true" />
+          <p:column>
+            <pc:securityMemberNameAndAvatar
+              displayName="#{menuDetailsBean.formatName(responsible)}" securityMember="#{responsible}">
+              <f:facet name="alternativeAvatar">
+                <h:outputText rendered="#{not avatarBean.isShowAvatar()}" styleClass="fa #{responsible.isUser() ? 'fa-user' : 'fa-users'} u-mar-right-5" />
+              </f:facet>
+            </pc:securityMemberNameAndAvatar>
+          </p:column>
+        </p:autoComplete>
+      </h:panelGroup>
+    </h:form>
+
+    <ic:ch.ivy.addon.portal.generic.dashboard.component.MultiLanguageConfiguration
+        id="title-language-config" titles="#{selectedMenu.titles}"
+        managedBean="#{menuDetailsBean}" dynamic="true"
+        updateCurrentLanguage="#{menuDetailsBean.updateCurrentLanguage()}"
+        componentToUpdateOnCreate="menu-configuration-form:menu-titles-panel" />
+
+    <f:facet name="footer">
+      <h:panelGroup id="footer-panel" layout="block" styleClass="text-right">
+        <h:form styleClass="w-full">
+          <p:commandButton id="create-button" styleClass="w-full"
+            rendered="#{menuDetailsBean.isCreate()}" partialSubmit="true"
+            disabled="#{menuDetailsBean.selectedMenuDefinition eq null}"
+            value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/Create')}"
+            ariaLabel="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/Create')}"
+            actionListener="#{menuDetailsBean.createMenu}"
+            process="menu-configuration-form"
+            update="menu-configuration-form"
+            oncomplete="if (args &amp;&amp; !args.validationFailed) {location.reload();}" />
+          <p:commandButton id="update-button" styleClass="w-full"
+            rendered="#{!menuDetailsBean.isCreate()}" partialSubmit="true"
+            disabled="#{isReadOnly}"
+            value="#{ivy.cms.co('/Labels/Save')}"
+            ariaLabel="#{ivy.cms.co('/Labels/Save')}"
+            actionListener="#{menuDetailsBean.updateMenu}"
+            process="menu-configuration-form"
+            update="menu-configuration-form"
+            oncomplete="if (args &amp;&amp; !args.validationFailed) {location.reload();}" />
         </h:form>
-
-        <ic:ch.ivy.addon.portal.generic.dashboard.component.MultiLanguageConfiguration
-            id="title-language-config" titles="#{selectedMenu.titles}"
-            managedBean="#{menuManagementBean}" dynamic="true"
-            updateCurrentLanguage="#{menuManagementBean.updateCurrentLanguage()}"
-            componentToUpdateOnModify="menu-configuration-form:menu-titles-panel" />
-
-        <f:facet name="footer">
-          <h:panelGroup id="footer-panel" layout="block" styleClass="text-right">
-            <h:form styleClass="w-full">
-              <p:commandButton id="create-button" styleClass="w-full"
-                rendered="#{menuManagementBean.create}"
-                disabled="#{menuManagementBean.selectedMenuDefinition eq null}"
-                value="Create" actionListener="#{menuManagementBean.createMenu}"
-                oncomplete="location.reload();">
-              </p:commandButton>
-              <p:commandButton id="update-button" styleClass="w-full"
-                rendered="#{!menuManagementBean.create}"
-                disabled="#{isReadOnly}"
-                value="Save" type="button">
-                <p:ajax event="click" process="menu-configuration-form"
-                  oncomplete="location.reload();"
-                  listener="#{menuManagementBean.updateMenu}" />
-              </p:commandButton>
-            </h:form>
-          </h:panelGroup>
-      </f:facet>
-    </p:dialog>
+      </h:panelGroup>
+  </f:facet>
+</p:dialog>
 
 </ui:composition>
 </html>

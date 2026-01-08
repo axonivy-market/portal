@@ -923,6 +923,10 @@ ch.ivy.addon.portalkit.ui.jsf:
     statisticChartWidget: Statistic chart
     statisticWidgets: Statistic Widgets
     switchToViewMode: View Mode
+    taskList: Task List
+    taskListIntroduction: This widget displays relevant task information according to defined settings.
+    taskStart: Task start
+    taskWidgetConfiguration: Task Widget Configuration
     taskWidgetInfo:
       expireToday: Expire today
       expiryThisWeek: Expire this week
@@ -931,10 +935,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       numberOfTasksByState: Number of tasks by state
       predefinedFilters: Predefined filters
       taskDrillDownDashboard: Task drill-down dashboard
-    taskList: Task List
-    taskListIntroduction: This widget displays relevant task information according to defined settings.
-    taskStart: Task start
-    taskWidgetConfiguration: Task Widget Configuration
     widgetInfo: Widget information
     widgetInfoIcon: Widget Information Icon
     widgetTitle: Widget Title
@@ -1575,8 +1575,14 @@ Dialogs:
         page:
           MenuManagement:
             AddNewMenu: Add new menu
+            CallableMenuMessage: This menu is generated programmatically by a callable process and cannot be edited.
             HelpText: Customize the menu in this section to match your specific needs or preferences.
+            MenuDetails: Menu Details
+            MenuIcon: Menu icon
             MenuTitle: Menu title
+            MenuType: Menu type
+            OpenInNewTab: Open in new tab
+            StaticPagePath: Static Page Path
           StatisticConfiguration:
             AddFilter: Add filter
             Advanced: Advanced

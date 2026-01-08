@@ -23,6 +23,7 @@ import ch.addon.portal.generic.menu.SubMenuItem;
 import ch.addon.portal.generic.userprofile.homepage.HomepageType;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
+import ch.ivy.addon.portalkit.util.DashboardUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.call.SubProcessCallStartEvent;
 import ch.ivyteam.ivy.process.call.SubProcessSearchFilter;
@@ -104,7 +105,36 @@ public class CustomSubMenuItemService {
 
   public static CustomSubMenuItem saveConfiguration(CustomSubMenuItem entity) {
     List<CustomSubMenuItem> existedEntities = loadFromConfiguration();
-    existedEntities.removeIf(e -> entity.getId().contentEquals(e.getId()));
+    existedEntities.removeIf(e -> Optional.ofNullable(e).map(CustomSubMenuItem::getId).orElse("") == e.getId());
+    existedEntities.add(entity);
+    Ivy.var().set(PortalVariable.CUSTOM_MENU_ITEMS.key, BusinessEntityConverter.entityToJsonValue(existedEntities));
+    return entity;
+  }
+
+  public static CustomSubMenuItem migrate(CustomSubMenuItem menu) {
+    boolean shouldMigrate = false;
+    if (menu != null && StringUtils.isBlank(menu.getId())) {
+      menu.setId(DashboardUtils.generateId());
+    }
+
+    if (shouldMigrate) {
+      return saveConfigurationUseLabel(menu);
+    }
+    return menu;
+  }
+
+  /**
+   * Method for old configurations which don't have ID, so compare both link and
+   * label
+   * 
+   * @param entity
+   * @return
+   */
+  public static CustomSubMenuItem saveConfigurationUseLabel(CustomSubMenuItem entity) {
+    List<CustomSubMenuItem> existedEntities = loadFromConfiguration();
+    existedEntities
+        .removeIf(e -> Optional.ofNullable(e).map(CustomSubMenuItem::getLabel).orElse("").equals(e.getLabel())
+            && Optional.ofNullable(e).map(CustomSubMenuItem::getLink).orElse("").equals(entity.getLink()));
     existedEntities.add(entity);
     Ivy.var().set(PortalVariable.CUSTOM_MENU_ITEMS.key, BusinessEntityConverter.entityToJsonValue(existedEntities));
     return entity;

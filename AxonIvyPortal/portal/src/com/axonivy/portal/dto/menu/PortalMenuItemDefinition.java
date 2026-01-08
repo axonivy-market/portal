@@ -8,6 +8,7 @@ import org.apache.commons.lang3.Strings;
 
 import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import com.axonivy.portal.components.enums.MenuKind;
+import com.axonivy.portal.menu.management.enums.MenuSource;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
@@ -27,7 +28,8 @@ import ch.ivyteam.ivy.environment.Ivy;
 @JsonSubTypes({ @Type(value = StandardMenuItemDefinition.class, name = "standard"),
     @Type(value = DashboardMenuItemDefinition.class, name = "main_dashboard"),
     @Type(value = ExternalLinkMenuItemDefinition.class, name = "external_link"),
-    @Type(value = CustomMenuItemDefinition.class, name = "custom") })
+    @Type(value = CustomMenuItemDefinition.class, name = "custom"),
+    @Type(value = StaticPageMenuItemDefinition.class, name = "static_page") })
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public abstract class PortalMenuItemDefinition extends AbstractConfiguration implements Serializable {
 
@@ -60,6 +62,9 @@ public abstract class PortalMenuItemDefinition extends AbstractConfiguration imp
 
   @JsonIgnore
   private List<SecurityMemberDTO> permissionDTOs;
+
+  @JsonIgnore
+  private boolean isIncludedIconFamily;
 
   private String displayedPermission;
 
@@ -197,7 +202,36 @@ public abstract class PortalMenuItemDefinition extends AbstractConfiguration imp
     this.displayTitle = displayTitle;
   }
 
-  public enum MenuSource {
-    CALLABLE, DASHBOARD, CUSTOM_MENU_CONFIGURATION, THIRD_PARTY_APP_CONFIGURATION;
+  public boolean isIncludedIconFamily() {
+    return isIncludedIconFamily;
+  }
+
+  public void setIncludedIconFamily(boolean isIncludedIconFamily) {
+    this.isIncludedIconFamily = isIncludedIconFamily;
+  }
+
+  @Override
+  public int hashCode() {
+    final int prime = 31;
+    int result = 1;
+    result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
+    return result;
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj)
+      return true;
+    if (obj == null)
+      return false;
+    if (getClass() != obj.getClass())
+      return false;
+    PortalMenuItemDefinition other = (PortalMenuItemDefinition) obj;
+    if (getId() == null) {
+      if (other.getId() != null)
+        return false;
+    } else if (!getId().equals(other.getId()))
+      return false;
+    return true;
   }
 }

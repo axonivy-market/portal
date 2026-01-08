@@ -32,6 +32,7 @@ public class PortalMenuItem extends DefaultMenuItem {
   public final static String THIRD_PARTY_MENU_ID_FORMAT = "thirdparty-menu-item-%s";
   public final static String EXTERNAL_MENU_ID_FORMAT = "external-menu-item-%s";
   public final static String MAIN_DASHBOARD_MENU_ID_FORMAT = "main-dashboard-menu-item-%s";
+  public final static String STATIC_PAGE_MENU_ID_FORMAT = "static-page-menu-item-%s";
   public final static String MENU_CLASS_FORMAT = "%s %s";
   public final static String MENU_CLASS_SUFFIX = "-menu-js";
   
@@ -155,6 +156,7 @@ public class PortalMenuItem extends DefaultMenuItem {
       case MAIN_DASHBOARD -> menuFormat = MAIN_DASHBOARD_MENU_ID_FORMAT;
       case EXTERNAL_LINK -> menuFormat = EXTERNAL_MENU_ID_FORMAT;
       case THIRD_PARTY -> menuFormat = THIRD_PARTY_MENU_ID_FORMAT;
+      case STATIC_PAGE -> menuFormat = STATIC_PAGE_MENU_ID_FORMAT;
       default -> {}
     }
     return String.format(menuFormat, menuKind);

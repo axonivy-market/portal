@@ -11,13 +11,12 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.Base64;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -40,12 +39,12 @@ import org.primefaces.model.menu.MenuModel;
 import com.axonivy.portal.components.enums.MenuKind;
 import com.axonivy.portal.components.publicapi.ApplicationMultiLanguageAPI;
 import com.axonivy.portal.components.util.Locales;
-import com.axonivy.portal.dto.menu.CustomMenuItemDefinition;
 import com.axonivy.portal.dto.menu.ExternalLinkMenuItemDefinition;
 import com.axonivy.portal.dto.menu.PortalMenuItemDefinition;
-import com.axonivy.portal.dto.menu.PortalMenuItemDefinition.MenuSource;
 import com.axonivy.portal.dto.menu.StandardMenuItemDefinition;
 import com.axonivy.portal.enums.StandardMenuItemDefinitionType;
+import com.axonivy.portal.menu.management.enums.MenuSource;
+import com.axonivy.portal.menu.view.MenuMatcher;
 import com.axonivy.portal.service.PortalMenuItemDefinitionService;
 import com.axonivy.portal.util.MenuUtils;
 
@@ -110,41 +109,14 @@ public class MenuView implements Serializable {
 
     List<SubMenuItem> subMenuItems = PortalMenuNavigator.callSubMenuItemsProcess();
 
-    Map<MenuKind, Function<SubMenuItem, Predicate<PortalMenuItemDefinition>>> matchers = Map.of(
-
-        // if process menu: get index of the standard process menu to map
-        MenuKind.PROCESS,
-        subMenu -> menu -> menu.getType() == MenuKind.STANDARD
-            && ((StandardMenuItemDefinition) menu).getStandardType() == StandardMenuItemDefinitionType.PROCESS,
-
-        // If standard menu: use display title to map
-        MenuKind.STANDARD,
-        subMenu -> menu -> menu.getType() == MenuKind.STANDARD
-            && subMenu.getLabel().equals(MenuUtils.getDisplayTitle((StandardMenuItemDefinition) menu)),
-
-        // Custom menu: use display title to map
-        MenuKind.CUSTOM,
-        subMenu -> menu -> menu.getType() == MenuKind.CUSTOM
-            && subMenu.getLabel().equals(MenuUtils.getDisplayTitle((CustomMenuItemDefinition) menu)),
-
-        // If dashboard menu: use ID of the menu to map
-        MenuKind.MAIN_DASHBOARD,
-        subMenu -> menu -> menu.getType() == MenuKind.MAIN_DASHBOARD && menu.getId().equals(subMenu.getId()),
-
-        // If external link menu: use link and label to map
-        MenuKind.EXTERNAL_LINK, subMenu -> menu -> menu.getType() == MenuKind.EXTERNAL_LINK
-            && menu.getUrl().equals(subMenu.getLink()) && MenuUtils.getDisplayTitle(menu).equals(subMenu.getLabel()));
-
     List<PortalMenuItem> menuList = subMenuItems.stream().map(subMenu -> {
+      Predicate<PortalMenuItemDefinition> matcher = MenuMatcher.matcherFor(subMenu);
 
-      // Use matcher to get menu index
-      // If cannot find the index, use the position of sub menu in the original list
-      // as the index
-      int menuIndex = menuDefinitions.stream().filter(matchers.get(subMenu.getMenuKind()).apply(subMenu)).findFirst()
-          .map(PortalMenuItemDefinition::getIndex).orElseGet(() -> subMenuItems.indexOf(subMenu) + 1);
+      int menuIndex = menuDefinitions.stream().filter(matcher).findFirst().map(PortalMenuItemDefinition::getIndex)
+          .orElseGet(() -> subMenuItems.indexOf(subMenu) + 1);
 
       return buildSubMenuItem(subMenu, menuIndex);
-    }).collect(Collectors.toCollection(ArrayList::new));
+    }).collect(Collectors.toList());
 
     // Add third-party apps to the menu list
     List<Application> thirdPartyApps = PortalMenuNavigator.getThirdPartyApps();
