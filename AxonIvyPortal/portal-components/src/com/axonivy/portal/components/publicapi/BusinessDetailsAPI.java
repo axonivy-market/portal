@@ -7,7 +7,6 @@ import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Strings;
 
 import com.axonivy.portal.components.dto.BusinessDetailsDTO;
@@ -118,9 +117,8 @@ public class BusinessDetailsAPI {
         .build();
     create(businessDetailsDTO);
   }
-  
 
   private static boolean detectExternalLink(String path) {
-    return StringUtils.startsWithIgnoreCase(path, "http:") || StringUtils.startsWithIgnoreCase(path, "https:");
+    return Strings.CI.startsWith(path, "http:") || Strings.CI.startsWith(path, "https:");
   }
 }

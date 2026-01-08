@@ -7,6 +7,7 @@
     "modifiers" : [ ]
   }, {
     "name" : "params",
-    "type" : "java.util.Map"
+    "type" : "java.util.Map",
+    "modifiers" : [ ]
   } ]
 }
