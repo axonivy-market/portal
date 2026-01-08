@@ -188,7 +188,7 @@ public class MenuTest extends BaseTest {
   }
 
   @Test
-  public void keepSidebarExpand() {
+  public void testKeepSidebarExpand() {
     updatePortalSetting(Variable.EXPAND_SIDEBAR.getKey(), "true");
     login(TestAccount.DEMO_USER);
     MainMenuPage mainMenuPage = new MainMenuPage();
