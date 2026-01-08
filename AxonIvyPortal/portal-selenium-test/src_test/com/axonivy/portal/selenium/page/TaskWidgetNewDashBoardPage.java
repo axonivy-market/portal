@@ -334,6 +334,15 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
         .collect(Collectors.toList());
   }
   
+  public List<String> getCustomFieldValuesOnTaskCustomFieldsDialog() {
+    return $$("span[id$='number-value']")
+        .shouldBe(CollectionCondition.sizeGreaterThanOrEqual(0), DEFAULT_TIMEOUT)
+        .asFixedIterable()
+        .stream()
+        .map(SelenideElement::getText)
+        .collect(Collectors.toList());
+  }
+  
   public SelenideElement getCustomFieldsPanelOfTask() {
     return $("div[id$='task-custom-fields-dialog']");
   }

@@ -29,7 +29,7 @@
       "id" : "f4",
       "type" : "HtmlDialogEnd",
       "visual" : {
-        "at" : { "x" : 904, "y" : 224 }
+        "at" : { "x" : 960, "y" : 224 }
       }
     }, {
       "id" : "f8",
@@ -53,7 +53,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 496, "y" : 224 },
+        "at" : { "x" : 552, "y" : 224 },
         "size" : { "width" : 144 }
       },
       "connect" : [
@@ -108,7 +108,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 744, "y" : 224 },
+        "at" : { "x" : 800, "y" : 224 },
         "size" : { "width" : 144 }
       },
       "connect" : [
@@ -148,7 +148,7 @@
         "at" : { "x" : 64, "y" : 328 }
       },
       "connect" : [
-        { "id" : "f15", "to" : "f13" }
+        { "id" : "f44", "to" : "f15" }
       ]
     }, {
       "id" : "f11",
@@ -170,7 +170,7 @@
         "at" : { "x" : 56, "y" : 416 }
       },
       "connect" : [
-        { "id" : "f16", "to" : "f14" }
+        { "id" : "f42", "to" : "f16" }
       ]
     }, {
       "id" : "f13",
@@ -186,7 +186,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 208, "y" : 328 }
+        "at" : { "x" : 352, "y" : 328 }
       },
       "connect" : [
         { "id" : "f17", "to" : "f8" }
@@ -208,10 +208,10 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 208, "y" : 416 }
+        "at" : { "x" : 368, "y" : 416 }
       },
       "connect" : [
-        { "id" : "f18", "to" : "f8", "via" : [ { "x" : 496, "y" : 416 } ] }
+        { "id" : "f18", "to" : "f8", "via" : [ { "x" : 552, "y" : 416 } ] }
       ]
     }, {
       "id" : "f19",
@@ -392,5 +392,57 @@
         "at" : { "x" : 456, "y" : 624 },
         "labelOffset" : { "x" : 10, "y" : 30 }
       }
+    }, {
+      "id" : "f16",
+      "type" : "Script",
+      "name" : "Call customized process if exist",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.enums.PortalCustomSignature;",
+            "import com.axonivy.portal.components.service.IvyAdapterService;",
+            "",
+            "import java.util.HashMap;",
+            "import java.util.Map;",
+            "",
+            "Map params = new HashMap();",
+            "params.put(\"workingTask\", in.workingTask);",
+            "",
+            "IvyAdapterService.startSubProcessesInSecurityContext(PortalCustomSignature.EXTEND_TASK_LEAVE.getSignature(), params);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 208, "y" : 416 }
+      },
+      "connect" : [
+        { "id" : "f43", "to" : "f14" }
+      ]
+    }, {
+      "id" : "f15",
+      "type" : "Script",
+      "name" : "Call customized process if exist",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.enums.PortalCustomSignature;",
+            "import com.axonivy.portal.components.service.IvyAdapterService;",
+            "",
+            "import java.util.HashMap;",
+            "import java.util.Map;",
+            "",
+            "Map params = new HashMap();",
+            "params.put(\"workingTask\", in.workingTask);",
+            "",
+            "IvyAdapterService.startSubProcessesInSecurityContext(PortalCustomSignature.EXTEND_TASK_RESERVE.getSignature(), params);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 208, "y" : 328 }
+      },
+      "connect" : [
+        { "id" : "f45", "to" : "f13" }
+      ]
     } ]
 }
