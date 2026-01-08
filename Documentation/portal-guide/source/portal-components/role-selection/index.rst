@@ -101,6 +101,8 @@ This component offers the following attributes:
 Migrate to 12.0.12
 ^^^^^^^^^^^^^^^^^^
 
+#. The **RoleSelection** component has been restructured to improve layout consistency. If you have custom styles for this component, please review and adjust them accordingly.
+
 #. The attribute ``labelPanelStyleClass`` has been removed. If you used this attribute, please remove it from your code.
 
 Migrate from Deprecated Role Selection
