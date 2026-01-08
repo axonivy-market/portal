@@ -8,42 +8,38 @@
     <ui:define name="content">
       <h:outputStylesheet library="css" name="examples.css" />
       <div class="layout-wrapper">
-      <h:form id="form">
+      <h:form id="form" styleClass="flex flex-column gap-5">
         <ic:com.axonivy.portal.components.examples.internal.ThemeSelection serenityExampleLink="#{data.userSelectionSerenityExampleLink}" />
         <h1 class="user-selection-component-header">User Selection Examples</h1>
-        <div id="user-by-role-component" class="ui-g ui-fluid">
-          <div class="ui-g-8 ui-xl-8 ui-sm-12">
+        <div id="user-by-role-component" class="grid ui-fluid align-items-start">
+          <div class="col-12 md:col-8">
           <ic:com.axonivy.portal.components.UserSelection componentId="default-user-autocomplete" selectedUser="#{data.selectedUser}"
-            label="Default user selection" isRequired="true" labelPanelStyleClass="ui-g-3 ui-md-3 ui-sm-12" autoCompleteStyleClass="width-100"
-            autoCompletePanelStyleClass="ui-g-9 ui-sm-12" messageStyleClass="ui-g-9 ui-g-offset-3 ui-sm-offset-0 ui-sm-12 user-selection-message-with-button-inline" />
+            label="Default user selection" isRequired="true" />
           </div>
-          <div class="ui-g-3 ui-xl-3 ui-md-4 ui-sm-12 assign-task-to-selected-user">
+          <div class="col-12 md:col-4 mt-label">
             <p:commandButton id="assign-selected-user-btn" update="@form" value="Assign selected user to next task" actionListener="#{logic.finish}" />
           </div>
         </div>
-        <div class="ui-g ui-fluid" style="margin-bottom: 20px;">
-          <div class="ui-g-8 ui-xl-4 ui-md-6 ui-sm-12">
+        <div class="grid ui-fluid align-items-start">
+          <div class="col-12 md:col-6">
             <ic:com.axonivy.portal.components.UserSelection componentId="read-only-user-autocomplete"
               selectedUser="#{data.selectedUserForReadOnlyField}" isRenderedMessage="false" label="Read only user selection"
-              labelPanelStyleClass="ui-g-6 ui-md-6 ui-sm-12" autoCompleteStyleClass="width-100" autoCompletePanelStyleClass="ui-g-6 ui-sm-12"
               isReadOnly="true" hightlight="false" />
           </div>
-          <div id="floating-label-component" class="ui-g-4 ui-xl-4 ui-md-6 ui-sm-12">
+          <div id="floating-label-component" class="col-12 md:col-6 mt-label">
             <ic:com.axonivy.portal.components.UserSelection componentId="all-user-autocomplete" hightlight="false"
-              selectedUser="#{data.selectedUserForExcludingUsers}" label="Loading users (exclude supporter, tester)" autoCompleteStyleClass="width-100"
-              autoCompletePanelStyleClass="ui-g-12 floating-label-margin-top" excludedUsernames="#{data.excludedUsernames}" floatingLabel="true" />
+              selectedUser="#{data.selectedUserForExcludingUsers}" label="Loading users (exclude supporter, tester)"
+              excludedUsernames="#{data.excludedUsernames}" floatingLabel="true" />
           </div>
         </div>
-        <div class="ui-g ui-fluid" style="margin-bottom: 20px;">
-          <div id="user-by-role-component" class="ui-g-8 ui-xl-4 ui-md-6 ui-sm-12">
+        <div class="grid ui-fluid align-items-start">
+          <div id="user-by-role-component" class="col-12 md:col-6">
             <ic:com.axonivy.portal.components.UserSelection componentId="user-by-role-autocomplete" fromRoleNames="#{data.definedRoleNames}"
-              selectedUser="#{data.selectedUserForDefinedRoles}" autoCompleteStyleClass="width-100" label="Users from defined rolenames" excludedUsernames="#{data.excludedUsernames}"
-              labelPanelStyleClass="ui-g-6 ui-md-6 ui-sm-12" autoCompletePanelStyleClass="ui-g-6 ui-sm-12" />
+              selectedUser="#{data.selectedUserForDefinedRoles}" label="Users from defined rolenames" excludedUsernames="#{data.excludedUsernames}" />
           </div>
-          <div id="item-select-with-ajax-event-component" class="ui-g-4 ui-xl-4 ui-md-6 ui-sm-12">
+          <div id="item-select-with-ajax-event-component" class="col-12 md:col-6 mt-label">
             <ic:com.axonivy.portal.components.UserSelection id="item-select-event-component" componentId="item-select-event-for-user-selection"
-              fromRoleNames="#{data.definedRoleNames}" selectedUser="#{data.selectedUserForInsertChildren}" label="Demonstrate facet and children"
-              autoCompleteStyleClass="width-100" autoCompletePanelStyleClass="ui-g-12 floating-label-margin-top" floatingLabel="false" hasCustomizedSelectionList="true">
+              fromRoleNames="#{data.definedRoleNames}" selectedUser="#{data.selectedUserForInsertChildren}" label="Demonstrate facet and children" floatingLabel="true" hasCustomizedSelectionList="true">
               <p:column>
                 <pc:securityMemberNameAndAvatar displayName="#{user.getDisplayName()} (#{user.getMemberName()})" securityMember="#{user}" isStandAlone="false" />
               </p:column>
@@ -54,11 +50,11 @@
             </ic:com.axonivy.portal.components.UserSelection>
           </div>
         </div>
-        <div class="ui-g ui-fluid" style="margin-bottom: 20px;">
-          <div id="user-by-role-component" class="ui-g-8 ui-xl-4 ui-md-6 ui-sm-12">
+        <div class="grid ui-fluid">
+          <div id="user-by-role-component" class="col-12 md:col-6">
             <ic:com.axonivy.portal.components.UserSelection componentId="user-by-role-autocomplete" fromRoleNames="#{data.nonExistedRoles}"
-              selectedUser="#{data.selectedUserForDefinedRoles}" autoCompleteStyleClass="width-100" label="Empty users selection" excludedUsernames="#{data.excludeAllRoleNames}"
-              labelPanelStyleClass="ui-g-6 ui-md-6 ui-sm-12" autoCompletePanelStyleClass="ui-g-6 ui-sm-12" emptyMessage="There's no user to show"/>
+              selectedUser="#{data.selectedUserForDefinedRoles}" label="Empty users selection" excludedUsernames="#{data.excludeAllRoleNames}"
+              emptyMessage="There's no user to show"/>
           </div>
         </div>
       </h:form>

@@ -16,17 +16,17 @@
     !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
 
 <cc:interface componentType="IvyComponent">
-  <cc:attribute name="componentId" type="java.lang.String" default="process-chain-component-id" shortDescription="The component identifier. Default is process-chain-component-id"/>
-  <cc:attribute name="steps" shortDescription="List of step in the process chain" />
+  <cc:attribute name="componentId" type="java.lang.String" default="process-chain-component-id" shortDescription="The component identifier. Type: String. Default value: process-chain-component-id. Required: false."/>
+  <cc:attribute name="steps" shortDescription="List of step in the process chain. Type: java.util.List&lt;String&lt;. Example: #{['Step 1','Step 2','Step 3','Step 4','Step 5']}. Required: true." />
   <cc:attribute name="stepIndexes" shortDescription="Steps index in the process chain, this field is using internally, don't change it" />
-  <cc:attribute name="actualStepIndex" type="java.lang.Integer" default="0" shortDescription="Actual step index or current step index. Default is 0" />
+  <cc:attribute name="actualStepIndex" type="java.lang.Integer" default="0" shortDescription="Actual step index or current step index. Type: Integer. Default value: 0. Required: false." />
 
-  <cc:attribute name="direction" type="java.lang.String" default="HORIZONTAL" shortDescription="Direction of process chain: VERTICAL, HORIZONTAL. Default is HORIZONTAL" />
-  <cc:attribute name="shape" type="java.lang.String" default="CIRCLE" shortDescription="Shape of process chain: CIRCLE, LINE. Default is CIRCLE" />
-  <cc:attribute name="isShowAllSteps" type="java.lang.Boolean" default="false" shortDescription="Show all steps of the process chain. Default is false" />
+  <cc:attribute name="direction" type="java.lang.String" default="HORIZONTAL" shortDescription="Direction of process chain: VERTICAL, HORIZONTAL. Type: String. Default value: HORIZONTAL. Required: false." />
+  <cc:attribute name="shape" type="java.lang.String" default="CIRCLE" shortDescription="Shape of process chain: CIRCLE, LINE. Type: String. Default value: CIRCLE. Required: false." />
+  <cc:attribute name="isShowAllSteps" type="java.lang.Boolean" default="false" shortDescription="Show all steps of the process chain. Type: Boolean. Default value: false. Required: false." />
 
-  <cc:attribute name="stages" type="java.util.List&lt;ch.ivyteam.ivy.casemap.runtime.model.IStage&gt;" />
-  <cc:attribute name="currentIndex" type="java.lang.Integer" />
+  <cc:attribute name="stages" type="java.util.List&lt;ch.ivyteam.ivy.casemap.runtime.model.IStage&gt;" shortDescription="List of casemap stages required to render the process chain. Type: java.util.List&lt;ch.ivyteam.ivy.casemap.runtime.model.IStage&gt;. Required: false." />
+  <cc:attribute name="currentIndex" type="java.lang.Integer" shortDescription="Index of the current casemap stage. Type: Integer. Required: false." />
 </cc:interface>
 
 <cc:implementation>

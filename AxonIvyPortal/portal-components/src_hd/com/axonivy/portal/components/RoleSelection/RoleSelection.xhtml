@@ -6,71 +6,68 @@
 
 <cc:interface componentType="IvyComponent">
   <!-- autoComplete attributes -->
-  <cc:attribute name="componentId" default="role-selection" />
-  <cc:attribute name="selectedRole" type="com.axonivy.portal.components.dto.RoleDTO" required="true" />
+  <cc:attribute name="componentId" default="role-selection"
+    shortDescription="Unique identifier of this component instance. Type: String. Default value: 'role-selection'. Required: false." />
+  <cc:attribute name="selectedRole" type="com.axonivy.portal.components.dto.RoleDTO" required="true"
+    shortDescription="Holds the selected role value. Type: com.axonivy.portal.components.dto.RoleDTO. Required: true." />
   <cc:attribute name="fromRoleNames" type="java.util.List"
-    shortDescription="Child Role list will be loaded based on this list. All roles will be loaded if you don't define." />
+    shortDescription="List of parent role names. Only child roles of these roles are loaded. Leave empty to load all roles. Type: java.util.List&lt;String&gt;. Required: false." />
   <cc:attribute name="excludedRoleNames" type="java.util.List"
-    shortDescription="Roles will be excluded from role selection. Do not use if don't use default completeMethod" />
+    shortDescription="List of role names to exclude from selection. Only applies when using the default completeMethod. Type: java.util.List&lt;String&gt;. Required: false." />
   <cc:attribute name="requiredMessage"
-    default="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/Common/RequiredFieldMessage')}" />
+    default="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/Common/RequiredFieldMessage')}"
+    shortDescription="Validation message displayed when the required field is empty. Type: String. Default value: 'This field is required'. Required: false." />
   <cc:attribute name="forceSelection" default="true"
-    shortDescription="Only accepts role from the list when it’s enabled." />
+    shortDescription="When enabled, only roles from the suggestion list can be selected. Type: boolean. Default value: true. Required: false." />
   <cc:attribute name="minQueryLength" default="1"
-    shortDescription="Number of characters to be typed before starting to query." />
-  <cc:attribute name="isDisabled" shortDescription="Disable Role Selection." />
-  <cc:attribute name="isRequired" shortDescription="Marks Role Selection as required." />
-  <cc:attribute name="isReadOnly" shortDescription="Cannot change role when it’s enabled." />
-  <cc:attribute name="hightlight" default="true" shortDescription="Highlights the first suggested role automatically." />
-  <cc:attribute name="size" shortDescription="Number of characters used to determine the width of the input element." />
-  <cc:attribute name="itemLabel" default="#{role.getDisplayName() != '' ? role.getDisplayName() : role.getMemberName()}"
-    shortDescription="Displayed text of selected role item and roles in dropdown list." />
-  <cc:attribute name="scrollHeight" default="390" shortDescription="scrollHeight attribute of primefaces autocomplete." />
-  <cc:attribute name="inputStyleClass" shortDescription="Style class of role autocomplete input." />
-  <cc:attribute name="autoCompleteStyleClass" shortDescription="Style class of role autocomplete." />
-  <cc:attribute name="autoCompletePanelStyleClass" shortDescription="Style class of role autocomplete panel." />
-  <cc:attribute name="completeMethod" method-signature="java.util.List completeMethod(java.lang.String)" />
+    shortDescription="Text displayed for roles in the dropdown and the selected value. Type: String. Default value: #{role.getDisplayName() != '' ? role.getDisplayName() : role.getMemberName()}. Required: false." />
+  <cc:attribute name="scrollHeight" default="390" shortDescription="Maximum height of the autocomplete dropdown panel. Type: int. Default value: 390. Required: false." />
+  <cc:attribute name="inputStyleClass" shortDescription="CSS style class applied to the role autocomplete input field. Type: String. Required: false." />
+  <cc:attribute name="autoCompleteStyleClass" shortDescription="CSS style class applied to the role autocomplete component. Type: String. Required: false." />
+  <cc:attribute name="autoCompletePanelStyleClass" shortDescription="CSS style class applied to the role autocomplete dropdown panel. Type: String. Required: false." />
+  <cc:attribute name="completeMethod" method-signature="java.util.List completeMethod(java.lang.String)" 
+    shortDescription="Custom method for loading roles. Must accept a String query and return List&lt;RoleDTO&gt;. Type: Method Expression. Default value: completeRole. Required: false."/>
   <cc:attribute name="cache" default="true"
-    shortDescription="Autocomplete caches the searched result list if it's enabled." />
-  <cc:attribute name="moreText" default="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/Common/More')}..." />
-  <cc:attribute name="queryDelay" default="300" />
-  <cc:attribute name="maxResults" default="100" type="java.lang.Integer" />
-  <cc:attribute name="hasCustomizedSelectionList" default="false" />
-  <cc:attribute name="emptyMessage" shortDescription="Message to show when there's no option in selection list." default="#{ivy.cms.co('/Labels/NoResults')}" />
-
+    shortDescription="Caches autocomplete search results when enabled. Type: boolean. Default value: true. Required: false." />
+  <cc:attribute name="moreText" default="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/Common/More')}..." shortDescription="Text displayed for the 'More' link when results exceed the limit. Type: String. Default value: More.... Required: false." />
+  <cc:attribute name="queryDelay" default="300" shortDescription="Delay in milliseconds before sending the search query. Type: int. Default value: 300. Required: false." />
+  <cc:attribute name="maxResults" default="100" type="java.lang.Integer" shortDescription="Maximum number of results displayed in the dropdown. Type: int. Default value: 100. Required: false." />
+  <cc:attribute name="hasCustomizedSelectionList" default="false" shortDescription="Displays a customized selection list when enabled. Type: boolean. Default value: false. Required: false." />
+  <cc:attribute name="emptyMessage" shortDescription="Message displayed when no results are available. Type: String. Default value: No results. Required: false."
+    default="#{ivy.cms.co('/Labels/NoResults')}" />
   <!-- Avatar in Selection list attributes  -->
-  <cc:attribute name="isShowAvatarInSelectionList" default="#{portalComponentAvatarBean.getPortalShowAvatarSettingOrDefault(true)}" />
-  <cc:attribute name="displayNameRenderedInSelectionList" default="true" />
-  <cc:attribute name="displayNameInSelectionListStyleClass" />
-  <cc:attribute name="selectionListContainerStyleClass" />
+  <cc:attribute name="isShowAvatarInSelectionList" default="#{portalComponentAvatarBean.getPortalShowAvatarSettingOrDefault(true)}"
+    shortDescription="Displays role avatars in the selection list when enabled. Type: boolean. Default value: true. Required: false." />
+  <cc:attribute name="displayNameRenderedInSelectionList" default="true"
+    shortDescription="Controls visibility of the role display name in the selection list. Type: boolean. Default value: true. Required: false." />
+  <cc:attribute name="displayNameInSelectionListStyleClass"
+    shortDescription="CSS style class for the role display name in the selection list. Type: String. Required: false." />
+  <cc:attribute name="selectionListContainerStyleClass"
+    shortDescription="CSS style class for the selection list item container. Type: String. Required: false." />
 
   <!-- Label attributes -->
-  <cc:attribute name="label" shortDescription="Text of label for Role selection component." />
+  <cc:attribute name="label" shortDescription="Label text for the role selection component. Type: String. Required: false." />
   <cc:attribute name="floatingLabel"
-    shortDescription="Display label with floating style and labelPanelStyleClass can't be applied if it’s enabled." />
-  <cc:attribute name="labelPanelStyleClass" shortDescription="Style class of label panel." />
-  <cc:attribute name="labelStyleClass" shortDescription="Style class of label." />
-  <cc:attribute name="appendOption" shortDescription="Defines the additional information to append to the role selection display, such as parent name or blank.Value: NONE, PARENT_NAME" />
-
+    shortDescription="Displays the label using floating style. Type: boolean. Default value: false. Required: false." />
+  <cc:attribute name="labelStyleClass" shortDescription="CSS style class applied to the label. Type: String. Required: false." />
+  <cc:attribute name="appendOption" shortDescription="Additional information appended to the role display, such as parent role name or none. Value: NONE, PARENT_NAME. Type: String. Required: false." />
   <!-- Message attributes -->
   <cc:attribute name="isRenderedMessage" default="true"
-    shortDescription="Specify the rendering of message for role field." />
-  <cc:attribute name="messageStyleClass" shortDescription="Style class of message." />
+    shortDescription="Controls whether validation messages are rendered. Type: boolean. Default value: true. Required: false." />
+  <cc:attribute name="messageStyleClass" shortDescription="CSS style class applied to the validation message. Type: String. Required: false." />
 </cc:interface>
 
 <cc:implementation>
   <h:outputStylesheet library="css" name="role-selection-component.css" />
 
-  <h:panelGroup id="#{cc.attrs.componentId}-label-panel" layout="block"
-    rendered="#{not empty cc.attrs.label and !cc.attrs.floatingLabel}"
-    styleClass="#{cc.attrs.labelPanelStyleClass}">
-    <p:outputLabel id="#{cc.attrs.componentId}-label" value="#{cc.attrs.label}" for="#{cc.attrs.componentId}"
-      styleClass="#{cc.attrs.labelStyleClass}" />
-  </h:panelGroup>
-
   <c:set var="completeMethod" value="#{not empty cc.attrs.completeMethod ? cc.attrs.completeMethod : roleSelectionBean.completeRoleMethod}" />
+
   <h:panelGroup id="#{cc.attrs.componentId}-autocomplete-panel" layout="block"
-    styleClass="role-selection-panel #{cc.attrs.autoCompletePanelStyleClass} #{cc.attrs.floatingLabel and ivyPrimefacesThemeResolver.sessionTheme.contains('serenity') ? 'md-inputfield' : ''} #{cc.attrs.floatingLabel and ivyPrimefacesThemeResolver.sessionTheme.contains('freya') ? 'ui-float-label' : ''}">
+    styleClass="pl-0 flex flex-column gap-3 ui-fluid #{cc.attrs.autoCompletePanelStyleClass} #{cc.attrs.floatingLabel ? 'ui-float-label' : ''}">
+
+    <p:outputLabel id="#{cc.attrs.componentId}-label" value="#{cc.attrs.label}" for="#{cc.attrs.componentId}"
+      styleClass="#{cc.attrs.labelStyleClass}" rendered="#{not empty cc.attrs.label and !cc.attrs.floatingLabel}" />
+
     <p:autoComplete id="#{cc.attrs.componentId}"
       value="#{cc.attrs.selectedRole}"
       scrollHeight="#{cc.attrs.scrollHeight}"
@@ -104,16 +101,15 @@
       <cc:insertFacet name="event" />
       <cc:insertChildren />
     </p:autoComplete>
+
+    <p:message id="#{cc.attrs.componentId}-message"
+      for="#{cc.attrs.componentId}" rendered="#{cc.attrs.isRenderedMessage}" styleClass="m-0 ml-2"/>
+
     <p:outputLabel id="#{cc.attrs.componentId}-floating-label"
       value="#{cc.attrs.label}"
       for="#{cc.attrs.componentId}"
       styleClass="#{cc.attrs.labelStyleClass}"
       rendered="#{cc.attrs.floatingLabel}" />
-  </h:panelGroup>
-  <h:panelGroup layout="block"
-    styleClass="#{cc.attrs.messageStyleClass} #{cc.attrs.floatingLabel ? 'message-for-floating-label' : ''}">
-    <p:message id="#{cc.attrs.componentId}-message"
-      for="#{cc.attrs.componentId}" rendered="#{cc.attrs.isRenderedMessage}"/>
   </h:panelGroup>
   <h:outputScript name="theme-checker.js" library="js" />
   <script type="text/javascript">

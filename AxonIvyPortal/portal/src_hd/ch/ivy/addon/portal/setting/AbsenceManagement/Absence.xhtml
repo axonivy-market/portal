@@ -32,7 +32,7 @@
             requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/Messages/userNameRequired')}"
             label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/login/username')}"
             autoCompleteStyleClass="absence-user-selection" autoCompletePanelStyleClass="ui-g-12"
-            labelPanelStyleClass="ui-g-12" hasCustomizedSelectionList="true">
+            hasCustomizedSelectionList="true">
             <p:column>
               <pc:securityMemberNameAndAvatar displayName="#{securityMemberDisplayNameFormatBean.generateFullDisplayNameForUserDTO(user)}"
                 securityMember="#{user}" isStandAlone="false" />

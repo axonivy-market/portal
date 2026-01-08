@@ -67,20 +67,22 @@ Name>)". When I select a role, a message shall be displayed.
 .. code-block:: html
 
       <ic:com.axonivy.portal.components.RoleSelection
-         id="item-select-event-component"
+         id="role-item-select-event-component"
          componentId="item-select-event-for-role-selection"
          fromRoleNames="#{data.definedRoleNames}"
          selectedRole="#{data.selectedRoleForInsertChildren}"
          label="Demonstrate facet and children"
-         autoCompleteStyleClass="width-100"
-         autoCompletePanelStyleClass="ui-g-12 floating-label-margin-top"
-         isRequired="true" floatingLabel="true" hasCustomizedSelectionList="true">
+         floatingLabel="true"
+         hasCustomizedSelectionList="true">
          <p:column>
-            <pc:securityMemberNameAndAvatar displayName="#{role.getDisplayName()} (#{role.getMemberName()})" securityMember="#{role}" isStandAlone="false" />
+            <pc:securityMemberNameAndAvatar
+              displayName="#{role.getDisplayName()} (#{role.getMemberName()})"
+              securityMember="#{role}"
+              isStandAlone="false" />
          </p:column>
          <f:facet name="event">
             <p:ajax event="itemSelect" listener="#{logic.showSelectedRole}"
-               update="#{p:component('item-select-event-for-role-selection-message')}" />
+               update="#{p:resolveFirstComponentWithId('item-select-event-for-role-selection-message', view).clientId}" />
          </f:facet>
       </ic:com.axonivy.portal.components.RoleSelection>
 
@@ -95,6 +97,13 @@ This component offers the following attributes:
   :widths: 1 1 1 3
 
 .. _components-portal-components-migrate-from-old-role-selection:
+
+Migrate to 12.0.12
+^^^^^^^^^^^^^^^^^^
+
+#. The **RoleSelection** component has been restructured to improve layout consistency. If you have custom styles for this component, please review and adjust them accordingly.
+
+#. The attribute ``labelPanelStyleClass`` has been removed. If you used this attribute, please remove it from your code.
 
 Migrate from Deprecated Role Selection
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
