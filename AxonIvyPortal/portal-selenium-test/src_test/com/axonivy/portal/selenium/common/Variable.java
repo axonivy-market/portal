@@ -42,7 +42,8 @@ public enum Variable {
   ENABLE_DOCUMENT_PREVIEW("Portal.Document.EnablePreview"),
   ENABLE_PINNED_TASK("Portal.Tasks.EnablePinnedTask"), ENABLE_PINNED_CASE("Portal.Cases.EnablePinnedCase"),
   CHECK_SYSTEM_NOTES_BY_DEFAULT("Portal.Histories.CheckSystemNotesByDefault"),
-  CHECK_SYSTEM_TASKS_BY_DEFAULT("Portal.Histories.CheckSystemTasksByDefault");
+  CHECK_SYSTEM_TASKS_BY_DEFAULT("Portal.Histories.CheckSystemTasksByDefault"),
+  EXPAND_SIDEBAR("Portal.KeepSidebarExpanded");
 
   private String key;
 

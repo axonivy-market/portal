@@ -85,13 +85,14 @@
       <c:set var="showGlobalSearch" value="#{userMenuBean.isShowGlobalSearch}" />
       <c:set var="showQuickGlobalSearch" value="#{userMenuBean.isShowQuickGlobalSearch}" />
       <c:set var="isKeyboardShortcutsEnabled" value="#{masterDataBean.keyboardShortcutsEnabled}" />
-      
+      <c:set var="isExpandSidebar" value="#{masterDataBean.expandSidebar}" />
+
      <div id="portal-template-header" class="js-portal-template-header #{showMainArea eq true ? '' : 'u-invisibility'}">
         <ic:ch.ivy.addon.portalkit.component.PageHeader />
       </div>
 
       <div class="#{isPortalInTeams ? '' : 'layout-wrapper layout-sidebar'} layout-topbar-#{ivyFreyaTheme.mode} layout-menu-#{ivyFreyaTheme.mode}
-        js-layout-wrapper #{isPortalInTeams ? 'ms-teams-layout' : ''}">
+        js-layout-wrapper #{isPortalInTeams ? 'ms-teams-layout' : ''} #{isExpandSidebar ? 'layout-static' : ''}">
 
         <h:panelGroup layout="block" rendered="#{!isPortalInTeams}" styleClass="layout-topbar js-layout-topbar" pt:role="banner">
           <h:panelGroup layout="block" id="layout-topbar-menu-wrapper" styleClass="layout-topbar-wrapper">
