@@ -17,7 +17,7 @@ Custom user menu items are defined using the **Portal.UserMenu** variable.
 .. _customization-user-menu-definition:
 
 Define Your Own User Menu
--------------------------
+--------------------------
 
 Portal supports multiple configurable user menu items that display below the default entries (Profile, Admin Settings, Logout, etc.).
 

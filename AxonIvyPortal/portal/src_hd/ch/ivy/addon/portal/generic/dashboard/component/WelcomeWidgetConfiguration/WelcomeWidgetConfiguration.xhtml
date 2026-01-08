@@ -39,7 +39,8 @@
         <h:panelGroup layout="block" id="preview-panel" styleClass="preview-panel">
           <span id="preview-text" class="preview-text js-preview-text welcome-text" />
           <p:graphicImage id="preview-image" styleClass="preview-image js-preview-image" library="ivy-cms"
-            name="#{dashboardWelcomeWidgetConfigurationBean.imageUri}" />
+            name="#{dashboardWelcomeWidgetConfigurationBean.imageUri}"
+            alt="#{dashboardWelcomeWidgetConfigurationBean.widget.altText}" />
         </h:panelGroup>
       </div>
       <h:panelGroup id="widget-title-group" styleClass="hidden" />
@@ -88,7 +89,8 @@
         <h:panelGroup layout="block" id="preview-panel-dark-mode" styleClass="preview-panel">
           <span id="preview-text-dark-mode" class="preview-text js-preview-text-dark-mode welcome-text" />
           <p:graphicImage id="preview-image-dark-mode" styleClass="preview-image js-preview-image" library="ivy-cms"
-            name="#{dashboardWelcomeWidgetConfigurationBean.imageUriDarkMode}" />
+            name="#{dashboardWelcomeWidgetConfigurationBean.imageUriDarkMode}"
+            alt="#{dashboardWelcomeWidgetConfigurationBean.widget.altText}" />
         </h:panelGroup>
       </div>
       <h:panelGroup id="widget-title-group-dark-mode" styleClass="hidden" />

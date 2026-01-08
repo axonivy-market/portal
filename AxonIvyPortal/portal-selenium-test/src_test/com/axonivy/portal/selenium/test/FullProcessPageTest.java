@@ -1,10 +1,15 @@
 package com.axonivy.portal.selenium.test;
 
+import static com.codeborne.selenide.Condition.exist;
+import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Selenide.$;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
+import com.axonivy.portal.selenium.common.NavigationHelper;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.TestRole;
 import com.axonivy.portal.selenium.page.MainMenuPage;
@@ -55,6 +60,8 @@ public class FullProcessPageTest extends BaseTest {
     MainMenuPage mainMenuPage = newDashboardPage.openMainMenu();
     processWidgetPage = mainMenuPage.selectProcessesMenu();
     createPublicExternalTestProcess(AAGOOGLE_LINK, AAGOOGLE_LINK, TestRole.TESTER_ROLE);
+    $("[id$='process-item-name']").shouldHave(text(AAGOOGLE_LINK));
+    processWidgetPage = NavigationHelper.navigateToProcessList();
 
     processWidgetPage.selectGridMode();
     processWidgetPage.waitForGridProcessListDisplayed();
@@ -68,6 +75,8 @@ public class FullProcessPageTest extends BaseTest {
     processWidgetPage.changeProcessIcon();
     processWidgetPage.addNewRolePermission(TestRole.HR_ROLE);
     processWidgetPage.saveEditProcessDialog();
+    $("i.fa-adjust").shouldBe(exist);
+    processWidgetPage = NavigationHelper.navigateToProcessList();
     
     processWidgetPage.selectGridMode();
     processWidgetPage.waitForGridProcessListDisplayed();

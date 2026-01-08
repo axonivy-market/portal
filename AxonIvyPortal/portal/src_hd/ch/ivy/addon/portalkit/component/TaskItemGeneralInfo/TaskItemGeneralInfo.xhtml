@@ -356,8 +356,8 @@
   <p:tooltip for="duration-time-info" value="#{taskActionBean.getDurationOfTaskOnTooltip(task)}" trackMouse="true" hideEvent="mouseleave click" />
   
   <p:dialog id="responsible-dialog" widgetVar="responsible-dialog" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR')}"
-    appendTo="@(body)" fitViewport="true" width="350" closeOnEscape="true" dynamic="true" height="400"
-    responsive="true" modal="true" closable="true">
+    appendTo="@(body)" width="350" height="400" fitViewport="true" closeOnEscape="true" dynamic="true"
+    responsive="true" modal="true" closable="true" styleClass="dialog-responsive">
     <div class="ui-g">
       <ui:repeat var="responsible" value="#{task.responsibles().all()}" >
         <div class="ui-g-12">
@@ -370,8 +370,8 @@
   </p:dialog>
   
   <p:dialog id="expiry-responsible-dialog" widgetVar="expiry-responsible-dialog" header="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/TaskItemGeneralInfo/Expiry')}"
-    appendTo="@(body)" fitViewport="true" width="350" closeOnEscape="true" dynamic="true" height="400"
-    responsive="true" modal="true" closable="true">
+    appendTo="@(body)" width="350" height="400" fitViewport="true" closeOnEscape="true" dynamic="true"
+    responsive="true" modal="true" closable="true" styleClass="dialog-responsive">
     <div class="ui-g">
       <ui:repeat var="responsible" value="#{task.expiry().responsibles().all()}" >
         <div class="ui-g-12">

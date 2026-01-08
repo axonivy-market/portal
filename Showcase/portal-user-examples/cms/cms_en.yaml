@@ -192,7 +192,7 @@ Processes:
     CreateDataProcess: Procurement Data For Sample Statistic Dashboard
     InitConfig: Init sample dashboard (UPDATE PORTAL DASHBOARD AND STATISTIC VARIABLES)
     SampleStatisticValue:
-      DaysToDecision: 2,5;6;2;7;4;9,4
+      DaysToDecision: 2;5;6;2;7;4;9;4
       Decision: Approved;Rejected;Pending
       Department: Dep A;Dep B;Dep C;Dep D
       Item: Laptop;Mobile;Keyboard;Tablet
@@ -200,7 +200,7 @@ Processes:
       ReworkCauses: Missing info;Not eligible;Too expensive
       ReworkNoLoops: 0;1;2;0;0
       ReworkOccurred: Yes;No
-      SpendAmount: 250;300.0;400.0;122.0;234.0
+      SpendAmount: 250.5;300.5;400.5;122.5;234.5
     description: Run this process (many times) to generate data for Sample KPI Statistic below. Procurement information such as spend amount, department, item, month of year, days to decision, decision, rework are randomized and assigned to custom fields of case.
     name: Procurement
   UserExampleGuide:

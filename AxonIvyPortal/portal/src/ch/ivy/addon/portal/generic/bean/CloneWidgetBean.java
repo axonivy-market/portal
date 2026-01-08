@@ -13,7 +13,6 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.bo.Statistic;
-import com.axonivy.portal.service.StatisticService;
 import com.axonivy.portal.util.DashboardCloneUtils;
 
 import ch.ivy.addon.portalkit.dto.dashboard.CustomDashboardWidget;
@@ -38,7 +37,6 @@ public class CloneWidgetBean extends DashboardDetailModificationBean {
   private DashboardWidget cloneWidget;
   private List<Dashboard> availableDashboards;
   private Dashboard targetDashboard;
-  private List<Statistic> statisticWidgets;
 
   @Override
   @PostConstruct
@@ -97,11 +95,8 @@ public class CloneWidgetBean extends DashboardDetailModificationBean {
     String result = cloneWidget.getName();
     // Statistic widget need to load name from list of pre-built statistic
     if (cloneWidget.getType() == DashboardWidgetType.STATISTIC) {
-      if (statisticWidgets == null) {
-        initStatisticWidgets();
-      }
       StatisticDashboardWidget statisticWidget = (StatisticDashboardWidget) cloneWidget;
-      result = statisticWidgets.stream()
+      result = getStatisticWidgets().stream()
           .filter(chart -> chart.getId()
               .contentEquals(statisticWidget.getChartId()))
           .findFirst().map(Statistic::getName).orElseGet(() -> "");
@@ -125,12 +120,5 @@ public class CloneWidgetBean extends DashboardDetailModificationBean {
 
     return Ivy.cms().co(CLONE_TO_DASHBOARD_DIALOG_HEADER_CMS,
         Arrays.asList(result));
-  }
-
-  @Override
-  protected void initStatisticWidgets() {
-    statisticWidgets = new ArrayList<>();
-    statisticWidgets
-        .addAll(StatisticService.getInstance().findAllCharts());
   }
 }

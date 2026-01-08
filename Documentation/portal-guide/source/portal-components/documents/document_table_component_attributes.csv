@@ -9,24 +9,31 @@ downloadRendered,TRUE,Boolean,"Boolean value to specify the rendering of the dow
 deleteRendered,TRUE,Boolean,"Boolean value to specify the rendering of the delete icon, when set to false delete icon will not be rendered."
 renameRendered,TRUE,Boolean,"Boolean value to specify the rendering of the edit filename icon, when set to false the icon will not be rendered."
 messageRendered,TRUE,Boolean,"Boolean value to specify the rendering of the message, when set to false message will not be rendered."
+renderChooseUploadIcon,TRUE,Boolean,Defines if the button to upload document is displayed or not.
 lazy,FALSE,Boolean,Boolean value to specify whether the table should load data lazily and enable pagination.
-fileLimit,-1,Integer,Number of files are in the given ICase.
-sizeLimit,null,Long,Individual uploading file size limit in bytes.
-updatedComponentAfterUploaded,null,String,Component will be triggered the update after document is uploaded.
-previewIcon,fa-eye,String,Icon class will be displayed in preview dialog.
-previewStyleClass,null,String,Styles for preview link.
-previewpreviewDialogStyleClass,null,String,Styles for preview dialog.
-previewPDFStyleClass,null,String,Styles for PDF preview dialog.
-previewImageStyleClass,null,String,Styles for image preview dialog.
+fileLimit,-1,Integer,Maximum number of files that can be uploaded.
+sizeLimit,null,Long,Maximum size of an individual file in bytes.
+uploadText,Upload,String,Label text displayed on the upload button.
+updatedComponentAfterUploaded,null,String,"Space-separated clientIds (or EL expressions) of components to update after a successful upload. Example: 'document-table document-messages'."
+previewTitle,Preview,String,Tooltip text displayed when hovering over the preview icon.
+previewIcon,fa-eye,String,Icon class for the preview link.
+previewStyleClass,null,String,Custom CSS style class to apply to the preview link.
+previewDialogStyleClass,null,String,Custom CSS style class to apply to the preview dialog.
+previewPDFStyleClass,null,String,Custom CSS style class to apply to PDF preview media element.
+previewImageStyleClass,null,String,Custom CSS style class to apply to image preview element.
+downloadTitle,Download,String,Tooltip text displayed when hovering over the download icon.
 downloadIcon,fa-download,String,Icon class will be displayed in download link.
 downloadStyleClass,null,String,Styles for download link.
+deleteTitle,Delete,String,Tooltip text displayed when hovering over the delete icon.
 deleteIcon,fa-trash-o,String,Icon class will be displayed in delete link.
-deleteStyleClass,null,String,Styles for delete link.
-updatedComponentAfterDeleted,null,String,Component will be triggered the update after document is deleted.
-renameStyleClass,null,String,Styles for edit filename link.
-updatedComponentAfterRenamed,null,String,Component will be triggered the update after document is renamed.
-selectedType,,String,"String value to specify the selected document types, by default it will be first element in ``typeSelectionItems``."
-typeSelectionItems,"DOCUMENTATION,CONTRACT,INFORMATION,EMAIL,OTHERS",String,String value to specify the list of document type.
+deleteStyleClass,null,String,Custom CSS style class to apply to the download link.
+updatedComponentAfterDeleted,null,String,"Space-separated clientIds (or EL expressions) of components to update after a successful deletion. Example: 'document-table document-messages'."
+renameText,Rename document,String,Tooltip text displayed when hovering over the rename icon.
+renameTitle,Rename document,String,Title text displayed in the rename dialog header.
+renameStyleClass,null,String,Custom CSS style class to apply to the rename link.
+updatedComponentAfterRenamed,null,String,"Space-separated clientIds (or EL expressions) of components to update after a successful rename. Example: 'document-table document-messages'."
+selectedType,,String,"Default document type to be selected. If not provided, the first item of ``typeSelectionItems`` will be used."
+typeSelectionItems,"DOCUMENTATION,CONTRACT,INFORMATION,EMAIL,OTHERS",com.axonivy.portal.components.enums.DocumentType[],"Array of DocumentType objects for the type selection dropdown. Default is #{documentUploadBean.documentTypes} which returns BasicDocumentType enum values (DOCUMENTATION, CONTRACT, INFORMATION, EMAIL, OTHERS)."
 enableScriptCheckingForUploadedDocument,,Boolean,"| Boolean value to specify script checking. Set to ``true`` to enable script checking.
 | The setting will detect Portal setting ``Portal.Document.EnableScriptChecking`` as its default value, refer to :ref:`update-portal-settings` for more details.
 | If the Portal setting is not available, defaults to ``false``."

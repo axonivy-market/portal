@@ -82,7 +82,6 @@ public class DashboardCloneWidgetTest extends BaseTest {
         Arrays.asList("Everybody"));
 
     NewDashboardDetailsEditPage detailsEditPage = new NewDashboardDetailsEditPage();
-    detailsEditPage.addWidget();
     detailsEditPage.cloneWidgetFromDashboard("Dashboard",
         "Your Cases", "Cloned Case Widget", false);
 
@@ -103,7 +102,6 @@ public class DashboardCloneWidgetTest extends BaseTest {
         Arrays.asList("Everybody"));
 
     NewDashboardDetailsEditPage detailsEditPage = new NewDashboardDetailsEditPage();
-    detailsEditPage.addWidget();
     detailsEditPage.cloneWidgetFromDashboard("Dashboard", "Tasks Due Today",
         "Tasks Due Today", true);
 
