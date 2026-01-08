@@ -123,12 +123,12 @@
       </div>
     </h:panelGroup>
     
-    <p:remoteCommand id="notification-leave-task-rc" name="leaveTaskNotification" actionListener="#{notificationBean.executeCustomizedLogicIfExists(task, 'EXTEND_TASK_LEAVE')}"
-      action="#{notificationBean.leaveTask()}" immediate="true"
+    <p:remoteCommand id="notification-leave-task-rc" name="leaveTaskNotification"
+      actionListener="#{notificationBean.leaveTask()}" immediate="true"
       process="@this" partialSubmit="true" />
 
-    <p:remoteCommand id="notification-reserve-task-rc" actionListener="#{notificationBean.executeCustomizedLogicIfExists(task, 'EXTEND_TASK_RESERVE')}"
-      name="reserveTaskNotification" action="#{notificationBean.reserveTask()}"
+    <p:remoteCommand id="notification-reserve-task-rc"
+      name="reserveTaskNotification" actionListener="#{notificationBean.reserveTask()}"
       immediate="true" process="@this" partialSubmit="true" />
 
     <ic:ch.ivy.addon.portalkit.component.WarningBeforeLeavingTask

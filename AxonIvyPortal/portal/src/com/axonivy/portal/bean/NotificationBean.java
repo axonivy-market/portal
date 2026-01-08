@@ -180,19 +180,20 @@ public class NotificationBean implements Serializable {
   }
   
   public void leaveTask() {
-    handleTask(TaskUtils::resetTask);
+    handleTask(TaskUtils::resetTask, PortalCustomSignature.EXTEND_TASK_LEAVE);
   }
 
   public void reserveTask() {
-    handleTask(TaskUtils::parkTask);
+    handleTask(TaskUtils::parkTask, PortalCustomSignature.EXTEND_TASK_RESERVE);
   }
 
-  private void handleTask(Consumer<ITask> taskHandler) {
+  private void handleTask(Consumer<ITask> taskHandler, PortalCustomSignature portalCustomSignature) {
     FacesContext context = FacesContext.getCurrentInstance();
     String redirectType = context.getExternalContext().getRequestParameterMap().get("redirectType");
     String taskId = context.getExternalContext().getRequestParameterMap().get("taskId");
     ITask task = TaskUtils.findTaskById(Long.valueOf(taskId));
-
+    
+    executeCustomizedLogicIfExists(task, portalCustomSignature);
     taskHandler.accept(task);
 
     switch (redirectType) {
@@ -213,7 +214,7 @@ public class NotificationBean implements Serializable {
     return dto.getRunAction() != null;
   }
   
-  public void executeCustomizedLogicIfExists(ITask task, PortalCustomSignature portalCustomSignature) {
+  private void executeCustomizedLogicIfExists(ITask task, PortalCustomSignature portalCustomSignature) {
     Map<String, Object> params = new HashMap<>();
     params.put("workingTask", task);
     IvyAdapterService.startSubProcessesInSecurityContext(portalCustomSignature.getSignature(), params);
