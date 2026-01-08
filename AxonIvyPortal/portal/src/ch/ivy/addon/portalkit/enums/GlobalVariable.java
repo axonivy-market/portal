@@ -94,9 +94,10 @@ public enum GlobalVariable {
   DELEGATION_APPEND_OPTION("Portal.DelegationAppendOption", GlobalVariableType.EXTERNAL_SELECTION,
       DelegationAppendOption.NONE.name(), "delegationAppendOption", getDelegationAppendOption()),
   ALLOW_KEYBOARD_SHORTCUTS_CONFIGURATION(
-      "Portal.Accessibility.AllowKeyboardShortcutsConfiguration", GlobalVariableType.SELECTION, Option.TRUE.toString(), "allowKeyboardShortcutsConfiguration");
+      "Portal.Accessibility.AllowKeyboardShortcutsConfiguration", GlobalVariableType.SELECTION, Option.TRUE.toString(), "allowKeyboardShortcutsConfiguration"),
 
-  private String key;
+
+    EXPANDED_SIDEBAR("Portal.KeepSidebarExpanded", GlobalVariableType.SELECTION, Option.FALSE.toString(), "keepSidebarExpanded");private String key;
   private GlobalVariableType type;
   private String defaultValue;
   private Map<String, Object> defaultValues;
