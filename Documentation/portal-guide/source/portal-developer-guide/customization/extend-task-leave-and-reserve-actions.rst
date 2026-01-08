@@ -1,16 +1,22 @@
-.. _customization-extending-task-leave-and-reserve-actions:
+.. _customization-extend-task-leave-and-reserve-actions:
 
-Extending Task Leave and Reserve Actions
+Extend Task Leave and Reserve Actions
 ========================================
 
-Portal provides a feature to execute custom logic when a user leaves or reserves a task. This allows developers to inject their own business rules to perform additional operations.
+Introduction
+------------
+
+Portal provides a feature to run your own logic before a user leaves or reserves a task. This allows developers to inject their own business rules to perform additional operations.
 
 This custom logic runs just before the leave or reserve action is completed. The primary trigger points are:
    
    - Clicking **leave** or **reserve** in the unsaved changes warning dialog when leaving a task.
    - Clicking the **reserve** button in the task action menu.
 
-1. To execute logic on task **leave** action, you create a callable subprocess with
+Implementation
+--------------
+
+1. To add your logic before task **leave** action, you create a callable subprocess with
 
    **Signature**: portalExtendTaskLeave
 
@@ -27,7 +33,7 @@ This custom logic runs just before the leave or reserve action is completed. The
    The parameter of the callable subprocess is the current ``workingTask``.
    Implement your custom logic in this callable subprocess.
 
-2. To execute logic on task **reserve** action, you create a callable subprocess with
+2. To add your logic before task **reserve** action, you create a callable subprocess with
 
    **Signature**: portalExtendTaskReserve
 
@@ -43,6 +49,9 @@ This custom logic runs just before the leave or reserve action is completed. The
 
    The parameter of the callable subprocess is the current ``workingTask``.
    Implement your custom logic in this callable subprocess.
+
+Example
+-------
 
 There is an example implementation in the project ``portal-developer-examples`` under the process name
 ``CustomExtendTaskLeave``.
