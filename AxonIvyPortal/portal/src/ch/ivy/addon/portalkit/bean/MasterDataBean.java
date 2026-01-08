@@ -152,7 +152,8 @@ public class MasterDataBean implements Serializable {
     return UserSettingService.getInstance().isKeyboardShortcutsEnabled();
   }
   
-  public boolean isExpandSidebar() {
+  public boolean isExpandedSidebar() {
     return GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.EXPANDED_SIDEBAR);
   }
 }
+
