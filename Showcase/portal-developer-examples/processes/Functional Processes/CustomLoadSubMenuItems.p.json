@@ -47,7 +47,7 @@
             "",
             "CustomSubMenuItem google = new CustomSubMenuItem();",
             "google.setIcon(\"si si-information-circle\");",
-            "google.setLabel(ApplicationMultiLanguageAPI.getCmsValueByUserLocale(\"/Processes/google\"));",
+            "google.setLabel(\"123\");",
             "google.setLink(\"www.google.com\");",
             "google.setIsExternalLink(true);",
             "google.setIndex(1);",
