@@ -48,7 +48,7 @@ public class ThemeBean implements Serializable {
     try {
       return ThemeMode.valueOf(themeValue.toUpperCase()).name().toLowerCase();
     } catch (Exception e) {
-      // User manipulate the cookie value, fallback to DefaultThemeMode
+      // User manipulate the cookie value, fallback to light mode
       return ThemeMode.LIGHT.name().toLowerCase();
     }
   }
