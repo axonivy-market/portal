@@ -779,6 +779,11 @@ ch.ivy.addon.portalkit.ui.jsf:
     QuickSearch: Quick search
     QuickSearchInfo: You can customize the Quick Search's scope in the widgets column management. It searches based on "contains", but be mindful of performance when adding numerous columns.
     QuickSearchScope: 'Search Scope: {0}'
+    CaseQueryType: Case Type
+    CaseQueryTypeInfo: Configure which case types are shown in the Case Widget. Default shows business cases only, Sub Cases shows technical subcases only, and All shows both business cases and technical subcases.
+    CaseQueryType/BusinessCase: Business Cases (Default)
+    CaseQueryType/SubCase: Technical Sub Cases
+    CaseQueryType/All: Business Cases + Sub Cases
     RestoreDefaultDashboardMessage: If you proceed, you will loose all widgets created by yourself. The standard settings of <span class="dashboard-template-name-message">{0}</span> will be applied.
     SaveNewWidgetFilterHeader: Save a new widget filter
     SavedFilterHeader: Saved filters

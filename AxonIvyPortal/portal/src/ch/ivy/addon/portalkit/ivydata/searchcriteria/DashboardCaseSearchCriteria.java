@@ -18,6 +18,7 @@ import com.axonivy.portal.util.filter.field.FilterFieldFactory;
 
 import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
 import ch.ivy.addon.portalkit.dto.dashboard.casecolumn.CaseColumnModel;
+import ch.ivy.addon.portalkit.enums.CaseQueryType;
 import ch.ivy.addon.portalkit.enums.DashboardColumnFormat;
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
@@ -39,6 +40,7 @@ public class DashboardCaseSearchCriteria {
   private boolean isInConfiguration;
   private String quickSearchKeyword;
   private boolean showPinnedItem;
+  private CaseQueryType caseQueryType;
 
   public CaseQuery buildQuery() {
     CaseQuery query = buildQueryWithoutOrderByClause();
@@ -48,13 +50,22 @@ public class DashboardCaseSearchCriteria {
   }
 
   public CaseQuery buildQueryWithoutOrderByClause() {
-    CaseQuery query = CaseQuery.businessCases();
+    CaseQuery query = buildQueryBasedOnType();
     queryFilters(query);
     appendQuickSearchQuery(query);
     if (showPinnedItem) {
       queryPinnedCase(query);
     }
     return query;
+  }
+
+  private CaseQuery buildQueryBasedOnType() {
+    CaseQueryType type = Optional.ofNullable(caseQueryType).orElse(CaseQueryType.BUSINESS_CASE);
+    return switch (type) {
+      case SUB_CASE -> CaseQuery.subCases();
+      case ALL -> CaseQuery.create();
+      default -> CaseQuery.businessCases();
+    };
   }
 
   private void queryComplexFilter(CaseQuery query, List<DashboardFilter> filterList) {
@@ -325,6 +336,14 @@ public class DashboardCaseSearchCriteria {
       String[] uuidArray = pinnedCaseUuids.toArray(new String[0]);
       query.where().uuid().isIn(uuidArray);
     }
+  }
+
+  public CaseQueryType getCaseQueryType() {
+    return caseQueryType;
+  }
+
+  public void setCaseQueryType(CaseQueryType caseQueryType) {
+    this.caseQueryType = caseQueryType;
   }
 
 }

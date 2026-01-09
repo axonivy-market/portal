@@ -781,6 +781,11 @@ ch.ivy.addon.portalkit.ui.jsf:
     QuickSearch: Búsqueda rápida
     QuickSearchInfo: Puede personalizar el alcance de la búsqueda rápida en la gestión de columnas de widgets. La búsqueda se realiza en función de "contiene", pero tenga en cuenta el rendimiento al agregar numerosas columnas.
     QuickSearchScope: 'Ámbito de búsqueda: {0}'
+    CaseQueryType: Tipo de caso
+    CaseQueryTypeInfo: Configure qué tipos de casos se muestran en el widget de casos. Predeterminado muestra solo casos de negocio, Subcasos técnicos muestra solo subcasos técnicos, y Todos muestra tanto casos de negocio como subcasos técnicos.
+    CaseQueryType/BusinessCase: Casos de negocio (Predeterminado)
+    CaseQueryType/SubCase: Subcasos técnicos
+    CaseQueryType/All: Casos de negocio + Subcasos
     RestoreDefaultDashboardMessage: Si continúa, perderá todos los widgets creados por usted. Se aplicará la configuración estándar de <span class="dashboard-template-name-message">{0}</span>.
     SaveNewWidgetFilterHeader: Guardar un nuevo filtro de widget
     SavedFilterHeader: Filtros guardados

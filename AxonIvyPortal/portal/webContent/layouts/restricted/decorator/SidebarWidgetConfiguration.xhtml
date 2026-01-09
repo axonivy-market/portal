@@ -125,6 +125,30 @@
         </p:selectBooleanCheckbox>
       </div>
     </h:panelGroup>
+    
+    <!-- Case Query Type Selector (Case Widget only) -->
+    <h:panelGroup id="case-query-type-group"
+      rendered="#{widget.type.name() == 'CASE'}"
+      styleClass="ui-g-12 u-padding-0 ui-fluid">
+      <div class="ui-g-2 w-14rem">
+        <p:outputLabel for="case-query-type" styleClass="u-mar-right-5"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/CaseQueryType')}" />
+        <h:outputText id="case-query-type-info" styleClass="si si-information-circle" />
+        <p:tooltip for="case-query-type-info" 
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/CaseQueryTypeInfo')}" />
+      </div>
+      <div class="ui-g-10">
+        <p:selectOneMenu id="case-query-type" value="#{widget.caseQueryType}" styleClass="case-query-type-selector">
+          <f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/CaseQueryType/BusinessCase')}" 
+            itemValue="BUSINESS_CASE" />
+          <f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/CaseQueryType/SubCase')}" 
+            itemValue="SUB_CASE" />
+          <f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/CaseQueryType/All')}" 
+            itemValue="ALL" />
+          <p:ajax process="case-query-type-group" update="case-query-type-group #{componentToUpdateOnPreview}" partialSubmit="true" />
+        </p:selectOneMenu>
+      </div>
+    </h:panelGroup>
 
     <!-- Widget data -->
     <div class="ui-g-12">

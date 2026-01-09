@@ -783,6 +783,11 @@ ch.ivy.addon.portalkit.ui.jsf:
     QuickSearch: Schnellsuche
     QuickSearchInfo: Sie können den Bereich der Schnellsuche in der Spaltenverwaltung der Widgets anpassen. Die Suche erfolgt nach dem Kriterium "enthält", aber achten Sie darauf, die Leistung nicht zu beeinträchtigen, wenn Sie viele Spalten hinzufügen.
     QuickSearchScope: 'Suchbereich : {0}'
+    CaseQueryType: Vorgangstyp
+    CaseQueryTypeInfo: Konfigurieren Sie, welche Vorgangstypen im Vorgangs-Widget angezeigt werden. Standard zeigt nur Geschäftsvorgänge, Technische Untervorgänge zeigt nur technische Untervorgänge, und Alle zeigt sowohl Geschäftsvorgänge als auch technische Untervorgänge.
+    CaseQueryType/BusinessCase: Geschäftsvorgänge (Standard)
+    CaseQueryType/SubCase: Technische Untervorgänge
+    CaseQueryType/All: Geschäftsvorgänge + Untervorgänge
     RestoreDefaultDashboardMessage: Wenn Sie fortfahren, verlieren Sie alle von Ihnen erstellten Widgets. Es werden die Standardeinstellungen von <span class="dashboard-template-name-message">{0}</span> wiederhergestellt.
     SaveNewWidgetFilterHeader: Einen neuen Widget-Filter speichern
     SavedFilterHeader: Gespeicherte Filter
