@@ -35,13 +35,22 @@ public class ThemeBean implements Serializable {
   @PostConstruct
   public void init() {
     String themeModeFromCookie = getThemeModeFromCookie();
-    String themeMode = StringUtils.isNotBlank(themeModeFromCookie) ? themeModeFromCookie : getDefaultThemeMode();
-    changeToThemeMode(themeMode.toLowerCase());
+    String themeMode = sanitizeThemeValue(StringUtils.isNotBlank(themeModeFromCookie) ? themeModeFromCookie : getDefaultThemeMode());
+    changeToThemeMode(themeMode);
   }
 
   private String getThemeModeFromCookie() {
     Cookie cookie = new CookieHelper().getCookie(PRIMEFACES_THEME_MODE_COOKIE_ATTRIBUTE);
     return cookie != null ? cookie.getValue() : StringUtils.EMPTY;
+  }
+
+  private String sanitizeThemeValue(String themeValue) {
+    try {
+      return ThemeMode.valueOf(themeValue.toUpperCase()).name().toLowerCase();
+    } catch (Exception e) {
+      // User manipulate the cookie value, fallback to DefaultThemeMode
+      return ThemeMode.LIGHT.name().toLowerCase();
+    }
   }
 
   private String getDefaultThemeMode() {
