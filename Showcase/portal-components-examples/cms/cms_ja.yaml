@@ -31,6 +31,12 @@ Processes:
         name: 投資リクエスト
     description: カスタマイズされたビジネス詳細ページへの投資リクエストの例
     name: 投資の作成
+  CreateInvestmentWithParameters:
+    Tasks:
+      Request:
+        name: パラメータを指定して投資を作成
+    description: カスタマイズされたビジネス詳細ページへの投資リクエストの例
+    name: パラメータを指定して投資を作成
   CreateInvestmentWithPublicAPI:
     Task:
       Request:

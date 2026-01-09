@@ -2,9 +2,12 @@
   "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
   "simpleName" : "SetBusinessDetailsPageData",
   "namespace" : "com.axonivy.portal.components",
-  "isBusinessCaseData" : false,
   "fields" : [ {
     "name" : "linkToBusinessDetailsPage",
-    "type" : "String"
+    "modifiers" : [ ]
+  }, {
+    "name" : "params",
+    "type" : "java.util.Map",
+    "modifiers" : [ ]
   } ]
 }
