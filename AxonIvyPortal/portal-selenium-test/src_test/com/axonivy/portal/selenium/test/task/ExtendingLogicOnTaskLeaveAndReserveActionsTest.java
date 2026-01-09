@@ -15,6 +15,7 @@ import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.NotificationCompactPage;
 import com.axonivy.portal.selenium.page.TaskDetailsPage;
 import com.axonivy.portal.selenium.page.TaskTemplateIFramePage;
+import com.axonivy.portal.selenium.page.TaskWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.TopMenuTaskWidgetPage;
 import com.axonivy.portal.selenium.page.WorkingTaskDialogPage;
 import com.codeborne.selenide.CollectionCondition;
@@ -79,9 +80,7 @@ public class ExtendingLogicOnTaskLeaveAndReserveActionsTest extends BaseTest {
     login(TestAccount.ADMIN_USER);
     createTestingTasks();
     redirectToNewDashBoard();
-    MainMenuPage menu = new MainMenuPage();
-    menu.openTaskList();
-    TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
+    TaskWidgetNewDashBoardPage taskWidget = dashboardPage.selectTaskWidget("Your Tasks");
     taskWidget.openFilterWidget();
     taskWidget.addFilter("Task name", FilterOperator.CONTAINS);
     taskWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "Sick Leave Request");
@@ -91,7 +90,6 @@ public class ExtendingLogicOnTaskLeaveAndReserveActionsTest extends BaseTest {
     templatePage.clickOnLogo();
     WorkingTaskDialogPage dialogPage = new WorkingTaskDialogPage();
     dialogPage.reserveTask();
-    menu.openTaskList();
     taskWidget.clickCustomFieldsButtonOnActions(0);
     assertTrue(taskWidget.isCustomFieldsDialogDisplayed());
     List<String> taskCustomFieldNames = taskWidget.getCustomFieldNamesOnTaskCustomFieldsDialog();
@@ -104,9 +102,7 @@ public class ExtendingLogicOnTaskLeaveAndReserveActionsTest extends BaseTest {
     login(TestAccount.ADMIN_USER);
     createTestingTasks();
     redirectToNewDashBoard();
-    MainMenuPage menu = new MainMenuPage();
-    menu.openTaskList();
-    TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
+    TaskWidgetNewDashBoardPage taskWidget = dashboardPage.selectTaskWidget("Your Tasks");
     taskWidget.openFilterWidget();
     taskWidget.addFilter("Task name", FilterOperator.CONTAINS);
     taskWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "Sick Leave Request");
