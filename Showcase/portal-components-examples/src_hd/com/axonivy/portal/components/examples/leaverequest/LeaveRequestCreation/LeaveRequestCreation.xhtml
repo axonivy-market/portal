@@ -35,14 +35,14 @@
                 <h:panelGroup class="md-inputfield MarTop20">
                   <p:outputLabel for="from" value="#{ivy.cms.co('/Labels/LeaveRequest/from')}" />
                   <p:datePicker id="from" value="#{data.leaveRequestData.from}"
-                    styleClass="MarTop10" pattern="dd/MM/yyyy" required="true"
+                    styleClass="MarTop10" pattern="#{dateTimeExampleBean.datePattern}" required="true"
                     requiredMessage="#{ivy.cms.co('/Labels/LeaveRequest/from')}: #{ivy.cms.co('/Dialogs/com/axonivy/portal/component/Common/RequiredFieldMessage')}" />
                 </h:panelGroup>
 
                 <h:panelGroup class="md-inputfield MarTop20">
                   <p:outputLabel for="to" value="#{ivy.cms.co('/Labels/LeaveRequest/to')} " />
                   <p:datePicker id="to" value="#{data.leaveRequestData.to}"
-                    styleClass="MarTop10" pattern="dd/MM/yyyy" required="true"
+                    styleClass="MarTop10" pattern="#{dateTimeExampleBean.datePattern}" required="true"
                     requiredMessage="#{ivy.cms.co('/Labels/LeaveRequest/to')}: #{ivy.cms.co('/Dialogs/com/axonivy/portal/component/Common/RequiredFieldMessage')}" />
                 </h:panelGroup>
 

@@ -2,9 +2,12 @@ package com.axonivy.portal.components.publicapi;
 
 import static com.axonivy.portal.components.constant.CustomFields.BUSINESS_DETAILS;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
+import java.util.Map;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.Strings;
 
 import com.axonivy.portal.components.dto.BusinessDetailsDTO;
 import com.axonivy.portal.components.service.exception.PortalException;
@@ -51,8 +54,24 @@ public class BusinessDetailsAPI {
           iWebStartables.stream().filter(startable -> startable.getId().endsWith(path)).findAny().orElseThrow(
               () -> new PortalException(String.format("Cannot find IWebStartable by ID [%s].", path)));
       customField = targetStartable.getId();
+      StringBuilder params = new StringBuilder();
+      Map<String, String> parameters = businessDetailsDTO.getParameters();
+
+      if (parameters != null && !parameters.isEmpty()) {
+        parameters.forEach((key, value) -> {
+          params.append("&")
+                .append(URLEncoder.encode(key, StandardCharsets.UTF_8))
+                .append("=")
+                .append(URLEncoder.encode(value, StandardCharsets.UTF_8));
+        });
+      }
+
       if (businessDetailsDTO.isEmbedInFrame()) {
-        customField += "?embedInFrame";
+        params.append("&embedInFrame");
+      }
+
+      if (params.length() > 0) {
+        customField += "?" + params.substring(1);
       }
     }
     businessDetailsDTO.getCase().customFields().stringField(BUSINESS_DETAILS).set(customField);
@@ -72,8 +91,34 @@ public class BusinessDetailsAPI {
     create(businessDetailsDTO);
   }
   
+  /**
+   * Creates and sets path to case custom string field {@code businessDetails} of current case 
+   * for displaying business case details page with URL parameters.
+   *
+   * <p>This method builds a {@link BusinessDetailsDTO} with the 
+   * provided link and parameters, then delegates to {@link #create(BusinessDetailsDTO)}.</p>
+   *
+   * <p>Examples:</p>
+   * <pre><code>Map&lt;String, String&gt; params = new HashMap&lt;&gt;();
+   * params.put("customerName", "John Doe");
+   * params.put("mode", "view");
+   * BusinessDetailsAPI.create(
+   *   "designer/portal-components-examples/Start Processes/BusinessDetails/showInvestmentRequestCustomFields.ivp",
+   *   params
+   * );</code></pre>
+   *
+   * @param link String could be an external link or {@link IWebStartable#getId() IWebStartable ID}
+   * @param parameters URL parameters to append to the business details link, can be null or empty
+   */
+  public static void create(String link, Map<String, String> parameters) {
+    BusinessDetailsDTO businessDetailsDTO = BusinessDetailsDTO.builder()
+        .path(link)
+        .parameters(parameters)
+        .build();
+    create(businessDetailsDTO);
+  }
 
   private static boolean detectExternalLink(String path) {
-    return StringUtils.startsWithIgnoreCase(path, "http:") || StringUtils.startsWithIgnoreCase(path, "https:");
+    return Strings.CI.startsWith(path, "http:") || Strings.CI.startsWith(path, "https:");
   }
 }
