@@ -161,13 +161,13 @@
         "",
         "HOW TO RUN THIS EXAMPLE:",
         "",
-        "1. Run createInvestmentRequest.ivp to use subprocess style, run createInvestmentRequestWithPublicAPI.ivp to use public API style or run createInvestmentRequestWithParameters.ivp to use subprocess that support parameters",
+        "1. Run createInvestmentRequest.ivp to use subprocess style or run createInvestmentRequestWithPublicAPI.ivp to use public API style",
         "",
         "2. In Portal case list, click on action menu of \"Investment request\" case, then click on \"Business details\" link"
       ],
       "visual" : {
-        "at" : { "x" : 1140, "y" : 221 },
-        "size" : { "width" : 776, "height" : 374 }
+        "at" : { "x" : 1144, "y" : 192 },
+        "size" : { "width" : 768, "height" : 316 }
       }
     }, {
       "id" : "f15",
@@ -239,84 +239,5 @@
       "visual" : {
         "at" : { "x" : 608, "y" : 200 }
       }
-    }, {
-      "id" : "f22",
-      "type" : "RequestStart",
-      "name" : "createInvestmentRequestWithParameters",
-      "config" : {
-        "signature" : "createInvestmentRequestWithParameters",
-        "input" : {
-          "map" : { },
-          "code" : [
-            "import java.util.HashMap;",
-            "import java.util.Map;",
-            "Map parameters = new HashMap();",
-            "parameters.put(\"company\", \"Wawa Company\");",
-            "parameters.put(\"location\", \"HCMC\");",
-            "out.parameters = parameters;"
-          ]
-        },
-        "request" : {
-          "name" : "<%=ivy.cms.co(\"/Processes/CreateInvestmentWithParameters/name\")%>",
-          "description" : "<%=ivy.cms.co(\"/Processes/CreateInvestmentWithParameters/description\")%>",
-          "category" : "Investment"
-        },
-        "case" : {
-          "name" : "<%=ivy.cms.co(\"/Processes/CreateInvestmentWithParameters/name\")%>",
-          "description" : "<%=ivy.cms.co(\"/Processes/CreateInvestmentWithParameters/description\")%>",
-          "customFields" : [
-            { "name" : "AccountNumber", "type" : "NUMBER", "value" : "100" },
-            { "name" : "CustomerName", "type" : "STRING", "value" : "\"Apartment A\"" },
-            { "name" : "SupportData", "type" : "STRING", "value" : "\"Request for new computer\"" }
-          ]
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 144, "y" : 488 },
-        "description" : "Investment Request for Customized Case Detail Page with subprocess example"
-      },
-      "connect" : [
-        { "id" : "f23", "to" : "f27" }
-      ]
-    }, {
-      "id" : "f24",
-      "type" : "TaskSwitchEvent",
-      "config" : {
-        "task" : {
-          "name" : "<%=ivy.cms.co(\"/Processes/CreateInvestmentWithParameters/Tasks/Request/name\")%>"
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 528, "y" : 488 }
-      },
-      "connect" : [
-        { "id" : "f25", "to" : "f26" }
-      ]
-    }, {
-      "id" : "f26",
-      "type" : "TaskEnd",
-      "visual" : {
-        "at" : { "x" : 608, "y" : 488 }
-      }
-    }, {
-      "id" : "f27",
-      "type" : "SubProcessCall",
-      "name" : "SetBusinessDetailsPageWithParamete",
-      "config" : {
-        "processCall" : "Functional Processes/SetBusinessDetailsPage:callWithParams(String,java.util.Map)",
-        "call" : {
-          "map" : {
-            "param.linkToBusinessDetailsPage" : "\"Start Processes/BusinessDetails/showInvestmentRequestCustomFields.ivp\"",
-            "param.params" : "in.parameters"
-          }
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 364, "y" : 489 },
-        "size" : { "width" : 232, "height" : 62 }
-      },
-      "connect" : [
-        { "id" : "f28", "to" : "f24" }
-      ]
     } ]
 }

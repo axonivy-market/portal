@@ -5,8 +5,6 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
-import com.axonivy.portal.components.service.DateTimeGlobalSettingService;
-
 import ch.ivyteam.ivy.environment.Ivy;
 
 public class TaskInforActionService {

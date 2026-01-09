@@ -14,10 +14,9 @@ import javax.faces.bean.ManagedBean;
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.model.SortMeta;
 
-import com.axonivy.portal.components.service.DateTimeGlobalSettingService;
-
 import ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.TaskColumnModel;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
+import ch.ivy.addon.portalkit.service.DateTimeGlobalSettingService;
 import ch.ivy.addon.portalkit.util.SortFieldUtil;
 import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivyteam.ivy.environment.Ivy;

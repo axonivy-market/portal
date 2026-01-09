@@ -31,12 +31,6 @@ Processes:
         name: Investitionsantrag
     description: Beispiel für eine Investitionsanfrage für eine benutzerdefinierte Geschäftsdetailseite
     name: Investition anlegen
-  CreateInvestmentWithParameters:
-    Tasks:
-      Request:
-        name: Investment mit Parametern erstellen
-    description: Beispiel für eine Investitionsanfrage für eine benutzerdefinierte Geschäftsdetailseite
-    name: Investment mit Parametern erstellen
   CreateInvestmentWithPublicAPI:
     Task:
       Request:

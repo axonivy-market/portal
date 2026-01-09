@@ -2,10 +2,10 @@ package com.axonivy.portal.util.filter.operator.task.finisheddate;
 
 import java.util.Date;
 
-import com.axonivy.portal.components.service.DateTimeGlobalSettingService;
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 import com.axonivy.portal.util.PortalDateUtils;
 
+import ch.ivy.addon.portalkit.service.DateTimeGlobalSettingService;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
 
 public class FinishedDateBeforeOperatorHandler {
