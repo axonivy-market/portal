@@ -25,6 +25,7 @@ import ch.ivy.addon.portalkit.enums.TaskSortField;
 import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
 import ch.ivy.addon.portalkit.ivydata.service.impl.UserSettingService;
 import ch.ivy.addon.portalkit.masterdata.AwesomeIcon;
+import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.GrowlMessageService;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -71,7 +72,7 @@ public class MasterDataBean implements Serializable {
   }
   
   public String getTaskSortFieldCompletedTime() {
-	return TaskSortField.COMPLETED_ON.toString();
+    return TaskSortField.COMPLETED_ON.toString();
   }
 
   public String getTaskSortFieldState() {
@@ -138,5 +139,9 @@ public class MasterDataBean implements Serializable {
   
   public boolean isKeyboardShortcutsEnabled() {
     return UserSettingService.getInstance().isKeyboardShortcutsEnabled();
+  }
+  
+  public boolean isExpandSidebar() {
+    return GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.EXPANDED_SIDEBAR);
   }
 }
