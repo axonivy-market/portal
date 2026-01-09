@@ -35,8 +35,8 @@
         alt="#{logoDescription}" />
     </p:commandLink>
 
-    <p:commandLink id="toggle-menu" styleClass="sidebar-pin" global="false" ariaLabel="#{ivy.cms.co('/Labels/ToggleMenu')}"
-      onclick="hideBreadcrumb()" oncomplete="Portal.updateBreadcrumb();" >
+    <p:commandLink id="toggle-menu" styleClass="sidebar-pin" global="false" ariaLabel="#{ivy.cms.co('/Labels/ToggleMenu')}" 
+      onclick="hideBreadcrumb()" oncomplete="Portal.updateBreadcrumb();" rendered="#{!masterDataBean.expandedSidebar}">
       <span class="pin"></span>
     </p:commandLink>
   </div>
@@ -85,4 +85,5 @@
 
   <h:outputScript name="application-selection-menu.js" library="js" />
 </cc:implementation>
+
 </html>
