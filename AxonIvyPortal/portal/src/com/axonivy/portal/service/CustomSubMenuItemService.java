@@ -1,7 +1,6 @@
 package com.axonivy.portal.service;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -105,7 +104,8 @@ public class CustomSubMenuItemService {
 
   public static CustomSubMenuItem saveConfiguration(CustomSubMenuItem entity) {
     List<CustomSubMenuItem> existedEntities = loadFromConfiguration();
-    existedEntities.removeIf(e -> Optional.ofNullable(e).map(CustomSubMenuItem::getId).orElse("") == e.getId());
+    existedEntities
+        .removeIf(e -> Optional.ofNullable(e).map(CustomSubMenuItem::getId).orElse("").equals(entity.getId()));
     existedEntities.add(entity);
     Ivy.var().set(PortalVariable.CUSTOM_MENU_ITEMS.key, BusinessEntityConverter.entityToJsonValue(existedEntities));
     return entity;
@@ -142,19 +142,7 @@ public class CustomSubMenuItemService {
 
   public static void removeConfiguration(CustomSubMenuItem entity) {
     List<CustomSubMenuItem> existedEntities = loadFromConfiguration();
-    existedEntities.sort(Comparator.comparingInt(CustomSubMenuItem::getIndex));
-    boolean deleted = false;
-    for (CustomSubMenuItem menu : existedEntities) {
-      if (deleted) {
-        menu.setIndex(menu.getIndex() - 1);
-        continue;
-      }
-
-      if (menu.getId().equals(entity.getId())) {
-        existedEntities.remove(menu);
-        deleted = true;
-      }
-    }
+    existedEntities.remove(entity);
     Ivy.var().set(PortalVariable.CUSTOM_MENU_ITEMS.key, BusinessEntityConverter.entityToJsonValue(existedEntities));
   }
 }

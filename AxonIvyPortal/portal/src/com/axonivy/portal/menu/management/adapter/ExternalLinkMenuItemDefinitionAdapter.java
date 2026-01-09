@@ -50,13 +50,13 @@ public class ExternalLinkMenuItemDefinitionAdapter
       source = new CustomSubMenuItem();
       source.setId(menu.getId());
       source.setVersion(menu.getVersion());
-      source.setMenuKind(MenuKind.CUSTOM);
+      source.setMenuKind(MenuKind.EXTERNAL_LINK);
       source.setIsExternalLink(true);
     }
 
     source.setLink(menu.getUrl());
     source.setIndex(menu.getIndex());
-    source.setIcon(menu.isIncludedIconFamily() ? removeIconFamily(menu.getIcon()) : menu.getIcon());
+    source.setIcon(menu.isIncludedIconFamily() ? addIconFamily(menu.getIcon()) : menu.getIcon());
     source.setLabel(menu.getDisplayTitle());
     return source;
   }

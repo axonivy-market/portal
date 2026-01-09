@@ -33,6 +33,7 @@ public class CustomMenuItemDefinitionAdapter
     menu.setIcon(source.getIcon());
     menu.setIndex(source.getIndex());
     menu.setVersion(source.getVersion());
+    menu.setIncludedIconFamily(hasIconFamily(source.getIcon()));
     menu.setIcon(removeIconFamily(source.getIcon()));
     menu.setDisplayTitle(source.getLabel());
     menu.setTitles(initAndSetValue(menu.getDisplayTitle()));
@@ -68,7 +69,7 @@ public class CustomMenuItemDefinitionAdapter
     source.setLink(menu.getProcessStartPath());
     source.setIndex(menu.getIndex());
     source.setLabel(menu.getDisplayTitle());
-    source.setIcon(menu.isIncludedIconFamily() ? removeIconFamily(menu.getIcon()) : menu.getIcon());
+    source.setIcon(menu.isIncludedIconFamily() ? addIconFamily(menu.getIcon()) : menu.getIcon());
 
     return source;
   }

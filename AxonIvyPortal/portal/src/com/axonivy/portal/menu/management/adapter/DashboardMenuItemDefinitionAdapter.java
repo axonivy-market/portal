@@ -46,7 +46,7 @@ public class DashboardMenuItemDefinitionAdapter
     if (source != null) {
       source.setPermissions(menu.getPermissions());
       source.setTitles(menu.getTitles());
-      source.setIcon(menu.isIncludedIconFamily() ? removeIconFamily(menu.getIcon()) : menu.getIcon());
+      source.setIcon(menu.isIncludedIconFamily() ? addIconFamily(menu.getIcon()) : menu.getIcon());
       return source;
     }
 

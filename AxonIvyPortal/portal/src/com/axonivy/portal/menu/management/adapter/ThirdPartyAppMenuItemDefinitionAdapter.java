@@ -26,16 +26,17 @@ public class ThirdPartyAppMenuItemDefinitionAdapter
   }
 
   @Override
-  public ExternalLinkMenuItemDefinition toMenuDefinition(Application app, MenuSource type) {
+  public ExternalLinkMenuItemDefinition toMenuDefinition(Application source, MenuSource type) {
     ExternalLinkMenuItemDefinition menu = new ExternalLinkMenuItemDefinition();
     menu.setSource(MenuSource.THIRD_PARTY_APP_CONFIGURATION);
-    menu.setId(app.getId());
-    menu.setPermissions(app.getPermissions());
-    menu.setUrl(app.getLink());
-    menu.setIsPublic(app.getIsPublic());
-    menu.setIcon(app.getMenuIcon());
-    menu.setIndex(app.getMenuOrdinal());
-    menu.setTitles(jsonToDisplayNames(app.getDisplayName()));
+    menu.setId(source.getId());
+    menu.setPermissions(source.getPermissions());
+    menu.setUrl(source.getLink());
+    menu.setIsPublic(source.getIsPublic());
+    menu.setIncludedIconFamily(hasIconFamily(source.getMenuIcon()));
+    menu.setIcon(removeIconFamily(source.getMenuIcon()));
+    menu.setIndex(source.getMenuOrdinal());
+    menu.setTitles(jsonToDisplayNames(source.getDisplayName()));
     menu.setDisplayTitle(MenuUtils.getDisplayTitle(menu));
     return menu;
   }
@@ -70,9 +71,8 @@ public class ThirdPartyAppMenuItemDefinitionAdapter
     source.setPermissions(menu.getPermissions());
     source.setLink(menu.getUrl());
     source.setMenuOrdinal(menu.getIndex());
-    source.setMenuIcon(menu.getIcon());
+    source.setMenuIcon(menu.isIncludedIconFamily() ? addIconFamily(menu.getIcon()) : menu.getIcon());
     source.setDisplayName(displayNameToJson(menu.getTitles()));
     return source;
   }
-
 }

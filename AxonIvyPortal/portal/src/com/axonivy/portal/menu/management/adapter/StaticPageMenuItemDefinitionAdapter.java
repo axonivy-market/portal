@@ -49,7 +49,7 @@ public class StaticPageMenuItemDefinitionAdapter
     source.setLink(menu.getUrl());
     source.setIndex(menu.getIndex());
     source.setLabel(menu.getDescription());
-    source.setIcon(menu.isIncludedIconFamily() ? removeIconFamily(menu.getIcon()) : menu.getIcon());
+    source.setIcon(menu.isIncludedIconFamily() ? addIconFamily(menu.getIcon()) : menu.getIcon());
     source.setLabel(menu.getDisplayTitle());
     return source;
   }
