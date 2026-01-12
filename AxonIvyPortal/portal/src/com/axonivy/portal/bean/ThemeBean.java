@@ -36,12 +36,21 @@ public class ThemeBean implements Serializable {
   public void init() {
     String themeModeFromCookie = getThemeModeFromCookie();
     String themeMode = StringUtils.isNotBlank(themeModeFromCookie) ? themeModeFromCookie : getDefaultThemeMode();
-    changeToThemeMode(themeMode.toLowerCase());
+    changeToThemeMode(themeMode);
   }
 
   private String getThemeModeFromCookie() {
     Cookie cookie = new CookieHelper().getCookie(PRIMEFACES_THEME_MODE_COOKIE_ATTRIBUTE);
     return cookie != null ? cookie.getValue() : StringUtils.EMPTY;
+  }
+
+  private String sanitizeThemeValue(String themeValue) {
+    try {
+      return ThemeMode.valueOf(themeValue.toUpperCase()).name().toLowerCase();
+    } catch (IllegalArgumentException | NullPointerException e) {
+      // User manipulates the cookie value, fallback to light mode
+      return ThemeMode.LIGHT.name().toLowerCase();
+    }
   }
 
   private String getDefaultThemeMode() {
@@ -51,8 +60,9 @@ public class ThemeBean implements Serializable {
   }
 
   private void changeToThemeMode(String themeMode) {
-    getIvyFreyaTheme().setMode(themeMode);
-    PrimeFaces.current().executeScript(String.format(SWITCH_THEME_MODE_SCRIPT, themeMode, themeMode));
+    String safeThemeMode = sanitizeThemeValue(themeMode);
+    getIvyFreyaTheme().setMode(safeThemeMode);
+    PrimeFaces.current().executeScript(String.format(SWITCH_THEME_MODE_SCRIPT, safeThemeMode, safeThemeMode));
   }
 
   public boolean isEnableSwitchThemeButton() {
