@@ -8047,8 +8047,8 @@ msgid ""
 "Get a free developer account from `DeepL.com "
 "<https://www.deepl.com/pro#developer/>`__"
 msgstr ""
-"`DeepL.com <https://www.deepl.com/"
-"pro#developer/>`__から無料開発者アカウントを取得してください。"
+"`DeepL.com <https://www.deepl.com/pro#developer/>`__ から無料開発者アカウン"
+"トを取得してください。"
 
 #: ../../source/portal-user-guide/portal-multi-language/index.rst:33
 msgid ""

@@ -12233,7 +12233,7 @@ msgstr "開発またはデプロイ中に問題が発生した場合："
 
 #: ../../source/portal-developer-guide/introduction/index.rst:54
 msgid "Check :ref:`troubleshooting` for common problems and solutions"
-msgstr "一般的な問題と解決策については:ref:`troubleshooting` を参照してください"
+msgstr "一般的な問題と解決策については :ref:`troubleshooting` を参照してください"
 
 #: ../../source/portal-developer-guide/introduction/index.rst:55
 msgid "Review :ref:`installation-migration-notes` when upgrading Portal versions"
