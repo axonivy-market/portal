@@ -7460,7 +7460,7 @@ msgid ""
 " Search`_."
 msgstr ""
 "ユーザー名の横にある|search-icon| 検索バーは、ポータル全体の検索機能を提供し"
-"ます。この機能の詳細は`グローバル検索`_で説明されています。"
+"ます。この機能の詳細は `Global Search`_ で説明されています。"
 
 #: ../../source/portal-user-guide/includes/_common-icon.rst:13
 msgid "search-icon"
@@ -8036,7 +8036,7 @@ msgstr "DeepLによる翻訳を使用するには："
 #: ../../source/portal-user-guide/qr-code/index.rst:32
 #: ../../source/portal-user-guide/qr-code/index.rst:42
 msgid "Open :ref:`Admin Settings <admin-settings>`"
-msgstr "開く:ref:`Admin Settings <admin-settings>`"
+msgstr "開く :ref:`Admin Settings <admin-settings>`"
 
 #: ../../source/portal-user-guide/portal-multi-language/index.rst:29
 msgid "Set :guilabel:`Portal.DeepL.Enable` to true"

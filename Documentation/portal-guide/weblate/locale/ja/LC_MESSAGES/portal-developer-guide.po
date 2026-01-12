@@ -8005,11 +8005,11 @@ msgid ""
 "``\"startTimestamp\"``)"
 msgstr ""
 "ソート用デフォルト列（例"
-"：``\"name\"``,``\"priority\"``,``\"startTimestamp\"``）"
+"：``\"name\"``, ``\"priority\"``, ``\"startTimestamp\"``）"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:144
 msgid "``sortDescending`` (boolean, default: ``false``)"
-msgstr "``sortDescending`` (ブール値、デフォルト: ``` `false``)"
+msgstr "``sortDescending`` (ブール値、デフォルト: ``false``)"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:147
 msgid "``rowsPerPage`` (number, default: ``10``)"
