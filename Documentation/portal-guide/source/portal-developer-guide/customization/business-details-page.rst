@@ -37,7 +37,8 @@ How to customize the business details page
 
       |set-business-details-page-callable-process|
 
-   *  Use public API ``ch.ivy.addon.portalkit.publicapi.BusinessDetailsAPI.create(String)``, ``ch.ivy.addon.portalkit.publicapi.BusinessDetailsAPI.create(String, java.util.Map)`` or ``ch.ivy.addon.portalkit.publicapi.BusinessDetailsAPI.create(BusinessDetailsDTO)``. 
+   *  Use public API ``ch.ivy.addon.portalkit.publicapi.BusinessDetailsAPI.create(String)``, ``ch.ivy.addon.portalkit.publicapi.BusinessDetailsAPI.create(String, java.util.Map)`` or ``ch.ivy.addon.portalkit.publicapi.BusinessDetailsAPI.create(BusinessDetailsDTO)``.
+   
      See the Public API section for more details.
 
       |customize-business-details-with-public-api|
