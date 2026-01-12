@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Portal Guide ${revision}\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-11 02:51+0000\n"
+"POT-Creation-Date: 2026-01-12 03:37+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: fr\n"
@@ -34,7 +34,7 @@ msgstr ""
 msgid "|document-table|"
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:298
+#: ../../source/portal-components/document-table/index.rst:283
 msgid "document-table"
 msgstr ""
 
@@ -42,11 +42,6 @@ msgstr ""
 msgid "Attributes"
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:58
-#: ../../source/portal-components/document-table/index.rst:85
-#: ../../source/portal-components/document-table/index.rst:117
-#: ../../source/portal-components/document-table/index.rst:139
-#: ../../source/portal-components/document-table/index.rst:161
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 #: ../../source/portal-components/documents/process_chain_component_attributes.csv:1
 #: ../../source/portal-components/documents/process_viewer_component_attributes.csv:1
@@ -65,11 +60,6 @@ msgstr ""
 msgid "Default"
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:58
-#: ../../source/portal-components/document-table/index.rst:85
-#: ../../source/portal-components/document-table/index.rst:117
-#: ../../source/portal-components/document-table/index.rst:139
-#: ../../source/portal-components/document-table/index.rst:161
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 #: ../../source/portal-components/documents/process_chain_component_attributes.csv:1
 #: ../../source/portal-components/documents/process_viewer_component_attributes.csv:1
@@ -204,6 +194,14 @@ msgid ""
 msgstr ""
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
+msgid "renderChooseUploadIcon"
+msgstr ""
+
+#: ../../source/portal-components/documents/document_table_component_attributes.csv:1
+msgid "Defines if the button to upload document is displayed or not."
+msgstr ""
+
+#: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "lazy"
 msgstr ""
 
@@ -233,7 +231,7 @@ msgid "Integer"
 msgstr ""
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
-msgid "Number of files are in the given ICase."
+msgid "Maximum number of files that can be uploaded."
 msgstr ""
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
@@ -253,11 +251,15 @@ msgid "Long"
 msgstr ""
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
-msgid "Individual uploading file size limit in bytes."
+msgid "Maximum size of an individual file in bytes."
 msgstr ""
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
-msgid "updatedComponentAfterUploaded"
+msgid "uploadText"
+msgstr ""
+
+#: ../../source/portal-components/documents/document_table_component_attributes.csv:1
+msgid "Upload"
 msgstr ""
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
@@ -270,7 +272,29 @@ msgid "String"
 msgstr ""
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
-msgid "Component will be triggered the update after document is uploaded."
+msgid "Label text displayed on the upload button."
+msgstr ""
+
+#: ../../source/portal-components/documents/document_table_component_attributes.csv:1
+msgid "updatedComponentAfterUploaded"
+msgstr ""
+
+#: ../../source/portal-components/documents/document_table_component_attributes.csv:1
+msgid ""
+"Space-separated clientIds (or EL expressions) of components to update "
+"after a successful upload. Example: 'document-table document-messages'."
+msgstr ""
+
+#: ../../source/portal-components/documents/document_table_component_attributes.csv:1
+msgid "previewTitle"
+msgstr ""
+
+#: ../../source/portal-components/documents/document_table_component_attributes.csv:1
+msgid "Preview"
+msgstr ""
+
+#: ../../source/portal-components/documents/document_table_component_attributes.csv:1
+msgid "Tooltip text displayed when hovering over the preview icon."
 msgstr ""
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
@@ -282,7 +306,7 @@ msgid "fa-eye"
 msgstr ""
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
-msgid "Icon class will be displayed in preview dialog."
+msgid "Icon class for the preview link."
 msgstr ""
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
@@ -290,15 +314,15 @@ msgid "previewStyleClass"
 msgstr ""
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
-msgid "Styles for preview link."
+msgid "Custom CSS style class to apply to the preview link."
 msgstr ""
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
-msgid "previewpreviewDialogStyleClass"
+msgid "previewDialogStyleClass"
 msgstr ""
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
-msgid "Styles for preview dialog."
+msgid "Custom CSS style class to apply to the preview dialog."
 msgstr ""
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
@@ -306,7 +330,7 @@ msgid "previewPDFStyleClass"
 msgstr ""
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
-msgid "Styles for PDF preview dialog."
+msgid "Custom CSS style class to apply to PDF preview media element."
 msgstr ""
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
@@ -314,7 +338,19 @@ msgid "previewImageStyleClass"
 msgstr ""
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
-msgid "Styles for image preview dialog."
+msgid "Custom CSS style class to apply to image preview element."
+msgstr ""
+
+#: ../../source/portal-components/documents/document_table_component_attributes.csv:1
+msgid "downloadTitle"
+msgstr ""
+
+#: ../../source/portal-components/documents/document_table_component_attributes.csv:1
+msgid "Download"
+msgstr ""
+
+#: ../../source/portal-components/documents/document_table_component_attributes.csv:1
+msgid "Tooltip text displayed when hovering over the download icon."
 msgstr ""
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
@@ -338,6 +374,18 @@ msgid "Styles for download link."
 msgstr ""
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
+msgid "deleteTitle"
+msgstr ""
+
+#: ../../source/portal-components/documents/document_table_component_attributes.csv:1
+msgid "Delete"
+msgstr ""
+
+#: ../../source/portal-components/documents/document_table_component_attributes.csv:1
+msgid "Tooltip text displayed when hovering over the delete icon."
+msgstr ""
+
+#: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "deleteIcon"
 msgstr ""
 
@@ -354,7 +402,7 @@ msgid "deleteStyleClass"
 msgstr ""
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
-msgid "Styles for delete link."
+msgid "Custom CSS style class to apply to the download link."
 msgstr ""
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
@@ -362,7 +410,30 @@ msgid "updatedComponentAfterDeleted"
 msgstr ""
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
-msgid "Component will be triggered the update after document is deleted."
+msgid ""
+"Space-separated clientIds (or EL expressions) of components to update "
+"after a successful deletion. Example: 'document-table document-messages'."
+msgstr ""
+
+#: ../../source/portal-components/documents/document_table_component_attributes.csv:1
+msgid "renameText"
+msgstr ""
+
+#: ../../source/portal-components/document-table/index.rst:149
+#: ../../source/portal-components/documents/document_table_component_attributes.csv:1
+msgid "Rename document"
+msgstr ""
+
+#: ../../source/portal-components/documents/document_table_component_attributes.csv:1
+msgid "Tooltip text displayed when hovering over the rename icon."
+msgstr ""
+
+#: ../../source/portal-components/documents/document_table_component_attributes.csv:1
+msgid "renameTitle"
+msgstr ""
+
+#: ../../source/portal-components/documents/document_table_component_attributes.csv:1
+msgid "Title text displayed in the rename dialog header."
 msgstr ""
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
@@ -370,7 +441,7 @@ msgid "renameStyleClass"
 msgstr ""
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
-msgid "Styles for edit filename link."
+msgid "Custom CSS style class to apply to the rename link."
 msgstr ""
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
@@ -378,7 +449,9 @@ msgid "updatedComponentAfterRenamed"
 msgstr ""
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
-msgid "Component will be triggered the update after document is renamed."
+msgid ""
+"Space-separated clientIds (or EL expressions) of components to update "
+"after a successful rename. Example: 'document-table document-messages'."
 msgstr ""
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
@@ -387,8 +460,8 @@ msgstr ""
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid ""
-"String value to specify the selected document types, by default it will "
-"be first element in ``typeSelectionItems``."
+"Default document type to be selected. If not provided, the first item of "
+"``typeSelectionItems`` will be used."
 msgstr ""
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
@@ -400,10 +473,17 @@ msgid "DOCUMENTATION,CONTRACT,INFORMATION,EMAIL,OTHERS"
 msgstr ""
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
-msgid "String value to specify the list of document type."
+msgid "com.axonivy.portal.components.enums.DocumentType[]"
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:93
+#: ../../source/portal-components/documents/document_table_component_attributes.csv:1
+#, python-brace-format
+msgid ""
+"Array of DocumentType objects for the type selection dropdown. Default is"
+" #{documentUploadBean.documentTypes} which returns BasicDocumentType enum"
+" values (DOCUMENTATION, CONTRACT, INFORMATION, EMAIL, OTHERS)."
+msgstr ""
+
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "enableScriptCheckingForUploadedDocument"
 msgstr ""
@@ -425,7 +505,6 @@ msgstr ""
 msgid "If the Portal setting is not available, defaults to ``false``."
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:95
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "enableVirusScannerForUploadedDocument"
 msgstr ""
@@ -448,7 +527,6 @@ msgstr ""
 msgid "If Portal setting is not available, default value is ``false``."
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:97
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "allowedUploadFileTypes"
 msgstr ""
@@ -496,7 +574,7 @@ msgstr ""
 #: ../../source/portal-components/role-selection/index.rst:24
 #: ../../source/portal-components/role-selection/index.rst:39
 #: ../../source/portal-components/user-selection/index.rst:22
-#: ../../source/portal-components/user-selection/index.rst:35
+#: ../../source/portal-components/user-selection/index.rst:36
 msgid "Code example:"
 msgstr ""
 
@@ -512,14 +590,14 @@ msgstr ""
 
 #: ../../source/portal-components/document-table/index.rst:42
 msgid ""
-"In your project, create four callable subprocesses with the information "
-"below to customize the functions of the **Document Table**."
+"In your project, create callable subprocesses with the information below "
+"to customize the functions of the **Document Table**."
 msgstr ""
 
 #: ../../source/portal-components/document-table/index.rst:47
 msgid ""
 "You can refer to process ``CustomDocumentFeatures`` in project ``portal-"
-"component-examples`` to examine how to customize."
+"components-examples`` to examine how to customize."
 msgstr ""
 
 #: ../../source/portal-components/document-table/index.rst:51
@@ -536,332 +614,335 @@ msgstr ""
 msgid "**Signature**: portalGetDocumentItems"
 msgstr ""
 
+#: ../../source/portal-components/document-table/index.rst:57
+#: ../../source/portal-components/document-table/index.rst:78
+#: ../../source/portal-components/document-table/index.rst:114
+#: ../../source/portal-components/document-table/index.rst:135
+#: ../../source/portal-components/document-table/index.rst:156
+msgid "**Parameters:**"
+msgstr ""
+
+#: ../../source/portal-components/document-table/index.rst:59
+#: ../../source/portal-components/document-table/index.rst:80
+#: ../../source/portal-components/document-table/index.rst:116
+#: ../../source/portal-components/document-table/index.rst:137
+#: ../../source/portal-components/document-table/index.rst:158
+msgid "``businessCase`` (ch.ivyteam.ivy.workflow.ICase)"
+msgstr ""
+
 #: ../../source/portal-components/document-table/index.rst:60
-#: ../../source/portal-components/document-table/index.rst:87
-#: ../../source/portal-components/document-table/index.rst:119
-#: ../../source/portal-components/document-table/index.rst:141
-#: ../../source/portal-components/document-table/index.rst:163
-msgid "**Parameter**"
+msgid "The case for which to retrieve documents."
 msgstr ""
 
 #: ../../source/portal-components/document-table/index.rst:62
-#: ../../source/portal-components/document-table/index.rst:89
-#: ../../source/portal-components/document-table/index.rst:121
+#: ../../source/portal-components/document-table/index.rst:95
+#: ../../source/portal-components/document-table/index.rst:122
 #: ../../source/portal-components/document-table/index.rst:143
-#: ../../source/portal-components/document-table/index.rst:165
-msgid "businessCase"
-msgstr ""
-
-#: ../../source/portal-components/document-table/index.rst:62
-#: ../../source/portal-components/document-table/index.rst:89
-#: ../../source/portal-components/document-table/index.rst:121
-#: ../../source/portal-components/document-table/index.rst:143
-#: ../../source/portal-components/document-table/index.rst:165
-msgid "ch.ivyteam.ivy.workflow.ICase"
+#: ../../source/portal-components/document-table/index.rst:164
+msgid "**Result:**"
 msgstr ""
 
 #: ../../source/portal-components/document-table/index.rst:64
-#: ../../source/portal-components/document-table/index.rst:99
-#: ../../source/portal-components/document-table/index.rst:125
-#: ../../source/portal-components/document-table/index.rst:147
-#: ../../source/portal-components/document-table/index.rst:169
-msgid "**Result**"
-msgstr ""
-
-#: ../../source/portal-components/document-table/index.rst:66
-msgid "documents"
-msgstr ""
-
-#: ../../source/portal-components/document-table/index.rst:66
-msgid "java.util.List<com.axonivy.portal.components.ivydata.bo.IvyDocument>"
-msgstr ""
-
-#: ../../source/portal-components/document-table/index.rst:68
-#: ../../source/portal-components/document-table/index.rst:103
-#: ../../source/portal-components/document-table/index.rst:149
-#: ../../source/portal-components/document-table/index.rst:171
-msgid "message"
-msgstr ""
-
-#: ../../source/portal-components/document-table/index.rst:68
-#: ../../source/portal-components/document-table/index.rst:97
-#: ../../source/portal-components/document-table/index.rst:103
-#: ../../source/portal-components/document-table/index.rst:105
-#: ../../source/portal-components/document-table/index.rst:149
-#: ../../source/portal-components/document-table/index.rst:171
-#: ../../source/portal-components/document-table/index.rst:175
-msgid "java.lang.String"
-msgstr ""
-
-#: ../../source/portal-components/document-table/index.rst:73
 msgid ""
-"After you get the document list from DMS, convert it into "
-"``List<ch.ivy.addon.portal.component.ivydata.bo.IvyDocument>`` These "
-"fields are mandatory when mapping: ``id``, ``uuid``, ``name``, "
-"``contentType``"
+"``documents`` "
+"(java.util.List<com.axonivy.portal.components.ivydata.bo.IvyDocument>)"
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:77
+#: ../../source/portal-components/document-table/index.rst:65
+msgid ""
+"List of documents associated with the case. After retrieving documents "
+"from your DMS, convert them into this type with mandatory fields: ``id``,"
+" ``uuid``, ``name``, ``contentType``."
+msgstr ""
+
+#: ../../source/portal-components/document-table/index.rst:67
+#: ../../source/portal-components/document-table/index.rst:100
+#: ../../source/portal-components/document-table/index.rst:145
+#: ../../source/portal-components/document-table/index.rst:166
+msgid "``message`` (java.lang.String)"
+msgstr ""
+
+#: ../../source/portal-components/document-table/index.rst:68
+msgid "Status or error message from the document retrieval operation."
+msgstr ""
+
+#: ../../source/portal-components/document-table/index.rst:71
 msgid "Upload document"
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:79
+#: ../../source/portal-components/document-table/index.rst:73
 msgid ""
 "To customize what **Document Table** should do when a user uploads a "
 "document, create a callable subprocess with:"
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:82
+#: ../../source/portal-components/document-table/index.rst:76
 msgid "**Signature**: portalUploadDocumentItem"
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:85
-#: ../../source/portal-components/document-table/index.rst:161
-msgid "Note"
+#: ../../source/portal-components/document-table/index.rst:81
+msgid "The case to upload the document to."
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:91
-msgid "uploadedFile"
+#: ../../source/portal-components/document-table/index.rst:83
+msgid "``uploadedFile`` (org.primefaces.model.file.UploadedFile)"
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:91
-msgid "org.primefaces.model.file.UploadedFile"
+#: ../../source/portal-components/document-table/index.rst:84
+msgid "The file being uploaded by the user."
+msgstr ""
+
+#: ../../source/portal-components/document-table/index.rst:86
+msgid "``enableScriptCheckingForUploadedDocument`` (java.lang.Boolean)"
+msgstr ""
+
+#: ../../source/portal-components/document-table/index.rst:87
+msgid "Whether to check uploaded files for embedded scripts."
+msgstr ""
+
+#: ../../source/portal-components/document-table/index.rst:89
+msgid "``enableVirusScannerForUploadedDocument`` (java.lang.Boolean)"
+msgstr ""
+
+#: ../../source/portal-components/document-table/index.rst:90
+msgid "Whether to scan uploaded files for viruses."
+msgstr ""
+
+#: ../../source/portal-components/document-table/index.rst:92
+msgid "``allowedUploadFileTypes`` (java.lang.String)"
 msgstr ""
 
 #: ../../source/portal-components/document-table/index.rst:93
-#: ../../source/portal-components/document-table/index.rst:95
-#: ../../source/portal-components/document-table/index.rst:173
-msgid "java.lang.Boolean"
+msgid "Comma-separated list of allowed file extensions."
+msgstr ""
+
+#: ../../source/portal-components/document-table/index.rst:97
+msgid "``uploadedDocument`` (ch.ivyteam.ivy.workflow.document.IDocument)"
+msgstr ""
+
+#: ../../source/portal-components/document-table/index.rst:98
+msgid "The uploaded document object."
 msgstr ""
 
 #: ../../source/portal-components/document-table/index.rst:101
-msgid "uploadedDocument"
+msgid "Status or error message from the upload operation."
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:101
-msgid "ch.ivyteam.ivy.workflow.document.IDocument"
+#: ../../source/portal-components/document-table/index.rst:103
+#: ../../source/portal-components/document-table/index.rst:172
+msgid "``status`` (java.lang.String)"
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:105
-#: ../../source/portal-components/document-table/index.rst:175
-msgid "status"
+#: ../../source/portal-components/document-table/index.rst:104
+msgid "Operation status: OK or FAIL."
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:105
-msgid "OK or FAIL"
-msgstr ""
-
-#: ../../source/portal-components/document-table/index.rst:109
+#: ../../source/portal-components/document-table/index.rst:107
 msgid "Download document"
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:111
+#: ../../source/portal-components/document-table/index.rst:109
 msgid ""
 "To customize behavior when a user downloads a document from **Document "
 "Table**, create a callable subprocess with:"
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:114
+#: ../../source/portal-components/document-table/index.rst:112
 msgid "**Signature**: portalDownloadDocumentItem"
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:123
-#: ../../source/portal-components/document-table/index.rst:145
-#: ../../source/portal-components/document-table/index.rst:167
-msgid "document"
+#: ../../source/portal-components/document-table/index.rst:117
+#: ../../source/portal-components/document-table/index.rst:138
+#: ../../source/portal-components/document-table/index.rst:159
+msgid "The case containing the document."
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:123
-#: ../../source/portal-components/document-table/index.rst:145
-#: ../../source/portal-components/document-table/index.rst:167
-msgid "com.axonivy.portal.components.ivydata.bo.IvyDocument"
+#: ../../source/portal-components/document-table/index.rst:119
+#: ../../source/portal-components/document-table/index.rst:140
+#: ../../source/portal-components/document-table/index.rst:161
+msgid "``document`` (com.axonivy.portal.components.ivydata.bo.IvyDocument)"
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:127
-msgid "streamedContent"
+#: ../../source/portal-components/document-table/index.rst:120
+msgid "The document to be downloaded."
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:127
-msgid "org.primefaces.model.StreamedContent"
+#: ../../source/portal-components/document-table/index.rst:124
+msgid "``streamedContent`` (org.primefaces.model.StreamedContent)"
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:131
+#: ../../source/portal-components/document-table/index.rst:125
+msgid "The document content stream for download."
+msgstr ""
+
+#: ../../source/portal-components/document-table/index.rst:128
 msgid "Delete document"
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:133
+#: ../../source/portal-components/document-table/index.rst:130
 msgid ""
 "To customize behavior when a user deletes a document from **Document "
 "Table**, create a callable subprocess with:"
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:136
+#: ../../source/portal-components/document-table/index.rst:133
 msgid "**Signature**: portalDeleteDocumentItem"
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:153
-msgid "Rename document"
+#: ../../source/portal-components/document-table/index.rst:141
+msgid "The document to be deleted."
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:155
+#: ../../source/portal-components/document-table/index.rst:146
+msgid "Status or error message from the delete operation."
+msgstr ""
+
+#: ../../source/portal-components/document-table/index.rst:151
 msgid ""
 "To customize behavior when a user rename a document from **Document "
 "Table**, create a callable subprocess with:"
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:158
+#: ../../source/portal-components/document-table/index.rst:154
 msgid "**Signature**: portalRenameDocumentItem"
 msgstr ""
 
+#: ../../source/portal-components/document-table/index.rst:162
+msgid ""
+"The document to be renamed. The new filename should already be modified "
+"in the document's name attribute."
+msgstr ""
+
+#: ../../source/portal-components/document-table/index.rst:167
+msgid ""
+"Message to inform the user that their new filename is successfully "
+"updated or invalid to use."
+msgstr ""
+
+#: ../../source/portal-components/document-table/index.rst:169
+msgid "``isSuccess`` (java.lang.Boolean)"
+msgstr ""
+
+#: ../../source/portal-components/document-table/index.rst:170
+msgid ""
+"``true`` if the document's name is successfully updated, otherwise "
+"``false``."
+msgstr ""
+
 #: ../../source/portal-components/document-table/index.rst:173
-msgid "isSuccess"
-msgstr ""
-
-#: ../../source/portal-components/document-table/index.rst:173
-msgid "rename successfully or not"
-msgstr ""
-
-#: ../../source/portal-components/document-table/index.rst:175
-msgid "OK or SKIP"
-msgstr ""
-
-#: ../../source/portal-components/document-table/index.rst:179
 msgid ""
-"The parameters of the callable subprocess data contain the Ivy "
-"``document`` to update, the new filename should be already modified in "
-"the document's name attribute."
+"Operation status: OK or SKIP (if customized process skipped updating the "
+"filename)."
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:182
-msgid ""
-"Portal will call subprocesses with the above details in the same security"
-" context and then get result where:"
-msgstr ""
-
-#: ../../source/portal-components/document-table/index.rst:185
-msgid ""
-"``message``: the message to inform the user that their new filename is "
-"successfully updated or invalid to use."
-msgstr ""
-
-#: ../../source/portal-components/document-table/index.rst:186
-msgid ""
-"``isSuccess``: ``true`` if the document's name is successfully updated, "
-"otherwise ``false``."
-msgstr ""
-
-#: ../../source/portal-components/document-table/index.rst:187
-msgid "``status``: ``SKIP`` if customized process skipped updating the filename."
-msgstr ""
-
-#: ../../source/portal-components/document-table/index.rst:190
+#: ../../source/portal-components/document-table/index.rst:176
 msgid "User interface"
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:192
+#: ../../source/portal-components/document-table/index.rst:178
 msgid ""
 "Not only the functions, but you can also customize the UI of the "
 "**Document Table** such as adding a new column, removing default columns "
 "or enable the lazy loading and pagination."
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:195
-#: ../../source/portal-components/style-customization/index.rst:11
+#: ../../source/portal-components/document-table/index.rst:181
+#: ../../source/portal-components/style-customization/index.rst:17
 msgid "Code Example:"
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:224
+#: ../../source/portal-components/document-table/index.rst:210
 msgid ""
 "Refer to process ``DocumentTableExample`` in project ``portal-components-"
 "examples`` for more details."
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:227
+#: ../../source/portal-components/document-table/index.rst:213
 msgid "Migration Notes"
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:230
+#: ../../source/portal-components/document-table/index.rst:216
 msgid "Migrate 10.0.x to 10.0.12"
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:232
+#: ../../source/portal-components/document-table/index.rst:218
 msgid ""
 "Since this version, we no longer support the override process approach "
 "for functions of **Document Table**. Please follow our guidelines below "
 "to migrate your override subprocesses."
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:235
+#: ../../source/portal-components/document-table/index.rst:221
 msgid ""
 "Remove Subprocess Override of ``GetDocumentItems``, "
 "``UploadDocumentItem``, ``DeleteDocumentItem``, and "
 "``DownloadDocumentItem`` from your project."
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:238
+#: ../../source/portal-components/document-table/index.rst:224
 msgid "Change the signature of your callable starts as described below."
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:241
+#: ../../source/portal-components/document-table/index.rst:227
 msgid "Subprocess"
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:241
+#: ../../source/portal-components/document-table/index.rst:227
 msgid "New signature"
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:243
-#: ../../source/portal-components/document-table/index.rst:266
+#: ../../source/portal-components/document-table/index.rst:229
+#: ../../source/portal-components/document-table/index.rst:252
 msgid "GetDocumentItems"
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:243
+#: ../../source/portal-components/document-table/index.rst:229
 msgid "portalGetDocumentItems"
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:245
-#: ../../source/portal-components/document-table/index.rst:268
+#: ../../source/portal-components/document-table/index.rst:231
+#: ../../source/portal-components/document-table/index.rst:254
 msgid "UploadDocumentItem"
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:245
+#: ../../source/portal-components/document-table/index.rst:231
 msgid "portalUploadDocumentItem"
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:247
-#: ../../source/portal-components/document-table/index.rst:270
+#: ../../source/portal-components/document-table/index.rst:233
+#: ../../source/portal-components/document-table/index.rst:256
 msgid "DeleteDocumentItem"
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:247
+#: ../../source/portal-components/document-table/index.rst:233
 msgid "portalDownloadDocumentItem"
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:249
-#: ../../source/portal-components/document-table/index.rst:272
+#: ../../source/portal-components/document-table/index.rst:235
+#: ../../source/portal-components/document-table/index.rst:258
 msgid "DownloadDocumentItem"
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:249
+#: ../../source/portal-components/document-table/index.rst:235
 msgid "portalDeleteDocumentItem"
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:252
+#: ../../source/portal-components/document-table/index.rst:238
 msgid "Now your **Document Table** should work as before."
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:255
+#: ../../source/portal-components/document-table/index.rst:241
 msgid "Migrate to 10.0.0"
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:257
+#: ../../source/portal-components/document-table/index.rst:243
 msgid ""
 "Replace code in HTML files: replace "
 "``ic:ch.ivy.addon.portalkit.component.document.DocumentTable`` with "
 "``ic:com.axonivy.portal.components.DocumentTable``."
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:259
+#: ../../source/portal-components/document-table/index.rst:245
 msgid ""
 "Consider updating value of the new attributes "
 "``enableScriptCheckingForUploadedDocument``, "
@@ -869,41 +950,41 @@ msgid ""
 "as required."
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:261
+#: ../../source/portal-components/document-table/index.rst:247
 msgid "Override subprocesses if you want and adapt your business accordingly."
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:264
+#: ../../source/portal-components/document-table/index.rst:250
 msgid "New subprocess"
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:264
+#: ../../source/portal-components/document-table/index.rst:250
 msgid "Deprecated subprocess"
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:266
+#: ../../source/portal-components/document-table/index.rst:252
 msgid "GetDocumentList"
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:268
+#: ../../source/portal-components/document-table/index.rst:254
 msgid "UploadDocument"
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:270
+#: ../../source/portal-components/document-table/index.rst:256
 msgid "DeleteDocument"
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:272
+#: ../../source/portal-components/document-table/index.rst:258
 msgid "DownloadDocument"
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:275
+#: ../../source/portal-components/document-table/index.rst:261
 msgid ""
 "If you have customized IvyDocument make sure to extend it from class "
 "``com.axonivy.portal.components.ivydata.bo.IvyDocument``."
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:277
+#: ../../source/portal-components/document-table/index.rst:263
 msgid ""
 "Attributes ``typeSelectionItems`` and ``selectedType`` now use "
 "``com.axonivy.portal.components.enums.DocumentType``. Please replace "
@@ -911,21 +992,21 @@ msgid ""
 "``com.axonivy.portal.components.enums.DocumentType``."
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:281
+#: ../../source/portal-components/document-table/index.rst:267
 msgid ""
 "Please remove redundant overridden configurations, subprocesses, and data"
 " classes such as GetDocumentListOverride, UploadDocumentOverride, etc."
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:285
+#: ../../source/portal-components/document-table/index.rst:271
 msgid "Release Notes"
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:288
+#: ../../source/portal-components/document-table/index.rst:274
 msgid "Changes in 12.0.9"
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:290
+#: ../../source/portal-components/document-table/index.rst:276
 msgid ""
 "Introduced **Renaming Document** feature for Document Table component. "
 "Follow instructions in :ref:`Customize <components-portal-components-"
@@ -933,7 +1014,7 @@ msgid ""
 " to customize the renaming behavior if needed."
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:291
+#: ../../source/portal-components/document-table/index.rst:277
 msgid ""
 "Enhanced the document preview feature for the task and case detail. If "
 "you have :dev-url:`DocFactory <https://market.axonivy.com/doc-factory"
@@ -941,11 +1022,11 @@ msgid ""
 "Word(doc, docx), Excel(xls, xlsx) and email(eml) documents."
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:295
+#: ../../source/portal-components/document-table/index.rst:280
 msgid "Changes in 12.0.11"
 msgstr ""
 
-#: ../../source/portal-components/document-table/index.rst:296
+#: ../../source/portal-components/document-table/index.rst:281
 msgid ""
 "Added lazy loading functionality to the Document Table component, "
 "enabling efficient data loading through pagination."
@@ -957,26 +1038,21 @@ msgstr ""
 
 #: ../../source/portal-components/index.rst:6
 msgid ""
-"In ``portal-components``, we introduced some components independent of "
-"the Portal. You don't need to import the Portal projects to use them."
+"Portal Components are reusable UI components and Java APIs that you can "
+"integrate into your own Axon Ivy projects without importing the full "
+"Portal. These components provide enterprise-ready functionality for user "
+"selection, role management, document handling, process visualization, and"
+" more."
 msgstr ""
 
-#: ../../source/portal-components/index.rst:9
+#: ../../source/portal-components/index.rst:20
 msgid ""
-"These components fully support both Freya and Serenity themes of "
-"Primefaces. We strongly recommend using the Freya theme, as the Serenity "
-"theme is deprecated and will be removed in Portal 13."
-msgstr ""
-
-#: ../../source/portal-components/index.rst:22
-msgid ""
-"Please refer to project ``portal-components-examples`` for more details "
-"on use and customization, as well as look and feel of each component in "
-"supported themes."
+"Refer to the ``portal-components-examples`` project for usage, "
+"customization, and visual examples across supported themes."
 msgstr ""
 
 #: ../../source/portal-components/process-chain/index.rst:4
-#: ../../source/portal-components/style-customization/index.rst:38
+#: ../../source/portal-components/style-customization/index.rst:45
 msgid "Process Chain"
 msgstr ""
 
@@ -984,6 +1060,7 @@ msgstr ""
 #: ../../source/portal-components/process-viewer/index.rst:7
 #: ../../source/portal-components/role-selection/index.rst:7
 #: ../../source/portal-components/security-member-name-and-avatar/index.rst:7
+#: ../../source/portal-components/style-customization/index.rst:7
 #: ../../source/portal-components/user-selection/index.rst:7
 msgid "Introduction"
 msgstr ""
@@ -1155,7 +1232,7 @@ msgid ""
 msgstr ""
 
 #: ../../source/portal-components/process-viewer/index.rst:4
-#: ../../source/portal-components/style-customization/index.rst:58
+#: ../../source/portal-components/style-customization/index.rst:63
 msgid "Process Viewer"
 msgstr ""
 
@@ -1288,12 +1365,12 @@ msgid "|role-selection|"
 msgstr ""
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
-#: ../../source/portal-components/role-selection/index.rst:107
+#: ../../source/portal-components/role-selection/index.rst:116
 msgid "role-selection"
 msgstr ""
 
 #: ../../source/portal-components/role-selection/index.rst:35
-#: ../../source/portal-components/user-selection/index.rst:31
+#: ../../source/portal-components/user-selection/index.rst:32
 msgid "Floating Label"
 msgstr ""
 
@@ -1301,7 +1378,7 @@ msgstr ""
 msgid "|role-selection-floating-label|"
 msgstr ""
 
-#: ../../source/portal-components/role-selection/index.rst:108
+#: ../../source/portal-components/role-selection/index.rst:117
 msgid "role-selection-floating-label"
 msgstr ""
 
@@ -1329,7 +1406,7 @@ msgstr ""
 msgid "|role-selection-with-children-and-ajax-event|"
 msgstr ""
 
-#: ../../source/portal-components/role-selection/index.rst:109
+#: ../../source/portal-components/role-selection/index.rst:118
 msgid "role-selection-with-children-and-ajax-event"
 msgstr ""
 
@@ -1337,19 +1414,19 @@ msgstr ""
 msgid "|role-selection-component-ajax-expand|"
 msgstr ""
 
-#: ../../source/portal-components/role-selection/index.rst:110
+#: ../../source/portal-components/role-selection/index.rst:119
 msgid "role-selection-component-ajax-expand"
 msgstr ""
 
-#: ../../source/portal-components/role-selection/index.rst:87
+#: ../../source/portal-components/role-selection/index.rst:89
 msgid ""
 "Please refer to ``RoleSelectionExample.xhtml`` in ``portal-components-"
 "examples`` project for more details."
 msgstr ""
 
-#: ../../source/portal-components/role-selection/index.rst:89
+#: ../../source/portal-components/role-selection/index.rst:91
 #: ../../source/portal-components/security-member-name-and-avatar/index.rst:35
-#: ../../source/portal-components/user-selection/index.rst:81
+#: ../../source/portal-components/user-selection/index.rst:89
 msgid "This component offers the following attributes:"
 msgstr ""
 
@@ -1365,12 +1442,13 @@ msgstr ""
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 msgid ""
-"Child Role list will be loaded based on this list. If empty, all roles "
-"will be loaded."
+"List of parent role names. Only child roles of these roles are loaded. "
+"Leave empty to load all roles."
 msgstr ""
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
-msgid "Id of role autocomplete."
+#: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
+msgid "Unique identifier of this component instance."
 msgstr ""
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
@@ -1382,7 +1460,7 @@ msgid "RoleDTO"
 msgstr ""
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
-msgid "Required input and output value for selected role."
+msgid "Holds the selected role value."
 msgstr ""
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
@@ -1391,8 +1469,8 @@ msgstr ""
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 msgid ""
-"Roles to be excluded from role selection. Applied if you use default "
-"completeMethod."
+"List of role names to exclude from selection. Only applies when using the"
+" default completeMethod."
 msgstr ""
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
@@ -1406,7 +1484,8 @@ msgid "This field is required"
 msgstr ""
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
-msgid "Message to be displayed when role autocomplete validation fails."
+#: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
+msgid "Validation message displayed when the required field is empty."
 msgstr ""
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
@@ -1421,7 +1500,7 @@ msgid "true"
 msgstr ""
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
-msgid "If true, only accept roles from the given list."
+msgid "When enabled, only roles from the suggestion list can be selected."
 msgstr ""
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
@@ -1435,7 +1514,8 @@ msgid "1"
 msgstr ""
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
-msgid "Number of characters to be typed before starting to offer autocomplete."
+#: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
+msgid "Minimum number of characters required to start searching."
 msgstr ""
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
@@ -1453,7 +1533,9 @@ msgid "Method Expression"
 msgstr ""
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
-msgid "Method for role autocomplete."
+msgid ""
+"Custom method for loading roles. Must accept a String query and return "
+"List<RoleDTO>."
 msgstr ""
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
@@ -1462,7 +1544,7 @@ msgid "isDisabled"
 msgstr ""
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
-msgid "If true, Role Selection is disabled."
+msgid "Disables the role selection input."
 msgstr ""
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
@@ -1471,7 +1553,7 @@ msgid "isRequired"
 msgstr ""
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
-msgid "If true, Marks Role Selection is required."
+msgid "Marks the role selection field as required."
 msgstr ""
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
@@ -1480,7 +1562,7 @@ msgid "isReadOnly"
 msgstr ""
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
-msgid "If true, user cannot change role."
+msgid "Prevents changing the selected role when enabled."
 msgstr ""
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
@@ -1489,7 +1571,8 @@ msgid "isRenderedMessage"
 msgstr ""
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
-msgid "Specify the rendering of message for role field."
+#: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
+msgid "Controls whether validation messages are rendered."
 msgstr ""
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
@@ -1498,7 +1581,7 @@ msgid "hightlight"
 msgstr ""
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
-msgid "Highlights the first suggested role automatically."
+msgid "Automatically highlights the first suggested role."
 msgstr ""
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
@@ -1508,9 +1591,7 @@ msgstr ""
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
-msgid ""
-"If true, display label with floating style and labelPanelStyleClass can't"
-" be applied."
+msgid "Displays the label using floating style."
 msgstr ""
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
@@ -1519,7 +1600,7 @@ msgid "autocompleteStyleClass"
 msgstr ""
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
-msgid "Style class of role autocomplete."
+msgid "CSS style class applied to the role autocomplete component."
 msgstr ""
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
@@ -1528,7 +1609,7 @@ msgid "autoCompletePanelStyleClass"
 msgstr ""
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
-msgid "Style class of role autocomplete panel."
+msgid "CSS style class applied to the role autocomplete dropdown panel."
 msgstr ""
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
@@ -1537,17 +1618,7 @@ msgid "inputStyleClass"
 msgstr ""
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
-msgid "Style class of role autocomplete input."
-msgstr ""
-
-#: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
-#: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
-msgid "labelPanelStyleClass"
-msgstr ""
-
-#: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
-#: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
-msgid "Style class of label panel."
+msgid "CSS style class applied to the role autocomplete input field."
 msgstr ""
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
@@ -1557,7 +1628,17 @@ msgstr ""
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
-msgid "Style class of label."
+msgid "CSS style class applied to the label."
+msgstr ""
+
+#: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
+msgid "appendOption"
+msgstr ""
+
+#: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
+msgid ""
+"Additional information appended to the role display, such as parent role "
+"name or none. Value: NONE, PARENT_NAME."
 msgstr ""
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
@@ -1566,7 +1647,7 @@ msgid "label"
 msgstr ""
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
-msgid "Text of label for role selection component."
+msgid "Label text for the role selection component."
 msgstr ""
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
@@ -1575,7 +1656,7 @@ msgid "size"
 msgstr ""
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
-msgid "Number of characters. usesed to determine the width of the input element."
+msgid "Number of characters used to define the input width."
 msgstr ""
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
@@ -1584,7 +1665,8 @@ msgid "messageStyleClass"
 msgstr ""
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
-msgid "Message style class."
+#: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
+msgid "CSS style class applied to the validation message."
 msgstr ""
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
@@ -1599,7 +1681,7 @@ msgid "displayName"
 msgstr ""
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
-msgid "Displayed text of selected role and roles in dropdown list."
+msgid "Text displayed for roles in the dropdown and the selected value."
 msgstr ""
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
@@ -1608,7 +1690,7 @@ msgid "cache"
 msgstr ""
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
-msgid "If true, autocomplete caches the search result list."
+msgid "Caches autocomplete search results when enabled."
 msgstr ""
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
@@ -1622,10 +1704,7 @@ msgid "More..."
 msgstr ""
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
-#: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
-msgid ""
-"The text shown in panel when the suggested list is greater than "
-"maxResults."
+msgid "Text displayed for the 'More' link when results exceed the limit."
 msgstr ""
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
@@ -1639,8 +1718,7 @@ msgid "300"
 msgstr ""
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
-#: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
-msgid "Delay in milliseconds before sending a query to the server."
+msgid "Delay in milliseconds before sending the search query."
 msgstr ""
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
@@ -1654,8 +1732,7 @@ msgid "100"
 msgstr ""
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
-#: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
-msgid "Maximum number of results to be displayed."
+msgid "Maximum number of results displayed in the dropdown."
 msgstr ""
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
@@ -1665,12 +1742,11 @@ msgstr ""
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
-msgid "400"
+msgid "390"
 msgstr ""
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
-#: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
-msgid "scrollHeight attribute of primefaces autocomplete."
+msgid "Maximum height of the autocomplete dropdown panel."
 msgstr ""
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
@@ -1680,7 +1756,7 @@ msgstr ""
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
-msgid "If true, the customized selection list is displayed."
+msgid "Displays a customized selection list when enabled."
 msgstr ""
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
@@ -1689,9 +1765,7 @@ msgid "isShowAvatarInSelectionList"
 msgstr ""
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv
-#: ../../source/portal-components/documents/security_member_name_and_avatar_component_attributes.csv
-#: ../../source/portal-components/documents/user_selection_component_attributes.csv
-msgid "Boolean value to specify avatar showing. Set to true to show avatar."
+msgid "Displays role avatars in the selection list when enabled."
 msgstr ""
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv
@@ -1715,8 +1789,7 @@ msgid "displayNameRenderedInSelectionList"
 msgstr ""
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
-#: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
-msgid "If false, the name of security member in the selection list is hidden."
+msgid "Controls visibility of the role display name in the selection list."
 msgstr ""
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
@@ -1725,8 +1798,7 @@ msgid "displayNameInSelectionListStyleClass"
 msgstr ""
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
-#: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
-msgid "Style class of display name in the selection list"
+msgid "CSS style class for the role display name in the selection list."
 msgstr ""
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
@@ -1736,7 +1808,7 @@ msgstr ""
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
-msgid "Style class of item's container in the selection list"
+msgid "CSS style class for the selection list item container."
 msgstr ""
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
@@ -1751,27 +1823,45 @@ msgstr ""
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
-msgid "Message to show when there's no option in selection list."
+msgid "Message displayed when no results are available."
 msgstr ""
 
-#: ../../source/portal-components/role-selection/index.rst:100
+#: ../../source/portal-components/role-selection/index.rst:102
+#: ../../source/portal-components/user-selection/index.rst:100
+msgid "Migrate to 12.0.12"
+msgstr ""
+
+#: ../../source/portal-components/role-selection/index.rst:104
+msgid ""
+"The **RoleSelection** component has been restructured to improve layout "
+"consistency. If you have custom styles for this component, please review "
+"and adjust them accordingly."
+msgstr ""
+
+#: ../../source/portal-components/role-selection/index.rst:106
+msgid ""
+"The attribute ``labelPanelStyleClass`` has been removed. If you used this"
+" attribute, please remove it from your code."
+msgstr ""
+
+#: ../../source/portal-components/role-selection/index.rst:109
 msgid "Migrate from Deprecated Role Selection"
 msgstr ""
 
-#: ../../source/portal-components/role-selection/index.rst:101
+#: ../../source/portal-components/role-selection/index.rst:110
 msgid ""
 "Replace code in HTML files: replace "
 "``ic:ch.ivy.addon.portalkit.component.RoleSelection`` with "
 "``ic:com.axonivy.portal.components.RoleSelection``."
 msgstr ""
 
-#: ../../source/portal-components/role-selection/index.rst:103
+#: ../../source/portal-components/role-selection/index.rst:112
 msgid ""
 "Replace ``ch.ivy.addon.portalkit.dto.RoleDTO`` with "
 "``com.axonivy.portal.components.dto.RoleDTO``."
 msgstr ""
 
-#: ../../source/portal-components/role-selection/index.rst:105
+#: ../../source/portal-components/role-selection/index.rst:114
 msgid ""
 "If you stored class ``ch.ivy.addon.portalkit.dto.RoleDTO`` in your "
 "database, you have to update the database manually."
@@ -1845,6 +1935,10 @@ msgstr ""
 msgid "isShowAvatar"
 msgstr ""
 
+#: ../../source/portal-components/documents/security_member_name_and_avatar_component_attributes.csv
+msgid "Boolean value to specify avatar showing. Set to true to show avatar."
+msgstr ""
+
 #: ../../source/portal-components/documents/security_member_name_and_avatar_component_attributes.csv:1
 msgid "displayNameId"
 msgstr ""
@@ -1910,29 +2004,37 @@ msgstr ""
 msgid "Style Customization"
 msgstr ""
 
-#: ../../source/portal-components/style-customization/index.rst:7
+#: ../../source/portal-components/style-customization/index.rst:9
+msgid ""
+"Portal Components use CSS custom properties (variables) for styling, "
+"allowing you to customize colors, fonts, spacing, and other visual "
+"aspects without modifying component code. Override these CSS variables in"
+" your own stylesheet to match your corporate design or application theme."
+msgstr ""
+
+#: ../../source/portal-components/style-customization/index.rst:13
 msgid "How to customize"
 msgstr ""
 
-#: ../../source/portal-components/style-customization/index.rst:9
+#: ../../source/portal-components/style-customization/index.rst:15
 msgid ""
 "You have to add a new css file to your resources and import it into your "
 "template."
 msgstr ""
 
-#: ../../source/portal-components/style-customization/index.rst:24
+#: ../../source/portal-components/style-customization/index.rst:31
 msgid ""
 "You have to place your css file in a ``<h:outputStylesheet />`` below the"
 " component to override defined styles."
 msgstr ""
 
-#: ../../source/portal-components/style-customization/index.rst:26
+#: ../../source/portal-components/style-customization/index.rst:33
 msgid ""
 "Within this file you can override default css variables of components. "
 "For example, the \\--process-history-description-text-color:"
 msgstr ""
 
-#: ../../source/portal-components/style-customization/index.rst:35
+#: ../../source/portal-components/style-customization/index.rst:42
 msgid "List of css variables that you can override"
 msgstr ""
 
@@ -2034,7 +2136,7 @@ msgstr ""
 msgid "Font weight of line vertical process step title."
 msgstr ""
 
-#: ../../source/portal-components/style-customization/index.rst:48
+#: ../../source/portal-components/style-customization/index.rst:54
 msgid "Process History"
 msgstr ""
 
@@ -2223,19 +2325,19 @@ msgid "|user-selection|"
 msgstr ""
 
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
-#: ../../source/portal-components/user-selection/index.rst:100
+#: ../../source/portal-components/user-selection/index.rst:115
 msgid "user-selection"
 msgstr ""
 
-#: ../../source/portal-components/user-selection/index.rst:33
+#: ../../source/portal-components/user-selection/index.rst:34
 msgid "|user-selection-floating-label|"
 msgstr ""
 
-#: ../../source/portal-components/user-selection/index.rst:101
+#: ../../source/portal-components/user-selection/index.rst:116
 msgid "user-selection-floating-label"
 msgstr ""
 
-#: ../../source/portal-components/user-selection/index.rst:46
+#: ../../source/portal-components/user-selection/index.rst:49
 msgid ""
 "The autocomplete element of the user selection component allows to insert"
 " children and ajax events (Refer to ``UserSelection.xhtml``). Any child "
@@ -2245,33 +2347,33 @@ msgid ""
 " well."
 msgstr ""
 
-#: ../../source/portal-components/user-selection/index.rst:53
+#: ../../source/portal-components/user-selection/index.rst:56
 msgid "An example:"
 msgstr ""
 
-#: ../../source/portal-components/user-selection/index.rst:55
+#: ../../source/portal-components/user-selection/index.rst:58
 msgid ""
 "I want to display users in a dropdown list formatted as \"<Full name> "
 "(<username>)\". When I select a user, a message shall be displayed."
 msgstr ""
 
-#: ../../source/portal-components/user-selection/index.rst:58
+#: ../../source/portal-components/user-selection/index.rst:61
 msgid "|user-selection-with-children-and-ajax-event|"
 msgstr ""
 
-#: ../../source/portal-components/user-selection/index.rst:102
+#: ../../source/portal-components/user-selection/index.rst:117
 msgid "user-selection-with-children-and-ajax-event"
 msgstr ""
 
-#: ../../source/portal-components/user-selection/index.rst:60
+#: ../../source/portal-components/user-selection/index.rst:63
 msgid "|user-selection-component-ajax-expand|"
 msgstr ""
 
-#: ../../source/portal-components/user-selection/index.rst:103
+#: ../../source/portal-components/user-selection/index.rst:118
 msgid "user-selection-component-ajax-expand"
 msgstr ""
 
-#: ../../source/portal-components/user-selection/index.rst:79
+#: ../../source/portal-components/user-selection/index.rst:87
 msgid ""
 "Please refer to ``UserSelectionExample.xhtml`` in project ``portal-"
 "components-examples`` for more details."
@@ -2279,12 +2381,8 @@ msgstr ""
 
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
 msgid ""
-"User list will be generated based on this list. If empty, all users will "
-"be loaded."
-msgstr ""
-
-#: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
-msgid "Id of user autocomplete."
+"List of role names. Only users in these roles are loaded. Leave empty to "
+"load all users."
 msgstr ""
 
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
@@ -2296,7 +2394,7 @@ msgid "UserDTO"
 msgstr ""
 
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
-msgid "Required input and output value for selected user."
+msgid "Holds the selected user value."
 msgstr ""
 
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
@@ -2305,22 +2403,12 @@ msgstr ""
 
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
 msgid ""
-"Users to be excluded from user selection. This is applied if you use the "
+"List of usernames to exclude from selection. Only applies when using the "
 "default completeMethod."
 msgstr ""
 
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
-msgid "Message to be displayed when user autocomplete validation fails."
-msgstr ""
-
-#: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
-msgid "If true, only accepts user from the list."
-msgstr ""
-
-#: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
-msgid ""
-"N\"umber of characters to be typed before starting to offer "
-"autocomplete.\""
+msgid "When enabled, only users from the suggestion list can be selected."
 msgstr ""
 
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
@@ -2328,51 +2416,45 @@ msgid "completeUser"
 msgstr ""
 
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
-msgid "Method for user autocomplete."
+msgid ""
+"Custom method for loading users. Must accept a String query and return "
+"List<UserDTO>."
 msgstr ""
 
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
-msgid "If true, disable User Selection."
+msgid "Disables the user selection input."
 msgstr ""
 
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
-msgid "If true, User Selection is required."
+msgid "Marks the user selection field as required."
 msgstr ""
 
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
-msgid "If true, User Selection cannot be changed."
+msgid "Prevents changing the selected user when enabled."
 msgstr ""
 
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
-msgid "If true, message for user field is rendered."
+msgid "Automatically highlights the first suggested user."
 msgstr ""
 
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
-msgid "If true, highlight the first suggested user automatically."
+msgid "CSS style class applied to the autocomplete component."
 msgstr ""
 
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
-msgid "Style class of user autocomplete."
+msgid "CSS style class applied to the autocomplete dropdown panel."
 msgstr ""
 
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
-msgid "Style class of user autocomplete panel."
+msgid "CSS style class applied to the autocomplete input field."
 msgstr ""
 
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
-msgid "Style class of user autocomplete input."
-msgstr ""
-
-#: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
-msgid "Text of label for User Selection component."
+msgid "Label text for the user selection component."
 msgstr ""
 
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
 msgid "Number of characters used to determine the width of the input element."
-msgstr ""
-
-#: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
-msgid "Style class of message."
 msgstr ""
 
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
@@ -2383,24 +2465,69 @@ msgstr ""
 msgid "If true, autocomplete caches search result list."
 msgstr ""
 
-#: ../../source/portal-components/user-selection/index.rst:92
+#: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
+msgid ""
+"The text shown in panel when the suggested list is greater than "
+"maxResults."
+msgstr ""
+
+#: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
+msgid "Delay in milliseconds before sending a query to the server."
+msgstr ""
+
+#: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
+msgid "Maximum number of results to be displayed."
+msgstr ""
+
+#: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
+msgid "scrollHeight attribute of primefaces autocomplete."
+msgstr ""
+
+#: ../../source/portal-components/documents/user_selection_component_attributes.csv
+msgid ""
+"Displays user avatars in the selection list when enabled. Set to true to "
+"show avatar."
+msgstr ""
+
+#: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
+msgid "Controls visibility of the user display name in the selection list."
+msgstr ""
+
+#: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
+msgid "CSS style class for the user display name in the selection list."
+msgstr ""
+
+#: ../../source/portal-components/user-selection/index.rst:102
+msgid ""
+"The **UserSelection** component has been restructured to improve layout "
+"consistency. If you have custom styles for this component, please review "
+"and adjust them accordingly."
+msgstr ""
+
+#: ../../source/portal-components/user-selection/index.rst:104
+msgid ""
+"The attribute ``labelPanelStyleClass`` has been also removed. If you used"
+" this attribute, please remove it from your code."
+msgstr ""
+
+#: ../../source/portal-components/user-selection/index.rst:107
 msgid "Migrate from Deprecated User Selection"
 msgstr ""
 
-#: ../../source/portal-components/user-selection/index.rst:94
+#: ../../source/portal-components/user-selection/index.rst:109
 msgid ""
 "Replace code in HTML files: replace "
 "``ic:ch.ivy.addon.portalkit.component.UserSelection`` with "
 "``ic:com.axonivy.portal.components.UserSelection``."
 msgstr ""
 
-#: ../../source/portal-components/user-selection/index.rst:96
+#: ../../source/portal-components/user-selection/index.rst:111
 msgid ""
 "Replace ``ch.ivy.addon.portalkit.dto.UserDTO`` with "
 "``com.axonivy.portal.components.dto.UserDTO``."
 msgstr ""
 
-#: ../../source/portal-components/user-selection/index.rst:98
+#: ../../source/portal-components/user-selection/index.rst:113
 msgid ""
 "If you stored class ``ch.ivy.addon.portalkit.dto.UserDTO`` in your "
 "database, you have to update the database manually."
@@ -2427,5 +2554,366 @@ msgstr ""
 #~ " **Document Table** such as adding a"
 #~ " new column or removing default "
 #~ "columns."
+#~ msgstr ""
+
+#~ msgid "Number of files are in the given ICase."
+#~ msgstr ""
+
+#~ msgid "Individual uploading file size limit in bytes."
+#~ msgstr ""
+
+#~ msgid "Component will be triggered the update after document is uploaded."
+#~ msgstr ""
+
+#~ msgid "Icon class will be displayed in preview dialog."
+#~ msgstr ""
+
+#~ msgid "Styles for preview link."
+#~ msgstr ""
+
+#~ msgid "previewpreviewDialogStyleClass"
+#~ msgstr ""
+
+#~ msgid "Styles for preview dialog."
+#~ msgstr ""
+
+#~ msgid "Styles for PDF preview dialog."
+#~ msgstr ""
+
+#~ msgid "Styles for image preview dialog."
+#~ msgstr ""
+
+#~ msgid "Styles for delete link."
+#~ msgstr ""
+
+#~ msgid "Component will be triggered the update after document is deleted."
+#~ msgstr ""
+
+#~ msgid "Styles for edit filename link."
+#~ msgstr ""
+
+#~ msgid "Component will be triggered the update after document is renamed."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "String value to specify the selected "
+#~ "document types, by default it will "
+#~ "be first element in ``typeSelectionItems``."
+#~ msgstr ""
+
+#~ msgid "String value to specify the list of document type."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "In your project, create four callable"
+#~ " subprocesses with the information below"
+#~ " to customize the functions of the"
+#~ " **Document Table**."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "You can refer to process "
+#~ "``CustomDocumentFeatures`` in project ``portal-"
+#~ "component-examples`` to examine how to"
+#~ " customize."
+#~ msgstr ""
+
+#~ msgid "**Parameter**"
+#~ msgstr ""
+
+#~ msgid "businessCase"
+#~ msgstr ""
+
+#~ msgid "ch.ivyteam.ivy.workflow.ICase"
+#~ msgstr ""
+
+#~ msgid "**Result**"
+#~ msgstr ""
+
+#~ msgid "documents"
+#~ msgstr ""
+
+#~ msgid "java.util.List<com.axonivy.portal.components.ivydata.bo.IvyDocument>"
+#~ msgstr ""
+
+#~ msgid "message"
+#~ msgstr ""
+
+#~ msgid "java.lang.String"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "After you get the document list "
+#~ "from DMS, convert it into "
+#~ "``List<ch.ivy.addon.portal.component.ivydata.bo.IvyDocument>`` "
+#~ "These fields are mandatory when mapping:"
+#~ " ``id``, ``uuid``, ``name``, ``contentType``"
+#~ msgstr ""
+
+#~ msgid "Note"
+#~ msgstr ""
+
+#~ msgid "uploadedFile"
+#~ msgstr ""
+
+#~ msgid "org.primefaces.model.file.UploadedFile"
+#~ msgstr ""
+
+#~ msgid "java.lang.Boolean"
+#~ msgstr ""
+
+#~ msgid "uploadedDocument"
+#~ msgstr ""
+
+#~ msgid "ch.ivyteam.ivy.workflow.document.IDocument"
+#~ msgstr ""
+
+#~ msgid "status"
+#~ msgstr ""
+
+#~ msgid "OK or FAIL"
+#~ msgstr ""
+
+#~ msgid "document"
+#~ msgstr ""
+
+#~ msgid "com.axonivy.portal.components.ivydata.bo.IvyDocument"
+#~ msgstr ""
+
+#~ msgid "streamedContent"
+#~ msgstr ""
+
+#~ msgid "org.primefaces.model.StreamedContent"
+#~ msgstr ""
+
+#~ msgid "isSuccess"
+#~ msgstr ""
+
+#~ msgid "rename successfully or not"
+#~ msgstr ""
+
+#~ msgid "OK or SKIP"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "The parameters of the callable "
+#~ "subprocess data contain the Ivy "
+#~ "``document`` to update, the new filename"
+#~ " should be already modified in the"
+#~ " document's name attribute."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Portal will call subprocesses with the"
+#~ " above details in the same security"
+#~ " context and then get result where:"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "``message``: the message to inform the"
+#~ " user that their new filename is "
+#~ "successfully updated or invalid to use."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "``isSuccess``: ``true`` if the document's "
+#~ "name is successfully updated, otherwise "
+#~ "``false``."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "``status``: ``SKIP`` if customized process "
+#~ "skipped updating the filename."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "In ``portal-components``, we introduced "
+#~ "some components independent of the "
+#~ "Portal. You don't need to import "
+#~ "the Portal projects to use them."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "These components fully support both "
+#~ "Freya and Serenity themes of Primefaces."
+#~ " We strongly recommend using the "
+#~ "Freya theme, as the Serenity theme "
+#~ "is deprecated and will be removed "
+#~ "in Portal 13."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Please refer to project ``portal-"
+#~ "components-examples`` for more details on"
+#~ " use and customization, as well as"
+#~ " look and feel of each component "
+#~ "in supported themes."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Child Role list will be loaded "
+#~ "based on this list. If empty, all"
+#~ " roles will be loaded."
+#~ msgstr ""
+
+#~ msgid "Id of role autocomplete."
+#~ msgstr ""
+
+#~ msgid "Required input and output value for selected role."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Roles to be excluded from role "
+#~ "selection. Applied if you use default"
+#~ " completeMethod."
+#~ msgstr ""
+
+#~ msgid "Message to be displayed when role autocomplete validation fails."
+#~ msgstr ""
+
+#~ msgid "If true, only accept roles from the given list."
+#~ msgstr ""
+
+#~ msgid "Number of characters to be typed before starting to offer autocomplete."
+#~ msgstr ""
+
+#~ msgid "Method for role autocomplete."
+#~ msgstr ""
+
+#~ msgid "If true, Role Selection is disabled."
+#~ msgstr ""
+
+#~ msgid "If true, Marks Role Selection is required."
+#~ msgstr ""
+
+#~ msgid "If true, user cannot change role."
+#~ msgstr ""
+
+#~ msgid "Specify the rendering of message for role field."
+#~ msgstr ""
+
+#~ msgid "Highlights the first suggested role automatically."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "If true, display label with floating "
+#~ "style and labelPanelStyleClass can't be "
+#~ "applied."
+#~ msgstr ""
+
+#~ msgid "Style class of role autocomplete."
+#~ msgstr ""
+
+#~ msgid "Style class of role autocomplete panel."
+#~ msgstr ""
+
+#~ msgid "Style class of role autocomplete input."
+#~ msgstr ""
+
+#~ msgid "labelPanelStyleClass"
+#~ msgstr ""
+
+#~ msgid "Style class of label panel."
+#~ msgstr ""
+
+#~ msgid "Style class of label."
+#~ msgstr ""
+
+#~ msgid "Text of label for role selection component."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Number of characters. usesed to "
+#~ "determine the width of the input "
+#~ "element."
+#~ msgstr ""
+
+#~ msgid "Message style class."
+#~ msgstr ""
+
+#~ msgid "Displayed text of selected role and roles in dropdown list."
+#~ msgstr ""
+
+#~ msgid "If true, autocomplete caches the search result list."
+#~ msgstr ""
+
+#~ msgid "400"
+#~ msgstr ""
+
+#~ msgid "If true, the customized selection list is displayed."
+#~ msgstr ""
+
+#~ msgid "If false, the name of security member in the selection list is hidden."
+#~ msgstr ""
+
+#~ msgid "Style class of display name in the selection list"
+#~ msgstr ""
+
+#~ msgid "Style class of item's container in the selection list"
+#~ msgstr ""
+
+#~ msgid "Message to show when there's no option in selection list."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "User list will be generated based "
+#~ "on this list. If empty, all users"
+#~ " will be loaded."
+#~ msgstr ""
+
+#~ msgid "Id of user autocomplete."
+#~ msgstr ""
+
+#~ msgid "Required input and output value for selected user."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Users to be excluded from user "
+#~ "selection. This is applied if you "
+#~ "use the default completeMethod."
+#~ msgstr ""
+
+#~ msgid "Message to be displayed when user autocomplete validation fails."
+#~ msgstr ""
+
+#~ msgid "If true, only accepts user from the list."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "N\"umber of characters to be typed "
+#~ "before starting to offer autocomplete.\""
+#~ msgstr ""
+
+#~ msgid "Method for user autocomplete."
+#~ msgstr ""
+
+#~ msgid "If true, disable User Selection."
+#~ msgstr ""
+
+#~ msgid "If true, User Selection is required."
+#~ msgstr ""
+
+#~ msgid "If true, User Selection cannot be changed."
+#~ msgstr ""
+
+#~ msgid "If true, message for user field is rendered."
+#~ msgstr ""
+
+#~ msgid "If true, highlight the first suggested user automatically."
+#~ msgstr ""
+
+#~ msgid "Style class of user autocomplete."
+#~ msgstr ""
+
+#~ msgid "Style class of user autocomplete panel."
+#~ msgstr ""
+
+#~ msgid "Style class of user autocomplete input."
+#~ msgstr ""
+
+#~ msgid "Text of label for User Selection component."
+#~ msgstr ""
+
+#~ msgid "Style class of message."
 #~ msgstr ""
 
