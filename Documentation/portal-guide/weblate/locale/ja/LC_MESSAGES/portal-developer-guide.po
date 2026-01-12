@@ -4835,7 +4835,7 @@ msgid ""
 "**User Management** - Requires :bdg-ref-warning:`🔑NewsManagement "
 "<NewsManagement>` permission to manage news items"
 msgstr ""
-"**ユーザー管理** - ニュースアイテムを管理するには:bdg-ref-warning:`🔑"
+"**ユーザー管理** - ニュースアイテムを管理するには :bdg-ref-warning:`🔑"
 "NewsManagement <NewsManagement>` の権限が必要です"
 
 #: ../../source/portal-developer-guide/dashboard/dashboard-newsfeed-widget.rst:15
@@ -5146,7 +5146,7 @@ msgid ""
 "User must have :bdg-ref-warning:`🔑NewsManagement <NewsManagement>` "
 "permission"
 msgstr ""
-"ユーザーは:bdg-ref-warning:`🔑NewsManagement <NewsManagement>` 権限を保有して"
+"ユーザーは :bdg-ref-warning:`🔑NewsManagement <NewsManagement>` 権限を保有して"
 "いる必要があります"
 
 #: ../../source/portal-developer-guide/dashboard/dashboard-newsfeed-widget.rst:151
@@ -7218,7 +7218,7 @@ msgid ""
 "or ``\"false\"``."
 msgstr ""
 "``boolean`` - 設定ダイアログ内のラジオボタン。``\"true\"`` また"
-"は``\"false\"`` を指定可能。"
+"は ``\"false\"`` を指定可能。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-custom-widget.rst:220
 msgid ""
@@ -7227,9 +7227,9 @@ msgid ""
 "Process for the Custom Widget<define-an-ivy-process-for-the-custom-"
 "widget>`."
 msgstr ""
-"JSONでパラメータを定義する前に、Ivyプロセスパラメータが:ref:`Define An Ivy "
+"JSONでパラメータを定義する前に、Ivyプロセスパラメータが :ref:`Define An Ivy "
 "Process for the Custom Widget<define-an-ivy-process-for-the-custom-widget>` "
-"に記載されている``type__name``形式に従っていることを確認してください。"
+"に記載されている ``type__name`` 形式に従っていることを確認してください。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-custom-widget.rst:223
 msgid "Parameter Type Examples"
@@ -8502,7 +8502,7 @@ msgstr "追加のプロパティ（各種）"
 msgid ""
 "See :ref:`Dashboard Configuration <customization-new-dashboard>` for full"
 " details"
-msgstr "詳細は:ref:`Dashboard Configuration <customization-new-dashboard>` を参照"
+msgstr "詳細は :ref:`Dashboard Configuration <customization-new-dashboard>` を参照"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-template.rst:126
 msgid ""
@@ -9307,7 +9307,7 @@ msgid ""
 "Application-specific settings. See :ref:`Admin Settings <portal-"
 "available-settings>`."
 msgstr ""
-"アプリケーション固有の設定。詳細は:ref:`Admin Settings <portal-available-"
+"アプリケーション固有の設定。詳細は :ref:`Admin Settings <portal-available-"
 "settings>` を参照。"
 
 #: ../../source/portal-developer-guide/deployment/index.rst:260
@@ -12203,7 +12203,7 @@ msgid ""
 "<admin-settings>` rather than custom code, making customization easier "
 "and more maintainable."
 msgstr ""
-"ほとんどのPortal機能は、カスタムコードではなく:ref:`Admin Settings <admin-"
+"ほとんどのPortal機能は、カスタムコードではなく :ref:`Admin Settings <admin-"
 "settings>` を通じて設定されるようになり、カスタマイズがより容易で保守性が高く"
 "なりました。"
 
@@ -12238,7 +12238,7 @@ msgstr "一般的な問題と解決策については:ref:`troubleshooting` を�
 #: ../../source/portal-developer-guide/introduction/index.rst:55
 msgid "Review :ref:`installation-migration-notes` when upgrading Portal versions"
 msgstr ""
-"Portalのバージョンアップ時には:ref:`installation-migration-notes` を確認して"
+"Portalのバージョンアップ時には :ref:`installation-migration-notes` を確認して"
 "ください"
 
 #: ../../source/portal-developer-guide/introduction/index.rst:56
@@ -13563,7 +13563,7 @@ msgstr "タスクインターフェースにリセットアクションボタン
 msgid ""
 "Requires corresponding :bdg-ref-warning:`🔑TaskReset <TaskReset>` "
 "permission to execute"
-msgstr "対応する:bdg-ref-warning:`🔑TaskReset <TaskReset>` の実行権限が必要です"
+msgstr "対応する :bdg-ref-warning:`🔑TaskReset <TaskReset>` の実行権限が必要です"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:221
 msgid "TaskDisplayReserveAction"
@@ -13582,7 +13582,7 @@ msgid ""
 "Requires :bdg-ref-warning:`🔑TaskParkOwnWorkingTask "
 "<TaskParkOwnWorkingTask>` to execute"
 msgstr ""
-"実行には:bdg-ref-warning:`🔑TaskParkOwnWorkingTask <TaskParkOwnWorkingTask>` "
+"実行には :bdg-ref-warning:`🔑TaskParkOwnWorkingTask <TaskParkOwnWorkingTask>` "
 "が必要です"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:229
@@ -13802,8 +13802,8 @@ msgid ""
 "Requires :bdg-ref-warning:`🔑TaskReadOwnCaseTasks <TaskReadOwnCaseTasks>` "
 "or :bdg-ref-warning:`🔑TaskReadAll <TaskReadAll>` to view tasks"
 msgstr ""
-"タスクを表示するには:bdg-ref-warning:`🔑TaskReadOwnCaseTasks "
-"<TaskReadOwnCaseTasks>` または:bdg-ref-warning:`🔑TaskReadAll <TaskReadAll>` "
+"タスクを表示するには :bdg-ref-warning:`🔑TaskReadOwnCaseTasks "
+"<TaskReadOwnCaseTasks>` または :bdg-ref-warning:`🔑TaskReadAll <TaskReadAll>` "
 "が必要です"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:326
@@ -13895,7 +13895,7 @@ msgstr ""
 
 #: ../../source/portal-developer-guide/permissions/index.rst:362
 msgid "See :ref:`full-process-list` for details"
-msgstr "詳細は:ref:`full-process-list` を参照"
+msgstr "詳細は :ref:`full-process-list` を参照"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:367
 msgid "AccessFullTaskList"
@@ -13918,7 +13918,7 @@ msgstr ""
 
 #: ../../source/portal-developer-guide/permissions/index.rst:371
 msgid "See :ref:`full-task-list` for details"
-msgstr "詳細は:ref:`full-task-list` を参照"
+msgstr "詳細は :ref:`full-task-list` を参照"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:376
 msgid "AccessFullCaseList"
@@ -13939,7 +13939,7 @@ msgstr "左メニューに「ケース」を表示"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:380
 msgid "See :ref:`full-case-list` for details"
-msgstr "詳細は:ref:`full-case-list` を参照"
+msgstr "詳細は :ref:`full-case-list` を参照"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:383
 msgid "**Dashboard Permissions**"
@@ -14308,7 +14308,7 @@ msgstr ""
 
 #: ../../source/portal-developer-guide/permissions/index.rst:548
 msgid "Customize notification channel preferences in :ref:`my-profile`"
-msgstr "通知チャネルの設定をカスタマイズするには:ref:`my-profile`"
+msgstr "通知チャネルの設定をカスタマイズするには :ref:`my-profile`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:549
 msgid "Control email, browser, and other notification methods"
@@ -14525,16 +14525,16 @@ msgid ""
 "ref-warning:`🔑TaskWriteActivator <TaskWriteActivator>`, :bdg-ref-"
 "warning:`🔑TaskWriteDelayTimestamp <TaskWriteDelayTimestamp>`"
 msgstr ""
-"**タスク権限:** :bdg-ref-warning:`🔑TaskReadAll <TaskReadAll>`,:bdg-ref-"
-"warning:`🔑TaskReadOwnCaseTasks <TaskReadOwnCaseTasks>`,:bdg-ref-warning:`🔑"
-"TaskParkOwnWorkingTask <TaskParkOwnWorkingTask>`,:bdg-ref-warning:`🔑"
-"TaskResetOwnWorkingTask <TaskResetOwnWorkingTask>`,:bdg-ref-warning:`🔑"
-"TaskReset <TaskReset>`,:bdg-ref-warning:`🔑TaskDestroy <TaskDestroy>`,:bdg-"
-"ref-warning:`🔑TaskWriteName <TaskWriteName>`,:bdg-ref-warning:`🔑"
-"TaskWriteDescription <TaskWriteDescription>`,:bdg-ref-warning:`🔑"
-"TaskWriteOriginalPriority <TaskWriteOriginalPriority>`,:bdg-ref-warning:`🔑"
-"TaskWriteExpiryTimestamp <TaskWriteExpiryTimestamp>`,:bdg-ref-warning:`🔑"
-"TaskWriteActivator <TaskWriteActivator>`,:bdg-ref-warning:`🔑"
+"**タスク権限:** :bdg-ref-warning:`🔑TaskReadAll <TaskReadAll>`, :bdg-ref-"
+"warning:`🔑TaskReadOwnCaseTasks <TaskReadOwnCaseTasks>`, :bdg-ref-warning:`🔑"
+"TaskParkOwnWorkingTask <TaskParkOwnWorkingTask>`, :bdg-ref-warning:`🔑"
+"TaskResetOwnWorkingTask <TaskResetOwnWorkingTask>`, :bdg-ref-warning:`🔑"
+"TaskReset <TaskReset>`, :bdg-ref-warning:`🔑TaskDestroy <TaskDestroy>`, :bdg-"
+"ref-warning:`🔑TaskWriteName <TaskWriteName>`, :bdg-ref-warning:`🔑"
+"TaskWriteDescription <TaskWriteDescription>`, :bdg-ref-warning:`🔑"
+"TaskWriteOriginalPriority <TaskWriteOriginalPriority>`, :bdg-ref-warning:`🔑"
+"TaskWriteExpiryTimestamp <TaskWriteExpiryTimestamp>`, :bdg-ref-warning:`🔑"
+"TaskWriteActivator <TaskWriteActivator>`, :bdg-ref-warning:`🔑"
 "TaskWriteDelayTimestamp <TaskWriteDelayTimestamp>`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:650
@@ -14545,8 +14545,8 @@ msgid ""
 "warning:`🔑CaseWriteDescription <CaseWriteDescription>`"
 msgstr ""
 "**ケース別アクセス権限:** :bdg-ref-warning:`🔑CaseReadAll <CaseReadAll>"
-"`,:bdg-ref-warning:`🔑CaseDestroy <CaseDestroy>`,:bdg-ref-warning:`🔑"
-"CaseWriteName <CaseWriteName>`,:bdg-ref-warning:`🔑CaseWriteDescription "
+"`, :bdg-ref-warning:`🔑CaseDestroy <CaseDestroy>`, :bdg-ref-warning:`🔑"
+"CaseWriteName <CaseWriteName>`, :bdg-ref-warning:`🔑CaseWriteDescription "
 "<CaseWriteDescription>`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:653
@@ -14556,9 +14556,9 @@ msgid ""
 "warning:`🔑RoleDelete <RoleDelete>`, :bdg-ref-warning:`🔑RoleMove "
 "<RoleMove>`"
 msgstr ""
-"**ロール権限:** :bdg-ref-warning:`🔑RoleReadAll <RoleReadAll>`,:bdg-ref-"
-"warning:`🔑RoleCreate <RoleCreate>`,:bdg-ref-warning:`🔑RoleDelete "
-"<RoleDelete>`,:bdg-ref-warning:`🔑RoleMove <RoleMove>`"
+"**ロール権限:** :bdg-ref-warning:`🔑RoleReadAll <RoleReadAll>`, :bdg-ref-"
+"warning:`🔑RoleCreate <RoleCreate>`, :bdg-ref-warning:`🔑RoleDelete "
+"<RoleDelete>`, :bdg-ref-warning:`🔑RoleMove <RoleMove>`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:656
 msgid ""
@@ -14567,7 +14567,7 @@ msgid ""
 "ref-warning:`🔑DocumentOfInvolvedCaseWrite <DocumentOfInvolvedCaseWrite>`"
 msgstr ""
 "**ドキュメントの許可:** :bdg-ref-warning:`🔑DocumentRead <DocumentRead>"
-"`,:bdg-ref-warning:`🔑DocumentWrite <DocumentWrite>`,:bdg-ref-warning:`🔑"
+"`, :bdg-ref-warning:`🔑DocumentWrite <DocumentWrite>`, :bdg-ref-warning:`🔑"
 "DocumentOfInvolvedCaseWrite <DocumentOfInvolvedCaseWrite>`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:659
@@ -14584,13 +14584,13 @@ msgid ""
 "warning:`🔑UserReadSubstitutes <UserReadSubstitutes>`"
 msgstr ""
 "**欠落および代替許可:** :bdg-ref-warning:`🔑UserReadOwnAbsences "
-"<UserReadOwnAbsences>`,:bdg-ref-warning:`🔑UserCreateOwnAbsence "
-"<UserCreateOwnAbsence>`,:bdg-ref-warning:`🔑UserDeleteOwnAbsence "
-"<UserDeleteOwnAbsence>`,:bdg-ref-warning:`🔑UserReadAbsences "
-"<UserReadAbsences>`,:bdg-ref-warning:`🔑UserCreateAbsence <UserCreateAbsence>"
-"`,:bdg-ref-warning:`🔑UserDeleteAbsence <UserDeleteAbsence>`,:bdg-ref-"
-"warning:`🔑UserCreateOwnSubstitute <UserCreateOwnSubstitute>`,:bdg-ref-"
-"warning:`🔑UserCreateSubstitute <UserCreateSubstitute>`,:bdg-ref-warning:`🔑"
+"<UserReadOwnAbsences>`, :bdg-ref-warning:`🔑UserCreateOwnAbsence "
+"<UserCreateOwnAbsence>`, :bdg-ref-warning:`🔑UserDeleteOwnAbsence "
+"<UserDeleteOwnAbsence>`, :bdg-ref-warning:`🔑UserReadAbsences "
+"<UserReadAbsences>`, :bdg-ref-warning:`🔑UserCreateAbsence <UserCreateAbsence>"
+"`, :bdg-ref-warning:`🔑UserDeleteAbsence <UserDeleteAbsence>`, :bdg-ref-"
+"warning:`🔑UserCreateOwnSubstitute <UserCreateOwnSubstitute>`, :bdg-ref-"
+"warning:`🔑UserCreateSubstitute <UserCreateSubstitute>`, :bdg-ref-warning:`🔑"
 "UserReadSubstitutes <UserReadSubstitutes>`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:663
