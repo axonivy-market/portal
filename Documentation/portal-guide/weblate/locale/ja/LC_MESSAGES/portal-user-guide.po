@@ -10,7 +10,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-01-12 03:37+0000\n"
 "PO-Revision-Date: 2026-01-12 09:12+0000\n"
-"Last-Translator: Tung Le <tung.le@axonactive.com>\n"
+"Last-Translator: Thang Huynh Huu Quyet <hhqthang@axonactive.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/axonivy-portal/"
 "portal-12/doc/portal-user-guide/ja/>\n"
 "Language: ja\n"
@@ -2751,8 +2751,8 @@ msgid ""
 ":bdg-dark-line:`Created Date` :bdg-dark-line:`Within the last` :bdg-dark-"
 "line:`2` :bdg-dark-line:`Year(s)`"
 msgstr ""
-":bdg-dark-line:`作成日` :bdg-dark-line:`今日までの期間` :bdg-dark-line:`2` :bdg-"
-"dark-line:`年`"
+":bdg-dark-line:`作成日` :bdg-dark-line:`今日までの期間` :bdg-dark-line:`2` "
+":bdg-dark-line:`年`"
 
 #: ../../source/portal-user-guide/complex-filter/index.rst
 msgid "within the period from ``2/27/2022 00:00:00`` to ``2/27/2024 11:41:28``."
@@ -2781,8 +2781,8 @@ msgid ""
 ":bdg-dark-line:`Invoice Due Date` :bdg-dark-line:`Within the next` :bdg-"
 "dark-line:`3` :bdg-dark-line:`Week(s)`"
 msgstr ""
-":bdg-dark-line:`請求書の支払期日` :bdg-dark-line:`次の期間` :bdg-dark-line:`3` :bdg-"
-"dark-line:`週`"
+":bdg-dark-line:`請求書の支払期日` :bdg-dark-line:`次の期間` :bdg-dark-"
+"line:`3` :bdg-dark-line:`週`"
 
 #: ../../source/portal-user-guide/complex-filter/index.rst
 msgid ""
@@ -3486,9 +3486,9 @@ msgid ""
 "``openWithoutMenu=true`` to the URL. However, please be aware that this "
 "option is only for embedding purposes."
 msgstr ""
-"メニュー枠なしでダッシュボードを共有するには、URLに"
-"パラメータ``openWithoutMenu=true`` を追加してください。ただし、このオプション"
-"は埋め込み目的のみに利用可能であることにご注意ください。"
+"メニュー枠なしでダッシュボードを共有するには、URLにパラメータ "
+"``openWithoutMenu=true`` を追加してください。ただし、このオプションは埋め込み"
+"目的のみに利用可能である点にご留意ください。"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:244
 msgid "HowTo: reorder public dashboards"
@@ -5654,16 +5654,16 @@ msgid ""
 "Task notes are displayed in the ``Notes`` table of the task details and "
 "in the ``History`` table of its business case"
 msgstr ""
-"タスクノートは、タスク詳細の「` 」`Notes`` テーブルと、そのビジネスケースの"
-"「` 」`History`` テーブルに表示されます。"
+"タスクノートは、タスク詳細の  ``Notes``  テーブルおよびそのビジネスケースの "
+"``History``  テーブルに表示されます。"
 
 #: ../../source/portal-user-guide/full-task-list/index.rst:248
 msgid ""
 "If the task belongs to a technical case, notes are also displayed in the "
 "``History`` table of that technical case"
 msgstr ""
-"タスクが技術ケースに属する場合、ノートは該当技術ケースの``History``テーブルに"
-"も表示されます。"
+"当該タスクが技術的なケースに属する場合、注記は当該技術ケースの ``History`` "
+"テーブルにも表示されます。"
 
 #: ../../source/portal-user-guide/full-task-list/index.rst:251
 msgid "HowTo: Export a Task History"
@@ -5822,7 +5822,8 @@ msgid ""
 "warning:`🔑WorkflowEventReadAll`"
 msgstr ""
 ":bdg-ref-warning:`🔑TaskDisplayWorkflowEventAction "
-"<TaskDisplayWorkflowEventAction>` および:bdg-warning:`🔑WorkflowEventReadAll`"
+"<TaskDisplayWorkflowEventAction>` および :bdg-warning:`🔑"
+"WorkflowEventReadAll`"
 
 #: ../../source/portal-user-guide/full-task-list/index.rst:333
 msgid ""
@@ -6101,9 +6102,7 @@ msgstr "**ダッシュボードへのアクセス:**"
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:15
 msgid "Click **Dashboard** in the Portal navigation menu"
-msgstr ""
-"ポータルナビゲーションメニューの「**」→「ダッシュボード」→「** 」をクリックし"
-"てください。"
+msgstr "ポータルナビゲーションメニューの **ダッシュボード** をクリックしてください。"
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:16
 msgid "Click the logo image at the top left of the header"
@@ -6305,7 +6304,9 @@ msgstr ""
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:84
 msgid "**Edit widgets**: Click :guilabel:`Edit` to open the configuration panel"
-msgstr "**編集ウィジェット**: 設定パネルを開くには:guilabel:`Edit` をクリック"
+msgstr ""
+"**編集ウィジェット**: 設定パネルを開くには :guilabel:`編集` をクリックしてく"
+"ださい"
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:85
 msgid "**Delete widgets**: Remove widgets you don't need"
@@ -7287,8 +7288,8 @@ msgid ""
 "notification page by clicking the |show-more-icon| icon in the "
 "notification panel."
 msgstr ""
-"すべての通知を包括的に確認するには、通知パネルの|show-more-icon| アイコンを"
-"クリックして通知一覧ページに移動してください。"
+"すべての通知を包括的に確認するには、通知パネルの |show-more-icon| アイコンを"
+"クリックして通知一覧ページへお進みください。"
 
 #: ../../source/portal-user-guide/notification/index.rst:30
 msgid "|notification-full-page|"
@@ -7461,8 +7462,9 @@ msgid ""
 "wide search functionality. This feature is described in detail in `Global"
 " Search`_."
 msgstr ""
-"ユーザー名の横にある|search-icon| 検索バーは、ポータル全体の検索機能を提供し"
-"ます。この機能の詳細は `Global Search`_ で説明されています。"
+"ユーザー名の横には、|search-icon| 検索バーが配置されており、ポータル全体の検"
+"索機能を提供しております。この機能の詳細については、 `グローバル検索`_ でご説"
+"明しております。"
 
 #: ../../source/portal-user-guide/includes/_common-icon.rst:13
 msgid "search-icon"
@@ -7615,10 +7617,10 @@ msgid ""
 "the past` option. Edit or delete absences using the |edit-icon| **Edit** "
 "or |trash-icon| **Delete** actions in the respective absence row."
 msgstr ""
-"欠勤ダイアログには現在および今後の欠勤がすべて表示されます"
-"。:guilabel:`Display absences in the past` オプションを有効にすると過去の欠勤"
-"も確認できます。欠勤の編集または削除は、該当する欠勤行の|edit-icon| **編集** "
-"または|trash-icon| **削除** アクションで行ってください。"
+"欠勤ダイアログでは、現在および今後のすべての欠勤が表示されます。過去の欠勤を"
+"確認するには、 :guilabel:`過去の欠席を表示する` オプションを有効にしてくださ"
+"い。欠勤の編集または削除は、各欠勤行の以下のアクションで行います編集 |edit-"
+"icon| **編集**  削除 |trash-icon| **削除**"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:81
 msgid ""
@@ -7643,7 +7645,7 @@ msgstr ":guilabel:`Add absence` ダイアログが開きます"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:88
 msgid "Enter :guilabel:`From` and :guilabel:`Until` dates"
-msgstr ":guilabel:`From` と:guilabel:`Until` の日付を入力"
+msgstr ":guilabel:`From` および :guilabel:`Until` の日付を入力してください。"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:89
 msgid "Optionally provide an explanatory comment"
@@ -7850,8 +7852,8 @@ msgid ""
 "the **Global Search Results** page. Each category has its own tab "
 "displaying the matching results."
 msgstr ""
-"キーワードを入力して検索を確認すると、Portalは**グローバル検索結果ページ（** "
-"）に遷移します。各カテゴリには一致する結果を表示する専用のタブがあります。"
+"キーワードを入力し検索を確認すると、Portalは **グローバル検索結果ページ** へ"
+"遷移します。各カテゴリには対応する結果を表示する専用タブが設けられています。"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:176
 msgid "|portal-global-search-result-page|"
@@ -7931,7 +7933,7 @@ msgstr "**管理設定にアクセス**"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:209
 msgid "Role ``AXONIVY_PORTAL_ADMIN``"
-msgstr "ロール``AXONIVY_PORTAL_ADMIN``"
+msgstr "``AXONIVY_PORTAL_ADMIN``"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:211
 msgid "**Manage own dashboards**"
@@ -8077,8 +8079,8 @@ msgid ""
 "Look for the :guilabel:`translator icon` on supported input text fields. "
 "For example, when creating a private dashboard:"
 msgstr ""
-"入力テキストフィールドで:guilabel:`translator icon` を探してください。例："
-"プライベートダッシュボード作成時："
+"対応している入力テキストフィールドには、:guilabel:`translator icon` が表示さ"
+"れます。例えば、プライベートダッシュボードを作成する際には："
 
 #: ../../source/portal-user-guide/portal-multi-language/index.rst:53
 msgid "Multi language usage when create private dashboard"
