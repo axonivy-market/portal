@@ -1886,7 +1886,8 @@ msgid ""
 "LDAP, as those systems manage their own password policies."
 msgstr ""
 "**外部認証**: Active Directory、Entra ID、LDAPなどの外部IDプロバイダーを使用"
-"する場合、パスワード検証は適用されません。**** これらのシステムは独自の"
+"する場合、パスワード検証は **適用されません**。"
+"これらのシステムは独自の"
 "パスワードポリシーを管理するためです。"
 
 #: ../../source/portal-user-guide/admin-settings/index.rst:180
@@ -2257,21 +2258,21 @@ msgstr "**ダッシュボード**: ワークスペースのカスタマイズ �
 
 #: ../../source/portal-user-guide/axon-ivy-portal/index.rst:111
 msgid "**Processes**: Start new business processes → See :ref:`full-process-list`"
-msgstr "**** を処理：新規ビジネスプロセスを開始 → 参照:ref:`full-process-list`"
+msgstr "**プロセス**: 新規ビジネスプロセスを開始 → 参照 :ref:`full-process-list`"
 
 #: ../../source/portal-user-guide/axon-ivy-portal/index.rst:112
 msgid ""
 "**Tasks**: View and complete your assigned work → See :ref:`full-task-"
 "list`"
-msgstr "**タスク**: 割り当てられた作業を確認・完了 → 参照:ref:`full-task-list`"
+msgstr "**タスク**: 割り当てられた作業を確認・完了 → 参照 :ref:`full-task-list`"
 
 #: ../../source/portal-user-guide/axon-ivy-portal/index.rst:113
 msgid "**Cases**: Track and manage case progress → See :ref:`full-case-list`"
-msgstr "**** のケース：ケースの進捗を追跡・管理 → 参照:ref:`full-case-list`"
+msgstr "**ケース**: ケースの進捗を追跡・管理 → 参照 :ref:`full-case-list`"
 
 #: ../../source/portal-user-guide/axon-ivy-portal/index.rst:114
 msgid "**User Settings**: Configure your preferences → See :ref:`my-profile`"
-msgstr "**ユーザー設定**: 設定を構成 → 参照:ref:`my-profile`"
+msgstr "**ユーザー設定**: 設定を構成 → 参照 :ref:`my-profile`"
 
 #: ../../source/portal-user-guide/complex-filter/index.rst:12
 msgid "Complex Filter"
@@ -3175,7 +3176,7 @@ msgstr "actions-menu-icon"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:112
 msgid "|edit-icon| **Edit**: Modify dashboard name and description"
-msgstr "|edit-icon| **** を編集：ダッシュボード名と説明を変更"
+msgstr "|edit-icon| **編集**: ダッシュボード名と説明を変更"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:113
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:222
@@ -3195,9 +3196,9 @@ msgid ""
 "|download-icon| **Export**: Download dashboard as JSON file (requires "
 ":bdg-ref-warning:`🔑DashboardExportOwn <DashboardExportOwn>` permission)"
 msgstr ""
-"|download-icon| **** のエクスポート：ダッシュボードをJSONファイルとして"
-"ダウンロード（ 権限が必要）:bdg-ref-warning:`🔑DashboardExportOwn "
-"<DashboardExportOwn>`"
+"|download-icon| **エクスポート**: ダッシュボードをJSONファイルとして"
+"ダウンロード（権限が必要 :bdg-ref-warning:`🔑DashboardExportOwn "
+"<DashboardExportOwn>`）"
 
 #: ../../source/portal-user-guide/includes/_common-icon.rst:49
 msgid "download-icon"
@@ -3205,7 +3206,7 @@ msgstr "download-icon"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:115
 msgid "|trash-icon| **Delete**: Remove the private dashboard"
-msgstr "|trash-icon| **** を削除：非公開ダッシュボードを削除"
+msgstr "|trash-icon| **削除**: 非公開ダッシュボードを削除"
 
 #: ../../source/portal-user-guide/includes/_common-icon.rst:1
 msgid "trash-icon"
@@ -3416,7 +3417,7 @@ msgstr ""
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:221
 msgid "|edit-icon| **Edit**: Modify dashboard name, permissions, and description"
-msgstr "|edit-icon| **** を編集：ダッシュボード名、権限、説明を変更"
+msgstr "|edit-icon| **編集**: ダッシュボード名、権限、説明を変更"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:223
 msgid ""
@@ -3424,9 +3425,9 @@ msgid ""
 ":bdg-ref-warning:`🔑DashboardExportPublic <DashboardExportPublic>` "
 "permission)"
 msgstr ""
-"|download-icon| **** のエクスポート：ダッシュボードをJSONファイルとして"
-"ダウンロード（ 権限が必要）:bdg-ref-warning:`🔑DashboardExportPublic "
-"<DashboardExportPublic>`"
+"|download-icon| **エクスポート**: ダッシュボードをJSONファイルとして"
+"ダウンロード（権限が必要 :bdg-ref-warning:`🔑DashboardExportPublic "
+"<DashboardExportPublic>`）"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:224
 msgid ""
@@ -3434,8 +3435,8 @@ msgid ""
 "(requires :bdg-ref-warning:`🔑ShareDashboardLink <ShareDashboardLink>` "
 "permission)"
 msgstr ""
-"|share-icon| **** を共有：ダッシュボードへの共有リンクを生成（ 権限が必要"
-"）:bdg-ref-warning:`🔑ShareDashboardLink <ShareDashboardLink>`"
+"|share-icon| **共有**: ダッシュボードへの共有リンクを生成（権限が必要 "
+":bdg-ref-warning:`🔑ShareDashboardLink <ShareDashboardLink>`）"
 
 #: ../../source/portal-user-guide/includes/_common-icon.rst:55
 msgid "share-icon"
@@ -3443,7 +3444,7 @@ msgstr "share-icon"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:225
 msgid "|trash-icon| **Delete**: Remove the public dashboard"
-msgstr "|trash-icon| **** を削除：公開ダッシュボードを削除"
+msgstr "|trash-icon| **削除**: 公開ダッシュボードを削除"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:227
 msgid "|edit-public-dashboards|"
@@ -4634,7 +4635,7 @@ msgstr "**ビジネス詳細**: ビジネス固有のケースデータを表示
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:303
 msgid "**Side step**: Access additional case operations"
-msgstr "**** の回避：追加のケース操作にアクセス"
+msgstr "**サイドステップ**: 追加のケース操作にアクセス"
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:305
 msgid ""

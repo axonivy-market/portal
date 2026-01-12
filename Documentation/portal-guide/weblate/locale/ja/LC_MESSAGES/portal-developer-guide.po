@@ -9105,7 +9105,7 @@ msgstr "ファイルシステム経由:"
 
 #: ../../source/portal-developer-guide/deployment/index.rst:166
 msgid "Copy .zip file to ``<engine>/deploy/`` directory (auto-deployed)"
-msgstr ".zipファイルを``<engine>/deploy/``ディレクトリにコピー（自動デプロイ）"
+msgstr ".zipファイルを ``<engine>/deploy/`` ディレクトリにコピー（自動デプロイ）"
 
 #: ../../source/portal-developer-guide/deployment/index.rst:168
 msgid "Via Command Line:"
@@ -17065,13 +17065,13 @@ msgstr "このメニュー項目を表示できるユーザー、ロール、ま
 msgid ""
 "**Roles:** Role names (e.g., ``\"Employee\"``, "
 "``\"AXONIVY_PORTAL_ADMIN\"``)"
-msgstr "**ロール:** ロール名 (例:``\"Employee\"``,``\"AXONIVY_PORTAL_ADMIN\"``)"
+msgstr "**ロール:** ロール名 (例: ``\"Employee\"``, ``\"AXONIVY_PORTAL_ADMIN\"``)"
 
 #: ../../source/portal-developer-guide/usermenu/index.rst:114
 msgid ""
 "**Users:** Username prefixed with ``#`` (e.g., ``\"#john.doe\"``, "
 "``\"#admin\"``)"
-msgstr "**#`ユーザー:** ユーザー名は`` で始まる (例:``\"#john.doe\"``,``\"#admin\"``)"
+msgstr "**ユーザー:** ユーザー名は ``#`` で始まる (例: ``\"#john.doe\"``, ``\"#admin\"``)"
 
 #: ../../source/portal-developer-guide/usermenu/index.rst:115
 msgid "**Multiple entries:** User sees item if they match ANY permission"
