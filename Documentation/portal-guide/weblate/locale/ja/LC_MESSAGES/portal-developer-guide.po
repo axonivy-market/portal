@@ -14691,7 +14691,7 @@ msgid ""
 "**Admin Settings UI**: See :ref:`update-portal-settings` for user-"
 "friendly configuration"
 msgstr ""
-"**管理設定 UI**: ユーザーフレンドリーな設定については:ref:`update-portal-"
+"**管理設定 UI**: ユーザーフレンドリーな設定については :ref:`update-portal-"
 "settings` を参照"
 
 #: ../../source/portal-developer-guide/settings/index.rst:46
@@ -14937,7 +14937,7 @@ msgid ""
 "Administrators with :bdg-ref-warning:`🔑TaskReadAll <TaskReadAll>` and "
 ":bdg-ref-warning:`🔑CaseReadAll <CaseReadAll>` can see all tasks/cases"
 msgstr ""
-":bdg-ref-warning:`🔑TaskReadAll <TaskReadAll>` および:bdg-ref-warning:`🔑"
+":bdg-ref-warning:`🔑TaskReadAll <TaskReadAll>` および :bdg-ref-warning:`🔑"
 "CaseReadAll <CaseReadAll>` の管理者権限を持つユーザーは、すべてのタスク/"
 "ケースを確認できます。"
 
@@ -14990,8 +14990,8 @@ msgid ""
 "<TaskDisplayDelegateAction>` and :bdg-ref-warning:`🔑TaskWriteActivator "
 "<TaskWriteActivator>`"
 msgstr ""
-"デリゲートアクションの参照::bdg-ref-warning:`🔑TaskDisplayDelegateAction "
-"<TaskDisplayDelegateAction>` および:bdg-ref-warning:`🔑TaskWriteActivator "
+"デリゲートアクションの参照: :bdg-ref-warning:`🔑TaskDisplayDelegateAction "
+"<TaskDisplayDelegateAction>` および :bdg-ref-warning:`🔑TaskWriteActivator "
 "<TaskWriteActivator>`"
 
 #: ../../source/portal-developer-guide/settings/index.rst:154
@@ -15040,8 +15040,8 @@ msgid ""
 "<TaskResetReadyForJoin>` or :bdg-ref-warning:`🔑TaskReset <TaskReset>`"
 msgstr ""
 "タスクをリセットするには：:bdg-ref-warning:`🔑TaskResetOwnWorkingTask "
-"<TaskResetOwnWorkingTask>` または:bdg-ref-warning:`🔑TaskResetReadyForJoin "
-"<TaskResetReadyForJoin>` または:bdg-ref-warning:`🔑TaskReset <TaskReset>`"
+"<TaskResetOwnWorkingTask>` または :bdg-ref-warning:`🔑TaskResetReadyForJoin "
+"<TaskResetReadyForJoin>` または :bdg-ref-warning:`🔑TaskReset <TaskReset>`"
 
 #: ../../source/portal-developer-guide/settings/index.rst:170
 #: ../../source/portal-developer-guide/settings/index.rst:242
@@ -15242,8 +15242,8 @@ msgid ""
 "To view related tasks: :bdg-ref-warning:`🔑TaskReadOwnCaseTasks "
 "<TaskReadOwnCaseTasks>` or :bdg-ref-warning:`🔑TaskReadAll <TaskReadAll>`"
 msgstr ""
-"関連タスクを表示するには::bdg-ref-warning:`🔑TaskReadOwnCaseTasks "
-"<TaskReadOwnCaseTasks>` または:bdg-ref-warning:`🔑TaskReadAll <TaskReadAll>`"
+"関連タスクを表示するには: :bdg-ref-warning:`🔑TaskReadOwnCaseTasks "
+"<TaskReadOwnCaseTasks>` または :bdg-ref-warning:`🔑TaskReadAll <TaskReadAll>`"
 
 #: ../../source/portal-developer-guide/settings/index.rst:266
 msgid "**Display Show Detail Link**"
@@ -16430,7 +16430,7 @@ msgid ""
 "questions and answers about Portal, Designer, and Engine. Search existing"
 " topics or ask new questions."
 msgstr ""
-"`Axon Ivy Community<https://community.axonivy.com/>`__ には、Portal、Designer"
+"`Axon Ivy Community <https://community.axonivy.com/>`__ には、Portal、Designer"
 "、Engine に関する質問と回答が掲載されています。既存のトピックを検索するか、新"
 "しい質問を投稿してください。"
 
@@ -16445,7 +16445,7 @@ msgid ""
 " like ``axon-ivy``, ``jsf``, ``primefaces``."
 msgstr ""
 "Java、JSF、PrimeFacesなどの一般的な技術に関する問題は、`Stack "
-"Overflow<https://stackoverflow.com/>`__ で回答されています。``axon-"
+"Overflow <https://stackoverflow.com/>`__ で回答されています。``axon-"
 "ivy``、``jsf``、``primefaces`` などのタグを使用してください。"
 
 #: ../../source/portal-developer-guide/troubleshooting/index.rst:27
