@@ -847,8 +847,8 @@ msgid ""
 ":ref:`Admin Settings <update-portal-settings>`."
 msgstr ""
 "グローバルな唸り音の動作は、ポータル設定"
-"の``Portal.DisplayMessageAfterFinishTask``によって制御され、これは:ref:`管理"
-"設定 <update-portal-settings>`で設定可能です。"
+"の``Portal.DisplayMessageAfterFinishTask``によって制御され、これは :ref:`管理"
+"設定 <update-portal-settings>` で設定可能です。"
 
 #: ../../source/portal-developer-guide/components/additional-components.rst:34
 msgid "**Examples:**"
@@ -1188,7 +1188,7 @@ msgid ""
 "development."
 msgstr ""
 "Portalはユーザー間のリアルタイムコミュニケーションのための統合チャット機能を"
-"提供します。チャット機能は主に:ref:`Admin Settings <admin-settings>` を通じて"
+"提供します。チャット機能は主に :ref:`Admin Settings <admin-settings>` を通じて"
 "設定され、カスタム開発を必要としません。"
 
 #: ../../source/portal-developer-guide/components/portal-chat.rst:11
@@ -1244,7 +1244,7 @@ msgid ""
 "Configure these settings in :ref:`Admin Settings <update-portal-"
 "settings>`."
 msgstr ""
-"これらの設定は:ref:`Admin Settings <update-portal-settings>` で構成してくださ"
+"これらの設定は :ref:`Admin Settings <update-portal-settings>` で構成してくださ"
 "い。"
 
 #: ../../source/portal-developer-guide/components/portal-chat.rst:36
@@ -3997,7 +3997,7 @@ msgid ""
 "capitalized name per standards. Keep the content concise and accessible; "
 "basic HTML is supported."
 msgstr ""
-"HTMLコンテンツは``cms/``フォルダ内のCMSオブジェクトに配置し、標準に従い大文字"
+"HTMLコンテンツは ``cms/`` フォルダ内のCMSオブジェクトに配置し、標準に従い大文字"
 "で始まる名前を使用してください。コンテンツは簡潔かつアクセシブルに保ち、基本"
 "的なHTMLをサポートします。"
 
@@ -4901,7 +4901,7 @@ msgstr "ウィジェット型識別子"
 
 #: ../../source/portal-developer-guide/dashboard/dashboard-newsfeed-widget.rst:66
 msgid "Must be set to ``\"news\"`` for news widget"
-msgstr "ニュースウィジェット用に``\"news\"``に設定必須"
+msgstr "ニュースウィジェット用に ``\"news\"`` に設定必須"
 
 #: ../../source/portal-developer-guide/dashboard/dashboard-newsfeed-widget.rst:68
 #: ../../source/portal-developer-guide/dashboard/index.rst:113
@@ -5125,7 +5125,7 @@ msgstr "**高さ**: 最小``h: 5`` で少なくとも2～3件のニュース項�
 
 #: ../../source/portal-developer-guide/dashboard/dashboard-newsfeed-widget.rst:142
 msgid "**Position**: Place in prominent location (top-right or top-left)"
-msgstr "**** の配置：目立つ位置（右上または左上）に配置"
+msgstr "**配置**: 目立つ位置（右上または左上）に配置"
 
 #: ../../source/portal-developer-guide/dashboard/dashboard-newsfeed-widget.rst:143
 msgid "**Fullscreen**: Keep ``showFullscreenMode: true`` for user convenience"
@@ -5285,7 +5285,7 @@ msgstr "ダッシュボードタブアイコン"
 
 #: ../../source/portal-developer-guide/dashboard/index.rst:141
 msgid "Supports FontAwesome (e.g., ``\"fa-play\"``, ``\"fa-dashboard\"``)"
-msgstr "FontAwesomeをサポート（例：``\"fa-play\"``,``\"fa-dashboard\"``）"
+msgstr "FontAwesomeをサポート（例：``\"fa-play\"``, ``\"fa-dashboard\"``）"
 
 #: ../../source/portal-developer-guide/dashboard/index.rst:142
 msgid "Supports Streamline (e.g., ``\"si si-layout-bullets\"``)"
@@ -5541,7 +5541,7 @@ msgid ""
 "default."
 msgstr ""
 "メニュー項目名はユーザーの言語設定に従います。一致するロケールが見つからない"
-"場合、``names``配列の最初のエントリがデフォルトとして使用されます。"
+"場合、``names`` 配列の最初のエントリがデフォルトとして使用されます。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:4
 msgid "Configure Case Widget"
@@ -5705,7 +5705,7 @@ msgstr "string"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:110
 msgid "Widget type. Must be ``\"case\"`` for case widget"
-msgstr "ウィジェットタイプ。ケースウィジェットの場合は必ず``\"case\"``とする。"
+msgstr "ウィジェットタイプ。ケースウィジェットの場合は必ず ``\"case\"`` とする。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:111
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-custom-widget.rst:117
@@ -6124,7 +6124,7 @@ msgstr "**列の設定**"
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:196
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:170
 msgid "Each column object in the ``columns`` array:"
-msgstr "``columns``配列内の各列オブジェクト："
+msgstr "``columns`` 配列内の各列オブジェクト："
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:206
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:256
@@ -7162,7 +7162,7 @@ msgstr "**パラメータ設定**"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-custom-widget.rst:193
 msgid "Each parameter object in the ``params`` array:"
-msgstr "``params``配列内の各パラメータオブジェクト："
+msgstr "``params`` 配列内の各パラメータオブジェクト："
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-custom-widget.rst:204
 msgid "Parameter name (matches process parameter after ``type__`` prefix)"
@@ -7437,7 +7437,7 @@ msgstr "以下は、ポータルダッシュボードの通知ウィジェット
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-notification-widget.rst:68
 msgid "Widget type. Must be ``\"notification\"`` for notifications widget"
-msgstr "ウィジェットタイプ。通知ウィジェットの場合は必ず``\"notification\"``とする。"
+msgstr "ウィジェットタイプ。通知ウィジェットの場合は必ず ``\"notification\"`` とする。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-notification-widget.rst:108
 msgid ""
@@ -7582,7 +7582,7 @@ msgstr "**プロセスウィジェットの種類**"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:118
 msgid "The ``type`` property determines the display mode:"
-msgstr "``type``プロパティが表示モードを決定します："
+msgstr "``type`` プロパティが表示モードを決定します："
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:120
 msgid "``compact-process`` - Compact list of processes with icons and names"
@@ -7951,7 +7951,7 @@ msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:102
 msgid "Widget type. Must be ``\"task\"`` for task widget"
-msgstr "ウィジェットタイプ。タスクウィジェットの場合は必ず``\"task\"``とする。"
+msgstr "ウィジェットタイプ。タスクウィジェットの場合は必ず ``\"task\"`` とする。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:113
 msgid "``columns`` (array)"
@@ -8561,7 +8561,7 @@ msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-welcome-widget.rst:66
 msgid "Widget type. Must be ``\"welcome\"`` for welcome widget"
-msgstr "ウィジェットタイプ。ウェルカムウィジェットの場合は必ず``\"welcome\"``とする。"
+msgstr "ウィジェットタイプ。ウェルカムウィジェットの場合は必ず ``\"welcome\"`` とする。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-welcome-widget.rst:74
 msgid "``welcomeTexts`` (array)"
@@ -8768,7 +8768,7 @@ msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-welcome-widget.rst:161
 msgid "**Morning** (6 AM - 12 PM): \"Good morning\""
-msgstr "**** 朝（午前6時～正午）: 「おはようございます」"
+msgstr "**朝** （午前6時～正午）: 「おはようございます」"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-welcome-widget.rst:162
 msgid "**Afternoon** (12 PM - 6 PM): \"Good afternoon\""
@@ -8789,7 +8789,7 @@ msgid ""
 " etc.) are managed automatically by Portal."
 msgstr ""
 "背景画像は、Portalウィジェット設定UIから直接アップロードできます。画像"
-"プロパティ（``、imageLocation``、``、imageType``など）はPortalによって自動的"
+"プロパティ（``imageLocation``、``imageType`` など）はPortalによって自動的"
 "に管理されます。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-welcome-widget.rst:171
@@ -9922,7 +9922,7 @@ msgstr "``processChainDirection`` (文字列)"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:141
 msgid "``\"VERTICAL\"`` or ``\"HORIZONTAL\"``."
-msgstr "``\"VERTICAL\"`` または``\"HORIZONTAL\"``。"
+msgstr "``\"VERTICAL\"`` または ``\"HORIZONTAL\"``。"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:143
 msgid "``processChainShape`` (string)"
@@ -9930,7 +9930,7 @@ msgstr "``processChainShape`` (文字列)"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:144
 msgid "``\"LINE\"`` or ``\"CIRCLE\"``."
-msgstr "``\"LINE\"`` または``\"CIRCLE\"``。"
+msgstr "``\"LINE\"`` または ``\"CIRCLE\"``。"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:147
 msgid "Task Actions"
@@ -10121,8 +10121,8 @@ msgid ""
 " ``portal-components`` project."
 msgstr ""
 "XSS攻撃を防ぐため、送信前に必ずデータをサニタイズしてください。Portal"
-"は``portal-components``プロジェクト内の公開API ``` "
-"`SanitizeAPI.escapeForJavascript``を提供しています。"
+"は ``portal-components`` プロジェクト内の公開API "
+"``SanitizeAPI.escapeForJavascript`` を提供しています。"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:390
 msgid "**In your HTML dialog:**"
@@ -12246,7 +12246,7 @@ msgid ""
 "Visit the `Axon Ivy Community <https://community.axonivy.com/>`_ for "
 "questions"
 msgstr ""
-"質問がある場合は、`Axon Ivy Community<https://community.axonivy.com/>`_ を参"
+"質問がある場合は、`Axon Ivy Community <https://community.axonivy.com/>`_ を参"
 "照してください。"
 
 #: ../../source/portal-developer-guide/introduction/index.rst:57
@@ -13109,7 +13109,7 @@ msgstr "**最小権限の原則**: ユーザーが業務に必要な権限のみ
 msgid ""
 "**Test Thoroughly**: Verify permission configurations with users from "
 "different roles"
-msgstr "**** を徹底的にテスト：異なる役割のユーザーで権限設定を検証"
+msgstr "**徹底的にテスト**: 異なる役割のユーザーで権限設定を検証"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:35
 msgid ""
@@ -14746,7 +14746,7 @@ msgstr "エクスポートされたExcelファイルを開く"
 msgid ""
 "Add a new column at the end with the language locale code (e.g., ``it`` "
 "for Italian)"
-msgstr "末尾に言語ロケールコードの列を追加（例：``it``（イタリア語））"
+msgstr "末尾に言語ロケールコードの列を追加（例：``it`` （イタリア語））"
 
 #: ../../source/portal-developer-guide/settings/index.rst:68
 msgid ""
@@ -14754,7 +14754,7 @@ msgid ""
 "<https://www.oracle.com/java/technologies/javase/jdk21-suported-"
 "locales.html>`_ for supported locale codes"
 msgstr ""
-"サポートされるロケールコードについては、`Java サポートロケール (JDK 21)"
+"サポートされるロケールコードについては、`Java サポートロケール (JDK 21) "
 "<https://www.oracle.com/java/technologies/javase/jdk21-suported-locales.html>"
 "`_ を参照してください。"
 
@@ -14776,8 +14776,8 @@ msgid ""
 "<https://www.oracle.com/java/technologies/javase/jdk11-suported-"
 "locales.html>`_ for supported locale codes"
 msgstr ""
-"サポートされるロケールコードについては、`および Java サポートロケール (JDK "
-"11)<https://www.oracle.com/java/technologies/javase/jdk11-suported-"
+"サポートされるロケールコードについては、`Java サポートロケール (JDK "
+"11) <https://www.oracle.com/java/technologies/javase/jdk11-suported-"
 "locales.html>`_ を参照してください。"
 
 #: ../../source/portal-developer-guide/settings/index.rst:76
@@ -15903,8 +15903,8 @@ msgid ""
 "Static pages should be organized in the ``webContent/view/`` directory of"
 " your project or custom application."
 msgstr ""
-"静的ページは、プロジェクトまたはカスタムアプリケーションの `webContent/view/"
-"`` ディレクトリ内の ``` に配置してください。"
+"静的ページは、プロジェクトまたはカスタムアプリケーションの ``webContent/view/`` "
+"ディレクトリ内に配置してください。"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:46
 msgid "**Recommended Structure:**"
@@ -15915,7 +15915,7 @@ msgid ""
 "Organize related pages in subdirectories (e.g., ``help/``, "
 "``documentation/``) to maintain a clean structure."
 msgstr ""
-"関連ページはサブディレクトリで整理し（例:``help/``,``documentation/``）、構造"
+"関連ページはサブディレクトリで整理し（例: ``help/``, ``documentation/``）、構造"
 "を明確に保つ。"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:75
@@ -16573,7 +16573,7 @@ msgid ""
 "Check cookie domain/path and ``Secure``/``SameSite`` attributes; align "
 "proxy scheme (HTTPS) and forwarded headers"
 msgstr ""
-"クッキーのドメイン/パスおよび``、`Secure``、```、`SameSite``属性を確認。"
+"クッキーのドメイン/パスおよび ``Secure`` 、``SameSite`` 属性を確認。"
 "プロキシスキーム（HTTPS）と転送ヘッダーを一致させる。"
 
 #: ../../source/portal-developer-guide/troubleshooting/index.rst:66
@@ -16637,7 +16637,7 @@ msgid ""
 "Use the correct friendly request path (``IWebStartable`` ID). The full ID"
 " is safest:"
 msgstr ""
-"正しいフレンドリーリクエストパスを使用してください（例: ``IWebStartable` `）"
+"正しいフレンドリーリクエストパスを使用してください（例: ``IWebStartable``）"
 "。完全なIDが最も安全です："
 
 #: ../../source/portal-developer-guide/troubleshooting/index.rst:100
@@ -16848,7 +16848,7 @@ msgstr "**JavaScriptコンテキストにはSanitizeAPIを使用**"
 
 #: ../../source/portal-developer-guide/troubleshooting/index.rst:233
 msgid "Use ``SanitizeAPI.escapeForJavascript(...)`` to escape special characters:"
-msgstr "特殊文字はエスケープします：`SanitizeAPI.escapeForJavascript(...)``（`` `）"
+msgstr "``SanitizeAPI.escapeForJavascript(...)`` を使用して特殊文字をエスケープします："
 
 #: ../../source/portal-developer-guide/troubleshooting/index.rst:248
 msgid "**Common Scenarios Requiring Sanitization:**"
