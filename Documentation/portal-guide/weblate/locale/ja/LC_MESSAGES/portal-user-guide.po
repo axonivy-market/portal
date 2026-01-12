@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: Portal Guide ${revision}\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-01-12 03:37+0000\n"
-"PO-Revision-Date: 2026-01-12 04:15+0000\n"
-"Last-Translator: DeepL <noreply-mt-deepl@weblate.org>\n"
+"PO-Revision-Date: 2026-01-12 04:50+0000\n"
+"Last-Translator: Tung Le <tung.le@axonactive.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/axonivy-portal/"
 "portal-12/doc/portal-user-guide/ja/>\n"
 "Language: ja\n"
@@ -31,8 +31,8 @@ msgid ""
 "**Accessibility settings**. See :ref:`accessibility-settings` for "
 "details."
 msgstr ""
-"キーボードショートカットの有効化/無効化は、**→ [My Profile](** ) → [**](**) "
-"→ [Accessibility settings]( ) で設定できます。詳細は:ref:`accessibility-"
+"キーボードショートカットを有効/無効にするには、 **マイプロフィール** > "
+"**アクセシビリティ設定** に移動してください。詳細は :ref:`accessibility-"
 "settings` を参照してください。"
 
 #: ../../source/portal-user-guide/accessibility/index.rst:11
@@ -181,9 +181,7 @@ msgstr "**キーボードレイアウト**: ヨーロッパ、アジア、アメ
 
 #: ../../source/portal-user-guide/accessibility/index.rst:57
 msgid "**macOS users**: Replace ``Alt`` with ``Option`` key."
-msgstr ""
-"** `macOSユーザー向け**: `Alt`` を ``` に置き換えて `Option`` キーを押してく"
-"ださい。"
+msgstr "**macOSユーザー**: ``Alt`` キーを ``Option`` キーに置き換えてください。"
 
 #: ../../source/portal-user-guide/accessibility/index.rst:60
 msgid "Why is Accessibility Important?"
@@ -408,8 +406,8 @@ msgstr "目的のタスクに到達するまで、**Alt + W** を繰り返し押
 #: ../../source/portal-user-guide/accessibility/index.rst:130
 msgid "Press **Tab** then **Enter** to open its context menu"
 msgstr ""
-"**を押す → タブキーを押す →** を押す →**を押す → Enter を押す →** を押して"
-"コンテキストメニューを開く"
+"**Tab** キーを押してから **Enter** キーを押すと、そのコンテキストメニューが開"
+"きます"
 
 #: ../../source/portal-user-guide/accessibility/index.rst:131
 msgid "Press **Alt + W** repeatedly to navigate menu options"
@@ -437,7 +435,7 @@ msgstr "**Alt + Q** を繰り返し押して、目的の大文字小文字に切
 
 #: ../../source/portal-user-guide/accessibility/index.rst:142
 msgid "Press **Enter** to open its context menu"
-msgstr "**を押す　** を押すとコンテキストメニューが開きます"
+msgstr "**Enter** キーを押してコンテキストメニューを開く"
 
 #: ../../source/portal-user-guide/accessibility/index.rst:143
 msgid "Press **Alt + Q** repeatedly to navigate menu options"
@@ -577,7 +575,7 @@ msgstr "**作成日時** ：ケースの作成日時"
 
 #: ../../source/portal-user-guide/accessibility/index.rst:195
 msgid "**Finished On**: The completion date of the case"
-msgstr "**** で完了：ケースの完了日"
+msgstr "**完了日**：案件の完了日"
 
 #: ../../source/portal-user-guide/accessibility/index.rst:196
 msgid "**Owners**: The current owners of the case"
@@ -617,12 +615,11 @@ msgid ""
 "shortcuts. When the dashboard opens, this widget is automatically focused"
 " and read aloud by the screen reader."
 msgstr ""
-"アクセシビリティをさらに向上させるため、障害のあるユーザーのナビゲーションを"
-"簡素化する**アクセシビリティダッシュボード（** ）を作成しました。この"
-"ダッシュボードには、利用可能なショートカットを表示する専用"
-"ショートカットウィジェットが搭載されています。ダッシュボードが開くと、この"
-"ウィジェットが自動的にフォーカスされ、スクリーンリーダーによって読み上げられ"
-"ます。"
+"アクセシビリティをさらに向上させるため、障がいのあるユーザーの操作を簡素化す"
+"る**アクセシビリティダッシュボード**を開発しました。このダッシュボードには、"
+"利用可能なショートカットを表示する専用ウィジェットが搭載されています。"
+"ダッシュボードが開くと、このウィジェットが自動的にフォーカスされ、"
+"スクリーンリーダーによって読み上げられます。"
 
 #: ../../source/portal-user-guide/accessibility/index.rst:213
 msgid ""
