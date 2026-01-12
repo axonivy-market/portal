@@ -9,15 +9,16 @@ msgstr ""
 "Project-Id-Version: Portal Guide ${revision}\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-01-12 03:37+0000\n"
-"PO-Revision-Date: 2025-11-20 04:08+0000\n"
-"Last-Translator: Loc Nguyen <loc.nguyenthanh@axonactive.com>\n"
+"PO-Revision-Date: 2026-01-12 04:50+0000\n"
+"Last-Translator: Tung Le <tung.le@axonactive.com>\n"
+"Language-Team: Japanese <https://hosted.weblate.org/projects/axonivy-portal/"
+"portal-12/doc/portal-components/ja/>\n"
 "Language: ja\n"
-"Language-Team: Japanese <https://hosted.weblate.org/projects/axonivy-"
-"portal/portal-12/doc/portal-components/ja/>\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 5.15.1\n"
 "Generated-By: Babel 2.17.0\n"
 
 #: ../../source/portal-components/document-table/index.rst:4
@@ -195,20 +196,19 @@ msgstr "メッセージのレンダリングを指定するブール値。false�
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "renderChooseUploadIcon"
-msgstr ""
+msgstr "renderChooseUploadIcon"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "Defines if the button to upload document is displayed or not."
-msgstr ""
+msgstr "ドキュメントをアップロードするボタンの表示有無を定義します。"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "lazy"
 msgstr "lazy"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
-#, fuzzy
 msgid "FALSE"
-msgstr "false"
+msgstr "FALSE"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid ""
@@ -232,9 +232,8 @@ msgid "Integer"
 msgstr "Integer"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
-#, fuzzy
 msgid "Maximum number of files that can be uploaded."
-msgstr "表示される結果の最大数。"
+msgstr "アップロード可能なファイルの最大数。"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "sizeLimit"
@@ -254,17 +253,15 @@ msgstr "Long"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "Maximum size of an individual file in bytes."
-msgstr ""
+msgstr "個々のファイルの最大サイズ（バイト単位）。"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
-#, fuzzy
 msgid "uploadText"
-msgstr "UploadDocument"
+msgstr "uploadText"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
-#, fuzzy
 msgid "Upload"
-msgstr "uploadedFile"
+msgstr "アップロード"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 #: ../../source/portal-components/documents/process_chain_component_attributes.csv:1
@@ -277,7 +274,7 @@ msgstr "String"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "Label text displayed on the upload button."
-msgstr ""
+msgstr "アップロードボタンに表示されるラベルテキスト。"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "updatedComponentAfterUploaded"
@@ -288,20 +285,20 @@ msgid ""
 "Space-separated clientIds (or EL expressions) of components to update "
 "after a successful upload. Example: 'document-table document-messages'."
 msgstr ""
+"アップロード成功後に更新するコンポーネントのスペース区切りクライアントID（ま"
+"たはEL式）。例: 'document-table document-messages'。"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
-#, fuzzy
 msgid "previewTitle"
-msgstr "previewIcon"
+msgstr "previewTitle"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
-#, fuzzy
 msgid "Preview"
-msgstr "previewIcon"
+msgstr "プレビュー"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "Tooltip text displayed when hovering over the preview icon."
-msgstr ""
+msgstr "プレビューアイコンにカーソルを合わせた際に表示されるツールチップテキスト。"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "previewIcon"
@@ -312,9 +309,8 @@ msgid "fa-eye"
 msgstr "fa-eye"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
-#, fuzzy
 msgid "Icon class for the preview link."
-msgstr "プレビューリンク用のスタイル。"
+msgstr "プレビューリンクのアイコンクラス。"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "previewStyleClass"
@@ -322,26 +318,23 @@ msgstr "previewStyleClass"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "Custom CSS style class to apply to the preview link."
-msgstr ""
+msgstr "プレビューリンクに適用するカスタムCSSスタイルクラス。"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
-#, fuzzy
 msgid "previewDialogStyleClass"
-msgstr "previewImageStyleClass"
+msgstr "previewDialogStyleClass"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
-#, fuzzy
 msgid "Custom CSS style class to apply to the preview dialog."
-msgstr "画像プレビューダイアログのスタイル"
+msgstr "プレビューダイアログに適用するカスタムCSSスタイルクラス。"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "previewPDFStyleClass"
 msgstr "previewPDFStyleClass"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
-#, fuzzy
 msgid "Custom CSS style class to apply to PDF preview media element."
-msgstr "スタイルクラスは表示名要素に適用されます。"
+msgstr "PDFプレビューメディア要素に適用するカスタムCSSスタイルクラス。"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "previewImageStyleClass"
@@ -349,21 +342,19 @@ msgstr "previewImageStyleClass"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "Custom CSS style class to apply to image preview element."
-msgstr ""
+msgstr "画像プレビュー要素に適用するカスタムCSSスタイルクラス。"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
-#, fuzzy
 msgid "downloadTitle"
-msgstr "DownloadDocumentItem"
+msgstr "downloadTitle"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
-#, fuzzy
 msgid "Download"
-msgstr "fa-download"
+msgstr "ダウンロード"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "Tooltip text displayed when hovering over the download icon."
-msgstr ""
+msgstr "ダウンロードアイコンにカーソルを合わせた際に表示されるツールチップテキスト。"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "downloadIcon"
@@ -386,18 +377,16 @@ msgid "Styles for download link."
 msgstr "ダウンロードリンクのスタイル"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
-#, fuzzy
 msgid "deleteTitle"
-msgstr "DeleteDocumentItem"
+msgstr "deleteTitle"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
-#, fuzzy
 msgid "Delete"
-msgstr "deleteIcon"
+msgstr "削除"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "Tooltip text displayed when hovering over the delete icon."
-msgstr ""
+msgstr "削除アイコンにカーソルを合わせた際に表示されるツールチップテキスト。"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "deleteIcon"
@@ -417,7 +406,7 @@ msgstr "deleteStyleClass"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "Custom CSS style class to apply to the download link."
-msgstr ""
+msgstr "ダウンロードリンクに適用するカスタムCSSスタイルクラス。"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "updatedComponentAfterDeleted"
@@ -428,11 +417,12 @@ msgid ""
 "Space-separated clientIds (or EL expressions) of components to update "
 "after a successful deletion. Example: 'document-table document-messages'."
 msgstr ""
+"削除成功後に更新するコンポーネントのスペース区切りクライアントID（またはEL式"
+"）。例: 'document-table document-messages'。"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
-#, fuzzy
 msgid "renameText"
-msgstr "moreText"
+msgstr "renameText"
 
 #: ../../source/portal-components/document-table/index.rst:149
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
@@ -441,16 +431,15 @@ msgstr "文書名の変更"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "Tooltip text displayed when hovering over the rename icon."
-msgstr ""
+msgstr "名前変更アイコンにカーソルを合わせた際に表示されるツールチップテキスト。"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
-#, fuzzy
 msgid "renameTitle"
-msgstr "renameStyleClass"
+msgstr "renameTitle"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "Title text displayed in the rename dialog header."
-msgstr ""
+msgstr "リネームダイアログのヘッダーに表示されるタイトルテキスト。"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "renameStyleClass"
@@ -458,7 +447,7 @@ msgstr "renameStyleClass"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "Custom CSS style class to apply to the rename link."
-msgstr ""
+msgstr "リネームリンクに適用するカスタムCSSスタイルクラス。"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "updatedComponentAfterRenamed"
@@ -469,6 +458,8 @@ msgid ""
 "Space-separated clientIds (or EL expressions) of components to update "
 "after a successful rename. Example: 'document-table document-messages'."
 msgstr ""
+"更新に成功した後の更新対象コンポーネントのスペース区切りクライアントID（また"
+"はEL式）。例: 'document-table document-messages'。"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "selectedType"
@@ -479,6 +470,8 @@ msgid ""
 "Default document type to be selected. If not provided, the first item of "
 "``typeSelectionItems`` will be used."
 msgstr ""
+"デフォルトで選択されるドキュメントタイプ。指定がない場合"
+"、``typeSelectionItems`` の最初の項目が使用されます。"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "typeSelectionItems"
@@ -489,9 +482,8 @@ msgid "DOCUMENTATION,CONTRACT,INFORMATION,EMAIL,OTHERS"
 msgstr "DOCUMENTATION,CONTRACT,INFORMATION,EMAIL,OTHERS"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
-#, fuzzy
 msgid "com.axonivy.portal.components.enums.DocumentType[]"
-msgstr "com.axonivy.portal.components.ivydata.bo.IvyDocument"
+msgstr "com.axonivy.portal.components.enums.DocumentType[]"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 #, python-brace-format
@@ -500,6 +492,9 @@ msgid ""
 " #{documentUploadBean.documentTypes} which returns BasicDocumentType enum"
 " values (DOCUMENTATION, CONTRACT, INFORMATION, EMAIL, OTHERS)."
 msgstr ""
+"タイプ選択ドロップダウン用のDocumentTypeオブジェクトの配列。デフォルトは#"
+"{documentUploadBean.documentTypes} で、BasicDocumentType列挙値（DOCUMENTATION"
+"、CONTRACT、INFORMATION、EMAIL、OTHERS）を返します。"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "enableScriptCheckingForUploadedDocument"
@@ -622,20 +617,20 @@ msgid "Customize"
 msgstr "カスタマイズ"
 
 #: ../../source/portal-components/document-table/index.rst:42
-#, fuzzy
 msgid ""
 "In your project, create callable subprocesses with the information below "
 "to customize the functions of the **Document Table**."
-msgstr "以下の情報を使用して、プロジェクトで 4 つの呼び出し可能サブプロセスを作成し、 **ドキュメントテーブル** の機能をカスタマイズします。"
+msgstr ""
+"プロジェクト内で、以下の情報を使用して呼び出し可能なサブプロセスを作成し"
+"、**ドキュメントテーブル** の機能をカスタマイズしてください。"
 
 #: ../../source/portal-components/document-table/index.rst:47
-#, fuzzy
 msgid ""
 "You can refer to process ``CustomDocumentFeatures`` in project ``portal-"
 "components-examples`` to examine how to customize."
 msgstr ""
-"``portal-component-examples`` プロジェクトの ``CustomDocumentFeatures`` "
-"プロセスを参照して、カスタマイズ方法を確認できます。"
+"カスタマイズ方法を確認するには、プロジェクト「portal-components-examples」内"
+"のプロセス「CustomDocumentFeatures」を参照してください。"
 
 #: ../../source/portal-components/document-table/index.rst:51
 msgid "Get document list"
@@ -656,38 +651,36 @@ msgstr "**シグネチャ**：portalGetDocumentItems"
 #: ../../source/portal-components/document-table/index.rst:114
 #: ../../source/portal-components/document-table/index.rst:135
 #: ../../source/portal-components/document-table/index.rst:156
-#, fuzzy
 msgid "**Parameters:**"
-msgstr "**パラメーター**"
+msgstr "**パラメータ:**"
 
 #: ../../source/portal-components/document-table/index.rst:59
 #: ../../source/portal-components/document-table/index.rst:80
 #: ../../source/portal-components/document-table/index.rst:116
 #: ../../source/portal-components/document-table/index.rst:137
 #: ../../source/portal-components/document-table/index.rst:158
-#, fuzzy
 msgid "``businessCase`` (ch.ivyteam.ivy.workflow.ICase)"
-msgstr "ch.ivyteam.ivy.workflow.ICase"
+msgstr "``businessCase`` (ch.ivyteam.ivy.workflow.ICase)"
 
 #: ../../source/portal-components/document-table/index.rst:60
 msgid "The case for which to retrieve documents."
-msgstr ""
+msgstr "ドキュメントを取得するための条件。"
 
 #: ../../source/portal-components/document-table/index.rst:62
 #: ../../source/portal-components/document-table/index.rst:95
 #: ../../source/portal-components/document-table/index.rst:122
 #: ../../source/portal-components/document-table/index.rst:143
 #: ../../source/portal-components/document-table/index.rst:164
-#, fuzzy
 msgid "**Result:**"
-msgstr "**結果**"
+msgstr "**結果:**"
 
 #: ../../source/portal-components/document-table/index.rst:64
-#, fuzzy
 msgid ""
 "``documents`` "
 "(java.util.List<com.axonivy.portal.components.ivydata.bo.IvyDocument>)"
-msgstr "java.util.List<com.axonivy.portal.components.ivydata.bo.IvyDocument>"
+msgstr ""
+"``documents`` "
+"(java.util.List<com.axonivy.portal.components.ivydata.bo.IvyDocument>)"
 
 #: ../../source/portal-components/document-table/index.rst:65
 msgid ""
@@ -695,18 +688,19 @@ msgid ""
 "from your DMS, convert them into this type with mandatory fields: ``id``,"
 " ``uuid``, ``name``, ``contentType``."
 msgstr ""
+"本件に関連する文書のリスト。DMSから文書を取得後、以下の必須フィールドを含むこ"
+"のタイプに変換してください：``id``、``uuid``、``name``、``contentType``。"
 
 #: ../../source/portal-components/document-table/index.rst:67
 #: ../../source/portal-components/document-table/index.rst:100
 #: ../../source/portal-components/document-table/index.rst:145
 #: ../../source/portal-components/document-table/index.rst:166
-#, fuzzy
 msgid "``message`` (java.lang.String)"
-msgstr "java.lang.String"
+msgstr "``message`` (java.lang.String)"
 
 #: ../../source/portal-components/document-table/index.rst:68
 msgid "Status or error message from the document retrieval operation."
-msgstr ""
+msgstr "ドキュメント取得操作からのステータスまたはエラーメッセージ。"
 
 #: ../../source/portal-components/document-table/index.rst:71
 msgid "Upload document"
@@ -725,69 +719,61 @@ msgid "**Signature**: portalUploadDocumentItem"
 msgstr "**シグネチャ**: portalUploadDocumentItem"
 
 #: ../../source/portal-components/document-table/index.rst:81
-#, fuzzy
 msgid "The case to upload the document to."
-msgstr "ドキュメントのアップロード"
+msgstr "ドキュメントをアップロードするケース。"
 
 #: ../../source/portal-components/document-table/index.rst:83
-#, fuzzy
 msgid "``uploadedFile`` (org.primefaces.model.file.UploadedFile)"
-msgstr "org.primefaces.model.file.UploadedFile"
+msgstr "``uploadedFile`` (org.primefaces.model.file.UploadedFile)"
 
 #: ../../source/portal-components/document-table/index.rst:84
 msgid "The file being uploaded by the user."
-msgstr ""
+msgstr "ユーザーがアップロードしているファイル。"
 
 #: ../../source/portal-components/document-table/index.rst:86
-#, fuzzy
 msgid "``enableScriptCheckingForUploadedDocument`` (java.lang.Boolean)"
-msgstr "enableScriptCheckingForUploadedDocument"
+msgstr "``enableScriptCheckingForUploadedDocument`` (java.lang.Boolean)"
 
 #: ../../source/portal-components/document-table/index.rst:87
 msgid "Whether to check uploaded files for embedded scripts."
-msgstr ""
+msgstr "アップロードされたファイルに埋め込まれたスクリプトの有無を確認するかどうか。"
 
 #: ../../source/portal-components/document-table/index.rst:89
-#, fuzzy
 msgid "``enableVirusScannerForUploadedDocument`` (java.lang.Boolean)"
-msgstr "enableVirusScannerForUploadedDocument"
+msgstr "``enableVirusScannerForUploadedDocument`` (java.lang.Boolean)"
 
 #: ../../source/portal-components/document-table/index.rst:90
 msgid "Whether to scan uploaded files for viruses."
-msgstr ""
+msgstr "アップロードされたファイルをウイルススキャンするかどうか。"
 
 #: ../../source/portal-components/document-table/index.rst:92
-#, fuzzy
 msgid "``allowedUploadFileTypes`` (java.lang.String)"
-msgstr "allowedUploadFileTypes"
+msgstr "``allowedUploadFileTypes`` (java.lang.String)"
 
 #: ../../source/portal-components/document-table/index.rst:93
 msgid "Comma-separated list of allowed file extensions."
-msgstr ""
+msgstr "許可されたファイル拡張子のカンマ区切りリスト。"
 
 #: ../../source/portal-components/document-table/index.rst:97
-#, fuzzy
 msgid "``uploadedDocument`` (ch.ivyteam.ivy.workflow.document.IDocument)"
-msgstr "ch.ivyteam.ivy.workflow.document.IDocument"
+msgstr "``uploadedDocument`` (ch.ivyteam.ivy.workflow.document.IDocument)"
 
 #: ../../source/portal-components/document-table/index.rst:98
-#, fuzzy
 msgid "The uploaded document object."
-msgstr "uploadedDocument"
+msgstr "アップロードされたドキュメントオブジェクト。"
 
 #: ../../source/portal-components/document-table/index.rst:101
 msgid "Status or error message from the upload operation."
-msgstr ""
+msgstr "アップロード操作からのステータスまたはエラーメッセージ。"
 
 #: ../../source/portal-components/document-table/index.rst:103
 #: ../../source/portal-components/document-table/index.rst:172
-#, fuzzy
 msgid "``status`` (java.lang.String)"
-msgstr "java.lang.String"
+msgstr "``status`` (java.lang.String)"
 
 #: ../../source/portal-components/document-table/index.rst:104
 msgid "Operation status: OK or FAIL."
-msgstr ""
+msgstr "動作状態: OK または FAIL。"
 
 #: ../../source/portal-components/document-table/index.rst:107
 msgid "Download document"
@@ -809,27 +795,25 @@ msgstr "**シグネチャ**：portalDownloadDocumentItem"
 #: ../../source/portal-components/document-table/index.rst:138
 #: ../../source/portal-components/document-table/index.rst:159
 msgid "The case containing the document."
-msgstr ""
+msgstr "ドキュメントを含むケース。"
 
 #: ../../source/portal-components/document-table/index.rst:119
 #: ../../source/portal-components/document-table/index.rst:140
 #: ../../source/portal-components/document-table/index.rst:161
-#, fuzzy
 msgid "``document`` (com.axonivy.portal.components.ivydata.bo.IvyDocument)"
-msgstr "com.axonivy.portal.components.ivydata.bo.IvyDocument"
+msgstr "``document`` (com.axonivy.portal.components.ivydata.bo.IvyDocument)"
 
 #: ../../source/portal-components/document-table/index.rst:120
 msgid "The document to be downloaded."
-msgstr ""
+msgstr "ダウンロード対象の文書。"
 
 #: ../../source/portal-components/document-table/index.rst:124
-#, fuzzy
 msgid "``streamedContent`` (org.primefaces.model.StreamedContent)"
-msgstr "org.primefaces.model.StreamedContent"
+msgstr "``streamedContent`` (org.primefaces.model.StreamedContent)"
 
 #: ../../source/portal-components/document-table/index.rst:125
 msgid "The document content stream for download."
-msgstr ""
+msgstr "ダウンロード用のドキュメントコンテンツストリーム。"
 
 #: ../../source/portal-components/document-table/index.rst:128
 msgid "Delete document"
@@ -848,13 +832,12 @@ msgid "**Signature**: portalDeleteDocumentItem"
 msgstr "**シグネチャ**：portalDeleteDocumentItem"
 
 #: ../../source/portal-components/document-table/index.rst:141
-#, fuzzy
 msgid "The document to be deleted."
-msgstr "ドキュメントテーブル"
+msgstr "削除対象の文書。"
 
 #: ../../source/portal-components/document-table/index.rst:146
 msgid "Status or error message from the delete operation."
-msgstr ""
+msgstr "削除操作からのステータスまたはエラーメッセージ。"
 
 #: ../../source/portal-components/document-table/index.rst:151
 msgid ""
@@ -869,39 +852,38 @@ msgid "**Signature**: portalRenameDocumentItem"
 msgstr "**署名**: portalRenameDocumentItem"
 
 #: ../../source/portal-components/document-table/index.rst:162
-#, fuzzy
 msgid ""
 "The document to be renamed. The new filename should already be modified "
 "in the document's name attribute."
 msgstr ""
-"呼び出し可能なサブプロセスデータのパラメータには、更新する Ivy ``document`` "
-"が含まれます。新しいファイル名は、ドキュメントのname属性ですでに変更されている必要があります。"
+"リネーム対象のドキュメント。新しいファイル名は、ドキュメントのname属性で既に"
+"変更済みである必要があります。"
 
 #: ../../source/portal-components/document-table/index.rst:167
-#, fuzzy
 msgid ""
 "Message to inform the user that their new filename is successfully "
 "updated or invalid to use."
-msgstr "``message``: 新しいファイル名が正常に更新されたか、あるいは無効であることをユーザーに知らせるメッセージ。"
+msgstr ""
+"新しいファイル名が正常に更新されたこと、または使用できないことをユーザーに通"
+"知するメッセージ。"
 
 #: ../../source/portal-components/document-table/index.rst:169
-#, fuzzy
 msgid "``isSuccess`` (java.lang.Boolean)"
-msgstr "java.lang.Boolean"
+msgstr "``isSuccess`` (java.lang.Boolean)"
 
 #: ../../source/portal-components/document-table/index.rst:170
-#, fuzzy
 msgid ""
 "``true`` if the document's name is successfully updated, otherwise "
 "``false``."
-msgstr "``isSuccess``:``true`` 文書名の更新に成功した場合、それ以外の場合 ``false``."
+msgstr "``true``（ドキュメント名が正常に更新された場合）、それ以外は``false``。"
 
 #: ../../source/portal-components/document-table/index.rst:173
-#, fuzzy
 msgid ""
 "Operation status: OK or SKIP (if customized process skipped updating the "
 "filename)."
-msgstr "``status``: ``SKIP`` カスタマイズされたプロセスがファイル名の更新をスキップした場合 。"
+msgstr ""
+"操作ステータス: OK または SKIP（カスタマイズされたプロセスでファイル名の更新"
+"がスキップされた場合）。"
 
 #: ../../source/portal-components/document-table/index.rst:176
 msgid "User interface"
@@ -1140,15 +1122,18 @@ msgid ""
 "selection, role management, document handling, process visualization, and"
 " more."
 msgstr ""
+"ポータルコンポーネントは、ポータル全体をインポートすることなく、独自のAxon "
+"Ivyプロジェクトに統合できる再利用可能なUIコンポーネントおよびJava APIです。こ"
+"れらのコンポーネントは、ユーザー選択、ロール管理、文書処理、プロセス可視化な"
+"ど、エンタープライズ対応の機能を提供します。"
 
 #: ../../source/portal-components/index.rst:20
-#, fuzzy
 msgid ""
 "Refer to the ``portal-components-examples`` project for usage, "
 "customization, and visual examples across supported themes."
 msgstr ""
-"使用やカスタマイズの詳細、サポートされるテーマにおける各コンポーネントの外観については、 ``portal-components-"
-"examples`` プロジェクトを参照してください。"
+"使用方法、カスタマイズ、およびサポートされているテーマ全体の視覚的な例につい"
+"ては、``portal-components-examples`` プロジェクトを参照してください。"
 
 #: ../../source/portal-components/process-chain/index.rst:4
 #: ../../source/portal-components/style-customization/index.rst:45
@@ -1563,12 +1548,13 @@ msgid ""
 "List of parent role names. Only child roles of these roles are loaded. "
 "Leave empty to load all roles."
 msgstr ""
+"親ロール名のリスト。これらのロールの子ロールのみが読み込まれます。空のままに"
+"すると全てのロールが読み込まれます。"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
-#, fuzzy
 msgid "Unique identifier of this component instance."
-msgstr "このコンポーネントは任意のページに挿入できます。"
+msgstr "このコンポーネントインスタンスの一意の識別子。"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 msgid "selectedRole"
@@ -1580,18 +1566,19 @@ msgstr "RoleDTO"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 msgid "Holds the selected role value."
-msgstr ""
+msgstr "選択されたロール値を保持します。"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 msgid "excludedRolenames"
 msgstr "excludedRolenames"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
-#, fuzzy
 msgid ""
 "List of role names to exclude from selection. Only applies when using the"
 " default completeMethod."
-msgstr "ロール選択から除外するロール。デフォルトのcompleteMethodを使用する場合に適用されます。"
+msgstr ""
+"選択対象から除外するロール名のリスト。デフォルトの completeMethod を使用する"
+"場合にのみ適用されます。"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
@@ -1606,7 +1593,7 @@ msgstr "このフィールドは必須です。"
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
 msgid "Validation message displayed when the required field is empty."
-msgstr ""
+msgstr "必須フィールドが空の場合に表示される検証メッセージ。"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
@@ -1621,7 +1608,7 @@ msgstr "true"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 msgid "When enabled, only roles from the suggestion list can be selected."
-msgstr ""
+msgstr "有効化時、提案リスト内のロールのみ選択可能。"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
@@ -1636,7 +1623,7 @@ msgstr "1"
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
 msgid "Minimum number of characters required to start searching."
-msgstr ""
+msgstr "検索を開始するために必要な最小文字数。"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
@@ -1657,6 +1644,8 @@ msgid ""
 "Custom method for loading roles. Must accept a String query and return "
 "List<RoleDTO>."
 msgstr ""
+"ロールを読み込むカスタムメソッド。文字列クエリを受け取り、List<RoleDTO> を返"
+"す必要があります。"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
@@ -1664,9 +1653,8 @@ msgid "isDisabled"
 msgstr "isDisabled"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
-#, fuzzy
 msgid "Disables the role selection input."
-msgstr "trueの場合、User Selectionを無効にする。"
+msgstr "ロール選択入力機能を無効化します。"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
@@ -1674,9 +1662,8 @@ msgid "isRequired"
 msgstr "isRequired"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
-#, fuzzy
 msgid "Marks the role selection field as required."
-msgstr "trueの場合、マークス役割選択が必要。"
+msgstr "役割選択フィールドを必須項目としてマークします。"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
@@ -1685,7 +1672,7 @@ msgstr "isReadOnly"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 msgid "Prevents changing the selected role when enabled."
-msgstr ""
+msgstr "有効化中は選択されたロールの変更を防止します。"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
@@ -1695,7 +1682,7 @@ msgstr "isRenderedMessage"
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
 msgid "Controls whether validation messages are rendered."
-msgstr ""
+msgstr "検証メッセージの表示を制御します。"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
@@ -1703,9 +1690,8 @@ msgid "hightlight"
 msgstr "hightlight"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
-#, fuzzy
 msgid "Automatically highlights the first suggested role."
-msgstr "最初に提案された役割が自動的にハイライトされます。"
+msgstr "最初に提案された役割を自動的に強調表示します。"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
@@ -1715,7 +1701,7 @@ msgstr "floatingLabel"
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
 msgid "Displays the label using floating style."
-msgstr ""
+msgstr "ラベルをフローティングスタイルで表示します。"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
@@ -1723,9 +1709,8 @@ msgid "autocompleteStyleClass"
 msgstr "autocompleteStyleClass"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
-#, fuzzy
 msgid "CSS style class applied to the role autocomplete component."
-msgstr "ロールオートコンプリートパネルのスタイルクラス。"
+msgstr "ロールのオートコンプリートコンポーネントに適用されるCSSスタイルクラス。"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
@@ -1733,9 +1718,8 @@ msgid "autoCompletePanelStyleClass"
 msgstr "autoCompletePanelStyleClass"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
-#, fuzzy
 msgid "CSS style class applied to the role autocomplete dropdown panel."
-msgstr "ロールオートコンプリートパネルのスタイルクラス。"
+msgstr "ロール「autocomplete」ドロップダウンパネルに適用されるCSSスタイルクラス。"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
@@ -1743,9 +1727,8 @@ msgid "inputStyleClass"
 msgstr "inputStyleClass"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
-#, fuzzy
 msgid "CSS style class applied to the role autocomplete input field."
-msgstr "ロールオートコンプリート入力のスタイルクラス。"
+msgstr "ロールのオートコンプリート入力フィールドに適用されるCSSスタイルクラス。"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
@@ -1754,19 +1737,18 @@ msgstr "labelStyleClass"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
-#, fuzzy
 msgid "CSS style class applied to the label."
-msgstr "ラベルのスタイルクラス。"
+msgstr "ラベルに適用されるCSSスタイルクラス。"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 msgid "appendOption"
-msgstr ""
+msgstr "appendOption"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 msgid ""
 "Additional information appended to the role display, such as parent role "
 "name or none. Value: NONE, PARENT_NAME."
-msgstr ""
+msgstr "ロール表示に追加される情報（親ロール名やなしなど）。値：NONE、PARENT_NAME。"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
@@ -1774,9 +1756,8 @@ msgid "label"
 msgstr "label"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
-#, fuzzy
 msgid "Label text for the role selection component."
-msgstr "役割選択コンポーネントのラベルのテキスト。"
+msgstr "役割選択コンポーネントのラベルテキスト。"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
@@ -1784,9 +1765,8 @@ msgid "size"
 msgstr "size"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
-#, fuzzy
 msgid "Number of characters used to define the input width."
-msgstr "入力要素の幅を決定するために使用される文字数。"
+msgstr "入力幅を定義するために使用される文字数。"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
@@ -1795,9 +1775,8 @@ msgstr "messageStyleClass"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
-#, fuzzy
 msgid "CSS style class applied to the validation message."
-msgstr "メッセージのスタイルクラス。"
+msgstr "検証メッセージに適用されるCSSスタイルクラス。"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
@@ -1812,7 +1791,7 @@ msgstr "displayName"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 msgid "Text displayed for roles in the dropdown and the selected value."
-msgstr ""
+msgstr "ドロップダウン内のロール表示テキストと選択された値。"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
@@ -1820,9 +1799,8 @@ msgid "cache"
 msgstr "cache"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
-#, fuzzy
 msgid "Caches autocomplete search results when enabled."
-msgstr "trueの場合、オートコンプリートは検索結果リストをキャッシュする。"
+msgstr "有効時に自動補完検索結果をキャッシュします。"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
@@ -1836,7 +1814,7 @@ msgstr "More..."
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 msgid "Text displayed for the 'More' link when results exceed the limit."
-msgstr ""
+msgstr "結果が制限を超えた場合に表示される「もっと見る」リンクのテキスト。"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
@@ -1849,9 +1827,8 @@ msgid "300"
 msgstr "300"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
-#, fuzzy
 msgid "Delay in milliseconds before sending the search query."
-msgstr "サーバーに問い合わせを送信するまでのミリ秒単位の遅延。"
+msgstr "検索クエリ送信前の遅延時間（ミリ秒単位）"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
@@ -1864,9 +1841,8 @@ msgid "100"
 msgstr "100"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
-#, fuzzy
 msgid "Maximum number of results displayed in the dropdown."
-msgstr "表示される結果の最大数。"
+msgstr "ドロップダウンに表示される結果の最大数。"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
@@ -1875,13 +1851,12 @@ msgstr "scrollHeight"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
-#, fuzzy
 msgid "390"
-msgstr "300"
+msgstr "390"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 msgid "Maximum height of the autocomplete dropdown panel."
-msgstr ""
+msgstr "オートコンプリートドロップダウンパネルの最大高さ。"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
@@ -1890,9 +1865,8 @@ msgstr "hasCustomizedSelectionList"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
-#, fuzzy
 msgid "Displays a customized selection list when enabled."
-msgstr "trueの場合、カスタマイズされた選択リストが表示される。"
+msgstr "有効化するとカスタマイズされた選択リストを表示します。"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
@@ -1901,7 +1875,7 @@ msgstr "isShowAvatarInSelectionList"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv
 msgid "Displays role avatars in the selection list when enabled."
-msgstr ""
+msgstr "有効化すると、選択リストにロールアバターを表示します。"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv
 #: ../../source/portal-components/documents/security_member_name_and_avatar_component_attributes.csv
@@ -1926,9 +1900,8 @@ msgid "displayNameRenderedInSelectionList"
 msgstr "displayNameRenderedInSelectionList"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
-#, fuzzy
 msgid "Controls visibility of the role display name in the selection list."
-msgstr "選択リストの表示名のスタイルクラス"
+msgstr "選択リストにおけるロールの表示名の可視性を制御します。"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
@@ -1936,9 +1909,8 @@ msgid "displayNameInSelectionListStyleClass"
 msgstr "displayNameInSelectionListStyleClass"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
-#, fuzzy
 msgid "CSS style class for the role display name in the selection list."
-msgstr "選択リストの表示名のスタイルクラス"
+msgstr "選択リスト内のロール表示名に対するCSSスタイルクラス。"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
@@ -1947,9 +1919,8 @@ msgstr "selectionListContainerStyleClass"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
-#, fuzzy
 msgid "CSS style class for the selection list item container."
-msgstr "選択リストの表示名のスタイルクラス"
+msgstr "選択リスト項目コンテナ用のCSSスタイルクラス。"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
@@ -1963,15 +1934,13 @@ msgstr "No results"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
-#, fuzzy
 msgid "Message displayed when no results are available."
-msgstr "オートコンプリートの検証に失敗した場合に表示されるメッセージ。"
+msgstr "結果が見つからない場合に表示されるメッセージ。"
 
 #: ../../source/portal-components/role-selection/index.rst:102
 #: ../../source/portal-components/user-selection/index.rst:100
-#, fuzzy
 msgid "Migrate to 12.0.12"
-msgstr "10.0.0 への移行"
+msgstr "12.0.12 へ移行"
 
 #: ../../source/portal-components/role-selection/index.rst:104
 msgid ""
@@ -1979,12 +1948,17 @@ msgid ""
 "consistency. If you have custom styles for this component, please review "
 "and adjust them accordingly."
 msgstr ""
+"**のRoleSelectionコンポーネント（** ）は、レイアウトの一貫性を向上させるため"
+"再構築されました。このコンポーネントにカスタムスタイルを適用している場合は、"
+"必要に応じて見直しと調整を行ってください。"
 
 #: ../../source/portal-components/role-selection/index.rst:106
 msgid ""
 "The attribute ``labelPanelStyleClass`` has been removed. If you used this"
 " attribute, please remove it from your code."
 msgstr ""
+"属性``labelPanelStyleClass`` は削除されました。この属性を使用していた場合は、"
+"コードから削除してください。"
 
 #: ../../source/portal-components/role-selection/index.rst:109
 msgid "Migrate from Deprecated Role Selection"
@@ -2167,6 +2141,10 @@ msgid ""
 "aspects without modifying component code. Override these CSS variables in"
 " your own stylesheet to match your corporate design or application theme."
 msgstr ""
+"Portal ComponentsはスタイリングにCSSカスタムプロパティ（変数）を使用しており"
+"、コンポーネントコードを変更せずに色、フォント、間隔、その他の視覚的要素を"
+"カスタマイズできます。これらのCSS変数を独自のスタイルシートで上書きし、企業"
+"デザインやアプリケーションテーマに合わせることができます。"
 
 #: ../../source/portal-components/style-customization/index.rst:13
 msgid "How to customize"
@@ -2553,6 +2531,8 @@ msgid ""
 "List of role names. Only users in these roles are loaded. Leave empty to "
 "load all users."
 msgstr ""
+"ロール名のリスト。これらのロールに属するユーザーのみが読み込まれます。空のま"
+"まにすると全ユーザーが読み込まれます。"
 
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
 msgid "selectedUser"
@@ -2564,22 +2544,23 @@ msgstr "UserDTO"
 
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
 msgid "Holds the selected user value."
-msgstr ""
+msgstr "選択されたユーザー値を保持します。"
 
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
 msgid "excludedUsernames"
 msgstr "excludedUsernames"
 
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
-#, fuzzy
 msgid ""
 "List of usernames to exclude from selection. Only applies when using the "
 "default completeMethod."
-msgstr "ユーザ選択から除外するユーザ。これは、デフォルトのcompleteMethodを使用する場合に適用されます。"
+msgstr ""
+"選択対象から除外するユーザー名のリスト。デフォルトの completeMethod を使用す"
+"る場合にのみ適用されます。"
 
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
 msgid "When enabled, only users from the suggestion list can be selected."
-msgstr ""
+msgstr "有効化時、提案リストのユーザーのみが選択可能となります。"
 
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
 msgid "completeUser"
@@ -2590,45 +2571,40 @@ msgid ""
 "Custom method for loading users. Must accept a String query and return "
 "List<UserDTO>."
 msgstr ""
+"ユーザー読み込み用のカスタムメソッド。文字列クエリを受け取り、List<UserDTO> "
+"を返す必要があります。"
 
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
-#, fuzzy
 msgid "Disables the user selection input."
-msgstr "trueの場合、User Selectionを無効にする。"
+msgstr "ユーザー選択入力を無効化します。"
 
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
-#, fuzzy
 msgid "Marks the user selection field as required."
-msgstr "trueの場合、User Selectionが必要。"
+msgstr "ユーザー選択フィールドを必須項目としてマークします。"
 
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
 msgid "Prevents changing the selected user when enabled."
-msgstr ""
+msgstr "有効化すると、選択されたユーザーを変更できなくなります。"
 
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
-#, fuzzy
 msgid "Automatically highlights the first suggested user."
-msgstr "trueの場合、最初に表示されるユーザーを自動的にハイライトします。"
+msgstr "最初に提案されたユーザーを自動的にハイライト表示します。"
 
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
-#, fuzzy
 msgid "CSS style class applied to the autocomplete component."
-msgstr "ユーザーオートコンプリートパネルのスタイルクラス。"
+msgstr "オートコンプリートコンポーネントに適用されるCSSスタイルクラス。"
 
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
-#, fuzzy
 msgid "CSS style class applied to the autocomplete dropdown panel."
-msgstr "ユーザーオートコンプリートパネルのスタイルクラス。"
+msgstr "オートコンプリートドロップダウンパネルに適用されるCSSスタイルクラス。"
 
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
-#, fuzzy
 msgid "CSS style class applied to the autocomplete input field."
-msgstr "ユーザオートコンプリート入力のスタイルクラス。"
+msgstr "オートコンプリート入力フィールドに適用されるCSSスタイルクラス。"
 
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
-#, fuzzy
 msgid "Label text for the user selection component."
-msgstr "ユーザー選択コンポーネントのラベルのテキスト。"
+msgstr "ユーザー選択コンポーネントのラベルテキスト。"
 
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
 msgid "Number of characters used to determine the width of the input element."
@@ -2665,16 +2641,16 @@ msgid ""
 "Displays user avatars in the selection list when enabled. Set to true to "
 "show avatar."
 msgstr ""
+"有効時に選択リストにユーザーアバターを表示します。アバターを表示するにはtrue"
+"に設定してください。"
 
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
-#, fuzzy
 msgid "Controls visibility of the user display name in the selection list."
-msgstr "選択リストの表示名のスタイルクラス"
+msgstr "選択リストにおけるユーザー表示名の可視性を制御します。"
 
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
-#, fuzzy
 msgid "CSS style class for the user display name in the selection list."
-msgstr "選択リストの表示名のスタイルクラス"
+msgstr "選択リスト内のユーザー表示名に対するCSSスタイルクラス。"
 
 #: ../../source/portal-components/user-selection/index.rst:102
 msgid ""
@@ -2682,12 +2658,17 @@ msgid ""
 "consistency. If you have custom styles for this component, please review "
 "and adjust them accordingly."
 msgstr ""
+"**のUserSelectionコンポーネント（** ）は、レイアウトの一貫性を向上させるため"
+"再構築されました。このコンポーネントにカスタムスタイルを適用している場合は、"
+"必要に応じて見直しと調整を行ってください。"
 
 #: ../../source/portal-components/user-selection/index.rst:104
 msgid ""
 "The attribute ``labelPanelStyleClass`` has been also removed. If you used"
 " this attribute, please remove it from your code."
 msgstr ""
+"属性 ``` `labelPanelStyleClass`` も削除されました。この属性を使用していた場合"
+"は、コードから削除してください。"
 
 #: ../../source/portal-components/user-selection/index.rst:107
 msgid "Migrate from Deprecated User Selection"
@@ -2951,4 +2932,3 @@ msgstr ""
 
 #~ msgid "Style class of user autocomplete."
 #~ msgstr "ユーザーオートコンプリートのスタイルクラス。"
-
