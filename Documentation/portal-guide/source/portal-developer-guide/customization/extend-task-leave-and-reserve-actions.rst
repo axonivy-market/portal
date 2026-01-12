@@ -1,7 +1,7 @@
 .. _customization-extend-task-leave-and-reserve-actions:
 
 Extend Task Leave and Reserve Actions
-========================================
+=====================================
 
 Introduction
 ------------
