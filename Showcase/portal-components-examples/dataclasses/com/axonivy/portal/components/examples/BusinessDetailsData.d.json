@@ -2,7 +2,7 @@
   "$schema" : "https://json-schema.axonivy.com/data-class/13.2.0/data-class.json",
   "simpleName" : "BusinessDetailsData",
   "namespace" : "com.axonivy.portal.components.examples",
-  "isBusinessCaseData": false,
+  "isBusinessCaseData" : false,
   "fields" : [ {
     "name" : "caze",
     "type" : "ch.ivyteam.ivy.workflow.ICase",
