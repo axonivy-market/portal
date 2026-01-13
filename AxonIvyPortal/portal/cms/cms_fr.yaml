@@ -739,6 +739,12 @@ ch.ivy.addon.portalkit.ui.jsf:
       publicFilter: Publique
       savedFilters: 'Filtres enregistrés:'
   dashboard:
+    CaseQueryType:
+      All: Cas métier + Sous-cas
+      BusinessCase: Cas métier (Par défaut)
+      SubCase: Sous-cas
+      _: Type de cas
+    CaseQueryTypeInfo: Configurez les types de cas affichés dans le widget de cas. Par défaut, seuls les cas métier sont affichés, Sous-cas techniques affiche uniquement les sous-cas techniques, et Tous affiche à la fois les cas métier et les sous-cas techniques.
     CloneWidget: Cloner le widget
     CustomWidgets: Widgets personnalisés
     DashboardConfiguration:
@@ -781,11 +787,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     QuickSearch: Recherche rapide
     QuickSearchInfo: Vous pouvez personnaliser la portée de la recherche rapide dans la gestion des colonnes des widgets. La recherche se fait sur la base du critère "contient", mais soyez attentif à la performance lorsque vous ajoutez de nombreuses colonnes.
     QuickSearchScope: 'Étendue de la recherche: {0}'
-    CaseQueryType: Type de cas
-    CaseQueryTypeInfo: Configurez les types de cas affichés dans le widget de cas. Par défaut, seuls les cas métier sont affichés, Sous-cas techniques affiche uniquement les sous-cas techniques, et Tous affiche à la fois les cas métier et les sous-cas techniques.
-    CaseQueryType/BusinessCase: Cas métier (Par défaut)
-    CaseQueryType/SubCase: Sous-cas techniques
-    CaseQueryType/All: Cas métier + Sous-cas
     RestoreDefaultDashboardMessage: Si vous procédez ainsi, vous perdrez tous les widgets que vous avez créés. Les paramètres standard de <span class="dashboard-template-name-message">{0}</span> seront appliqués.
     SaveNewWidgetFilterHeader: Enregistrer un nouveau filtre de widget
     SavedFilterHeader: Filtres enregistrés
@@ -930,6 +931,10 @@ ch.ivy.addon.portalkit.ui.jsf:
     statisticChartWidget: Graphique de statistiques
     statisticWidgets: Widgets Statistiques
     switchToViewMode: Mode d'affichage
+    taskList: Liste des tâches
+    taskListIntroduction: Ce widget affiche des informations pertinentes sur les tâches selon les paramètres définis.
+    taskStart: Commencer la tâche
+    taskWidgetConfiguration: Configuration du widget de tâches
     taskWidgetInfo:
       expireToday: Expire aujourd'hui
       expiryThisWeek: Expire cette semaine
@@ -938,10 +943,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       numberOfTasksByState: Nombre de tâches par état
       predefinedFilters: Filtres prédéfinis
       taskDrillDownDashboard: Tableau de bord d’analyse détaillée des tâches
-    taskList: Liste des tâches
-    taskListIntroduction: Ce widget affiche des informations pertinentes sur les tâches selon les paramètres définis.
-    taskStart: Commencer la tâche
-    taskWidgetConfiguration: Configuration du widget de tâches
     widgetInfo: Informations sur le widget
     widgetInfoIcon: Icône d'information du widget
     widgetTitle: Titre du widget
@@ -1131,11 +1132,11 @@ ch.ivy.addon.portalkit.ui.jsf:
       dialogHeaderTitle: Modifier les informations pour {0}
     editProcesses: Modifier des processus
     externalLink: lien externe
+    externalLinkImage: Image du lien externe
     externalLinkVisibility: Visibilité
     goTo: 'Aller à:'
     icon: Icône
     image: Image
-    externalLinkImage: Image du lien externe
     isRequiredMessage: doit être défini
     linkDescription: Description du lien
     noProcess: Aucun processus trouvé.
