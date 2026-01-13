@@ -20,6 +20,13 @@
   <cc:attribute name="forceSelection" default="true"
     shortDescription="When enabled, only roles from the suggestion list can be selected. Type: boolean. Default value: true. Required: false." />
   <cc:attribute name="minQueryLength" default="1"
+    shortDescription="Minimum number of characters required to start searching. Type: int. Default value: 1. Required: false." />
+  <cc:attribute name="isDisabled" shortDescription="Disables the role selection input. Type: boolean. Default value: false. Required: false." />
+  <cc:attribute name="isRequired" shortDescription="Marks the role selection field as required. Type: boolean. Default value: false. Required: false." />
+  <cc:attribute name="isReadOnly" shortDescription="Prevents changing the selected role when enabled. Type: boolean. Default value: false. Required: false." />
+  <cc:attribute name="hightlight" default="true" shortDescription="Automatically highlights the first suggested role. Type: boolean. Default value: true. Required: false." />
+  <cc:attribute name="size" shortDescription="Number of characters used to define the input width. Type: int. Required: false." />
+  <cc:attribute name="itemLabel" default="#{role.getDisplayName() != '' ? role.getDisplayName() : role.getMemberName()}"
     shortDescription="Text displayed for roles in the dropdown and the selected value. Type: String. Default value: #{role.getDisplayName() != '' ? role.getDisplayName() : role.getMemberName()}. Required: false." />
   <cc:attribute name="scrollHeight" default="390" shortDescription="Maximum height of the autocomplete dropdown panel. Type: int. Default value: 390. Required: false." />
   <cc:attribute name="inputStyleClass" shortDescription="CSS style class applied to the role autocomplete input field. Type: String. Required: false." />
