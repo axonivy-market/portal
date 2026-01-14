@@ -57,34 +57,36 @@ pipeline {
 
           utils.extractEngine(env.engineDir, params.engineDownloadURL)
 
-          if (!params.skipReplacePortal) {
-            echo '====================Replace Portal in engine===================='
-            powershell '''
-              $DEPLOYMENT= $env:engineDir + "/system/demo-applications/demo-portal"
-              rmdir $DEPLOYMENT/* -recurse
-              Copy-Item $env:releaseDir/Showcase/portal-demo-app/target/*zip -Destination $DEPLOYMENT
-            '''
-          }
-
           echo '====================Build PortalKitTestHelper and InternalSupport===================='
           def extraModules = ['AxonIvyPortal/PortalKitTestHelper', 'Showcase/InternalSupport']
           for (module in extraModules) {
             bat "mvn clean install -f ${module}/pom.xml -Divy.engine.directory=%engineDir% -Divy.compiler.engine.start.timeout=120"
           }
 
-          echo '====================Deploy example, helper modules===================='
+          echo '====================Deploy Portal and example modules===================='
           powershell '''
-            $DEPLOYMENT = $env:engineDir + "/deploy/demo-portal"
-            $zipPath = "$DEPLOYMENT/deployment.zip"
-            New-Item -ItemType Directory -Path $DEPLOYMENT -Force | Out-Null
-            Copy-Item $env:releaseDir/Showcase/portal-developer-examples/target/*.iar,$env:releaseDir/Showcase/portal-components-examples/target/*.iar,AxonIvyPortal/PortalKitTestHelper/target/*.iar,Showcase/InternalSupport/target/*.iar -Destination $DEPLOYMENT
+            $DEPLOYMENT = $env:engineDir + "/system/demo-applications/demo-portal"
+            $tempDir = "$env:TEMP/portal-deployment"
+            New-Item -ItemType Directory -Path $tempDir -Force | Out-Null
+            
+            Copy-Item $env:releaseDir/Showcase/portal-developer-examples/target/*.iar,$env:releaseDir/Showcase/portal-components-examples/target/*.iar,AxonIvyPortal/PortalKitTestHelper/target/*.iar,Showcase/InternalSupport/target/*.iar -Destination $tempDir
             Add-Type -Assembly "System.IO.Compression.FileSystem"
-            $zip = [System.IO.Compression.ZipFile]::Open($zipPath, 'Create')
-            Get-ChildItem -Path $DEPLOYMENT -Filter *.iar | ForEach-Object {
-              [System.IO.Compression.ZipFileExtensions]::CreateEntryFromFile($zip, $_.FullName, $_.Name) | Out-Null
+            
+            if ($env:skipReplacePortal -eq 'false') {
+              rmdir $DEPLOYMENT/* -recurse
+              $portalZip = Get-ChildItem "$env:releaseDir/Showcase/portal-demo-app/target/*.zip" | Select-Object -First 1
+              Copy-Item $portalZip.FullName -Destination $DEPLOYMENT
+              $zipPath = "$DEPLOYMENT/$($portalZip.Name)"
+            } else {
+              $zipPath = Get-ChildItem "$DEPLOYMENT/*.zip" | Select-Object -First 1 -ExpandProperty FullName
+            }
+            
+            $zip = [System.IO.Compression.ZipFile]::Open($zipPath, 'Update')
+            Get-ChildItem -Path $tempDir -Filter *.iar | ForEach-Object {
+              [System.IO.Compression.ZipFileExtensions]::CreateEntryFromFile($zip, $_.FullName, $_.Name, 'Optimal') | Out-Null
             }
             $zip.Dispose()
-            Remove-Item $DEPLOYMENT/*.iar -Force
+            Remove-Item $tempDir -Recurse -Force
           '''
 
           utils.killUnnecessaryProcessesToRunTest()
