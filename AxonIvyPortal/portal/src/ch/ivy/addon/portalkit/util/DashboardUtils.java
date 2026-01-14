@@ -419,7 +419,6 @@ public class DashboardUtils {
         try {
           String dashboardJson = Ivy.var().get(PortalVariable.DASHBOARD.key);
           dashboards = jsonToDashboards(dashboardJson);
-          // addDefaultTaskCaseListDashboardsIfMissing(dashboards);
           setDashboardAsPublic(dashboards);
         } catch (Exception e) {
           Ivy.log().error("Cannot load Public Dashboards {0}", e.getMessage());
@@ -501,7 +500,6 @@ public class DashboardUtils {
             }
           }
           collectedDashboards.addAll(idToDashboard.values());
-          // addDefaultTaskCaseListDashboardsIfMissing(collectedDashboards);
         } catch (Exception e) {
           Ivy.log().error("Cannot collect Dashboards {0}", e.getMessage());
         }
