@@ -15,7 +15,6 @@ import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.common.WaitHelper;
 import com.axonivy.portal.selenium.page.MainMenuPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
-import com.axonivy.portal.selenium.page.ProcessHistoryPage;
 import com.axonivy.portal.selenium.page.ProcessViewerPage;
 import com.axonivy.portal.selenium.page.TaskTemplatePage;
 import com.axonivy.portal.selenium.page.component.DocumentTableComponentPage;
@@ -64,24 +63,6 @@ public class AdditionalComponentsScreenshotTest extends ScreenshotBaseTest {
     ScreenshotUtils
         .captureHalfTopPageScreenShot(ScreenshotUtils.COMPONENTS_FOLDER + "example-global-growl-cancelled-task");
   }
-
-  @Test
-  public void captureScreenshotProcessHistoryComponent() throws IOException {
-    redirectToRelativeLink(createAlphaCompanyUrl);
-    redirectToRelativeLink(createBetaCompanyUrl);
-
-    redirectToRelativeLink(viewAlphaCompanyProcessHistoryUrl);
-    ProcessHistoryPage processHistoryPage = new ProcessHistoryPage();
-    ScreenshotUtils.resizeBrowser(new Dimension(1500, 600));
-    processHistoryPage.clickNameHeader();
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.COMPONENTS_FOLDER + "process-history-example");
-
-    redirectToRelativeLink(viewBetaCompanyProcessHistoryInDialogUrl);
-    processHistoryPage = new ProcessHistoryPage();
-    ScreenshotUtils.captureElementWithMarginOptionScreenshot(processHistoryPage.getProcessHistoryDialog(),
-        ScreenshotUtils.COMPONENTS_FOLDER + "process-history-dialog-example", new ScreenshotMargin(200, 200));
-  }
-
 
   @Test
   public void captureScreenshotDocumentTableComponent() throws IOException {
