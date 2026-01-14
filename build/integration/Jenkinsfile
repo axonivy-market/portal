@@ -72,18 +72,11 @@ pipeline {
             bat "mvn clean install -f ${module}/pom.xml -Divy.engine.directory=%engineDir% -Divy.compiler.engine.start.timeout=120"
           }
 
-          echo '====================Deploy example, helper modules===================='
+          echo '====================Copy modules to deployment folder===================='
           powershell '''
             $DEPLOYMENT = $env:engineDir + "/deploy/demo-portal"
-            $zipPath = "$DEPLOYMENT/deployment.zip"
             New-Item -ItemType Directory -Path $DEPLOYMENT -Force | Out-Null
             Copy-Item $env:releaseDir/Showcase/portal-developer-examples/target/*.iar,$env:releaseDir/Showcase/portal-components-examples/target/*.iar,AxonIvyPortal/PortalKitTestHelper/target/*.iar,Showcase/InternalSupport/target/*.iar -Destination $DEPLOYMENT
-            Add-Type -Assembly "System.IO.Compression.FileSystem"
-            $zip = [System.IO.Compression.ZipFile]::Open($zipPath, 'Create')
-            Get-ChildItem -Path $DEPLOYMENT -Filter *.iar | ForEach-Object {
-              [System.IO.Compression.ZipFileExtensions]::CreateEntryFromFile($zip, $_.FullName, $_.Name) | Out-Null
-            }
-            $zip.Dispose()
           '''
 
           utils.killUnnecessaryProcessesToRunTest()
