@@ -84,6 +84,7 @@ pipeline {
               [System.IO.Compression.ZipFileExtensions]::CreateEntryFromFile($zip, $_.FullName, $_.Name) | Out-Null
             }
             $zip.Dispose()
+            Remove-Item $DEPLOYMENT/*.iar -Force
           '''
 
           utils.killUnnecessaryProcessesToRunTest()
