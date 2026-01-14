@@ -18,6 +18,10 @@ Portal supports customzing this page for each case.
 How to customize the business details page
 ------------------------------------------
 
+.. note::
+   Once the ``businessDetails`` value is set, it becomes a fixed link for the case.
+   Please take this into account if different project model versions use different Business Details Page UIs.
+
 #. Create a business details process. In this process, create a request start that has the parameter ``caseId``. The idea is when clicking on ``Business details`` in case details page,
 Portal will call this process and pass the case ID as parameter `caseId`. Create a UI for business details page in this process.
 
