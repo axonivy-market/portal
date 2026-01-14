@@ -63,14 +63,6 @@ pipeline {
               $DEPLOYMENT= $env:engineDir + "/system/demo-applications/demo-portal"
               rmdir $DEPLOYMENT/* -recurse
               Copy-Item $env:releaseDir/Showcase/portal-demo-app/target/*zip -Destination $DEPLOYMENT
-              Copy-Item $env:releaseDir/Showcase/portal-developer-examples/target/*iar -Destination $DEPLOYMENT
-              Copy-Item $env:releaseDir/Showcase/portal-components-examples/target/*iar -Destination $DEPLOYMENT
-            '''
-          } else {
-            powershell '''
-              $DEPLOYMENT= $env:engineDir + "/system/demo-applications/demo-portal"
-              Copy-Item $env:releaseDir/Showcase/portal-developer-examples/target/*iar -Destination $DEPLOYMENT
-              Copy-Item $env:releaseDir/Showcase/portal-components-examples/target/*iar -Destination $DEPLOYMENT
             '''
           }
 
@@ -79,6 +71,16 @@ pipeline {
           for (module in extraModules) {
             bat "mvn clean install -f ${module}/pom.xml -Divy.engine.directory=%engineDir% -Divy.compiler.engine.start.timeout=120"
           }
+
+          powershell '''
+            $DEPLOYMENT = $env:engineDir + "/system/demo-applications/demo-portal"
+            $tempDir = "$env:TEMP/portal-deployment"
+            New-Item -ItemType Directory -Path $tempDir -Force | Out-Null
+            
+            Copy-Item $env:releaseDir/Showcase/portal-developer-examples/target/*.iar,$env:releaseDir/Showcase/portal-components-examples/target/*.iar,AxonIvyPortal/PortalKitTestHelper/target/*.iar,Showcase/InternalSupport/target/*.iar -Destination $tempDir
+            Compress-Archive -Path "$tempDir/*.iar" -DestinationPath "$DEPLOYMENT/deployment.zip" -Force
+            Remove-Item $tempDir -Recurse -Force
+          '''
 
           utils.killUnnecessaryProcessesToRunTest()
 
