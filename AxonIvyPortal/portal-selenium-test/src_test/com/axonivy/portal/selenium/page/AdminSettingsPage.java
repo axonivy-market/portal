@@ -81,6 +81,7 @@ public class AdminSettingsPage extends TemplatePage {
     clickOnHomeLogo();
   }
 
+  @Override
   public void clickOnHomeLogo() {
     $("span[class*='si si-house-chimney-2']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
   }

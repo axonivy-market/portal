@@ -8,7 +8,8 @@ import static org.junit.jupiter.api.Assumptions.assumeTrue;
 import java.io.IOException;
 import java.util.List;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -181,7 +182,7 @@ public class CaseDetailsTest extends BaseTest {
   @Test
   public void testDisplayCaseProperties() {
     createTestingTask();
-    assertTrue(StringUtils.equalsIgnoreCase("Leave Request", detailsPage.getCaseCategory()));
+    assertTrue(Strings.CI.equals("Leave Request", detailsPage.getCaseCategory()));
     assertTrue(StringUtils.isNotBlank(detailsPage.getCaseDuration()));
   }
 

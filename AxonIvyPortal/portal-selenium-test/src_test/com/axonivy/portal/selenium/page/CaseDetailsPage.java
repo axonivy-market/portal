@@ -14,6 +14,7 @@ import java.util.stream.IntStream;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.JavascriptExecutor;
@@ -714,7 +715,7 @@ public class CaseDetailsPage extends TemplatePage {
   public boolean isDownloadCompleted(String statusDialogId) {
     WebElement statusDialog = driver.findElement(By.cssSelector("div[id$=':" + statusDialogId + "']"));
     WaitHelper.assertTrueWithWait(() -> StringUtils.isNotBlank(statusDialog.getDomAttribute("download-status")));
-    return StringUtils.equals(statusDialog.getDomAttribute("download-status"), "completed");
+    return Strings.CS.equals(statusDialog.getDomAttribute("download-status"), "completed");
   }
 
   public Integer getTaskRowIndex(String taskName) {
