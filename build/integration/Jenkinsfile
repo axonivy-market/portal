@@ -73,16 +73,13 @@ pipeline {
           }
 
           powershell '''
-            $DEPLOYMENT = $env:engineDir + "/system/demo-applications/demo-portal"
-            $tempDir = "$env:TEMP/portal-deployment"
+            $DEPLOYMENT = $env:engineDir + "/deploy/demo-portal"
             $zipPath = "$DEPLOYMENT/deployment.zip"
-            New-Item -ItemType Directory -Path $tempDir -Force | Out-Null
-            Copy-Item $env:releaseDir/Showcase/portal-developer-examples/target/*.iar,$env:releaseDir/Showcase/portal-components-examples/target/*.iar,AxonIvyPortal/PortalKitTestHelper/target/*.iar,Showcase/InternalSupport/target/*.iar -Destination $tempDir
+            New-Item -ItemType Directory -Path $DEPLOYMENT -Force | Out-Null
+            Copy-Item $env:releaseDir/Showcase/portal-developer-examples/target/*.iar,$env:releaseDir/Showcase/portal-components-examples/target/*.iar,AxonIvyPortal/PortalKitTestHelper/target/*.iar,Showcase/InternalSupport/target/*.iar -Destination $DEPLOYMENT
             Add-Type -Assembly "System.IO.Compression.FileSystem"
             if (Test-Path $zipPath) { Remove-Item $zipPath -Force }
-            [System.IO.Compression.ZipFile]::CreateFromDirectory($tempDir, $zipPath)
-            
-            Remove-Item $tempDir -Recurse -Force
+            [System.IO.Compression.ZipFile]::CreateFromDirectory($DEPLOYMENT, $zipPath)
           '''
 
           utils.killUnnecessaryProcessesToRunTest()
