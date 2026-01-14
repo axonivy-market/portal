@@ -72,6 +72,7 @@ pipeline {
             bat "mvn clean install -f ${module}/pom.xml -Divy.engine.directory=%engineDir% -Divy.compiler.engine.start.timeout=120"
           }
 
+          echo '====================Deploy example, helper modules===================='
           powershell '''
             $DEPLOYMENT = $env:engineDir + "/deploy/demo-portal"
             $zipPath = "$DEPLOYMENT/deployment.zip"
