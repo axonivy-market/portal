@@ -76,7 +76,6 @@ pipeline {
             $DEPLOYMENT = $env:engineDir + "/deploy/demo-portal"
             $zipPath = "$DEPLOYMENT/deployment.zip"
             New-Item -ItemType Directory -Path $DEPLOYMENT -Force | Out-Null
-            if (Test-Path $zipPath) { Remove-Item $zipPath -Force }
             Copy-Item $env:releaseDir/Showcase/portal-developer-examples/target/*.iar,$env:releaseDir/Showcase/portal-components-examples/target/*.iar,AxonIvyPortal/PortalKitTestHelper/target/*.iar,Showcase/InternalSupport/target/*.iar -Destination $DEPLOYMENT
             Add-Type -Assembly "System.IO.Compression.FileSystem"
             $zip = [System.IO.Compression.ZipFile]::Open($zipPath, 'Create')
