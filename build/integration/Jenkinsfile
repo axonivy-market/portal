@@ -63,7 +63,7 @@ pipeline {
             bat "mvn clean install -f ${module}/pom.xml -Divy.engine.directory=%engineDir% -Divy.compiler.engine.start.timeout=120"
           }
 
-          echo '====================Deploy Portal and example modules===================='
+          echo '====================Update portal-demo-app with helper modules===================='
           powershell '''
             $DEPLOYMENT = $env:engineDir + "/system/demo-applications/demo-portal"
             $tempDir = "$env:TEMP/portal-deployment"
