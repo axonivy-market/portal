@@ -12,6 +12,7 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
+import org.primefaces.component.dashboard.Dashboard;
 
 import com.axonivy.portal.selenium.common.FileHelper;
 import com.axonivy.portal.selenium.common.Sleeper;
@@ -157,6 +158,13 @@ public class DashboardConfigurationPage extends TemplatePage {
     waitForCreateNewDashboardSectionAppear().$("a[id$='" + templateIndex + ":template']")
         .shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
     inputCreateDashboardDialog(newName, icon, newDescription, permissions, true, DashboardDisplayType.SUB_MENU);
+  }
+
+  public void createPublicDashboardFromTemplate(String newName, String icon, String newDescription,
+      List<String> permissions, int templateIndex, boolean isPublicDashboard, DashboardDisplayType type) {
+    waitForCreateNewDashboardSectionAppear().$("a[id$='" + templateIndex + ":template']")
+        .shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+    inputCreateDashboardDialog(newName, icon, newDescription, permissions, isPublicDashboard, type);
   }
 
   public SelenideElement openCreateDashboardDialog() {

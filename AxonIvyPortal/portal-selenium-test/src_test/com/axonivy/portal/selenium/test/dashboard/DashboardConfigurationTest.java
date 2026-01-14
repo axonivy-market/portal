@@ -16,6 +16,7 @@ import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.page.CaseWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.DashboardConfigurationPage;
 import com.axonivy.portal.selenium.page.DashboardModificationPage;
+import com.axonivy.portal.selenium.page.MainMenuPage;
 import com.axonivy.portal.selenium.page.NewDashboardDetailsEditPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.ProcessWidgetNewDashBoardPage;
@@ -98,6 +99,35 @@ public class DashboardConfigurationTest extends BaseTest {
     DashboardModificationPage modificationPage = navigateToConfigurationAndEditDashboards(true);
     modificationPage.clickDeleteDashboardByName("Dashboard");
     modificationPage.getDashboardRows().shouldHave(size(2));
+  }
+
+  @Test
+  public void testDeleteDefaultCaseAndTaskDashboard() {
+    DashboardModificationPage modificationPage = navigateToConfigurationAndEditDashboards(true);
+    modificationPage.clickDeleteDashboardByName("Cases");
+    modificationPage.getDashboardRows().shouldHave(size(2));
+
+    modificationPage.clickDeleteDashboardByName("Tasks");
+    modificationPage.getDashboardRows().shouldHave(size(1));
+
+    redirectToNewDashBoard();
+    MainMenuPage mainMenuPage = new MainMenuPage();
+    String expectedMenu = "Dashboard,Processes,Google";
+    assertEquals(expectedMenu, mainMenuPage.getMenuItemsAsString());
+  }
+
+  @Test
+  public void testAddDashboardUseFullCasesTemplate() {
+    final int FULL_CASES_TEMPLATE_INDEX = 4;
+    testAddDashboardUsingTemplate("My Cases", FULL_CASES_TEMPLATE_INDEX, 
+        "This is my cases dashboard created using default full cases template.");
+  }
+
+  @Test
+  public void testAddDashboardUseFullTasksTemplate() {
+    final int FULL_TASKS_TEMPLATE_INDEX = 3;
+    testAddDashboardUsingTemplate("My Tasks", FULL_TASKS_TEMPLATE_INDEX, 
+        "This is my tasks dashboard created using default full tasks template.");
   }
 
   @Test
@@ -500,4 +530,33 @@ public class DashboardConfigurationTest extends BaseTest {
     assertEquals(element.getAttribute("title"), "Accessibility Shortcuts frame");
   }
   
+  private void testAddDashboardUsingTemplate(String name, int templateIndex, String description) {
+    String icon = "fa-coffee";
+    List<String> permissions = List.of("Everybody (Everybody)");
+    boolean isPublicDashboard = true;
+    DashboardDisplayType type = DashboardDisplayType.TOP_MENU;
+
+    final int NUMBER_OF_WIDGETS_IN_TEMPLATE = 1;
+    final int NUMBER_OF_DEFAULT_DASHBOARDS = 3;
+
+    DashboardConfigurationPage configurationPage = newDashboardPage.openDashboardConfigurationPage();
+    configurationPage.openCreatePublicDashboardMenu();
+    configurationPage.createPublicDashboardFromTemplate(name, icon, description, permissions, templateIndex, isPublicDashboard, type);
+
+    NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
+    newDashboardDetailsEditPage.getTitleByIndex(0).shouldBe(Condition.exactText(name));
+    newDashboardDetailsEditPage.getIconByIndex(0, icon).shouldBe(Condition.appear);
+    newDashboardDetailsEditPage.getWidgets().shouldBe(CollectionCondition.size(NUMBER_OF_WIDGETS_IN_TEMPLATE));
+
+    goBackConfigurationAndVerifyDashboards(name, description, newDashboardDetailsEditPage, isPublicDashboard);
+
+    MainMenuPage mainMenuPage = new MainMenuPage();
+    String expectedMenu = "Dashboard,Processes,Tasks,Cases," + name + ",Google";
+    assertEquals(expectedMenu, mainMenuPage.getMenuItemsAsString());
+
+    DashboardModificationPage modificationPage = navigateToConfigurationAndEditDashboards(isPublicDashboard);
+    modificationPage.getDashboardRows().shouldHave(size(NUMBER_OF_DEFAULT_DASHBOARDS + 1));
+    modificationPage.clickDeleteDashboardByName(name);
+    modificationPage.getDashboardRows().shouldHave(size(NUMBER_OF_DEFAULT_DASHBOARDS));
+  }
 }
