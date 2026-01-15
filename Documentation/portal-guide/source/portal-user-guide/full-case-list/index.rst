@@ -7,7 +7,7 @@ The **Full Case List** page is a dashboard featuring a single, full-width case w
 You can reach the page by using the |case-icon| :guilabel:`Cases` link in the Axon Ivy Portal menu.
 
 .. important::
-   - Full Case list dashboard now work normally like other dashboards. You can manage it in the :bdg-ref-warning:`Dashboard Configuration <dashboard-configuration>` page,
+   - Full Case list dashboard now works normally like other dashboards. You can manage it in the :bdg-ref-warning:`Dashboard Configuration <dashboard-configuration>` page,
      including removing it from your dashboard list and left menu.
    
    - A new template :guilabel:`Full Case list dashboard` will support you to create a new dashboard having a similar layout, see :ref:`public-available-dashboard-template`.

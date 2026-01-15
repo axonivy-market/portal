@@ -12,7 +12,6 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
-import org.primefaces.component.dashboard.Dashboard;
 
 import com.axonivy.portal.selenium.common.FileHelper;
 import com.axonivy.portal.selenium.common.Sleeper;

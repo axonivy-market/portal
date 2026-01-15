@@ -64,7 +64,7 @@ To set multi languages for the dashboard title, see at :ref:`portal-multi-langua
 Available dashboard templates 
 -----------------------------
 
-:guilabel:`Default Template`, :guilabel:`Two Task list dashboard` template, :guilabel:`Accessiblity dashboard` template, :guilabel:`Full Task list dashboard` template and :guilabel:`Full Case list dashboard` template. Please see the image below for more details.
+:guilabel:`Default Template`, :guilabel:`Two Task list dashboard` template, :guilabel:`Accessibility dashboard` template, :guilabel:`Full Task list dashboard` template and :guilabel:`Full Case list dashboard` template. Please see the image below for more details.
 
 |dashboard-templates|
 
@@ -169,7 +169,7 @@ To set multi languages for the dashboard title, see at :ref:`portal-multi-langua
 Available dashboard templates 
 -----------------------------
 
-:guilabel:`Default Template`, :guilabel:`Two Task list dashboard` template, :guilabel:`Accessiblity dashboard` template, :guilabel:`Full Task list dashboard` template and :guilabel:`Full Case list dashboard` template. Please see the image below for more details.
+:guilabel:`Default Template`, :guilabel:`Two Task list dashboard` template, :guilabel:`Accessibility dashboard` template, :guilabel:`Full Task list dashboard` template and :guilabel:`Full Case list dashboard` template. Please see the image below for more details.
 
 |dashboard-templates|
 
