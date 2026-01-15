@@ -127,8 +127,10 @@ public class PortalExpressScreenshotTest extends ScreenshotBaseTest {
     expressProcessPage.addNewTask(0);
     expressProcessPage.createTask(1, INFORMATION_EMAIL_INDEX, null, null, null);
     ExpressFormDefinitionPage expressFormDefinition = expressProcessPage.goToFormDefinitionDefaultResolution();
-    expressFormDefinition.nextStep();
-    expressFormDefinition.waitForEmailEditorDisplayed();
+//    expressFormDefinition.nextStep();
+    WaitHelper.waitForActionComplete(".defined-task-container", () -> expressFormDefinition.nextStep());
+
+//    expressFormDefinition.waitForEmailEditorDisplayed();
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.EXPRESS_FOLDER + "express-workflow-email-editor");
   }
 
