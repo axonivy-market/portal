@@ -396,6 +396,10 @@
             "width": "75"
           },
           {
+            "field": "pin",
+            "width": "70"
+          },
+          {
             "field": "priority",
             "width": "70"
           },
@@ -424,6 +428,10 @@
           },
           {
             "field": "startTimestamp",
+            "width": "95"
+          },
+          {
+            "field": "endTimestamp",
             "width": "95"
           },
           {
@@ -517,6 +525,10 @@
             "field": "id",
             "quickSearch": true,
             "width": "80"
+          },
+          {
+            "field": "pin",
+            "width": "70"
           },
           {
             "field": "name",
