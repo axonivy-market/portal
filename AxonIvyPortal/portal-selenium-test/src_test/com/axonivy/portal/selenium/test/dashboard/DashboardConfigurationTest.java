@@ -38,6 +38,9 @@ public class DashboardConfigurationTest extends BaseTest {
   private static final String YOUR_CASES_WIDGET = "Your Cases";
   private static final String YOUR_PROCESS_WIDGET = "Your Processes";
   private static final String NEW_PRIVATE_DASHBOARD = "New private dashboard";
+  private static final int NUMBER_OF_DEFAULT_DASHBOARDS = 3;
+  private static final int FULL_TASKS_TEMPLATE_INDEX = 3;
+  private static final int FULL_CASES_TEMPLATE_INDEX = 4;
 
   @Override
   @BeforeEach
@@ -118,16 +121,16 @@ public class DashboardConfigurationTest extends BaseTest {
 
   @Test
   public void testAddDashboardUseFullCasesTemplate() {
-    final int FULL_CASES_TEMPLATE_INDEX = 4;
     testAddDashboardUsingTemplate("My Cases", FULL_CASES_TEMPLATE_INDEX, 
-        "This is my cases dashboard created using default full cases template.");
+        "This is my cases dashboard created using default full cases template.",
+        List.of("Everybody (Everybody)"), true, DashboardDisplayType.TOP_MENU, 1);
   }
 
   @Test
   public void testAddDashboardUseFullTasksTemplate() {
-    final int FULL_TASKS_TEMPLATE_INDEX = 3;
     testAddDashboardUsingTemplate("My Tasks", FULL_TASKS_TEMPLATE_INDEX, 
-        "This is my tasks dashboard created using default full tasks template.");
+        "This is my tasks dashboard created using default full tasks template.",
+        List.of("Everybody (Everybody)"), true, DashboardDisplayType.TOP_MENU, 1);
   }
 
   @Test
@@ -530,14 +533,9 @@ public class DashboardConfigurationTest extends BaseTest {
     assertEquals(element.getAttribute("title"), "Accessibility Shortcuts frame");
   }
   
-  private void testAddDashboardUsingTemplate(String name, int templateIndex, String description) {
+  private void testAddDashboardUsingTemplate(String name, int templateIndex, String description,
+      List<String> permissions, boolean isPublicDashboard, DashboardDisplayType type, int numberOfWidgets) {
     String icon = "fa-coffee";
-    List<String> permissions = List.of("Everybody (Everybody)");
-    boolean isPublicDashboard = true;
-    DashboardDisplayType type = DashboardDisplayType.TOP_MENU;
-
-    final int NUMBER_OF_WIDGETS_IN_TEMPLATE = 1;
-    final int NUMBER_OF_DEFAULT_DASHBOARDS = 3;
 
     DashboardConfigurationPage configurationPage = newDashboardPage.openDashboardConfigurationPage();
     configurationPage.openCreatePublicDashboardMenu();
@@ -546,7 +544,7 @@ public class DashboardConfigurationTest extends BaseTest {
     NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
     newDashboardDetailsEditPage.getTitleByIndex(0).shouldBe(Condition.exactText(name));
     newDashboardDetailsEditPage.getIconByIndex(0, icon).shouldBe(Condition.appear);
-    newDashboardDetailsEditPage.getWidgets().shouldBe(CollectionCondition.size(NUMBER_OF_WIDGETS_IN_TEMPLATE));
+    newDashboardDetailsEditPage.getWidgets().shouldBe(CollectionCondition.size(numberOfWidgets));
 
     goBackConfigurationAndVerifyDashboards(name, description, newDashboardDetailsEditPage, isPublicDashboard);
 
