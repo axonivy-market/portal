@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Portal Guide ${revision}\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-16 10:37+0000\n"
+"POT-Creation-Date: 2026-01-16 03:05+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: de\n"
@@ -41,11 +41,11 @@ msgstr ""
 
 #: ../../source/portal-user-guide/accessibility/index.rst:17
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:259
-#: ../../source/portal-user-guide/full-case-list/index.rst:361
+#: ../../source/portal-user-guide/full-case-list/index.rst:364
 #: ../../source/portal-user-guide/full-process-list/index.rst:200
 #: ../../source/portal-user-guide/full-task-list/index.rst:61
-#: ../../source/portal-user-guide/full-task-list/index.rst:310
-#: ../../source/portal-user-guide/portal-header/index.rst:209
+#: ../../source/portal-user-guide/full-task-list/index.rst:312
+#: ../../source/portal-user-guide/portal-header/index.rst:206
 msgid "Action"
 msgstr ""
 
@@ -647,7 +647,7 @@ msgid ""
 msgstr ""
 
 #: ../../source/portal-user-guide/admin-settings/index.rst:4
-#: ../../source/portal-user-guide/portal-header/index.rst:52
+#: ../../source/portal-user-guide/portal-header/index.rst:54
 msgid "Admin Settings"
 msgstr ""
 
@@ -938,13 +938,13 @@ msgstr ""
 msgid "Portal.Cases.EnableOwner"
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv
+#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid ""
 "Set to true to enable filtering case owner when cases are queried. This "
 "setting affects all case"
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv
+#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:2
 msgid ""
 "queries e.g. for case widget, global search. It also makes the \"Filter "
 "tasks by current case owner\" filter available in the task widget, which "
@@ -994,13 +994,13 @@ msgstr ""
 msgid "3"
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv
+#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid ""
 "The set number controls the amount of tabs allowed with active chat. If "
 "more tabs are opened,"
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv
+#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:2
 msgid "the chat will be disabled in inactive tabs. Allowed values are 1 to 5."
 msgstr ""
 
@@ -1012,13 +1012,13 @@ msgstr ""
 msgid "0"
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv
+#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid ""
 "Chat response timeout in seconds, default value is 0 and means no "
 "timeout. If chat messages go through"
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv
+#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:2
 msgid ""
 "the reverse proxy Nginx, chat response timeout must be less than the "
 "Nginx timeout, e.g. less than 60 seconds."
@@ -1062,7 +1062,7 @@ msgstr ""
 msgid "Portal.DisplayUsersOfRole"
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv
+#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid ""
 "Controls the SecurityMemberDisplayName component.| If true and the "
 "SecurityMember is a role, lists all users of this role under the info "
@@ -1093,33 +1093,33 @@ msgstr ""
 msgid "Portal.Document.WhitelistExtension"
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv
+#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "doc, docx, xls,"
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv
+#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:2
 msgid "xlsx, xlsm, csv,"
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv
+#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:3
 msgid "pdf, ppt, pptx,"
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv
+#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:4
 msgid "txt, zip, jpg,"
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv
+#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:5
 msgid "jpeg, bmp, png"
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv
+#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid ""
 "Leave value empty if you allow all extensions. If you allow just some "
 "extensions, list out these extensions here,"
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv
+#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:2
 msgid "separated by comma. Example: pdf, txt, doc, docx."
 msgstr ""
 
@@ -1174,13 +1174,13 @@ msgstr ""
 msgid "Dashboard"
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv
+#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid ""
 "Define the standard homepage which will be redirected to when clicking on"
 " home icon or logo."
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv
+#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:2
 msgid "This setting also applies to the end page for finished tasks."
 msgstr ""
 
@@ -1274,11 +1274,11 @@ msgstr ""
 msgid "Run the task"
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv
+#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Default behaviors (run the task or access task details) when clicking."
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv
+#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:2
 msgid ""
 "on a line in the task widget, task widget of the dashboard or on related "
 "tasks in the case details page."
@@ -1300,11 +1300,11 @@ msgstr ""
 msgid "Access case details"
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv
+#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Toggle between accessing case details or business details when clicking"
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv
+#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:2
 msgid ""
 "on a case in the case widget on the dashboard, global search, related "
 "cases, and process widget in combined mode."
@@ -1376,13 +1376,13 @@ msgstr ""
 msgid "50"
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv
+#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid ""
 "Controls the number of direct child roles that are shown in the Role "
 "Management tab."
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv
+#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:2
 msgid "Valid numbers: 10, 50, 100."
 msgstr ""
 
@@ -1394,13 +1394,13 @@ msgstr ""
 msgid "10"
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv
+#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid ""
 "Controls the number of parent roles that are shown when filtering roles "
 "in the Role Management tab."
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv
+#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:2
 msgid "Valid numbers: 5, 10, 20."
 msgstr ""
 
@@ -1857,16 +1857,12 @@ msgstr ""
 
 #: ../../source/portal-user-guide/axon-ivy-portal/index.rst:17
 #: ../../source/portal-user-guide/full-case-list/index.rst:29
-#: ../../source/portal-user-guide/full-case-list/index.rst:240
-#: ../../source/portal-user-guide/full-case-list/index.rst:282
+#: ../../source/portal-user-guide/full-case-list/index.rst:243
+#: ../../source/portal-user-guide/full-case-list/index.rst:285
 #: ../../source/portal-user-guide/full-process-list/index.rst:42
 #: ../../source/portal-user-guide/full-task-list/index.rst:36
 #: ../../source/portal-user-guide/full-task-list/index.rst:61
-#: ../../source/portal-user-guide/my-profile/index.rst:27
-#: ../../source/portal-user-guide/my-profile/index.rst:46
-#: ../../source/portal-user-guide/my-profile/index.rst:62
-#: ../../source/portal-user-guide/my-profile/index.rst:79
-#: ../../source/portal-user-guide/portal-header/index.rst:31
+#: ../../source/portal-user-guide/portal-header/index.rst:33
 #: ../../source/portal-user-guide/statistic-chart/index.rst:168
 msgid "Description"
 msgstr ""
@@ -2290,13 +2286,15 @@ msgstr ""
 msgid "In"
 msgstr ""
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:85
 msgid ""
 "Valid for category, state, creator, application. Specify a single value "
 "or multiple values."
 msgstr ""
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:86
+#: ../../source/portal-user-guide/complex-filter/index.rst:104
+#: ../../source/portal-user-guide/complex-filter/index.rst:128
 msgid ""
 "Results include only records where the data in the column match the value"
 " in the filter."
@@ -2306,11 +2304,13 @@ msgstr ""
 msgid "Not In"
 msgstr ""
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:88
 msgid "Valid for category, creator. Specify a single value or multiple values."
 msgstr ""
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:89
+#: ../../source/portal-user-guide/complex-filter/index.rst:107
+#: ../../source/portal-user-guide/complex-filter/index.rst:131
 msgid ""
 "Results include only records where the data in the column does not match "
 "the value in the filter."
@@ -2320,13 +2320,14 @@ msgstr ""
 msgid "Contains"
 msgstr ""
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:91
+#: ../../source/portal-user-guide/complex-filter/index.rst:94
 msgid ""
 "Valid for category, ID and column that contains text. Specify a single "
 "value or multiple values."
 msgstr ""
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:92
 msgid ""
 "Results include only records where the data in the column contains the "
 "value in the filter."
@@ -2336,7 +2337,7 @@ msgstr ""
 msgid "Doesn't Contains"
 msgstr ""
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:95
 msgid ""
 "Results include only records where the data in the column dóes not "
 "contain the value in the filter."
@@ -2346,11 +2347,12 @@ msgstr ""
 msgid "Between"
 msgstr ""
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:97
+#: ../../source/portal-user-guide/complex-filter/index.rst:100
 msgid "Valid for a column that contains number, dates. Specify two values."
 msgstr ""
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:98
 msgid ""
 "Result include only records where the data in the column is between the "
 "two values in the filter."
@@ -2360,7 +2362,7 @@ msgstr ""
 msgid "Not Between"
 msgstr ""
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:101
 msgid ""
 "Result include only records where the data in the column is not between "
 "the two values in the filter."
@@ -2370,7 +2372,12 @@ msgstr ""
 msgid "Equal"
 msgstr ""
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:103
+#: ../../source/portal-user-guide/complex-filter/index.rst:106
+#: ../../source/portal-user-guide/complex-filter/index.rst:109
+#: ../../source/portal-user-guide/complex-filter/index.rst:112
+#: ../../source/portal-user-guide/complex-filter/index.rst:115
+#: ../../source/portal-user-guide/complex-filter/index.rst:118
 msgid "Valid for a column that contains number. Specify a single value."
 msgstr ""
 
@@ -2382,7 +2389,7 @@ msgstr ""
 msgid "Less"
 msgstr ""
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:110
 msgid ""
 "Results include only records where the data in the column is less than "
 "the value in the filter."
@@ -2392,7 +2399,7 @@ msgstr ""
 msgid "Less or equal"
 msgstr ""
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:113
 msgid ""
 "Results include only records where the data in the column is less than or"
 " the equal to the value in the filter."
@@ -2402,7 +2409,7 @@ msgstr ""
 msgid "Greater"
 msgstr ""
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:116
 msgid ""
 "Results include only records where the data in the column is greater than"
 " the value in the filter."
@@ -2412,7 +2419,7 @@ msgstr ""
 msgid "Greater or equal"
 msgstr ""
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:119
 msgid ""
 "Results include only records where the data in the column is greater than"
 " or equal to the value in the filter."
@@ -2422,13 +2429,14 @@ msgstr ""
 msgid "Is Empty"
 msgstr ""
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:121
+#: ../../source/portal-user-guide/complex-filter/index.rst:124
 msgid ""
 "Valid for a column that contains text, numbers, or dates. Do not specify "
 "a value."
 msgstr ""
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:122
 msgid "Results include only records that contain no data in the column."
 msgstr ""
 
@@ -2436,7 +2444,7 @@ msgstr ""
 msgid "Is Not Empty"
 msgstr ""
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:125
 msgid "Results include only records that contain data in the column."
 msgstr ""
 
@@ -2444,7 +2452,8 @@ msgstr ""
 msgid "Is"
 msgstr ""
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:127
+#: ../../source/portal-user-guide/complex-filter/index.rst:130
 msgid ""
 "Valid for a column that contains text, dates. Specify a single value or "
 "multiple values."
@@ -2458,11 +2467,12 @@ msgstr ""
 msgid "Today"
 msgstr ""
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:133
+#: ../../source/portal-user-guide/complex-filter/index.rst:136
 msgid "Valid for a column that contains dates. Do not specify a value."
 msgstr ""
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:134
 msgid ""
 "Results include only records where the date in the column matches the "
 "current date."
@@ -2472,7 +2482,7 @@ msgstr ""
 msgid "Yesterday"
 msgstr ""
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:137
 msgid ""
 "Results include only records where the date in the column matches the "
 "yesterday's date."
@@ -2482,11 +2492,12 @@ msgstr ""
 msgid "Is Before"
 msgstr ""
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:139
+#: ../../source/portal-user-guide/complex-filter/index.rst:142
 msgid "Valid for a column that contains dates. Specify a single value."
 msgstr ""
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:140
 msgid ""
 "Results include only records where the date in the column is before the "
 "date in the filter."
@@ -2496,7 +2507,7 @@ msgstr ""
 msgid "Is After"
 msgstr ""
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:143
 msgid ""
 "Results include only records where the date in the column is after the "
 "date in the filter."
@@ -2506,43 +2517,46 @@ msgstr ""
 msgid "Current"
 msgstr ""
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:145
 msgid "Valid for a column that contains dates. Select Year, Month or Week."
 msgstr ""
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:146
+#: ../../source/portal-user-guide/complex-filter/index.rst:157
+#: ../../source/portal-user-guide/complex-filter/index.rst:168
 msgid ""
 "Results include only records where the date in the column falls within "
 "the range specified in the filter."
 msgstr ""
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:147
 msgid ""
 "Specifically, it will be from the first day of the current "
 "year/month/week to the end of the last day of the current"
 msgstr ""
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:148
 msgid "year/month/week."
 msgstr ""
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:150
 msgid "*Example*: Find all cases that were created in the current month."
 msgstr ""
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:151
 msgid ""
 ":bdg-dark-line:`Created Date` :bdg-dark-line:`Current` :bdg-dark-"
 "line:`Month`"
 msgstr ""
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:153
+#: ../../source/portal-user-guide/complex-filter/index.rst:164
 msgid ""
 "*Explanation*: Assuming today is ``2/27/2024 11:41:28``, the query will "
 "retrieve cases where the Created Date falls"
 msgstr ""
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:154
 msgid "within the period from ``2/1/2024 00:00:00`` to ``2/29/2024 23:59:59``."
 msgstr ""
 
@@ -2550,33 +2564,34 @@ msgstr ""
 msgid "Within the last"
 msgstr ""
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:156
+#: ../../source/portal-user-guide/complex-filter/index.rst:167
 msgid ""
 "Valid for a column that contains dates. Specify a single value then "
 "select Year(s), Month(s), Week(s) or Day(s)."
 msgstr ""
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:158
 msgid ""
 "Specifically, it will be from the beginning of the first day of the last "
 "<input_value> year(s)/month(s)/week(s)"
 msgstr ""
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:159
 msgid "to the present moment."
 msgstr ""
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:161
 msgid "*Example*: Find all cases that were created within the last 2 years"
 msgstr ""
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:162
 msgid ""
 ":bdg-dark-line:`Created Date` :bdg-dark-line:`Within the last` :bdg-dark-"
 "line:`2` :bdg-dark-line:`Year(s)`"
 msgstr ""
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:165
 msgid "within the period from ``2/27/2022 00:00:00`` to ``2/27/2024 11:41:28``."
 msgstr ""
 
@@ -2584,33 +2599,33 @@ msgstr ""
 msgid "Within the next"
 msgstr ""
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:169
 msgid ""
 "Specifically, it will be from the present moment to the end of the day of"
 " the next <input_value>"
 msgstr ""
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:170
 msgid "year(s)/month(s)/week(s)."
 msgstr ""
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:172
 msgid "*Example*: Find all cases with Invoice Due Date within the next 3 weeks"
 msgstr ""
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:173
 msgid ""
 ":bdg-dark-line:`Invoice Due Date` :bdg-dark-line:`Within the next` :bdg-"
 "dark-line:`3` :bdg-dark-line:`Week(s)`"
 msgstr ""
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:175
 msgid ""
 "*Explanation*: Assuming today is ``2/27/2024 11:41:28``, the query will "
 "retrieve cases where the Invoice Due Date falls"
 msgstr ""
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:176
 msgid "within the period from ``2/27/2024 11:41:28`` to ``3/19/2024 23:59:59``."
 msgstr ""
 
@@ -2618,13 +2633,16 @@ msgstr ""
 msgid "Starts with"
 msgstr ""
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:178
+#: ../../source/portal-user-guide/complex-filter/index.rst:181
+#: ../../source/portal-user-guide/complex-filter/index.rst:184
+#: ../../source/portal-user-guide/complex-filter/index.rst:187
 msgid ""
 "Valid for a column that contains text. Specify a single value or multiple"
 " values."
 msgstr ""
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:179
 msgid ""
 "Results include only records where the data in the column start with the "
 "value in the filter."
@@ -2634,7 +2652,7 @@ msgstr ""
 msgid "Doesn't start with"
 msgstr ""
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:182
 msgid ""
 "Results include only records where the data in the column does not start "
 "with the value in the filter."
@@ -2644,7 +2662,7 @@ msgstr ""
 msgid "Ends with"
 msgstr ""
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:185
 msgid ""
 "Results include only records where the data in the column end with the "
 "value in the filter."
@@ -2654,7 +2672,7 @@ msgstr ""
 msgid "Doesn't end with"
 msgstr ""
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:188
 msgid ""
 "Results include only records where the data in the column does not end "
 "with the value in the filter."
@@ -2664,11 +2682,11 @@ msgstr ""
 msgid "No Category"
 msgstr ""
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:190
 msgid "Valid for category. Do not specify a value."
 msgstr ""
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:191
 msgid "Results include only records where the data in the column has no category."
 msgstr ""
 
@@ -2676,11 +2694,11 @@ msgstr ""
 msgid "Current user"
 msgstr ""
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:193
 msgid "Valid for creator. Do not specify a value."
 msgstr ""
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:194
 msgid ""
 "Results include only records where the data in the column has been "
 "created by current user."
@@ -2717,7 +2735,9 @@ msgid "Dashboard configuration menu"
 msgstr ""
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:15
+#: ../../source/portal-user-guide/full-case-list/index.rst:19
 #: ../../source/portal-user-guide/full-process-list/index.rst:20
+#: ../../source/portal-user-guide/full-task-list/index.rst:19
 msgid "Overview"
 msgstr ""
 
@@ -2727,10 +2747,10 @@ msgstr ""
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:23
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:259
-#: ../../source/portal-user-guide/full-case-list/index.rst:361
+#: ../../source/portal-user-guide/full-case-list/index.rst:364
 #: ../../source/portal-user-guide/full-process-list/index.rst:200
-#: ../../source/portal-user-guide/full-task-list/index.rst:310
-#: ../../source/portal-user-guide/portal-header/index.rst:209
+#: ../../source/portal-user-guide/full-task-list/index.rst:312
+#: ../../source/portal-user-guide/portal-header/index.rst:206
 msgid "Required Permission"
 msgstr ""
 
@@ -2739,7 +2759,7 @@ msgid "**Private Dashboards**"
 msgstr ""
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:25
-#: ../../source/portal-user-guide/portal-header/index.rst:213
+#: ../../source/portal-user-guide/portal-header/index.rst:210
 msgid ":bdg-ref-warning:`🔑DashboardWriteOwn <DashboardWriteOwn>`"
 msgstr ""
 
@@ -2752,7 +2772,7 @@ msgid "**Public Dashboards**"
 msgstr ""
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:28
-#: ../../source/portal-user-guide/portal-header/index.rst:216
+#: ../../source/portal-user-guide/portal-header/index.rst:213
 msgid ":bdg-ref-warning:`🔑DashboardWritePublic <DashboardWritePublic>`"
 msgstr ""
 
@@ -2821,12 +2841,12 @@ msgid ""
 msgstr ""
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:58
-#: ../../source/portal-user-guide/portal-multi-language/index.rst:38
+#: ../../source/portal-user-guide/portal-multi-language/index.rst:41
 msgid "|create-private-dashboard-dialog|"
 msgstr ""
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:278
-#: ../../source/portal-user-guide/portal-multi-language/index.rst:52
+#: ../../source/portal-user-guide/portal-multi-language/index.rst:55
 msgid "Create private dashboard dialog"
 msgstr ""
 
@@ -2955,8 +2975,8 @@ msgstr ""
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:108
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:217
-#: ../../source/portal-user-guide/full-case-list/index.rst:254
-#: ../../source/portal-user-guide/full-case-list/index.rst:296
+#: ../../source/portal-user-guide/full-case-list/index.rst:257
+#: ../../source/portal-user-guide/full-case-list/index.rst:299
 msgid "**Available Actions:**"
 msgstr ""
 
@@ -3267,10 +3287,10 @@ msgid "Reorder public dashboards"
 msgstr ""
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:251
-#: ../../source/portal-user-guide/full-case-list/index.rst:353
+#: ../../source/portal-user-guide/full-case-list/index.rst:356
 #: ../../source/portal-user-guide/full-process-list/index.rst:192
-#: ../../source/portal-user-guide/full-task-list/index.rst:302
-#: ../../source/portal-user-guide/portal-header/index.rst:201
+#: ../../source/portal-user-guide/full-task-list/index.rst:304
+#: ../../source/portal-user-guide/portal-header/index.rst:198
 msgid "Permission Reference"
 msgstr ""
 
@@ -3709,12 +3729,8 @@ msgstr ""
 msgid "|navigate-to-full-cases-list-page|"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:383
+#: ../../source/portal-user-guide/full-case-list/index.rst:386
 msgid "Menu to navigate to the Full case list page"
-msgstr ""
-
-#: ../../source/portal-user-guide/full-case-list/index.rst:19
-msgid "Case List Information"
 msgstr ""
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:21
@@ -3722,7 +3738,7 @@ msgid "For each case, the list shows the following key information:"
 msgstr ""
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:23
-#: ../../source/portal-user-guide/full-case-list/index.rst:284
+#: ../../source/portal-user-guide/full-case-list/index.rst:287
 msgid "Case ID"
 msgstr ""
 
@@ -3732,20 +3748,20 @@ msgid "Pin"
 msgstr ""
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:27
-#: ../../source/portal-user-guide/full-case-list/index.rst:238
-#: ../../source/portal-user-guide/full-case-list/index.rst:280
+#: ../../source/portal-user-guide/full-case-list/index.rst:241
+#: ../../source/portal-user-guide/full-case-list/index.rst:283
 #: ../../source/portal-user-guide/full-task-list/index.rst:34
 #: ../../source/portal-user-guide/statistic-chart/index.rst:166
 msgid "Name"
 msgstr ""
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:31
-#: ../../source/portal-user-guide/full-case-list/index.rst:286
+#: ../../source/portal-user-guide/full-case-list/index.rst:289
 msgid "Creator"
 msgstr ""
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:33
-#: ../../source/portal-user-guide/full-case-list/index.rst:246
+#: ../../source/portal-user-guide/full-case-list/index.rst:249
 #: ../../source/portal-user-guide/full-task-list/index.rst:42
 msgid "Creation Date"
 msgstr ""
@@ -3755,16 +3771,16 @@ msgid "Finished Date"
 msgstr ""
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:37
-#: ../../source/portal-user-guide/full-case-list/index.rst:252
-#: ../../source/portal-user-guide/full-case-list/index.rst:292
+#: ../../source/portal-user-guide/full-case-list/index.rst:255
+#: ../../source/portal-user-guide/full-case-list/index.rst:295
 #: ../../source/portal-user-guide/full-task-list/index.rst:40
 msgid "State"
 msgstr ""
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:39
-#: ../../source/portal-user-guide/full-case-list/index.rst:294
+#: ../../source/portal-user-guide/full-case-list/index.rst:297
 #: ../../source/portal-user-guide/full-task-list/index.rst:46
-#: ../../source/portal-user-guide/portal-header/index.rst:164
+#: ../../source/portal-user-guide/portal-header/index.rst:161
 msgid "Category"
 msgstr ""
 
@@ -3772,7 +3788,7 @@ msgstr ""
 msgid "|case-key-information|"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:385
+#: ../../source/portal-user-guide/full-case-list/index.rst:388
 msgid "Full case list: key informations"
 msgstr ""
 
@@ -3787,11 +3803,11 @@ msgid "To access the full set of case data, click on the case Name/Description."
 msgstr ""
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:47
-#: ../../source/portal-user-guide/full-case-list/index.rst:276
+#: ../../source/portal-user-guide/full-case-list/index.rst:279
 msgid "|case-details|"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:387
+#: ../../source/portal-user-guide/full-case-list/index.rst:390
 msgid "The Case Details page"
 msgstr ""
 
@@ -3859,7 +3875,7 @@ msgstr ""
 msgid "|case-details-data-description|"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:389
+#: ../../source/portal-user-guide/full-case-list/index.rst:392
 msgid "Case Details: General section"
 msgstr ""
 
@@ -3871,11 +3887,11 @@ msgid ""
 msgstr ""
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:77
-#: ../../source/portal-user-guide/full-case-list/index.rst:225
+#: ../../source/portal-user-guide/full-case-list/index.rst:228
 msgid "|case-details-related-tasks-cases|"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:391
+#: ../../source/portal-user-guide/full-case-list/index.rst:394
 msgid "Case Details: Related Tasks of Case section"
 msgstr ""
 
@@ -3889,7 +3905,7 @@ msgstr ""
 msgid "|case-details-histories|"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:393
+#: ../../source/portal-user-guide/full-case-list/index.rst:396
 msgid "Case Details: Histories section"
 msgstr ""
 
@@ -3903,112 +3919,117 @@ msgstr ""
 msgid "|case-details-documents|"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:395
+#: ../../source/portal-user-guide/full-case-list/index.rst:398
 msgid "Case Details: Documents section"
 msgstr ""
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:92
+#: ../../source/portal-user-guide/full-task-list/index.rst:126
+msgid "How-to"
+msgstr ""
+
+#: ../../source/portal-user-guide/full-case-list/index.rst:95
 msgid "HowTo: Move and Resize Widgets in Case Details"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:94
-#: ../../source/portal-user-guide/full-case-list/index.rst:113
-#: ../../source/portal-user-guide/full-case-list/index.rst:131
-#: ../../source/portal-user-guide/full-case-list/index.rst:145
-#: ../../source/portal-user-guide/full-case-list/index.rst:167
-#: ../../source/portal-user-guide/full-case-list/index.rst:185
-#: ../../source/portal-user-guide/full-case-list/index.rst:206
-#: ../../source/portal-user-guide/full-case-list/index.rst:221
-#: ../../source/portal-user-guide/full-case-list/index.rst:271
-#: ../../source/portal-user-guide/full-case-list/index.rst:333
-#: ../../source/portal-user-guide/full-case-list/index.rst:342
-#: ../../source/portal-user-guide/full-task-list/index.rst:172
+#: ../../source/portal-user-guide/full-case-list/index.rst:97
+#: ../../source/portal-user-guide/full-case-list/index.rst:116
+#: ../../source/portal-user-guide/full-case-list/index.rst:134
+#: ../../source/portal-user-guide/full-case-list/index.rst:148
+#: ../../source/portal-user-guide/full-case-list/index.rst:170
+#: ../../source/portal-user-guide/full-case-list/index.rst:188
+#: ../../source/portal-user-guide/full-case-list/index.rst:209
+#: ../../source/portal-user-guide/full-case-list/index.rst:224
+#: ../../source/portal-user-guide/full-case-list/index.rst:274
+#: ../../source/portal-user-guide/full-case-list/index.rst:336
+#: ../../source/portal-user-guide/full-case-list/index.rst:345
+#: ../../source/portal-user-guide/full-task-list/index.rst:174
 msgid "Open the case details"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:96
-#: ../../source/portal-user-guide/full-task-list/index.rst:138
+#: ../../source/portal-user-guide/full-case-list/index.rst:99
+#: ../../source/portal-user-guide/full-task-list/index.rst:142
 msgid "Click on the :guilabel:`Edit` button to drag, drop and resize widgets."
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:98
-#: ../../source/portal-user-guide/full-task-list/index.rst:140
+#: ../../source/portal-user-guide/full-case-list/index.rst:101
+#: ../../source/portal-user-guide/full-task-list/index.rst:144
 msgid "|how-to-switch-to-edit-mode|"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:409
+#: ../../source/portal-user-guide/full-case-list/index.rst:412
 msgid "Case Details: button to switch to the edit mode"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:100
+#: ../../source/portal-user-guide/full-case-list/index.rst:103
 msgid ""
 "Click on the :guilabel:`Save` button to save the current state of the "
 "page and switch to read-only mode."
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:102
-#: ../../source/portal-user-guide/full-task-list/index.rst:145
+#: ../../source/portal-user-guide/full-case-list/index.rst:105
+#: ../../source/portal-user-guide/full-task-list/index.rst:148
 msgid "|how-to-switch-to-view-mode|"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:407
+#: ../../source/portal-user-guide/full-case-list/index.rst:410
 msgid "Case Details: save button"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:104
+#: ../../source/portal-user-guide/full-case-list/index.rst:107
 msgid ""
 "Click the :guilabel:`Reset` button to reset the widget to its default "
 "configuration."
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:106
-#: ../../source/portal-user-guide/full-task-list/index.rst:150
+#: ../../source/portal-user-guide/full-case-list/index.rst:109
+#: ../../source/portal-user-guide/full-task-list/index.rst:152
 msgid "|how-to-reset-to-default|"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:411
+#: ../../source/portal-user-guide/full-case-list/index.rst:414
 msgid "Case Details: button to reset to the default configurations"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:111
-#: ../../source/portal-user-guide/full-task-list/index.rst:154
+#: ../../source/portal-user-guide/full-case-list/index.rst:114
+#: ../../source/portal-user-guide/full-task-list/index.rst:156
 msgid "HowTo: Attach a Document to a Case"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:115
+#: ../../source/portal-user-guide/full-case-list/index.rst:118
 msgid "Click |add-icon| :guilabel:`Add document`"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:117
-#: ../../source/portal-user-guide/full-task-list/index.rst:160
+#: ../../source/portal-user-guide/full-case-list/index.rst:120
+#: ../../source/portal-user-guide/full-task-list/index.rst:162
 msgid "The :guilabel:`Add document` dialog is opened"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:119
-#: ../../source/portal-user-guide/full-task-list/index.rst:162
+#: ../../source/portal-user-guide/full-case-list/index.rst:122
+#: ../../source/portal-user-guide/full-task-list/index.rst:164
 msgid ""
 "Upload a file by clicking :guilabel:`Upload here` or by dragging the file"
 " into the dialog"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:122
+#: ../../source/portal-user-guide/full-case-list/index.rst:125
 msgid "Click :guilabel:`Close` to close the dialog"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:124
+#: ../../source/portal-user-guide/full-case-list/index.rst:127
 msgid "|how-to-attach-document-to-case|"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:397
+#: ../../source/portal-user-guide/full-case-list/index.rst:400
 msgid "Case Details: Add document dialog"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:129
-#: ../../source/portal-user-guide/full-task-list/index.rst:189
+#: ../../source/portal-user-guide/full-case-list/index.rst:132
+#: ../../source/portal-user-guide/full-task-list/index.rst:191
 msgid "HowTo: Remove an Attachment from the Case"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:133
+#: ../../source/portal-user-guide/full-case-list/index.rst:136
 msgid ""
 "Click on the |delete-icon| button next to the attachment you want to "
 "remove."
@@ -4018,29 +4039,29 @@ msgstr ""
 msgid "delete-icon"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:136
-#: ../../source/portal-user-guide/full-task-list/index.rst:196
+#: ../../source/portal-user-guide/full-case-list/index.rst:139
+#: ../../source/portal-user-guide/full-task-list/index.rst:198
 msgid "A confirmation dialog is opened"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:138
+#: ../../source/portal-user-guide/full-case-list/index.rst:141
 msgid "Click :guilabel:`Delete` to remove the attachment"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:140
+#: ../../source/portal-user-guide/full-case-list/index.rst:143
 msgid "|how-to-delete-an-attachment-from-case|"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:399
+#: ../../source/portal-user-guide/full-case-list/index.rst:402
 msgid "Case Details: Delete document confirm dialog"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:143
+#: ../../source/portal-user-guide/full-case-list/index.rst:146
 msgid "HowTo: Preview a Document of a Case"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:147
-#: ../../source/portal-user-guide/full-task-list/index.rst:208
+#: ../../source/portal-user-guide/full-case-list/index.rst:150
+#: ../../source/portal-user-guide/full-task-list/index.rst:210
 msgid ""
 "Click on the |preview-icon| button next to the attachment you want to "
 "preview"
@@ -4050,46 +4071,46 @@ msgstr ""
 msgid "preview-icon"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:149
-#: ../../source/portal-user-guide/full-task-list/index.rst:211
+#: ../../source/portal-user-guide/full-case-list/index.rst:152
+#: ../../source/portal-user-guide/full-task-list/index.rst:213
 msgid "A preview dialog is opened"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:151
-#: ../../source/portal-user-guide/full-task-list/index.rst:165
-#: ../../source/portal-user-guide/full-task-list/index.rst:213
+#: ../../source/portal-user-guide/full-case-list/index.rst:154
+#: ../../source/portal-user-guide/full-task-list/index.rst:167
+#: ../../source/portal-user-guide/full-task-list/index.rst:215
 msgid "Click the button :guilabel:`Close` to close the dialog"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:153
-#: ../../source/portal-user-guide/full-task-list/index.rst:215
+#: ../../source/portal-user-guide/full-case-list/index.rst:156
+#: ../../source/portal-user-guide/full-task-list/index.rst:217
 msgid "|how-to-preview-document|"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:417
+#: ../../source/portal-user-guide/full-case-list/index.rst:420
 msgid "Case Details: preview document dialog"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:156
-#: ../../source/portal-user-guide/full-task-list/index.rst:218
+#: ../../source/portal-user-guide/full-case-list/index.rst:159
+#: ../../source/portal-user-guide/full-task-list/index.rst:220
 msgid "**Supported Document Types:**"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:158
-#: ../../source/portal-user-guide/full-task-list/index.rst:220
+#: ../../source/portal-user-guide/full-case-list/index.rst:161
+#: ../../source/portal-user-guide/full-task-list/index.rst:222
 msgid ""
 "**Default**: Images (jpg, jpeg, bmp, png), plain text (txt, log), and PDF"
 " documents"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:159
-#: ../../source/portal-user-guide/full-task-list/index.rst:221
+#: ../../source/portal-user-guide/full-case-list/index.rst:162
+#: ../../source/portal-user-guide/full-task-list/index.rst:223
 msgid ""
 "**With DocFactory**: Word (doc, docx), Excel (xls, xlsx), and email (eml)"
 " files"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:161
+#: ../../source/portal-user-guide/full-case-list/index.rst:164
 msgid ""
 "Set :ref:`Portal settings <update-portal-settings>` "
 ":guilabel:`Portal.Document.EnablePreview` to true to enable this feature."
@@ -4097,96 +4118,96 @@ msgid ""
 "/doc-factory#tab-description>`_ in the same security context."
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:165
-#: ../../source/portal-user-guide/full-task-list/index.rst:170
+#: ../../source/portal-user-guide/full-case-list/index.rst:168
+#: ../../source/portal-user-guide/full-task-list/index.rst:172
 msgid "HowTo: Rename a Document of a Case"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:169
-#: ../../source/portal-user-guide/full-task-list/index.rst:174
+#: ../../source/portal-user-guide/full-case-list/index.rst:172
+#: ../../source/portal-user-guide/full-task-list/index.rst:176
 msgid "Click on the |edit-icon| button next to the attachment you want to rename"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:172
-#: ../../source/portal-user-guide/full-task-list/index.rst:177
+#: ../../source/portal-user-guide/full-case-list/index.rst:175
+#: ../../source/portal-user-guide/full-task-list/index.rst:179
 msgid "A dialog is opened to rename the selected document"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:174
-#: ../../source/portal-user-guide/full-task-list/index.rst:179
+#: ../../source/portal-user-guide/full-case-list/index.rst:177
+#: ../../source/portal-user-guide/full-task-list/index.rst:181
 msgid "Update filename as you expect in the input field"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:176
-#: ../../source/portal-user-guide/full-task-list/index.rst:181
+#: ../../source/portal-user-guide/full-case-list/index.rst:179
+#: ../../source/portal-user-guide/full-task-list/index.rst:183
 msgid "Click the button :guilabel:`Save` to save your change"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:178
-#: ../../source/portal-user-guide/full-task-list/index.rst:183
+#: ../../source/portal-user-guide/full-case-list/index.rst:181
+#: ../../source/portal-user-guide/full-task-list/index.rst:185
 msgid "Filename will be updated and a note about the renaming will be added"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:180
-#: ../../source/portal-user-guide/full-task-list/index.rst:185
+#: ../../source/portal-user-guide/full-case-list/index.rst:183
+#: ../../source/portal-user-guide/full-task-list/index.rst:187
 msgid "|how-to-rename-document|"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:419
+#: ../../source/portal-user-guide/full-case-list/index.rst:422
 msgid "Case Details: rename document dialog"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:183
+#: ../../source/portal-user-guide/full-case-list/index.rst:186
 msgid "HowTo: Add a Note to a Case"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:187
+#: ../../source/portal-user-guide/full-case-list/index.rst:190
 msgid "Click on the |add-icon| ``Add note`` link below the notes section."
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:189
+#: ../../source/portal-user-guide/full-case-list/index.rst:192
 msgid "The :guilabel:`Add note` dialog is opened."
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:191
+#: ../../source/portal-user-guide/full-case-list/index.rst:194
 msgid "Enter your note."
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:193
+#: ../../source/portal-user-guide/full-case-list/index.rst:196
 msgid "To save your note, click :guilabel:`Save`."
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:195
+#: ../../source/portal-user-guide/full-case-list/index.rst:198
 msgid "|how-to-add-task-note|"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:401
+#: ../../source/portal-user-guide/full-case-list/index.rst:404
 msgid "Case Details: Add note dialog"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:198
-#: ../../source/portal-user-guide/full-task-list/index.rst:243
+#: ../../source/portal-user-guide/full-case-list/index.rst:201
+#: ../../source/portal-user-guide/full-task-list/index.rst:245
 msgid "**Note Visibility:**"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:200
+#: ../../source/portal-user-guide/full-case-list/index.rst:203
 msgid ""
 "**Technical case notes**: Displayed in the ``Notes`` table of the case "
 "and its tasks"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:201
+#: ../../source/portal-user-guide/full-case-list/index.rst:204
 msgid ""
 "**Business case notes**: Displayed in the ``History`` table of the case "
 "details, its direct tasks, and technical case details (not shown in task "
 "Notes tables)"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:204
+#: ../../source/portal-user-guide/full-case-list/index.rst:207
 msgid "HowTo: Export a Case History"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:208
+#: ../../source/portal-user-guide/full-case-list/index.rst:211
 msgid "Click on |show-more-icon| :guilabel:`Show more` below the notes section"
 msgstr ""
 
@@ -4194,296 +4215,296 @@ msgstr ""
 msgid "show-more-icon"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:210
-#: ../../source/portal-user-guide/full-task-list/index.rst:255
+#: ../../source/portal-user-guide/full-case-list/index.rst:213
+#: ../../source/portal-user-guide/full-task-list/index.rst:257
 msgid "|how-to-show-note-details|"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:403
+#: ../../source/portal-user-guide/full-case-list/index.rst:406
 msgid "Case Details: Link to show more notes details"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:212
+#: ../../source/portal-user-guide/full-case-list/index.rst:215
 msgid "A page containing the case history is opened"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:214
+#: ../../source/portal-user-guide/full-case-list/index.rst:217
 msgid "To export the case history, click on :guilabel:`Export to Excel`"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:216
+#: ../../source/portal-user-guide/full-case-list/index.rst:219
 msgid "|export-case-history|"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:405
+#: ../../source/portal-user-guide/full-case-list/index.rst:408
 msgid "Case Business Information page: Link to export case history"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:219
+#: ../../source/portal-user-guide/full-case-list/index.rst:222
 msgid "HowTo: Manipulate Related Tasks Inside Case Details"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:223
+#: ../../source/portal-user-guide/full-case-list/index.rst:226
 msgid "Scroll to **Related Tasks of Case**"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:227
+#: ../../source/portal-user-guide/full-case-list/index.rst:230
 msgid "This section shows you the related tasks of this case."
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:230
+#: ../../source/portal-user-guide/full-case-list/index.rst:233
 msgid ""
 "The tasks you see depend on your application roles and Portal "
 "permissions. Administrators can see all open tasks."
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:232
+#: ../../source/portal-user-guide/full-case-list/index.rst:235
 msgid ""
 "The list shows the following key information for each task. To change the"
 " columns displayed, click on :guilabel:`Manage columns`. Select from the "
 "following columns:"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:236
+#: ../../source/portal-user-guide/full-case-list/index.rst:239
 #: ../../source/portal-user-guide/full-task-list/index.rst:28
 msgid "Priority"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:242
+#: ../../source/portal-user-guide/full-case-list/index.rst:245
 #: ../../source/portal-user-guide/full-task-list/index.rst:38
 msgid "Responsible user or role"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:244
+#: ../../source/portal-user-guide/full-case-list/index.rst:247
 #: ../../source/portal-user-guide/full-task-list/index.rst:32
 msgid "Task ID"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:248
+#: ../../source/portal-user-guide/full-case-list/index.rst:251
 #: ../../source/portal-user-guide/full-task-list/index.rst:44
 msgid "Expiry Date"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:250
-#: ../../source/portal-user-guide/full-case-list/index.rst:290
+#: ../../source/portal-user-guide/full-case-list/index.rst:253
+#: ../../source/portal-user-guide/full-case-list/index.rst:293
 msgid "Finished date"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:256
+#: ../../source/portal-user-guide/full-case-list/index.rst:259
 msgid "At the end of each row, click the side step menu to access:"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:258
+#: ../../source/portal-user-guide/full-case-list/index.rst:261
 msgid "**Reset Task**: Revert the task to its initial state"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:259
+#: ../../source/portal-user-guide/full-case-list/index.rst:262
 msgid "**Delegate Task**: Assign the task to another user or role"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:260
+#: ../../source/portal-user-guide/full-case-list/index.rst:263
 msgid "**Reserve Task**: Reserve the task for yourself"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:261
+#: ../../source/portal-user-guide/full-case-list/index.rst:264
 msgid "**Destroy Task**: Permanently remove the task"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:262
+#: ../../source/portal-user-guide/full-case-list/index.rst:265
 msgid "**Trigger Escalation Task**: Manually trigger task escalation"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:263
+#: ../../source/portal-user-guide/full-case-list/index.rst:266
 msgid "**Workflow Events**: View and manage workflow events"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:265
+#: ../../source/portal-user-guide/full-case-list/index.rst:268
 msgid ""
 "To access the full set of the task data, click on the row containing the "
 "task."
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:269
+#: ../../source/portal-user-guide/full-case-list/index.rst:272
 msgid "HowTo: Manipulate Related Cases Inside Case Details"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:273
+#: ../../source/portal-user-guide/full-case-list/index.rst:276
 msgid ""
 "Scroll to **Related Cases** section. This section is shown only if the "
 "case has related cases."
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:278
+#: ../../source/portal-user-guide/full-case-list/index.rst:281
 msgid ""
 "By default, the following information is shown. To change it, click on "
 ":guilabel:`Manage columns` to select from:"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:288
+#: ../../source/portal-user-guide/full-case-list/index.rst:291
 msgid "Creation date"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:298
+#: ../../source/portal-user-guide/full-case-list/index.rst:301
 msgid "**Case details**: View full case information"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:299
+#: ../../source/portal-user-guide/full-case-list/index.rst:302
 msgid "**Business details**: View business-specific case data"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:300
+#: ../../source/portal-user-guide/full-case-list/index.rst:303
 msgid "**Side step**: Access additional case operations"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:302
+#: ../../source/portal-user-guide/full-case-list/index.rst:305
 msgid ""
 "To see the details of the related case, click on its row. To export the "
 "related case list, click on :guilabel:`Export to Excel`."
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:308
+#: ../../source/portal-user-guide/full-case-list/index.rst:311
 msgid "HowTo: Show Process Viewer"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:310
+#: ../../source/portal-user-guide/full-case-list/index.rst:313
 msgid ""
 "Portal provides a visual representation of the process flow of the "
 "current case or task. To open the viewer, select :guilabel:`Process "
 "Viewer` in the :guilabel:`Action` menu."
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:312
+#: ../../source/portal-user-guide/full-case-list/index.rst:315
 msgid "You find this option on the following pages:"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:314
+#: ../../source/portal-user-guide/full-case-list/index.rst:317
 msgid "Case details"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:315
+#: ../../source/portal-user-guide/full-case-list/index.rst:318
 msgid "Task details"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:316
+#: ../../source/portal-user-guide/full-case-list/index.rst:319
 msgid "Full case list"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:317
+#: ../../source/portal-user-guide/full-case-list/index.rst:320
 msgid "Full task list"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:319
+#: ../../source/portal-user-guide/full-case-list/index.rst:322
 #: ../../source/portal-user-guide/portal-header/index.rst:110
 msgid "**Steps:**"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:321
-#: ../../source/portal-user-guide/full-case-list/index.rst:344
+#: ../../source/portal-user-guide/full-case-list/index.rst:324
+#: ../../source/portal-user-guide/full-case-list/index.rst:347
 msgid "Click on :guilabel:`Actions`"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:323
+#: ../../source/portal-user-guide/full-case-list/index.rst:326
 msgid "Click on :guilabel:`Process Viewer`"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:325
+#: ../../source/portal-user-guide/full-case-list/index.rst:328
 msgid "Portal opens a new browser tab. You see the process viewer."
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:327
+#: ../../source/portal-user-guide/full-case-list/index.rst:330
 msgid "|portal-process-viewer|"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:413
+#: ../../source/portal-user-guide/full-case-list/index.rst:416
 msgid "Process Viewer page"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:331
+#: ../../source/portal-user-guide/full-case-list/index.rst:334
 msgid "HowTo: Share Case Details"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:335
-#: ../../source/portal-user-guide/full-task-list/index.rst:297
+#: ../../source/portal-user-guide/full-case-list/index.rst:338
+#: ../../source/portal-user-guide/full-task-list/index.rst:299
 msgid "Click on the share button |share-icon|"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:337
+#: ../../source/portal-user-guide/full-case-list/index.rst:340
 msgid "|how-to-share-case-details|"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:415
+#: ../../source/portal-user-guide/full-case-list/index.rst:418
 msgid "Case Details: button to get the shareable link of the case details"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:340
+#: ../../source/portal-user-guide/full-case-list/index.rst:343
 msgid "HowTo: Show Case Custom Fields Dialog"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:346
+#: ../../source/portal-user-guide/full-case-list/index.rst:349
 msgid "Click on :guilabel:`Custom Fields`"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:348
+#: ../../source/portal-user-guide/full-case-list/index.rst:351
 msgid "Portal opens the custom fields dialog of the case"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:350
+#: ../../source/portal-user-guide/full-case-list/index.rst:353
 msgid "|case-custom-fields-dialog|"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:421
+#: ../../source/portal-user-guide/full-case-list/index.rst:424
 msgid "Case Details: custom fields dialog"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:355
+#: ../../source/portal-user-guide/full-case-list/index.rst:358
 msgid "Different case operations require specific permissions:"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:363
+#: ../../source/portal-user-guide/full-case-list/index.rst:366
 msgid "**View related tasks of case**"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:363
+#: ../../source/portal-user-guide/full-case-list/index.rst:366
 msgid ""
 ":bdg-ref-warning:`🔑TaskReadOwnCaseTasks <TaskReadOwnCaseTasks>` or :bdg-"
 "ref-warning:`🔑TaskReadAll <TaskReadAll>`"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:367
+#: ../../source/portal-user-guide/full-case-list/index.rst:370
 msgid "**Add/delete case documents**"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:367
-#: ../../source/portal-user-guide/full-task-list/index.rst:334
+#: ../../source/portal-user-guide/full-case-list/index.rst:370
+#: ../../source/portal-user-guide/full-task-list/index.rst:336
 msgid ""
 ":bdg-ref-warning:`🔑DocumentOfInvolvedCaseWrite "
 "<DocumentOfInvolvedCaseWrite>` or :bdg-ref-warning:`🔑DocumentWrite "
 "<DocumentWrite>`"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:371
+#: ../../source/portal-user-guide/full-case-list/index.rst:374
 msgid "**Add note to case**"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:371
-#: ../../source/portal-user-guide/full-task-list/index.rst:338
+#: ../../source/portal-user-guide/full-case-list/index.rst:374
+#: ../../source/portal-user-guide/full-task-list/index.rst:340
 msgid ":bdg-ref-warning:`🔑TaskCaseAddNote <TaskCaseAddNote>`"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:374
+#: ../../source/portal-user-guide/full-case-list/index.rst:377
 msgid "**Share case details link**"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:374
+#: ../../source/portal-user-guide/full-case-list/index.rst:377
 msgid ":bdg-ref-warning:`🔑ShareCaseDetailsLink <ShareCaseDetailsLink>`"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:377
-#: ../../source/portal-user-guide/full-task-list/index.rst:331
+#: ../../source/portal-user-guide/full-case-list/index.rst:380
+#: ../../source/portal-user-guide/full-task-list/index.rst:333
 msgid "**View custom fields**"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:377
+#: ../../source/portal-user-guide/full-case-list/index.rst:380
 msgid ""
 ":bdg-ref-warning:`🔑CaseDisplayCustomFieldsAction "
 "<CaseDisplayCustomFieldsAction>`"
@@ -4939,12 +4960,8 @@ msgstr ""
 msgid "|navigate-to-full-task-list-page|"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:348
+#: ../../source/portal-user-guide/full-task-list/index.rst:350
 msgid "Menu to navigate to the Full task list"
-msgstr ""
-
-#: ../../source/portal-user-guide/full-task-list/index.rst:19
-msgid "Task List Overview"
 msgstr ""
 
 #: ../../source/portal-user-guide/full-task-list/index.rst:21
@@ -4952,7 +4969,7 @@ msgid ""
 "On the top of the **Full Task List** page you see next to the heading "
 ":guilabel:`Tasks` in brackets the overall number of tasks shown to you. "
 "Below you find the filter feature. The usage will be explained in the "
-"HowTo’s further down this chapter. Finally, you see the list of tasks."
+"HowTo's further down this chapter. Finally, you see the list of tasks."
 msgstr ""
 
 #: ../../source/portal-user-guide/full-task-list/index.rst:26
@@ -4967,7 +4984,7 @@ msgstr ""
 msgid "|task-key-information|"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:350
+#: ../../source/portal-user-guide/full-task-list/index.rst:352
 msgid "Full task list: key informations"
 msgstr ""
 
@@ -5092,7 +5109,7 @@ msgstr ""
 msgid "|task-status-banner|"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:382
+#: ../../source/portal-user-guide/full-task-list/index.rst:384
 msgid "Task Details: the Status banner"
 msgstr ""
 
@@ -5106,7 +5123,7 @@ msgstr ""
 msgid "|detailed-task-information-data-description|"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:352
+#: ../../source/portal-user-guide/full-task-list/index.rst:354
 msgid "Task Details: General section"
 msgstr ""
 
@@ -5118,7 +5135,7 @@ msgstr ""
 msgid "|detailed-task-information-note|"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:354
+#: ../../source/portal-user-guide/full-task-list/index.rst:356
 msgid "Task Details: Notes section"
 msgstr ""
 
@@ -5133,7 +5150,7 @@ msgstr ""
 msgid "|detailed-task-information-documents|"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:356
+#: ../../source/portal-user-guide/full-task-list/index.rst:358
 msgid "Task Details: Documents section"
 msgstr ""
 
@@ -5141,108 +5158,108 @@ msgstr ""
 msgid "|detailed-task-information|"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:358
+#: ../../source/portal-user-guide/full-task-list/index.rst:360
 msgid "The Task Details page"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:126
+#: ../../source/portal-user-guide/full-task-list/index.rst:129
 msgid "HowTo: Configure the Full Task List"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:128
+#: ../../source/portal-user-guide/full-task-list/index.rst:131
 msgid ""
 "The full task list page functions as a dashboard accessible from the top-"
 "level menu. To customize the task list, navigate to :ref:`Dashboard "
 "configuration <dashboard-configuration>`."
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:131
+#: ../../source/portal-user-guide/full-task-list/index.rst:134
 msgid ""
 "To restore the dashboard to its default settings, including the menu icon"
 " and task list layout, delete the dashboard. Portal will automatically "
 "recreate the dashboard with the default settings."
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:135
+#: ../../source/portal-user-guide/full-task-list/index.rst:138
 msgid "HowTo: Move and Resize Widgets in Task Details"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:136
-#: ../../source/portal-user-guide/full-task-list/index.rst:156
-#: ../../source/portal-user-guide/full-task-list/index.rst:191
-#: ../../source/portal-user-guide/full-task-list/index.rst:206
-#: ../../source/portal-user-guide/full-task-list/index.rst:230
-#: ../../source/portal-user-guide/full-task-list/index.rst:251
-#: ../../source/portal-user-guide/full-task-list/index.rst:269
-#: ../../source/portal-user-guide/full-task-list/index.rst:282
+#: ../../source/portal-user-guide/full-task-list/index.rst:140
+#: ../../source/portal-user-guide/full-task-list/index.rst:158
+#: ../../source/portal-user-guide/full-task-list/index.rst:193
+#: ../../source/portal-user-guide/full-task-list/index.rst:208
+#: ../../source/portal-user-guide/full-task-list/index.rst:232
+#: ../../source/portal-user-guide/full-task-list/index.rst:253
+#: ../../source/portal-user-guide/full-task-list/index.rst:271
+#: ../../source/portal-user-guide/full-task-list/index.rst:284
 msgid "Open the task details of a task"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:376
+#: ../../source/portal-user-guide/full-task-list/index.rst:378
 msgid "Task Details: button to switch to the edit mode"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:143
+#: ../../source/portal-user-guide/full-task-list/index.rst:146
 msgid ""
 "Click on the :guilabel:`Save` button to save current state of page and "
 "switch to readonly mode."
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:374
+#: ../../source/portal-user-guide/full-task-list/index.rst:376
 msgid "Task Details: save button"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:148
+#: ../../source/portal-user-guide/full-task-list/index.rst:150
 msgid "Click :guilabel:`Reset` button to reset to default configuration."
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:378
+#: ../../source/portal-user-guide/full-task-list/index.rst:380
 msgid "Task Details: button to reset to the default configurations"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:158
+#: ../../source/portal-user-guide/full-task-list/index.rst:160
 msgid "Click the link |add-icon| ``Add document``"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:167
+#: ../../source/portal-user-guide/full-task-list/index.rst:169
 msgid "|how-to-upload-document|"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:360
+#: ../../source/portal-user-guide/full-task-list/index.rst:362
 msgid "Task Details:Add document dialog"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:386
+#: ../../source/portal-user-guide/full-task-list/index.rst:388
 msgid "Task Details: rename document dialog"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:193
+#: ../../source/portal-user-guide/full-task-list/index.rst:195
 msgid ""
 "Click on the |delete-icon| button next to the attachment you want to "
 "remove"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:198
+#: ../../source/portal-user-guide/full-task-list/index.rst:200
 msgid "Confirm the deletion with the button :guilabel:`Delete`"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:200
+#: ../../source/portal-user-guide/full-task-list/index.rst:202
 msgid "|how-to-delete-document|"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:362
+#: ../../source/portal-user-guide/full-task-list/index.rst:364
 msgid "Task Details: Delete document confirm dialog"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:204
+#: ../../source/portal-user-guide/full-task-list/index.rst:206
 msgid "HowTo: Preview a Document of a Task"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:384
+#: ../../source/portal-user-guide/full-task-list/index.rst:386
 msgid "Task Details: preview document dialog"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:223
+#: ../../source/portal-user-guide/full-task-list/index.rst:225
 msgid ""
 "To enable this feature, set :ref:`Portal settings <update-portal-"
 "settings>` :guilabel:`Portal.Document.EnablePreview` to true. For Office "
@@ -5250,219 +5267,219 @@ msgid ""
 "#tab-description>`_ in the same security context."
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:228
+#: ../../source/portal-user-guide/full-task-list/index.rst:230
 msgid "HowTo: Add a Note to a Task"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:232
+#: ../../source/portal-user-guide/full-task-list/index.rst:234
 msgid "Click on the link |add-icon| ``Add note`` below the notes section"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:234
+#: ../../source/portal-user-guide/full-task-list/index.rst:236
 msgid "The :guilabel:`Add note` dialog is opened"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:236
+#: ../../source/portal-user-guide/full-task-list/index.rst:238
 msgid "Enter your note"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:238
+#: ../../source/portal-user-guide/full-task-list/index.rst:240
 msgid "Confirm your note by clicking the button :guilabel:`Save`"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:240
+#: ../../source/portal-user-guide/full-task-list/index.rst:242
 msgid "|how-to-add-note|"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:364
+#: ../../source/portal-user-guide/full-task-list/index.rst:366
 msgid "Task Details: Add note dialog"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:245
+#: ../../source/portal-user-guide/full-task-list/index.rst:247
 msgid ""
 "Task notes are displayed in the ``Notes`` table of the task details and "
 "in the ``History`` table of its business case"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:246
+#: ../../source/portal-user-guide/full-task-list/index.rst:248
 msgid ""
 "If the task belongs to a technical case, notes are also displayed in the "
 "``History`` table of that technical case"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:249
+#: ../../source/portal-user-guide/full-task-list/index.rst:251
 msgid "HowTo: Export a Task History"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:253
+#: ../../source/portal-user-guide/full-task-list/index.rst:255
 msgid "Click on the link |show-more-icon| ``Show more`` below the notes section"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:366
+#: ../../source/portal-user-guide/full-task-list/index.rst:368
 msgid "Task Details: Link to show more notes details"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:257
+#: ../../source/portal-user-guide/full-task-list/index.rst:259
 msgid "A new page with the task history is opened"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:259
+#: ../../source/portal-user-guide/full-task-list/index.rst:261
 msgid ""
 "You may export the history by clicking on the button :guilabel:`Export to"
 " Excel`"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:261
+#: ../../source/portal-user-guide/full-task-list/index.rst:263
 msgid "|how-to-export-note-details|"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:368
+#: ../../source/portal-user-guide/full-task-list/index.rst:370
 msgid "Link to export task notes"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:267
+#: ../../source/portal-user-guide/full-task-list/index.rst:269
 msgid "HowTo: Show Workflow Events"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:271
-#: ../../source/portal-user-guide/full-task-list/index.rst:284
+#: ../../source/portal-user-guide/full-task-list/index.rst:273
+#: ../../source/portal-user-guide/full-task-list/index.rst:286
 msgid ""
 "Click on the link ``Actions`` on the right top corner of the **Data and "
 "Description** section"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:273
+#: ../../source/portal-user-guide/full-task-list/index.rst:275
 msgid ""
 "Click the link ``Workflow Events`` on the overlay panel to see Workflow "
 "Events dialog"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:275
+#: ../../source/portal-user-guide/full-task-list/index.rst:277
 msgid "**Workflow Events dialog**"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:277
+#: ../../source/portal-user-guide/full-task-list/index.rst:279
 msgid "|workflow-events-table|"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:370
+#: ../../source/portal-user-guide/full-task-list/index.rst:372
 msgid "Workflow events of task dialog"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:280
+#: ../../source/portal-user-guide/full-task-list/index.rst:282
 msgid "HowTo: Show Custom Fields"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:286
+#: ../../source/portal-user-guide/full-task-list/index.rst:288
 msgid ""
 "Click the link ``Custom Fields`` on the overlay panel to see Custom "
 "Fields dialog"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:288
+#: ../../source/portal-user-guide/full-task-list/index.rst:290
 msgid "**Custom Fields dialog**"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:290
+#: ../../source/portal-user-guide/full-task-list/index.rst:292
 msgid "|custom-fields-dialog|"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:372
+#: ../../source/portal-user-guide/full-task-list/index.rst:374
 msgid "Custom fields of task dialog"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:293
+#: ../../source/portal-user-guide/full-task-list/index.rst:295
 msgid "HowTo: Share Task Details"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:295
+#: ../../source/portal-user-guide/full-task-list/index.rst:297
 msgid "Open the task details"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:299
+#: ../../source/portal-user-guide/full-task-list/index.rst:301
 msgid "|how-to-share-task-details|"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:380
+#: ../../source/portal-user-guide/full-task-list/index.rst:382
 msgid "Task Details: button to get the shareable link of the task details"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:304
+#: ../../source/portal-user-guide/full-task-list/index.rst:306
 msgid "Different task operations require specific permissions:"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:312
+#: ../../source/portal-user-guide/full-task-list/index.rst:314
 msgid "**Reset task**"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:312
+#: ../../source/portal-user-guide/full-task-list/index.rst:314
 msgid ":bdg-ref-warning:`🔑TaskDisplayResetAction <TaskDisplayResetAction>`"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:315
+#: ../../source/portal-user-guide/full-task-list/index.rst:317
 msgid "**Reserve task**"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:315
+#: ../../source/portal-user-guide/full-task-list/index.rst:317
 msgid ":bdg-ref-warning:`🔑TaskDisplayReserveAction <TaskDisplayReserveAction>`"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:318
+#: ../../source/portal-user-guide/full-task-list/index.rst:320
 msgid "**Delegate task**"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:318
+#: ../../source/portal-user-guide/full-task-list/index.rst:320
 msgid ":bdg-ref-warning:`🔑TaskDisplayDelegateAction <TaskDisplayDelegateAction>`"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:321
+#: ../../source/portal-user-guide/full-task-list/index.rst:323
 msgid "**Destroy task**"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:321
+#: ../../source/portal-user-guide/full-task-list/index.rst:323
 msgid ":bdg-ref-warning:`🔑TaskDisplayDestroyAction <TaskDisplayDestroyAction>`"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:324
+#: ../../source/portal-user-guide/full-task-list/index.rst:326
 msgid "**View additional options**"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:324
+#: ../../source/portal-user-guide/full-task-list/index.rst:326
 msgid ""
 ":bdg-ref-warning:`🔑TaskDisplayAdditionalOptions "
 "<TaskDisplayAdditionalOptions>`"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:327
+#: ../../source/portal-user-guide/full-task-list/index.rst:329
 msgid "**View workflow events**"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:327
+#: ../../source/portal-user-guide/full-task-list/index.rst:329
 msgid ""
 ":bdg-ref-warning:`🔑TaskDisplayWorkflowEventAction "
 "<TaskDisplayWorkflowEventAction>` and :bdg-"
 "warning:`🔑WorkflowEventReadAll`"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:331
+#: ../../source/portal-user-guide/full-task-list/index.rst:333
 msgid ""
 ":bdg-ref-warning:`🔑TaskDisplayCustomFieldsAction "
 "<TaskDisplayCustomFieldsAction>`"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:334
+#: ../../source/portal-user-guide/full-task-list/index.rst:336
 msgid "**Add/delete task documents**"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:338
+#: ../../source/portal-user-guide/full-task-list/index.rst:340
 msgid "**Add note to task**"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:341
+#: ../../source/portal-user-guide/full-task-list/index.rst:343
 msgid "**Share task details link**"
 msgstr ""
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:341
+#: ../../source/portal-user-guide/full-task-list/index.rst:343
 msgid ":bdg-ref-warning:`🔑ShareTaskDetailsLink <ShareTaskDetailsLink>`"
 msgstr ""
 
@@ -5481,7 +5498,7 @@ msgid ""
 msgstr ""
 
 #: ../../source/portal-user-guide/my-profile/index.rst:4
-#: ../../source/portal-user-guide/portal-header/index.rst:60
+#: ../../source/portal-user-guide/portal-header/index.rst:62
 msgid "My Profile"
 msgstr ""
 
@@ -5495,7 +5512,7 @@ msgstr ""
 msgid "|my-profile-save|"
 msgstr ""
 
-#: ../../source/portal-user-guide/my-profile/index.rst:139
+#: ../../source/portal-user-guide/my-profile/index.rst:118
 msgid "My profile page"
 msgstr ""
 
@@ -5520,86 +5537,79 @@ msgid ""
 "Process list. These are options you can modify:"
 msgstr ""
 
-#: ../../source/portal-user-guide/my-profile/index.rst:27
-#: ../../source/portal-user-guide/my-profile/index.rst:46
-#: ../../source/portal-user-guide/my-profile/index.rst:62
-#: ../../source/portal-user-guide/my-profile/index.rst:79
-msgid "Option"
+#: ../../source/portal-user-guide/my-profile/index.rst:24
+msgid "**Default view mode**"
 msgstr ""
 
-#: ../../source/portal-user-guide/my-profile/index.rst:29
-msgid "Default view mode"
-msgstr ""
-
-#: ../../source/portal-user-guide/my-profile/index.rst:29
+#: ../../source/portal-user-guide/my-profile/index.rst:25
 msgid "Standard view mode when you open the process list."
 msgstr ""
 
-#: ../../source/portal-user-guide/my-profile/index.rst:33
+#: ../../source/portal-user-guide/my-profile/index.rst:27
 msgid ""
 "Portal will use the default value defined by the administrator if you "
 "don't select an option."
 msgstr ""
 
-#: ../../source/portal-user-guide/my-profile/index.rst:38
+#: ../../source/portal-user-guide/my-profile/index.rst:32
 msgid "Task list configuration"
 msgstr ""
 
-#: ../../source/portal-user-guide/my-profile/index.rst:40
+#: ../../source/portal-user-guide/my-profile/index.rst:34
 msgid ""
 "This section has available options which help you to configure your Task "
 "list. These are options you can modify:"
 msgstr ""
 
-#: ../../source/portal-user-guide/my-profile/index.rst:48
-msgid "Unpin all pinned tasks"
+#: ../../source/portal-user-guide/my-profile/index.rst:37
+msgid "**Unpin all pinned tasks (If enabled)**"
 msgstr ""
 
-#: ../../source/portal-user-guide/my-profile/index.rst:48
+#: ../../source/portal-user-guide/my-profile/index.rst:38
 msgid "Unpin all of your pinned tasks"
 msgstr ""
 
-#: ../../source/portal-user-guide/my-profile/index.rst:54
+#: ../../source/portal-user-guide/my-profile/index.rst:43
 msgid "Case list configuration"
 msgstr ""
 
-#: ../../source/portal-user-guide/my-profile/index.rst:56
+#: ../../source/portal-user-guide/my-profile/index.rst:45
 msgid ""
 "This section has available options which help you to configure your Case "
 "list. These are options you can modify:"
 msgstr ""
 
-#: ../../source/portal-user-guide/my-profile/index.rst:64
-msgid "Unpin all pinned cases"
+#: ../../source/portal-user-guide/my-profile/index.rst:48
+msgid "**Unpin all pinned cases (If enabled)**"
 msgstr ""
 
-#: ../../source/portal-user-guide/my-profile/index.rst:64
+#: ../../source/portal-user-guide/my-profile/index.rst:49
 msgid "Unpin all of your pinned cases"
 msgstr ""
 
-#: ../../source/portal-user-guide/my-profile/index.rst:71
+#: ../../source/portal-user-guide/my-profile/index.rst:55
 msgid "Accessibility settings"
 msgstr ""
 
-#: ../../source/portal-user-guide/my-profile/index.rst:73
+#: ../../source/portal-user-guide/my-profile/index.rst:57
 msgid ""
 "Accessibility settings help you customize your experience to meet your "
 "specific needs. These are options you can modify:"
 msgstr ""
 
-#: ../../source/portal-user-guide/my-profile/index.rst:81
-msgid "Keyboard shortcuts for navigation"
+#: ../../source/portal-user-guide/my-profile/index.rst:60
+msgid "**Keyboard shortcuts for navigation**"
 msgstr ""
 
-#: ../../source/portal-user-guide/my-profile/index.rst:81
+#: ../../source/portal-user-guide/my-profile/index.rst:61
 msgid "Enable or disable keyboard shortcuts for navigation"
 msgstr ""
 
-#: ../../source/portal-user-guide/my-profile/index.rst:87
+#: ../../source/portal-user-guide/my-profile/index.rst:66
 msgid "Language settings"
 msgstr ""
 
-#: ../../source/portal-user-guide/my-profile/index.rst:89
+#: ../../source/portal-user-guide/my-profile/index.rst:68
 msgid ""
 "**Language** allows you to specify your preferred application language. "
 "This setting will affect all Axon Ivy Portal pages, notification mails, "
@@ -5607,33 +5617,33 @@ msgid ""
 "following languages are currently supported in the Axon Ivy Portal:"
 msgstr ""
 
-#: ../../source/portal-user-guide/my-profile/index.rst:95
+#: ../../source/portal-user-guide/my-profile/index.rst:74
 msgid "English"
 msgstr ""
 
-#: ../../source/portal-user-guide/my-profile/index.rst:96
+#: ../../source/portal-user-guide/my-profile/index.rst:75
 msgid "German"
 msgstr ""
 
-#: ../../source/portal-user-guide/my-profile/index.rst:97
+#: ../../source/portal-user-guide/my-profile/index.rst:76
 msgid "French"
 msgstr ""
 
-#: ../../source/portal-user-guide/my-profile/index.rst:98
+#: ../../source/portal-user-guide/my-profile/index.rst:77
 msgid "Spanish"
 msgstr ""
 
-#: ../../source/portal-user-guide/my-profile/index.rst:99
+#: ../../source/portal-user-guide/my-profile/index.rst:78
 msgid "Japanese"
 msgstr ""
 
-#: ../../source/portal-user-guide/my-profile/index.rst:101
+#: ../../source/portal-user-guide/my-profile/index.rst:80
 msgid ""
 "**Formatting language** is used to format values, for example the decimal"
 " separator is displayed differently in different regions of the world."
 msgstr ""
 
-#: ../../source/portal-user-guide/my-profile/index.rst:104
+#: ../../source/portal-user-guide/my-profile/index.rst:83
 msgid ""
 "Your application needs to support the same language as the one selected "
 "in this menu. Otherwise the application specific content will be shown in"
@@ -5642,32 +5652,32 @@ msgid ""
 "application specific dialogs will still be shown in English."
 msgstr ""
 
-#: ../../source/portal-user-guide/my-profile/index.rst:119
+#: ../../source/portal-user-guide/my-profile/index.rst:98
 msgid "Notification Channels"
 msgstr ""
 
-#: ../../source/portal-user-guide/my-profile/index.rst:121
+#: ../../source/portal-user-guide/my-profile/index.rst:100
 msgid ""
 "**Notification Channels** allows you to configure your manage "
 "subscriptions of the different kinds of notification channels in the Axon"
 " Ivy Engine."
 msgstr ""
 
-#: ../../source/portal-user-guide/my-profile/index.rst:125
+#: ../../source/portal-user-guide/my-profile/index.rst:104
 msgid ""
 "The table :guilabel:`Notification Channels` displays all the available "
 "events that can either be subscribed or unsubscribed."
 msgstr ""
 
-#: ../../source/portal-user-guide/my-profile/index.rst:128
+#: ../../source/portal-user-guide/my-profile/index.rst:107
 msgid "|notification-channels|"
 msgstr ""
 
-#: ../../source/portal-user-guide/my-profile/index.rst:141
+#: ../../source/portal-user-guide/my-profile/index.rst:120
 msgid "Notification channels settings"
 msgstr ""
 
-#: ../../source/portal-user-guide/my-profile/index.rst:130
+#: ../../source/portal-user-guide/my-profile/index.rst:109
 msgid ""
 "The checkbox in each event column allow you to specify three state of "
 "event: subscribed by default, subscribe, unsubscribe. These checkboxes "
@@ -5675,14 +5685,14 @@ msgid ""
 "them."
 msgstr ""
 
-#: ../../source/portal-user-guide/my-profile/index.rst:135
+#: ../../source/portal-user-guide/my-profile/index.rst:114
 msgid ""
 "As an administrator, you can configure the permission :bdg-ref-"
 "warning:`🔑NotificationChannelsSetting <NotificationChannelsSetting>` to "
 "allow or prevent users from modifying notification channel preferences."
 msgstr ""
 
-#: ../../source/portal-user-guide/my-profile/index.rst:137
+#: ../../source/portal-user-guide/my-profile/index.rst:116
 msgid ""
 "To do this, access the :doc-url:`Engine Cockpit </engine-guide/reference"
 "/engine-cockpit/security.html>`, open the **Security area**. Since this "
@@ -5807,7 +5817,7 @@ msgstr ""
 msgid "|dash-board|"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:470
+#: ../../source/portal-user-guide/new-dashboard/index.rst:468
 msgid "Dashboard screen"
 msgstr ""
 
@@ -5829,7 +5839,7 @@ msgstr ""
 msgid "|widget-filter|"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:472
+#: ../../source/portal-user-guide/new-dashboard/index.rst:470
 msgid "Dashboard widget's filters panel"
 msgstr ""
 
@@ -5841,7 +5851,7 @@ msgstr ""
 msgid "|widget-info|"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:474
+#: ../../source/portal-user-guide/new-dashboard/index.rst:472
 msgid "Dashboard widget's info panel"
 msgstr ""
 
@@ -5875,7 +5885,7 @@ msgstr ""
 msgid "|edit-widget|"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:480
+#: ../../source/portal-user-guide/new-dashboard/index.rst:478
 msgid "Dashboard configuration screen"
 msgstr ""
 
@@ -5941,7 +5951,7 @@ msgstr ""
 msgid "|add-widget|"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:482
+#: ../../source/portal-user-guide/new-dashboard/index.rst:480
 msgid "Add new widget dialog"
 msgstr ""
 
@@ -5976,7 +5986,7 @@ msgstr ""
 msgid "|task-list-widget|"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:484
+#: ../../source/portal-user-guide/new-dashboard/index.rst:482
 msgid "Dashboard task widget's configuration dialog"
 msgstr ""
 
@@ -6007,7 +6017,7 @@ msgstr ""
 msgid "|task-list-widget-configuration|"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:486
+#: ../../source/portal-user-guide/new-dashboard/index.rst:484
 msgid "Dashboard task widget's configuration panel"
 msgstr ""
 
@@ -6034,7 +6044,7 @@ msgstr ""
 msgid "|task-list-widget-table-configuration|"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:488
+#: ../../source/portal-user-guide/new-dashboard/index.rst:486
 msgid "Dashboard task widget's table configuration"
 msgstr ""
 
@@ -6119,7 +6129,7 @@ msgstr ""
 msgid "|task-column-field-type-configuration|"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:490
+#: ../../source/portal-user-guide/new-dashboard/index.rst:488
 msgid "Dashboard task widget's column management"
 msgstr ""
 
@@ -6139,7 +6149,7 @@ msgstr ""
 msgid "|task-export-excel|"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:478
+#: ../../source/portal-user-guide/new-dashboard/index.rst:476
 msgid "Dashboard task widget: export to Excel feature"
 msgstr ""
 
@@ -6166,7 +6176,7 @@ msgstr ""
 msgid "|task-quick-search-textbox|"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:532
+#: ../../source/portal-user-guide/new-dashboard/index.rst:530
 msgid "Dashboard task widget's quick search"
 msgstr ""
 
@@ -6200,7 +6210,7 @@ msgstr ""
 msgid "|task-list-widget-edit-mode|"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:536
+#: ../../source/portal-user-guide/new-dashboard/index.rst:534
 msgid "Dashboard task widget in the Edit mode"
 msgstr ""
 
@@ -6233,7 +6243,7 @@ msgstr ""
 msgid "|case-list-widget|"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:494
+#: ../../source/portal-user-guide/new-dashboard/index.rst:492
 msgid "Dashboard case widget's configuration dialog"
 msgstr ""
 
@@ -6241,7 +6251,7 @@ msgstr ""
 msgid "|case-list-widget-configuration|"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:496
+#: ../../source/portal-user-guide/new-dashboard/index.rst:494
 msgid "Dashboard case widget's configuration panel"
 msgstr ""
 
@@ -6249,7 +6259,7 @@ msgstr ""
 msgid "|case-list-widget-table-configuration|"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:498
+#: ../../source/portal-user-guide/new-dashboard/index.rst:496
 msgid "Dashboard case widget's table configuration"
 msgstr ""
 
@@ -6281,7 +6291,7 @@ msgstr ""
 msgid "|case-export-excel|"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:476
+#: ../../source/portal-user-guide/new-dashboard/index.rst:474
 msgid "Dashboard case widget: export to Excel feature"
 msgstr ""
 
@@ -6296,7 +6306,7 @@ msgstr ""
 msgid "|case-quick-search-textbox|"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:534
+#: ../../source/portal-user-guide/new-dashboard/index.rst:532
 msgid "Dashboard case widget's quick search"
 msgstr ""
 
@@ -6304,7 +6314,7 @@ msgstr ""
 msgid "|case-list-widget-edit-mode|"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:538
+#: ../../source/portal-user-guide/new-dashboard/index.rst:536
 msgid "Dashboard case widget in the Edit mode"
 msgstr ""
 
@@ -6342,7 +6352,7 @@ msgstr ""
 msgid "|process-widget-modes|"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:500
+#: ../../source/portal-user-guide/new-dashboard/index.rst:498
 msgid "Dashboard process widget mode selection"
 msgstr ""
 
@@ -6361,7 +6371,7 @@ msgstr ""
 msgid "|process-widget-combined-mode|"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:502
+#: ../../source/portal-user-guide/new-dashboard/index.rst:500
 msgid "Dashboard process widget's combined mode"
 msgstr ""
 
@@ -6381,7 +6391,7 @@ msgstr ""
 msgid "|process-widget-compact-mode|"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:504
+#: ../../source/portal-user-guide/new-dashboard/index.rst:502
 msgid "Dashboard process widget's compact mode"
 msgstr ""
 
@@ -6405,7 +6415,7 @@ msgstr ""
 msgid "|process-quick-search-textbox|"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:514
+#: ../../source/portal-user-guide/new-dashboard/index.rst:512
 msgid "Quick search feature of dashboard process widget"
 msgstr ""
 
@@ -6423,7 +6433,7 @@ msgstr ""
 msgid "|process-widget-full-mode|"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:506
+#: ../../source/portal-user-guide/new-dashboard/index.rst:504
 msgid "Dashboard process widget's full mode"
 msgstr ""
 
@@ -6441,7 +6451,7 @@ msgstr ""
 msgid "|process-widget-image-mode|"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:508
+#: ../../source/portal-user-guide/new-dashboard/index.rst:506
 msgid "Dashboard process widget's image mode"
 msgstr ""
 
@@ -6461,7 +6471,7 @@ msgstr ""
 msgid "|process-viewer-widget-configuration|"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:512
+#: ../../source/portal-user-guide/new-dashboard/index.rst:510
 msgid "Dashboard process viewer widget's configuration dialog"
 msgstr ""
 
@@ -6474,7 +6484,7 @@ msgstr ""
 msgid "|process-viewer-widget|"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:510
+#: ../../source/portal-user-guide/new-dashboard/index.rst:508
 msgid "Dashboard process viewer widget"
 msgstr ""
 
@@ -6503,7 +6513,7 @@ msgstr ""
 msgid "|welcome-widget-configuration|"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:516
+#: ../../source/portal-user-guide/new-dashboard/index.rst:514
 msgid "Dashboard welcome widget's configuration dialog"
 msgstr ""
 
@@ -6523,7 +6533,7 @@ msgstr ""
 msgid "|news-feed-widget-configuration|"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:518
+#: ../../source/portal-user-guide/new-dashboard/index.rst:516
 msgid "Dashboard news feed widget's configuration dialog"
 msgstr ""
 
@@ -6531,7 +6541,7 @@ msgstr ""
 msgid "|news-feed-widget|"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:520
+#: ../../source/portal-user-guide/new-dashboard/index.rst:518
 msgid "Dashboard news feed widget"
 msgstr ""
 
@@ -6575,7 +6585,7 @@ msgstr ""
 msgid "|news-feed-widget-manage-content|"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:522
+#: ../../source/portal-user-guide/new-dashboard/index.rst:520
 msgid "Dashboard news feed widget's Manage news dialog"
 msgstr ""
 
@@ -6636,7 +6646,7 @@ msgstr ""
 msgid "|external-page-widget-configuration|"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:524
+#: ../../source/portal-user-guide/new-dashboard/index.rst:522
 msgid "Dashboard external page widget's configuration dialog"
 msgstr ""
 
@@ -6654,7 +6664,7 @@ msgstr ""
 msgid "|notification-widget-configuration|"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:528
+#: ../../source/portal-user-guide/new-dashboard/index.rst:526
 msgid "Dashboard notification widget's configuration dialog"
 msgstr ""
 
@@ -6667,7 +6677,7 @@ msgstr ""
 msgid "|notification-widget|"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:530
+#: ../../source/portal-user-guide/new-dashboard/index.rst:528
 msgid "Dashboard notification widget"
 msgstr ""
 
@@ -6685,7 +6695,7 @@ msgstr ""
 msgid "|navigation-dashboard-widget-configuration|"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:550
+#: ../../source/portal-user-guide/new-dashboard/index.rst:548
 msgid "Navigation dashboard widget configuration"
 msgstr ""
 
@@ -6693,7 +6703,7 @@ msgstr ""
 msgid "|navigation-dashboard-widget|"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:552
+#: ../../source/portal-user-guide/new-dashboard/index.rst:550
 msgid "navigation-dashboard-widget"
 msgstr ""
 
@@ -6714,85 +6724,78 @@ msgstr ""
 #: ../../source/portal-user-guide/new-dashboard/index.rst:441
 msgid ""
 "When editing a dashboard, you can clone a widget from another dashboard "
-"by opening the :guilabel:`Add a widget` dialog by press on the "
-":guilabel:`+ Add widget` button."
+"by clicking the :guilabel:`Clone widget` button at the top of the page."
 msgstr ""
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:443
-msgid ""
-"Once the dialog opens, click the :guilabel:`Clone widget` button at the "
-"top."
-msgstr ""
-
-#: ../../source/portal-user-guide/new-dashboard/index.rst:445
 msgid "|clone-widget-from-button|"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:546
+#: ../../source/portal-user-guide/new-dashboard/index.rst:544
 msgid ""
 "\"Clone widget from\" button placed inside the \"Add new widget\" dialog."
 " The \"Clone widget from\" dialog will appear after clicking this button."
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:447
+#: ../../source/portal-user-guide/new-dashboard/index.rst:445
 msgid ""
 "This will open the :guilabel:`Clone widget from` dialog. Select the "
 "dashboard that contains the widget you want to clone, then choose the "
 "specific widget."
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:449
+#: ../../source/portal-user-guide/new-dashboard/index.rst:447
 msgid "|clone-widget-from-dialog|"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:548
+#: ../../source/portal-user-guide/new-dashboard/index.rst:546
 msgid "\"Clone widget from\" dialog."
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:451
+#: ../../source/portal-user-guide/new-dashboard/index.rst:449
 msgid ""
 "After selecting the widget, click the :guilabel:`Clone` button to add it "
 "to the current dashboard."
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:454
+#: ../../source/portal-user-guide/new-dashboard/index.rst:452
 msgid "Clone a widget to another dashboard"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:456
+#: ../../source/portal-user-guide/new-dashboard/index.rst:454
 msgid ""
 "The Portal provides another convenient way to clone widgets between "
 "dashboards. To clone a specific widget, click the :guilabel:`Copy` icon "
 "on the widget header."
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:458
+#: ../../source/portal-user-guide/new-dashboard/index.rst:456
 msgid "|clone-widget-button|"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:540
+#: ../../source/portal-user-guide/new-dashboard/index.rst:538
 msgid ""
 "Clone widget button placed on the header of a widget in Edit mode. After "
 "clicking this button, the Clone widget dialog will appear."
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:460
+#: ../../source/portal-user-guide/new-dashboard/index.rst:458
 msgid ""
 "For certain widget types, such as the Welcome widget, you can find the "
 ":guilabel:`Clone` option in the context menu."
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:462
+#: ../../source/portal-user-guide/new-dashboard/index.rst:460
 msgid "|clone-widget-menu-option|"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:542
+#: ../../source/portal-user-guide/new-dashboard/index.rst:540
 msgid ""
 "Clone widget menu a widget in Edit mode. After clicking this menu, the "
 "Clone widget dialog will appear."
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:464
+#: ../../source/portal-user-guide/new-dashboard/index.rst:462
 msgid ""
 "After selecting the :guilabel:`Clone` option, the :guilabel:`Clone "
 "widget` dialog will appear. Choose the target dashboard where you want to"
@@ -6800,11 +6803,11 @@ msgid ""
 " process."
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:466
+#: ../../source/portal-user-guide/new-dashboard/index.rst:464
 msgid "|clone-widget-dialog|"
 msgstr ""
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:544
+#: ../../source/portal-user-guide/new-dashboard/index.rst:542
 msgid "Clone widget dialog in Edit mode."
 msgstr ""
 
@@ -7024,8 +7027,8 @@ msgstr ""
 #: ../../source/portal-user-guide/portal-header/index.rst:12
 msgid ""
 "Click on your username to access a menu with options for configuring "
-"Portal to your personal needs. See `User Settings in the Axon Ivy "
-"Portal`_ for detailed configuration options."
+"Portal to your personal needs. See :ref:`user-settings` for detailed "
+"configuration options."
 msgstr ""
 
 #: ../../source/portal-user-guide/portal-header/index.rst:14
@@ -7047,95 +7050,95 @@ msgstr ""
 msgid "|portal-header|"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:237
+#: ../../source/portal-user-guide/portal-header/index.rst:234
 msgid "Portal header items"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:20
+#: ../../source/portal-user-guide/portal-header/index.rst:22
 msgid "User Settings"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:22
+#: ../../source/portal-user-guide/portal-header/index.rst:24
 msgid ""
 "Click on your username in the top right of the Portal to access a menu "
 "with options for configuring Portal to your personal needs."
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:25
+#: ../../source/portal-user-guide/portal-header/index.rst:27
 msgid "Available Menu Options"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:31
+#: ../../source/portal-user-guide/portal-header/index.rst:33
 msgid "Menu Option"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:33
+#: ../../source/portal-user-guide/portal-header/index.rst:35
 msgid "**Admin Settings**"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:33
+#: ../../source/portal-user-guide/portal-header/index.rst:35
 msgid "Portal administration (``AXONIVY_PORTAL_ADMIN`` role)"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:35
+#: ../../source/portal-user-guide/portal-header/index.rst:37
 msgid "**My Profile**"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:35
+#: ../../source/portal-user-guide/portal-header/index.rst:37
 msgid "General settings, language, and notifications"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:37
+#: ../../source/portal-user-guide/portal-header/index.rst:39
 msgid "**Dashboard Configuration**"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:37
+#: ../../source/portal-user-guide/portal-header/index.rst:39
 msgid "Manage private and public dashboards"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:39
+#: ../../source/portal-user-guide/portal-header/index.rst:41
 msgid "**Absences**"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:39
+#: ../../source/portal-user-guide/portal-header/index.rst:41
 msgid "Manage absences and task delegates"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:41
+#: ../../source/portal-user-guide/portal-header/index.rst:43
 msgid "**Change Password**"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:41
+#: ../../source/portal-user-guide/portal-header/index.rst:43
 msgid "Set a new password"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:43
+#: ../../source/portal-user-guide/portal-header/index.rst:45
 msgid "**Info**"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:43
+#: ../../source/portal-user-guide/portal-header/index.rst:45
 msgid "Version information about Portal and Engine"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:45
+#: ../../source/portal-user-guide/portal-header/index.rst:47
 msgid "**Logout**"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:45
+#: ../../source/portal-user-guide/portal-header/index.rst:47
 msgid "End your session"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:49
+#: ../../source/portal-user-guide/portal-header/index.rst:51
 msgid "Menu Option Details"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:54
+#: ../../source/portal-user-guide/portal-header/index.rst:56
 msgid ""
 "The :ref:`Admin Settings <admin-settings>` menu entry provides portal "
 "administration features."
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:57
+#: ../../source/portal-user-guide/portal-header/index.rst:59
 msgid "Only users with role ``AXONIVY_PORTAL_ADMIN`` can access Admin Settings."
 msgstr ""
 
@@ -7166,7 +7169,7 @@ msgstr ""
 msgid "|portal-absences|"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:239
+#: ../../source/portal-user-guide/portal-header/index.rst:236
 msgid "Absences page"
 msgstr ""
 
@@ -7213,7 +7216,7 @@ msgstr ""
 msgid "|how-to-add-an-absence|"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:241
+#: ../../source/portal-user-guide/portal-header/index.rst:238
 msgid "Absences page: Add new absence dialog"
 msgstr ""
 
@@ -7273,7 +7276,7 @@ msgstr ""
 msgid "|how-to-set-absence-substitutes|"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:243
+#: ../../source/portal-user-guide/portal-header/index.rst:240
 msgid "Absences page: Set deputy section"
 msgstr ""
 
@@ -7291,7 +7294,7 @@ msgstr ""
 msgid "|portal-password-change-dialog|"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:245
+#: ../../source/portal-user-guide/portal-header/index.rst:242
 msgid "Change password dialog"
 msgstr ""
 
@@ -7318,7 +7321,7 @@ msgstr ""
 msgid "|portal-version-information|"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:247
+#: ../../source/portal-user-guide/portal-header/index.rst:244
 msgid "Version information dialog"
 msgstr ""
 
@@ -7329,189 +7332,189 @@ msgstr ""
 #: ../../source/portal-user-guide/portal-header/index.rst:140
 msgid ""
 "The menu entry :guilabel:`Logout` will terminate your session in the Axon"
-" Ivy Portal. You’ll be routed back to the login page of the Axon Ivy "
+" Ivy Portal. You'll be routed back to the login page of the Axon Ivy "
 "Portal."
 msgstr ""
 
 #: ../../source/portal-user-guide/portal-header/index.rst:145
 msgid ""
-"The Axon Ivy Portal will also do an automatic logout if you’re inactive "
-"for a certain amount of time."
+"The Axon Ivy Portal will automatically log you out after a period of "
+"inactivity."
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:151
+#: ../../source/portal-user-guide/portal-header/index.rst:148
 msgid "Global Search"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:153
+#: ../../source/portal-user-guide/portal-header/index.rst:150
 msgid ""
 "Global Search provides a convenient way to look up information across the"
 " entire Portal. You can search for any keyword, and Portal will search "
 "across multiple categories."
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:156
+#: ../../source/portal-user-guide/portal-header/index.rst:153
 msgid "Default Search Scope"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:158
+#: ../../source/portal-user-guide/portal-header/index.rst:155
 msgid "By default, Portal searches the following categories:"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:164
+#: ../../source/portal-user-guide/portal-header/index.rst:161
 msgid "Searchable Fields"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:166
+#: ../../source/portal-user-guide/portal-header/index.rst:163
 msgid "**Processes**"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:166
+#: ../../source/portal-user-guide/portal-header/index.rst:163
 msgid "Name, description"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:168
+#: ../../source/portal-user-guide/portal-header/index.rst:165
 msgid "**Cases**"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:168
+#: ../../source/portal-user-guide/portal-header/index.rst:165
 msgid "ID, name, description"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:170
+#: ../../source/portal-user-guide/portal-header/index.rst:167
 msgid "**Tasks**"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:170
+#: ../../source/portal-user-guide/portal-header/index.rst:167
 msgid "ID, name, description, and all custom string fields"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:174
+#: ../../source/portal-user-guide/portal-header/index.rst:171
 msgid "Search Results"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:176
+#: ../../source/portal-user-guide/portal-header/index.rst:173
 msgid ""
 "When you enter a keyword and confirm your search, Portal routes you to "
 "the **Global Search Results** page. Each category has its own tab "
 "displaying the matching results."
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:178
+#: ../../source/portal-user-guide/portal-header/index.rst:175
 msgid "|portal-global-search-result-page|"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:249
+#: ../../source/portal-user-guide/portal-header/index.rst:246
 msgid "Global search results page"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:181
+#: ../../source/portal-user-guide/portal-header/index.rst:178
 msgid "HowTo: Configure Search Scope"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:183
+#: ../../source/portal-user-guide/portal-header/index.rst:180
 msgid ""
 "As an administrator, you can limit the fields that Global Search uses to "
 "improve performance and relevance."
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:186
+#: ../../source/portal-user-guide/portal-header/index.rst:183
 msgid "Available Portal Variables"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:188
+#: ../../source/portal-user-guide/portal-header/index.rst:185
 msgid "**Portal.SearchScope.ByCaseFields**"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:189
+#: ../../source/portal-user-guide/portal-header/index.rst:186
 msgid ""
 "Defines the fields that global search uses to find matching cases besides"
 " case ID (can influence performance)."
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:191
+#: ../../source/portal-user-guide/portal-header/index.rst:188
 msgid "**Portal.SearchScope.ByTaskFields**"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:192
+#: ../../source/portal-user-guide/portal-header/index.rst:189
 msgid ""
 "Defines the fields that global search uses to find matching tasks besides"
 " task ID (can influence performance)."
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:194
+#: ../../source/portal-user-guide/portal-header/index.rst:191
 msgid "**Portal.GlobalSearchScopeCategories**"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:195
+#: ../../source/portal-user-guide/portal-header/index.rst:192
 msgid ""
 "Defines the categories that global search will search (can influence "
 "performance)."
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:198
+#: ../../source/portal-user-guide/portal-header/index.rst:195
 msgid ""
 "Configure these variables in :ref:`admin-settings` to optimize search "
 "performance for your Portal instance."
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:203
+#: ../../source/portal-user-guide/portal-header/index.rst:200
 msgid "Different header features require specific permissions:"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:211
+#: ../../source/portal-user-guide/portal-header/index.rst:208
 msgid "**Access admin settings**"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:211
+#: ../../source/portal-user-guide/portal-header/index.rst:208
 msgid "Role ``AXONIVY_PORTAL_ADMIN``"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:213
+#: ../../source/portal-user-guide/portal-header/index.rst:210
 msgid "**Manage own dashboards**"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:216
+#: ../../source/portal-user-guide/portal-header/index.rst:213
 msgid "**Manage public dashboards**"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:219
+#: ../../source/portal-user-guide/portal-header/index.rst:216
 msgid "**Create own absences**"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:219
+#: ../../source/portal-user-guide/portal-header/index.rst:216
 msgid ":bdg-ref-warning:`🔑UserCreateOwnAbsence <UserCreateOwnAbsence>`"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:222
+#: ../../source/portal-user-guide/portal-header/index.rst:219
 msgid "**Create public absences**"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:222
+#: ../../source/portal-user-guide/portal-header/index.rst:219
 msgid ":bdg-ref-warning:`🔑UserCreateAbsence <UserCreateAbsence>`"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:225
+#: ../../source/portal-user-guide/portal-header/index.rst:222
 msgid "**Create own substitutes**"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:225
+#: ../../source/portal-user-guide/portal-header/index.rst:222
 msgid ":bdg-ref-warning:`🔑UserCreateOwnSubstitute <UserCreateOwnSubstitute>`"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:228
+#: ../../source/portal-user-guide/portal-header/index.rst:225
 msgid "**Create all substitutes**"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:228
+#: ../../source/portal-user-guide/portal-header/index.rst:225
 msgid ":bdg-ref-warning:`🔑UserCreateSubstitute <UserCreateSubstitute>`"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:231
+#: ../../source/portal-user-guide/portal-header/index.rst:228
 msgid "**Change own password**"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:231
+#: ../../source/portal-user-guide/portal-header/index.rst:228
 msgid ":bdg-warning:`🔑UserSetOwnPassword`"
 msgstr ""
 
@@ -7527,32 +7530,36 @@ msgid ""
 msgstr ""
 
 #: ../../source/portal-user-guide/portal-multi-language/index.rst:9
-msgid "Translation Overview"
+msgid "How-To"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-multi-language/index.rst:11
+#: ../../source/portal-user-guide/portal-multi-language/index.rst:12
+msgid "HowTo: Enable the translation"
+msgstr ""
+
+#: ../../source/portal-user-guide/portal-multi-language/index.rst:14
 msgid "The Portal multi-language feature provides:"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-multi-language/index.rst:13
+#: ../../source/portal-user-guide/portal-multi-language/index.rst:16
 msgid ""
 "**Automated Translation**: Service-powered translations for supported "
 "languages"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-multi-language/index.rst:14
+#: ../../source/portal-user-guide/portal-multi-language/index.rst:17
 msgid ""
 "**Manual Translation**: Manual input when translation service is not "
 "configured"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-multi-language/index.rst:15
+#: ../../source/portal-user-guide/portal-multi-language/index.rst:18
 msgid ""
 "**Flexible Application**: Available for dashboards, processes, and other "
 "customizable text fields"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-multi-language/index.rst:18
+#: ../../source/portal-user-guide/portal-multi-language/index.rst:21
 msgid ""
 "Portal translation requires both "
 ":guilabel:`Portal.TranslationService.Enable` set to true and proper "
@@ -7560,67 +7567,67 @@ msgid ""
 "fields manually."
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-multi-language/index.rst:23
+#: ../../source/portal-user-guide/portal-multi-language/index.rst:26
 msgid "HowTo: Enable the Translation Service"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-multi-language/index.rst:25
+#: ../../source/portal-user-guide/portal-multi-language/index.rst:28
 msgid "To use Axon Ivy's translation service:"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-multi-language/index.rst:27
+#: ../../source/portal-user-guide/portal-multi-language/index.rst:30
 #: ../../source/portal-user-guide/qr-code/index.rst:32
 #: ../../source/portal-user-guide/qr-code/index.rst:42
 msgid "Open :ref:`Admin Settings <admin-settings>`"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-multi-language/index.rst:29
+#: ../../source/portal-user-guide/portal-multi-language/index.rst:32
 msgid "Set :guilabel:`Portal.TranslationService.Enable` to true"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-multi-language/index.rst:31
+#: ../../source/portal-user-guide/portal-multi-language/index.rst:34
 msgid ""
 "Configure the translation service variable, refer to :doc-url:`Axon Ivy "
 "translation service </engine-guide/configuration/translation-"
 "service/index.html>`"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-multi-language/index.rst:34
+#: ../../source/portal-user-guide/portal-multi-language/index.rst:37
 msgid "HowTo: Translate Text"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-multi-language/index.rst:36
+#: ../../source/portal-user-guide/portal-multi-language/index.rst:39
 msgid ""
 "Look for the :guilabel:`translator icon` on supported input text fields. "
 "For example, when creating a private dashboard:"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-multi-language/index.rst:40
+#: ../../source/portal-user-guide/portal-multi-language/index.rst:43
 msgid ""
 "Click on the :guilabel:`translator icon` to open the Setting Multiple "
 "Languages dialog."
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-multi-language/index.rst:42
+#: ../../source/portal-user-guide/portal-multi-language/index.rst:45
 msgid "|dashboard-multi-language-dialog|"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-multi-language/index.rst:54
+#: ../../source/portal-user-guide/portal-multi-language/index.rst:57
 msgid "Multi language dialog"
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-multi-language/index.rst:44
+#: ../../source/portal-user-guide/portal-multi-language/index.rst:47
 msgid "Click on the input text field of your target language."
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-multi-language/index.rst:46
+#: ../../source/portal-user-guide/portal-multi-language/index.rst:49
 msgid ""
 "If the translation service is enabled, the text will be automatically "
 "translated. Click :guilabel:`Auto translation` to accept the translated "
 "text."
 msgstr ""
 
-#: ../../source/portal-user-guide/portal-multi-language/index.rst:48
+#: ../../source/portal-user-guide/portal-multi-language/index.rst:51
 msgid ""
 "If the translation service is not configured, enter translations manually"
 " for each language."
@@ -7794,15 +7801,15 @@ msgstr ""
 #: ../../source/portal-user-guide/statistic-chart/index.rst:16
 msgid ""
 "Navigate to Dashboard Configuration of the dashboard where you want to "
-"add the widget and select :guilabel:`Add Widget` for predefined Standard "
-"Charts or :guilabel:`Create custom statistic widget` for configuring new "
-"statistic chart."
+"add the widget and click :guilabel:`Add Widget` button to open "
+":guilabel:`Add a widget` dialog."
 msgstr ""
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst:18
 msgid ""
-"From the dropdown menu labeled **Statistic Widgets**, choose from a "
-"variety of insightful charts."
+"Select a predefined Standard Chart from the **Statistic Widgets** "
+"section, or click :guilabel:`Create custom statistic widget` to configure"
+" a new statistic chart."
 msgstr ""
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst:20
@@ -8180,11 +8187,11 @@ msgstr ""
 msgid "**Value**"
 msgstr ""
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst
+#: ../../source/portal-user-guide/statistic-chart/index.rst:167
 msgid "Name of the statistic chart."
 msgstr ""
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst
+#: ../../source/portal-user-guide/statistic-chart/index.rst:169
 msgid "Description for the statistic chart."
 msgstr ""
 
@@ -8192,11 +8199,11 @@ msgstr ""
 msgid "Icon"
 msgstr ""
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst
+#: ../../source/portal-user-guide/statistic-chart/index.rst:171
 msgid "Icon for custom statistic chart."
 msgstr ""
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst
+#: ../../source/portal-user-guide/statistic-chart/index.rst:172
 msgid "Click on the plus icon at the end of the line to see full list of icons."
 msgstr ""
 
@@ -8204,7 +8211,7 @@ msgstr ""
 msgid "Chart type"
 msgstr ""
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst
+#: ../../source/portal-user-guide/statistic-chart/index.rst:174
 msgid "Type of the chart (Bar, Line, Pie, Number)."
 msgstr ""
 
@@ -8212,7 +8219,7 @@ msgstr ""
 msgid "For"
 msgstr ""
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst
+#: ../../source/portal-user-guide/statistic-chart/index.rst:176
 msgid "Chart target (Task, Case)."
 msgstr ""
 
@@ -8220,23 +8227,23 @@ msgstr ""
 msgid "KPI"
 msgstr ""
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst
+#: ../../source/portal-user-guide/statistic-chart/index.rst:178
 msgid "List of numeric custom fields is shown alongside with `Counting`."
 msgstr ""
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst
+#: ../../source/portal-user-guide/statistic-chart/index.rst:179
 msgid ""
 "The calculation using below aggregation method will be performed on "
 "selected KPI."
 msgstr ""
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst
+#: ../../source/portal-user-guide/statistic-chart/index.rst:180
 msgid ""
 "If `Counting` is selected to count numbers of tasks or cases, the "
 "aggregation method"
 msgstr ""
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst
+#: ../../source/portal-user-guide/statistic-chart/index.rst:181
 msgid "selection will be disabled."
 msgstr ""
 
@@ -8244,7 +8251,7 @@ msgstr ""
 msgid "Aggregation method"
 msgstr ""
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst
+#: ../../source/portal-user-guide/statistic-chart/index.rst:183
 msgid "List of 4 aggregation methods: `Sum`, `Average`, `Max`, `Min`."
 msgstr ""
 
@@ -8252,13 +8259,13 @@ msgstr ""
 msgid "Group by"
 msgstr ""
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst
+#: ../../source/portal-user-guide/statistic-chart/index.rst:185
 msgid ""
 "Aggregation to group all the results, the drop down values depend on the "
 "chart target."
 msgstr ""
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst
+#: ../../source/portal-user-guide/statistic-chart/index.rst:186
 msgid "Currently we don't support aggregations have type number."
 msgstr ""
 
@@ -8266,11 +8273,11 @@ msgstr ""
 msgid "Filters"
 msgstr ""
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst
+#: ../../source/portal-user-guide/statistic-chart/index.rst:188
 msgid "Works like complex filter of Portal."
 msgstr ""
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst
+#: ../../source/portal-user-guide/statistic-chart/index.rst:189
 msgid "Please refer to :ref:`complex-filter` for more details."
 msgstr ""
 
@@ -8278,7 +8285,7 @@ msgstr ""
 msgid "Permissions"
 msgstr ""
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst
+#: ../../source/portal-user-guide/statistic-chart/index.rst:191
 msgid "Permission for the current statistic chart."
 msgstr ""
 
@@ -8286,11 +8293,11 @@ msgstr ""
 msgid "Auto-refresh enabled"
 msgstr ""
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst
+#: ../../source/portal-user-guide/statistic-chart/index.rst:193
 msgid "The statistic can be auto-refreshed after a certain prediod."
 msgstr ""
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst
+#: ../../source/portal-user-guide/statistic-chart/index.rst:194
 msgid "Click on this button to turn on/off the feature."
 msgstr ""
 
@@ -8298,11 +8305,11 @@ msgstr ""
 msgid "Auto-refresh interval (seconds)"
 msgstr ""
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst
+#: ../../source/portal-user-guide/statistic-chart/index.rst:196
 msgid "The time for statistic chart to be auto-refreshed in second."
 msgstr ""
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst
+#: ../../source/portal-user-guide/statistic-chart/index.rst:197
 msgid "Minimum number is 60."
 msgstr ""
 
@@ -8310,7 +8317,7 @@ msgstr ""
 msgid "X axis title"
 msgstr ""
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst
+#: ../../source/portal-user-guide/statistic-chart/index.rst:199
 msgid "X title for the statistic chart."
 msgstr ""
 
@@ -8318,7 +8325,7 @@ msgstr ""
 msgid "Y axis title"
 msgstr ""
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst
+#: ../../source/portal-user-guide/statistic-chart/index.rst:201
 msgid "Y title for the statistic chart."
 msgstr ""
 
@@ -8326,7 +8333,7 @@ msgstr ""
 msgid "Chart drill-down enabled"
 msgstr ""
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst
+#: ../../source/portal-user-guide/statistic-chart/index.rst:203
 msgid "Toggle to enable/disable chart drill-down feature."
 msgstr ""
 
@@ -8334,7 +8341,7 @@ msgstr ""
 msgid "Condition-based coloring enabled"
 msgstr ""
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst
+#: ../../source/portal-user-guide/statistic-chart/index.rst:205
 msgid "Toggle to enable/disable condition-based coloring feature."
 msgstr ""
 
@@ -8342,7 +8349,7 @@ msgstr ""
 msgid "Color 1-8"
 msgstr ""
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst
+#: ../../source/portal-user-guide/statistic-chart/index.rst:207
 msgid "Colors for data in the chart."
 msgstr ""
 
@@ -8350,7 +8357,7 @@ msgstr ""
 msgid "Hide label"
 msgstr ""
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst
+#: ../../source/portal-user-guide/statistic-chart/index.rst:209
 msgid "Toggle to show label of number chart."
 msgstr ""
 
@@ -10385,5 +10392,93 @@ msgstr ""
 #~ "Set to true to enable date "
 #~ "filtering with time. This setting "
 #~ "affects task widget and case widget."
+#~ msgstr ""
+
+#~ msgid "Case List Information"
+#~ msgstr ""
+
+#~ msgid "Task List Overview"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "On the top of the **Full Task "
+#~ "List** page you see next to the"
+#~ " heading :guilabel:`Tasks` in brackets the"
+#~ " overall number of tasks shown to "
+#~ "you. Below you find the filter "
+#~ "feature. The usage will be explained "
+#~ "in the HowTo’s further down this "
+#~ "chapter. Finally, you see the list "
+#~ "of tasks."
+#~ msgstr ""
+
+#~ msgid "Option"
+#~ msgstr ""
+
+#~ msgid "Default view mode"
+#~ msgstr ""
+
+#~ msgid "Unpin all pinned tasks"
+#~ msgstr ""
+
+#~ msgid "Unpin all pinned cases"
+#~ msgstr ""
+
+#~ msgid "Keyboard shortcuts for navigation"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "When editing a dashboard, you can "
+#~ "clone a widget from another dashboard"
+#~ " by opening the :guilabel:`Add a "
+#~ "widget` dialog by press on the "
+#~ ":guilabel:`+ Add widget` button."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Once the dialog opens, click the "
+#~ ":guilabel:`Clone widget` button at the "
+#~ "top."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Click on your username to access a"
+#~ " menu with options for configuring "
+#~ "Portal to your personal needs. See "
+#~ "`User Settings in the Axon Ivy "
+#~ "Portal`_ for detailed configuration options."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "The menu entry :guilabel:`Logout` will "
+#~ "terminate your session in the Axon "
+#~ "Ivy Portal. You’ll be routed back "
+#~ "to the login page of the Axon "
+#~ "Ivy Portal."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "The Axon Ivy Portal will also do"
+#~ " an automatic logout if you’re "
+#~ "inactive for a certain amount of "
+#~ "time."
+#~ msgstr ""
+
+#~ msgid "Translation Overview"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Navigate to Dashboard Configuration of "
+#~ "the dashboard where you want to "
+#~ "add the widget and select :guilabel:`Add"
+#~ " Widget` for predefined Standard Charts "
+#~ "or :guilabel:`Create custom statistic widget`"
+#~ " for configuring new statistic chart."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "From the dropdown menu labeled "
+#~ "**Statistic Widgets**, choose from a "
+#~ "variety of insightful charts."
 #~ msgstr ""
 
