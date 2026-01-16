@@ -1,7 +1,5 @@
 package ch.addon.portal.generic.menu;
 
-import static ch.ivy.addon.portalkit.util.DashboardUtils.DEFAULT_CASE_LIST_DASHBOARD;
-import static ch.ivy.addon.portalkit.util.DashboardUtils.DEFAULT_TASK_LIST_DASHBOARD;
 import static java.util.Objects.isNull;
 import static org.apache.commons.lang3.StringUtils.EMPTY;
 
@@ -145,8 +143,7 @@ public class PortalMenuNavigator {
 
     List<Dashboard> mainDashboards = DashboardUtils.collectMainDashboards();
     for (Dashboard dashboard : mainDashboards) {
-      if (isDefaultTaskCaseListDashboardButNoAccessPermission(dashboard)
-          || !DashboardUtils.canSessionUserAccessDashboard(dashboard)) {
+      if (!DashboardUtils.canSessionUserAccessDashboard(dashboard)) {
         continue;
       }
       subMenuItems.add(convertDashboardToSubMenuItem(dashboard, currentLanguage));
@@ -155,13 +152,6 @@ public class PortalMenuNavigator {
     subMenuItems.addAll(CustomSubMenuItemService.findAll());
 
     return subMenuItems;
-  }
-
-  private static boolean isDefaultTaskCaseListDashboardButNoAccessPermission(Dashboard dashboard) {
-    return (DEFAULT_TASK_LIST_DASHBOARD.equals(dashboard.getId())
-        && !PermissionUtils.checkAccessFullTaskListPermission())
-        || (DEFAULT_CASE_LIST_DASHBOARD.equals(dashboard.getId())
-            && !PermissionUtils.checkAccessFullCaseListPermission());
   }
 
   private static void addProcessSubmenuItems(List<SubMenuItem> subMenuItems) {

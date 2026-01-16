@@ -18,7 +18,7 @@
     <ui:param name="dataModel" value="#{data.dataModel}" />
     <ui:define name="title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/searchResult/searchResults')}</ui:define>
     <ui:define name="pageContent">
-      <c:set var="isShowResultTabView" value="#{compactProcessWidgetBean.displayShowAllProcessesLink or taskWidgetBean.showFullTaskList or caseWidgetBean.showFullCaseList}"></c:set>
+      <c:set var="isShowResultTabView" value="#{compactProcessWidgetBean.displayShowAllProcessesLink}"></c:set>
       <h:form id="global-search-form-in-page">
         <div id="global-search-container-in-page" class="global-search ui-lg-hidden ui-xl-hidden js-global-search ui-fluid">
           <span class="ui-input-icon-left">
@@ -104,7 +104,7 @@
           </p:tab>
           
           <p:tab id="case-tab" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/cases')}" titleStyleClass="case-tab-title"
-            rendered="#{dataModel.caseDataModel.criteria.globalSearchScope and caseWidgetBean.showFullCaseList}">
+            rendered="#{dataModel.caseDataModel.criteria.globalSearchScope}">
             <div class="js-case-default-widget-container case-default-widget-container js-for-search-result">
               <ic:ch.ivy.addon.portalkit.component.CaseWidget id="case-results" hideWidgetHeader="true" destroyCaseDialogComponent="search-results-tabview:case-results:destroy-case-confirmation-dialog"
                 dataModel="#{dataModel.caseDataModel}" listHeaderStyleClass="case-in-search">

@@ -16,8 +16,6 @@ public enum PortalPermission {
   TASK_WRITE_ACTIVATOR_OWN_TASKS("TaskWriteActivatorOwnTasks", PortalPermissionGroup.TASK_PERMISSIONS_GROUP),
   TASK_DISPLAY_ADDITIONAL_OPTIONS("TaskDisplayAdditionalOptions", PortalPermissionGroup.TASK_PERMISSIONS_GROUP),
   ACCESS_FULL_PROCESS_LIST("AccessFullProcessList", PortalPermissionGroup.GENERAL_PERMISSIONS_GROUP),
-  ACCESS_FULL_TASK_LIST("AccessFullTaskList", PortalPermissionGroup.GENERAL_PERMISSIONS_GROUP),
-  ACCESS_FULL_CASE_LIST("AccessFullCaseList", PortalPermissionGroup.GENERAL_PERMISSIONS_GROUP),
   SHOW_ALL_TASKS_OF_CASE("ShowAllTasksOfCase", PortalPermissionGroup.CASE_PERMISSIONS_GROUP),
   SHOW_CASE_DETAILS("ShowCaseDetails", PortalPermissionGroup.CASE_PERMISSIONS_GROUP),
   CASE_DETAILS_SHARE_LINK("ShareCaseDetailsLink", PortalPermissionGroup.CASE_PERMISSIONS_GROUP),

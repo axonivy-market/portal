@@ -195,7 +195,6 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     } catch (PortalException e) {
       Ivy.log().error(e);
     }
-    DashboardUtils.addDefaultTaskCaseListDashboardsIfMissing(collectedDashboards);
     return collectedDashboards.stream()
         .filter(dashboard -> dashboard.getId().equals(selectedDashboardId)).collect(Collectors.toList());
   }
@@ -1005,8 +1004,6 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   public List<Dashboard> initCloneableDashboards() {
     List<Dashboard> availableDashboards = new ArrayList<>();
     availableDashboards.addAll(DashboardUtils.getPublicDashboards());
-    DashboardUtils
-        .addDefaultTaskCaseListDashboardsIfMissing(availableDashboards);
 
     String dashboardInUserProperty = readDashboardBySessionUser();
     if (StringUtils.isNotBlank(dashboardInUserProperty)) {
