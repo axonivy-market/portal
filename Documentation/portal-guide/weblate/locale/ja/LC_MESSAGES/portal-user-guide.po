@@ -8,17 +8,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Portal Guide ${revision}\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-16 10:37+0000\n"
+"POT-Creation-Date: 2026-01-16 03:05+0000\n"
 "PO-Revision-Date: 2025-12-18 02:51+0000\n"
 "Last-Translator: Thinh Nguyen <nht.8299@gmail.com>\n"
-"Language-Team: Japanese <https://hosted.weblate.org/projects/axonivy-portal/"
-"portal-le/doc/portal-doc-user-guide/ja/>\n"
 "Language: ja\n"
+"Language-Team: Japanese <https://hosted.weblate.org/projects/axonivy-"
+"portal/portal-le/doc/portal-doc-user-guide/ja/>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.15.1-dev\n"
 "Generated-By: Babel 2.17.0\n"
 
 #: ../../source/portal-user-guide/accessibility/index.rst:4
@@ -44,11 +43,11 @@ msgstr "ショートカット"
 
 #: ../../source/portal-user-guide/accessibility/index.rst:17
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:259
-#: ../../source/portal-user-guide/full-case-list/index.rst:361
+#: ../../source/portal-user-guide/full-case-list/index.rst:364
 #: ../../source/portal-user-guide/full-process-list/index.rst:200
 #: ../../source/portal-user-guide/full-task-list/index.rst:61
-#: ../../source/portal-user-guide/full-task-list/index.rst:310
-#: ../../source/portal-user-guide/portal-header/index.rst:209
+#: ../../source/portal-user-guide/full-task-list/index.rst:312
+#: ../../source/portal-user-guide/portal-header/index.rst:206
 msgid "Action"
 msgstr "アクション"
 
@@ -671,7 +670,7 @@ msgid ""
 msgstr "メインダッシュボードにショートカットウィジェットを追加すると、ビューを切り替えずに素早く参照できます。"
 
 #: ../../source/portal-user-guide/admin-settings/index.rst:4
-#: ../../source/portal-user-guide/portal-header/index.rst:52
+#: ../../source/portal-user-guide/portal-header/index.rst:54
 msgid "Admin Settings"
 msgstr "管理者設定"
 
@@ -972,13 +971,13 @@ msgstr "ケース詳細ページでの所要時間の表示のオン／オフを
 msgid "Portal.Cases.EnableOwner"
 msgstr "Portal.Cases.EnableOwner"
 
-#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv
+#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid ""
 "Set to true to enable filtering case owner when cases are queried. This "
 "setting affects all case"
 msgstr "true を設定すると、症例の照会時に症例所有者のフィルタリングが有効になります。この設定は、すべてのケース"
 
-#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv
+#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:2
 msgid ""
 "queries e.g. for case widget, global search. It also makes the \"Filter "
 "tasks by current case owner\" filter available in the task widget, which "
@@ -1032,13 +1031,13 @@ msgstr "Portal.Chat.MaxConnection"
 msgid "3"
 msgstr "3"
 
-#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv
+#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid ""
 "The set number controls the amount of tabs allowed with active chat. If "
 "more tabs are opened,"
 msgstr "設定された数は、アクティブなチャットで許可されるタブの量を制御します。それ以上のタブが開かれた場合"
 
-#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv
+#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:2
 msgid "the chat will be disabled in inactive tabs. Allowed values are 1 to 5."
 msgstr "を指定すると、非アクティブなタブではチャットが無効になります。許可される値は1～5です。"
 
@@ -1050,13 +1049,13 @@ msgstr "Portal.Chat.ResponseTimeout"
 msgid "0"
 msgstr "0"
 
-#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv
+#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid ""
 "Chat response timeout in seconds, default value is 0 and means no "
 "timeout. If chat messages go through"
 msgstr "デフォルト値は0で、タイムアウトがないことを意味します。チャットメッセージが"
 
-#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv
+#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:2
 msgid ""
 "the reverse proxy Nginx, chat response timeout must be less than the "
 "Nginx timeout, e.g. less than 60 seconds."
@@ -1070,9 +1069,7 @@ msgstr "Portal.DateTimeFormat.DateFilterWithTime"
 msgid ""
 "Set to true to enable date filtering with time. This setting affects on "
 "task list, case list, and statistics."
-msgstr ""
-"trueに設定すると、日付と時刻によるフィルタリングが可能になります。この設定は"
-"タスクリスト、ケースリスト、統計に影響します。"
+msgstr "trueに設定すると、日付と時刻によるフィルタリングが可能になります。この設定はタスクリスト、ケースリスト、統計に影響します。"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.DateTimeFormat.HideTime"
@@ -1102,7 +1099,7 @@ msgstr "ユーザーがタスクを完了または退出すると、フィード
 msgid "Portal.DisplayUsersOfRole"
 msgstr "Portal.DisplayUsersOfRole"
 
-#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv
+#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid ""
 "Controls the SecurityMemberDisplayName component.| If true and the "
 "SecurityMember is a role, lists all users of this role under the info "
@@ -1135,33 +1132,33 @@ msgstr ""
 msgid "Portal.Document.WhitelistExtension"
 msgstr "Portal.Document.WhitelistExtension"
 
-#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv
+#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "doc, docx, xls,"
 msgstr "doc、docx、xls、"
 
-#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv
+#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:2
 msgid "xlsx, xlsm, csv,"
 msgstr "xlsx、xlsm、csv、"
 
-#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv
+#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:3
 msgid "pdf, ppt, pptx,"
 msgstr "pdf、ppt、pptx、"
 
-#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv
+#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:4
 msgid "txt, zip, jpg,"
 msgstr "txt、zip、jpg、"
 
-#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv
+#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:5
 msgid "jpeg, bmp, png"
 msgstr "jpeg、bmp、png"
 
-#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv
+#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid ""
 "Leave value empty if you allow all extensions. If you allow just some "
 "extensions, list out these extensions here,"
 msgstr "すべての拡張機能を許可する場合は、値を空のままにします。一部の拡張子だけを許可する場合は、ここにその拡張子を列挙してください、"
 
-#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv
+#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:2
 msgid "separated by comma. Example: pdf, txt, doc, docx."
 msgstr "コンマで区切ってください。例：pdf、txt、doc、docx。"
 
@@ -1216,13 +1213,13 @@ msgstr "Portal.Homepage"
 msgid "Dashboard"
 msgstr "ダッシュボード"
 
-#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv
+#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid ""
 "Define the standard homepage which will be redirected to when clicking on"
 " home icon or logo."
 msgstr "ホームアイコンまたはロゴをクリックしたときにリダイレクトされる標準ホームページを定義します。"
 
-#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv
+#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:2
 msgid "This setting also applies to the end page for finished tasks."
 msgstr "この設定は終了したタスクの終了ページにも適用されます。"
 
@@ -1316,11 +1313,11 @@ msgstr "Portal.Tasks.BehaviourWhenClickingOnLineInTaskList"
 msgid "Run the task"
 msgstr "タスクを実行"
 
-#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv
+#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Default behaviors (run the task or access task details) when clicking."
 msgstr "クリック時のデフォルトの動作（タスクの実行またはタスクの詳細へのアクセス）。"
 
-#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv
+#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:2
 msgid ""
 "on a line in the task widget, task widget of the dashboard or on related "
 "tasks in the case details page."
@@ -1342,11 +1339,11 @@ msgstr "Portal.Cases.BehaviourWhenClickingOnLineInCaseList"
 msgid "Access case details"
 msgstr "ケースの詳細にアクセス"
 
-#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv
+#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Toggle between accessing case details or business details when clicking"
 msgstr "をクリックすると、ケースの詳細にアクセスするか、ビジネスの詳細にアクセスするかを切り替えることができます。"
 
-#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv
+#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:2
 msgid ""
 "on a case in the case widget on the dashboard, global search, related "
 "cases, and process widget in combined mode."
@@ -1423,13 +1420,13 @@ msgstr "Portal.RoleDirectChildrenLimit"
 msgid "50"
 msgstr "50"
 
-#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv
+#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid ""
 "Controls the number of direct child roles that are shown in the Role "
 "Management tab."
 msgstr "ロールの管理]タブに表示される直接の子ロールの数を制御します。"
 
-#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv
+#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:2
 msgid "Valid numbers: 10, 50, 100."
 msgstr "有効数字：10, 50, 100."
 
@@ -1441,13 +1438,13 @@ msgstr "Portal.RoleParentLimit"
 msgid "10"
 msgstr "10"
 
-#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv
+#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid ""
 "Controls the number of parent roles that are shown when filtering roles "
 "in the Role Management tab."
 msgstr "ロールの管理]タブでロールをフィルタリングするときに表示される親ロールの数を制御します。"
 
-#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv
+#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:2
 msgid "Valid numbers: 5, 10, 20."
 msgstr "有効数字：5, 10, 20."
 
@@ -1927,16 +1924,12 @@ msgstr "機能"
 
 #: ../../source/portal-user-guide/axon-ivy-portal/index.rst:17
 #: ../../source/portal-user-guide/full-case-list/index.rst:29
-#: ../../source/portal-user-guide/full-case-list/index.rst:240
-#: ../../source/portal-user-guide/full-case-list/index.rst:282
+#: ../../source/portal-user-guide/full-case-list/index.rst:243
+#: ../../source/portal-user-guide/full-case-list/index.rst:285
 #: ../../source/portal-user-guide/full-process-list/index.rst:42
 #: ../../source/portal-user-guide/full-task-list/index.rst:36
 #: ../../source/portal-user-guide/full-task-list/index.rst:61
-#: ../../source/portal-user-guide/my-profile/index.rst:27
-#: ../../source/portal-user-guide/my-profile/index.rst:46
-#: ../../source/portal-user-guide/my-profile/index.rst:62
-#: ../../source/portal-user-guide/my-profile/index.rst:79
-#: ../../source/portal-user-guide/portal-header/index.rst:31
+#: ../../source/portal-user-guide/portal-header/index.rst:33
 #: ../../source/portal-user-guide/statistic-chart/index.rst:168
 msgid "Description"
 msgstr "説明"
@@ -2373,13 +2366,15 @@ msgstr "**利用ガイドライン**"
 msgid "In"
 msgstr "指定の値に含まれる"
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:85
 msgid ""
 "Valid for category, state, creator, application. Specify a single value "
 "or multiple values."
 msgstr "カテゴリー、状態、作成者、アプリケーションに有効。1 つの値または複数の値を指定します。"
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:86
+#: ../../source/portal-user-guide/complex-filter/index.rst:104
+#: ../../source/portal-user-guide/complex-filter/index.rst:128
 msgid ""
 "Results include only records where the data in the column match the value"
 " in the filter."
@@ -2389,11 +2384,13 @@ msgstr "数値を含む列に有効。1 つの値を指定します。"
 msgid "Not In"
 msgstr "指定の値に含まれない"
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:88
 msgid "Valid for category, creator. Specify a single value or multiple values."
 msgstr "カテゴリー、作成者に有効。1 つの値または複数の値を指定します。"
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:89
+#: ../../source/portal-user-guide/complex-filter/index.rst:107
+#: ../../source/portal-user-guide/complex-filter/index.rst:131
 msgid ""
 "Results include only records where the data in the column does not match "
 "the value in the filter."
@@ -2403,13 +2400,14 @@ msgstr "結果には、列の値がフィルターの値に一致しないレコ
 msgid "Contains"
 msgstr "指定の値を含む"
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:91
+#: ../../source/portal-user-guide/complex-filter/index.rst:94
 msgid ""
 "Valid for category, ID and column that contains text. Specify a single "
 "value or multiple values."
 msgstr "カテゴリー、ID、テキストを含む列に有効。1 つの値または複数の値を指定します。"
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:92
 msgid ""
 "Results include only records where the data in the column contains the "
 "value in the filter."
@@ -2419,7 +2417,7 @@ msgstr "結果には、列のデータにフィルターの値が含まれるレ
 msgid "Doesn't Contains"
 msgstr "指定の値を含まない"
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:95
 msgid ""
 "Results include only records where the data in the column dóes not "
 "contain the value in the filter."
@@ -2429,11 +2427,12 @@ msgstr "結果には、列のデータにフィルターの値が含まれない
 msgid "Between"
 msgstr "指定の値の間にある"
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:97
+#: ../../source/portal-user-guide/complex-filter/index.rst:100
 msgid "Valid for a column that contains number, dates. Specify two values."
 msgstr "数値、日付を含む列に有効。2 つの値を指定します。"
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:98
 msgid ""
 "Result include only records where the data in the column is between the "
 "two values in the filter."
@@ -2443,7 +2442,7 @@ msgstr "結果には、列のデータがフィルターの 2 つの値の間に
 msgid "Not Between"
 msgstr "指定の値の間にない"
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:101
 msgid ""
 "Result include only records where the data in the column is not between "
 "the two values in the filter."
@@ -2453,7 +2452,12 @@ msgstr "結果には、列のデータがフィルターの 2 つの値の間に
 msgid "Equal"
 msgstr "指定の値と等しい"
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:103
+#: ../../source/portal-user-guide/complex-filter/index.rst:106
+#: ../../source/portal-user-guide/complex-filter/index.rst:109
+#: ../../source/portal-user-guide/complex-filter/index.rst:112
+#: ../../source/portal-user-guide/complex-filter/index.rst:115
+#: ../../source/portal-user-guide/complex-filter/index.rst:118
 msgid "Valid for a column that contains number. Specify a single value."
 msgstr "数値を含む列に有効。1 つの値を指定します。"
 
@@ -2465,7 +2469,7 @@ msgstr "指定の値と等しくない"
 msgid "Less"
 msgstr "指定の値より小さい"
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:110
 msgid ""
 "Results include only records where the data in the column is less than "
 "the value in the filter."
@@ -2475,7 +2479,7 @@ msgstr "結果には、列の値がフィルターの値より小さいレコー
 msgid "Less or equal"
 msgstr "指定の値より小さいか等しい"
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:113
 msgid ""
 "Results include only records where the data in the column is less than or"
 " the equal to the value in the filter."
@@ -2485,7 +2489,7 @@ msgstr "結果には、列の値がフィルターの値より小さいか等し
 msgid "Greater"
 msgstr "指定の値より大きい"
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:116
 msgid ""
 "Results include only records where the data in the column is greater than"
 " the value in the filter."
@@ -2495,7 +2499,7 @@ msgstr "結果には、列の値がフィルターの値より大きいレコー
 msgid "Greater or equal"
 msgstr "指定の値より大きいか等しい"
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:119
 msgid ""
 "Results include only records where the data in the column is greater than"
 " or equal to the value in the filter."
@@ -2505,13 +2509,14 @@ msgstr "結果には、列の値がフィルターの値より大きいか等し
 msgid "Is Empty"
 msgstr "空欄である"
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:121
+#: ../../source/portal-user-guide/complex-filter/index.rst:124
 msgid ""
 "Valid for a column that contains text, numbers, or dates. Do not specify "
 "a value."
 msgstr "テキスト、数値、日付を含む列に有効。値は指定しないでください。"
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:122
 msgid "Results include only records that contain no data in the column."
 msgstr "結果には、列にデータが含まれないレコードのみ含まれます。"
 
@@ -2519,7 +2524,7 @@ msgstr "結果には、列にデータが含まれないレコードのみ含ま
 msgid "Is Not Empty"
 msgstr "空欄ではない"
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:125
 msgid "Results include only records that contain data in the column."
 msgstr "結果には、列にデータが含まれるレコードのみ含まれます。"
 
@@ -2527,7 +2532,8 @@ msgstr "結果には、列にデータが含まれるレコードのみ含まれ
 msgid "Is"
 msgstr "指定の値である"
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:127
+#: ../../source/portal-user-guide/complex-filter/index.rst:130
 msgid ""
 "Valid for a column that contains text, dates. Specify a single value or "
 "multiple values."
@@ -2541,11 +2547,12 @@ msgstr "指定の値ではない"
 msgid "Today"
 msgstr "今日"
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:133
+#: ../../source/portal-user-guide/complex-filter/index.rst:136
 msgid "Valid for a column that contains dates. Do not specify a value."
 msgstr "日付を含む列に有効。値は指定しないでください。"
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:134
 msgid ""
 "Results include only records where the date in the column matches the "
 "current date."
@@ -2555,7 +2562,7 @@ msgstr "結果には、列の日付が現在の日付に一致するレコード
 msgid "Yesterday"
 msgstr "昨日"
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:137
 msgid ""
 "Results include only records where the date in the column matches the "
 "yesterday's date."
@@ -2565,11 +2572,12 @@ msgstr "結果には、列の日付が昨日の日付に一致するレコード
 msgid "Is Before"
 msgstr "指定の値の前にある"
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:139
+#: ../../source/portal-user-guide/complex-filter/index.rst:142
 msgid "Valid for a column that contains dates. Specify a single value."
 msgstr "日付を含む列に有効。1 つの値を指定します。"
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:140
 msgid ""
 "Results include only records where the date in the column is before the "
 "date in the filter."
@@ -2579,7 +2587,7 @@ msgstr "結果には、列の日付がフィルターの日付の前にあるレ
 msgid "Is After"
 msgstr "指定の値の後にある"
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:143
 msgid ""
 "Results include only records where the date in the column is after the "
 "date in the filter."
@@ -2589,43 +2597,46 @@ msgstr "結果には、列の日付がフィルターの日付の後にあるレ
 msgid "Current"
 msgstr "現在"
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:145
 msgid "Valid for a column that contains dates. Select Year, Month or Week."
 msgstr "日付を含む列に有効。年、月または週を選択します。"
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:146
+#: ../../source/portal-user-guide/complex-filter/index.rst:157
+#: ../../source/portal-user-guide/complex-filter/index.rst:168
 msgid ""
 "Results include only records where the date in the column falls within "
 "the range specified in the filter."
 msgstr "結果には、列の日付がフィルターで指定した範囲内にあるレコードのみ含まれます。"
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:147
 msgid ""
 "Specifically, it will be from the first day of the current "
 "year/month/week to the end of the last day of the current"
 msgstr "具体的には、現在の年／月／週の最初の日から現在の年／月／週の最後の日の終わりまで"
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:148
 msgid "year/month/week."
 msgstr "となります。"
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:150
 msgid "*Example*: Find all cases that were created in the current month."
 msgstr "*例* ：現在の月に作成されたすべてのケースを検索します。"
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:151
 msgid ""
 ":bdg-dark-line:`Created Date` :bdg-dark-line:`Current` :bdg-dark-"
 "line:`Month`"
 msgstr ":bdg-dark-line:`作成日` :bdg-dark-line:`現在` :bdg-dark-line:`月`"
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:153
+#: ../../source/portal-user-guide/complex-filter/index.rst:164
 msgid ""
 "*Explanation*: Assuming today is ``2/27/2024 11:41:28``, the query will "
 "retrieve cases where the Created Date falls"
 msgstr "*説明*：今日が ``2024/2/27 11:41:28`` であると仮定した場合、クエリは、作成日が"
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:154
 msgid "within the period from ``2/1/2024 00:00:00`` to ``2/29/2024 23:59:59``."
 msgstr "``2024/2/1 00:00:00`` から ``2024/2/29 23:59:59`` までの期間のケースを検索します。"
 
@@ -2633,27 +2644,28 @@ msgstr "``2024/2/1 00:00:00`` から ``2024/2/29 23:59:59`` までの期間の�
 msgid "Within the last"
 msgstr "過去〇〇以内"
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:156
+#: ../../source/portal-user-guide/complex-filter/index.rst:167
 msgid ""
 "Valid for a column that contains dates. Specify a single value then "
 "select Year(s), Month(s), Week(s) or Day(s)."
 msgstr "日付を含む列に有効。1 つの値を指定し、年、月、週または日を選択します。"
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:158
 msgid ""
 "Specifically, it will be from the beginning of the first day of the last "
 "<input_value> year(s)/month(s)/week(s)"
 msgstr "具体的には、過去 <input_value> 年／月／週の最初の日の始まりから"
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:159
 msgid "to the present moment."
 msgstr "現在までとなります。"
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:161
 msgid "*Example*: Find all cases that were created within the last 2 years"
 msgstr "*例*：過去 2 年間に作成されたすべてのケースを検索します。"
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:162
 msgid ""
 ":bdg-dark-line:`Created Date` :bdg-dark-line:`Within the last` :bdg-dark-"
 "line:`2` :bdg-dark-line:`Year(s)`"
@@ -2661,7 +2673,7 @@ msgstr ""
 ":bdg-dark-line:`作成日` :bdg-dark-line:`今日までの期間` :bdg-dark-line:`2` :bdg-"
 "dark-line:`年`"
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:165
 msgid "within the period from ``2/27/2022 00:00:00`` to ``2/27/2024 11:41:28``."
 msgstr "``2022/2/27 00:00:00`` から ``2024/2/27 11:41:28`` までの期間のケースを検索します。"
 
@@ -2669,21 +2681,21 @@ msgstr "``2022/2/27 00:00:00`` から ``2024/2/27 11:41:28`` までの期間の�
 msgid "Within the next"
 msgstr "今後〇〇以内"
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:169
 msgid ""
 "Specifically, it will be from the present moment to the end of the day of"
 " the next <input_value>"
 msgstr "具体的には、現在から次の <input_value> 年／月／週間の日の終わりまで"
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:170
 msgid "year(s)/month(s)/week(s)."
 msgstr "となります。"
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:172
 msgid "*Example*: Find all cases with Invoice Due Date within the next 3 weeks"
 msgstr "*例*：請求書の支払期日が次の 3 週間以内のすべてのケースを検索します。"
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:173
 msgid ""
 ":bdg-dark-line:`Invoice Due Date` :bdg-dark-line:`Within the next` :bdg-"
 "dark-line:`3` :bdg-dark-line:`Week(s)`"
@@ -2691,13 +2703,13 @@ msgstr ""
 ":bdg-dark-line:`請求書の支払期日` :bdg-dark-line:`次の期間` :bdg-dark-line:`3` :bdg-"
 "dark-line:`週`"
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:175
 msgid ""
 "*Explanation*: Assuming today is ``2/27/2024 11:41:28``, the query will "
 "retrieve cases where the Invoice Due Date falls"
 msgstr "*説明* ：今日が ``2024/2/27 11:41:28`` であると仮定した場合、クエリは、請求書の支払期日が"
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:176
 msgid "within the period from ``2/27/2024 11:41:28`` to ``3/19/2024 23:59:59``."
 msgstr "``2024/2/27 11:41:28`` から ``2024/3/19 23:59:59`` までの期間のケースを検索します。"
 
@@ -2705,13 +2717,16 @@ msgstr "``2024/2/27 11:41:28`` から ``2024/3/19 23:59:59`` までの期間の�
 msgid "Starts with"
 msgstr "指定の値で始まる"
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:178
+#: ../../source/portal-user-guide/complex-filter/index.rst:181
+#: ../../source/portal-user-guide/complex-filter/index.rst:184
+#: ../../source/portal-user-guide/complex-filter/index.rst:187
 msgid ""
 "Valid for a column that contains text. Specify a single value or multiple"
 " values."
 msgstr "テキストを含む列に有効。1 つの値または複数の値を指定します。"
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:179
 msgid ""
 "Results include only records where the data in the column start with the "
 "value in the filter."
@@ -2721,7 +2736,7 @@ msgstr "結果には、列のデータがフィルターの値で始まるレコ
 msgid "Doesn't start with"
 msgstr "指定の値で始まらない"
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:182
 msgid ""
 "Results include only records where the data in the column does not start "
 "with the value in the filter."
@@ -2731,7 +2746,7 @@ msgstr "結果には、列のデータがフィルターの値で始まらない
 msgid "Ends with"
 msgstr "指定の値で終わる"
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:185
 msgid ""
 "Results include only records where the data in the column end with the "
 "value in the filter."
@@ -2741,7 +2756,7 @@ msgstr "結果には、列のデータがフィルターの値で終わるレコ
 msgid "Doesn't end with"
 msgstr "指定の値で終わらない"
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:188
 msgid ""
 "Results include only records where the data in the column does not end "
 "with the value in the filter."
@@ -2751,11 +2766,11 @@ msgstr "結果には、列のデータがフィルターの値で終わらない
 msgid "No Category"
 msgstr "カテゴリーなし"
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:190
 msgid "Valid for category. Do not specify a value."
 msgstr "カテゴリーに有効。値は指定しないでください。"
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:191
 msgid "Results include only records where the data in the column has no category."
 msgstr "結果には、列のデータがカテゴリーなしのレコードのみ含まれます。"
 
@@ -2763,11 +2778,11 @@ msgstr "結果には、列のデータがカテゴリーなしのレコードの
 msgid "Current user"
 msgstr "現在のユーザー"
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:193
 msgid "Valid for creator. Do not specify a value."
 msgstr "作成者に有効。値は指定しないでください。"
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:194
 msgid ""
 "Results include only records where the data in the column has been "
 "created by current user."
@@ -2810,7 +2825,9 @@ msgid "Dashboard configuration menu"
 msgstr "ダッシュボード設定メニュー"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:15
+#: ../../source/portal-user-guide/full-case-list/index.rst:19
 #: ../../source/portal-user-guide/full-process-list/index.rst:20
+#: ../../source/portal-user-guide/full-task-list/index.rst:19
 msgid "Overview"
 msgstr "概要"
 
@@ -2820,10 +2837,10 @@ msgstr "ダッシュボード設定ページには、以下の2つのタブが�
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:23
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:259
-#: ../../source/portal-user-guide/full-case-list/index.rst:361
+#: ../../source/portal-user-guide/full-case-list/index.rst:364
 #: ../../source/portal-user-guide/full-process-list/index.rst:200
-#: ../../source/portal-user-guide/full-task-list/index.rst:310
-#: ../../source/portal-user-guide/portal-header/index.rst:209
+#: ../../source/portal-user-guide/full-task-list/index.rst:312
+#: ../../source/portal-user-guide/portal-header/index.rst:206
 msgid "Required Permission"
 msgstr "必要な許可"
 
@@ -2832,7 +2849,7 @@ msgid "**Private Dashboards**"
 msgstr "**プライベートダッシュボード**"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:25
-#: ../../source/portal-user-guide/portal-header/index.rst:213
+#: ../../source/portal-user-guide/portal-header/index.rst:210
 msgid ":bdg-ref-warning:`🔑DashboardWriteOwn <DashboardWriteOwn>`"
 msgstr ":bdg-ref-warning:`🔑DashboardWriteOwn <DashboardWriteOwn>`"
 
@@ -2845,7 +2862,7 @@ msgid "**Public Dashboards**"
 msgstr "**公開ダッシュボード**"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:28
-#: ../../source/portal-user-guide/portal-header/index.rst:216
+#: ../../source/portal-user-guide/portal-header/index.rst:213
 msgid ":bdg-ref-warning:`🔑DashboardWritePublic <DashboardWritePublic>`"
 msgstr ":bdg-ref-warning:`🔑DashboardWritePublic <DashboardWritePublic>`"
 
@@ -2918,12 +2935,12 @@ msgid ""
 msgstr "ダッシュボードリストに戻ると、新しい個人用ダッシュボードが追加されています。"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:58
-#: ../../source/portal-user-guide/portal-multi-language/index.rst:38
+#: ../../source/portal-user-guide/portal-multi-language/index.rst:41
 msgid "|create-private-dashboard-dialog|"
 msgstr "|create-private-dashboard-dialog|"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:278
-#: ../../source/portal-user-guide/portal-multi-language/index.rst:52
+#: ../../source/portal-user-guide/portal-multi-language/index.rst:55
 msgid "Create private dashboard dialog"
 msgstr "個人用ダッシュボードの作成ダイアログ"
 
@@ -3058,8 +3075,8 @@ msgstr "**アクション**: 各ダッシュボードで利用可能な操作"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:108
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:217
-#: ../../source/portal-user-guide/full-case-list/index.rst:254
-#: ../../source/portal-user-guide/full-case-list/index.rst:296
+#: ../../source/portal-user-guide/full-case-list/index.rst:257
+#: ../../source/portal-user-guide/full-case-list/index.rst:299
 msgid "**Available Actions:**"
 msgstr "**利用可能なアクション：**"
 
@@ -3394,10 +3411,10 @@ msgid "Reorder public dashboards"
 msgstr "公開用ダッシュボードを並び替える"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:251
-#: ../../source/portal-user-guide/full-case-list/index.rst:353
+#: ../../source/portal-user-guide/full-case-list/index.rst:356
 #: ../../source/portal-user-guide/full-process-list/index.rst:192
-#: ../../source/portal-user-guide/full-task-list/index.rst:302
-#: ../../source/portal-user-guide/portal-header/index.rst:201
+#: ../../source/portal-user-guide/full-task-list/index.rst:304
+#: ../../source/portal-user-guide/portal-header/index.rst:198
 msgid "Permission Reference"
 msgstr "権限リファレンス"
 
@@ -3841,9 +3858,8 @@ msgid ""
 " case widget. You can reach the page by using the |case-icon| "
 ":guilabel:`Cases` link in the Axon Ivy Portal menu."
 msgstr ""
-"**フルケース一覧ページ** は、単一のフル幅ケースウィジェットを備えた"
-"ダッシュボードです。Axon Ivy Portal メニュー内の |case-icon| "
-":guilabel:`Cases` リンクからアクセスできます。"
+"**フルケース一覧ページ** は、単一のフル幅ケースウィジェットを備えたダッシュボードです。Axon Ivy Portal メニュー内の "
+"|case-icon| :guilabel:`Cases` リンクからアクセスできます。"
 
 #: ../../source/portal-user-guide/includes/_common-icon.rst:21
 msgid "case-icon"
@@ -3855,9 +3871,8 @@ msgid ""
 "warning:`🔑AccessFullCaseList <AccessFullCaseList>` permission can see the"
 " |case-icon| :guilabel:`Cases` menu item."
 msgstr ""
-"**アクセス要件**: :bdg-ref-warning:`🔑AccessFullCaseList <AccessFullCaseList>"
-"` 権限を持つユーザーのみが、|case-icon| :guilabel:`Cases` メニュー項目を表示"
-"できます。"
+"**アクセス要件**: :bdg-ref-warning:`🔑AccessFullCaseList <AccessFullCaseList>` "
+"権限を持つユーザーのみが、|case-icon| :guilabel:`Cases` メニュー項目を表示できます。"
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:14
 msgid "The cases you see depend on the roles you hold in your applications."
@@ -3867,20 +3882,16 @@ msgstr "表示されるケースは、アプリケーション内でお持ちの
 msgid "|navigate-to-full-cases-list-page|"
 msgstr "|navigate-to-full-cases-list-page|"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:383
+#: ../../source/portal-user-guide/full-case-list/index.rst:386
 msgid "Menu to navigate to the Full case list page"
 msgstr "Menu to navigate to the Full case list page"
-
-#: ../../source/portal-user-guide/full-case-list/index.rst:19
-msgid "Case List Information"
-msgstr "ケースリスト情報"
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:21
 msgid "For each case, the list shows the following key information:"
 msgstr "リストには、ケースごとに以下の情報が表示されます。"
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:23
-#: ../../source/portal-user-guide/full-case-list/index.rst:284
+#: ../../source/portal-user-guide/full-case-list/index.rst:287
 msgid "Case ID"
 msgstr "ケース ID"
 
@@ -3890,20 +3901,20 @@ msgid "Pin"
 msgstr "ピン"
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:27
-#: ../../source/portal-user-guide/full-case-list/index.rst:238
-#: ../../source/portal-user-guide/full-case-list/index.rst:280
+#: ../../source/portal-user-guide/full-case-list/index.rst:241
+#: ../../source/portal-user-guide/full-case-list/index.rst:283
 #: ../../source/portal-user-guide/full-task-list/index.rst:34
 #: ../../source/portal-user-guide/statistic-chart/index.rst:166
 msgid "Name"
 msgstr "名前"
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:31
-#: ../../source/portal-user-guide/full-case-list/index.rst:286
+#: ../../source/portal-user-guide/full-case-list/index.rst:289
 msgid "Creator"
 msgstr "クリエイター"
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:33
-#: ../../source/portal-user-guide/full-case-list/index.rst:246
+#: ../../source/portal-user-guide/full-case-list/index.rst:249
 #: ../../source/portal-user-guide/full-task-list/index.rst:42
 msgid "Creation Date"
 msgstr "作成日"
@@ -3913,16 +3924,16 @@ msgid "Finished Date"
 msgstr "終了日"
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:37
-#: ../../source/portal-user-guide/full-case-list/index.rst:252
-#: ../../source/portal-user-guide/full-case-list/index.rst:292
+#: ../../source/portal-user-guide/full-case-list/index.rst:255
+#: ../../source/portal-user-guide/full-case-list/index.rst:295
 #: ../../source/portal-user-guide/full-task-list/index.rst:40
 msgid "State"
 msgstr "状態"
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:39
-#: ../../source/portal-user-guide/full-case-list/index.rst:294
+#: ../../source/portal-user-guide/full-case-list/index.rst:297
 #: ../../source/portal-user-guide/full-task-list/index.rst:46
-#: ../../source/portal-user-guide/portal-header/index.rst:164
+#: ../../source/portal-user-guide/portal-header/index.rst:161
 msgid "Category"
 msgstr "カテゴリー"
 
@@ -3930,7 +3941,7 @@ msgstr "カテゴリー"
 msgid "|case-key-information|"
 msgstr "|case-key-information|"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:385
+#: ../../source/portal-user-guide/full-case-list/index.rst:388
 msgid "Full case list: key informations"
 msgstr "症例リスト：主要情報"
 
@@ -3945,11 +3956,11 @@ msgid "To access the full set of case data, click on the case Name/Description."
 msgstr "ケースデータ全体にアクセスするには、ケースの名前／説明をクリックします。"
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:47
-#: ../../source/portal-user-guide/full-case-list/index.rst:276
+#: ../../source/portal-user-guide/full-case-list/index.rst:279
 msgid "|case-details|"
 msgstr "|case-details|"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:387
+#: ../../source/portal-user-guide/full-case-list/index.rst:390
 msgid "The Case Details page"
 msgstr "ケースの詳細ページ"
 
@@ -4017,7 +4028,7 @@ msgstr "データと説明：ケースとその説明のメタデータが表示
 msgid "|case-details-data-description|"
 msgstr "|case-details-data-description|"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:389
+#: ../../source/portal-user-guide/full-case-list/index.rst:392
 msgid "Case Details: General section"
 msgstr "ケースの詳細一般セクション"
 
@@ -4029,11 +4040,11 @@ msgid ""
 msgstr "関連する実行中のタスクとケース：関連するすべての実行中のケースとタスクのリストが表示されます。マウスをタスクの上に移動すると、状態と責任ユーザーの両方が表示されます。関連するタスクをすべて表示するには、以下の「ハウツー」を参照してください。"
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:77
-#: ../../source/portal-user-guide/full-case-list/index.rst:225
+#: ../../source/portal-user-guide/full-case-list/index.rst:228
 msgid "|case-details-related-tasks-cases|"
 msgstr "|case-details-related-tasks-cases|"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:391
+#: ../../source/portal-user-guide/full-case-list/index.rst:394
 msgid "Case Details: Related Tasks of Case section"
 msgstr "ケースの詳細ケースセクションの関連タスク"
 
@@ -4047,7 +4058,7 @@ msgstr "履歴：Axon Ivy Portal は、ケースの状態の変更に関する�
 msgid "|case-details-histories|"
 msgstr "|case-details-histories|"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:393
+#: ../../source/portal-user-guide/full-case-list/index.rst:396
 msgid "Case Details: Histories section"
 msgstr "ケースの詳細歴史セクション"
 
@@ -4061,112 +4072,118 @@ msgstr "ドキュメント：ここには、ケースに添付されたドキュ
 msgid "|case-details-documents|"
 msgstr "|case-details-documents|"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:395
+#: ../../source/portal-user-guide/full-case-list/index.rst:398
 msgid "Case Details: Documents section"
 msgstr "事件の詳細書類セクション"
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:92
+#: ../../source/portal-user-guide/full-task-list/index.rst:126
+#, fuzzy
+msgid "How-to"
+msgstr "使用方法"
+
+#: ../../source/portal-user-guide/full-case-list/index.rst:95
 msgid "HowTo: Move and Resize Widgets in Case Details"
 msgstr "ハウツー：ケースの詳細のウィジェットを移動し、サイズを変更する"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:94
-#: ../../source/portal-user-guide/full-case-list/index.rst:113
-#: ../../source/portal-user-guide/full-case-list/index.rst:131
-#: ../../source/portal-user-guide/full-case-list/index.rst:145
-#: ../../source/portal-user-guide/full-case-list/index.rst:167
-#: ../../source/portal-user-guide/full-case-list/index.rst:185
-#: ../../source/portal-user-guide/full-case-list/index.rst:206
-#: ../../source/portal-user-guide/full-case-list/index.rst:221
-#: ../../source/portal-user-guide/full-case-list/index.rst:271
-#: ../../source/portal-user-guide/full-case-list/index.rst:333
-#: ../../source/portal-user-guide/full-case-list/index.rst:342
-#: ../../source/portal-user-guide/full-task-list/index.rst:172
+#: ../../source/portal-user-guide/full-case-list/index.rst:97
+#: ../../source/portal-user-guide/full-case-list/index.rst:116
+#: ../../source/portal-user-guide/full-case-list/index.rst:134
+#: ../../source/portal-user-guide/full-case-list/index.rst:148
+#: ../../source/portal-user-guide/full-case-list/index.rst:170
+#: ../../source/portal-user-guide/full-case-list/index.rst:188
+#: ../../source/portal-user-guide/full-case-list/index.rst:209
+#: ../../source/portal-user-guide/full-case-list/index.rst:224
+#: ../../source/portal-user-guide/full-case-list/index.rst:274
+#: ../../source/portal-user-guide/full-case-list/index.rst:336
+#: ../../source/portal-user-guide/full-case-list/index.rst:345
+#: ../../source/portal-user-guide/full-task-list/index.rst:174
 msgid "Open the case details"
 msgstr "ケースの詳細を開きます。"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:96
-#: ../../source/portal-user-guide/full-task-list/index.rst:138
+#: ../../source/portal-user-guide/full-case-list/index.rst:99
+#: ../../source/portal-user-guide/full-task-list/index.rst:142
 msgid "Click on the :guilabel:`Edit` button to drag, drop and resize widgets."
 msgstr ":guilabel:`編集` ボタンをクリックして、ウィジェットをドラッグ＆ドロップし、サイズを変更します。"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:98
-#: ../../source/portal-user-guide/full-task-list/index.rst:140
+#: ../../source/portal-user-guide/full-case-list/index.rst:101
+#: ../../source/portal-user-guide/full-task-list/index.rst:144
 msgid "|how-to-switch-to-edit-mode|"
 msgstr "|how-to-switch-to-edit-mode|"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:409
+#: ../../source/portal-user-guide/full-case-list/index.rst:412
 msgid "Case Details: button to switch to the edit mode"
 msgstr "ケース詳細：編集モードに切り替えるボタン"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:100
+#: ../../source/portal-user-guide/full-case-list/index.rst:103
 msgid ""
 "Click on the :guilabel:`Save` button to save the current state of the "
 "page and switch to read-only mode."
 msgstr "現在のページの状態を保存し、読み取り専用モードに切り替えるには、:guilabel:`保存` ボタンをクリックしてください。"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:102
-#: ../../source/portal-user-guide/full-task-list/index.rst:145
+#: ../../source/portal-user-guide/full-case-list/index.rst:105
+#: ../../source/portal-user-guide/full-task-list/index.rst:148
 msgid "|how-to-switch-to-view-mode|"
 msgstr "|how-to-switch-to-view-mode|"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:407
+#: ../../source/portal-user-guide/full-case-list/index.rst:410
 msgid "Case Details: save button"
 msgstr "ケース詳細：保存ボタン"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:104
+#: ../../source/portal-user-guide/full-case-list/index.rst:107
 msgid ""
 "Click the :guilabel:`Reset` button to reset the widget to its default "
 "configuration."
 msgstr "ウィジェットをデフォルト設定にリセットするには、[:guilabel:`リセット` ]ボタンをクリックしてください。"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:106
-#: ../../source/portal-user-guide/full-task-list/index.rst:150
+#: ../../source/portal-user-guide/full-case-list/index.rst:109
+#: ../../source/portal-user-guide/full-task-list/index.rst:152
 msgid "|how-to-reset-to-default|"
 msgstr "|how-to-reset-to-default|"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:411
+#: ../../source/portal-user-guide/full-case-list/index.rst:414
 msgid "Case Details: button to reset to the default configurations"
 msgstr "ケース詳細：デフォルト設定にリセットするボタン"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:111
-#: ../../source/portal-user-guide/full-task-list/index.rst:154
+#: ../../source/portal-user-guide/full-case-list/index.rst:114
+#: ../../source/portal-user-guide/full-task-list/index.rst:156
 msgid "HowTo: Attach a Document to a Case"
 msgstr "ハウツー：ケースにドキュメントを添付する方法"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:115
+#: ../../source/portal-user-guide/full-case-list/index.rst:118
 msgid "Click |add-icon| :guilabel:`Add document`"
 msgstr "|add-icon| :guilabel:`ドキュメントを追加` をクリックします。"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:117
-#: ../../source/portal-user-guide/full-task-list/index.rst:160
+#: ../../source/portal-user-guide/full-case-list/index.rst:120
+#: ../../source/portal-user-guide/full-task-list/index.rst:162
 msgid "The :guilabel:`Add document` dialog is opened"
 msgstr ":guilabel:`ドキュメントを追加` ダイアログが開きます。"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:119
-#: ../../source/portal-user-guide/full-task-list/index.rst:162
+#: ../../source/portal-user-guide/full-case-list/index.rst:122
+#: ../../source/portal-user-guide/full-task-list/index.rst:164
 msgid ""
 "Upload a file by clicking :guilabel:`Upload here` or by dragging the file"
 " into the dialog"
 msgstr ":guilabel:`ここにアップロード` をクリックするか、ファイルをダイアログにドラッグして、ファイルをアップロードします。"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:122
+#: ../../source/portal-user-guide/full-case-list/index.rst:125
 msgid "Click :guilabel:`Close` to close the dialog"
 msgstr "ダイアログを閉じるには、:guilabel:`閉じる` をクリックしてください。"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:124
+#: ../../source/portal-user-guide/full-case-list/index.rst:127
 msgid "|how-to-attach-document-to-case|"
 msgstr "|how-to-attach-document-to-case|"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:397
+#: ../../source/portal-user-guide/full-case-list/index.rst:400
 msgid "Case Details: Add document dialog"
 msgstr "ケースの詳細ドキュメントの追加ダイアログ"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:129
-#: ../../source/portal-user-guide/full-task-list/index.rst:189
+#: ../../source/portal-user-guide/full-case-list/index.rst:132
+#: ../../source/portal-user-guide/full-task-list/index.rst:191
 msgid "HowTo: Remove an Attachment from the Case"
 msgstr "ハウツー：ケースから添付ファイルを削除する"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:133
+#: ../../source/portal-user-guide/full-case-list/index.rst:136
 msgid ""
 "Click on the |delete-icon| button next to the attachment you want to "
 "remove."
@@ -4176,29 +4193,29 @@ msgstr "削除したい添付ファイルの隣にある |delete-icon| ボタン
 msgid "delete-icon"
 msgstr "delete-icon"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:136
-#: ../../source/portal-user-guide/full-task-list/index.rst:196
+#: ../../source/portal-user-guide/full-case-list/index.rst:139
+#: ../../source/portal-user-guide/full-task-list/index.rst:198
 msgid "A confirmation dialog is opened"
 msgstr "確認ダイアログが開きます。"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:138
+#: ../../source/portal-user-guide/full-case-list/index.rst:141
 msgid "Click :guilabel:`Delete` to remove the attachment"
 msgstr ":guilabel:`削除` をクリックして添付ファイルを削除します。"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:140
+#: ../../source/portal-user-guide/full-case-list/index.rst:143
 msgid "|how-to-delete-an-attachment-from-case|"
 msgstr "|how-to-delete-an-attachment-from-case|"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:399
+#: ../../source/portal-user-guide/full-case-list/index.rst:402
 msgid "Case Details: Delete document confirm dialog"
 msgstr "ケースの詳細ドキュメントの削除確認ダイアログ"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:143
+#: ../../source/portal-user-guide/full-case-list/index.rst:146
 msgid "HowTo: Preview a Document of a Case"
 msgstr "ハウツー：ケース文書のプレビュー方法"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:147
-#: ../../source/portal-user-guide/full-task-list/index.rst:208
+#: ../../source/portal-user-guide/full-case-list/index.rst:150
+#: ../../source/portal-user-guide/full-task-list/index.rst:210
 msgid ""
 "Click on the |preview-icon| button next to the attachment you want to "
 "preview"
@@ -4208,40 +4225,40 @@ msgstr "プレビューしたい添付ファイルの隣にある |preview-icon|
 msgid "preview-icon"
 msgstr "preview-icon"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:149
-#: ../../source/portal-user-guide/full-task-list/index.rst:211
+#: ../../source/portal-user-guide/full-case-list/index.rst:152
+#: ../../source/portal-user-guide/full-task-list/index.rst:213
 msgid "A preview dialog is opened"
 msgstr "プレビューダイアログが開きます。"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:151
-#: ../../source/portal-user-guide/full-task-list/index.rst:165
-#: ../../source/portal-user-guide/full-task-list/index.rst:213
+#: ../../source/portal-user-guide/full-case-list/index.rst:154
+#: ../../source/portal-user-guide/full-task-list/index.rst:167
+#: ../../source/portal-user-guide/full-task-list/index.rst:215
 msgid "Click the button :guilabel:`Close` to close the dialog"
 msgstr ":guilabel:`閉じる` ボタンをクリックしてダイアログを閉じます。"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:153
-#: ../../source/portal-user-guide/full-task-list/index.rst:215
+#: ../../source/portal-user-guide/full-case-list/index.rst:156
+#: ../../source/portal-user-guide/full-task-list/index.rst:217
 msgid "|how-to-preview-document|"
 msgstr "|how-to-preview-document|"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:417
+#: ../../source/portal-user-guide/full-case-list/index.rst:420
 msgid "Case Details: preview document dialog"
 msgstr "事例の詳細: ドキュメントのプレビューダイアログ"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:156
-#: ../../source/portal-user-guide/full-task-list/index.rst:218
+#: ../../source/portal-user-guide/full-case-list/index.rst:159
+#: ../../source/portal-user-guide/full-task-list/index.rst:220
 msgid "**Supported Document Types:**"
 msgstr "**対応ドキュメントタイプ：**"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:158
-#: ../../source/portal-user-guide/full-task-list/index.rst:220
+#: ../../source/portal-user-guide/full-case-list/index.rst:161
+#: ../../source/portal-user-guide/full-task-list/index.rst:222
 msgid ""
 "**Default**: Images (jpg, jpeg, bmp, png), plain text (txt, log), and PDF"
 " documents"
 msgstr "**デフォルトの** ：画像（jpg、jpeg、bmp、png）、プレーンテキスト（txt、log）、PDF文書"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:159
-#: ../../source/portal-user-guide/full-task-list/index.rst:221
+#: ../../source/portal-user-guide/full-case-list/index.rst:162
+#: ../../source/portal-user-guide/full-task-list/index.rst:223
 msgid ""
 "**With DocFactory**: Word (doc, docx), Excel (xls, xlsx), and email (eml)"
 " files"
@@ -4249,7 +4266,7 @@ msgstr ""
 "**DocFactory** を使用した場合：Word (doc, docx)、Excel (xls, xlsx)、およびメール (eml) "
 "ファイル"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:161
+#: ../../source/portal-user-guide/full-case-list/index.rst:164
 msgid ""
 "Set :ref:`Portal settings <update-portal-settings>` "
 ":guilabel:`Portal.Document.EnablePreview` to true to enable this feature."
@@ -4261,85 +4278,85 @@ msgstr ""
 "をtrueに設定してください。Office文書の場合は、`DocFactory <https://market.axonivy.com/doc-"
 "factory#tab-description>`_ を同じセキュリティコンテキストでデプロイしてください。"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:165
-#: ../../source/portal-user-guide/full-task-list/index.rst:170
+#: ../../source/portal-user-guide/full-case-list/index.rst:168
+#: ../../source/portal-user-guide/full-task-list/index.rst:172
 msgid "HowTo: Rename a Document of a Case"
 msgstr "ハウツー：ケースのドキュメント名を変更する方法"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:169
-#: ../../source/portal-user-guide/full-task-list/index.rst:174
+#: ../../source/portal-user-guide/full-case-list/index.rst:172
+#: ../../source/portal-user-guide/full-task-list/index.rst:176
 msgid "Click on the |edit-icon| button next to the attachment you want to rename"
 msgstr "名前を変更したい添付ファイルの横にある |edit-icon| ボタンをクリックしてください"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:172
-#: ../../source/portal-user-guide/full-task-list/index.rst:177
+#: ../../source/portal-user-guide/full-case-list/index.rst:175
+#: ../../source/portal-user-guide/full-task-list/index.rst:179
 msgid "A dialog is opened to rename the selected document"
 msgstr "選択したドキュメントの名前を変更するためのダイアログが開きます"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:174
-#: ../../source/portal-user-guide/full-task-list/index.rst:179
+#: ../../source/portal-user-guide/full-case-list/index.rst:177
+#: ../../source/portal-user-guide/full-task-list/index.rst:181
 msgid "Update filename as you expect in the input field"
 msgstr "入力フィールドでファイル名を期待通りに更新する"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:176
-#: ../../source/portal-user-guide/full-task-list/index.rst:181
+#: ../../source/portal-user-guide/full-case-list/index.rst:179
+#: ../../source/portal-user-guide/full-task-list/index.rst:183
 msgid "Click the button :guilabel:`Save` to save your change"
 msgstr "変更を保存するには :guilabel:`保存` ボタンをクリックしてください"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:178
-#: ../../source/portal-user-guide/full-task-list/index.rst:183
+#: ../../source/portal-user-guide/full-case-list/index.rst:181
+#: ../../source/portal-user-guide/full-task-list/index.rst:185
 msgid "Filename will be updated and a note about the renaming will be added"
 msgstr "ファイル名が更新され、名前の変更に関する注記が追加されます"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:180
-#: ../../source/portal-user-guide/full-task-list/index.rst:185
+#: ../../source/portal-user-guide/full-case-list/index.rst:183
+#: ../../source/portal-user-guide/full-task-list/index.rst:187
 msgid "|how-to-rename-document|"
 msgstr "|how-to-rename-document|"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:419
+#: ../../source/portal-user-guide/full-case-list/index.rst:422
 msgid "Case Details: rename document dialog"
 msgstr "ケース詳細: 文書名変更ダイアログ"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:183
+#: ../../source/portal-user-guide/full-case-list/index.rst:186
 msgid "HowTo: Add a Note to a Case"
 msgstr "ハウツー：ケースにノートを追加する"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:187
+#: ../../source/portal-user-guide/full-case-list/index.rst:190
 msgid "Click on the |add-icon| ``Add note`` link below the notes section."
 msgstr "ノートセクションの下にある |add-icon| ``ノートを追加`` リンクをクリックします。"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:189
+#: ../../source/portal-user-guide/full-case-list/index.rst:192
 msgid "The :guilabel:`Add note` dialog is opened."
 msgstr ":guilabel:`ノートを追加` ダイアログが開きます。"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:191
+#: ../../source/portal-user-guide/full-case-list/index.rst:194
 msgid "Enter your note."
 msgstr "ノートを入力します。"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:193
+#: ../../source/portal-user-guide/full-case-list/index.rst:196
 msgid "To save your note, click :guilabel:`Save`."
 msgstr "ノートを保存するには、:guilabel:`保存` をクリックします。"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:195
+#: ../../source/portal-user-guide/full-case-list/index.rst:198
 msgid "|how-to-add-task-note|"
 msgstr "|how-to-add-task-note|"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:401
+#: ../../source/portal-user-guide/full-case-list/index.rst:404
 msgid "Case Details: Add note dialog"
 msgstr "ケース詳細：メモ追加ダイアログ"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:198
-#: ../../source/portal-user-guide/full-task-list/index.rst:243
+#: ../../source/portal-user-guide/full-case-list/index.rst:201
+#: ../../source/portal-user-guide/full-task-list/index.rst:245
 msgid "**Note Visibility:**"
 msgstr "**注記の可視性：**"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:200
+#: ../../source/portal-user-guide/full-case-list/index.rst:203
 msgid ""
 "**Technical case notes**: Displayed in the ``Notes`` table of the case "
 "and its tasks"
 msgstr "**技術的なケースノート** ：ケースとそのタスクの一覧表（``Notes``）に表示されます。"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:201
+#: ../../source/portal-user-guide/full-case-list/index.rst:204
 msgid ""
 "**Business case notes**: Displayed in the ``History`` table of the case "
 "details, its direct tasks, and technical case details (not shown in task "
@@ -4348,11 +4365,11 @@ msgstr ""
 "**ビジネスケースの注記** ：ケース詳細、直接タスク、技術ケース詳細（タスク注記テーブルには表示されません）の ``History`` "
 "テーブルに表示されます。"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:204
+#: ../../source/portal-user-guide/full-case-list/index.rst:207
 msgid "HowTo: Export a Case History"
 msgstr "ハウツー：ケース履歴をエクスポートする"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:208
+#: ../../source/portal-user-guide/full-case-list/index.rst:211
 msgid "Click on |show-more-icon| :guilabel:`Show more` below the notes section"
 msgstr "ノートセクションの下にある |show-more-icon| :guilabel:`さらに表示` をクリックします。"
 
@@ -4360,50 +4377,50 @@ msgstr "ノートセクションの下にある |show-more-icon| :guilabel:`さ�
 msgid "show-more-icon"
 msgstr "show-more-icon"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:210
-#: ../../source/portal-user-guide/full-task-list/index.rst:255
+#: ../../source/portal-user-guide/full-case-list/index.rst:213
+#: ../../source/portal-user-guide/full-task-list/index.rst:257
 msgid "|how-to-show-note-details|"
 msgstr "|how-to-show-note-details|"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:403
+#: ../../source/portal-user-guide/full-case-list/index.rst:406
 msgid "Case Details: Link to show more notes details"
 msgstr "ケース詳細：詳細なメモを表示するリンク"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:212
+#: ../../source/portal-user-guide/full-case-list/index.rst:215
 msgid "A page containing the case history is opened"
 msgstr "ケース履歴を含むページが開きます。"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:214
+#: ../../source/portal-user-guide/full-case-list/index.rst:217
 msgid "To export the case history, click on :guilabel:`Export to Excel`"
 msgstr "ケース履歴をエクスポートするには、:guilabel:`Excel にエクスポート` をクリックします。"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:216
+#: ../../source/portal-user-guide/full-case-list/index.rst:219
 msgid "|export-case-history|"
 msgstr "|export-case-history|"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:405
+#: ../../source/portal-user-guide/full-case-list/index.rst:408
 msgid "Case Business Information page: Link to export case history"
 msgstr "ケースビジネス情報ページ：ケース履歴のエクスポートリンク"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:219
+#: ../../source/portal-user-guide/full-case-list/index.rst:222
 msgid "HowTo: Manipulate Related Tasks Inside Case Details"
 msgstr "ハウツー：ケースの詳細の関連するタスクを処理する"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:223
+#: ../../source/portal-user-guide/full-case-list/index.rst:226
 msgid "Scroll to **Related Tasks of Case**"
 msgstr "**ケースの関連タスク** までスクロールします。"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:227
+#: ../../source/portal-user-guide/full-case-list/index.rst:230
 msgid "This section shows you the related tasks of this case."
 msgstr "このセクションには、このケースの関連タスクが表示されます。"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:230
+#: ../../source/portal-user-guide/full-case-list/index.rst:233
 msgid ""
 "The tasks you see depend on your application roles and Portal "
 "permissions. Administrators can see all open tasks."
 msgstr "表示されるタスクは、アプリケーションの役割とポータルの権限によって異なります。管理者はすべての未完了タスクを確認できます。"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:232
+#: ../../source/portal-user-guide/full-case-list/index.rst:235
 msgid ""
 "The list shows the following key information for each task. To change the"
 " columns displayed, click on :guilabel:`Manage columns`. Select from the "
@@ -4412,98 +4429,98 @@ msgstr ""
 "リストには、タスクごとに以下の情報が表示されます。表示される列を変更するには、:guilabel:`列の管理` "
 "をクリックします。以下の列から選択します。"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:236
+#: ../../source/portal-user-guide/full-case-list/index.rst:239
 #: ../../source/portal-user-guide/full-task-list/index.rst:28
 msgid "Priority"
 msgstr "優先度"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:242
+#: ../../source/portal-user-guide/full-case-list/index.rst:245
 #: ../../source/portal-user-guide/full-task-list/index.rst:38
 msgid "Responsible user or role"
 msgstr "責任ユーザーまたはロール"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:244
+#: ../../source/portal-user-guide/full-case-list/index.rst:247
 #: ../../source/portal-user-guide/full-task-list/index.rst:32
 msgid "Task ID"
 msgstr "タスク ID"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:248
+#: ../../source/portal-user-guide/full-case-list/index.rst:251
 #: ../../source/portal-user-guide/full-task-list/index.rst:44
 msgid "Expiry Date"
 msgstr "有効期限"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:250
-#: ../../source/portal-user-guide/full-case-list/index.rst:290
+#: ../../source/portal-user-guide/full-case-list/index.rst:253
+#: ../../source/portal-user-guide/full-case-list/index.rst:293
 msgid "Finished date"
 msgstr "終了日"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:256
+#: ../../source/portal-user-guide/full-case-list/index.rst:259
 msgid "At the end of each row, click the side step menu to access:"
 msgstr "各行の末尾にあるサイドステップメニューをクリックすると、以下の機能にアクセスできます："
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:258
+#: ../../source/portal-user-guide/full-case-list/index.rst:261
 msgid "**Reset Task**: Revert the task to its initial state"
 msgstr "**タスクのリセット**: タスクを初期状態に戻します"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:259
+#: ../../source/portal-user-guide/full-case-list/index.rst:262
 msgid "**Delegate Task**: Assign the task to another user or role"
 msgstr "**タスクの委任**: タスクを別のユーザーまたは役割に割り当てます"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:260
+#: ../../source/portal-user-guide/full-case-list/index.rst:263
 msgid "**Reserve Task**: Reserve the task for yourself"
 msgstr "**タスクの予約**: このタスクをご自身で予約してください"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:261
+#: ../../source/portal-user-guide/full-case-list/index.rst:264
 msgid "**Destroy Task**: Permanently remove the task"
 msgstr "**タスクの削除**: タスクを完全に削除します"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:262
+#: ../../source/portal-user-guide/full-case-list/index.rst:265
 msgid "**Trigger Escalation Task**: Manually trigger task escalation"
 msgstr "**エスカレーションタスクのトリガー**: タスクのエスカレーションを手動でトリガーします"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:263
+#: ../../source/portal-user-guide/full-case-list/index.rst:266
 msgid "**Workflow Events**: View and manage workflow events"
 msgstr "**ワークフローイベント**: ワークフローイベントの表示と管理"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:265
+#: ../../source/portal-user-guide/full-case-list/index.rst:268
 msgid ""
 "To access the full set of the task data, click on the row containing the "
 "task."
 msgstr "タスクデータ全体にアクセスするには、タスクを含む行をクリックします。"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:269
+#: ../../source/portal-user-guide/full-case-list/index.rst:272
 msgid "HowTo: Manipulate Related Cases Inside Case Details"
 msgstr "ハウツー：ケースの詳細の関連するケースを処理する"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:273
+#: ../../source/portal-user-guide/full-case-list/index.rst:276
 msgid ""
 "Scroll to **Related Cases** section. This section is shown only if the "
 "case has related cases."
 msgstr "**関連するケース** セクションまでスクロールします。このセクションは、ケースに関連するケースがある場合のみ表示されます。"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:278
+#: ../../source/portal-user-guide/full-case-list/index.rst:281
 msgid ""
 "By default, the following information is shown. To change it, click on "
 ":guilabel:`Manage columns` to select from:"
 msgstr "以下の情報が自動的に表示されます。変更するには、:guilabel:`列の管理` をクリックして選択します。"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:288
+#: ../../source/portal-user-guide/full-case-list/index.rst:291
 msgid "Creation date"
 msgstr "作成日"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:298
+#: ../../source/portal-user-guide/full-case-list/index.rst:301
 msgid "**Case details**: View full case information"
 msgstr "**ケースの詳細**: 完全なケース情報を表示"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:299
+#: ../../source/portal-user-guide/full-case-list/index.rst:302
 msgid "**Business details**: View business-specific case data"
 msgstr "**ビジネス詳細**: ビジネス固有のケースデータを表示"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:300
+#: ../../source/portal-user-guide/full-case-list/index.rst:303
 msgid "**Side step**: Access additional case operations"
 msgstr "**サイドステップ**: 追加のケース操作にアクセスします"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:302
+#: ../../source/portal-user-guide/full-case-list/index.rst:305
 msgid ""
 "To see the details of the related case, click on its row. To export the "
 "related case list, click on :guilabel:`Export to Excel`."
@@ -4511,11 +4528,11 @@ msgstr ""
 "関連するケースの詳細を表示するには、その行をクリックします。関連するケースのリストをエクスポートするには、:guilabel:`Excel "
 "にエクスポート` をクリックします。"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:308
+#: ../../source/portal-user-guide/full-case-list/index.rst:311
 msgid "HowTo: Show Process Viewer"
 msgstr "ハウツー：プロセスビューアーを表示する"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:310
+#: ../../source/portal-user-guide/full-case-list/index.rst:313
 msgid ""
 "Portal provides a visual representation of the process flow of the "
 "current case or task. To open the viewer, select :guilabel:`Process "
@@ -4524,98 +4541,98 @@ msgstr ""
 "ポータルは、現在のケースまたはタスクのプロセスフローを視覚的に表現します。ビューアーを開くには、:guilabel:`アクション` メニューで "
 ":guilabel:`プロセスビューアー` を選択します。"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:312
+#: ../../source/portal-user-guide/full-case-list/index.rst:315
 msgid "You find this option on the following pages:"
 msgstr "このオプションは以下のページに表示されます。"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:314
+#: ../../source/portal-user-guide/full-case-list/index.rst:317
 msgid "Case details"
 msgstr "ケースの詳細"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:315
+#: ../../source/portal-user-guide/full-case-list/index.rst:318
 msgid "Task details"
 msgstr "タスクの詳細"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:316
+#: ../../source/portal-user-guide/full-case-list/index.rst:319
 msgid "Full case list"
 msgstr "全ケースリスト"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:317
+#: ../../source/portal-user-guide/full-case-list/index.rst:320
 msgid "Full task list"
 msgstr "全タスクリスト"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:319
+#: ../../source/portal-user-guide/full-case-list/index.rst:322
 #: ../../source/portal-user-guide/portal-header/index.rst:110
 msgid "**Steps:**"
 msgstr "**手順：**"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:321
-#: ../../source/portal-user-guide/full-case-list/index.rst:344
+#: ../../source/portal-user-guide/full-case-list/index.rst:324
+#: ../../source/portal-user-guide/full-case-list/index.rst:347
 msgid "Click on :guilabel:`Actions`"
 msgstr ":guilabel:`アクション` をクリックします。"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:323
+#: ../../source/portal-user-guide/full-case-list/index.rst:326
 msgid "Click on :guilabel:`Process Viewer`"
 msgstr ":guilabel:`プロセスビューアー` をクリックします。"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:325
+#: ../../source/portal-user-guide/full-case-list/index.rst:328
 msgid "Portal opens a new browser tab. You see the process viewer."
 msgstr "ブラウザの新しいタブが開きます。プロセスビューアーが表示されます。"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:327
+#: ../../source/portal-user-guide/full-case-list/index.rst:330
 msgid "|portal-process-viewer|"
 msgstr "|portal-process-viewer|"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:413
+#: ../../source/portal-user-guide/full-case-list/index.rst:416
 msgid "Process Viewer page"
 msgstr "プロセスビューアーページ"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:331
+#: ../../source/portal-user-guide/full-case-list/index.rst:334
 msgid "HowTo: Share Case Details"
 msgstr "ハウツー：ケースの詳細を共有する"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:335
-#: ../../source/portal-user-guide/full-task-list/index.rst:297
+#: ../../source/portal-user-guide/full-case-list/index.rst:338
+#: ../../source/portal-user-guide/full-task-list/index.rst:299
 msgid "Click on the share button |share-icon|"
 msgstr "共有ボタン |share-icon| をクリックします。"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:337
+#: ../../source/portal-user-guide/full-case-list/index.rst:340
 msgid "|how-to-share-case-details|"
 msgstr "|how-to-share-case-details|"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:415
+#: ../../source/portal-user-guide/full-case-list/index.rst:418
 msgid "Case Details: button to get the shareable link of the case details"
 msgstr "ケース詳細：ケース詳細の共有用リンクを取得するボタン"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:340
+#: ../../source/portal-user-guide/full-case-list/index.rst:343
 msgid "HowTo: Show Case Custom Fields Dialog"
 msgstr "ハウツー：カスタムフィールドダイアログの表示方法"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:346
+#: ../../source/portal-user-guide/full-case-list/index.rst:349
 msgid "Click on :guilabel:`Custom Fields`"
 msgstr ":guilabel:`アクション` をクリックします"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:348
+#: ../../source/portal-user-guide/full-case-list/index.rst:351
 msgid "Portal opens the custom fields dialog of the case"
 msgstr "Portal はケースのカスタムフィールドダイアログを開きます"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:350
+#: ../../source/portal-user-guide/full-case-list/index.rst:353
 msgid "|case-custom-fields-dialog|"
 msgstr "|case-custom-fields-dialog|"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:421
+#: ../../source/portal-user-guide/full-case-list/index.rst:424
 msgid "Case Details: custom fields dialog"
 msgstr "ケース詳細：カスタムフィールドダイアログ"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:355
+#: ../../source/portal-user-guide/full-case-list/index.rst:358
 msgid "Different case operations require specific permissions:"
 msgstr "異なる大文字小文字の操作には、特定の権限が必要となります："
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:363
+#: ../../source/portal-user-guide/full-case-list/index.rst:366
 msgid "**View related tasks of case**"
 msgstr "**関連するケースのタスクを表示**"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:363
+#: ../../source/portal-user-guide/full-case-list/index.rst:366
 msgid ""
 ":bdg-ref-warning:`🔑TaskReadOwnCaseTasks <TaskReadOwnCaseTasks>` or :bdg-"
 "ref-warning:`🔑TaskReadAll <TaskReadAll>`"
@@ -4623,12 +4640,12 @@ msgstr ""
 ":bdg-ref-warning:`🔑TaskReadOwnCaseTasks <TaskReadOwnCaseTasks>` または :bdg-"
 "ref-warning:`🔑TaskReadAll <TaskReadAll>`"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:367
+#: ../../source/portal-user-guide/full-case-list/index.rst:370
 msgid "**Add/delete case documents**"
 msgstr "**ケース文書の追加／削除**"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:367
-#: ../../source/portal-user-guide/full-task-list/index.rst:334
+#: ../../source/portal-user-guide/full-case-list/index.rst:370
+#: ../../source/portal-user-guide/full-task-list/index.rst:336
 msgid ""
 ":bdg-ref-warning:`🔑DocumentOfInvolvedCaseWrite "
 "<DocumentOfInvolvedCaseWrite>` or :bdg-ref-warning:`🔑DocumentWrite "
@@ -4638,29 +4655,29 @@ msgstr ""
 "<DocumentOfInvolvedCaseWrite>` または :bdg-ref-warning:`🔑DocumentWrite "
 "<DocumentWrite>`"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:371
+#: ../../source/portal-user-guide/full-case-list/index.rst:374
 msgid "**Add note to case**"
 msgstr "**※ 注記：**"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:371
-#: ../../source/portal-user-guide/full-task-list/index.rst:338
+#: ../../source/portal-user-guide/full-case-list/index.rst:374
+#: ../../source/portal-user-guide/full-task-list/index.rst:340
 msgid ":bdg-ref-warning:`🔑TaskCaseAddNote <TaskCaseAddNote>`"
 msgstr ":bdg-ref-warning:`🔑TaskCaseAddNote <TaskCaseAddNote>`"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:374
+#: ../../source/portal-user-guide/full-case-list/index.rst:377
 msgid "**Share case details link**"
 msgstr "**ケースの詳細を共有するリンク**"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:374
+#: ../../source/portal-user-guide/full-case-list/index.rst:377
 msgid ":bdg-ref-warning:`🔑ShareCaseDetailsLink <ShareCaseDetailsLink>`"
 msgstr ":bdg-ref-warning:`🔑ShareCaseDetailsLink <ShareCaseDetailsLink>`"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:377
-#: ../../source/portal-user-guide/full-task-list/index.rst:331
+#: ../../source/portal-user-guide/full-case-list/index.rst:380
+#: ../../source/portal-user-guide/full-task-list/index.rst:333
 msgid "**View custom fields**"
 msgstr "**カスタムフィールドを表示**"
 
-#: ../../source/portal-user-guide/full-case-list/index.rst:377
+#: ../../source/portal-user-guide/full-case-list/index.rst:380
 msgid ""
 ":bdg-ref-warning:`🔑CaseDisplayCustomFieldsAction "
 "<CaseDisplayCustomFieldsAction>`"
@@ -5151,20 +5168,17 @@ msgstr "アプリケーションの役割やポータルの設定によっては
 msgid "|navigate-to-full-task-list-page|"
 msgstr "|navigate-to-full-task-list-page|"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:348
+#: ../../source/portal-user-guide/full-task-list/index.rst:350
 msgid "Menu to navigate to the Full task list"
 msgstr "全タスクリストページに移動するメニュー"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:19
-msgid "Task List Overview"
-msgstr "タスクリストの概要"
-
 #: ../../source/portal-user-guide/full-task-list/index.rst:21
+#, fuzzy
 msgid ""
 "On the top of the **Full Task List** page you see next to the heading "
 ":guilabel:`Tasks` in brackets the overall number of tasks shown to you. "
 "Below you find the filter feature. The usage will be explained in the "
-"HowTo’s further down this chapter. Finally, you see the list of tasks."
+"HowTo's further down this chapter. Finally, you see the list of tasks."
 msgstr ""
 "**全タスクリスト** ページの一番上に表示される見出しの :guilabel:`タスク` "
 "の隣に、表示されるタスクの総数がかっこ書きで表示されます。その下にはフィルター機能が表示されます。使用方法については、この章の「ハウツー」で説明します。最後に、タスクのリストが表示されます。"
@@ -5181,7 +5195,7 @@ msgstr "アプリケーション（この列は自動的に表示されません
 msgid "|task-key-information|"
 msgstr "|task-key-information|"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:350
+#: ../../source/portal-user-guide/full-task-list/index.rst:352
 msgid "Full task list: key informations"
 msgstr "全タスクリスト：主な情報"
 
@@ -5274,9 +5288,7 @@ msgstr "タスクの詳細"
 
 #: ../../source/portal-user-guide/full-task-list/index.rst:85
 msgid "Access the full set of task data by clicking on `Actions` then `Details`."
-msgstr ""
-"タスクデータの全セットにアクセスするには、`アクション` をクリックし、次に `詳"
-"細` をクリックしてください。"
+msgstr "タスクデータの全セットにアクセスするには、`アクション` をクリックし、次に `詳細` をクリックしてください。"
 
 #: ../../source/portal-user-guide/full-task-list/index.rst:87
 msgid "The task details page is organized into four main sections:"
@@ -5308,7 +5320,7 @@ msgstr "注意な必要な情報や対処すべき情報を表示するタスク
 msgid "|task-status-banner|"
 msgstr "|task-status-banner|"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:382
+#: ../../source/portal-user-guide/full-task-list/index.rst:384
 msgid "Task Details: the Status banner"
 msgstr "タスクの詳細：ステータスバナー"
 
@@ -5322,7 +5334,7 @@ msgstr "データと説明：タスクとタスクに関連するケースのメ
 msgid "|detailed-task-information-data-description|"
 msgstr "|detailed-task-information-data-description|"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:352
+#: ../../source/portal-user-guide/full-task-list/index.rst:354
 msgid "Task Details: General section"
 msgstr "タスクの詳細：一般セクション"
 
@@ -5334,7 +5346,7 @@ msgstr "履歴：以下に説明するノートを追加できます。"
 msgid "|detailed-task-information-note|"
 msgstr "|detailed-task-information-note|"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:354
+#: ../../source/portal-user-guide/full-task-list/index.rst:356
 msgid "Task Details: Notes section"
 msgstr "タスクの詳細：ノートセクション"
 
@@ -5349,7 +5361,7 @@ msgstr "ドキュメント：ケースに添付されたドキュメントはす
 msgid "|detailed-task-information-documents|"
 msgstr "|detailed-task-information-documents|"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:356
+#: ../../source/portal-user-guide/full-task-list/index.rst:358
 msgid "Task Details: Documents section"
 msgstr "タスクの詳細：ドキュメントセクション"
 
@@ -5357,15 +5369,15 @@ msgstr "タスクの詳細：ドキュメントセクション"
 msgid "|detailed-task-information|"
 msgstr "|detailed-task-information|"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:358
+#: ../../source/portal-user-guide/full-task-list/index.rst:360
 msgid "The Task Details page"
 msgstr "タスクの詳細ページ"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:126
+#: ../../source/portal-user-guide/full-task-list/index.rst:129
 msgid "HowTo: Configure the Full Task List"
 msgstr "ハウツー：完全なタスクリストの設定方法"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:128
+#: ../../source/portal-user-guide/full-task-list/index.rst:131
 msgid ""
 "The full task list page functions as a dashboard accessible from the top-"
 "level menu. To customize the task list, navigate to :ref:`Dashboard "
@@ -5374,93 +5386,93 @@ msgstr ""
 "全タスクリストページは、トップレベルメニューからアクセス可能なダッシュボードとして機能します。 タスクリストをカスタマイズするには、 "
 ":ref:`ダッシュボードの設定 <dashboard-configuration>` に移動します。"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:131
+#: ../../source/portal-user-guide/full-task-list/index.rst:134
 msgid ""
 "To restore the dashboard to its default settings, including the menu icon"
 " and task list layout, delete the dashboard. Portal will automatically "
 "recreate the dashboard with the default settings."
 msgstr "メニューアイコン、タスクリストのレイアウトを含め、ダッシュボードを初期設定に戻すには、ダッシュボードを削除します。ポータルは自動的に初期設定でダッシュボードを作成し直します。"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:135
+#: ../../source/portal-user-guide/full-task-list/index.rst:138
 msgid "HowTo: Move and Resize Widgets in Task Details"
 msgstr "ハウツー：タスクの詳細のウィジェットを移動し、サイズを変更する"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:136
-#: ../../source/portal-user-guide/full-task-list/index.rst:156
-#: ../../source/portal-user-guide/full-task-list/index.rst:191
-#: ../../source/portal-user-guide/full-task-list/index.rst:206
-#: ../../source/portal-user-guide/full-task-list/index.rst:230
-#: ../../source/portal-user-guide/full-task-list/index.rst:251
-#: ../../source/portal-user-guide/full-task-list/index.rst:269
-#: ../../source/portal-user-guide/full-task-list/index.rst:282
+#: ../../source/portal-user-guide/full-task-list/index.rst:140
+#: ../../source/portal-user-guide/full-task-list/index.rst:158
+#: ../../source/portal-user-guide/full-task-list/index.rst:193
+#: ../../source/portal-user-guide/full-task-list/index.rst:208
+#: ../../source/portal-user-guide/full-task-list/index.rst:232
+#: ../../source/portal-user-guide/full-task-list/index.rst:253
+#: ../../source/portal-user-guide/full-task-list/index.rst:271
+#: ../../source/portal-user-guide/full-task-list/index.rst:284
 msgid "Open the task details of a task"
 msgstr "タスクのタスクの詳細を開きます。"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:376
+#: ../../source/portal-user-guide/full-task-list/index.rst:378
 msgid "Task Details: button to switch to the edit mode"
 msgstr "タスクの詳細：編集モードに切り替えるボタン"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:143
+#: ../../source/portal-user-guide/full-task-list/index.rst:146
 msgid ""
 "Click on the :guilabel:`Save` button to save current state of page and "
 "switch to readonly mode."
 msgstr ":guilabel:`保存` ボタンをクリックして、ページの現在の状態を保存し、読み取り専用モードに切り替えます。"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:374
+#: ../../source/portal-user-guide/full-task-list/index.rst:376
 msgid "Task Details: save button"
 msgstr "タスクの詳細：保存ボタン"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:148
+#: ../../source/portal-user-guide/full-task-list/index.rst:150
 msgid "Click :guilabel:`Reset` button to reset to default configuration."
 msgstr ":guilabel:`リセット` ボタンをクリックして初期設定にリセットします。"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:378
+#: ../../source/portal-user-guide/full-task-list/index.rst:380
 msgid "Task Details: button to reset to the default configurations"
 msgstr "タスクの詳細：デフォルト設定にリセットするボタン"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:158
+#: ../../source/portal-user-guide/full-task-list/index.rst:160
 msgid "Click the link |add-icon| ``Add document``"
 msgstr "|add-icon| ``ドキュメントを追加`` リンクをクリックします。"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:167
+#: ../../source/portal-user-guide/full-task-list/index.rst:169
 msgid "|how-to-upload-document|"
 msgstr "|how-to-upload-document|"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:360
+#: ../../source/portal-user-guide/full-task-list/index.rst:362
 msgid "Task Details:Add document dialog"
 msgstr "タスクの詳細：ドキュメントの追加ダイアログ"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:386
+#: ../../source/portal-user-guide/full-task-list/index.rst:388
 msgid "Task Details: rename document dialog"
 msgstr "タスク詳細: ドキュメント名の変更ダイアログ"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:193
+#: ../../source/portal-user-guide/full-task-list/index.rst:195
 msgid ""
 "Click on the |delete-icon| button next to the attachment you want to "
 "remove"
 msgstr "削除したい添付ファイルの隣にある |delete-icon| ボタンをクリックします。"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:198
+#: ../../source/portal-user-guide/full-task-list/index.rst:200
 msgid "Confirm the deletion with the button :guilabel:`Delete`"
 msgstr ":guilabel:`削除` ボタンをクリックして、削除を確定します。"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:200
+#: ../../source/portal-user-guide/full-task-list/index.rst:202
 msgid "|how-to-delete-document|"
 msgstr "|how-to-delete-document|"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:362
+#: ../../source/portal-user-guide/full-task-list/index.rst:364
 msgid "Task Details: Delete document confirm dialog"
 msgstr "タスクの詳細：ドキュメントの削除の確認ダイアログ"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:204
+#: ../../source/portal-user-guide/full-task-list/index.rst:206
 msgid "HowTo: Preview a Document of a Task"
 msgstr "ハウツー：タスクのドキュメントをプレビューする方法"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:384
+#: ../../source/portal-user-guide/full-task-list/index.rst:386
 msgid "Task Details: preview document dialog"
 msgstr "タスクの詳細: ドキュメントのプレビューダイアログ"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:223
+#: ../../source/portal-user-guide/full-task-list/index.rst:225
 msgid ""
 "To enable this feature, set :ref:`Portal settings <update-portal-"
 "settings>` :guilabel:`Portal.Document.EnablePreview` to true. For Office "
@@ -5472,184 +5484,184 @@ msgstr ""
 "をtrueに設定してください。Office文書の場合は、`DocFactory <https://market.axonivy.com/doc-"
 "factory#tab-description>`_ を同じセキュリティコンテキストでデプロイしてください。"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:228
+#: ../../source/portal-user-guide/full-task-list/index.rst:230
 msgid "HowTo: Add a Note to a Task"
 msgstr "ハウツー：タスクにメモを追加する方法"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:232
+#: ../../source/portal-user-guide/full-task-list/index.rst:234
 msgid "Click on the link |add-icon| ``Add note`` below the notes section"
 msgstr "ノートセクションの下にある |add-icon| ``ノートを追加`` リンクをクリックします。"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:234
+#: ../../source/portal-user-guide/full-task-list/index.rst:236
 msgid "The :guilabel:`Add note` dialog is opened"
 msgstr ":guilabel:`ノートを追加` ダイアログが開きます。"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:236
+#: ../../source/portal-user-guide/full-task-list/index.rst:238
 msgid "Enter your note"
 msgstr "ノートを入力します。"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:238
+#: ../../source/portal-user-guide/full-task-list/index.rst:240
 msgid "Confirm your note by clicking the button :guilabel:`Save`"
 msgstr ":guilabel:`保存` ボタンをクリックして、ノートを確定します。"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:240
+#: ../../source/portal-user-guide/full-task-list/index.rst:242
 msgid "|how-to-add-note|"
 msgstr "|how-to-add-note|"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:364
+#: ../../source/portal-user-guide/full-task-list/index.rst:366
 msgid "Task Details: Add note dialog"
 msgstr "タスクの詳細：ノートの追加ダイアログ"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:245
+#: ../../source/portal-user-guide/full-task-list/index.rst:247
 msgid ""
 "Task notes are displayed in the ``Notes`` table of the task details and "
 "in the ``History`` table of its business case"
 msgstr "タスクノートは、タスク詳細の  ``Notes``  テーブルおよびそのビジネスケースの ``History``  テーブルに表示されます。"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:246
+#: ../../source/portal-user-guide/full-task-list/index.rst:248
 msgid ""
 "If the task belongs to a technical case, notes are also displayed in the "
 "``History`` table of that technical case"
 msgstr "当該タスクが技術的なケースに属する場合、注記は当該技術ケースの ``History`` テーブルにも表示されます。"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:249
+#: ../../source/portal-user-guide/full-task-list/index.rst:251
 msgid "HowTo: Export a Task History"
 msgstr "ハウツー：タスク履歴のエクスポート方法"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:253
+#: ../../source/portal-user-guide/full-task-list/index.rst:255
 msgid "Click on the link |show-more-icon| ``Show more`` below the notes section"
 msgstr "ノートセクションの下にある |show-more-icon| ``さらに表示`` リンクをクリックします。"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:366
+#: ../../source/portal-user-guide/full-task-list/index.rst:368
 msgid "Task Details: Link to show more notes details"
 msgstr "タスクの詳細：ノートの詳細を表示するリンク"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:257
+#: ../../source/portal-user-guide/full-task-list/index.rst:259
 msgid "A new page with the task history is opened"
 msgstr "タスク履歴を含む新しいページが開きます。"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:259
+#: ../../source/portal-user-guide/full-task-list/index.rst:261
 msgid ""
 "You may export the history by clicking on the button :guilabel:`Export to"
 " Excel`"
 msgstr ":guilabel:`Excel にエクスポート` ボタンをクリックして、履歴をエクスポートできます。"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:261
+#: ../../source/portal-user-guide/full-task-list/index.rst:263
 msgid "|how-to-export-note-details|"
 msgstr "|how-to-export-note-details|"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:368
+#: ../../source/portal-user-guide/full-task-list/index.rst:370
 msgid "Link to export task notes"
 msgstr "タスクのノートをエクスポートするリンク"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:267
+#: ../../source/portal-user-guide/full-task-list/index.rst:269
 msgid "HowTo: Show Workflow Events"
 msgstr "ハウツー：ワークフローイベントを表示する"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:271
-#: ../../source/portal-user-guide/full-task-list/index.rst:284
+#: ../../source/portal-user-guide/full-task-list/index.rst:273
+#: ../../source/portal-user-guide/full-task-list/index.rst:286
 msgid ""
 "Click on the link ``Actions`` on the right top corner of the **Data and "
 "Description** section"
 msgstr "**データと説明** セクションの右上隅にある ``アクション`` リンクをクリックします。"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:273
+#: ../../source/portal-user-guide/full-task-list/index.rst:275
 msgid ""
 "Click the link ``Workflow Events`` on the overlay panel to see Workflow "
 "Events dialog"
 msgstr "オーバーレイパネルの ``ワークフローイベント`` リンクをクリックして、ワークフローイベントダイアログを表示します。"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:275
+#: ../../source/portal-user-guide/full-task-list/index.rst:277
 msgid "**Workflow Events dialog**"
 msgstr "**ワークフローイベントダイアログ**"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:277
+#: ../../source/portal-user-guide/full-task-list/index.rst:279
 msgid "|workflow-events-table|"
 msgstr "|workflow-events-table|"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:370
+#: ../../source/portal-user-guide/full-task-list/index.rst:372
 msgid "Workflow events of task dialog"
 msgstr "タスクのワークフローイベントダイアログ"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:280
+#: ../../source/portal-user-guide/full-task-list/index.rst:282
 msgid "HowTo: Show Custom Fields"
 msgstr "ハウツー：カスタムフィールドを表示する"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:286
+#: ../../source/portal-user-guide/full-task-list/index.rst:288
 msgid ""
 "Click the link ``Custom Fields`` on the overlay panel to see Custom "
 "Fields dialog"
 msgstr "オーバーレイパネルのリンク ``Custom Fields`` をクリックし、カスタムフィールドダイアログを表示する"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:288
+#: ../../source/portal-user-guide/full-task-list/index.rst:290
 msgid "**Custom Fields dialog**"
 msgstr "**カスタムフィールドダイアログ**"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:290
+#: ../../source/portal-user-guide/full-task-list/index.rst:292
 msgid "|custom-fields-dialog|"
 msgstr "|custom-fields-dialog|"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:372
+#: ../../source/portal-user-guide/full-task-list/index.rst:374
 msgid "Custom fields of task dialog"
 msgstr "タスクダイアログのカスタムフィールド"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:293
+#: ../../source/portal-user-guide/full-task-list/index.rst:295
 msgid "HowTo: Share Task Details"
 msgstr "ハウツー：タスクの詳細を共有する"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:295
+#: ../../source/portal-user-guide/full-task-list/index.rst:297
 msgid "Open the task details"
 msgstr "タスクの詳細を開きます。"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:299
+#: ../../source/portal-user-guide/full-task-list/index.rst:301
 msgid "|how-to-share-task-details|"
 msgstr "|how-to-share-task-details|"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:380
+#: ../../source/portal-user-guide/full-task-list/index.rst:382
 msgid "Task Details: button to get the shareable link of the task details"
 msgstr "タスクの詳細：タスクの詳細の共有可能なリンクを取得するボタン"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:304
+#: ../../source/portal-user-guide/full-task-list/index.rst:306
 msgid "Different task operations require specific permissions:"
 msgstr "異なるタスク操作には、特定の権限が必要となります："
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:312
+#: ../../source/portal-user-guide/full-task-list/index.rst:314
 msgid "**Reset task**"
 msgstr "**タスクをリセットします**"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:312
+#: ../../source/portal-user-guide/full-task-list/index.rst:314
 msgid ":bdg-ref-warning:`🔑TaskDisplayResetAction <TaskDisplayResetAction>`"
 msgstr ":bdg-ref-warning:`🔑TaskDisplayResetAction <TaskDisplayResetAction>`"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:315
+#: ../../source/portal-user-guide/full-task-list/index.rst:317
 msgid "**Reserve task**"
 msgstr "**タスクを予約する**"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:315
+#: ../../source/portal-user-guide/full-task-list/index.rst:317
 msgid ":bdg-ref-warning:`🔑TaskDisplayReserveAction <TaskDisplayReserveAction>`"
 msgstr ":bdg-ref-warning:`🔑TaskDisplayReserveAction <TaskDisplayReserveAction>`"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:318
+#: ../../source/portal-user-guide/full-task-list/index.rst:320
 msgid "**Delegate task**"
 msgstr "**タスクを委任する**"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:318
+#: ../../source/portal-user-guide/full-task-list/index.rst:320
 msgid ":bdg-ref-warning:`🔑TaskDisplayDelegateAction <TaskDisplayDelegateAction>`"
 msgstr ":bdg-ref-warning:`🔑TaskDisplayDelegateAction <TaskDisplayDelegateAction>`"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:321
+#: ../../source/portal-user-guide/full-task-list/index.rst:323
 msgid "**Destroy task**"
 msgstr "**タスクを破棄する**"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:321
+#: ../../source/portal-user-guide/full-task-list/index.rst:323
 msgid ":bdg-ref-warning:`🔑TaskDisplayDestroyAction <TaskDisplayDestroyAction>`"
 msgstr ":bdg-ref-warning:`🔑TaskDisplayDestroyAction <TaskDisplayDestroyAction>`"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:324
+#: ../../source/portal-user-guide/full-task-list/index.rst:326
 msgid "**View additional options**"
 msgstr "**追加オプションを表示**"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:324
+#: ../../source/portal-user-guide/full-task-list/index.rst:326
 msgid ""
 ":bdg-ref-warning:`🔑TaskDisplayAdditionalOptions "
 "<TaskDisplayAdditionalOptions>`"
@@ -5657,11 +5669,11 @@ msgstr ""
 ":bdg-ref-warning:`🔑TaskDisplayAdditionalOptions "
 "<TaskDisplayAdditionalOptions>`"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:327
+#: ../../source/portal-user-guide/full-task-list/index.rst:329
 msgid "**View workflow events**"
 msgstr "**ワークフローイベントを表示する**"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:327
+#: ../../source/portal-user-guide/full-task-list/index.rst:329
 msgid ""
 ":bdg-ref-warning:`🔑TaskDisplayWorkflowEventAction "
 "<TaskDisplayWorkflowEventAction>` and :bdg-"
@@ -5671,7 +5683,7 @@ msgstr ""
 "<TaskDisplayWorkflowEventAction>` および :bdg-"
 "warning:`🔑WorkflowEventReadAll`"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:331
+#: ../../source/portal-user-guide/full-task-list/index.rst:333
 msgid ""
 ":bdg-ref-warning:`🔑TaskDisplayCustomFieldsAction "
 "<TaskDisplayCustomFieldsAction>`"
@@ -5679,19 +5691,19 @@ msgstr ""
 ":bdg-ref-warning:`🔑TaskDisplayCustomFieldsAction "
 "<TaskDisplayCustomFieldsAction>`"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:334
+#: ../../source/portal-user-guide/full-task-list/index.rst:336
 msgid "**Add/delete task documents**"
 msgstr "**タスク文書の追加／削除**"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:338
+#: ../../source/portal-user-guide/full-task-list/index.rst:340
 msgid "**Add note to task**"
 msgstr "**タスクに注記を追加してください。**"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:341
+#: ../../source/portal-user-guide/full-task-list/index.rst:343
 msgid "**Share task details link**"
 msgstr "**タスク詳細を共有するリンク**"
 
-#: ../../source/portal-user-guide/full-task-list/index.rst:341
+#: ../../source/portal-user-guide/full-task-list/index.rst:343
 msgid ":bdg-ref-warning:`🔑ShareTaskDetailsLink <ShareTaskDetailsLink>`"
 msgstr ":bdg-ref-warning:`🔑ShareTaskDetailsLink <ShareTaskDetailsLink>`"
 
@@ -5710,7 +5722,7 @@ msgid ""
 msgstr "エンドユーザーとしてポータル機能をご利用いただく方法について。ダッシュボード、リスト、通知、プロフィール設定、アクセシビリティオプションについてご説明いたします。"
 
 #: ../../source/portal-user-guide/my-profile/index.rst:4
-#: ../../source/portal-user-guide/portal-header/index.rst:60
+#: ../../source/portal-user-guide/portal-header/index.rst:62
 msgid "My Profile"
 msgstr "マイプロフィール"
 
@@ -5724,7 +5736,7 @@ msgstr "一般設定、言語、通知チャネルのサブスクリプション
 msgid "|my-profile-save|"
 msgstr "|my-profile-save|"
 
-#: ../../source/portal-user-guide/my-profile/index.rst:139
+#: ../../source/portal-user-guide/my-profile/index.rst:118
 msgid "My profile page"
 msgstr "プロフィールページ"
 
@@ -5753,86 +5765,83 @@ msgstr ""
 "このセクションには、プロセスリストの設定に利用可能なオプションが表示されます。\n"
 "以下のオプションを変更できます。"
 
-#: ../../source/portal-user-guide/my-profile/index.rst:27
-#: ../../source/portal-user-guide/my-profile/index.rst:46
-#: ../../source/portal-user-guide/my-profile/index.rst:62
-#: ../../source/portal-user-guide/my-profile/index.rst:79
-msgid "Option"
-msgstr "オプション"
-
-#: ../../source/portal-user-guide/my-profile/index.rst:29
-msgid "Default view mode"
+#: ../../source/portal-user-guide/my-profile/index.rst:24
+#, fuzzy
+msgid "**Default view mode**"
 msgstr "表示モードの初期値"
 
-#: ../../source/portal-user-guide/my-profile/index.rst:29
+#: ../../source/portal-user-guide/my-profile/index.rst:25
 msgid "Standard view mode when you open the process list."
 msgstr "プロセスリストを開いたときの標準の表示モード"
 
-#: ../../source/portal-user-guide/my-profile/index.rst:33
+#: ../../source/portal-user-guide/my-profile/index.rst:27
 msgid ""
 "Portal will use the default value defined by the administrator if you "
 "don't select an option."
 msgstr "オプションを選択しない場合、ポータルは管理者が定義したデフォルト値を使用します。"
 
-#: ../../source/portal-user-guide/my-profile/index.rst:38
+#: ../../source/portal-user-guide/my-profile/index.rst:32
 msgid "Task list configuration"
 msgstr "タスクリスト設定"
 
-#: ../../source/portal-user-guide/my-profile/index.rst:40
+#: ../../source/portal-user-guide/my-profile/index.rst:34
 msgid ""
 "This section has available options which help you to configure your Task "
 "list. These are options you can modify:"
 msgstr "このセクションには、タスクリストの設定に役立つ利用可能なオプションがあります。変更可能なオプションは以下の通りです："
 
-#: ../../source/portal-user-guide/my-profile/index.rst:48
-msgid "Unpin all pinned tasks"
+#: ../../source/portal-user-guide/my-profile/index.rst:37
+#, fuzzy
+msgid "**Unpin all pinned tasks (If enabled)**"
 msgstr "固定されたタスクをすべて解除する"
 
-#: ../../source/portal-user-guide/my-profile/index.rst:48
+#: ../../source/portal-user-guide/my-profile/index.rst:38
 msgid "Unpin all of your pinned tasks"
 msgstr "固定したタスクをすべて解除する"
 
-#: ../../source/portal-user-guide/my-profile/index.rst:54
+#: ../../source/portal-user-guide/my-profile/index.rst:43
 msgid "Case list configuration"
 msgstr "ケースリスト設定"
 
-#: ../../source/portal-user-guide/my-profile/index.rst:56
+#: ../../source/portal-user-guide/my-profile/index.rst:45
 msgid ""
 "This section has available options which help you to configure your Case "
 "list. These are options you can modify:"
 msgstr "このセクションには、ケースリストの設定に役立つ利用可能なオプションがあります。変更可能なオプションは以下の通りです："
 
-#: ../../source/portal-user-guide/my-profile/index.rst:64
-msgid "Unpin all pinned cases"
+#: ../../source/portal-user-guide/my-profile/index.rst:48
+#, fuzzy
+msgid "**Unpin all pinned cases (If enabled)**"
 msgstr "固定されているすべてのケースの固定を解除する"
 
-#: ../../source/portal-user-guide/my-profile/index.rst:64
+#: ../../source/portal-user-guide/my-profile/index.rst:49
 msgid "Unpin all of your pinned cases"
 msgstr "固定したケースをすべて解除する"
 
-#: ../../source/portal-user-guide/my-profile/index.rst:71
+#: ../../source/portal-user-guide/my-profile/index.rst:55
 msgid "Accessibility settings"
 msgstr "アクセシビリティ設定"
 
-#: ../../source/portal-user-guide/my-profile/index.rst:73
+#: ../../source/portal-user-guide/my-profile/index.rst:57
 msgid ""
 "Accessibility settings help you customize your experience to meet your "
 "specific needs. These are options you can modify:"
 msgstr "アクセシビリティ設定は、特定のニーズに合わせて体験をカスタマイズするのに役立ちます。変更可能なオプションは以下の通りです："
 
-#: ../../source/portal-user-guide/my-profile/index.rst:81
-msgid "Keyboard shortcuts for navigation"
+#: ../../source/portal-user-guide/my-profile/index.rst:60
+#, fuzzy
+msgid "**Keyboard shortcuts for navigation**"
 msgstr "ナビゲーション用キーボードショートカット"
 
-#: ../../source/portal-user-guide/my-profile/index.rst:81
+#: ../../source/portal-user-guide/my-profile/index.rst:61
 msgid "Enable or disable keyboard shortcuts for navigation"
 msgstr "キーボードショートカットによるナビゲーションを有効または無効にする"
 
-#: ../../source/portal-user-guide/my-profile/index.rst:87
+#: ../../source/portal-user-guide/my-profile/index.rst:66
 msgid "Language settings"
 msgstr "言語設定"
 
-#: ../../source/portal-user-guide/my-profile/index.rst:89
+#: ../../source/portal-user-guide/my-profile/index.rst:68
 msgid ""
 "**Language** allows you to specify your preferred application language. "
 "This setting will affect all Axon Ivy Portal pages, notification mails, "
@@ -5843,27 +5852,27 @@ msgstr ""
 "この設定は、Axon Ivy Portal のすべてのページ、通知メール、サポートされている場合は会社のア\n"
 "プリケーションページに影響を及ぼします。Axon Ivy Portal では現在、以下の言語がサポートされています。 ポータル："
 
-#: ../../source/portal-user-guide/my-profile/index.rst:95
+#: ../../source/portal-user-guide/my-profile/index.rst:74
 msgid "English"
 msgstr "英語"
 
-#: ../../source/portal-user-guide/my-profile/index.rst:96
+#: ../../source/portal-user-guide/my-profile/index.rst:75
 msgid "German"
 msgstr "ドイツ語"
 
-#: ../../source/portal-user-guide/my-profile/index.rst:97
+#: ../../source/portal-user-guide/my-profile/index.rst:76
 msgid "French"
 msgstr "フランス語"
 
-#: ../../source/portal-user-guide/my-profile/index.rst:98
+#: ../../source/portal-user-guide/my-profile/index.rst:77
 msgid "Spanish"
 msgstr "スペイン語"
 
-#: ../../source/portal-user-guide/my-profile/index.rst:99
+#: ../../source/portal-user-guide/my-profile/index.rst:78
 msgid "Japanese"
 msgstr "日本語"
 
-#: ../../source/portal-user-guide/my-profile/index.rst:101
+#: ../../source/portal-user-guide/my-profile/index.rst:80
 msgid ""
 "**Formatting language** is used to format values, for example the decimal"
 " separator is displayed differently in different regions of the world."
@@ -5871,7 +5880,7 @@ msgstr ""
 "**書式設定言語** を使用して、値の形式を設定します。例えば、小数点は世界中の異なる地域\n"
 "で異なる形式で表示されます。"
 
-#: ../../source/portal-user-guide/my-profile/index.rst:104
+#: ../../source/portal-user-guide/my-profile/index.rst:83
 msgid ""
 "Your application needs to support the same language as the one selected "
 "in this menu. Otherwise the application specific content will be shown in"
@@ -5880,18 +5889,18 @@ msgid ""
 "application specific dialogs will still be shown in English."
 msgstr "アプリケーションは、このメニューで選択された言語と同じ言語をサポートする必要があります。そうでない場合、アプリケーション固有のコンテンツは、アプリケーションの標準言語で表示されます。例えば、アプリケーションが英語のみをサポートしている場合、ポータルの言語としてスペイン語を選択しても、アプリケーション固有のダイアログは英語で表示されます。"
 
-#: ../../source/portal-user-guide/my-profile/index.rst:119
+#: ../../source/portal-user-guide/my-profile/index.rst:98
 msgid "Notification Channels"
 msgstr "通知チャネル"
 
-#: ../../source/portal-user-guide/my-profile/index.rst:121
+#: ../../source/portal-user-guide/my-profile/index.rst:100
 msgid ""
 "**Notification Channels** allows you to configure your manage "
 "subscriptions of the different kinds of notification channels in the Axon"
 " Ivy Engine."
 msgstr "**通知チャネル** では、Axon Ivy Engine の通知チャネルのサブスクリプションを設定できます。"
 
-#: ../../source/portal-user-guide/my-profile/index.rst:125
+#: ../../source/portal-user-guide/my-profile/index.rst:104
 msgid ""
 "The table :guilabel:`Notification Channels` displays all the available "
 "events that can either be subscribed or unsubscribed."
@@ -5899,15 +5908,15 @@ msgstr ""
 ":guilabel:`通知チャネル` テーブルには、登録または登録解除できるすべてのイベントが表示\n"
 "されます。"
 
-#: ../../source/portal-user-guide/my-profile/index.rst:128
+#: ../../source/portal-user-guide/my-profile/index.rst:107
 msgid "|notification-channels|"
 msgstr "|notification-channels|"
 
-#: ../../source/portal-user-guide/my-profile/index.rst:141
+#: ../../source/portal-user-guide/my-profile/index.rst:120
 msgid "Notification channels settings"
 msgstr "通知チャンネルの設定"
 
-#: ../../source/portal-user-guide/my-profile/index.rst:130
+#: ../../source/portal-user-guide/my-profile/index.rst:109
 msgid ""
 "The checkbox in each event column allow you to specify three state of "
 "event: subscribed by default, subscribe, unsubscribe. These checkboxes "
@@ -5917,7 +5926,7 @@ msgstr ""
 "各イベントの列のチェックボックスで、登録済み（初期値）、登録、登録解除の 3 つのイベ\n"
 "ントの状態を指定できます。"
 
-#: ../../source/portal-user-guide/my-profile/index.rst:135
+#: ../../source/portal-user-guide/my-profile/index.rst:114
 msgid ""
 "As an administrator, you can configure the permission :bdg-ref-"
 "warning:`🔑NotificationChannelsSetting <NotificationChannelsSetting>` to "
@@ -5927,7 +5936,7 @@ msgstr ""
 "warning:`🔑NotificationChannelsSetting <NotificationChannelsSetting>` "
 "を設定できます。"
 
-#: ../../source/portal-user-guide/my-profile/index.rst:137
+#: ../../source/portal-user-guide/my-profile/index.rst:116
 msgid ""
 "To do this, access the :doc-url:`Engine Cockpit </engine-guide/reference"
 "/engine-cockpit/security.html>`, open the **Security area**. Since this "
@@ -6057,7 +6066,7 @@ msgstr "開発者によって提供されるプロジェクト固有のウィジ
 msgid "|dash-board|"
 msgstr "|dash-board|"
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:470
+#: ../../source/portal-user-guide/new-dashboard/index.rst:468
 msgid "Dashboard screen"
 msgstr "ダッシュボード画面"
 
@@ -6079,7 +6088,7 @@ msgstr "**保存されたフィルターとフィルターオプション**: 表
 msgid "|widget-filter|"
 msgstr "|widget-filter|"
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:472
+#: ../../source/portal-user-guide/new-dashboard/index.rst:470
 msgid "Dashboard widget's filters panel"
 msgstr "ダッシュボードウィジェットのフィルターパネル"
 
@@ -6091,7 +6100,7 @@ msgstr "**ウィジェット情報**: 詳細情報と設定にアクセスして
 msgid "|widget-info|"
 msgstr "|widget-info|"
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:474
+#: ../../source/portal-user-guide/new-dashboard/index.rst:472
 msgid "Dashboard widget's info panel"
 msgstr "ダッシュボードウィジェットの情報パネル"
 
@@ -6129,7 +6138,7 @@ msgstr "**ダッシュボード設定へのアクセス方法ユーザーメニ�
 msgid "|edit-widget|"
 msgstr "|edit-widget|"
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:480
+#: ../../source/portal-user-guide/new-dashboard/index.rst:478
 msgid "Dashboard configuration screen"
 msgstr "ダッシュボード設定画面"
 
@@ -6195,7 +6204,7 @@ msgstr "追加したいウィジェットの種類をお選びください。"
 msgid "|add-widget|"
 msgstr "|add-widget|"
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:482
+#: ../../source/portal-user-guide/new-dashboard/index.rst:480
 msgid "Add new widget dialog"
 msgstr "新しいウィジェットの追加ダイアログ"
 
@@ -6230,7 +6239,7 @@ msgstr "タスクリストウィジェットを追加すると、知りたい情
 msgid "|task-list-widget|"
 msgstr "|task-list-widget|"
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:484
+#: ../../source/portal-user-guide/new-dashboard/index.rst:482
 msgid "Dashboard task widget's configuration dialog"
 msgstr "ダッシュボードのタスクウィジェットの設定ダイアログ"
 
@@ -6263,7 +6272,7 @@ msgstr ""
 msgid "|task-list-widget-configuration|"
 msgstr "|task-list-widget-configuration|"
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:486
+#: ../../source/portal-user-guide/new-dashboard/index.rst:484
 msgid "Dashboard task widget's configuration panel"
 msgstr "ダッシュボードのタスクウィジェットの設定パネル"
 
@@ -6293,7 +6302,7 @@ msgstr "設定パネルの右上にある :guilabel:`列の管理` ボタンを�
 msgid "|task-list-widget-table-configuration|"
 msgstr "|task-list-widget-table-configuration|"
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:488
+#: ../../source/portal-user-guide/new-dashboard/index.rst:486
 msgid "Dashboard task widget's table configuration"
 msgstr "ダッシュボードのタスクウィジェットの表の設定"
 
@@ -6378,7 +6387,7 @@ msgstr "ポータルは、タスクリストでの **カスタムケースフィ
 msgid "|task-column-field-type-configuration|"
 msgstr "|task-column-field-type-configuration|"
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:490
+#: ../../source/portal-user-guide/new-dashboard/index.rst:488
 msgid "Dashboard task widget's column management"
 msgstr "ダッシュボードのタスクウィジェットの列の管理"
 
@@ -6400,7 +6409,7 @@ msgstr ""
 msgid "|task-export-excel|"
 msgstr "|task-export-excel|"
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:478
+#: ../../source/portal-user-guide/new-dashboard/index.rst:476
 msgid "Dashboard task widget: export to Excel feature"
 msgstr "ダッシュボードのタスクウィジェット：Excel へのエクスポート機能"
 
@@ -6429,7 +6438,7 @@ msgstr "表示モードでは、クイック検索が有効な場合、検索が
 msgid "|task-quick-search-textbox|"
 msgstr "|task-quick-search-textbox|"
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:532
+#: ../../source/portal-user-guide/new-dashboard/index.rst:530
 msgid "Dashboard task widget's quick search"
 msgstr "ダッシュボードのタスクウィジェットのクイック検索"
 
@@ -6463,7 +6472,7 @@ msgstr "編集モードでは、ウィジェットの表で直接、各列の幅
 msgid "|task-list-widget-edit-mode|"
 msgstr "|task-list-widget-edit-mode|"
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:536
+#: ../../source/portal-user-guide/new-dashboard/index.rst:534
 msgid "Dashboard task widget in the Edit mode"
 msgstr "編集モードのダッシュボードのタスクウィジェット"
 
@@ -6496,7 +6505,7 @@ msgstr "ケースリストウィジェットを追加すると、知りたい情
 msgid "|case-list-widget|"
 msgstr "|case-list-widget|"
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:494
+#: ../../source/portal-user-guide/new-dashboard/index.rst:492
 msgid "Dashboard case widget's configuration dialog"
 msgstr "ダッシュボードのケースウィジェットの設定ダイアログ"
 
@@ -6504,7 +6513,7 @@ msgstr "ダッシュボードのケースウィジェットの設定ダイアロ
 msgid "|case-list-widget-configuration|"
 msgstr "|case-list-widget-configuration|"
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:496
+#: ../../source/portal-user-guide/new-dashboard/index.rst:494
 msgid "Dashboard case widget's configuration panel"
 msgstr "ダッシュボードのケースウィジェットの設定パネル"
 
@@ -6512,7 +6521,7 @@ msgstr "ダッシュボードのケースウィジェットの設定パネル"
 msgid "|case-list-widget-table-configuration|"
 msgstr "|case-list-widget-table-configuration|"
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:498
+#: ../../source/portal-user-guide/new-dashboard/index.rst:496
 msgid "Dashboard case widget's table configuration"
 msgstr "ダッシュボードのケースウィジェットの表の設定"
 
@@ -6546,7 +6555,7 @@ msgstr ""
 msgid "|case-export-excel|"
 msgstr "|case-export-excel|"
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:476
+#: ../../source/portal-user-guide/new-dashboard/index.rst:474
 msgid "Dashboard case widget: export to Excel feature"
 msgstr "ダッシュボードのケースウィジェット：Excel へのエクスポート機能"
 
@@ -6563,7 +6572,7 @@ msgstr ""
 msgid "|case-quick-search-textbox|"
 msgstr "|case-quick-search-textbox|"
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:534
+#: ../../source/portal-user-guide/new-dashboard/index.rst:532
 msgid "Dashboard case widget's quick search"
 msgstr "ダッシュボードのケースウィジェットのクイック検索"
 
@@ -6571,7 +6580,7 @@ msgstr "ダッシュボードのケースウィジェットのクイック検索
 msgid "|case-list-widget-edit-mode|"
 msgstr "|case-list-widget-edit-mode|"
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:538
+#: ../../source/portal-user-guide/new-dashboard/index.rst:536
 msgid "Dashboard case widget in the Edit mode"
 msgstr "編集モードのダッシュボードのケースウィジェット"
 
@@ -6609,7 +6618,7 @@ msgstr "ウィジェット設定で表示モードを選択し、ウィジェッ
 msgid "|process-widget-modes|"
 msgstr "|process-widget-modes|"
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:500
+#: ../../source/portal-user-guide/new-dashboard/index.rst:498
 msgid "Dashboard process widget mode selection"
 msgstr "ダッシュボードのプロセスウィジェットのモードの選択"
 
@@ -6630,7 +6639,7 @@ msgstr ""
 msgid "|process-widget-combined-mode|"
 msgstr "|process-widget-combined-mode|"
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:502
+#: ../../source/portal-user-guide/new-dashboard/index.rst:500
 msgid "Dashboard process widget's combined mode"
 msgstr "ダッシュボードのプロセスウィジェットの複合モード"
 
@@ -6650,7 +6659,7 @@ msgstr "このウィジェットには、選択したすべてのプロセスの
 msgid "|process-widget-compact-mode|"
 msgstr "|process-widget-compact-mode|"
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:504
+#: ../../source/portal-user-guide/new-dashboard/index.rst:502
 msgid "Dashboard process widget's compact mode"
 msgstr "ダッシュボードのプロセスウィジェットのコンパクトモード"
 
@@ -6674,7 +6683,7 @@ msgstr "クイック検索機能は、 ``プロセス名`` による検索をサ
 msgid "|process-quick-search-textbox|"
 msgstr "|process-quick-search-textbox|"
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:514
+#: ../../source/portal-user-guide/new-dashboard/index.rst:512
 msgid "Quick search feature of dashboard process widget"
 msgstr "ダッシュボードのプロセスウィジェットのクイック検索機能"
 
@@ -6692,7 +6701,7 @@ msgstr "1 つのプロセスのアイコンを含むカードレイアウトで�
 msgid "|process-widget-full-mode|"
 msgstr "|process-widget-full-mode|"
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:506
+#: ../../source/portal-user-guide/new-dashboard/index.rst:504
 msgid "Dashboard process widget's full mode"
 msgstr "ダッシュボードのプロセスウィジェットのフルモード"
 
@@ -6710,7 +6719,7 @@ msgstr "1 つのプロセスの写真を含むカードレイアウトでウィ�
 msgid "|process-widget-image-mode|"
 msgstr "|process-widget-image-mode|"
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:508
+#: ../../source/portal-user-guide/new-dashboard/index.rst:506
 msgid "Dashboard process widget's image mode"
 msgstr "ダッシュボードのプロセスウィジェットのイメージモード"
 
@@ -6730,7 +6739,7 @@ msgstr "プロセスビューアーウィジェットの設定："
 msgid "|process-viewer-widget-configuration|"
 msgstr "|process-viewer-widget-configuration|"
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:512
+#: ../../source/portal-user-guide/new-dashboard/index.rst:510
 msgid "Dashboard process viewer widget's configuration dialog"
 msgstr "ダッシュボードのプロセスビューアーウィジェットの設定ダイアログ"
 
@@ -6743,7 +6752,7 @@ msgstr "以下は、上記で設定したウィジェットの出力例です。
 msgid "|process-viewer-widget|"
 msgstr "|process-viewer-widget|"
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:510
+#: ../../source/portal-user-guide/new-dashboard/index.rst:508
 msgid "Dashboard process viewer widget"
 msgstr "ダッシュボードのプロセスビューアーウィジェット"
 
@@ -6774,7 +6783,7 @@ msgstr "ライトモードとダークモードの背景画像とウェルカム
 msgid "|welcome-widget-configuration|"
 msgstr "|welcome-widget-configuration|"
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:516
+#: ../../source/portal-user-guide/new-dashboard/index.rst:514
 msgid "Dashboard welcome widget's configuration dialog"
 msgstr "ダッシュボードのウェルカムウィジェットの設定ダイアログ"
 
@@ -6794,7 +6803,7 @@ msgstr "ニュースフィードウィジェットの設定："
 msgid "|news-feed-widget-configuration|"
 msgstr "|news-feed-widget-configuration|"
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:518
+#: ../../source/portal-user-guide/new-dashboard/index.rst:516
 msgid "Dashboard news feed widget's configuration dialog"
 msgstr "ダッシュボードのニュースフィードウィジェットの設定ダイアログ"
 
@@ -6802,7 +6811,7 @@ msgstr "ダッシュボードのニュースフィードウィジェットの設
 msgid "|news-feed-widget|"
 msgstr "|news-feed-widget|"
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:520
+#: ../../source/portal-user-guide/new-dashboard/index.rst:518
 msgid "Dashboard news feed widget"
 msgstr "ダッシュボードのニュースフィードウィジェット"
 
@@ -6850,7 +6859,7 @@ msgstr ":guilabel:`ニュースの管理` ダイアログ"
 msgid "|news-feed-widget-manage-content|"
 msgstr "|news-feed-widget-manage-content|"
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:522
+#: ../../source/portal-user-guide/new-dashboard/index.rst:520
 msgid "Dashboard news feed widget's Manage news dialog"
 msgstr "ダッシュボードのニュースフィードウィジェットのニュースの管理ダイアログ"
 
@@ -6913,7 +6922,7 @@ msgstr "URL を入力して、外部ウェブページをポータルダッシ�
 msgid "|external-page-widget-configuration|"
 msgstr "|external-page-widget-configuration|"
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:524
+#: ../../source/portal-user-guide/new-dashboard/index.rst:522
 msgid "Dashboard external page widget's configuration dialog"
 msgstr "ダッシュボードの外部ページウィジェットの設定ダイアログ"
 
@@ -6931,7 +6940,7 @@ msgstr "通知ウィジェットを定義して、通知設定に基づいてす
 msgid "|notification-widget-configuration|"
 msgstr "|notification-widget-configuration|"
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:528
+#: ../../source/portal-user-guide/new-dashboard/index.rst:526
 msgid "Dashboard notification widget's configuration dialog"
 msgstr "ダッシュボードの通知ウィジェットの設定ダイアログ"
 
@@ -6944,7 +6953,7 @@ msgstr "以下は、上記で設定したウィジェットの出力例です。
 msgid "|notification-widget|"
 msgstr "|notification-widget|"
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:530
+#: ../../source/portal-user-guide/new-dashboard/index.rst:528
 msgid "Dashboard notification widget"
 msgstr "ダッシュボードの通知ウィジェット"
 
@@ -6962,7 +6971,7 @@ msgstr "ナビゲーション・ダッシュボード・ウィジェットを構
 msgid "|navigation-dashboard-widget-configuration|"
 msgstr "|navigation-dashboard-widget-configuration|"
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:550
+#: ../../source/portal-user-guide/new-dashboard/index.rst:548
 msgid "Navigation dashboard widget configuration"
 msgstr "Navigation dashboard widget configuration"
 
@@ -6970,7 +6979,7 @@ msgstr "Navigation dashboard widget configuration"
 msgid "|navigation-dashboard-widget|"
 msgstr "|navigation-dashboard-widget|"
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:552
+#: ../../source/portal-user-guide/new-dashboard/index.rst:550
 msgid "navigation-dashboard-widget"
 msgstr "ナビゲーション・ダッシュボード・ウィジェット"
 
@@ -6989,56 +6998,50 @@ msgid "Clone a widget from existing dashboard"
 msgstr "既存のダッシュボードからのウィジェット複製"
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:441
+#, fuzzy
 msgid ""
 "When editing a dashboard, you can clone a widget from another dashboard "
-"by opening the :guilabel:`Add a widget` dialog by press on the "
-":guilabel:`+ Add widget` button."
+"by clicking the :guilabel:`Clone widget` button at the top of the page."
 msgstr ""
 "ダッシュボードを変更するときに、 :guilabel:`+ ウィジェットの追加` ボタンを押して :guilabel:`ウィジェットを追加` "
 "ダイアログを開き、別のダッシュボードからウィジェットを複製できます。"
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:443
-msgid ""
-"Once the dialog opens, click the :guilabel:`Clone widget` button at the "
-"top."
-msgstr "ダイアログが開いたら、一番上にある :guilabel:`ウィジェット複製` ボタンをクリックします。"
-
-#: ../../source/portal-user-guide/new-dashboard/index.rst:445
 msgid "|clone-widget-from-button|"
 msgstr "|clone-widget-from-button|"
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:546
+#: ../../source/portal-user-guide/new-dashboard/index.rst:544
 msgid ""
 "\"Clone widget from\" button placed inside the \"Add new widget\" dialog."
 " The \"Clone widget from\" dialog will appear after clicking this button."
 msgstr "「新しいウィジェットの追加」ダイアログに配置された「ウィジェット複製」ボタン。このボタンをクリックすると、「ウィジェット複製」ダイアログが表示されます。"
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:447
+#: ../../source/portal-user-guide/new-dashboard/index.rst:445
 msgid ""
 "This will open the :guilabel:`Clone widget from` dialog. Select the "
 "dashboard that contains the widget you want to clone, then choose the "
 "specific widget."
 msgstr ":guilabel:`ウィジェット複製` ダイアログが開きます。複製したいウィジェットを含むダッシュボードを選択し、ウィジェットを選択します。"
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:449
+#: ../../source/portal-user-guide/new-dashboard/index.rst:447
 msgid "|clone-widget-from-dialog|"
 msgstr "|clone-widget-from-dialog|"
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:548
+#: ../../source/portal-user-guide/new-dashboard/index.rst:546
 msgid "\"Clone widget from\" dialog."
 msgstr "「ウィジェット複製」ダイアログ"
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:451
+#: ../../source/portal-user-guide/new-dashboard/index.rst:449
 msgid ""
 "After selecting the widget, click the :guilabel:`Clone` button to add it "
 "to the current dashboard."
 msgstr "ウィジェットを選択した後、 :guilabel:`複製` ボタンをクリックして現在のダッシュボードに追加します。"
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:454
+#: ../../source/portal-user-guide/new-dashboard/index.rst:452
 msgid "Clone a widget to another dashboard"
 msgstr "別のダッシュボードへのウィジェットの複製"
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:456
+#: ../../source/portal-user-guide/new-dashboard/index.rst:454
 msgid ""
 "The Portal provides another convenient way to clone widgets between "
 "dashboards. To clone a specific widget, click the :guilabel:`Copy` icon "
@@ -7048,33 +7051,33 @@ msgstr ""
 "つの便利な方法が用意されています。ウィジェットを複製するには、ウィジェットのヘッダーにある :guilabel:`コピー` "
 "アイコンをクリックします。"
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:458
+#: ../../source/portal-user-guide/new-dashboard/index.rst:456
 msgid "|clone-widget-button|"
 msgstr "|clone-widget-button|"
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:540
+#: ../../source/portal-user-guide/new-dashboard/index.rst:538
 msgid ""
 "Clone widget button placed on the header of a widget in Edit mode. After "
 "clicking this button, the Clone widget dialog will appear."
 msgstr "編集モードのウィジェットのヘッダーに配置されたウィジェット複製ボタン。このボタンをクリックすると、ウィジェット複製ダイアログが表示されます。"
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:460
+#: ../../source/portal-user-guide/new-dashboard/index.rst:458
 msgid ""
 "For certain widget types, such as the Welcome widget, you can find the "
 ":guilabel:`Clone` option in the context menu."
 msgstr "ウェルカムウィジェットなど、ウィジェットタイプによっては、コンテキストメニューに :guilabel:`複製` オプションが表示されます。"
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:462
+#: ../../source/portal-user-guide/new-dashboard/index.rst:460
 msgid "|clone-widget-menu-option|"
 msgstr "|clone-widget-menu-option|"
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:542
+#: ../../source/portal-user-guide/new-dashboard/index.rst:540
 msgid ""
 "Clone widget menu a widget in Edit mode. After clicking this menu, the "
 "Clone widget dialog will appear."
 msgstr "編集モードのウィジェットのウィジェット複製メニュー。このメニューをクリックすると、ウィジェット複製ダイアログが表示されます。"
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:464
+#: ../../source/portal-user-guide/new-dashboard/index.rst:462
 msgid ""
 "After selecting the :guilabel:`Clone` option, the :guilabel:`Clone "
 "widget` dialog will appear. Choose the target dashboard where you want to"
@@ -7085,11 +7088,11 @@ msgstr ""
 "ダイアログが表示されます。ウィジェットをコピーしたいダッシュボードを選択し、:guilabel:`複製` "
 "ボタンをクリックしてプロセスを完了します。"
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:466
+#: ../../source/portal-user-guide/new-dashboard/index.rst:464
 msgid "|clone-widget-dialog|"
 msgstr "|clone-widget-dialog|"
 
-#: ../../source/portal-user-guide/new-dashboard/index.rst:544
+#: ../../source/portal-user-guide/new-dashboard/index.rst:542
 msgid "Clone widget dialog in Edit mode."
 msgstr "編集モードのウィジェットのウィジェット複製ダイアログ"
 
@@ -7312,10 +7315,11 @@ msgid "**Username Menu**"
 msgstr "**ユーザー名 メニュー**"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:12
+#, fuzzy
 msgid ""
 "Click on your username to access a menu with options for configuring "
-"Portal to your personal needs. See `User Settings in the Axon Ivy "
-"Portal`_ for detailed configuration options."
+"Portal to your personal needs. See :ref:`user-settings` for detailed "
+"configuration options."
 msgstr ""
 "ユーザー名をクリックすると、ポータルを個人用に設定するためのオプションメニューが表示されます。詳細な設定オプションについては、 `Axon Ivy"
 " Portal のユーザー設定`_ をご参照ください。"
@@ -7341,95 +7345,95 @@ msgstr "search-icon"
 msgid "|portal-header|"
 msgstr "|portal-header|"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:237
+#: ../../source/portal-user-guide/portal-header/index.rst:234
 msgid "Portal header items"
 msgstr "ポータルのヘッダーの項目"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:20
+#: ../../source/portal-user-guide/portal-header/index.rst:22
 msgid "User Settings"
 msgstr "ユーザー設定"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:22
+#: ../../source/portal-user-guide/portal-header/index.rst:24
 msgid ""
 "Click on your username in the top right of the Portal to access a menu "
 "with options for configuring Portal to your personal needs."
 msgstr "ポータル画面の右上にあるご自身のユーザー名をクリックすると、個人設定に合わせてポータルをカスタマイズするためのオプションメニューが表示されます。"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:25
+#: ../../source/portal-user-guide/portal-header/index.rst:27
 msgid "Available Menu Options"
 msgstr "利用可能なメニューオプション"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:31
+#: ../../source/portal-user-guide/portal-header/index.rst:33
 msgid "Menu Option"
 msgstr "メニューオプション"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:33
+#: ../../source/portal-user-guide/portal-header/index.rst:35
 msgid "**Admin Settings**"
 msgstr "**管理設定**"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:33
+#: ../../source/portal-user-guide/portal-header/index.rst:35
 msgid "Portal administration (``AXONIVY_PORTAL_ADMIN`` role)"
 msgstr "ポータル管理（``AXONIVY_PORTAL_ADMIN`` ロール）"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:35
+#: ../../source/portal-user-guide/portal-header/index.rst:37
 msgid "**My Profile**"
 msgstr "**私のプロフィール**"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:35
+#: ../../source/portal-user-guide/portal-header/index.rst:37
 msgid "General settings, language, and notifications"
 msgstr "一般設定、言語、および通知"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:37
+#: ../../source/portal-user-guide/portal-header/index.rst:39
 msgid "**Dashboard Configuration**"
 msgstr "**ダッシュボードの設定**"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:37
+#: ../../source/portal-user-guide/portal-header/index.rst:39
 msgid "Manage private and public dashboards"
 msgstr "プライベートおよびパブリックのダッシュボードを管理します。"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:39
+#: ../../source/portal-user-guide/portal-header/index.rst:41
 msgid "**Absences**"
 msgstr "**不在**"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:39
+#: ../../source/portal-user-guide/portal-header/index.rst:41
 msgid "Manage absences and task delegates"
 msgstr "欠勤管理と業務の代行者管理"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:41
+#: ../../source/portal-user-guide/portal-header/index.rst:43
 msgid "**Change Password**"
 msgstr "**パスワードの変更**"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:41
+#: ../../source/portal-user-guide/portal-header/index.rst:43
 msgid "Set a new password"
 msgstr "新しいパスワードを設定します"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:43
+#: ../../source/portal-user-guide/portal-header/index.rst:45
 msgid "**Info**"
 msgstr "**情報**"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:43
+#: ../../source/portal-user-guide/portal-header/index.rst:45
 msgid "Version information about Portal and Engine"
 msgstr "Portal および Engine のバージョン情報"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:45
+#: ../../source/portal-user-guide/portal-header/index.rst:47
 msgid "**Logout**"
 msgstr "**ログアウト**"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:45
+#: ../../source/portal-user-guide/portal-header/index.rst:47
 msgid "End your session"
 msgstr "セッションを終了します"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:49
+#: ../../source/portal-user-guide/portal-header/index.rst:51
 msgid "Menu Option Details"
 msgstr "メニューオプションの詳細"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:54
+#: ../../source/portal-user-guide/portal-header/index.rst:56
 msgid ""
 "The :ref:`Admin Settings <admin-settings>` menu entry provides portal "
 "administration features."
 msgstr ":ref:`管理者設定 <admin-settings>` メニュー項目は、ポータル管理機能を提供します。"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:57
+#: ../../source/portal-user-guide/portal-header/index.rst:59
 msgid "Only users with role ``AXONIVY_PORTAL_ADMIN`` can access Admin Settings."
 msgstr "管理者設定には、 ``AXONIVY_PORTAL_ADMIN`` のロールを持つユーザーのみアクセスできます。"
 
@@ -7464,7 +7468,7 @@ msgstr ""
 msgid "|portal-absences|"
 msgstr "|portal-absences|"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:239
+#: ../../source/portal-user-guide/portal-header/index.rst:236
 msgid "Absences page"
 msgstr "不在ページ"
 
@@ -7514,7 +7518,7 @@ msgstr "ご不在の確認には、 :guilabel:`保存` ボタンをクリック�
 msgid "|how-to-add-an-absence|"
 msgstr "|how-to-add-an-absence|"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:241
+#: ../../source/portal-user-guide/portal-header/index.rst:238
 msgid "Absences page: Add new absence dialog"
 msgstr "不在ページ：新しい不在の追加ダイアログ"
 
@@ -7574,7 +7578,7 @@ msgstr "置換内容の確認には、:guilabel:`保存` ボタンをご利用�
 msgid "|how-to-set-absence-substitutes|"
 msgstr "|how-to-set-absence-substitutes|"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:243
+#: ../../source/portal-user-guide/portal-header/index.rst:240
 msgid "Absences page: Set deputy section"
 msgstr "不在ページ：代行者の設定セクション"
 
@@ -7586,15 +7590,13 @@ msgstr "パスワードの変更"
 msgid ""
 "The :guilabel:`Change password` menu entry allows you to set a new "
 "password."
-msgstr ""
-":guilabel:`パスワードの変更` メニュー項目から、新しいパスワードを設定すること"
-"が可能です。"
+msgstr ":guilabel:`パスワードの変更` メニュー項目から、新しいパスワードを設定することが可能です。"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:123
 msgid "|portal-password-change-dialog|"
 msgstr "|portal-password-change-dialog|"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:245
+#: ../../source/portal-user-guide/portal-header/index.rst:242
 msgid "Change password dialog"
 msgstr "パスワードの変更ダイアログ"
 
@@ -7627,7 +7629,7 @@ msgstr ""
 msgid "|portal-version-information|"
 msgstr "|portal-version-information|"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:247
+#: ../../source/portal-user-guide/portal-header/index.rst:244
 msgid "Version information dialog"
 msgstr "バージョン情報ダイアログ"
 
@@ -7636,9 +7638,10 @@ msgid "Logout"
 msgstr "ログアウト"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:140
+#, fuzzy
 msgid ""
 "The menu entry :guilabel:`Logout` will terminate your session in the Axon"
-" Ivy Portal. You’ll be routed back to the login page of the Axon Ivy "
+" Ivy Portal. You'll be routed back to the login page of the Axon Ivy "
 "Portal."
 msgstr ""
 ":guilabel:`ログアウト` メニューエントリは、Axon Ivy Portal でのセッションを終了します。ユーザーは Axon Ivy "
@@ -7646,62 +7649,62 @@ msgstr ""
 
 #: ../../source/portal-user-guide/portal-header/index.rst:145
 msgid ""
-"The Axon Ivy Portal will also do an automatic logout if you’re inactive "
-"for a certain amount of time."
-msgstr "また、ユーザーが一定時間何もしない場合、Axon Ivy Portal は自動ログアウトを行います。"
+"The Axon Ivy Portal will automatically log you out after a period of "
+"inactivity."
+msgstr ""
 
-#: ../../source/portal-user-guide/portal-header/index.rst:151
+#: ../../source/portal-user-guide/portal-header/index.rst:148
 msgid "Global Search"
 msgstr "グローバル検索"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:153
+#: ../../source/portal-user-guide/portal-header/index.rst:150
 msgid ""
 "Global Search provides a convenient way to look up information across the"
 " entire Portal. You can search for any keyword, and Portal will search "
 "across multiple categories."
 msgstr "グローバル検索は、ポータル全体にわたる情報を検索する便利な方法を提供します。任意のキーワードを検索すると、ポータルが複数のカテゴリを横断して検索を行います。"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:156
+#: ../../source/portal-user-guide/portal-header/index.rst:153
 msgid "Default Search Scope"
 msgstr "デフォルトの検索範囲"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:158
+#: ../../source/portal-user-guide/portal-header/index.rst:155
 msgid "By default, Portal searches the following categories:"
 msgstr "デフォルトでは、Portalは以下のカテゴリを検索します："
 
-#: ../../source/portal-user-guide/portal-header/index.rst:164
+#: ../../source/portal-user-guide/portal-header/index.rst:161
 msgid "Searchable Fields"
 msgstr "検索可能なフィールド"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:166
+#: ../../source/portal-user-guide/portal-header/index.rst:163
 msgid "**Processes**"
 msgstr "**プロセス**"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:166
+#: ../../source/portal-user-guide/portal-header/index.rst:163
 msgid "Name, description"
 msgstr "名前、説明"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:168
+#: ../../source/portal-user-guide/portal-header/index.rst:165
 msgid "**Cases**"
 msgstr "**大文字小文字の区別**"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:168
+#: ../../source/portal-user-guide/portal-header/index.rst:165
 msgid "ID, name, description"
 msgstr "ID、名前、説明"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:170
+#: ../../source/portal-user-guide/portal-header/index.rst:167
 msgid "**Tasks**"
 msgstr "**タスク**"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:170
+#: ../../source/portal-user-guide/portal-header/index.rst:167
 msgid "ID, name, description, and all custom string fields"
 msgstr "ID、名前、説明、およびすべてのカスタム文字列フィールド"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:174
+#: ../../source/portal-user-guide/portal-header/index.rst:171
 msgid "Search Results"
 msgstr "検索結果"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:176
+#: ../../source/portal-user-guide/portal-header/index.rst:173
 msgid ""
 "When you enter a keyword and confirm your search, Portal routes you to "
 "the **Global Search Results** page. Each category has its own tab "
@@ -7710,121 +7713,121 @@ msgstr ""
 "キーワードを入力し検索を確認すると、Portalは **グローバル検索結果ページ** "
 "へ遷移します。各カテゴリには対応する結果を表示する専用タブが設けられています。"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:178
+#: ../../source/portal-user-guide/portal-header/index.rst:175
 msgid "|portal-global-search-result-page|"
 msgstr "|portal-global-search-result-page|"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:249
+#: ../../source/portal-user-guide/portal-header/index.rst:246
 msgid "Global search results page"
 msgstr "グローバル検索結果ページ"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:181
+#: ../../source/portal-user-guide/portal-header/index.rst:178
 msgid "HowTo: Configure Search Scope"
 msgstr "ハウツー：検索範囲の設定方法"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:183
+#: ../../source/portal-user-guide/portal-header/index.rst:180
 msgid ""
 "As an administrator, you can limit the fields that Global Search uses to "
 "improve performance and relevance."
 msgstr "管理者として、グローバル検索のパフォーマンスと関連性を向上させるため、検索に使用するフィールドを制限することができます。"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:186
+#: ../../source/portal-user-guide/portal-header/index.rst:183
 msgid "Available Portal Variables"
 msgstr "利用可能なポータル変数"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:188
+#: ../../source/portal-user-guide/portal-header/index.rst:185
 msgid "**Portal.SearchScope.ByCaseFields**"
 msgstr "**Portal.SearchScope.ByCaseFields**"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:189
+#: ../../source/portal-user-guide/portal-header/index.rst:186
 msgid ""
 "Defines the fields that global search uses to find matching cases besides"
 " case ID (can influence performance)."
 msgstr "グローバル検索がケースID以外に一致するケースを見つけるために使用するフィールドを定義します（パフォーマンスに影響を与える可能性があります）。"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:191
+#: ../../source/portal-user-guide/portal-header/index.rst:188
 msgid "**Portal.SearchScope.ByTaskFields**"
 msgstr "**Portal.SearchScope.ByTaskFields**"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:192
+#: ../../source/portal-user-guide/portal-header/index.rst:189
 msgid ""
 "Defines the fields that global search uses to find matching tasks besides"
 " task ID (can influence performance)."
 msgstr "グローバル検索がタスクID以外に一致するタスクを見つけるために使用するフィールドを定義します（パフォーマンスに影響を与える可能性があります）。"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:194
+#: ../../source/portal-user-guide/portal-header/index.rst:191
 msgid "**Portal.GlobalSearchScopeCategories**"
 msgstr "**Portal.GlobalSearchScopeCategories**"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:195
+#: ../../source/portal-user-guide/portal-header/index.rst:192
 msgid ""
 "Defines the categories that global search will search (can influence "
 "performance)."
 msgstr "グローバル検索の対象となるカテゴリを定義します（パフォーマンスに影響を与える可能性があります）。"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:198
+#: ../../source/portal-user-guide/portal-header/index.rst:195
 msgid ""
 "Configure these variables in :ref:`admin-settings` to optimize search "
 "performance for your Portal instance."
 msgstr ":ref:`admin-settings` 内のこれらの変数を設定し、ポータルインスタンスの検索パフォーマンスを最適化してください。"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:203
+#: ../../source/portal-user-guide/portal-header/index.rst:200
 msgid "Different header features require specific permissions:"
 msgstr "ヘッダーの機能ごとに必要な権限が異なります："
 
-#: ../../source/portal-user-guide/portal-header/index.rst:211
+#: ../../source/portal-user-guide/portal-header/index.rst:208
 msgid "**Access admin settings**"
 msgstr "**管理設定にアクセスする**"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:211
+#: ../../source/portal-user-guide/portal-header/index.rst:208
 msgid "Role ``AXONIVY_PORTAL_ADMIN``"
 msgstr "``AXONIVY_PORTAL_ADMIN``"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:213
+#: ../../source/portal-user-guide/portal-header/index.rst:210
 msgid "**Manage own dashboards**"
 msgstr "**ご自身のダッシュボードを管理してください。**"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:216
+#: ../../source/portal-user-guide/portal-header/index.rst:213
 msgid "**Manage public dashboards**"
 msgstr "**公開ダッシュボードの管理**"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:219
+#: ../../source/portal-user-guide/portal-header/index.rst:216
 msgid "**Create own absences**"
 msgstr "**独自の欠席処理を作成してください**"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:219
+#: ../../source/portal-user-guide/portal-header/index.rst:216
 msgid ":bdg-ref-warning:`🔑UserCreateOwnAbsence <UserCreateOwnAbsence>`"
 msgstr ":bdg-ref-warning:`🔑UserCreateOwnAbsence <UserCreateOwnAbsence>`"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:222
+#: ../../source/portal-user-guide/portal-header/index.rst:219
 msgid "**Create public absences**"
 msgstr "**公開欠席を作成します**"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:222
+#: ../../source/portal-user-guide/portal-header/index.rst:219
 msgid ":bdg-ref-warning:`🔑UserCreateAbsence <UserCreateAbsence>`"
 msgstr ":bdg-ref-warning:`🔑UserCreateAbsence <UserCreateAbsence>`"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:225
+#: ../../source/portal-user-guide/portal-header/index.rst:222
 msgid "**Create own substitutes**"
 msgstr "**独自の置換語を作成してください。**"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:225
+#: ../../source/portal-user-guide/portal-header/index.rst:222
 msgid ":bdg-ref-warning:`🔑UserCreateOwnSubstitute <UserCreateOwnSubstitute>`"
 msgstr ":bdg-ref-warning:`🔑UserCreateOwnSubstitute <UserCreateOwnSubstitute>`"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:228
+#: ../../source/portal-user-guide/portal-header/index.rst:225
 msgid "**Create all substitutes**"
 msgstr "**すべての置換を作成してください。**"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:228
+#: ../../source/portal-user-guide/portal-header/index.rst:225
 msgid ":bdg-ref-warning:`🔑UserCreateSubstitute <UserCreateSubstitute>`"
 msgstr ":bdg-ref-warning:`🔑UserCreateSubstitute <UserCreateSubstitute>`"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:231
+#: ../../source/portal-user-guide/portal-header/index.rst:228
 msgid "**Change own password**"
 msgstr "**ご自身のパスワードを変更する**"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:231
+#: ../../source/portal-user-guide/portal-header/index.rst:228
 msgid ":bdg-warning:`🔑UserSetOwnPassword`"
 msgstr ":bdg-warning:`🔑UserSetOwnPassword`"
 
@@ -7842,32 +7845,38 @@ msgstr ""
 "Ivyから統合された翻訳サービスにより、テキストコンテンツをエンドユーザーの言語へ容易に翻訳することが可能となり、プロセス自動化における言語の壁を解消します。"
 
 #: ../../source/portal-user-guide/portal-multi-language/index.rst:9
-msgid "Translation Overview"
-msgstr "翻訳の概要"
+#, fuzzy
+msgid "How-To"
+msgstr "使用方法"
 
-#: ../../source/portal-user-guide/portal-multi-language/index.rst:11
+#: ../../source/portal-user-guide/portal-multi-language/index.rst:12
+#, fuzzy
+msgid "HowTo: Enable the translation"
+msgstr "ハウツー：翻訳サービスの有効化"
+
+#: ../../source/portal-user-guide/portal-multi-language/index.rst:14
 msgid "The Portal multi-language feature provides:"
 msgstr "ポータルの多言語機能では、以下の機能を提供しております："
 
-#: ../../source/portal-user-guide/portal-multi-language/index.rst:13
+#: ../../source/portal-user-guide/portal-multi-language/index.rst:16
 msgid ""
 "**Automated Translation**: Service-powered translations for supported "
 "languages"
 msgstr "**自動翻訳**: 対応言語向けのサービスによる翻訳"
 
-#: ../../source/portal-user-guide/portal-multi-language/index.rst:14
+#: ../../source/portal-user-guide/portal-multi-language/index.rst:17
 msgid ""
 "**Manual Translation**: Manual input when translation service is not "
 "configured"
 msgstr "**手動翻訳**: 翻訳サービスが設定されていない場合の手動入力"
 
-#: ../../source/portal-user-guide/portal-multi-language/index.rst:15
+#: ../../source/portal-user-guide/portal-multi-language/index.rst:18
 msgid ""
 "**Flexible Application**: Available for dashboards, processes, and other "
 "customizable text fields"
 msgstr "**柔軟なアプリケーション**: ダッシュボード、プロセス、その他のカスタマイズ可能なテキストフィールドでご利用いただけます"
 
-#: ../../source/portal-user-guide/portal-multi-language/index.rst:18
+#: ../../source/portal-user-guide/portal-multi-language/index.rst:21
 msgid ""
 "Portal translation requires both "
 ":guilabel:`Portal.TranslationService.Enable` set to true and proper "
@@ -7877,25 +7886,25 @@ msgstr ""
 "ポータル翻訳には、:guilabel:`Portal.TranslationService.Enable` "
 "をtrueに設定することと、適切な翻訳サービスの設定が両方必要です。それ以外の場合は、テキストフィールドを手動で翻訳することができます。"
 
-#: ../../source/portal-user-guide/portal-multi-language/index.rst:23
+#: ../../source/portal-user-guide/portal-multi-language/index.rst:26
 msgid "HowTo: Enable the Translation Service"
 msgstr "ハウツー：翻訳サービスの有効化"
 
-#: ../../source/portal-user-guide/portal-multi-language/index.rst:25
+#: ../../source/portal-user-guide/portal-multi-language/index.rst:28
 msgid "To use Axon Ivy's translation service:"
 msgstr "アクソンアイビーの翻訳サービスを利用するには："
 
-#: ../../source/portal-user-guide/portal-multi-language/index.rst:27
+#: ../../source/portal-user-guide/portal-multi-language/index.rst:30
 #: ../../source/portal-user-guide/qr-code/index.rst:32
 #: ../../source/portal-user-guide/qr-code/index.rst:42
 msgid "Open :ref:`Admin Settings <admin-settings>`"
 msgstr ":ref:`管理者設定 <admin-settings>` を開きます。"
 
-#: ../../source/portal-user-guide/portal-multi-language/index.rst:29
+#: ../../source/portal-user-guide/portal-multi-language/index.rst:32
 msgid "Set :guilabel:`Portal.TranslationService.Enable` to true"
 msgstr ":guilabel:`Portal.TranslationService.Enable` をtrueに設定してください。"
 
-#: ../../source/portal-user-guide/portal-multi-language/index.rst:31
+#: ../../source/portal-user-guide/portal-multi-language/index.rst:34
 msgid ""
 "Configure the translation service variable, refer to :doc-url:`Axon Ivy "
 "translation service </engine-guide/configuration/translation-"
@@ -7904,11 +7913,11 @@ msgstr ""
 "翻訳サービス変数の設定については、以下をご参照ください。:doc-url:`Axon Ivy 翻訳サービス </engine-"
 "guide/configuration/translation-service/index.html>`"
 
-#: ../../source/portal-user-guide/portal-multi-language/index.rst:34
+#: ../../source/portal-user-guide/portal-multi-language/index.rst:37
 msgid "HowTo: Translate Text"
 msgstr "ハウツー：テキストの翻訳方法"
 
-#: ../../source/portal-user-guide/portal-multi-language/index.rst:36
+#: ../../source/portal-user-guide/portal-multi-language/index.rst:39
 msgid ""
 "Look for the :guilabel:`translator icon` on supported input text fields. "
 "For example, when creating a private dashboard:"
@@ -7916,25 +7925,25 @@ msgstr ""
 "対応している入力テキストフィールドには、:guilabel:`translator icon` "
 "が表示されます。例えば、プライベートダッシュボードを作成する際には："
 
-#: ../../source/portal-user-guide/portal-multi-language/index.rst:40
+#: ../../source/portal-user-guide/portal-multi-language/index.rst:43
 msgid ""
 "Click on the :guilabel:`translator icon` to open the Setting Multiple "
 "Languages dialog."
 msgstr ":guilabel:`translator icon` をクリックすると、複数言語設定ダイアログが開きます。"
 
-#: ../../source/portal-user-guide/portal-multi-language/index.rst:42
+#: ../../source/portal-user-guide/portal-multi-language/index.rst:45
 msgid "|dashboard-multi-language-dialog|"
 msgstr "|dashboard-multi-language-dialog|"
 
-#: ../../source/portal-user-guide/portal-multi-language/index.rst:54
+#: ../../source/portal-user-guide/portal-multi-language/index.rst:57
 msgid "Multi language dialog"
 msgstr "複数言語ダイアログ"
 
-#: ../../source/portal-user-guide/portal-multi-language/index.rst:44
+#: ../../source/portal-user-guide/portal-multi-language/index.rst:47
 msgid "Click on the input text field of your target language."
 msgstr "対象言語の入力テキストフィールドをクリックしてください。"
 
-#: ../../source/portal-user-guide/portal-multi-language/index.rst:46
+#: ../../source/portal-user-guide/portal-multi-language/index.rst:49
 msgid ""
 "If the translation service is enabled, the text will be automatically "
 "translated. Click :guilabel:`Auto translation` to accept the translated "
@@ -7943,7 +7952,7 @@ msgstr ""
 "翻訳サービスが有効な場合、テキストは自動的に翻訳されます。翻訳されたテキストを受け入れるには、:guilabel:`自動翻訳` "
 "をクリックしてください。"
 
-#: ../../source/portal-user-guide/portal-multi-language/index.rst:48
+#: ../../source/portal-user-guide/portal-multi-language/index.rst:51
 msgid ""
 "If the translation service is not configured, enter translations manually"
 " for each language."
@@ -8117,11 +8126,11 @@ msgid ""
 msgstr "ダッシュボード設定で統計機能を使用するには、以下の手順に従ってください。"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst:16
+#, fuzzy
 msgid ""
 "Navigate to Dashboard Configuration of the dashboard where you want to "
-"add the widget and select :guilabel:`Add Widget` for predefined Standard "
-"Charts or :guilabel:`Create custom statistic widget` for configuring new "
-"statistic chart."
+"add the widget and click :guilabel:`Add Widget` button to open "
+":guilabel:`Add a widget` dialog."
 msgstr ""
 "ウィジェットを追加したいダッシュボードの[ダッシュボード構成]に移動し、事前定義された[標準チャート]の場合は "
 ":guilabel:`ウィジェットの追加` を、新しい統計チャートを構成する場合は :guilabel:`カスタム統計ウィジェットを作成する` "
@@ -8129,9 +8138,10 @@ msgstr ""
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst:18
 msgid ""
-"From the dropdown menu labeled **Statistic Widgets**, choose from a "
-"variety of insightful charts."
-msgstr "**統計ウィジェット** ドロップダウンメニューからチャートを選択します。"
+"Select a predefined Standard Chart from the **Statistic Widgets** "
+"section, or click :guilabel:`Create custom statistic widget` to configure"
+" a new statistic chart."
+msgstr ""
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst:20
 msgid "|statistic-widget-list-page|"
@@ -8510,11 +8520,11 @@ msgstr "統計グラフの設定に使用可能な値"
 msgid "**Value**"
 msgstr "**価値**"
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst
+#: ../../source/portal-user-guide/statistic-chart/index.rst:167
 msgid "Name of the statistic chart."
 msgstr "統計グラフの名前。"
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst
+#: ../../source/portal-user-guide/statistic-chart/index.rst:169
 msgid "Description for the statistic chart."
 msgstr "統計図表の説明。"
 
@@ -8522,11 +8532,11 @@ msgstr "統計図表の説明。"
 msgid "Icon"
 msgstr "アイコン"
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst
+#: ../../source/portal-user-guide/statistic-chart/index.rst:171
 msgid "Icon for custom statistic chart."
 msgstr "カスタム統計チャートのアイコン。"
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst
+#: ../../source/portal-user-guide/statistic-chart/index.rst:172
 msgid "Click on the plus icon at the end of the line to see full list of icons."
 msgstr "行末のプラスアイコンをクリックすると、アイコンの全リストが表示されます。"
 
@@ -8534,7 +8544,7 @@ msgstr "行末のプラスアイコンをクリックすると、アイコンの
 msgid "Chart type"
 msgstr "チャートタイプ"
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst
+#: ../../source/portal-user-guide/statistic-chart/index.rst:174
 msgid "Type of the chart (Bar, Line, Pie, Number)."
 msgstr "チャートの種類（棒グラフ、折れ線グラフ、円グラフ、数値グラフ）。"
 
@@ -8542,7 +8552,7 @@ msgstr "チャートの種類（棒グラフ、折れ線グラフ、円グラフ
 msgid "For"
 msgstr "ために"
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst
+#: ../../source/portal-user-guide/statistic-chart/index.rst:176
 msgid "Chart target (Task, Case)."
 msgstr "チャートターゲット（タスク、ケース）。"
 
@@ -8550,23 +8560,23 @@ msgstr "チャートターゲット（タスク、ケース）。"
 msgid "KPI"
 msgstr "KPI"
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst
+#: ../../source/portal-user-guide/statistic-chart/index.rst:178
 msgid "List of numeric custom fields is shown alongside with `Counting`."
 msgstr "数値カスタムフィールドのリストは `Counting` と共に表示される。"
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst
+#: ../../source/portal-user-guide/statistic-chart/index.rst:179
 msgid ""
 "The calculation using below aggregation method will be performed on "
 "selected KPI."
 msgstr "選択された KPI に対して、以下の集計方法による計算が行われる。"
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst
+#: ../../source/portal-user-guide/statistic-chart/index.rst:180
 msgid ""
 "If `Counting` is selected to count numbers of tasks or cases, the "
 "aggregation method"
 msgstr "タスクまたはケースの数をカウントするために `Counting` を選択した場合、集計方法"
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst
+#: ../../source/portal-user-guide/statistic-chart/index.rst:181
 msgid "selection will be disabled."
 msgstr "の選択は無効になる。"
 
@@ -8574,7 +8584,7 @@ msgstr "の選択は無効になる。"
 msgid "Aggregation method"
 msgstr "集計方法"
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst
+#: ../../source/portal-user-guide/statistic-chart/index.rst:183
 msgid "List of 4 aggregation methods: `Sum`, `Average`, `Max`, `Min`."
 msgstr "4つの集約メソッドのリスト: `Sum`、`Average`、`Max`、`Min`。"
 
@@ -8582,13 +8592,13 @@ msgstr "4つの集約メソッドのリスト: `Sum`、`Average`、`Max`、`Min`
 msgid "Group by"
 msgstr "グループ化"
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst
+#: ../../source/portal-user-guide/statistic-chart/index.rst:185
 msgid ""
 "Aggregation to group all the results, the drop down values depend on the "
 "chart target."
 msgstr "すべての結果をグループ化する集計、ドロップダウンの値はチャートのターゲットに依存します。"
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst
+#: ../../source/portal-user-guide/statistic-chart/index.rst:186
 msgid "Currently we don't support aggregations have type number."
 msgstr "現在のところ、型番号を持つ集約はサポートしていない。"
 
@@ -8596,11 +8606,11 @@ msgstr "現在のところ、型番号を持つ集約はサポートしていな
 msgid "Filters"
 msgstr "フィルター"
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst
+#: ../../source/portal-user-guide/statistic-chart/index.rst:188
 msgid "Works like complex filter of Portal."
 msgstr "ポータルの複雑なフィルターのように機能する。"
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst
+#: ../../source/portal-user-guide/statistic-chart/index.rst:189
 msgid "Please refer to :ref:`complex-filter` for more details."
 msgstr "詳細は :ref:`complex-filter` 。"
 
@@ -8608,7 +8618,7 @@ msgstr "詳細は :ref:`complex-filter` 。"
 msgid "Permissions"
 msgstr "権限"
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst
+#: ../../source/portal-user-guide/statistic-chart/index.rst:191
 msgid "Permission for the current statistic chart."
 msgstr "現在の統計チャートの許可。"
 
@@ -8616,11 +8626,11 @@ msgstr "現在の統計チャートの許可。"
 msgid "Auto-refresh enabled"
 msgstr "自動更新が有効です"
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst
+#: ../../source/portal-user-guide/statistic-chart/index.rst:193
 msgid "The statistic can be auto-refreshed after a certain prediod."
 msgstr "この統計は一定時間経過後に自動更新される。"
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst
+#: ../../source/portal-user-guide/statistic-chart/index.rst:194
 msgid "Click on this button to turn on/off the feature."
 msgstr "このボタンをクリックすると、機能のオン/オフが切り替わります。"
 
@@ -8628,11 +8638,11 @@ msgstr "このボタンをクリックすると、機能のオン/オフが切�
 msgid "Auto-refresh interval (seconds)"
 msgstr "自動更新間隔（秒）"
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst
+#: ../../source/portal-user-guide/statistic-chart/index.rst:196
 msgid "The time for statistic chart to be auto-refreshed in second."
 msgstr "統計チャートが自動更新されるまでの時間を秒単位で指定する。"
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst
+#: ../../source/portal-user-guide/statistic-chart/index.rst:197
 msgid "Minimum number is 60."
 msgstr "最低人数は60人。"
 
@@ -8640,7 +8650,7 @@ msgstr "最低人数は60人。"
 msgid "X axis title"
 msgstr "X軸のラベル"
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst
+#: ../../source/portal-user-guide/statistic-chart/index.rst:199
 msgid "X title for the statistic chart."
 msgstr "統計チャートのタイトル。"
 
@@ -8648,7 +8658,7 @@ msgstr "統計チャートのタイトル。"
 msgid "Y axis title"
 msgstr "Y軸のラベル"
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst
+#: ../../source/portal-user-guide/statistic-chart/index.rst:201
 msgid "Y title for the statistic chart."
 msgstr "統計チャートのYタイトル。"
 
@@ -8656,7 +8666,7 @@ msgstr "統計チャートのYタイトル。"
 msgid "Chart drill-down enabled"
 msgstr "チャートドリルダウン機能は有効です"
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst
+#: ../../source/portal-user-guide/statistic-chart/index.rst:203
 msgid "Toggle to enable/disable chart drill-down feature."
 msgstr "チャートドリルダウン機能の有効化/無効化を切り替えます。"
 
@@ -8664,7 +8674,7 @@ msgstr "チャートドリルダウン機能の有効化/無効化を切り替�
 msgid "Condition-based coloring enabled"
 msgstr "条件に基づくカラーリングを有効にします。"
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst
+#: ../../source/portal-user-guide/statistic-chart/index.rst:205
 msgid "Toggle to enable/disable condition-based coloring feature."
 msgstr "条件付きカラーリング機能を有効/無効にするトグルです。"
 
@@ -8672,7 +8682,7 @@ msgstr "条件付きカラーリング機能を有効/無効にするトグル�
 msgid "Color 1-8"
 msgstr "カラー1～8"
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst
+#: ../../source/portal-user-guide/statistic-chart/index.rst:207
 msgid "Colors for data in the chart."
 msgstr "チャートのデータの色。"
 
@@ -8680,7 +8690,7 @@ msgstr "チャートのデータの色。"
 msgid "Hide label"
 msgstr "ラベルを非表示にする"
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst
+#: ../../source/portal-user-guide/statistic-chart/index.rst:209
 msgid "Toggle to show label of number chart."
 msgstr "数値チャートのラベル表示を切り替える。"
 
@@ -8725,9 +8735,8 @@ msgid ""
 "menu, and more data can be generated by starting the process "
 ":guilabel:`Procurement Data For Sample Statistic Dashboard`."
 msgstr ""
-"左メニューに項目 :guilabel:`KPI調達概要` が表示されます。さらに多くのデータは"
-"、プロセス :guilabel:`サンプル統計ダッシュボード向け調達データ` を開始するこ"
-"とで生成できます。"
+"左メニューに項目 :guilabel:`KPI調達概要` が表示されます。さらに多くのデータは、プロセス "
+":guilabel:`サンプル統計ダッシュボード向け調達データ` を開始することで生成できます。"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst:225
 msgid "|statistic-sample-dashboard|"
@@ -9904,3 +9913,35 @@ msgstr "統計設定例"
 
 #~ msgid "Look for widgets labeled as :bdg-secondary:`Example`."
 #~ msgstr ":bdg-secondary:`Example` と表示されたウィジェットを探してください。"
+
+#~ msgid "Case List Information"
+#~ msgstr "ケースリスト情報"
+
+#~ msgid "Task List Overview"
+#~ msgstr "タスクリストの概要"
+
+#~ msgid "Option"
+#~ msgstr "オプション"
+
+#~ msgid ""
+#~ "Once the dialog opens, click the "
+#~ ":guilabel:`Clone widget` button at the "
+#~ "top."
+#~ msgstr "ダイアログが開いたら、一番上にある :guilabel:`ウィジェット複製` ボタンをクリックします。"
+
+#~ msgid ""
+#~ "The Axon Ivy Portal will also do"
+#~ " an automatic logout if you’re "
+#~ "inactive for a certain amount of "
+#~ "time."
+#~ msgstr "また、ユーザーが一定時間何もしない場合、Axon Ivy Portal は自動ログアウトを行います。"
+
+#~ msgid "Translation Overview"
+#~ msgstr "翻訳の概要"
+
+#~ msgid ""
+#~ "From the dropdown menu labeled "
+#~ "**Statistic Widgets**, choose from a "
+#~ "variety of insightful charts."
+#~ msgstr "**統計ウィジェット** ドロップダウンメニューからチャートを選択します。"
+
