@@ -39,7 +39,6 @@ public class TaskWidgetBean implements Serializable {
   private String selectedTaskName;
   private TaskLazyDataModel dataModel;
   private Boolean isTaskDetailOpenning;
-  private boolean isShowFullTaskList;
   private boolean isAdminTaskStateIncluded;
   private boolean isRunningTaskWhenClickingOnTaskInList;
 
@@ -99,14 +98,6 @@ public class TaskWidgetBean implements Serializable {
 
   public void setIsTaskDetailOpenning(Boolean isTaskDetailOpenning) {
     this.isTaskDetailOpenning = isTaskDetailOpenning;
-  }
-
-  public boolean isShowFullTaskList() {
-    return isShowFullTaskList;
-  }
-
-  public void setShowFullTaskList(boolean isShowFullTaskList) {
-    this.isShowFullTaskList = isShowFullTaskList;
   }
 
   public Long getSelectedTaskItemId() {
