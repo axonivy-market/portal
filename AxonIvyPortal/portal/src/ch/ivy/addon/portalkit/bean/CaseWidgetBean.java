@@ -39,13 +39,11 @@ public class CaseWidgetBean implements Serializable {
 
   private ICase selectedCase;
   private boolean isShowAllTasksOfCase;
-  private boolean isShowFullCaseList;
   private boolean isAdminCaseStateIncluded;
   private CaseLazyDataModel dataModel;
 
   public CaseWidgetBean() {
     isShowAllTasksOfCase = PermissionUtils.hasPortalPermission(PortalPermission.SHOW_ALL_TASKS_OF_CASE);
-    isShowFullCaseList = PermissionUtils.checkAccessFullCaseListPermission();
   }
 
   public ICase getSelectedCase() {
@@ -94,14 +92,6 @@ public class CaseWidgetBean implements Serializable {
 
   public void setShowAllTasksOfCase(boolean isShowAllTasksOfCase) {
     this.isShowAllTasksOfCase = isShowAllTasksOfCase;
-  }
-
-  public boolean isShowFullCaseList() {
-    return isShowFullCaseList;
-  }
-
-  public void setShowFullCaseList(boolean isShowFullCaseList) {
-    this.isShowFullCaseList = isShowFullCaseList;
   }
   
   public <T> List<T> getFirst20Items(List<T> items) {
