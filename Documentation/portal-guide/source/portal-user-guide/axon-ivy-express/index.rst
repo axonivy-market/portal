@@ -111,7 +111,7 @@ HowTo: Create an Express Workflow
    +-----------------------------------+-----------------------------------+
    | **User Task with Email**          | In addition to the normal User    |
    |                                   | Task, the user can send an Email  |
-   |                                   | directly from the |ivy|        |
+   |                                   | directly from the |ivy|           |
    |                                   | Portal, without the need to       |
    |                                   | change to another system          |
    +-----------------------------------+-----------------------------------+
@@ -208,7 +208,7 @@ HowTo: Create an Express Workflow
 
 .. note::
 
-   Grant permission :bdg-ref-warning:`🔑ExpressCreateWorkflow <ExpressCreateWorkflow>` to enable creation of an Express Workflow.
+   Grant permission :ref:`🔑ExpressCreateWorkflow <ExpressCreateWorkflow>` to enable creation of an Express Workflow.
 
 Define an Information Email
 ---------------------------
