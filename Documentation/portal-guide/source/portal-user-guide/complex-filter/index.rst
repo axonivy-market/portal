@@ -148,8 +148,8 @@ Filter Operators
      | year/month/week.
      | 
      | *Example*: Find all cases that were created in the current month.
-     | :bdg-dark-line:`Created Date` :bdg-dark-line:`Current` :bdg-dark-line:`Month`
-     |  
+     | :guilabel:`Created Date` :guilabel:`Current` :guilabel:`Month`
+     |
      | *Explanation*: Assuming today is ``2/27/2024 11:41:28``, the query will retrieve cases where the Created Date falls 
      | within the period from ``2/1/2024 00:00:00`` to ``2/29/2024 23:59:59``.
  * - Within the last
@@ -159,8 +159,8 @@ Filter Operators
      | to the present moment.
      |
      | *Example*: Find all cases that were created within the last 2 years
-     | :bdg-dark-line:`Created Date` :bdg-dark-line:`Within the last` :bdg-dark-line:`2` :bdg-dark-line:`Year(s)`
-     |  
+     | :guilabel:`Created Date` :guilabel:`Within the last` :guilabel:`2` :guilabel:`Year(s)`
+     |
      | *Explanation*: Assuming today is ``2/27/2024 11:41:28``, the query will retrieve cases where the Created Date falls 
      | within the period from ``2/27/2022 00:00:00`` to ``2/27/2024 11:41:28``.
  * - Within the next
@@ -170,8 +170,8 @@ Filter Operators
      | year(s)/month(s)/week(s).
      |
      | *Example*: Find all cases with Invoice Due Date within the next 3 weeks
-     | :bdg-dark-line:`Invoice Due Date` :bdg-dark-line:`Within the next` :bdg-dark-line:`3` :bdg-dark-line:`Week(s)`
-     |  
+     | :guilabel:`Invoice Due Date` :guilabel:`Within the next` :guilabel:`3` :guilabel:`Week(s)`
+     |
      | *Explanation*: Assuming today is ``2/27/2024 11:41:28``, the query will retrieve cases where the Invoice Due Date falls 
      | within the period from ``2/27/2024 11:41:28`` to ``3/19/2024 23:59:59``.
  * - Starts with
