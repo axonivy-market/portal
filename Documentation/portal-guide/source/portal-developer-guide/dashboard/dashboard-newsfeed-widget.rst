@@ -11,7 +11,7 @@ Overview
 The News widget provides a news feed for sharing relevant information, announcements, and updates with Portal users. It supports:
 
 - **Rich Content** - Display text, images, and formatted content
-- **User Management** - Requires :bdg-ref-warning:`🔑NewsManagement <NewsManagement>` permission to manage news items
+- **User Management** - Requires :ref:`🔑NewsManagement <NewsManagement>` permission to manage news items
 - **Chronological Display** - News items shown in reverse chronological order
 - **Fullscreen View** - Expandable widget for easier reading
 - **Responsive Layout** - Adapts to different widget sizes
@@ -147,7 +147,7 @@ JSON Configuration Reference
    
    To add, edit, or delete news items:
    
-   #. User must have :bdg-ref-warning:`🔑NewsManagement <NewsManagement>` permission
+   #. User must have :ref:`🔑NewsManagement <NewsManagement>` permission
    #. Access news management through the widget's action menu
    #. News items support rich text formatting, images, and links
    #. Items are displayed in reverse chronological order (newest first)
@@ -157,4 +157,4 @@ JSON Configuration Reference
 .. important::
    **Widget Visibility:**
    
-   The News widget itself is controlled by dashboard permissions. However, news content management requires the separate :bdg-ref-warning:`🔑NewsManagement <NewsManagement>` permission.
+   The News widget itself is controlled by dashboard permissions. However, news content management requires the separate :ref:`🔑NewsManagement <NewsManagement>` permission.
