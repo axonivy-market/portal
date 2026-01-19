@@ -135,7 +135,7 @@ Configure permissions in the :dev-url:`Engine Cockpit </doc/12.0/engine-guide/re
    **General Permission Rules:**
    
    - Normal users can only see tasks and cases they can work on
-   - Administrators with :bdg-ref-warning:`🔑TaskReadAll <TaskReadAll>` and :bdg-ref-warning:`🔑CaseReadAll <CaseReadAll>` can see all tasks/cases
+   - Administrators with :ref:`🔑TaskReadAll <TaskReadAll>` and :ref:`🔑CaseReadAll <CaseReadAll>` can see all tasks/cases
    - Administrators can interact with, create, update, and delete all workflows
    - Normal users can only update/delete workflows they created and work on assigned tasks
 
@@ -144,15 +144,15 @@ Task Permissions
 
 **Add Note**
 
-User needs permission: :bdg-ref-warning:`🔑TaskCaseAddNote <TaskCaseAddNote>`
+User needs permission: :ref:`🔑TaskCaseAddNote <TaskCaseAddNote>`
 
 **Delegate**
 
 Required permissions:
 
-- To see delegate action: :bdg-ref-warning:`🔑TaskDisplayDelegateAction <TaskDisplayDelegateAction>` and :bdg-ref-warning:`🔑TaskWriteActivator <TaskWriteActivator>`
-- To delegate personal/group tasks: :bdg-ref-warning:`🔑TaskWriteActivatorOwnTasks <TaskWriteActivatorOwnTasks>` (not assigned to Everybody by default)
-- Case owner delegation: :bdg-ref-warning:`🔑CaseOwnerTaskDelegate <CaseOwnerTaskDelegate>` allows delegating all related tasks within their case
+- To see delegate action: :ref:`🔑TaskDisplayDelegateAction <TaskDisplayDelegateAction>` and :ref:`🔑TaskWriteActivator <TaskWriteActivator>`
+- To delegate personal/group tasks: :ref:`🔑TaskWriteActivatorOwnTasks <TaskWriteActivatorOwnTasks>` (not assigned to Everybody by default)
+- Case owner delegation: :ref:`🔑CaseOwnerTaskDelegate <CaseOwnerTaskDelegate>` allows delegating all related tasks within their case
 
 .. important::
    Only tasks ready for user processing can be delegated. Task state cannot be: CREATED, DONE, DESTROYED, RESUMED, FAILED
@@ -161,15 +161,15 @@ Required permissions:
 
 Required permissions:
 
-- To see reset action: :bdg-ref-warning:`🔑TaskDisplayResetAction <TaskDisplayResetAction>`
-- To reset tasks: :bdg-ref-warning:`🔑TaskResetOwnWorkingTask <TaskResetOwnWorkingTask>` or :bdg-ref-warning:`🔑TaskResetReadyForJoin <TaskResetReadyForJoin>` or :bdg-ref-warning:`🔑TaskReset <TaskReset>`
+- To see reset action: :ref:`🔑TaskDisplayResetAction <TaskDisplayResetAction>`
+- To reset tasks: :ref:`🔑TaskResetOwnWorkingTask <TaskResetOwnWorkingTask>` or :ref:`🔑TaskResetReadyForJoin <TaskResetReadyForJoin>` or :ref:`🔑TaskReset <TaskReset>`
 
 .. important::
    Only works for tasks in states: RESUMED, PARKED, READY_FOR_JOIN, FAILED
 
 **Delete**
 
-User needs permission: :bdg-ref-warning:`🔑TaskDestroy <TaskDestroy>`
+User needs permission: :ref:`🔑TaskDestroy <TaskDestroy>`
 
 .. important::
    Only works if task state is not DESTROYED or DONE
@@ -178,77 +178,77 @@ User needs permission: :bdg-ref-warning:`🔑TaskDestroy <TaskDestroy>`
 
 Required permissions:
 
-- To see reserve action: :bdg-ref-warning:`🔑TaskDisplayReserveAction <TaskDisplayReserveAction>`
-- To reserve a task: :bdg-ref-warning:`🔑TaskParkOwnWorkingTask <TaskParkOwnWorkingTask>`
+- To see reserve action: :ref:`🔑TaskDisplayReserveAction <TaskDisplayReserveAction>`
+- To reserve a task: :ref:`🔑TaskParkOwnWorkingTask <TaskParkOwnWorkingTask>`
 
 .. important::
    Only possible if task is in states: CREATED, RESUMED, SUSPENDED
 
 **Change Description**
 
-User needs permission: :bdg-ref-warning:`🔑TaskWriteDescription <TaskWriteDescription>`
+User needs permission: :ref:`🔑TaskWriteDescription <TaskWriteDescription>`
 
 .. important::
    Terminated tasks cannot be changed. Task state cannot be: DONE, DESTROYED, FAILED
 
 **Change Deadline**
 
-User needs permission: :bdg-ref-warning:`🔑TaskWriteExpiryTimestamp <TaskWriteExpiryTimestamp>`
+User needs permission: :ref:`🔑TaskWriteExpiryTimestamp <TaskWriteExpiryTimestamp>`
 
 .. important::
    Task cannot be in states: DONE, DESTROYED, FAILED
 
 **Change Priority**
 
-User needs permission: :bdg-ref-warning:`🔑TaskWriteOriginalPriority <TaskWriteOriginalPriority>`
+User needs permission: :ref:`🔑TaskWriteOriginalPriority <TaskWriteOriginalPriority>`
 
 .. important::
    Task cannot be in states: DONE, DESTROYED, FAILED
 
 **Display Additional Options**
 
-User needs permission: :bdg-ref-warning:`🔑TaskDisplayAdditionalOptions <TaskDisplayAdditionalOptions>`
+User needs permission: :ref:`🔑TaskDisplayAdditionalOptions <TaskDisplayAdditionalOptions>`
 
 **Display Workflow Events**
 
-User needs permission: :bdg-ref-warning:`🔑TaskDisplayWorkflowEventAction <TaskDisplayWorkflowEventAction>`
+User needs permission: :ref:`🔑TaskDisplayWorkflowEventAction <TaskDisplayWorkflowEventAction>`
 
 **Display Custom Fields**
 
-User needs permission: :bdg-ref-warning:`🔑TaskDisplayCustomFieldsAction <TaskDisplayCustomFieldsAction>`
+User needs permission: :ref:`🔑TaskDisplayCustomFieldsAction <TaskDisplayCustomFieldsAction>`
 
 **Share Task Details Link**
 
-User needs permission: :bdg-ref-warning:`🔑ShareTaskDetailsLink <ShareTaskDetailsLink>`
+User needs permission: :ref:`🔑ShareTaskDetailsLink <ShareTaskDetailsLink>`
 
 **Change Expiry Activator**
 
-User needs permission: :bdg-ref-warning:`🔑TaskWriteExpiryActivator <TaskWriteExpiryActivator>`
+User needs permission: :ref:`🔑TaskWriteExpiryActivator <TaskWriteExpiryActivator>`
 
 .. important::
    Task cannot be in states: DONE, DESTROYED, FAILED
 
 **Read System Tasks**
 
-User needs permission: :bdg-ref-warning:`🔑SystemTaskReadAll <SystemTaskReadAll>`
+User needs permission: :ref:`🔑SystemTaskReadAll <SystemTaskReadAll>`
 
 Case Permissions
 ----------------
 
 **Add Note**
 
-User needs permission: :bdg-ref-warning:`🔑TaskCaseAddNote <TaskCaseAddNote>`
+User needs permission: :ref:`🔑TaskCaseAddNote <TaskCaseAddNote>`
 
 **Delete**
 
-User needs permission: :bdg-ref-warning:`🔑CaseDestroy <CaseDestroy>`
+User needs permission: :ref:`🔑CaseDestroy <CaseDestroy>`
 
 .. important::
    Case state must be RUNNING
 
 **Change Description**
 
-User needs permission: :bdg-ref-warning:`🔑CaseWriteDescription <CaseWriteDescription>`
+User needs permission: :ref:`🔑CaseWriteDescription <CaseWriteDescription>`
 
 .. important::
    Case state cannot be DESTROYED
@@ -257,23 +257,23 @@ User needs permission: :bdg-ref-warning:`🔑CaseWriteDescription <CaseWriteDesc
 
 Required permissions:
 
-- To see the action: :bdg-ref-warning:`🔑ShowAllTasksOfCase <ShowAllTasksOfCase>`
-- To view related tasks: :bdg-ref-warning:`🔑TaskReadOwnCaseTasks <TaskReadOwnCaseTasks>` or :bdg-ref-warning:`🔑TaskReadAll <TaskReadAll>`
+- To see the action: :ref:`🔑ShowAllTasksOfCase <ShowAllTasksOfCase>`
+- To view related tasks: :ref:`🔑TaskReadOwnCaseTasks <TaskReadOwnCaseTasks>` or :ref:`🔑TaskReadAll <TaskReadAll>`
 
 .. important::
    Case state cannot be DESTROYED
 
 **Display Show Detail Link**
 
-User needs permission: :bdg-ref-warning:`🔑ShowCaseDetails <ShowCaseDetails>` (not assigned to Everybody by default)
+User needs permission: :ref:`🔑ShowCaseDetails <ShowCaseDetails>` (not assigned to Everybody by default)
 
 **Share Case Details Link**
 
-User needs permission: :bdg-ref-warning:`🔑ShareCaseDetailsLink <ShareCaseDetailsLink>`
+User needs permission: :ref:`🔑ShareCaseDetailsLink <ShareCaseDetailsLink>`
 
 **Display Custom Fields**
 
-User needs permission: :bdg-ref-warning:`🔑CaseDisplayCustomFieldsAction <CaseDisplayCustomFieldsAction>`
+User needs permission: :ref:`🔑CaseDisplayCustomFieldsAction <CaseDisplayCustomFieldsAction>`
 
 .. _settings-permission-settings-others:
 
@@ -285,61 +285,61 @@ Other Permissions
  +-----------+---------------------------------+---------------------------------------------------------------------------------------+
  |           | Action                          | Permission required                                                                   |
  +===========+=================================+=======================================================================================+
- | Absence   | Read                            | :bdg-ref-warning:`🔑UserReadOwnAbsences <UserReadOwnAbsences>`  or                    |
- |           |                                 | :bdg-ref-warning:`🔑UserReadAbsences <UserReadAbsences>`                              |
+ | Absence   | Read                            | :ref:`🔑UserReadOwnAbsences <UserReadOwnAbsences>`  or                                |
+ |           |                                 | :ref:`🔑UserReadAbsences <UserReadAbsences>`                                          |
  |           +---------------------------------+---------------------------------------------------------------------------------------+
- |           | Create, edit                    | :bdg-ref-warning:`🔑UserCreateOwnAbsence <UserCreateOwnAbsence>` or                   |
- |           |                                 | :bdg-ref-warning:`🔑UserCreateAbsence <UserCreateAbsence>`                            |
+ |           | Create, edit                    | :ref:`🔑UserCreateOwnAbsence <UserCreateOwnAbsence>` or                               |
+ |           |                                 | :ref:`🔑UserCreateAbsence <UserCreateAbsence>`                                        |
  |           +---------------------------------+---------------------------------------------------------------------------------------+
- |           | Delete                          | :bdg-ref-warning:`🔑UserDeleteOwnAbsence <UserDeleteOwnAbsence>` or                   |
- |           |                                 | :bdg-ref-warning:`🔑UserDeleteAbsence <UserDeleteAbsence>`                            |
+ |           | Delete                          | :ref:`🔑UserDeleteOwnAbsence <UserDeleteOwnAbsence>` or                               |
+ |           |                                 | :ref:`🔑UserDeleteAbsence <UserDeleteAbsence>`                                        |
  |           +---------------------------------+---------------------------------------------------------------------------------------+
- |           | Read absences of all users      | :bdg-ref-warning:`🔑UserReadAbsences <UserReadAbsences>`                              |
+ |           | Read absences of all users      | :ref:`🔑UserReadAbsences <UserReadAbsences>`                                          |
  |           +---------------------------------+---------------------------------------------------------------------------------------+
- |           | Delete absences of all users    | :bdg-ref-warning:`🔑UserDeleteAbsence <UserDeleteAbsence>`                            |
+ |           | Delete absences of all users    | :ref:`🔑UserDeleteAbsence <UserDeleteAbsence>`                                        |
  |           +---------------------------------+---------------------------------------------------------------------------------------+
- |           | Create new absence for all users| :bdg-ref-warning:`🔑UserCreateAbsence <UserCreateAbsence>`                            |
+ |           | Create new absence for all users| :ref:`🔑UserCreateAbsence <UserCreateAbsence>`                                        |
  +-----------+---------------------------------+---------------------------------------------------------------------------------------+
- | Substitute| Manage substitute               | :bdg-ref-warning:`🔑UserCreateSubstitute <UserCreateSubstitute>` and                  |
- |           |                                 | :bdg-ref-warning:`🔑UserReadSubstitutes <UserReadSubstitutes>`                        |
+ | Substitute| Manage substitute               | :ref:`🔑UserCreateSubstitute <UserCreateSubstitute>` and                              |
+ |           |                                 | :ref:`🔑UserReadSubstitutes <UserReadSubstitutes>`                                    |
  +-----------+---------------------------------+---------------------------------------------------------------------------------------+
- | Document  | Upload, delete                  | :bdg-ref-warning:`🔑DocumentWrite <DocumentWrite>`                                    |
- |           |                                 | :bdg-ref-warning:`🔑DocumentOfInvolvedCaseWrite <DocumentOfInvolvedCaseWrite>`        |
+ | Document  | Upload, delete                  | :ref:`🔑DocumentWrite <DocumentWrite>`                                                |
+ |           |                                 | :ref:`🔑DocumentOfInvolvedCaseWrite <DocumentOfInvolvedCaseWrite>`                    |
  +-----------+---------------------------------+---------------------------------------------------------------------------------------+
- | Portal    | Access to full process          | :bdg-ref-warning:`🔑AccessFullProcessList <AccessFullProcessList>`                    |
+ | Portal    | Access to full process          | :ref:`🔑AccessFullProcessList <AccessFullProcessList>`                                |
  | permission| list, it's "Processes" on the   |                                                                                       |
  |           | left menu and link "Show all    |                                                                                       |
  |           | processes" on Dashboard         |                                                                                       |
  |           +---------------------------------+---------------------------------------------------------------------------------------+
- |           | Access to full task list, it's  | :bdg-ref-warning:`🔑AccessFullTaskList <AccessFullTaskList>`                          |
+ |           | Access to full task list, it's  | :ref:`🔑AccessFullTaskList <AccessFullTaskList>`                                      |
  |           | "Tasks" on the left menu and    |                                                                                       |
  |           | link "Show full task list" on   |                                                                                       |
  |           | Dashboard                       |                                                                                       |
  |           +---------------------------------+---------------------------------------------------------------------------------------+
- |           | Access to full case list, it's  | :bdg-ref-warning:`🔑AccessFullCaseList <AccessFullCaseList>`                          |
+ |           | Access to full case list, it's  | :ref:`🔑AccessFullCaseList <AccessFullCaseList>`                                      |
  |           | "Cases" on the left menu        |                                                                                       |
  |           +---------------------------------+---------------------------------------------------------------------------------------+
- |           | Add note to task/case           | :bdg-ref-warning:`🔑TaskCaseAddNote <TaskCaseAddNote>`                                |
+ |           | Add note to task/case           | :ref:`🔑TaskCaseAddNote <TaskCaseAddNote>`                                            |
  |           +---------------------------------+---------------------------------------------------------------------------------------+
- |           | Display show more note          | :bdg-ref-warning:`🔑TaskCaseShowMoreNote <TaskCaseShowMoreNote>`                      |
+ |           | Display show more note          | :ref:`🔑TaskCaseShowMoreNote <TaskCaseShowMoreNote>`                                  |
  |           +---------------------------------+---------------------------------------------------------------------------------------+
- |           | Create public external link, all| :bdg-ref-warning:`🔑CreatePublicExternalLink <CreatePublicExternalLink>`              |
+ |           | Create public external link, all| :ref:`🔑CreatePublicExternalLink <CreatePublicExternalLink>`                          |
  |           | other users can see that link in|                                                                                       |
  |           | the full process list           |                                                                                       |
  |           +---------------------------------+---------------------------------------------------------------------------------------+
- |           | Dashboard sharing               | :bdg-ref-warning:`🔑ShareDashboardLink <ShareDashboardLink>`                          |
+ |           | Dashboard sharing               | :ref:`🔑ShareDashboardLink <ShareDashboardLink>`                                      |
  |           +---------------------------------+---------------------------------------------------------------------------------------+
- |           | Modify notification channels    | :bdg-ref-warning:`🔑NotificationChannelsSetting <NotificationChannelsSetting>`        |
+ |           | Modify notification channels    | :ref:`🔑NotificationChannelsSetting <NotificationChannelsSetting>`                    |
  |           | preferences in :ref:`my-profile`|                                                                                       |
  |           | page                            |                                                                                       |
  |           +---------------------------------+---------------------------------------------------------------------------------------+
- |           | Role management (Admin Settings)| :bdg-ref-warning:`🔑RoleManagement <RoleManagement>`                                  |
+ |           | Role management (Admin Settings)| :ref:`🔑RoleManagement <RoleManagement>`                                              |
  |           +---------------------------------+---------------------------------------------------------------------------------------+
- |           | News management (Dashboard)     | :bdg-ref-warning:`🔑NewsManagement <NewsManagement>`                                  |
+ |           | News management (Dashboard)     | :ref:`🔑NewsManagement <NewsManagement>`                                              |
  |           +---------------------------------+---------------------------------------------------------------------------------------+
- |           | Password validation settings    | :bdg-ref-warning:`🔑PasswordValidation <PasswordValidation>`                          |
+ |           | Password validation settings    | :ref:`🔑PasswordValidation <PasswordValidation>`                                      |
  |           +---------------------------------+---------------------------------------------------------------------------------------+
- |           | Read all notes on tasks/cases   | :bdg-ref-warning:`🔑NoteReadAllCaseTaskDetails <NoteReadAllCaseTaskDetails>`          |
+ |           | Read all notes on tasks/cases   | :ref:`🔑NoteReadAllCaseTaskDetails <NoteReadAllCaseTaskDetails>`                      |
  +-----------+---------------------------------+---------------------------------------------------------------------------------------+
 
 .. _settings-virus-scanning-setting:

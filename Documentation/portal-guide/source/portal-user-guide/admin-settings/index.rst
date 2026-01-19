@@ -88,7 +88,7 @@ HowTo: Update Portal Settings
    - :guilabel:`Portal.Histories.HideSystemNotes`
    - :guilabel:`Portal.Histories.HideSystemNotesForAdministrator`
    
-   **Migration**: Use the permission :bdg-ref-warning:`🔑NoteReadAllCaseTaskDetails <NoteReadAllCaseTaskDetails>` 
+   **Migration**: Use the permission :ref:`🔑NoteReadAllCaseTaskDetails <NoteReadAllCaseTaskDetails>`
    to control visibility of system notes in task and case details instead.
 
 .. _portal-available-settings:
@@ -131,14 +131,14 @@ To access and use Role Management, you need specific permissions:
    +--------------------------------------------------+------------------------------------------------+
    | Permission                                       | Purpose                                        |
    +==================================================+================================================+
-   | :bdg-ref-warning:`🔑RoleManagement               | View the Role Management tab                   |
+   | :ref:`🔑RoleManagement                           | View the Role Management tab                   |
    | <RoleManagement>`                                |                                                |
    +--------------------------------------------------+------------------------------------------------+
-   | :bdg-ref-warning:`🔑RoleCreate <RoleCreate>`     | Create new dynamic roles                       |
+   | :ref:`🔑RoleCreate <RoleCreate>`                 | Create new dynamic roles                       |
    +--------------------------------------------------+------------------------------------------------+
-   | :bdg-ref-warning:`🔑RoleDelete <RoleDelete>`     | Delete existing dynamic roles                  |
+   | :ref:`🔑RoleDelete <RoleDelete>`                 | Delete existing dynamic roles                  |
    +--------------------------------------------------+------------------------------------------------+
-   | :bdg-ref-warning:`🔑RoleMove <RoleMove>`         | Select parent role during creation             |
+   | :ref:`🔑RoleMove <RoleMove>`                     | Select parent role during creation             |
    |                                                  | (default parent: ``Everybody``)                |
    +--------------------------------------------------+------------------------------------------------+
 
@@ -177,7 +177,7 @@ password management (e.g., :ref:`Forgot Password <forgot-password>` and password
 Prerequisites
 ^^^^^^^^^^^^^
 
-To access Password Validation settings, you need the :bdg-ref-warning:`🔑PasswordValidation <PasswordValidation>` permission.
+To access Password Validation settings, you need the :ref:`🔑PasswordValidation <PasswordValidation>` permission.
 
 Steps to Configure Password Validation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
