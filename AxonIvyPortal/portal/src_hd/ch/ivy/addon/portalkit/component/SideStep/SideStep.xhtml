@@ -77,6 +77,16 @@
       <span class="option-item-label">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/delegate')}</span>
     </p:commandLink>
 
+    <p:commandLink id="bulk-select-task-delegate-command" disabled="false" rendered="true"
+      styleClass="option-item ui-menu-items" onstart="event.stopPropagation();"
+      ariaLabel="Open bulk select delegation"
+      oncomplete="#{cc.attrs.onDelegateComplete}" global="false"
+      actionListener="#{taskActionBean.updateSelectedTaskItemId(isShowInTaskList, task.id)}"
+      update="@parent #{cc.attrs.componentToUpdate} @widgetVar(task-delegate-dialog)" process="@this">
+      <i class="option-action-icon si si-multiple-neutral-1" />
+      <span class="option-item-label">Bulk select delegation</span>
+    </p:commandLink>
+
     <p:commandLink id="task-reserve-command" disabled="#{!taskActionBean.canPark(task)}" rendered="#{taskActionBean.showReserveTask}" onstart="event.stopPropagation();"
       ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reserve')}"
       styleClass="option-item ui-menu-items" actionListener="#{logic.parkTask(task)}" update="@parent #{cc.attrs.componentToUpdate}" process="@this">
