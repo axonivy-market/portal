@@ -7331,7 +7331,7 @@ msgid ""
 " Search`_."
 msgstr ""
 "ユーザー名の横には、|search-icon| 検索バーが配置されており、ポータル全体の検索機能を提供しております。この機能の詳細については、 "
-"`グローバル検索 <Global Search_>`_ でご説明しております。"
+"`Global Search`_ でご説明しております。"
 
 #: ../../source/portal-user-guide/includes/_common-icon.rst:13
 msgid "search-icon"
