@@ -17,17 +17,19 @@ pipeline {
 
   parameters {
     string(name: 'testPatternToRun', defaultValue: 'com.axonivy.portal.selenium.test.**.*Test', description: 'Test pattern to run')
-    string(name: 'engineDownloadURL', defaultValue: '-Divy.engine.download.url=https://developer.axonivy.com/permalink/nightly/axonivy-engine-windows.zip', description: '''Where to download engine? e.g.
-      -Divy.engine.download.url=https://developer.axonivy.com/permalink/nightly/axonivy-engine-windows.zip for nightly master
-      -Divy.engine.download.url=https://developer.axonivy.com/permalink/dev/axonivy-engine-windows.zip for dev master
-      -Divy.engine.download.url=file:///C:/wawa/engine/AxonIvyEngineX.X.X.X_Windows_x64.zip for downloaded engine
-      -Divy.engine.list.url=https://jenkins.ivyteam.io/job/core_product/job/release%252F9.4/lastSuccessfulBuild/artifact/workspace/ch.ivyteam.ivy.server.product/target/products/ -Divy.engine.os.arch=Windows_x64 for last successful build 9.4
+    string(name: 'dockerImage', defaultValue: 'axonivy/axonivy-engine:nightly', description: '''Docker image to use, e.g.
+      axonivy/axonivy-engine:nightly for nightly master
+      axonivy/axonivy-engine:dev for dev release
+      axonivy/axonivy-engine:sprint for sprint release
+      axonivy/axonivy-engine:12.0 for LTS 12.0.x
     ''')
   }
 
   environment {
-    engineDir = "$env.WORKSPACE/AxonIvyPortal/portal-selenium-test/engine"
     MAVEN_OPTS = "-Xmx3000m -XX:+HeapDumpOnOutOfMemoryError"
+    IVY_CONTAINER_NAME = "ivy-engine-test-${env.BUILD_NUMBER}"
+    IVY_ENGINE_PORT = "8080"
+    DEPLOY_DIR = "${env.WORKSPACE}/deploy"
   }
 
   stages {
@@ -35,37 +37,77 @@ pipeline {
       steps {
         script {
           currentBuild.description = "On ${env.NODE_NAME}"
-          def utils = load 'build/common/utils.groovy'
-          utils.init()
-          utils.stopAllEngines()
-          utils.extractEngine(env.engineDir, params.engineDownloadURL)
+
+          echo '====================Pull Docker image===================='
+          sh "docker pull ${params.dockerImage}"
+
+          echo '====================Clean up any existing containers===================='
+          sh '''#!/bin/bash
+            set -euo pipefail
+            docker stop ${IVY_CONTAINER_NAME} 2>/dev/null || true
+            docker rm ${IVY_CONTAINER_NAME} 2>/dev/null || true
+          '''
+
+          echo '====================Prepare deploy directory===================='
+          sh '''#!/bin/bash
+            set -euo pipefail
+            mkdir -p "${DEPLOY_DIR}"
+            rm -rf "${DEPLOY_DIR}"/*
+          '''
 
           echo '====================Build Portal modules===================='
           def modules = ['AxonIvyPortal/portal-components', 'AxonIvyPortal/portal', 'AxonIvyPortal/PortalKitTestHelper', 'Showcase/portal-user-examples', 'Showcase/portal-developer-examples', 'Showcase/InternalSupport', 'Showcase/portal-components-examples']
           for (module in modules) {
-            bat "mvn clean install -f ${module}/pom.xml -Divy.engine.directory=%engineDir%"
+            sh "mvn clean install -f ${module}/pom.xml"
           }
 
-          echo '====================Build and deploy test package===================='
-          bat "mvn clean package -f AxonIvyPortal/portal-selenium-test/deployment-pom.xml -Divy.engine.directory=%engineDir%"
-          powershell """
-            \$DEPLOYMENT= \$env:engineDir + "/system/demo-applications/demo-portal"
-            rmdir \$DEPLOYMENT/* -recurse
-            Copy-Item AxonIvyPortal/portal-selenium-test/target/*zip -Destination \$DEPLOYMENT
-          """
-          utils.killUnnecessaryProcessesToRunTest()
+          echo '====================Build test package===================='
+          sh "mvn clean package -f AxonIvyPortal/portal-selenium-test/deployment-pom.xml"
+          sh '''#!/bin/bash
+            set -euo pipefail
+            cp AxonIvyPortal/portal-selenium-test/target/*.zip "${DEPLOY_DIR}"/
+          '''
+
+          echo '====================Start Docker engine container===================='
+          sh '''#!/bin/bash
+            set -euo pipefail
+            docker run -d \
+              --name "${IVY_CONTAINER_NAME}" \
+              -p ${IVY_ENGINE_PORT}:8080 \
+              -v "${DEPLOY_DIR}":/ivy/deploy \
+              ${dockerImage}
+            
+            echo "Waiting for engine to start..."
+            timeout=120
+            while [ $timeout -gt 0 ]; do
+              if curl -s -o /dev/null -w "%{http_code}" http://localhost:${IVY_ENGINE_PORT}/ivy/ | grep -q "200\\|302"; then
+                echo "Engine is ready!"
+                break
+              fi
+              echo "Waiting... ($timeout seconds remaining)"
+              sleep 5
+              timeout=$((timeout - 5))
+            done
+            
+            if [ $timeout -le 0 ]; then
+              echo "Engine failed to start within timeout"
+              docker logs "${IVY_CONTAINER_NAME}"
+              exit 1
+            fi
+          '''
 
           echo '====================Execute maven for testing===================='
-          bat "mvn clean verify -f AxonIvyPortal/portal-selenium-test/customized_pom.xml %engineDownloadURL% -Dtest=${params.testPatternToRun} -DbrowserType=FIREFOX -DtrimStackTrace=false -Divy.engine.directory=%engineDir% -Divy.deploy.timeout.seconds=60 -Divy.engine.start.timeout.seconds=500 -Dsurefire.rerunFailingTestsCount=2"
-          utils.cleanDisk()
-          
+          sh "mvn clean verify -f AxonIvyPortal/portal-selenium-test/customized_pom.xml -Dtest=${params.testPatternToRun} -DbrowserType=FIREFOX -DtrimStackTrace=false -Dtest.engine.url=http://localhost:${env.IVY_ENGINE_PORT} -Divy.deploy.timeout.seconds=60 -Dsurefire.rerunFailingTestsCount=2"
+
           echo '====================Archive consoleText file===================='
           withCredentials([usernameColonPassword(credentialsId: 'wawa-jenkins', variable: 'credentials')]) {
-            def branchName = env.BRANCH_NAME.replaceAll("/", "%%2F")
-            bat """
-              curl --user ${credentials} ${env.JENKINS_URL}job/portal-selenium-test/job/${branchName}/${env.BUILD_NUMBER}/consoleText --output logText.txt
-              mv AxonIvyPortal/portal-selenium-test/resources/extractFlakyTests.sh .
-              sh extractFlakyTests.sh
+            def branchName = env.BRANCH_NAME.replaceAll("/", "%2F")
+            sh """#!/bin/bash
+              set -euo pipefail
+              curl --user "\${credentials}" "\${JENKINS_URL}job/portal-selenium-test/job/${branchName}/${env.BUILD_NUMBER}/consoleText" --output logText.txt
+              cp AxonIvyPortal/portal-selenium-test/resources/extractFlakyTests.sh .
+              chmod +x extractFlakyTests.sh
+              ./extractFlakyTests.sh
             """
           }
         }
@@ -75,6 +117,18 @@ pipeline {
 
   post {
     always {
+      script {
+        echo '====================Collect container logs===================='
+        sh '''#!/bin/bash
+          docker logs "${IVY_CONTAINER_NAME}" > AxonIvyPortal/portal-selenium-test/target/testEngineOut.log 2>&1 || true
+        '''
+        
+        echo '====================Stop and remove Docker container===================='
+        sh '''#!/bin/bash
+          docker stop "${IVY_CONTAINER_NAME}" 2>/dev/null || true
+          docker rm "${IVY_CONTAINER_NAME}" 2>/dev/null || true
+        '''
+      }
       archiveArtifacts artifacts: 'AxonIvyPortal/portal-selenium-test/target/selenide/reports/**/*.*, AxonIvyPortal/portal-selenium-test/target/testEngineOut.log, testReport.txt, logText.txt', allowEmptyArchive: true
       junit allowEmptyResults: true, testResults: '**/surefire-reports/TEST-*.xml'
     }
