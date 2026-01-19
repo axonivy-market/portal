@@ -40,8 +40,7 @@ pipeline {
             pkill -f "AxonIvyEngine" || true
             pkill -f "elasticsearch" || true
           '''
-
-          docker.build('gui-test-portal', '-f build/Dockerfile.python .').inside('-v /var/tools/maven-cache:/home/wawa/build/') {
+          docker.build('gui-test-portal', '-f build/gui-test-new-dashboard/Dockerfile.python .').inside('-v /var/tools/maven-cache:/home/wawa/build/') {
             echo '====================Extract engine===================='
             sh "mvn clean compile -f AxonIvyPortal/portal-components/pom.xml -Divy.engine.directory=${env.engineDir} ${params.engineDownloadURL}"
 
@@ -66,7 +65,7 @@ pipeline {
             '''
 
             echo '====================Execute maven for testing===================='
-            sh "mvn clean verify -f AxonIvyPortal/portal-selenium-test/customized_pom.xml ${params.engineDownloadURL} -Dtest=${params.testPatternToRun} -DbrowserType=FIREFOX -DtrimStackTrace=false -Divy.engine.directory=${env.engineDir} -Divy.deploy.timeout.seconds=60 -Divy.engine.start.timeout.seconds=500 -Dsurefire.rerunFailingTestsCount=2"
+            sh "mvn clean verify -f AxonIvyPortal/portal-selenium-test/customized_pom.xml ${params.engineDownloadURL} -Dtest=${params.testPatternToRun} -DbrowserType=FIREFOX -Dcapabilities.unhandledPromptBehavior=accept -DtrimStackTrace=false -Divy.engine.directory=${env.engineDir} -Divy.deploy.timeout.seconds=60 -Divy.engine.start.timeout.seconds=500 -Dsurefire.rerunFailingTestsCount=2"
 
             echo '====================Clean disk===================='
             sh '''
