@@ -7,13 +7,9 @@ The **Full Task List** page is a dashboard featuring a single, full-width task w
 You can reach the page by using the |task-list-icon| :guilabel:`Tasks` link in the Axon Ivy Portal menu.
 
 .. important::
-   - Full Task list dashboard now works normally like other dashboards. You can manage it in the :bdg-ref-warning:`Dashboard Configuration <dashboard-configuration>` page,
-     including removing it from your dashboard list and left menu.
+   - Full Task list dashboard works normally like any other dashboards. You can manage it in the :bdg-ref-warning:`Dashboard Configuration <dashboard-configuration>` page.
    
    - A new template :guilabel:`Full Task list dashboard` will support you to create a new dashboard having a similar layout, see :ref:`public-available-dashboard-template`.
-
-   - **Access Requirement**: Only users with the :bdg-ref-warning:`🔑AccessFullTaskList <AccessFullTaskList>` 
-     permission can see the |task-list-icon| :guilabel:`Tasks` menu item.
 
 .. tip:: 
    Depending on your application roles and Portal configuration, you might see not only your tasks but all open tasks.
