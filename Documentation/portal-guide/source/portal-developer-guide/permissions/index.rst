@@ -84,21 +84,18 @@ Permissions controlling task visibility, actions, and property modifications.
 
 .. _TaskReadAll:
 
-TaskReadAll
    :ref:`🔑TaskReadAll <TaskReadAll>`
      - View all tasks in the system regardless of assignment
      - Typically granted to administrators
 
 .. _SystemTaskReadAll:
 
-SystemTaskReadAll
    :ref:`🔑SystemTaskReadAll <SystemTaskReadAll>`
      - View system tasks (background/automated tasks)
      - Required for debugging and system monitoring
 
 .. _TaskReadOwnCaseTasks:
 
-TaskReadOwnCaseTasks
    :ref:`🔑TaskReadOwnCaseTasks <TaskReadOwnCaseTasks>`
      - View tasks related to cases where user is involved
      - Granted to role Everybody by default
@@ -107,7 +104,6 @@ TaskReadOwnCaseTasks
 
 .. _TaskParkOwnWorkingTask:
 
-TaskParkOwnWorkingTask
    :ref:`🔑TaskParkOwnWorkingTask <TaskParkOwnWorkingTask>`
      - Reserve (park) own working tasks
      - Allows users to temporarily set aside tasks they're working on
@@ -115,7 +111,6 @@ TaskParkOwnWorkingTask
 
 .. _TaskResetOwnWorkingTask:
 
-TaskResetOwnWorkingTask
    :ref:`🔑TaskResetOwnWorkingTask <TaskResetOwnWorkingTask>`
      - Reset own working tasks to their initial state
      - Only works for tasks in states: RESUMED, PARKED, READY_FOR_JOIN, FAILED
@@ -123,21 +118,18 @@ TaskResetOwnWorkingTask
 
 .. _TaskReset:
 
-TaskReset
    :ref:`🔑TaskReset <TaskReset>`
      - Reset any task in the system (administrative permission)
      - Typically restricted to administrators
 
 .. _TaskResetReadyForJoin:
 
-TaskResetReadyForJoin
    :ref:`🔑TaskResetReadyForJoin <TaskResetReadyForJoin>`
      - Reset tasks in READY_FOR_JOIN state
      - Useful for workflow error recovery
 
 .. _TaskDestroy:
 
-TaskDestroy
    :ref:`🔑TaskDestroy <TaskDestroy>`
      - Delete tasks permanently
      - Only works if task state is not DESTROYED or DONE
@@ -147,48 +139,41 @@ TaskDestroy
 
 .. _TaskWriteName:
 
-TaskWriteName
    :ref:`🔑TaskWriteName <TaskWriteName>`
      - Modify task name/title
 
 .. _TaskWriteDescription:
 
-TaskWriteDescription
    :ref:`🔑TaskWriteDescription <TaskWriteDescription>`
      - Modify task description
      - Cannot change terminated tasks (DONE, DESTROYED, FAILED)
 
 .. _TaskWriteOriginalPriority:
 
-TaskWriteOriginalPriority
    :ref:`🔑TaskWriteOriginalPriority <TaskWriteOriginalPriority>`
      - Change task priority level
      - Cannot change tasks in states: DONE, DESTROYED, FAILED
 
 .. _TaskWriteExpiryTimestamp:
 
-TaskWriteExpiryTimestamp
    :ref:`🔑TaskWriteExpiryTimestamp <TaskWriteExpiryTimestamp>`
      - Change task deadline/expiry date
      - Cannot change tasks in states: DONE, DESTROYED, FAILED
 
 .. _TaskWriteActivator:
 
-TaskWriteActivator
    :ref:`🔑TaskWriteActivator <TaskWriteActivator>`
      - Delegate tasks to other users/roles
      - Granted to role Everybody by default
 
 .. _TaskWriteExpiryActivator:
 
-TaskWriteExpiryActivator
    :ref:`🔑TaskWriteExpiryActivator <TaskWriteExpiryActivator>`
      - Change the user responsible when task expires
      - Cannot change tasks in states: DONE, DESTROYED, FAILED
 
 .. _TaskWriteDelayTimestamp:
 
-TaskWriteDelayTimestamp
    :ref:`🔑TaskWriteDelayTimestamp <TaskWriteDelayTimestamp>`
      - Modify task delay/start time
 
@@ -196,21 +181,18 @@ TaskWriteDelayTimestamp
 
 .. _TaskWriteActivatorOwnTasks:
 
-TaskWriteActivatorOwnTasks
    :ref:`🔑TaskWriteActivatorOwnTasks <TaskWriteActivatorOwnTasks>`
      - Delegate personal/group tasks assigned to user
      - Not assigned to Everybody by default (more restrictive than :ref:`🔑TaskWriteActivator <TaskWriteActivator>`)
 
 .. _TaskDisplayAdditionalOptions:
 
-TaskDisplayAdditionalOptions
    :ref:`🔑TaskDisplayAdditionalOptions <TaskDisplayAdditionalOptions>`
      - Display additional action menu in task lists
      - Granted to role Everybody by default
 
 .. _TaskDisplayResetAction:
 
-TaskDisplayResetAction
    :ref:`🔑TaskDisplayResetAction <TaskDisplayResetAction>`
      - Show Reset action button in task interface
      - Requires corresponding :ref:`🔑TaskReset <TaskReset>` permission to execute
@@ -218,7 +200,6 @@ TaskDisplayResetAction
 
 .. _TaskDisplayReserveAction:
 
-TaskDisplayReserveAction
    :ref:`🔑TaskDisplayReserveAction <TaskDisplayReserveAction>`
      - Show Reserve (Park) action button in task interface
      - Requires :ref:`🔑TaskParkOwnWorkingTask <TaskParkOwnWorkingTask>` to execute
@@ -226,7 +207,6 @@ TaskDisplayReserveAction
 
 .. _TaskDisplayDelegateAction:
 
-TaskDisplayDelegateAction
    :ref:`🔑TaskDisplayDelegateAction <TaskDisplayDelegateAction>`
      - Show Delegate action button in task interface
      - Requires :ref:`🔑TaskWriteActivator <TaskWriteActivator>` to execute delegation
@@ -234,28 +214,24 @@ TaskDisplayDelegateAction
 
 .. _TaskDisplayDestroyAction:
 
-TaskDisplayDestroyAction
    :ref:`🔑TaskDisplayDestroyAction <TaskDisplayDestroyAction>`
      - Show Delete/Destroy action button in task interface
      - Requires :ref:`🔑TaskDestroy <TaskDestroy>` permission to execute
 
 .. _TaskDisplayWorkflowEventAction:
 
-TaskDisplayWorkflowEventAction
    :ref:`🔑TaskDisplayWorkflowEventAction <TaskDisplayWorkflowEventAction>`
      - Show Workflow Events button in task details
      - Allows viewing task execution history and events
 
 .. _TaskDisplayCustomFieldsAction:
 
-TaskDisplayCustomFieldsAction
    :ref:`🔑TaskDisplayCustomFieldsAction <TaskDisplayCustomFieldsAction>`
      - Show Custom Fields button in task interface
      - Displays additional business data fields
 
 .. _ShareTaskDetailsLink:
 
-ShareTaskDetailsLink
    :ref:`🔑ShareTaskDetailsLink <ShareTaskDetailsLink>`
      - Show Share button in task details page
      - Allows sharing direct links to specific tasks
@@ -272,7 +248,6 @@ Permissions controlling case visibility, actions, and business details.
 
 .. _CaseReadAll:
 
-CaseReadAll
    :ref:`🔑CaseReadAll <CaseReadAll>`
      - View all cases in the system regardless of involvement
      - Typically granted to administrators
@@ -282,7 +257,6 @@ CaseReadAll
 
 .. _CaseDestroy:
 
-CaseDestroy
    :ref:`🔑CaseDestroy <CaseDestroy>`
      - Delete cases permanently
      - Only works when case state is RUNNING
@@ -290,7 +264,6 @@ CaseDestroy
 
 .. _CaseOwnerTaskDelegate:
 
-CaseOwnerTaskDelegate
    :ref:`🔑CaseOwnerTaskDelegate <CaseOwnerTaskDelegate>`
      - Delegate all related tasks within cases where user is the case owner
      - Allows case owners to manage task assignments for their cases
@@ -299,14 +272,12 @@ CaseOwnerTaskDelegate
 
 .. _CaseWriteName:
 
-CaseWriteName
    :ref:`🔑CaseWriteName <CaseWriteName>`
      - Modify case name/title
      - Cannot change cases in DESTROYED state
 
 .. _CaseWriteDescription:
 
-CaseWriteDescription
    :ref:`🔑CaseWriteDescription <CaseWriteDescription>`
      - Modify case description
      - Cannot change cases in DESTROYED state
@@ -315,7 +286,6 @@ CaseWriteDescription
 
 .. _ShowAllTasksOfCase:
 
-ShowAllTasksOfCase
    :ref:`🔑ShowAllTasksOfCase <ShowAllTasksOfCase>`
      - Display "Show all tasks" action in case details
      - Requires :ref:`🔑TaskReadOwnCaseTasks <TaskReadOwnCaseTasks>` or :ref:`🔑TaskReadAll <TaskReadAll>` to view tasks
@@ -323,7 +293,6 @@ ShowAllTasksOfCase
 
 .. _ShowCaseDetails:
 
-ShowCaseDetails
    :ref:`🔑ShowCaseDetails <ShowCaseDetails>`
      - Display Business Details tab in case interface
      - Shows additional case information and custom widgets
@@ -331,14 +300,12 @@ ShowCaseDetails
 
 .. _CaseDisplayCustomFieldsAction:
 
-CaseDisplayCustomFieldsAction
    :ref:`🔑CaseDisplayCustomFieldsAction <CaseDisplayCustomFieldsAction>`
      - Display Custom Fields button in case interface
      - Shows additional business data fields
 
 .. _ShareCaseDetailsLink:
 
-ShareCaseDetailsLink
    :ref:`🔑ShareCaseDetailsLink <ShareCaseDetailsLink>`
      - Show Share button in case details page
      - Allows sharing direct links to specific cases
@@ -355,7 +322,6 @@ General permissions for dashboards, documents, lists, roles, and Portal features
 
 .. _AccessFullProcessList:
 
-AccessFullProcessList
    :ref:`🔑AccessFullProcessList <AccessFullProcessList>`
      - Access full process list page showing all available processes
      - Shows "Processes" in left menu and "Show all processes" on Dashboard
@@ -364,7 +330,6 @@ AccessFullProcessList
 
 .. _AccessFullTaskList:
 
-AccessFullTaskList
    :ref:`🔑AccessFullTaskList <AccessFullTaskList>`
      - Access full task list page showing all accessible tasks
      - Shows "Tasks" in left menu and "Show full task list" on Dashboard
@@ -373,7 +338,6 @@ AccessFullTaskList
 
 .. _AccessFullCaseList:
 
-AccessFullCaseList
    :ref:`🔑AccessFullCaseList <AccessFullCaseList>`
      - Access full case list page showing all accessible cases
      - Shows "Cases" in left menu
@@ -384,49 +348,42 @@ AccessFullCaseList
 
 .. _DashboardWriteOwn:
 
-DashboardWriteOwn
    :ref:`🔑DashboardWriteOwn <DashboardWriteOwn>`
      - Create and modify private (personal) dashboards
      - Granted to role Everybody by default
 
 .. _DashboardWritePublic:
 
-DashboardWritePublic
    :ref:`🔑DashboardWritePublic <DashboardWritePublic>`
      - Create and modify public (shared) dashboards
      - Typically restricted to administrators or dashboard managers
 
 .. _DashboardExportOwn:
 
-DashboardExportOwn
    :ref:`🔑DashboardExportOwn <DashboardExportOwn>`
      - Export private dashboards to JSON files
      - Allows backup and sharing of personal dashboard configurations
 
 .. _DashboardExportPublic:
 
-DashboardExportPublic
    :ref:`🔑DashboardExportPublic <DashboardExportPublic>`
      - Export public dashboards to JSON files
      - Typically restricted to administrators
 
 .. _DashboardImportOwn:
 
-DashboardImportOwn
    :ref:`🔑DashboardImportOwn <DashboardImportOwn>`
      - Import private dashboards from JSON files
      - Allows restoring or applying dashboard templates
 
 .. _DashboardImportPublic:
 
-DashboardImportPublic
    :ref:`🔑DashboardImportPublic <DashboardImportPublic>`
      - Import public dashboards from JSON files
      - Typically restricted to administrators
 
 .. _ShareDashboardLink:
 
-ShareDashboardLink
    :ref:`🔑ShareDashboardLink <ShareDashboardLink>`
      - Share dashboard links with other users
      - Granted to role Everybody by default
@@ -435,21 +392,18 @@ ShareDashboardLink
 
 .. _DocumentRead:
 
-DocumentRead
    :ref:`🔑DocumentRead <DocumentRead>`
      - View all documents across all cases/tasks
      - Administrative permission for full document visibility
 
 .. _DocumentWrite:
 
-DocumentWrite
    :ref:`🔑DocumentWrite <DocumentWrite>`
      - Upload and delete any documents
      - Administrative permission for document management
 
 .. _DocumentOfInvolvedCaseWrite:
 
-DocumentOfInvolvedCaseWrite
    :ref:`🔑DocumentOfInvolvedCaseWrite <DocumentOfInvolvedCaseWrite>`
      - Upload and delete documents in cases where user is involved
      - Standard permission for case participants
@@ -459,7 +413,6 @@ DocumentOfInvolvedCaseWrite
 
 .. _RoleReadAll:
 
-RoleReadAll
    :ref:`🔑RoleReadAll <RoleReadAll>`
      - View all roles in the system
      - Required for role selection in various features
@@ -467,28 +420,24 @@ RoleReadAll
 
 .. _RoleManagement:
 
-RoleManagement
    :ref:`🔑RoleManagement <RoleManagement>`
      - Access Role Management tab in Admin Settings
      - Required to view dynamic role configuration interface
 
 .. _RoleCreate:
 
-RoleCreate
    :ref:`🔑RoleCreate <RoleCreate>`
      - Create new dynamic roles
      - Typically restricted to administrators
 
 .. _RoleDelete:
 
-RoleDelete
    :ref:`🔑RoleDelete <RoleDelete>`
      - Delete existing dynamic roles
      - Typically restricted to administrators
 
 .. _RoleMove:
 
-RoleMove
    :ref:`🔑RoleMove <RoleMove>`
      - Change role hierarchy (select parent role)
      - Affects role inheritance structure
@@ -497,7 +446,6 @@ RoleMove
 
 .. _TaskCaseAddNote:
 
-TaskCaseAddNote
    :ref:`🔑TaskCaseAddNote <TaskCaseAddNote>`
      - Add notes/comments to tasks and cases
      - Enables collaboration and communication
@@ -505,14 +453,12 @@ TaskCaseAddNote
 
 .. _TaskCaseShowMoreNote:
 
-TaskCaseShowMoreNote
    :ref:`🔑TaskCaseShowMoreNote <TaskCaseShowMoreNote>`
      - View "Show more" option to expand long notes
      - Granted to role Everybody by default
 
 .. _NoteReadAllCaseTaskDetails:
 
-NoteReadAllCaseTaskDetails
    :ref:`🔑NoteReadAllCaseTaskDetails <NoteReadAllCaseTaskDetails>`
      - View system notes in case and task details
      - Allows non-admin users to see audit and system-generated notes
@@ -529,21 +475,18 @@ NoteReadAllCaseTaskDetails
 
 .. _NewsManagement:
 
-NewsManagement
    :ref:`🔑NewsManagement <NewsManagement>`
      - Manage News widget content on dashboards
      - Create, edit, and delete news items
 
 .. _PasswordValidation:
 
-PasswordValidation
    :ref:`🔑PasswordValidation <PasswordValidation>`
      - Access Password Validation settings in Admin Settings
      - Configure password complexity requirements
 
 .. _NotificationChannelsSetting:
 
-NotificationChannelsSetting
    :ref:`🔑NotificationChannelsSetting <NotificationChannelsSetting>`
      - Customize notification channel preferences in :ref:`my-profile`
      - Control email, browser, and other notification methods
@@ -553,7 +496,6 @@ NotificationChannelsSetting
 
 .. _CreatePublicExternalLink:
 
-CreatePublicExternalLink
    :ref:`🔑CreatePublicExternalLink <CreatePublicExternalLink>`
      - Create public external links visible to all users
      - Links appear in full process list for all users
@@ -570,14 +512,12 @@ Permissions for managing user absences and task substitution.
 
 .. _UserReadOwnAbsences:
 
-UserReadOwnAbsences
    :ref:`🔑UserReadOwnAbsences <UserReadOwnAbsences>`
      - View own absence records
      - Granted to role Everybody by default
 
 .. _UserCreateOwnAbsence:
 
-UserCreateOwnAbsence
    :ref:`🔑UserCreateOwnAbsence <UserCreateOwnAbsence>`
      - Create and edit own absence periods
      - Allows users to mark when they are unavailable
@@ -585,7 +525,6 @@ UserCreateOwnAbsence
 
 .. _UserDeleteOwnAbsence:
 
-UserDeleteOwnAbsence
    :ref:`🔑UserDeleteOwnAbsence <UserDeleteOwnAbsence>`
      - Delete own absence records
      - Granted to role Everybody by default
@@ -594,21 +533,18 @@ UserDeleteOwnAbsence
 
 .. _UserReadAbsences:
 
-UserReadAbsences
    :ref:`🔑UserReadAbsences <UserReadAbsences>`
      - View absence records of all users
      - Administrative permission for HR or management
 
 .. _UserCreateAbsence:
 
-UserCreateAbsence
    :ref:`🔑UserCreateAbsence <UserCreateAbsence>`
      - Create and edit absences for any user
      - Typically restricted to administrators or HR personnel
 
 .. _UserDeleteAbsence:
 
-UserDeleteAbsence
    :ref:`🔑UserDeleteAbsence <UserDeleteAbsence>`
      - Delete absence records for any user
      - Administrative permission for absence management
@@ -617,7 +553,6 @@ UserDeleteAbsence
 
 .. _UserCreateOwnSubstitute:
 
-UserCreateOwnSubstitute
    :ref:`🔑UserCreateOwnSubstitute <UserCreateOwnSubstitute>`
      - Create own substitute assignments
      - Delegate tasks to others during absence
@@ -625,14 +560,12 @@ UserCreateOwnSubstitute
 
 .. _UserCreateSubstitute:
 
-UserCreateSubstitute
    :ref:`🔑UserCreateSubstitute <UserCreateSubstitute>`
      - Create substitute assignments for any user
      - Administrative permission for managing substitutions
 
 .. _UserReadSubstitutes:
 
-UserReadSubstitutes
    :ref:`🔑UserReadSubstitutes <UserReadSubstitutes>`
      - View substitute assignments for all users
      - Required for seeing who is substituting whom
