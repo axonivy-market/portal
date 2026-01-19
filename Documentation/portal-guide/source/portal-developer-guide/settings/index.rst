@@ -84,19 +84,19 @@ Task Permissions
 ----------------
 - Add note
 
-   User needs permission: :bdg-ref-warning:`🔑TaskCaseAddNote <TaskCaseAddNote>`.
+   User needs permission: :ref:`🔑TaskCaseAddNote <TaskCaseAddNote>`.
 
 - Delegate
 
    To be able to delegate, the user needs permission
-   :bdg-ref-warning:`🔑TaskDisplayDelegateAction <TaskDisplayDelegateAction>`.
+   :ref:`🔑TaskDisplayDelegateAction <TaskDisplayDelegateAction>`.
 
    To delegate personal or group tasks, user needs permission
-   :bdg-ref-warning:`🔑TaskWriteActivatorOwnTasks <TaskWriteActivatorOwnTasks>`. This permission belongs to the
+   :ref:`🔑TaskWriteActivatorOwnTasks <TaskWriteActivatorOwnTasks>`. This permission belongs to the
    PortalPermissions group. It is not assigned to role Everybody by default.
 
    To delegate all tasks in a task list, the user needs permission
-   :bdg-ref-warning:`🔑TaskWriteActivator <TaskWriteActivator>`.
+   :ref:`🔑TaskWriteActivator <TaskWriteActivator>`.
 
    .. important::
       Only tasks ready for user processing can be delegated.
@@ -106,12 +106,12 @@ Task Permissions
 - Reset
 
    To see the reset action, the user needs permission
-   :bdg-ref-warning:`🔑TaskDisplayResetAction <TaskDisplayResetAction>`.
+   :ref:`🔑TaskDisplayResetAction <TaskDisplayResetAction>`.
 
    To reset tasks, the user needs permission:
-   :bdg-ref-warning:`🔑TaskResetOwnWorkingTask <TaskResetOwnWorkingTask>` or
-   :bdg-ref-warning:`🔑TaskResetReadyForJoin <TaskResetReadyForJoin>` or
-   :bdg-ref-warning:`🔑TaskReset <TaskReset>`.
+   :ref:`🔑TaskResetOwnWorkingTask <TaskResetOwnWorkingTask>` or
+   :ref:`🔑TaskResetReadyForJoin <TaskResetReadyForJoin>` or
+   :ref:`🔑TaskReset <TaskReset>`.
 
    .. important::
       This only works for tasks in one of following states: RESUMED,
@@ -121,7 +121,7 @@ Task Permissions
 - Delete
 
    To see the Delete Task action, the user needs permission
-   :bdg-ref-warning:`🔑TaskDestroy <TaskDestroy>`.
+   :ref:`🔑TaskDestroy <TaskDestroy>`.
 
    .. important::
       Delete Task only works if the task state is not already DESTROYED
@@ -130,10 +130,10 @@ Task Permissions
 - Reserve
 
    To see the Reserve action, the user needs permission
-   :bdg-ref-warning:`🔑TaskDisplayReserveAction <TaskDisplayReserveAction>`.
+   :ref:`🔑TaskDisplayReserveAction <TaskDisplayReserveAction>`.
 
    To reserve a task, the user needs permission
-   :bdg-ref-warning:`🔑TaskParkOwnWorkingTask <TaskParkOwnWorkingTask>`.
+   :ref:`🔑TaskParkOwnWorkingTask <TaskParkOwnWorkingTask>`.
 
    .. important::
       Reservation is only possible if the task is in one of the following
@@ -142,7 +142,7 @@ Task Permissions
 - Change description
 
    User needs permission:
-   :bdg-ref-warning:`🔑TaskWriteDescription <TaskWriteDescription>`.
+   :ref:`🔑TaskWriteDescription <TaskWriteDescription>`.
 
    .. important::
       A terminated task cannot be changed. Therefore, the task state cannot be one of the following values:
@@ -151,7 +151,7 @@ Task Permissions
 - Change deadline
 
    User needs permission
-   :bdg-ref-warning:`🔑TaskWriteExpiryTimestamp <TaskWriteExpiryTimestamp>`.
+   :ref:`🔑TaskWriteExpiryTimestamp <TaskWriteExpiryTimestamp>`.
 
    .. important::
       To change an expiry date, the task cannot be in one of the following states:
@@ -160,7 +160,7 @@ Task Permissions
 - Change priority
 
    User needs permission
-   :bdg-ref-warning:`🔑TaskWriteOriginalPriority <TaskWriteOriginalPriority>`.
+   :ref:`🔑TaskWriteOriginalPriority <TaskWriteOriginalPriority>`.
 
    .. important::
       To change task priority, the task cannot be in the following states:
@@ -169,25 +169,25 @@ Task Permissions
 - Display additional options
 
    To see additional actions, the user needs permission
-   :bdg-ref-warning:`🔑TaskDisplayAdditionalOptions <TaskDisplayAdditionalOptions>`.
+   :ref:`🔑TaskDisplayAdditionalOptions <TaskDisplayAdditionalOptions>`.
 
 Case Permissions
 ----------------
 
 - Add note
 
-   User needs permission :bdg-ref-warning:`🔑TaskCaseAddNote <TaskCaseAddNote>`.
+   User needs permission :ref:`🔑TaskCaseAddNote <TaskCaseAddNote>`.
 
 - Delete
 
-   User needs permission :bdg-ref-warning:`🔑CaseDestroy <CaseDestroy>`.
+   User needs permission :ref:`🔑CaseDestroy <CaseDestroy>`.
 
    .. important::
       Case state has to be RUNNING.
 
 - Change description
 
-   User needs permission :bdg-ref-warning:`🔑CaseWriteDescription <CaseWriteDescription>`.
+   User needs permission :ref:`🔑CaseWriteDescription <CaseWriteDescription>`.
 
    .. important::
       Case state cannot be DESTROYED.
@@ -195,23 +195,23 @@ Case Permissions
 - See related tasks of case
 
    To see the related tasks action, the user needs permission
-   :bdg-ref-warning:`🔑ShowAllTasksOfCase <ShowAllTasksOfCase>`.
+   :ref:`🔑ShowAllTasksOfCase <ShowAllTasksOfCase>`.
 
    To see related tasks, user needs permission
-   :bdg-ref-warning:`🔑TaskReadOwnCaseTasks <TaskReadOwnCaseTasks>` or :bdg-ref-warning:`🔑TaskReadAll <TaskReadAll>`.
+   :ref:`🔑TaskReadOwnCaseTasks <TaskReadOwnCaseTasks>` or :ref:`🔑TaskReadAll <TaskReadAll>`.
 
    .. important::
       Case state cannot be DESTROYED.
 
 - Display show detail link
 
-   User needs permission :bdg-ref-warning:`🔑ShowCaseDetails <ShowCaseDetails>`. By default, this permission
+   User needs permission :ref:`🔑ShowCaseDetails <ShowCaseDetails>`. By default, this permission
    is not assigned to role Everybody.
 
 Normal users can only see the tasks and cases that they can work on.
 
 Administrators can see all tasks/cases in the application. The require
-permissions :bdg-ref-warning:`🔑TaskReadAll <TaskReadAll>`, :bdg-ref-warning:`🔑CaseReadAll <CaseReadAll>`.
+permissions :ref:`🔑TaskReadAll <TaskReadAll>`, :ref:`🔑CaseReadAll <CaseReadAll>`.
 
 Administrators can interact with all workflows in the application.
 
@@ -230,63 +230,63 @@ Other Permissions
  +-----------+---------------------------------+--------------------------------------------------------------------------------------------+
  |           | Action                          | Permission required                                                                        |
  +===========+=================================+============================================================================================+
- | Absence   | Read                            | :bdg-ref-warning:`🔑UserReadOwnAbsences <UserReadOwnAbsences>`  or                         |
- |           |                                 | :bdg-ref-warning:`🔑UserReadAbsences <UserReadAbsences>`                                   |
+ | Absence   | Read                            | :ref:`🔑UserReadOwnAbsences <UserReadOwnAbsences>`  or                                     |
+ |           |                                 | :ref:`🔑UserReadAbsences <UserReadAbsences>`                                               |
  |           +---------------------------------+--------------------------------------------------------------------------------------------+
- |           | Create, edit                    | :bdg-ref-warning:`🔑UserCreateOwnAbsence <UserCreateOwnAbsence>` or                        |
- |           |                                 | :bdg-ref-warning:`🔑UserCreateAbsence <UserCreateAbsence>`                                 |
+ |           | Create, edit                    | :ref:`🔑UserCreateOwnAbsence <UserCreateOwnAbsence>` or                                    |
+ |           |                                 | :ref:`🔑UserCreateAbsence <UserCreateAbsence>`                                             |
  |           +---------------------------------+--------------------------------------------------------------------------------------------+
- |           | Delete                          | :bdg-ref-warning:`🔑UserDeleteOwnAbsence <UserDeleteOwnAbsence>` or                        |
- |           |                                 | :bdg-ref-warning:`🔑UserDeleteAbsence <UserDeleteAbsence>`                                 |
+ |           | Delete                          | :ref:`🔑UserDeleteOwnAbsence <UserDeleteOwnAbsence>` or                                    |
+ |           |                                 | :ref:`🔑UserDeleteAbsence <UserDeleteAbsence>`                                             |
  |           +---------------------------------+--------------------------------------------------------------------------------------------+
- |           | Read absences of all users      | :bdg-ref-warning:`🔑UserReadAbsences <UserReadAbsences>`                                   |
+ |           | Read absences of all users      | :ref:`🔑UserReadAbsences <UserReadAbsences>`                                               |
  |           +---------------------------------+--------------------------------------------------------------------------------------------+
- |           | Delete absences of all users    | :bdg-ref-warning:`🔑UserDeleteAbsence <UserDeleteAbsence>`                                 |
+ |           | Delete absences of all users    | :ref:`🔑UserDeleteAbsence <UserDeleteAbsence>`                                             |
  |           +---------------------------------+--------------------------------------------------------------------------------------------+
- |           | Create new absence for all users| :bdg-ref-warning:`🔑UserCreateAbsence <UserCreateAbsence>`                                 |
+ |           | Create new absence for all users| :ref:`🔑UserCreateAbsence <UserCreateAbsence>`                                             |
  +-----------+---------------------------------+--------------------------------------------------------------------------------------------+
- | Substitute| Manage substitute               | :bdg-ref-warning:`🔑UserCreateSubstitute <UserCreateSubstitute>` and                       |
- |           |                                 | :bdg-ref-warning:`🔑UserReadSubstitutes <UserReadSubstitutes>`                             |
+ | Substitute| Manage substitute               | :ref:`🔑UserCreateSubstitute <UserCreateSubstitute>` and                                   |
+ |           |                                 | :ref:`🔑UserReadSubstitutes <UserReadSubstitutes>`                                         |
  +-----------+---------------------------------+--------------------------------------------------------------------------------------------+
- | Document  | Upload, delete                  | :bdg-ref-warning:`🔑DocumentWrite <DocumentWrite>`                                         |
- |           |                                 | :bdg-ref-warning:`🔑DocumentOfInvolvedCaseWrite <DocumentOfInvolvedCaseWrite>`             |
+ | Document  | Upload, delete                  | :ref:`🔑DocumentWrite <DocumentWrite>`                                                     |
+ |           |                                 | :ref:`🔑DocumentOfInvolvedCaseWrite <DocumentOfInvolvedCaseWrite>`                         |
  +-----------+---------------------------------+--------------------------------------------------------------------------------------------+
- | Express   | Create Express workflow         | :bdg-ref-warning:`🔑ExpressCreateWorkflow <ExpressCreateWorkflow>`                         |
+ | Express   | Create Express workflow         | :ref:`🔑ExpressCreateWorkflow <ExpressCreateWorkflow>`                                     |
  +-----------+---------------------------------+--------------------------------------------------------------------------------------------+
- | Statistics| Add dashboard                   | :bdg-ref-warning:`🔑StatisticAddDashboardChart <StatisticAddDashboardChart>`               |
+ | Statistics| Add dashboard                   | :ref:`🔑StatisticAddDashboardChart <StatisticAddDashboardChart>`                           |
  |           +---------------------------------+--------------------------------------------------------------------------------------------+
- |           | Analyze, filter tasks           | :bdg-ref-warning:`🔑StatisticAnalyzeTask <StatisticAnalyzeTask>`                           |
+ |           | Analyze, filter tasks           | :ref:`🔑StatisticAnalyzeTask <StatisticAnalyzeTask>`                                       |
  |           | and export data to excel        |                                                                                            |
  |           | for advanced analysis           |                                                                                            |
  +-----------+---------------------------------+--------------------------------------------------------------------------------------------+
- | Portal    | Access to full process          | :bdg-ref-warning:`🔑AccessFullProcessList <AccessFullProcessList>`                         |
+ | Portal    | Access to full process          | :ref:`🔑AccessFullProcessList <AccessFullProcessList>`                                     |
  | permission| list, it's "Processes" on the   |                                                                                            |
  |           | left menu and link "Show all    |                                                                                            |
  |           | processes" on Dashboard         |                                                                                            |
  |           +---------------------------------+--------------------------------------------------------------------------------------------+
- |           | Access to full task list, it's  | :bdg-ref-warning:`🔑AccessFullTaskList <AccessFullTaskList>`                               |
+ |           | Access to full task list, it's  | :ref:`🔑AccessFullTaskList <AccessFullTaskList>`                                           |
  |           | "Tasks" on the left menu and    |                                                                                            |
  |           | link "Show full task list" on   |                                                                                            |
  |           | Dashboard                       |                                                                                            |
  |           +---------------------------------+--------------------------------------------------------------------------------------------+
- |           | Access to full case list, it's  | :bdg-ref-warning:`🔑AccessFullCaseList <AccessFullCaseList>`                               |
+ |           | Access to full case list, it's  | :ref:`🔑AccessFullCaseList <AccessFullCaseList>`                                           |
  |           | "Cases" on the left menu        |                                                                                            |
  |           +---------------------------------+--------------------------------------------------------------------------------------------+
- |           | Access to statistics it's       | :bdg-ref-warning:`🔑AccessFullStatisticsList <AccessFullStatisticsList>`                   |
+ |           | Access to statistics it's       | :ref:`🔑AccessFullStatisticsList <AccessFullStatisticsList>`                               |
  |           | "Statistics" on the left menu   |                                                                                            |
  |           | and link "Show all charts" on   |                                                                                            |
  |           | Dashboard                       |                                                                                            |
  |           +---------------------------------+--------------------------------------------------------------------------------------------+
- |           | Add note to task/case           | :bdg-ref-warning:`🔑TaskCaseAddNote <TaskCaseAddNote>`                                     |
+ |           | Add note to task/case           | :ref:`🔑TaskCaseAddNote <TaskCaseAddNote>`                                                 |
  |           +---------------------------------+--------------------------------------------------------------------------------------------+
- |           | Display show more note          | :bdg-ref-warning:`🔑TaskCaseShowMoreNote <TaskCaseShowMoreNote>`                           |
+ |           | Display show more note          | :ref:`🔑TaskCaseShowMoreNote <TaskCaseShowMoreNote>`                                       |
  |           +---------------------------------+--------------------------------------------------------------------------------------------+
- |           | Create public external link, all| :bdg-ref-warning:`🔑CreatePublicExternalLink <CreatePublicExternalLink>`                   |
+ |           | Create public external link, all| :ref:`🔑CreatePublicExternalLink <CreatePublicExternalLink>`                               |
  |           | other users can see that link in|                                                                                            |
  |           | full process list and can also  |                                                                                            |
  |           | add it to User Favorite         |                                                                                            |
  |           +---------------------------------+--------------------------------------------------------------------------------------------+
- |           | Dashboard sharing               | :bdg-ref-warning:`🔑ShareDashboardLink <ShareDashboardLink>`                               |
+ |           | Dashboard sharing               | :ref:`🔑ShareDashboardLink <ShareDashboardLink>`                                           |
  +-----------+---------------------------------+--------------------------------------------------------------------------------------------+
 
 .. _settings-virus-scanning-setting:

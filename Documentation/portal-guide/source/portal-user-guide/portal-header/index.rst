@@ -38,7 +38,7 @@ Dashboard Configuration
 -----------------------
 
 Menu entry :ref:`dashboard-configuration` contains dashboards settings,
-grant either :bdg-ref-warning:`🔑DashboardWriteOwn <DashboardWriteOwn>` or :bdg-ref-warning:`🔑DashboardWritePublic <DashboardWritePublic>` 
+grant either :ref:`🔑DashboardWriteOwn <DashboardWriteOwn>` or :ref:`🔑DashboardWritePublic <DashboardWritePublic>`
 to allow a user to define dashboard settings either for their own private dashboards or public dashboards, respectively.
 
 Absences
@@ -78,7 +78,7 @@ HowTo: Add absence
 
 .. note::
 
-   Grant either permission :bdg-ref-warning:`🔑UserCreateOwnAbsence <UserCreateOwnAbsence>` or :bdg-ref-warning:`🔑UserCreateAbsence <UserCreateAbsence>` 
+   Grant either permission :ref:`🔑UserCreateOwnAbsence <UserCreateOwnAbsence>` or :ref:`🔑UserCreateAbsence <UserCreateAbsence>`
    to allow a user to create own, personal absences or public absences, respectively.
 
 HowTo: Set substitute
@@ -104,7 +104,7 @@ HowTo: Set substitute
 
 .. note::
 
-   Grant either permission :bdg-ref-warning:`🔑UserCreateOwnSubstitute <UserCreateOwnSubstitute>` or :bdg-ref-warning:`🔑UserCreateSubstitute <UserCreateSubstitute>` 
+   Grant either permission :ref:`🔑UserCreateOwnSubstitute <UserCreateOwnSubstitute>` or :ref:`🔑UserCreateSubstitute <UserCreateSubstitute>`
    to allow a user to create their own substitute definitions or create substitute definitions for all users, respectively.
 
 Change Password
@@ -116,7 +116,7 @@ The menu entry :guilabel:`Change password` allows you to set a new password.
 
 .. note::
 
-   Grant permission: :bdg-warning:`🔑UserSetOwnPassword` to allow a user to change their password.
+   Grant permission: 🔑UserSetOwnPassword to allow a user to change their password.
    Configure permissions in the :dev-url:`Engine Cockpit
    </doc/|version|/engine-guide/reference/engine-cockpit/security.html>`. In the security area, open PersonalPermissions -> PersonalSecurityPermissions -> UserSetOwnPassword.
 

@@ -10,7 +10,7 @@ selecting |case-icon| :guilabel:`Cases` in the |ivy| Portal menu.
 
 .. note::
 
-   Grant permission :bdg-ref-warning:`🔑AccessFullCaseList <AccessFullCaseList>` if |case-icon| :guilabel:`Cases` is not visible.
+   Grant permission :ref:`🔑AccessFullCaseList <AccessFullCaseList>` if |case-icon| :guilabel:`Cases` is not visible.
 
 .. hint:: 
    The set of cases you see in the Portal depends on the roles you hold 
@@ -205,7 +205,7 @@ HowTo: Attach a Document to the Case
 
 .. note::
 
-   Grant either permission :bdg-ref-warning:`🔑DocumentOfInvolvedCaseWrite <DocumentOfInvolvedCaseWrite>` or :bdg-ref-warning:`🔑DocumentWrite <DocumentWrite>` to allow a user to write case documents.
+   Grant either permission :ref:`🔑DocumentOfInvolvedCaseWrite <DocumentOfInvolvedCaseWrite>` or :ref:`🔑DocumentWrite <DocumentWrite>` to allow a user to write case documents.
 
 .. _howto-remove-an-attachment-from-the-case-1:
 
@@ -265,7 +265,7 @@ HowTo: Remove an Attachment from the Case
 
 .. note::
    
-   Grant either permission :bdg-ref-warning:`🔑DocumentOfInvolvedCaseWrite <DocumentOfInvolvedCaseWrite>` or :bdg-ref-warning:`🔑DocumentWrite <DocumentWrite>` to allow a user to delete attachments from a case.
+   Grant either permission :ref:`🔑DocumentOfInvolvedCaseWrite <DocumentOfInvolvedCaseWrite>` or :ref:`🔑DocumentWrite <DocumentWrite>` to allow a user to delete attachments from a case.
 
 HowTo: Add a Note to a Case
 ---------------------------
@@ -291,7 +291,7 @@ HowTo: Add a Note to a Case
       - Displayed in the ``History`` table of its technical case details.
       - Not displayed in the ``Notes`` table of tasks belong to technical case.
    
-   Grant permission :bdg-ref-warning:`🔑TaskCaseAddNote <TaskCaseAddNote>` to allow a user to add a note to a case.
+   Grant permission :ref:`🔑TaskCaseAddNote <TaskCaseAddNote>` to allow a user to add a note to a case.
 
 HowTo: Export a Case History
 ----------------------------
@@ -332,7 +332,7 @@ This section shows you the related tasks of this case.
 
 .. note::
    
-   Grant either permission :bdg-ref-warning:`🔑TaskReadOwnCaseTasks <TaskReadOwnCaseTasks>` or :bdg-ref-warning:`🔑TaskReadAll <TaskReadAll>` to allow a user to see all related tasks of a case.
+   Grant either permission :ref:`🔑TaskReadOwnCaseTasks <TaskReadOwnCaseTasks>` or :ref:`🔑TaskReadAll <TaskReadAll>` to allow a user to see all related tasks of a case.
 
 The list shows the following key information for each task. To change the
 columns displayed, click on :guilabel:`Manage columns`. Select from the
@@ -444,7 +444,7 @@ HowTo: Share Case Details
 
 .. note::
 
-   Grant permission :bdg-ref-warning:`🔑ShareCaseDetailsLink <ShareCaseDetailsLink>` to allow a user to share case details.
+   Grant permission :ref:`🔑ShareCaseDetailsLink <ShareCaseDetailsLink>` to allow a user to share case details.
 
 .. include:: ../includes/_common-icon.rst
 
