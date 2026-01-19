@@ -199,7 +199,7 @@ Different process operations require specific permissions:
    +--------------------------------------+--------------------------------------------------------+
    | Action                               | Required Permission                                    |
    +======================================+========================================================+
-   | **Create public external link**      | :ref:`🔑CreatePublicExternalLink           |
+   | **Create public external link**      | :ref:`🔑CreatePublicExternalLink                       |
    |                                      | <CreatePublicExternalLink>`                            |
    +--------------------------------------+--------------------------------------------------------+
 
