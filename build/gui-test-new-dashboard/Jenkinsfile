@@ -41,7 +41,7 @@ pipeline {
             pkill -f "elasticsearch" || true
           '''
 
-          docker.build('gui-test-portal', '-f build/Dockerfile.python .').inside('-v /var/tools/maven-cache:/home/build/') {
+          docker.build('gui-test-portal', '-f build/Dockerfile.python .').inside('-v /var/tools/maven-cache:/home/wawa/build/') {
             echo '====================Extract engine===================='
             sh "mvn clean compile -f AxonIvyPortal/portal-components/pom.xml -Divy.engine.directory=${env.engineDir} ${params.engineDownloadURL}"
 
