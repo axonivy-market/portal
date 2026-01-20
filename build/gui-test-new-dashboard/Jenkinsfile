@@ -32,27 +32,36 @@ pipeline {
       steps {
         script {
           currentBuild.description = "On ${env.NODE_NAME}"
+          def random = (new Random()).nextInt(10000000)
+          def networkName = "build-" + random
+          def seleniumName = "selenium-" + random
+          sh "docker network create ${networkName}"
+          try {
+            docker.image("selenium/standalone-firefox:4").withRun("-e START_XVFB=false --shm-size=2g --name ${seleniumName} --network ${networkName} --shm-size 1g --hostname=wawa") {
+              docker.build('gui-test-portal', '-f build/gui-test-new-dashboard/Dockerfile .').inside("--network ${networkName} -v /var/tools/maven-cache:/home/wawa/build/") {
+                echo '====================Extract engine===================='
+                maven cmd: "clean compile -f AxonIvyPortal/portal-components/pom.xml -Divy.engine.directory=${env.engineDir} ${params.engineDownloadURL}"
 
-          docker.build('gui-test-portal', '-f build/gui-test-new-dashboard/Dockerfile .').inside('-v /var/tools/maven-cache:/home/wawa/build/') {
-            echo '====================Extract engine===================='
-            maven cmd: "clean compile -f AxonIvyPortal/portal-components/pom.xml -Divy.engine.directory=${env.engineDir} ${params.engineDownloadURL}"
+                echo '====================Build Portal modules===================='
+                def modules = ['AxonIvyPortal/portal-components', 'AxonIvyPortal/portal', 'AxonIvyPortal/PortalKitTestHelper', 'Showcase/portal-user-examples', 'Showcase/portal-developer-examples', 'Showcase/InternalSupport', 'Showcase/portal-components-examples']
+                for (module in modules) {
+                  maven cmd: "clean install -f ${module}/pom.xml -Divy.engine.directory=${env.engineDir}"
+                }
 
-            echo '====================Build Portal modules===================='
-            def modules = ['AxonIvyPortal/portal-components', 'AxonIvyPortal/portal', 'AxonIvyPortal/PortalKitTestHelper', 'Showcase/portal-user-examples', 'Showcase/portal-developer-examples', 'Showcase/InternalSupport', 'Showcase/portal-components-examples']
-            for (module in modules) {
-              maven cmd: "clean install -f ${module}/pom.xml -Divy.engine.directory=${env.engineDir}"
+                echo '====================Build and deploy test package===================='
+                maven cmd: "clean package -f AxonIvyPortal/portal-selenium-test/deployment-pom.xml -Divy.engine.directory=${env.engineDir}"
+                sh """
+                  DEPLOYMENT="${env.engineDir}/system/demo-applications/demo-portal"
+                  rm -rf \${DEPLOYMENT}/*
+                  cp AxonIvyPortal/portal-selenium-test/target/*zip \${DEPLOYMENT}/
+                """
+
+                echo '====================Execute maven for testing===================='
+                maven cmd: "clean verify -f AxonIvyPortal/portal-selenium-test/customized_pom.xml ${params.engineDownloadURL} -Dtest=${params.testPatternToRun} -DbrowserType=FIREFOX -Dcapabilities.unhandledPromptBehavior=accept -DtrimStackTrace=false -Divy.engine.directory=${env.engineDir} -Divy.deploy.timeout.seconds=60 -Divy.engine.start.timeout.seconds=500 -Dsurefire.rerunFailingTestsCount=2"
+              }
             }
-
-            echo '====================Build and deploy test package===================='
-            maven cmd: "clean package -f AxonIvyPortal/portal-selenium-test/deployment-pom.xml -Divy.engine.directory=${env.engineDir}"
-            sh """
-              DEPLOYMENT="${env.engineDir}/system/demo-applications/demo-portal"
-              rm -rf \${DEPLOYMENT}/*
-              cp AxonIvyPortal/portal-selenium-test/target/*zip \${DEPLOYMENT}/
-            """
-
-            echo '====================Execute maven for testing===================='
-            maven cmd: "clean verify -f AxonIvyPortal/portal-selenium-test/customized_pom.xml ${params.engineDownloadURL} -Dtest=${params.testPatternToRun} -DbrowserType=FIREFOX -Dcapabilities.unhandledPromptBehavior=accept -DtrimStackTrace=false -Divy.engine.directory=${env.engineDir} -Divy.deploy.timeout.seconds=60 -Divy.engine.start.timeout.seconds=500 -Dsurefire.rerunFailingTestsCount=2"
+          } finally {
+            sh "docker network rm ${networkName}"
           }
 
           echo '====================Archive consoleText ===================='
