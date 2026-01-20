@@ -46,11 +46,11 @@ pipeline {
                 echo '====================Build Portal modules===================='
                 def modules = ['AxonIvyPortal/portal-components', 'AxonIvyPortal/portal', 'AxonIvyPortal/PortalKitTestHelper', 'Showcase/portal-user-examples', 'Showcase/portal-developer-examples', 'Showcase/InternalSupport', 'Showcase/portal-components-examples']
                 for (module in modules) {
-                  maven cmd: "clean install -f ${module}/pom.xml -Divy.engine.directory=${env.engineDir}"
+                  maven cmd: "clean install -ntp -f ${module}/pom.xml -Divy.engine.directory=${env.engineDir}"
                 }
 
                 echo '====================Build and deploy test package===================='
-                maven cmd: "clean package -f AxonIvyPortal/portal-selenium-test/deployment-pom.xml -Divy.engine.directory=${env.engineDir}"
+                maven cmd: "clean package -ntp -f AxonIvyPortal/portal-selenium-test/deployment-pom.xml -Divy.engine.directory=${env.engineDir}"
                 sh """
                   DEPLOYMENT="${env.engineDir}/system/demo-applications/demo-portal"
                   rm -rf \${DEPLOYMENT}/*
@@ -58,7 +58,7 @@ pipeline {
                 """
 
                 echo '====================Execute maven for testing===================='
-                maven cmd: "clean verify -f AxonIvyPortal/portal-selenium-test/customized_pom.xml ${params.engineDownloadURL} -Dtest=${params.testPatternToRun} -DbrowserType=FIREFOX -Dcapabilities.unhandledPromptBehavior=accept -DtrimStackTrace=false -Divy.engine.directory=${env.engineDir} -Divy.deploy.timeout.seconds=60 -Divy.engine.start.timeout.seconds=500 -Dsurefire.rerunFailingTestsCount=2 -Dselenide.remote=http://${seleniumName}:4444/wd/hub -Dselenide.baseUrl=http://${wawaName}:8080"
+                maven cmd: "clean verify -ntp -f AxonIvyPortal/portal-selenium-test/customized_pom.xml ${params.engineDownloadURL} -Dtest=${params.testPatternToRun} -DbrowserType=FIREFOX -Dcapabilities.unhandledPromptBehavior=accept -DtrimStackTrace=false -Divy.engine.directory=${env.engineDir} -Divy.deploy.timeout.seconds=60 -Divy.engine.start.timeout.seconds=500 -Dsurefire.rerunFailingTestsCount=2 -Dselenide.remote=http://${seleniumName}:4444/wd/hub -Dselenide.baseUrl=http://${wawaName}:8080"
               }
             }
           } finally {
