@@ -111,7 +111,7 @@ three state of event: subscribed by default, subscribe, unsubscribe. These check
 to prevent users from modifying them.
 
 .. note::
-   - As an administrator, you can configure the permission :bdg-ref-warning:`🔑NotificationChannelsSetting <NotificationChannelsSetting>` to allow or prevent users from modifying notification channel preferences.
+   - As an administrator, you can configure the permission :ref:`🔑NotificationChannelsSetting <NotificationChannelsSetting>` to allow or prevent users from modifying notification channel preferences.
    
    - To do this, access the :doc-url:`Engine Cockpit </engine-guide/reference/engine-cockpit/security.html>`, open the **Security area**. Since this permission is granted to the Everybody role by default, administrators need to deny this permission from the Everybody role, then grant it to specific roles that should be allowed to modify notification channel preferences.
 

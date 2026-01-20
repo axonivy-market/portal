@@ -3,13 +3,12 @@
 Full Case List
 **************
 
-The **Full Case List** page is a dashboard featuring a single, full-width case widget.
+The **Full Case List** page is a dashboard featuring a single, full-width case widget. 
 You can reach the page by using the |case-icon| :guilabel:`Cases` link in the Axon Ivy Portal menu.
 
 .. important::
-   - Full Case list dashboard works normally like any other dashboards. You can manage it in the :ref:`Dashboard Configuration <dashboard-configuration>` page.
-   
-   - The template :guilabel:`Full Case list dashboard` will support you to create a new dashboard having a similar layout, see :ref:`public-available-dashboard-template`.
+   **Access Requirement**: Only users with the :ref:`🔑AccessFullCaseList <AccessFullCaseList>` 
+   permission can see the |case-icon| :guilabel:`Cases` menu item.
 
 .. tip:: 
    The cases you see depend on the roles you hold in your applications.
@@ -364,21 +363,21 @@ Different case operations require specific permissions:
    +--------------------------------------+--------------------------------------------------------+
    | Action                               | Required Permission                                    |
    +======================================+========================================================+
-   | **View related tasks of case**       | :bdg-ref-warning:`🔑TaskReadOwnCaseTasks               |
+   | **View related tasks of case**       | :ref:`🔑TaskReadOwnCaseTasks                           |
    |                                      | <TaskReadOwnCaseTasks>` or                             |
-   |                                      | :bdg-ref-warning:`🔑TaskReadAll <TaskReadAll>`         |
+   |                                      | :ref:`🔑TaskReadAll <TaskReadAll>`                     |
    +--------------------------------------+--------------------------------------------------------+
-   | **Add/delete case documents**        | :bdg-ref-warning:`🔑DocumentOfInvolvedCaseWrite        |
+   | **Add/delete case documents**        | :ref:`🔑DocumentOfInvolvedCaseWrite                    |
    |                                      | <DocumentOfInvolvedCaseWrite>` or                      |
-   |                                      | :bdg-ref-warning:`🔑DocumentWrite <DocumentWrite>`     |
+   |                                      | :ref:`🔑DocumentWrite <DocumentWrite>`                 |
    +--------------------------------------+--------------------------------------------------------+
-   | **Add note to case**                 | :bdg-ref-warning:`🔑TaskCaseAddNote                    |
+   | **Add note to case**                 | :ref:`🔑TaskCaseAddNote                                |
    |                                      | <TaskCaseAddNote>`                                     |
    +--------------------------------------+--------------------------------------------------------+
-   | **Share case details link**          | :bdg-ref-warning:`🔑ShareCaseDetailsLink               |
+   | **Share case details link**          | :ref:`🔑ShareCaseDetailsLink                           |
    |                                      | <ShareCaseDetailsLink>`                                |
    +--------------------------------------+--------------------------------------------------------+
-   | **View custom fields**               | :bdg-ref-warning:`🔑CaseDisplayCustomFieldsAction      |
+   | **View custom fields**               | :ref:`🔑CaseDisplayCustomFieldsAction                  |
    |                                      | <CaseDisplayCustomFieldsAction>`                       |
    +--------------------------------------+--------------------------------------------------------+
 
