@@ -1,4 +1,4 @@
-FROM maven:3.9.9-eclipse-temurin-21
+FROM maven:3.9.12-eclipse-temurin-21
 
 # # 1. Install Firefox dependencies + Helper tools
 # # Detect OS version or try installing both variants to be safe

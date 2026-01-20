@@ -37,7 +37,7 @@ pipeline {
           def seleniumName = "selenium-" + random
           sh "docker network create ${networkName}"
           try {
-            docker.image("selenium/standalone-firefox:4").withRun("-e START_XVFB=false --shm-size=2g --name ${seleniumName} --network ${networkName} --shm-size 1g --hostname=wawa") {
+            docker.image("selenium/standalone-firefox:4").withRun("--shm-size=2g --name ${seleniumName} --network ${networkName} --hostname=wawa") {
               docker.build('gui-test-portal', '-f build/gui-test-new-dashboard/Dockerfile .').inside("--network ${networkName} -v /var/tools/maven-cache:/home/wawa/build/") {
                 echo '====================Extract engine===================='
                 maven cmd: "clean compile -f AxonIvyPortal/portal-components/pom.xml -Divy.engine.directory=${env.engineDir} ${params.engineDownloadURL}"
@@ -57,7 +57,7 @@ pipeline {
                 """
 
                 echo '====================Execute maven for testing===================='
-                maven cmd: "clean verify -f AxonIvyPortal/portal-selenium-test/customized_pom.xml ${params.engineDownloadURL} -Dtest=${params.testPatternToRun} -DbrowserType=FIREFOX -Dcapabilities.unhandledPromptBehavior=accept -DtrimStackTrace=false -Divy.engine.directory=${env.engineDir} -Divy.deploy.timeout.seconds=60 -Divy.engine.start.timeout.seconds=500 -Dsurefire.rerunFailingTestsCount=2"
+                maven cmd: "clean verify -f AxonIvyPortal/portal-selenium-test/customized_pom.xml ${params.engineDownloadURL} -Dtest=${params.testPatternToRun} -DbrowserType=FIREFOX -Dcapabilities.unhandledPromptBehavior=accept -DtrimStackTrace=false -Divy.engine.directory=${env.engineDir} -Divy.deploy.timeout.seconds=60 -Divy.engine.start.timeout.seconds=500 -Dsurefire.rerunFailingTestsCount=2 -Dselenide.remote=http://${seleniumName}:4444/wd/hub"
               }
             }
           } finally {
