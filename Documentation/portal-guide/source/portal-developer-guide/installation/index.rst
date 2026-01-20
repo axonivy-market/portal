@@ -155,11 +155,11 @@ In Engine
 #. Follow detailed migration notes for each version below.
 
 Migrate To 14.0
-_______________
+---------------
 
-1. Permissions :bdg-ref-warning:`🔑AccessFullCaseList <AccessFullCaseList>` and :bdg-ref-warning:`🔑AccessFullTaskList <AccessFullTaskList>` has been removed.
-Default Tasks and Cases dashboards now works like any other dashboards. You can manage it in the :ref:`Dashboard Configuration <dashboard-configuration>` page.
-If you want to restrict access to Full Task List and Full Case List dashboards, you can now configure its permission using user roles.
+1. Permissions **🔑AccessFullCaseList** and **🔑AccessFullTaskList** has been removed.
+Default Tasks and Cases dashboards now works like any other dashboards. If you want to restrict access to Full Task List and Full Case List dashboards, you can now configure its permission using user roles. 
+You can access the :ref:`Dashboard Configuration <dashboard-configuration>` page to change its default settings.
 
 Migrate 13.1 To 13.2
 --------------------

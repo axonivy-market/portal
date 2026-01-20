@@ -330,22 +330,6 @@ General permissions for dashboards, documents, lists, roles, and Portal features
      - See :ref:`full-process-list` for details
      - Granted to role Everybody by default
 
-.. _AccessFullTaskList:
-
-   :ref:`🔑AccessFullTaskList <AccessFullTaskList>`
-     - Access full task list page showing all accessible tasks
-     - Shows "Tasks" in left menu and "Show full task list" on Dashboard
-     - See :ref:`full-task-list` for details
-     - Granted to role Everybody by default
-
-.. _AccessFullCaseList:
-
-   :ref:`🔑AccessFullCaseList <AccessFullCaseList>`
-     - Access full case list page showing all accessible cases
-     - Shows "Cases" in left menu
-     - See :ref:`full-case-list` for details
-     - Granted to role Everybody by default
-
 **Dashboard Permissions**
 
 .. _DashboardWriteOwn:
