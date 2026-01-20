@@ -18,17 +18,17 @@
   <h:panelGroup id="custom-iframe" rendered="#{(widget.type eq 'custom') and (not empty widget.data.url)}"
     styleClass="card custom-widget-card #{cc.attrs.widgetStyleClass} grid-stack-item-content #{managedBean.readOnlyMode ? '' : 'moveable-area'} iframe-widget">
     <ui:fragment rendered="#{not empty widget.data.processPath}">
-      <form id="custom-widget-iframe-data" target="custom-widget-iframe" action="#{widget.data.url}" method="post">
+      <form id="#{cc.clientId}:custom-widget-iframe-data" target="#{cc.clientId}:custom-widget-iframe" action="#{widget.data.url}" method="post">
         <ui:repeat var="entry" value="#{widget.data.params.entrySet()}">
           <input type="hidden" name="#{entry.key}"
             value="#{managedBean.getPropertyByKeyPattern(referenceId, entry.value)}" />
         </ui:repeat>
       </form>
-      <iframe name="custom-widget-iframe"
+      <iframe name="#{cc.clientId}:custom-widget-iframe"
         title="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CustomIFrameWidget/CustomWidgetIFrameTitle')}" />
       <script type="text/javascript">
          $(function() {
-             $('form[id="custom-widget-iframe-data"]').submit();
+             $('form[id="#{cc.clientId}:custom-widget-iframe-data"]').submit();
          });
        </script>
     </ui:fragment>
