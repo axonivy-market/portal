@@ -157,9 +157,9 @@ In Engine
 Migrate To 14.0
 ---------------
 
-1. Permissions **🔑AccessFullCaseList** and **🔑AccessFullTaskList** has been removed.
-Default Tasks and Cases dashboards now works like any other dashboards. If you want to restrict access to Full Task List and Full Case List dashboards, you can now configure its permission using user roles. 
-You can access the :ref:`Dashboard Configuration <dashboard-configuration>` page to change its default settings.
+1. Permissions **🔑AccessFullCaseList** and **🔑AccessFullTaskList** have been removed.
+Default Tasks and Cases dashboards now work like any other dashboards. If you want to restrict access to these dashboards, you can now configure their permissions using user roles. 
+Please access the :ref:`Dashboard Configuration <dashboard-configuration>` page to change its default settings.
 
 Migrate 13.1 To 13.2
 --------------------
