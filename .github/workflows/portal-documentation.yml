@@ -1,6 +1,10 @@
 name: Documentation
 run-name: 📚 Documentation
 on:
+  pull_request:
+    paths:
+      - '**.po'
+      - '**.rst'
   workflow_dispatch:
     inputs:
       ivyVersion:
@@ -50,8 +54,19 @@ jobs:
           echo "release=$RELEASE" >> "$GITHUB_OUTPUT"
           echo "Version is $VERSION"
           echo "Release is $RELEASE" 
-      
+
+      - name: Download screenshot artifacts from head branch
+        id: get_screenshots_head_branch
+        uses: dawidd6/action-download-artifact@v11
+        continue-on-error: true
+        with:
+          workflow: portal-document-screenshot-test.yml
+          name: screenshots
+          branch: ${{ github.head_ref || github.ref_name }}
+          path: Documentation/portal-guide/source/screenshots
+
       - name: Download artifacts from screenshot workflow
+        if: steps.get_screenshots_head_branch.outcome != 'success' && github.ref_name != 'release/10.0'
         uses: dawidd6/action-download-artifact@v8
         with:
           workflow: portal-document-screenshot-test.yml
