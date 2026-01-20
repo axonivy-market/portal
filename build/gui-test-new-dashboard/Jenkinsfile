@@ -32,49 +32,30 @@ pipeline {
       steps {
         script {
           currentBuild.description = "On ${env.NODE_NAME}"
-          def utils = load 'build/common/utils.groovy'
-          utils.init()
 
-          echo '====================Stop any running engines===================='
-          sh '''
-            pkill -f "AxonIvyEngine" || true
-            pkill -f "elasticsearch" || true
-          '''
           docker.build('gui-test-portal', '-f build/gui-test-new-dashboard/Dockerfile .').inside('-v /var/tools/maven-cache:/home/wawa/build/') {
             echo '====================Extract engine===================='
-            sh "mvn clean compile -f AxonIvyPortal/portal-components/pom.xml -Divy.engine.directory=${env.engineDir} ${params.engineDownloadURL}"
+            maven cmd: "clean compile -f AxonIvyPortal/portal-components/pom.xml -Divy.engine.directory=${env.engineDir} ${params.engineDownloadURL}"
 
             echo '====================Build Portal modules===================='
             def modules = ['AxonIvyPortal/portal-components', 'AxonIvyPortal/portal', 'AxonIvyPortal/PortalKitTestHelper', 'Showcase/portal-user-examples', 'Showcase/portal-developer-examples', 'Showcase/InternalSupport', 'Showcase/portal-components-examples']
             for (module in modules) {
-              sh "mvn clean install -f ${module}/pom.xml -Divy.engine.directory=${env.engineDir}"
+              maven cmd: "clean install -f ${module}/pom.xml -Divy.engine.directory=${env.engineDir}"
             }
 
             echo '====================Build and deploy test package===================='
-            sh "mvn clean package -f AxonIvyPortal/portal-selenium-test/deployment-pom.xml -Divy.engine.directory=${env.engineDir}"
+            maven cmd: "clean package -f AxonIvyPortal/portal-selenium-test/deployment-pom.xml -Divy.engine.directory=${env.engineDir}"
             sh """
               DEPLOYMENT="${env.engineDir}/system/demo-applications/demo-portal"
               rm -rf \${DEPLOYMENT}/*
               cp AxonIvyPortal/portal-selenium-test/target/*zip \${DEPLOYMENT}/
             """
 
-            echo '====================Kill unnecessary processes===================='
-            sh '''
-              pkill -f "firefox" || true
-              pkill -f "geckodriver" || true
-            '''
-
             echo '====================Execute maven for testing===================='
-            sh "mvn clean verify -f AxonIvyPortal/portal-selenium-test/customized_pom.xml ${params.engineDownloadURL} -Dtest=${params.testPatternToRun} -DbrowserType=FIREFOX -Dcapabilities.unhandledPromptBehavior=accept -DtrimStackTrace=false -Divy.engine.directory=${env.engineDir} -Divy.deploy.timeout.seconds=60 -Divy.engine.start.timeout.seconds=500 -Dsurefire.rerunFailingTestsCount=2"
-
-            echo '====================Clean disk===================='
-            sh '''
-              rm -rf /tmp/ivy-* || true
-              rm -rf /tmp/selenium* || true
-            '''
+            maven cmd: "clean verify -f AxonIvyPortal/portal-selenium-test/customized_pom.xml ${params.engineDownloadURL} -Dtest=${params.testPatternToRun} -DbrowserType=FIREFOX -Dcapabilities.unhandledPromptBehavior=accept -DtrimStackTrace=false -Divy.engine.directory=${env.engineDir} -Divy.deploy.timeout.seconds=60 -Divy.engine.start.timeout.seconds=500 -Dsurefire.rerunFailingTestsCount=2"
           }
-          
-          echo '====================Archive consoleText file===================='
+
+          echo '====================Archive consoleText ===================='
           withCredentials([usernameColonPassword(credentialsId: 'wawa-jenkins', variable: 'credentials')]) {
             def branchName = env.BRANCH_NAME.replaceAll("/", "%2F")
             sh """
