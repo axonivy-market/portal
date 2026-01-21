@@ -37,11 +37,12 @@ public class UrlHelpers {
   @SuppressWarnings("deprecation")
   private static String getEngineUrl() {
     String vmArgUrl = System.getProperty("test.engine.url");
+    System.out.println("Engine URL from VM arg: " + vmArgUrl);
     if (vmArgUrl != null) {
       try {
         URL originalURL = new URL(vmArgUrl);
         URL newURL = new URL(originalURL.getProtocol(), originalURL.getHost(), originalURL.getPort(), originalURL.getFile());
-        
+        System.out.println("Engine URL used for tests: " + newURL.toString());
         // Make sure the engine URL end with slash (/).
         // Example: https://localhost:8081/
         String newURLStr = newURL.toString();
