@@ -61,7 +61,7 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
 
   private int getIndexWidgetByColumnScrollable(String columnName) {
     ElementsCollection elementsTH =
-        $(caseWidgetId).$(".ui-datatable-scrollable-header").shouldBe(appear, DEFAULT_TIMEOUT).$$("table thead tr th");
+        $(caseWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$(".ui-datatable-scrollable-header").shouldBe(appear, DEFAULT_TIMEOUT).$$("table thead tr th");
     for (int i = 0; i < elementsTH.size(); i++) {
       if (elementsTH.get(i).getAttribute("aria-label").equalsIgnoreCase(columnName)) {
         return i;
