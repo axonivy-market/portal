@@ -508,8 +508,8 @@ Permissions controlling case visibility, actions, and business details.
        +--------------------+------------------------------------------------------------+
        | Type               | **Core permission**                                        |
        +--------------------+------------------------------------------------------------+
-       | Use case           | User with this permission will have Destroy memu item in   |
-       |                    | the case action memu                                       |
+       | Use case           | User with this permission will have ``Destroy`` menu       |
+       |                    | item in the case action memu                               |
        +--------------------+------------------------------------------------------------+
        | Granted by default | No                                                         |
        +--------------------+------------------------------------------------------------+
@@ -526,60 +526,111 @@ Permissions controlling case visibility, actions, and business details.
        +--------------------+------------------------------------------------------------+
        | Type               | **Portal permission**                                      |
        +--------------------+------------------------------------------------------------+
-       | Use case           | User with this permission and TaskWriteActivator can       | 
+       | Use case           | User with this permission and ``TaskWriteActivator`` can   | 
        |                    | delegate tasks within the case which he is case owner      |
        +--------------------+------------------------------------------------------------+
        | Granted by default | No                                                         |
        +--------------------+------------------------------------------------------------+
 
-**Case Property Modifications**
-
 .. _CaseWriteName:
 
-CaseWriteName
-   :bdg-ref-warning:`🔑CaseWriteName <CaseWriteName>`
-     - Modify case name/title
-     - Cannot change cases in DESTROYED state
+   :ref:`🔑CaseWriteName <CaseWriteName>`
+       +--------------------+------------------------------------------------------------+
+       | Category           | **Case Property Modifications**                            |
+       +====================+============================================================+
+       | Description        | Modify case name, cannot modify case in DESTROYED state    |                                        
+       +--------------------+------------------------------------------------------------+
+       | Type               | **Core permission**                                        |
+       +--------------------+------------------------------------------------------------+
+       | Use case           | Not clear                                                  | 
+       +--------------------+------------------------------------------------------------+
+       | Granted by default | No                                                         |
+       +--------------------+------------------------------------------------------------+
 
 .. _CaseWriteDescription:
 
-CaseWriteDescription
-   :bdg-ref-warning:`🔑CaseWriteDescription <CaseWriteDescription>`
-     - Modify case description
-     - Cannot change cases in DESTROYED state
+   :ref:`🔑CaseWriteDescription <CaseWriteDescription>`
+       +--------------------+------------------------------------------------------------+
+       | Category           | **Case Property Modifications**                            |
+       +====================+============================================================+
+       | Description        | Modify case description, cannot modify case in DESTROYED   |
+       |                    | state                                                      |
+       +--------------------+------------------------------------------------------------+
+       | Type               | **Core permission**                                        |
+       +--------------------+------------------------------------------------------------+
+       | Use case           | User with this permission can edit case description in     |
+       |                    | case details                                               | 
+       +--------------------+------------------------------------------------------------+
+       | Granted by default | No                                                         |
+       +--------------------+------------------------------------------------------------+
 
-**Case UI Display Permissions**
 
 .. _ShowAllTasksOfCase:
 
-ShowAllTasksOfCase
-   :bdg-ref-warning:`🔑ShowAllTasksOfCase <ShowAllTasksOfCase>`
-     - Display "Show all tasks" action in case details
-     - Requires :bdg-ref-warning:`🔑TaskReadOwnCaseTasks <TaskReadOwnCaseTasks>` or :bdg-ref-warning:`🔑TaskReadAll <TaskReadAll>` to view tasks
-     - Granted to role Everybody by default
+   :ref:`🔑ShowAllTasksOfCase <ShowAllTasksOfCase>`
+       +--------------------+------------------------------------------------------------+
+       | Category           | **Case UI Display Permissions**                            |
+       +====================+============================================================+
+       | Description        | Display "Show all tasks" action in case details            |
+       |                    | Requires TaskReadOwnCaseTasks and TaskReadAll to view tasks|
+       +--------------------+------------------------------------------------------------+
+       | Type               | **Portal permission**                                      |
+       +--------------------+------------------------------------------------------------+
+       | Use case           | Not clear / Can remove ?                                   | 
+       +--------------------+------------------------------------------------------------+
+       | Granted by default | Yes                                                        |
+       +--------------------+------------------------------------------------------------+
 
 .. _ShowCaseDetails:
 
-ShowCaseDetails
-   :bdg-ref-warning:`🔑ShowCaseDetails <ShowCaseDetails>`
-     - Display Business Details tab in case interface
-     - Shows additional case information and custom widgets
-     - Granted to role Everybody by default
+   :ref:`🔑ShowCaseDetails <ShowCaseDetails>`
+       +--------------------+------------------------------------------------------------+
+       | Category           | **Case UI Display Permissions**                            |
+       +====================+============================================================+
+       | Description        | Display business details in new tab to show                |
+       |                    | additional case information                                |
+       +--------------------+------------------------------------------------------------+
+       | Type               | **Portal permission**                                      |
+       +--------------------+------------------------------------------------------------+
+       | Use case           | User with this permission will have ``Business details``   |
+       |                    | menu item in the case action menu                          | 
+       +--------------------+------------------------------------------------------------+
+       | Granted by default | Yes                                                        |
+       +--------------------+------------------------------------------------------------+
 
 .. _CaseDisplayCustomFieldsAction:
 
-CaseDisplayCustomFieldsAction
-   :bdg-ref-warning:`🔑CaseDisplayCustomFieldsAction <CaseDisplayCustomFieldsAction>`
-     - Display Custom Fields button in case interface
-     - Shows additional business data fields
+   :ref:`🔑CaseDisplayCustomFieldsAction <CaseDisplayCustomFieldsAction>`
+       +--------------------+------------------------------------------------------------+
+       | Category           | **Case UI Display Permissions**                            |
+       +====================+============================================================+
+       | Description        | Display custom fields of case                              |
+       +--------------------+------------------------------------------------------------+
+       | Type               | **Portal permission**                                      |
+       +--------------------+------------------------------------------------------------+
+       | Use case           | User with this permission will have ``Custom fields``      |
+       |                    | menu item in the case action menu                          | 
+       +--------------------+------------------------------------------------------------+
+       | Granted by default | No                                                         |
+       +--------------------+------------------------------------------------------------+
+
 
 .. _ShareCaseDetailsLink:
 
-ShareCaseDetailsLink
-   :bdg-ref-warning:`🔑ShareCaseDetailsLink <ShareCaseDetailsLink>`
-     - Show Share button in case details page
-     - Allows sharing direct links to specific cases
-     - Granted to role Everybody by default
+   :ref:`🔑ShareCaseDetailsLink <ShareCaseDetailsLink>`
+       +--------------------+------------------------------------------------------------+
+       | Category           | **Case UI Display Permissions**                            |
+       +====================+============================================================+
+       | Description        | Display share case details link                            |
+       +--------------------+------------------------------------------------------------+
+       | Type               | **Portal permission**                                      |
+       +--------------------+------------------------------------------------------------+
+       | Use case           | User with this permission will have ``Share`` button       |
+       |                    | next to ``Edit`` button in case details                    | 
+       +--------------------+------------------------------------------------------------+
+       | Granted by default | Yes                                                        |
+       +--------------------+------------------------------------------------------------+
+
 
 .. _permission-general-permissions:
 
