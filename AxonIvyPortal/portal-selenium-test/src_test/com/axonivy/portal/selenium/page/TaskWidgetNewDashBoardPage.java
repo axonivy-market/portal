@@ -66,7 +66,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
 
   private int getIndexWidgetByColumnScrollable(String columnName) {
     ElementsCollection elementsTH =
-        $(taskWidgetId).$(".ui-datatable-scrollable-header").shouldBe(appear, DEFAULT_TIMEOUT).$$("table thead tr th");
+        findElementByCssSelector(taskWidgetId).find(".ui-datatable-scrollable-header").shouldBe(appear, DEFAULT_TIMEOUT).findAll("table thead tr th");
     for (int i = 0; i < elementsTH.size(); i++) {
       if (elementsTH.get(i).getAttribute("aria-label").equalsIgnoreCase(columnName)) {
         return i;
