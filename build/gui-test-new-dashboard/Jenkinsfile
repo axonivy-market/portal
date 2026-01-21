@@ -58,7 +58,7 @@ pipeline {
                 """
 
                 echo '====================Execute maven for testing===================='
-                maven cmd: "clean verify -ntp -f AxonIvyPortal/portal-selenium-test/customized_pom.xml ${params.engineDownloadURL} -Dtest=${params.testPatternToRun} -DbrowserType=FIREFOX -Dcapabilities.unhandledPromptBehavior=accept -DtrimStackTrace=false -Divy.engine.directory=${env.engineDir} -Divy.deploy.timeout.seconds=60 -Divy.engine.start.timeout.seconds=500 -Dsurefire.rerunFailingTestsCount=2 -Dselenide.remote=http://${seleniumName}:4444/wd/hub -Dselenide.baseUrl=http://${wawaName}:8080"
+                maven cmd: "clean verify -ntp -f AxonIvyPortal/portal-selenium-test/customized_pom.xml ${params.engineDownloadURL} -Dtest=${params.testPatternToRun} -DbrowserType=FIREFOX -Dcapabilities.unhandledPromptBehavior=accept -DtrimStackTrace=false -Divy.engine.directory=${env.engineDir} -Divy.deploy.timeout.seconds=60 -Divy.engine.start.timeout.seconds=500 -Dsurefire.rerunFailingTestsCount=2 -Dselenide.remote=http://${seleniumName}:4444/wd/hub -Dtest.engine.url=http://${wawaName}:8080"
               }
             }
           } finally {
