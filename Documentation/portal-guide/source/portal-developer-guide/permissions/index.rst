@@ -261,8 +261,7 @@ Permissions controlling task visibility, actions, and property modifications.
        +--------------------+------------------------------------------------------------+
        | Granted by default | No                                                         |
        +--------------------+------------------------------------------------------------+
-     - Change task priority level
-     - Cannot change tasks in states: DONE, DESTROYED, FAILED
+
 
 .. _TaskWriteExpiryTimestamp:
 
@@ -854,98 +853,210 @@ Portal Absence And Substitute Permissions
 
 Permissions for managing user absences and task substitution.
 
-**Absence Management - Own Absences**
-
 .. _UserReadOwnAbsences:
 
-UserReadOwnAbsences
-   :bdg-ref-warning:`🔑UserReadOwnAbsences <UserReadOwnAbsences>`
-     - View own absence records
-     - Granted to role Everybody by default
+   :ref:`🔑UserReadOwnAbsences <UserReadOwnAbsences>`
+       +--------------------+------------------------------------------------------------+
+       | Category           | **Manage own absences**                                    |
+       +====================+============================================================+
+       | Description        |  View own absence records                                  |
+       +--------------------+------------------------------------------------------------+
+       | Type               | **Core permission**                                        |
+       +--------------------+------------------------------------------------------------+
+       | Use case           | User with this permission sees his absence                 | 
+       +--------------------+------------------------------------------------------------+
+       | Granted by default | Yes                                                        |
+       +--------------------+------------------------------------------------------------+
 
 .. _UserCreateOwnAbsence:
 
-UserCreateOwnAbsence
-   :bdg-ref-warning:`🔑UserCreateOwnAbsence <UserCreateOwnAbsence>`
-     - Create and edit own absence periods
-     - Allows users to mark when they are unavailable
-     - Granted to role Everybody by default
+   :ref:`🔑UserCreateOwnAbsence <UserCreateOwnAbsence>`
+       +--------------------+------------------------------------------------------------+
+       | Category           | **Manage own absences**                                    |
+       +====================+============================================================+
+       | Description        | Create and edit own absences                               |
+       +--------------------+------------------------------------------------------------+
+       | Type               | **Core permission**                                        |
+       +--------------------+------------------------------------------------------------+
+       | Use case           | User with this permission can create and edit his          |
+       |                    | own absences                                               | 
+       +--------------------+------------------------------------------------------------+
+       | Granted by default | Yes                                                        |
+       +--------------------+------------------------------------------------------------+
 
 .. _UserDeleteOwnAbsence:
 
-UserDeleteOwnAbsence
-   :bdg-ref-warning:`🔑UserDeleteOwnAbsence <UserDeleteOwnAbsence>`
-     - Delete own absence records
-     - Granted to role Everybody by default
+   :ref:`🔑UserDeleteOwnAbsence <UserDeleteOwnAbsence>`
+       +--------------------+------------------------------------------------------------+
+       | Category           | **Manage own absences**                                    |
+       +====================+============================================================+
+       | Description        | Delete own absences                                        |
+       +--------------------+------------------------------------------------------------+
+       | Type               | **Core permission**                                        |
+       +--------------------+------------------------------------------------------------+
+       | Use case           | User with this permission can delete his own absences      | 
+       +--------------------+------------------------------------------------------------+
+       | Granted by default | Yes                                                        |
+       +--------------------+------------------------------------------------------------+
 
-**Absence Management - All Users**
 
 .. _UserReadAbsences:
 
-UserReadAbsences
-   :bdg-ref-warning:`🔑UserReadAbsences <UserReadAbsences>`
-     - View absence records of all users
-     - Administrative permission for HR or management
+   :ref:`🔑UserReadAbsences <UserReadAbsences>`
+       +--------------------+------------------------------------------------------------+
+       | Category           | **Manage absences for all users**                          |
+       +====================+============================================================+
+       | Description        | View absences of all users in the security context         |
+       +--------------------+------------------------------------------------------------+
+       | Type               | **Core permission**                                        |
+       +--------------------+------------------------------------------------------------+
+       | Use case           | User with this permission can view absences of all users   |
+       |                    | in the security context                                    | 
+       +--------------------+------------------------------------------------------------+
+       | Granted by default | No                                                         |
+       +--------------------+------------------------------------------------------------+
 
 .. _UserCreateAbsence:
 
-UserCreateAbsence
-   :bdg-ref-warning:`🔑UserCreateAbsence <UserCreateAbsence>`
-     - Create and edit absences for any user
-     - Typically restricted to administrators or HR personnel
+   :ref:`🔑UserCreateAbsence <UserCreateAbsence>`
+       +--------------------+------------------------------------------------------------+
+       | Category           | **Manage absences for all users**                          |
+       +====================+============================================================+
+       | Description        | Create and edit absences for any users in                  | 
+       |                    | the security context                                       |
+       +--------------------+------------------------------------------------------------+
+       | Type               | **Core permission**                                        |
+       +--------------------+------------------------------------------------------------+
+       | Use case           | User with this permission can create and edit absences     |
+       |                    | for any users in the security context                      | 
+       +--------------------+------------------------------------------------------------+
+       | Granted by default | No                                                         |
+       +--------------------+------------------------------------------------------------+
+
 
 .. _UserDeleteAbsence:
 
-UserDeleteAbsence
-   :bdg-ref-warning:`🔑UserDeleteAbsence <UserDeleteAbsence>`
-     - Delete absence records for any user
-     - Administrative permission for absence management
+   :ref:`🔑UserDeleteAbsence <UserDeleteAbsence>`
+       +--------------------+------------------------------------------------------------+
+       | Category           | **Manage absences for all users**                          |
+       +====================+============================================================+
+       | Description        | Delete absences for any users in the security context      |
+       +--------------------+------------------------------------------------------------+
+       | Type               | **Core permission**                                        |
+       +--------------------+------------------------------------------------------------+
+       | Use case           | User with this permission can delete absences              |
+       |                    | for any users in the security context                      | 
+       +--------------------+------------------------------------------------------------+
+       | Granted by default | No                                                         |
+       +--------------------+------------------------------------------------------------+
 
-**Substitute Management**
 
 .. _UserCreateOwnSubstitute:
 
-UserCreateOwnSubstitute
-   :bdg-ref-warning:`🔑UserCreateOwnSubstitute <UserCreateOwnSubstitute>`
-     - Create own substitute assignments
-     - Delegate tasks to others during absence
-     - Granted to role Everybody by default
+   :ref:`🔑UserCreateOwnSubstitute <UserCreateOwnSubstitute>`
+       +--------------------+------------------------------------------------------------+
+       | Category           | **Manage substitutes**                                     |
+       +====================+============================================================+
+       | Description        | Create own substitute                                      |
+       +--------------------+------------------------------------------------------------+
+       | Type               | **Core permission**                                        |
+       +--------------------+------------------------------------------------------------+
+       | Use case           | User with this permission can create own substitute        |
+       +--------------------+------------------------------------------------------------+
+       | Granted by default | Yes                                                        |
+       +--------------------+------------------------------------------------------------+
+   
 
 .. _UserCreateSubstitute:
 
-UserCreateSubstitute
-   :bdg-ref-warning:`🔑UserCreateSubstitute <UserCreateSubstitute>`
-     - Create substitute assignments for any user
-     - Administrative permission for managing substitutions
+   :ref:`🔑UserCreateSubstitute <UserCreateSubstitute>`
+       +--------------------+------------------------------------------------------------+
+       | Category           | **Manage substitutes**                                     |
+       +====================+============================================================+
+       | Description        | Create substitute assignments for any users in the         |
+       |                    | security context                                           |
+       +--------------------+------------------------------------------------------------+
+       | Type               | **Core permission**                                        |
+       +--------------------+------------------------------------------------------------+
+       | Use case           | User with this permission can create substitute            |
+       |                    | for any users in the security context                      | 
+       +--------------------+------------------------------------------------------------+
+       | Granted by default | No                                                         |
+       +--------------------+------------------------------------------------------------+
 
 .. _UserReadSubstitutes:
 
-UserReadSubstitutes
-   :bdg-ref-warning:`🔑UserReadSubstitutes <UserReadSubstitutes>`
-     - View substitute assignments for all users
-     - Required for seeing who is substituting whom
+   :ref:`🔑UserReadSubstitutes <UserReadSubstitutes>`
+       +--------------------+------------------------------------------------------------+
+       | Category           | **Manage substitutes**                                     |
+       +====================+============================================================+
+       | Description        | View substitutes of any users in the security context      |
+       +--------------------+------------------------------------------------------------+
+       | Type               | **Core permission**                                        |
+       +--------------------+------------------------------------------------------------+
+       | Use case           | User with this permission can view substitutes of          |
+       |                    | any users in the security context                          | 
+       +--------------------+------------------------------------------------------------+
+       | Granted by default | No                                                         |
+       +--------------------+------------------------------------------------------------+
 
 .. _engine-permissions-respected:
 
-Engine Permissions Respected by Portal
----------------------------------------
+Engine Permissions used by Portal
+----------------------------------
 
-Portal honors the following Axon Ivy Engine core permissions. These are documented here for completeness as they directly affect Portal functionality:
+Portal uses the following Axon Ivy Engine core permissions. These are documented here for completeness as they directly affect Portal functionality:
 
 **Task Permissions:**
-:bdg-ref-warning:`🔑TaskReadAll <TaskReadAll>`, :bdg-ref-warning:`🔑TaskReadOwnCaseTasks <TaskReadOwnCaseTasks>`, :bdg-ref-warning:`🔑TaskParkOwnWorkingTask <TaskParkOwnWorkingTask>`, :bdg-ref-warning:`🔑TaskResetOwnWorkingTask <TaskResetOwnWorkingTask>`, :bdg-ref-warning:`🔑TaskReset <TaskReset>`, :bdg-ref-warning:`🔑TaskDestroy <TaskDestroy>`, :bdg-ref-warning:`🔑TaskWriteName <TaskWriteName>`, :bdg-ref-warning:`🔑TaskWriteDescription <TaskWriteDescription>`, :bdg-ref-warning:`🔑TaskWriteOriginalPriority <TaskWriteOriginalPriority>`, :bdg-ref-warning:`🔑TaskWriteExpiryTimestamp <TaskWriteExpiryTimestamp>`, :bdg-ref-warning:`🔑TaskWriteActivator <TaskWriteActivator>`, :bdg-ref-warning:`🔑TaskWriteDelayTimestamp <TaskWriteDelayTimestamp>`
+
+#. :ref:`🔑TaskReadAll <TaskReadAll>` 
+#. :ref:`🔑TaskReadOwnCaseTasks <TaskReadOwnCaseTasks>`
+#. :ref:`🔑TaskParkOwnWorkingTask <TaskParkOwnWorkingTask>` 
+#. :ref:`🔑TaskResetOwnWorkingTask <TaskResetOwnWorkingTask>`
+#. :ref:`🔑TaskReset <TaskReset>` 
+#. :ref:`🔑TaskDestroy <TaskDestroy>` 
+#. :ref:`🔑TaskWriteName <TaskWriteName>` 
+#. :ref:`🔑TaskWriteDescription <TaskWriteDescription>`
+#. :ref:`🔑TaskWriteOriginalPriority <TaskWriteOriginalPriority>`
+#. :ref:`🔑TaskWriteExpiryTimestamp <TaskWriteExpiryTimestamp>` 
+#. :ref:`🔑TaskWriteName <TaskWriteName>`
+#. :ref:`🔑TaskWriteDescription <TaskWriteDescription>`
+#. :ref:`🔑TaskWriteOriginalPriority <TaskWriteOriginalPriority>`
+#. :ref:`🔑TaskWriteExpiryTimestamp <TaskWriteExpiryTimestamp>`
+#. :ref:`🔑TaskWriteActivator <TaskWriteActivator>`
+#. :ref:`🔑TaskWriteDelayTimestamp <TaskWriteDelayTimestamp>`
 
 **Case Permissions:**
-:bdg-ref-warning:`🔑CaseReadAll <CaseReadAll>`, :bdg-ref-warning:`🔑CaseDestroy <CaseDestroy>`, :bdg-ref-warning:`🔑CaseWriteName <CaseWriteName>`, :bdg-ref-warning:`🔑CaseWriteDescription <CaseWriteDescription>`
+
+#. :ref:`🔑CaseReadAll <CaseReadAll>`
+#. :ref:`🔑CaseDestroy <CaseDestroy>`
+#. :ref:`🔑CaseWriteName <CaseWriteName>`
+#. :ref:`🔑CaseWriteDescription <CaseWriteDescription>`
 
 **Role Permissions:**
-:bdg-ref-warning:`🔑RoleReadAll <RoleReadAll>`, :bdg-ref-warning:`🔑RoleCreate <RoleCreate>`, :bdg-ref-warning:`🔑RoleDelete <RoleDelete>`, :bdg-ref-warning:`🔑RoleMove <RoleMove>`
+
+#. :ref:`🔑RoleReadAll <RoleReadAll>`
+#. :ref:`🔑RoleCreate <RoleCreate>`
+#. :ref:`🔑RoleDelete <RoleDelete>`
+#. :ref:`🔑RoleMove <RoleMove>`
 
 **Document Permissions:**
-:bdg-ref-warning:`🔑DocumentRead <DocumentRead>`, :bdg-ref-warning:`🔑DocumentWrite <DocumentWrite>`, :bdg-ref-warning:`🔑DocumentOfInvolvedCaseWrite <DocumentOfInvolvedCaseWrite>`
+
+#. :ref:`🔑DocumentRead <DocumentRead>`
+#. :ref:`🔑DocumentWrite <DocumentWrite>`
+#. :ref:`🔑DocumentOfInvolvedCaseWrite <DocumentOfInvolvedCaseWrite>`
 
 **Absence & Substitute Permissions:**
-:bdg-ref-warning:`🔑UserReadOwnAbsences <UserReadOwnAbsences>`, :bdg-ref-warning:`🔑UserCreateOwnAbsence <UserCreateOwnAbsence>`, :bdg-ref-warning:`🔑UserDeleteOwnAbsence <UserDeleteOwnAbsence>`, :bdg-ref-warning:`🔑UserReadAbsences <UserReadAbsences>`, :bdg-ref-warning:`🔑UserCreateAbsence <UserCreateAbsence>`, :bdg-ref-warning:`🔑UserDeleteAbsence <UserDeleteAbsence>`, :bdg-ref-warning:`🔑UserCreateOwnSubstitute <UserCreateOwnSubstitute>`, :bdg-ref-warning:`🔑UserCreateSubstitute <UserCreateSubstitute>`, :bdg-ref-warning:`🔑UserReadSubstitutes <UserReadSubstitutes>`
+
+#. :ref:`🔑UserReadOwnAbsences <UserReadOwnAbsences>`
+#. :ref:`🔑UserCreateOwnAbsence <UserCreateOwnAbsence>`
+#. :ref:`🔑UserDeleteOwnAbsence <UserDeleteOwnAbsence>`
+#. :ref:`🔑UserReadAbsences <UserReadAbsences>`
+#. :ref:`🔑UserCreateAbsence <UserCreateAbsence>`
+#. :ref:`🔑UserDeleteAbsence <UserDeleteAbsence>`
+#. :ref:`🔑UserCreateOwnSubstitute <UserCreateOwnSubstitute>`
+#. :ref:`🔑UserCreateSubstitute <UserCreateSubstitute>`
+#. :ref:`🔑UserReadSubstitutes <UserReadSubstitutes>`
 
 .. tip::
    For comprehensive details on each permission including usage context and restrictions, see the detailed sections above.
