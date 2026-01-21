@@ -139,6 +139,7 @@
           <h:panelGroup rendered="#{column.field eq 'actions'}" id="action-cell-item">
             <ui:include src="ActionsCell.xhtml">
               <ui:param name="destroyTaskDialogComponent" value="destroy-task-confirmation-dialog" />
+              <ui:param name="dataModel" value="#{taskWidget.dataModel}" /> <!-- Testing passing data -->
             </ui:include>
           </h:panelGroup>
           

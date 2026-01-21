@@ -11,6 +11,7 @@
         onDelegateComplete="initDataToDelegate()"
         onEscalationComplete="PF('escalation-task-dialog').show()"
         onWorkflowEventComplete="initWorkflowEventData()"
+        dataModel="#{dataModel}"
         sideStepsPanelStyleClass="js-task-side-steps-panel-#{cc.attrs.taskWidget.id}-#{rowIndex}"
         isPreviewMode="#{cc.attrs.isPreviewMode}" />
   </h:panelGroup>
