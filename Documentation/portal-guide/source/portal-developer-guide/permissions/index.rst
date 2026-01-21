@@ -80,186 +80,399 @@ Portal Task Permissions
 
 Permissions controlling task visibility, actions, and property modifications.
 
-**Task Visibility**
 
 .. _TaskReadAll:
 
-TaskReadAll
-   :bdg-ref-warning:`🔑TaskReadAll <TaskReadAll>`
-     - View all tasks in the system regardless of assignment
-     - Typically granted to administrators
+   :ref:`🔑TaskReadAll <TaskReadAll>`
+       +--------------------+-------------------------------------------------------------+
+       | Category           | **Task Visibility**                                         |
+       +--------------------+-------------------------------------------------------------+
+       | Description        | View all user tasks (not system) in the system regardless of|
+       |                    | assignment                                                  |
+       +--------------------+-------------------------------------------------------------+
+       | Type               | **Core permission**                                         |
+       +--------------------+-------------------------------------------------------------+
+       | Use case           | Grant it to see all tasks in the security context           |
+       +--------------------+-------------------------------------------------------------+
+       | Granted by default | No                                                          |
+       +--------------------+-------------------------------------------------------------+
 
 .. _SystemTaskReadAll:
 
-SystemTaskReadAll
-   :bdg-ref-warning:`🔑SystemTaskReadAll <SystemTaskReadAll>`
-     - View system tasks (background/automated tasks)
-     - Required for debugging and system monitoring
+   :ref:`🔑SystemTaskReadAll <SystemTaskReadAll>`
+       +--------------------+------------------------------------------------------------+
+       | Category           | **Task Visibility**                                        |
+       +--------------------+------------------------------------------------------------+
+       | Description        | View system tasks (background/automated tasks)             |
+       +--------------------+------------------------------------------------------------+
+       | Type               | **Portal permission**                                      |
+       +--------------------+------------------------------------------------------------+
+       | Use case           | Grant it to see system tasks for debugging or monitoring   |
+       +--------------------+------------------------------------------------------------+
+       | Granted by default | No                                                         |
+       +--------------------+------------------------------------------------------------+
+
 
 .. _TaskReadOwnCaseTasks:
 
-TaskReadOwnCaseTasks
-   :bdg-ref-warning:`🔑TaskReadOwnCaseTasks <TaskReadOwnCaseTasks>`
-     - View tasks related to cases where user is involved
-     - Granted to role Everybody by default
+   :ref:`🔑TaskReadOwnCaseTasks <TaskReadOwnCaseTasks>`
+       +--------------------+------------------------------------------------------------+
+       | Category           | **Task Visibility**                                        |
+       +--------------------+------------------------------------------------------------+
+       | Description        | View tasks related to cases where user is involved         |
+       +--------------------+------------------------------------------------------------+
+       | Type               | **Core permission**                                        |
+       +--------------------+------------------------------------------------------------+
+       | Use case           | See my own task and case in task list, case list           |
+       +--------------------+------------------------------------------------------------+
+       | Granted by default | Yes                                                        |
+       +--------------------+------------------------------------------------------------+
 
-**Task Actions**
 
 .. _TaskParkOwnWorkingTask:
 
-TaskParkOwnWorkingTask
-   :bdg-ref-warning:`🔑TaskParkOwnWorkingTask <TaskParkOwnWorkingTask>`
-     - Reserve (park) own working tasks
-     - Allows users to temporarily set aside tasks they're working on
-     - Granted to role Everybody by default
+   :ref:`🔑TaskParkOwnWorkingTask <TaskParkOwnWorkingTask>`
+       +--------------------+------------------------------------------------------------+
+       | Category           | **Task Actions**                                           |
+       +--------------------+------------------------------------------------------------+
+       | Description        | Reserve (park) an own working task                         |
+       +--------------------+------------------------------------------------------------+
+       | Type               | **Core permission**                                        |
+       +--------------------+------------------------------------------------------------+
+       | Use case           | Grant this permission to enable Reserve menu item in task  |
+       |                    | action                                                     | 
+       +--------------------+------------------------------------------------------------+
+       | Granted by default | Yes                                                        |
+       +--------------------+------------------------------------------------------------+
 
 .. _TaskResetOwnWorkingTask:
 
-TaskResetOwnWorkingTask
-   :bdg-ref-warning:`🔑TaskResetOwnWorkingTask <TaskResetOwnWorkingTask>`
-     - Reset own working tasks to their initial state
-     - Only works for tasks in states: RESUMED, PARKED, READY_FOR_JOIN, FAILED
-     - Granted to role Everybody by default
-
+   :ref:`🔑TaskResetOwnWorkingTask <TaskResetOwnWorkingTask>`
+       +--------------------+------------------------------------------------------------+
+       | Category           | **Task Actions**                                           |
+       +====================+============================================================+
+       | Description        | Reset own working tasks to their initial state             |
+       |                    | in states: RESUMED, PARKED, READY_FOR_JOIN, FAILED         |
+       +--------------------+------------------------------------------------------------+
+       | Type               | **Core permission**                                        |
+       +--------------------+------------------------------------------------------------+
+       | Use case           | Grant this permission to enable Reset menu item in task    |
+       |                    | action                                                     | 
+       +--------------------+------------------------------------------------------------+
+       | Granted by default | Yes                                                        |
+       +--------------------+------------------------------------------------------------+
+     
 .. _TaskReset:
 
-TaskReset
-   :bdg-ref-warning:`🔑TaskReset <TaskReset>`
-     - Reset any task in the system (administrative permission)
-     - Typically restricted to administrators
+   :ref:`🔑TaskReset <TaskReset>`
+      :ref:`🔑TaskResetOwnWorkingTask <TaskResetOwnWorkingTask>`
+       +--------------------+------------------------------------------------------------+
+       | Category           | **Task Actions**                                           |
+       +====================+============================================================+
+       | Description        | Reset any tasks in the security context                    |
+       +--------------------+------------------------------------------------------------+
+       | Type               | **Core permission**                                        |
+       +--------------------+------------------------------------------------------------+
+       | Use case           | Only high privilege user should have this permission       | 
+       +--------------------+------------------------------------------------------------+
+       | Granted by default | No                                                         |
+       +--------------------+------------------------------------------------------------+
 
 .. _TaskResetReadyForJoin:
 
-TaskResetReadyForJoin
-   :bdg-ref-warning:`🔑TaskResetReadyForJoin <TaskResetReadyForJoin>`
-     - Reset tasks in READY_FOR_JOIN state
-     - Useful for workflow error recovery
+
+   :ref:`🔑TaskResetReadyForJoin <TaskResetReadyForJoin>`
+       +--------------------+------------------------------------------------------------+
+       | Category           | **Task Actions**                                           |
+       +====================+============================================================+
+       | Description        | Reset tasks in READY_FOR_JOIN state                        |
+       +--------------------+------------------------------------------------------------+
+       | Type               | **Core permission**                                        |
+       +--------------------+------------------------------------------------------------+
+       | Use case           | Useful for workflow error recovery                         | 
+       +--------------------+------------------------------------------------------------+
+       | Granted by default | No                                                         |
+       +--------------------+------------------------------------------------------------+
+
 
 .. _TaskDestroy:
 
-TaskDestroy
-   :bdg-ref-warning:`🔑TaskDestroy <TaskDestroy>`
-     - Delete tasks permanently
-     - Only works if task state is not DESTROYED or DONE
-     - High-privilege permission for administrators
+   :ref:`🔑TaskDestroy <TaskDestroy>`
+       +--------------------+------------------------------------------------------------+
+       | Category           | **Task Actions**                                           |
+       +====================+============================================================+
+       | Description        | Delete tasks permanently                                   |
+       |                    | Only works if task state is not DESTROYED or DONE          |
+       +--------------------+------------------------------------------------------------+
+       | Type               | **Core permission**                                        |
+       +--------------------+------------------------------------------------------------+
+       | Use case           | High-privilege permission for administrators               | 
+       +--------------------+------------------------------------------------------------+
+       | Granted by default | No                                                         |
+       +--------------------+------------------------------------------------------------+
 
 **Task Property Modifications**
 
 .. _TaskWriteName:
 
-TaskWriteName
-   :bdg-ref-warning:`🔑TaskWriteName <TaskWriteName>`
-     - Modify task name/title
+   :ref:`🔑TaskWriteName <TaskWriteName>`
+       +--------------------+------------------------------------------------------------+
+       | Category           | **Task Actions**                                           |
+       +====================+============================================================+
+       | Description        | Modify task name                                           | 
+       +--------------------+------------------------------------------------------------+
+       | Type               | **Core permission**                                        |
+       +--------------------+------------------------------------------------------------+
+       | Use case           | High-privilege permission for administrators               | 
+       +--------------------+------------------------------------------------------------+
+       | Granted by default | No                                                         |
+       +--------------------+------------------------------------------------------------+
+
 
 .. _TaskWriteDescription:
 
-TaskWriteDescription
-   :bdg-ref-warning:`🔑TaskWriteDescription <TaskWriteDescription>`
-     - Modify task description
-     - Cannot change terminated tasks (DONE, DESTROYED, FAILED)
+   :ref:`🔑TaskWriteDescription <TaskWriteDescription>`
+       +--------------------+------------------------------------------------------------+
+       | Category           | **Task Actions**                                           |
+       +====================+============================================================+
+       | Description        | Modify task description                                    |
+       |                    | Cannot change terminated tasks (DONE, DESTROYED, FAILED)   |
+       +--------------------+------------------------------------------------------------+
+       | Type               | **Core permission**                                        |
+       +--------------------+------------------------------------------------------------+
+       | Use case           |                                                            | 
+       +--------------------+------------------------------------------------------------+
+       | Granted by default | No                                                         |
+       +--------------------+------------------------------------------------------------+
+
 
 .. _TaskWriteOriginalPriority:
 
-TaskWriteOriginalPriority
-   :bdg-ref-warning:`🔑TaskWriteOriginalPriority <TaskWriteOriginalPriority>`
+   :ref:`🔑TaskWriteOriginalPriority <TaskWriteOriginalPriority>`
+       +--------------------+------------------------------------------------------------+
+       | Category           | **Task Actions**                                           |
+       +====================+============================================================+
+       | Description        | Change task priority level                                 |
+       |                    | Cannot change tasks in states: DONE, DESTROYED, FAILED     | 
+       +--------------------+------------------------------------------------------------+
+       | Type               | **Core permission**                                        |
+       +--------------------+------------------------------------------------------------+
+       | Use case           |                                                            | 
+       +--------------------+------------------------------------------------------------+
+       | Granted by default | No                                                         |
+       +--------------------+------------------------------------------------------------+
      - Change task priority level
      - Cannot change tasks in states: DONE, DESTROYED, FAILED
 
 .. _TaskWriteExpiryTimestamp:
 
-TaskWriteExpiryTimestamp
-   :bdg-ref-warning:`🔑TaskWriteExpiryTimestamp <TaskWriteExpiryTimestamp>`
-     - Change task deadline/expiry date
-     - Cannot change tasks in states: DONE, DESTROYED, FAILED
+   :ref:`🔑TaskWriteExpiryTimestamp <TaskWriteExpiryTimestamp>`
+       +--------------------+------------------------------------------------------------+
+       | Category           | **Task Actions**                                           |
+       +====================+============================================================+
+       | Description        | Change task deadline/expiry date                           |
+       |                    | Cannot change tasks in states: DONE, DESTROYED, FAILED     |
+       +--------------------+------------------------------------------------------------+
+       | Type               | **Core permission**                                        |
+       +--------------------+------------------------------------------------------------+
+       | Use case           |                                                            | 
+       +--------------------+------------------------------------------------------------+
+       | Granted by default | No                                                         |
+       +--------------------+------------------------------------------------------------+
+
 
 .. _TaskWriteActivator:
 
-TaskWriteActivator
-   :bdg-ref-warning:`🔑TaskWriteActivator <TaskWriteActivator>`
-     - Delegate tasks to other users/roles
-     - Granted to role Everybody by default
+   :ref:`🔑TaskWriteActivator <TaskWriteActivator>`
+       +--------------------+------------------------------------------------------------+
+       | Category           | **Task Actions**                                           |
+       +====================+============================================================+
+       | Description        | Delegate tasks to other users/roles                        |
+       +--------------------+------------------------------------------------------------+
+       | Type               | **Core permission**                                        |
+       +--------------------+------------------------------------------------------------+
+       | Use case           |                                                            | 
+       +--------------------+------------------------------------------------------------+
+       | Granted by default | Yes                                                        |
+       +--------------------+------------------------------------------------------------+
+
 
 .. _TaskWriteExpiryActivator:
 
-TaskWriteExpiryActivator
-   :bdg-ref-warning:`🔑TaskWriteExpiryActivator <TaskWriteExpiryActivator>`
-     - Change the user responsible when task expires
-     - Cannot change tasks in states: DONE, DESTROYED, FAILED
+   :ref:`🔑TaskWriteExpiryActivator <TaskWriteExpiryActivator>`
+       +--------------------+------------------------------------------------------------+
+       | Category           | **Task Actions**                                           |
+       +====================+============================================================+
+       | Description        | Change the user responsible when task expires              |
+       |                    | Cannot change tasks in states: DONE, DESTROYED, FAILED     |
+       +--------------------+------------------------------------------------------------+
+       | Type               | **Core permission**                                        |
+       +--------------------+------------------------------------------------------------+
+       | Use case           |                                                            | 
+       +--------------------+------------------------------------------------------------+
+       | Granted by default | No                                                         |
+       +--------------------+------------------------------------------------------------+
 
 .. _TaskWriteDelayTimestamp:
 
-TaskWriteDelayTimestamp
-   :bdg-ref-warning:`🔑TaskWriteDelayTimestamp <TaskWriteDelayTimestamp>`
-     - Modify task delay/start time
-
-**Task UI Display Permissions**
+   :ref:`🔑TaskWriteDelayTimestamp <TaskWriteDelayTimestamp>`
+       +--------------------+------------------------------------------------------------+
+       | Category           | **Task Actions**                                           |
+       +====================+============================================================+
+       | Description        | Modify task delay/start time                               |
+       +--------------------+------------------------------------------------------------+
+       | Type               | **Core permission**                                        |
+       +--------------------+------------------------------------------------------------+
+       | Use case           |                                                            | 
+       +--------------------+------------------------------------------------------------+
+       | Granted by default | No                                                         |
+       +--------------------+------------------------------------------------------------+
 
 .. _TaskWriteActivatorOwnTasks:
 
-TaskWriteActivatorOwnTasks
-   :bdg-ref-warning:`🔑TaskWriteActivatorOwnTasks <TaskWriteActivatorOwnTasks>`
-     - Delegate personal/group tasks assigned to user
-     - Not assigned to Everybody by default (more restrictive than :bdg-ref-warning:`🔑TaskWriteActivator <TaskWriteActivator>`)
+   :ref:`🔑TaskWriteActivatorOwnTasks <TaskWriteActivatorOwnTasks>`
+       +--------------------+------------------------------------------------------------+
+       | Category           | **Task Actions**                                           |
+       +====================+============================================================+
+       | Description        | Delegate personal/group tasks assigned to user             |
+       +--------------------+------------------------------------------------------------+
+       | Type               | **Core permission**                                        |
+       +--------------------+------------------------------------------------------------+
+       | Use case           |                                                            | 
+       +--------------------+------------------------------------------------------------+
+       | Granted by default | No                                                         |
+       +--------------------+------------------------------------------------------------+
+
 
 .. _TaskDisplayAdditionalOptions:
 
-TaskDisplayAdditionalOptions
-   :bdg-ref-warning:`🔑TaskDisplayAdditionalOptions <TaskDisplayAdditionalOptions>`
-     - Display additional action menu in task lists
-     - Granted to role Everybody by default
+   :ref:`🔑TaskDisplayAdditionalOptions <TaskDisplayAdditionalOptions>`
+       +--------------------+------------------------------------------------------------+
+       | Category           | **Task Actions**                                           |
+       +====================+============================================================+
+       | Description        | Display additional action menu in task lists               |
+       +--------------------+------------------------------------------------------------+
+       | Type               | **Core permission**                                        |
+       +--------------------+------------------------------------------------------------+
+       | Use case           |                                                            | 
+       +--------------------+------------------------------------------------------------+
+       | Granted by default | Yes                                                        |
+       +--------------------+------------------------------------------------------------+
 
 .. _TaskDisplayResetAction:
 
-TaskDisplayResetAction
-   :bdg-ref-warning:`🔑TaskDisplayResetAction <TaskDisplayResetAction>`
-     - Show Reset action button in task interface
-     - Requires corresponding :bdg-ref-warning:`🔑TaskReset <TaskReset>` permission to execute
-     - Granted to role Everybody by default
+   :ref:`🔑TaskDisplayResetAction <TaskDisplayResetAction>`
+       +--------------------+------------------------------------------------------------+
+       | Category           | **Task Actions**                                           |
+       +====================+============================================================+
+       | Description        | Show Reset action button in task interface                 |
+       |                    | Requires corresponding TaskReset permission to execute     |
+       +--------------------+------------------------------------------------------------+
+       | Type               | **Core permission**                                        |
+       +--------------------+------------------------------------------------------------+
+       | Use case           |                                                            | 
+       +--------------------+------------------------------------------------------------+
+       | Granted by default | Yes                                                        |
+       +--------------------+------------------------------------------------------------+
+
 
 .. _TaskDisplayReserveAction:
 
-TaskDisplayReserveAction
-   :bdg-ref-warning:`🔑TaskDisplayReserveAction <TaskDisplayReserveAction>`
-     - Show Reserve (Park) action button in task interface
-     - Requires :bdg-ref-warning:`🔑TaskParkOwnWorkingTask <TaskParkOwnWorkingTask>` to execute
-     - Granted to role Everybody by default
-
+   :ref:`🔑TaskDisplayReserveAction <TaskDisplayReserveAction>`
+       +--------------------+------------------------------------------------------------+
+       | Category           | **Task Actions**                                           |
+       +====================+============================================================+
+       | Description        | Show Reserve (Park) action button in task interface        |
+       |                    | Requires TaskParkOwnWorkingTask to execute                 |
+       +--------------------+------------------------------------------------------------+
+       | Type               | **Core permission**                                        |
+       +--------------------+------------------------------------------------------------+
+       | Use case           |                                                            | 
+       +--------------------+------------------------------------------------------------+
+       | Granted by default | Yes                                                        |
+       +--------------------+------------------------------------------------------------+
+   
 .. _TaskDisplayDelegateAction:
 
-TaskDisplayDelegateAction
-   :bdg-ref-warning:`🔑TaskDisplayDelegateAction <TaskDisplayDelegateAction>`
-     - Show Delegate action button in task interface
-     - Requires :bdg-ref-warning:`🔑TaskWriteActivator <TaskWriteActivator>` to execute delegation
-     - Granted to role Everybody by default
+   :ref:`🔑TaskDisplayDelegateAction <TaskDisplayDelegateAction>`
+       +--------------------+------------------------------------------------------------+
+       | Category           | **Task Actions**                                           |
+       +====================+============================================================+
+       | Description        | Show Delegate action button in task interface              |
+       |                    | Requires TaskWriteActivator to execute delegation          |
+       +--------------------+------------------------------------------------------------+
+       | Type               | **Core permission**                                        |
+       +--------------------+------------------------------------------------------------+
+       | Use case           |                                                            | 
+       +--------------------+------------------------------------------------------------+
+       | Granted by default | Yes                                                        |
+       +--------------------+------------------------------------------------------------+
 
 .. _TaskDisplayDestroyAction:
 
-TaskDisplayDestroyAction
-   :bdg-ref-warning:`🔑TaskDisplayDestroyAction <TaskDisplayDestroyAction>`
-     - Show Delete/Destroy action button in task interface
-     - Requires :bdg-ref-warning:`🔑TaskDestroy <TaskDestroy>` permission to execute
+   :ref:`🔑TaskDisplayDestroyAction <TaskDisplayDestroyAction>`
+       +--------------------+------------------------------------------------------------+
+       | Category           | **Task Actions**                                           |
+       +====================+============================================================+
+       | Description        | Show Delete/Destroy action button in task interface        |
+       |                    | Requires TaskDestroy permission to execute                 |
+       +--------------------+------------------------------------------------------------+
+       | Type               | **Core permission**                                        |
+       +--------------------+------------------------------------------------------------+
+       | Use case           |                                                            | 
+       +--------------------+------------------------------------------------------------+
+       | Granted by default | Yes                                                        |
+       +--------------------+------------------------------------------------------------+
 
 .. _TaskDisplayWorkflowEventAction:
 
-TaskDisplayWorkflowEventAction
-   :bdg-ref-warning:`🔑TaskDisplayWorkflowEventAction <TaskDisplayWorkflowEventAction>`
-     - Show Workflow Events button in task details
-     - Allows viewing task execution history and events
+   :ref:`🔑TaskDisplayWorkflowEventAction <TaskDisplayWorkflowEventAction>`
+       +--------------------+------------------------------------------------------------+
+       | Category           | **Task Actions**                                           |
+       +====================+============================================================+
+       | Description        | Show Workflow Events button in task details                |
+       |                    | Allows viewing task execution history and events           |
+       +--------------------+------------------------------------------------------------+
+       | Type               | **Core permission**                                        |
+       +--------------------+------------------------------------------------------------+
+       | Use case           |                                                            | 
+       +--------------------+------------------------------------------------------------+
+       | Granted by default | Yes                                                        |
+       +--------------------+------------------------------------------------------------+
 
+     
 .. _TaskDisplayCustomFieldsAction:
 
-TaskDisplayCustomFieldsAction
-   :bdg-ref-warning:`🔑TaskDisplayCustomFieldsAction <TaskDisplayCustomFieldsAction>`
-     - Show Custom Fields button in task interface
-     - Displays additional business data fields
+   :ref:`🔑TaskDisplayCustomFieldsAction <TaskDisplayCustomFieldsAction>`
+       +--------------------+------------------------------------------------------------+
+       | Category           | **Task Actions**                                           |
+       +====================+============================================================+
+       | Description        | Show Custom Fields button in task interface                |
+       |                    | Displays additional business data fields                   |
+       +--------------------+------------------------------------------------------------+
+       | Type               | **Core permission**                                        |
+       +--------------------+------------------------------------------------------------+
+       | Use case           |                                                            |
+       +--------------------+------------------------------------------------------------+
+       | Granted by default | Yes                                                        |
+       +--------------------+------------------------------------------------------------+
+
 
 .. _ShareTaskDetailsLink:
 
-ShareTaskDetailsLink
-   :bdg-ref-warning:`🔑ShareTaskDetailsLink <ShareTaskDetailsLink>`
-     - Show Share button in task details page
-     - Allows sharing direct links to specific tasks
-     - Granted to role Everybody by default
+   :ref:`🔑ShareTaskDetailsLink <ShareTaskDetailsLink>`
+       +--------------------+------------------------------------------------------------+
+       | Category           | **Task Actions**                                           |
+       +====================+============================================================+
+       | Description        | Show Share button in task details page                     |
+       |                    | Allows sharing direct links to specific tasks              |
+       +--------------------+------------------------------------------------------------+
+       | Type               | **Core permission**                                        |
+       +--------------------+------------------------------------------------------------+
+       | Use case           |                                                            | 
+       +--------------------+------------------------------------------------------------+
+       | Granted by default | Yes                                                        |
+       +--------------------+------------------------------------------------------------+
 
 .. _permission-case-permissions:
 
@@ -268,32 +481,56 @@ Portal Case Permissions
 
 Permissions controlling case visibility, actions, and business details.
 
-**Case Visibility**
-
 .. _CaseReadAll:
 
-CaseReadAll
-   :bdg-ref-warning:`🔑CaseReadAll <CaseReadAll>`
-     - View all cases in the system regardless of involvement
-     - Typically granted to administrators
-     - Combined with :bdg-ref-warning:`🔑TaskReadAll <TaskReadAll>` for full system visibility
+   :ref:`🔑CaseReadAll <CaseReadAll>`
+       +--------------------+------------------------------------------------------------+
+       | Category           | **Case Visibility**                                        |
+       +====================+============================================================+
+       | Description        | View all cases in the security context regardless          |
+       |                    | of involvement                                             |
+       +--------------------+------------------------------------------------------------+
+       | Type               | **Core permission**                                        |
+       +--------------------+------------------------------------------------------------+
+       | Use case           | Grant it to see all cases                                  | 
+       +--------------------+------------------------------------------------------------+
+       | Granted by default | No                                                         |
+       +--------------------+------------------------------------------------------------+
 
-**Case Actions**
 
 .. _CaseDestroy:
 
-CaseDestroy
-   :bdg-ref-warning:`🔑CaseDestroy <CaseDestroy>`
-     - Delete cases permanently
-     - Only works when case state is RUNNING
-     - High-privilege permission for administrators
+   :ref:`🔑CaseDestroy <CaseDestroy>`
+       +--------------------+------------------------------------------------------------+
+       | Category           | **Case Action**                                            |
+       +====================+============================================================+
+       | Description        | Delete cases with state RUNNING                            |
+       +--------------------+------------------------------------------------------------+
+       | Type               | **Core permission**                                        |
+       +--------------------+------------------------------------------------------------+
+       | Use case           | User with this permission will have Destroy memu item in   |
+       |                    | the case action memu                                       |
+       +--------------------+------------------------------------------------------------+
+       | Granted by default | No                                                         |
+       +--------------------+------------------------------------------------------------+
+
 
 .. _CaseOwnerTaskDelegate:
 
-CaseOwnerTaskDelegate
-   :bdg-ref-warning:`🔑CaseOwnerTaskDelegate <CaseOwnerTaskDelegate>`
-     - Delegate all related tasks within cases where user is the case owner
-     - Allows case owners to manage task assignments for their cases
+   :ref:`🔑CaseOwnerTaskDelegate <CaseOwnerTaskDelegate>`
+       +--------------------+------------------------------------------------------------+
+       | Category           | **Case Action**                                            |
+       +====================+============================================================+
+       | Description        | Delegate all related tasks within cases where user is      |
+       |                    | the case owner                                             | 
+       +--------------------+------------------------------------------------------------+
+       | Type               | **Portal permission**                                      |
+       +--------------------+------------------------------------------------------------+
+       | Use case           | User with this permission and TaskWriteActivator can       | 
+       |                    | delegate tasks within the case which he is case owner      |
+       +--------------------+------------------------------------------------------------+
+       | Granted by default | No                                                         |
+       +--------------------+------------------------------------------------------------+
 
 **Case Property Modifications**
 
