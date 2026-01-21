@@ -51,8 +51,6 @@ public class StatisticWidgetTest extends BaseTest {
   @Test
   public void testAddNewStatisticWidget() {
     login(TestAccount.ADMIN_USER);
-    redirectToRelativeLink(create12CasesWithCategoryUrl);
-    redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
     redirectToNewDashBoard();
     DashboardConfigurationPage configurationPage = newDashboardPage.openDashboardConfigurationPage();
     var modificationPage = configurationPage.openEditPublicDashboardsPage();

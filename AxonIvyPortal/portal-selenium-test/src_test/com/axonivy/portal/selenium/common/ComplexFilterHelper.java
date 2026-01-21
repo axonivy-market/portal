@@ -14,6 +14,7 @@ import java.util.Arrays;
 
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebElementCondition;
 
@@ -84,9 +85,19 @@ public class ComplexFilterHelper {
         break;
     }
   }
-  
+
+  private static SelenideElement filterMainPanel() {
+    return $(".dashboard-widget-filter__main-panel")
+      .shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  private static ElementsCollection filterSelectionPanels() {
+    return filterMainPanel()
+      .$$("div[id$=':filter-component:filter-selection-panel']");
+  }
+
   public static SelenideElement addFilter(String columnName, FilterOperator operator) {
-    int currentIndex = $(".dashboard-widget-filter__main-panel").$$("div[id$=':filter-component:filter-selection-panel']").size();
+    int currentIndex = filterSelectionPanels().size();
     $("button[id$=':add-filter']").shouldBe(getClickableCondition()).click();
     $(".dashboard-widget-filter__main-panel").$$("div[id$=':filter-component:filter-selection-panel']")
         .shouldBe(CollectionCondition.sizeGreaterThanOrEqual(currentIndex + 1), DEFAULT_TIMEOUT);
