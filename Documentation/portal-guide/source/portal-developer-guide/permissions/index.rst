@@ -213,22 +213,6 @@ Permissions controlling task visibility, actions, and property modifications.
 
 **Task Property Modifications**
 
-.. _TaskWriteName:
-
-   :ref:`🔑TaskWriteName <TaskWriteName>`
-       +--------------------+------------------------------------------------------------+
-       | Category           | **Task Actions**                                           |
-       +====================+============================================================+
-       | Description        | Modify task name                                           | 
-       +--------------------+------------------------------------------------------------+
-       | Type               | **Core permission**                                        |
-       +--------------------+------------------------------------------------------------+
-       | Use case           | High-privilege permission for administrators               | 
-       +--------------------+------------------------------------------------------------+
-       | Granted by default | No                                                         |
-       +--------------------+------------------------------------------------------------+
-
-
 .. _TaskWriteDescription:
 
    :ref:`🔑TaskWriteDescription <TaskWriteDescription>`
@@ -240,7 +224,8 @@ Permissions controlling task visibility, actions, and property modifications.
        +--------------------+------------------------------------------------------------+
        | Type               | **Core permission**                                        |
        +--------------------+------------------------------------------------------------+
-       | Use case           |                                                            | 
+       | Use case           | User with this permission can change task description      |
+       |                    | in task details.                                           | 
        +--------------------+------------------------------------------------------------+
        | Granted by default | No                                                         |
        +--------------------+------------------------------------------------------------+
@@ -257,7 +242,8 @@ Permissions controlling task visibility, actions, and property modifications.
        +--------------------+------------------------------------------------------------+
        | Type               | **Core permission**                                        |
        +--------------------+------------------------------------------------------------+
-       | Use case           |                                                            | 
+       | Use case           | User with this permission can change task priority      |
+       |                    | in task details.                                           | 
        +--------------------+------------------------------------------------------------+
        | Granted by default | No                                                         |
        +--------------------+------------------------------------------------------------+
@@ -269,12 +255,13 @@ Permissions controlling task visibility, actions, and property modifications.
        +--------------------+------------------------------------------------------------+
        | Category           | **Task Actions**                                           |
        +====================+============================================================+
-       | Description        | Change task deadline/expiry date                           |
+       | Description        | Change task expiry date                                    |
        |                    | Cannot change tasks in states: DONE, DESTROYED, FAILED     |
        +--------------------+------------------------------------------------------------+
        | Type               | **Core permission**                                        |
        +--------------------+------------------------------------------------------------+
-       | Use case           |                                                            | 
+       | Use case           | User with ``AXONIVY_PORTAL_ADMIN`` role and has            | 
+       |                    | this permission can change task expiry date                | 
        +--------------------+------------------------------------------------------------+
        | Granted by default | No                                                         |
        +--------------------+------------------------------------------------------------+
@@ -290,9 +277,10 @@ Permissions controlling task visibility, actions, and property modifications.
        +--------------------+------------------------------------------------------------+
        | Type               | **Core permission**                                        |
        +--------------------+------------------------------------------------------------+
-       | Use case           |                                                            | 
+       | Use case           | User with this permission can delegate task to other       | 
+       |                    | user/roles in the same security context                    |  
        +--------------------+------------------------------------------------------------+
-       | Granted by default | Yes                                                        |
+       | Granted by default | No                                                         |
        +--------------------+------------------------------------------------------------+
 
 
@@ -302,12 +290,13 @@ Permissions controlling task visibility, actions, and property modifications.
        +--------------------+------------------------------------------------------------+
        | Category           | **Task Actions**                                           |
        +====================+============================================================+
-       | Description        | Change the user responsible when task expires              |
+       | Description        | Change the responsible when task expires                   |
        |                    | Cannot change tasks in states: DONE, DESTROYED, FAILED     |
        +--------------------+------------------------------------------------------------+
        | Type               | **Core permission**                                        |
        +--------------------+------------------------------------------------------------+
-       | Use case           |                                                            | 
+       | Use case           | User with ``AXONIVY_PORTAL_ADMIN`` role and has            | 
+       |                    | this permission can change responsible after task expires  | 
        +--------------------+------------------------------------------------------------+
        | Granted by default | No                                                         |
        +--------------------+------------------------------------------------------------+
@@ -317,12 +306,13 @@ Permissions controlling task visibility, actions, and property modifications.
    :ref:`🔑TaskWriteDelayTimestamp <TaskWriteDelayTimestamp>`
        +--------------------+------------------------------------------------------------+
        | Category           | **Task Actions**                                           |
-       +====================+============================================================+
+       +====================+============================================================+   
        | Description        | Modify task delay/start time                               |
        +--------------------+------------------------------------------------------------+
        | Type               | **Core permission**                                        |
        +--------------------+------------------------------------------------------------+
-       | Use case           |                                                            | 
+       | Use case           | User with ``AXONIVY_PORTAL_ADMIN`` role and has            | 
+       |                    | this permission can change task delay/start time           |
        +--------------------+------------------------------------------------------------+
        | Granted by default | No                                                         |
        +--------------------+------------------------------------------------------------+
@@ -331,13 +321,13 @@ Permissions controlling task visibility, actions, and property modifications.
 
    :ref:`🔑TaskWriteActivatorOwnTasks <TaskWriteActivatorOwnTasks>`
        +--------------------+------------------------------------------------------------+
-       | Category           | **Task Actions**                                           |
+       | Category           | **Task UI Display Permissions**                            |
        +====================+============================================================+
        | Description        | Delegate personal/group tasks assigned to user             |
        +--------------------+------------------------------------------------------------+
-       | Type               | **Core permission**                                        |
+       | Type               | **Portal permission**                                      |
        +--------------------+------------------------------------------------------------+
-       | Use case           |                                                            | 
+       | Use case           | Not sure  ???                                              | 
        +--------------------+------------------------------------------------------------+
        | Granted by default | No                                                         |
        +--------------------+------------------------------------------------------------+
@@ -347,13 +337,14 @@ Permissions controlling task visibility, actions, and property modifications.
 
    :ref:`🔑TaskDisplayAdditionalOptions <TaskDisplayAdditionalOptions>`
        +--------------------+------------------------------------------------------------+
-       | Category           | **Task Actions**                                           |
+       | Category           | **Task UI Display Permissions**                            |
        +====================+============================================================+
-       | Description        | Display additional action menu in task lists               |
+       | Description        | Display additional action                                  |
        +--------------------+------------------------------------------------------------+
-       | Type               | **Core permission**                                        |
+       | Type               | **Portal permission**                                      |
        +--------------------+------------------------------------------------------------+
-       | Use case           |                                                            | 
+       | Use case           | User with this permission will have additional             |
+       |                    | menu items from case map.                                  |
        +--------------------+------------------------------------------------------------+
        | Granted by default | Yes                                                        |
        +--------------------+------------------------------------------------------------+
@@ -362,14 +353,16 @@ Permissions controlling task visibility, actions, and property modifications.
 
    :ref:`🔑TaskDisplayResetAction <TaskDisplayResetAction>`
        +--------------------+------------------------------------------------------------+
-       | Category           | **Task Actions**                                           |
+       | Category           | **Task UI Display Permissions**                            |
        +====================+============================================================+
-       | Description        | Show Reset action button in task interface                 |
-       |                    | Requires corresponding TaskReset permission to execute     |
+       | Description        | Display reset action                                       |
        +--------------------+------------------------------------------------------------+
-       | Type               | **Core permission**                                        |
+       | Type               | **Portal permission**                                      |
        +--------------------+------------------------------------------------------------+
-       | Use case           |                                                            | 
+       | Use case           | User with this permission will have ``Reserve``            |
+       |                    | menu item in the task action menu. User also needs         |
+       |                    | ``TaskParkOwnWorkingTask`` or ``TaskReset`` permission     |
+       |                    | to enable this menu.                                       | 
        +--------------------+------------------------------------------------------------+
        | Granted by default | Yes                                                        |
        +--------------------+------------------------------------------------------------+
@@ -379,14 +372,15 @@ Permissions controlling task visibility, actions, and property modifications.
 
    :ref:`🔑TaskDisplayReserveAction <TaskDisplayReserveAction>`
        +--------------------+------------------------------------------------------------+
-       | Category           | **Task Actions**                                           |
+       | Category           | **Task UI Display Permissions**                            |
        +====================+============================================================+
-       | Description        | Show Reserve (Park) action button in task interface        |
-       |                    | Requires TaskParkOwnWorkingTask to execute                 |
+       | Description        | Display reserve action                                     |
        +--------------------+------------------------------------------------------------+
-       | Type               | **Core permission**                                        |
+       | Type               | **Portal permission**                                      |
        +--------------------+------------------------------------------------------------+
-       | Use case           |                                                            | 
+       | Use case           | User with this permission will have ``Reserve``            |
+       |                    | menu item in the task action menu. User also needs         |
+       |                    | ``TaskParkOwnWorkingTask`` permission to enable this menu. | 
        +--------------------+------------------------------------------------------------+
        | Granted by default | Yes                                                        |
        +--------------------+------------------------------------------------------------+
@@ -395,14 +389,15 @@ Permissions controlling task visibility, actions, and property modifications.
 
    :ref:`🔑TaskDisplayDelegateAction <TaskDisplayDelegateAction>`
        +--------------------+------------------------------------------------------------+
-       | Category           | **Task Actions**                                           |
+       | Category           | **Task UI Display Permissions**                            |
        +====================+============================================================+
-       | Description        | Show Delegate action button in task interface              |
-       |                    | Requires TaskWriteActivator to execute delegation          |
+       | Description        | Display delegate action                                    |
        +--------------------+------------------------------------------------------------+
-       | Type               | **Core permission**                                        |
+       | Type               | **Portal permission**                                      |
        +--------------------+------------------------------------------------------------+
-       | Use case           |                                                            | 
+       | Use case           | User with this permission will have ``Delegate``           |
+       |                    | menu item in the task action menu. User also needs         |
+       |                    | ``TaskWriteActivator`` permission to enable this menu.     |  
        +--------------------+------------------------------------------------------------+
        | Granted by default | Yes                                                        |
        +--------------------+------------------------------------------------------------+
@@ -411,32 +406,35 @@ Permissions controlling task visibility, actions, and property modifications.
 
    :ref:`🔑TaskDisplayDestroyAction <TaskDisplayDestroyAction>`
        +--------------------+------------------------------------------------------------+
-       | Category           | **Task Actions**                                           |
+       | Category           | **Task UI Display Permissions**                            |
        +====================+============================================================+
-       | Description        | Show Delete/Destroy action button in task interface        |
-       |                    | Requires TaskDestroy permission to execute                 |
+       | Description        | Display destroy action                                     |
        +--------------------+------------------------------------------------------------+
-       | Type               | **Core permission**                                        |
+       | Type               | **Portal permission**                                      |
        +--------------------+------------------------------------------------------------+
-       | Use case           |                                                            | 
+       | Use case           | User with this permission will have ``Destroy``            |
+       |                    | menu item in the task action menu. User also needs         |
+       |                    | ``TaskDestroy`` permission to enable this menu.            |  
        +--------------------+------------------------------------------------------------+
-       | Granted by default | Yes                                                        |
+       | Granted by default | No                                                        |
        +--------------------+------------------------------------------------------------+
 
 .. _TaskDisplayWorkflowEventAction:
 
    :ref:`🔑TaskDisplayWorkflowEventAction <TaskDisplayWorkflowEventAction>`
        +--------------------+------------------------------------------------------------+
-       | Category           | **Task Actions**                                           |
+       | Category           | **Task UI Display Permissions**                            |
        +====================+============================================================+
-       | Description        | Show Workflow Events button in task details                |
+       | Description        | Display workflow events                                    |
        |                    | Allows viewing task execution history and events           |
        +--------------------+------------------------------------------------------------+
-       | Type               | **Core permission**                                        |
+       | Type               | **Portal permission**                                      |
        +--------------------+------------------------------------------------------------+
-       | Use case           |                                                            | 
+       | Use case           | User with this permission will have ``Workflow events``    |
+       |                    | menu item in the task action menu. User also needs         |
+       |                    | ``WorkflowEventReadAll`` permission to enable this menu.   | 
        +--------------------+------------------------------------------------------------+
-       | Granted by default | Yes                                                        |
+       | Granted by default | No                                                         |
        +--------------------+------------------------------------------------------------+
 
      
@@ -444,16 +442,16 @@ Permissions controlling task visibility, actions, and property modifications.
 
    :ref:`🔑TaskDisplayCustomFieldsAction <TaskDisplayCustomFieldsAction>`
        +--------------------+------------------------------------------------------------+
-       | Category           | **Task Actions**                                           |
+       | Category           | **Task UI Display Permissions**                            |
        +====================+============================================================+
-       | Description        | Show Custom Fields button in task interface                |
-       |                    | Displays additional business data fields                   |
+       | Description        | Display custom fields of case                              | 
        +--------------------+------------------------------------------------------------+
-       | Type               | **Core permission**                                        |
+       | Type               | **Portal permission**                                      |
        +--------------------+------------------------------------------------------------+
-       | Use case           |                                                            |
+       | Use case           | User with this permission will have ``Custom fields``      |
+       |                    | menu item in the task action menu                          | 
        +--------------------+------------------------------------------------------------+
-       | Granted by default | Yes                                                        |
+       | Granted by default | No                                                         |
        +--------------------+------------------------------------------------------------+
 
 
@@ -461,14 +459,14 @@ Permissions controlling task visibility, actions, and property modifications.
 
    :ref:`🔑ShareTaskDetailsLink <ShareTaskDetailsLink>`
        +--------------------+------------------------------------------------------------+
-       | Category           | **Task Actions**                                           |
+       | Category           | **Task UI Display Permissions**                            |
        +====================+============================================================+
-       | Description        | Show Share button in task details page                     |
-       |                    | Allows sharing direct links to specific tasks              |
+       | Description        | Display share case details link                            |
        +--------------------+------------------------------------------------------------+
-       | Type               | **Core permission**                                        |
+       | Type               | **Portal permission**                                      |
        +--------------------+------------------------------------------------------------+
-       | Use case           |                                                            | 
+       | Use case           | User with this permission will have ``Share`` button       |
+       |                    | next to ``Edit`` button in task details                    | 
        +--------------------+------------------------------------------------------------+
        | Granted by default | Yes                                                        |
        +--------------------+------------------------------------------------------------+
@@ -531,21 +529,6 @@ Permissions controlling case visibility, actions, and business details.
        | Granted by default | No                                                         |
        +--------------------+------------------------------------------------------------+
 
-.. _CaseWriteName:
-
-   :ref:`🔑CaseWriteName <CaseWriteName>`
-       +--------------------+------------------------------------------------------------+
-       | Category           | **Case Property Modifications**                            |
-       +====================+============================================================+
-       | Description        | Modify case name, cannot modify case in DESTROYED state    |                                        
-       +--------------------+------------------------------------------------------------+
-       | Type               | **Core permission**                                        |
-       +--------------------+------------------------------------------------------------+
-       | Use case           | Not clear                                                  | 
-       +--------------------+------------------------------------------------------------+
-       | Granted by default | No                                                         |
-       +--------------------+------------------------------------------------------------+
-
 .. _CaseWriteDescription:
 
    :ref:`🔑CaseWriteDescription <CaseWriteDescription>`
@@ -563,22 +546,6 @@ Permissions controlling case visibility, actions, and business details.
        | Granted by default | No                                                         |
        +--------------------+------------------------------------------------------------+
 
-
-.. _ShowAllTasksOfCase:
-
-   :ref:`🔑ShowAllTasksOfCase <ShowAllTasksOfCase>`
-       +--------------------+------------------------------------------------------------+
-       | Category           | **Case UI Display Permissions**                            |
-       +====================+============================================================+
-       | Description        | Display "Show all tasks" action in case details            |
-       |                    | Requires TaskReadOwnCaseTasks and TaskReadAll to view tasks|
-       +--------------------+------------------------------------------------------------+
-       | Type               | **Portal permission**                                      |
-       +--------------------+------------------------------------------------------------+
-       | Use case           | Not clear / Can remove ?                                   | 
-       +--------------------+------------------------------------------------------------+
-       | Granted by default | Yes                                                        |
-       +--------------------+------------------------------------------------------------+
 
 .. _ShowCaseDetails:
 
@@ -1015,11 +982,9 @@ Portal uses the following Axon Ivy Engine core permissions. These are documented
 #. :ref:`🔑TaskResetOwnWorkingTask <TaskResetOwnWorkingTask>`
 #. :ref:`🔑TaskReset <TaskReset>` 
 #. :ref:`🔑TaskDestroy <TaskDestroy>` 
-#. :ref:`🔑TaskWriteName <TaskWriteName>` 
 #. :ref:`🔑TaskWriteDescription <TaskWriteDescription>`
 #. :ref:`🔑TaskWriteOriginalPriority <TaskWriteOriginalPriority>`
 #. :ref:`🔑TaskWriteExpiryTimestamp <TaskWriteExpiryTimestamp>` 
-#. :ref:`🔑TaskWriteName <TaskWriteName>`
 #. :ref:`🔑TaskWriteDescription <TaskWriteDescription>`
 #. :ref:`🔑TaskWriteOriginalPriority <TaskWriteOriginalPriority>`
 #. :ref:`🔑TaskWriteExpiryTimestamp <TaskWriteExpiryTimestamp>`
@@ -1030,7 +995,6 @@ Portal uses the following Axon Ivy Engine core permissions. These are documented
 
 #. :ref:`🔑CaseReadAll <CaseReadAll>`
 #. :ref:`🔑CaseDestroy <CaseDestroy>`
-#. :ref:`🔑CaseWriteName <CaseWriteName>`
 #. :ref:`🔑CaseWriteDescription <CaseWriteDescription>`
 
 **Role Permissions:**
