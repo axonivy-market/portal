@@ -551,21 +551,31 @@ public class DashboardWidgetUtils {
       processWidget.setEmptyProcessMessage(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/processes/noProcessSelected"));
       return;
     }
-    boolean hasProcessPermission = Ivy.session().getStartableProcessStarts().stream()
-        .anyMatch(p -> processPath.contains(p.getUserFriendlyRequestPath()));
+
     List<String> publicExternalLinkIdsNotForIvySessionUser = getPublicExternalLinkIdsNotForIvySessionUser();
-    // check permission with external processes
-    if (publicExternalLinkIdsNotForIvySessionUser.indexOf(processPath) > -1) {
+    List<String> allExternalLinkIds = getAllExternalLinkIds();
+
+    if (publicExternalLinkIdsNotForIvySessionUser.contains(processPath)) {
       processWidget.setHasPermissionToSee(false);
       processWidget
           .setEmptyProcessMessage(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/processes/noPermissionToSee"));
       return;
-    } else if (!hasProcessPermission) {
-      processWidget.setHasPermissionToSee(false);
-      processWidget
-          .setEmptyProcessMessage(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/processes/noPermissionToSee"));
-      return;
+    }
+
+    boolean isExternalLink = allExternalLinkIds.contains(processPath);
+    if (isExternalLink) {
+      processWidget.setHasPermissionToSee(true);
     } else {
+      boolean hasProcessPermission = Ivy.session().getStartableProcessStarts().stream()
+          .anyMatch(p -> processPath.contains(p.getUserFriendlyRequestPath()));
+
+      if (!hasProcessPermission) {
+        processWidget.setHasPermissionToSee(false);
+        processWidget
+            .setEmptyProcessMessage(
+                Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/processes/noPermissionToSee"));
+        return;
+      }
       processWidget.setHasPermissionToSee(true);
     }
 
@@ -585,6 +595,11 @@ public class DashboardWidgetUtils {
     List<ExternalLink> publicExternalLinksNotForIvySessionUser = ExternalLinkService.getInstance()
         .filterPublicExternalLinksNotForIvySessionUser();
     return publicExternalLinksNotForIvySessionUser.stream().map(link -> link.getId()).toList();
+  }
+
+  private static List<String> getAllExternalLinkIds() {
+    List<ExternalLink> allExternalLinks = ExternalLinkService.getInstance().findAll();
+    return allExternalLinks.stream().map(link -> link.getId()).toList();
   }
 
   private static void updateProcessStartIdForCombined(ProcessDashboardWidget processWidget, DashboardProcess process) {
