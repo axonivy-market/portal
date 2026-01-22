@@ -67,8 +67,8 @@ Customizing Your Dashboard
 ===========================
 
 .. important::
-   **Required Permissions**: Only users with the :bdg-ref-warning:`🔑DashboardWriteOwn <DashboardWriteOwn>` 
-   or :bdg-ref-warning:`🔑DashboardWritePublic <DashboardWritePublic>` permission can see and access the 
+   **Required Permissions**: Only users with the :ref:`🔑DashboardWriteOwn <DashboardWriteOwn>` 
+   or :ref:`🔑DashboardWritePublic <DashboardWritePublic>` permission can see and access the 
    **Dashboard Configuration** menu item in the user menu. These permissions allow you to add, edit, reorder, 
    show, and hide private or public dashboards.
 
@@ -368,7 +368,7 @@ You can define a news feed widget to display all news entries to the user
 
 **Manage news feed content**
 
-.. note:: Grant permission :bdg-ref-warning:`🔑NewsManagement <NewsManagement>` to allow a user to manage the content of the news feed.
+.. note:: Grant permission :ref:`🔑NewsManagement <NewsManagement>` to allow a user to manage the content of the news feed.
 
 If the user has permission, then the user can:
 
@@ -438,9 +438,7 @@ Clone a widget
 Clone a widget from existing dashboard
 ======================================
 
-When editing a dashboard, you can clone a widget from another dashboard by opening the :guilabel:`Add a widget` dialog by press on the :guilabel:`+ Add widget` button.
-
-Once the dialog opens, click the :guilabel:`Clone widget` button at the top.
+When editing a dashboard, you can clone a widget from another dashboard by clicking the :guilabel:`Clone widget` button at the top of the page.
 
 |clone-widget-from-button|
 

@@ -19,6 +19,10 @@ Portal supports customizing this page for each case.
 How to customize the business details page
 ------------------------------------------
 
+.. note::
+   Once the ``businessDetails`` value is set, it becomes a fixed link for the case.
+   Please take this into account if different project model versions use different Business Details Page UIs.
+
 #. Create the business details process. In this process, define a request start event that accepts the ``uuid`` parameter. 
    When the ``Business details`` button on the case details page is clicked, Portal will call this process and pass the case UUID as 
    the ``uuid`` parameter. Design and implement the user interface for the business details page within this process.
@@ -32,9 +36,13 @@ How to customize the business details page
      parameter. To make it more flexible, Portal supports passing the end part of IWebStartable ID as the parameter 
      but you need to ensure that only one process in the security context has the IWebStartable ID that ends with the parameter.
 
+     Alternatively, use the ``Functional Processes/SetBusinessDetailsPage:callWithParams(String,Map)`` callable process to pass both the IWebStartable ID and 
+     a map of parameters. For example, the parameters are attached to the URL like this: ``Start Processes/BusinessDetails/showInvestmentRequestCustomFields.ivp?company=Wawa+Company&location=HCMC&embedInFrame``.
+
       |set-business-details-page-callable-process|
 
-   * Use public API ``ch.ivy.addon.portalkit.publicapi.BusinessDetailsAPI.create(String)`` or ``ch.ivy.addon.portalkit.publicapi.BusinessDetailsAPI.create(BusinessDetailsDTO)``. 
+   *  Use public API ``ch.ivy.addon.portalkit.publicapi.BusinessDetailsAPI.create(String)``, ``ch.ivy.addon.portalkit.publicapi.BusinessDetailsAPI.create(String, java.util.Map)`` or ``ch.ivy.addon.portalkit.publicapi.BusinessDetailsAPI.create(BusinessDetailsDTO)``.
+   
      See the Public API section for more details.
 
       |customize-business-details-with-public-api|
@@ -74,7 +82,7 @@ Permission Setting
 Configure permissions in the :doc-url:`Engine Cockpit
 </engine-guide/reference/engine-cockpit/security.html>`. In the security area, open PortalPermissions -> PortalCasePermissions -> ShowCaseDetails.
 
-Or search :bdg-ref-warning:`🔑ShowCaseDetails <ShowCaseDetails>` in the permissions search bar. By default, this permission is set to ``true`` for the role ``Everybody``.
+Or search :ref:`🔑ShowCaseDetails <ShowCaseDetails>` in the permissions search bar. By default, this permission is set to ``true`` for the role ``Everybody``.
 
 
 .. |start-business-details-page-iframe| image:: images/business-details-page/start-business-details-page-iframe.png

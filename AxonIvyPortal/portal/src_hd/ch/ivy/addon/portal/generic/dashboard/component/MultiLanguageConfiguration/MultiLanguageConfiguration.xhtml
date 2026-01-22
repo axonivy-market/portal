@@ -28,15 +28,15 @@
   <c:set var="titleRequired" value="#{cc.attrs.titleRequired}" />
   <c:set var="userLocale" value="#{managedBean.getSupportedUserLanguage()}" />
 
-  <p:dialog rendered="#{cc.attrs.rendered}" appendTo="@(body)" fitViewport="true" width="500" closeOnEscape="true"
+  <p:dialog rendered="#{cc.attrs.rendered}" appendTo="@(body)" width="500" fitViewport="true" closeOnEscape="true"
     header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/settingMultipleLanguages')}" resizable="false"
     id="multiple-languages-dialog" widgetVar="multiple-languages-dialog" modal="true" responsive="true"
-    dynamic="#{cc.attrs.dynamic}">
+    dynamic="#{cc.attrs.dynamic}" styleClass="dialog-responsive">
     <h:form id="add-language-detail-form">
       <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/emptySupportedLanguages')}"
         rendered="#{titles.isEmpty()}" />
-    <h:panelGroup id="multiple-language-panel" layout="block" styleClass="multiple-language-data-table">
-      <h:dataTable id="table-titles" value="#{titles}" rendered="#{titles.isEmpty() eq 'false'}" var="title" width="460" 
+    <h:panelGroup id="multiple-language-panel" layout="block" styleClass="multiple-language-data-table w-full">
+      <h:dataTable id="table-titles" value="#{titles}" rendered="#{titles.isEmpty() eq 'false'}" var="title" styleClass="w-full"
         columnClasses="#{cc.attrs.useInputText ? '' : 'multi-language-textarea-label,'}">
         <h:column>
           <p:outputLabel value="#{title.locale.getDisplayName(userLocale)}" for="#{cc.attrs.useInputText ? 'title-input' : 'title-textarea'}"

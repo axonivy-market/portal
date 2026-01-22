@@ -13,9 +13,9 @@ How to use
 
 To utilize the Statistic feature on the Dashboard Configuration, follow these steps:
 
-- Navigate to Dashboard Configuration of the dashboard where you want to add the widget and select :guilabel:`Add Widget` for predefined Standard Charts or :guilabel:`Create custom statistic widget` for configuring new statistic chart.
+- Navigate to Dashboard Configuration of the dashboard where you want to add the widget and click :guilabel:`Add Widget` button to open :guilabel:`Add a widget` dialog.
 
-- From the dropdown menu labeled **Statistic Widgets**, choose from a variety of insightful charts.
+- Select a predefined Standard Chart from the **Statistic Widgets** section, or click :guilabel:`Create custom statistic widget` to configure a new statistic chart.
 
 |statistic-widget-list-page|
 
@@ -27,77 +27,77 @@ Available Standard Charts
     |tasks-by-prior-pie-chart|
 
     - This pie chart displays all tasks by priority.
-    - Chart type: :bdg-info:`Pie`
+    - Chart type: ``Pie``
 
 - Top Priority: 3 Days
 
     |top-prior-chart|
 
     - This chart displays all tasks that the user can work on, grouped by expiry within the next 3 days.
-    - Chart type: :bdg-info:`Bar`
+    - Chart type: ``Bar``
 
 - Tasks By Priority
  
     |tasks-by-prior-bar-chart|
 
     - This bar chart displays all tasks that the user can work on grouped by priority.
-    - Chart type: :bdg-info:`Bar`
+    - Chart type: ``Bar``
 
 - Case Category Avg. Runtime
 
     |avg-runtime-chart|
 
     - This chart shows the average processing time of cases by category. 
-    - Chart type: :bdg-info:`Bar`
+    - Chart type: ``Bar``
 
 - New Cases Per Day
 
     |new-cases-chart|
 
     - This chart shows the number of cases started per day for the last 5 days.
-    - Chart type: :bdg-info:`Line`
+    - Chart type: ``Line``
 
 - Completed Cases Per Day
 
     |completed-cases-chart|
 
     - This chart shows the number of cases finished per day for the last 5 days.
-    - Chart type: :bdg-info:`Line`
+    - Chart type: ``Line``
 
 - Running Cases
 
     |running-cases-chart|
 
     - This chart shows all running cases in which the user is involved.
-    - Chart type: :bdg-info:`Number`
+    - Chart type: ``Number``
 
 - Tasks that expire by the end of the week
 
     |tasks-expire-end-week-chart|
 
     - This chart shows all tasks that expire by the end of the week.
-    - Chart type: :bdg-info:`Number`
+    - Chart type: ``Number``
 
 - Tasks By Priority
 
     |tasks-by-prior-number-chart|
 
     - This chart shows all tasks the user can work on by priority.
-    - Chart type: :bdg-info:`Number`
+    - Chart type: ``Number``
 
 - Open Tasks
 
     |open-tasks-chart|
 
     - This chart shows all tasks the user can work on.
-    - Chart type: :bdg-info:`Number`
+    - Chart type: ``Number``
 
 - Tasks Due Today
 
     |due-today-chart|
 
     - This chart shows all tasks that are due today.
-    - Chart type: :bdg-info:`Number`
+    - Chart type: ``Number``
     
 How to configure new statistic chart
 ------------------------------------

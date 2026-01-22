@@ -54,7 +54,13 @@
             "",
             "dossier.decision.granted = false;",
             "// Execute rules to evaluate if it needs approval Level 1 and / or Level 2",
-            "Rules.create().namespace(\"com.axonivy.portal.userexamples.credit\").executor().execute(dossier);",
+            "if (dossier.request.amount / dossier.request.salary >= 0.2) {",
+            "    dossier.decision.needsLevel1Approval = true;",
+            "}",
+            "",
+            "if (!\"Switzerland\".equals(dossier.customer.address.country)) {",
+            "    dossier.decision.needsLevel2Approval = true;",
+            "}",
             "// Save dossier",
             "ivy.repo.save(dossier);"
           ]
