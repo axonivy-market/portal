@@ -11,7 +11,7 @@
   <groupId>com.axonivy.portal</groupId>
   <artifactId>portal-document-screenshots-selenide</artifactId>
   <version>14.0.0-SNAPSHOT</version>
-  <packaging>pom</packaging>
+  <packaging>jar</packaging>
   <distributionManagement>
     <repository>
       <id>repo.axongroupio.ch</id>
@@ -68,53 +68,7 @@
         <groupId>com.axonivy.ivy.ci</groupId>
         <artifactId>project-build-plugin</artifactId>
         <extensions>true</extensions>
-        <configuration>
-          <encoding>UTF-8</encoding>
-          <compilerWarnings>false</compilerWarnings>
-        </configuration>
         <executions>
-          <execution>
-            <id>default-installEngine</id>
-            <goals>
-              <goal>installEngine</goal>
-            </goals>
-            <phase>initialize</phase>
-          </execution>
-          <execution>
-            <id>generate-data-class-sources</id>
-            <phase>generate-sources</phase>
-            <goals>
-              <goal>generate-data-class-sources</goal>
-            </goals>
-          </execution>
-          <execution>
-            <id>generate-dialog-form-sources</id>
-            <phase>generate-sources</phase>
-            <goals>
-              <goal>generate-dialog-form-sources</goal>
-            </goals>
-          </execution>
-          <execution>
-            <id>generate-web-service-sources</id>
-            <phase>generate-sources</phase>
-            <goals>
-              <goal>generate-web-service-sources</goal>
-            </goals>
-          </execution>
-          <execution>
-            <id>default-compileProject</id>
-            <goals>
-              <goal>compileProject</goal>
-            </goals>
-            <phase>compile</phase>
-          </execution>
-          <execution>
-            <id>default-test-compile</id>
-            <goals>
-              <goal>test-compile</goal>
-            </goals>
-            <phase>test-compile</phase>
-          </execution>
           <execution>
             <id>start.test.engine</id>
             <phase>process-test-classes</phase>
@@ -128,13 +82,6 @@
               <goal>stop-test-engine</goal>
             </goals>
             <phase>post-integration-test</phase>
-          </execution>
-          <execution>
-            <id>default-pack-iar</id>
-            <goals>
-              <goal>pack-iar</goal>
-            </goals>
-            <phase>none</phase>
           </execution>
         </executions>
       </plugin>

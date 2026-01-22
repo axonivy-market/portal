@@ -3,3 +3,6 @@ AxonIvyPortal/PortalKitTestHelper/src_dataClasses/
 Showcase/InternalSupport/src_dataClasses/
 Showcase/InternalSupport/target/
 **/.flattened-pom.xml
+**/target/
+**/logs/
+**/mvn-deps/

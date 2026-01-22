@@ -31,6 +31,12 @@ Processes:
         name: Demande d'investissement
     description: Exemple de demande d'investissement pour une page de détails commerciaux personnalisés
     name: Réaliser un investissement
+  CreateInvestmentWithParameters:
+    Tasks:
+      Request:
+        name: Créer un investissement avec des paramètres
+    description: Exemple de demande d'investissement pour une page de détails commerciaux personnalisés
+    name: Créer un investissement avec des paramètres
   CreateInvestmentWithPublicAPI:
     Task:
       Request:
