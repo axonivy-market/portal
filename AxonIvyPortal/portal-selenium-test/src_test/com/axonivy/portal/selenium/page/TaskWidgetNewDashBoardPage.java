@@ -1,5 +1,6 @@
 package com.axonivy.portal.selenium.page;
 
+import static com.codeborne.selenide.CollectionCondition.containExactTextsCaseSensitive;
 import static com.codeborne.selenide.CollectionCondition.size;
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
 import static com.codeborne.selenide.Condition.appear;
@@ -24,6 +25,7 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.ScrollIntoViewOptions;
 import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.WebElementsCondition;
 import com.codeborne.selenide.ScrollIntoViewOptions.Block;
 
 public class TaskWidgetNewDashBoardPage extends TemplatePage {
@@ -66,25 +68,12 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
     return 0;
   }
 
-  private ElementsCollection getTaskCollection() {
-    return $(taskWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$(".ui-datatable-scrollable-header").shouldBe(appear, DEFAULT_TIMEOUT)
-    .$$("table thead tr th");
-  }
-
-  private int getIndexWidgetByColumnScrollable(String columnName) {
-    List<SelenideElement> elementsTH = getTaskCollection().asFixedIterable().stream().toList();
-
-    for (int i = 0; i < elementsTH.size(); i++) {
-      if (elementsTH.get(i).getAttribute("aria-label").equalsIgnoreCase(columnName)) {
-        return i;
-      }
-    }
-    return 0;
-  }
-
   private SelenideElement getColumnOfTaskHasActionIndex(int index, String columnName) {
-    int startIndex = getIndexWidgetByColumnScrollable(columnName);
-    return getColumnOfTableWidget(index).get(startIndex).$("span a");
+    return $(taskWidgetId).shouldBe(appear, DEFAULT_TIMEOUT)
+    .$$("table tbody tr").shouldHave(CollectionCondition.sizeGreaterThanOrEqual(index))
+    .get(index).$$("td").shouldHave(containExactTextsCaseSensitive(columnName))
+    .filter(Condition.text(columnName)).first()
+    .$("span a");
   }
 
   private ElementsCollection getColumnOfTableWidget(int rowIndex) {
