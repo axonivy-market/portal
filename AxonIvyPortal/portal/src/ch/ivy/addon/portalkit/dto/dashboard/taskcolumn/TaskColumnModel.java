@@ -6,6 +6,7 @@ import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
+import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.custom.field.CustomFieldType;
 import ch.ivyteam.ivy.workflow.custom.field.ICustomFields;
@@ -40,6 +41,7 @@ public class TaskColumnModel extends ColumnModel {
   }
 
   public static TaskColumnModel constructColumn(DashboardColumnType fieldType, String field) {
+    Ivy.log().debug("Constructing TaskColumnModel for fieldType: " + fieldType + ", field: " + field);
     if (fieldType != DashboardColumnType.STANDARD || field == null) {
       return new TaskColumnModel();
     }
@@ -52,6 +54,7 @@ public class TaskColumnModel extends ColumnModel {
       case NAME -> new NameColumnModel();
       case DESCRIPTION -> new DescriptionColumnModel();
       case RESPONSIBLE -> new ResponsibleColumnModel();
+      case DELEGATION -> new DelegationColumnModel();
       case STATE -> new StateColumnModel();
       case CREATED -> new CreatedDateColumnModel();
       case COMPLETED -> new CompletedDateColumnModel();

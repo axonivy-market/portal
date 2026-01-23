@@ -125,6 +125,8 @@ public class DashboardWidgetUtils {
         taskColumnModelClass = ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.DescriptionColumnModel.class;
       } else if (equals(DashboardStandardTaskColumn.RESPONSIBLE, field)) {
         taskColumnModelClass = ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.ResponsibleColumnModel.class;
+      } else if (equals(DashboardStandardTaskColumn.DELEGATION, field)) {
+        taskColumnModelClass = ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.DelegationColumnModel.class;
       } else if (equals(DashboardStandardTaskColumn.STATE, field)) {
         taskColumnModelClass = ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.StateColumnModel.class;
       } else if (equals(DashboardStandardTaskColumn.CREATED, field)) {

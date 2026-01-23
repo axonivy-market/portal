@@ -54,6 +54,7 @@ public final class TaskUtils {
   private static final String PRIORITY_CMS_PATH = "/ch.ivy.addon.portalkit.ui.jsf/taskPriority/";
   private static final String TASK_BUSINESS_STATE_CMS_PATH = "/ch.ivy.addon.portalkit.ui.jsf/taskBusinessState/";
   private static String pinTaskProperty = UserProperty.PORTAL_PINNED_TASKS;
+  private static String delegationTaskProperty = UserProperty.PORTAL_DELEGATED_TASKS;
 
   private TaskUtils() {}
 
@@ -476,6 +477,34 @@ public final class TaskUtils {
     IUser currentUser = Ivy.session().getSessionUser();
     if (currentUser != null) {
       currentUser.setProperty(pinTaskProperty, StringUtils.EMPTY);
+    }
+  }
+
+  public static Set<String> getDelegatedTaskUuids() {
+    IUser currentUser = Ivy.session().getSessionUser();
+    if (currentUser == null) {
+      return new HashSet<>();
+    }
+
+    String delegatedTasksStr = currentUser.getProperty(delegationTaskProperty);
+    return StringUtils.isBlank(delegatedTasksStr) ? new HashSet<>()
+        : Arrays.stream(delegatedTasksStr.split(",")).map(String::trim).filter(StringUtils::isNotEmpty)
+            .collect(Collectors.toSet());
+  }
+
+  public static void saveDelegatedTaskUuids(Set<String> delegatedTaskUuids) {
+    String updatedDelegatedTasks = String.join(",", delegatedTaskUuids);
+    Ivy.session().getSessionUser().setProperty(delegationTaskProperty, updatedDelegatedTasks);
+  }
+
+  public static boolean isDelegatedTask(ITask task) {
+    return task != null && getDelegatedTaskUuids().contains(task.uuid());
+  }
+
+  public static void removeAllDelegatedTasks() {
+    IUser currentUser = Ivy.session().getSessionUser();
+    if (currentUser != null) {
+      currentUser.setProperty(delegationTaskProperty, StringUtils.EMPTY);
     }
   }
 
