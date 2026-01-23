@@ -95,7 +95,7 @@ Permissions controlling task visibility, actions, and property modifications.
 
    :ref:`🔑TaskReadAll <TaskReadAll>`
        +--------------------+-------------------------------------------------------------+
-       | Category           | **Role Management Permissions**                             |
+       | Category           | **Task Visibility**                                         |
        +--------------------+-------------------------------------------------------------+
        | Description        | View all user tasks (not system) in the system regardless   |
        |                    | of assignment                                               |
@@ -161,7 +161,7 @@ Permissions controlling task visibility, actions, and property modifications.
    :ref:`🔑TaskResetOwnWorkingTask <TaskResetOwnWorkingTask>`
        +--------------------+------------------------------------------------------------+
        | Category           | **Task Actions**                                           |
-       +====================+============================================================+
+       +--------------------+------------------------------------------------------------+
        | Description        | Reset own working tasks to their initial state             |
        |                    | in states: RESUMED, PARKED, READY_FOR_JOIN, FAILED         |
        +--------------------+------------------------------------------------------------+
@@ -178,7 +178,7 @@ Permissions controlling task visibility, actions, and property modifications.
    :ref:`🔑TaskReset <TaskReset>`
        +--------------------+------------------------------------------------------------+
        | Category           | **Task Actions**                                           |
-       +====================+============================================================+
+       +--------------------+------------------------------------------------------------+
        | Description        | Reset any tasks in the security context                    |
        +--------------------+------------------------------------------------------------+
        | Type               | **Core permission**                                        |
@@ -194,7 +194,7 @@ Permissions controlling task visibility, actions, and property modifications.
    :ref:`🔑TaskResetReadyForJoin <TaskResetReadyForJoin>`
        +--------------------+------------------------------------------------------------+
        | Category           | **Task Actions**                                           |
-       +====================+============================================================+
+       +--------------------+------------------------------------------------------------+
        | Description        | Reset tasks in READY_FOR_JOIN state                        |
        +--------------------+------------------------------------------------------------+
        | Type               | **Core permission**                                        |
@@ -210,7 +210,7 @@ Permissions controlling task visibility, actions, and property modifications.
    :ref:`🔑TaskDestroy <TaskDestroy>`
        +--------------------+------------------------------------------------------------+
        | Category           | **Task Actions**                                           |
-       +====================+============================================================+
+       +--------------------+------------------------------------------------------------+
        | Description        | Delete tasks permanently                                   |
        |                    | Only works if task state is not DESTROYED or DONE          |
        +--------------------+------------------------------------------------------------+
@@ -228,7 +228,7 @@ Permissions controlling task visibility, actions, and property modifications.
    :ref:`🔑TaskWriteDescription <TaskWriteDescription>`
        +--------------------+------------------------------------------------------------+
        | Category           | **Task Actions**                                           |
-       +====================+============================================================+
+       +--------------------+------------------------------------------------------------+
        | Description        | Modify task description                                    |
        |                    | Cannot change terminated tasks (DONE, DESTROYED, FAILED)   |
        +--------------------+------------------------------------------------------------+
@@ -246,7 +246,7 @@ Permissions controlling task visibility, actions, and property modifications.
    :ref:`🔑TaskWriteOriginalPriority <TaskWriteOriginalPriority>`
        +--------------------+------------------------------------------------------------+
        | Category           | **Task Actions**                                           |
-       +====================+============================================================+
+       +--------------------+------------------------------------------------------------+
        | Description        | Change task priority level                                 |
        |                    | Cannot change tasks in states: DONE, DESTROYED, FAILED     | 
        +--------------------+------------------------------------------------------------+
@@ -264,7 +264,7 @@ Permissions controlling task visibility, actions, and property modifications.
    :ref:`🔑TaskWriteExpiryTimestamp <TaskWriteExpiryTimestamp>`
        +--------------------+------------------------------------------------------------+
        | Category           | **Task Actions**                                           |
-       +====================+============================================================+
+       +--------------------+------------------------------------------------------------+
        | Description        | Change task expiry date                                    |
        |                    | Cannot change tasks in states: DONE, DESTROYED, FAILED     |
        +--------------------+------------------------------------------------------------+
@@ -282,7 +282,7 @@ Permissions controlling task visibility, actions, and property modifications.
    :ref:`🔑TaskWriteActivator <TaskWriteActivator>`
        +--------------------+------------------------------------------------------------+
        | Category           | **Task Actions**                                           |
-       +====================+============================================================+
+       +--------------------+------------------------------------------------------------+
        | Description        | Delegate tasks to other users/roles                        |
        +--------------------+------------------------------------------------------------+
        | Type               | **Core permission**                                        |
@@ -299,7 +299,7 @@ Permissions controlling task visibility, actions, and property modifications.
    :ref:`🔑TaskWriteExpiryActivator <TaskWriteExpiryActivator>`
        +--------------------+------------------------------------------------------------+
        | Category           | **Task Actions**                                           |
-       +====================+============================================================+
+       +--------------------+------------------------------------------------------------+
        | Description        | Change the responsible when task expires                   |
        |                    | Cannot change tasks in states: DONE, DESTROYED, FAILED     |
        +--------------------+------------------------------------------------------------+
@@ -316,7 +316,7 @@ Permissions controlling task visibility, actions, and property modifications.
    :ref:`🔑TaskWriteDelayTimestamp <TaskWriteDelayTimestamp>`
        +--------------------+------------------------------------------------------------+
        | Category           | **Task Actions**                                           |
-       +====================+============================================================+   
+       +--------------------+------------------------------------------------------------+   
        | Description        | Modify task delay/start time                               |
        +--------------------+------------------------------------------------------------+
        | Type               | **Core permission**                                        |
@@ -332,7 +332,7 @@ Permissions controlling task visibility, actions, and property modifications.
    :ref:`🔑TaskWriteActivatorOwnTasks <TaskWriteActivatorOwnTasks>`
        +--------------------+------------------------------------------------------------+
        | Category           | **Task UI Display Permissions**                            |
-       +====================+============================================================+
+       +--------------------+------------------------------------------------------------+
        | Description        | Delegate personal/group tasks assigned to user             |
        +--------------------+------------------------------------------------------------+
        | Type               | **Portal permission**                                      |
@@ -348,7 +348,7 @@ Permissions controlling task visibility, actions, and property modifications.
    :ref:`🔑TaskDisplayAdditionalOptions <TaskDisplayAdditionalOptions>`
        +--------------------+------------------------------------------------------------+
        | Category           | **Task UI Display Permissions**                            |
-       +====================+============================================================+
+       +--------------------+------------------------------------------------------------+
        | Description        | Display additional action                                  |
        +--------------------+------------------------------------------------------------+
        | Type               | **Portal permission**                                      |
@@ -364,7 +364,7 @@ Permissions controlling task visibility, actions, and property modifications.
    :ref:`🔑TaskDisplayResetAction <TaskDisplayResetAction>`
        +--------------------+------------------------------------------------------------+
        | Category           | **Task UI Display Permissions**                            |
-       +====================+============================================================+
+       +--------------------+------------------------------------------------------------+
        | Description        | Display reset action                                       |
        +--------------------+------------------------------------------------------------+
        | Type               | **Portal permission**                                      |
@@ -382,7 +382,7 @@ Permissions controlling task visibility, actions, and property modifications.
    :ref:`🔑TaskDisplayReserveAction <TaskDisplayReserveAction>`
        +--------------------+------------------------------------------------------------+
        | Category           | **Task UI Display Permissions**                            |
-       +====================+============================================================+
+       +--------------------+------------------------------------------------------------+
        | Description        | Display reserve action                                     |
        +--------------------+------------------------------------------------------------+
        | Type               | **Portal permission**                                      |
@@ -399,7 +399,7 @@ Permissions controlling task visibility, actions, and property modifications.
    :ref:`🔑TaskDisplayDelegateAction <TaskDisplayDelegateAction>`
        +--------------------+------------------------------------------------------------+
        | Category           | **Task UI Display Permissions**                            |
-       +====================+============================================================+
+       +--------------------+------------------------------------------------------------+
        | Description        | Display delegate action                                    |
        +--------------------+------------------------------------------------------------+
        | Type               | **Portal permission**                                      |
@@ -416,7 +416,7 @@ Permissions controlling task visibility, actions, and property modifications.
    :ref:`🔑TaskDisplayDestroyAction <TaskDisplayDestroyAction>`
        +--------------------+------------------------------------------------------------+
        | Category           | **Task UI Display Permissions**                            |
-       +====================+============================================================+
+       +--------------------+------------------------------------------------------------+
        | Description        | Display destroy action                                     |
        +--------------------+------------------------------------------------------------+
        | Type               | **Portal permission**                                      |
@@ -433,7 +433,7 @@ Permissions controlling task visibility, actions, and property modifications.
    :ref:`🔑TaskDisplayWorkflowEventAction <TaskDisplayWorkflowEventAction>`
        +--------------------+------------------------------------------------------------+
        | Category           | **Task UI Display Permissions**                            |
-       +====================+============================================================+
+       +--------------------+------------------------------------------------------------+
        | Description        | Display workflow events                                    |
        |                    | Allows viewing task execution history and events           |
        +--------------------+------------------------------------------------------------+
@@ -452,7 +452,7 @@ Permissions controlling task visibility, actions, and property modifications.
    :ref:`🔑TaskDisplayCustomFieldsAction <TaskDisplayCustomFieldsAction>`
        +--------------------+------------------------------------------------------------+
        | Category           | **Task UI Display Permissions**                            |
-       +====================+============================================================+
+       +--------------------+------------------------------------------------------------+
        | Description        | Display custom fields of case                              | 
        +--------------------+------------------------------------------------------------+
        | Type               | **Portal permission**                                      |
@@ -469,7 +469,7 @@ Permissions controlling task visibility, actions, and property modifications.
    :ref:`🔑ShareTaskDetailsLink <ShareTaskDetailsLink>`
        +--------------------+------------------------------------------------------------+
        | Category           | **Task UI Display Permissions**                            |
-       +====================+============================================================+
+       +--------------------+------------------------------------------------------------+
        | Description        | Display share case details link                            |
        +--------------------+------------------------------------------------------------+
        | Type               | **Portal permission**                                      |
@@ -492,7 +492,7 @@ Permissions controlling case visibility, actions, and business details.
    :ref:`🔑CaseReadAll <CaseReadAll>`
        +--------------------+------------------------------------------------------------+
        | Category           | **Case Visibility**                                        |
-       +====================+============================================================+
+       +--------------------+------------------------------------------------------------+
        | Description        | View all cases in the security context regardless          |
        |                    | of involvement                                             |
        +--------------------+------------------------------------------------------------+
@@ -509,7 +509,7 @@ Permissions controlling case visibility, actions, and business details.
    :ref:`🔑CaseDestroy <CaseDestroy>`
        +--------------------+------------------------------------------------------------+
        | Category           | **Case Action**                                            |
-       +====================+============================================================+
+       +--------------------+------------------------------------------------------------+
        | Description        | Delete cases with state RUNNING                            |
        +--------------------+------------------------------------------------------------+
        | Type               | **Core permission**                                        |
@@ -526,7 +526,7 @@ Permissions controlling case visibility, actions, and business details.
    :ref:`🔑CaseOwnerTaskDelegate <CaseOwnerTaskDelegate>`
        +--------------------+------------------------------------------------------------+
        | Category           | **Case Action**                                            |
-       +====================+============================================================+
+       +--------------------+------------------------------------------------------------+
        | Description        | Delegate all related tasks within cases where user is      |
        |                    | the case owner                                             | 
        +--------------------+------------------------------------------------------------+
@@ -543,7 +543,7 @@ Permissions controlling case visibility, actions, and business details.
    :ref:`🔑CaseWriteDescription <CaseWriteDescription>`
        +--------------------+------------------------------------------------------------+
        | Category           | **Case Property Modifications**                            |
-       +====================+============================================================+
+       +--------------------+------------------------------------------------------------+
        | Description        | Modify case description, cannot modify case in DESTROYED   |
        |                    | state                                                      |
        +--------------------+------------------------------------------------------------+
@@ -561,7 +561,7 @@ Permissions controlling case visibility, actions, and business details.
    :ref:`🔑ShowCaseDetails <ShowCaseDetails>`
        +--------------------+------------------------------------------------------------+
        | Category           | **Case UI Display Permissions**                            |
-       +====================+============================================================+
+       +--------------------+------------------------------------------------------------+
        | Description        | Display business details in new tab to show                |
        |                    | additional case information                                |
        +--------------------+------------------------------------------------------------+
@@ -578,7 +578,7 @@ Permissions controlling case visibility, actions, and business details.
    :ref:`🔑CaseDisplayCustomFieldsAction <CaseDisplayCustomFieldsAction>`
        +--------------------+------------------------------------------------------------+
        | Category           | **Case UI Display Permissions**                            |
-       +====================+============================================================+
+       +--------------------+------------------------------------------------------------+
        | Description        | Display custom fields of case                              |
        +--------------------+------------------------------------------------------------+
        | Type               | **Portal permission**                                      |
@@ -595,7 +595,7 @@ Permissions controlling case visibility, actions, and business details.
    :ref:`🔑ShareCaseDetailsLink <ShareCaseDetailsLink>`
        +--------------------+------------------------------------------------------------+
        | Category           | **Case UI Display Permissions**                            |
-       +====================+============================================================+
+       +--------------------+------------------------------------------------------------+
        | Description        | Display share case details link                            |
        +--------------------+------------------------------------------------------------+
        | Type               | **Portal permission**                                      |
@@ -619,7 +619,7 @@ General permissions for dashboards, documents, lists, roles, and Portal features
    :ref:`🔑AccessFullProcessList <AccessFullProcessList>`
        +--------------------+------------------------------------------------------------+
        | Category           | **Portal Page Access**                                     |
-       +====================+============================================================+
+       +--------------------+------------------------------------------------------------+
        | Description        | This permission controls the visibility of the             |
        |                    | **Processes** page in the left menu and the **Processes**  |
        |                    | tab in the global search.                                  |
@@ -638,7 +638,7 @@ General permissions for dashboards, documents, lists, roles, and Portal features
    :ref:`🔑AccessFullTaskList <AccessFullTaskList>`
        +--------------------+------------------------------------------------------------+
        | Category           | **Portal Page Access**                                     |
-       +====================+============================================================+
+       +--------------------+------------------------------------------------------------+
        | Description        | This permission controls the visibility of the             |
        |                    | **Tasks** page in the left menu and the **Tasks**          |
        |                    | tab in the global search.                                  |
@@ -657,7 +657,7 @@ General permissions for dashboards, documents, lists, roles, and Portal features
    :ref:`🔑AccessFullCaseList <AccessFullCaseList>`
        +--------------------+------------------------------------------------------------+
        | Category           | **Portal Page Access**                                     |
-       +====================+============================================================+
+       +--------------------+------------------------------------------------------------+
        | Description        | This permission controls the visibility of the             |
        |                    | **Cases** page in the left menu and the **Cases** tab      |
        |                    | in the global search.                                      |
@@ -677,7 +677,7 @@ General permissions for dashboards, documents, lists, roles, and Portal features
    :ref:`🔑DashboardWriteOwn <DashboardWriteOwn>`
        +--------------------+------------------------------------------------------------+
        | Category           | **Dashboard Permissions**                                  |
-       +====================+============================================================+
+       +--------------------+------------------------------------------------------------+
        | Description        | | This permission controls the ability to create and       |
        |                    |   modify private (personal) dashboards in the              |
        |                    |   :ref:`dashboard-configuration` page.                     |
@@ -698,7 +698,7 @@ General permissions for dashboards, documents, lists, roles, and Portal features
    :ref:`🔑DashboardWritePublic <DashboardWritePublic>`
        +--------------------+------------------------------------------------------------+
        | Category           | **Dashboard Permissions**                                  |
-       +====================+============================================================+
+       +--------------------+------------------------------------------------------------+
        | Description        | | This permission controls the ability to create and       |
        |                    |   modify public (shared) dashboards in the                 |
        |                    |   :ref:`dashboard-configuration` page.                     |
@@ -724,7 +724,7 @@ General permissions for dashboards, documents, lists, roles, and Portal features
    :ref:`🔑DashboardExportOwn <DashboardExportOwn>`
        +--------------------+------------------------------------------------------------+
        | Category           | **Dashboard**                                              |
-       +====================+============================================================+
+       +--------------------+------------------------------------------------------------+
        | Description        | | This permission controls the ability to export private   |
        |                    |   (personal) dashboards to JSON files for backup or        |
        |                    |   sharing purposes.                                        |
@@ -745,7 +745,7 @@ General permissions for dashboards, documents, lists, roles, and Portal features
    :ref:`🔑DashboardExportPublic <DashboardExportPublic>`
        +--------------------+------------------------------------------------------------+
        | Category           | **Dashboard**                                              |
-       +====================+============================================================+
+       +--------------------+------------------------------------------------------------+
        | Description        | | This permission controls the ability to export public    |
        |                    |   (shared) dashboards to JSON files for backup or          |
        |                    |   distribution purposes.                                   |
@@ -766,7 +766,7 @@ General permissions for dashboards, documents, lists, roles, and Portal features
    :ref:`🔑DashboardImportOwn <DashboardImportOwn>`
        +--------------------+------------------------------------------------------------+
        | Category           | **Dashboard**                                              |
-       +====================+============================================================+
+       +--------------------+------------------------------------------------------------+
        | Description        | | This permission controls the ability to import private   |
        |                    |   (personal) dashboards from JSON files.                   |
        |                    | | If user is not granted this permission, the Import       |
@@ -786,7 +786,7 @@ General permissions for dashboards, documents, lists, roles, and Portal features
    :ref:`🔑DashboardImportPublic <DashboardImportPublic>`
        +--------------------+------------------------------------------------------------+
        | Category           | **Dashboard**                                              |
-       +====================+============================================================+
+       +--------------------+------------------------------------------------------------+
        | Description        | | This permission controls the ability to import public    |
        |                    |   (shared) dashboards from JSON files,                     |
        |                    | | If user is not granted this permission, the Import       |
@@ -806,7 +806,7 @@ General permissions for dashboards, documents, lists, roles, and Portal features
    :ref:`🔑ShareDashboardLink <ShareDashboardLink>`
        +--------------------+------------------------------------------------------------+
        | Category           | **Dashboard**                                              |
-       +====================+============================================================+
+       +--------------------+------------------------------------------------------------+
        | Description        | | This permission controls the ability to share direct     |
        |                    |   links to a public dashboards with other users.           |
        |                    | | If user is not granted this permission, the Share        |
@@ -827,7 +827,7 @@ General permissions for dashboards, documents, lists, roles, and Portal features
    :ref:`🔑DocumentRead <DocumentRead>`
        +--------------------+------------------------------------------------------------+
        | Category           | **Document**                                               |
-       +====================+============================================================+
+       +--------------------+------------------------------------------------------------+
        | Description        | | In Portal, this permission controls the ability to view  |
        |                    |   all documents across all cases and tasks without         |
        |                    |   pagination in a new page.                                |
@@ -849,7 +849,7 @@ General permissions for dashboards, documents, lists, roles, and Portal features
    :ref:`🔑DocumentWrite <DocumentWrite>` and :ref:`🔑DocumentOfInvolvedCaseWrite <DocumentOfInvolvedCaseWrite>`
        +--------------------+------------------------------------------------------------+
        | Category           | **Document**                                               |
-       +====================+============================================================+
+       +--------------------+------------------------------------------------------------+
        | Description        | | These permissions allow users to **upload and delete**   |
        |                    |   documents in the Documents widget.                       |
        |                    | | Portal checks both permissions. If user has either one,  |
@@ -867,13 +867,32 @@ General permissions for dashboards, documents, lists, roles, and Portal features
        |                    | | **DocumentOfInvolvedCaseWrite**: ``EVERYBODY``           |
        +--------------------+------------------------------------------------------------+
 
+.. _RoleReadAll:
+
+   :ref:`🔑RoleReadAll <RoleReadAll>`
+       +--------------------+------------------------------------------------------------+
+       | Category           | **Role Management**                                        |
+       +--------------------+------------------------------------------------------------+
+       | Description        | | Portal does not extend any logic based on this           |
+       |                    |   permission, but automatically grants it to admins to     |
+       |                    |   allow them to view all roles.                            |
+       |                    | | Admins will encounter an error when accessing            |
+       |                    |   :ref:`admin-settings` if lacking this permission.        |
+       +--------------------+------------------------------------------------------------+
+       | Type               | **Core permission**                                        |
+       +--------------------+------------------------------------------------------------+
+       | Use case           | Grant to admins or users who need to access all available  |
+       |                    | roles.                                                     |
+       +--------------------+------------------------------------------------------------+
+       | Granted by default | ``EVERYBODY``                                              |
+       +--------------------+------------------------------------------------------------+
 
 .. _RoleCreate:
 
    :ref:`🔑RoleCreate <RoleCreate>`
        +--------------------+------------------------------------------------------------+
        | Category           | **Role Management**                                        |
-       +====================+============================================================+
+       +--------------------+------------------------------------------------------------+
        | Description        | | In Portal, this permission controls the ability to create|
        |                    |   new dynamic roles inside the Role Management tab in      |
        |                    |   :ref:`admin-settings` page.                              |
@@ -894,7 +913,7 @@ General permissions for dashboards, documents, lists, roles, and Portal features
    :ref:`🔑RoleDelete <RoleDelete>`
        +--------------------+------------------------------------------------------------+
        | Category           | **Role Management**                                        |
-       +====================+============================================================+
+       +--------------------+------------------------------------------------------------+
        | Description        | | In Portal, if an admin is not granted this permission,   |
        |                    |   the delete icon is disabled to prevent deletion of       |
        |                    |   existing dynamic roles in the Role Management tab on the |
@@ -915,12 +934,12 @@ General permissions for dashboards, documents, lists, roles, and Portal features
    :ref:`🔑RoleManagement <RoleManagement>`
       +--------------------+------------------------------------------------------------+
       | Category           | **Role Management**                                        |
-      +====================+============================================================+
+      +--------------------+------------------------------------------------------------+
       | Description        | | This permission controls access to the Role Management   |
       |                    |   tab in the :ref:`admin-settings` page.                   |
       |                    | | To perform operations such as creating new roles or      |
       |                    |   deleting roles, additional core permissions like         |
-      |                    |   :ref:`RoleCreate`, :ref:`RoleDelete` are required.       |
+      |                    |   **RoleCreate** and **RoleDelete** are required.          |
       +--------------------+------------------------------------------------------------+
       | Type               | **Portal permission**                                      |
       +--------------------+------------------------------------------------------------+
@@ -935,7 +954,7 @@ General permissions for dashboards, documents, lists, roles, and Portal features
    :ref:`🔑RoleMove <RoleMove>`
        +--------------------+------------------------------------------------------------+
        | Category           | **Role Management**                                        |
-       +====================+============================================================+
+       +--------------------+------------------------------------------------------------+
        | Description        | | In Portal, this permission controls the ability to select|
        |                    |   parent role when creating a dynamic role in Role         |
        |                    |   Management tab in :ref:`admin-settings` page.            |
@@ -959,7 +978,7 @@ General permissions for dashboards, documents, lists, roles, and Portal features
    :ref:`🔑TaskCaseAddNote <TaskCaseAddNote>`
        +--------------------+------------------------------------------------------------+
        | Category           | **Notes and Comments**                                     |
-       +====================+============================================================+
+       +--------------------+------------------------------------------------------------+
        | Description        | | This permission controls the ability to add notes in a   |
        |                    |   task or case.                                            |
        |                    | | If user is not granted this permission, they won't see   |
@@ -979,7 +998,7 @@ General permissions for dashboards, documents, lists, roles, and Portal features
    :ref:`🔑TaskCaseShowMoreNote <TaskCaseShowMoreNote>`
        +--------------------+------------------------------------------------------------+
        | Category           | **Notes and Comments**                                     |
-       +====================+============================================================+
+       +--------------------+------------------------------------------------------------+
        | Description        | | This permission controls the visibility of the           |
        |                    |   :guilabel:`Show more` option in the top right corner of  |
        |                    |   the History widget (:ref:`full-case-list`) and Notes     |
@@ -1000,7 +1019,7 @@ General permissions for dashboards, documents, lists, roles, and Portal features
    :ref:`🔑NoteReadAllCaseTaskDetails <NoteReadAllCaseTaskDetails>`
        +--------------------+------------------------------------------------------------+
        | Category           | **Notes and Comments**                                     |
-       +====================+============================================================+
+       +--------------------+------------------------------------------------------------+
        | Description        | | This permission allows non-admin users to view system    |
        |                    |   notes  in the History widget and Notes widget.           | 
        |                    | | Without this permission, regular users only see user     |
@@ -1026,7 +1045,7 @@ General permissions for dashboards, documents, lists, roles, and Portal features
    :ref:`🔑NewsManagement <NewsManagement>`
        +--------------------+------------------------------------------------------------+
        | Category           | **Dashboard**                                              |
-       +====================+============================================================+
+       +--------------------+------------------------------------------------------------+
        | Description        | | This permission controls the ability to create, edit, and|
        |                    |   delete news items in the News widget on dashboards.      |
        |                    | | If user is not granted this permission, they can only    |
@@ -1045,7 +1064,7 @@ General permissions for dashboards, documents, lists, roles, and Portal features
    :ref:`🔑PasswordValidation <PasswordValidation>`
        +--------------------+------------------------------------------------------------+
        | Category           | **Admin Settings & Configuration**                         |
-       +====================+============================================================+
+       +--------------------+------------------------------------------------------------+
        | Description        | This permission controls access to the Password            |
        |                    | Validation tab which supports to configure password        |
        |                    | complexity requirements in the :ref:`admin-settings` page. |
@@ -1063,7 +1082,7 @@ General permissions for dashboards, documents, lists, roles, and Portal features
    :ref:`🔑NotificationChannelsSetting <NotificationChannelsSetting>`
        +--------------------+------------------------------------------------------------+
        | Category           | **Admin Settings & Configuration**                         |
-       +====================+============================================================+
+       +--------------------+------------------------------------------------------------+
        | Description        | This permission allows overwriting default notification    |
        |                    | settings (opt-out notifications) in :ref:`my-profile` page.|
        +--------------------+------------------------------------------------------------+
@@ -1080,7 +1099,7 @@ General permissions for dashboards, documents, lists, roles, and Portal features
    :ref:`🔑CreatePublicExternalLink <CreatePublicExternalLink>`
        +--------------------+------------------------------------------------------------+
        | Category           | **Process & External Links**                               |
-       +====================+============================================================+
+       +--------------------+------------------------------------------------------------+
        | Description        | | This permission controls the visibility of the           |
        |                    |   **Visibility** section in the Add External Link dialog   |
        |                    |   on the :ref:`full-process-list` page.                    |
@@ -1111,7 +1130,7 @@ Permissions for managing user absences and task substitution.
    :ref:`🔑UserReadOwnAbsences <UserReadOwnAbsences>`
        +--------------------+------------------------------------------------------------+
        | Category           | **Manage own absences**                                    |
-       +====================+============================================================+
+       +--------------------+------------------------------------------------------------+
        | Description        |  View own absence records                                  |
        +--------------------+------------------------------------------------------------+
        | Type               | **Core permission**                                        |
@@ -1126,7 +1145,7 @@ Permissions for managing user absences and task substitution.
    :ref:`🔑UserCreateOwnAbsence <UserCreateOwnAbsence>`
        +--------------------+------------------------------------------------------------+
        | Category           | **Manage own absences**                                    |
-       +====================+============================================================+
+       +--------------------+------------------------------------------------------------+
        | Description        | Create and edit own absences                               |
        +--------------------+------------------------------------------------------------+
        | Type               | **Core permission**                                        |
@@ -1142,7 +1161,7 @@ Permissions for managing user absences and task substitution.
    :ref:`🔑UserDeleteOwnAbsence <UserDeleteOwnAbsence>`
        +--------------------+------------------------------------------------------------+
        | Category           | **Manage own absences**                                    |
-       +====================+============================================================+
+       +--------------------+------------------------------------------------------------+
        | Description        | Delete own absences                                        |
        +--------------------+------------------------------------------------------------+
        | Type               | **Core permission**                                        |
@@ -1158,7 +1177,7 @@ Permissions for managing user absences and task substitution.
    :ref:`🔑UserReadAbsences <UserReadAbsences>`
        +--------------------+------------------------------------------------------------+
        | Category           | **Manage absences for all users**                          |
-       +====================+============================================================+
+       +--------------------+------------------------------------------------------------+
        | Description        | View absences of all users in the security context         |
        +--------------------+------------------------------------------------------------+
        | Type               | **Core permission**                                        |
@@ -1174,7 +1193,7 @@ Permissions for managing user absences and task substitution.
    :ref:`🔑UserCreateAbsence <UserCreateAbsence>`
        +--------------------+------------------------------------------------------------+
        | Category           | **Manage absences for all users**                          |
-       +====================+============================================================+
+       +--------------------+------------------------------------------------------------+
        | Description        | Create and edit absences for any users in                  | 
        |                    | the security context                                       |
        +--------------------+------------------------------------------------------------+
@@ -1192,7 +1211,7 @@ Permissions for managing user absences and task substitution.
    :ref:`🔑UserDeleteAbsence <UserDeleteAbsence>`
        +--------------------+------------------------------------------------------------+
        | Category           | **Manage absences for all users**                          |
-       +====================+============================================================+
+       +--------------------+------------------------------------------------------------+
        | Description        | Delete absences for any users in the security context      |
        +--------------------+------------------------------------------------------------+
        | Type               | **Core permission**                                        |
@@ -1209,7 +1228,7 @@ Permissions for managing user absences and task substitution.
    :ref:`🔑UserCreateOwnSubstitute <UserCreateOwnSubstitute>`
        +--------------------+------------------------------------------------------------+
        | Category           | **Manage substitutes**                                     |
-       +====================+============================================================+
+       +--------------------+------------------------------------------------------------+
        | Description        | Create own substitute                                      |
        +--------------------+------------------------------------------------------------+
        | Type               | **Core permission**                                        |
@@ -1225,7 +1244,7 @@ Permissions for managing user absences and task substitution.
    :ref:`🔑UserCreateSubstitute <UserCreateSubstitute>`
        +--------------------+------------------------------------------------------------+
        | Category           | **Manage substitutes**                                     |
-       +====================+============================================================+
+       +--------------------+------------------------------------------------------------+
        | Description        | Create substitute assignments for any users in the         |
        |                    | security context                                           |
        +--------------------+------------------------------------------------------------+
@@ -1242,7 +1261,7 @@ Permissions for managing user absences and task substitution.
    :ref:`🔑UserReadSubstitutes <UserReadSubstitutes>`
        +--------------------+------------------------------------------------------------+
        | Category           | **Manage substitutes**                                     |
-       +====================+============================================================+
+       +--------------------+------------------------------------------------------------+
        | Description        | View substitutes of any users in the security context      |
        +--------------------+------------------------------------------------------------+
        | Type               | **Core permission**                                        |
@@ -1310,4 +1329,5 @@ Portal uses the following Axon Ivy Engine core permissions. These are documented
 
 .. tip::
    For comprehensive details on each permission including usage context and restrictions, see the detailed sections above.
+
 
