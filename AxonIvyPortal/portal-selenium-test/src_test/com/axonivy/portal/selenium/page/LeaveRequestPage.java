@@ -1,5 +1,8 @@
 package com.axonivy.portal.selenium.page;
 
+import static com.codeborne.selenide.Condition.appear;
+import static com.codeborne.selenide.Condition.disabled;
+import static com.codeborne.selenide.Condition.disappear;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
@@ -122,7 +125,9 @@ public class LeaveRequestPage extends TaskTemplateIFramePage {
   }
 
   public NewDashboardPage clickRejectBtn() {
+    $("button[id$='leave-request:rejected-btn']").should(clickable());
     clickByJavaScript($("button[id$='leave-request:rejected-btn']"));
+    $("button[id$='leave-request:rejected-btn']").should(disappear, DEFAULT_TIMEOUT);
     waitPageDisappear();
     switchBackToParent();
     return new NewDashboardPage();
