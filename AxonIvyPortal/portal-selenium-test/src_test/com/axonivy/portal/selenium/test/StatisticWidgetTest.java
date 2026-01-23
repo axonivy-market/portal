@@ -412,6 +412,7 @@ public class StatisticWidgetTest extends BaseTest {
     redirectToRelativeLink(create12CasesWithCategoryUrl);
     redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
     redirectToRelativeLink(createCasesForCaseListCustomization);
+    redirectToRelativeLink(createDataCreatedDate);
     redirectToNewDashBoard();
 
     DashboardConfigurationPage configurationPage = newDashboardPage.openDashboardConfigurationPage();
