@@ -19,4 +19,9 @@ public class NotificationCompactPage extends TemplatePage {
   public void openNotificationMoreActionsMenu() {
     $("button[id$=':notification-more-option_button']").shouldBe(getClickableCondition()).click();
   }
+  
+  public void clickNotificationSettingMenuItem() {
+    $("a[id$=':notification-setting']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+  }
+
 }
