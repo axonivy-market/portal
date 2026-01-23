@@ -1,0 +1,22 @@
+# yaml-language-server: $schema=https://json-schema.axonivy.com/app/14.0.0/users.json
+Users:
+  - Name: backendDev1
+    FullName: Backend Developer 1
+    Roles:
+      - BackendDeveloper
+  - Name: backendDev2
+    FullName: Backend Developer 2
+    Roles:
+      - BackendDeveloper
+  - Name: supporter
+    FullName: Supporter
+    Roles:
+      - Supporter
+  - Name: tester
+    FullName: Tester User
+    Roles:
+      - Tester
+  - Name: pm
+    FullName: Project Manager User
+    Roles:
+      - ProjectManager
