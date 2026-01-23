@@ -868,26 +868,6 @@ General permissions for dashboards, documents, lists, roles, and Portal features
        +--------------------+------------------------------------------------------------+
 
 
-.. _RoleManagement:
-
-   :ref:`🔑RoleManagement <RoleManagement>`
-      +--------------------+------------------------------------------------------------+
-      | Category           | **Role Management**                                        |
-      +====================+============================================================+
-      | Description        | | This permission controls access to the Role Management   |
-      |                    |   tab in the :ref:`admin-settings` page.                   |
-      |                    | | To perform operations such as creating new roles or      |
-      |                    |   deleting roles, additional core permissions like         |
-      |                    |   :ref:`RoleCreate`, :ref:`RoleDelete` are required.       |
-      +--------------------+------------------------------------------------------------+
-      | Type               | **Portal permission**                                      |
-      +--------------------+------------------------------------------------------------+
-      | Use case           | Only grant the privilege to access Role Management tab     |
-      |                    | in :ref:`admin-settings` page for certain admins.          |
-      +--------------------+------------------------------------------------------------+
-      | Granted by default | ``Developer`` and ``Admin`` user.                          |
-      +--------------------+------------------------------------------------------------+
-
 .. _RoleCreate:
 
    :ref:`🔑RoleCreate <RoleCreate>`
@@ -929,6 +909,26 @@ General permissions for dashboards, documents, lists, roles, and Portal features
        +--------------------+------------------------------------------------------------+
        | Granted by default | ``Developer`` and ``Admin`` user.                          |
        +--------------------+------------------------------------------------------------+
+
+.. _RoleManagement:
+
+   :ref:`🔑RoleManagement <RoleManagement>`
+      +--------------------+------------------------------------------------------------+
+      | Category           | **Role Management**                                        |
+      +====================+============================================================+
+      | Description        | | This permission controls access to the Role Management   |
+      |                    |   tab in the :ref:`admin-settings` page.                   |
+      |                    | | To perform operations such as creating new roles or      |
+      |                    |   deleting roles, additional core permissions like         |
+      |                    |   :ref:`RoleCreate`, :ref:`RoleDelete` are required.       |
+      +--------------------+------------------------------------------------------------+
+      | Type               | **Portal permission**                                      |
+      +--------------------+------------------------------------------------------------+
+      | Use case           | Only grant the privilege to access Role Management tab     |
+      |                    | in :ref:`admin-settings` page for certain admins.          |
+      +--------------------+------------------------------------------------------------+
+      | Granted by default | ``Developer`` and ``Admin`` user.                          |
+      +--------------------+------------------------------------------------------------+
 
 .. _RoleMove:
 
