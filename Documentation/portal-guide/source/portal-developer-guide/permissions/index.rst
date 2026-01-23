@@ -1,3 +1,11 @@
+.. raw:: html
+
+   <style>
+      .wy-table-responsive table td, .wy-table-responsive table th {
+         white-space: inherit;
+      }
+   </style>
+
 .. _list-permissions:
 
 Permission List
@@ -84,9 +92,9 @@ Permissions controlling task visibility, actions, and property modifications.
 .. _TaskReadAll:
 
    :ref:`🔑TaskReadAll <TaskReadAll>`
-       +--------------------+-------------------------------------------------------------+
-       | Category           | **Task Visibility**                                         |
-       +--------------------+-------------------------------------------------------------+
+      +--------------------+------------------------------------------------------------+
+      | Category           | **Role Management Permissions**                            |
+      +====================+============================================================+
        | Description        | View all user tasks (not system) in the system regardless of|
        |                    | assignment                                                  |
        +--------------------+-------------------------------------------------------------+
@@ -588,213 +596,490 @@ Portal General Permissions
 
 General permissions for dashboards, documents, lists, roles, and Portal features.
 
-**Portal Page Access**
-
 .. _AccessFullProcessList:
 
-AccessFullProcessList
-   :bdg-ref-warning:`🔑AccessFullProcessList <AccessFullProcessList>`
-     - Access full process list page showing all available processes
-     - Shows "Processes" in left menu and "Show all processes" on Dashboard
-     - See :ref:`full-process-list` for details
-     - Granted to role Everybody by default
+   :ref:`🔑AccessFullProcessList <AccessFullProcessList>`
+       +--------------------+------------------------------------------------------------+
+       | Category           | **Portal Page Access**                                     |
+       +====================+============================================================+
+       | Description        | This permission controls the visibility of the             |
+       |                    | **Processes** page in the left menu and the **Processes**  |
+       |                    | tab in the global search.                                  |
+       +--------------------+------------------------------------------------------------+
+       | Type               | **Portal permission**                                      |
+       +--------------------+------------------------------------------------------------+
+       | Use case           | Hide the **Processes** entry from the left menu and the    |
+       |                    | **Processes** tab in the global search for certain users or|
+       |                    | roles.                                                     |
+       +--------------------+------------------------------------------------------------+
+       | Granted by default | ``EVERYBODY``                                              |
+       +--------------------+------------------------------------------------------------+
 
 .. _AccessFullTaskList:
 
-AccessFullTaskList
-   :bdg-ref-warning:`🔑AccessFullTaskList <AccessFullTaskList>`
-     - Access full task list page showing all accessible tasks
-     - Shows "Tasks" in left menu and "Show full task list" on Dashboard
-     - See :ref:`full-task-list` for details
-     - Granted to role Everybody by default
+   :ref:`🔑AccessFullTaskList <AccessFullTaskList>`
+       +--------------------+------------------------------------------------------------+
+       | Category           | **Portal Page Access**                                     |
+       +====================+============================================================+
+       | Description        | This permission controls the visibility of the             |
+       |                    | **Tasks** page in the left menu and the **Tasks**          |
+       |                    | tab in the global search.                                  |
+       +--------------------+------------------------------------------------------------+
+       | Type               | **Portal permission**                                      |
+       +--------------------+------------------------------------------------------------+
+       | Use case           | Hide the **Tasks** entry from the left menu and the        |
+       |                    | **Tasks** tab in the global search for certain             |
+       |                    | users or roles.                                            |
+       +--------------------+------------------------------------------------------------+
+       | Granted by default | ``EVERYBODY``                                              |
+       +--------------------+------------------------------------------------------------+
 
 .. _AccessFullCaseList:
 
-AccessFullCaseList
-   :bdg-ref-warning:`🔑AccessFullCaseList <AccessFullCaseList>`
-     - Access full case list page showing all accessible cases
-     - Shows "Cases" in left menu
-     - See :ref:`full-case-list` for details
-     - Granted to role Everybody by default
+   :ref:`🔑AccessFullCaseList <AccessFullCaseList>`
+       +--------------------+------------------------------------------------------------+
+       | Category           | **Portal Page Access**                                     |
+       +====================+============================================================+
+       | Description        | This permission controls the visibility of the             |
+       |                    | **Cases** page in the left menu and the **Cases** tab      |
+       |                    | in the global search.                                      |
+       +--------------------+------------------------------------------------------------+
+       | Type               | **Portal permission**                                      |
+       +--------------------+------------------------------------------------------------+
+       | Use case           | Hide the **Cases** entry from the left menu and the        |
+       |                    | **Cases** tab in the global search for certain             |
+       |                    | users or roles.                                            |
+       +--------------------+------------------------------------------------------------+
+       | Granted by default | ``EVERYBODY``                                              |
+       +--------------------+------------------------------------------------------------+
 
-**Dashboard Permissions**
 
 .. _DashboardWriteOwn:
 
-DashboardWriteOwn
-   :bdg-ref-warning:`🔑DashboardWriteOwn <DashboardWriteOwn>`
-     - Create and modify private (personal) dashboards
-     - Granted to role Everybody by default
+   :ref:`🔑DashboardWriteOwn <DashboardWriteOwn>`
+       +--------------------+------------------------------------------------------------+
+       | Category           | **Dashboard Permissions**                                  |
+       +====================+============================================================+
+       | Description        | | This permission controls the ability to create and       |
+       |                    |   modify private (personal) dashboards in the              |
+       |                    |   :ref:`dashboard-configuration` page.                     |
+       |                    | | If user is not granted this permission, the Private      |
+       |                    |   Dashboard tab will be hidden and they cannot manage their|
+       |                    |   own dashboards.                                          |
+       +--------------------+------------------------------------------------------------+
+       | Type               | **Portal permission**                                      |
+       +--------------------+------------------------------------------------------------+
+       | Use case           | Grant to users who need to create and customize their own  |
+       |                    | personal dashboards.                                       |
+       +--------------------+------------------------------------------------------------+
+       | Granted by default | ``EVERYBODY``                                              |
+       +--------------------+------------------------------------------------------------+
 
 .. _DashboardWritePublic:
 
-DashboardWritePublic
-   :bdg-ref-warning:`🔑DashboardWritePublic <DashboardWritePublic>`
-     - Create and modify public (shared) dashboards
-     - Typically restricted to administrators or dashboard managers
+   :ref:`🔑DashboardWritePublic <DashboardWritePublic>`
+       +--------------------+------------------------------------------------------------+
+       | Category           | **Dashboard Permissions**                                  |
+       +====================+============================================================+
+       | Description        | | This permission controls the ability to create and       |
+       |                    |   modify public (shared) dashboards in the                 |
+       |                    |   :ref:`dashboard-configuration` page.                     |
+       |                    | | If user is not granted this permission, the Public       |
+       |                    |   Dashboard tab will be hidden and they cannot manage      |
+       |                    |   shared dashboards.                                       |
+       +--------------------+------------------------------------------------------------+
+       | Type               | **Portal permission**                                      |
+       +--------------------+------------------------------------------------------------+
+       | Use case           | Grant to administrators or dashboard managers who need to  |
+       |                    | create and manage dashboards shared across the             |
+       |                    | application.                                               |
+       +--------------------+------------------------------------------------------------+
+       | Granted by default | ``Developer`` and ``Admin`` user.                          |
+       +--------------------+------------------------------------------------------------+
+
+.. note::
+   If a user is not granted either **DashboardWriteOwn** or **DashboardWritePublic** permission, 
+   the **Dashboard configuration** menu option will be hidden from the user profile dropdown menu.
 
 .. _DashboardExportOwn:
 
-DashboardExportOwn
-   :bdg-ref-warning:`🔑DashboardExportOwn <DashboardExportOwn>`
-     - Export private dashboards to JSON files
-     - Allows backup and sharing of personal dashboard configurations
+   :ref:`🔑DashboardExportOwn <DashboardExportOwn>`
+       +--------------------+------------------------------------------------------------+
+       | Category           | **Dashboard**                                              |
+       +====================+============================================================+
+       | Description        | | This permission controls the ability to export private   |
+       |                    |   (personal) dashboards to JSON files for backup or        |
+       |                    |   sharing purposes.                                        |
+       |                    | | If user is not granted this permission, the Export       |
+       |                    |   option will be hidden in the private dashboard actions   |
+       |                    |   menu.                                                    |
+       +--------------------+------------------------------------------------------------+
+       | Type               | **Portal permission**                                      |
+       +--------------------+------------------------------------------------------------+
+       | Use case           | Grant to users who need to backup or share their personal  |
+       |                    | dashboard configurations.                                  |
+       +--------------------+------------------------------------------------------------+
+       | Granted by default | ``Developer`` and ``Admin`` user.                          |
+       +--------------------+------------------------------------------------------------+
 
 .. _DashboardExportPublic:
 
-DashboardExportPublic
-   :bdg-ref-warning:`🔑DashboardExportPublic <DashboardExportPublic>`
-     - Export public dashboards to JSON files
-     - Typically restricted to administrators
+   :ref:`🔑DashboardExportPublic <DashboardExportPublic>`
+       +--------------------+------------------------------------------------------------+
+       | Category           | **Dashboard**                                              |
+       +====================+============================================================+
+       | Description        | | This permission controls the ability to export public    |
+       |                    |   (shared) dashboards to JSON files for backup or          |
+       |                    |   distribution purposes.                                   |
+       |                    | | If user is not granted this permission, the Export       |
+       |                    |   option will be hidden in the public dashboard actions    |
+       |                    |   menu.                                                    |
+       +--------------------+------------------------------------------------------------+
+       | Type               | **Portal permission**                                      |
+       +--------------------+------------------------------------------------------------+
+       | Use case           | Grant to administrators who need to backup or distribute   |
+       |                    | public dashboard templates across environments.            |
+       +--------------------+------------------------------------------------------------+
+       | Granted by default | ``Developer`` and ``Admin`` user.                          |
+       +--------------------+------------------------------------------------------------+
 
 .. _DashboardImportOwn:
 
-DashboardImportOwn
-   :bdg-ref-warning:`🔑DashboardImportOwn <DashboardImportOwn>`
-     - Import private dashboards from JSON files
-     - Allows restoring or applying dashboard templates
+   :ref:`🔑DashboardImportOwn <DashboardImportOwn>`
+       +--------------------+------------------------------------------------------------+
+       | Category           | **Dashboard**                                              |
+       +====================+============================================================+
+       | Description        | | This permission controls the ability to import private   |
+       |                    |   (personal) dashboards from JSON files.                   |
+       |                    | | If user is not granted this permission, the Import       |
+       |                    |   option will be hidden when creating private              |
+       |                    |   dashboards.                                              |
+       +--------------------+------------------------------------------------------------+
+       | Type               | **Portal permission**                                      |
+       +--------------------+------------------------------------------------------------+
+       | Use case           | Grant to users who need to create a private dashboard using|
+       |                    | JSON templates.                                            |
+       +--------------------+------------------------------------------------------------+
+       | Granted by default | ``Developer`` and ``Admin`` user.                          |
+       +--------------------+------------------------------------------------------------+
 
 .. _DashboardImportPublic:
 
-DashboardImportPublic
-   :bdg-ref-warning:`🔑DashboardImportPublic <DashboardImportPublic>`
-     - Import public dashboards from JSON files
-     - Typically restricted to administrators
+   :ref:`🔑DashboardImportPublic <DashboardImportPublic>`
+       +--------------------+------------------------------------------------------------+
+       | Category           | **Dashboard**                                              |
+       +====================+============================================================+
+       | Description        | | This permission controls the ability to import public    |
+       |                    |   (shared) dashboards from JSON files,                     |
+       |                    | | If user is not granted this permission, the Import       |
+       |                    |   option will be hidden when creating public               |
+       |                    |   dashboards.                                              |
+       +--------------------+------------------------------------------------------------+
+       | Type               | **Portal permission**                                      |
+       +--------------------+------------------------------------------------------------+
+       | Use case           | Grant to users who need to create a public dashboard using |
+       |                    | JSON templates.                                            |
+       +--------------------+------------------------------------------------------------+
+       | Granted by default | ``Developer`` and ``Admin`` user.                          |
+       +--------------------+------------------------------------------------------------+
 
 .. _ShareDashboardLink:
 
-ShareDashboardLink
-   :bdg-ref-warning:`🔑ShareDashboardLink <ShareDashboardLink>`
-     - Share dashboard links with other users
-     - Granted to role Everybody by default
+   :ref:`🔑ShareDashboardLink <ShareDashboardLink>`
+       +--------------------+------------------------------------------------------------+
+       | Category           | **Dashboard**                                              |
+       +====================+============================================================+
+       | Description        | | This permission controls the ability to share direct     |
+       |                    |   links to a public dashboards with other users.           |
+       |                    | | If user is not granted this permission, the Share        |
+       |                    |   option will be hidden in the dashboard action menu.      |
+       +--------------------+------------------------------------------------------------+
+       | Type               | **Portal permission**                                      |
+       +--------------------+------------------------------------------------------------+
+       | Use case           | Grant to users who need to share dashboard links with      |
+       |                    | colleagues for collaboration or reference purposes.        |
+       +--------------------+------------------------------------------------------------+
+       | Granted by default | ``EVERYBODY``                                              |
+       +--------------------+------------------------------------------------------------+
 
-**Document Permissions**
+
 
 .. _DocumentRead:
 
-DocumentRead
-   :bdg-ref-warning:`🔑DocumentRead <DocumentRead>`
-     - View all documents across all cases/tasks
-     - Administrative permission for full document visibility
+   :ref:`🔑DocumentRead <DocumentRead>`
+       +--------------------+------------------------------------------------------------+
+       | Category           | **Document**                                               |
+       +====================+============================================================+
+       | Description        | | In Portal, this permission controls the ability to view  |
+       |                    |   all documents across all cases and tasks without         |
+       |                    |   pagination in a new page.                                |
+       |                    | | If user is not granted this permission, the              |
+       |                    |   :guilabel:`Show more` option will be hidden in the       |
+       |                    |   Documents widget.                                        |
+       +--------------------+------------------------------------------------------------+
+       | Type               | **Core permission**                                        |
+       +--------------------+------------------------------------------------------------+
+       | Use case           | Grant to users who need full visibility into all           |
+       |                    | documents for viewing or document management purposes.     |
+       +--------------------+------------------------------------------------------------+
+       | Granted by default | No                                                         |
+       +--------------------+------------------------------------------------------------+
 
 .. _DocumentWrite:
-
-DocumentWrite
-   :bdg-ref-warning:`🔑DocumentWrite <DocumentWrite>`
-     - Upload and delete any documents
-     - Administrative permission for document management
-
 .. _DocumentOfInvolvedCaseWrite:
 
-DocumentOfInvolvedCaseWrite
-   :bdg-ref-warning:`🔑DocumentOfInvolvedCaseWrite <DocumentOfInvolvedCaseWrite>`
-     - Upload and delete documents in cases where user is involved
-     - Standard permission for case participants
-     - Granted to role Everybody by default
+   :ref:`🔑DocumentWrite <DocumentWrite>` and :ref:`🔑DocumentOfInvolvedCaseWrite <DocumentOfInvolvedCaseWrite>`
+       +--------------------+------------------------------------------------------------+
+       | Category           | **Document**                                               |
+       +====================+============================================================+
+       | Description        | | These permissions allow users to **upload and delete**   |
+       |                    |   documents in the Documents widget.                       |
+       |                    | | Portal checks both permissions. If user has either one,  |
+       |                    |   they will see the upload and delete document actions     |
+       |                    | | **Note:** Upload and delete actions may be hidden for    |
+       |                    |   cases in DONE state if the global setting                |
+       |                    |   ``HIDE_UPLOAD_DOCUMENT_FOR_DONE_CASE`` is enabled.       |
+       +--------------------+------------------------------------------------------------+
+       | Type               | **Core permissions**                                       |
+       +--------------------+------------------------------------------------------------+
+       | Use case           | Grant one of these permissions to users who need to upload |
+       |                    | and delete documents in the Documents widget.              |
+       +--------------------+------------------------------------------------------------+
+       | Granted by default | | **DocumentWrite**: No                                    |
+       |                    | | **DocumentOfInvolvedCaseWrite**: ``EVERYBODY``           |
+       +--------------------+------------------------------------------------------------+
 
-**Role Management Permissions**
-
-.. _RoleReadAll:
-
-RoleReadAll
-   :bdg-ref-warning:`🔑RoleReadAll <RoleReadAll>`
-     - View all roles in the system
-     - Required for role selection in various features
-     - Granted to role Everybody by default
 
 .. _RoleManagement:
 
-RoleManagement
-   :bdg-ref-warning:`🔑RoleManagement <RoleManagement>`
-     - Access Role Management tab in Admin Settings
-     - Required to view dynamic role configuration interface
+   :ref:`🔑RoleManagement <RoleManagement>`
+      +--------------------+------------------------------------------------------------+
+      | Category           | **Role Management**                                        |
+      +====================+============================================================+
+      | Description        | | This permission controls access to the Role Management   |
+      |                    |   tab in the :ref:`admin-settings` page.                   |
+      |                    | | To perform operations such as creating new roles or      |
+      |                    |   deleting roles, additional core permissions like         |
+      |                    |   :ref:`RoleCreate`, :ref:`RoleDelete` are required.       |
+      +--------------------+------------------------------------------------------------+
+      | Type               | **Portal permission**                                      |
+      +--------------------+------------------------------------------------------------+
+      | Use case           | Only grant the privilege to access Role Management tab     |
+      |                    | in :ref:`admin-settings` page for certain admins.          |
+      +--------------------+------------------------------------------------------------+
+      | Granted by default | ``Developer`` and ``Admin`` user.                          |
+      +--------------------+------------------------------------------------------------+
 
 .. _RoleCreate:
 
-RoleCreate
-   :bdg-ref-warning:`🔑RoleCreate <RoleCreate>`
-     - Create new dynamic roles
-     - Typically restricted to administrators
+   :ref:`🔑RoleCreate <RoleCreate>`
+       +--------------------+------------------------------------------------------------+
+       | Category           | **Role Management**                                        |
+       +====================+============================================================+
+       | Description        | | In Portal, this permission controls the ability to create|
+       |                    |   new dynamic roles inside the Role Management tab in      |
+       |                    |   :ref:`admin-settings` page.                              |
+       |                    | | The button :guilabel:`Create new role` in the Role       |
+       |                    |   Management tab will be hidden if admin is not granted    |
+       |                    |   this permission.                                         |
+       +--------------------+------------------------------------------------------------+
+       | Type               | **Core permission**                                        |
+       +--------------------+------------------------------------------------------------+
+       | Use case           | Grant permission to certain admins to allow them to create |
+       |                    | new dynamic roles.                                         |
+       +--------------------+------------------------------------------------------------+
+       | Granted by default | ``Developer`` and ``Admin`` user.                          |
+       +--------------------+------------------------------------------------------------+
 
 .. _RoleDelete:
 
-RoleDelete
-   :bdg-ref-warning:`🔑RoleDelete <RoleDelete>`
-     - Delete existing dynamic roles
-     - Typically restricted to administrators
+   :ref:`🔑RoleDelete <RoleDelete>`
+       +--------------------+------------------------------------------------------------+
+       | Category           | **Role Management**                                        |
+       +====================+============================================================+
+       | Description        | | In Portal, if an admin is not granted this permission,   |
+       |                    |   the delete icon is disabled to prevent deletion of       |
+       |                    |   existing dynamic roles in the Role Management tab on the |
+       |                    |   :ref:`admin-settings` page.                              |
+       |                    | | If the admin has this permission but the role is not     |
+       |                    |   dynamic, the delete icon is still disabled.              |
+       +--------------------+------------------------------------------------------------+
+       | Type               | **Core permission**                                        |
+       +--------------------+------------------------------------------------------------+
+       | Use case           | Grant permission to certain admins to allow them to delete |
+       |                    | dynamic roles.                                             |
+       +--------------------+------------------------------------------------------------+
+       | Granted by default | ``Developer`` and ``Admin`` user.                          |
+       +--------------------+------------------------------------------------------------+
 
 .. _RoleMove:
 
-RoleMove
-   :bdg-ref-warning:`🔑RoleMove <RoleMove>`
-     - Change role hierarchy (select parent role)
-     - Affects role inheritance structure
+   :ref:`🔑RoleMove <RoleMove>`
+       +--------------------+------------------------------------------------------------+
+       | Category           | **Role Management**                                        |
+       +====================+============================================================+
+       | Description        | | In Portal, this permission controls the ability to select|
+       |                    |   parent role when creating a dynamic role in Role         |
+       |                    |   Management tab in :ref:`admin-settings` page.            |
+       |                    | | If the admin is not granted this permission, the parent  |
+       |                    |   role selection in the Role Creation dialog will be       |
+       |                    |   disabled and set to ``Everybody`` by default.            |
+       |                    |   See :ref:`manage-roles`.                                 |
+       +--------------------+------------------------------------------------------------+
+       | Type               | **Core permission**                                        |
+       +--------------------+------------------------------------------------------------+
+       | Use case           | Grant permission to certain admins to allow them to select |
+       |                    | parent role when creating a dynamic role in Role           |
+       |                    | Management tab in :ref:`admin-settings` page.              |
+       +--------------------+------------------------------------------------------------+
+       | Granted by default | ``Developer`` and ``Admin`` user.                          |
+       +--------------------+------------------------------------------------------------+
 
-**Notes and Comments**
 
 .. _TaskCaseAddNote:
 
-TaskCaseAddNote
-   :bdg-ref-warning:`🔑TaskCaseAddNote <TaskCaseAddNote>`
-     - Add notes/comments to tasks and cases
-     - Enables collaboration and communication
-     - Granted to role Everybody by default
+   :ref:`🔑TaskCaseAddNote <TaskCaseAddNote>`
+       +--------------------+------------------------------------------------------------+
+       | Category           | **Notes and Comments**                                     |
+       +====================+============================================================+
+       | Description        | | This permission controls the ability to add notes in a   |
+       |                    |   task or case.                                            |
+       |                    | | If user is not granted this permission, they won't see   |
+       |                    |   the :guilabel:`Add note` option in the History widget    |
+       |                    |    (Case details page) and Notes widget (Task details page)|
+       +--------------------+------------------------------------------------------------+
+       | Type               | **Portal permission**                                      |
+       +--------------------+------------------------------------------------------------+
+       | Use case           | Grant to all users who need to collaborate and communicate |
+       |                    | on tasks and cases by adding notes.                        |
+       +--------------------+------------------------------------------------------------+
+       | Granted by default | ``EVERYBODY``                                              |
+       +--------------------+------------------------------------------------------------+
 
 .. _TaskCaseShowMoreNote:
 
-TaskCaseShowMoreNote
-   :bdg-ref-warning:`🔑TaskCaseShowMoreNote <TaskCaseShowMoreNote>`
-     - View "Show more" option to expand long notes
-     - Granted to role Everybody by default
+   :ref:`🔑TaskCaseShowMoreNote <TaskCaseShowMoreNote>`
+       +--------------------+------------------------------------------------------------+
+       | Category           | **Notes and Comments**                                     |
+       +====================+============================================================+
+       | Description        | | This permission controls the visibility of the           |
+       |                    |   :guilabel:`Show more` option in the top right corner of  |
+       |                    |   the History widget (:ref:`full-case-list`) and Notes     |
+       |                    |   widget (:ref:`full-task-list`).                          |
+       |                    | | When user clicks :guilabel:`Show more`, the full list of |
+       |                    |   notes is shown without pagination in a new page.         |
+       +--------------------+------------------------------------------------------------+
+       | Type               | **Portal permission**                                      |
+       +--------------------+------------------------------------------------------------+
+       | Use case           | Grant to users who need to view the complete list of notes |
+       |                    | without pagination in History and Notes widgets.           |
+       +--------------------+------------------------------------------------------------+
+       | Granted by default | ``EVERYBODY``                                              |
+       +--------------------+------------------------------------------------------------+
 
 .. _NoteReadAllCaseTaskDetails:
 
-NoteReadAllCaseTaskDetails
-   :bdg-ref-warning:`🔑NoteReadAllCaseTaskDetails <NoteReadAllCaseTaskDetails>`
-     - View system notes in case and task details
-     - Allows non-admin users to see audit and system-generated notes
-     - **New in LTS 12.0+**: Replaces legacy global variables ``Portal.Histories.HideSystemNotes`` and ``Portal.Histories.HideSystemNotesForAdministrator``
-     
+   :ref:`🔑NoteReadAllCaseTaskDetails <NoteReadAllCaseTaskDetails>`
+       +--------------------+------------------------------------------------------------+
+       | Category           | **Notes and Comments**                                     |
+       +====================+============================================================+
+       | Description        | | This permission allows non-admin users to view system    |
+       |                    |   notes  in the History widget and Notes widget.           | 
+       |                    | | Without this permission, regular users only see user     |
+       |                    |   notes, while system notes remain visible only to admins. |
+       |                    | | **Note:** Visibility also depends on global settings     |
+       |                    |   ``HIDE_SYSTEM_NOTES_FROM_HISTORY`` and                   |
+       |                    |   ``HIDE_SYSTEM_NOTES_FROM_HISTORY_ADMINISTRATOR``.        |
+       +--------------------+------------------------------------------------------------+
+       | Type               | **Portal permission**                                      |
+       +--------------------+------------------------------------------------------------+
+       | Use case           | Grant to users who need to see system activity logs in     |
+       |                    | case and task histories.                                   |
+       +--------------------+------------------------------------------------------------+
+       | Granted by default | ``Developer`` and ``Admin`` user.                          |
+       +--------------------+------------------------------------------------------------+
+
    .. note::
       **Pre-LTS Versions:** This permission does not exist in Portal versions before 12.0. Use global variables ``Portal.Histories.HideSystemNotes`` and ``Portal.Histories.HideSystemNotesForAdministrator`` instead.
 
-**Admin Settings & Configuration**
-
-- :bdg-ref-warning:`🔑RoleManagement <RoleManagement>`
-    - Access Role Management tab in Admin Settings
-    - See dynamic role configuration and management
 
 .. _NewsManagement:
 
-NewsManagement
-   :bdg-ref-warning:`🔑NewsManagement <NewsManagement>`
-     - Manage News widget content on dashboards
-     - Create, edit, and delete news items
+   :ref:`🔑NewsManagement <NewsManagement>`
+       +--------------------+------------------------------------------------------------+
+       | Category           | **Dashboard**                                              |
+       +====================+============================================================+
+       | Description        | | This permission controls the ability to create, edit, and|
+       |                    |   delete news items in the News widget on dashboards.      |
+       |                    | | If user is not granted this permission, they can only    |
+       |                    |   view news items, but cannot create, edit, or delete them.|
+       +--------------------+------------------------------------------------------------+
+       | Type               | **Portal permission**                                      |
+       +--------------------+------------------------------------------------------------+
+       | Use case           | Grant to users who need to manage and publish news content |
+       |                    | on dashboard news widgets.                                 |
+       +--------------------+------------------------------------------------------------+
+       | Granted by default | ``Developer`` and ``Admin`` user.                          |
+       +--------------------+------------------------------------------------------------+
 
 .. _PasswordValidation:
 
-PasswordValidation
-   :bdg-ref-warning:`🔑PasswordValidation <PasswordValidation>`
-     - Access Password Validation settings in Admin Settings
-     - Configure password complexity requirements
+   :ref:`🔑PasswordValidation <PasswordValidation>`
+       +--------------------+------------------------------------------------------------+
+       | Category           | **Admin Settings & Configuration**                         |
+       +====================+============================================================+
+       | Description        | This permission controls access to the Password            |
+       |                    | Validation tab which supports to configure password        |
+       |                    | complexity requirements in the :ref:`admin-settings` page. |
+       +--------------------+------------------------------------------------------------+
+       | Type               | **Portal permission**                                      |
+       +--------------------+------------------------------------------------------------+
+       | Use case           | Only grant the privilege to access Password Validation tab |
+       |                    | in :ref:`admin-settings` page for certain admins.          |
+       +--------------------+------------------------------------------------------------+
+       | Granted by default | ``Developer`` and ``Admin`` user.                          |
+       +--------------------+------------------------------------------------------------+
 
 .. _NotificationChannelsSetting:
 
-NotificationChannelsSetting
-   :bdg-ref-warning:`🔑NotificationChannelsSetting <NotificationChannelsSetting>`
-     - Customize notification channel preferences in :ref:`my-profile`
-     - Control email, browser, and other notification methods
-     - Granted to role Everybody by default
-
-**Process & External Links**
+   :ref:`🔑NotificationChannelsSetting <NotificationChannelsSetting>`
+       +--------------------+------------------------------------------------------------+
+       | Category           | **Admin Settings & Configuration**                         |
+       +====================+============================================================+
+       | Description        | This permission allows overwriting default notification    |
+       |                    | settings (opt-out notifications) in :ref:`my-profile` page.|
+       +--------------------+------------------------------------------------------------+
+       | Type               | **Portal permission**                                      |
+       +--------------------+------------------------------------------------------------+
+       | Use case           | Prevent certain users or roles from modifying notification |
+       |                    | channel preferences in :ref:`my-profile` page.             |
+       +--------------------+------------------------------------------------------------+
+       | Granted by default | ``EVERYBODY``                                              |
+       +--------------------+------------------------------------------------------------+
 
 .. _CreatePublicExternalLink:
 
-CreatePublicExternalLink
-   :bdg-ref-warning:`🔑CreatePublicExternalLink <CreatePublicExternalLink>`
-     - Create public external links visible to all users
-     - Links appear in full process list for all users
-     - Useful for sharing processes with external systems
+   :ref:`🔑CreatePublicExternalLink <CreatePublicExternalLink>`
+       +--------------------+------------------------------------------------------------+
+       | Category           | **Process & External Links**                               |
+       +====================+============================================================+
+       | Description        | | This permission controls the visibility of the           |
+       |                    |   **Visibility** section in the Add External Link dialog   |
+       |                    |   on the :ref:`full-process-list` page.                    |
+       |                    | | If user is not granted this permission, the Visibility   |
+       |                    |   section is hidden and they can only create private       |
+       |                    |   external links (visible only to themselves).             |
+       |                    | | With this permission, users can choose to create public  |
+       |                    |   links with role-based permissions that appear in the     |
+       |                    |   process list for selected roles.                         |
+       +--------------------+------------------------------------------------------------+
+       | Type               | **Portal permission**                                      |
+       +--------------------+------------------------------------------------------------+
+       | Use case           | Grant to users who need to create external links that are  |
+       |                    | shared with other users or roles, not just private links.  |
+       +--------------------+------------------------------------------------------------+
+       | Granted by default | No                                                         |
+       +--------------------+------------------------------------------------------------+
 
 .. _permission-absence-substitute:
 
