@@ -174,7 +174,11 @@ public class DashboardUtils {
   }
 
   public static Optional<DashboardTemplate> getDashboardTemplateById(String templateId) {
-    return getDashboardTemplates().stream()
+    List<DashboardTemplate> templates = getDashboardTemplates();
+    if (templates == null) {
+      return Optional.empty();
+    }
+    return templates.stream()
         .filter(template -> templateId.equals(template.getId()))
         .findFirst();
   }
