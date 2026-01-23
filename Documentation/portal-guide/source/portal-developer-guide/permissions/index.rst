@@ -221,22 +221,6 @@ Permissions controlling task visibility, actions, and property modifications.
 
 **Task Property Modifications**
 
-.. _TaskWriteName:
-
-   :ref:`🔑TaskWriteName <TaskWriteName>`
-       +--------------------+------------------------------------------------------------+
-       | Category           | **Task Actions**                                           |
-       +====================+============================================================+
-       | Description        | Modify task name                                           | 
-       +--------------------+------------------------------------------------------------+
-       | Type               | **Core permission**                                        |
-       +--------------------+------------------------------------------------------------+
-       | Use case           | High-privilege permission for administrators               | 
-       +--------------------+------------------------------------------------------------+
-       | Granted by default | No                                                         |
-       +--------------------+------------------------------------------------------------+
-
-
 .. _TaskWriteDescription:
 
    :ref:`🔑TaskWriteDescription <TaskWriteDescription>`
@@ -248,7 +232,8 @@ Permissions controlling task visibility, actions, and property modifications.
        +--------------------+------------------------------------------------------------+
        | Type               | **Core permission**                                        |
        +--------------------+------------------------------------------------------------+
-       | Use case           |                                                            | 
+       | Use case           | User with this permission can change task description      |
+       |                    | in task details.                                           | 
        +--------------------+------------------------------------------------------------+
        | Granted by default | No                                                         |
        +--------------------+------------------------------------------------------------+
@@ -265,12 +250,12 @@ Permissions controlling task visibility, actions, and property modifications.
        +--------------------+------------------------------------------------------------+
        | Type               | **Core permission**                                        |
        +--------------------+------------------------------------------------------------+
-       | Use case           |                                                            | 
+       | Use case           | User with this permission can change task priority      |
+       |                    | in task details.                                           | 
        +--------------------+------------------------------------------------------------+
        | Granted by default | No                                                         |
        +--------------------+------------------------------------------------------------+
-     - Change task priority level
-     - Cannot change tasks in states: DONE, DESTROYED, FAILED
+
 
 .. _TaskWriteExpiryTimestamp:
 
@@ -278,12 +263,13 @@ Permissions controlling task visibility, actions, and property modifications.
        +--------------------+------------------------------------------------------------+
        | Category           | **Task Actions**                                           |
        +====================+============================================================+
-       | Description        | Change task deadline/expiry date                           |
+       | Description        | Change task expiry date                                    |
        |                    | Cannot change tasks in states: DONE, DESTROYED, FAILED     |
        +--------------------+------------------------------------------------------------+
        | Type               | **Core permission**                                        |
        +--------------------+------------------------------------------------------------+
-       | Use case           |                                                            | 
+       | Use case           | User with ``AXONIVY_PORTAL_ADMIN`` role and has            | 
+       |                    | this permission can change task expiry date                | 
        +--------------------+------------------------------------------------------------+
        | Granted by default | No                                                         |
        +--------------------+------------------------------------------------------------+
@@ -299,9 +285,10 @@ Permissions controlling task visibility, actions, and property modifications.
        +--------------------+------------------------------------------------------------+
        | Type               | **Core permission**                                        |
        +--------------------+------------------------------------------------------------+
-       | Use case           |                                                            | 
+       | Use case           | User with this permission can delegate task to other       | 
+       |                    | user/roles in the same security context                    |  
        +--------------------+------------------------------------------------------------+
-       | Granted by default | Yes                                                        |
+       | Granted by default | No                                                         |
        +--------------------+------------------------------------------------------------+
 
 
@@ -311,12 +298,13 @@ Permissions controlling task visibility, actions, and property modifications.
        +--------------------+------------------------------------------------------------+
        | Category           | **Task Actions**                                           |
        +====================+============================================================+
-       | Description        | Change the user responsible when task expires              |
+       | Description        | Change the responsible when task expires                   |
        |                    | Cannot change tasks in states: DONE, DESTROYED, FAILED     |
        +--------------------+------------------------------------------------------------+
        | Type               | **Core permission**                                        |
        +--------------------+------------------------------------------------------------+
-       | Use case           |                                                            | 
+       | Use case           | User with ``AXONIVY_PORTAL_ADMIN`` role and has            | 
+       |                    | this permission can change responsible after task expires  | 
        +--------------------+------------------------------------------------------------+
        | Granted by default | No                                                         |
        +--------------------+------------------------------------------------------------+
@@ -326,12 +314,13 @@ Permissions controlling task visibility, actions, and property modifications.
    :ref:`🔑TaskWriteDelayTimestamp <TaskWriteDelayTimestamp>`
        +--------------------+------------------------------------------------------------+
        | Category           | **Task Actions**                                           |
-       +====================+============================================================+
+       +====================+============================================================+   
        | Description        | Modify task delay/start time                               |
        +--------------------+------------------------------------------------------------+
        | Type               | **Core permission**                                        |
        +--------------------+------------------------------------------------------------+
-       | Use case           |                                                            | 
+       | Use case           | User with ``AXONIVY_PORTAL_ADMIN`` role and has            | 
+       |                    | this permission can change task delay/start time           |
        +--------------------+------------------------------------------------------------+
        | Granted by default | No                                                         |
        +--------------------+------------------------------------------------------------+
@@ -340,13 +329,13 @@ Permissions controlling task visibility, actions, and property modifications.
 
    :ref:`🔑TaskWriteActivatorOwnTasks <TaskWriteActivatorOwnTasks>`
        +--------------------+------------------------------------------------------------+
-       | Category           | **Task Actions**                                           |
+       | Category           | **Task UI Display Permissions**                            |
        +====================+============================================================+
        | Description        | Delegate personal/group tasks assigned to user             |
        +--------------------+------------------------------------------------------------+
-       | Type               | **Core permission**                                        |
+       | Type               | **Portal permission**                                      |
        +--------------------+------------------------------------------------------------+
-       | Use case           |                                                            | 
+       | Use case           | Not sure  ???                                              | 
        +--------------------+------------------------------------------------------------+
        | Granted by default | No                                                         |
        +--------------------+------------------------------------------------------------+
@@ -356,13 +345,14 @@ Permissions controlling task visibility, actions, and property modifications.
 
    :ref:`🔑TaskDisplayAdditionalOptions <TaskDisplayAdditionalOptions>`
        +--------------------+------------------------------------------------------------+
-       | Category           | **Task Actions**                                           |
+       | Category           | **Task UI Display Permissions**                            |
        +====================+============================================================+
-       | Description        | Display additional action menu in task lists               |
+       | Description        | Display additional action                                  |
        +--------------------+------------------------------------------------------------+
-       | Type               | **Core permission**                                        |
+       | Type               | **Portal permission**                                      |
        +--------------------+------------------------------------------------------------+
-       | Use case           |                                                            | 
+       | Use case           | User with this permission will have additional             |
+       |                    | menu items from case map.                                  |
        +--------------------+------------------------------------------------------------+
        | Granted by default | Yes                                                        |
        +--------------------+------------------------------------------------------------+
@@ -371,14 +361,16 @@ Permissions controlling task visibility, actions, and property modifications.
 
    :ref:`🔑TaskDisplayResetAction <TaskDisplayResetAction>`
        +--------------------+------------------------------------------------------------+
-       | Category           | **Task Actions**                                           |
+       | Category           | **Task UI Display Permissions**                            |
        +====================+============================================================+
-       | Description        | Show Reset action button in task interface                 |
-       |                    | Requires corresponding TaskReset permission to execute     |
+       | Description        | Display reset action                                       |
        +--------------------+------------------------------------------------------------+
-       | Type               | **Core permission**                                        |
+       | Type               | **Portal permission**                                      |
        +--------------------+------------------------------------------------------------+
-       | Use case           |                                                            | 
+       | Use case           | User with this permission will have ``Reserve``            |
+       |                    | menu item in the task action menu. User also needs         |
+       |                    | ``TaskParkOwnWorkingTask`` or ``TaskReset`` permission     |
+       |                    | to enable this menu.                                       | 
        +--------------------+------------------------------------------------------------+
        | Granted by default | Yes                                                        |
        +--------------------+------------------------------------------------------------+
@@ -388,14 +380,15 @@ Permissions controlling task visibility, actions, and property modifications.
 
    :ref:`🔑TaskDisplayReserveAction <TaskDisplayReserveAction>`
        +--------------------+------------------------------------------------------------+
-       | Category           | **Task Actions**                                           |
+       | Category           | **Task UI Display Permissions**                            |
        +====================+============================================================+
-       | Description        | Show Reserve (Park) action button in task interface        |
-       |                    | Requires TaskParkOwnWorkingTask to execute                 |
+       | Description        | Display reserve action                                     |
        +--------------------+------------------------------------------------------------+
-       | Type               | **Core permission**                                        |
+       | Type               | **Portal permission**                                      |
        +--------------------+------------------------------------------------------------+
-       | Use case           |                                                            | 
+       | Use case           | User with this permission will have ``Reserve``            |
+       |                    | menu item in the task action menu. User also needs         |
+       |                    | ``TaskParkOwnWorkingTask`` permission to enable this menu. | 
        +--------------------+------------------------------------------------------------+
        | Granted by default | Yes                                                        |
        +--------------------+------------------------------------------------------------+
@@ -404,14 +397,15 @@ Permissions controlling task visibility, actions, and property modifications.
 
    :ref:`🔑TaskDisplayDelegateAction <TaskDisplayDelegateAction>`
        +--------------------+------------------------------------------------------------+
-       | Category           | **Task Actions**                                           |
+       | Category           | **Task UI Display Permissions**                            |
        +====================+============================================================+
-       | Description        | Show Delegate action button in task interface              |
-       |                    | Requires TaskWriteActivator to execute delegation          |
+       | Description        | Display delegate action                                    |
        +--------------------+------------------------------------------------------------+
-       | Type               | **Core permission**                                        |
+       | Type               | **Portal permission**                                      |
        +--------------------+------------------------------------------------------------+
-       | Use case           |                                                            | 
+       | Use case           | User with this permission will have ``Delegate``           |
+       |                    | menu item in the task action menu. User also needs         |
+       |                    | ``TaskWriteActivator`` permission to enable this menu.     |  
        +--------------------+------------------------------------------------------------+
        | Granted by default | Yes                                                        |
        +--------------------+------------------------------------------------------------+
@@ -420,32 +414,35 @@ Permissions controlling task visibility, actions, and property modifications.
 
    :ref:`🔑TaskDisplayDestroyAction <TaskDisplayDestroyAction>`
        +--------------------+------------------------------------------------------------+
-       | Category           | **Task Actions**                                           |
+       | Category           | **Task UI Display Permissions**                            |
        +====================+============================================================+
-       | Description        | Show Delete/Destroy action button in task interface        |
-       |                    | Requires TaskDestroy permission to execute                 |
+       | Description        | Display destroy action                                     |
        +--------------------+------------------------------------------------------------+
-       | Type               | **Core permission**                                        |
+       | Type               | **Portal permission**                                      |
        +--------------------+------------------------------------------------------------+
-       | Use case           |                                                            | 
+       | Use case           | User with this permission will have ``Destroy``            |
+       |                    | menu item in the task action menu. User also needs         |
+       |                    | ``TaskDestroy`` permission to enable this menu.            |  
        +--------------------+------------------------------------------------------------+
-       | Granted by default | Yes                                                        |
+       | Granted by default | No                                                        |
        +--------------------+------------------------------------------------------------+
 
 .. _TaskDisplayWorkflowEventAction:
 
    :ref:`🔑TaskDisplayWorkflowEventAction <TaskDisplayWorkflowEventAction>`
        +--------------------+------------------------------------------------------------+
-       | Category           | **Task Actions**                                           |
+       | Category           | **Task UI Display Permissions**                            |
        +====================+============================================================+
-       | Description        | Show Workflow Events button in task details                |
+       | Description        | Display workflow events                                    |
        |                    | Allows viewing task execution history and events           |
        +--------------------+------------------------------------------------------------+
-       | Type               | **Core permission**                                        |
+       | Type               | **Portal permission**                                      |
        +--------------------+------------------------------------------------------------+
-       | Use case           |                                                            | 
+       | Use case           | User with this permission will have ``Workflow events``    |
+       |                    | menu item in the task action menu. User also needs         |
+       |                    | ``WorkflowEventReadAll`` permission to enable this menu.   | 
        +--------------------+------------------------------------------------------------+
-       | Granted by default | Yes                                                        |
+       | Granted by default | No                                                         |
        +--------------------+------------------------------------------------------------+
 
      
@@ -453,16 +450,16 @@ Permissions controlling task visibility, actions, and property modifications.
 
    :ref:`🔑TaskDisplayCustomFieldsAction <TaskDisplayCustomFieldsAction>`
        +--------------------+------------------------------------------------------------+
-       | Category           | **Task Actions**                                           |
+       | Category           | **Task UI Display Permissions**                            |
        +====================+============================================================+
-       | Description        | Show Custom Fields button in task interface                |
-       |                    | Displays additional business data fields                   |
+       | Description        | Display custom fields of case                              | 
        +--------------------+------------------------------------------------------------+
-       | Type               | **Core permission**                                        |
+       | Type               | **Portal permission**                                      |
        +--------------------+------------------------------------------------------------+
-       | Use case           |                                                            |
+       | Use case           | User with this permission will have ``Custom fields``      |
+       |                    | menu item in the task action menu                          | 
        +--------------------+------------------------------------------------------------+
-       | Granted by default | Yes                                                        |
+       | Granted by default | No                                                         |
        +--------------------+------------------------------------------------------------+
 
 
@@ -470,14 +467,14 @@ Permissions controlling task visibility, actions, and property modifications.
 
    :ref:`🔑ShareTaskDetailsLink <ShareTaskDetailsLink>`
        +--------------------+------------------------------------------------------------+
-       | Category           | **Task Actions**                                           |
+       | Category           | **Task UI Display Permissions**                            |
        +====================+============================================================+
-       | Description        | Show Share button in task details page                     |
-       |                    | Allows sharing direct links to specific tasks              |
+       | Description        | Display share case details link                            |
        +--------------------+------------------------------------------------------------+
-       | Type               | **Core permission**                                        |
+       | Type               | **Portal permission**                                      |
        +--------------------+------------------------------------------------------------+
-       | Use case           |                                                            | 
+       | Use case           | User with this permission will have ``Share`` button       |
+       |                    | next to ``Edit`` button in task details                    | 
        +--------------------+------------------------------------------------------------+
        | Granted by default | Yes                                                        |
        +--------------------+------------------------------------------------------------+
@@ -516,8 +513,8 @@ Permissions controlling case visibility, actions, and business details.
        +--------------------+------------------------------------------------------------+
        | Type               | **Core permission**                                        |
        +--------------------+------------------------------------------------------------+
-       | Use case           | User with this permission will have Destroy memu item in   |
-       |                    | the case action memu                                       |
+       | Use case           | User with this permission will have ``Destroy`` menu       |
+       |                    | item in the case action memu                               |
        +--------------------+------------------------------------------------------------+
        | Granted by default | No                                                         |
        +--------------------+------------------------------------------------------------+
@@ -534,60 +531,80 @@ Permissions controlling case visibility, actions, and business details.
        +--------------------+------------------------------------------------------------+
        | Type               | **Portal permission**                                      |
        +--------------------+------------------------------------------------------------+
-       | Use case           | User with this permission and TaskWriteActivator can       | 
+       | Use case           | User with this permission and ``TaskWriteActivator`` can   | 
        |                    | delegate tasks within the case which he is case owner      |
        +--------------------+------------------------------------------------------------+
        | Granted by default | No                                                         |
        +--------------------+------------------------------------------------------------+
 
-**Case Property Modifications**
-
-.. _CaseWriteName:
-
-CaseWriteName
-   :bdg-ref-warning:`🔑CaseWriteName <CaseWriteName>`
-     - Modify case name/title
-     - Cannot change cases in DESTROYED state
-
 .. _CaseWriteDescription:
 
-CaseWriteDescription
-   :bdg-ref-warning:`🔑CaseWriteDescription <CaseWriteDescription>`
-     - Modify case description
-     - Cannot change cases in DESTROYED state
+   :ref:`🔑CaseWriteDescription <CaseWriteDescription>`
+       +--------------------+------------------------------------------------------------+
+       | Category           | **Case Property Modifications**                            |
+       +====================+============================================================+
+       | Description        | Modify case description, cannot modify case in DESTROYED   |
+       |                    | state                                                      |
+       +--------------------+------------------------------------------------------------+
+       | Type               | **Core permission**                                        |
+       +--------------------+------------------------------------------------------------+
+       | Use case           | User with this permission can edit case description in     |
+       |                    | case details                                               | 
+       +--------------------+------------------------------------------------------------+
+       | Granted by default | No                                                         |
+       +--------------------+------------------------------------------------------------+
 
-**Case UI Display Permissions**
-
-.. _ShowAllTasksOfCase:
-
-ShowAllTasksOfCase
-   :bdg-ref-warning:`🔑ShowAllTasksOfCase <ShowAllTasksOfCase>`
-     - Display "Show all tasks" action in case details
-     - Requires :bdg-ref-warning:`🔑TaskReadOwnCaseTasks <TaskReadOwnCaseTasks>` or :bdg-ref-warning:`🔑TaskReadAll <TaskReadAll>` to view tasks
-     - Granted to role Everybody by default
 
 .. _ShowCaseDetails:
 
-ShowCaseDetails
-   :bdg-ref-warning:`🔑ShowCaseDetails <ShowCaseDetails>`
-     - Display Business Details tab in case interface
-     - Shows additional case information and custom widgets
-     - Granted to role Everybody by default
+   :ref:`🔑ShowCaseDetails <ShowCaseDetails>`
+       +--------------------+------------------------------------------------------------+
+       | Category           | **Case UI Display Permissions**                            |
+       +====================+============================================================+
+       | Description        | Display business details in new tab to show                |
+       |                    | additional case information                                |
+       +--------------------+------------------------------------------------------------+
+       | Type               | **Portal permission**                                      |
+       +--------------------+------------------------------------------------------------+
+       | Use case           | User with this permission will have ``Business details``   |
+       |                    | menu item in the case action menu                          | 
+       +--------------------+------------------------------------------------------------+
+       | Granted by default | Yes                                                        |
+       +--------------------+------------------------------------------------------------+
 
 .. _CaseDisplayCustomFieldsAction:
 
-CaseDisplayCustomFieldsAction
-   :bdg-ref-warning:`🔑CaseDisplayCustomFieldsAction <CaseDisplayCustomFieldsAction>`
-     - Display Custom Fields button in case interface
-     - Shows additional business data fields
+   :ref:`🔑CaseDisplayCustomFieldsAction <CaseDisplayCustomFieldsAction>`
+       +--------------------+------------------------------------------------------------+
+       | Category           | **Case UI Display Permissions**                            |
+       +====================+============================================================+
+       | Description        | Display custom fields of case                              |
+       +--------------------+------------------------------------------------------------+
+       | Type               | **Portal permission**                                      |
+       +--------------------+------------------------------------------------------------+
+       | Use case           | User with this permission will have ``Custom fields``      |
+       |                    | menu item in the case action menu                          | 
+       +--------------------+------------------------------------------------------------+
+       | Granted by default | No                                                         |
+       +--------------------+------------------------------------------------------------+
+
 
 .. _ShareCaseDetailsLink:
 
-ShareCaseDetailsLink
-   :bdg-ref-warning:`🔑ShareCaseDetailsLink <ShareCaseDetailsLink>`
-     - Show Share button in case details page
-     - Allows sharing direct links to specific cases
-     - Granted to role Everybody by default
+   :ref:`🔑ShareCaseDetailsLink <ShareCaseDetailsLink>`
+       +--------------------+------------------------------------------------------------+
+       | Category           | **Case UI Display Permissions**                            |
+       +====================+============================================================+
+       | Description        | Display share case details link                            |
+       +--------------------+------------------------------------------------------------+
+       | Type               | **Portal permission**                                      |
+       +--------------------+------------------------------------------------------------+
+       | Use case           | User with this permission will have ``Share`` button       |
+       |                    | next to ``Edit`` button in case details                    | 
+       +--------------------+------------------------------------------------------------+
+       | Granted by default | Yes                                                        |
+       +--------------------+------------------------------------------------------------+
+
 
 .. _permission-general-permissions:
 
@@ -1088,98 +1105,207 @@ Portal Absence And Substitute Permissions
 
 Permissions for managing user absences and task substitution.
 
-**Absence Management - Own Absences**
-
 .. _UserReadOwnAbsences:
 
-UserReadOwnAbsences
-   :bdg-ref-warning:`🔑UserReadOwnAbsences <UserReadOwnAbsences>`
-     - View own absence records
-     - Granted to role Everybody by default
+   :ref:`🔑UserReadOwnAbsences <UserReadOwnAbsences>`
+       +--------------------+------------------------------------------------------------+
+       | Category           | **Manage own absences**                                    |
+       +====================+============================================================+
+       | Description        |  View own absence records                                  |
+       +--------------------+------------------------------------------------------------+
+       | Type               | **Core permission**                                        |
+       +--------------------+------------------------------------------------------------+
+       | Use case           | User with this permission sees his absence                 | 
+       +--------------------+------------------------------------------------------------+
+       | Granted by default | Yes                                                        |
+       +--------------------+------------------------------------------------------------+
 
 .. _UserCreateOwnAbsence:
 
-UserCreateOwnAbsence
-   :bdg-ref-warning:`🔑UserCreateOwnAbsence <UserCreateOwnAbsence>`
-     - Create and edit own absence periods
-     - Allows users to mark when they are unavailable
-     - Granted to role Everybody by default
+   :ref:`🔑UserCreateOwnAbsence <UserCreateOwnAbsence>`
+       +--------------------+------------------------------------------------------------+
+       | Category           | **Manage own absences**                                    |
+       +====================+============================================================+
+       | Description        | Create and edit own absences                               |
+       +--------------------+------------------------------------------------------------+
+       | Type               | **Core permission**                                        |
+       +--------------------+------------------------------------------------------------+
+       | Use case           | User with this permission can create and edit his          |
+       |                    | own absences                                               | 
+       +--------------------+------------------------------------------------------------+
+       | Granted by default | Yes                                                        |
+       +--------------------+------------------------------------------------------------+
 
 .. _UserDeleteOwnAbsence:
 
-UserDeleteOwnAbsence
-   :bdg-ref-warning:`🔑UserDeleteOwnAbsence <UserDeleteOwnAbsence>`
-     - Delete own absence records
-     - Granted to role Everybody by default
+   :ref:`🔑UserDeleteOwnAbsence <UserDeleteOwnAbsence>`
+       +--------------------+------------------------------------------------------------+
+       | Category           | **Manage own absences**                                    |
+       +====================+============================================================+
+       | Description        | Delete own absences                                        |
+       +--------------------+------------------------------------------------------------+
+       | Type               | **Core permission**                                        |
+       +--------------------+------------------------------------------------------------+
+       | Use case           | User with this permission can delete his own absences      | 
+       +--------------------+------------------------------------------------------------+
+       | Granted by default | Yes                                                        |
+       +--------------------+------------------------------------------------------------+
 
-**Absence Management - All Users**
 
 .. _UserReadAbsences:
 
-UserReadAbsences
-   :bdg-ref-warning:`🔑UserReadAbsences <UserReadAbsences>`
-     - View absence records of all users
-     - Administrative permission for HR or management
+   :ref:`🔑UserReadAbsences <UserReadAbsences>`
+       +--------------------+------------------------------------------------------------+
+       | Category           | **Manage absences for all users**                          |
+       +====================+============================================================+
+       | Description        | View absences of all users in the security context         |
+       +--------------------+------------------------------------------------------------+
+       | Type               | **Core permission**                                        |
+       +--------------------+------------------------------------------------------------+
+       | Use case           | User with this permission can view absences of all users   |
+       |                    | in the security context                                    | 
+       +--------------------+------------------------------------------------------------+
+       | Granted by default | No                                                         |
+       +--------------------+------------------------------------------------------------+
 
 .. _UserCreateAbsence:
 
-UserCreateAbsence
-   :bdg-ref-warning:`🔑UserCreateAbsence <UserCreateAbsence>`
-     - Create and edit absences for any user
-     - Typically restricted to administrators or HR personnel
+   :ref:`🔑UserCreateAbsence <UserCreateAbsence>`
+       +--------------------+------------------------------------------------------------+
+       | Category           | **Manage absences for all users**                          |
+       +====================+============================================================+
+       | Description        | Create and edit absences for any users in                  | 
+       |                    | the security context                                       |
+       +--------------------+------------------------------------------------------------+
+       | Type               | **Core permission**                                        |
+       +--------------------+------------------------------------------------------------+
+       | Use case           | User with this permission can create and edit absences     |
+       |                    | for any users in the security context                      | 
+       +--------------------+------------------------------------------------------------+
+       | Granted by default | No                                                         |
+       +--------------------+------------------------------------------------------------+
+
 
 .. _UserDeleteAbsence:
 
-UserDeleteAbsence
-   :bdg-ref-warning:`🔑UserDeleteAbsence <UserDeleteAbsence>`
-     - Delete absence records for any user
-     - Administrative permission for absence management
+   :ref:`🔑UserDeleteAbsence <UserDeleteAbsence>`
+       +--------------------+------------------------------------------------------------+
+       | Category           | **Manage absences for all users**                          |
+       +====================+============================================================+
+       | Description        | Delete absences for any users in the security context      |
+       +--------------------+------------------------------------------------------------+
+       | Type               | **Core permission**                                        |
+       +--------------------+------------------------------------------------------------+
+       | Use case           | User with this permission can delete absences              |
+       |                    | for any users in the security context                      | 
+       +--------------------+------------------------------------------------------------+
+       | Granted by default | No                                                         |
+       +--------------------+------------------------------------------------------------+
 
-**Substitute Management**
 
 .. _UserCreateOwnSubstitute:
 
-UserCreateOwnSubstitute
-   :bdg-ref-warning:`🔑UserCreateOwnSubstitute <UserCreateOwnSubstitute>`
-     - Create own substitute assignments
-     - Delegate tasks to others during absence
-     - Granted to role Everybody by default
+   :ref:`🔑UserCreateOwnSubstitute <UserCreateOwnSubstitute>`
+       +--------------------+------------------------------------------------------------+
+       | Category           | **Manage substitutes**                                     |
+       +====================+============================================================+
+       | Description        | Create own substitute                                      |
+       +--------------------+------------------------------------------------------------+
+       | Type               | **Core permission**                                        |
+       +--------------------+------------------------------------------------------------+
+       | Use case           | User with this permission can create own substitute        |
+       +--------------------+------------------------------------------------------------+
+       | Granted by default | Yes                                                        |
+       +--------------------+------------------------------------------------------------+
+   
 
 .. _UserCreateSubstitute:
 
-UserCreateSubstitute
-   :bdg-ref-warning:`🔑UserCreateSubstitute <UserCreateSubstitute>`
-     - Create substitute assignments for any user
-     - Administrative permission for managing substitutions
+   :ref:`🔑UserCreateSubstitute <UserCreateSubstitute>`
+       +--------------------+------------------------------------------------------------+
+       | Category           | **Manage substitutes**                                     |
+       +====================+============================================================+
+       | Description        | Create substitute assignments for any users in the         |
+       |                    | security context                                           |
+       +--------------------+------------------------------------------------------------+
+       | Type               | **Core permission**                                        |
+       +--------------------+------------------------------------------------------------+
+       | Use case           | User with this permission can create substitute            |
+       |                    | for any users in the security context                      | 
+       +--------------------+------------------------------------------------------------+
+       | Granted by default | No                                                         |
+       +--------------------+------------------------------------------------------------+
 
 .. _UserReadSubstitutes:
 
-UserReadSubstitutes
-   :bdg-ref-warning:`🔑UserReadSubstitutes <UserReadSubstitutes>`
-     - View substitute assignments for all users
-     - Required for seeing who is substituting whom
+   :ref:`🔑UserReadSubstitutes <UserReadSubstitutes>`
+       +--------------------+------------------------------------------------------------+
+       | Category           | **Manage substitutes**                                     |
+       +====================+============================================================+
+       | Description        | View substitutes of any users in the security context      |
+       +--------------------+------------------------------------------------------------+
+       | Type               | **Core permission**                                        |
+       +--------------------+------------------------------------------------------------+
+       | Use case           | User with this permission can view substitutes of          |
+       |                    | any users in the security context                          | 
+       +--------------------+------------------------------------------------------------+
+       | Granted by default | No                                                         |
+       +--------------------+------------------------------------------------------------+
 
 .. _engine-permissions-respected:
 
-Engine Permissions Respected by Portal
----------------------------------------
+Engine Permissions used by Portal
+----------------------------------
 
-Portal honors the following Axon Ivy Engine core permissions. These are documented here for completeness as they directly affect Portal functionality:
+Portal uses the following Axon Ivy Engine core permissions. These are documented here for completeness as they directly affect Portal functionality:
 
 **Task Permissions:**
-:bdg-ref-warning:`🔑TaskReadAll <TaskReadAll>`, :bdg-ref-warning:`🔑TaskReadOwnCaseTasks <TaskReadOwnCaseTasks>`, :bdg-ref-warning:`🔑TaskParkOwnWorkingTask <TaskParkOwnWorkingTask>`, :bdg-ref-warning:`🔑TaskResetOwnWorkingTask <TaskResetOwnWorkingTask>`, :bdg-ref-warning:`🔑TaskReset <TaskReset>`, :bdg-ref-warning:`🔑TaskDestroy <TaskDestroy>`, :bdg-ref-warning:`🔑TaskWriteName <TaskWriteName>`, :bdg-ref-warning:`🔑TaskWriteDescription <TaskWriteDescription>`, :bdg-ref-warning:`🔑TaskWriteOriginalPriority <TaskWriteOriginalPriority>`, :bdg-ref-warning:`🔑TaskWriteExpiryTimestamp <TaskWriteExpiryTimestamp>`, :bdg-ref-warning:`🔑TaskWriteActivator <TaskWriteActivator>`, :bdg-ref-warning:`🔑TaskWriteDelayTimestamp <TaskWriteDelayTimestamp>`
+
+#. :ref:`🔑TaskReadAll <TaskReadAll>` 
+#. :ref:`🔑TaskReadOwnCaseTasks <TaskReadOwnCaseTasks>`
+#. :ref:`🔑TaskParkOwnWorkingTask <TaskParkOwnWorkingTask>` 
+#. :ref:`🔑TaskResetOwnWorkingTask <TaskResetOwnWorkingTask>`
+#. :ref:`🔑TaskReset <TaskReset>` 
+#. :ref:`🔑TaskDestroy <TaskDestroy>` 
+#. :ref:`🔑TaskWriteDescription <TaskWriteDescription>`
+#. :ref:`🔑TaskWriteOriginalPriority <TaskWriteOriginalPriority>`
+#. :ref:`🔑TaskWriteExpiryTimestamp <TaskWriteExpiryTimestamp>` 
+#. :ref:`🔑TaskWriteDescription <TaskWriteDescription>`
+#. :ref:`🔑TaskWriteOriginalPriority <TaskWriteOriginalPriority>`
+#. :ref:`🔑TaskWriteExpiryTimestamp <TaskWriteExpiryTimestamp>`
+#. :ref:`🔑TaskWriteActivator <TaskWriteActivator>`
+#. :ref:`🔑TaskWriteDelayTimestamp <TaskWriteDelayTimestamp>`
 
 **Case Permissions:**
-:bdg-ref-warning:`🔑CaseReadAll <CaseReadAll>`, :bdg-ref-warning:`🔑CaseDestroy <CaseDestroy>`, :bdg-ref-warning:`🔑CaseWriteName <CaseWriteName>`, :bdg-ref-warning:`🔑CaseWriteDescription <CaseWriteDescription>`
+
+#. :ref:`🔑CaseReadAll <CaseReadAll>`
+#. :ref:`🔑CaseDestroy <CaseDestroy>`
+#. :ref:`🔑CaseWriteDescription <CaseWriteDescription>`
 
 **Role Permissions:**
-:bdg-ref-warning:`🔑RoleReadAll <RoleReadAll>`, :bdg-ref-warning:`🔑RoleCreate <RoleCreate>`, :bdg-ref-warning:`🔑RoleDelete <RoleDelete>`, :bdg-ref-warning:`🔑RoleMove <RoleMove>`
+
+#. :ref:`🔑RoleReadAll <RoleReadAll>`
+#. :ref:`🔑RoleCreate <RoleCreate>`
+#. :ref:`🔑RoleDelete <RoleDelete>`
+#. :ref:`🔑RoleMove <RoleMove>`
 
 **Document Permissions:**
-:bdg-ref-warning:`🔑DocumentRead <DocumentRead>`, :bdg-ref-warning:`🔑DocumentWrite <DocumentWrite>`, :bdg-ref-warning:`🔑DocumentOfInvolvedCaseWrite <DocumentOfInvolvedCaseWrite>`
+
+#. :ref:`🔑DocumentRead <DocumentRead>`
+#. :ref:`🔑DocumentWrite <DocumentWrite>`
+#. :ref:`🔑DocumentOfInvolvedCaseWrite <DocumentOfInvolvedCaseWrite>`
 
 **Absence & Substitute Permissions:**
-:bdg-ref-warning:`🔑UserReadOwnAbsences <UserReadOwnAbsences>`, :bdg-ref-warning:`🔑UserCreateOwnAbsence <UserCreateOwnAbsence>`, :bdg-ref-warning:`🔑UserDeleteOwnAbsence <UserDeleteOwnAbsence>`, :bdg-ref-warning:`🔑UserReadAbsences <UserReadAbsences>`, :bdg-ref-warning:`🔑UserCreateAbsence <UserCreateAbsence>`, :bdg-ref-warning:`🔑UserDeleteAbsence <UserDeleteAbsence>`, :bdg-ref-warning:`🔑UserCreateOwnSubstitute <UserCreateOwnSubstitute>`, :bdg-ref-warning:`🔑UserCreateSubstitute <UserCreateSubstitute>`, :bdg-ref-warning:`🔑UserReadSubstitutes <UserReadSubstitutes>`
+
+#. :ref:`🔑UserReadOwnAbsences <UserReadOwnAbsences>`
+#. :ref:`🔑UserCreateOwnAbsence <UserCreateOwnAbsence>`
+#. :ref:`🔑UserDeleteOwnAbsence <UserDeleteOwnAbsence>`
+#. :ref:`🔑UserReadAbsences <UserReadAbsences>`
+#. :ref:`🔑UserCreateAbsence <UserCreateAbsence>`
+#. :ref:`🔑UserDeleteAbsence <UserDeleteAbsence>`
+#. :ref:`🔑UserCreateOwnSubstitute <UserCreateOwnSubstitute>`
+#. :ref:`🔑UserCreateSubstitute <UserCreateSubstitute>`
+#. :ref:`🔑UserReadSubstitutes <UserReadSubstitutes>`
 
 .. tip::
    For comprehensive details on each permission including usage context and restrictions, see the detailed sections above.
