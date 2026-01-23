@@ -69,8 +69,10 @@ Portal has a flexible security system that allows you to configure who can acces
 .. important::
    **Portal Permission Support:**
    
-   The Portal is built as a layer above the Axon Ivy Engine core. Not every core engine permission is automatically honored or supported by the Portal.
+   The Portal is built as a layer above the Axon Ivy Engine core. Not every core engine permission is automatically used or supported by the Portal.
    If you require a specific engine permission not currently supported by the Portal, please contact Axon Ivy support.
+   Many behaviors in Portal require multiple permissions to work correctly. For example, to reset a task, a user typically needs both the permission ``TaskDisplayResetAction`` to display Reset button and the permission ``TaskReset`` to reset it.
+   Ensure you review all related permissions when configuring access.
 
 .. note::
    **Permission Types in this Documentation:**
@@ -92,11 +94,11 @@ Permissions controlling task visibility, actions, and property modifications.
 .. _TaskReadAll:
 
    :ref:`🔑TaskReadAll <TaskReadAll>`
-      +--------------------+------------------------------------------------------------+
-      | Category           | **Role Management Permissions**                            |
-      +====================+============================================================+
-       | Description        | View all user tasks (not system) in the system regardless of|
-       |                    | assignment                                                  |
+       +--------------------+-------------------------------------------------------------+
+       | Category           | **Role Management Permissions**                             |
+       +--------------------+-------------------------------------------------------------+
+       | Description        | View all user tasks (not system) in the system regardless   |
+       |                    | of assignment                                               |
        +--------------------+-------------------------------------------------------------+
        | Type               | **Core permission**                                         |
        +--------------------+-------------------------------------------------------------+
@@ -104,6 +106,7 @@ Permissions controlling task visibility, actions, and property modifications.
        +--------------------+-------------------------------------------------------------+
        | Granted by default | No                                                          |
        +--------------------+-------------------------------------------------------------+
+
 
 .. _SystemTaskReadAll:
 
@@ -173,7 +176,6 @@ Permissions controlling task visibility, actions, and property modifications.
 .. _TaskReset:
 
    :ref:`🔑TaskReset <TaskReset>`
-      :ref:`🔑TaskResetOwnWorkingTask <TaskResetOwnWorkingTask>`
        +--------------------+------------------------------------------------------------+
        | Category           | **Task Actions**                                           |
        +====================+============================================================+
@@ -250,7 +252,7 @@ Permissions controlling task visibility, actions, and property modifications.
        +--------------------+------------------------------------------------------------+
        | Type               | **Core permission**                                        |
        +--------------------+------------------------------------------------------------+
-       | Use case           | User with this permission can change task priority      |
+       | Use case           | User with this permission can change task priority         |
        |                    | in task details.                                           | 
        +--------------------+------------------------------------------------------------+
        | Granted by default | No                                                         |
@@ -367,10 +369,9 @@ Permissions controlling task visibility, actions, and property modifications.
        +--------------------+------------------------------------------------------------+
        | Type               | **Portal permission**                                      |
        +--------------------+------------------------------------------------------------+
-       | Use case           | User with this permission will have ``Reserve``            |
+       | Use case           | User with this permission will have ``Reset``              |
        |                    | menu item in the task action menu. User also needs         |
-       |                    | ``TaskParkOwnWorkingTask`` or ``TaskReset`` permission     |
-       |                    | to enable this menu.                                       | 
+       |                    | ``TaskResetOwnWorkingTask`` or ``TaskReset`` permission    |
        +--------------------+------------------------------------------------------------+
        | Granted by default | Yes                                                        |
        +--------------------+------------------------------------------------------------+
@@ -424,7 +425,7 @@ Permissions controlling task visibility, actions, and property modifications.
        |                    | menu item in the task action menu. User also needs         |
        |                    | ``TaskDestroy`` permission to enable this menu.            |  
        +--------------------+------------------------------------------------------------+
-       | Granted by default | No                                                        |
+       | Granted by default | No                                                         |
        +--------------------+------------------------------------------------------------+
 
 .. _TaskDisplayWorkflowEventAction:
