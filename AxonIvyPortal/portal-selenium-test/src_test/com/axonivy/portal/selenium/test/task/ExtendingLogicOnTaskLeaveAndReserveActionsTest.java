@@ -10,6 +10,7 @@ import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.FilterOperator;
 import com.axonivy.portal.selenium.common.FilterValueType;
 import com.axonivy.portal.selenium.common.TestAccount;
+import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.page.MainMenuPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.NotificationCompactPage;
@@ -29,6 +30,7 @@ public class ExtendingLogicOnTaskLeaveAndReserveActionsTest extends BaseTest {
   public void setup() {
     super.setup();
     dashboardPage = new NewDashboardPage();
+    updatePortalSetting(Variable.DISPLAY_MESSAGE_AFTER_FINISH_TASK.getKey(), "false");
   }
   
   @Test
