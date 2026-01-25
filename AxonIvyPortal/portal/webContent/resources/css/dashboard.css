@@ -2063,3 +2063,13 @@ body .widget__content .ui-datatable.dashboard-tasks--table .ui-widget-header the
 .chart-content-card-clickable {
   cursor: pointer;
 }
+
+.global-search-ai-filters-panel {
+  width: max-content;
+  min-width: 80%;
+}
+
+.global-search-ai-filters-panel > .ui-overlaypanel-content > .dashboard-widget-filter__filter-wrapper {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}

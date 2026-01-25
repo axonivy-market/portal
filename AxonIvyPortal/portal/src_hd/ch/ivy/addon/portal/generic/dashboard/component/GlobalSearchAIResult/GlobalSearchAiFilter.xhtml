@@ -1,0 +1,77 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:ic="http://ivyteam.ch/jsf/component"
+  xmlns:p="http://primefaces.org/ui"
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+  <h:panelGroup styleClass="dashboard-widget-filter__filter-wrapper" layout="block">
+    <h:panelGroup id="filter-selection-panel" layout="block" styleClass="dashboard-widget-filter__filter-panel filter-selection-panel">
+    <p:selectOneMenu id="field-selection" label="#{filter.filterField.label}" value="#{filter.filterField}" 
+      disabled="#{readOnly}" converter="pojoConverter">
+      <f:selectItem itemLabel="#{filter.filterField.label}" itemValue="#{filter.filterField}"/>
+      <f:param name="skipValidator" value="true" />
+    </p:selectOneMenu>
+
+    <h:panelGroup rendered="#{filter.isId()}" layout="block">
+      <ic:com.axonivy.portal.dashboard.component.filter.IdFilter 
+        filter="#{filter}" componentToUpdate="#{componentToUpdate}" 
+        filterIndex="#{filterIndex}" readOnly="#{readOnly}" messageId="#{messageId}" />
+    </h:panelGroup>
+
+    <h:panelGroup layout="block" rendered="#{filter.isCustomDateField() or filter.isFinishedDateField() or filter.isExpiryDateField()}">
+      <ic:com.axonivy.portal.dashboard.component.filter.DateFilter filter="#{filter}" widgetType="#{widget.getType()}"
+        componentToUpdate="#{componentToUpdate}" filterIndex="#{filterIndex}"
+        readOnly="#{readOnly}" messageId="#{messageId}"/>
+    </h:panelGroup>
+
+    <h:panelGroup layout="block" rendered="#{filter.isCreatedDateField()}">
+      <ic:com.axonivy.portal.dashboard.component.filter.CreatedDateFilter filter="#{filter}" widgetType="#{widget.getType()}"
+        componentToUpdate="#{componentToUpdate}" filterIndex="#{filterIndex}"
+        readOnly="#{readOnly}" messageId="#{messageId}"/>
+    </h:panelGroup>
+
+    <h:panelGroup layout="block" rendered="#{filter.isTextField()}">
+      <ic:com.axonivy.portal.dashboard.component.filter.TextFilter filter="#{filter}"
+        componentToUpdate="#{componentToUpdate}" filterIndex="#{filterIndex}"
+        readOnly="#{readOnly}" messageId="#{messageId}" />
+    </h:panelGroup>
+
+    <h:panelGroup layout="block" rendered="#{filter.isNumberField()}">
+      <ic:com.axonivy.portal.dashboard.component.filter.NumberFilter filter="#{filter}"
+        componentToUpdate="#{componentToUpdate}" filterIndex="#{filterIndex}"
+        readOnly="#{readOnly}" messageId="#{messageId}" />
+    </h:panelGroup>
+
+    <h:panelGroup layout="block" rendered="#{filter.isCreator()}">
+      <ic:com.axonivy.portal.dashboard.component.filter.CreatorFilter filter="#{filter}"
+        componentToUpdate="#{componentToUpdate}" filterIndex="#{filterIndex}"
+        readOnly="#{readOnly}" messageId="#{messageId}"
+        creatorCompleteMethod="#{managedBean.completeCreators}" />
+    </h:panelGroup>
+
+    <h:panelGroup layout="block" rendered="#{filter.isResponsible()}">
+      <ic:com.axonivy.portal.dashboard.component.filter.ResponsibleFilter filter="#{filter}"
+        componentToUpdate="#{componentToUpdate}" filterIndex="#{filterIndex}"
+        readOnly="#{readOnly}" messageId="#{messageId}"
+        responsibleCompleteMethod="#{managedBean.completeOwners}" />
+    </h:panelGroup>
+
+    <h:panelGroup layout="block" rendered="#{filter.isCategory()}">
+      <ic:com.axonivy.portal.dashboard.component.filter.CategoryFilter
+        filter="#{filter}" widgetType="#{widget.getType()}"
+        componentToUpdate="#{componentToUpdate}"
+        filterIndex="#{filterIndex}" readOnly="#{readOnly}"
+        messageId="#{messageId}" />
+    </h:panelGroup>
+
+    <h:panelGroup layout="block" rendered="#{filter.isState()}">
+      <ic:com.axonivy.portal.dashboard.component.filter.StateFilter filter="#{filter}"
+        widgetType="#{widget.getType()}"
+        componentToUpdate="#{componentToUpdate}" filterIndex="#{filterIndex}"
+        readOnly="#{readOnly}" messageId="#{messageId}" />
+    </h:panelGroup>
+    </h:panelGroup>
+  </h:panelGroup>
+</ui:composition>

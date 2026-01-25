@@ -1,0 +1,47 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:fn="http://xmlns.jcp.org/jsp/jstl/functions"
+  xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:jsf="http://xmlns.jcp.org/jsf"
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+  
+  <cc:interface componentType="IvyComponent">
+    <cc:attribute name="index" required="true" />
+    <cc:attribute name="widget" required="true" />
+    <cc:attribute name="isReadOnlyMode" default="false" />
+    <cc:attribute name="isAIResult" default="false" />
+  </cc:interface>
+
+  <cc:implementation>
+    <c:set var="widget" value="#{cc.attrs.widget}" />
+    <c:set var="isReadOnlyMode" value="#{cc.attrs.isReadOnlyMode}" />
+
+    <h:panelGroup id="globalSearchAiResultContainer">
+      <p:commandButton id="globalSearchAiFiltersBtn" value="Filters" disabled="#{empty widget.userFilters}"/>
+      
+      <p:overlayPanel for="globalSearchAiFiltersBtn" id="globalSearchAiFiltersPanel" dynamic="true" 
+        styleClass="global-search-ai-filters-panel" my="left top" at="left bottom">
+        
+        <ui:repeat var="currentFilter" value="#{widget.userFilters}" varStatus="status">
+          <ui:include src="GlobalSearchAiFilter.xhtml">
+            <ui:param name="filter" value="#{currentFilter}" />
+            <ui:param name="managedBean" value="#{globalSearchAIResultBean}" />
+            <ui:param name="componentToUpdate" value="" />
+            <ui:param name="widget" value="#{widget}" />
+            <ui:param name="filterIndex" value="#{status.index}" />
+            <ui:param name="readOnly" value="#{isReadOnlyMode}" />
+            <ui:param name="messageId" value="ai-filter-msg" />
+          </ui:include>
+        </ui:repeat>
+      </p:overlayPanel>
+
+      <h:panelGroup id="caseResultsAiWrapper" styleClass="case-results-ai-component-wrapper">
+        <ic:ch.ivy.addon.portal.generic.dashboard.component.CaseWidget 
+          id="case-dashboard-ai-result-component" 
+          caseWidget="#{widget}" 
+          isReadOnlyMode="#{isReadOnlyMode}" 
+          isAIResult="#{cc.attrs.isAIResult}" />
+      </h:panelGroup>
+    </h:panelGroup>
+  </cc:implementation>
+</html>

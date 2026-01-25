@@ -17,13 +17,13 @@
         "at" : { "x" : 64, "y" : 96 }
       },
       "connect" : [
-        { "id" : "f2", "to" : "f1" }
+        { "id" : "f52", "to" : "f51" }
       ]
     }, {
       "id" : "f1",
       "type" : "HtmlDialogEnd",
       "visual" : {
-        "at" : { "x" : 280, "y" : 96 }
+        "at" : { "x" : 320, "y" : 96 }
       }
     }, {
       "id" : "f4",
@@ -392,5 +392,114 @@
       "visual" : {
         "at" : { "x" : 384, "y" : 728 }
       }
+    }, {
+      "id" : "f46",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "askAISearch(input)",
+      "config" : {
+        "signature" : "askAISearch",
+        "input" : {
+          "params" : [
+            { "name" : "input", "type" : "String", "desc" : "" }
+          ],
+          "map" : {
+            "out.keyword" : "param.input"
+          },
+          "code" : "ivy.log.info(param.input);"
+        },
+        "guid" : "19BE3FD7CDE26364"
+      },
+      "visual" : {
+        "at" : { "x" : 48, "y" : 912 }
+      },
+      "connect" : [
+        { "id" : "f48", "to" : "f47" }
+      ]
+    }, {
+      "id" : "f47",
+      "type" : "Script",
+      "name" : "call agent",
+      "config" : {
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.keyword" : "in.keyword"
+          },
+          "code" : [
+            "import com.axonivy.portal.components.service.IvyAdapterService;",
+            "import java.util.HashMap;",
+            "import java.util.Map;",
+            "import java.util.*;",
+            "import java.lang.Class;",
+            "import com.axonivy.portal.enums.PortalCustomSignature;",
+            "import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;",
+            "import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;",
+            "import com.axonivy.portal.enums.PortalSystemMessage;",
+            "import com.axonivy.portal.Filter;",
+            "import ch.ivy.addon.portalkit.service.WidgetFilterService;",
+            "import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;",
+            "import ch.ivy.addon.portalkit.dto.dashboard.WidgetFilterModel;",
+            "",
+            "String portalSignature = \"invokeAgent(String,String,List<String>,String,String,Class,String)\";",
+            "String question = out.keyword;",
+            "String systemMessage = PortalSystemMessage.FILTER_CREATION_INSTRUCTION.getMessage();",
+            "Map params = new HashMap();",
+            "params.put(\"query\", question);",
+            "params.put(\"systemMessage\", systemMessage);",
+            "params.put(\"resultType\", String.class);",
+            "Map result = new HashMap();",
+            "try {",
+            "    result = IvyAdapterService.startSubProcessInSecurityContext(portalSignature, params);",
+            "    List<DashboardFilter> filters = BusinessEntityConverter.jsonValueToEntities(result.get(\"resultObject\").toString(), DashboardFilter.class);",
+            "    WidgetFilterService widgetFilterService = WidgetFilterService.getInstance();",
+            "    in.caseWidget.setUserFilters(filters);",
+            "    DashboardWidget widget = in.caseWidget;",
+            "    WidgetFilterModel filterModel = widgetFilterService.prepareSaveFilter(widget);",
+            "    List<WidgetFilterModel> list = new ArrayList();",
+            "    list.add(filterModel);",
+            "    in.caseWidget.setSavedFilters(list);",
+            "    ivy.log.info(in.caseWidget.getSavedFilters().getFirst().toString());",
+            "} catch(Exception e) {",
+            "    ivy.log.error(e.getCause());",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 192, "y" : 912 }
+      },
+      "connect" : [
+        { "id" : "f50", "to" : "f49" }
+      ]
+    }, {
+      "id" : "f49",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 384, "y" : 912 }
+      }
+    }, {
+      "id" : "f51",
+      "type" : "Script",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget;",
+            "import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;",
+            "import ch.ivy.addon.portalkit.dto.dashboard.casecolumn.CaseColumnModel;",
+            "import java.util.Arrays;",
+            "import ch.ivy.addon.portalkit.dto.WidgetLayout;",
+            "",
+            "CaseDashboardWidget caseWidget = DashboardWidgetUtils.buildDefaultCaseWidgetForGlobalSearch();",
+            "",
+            "in.caseWidget = caseWidget;"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 192, "y" : 96 }
+      },
+      "connect" : [
+        { "id" : "f53", "to" : "f1", "color" : "default" }
+      ]
     } ]
 }

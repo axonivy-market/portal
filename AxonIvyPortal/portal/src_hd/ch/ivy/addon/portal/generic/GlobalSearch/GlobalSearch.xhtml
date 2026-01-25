@@ -13,6 +13,8 @@
 <cc:implementation>
   <c:set var="task" value="#{cc.attrs.task}" />
   <c:set var="isWorkingOnATask" value="#{cc.attrs.isWorkingOnATask ? cc.attrs.isWorkingOnATask : false}" />
+  
+  <f:event listener="#{globalSearchBean.preRender(data.caseWidget)}" type="preRenderView" />
     <!-- Warning before leaving task -->
   <ic:ch.ivy.addon.portalkit.component.WarningBeforeLeavingTask
     id="search-warning-before-leaving-task-component" componentId="search-task-leave-warning-dialog"
@@ -57,12 +59,18 @@
     
   <p:remoteCommand id="global-search-update-params-cmd" name="portalGlobalSearchUpdateParams" actionListener="#{logic.updateParams(isWorkingOnATask)}"
     partialSubmit="true"/>
+
+  <p:remoteCommand id="global-search-ai-search-cmd" name="portalGlobalSearchAI" actionListener="#{globalSearchBean.updateCaseWidget(param.input)}" oncomplete="" process="@this" update="global-search-component:global-search-tabview:global-search-ai-result-component:globalSearchAiResultContainer"
+    partialSubmit="true"/>
+  
+  <p:remoteCommand id="global-search-ai-search-inist-data" name="portalGlobalSearchAIInitData" actionListener="#{logic.initDefaultDataForAISearch()}" immediate="false" process="@this"
+  partialSubmit="true"/>
     
   <p:overlayPanel rendered="#{cc.attrs.showQuickGlobalSearch}" hideEvent="dbclick" id="global-search-form" onHide="resetSearchBar();"
    for="global-search-component:global-search-data" styleClass="global-search-form">
     <h:outputScript library="js" name="global-search.js" />
     <div id="global-search-panel">
-      <p:tabView style="height: 250px">
+      <p:tabView id="global-search-tabview" style="height: 250px">
         <p:tab id="process-tab-search" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/processes')}"
           titleStyleClass="search-bar process-tab-title-global"
           rendered="#{processWidgetBean.isShowGlobalSearchScope()}">
@@ -91,6 +99,19 @@
            <p:commandLink global="false" onclick="viewAllResults(2); removeNavigationDashboardBackButton();" ariaLabel="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/generic/GlobalSearch/ViewAllResults')}" />
           </div>
           <h:outputText styleClass="global-search-no-results" value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/generic/GlobalSearch/noResultsText')}" />
+        </p:tab>
+         <p:tab id="ai-tab-search" title="AI Search" titleStyleClass="search-bar ai-tab-title-global" 
+          rendered="true">
+          <h:panelGroup id="ai-search-results" styleClass="js-ai-default-widget-container case-default-widget-container js-for-search-result global-search-ai-results">
+            <ic:ch.ivy.addon.portal.generic.dashboard.component.GlobalSearchAIResult 
+              id="global-search-ai-result-component" index="10"
+              widget="#{globalSearchBean.caseWidget}"
+              isReadOnlyMode="true"
+              isAIResult="true"/>
+          </h:panelGroup>
+          <div class="global-search-all-results" >
+           <p:commandLink global="false" onclick="viewAllResults(2); removeNavigationDashboardBackButton();" ariaLabel="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/generic/GlobalSearch/ViewAllResults')}" />
+          </div>
         </p:tab>
       </p:tabView>
     </div>
