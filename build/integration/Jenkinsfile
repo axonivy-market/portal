@@ -29,7 +29,7 @@ pipeline {
           downloadPortalRelease()
 
           echo '====================Check out tag of Portal latest successful release===================='
-          sh '''
+          sh '''#!/bin/bash
             artifactPattern="${releaseDir}/AxonIvyPortal/portal/target/*.iar"
             artifactName=$(basename $artifactPattern .iar)
             versionLastestReleasedPortal=${artifactName:7}
