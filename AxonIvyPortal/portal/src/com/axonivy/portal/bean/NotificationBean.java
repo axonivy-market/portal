@@ -15,6 +15,7 @@ import org.primefaces.PrimeFaces;
 import com.axonivy.portal.components.service.IvyAdapterService;
 import com.axonivy.portal.datamodel.NotificationLazyModel;
 import com.axonivy.portal.dto.NotificationDto;
+import com.axonivy.portal.dto.TaskDTO;
 import com.axonivy.portal.enums.PortalCustomSignature;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
@@ -146,7 +147,7 @@ public class NotificationBean implements Serializable {
     PortalNavigator.redirect(dto.getRunAction().getLink().getRelative());
   }
   
-  public void startTaskFromNotification(NotificationDto dto, boolean isWorkingTask, ITask task) {
+  public void startTaskFromNotification(NotificationDto dto, boolean isWorkingTask, TaskDTO task) {
     if (isWorkingTask && task.getState() != TaskState.DONE) {
       PrimeFaces.current().executeScript(String.format("checkWarningLogForTaskStart('%s', '%s')", dto.getId(), task.getId()));
       return;
@@ -160,7 +161,7 @@ public class NotificationBean implements Serializable {
     startTask(dto);
   }
   
-  public void goToNotificationDetail(NotificationDto dto, boolean isWorkingTask, ITask task) {
+  public void goToNotificationDetail(NotificationDto dto, boolean isWorkingTask, TaskDTO task) {
     if (isWorkingTask && task.getState() != TaskState.DONE) {
       PrimeFaces.current().executeScript(String.format("checkWarningLogForTaskDetail('%s', '%s')", dto.getId(), task.getId()));
       return;

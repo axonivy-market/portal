@@ -29,6 +29,7 @@ import com.axonivy.portal.components.service.IvyAdapterService;
 import com.axonivy.portal.components.util.DisplayNameUtils;
 import com.axonivy.portal.components.util.FacesMessageUtils;
 import com.axonivy.portal.components.util.TaskUtils;
+import com.axonivy.portal.dto.TaskDTO;
 
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
 import ch.ivy.addon.portalkit.service.GrowlMessageService;
@@ -44,7 +45,7 @@ public class SideStepProcessBean implements Serializable {
 
   private static final long serialVersionUID = 4611697531600235758L;
 
-  private ITask task;
+  private TaskDTO task;
   private SideStepProcessDTO selectedProcess;
   private List<SideStepProcessDTO> processes;
   private UserDTO assignee;
@@ -91,16 +92,16 @@ public class SideStepProcessBean implements Serializable {
     }
   }
 
-  public boolean isRendered(ITask task) {
+  public boolean isRendered(TaskDTO task) {
     return CollectionUtils.isNotEmpty(getSideStepProcesses(task));
   }
 
-  public List<SideStepProcessDTO> getSideStepProcesses(ITask task) {
+  public List<SideStepProcessDTO> getSideStepProcesses(TaskDTO task) {
     if (processes == null) {
       if (task != null) {
         this.task = task;
         // check task level
-        String sideStepString = task.customFields().textField(CustomFields.SIDE_STEP_TASK).getOrNull();
+        String sideStepString = task.getCustomFields().textField(CustomFields.SIDE_STEP_TASK).getOrNull();
         if (StringUtils.isBlank(sideStepString)) {
           // if null check case level
           sideStepString = task.getCase().customFields().textField(CustomFields.SIDE_STEP_CASE).getOrNull();
@@ -134,6 +135,10 @@ public class SideStepProcessBean implements Serializable {
 
   public void handleSelectProcess() {
     if (task != null && selectedProcess != null) {
+      ITask iTask = TaskUtils.findTaskById(task.getId());
+      if (iTask == null) {
+        return;
+      }
       ISecurityMember delegatedSecurityMember;
       if (assignee != null) {
         delegatedSecurityMember = SecurityMemberUtils.findISecurityMemberFromUserDTO(assignee);
@@ -142,13 +147,13 @@ public class SideStepProcessBean implements Serializable {
       }
       String securityMemberId = delegatedSecurityMember != null ? delegatedSecurityMember.getSecurityMemberId() : "";
       SideStepProcessParamDTO param = SideStepProcessParamDTO.builder().sideStepProcessDto(selectedProcess)
-          .comment(comment).isParallelSideStep(selectedSideStepType == SideStepType.PARALLEL).taskUuid(task.uuid())
+          .comment(comment).isParallelSideStep(selectedSideStepType == SideStepType.PARALLEL).taskUuid(task.getUuid())
           .securityMemberId(securityMemberId).build();
       String jsonSerializedPayload = BusinessEntityConverter.entityToJsonValue(param);
       Ivy.wf().signals().create().data(jsonSerializedPayload).send(selectedProcess.getSignal());
       if (selectedSideStepType == SideStepType.SWITCH) {
-        TaskUtils.parkTask(task);
-        TaskAPI.setHidePropertyToHideInPortal(task);
+        TaskUtils.parkTask(iTask);
+        TaskAPI.setHidePropertyToHideInPortal(iTask);
         PortalNavigatorInFrameAPI.navigateToPortalHome();
       }
       String message = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/SideStep/NewSideStepMessage");
@@ -172,11 +177,11 @@ public class SideStepProcessBean implements Serializable {
     this.assignedRole = null;
   }
 
-  public ITask getTask() {
+  public TaskDTO getTask() {
     return task;
   }
 
-  public void setTask(ITask task) {
+  public void setTask(TaskDTO task) {
     this.task = task;
   }
 

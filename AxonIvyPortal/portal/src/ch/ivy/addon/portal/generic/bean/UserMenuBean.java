@@ -20,6 +20,7 @@ import org.primefaces.PrimeFaces;
 import com.axonivy.portal.bo.QRCodeData;
 import com.axonivy.portal.components.enums.MenuKind;
 import com.axonivy.portal.components.service.IvyAdapterService;
+import com.axonivy.portal.dto.TaskDTO;
 import com.axonivy.portal.enums.PortalCustomSignature;
 import com.axonivy.portal.service.GlobalSearchService;
 import com.google.gson.Gson;
@@ -143,7 +144,7 @@ public class UserMenuBean implements Serializable {
     return PortalNavigator.getPortalStartUrl();
   }
 
-  public void navigateToHomePageOrDisplayWorkingTaskWarning(boolean isWorkingOnATask, ITask task) throws IOException {
+  public void navigateToHomePageOrDisplayWorkingTaskWarning(boolean isWorkingOnATask, TaskDTO task) throws IOException {
     if (isWorkingOnATask && task.getState() != TaskState.DONE) {
       targetPage = getHomePageURL();
       openTaskLosingConfirmationDialog();
@@ -152,7 +153,7 @@ public class UserMenuBean implements Serializable {
     }
   }
 
-  public void navigateToPortalManagementDisplayWorkingTaskWarning(boolean isWorkingOnATask, ITask task) throws IOException {
+  public void navigateToPortalManagementDisplayWorkingTaskWarning(boolean isWorkingOnATask, TaskDTO task) throws IOException {
     if (isWorkingOnATask && task.getState() != TaskState.DONE) {
       openTaskLosingConfirmationDialog();
       targetPage = getPortalManagementUrl();
@@ -162,7 +163,7 @@ public class UserMenuBean implements Serializable {
     }
   }
 
-  public void navigateToUserProfileOrDisplayWorkingTaskWarning(boolean isWorkingOnATask, ITask task) throws IOException {
+  public void navigateToUserProfileOrDisplayWorkingTaskWarning(boolean isWorkingOnATask, TaskDTO task) throws IOException {
     if (isWorkingOnATask && task.getState() != TaskState.DONE) {
       openTaskLosingConfirmationDialog();
       targetPage = getUserProfileUrl();
@@ -172,7 +173,7 @@ public class UserMenuBean implements Serializable {
     }
   }
 
-  public void navigateToAbsencesOrDisplayWorkingTaskWarning(boolean isWorkingOnATask, ITask task) throws IOException {
+  public void navigateToAbsencesOrDisplayWorkingTaskWarning(boolean isWorkingOnATask, TaskDTO task) throws IOException {
     if (isWorkingOnATask && task.getState() != TaskState.DONE) {
       openTaskLosingConfirmationDialog();
       targetPage = getAbsencesUrl();
@@ -182,7 +183,7 @@ public class UserMenuBean implements Serializable {
     }
   }
 
-  public void navigateToDashboardConfigurationOrDisplayWorkingTaskWarning(boolean isWorkingOnATask, ITask task) throws IOException {
+  public void navigateToDashboardConfigurationOrDisplayWorkingTaskWarning(boolean isWorkingOnATask, TaskDTO task) throws IOException {
     var url = PortalNavigator.buildDashboardConfigurationUrl();
     if (isWorkingOnATask && task.getState() != TaskState.DONE) {
       openTaskLosingConfirmationDialog();
@@ -201,9 +202,9 @@ public class UserMenuBean implements Serializable {
     getExternalContext().redirect(getAbsencesUrl());
   }
 
-  public void reserveTaskAndNavigateWithGrowl(ITask task) throws IOException {
+  public void reserveTaskAndNavigateWithGrowl(TaskDTO task) throws IOException {
     IvyComponentLogicCaller<ITask> reserveTask = new IvyComponentLogicCaller<>();
-    ITask relatedTask = task != null ? task : Ivy.wfTask();
+    ITask relatedTask = task != null ? TaskUtils.findTaskById(task.getId()) : Ivy.wfTask();
     String componentId = Attrs.currentContext().getBuildInAttribute("clientId");
     reserveTask.invokeComponentLogic(componentId, "#{logic.reserve}", new Object[] {relatedTask.getCase()});
     executeCustomizedLogicIfExists(relatedTask, PortalCustomSignature.EXTEND_TASK_RESERVE);
@@ -211,9 +212,9 @@ public class UserMenuBean implements Serializable {
     navigateToTargetPage();
   }
   
-  public void resetTaskAndNavigateWithGrowl(ITask task) throws IOException {
+  public void resetTaskAndNavigateWithGrowl(TaskDTO task) throws IOException {
     IvyComponentLogicCaller<ITask> leaveTask = new IvyComponentLogicCaller<>();
-    ITask relatedTask = task != null ? task : Ivy.wfTask();
+    ITask relatedTask = task != null ? TaskUtils.findTaskById(task.getId()) : Ivy.wfTask();
     String componentId = Attrs.currentContext().getBuildInAttribute("clientId");
     leaveTask.invokeComponentLogic(componentId, "#{logic.leave}", new Object[] {relatedTask.getCase()});
     executeCustomizedLogicIfExists(relatedTask, PortalCustomSignature.EXTEND_TASK_LEAVE);
@@ -307,7 +308,7 @@ public class UserMenuBean implements Serializable {
     return (String) Optional.ofNullable(response).map(r -> r.get("logoutPage")).orElse("");
   }
   
-  public void navigateToURLOrDisplayWorkingTaskWarning(UserMenu menu, boolean isWorkingOnATask, ITask task) throws IOException {
+  public void navigateToURLOrDisplayWorkingTaskWarning(UserMenu menu, boolean isWorkingOnATask, TaskDTO task) throws IOException {
     if (isWorkingOnATask && task.getState() != TaskState.DONE) {
       openTaskLosingConfirmationDialog();
       targetPage = getURLFromUserMenu(menu);
@@ -336,7 +337,7 @@ public class UserMenuBean implements Serializable {
     return "";
   }
 
-  public void navigateToNotificationOrDisplayWorkingTaskWarning(boolean isWorkingOnATask, ITask task) {
+  public void navigateToNotificationOrDisplayWorkingTaskWarning(boolean isWorkingOnATask, TaskDTO task) {
     if (isWorkingOnATask && task.getState() != TaskState.DONE) {
       openTaskLosingConfirmationDialog();
       targetPage = getNotificationFullPageUrl();
@@ -395,7 +396,7 @@ public class UserMenuBean implements Serializable {
     return DashboardUtils.getSelectedMainDashboardIdFromSession();
   }
 
-  public void navigateToChatBotOrDisplayWorkingTaskWarning(boolean isWorkingOnATask, ITask task) throws IOException {
+  public void navigateToChatBotOrDisplayWorkingTaskWarning(boolean isWorkingOnATask, TaskDTO task) throws IOException {
     if (isWorkingOnATask && task.getState() != TaskState.DONE) {
       openTaskLosingConfirmationDialog();
       targetPage = getAssistantDashboardUrl();
@@ -413,6 +414,10 @@ public class UserMenuBean implements Serializable {
       caseIdToProcessViewerDisplayed.put(caze.getId(), PortalProcessViewerUtils.isShowProcessViewer(caze));
     }
     return caseIdToProcessViewerDisplayed.get(caze.getId());
+  }
+
+  public TaskDTO getCurrentTask() {
+    return new TaskDTO(Ivy.wfTask());
   }
 
   /**

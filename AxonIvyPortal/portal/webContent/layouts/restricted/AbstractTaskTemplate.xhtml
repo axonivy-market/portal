@@ -45,7 +45,7 @@
                 process="@this" update="@this"
                 oncomplete="keepSession();" global="false" />
       
-        <c:set var="case" value="#{caseId ne null ? caseWidgetBean.findCase(caseId) : currentTask.getCase().getBusinessCase()}" />
+        <c:set var="case" value="#{caseId ne null ? caseWidgetBean.findCase(caseId) : currentTask.businessCase}" />
         <c:set var="isSideStepDisabled" value="#{!abstractTaskTemplateBean.checkSideStepsEnabled(case)}" scope="request" />
         <ui:insert name="breadCrumb" />
         <p:inputText id="application-name-for-title" value="#{masterDataBean.applicationName}" type="hidden"/>
@@ -55,7 +55,7 @@
             <ui:insert name="taskName">
               <ui:fragment rendered="#{!isHideTaskName}">
                 <span class="#{taskIcon} task-template-title-icon" />
-                <h:outputText id="title" title="#{currentTask.names().current()}" value="#{not empty taskName ? taskName : currentTask.names().current()}" styleClass="task-title" />
+                <h:outputText id="title" title="#{currentTask.name}" value="#{not empty taskName ? taskName : currentTask.name}" styleClass="task-title" />
               </ui:fragment>
             </ui:insert>
             

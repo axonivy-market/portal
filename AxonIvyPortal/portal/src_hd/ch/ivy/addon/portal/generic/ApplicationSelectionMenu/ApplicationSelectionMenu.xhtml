@@ -15,7 +15,7 @@
 </cc:interface>
 
 <cc:implementation>
-  <c:set var="task" value="#{not empty cc.attrs.task ? cc.attrs.task : ivy.task}" />
+  <c:set var="task" value="#{not empty cc.attrs.task ? cc.attrs.task : userMenuBean.currentTask}" />
   <c:set var="logoDescription" value="#{masterDataBean.logoDescription}" />
   <f:event listener="#{logic.init(cc.attrs.isWorkingOnATask, task)}" type="preRenderComponent" />
 
