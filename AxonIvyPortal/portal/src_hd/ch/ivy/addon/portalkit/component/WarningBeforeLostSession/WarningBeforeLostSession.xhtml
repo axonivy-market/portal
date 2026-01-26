@@ -9,7 +9,7 @@
   <cc:attribute name="task" />
 </cc:interface>
 <cc:implementation>
-  <c:set var="task" value="#{not empty cc.attrs.task ? cc.attrs.task : ivy.task}" />
+  <c:set var="task" value="#{not empty cc.attrs.task ? cc.attrs.task : userMenuBean.currentTask}" />
   <c:set var="isPortalInTeams" value="#{masterDataBean.portalInTeams}" />
   <h:outputScript library="js" name="session-warning.js" />
   <ui:decorate template="/layouts/decorator/portal-dialog-with-icon.xhtml">

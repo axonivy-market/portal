@@ -21,6 +21,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 
 import com.axonivy.portal.components.util.FacesMessageUtils;
+import com.axonivy.portal.dto.TaskDTO;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
@@ -86,7 +87,7 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements 
     Map<String, String> requestParamMap = getRequestParameterMap();
     String url = requestParamMap.get(URL_PARAM);
     if (StringUtils.isNotBlank(url)) {
-      super.setTask(DialogInstance.of(url).task());
+      super.setTask(new TaskDTO(DialogInstance.of(url).task()));
     }
   }
 

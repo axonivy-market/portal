@@ -15,7 +15,7 @@
 </cc:interface>
 
 <cc:implementation>
-  <c:set var="task" value="#{not empty cc.attrs.task ? cc.attrs.task : ivy.task}" />
+  <c:set var="task" value="#{not empty cc.attrs.task ? cc.attrs.task : userMenuBean.currentTask}" />
   <c:set var="case" value="#{not empty cc.attrs.case ? cc.attrs.case : ivy.case}" />
   <f:event listener="#{menuView.loadBreadcrumb(cc.attrs.viewName, task, case)}" type="preRenderComponent" />
   <h:form id="breadcrumb-form">

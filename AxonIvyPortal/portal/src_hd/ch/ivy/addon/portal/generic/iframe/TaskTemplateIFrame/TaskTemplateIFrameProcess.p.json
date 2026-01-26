@@ -37,10 +37,12 @@
       "config" : {
         "output" : {
           "code" : [
+            "import com.axonivy.portal.dto.TaskDTO;",
             "import ch.ivyteam.ivy.bpm.error.BpmError;",
-            "out.task = ivy.wf.findTask(Long.valueOf(in.taskId));",
             "",
-            "if (!in.url.startsWith(out.task.getApplication().getContextPath())) {",
+            "out.task = new TaskDTO(Long.valueOf(in.taskId));",
+            "",
+            "if (!in.url.startsWith(out.task.contextPath)) {",
             "  BpmError.create(\"frame:unsupported:url\").withMessage(\"only relative urls are supported (security reasons)\").throwError();",
             "}"
           ]

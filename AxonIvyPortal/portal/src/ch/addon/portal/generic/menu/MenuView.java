@@ -35,6 +35,7 @@ import org.primefaces.model.menu.MenuModel;
 
 import com.axonivy.portal.components.enums.MenuKind;
 import com.axonivy.portal.components.publicapi.ApplicationMultiLanguageAPI;
+import com.axonivy.portal.dto.TaskDTO;
 
 import ch.addon.portal.generic.menu.PortalMenuItem.PortalMenuBuilder;
 import ch.addon.portal.generic.userprofile.homepage.HomepageType;
@@ -54,7 +55,6 @@ import ch.ivy.addon.portalkit.util.UrlUtils;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.ICase;
-import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.IWorkflowSession;
 
 @ManagedBean
@@ -89,7 +89,7 @@ public class MenuView implements Serializable {
     PortalMenuNavigator.navigateToTargetPage(isClickOnBreadcrumb, destinationPage, this.params);
   }
 
-  public void buildPortalLeftMenu(ITask workingTask, boolean isWorkingOnATask) {
+  public void buildPortalLeftMenu(TaskDTO workingTask, boolean isWorkingOnATask) {
     initTaskParams(workingTask, isWorkingOnATask);
     mainMenuModel = new DefaultMenuModel();
     mainMenuModel.getElements().add(buildDashboardItem()); // menuIndex = 0
@@ -111,7 +111,7 @@ public class MenuView implements Serializable {
     mainMenuModel.generateUniqueIds();
   }
 
-  private void initTaskParams(ITask workingTask, boolean isWorkingOnATask) {
+  private void initTaskParams(TaskDTO workingTask, boolean isWorkingOnATask) {
     this.workingTaskId = isNull(workingTask) ? Ivy.wfTask().getId() : workingTask.getId();
     this.isWorkingOnATask = isWorkingOnATask;
   }
@@ -321,7 +321,7 @@ public class MenuView implements Serializable {
     this.breadcrumbModel = breadcrumbModel;
   }
 
-  public void loadBreadcrumb(String viewName, ITask userTask, ICase userCase) {
+  public void loadBreadcrumb(String viewName, TaskDTO userTask, ICase userCase) {
     breadcrumbModel = new DefaultMenuModel();
     if (StringUtils.isBlank(viewName)) {
       return;
@@ -346,7 +346,7 @@ public class MenuView implements Serializable {
     }
   }
 
-  private void buildBreadCrumbForProcessViewer(ITask userTask, ICase userCase) {
+  private void buildBreadCrumbForProcessViewer(TaskDTO userTask, ICase userCase) {
     setPortalHomeMenuToBreadcrumbModel();
     var menuItem = (DefaultMenuItem) buildGenericMenuItem("/ch.ivy.addon.portalkit.ui.jsf/ProcessViewer/Title");
     if (Objects.isNull(userCase) || StringUtils.isBlank(userCase.getProcessStart().getName())) {
@@ -400,7 +400,7 @@ public class MenuView implements Serializable {
     breadcrumbModel.getElements().add(processListSubmenuItem);
   }
 
-  private void buildBreadCrumbForTaskDetails(ITask userTask) {
+  private void buildBreadCrumbForTaskDetails(TaskDTO userTask) {
     setPortalHomeMenuToBreadcrumbModel();
     breadcrumbModel.getElements().add(buildTaskListMenuItem());
     breadcrumbModel.getElements().add(buildTaskDetailsMenuItem(userTask));
@@ -454,8 +454,8 @@ public class MenuView implements Serializable {
     return buildMenuItemFromPortalSubMenuItem("/ch.ivy.addon.portalkit.ui.jsf/common/processes");
   }
 
-  private MenuItem buildTaskDetailsMenuItem(ITask userTask) {
-    String taskName = StringUtils.isEmpty(userTask.getName()) ? Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/taskNameNotAvailable") : userTask.names().current();
+  private MenuItem buildTaskDetailsMenuItem(TaskDTO userTask) {
+    String taskName = StringUtils.isEmpty(userTask.getName()) ? Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/taskNameNotAvailable") : userTask.getName();
     return DefaultMenuItem.builder()
       .value(String.join(": ", Ivy.cms().co("/Labels/Task"), taskName))
       .url("#")

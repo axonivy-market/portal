@@ -28,15 +28,15 @@
     }, {
       "id" : "f3",
       "type" : "HtmlDialogMethodStart",
-      "name" : "logout(ITask)",
+      "name" : "logout(TaskDTO)",
       "config" : {
         "signature" : "logout",
         "input" : {
           "params" : [
-            { "name" : "task", "type" : "ch.ivyteam.ivy.workflow.ITask", "desc" : "" }
+            { "name" : "workingTask", "type" : "com.axonivy.portal.dto.TaskDTO", "desc" : "" }
           ],
           "map" : {
-            "out.task" : "param.task"
+            "out.workingTask" : "param.workingTask"
           }
         },
         "guid" : "15EF07E1D7F2C49C"
@@ -46,13 +46,13 @@
         "labelOffset" : { "x" : 23, "y" : 35 }
       },
       "connect" : [
-        { "id" : "f12", "to" : "f7" }
+        { "id" : "f12", "to" : "f28" }
       ]
     }, {
       "id" : "f4",
       "type" : "HtmlDialogEnd",
       "visual" : {
-        "at" : { "x" : 576, "y" : 160 }
+        "at" : { "x" : 736, "y" : 160 }
       }
     }, {
       "id" : "f8",
@@ -68,7 +68,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 288, "y" : 160 }
+        "at" : { "x" : 448, "y" : 160 }
       },
       "connect" : [
         { "id" : "f19", "to" : "f18" }
@@ -76,15 +76,15 @@
     }, {
       "id" : "f10",
       "type" : "HtmlDialogMethodStart",
-      "name" : "reserveTask(ITask)",
+      "name" : "reserveTask(TaskDTO)",
       "config" : {
         "signature" : "reserveTask",
         "input" : {
           "params" : [
-            { "name" : "task", "type" : "ch.ivyteam.ivy.workflow.ITask", "desc" : "" }
+            { "name" : "workingTask", "type" : "com.axonivy.portal.dto.TaskDTO", "desc" : "" }
           ],
           "map" : {
-            "out.task" : "param.task"
+            "out.workingTask" : "param.workingTask"
           }
         },
         "guid" : "15EF0CF6DE58BE72"
@@ -94,7 +94,7 @@
         "labelOffset" : { "x" : 23, "y" : 35 }
       },
       "connect" : [
-        { "id" : "f14", "to" : "f11" }
+        { "id" : "f14", "to" : "f30" }
       ]
     }, {
       "id" : "f11",
@@ -110,7 +110,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 193, "y" : 449 }
+        "at" : { "x" : 352, "y" : 449 }
       },
       "connect" : [
         { "id" : "f6", "to" : "f15" }
@@ -119,22 +119,22 @@
       "id" : "f15",
       "type" : "HtmlDialogEnd",
       "visual" : {
-        "at" : { "x" : 320, "y" : 450 }
+        "at" : { "x" : 479, "y" : 450 }
       }
     }, {
       "id" : "f7",
       "type" : "Alternative",
       "config" : {
         "conditions" : {
-          "f9" : "!(in.isWorkingOnATask && in.task.getState() != ch.ivyteam.ivy.workflow.TaskState.DONE)"
+          "f9" : "!(in.isWorkingOnATask && in.workingTask.getState() != ch.ivyteam.ivy.workflow.TaskState.DONE)"
         }
       },
       "visual" : {
-        "at" : { "x" : 160, "y" : 160 }
+        "at" : { "x" : 320, "y" : 160 }
       },
       "connect" : [
         { "id" : "f9", "to" : "f8" },
-        { "id" : "f16", "to" : "f13", "via" : [ { "x" : 160, "y" : 256 } ] }
+        { "id" : "f16", "to" : "f13", "via" : [ { "x" : 320, "y" : 256 } ] }
       ]
     }, {
       "id" : "f13",
@@ -150,11 +150,11 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 288, "y" : 256 },
+        "at" : { "x" : 448, "y" : 256 },
         "size" : { "width" : 128 }
       },
       "connect" : [
-        { "id" : "f17", "to" : "f4", "via" : [ { "x" : 576, "y" : 256 } ] }
+        { "id" : "f17", "to" : "f4", "via" : [ { "x" : 736, "y" : 256 } ] }
       ]
     }, {
       "id" : "f18",
@@ -170,7 +170,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 448, "y" : 160 }
+        "at" : { "x" : 608, "y" : 160 }
       },
       "connect" : [
         { "id" : "f5", "to" : "f4" }
@@ -178,15 +178,15 @@
     }, {
       "id" : "f20",
       "type" : "HtmlDialogMethodStart",
-      "name" : "logoutInDialog(ITask)",
+      "name" : "logoutInDialog(TaskDTO)",
       "config" : {
         "signature" : "logoutInDialog",
         "input" : {
           "params" : [
-            { "name" : "task", "type" : "ch.ivyteam.ivy.workflow.ITask", "desc" : "" }
+            { "name" : "workingTask", "type" : "com.axonivy.portal.dto.TaskDTO", "desc" : "" }
           ],
           "map" : {
-            "out.task" : "param.task"
+            "out.workingTask" : "param.workingTask"
           }
         },
         "guid" : "16EC9E47E7987902"
@@ -196,13 +196,13 @@
         "labelOffset" : { "x" : 44, "y" : 35 }
       },
       "connect" : [
-        { "id" : "f24", "to" : "f22" }
+        { "id" : "f24", "to" : "f31" }
       ]
     }, {
       "id" : "f21",
       "type" : "HtmlDialogEnd",
       "visual" : {
-        "at" : { "x" : 320, "y" : 352 }
+        "at" : { "x" : 479, "y" : 352 }
       }
     }, {
       "id" : "f22",
@@ -218,7 +218,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 193, "y" : 352 }
+        "at" : { "x" : 352, "y" : 352 }
       },
       "connect" : [
         { "id" : "f23", "to" : "f21" }
@@ -252,5 +252,83 @@
       "visual" : {
         "at" : { "x" : 640, "y" : 64 }
       }
+    }, {
+      "id" : "f28",
+      "type" : "Script",
+      "name" : "Find task",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.util.TaskUtils;",
+            "if(in.#workingTask != null) {",
+            "  in.task = TaskUtils.findTaskById(in.workingTask.getId());",
+            "} ",
+            "",
+            "if(in.task == null) {",
+            "  in.task = ivy.task;",
+            "}"
+          ]
+        },
+        "sudo" : true
+      },
+      "visual" : {
+        "at" : { "x" : 200, "y" : 157 },
+        "size" : { "width" : 128, "height" : 54 }
+      },
+      "connect" : [
+        { "id" : "f29", "to" : "f7", "color" : "default" }
+      ]
+    }, {
+      "id" : "f30",
+      "type" : "Script",
+      "name" : "Find task",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.util.TaskUtils;",
+            "if(in.#workingTask != null) {",
+            "  in.task = TaskUtils.findTaskById(in.workingTask.getId());",
+            "} ",
+            "",
+            "if(in.task == null) {",
+            "  in.task = ivy.task;",
+            "}"
+          ]
+        },
+        "sudo" : true
+      },
+      "visual" : {
+        "at" : { "x" : 192, "y" : 448 },
+        "size" : { "width" : 128, "height" : 54 }
+      },
+      "connect" : [
+        { "id" : "f33", "to" : "f11", "color" : "default" }
+      ]
+    }, {
+      "id" : "f31",
+      "type" : "Script",
+      "name" : "Find task",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.util.TaskUtils;",
+            "if(in.#workingTask != null) {",
+            "  in.task = TaskUtils.findTaskById(in.workingTask.getId());",
+            "} ",
+            "",
+            "if(in.task == null) {",
+            "  in.task = ivy.task;",
+            "}"
+          ]
+        },
+        "sudo" : true
+      },
+      "visual" : {
+        "at" : { "x" : 192, "y" : 352 },
+        "size" : { "width" : 128, "height" : 54 }
+      },
+      "connect" : [
+        { "id" : "f32", "to" : "f22", "color" : "default" }
+      ]
     } ]
 }

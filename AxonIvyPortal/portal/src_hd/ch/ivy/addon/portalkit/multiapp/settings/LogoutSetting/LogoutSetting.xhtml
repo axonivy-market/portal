@@ -18,7 +18,7 @@
     type="preRenderComponent" />
 
   <c:set var="task"
-    value="#{not empty cc.attrs.task ? cc.attrs.task : ivy.task}" />
+    value="#{not empty cc.attrs.task ? cc.attrs.task : userMenuBean.currentTask}" />
 
   <p:commandLink id="logout-menu-item"
     ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/logoutSetting/logout')}"

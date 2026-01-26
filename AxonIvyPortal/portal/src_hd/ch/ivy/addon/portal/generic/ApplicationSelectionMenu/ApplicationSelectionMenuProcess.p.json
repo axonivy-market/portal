@@ -51,7 +51,7 @@
           "code" : [
             "import ch.ivy.addon.portalkit.util.TaskUtils;",
             "",
-            "TaskUtils.parkTask(in.#workingTask != null ? in.workingTask : ivy.task);"
+            "TaskUtils.parkTask(in.task);"
           ]
         }
       },
@@ -73,7 +73,7 @@
           "code" : [
             "import ch.ivy.addon.portalkit.util.TaskUtils;",
             "",
-            "TaskUtils.resetTask(in.#workingTask != null ? in.workingTask : ivy.task);"
+            "TaskUtils.resetTask(in.task);"
           ]
         }
       },
@@ -93,12 +93,12 @@
     }, {
       "id" : "f3",
       "type" : "HtmlDialogMethodStart",
-      "name" : "leave(ITask)",
+      "name" : "leave(TaskDTO)",
       "config" : {
         "signature" : "leave",
         "input" : {
           "params" : [
-            { "name" : "workingTask", "type" : "ch.ivyteam.ivy.workflow.ITask", "desc" : "" }
+            { "name" : "workingTask", "type" : "com.axonivy.portal.dto.TaskDTO", "desc" : "" }
           ],
           "map" : {
             "out.workingTask" : "param.#workingTask"
@@ -116,12 +116,12 @@
     }, {
       "id" : "f12",
       "type" : "HtmlDialogMethodStart",
-      "name" : "reserveTask(ITask)",
+      "name" : "reserveTask(TaskDTO)",
       "config" : {
         "signature" : "reserveTask",
         "input" : {
           "params" : [
-            { "name" : "workingTask", "type" : "ch.ivyteam.ivy.workflow.ITask", "desc" : "" }
+            { "name" : "workingTask", "type" : "com.axonivy.portal.dto.TaskDTO", "desc" : "" }
           ],
           "map" : {
             "out.workingTask" : "param.workingTask"
@@ -149,7 +149,7 @@
             "import ch.ivy.addon.portalkit.service.GrowlMessageService;",
             "",
             "try {",
-            "  GrowlMessageService.getInstance().addFeedbackMessage(false, (in.#workingTask != null ? in.workingTask : ivy.task).getCase());",
+            "  GrowlMessageService.getInstance().addFeedbackMessage(false, in.task.getCase());",
             "} catch (Exception e) {",
             "  // Could be Error calling method getCase() on an object of class ch.ivyteam.ivy.workflow.internal.Task.",
             "  // Due to PersistentObjectDeletedException of ch.ivyteam.ivy.workflow.internal.data.TaskData",
@@ -195,13 +195,13 @@
     }, {
       "id" : "f45",
       "type" : "HtmlDialogMethodStart",
-      "name" : "init(Boolean,ITask)",
+      "name" : "init(Boolean,TaskDTO)",
       "config" : {
         "signature" : "init",
         "input" : {
           "params" : [
             { "name" : "isWorkingOnATask", "type" : "Boolean", "desc" : "" },
-            { "name" : "workingTask", "type" : "ch.ivyteam.ivy.workflow.ITask", "desc" : "" }
+            { "name" : "workingTask", "type" : "com.axonivy.portal.dto.TaskDTO", "desc" : "" }
           ],
           "map" : {
             "out.isWorkingOnATask" : "param.isWorkingOnATask",
@@ -373,14 +373,24 @@
       "config" : {
         "output" : {
           "code" : [
+            "import ch.ivy.addon.portalkit.util.TaskUtils;",
             "import com.axonivy.portal.enums.PortalCustomSignature;",
             "import com.axonivy.portal.components.service.IvyAdapterService;",
             "",
             "import java.util.HashMap;",
             "import java.util.Map;",
             "",
+            "if(in.#workingTask != null) {",
+            "  in.task = TaskUtils.findTaskById(in.workingTask.getId());",
+            "} ",
+            "",
+            "if(in.task == null) {",
+            "  in.task = ivy.task;",
+            "}",
+            "",
+            "",
             "Map params = new HashMap();",
-            "params.put(\"workingTask\", in.workingTask);",
+            "params.put(\"workingTask\", in.task);",
             "",
             "IvyAdapterService.startSubProcessesInSecurityContext(PortalCustomSignature.EXTEND_TASK_LEAVE.getSignature(), params);"
           ]
@@ -399,14 +409,23 @@
       "config" : {
         "output" : {
           "code" : [
+            "import ch.ivy.addon.portalkit.util.TaskUtils;",
             "import com.axonivy.portal.enums.PortalCustomSignature;",
             "import com.axonivy.portal.components.service.IvyAdapterService;",
             "",
             "import java.util.HashMap;",
             "import java.util.Map;",
             "",
+            "if(in.#workingTask != null) {",
+            "  in.task = TaskUtils.findTaskById(in.workingTask.getId());",
+            "} ",
+            "",
+            "if(in.task == null) {",
+            "  in.task = ivy.task;",
+            "}",
+            "",
             "Map params = new HashMap();",
-            "params.put(\"workingTask\", in.workingTask);",
+            "params.put(\"workingTask\", in.task);",
             "",
             "IvyAdapterService.startSubProcessesInSecurityContext(PortalCustomSignature.EXTEND_TASK_RESERVE.getSignature(), params);"
           ]
