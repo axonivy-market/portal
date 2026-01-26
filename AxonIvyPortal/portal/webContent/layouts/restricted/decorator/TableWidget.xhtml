@@ -44,10 +44,10 @@
     <h:form id="show-bulk-select-form">
         <c:set var="widgetContentId" value="#{cc.clientId}:widget-content" />
         <h:panelGroup layout="block" styleClass="flex align-items-center justify-content-between gap-2">
-            <h:outputText value="Bulk select deletgation"
+            <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delegation')}"
                 styleClass="text-base font-semibold text-left"/>
-            <p:toggleSwitch value="#{dashboardBean.showPinnedItem}" id="show-pin-toggle" ariaLabel="Bulk select delegtaion">
-                <p:ajax listener="#{dashboardBean.togglePinned(widget)}" update="#{componentToUpdateOnResetFilter} @form" />
+            <p:toggleSwitch value="#{dashboardBean.showDelegatedItem}" id="show-delegation-toggle" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delegation')}">
+                <p:ajax listener="#{dashboardBean.toggleDelegated(widget)}" update="#{componentToUpdateOnResetFilter} @form" />
             </p:toggleSwitch>
         </h:panelGroup>
     </h:form>

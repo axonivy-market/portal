@@ -87,6 +87,7 @@ public class DashboardBean implements Serializable, IMultiLanguage {
   private String selectedDashboardName;
   private String searchScope;
   private boolean isShowPinnedItem;
+  private boolean isShowDelegatedItem;
 
   @PostConstruct
   public void init() {
@@ -624,5 +625,18 @@ public class DashboardBean implements Serializable, IMultiLanguage {
 
   public boolean canShowBulkSelectDelegation(DashboardWidget widget) {
     return widget instanceof TaskDashboardWidget;
+  }
+
+  public boolean getShowDelegatedItem() {
+    return this.isShowDelegatedItem;
+  }
+
+  public void setShowDelegatedItem(boolean isShowDelegatedItem) {
+    this.isShowDelegatedItem = isShowDelegatedItem;
+  }
+
+  public void toggleDelegated(DashboardWidget widget) {
+    widget.setShowDelegatedItem(isShowDelegatedItem);
+    widget.toggleShowDelegated();
   }
 }

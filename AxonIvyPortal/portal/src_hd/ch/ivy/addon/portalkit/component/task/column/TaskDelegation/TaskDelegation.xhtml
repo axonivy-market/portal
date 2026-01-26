@@ -9,27 +9,22 @@
 </cc:interface>
 
 <cc:implementation>
+    <c:set var="isDelegated" value="#{taskBean.isDelegatedTask(cc.attrs.task)}" />
+
     <h:form id="delegation-form">
-        <div class="default-task-cell flex align-items-center justify-content-center h-full text-center">
-            <p:selectBooleanCheckbox id="delegation-checkbox"
-                value="#{taskBean.isDelegatedTask(cc.attrs.task)}"
-                ariaLabel="#{taskBean.isDelegatedTask(cc.attrs.task) ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/undelegation') : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delegation')}"
-                onclick="document.getElementById('#{cc.clientId}:delegation-form:delegation-link').click(); return false;">
-            </p:selectBooleanCheckbox>
+        <p:commandLink 
+            ariaLabel="#{isDelegated ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/undelegation') : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delegation')}"
+            action="#{taskBean.clickOnDelegationTask(cc.attrs.task)}" 
+            update="@form"
+            styleClass="default-task-cell flex align-items-center justify-content-center h-full text-center delegation-cell-link">
 
-            <p:commandLink id="delegation-link"
-                style="display: none;"
-                actionListener="#{taskBean.clickOnDelegationTask(cc.attrs.task)}"
-                process="@form"
-                update="@form"
-                partialSubmit="true">
-            </p:commandLink>
+            <p:selectBooleanCheckbox value="#{isDelegated}" disabled="true" />
 
-            <p:tooltip for="delegation-checkbox"
-                       value="#{taskBean.isDelegatedTask(cc.attrs.task) ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/undelegation') : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delegation')}"
-                       trackMouse="true"
+            <p:tooltip for="@this" 
+                       value="#{isDelegated ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/undelegation') : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delegation')}" 
+                       trackMouse="true" 
                        hideEvent="mouseleave click" />
-        </div>
+        </p:commandLink>
     </h:form>
 </cc:implementation>
 
