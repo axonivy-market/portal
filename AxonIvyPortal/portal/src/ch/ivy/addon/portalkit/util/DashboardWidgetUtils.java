@@ -495,6 +495,16 @@ public class DashboardWidgetUtils {
     return columnModels;
   }
 
+    public static List<TaskColumnModel> initTaskColumnsForGlobalSearch() {
+    List<TaskColumnModel> columnModels = new ArrayList<>();
+    for (var col : DashboardStandardTaskColumn.GLOBAL_SEARCH_COLUMNS) {
+      TaskColumnModel columnModel = new TaskColumnModel();
+      columnModel.setField(col.getField());
+      columnModels.add(columnModel);
+    }
+    return columnModels;
+  }
+
   public static void resetUserFilterOnColumns(List<? extends ColumnModel> columns) {
     if (CollectionUtils.isEmpty(columns)) {
       return;
@@ -544,14 +554,40 @@ public class DashboardWidgetUtils {
     widget.setAutoPosition(true);
     widget.setSortField(CaseSortField.ID.toString());
     widget.setSortDescending(true);
-    widget.setColumns(initStandardColumns());
+    widget.setColumns(initCaseColumnsForGlobalSearch());
     widget.setFilters(new ArrayList<>());
     return DashboardWidgetUtils.buildCaseColumns(widget);
+  }
+
+    public static TaskDashboardWidget buildDefaultTaskWidgetForGlobalSearch() {
+    TaskDashboardWidget widget = new TaskDashboardWidget();
+    widget.setId("global_search_task_widget_id");
+    widget.setName("");
+    
+    widget.setShowWidgetInfo(false);
+    widget.setShowPinnedToggle(false);
+    widget.setShowFullscreenMode(false);
+    widget.setAutoPosition(true);
+    widget.setSortField(TaskSortField.ID.toString());
+    widget.setSortDescending(true);
+    widget.setColumns(initTaskColumnsForGlobalSearch());
+    widget.setFilters(new ArrayList<>());
+    return DashboardWidgetUtils.buildTaskColumns(widget);
   }
 
   public static List<CaseColumnModel> initStandardColumns() {
     List<CaseColumnModel> columnModels = new ArrayList<>();
     for (DashboardStandardCaseColumn col : DashboardStandardCaseColumn.values()) {
+      CaseColumnModel columnModel = new CaseColumnModel();
+      columnModel.setField(col.getField());
+      columnModels.add(columnModel);
+    }
+    return columnModels;
+  }
+
+    public static List<CaseColumnModel> initCaseColumnsForGlobalSearch() {
+    List<CaseColumnModel> columnModels = new ArrayList<>();
+    for (DashboardStandardCaseColumn col : DashboardStandardCaseColumn.GLOBAL_SEARCH_COLUMNS) {
       CaseColumnModel columnModel = new CaseColumnModel();
       columnModel.setField(col.getField());
       columnModels.add(columnModel);

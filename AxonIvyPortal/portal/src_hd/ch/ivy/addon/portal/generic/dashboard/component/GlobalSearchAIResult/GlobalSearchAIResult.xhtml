@@ -7,40 +7,98 @@
   
   <cc:interface componentType="IvyComponent">
     <cc:attribute name="index" required="true" />
-    <cc:attribute name="widget" required="true" />
+    <cc:attribute name="caseWidget" required="true" />
+    <cc:attribute name="taskWidget" required="true" />
     <cc:attribute name="isReadOnlyMode" default="false" />
     <cc:attribute name="isAIResult" default="false" />
+    <cc:attribute name="results" required="true" />
+    <cc:attribute name="isShowInSearchResultPage"/>
   </cc:interface>
 
   <cc:implementation>
-    <c:set var="widget" value="#{cc.attrs.widget}" />
+    <c:set var="caseWidget" value="#{cc.attrs.caseWidget}" />
+    <c:set var="taskWidget" value="#{cc.attrs.taskWidget}" />
     <c:set var="isReadOnlyMode" value="#{cc.attrs.isReadOnlyMode}" />
 
-    <h:panelGroup id="globalSearchAiResultContainer">
-      <p:commandButton id="globalSearchAiFiltersBtn" value="Filters" disabled="#{empty widget.userFilters}"/>
-      
-      <p:overlayPanel for="globalSearchAiFiltersBtn" id="globalSearchAiFiltersPanel" dynamic="true" 
-        styleClass="global-search-ai-filters-panel" my="left top" at="left bottom">
-        
-        <ui:repeat var="currentFilter" value="#{widget.userFilters}" varStatus="status">
-          <ui:include src="GlobalSearchAiFilter.xhtml">
-            <ui:param name="filter" value="#{currentFilter}" />
-            <ui:param name="managedBean" value="#{globalSearchAIResultBean}" />
-            <ui:param name="componentToUpdate" value="" />
-            <ui:param name="widget" value="#{widget}" />
-            <ui:param name="filterIndex" value="#{status.index}" />
-            <ui:param name="readOnly" value="#{isReadOnlyMode}" />
-            <ui:param name="messageId" value="ai-filter-msg" />
-          </ui:include>
-        </ui:repeat>
-      </p:overlayPanel>
+    <h:panelGroup id="globalSearchAiResultContainer" style="display: flex; flex-direction: column; gap: 20px;">
+      <h:panelGroup rendered="#{cc.attrs.isShowInSearchResultPage}">
+        <h:panelGroup id="caseResultsAiWrapper" styleClass="case-results-ai-component-wrapper" layout="block">
+          <ic:ch.ivy.addon.portal.generic.dashboard.component.CaseWidget 
+            id="case-dashboard-ai-result-component"
+            caseWidget="#{caseWidget}"
+            rows="3"
+            isReadOnlyMode="#{isReadOnlyMode}" 
+            isAIResult="#{cc.attrs.isAIResult}"
+            />
 
-      <h:panelGroup id="caseResultsAiWrapper" styleClass="case-results-ai-component-wrapper">
-        <ic:ch.ivy.addon.portal.generic.dashboard.component.CaseWidget 
-          id="case-dashboard-ai-result-component" 
-          caseWidget="#{widget}" 
-          isReadOnlyMode="#{isReadOnlyMode}" 
-          isAIResult="#{cc.attrs.isAIResult}" />
+        </h:panelGroup>
+
+        <h:panelGroup id="taskResultsAiWrapper" styleClass="task-results-ai-component-wrapper" layout="block">
+
+          <ic:ch.ivy.addon.portal.generic.dashboard.component.TaskWidget 
+            id="task-dashboard-ai-result-component" 
+            taskWidget="#{taskWidget}"
+            rows="3"
+            isReadOnlyMode="#{isReadOnlyMode}" 
+            isAIResult="#{cc.attrs.isAIResult}" />
+        </h:panelGroup>
+      </h:panelGroup>
+
+      <h:panelGroup rendered="#{!cc.attrs.isShowInSearchResultPage}">
+        <span>
+          <p:commandButton id="globalSearchAiCaseFiltersBtn" style="width: 20%; margin-right: 2rem;" value="Filters"/>
+          <p:commandLink value="View all results" style="display: inline;" onclick="viewAllResults(3);"/>
+        </span>
+
+        <p:overlayPanel for="globalSearchAiCaseFiltersBtn" id="globalSearchAiCaseFiltersPanel" dynamic="true" 
+          styleClass="global-search-ai-filters-panel" my="left top" at="left bottom">
+          <h:panelGroup layout="block" rendered="#{empty caseWidget.userFilters and empty taskWidget.userFilters}">
+            <p:outputLabel value="No filters available" styleClass="ai-filters-panel-header pl-4 bold"/>
+          </h:panelGroup>
+          <h:panelGroup layout="block" rendered="#{not empty caseWidget.userFilters}">
+            <p:outputLabel value="Case Filters" styleClass="ai-filters-panel-header pl-4 font-bold"/>
+            <ui:repeat var="currentFilter" value="#{caseWidget.userFilters}" varStatus="status">
+              <ui:include src="GlobalSearchAiFilter.xhtml">
+                <ui:param name="filter" value="#{currentFilter}" />
+                <ui:param name="managedBean" value="#{globalSearchAIResultBean}" />
+                <ui:param name="componentToUpdate" value="" />
+                <ui:param name="caseWidget" value="#{caseWidget}" />
+                <ui:param name="filterIndex" value="#{status.index}" />
+                <ui:param name="readOnly" value="#{isReadOnlyMode}" />
+                <ui:param name="messageId" value="ai-filter-msg" />
+              </ui:include>
+            </ui:repeat>
+          </h:panelGroup>
+          <h:panelGroup layout="block" rendered="#{not empty taskWidget.userFilters}">
+            <p:outputLabel value="Task Filters" styleClass="ai-filters-panel-header pl-4 font-bold"/>
+            <ui:repeat var="currentFilter" value="#{taskWidget.userFilters}" varStatus="status">
+              <ui:include src="GlobalSearchAiFilter.xhtml">
+                <ui:param name="filter" value="#{currentFilter}" />
+                <ui:param name="managedBean" value="#{globalSearchAIResultBean}" />
+                <ui:param name="componentToUpdate" value="" />
+                <ui:param name="taskWidget" value="#{taskWidget}" />
+                <ui:param name="filterIndex" value="#{status.index}" />
+                <ui:param name="readOnly" value="#{isReadOnlyMode}" />
+                <ui:param name="messageId" value="ai-filter-msg" />
+              </ui:include>
+            </ui:repeat>
+          </h:panelGroup>
+        </p:overlayPanel>
+        <p:dataTable id="aiResultsTable" value="#{cc.attrs.results}" var="result" styleClass="global-search-ai-results-table" lazy="true" paginatorAlwaysVisible="true" paginatorPosition="bottom"
+          paginator="true" rows="5" emptyMessage="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/generic/GlobalSearch/noResultsText')}">
+          <p:column headerText="Type">
+            <h:outputText value="#{result.type}" />
+          </p:column>
+          <p:column headerText="ID">
+            <h:outputText value="#{result.id}" />
+          </p:column>
+          <p:column headerText="Name">
+            <h:outputText value="#{result.name}" />
+          </p:column>
+          <p:column headerText="Description">
+            <h:outputText value="#{result.description}" />
+          </p:column>
+        </p:dataTable>
       </h:panelGroup>
     </h:panelGroup>
   </cc:implementation>

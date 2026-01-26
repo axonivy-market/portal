@@ -3,12 +3,29 @@ package com.axonivy.portal.enums;
 public enum PortalSystemMessage {
   
   FILTER_CREATION_INSTRUCTION(
-    "You are an AI assistant that helps create filter objects for task queries. " +
-    "Based on the user's natural language request, return a JSON array of filter objects.\n\n" +
+    "You are an AI assistant that helps create filter objects for task and case queries. " +
+    "Based on the user's natural language request, return a JSON object with two arrays: 'taskFilters' and 'caseFilters'.\n\n" +
     
-    "Available fields and their types:\n" +
+    "Response structure:\n" +
+    "{\n" +
+    "  \"taskFilters\": [...],\n" +
+    "  \"caseFilters\": [...]\n" +
+    "}\n\n" +
+    
+    "Decision rules:\n" +
+    "- If user asks about 'tasks', populate 'taskFilters' array\n" +
+    "- If user asks about 'cases', populate 'caseFilters' array\n" +
+    "- If unclear or both mentioned, populate both arrays\n" +
+    "- Leave empty array [] if not applicable\n\n" +
+    
+    "Available fields for TASKS:\n" +
     "- String fields: name, description, creator, activator, state\n" +
     "- Number fields: id, priority\n" +
+    "- Date fields: startTimestamp, endTimestamp, expiryTimestamp\n\n" +
+    
+    "Available fields for CASES:\n" +
+    "- String fields: name, description, creator, state\n" +
+    "- Number fields: id\n" +
     "- Date fields: startTimestamp, endTimestamp\n\n" +
 
     "Operators by field type:\n" +
@@ -19,35 +36,57 @@ public enum PortalSystemMessage {
     "Rules:\n" +
     "- Each filter object must have: 'field', 'operator', 'type' (always 'standard')\n" +
     "- For 'id' field, use operator 'contains' only\n" +
+    "- For 'state' field, use operator 'in' only\n" +
     "- Add 'values' array only when operator requires value(s)\n" +
     "- Date values must be in format 'YYYY-MM-DD'\n" +
     "- Priority values: EXCEPTION, HIGH, NORMAL, LOW\n" +
-    "- State values: DESTROYED, DONE, OPEN, DELAYED, ERROR, IN_PROGRESS\n" +
+    "- State values for tasks: DESTROYED, DONE, OPEN, DELAYED, ERROR, IN_PROGRESS\n" +
+    "- State values for cases: CREATED, RUNNING, DONE, DESTROYED\n\n" +
     
     "Example 1 - 'Find all tasks expired today':\n" +
     "{\n" +
-    "  \"field\": \"expiryTimestamp\",\n" +
-    "  \"operator\": \"today\",\n" +
-    "  \"type\": \"standard\"\n" +
+    "  \"taskFilters\": [\n" +
+    "    {\n" +
+    "      \"field\": \"expiryTimestamp\",\n" +
+    "      \"operator\": \"today\",\n" +
+    "      \"type\": \"standard\"\n" +
+    "    }\n" +
+    "  ],\n" +
+    "  \"caseFilters\": []\n" +
     "}\n\n" +
     
-    "Example 2 - 'Tasks named Order with high priority':\n" +
-    "[\n" +
-    "  {\n" +
-    "    \"field\": \"name\",\n" +
-    "    \"values\": [\"Order\"],\n" +
-    "    \"operator\": \"is\",\n" +
-    "    \"type\": \"standard\"\n" +
-    "  },\n" +
-    "  {\n" +
-    "    \"field\": \"priority\",\n" +
-    "    \"values\": [\"HIGH\"],\n" +
-    "    \"operator\": \"in\",\n" +
-    "    \"type\": \"standard\"\n" +
-    "  }\n" +
-    "]\n\n" +
+    "Example 2 - 'Cases named Order created this week':\n" +
+    "{\n" +
+    "  \"taskFilters\": [],\n" +
+    "  \"caseFilters\": [\n" +
+    "    {\n" +
+    "      \"field\": \"name\",\n" +
+    "      \"values\": [\"Order\"],\n" +
+    "      \"operator\": \"contains\",\n" +
+    "      \"type\": \"standard\"\n" +
+    "    },\n" +
+    "    {\n" +
+    "      \"field\": \"startTimestamp\",\n" +
+    "      \"operator\": \"current\",\n" +
+    "      \"type\": \"standard\"\n" +
+    "    }\n" +
+    "  ]\n" +
+    "}\n\n" +
     
-    "Return only the JSON array of filter objects without additional explanation."
+    "Example 3 - 'High priority items':\n" +
+    "{\n" +
+    "  \"taskFilters\": [\n" +
+    "    {\n" +
+    "      \"field\": \"priority\",\n" +
+    "      \"values\": [\"HIGH\"],\n" +
+    "      \"operator\": \"in\",\n" +
+    "      \"type\": \"standard\"\n" +
+    "    }\n" +
+    "  ],\n" +
+    "  \"caseFilters\": []\n" +
+    "}\n\n" +
+    
+    "Return only the JSON object without additional explanation."
   );
 
   private final String message;

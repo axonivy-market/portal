@@ -149,8 +149,27 @@
           </p:tab>
           
           <ui:insert name="custom-search"></ui:insert>
-          
-        </p:tabView>
+         <p:tab id="ai-tab-search" title="AI Search" titleStyleClass="search-bar ai-tab-title-global" 
+          rendered="true">
+          <h:panelGroup id="ai-search-results" styleClass="js-ai-default-widget-container case-default-widget-container js-for-search-result global-search-ai-results">
+            <div>#{dataModel.keyword}</div>
+              <p:remoteCommand id="global-search-ai-search-cmd" name="portalGlobalSearchAI"
+                actionListener="#{globalSearchBean.updateWidgetsWithAI(dataModel.keyword)}" 
+                process="@this"
+                update="search-results-tabview:global-search-ai-result-component:globalSearchAiResultContainer"
+                partialSubmit="true"/>
+                <div>#{globalSearchBean.caseWidget.dataModel.results}</div>
+                <ic:ch.ivy.addon.portal.generic.dashboard.component.GlobalSearchAIResult 
+                  id="global-search-ai-result-component" index="10"
+                  caseWidget="#{globalSearchBean.caseWidget}"
+                  taskWidget="#{globalSearchBean.taskWidget}"
+                  results="#{globalSearchBean.results}"
+                  isReadOnlyMode="true"
+                  isShowInSearchResultPage="true"
+                  isAIResult="true"/>
+          </h:panelGroup>
+        </p:tab>
+      </p:tabView>
       </div>
       <script>
        $(function(){
@@ -183,6 +202,15 @@
             var responsiveToolkit = ResponsiveToolkit(caseListScreen);
 
             Portal.init(responsiveToolkit);
+            return;
+          }
+
+          var isSelectedAiSearchTab = $selectedTab.find('.js-ai-default-widget-container').length != 0;
+          if (isSelectedAiSearchTab) {
+            console.log('AI Search Tab selected');
+            if (typeof window.portalGlobalSearchAI === 'function') {
+              window.portalGlobalSearchAI();
+            }
             return;
           }
         }

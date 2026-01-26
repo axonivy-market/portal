@@ -53,4 +53,8 @@ public enum DashboardStandardTaskColumn {
   public static final Set<DashboardStandardTaskColumn> AI_RESULT_COLUMNS = Collections
       .unmodifiableSet(
           EnumSet.of(ID, NAME, RESPONSIBLE, STATE, PRIORITY, EXPIRY, ACTIONS));
+  
+  public static final Set<DashboardStandardTaskColumn> GLOBAL_SEARCH_COLUMNS = Collections
+      .unmodifiableSet(
+          EnumSet.of(ID, NAME, DESCRIPTION));
 }

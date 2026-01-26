@@ -27,5 +27,11 @@
   }, {
     "name" : "caseWidget",
     "type" : "ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget"
+  }, {
+    "name" : "taskWidget",
+    "type" : "ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget"
+  }, {
+    "name" : "isSmartWorkflowFound",
+    "type" : "Boolean"
   } ]
 }

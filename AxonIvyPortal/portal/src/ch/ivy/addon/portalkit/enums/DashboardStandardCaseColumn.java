@@ -50,10 +50,18 @@ public enum DashboardStandardCaseColumn {
     return Arrays.asList(PIN, ID, NAME, DESCRIPTION, STATE, CREATOR, CREATED, FINISHED, CATEGORY, APPLICATION);
   }
 
+    public static List<DashboardStandardCaseColumn> getGlobalAISearchColumns() {
+    return Arrays.asList(ID, NAME);
+  }
+
   public String getLabel() {
     return Ivy.cms().co(String.format("/Labels/Enums/DashboardStandardCaseColumn/%s", this.name()));
   }
 
   public static final Set<DashboardStandardCaseColumn> AI_RESULT_COLUMNS = Collections
       .unmodifiableSet(EnumSet.of(ID, NAME, OWNER, STATE, ACTIONS));
+
+  public static final Set<DashboardStandardCaseColumn> GLOBAL_SEARCH_COLUMNS = Collections
+      .unmodifiableSet(
+          EnumSet.of(ID, NAME, DESCRIPTION));
 }

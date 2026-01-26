@@ -14,7 +14,7 @@
   <c:set var="task" value="#{cc.attrs.task}" />
   <c:set var="isWorkingOnATask" value="#{cc.attrs.isWorkingOnATask ? cc.attrs.isWorkingOnATask : false}" />
   
-  <f:event listener="#{globalSearchBean.preRender(data.caseWidget)}" type="preRenderView" />
+  <f:event listener="#{globalSearchBean.preRender(data.caseWidget, data.taskWidget)}" type="preRenderView" />
     <!-- Warning before leaving task -->
   <ic:ch.ivy.addon.portalkit.component.WarningBeforeLeavingTask
     id="search-warning-before-leaving-task-component" componentId="search-task-leave-warning-dialog"
@@ -60,7 +60,10 @@
   <p:remoteCommand id="global-search-update-params-cmd" name="portalGlobalSearchUpdateParams" actionListener="#{logic.updateParams(isWorkingOnATask)}"
     partialSubmit="true"/>
 
-  <p:remoteCommand id="global-search-ai-search-cmd" name="portalGlobalSearchAI" actionListener="#{globalSearchBean.updateCaseWidget(param.input)}" oncomplete="" process="@this" update="global-search-component:global-search-tabview:global-search-ai-result-component:globalSearchAiResultContainer"
+  <p:remoteCommand id="global-search-ai-search-cmd" name="portalGlobalSearchAI" 
+    actionListener="#{globalSearchBean.updateWidgetsWithAI(param.input)}" 
+    process="@this" 
+    update="global-search-component:global-search-tabview:ai-search-results"
     partialSubmit="true"/>
   
   <p:remoteCommand id="global-search-ai-search-inist-data" name="portalGlobalSearchAIInitData" actionListener="#{logic.initDefaultDataForAISearch()}" immediate="false" process="@this"
@@ -100,13 +103,16 @@
           </div>
           <h:outputText styleClass="global-search-no-results" value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/generic/GlobalSearch/noResultsText')}" />
         </p:tab>
-         <p:tab id="ai-tab-search" title="AI Search" titleStyleClass="search-bar ai-tab-title-global" 
-          rendered="true">
+         <p:tab id="ai-tab-search" title="AI Search" titleStyleClass="search-bar ai-tab-title-global"
+          rendered="#{data.isSmartWorkflowFound}">
           <h:panelGroup id="ai-search-results" styleClass="js-ai-default-widget-container case-default-widget-container js-for-search-result global-search-ai-results">
             <ic:ch.ivy.addon.portal.generic.dashboard.component.GlobalSearchAIResult 
               id="global-search-ai-result-component" index="10"
-              widget="#{globalSearchBean.caseWidget}"
+              caseWidget="#{globalSearchBean.caseWidget}"
+              taskWidget="#{globalSearchBean.taskWidget}"
+              results="#{globalSearchBean.results}"
               isReadOnlyMode="true"
+              isShowInSearchResultPage="false"
               isAIResult="true"/>
           </h:panelGroup>
           <div class="global-search-all-results" >
