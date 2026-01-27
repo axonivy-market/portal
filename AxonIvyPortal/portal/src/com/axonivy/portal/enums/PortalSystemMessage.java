@@ -18,31 +18,42 @@ public enum PortalSystemMessage {
     "- If unclear or both mentioned, populate both arrays\n" +
     "- Leave empty array [] if not applicable\n\n" +
     
-    "Available fields for TASKS:\n" +
-    "- String fields: name, description, creator, activator, state, activator\n" +
-    "- Number fields: id, priority\n" +
-    "- Date fields: startTimestamp, endTimestamp, expiryTimestamp\n\n" +
+    "Available TASK fields with operators:\n" +
+    "- name: empty, not_empty, contains, not_contains, is, is_not, start_with, not_start_with, end_with, not_end_with\n" +
+    "- description: empty, not_empty, contains, not_contains, is, is_not, start_with, not_start_with, end_with, not_end_with\n" +
+    "- id: contains\n" +
+    "- startTimestamp: today, yesterday, is, is_not, before, after, between, not_between, current, last, next, empty, not_empty\n" +
+    "- endTimestamp: today, yesterday, is, is_not, before, after, between, not_between, current, last, next, empty, not_empty\n" +
+    "- expiryTimestamp: today, yesterday, is, is_not, before, after, between, not_between, current, last, next, empty, not_empty\n" +
+    "- responsible: in, not_in, current_user\n" +
+    "- priority: in\n" +
+    "- state: in\n" +
+    "- category: in, not_in, contains, not_contains, no_category\n" +
+    "- application: in\n\n" +
     
-    "Available fields for CASES:\n" +
-    "- String fields: name, description, creator, state\n" +
-    "- Number fields: id\n" +
-    "- Date fields: startTimestamp, endTimestamp\n\n" +
-
-    "Operators by field type:\n" +
-    "1. String fields: is, is_not, empty, not_empty, contains, not_contains, start_with, not_start_with, end_with, not_end_with\n" +
-    "2. Number fields: between, not_between, empty, not_empty, equal, not_equal, less, less_or_equal, greater, greater_or_equal\n" +
-    "3. Date fields: today, yesterday, is, is_not, before, after, between, not_between, current, last, next, empty, not_empty\n\n" +
+    "Available CASE fields with operators:\n" +
+    "- name: empty, not_empty, contains, not_contains, is, is_not, start_with, not_start_with, end_with, not_end_with\n" +
+    "- description: empty, not_empty, contains, not_contains, is, is_not, start_with, not_start_with, end_with, not_end_with\n" +
+    "- id: contains\n" +
+    "- startTimestamp: today, yesterday, is, is_not, before, after, between, not_between, current, last, next, empty, not_empty\n" +
+    "- endTimestamp: today, yesterday, is, is_not, before, after, between, not_between, current, last, next, empty, not_empty\n" +
+    "- creator: in, not_in, current_user\n" +
+    "- owner: in, not_in, current_user\n" +
+    "- state: in\n" +
+    "- category: in, not_in, contains, not_contains, no_category\n" +
+    "- application: in\n\n" +
     
     "Rules:\n" +
     "- Each filter object must have: 'field', 'operator', 'type' (always 'standard')\n" +
-    "- For 'id' field, use operator 'contains' only\n" +
-    "- For 'state', 'activator' field, use operator 'in' only\n" +
     "- Add 'values' array only when operator requires value(s)\n" +
+    "- Choose appropriate operators based on fields and user's question, do not choose operators that cannot be used by the field. For example, do not select operator 'in' for task 'id' field.\n" +
     "- Date values must be in format 'YYYY-MM-DD'\n" +
-    "- Priority values: EXCEPTION, HIGH, NORMAL, LOW\n" +
-    "- If user's question is about responsible of a task, use 'activator' field with operator 'in' only and values must not be empty\n" +
-    "- State values for tasks: DESTROYED, DONE, OPEN, DELAYED, ERROR, IN_PROGRESS\n" +
-    "- State values for cases: CREATED, RUNNING, DONE, DESTROYED\n\n" +
+    "- Priority values: exception, high, normal, low\n" +
+    "- State values for tasks: DESTROYED, DONE, DELAYED, ERROR, IN_PROGRESS\n" +
+    "- State values for cases: OPEN, DONE, DESTROYED\n" +
+    "- If user's question is about responsible of a task, use 'activator' field with appropriate operator and values must not be empty and you have to add # before each value. For example, finding all tasks that responsible is ava, then values must be [\"#ava\"]\n\n" +
+    "- If user's question is not clear about finding tasks or cases, you can decide filters for both or only one of them\n\n" +
+
     
     "Example 1 - 'Find all tasks expired today':\n" +
     "{\n" +
@@ -79,7 +90,7 @@ public enum PortalSystemMessage {
     "  \"taskFilters\": [\n" +
     "    {\n" +
     "      \"field\": \"priority\",\n" +
-    "      \"values\": [\"HIGH\"],\n" +
+    "      \"values\": [\"high\"],\n" +
     "      \"operator\": \"in\",\n" +
     "      \"type\": \"standard\"\n" +
     "    }\n" +

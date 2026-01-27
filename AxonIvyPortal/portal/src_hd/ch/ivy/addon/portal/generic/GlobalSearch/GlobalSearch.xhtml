@@ -14,8 +14,7 @@
   <c:set var="task" value="#{cc.attrs.task}" />
   <c:set var="isWorkingOnATask" value="#{cc.attrs.isWorkingOnATask ? cc.attrs.isWorkingOnATask : false}" />
   
-  <f:event listener="#{globalSearchBean.preRender(data.caseWidget, data.taskWidget)}" type="preRenderView" />
-    <!-- Warning before leaving task -->
+  <!-- Warning before leaving task -->
   <ic:ch.ivy.addon.portalkit.component.WarningBeforeLeavingTask
     id="search-warning-before-leaving-task-component" componentId="search-task-leave-warning-dialog"
     widgetVar="search-task-losing-confirmation-dialog" rendered="#{isWorkingOnATask}" 
@@ -60,8 +59,9 @@
   <p:remoteCommand id="global-search-update-params-cmd" name="portalGlobalSearchUpdateParams" actionListener="#{logic.updateParams(isWorkingOnATask)}"
     partialSubmit="true"/>
 
-  <p:remoteCommand id="global-search-ai-search-cmd" name="portalGlobalSearchAI" 
-    actionListener="#{globalSearchBean.updateWidgetsWithAI(param.input)}" 
+  <p:remoteCommand id="global-search-ai-search-cmd" name="portalGlobalSearchAI" rendered="#{data.isSmartWorkflowFound}"
+    actionListener="#{globalSearchBean.preRender(data.caseWidget, data.taskWidget)}"
+    action="#{globalSearchBean.updateWidgetsWithAI(param.input)}" 
     process="@this" 
     update="global-search-component:global-search-tabview:ai-search-results"
     partialSubmit="true"/>
