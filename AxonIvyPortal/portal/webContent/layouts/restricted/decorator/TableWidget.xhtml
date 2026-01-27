@@ -44,8 +44,24 @@
     <h:form id="show-bulk-select-form">
         <c:set var="widgetContentId" value="#{cc.clientId}:widget-content" />
         <h:panelGroup layout="block" styleClass="flex align-items-center justify-content-between gap-2">
-            <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delegation')}"
-                styleClass="text-base font-semibold text-left"/>
+            <h:panelGroup layout="block" styleClass="flex align-items-center gap-2">
+                <p:commandButton id="start-multiple-delegation-#{index}" 
+                    icon="si si-checklist-pen"
+                    styleClass="rounded-button ui-button-outlined ui-button-widget"
+                    ariaLabel="Start multiple delegation"
+                    actionListener="#{dashboardBean.startMultipleDelegation(widget)}"
+                    update="@widgetVar(multiple-task-delegate-dialog)"
+                    oncomplete="PF('multiple-task-delegate-dialog').show()"
+                    disabled="#{!dashboardBean.showDelegatedItem}"
+                    process="@this">
+                </p:commandButton>
+                <p:tooltip for="start-multiple-delegation-#{index}" 
+                    value="Start multiple delegation" 
+                    trackMouse="true" 
+                    hideEvent="mouseleave click" />
+                <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delegation')}"
+                    styleClass="text-base font-semibold text-left"/>
+            </h:panelGroup>
             <p:toggleSwitch value="#{dashboardBean.showDelegatedItem}" id="show-delegation-toggle" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delegation')}">
                 <p:ajax listener="#{dashboardBean.toggleDelegated(widget)}" update="#{componentToUpdateOnResetFilter} @form" />
             </p:toggleSwitch>

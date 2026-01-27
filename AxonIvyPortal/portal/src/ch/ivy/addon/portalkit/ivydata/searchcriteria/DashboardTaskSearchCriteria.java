@@ -398,14 +398,6 @@ public class DashboardTaskSearchCriteria {
     }
   }
 
-  public boolean showPinnedItem() {
-    return showPinnedItem;
-  }
-
-  public void setShowPinnedItem(boolean showPinnedItem) {
-    this.showPinnedItem = showPinnedItem;
-  }
-
   public boolean showDelegatedItem() {
     return showDelegatedItem;
   }

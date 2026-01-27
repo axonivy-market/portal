@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
@@ -47,6 +48,7 @@ import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.enums.TaskEmptyMessage;
 import ch.ivy.addon.portalkit.exporter.Exporter;
 import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
+import ch.ivy.addon.portalkit.ivydata.service.impl.TaskService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.WidgetFilterService;
 import ch.ivy.addon.portalkit.support.HtmlParser;
@@ -88,6 +90,7 @@ public class DashboardBean implements Serializable, IMultiLanguage {
   private String searchScope;
   private boolean isShowPinnedItem;
   private boolean isShowDelegatedItem;
+  private List<ITask> selectedDelegatedTasks;
 
   @PostConstruct
   public void init() {
@@ -638,5 +641,27 @@ public class DashboardBean implements Serializable, IMultiLanguage {
   public void toggleDelegated(DashboardWidget widget) {
     widget.setShowDelegatedItem(isShowDelegatedItem);
     widget.toggleShowDelegated();
+  }
+
+  public List<ITask> getSelectedDelegatedTasks() {
+    return selectedDelegatedTasks;
+  }
+
+  public void setSelectedDelegatedTasks(List<ITask> selectedDelegatedTasks) {
+    this.selectedDelegatedTasks = selectedDelegatedTasks;
+  }
+
+  public void startMultipleDelegation(DashboardWidget widget) {
+    Set<String> delegatedTaskUuids = TaskUtils.getDelegatedTaskUuids();
+    if (CollectionUtils.isEmpty(delegatedTaskUuids)) {
+      this.selectedDelegatedTasks = new ArrayList<>();
+      return;
+    }
+    
+    Ivy.log().info("start multiple delegation " + delegatedTaskUuids);
+    // this.selectedDelegatedTasks = delegatedTaskUuids.stream()
+    //   .map(uuid -> taskService.findTaskByUUID(uuid))
+    //   .filter(task -> task != null)
+    //   .collect(Collectors.toList());
   }
 }
