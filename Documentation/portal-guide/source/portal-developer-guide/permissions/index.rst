@@ -89,9 +89,6 @@ Portal has a flexible security system that allows you to configure who can acces
 Portal Task Permissions
 -----------------------
 
-Permissions controlling task visibility, actions, and property modifications.
-
-
 .. _TaskReadAll:
 
    :ref:`🔑TaskReadAll <TaskReadAll>`
@@ -228,6 +225,7 @@ Permissions controlling task visibility, actions, and property modifications.
        +------------------------+-------------------------------------------------------------+
        | **Granted by default** | Yes - User ``Admin``                                        |
        +------------------------+-------------------------------------------------------------+
+
 .. _TaskResetReadyForJoin:
 
 
@@ -427,7 +425,7 @@ Permissions controlling task visibility, actions, and property modifications.
        +------------------------+-------------------------------------------------------------+
        | Field                  | Description                                                 |
        +========================+=============================================================+
-       | **Type**               | Core permission                                             |
+       | **Type**               | Portal permission                                           |
        +------------------------+-------------------------------------------------------------+
        | **Category**           | Task UI Display Permissions                                 |
        +------------------------+-------------------------------------------------------------+
@@ -447,7 +445,7 @@ Permissions controlling task visibility, actions, and property modifications.
        +------------------------+-------------------------------------------------------------+
        | Field                  | Description                                                 |
        +========================+=============================================================+
-       | **Type**               | Core permission                                             |
+       | **Type**               | Portal permission                                           |
        +------------------------+-------------------------------------------------------------+
        | **Category**           | Task UI Display Permissions                                 |
        +------------------------+-------------------------------------------------------------+
@@ -466,231 +464,280 @@ Permissions controlling task visibility, actions, and property modifications.
 .. _TaskDisplayReserveAction:
 
    :ref:`🔑TaskDisplayReserveAction <TaskDisplayReserveAction>`
-       +--------------------+------------------------------------------------------------+
-       | Category           | **Task UI Display Permissions**                            |
-       +--------------------+------------------------------------------------------------+
-       | Description        | Display reserve action                                     |
-       +--------------------+------------------------------------------------------------+
-       | Type               | **Portal permission**                                      |
-       +--------------------+------------------------------------------------------------+
-       | Use case           | User with this permission will have ``Reserve``            |
-       |                    | menu item in the task action menu. User also needs         |
-       |                    | ``TaskParkOwnWorkingTask`` permission to enable this menu. | 
-       +--------------------+------------------------------------------------------------+
-       | Granted by default | Role ``Everybody``                                         |
-       +--------------------+------------------------------------------------------------+
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Portal permission                                           |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Task UI Display Permissions                                 |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | Allows the Portal to **display the reserve action**         |
+       |                        | for tasks in the user interface.                            |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Users with this permission will see the **Reserve** menu    |
+       |                        | item in the task action menu. To actually reserve a task,   |
+       |                        | the user must also have the **TaskParkOwnWorkingTask**      |
+       |                        | permission.                                                 |
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | Yes - Role ``Everybody``                                    |
+       +------------------------+-------------------------------------------------------------+
    
 .. _TaskDisplayDelegateAction:
 
    :ref:`🔑TaskDisplayDelegateAction <TaskDisplayDelegateAction>`
-       +--------------------+------------------------------------------------------------+
-       | Category           | **Task UI Display Permissions**                            |
-       +--------------------+------------------------------------------------------------+
-       | Description        | Display delegate action                                    |
-       +--------------------+------------------------------------------------------------+
-       | Type               | **Portal permission**                                      |
-       +--------------------+------------------------------------------------------------+
-       | Use case           | User with this permission will have ``Delegate``           |
-       |                    | menu item in the task action menu. User also needs         |
-       |                    | ``TaskWriteActivator`` permission to enable this menu.     |  
-       +--------------------+------------------------------------------------------------+
-       | Granted by default | Role ``Everybody``                                         |
-       +--------------------+------------------------------------------------------------+
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Portal permission                                           |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Task UI Display Permissions                                 |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | Allows the Portal to **display the delegate action**        |
+       |                        | for tasks in the user interface.                            |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Users with this permission will see the **Delegate** menu   |
+       |                        | item in the task action menu. To actually delegate a task,  |
+       |                        | the user must also have the **TaskWriteActivator**          |
+       |                        | permission.                                                 |
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | Yes - Role ``Everybody``                                    |
+       +------------------------+-------------------------------------------------------------+
 
 .. _TaskDisplayDestroyAction:
 
    :ref:`🔑TaskDisplayDestroyAction <TaskDisplayDestroyAction>`
-       +--------------------+------------------------------------------------------------+
-       | Category           | **Task UI Display Permissions**                            |
-       +--------------------+------------------------------------------------------------+
-       | Description        | Display destroy action                                     |
-       +--------------------+------------------------------------------------------------+
-       | Type               | **Portal permission**                                      |
-       +--------------------+------------------------------------------------------------+
-       | Use case           | User with this permission will have ``Destroy``            |
-       |                    | menu item in the task action menu. User also needs         |
-       |                    | ``TaskDestroy`` permission to enable this menu.            |  
-       +--------------------+------------------------------------------------------------+
-       | Granted by default | User ``Admin``                                             |
-       +--------------------+------------------------------------------------------------+
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Portal permission                                           |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Task UI Display Permissions                                 |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | Allows the Portal to **display the destroy action**         |
+       |                        | for tasks in the user interface.                            |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Users with this permission will see the **Destroy** menu    |
+       |                        | item in the task action menu. To actually destroy a task,   |
+       |                        | the user must also have the **TaskDestroy** permission.     |
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | Yes - User ``Admin``                                        |
+       +------------------------+-------------------------------------------------------------+
 
 .. _TaskDisplayWorkflowEventAction:
 
    :ref:`🔑TaskDisplayWorkflowEventAction <TaskDisplayWorkflowEventAction>`
-       +--------------------+------------------------------------------------------------+
-       | Category           | **Task UI Display Permissions**                            |
-       +--------------------+------------------------------------------------------------+
-       | Description        | Display workflow events                                    |
-       |                    | Allows viewing task execution history and events           |
-       +--------------------+------------------------------------------------------------+
-       | Type               | **Portal permission**                                      |
-       +--------------------+------------------------------------------------------------+
-       | Use case           | User with this permission will have ``Workflow events``    |
-       |                    | menu item in the task action menu. User also needs         |
-       |                    | ``WorkflowEventReadAll`` permission to enable this menu.   | 
-       +--------------------+------------------------------------------------------------+
-       | Granted by default | User ``Admin``                                             |
-       +--------------------+------------------------------------------------------------+
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Portal permission                                           |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Task UI Display Permissions                                 |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | Allows the Portal to **display workflow events** for a      |
+       |                        | task, including the **task execution history and related    |
+       |                        | workflow events**.                                          |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Users with this permission will see the **Workflow Events** | 
+       |                        | menu item in the task action menu. To actually view the     |
+       |                        | workflow event data, the user must also have the            |
+       |                        | **WorkflowEventReadAll** permission.                        |
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | Yes - User ``Admin``                                        |
+       +------------------------+-------------------------------------------------------------+
 
      
 .. _TaskDisplayCustomFieldsAction:
 
    :ref:`🔑TaskDisplayCustomFieldsAction <TaskDisplayCustomFieldsAction>`
-       +--------------------+------------------------------------------------------------+
-       | Category           | **Task UI Display Permissions**                            |
-       +--------------------+------------------------------------------------------------+
-       | Description        | Display custom fields of case                              | 
-       +--------------------+------------------------------------------------------------+
-       | Type               | **Portal permission**                                      |
-       +--------------------+------------------------------------------------------------+
-       | Use case           | User with this permission will have ``Custom fields``      |
-       |                    | menu item in the task action menu                          | 
-       +--------------------+------------------------------------------------------------+
-       | Granted by default | User ``Admin``                                             |
-       +--------------------+------------------------------------------------------------+
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Portal permission                                           |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Task UI Display Permissions                                 |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | Allows the Portal to **display custom fields of a case**    |
+       |                        | in the task user interface.                                 | 
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Users with this permission will see the **Custom Fields**   |
+       |                        | menu item in the task action menu, allowing them to view    |
+       |                        | custom case fields related to the task.                     |
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | Yes - User ``Admin``                                        |
+       +------------------------+-------------------------------------------------------------+
 
 
 .. _ShareTaskDetailsLink:
 
    :ref:`🔑ShareTaskDetailsLink <ShareTaskDetailsLink>`
-       +--------------------+------------------------------------------------------------+
-       | Category           | **Task UI Display Permissions**                            |
-       +--------------------+------------------------------------------------------------+
-       | Description        | Display share case details link                            |
-       +--------------------+------------------------------------------------------------+
-       | Type               | **Portal permission**                                      |
-       +--------------------+------------------------------------------------------------+
-       | Use case           | User with this permission will have ``Share`` button       |
-       |                    | next to ``Edit`` button in task details                    | 
-       +--------------------+------------------------------------------------------------+
-       | Granted by default | Role ``Everybody``                                         |
-       +--------------------+------------------------------------------------------------+
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Portal permission                                           |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Task UI Display Permissions                                 |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | Allows the Portal to **display the share task details       |
+       |                        | link** in the task user interface.                          |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Users with this permission will see a **Share** button next |
+       |                        | to the **Edit** button in the task details, allowing them   |
+       |                        | to share a link to the task details.                        |
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | Yes - Role ``Everybody``                                    |
+       +------------------------+-------------------------------------------------------------+
 
 .. _permission-case-permissions:
 
 Portal Case Permissions
 -----------------------
 
-Permissions controlling case visibility, actions, and business details.
-
 .. _CaseReadAll:
 
    :ref:`🔑CaseReadAll <CaseReadAll>`
-       +--------------------+------------------------------------------------------------+
-       | Category           | **Case Visibility**                                        |
-       +--------------------+------------------------------------------------------------+
-       | Description        | View all cases in the security context regardless          |
-       |                    | of involvement                                             |
-       +--------------------+------------------------------------------------------------+
-       | Type               | **Core permission**                                        |
-       +--------------------+------------------------------------------------------------+
-       | Use case           | Grant it to see all cases                                  | 
-       +--------------------+------------------------------------------------------------+
-       | Granted by default | User ``Admin``                                             |
-       +--------------------+------------------------------------------------------------+
-
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Core permission                                             |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Case Action                                                 |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | Allows a user to **view all cases within the security       |
+       |                        | context**, regardless of whether the user is involved       |
+       |                        | in the case.                                                |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Grant it to see all cases                                   | 
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | Yes - User ``Admin``                                        |
+       +------------------------+-------------------------------------------------------------+
 
 .. _CaseDestroy:
 
    :ref:`🔑CaseDestroy <CaseDestroy>`
-       +--------------------+------------------------------------------------------------+
-       | Category           | **Case Action**                                            |
-       +--------------------+------------------------------------------------------------+
-       | Description        | Delete cases with state RUNNING                            |
-       +--------------------+------------------------------------------------------------+
-       | Type               | **Core permission**                                        |
-       +--------------------+------------------------------------------------------------+
-       | Use case           | User with this permission will have ``Destroy`` menu       |
-       |                    | item in the case action memu                               |
-       +--------------------+------------------------------------------------------------+
-       | Granted by default | User ``Admin``                                             |
-       +--------------------+------------------------------------------------------------+
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Core permission                                             |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Case Action                                                 |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | Allows to **permanently delete a case that is currently     |
+       |                        | running**. Once deleted, the case and its data cannot be    |
+       |                        | recovered.                                                  |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Intended for administrators who need to **remove            |
+       |                        | incorrectly started, test, or blocked cases, for example    |
+       |                        | during troubleshooting, cleanup, or system maintenance**.   |
+       |                        | The Destroy action will be available in the case action     |
+       |                        | menu.                                                       | 
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | Yes - User ``Admin``                                        |
+       +------------------------+-------------------------------------------------------------+
 
 
 .. _CaseOwnerTaskDelegate:
 
    :ref:`🔑CaseOwnerTaskDelegate <CaseOwnerTaskDelegate>`
-       +--------------------+------------------------------------------------------------+
-       | Category           | **Case Action**                                            |
-       +--------------------+------------------------------------------------------------+
-       | Description        | Delegate all related tasks within cases where user is      |
-       |                    | the case owner                                             | 
-       +--------------------+------------------------------------------------------------+
-       | Type               | **Portal permission**                                      |
-       +--------------------+------------------------------------------------------------+
-       | Use case           | User with this permission and ``TaskWriteActivator`` can   | 
-       |                    | delegate tasks within the case which he is case owner      |
-       +--------------------+------------------------------------------------------------+
-       | Granted by default | User ``Admin``                                             |
-       +--------------------+------------------------------------------------------------+
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Portal permission                                           |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Case Action                                                 |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | Allows a **case owner to delegate all tasks related to      |
+       |                        | their case** to other users or roles.                       |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Users who are **case owners** and have this permission,     |
+       |                        | together with **TaskWriteActivator**, can **delegate tasks  |
+       |                        | within their own cases**, for example to hand over work,    |
+       |                        | involve other team members, or reassign responsibilities.   |
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | Yes - User ``Admin``                                        |
+       +------------------------+-------------------------------------------------------------+
 
 .. _CaseWriteDescription:
 
    :ref:`🔑CaseWriteDescription <CaseWriteDescription>`
-       +--------------------+------------------------------------------------------------+
-       | Category           | **Case Property Modifications**                            |
-       +--------------------+------------------------------------------------------------+
-       | Description        | Modify case description, cannot modify case in DESTROYED   |
-       |                    | state                                                      |
-       +--------------------+------------------------------------------------------------+
-       | Type               | **Core permission**                                        |
-       +--------------------+------------------------------------------------------------+
-       | Use case           | User with this permission can edit case description in     |
-       |                    | case details                                               | 
-       +--------------------+------------------------------------------------------------+
-       | Granted by default | User ``Admin``                                             |
-       +--------------------+------------------------------------------------------------+
-
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Core permission                                             |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Case Action                                                 |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | Allows a user to **edit the case description**. The         |
+       |                        | description cannot be changed if the case is in the         |
+       |                        | **DESTROYED** state.                                        |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Enables users with this permission to **update or correct   | 
+       |                        | the case description** in the case details, for example to  |
+       |                        | add context, clarify information, or fix mistakes.          | 
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | Yes - User ``Admin``                                        |
+       +------------------------+-------------------------------------------------------------+
 
 .. _ShowCaseDetails:
 
    :ref:`🔑ShowCaseDetails <ShowCaseDetails>`
-       +--------------------+------------------------------------------------------------+
-       | Category           | **Case UI Display Permissions**                            |
-       +--------------------+------------------------------------------------------------+
-       | Description        | Display business details in new tab to show                |
-       |                    | additional case information                                |
-       +--------------------+------------------------------------------------------------+
-       | Type               | **Portal permission**                                      |
-       +--------------------+------------------------------------------------------------+
-       | Use case           | User with this permission will have ``Business details``   |
-       |                    | menu item in the case action menu                          | 
-       +--------------------+------------------------------------------------------------+
-       | Granted by default | Role ``Everybody``                                         |
-       +--------------------+------------------------------------------------------------+
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Portal permission                                           |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Case UI Display Permissions                                 |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | Allows the Portal to **display business details of a case   |
+       |                        | in a separate tab**, providing additional case-related      |
+       |                        | information.                                                |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Users with this permission will see the **Business details**| 
+       |                        | menu item in the case action menu, allowing them to open    |
+       |                        | a new tab with extended case information.                   | 
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | Yes - Role ``Everybody``                                    |
+       +------------------------+-------------------------------------------------------------+
 
 .. _CaseDisplayCustomFieldsAction:
 
    :ref:`🔑CaseDisplayCustomFieldsAction <CaseDisplayCustomFieldsAction>`
-       +--------------------+------------------------------------------------------------+
-       | Category           | **Case UI Display Permissions**                            |
-       +--------------------+------------------------------------------------------------+
-       | Description        | Display custom fields of case                              |
-       +--------------------+------------------------------------------------------------+
-       | Type               | **Portal permission**                                      |
-       +--------------------+------------------------------------------------------------+
-       | Use case           | User with this permission will have ``Custom fields``      |
-       |                    | menu item in the case action menu                          | 
-       +--------------------+------------------------------------------------------------+
-       | Granted by default | User ``Admin``                                             |
-       +--------------------+------------------------------------------------------------+
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Portal permission                                           |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Case UI Display Permissions                                 |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | Allows the Portal to **display custom fields of a case**    | 
+       |                        | in the user interface.                                      |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Users with this permission will see the **Custom fields**   |
+       |                        | menu item in the case action menu, allowing them to view    |
+       |                        | additional, case-specific information.                      | 
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | Yes - User ``Admin``                                        |
+       +------------------------+-------------------------------------------------------------+
 
 
 .. _ShareCaseDetailsLink:
 
    :ref:`🔑ShareCaseDetailsLink <ShareCaseDetailsLink>`
-       +--------------------+------------------------------------------------------------+
-       | Category           | **Case UI Display Permissions**                            |
-       +--------------------+------------------------------------------------------------+
-       | Description        | Display share case details link                            |
-       +--------------------+------------------------------------------------------------+
-       | Type               | **Portal permission**                                      |
-       +--------------------+------------------------------------------------------------+
-       | Use case           | User with this permission will have ``Share`` button       |
-       |                    | next to ``Edit`` button in case details                    | 
-       +--------------------+------------------------------------------------------------+
-       | Granted by default | Role ``Everybody``                                         |
-       +--------------------+------------------------------------------------------------+
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Portal permission                                           |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Case UI Display Permissions                                 |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | Allows the Portal to **display a link for sharing case      |
+       |                        | details** in the user interface.                            |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Users with this permission will see a **Share** button next |
+       |                        | to the **Edit** button in the case details, allowing them   |
+       |                        | to share a link to the case details with others.            | 
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | Yes - Role ``Everybody``                                    |
+       +------------------------+-------------------------------------------------------------+
 
 
 .. _permission-general-permissions:
@@ -698,108 +745,111 @@ Permissions controlling case visibility, actions, and business details.
 Portal General Permissions
 --------------------------
 
-General permissions for dashboards, documents, lists, roles, and Portal features.
-
 .. _AccessFullProcessList:
 
    :ref:`🔑AccessFullProcessList <AccessFullProcessList>`
-       +--------------------+------------------------------------------------------------+
-       | Category           | **Portal Page Access**                                     |
-       +--------------------+------------------------------------------------------------+
-       | Description        | This permission controls the visibility of the             |
-       |                    | **Processes** page in the left menu and the **Processes**  |
-       |                    | tab in the global search.                                  |
-       +--------------------+------------------------------------------------------------+
-       | Type               | **Portal permission**                                      |
-       +--------------------+------------------------------------------------------------+
-       | Use case           | Hide the **Processes** entry from the left menu and the    |
-       |                    | **Processes** tab in the global search for certain users or|
-       |                    | roles.                                                     |
-       +--------------------+------------------------------------------------------------+
-       | Granted by default | Role ``Everybody``                                         |
-       +--------------------+------------------------------------------------------------+
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Portal permission                                           |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Portal Page Access                                          |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | Controls the visibility of the **Processes** page in the    |
+       |                        | left navigation menu and the **Processes** tab in the       |
+       |                        | global search.                                              |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Used to **show or hide access to the Processes list** for   |
+       |                        | specific users or roles, for example to simplify the user   |
+       |                        | interface or restrict access to process overviews.          |
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | Yes - Role ``Everybody``                                    |     
+       +------------------------+-------------------------------------------------------------+
 
 .. _AccessFullTaskList:
 
    :ref:`🔑AccessFullTaskList <AccessFullTaskList>`
-       +--------------------+------------------------------------------------------------+
-       | Category           | **Portal Page Access**                                     |
-       +--------------------+------------------------------------------------------------+
-       | Description        | This permission controls the visibility of the             |
-       |                    | **Tasks** page in the left menu and the **Tasks**          |
-       |                    | tab in the global search.                                  |
-       +--------------------+------------------------------------------------------------+
-       | Type               | **Portal permission**                                      |
-       +--------------------+------------------------------------------------------------+
-       | Use case           | Hide the **Tasks** entry from the left menu and the        |
-       |                    | **Tasks** tab in the global search for certain             |
-       |                    | users or roles.                                            |
-       +--------------------+------------------------------------------------------------+
-       | Granted by default | Role ``Everybody``                                         |
-       +--------------------+------------------------------------------------------------+
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Portal permission                                           |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Portal Page Access                                          |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | Controls the visibility of the **Tasks** page in the left   |
+       |                        | navigation menu and the **Tasks** tab in the global search. |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Used to **show or hide access to the Tasks list** for       |
+       |                        | specific users or roles, for example to simplify the user   |
+       |                        | interface or restrict task visibility.                      |
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | Yes - Role ``Everybody``                                    |
+       +------------------------+-------------------------------------------------------------+
 
 .. _AccessFullCaseList:
 
    :ref:`🔑AccessFullCaseList <AccessFullCaseList>`
-       +--------------------+------------------------------------------------------------+
-       | Category           | **Portal Page Access**                                     |
-       +--------------------+------------------------------------------------------------+
-       | Description        | This permission controls the visibility of the             |
-       |                    | **Cases** page in the left menu and the **Cases** tab      |
-       |                    | in the global search.                                      |
-       +--------------------+------------------------------------------------------------+
-       | Type               | **Portal permission**                                      |
-       +--------------------+------------------------------------------------------------+
-       | Use case           | Hide the **Cases** entry from the left menu and the        |
-       |                    | **Cases** tab in the global search for certain             |
-       |                    | users or roles.                                            |
-       +--------------------+------------------------------------------------------------+
-       | Granted by default | Role ``Everybody``                                         |
-       +--------------------+------------------------------------------------------------+
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Portal permission                                           |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Portal Page Access                                          |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | Controls the visibility of the **Cases** page in the left   |
+       |                        | navigation menu and the **Cases** tab in the global search. |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Used to **show or hide access to the Cases list** for       |
+       |                        | specific users or roles, for example to simplify the user   |
+       |                        | interface or restrict case visibility.                      |
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | Yes - Role ``Everybody``                                    |
+       +------------------------+-------------------------------------------------------------+
 
 
 .. _DashboardWriteOwn:
 
    :ref:`🔑DashboardWriteOwn <DashboardWriteOwn>`
-       +--------------------+------------------------------------------------------------+
-       | Category           | **Dashboard Permissions**                                  |
-       +--------------------+------------------------------------------------------------+
-       | Description        | | This permission controls the ability to create and       |
-       |                    |   modify private (personal) dashboards in the              |
-       |                    |   :ref:`dashboard-configuration` page.                     |
-       |                    | | If user is not granted this permission, the Private      |
-       |                    |   Dashboard tab will be hidden and they cannot manage their|
-       |                    |   own dashboards.                                          |
-       +--------------------+------------------------------------------------------------+
-       | Type               | **Portal permission**                                      |
-       +--------------------+------------------------------------------------------------+
-       | Use case           | Grant to users who need to create and customize their own  |
-       |                    | personal dashboards.                                       |
-       +--------------------+------------------------------------------------------------+
-       | Granted by default | Role ``Everybody``                                         |
-       +--------------------+------------------------------------------------------------+
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Portal permission                                           |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Dashboard Permissions                                       |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | Allows a user to **create and modify private (personal)     |
+       |                        | dashboards** in the Dashboard Configuration page. If this   |
+       |                        | permission is not granted, the **Private Dashboard** tab is |
+       |                        | hidden and the user cannot manage their own dashboards.     |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Grant this permission to users who need to **create,        |
+       |                        | customize, and maintain their own private and personal      |
+       |                        | dashboards**.                                               |
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | Yes - Role ``Everybody``                                    |
+       +------------------------+-------------------------------------------------------------+
 
 .. _DashboardWritePublic:
 
    :ref:`🔑DashboardWritePublic <DashboardWritePublic>`
-       +--------------------+------------------------------------------------------------+
-       | Category           | **Dashboard Permissions**                                  |
-       +--------------------+------------------------------------------------------------+
-       | Description        | | This permission controls the ability to create and       |
-       |                    |   modify public (shared) dashboards in the                 |
-       |                    |   :ref:`dashboard-configuration` page.                     |
-       |                    | | If user is not granted this permission, the Public       |
-       |                    |   Dashboard tab will be hidden and they cannot manage      |
-       |                    |   shared dashboards.                                       |
-       +--------------------+------------------------------------------------------------+
-       | Type               | **Portal permission**                                      |
-       +--------------------+------------------------------------------------------------+
-       | Use case           | Grant to administrators or dashboard managers who need to  |
-       |                    | create and manage dashboards shared across the             |
-       |                    | application.                                               |
-       +--------------------+------------------------------------------------------------+
-       | Granted by default | User ``Admin``                                             |
-       +--------------------+------------------------------------------------------------+
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Portal permission                                           |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Dashboard Permissions                                       |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | Allows a user to **create and modify public (shared)        |
+       |                        | dashboards** in the **Dashboard Configuration** page. If    |
+       |                        | this permission is not granted, the **Public Dashboard**    |
+       |                        | tab is hidden and the user cannot manage shared dashboards. |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Grant to **administrators or dashboard managers** who       |
+       |                        | need to **create, maintain, and manage dashboards**         |
+       |                        | shared across the application.                              |
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | Yes - User ``Admin``                                        |
+       +------------------------+-------------------------------------------------------------+
 
 .. note::
    If a user is not granted either **DashboardWriteOwn** or **DashboardWritePublic** permission, 
@@ -808,319 +858,346 @@ General permissions for dashboards, documents, lists, roles, and Portal features
 .. _DashboardExportOwn:
 
    :ref:`🔑DashboardExportOwn <DashboardExportOwn>`
-       +--------------------+------------------------------------------------------------+
-       | Category           | **Dashboard**                                              |
-       +--------------------+------------------------------------------------------------+
-       | Description        | | This permission controls the ability to export private   |
-       |                    |   (personal) dashboards to JSON files for backup or        |
-       |                    |   sharing purposes.                                        |
-       |                    | | If user is not granted this permission, the Export       |
-       |                    |   option will be hidden in the private dashboard actions   |
-       |                    |   menu.                                                    |
-       +--------------------+------------------------------------------------------------+
-       | Type               | **Portal permission**                                      |
-       +--------------------+------------------------------------------------------------+
-       | Use case           | Grant to users who need to backup or share their personal  |
-       |                    | dashboard configurations.                                  |
-       +--------------------+------------------------------------------------------------+
-       | Granted by default | User ``Admin``                                             |
-       +--------------------+------------------------------------------------------------+
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Portal permission                                           |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Dashboard Permissions                                       |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | Allows a user to **export private (personal) dashboards as  |
+       |                        | JSON files** for backup or sharing purposes. If this        |
+       |                        | permission is not granted, the Export option is hidden      |
+       |                        | in the private dashboard actions menu.                      |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Grant to users who need to **back up their personal         |
+       |                        | dashboards or share dashboard configurations** with others  |
+       |                        | or across environments.                                     |
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | Yes - User ``Admin``                                        |
+       +------------------------+-------------------------------------------------------------+
 
 .. _DashboardExportPublic:
 
    :ref:`🔑DashboardExportPublic <DashboardExportPublic>`
-       +--------------------+------------------------------------------------------------+
-       | Category           | **Dashboard**                                              |
-       +--------------------+------------------------------------------------------------+
-       | Description        | | This permission controls the ability to export public    |
-       |                    |   (shared) dashboards to JSON files for backup or          |
-       |                    |   distribution purposes.                                   |
-       |                    | | If user is not granted this permission, the Export       |
-       |                    |   option will be hidden in the public dashboard actions    |
-       |                    |   menu.                                                    |
-       +--------------------+------------------------------------------------------------+
-       | Type               | **Portal permission**                                      |
-       +--------------------+------------------------------------------------------------+
-       | Use case           | Grant to administrators who need to backup or distribute   |
-       |                    | public dashboard templates across environments.            |
-       +--------------------+------------------------------------------------------------+
-       | Granted by default | User ``Admin``                                             |
-       +--------------------+------------------------------------------------------------+
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Portal permission                                           |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Dashboard Permissions                                       |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | Allows a user to **export public (shared) dashboards        |
+       |                        | as JSON files** for backup or distribution purposes.        |
+       |                        | If this permission is not granted, the Export option is     |
+       |                        | hidden in the public dashboard actions menu.                |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Grant to administrators who need to **back up or distribute |
+       |                        | public dashboard templates**, for example across different  |
+       |                        | environments.                                               |
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | Yes - User ``Admin``                                        |
+       +------------------------+-------------------------------------------------------------+
 
 .. _DashboardImportOwn:
 
    :ref:`🔑DashboardImportOwn <DashboardImportOwn>`
-       +--------------------+------------------------------------------------------------+
-       | Category           | **Dashboard**                                              |
-       +--------------------+------------------------------------------------------------+
-       | Description        | | This permission controls the ability to import private   |
-       |                    |   (personal) dashboards from JSON files.                   |
-       |                    | | If user is not granted this permission, the Import       |
-       |                    |   option will be hidden when creating private              |
-       |                    |   dashboards.                                              |
-       +--------------------+------------------------------------------------------------+
-       | Type               | **Portal permission**                                      |
-       +--------------------+------------------------------------------------------------+
-       | Use case           | Grant to users who need to create a private dashboard using|
-       |                    | JSON templates.                                            |
-       +--------------------+------------------------------------------------------------+
-       | Granted by default | User ``Admin``                                             |
-       +--------------------+------------------------------------------------------------+
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Portal permission                                           |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Dashboard Permissions                                       |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | Allows a user to **import private (personal) dashboards     |
+       |                        | from JSON files**. If this permission is not granted, the   |
+       |                        | Import option is hidden when creating private dashboards.   |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Grant to users who need to **create personal dashboards     |
+       |                        | from JSON templates**, for example when restoring backups   |
+       |                        | or reusing existing configurations.                         |
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | Yes - User ``Admin``                                        |
+       +------------------------+-------------------------------------------------------------+
 
 .. _DashboardImportPublic:
 
    :ref:`🔑DashboardImportPublic <DashboardImportPublic>`
-       +--------------------+------------------------------------------------------------+
-       | Category           | **Dashboard**                                              |
-       +--------------------+------------------------------------------------------------+
-       | Description        | | This permission controls the ability to import public    |
-       |                    |   (shared) dashboards from JSON files,                     |
-       |                    | | If user is not granted this permission, the Import       |
-       |                    |   option will be hidden when creating public               |
-       |                    |   dashboards.                                              |
-       +--------------------+------------------------------------------------------------+
-       | Type               | **Portal permission**                                      |
-       +--------------------+------------------------------------------------------------+
-       | Use case           | Grant to users who need to create a public dashboard using |
-       |                    | JSON templates.                                            |
-       +--------------------+------------------------------------------------------------+
-       | Granted by default | User ``Admin``                                             |
-       +--------------------+------------------------------------------------------------+
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Portal permission                                           |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Dashboard Permissions                                       |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | Allows a user to **import public (shared) dashboards        |
+       |                        | from JSON files**. If this permission is not granted, the   |
+       |                        | Import option is hidden when creating public dashboards.    |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Grant to users who need to **create shared dashboards       |
+       |                        | from JSON templates**, for example when setting up          |
+       |                        | dashboards across environments or reusing standard templates|
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | Yes - User ``Admin``                                        |
+       +------------------------+-------------------------------------------------------------+
 
 .. _ShareDashboardLink:
 
    :ref:`🔑ShareDashboardLink <ShareDashboardLink>`
-       +--------------------+------------------------------------------------------------+
-       | Category           | **Dashboard**                                              |
-       +--------------------+------------------------------------------------------------+
-       | Description        | | This permission controls the ability to share direct     |
-       |                    |   links to a public dashboards with other users.           |
-       |                    | | If user is not granted this permission, the Share        |
-       |                    |   option will be hidden in the dashboard action menu.      |
-       +--------------------+------------------------------------------------------------+
-       | Type               | **Portal permission**                                      |
-       +--------------------+------------------------------------------------------------+
-       | Use case           | Grant to users who need to share dashboard links with      |
-       |                    | colleagues for collaboration or reference purposes.        |
-       +--------------------+------------------------------------------------------------+
-       | Granted by default | Role ``Everybody``                                         |
-       +--------------------+------------------------------------------------------------+
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Portal permission                                           |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Dashboard Permissions                                       |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | Allows a user to **share direct links to public dashboards**| 
+       |                        | with other users. If this permission is not granted, the    |
+       |                        | Share option is hidden in the dashboard action menu.        |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Grant to users who need to **share dashboard links with     |
+       |                        | colleagues**, for example for collaboration, reporting,     |
+       |                        | or reference purposes.                                      |
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | Yes - Role ``Everybody``                                    |
+       +------------------------+-------------------------------------------------------------+
 
 
 
 .. _DocumentRead:
 
    :ref:`🔑DocumentRead <DocumentRead>`
-       +--------------------+------------------------------------------------------------+
-       | Category           | **Document**                                               |
-       +--------------------+------------------------------------------------------------+
-       | Description        | | In Portal, this permission controls the ability to view  |
-       |                    |   all documents across all cases and tasks without         |
-       |                    |   pagination in a new page.                                |
-       |                    | | If user is not granted this permission, the              |
-       |                    |   :guilabel:`Show more` option will be hidden in the       |
-       |                    |   Documents widget.                                        |
-       +--------------------+------------------------------------------------------------+
-       | Type               | **Core permission**                                        |
-       +--------------------+------------------------------------------------------------+
-       | Use case           | Grant to users who need full visibility into all           |
-       |                    | documents for viewing or document management purposes.     |
-       +--------------------+------------------------------------------------------------+
-       | Granted by default | No                                                         |
-       +--------------------+------------------------------------------------------------+
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Core permission                                             |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Document                                                    |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | Allows a user to **view all documents across all cases and  |
+       |                        | tasks in the Portal** on a dedicated page without           |
+       |                        | pagination. If this permission is not granted,              |
+       |                        | the **Show more** option is hidden in the Documents widget. |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Grant to users who need **full visibility into all          |
+       |                        | documents**, for example for review, auditing, or document  |
+       |                        | management purposes.                                        |
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | No                                                          |
+       +------------------------+-------------------------------------------------------------+
 
 .. _DocumentWrite:
 .. _DocumentOfInvolvedCaseWrite:
 
    :ref:`🔑DocumentWrite <DocumentWrite>` and :ref:`🔑DocumentOfInvolvedCaseWrite <DocumentOfInvolvedCaseWrite>`
-       +--------------------+------------------------------------------------------------+
-       | Category           | **Document**                                               |
-       +--------------------+------------------------------------------------------------+
-       | Description        | | These permissions allow users to **upload and delete**   |
-       |                    |   documents in the Documents widget.                       |
-       |                    | | Portal checks both permissions. If user has either one,  |
-       |                    |   they will see the upload and delete document actions     |
-       |                    | | **Note:** Upload and delete actions may be hidden for    |
-       |                    |   cases in DONE state if the global setting                |
-       |                    |   ``HIDE_UPLOAD_DOCUMENT_FOR_DONE_CASE`` is enabled.       |
-       +--------------------+------------------------------------------------------------+
-       | Type               | **Core permissions**                                       |
-       +--------------------+------------------------------------------------------------+
-       | Use case           | Grant one of these permissions to users who need to upload |
-       |                    | and delete documents in the Documents widget.              |
-       +--------------------+------------------------------------------------------------+
-       | Granted by default | | **DocumentWrite**: No                                    |
-       |                    | | **DocumentOfInvolvedCaseWrite**: role ``Everybody``      |
-       +--------------------+------------------------------------------------------------+
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Core permission                                             |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Document                                                    |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | These permissions allow users to **upload and delete        |
+       |                        | documents** in the Documents widget. The Portal checks both |
+       |                        | permissions: if a user has either one, the upload and       |
+       |                        | delete actions are shown.                                   |
+       |                        | Note: Upload and delete actions may be hidden for cases     |
+       |                        | in the **DONE** state if the global setting                 |
+       |                        | ``HIDE_UPLOAD_DOCUMENT_FOR_DONE_CASE`` is enabled.          |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Grant **one of these permissions** to users who need to     |
+       |                        | **upload or delete** documents within the Documents widget, |
+       |                        | depending on whether document access should be limited to   |
+       |                        | involved cases or allowed more broadly.                     |
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | ``DocumentWrite``: No                                       |
+       |                        | ``DocumentOfInvolvedCaseWrite``: role ``Everybody``         |
+       +------------------------+-------------------------------------------------------------+
 
 .. _RoleReadAll:
 
    :ref:`🔑RoleReadAll <RoleReadAll>`
-       +--------------------+------------------------------------------------------------+
-       | Category           | **Role Management**                                        |
-       +--------------------+------------------------------------------------------------+
-       | Description        | | Portal does not extend any logic based on this           |
-       |                    |   permission, but automatically grants it to admins to     |
-       |                    |   allow them to view all roles.                            |
-       |                    | | Admins will encounter an error when accessing            |
-       |                    |   :ref:`admin-settings` if lacking this permission.        |
-       +--------------------+------------------------------------------------------------+
-       | Type               | **Core permission**                                        |
-       +--------------------+------------------------------------------------------------+
-       | Use case           | Grant to admins or users who need to access all available  |
-       |                    | roles.                                                     |
-       +--------------------+------------------------------------------------------------+
-       | Granted by default | Role ``Everybody``                                         |
-       +--------------------+------------------------------------------------------------+
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Core permission                                             |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Role Management                                             |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | Allows a user to **view all available roles**. The Portal   |
+       |                        | itself does not apply additional logic based on this        |
+       |                        | permission, but it is **automatically granted to            |
+       |                        | administrators** to allow role visibility. If this          |
+       |                        | permission is missing, administrators will encounter an     |
+       |                        | error when accessing **Admin Settings**.                    |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Grant to **administrators or users** who need to **view     |
+       |                        | and access all roles**, for example when configuring users, | 
+       |                        | permissions, or role assignments.                           |
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | Yes - Role ``Everybody``                                    |
+       +------------------------+-------------------------------------------------------------+
 
 .. _RoleCreate:
 
    :ref:`🔑RoleCreate <RoleCreate>`
-       +--------------------+------------------------------------------------------------+
-       | Category           | **Role Management**                                        |
-       +--------------------+------------------------------------------------------------+
-       | Description        | | In Portal, this permission controls the ability to create|
-       |                    |   new dynamic roles inside the Role Management tab in      |
-       |                    |   :ref:`admin-settings` page.                              |
-       |                    | | The button :guilabel:`Create new role` in the Role       |
-       |                    |   Management tab will be hidden if admin is not granted    |
-       |                    |   this permission.                                         |
-       +--------------------+------------------------------------------------------------+
-       | Type               | **Core permission**                                        |
-       +--------------------+------------------------------------------------------------+
-       | Use case           | Grant permission to certain admins to allow them to create |
-       |                    | new dynamic roles.                                         |
-       +--------------------+------------------------------------------------------------+
-       | Granted by default | User ``Admin``                                             |
-       +--------------------+------------------------------------------------------------+
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Core permission                                             |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Role Management                                             |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | Allows a user to **create new dynamic roles** in the **Role |
+       |                        | Management** tab within the **Admin Settings** page. If     |
+       |                        | this permission is not granted, the **Create new role**     |
+       |                        | button is hidden.                                           |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Grant to **selected administrators** who are responsible    |
+       |                        | for **creating and maintaining** dynamic roles within the   |
+       |                        | system.                                                     |
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | Yes - User ``Admin``                                        |
+       +------------------------+-------------------------------------------------------------+
 
 .. _RoleDelete:
 
    :ref:`🔑RoleDelete <RoleDelete>`
-       +--------------------+------------------------------------------------------------+
-       | Category           | **Role Management**                                        |
-       +--------------------+------------------------------------------------------------+
-       | Description        | | In Portal, if an admin is not granted this permission,   |
-       |                    |   the delete icon is disabled to prevent deletion of       |
-       |                    |   existing dynamic roles in the Role Management tab on the |
-       |                    |   :ref:`admin-settings` page.                              |
-       |                    | | If the admin has this permission but the role is not     |
-       |                    |   dynamic, the delete icon is still disabled.              |
-       +--------------------+------------------------------------------------------------+
-       | Type               | **Core permission**                                        |
-       +--------------------+------------------------------------------------------------+
-       | Use case           | Grant permission to certain admins to allow them to delete |
-       |                    | dynamic roles.                                             |
-       +--------------------+------------------------------------------------------------+
-       | Granted by default | User ``Admin``                                             |
-       +--------------------+------------------------------------------------------------+
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Core permission                                             |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Role Management                                             |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | Allows a user to **delete dynamic roles** in the **Role     |
+       |                        | Management** tab within the **Admin Settings** page. If     |
+       |                        | this permission is not granted, the delete icon is disabled.| 
+       |                        | Even with this permission, **non-dynamic roles cannot be    |
+       |                        | deleted** and the delete icon remains disabled.             |
+       +------------------------+-------------------------------------------------------------+       
+       | **Use case**           | Grant to **selected administrators** who are responsible    |
+       |                        | for **removing dynamic roles** that are no longer needed.   |
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | Yes - User ``Admin``                                        |
+       +------------------------+-------------------------------------------------------------+
 
 .. _RoleManagement:
 
    :ref:`🔑RoleManagement <RoleManagement>`
-      +--------------------+------------------------------------------------------------+
-      | Category           | **Role Management**                                        |
-      +--------------------+------------------------------------------------------------+
-      | Description        | | This permission controls access to the Role Management   |
-      |                    |   tab in the :ref:`admin-settings` page.                   |
-      |                    | | To perform operations such as creating new roles or      |
-      |                    |   deleting roles, additional core permissions like         |
-      |                    |   **RoleCreate** and **RoleDelete** are required.          |
-      +--------------------+------------------------------------------------------------+
-      | Type               | **Portal permission**                                      |
-      +--------------------+------------------------------------------------------------+
-      | Use case           | Only grant the privilege to access Role Management tab     |
-      |                    | in :ref:`admin-settings` page for certain admins.          |
-      +--------------------+------------------------------------------------------------+
-      | Granted by default | User ``Admin``                                             |
-      +--------------------+------------------------------------------------------------+
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Portal permission                                           |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Role Management                                             |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | Allows a user to **access the Role Management tab** in      |
+       |                        | the **Admin Settings** page. This permission only grants    |
+       |                        | access to the page itself. To perform actions such as       |
+       |                        | **creating or deleting roles**, additional core permissions |
+       |                        | like **RoleCreate** and **RoleDelete** are required.        |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Grant to **selected administrators** who need **access to   |
+       |                        | role management**, while controlling specific actions       |
+       |                        | through additional permissions.                             |
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | Yes - User ``Admin``                                        |
+       +------------------------+-------------------------------------------------------------+
 
 .. _RoleMove:
 
    :ref:`🔑RoleMove <RoleMove>`
-       +--------------------+------------------------------------------------------------+
-       | Category           | **Role Management**                                        |
-       +--------------------+------------------------------------------------------------+
-       | Description        | | In Portal, this permission controls the ability to select|
-       |                    |   parent role when creating a dynamic role in Role         |
-       |                    |   Management tab in :ref:`admin-settings` page.            |
-       |                    | | If the admin is not granted this permission, the parent  |
-       |                    |   role selection in the Role Creation dialog will be       |
-       |                    |   disabled and set to ``Everybody`` by default.            |
-       |                    |   See :ref:`manage-roles`.                                 |
-       +--------------------+------------------------------------------------------------+
-       | Type               | **Core permission**                                        |
-       +--------------------+------------------------------------------------------------+
-       | Use case           | Grant permission to certain admins to allow them to select |
-       |                    | parent role when creating a dynamic role in Role           |
-       |                    | Management tab in :ref:`admin-settings` page.              |
-       +--------------------+------------------------------------------------------------+
-       | Granted by default | User ``Admin``                                             |
-       +--------------------+------------------------------------------------------------+
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Core permission                                             |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Role Management                                             |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | Allows a user to **select a parent role when creating a     |
+       |                        | dynamic role** in the **Role Management** tab within the    |
+       |                        | **Admin Settings** page. If this permission is not granted, |
+       |                        | the parent role selection in the role creation dialog is    |
+       |                        | disabled and automatically set to **Everybody**.            |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Grant to **selected administrators** who need to **define   |
+       |                        | role hierarchies** by choosing a specific parent role when  |
+       |                        | creating dynamic roles.                                     |
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | Yes - User ``Admin``                                        |
+       +------------------------+-------------------------------------------------------------+
 
 
 .. _TaskCaseAddNote:
 
    :ref:`🔑TaskCaseAddNote <TaskCaseAddNote>`
-       +--------------------+------------------------------------------------------------+
-       | Category           | **Notes and Comments**                                     |
-       +--------------------+------------------------------------------------------------+
-       | Description        | | This permission controls the ability to add notes in a   |
-       |                    |   task or case.                                            |
-       |                    | | If user is not granted this permission, they won't see   |
-       |                    |   the :guilabel:`Add note` option in the History widget    |
-       |                    |    (Case details page) and Notes widget (Task details page)|
-       +--------------------+------------------------------------------------------------+
-       | Type               | **Portal permission**                                      |
-       +--------------------+------------------------------------------------------------+
-       | Use case           | Grant to all users who need to collaborate and communicate |
-       |                    | on tasks and cases by adding notes.                        |
-       +--------------------+------------------------------------------------------------+
-       | Granted by default | Role ``Everybody``                                         |
-       +--------------------+------------------------------------------------------------+
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Portal permission                                           |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Notes and Comments                                          |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | Allows a user to **add notes to a task or a case**. If      |
+       |                        | this permission is not granted, the **Add note** option is  |
+       |                        | hidden in the **History widget** (case details page) and    |
+       |                        | the **Notes widget** (task details page).                   |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Grant to users who need to **collaborate and communicate    |
+       |                        | on tasks and cases** by adding notes, comments, or          |
+       |                        | additional information.                                     |
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | Yes - Role ``Everybody``                                    |
+       +------------------------+-------------------------------------------------------------+
 
 .. _TaskCaseShowMoreNote:
 
    :ref:`🔑TaskCaseShowMoreNote <TaskCaseShowMoreNote>`
-       +--------------------+------------------------------------------------------------+
-       | Category           | **Notes and Comments**                                     |
-       +--------------------+------------------------------------------------------------+
-       | Description        | | This permission controls the visibility of the           |
-       |                    |   :guilabel:`Show more` option in the top right corner of  |
-       |                    |   the History widget (:ref:`full-case-list`) and Notes     |
-       |                    |   widget (:ref:`full-task-list`).                          |
-       |                    | | When user clicks :guilabel:`Show more`, the full list of |
-       |                    |   notes is shown without pagination in a new page.         |
-       +--------------------+------------------------------------------------------------+
-       | Type               | **Portal permission**                                      |
-       +--------------------+------------------------------------------------------------+
-       | Use case           | Grant to users who need to view the complete list of notes |
-       |                    | without pagination in History and Notes widgets.           |
-       +--------------------+------------------------------------------------------------+
-       | Granted by default | Role ``Everybody``                                         |
-       +--------------------+------------------------------------------------------------+
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Portal permission                                           |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Notes and Comments                                          |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | Controls the visibility of the **Show more** option in the  |
+       |                        | **History widget** (Full Case List) and the **Notes widget**| 
+       |                        | (Full Task List). When a user clicks **Show more**, the     |
+       |                        | complete list of notes is displayed on a separate page      |
+       |                        | **without pagination**.                                     |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Grant to users who need to **view the full list of notes**  | 
+       |                        | for tasks or cases, for example for review, auditing, or    |
+       |                        | detailed collaboration.                                     |
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | Yes - Role ``Everybody``                                    |
+       +------------------------+-------------------------------------------------------------+
 
 .. _NoteReadAllCaseTaskDetails:
 
    :ref:`🔑NoteReadAllCaseTaskDetails <NoteReadAllCaseTaskDetails>`
-       +--------------------+------------------------------------------------------------+
-       | Category           | **Notes and Comments**                                     |
-       +--------------------+------------------------------------------------------------+
-       | Description        | | This permission allows non-admin users to view system    |
-       |                    |   notes  in the History widget and Notes widget.           | 
-       |                    | | Without this permission, regular users only see user     |
-       |                    |   notes, while system notes remain visible only to admins. |
-       |                    | | **Note:** Visibility also depends on global settings     |
-       |                    |   ``HIDE_SYSTEM_NOTES_FROM_HISTORY`` and                   |
-       |                    |   ``HIDE_SYSTEM_NOTES_FROM_HISTORY_ADMINISTRATOR``.        |
-       +--------------------+------------------------------------------------------------+
-       | Type               | **Portal permission**                                      |
-       +--------------------+------------------------------------------------------------+
-       | Use case           | Grant to users who need to see system activity logs in     |
-       |                    | case and task histories.                                   |
-       +--------------------+------------------------------------------------------------+
-       | Granted by default | User ``Admin``                                             |
-       +--------------------+------------------------------------------------------------+
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Portal permission                                           |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Notes and Comments                                          |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | Allows **non-admin users** to view system notes in the      |
+       |                        | **History widget** and **Notes widget** for cases and tasks.| 
+       |                        | Without this permission, regular users only see their own   |
+       |                        | notes, while system notes remain visible only to admins.    |
+       |                        | **Note**: Visibility also depends on the global settings    |
+       |                        | ``HIDE_SYSTEM_NOTES_FROM_HISTORY`` and                      |
+       |                        | ``HIDE_SYSTEM_NOTES_FROM_HISTORY_ADMINISTRATOR``.           |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Grant to users who need to **see system-generated activity  |
+       |                        | logs and system notes** in case and task histories, for     |
+       |                        | example for troubleshooting or detailed process tracking.   |
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | Yes - User ``Admin``                                        |
+       +------------------------+-------------------------------------------------------------+
 
    .. note::
       **Pre-LTS Versions:** This permission does not exist in Portal versions before 12.0. Use global variables ``Portal.Histories.HideSystemNotes`` and ``Portal.Histories.HideSystemNotesForAdministrator`` instead.
@@ -1129,234 +1206,277 @@ General permissions for dashboards, documents, lists, roles, and Portal features
 .. _NewsManagement:
 
    :ref:`🔑NewsManagement <NewsManagement>`
-       +--------------------+------------------------------------------------------------+
-       | Category           | **Dashboard**                                              |
-       +--------------------+------------------------------------------------------------+
-       | Description        | | This permission controls the ability to create, edit, and|
-       |                    |   delete news items in the News widget on dashboards.      |
-       |                    | | If user is not granted this permission, they can only    |
-       |                    |   view news items, but cannot create, edit, or delete them.|
-       +--------------------+------------------------------------------------------------+
-       | Type               | **Portal permission**                                      |
-       +--------------------+------------------------------------------------------------+
-       | Use case           | Grant to users who need to manage and publish news content |
-       |                    | on dashboard news widgets.                                 |
-       +--------------------+------------------------------------------------------------+
-       | Granted by default | User ``Admin``                                             |
-       +--------------------+------------------------------------------------------------+
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Portal permission                                           |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Dashboard Permissions                                       |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | Allows a user to **create, edit, and delete news items** in |
+       |                        | the **News widget** on dashboards. If this permission is    |
+       |                        | not granted, users can **only view news items**, but cannot |
+       |                        | create, edit, or delete them.                               |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Grant to users who are responsible for **managing and       |
+       |                        | publishing news content** on dashboard news widgets, for    |
+       |                        | example administrators or content managers.                 |
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | Yes - User ``Admin``                                        |
+       +------------------------+-------------------------------------------------------------+
 
 .. _PasswordValidation:
 
    :ref:`🔑PasswordValidation <PasswordValidation>`
-       +--------------------+------------------------------------------------------------+
-       | Category           | **Admin Settings & Configuration**                         |
-       +--------------------+------------------------------------------------------------+
-       | Description        | This permission controls access to the Password            |
-       |                    | Validation tab which supports to configure password        |
-       |                    | complexity requirements in the :ref:`admin-settings` page. |
-       +--------------------+------------------------------------------------------------+
-       | Type               | **Portal permission**                                      |
-       +--------------------+------------------------------------------------------------+
-       | Use case           | Only grant the privilege to access Password Validation tab |
-       |                    | in :ref:`admin-settings` page for certain admins.          |
-       +--------------------+------------------------------------------------------------+
-       | Granted by default | User ``Admin``                                             |
-       +--------------------+------------------------------------------------------------+
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Portal permission                                           |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Admin Settings & Configuration                              |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | Allows a user to **access the Password Validation** tab in  |
+       |                        | the **Admin Settings** page, where password complexity and  |
+       |                        | validation rules can be configured.                         |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Grant to **selected administrators** who are responsible    |
+       |                        | for **defining and maintaining password security policies** |
+       |                        | within the system.                                          |
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | Yes - User ``Admin``                                        |
+       +------------------------+-------------------------------------------------------------+
 
 .. _NotificationChannelsSetting:
 
    :ref:`🔑NotificationChannelsSetting <NotificationChannelsSetting>`
-       +--------------------+------------------------------------------------------------+
-       | Category           | **Admin Settings & Configuration**                         |
-       +--------------------+------------------------------------------------------------+
-       | Description        | This permission allows overwriting default notification    |
-       |                    | settings (opt-out notifications) in :ref:`my-profile` page.|
-       +--------------------+------------------------------------------------------------+
-       | Type               | **Portal permission**                                      |
-       +--------------------+------------------------------------------------------------+
-       | Use case           | Prevent certain users or roles from modifying notification |
-       |                    | channel preferences in :ref:`my-profile` page.             |
-       +--------------------+------------------------------------------------------------+
-       | Granted by default | Role ``Everybody``                                         |
-       +--------------------+------------------------------------------------------------+
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Portal permission                                           |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Admin Settings & Configuration                              |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | Allows a user to **override the default notification        |
+       |                        | settings** (opt-out notifications) on the **My Profile**    |
+       |                        | page.                                                       |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Use this permission to **allow or restrict users or roles   |
+       |                        | from modifying their notification channel preferences** on  |
+       |                        | the **My Profile** page.                                    |
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | Yes - Role ``Everybody``                                    |
+       +------------------------+-------------------------------------------------------------+
 
 .. _CreatePublicExternalLink:
 
    :ref:`🔑CreatePublicExternalLink <CreatePublicExternalLink>`
-       +--------------------+------------------------------------------------------------+
-       | Category           | **Process & External Links**                               |
-       +--------------------+------------------------------------------------------------+
-       | Description        | | This permission controls the visibility of the           |
-       |                    |   **Visibility** section in the Add External Link dialog   |
-       |                    |   on the :ref:`full-process-list` page.                    |
-       |                    | | If user is not granted this permission, the Visibility   |
-       |                    |   section is hidden and they can only create private       |
-       |                    |   external links (visible only to themselves).             |
-       |                    | | With this permission, users can choose to create public  |
-       |                    |   links with role-based permissions that appear in the     |
-       |                    |   process list for selected roles.                         |
-       +--------------------+------------------------------------------------------------+
-       | Type               | **Portal permission**                                      |
-       +--------------------+------------------------------------------------------------+
-       | Use case           | Grant to users who need to create external links that are  |
-       |                    | shared with other users or roles, not just private links.  |
-       +--------------------+------------------------------------------------------------+
-       | Granted by default | No                                                         |
-       +--------------------+------------------------------------------------------------+
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Portal permission                                           |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Process & External Links                                    |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | Controls the visibility of the **Visibility** section in    |
+       |                        | the **Add External Link** dialog on the **Full Process      |
+       |                        | List** page. If this permission is not granted, the         |
+       |                        | Visibility section is hidden and users can only create      |
+       |                        | **private external links** (visible only to themselves).    |
+       |                        | With this permission, users can create **public external    |
+       |                        | links** with role-based visibility that appear in the       |
+       |                        | process list for selected roles.                            |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Grant to users who need to **create external links shared   |
+       |                        | with other users or roles**, not just private links, for    |
+       |                        | example for collaboration or guided access to processes.    |
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | No                                                          |
+       +------------------------+-------------------------------------------------------------+
 
 .. _permission-absence-substitute:
 
 Portal Absence And Substitute Permissions
 -----------------------------------------
 
-Permissions for managing user absences and task substitution.
 
 .. _UserReadOwnAbsences:
 
    :ref:`🔑UserReadOwnAbsences <UserReadOwnAbsences>`
-       +--------------------+------------------------------------------------------------+
-       | Category           | **Manage own absences**                                    |
-       +--------------------+------------------------------------------------------------+
-       | Description        |  View own absence records                                  |
-       +--------------------+------------------------------------------------------------+
-       | Type               | **Core permission**                                        |
-       +--------------------+------------------------------------------------------------+
-       | Use case           | User with this permission sees his absence                 | 
-       +--------------------+------------------------------------------------------------+
-       | Granted by default | Role ``Everybody``                                         |
-       +--------------------+------------------------------------------------------------+
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Core permission                                             |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Manage own absences                                         |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        |  Allows a user to **view their own absence records**.       |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Enables users to **see their personal absence information**,| 
+       |                        | for example to review planned or recorded absences.         | 
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | Yes - Role ``Everybody``                                    |
+       +------------------------+-------------------------------------------------------------+
 
 .. _UserCreateOwnAbsence:
 
    :ref:`🔑UserCreateOwnAbsence <UserCreateOwnAbsence>`
-       +--------------------+------------------------------------------------------------+
-       | Category           | **Manage own absences**                                    |
-       +--------------------+------------------------------------------------------------+
-       | Description        | Create and edit own absences                               |
-       +--------------------+------------------------------------------------------------+
-       | Type               | **Core permission**                                        |
-       +--------------------+------------------------------------------------------------+
-       | Use case           | User with this permission can create and edit his          |
-       |                    | own absences                                               | 
-       +--------------------+------------------------------------------------------------+
-       | Granted by default | Role ``Everybody``                                         |
-       +--------------------+------------------------------------------------------------+
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Core permission                                             |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Manage own absences                                         |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | Allows a user to **create and edit their own absences**.    |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Enables users to **create and maintain their own absence    |
+       |                        | entries**, for example for vacation or other planned        |
+       |                        | absences.                                                   | 
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | Yes - Role ``Everybody``                                    |
+       +------------------------+-------------------------------------------------------------+
 
 .. _UserDeleteOwnAbsence:
 
    :ref:`🔑UserDeleteOwnAbsence <UserDeleteOwnAbsence>`
-       +--------------------+------------------------------------------------------------+
-       | Category           | **Manage own absences**                                    |
-       +--------------------+------------------------------------------------------------+
-       | Description        | Delete own absences                                        |
-       +--------------------+------------------------------------------------------------+
-       | Type               | **Core permission**                                        |
-       +--------------------+------------------------------------------------------------+
-       | Use case           | User with this permission can delete his own absences      | 
-       +--------------------+------------------------------------------------------------+
-       | Granted by default | Role ``Everybody``                                         |
-       +--------------------+------------------------------------------------------------+
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Core permission                                             |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Manage own absences                                         |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | Allows a user to **delete their own absence records**.      |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Enables users to **remove their own absence entries**, for  |
+       |                        | example if an absence was entered incorrectly or is no      |
+       |                        | longer relevant.                                            | 
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | Yes - Role ``Everybody``                                    |
+       +------------------------+-------------------------------------------------------------+
 
 
 .. _UserReadAbsences:
 
    :ref:`🔑UserReadAbsences <UserReadAbsences>`
-       +--------------------+------------------------------------------------------------+
-       | Category           | **Manage absences for all users**                          |
-       +--------------------+------------------------------------------------------------+
-       | Description        | View absences of all users in the security context         |
-       +--------------------+------------------------------------------------------------+
-       | Type               | **Core permission**                                        |
-       +--------------------+------------------------------------------------------------+
-       | Use case           | User with this permission can view absences of all users   |
-       |                    | in the security context                                    | 
-       +--------------------+------------------------------------------------------------+
-       | Granted by default | User ``Admin``                                             |
-       +--------------------+------------------------------------------------------------+
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Core permission                                             |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Manage absences for all users                               |
+       +------------------------+-------------------------------------------------------------+      
+       | **Description**        | Allows a user to **view absence records of all users**      |
+       |                        | within the current security context.                        |       
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Grant to administrators or managers who need **visibility   |
+       |                        | into absences of all users**, for example for planning,     |
+       |                        | coordination, or administrative oversight.                  | 
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | Yes - User ``Admin``                                        |
+       +------------------------+-------------------------------------------------------------+
 
 .. _UserCreateAbsence:
 
    :ref:`🔑UserCreateAbsence <UserCreateAbsence>`
-       +--------------------+------------------------------------------------------------+
-       | Category           | **Manage absences for all users**                          |
-       +--------------------+------------------------------------------------------------+
-       | Description        | Create and edit absences for any users in                  | 
-       |                    | the security context                                       |
-       +--------------------+------------------------------------------------------------+
-       | Type               | **Core permission**                                        |
-       +--------------------+------------------------------------------------------------+
-       | Use case           | User with this permission can create and edit absences     |
-       |                    | for any users in the security context                      | 
-       +--------------------+------------------------------------------------------------+
-       | Granted by default | User ``Admin``                                             |
-       +--------------------+------------------------------------------------------------+
-
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Core permission                                             |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Manage absences for all users                               |
+       +------------------------+-------------------------------------------------------------+     
+       | **Description**        | Allows a user to **create and edit absence records** for    |
+       |                        | any user within the current security context.               |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Grant to administrators or managers who need to **create    |
+       |                        | or update absences on behalf of other users**, for example  |
+       |                        | for corrections or administrative handling.                 | 
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | Yes - User ``Admin``                                        |
+       +------------------------+-------------------------------------------------------------+
 
 .. _UserDeleteAbsence:
 
    :ref:`🔑UserDeleteAbsence <UserDeleteAbsence>`
-       +--------------------+------------------------------------------------------------+
-       | Category           | **Manage absences for all users**                          |
-       +--------------------+------------------------------------------------------------+
-       | Description        | Delete absences for any users in the security context      |
-       +--------------------+------------------------------------------------------------+
-       | Type               | **Core permission**                                        |
-       +--------------------+------------------------------------------------------------+
-       | Use case           | User with this permission can delete absences              |
-       |                    | for any users in the security context                      | 
-       +--------------------+------------------------------------------------------------+
-       | Granted by default | User ``Admin``                                             |
-       +--------------------+------------------------------------------------------------+
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Core permission                                             |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Manage absences for all users                               |
+       +------------------------+-------------------------------------------------------------+    
+       | **Description**        | Allows a user to **delete absence records for any user**    |
+       |                        | within the current security context.                        |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Grant to administrators or managers who need to **remove    |
+       |                        | absence entries for other users**, for example to correct   |
+       |                        | mistakes or clean up outdated records.                      | 
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | Yes - User ``Admin``                                        |
+       +------------------------+-------------------------------------------------------------+
 
 
 .. _UserCreateOwnSubstitute:
 
    :ref:`🔑UserCreateOwnSubstitute <UserCreateOwnSubstitute>`
-       +--------------------+------------------------------------------------------------+
-       | Category           | **Manage substitutes**                                     |
-       +--------------------+------------------------------------------------------------+
-       | Description        | Create own substitute                                      |
-       +--------------------+------------------------------------------------------------+
-       | Type               | **Core permission**                                        |
-       +--------------------+------------------------------------------------------------+
-       | Use case           | User with this permission can create own substitute        |
-       +--------------------+------------------------------------------------------------+
-       | Granted by default | Role ``Everybody``                                         |
-       +--------------------+------------------------------------------------------------+
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Core permission                                             |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Manage substitutes                                          |
+       +------------------------+-------------------------------------------------------------+   
+       | **Description**        | Allows a user to **create their own substitute**.           |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Enables users to **define a substitute for themselves**,    |
+       |                        | for example to ensure tasks and responsibilities are        |
+       |                        | handled during their absence                                |
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | Yes - Role ``Everybody``                                    |
+       +------------------------+-------------------------------------------------------------+
    
 
 .. _UserCreateSubstitute:
 
    :ref:`🔑UserCreateSubstitute <UserCreateSubstitute>`
-       +--------------------+------------------------------------------------------------+
-       | Category           | **Manage substitutes**                                     |
-       +--------------------+------------------------------------------------------------+
-       | Description        | Create substitute assignments for any users in the         |
-       |                    | security context                                           |
-       +--------------------+------------------------------------------------------------+
-       | Type               | **Core permission**                                        |
-       +--------------------+------------------------------------------------------------+
-       | Use case           | User with this permission can create substitute            |
-       |                    | for any users in the security context                      | 
-       +--------------------+------------------------------------------------------------+
-       | Granted by default | User ``Admin``                                             |
-       +--------------------+------------------------------------------------------------+
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Core permission                                             |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Manage substitutes                                          |
+       +------------------------+-------------------------------------------------------------+   
+       | **Description**        | Allows a user to **create substitute assignments for any    |
+       |                        | user** within the current security context.                 |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Grant to administrators or managers who need to **assign    |
+       |                        | substitutes on behalf of other users**, for example for     |
+       |                        | planned absences or organizational coverage.                | 
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | Yes - User ``Admin``                                        |
+       +------------------------+-------------------------------------------------------------+
 
 .. _UserReadSubstitutes:
 
    :ref:`🔑UserReadSubstitutes <UserReadSubstitutes>`
-       +--------------------+------------------------------------------------------------+
-       | Category           | **Manage substitutes**                                     |
-       +--------------------+------------------------------------------------------------+
-       | Description        | View substitutes of any users in the security context      |
-       +--------------------+------------------------------------------------------------+
-       | Type               | **Core permission**                                        |
-       +--------------------+------------------------------------------------------------+
-       | Use case           | User with this permission can view substitutes of          |
-       |                    | any users in the security context                          | 
-       +--------------------+------------------------------------------------------------+
-       | Granted by default | User ``Admin``                                             |
-       +--------------------+------------------------------------------------------------+
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Core permission                                             |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Manage substitutes                                          |
+       +------------------------+-------------------------------------------------------------+   
+       | **Description**        | Allows a user to **view substitute assignments of any       |
+       |                        | user** within the current security context.                 |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Grant to administrators or managers who need **visibility   |
+       |                        | into substitute assignments**, for example to review        |
+       |                        | coverage, validate substitutions, or support organizational | 
+       |                        | planning.                                                   | 
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | Yes - User ``Admin``                                        |
+       +------------------------+-------------------------------------------------------------+
 
 .. _engine-permissions-respected:
 
