@@ -71,6 +71,7 @@ Portal has a flexible security system that allows you to configure who can acces
    
    The Portal is built as a layer above the Axon Ivy Engine core. Not every core engine permission is automatically used or supported by the Portal.
    If you require a specific engine permission not currently supported by the Portal, please contact Axon Ivy support.
+   
    Many behaviors in Portal require multiple permissions to work correctly. For example, to reset a task, a user typically needs both the permission ``TaskDisplayResetAction`` to display Reset button and the permission ``TaskReset`` to reset it.
    Ensure you review all related permissions when configuring access.
 
@@ -94,287 +95,372 @@ Permissions controlling task visibility, actions, and property modifications.
 .. _TaskReadAll:
 
    :ref:`🔑TaskReadAll <TaskReadAll>`
-       +--------------------+-------------------------------------------------------------+
-       | Category           | **Task Visibility**                                         |
-       +--------------------+-------------------------------------------------------------+
-       | Description        | View all user tasks (not system) in the system regardless   |
-       |                    | of assignment                                               |
-       +--------------------+-------------------------------------------------------------+
-       | Type               | **Core permission**                                         |
-       +--------------------+-------------------------------------------------------------+
-       | Use case           | Grant it to see all tasks in the security context           |
-       +--------------------+-------------------------------------------------------------+
-       | Granted by default | No                                                          |
-       +--------------------+-------------------------------------------------------------+
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Core permission                                             |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Task Visibility                                             |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | Allows a user to view **all user tasks** in the system,     |
+       |                        | independent of task assignment, responsibility, or          |
+       |                        | involvement. System tasks are not included.                 |
+       |                        | With this you see all tasks in the security context.        |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Required for administrators, supervisors, or support users  |
+       |                        | who need a global overview of all user tasks for            |
+       |                        | monitoring, troubleshooting, audits, or operational support.| 
+       |                        | Without this permission, users only see tasks they are      |
+       |                        | directly involved in.                                       |
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | No                                                          |
+       +------------------------+-------------------------------------------------------------+
 
 
 .. _SystemTaskReadAll:
 
    :ref:`🔑SystemTaskReadAll <SystemTaskReadAll>`
-       +--------------------+------------------------------------------------------------+
-       | Category           | **Task Visibility**                                        |
-       +--------------------+------------------------------------------------------------+
-       | Description        | View system tasks (background/automated tasks)             |
-       +--------------------+------------------------------------------------------------+
-       | Type               | **Portal permission**                                      |
-       +--------------------+------------------------------------------------------------+
-       | Use case           | Grant it to see system tasks for debugging or monitoring   |
-       +--------------------+------------------------------------------------------------+
-       | Granted by default | No                                                         |
-       +--------------------+------------------------------------------------------------+
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Core permission                                             |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Task Visibility                                             |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | Allows a user to view system tasks, such as background jobs | 
+       |                        | and automated tasks executed by the platform. These tasks   |
+       |                        | are not created or processed by end users.                  |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Intended for administrators and technical users who need    |                        
+       |                        | insight into **background processing**, system behavior, or |                        
+       |                        | task execution for **debugging, monitoring, or operational  |
+       |                        | troubleshooting**. Not relevant for business users.         |
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | No                                                          |
+       +------------------------+-------------------------------------------------------------+
 
 
 .. _TaskReadOwnCaseTasks:
 
    :ref:`🔑TaskReadOwnCaseTasks <TaskReadOwnCaseTasks>`
-       +--------------------+------------------------------------------------------------+
-       | Category           | **Task Visibility**                                        |
-       +--------------------+------------------------------------------------------------+
-       | Description        | View tasks related to cases where user is involved         |
-       +--------------------+------------------------------------------------------------+
-       | Type               | **Core permission**                                        |
-       +--------------------+------------------------------------------------------------+
-       | Use case           | See my own task and case in task list, case list           |
-       +--------------------+------------------------------------------------------------+
-       | Granted by default | Yes                                                        |
-       +--------------------+------------------------------------------------------------+
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Core permission                                             |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Task Visibility                                             |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | Allows a user to view **tasks that belong to cases they are |                        
+       |                        | involved in**, even if the tasks are assigned to other      |
+       |                        | users or roles.                                             |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | See my own task and case in task list, case list            |
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | Yes - Role ``Everybody``                                    |
+       +------------------------+-------------------------------------------------------------+
 
 
 .. _TaskParkOwnWorkingTask:
 
    :ref:`🔑TaskParkOwnWorkingTask <TaskParkOwnWorkingTask>`
-       +--------------------+------------------------------------------------------------+
-       | Category           | **Task Actions**                                           |
-       +--------------------+------------------------------------------------------------+
-       | Description        | Reserve (park) an own working task                         |
-       +--------------------+------------------------------------------------------------+
-       | Type               | **Core permission**                                        |
-       +--------------------+------------------------------------------------------------+
-       | Use case           | Grant this permission to enable Reserve menu item in task  |
-       |                    | action                                                     | 
-       +--------------------+------------------------------------------------------------+
-       | Granted by default | Yes                                                        |
-       +--------------------+------------------------------------------------------------+
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Core permission                                             |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Task Actions                                                |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | Allows a user to **reserve (park) a task they are currently |
+       |                        | working on**, temporarily setting it aside without          |
+       |                        | completing or releasing it.                                 |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Useful when a user needs to **interrupt their work**, wait  |
+       |                        | for additional information, or switch priorities, while     |
+       |                        | ensuring the task remains reserved and is not taken by      |
+       |                        | another user. Enables the Reserve action in the task menu.  |                                            
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | Yes - Role ``Everybody``                                    |
+       +------------------------+-------------------------------------------------------------+
 
 .. _TaskResetOwnWorkingTask:
 
    :ref:`🔑TaskResetOwnWorkingTask <TaskResetOwnWorkingTask>`
-       +--------------------+------------------------------------------------------------+
-       | Category           | **Task Actions**                                           |
-       +--------------------+------------------------------------------------------------+
-       | Description        | Reset own working tasks to their initial state             |
-       |                    | in states: RESUMED, PARKED, READY_FOR_JOIN, FAILED         |
-       +--------------------+------------------------------------------------------------+
-       | Type               | **Core permission**                                        |
-       +--------------------+------------------------------------------------------------+
-       | Use case           | Grant this permission to enable Reset menu item in task    |
-       |                    | action                                                     | 
-       +--------------------+------------------------------------------------------------+
-       | Granted by default | Yes                                                        |
-       +--------------------+------------------------------------------------------------+
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Core permission                                             |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Task Actions                                                |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | Allows a user to **reset their own working task to its      |
+       |                        | initial state**. The reset action is available when the     |
+       |                        | task is in one of the following states: **RESUMED, PARKED,  |
+       |                        | READY_FOR_JOIN, FAILED**. Resetting a task clears the       |
+       |                        | current working progress and returns it to its original     |
+       |                        | start state.                                                |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Used when a user needs to **start a task over from the      |
+       |                        | beginning**, for example after an error, a failed execution,| 
+       |                        | or an invalid intermediate state. Enables the Reset         |
+       |                        | action in the task action menu for applicable task states.  |
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | Yes - Role ``Everybody``                                    |
+       +------------------------+-------------------------------------------------------------+
      
 .. _TaskReset:
 
    :ref:`🔑TaskReset <TaskReset>`
-       +--------------------+------------------------------------------------------------+
-       | Category           | **Task Actions**                                           |
-       +--------------------+------------------------------------------------------------+
-       | Description        | Reset any tasks in the security context                    |
-       +--------------------+------------------------------------------------------------+
-       | Type               | **Core permission**                                        |
-       +--------------------+------------------------------------------------------------+
-       | Use case           | Only high privilege user should have this permission       | 
-       +--------------------+------------------------------------------------------------+
-       | Granted by default | No                                                         |
-       +--------------------+------------------------------------------------------------+
-
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Core permission                                             |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Task Actions                                                |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | Allows a user to **reset any task within the current        |
+       |                        | security context**, regardless of task ownership or         |
+       |                        | assignment.                                                 |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Intended for **high-privileged users**, such as             |
+       |                        | administrators or support staff, who need to reset tasks    |
+       |                        | to resolve errors, unblock processes, or correct invalid    |
+       |                        | task states.                                                |
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | Yes - User ``Admin``                                        |
+       +------------------------+-------------------------------------------------------------+
 .. _TaskResetReadyForJoin:
 
 
    :ref:`🔑TaskResetReadyForJoin <TaskResetReadyForJoin>`
-       +--------------------+------------------------------------------------------------+
-       | Category           | **Task Actions**                                           |
-       +--------------------+------------------------------------------------------------+
-       | Description        | Reset tasks in READY_FOR_JOIN state                        |
-       +--------------------+------------------------------------------------------------+
-       | Type               | **Core permission**                                        |
-       +--------------------+------------------------------------------------------------+
-       | Use case           | Useful for workflow error recovery                         | 
-       +--------------------+------------------------------------------------------------+
-       | Granted by default | No                                                         |
-       +--------------------+------------------------------------------------------------+
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Core permission                                             |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Task Actions                                                |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | Allows a user to **reset tasks that are currently in the    |
+       |                        | READY_FOR_JOIN state**.                                     |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Useful for **workflow error recovery**, for example when    |
+       |                        | tasks are blocked or cannot be joined correctly and need    |
+       |                        | to be reset to restore normal processing.                   | 
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | Yes - User ``Admin``                                        |
+       +------------------------+-------------------------------------------------------------+
 
 
 .. _TaskDestroy:
 
    :ref:`🔑TaskDestroy <TaskDestroy>`
-       +--------------------+------------------------------------------------------------+
-       | Category           | **Task Actions**                                           |
-       +--------------------+------------------------------------------------------------+
-       | Description        | Delete tasks permanently                                   |
-       |                    | Only works if task state is not DESTROYED or DONE          |
-       +--------------------+------------------------------------------------------------+
-       | Type               | **Core permission**                                        |
-       +--------------------+------------------------------------------------------------+
-       | Use case           | High-privilege permission for administrators               | 
-       +--------------------+------------------------------------------------------------+
-       | Granted by default | No                                                         |
-       +--------------------+------------------------------------------------------------+
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Core permission                                             |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Task Actions                                                |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | Allows a user to **permanently delete tasks**. The action   |
+       |                        | is only available if the task state is **not DESTROYED or   |
+       |                        | DONE**.                                                     |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | High-privilege permission for **administrators** who need   |
+       |                        | to permanently remove tasks, for example during cleanup,    |
+       |                        | error handling, or system maintenance.                      | 
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | Yes - User ``Admin``                                        |
+       +------------------------+-------------------------------------------------------------+
 
-**Task Property Modifications**
 
 .. _TaskWriteDescription:
 
    :ref:`🔑TaskWriteDescription <TaskWriteDescription>`
-       +--------------------+------------------------------------------------------------+
-       | Category           | **Task Actions**                                           |
-       +--------------------+------------------------------------------------------------+
-       | Description        | Modify task description                                    |
-       |                    | Cannot change terminated tasks (DONE, DESTROYED, FAILED)   |
-       +--------------------+------------------------------------------------------------+
-       | Type               | **Core permission**                                        |
-       +--------------------+------------------------------------------------------------+
-       | Use case           | User with this permission can change task description      |
-       |                    | in task details.                                           | 
-       +--------------------+------------------------------------------------------------+
-       | Granted by default | No                                                         |
-       +--------------------+------------------------------------------------------------+
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Core permission                                             |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Task Property Modifications                                 |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | Allows a user to **modify the task description**. The       | 
+       |                        | description cannot be changed if the task is in a           | 
+       |                        | terminated state (**DONE, DESTROYED, FAILED**).             |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Enables users with this permission to **update or correct   |
+       |                        | the task description** in the task details, for example to  |
+       |                        | clarify requirements or add missing information.            | 
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | Yes - User ``Admin``                                        |
+       +------------------------+-------------------------------------------------------------+
 
 
 .. _TaskWriteOriginalPriority:
 
    :ref:`🔑TaskWriteOriginalPriority <TaskWriteOriginalPriority>`
-       +--------------------+------------------------------------------------------------+
-       | Category           | **Task Actions**                                           |
-       +--------------------+------------------------------------------------------------+
-       | Description        | Change task priority level                                 |
-       |                    | Cannot change tasks in states: DONE, DESTROYED, FAILED     | 
-       +--------------------+------------------------------------------------------------+
-       | Type               | **Core permission**                                        |
-       +--------------------+------------------------------------------------------------+
-       | Use case           | User with this permission can change task priority         |
-       |                    | in task details.                                           | 
-       +--------------------+------------------------------------------------------------+
-       | Granted by default | No                                                         |
-       +--------------------+------------------------------------------------------------+
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Core permission                                             |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Task Property Modifications                                 |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | Allows a user to **change the task priority level**. The    |
+       |                        | priority cannot be modified if the task is in one of        |
+       |                        | the following states: **DONE, DESTROYED, FAILED**.          | 
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Enables users with this permission to **adjust the          |
+       |                        | priority of a task** in the task details, for example to    |
+       |                        | reflect changing urgency or business importance.            | 
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | Yes - User ``Admin``                                        |
+       +------------------------+-------------------------------------------------------------+
 
 
 .. _TaskWriteExpiryTimestamp:
 
    :ref:`🔑TaskWriteExpiryTimestamp <TaskWriteExpiryTimestamp>`
-       +--------------------+------------------------------------------------------------+
-       | Category           | **Task Actions**                                           |
-       +--------------------+------------------------------------------------------------+
-       | Description        | Change task expiry date                                    |
-       |                    | Cannot change tasks in states: DONE, DESTROYED, FAILED     |
-       +--------------------+------------------------------------------------------------+
-       | Type               | **Core permission**                                        |
-       +--------------------+------------------------------------------------------------+
-       | Use case           | User with ``AXONIVY_PORTAL_ADMIN`` role and has            | 
-       |                    | this permission can change task expiry date                | 
-       +--------------------+------------------------------------------------------------+
-       | Granted by default | No                                                         |
-       +--------------------+------------------------------------------------------------+
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Core permission                                             |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Task Property Modifications                                 |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | Allows a user to **change the task expiry date**. The expiry| 
+       |                        | date cannot be modified if the task is in one of the        |
+       |                        | following states: **DONE, DESTROYED, FAILED**.              |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Allows users with the **AXONIVY_PORTAL_ADMIN** role and     |
+       |                        | this permission to **update the task expiry date**, for     |
+       |                        | example to extend or shorten deadlines.                     | 
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | Yes - User ``Admin``                                        |
+       +------------------------+-------------------------------------------------------------+
 
 
 .. _TaskWriteActivator:
 
    :ref:`🔑TaskWriteActivator <TaskWriteActivator>`
-       +--------------------+------------------------------------------------------------+
-       | Category           | **Task Actions**                                           |
-       +--------------------+------------------------------------------------------------+
-       | Description        | Delegate tasks to other users/roles                        |
-       +--------------------+------------------------------------------------------------+
-       | Type               | **Core permission**                                        |
-       +--------------------+------------------------------------------------------------+
-       | Use case           | User with this permission can delegate task to other       | 
-       |                    | user/roles in the same security context                    |  
-       +--------------------+------------------------------------------------------------+
-       | Granted by default | No                                                         |
-       +--------------------+------------------------------------------------------------+
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Core permission                                             |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Task Property Modifications                                 |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | Allows a user to **delegate tasks to other users or roles**.|
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Enables users with this permission to **delegate a task to  |
+       |                        | other users or roles within the same security context**,    |
+       |                        | for example to change responsibility or hand over work.     |  
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | Yes - User ``Admin``                                        |
+       +------------------------+-------------------------------------------------------------+
 
 
 .. _TaskWriteExpiryActivator:
 
    :ref:`🔑TaskWriteExpiryActivator <TaskWriteExpiryActivator>`
-       +--------------------+------------------------------------------------------------+
-       | Category           | **Task Actions**                                           |
-       +--------------------+------------------------------------------------------------+
-       | Description        | Change the responsible when task expires                   |
-       |                    | Cannot change tasks in states: DONE, DESTROYED, FAILED     |
-       +--------------------+------------------------------------------------------------+
-       | Type               | **Core permission**                                        |
-       +--------------------+------------------------------------------------------------+
-       | Use case           | User with ``AXONIVY_PORTAL_ADMIN`` role and has            | 
-       |                    | this permission can change responsible after task expires  | 
-       +--------------------+------------------------------------------------------------+
-       | Granted by default | No                                                         |
-       +--------------------+------------------------------------------------------------+
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Core permission                                             |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Task Property Modifications                                 |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | Allows a user to **change the responsible user or role when |
+       |                        | a task expires**. The responsible party cannot be changed   |
+       |                        | if the task is in one of the following states:              |
+       |                        | **DONE, DESTROYED, FAILED**.                                |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Enables users with the ``AXONIVY_PORTAL_ADMIN`` role and    |
+       |                        | this permission to **define or update who becomes           |
+       |                        | responsible after a task expires**.                         | 
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | Yes - User ``Admin``                                        |
+       +------------------------+-------------------------------------------------------------+
 
 .. _TaskWriteDelayTimestamp:
 
    :ref:`🔑TaskWriteDelayTimestamp <TaskWriteDelayTimestamp>`
-       +--------------------+------------------------------------------------------------+
-       | Category           | **Task Actions**                                           |
-       +--------------------+------------------------------------------------------------+   
-       | Description        | Modify task delay/start time                               |
-       +--------------------+------------------------------------------------------------+
-       | Type               | **Core permission**                                        |
-       +--------------------+------------------------------------------------------------+
-       | Use case           | User with ``AXONIVY_PORTAL_ADMIN`` role and has            | 
-       |                    | this permission can change task delay/start time           |
-       +--------------------+------------------------------------------------------------+
-       | Granted by default | No                                                         |
-       +--------------------+------------------------------------------------------------+
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Core permission                                             |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Task Property Modifications                                 |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | Allows a user to **modify the task delay or start time**.   |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Enables users with the ``AXONIVY_PORTAL_ADMIN`` role and    |
+       |                        | this permission to **change when a task starts or is        |
+       |                        | delayed**, for example to reschedule execution.             |
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | Yes - User ``Admin``                                        |
+       +------------------------+-------------------------------------------------------------+
 
 .. _TaskWriteActivatorOwnTasks:
 
    :ref:`🔑TaskWriteActivatorOwnTasks <TaskWriteActivatorOwnTasks>`
-       +--------------------+------------------------------------------------------------+
-       | Category           | **Task UI Display Permissions**                            |
-       +--------------------+------------------------------------------------------------+
-       | Description        | Delegate personal/group tasks assigned to user             |
-       +--------------------+------------------------------------------------------------+
-       | Type               | **Portal permission**                                      |
-       +--------------------+------------------------------------------------------------+
-       | Use case           | Not sure  ???                                              | 
-       +--------------------+------------------------------------------------------------+
-       | Granted by default | No                                                         |
-       +--------------------+------------------------------------------------------------+
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Portal permission                                           |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Allows a user to **delegate personal or group tasks that    |    
+       |                        | are assigned to themselves**.                               |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | Enables users to **delegate tasks they currently own**      |
+       |                        | to another user or role via the Portal UI, for example when |
+       |                        | handing over work or changing responsibility within a team. |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Allows a user to **delegate personal or group tasks that    |    
+       |                        | are assigned to themselves**.                               |
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | No                                                          |
+       +------------------------+-------------------------------------------------------------+
 
 
 .. _TaskDisplayAdditionalOptions:
 
    :ref:`🔑TaskDisplayAdditionalOptions <TaskDisplayAdditionalOptions>`
-       +--------------------+------------------------------------------------------------+
-       | Category           | **Task UI Display Permissions**                            |
-       +--------------------+------------------------------------------------------------+
-       | Description        | Display additional action                                  |
-       +--------------------+------------------------------------------------------------+
-       | Type               | **Portal permission**                                      |
-       +--------------------+------------------------------------------------------------+
-       | Use case           | User with this permission will have additional             |
-       |                    | menu items from case map.                                  |
-       +--------------------+------------------------------------------------------------+
-       | Granted by default | Yes                                                        |
-       +--------------------+------------------------------------------------------------+
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Core permission                                             |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Task UI Display Permissions                                 |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | Allows the Portal to **display additional task actions**    |
+       |                        | in the user interface.                                      |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Users with this permission will see **additional menu       |
+       |                        | items** on tasks that are defined in the **case map**,      |
+       |                        | enabling extended actions directly from the task UI.        |
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | Yes - Role ``Everybody``                                    |
+       +------------------------+-------------------------------------------------------------+
 
 .. _TaskDisplayResetAction:
 
    :ref:`🔑TaskDisplayResetAction <TaskDisplayResetAction>`
-       +--------------------+------------------------------------------------------------+
-       | Category           | **Task UI Display Permissions**                            |
-       +--------------------+------------------------------------------------------------+
-       | Description        | Display reset action                                       |
-       +--------------------+------------------------------------------------------------+
-       | Type               | **Portal permission**                                      |
-       +--------------------+------------------------------------------------------------+
-       | Use case           | User with this permission will have ``Reset``              |
-       |                    | menu item in the task action menu. User also needs         |
-       |                    | ``TaskResetOwnWorkingTask`` or ``TaskReset`` permission    |
-       +--------------------+------------------------------------------------------------+
-       | Granted by default | Yes                                                        |
-       +--------------------+------------------------------------------------------------+
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Core permission                                             |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Task UI Display Permissions                                 |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | Allows the Portal to **display the reset action** for tasks | 
+       |                        | in the user interface.                                      |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Users with this permission will see the **Reset** menu item |
+       |                        | in the task action menu. To actually reset a task, the user |
+       |                        | must also have either the **TaskResetOwnWorkingTask** or    |
+       |                        | **TaskReset** permission.                                   |
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | Yes - Role ``Everybody``                                    |
+       +------------------------+-------------------------------------------------------------+
 
 
 .. _TaskDisplayReserveAction:
@@ -391,7 +477,7 @@ Permissions controlling task visibility, actions, and property modifications.
        |                    | menu item in the task action menu. User also needs         |
        |                    | ``TaskParkOwnWorkingTask`` permission to enable this menu. | 
        +--------------------+------------------------------------------------------------+
-       | Granted by default | Yes                                                        |
+       | Granted by default | Role ``Everybody``                                         |
        +--------------------+------------------------------------------------------------+
    
 .. _TaskDisplayDelegateAction:
@@ -408,7 +494,7 @@ Permissions controlling task visibility, actions, and property modifications.
        |                    | menu item in the task action menu. User also needs         |
        |                    | ``TaskWriteActivator`` permission to enable this menu.     |  
        +--------------------+------------------------------------------------------------+
-       | Granted by default | Yes                                                        |
+       | Granted by default | Role ``Everybody``                                         |
        +--------------------+------------------------------------------------------------+
 
 .. _TaskDisplayDestroyAction:
@@ -425,7 +511,7 @@ Permissions controlling task visibility, actions, and property modifications.
        |                    | menu item in the task action menu. User also needs         |
        |                    | ``TaskDestroy`` permission to enable this menu.            |  
        +--------------------+------------------------------------------------------------+
-       | Granted by default | No                                                         |
+       | Granted by default | User ``Admin``                                             |
        +--------------------+------------------------------------------------------------+
 
 .. _TaskDisplayWorkflowEventAction:
@@ -443,7 +529,7 @@ Permissions controlling task visibility, actions, and property modifications.
        |                    | menu item in the task action menu. User also needs         |
        |                    | ``WorkflowEventReadAll`` permission to enable this menu.   | 
        +--------------------+------------------------------------------------------------+
-       | Granted by default | No                                                         |
+       | Granted by default | User ``Admin``                                             |
        +--------------------+------------------------------------------------------------+
 
      
@@ -460,7 +546,7 @@ Permissions controlling task visibility, actions, and property modifications.
        | Use case           | User with this permission will have ``Custom fields``      |
        |                    | menu item in the task action menu                          | 
        +--------------------+------------------------------------------------------------+
-       | Granted by default | No                                                         |
+       | Granted by default | User ``Admin``                                             |
        +--------------------+------------------------------------------------------------+
 
 
@@ -477,7 +563,7 @@ Permissions controlling task visibility, actions, and property modifications.
        | Use case           | User with this permission will have ``Share`` button       |
        |                    | next to ``Edit`` button in task details                    | 
        +--------------------+------------------------------------------------------------+
-       | Granted by default | Yes                                                        |
+       | Granted by default | Role ``Everybody``                                         |
        +--------------------+------------------------------------------------------------+
 
 .. _permission-case-permissions:
@@ -500,7 +586,7 @@ Permissions controlling case visibility, actions, and business details.
        +--------------------+------------------------------------------------------------+
        | Use case           | Grant it to see all cases                                  | 
        +--------------------+------------------------------------------------------------+
-       | Granted by default | No                                                         |
+       | Granted by default | User ``Admin``                                             |
        +--------------------+------------------------------------------------------------+
 
 
@@ -517,7 +603,7 @@ Permissions controlling case visibility, actions, and business details.
        | Use case           | User with this permission will have ``Destroy`` menu       |
        |                    | item in the case action memu                               |
        +--------------------+------------------------------------------------------------+
-       | Granted by default | No                                                         |
+       | Granted by default | User ``Admin``                                             |
        +--------------------+------------------------------------------------------------+
 
 
@@ -535,7 +621,7 @@ Permissions controlling case visibility, actions, and business details.
        | Use case           | User with this permission and ``TaskWriteActivator`` can   | 
        |                    | delegate tasks within the case which he is case owner      |
        +--------------------+------------------------------------------------------------+
-       | Granted by default | No                                                         |
+       | Granted by default | User ``Admin``                                             |
        +--------------------+------------------------------------------------------------+
 
 .. _CaseWriteDescription:
@@ -552,7 +638,7 @@ Permissions controlling case visibility, actions, and business details.
        | Use case           | User with this permission can edit case description in     |
        |                    | case details                                               | 
        +--------------------+------------------------------------------------------------+
-       | Granted by default | No                                                         |
+       | Granted by default | User ``Admin``                                             |
        +--------------------+------------------------------------------------------------+
 
 
@@ -570,7 +656,7 @@ Permissions controlling case visibility, actions, and business details.
        | Use case           | User with this permission will have ``Business details``   |
        |                    | menu item in the case action menu                          | 
        +--------------------+------------------------------------------------------------+
-       | Granted by default | Yes                                                        |
+       | Granted by default | Role ``Everybody``                                         |
        +--------------------+------------------------------------------------------------+
 
 .. _CaseDisplayCustomFieldsAction:
@@ -586,7 +672,7 @@ Permissions controlling case visibility, actions, and business details.
        | Use case           | User with this permission will have ``Custom fields``      |
        |                    | menu item in the case action menu                          | 
        +--------------------+------------------------------------------------------------+
-       | Granted by default | No                                                         |
+       | Granted by default | User ``Admin``                                             |
        +--------------------+------------------------------------------------------------+
 
 
@@ -603,7 +689,7 @@ Permissions controlling case visibility, actions, and business details.
        | Use case           | User with this permission will have ``Share`` button       |
        |                    | next to ``Edit`` button in case details                    | 
        +--------------------+------------------------------------------------------------+
-       | Granted by default | Yes                                                        |
+       | Granted by default | Role ``Everybody``                                         |
        +--------------------+------------------------------------------------------------+
 
 
@@ -630,7 +716,7 @@ General permissions for dashboards, documents, lists, roles, and Portal features
        |                    | **Processes** tab in the global search for certain users or|
        |                    | roles.                                                     |
        +--------------------+------------------------------------------------------------+
-       | Granted by default | ``EVERYBODY``                                              |
+       | Granted by default | Role ``Everybody``                                         |
        +--------------------+------------------------------------------------------------+
 
 .. _AccessFullTaskList:
@@ -649,7 +735,7 @@ General permissions for dashboards, documents, lists, roles, and Portal features
        |                    | **Tasks** tab in the global search for certain             |
        |                    | users or roles.                                            |
        +--------------------+------------------------------------------------------------+
-       | Granted by default | ``EVERYBODY``                                              |
+       | Granted by default | Role ``Everybody``                                         |
        +--------------------+------------------------------------------------------------+
 
 .. _AccessFullCaseList:
@@ -668,7 +754,7 @@ General permissions for dashboards, documents, lists, roles, and Portal features
        |                    | **Cases** tab in the global search for certain             |
        |                    | users or roles.                                            |
        +--------------------+------------------------------------------------------------+
-       | Granted by default | ``EVERYBODY``                                              |
+       | Granted by default | Role ``Everybody``                                         |
        +--------------------+------------------------------------------------------------+
 
 
@@ -690,7 +776,7 @@ General permissions for dashboards, documents, lists, roles, and Portal features
        | Use case           | Grant to users who need to create and customize their own  |
        |                    | personal dashboards.                                       |
        +--------------------+------------------------------------------------------------+
-       | Granted by default | ``EVERYBODY``                                              |
+       | Granted by default | Role ``Everybody``                                         |
        +--------------------+------------------------------------------------------------+
 
 .. _DashboardWritePublic:
@@ -712,7 +798,7 @@ General permissions for dashboards, documents, lists, roles, and Portal features
        |                    | create and manage dashboards shared across the             |
        |                    | application.                                               |
        +--------------------+------------------------------------------------------------+
-       | Granted by default | ``Developer`` and ``Admin`` user.                          |
+       | Granted by default | User ``Admin``                                             |
        +--------------------+------------------------------------------------------------+
 
 .. note::
@@ -737,7 +823,7 @@ General permissions for dashboards, documents, lists, roles, and Portal features
        | Use case           | Grant to users who need to backup or share their personal  |
        |                    | dashboard configurations.                                  |
        +--------------------+------------------------------------------------------------+
-       | Granted by default | ``Developer`` and ``Admin`` user.                          |
+       | Granted by default | User ``Admin``                                             |
        +--------------------+------------------------------------------------------------+
 
 .. _DashboardExportPublic:
@@ -758,7 +844,7 @@ General permissions for dashboards, documents, lists, roles, and Portal features
        | Use case           | Grant to administrators who need to backup or distribute   |
        |                    | public dashboard templates across environments.            |
        +--------------------+------------------------------------------------------------+
-       | Granted by default | ``Developer`` and ``Admin`` user.                          |
+       | Granted by default | User ``Admin``                                             |
        +--------------------+------------------------------------------------------------+
 
 .. _DashboardImportOwn:
@@ -778,7 +864,7 @@ General permissions for dashboards, documents, lists, roles, and Portal features
        | Use case           | Grant to users who need to create a private dashboard using|
        |                    | JSON templates.                                            |
        +--------------------+------------------------------------------------------------+
-       | Granted by default | ``Developer`` and ``Admin`` user.                          |
+       | Granted by default | User ``Admin``                                             |
        +--------------------+------------------------------------------------------------+
 
 .. _DashboardImportPublic:
@@ -798,7 +884,7 @@ General permissions for dashboards, documents, lists, roles, and Portal features
        | Use case           | Grant to users who need to create a public dashboard using |
        |                    | JSON templates.                                            |
        +--------------------+------------------------------------------------------------+
-       | Granted by default | ``Developer`` and ``Admin`` user.                          |
+       | Granted by default | User ``Admin``                                             |
        +--------------------+------------------------------------------------------------+
 
 .. _ShareDashboardLink:
@@ -817,7 +903,7 @@ General permissions for dashboards, documents, lists, roles, and Portal features
        | Use case           | Grant to users who need to share dashboard links with      |
        |                    | colleagues for collaboration or reference purposes.        |
        +--------------------+------------------------------------------------------------+
-       | Granted by default | ``EVERYBODY``                                              |
+       | Granted by default | Role ``Everybody``                                         |
        +--------------------+------------------------------------------------------------+
 
 
@@ -864,7 +950,7 @@ General permissions for dashboards, documents, lists, roles, and Portal features
        |                    | and delete documents in the Documents widget.              |
        +--------------------+------------------------------------------------------------+
        | Granted by default | | **DocumentWrite**: No                                    |
-       |                    | | **DocumentOfInvolvedCaseWrite**: ``EVERYBODY``           |
+       |                    | | **DocumentOfInvolvedCaseWrite**: role ``Everybody``      |
        +--------------------+------------------------------------------------------------+
 
 .. _RoleReadAll:
@@ -884,7 +970,7 @@ General permissions for dashboards, documents, lists, roles, and Portal features
        | Use case           | Grant to admins or users who need to access all available  |
        |                    | roles.                                                     |
        +--------------------+------------------------------------------------------------+
-       | Granted by default | ``EVERYBODY``                                              |
+       | Granted by default | Role ``Everybody``                                         |
        +--------------------+------------------------------------------------------------+
 
 .. _RoleCreate:
@@ -905,7 +991,7 @@ General permissions for dashboards, documents, lists, roles, and Portal features
        | Use case           | Grant permission to certain admins to allow them to create |
        |                    | new dynamic roles.                                         |
        +--------------------+------------------------------------------------------------+
-       | Granted by default | ``Developer`` and ``Admin`` user.                          |
+       | Granted by default | User ``Admin``                                             |
        +--------------------+------------------------------------------------------------+
 
 .. _RoleDelete:
@@ -926,7 +1012,7 @@ General permissions for dashboards, documents, lists, roles, and Portal features
        | Use case           | Grant permission to certain admins to allow them to delete |
        |                    | dynamic roles.                                             |
        +--------------------+------------------------------------------------------------+
-       | Granted by default | ``Developer`` and ``Admin`` user.                          |
+       | Granted by default | User ``Admin``                                             |
        +--------------------+------------------------------------------------------------+
 
 .. _RoleManagement:
@@ -946,7 +1032,7 @@ General permissions for dashboards, documents, lists, roles, and Portal features
       | Use case           | Only grant the privilege to access Role Management tab     |
       |                    | in :ref:`admin-settings` page for certain admins.          |
       +--------------------+------------------------------------------------------------+
-      | Granted by default | ``Developer`` and ``Admin`` user.                          |
+      | Granted by default | User ``Admin``                                             |
       +--------------------+------------------------------------------------------------+
 
 .. _RoleMove:
@@ -969,7 +1055,7 @@ General permissions for dashboards, documents, lists, roles, and Portal features
        |                    | parent role when creating a dynamic role in Role           |
        |                    | Management tab in :ref:`admin-settings` page.              |
        +--------------------+------------------------------------------------------------+
-       | Granted by default | ``Developer`` and ``Admin`` user.                          |
+       | Granted by default | User ``Admin``                                             |
        +--------------------+------------------------------------------------------------+
 
 
@@ -990,7 +1076,7 @@ General permissions for dashboards, documents, lists, roles, and Portal features
        | Use case           | Grant to all users who need to collaborate and communicate |
        |                    | on tasks and cases by adding notes.                        |
        +--------------------+------------------------------------------------------------+
-       | Granted by default | ``EVERYBODY``                                              |
+       | Granted by default | Role ``Everybody``                                         |
        +--------------------+------------------------------------------------------------+
 
 .. _TaskCaseShowMoreNote:
@@ -1011,7 +1097,7 @@ General permissions for dashboards, documents, lists, roles, and Portal features
        | Use case           | Grant to users who need to view the complete list of notes |
        |                    | without pagination in History and Notes widgets.           |
        +--------------------+------------------------------------------------------------+
-       | Granted by default | ``EVERYBODY``                                              |
+       | Granted by default | Role ``Everybody``                                         |
        +--------------------+------------------------------------------------------------+
 
 .. _NoteReadAllCaseTaskDetails:
@@ -1033,7 +1119,7 @@ General permissions for dashboards, documents, lists, roles, and Portal features
        | Use case           | Grant to users who need to see system activity logs in     |
        |                    | case and task histories.                                   |
        +--------------------+------------------------------------------------------------+
-       | Granted by default | ``Developer`` and ``Admin`` user.                          |
+       | Granted by default | User ``Admin``                                             |
        +--------------------+------------------------------------------------------------+
 
    .. note::
@@ -1056,7 +1142,7 @@ General permissions for dashboards, documents, lists, roles, and Portal features
        | Use case           | Grant to users who need to manage and publish news content |
        |                    | on dashboard news widgets.                                 |
        +--------------------+------------------------------------------------------------+
-       | Granted by default | ``Developer`` and ``Admin`` user.                          |
+       | Granted by default | User ``Admin``                                             |
        +--------------------+------------------------------------------------------------+
 
 .. _PasswordValidation:
@@ -1074,7 +1160,7 @@ General permissions for dashboards, documents, lists, roles, and Portal features
        | Use case           | Only grant the privilege to access Password Validation tab |
        |                    | in :ref:`admin-settings` page for certain admins.          |
        +--------------------+------------------------------------------------------------+
-       | Granted by default | ``Developer`` and ``Admin`` user.                          |
+       | Granted by default | User ``Admin``                                             |
        +--------------------+------------------------------------------------------------+
 
 .. _NotificationChannelsSetting:
@@ -1091,7 +1177,7 @@ General permissions for dashboards, documents, lists, roles, and Portal features
        | Use case           | Prevent certain users or roles from modifying notification |
        |                    | channel preferences in :ref:`my-profile` page.             |
        +--------------------+------------------------------------------------------------+
-       | Granted by default | ``EVERYBODY``                                              |
+       | Granted by default | Role ``Everybody``                                         |
        +--------------------+------------------------------------------------------------+
 
 .. _CreatePublicExternalLink:
@@ -1137,7 +1223,7 @@ Permissions for managing user absences and task substitution.
        +--------------------+------------------------------------------------------------+
        | Use case           | User with this permission sees his absence                 | 
        +--------------------+------------------------------------------------------------+
-       | Granted by default | Yes                                                        |
+       | Granted by default | Role ``Everybody``                                         |
        +--------------------+------------------------------------------------------------+
 
 .. _UserCreateOwnAbsence:
@@ -1153,7 +1239,7 @@ Permissions for managing user absences and task substitution.
        | Use case           | User with this permission can create and edit his          |
        |                    | own absences                                               | 
        +--------------------+------------------------------------------------------------+
-       | Granted by default | Yes                                                        |
+       | Granted by default | Role ``Everybody``                                         |
        +--------------------+------------------------------------------------------------+
 
 .. _UserDeleteOwnAbsence:
@@ -1168,7 +1254,7 @@ Permissions for managing user absences and task substitution.
        +--------------------+------------------------------------------------------------+
        | Use case           | User with this permission can delete his own absences      | 
        +--------------------+------------------------------------------------------------+
-       | Granted by default | Yes                                                        |
+       | Granted by default | Role ``Everybody``                                         |
        +--------------------+------------------------------------------------------------+
 
 
@@ -1185,7 +1271,7 @@ Permissions for managing user absences and task substitution.
        | Use case           | User with this permission can view absences of all users   |
        |                    | in the security context                                    | 
        +--------------------+------------------------------------------------------------+
-       | Granted by default | No                                                         |
+       | Granted by default | User ``Admin``                                             |
        +--------------------+------------------------------------------------------------+
 
 .. _UserCreateAbsence:
@@ -1202,7 +1288,7 @@ Permissions for managing user absences and task substitution.
        | Use case           | User with this permission can create and edit absences     |
        |                    | for any users in the security context                      | 
        +--------------------+------------------------------------------------------------+
-       | Granted by default | No                                                         |
+       | Granted by default | User ``Admin``                                             |
        +--------------------+------------------------------------------------------------+
 
 
@@ -1219,7 +1305,7 @@ Permissions for managing user absences and task substitution.
        | Use case           | User with this permission can delete absences              |
        |                    | for any users in the security context                      | 
        +--------------------+------------------------------------------------------------+
-       | Granted by default | No                                                         |
+       | Granted by default | User ``Admin``                                             |
        +--------------------+------------------------------------------------------------+
 
 
@@ -1235,7 +1321,7 @@ Permissions for managing user absences and task substitution.
        +--------------------+------------------------------------------------------------+
        | Use case           | User with this permission can create own substitute        |
        +--------------------+------------------------------------------------------------+
-       | Granted by default | Yes                                                        |
+       | Granted by default | Role ``Everybody``                                         |
        +--------------------+------------------------------------------------------------+
    
 
@@ -1253,7 +1339,7 @@ Permissions for managing user absences and task substitution.
        | Use case           | User with this permission can create substitute            |
        |                    | for any users in the security context                      | 
        +--------------------+------------------------------------------------------------+
-       | Granted by default | No                                                         |
+       | Granted by default | User ``Admin``                                             |
        +--------------------+------------------------------------------------------------+
 
 .. _UserReadSubstitutes:
@@ -1269,7 +1355,7 @@ Permissions for managing user absences and task substitution.
        | Use case           | User with this permission can view substitutes of          |
        |                    | any users in the security context                          | 
        +--------------------+------------------------------------------------------------+
-       | Granted by default | No                                                         |
+       | Granted by default | User ``Admin``                                             |
        +--------------------+------------------------------------------------------------+
 
 .. _engine-permissions-respected:
