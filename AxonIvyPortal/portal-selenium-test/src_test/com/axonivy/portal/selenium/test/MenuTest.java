@@ -186,6 +186,15 @@ public class MenuTest extends BaseTest {
     assertEquals(CASES_PAGE_TITLE, caseListPageTitle);
   }
 
+  @Test
+  public void keepSidebarExpand() {
+    updatePortalSetting(Variable.EXPAND_SIDEBAR.getKey(), "true");
+    login(TestAccount.DEMO_USER);
+    MainMenuPage mainMenuPage = new MainMenuPage();
+    mainMenuPage.isSidebarAlwaysExpand();
+    mainMenuPage.openProcessList();
+    mainMenuPage.isSidebarAlwaysExpand();
+  }
   
   private void setUserLanguage(NewDashboardPage newDashboardPage, int index) {
 	UserProfilePage userProfilePage = newDashboardPage.openMyProfilePage();

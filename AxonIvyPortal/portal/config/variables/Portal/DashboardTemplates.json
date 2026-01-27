@@ -887,5 +887,294 @@
         "Everybody"
       ]
     }
+  },
+  {
+    "version": "13.1.0",
+    "id": "full-task-list-dashboard-template",
+    "titles": [
+      {
+        "locale": "en",
+        "value": "Full Task list dashboard"
+      },
+      {
+        "locale": "fr",
+        "value": "Tableau de bord complet de la liste des tâches"
+      },
+      {
+        "locale": "de",
+        "value": "Vollständiges Aufgabenlisten-Dashboard"
+      },
+      {
+        "locale": "es",
+        "value": "Panel de control completo de la lista de tareas"
+      },
+      {
+        "locale": "ja",
+        "value": "フルタスクリストダッシュボード"
+      }
+    ],
+    "descriptions": [
+      {
+        "locale": "en",
+        "value": "Create dashboard having a single, full-width task widget."
+      },
+      {
+        "locale": "fr",
+        "value": "Créez un tableau de bord avec un seul widget de tâche en pleine largeur."
+      },
+      {
+        "locale": "de",
+        "value": "Erstellen Sie ein Dashboard mit einem einzigen, vollformatigen Aufgaben-Widget."
+      },
+      {
+        "locale": "es",
+        "value": "Crear un panel de control con un solo widget de tareas de ancho completo."
+      },
+      {
+        "locale": "ja",
+        "value": "フル幅のタスクウィジェットを備えたダッシュボードを作成します"
+      }
+    ],
+    "icon": "si-task-list-edit",
+    "dashboard": {
+      "id": "default-task-list-dashboard",
+      "templateId": "create-from-scratch",
+      "widgets": [
+        {
+          "type": "task",
+          "id": "default_task_list_dashboard_task_1",
+          "names": [
+            {
+              "locale": "en",
+              "value": "Your Tasks"
+            },
+            {
+              "locale": "de",
+              "value": "Ihre Aufgaben"
+            },
+            {
+              "locale": "fr",
+              "value": "Vos tâches"
+            },
+            {
+              "locale": "es",
+              "value": "Sus tareas"
+            },
+            {
+              "locale": "ja",
+              "value": "タスク"
+            }
+          ],
+          "layout": {
+            "w": 12,
+            "h": 12,
+            "x": 0,
+            "y": 0
+          },
+          "enableQuickSearch": true,
+          "columns": [
+            {
+              "field": "start",
+              "width": "75"
+            },
+            {
+              "field": "pin",
+              "width": "70"
+            },
+            {
+              "field": "priority",
+              "width": "70"
+            },
+            {
+              "field": "id",
+              "quickSearch": true,
+              "width": "90"
+            },
+            {
+              "field": "name",
+              "quickSearch": true,
+              "width": "280"
+            },
+            {
+              "field": "description",
+              "quickSearch": true,
+              "width": "280"
+            },
+            {
+              "field": "activator",
+              "width": "145"
+            },
+            {
+              "field": "state",
+              "width": "80"
+            },
+            {
+              "field": "startTimestamp",
+              "width": "95"
+            },
+            {
+              "field": "endTimestamp",
+              "width": "95"
+            },
+            {
+              "field": "expiryTimestamp",
+              "width": "95"
+            },
+            {
+              "field": "category",
+              "width": "105"
+            },
+            {
+              "field": "actions",
+              "width": "95"
+            }
+          ],
+          "canWorkOn": false,
+          "sortField": "id",
+          "sortDescending": true
+        }
+      ],
+      "permissions": [
+        "Everybody"
+      ]
+    }
+  },
+  {
+    "version": "13.1.0",
+    "id": "full-case-list-dashboard-template",
+    "titles": [
+      {
+        "locale": "en",
+        "value": "Full Case list dashboard"
+      },
+      {
+        "locale": "fr",
+        "value": "Tableau de bord complet de la liste des dossiers"
+      },
+      {
+        "locale": "de",
+        "value": "Vollständiges Falllisten-Dashboard"
+      },
+      {
+        "locale": "es",
+        "value": "Panel de control completo de la lista de casos"
+      },
+      {
+        "locale": "ja",
+        "value": "フルケースリストダッシュボード"
+      }
+    ],
+    "descriptions": [
+      {
+        "locale": "en",
+        "value": "Create dashboard having a single, full-width case widget."
+      },
+      {
+        "locale": "fr",
+        "value": "Créez un tableau de bord avec un seul widget de dossier en pleine largeur."
+      },
+      {
+        "locale": "de",
+        "value": "Erstellen Sie ein Dashboard mit einem einzigen, vollformatigen Fall-Widget."
+      },
+      {
+        "locale": "es",
+        "value": "Crear un panel de control con un solo widget de casos de ancho completo."
+      },
+      {
+        "locale": "ja",
+        "value": "フル幅のケースウィジェットを備えたダッシュボードを作成します"
+      }
+    ],
+    "icon": "si-layout-bullets",
+    "dashboard":   {
+      "id": "default-case-list-dashboard",
+      "templateId": "create-from-scratch",
+      "widgets": [
+        {
+          "type": "case",
+          "id": "default_case_list_dashboard_case_1",
+          "names": [
+            {
+              "locale": "en",
+              "value": "Your Cases"
+            },
+            {
+              "locale": "de",
+              "value": "Ihre Vorgänge"
+            },
+            {
+              "locale": "fr",
+              "value": "Vos affaires"
+            },
+            {
+              "locale": "es",
+              "value": "Sus casos"
+            },
+            {
+              "locale": "ja",
+              "value": "ケース"
+            }
+          ],
+          "layout": {
+            "w": 12,
+            "h": 12,
+            "x": 0,
+            "y": 0
+          },
+          "sortDescending": true,
+          "sortField": "id",
+          "enableQuickSearch": true,
+          "columns": [
+            {
+              "field": "id",
+              "quickSearch": true,
+              "width": "80"
+            },
+            {
+              "field": "pin",
+              "width": "70"
+            },
+            {
+              "field": "name",
+              "quickSearch": true,
+              "width": "300"
+            },
+            {
+              "field": "description",
+              "quickSearch": true,
+              "width": "300"
+            },
+            {
+              "field": "creator",
+              "width": "120"
+            },
+            {
+              "field": "startTimestamp",
+              "width": "95"
+            },
+            {
+              "field": "endTimestamp",
+              "width": "95"
+            },
+            {
+              "field": "state",
+              "width": "80"
+            },
+            {
+              "field": "category",
+              "width": "105"
+            },
+            {
+              "field": "actions",
+              "width": "95"
+            }
+          ]
+        }
+      ],
+      "permissions": [
+        "Everybody"
+      ]
+    }
   }
 ]

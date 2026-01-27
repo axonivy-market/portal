@@ -168,22 +168,19 @@ public class DashboardUtils {
     return collectedDashboards;
   }
 
-  public static void addDefaultTaskCaseListDashboardsIfMissing(List<Dashboard> dashboards) {
-    if (!hasDashboardWithId(dashboards, DEFAULT_CASE_LIST_DASHBOARD)) {
-      dashboards.add(0, DefaultDashboardUtils.getDefaultCaseListDashboard());
-    }
-    if (!hasDashboardWithId(dashboards, DEFAULT_TASK_LIST_DASHBOARD)) {
-      dashboards.add(0, DefaultDashboardUtils.getDefaultTaskListDashboard());
-    }
-  }
-
-  private static boolean hasDashboardWithId(List<Dashboard> dashboards, String id) {
-    return dashboards.stream().map(Dashboard::getId).anyMatch(dashboardId -> id.equals(dashboardId));
-  }
-
   public static List<DashboardTemplate> getDashboardTemplates() {
     String dashboardTemplatesJson = Ivy.var().get(PortalVariable.DASHBOARD_TEMPLATES.key);
     return convertDashboardTemplatesToLatestVersion(dashboardTemplatesJson);
+  }
+
+  public static Optional<DashboardTemplate> getDashboardTemplateById(String templateId) {
+    List<DashboardTemplate> templates = getDashboardTemplates();
+    if (templates == null) {
+      return Optional.empty();
+    }
+    return templates.stream()
+        .filter(template -> templateId.equals(template.getId()))
+        .findFirst();
   }
 
   public static void setDashboardAsPublic(List<Dashboard> visibleDashboards) {
@@ -426,7 +423,6 @@ public class DashboardUtils {
         try {
           String dashboardJson = Ivy.var().get(PortalVariable.DASHBOARD.key);
           dashboards = jsonToDashboards(dashboardJson);
-          addDefaultTaskCaseListDashboardsIfMissing(dashboards);
           setDashboardAsPublic(dashboards);
         } catch (Exception e) {
           Ivy.log().error("Cannot load Public Dashboards {0}", e.getMessage());
@@ -508,7 +504,6 @@ public class DashboardUtils {
             }
           }
           collectedDashboards.addAll(idToDashboard.values());
-          addDefaultTaskCaseListDashboardsIfMissing(collectedDashboards);
         } catch (Exception e) {
           Ivy.log().error("Cannot collect Dashboards {0}", e.getMessage());
         }
