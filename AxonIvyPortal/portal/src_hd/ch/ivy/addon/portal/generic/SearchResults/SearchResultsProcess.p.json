@@ -30,7 +30,7 @@
         "labelOffset" : { "x" : 24 }
       },
       "connect" : [
-        { "id" : "f2", "to" : "f1" }
+        { "id" : "f2", "to" : "f11" }
       ]
     }, {
       "id" : "f1",
@@ -69,5 +69,77 @@
       "visual" : {
         "at" : { "x" : 352, "y" : 192 }
       }
+    }, {
+      "id" : "f6",
+      "type" : "HtmlDialogStart",
+      "name" : "start(GlobalSearchAiResultModel>)",
+      "config" : {
+        "signature" : "start",
+        "input" : {
+          "params" : [
+            { "name" : "searchAiResults", "type" : "List<ch.ivy.addon.portalkit.datamodel.GlobalSearchAiResultModel>", "desc" : "" }
+          ],
+          "map" : {
+            "out.searchAiResults" : "param.searchAiResults"
+          }
+        },
+        "guid" : "19BF9FC1DA527283"
+      },
+      "visual" : {
+        "at" : { "x" : 64, "y" : 416 }
+      },
+      "connect" : [
+        { "id" : "f8", "to" : "f9" }
+      ]
+    }, {
+      "id" : "f7",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 368, "y" : 416 }
+      }
+    }, {
+      "id" : "f9",
+      "type" : "Script",
+      "config" : {
+        "output" : {
+          "code" : [
+            "in.searchAiResults = out.searchAiResults;",
+            "ivy.log.info(\"test\" + in.searchAiResults);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 200, "y" : 416 }
+      },
+      "connect" : [
+        { "id" : "f10", "to" : "f7", "color" : "default" }
+      ]
+    }, {
+      "id" : "f11",
+      "type" : "Script",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget;",
+            "import ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget;",
+            "",
+            "import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;",
+            "import ch.ivy.addon.portalkit.dto.dashboard.casecolumn.CaseColumnModel;",
+            "import java.util.Arrays;",
+            "import ch.ivy.addon.portalkit.dto.WidgetLayout;",
+            "",
+            "CaseDashboardWidget caseWidget = DashboardWidgetUtils.buildDefaultCaseWidgetForGlobalSearch();",
+            "TaskDashboardWidget taskWidget = DashboardWidgetUtils.buildDefaultTaskWidgetForGlobalSearch();",
+            "in.caseWidget = caseWidget;",
+            "in.taskWidget = taskWidget;"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 200, "y" : 96 }
+      },
+      "connect" : [
+        { "id" : "f12", "to" : "f1", "color" : "default" }
+      ]
     } ]
 }

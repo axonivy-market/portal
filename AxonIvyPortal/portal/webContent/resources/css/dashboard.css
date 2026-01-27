@@ -1103,6 +1103,11 @@ body .ui-widget.new-widget-dialog__introduction {
   display: grid;
 }
 
+.global-search-ai-result-container .dashboard-cases-container > .empty-message-container,
+.global-search-ai-result-container .dashboard-tasks-container > .empty-message-container {
+  position: relative !important;
+}
+
 .process-dashboard-widget__empty-process.empty-message-container {
   padding: 0 20px;
 }
@@ -2062,4 +2067,14 @@ body .widget__content .ui-datatable.dashboard-tasks--table .ui-widget-header the
 /* Drill-down chart styling */
 .chart-content-card-clickable {
   cursor: pointer;
+}
+
+.global-search-ai-filters-panel {
+  width: max-content;
+  min-width: 80%;
+}
+
+.global-search-ai-filters-panel > .ui-overlaypanel-content > .dashboard-widget-filter__filter-wrapper {
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
