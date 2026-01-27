@@ -152,21 +152,15 @@
          <p:tab id="ai-tab-search" title="AI Search" titleStyleClass="search-bar ai-tab-title-global" 
           rendered="true">
           <h:panelGroup id="ai-search-results" styleClass="js-ai-default-widget-container case-default-widget-container js-for-search-result global-search-ai-results">
-            <div>#{dataModel.keyword}</div>
               <p:remoteCommand id="global-search-ai-search-cmd" name="portalGlobalSearchAI"
-                actionListener="#{globalSearchBean.updateWidgetsWithAI(dataModel.keyword)}" 
+                action="#{globalSearchBean.updateWidgetsWithAI(dataModel.keyword)}"
+                actionListener="#{globalSearchBean.preRender(data.caseWidget, data.taskWidget)}"
                 process="@this"
-                update="search-results-tabview:global-search-ai-result-component:globalSearchAiResultContainer"
+                update="search-results-tabview:ai-tab-search"
                 partialSubmit="true"/>
-                <div>#{globalSearchBean.caseWidget.dataModel.results}</div>
-                <ic:ch.ivy.addon.portal.generic.dashboard.component.GlobalSearchAIResult 
-                  id="global-search-ai-result-component" index="10"
-                  caseWidget="#{globalSearchBean.caseWidget}"
-                  taskWidget="#{globalSearchBean.taskWidget}"
-                  results="#{globalSearchBean.results}"
-                  isReadOnlyMode="true"
-                  isShowInSearchResultPage="true"
-                  isAIResult="true"/>
+            <ic:ch.ivy.addon.portal.generic.dashboard.component.GlobalSearchAIResult 
+              id="global-search-ai-result-component" index="10" keyword="#{dataModel.keyword}" managedBean="#{globalSearchBean}"
+              isReadOnlyMode="false" isAIResult="true" results="#{globalSearchBean.results}" isShowInSearchResultPage="true" />
           </h:panelGroup>
         </p:tab>
       </p:tabView>

@@ -8,5 +8,8 @@
   }, {
     "name" : "caseFilters",
     "type" : "List<com.axonivy.portal.dto.dashboard.filter.DashboardFilter>"
+  }, {
+    "name" : "searchAiResults",
+    "type" : "List<ch.ivy.addon.portalkit.datamodel.GlobalSearchAiResultModel>"
   } ]
 }

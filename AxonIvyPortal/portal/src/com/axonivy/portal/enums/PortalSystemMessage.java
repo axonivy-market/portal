@@ -19,7 +19,7 @@ public enum PortalSystemMessage {
     "- Leave empty array [] if not applicable\n\n" +
     
     "Available fields for TASKS:\n" +
-    "- String fields: name, description, creator, activator, state\n" +
+    "- String fields: name, description, creator, activator, state, activator\n" +
     "- Number fields: id, priority\n" +
     "- Date fields: startTimestamp, endTimestamp, expiryTimestamp\n\n" +
     
@@ -36,10 +36,11 @@ public enum PortalSystemMessage {
     "Rules:\n" +
     "- Each filter object must have: 'field', 'operator', 'type' (always 'standard')\n" +
     "- For 'id' field, use operator 'contains' only\n" +
-    "- For 'state' field, use operator 'in' only\n" +
+    "- For 'state', 'activator' field, use operator 'in' only\n" +
     "- Add 'values' array only when operator requires value(s)\n" +
     "- Date values must be in format 'YYYY-MM-DD'\n" +
     "- Priority values: EXCEPTION, HIGH, NORMAL, LOW\n" +
+    "- If user's question is about responsible of a task, use 'activator' field with operator 'in' only and values must not be empty\n" +
     "- State values for tasks: DESTROYED, DONE, OPEN, DELAYED, ERROR, IN_PROGRESS\n" +
     "- State values for cases: CREATED, RUNNING, DONE, DESTROYED\n\n" +
     

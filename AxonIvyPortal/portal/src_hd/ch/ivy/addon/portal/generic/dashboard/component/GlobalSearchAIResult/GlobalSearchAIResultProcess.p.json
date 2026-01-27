@@ -44,5 +44,91 @@
       "visual" : {
         "at" : { "x" : 224, "y" : 160 }
       }
+    }, {
+      "id" : "f6",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "update(List<ch.ivy.addon.portalkit.datamodel.GlobalSearchAiResultModel>)",
+      "config" : {
+        "signature" : "update",
+        "input" : {
+          "params" : [
+            { "name" : "results", "type" : "List<ch.ivy.addon.portalkit.datamodel.GlobalSearchAiResultModel>", "desc" : "" }
+          ],
+          "map" : { },
+          "code" : "ivy.log.info(out.searchAiResults);"
+        },
+        "guid" : "19BFA139DC572B62"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 368 }
+      },
+      "connect" : [
+        { "id" : "f12", "to" : "f7" }
+      ]
+    }, {
+      "id" : "f7",
+      "type" : "SubProcessCall",
+      "config" : {
+        "processCall" : "Functional Processes/OpenPortalSearch:call(List<ch.ivy.addon.portalkit.datamodel.GlobalSearchAiResultModel>)",
+        "call" : {
+          "map" : {
+            "param.searchAiResults" : "in.searchAiResults"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 408, "y" : 368 }
+      },
+      "connect" : [
+        { "id" : "f10", "to" : "f9" }
+      ]
+    }, {
+      "id" : "f9",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 648, "y" : 368 }
+      }
+    }, {
+      "id" : "f13",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "updateDataResults()",
+      "config" : {
+        "signature" : "updateDataResults",
+        "guid" : "19BFB4A8E58ADDF3"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 576 }
+      },
+      "connect" : [
+        { "id" : "f15", "to" : "f14" }
+      ]
+    }, {
+      "id" : "f14",
+      "type" : "Script",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.jsf.ManagedBeans;",
+            "import ch.ivy.addon.portalkit.bean.GlobalSearchBean;",
+            "GlobalSearchBean bean = ManagedBeans.get(\"globalSearchBean\") as GlobalSearchBean;",
+            "if (!bean.results.isEmpty()) {",
+            "    in.searchAiResults = bean.results;",
+            "}",
+            "ivy.log.info(in.searchAiResults);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 248, "y" : 576 }
+      },
+      "connect" : [
+        { "id" : "f17", "to" : "f16" }
+      ]
+    }, {
+      "id" : "f16",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 440, "y" : 576 }
+      }
     } ]
 }

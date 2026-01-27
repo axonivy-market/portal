@@ -33,5 +33,8 @@
   }, {
     "name" : "isSmartWorkflowFound",
     "type" : "Boolean"
+  }, {
+    "name" : "searchAiResults",
+    "type" : "List<ch.ivy.addon.portalkit.datamodel.GlobalSearchAiResultModel>"
   } ]
 }

@@ -63,5 +63,5 @@ public enum DashboardStandardCaseColumn {
 
   public static final Set<DashboardStandardCaseColumn> GLOBAL_SEARCH_COLUMNS = Collections
       .unmodifiableSet(
-          EnumSet.of(ID, NAME, DESCRIPTION));
+          EnumSet.of(ID, NAME, DESCRIPTION, STATE, CREATOR, FINISHED, OWNER, CATEGORY));
 }

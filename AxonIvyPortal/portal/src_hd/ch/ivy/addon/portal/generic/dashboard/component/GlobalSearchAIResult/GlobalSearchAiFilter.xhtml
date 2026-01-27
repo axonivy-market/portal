@@ -72,6 +72,11 @@
         componentToUpdate="#{componentToUpdate}" filterIndex="#{filterIndex}"
         readOnly="#{readOnly}" messageId="#{messageId}" />
     </h:panelGroup>
+    <h:panelGroup layout="block" rendered="#{filter.isPriority()}">
+      <ic:com.axonivy.portal.dashboard.component.filter.PriorityFilter filter="#{filter}"
+        componentToUpdate="#{cc.attrs.componentToUpdate}" filterIndex="#{cc.attrs.filterIndex}"
+        readOnly="#{readOnly}" messageId="#{cc.attrs.messageId}" />
+    </h:panelGroup>
     </h:panelGroup>
   </h:panelGroup>
 </ui:composition>

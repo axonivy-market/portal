@@ -23,6 +23,7 @@ import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 import com.axonivy.portal.enums.PortalSystemMessage;
 import com.axonivy.portal.util.filter.field.FilterField;
 import com.axonivy.portal.util.filter.field.FilterFieldFactory;
+import com.axonivy.portal.util.filter.field.TaskFilterFieldFactory;
 import com.axonivy.portal.util.filter.field.caze.CaseFilterFieldCreator;
 import com.axonivy.portal.util.statisticfilter.field.CaseFilterFieldFactory;
 
@@ -101,6 +102,45 @@ public class GlobalSearchBean implements Serializable {
     }
 
     public void updateWidgetsWithAI(String keyword) {
+        if (keyword == null || keyword.isBlank()) {
+            results.clear();
+            this.caseWidget.getUserFilters().clear();
+            this.taskWidget.getUserFilters().clear();
+            this.caseWidget.getDataModel().getResults().clear();
+            this.taskWidget.getDataModel().getResults().clear();
+            return;
+        }
+
+        try {
+            results.clear();
+            GlobalSearchAIResultData aiResults = getAIFilterResults(keyword);
+            
+            if (CollectionUtils.isNotEmpty(aiResults.getCaseFilters())) {
+                applyCaseFilters(aiResults.getCaseFilters());
+            } else {
+                this.caseWidget.getDataModel().getResults().clear();
+            }
+            
+            if (CollectionUtils.isNotEmpty(aiResults.getTaskFilters())) {
+                applyTaskFilters(aiResults.getTaskFilters());
+            } else {
+                this.taskWidget.getDataModel().getResults().clear();
+            }
+
+        } catch (Exception e) {
+            Ivy.log().error("Failed to update widgets with AI filters" + e.getCause());
+        }
+    }
+
+    public List<GlobalSearchAiResultModel> getResultList() {
+        List<GlobalSearchAiResultModel> resultList = this.results.stream()
+            .sorted((r1, r2) -> r1.getId().compareTo(r2.getId()))
+            .limit(5)
+            .collect(Collectors.toList());
+        return resultList;
+    }
+
+        public void updateWidgetsWithAIOnSearchResultsPage(String keyword) {
         if (keyword == null || keyword.isBlank()) {
             return;
         }
@@ -194,7 +234,7 @@ public class GlobalSearchBean implements Serializable {
     // }
 
     private List<ICase> loadCaseWidgetData() {
-        
+
         caseWidget.getDataModel().getResults().clear();
         return caseWidget.getDataModel().load(0, 5, sortBy, null);
     }
@@ -215,7 +255,7 @@ public class GlobalSearchBean implements Serializable {
     }
 
     private void buildFilterFieldsForCase(DashboardFilter filter) {
-        FilterField filterField = FilterFieldFactory.findBy(caseWidget.getId(), filter.getField());
+        FilterField filterField = CaseFilterFieldFactory.findBy(filter.getField());
         if (filterField != null) {
             filterField.initFilter(filter);
             filter.setFilterField(filterField);
@@ -223,7 +263,7 @@ public class GlobalSearchBean implements Serializable {
     }
 
     private void buildFilterFieldsForTask(DashboardFilter filter) {
-        FilterField filterField = FilterFieldFactory.findBy(taskWidget.getId(), filter.getField());
+        FilterField filterField = TaskFilterFieldFactory.findBy(filter.getField());
         if (filterField != null) {
             filterField.initFilter(filter);
             filter.setFilterField(filterField);

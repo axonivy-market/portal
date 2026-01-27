@@ -56,5 +56,5 @@ public enum DashboardStandardTaskColumn {
   
   public static final Set<DashboardStandardTaskColumn> GLOBAL_SEARCH_COLUMNS = Collections
       .unmodifiableSet(
-          EnumSet.of(ID, NAME, DESCRIPTION));
+          EnumSet.of(ID, NAME, DESCRIPTION, STATE, PRIORITY, COMPLETED, EXPIRY, RESPONSIBLE, CATEGORY));
 }

@@ -110,9 +110,11 @@
               id="global-search-ai-result-component" index="10"
               caseWidget="#{globalSearchBean.caseWidget}"
               taskWidget="#{globalSearchBean.taskWidget}"
+              managedBean="#{globalSearchBean}"
               results="#{globalSearchBean.results}"
               isReadOnlyMode="true"
               isShowInSearchResultPage="false"
+              keyword="#{data.keyword}"
               isAIResult="true"/>
           </h:panelGroup>
           <div class="global-search-all-results" >
