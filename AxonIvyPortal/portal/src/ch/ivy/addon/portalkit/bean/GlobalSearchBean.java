@@ -14,12 +14,14 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.collections4.ListUtils;
 import org.primefaces.model.SortMeta;
 import org.primefaces.model.SortOrder;
 import ch.ivy.addon.portal.generic.dashboard.component.GlobalSearchAIResult.GlobalSearchAIResultData;
 import com.axonivy.portal.bean.dashboard.filter.AbstractCaseWidgetFilterBean;
 import com.axonivy.portal.components.service.IvyAdapterService;
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
+import com.axonivy.portal.enums.PortalCustomSignature;
 import com.axonivy.portal.enums.PortalSystemMessage;
 import com.axonivy.portal.util.filter.field.FilterField;
 import com.axonivy.portal.util.filter.field.FilterFieldFactory;
@@ -164,7 +166,7 @@ public class GlobalSearchBean implements Serializable {
     
 
     private GlobalSearchAIResultData getAIFilterResults(String keyword) throws Exception {
-        String portalSignature = "invokeAgent(String,String,List<String>,String,String,Class,String)";
+        String portalSignature = PortalCustomSignature.INVOKE_SMART_WORKFLOW_AGENT.getSignature();
         String systemMessage = PortalSystemMessage.FILTER_CREATION_INSTRUCTION.getMessage();
         
         Map<String, Object> params = new HashMap<>();
