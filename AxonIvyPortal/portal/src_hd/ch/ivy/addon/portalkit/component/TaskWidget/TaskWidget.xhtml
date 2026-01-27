@@ -234,6 +234,12 @@
     componentToUpdate="#{p:resolveFirstComponentWithId('task-start', view).clientId}"
     onCompletedCallback="taskWidget.setupScrollbar();" />
 
+  <!-- Multiple Task Delegate Dialog -->
+  <ic:ch.ivy.addon.portalkit.component.MultipleTaskItemDelegate id="multiple-task-item-delegate-component"
+    tasks="#{dashboardBean.selectedDelegatedTasks}"
+    componentToUpdate="#{p:resolveFirstComponentWithId('task-start', view).clientId}"
+    onCompletedCallback="taskWidget.setupScrollbar();" />
+
   <!-- Workflow Event of Task Dialog -->
   <ic:ch.ivy.addon.portalkit.component.TaskItemWorkflowEvents id="task-workflow-event-component"
     taskId="#{taskWidgetBean.selectedTaskItemId}"/>

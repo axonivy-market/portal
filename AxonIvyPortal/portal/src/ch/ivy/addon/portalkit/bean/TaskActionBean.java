@@ -27,6 +27,8 @@ import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.PortalProcessViewerUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivy.addon.portalkit.util.TimesUtils;
+import ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel;
+import ch.ivy.addon.portalkit.datamodel.DashboardTaskLazyDataModel ;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IPermission;
 import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;
@@ -405,5 +407,10 @@ public class TaskActionBean implements Serializable {
 
   public boolean isTaskPinned(ITask task) {
     return TaskUtils.isPinnedTask(task);
+  }
+
+  // This just for getting the data after user clicking on Bulk select delegation
+  public void openBulkSelectDelegation(DashboardTaskLazyDataModel taskDataModel){
+    Ivy.log().info(taskDataModel);
   }
 }

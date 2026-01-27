@@ -1259,6 +1259,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       COMPLETED: Completado en
       COMPLETED_ON: Completado en
       CREATION_TIME: Creado
+      DELEGATION: Delegación
       EXPIRY_TIME: Expiración
       ID: ID de tarea
       NAME: Nombre / Descripción

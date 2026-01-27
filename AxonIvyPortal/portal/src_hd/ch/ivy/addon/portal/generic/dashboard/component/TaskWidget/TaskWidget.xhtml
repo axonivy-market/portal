@@ -97,6 +97,12 @@
             <ui:include src="ResponsibleCell.xhtml" />
           </h:panelGroup>
           
+          <h:panelGroup rendered="#{column.field eq 'delegation'}">
+            <h:outputText id="task-delegation" value="#{column.display(task)}"/>
+            <ic:ch.ivy.addon.portalkit.component.task.column.TaskDelegation task="#{task}"/>
+            <!-- <ic:ch.ivy.addon.portalkit.component.task.column.TaskPin task="#{task}"/> -->
+          </h:panelGroup>
+          
           <h:panelGroup rendered="#{column.field eq 'state'}">
             <ic:ch.ivy.addon.portalkit.component.task.column.TaskState state="#{task.businessState}"
             stateStyleClass="#{column.fieldStyleClass}" alwaysShowState="true"/>

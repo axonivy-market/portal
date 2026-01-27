@@ -1258,6 +1258,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       COMPLETED: 完了日
       COMPLETED_ON: 完了日
       CREATION_TIME: 作成日
+      DELEGATION: 委任
       EXPIRY_TIME: 有効期限
       ID: タスクID
       NAME: 名前／説明
