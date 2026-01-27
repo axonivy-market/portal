@@ -45,49 +45,49 @@ Task-Related Charts
 |tasks-by-prior-pie-chart|
 
 - Displays all tasks by priority
-- Chart type: :bdg-info:`Pie`
+- Chart type: ``Pie``
 
 **Tasks By Priority (Bar Chart)**
 
 |tasks-by-prior-bar-chart|
 
 - Displays all tasks the user can work on, grouped by priority
-- Chart type: :bdg-info:`Bar`
+- Chart type: ``Bar``
 
 **Tasks By Priority (Number)**
 
 |tasks-by-prior-number-chart|
 
 - Shows all tasks the user can work on by priority
-- Chart type: :bdg-info:`Number`
+- Chart type: ``Number``
 
 **Top Priority: 3 Days**
 
 |top-prior-chart|
 
 - Displays all tasks the user can work on that expire within the next 3 days
-- Chart type: :bdg-info:`Bar`
+- Chart type: ``Bar``
 
 **Tasks that Expire by the End of the Week**
 
 |tasks-expire-end-week-chart|
 
 - Shows all tasks that expire by the end of the week
-- Chart type: :bdg-info:`Number`
+- Chart type: ``Number``
 
 **Tasks Due Today**
 
 |due-today-chart|
 
 - Shows all tasks that are due today
-- Chart type: :bdg-info:`Number`
+- Chart type: ``Number``
 
 **Open Tasks**
 
 |open-tasks-chart|
 
 - Shows all tasks the user can work on
-- Chart type: :bdg-info:`Number`
+- Chart type: ``Number``
 
 Case-Related Charts
 -------------------
@@ -97,28 +97,28 @@ Case-Related Charts
 |running-cases-chart|
 
 - Shows all running cases in which the user is involved
-- Chart type: :bdg-info:`Number`
+- Chart type: ``Number``
 
 **New Cases Per Day**
 
 |new-cases-chart|
 
 - Shows the number of cases started per day for the last 5 days
-- Chart type: :bdg-info:`Line`
+- Chart type: ``Line``
 
 **Completed Cases Per Day**
 
 |completed-cases-chart|
 
 - Shows the number of cases finished per day for the last 5 days
-- Chart type: :bdg-info:`Line`
+- Chart type: ``Line``
 
 **Case Category Avg. Runtime**
 
 |avg-runtime-chart|
 
 - Shows the average processing time of cases by category
-- Chart type: :bdg-info:`Bar`
+- Chart type: ``Bar``
 
 .. |statistic-widget-list-page| image:: ../../screenshots/statistic/statistic-widget-list.png
    :alt: Statistic widget list

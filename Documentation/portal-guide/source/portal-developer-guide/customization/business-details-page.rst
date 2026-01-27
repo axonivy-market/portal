@@ -19,6 +19,10 @@ Portal supports customizing this page for each case.
 How to customize the business details page
 ------------------------------------------
 
+.. note::
+   Once the ``businessDetails`` value is set, it becomes a fixed link for the case.
+   Please take this into account if different project model versions use different Business Details Page UIs.
+
 #. Create the business details process. In this process, define a request start event that accepts the ``uuid`` parameter. 
    When the ``Business details`` button on the case details page is clicked, Portal will call this process and pass the case UUID as 
    the ``uuid`` parameter. Design and implement the user interface for the business details page within this process.
@@ -79,7 +83,7 @@ Permission Setting
 Configure permissions in the :dev-url:`Engine Cockpit
 </doc/12.0/engine-guide/reference/engine-cockpit/security.html>`. In the security area, open PortalPermissions -> PortalCasePermissions -> ShowCaseDetails.
 
-Or search :bdg-ref-warning:`🔑ShowCaseDetails <ShowCaseDetails>` in the permissions search bar. By default, this permission is set to ``true`` for the role ``Everybody``.
+Or search :ref:`🔑ShowCaseDetails <ShowCaseDetails>` in the permissions search bar. By default, this permission is set to ``true`` for the role ``Everybody``.
 
 
 .. |start-business-details-page-iframe| image:: images/business-details-page/start-business-details-page-iframe.png
