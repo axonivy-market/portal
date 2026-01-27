@@ -28,26 +28,6 @@ pipeline {
           currentBuild.description = "On ${env.NODE_NAME}"
           downloadPortalRelease()
 
-          echo '====================Check out tag of Portal latest successful release===================='
-          sh '''#!/bin/bash
-            artifactPattern="${releaseDir}/AxonIvyPortal/portal/target/*.iar"
-            artifactName=$(basename $artifactPattern .iar)
-            versionLastestReleasedPortal=${artifactName:7}
-            git fetch --tags
-            git checkout tags/$versionLastestReleasedPortal
-            git reset --hard HEAD
-            git clean -fd
-          '''
-
-          echo '====================Copy patch to workspace if any. Note: this is in a tag and we cannot change code in git repo===================='
-          sh '''
-            if [ -d ../patch/master ]; then
-              cp -rf ../patch/master/* .
-            fi
-          '''
-
-          downloadPortalRelease()
-
           def random = (new Random()).nextInt(10000000)
           def networkName = "build-" + random
           def seleniumName = "selenium-" + random
@@ -56,6 +36,25 @@ pipeline {
           try {
             docker.image("selenium/standalone-firefox:4").withRun("--shm-size=2g --name ${seleniumName} --network ${networkName} --hostname=wawa") {
               docker.build('gui-test-portal', '-f build/Dockerfile .').inside("--name ${wawaName} --network ${networkName} -v /var/tools/maven-cache:/home/build/") {
+                echo '====================Check out tag of Portal latest successful release===================='
+                sh '''#!/bin/bash
+                  artifactPattern="${releaseDir}/AxonIvyPortal/portal/target/*.iar"
+                  artifactName=$(basename $artifactPattern .iar)
+                  versionLastestReleasedPortal=${artifactName:7}
+                  git fetch --tags
+                  git checkout tags/$versionLastestReleasedPortal
+                  git reset --hard HEAD
+                  git clean -fd
+                '''
+
+                echo '====================Copy patch to workspace if any. Note: this is in a tag and we cannot change code in git repo===================='
+                sh '''
+                  if [ -d ../patch/master ]; then
+                    cp -rf ../patch/master/* .
+                  fi
+                '''
+
+                downloadPortalRelease()
                 installPortalToLocalRepo()
 
                 echo '====================Extract engine===================='
