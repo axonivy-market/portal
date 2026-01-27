@@ -125,8 +125,7 @@ public class LeaveRequestPage extends TaskTemplateIFramePage {
   }
 
   public NewDashboardPage clickRejectBtn() {
-    $("button[id$='leave-request:rejected-btn']").should(clickable());
-    clickByJavaScript($("button[id$='leave-request:rejected-btn']"));
+    $("button[id$='leave-request:rejected-btn']").should(clickable(), DEFAULT_TIMEOUT).click();;
     $("button[id$='leave-request:rejected-btn']").should(disappear, DEFAULT_TIMEOUT);
     waitPageDisappear();
     switchBackToParent();
