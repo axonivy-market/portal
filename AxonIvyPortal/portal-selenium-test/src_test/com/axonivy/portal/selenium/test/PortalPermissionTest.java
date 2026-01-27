@@ -204,19 +204,11 @@ public class PortalPermissionTest extends BaseTest {
   private void grantAccessFullListPermissions() {
     redirectToRelativeLink(
         String.format(grantSpecificPortalPermissionLink, PortalPermission.ACCESS_FULL_PROCESS_LIST.getValue()));
-    redirectToRelativeLink(
-        String.format(grantSpecificPortalPermissionLink, PortalPermission.ACCESS_FULL_CASE_LIST.getValue()));
-    redirectToRelativeLink(
-        String.format(grantSpecificPortalPermissionLink, PortalPermission.ACCESS_FULL_TASK_LIST.getValue()));
   }
 
   private void denyAccessFullListPermissions() {
     redirectToRelativeLink(
         String.format(denySpecificPortalPermissionLink, PortalPermission.ACCESS_FULL_PROCESS_LIST.getValue()));
-    redirectToRelativeLink(
-        String.format(denySpecificPortalPermissionLink, PortalPermission.ACCESS_FULL_CASE_LIST.getValue()));
-    redirectToRelativeLink(
-        String.format(denySpecificPortalPermissionLink, PortalPermission.ACCESS_FULL_TASK_LIST.getValue()));
   }
 
   private void grantTaskActionsPermissions() {
