@@ -306,14 +306,6 @@ Other Permissions
  |           | left menu and link "Show all    |                                                                           |
  |           | processes" on Dashboard         |                                                                           |
  |           +---------------------------------+---------------------------------------------------------------------------+
- |           | Access to full task list, it's  | :ref:`🔑AccessFullTaskList <AccessFullTaskList>`                          |
- |           | "Tasks" on the left menu and    |                                                                           |
- |           | link "Show full task list" on   |                                                                           |
- |           | Dashboard                       |                                                                           |
- |           +---------------------------------+---------------------------------------------------------------------------+
- |           | Access to full case list, it's  | :ref:`🔑AccessFullCaseList <AccessFullCaseList>`                          |
- |           | "Cases" on the left menu        |                                                                           |
- |           +---------------------------------+---------------------------------------------------------------------------+
  |           | Add note to task/case           | :ref:`🔑TaskCaseAddNote <TaskCaseAddNote>`                                |
  |           +---------------------------------+---------------------------------------------------------------------------+
  |           | Display show more note          | :ref:`🔑TaskCaseShowMoreNote <TaskCaseShowMoreNote>`                      |

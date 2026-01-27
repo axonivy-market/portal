@@ -14,7 +14,9 @@ public enum PortalCustomSignature {
   GET_PAGE_HEADER_AND_FOOTER("portalGetPageHeaderAndFooter()"),
   GROWL_MESSAGE("portalGrowlMessage()"),
   LOAD_SUB_MENU_ITEMS("portalLoadSubMenuItems()"),
-  INVOKE_SMART_WORKFLOW_AGENT("invokeAgent(String,String,List<String>,String,String,Class,String)");
+  INVOKE_SMART_WORKFLOW_AGENT("invokeAgent(String,String,List<String>,String,String,Class,String)"),
+  EXTEND_TASK_LEAVE("portalExtendTaskLeave(ch.ivyteam.ivy.workflow.ITask)"),
+  EXTEND_TASK_RESERVE("portalExtendTaskReserve(ch.ivyteam.ivy.workflow.ITask)");
 
   private String signature;
 

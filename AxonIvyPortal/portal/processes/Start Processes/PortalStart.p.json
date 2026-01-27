@@ -4103,68 +4103,6 @@
         { "id" : "f70", "to" : "f32" }
       ]
     }, {
-      "id" : "S74",
-      "type" : "EmbeddedProcess",
-      "name" : "Authorize",
-      "elements" : [ {
-          "id" : "S74-f26",
-          "type" : "Alternative",
-          "name" : "Authorize?",
-          "config" : {
-            "conditions" : {
-              "S74-f27" : "(ch.ivy.addon.portalkit.util.DashboardUtils.DEFAULT_TASK_LIST_DASHBOARD.equals(in.dashboardId) && !ch.ivy.addon.portalkit.util.PermissionUtils.checkAccessFullTaskListPermission()) ||\r\n(ch.ivy.addon.portalkit.util.DashboardUtils.DEFAULT_CASE_LIST_DASHBOARD.equals(in.dashboardId) && !ch.ivy.addon.portalkit.util.PermissionUtils.checkAccessFullCaseListPermission())"
-            }
-          },
-          "visual" : {
-            "at" : { "x" : 152, "y" : 144 },
-            "labelOffset" : { "x" : -24, "y" : -8 }
-          },
-          "connect" : [
-            { "id" : "S74-f27", "to" : "S74-f17", "label" : {
-                "name" : "No",
-                "offset" : { "x" : -15, "y" : -2 }
-              } },
-            { "id" : "S74-f2", "to" : "S74-g2", "label" : {
-                "name" : "Yes",
-                "offset" : { "x" : -4, "y" : -10 }
-              } }
-          ]
-        }, {
-          "id" : "S74-f17",
-          "type" : "TaskEnd",
-          "visual" : {
-            "at" : { "x" : 152, "y" : 208 },
-            "labelOffset" : { "x" : 13, "y" : 33 }
-          }
-        }, {
-          "id" : "S74-g0",
-          "type" : "EmbeddedStart",
-          "name" : "in 1",
-          "visual" : {
-            "at" : { "x" : 48, "y" : 144 },
-            "labelOffset" : { "x" : 3, "y" : 23 }
-          },
-          "parentConnector" : "f26",
-          "connect" : [
-            { "id" : "S74-f0", "to" : "S74-f26" }
-          ]
-        }, {
-          "id" : "S74-g2",
-          "type" : "EmbeddedEnd",
-          "name" : "out 1",
-          "visual" : {
-            "at" : { "x" : 256, "y" : 144 },
-            "labelOffset" : { "x" : 3, "y" : 23 }
-          },
-          "parentConnector" : "f117"
-        } ],
-      "visual" : {
-        "at" : { "x" : 736, "y" : 472 }
-      },
-      "connect" : [
-        { "id" : "f117", "to" : "f170" }
-      ]
-    }, {
       "id" : "f17",
       "type" : "Alternative",
       "visual" : {
@@ -4172,7 +4110,7 @@
         "labelOffset" : { "x" : 14, "y" : 34 }
       },
       "connect" : [
-        { "id" : "f26", "to" : "S74" }
+        { "id" : "f301", "to" : "f170" }
       ]
     }, {
       "id" : "f27",
