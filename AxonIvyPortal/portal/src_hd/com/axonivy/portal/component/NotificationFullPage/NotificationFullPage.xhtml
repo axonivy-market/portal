@@ -64,7 +64,7 @@
                          </h:panelGroup>
                          <h:outputText value="#{notification.timeSince}" styleClass="font-normal notifications-item-time-since" />
                        </div>
-                       <p:outputPanel rendered="#{notificationBean.isActionAvailible(notification)}" styleClass="flex notification-action-block">
+                       <p:outputPanel rendered="#{notificationBean.isActionAvailable(notification)}" styleClass="flex notification-action-block">
                         <p:commandLink id="notification-start-task" styleClass="notification-start-task"
                           ariaLabel="#{notification.runAction.title}"
                           actionListener="#{notificationBean.startTask(notification)}" rendered="#{notification.runAction != null}">

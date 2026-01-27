@@ -1635,6 +1635,48 @@
       "connect" : [
         { "id" : "f243", "to" : "f239", "color" : "default" }
       ]
+    }, {
+      "id" : "f244",
+      "type" : "RequestStart",
+      "name" : "ReloadSearchEngine.ivp",
+      "config" : {
+        "signature" : "ReloadSearchEngine"
+      },
+      "visual" : {
+        "at" : { "x" : 872, "y" : 1464 }
+      },
+      "connect" : [
+        { "id" : "f247", "to" : "f245" }
+      ]
+    }, {
+      "id" : "f245",
+      "type" : "Script",
+      "name" : "Reindex",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivyteam.ivy.searchengine.ISearchEngineManager;",
+            "import ch.ivyteam.ivy.searchengine.client.IndexName;",
+            "import ch.ivyteam.ivy.searchengine.index.IndexInfo;",
+            "for (int i = 0; i < ISearchEngineManager.instance().indicesCount(); i++) {",
+            "  IndexInfo indexInfo = ISearchEngineManager.instance().indices(0, 1000).get(i);",
+            "  ISearchEngineManager.instance().reindexSync(indexInfo.indexName());",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 1024, "y" : 1464 }
+      },
+      "connect" : [
+        { "id" : "f248", "to" : "f246" }
+      ]
+    }, {
+      "id" : "f246",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 1184, "y" : 1464 }
+      }
     } ],
   "layout" : {
     "lanes" : [ {

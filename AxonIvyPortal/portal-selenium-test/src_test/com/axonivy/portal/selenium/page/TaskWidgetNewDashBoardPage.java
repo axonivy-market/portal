@@ -291,6 +291,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void clickOnTaskActionLink(int taskIndex) {
+    waitForGrowlMessageDisappear();
     getColumnOfTaskHasActionIndex(taskIndex, "Actions").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
 
@@ -301,6 +302,24 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
 
   public void reserveTask(int taskIndex) {
     getActiveTaskActions(taskIndex).filter(text("Reserve")).first().shouldBe(getClickableCondition()).click();
+  }
+  
+  public List<String> getCustomFieldValuesOnTaskCustomFieldsDialog() {
+    return $$("span[id$='number-value']")
+        .shouldBe(CollectionCondition.sizeGreaterThanOrEqual(0), DEFAULT_TIMEOUT)
+        .asFixedIterable()
+        .stream()
+        .map(SelenideElement::getText)
+        .collect(Collectors.toList());
+  }
+  
+  public SelenideElement getCustomFieldsPanelOfTask() {
+    return $("div[id$='task-custom-fields-dialog']");
+  }
+  
+  public boolean isCustomFieldsDialogDisplayed() {
+    return getCustomFieldsPanelOfTask().isDisplayed();
+
   }
 
   public void clickCancelTask() {
@@ -697,14 +716,5 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
         .stream()
         .map(SelenideElement::getText)
         .collect(Collectors.toList());
-  }
-  
-  public SelenideElement getCustomFieldsPanelOfTask() {
-    return $("div[id$='task-custom-fields-dialog']");
-  }
-  
-  public boolean isCustomFieldsDialogDisplayed() {
-    return getCustomFieldsPanelOfTask().isDisplayed();
-
   }
 }
