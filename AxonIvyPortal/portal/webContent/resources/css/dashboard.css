@@ -1103,6 +1103,11 @@ body .ui-widget.new-widget-dialog__introduction {
   display: grid;
 }
 
+.global-search-ai-result-container .dashboard-cases-container > .empty-message-container,
+.global-search-ai-result-container .dashboard-tasks-container > .empty-message-container {
+  display: none !important;
+}
+
 .process-dashboard-widget__empty-process.empty-message-container {
   padding: 0 20px;
 }
