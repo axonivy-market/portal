@@ -180,10 +180,6 @@ public class TaskActionBean implements Serializable {
         && task.getExpiryActivator() == null && StringUtils.isBlank(task.getExpiryTaskStartElementPid());
   }
 
-  public boolean canChangeName(ITask task) {
-    return isNotDone(task) && hasPermission(task, IPermission.TASK_WRITE_NAME);
-  }
-
   public boolean canChangeDescription(ITask task) {
     return isNotDone(task) && hasPermission(task, IPermission.TASK_WRITE_DESCRIPTION);
   }

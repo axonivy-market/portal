@@ -22,7 +22,6 @@ import ch.ivy.addon.portalkit.datamodel.CaseLazyDataModel;
 import ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel;
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivy.addon.portalkit.enums.CaseSortField;
-import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.enums.TaskSortField;
 import ch.ivy.addon.portalkit.exporter.Exporter;
@@ -43,13 +42,11 @@ public class CaseWidgetBean implements Serializable {
   private static final long serialVersionUID = 1L;
 
   private ICase selectedCase;
-  private boolean isShowAllTasksOfCase;
   private boolean isShowFullCaseList;
   private boolean isAdminCaseStateIncluded;
   private CaseLazyDataModel dataModel;
 
   public CaseWidgetBean() {
-    isShowAllTasksOfCase = PermissionUtils.hasPortalPermission(PortalPermission.SHOW_ALL_TASKS_OF_CASE);
     isShowFullCaseList = PermissionUtils.checkAccessFullCaseListPermission();
   }
 
@@ -118,14 +115,6 @@ public class CaseWidgetBean implements Serializable {
 
   public String formatCaseDescription(String text) {
     return HtmlParser.extractTextFromHtml(text);
-  }
-
-  public boolean isShowAllTasksOfCase() {
-    return isShowAllTasksOfCase;
-  }
-
-  public void setShowAllTasksOfCase(boolean isShowAllTasksOfCase) {
-    this.isShowAllTasksOfCase = isShowAllTasksOfCase;
   }
 
   public boolean isShowFullCaseList() {
