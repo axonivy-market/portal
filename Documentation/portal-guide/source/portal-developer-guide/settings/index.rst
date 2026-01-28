@@ -257,7 +257,6 @@ User needs permission: :ref:`🔑CaseWriteDescription <CaseWriteDescription>`
 
 Required permissions:
 
-- To see the action: :ref:`🔑ShowAllTasksOfCase <ShowAllTasksOfCase>`
 - To view related tasks: :ref:`🔑TaskReadOwnCaseTasks <TaskReadOwnCaseTasks>` or :ref:`🔑TaskReadAll <TaskReadAll>`
 
 .. important::
