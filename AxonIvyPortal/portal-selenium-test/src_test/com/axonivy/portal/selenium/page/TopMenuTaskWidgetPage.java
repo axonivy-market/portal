@@ -347,14 +347,13 @@ public class TopMenuTaskWidgetPage extends TaskWidgetNewDashBoardPage {
     clickTaskAction(taskIndex, "Unpin");
   }
 
-  public boolean isTaskPinned(int taskIndex) {
-    return getAllTaskActions(taskIndex)
-        .filter(Condition.exactText("Pin")).shouldHave(CollectionCondition.size(0)).isEmpty();
+  public void isTaskPinned(int taskIndex) {
+    getAllTaskActions(taskIndex)
+        .filter(Condition.exactText("Pin")).shouldHave(CollectionCondition.size(0));
   }
 
-  public boolean isTaskUnpinned(int taskIndex) {
-    return getAllTaskActions(taskIndex).filter(Condition.exactText("Unpin")).shouldHave(CollectionCondition.size(0))
-        .isEmpty();
+  public void isTaskUnpinned(int taskIndex) {
+    getAllTaskActions(taskIndex).filter(Condition.exactText("Unpin")).shouldHave(CollectionCondition.size(0));
   }
 
   public void togglePinnedTask() {
