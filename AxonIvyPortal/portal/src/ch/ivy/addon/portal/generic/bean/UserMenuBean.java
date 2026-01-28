@@ -218,6 +218,7 @@ public class UserMenuBean implements Serializable {
     ITask relatedTask = task != null ? task : Ivy.wfTask();
     String componentId = Attrs.currentContext().getBuildInAttribute("clientId");
     reserveTask.invokeComponentLogic(componentId, "#{logic.reserve}", new Object[] {relatedTask.getCase()});
+    executeCustomizedLogicIfExists(relatedTask, PortalCustomSignature.EXTEND_TASK_RESERVE);
     TaskUtils.parkTask(relatedTask);
     navigateToTargetPage();
   }
@@ -227,8 +228,15 @@ public class UserMenuBean implements Serializable {
     ITask relatedTask = task != null ? task : Ivy.wfTask();
     String componentId = Attrs.currentContext().getBuildInAttribute("clientId");
     leaveTask.invokeComponentLogic(componentId, "#{logic.leave}", new Object[] {relatedTask.getCase()});
+    executeCustomizedLogicIfExists(relatedTask, PortalCustomSignature.EXTEND_TASK_LEAVE);
     TaskUtils.resetTask(relatedTask);
     navigateToTargetPage();
+  }
+  
+  private void executeCustomizedLogicIfExists(ITask task, PortalCustomSignature portalCustomSignature) {
+    Map<String, Object> params = new HashMap<>();
+    params.put("workingTask", task);
+    IvyAdapterService.startSubProcessesInSecurityContext(portalCustomSignature.getSignature(), params);
   }
 
   private void executeJSResetPortalMenuState() {

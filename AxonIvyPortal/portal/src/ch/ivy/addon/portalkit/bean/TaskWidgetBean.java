@@ -23,7 +23,6 @@ import ch.ivy.addon.portalkit.enums.TaskSortField;
 import ch.ivy.addon.portalkit.exporter.Exporter;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.support.HtmlParser;
-import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.ITask;
@@ -40,7 +39,6 @@ public class TaskWidgetBean implements Serializable {
   private String selectedTaskName;
   private TaskLazyDataModel dataModel;
   private Boolean isTaskDetailOpenning;
-  private boolean isShowFullTaskList;
   private boolean isAdminTaskStateIncluded;
   private boolean isRunningTaskWhenClickingOnTaskInList;
 
@@ -50,7 +48,6 @@ public class TaskWidgetBean implements Serializable {
     taskListRefreshInterval =
         StringUtils.isNumeric(taskListRefreshIntervalUserSetting) ? Long.parseLong(taskListRefreshIntervalUserSetting)
             : DEFAULT_TASK_LIST_REFRESH_INTERVAL;
-    isShowFullTaskList = PermissionUtils.checkAccessFullTaskListPermission();
     isRunningTaskWhenClickingOnTaskInList = GlobalSettingService.getInstance()
         .findGlobalSettingValue(GlobalVariable.DEFAULT_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST)
         .equals(BehaviourWhenClickingOnLineInTaskList.RUN_TASK.name());
@@ -101,14 +98,6 @@ public class TaskWidgetBean implements Serializable {
 
   public void setIsTaskDetailOpenning(Boolean isTaskDetailOpenning) {
     this.isTaskDetailOpenning = isTaskDetailOpenning;
-  }
-
-  public boolean isShowFullTaskList() {
-    return isShowFullTaskList;
-  }
-
-  public void setShowFullTaskList(boolean isShowFullTaskList) {
-    this.isShowFullTaskList = isShowFullTaskList;
   }
 
   public Long getSelectedTaskItemId() {
