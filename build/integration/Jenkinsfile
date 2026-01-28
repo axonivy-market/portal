@@ -29,13 +29,13 @@ pipeline {
           downloadPortalRelease()
 
           def random = (new Random()).nextInt(10000000)
-          env.networkName = "build-" + random
-          env.seleniumName = "selenium-" + random
-          env.wawaName = "wawa-" + random
-          sh "docker network create ${env.networkName}"
+          def networkName = "build-" + random
+          def seleniumName = "selenium-" + random
+          def wawaPortal = "wawa-" + random
+          sh "docker network create ${networkName}"
           try {
-            docker.image("selenium/standalone-firefox:4").withRun("--shm-size=2g --name ${env.seleniumName} --network ${env.networkName} --hostname=wawa") {
-              docker.build('gui-test-portal', '-f build/Dockerfile .').inside("--name ${env.wawaName} --network ${env.networkName} -v /var/tools/maven-cache:/home/build/") {
+            docker.image("selenium/standalone-firefox:4").withRun("--shm-size=2g --name ${seleniumName} --network ${networkName} --hostname=wawa") {
+              docker.build('integration-test-portal', '-f build/Dockerfile .').inside("--name ${wawaPortal} --network ${networkName} -v /var/tools/maven-cache:/home/build/") {
                 echo '====================Check out tag of Portal latest successful release===================='
                 sh '''#!/bin/bash
                   artifactPattern="${releaseDir}/AxonIvyPortal/portal/target/*.iar"
@@ -91,17 +91,11 @@ pipeline {
                 '''
 
                 echo '====================Test Portal===================='
-                echo "DEBUG: networkName=${env.networkName}"
-                echo "DEBUG: seleniumName=${env.seleniumName}"
-                echo "DEBUG: wawaName=${env.wawaName}"
-                echo "DEBUG: selenide.remote=http://${env.seleniumName}:4444/wd/hub"
-                echo "DEBUG: selenide.baseUrl=http://${env.wawaName}:8080"
-                echo "DEBUG: test.engine.url=http://${env.wawaName}:8080"
-                maven cmd: "clean test -ntp -f AxonIvyPortal/portal-selenium-test/customized_pom.xml -Dtest=${params.testPatternToRun} -DbrowserType=FIREFOX -Dcapabilities.unhandledPromptBehavior=accept -DtrimStackTrace=false -Divy.engine.directory=${env.engineDir} -Divy.deploy.timeout.seconds=60 -Divy.engine.start.timeout.seconds=500 -Dsurefire.rerunFailingTestsCount=2 -Dselenide.remote=http://${env.seleniumName}:4444/wd/hub -Dselenide.baseUrl=http://${env.wawaName}:8080 -Dtest.engine.url=http://${env.wawaName}:8080"
+                maven cmd: "clean test -ntp -f AxonIvyPortal/portal-selenium-test/customized_pom.xml -Dtest=${params.testPatternToRun} -DbrowserType=FIREFOX -Dcapabilities.unhandledPromptBehavior=accept -DtrimStackTrace=false -Divy.engine.directory=${env.engineDir} -Divy.deploy.timeout.seconds=60 -Divy.engine.start.timeout.seconds=500 -Dsurefire.rerunFailingTestsCount=2 -Dselenide.remote=http://${seleniumName}:4444/wd/hub -Dtest.engine.url=http://${wawaPortal}:8080"
               }
             }
           } finally {
-            sh "docker network rm ${env.networkName}"
+            sh "docker network rm ${networkName}"
           }
         }
       }
