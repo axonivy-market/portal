@@ -120,7 +120,7 @@ def downloadPortalRelease() {
   echo '====================Download Portal latest successful release===================='
   def branchName = env.BRANCH_NAME.replaceAll("/", "%%2F")
   withCredentials([usernameColonPassword(credentialsId: 'wawa-jenkins', variable: 'credentials')]) {
-    sh "curl --user ${credentials} --output archive.zip ${env.JENKINS_URL}job/portal-release/job/master/lastSuccessfulBuild/artifact/*zip*/archive.zip"
+    sh "curl --user ${credentials} --output archive.zip ${env.JENKINS_URL}job/portal-release/job/${branchName}/lastSuccessfulBuild/artifact/*zip*/archive.zip"
   } // TODO: please change master to ${branchName} after testing
   unzip zipFile: 'archive.zip', quiet: true
 }
