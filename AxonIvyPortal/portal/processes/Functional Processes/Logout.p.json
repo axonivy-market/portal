@@ -42,7 +42,16 @@
       "config" : {
         "output" : {
           "code" : [
+            "import java.util.HashMap;",
+            "import java.util.Map;",
+            "import com.axonivy.portal.components.service.IvyAdapterService;",
+            "import com.axonivy.portal.enums.PortalCustomSignature;",
+            "",
             "if (in.isTaskReserve) {",
+            "  Map params = new HashMap();",
+            "  params.put(\"workingTask\", in.task);",
+            "",
+            "  IvyAdapterService.startSubProcessInSecurityContext(PortalCustomSignature.EXTEND_TASK_RESERVE.getSignature(), params);",
             "  ivy.session.parkTask(in.#task != null ? in.task : ivy.task);",
             "}",
             "ivy.session.logoutSessionUser();"

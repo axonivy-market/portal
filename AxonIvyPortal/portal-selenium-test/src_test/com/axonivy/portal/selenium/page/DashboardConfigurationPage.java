@@ -159,6 +159,13 @@ public class DashboardConfigurationPage extends TemplatePage {
     inputCreateDashboardDialog(newName, icon, newDescription, permissions, true, DashboardDisplayType.SUB_MENU);
   }
 
+  public void createPublicDashboardFromTemplate(String newName, String icon, String newDescription,
+      List<String> permissions, int templateIndex, boolean isPublicDashboard, DashboardDisplayType type) {
+    waitForCreateNewDashboardSectionAppear().$("a[id$='" + templateIndex + ":template']")
+        .shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+    inputCreateDashboardDialog(newName, icon, newDescription, permissions, isPublicDashboard, type);
+  }
+
   public SelenideElement openCreateDashboardDialog() {
     $("a[id$=':create-from-scratch']").shouldBe(getClickableCondition()).click();
     String creationDetailsDialogId = "[id='dashboard-template-selection-component:dashboard-creation-component:dashboard-creation-details-dialog']";
