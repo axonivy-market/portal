@@ -17,19 +17,19 @@
         "at" : { "x" : 64, "y" : 96 }
       },
       "connect" : [
-        { "id" : "f2", "to" : "f1" }
+        { "id" : "f52", "to" : "f54" }
       ]
     }, {
       "id" : "f1",
       "type" : "HtmlDialogEnd",
       "visual" : {
-        "at" : { "x" : 280, "y" : 96 }
+        "at" : { "x" : 712, "y" : 96 }
       }
     }, {
       "id" : "f4",
       "type" : "HtmlDialogEnd",
       "visual" : {
-        "at" : { "x" : 920, "y" : 224 }
+        "at" : { "x" : 904, "y" : 224 }
       }
     }, {
       "id" : "f8",
@@ -53,7 +53,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 512, "y" : 224 },
+        "at" : { "x" : 496, "y" : 224 },
         "size" : { "width" : 144 }
       },
       "connect" : [
@@ -108,7 +108,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 760, "y" : 224 },
+        "at" : { "x" : 744, "y" : 224 },
         "size" : { "width" : 144 }
       },
       "connect" : [
@@ -148,7 +148,7 @@
         "at" : { "x" : 64, "y" : 328 }
       },
       "connect" : [
-        { "id" : "f15", "to" : "f46" }
+        { "id" : "f15", "to" : "f13" }
       ]
     }, {
       "id" : "f11",
@@ -170,7 +170,7 @@
         "at" : { "x" : 56, "y" : 416 }
       },
       "connect" : [
-        { "id" : "f16", "to" : "f48" }
+        { "id" : "f16", "to" : "f14" }
       ]
     }, {
       "id" : "f13",
@@ -186,7 +186,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 352, "y" : 328 }
+        "at" : { "x" : 208, "y" : 328 }
       },
       "connect" : [
         { "id" : "f17", "to" : "f8" }
@@ -208,10 +208,10 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 352, "y" : 416 }
+        "at" : { "x" : 208, "y" : 416 }
       },
       "connect" : [
-        { "id" : "f18", "to" : "f8", "via" : [ { "x" : 512, "y" : 416 } ] }
+        { "id" : "f18", "to" : "f8", "via" : [ { "x" : 496, "y" : 416 } ] }
       ]
     }, {
       "id" : "f19",
@@ -228,7 +228,7 @@
       },
       "connect" : [
         { "id" : "f20", "to" : "f8" },
-        { "id" : "f21", "to" : "f4", "via" : [ { "x" : 320, "y" : 160 }, { "x" : 920, "y" : 160 } ] }
+        { "id" : "f21", "to" : "f4", "via" : [ { "x" : 320, "y" : 160 }, { "x" : 904, "y" : 160 } ] }
       ]
     }, {
       "id" : "f22",
@@ -394,55 +394,155 @@
       }
     }, {
       "id" : "f46",
-      "type" : "Script",
-      "name" : "Call customized process if exist",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "askAISearch(input)",
       "config" : {
-        "output" : {
-          "code" : [
-            "import com.axonivy.portal.enums.PortalCustomSignature;",
-            "import com.axonivy.portal.components.service.IvyAdapterService;",
-            "",
-            "import java.util.HashMap;",
-            "import java.util.Map;",
-            "",
-            "Map params = new HashMap();",
-            "params.put(\"workingTask\", in.workingTask);",
-            "",
-            "IvyAdapterService.startSubProcessesInSecurityContext(PortalCustomSignature.EXTEND_TASK_RESERVE.getSignature(), params);"
-          ]
-        }
+        "signature" : "askAISearch",
+        "input" : {
+          "params" : [
+            { "name" : "input", "type" : "String", "desc" : "" }
+          ],
+          "map" : {
+            "out.keyword" : "param.input"
+          },
+          "code" : "ivy.log.info(param.input);"
+        },
+        "guid" : "19BE3FD7CDE26364"
       },
       "visual" : {
-        "at" : { "x" : 192, "y" : 328 }
+        "at" : { "x" : 48, "y" : 912 }
       },
       "connect" : [
-        { "id" : "f47", "to" : "f13", "color" : "default" }
+        { "id" : "f48", "to" : "f47" }
       ]
     }, {
-      "id" : "f48",
+      "id" : "f47",
       "type" : "Script",
-      "name" : "Call customized process if exist",
+      "name" : "call agent",
       "config" : {
         "output" : {
+          "map" : {
+            "out" : "in",
+            "out.keyword" : "in.keyword"
+          },
           "code" : [
-            "import com.axonivy.portal.enums.PortalCustomSignature;",
             "import com.axonivy.portal.components.service.IvyAdapterService;",
-            "",
             "import java.util.HashMap;",
             "import java.util.Map;",
+            "import java.util.*;",
+            "import java.lang.Class;",
+            "import com.axonivy.portal.enums.PortalCustomSignature;",
+            "import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;",
+            "import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;",
+            "import com.axonivy.portal.enums.PortalSystemMessage;",
+            "import ch.ivy.addon.portalkit.service.WidgetFilterService;",
+            "import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;",
+            "import ch.ivy.addon.portalkit.dto.dashboard.WidgetFilterModel;",
             "",
+            "String portalSignature = \"invokeAgent(String,String,List<String>,String,String,Class,String)\";",
+            "String question = out.keyword;",
+            "String systemMessage = PortalSystemMessage.FILTER_CREATION_INSTRUCTION.getMessage();",
             "Map params = new HashMap();",
-            "params.put(\"workingTask\", in.workingTask);",
-            "",
-            "IvyAdapterService.startSubProcessesInSecurityContext(PortalCustomSignature.EXTEND_TASK_LEAVE.getSignature(), params);"
+            "params.put(\"query\", question);",
+            "params.put(\"systemMessage\", systemMessage);",
+            "params.put(\"resultType\", String.class);",
+            "Map result = new HashMap();",
+            "try {",
+            "    result = IvyAdapterService.startSubProcessInSecurityContext(portalSignature, params);",
+            "    List<DashboardFilter> filters = BusinessEntityConverter.jsonValueToEntities(result.get(\"resultObject\").toString(), DashboardFilter.class);",
+            "    WidgetFilterService widgetFilterService = WidgetFilterService.getInstance();",
+            "    in.caseWidget.setUserFilters(filters);",
+            "    DashboardWidget widget = in.caseWidget;",
+            "    WidgetFilterModel filterModel = widgetFilterService.prepareSaveFilter(widget);",
+            "    List<WidgetFilterModel> list = new ArrayList();",
+            "    list.add(filterModel);",
+            "    in.caseWidget.setSavedFilters(list);",
+            "    ivy.log.info(in.caseWidget.getSavedFilters().getFirst().toString());",
+            "} catch(Exception e) {",
+            "    ivy.log.error(e.getCause());",
+            "}"
           ]
         }
       },
       "visual" : {
-        "at" : { "x" : 192, "y" : 416 }
+        "at" : { "x" : 192, "y" : 912 }
       },
       "connect" : [
-        { "id" : "f49", "to" : "f14", "color" : "default" }
+        { "id" : "f50", "to" : "f49" }
+      ]
+    }, {
+      "id" : "f49",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 384, "y" : 912 }
+      }
+    }, {
+      "id" : "f51",
+      "type" : "Script",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget;",
+            "import ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget;",
+            "",
+            "import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;",
+            "import ch.ivy.addon.portalkit.dto.dashboard.casecolumn.CaseColumnModel;",
+            "import java.util.Arrays;",
+            "import ch.ivy.addon.portalkit.dto.WidgetLayout;",
+            "",
+            "CaseDashboardWidget caseWidget = DashboardWidgetUtils.buildDefaultCaseWidgetForGlobalSearch();",
+            "TaskDashboardWidget taskWidget = DashboardWidgetUtils.buildDefaultTaskWidgetForGlobalSearch();",
+            "in.caseWidget = caseWidget;",
+            "in.taskWidget = taskWidget;"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 536, "y" : 96 }
+      },
+      "connect" : [
+        { "id" : "f53", "to" : "f1", "color" : "default" }
+      ]
+    }, {
+      "id" : "f54",
+      "type" : "Script",
+      "name" : "detect smart workflow",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivyteam.ivy.process.call.SubProcessCallStartEvent;",
+            "import ch.ivyteam.ivy.process.call.SubProcessSearchFilter;",
+            "import ch.ivyteam.ivy.process.call.SubProcessSearchFilter.SearchScope;",
+            "import com.axonivy.portal.enums.PortalCustomSignature;",
+            "import org.apache.commons.collections4.CollectionUtils;",
+            "",
+            "SubProcessSearchFilter filter = SubProcessSearchFilter.create().setSearchScope(SearchScope.SECURITY_CONTEXT).setSignature(PortalCustomSignature.INVOKE_SMART_WORKFLOW_AGENT.getSignature()).toFilter();",
+            "List<SubProcessCallStartEvent> subProcessStartList = SubProcessCallStartEvent.find(filter);",
+            "in.isSmartWorkflowFound = CollectionUtils.isNotEmpty(subProcessStartList);",
+            "ivy.log.info(in.isSmartWorkflowFound);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 208, "y" : 96 }
+      },
+      "connect" : [
+        { "id" : "f59", "to" : "f58" }
+      ]
+    }, {
+      "id" : "f58",
+      "type" : "Alternative",
+      "config" : {
+        "conditions" : {
+          "f60" : "in.isSmartWorkflowFound"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 368, "y" : 96 }
+      },
+      "connect" : [
+        { "id" : "f60", "to" : "f51" },
+        { "id" : "f61", "to" : "f1", "via" : [ { "x" : 368, "y" : 8 }, { "x" : 712, "y" : 8 } ] }
       ]
     } ]
 }

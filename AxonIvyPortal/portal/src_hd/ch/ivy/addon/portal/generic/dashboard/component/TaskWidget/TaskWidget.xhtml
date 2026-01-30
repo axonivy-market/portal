@@ -15,6 +15,7 @@
   <cc:attribute name="onCompleteLoadWidget" />
   <cc:attribute name="componentToUpdateTaskWidget" />
   <cc:attribute name="isAIResult" default="false" />
+  <cc:attribute name="rows" default="0"></cc:attribute>
 </cc:interface>
 
 <cc:implementation>
@@ -52,7 +53,7 @@
         </p:commandLink>
       </h:panelGroup>
       <p:dataTable id="dashboard-tasks" widgetVar="#{cc.attrs.taskWidgetVar}-#{taskWidget.id}" value="#{taskWidget.dataModel}" var="task"
-        lazy="true" scrollRows="25"
+        lazy="true" scrollRows="25" rows="#{cc.attrs.rows}"
         disabledSelection="#{isPreviewMode}" partialUpdate="false"
         liveScroll="true" scrollable="true" sortBy="#{isResizing ? null : taskWidget.sortBy}"
         showGridlines="#{isResizing}" resizableColumns="#{isResizing}" resizeMode="expand"
