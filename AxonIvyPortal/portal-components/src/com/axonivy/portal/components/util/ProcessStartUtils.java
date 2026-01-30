@@ -12,8 +12,8 @@ import com.axonivy.portal.components.enums.SessionAttribute;
 
 import ch.ivyteam.ivy.application.ActivityState;
 import ch.ivyteam.ivy.application.IApplication;
+import ch.ivyteam.ivy.application.IProcessModel;
 import ch.ivyteam.ivy.application.IProcessModelVersion;
-import ch.ivyteam.ivy.application.ReleaseState;
 import ch.ivyteam.ivy.application.app.IApplicationRepository;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.request.IHttpResponse;
@@ -40,15 +40,13 @@ public class ProcessStartUtils {
 
       List<IApplication> applicationsInSecurityContext = IApplicationRepository.of(ISecurityContext.current()).all();
 
-      List<IProcessModelVersion> processModelVersions = applicationsInSecurityContext.stream()
-        .filter(app -> app.getActivityState() == ActivityState.ACTIVE)
-        .filter(app -> app.getReleaseState() == ReleaseState.RELEASED)
-        .flatMap(app -> app.getProcessModelVersions())
-        .toList();
-      for (var pmv : processModelVersions) {
-        Optional<IProcessStart> processStartOptional = Optional.of(pmv)
-            .map(p -> findProcessStartByUserFriendlyRequestPathAndPmv(requestPath, p))
-            .filter(Objects::nonNull);
+      List<IProcessModel> processModels = applicationsInSecurityContext.stream()
+          .map(IApplication::getProcessModelsSortedByName).flatMap(List::stream).collect(Collectors.toList());
+
+      for (IProcessModel processModel : processModels) {
+        Optional<IProcessStart> processStartOptional = Optional.of(processModel).filter(pm -> isActive(pm))
+            .map(IProcessModel::getReleasedProcessModelVersion).filter(pmv -> isActive(pmv))
+            .map(p -> findProcessStartByUserFriendlyRequestPathAndPmv(requestPath, p)).filter(Objects::nonNull);
         if (processStartOptional.isPresent()) {
           return processStartOptional.get();
         }
@@ -62,6 +60,14 @@ public class ProcessStartUtils {
     return IWorkflowProcessModelVersion.of(processModelVersion).findStartElementByUserFriendlyRequestPath(requestPath);
   }
 
+  private static boolean isActive(IProcessModel processModel) {
+    return processModel.getActivityState() == ActivityState.ACTIVE;
+  }
+
+  private static boolean isActive(IProcessModelVersion processModelVersion) {
+    return processModelVersion != null && processModelVersion.getActivityState() == ActivityState.ACTIVE;
+  }
+
   public static void redirect(String uri) throws java.io.IOException {
     IHttpResponse httpResponse = (IHttpResponse) Ivy.response();
     httpResponse.sendRedirect(uri);
@@ -73,7 +79,7 @@ public class ProcessStartUtils {
     } else {
       List<IApplication> applicationsInSecurityContext = IApplicationRepository.of(ISecurityContext.current()).all();
       for (IApplication app : applicationsInSecurityContext) {
-        IProcessModelVersion findProcessModelVersion = app.getProcessModelVersions().filter(pmv -> pmv.getId() == (int) portalStartPmvId).findAny().orElse(null);
+        IProcessModelVersion findProcessModelVersion = app.findProcessModelVersion(portalStartPmvId);
         if (findProcessModelVersion != null) {
           return findFriendlyRequestPathContainsKeywordInPMV(keyword, findProcessModelVersion);
         }

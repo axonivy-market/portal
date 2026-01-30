@@ -8,6 +8,7 @@ import org.apache.commons.lang3.StringUtils;
 import ch.ivy.addon.portalkit.bo.ProcessStep;
 import ch.ivy.addon.portalkit.configuration.UserProcess;
 import ch.ivyteam.ivy.application.IApplication;
+import ch.ivyteam.ivy.application.IProcessModel;
 import ch.ivyteam.ivy.application.IProcessModelVersion;
 import ch.ivyteam.ivy.application.app.IApplicationRepository;
 import ch.ivyteam.ivy.cm.exec.ContentManagement;
@@ -40,7 +41,10 @@ public class ProcessStepUtils {
       IProcessModelVersion releasedProcessModelVersion = null;
       List<IApplication> applicationsInSecurityContext = IApplicationRepository.of(ISecurityContext.current()).all();
       for (IApplication app : applicationsInSecurityContext) {
-        releasedProcessModelVersion = app.findProcessModelVersion(processModelName);        
+        IProcessModel findProcessModel = app.findProcessModel(processModelName);
+        if (findProcessModel != null) {
+          releasedProcessModelVersion = findProcessModel.getReleasedProcessModelVersion();
+        }
       }
       
       if (releasedProcessModelVersion != null) {

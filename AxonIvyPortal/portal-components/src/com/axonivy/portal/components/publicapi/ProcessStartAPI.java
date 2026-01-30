@@ -9,7 +9,9 @@ import org.apache.commons.lang3.StringUtils;
 import com.axonivy.portal.components.service.impl.ProcessService;
 import com.axonivy.portal.components.util.ProcessStartUtils;
 
+import ch.ivyteam.ivy.application.ActivityState;
 import ch.ivyteam.ivy.application.IApplication;
+import ch.ivyteam.ivy.application.IProcessModel;
 import ch.ivyteam.ivy.application.IProcessModelVersion;
 import ch.ivyteam.ivy.application.app.IApplicationRepository;
 import ch.ivyteam.ivy.security.ISecurityContext;
@@ -65,6 +67,14 @@ public final class ProcessStartAPI {
         .filter(processStart -> isStartableProcessStart(processStart.getLink().getRelative())).findFirst().orElse(null);
   }
 
+  private static boolean isActive(IProcessModelVersion processModelVersion) {
+    return processModelVersion != null && processModelVersion.getActivityState() == ActivityState.ACTIVE;
+  }
+
+  private static boolean isActive(IProcessModel processModel) {
+    return processModel.getActivityState() == ActivityState.ACTIVE;
+  }
+
   private static IProcessStart getProcessStart(String requestPath, IProcessModelVersion processModelVersion) {
     return IWorkflowProcessModelVersion.of(processModelVersion).findStartElementByUserFriendlyRequestPath(requestPath);
   }
@@ -79,6 +89,8 @@ public final class ProcessStartAPI {
   }
 
   private static Stream<IProcessModelVersion> filterActivePMVOfApp(IApplication application) {
-    return application.getProcessModelVersions();
+    return application.getProcessModelsSortedByName().stream().filter(pm -> isActive(pm))
+        .map(IProcessModel::getReleasedProcessModelVersion).filter(pmv -> isActive(pmv));
   }
+
 }
