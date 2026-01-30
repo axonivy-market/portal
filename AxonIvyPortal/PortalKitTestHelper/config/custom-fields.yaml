@@ -1,3 +1,4 @@
+# yaml-language-server: $schema=https://json-schema.axonivy.com/config/14.0.0/custom-fields.json
 # == Custom Fields Information ==
 # 
 # You can define here your project custom fields.
