@@ -1,0 +1,265 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/process/13.2.0/process.json",
+  "id" : "17EE8CACE2CB2C75",
+  "kind" : "HTML_DIALOG",
+  "config" : {
+    "data" : "ch.ivy.addon.portalkit.component.MultipleTaskItemDelegate.MultipleTaskItemDelegateData"
+  },
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "HtmlDialogStart",
+      "name" : "start()",
+      "config" : {
+        "signature" : "start",
+        "guid" : "17EE8CACE694620C"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f2", "to" : "f1" }
+      ]
+    }, {
+      "id" : "f1",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 224, "y" : 64 }
+      }
+    }, {
+      "id" : "f66",
+      "type" : "HtmlDialogEventStart",
+      "name" : "close",
+      "config" : {
+        "guid" : "17EE8CACE696B4EC"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 160 }
+      },
+      "connect" : [
+        { "id" : "f67", "to" : "f68" }
+      ]
+    }, {
+      "id" : "f68",
+      "type" : "HtmlDialogExit",
+      "visual" : {
+        "at" : { "x" : 224, "y" : 160 }
+      }
+    }, {
+      "id" : "f82",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "initDataToDelegateTasks(List<Long>,List<ITask>)",
+      "config" : {
+        "signature" : "initDataToDelegateTasks",
+        "input" : {
+          "params" : [
+            { "name" : "taskIds", "type" : "java.util.List<Long>", "desc" : "" },
+            { "name" : "tasks", "type" : "java.util.List<ch.ivyteam.ivy.workflow.ITask>", "desc" : "" }
+          ],
+          "map" : {
+            "out.tasks" : "param.tasks"
+          },
+          "code" : [
+            "import ch.ivy.addon.portalkit.util.TaskUtils;",
+            "import ch.ivyteam.ivy.workflow.ITask;",
+            "import java.util.ArrayList;",
+            "",
+            "// If tasks list is empty or null, find tasks by IDs",
+            "if (param.tasks == null || param.tasks.isEmpty()) {",
+            "  out.tasks = new ArrayList<ITask>();",
+            "  if (param.taskIds != null) {",
+            "    for (Long taskId : param.taskIds) {",
+            "      try {",
+            "        ITask task = TaskUtils.findTaskById(taskId);",
+            "        if (task != null) {",
+            "          out.tasks.add(task);",
+            "        } else {",
+            "          ivy.log.warn(\"Task with ID {0} not found\", taskId);",
+            "        }",
+            "      } catch (Exception e) {",
+            "        ivy.log.error(\"Error finding task with ID {0}: {1}\", taskId, e.getMessage());",
+            "      }",
+            "    }",
+            "  }",
+            "}"
+          ]
+        },
+        "guid" : "17EE8CC0919DC8DC"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 256 },
+        "labelOffset" : { "x" : 23 }
+      },
+      "connect" : [
+        { "id" : "f83", "to" : "f84" }
+      ]
+    }, {
+      "id" : "f84",
+      "type" : "Alternative",
+      "config" : {
+        "conditions" : {
+          "f85" : "in.tasks != null && !in.tasks.isEmpty()"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 256 }
+      },
+      "connect" : [
+        { "id" : "f85", "to" : "f86" },
+        { "id" : "f87", "to" : "f88", "via" : [ { "x" : 224, "y" : 352 } ] }
+      ]
+    }, {
+      "id" : "f86",
+      "type" : "Script",
+      "name" : "Init data",
+      "config" : {
+        "output" : {
+          "code" : [
+            "in.disabledDelegateButton = true;",
+            "in.isUserDelegated = true;",
+            "in.delegatedSecurityMember = null;",
+            "if (!in.tasks.isEmpty()) {",
+            "  in.application = in.tasks.get(0).getApplication();",
+            "}",
+            "in.selectedRole = null;",
+            "in.selectedUser = null;"
+          ]
+        },
+        "sudo" : true
+      },
+      "visual" : {
+        "at" : { "x" : 360, "y" : 256 }
+      },
+      "connect" : [
+        { "id" : "f89", "to" : "f90" }
+      ]
+    }, {
+      "id" : "f88",
+      "type" : "Script",
+      "name" : "can not delegate task",
+      "config" : {
+        "output" : {
+          "code" : "in.canDelegateTask = false;"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 360, "y" : 352 },
+        "size" : { "width" : 128 }
+      },
+      "connect" : [
+        { "id" : "f91", "to" : "f92", "via" : [ { "x" : 1352, "y" : 352 } ] }
+      ]
+    }, {
+      "id" : "f90",
+      "type" : "SubProcessCall",
+      "name" : "SecurityService - Find Users",
+      "config" : {
+        "processCall" : "Ivy Data Processes/SecurityService:findUsersWithRoles(Integer,Integer,java.util.List<String>,java.util.List<String>,String)",
+        "call" : {
+          "map" : {
+            "param.query" : "\"\"",
+            "param.startIndex" : "0",
+            "param.count" : "101"
+          }
+        },
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.usersToDelegate" : "result.users"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 552, "y" : 256 },
+        "size" : { "width" : 160 }
+      },
+      "connect" : [
+        { "id" : "f93", "to" : "f94" }
+      ]
+    }, {
+      "id" : "f94",
+      "type" : "SubProcessCall",
+      "name" : "SecurityService - find roles",
+      "config" : {
+        "processCall" : "Ivy Data Processes/SecurityService:findRolesDTO()",
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.rolesToDelegate" : "result.roles"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 784, "y" : 256 },
+        "size" : { "width" : 160 }
+      },
+      "connect" : [
+        { "id" : "f95", "to" : "f96" }
+      ]
+    }, {
+      "id" : "f96",
+      "type" : "SubProcessCall",
+      "name" : "CalculateTaskDelegate",
+      "config" : {
+        "processCall" : "Functional Processes/CalculateTaskDelegate:call(java.util.List<com.axonivy.portal.components.dto.RoleDTO>,java.util.List<com.axonivy.portal.components.dto.UserDTO>,com.axonivy.portal.components.dto.SecurityMemberDTO,ch.ivyteam.ivy.workflow.ITask)",
+        "call" : {
+          "map" : {
+            "param.roles" : "in.rolesToDelegate",
+            "param.users" : "in.usersToDelegate",
+            "param.currentUser" : "ch.ivy.addon.portalkit.util.SecurityMemberUtils.getCurrentSessionUserAsSecurityMemberDTO()",
+            "param.task" : "in.tasks.isEmpty() ? null : in.tasks.get(0)"
+          }
+        },
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.rolesToDelegate" : "result.roles",
+            "out.usersToDelegate" : "result.users"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 1000, "y" : 256 },
+        "size" : { "width" : 144 }
+      },
+      "connect" : [
+        { "id" : "f97", "to" : "f98" }
+      ]
+    }, {
+      "id" : "f98",
+      "type" : "Script",
+      "name" : [
+        "Check if can",
+        "delegate task"
+      ],
+      "config" : {
+        "output" : {
+          "code" : [
+            "in.canDelegateTask = !(in.rolesToDelegate.isEmpty() && in.usersToDelegate.isEmpty());",
+            "in.isEmptyUsers = in.usersToDelegate.isEmpty();",
+            "in.isEmptyRoles = in.rolesToDelegate.isEmpty();",
+            "",
+            "if (in.canDelegateTask) {",
+            "  if (in.rolesToDelegate.isEmpty()) {",
+            "    in.isUserDelegated = true;",
+            "  }",
+            "  if (in.usersToDelegate.isEmpty()) {",
+            "    in.isUserDelegated = false;",
+            "  }",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 1224, "y" : 256 }
+      },
+      "connect" : [
+        { "id" : "f99", "to" : "f92" }
+      ]
+    }, {
+      "id" : "f92",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 1352, "y" : 256 }
+      }
+    } ]
+}

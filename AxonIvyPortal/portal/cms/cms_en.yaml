@@ -570,6 +570,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     ok: OK
     'on': 'on'
     pin: Pin
+    delegation: Delegation
+    undelegation: Undelegation
     pleaseAddDocument: Please add a document with the link above.
     pleaseAddNote: Please add a note with the link above.
     previousStage: Previous stage
