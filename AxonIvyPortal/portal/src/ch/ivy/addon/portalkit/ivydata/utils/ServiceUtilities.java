@@ -20,8 +20,8 @@ import ch.ivy.addon.portalkit.service.IvyCacheService;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.application.ActivityState;
 import ch.ivyteam.ivy.application.IApplication;
-import ch.ivyteam.ivy.application.IProcessModel;
 import ch.ivyteam.ivy.application.IProcessModelVersion;
+import ch.ivyteam.ivy.application.ReleaseState;
 import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.security.ISecurityConstants;
 import ch.ivyteam.ivy.security.ISecurityContext;
@@ -70,11 +70,9 @@ public class ServiceUtilities {
   public static List<IProcessModelVersion> getActiveReleasedPmvs(IApplication app) {
     requireNonNull(app);
 
-    return app.getProcessModels()
-          .stream()
-          .filter(pm -> pm.getActivityState() == ActivityState.ACTIVE)
-          .map(IProcessModel::getReleasedProcessModelVersion)
-          .filter(pmv -> pmv != null && pmv.getActivityState() == ActivityState.ACTIVE)
+    return app.getProcessModelVersions()
+          .filter(pm -> pm.getApplication().getActivityState() == ActivityState.ACTIVE)
+          .filter(pm -> pm.getApplication().getReleaseState() == ReleaseState.RELEASED)
           .collect(Collectors.toList());
   }
 
