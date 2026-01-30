@@ -1,9 +1,12 @@
 package com.axonivy.portal.util.filter.operator.caze.application;
 
+import java.util.Optional;
+
 import org.apache.commons.collections4.CollectionUtils;
 
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 
+import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.application.app.IApplicationRepository;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 import ch.ivyteam.ivy.workflow.query.CaseQuery.IFilterQuery;
@@ -28,9 +31,9 @@ public class ApplicationInOperatorHandler {
 
     boolean hasApp = false;
     for (String app : filter.getValues()) {
-      var appFindByName = IApplicationRepository.instance().findReleasedByName(app);
-      if (appFindByName != null) {
-        filterQuery.or().applicationId().isEqual(appFindByName.getId());
+      final Optional<IApplication> appFindByName = IApplicationRepository.instance().findByName(app);
+      if (appFindByName.isPresent()) {
+        filterQuery.or().applicationId().isEqual(appFindByName.get().getId());
         hasApp = true;
       }
     }

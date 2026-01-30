@@ -23,8 +23,8 @@ public class CustomerProjectService {
     var apps = IApplicationRepository.of(ISecurityContext.current()).all();
     for (var app : apps) {
       var pmvs = app.getProcessModelVersions()
-          .filter(pmv -> !PortalConstants.PORTAL_LIBRARY_ID.equals(pmv.getLibraryId()) && RELEASE_STATES.contains(pmv.getApplication().getReleaseState()))
-          .sorted((pmv1, pmv2) -> Strings.CI.compare(pmv1.getName(), pmv2.getName()))
+          .filter(pmv -> !PortalConstants.PORTAL_LIBRARY_ID.equals(pmv.getLibraryId()) && RELEASE_STATES.contains(pmv.getReleaseState()))
+          .sorted((pmv1, pmv2) -> Strings.CI.compare(pmv1.getProcessModel().getName(), pmv2.getProcessModel().getName()))
           .collect(Collectors.toList());
       appPmvs.put(app.getName(), pmvs);
     }

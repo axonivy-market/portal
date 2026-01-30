@@ -58,7 +58,7 @@ public class DisplayNameDTO implements Serializable {
    * @return DisplayNameDTO with CMS URI reference
    */
   public static DisplayNameDTO fromCms(String cmsUri) {
-    return new DisplayNameDTO(null, cmsUri, Ivy.request().getProcessModelVersion().getName());
+    return new DisplayNameDTO(null, cmsUri, Ivy.request().getProcessModel().getName());
   }
 
   /**
