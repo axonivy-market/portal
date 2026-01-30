@@ -11,7 +11,7 @@
 
 <cc:implementation>
   <p:remoteCommand id="init-data-to-delegate-multiple-rc" name="initDataToDelegateMultiple"
-    actionListener="#{logic.initDataToDelegateTasks(null, cc.attrs.tasks)}"
+    actionListener="#{logic.initDataToDelegate(cc.attrs.tasks)}"
     oncomplete="PF('multiple-task-delegate-dialog').show()"
     update="#{cc.clientId}:multiple-task-delegate-dialog"
     process="@this"/>
