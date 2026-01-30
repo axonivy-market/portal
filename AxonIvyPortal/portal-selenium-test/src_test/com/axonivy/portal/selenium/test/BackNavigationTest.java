@@ -41,6 +41,7 @@ public class BackNavigationTest extends BaseTest {
   @Override
   @BeforeEach
   public void setup() {
+    super.setup();
     updateGlobalVariable(Variable.TASK_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST.getKey(), "ACCESS_TASK_DETAILS");
     login(TestAccount.DEMO_USER);
   }
