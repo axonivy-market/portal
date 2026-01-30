@@ -50,8 +50,7 @@
                     styleClass="rounded-button ui-button-outlined ui-button-widget"
                     ariaLabel="Start multiple delegation"
                     actionListener="#{dashboardBean.startMultipleDelegation(widget)}"
-                    update="@widgetVar(multiple-task-delegate-dialog)"
-                    oncomplete="PF('multiple-task-delegate-dialog').show()"
+                    oncomplete="initDataToDelegateMultiple()"
                     disabled="#{!dashboardBean.showDelegatedItem}"
                     process="@this">
                 </p:commandButton>
