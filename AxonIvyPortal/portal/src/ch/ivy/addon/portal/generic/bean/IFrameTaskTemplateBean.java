@@ -23,8 +23,10 @@ import org.apache.commons.lang3.math.NumberUtils;
 import com.axonivy.portal.components.util.FacesMessageUtils;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
+import ch.ivy.addon.portalkit.ivydata.service.impl.TaskService;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
 import ch.ivy.addon.portalkit.service.GrowlMessageService;
+import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivyteam.ivy.dialog.execution.api.DialogInstance;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.request.OpenRedirectVulnerabilityUtil;
@@ -144,6 +146,21 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements 
     keepOverridePortalGrowl();
     Map<String, String> requestParamMap = getRequestParameterMap();
     String url = requestParamMap.get(URL_PARAM);
+    if (url.contains("?resetTaskId=")) {
+      try {
+        String[] parts = url.split("\\?resetTaskId=");
+        url = parts[0];
+        String resetTaskId = parts.length > 1 ? parts[1] : null;
+        if (resetTaskId != null) {
+          ITask task = TaskService.newInstance().findTaskById(Long.parseLong(resetTaskId));
+          if (TaskUtils.canReset(task)) {
+            TaskUtils.resetTask(task);
+          }
+        }
+      } catch (Exception e) {
+        Ivy.log().error(e);
+      }
+    }
     HttpServletRequest request = null;
     ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
     if (context != null){
