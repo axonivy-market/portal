@@ -11,5 +11,5 @@ public enum SessionAttribute {
     PORTAL_IN_TEAMS,
     DEFAULT_PAGE_IN_TEAMS,
     SELECTED_SUB_DASHBOARD_ID, 
-    RESET_TASK_ID;
+    RESET_TASK_UUID;
 }

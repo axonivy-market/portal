@@ -159,11 +159,11 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements 
   }
 
   public void resetTaskAndNavigateToUrl() throws IOException {
-    String sessionAttributeKey = SessionAttribute.RESET_TASK_ID.toString();
+    String sessionAttributeKey = SessionAttribute.RESET_TASK_UUID.toString();
     Object value = SecurityServiceUtils.getSessionAttribute(sessionAttributeKey);
-    Long taskId = value instanceof Long ? (Long) value : null;
+    String taskId = value instanceof String ? (String) value : null;
     if (taskId != null) {
-      ITask task = TaskService.newInstance().findTaskById(taskId);
+      ITask task = TaskService.newInstance().findTaskByUUID(taskId);
       if (TaskUtils.canReset(task)) {
         TaskUtils.resetTask(task);
       }
