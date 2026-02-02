@@ -392,7 +392,7 @@ public final class TaskUtils {
       return false;
     }
     
-    EnumSet<TaskState> taskStates = EnumSet.of(TaskState.RESUMED, TaskState.PARKED, TaskState.READY_FOR_JOIN,
+    EnumSet<TaskState> taskStates = EnumSet.of(TaskState.RESUMED, TaskState.CREATED, TaskState.PARKED, TaskState.READY_FOR_JOIN,
         TaskState.FAILED);
     if (!taskStates.contains(task.getState())) {
       return false;
