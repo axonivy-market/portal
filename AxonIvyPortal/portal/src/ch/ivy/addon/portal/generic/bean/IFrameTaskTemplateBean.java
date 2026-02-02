@@ -149,17 +149,38 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements 
     Map<String, String> requestParamMap = getRequestParameterMap();
     String url = requestParamMap.get(URL_PARAM);
 
-    try {
-      Object resetTaskIdAttr = SecurityServiceUtils.getSessionAttribute(SessionAttribute.RESET_TASK_ID.toString());
-      if (resetTaskIdAttr != null) {
-        ITask task = TaskService.newInstance().findTaskById(Long.parseLong(resetTaskIdAttr.toString()));
-        if (TaskUtils.canReset(task)) {
-          TaskUtils.resetTask(task);
-        }
-        SecurityServiceUtils.removeSessionAttribute(SessionAttribute.RESET_TASK_ID.toString());
+    HttpServletRequest request = null;
+    ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
+    if (context != null) {
+      request = (HttpServletRequest) context.getRequest();
+    }
+    if (StringUtils.isNotBlank(url) && OpenRedirectVulnerabilityUtil.isValid(url, request)) {
+      FacesContext.getCurrentInstance().getExternalContext().redirect(url);
+    }
+  }
+
+  public void resetAndNavigateToUrl() throws IOException {
+    keepOverridePortalGrowl();
+    Map<String, String> requestParamMap = getRequestParameterMap();
+    String url = requestParamMap.get(URL_PARAM);
+    Long taskId = Optional.ofNullable(SecurityServiceUtils.getSessionAttribute(SessionAttribute.RESET_TASK_ID.toString())).map(val -> {
+      if (val instanceof Long) {
+        return (Long) val;
       }
-    } catch (Exception e) {
-      Ivy.log().error(e);
+      if (val instanceof String) {
+        try {
+          return Long.parseLong((String) val);
+        } catch (NumberFormatException e) {
+          return null;
+        }
+    }
+      return null;
+    }).orElse(null);
+
+    if (taskId != null) {
+      ITask task = TaskService.newInstance().findTaskById(taskId);
+      TaskUtils.resetTask(task);
+      SecurityServiceUtils.removeSessionAttribute(SessionAttribute.RESET_TASK_ID.toString());
     }
 
     HttpServletRequest request = null;

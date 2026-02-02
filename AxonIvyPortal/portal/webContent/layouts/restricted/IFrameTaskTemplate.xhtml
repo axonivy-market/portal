@@ -143,7 +143,7 @@
         <p:remoteCommand name="redirectToEndPageCommand" actionListener="#{iFrameTaskTemplateBean.navigateToEndPage()}" />
         <p:remoteCommand name="displayPortalGrowlMessageCommand" actionListener="#{iFrameTaskTemplateBean.displayPortalGrowlMessage()}" />
         <p:remoteCommand name="redirectToUrlCommand" actionListener="#{iFrameTaskTemplateBean.navigateToUrl()}" />
-        <p:remoteCommand name="resetTaskAndRedirectToUrlCommand" actionListener="#{iFrameTaskTemplateBean.navigateToUrl()}" />
+        <p:remoteCommand name="resetTaskAndRedirectToUrlCommand" actionListener="#{iFrameTaskTemplateBean.resetAndNavigateToUrl()}" />
         <p:remoteCommand name="useTaskInIFrame" actionListener="#{iFrameTaskTemplateBean.useTaskInIFrame()}" update="@([id$='portal-global-growl']) @([id$='layout-topbar-menu-wrapper']) @([id$='title'])"/>
         <p:remoteCommand name="getDataFromIFrame" actionListener="#{iFrameTaskTemplateBean.getDataFromIFrame()}"
           update="@([id$='header-container']) @([id$='announcement-container']) @([id$='task-leave-warning-dialog']) @([id$='task-leave-warning-component']) @([id$='left-menu']) @([id$='logout-setting']) @([id$='breadcrumb-container'])" 
