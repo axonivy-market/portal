@@ -381,6 +381,6 @@
   <ic:ch.ivy.addon.portalkit.component.MultipleTaskItemDelegate id="multiple-task-delegate-component-#{index}"
     tasks="#{dashboardBean.selectedDelegatedTasks}"
     componentToUpdate="#{componentToUpdateOnResetFilter}"
-    onCompletedCallback=""/>
+    onCompletedCallback="#{componentToUpdateOnResetFilter}"/>
 </h:panelGroup>
 </html>
