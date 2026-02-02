@@ -144,30 +144,6 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements 
     }
   }
 
-  public void resetAndNavigateToUrl() throws IOException {
-    Long taskId = Optional.ofNullable(SecurityServiceUtils.getSessionAttribute(SessionAttribute.RESET_TASK_ID.toString())).map(val -> {
-      if (val instanceof Long) {
-        return (Long) val;
-      }
-      if (val instanceof String) {
-        try {
-          return Long.parseLong((String) val);
-        } catch (NumberFormatException e) {
-          return null;
-        }
-    }
-      return null;
-    }).orElse(null);
-
-    if (taskId != null) {
-      ITask task = TaskService.newInstance().findTaskById(taskId);
-      TaskUtils.resetTask(task);
-      SecurityServiceUtils.removeSessionAttribute(SessionAttribute.RESET_TASK_ID.toString());
-    }
-
-    navigateToUrl();
-  }
-
   public void navigateToUrl() throws IOException {
     keepOverridePortalGrowl();
     Map<String, String> requestParamMap = getRequestParameterMap();
@@ -180,6 +156,36 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements 
     if (StringUtils.isNotBlank(url) && OpenRedirectVulnerabilityUtil.isValid(url, request)) {
       FacesContext.getCurrentInstance().getExternalContext().redirect(url);
     }
+  }
+
+  public void resetAndNavigateToUrl() throws IOException {
+    String sessionAttributeKey = SessionAttribute.RESET_TASK_ID.toString();
+    Long taskId = getTaskIdFromSession(sessionAttributeKey);
+
+    if (taskId != null) {
+      ITask task = TaskService.newInstance().findTaskById(taskId);
+      if (TaskUtils.canReset(task)) {
+        TaskUtils.resetTask(task);
+      }
+      SecurityServiceUtils.removeSessionAttribute(sessionAttributeKey);
+    }
+
+    navigateToUrl();
+  }
+
+  private Long getTaskIdFromSession(String sessionAttributeKey) {
+    Object sessionValue = SecurityServiceUtils.getSessionAttribute(sessionAttributeKey);
+    if (sessionValue instanceof Long) {
+      return (Long) sessionValue;
+    }
+    if (sessionValue instanceof String) {
+      try {
+        return Long.parseLong((String) sessionValue);
+      } catch (NumberFormatException e) {
+        return null;
+      }
+    }
+    return null;
   }
 
   public void getDataFromIFrame() throws Exception {
