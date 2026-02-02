@@ -376,5 +376,11 @@
       rendered="#{renderExpandCollapse and isHeaderHidden}"
       onclick="collapseFullscreen(#{index}, '#{htmlSanitizerBean.escapeForJS(widget.id)}')" />
   </h:panelGroup>
+  
+  <!-- Multiple Task Delegation Component -->
+  <ic:ch.ivy.addon.portalkit.component.MultipleTaskItemDelegate id="multiple-task-delegate-component-#{index}"
+    tasks="#{dashboardBean.selectedDelegatedTasks}"
+    componentToUpdate="#{componentToUpdateOnResetFilter}"
+    onCompletedCallback=""/>
 </h:panelGroup>
 </html>

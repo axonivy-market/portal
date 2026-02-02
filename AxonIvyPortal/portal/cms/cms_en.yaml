@@ -490,6 +490,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     days: days
     default: Default
     defaultNotificationMessage: Hmm... Looks like something went wrong.
+    delegation: Delegation
     delete: Delete
     deleteAbsenceHeaderText: Delete this absence?
     deleteChartHeaderText: Delete this chart?
@@ -570,8 +571,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     ok: OK
     'on': 'on'
     pin: Pin
-    delegation: Delegation
-    undelegation: Undelegation
     pleaseAddDocument: Please add a document with the link above.
     pleaseAddNote: Please add a note with the link above.
     previousStage: Previous stage
@@ -631,6 +630,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     typeAdmin: All administrators
     typeAllUsers: All users
     typeOnlyMe: Only me
+    undelegation: Undelegation
     unpin: Unpin
     uploadHere: Upload here
     uploadOneHere: Upload one here
@@ -926,6 +926,10 @@ ch.ivy.addon.portalkit.ui.jsf:
     statisticChartWidget: Statistic chart
     statisticWidgets: Statistic Widgets
     switchToViewMode: View Mode
+    taskList: Task List
+    taskListIntroduction: This widget displays relevant task information according to defined settings.
+    taskStart: Task start
+    taskWidgetConfiguration: Task Widget Configuration
     taskWidgetInfo:
       expireToday: Expire today
       expiryThisWeek: Expire this week
@@ -934,10 +938,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       numberOfTasksByState: Number of tasks by state
       predefinedFilters: Predefined filters
       taskDrillDownDashboard: Task drill-down dashboard
-    taskList: Task List
-    taskListIntroduction: This widget displays relevant task information according to defined settings.
-    taskStart: Task start
-    taskWidgetConfiguration: Task Widget Configuration
     widgetInfo: Widget information
     widgetInfoIcon: Widget Information Icon
     widgetTitle: Widget Title
@@ -1127,11 +1127,11 @@ ch.ivy.addon.portalkit.ui.jsf:
       dialogHeaderTitle: Edit information for {0}
     editProcesses: Edit processes
     externalLink: External link
+    externalLinkImage: External link image
     externalLinkVisibility: Visibility
     goTo: 'Go to: '
     icon: Icon
     image: Image
-    externalLinkImage: External link image
     isRequiredMessage: has to be set
     linkDescription: Link description
     noProcess: There are no processes.
@@ -1228,7 +1228,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     clearDelay: Clear delay
     clearExpiry: Clear expiry
     delegate: Delegate
-    delegateTask: Delegate task
+    delegateTask: Delegate multiple task
     freeReservationTaskTooltip: Use reset to decontrol task
     histories: Notes
     note: Note information
