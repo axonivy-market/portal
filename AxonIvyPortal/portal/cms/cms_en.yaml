@@ -738,6 +738,12 @@ ch.ivy.addon.portalkit.ui.jsf:
       publicFilter: Public
       savedFilters: 'Saved filters:'
   dashboard:
+    CaseQueryType:
+      All: Business Cases + Sub Cases
+      BusinessCase: Business Cases (Default)
+      SubCase: Sub Cases
+      _: Case Type
+    CaseQueryTypeInfo: Configure which case types are shown in the Case Widget. Default shows business cases only, Sub Cases shows technical subcases only, and All shows both business cases and technical subcases.
     CloneWidget: Clone widget
     CustomWidgets: Custom Widgets
     DashboardConfiguration:
@@ -924,6 +930,10 @@ ch.ivy.addon.portalkit.ui.jsf:
     statisticChartWidget: Statistic chart
     statisticWidgets: Statistic Widgets
     switchToViewMode: View Mode
+    taskList: Task List
+    taskListIntroduction: This widget displays relevant task information according to defined settings.
+    taskStart: Task start
+    taskWidgetConfiguration: Task Widget Configuration
     taskWidgetInfo:
       expireToday: Expire today
       expiryThisWeek: Expire this week
@@ -932,10 +942,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       numberOfTasksByState: Number of tasks by state
       predefinedFilters: Predefined filters
       taskDrillDownDashboard: Task drill-down dashboard
-    taskList: Task List
-    taskListIntroduction: This widget displays relevant task information according to defined settings.
-    taskStart: Task start
-    taskWidgetConfiguration: Task Widget Configuration
     widgetInfo: Widget information
     widgetInfoIcon: Widget Information Icon
     widgetTitle: Widget Title
@@ -1125,11 +1131,11 @@ ch.ivy.addon.portalkit.ui.jsf:
       dialogHeaderTitle: Edit information for {0}
     editProcesses: Edit processes
     externalLink: External link
+    externalLinkImage: External link image
     externalLinkVisibility: Visibility
     goTo: 'Go to: '
     icon: Icon
     image: Image
-    externalLinkImage: External link image
     isRequiredMessage: has to be set
     linkDescription: Link description
     noProcess: There are no processes.

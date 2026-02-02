@@ -742,6 +742,12 @@ ch.ivy.addon.portalkit.ui.jsf:
       publicFilter: Öffentlich
       savedFilters: 'Gespeicherte Filter:'
   dashboard:
+    CaseQueryType:
+      All: Geschäftsvorgänge + Untervorgänge
+      BusinessCase: Geschäftsvorgänge (Standard)
+      SubCase: Untervorgänge
+      _: Vorgangstyp
+    CaseQueryTypeInfo: Konfigurieren Sie, welche Vorgangstypen im Vorgangs-Widget angezeigt werden. Standard zeigt nur Geschäftsvorgänge, Technische Untervorgänge zeigt nur technische Untervorgänge, und Alle zeigt sowohl Geschäftsvorgänge als auch technische Untervorgänge.
     CloneWidget: Widget klonen
     CustomWidgets: Benutzerdefinierte Widgets
     DashboardConfiguration:
@@ -928,6 +934,10 @@ ch.ivy.addon.portalkit.ui.jsf:
     statisticChartWidget: Statistisches Diagramm
     statisticWidgets: Statistik-Widgets
     switchToViewMode: Ansichtsmodus
+    taskList: Aufgabenliste
+    taskListIntroduction: Dieses Widget zeigt relevante Aufgabeninformationen gemäß der definierten Einstellungen an
+    taskStart: Aufgabe starten
+    taskWidgetConfiguration: Aufgaben-Widget-Konfiguration
     taskWidgetInfo:
       expireToday: Fälligkeitsdatum heute
       expiryThisWeek: Fälligkeitsdatum diese Woche
@@ -936,10 +946,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       numberOfTasksByState: Anzahl der Aufgaben nach Status
       predefinedFilters: Vordefinierte Filter
       taskDrillDownDashboard: Dashboard zur Aufgaben-Detailanalyse
-    taskList: Aufgabenliste
-    taskListIntroduction: Dieses Widget zeigt relevante Aufgabeninformationen gemäß der definierten Einstellungen an
-    taskStart: Aufgabe starten
-    taskWidgetConfiguration: Aufgaben-Widget-Konfiguration
     widgetInfo: Widget-Informationen
     widgetInfoIcon: Widget-Informations-Symbol
     widgetTitle: Widget-Titel
@@ -1130,11 +1136,11 @@ ch.ivy.addon.portalkit.ui.jsf:
       dialogHeaderTitle: Informationen bearbeiten für {0}
     editProcesses: Prozesse bearbeiten
     externalLink: Externer Link
+    externalLinkImage: Bild des externen Links
     externalLinkVisibility: Sichtbarkeit
     goTo: 'Gehe zu: '
     icon: Symbol
     image: Bild
-    externalLinkImage: Bild des externen Links
     isRequiredMessage: muss gesetzt werden
     linkDescription: Link Beschreibung
     noProcess: Keinen Prozess gefunden.
