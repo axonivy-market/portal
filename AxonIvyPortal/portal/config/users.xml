@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<userConfig>
+    <user>
+        <username>admin</username>
+        <password>admin</password>
+        <fullName>Portal Admin User</fullName>
+        <emailAddress>portal1.axonivy@gmail.com</emailAddress>
+        <role>AXONIVY_PORTAL_ADMIN</role>
+    </user>
+    <user>
+        <username>demo</username>
+        <password>demo</password>
+        <fullName>Portal Demo User</fullName>
+        <emailAddress>portal2.axonivy@gmail.com</emailAddress>
+    </user>
+    <user>
+        <username>guest</username>
+        <password>guest</password>
+        <fullName>Portal Guest User</fullName>
+    </user>
+</userConfig>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<userConfig>
+    <user>
+        <username>caseOwnerUser</username>
+        <password>caseOwnerUser</password>
+        <role>CaseOwner</role>
+    </user>
+    <user>
+        <username>david</username>
+        <password>david</password>
+        <fullName>david</fullName>
+        <role>HR</role>
+    </user>
+    <user>
+        <username>peter</username>
+        <password>peter</password>
+        <role>HR</role>
+    </user>
+</userConfig>
