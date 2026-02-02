@@ -144,25 +144,7 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements 
     }
   }
 
-  public void navigateToUrl() throws IOException {
-    keepOverridePortalGrowl();
-    Map<String, String> requestParamMap = getRequestParameterMap();
-    String url = requestParamMap.get(URL_PARAM);
-
-    HttpServletRequest request = null;
-    ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
-    if (context != null) {
-      request = (HttpServletRequest) context.getRequest();
-    }
-    if (StringUtils.isNotBlank(url) && OpenRedirectVulnerabilityUtil.isValid(url, request)) {
-      FacesContext.getCurrentInstance().getExternalContext().redirect(url);
-    }
-  }
-
   public void resetAndNavigateToUrl() throws IOException {
-    keepOverridePortalGrowl();
-    Map<String, String> requestParamMap = getRequestParameterMap();
-    String url = requestParamMap.get(URL_PARAM);
     Long taskId = Optional.ofNullable(SecurityServiceUtils.getSessionAttribute(SessionAttribute.RESET_TASK_ID.toString())).map(val -> {
       if (val instanceof Long) {
         return (Long) val;
@@ -183,9 +165,16 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements 
       SecurityServiceUtils.removeSessionAttribute(SessionAttribute.RESET_TASK_ID.toString());
     }
 
+    navigateToUrl();
+  }
+
+  public void navigateToUrl() throws IOException {
+    keepOverridePortalGrowl();
+    Map<String, String> requestParamMap = getRequestParameterMap();
+    String url = requestParamMap.get(URL_PARAM);
     HttpServletRequest request = null;
     ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
-    if (context != null){
+    if (context != null) {
       request = (HttpServletRequest) context.getRequest();
     }
     if (StringUtils.isNotBlank(url) && OpenRedirectVulnerabilityUtil.isValid(url, request)) {
