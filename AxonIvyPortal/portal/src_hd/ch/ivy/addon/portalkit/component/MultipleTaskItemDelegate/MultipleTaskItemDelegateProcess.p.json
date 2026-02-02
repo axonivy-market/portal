@@ -436,5 +436,100 @@
       "visual" : {
         "at" : { "x" : 352, "y" : 624 }
       }
+    }, {
+      "id" : "f115",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "delegateTask()",
+      "config" : {
+        "signature" : "delegateTask",
+        "guid" : "17EE8CC091941043"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 720 }
+      },
+      "connect" : [
+        { "id" : "f116", "to" : "f117" }
+      ]
+    }, {
+      "id" : "f117",
+      "type" : "Script",
+      "name" : "Prepare delegation",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.util.SecurityMemberUtils;",
+            "",
+            "if (in.#selectedUser != null) {",
+            "  in.delegatedSecurityMember = SecurityMemberUtils.findISecurityMemberFromUserDTO(in.selectedUser);",
+            "} else if (in.#selectedRole != null) {",
+            "  in.delegatedSecurityMember = SecurityMemberUtils.findISecurityMemberFromRoleDTO(in.selectedRole);",
+            "}"
+          ]
+        },
+        "sudo" : true
+      },
+      "visual" : {
+        "at" : { "x" : 240, "y" : 720 }
+      },
+      "connect" : [
+        { "id" : "f118", "to" : "f119" }
+      ]
+    }, {
+      "id" : "f119",
+      "type" : "Script",
+      "name" : "Delegate all tasks",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.util.TaskUtils;",
+            "import ch.ivy.addon.portalkit.util.SecurityMemberUtils;",
+            "import org.apache.commons.lang3.StringUtils;",
+            "",
+            "String newResponsibleName = \"\";",
+            "if (in.#selectedUser != null) {",
+            "  newResponsibleName = in.#selectedUser.#displayName;",
+            "} else if (in.#selectedRole != null) {",
+            "  newResponsibleName = in.#selectedRole.#displayName;",
+            "}",
+            "",
+            "for (ch.ivyteam.ivy.workflow.ITask task : in.tasks) {",
+            "  try {",
+            "    // Reset task",
+            "    TaskUtils.resetTask(task);",
+            "    ",
+            "    // Create delegation comment",
+            "    String oldResponsibleName = TaskUtils.toDisplayNameResponsible(task.responsibles());",
+            "    String delegateComment = StringUtils.isBlank(in.#taskDelegationComment) ?",
+            "      ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/taskDelegate/delegateComment\", [task.getId(), oldResponsibleName, newResponsibleName])",
+            "      : ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/taskDelegate/delegateReasonIncludedComment\", [task.getId(), oldResponsibleName, newResponsibleName, in.#taskDelegationComment.trim()]);",
+            "    ",
+            "    // Delegate task",
+            "    TaskUtils.delegateTask(task, in.delegatedSecurityMember);",
+            "    ",
+            "    // Add note to case",
+            "    task.getCase().createNote(ivy.session, delegateComment);",
+            "  } catch (Exception e) {",
+            "    ivy.log.error(\"Error delegating task {0}: {1}\", task.getId(), e.getMessage());",
+            "  }",
+            "}",
+            "",
+            "in.taskDelegationComment = \"\";"
+          ]
+        },
+        "sudo" : true
+      },
+      "visual" : {
+        "at" : { "x" : 432, "y" : 720 },
+        "size" : { "width" : 128 }
+      },
+      "connect" : [
+        { "id" : "f120", "to" : "f121" }
+      ]
+    }, {
+      "id" : "f121",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 624, "y" : 720 }
+      }
     } ]
 }
