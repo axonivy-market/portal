@@ -28,7 +28,7 @@ public final class PortalNavigatorInFrameAPI extends BaseNavigator {
     PrimeFaces.current().executeScript(statement);
   }
 
-  public static void resetTaskAndRedirectToUrl(String url) {
+  public static void resetTaskAndNavigateToUrl(String url) {
     Ivy.session().setAttribute(SessionAttribute.RESET_TASK_ID.toString(), Ivy.wfTask().getId());
     String statement = "parent.resetTaskAndRedirectToUrlCommand([{name: 'url', value: '" + URLDecoder.decode(url, StandardCharsets.UTF_8) + "'}])";
     PrimeFaces.current().executeScript(statement);
