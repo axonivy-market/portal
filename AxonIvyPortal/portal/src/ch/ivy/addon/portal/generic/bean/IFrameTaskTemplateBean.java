@@ -20,11 +20,15 @@ import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 
+import com.axonivy.portal.components.enums.SessionAttribute;
 import com.axonivy.portal.components.util.FacesMessageUtils;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
+import ch.ivy.addon.portalkit.ivydata.service.impl.TaskService;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
 import ch.ivy.addon.portalkit.service.GrowlMessageService;
+import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
+import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivyteam.ivy.dialog.execution.api.DialogInstance;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.request.OpenRedirectVulnerabilityUtil;
@@ -146,12 +150,27 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements 
     String url = requestParamMap.get(URL_PARAM);
     HttpServletRequest request = null;
     ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
-    if (context != null){
+    if (context != null) {
       request = (HttpServletRequest) context.getRequest();
     }
     if (StringUtils.isNotBlank(url) && OpenRedirectVulnerabilityUtil.isValid(url, request)) {
       FacesContext.getCurrentInstance().getExternalContext().redirect(url);
     }
+  }
+
+  public void resetTaskAndNavigateToUrl() throws IOException {
+    String sessionAttributeKey = SessionAttribute.RESET_TASK_UUID.name();
+    Object value = SecurityServiceUtils.getSessionAttribute(sessionAttributeKey);
+    String taskUuid = value instanceof String ? (String) value : null;
+    if (taskUuid != null) {
+      ITask task = TaskService.newInstance().findTaskByUUID(taskUuid);
+      if (TaskUtils.canReset(task)) {
+        TaskUtils.resetTask(task);
+      }
+      SecurityServiceUtils.removeSessionAttribute(sessionAttributeKey);
+    }
+
+    navigateToUrl();
   }
 
   public void getDataFromIFrame() throws Exception {
