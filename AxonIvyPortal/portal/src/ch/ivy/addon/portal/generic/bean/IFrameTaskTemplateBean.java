@@ -158,10 +158,10 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements 
     }
   }
 
-  public void resetAndNavigateToUrl() throws IOException {
+  public void resetTaskAndNavigateToUrl() throws IOException {
     String sessionAttributeKey = SessionAttribute.RESET_TASK_ID.toString();
-    Long taskId = getTaskIdFromSession(sessionAttributeKey);
-
+    Object value = SecurityServiceUtils.getSessionAttribute(sessionAttributeKey);
+    Long taskId = value instanceof Long ? (Long) value : null;
     if (taskId != null) {
       ITask task = TaskService.newInstance().findTaskById(taskId);
       if (TaskUtils.canReset(task)) {
@@ -171,21 +171,6 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements 
     }
 
     navigateToUrl();
-  }
-
-  private Long getTaskIdFromSession(String sessionAttributeKey) {
-    Object sessionValue = SecurityServiceUtils.getSessionAttribute(sessionAttributeKey);
-    if (sessionValue instanceof Long) {
-      return (Long) sessionValue;
-    }
-    if (sessionValue instanceof String) {
-      try {
-        return Long.parseLong((String) sessionValue);
-      } catch (NumberFormatException e) {
-        return null;
-      }
-    }
-    return null;
   }
 
   public void getDataFromIFrame() throws Exception {
