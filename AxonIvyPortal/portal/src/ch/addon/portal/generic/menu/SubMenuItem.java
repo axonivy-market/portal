@@ -5,12 +5,21 @@ import com.axonivy.portal.components.enums.MenuKind;
 import ch.ivy.addon.portalkit.enums.Protocol;
 
 public class SubMenuItem {
+  protected String id;
   protected MenuKind menuKind;
   protected String link;
   protected String icon;
   protected String label;
   protected String name;
   
+  public String getId() {
+    return id;
+  }
+
+  public void setId(String id) {
+    this.id = id;
+  }
+
   public MenuKind getMenuKind() {
     return menuKind;
   }

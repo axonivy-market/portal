@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class CustomSubMenuItem {
+  private String id;
   private MenuKind menuKind;
   private String link;
   private String icon;
@@ -16,6 +17,10 @@ public class CustomSubMenuItem {
   private Boolean isExternalLink; 
 
   private String version;
+
+  public String getId() {
+    return id;
+  }
 
   public MenuKind getMenuKind() {
     return menuKind;
