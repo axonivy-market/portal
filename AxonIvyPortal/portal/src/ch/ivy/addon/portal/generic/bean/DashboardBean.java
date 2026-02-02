@@ -658,11 +658,10 @@ public class DashboardBean implements Serializable, IMultiLanguage {
       return;
     }
     
-    Ivy.log().info("Starting multiple delegation for tasks: " + String.join(", ", delegatedTaskUuids));
-    // TaskService taskService = new TaskService();
-    // this.selectedDelegatedTasks = delegatedTaskUuids.stream()
-    //   .map(uuid -> taskService.findTaskByUUID(uuid))
-    //   .filter(task -> task != null)
-    //   .collect(Collectors.toList());
+    TaskService taskService = TaskService.newInstance();
+    this.selectedDelegatedTasks = delegatedTaskUuids.stream()
+      .map(uuid -> taskService.findTaskByUUID(uuid))
+      .filter(task -> task != null)
+      .collect(Collectors.toList());
   }
 }
