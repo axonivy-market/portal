@@ -14,11 +14,9 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import org.apache.commons.collections4.CollectionUtils;
-import org.apache.commons.collections4.ListUtils;
 import org.primefaces.model.SortMeta;
 import org.primefaces.model.SortOrder;
-import ch.ivy.addon.portal.generic.dashboard.component.GlobalSearchAIResult.GlobalSearchAIResultData;
-import com.axonivy.portal.bean.dashboard.filter.AbstractCaseWidgetFilterBean;
+
 import com.axonivy.portal.components.service.IvyAdapterService;
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 import com.axonivy.portal.enums.PortalCustomSignature;
@@ -29,16 +27,15 @@ import com.axonivy.portal.util.filter.field.TaskFilterFieldFactory;
 import com.axonivy.portal.util.filter.field.caze.CaseFilterFieldCreator;
 import com.axonivy.portal.util.statisticfilter.field.CaseFilterFieldFactory;
 
+import ch.ivy.addon.portal.generic.dashboard.component.GlobalSearchAIResult.GlobalSearchAIResultData;
 import ch.ivy.addon.portalkit.datamodel.GlobalSearchAiResultModel;
 import ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget;
-import ch.ivy.addon.portalkit.dto.dashboard.WidgetFilterModel;
 import ch.ivy.addon.portalkit.dto.dashboard.casecolumn.CaseColumnModel;
 import ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.TaskColumnModel;
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
-import ch.ivy.addon.portalkit.service.WidgetFilterService;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.ITask;
@@ -222,18 +219,6 @@ public class GlobalSearchBean implements Serializable {
             });
         }
     }
-
-    // private void saveCaseWidgetFilters() {
-    //     WidgetFilterService widgetFilterService = WidgetFilterService.getInstance();
-    //     WidgetFilterModel filterModel = widgetFilterService.prepareSaveFilter(caseWidget);
-    //     caseWidget.setSavedFilters(List.of(filterModel));
-    // }
-
-    // private void saveTaskWidgetFilters() {
-    //     WidgetFilterService widgetFilterService = WidgetFilterService.getInstance();
-    //     WidgetFilterModel filterModel = widgetFilterService.prepareSaveFilter(taskWidget);
-    //     taskWidget.setSavedFilters(List.of(filterModel));
-    // }
 
     private List<ICase> loadCaseWidgetData() {
 
