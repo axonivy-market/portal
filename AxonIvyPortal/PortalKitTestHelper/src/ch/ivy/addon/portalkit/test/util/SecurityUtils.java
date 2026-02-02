@@ -236,7 +236,7 @@ public class SecurityUtils {
     var admin = ISecurityContext.current().users().find("admin");
     if (admin != null) {
       for (IPermission permission : ADMIN_PERMISSIONS) {
-        ISecurityContext.current().securityDescriptor().grantPermission(permission, admin);
+        Sudo.run(() -> ISecurityContext.current().securityDescriptor().grantPermission(permission, admin));
       }
     }
   }
@@ -252,10 +252,10 @@ public class SecurityUtils {
       return;
     }
     for (IPermission iPermission : DEMO_DENIED_PERMISSIONS) {
-      ISecurityContext.current().securityDescriptor().denyPermission(iPermission, demo);
+      Sudo.run(() -> ISecurityContext.current().securityDescriptor().denyPermission(iPermission, demo));
     }
     for (IPermission permission : DEMO_GRANTED_PERMISSIONS) {
-      ISecurityContext.current().securityDescriptor().grantPermission(permission, demo);
+      Sudo.run(() -> ISecurityContext.current().securityDescriptor().grantPermission(permission, demo));
     }
   }
 }
