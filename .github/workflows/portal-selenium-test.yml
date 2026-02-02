@@ -11,13 +11,18 @@ on:
         required: true
       engineDownloadURL:
         description: |
-          url to download engine, default is the nightly build.
+          URL to download engine (ignored if customGoogleDriveFolderID is set).
         type: string
         default: 'https://developer.axonivy.com/permalink/nightly/axonivy-engine.zip'
         required: true
-
-env:
-  ENGINE_DIR: $GITHUB_WORKSPACE/ivy/engine
+      customGoogleDriveFolderID:
+        description: |
+          Google Drive folder ID for custom engine/plugin.
+          Extract from URL: drive.google.com/drive/folders/<THIS_IS_THE_ID>
+          Expected files: axonivy-engine*.zip, project-build-plugin-*.jar/pom (optional)
+        type: string
+        default: ''
+        required: false
 
 jobs:
   show-branch-info:
@@ -332,7 +337,36 @@ jobs:
             sudo chown -R $USER:$USER $ENGINE_DIR
             echo "ENGINE_DIR=$ENGINE_DIR" >> $GITHUB_ENV
 
+        - name: Download from Google Drive (custom build)
+          if: ${{ inputs.customGoogleDriveFolderID != '' }}
+          run: |
+            pip install gdown
+            CUSTOM_DIR="${GITHUB_WORKSPACE}/custom-build"
+            mkdir -p $CUSTOM_DIR
+            gdown --folder "https://drive.google.com/drive/folders/${{ inputs.customGoogleDriveFolderID }}" -O $CUSTOM_DIR
+            echo "Downloaded files:" && ls -la $CUSTOM_DIR
+
+            # Find and extract engine (axonivy-engine*.zip, exclude docker)
+            ENGINE_ZIP=$(find $CUSTOM_DIR -name "axonivy-engine*.zip" ! -name "*docker*" | head -1)
+            if [ -n "$ENGINE_ZIP" ]; then
+              echo "Using engine: $ENGINE_ZIP"
+              unzip -o "$ENGINE_ZIP" -d $ENGINE_DIR
+            else
+              echo "Error: No axonivy-engine*.zip found in Google Drive folder"
+              exit 1
+            fi
+
+            # Install custom plugin if JAR and POM exist
+            PLUGIN_JAR=$(find $CUSTOM_DIR -name "project-build-plugin-*.jar" | head -1)
+            PLUGIN_POM=$(find $CUSTOM_DIR -name "project-build-plugin-*.pom" | head -1)
+            if [ -n "$PLUGIN_JAR" ] && [ -n "$PLUGIN_POM" ]; then
+              echo "Installing custom plugin: $PLUGIN_JAR"
+              mvn install:install-file -Dfile="$PLUGIN_JAR" -DpomFile="$PLUGIN_POM"
+              echo "CUSTOM_PLUGIN=true" >> $GITHUB_ENV
+            fi
+
         - name: Download engine
+          if: ${{ inputs.customGoogleDriveFolderID == '' }}
           run: |
             cd $ENGINE_DIR
             wget ${{ inputs.engineDownloadURL }} -O axonivy-engine.zip
@@ -392,8 +426,14 @@ jobs:
         - name: Show inputs
           run: |
             echo "## Inputs" >> $GITHUB_STEP_SUMMARY
-            echo "- Test pattern: ${{inputs.testPatternToRun}}" >> $GITHUB_STEP_SUMMARY
-            echo "- Engine download url: ${{inputs.engineDownloadURL}}" >> $GITHUB_STEP_SUMMARY
+            echo "- Test pattern: ${{ inputs.testPatternToRun }}" >> $GITHUB_STEP_SUMMARY
+            if [ -n "${{ inputs.customGoogleDriveFolderID }}" ]; then
+              echo "- Engine source: **Custom (Google Drive)**" >> $GITHUB_STEP_SUMMARY
+              echo "- Google Drive folder ID: \`${{ inputs.customGoogleDriveFolderID }}\`" >> $GITHUB_STEP_SUMMARY
+              [ "$CUSTOM_PLUGIN" = "true" ] && echo "- Custom Maven plugin: Yes" >> $GITHUB_STEP_SUMMARY
+            else
+              echo "- Engine download URL: ${{ inputs.engineDownloadURL }}" >> $GITHUB_STEP_SUMMARY
+            fi
 
         - name: Parse and show failed tests
           if: always()
