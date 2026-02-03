@@ -1,0 +1,161 @@
+pipeline {
+    agent { label 'linux' }
+
+    parameters {
+        choice(
+            name: 'SOURCE_DB',
+            choices: [
+                'AxonIvySystemDatabase-performance-master',
+                'AxonIvySystemDatabase-performance-12',
+                'AxonIvySystemDatabase-performance-10'
+            ],
+            description: 'Source database to clone from'
+        )
+        string(
+            name: 'TARGET_DB',
+            defaultValue: 'AxonIvySystemDatabase-performance-manual-testing',
+            description: 'Target database name'
+        )
+        string(
+            name: 'BACKUP_DIR',
+            defaultValue: '/var/database-backups',
+            description: 'Directory to store database backups'
+        )
+        choice(
+            name: 'SOURCE_PROJECT_DIR',
+            choices: [
+                '/var/tools/ivy/performance-master',
+                '/var/tools/ivy/performance-12',
+                '/var/tools/ivy/performance-10'
+            ],
+            description: 'Source project directory to copy configuration from'
+        )
+        string(
+            name: 'PROJECT_NAME',
+            defaultValue: 'performance-manual-testing',
+            description: 'Name of the new project directory'
+        )
+        choice(
+            name: 'ENGINE_IMAGE_NAME',
+            choices: [
+                'axonivy/axonivy-engine:nightly',
+                'axonivy/axonivy-engine:nightly-12.0',
+                'axonivy/axonivy-engine:nightly-10.0'
+            ],
+            description: 'Docker engine image to use'
+        )
+        string(
+            name: 'CONTAINER_NAME',
+            defaultValue: 'ivy-performance-manual-testing',
+            description: 'Docker container name'
+        )
+        string(
+            name: 'HOST_PORT',
+            defaultValue: '9001',
+            description: 'Host port to expose the container'
+        )
+    }
+
+    environment {
+        SCRIPT_PATH = 'create-performance-engine.sh'
+    }
+
+    stages {
+        stage('Validate Parameters') {
+            steps {
+                script {
+                    echo "============================================================"
+                    echo "Performance Engine Setup - Parameter Validation"
+                    echo "============================================================"
+                    echo "Source Database    : ${params.SOURCE_DB}"
+                    echo "Target Database    : ${params.TARGET_DB}"
+                    echo "Backup Directory   : ${params.BACKUP_DIR}"
+                    echo "Source Project Dir : ${params.SOURCE_PROJECT_DIR}"
+                    echo "Project Name       : ${params.PROJECT_NAME}"
+                    echo "Engine Image       : ${params.ENGINE_IMAGE_NAME}"
+                    echo "Container Name     : ${params.CONTAINER_NAME}"
+                    echo "Host Port          : ${params.HOST_PORT}"
+                    echo "============================================================"
+
+                    // Validate required parameters
+                    if (!params.TARGET_DB?.trim()) {
+                        error("TARGET_DB parameter is required")
+                    }
+                    if (!params.PROJECT_NAME?.trim()) {
+                        error("PROJECT_NAME parameter is required")
+                    }
+                    if (!params.CONTAINER_NAME?.trim()) {
+                        error("CONTAINER_NAME parameter is required")
+                    }
+                    if (!params.HOST_PORT?.trim()) {
+                        error("HOST_PORT parameter is required")
+                    }
+                }
+            }
+        }
+
+        stage('Setup Performance Engine') {
+            steps {
+                script {
+                    sh """
+                        chmod +x ${SCRIPT_PATH}
+                        ./${SCRIPT_PATH} \
+                            --source-db "${params.SOURCE_DB}" \
+                            --target-db "${params.TARGET_DB}" \
+                            --backup-dir "${params.BACKUP_DIR}" \
+                            --source-project-dir "${params.SOURCE_PROJECT_DIR}" \
+                            --project-name "${params.PROJECT_NAME}" \
+                            --engine-image "${params.ENGINE_IMAGE_NAME}" \
+                            --container-name "${params.CONTAINER_NAME}" \
+                            --host-port "${params.HOST_PORT}"
+                    """
+                }
+            }
+        }
+
+        stage('Verify Deployment') {
+            steps {
+                script {
+                    echo "Waiting for container to start..."
+                    sleep(time: 30, unit: 'SECONDS')
+                    
+                    sh """
+                        echo "Checking container status..."
+                        docker ps | grep ${params.CONTAINER_NAME} || echo "Container not found in running containers"
+                        
+                        echo ""
+                        echo "Container logs (last 50 lines):"
+                        docker logs --tail 50 ${params.CONTAINER_NAME} || echo "Could not retrieve logs"
+                    """
+                }
+            }
+        }
+    }
+
+    post {
+        success {
+            echo "============================================================"
+            echo "Performance Engine Setup Completed Successfully!"
+            echo "============================================================"
+            echo "Container: ${params.CONTAINER_NAME}"
+            echo "Access URL: http://<host>:${params.HOST_PORT}"
+            echo "============================================================"
+        }
+        failure {
+            echo "============================================================"
+            echo "Performance Engine Setup Failed!"
+            echo "============================================================"
+            echo "Please check the logs for more details."
+            
+            script {
+                // Attempt to show container logs if available
+                sh """
+                    docker logs ${params.CONTAINER_NAME} 2>/dev/null || echo "No container logs available"
+                """
+            }
+        }
+        always {
+            cleanWs()
+        }
+    }
+}
