@@ -93,7 +93,7 @@ public class CustomSubMenuItemService {
             : MenuKind.CUSTOM);
       }
 
-      String menuId = generateIdForCustomSubMenuItem(customMenu);
+      String menuId = generateIdForCustomSubMenuItem(result.getMenuKind(), result.getLink());
       result.setId(menuId);
       result.setName(HomepageUtils.generateHomepageId(result.getMenuKind(), menuId));
 
@@ -106,8 +106,8 @@ public class CustomSubMenuItemService {
     return BusinessEntityConverter.jsonValueToEntities(menuJson, CustomSubMenuItem.class);
   }
 
-  private static String generateIdForCustomSubMenuItem(CustomSubMenuItem menu) {
-    return UUID.nameUUIDFromBytes((IApplication.current().getName() + menu.getMenuKind() + menu.getLink()).getBytes())
-      .toString().replace("-", "");
+  private static String generateIdForCustomSubMenuItem(MenuKind menuKind, String link) {
+    return UUID.nameUUIDFromBytes((IApplication.current().getName() + menuKind.name() + link).getBytes()).toString()
+        .replace("-", "");
   }
 }
