@@ -48,14 +48,14 @@
                 <p:commandButton id="start-multiple-delegation-#{index}" 
                     icon="si si-checklist-pen"
                     styleClass="rounded-button ui-button-outlined ui-button-widget"
-                    ariaLabel="Start multiple delegation"
+                    ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/startMultipleDelegation')}"
                     actionListener="#{dashboardBean.startMultipleDelegation(widget)}"
                     oncomplete="initDataToDelegateMultiple()"
                     disabled="#{!dashboardBean.showDelegatedItem}"
                     process="@this">
                 </p:commandButton>
                 <p:tooltip for="start-multiple-delegation-#{index}" 
-                    value="Start multiple delegation" 
+                    value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/startMultipleDelegation')}" 
                     trackMouse="true" 
                     hideEvent="mouseleave click" />
                 <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delegation')}"

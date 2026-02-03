@@ -613,6 +613,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     showSystemTasks: System tasks
     sorting: Sorting
     start: Start
+    startMultipleDelegation: Start multiple delegation
     startProcess: Start process
     state: State
     status: Status

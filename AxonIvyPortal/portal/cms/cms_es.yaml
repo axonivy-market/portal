@@ -614,6 +614,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     showSystemTasks: Tareas del sistema
     sorting: Sorting
     start: Iniciar
+    startMultipleDelegation: Iniciar delegación múltiple
     startProcess: Iniciar el proceso
     state: Estatus
     status: Estado
