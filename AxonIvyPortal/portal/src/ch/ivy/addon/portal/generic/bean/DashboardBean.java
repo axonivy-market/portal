@@ -651,7 +651,7 @@ public class DashboardBean implements Serializable, IMultiLanguage {
     this.selectedDelegatedTasks = selectedDelegatedTasks;
   }
 
-  public void startMultipleDelegation(DashboardWidget widget) {
+  public void startMultipleDelegation() {
     Set<String> delegatedTaskUuids = TaskUtils.getDelegatedTaskUuids();
     if (CollectionUtils.isEmpty(delegatedTaskUuids)) {
       this.selectedDelegatedTasks = new ArrayList<>();
