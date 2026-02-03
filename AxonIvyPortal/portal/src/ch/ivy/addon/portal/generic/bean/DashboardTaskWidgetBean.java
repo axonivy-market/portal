@@ -103,10 +103,4 @@ public class DashboardTaskWidgetBean implements Serializable {
   public String createExtractedTextFromHtml(String text) {
     return HtmlParser.extractTextFromHtml(text);
   }
-
-  public void updateTaskDelegation(ITask task, boolean isDelegated) {
-    if (task == null) {
-      return;
-    }
-  }
 }
