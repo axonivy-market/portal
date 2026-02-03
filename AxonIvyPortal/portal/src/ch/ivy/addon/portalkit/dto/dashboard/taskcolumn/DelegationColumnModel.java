@@ -3,7 +3,6 @@ package ch.ivy.addon.portalkit.dto.dashboard.taskcolumn;
 import java.io.Serializable;
 import ch.ivy.addon.portalkit.enums.DashboardColumnFormat;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
-import ch.ivyteam.ivy.workflow.ITask;
 
 public class DelegationColumnModel extends TaskColumnModel implements Serializable {
 
@@ -40,14 +39,6 @@ public class DelegationColumnModel extends TaskColumnModel implements Serializab
     return "dashboard-tasks__delegation text-center widget-column";
   }
 
-  // @Override
-  // public Object display(ITask task) {
-  //   if (task == null) {
-  //     return false;
-  //   }
-  //   return true;
-  // }
-  
   @Override
   public Boolean getDefaultSortable() {
     return false;
