@@ -1,5 +1,6 @@
 package com.axonivy.portal.service;
 
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -107,7 +108,7 @@ public class CustomSubMenuItemService {
   }
 
   private static String generateIdForCustomSubMenuItem(MenuKind menuKind, String link) {
-    return UUID.nameUUIDFromBytes((IApplication.current().getName() + menuKind.name() + link).getBytes()).toString()
+    return UUID.nameUUIDFromBytes((IApplication.current().getName() + menuKind.name() + link).getBytes(StandardCharsets.UTF_8)).toString()
         .replace("-", "");
   }
 }
