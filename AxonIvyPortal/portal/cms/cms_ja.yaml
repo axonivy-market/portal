@@ -492,6 +492,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     days: 日
     default: 初期値
     defaultNotificationMessage: 問題が発生しましたようです。
+    delegation: 委任
     delete: 削除
     deleteAbsenceHeaderText: この不在日程を削除しますか?
     deleteChartHeaderText: このチャートを削除しますか?
@@ -632,6 +633,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     typeAdmin: すべての管理者
     typeAllUsers: すべてのユーザー
     typeOnlyMe: 自分のみ
+    undelegation: 委任解除
     unpin: ピン留めを外す
     uploadHere: 有効な日付を入力してください。
     uploadOneHere: ここにアップロード

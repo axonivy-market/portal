@@ -492,6 +492,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     days: Dias
     default: Por defecto
     defaultNotificationMessage: Hmm… Parece que algo ha ido mal.
+    delegation: Delegación
     delete: Borrar
     deleteAbsenceHeaderText: ¿Borrar esta ausencia?
     deleteChartHeaderText: ¿Borrar este gráfico?
@@ -632,6 +633,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     typeAdmin: Todos los administradores
     typeAllUsers: Todos los usuarios
     typeOnlyMe: Solo yo
+    undelegation: Cancelar delegación
     unpin: Desfijar
     uploadHere: Cargue aquí
     uploadOneHere: Seleccionar
