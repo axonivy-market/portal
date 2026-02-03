@@ -57,10 +57,16 @@ pipeline {
     }
 
     environment {
-        SCRIPT_PATH = 'create-performance-engine.sh'
+        SCRIPT_PATH = 'build/clone-performance-engine/create-performance-engine.sh'
     }
 
     stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+
         stage('Validate Parameters') {
             steps {
                 script {
