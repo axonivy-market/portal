@@ -404,7 +404,7 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public WebElement getQuickSearchCheckBox() {
-    return $("div[id$='widget-preview']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+    return getWidgetConfigurationPanel().$("div[id$='quick-search-group']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("div[id$='quick-search']")
         .$("span[id$='quick-search-group']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("div[id$='quick-search']")
         .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
   }
@@ -456,7 +456,7 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
   }
   
   public SelenideElement getWidgetInfoIconCheckbox() {
-    return getWidgetConfigurationForm().$("span[id$='widget-info-icon-group']").shouldBe(Condition.appear,
+    return getWidgetConfigurationPanel().$("div[id$='widget-info-icon-group']").shouldBe(Condition.appear,
         DEFAULT_TIMEOUT).$("div[class*='ui-inputgroup']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
         .$("div[id$='widget-info']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("div[class*='ui-chkbox-box']")
         .shouldBe(Condition.appear, DEFAULT_TIMEOUT)
@@ -473,14 +473,20 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public SelenideElement getExpandModeCheckbox() {
-    return getWidgetConfigurationForm().$("span[id$='fullscreen-mode-group']").shouldBe(Condition.appear,
+    return getWidgetConfigurationPanel().$("div[id$='fullscreen-mode-group']").shouldBe(Condition.appear,
         DEFAULT_TIMEOUT).$("div[class*='ui-inputgroup']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
         .$("div[id$='fullscreen-mode']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
 
   public void clickOnExpandModeCheckbox() {
     getExpandModeCheckbox().shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-  } 
+  }
+
+  public SelenideElement getWidgetConfigurationPanel() {
+    SelenideElement form = getWidgetConfigurationForm();
+    form.$("button[id$='widget-configuration-button']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
+    return $("div[id$='widget-configuration-panel']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+  }
   
   public void clickOnTaskNameColumn() {
     $("div[id$='task-widget-preview:dashboard-tasks']").shouldBe(appear, DEFAULT_TIMEOUT)
