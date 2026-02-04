@@ -3,7 +3,7 @@ package com.axonivy.portal.components.service;
 import java.util.Objects;
 import java.util.Optional;
 
-import org.apache.commons.lang.math.NumberUtils;
+import org.apache.commons.lang3.math.NumberUtils;
 
 import com.axonivy.portal.components.enums.PortalVariable;
 
