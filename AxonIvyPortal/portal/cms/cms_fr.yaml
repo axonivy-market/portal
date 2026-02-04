@@ -926,6 +926,10 @@ ch.ivy.addon.portalkit.ui.jsf:
     statisticChartWidget: Graphique de statistiques
     statisticWidgets: Widgets Statistiques
     switchToViewMode: Mode d'affichage
+    taskList: Liste des tâches
+    taskListIntroduction: Ce widget affiche des informations pertinentes sur les tâches selon les paramètres définis.
+    taskStart: Commencer la tâche
+    taskWidgetConfiguration: Configuration du widget de tâches
     taskWidgetInfo:
       expireToday: Expire aujourd'hui
       expiryThisWeek: Expire cette semaine
@@ -934,10 +938,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       numberOfTasksByState: Nombre de tâches par état
       predefinedFilters: Filtres prédéfinis
       taskDrillDownDashboard: Tableau de bord d’analyse détaillée des tâches
-    taskList: Liste des tâches
-    taskListIntroduction: Ce widget affiche des informations pertinentes sur les tâches selon les paramètres définis.
-    taskStart: Commencer la tâche
-    taskWidgetConfiguration: Configuration du widget de tâches
     widgetInfo: Informations sur le widget
     widgetInfoIcon: Icône d'information du widget
     widgetTitle: Titre du widget
@@ -1127,11 +1127,11 @@ ch.ivy.addon.portalkit.ui.jsf:
       dialogHeaderTitle: Modifier les informations pour {0}
     editProcesses: Modifier des processus
     externalLink: lien externe
+    externalLinkImage: Image du lien externe
     externalLinkVisibility: Visibilité
     goTo: 'Aller à:'
     icon: Icône
     image: Image
-    externalLinkImage: Image du lien externe
     isRequiredMessage: doit être défini
     linkDescription: Description du lien
     noProcess: Aucun processus trouvé.
@@ -1249,6 +1249,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     taskNotes: Notes
     triggerEscalation: Déclencher l'escalade
   taskList:
+    configuration: La configuration
     deadline: Date limite
     default: Défaut
     defaultColumns:
