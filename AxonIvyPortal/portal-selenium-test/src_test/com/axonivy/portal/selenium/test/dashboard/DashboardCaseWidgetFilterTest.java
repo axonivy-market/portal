@@ -224,6 +224,7 @@ public class DashboardCaseWidgetFilterTest extends BaseTest {
 
   @Test
   public void testFilterAddComplexCustomFields() {
+    login(TestAccount.ADMIN_USER);
     redirectToRelativeLink(testCaseListPermission);
     CaseWidgetNewDashBoardPage caseWidget = newDashboardPage.selectCaseWidget(YOUR_CASES_WIDGET);
     addCustomFields(caseWidget, List.of("AccountNumber", "CustomerName", "ShipmentDate", "SupportData"));

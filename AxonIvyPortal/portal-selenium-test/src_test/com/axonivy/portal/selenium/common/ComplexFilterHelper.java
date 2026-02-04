@@ -186,7 +186,12 @@ public class ComplexFilterHelper {
     for (int i = 0; i < dateInput.size(); i++) {
       dateInput.get(i).clear();
       dateInput.get(i).shouldBe(Condition.empty, DEFAULT_TIMEOUT).sendKeys(String.valueOf(values[i]));
-      dateInput.get(i).pressEscape();
+
+      if ($("div[id='new-widget-configuration-dialog']").isDisplayed()) {
+        filterElement.$("span button").$("span[class*='ui-icon-calendar']").click();
+      } else {
+        dateInput.get(i).pressEscape();
+      }
     }
   }
 
