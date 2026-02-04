@@ -180,7 +180,7 @@ backup_database() {
     print_message "INFO" "Starting backup of database: ${SOURCE_DB}"
     print_message "INFO" "Backup file will be saved to: ${BACKUP_FILE_PATH}"
     
-    sudo chmod -R 777 "${BACKUP_DIR}"
+    chmod -R 777 "${BACKUP_DIR}"
 
     # pg_dump command explanation:
     # -u postgres  : Run as postgres user
@@ -252,7 +252,7 @@ create_project_directory() {
         exit 1
     fi
     
-    sudo mkdir -p "${PROJECT_DIR}"
+    mkdir -p "${PROJECT_DIR}"
     
     if [ $? -eq 0 ]; then
         print_message "SUCCESS" "Project directory created successfully!"
@@ -265,13 +265,13 @@ create_project_directory() {
 create_configuration_directory() {
     print_message "INFO" "Creating configuration directory: ${PROJECT_DIR}/configuration"
     
-    sudo mkdir -p "${PROJECT_DIR}/configuration"
-    sudo mkdir -p "${PROJECT_DIR}/applications"
-    sudo mkdir -p "${PROJECT_DIR}/data"
-    sudo mkdir -p "${PROJECT_DIR}/work"
-    sudo mkdir -p "${PROJECT_DIR}/logs"
+    mkdir -p "${PROJECT_DIR}/configuration"
+    mkdir -p "${PROJECT_DIR}/applications"
+    mkdir -p "${PROJECT_DIR}/data"
+    mkdir -p "${PROJECT_DIR}/work"
+    mkdir -p "${PROJECT_DIR}/logs"
 
-    sudo chmod -R 777 "${PROJECT_DIR}"
+    chmod -R 777 "${PROJECT_DIR}"
     
     if [ $? -eq 0 ]; then
         print_message "SUCCESS" "Configuration directory created successfully!"
@@ -297,7 +297,7 @@ copy_configuration_files() {
         fi
         
         print_message "INFO" "Copying ${file}..."
-        sudo cp "${source}" "${dest}"
+        cp "${source}" "${dest}"
         
         if [ $? -eq 0 ]; then
             print_message "SUCCESS" "${file} copied successfully!"
@@ -313,7 +313,7 @@ copy_configuration_files() {
     
     if [ -d "${source_apps}" ]; then
         print_message "INFO" "Copying applications folder..."
-        sudo cp -r "${source_apps}" "${dest_apps}"
+        cp -r "${source_apps}" "${dest_apps}"
         
         if [ $? -eq 0 ]; then
             print_message "SUCCESS" "Applications folder copied successfully!"
