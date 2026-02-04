@@ -69,7 +69,7 @@
       my="right top" at="right bottom">
       <h:panelGroup id="quick-search-group" layout="block"
         rendered="#{managedBean.canEnableQuickSearch()}"
-        styleClass="p-2 ui-fluid flex">
+        styleClass="widget-configuration-group-item ui-fluid flex">
         <div class="label-item">
           <p:outputLabel for="quick-search" styleClass="u-mar-right-5"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/QuickSearch')}" />
@@ -87,7 +87,7 @@
       
       <h:panelGroup id="widget-info-icon-group" layout="block"
         rendered="#{managedBean.displayWidgetInfoOption()}"
-        styleClass="p-2 ui-fluid flex">
+        styleClass="widget-configuration-group-item ui-fluid flex">
         <div class="label-item">
           <p:outputLabel for="widget-info" styleClass="u-mar-right-5"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/widgetInfoIcon')}"/>
@@ -103,7 +103,7 @@
       
       <h:panelGroup id="fullscreen-mode-group" layout="block"
         rendered="#{managedBean.displayFullscreenModeOption()}"
-        styleClass="p-2 ui-fluid flex">
+        styleClass="widget-configuration-group-item ui-fluid flex">
         <div class="label-item">
           <p:outputLabel for="fullscreen-mode" styleClass="u-mar-right-5"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/fullscreenMode')}"/>
@@ -119,7 +119,7 @@
       
       <h:panelGroup id="pinned-toggle-group" layout="block"
         rendered="#{managedBean.displayPinnedItemToggleOption(widget)}"
-        styleClass="p-2 ui-fluid flex">
+        styleClass="widget-configuration-group-item ui-fluid flex">
         <div class="label-item">
           <p:outputLabel for="pinned-toggle-option" styleClass="u-mar-right-5"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/ShowPinnedToggle')}"/>

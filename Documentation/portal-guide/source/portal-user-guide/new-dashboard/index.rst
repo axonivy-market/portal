@@ -117,9 +117,22 @@ see and how.
 
 |task-list-widget|
 
-On the widget configuration panel, you can define the widget name, enable the
-quick search function, show or hide the widget information and fullscreen
-mode icons, manage columns and filters, edit the default sort order of the table columns by clicking on the column headers.
+**Configuration panel**
+
+By clicking on the :guilabel:`Configuration` button at the top right of the dialog, you can access additional widget settings:
+
+|task-widget-configuration-panel|
+
+The configuration panel offers the following options:
+
+- **Quick Search**: Enable or disable the quick search functionality for the widget. When enabled, users can quickly search and filter data using a search box in the widget header.
+
+- **Widget Info Icon**: Show or hide the widget information icon. When visible, users can click this icon to view additional widget details, statistics, and export options.
+
+- **Fullscreen Mode**: Show or hide the fullscreen mode icon. When visible, users can expand the widget to fill the entire screen for better data viewing.
+
+- **Show pinned items toggle **: Show or hide the pinned items toggle. When enabled, users can filter the widget to get only the pinned tasks.
+
 
 **Filters panel**
 
@@ -206,9 +219,21 @@ see and how.
 
 |case-list-widget|
 
-On the widget configuration panel, you can define the widget name, enable the
-quick search function, show or hide the widget information and fullscreen
-mode icons, manage columns and filters, edit the default sort order of the table columns by clicking on the column headers.
+**Configuration panel**
+
+By clicking on the :guilabel:`Configuration` button at the top right of the dialog, you can access additional widget settings:
+
+|case-widget-configuration-panel|
+
+The configuration panel offers the following options:
+
+- **Quick Search**: Enable or disable the quick search functionality for the widget. When enabled, users can quickly search and filter data using a search box in the widget header.
+
+- **Widget Info Icon**: Show or hide the widget information icon. When visible, users can click this icon to view additional widget details, statistics, and export options.
+
+- **Fullscreen Mode**: Show or hide the fullscreen mode icon. When visible, users can expand the widget to fill the entire screen for better data viewing.
+
+- **Show pinned items toggle**: Show or hide the pinned items toggle. When enabled, users can filter the widget to get only the pinned cases.
 
 **Filters panel**
 
@@ -485,6 +510,8 @@ After selecting the :guilabel:`Clone` option, the :guilabel:`Clone widget` dialo
    :alt: Dashboard task widget's configuration panel
 .. |task-list-widget-table-configuration| image:: ../../screenshots/new-dashboard/task-list-widget-table-configuration.png
    :alt: Dashboard task widget's table configuration
+.. |task-widget-configuration-panel| image:: ../../screenshots/new-dashboard/task-widget-configuration-panel.png
+   :alt: Dashboard task widget's configuration panel
 .. |task-column-field-type-configuration| image:: ../../screenshots/new-dashboard/task-column-field-type-configuration.png
    :alt: Dashboard task widget's column management
 .. |task-widget-complex-filter-configuration| image:: ../../screenshots/new-dashboard/task-widget-complex-filter-configuration.png
@@ -495,6 +522,8 @@ After selecting the :guilabel:`Clone` option, the :guilabel:`Clone widget` dialo
    :alt: Dashboard case widget's configuration panel
 .. |case-list-widget-table-configuration| image:: ../../screenshots/new-dashboard/case-list-widget-table-configuration.png
    :alt: Dashboard case widget's table configuration
+.. |case-widget-configuration-panel| image:: ../../screenshots/new-dashboard/case-widget-configuration-panel.png
+   :alt: Dashboard case widget's configuration panel
 .. |process-widget-modes| image:: ../../screenshots/new-dashboard/process-widget-modes.png
    :alt: Dashboard process widget mode selection
 .. |process-widget-combined-mode| image:: ../../screenshots/new-dashboard/process-widget-combined-mode.png
