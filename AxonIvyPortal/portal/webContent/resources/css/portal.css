@@ -824,7 +824,15 @@ body .ui-inputfield.case-detail-name-input {
 
 .case-widget-container .widget-column-header,
 .case-default-widget-container .widget-column-header {
-  border-bottom: 1px solid var(--case-widget-column-header-border-bottom); }
+  border-bottom: 1px solid var(--case-widget-column-header-border-bottom);
+  margin: 0 !important;
+}
+
+.global-search-ai-results .case-widget-container .widget-column-header,
+.global-search-ai-results .case-default-widget-container .widget-column-header {
+  margin: 0 !important;  
+}
+
 
 .case-list .ui-datascroller,
 .case-list .ui-datascroller .ui-datascroller-content {

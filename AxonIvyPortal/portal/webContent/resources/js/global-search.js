@@ -57,6 +57,7 @@ if (document) {
     $(".search-bar.case-tab-title-global").click(() => {
       focusSearchBox();
       let keyword = $(eleSearchId).val().toLowerCase();
+
       if (keyword.startsWith(startsWithTask)) {
         keyword = keyword.replace(startsWithTask, startsWithCase);
       }
@@ -66,6 +67,18 @@ if (document) {
       $(eleSearchId).val(keyword);
 
       searchCase(keyword);
+    });
+    $(".search-bar.ai-tab-title-global").click(() => {
+      focusSearchBox();
+      let keyword = $(eleSearchId).val().toLowerCase();
+      console.log(typeof window.portalGlobalSearchAI);
+      if (typeof window.portalGlobalSearchAI === 'function') {
+      window.portalGlobalSearchAI([{
+        name: 'input',
+        value: keyword
+      }]);
+    }
+
     });
   });
 
