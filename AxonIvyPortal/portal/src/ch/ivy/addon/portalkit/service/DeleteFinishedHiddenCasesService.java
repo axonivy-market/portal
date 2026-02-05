@@ -26,7 +26,10 @@ public class DeleteFinishedHiddenCasesService {
   public void deleteFinishedHiddenCases() {
     Date currentDate = new java.util.Date();
     Ivy.log().info("***Job for deleting finished hidden system cases started at: " + currentDate + " by user: " + Ivy.session().getSessionUserName());
-
+    boolean shouldDeleteAllCases = Boolean.parseBoolean(Ivy.var().get(DELETE_ALL_FINISHED_HIDDEN_CASES));
+    if (!shouldDeleteAllCases) {
+      return;
+    }
     IProcessModelVersion portalPMV = findPortalPMVByLibraryId(IApplication.current(), PORTAL_LIBRARY_ID);
     if (portalPMV == null) {
       Ivy.log().warn("Can not retrieve portal PMV");
