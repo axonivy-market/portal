@@ -47,8 +47,7 @@ pipeline {
                   maven cmd: "clean install -ntp -f ${module}/pom.xml -Divy.engine.directory=${env.engineDir}"
                 }
 
-                echo '====================Build and deploy test package===================='
-                maven cmd: "clean package -ntp -f AxonIvyPortal/portal-selenium-test/deployment-pom.xml -Divy.engine.directory=${env.engineDir}"
+                echo '====================Deploy Portal modules===================='
                 sh """
                   DEPLOYMENT="${env.engineDir}/system/demo-applications/demo-portal"
                   rm -rf \${DEPLOYMENT}/*
