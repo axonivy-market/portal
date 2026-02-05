@@ -37,6 +37,16 @@
             <ui:fragment rendered="#{not data.isCreatedAndPersistent}">
             <li>
               <p>
+                Click on <a href="#form:cancel-to-home-by-api"><b>Cancel to Home by API</b></a> button to reset this task and navigate to the <b>Homepage</b>.
+              </p>
+              <blockquote>
+                <span class="code-block font-size-75">
+                  PortalNavigatorInFrameAPI.resetTaskAndNavigateToUrl(ivy.html.appHomeLink().getAbsoluteEncoded())
+                </span>
+              </blockquote>
+            </li>
+            <li>
+              <p>
                 Click on <a href="#form:cancel-to-home"><b>Cancel to Home</b></a> button to reset this task and navigate to the <b>Homepage</b>. This approach works if the task is not in the <b>CREATED</b> state and has not been <b>persisted</b>.
               </p>
               <blockquote>
