@@ -29,15 +29,15 @@ If your project has a navigation button that does not finish a task (e.g., Cance
 Reset Task and Navigate
 -----------------------
 
-Normally, to reset a task and navigate to a URL, use the following approach:
+To reset a task and navigate to a URL, use the following approach:
+
+.. code-block:: java
+
+   PortalNavigatorInFrameAPI.resetTaskAndNavigateToUrl("https://example.com/custom-page");
+
+Alternatively, if the task is not in the CREATED state and has not been persisted, you can use the following approach:
 
 .. code-block:: java
 
    ivy.task.reset();
    PortalNavigatorInFrameAPI.navigateToUrl("https://example.com/custom-page");
-
-However, if you need Portal to handle the task reset as part of the redirect process, use:
-
-.. code-block:: java
-
-   PortalNavigatorInFrameAPI.resetTaskAndNavigateToUrl("https://example.com/custom-page");

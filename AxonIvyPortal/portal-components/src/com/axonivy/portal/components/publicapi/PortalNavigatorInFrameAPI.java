@@ -30,9 +30,7 @@ public final class PortalNavigatorInFrameAPI extends BaseNavigator {
 	}
 
     /**
-     * Reset the current task and navigate to target url.
-     * This method stores the current task's UUID in the session for reset purposes
-     * and then redirects to the specified URL.
+     * Resets the current task and navigates to target url.
      * 
      * @param url target url to navigate to after resetting the task
      */
