@@ -29,6 +29,13 @@ public final class PortalNavigatorInFrameAPI extends BaseNavigator {
 		PrimeFaces.current().executeScript(statement);
 	}
 
+    /**
+     * Reset the current task and navigate to target url.
+     * This method stores the current task's UUID in the session for reset purposes
+     * and then redirects to the specified URL.
+     * 
+     * @param url target url to navigate to after resetting the task
+     */
     public static void resetTaskAndNavigateToUrl(String url) {
       Ivy.session().setAttribute(SessionAttribute.RESET_TASK_UUID.name(), Ivy.wfTask().uuid());
       String statement = "parent.resetTaskAndRedirectToUrlCommand([{name: 'url', value: '" + URLDecoder.decode(url, StandardCharsets.UTF_8) + "'}])";
