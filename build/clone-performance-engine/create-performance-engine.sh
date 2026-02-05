@@ -454,10 +454,7 @@ print_cleanup_command() {
     echo "To clean up this setup later, run:"
     echo "============================================================"
     echo ""
-    echo "${clean_script_dir}/clean.sh \\"
-    echo "    --container-name \"${CONTAINER_NAME}\" \\"
-    echo "    --project-dir \"${PROJECT_DIR}\" \\"
-    echo "    --target-db \"${TARGET_DB}\""
+    echo "${clean_script_dir}/clean.sh --container-name \"${CONTAINER_NAME}\" --project-dir \"${PROJECT_DIR}\" --target-db \"${TARGET_DB}\""
     echo ""
     echo "============================================================"
 }

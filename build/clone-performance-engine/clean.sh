@@ -74,6 +74,14 @@ if [ -z "${TARGET_DB}" ]; then
 fi
 
 # ------------------------------------------------------------
+# FUNCTIONS
+# ------------------------------------------------------------
+
+print_message() {
+    echo "[$1] $2"
+}
+
+# ------------------------------------------------------------
 # MAIN EXECUTION
 # ------------------------------------------------------------
 
@@ -115,7 +123,7 @@ fi
 
 # Step 3: Remove the database
 print_message "INFO" "Dropping database: ${TARGET_DB}"
-docker exec -u postgres postgres psql -c "DROP DATABASE IF EXISTS \"${TARGET_DB}\";"
+docker exec -u postgres postgres psql -c "DROP DATABASE IF EXISTS \"${TARGET_DB}\" WITH (FORCE);"
 
 if [ $? -eq 0 ]; then
     print_message "SUCCESS" "Database ${TARGET_DB} dropped successfully!"
