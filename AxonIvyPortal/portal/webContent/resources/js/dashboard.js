@@ -324,7 +324,8 @@ function loadCaseAndTaskWidgetFirstTime(loadingClass, widgetClass) {
       widget.removeClass('hidden');
       widget.removeClass('u-invisibility');
     }
-    $('.js-resizing').find('table[role="grid"]').addClass('w-min');
+    // Auto-expand columns to fit container in configuration mode
+    $('.js-resizing').find('table[role="grid"]').css('width', '100%');
   }, 50);
 
   setAltForAvatar();
