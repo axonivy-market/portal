@@ -17,13 +17,13 @@
         "at" : { "x" : 96, "y" : 64 }
       },
       "connect" : [
-        { "id" : "f2", "to" : "f1" }
+        { "id" : "f2", "to" : "f18" }
       ]
     }, {
       "id" : "f1",
       "type" : "HtmlDialogEnd",
       "visual" : {
-        "at" : { "x" : 224, "y" : 64 }
+        "at" : { "x" : 352, "y" : 64 }
       }
     }, {
       "id" : "f3",
@@ -173,7 +173,7 @@
       "type" : "Script",
       "name" : [
         "Reset current task",
-        "Back to homepage"
+        "Back to homepage by API"
       ],
       "config" : {
         "output" : {
@@ -187,5 +187,23 @@
         "at" : { "x" : 280, "y" : 539 },
         "size" : { "width" : 208, "height" : 54 }
       }
+    }, {
+      "id" : "f18",
+      "type" : "Script",
+      "name" : "Check task state",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivyteam.ivy.workflow.TaskState;",
+            "in.isCreatedAndPersistent = ivy.task.getState() == TaskState.CREATED && ivy.task.isPersistent();"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f19", "to" : "f1", "color" : "default" }
+      ]
     } ]
 }

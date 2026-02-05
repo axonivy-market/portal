@@ -22,6 +22,7 @@
 
         <div class="ui-g-12">
           <ul>
+            <ui:fragment rendered="#{data.isCreatedAndPersistent}">
             <li>
               <p>
                 Click on <a href="#form:cancel-to-home-by-api"><b>Cancel to Home by API</b></a> button to reset this task and navigate to the <b>Homepage</b>.
@@ -32,6 +33,8 @@
                 </span>
               </blockquote>
             </li>
+            </ui:fragment>
+            <ui:fragment rendered="#{not data.isCreatedAndPersistent}">
             <li>
               <p>
                 Click on <a href="#form:cancel-to-home"><b>Cancel to Home</b></a> button to reset this task and navigate to the <b>Homepage</b>. This approach works if the task is not in the <b>CREATED</b> state and has not been <b>persisted</b>.
@@ -72,22 +75,23 @@
                 Click on <a href="#form:proceed">Proceed</a> button to finish the task.
               </p>
             </li>
+            </ui:fragment>
           </ul>
         </div>
         <br />
         <div class="ui-g-12">
           <div class="command-btns">
             <p:commandButton id="cancel-to-home-by-api" value="Cancel to Home by API" actionListener="#{logic.cancelToHomeByAPI}"
-              icon="si si-house-1" />
+              icon="si si-house-1" rendered="#{data.isCreatedAndPersistent}" />
             <p:spacer width="5px" />
             <p:commandButton id="cancel-to-home" value="Cancel to Home" actionListener="#{logic.cancelToHome}"
-              icon="si si-house-1" />
+              icon="si si-house-1" rendered="#{not data.isCreatedAndPersistent}" />
             <p:spacer width="5px" />
             <p:commandButton id="cancel-to-endpage" value="Cancel to Endpage" actionListener="#{logic.cancelToEndpage}"
-              icon="si si-arrow-left" />
+              icon="si si-arrow-left" rendered="#{not data.isCreatedAndPersistent}" />
             <p:spacer width="5px" />
             <p:commandButton id="cancel-to-specifit" value="Cancel to a URL" actionListener="#{logic.cancelToUrl}"
-              icon="si si-hyperlink-3" />
+              icon="si si-hyperlink-3" rendered="#{not data.isCreatedAndPersistent}" />
             <p:spacer width="5px" />
             <p:commandButton id="proceed" actionListener="#{logic.proceed}" value="Proceed" update="form"
               icon="si si-check-double-1" />
