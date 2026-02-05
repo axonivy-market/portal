@@ -94,7 +94,8 @@ TIMESTAMP=$(date +"%d-%m-%Y_%H-%M")
 BACKUP_FILENAME="${SOURCE_DB}-${TIMESTAMP}.dump"
 BACKUP_FILE_PATH="${BACKUP_DIR}/${BACKUP_FILENAME}"
 
-PROJECT_DIR="${PROJECT_BASE_DIR}/${PROJECT_NAME}"
+# All cloned projects are placed under performance-manual-testing folder
+PROJECT_DIR="${PROJECT_BASE_DIR}/performance-manual-testing-all/${PROJECT_NAME}"
 
 CONTAINER_PORT="8080"
 
@@ -143,6 +144,7 @@ main() {
     copy_deployed_applications
     create_docker_compose
     start_docker_compose
+    print_cleanup_command
 }
 
 # ------------------------------------------------------------
@@ -442,6 +444,22 @@ start_docker_compose() {
         print_message "ERROR" "Failed to start Docker Compose!"
         exit 1
     fi
+}
+
+print_cleanup_command() {
+    local clean_script_dir="${PROJECT_BASE_DIR}/performance-manual-testing-all"
+    
+    echo ""
+    echo "============================================================"
+    echo "To clean up this setup later, run:"
+    echo "============================================================"
+    echo ""
+    echo "${clean_script_dir}/clean.sh \\"
+    echo "    --container-name \"${CONTAINER_NAME}\" \\"
+    echo "    --project-dir \"${PROJECT_DIR}\" \\"
+    echo "    --target-db \"${TARGET_DB}\""
+    echo ""
+    echo "============================================================"
 }
 
 # Run the main function
