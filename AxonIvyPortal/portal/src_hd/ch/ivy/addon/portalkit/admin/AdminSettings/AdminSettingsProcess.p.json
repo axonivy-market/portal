@@ -535,6 +535,60 @@
       "connect" : [
         { "id" : "f52", "to" : "f8", "color" : "default" }
       ]
+    }, {
+      "id" : "f3",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "updateContentMsg(Application)",
+      "config" : {
+        "signature" : "updateContentMsg",
+        "input" : {
+          "params" : [
+            { "name" : "selectedApplication", "type" : "ch.ivy.addon.portalkit.configuration.Application", "desc" : "" }
+          ],
+          "map" : {
+            "out.selectedApp" : "param.selectedApplication"
+          }
+        },
+        "guid" : "19B3117A2BD58A7C"
+      },
+      "visual" : {
+        "at" : { "x" : 144, "y" : 920 }
+      },
+      "connect" : [
+        { "id" : "f4", "to" : "f6" }
+      ]
+    }, {
+      "id" : "f7",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 144, "y" : 1128 },
+        "labelOffset" : { "x" : 10, "y" : 30 }
+      }
+    }, {
+      "id" : "f6",
+      "type" : "Script",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import java.util.Arrays;",
+            "import ch.ivy.addon.portalkit.bean.ThirdPartyApplicationBean;",
+            "import ch.ivy.addon.portalkit.jsf.ManagedBeans;",
+            "ThirdPartyApplicationBean thirdPartyApplicationBean = ManagedBeans.find(\"thirdPartyApplicationBean\").get() as ThirdPartyApplicationBean;",
+            "if (thirdPartyApplicationBean != null) {",
+            "  String applicationDisplayName = thirdPartyApplicationBean.getAppNameInCurrentLocale(out.selectedApp);",
+            "  in.confirmMsg = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/adminSettings/deleteAppConfirmation\", Arrays.asList(applicationDisplayName));",
+            "} else {",
+            "  in.confirmMsg = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/adminSettings/deleteAppConfirmation\", Arrays.asList(\"\"));",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 144, "y" : 1016 }
+      },
+      "connect" : [
+        { "id" : "f11", "to" : "f7", "color" : "default" }
+      ]
     } ],
   "layout" : {
     "lanes" : [ {
@@ -545,7 +599,9 @@
         "size" : 400
       }, {
         "name" : "Announcements",
-        "size" : 368
+        "size" : 352
+      }, {
+        "size" : 304
       } ]
   }
 }

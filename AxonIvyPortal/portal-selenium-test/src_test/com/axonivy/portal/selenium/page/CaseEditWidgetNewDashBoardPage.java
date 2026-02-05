@@ -337,8 +337,8 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public WebElement getQuickSearchCheckBox() {
-    return $("div[id$='widget-preview']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
-        .$("span[id$='quick-search-group']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("div[id$='quick-search']")
+    return getWidgetConfigurationPanel().shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+        .$("div[id$='quick-search-group']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("div[id$='quick-search']")
         .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
   }
 
@@ -387,11 +387,17 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
   }
   
   public SelenideElement getWidgetInfoIconCheckbox() {
-    return getWidgetConfigurationForm().$("span[id$='widget-info-icon-group']").shouldBe(Condition.appear,
+    return getWidgetConfigurationPanel().$("div[id$='widget-info-icon-group']").shouldBe(Condition.appear,
         DEFAULT_TIMEOUT).$("div[class*='ui-inputgroup']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
         .$("div[id$='widget-info']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("div[class*='ui-chkbox-box']")
         .shouldBe(Condition.appear, DEFAULT_TIMEOUT)
         .$("span");
+  }
+
+  public SelenideElement getWidgetConfigurationPanel() {
+    SelenideElement form = getWidgetConfigurationForm();
+    form.$("button[id$='widget-configuration-button']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
+    return $("div[id$='widget-configuration-panel']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
 
   public void clickOnWidgetInfoIconCheckbox() {
@@ -404,7 +410,7 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public SelenideElement getExpandModeCheckbox() {
-    return getWidgetConfigurationForm().$("span[id$='fullscreen-mode-group']").shouldBe(Condition.appear,
+    return getWidgetConfigurationPanel().$("div[id$='fullscreen-mode-group']").shouldBe(Condition.appear,
         DEFAULT_TIMEOUT).$("div[class*='ui-inputgroup']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
         .$("div[id$='fullscreen-mode']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
