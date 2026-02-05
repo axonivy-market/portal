@@ -157,13 +157,13 @@
     }, {
       "id" : "f15",
       "type" : "HtmlDialogEventStart",
-      "name" : "resetTaskAndCancelToHome",
+      "name" : "cancelToHomeByAPI",
       "config" : {
         "guid" : "19C2C47B14CF2B89"
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 536 },
-        "labelOffset" : { "x" : 75, "y" : 43 }
+        "labelOffset" : { "x" : 51, "y" : 43 }
       },
       "connect" : [
         { "id" : "f17", "to" : "f16" }

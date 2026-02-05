@@ -305,17 +305,17 @@
     }, {
       "id" : "f23",
       "type" : "RequestStart",
-      "name" : "ResetTaskAndNavigateInIFrameExample.ivp",
+      "name" : "NavigateForPersistedCreatedTaskInIFrameExample.ivp",
       "config" : {
-        "signature" : "ResetTaskAndNavigateInIFrameExample",
+        "signature" : "NavigateForPersistedCreatedTaskInIFrameExample",
         "request" : {
-          "name" : "Reset current task and navigate back in the IFrame example",
+          "name" : "Navigate back for persisted created task in the IFrame example",
           "description" : "Example of navigation in IFrame"
         }
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 240 },
-        "labelOffset" : { "x" : 105, "y" : 49 }
+        "labelOffset" : { "x" : 137, "y" : 49 }
       },
       "connect" : [
         { "id" : "f33", "to" : "f30" }
