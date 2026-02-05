@@ -71,7 +71,7 @@
           "code" : [
             "import com.axonivy.portal.components.publicapi.PortalNavigatorInFrameAPI;",
             "ivy.task.reset();",
-            "PortalNavigatorInFrameAPI.navigateToUrl(ivy.html.applicationHomeLink().getAbsoluteEncoded());"
+            "PortalNavigatorInFrameAPI.navigateToUrl(ivy.html.appHomeLink().getAbsoluteEncoded());"
           ]
         },
         "sudo" : true
@@ -153,6 +153,39 @@
       "visual" : {
         "at" : { "x" : 280, "y" : 448 },
         "size" : { "width" : 208 }
+      }
+    }, {
+      "id" : "f15",
+      "type" : "HtmlDialogEventStart",
+      "name" : "resetTaskAndCancelToHome",
+      "config" : {
+        "guid" : "19C2C47B14CF2B89"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 536 },
+        "labelOffset" : { "x" : 75, "y" : 43 }
+      },
+      "connect" : [
+        { "id" : "f17", "to" : "f16" }
+      ]
+    }, {
+      "id" : "f16",
+      "type" : "Script",
+      "name" : [
+        "Reset current task",
+        "Back to homepage"
+      ],
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.components.publicapi.PortalNavigatorInFrameAPI;",
+            "PortalNavigatorInFrameAPI.resetTaskAndNavigateToUrl(ivy.html.appHomeLink().getAbsoluteEncoded());"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 280, "y" : 539 },
+        "size" : { "width" : 208, "height" : 54 }
       }
     } ]
 }

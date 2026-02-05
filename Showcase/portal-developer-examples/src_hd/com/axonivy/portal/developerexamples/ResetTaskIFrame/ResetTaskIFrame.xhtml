@@ -24,18 +24,28 @@
           <ul>
             <li>
               <p>
-                Click on <a href="#form:cancel-to-home">Cancel to Home</a> button to reset this task and navigate to the <b>Homepage</b>.
+                Click on <a href="#form:reset-task-and-cancel-to-home"><b>Reset task and cancel to Home</b></a> button to reset this task and navigate to the <b>Homepage</b>.
               </p>
               <blockquote>
-                <span class="code-block font-size-75">ivy.task.reset();
-                  <br />
-                  PortalNavigatorInFrameAPI.navigateToUrl(ivy.html.applicationHomeRef())
+                <span class="code-block font-size-75">
+                  PortalNavigatorInFrameAPI.resetTaskAndNavigateToUrl(ivy.html.appHomeLink().getAbsoluteEncoded())
                 </span>
               </blockquote>
             </li>
             <li>
               <p>
-                Click on <a href="#form:cancel-to-endpage">Cancel to Previous</a> button to reset this task and navigate
+                Click on <a href="#form:cancel-to-home"><b>Cancel to Home</b></a> button to reset this task and navigate to the <b>Homepage</b>. This approach works if the task is not in the <b>CREATED</b> state and has not been <b>persisted</b>.
+              </p>
+              <blockquote>
+                <span class="code-block font-size-75">ivy.task.reset();
+                  <br />
+                  PortalNavigatorInFrameAPI.navigateToUrl(ivy.html.appHomeLink().getAbsoluteEncoded())
+                </span>
+              </blockquote>
+            </li>
+            <li>
+              <p>
+                Click on <a href="#form:cancel-to-endpage"><b>Cancel to Previous</b></a> button to reset this task and navigate
                 to the <b>Previous page</b>.
               </p>
               <blockquote>
@@ -47,7 +57,7 @@
             </li>
             <li>
               <p>
-                Click on <a href="#form:cancel-to-specifit">Cancel to a URL</a> button to reset this task and navigate
+                Click on <a href="#form:cancel-to-specifit"><b>Cancel to a URL</b></a> button to reset this task and navigate
                 to <b>Create Investment (IFrame + Task custom fields)</b> example.
               </p>
               <blockquote>
@@ -67,6 +77,9 @@
         <br />
         <div class="ui-g-12">
           <div class="command-btns">
+            <p:commandButton id="reset-task-and-cancel-to-home" value="Reset task and cancel to Home" actionListener="#{logic.resetTaskAndCancelToHome}"
+              icon="si si-house-1" />
+            <p:spacer width="5px" />
             <p:commandButton id="cancel-to-home" value="Cancel to Home" actionListener="#{logic.cancelToHome}"
               icon="si si-house-1" />
             <p:spacer width="5px" />

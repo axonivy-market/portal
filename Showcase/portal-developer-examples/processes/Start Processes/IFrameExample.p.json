@@ -173,7 +173,7 @@
       "id" : "f9",
       "type" : "TaskEnd",
       "visual" : {
-        "at" : { "x" : 448, "y" : 352 }
+        "at" : { "x" : 544, "y" : 352 }
       }
     }, {
       "id" : "f11",
@@ -197,7 +197,7 @@
         "at" : { "x" : 192, "y" : 352 }
       },
       "connect" : [
-        { "id" : "f17", "to" : "f16" }
+        { "id" : "f17", "to" : "f34" }
       ]
     }, {
       "id" : "f16",
@@ -207,7 +207,7 @@
         "dialog" : "com.axonivy.portal.developerexamples.ResetTaskIFrame:start()"
       },
       "visual" : {
-        "at" : { "x" : 320, "y" : 352 }
+        "at" : { "x" : 416, "y" : 352 }
       },
       "connect" : [
         { "id" : "f10", "to" : "f9" }
@@ -301,6 +301,49 @@
         { "id" : "f32", "to" : "f25", "via" : [ { "x" : 192, "y" : 469 } ], "condition" : "ivp==\"TaskA.ivp\"" },
         { "id" : "f40", "to" : "f28", "condition" : "ivp==\"TaskB.ivp\"" },
         { "id" : "f41", "to" : "f31", "via" : [ { "x" : 192, "y" : 656 } ], "condition" : "ivp==\"TaskC.ivp\"" }
+      ]
+    }, {
+      "id" : "f23",
+      "type" : "RequestStart",
+      "name" : "ResetTaskAndNavigateInIFrameExample.ivp",
+      "config" : {
+        "signature" : "ResetTaskAndNavigateInIFrameExample",
+        "request" : {
+          "name" : "Reset current task and navigate back in the IFrame example",
+          "description" : "Example of navigation in IFrame"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 240 },
+        "labelOffset" : { "x" : 105, "y" : 49 }
+      },
+      "connect" : [
+        { "id" : "f33", "to" : "f30" }
+      ]
+    }, {
+      "id" : "f30",
+      "type" : "Script",
+      "name" : "Persist current task",
+      "config" : {
+        "output" : {
+          "code" : "ivy.task.createNote(ivy.session, \"Hello\");"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 192, "y" : 240 }
+      },
+      "connect" : [
+        { "id" : "f36", "to" : "f34", "via" : [ { "x" : 288, "y" : 240 } ] }
+      ]
+    }, {
+      "id" : "f34",
+      "type" : "Alternative",
+      "visual" : {
+        "at" : { "x" : 288, "y" : 352 },
+        "labelOffset" : { "x" : 14, "y" : 34 }
+      },
+      "connect" : [
+        { "id" : "f35", "to" : "f16", "color" : "default" }
       ]
     } ]
 }
