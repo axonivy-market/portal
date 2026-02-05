@@ -959,17 +959,24 @@ body .ui-widget.new-widget-dialog__introduction {
 }
 
 .widget-configuration-overlaypanel {
-  min-width: 30vw;
+  width: 35vw;
 }
 
 .widget-configuration-overlaypanel .label-item {
   width: 70%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .widget-configuration-overlaypanel .ui-inputgroup {
-  width: 30%;
   justify-content: flex-end;
   display: flex;
+  width: 30%;
+}
+
+.widget-configuration-overlaypanel .widget-configuration-group-item {
+  padding: 0.5rem 1rem;
 }
 
 .new-widget-configuration-dialog_content .widget-preview.widget-preview--process {
