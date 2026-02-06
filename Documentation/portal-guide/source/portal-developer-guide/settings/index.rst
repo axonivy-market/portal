@@ -59,7 +59,7 @@ HowTo: Add a New Language to Portal
 
 #. **Export CMS Entries**
 
-   Export all CMS entries of the Portal to an Excel file
+   Export all CMS entries of Portal to an Excel file
 
 #. **Add Language Column**
 
@@ -99,8 +99,8 @@ HowTo: Add a New Language to Portal
 
 #. **Import and Deploy**
 
-   - Import the Excel file back into the Portal
-   - Redeploy the Portal
+   - Import the Excel file back into Portal
+   - Redeploy Portal
 
 Role Configuration
 ==================
@@ -128,8 +128,8 @@ Configure permissions in the :dev-url:`Engine Cockpit </doc/12.0/engine-guide/re
 .. important::
    **Portal Permission Support:**
    
-   The Portal is built as a layer above the Axon Ivy Engine core. Not every core engine permission is automatically honored or supported by the Portal. Supporting every engine permission would require significant effort and increase maintenance overhead.
-   If you require a specific engine permission that is not currently supported by the Portal, please contact Axon Ivy support to discuss your requirements.
+   Portal is built as a layer above the Axon Ivy Engine core. Not every core engine permission is automatically honored or supported by Portal. Supporting every engine permission would require significant effort and increase maintenance overhead.
+   If you require a specific engine permission that is not currently supported by Portal, please contact Axon Ivy support to discuss your requirements.
 
 .. note::
    **General Permission Rules:**
@@ -539,7 +539,7 @@ Data model:
 
 Portal Processes External Links
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-The standard external links of the Portal are defined in the following file:
+The standard external links of Portal are defined in the following file:
 
 Filename: ``variables.Portal.Processes.ExternalLinks.json``
 
