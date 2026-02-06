@@ -490,6 +490,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     days: days
     default: Default
     defaultNotificationMessage: Hmm... Looks like something went wrong.
+    delegation: Delegation
     delete: Delete
     deleteAbsenceHeaderText: Delete this absence?
     deleteChartHeaderText: Delete this chart?
@@ -612,6 +613,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     showSystemTasks: System tasks
     sorting: Sorting
     start: Start
+    startMultipleDelegation: Start multiple delegation
     startProcess: Start process
     state: State
     status: Status
@@ -629,6 +631,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     typeAdmin: All administrators
     typeAllUsers: All users
     typeOnlyMe: Only me
+    undelegation: Undelegation
     unpin: Unpin
     uploadHere: Upload here
     uploadOneHere: Upload one here
