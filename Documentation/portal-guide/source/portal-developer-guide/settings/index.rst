@@ -123,7 +123,7 @@ Configure permissions in the :doc-url:`Engine Cockpit </engine-guide/reference/e
 .. important::
    **Portal Permission Support:**
    
-   The Portal is built as a layer above the Axon Ivy Engine core. Not every core engine permission is automatically honored or supported by the Portal. Supporting every engine permission would require significant effort and increase maintenance overhead.
+   The Portal is built as a layer above the Axon Ivy Engine core. Not every core engine permission is automatically used or supported by the Portal. Supporting every engine permission would require significant effort and increase maintenance overhead.
    If you require a specific engine permission that is not currently supported by the Portal, please contact Axon Ivy support to discuss your requirements.
 
 .. note::

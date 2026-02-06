@@ -228,7 +228,6 @@ Portal Task Permissions
 
 .. _TaskResetReadyForJoin:
 
-
    :ref:`🔑TaskResetReadyForJoin <TaskResetReadyForJoin>`
        +------------------------+-------------------------------------------------------------+
        | Field                  | Description                                                 |
@@ -1443,7 +1442,7 @@ Portal Absence And Substitute Permissions
 Engine Permissions used by Portal
 ----------------------------------
 
-Portal uses the following Axon Ivy Engine Engine permissions. These are documented here for completeness as they directly affect Portal functionality:
+Portal uses the following Axon Ivy Engine permissions. These are documented here for completeness as they directly affect Portal functionality:
 
 **Task Permissions:**
 
@@ -1456,9 +1455,6 @@ Portal uses the following Axon Ivy Engine Engine permissions. These are document
 #. :ref:`🔑TaskWriteDescription <TaskWriteDescription>`
 #. :ref:`🔑TaskWriteOriginalPriority <TaskWriteOriginalPriority>`
 #. :ref:`🔑TaskWriteExpiryTimestamp <TaskWriteExpiryTimestamp>` 
-#. :ref:`🔑TaskWriteDescription <TaskWriteDescription>`
-#. :ref:`🔑TaskWriteOriginalPriority <TaskWriteOriginalPriority>`
-#. :ref:`🔑TaskWriteExpiryTimestamp <TaskWriteExpiryTimestamp>`
 #. :ref:`🔑TaskWriteActivator <TaskWriteActivator>`
 #. :ref:`🔑TaskWriteDelayTimestamp <TaskWriteDelayTimestamp>`
 
