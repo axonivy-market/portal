@@ -69,8 +69,8 @@ Portal has a flexible security system that allows you to configure who can acces
 .. important::
    **Portal Permission Support:**
    
-   The Portal is built as a layer above the Axon Ivy Engine core. Not every core engine permission is automatically used or supported by the Portal.
-   If you require a specific engine permission not currently supported by the Portal, please contact Axon Ivy support.
+   Portal is built as a layer above the Axon Ivy Engine core. Not every core engine permission is automatically used or supported by Portal.
+   If you require a specific engine permission not currently supported by Portal, please contact Axon Ivy support.
    
    Many behaviors in Portal require multiple permissions to work correctly. For example, to reset a task, a user typically needs both the permission ``TaskDisplayResetAction`` to display Reset button and the permission ``TaskReset`` to reset it.
    Ensure you review all related permissions when configuring access.
