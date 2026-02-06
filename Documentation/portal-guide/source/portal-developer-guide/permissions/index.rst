@@ -1455,9 +1455,6 @@ Portal uses the following Axon Ivy Engine permissions. These are documented here
 #. :ref:`🔑TaskWriteDescription <TaskWriteDescription>`
 #. :ref:`🔑TaskWriteOriginalPriority <TaskWriteOriginalPriority>`
 #. :ref:`🔑TaskWriteExpiryTimestamp <TaskWriteExpiryTimestamp>` 
-#. :ref:`🔑TaskWriteDescription <TaskWriteDescription>`
-#. :ref:`🔑TaskWriteOriginalPriority <TaskWriteOriginalPriority>`
-#. :ref:`🔑TaskWriteExpiryTimestamp <TaskWriteExpiryTimestamp>`
 #. :ref:`🔑TaskWriteActivator <TaskWriteActivator>`
 #. :ref:`🔑TaskWriteDelayTimestamp <TaskWriteDelayTimestamp>`
 
