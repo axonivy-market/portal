@@ -280,7 +280,7 @@ public class TaskDetailsPage extends TemplatePage {
   }
 
   public void waitForIFrameWidgetLoad() {
-    switchToIframeWithNameOrId("custom-widget-iframe");
+    switchToIframeWithWebElement($("iframe[name$='custom-widget-iframe']"));
     $(".container.frame").shouldBe(Condition.visible, DEFAULT_TIMEOUT);
     switchBackToParent();
   }

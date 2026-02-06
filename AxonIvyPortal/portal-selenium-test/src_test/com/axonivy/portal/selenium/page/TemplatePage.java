@@ -88,6 +88,10 @@ public abstract class TemplatePage extends AbstractPage {
     WebDriverRunner.getWebDriver().switchTo().frame(value);
   }
 
+  public void switchToIframeWithWebElement(WebElement element) {
+    WebDriverRunner.getWebDriver().switchTo().frame(element);
+  }
+
   public void waitForGrowlMessageDisappear() {
     $("div[id='portal-global-growl_container']").$("div.ui-growl-message").shouldBe(disappear, Duration.ofSeconds(45));
   }
