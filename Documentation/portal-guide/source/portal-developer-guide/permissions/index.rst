@@ -228,7 +228,6 @@ Portal Task Permissions
 
 .. _TaskResetReadyForJoin:
 
-
    :ref:`🔑TaskResetReadyForJoin <TaskResetReadyForJoin>`
        +------------------------+-------------------------------------------------------------+
        | Field                  | Description                                                 |
