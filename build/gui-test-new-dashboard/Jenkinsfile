@@ -35,7 +35,7 @@ pipeline {
           def testEngineContainerName = "wawa-" + random
           sh "docker network create ${networkName}"
           try {
-            docker.image("selenium/standalone-firefox:4").withRun("--shm-size=2g --name ${seleniumName} --network ${networkName} --hostname=wawa") {
+            docker.image("selenium/standalone-firefox:4").withRun("--shm-size=2g --name ${seleniumName} --network ${networkName} --hostname=wawa -p 7900:7900") {
               docker.build('gui-test-portal', '-f build/Dockerfile .').inside("--name ${testEngineContainerName} --network ${networkName} -v /var/tools/maven-cache:/home/build/") {
                 def utils = load 'build/common/utils.groovy'
                 utils.init()
