@@ -31,7 +31,7 @@
           itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/ShowOnlyOpenTasks')}"
           styleClass="case-history-checkbox u-hidden-md-down u-hidden-sm-down">
           <p:ajax process="@this" partialSubmit="true"
-            update="case-details-related-task-table" />
+            update="case-details-related-task-table" oncomplete="PF('related-tasks-table').getPaginator().setPage(0)" />
         </p:selectBooleanCheckbox>
         </div>
         <h:form id="task-export-to-excel-form" styleClass="related-task-export-to-excel ui-sm-hidden">
@@ -53,7 +53,7 @@
       </h:panelGroup>
     </div>
     <h:panelGroup layout="block" styleClass="ui-g-12 u-padding-0 case-details-related-task-table" id="case-details-related-task-table">
-      <p:dataTable id="related-tasks" lazy="true" value="#{data.dataModel}" var="task" paginator="true" rows="5"
+      <p:dataTable id="related-tasks" widgetVar="related-tasks-table" lazy="true" value="#{data.dataModel}" var="task" paginator="true" rows="5"
         paginatorPosition="bottom" paginatorAlwaysVisible="false" 
         emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}" sortBy="#{caseDetailsBean.sortById}"
