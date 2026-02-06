@@ -1,13 +1,11 @@
 package com.axonivy.portal.service;
 
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.UUID;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -23,7 +21,6 @@ import ch.addon.portal.generic.menu.SubMenuItem;
 import ch.addon.portal.generic.userprofile.homepage.HomepageUtils;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
-import ch.ivyteam.ivy.application.IApplication;
 import ch.ivy.addon.portalkit.util.StaticPageUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.call.SubProcessCallStart;
@@ -94,7 +91,7 @@ public class CustomSubMenuItemService {
             : MenuKind.CUSTOM);
       }
 
-      String menuId = generateIdForCustomSubMenuItem(result.getMenuKind(), result.getLink());
+      String menuId = SubMenuItem.generateId(result.getMenuKind(), result.getLink());
       result.setId(menuId);
       result.setName(HomepageUtils.generateHomepageId(result.getMenuKind(), menuId));
 
@@ -105,10 +102,5 @@ public class CustomSubMenuItemService {
   private static List<CustomSubMenuItem> loadFromConfiguration() {
     String menuJson = Ivy.var().get(PortalVariable.CUSTOM_MENU_ITEMS.key);
     return BusinessEntityConverter.jsonValueToEntities(menuJson, CustomSubMenuItem.class);
-  }
-
-  private static String generateIdForCustomSubMenuItem(MenuKind menuKind, String link) {
-    return UUID.nameUUIDFromBytes((IApplication.current().getName() + menuKind.name() + link).getBytes(StandardCharsets.UTF_8)).toString()
-        .replace("-", "");
   }
 }

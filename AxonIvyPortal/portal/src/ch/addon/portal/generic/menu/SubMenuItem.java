@@ -1,8 +1,12 @@
 package ch.addon.portal.generic.menu;
 
+import java.nio.charset.StandardCharsets;
+import java.util.UUID;
+
 import com.axonivy.portal.components.enums.MenuKind;
 
 import ch.ivy.addon.portalkit.enums.Protocol;
+import ch.ivyteam.ivy.application.IApplication;
 
 public class SubMenuItem {
   protected String id;
@@ -76,5 +80,10 @@ public class SubMenuItem {
     String linkInLowerCase = link.toLowerCase();
     return linkInLowerCase.startsWith(Protocol.HTTP.getValue())
         || linkInLowerCase.startsWith(Protocol.HTTPS.getValue()) || linkInLowerCase.startsWith("/");
+  }
+
+  public static String generateId(MenuKind menuKind, String link) {
+    return UUID.nameUUIDFromBytes((IApplication.current().getName() + menuKind.name() + link).getBytes(StandardCharsets.UTF_8))
+        .toString().replace("-", "");
   }
 }
