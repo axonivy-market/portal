@@ -248,8 +248,6 @@ public class PortalPermissionTest extends BaseTest {
   private void grantCasePermissions() {
     redirectToRelativeLink(
         String.format(grantSpecificPortalPermissionLink, PortalPermission.SHOW_CASE_DETAILS.getValue()));
-    redirectToRelativeLink(
-        String.format(grantSpecificPortalPermissionLink, PortalPermission.SHOW_ALL_TASKS_OF_CASE.getValue()));
   }
 
   private void denyCasePermissions() {
