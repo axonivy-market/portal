@@ -16,7 +16,7 @@ Proper permission configuration ensures Portal security aligns with your organiz
 
 **Permission Architecture:**
 
-Portal's permission system extends Axon Ivy Engine's core security model with Portal-specific permissions. All permissions are configured in the Engine Cockpit under the PortalPermissions section and can be assigned to:
+Portal's permission system extends Axon Ivy Engine's core security model with Portal-specific permissions. All permissions are configured in the Engine Cockpit under the Portal Permissions section and can be assigned to:
 
 - **Roles**: Grant permissions to all users with specific roles (e.g., "Manager", "Employee")
 - **Individual Users**: Grant permissions to specific user accounts (prefix with ``#``)
@@ -32,7 +32,7 @@ Portal's permission system extends Axon Ivy Engine's core security model with Po
 
 **Configuration Location:**
 
-All permissions are configured in the :doc-url:`Engine Cockpit </engine-guide/reference/engine-cockpit/security.html>` under Security > PortalPermissions. 
+All permissions are configured in the :doc-url:`Engine Cockpit </engine-guide/reference/engine-cockpit/security.html>` under Security > Portal Permissions. 
 For detailed configuration instructions and examples, see :ref:`Permission Settings <settings-permission-settings>`.
 
 **Best Practices:**
@@ -69,8 +69,8 @@ Portal has a flexible security system that allows you to configure who can acces
 .. important::
    **Portal Permission Support:**
    
-   The Portal is built as a layer above the Axon Ivy Engine core. Not every core engine permission is automatically used or supported by the Portal.
-   If you require a specific engine permission not currently supported by the Portal, please contact Axon Ivy support.
+   Portal is built as a layer above the Axon Ivy Engine core. Not every core engine permission is automatically used or supported by Portal.
+   If you require a specific engine permission not currently supported by Portal, please contact Axon Ivy support.
    
    Many behaviors in Portal require multiple permissions to work correctly. For example, to reset a task, a user typically needs both the permission ``TaskDisplayResetAction`` to display Reset button and the permission ``TaskReset`` to reset it.
    Ensure you review all related permissions when configuring access.
@@ -404,8 +404,7 @@ Portal Task Permissions
        +========================+=============================================================+
        | **Type**               | Portal permission                                           |
        +------------------------+-------------------------------------------------------------+
-       | **Category**           | Allows a user to **delegate personal or group tasks that    |    
-       |                        | are assigned to themselves**.                               |
+       | **Category**           | Task Property Modifications                                 | 
        +------------------------+-------------------------------------------------------------+
        | **Description**        | Enables users to **delegate tasks they currently own**      |
        |                        | to another user or role via the Portal UI, for example when |
@@ -428,7 +427,7 @@ Portal Task Permissions
        +------------------------+-------------------------------------------------------------+
        | **Category**           | Task UI Display Permissions                                 |
        +------------------------+-------------------------------------------------------------+
-       | **Description**        | Allows the Portal to **display additional task actions**    |
+       | **Description**        | Allows Portal to **display additional task actions**        |
        |                        | in the user interface.                                      |
        +------------------------+-------------------------------------------------------------+
        | **Use case**           | Users with this permission will see **additional menu       |
@@ -448,7 +447,7 @@ Portal Task Permissions
        +------------------------+-------------------------------------------------------------+
        | **Category**           | Task UI Display Permissions                                 |
        +------------------------+-------------------------------------------------------------+
-       | **Description**        | Allows the Portal to **display the reset action** for tasks | 
+       | **Description**        | Allows Portal to **display the reset action** for tasks     | 
        |                        | in the user interface.                                      |
        +------------------------+-------------------------------------------------------------+
        | **Use case**           | Users with this permission will see the **Reset** menu item |
@@ -470,7 +469,7 @@ Portal Task Permissions
        +------------------------+-------------------------------------------------------------+
        | **Category**           | Task UI Display Permissions                                 |
        +------------------------+-------------------------------------------------------------+
-       | **Description**        | Allows the Portal to **display the reserve action**         |
+       | **Description**        | Allows Portal to **display the reserve action**             |
        |                        | for tasks in the user interface.                            |
        +------------------------+-------------------------------------------------------------+
        | **Use case**           | Users with this permission will see the **Reserve** menu    |
@@ -491,7 +490,7 @@ Portal Task Permissions
        +------------------------+-------------------------------------------------------------+
        | **Category**           | Task UI Display Permissions                                 |
        +------------------------+-------------------------------------------------------------+
-       | **Description**        | Allows the Portal to **display the delegate action**        |
+       | **Description**        | Allows Portal to **display the delegate action**            |
        |                        | for tasks in the user interface.                            |
        +------------------------+-------------------------------------------------------------+
        | **Use case**           | Users with this permission will see the **Delegate** menu   |
@@ -512,7 +511,7 @@ Portal Task Permissions
        +------------------------+-------------------------------------------------------------+
        | **Category**           | Task UI Display Permissions                                 |
        +------------------------+-------------------------------------------------------------+
-       | **Description**        | Allows the Portal to **display the destroy action**         |
+       | **Description**        | Allows Portal to **display the destroy action**             |
        |                        | for tasks in the user interface.                            |
        +------------------------+-------------------------------------------------------------+
        | **Use case**           | Users with this permission will see the **Destroy** menu    |
@@ -532,7 +531,7 @@ Portal Task Permissions
        +------------------------+-------------------------------------------------------------+
        | **Category**           | Task UI Display Permissions                                 |
        +------------------------+-------------------------------------------------------------+
-       | **Description**        | Allows the Portal to **display workflow events** for a      |
+       | **Description**        | Allows Portal to **display workflow events** for a          |
        |                        | task, including the **task execution history and related    |
        |                        | workflow events**.                                          |
        +------------------------+-------------------------------------------------------------+
@@ -555,7 +554,7 @@ Portal Task Permissions
        +------------------------+-------------------------------------------------------------+
        | **Category**           | Task UI Display Permissions                                 |
        +------------------------+-------------------------------------------------------------+
-       | **Description**        | Allows the Portal to **display custom fields of a case**    |
+       | **Description**        | Allows Portal to **display custom fields of a case**        |
        |                        | in the task user interface.                                 | 
        +------------------------+-------------------------------------------------------------+
        | **Use case**           | Users with this permission will see the **Custom Fields**   |
@@ -576,7 +575,7 @@ Portal Task Permissions
        +------------------------+-------------------------------------------------------------+
        | **Category**           | Task UI Display Permissions                                 |
        +------------------------+-------------------------------------------------------------+
-       | **Description**        | Allows the Portal to **display the share task details       |
+       | **Description**        | Allows Portal to **display the share task details           |
        |                        | link** in the task user interface.                          |
        +------------------------+-------------------------------------------------------------+
        | **Use case**           | Users with this permission will see a **Share** button next |
@@ -686,7 +685,7 @@ Portal Case Permissions
        +------------------------+-------------------------------------------------------------+
        | **Category**           | Case UI Display Permissions                                 |
        +------------------------+-------------------------------------------------------------+
-       | **Description**        | Allows the Portal to **display business details of a case   |
+       | **Description**        | Allows Portal to **display business details of a case       |
        |                        | in a separate tab**, providing additional case-related      |
        |                        | information.                                                |
        +------------------------+-------------------------------------------------------------+
@@ -707,7 +706,7 @@ Portal Case Permissions
        +------------------------+-------------------------------------------------------------+
        | **Category**           | Case UI Display Permissions                                 |
        +------------------------+-------------------------------------------------------------+
-       | **Description**        | Allows the Portal to **display custom fields of a case**    | 
+       | **Description**        | Allows Portal to **display custom fields of a case**        | 
        |                        | in the user interface.                                      |
        +------------------------+-------------------------------------------------------------+
        | **Use case**           | Users with this permission will see the **Custom fields**   |
@@ -728,7 +727,7 @@ Portal Case Permissions
        +------------------------+-------------------------------------------------------------+
        | **Category**           | Case UI Display Permissions                                 |
        +------------------------+-------------------------------------------------------------+
-       | **Description**        | Allows the Portal to **display a link for sharing case      |
+       | **Description**        | Allows Portal to **display a link for sharing case          |
        |                        | details** in the user interface.                            |
        +------------------------+-------------------------------------------------------------+
        | **Use case**           | Users with this permission will see a **Share** button next |
@@ -934,7 +933,7 @@ Portal General Permissions
        | **Category**           | Document                                                    |
        +------------------------+-------------------------------------------------------------+
        | **Description**        | Allows a user to **view all documents across all cases and  |
-       |                        | tasks in the Portal** on a dedicated page without           |
+       |                        | tasks in Portal** on a dedicated page without               |
        |                        | pagination. If this permission is not granted,              |
        |                        | the **Show more** option is hidden in the Documents widget. |
        +------------------------+-------------------------------------------------------------+
@@ -957,7 +956,7 @@ Portal General Permissions
        | **Category**           | Document                                                    |
        +------------------------+-------------------------------------------------------------+
        | **Description**        | These permissions allow users to **upload and delete        |
-       |                        | documents** in the Documents widget. The Portal checks both |
+       |                        | documents** in the Documents widget. Portal checks both     |
        |                        | permissions: if a user has either one, the upload and       |
        |                        | delete actions are shown.                                   |
        |                        | Note: Upload and delete actions may be hidden for cases     |
@@ -983,7 +982,7 @@ Portal General Permissions
        +------------------------+-------------------------------------------------------------+
        | **Category**           | Role Management                                             |
        +------------------------+-------------------------------------------------------------+
-       | **Description**        | Allows a user to **view all available roles**. The Portal   |
+       | **Description**        | Allows a user to **view all available roles**. Portal       |
        |                        | itself does not apply additional logic based on this        |
        |                        | permission, but it is **automatically granted to            |
        |                        | administrators** to allow role visibility. If this          |
