@@ -1443,7 +1443,7 @@ Portal Absence And Substitute Permissions
 Engine Permissions used by Portal
 ----------------------------------
 
-Portal uses the following Axon Ivy Engine Engine permissions. These are documented here for completeness as they directly affect Portal functionality:
+Portal uses the following Axon Ivy Engine permissions. These are documented here for completeness as they directly affect Portal functionality:
 
 **Task Permissions:**
 
