@@ -9,6 +9,8 @@ import javax.faces.context.FacesContext;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
+import com.axonivy.portal.dto.TaskDTO;
+
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivy.addon.portalkit.util.UrlUtils;
@@ -31,8 +33,8 @@ public abstract class AbstractTaskTemplateBean implements Serializable {
   protected List<IStartableSideStep> sideStepList;
   protected IStartableSideStep selectedSideStep;
   protected String caseDetailsLink;
-  protected ITask task;
-  protected ITask currentTask;
+  protected TaskDTO task;
+  protected TaskDTO currentTask;
 
   public List<IStartableSideStep> getSideStepList() {
     return sideStepList;
@@ -42,8 +44,11 @@ public abstract class AbstractTaskTemplateBean implements Serializable {
     this.selectedSideStep = selectedSideStep;
   }
 
-  public void startSideStep(ITask task) {
-    TaskUtils.resetTask(task);
+  public void startSideStep(TaskDTO task) {
+    ITask iTask = TaskUtils.findTaskById(task.getId());
+    if (iTask != null) {
+      TaskUtils.resetTask(iTask);
+    }
     String link = UrlUtils.formatLinkWithEmbedInFrameParam(selectedSideStep.getStartLink().getRelativeEncoded());
     PortalNavigator.redirect(link);
   }
@@ -177,11 +182,11 @@ public abstract class AbstractTaskTemplateBean implements Serializable {
     this.caseDetailsLink = caseDetailsLink;
   }
 
-  public ITask getTask() {
+  public TaskDTO getTask() {
     return task;
   }
 
-  public void setTask(ITask task) {
+  public void setTask(TaskDTO task) {
     this.task = task;
   }
 

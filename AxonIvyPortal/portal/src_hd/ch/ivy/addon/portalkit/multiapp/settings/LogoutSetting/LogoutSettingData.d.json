@@ -4,11 +4,14 @@
   "namespace" : "ch.ivy.addon.portalkit.multiapp.settings.LogoutSetting",
   "isBusinessCaseData" : false,
   "fields" : [ {
-    "name" : "task",
-    "type" : "ch.ivyteam.ivy.workflow.ITask"
+    "name" : "workingTask",
+    "type" : "com.axonivy.portal.dto.TaskDTO"
   }, {
     "name" : "isWorkingOnATask",
     "type" : "Boolean",
     "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "task",
+    "type" : "ch.ivyteam.ivy.workflow.ITask"
   } ]
 }

@@ -23,6 +23,7 @@ import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import com.axonivy.portal.components.dto.UserDTO;
 import com.axonivy.portal.components.util.FacesMessageUtils;
 import com.axonivy.portal.components.util.HtmlUtils;
+import com.axonivy.portal.dto.TaskDTO;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -36,7 +37,6 @@ import ch.ivy.addon.portalkit.util.CaseUtils;
 import ch.ivy.addon.portalkit.util.SecurityMemberUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.ICase;
-import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.businesscase.IBusinessCase;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 
@@ -57,12 +57,12 @@ public class ChatAssigneeBean implements Serializable {
   private String groupChatExistMessage;
   private GroupChat existedGroupChat;
   private boolean isShowCreateGroupChatDialog;
-  private ITask task;
+  private TaskDTO task;
 
   @PostConstruct
   public void init() {
     selectedAssignees.add(SecurityMemberUtils.getCurrentSessionUserAsSecurityMemberDTO());
-    task = Ivy.wfTask();
+    task = new TaskDTO(Ivy.wfTask());
   }
 
   private void checkCaseHasGroupChat() {
@@ -176,7 +176,7 @@ public class ChatAssigneeBean implements Serializable {
     return caseQuery;
   }
 
-  public void createGroupChatForConfiguredRoleList(ITask task) {
+  public void createGroupChatForConfiguredRoleList(TaskDTO task) {
     this.task = task;
     checkCaseHasGroupChat();
     PrimeFaces.current().executeScript("PF('chat-assignee-dialog').show()");
@@ -278,7 +278,7 @@ public class ChatAssigneeBean implements Serializable {
     GroupChat group = new GroupChat();
     group.setCaseId(iCase.getId());
     group.setCaseName(iCase.getName());
-    group.setApplicationName(task.getApplication().getName());
+    group.setApplicationName(task.getApplicationName());
     group.setCreator(Ivy.session().getSessionUserName());
     group.setAssignees(selectedAssignees);
     return group;
