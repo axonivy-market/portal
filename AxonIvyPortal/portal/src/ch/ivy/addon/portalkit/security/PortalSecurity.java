@@ -67,19 +67,19 @@ public enum PortalSecurity {
             IPermission.USER_READ_OWN_SUBSTITUTIONS);
 
     private static final List<PortalPermission> EVERYBODY_PERMISSIONS = Arrays.asList(
-            PortalPermission.ACCESS_FULL_CASE_LIST, 
+            PortalPermission.ACCESS_FULL_CASE_LIST,
             PortalPermission.ACCESS_FULL_TASK_LIST,
             PortalPermission.ACCESS_FULL_PROCESS_LIST,
-            PortalPermission.TASK_CASE_ADD_NOTE, 
+            PortalPermission.TASK_CASE_ADD_NOTE,
             PortalPermission.TASK_CASE_SHOW_MORE_NOTE,
             PortalPermission.TASK_DISPLAY_ADDITIONAL_OPTIONS,
-            PortalPermission.TASK_DISPLAY_RESET_ACTION, 
+            PortalPermission.TASK_DISPLAY_RESET_ACTION,
             PortalPermission.TASK_DISPLAY_RESERVE_ACTION,
-            PortalPermission.TASK_DISPLAY_DELEGATE_ACTION, 
+            PortalPermission.TASK_DISPLAY_DELEGATE_ACTION,
             PortalPermission.DASHBOARD_WRITE_OWN,
-            PortalPermission.SHOW_CASE_DETAILS, 
-            PortalPermission.DASHBOARD_SHARE_LINK, 
-            PortalPermission.TASK_DETAILS_SHARE_LINK, 
+            PortalPermission.SHOW_CASE_DETAILS,
+            PortalPermission.DASHBOARD_SHARE_LINK,
+            PortalPermission.TASK_DETAILS_SHARE_LINK,
             PortalPermission.CASE_DETAILS_SHARE_LINK,
             PortalPermission.NOTIFICATION_CHANNELS_SETTING);
 
