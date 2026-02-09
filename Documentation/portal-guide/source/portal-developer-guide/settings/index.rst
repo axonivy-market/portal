@@ -58,7 +58,7 @@ HowTo: Add a New Language to Portal
 
 #. **Export CMS Entries**
 
-   Export all CMS entries of Portal to an Excel file
+   Export all CMS entries from Portal to an Excel file
 
 #. **Add Language Column**
 
