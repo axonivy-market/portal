@@ -11,216 +11,269 @@
 Settings
 ********
 
-Configure global Portal behavior such as branding, variables, and integrations.
-These settings apply across dashboards, widgets, and admin features.
+This guide covers Portal configuration including roles, permissions, variables, and integrations. Settings control global Portal behavior across dashboards, widgets, and administrative features.
+Proper configuration ensures Portal aligns with your organization's security policies, business processes, and user experience requirements.
 
-This section covers Portal roles, permissions and other settings.
+**What Settings Control:**
+
+- User interface language and translations
+- Security roles and permissions for Portal features
+- Global variables affecting Portal behavior
+- Document upload restrictions and virus scanning
+- External integrations (announcements, third-party apps, external links)
+- Statistical chart configurations for dashboards
+
+**Related Sections:**
+
+- :ref:`Permissions <list-permissions>` - Detailed permission reference
+- :ref:`Dashboard Configuration <customization-new-dashboard>` - Configure dashboards
+- :ref:`Customization <customization>` - Extend Portal functionality
+- :ref:`Deployment <deployment>` - Production deployment settings
 
 |portal-header|
 
-.. _settings-admin-settings:
+Portal Settings Configuration
+=============================
 
-Configure Portal Settings
-=========================
+Portal Settings Configuration
+=============================
 
-To manually configure Portal settings, refer to :ref:`update-portal-settings`.
+Portal settings control global behavior and can be configured through multiple methods:
 
-Portal settings are stored as :dev-url:`Variables </doc/12.0/designer-guide/configuration/variables.html>`.
+**Configuration Methods:**
 
-In development, it is a quite tedious task to configure Portal settings after
-restarting Designer. Therefore, update your variables in
-``portal/config/variables.yaml`` for the settings that you want to configure.
-This survives restarting Designer.
+- **Admin Settings UI**: See :ref:`update-portal-settings` for user-friendly configuration
+- **Variables File**: Update ``portal/config/variables.yaml`` for development (survives Designer restarts)
+- **Engine Cockpit**: Configure via :dev-url:`Variables </doc/12.0/designer-guide/configuration/variables.html>`
 
+.. tip::
+   In development, configure settings in ``portal/config/variables.yaml`` to avoid re-configuring after each Designer restart.
 
 .. _settings-language:
 
 Language Settings
 =================
 
-To add a new language to the Portal, what you have to do is:
+HowTo: Add a New Language to Portal
+------------------------------------
 
--  Export all CMS entries of the Portal to an Excel file.
--  Add one new column to the end of this file, then add the new language locale for example ``it`` for the Italian language to the first cell of this new column. Refer to `Java supported locales <https://www.oracle.com/java/technologies/javase/jdk11-suported-locales.html>`_ for the supported locales.
+#. **Export CMS Entries**
 
+   Export all CMS entries of the Portal to an Excel file
+
+#. **Add Language Column**
+
+   - Open the exported Excel file
+   - Add a new column at the end with the language locale code (e.g., ``it`` for Italian)
+   - Refer to `Java supported locales (JDK 21) <https://www.oracle.com/java/technologies/javase/jdk21-suported-locales.html>`_ for supported locale codes
+   
    |export-cms|
+   
+   For JDK 11:
+   
+   Refer to `Java supported locales (JDK 11) <https://www.oracle.com/java/technologies/javase/jdk11-suported-locales.html>`_ for supported locale codes
 
--  Add the translations for the new language for all CMS entries.
--  Add the translations for the new language for all json files in the Portal located at Config/variables by adding new locale/value item.
+#. **Translate CMS Entries**
 
+   - For each row in the Excel file, add the translated text in the new language column
+   - Base your translations on the existing English (``en``) or German (``de``) values
+   - Ensure all cells in the new language column are filled with appropriate translations
+
+#. **Update JSON Configuration Files**
+
+   For each JSON file in ``portal/config/variables/``:
+   
+   - Open the file and locate the ``locale`` arrays
+   - Add a new locale/value pair for your language following the existing pattern
+   - Example: ``{"locale": "it", "value": "Translated text"}``
+   
    |translate-json|
 
--  Add the translations for the new language to DefaultDashboardUtils.java by adding new locale/value item.
+#. **Update Java Source Files**
 
+   In ``DefaultDashboardUtils.java``:
+   
+   - Add new locale/value entries for your language into default dashboard constants.
+   
    |translate-java|
 
--  Import the Excel file.
--  Redeploy the Portal.
+#. **Import and Deploy**
+
+   - Import the Excel file back into the Portal
+   - Redeploy the Portal
 
 Role Configuration
 ==================
 
-.. table::
+Portal uses specific roles to control administrative access:
 
-   +-----------------------------------+-----------------------------------+
-   | Portal roles                      | Rights                            |
-   +===================================+===================================+
-   | AXONIVY_PORTAL_ADMIN              | User with this role can access    |
-   |                                   | the Portal Admin page,            |
-   |                                   | configure internal role           |
-   |                                   | properties, and create public     |
-   |                                   | filters. Those who hold this role |
-   |                                   | require some permissions.         |
-   |                                   |                                   |
-   +-----------------------------------+-----------------------------------+
+.. table::
+   :widths: 30 70
+
+   +---------------------------+----------------------------------------------------------------+
+   | Role                      | Description                                                    |
+   +===========================+================================================================+
+   | **AXONIVY_PORTAL_ADMIN**  | Can access Portal Admin page, configure internal role          |
+   |                           | properties, and create public filters.                         |
+   +---------------------------+----------------------------------------------------------------+
+
 
 .. _settings-permission-settings:
 
 Permission Settings
 ===================
 
-Configure permissions in the :dev-url:`Engine Cockpit
-</doc/12.0/engine-guide/reference/engine-cockpit/security.html>`. In the
-security area, you will find all these permission in group "PortalPermissions".
+Configure permissions in the :dev-url:`Engine Cockpit </doc/12.0/engine-guide/reference/engine-cockpit/security.html>`. All Portal permissions are grouped under "PortalPermissions".
+
+.. important::
+   **Portal Permission Support:**
+   
+   The Portal is built as a layer above the Axon Ivy Engine core. Not every core engine permission is automatically honored or supported by the Portal. Supporting every core permission would require significant effort and increase maintenance overhead.
+   If you require a specific engine permission that is not currently supported by the Portal, please contact Axon Ivy support to discuss your requirements.
+
+.. note::
+   **General Permission Rules:**
+   
+   - Normal users can only see tasks and cases they can work on
+   - Administrators with :ref:`🔑TaskReadAll <TaskReadAll>` and :ref:`🔑CaseReadAll <CaseReadAll>` can see all tasks/cases
+   - Administrators can interact with, create, update, and delete all workflows
+   - Normal users can only update/delete workflows they created and work on assigned tasks
 
 Task Permissions
 ----------------
-- Add note
 
-   User needs permission: :bdg-ref-warning:`🔑TaskCaseAddNote <TaskCaseAddNote>`.
+**Add Note**
 
-- Delegate
+User needs permission: :ref:`🔑TaskCaseAddNote <TaskCaseAddNote>`
 
-   To be able to delegate, the user needs permission
-   :bdg-ref-warning:`🔑TaskDisplayDelegateAction <TaskDisplayDelegateAction>` and :bdg-ref-warning:`🔑TaskWriteActivator <TaskWriteActivator>`.
+**Delegate**
 
-   To delegate personal or group tasks, the user needs permission
-   :bdg-ref-warning:`🔑TaskWriteActivatorOwnTasks <TaskWriteActivatorOwnTasks>`. This permission belongs to the
-   PortalPermissions group. It is not assigned to role Everybody by default.
+Required permissions:
 
-   A case owner is able to delegate all related tasks within their case with permission :bdg-ref-warning:`🔑CaseOwnerTaskDelegate <CaseOwnerTaskDelegate>`. This permission belongs to the
-   PortalPermissions group.
+- To see delegate action: :ref:`🔑TaskDisplayDelegateAction <TaskDisplayDelegateAction>` and :ref:`🔑TaskWriteActivator <TaskWriteActivator>`
+- To delegate personal/group tasks: :ref:`🔑TaskWriteActivatorOwnTasks <TaskWriteActivatorOwnTasks>` (not assigned to Everybody by default)
+- Case owner delegation: :ref:`🔑CaseOwnerTaskDelegate <CaseOwnerTaskDelegate>` allows delegating all related tasks within their case
 
-   .. important::
-      - Only tasks ready for user processing can be delegated. Therefore, the task state cannot be one of the following: CREATED, DONE, DESTROYED, RESUMED, FAILED.
+.. important::
+   Only tasks ready for user processing can be delegated. Task state cannot be: CREATED, DONE, DESTROYED, RESUMED, FAILED
 
-- Reset
+**Reset**
 
-   To see the reset action, the user needs permission
-   :bdg-ref-warning:`🔑TaskDisplayResetAction <TaskDisplayResetAction>`.
+Required permissions:
 
-   To reset tasks, the user needs permission:
-   :bdg-ref-warning:`🔑TaskResetOwnWorkingTask <TaskResetOwnWorkingTask>` or
-   :bdg-ref-warning:`🔑TaskResetReadyForJoin <TaskResetReadyForJoin>` or
-   :bdg-ref-warning:`🔑TaskReset <TaskReset>`.
+- To see reset action: :ref:`🔑TaskDisplayResetAction <TaskDisplayResetAction>`
+- To reset tasks: :ref:`🔑TaskResetOwnWorkingTask <TaskResetOwnWorkingTask>` or :ref:`🔑TaskResetReadyForJoin <TaskResetReadyForJoin>` or :ref:`🔑TaskReset <TaskReset>`
 
-   .. important::
-      This only works for tasks in one of following states: RESUMED,
-      PARKED, READY_FOR_JOIN, FAILED.
+.. important::
+   Only works for tasks in states: RESUMED, PARKED, READY_FOR_JOIN, FAILED
 
+**Delete**
 
-- Delete
+User needs permission: :ref:`🔑TaskDestroy <TaskDestroy>`
 
-   To see the Delete Task action, the user needs permission
-   :bdg-ref-warning:`🔑TaskDestroy <TaskDestroy>`.
+.. important::
+   Only works if task state is not DESTROYED or DONE
 
-   .. important::
-      Delete Task only works if the task state is not already DESTROYED
-      or DONE.
+**Reserve**
 
-- Reserve
+Required permissions:
 
-   To see the Reserve action, the user needs permission
-   :bdg-ref-warning:`🔑TaskDisplayReserveAction <TaskDisplayReserveAction>`.
+- To see reserve action: :ref:`🔑TaskDisplayReserveAction <TaskDisplayReserveAction>`
+- To reserve a task: :ref:`🔑TaskParkOwnWorkingTask <TaskParkOwnWorkingTask>`
 
-   To reserve a task, the user needs permission
-   :bdg-ref-warning:`🔑TaskParkOwnWorkingTask <TaskParkOwnWorkingTask>`.
+.. important::
+   Only possible if task is in states: CREATED, RESUMED, SUSPENDED
 
-   .. important::
-      Reservation is only possible if the task is in one of the following
-      states: CREATED, RESUMED, SUSPENDED.
+**Change Description**
 
-- Change description
+User needs permission: :ref:`🔑TaskWriteDescription <TaskWriteDescription>`
 
-   User needs permission:
-   :bdg-ref-warning:`🔑TaskWriteDescription <TaskWriteDescription>`.
+.. important::
+   Terminated tasks cannot be changed. Task state cannot be: DONE, DESTROYED, FAILED
 
-   .. important::
-      A terminated task cannot be changed. Therefore, the task state cannot be one of the following values:
-      DONE, DESTROYED, FAILED.
+**Change Deadline**
 
-- Change deadline
+User needs permission: :ref:`🔑TaskWriteExpiryTimestamp <TaskWriteExpiryTimestamp>`
 
-   User needs permission
-   :bdg-ref-warning:`🔑TaskWriteExpiryTimestamp <TaskWriteExpiryTimestamp>`.
+.. important::
+   Task cannot be in states: DONE, DESTROYED, FAILED
 
-   .. important::
-      To change an expiry date, the task cannot be in one of the following states:
-      DONE, DESTROYED, FAILED.
+**Change Priority**
 
-- Change priority
+User needs permission: :ref:`🔑TaskWriteOriginalPriority <TaskWriteOriginalPriority>`
 
-   User needs permission
-   :bdg-ref-warning:`🔑TaskWriteOriginalPriority <TaskWriteOriginalPriority>`.
+.. important::
+   Task cannot be in states: DONE, DESTROYED, FAILED
 
-   .. important::
-      To change task priority, the task cannot be in the following states:
-      DONE, DESTROYED, FAILED.
+**Display Additional Options**
 
-- Display additional options
+User needs permission: :ref:`🔑TaskDisplayAdditionalOptions <TaskDisplayAdditionalOptions>`
 
-   To see additional actions, the user needs permission
-   :bdg-ref-warning:`🔑TaskDisplayAdditionalOptions <TaskDisplayAdditionalOptions>`.
+**Display Workflow Events**
+
+User needs permission: :ref:`🔑TaskDisplayWorkflowEventAction <TaskDisplayWorkflowEventAction>`
+
+**Display Custom Fields**
+
+User needs permission: :ref:`🔑TaskDisplayCustomFieldsAction <TaskDisplayCustomFieldsAction>`
+
+**Share Task Details Link**
+
+User needs permission: :ref:`🔑ShareTaskDetailsLink <ShareTaskDetailsLink>`
+
+**Change Expiry Activator**
+
+User needs permission: :ref:`🔑TaskWriteExpiryActivator <TaskWriteExpiryActivator>`
+
+.. important::
+   Task cannot be in states: DONE, DESTROYED, FAILED
+
+**Read System Tasks**
+
+User needs permission: :ref:`🔑SystemTaskReadAll <SystemTaskReadAll>`
 
 Case Permissions
 ----------------
 
-- Add note
+**Add Note**
 
-   User needs permission :bdg-ref-warning:`🔑TaskCaseAddNote <TaskCaseAddNote>`.
+User needs permission: :ref:`🔑TaskCaseAddNote <TaskCaseAddNote>`
 
-- Delete
+**Delete**
 
-   User needs permission :bdg-ref-warning:`🔑CaseDestroy <CaseDestroy>`.
+User needs permission: :ref:`🔑CaseDestroy <CaseDestroy>`
 
-   .. important::
-      Case state has to be RUNNING.
+.. important::
+   Case state must be RUNNING
 
-- Change description
+**Change Description**
 
-   User needs permission :bdg-ref-warning:`🔑CaseWriteDescription <CaseWriteDescription>`.
+User needs permission: :ref:`🔑CaseWriteDescription <CaseWriteDescription>`
 
-   .. important::
-      Case state cannot be DESTROYED.
+.. important::
+   Case state cannot be DESTROYED
 
-- See related tasks of case
+**See Related Tasks of Case**
 
-   To see the related tasks action, the user needs permission
-   :bdg-ref-warning:`🔑ShowAllTasksOfCase <ShowAllTasksOfCase>`.
+Required permissions:
 
-   To see related tasks, user needs permission
-   :bdg-ref-warning:`🔑TaskReadOwnCaseTasks <TaskReadOwnCaseTasks>` or :bdg-ref-warning:`🔑TaskReadAll <TaskReadAll>`.
+- To see the action: :ref:`🔑ShowAllTasksOfCase <ShowAllTasksOfCase>`
+- To view related tasks: :ref:`🔑TaskReadOwnCaseTasks <TaskReadOwnCaseTasks>` or :ref:`🔑TaskReadAll <TaskReadAll>`
 
-   .. important::
-      Case state cannot be DESTROYED.
+.. important::
+   Case state cannot be DESTROYED
 
-- Display show detail link
+**Display Show Detail Link**
 
-   User needs permission :bdg-ref-warning:`🔑ShowCaseDetails <ShowCaseDetails>`. By default, this permission
-   is not assigned to role Everybody.
+User needs permission: :ref:`🔑ShowCaseDetails <ShowCaseDetails>` (not assigned to Everybody by default)
 
-.. note::
-      Normal users can only see the tasks and cases that they can work on.
+**Share Case Details Link**
 
-      Administrators can see all tasks/cases in the application. The required
-      permissions :bdg-ref-warning:`🔑TaskReadAll <TaskReadAll>`, :bdg-ref-warning:`🔑CaseReadAll <CaseReadAll>`.
+User needs permission: :ref:`🔑ShareCaseDetailsLink <ShareCaseDetailsLink>`
 
-      Administrators can interact with all workflows in the application.
+**Display Custom Fields**
 
-      Administrators can create, update, and delete all workflows in the application.
-
-      Normal users can update and delete workflows that they have created and
-      can interact with tasks that have been assigned to them.
+User needs permission: :ref:`🔑CaseDisplayCustomFieldsAction <CaseDisplayCustomFieldsAction>`
 
 .. _settings-permission-settings-others:
 
@@ -232,53 +285,61 @@ Other Permissions
  +-----------+---------------------------------+---------------------------------------------------------------------------------------+
  |           | Action                          | Permission required                                                                   |
  +===========+=================================+=======================================================================================+
- | Absence   | Read                            | :bdg-ref-warning:`🔑UserReadOwnAbsences <UserReadOwnAbsences>`  or                    |
- |           |                                 | :bdg-ref-warning:`🔑UserReadAbsences <UserReadAbsences>`                              |
+ | Absence   | Read                            | :ref:`🔑UserReadOwnAbsences <UserReadOwnAbsences>`  or                                |
+ |           |                                 | :ref:`🔑UserReadAbsences <UserReadAbsences>`                                          |
  |           +---------------------------------+---------------------------------------------------------------------------------------+
- |           | Create, edit                    | :bdg-ref-warning:`🔑UserCreateOwnAbsence <UserCreateOwnAbsence>` or                   |
- |           |                                 | :bdg-ref-warning:`🔑UserCreateAbsence <UserCreateAbsence>`                            |
+ |           | Create, edit                    | :ref:`🔑UserCreateOwnAbsence <UserCreateOwnAbsence>` or                               |
+ |           |                                 | :ref:`🔑UserCreateAbsence <UserCreateAbsence>`                                        |
  |           +---------------------------------+---------------------------------------------------------------------------------------+
- |           | Delete                          | :bdg-ref-warning:`🔑UserDeleteOwnAbsence <UserDeleteOwnAbsence>` or                   |
- |           |                                 | :bdg-ref-warning:`🔑UserDeleteAbsence <UserDeleteAbsence>`                            |
+ |           | Delete                          | :ref:`🔑UserDeleteOwnAbsence <UserDeleteOwnAbsence>` or                               |
+ |           |                                 | :ref:`🔑UserDeleteAbsence <UserDeleteAbsence>`                                        |
  |           +---------------------------------+---------------------------------------------------------------------------------------+
- |           | Read absences of all users      | :bdg-ref-warning:`🔑UserReadAbsences <UserReadAbsences>`                              |
+ |           | Read absences of all users      | :ref:`🔑UserReadAbsences <UserReadAbsences>`                                          |
  |           +---------------------------------+---------------------------------------------------------------------------------------+
- |           | Delete absences of all users    | :bdg-ref-warning:`🔑UserDeleteAbsence <UserDeleteAbsence>`                            |
+ |           | Delete absences of all users    | :ref:`🔑UserDeleteAbsence <UserDeleteAbsence>`                                        |
  |           +---------------------------------+---------------------------------------------------------------------------------------+
- |           | Create new absence for all users| :bdg-ref-warning:`🔑UserCreateAbsence <UserCreateAbsence>`                            |
+ |           | Create new absence for all users| :ref:`🔑UserCreateAbsence <UserCreateAbsence>`                                        |
  +-----------+---------------------------------+---------------------------------------------------------------------------------------+
- | Substitute| Manage substitute               | :bdg-ref-warning:`🔑UserCreateSubstitute <UserCreateSubstitute>` and                  |
- |           |                                 | :bdg-ref-warning:`🔑UserReadSubstitutes <UserReadSubstitutes>`                        |
+ | Substitute| Manage substitute               | :ref:`🔑UserCreateSubstitute <UserCreateSubstitute>` and                              |
+ |           |                                 | :ref:`🔑UserReadSubstitutes <UserReadSubstitutes>`                                    |
  +-----------+---------------------------------+---------------------------------------------------------------------------------------+
- | Document  | Upload, delete                  | :bdg-ref-warning:`🔑DocumentWrite <DocumentWrite>`                                    |
- |           |                                 | :bdg-ref-warning:`🔑DocumentOfInvolvedCaseWrite <DocumentOfInvolvedCaseWrite>`        |
+ | Document  | Upload, delete                  | :ref:`🔑DocumentWrite <DocumentWrite>`                                                |
+ |           |                                 | :ref:`🔑DocumentOfInvolvedCaseWrite <DocumentOfInvolvedCaseWrite>`                    |
  +-----------+---------------------------------+---------------------------------------------------------------------------------------+
- | Portal    | Access to full process          | :bdg-ref-warning:`🔑AccessFullProcessList <AccessFullProcessList>`                    |
+ | Portal    | Access to full process          | :ref:`🔑AccessFullProcessList <AccessFullProcessList>`                                |
  | permission| list, it's "Processes" on the   |                                                                                       |
  |           | left menu and link "Show all    |                                                                                       |
  |           | processes" on Dashboard         |                                                                                       |
  |           +---------------------------------+---------------------------------------------------------------------------------------+
- |           | Access to full task list, it's  | :bdg-ref-warning:`🔑AccessFullTaskList <AccessFullTaskList>`                          |
+ |           | Access to full task list, it's  | :ref:`🔑AccessFullTaskList <AccessFullTaskList>`                                      |
  |           | "Tasks" on the left menu and    |                                                                                       |
  |           | link "Show full task list" on   |                                                                                       |
  |           | Dashboard                       |                                                                                       |
  |           +---------------------------------+---------------------------------------------------------------------------------------+
- |           | Access to full case list, it's  | :bdg-ref-warning:`🔑AccessFullCaseList <AccessFullCaseList>`                          |
+ |           | Access to full case list, it's  | :ref:`🔑AccessFullCaseList <AccessFullCaseList>`                                      |
  |           | "Cases" on the left menu        |                                                                                       |
  |           +---------------------------------+---------------------------------------------------------------------------------------+
- |           | Add note to task/case           | :bdg-ref-warning:`🔑TaskCaseAddNote <TaskCaseAddNote>`                                |
+ |           | Add note to task/case           | :ref:`🔑TaskCaseAddNote <TaskCaseAddNote>`                                            |
  |           +---------------------------------+---------------------------------------------------------------------------------------+
- |           | Display show more note          | :bdg-ref-warning:`🔑TaskCaseShowMoreNote <TaskCaseShowMoreNote>`                      |
+ |           | Display show more note          | :ref:`🔑TaskCaseShowMoreNote <TaskCaseShowMoreNote>`                                  |
  |           +---------------------------------+---------------------------------------------------------------------------------------+
- |           | Create public external link, all| :bdg-ref-warning:`🔑CreatePublicExternalLink <CreatePublicExternalLink>`              |
+ |           | Create public external link, all| :ref:`🔑CreatePublicExternalLink <CreatePublicExternalLink>`                          |
  |           | other users can see that link in|                                                                                       |
  |           | the full process list           |                                                                                       |
  |           +---------------------------------+---------------------------------------------------------------------------------------+
- |           | Dashboard sharing               | :bdg-ref-warning:`🔑ShareDashboardLink <ShareDashboardLink>`                          |
+ |           | Dashboard sharing               | :ref:`🔑ShareDashboardLink <ShareDashboardLink>`                                      |
  |           +---------------------------------+---------------------------------------------------------------------------------------+
- |           | Modify notification channels    | :bdg-ref-warning:`🔑NotificationChannelsSetting <NotificationChannelsSetting>`        |
+ |           | Modify notification channels    | :ref:`🔑NotificationChannelsSetting <NotificationChannelsSetting>`                    |
  |           | preferences in :ref:`my-profile`|                                                                                       |
  |           | page                            |                                                                                       |
+ |           +---------------------------------+---------------------------------------------------------------------------------------+
+ |           | Role management (Admin Settings)| :ref:`🔑RoleManagement <RoleManagement>`                                              |
+ |           +---------------------------------+---------------------------------------------------------------------------------------+
+ |           | News management (Dashboard)     | :ref:`🔑NewsManagement <NewsManagement>`                                              |
+ |           +---------------------------------+---------------------------------------------------------------------------------------+
+ |           | Password validation settings    | :ref:`🔑PasswordValidation <PasswordValidation>`                                      |
+ |           +---------------------------------+---------------------------------------------------------------------------------------+
+ |           | Read all notes on tasks/cases   | :ref:`🔑NoteReadAllCaseTaskDetails <NoteReadAllCaseTaskDetails>`                      |
  +-----------+---------------------------------+---------------------------------------------------------------------------------------+
 
 .. _settings-virus-scanning-setting:

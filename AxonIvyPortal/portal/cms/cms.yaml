@@ -628,6 +628,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       editDashboard: Edit dashboard
       manageDashboard: Manage dashboard
       removeDashboardHeader: Remove the "{0}" dashboard
+      requiredFieldMessage: '{0} is required'
     deleteWidget: Delete widget
     editWidget: Edit widget
     existingField: The {0} field has already been existing
@@ -1137,6 +1138,8 @@ Labels:
   AIAssistant: AI Assistant
   AppendTask-Explain: The task is added to the sequence after my task.
   AppendTheTask: Append the task
+  AssignToRole: Select assigned group
+  AssignToUser: Select assigned user
   Chat: Chat
   Collapse: Collapse
   CreateNewDashboard: Create new dashboard
@@ -1154,6 +1157,7 @@ Labels:
   InsertTheTask: Insert the task
   SelectOperator: Choose Operator
   SelectValues: Select values
+  StepType: Step type
   Task: Task
   TaskItemDetail: Task Details
   TaskUser-Explain: Comma separated list of users

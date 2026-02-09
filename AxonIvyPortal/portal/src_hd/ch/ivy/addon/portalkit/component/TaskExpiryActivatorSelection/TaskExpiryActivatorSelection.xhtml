@@ -15,8 +15,10 @@
     <p:remoteCommand name="showTaskEscalationActivatorDialog"
       process="@this" partialSubmit="true" immediate="true" global="false" 
       actionListener="#{logic.calculateTaskDelegateOptions(cc.attrs.task)}"
-      oncomplete="PF('task-escalation-activator-dialog').show();"
-      update="#{cc.clientId}:task-escalation-activator-panel"/>
+      oncomplete="PF('task-escalation-activator-dialog').show();" resetValues="true"
+      update="#{cc.clientId}:task-escalation-activator-panel">
+    </p:remoteCommand>
+      
   </h:form>
 
   <p:dialog id="task-escalation-activator-dialog" closeOnEscape="true"
@@ -25,11 +27,11 @@
     dynamic="true" modal="true" resizable="false"
     appendTo="@(body)" responsive="true"
     styleClass="task-escalation-activator-dialog" width="600">
-
     <h:panelGroup id="task-escalation-activator-panel" layout="block"
       styleClass="escalation-activator-selection-js ui-g-12 u-padding-0">
       <h:form id="task-escalation-activator-form" rendered="#{data.canChangeTaskActivator}"
         styleClass="ui-g-12 task-escalation-activator-form">
+        <p:messages id="task-escalation-activator-dialog-messages"/>
         <span class="ui-g-12 activator-type-label">#{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/taskActivator/escalationActivatorDesc")}</span>
         <h:panelGroup id="activator-panel" layout="block" styleClass="task-escalation-activator-panel ui-g-12">
           <p:selectOneRadio id="activator-type-select" value="#{data.isUserAssigned}" styleClass="activator-type-select">
@@ -44,7 +46,7 @@
         <h:panelGroup id="select-assignee-panel" layout="block"
           styleClass="select-assignee-panel ui-g-12 ui-fluid">
           <ic:com.axonivy.portal.components.UserSelection id="user-expiry-activator-component"
-            componentId="user-expiry-activator-select"
+            componentId="user-expiry-activator-select" isRequired="#{data.isUserAssigned}"
             selectedUser="#{data.selectedUser}"
             rendered="#{data.isUserAssigned}"
             completeMethod="#{logic.autoCompleteForUser}"
@@ -59,7 +61,7 @@
           </ic:com.axonivy.portal.components.UserSelection>
 
           <ic:com.axonivy.portal.components.RoleSelection id="group-expiry-activator-select-component"
-            scrollHeight="400"
+            scrollHeight="400" isRequired="#{!data.isUserAssigned}"
             componentId="group-expiry-activator-select"
             selectedRole="#{data.selectedRole}"
             rendered="#{!data.isUserAssigned}"
@@ -97,9 +99,8 @@
             icon="#{visibilityBean.generateButtonIcon('si si-road-sign-u-turn-right')}"
             actionListener="#{logic.assignTask}"
             process="task-escalation-activator-form"
-            update="@(.task-view-container) #{cc.attrs.componentToUpdate}"
-            oncomplete="#{cc.attrs.onCompletedCallback}"
-            onsuccess="PF('task-escalation-activator-dialog').hide();" />
+            update="@(.task-view-container) #{cc.attrs.componentToUpdate} @form"
+            oncomplete="#{cc.attrs.onCompletedCallback}; if(!args.validationFailed) {PF('task-escalation-activator-dialog').hide();}"/>
         </div>
       </h:form>
 

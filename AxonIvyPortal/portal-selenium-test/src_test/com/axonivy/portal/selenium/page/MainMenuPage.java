@@ -183,4 +183,10 @@ public class MainMenuPage extends TemplatePage {
 			  .$("span").shouldBe(appear, DEFAULT_TIMEOUT)
 			  .getText();	  
   }
+  
+  public void isSidebarAlwaysExpand() {
+    $(".js-layout-wrapper").shouldHave(Condition.cssClass("layout-static"));
+    $("#left-menu").$(".PROCESS").should(appear);
+    $("#left-menu").$(".sidebar-pin").should(disappear);
+  }
 }

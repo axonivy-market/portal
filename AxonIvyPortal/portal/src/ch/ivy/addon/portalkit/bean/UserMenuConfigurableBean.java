@@ -36,7 +36,7 @@ public class UserMenuConfigurableBean implements Serializable {
         return false;
       } else {
         for (String permission : permissions) {
-          if (isSessionUserHasPermisson(permission)) {
+          if (isSessionUserHasPermission(permission)) {
             return false;
           }
         }
@@ -46,7 +46,7 @@ public class UserMenuConfigurableBean implements Serializable {
     return userMenus;
   }
   
-  private static boolean isSessionUserHasPermisson(String permission) {
+  private static boolean isSessionUserHasPermission(String permission) {
     return Strings.CS.startsWith(permission, "#") ? Strings.CS.equals(Ivy.session().getSessionUser().getMemberName(), permission)
         : PermissionUtils.doesSessionUserHaveRole(permission);
   }

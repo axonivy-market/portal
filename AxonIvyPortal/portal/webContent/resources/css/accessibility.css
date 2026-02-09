@@ -34,3 +34,30 @@ body.dark .shortcut-key {
 :root {
   --accessibility-shortcut-bg-color-dark: var(--surface-d);
 }
+
+@media (min-width: 781px) and (max-width: 1360px) {
+    .shortcuts-container {
+        padding: 8px;
+    }
+    
+    .shortcut {
+        padding: 8px 10px;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .shortcut-content {
+        font-size: 14px;
+        gap: 5px;
+        width: 45%;
+    }
+}
+@media (max-width: 780px) {
+    .shortcut-content {
+        width: 100%;
+        font-size: 14px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+}

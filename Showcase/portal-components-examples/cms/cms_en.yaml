@@ -31,6 +31,12 @@ Processes:
         name: Investment request
     description: Investment Request for Customized Business Details Page example
     name: Create Investment
+  CreateInvestmentWithParameters:
+    Tasks:
+      Request:
+        name: Create Investment with parameters
+    description: Investment Request for Customized Business Details Page example
+    name: Create Investment with parameters
   CreateInvestmentWithPublicAPI:
     Task:
       Request:

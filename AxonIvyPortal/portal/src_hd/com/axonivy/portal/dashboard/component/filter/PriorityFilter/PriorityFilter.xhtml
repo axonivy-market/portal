@@ -36,7 +36,8 @@
       panelStyleClass="task-configuration__selectcheckboxmenu-panel"
       styleClass="task-configuration__selectcheckboxmenu"
       disabled="#{readOnly}" pt:aria-label="#{ivy.cms.co('/Labels/SelectValues')}">
-      <f:selectItems value="#{widgetPriorityFilterBean.priorities}" var="priority" itemValue="#{priority}" />
+      <f:selectItems value="#{widgetPriorityFilterBean.priorities}" var="priority" itemValue="#{priority}"
+        itemLabel="#{widgetPriorityFilterBean.getUserFriendlyTaskPriority(priority)}" />
       <f:param name="skipValidator" value="true" />
       <p:ajax event="change" update="priority-hidden"
         listener="#{widgetPriorityFilterBean.updatePrioritiesString(cc.attrs.filter.values)}" global="false" />

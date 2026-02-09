@@ -3,10 +3,7 @@
 Task Item Details
 =================
 
-TaskItemDetails is a built-in component of Portal which contains the
-role, user, task, case and time information which users can interact with.
-To show needed task's information,
-Portal supports you to override concepts of TaskItemDetails component.
+TaskItemDetails is a built-in component of Portal which contains role, user, task, case, and time information that users can interact with. To show the needed task information, configure the TaskItemDetails component via the Portal variable rather than overriding concepts.
 
 Each TaskItemDetails contains
 
@@ -244,7 +241,7 @@ There are **two steps** for adding new custom panels.
                      "x": 6, "y": 0, "w": 8, "h": 6
                      },
                      "data" : {
-                     "url": "https://www.axonivy.com/"
+                     "url": "https://www.lucide.dev/"
                      }
                   }
                ]

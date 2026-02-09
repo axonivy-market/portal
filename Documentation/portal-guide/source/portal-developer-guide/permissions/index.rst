@@ -3,277 +3,595 @@
 Permission List
 ===============
 
-Overview of roles and capabilities used across the Portal. Use this list to
-assign least-privilege access and understand which features each permission
-controls.
+Comprehensive reference of all Portal permissions. Use this list to assign least-privilege access and understand which features each permission controls.
+Proper permission configuration ensures Portal security aligns with your organization's access control policies.
 
-Portal has a flexible security system that allows you to configure who can access applications, and what they can do/see in Portal.
+**Permission Architecture:**
+
+Portal's permission system extends Axon Ivy Engine's core security model with Portal-specific permissions. All permissions are configured in the Engine Cockpit under the PortalPermissions section and can be assigned to:
+
+- **Roles**: Grant permissions to all users with specific roles (e.g., "Manager", "Employee")
+- **Individual Users**: Grant permissions to specific user accounts (prefix with ``#``)
+- **Combinations**: Mix role-based and user-specific permissions for granular control
+
+**How to Use This Reference:**
+
+#. Find the permission category matching your use case
+#. Locate the specific permission you need to configure
+#. Note the permission name (used in Engine Cockpit configuration)
+#. Assign permission to appropriate roles or users
+#. Test with users from different roles to verify behavior
+
+**Configuration Location:**
+
+All permissions are configured in the :dev-url:`Engine Cockpit </doc/12.0/engine-guide/reference/engine-cockpit/security.html>` under Security > PortalPermissions. 
+For detailed configuration instructions and examples, see :ref:`Permission Settings <settings-permission-settings>`.
+
+**Best Practices:**
+
+- **Start with Roles**: Assign permissions to roles rather than individual users for easier maintenance
+- **Principle of Least Privilege**: Grant only the permissions users need for their work
+- **Test Thoroughly**: Verify permission configurations with users from different roles
+- **Document Decisions**: Keep track of why specific permissions were granted or denied
+
+**Related Sections:**
+
+- :ref:`Settings <settings-permission-settings>` - Permission configuration examples and detailed explanations
+- :ref:`Customization <customization>` - Build custom permission-based features
+
+Overview
+--------
+
+Portal has a flexible security system that allows you to configure who can access applications and what they can do/see in Portal.
+
+.. table:: Permission Categories
+
+   +------------------------------------------+-------------------------------------------------------+
+   | Category                                 | Description                                           |
+   +==========================================+=======================================================+
+   | :ref:`permission-task-permissions`       | Control task visibility, actions, and modifications   |
+   +------------------------------------------+-------------------------------------------------------+
+   | :ref:`permission-case-permissions`       | Control case visibility, actions, and business details|
+   +------------------------------------------+-------------------------------------------------------+
+   | :ref:`permission-general-permissions`    | Dashboard, document, process list, and role access    |
+   +------------------------------------------+-------------------------------------------------------+
+   | :ref:`permission-absence-substitute`     | Absence and substitute management permissions         |
+   +------------------------------------------+-------------------------------------------------------+
+
+.. important::
+   **Portal Permission Support:**
+   
+   The Portal is built as a layer above the Axon Ivy Engine core. Not every core engine permission is automatically honored or supported by the Portal.
+   If you require a specific engine permission not currently supported by the Portal, please contact Axon Ivy support.
+
+.. note::
+   **Permission Types in this Documentation:**
+   
+   - **Portal Permissions** - Custom permissions defined by Portal (e.g., DashboardWriteOwn, ShareTaskDetailsLink, NewsManagement)
+   - **Engine Permissions** - Core Axon Ivy permissions that Portal respects (see list at end of this page)
+   
+   Permissions marked with "Granted to role Everybody by default" are automatically assigned when Portal is installed.
+
+.. _permission-task-permissions:
 
 
 Portal Task Permissions
 -----------------------
 
-- _`TaskReadAll`
-    - Permission to see all tasks
+Permissions controlling task visibility, actions, and property modifications.
 
-- _`SystemTaskReadAll`
-    - Permission to see system tasks
+**Task Visibility**
 
-- _`TaskReadOwnCaseTasks`
-    - Permission to see related tasks
+.. _TaskReadAll:
 
-    - Granted to role Everybody by default
+   :ref:`🔑TaskReadAll <TaskReadAll>`
+     - View all tasks in the system regardless of assignment
+     - Typically granted to administrators
 
-- _`TaskParkOwnWorkingTask`
-    - Permission to reserve my own tasks
+.. _SystemTaskReadAll:
 
-    - Granted to role Everybody by default
+   :ref:`🔑SystemTaskReadAll <SystemTaskReadAll>`
+     - View system tasks (background/automated tasks)
+     - Required for debugging and system monitoring
 
-- _`TaskResetOwnWorkingTask`
-    - Permission to reset my own tasks 
+.. _TaskReadOwnCaseTasks:
 
-    - Granted to role Everybody by default
+   :ref:`🔑TaskReadOwnCaseTasks <TaskReadOwnCaseTasks>`
+     - View tasks related to cases where user is involved
+     - Granted to role Everybody by default
 
-- _`TaskWriteName`
-    - Permission to change the task name
+**Task Actions**
 
-- _`TaskWriteDescription`
-    - Permission to change the task description
+.. _TaskParkOwnWorkingTask:
 
-- _`TaskWriteOriginalPriority`
-    - Permission to change the task priority
+   :ref:`🔑TaskParkOwnWorkingTask <TaskParkOwnWorkingTask>`
+     - Reserve (park) own working tasks
+     - Allows users to temporarily set aside tasks they're working on
+     - Granted to role Everybody by default
 
-- _`TaskWriteActivator`
-    - Permission to delegate tasks
+.. _TaskResetOwnWorkingTask:
 
-    - Granted to role Everybody by default
+   :ref:`🔑TaskResetOwnWorkingTask <TaskResetOwnWorkingTask>`
+     - Reset own working tasks to their initial state
+     - Only works for tasks in states: RESUMED, PARKED, READY_FOR_JOIN, FAILED
+     - Granted to role Everybody by default
 
-- _`TaskWriteExpiryActivator`
-    - Permission to change the expiry responsible
+.. _TaskReset:
 
-- _`TaskWriteDelayTimestamp`
-    - Permission to change the delay time
+   :ref:`🔑TaskReset <TaskReset>`
+     - Reset any task in the system (administrative permission)
+     - Typically restricted to administrators
 
-- _`TaskReset`
-    - Permission to reset all tasks
+.. _TaskResetReadyForJoin:
 
-- _`TaskDestroy`
-    - Permission to execute the Destroy action
+   :ref:`🔑TaskResetReadyForJoin <TaskResetReadyForJoin>`
+     - Reset tasks in READY_FOR_JOIN state
+     - Useful for workflow error recovery
 
-- _`TaskWriteExpiryTimestamp`   
-    - Control whether to change the deadline
+.. _TaskDestroy:
 
-- _`TaskWriteActivatorOwnTasks`
-    - Permission to delegate my own tasks
+   :ref:`🔑TaskDestroy <TaskDestroy>`
+     - Delete tasks permanently
+     - Only works if task state is not DESTROYED or DONE
+     - High-privilege permission for administrators
 
-- _`TaskDisplayAdditionalOptions`
-    - Permission to see additional actions
+**Task Property Modifications**
 
-    - Granted to role Everybody by default
+.. _TaskWriteName:
 
-- _`TaskDisplayResetAction`
-    - Permission to see the Reset action
+   :ref:`🔑TaskWriteName <TaskWriteName>`
+     - Modify task name/title
 
-    - Granted to role Everybody by default
+.. _TaskWriteDescription:
 
-- _`TaskDisplayReserveAction`
-    - Permission to see the Reserve action
+   :ref:`🔑TaskWriteDescription <TaskWriteDescription>`
+     - Modify task description
+     - Cannot change terminated tasks (DONE, DESTROYED, FAILED)
 
-    - Granted to role Everybody by default
+.. _TaskWriteOriginalPriority:
 
-- _`TaskDisplayDelegateAction`
-    - Permission to see the Delegate action
+   :ref:`🔑TaskWriteOriginalPriority <TaskWriteOriginalPriority>`
+     - Change task priority level
+     - Cannot change tasks in states: DONE, DESTROYED, FAILED
 
-    - Granted to role Everybody by default
+.. _TaskWriteExpiryTimestamp:
 
-- _`TaskDisplayWorkflowEventAction`
-    - Permission to see the Workflow Event action
+   :ref:`🔑TaskWriteExpiryTimestamp <TaskWriteExpiryTimestamp>`
+     - Change task deadline/expiry date
+     - Cannot change tasks in states: DONE, DESTROYED, FAILED
 
-- _`TaskDisplayCustomFieldsAction`
-    - Permission to see the Custom Fields action
+.. _TaskWriteActivator:
 
-- _`TaskDisplayDestroyAction`
-    - Permission to see the Destroy action
+   :ref:`🔑TaskWriteActivator <TaskWriteActivator>`
+     - Delegate tasks to other users/roles
+     - Granted to role Everybody by default
 
-- _`TaskResetReadyForJoin`
-    - Permission to reset tasks that are in state Ready for Join
+.. _TaskWriteExpiryActivator:
 
-- _`ShareTaskDetailsLink`
-    - Permission to see the Share button in task details
+   :ref:`🔑TaskWriteExpiryActivator <TaskWriteExpiryActivator>`
+     - Change the user responsible when task expires
+     - Cannot change tasks in states: DONE, DESTROYED, FAILED
 
-    - Granted to role Everybody by default
+.. _TaskWriteDelayTimestamp:
+
+   :ref:`🔑TaskWriteDelayTimestamp <TaskWriteDelayTimestamp>`
+     - Modify task delay/start time
+
+**Task UI Display Permissions**
+
+.. _TaskWriteActivatorOwnTasks:
+
+   :ref:`🔑TaskWriteActivatorOwnTasks <TaskWriteActivatorOwnTasks>`
+     - Delegate personal/group tasks assigned to user
+     - Not assigned to Everybody by default (more restrictive than :ref:`🔑TaskWriteActivator <TaskWriteActivator>`)
+
+.. _TaskDisplayAdditionalOptions:
+
+   :ref:`🔑TaskDisplayAdditionalOptions <TaskDisplayAdditionalOptions>`
+     - Display additional action menu in task lists
+     - Granted to role Everybody by default
+
+.. _TaskDisplayResetAction:
+
+   :ref:`🔑TaskDisplayResetAction <TaskDisplayResetAction>`
+     - Show Reset action button in task interface
+     - Requires corresponding :ref:`🔑TaskReset <TaskReset>` permission to execute
+     - Granted to role Everybody by default
+
+.. _TaskDisplayReserveAction:
+
+   :ref:`🔑TaskDisplayReserveAction <TaskDisplayReserveAction>`
+     - Show Reserve (Park) action button in task interface
+     - Requires :ref:`🔑TaskParkOwnWorkingTask <TaskParkOwnWorkingTask>` to execute
+     - Granted to role Everybody by default
+
+.. _TaskDisplayDelegateAction:
+
+   :ref:`🔑TaskDisplayDelegateAction <TaskDisplayDelegateAction>`
+     - Show Delegate action button in task interface
+     - Requires :ref:`🔑TaskWriteActivator <TaskWriteActivator>` to execute delegation
+     - Granted to role Everybody by default
+
+.. _TaskDisplayDestroyAction:
+
+   :ref:`🔑TaskDisplayDestroyAction <TaskDisplayDestroyAction>`
+     - Show Delete/Destroy action button in task interface
+     - Requires :ref:`🔑TaskDestroy <TaskDestroy>` permission to execute
+
+.. _TaskDisplayWorkflowEventAction:
+
+   :ref:`🔑TaskDisplayWorkflowEventAction <TaskDisplayWorkflowEventAction>`
+     - Show Workflow Events button in task details
+     - Allows viewing task execution history and events
+
+.. _TaskDisplayCustomFieldsAction:
+
+   :ref:`🔑TaskDisplayCustomFieldsAction <TaskDisplayCustomFieldsAction>`
+     - Show Custom Fields button in task interface
+     - Displays additional business data fields
+
+.. _ShareTaskDetailsLink:
+
+   :ref:`🔑ShareTaskDetailsLink <ShareTaskDetailsLink>`
+     - Show Share button in task details page
+     - Allows sharing direct links to specific tasks
+     - Granted to role Everybody by default
+
+.. _permission-case-permissions:
 
 Portal Case Permissions
 -----------------------
 
-- _`CaseReadAll`
-    - Permission to see all cases
+Permissions controlling case visibility, actions, and business details.
 
-- _`CaseDestroy`
-    Permission to delete cases
+**Case Visibility**
 
-- _`CaseWriteName`
-    - Permission to change the case name
+.. _CaseReadAll:
 
-- _`CaseWriteDescription`
-    - Permission to change the case description
+   :ref:`🔑CaseReadAll <CaseReadAll>`
+     - View all cases in the system regardless of involvement
+     - Typically granted to administrators
+     - Combined with :ref:`🔑TaskReadAll <TaskReadAll>` for full system visibility
 
-- _`ShowAllTasksOfCase`
-    - Permission to see the related tasks's action 
+**Case Actions**
 
-    - Granted to role Everybody by default
+.. _CaseDestroy:
 
-- _`ShowCaseDetails`
-    - Permission to see the Business details action
+   :ref:`🔑CaseDestroy <CaseDestroy>`
+     - Delete cases permanently
+     - Only works when case state is RUNNING
+     - High-privilege permission for administrators
 
-    - Granted to role Everybody by default
+.. _CaseOwnerTaskDelegate:
 
-- _`ShareCaseDetailsLink`
-    - Permission to see the Share button in case details
+   :ref:`🔑CaseOwnerTaskDelegate <CaseOwnerTaskDelegate>`
+     - Delegate all related tasks within cases where user is the case owner
+     - Allows case owners to manage task assignments for their cases
 
-    - Granted to role Everybody by default
+**Case Property Modifications**
 
-- _`CaseOwnerTaskDelegate`
-    - Permission to delegate related tasks of case where the user is the case owner
+.. _CaseWriteName:
 
-- _`CaseDisplayCustomFieldsAction`
-    - Permission to see the Custom Fields action
+   :ref:`🔑CaseWriteName <CaseWriteName>`
+     - Modify case name/title
+     - Cannot change cases in DESTROYED state
+
+.. _CaseWriteDescription:
+
+   :ref:`🔑CaseWriteDescription <CaseWriteDescription>`
+     - Modify case description
+     - Cannot change cases in DESTROYED state
+
+**Case UI Display Permissions**
+
+.. _ShowAllTasksOfCase:
+
+   :ref:`🔑ShowAllTasksOfCase <ShowAllTasksOfCase>`
+     - Display "Show all tasks" action in case details
+     - Requires :ref:`🔑TaskReadOwnCaseTasks <TaskReadOwnCaseTasks>` or :ref:`🔑TaskReadAll <TaskReadAll>` to view tasks
+     - Granted to role Everybody by default
+
+.. _ShowCaseDetails:
+
+   :ref:`🔑ShowCaseDetails <ShowCaseDetails>`
+     - Display Business Details tab in case interface
+     - Shows additional case information and custom widgets
+     - Granted to role Everybody by default
+
+.. _CaseDisplayCustomFieldsAction:
+
+   :ref:`🔑CaseDisplayCustomFieldsAction <CaseDisplayCustomFieldsAction>`
+     - Display Custom Fields button in case interface
+     - Shows additional business data fields
+
+.. _ShareCaseDetailsLink:
+
+   :ref:`🔑ShareCaseDetailsLink <ShareCaseDetailsLink>`
+     - Show Share button in case details page
+     - Allows sharing direct links to specific cases
+     - Granted to role Everybody by default
+
+.. _permission-general-permissions:
 
 Portal General Permissions
 --------------------------
 
-- _`RoleCreate`
-    - Permission to create a new dynamic role 
+General permissions for dashboards, documents, lists, roles, and Portal features.
 
-- _`RoleDelete`
-    - Permission to delete a dynamic role
+**Portal Page Access**
 
-- _`RoleMove`
-    - Permission to move role (select the parent role)
+.. _AccessFullProcessList:
 
-- _`RoleReadAll`
-    - Permission to see all roles
+   :ref:`🔑AccessFullProcessList <AccessFullProcessList>`
+     - Access full process list page showing all available processes
+     - Shows "Processes" in left menu and "Show all processes" on Dashboard
+     - See :ref:`full-process-list` for details
+     - Granted to role Everybody by default
 
-    - Granted to role Everybody by default
+.. _AccessFullTaskList:
 
-- _`DocumentRead`
-    - Permission to see all documents
+   :ref:`🔑AccessFullTaskList <AccessFullTaskList>`
+     - Access full task list page showing all accessible tasks
+     - Shows "Tasks" in left menu and "Show full task list" on Dashboard
+     - See :ref:`full-task-list` for details
+     - Granted to role Everybody by default
 
-- _`DocumentWrite`
-    - Permission to update, delete documents
+.. _AccessFullCaseList:
 
-- _`DocumentOfInvolvedCaseWrite`
-    - Permission to update, delete documents
+   :ref:`🔑AccessFullCaseList <AccessFullCaseList>`
+     - Access full case list page showing all accessible cases
+     - Shows "Cases" in left menu
+     - See :ref:`full-case-list` for details
+     - Granted to role Everybody by default
 
-    - Granted to role Everybody by default
+**Dashboard Permissions**
 
-- _`DashboardWriteOwn`
-    - Permission to update private dashboards
+.. _DashboardWriteOwn:
 
-    - Granted to role Everybody by default
+   :ref:`🔑DashboardWriteOwn <DashboardWriteOwn>`
+     - Create and modify private (personal) dashboards
+     - Granted to role Everybody by default
 
-- _`DashboardWritePublic`
-    - Permission to update public dashboards
+.. _DashboardWritePublic:
 
-- _`AccessFullProcessList`
-    - Permission to access the full process list. See :ref:`full-process-list`.
+   :ref:`🔑DashboardWritePublic <DashboardWritePublic>`
+     - Create and modify public (shared) dashboards
+     - Typically restricted to administrators or dashboard managers
 
-    - Granted to role Everybody by default
+.. _DashboardExportOwn:
 
-- _`AccessFullTaskList`
-    - Permission to access the full task list. See :ref:`full-task-list`.
+   :ref:`🔑DashboardExportOwn <DashboardExportOwn>`
+     - Export private dashboards to JSON files
+     - Allows backup and sharing of personal dashboard configurations
 
-    - Granted to role Everybody by default
+.. _DashboardExportPublic:
 
-- _`AccessFullCaseList`
-    - Permission to access the full case list. See :ref:`full-case-list`.
+   :ref:`🔑DashboardExportPublic <DashboardExportPublic>`
+     - Export public dashboards to JSON files
+     - Typically restricted to administrators
 
-    - Granted to role Everybody by default
+.. _DashboardImportOwn:
 
-- _`TaskCaseAddNote`
-    - Permission to add notes to a task/case
+   :ref:`🔑DashboardImportOwn <DashboardImportOwn>`
+     - Import private dashboards from JSON files
+     - Allows restoring or applying dashboard templates
 
-    - Granted to role Everybody by default
+.. _DashboardImportPublic:
 
-- _`TaskCaseShowMoreNote`
-    - Permission to see Show more note
+   :ref:`🔑DashboardImportPublic <DashboardImportPublic>`
+     - Import public dashboards from JSON files
+     - Typically restricted to administrators
 
-    - Granted to role Everybody by default
+.. _ShareDashboardLink:
 
-- _`CreatePublicExternalLink`
-    - Permission to create public external links, all other users can see the links in the full process list.
+   :ref:`🔑ShareDashboardLink <ShareDashboardLink>`
+     - Share dashboard links with other users
+     - Granted to role Everybody by default
 
-- _`RoleManagement`
-    - Permission to access the Role Management tab
+**Document Permissions**
 
-- _`NewsManagement`
-    - Permission to manage the content of the News feed
+.. _DocumentRead:
 
-- _`PasswordValidation`
-    - Permission to access the Password Validation section in the Admin Settings page
+   :ref:`🔑DocumentRead <DocumentRead>`
+     - View all documents across all cases/tasks
+     - Administrative permission for full document visibility
 
-- _`DashboardExportOwn`
-    - Permission to export private dashboards
+.. _DocumentWrite:
 
-- _`DashboardExportPublic`
-    - Permission to export public dashboards
+   :ref:`🔑DocumentWrite <DocumentWrite>`
+     - Upload and delete any documents
+     - Administrative permission for document management
 
-- _`DashboardImportOwn`
-    - Permission to import private dashboards
+.. _DocumentOfInvolvedCaseWrite:
 
-- _`DashboardImportPublic`
-    - Permission to import public dashboards
+   :ref:`🔑DocumentOfInvolvedCaseWrite <DocumentOfInvolvedCaseWrite>`
+     - Upload and delete documents in cases where user is involved
+     - Standard permission for case participants
+     - Granted to role Everybody by default
 
-- _`ShareDashboardLink`
-    - Permission to share dashboard links
+**Role Management Permissions**
 
-    - Granted to role Everybody by default
+.. _RoleReadAll:
 
-- _`NotificationChannelsSetting`
-    - Permission to customize notification channel preferences in :ref:`my-profile` page
+   :ref:`🔑RoleReadAll <RoleReadAll>`
+     - View all roles in the system
+     - Required for role selection in various features
+     - Granted to role Everybody by default
 
-    - Granted to role Everybody by default.
+.. _RoleManagement:
 
-- _`NoteReadAllCaseTaskDetails`
-    - Permission allows non-admin users to view system notes in case and task details
+   :ref:`🔑RoleManagement <RoleManagement>`
+     - Access Role Management tab in Admin Settings
+     - Required to view dynamic role configuration interface
 
-.. _portal-absence-and-sub-permission:
+.. _RoleCreate:
+
+   :ref:`🔑RoleCreate <RoleCreate>`
+     - Create new dynamic roles
+     - Typically restricted to administrators
+
+.. _RoleDelete:
+
+   :ref:`🔑RoleDelete <RoleDelete>`
+     - Delete existing dynamic roles
+     - Typically restricted to administrators
+
+.. _RoleMove:
+
+   :ref:`🔑RoleMove <RoleMove>`
+     - Change role hierarchy (select parent role)
+     - Affects role inheritance structure
+
+**Notes and Comments**
+
+.. _TaskCaseAddNote:
+
+   :ref:`🔑TaskCaseAddNote <TaskCaseAddNote>`
+     - Add notes/comments to tasks and cases
+     - Enables collaboration and communication
+     - Granted to role Everybody by default
+
+.. _TaskCaseShowMoreNote:
+
+   :ref:`🔑TaskCaseShowMoreNote <TaskCaseShowMoreNote>`
+     - View "Show more" option to expand long notes
+     - Granted to role Everybody by default
+
+.. _NoteReadAllCaseTaskDetails:
+
+   :ref:`🔑NoteReadAllCaseTaskDetails <NoteReadAllCaseTaskDetails>`
+     - View system notes in case and task details
+     - Allows non-admin users to see audit and system-generated notes
+     - **New in LTS 12.0+**: Replaces legacy global variables ``Portal.Histories.HideSystemNotes`` and ``Portal.Histories.HideSystemNotesForAdministrator``
+     
+   .. note::
+      **Pre-LTS Versions:** This permission does not exist in Portal versions before 12.0. Use global variables ``Portal.Histories.HideSystemNotes`` and ``Portal.Histories.HideSystemNotesForAdministrator`` instead.
+
+**Admin Settings & Configuration**
+
+- :ref:`🔑RoleManagement <RoleManagement>`
+    - Access Role Management tab in Admin Settings
+    - See dynamic role configuration and management
+
+.. _NewsManagement:
+
+   :ref:`🔑NewsManagement <NewsManagement>`
+     - Manage News widget content on dashboards
+     - Create, edit, and delete news items
+
+.. _PasswordValidation:
+
+   :ref:`🔑PasswordValidation <PasswordValidation>`
+     - Access Password Validation settings in Admin Settings
+     - Configure password complexity requirements
+
+.. _NotificationChannelsSetting:
+
+   :ref:`🔑NotificationChannelsSetting <NotificationChannelsSetting>`
+     - Customize notification channel preferences in :ref:`my-profile`
+     - Control email, browser, and other notification methods
+     - Granted to role Everybody by default
+
+**Process & External Links**
+
+.. _CreatePublicExternalLink:
+
+   :ref:`🔑CreatePublicExternalLink <CreatePublicExternalLink>`
+     - Create public external links visible to all users
+     - Links appear in full process list for all users
+     - Useful for sharing processes with external systems
+
+.. _permission-absence-substitute:
 
 Portal Absence And Substitute Permissions
 -----------------------------------------
 
-- _`UserCreateAbsence`
-    - Permission to create, edit absences of all users
+Permissions for managing user absences and task substitution.
 
-- _`UserCreateOwnAbsence`
-    - Permission to create, edit my own absences
+**Absence Management - Own Absences**
 
-    - Granted to role Everybody by default
+.. _UserReadOwnAbsences:
 
-- _`UserDeleteAbsence`
-    - Permission to remove the absence entries for all users
+   :ref:`🔑UserReadOwnAbsences <UserReadOwnAbsences>`
+     - View own absence records
+     - Granted to role Everybody by default
 
-- _`UserDeleteOwnAbsence`
-    - Permission to remove my own absence entries
+.. _UserCreateOwnAbsence:
 
-    - Granted to role Everybody by default
+   :ref:`🔑UserCreateOwnAbsence <UserCreateOwnAbsence>`
+     - Create and edit own absence periods
+     - Allows users to mark when they are unavailable
+     - Granted to role Everybody by default
 
-- _`UserReadAbsences`
-    - Permission to read absences of all users
+.. _UserDeleteOwnAbsence:
 
-- _`UserReadOwnAbsences`
-    - Permission to read my own absences
+   :ref:`🔑UserDeleteOwnAbsence <UserDeleteOwnAbsence>`
+     - Delete own absence records
+     - Granted to role Everybody by default
 
-    - Granted to role Everybody by default
+**Absence Management - All Users**
 
-- _`UserCreateSubstitute`
-    - Permission to create substitutes of all users
+.. _UserReadAbsences:
 
-- _`UserCreateOwnSubstitute`
-    - Permission to create my own substitutes
+   :ref:`🔑UserReadAbsences <UserReadAbsences>`
+     - View absence records of all users
+     - Administrative permission for HR or management
 
-    - Granted to role Everybody by default
+.. _UserCreateAbsence:
 
-- _`UserReadSubstitutes`
-    - Permission to read substitutes of all users
+   :ref:`🔑UserCreateAbsence <UserCreateAbsence>`
+     - Create and edit absences for any user
+     - Typically restricted to administrators or HR personnel
+
+.. _UserDeleteAbsence:
+
+   :ref:`🔑UserDeleteAbsence <UserDeleteAbsence>`
+     - Delete absence records for any user
+     - Administrative permission for absence management
+
+**Substitute Management**
+
+.. _UserCreateOwnSubstitute:
+
+   :ref:`🔑UserCreateOwnSubstitute <UserCreateOwnSubstitute>`
+     - Create own substitute assignments
+     - Delegate tasks to others during absence
+     - Granted to role Everybody by default
+
+.. _UserCreateSubstitute:
+
+   :ref:`🔑UserCreateSubstitute <UserCreateSubstitute>`
+     - Create substitute assignments for any user
+     - Administrative permission for managing substitutions
+
+.. _UserReadSubstitutes:
+
+   :ref:`🔑UserReadSubstitutes <UserReadSubstitutes>`
+     - View substitute assignments for all users
+     - Required for seeing who is substituting whom
+
+.. _engine-permissions-respected:
+
+Engine Permissions Respected by Portal
+---------------------------------------
+
+Portal honors the following Axon Ivy Engine core permissions. These are documented here for completeness as they directly affect Portal functionality:
+
+**Task Permissions:**
+:ref:`🔑TaskReadAll <TaskReadAll>`, :ref:`🔑TaskReadOwnCaseTasks <TaskReadOwnCaseTasks>`, :ref:`🔑TaskParkOwnWorkingTask <TaskParkOwnWorkingTask>`, :ref:`🔑TaskResetOwnWorkingTask <TaskResetOwnWorkingTask>`, :ref:`🔑TaskReset <TaskReset>`, :ref:`🔑TaskDestroy <TaskDestroy>`, :ref:`🔑TaskWriteName <TaskWriteName>`, :ref:`🔑TaskWriteDescription <TaskWriteDescription>`, :ref:`🔑TaskWriteOriginalPriority <TaskWriteOriginalPriority>`, :ref:`🔑TaskWriteExpiryTimestamp <TaskWriteExpiryTimestamp>`, :ref:`🔑TaskWriteActivator <TaskWriteActivator>`, :ref:`🔑TaskWriteDelayTimestamp <TaskWriteDelayTimestamp>`
+
+**Case Permissions:**
+:ref:`🔑CaseReadAll <CaseReadAll>`, :ref:`🔑CaseDestroy <CaseDestroy>`, :ref:`🔑CaseWriteName <CaseWriteName>`, :ref:`🔑CaseWriteDescription <CaseWriteDescription>`
+
+**Role Permissions:**
+:ref:`🔑RoleReadAll <RoleReadAll>`, :ref:`🔑RoleCreate <RoleCreate>`, :ref:`🔑RoleDelete <RoleDelete>`, :ref:`🔑RoleMove <RoleMove>`
+
+**Document Permissions:**
+:ref:`🔑DocumentRead <DocumentRead>`, :ref:`🔑DocumentWrite <DocumentWrite>`, :ref:`🔑DocumentOfInvolvedCaseWrite <DocumentOfInvolvedCaseWrite>`
+
+**Absence & Substitute Permissions:**
+:ref:`🔑UserReadOwnAbsences <UserReadOwnAbsences>`, :ref:`🔑UserCreateOwnAbsence <UserCreateOwnAbsence>`, :ref:`🔑UserDeleteOwnAbsence <UserDeleteOwnAbsence>`, :ref:`🔑UserReadAbsences <UserReadAbsences>`, :ref:`🔑UserCreateAbsence <UserCreateAbsence>`, :ref:`🔑UserDeleteAbsence <UserDeleteAbsence>`, :ref:`🔑UserCreateOwnSubstitute <UserCreateOwnSubstitute>`, :ref:`🔑UserCreateSubstitute <UserCreateSubstitute>`, :ref:`🔑UserReadSubstitutes <UserReadSubstitutes>`
+
+.. tip::
+   For comprehensive details on each permission including usage context and restrictions, see the detailed sections above.
 

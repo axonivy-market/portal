@@ -29,7 +29,7 @@
     <cc:renderFacet name="alternativeAvatar" />
     <h:outputText id="#{cc.attrs.displayNameId}" value="#{cc.attrs.displayName}"
       rendered="#{cc.attrs.displayNameRendered and !userMenuBean.isMobileDevice()}"
-      styleClass="#{cc.attrs.isShowAvatar ? 'name-after-avatar' : ''} #{cc.attrs.displayNameStyleClass} #{cc.attrs.securityMember == null ? 'u-no-padding-left' : ''}">
+      styleClass="u-truncate-text #{cc.attrs.isShowAvatar ? 'name-after-avatar' : ''} #{cc.attrs.displayNameStyleClass} #{cc.attrs.securityMember == null ? 'u-no-padding-left' : ''}">
     </h:outputText>
     <p:tooltip for="#{cc.attrs.displayNameId}"
       value="#{tooltipTechnicalDisplayName}"

@@ -31,6 +31,12 @@ Processes:
         name: Solicitud de inversión
     description: Solicitud de inversión para ejemplo de página de detalles comerciales personalizados
     name: Crear investición
+  CreateInvestmentWithParameters:
+    Tasks:
+      Request:
+        name: Crear inversión con parámetros
+    description: Solicitud de inversión para ejemplo de página de detalles comerciales personalizados
+    name: Crear inversión con parámetros
   CreateInvestmentWithPublicAPI:
     Task:
       Request:

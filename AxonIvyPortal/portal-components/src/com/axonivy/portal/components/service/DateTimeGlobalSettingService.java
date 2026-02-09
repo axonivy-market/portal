@@ -1,9 +1,11 @@
-package ch.ivy.addon.portalkit.service;
+package com.axonivy.portal.components.service;
 
 import java.text.DateFormat;
+
 import java.text.SimpleDateFormat;
 
-import ch.ivy.addon.portalkit.enums.GlobalVariable;
+import com.axonivy.portal.components.enums.GlobalVariable;
+
 import ch.ivyteam.ivy.environment.Ivy;
 
 public class DateTimeGlobalSettingService {

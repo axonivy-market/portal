@@ -20,4 +20,12 @@ public class WorkingTaskDialogPage extends TemplatePage {
     clickByJavaScript($(By.id("task-leave-warning-component:reserve-task-button")));
     return new NewDashboardPage();
   }
+  
+  public void clickOnLeaveButton() {
+    clickByJavaScript($(By.id("task-leave-warning-component:leave-button")));
+  }
+  
+  public void clickOnReserveButton() {
+    clickByJavaScript($(By.id("task-leave-warning-component:reserve-task-button")));
+  }
 }

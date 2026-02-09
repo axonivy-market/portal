@@ -13,7 +13,7 @@
         <ic:com.axonivy.portal.components.UserSelection id="user-selection-component"
           completeMethod="#{logic.autoCompleteForSubstituteOnApp}"
           selectedUser="#{data.selectedDeputy}" queryDelay="500" isRenderedMessage="false"
-          autoCompletePanelStyleClass="ui-fluid" hasCustomizedSelectionList="true">
+          autoCompletePanelStyleClass="flex-grow-1" hasCustomizedSelectionList="true">
           <p:column>
             <pc:securityMemberNameAndAvatar displayName="#{securityMemberDisplayNameFormatBean.generateFullDisplayNameForUserDTO(user)}"
               securityMember="#{user}" isStandAlone="false"/>

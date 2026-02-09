@@ -1,133 +1,171 @@
 .. _configure-new-dashboard-welcome-widget:
 
 Configure Welcome Widget
-========================
+=========================
+
+The welcome widget displays a customizable greeting message with a background image, supporting personalized text, positioning, styling, and dark mode. It's ideal for creating branded dashboard landing pages that greet users with time-based messages or custom welcome text.
 
 Define Welcome Widget
----------------------
+----------------------
 
-The Welcome widget of the Portal dashboard displays a welcome text and an image as its background.
+Welcome widgets can be configured with multilingual text, custom images, and flexible layout options.
 
-Below is a sample JSON definition of a welcome widget in the Portal dashboard
+Configuration Example
+^^^^^^^^^^^^^^^^^^^^^
+
+Below is a sample JSON definition of a welcome widget in the Portal dashboard:
 
 .. code-block:: javascript
 
    {
-      "type":"welcome",
-      "id":"welcome_1",
-      "layout":{
-         "x":0,
-         "y":0,
-         "w":12,
-         "h":3
+      "type": "welcome",
+      "id": "welcome_1",
+      "layout": {
+         "x": 0,
+         "y": 0,
+         "w": 12,
+         "h": 3
       },
-      "welcomeTexts":[
+      "welcomeTexts": [
          {
-            "locale":"en",
-            "value":"Welcome"
+            "locale": "en",
+            "value": "Welcome to Your Dashboard"
          },
          {
-            "locale":"fr",
-            "value":"Bienvenue"
+            "locale": "de",
+            "value": "Willkommen zu Ihrem Dashboard"
          },
          {
-            "locale":"de",
-            "value":"Willkommen"
-         },
-         {
-            "locale":"es",
-            "value":"Bienvenido"
+            "locale": "fr",
+            "value": "Bienvenue sur votre tableau de bord"
          }
       ],
       "imageLocation": "welcome_1_en.jpg",
       "imageType": "jpg",
       "imageLocationDarkMode": "welcome_1_en_darkmode.png",
       "imageTypeDarkMode": "png",
-      "welcomeTextPosition":"BOTTOM_LEFT",
-      "welcomeTextSize":"NORMAL_TEXT",
-      "welcomeTextColor":"#000000",
-      "welcomeTextColorDarkMode": "#fc0e0e",
-      "greeting":false,
-      "welcomeTextStyleClass":"custom-text",
-      "imageStyleClass":"custom-image",
-      "welcomeImageFit":"COVER",
-      "imageInlineStyle":"background-color:red; border:solid;"
+      "welcomeTextPosition": "BOTTOM_LEFT",
+      "welcomeTextSize": "HEADING_2",
+      "welcomeTextColor": "#FFFFFF",
+      "welcomeTextColorDarkMode": "#FFFFFF",
+      "greeting": true,
+      "welcomeTextStyleClass": "custom-text",
+      "imageStyleClass": "custom-image",
+      "welcomeImageFit": "COVER",
+      "imageInlineStyle": "background-color: #f5f5f5;"
    }
 
-The basic JSON structure of a welcome widget
+..
 
-   ``type``: type of the widget. Use ``welcome`` for a welcome widget
+JSON Configuration Reference
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-   ``id``: ID of the widget
+**Required Properties**
 
-   ``layout``: layout definition of the welcome widget
+``type`` (string)
+   Widget type. Must be ``"welcome"`` for welcome widget
 
-      ``x``: HTML DOM Style ``left`` is calculated as ``x / 12 * 100%``
+``id`` (string)
+   Unique identifier for the widget
 
-      ``y``: HTML DOM Style ``top`` is calculated as ``y / 12 * 100%``
+``layout`` (object)
+   Widget position and size (see Layout Properties below)
 
-      ``w``: HTML DOM Style ``width`` is calculated as ``60 * w + 20 * (w - 1)``
+``welcomeTexts`` (array)
+   Multilingual welcome messages. Format: ``[{"locale": "en", "value": "Welcome"}]``
 
-      ``h``: HTML DOM Style ``height`` is calculated as ``60 * h + 20 * (h - 1)``
+**Layout Properties**
 
-      ``styleClass`` (optional): add CSS Classes to HTML DOM of the widget
+``x`` (number)
+   Column position in 12-column grid (0-11). CSS left = ``x / 12 * 100%``
 
-      ``style`` (optional): add inline style to HTML DOM of the widget
+``y`` (number)
+   Row position. CSS top = ``y / 12 * 100%``
 
-   ``welcomeTexts``: the welcome text on the widget. This allows multi-language by user’s locale.
+``w`` (number)
+   Width in grid columns (1-12). Pixel width = ``60 * w + 20 * (w - 1)``
 
-   ``welcomeTextPosition``: position for the welcome text relative to the widget. There are five positions:
+``h`` (number)
+   Height in grid rows (min 2). Pixel height = ``60 * h + 20 * (h - 1)``
 
-         ``BOTTOM_LEFT``: Bottom left corner of the widget
+``styleClass`` (string, optional)
+   CSS classes for custom styling
 
-         ``BOTTOM_RIGHT``: Bottom right corner of the widget
+``style`` (string, optional)
+   Inline CSS styles
 
-         ``TOP_LEFT``: Top left corner of the widget
+.. tip::
+   **Recommended welcome widget size:** Width 12 columns (full width), Height 3-5 rows for prominent display.
 
-         ``TOP_RIGHT``: Top right corner of the widget
+**Text Configuration Properties**
 
-         ``CENTER``: Center of the widget
+``welcomeTextPosition`` (string, default: ``BOTTOM_LEFT``)
+   Text position: ``BOTTOM_LEFT``, ``BOTTOM_RIGHT``, ``TOP_LEFT``, ``TOP_RIGHT``, ``CENTER``
 
-   ``welcomeTextSize``: size for the welcome text. There are four sizes:
+``welcomeTextSize`` (string, default: ``NORMAL_TEXT``)
+   Font size: ``NORMAL_TEXT`` (1.5rem), ``HEADING_3`` (2.5rem), ``HEADING_2`` (3.5rem), ``HEADING_1`` (5rem)
 
-      ``NORMAL_TEXT``: Normal text font size (1.5rem)
+``welcomeTextColor`` (string, optional)
+   Text color in light mode (CSS color value, e.g., ``#FFFFFF``)
 
-      ``HEADING_3``: Normal header font size (2.5rem)
+``welcomeTextColorDarkMode`` (string, optional)
+   Text color in dark mode (CSS color value)
 
-      ``HEADING_2``: Bigger header font size (3.5rem)
+``greeting`` (boolean, default: ``false``)
+   ``true`` = show time-based greeting + custom text, ``false`` = show custom text only
 
-      ``HEADING_1``: Big header font size (5rem)
+``welcomeTextStyleClass`` (string, optional)
+   CSS class for text styling
 
-   ``welcomeTextColor``: color for the welcome text. You can input any value that accepted by the CSS attribute ``font-color``.
-   
-   ``welcomeTextColorDarkMode``: color for the welcome text in dark mode. You can input any value that accepted by the CSS attribute ``font-color``.
+**Image Configuration Properties**
 
-   ``greeting``: Defines if a greeting text is added to the welcome text:
+``welcomeImageFit`` (string, default: ``COVER``)
+   Image resize mode: ``NONE``, ``FILL``, ``COVER``, ``CONTAIN``
 
-      ``false``: The widget displays just the text contained in ``welcomeTexts`` for the language of the user.
+``imageStyleClass`` (string, optional)
+   CSS class for image container
 
-      ``true``: The widget displays the standard Portal greeting text, followed by text contained in ``welcomeTexts``, both for the language of the user. The two texts are separated by comma.
+``imageInlineStyle`` (string, optional)
+   Inline CSS for image container
 
-   ``welcomeTextStyleClass``: style class for the welcome text.
+``imageLocation`` (string, managed by Portal)
+   Light mode image filename
 
-   ``imageStyleClass``: style class for the image.
+``imageType`` (string, managed by Portal)
+   Light mode image type
 
-   ``imageInlineStyle``: inline style for the image.
+``imageLocationDarkMode`` (string, managed by Portal)
+   Dark mode image filename
 
-   ``welcomeImageFit``: the property is used to specify how an image should be resized to fit its container. There are four options:
+``imageTypeDarkMode`` (string, managed by Portal)
+   Dark mode image type
 
-        ``NONE``: The image is not resized. If it is bigger than the container, its center will be shown partially, if it is smaller than the container, it is shown centered in the container.
+**Image Fit Options**
 
-        ``FILL``: The image is resized to fill the given dimension. The image will be distorted if the aspect ratios of image and container  differ.
+``NONE``
+   Image shown at original size, centered. No resizing
 
-        ``COVER``: The image will keep its aspect ratio and be resized and cropped such that it fills the container completely.
+``FILL``
+   Image stretched to fill container. May distort aspect ratio
 
-        ``CONTAIN``: The image will keep its aspect ratio and will be resized such that it is shown completely within the container, showing empty side- or top/bottom bars.
+``COVER``
+   Image resized to fill container, maintaining aspect ratio. May crop edges
 
-You may upload a background image by configuring the widget directly in Portal.
+``CONTAIN``
+   Image resized to fit within container, maintaining aspect ratio. May show empty space
+
+**Greeting Feature**
+
+When ``greeting`` is set to ``true``, Portal adds a time-based greeting before your custom welcome text:
+
+- **Morning** (6 AM - 12 PM): "Good morning"
+- **Afternoon** (12 PM - 6 PM): "Good afternoon"
+- **Evening** (6 PM - 12 AM): "Good evening"
+
+Result format: ``"Good morning, Welcome to Your Dashboard"``
+
+.. note::
+   Background images can be uploaded directly through the Portal widget configuration UI. The image properties (``imageLocation``, ``imageType``, etc.) are managed automatically by Portal.
 
 .. warning::
-
-   Portal is using these attributes internally: ``imageLocation``, ``imageType``, ``imageContent``, ``imageLocationDarkMode``, ``imageTypeDarkMode``, ``imageContentDarkMode``.
-
-   Please don't change them manually because it could cause errors for the widget.
+   Do not manually modify these internally-managed properties: ``imageLocation``, ``imageType``, ``imageContent``, ``imageLocationDarkMode``, ``imageTypeDarkMode``, ``imageContentDarkMode``. Changes may cause widget errors.

@@ -21,8 +21,9 @@ import ch.ivyteam.ivy.process.call.SubProcessSearchFilter.SearchScope;
 
 public final class DocumentUtils {
   public static final String DOC_FACTORY_SIGNATURE = "previewDocumentByInputStream(String,String,java.io.InputStream)";
+  public static final String DOC_FACTORY_GET_SUPPORTED_FILE_TYPES_SIGNATURE = "getSupportedTypeForPreview()";
   private static final String[] SUPPORTED_PREVIEW_FILE_TYPES = {".pdf", ".txt", ".log", ".jpg", ".jpeg", ".bmp", ".png"};
-  private static final String[] DOC_FACTORY_SUPPORTED_PREVIEW_FILE_TYPES = {".eml", ".docx", ".doc", ".xls", ".xlsx"};
+  private static final List<String> DOC_FACTORY_SUPPORTED_PREVIEW_FILE_TYPES;
   
   private static boolean isDocFactoryFound;
   
@@ -32,14 +33,29 @@ public final class DocumentUtils {
 
     List<SubProcessCallStart> subProcessStartList = SubProcessCallStart.find(filter);
     isDocFactoryFound = CollectionUtils.isNotEmpty(subProcessStartList);
+
+    DOC_FACTORY_SUPPORTED_PREVIEW_FILE_TYPES = getDocFactorySupportedFileTypes();
   }
   
   private DocumentUtils() {}
 
+  public static List<String> getDocFactorySupportedFileTypes() {
+    if (!isDocFactoryFound) {
+      return List.of();
+    }
+
+    Map<String, Object> response = IvyAdapterService.startSubProcessInSecurityContext(DocumentUtils.DOC_FACTORY_GET_SUPPORTED_FILE_TYPES_SIGNATURE, null);
+    if (response != null && response.get("supportedTypes") != null) {
+      return objToListOfStrHelper(response.get("supportedTypes"));
+    }
+    
+    return List.of();
+  }
+
   public static boolean isSupportedPreviewType(IvyDocument document) {
     if (isDocFactoryFound) {
       return Strings.CI.endsWithAny(document.getPath(), SUPPORTED_PREVIEW_FILE_TYPES) 
-          || Strings.CI.endsWithAny(document.getPath(), DOC_FACTORY_SUPPORTED_PREVIEW_FILE_TYPES);
+          || Strings.CI.endsWithAny(document.getPath(), DOC_FACTORY_SUPPORTED_PREVIEW_FILE_TYPES.toArray(new String[0]));
     }
     return Strings.CI.endsWithAny(document.getPath(), SUPPORTED_PREVIEW_FILE_TYPES);
   }
@@ -49,36 +65,47 @@ public final class DocumentUtils {
   }
   
   public static StreamedContent findDocFactoryAndConvert(StreamedContent streamedContent) throws IOException {
-    if (streamedContent != null 
-        && StringUtils.isNotEmpty(streamedContent.getName()) 
+    if (streamedContent != null && StringUtils.isNotEmpty(streamedContent.getName())
         && Strings.CI.endsWithAny(streamedContent.getName(), SUPPORTED_PREVIEW_FILE_TYPES)) {
       return streamedContent;
     }
 
     if (streamedContent != null && streamedContent.getStream() != null) {
       Map<String, Object> params = new HashMap<String, Object>();
-      InputStream is = streamedContent.getStream().get();
-      if (is != null) {
-        params.put("inputStream", is);
-        params.put("fileName", streamedContent.getName());
-        params.put("contentType", streamedContent.getContentType());      
-        
-        Map<String, Object> response = IvyAdapterService.startSubProcessInSecurityContext(DocumentUtils.DOC_FACTORY_SIGNATURE, params);
-        
-        if (response != null && response.get("inputStream") != null){
-          InputStream convertedIS = (InputStream)response.get("inputStream");
-          
-          is.close();
-          return DefaultStreamedContent
-              .builder()
-              .stream(() -> convertedIS)
-              .name(streamedContent.getName())
-              // DocFactory always returns stream as pdf
-              .contentType("application/pdf")
-              .build();
-        } 
+      // auto-closed by try-with-resources
+      try (InputStream is = streamedContent.getStream().get()) {
+        if (is != null) {
+          params.put("inputStream", is);
+          params.put("fileName", streamedContent.getName());
+          params.put("contentType", streamedContent.getContentType());
+          Map<String, Object> response = IvyAdapterService
+              .startSubProcessInSecurityContext(DocumentUtils.DOC_FACTORY_SIGNATURE, params);
+
+          if (response != null && response.get("inputStream") != null) {
+            DefaultStreamedContent returnDefaultStreamedContent = DefaultStreamedContent.builder()
+                .stream(() -> (InputStream) response.get("inputStream")).name(streamedContent.getName())
+                .contentType("application/pdf").build(); // DocFactory always returns stream as pdf
+            return returnDefaultStreamedContent;
+          }
+        }
       }
     }
     return streamedContent;
+  }
+
+  private static List<String> objToListOfStrHelper(Object obj) {
+    if (obj == null) {
+      return List.of();
+    }
+    
+    if (obj instanceof List<?>) {
+      List<?> rawList = (List<?>) obj;
+      return rawList.stream()
+        .filter(e -> e instanceof String)
+        .map(e -> (String) e)
+        .toList();
+    }
+    
+    return List.of();
   }
 }

@@ -595,7 +595,6 @@ $(document).ready(function () {
         }
         handleFocusOnMainElement(event);
       }
-      registerSearchIconClick();
     });
   }
 

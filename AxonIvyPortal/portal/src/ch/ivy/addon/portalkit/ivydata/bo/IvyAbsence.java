@@ -9,9 +9,9 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import com.axonivy.portal.components.dto.UserDTO;
+import com.axonivy.portal.components.service.DateTimeGlobalSettingService;
 
 import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
-import ch.ivy.addon.portalkit.service.DateTimeGlobalSettingService;
 
 public class IvyAbsence {
 

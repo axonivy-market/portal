@@ -241,6 +241,7 @@ public class CaseDetailsPage extends TemplatePage {
     onClickHistoryIcon();
     var result = $("div[id$=':case-histories:add-note-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
     result.$(".ui-dialog-title").shouldBe(appear, DEFAULT_TIMEOUT).click();
+    result.shouldHave(Condition.cssValue("opacity", "1"));
     return result.shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
@@ -248,6 +249,7 @@ public class CaseDetailsPage extends TemplatePage {
     SelenideElement dialog = getAddAttachmentDialog();
     dialog.shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     $("[id$='document:document-upload-dialog_title']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    dialog.shouldHave(Condition.cssValue("opacity", "1"));
     return dialog;
   }
 
@@ -269,6 +271,7 @@ public class CaseDetailsPage extends TemplatePage {
     $("a[id$='edit-filename']").shouldBe(getClickableCondition()).click();
     $(By.cssSelector("div[id$='document-renaming-dialog']")).shouldBe(appear, DEFAULT_TIMEOUT);
     $("[id$='document-renaming-dialog_title']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $(By.cssSelector("div[id$='document-renaming-dialog']")).shouldHave(Condition.cssValue("opacity", "1"));
     return $("div[id$='document-renaming-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
@@ -298,15 +301,15 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public void waitForIFrameWidgetLoad() {
-    $("[name='custom-widget-iframe']").shouldBe(appear, DEFAULT_TIMEOUT);
-    switchToIframeWithNameOrId("custom-widget-iframe");
+    SelenideElement iframe = $("[name$='custom-widget-iframe']").shouldBe(appear, DEFAULT_TIMEOUT);
+    switchToIframeWithWebElement(iframe);
     $("form[id='content-form']").shouldBe(Condition.visible, DEFAULT_TIMEOUT);
     switchBackToParent();
   }
 
   public void waitForIFrameURLWidgetLoad() {
     SelenideElement iframe = $("iframe[name='custom-widget-iframe-url']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
-    iframe.shouldHave(Condition.attributeMatching("src", ".*example\\.com.*"));
+    iframe.shouldHave(Condition.attributeMatching("src", ".*lucide\\.dev.*"));
   }
 
   public SelenideElement getSharePageButtonElement() {
@@ -549,7 +552,7 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public boolean iframeCustomWidgetIsDisplayed() {
-    return findElementByCssSelector("iframe[name='custom-widget-iframe']").isDisplayed();
+    return findElementByCssSelector("iframe[name$='custom-widget-iframe']").isDisplayed();
   }
 
   public void resetToDefault() {
@@ -588,7 +591,7 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public String getProcessLinkInCustomIFrameWidget() {
-    WebElement formInFrame = findElementByCssSelector("form[id='custom-widget-iframe-data']");
+    WebElement formInFrame = findElementByCssSelector("form[id$='custom-widget-iframe-data']");
     return formInFrame.getDomAttribute("action");
   }
 

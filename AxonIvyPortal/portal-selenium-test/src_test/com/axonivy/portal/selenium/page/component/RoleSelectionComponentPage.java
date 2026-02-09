@@ -1,5 +1,6 @@
 package com.axonivy.portal.selenium.page.component;
 
+import static com.axonivy.portal.selenium.common.WaitHelper.SHORT_TIMEOUT;
 import static com.codeborne.selenide.Selenide.$;
 
 import com.axonivy.portal.selenium.page.TemplatePage;
@@ -55,13 +56,15 @@ public class RoleSelectionComponentPage extends TemplatePage {
     SelenideElement roleElement = selectRoleSelection("item-select-event-for-role-selection", keyword);
     roleElement.shouldBe(getClickableCondition()).click();
     $("[id$='item-select-event-for-role-selection-message_info-detail']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    $("span[id$='item-select-event-for-role-selection_panel']")
+        .shouldHave(Condition.cssClass("ui-connected-overlay-exit-done"), SHORT_TIMEOUT);
     return roleElement.attr("data-item-value");
   }
 
   public void openSelectionPanelForAjaxEventRoleSelectionComponent(String keyword) {
     $("input[id$='item-select-event-for-role-selection_input']").clear();
     $("input[id$='item-select-event-for-role-selection_input']").sendKeys(keyword);
-    $("span[id$='item-select-event-for-role-selection_panel']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    $("span[id$='item-select-event-for-role-selection_panel']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldHave(Condition.cssClass("ui-connected-overlay-enter-done"));
   }
 
   private SelenideElement selectRoleSelection(String componentId, String keyword) {

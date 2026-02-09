@@ -62,6 +62,7 @@ public class UserSelectionComponentPage extends TemplatePage {
     userElement.shouldBe(getClickableCondition()).click();
     $("[id='form:item-select-event-component:item-select-event-for-user-selection-message_info-detail']")
         .shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    $("span[id$='item-select-event-for-user-selection_panel']").shouldHave(Condition.cssClass("ui-connected-overlay-exit-done"));
     return userElement.getCssValue("data-item-value");
   }
 
@@ -72,7 +73,7 @@ public class UserSelectionComponentPage extends TemplatePage {
   public void openSelectionPanelForAjaxEventUserSelectionComponent(String keyword) {
     $("input[id$='item-select-event-for-user-selection_input']").clear();
     $("input[id$='item-select-event-for-user-selection_input']").sendKeys(keyword);
-    $("span[id$='item-select-event-for-user-selection_panel']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    $("span[id$='item-select-event-for-user-selection_panel']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldHave(Condition.cssClass("ui-connected-overlay-enter-done"));
   }
 
   private SelenideElement selectUserComponent(String componentId, String keyword) {

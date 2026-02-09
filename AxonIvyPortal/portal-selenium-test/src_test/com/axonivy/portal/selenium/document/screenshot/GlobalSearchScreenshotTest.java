@@ -31,6 +31,6 @@ public class GlobalSearchScreenshotTest extends ScreenshotBaseTest {
 
     ScreenshotUtils.resizeBrowser(new Dimension(1500, 800));
     resultPage.waitUtilProcessWidgetDisplayed();
-    ScreenshotUtils.captureHalfTopPageScreenShot(ScreenshotUtils.SEARCH_FOLDER + "global-search-result");
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.SEARCH_FOLDER + "global-search-result");
   }
 }

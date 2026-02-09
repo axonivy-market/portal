@@ -149,14 +149,6 @@ public class PortalCasesScreenshotTest extends ScreenshotBaseTest {
   }
 
   @Test
-  public void screenshotExportToExcel() throws IOException {
-    ScreenshotUtils.resizeBrowser(new Dimension(1366, 600));
-    mainMenuPage.openCaseList();
-    ScreenshotUtils.executeDecorateJs("highlightCaseExportToExcelButton()");
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.CASE_WIDGET_FOLDER + "export-to-excel-button");
-  }
-
-  @Test
   public void testCustomWidgetInCaseDetails() throws IOException {
     ScreenshotUtils.resizeBrowser(new Dimension(1366, 1000));
     redirectToRelativeLink(createEventTestUrl);

@@ -138,9 +138,9 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
     detailsEditPage.addWidget();
 
     DashboardNotificationWidgetConfigurationPage notiWidgetPage = detailsEditPage.addNotificationWidget();
-    notiWidgetPage.changeFilter();
-    ScreenshotUtils.captureElementScreenshot(notiWidgetPage.getConfigurationDialog(),
-        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "notification-widget-configuration");
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(notiWidgetPage.getConfigurationDialog(),
+        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "notification-widget-configuration", 
+        new ScreenshotMargin(20));
     notiWidgetPage.save();
     redirectToRelativeLink(PORTAL_HOME_PAGE_URL);
     DashboardNotificationWidgetPage notiPage = new DashboardNotificationWidgetPage();
@@ -209,14 +209,14 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
 
     // Take screenshot of task widget table in edit mode
     NewDashboardPage newDashboardPage = new NewDashboardPage();
-    ScreenshotUtils.captureElementScreenshot(
-        newDashboardPage.getTaskWidgetTable(),
-        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "task-list-widget-edit-mode");
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(
+        newDashboardPage.getTaskWidgetPanel(),
+        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "task-list-widget-edit-mode", new ScreenshotMargin(10));
 
     // Take screenshot of case widget table in edit mode
-    ScreenshotUtils.captureElementScreenshot(
-        newDashboardPage.getCaseWidgetTable(),
-        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "case-list-widget-edit-mode");
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(
+        newDashboardPage.getCaseWidgetPanel(),
+        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "case-list-widget-edit-mode", new ScreenshotMargin(10));
 
     // Take screenshot of Add new widget dialog
     WebElement newWidgetDialog = detailsEditPage.addWidget();
@@ -368,7 +368,7 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
 
   @Test
   public void screenshotWelcomeWidget() throws IOException {
-    ScreenshotUtils.maximizeBrowser();
+    ScreenshotUtils.resizeBrowser(new Dimension(1920, 1080));    
     addPublicWidget(NewDashboardDetailsEditPage.WELCOME_WIDGET);
     WelcomeEditWidgetNewDashboardPage welcomeWidgetPage = new WelcomeEditWidgetNewDashboardPage();
     welcomeWidgetPage.waitForDialogLoaded();
@@ -419,6 +419,7 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
     caseWidget.openFilterWidget();
     caseWidget.addFilter("Name", FilterOperator.CONTAINS);
     caseWidget.clickOnFilterOperator();
+    caseWidget.waitDropdownOperator();
     ScreenshotUtils.captureElementWithMarginOptionScreenshot(caseWidget.getConfigurationFilter(),
         ScreenshotUtils.NEW_DASHBOARD_FOLDER + "filter-operator-dropdown", new ScreenshotMargin(25));
     
@@ -478,11 +479,6 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
     TaskWidgetNewDashBoardPage taskWidget = homePage.selectTaskWidget("Your Tasks");
     ScreenshotUtils.maximizeBrowser();
     taskWidget.openFilterWidget();
-    taskWidget.addFilter("Description", FilterOperator.EMPTY);
-    taskWidget.clickOnFilterOperator(0);
-    ScreenshotUtils.captureElementWithMarginOptionScreenshot(taskWidget.getConfigurationFilter(),ScreenshotUtils.NEW_DASHBOARD_FOLDER + "filter-operator-dropdown", new ScreenshotMargin(25));
-    taskWidget.removeFilter(0);
-    taskWidget.removeFilter(0);
     taskWidget.addFilter("Name", FilterOperator.IS);
     taskWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "Annual Leave Request");
     taskWidget.addFilter("Description", FilterOperator.NOT_EMPTY);
