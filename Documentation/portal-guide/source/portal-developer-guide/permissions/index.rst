@@ -405,8 +405,7 @@ Portal Task Permissions
        +========================+=============================================================+
        | **Type**               | Portal permission                                           |
        +------------------------+-------------------------------------------------------------+
-       | **Category**           | Allows a user to **delegate personal or group tasks that    |    
-       |                        | are assigned to themselves**.                               |
+       | **Category**           | Task Property Modifications                                 |   
        +------------------------+-------------------------------------------------------------+
        | **Description**        | Enables users to **delegate tasks they currently own**      |
        |                        | to another user or role via Portal UI, for example when     |
