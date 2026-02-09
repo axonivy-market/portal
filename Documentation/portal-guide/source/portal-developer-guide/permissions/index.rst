@@ -32,7 +32,7 @@ Portal's permission system extends Axon Ivy Engine's core security model with Po
 
 **Configuration Location:**
 
-All permissions are configured in the :doc-url:`Engine Cockpit </engine-guide/reference/engine-cockpit/security.html>` under Security > Portal Permissions. 
+All permissions are configured in the :doc-url:`Engine Cockpit </engine-guide/reference/engine-cockpit/security.html>` under Security > Portal Permissions.
 For detailed configuration instructions and examples, see :ref:`Permission Settings <settings-permission-settings>`.
 
 **Best Practices:**
@@ -78,10 +78,10 @@ Portal has a flexible security system that allows you to configure who can acces
 .. note::
    **Permission Types in this Documentation:**
    
-   - **Portal Permissions** - Custom permissions defined by Portal (e.g., DashboardWriteOwn, ShareTaskDetailsLink, NewsManagement)
+   - **Portal Permissions** - Custom permissions defined by Portal (e.g., DashboardWriteOwn, ShareTaskDetailsLink, NewsManagement). These permissions have effect only in Portal.
    - **Engine Permissions** - Core Axon Ivy permissions that Portal respects (see list at end of this page)
    
-   Permissions marked with "Granted to role Everybody by default" are automatically assigned when Portal is installed.
+   Permissions marked with "Granted by default - role Everybody" are automatically assigned when Portal is installed.
 
 .. _permission-task-permissions:
 
@@ -95,7 +95,7 @@ Portal Task Permissions
        +------------------------+-------------------------------------------------------------+
        | Field                  | Description                                                 |
        +========================+=============================================================+
-       | **Type**               | Engine permission                                           |
+       | **Type**               | Engine Permission                                           |
        +------------------------+-------------------------------------------------------------+
        | **Category**           | Task Visibility                                             |
        +------------------------+-------------------------------------------------------------+
@@ -120,7 +120,7 @@ Portal Task Permissions
        +------------------------+-------------------------------------------------------------+
        | Field                  | Description                                                 |
        +========================+=============================================================+
-       | **Type**               | Engine permission                                           |
+       | **Type**               | Engine Permission                                           |
        +------------------------+-------------------------------------------------------------+
        | **Category**           | Task Visibility                                             |
        +------------------------+-------------------------------------------------------------+
@@ -143,7 +143,7 @@ Portal Task Permissions
        +------------------------+-------------------------------------------------------------+
        | Field                  | Description                                                 |
        +========================+=============================================================+
-       | **Type**               | Engine permission                                           |
+       | **Type**               | Engine Permission                                           |
        +------------------------+-------------------------------------------------------------+
        | **Category**           | Task Visibility                                             |
        +------------------------+-------------------------------------------------------------+
@@ -163,7 +163,7 @@ Portal Task Permissions
        +------------------------+-------------------------------------------------------------+
        | Field                  | Description                                                 |
        +========================+=============================================================+
-       | **Type**               | Engine permission                                           |
+       | **Type**               | Engine Permission                                           |
        +------------------------+-------------------------------------------------------------+
        | **Category**           | Task Actions                                                |
        +------------------------+-------------------------------------------------------------+
@@ -185,7 +185,7 @@ Portal Task Permissions
        +------------------------+-------------------------------------------------------------+
        | Field                  | Description                                                 |
        +========================+=============================================================+
-       | **Type**               | Engine permission                                           |
+       | **Type**               | Engine Permission                                           |
        +------------------------+-------------------------------------------------------------+
        | **Category**           | Task Actions                                                |
        +------------------------+-------------------------------------------------------------+
@@ -210,7 +210,7 @@ Portal Task Permissions
        +------------------------+-------------------------------------------------------------+
        | Field                  | Description                                                 |
        +========================+=============================================================+
-       | **Type**               | Engine permission                                           |
+       | **Type**               | Engine Permission                                           |
        +------------------------+-------------------------------------------------------------+
        | **Category**           | Task Actions                                                |
        +------------------------+-------------------------------------------------------------+
@@ -223,16 +223,17 @@ Portal Task Permissions
        |                        | to resolve errors, unblock processes, or correct invalid    |
        |                        | task states.                                                |
        +------------------------+-------------------------------------------------------------+
-       | **Granted by default** | Yes - User ``Admin``                                        |
+       | **Granted by default** | No                                                          |
        +------------------------+-------------------------------------------------------------+
 
 .. _TaskResetReadyForJoin:
+
 
    :ref:`🔑TaskResetReadyForJoin <TaskResetReadyForJoin>`
        +------------------------+-------------------------------------------------------------+
        | Field                  | Description                                                 |
        +========================+=============================================================+
-       | **Type**               | Engine permission                                           |
+       | **Type**               | Engine Permission                                           |
        +------------------------+-------------------------------------------------------------+
        | **Category**           | Task Actions                                                |
        +------------------------+-------------------------------------------------------------+
@@ -243,7 +244,7 @@ Portal Task Permissions
        |                        | tasks are blocked or cannot be joined correctly and need    |
        |                        | to be reset to restore normal processing.                   | 
        +------------------------+-------------------------------------------------------------+
-       | **Granted by default** | Yes - User ``Admin``                                        |
+       | **Granted by default** | No                                                          |
        +------------------------+-------------------------------------------------------------+
 
 
@@ -253,7 +254,7 @@ Portal Task Permissions
        +------------------------+-------------------------------------------------------------+
        | Field                  | Description                                                 |
        +========================+=============================================================+
-       | **Type**               | Engine permission                                           |
+       | **Type**               | Engine Permission                                           |
        +------------------------+-------------------------------------------------------------+
        | **Category**           | Task Actions                                                |
        +------------------------+-------------------------------------------------------------+
@@ -265,7 +266,7 @@ Portal Task Permissions
        |                        | to permanently remove tasks, for example during cleanup,    |
        |                        | error handling, or system maintenance.                      | 
        +------------------------+-------------------------------------------------------------+
-       | **Granted by default** | Yes - User ``Admin``                                        |
+       | **Granted by default** | No                                                          |
        +------------------------+-------------------------------------------------------------+
 
 
@@ -275,7 +276,7 @@ Portal Task Permissions
        +------------------------+-------------------------------------------------------------+
        | Field                  | Description                                                 |
        +========================+=============================================================+
-       | **Type**               | Engine permission                                           |
+       | **Type**               | Engine Permission                                           |
        +------------------------+-------------------------------------------------------------+
        | **Category**           | Task Property Modifications                                 |
        +------------------------+-------------------------------------------------------------+
@@ -287,7 +288,7 @@ Portal Task Permissions
        |                        | the task description** in the task details, for example to  |
        |                        | clarify requirements or add missing information.            | 
        +------------------------+-------------------------------------------------------------+
-       | **Granted by default** | Yes - User ``Admin``                                        |
+       | **Granted by default** | No                                                          |
        +------------------------+-------------------------------------------------------------+
 
 
@@ -297,7 +298,7 @@ Portal Task Permissions
        +------------------------+-------------------------------------------------------------+
        | Field                  | Description                                                 |
        +========================+=============================================================+
-       | **Type**               | Engine permission                                           |
+       | **Type**               | Engine Permission                                           |
        +------------------------+-------------------------------------------------------------+
        | **Category**           | Task Property Modifications                                 |
        +------------------------+-------------------------------------------------------------+
@@ -309,7 +310,7 @@ Portal Task Permissions
        |                        | priority of a task** in the task details, for example to    |
        |                        | reflect changing urgency or business importance.            | 
        +------------------------+-------------------------------------------------------------+
-       | **Granted by default** | Yes - User ``Admin``                                        |
+       | **Granted by default** | No                                                          |
        +------------------------+-------------------------------------------------------------+
 
 
@@ -319,7 +320,7 @@ Portal Task Permissions
        +------------------------+-------------------------------------------------------------+
        | Field                  | Description                                                 |
        +========================+=============================================================+
-       | **Type**               | Engine permission                                           |
+       | **Type**               | Engine Permission                                           |
        +------------------------+-------------------------------------------------------------+
        | **Category**           | Task Property Modifications                                 |
        +------------------------+-------------------------------------------------------------+
@@ -331,7 +332,7 @@ Portal Task Permissions
        |                        | this permission to **update the task expiry date**, for     |
        |                        | example to extend or shorten deadlines.                     | 
        +------------------------+-------------------------------------------------------------+
-       | **Granted by default** | Yes - User ``Admin``                                        |
+       | **Granted by default** | No                                                          |
        +------------------------+-------------------------------------------------------------+
 
 
@@ -341,7 +342,7 @@ Portal Task Permissions
        +------------------------+-------------------------------------------------------------+
        | Field                  | Description                                                 |
        +========================+=============================================================+
-       | **Type**               | Engine permission                                           |
+       | **Type**               | Engine Permission                                           |
        +------------------------+-------------------------------------------------------------+
        | **Category**           | Task Property Modifications                                 |
        +------------------------+-------------------------------------------------------------+
@@ -351,7 +352,7 @@ Portal Task Permissions
        |                        | other users or roles within the same security context**,    |
        |                        | for example to change responsibility or hand over work.     |  
        +------------------------+-------------------------------------------------------------+
-       | **Granted by default** | Yes - User ``Admin``                                        |
+       | **Granted by default** | No                                                          |
        +------------------------+-------------------------------------------------------------+
 
 
@@ -361,7 +362,7 @@ Portal Task Permissions
        +------------------------+-------------------------------------------------------------+
        | Field                  | Description                                                 |
        +========================+=============================================================+
-       | **Type**               | Engine permission                                           |
+       | **Type**               | Engine Permission                                           |
        +------------------------+-------------------------------------------------------------+
        | **Category**           | Task Property Modifications                                 |
        +------------------------+-------------------------------------------------------------+
@@ -374,7 +375,7 @@ Portal Task Permissions
        |                        | this permission to **define or update who becomes           |
        |                        | responsible after a task expires**.                         | 
        +------------------------+-------------------------------------------------------------+
-       | **Granted by default** | Yes - User ``Admin``                                        |
+       | **Granted by default** | No                                                          |
        +------------------------+-------------------------------------------------------------+
 
 .. _TaskWriteDelayTimestamp:
@@ -383,7 +384,7 @@ Portal Task Permissions
        +------------------------+-------------------------------------------------------------+
        | Field                  | Description                                                 |
        +========================+=============================================================+
-       | **Type**               | Engine permission                                           |
+       | **Type**               | Engine Permission                                           |
        +------------------------+-------------------------------------------------------------+
        | **Category**           | Task Property Modifications                                 |
        +------------------------+-------------------------------------------------------------+
@@ -393,7 +394,7 @@ Portal Task Permissions
        |                        | this permission to **change when a task starts or is        |
        |                        | delayed**, for example to reschedule execution.             |
        +------------------------+-------------------------------------------------------------+
-       | **Granted by default** | Yes - User ``Admin``                                        |
+       | **Granted by default** | No                                                          |
        +------------------------+-------------------------------------------------------------+
 
 .. _TaskWriteActivatorOwnTasks:
@@ -404,10 +405,10 @@ Portal Task Permissions
        +========================+=============================================================+
        | **Type**               | Portal permission                                           |
        +------------------------+-------------------------------------------------------------+
-       | **Category**           | Task Property Modifications                                 | 
+       | **Category**           | Task Property Modifications                                 |   
        +------------------------+-------------------------------------------------------------+
        | **Description**        | Enables users to **delegate tasks they currently own**      |
-       |                        | to another user or role via the Portal UI, for example when |
+       |                        | to another user or role via Portal UI, for example when     |
        |                        | handing over work or changing responsibility within a team. |
        +------------------------+-------------------------------------------------------------+
        | **Use case**           | Allows a user to **delegate personal or group tasks that    |    
@@ -518,7 +519,7 @@ Portal Task Permissions
        |                        | item in the task action menu. To actually destroy a task,   |
        |                        | the user must also have the **TaskDestroy** permission.     |
        +------------------------+-------------------------------------------------------------+
-       | **Granted by default** | Yes - User ``Admin``                                        |
+       | **Granted by default** | No                                                          |
        +------------------------+-------------------------------------------------------------+
 
 .. _TaskDisplayWorkflowEventAction:
@@ -540,7 +541,7 @@ Portal Task Permissions
        |                        | workflow event data, the user must also have the            |
        |                        | **WorkflowEventReadAll** permission.                        |
        +------------------------+-------------------------------------------------------------+
-       | **Granted by default** | Yes - User ``Admin``                                        |
+       | **Granted by default** | No                                                          |
        +------------------------+-------------------------------------------------------------+
 
      
@@ -561,7 +562,7 @@ Portal Task Permissions
        |                        | menu item in the task action menu, allowing them to view    |
        |                        | custom case fields related to the task.                     |
        +------------------------+-------------------------------------------------------------+
-       | **Granted by default** | Yes - User ``Admin``                                        |
+       | **Granted by default** | No                                                          |
        +------------------------+-------------------------------------------------------------+
 
 
@@ -596,7 +597,7 @@ Portal Case Permissions
        +------------------------+-------------------------------------------------------------+
        | Field                  | Description                                                 |
        +========================+=============================================================+
-       | **Type**               | Engine permission                                           |
+       | **Type**               | Engine Permission                                           |
        +------------------------+-------------------------------------------------------------+
        | **Category**           | Case Action                                                 |
        +------------------------+-------------------------------------------------------------+
@@ -606,7 +607,7 @@ Portal Case Permissions
        +------------------------+-------------------------------------------------------------+
        | **Use case**           | Grant it to see all cases                                   | 
        +------------------------+-------------------------------------------------------------+
-       | **Granted by default** | Yes - User ``Admin``                                        |
+       | **Granted by default** | No                                                          |
        +------------------------+-------------------------------------------------------------+
 
 .. _CaseDestroy:
@@ -615,7 +616,7 @@ Portal Case Permissions
        +------------------------+-------------------------------------------------------------+
        | Field                  | Description                                                 |
        +========================+=============================================================+
-       | **Type**               | Engine permission                                           |
+       | **Type**               | Engine Permission                                           |
        +------------------------+-------------------------------------------------------------+
        | **Category**           | Case Action                                                 |
        +------------------------+-------------------------------------------------------------+
@@ -629,7 +630,7 @@ Portal Case Permissions
        |                        | The Destroy action will be available in the case action     |
        |                        | menu.                                                       | 
        +------------------------+-------------------------------------------------------------+
-       | **Granted by default** | Yes - User ``Admin``                                        |
+       | **Granted by default** | No                                                          |
        +------------------------+-------------------------------------------------------------+
 
 
@@ -651,7 +652,7 @@ Portal Case Permissions
        |                        | within their own cases**, for example to hand over work,    |
        |                        | involve other team members, or reassign responsibilities.   |
        +------------------------+-------------------------------------------------------------+
-       | **Granted by default** | Yes - User ``Admin``                                        |
+       | **Granted by default** | No                                                          |
        +------------------------+-------------------------------------------------------------+
 
 .. _CaseWriteDescription:
@@ -660,7 +661,7 @@ Portal Case Permissions
        +------------------------+-------------------------------------------------------------+
        | Field                  | Description                                                 |
        +========================+=============================================================+
-       | **Type**               | Engine permission                                           |
+       | **Type**               | Engine Permission                                           |
        +------------------------+-------------------------------------------------------------+
        | **Category**           | Case Action                                                 |
        +------------------------+-------------------------------------------------------------+
@@ -672,7 +673,7 @@ Portal Case Permissions
        |                        | the case description** in the case details, for example to  |
        |                        | add context, clarify information, or fix mistakes.          | 
        +------------------------+-------------------------------------------------------------+
-       | **Granted by default** | Yes - User ``Admin``                                        |
+       | **Granted by default** | No                                                          |
        +------------------------+-------------------------------------------------------------+
 
 .. _ShowCaseDetails:
@@ -713,7 +714,7 @@ Portal Case Permissions
        |                        | menu item in the case action menu, allowing them to view    |
        |                        | additional, case-specific information.                      | 
        +------------------------+-------------------------------------------------------------+
-       | **Granted by default** | Yes - User ``Admin``                                        |
+       | **Granted by default** | No                                                          |
        +------------------------+-------------------------------------------------------------+
 
 
@@ -806,7 +807,7 @@ Portal General Permissions
        |                        | need to **create, maintain, and manage dashboards**         |
        |                        | shared across the application.                              |
        +------------------------+-------------------------------------------------------------+
-       | **Granted by default** | Yes - User ``Admin``                                        |
+       | **Granted by default** | No                                                          |
        +------------------------+-------------------------------------------------------------+
 
 .. note::
@@ -832,7 +833,7 @@ Portal General Permissions
        |                        | dashboards or share dashboard configurations** with others  |
        |                        | or across environments.                                     |
        +------------------------+-------------------------------------------------------------+
-       | **Granted by default** | Yes - User ``Admin``                                        |
+       | **Granted by default** | No                                                          |
        +------------------------+-------------------------------------------------------------+
 
 .. _DashboardExportPublic:
@@ -854,7 +855,7 @@ Portal General Permissions
        |                        | public dashboard templates**, for example across different  |
        |                        | environments.                                               |
        +------------------------+-------------------------------------------------------------+
-       | **Granted by default** | Yes - User ``Admin``                                        |
+       | **Granted by default** | No                                                          |
        +------------------------+-------------------------------------------------------------+
 
 .. _DashboardImportOwn:
@@ -875,7 +876,7 @@ Portal General Permissions
        |                        | from JSON templates**, for example when restoring backups   |
        |                        | or reusing existing configurations.                         |
        +------------------------+-------------------------------------------------------------+
-       | **Granted by default** | Yes - User ``Admin``                                        |
+       | **Granted by default** | No                                                          |
        +------------------------+-------------------------------------------------------------+
 
 .. _DashboardImportPublic:
@@ -896,7 +897,7 @@ Portal General Permissions
        |                        | from JSON templates**, for example when setting up          |
        |                        | dashboards across environments or reusing standard templates|
        +------------------------+-------------------------------------------------------------+
-       | **Granted by default** | Yes - User ``Admin``                                        |
+       | **Granted by default** | No                                                          |
        +------------------------+-------------------------------------------------------------+
 
 .. _ShareDashboardLink:
@@ -928,7 +929,7 @@ Portal General Permissions
        +------------------------+-------------------------------------------------------------+
        | Field                  | Description                                                 |
        +========================+=============================================================+
-       | **Type**               | Engine permission                                           |
+       | **Type**               | Engine Permission                                           |
        +------------------------+-------------------------------------------------------------+
        | **Category**           | Document                                                    |
        +------------------------+-------------------------------------------------------------+
@@ -951,7 +952,7 @@ Portal General Permissions
        +------------------------+-------------------------------------------------------------+
        | Field                  | Description                                                 |
        +========================+=============================================================+
-       | **Type**               | Engine permission                                           |
+       | **Type**               | Engine Permission                                           |
        +------------------------+-------------------------------------------------------------+
        | **Category**           | Document                                                    |
        +------------------------+-------------------------------------------------------------+
@@ -978,7 +979,7 @@ Portal General Permissions
        +------------------------+-------------------------------------------------------------+
        | Field                  | Description                                                 |
        +========================+=============================================================+
-       | **Type**               | Engine permission                                           |
+       | **Type**               | Engine Permission                                           |
        +------------------------+-------------------------------------------------------------+
        | **Category**           | Role Management                                             |
        +------------------------+-------------------------------------------------------------+
@@ -1002,7 +1003,7 @@ Portal General Permissions
        +------------------------+-------------------------------------------------------------+
        | Field                  | Description                                                 |
        +========================+=============================================================+
-       | **Type**               | Engine permission                                           |
+       | **Type**               | Engine Permission                                           |
        +------------------------+-------------------------------------------------------------+
        | **Category**           | Role Management                                             |
        +------------------------+-------------------------------------------------------------+
@@ -1015,7 +1016,7 @@ Portal General Permissions
        |                        | for **creating and maintaining** dynamic roles within the   |
        |                        | system.                                                     |
        +------------------------+-------------------------------------------------------------+
-       | **Granted by default** | Yes - User ``Admin``                                        |
+       | **Granted by default** | No                                                          |
        +------------------------+-------------------------------------------------------------+
 
 .. _RoleDelete:
@@ -1024,7 +1025,7 @@ Portal General Permissions
        +------------------------+-------------------------------------------------------------+
        | Field                  | Description                                                 |
        +========================+=============================================================+
-       | **Type**               | Engine permission                                           |
+       | **Type**               | Engine Permission                                           |
        +------------------------+-------------------------------------------------------------+
        | **Category**           | Role Management                                             |
        +------------------------+-------------------------------------------------------------+
@@ -1037,7 +1038,7 @@ Portal General Permissions
        | **Use case**           | Grant to **selected administrators** who are responsible    |
        |                        | for **removing dynamic roles** that are no longer needed.   |
        +------------------------+-------------------------------------------------------------+
-       | **Granted by default** | Yes - User ``Admin``                                        |
+       | **Granted by default** | No                                                          |
        +------------------------+-------------------------------------------------------------+
 
 .. _RoleManagement:
@@ -1054,14 +1055,14 @@ Portal General Permissions
        |                        | the **Admin Settings** page. This permission only grants    |
        |                        | access to the page itself. To perform actions such as       |
        |                        | **creating or deleting roles**, additional Engine           |
-       |                        | permissions like **RoleCreate** and **RoleDelete** are      |
-       |                        | required.                                                   |
+       |                        | Permissions like **RoleCreate** and **RoleDelete** are      |
+       |                        |  required.                                                  |
        +------------------------+-------------------------------------------------------------+
        | **Use case**           | Grant to **selected administrators** who need **access to   |
        |                        | role management**, while controlling specific actions       |
        |                        | through additional permissions.                             |
        +------------------------+-------------------------------------------------------------+
-       | **Granted by default** | Yes - User ``Admin``                                        |
+       | **Granted by default** | No                                                          |
        +------------------------+-------------------------------------------------------------+
 
 .. _RoleMove:
@@ -1070,7 +1071,7 @@ Portal General Permissions
        +------------------------+-------------------------------------------------------------+
        | Field                  | Description                                                 |
        +========================+=============================================================+
-       | **Type**               | Engine permission                                           |
+       | **Type**               | Engine Permission                                           |
        +------------------------+-------------------------------------------------------------+
        | **Category**           | Role Management                                             |
        +------------------------+-------------------------------------------------------------+
@@ -1084,7 +1085,7 @@ Portal General Permissions
        |                        | role hierarchies** by choosing a specific parent role when  |
        |                        | creating dynamic roles.                                     |
        +------------------------+-------------------------------------------------------------+
-       | **Granted by default** | Yes - User ``Admin``                                        |
+       | **Granted by default** | No                                                          |
        +------------------------+-------------------------------------------------------------+
 
 
@@ -1155,7 +1156,7 @@ Portal General Permissions
        |                        | logs and system notes** in case and task histories, for     |
        |                        | example for troubleshooting or detailed process tracking.   |
        +------------------------+-------------------------------------------------------------+
-       | **Granted by default** | Yes - User ``Admin``                                        |
+       | **Granted by default** | No                                                          |
        +------------------------+-------------------------------------------------------------+
 
    .. note::
@@ -1181,7 +1182,7 @@ Portal General Permissions
        |                        | publishing news content** on dashboard news widgets, for    |
        |                        | example administrators or content managers.                 |
        +------------------------+-------------------------------------------------------------+
-       | **Granted by default** | Yes - User ``Admin``                                        |
+       | **Granted by default** | No                                                          |
        +------------------------+-------------------------------------------------------------+
 
 .. _PasswordValidation:
@@ -1202,7 +1203,7 @@ Portal General Permissions
        |                        | for **defining and maintaining password security policies** |
        |                        | within the system.                                          |
        +------------------------+-------------------------------------------------------------+
-       | **Granted by default** | Yes - User ``Admin``                                        |
+       | **Granted by default** | No                                                          |
        +------------------------+-------------------------------------------------------------+
 
 .. _NotificationChannelsSetting:
@@ -1264,7 +1265,7 @@ Portal Absence And Substitute Permissions
        +------------------------+-------------------------------------------------------------+
        | Field                  | Description                                                 |
        +========================+=============================================================+
-       | **Type**               | Engine permission                                           |
+       | **Type**               | Engine Permission                                           |
        +------------------------+-------------------------------------------------------------+
        | **Category**           | Manage own absences                                         |
        +------------------------+-------------------------------------------------------------+
@@ -1282,7 +1283,7 @@ Portal Absence And Substitute Permissions
        +------------------------+-------------------------------------------------------------+
        | Field                  | Description                                                 |
        +========================+=============================================================+
-       | **Type**               | Engine permission                                           |
+       | **Type**               | Engine Permission                                           |
        +------------------------+-------------------------------------------------------------+
        | **Category**           | Manage own absences                                         |
        +------------------------+-------------------------------------------------------------+
@@ -1301,7 +1302,7 @@ Portal Absence And Substitute Permissions
        +------------------------+-------------------------------------------------------------+
        | Field                  | Description                                                 |
        +========================+=============================================================+
-       | **Type**               | Engine permission                                           |
+       | **Type**               | Engine Permission                                           |
        +------------------------+-------------------------------------------------------------+
        | **Category**           | Manage own absences                                         |
        +------------------------+-------------------------------------------------------------+
@@ -1321,7 +1322,7 @@ Portal Absence And Substitute Permissions
        +------------------------+-------------------------------------------------------------+
        | Field                  | Description                                                 |
        +========================+=============================================================+
-       | **Type**               | Engine permission                                           |
+       | **Type**               | Engine Permission                                           |
        +------------------------+-------------------------------------------------------------+
        | **Category**           | Manage absences for all users                               |
        +------------------------+-------------------------------------------------------------+      
@@ -1332,7 +1333,7 @@ Portal Absence And Substitute Permissions
        |                        | into absences of all users**, for example for planning,     |
        |                        | coordination, or administrative oversight.                  | 
        +------------------------+-------------------------------------------------------------+
-       | **Granted by default** | Yes - User ``Admin``                                        |
+       | **Granted by default** | No                                                          |
        +------------------------+-------------------------------------------------------------+
 
 .. _UserCreateAbsence:
@@ -1341,7 +1342,7 @@ Portal Absence And Substitute Permissions
        +------------------------+-------------------------------------------------------------+
        | Field                  | Description                                                 |
        +========================+=============================================================+
-       | **Type**               | Engine permission                                           |
+       | **Type**               | Engine Permission                                           |
        +------------------------+-------------------------------------------------------------+
        | **Category**           | Manage absences for all users                               |
        +------------------------+-------------------------------------------------------------+     
@@ -1352,7 +1353,7 @@ Portal Absence And Substitute Permissions
        |                        | or update absences on behalf of other users**, for example  |
        |                        | for corrections or administrative handling.                 | 
        +------------------------+-------------------------------------------------------------+
-       | **Granted by default** | Yes - User ``Admin``                                        |
+       | **Granted by default** | No                                                          |
        +------------------------+-------------------------------------------------------------+
 
 .. _UserDeleteAbsence:
@@ -1361,7 +1362,7 @@ Portal Absence And Substitute Permissions
        +------------------------+-------------------------------------------------------------+
        | Field                  | Description                                                 |
        +========================+=============================================================+
-       | **Type**               | Engine permission                                           |
+       | **Type**               | Engine Permission                                           |
        +------------------------+-------------------------------------------------------------+
        | **Category**           | Manage absences for all users                               |
        +------------------------+-------------------------------------------------------------+    
@@ -1372,7 +1373,7 @@ Portal Absence And Substitute Permissions
        |                        | absence entries for other users**, for example to correct   |
        |                        | mistakes or clean up outdated records.                      | 
        +------------------------+-------------------------------------------------------------+
-       | **Granted by default** | Yes - User ``Admin``                                        |
+       | **Granted by default** | No                                                          |
        +------------------------+-------------------------------------------------------------+
 
 
@@ -1382,7 +1383,7 @@ Portal Absence And Substitute Permissions
        +------------------------+-------------------------------------------------------------+
        | Field                  | Description                                                 |
        +========================+=============================================================+
-       | **Type**               | Engine permission                                           |
+       | **Type**               | Engine Permission                                           |
        +------------------------+-------------------------------------------------------------+
        | **Category**           | Manage substitutes                                          |
        +------------------------+-------------------------------------------------------------+   
@@ -1402,7 +1403,7 @@ Portal Absence And Substitute Permissions
        +------------------------+-------------------------------------------------------------+
        | Field                  | Description                                                 |
        +========================+=============================================================+
-       | **Type**               | Engine permission                                           |
+       | **Type**               | Engine Permission                                           |
        +------------------------+-------------------------------------------------------------+
        | **Category**           | Manage substitutes                                          |
        +------------------------+-------------------------------------------------------------+   
@@ -1413,7 +1414,7 @@ Portal Absence And Substitute Permissions
        |                        | substitutes on behalf of other users**, for example for     |
        |                        | planned absences or organizational coverage.                | 
        +------------------------+-------------------------------------------------------------+
-       | **Granted by default** | Yes - User ``Admin``                                        |
+       | **Granted by default** | No                                                          |
        +------------------------+-------------------------------------------------------------+
 
 .. _UserReadSubstitutes:
@@ -1422,7 +1423,7 @@ Portal Absence And Substitute Permissions
        +------------------------+-------------------------------------------------------------+
        | Field                  | Description                                                 |
        +========================+=============================================================+
-       | **Type**               | Engine permission                                           |
+       | **Type**               | Engine Permission                                           |
        +------------------------+-------------------------------------------------------------+
        | **Category**           | Manage substitutes                                          |
        +------------------------+-------------------------------------------------------------+   
@@ -1434,7 +1435,7 @@ Portal Absence And Substitute Permissions
        |                        | coverage, validate substitutions, or support organizational | 
        |                        | planning.                                                   | 
        +------------------------+-------------------------------------------------------------+
-       | **Granted by default** | Yes - User ``Admin``                                        |
+       | **Granted by default** | No                                                          |
        +------------------------+-------------------------------------------------------------+
 
 .. _engine-permissions-respected:
@@ -1442,7 +1443,7 @@ Portal Absence And Substitute Permissions
 Engine Permissions used by Portal
 ----------------------------------
 
-Portal uses the following Axon Ivy Engine permissions. These are documented here for completeness as they directly affect Portal functionality:
+Portal uses the following Axon Ivy Engine Permissions. These are documented here for completeness as they directly affect Portal functionality:
 
 **Task Permissions:**
 
