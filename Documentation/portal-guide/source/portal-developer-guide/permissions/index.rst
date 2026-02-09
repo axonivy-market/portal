@@ -78,7 +78,7 @@ Portal has a flexible security system that allows you to configure who can acces
 .. note::
    **Permission Types in this Documentation:**
    
-   - **Portal Permissions** - Custom permissions defined by Portal (e.g., DashboardWriteOwn, ShareTaskDetailsLink, NewsManagement), theses permissions have effect only in Portal.
+   - **Portal Permissions** - Custom permissions defined by Portal (e.g., DashboardWriteOwn, ShareTaskDetailsLink, NewsManagement), these permissions have effect only in Portal.
    - **Engine Permissions** - Core Axon Ivy permissions that Portal respects (see list at end of this page)
    
    Permissions marked with "Granted by default - role Everybody" are automatically assigned when Portal is installed.
