@@ -18,6 +18,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.axonivy.ivy.webtest.engine.EngineUrl;
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.WebDriverRunner;
 
 import ch.ivy.addon.portalkit.enums.PortalPermission;
@@ -40,7 +41,7 @@ public class BaseTest {
 
   @AfterEach
   public void tearDown() {
-    WebDriverRunner.getWebDriver().quit();
+    Selenide.closeWebDriver();
   }
 
   protected String simplePaymentUrl = "portal-developer-examples/162511D2577DBA88/simplePayment.ivp";
