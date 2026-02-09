@@ -32,7 +32,7 @@ Portal's permission system extends Axon Ivy Engine's core security model with Po
 
 **Configuration Location:**
 
-All permissions are configured in the :dev-url:`Engine Cockpit </doc/12.0/engine-guide/reference/engine-cockpit/security.html>` under Security > Portal Permissions. 
+All permissions are configured in the :dev-url:`Engine Cockpit </doc/12.0/engine-guide/reference/engine-cockpit/security.html>` under Security > Portal Permissions.
 For detailed configuration instructions and examples, see :ref:`Permission Settings <settings-permission-settings>`.
 
 **Best Practices:**
