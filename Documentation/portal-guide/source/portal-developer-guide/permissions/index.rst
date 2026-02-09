@@ -16,7 +16,7 @@ Proper permission configuration ensures Portal security aligns with your organiz
 
 **Permission Architecture:**
 
-Portal's permission system extends Axon Ivy Engine's core security model with Portal-specific permissions. All permissions are configured in the Engine Cockpit under Portal Permissions section and can be assigned to:
+Portal's permission system extends Axon Ivy Engine's core security model with Portal-specific permissions. All permissions are configured in the Engine Cockpit under the Portal Permissions section and can be assigned to:
 
 - **Roles**: Grant permissions to all users with specific roles (e.g., "Manager", "Employee")
 - **Individual Users**: Grant permissions to specific user accounts (prefix with ``#``)
