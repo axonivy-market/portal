@@ -1053,8 +1053,9 @@ Portal General Permissions
        | **Description**        | Allows a user to **access the Role Management tab** in      |
        |                        | the **Admin Settings** page. This permission only grants    |
        |                        | access to the page itself. To perform actions such as       |
-       |                        | **creating or deleting roles**, additional Engine permissions |
-       |                        | like **RoleCreate** and **RoleDelete** are required.        |
+       |                        | **creating or deleting roles**, additional Engine           |
+       |                        | permissions like **RoleCreate** and **RoleDelete** are      |
+       |                        | required.                                                   |
        +------------------------+-------------------------------------------------------------+
        | **Use case**           | Grant to **selected administrators** who need **access to   |
        |                        | role management**, while controlling specific actions       |
