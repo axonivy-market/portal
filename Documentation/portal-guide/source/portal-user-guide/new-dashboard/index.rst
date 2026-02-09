@@ -131,7 +131,7 @@ The configuration panel offers the following options:
 
 - **Fullscreen Mode**: Show or hide the fullscreen mode icon. When visible, users can expand the widget to fill the entire screen for better data viewing.
 
-- **Show pinned items toggle **: Show or hide the pinned items toggle. When enabled, users can filter the widget to get only the pinned tasks.
+- **Show pinned items toggle**: Show or hide the pinned items toggle. When enabled, users can filter the widget to get only the pinned tasks.
 
 
 **Filters panel**
@@ -511,7 +511,7 @@ After selecting the :guilabel:`Clone` option, the :guilabel:`Clone widget` dialo
 .. |task-list-widget-table-configuration| image:: ../../screenshots/new-dashboard/task-list-widget-table-configuration.png
    :alt: Dashboard task widget's table configuration
 .. |task-widget-configuration-panel| image:: ../../screenshots/new-dashboard/task-widget-configuration-panel.png
-   :alt: Dashboard task widget's configuration panel
+   :alt: Dashboard task widget's configuration options panel
 .. |task-column-field-type-configuration| image:: ../../screenshots/new-dashboard/task-column-field-type-configuration.png
    :alt: Dashboard task widget's column management
 .. |task-widget-complex-filter-configuration| image:: ../../screenshots/new-dashboard/task-widget-complex-filter-configuration.png

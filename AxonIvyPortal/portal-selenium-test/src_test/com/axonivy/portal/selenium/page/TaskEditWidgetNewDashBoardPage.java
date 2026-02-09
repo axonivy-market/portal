@@ -405,7 +405,6 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
 
   public WebElement getQuickSearchCheckBox() {
     return getWidgetConfigurationPanel().$("div[id$='quick-search-group']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("div[id$='quick-search']")
-        .$("span[id$='quick-search-group']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("div[id$='quick-search']")
         .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
   }
 
@@ -484,8 +483,12 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
 
   public SelenideElement getWidgetConfigurationPanel() {
     SelenideElement form = getWidgetConfigurationForm();
-    form.$("button[id$='widget-configuration-button']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
-    return $("div[id$='widget-configuration-panel']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    SelenideElement panel = $("div[id$='widget-configuration-panel']");
+    if (!panel.exists() || !panel.is(Condition.visible)) {
+      form.$("button[id$='widget-configuration-button']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
+      panel.shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    }
+    return panel;
   }
   
   public void clickOnTaskNameColumn() {

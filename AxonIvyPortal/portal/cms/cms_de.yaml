@@ -1252,7 +1252,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     taskNotes: Notizen
     triggerEscalation: Eskalation auslösen
   taskList:
-    configuration: Die Konfiguration
+    configuration: Konfiguration
     deadline: Frist
     default: Standard
     defaultColumns:

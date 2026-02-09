@@ -396,8 +396,12 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
 
   public SelenideElement getWidgetConfigurationPanel() {
     SelenideElement form = getWidgetConfigurationForm();
-    form.$("button[id$='widget-configuration-button']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
-    return $("div[id$='widget-configuration-panel']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    SelenideElement panel = $("div[id$='widget-configuration-panel']");
+    if (!panel.exists() || !panel.is(Condition.visible)) {
+      form.$("button[id$='widget-configuration-button']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
+      panel.shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    }
+    return panel;
   }
 
   public void clickOnWidgetInfoIconCheckbox() {
