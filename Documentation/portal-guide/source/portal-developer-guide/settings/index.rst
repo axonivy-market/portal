@@ -711,7 +711,7 @@ For some specific charts such as ``Bar``, ``Pie``, ``Line`` or ``Number``, there
 
 Portal Processes External Links
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-The standard external links of Portal are defined in the following file:
+The standard external links in Portal are defined in the following file:
 
 Filename: ``variables.Portal.Processes.ExternalLinks.json``
 
