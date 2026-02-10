@@ -88,7 +88,7 @@ public class CaseDetailsPage extends TemplatePage {
     SelenideElement addNoteDialog = $("div.ui-dialog[aria-hidden='false']").shouldBe(appear, DEFAULT_TIMEOUT);
     SelenideElement textArea = addNoteDialog.$("textarea[id$='note-content']").shouldBe(appear, DEFAULT_TIMEOUT);
     textArea.shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-    textArea.sendKeys(noteContent);
+    textArea.shouldBe(Condition.enabled, DEFAULT_TIMEOUT).setValue(noteContent);
     SelenideElement saveButton = addNoteDialog.$("button[id$='save-add-note-command']");
     saveButton.shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     saveButton.shouldBe(disappear, DEFAULT_TIMEOUT);
