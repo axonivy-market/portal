@@ -185,6 +185,7 @@ public class PortalMenuNavigator {
     item.menuKind = MenuKind.MAIN_DASHBOARD;
     item.name = HomepageUtils.generateHomepageId(MenuKind.MAIN_DASHBOARD, dashboard.getId());
     item.link = UrlUtils.getServerUrl() + PortalNavigator.getDashboardPageUrl(dashboard.getId());
+    item.id = SubMenuItem.generateId(item.menuKind, item.link);
 
     return item;
   }
