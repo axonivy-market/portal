@@ -5,6 +5,7 @@ import java.nio.charset.StandardCharsets;
 
 import org.primefaces.PrimeFaces;
 
+import com.axonivy.portal.components.enums.SessionAttribute;
 import com.axonivy.portal.components.generic.navigation.BaseNavigator;
 
 import ch.ivyteam.ivy.environment.Ivy;
@@ -26,6 +27,17 @@ public final class PortalNavigatorInFrameAPI extends BaseNavigator {
         "parent.redirectToUrlCommand([{name: 'url', value: '" + URLDecoder.decode(url, StandardCharsets.UTF_8) + "'}])";
     PrimeFaces.current().executeScript(statement);
   }
+
+    /**
+     * Resets the current task and navigates to target url.
+     * 
+     * @param url target url to navigate to after resetting the task
+     */
+    public static void resetTaskAndNavigateToUrl(String url) {
+      Ivy.session().setAttribute(SessionAttribute.RESET_TASK_UUID.name(), Ivy.wfTask().uuid());
+      String statement = "parent.resetTaskAndRedirectToUrlCommand([{name: 'url', value: '" + URLDecoder.decode(url, StandardCharsets.UTF_8) + "'}])";
+      PrimeFaces.current().executeScript(statement);
+    }
 
   /**
    * Navigate to portal home
