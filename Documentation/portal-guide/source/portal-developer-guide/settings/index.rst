@@ -255,7 +255,7 @@ User needs permission: :ref:`🔑CaseWriteDescription <CaseWriteDescription>`
 
 **See Related Tasks of Case**
 
-User needs permission: :ref:`🔑ShowAllTasksOfCase <ShowAllTasksOfCase>` to display this action, and :ref:`🔑TaskReadOwnCaseTasks <TaskReadOwnCaseTasks>` or :ref:`🔑TaskReadAll <TaskReadAll>` to view related tasks.
+User needs permission: :ref:`🔑TaskReadOwnCaseTasks <TaskReadOwnCaseTasks>` or :ref:`🔑TaskReadAll <TaskReadAll>` to view related tasks.
 
 .. important::
    Case state cannot be DESTROYED
