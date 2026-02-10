@@ -139,6 +139,12 @@ public class CaseDetailsPage extends TemplatePage {
         .findBy(Condition.attributeMatching("class", ".*related-task-name-column.*")).shouldBe(appear, DEFAULT_TIMEOUT)
         .$("span");
   }
+  
+  public int getSizeOfRelatedTask() {
+    return getRelatedTasksPanel().$("div[id$='case-details-related-task-table'] table tbody")
+        .shouldBe(appear, DEFAULT_TIMEOUT).$$("tr").size();
+  }
+  
 
   public SelenideElement getStateOfRelatedTask(int index) {
     getRelatedTasksPanel().shouldBe(appear, DEFAULT_TIMEOUT);
