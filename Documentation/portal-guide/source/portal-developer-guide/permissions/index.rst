@@ -1096,7 +1096,7 @@ Portal General Permissions
        |                        | access to the page itself. To perform actions such as       |
        |                        | **creating or deleting roles**, additional Engine           |
        |                        | Permissions like **RoleCreate** and **RoleDelete** are      |
-       |                        |  required.                                                  |
+       |                        | required.                                                   |
        +------------------------+-------------------------------------------------------------+
        | **Use case**           | Grant to **selected administrators** who need **access to   |
        |                        | role management**, while controlling specific actions       |
