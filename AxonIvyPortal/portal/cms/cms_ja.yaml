@@ -208,7 +208,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       thirdPartyApplication: サードパーティーのアプリケーション
     currentValue: 現在の値
     defaultValue: デフォルト値
-    deleteAppConfirmation: この{0}アプリケーションを削除してよろしいですか？
+    deleteAppConfirmation: アプリケーション「<b>{0}</b>」を削除してもよろしいですか？
     dialogclosinginformation:
       dialogHeader: ポータル設定終了
       informMessage: ポータル設定を変更した場合、新しい構成を有効にするには現在のページの更新が必要です。
