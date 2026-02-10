@@ -57,7 +57,7 @@ public class RoleSelectionComponentPage extends TemplatePage {
     roleElement.shouldBe(getClickableCondition()).click();
     $("[id$='item-select-event-for-role-selection-message_info-detail']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     $("span[id$='item-select-event-for-role-selection_panel']")
-        .shouldHave(Condition.cssClass("ui-connected-overlay-exit-done"), SHORT_TIMEOUT);
+        .shouldHave(Condition.cssValue("display", "none"), SHORT_TIMEOUT);
     return roleElement.attr("data-item-value");
   }
 
