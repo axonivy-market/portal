@@ -43,7 +43,7 @@ import ch.ivy.addon.portalkit.util.LanguageUtils;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 
-@ManagedBean
+@ManagedBean(name = "thirdPartyApplicationBean")
 @ViewScoped
 public class ThirdPartyApplicationBean implements Serializable, IMultiLanguage {
   private static final long serialVersionUID = 1L;
