@@ -12,6 +12,8 @@ import static com.codeborne.selenide.Selenide.$$;
 import java.time.Duration;
 import java.util.Arrays;
 
+import org.openqa.selenium.Keys;
+
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
@@ -201,7 +203,7 @@ public class ComplexFilterHelper {
       if ($("div[id='new-widget-configuration-dialog']").isDisplayed()) {
         filterElement.$("span button").$("span[class*='ui-icon-calendar']").click();
       } else {
-        dateInput.get(i).pressEscape();
+        dateInput.get(i).sendKeys(Keys.ESCAPE);
       }
     }
   }
