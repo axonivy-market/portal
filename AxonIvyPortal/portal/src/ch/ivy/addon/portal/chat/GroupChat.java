@@ -77,7 +77,7 @@ public class GroupChat implements Serializable {
   public Set<SecurityMemberDTO> getAssignees() {
     if (CollectionUtils.isEmpty(this.assignees) && CollectionUtils.isNotEmpty(this.assigneeNames)
         && StringUtils.isNotBlank(this.applicationName)) {
-      var app = IApplicationRepository.instance().findByName(applicationName).orElse(null);
+      var app = IApplicationRepository.instance().findReleasedByName(applicationName);
       this.assignees = new HashSet<>();
       for (String assigneeName : assigneeNames) {
         ISecurityMember assignee = assigneeName.startsWith("#")

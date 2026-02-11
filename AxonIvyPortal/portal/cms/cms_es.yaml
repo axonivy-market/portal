@@ -207,7 +207,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       thirdPartyApplication: Aplicación de terceros
     currentValue: Valor actual
     defaultValue: Valor estándard
-    deleteAppConfirmation: ¿Seguro que quiere eliminar esta aplicación?
+    deleteAppConfirmation: ¿Seguro que quiere eliminar esta <b>{0}</b> aplicación?
     dialogclosinginformation:
       dialogHeader: Configuración del portal cerrada
       informMessage: Las modificaciones en la configuración del portal requieren una actualización de la página actual para que la nueva configuración surta efecto.
@@ -931,6 +931,10 @@ ch.ivy.addon.portalkit.ui.jsf:
     statisticChartWidget: Gráfico estadístico
     statisticWidgets: Widgets estadísticos
     switchToViewMode: Modo de visualización
+    taskList: Lista de tareas
+    taskListIntroduction: Este widget muestra la información relevante de la tarea según la configuración definida.
+    taskStart: Iniciar tarea
+    taskWidgetConfiguration: Configuración del widget de tareas
     taskWidgetInfo:
       expireToday: Expira hoy
       expiryThisWeek: Expira esta semana
@@ -939,10 +943,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       numberOfTasksByState: Número de tareas por estado
       predefinedFilters: Filtros predefinidos
       taskDrillDownDashboard: Panel de análisis detallado de tareas
-    taskList: Lista de tareas
-    taskListIntroduction: Este widget muestra la información relevante de la tarea según la configuración definida.
-    taskStart: Iniciar tarea
-    taskWidgetConfiguration: Configuración del widget de tareas
     widgetInfo: Información del widget
     widgetInfoIcon: Icono de información del widget
     widgetTitle: Título del widget
@@ -1133,11 +1133,11 @@ ch.ivy.addon.portalkit.ui.jsf:
       dialogHeaderTitle: Editar información para {0}
     editProcesses: Editar procesos
     externalLink: Enlace externo
+    externalLinkImage: Imagen del enlace externo
     externalLinkVisibility: Visibilidad
     goTo: 'Ir a:'
     icon: Icono
     image: Imagen
-    externalLinkImage: Imagen del enlace externo
     isRequiredMessage: tiene que ser configurado
     linkDescription: Descripción del enlace
     noProcess: Ningún proceso encontrado
@@ -1255,6 +1255,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     taskNotes: Notas
     triggerEscalation: Ejecutar escalación
   taskList:
+    configuration: Configuración
     deadline: Fecha límite
     default: Predeterminado
     defaultColumns:

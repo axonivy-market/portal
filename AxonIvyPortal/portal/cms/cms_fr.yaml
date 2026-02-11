@@ -207,7 +207,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       thirdPartyApplication: Application tierce
     currentValue: Valeur actuelle
     defaultValue: Valeur par défaut
-    deleteAppConfirmation: Etes-vous sûr de vouloir supprimer cette application ?
+    deleteAppConfirmation: Etes-vous sûr de vouloir supprimer cette <b>{0}</b> application?
     dialogclosinginformation:
       dialogHeader: La configuration du portail est terminée
       informMessage: Les modifications des paramètres du portail nécessitent un rafraîchissement de la page actuelle pour que la nouvelle configuration prenne effet.
@@ -1255,6 +1255,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     taskNotes: Notes
     triggerEscalation: Déclencher l'escalade
   taskList:
+    configuration: Konfiguration
     deadline: Date limite
     default: Défaut
     defaultColumns:

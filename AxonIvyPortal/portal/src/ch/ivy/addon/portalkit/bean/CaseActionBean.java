@@ -56,10 +56,6 @@ public class CaseActionBean implements Serializable {
         .concat(iCase.getProcessStart().getFullUserFriendlyRequestPath()));
   }
 
-  public boolean canChangeName(ICase iCase) {
-    return hasPermission(iCase, IPermission.CASE_WRITE_NAME);
-  }
-
   public boolean canChangeDescription(ICase iCase) {
     return hasPermission(iCase, IPermission.CASE_WRITE_DESCRIPTION);
   }
