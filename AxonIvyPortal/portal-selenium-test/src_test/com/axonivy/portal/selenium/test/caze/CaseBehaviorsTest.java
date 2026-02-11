@@ -52,6 +52,9 @@ public class CaseBehaviorsTest extends BaseTest {
     // show case details of related case
     detailsPage.gotoCaseDetailsPageOfRelatedCase(TAKE_ORDER_AND_MAKE_PIZZA);
 
+    resizeBrowserTo2kResolution();
+    redirectToNewDashBoard();
+    newDashboardPage = new NewDashboardPage();
     GlobalSearchResultPage resultPage = newDashboardPage.inputGlobalSearchKeyword(ORDER_PIZZA);
     resultPage.openCaseTab();
     String firstCaseName = resultPage.getNameOfCase(0);
