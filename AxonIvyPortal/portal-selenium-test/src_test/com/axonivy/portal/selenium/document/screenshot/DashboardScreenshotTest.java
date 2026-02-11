@@ -598,7 +598,38 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
         ScreenshotUtils.ACCESSIBILITY_DASHBOARD_FOLDER + "reset-task-dialog",
         new ScreenshotMargin(20, 20, 20, 20));
   }
-
+  
+  @Test
+  public void screenshotConfigurationPanelInEditWidget() throws IOException {
+    ScreenshotUtils.maximizeBrowser();
+    redirectToDashboardConfiguration();
+    DashboardConfigurationPage configPage = new DashboardConfigurationPage();
+    configPage.selectPublicDashboardType();
+    DashboardModificationPage editPage = new DashboardModificationPage();
+    NewDashboardDetailsEditPage detailsEditPage = editPage.navigateToEditDashboardDetailsByName("Dashboard");
+    detailsEditPage.waitForCaseWidgetLoaded();
+    detailsEditPage.addWidget();
+    
+    TaskEditWidgetNewDashBoardPage taskConfigurationPage = detailsEditPage.addNewTaskWidget();
+    taskConfigurationPage.waitPreviewTableLoaded();
+    
+    var taskConfigPanel = taskConfigurationPage.getWidgetConfigurationPanel();
+    taskConfigPanel.$("div[id$='quick-search-group']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    taskConfigurationPage.waitUntilElementToBeClickable(taskConfigPanel);
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(taskConfigPanel,
+        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "task-widget-configuration-panel", new ScreenshotMargin(200));
+    taskConfigurationPage.closeConfigurationDialog();
+    
+    detailsEditPage.addWidget();
+    CaseEditWidgetNewDashBoardPage caseConfigurationPage = detailsEditPage.addNewCaseWidget();
+    caseConfigurationPage.waitPreviewTableLoaded();
+    
+    var caseConfigPanel = caseConfigurationPage.getWidgetConfigurationPanel();
+    caseConfigPanel.$("div[id$='quick-search-group']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    caseConfigurationPage.waitUntilElementToBeClickable(caseConfigPanel);
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(caseConfigPanel,
+        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "case-widget-configuration-panel", new ScreenshotMargin(200));
+  }
 
   private void redirectToDashboardConfiguration() {
     redirectToRelativeLink("portal/1549F58C18A6C562/PortalDashboardConfiguration.ivp");
