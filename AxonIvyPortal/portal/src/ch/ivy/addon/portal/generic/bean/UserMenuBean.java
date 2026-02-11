@@ -63,6 +63,10 @@ public class UserMenuBean implements Serializable {
   protected static final String APPLE_STORE_IMAGE_CMS_URL = "/images/MenuQRCode/AppleStore/AppleStore";
   protected static final String GOOGLE_PLAY_IMAGE_CMS_URL = "/images/MenuQRCode/GooglePlay/GooglePlay";
   private Map<Long, Boolean> caseIdToProcessViewerDisplayed;
+  private boolean isHiddenChangePassword;
+  private boolean isShowQRCode;
+  private boolean isShowCaseDurationTime;
+  private boolean isHiddenLogout;
 
   public String getLoggedInUser() {
     return loggedInUser;
@@ -94,21 +98,30 @@ public class UserMenuBean implements Serializable {
     isShowQuickGlobalSearch = GlobalSettingService.getInstance()
         .findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_QUICK_GLOBAL_SEARCH)
         && (isShowGlobalSearchByProcesses || isShowGlobalSearchByCases || isShowGlobalSearchByTasks);
-  }
-
-  public boolean isShowCaseDurationTime() {
-    return GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_CASE_DURATION_TIME);
-  }
-
-  public boolean isHiddenLogout() {
-    return GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.HIDE_LOGOUT_BUTTON);
-  }
-
-  public boolean isHiddenChangePassword() {
-    return loggedByExternalSecuritySystem()
+    isHiddenChangePassword = loggedByExternalSecuritySystem()
         || GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(
             GlobalVariable.HIDE_CHANGE_PASSWORD_BUTTON)
         || !hasChangePasswordPermission();
+    isShowQRCode = GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_QR_CODE);
+    isShowCaseDurationTime = GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_CASE_DURATION_TIME);
+    isHiddenLogout = GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.HIDE_LOGOUT_BUTTON);
+   
+  }
+
+  public boolean isShowCaseDurationTime() {
+    return isShowCaseDurationTime; 
+  }
+
+  public boolean isHiddenLogout() {
+    return isHiddenLogout;
+  }
+
+  public boolean isHiddenChangePassword() {
+//    Ivy.log().error("XXXXXXXXXXXXXXXXXXXX isHiddenChangePassword");
+    return isHiddenChangePassword;/*loggedByExternalSecuritySystem()
+        || GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(
+            GlobalVariable.HIDE_CHANGE_PASSWORD_BUTTON)
+        || !hasChangePasswordPermission();*/
   }
 
   private boolean hasChangePasswordPermission() {
@@ -351,7 +364,7 @@ public class UserMenuBean implements Serializable {
   }
   
   public boolean isShowQRCode() {
-    return GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_QR_CODE);
+    return isShowQRCode;
   }
   
   public String getQRcodeData() {

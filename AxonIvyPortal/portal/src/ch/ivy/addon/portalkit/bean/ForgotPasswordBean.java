@@ -8,6 +8,7 @@ import javax.faces.bean.ViewScoped;
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
+import ch.ivyteam.ivy.environment.Ivy;
 
 @ManagedBean
 @ViewScoped
@@ -20,6 +21,7 @@ public class ForgotPasswordBean implements Serializable {
   }
 
   public boolean isForgotPasswordRendered() {
+    Ivy.log().error("XXXXXXXXXXXXXXXXXXXX isForgotPasswordRendered");
     return !GlobalSettingService.getInstance().findBooleanGlobalSettingValue(GlobalVariable.HIDE_CHANGE_PASSWORD_BUTTON);
   }
 }

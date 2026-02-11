@@ -17,18 +17,20 @@ public class VisibilityBean implements Serializable {
 
   private static final long serialVersionUID = 6402332157509278585L;
   private GlobalSettingService globalSettingService;
+  private boolean globalSettingValueAsBoolean;
 
   @PostConstruct
   public void init() {
     globalSettingService = GlobalSettingService.getInstance();
+    globalSettingValueAsBoolean = globalSettingService.findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_BUTTON_ICON);
   }
 
   public boolean isShowButtonIcon() {
-    return globalSettingService.findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_BUTTON_ICON);
+    return globalSettingValueAsBoolean;
   }
 
   public String generateButtonIcon(String iconClass) {
-    return globalSettingService.findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_BUTTON_ICON) ? iconClass : StringUtils.EMPTY;
+    return globalSettingValueAsBoolean ? iconClass : StringUtils.EMPTY;
   }
 
   public boolean isShowLoginFooter() {

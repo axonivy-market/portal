@@ -32,11 +32,14 @@ public class ThemeBean implements Serializable {
       "Portal.switchToThemeMode('%s');Portal.changePortalVariableTheme('%s');";
   private IvyFreyaTheme ivyFreyaTheme;
 
+  private boolean isEnableSwitchThemeButton;
+
   @PostConstruct
   public void init() {
     String themeModeFromCookie = getThemeModeFromCookie();
     String themeMode = StringUtils.isNotBlank(themeModeFromCookie) ? themeModeFromCookie : getDefaultThemeMode();
     changeToThemeMode(themeMode);
+    isEnableSwitchThemeButton = GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.ENABLE_SWITCH_THEME_BUTTON);
   }
 
   private String getThemeModeFromCookie() {
@@ -66,7 +69,7 @@ public class ThemeBean implements Serializable {
   }
 
   public boolean isEnableSwitchThemeButton() {
-    return GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.ENABLE_SWITCH_THEME_BUTTON);
+    return isEnableSwitchThemeButton;
   }
 
   public void toggleTheme() {
