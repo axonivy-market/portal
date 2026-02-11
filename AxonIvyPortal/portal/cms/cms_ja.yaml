@@ -1236,6 +1236,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     taskNotes: ノート
     triggerEscalation: エスカレーションのトリガー
   taskList:
+    configuration: 設定
     deadline: 期限
     default: 初期値
     defaultColumns:
