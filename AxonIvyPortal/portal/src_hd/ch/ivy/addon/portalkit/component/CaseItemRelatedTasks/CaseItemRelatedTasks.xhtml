@@ -31,7 +31,7 @@
           itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/ShowOnlyOpenTasks')}"
           styleClass="case-history-checkbox u-hidden-md-down u-hidden-sm-down">
           <p:ajax process="@this" partialSubmit="true"
-            update="case-details-related-task-table" oncomplete="PF('related-tasks-table').getPaginator().setPage(0)" />
+            update="case-details-related-task-table" oncomplete="correctNavigatorWhenFilteringOpenTasks()" />
         </p:selectBooleanCheckbox>
         </div>
         <h:form id="task-export-to-excel-form" styleClass="related-task-export-to-excel ui-sm-hidden">
@@ -267,6 +267,16 @@
       var statusDialog = PF('related-task-status-dialog');
       statusDialog.jq.attr("download-status", "completed");
       statusDialog.hide();
+    }
+
+    function correctNavigatorWhenFilteringOpenTasks() {
+      var relatedTable = PF('related-tasks-table')
+      var currentPage = relatedTable.getPaginator();
+      if(!currentPage){
+        return;
+      }
+      console.log("reset to first page");
+      relatedTable.filter();
     }
   </script>
 
