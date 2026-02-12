@@ -67,7 +67,7 @@
     <p:overlayPanel id="widget-configuration-panel" for="widget-configuration-button"
       styleClass="widget-configuration-overlaypanel" widgetVar="widgetConfigurationPanel" appendTo="@body"
       my="right top" at="right bottom">
-      <h4 class="widget-configuration-section-header">Display Settings</h4>
+      <h4 class="widget-configuration-section-header">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DisplaySettings')}</h4>
       <h:panelGroup id="quick-search-group" layout="block"
         rendered="#{managedBean.canEnableQuickSearch()}"
         styleClass="widget-configuration-group-item ui-fluid flex">
@@ -135,7 +135,7 @@
       </h:panelGroup>
       <!-- Case Query Type Selector (Case Widget only) -->
       <h:panelGroup rendered="#{widget.type.name() == 'CASE'}">
-        <h4 class="widget-configuration-section-header separator-top">Data Settings</h4>
+        <h4 class="widget-configuration-section-header separator-top">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DataSettings')}</h4>
       </h:panelGroup>
       <h:panelGroup id="case-query-type-group"
         rendered="#{widget.type.name() == 'CASE'}"

@@ -746,6 +746,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     CaseQueryTypeInfo: Configure which case types are shown in the Case Widget. Default shows business cases only, Sub Cases shows technical subcases only, and All shows both business cases and technical subcases.
     CloneWidget: Clone widget
     CustomWidgets: Custom Widgets
+    DataSettings: Data Settings
     DashboardConfiguration:
       CreateFromScratch: Create from scratch
       CreateFromScratchDescription: Create your own dashboard from scratch
@@ -765,6 +766,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       SelectAction: Select the action
       SomeThingWentWrong: Something went wrong
       Title: Dashboard configuration
+    DisplaySettings: Display Settings
     DrillDownWidget:
       caseDrillDown: Drill-down case widget for {0}
       taskDrillDown: Drill-down task widget for {0}

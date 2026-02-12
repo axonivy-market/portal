@@ -742,6 +742,7 @@ ch.ivy.addon.portalkit.ui.jsf:
   dashboard:
     CloneWidget: Clonar el widget
     CustomWidgets: Widgets personalizados
+    DataSettings: Configuración de datos
     DashboardConfiguration:
       CreateFromScratch: Crear desde cero
       CreateFromScratchDescription: Cree su propio panel de control desde cero
@@ -761,6 +762,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       SelectAction: Seleccione la acción
       SomeThingWentWrong: Algo salió mal
       Title: Configuración Dashboard
+    DisplaySettings: Configuración de visualización
     DrillDownWidget:
       caseDrillDown: Widget de casos detallados para {0}
       taskDrillDown: Widget de tareas detalladas para {0}
