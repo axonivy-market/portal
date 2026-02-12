@@ -48,7 +48,7 @@ pipeline {
                 exit 1
               fi
 
-              zip -j "${deployZip}" "\${IAR_FILES[@]}"
+              jar -cf "${deployZip}" "\${IAR_FILES[@]}"
               echo "Created deploy bundle: ${deployZip}"
             """
             def engineUrl = 'http://' + utils.getJenkinsMasterDomain() + ':9000/system/api/apps/Portal'
