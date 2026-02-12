@@ -741,11 +741,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       savedFilters: 'Filtres enregistrés:'
   dashboard:
     CaseQueryType:
-      all: Cas métier + Sous-cas
-      businessCases: Cas métier (Par défaut)
       info: Configurez les types de cas affichés dans le widget de cas. Par défaut, seuls les cas métier sont affichés, Sous-cas techniques affiche uniquement les sous-cas techniques, et Tous affiche à la fois les cas métier et les sous-cas techniques.
       label: Type de cas
-      subCases: Sous-cas
     CloneWidget: Cloner le widget
     CustomWidgets: Widgets personnalisés
     dataSettings: Paramètres de données
@@ -1740,7 +1737,13 @@ Enums:
               LESSOREQUAL:
                 name: |+
                   Inférieur ou égal à
-
+          CaseQueryType:
+            ALL:
+              name: Cas métier + Sous-cas
+            BUSINESS_CASE:
+              name: Cas métier (Par défaut)
+            SUB_CASE:
+              name: Sous-cas
 Labels:
   AI:
     Error:

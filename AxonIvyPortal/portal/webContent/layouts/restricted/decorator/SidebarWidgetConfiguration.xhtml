@@ -149,12 +149,8 @@
         </div>
         <div>
           <p:selectOneMenu id="case-query-type" value="#{widget.caseQueryType}" styleClass="case-query-type-selector">
-            <f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/CaseQueryType/businessCases')}" 
-              itemValue="BUSINESS_CASE" />
-            <f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/CaseQueryType/subCases')}" 
-              itemValue="SUB_CASE" />
-            <f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/CaseQueryType/all')}" 
-              itemValue="ALL" />
+            <f:selectItems value="#{managedBean.allCaseQueryTypes}" var="caseQueryType"
+              itemLabel="#{caseQueryType.getCmsName()}" itemValue="#{caseQueryType}" />
             <p:ajax process="case-query-type-group" update="case-query-type-group #{componentToUpdateOnPreview}" partialSubmit="true" />
           </p:selectOneMenu>
         </div>

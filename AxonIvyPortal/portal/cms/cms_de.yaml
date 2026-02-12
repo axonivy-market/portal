@@ -743,11 +743,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       savedFilters: 'Gespeicherte Filter:'
   dashboard:
     CaseQueryType:
-      all: Geschäftsvorgänge + Untervorgänge
-      businessCases: Geschäftsvorgänge (Standard)
       info: Konfigurieren Sie, welche Vorgangstypen im Vorgangs-Widget angezeigt werden. Standard zeigt nur Geschäftsvorgänge, Technische Untervorgänge zeigt nur technische Untervorgänge, und Alle zeigt sowohl Geschäftsvorgänge als auch technische Untervorgänge.
       label: Vorgangstyp
-      subCases: Untervorgänge
     CloneWidget: Widget klonen
     CustomWidgets: Benutzerdefinierte Widgets
     dataSettings: Dateneinstellungen
@@ -1745,7 +1742,13 @@ Enums:
               LESSOREQUAL:
                 name: |+
                   Kleiner oder gleich
-
+          CaseQueryType:
+            ALL:
+              name: Geschäftsvorgänge + Untervorgänge
+            BUSINESS_CASE:
+              name: Geschäftsvorgänge (Standard)
+            SUB_CASE:
+              name: Untervorgänge
 Labels:
   AI:
     Error:
