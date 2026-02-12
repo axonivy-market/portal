@@ -70,8 +70,7 @@
                 styleClass="si si-view-1 Fright document-preview ui-sm-hidden"
                 actionListener="#{logic.previewDocument(document)}"
                 rendered="#{data.isDocumentPreviewEnabled and caseTaskDocumentBean.isSupportedPreviewType(document)}"
-                update="#{cc.clientId}:preview-document-dialog"
-                oncomplete="PF('preview-document-dialog').show()">
+                oncomplete="if (args &amp;&amp; !args.validationFailed) {PF('preview-document-dialog').show();} else {PF('preview-document-warning-dialog').show();}">
                 <p:tooltip for="preview-file" trackMouse="true" hideEvent="mouseleave click"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/PreviewDocument')}" />
               </p:commandLink>
@@ -196,6 +195,23 @@
         icon="#{visibilityBean.generateButtonIcon('si si-remove')}" onclick="PF('preview-document-dialog').hide();" />
     </div>
   </p:dialog>
+  
+  <ui:decorate template="/layouts/decorator/portal-dialog-with-icon.xhtml">
+    <ui:param name="widgetVar" value="preview-document-warning-dialog" />
+    <ui:param name="appendTo" value="@(body)" />
+    <ui:param name="styleClass" value="w-4"></ui:param>
+    <ui:param name="iconClass" value="si si-delete-1" />
+    <ui:param name="iconStyleClass" value="portal-dialog-error-icon" />
+    <ui:param name="headerText" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/warning')}" />
+    <ui:param name="dialogContent" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/previewErrorMessage')}" />
+
+    <ui:define name="dialogFooter">
+      <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
+        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}" type="button"
+        id="preview-document-warning-close-button" styleClass="w-full" onclick="PF('preview-document-warning-dialog').hide();" />
+    </ui:define>
+  </ui:decorate>
+  
 
   <p:dialog id="document-renaming-dialog" widgetVar="document-renaming-dialog" appendTo="@(body)"
     header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/RenamingDocument')}" modal="true" resizable="false" showEffect="fade" hideEffect="fade"

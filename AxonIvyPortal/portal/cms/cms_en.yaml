@@ -952,6 +952,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     RenamingDocumentNote: '{0} has renamed the file {1} to {2}'
     RenamingDocumentSuccess: Rename successfully.
     RenamingFailed: An error occurs while renaming the document.
+    confirmationUploadDocument: "Security Scan Unavailable This file is encrypted and cannot be scanned for security threats before uploading.\n\n- \nClick OK to continue with the upload.\n\n\n- Click Cancel to stop."
     deleteDocumentNote: '{0} has deleted {1}'
     deleteSuceed: File deleted successfully
     download: Download
@@ -960,6 +961,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     fileCouldNotParse: Could not parse the file
     fileEmptyMessage: File is empty
     name: Filename
+    previewErrorMessage: Unable to preview this file
     size: File size
     type: Type
     upload: Upload new file

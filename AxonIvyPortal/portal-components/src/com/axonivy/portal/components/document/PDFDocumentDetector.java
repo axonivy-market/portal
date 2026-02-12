@@ -40,7 +40,12 @@ public class PDFDocumentDetector implements DocumentDetector {
           safeState = (namesArray == null || namesArray.isEmpty()) && !hasAcroForm && !hasOpenAction;
         }
       }
-    } catch (Exception e) {
+    }
+    catch (NoClassDefFoundError e) {
+      Ivy.log().error("This file is encrypted and cannot be scanned for security threats before uploading.");
+      safeState = true;
+    }
+    catch (Exception e) {
       Ivy.log().error("PDF security check failed", e);
       safeState = false;
     } finally {

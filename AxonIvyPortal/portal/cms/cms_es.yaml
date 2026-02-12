@@ -962,6 +962,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     fileCouldNotParse: No se pudo analizar el archivo
     fileEmptyMessage: El archivo está vacío
     name: Nombre de archivo
+    previewErrorMessage: No se puede obtener la vista previa de este archivo
     size: Tamaño de archivo
     type: Tipo
     upload: Cargar archivo nuevo
