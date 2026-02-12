@@ -19,7 +19,7 @@ import com.axonivy.portal.selenium.page.TopMenuTaskWidgetPage;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 
-@IvyWebTest
+@IvyWebTest(headless = false)
 public class TaskWidgetTest extends BaseTest {
 
   private TaskDetailsPage taskDetailsPage;
@@ -124,7 +124,7 @@ public class TaskWidgetTest extends BaseTest {
 
   @Test
   public void testTogglePinnedTask() {
-    resizeBrowserToFullHDResolution();
+    showNewDashboard();
     NavigationHelper.navigateToTaskList();
     TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
     for (int i = 2; i > 0; i--) {
