@@ -668,8 +668,15 @@
       "config" : {
         "output" : {
           "code" : [
+            "import javax.faces.context.FacesContext;",
+            "import java.io.IOException;",
             "import com.axonivy.portal.components.util.DocumentUtils;",
-            "in.streamedContent = DocumentUtils.findDocFactoryAndConvert(in.streamedContent);"
+            "",
+            "  try  {",
+            "    in.streamedContent = DocumentUtils.findDocFactoryAndConvert(in.streamedContent);",
+            "  } catch (IOException e) {",
+            "    FacesContext.getCurrentInstance().validationFailed();",
+            "  }"
           ]
         }
       },
