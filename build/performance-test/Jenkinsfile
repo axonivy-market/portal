@@ -43,12 +43,12 @@ pipeline {
               rm -f "${deployZip}"
 
               IAR_FILES=(AxonIvyPortal/portal-components/target/*.iar AxonIvyPortal/portal/target/*.iar)
-              if [[ ! -e "${IAR_FILES[0]}" ]]; then
+              if [[ ! -e "\${IAR_FILES[0]}" ]]; then
                 echo "No IAR files found to package for deployment."
                 exit 1
               fi
 
-              zip -j "${deployZip}" "${IAR_FILES[@]}"
+              zip -j "${deployZip}" "\${IAR_FILES[@]}"
               echo "Created deploy bundle: ${deployZip}"
             """
             def engineUrl = 'http://' + utils.getJenkinsMasterDomain() + ':9000/system/api/apps/Portal'
