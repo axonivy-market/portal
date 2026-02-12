@@ -743,14 +743,14 @@ ch.ivy.addon.portalkit.ui.jsf:
       savedFilters: 'Gespeicherte Filter:'
   dashboard:
     CaseQueryType:
-      All: Geschäftsvorgänge + Untervorgänge
-      BusinessCase: Geschäftsvorgänge (Standard)
-      SubCase: Untervorgänge
-      _: Vorgangstyp
-    CaseQueryTypeInfo: Konfigurieren Sie, welche Vorgangstypen im Vorgangs-Widget angezeigt werden. Standard zeigt nur Geschäftsvorgänge, Technische Untervorgänge zeigt nur technische Untervorgänge, und Alle zeigt sowohl Geschäftsvorgänge als auch technische Untervorgänge.
+      all: Geschäftsvorgänge + Untervorgänge
+      businessCases: Geschäftsvorgänge (Standard)
+      info: Konfigurieren Sie, welche Vorgangstypen im Vorgangs-Widget angezeigt werden. Standard zeigt nur Geschäftsvorgänge, Technische Untervorgänge zeigt nur technische Untervorgänge, und Alle zeigt sowohl Geschäftsvorgänge als auch technische Untervorgänge.
+      label: Vorgangstyp
+      subCases: Untervorgänge
     CloneWidget: Widget klonen
     CustomWidgets: Benutzerdefinierte Widgets
-    DataSettings: Dateneinstellungen
+    dataSettings: Dateneinstellungen
     DashboardConfiguration:
       CreateFromScratch: Von Grund auf neu erstellen
       CreateFromScratchDescription: Erstellen Sie Ihr eigenes Dashboard von Grund auf
@@ -770,7 +770,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       SelectAction: Wählen Sie die Aktion
       SomeThingWentWrong: Etwas ist schief gelaufen
       Title: Dashboard-Konfiguration
-    DisplaySettings: Anzeigeeinstellungen
+    displaySettings: Anzeigeeinstellungen
     DrillDownWidget:
       caseDrillDown: Drilldown-Fall-Widget für {0}
       taskDrillDown: Drilldown-Aufgaben-Widget für {0}

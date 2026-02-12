@@ -742,7 +742,7 @@ ch.ivy.addon.portalkit.ui.jsf:
   dashboard:
     CloneWidget: ウィジェット複製
     CustomWidgets: カスタムウィジェット
-    DataSettings: データ設定
+    dataSettings: データ設定
     DashboardConfiguration:
       CreateFromScratch: 最初から作成
       CreateFromScratchDescription: 最初から独自のダッシュボードを作成する
@@ -762,7 +762,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       SelectAction: アクションを選択してください
       SomeThingWentWrong: 問題が発生しました
       Title: ダッシュボードの設定
-    DisplaySettings: 表示設定
+    displaySettings: 表示設定
     DrillDownWidget:
       caseDrillDown: 「{0}」用ドリルダウンケースウィジェット
       taskDrillDown: 「{0}」用ドリルダウンタスクウィジェット
@@ -784,11 +784,12 @@ ch.ivy.addon.portalkit.ui.jsf:
     QuickSearch: クイック検索
     QuickSearchInfo: ウィジェットの列管理で、クイック検索の範囲をカスタマイズできます。「含む」に基づいて検索しますが、多数の列を追加する場合はパフォーマンスに注意してください。
     QuickSearchScope: 検索範囲：{0}
-    CaseQueryType: ケースタイプ
-    CaseQueryTypeInfo: ケースウィジェットに表示するケースタイプを設定します。デフォルトはビジネスケースのみ、技術サブケースは技術サブケースのみ、すべてはビジネスケースと技術サブケースの両方を表示します。
-    CaseQueryType/BusinessCase: ビジネスケース（デフォルト）
-    CaseQueryType/SubCase: 技術サブケース
-    CaseQueryType/All: ビジネスケース + サブケース
+    CaseQueryType:
+      all: ビジネスケース + サブケース
+      businessCases: ビジネスケース（デフォルト）
+      info: ケースウィジェットに表示するケースタイプを設定します。デフォルトはビジネスケースのみ、技術サブケースは技術サブケースのみ、すべてはビジネスケースと技術サブケースの両方を表示します。
+      label: ケースタイプ
+      subCases: 技術サブケース
     RestoreDefaultDashboardMessage: 続行すると、自分で作成したすべてのウィジェットが失われます。<span class="dashboard-template-name-message">{0}</span> の標準設定が適用されます。
     SaveNewWidgetFilterHeader: 新しいウィジェットフィルターを保存
     SavedFilterHeader: 保存されたフィルター

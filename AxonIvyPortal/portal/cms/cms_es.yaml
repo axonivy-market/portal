@@ -742,7 +742,7 @@ ch.ivy.addon.portalkit.ui.jsf:
   dashboard:
     CloneWidget: Clonar el widget
     CustomWidgets: Widgets personalizados
-    DataSettings: Configuración de datos
+    dataSettings: Configuración de datos
     DashboardConfiguration:
       CreateFromScratch: Crear desde cero
       CreateFromScratchDescription: Cree su propio panel de control desde cero
@@ -762,7 +762,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       SelectAction: Seleccione la acción
       SomeThingWentWrong: Algo salió mal
       Title: Configuración Dashboard
-    DisplaySettings: Configuración de visualización
+    displaySettings: Configuración de visualización
     DrillDownWidget:
       caseDrillDown: Widget de casos detallados para {0}
       taskDrillDown: Widget de tareas detalladas para {0}
@@ -784,11 +784,12 @@ ch.ivy.addon.portalkit.ui.jsf:
     QuickSearch: Búsqueda rápida
     QuickSearchInfo: Puede personalizar el alcance de la búsqueda rápida en la gestión de columnas de widgets. La búsqueda se realiza en función de "contiene", pero tenga en cuenta el rendimiento al agregar numerosas columnas.
     QuickSearchScope: 'Ámbito de búsqueda: {0}'
-    CaseQueryType: Tipo de caso
-    CaseQueryTypeInfo: Configure qué tipos de casos se muestran en el widget de casos. Predeterminado muestra solo casos de negocio, Subcasos técnicos muestra solo subcasos técnicos, y Todos muestra tanto casos de negocio como subcasos técnicos.
-    CaseQueryType/BusinessCase: Casos de negocio (Predeterminado)
-    CaseQueryType/SubCase: Subcasos técnicos
-    CaseQueryType/All: Casos de negocio + Subcasos
+    CaseQueryType:
+      all: Casos de negocio + Subcasos
+      businessCases: Casos de negocio (Predeterminado)
+      info: Configure qué tipos de casos se muestran en el widget de casos. Predeterminado muestra solo casos de negocio, Subcasos técnicos muestra solo subcasos técnicos, y Todos muestra tanto casos de negocio como subcasos técnicos.
+      label: Tipo de caso
+      subCases: Subcasos técnicos
     RestoreDefaultDashboardMessage: Si continúa, perderá todos los widgets creados por usted. Se aplicará la configuración estándar de <span class="dashboard-template-name-message">{0}</span>.
     SaveNewWidgetFilterHeader: Guardar un nuevo filtro de widget
     SavedFilterHeader: Filtros guardados
