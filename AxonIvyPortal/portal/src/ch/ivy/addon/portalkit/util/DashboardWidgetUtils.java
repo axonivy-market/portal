@@ -551,7 +551,7 @@ public class DashboardWidgetUtils {
       processWidget.setEmptyProcessMessage(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/processes/noProcessSelected"));
       return;
     }
-    boolean hasProcessPermission = Ivy.Ivy.session().getStartableProcessStarts().stream()
+    boolean hasProcessPermission = Ivy.session().getStartableProcessStarts().stream()
         .anyMatch(p -> processPath.contains(p.getUserFriendlyRequestPath()));
     List<String> publicExternalLinkIdsNotForIvySessionUser = getPublicExternalLinkIdsNotForIvySessionUser();
     // check permission with external processes
