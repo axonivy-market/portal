@@ -24,8 +24,10 @@ pipeline {
           for (engineName in engineNames) {
             sh "docker compose -f ${ivyDir}/${engineName}/docker-compose.yml down"
           }
+
+          def composeFile = "${ivyDir}/${engineNames[4]}/docker-compose.yml"
           sh """
-            docker compose -f ${ivyDir}/${engineNames[4]}/docker-compose.yml up -d
+            docker compose -f ${composeFile} up -d
             #Workaround because PMV Portal starts slow
             sleep 100
           """
@@ -37,24 +39,20 @@ pipeline {
             for (module in modules) {
               maven cmd: "clean install -f ${module}/pom.xml"
             }
-            def deployZip = "${WORKSPACE}/portal-deploy.zip"
-            sh """#!/bin/bash
-              set -euo pipefail
-              rm -f "${deployZip}"
+            maven cmd: "clean package -f AxonIvyPortal/PortalApp/pom.xml"
+          }
 
-              IAR_FILES=(AxonIvyPortal/portal-components/target/*.iar AxonIvyPortal/portal/target/*.iar)
-              if [[ ! -e "\${IAR_FILES[0]}" ]]; then
-                echo "No IAR files found to package for deployment."
-                exit 1
-              fi
+          // Deploy ZIP to engine via file-drop
+          def containerId = sh(script: "docker compose -f ${composeFile} ps -q", returnStdout: true).trim()
+          def zipFile = sh(script: "ls ${WORKSPACE}/AxonIvyPortal/PortalApp/target/portal-app-*.zip", returnStdout: true).trim()
+          sh "docker cp ${zipFile} ${containerId}:/opt/ivy/engine/deploy/Portal.zip"
 
-              jar -cf "${deployZip}" "\${IAR_FILES[@]}"
-              echo "Created deploy bundle: ${deployZip}"
-            """
-            def engineUrl = 'http://' + utils.getJenkinsMasterDomain() + ':9000/system/api/apps/Portal'
-            sh """
-              curl --fail -X POST -F "file=@${deployZip}" ${engineUrl}
-            """
+          // Wait for deployment to complete
+          timeout(time: 5, unit: 'MINUTES') {
+            waitUntil(initialRecurrencePeriod: 5000) {
+              def status = sh(script: "docker exec ${containerId} sh -c 'test -f /opt/ivy/engine/deploy/Portal.zip.deployed && echo deployed || echo waiting'", returnStdout: true).trim()
+              return status == 'deployed'
+            }
           }
         }
       }
