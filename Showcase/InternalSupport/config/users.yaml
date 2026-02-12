@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://json-schema.axonivy.com/config/14.0.0/users.json
+Users:
+  - Name: caseOwnerUser
+    Password: caseOwnerUser
+    Roles:
+      - CaseOwner
+  - Name: david
+    Password: david
+    FullName: david
+    Roles:
+      - HR
+  - Name: peter
+    Password: peter
+    Roles:
+      - HR

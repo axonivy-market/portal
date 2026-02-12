@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://json-schema.axonivy.com/config/14.0.0/roles.json
+Roles:
+  - Id: Tester
+    Name: Tester
+  - Id: Supporter
+    Name: Supporter
+  - Id: UiDesigner
+    Name: UI Designer
+  - Id: BackendDeveloper
+    Name: Backend Developer
+  - Id: ProjectManager
+    Name: Project Manager
+  - Id: EmptyRole
+    Name: Empty role for testing

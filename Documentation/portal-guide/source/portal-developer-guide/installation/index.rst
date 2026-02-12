@@ -154,6 +154,13 @@ In Engine
 
 #. Follow detailed migration notes for each version below.
 
+Migrate To 14.0
+---------------
+
+1. Permissions **🔑AccessFullCaseList** and **🔑AccessFullTaskList** have been removed.
+Default Tasks and Cases dashboards now work like any other dashboards. If you want to restrict access to these dashboards, you can now configure their permissions using user roles. 
+Please access the :ref:`Dashboard Configuration <dashboard-configuration>` page to change its default settings.
+
 Migrate 13.1 To 13.2
 --------------------
 
@@ -609,7 +616,7 @@ Changes in 9.2
 
 - Included new CaseState ``Destroyed`` in Portal Case list, also in Case State filter.
 
-- Introduced :ref:`Workflow Events table <how-to-show-workflow-events>`, user who has permission :bdg-warning:`🔑WorkflowEventReadAll` can see all ``WORKFLOW_EVENTS``.
+- Introduced :ref:`Workflow Events table <how-to-show-workflow-events>`, user who has permission: 🔑WorkflowEventReadAll can see all ``WORKFLOW_EVENTS``.
 
 - Introduced the ``Portal.Homepage`` Portal setting to set the default homepage, each user can change it via user profile.
 

@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://json-schema.axonivy.com/config/14.0.0/users.json
+Users:
+  - Name: admin
+    Password: admin
+    FullName: Portal Admin User
+    Mail: portal1.axonivy@gmail.com
+    Roles:
+      - AXONIVY_PORTAL_ADMIN
+  - Name: demo
+    Password: demo
+    FullName: Portal Demo User
+    Mail: portal2.axonivy@gmail.com
+  - Name: guest
+    Password: guest
+    FullName: Portal Guest User

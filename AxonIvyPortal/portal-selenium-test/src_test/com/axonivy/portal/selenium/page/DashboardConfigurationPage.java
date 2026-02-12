@@ -159,6 +159,13 @@ public class DashboardConfigurationPage extends TemplatePage {
     inputCreateDashboardDialog(newName, icon, newDescription, permissions, true, DashboardDisplayType.SUB_MENU);
   }
 
+  public void createPublicDashboardFromTemplate(String newName, String icon, String newDescription,
+      List<String> permissions, int templateIndex, boolean isPublicDashboard, DashboardDisplayType type) {
+    waitForCreateNewDashboardSectionAppear().$("a[id$='" + templateIndex + ":template']")
+        .shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+    inputCreateDashboardDialog(newName, icon, newDescription, permissions, isPublicDashboard, type);
+  }
+
   public SelenideElement openCreateDashboardDialog() {
     $("a[id$=':create-from-scratch']").shouldBe(getClickableCondition()).click();
     String creationDetailsDialogId = "[id='dashboard-template-selection-component:dashboard-creation-component:dashboard-creation-details-dialog']";
@@ -550,22 +557,22 @@ public class DashboardConfigurationPage extends TemplatePage {
   }
   
   public StatisticConfigurationPage clickOnCreateCustomStatisticWidgetButton() {
-    $("button[id$='create-custom-statistic']").shouldBe(appear, DEFAULT_TIMEOUT).click();
+    $("a[id$='create-custom-statistic-button']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     return new StatisticConfigurationPage();
   }
 
   public StatisticWidgetNewDashboardPage addNewStatisticWidget(String widgetName) {
     setSearchInput(widgetName);
-    $("div.new-widget-dialog__content").shouldBe(appear, DEFAULT_TIMEOUT)
-    .$$("div.new-widget-dialog__item").filter(Condition.visible).first().shouldBe(appear, DEFAULT_TIMEOUT)
-    .$("div.new-widget-dialog__item-details").shouldBe(appear, DEFAULT_TIMEOUT)
-    .$("button[id$='add-widget']").shouldBe(appear, DEFAULT_TIMEOUT).click();
+    $("div[id$='new-widget-dialog_content']").shouldBe(appear, DEFAULT_TIMEOUT)
+        .$$("a.new-widget-dialog__item-content")
+        .filter(Condition.text(widgetName)).first()
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     return new NewDashboardPage().selectStatisticChartWidget(widgetName);
   }
   
   public void setSearchInput(String widgetName) {
     $("div.new-widget-dialog__search").shouldBe(appear, DEFAULT_TIMEOUT)
-        .$("[id $= 'search-input'").shouldBe(appear, DEFAULT_TIMEOUT)
+        .$("[id $= 'search-input']").shouldBe(appear, DEFAULT_TIMEOUT)
         .sendKeys(widgetName);
   }
 }

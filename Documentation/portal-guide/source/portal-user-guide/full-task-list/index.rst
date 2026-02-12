@@ -7,8 +7,11 @@ The **Full Task List** page is a dashboard featuring a single, full-width task w
 You can reach the page by using the |task-list-icon| :guilabel:`Tasks` link in the Axon Ivy Portal menu.
 
 .. important::
-   **Access Requirement**: Only users with the :bdg-ref-warning:`🔑AccessFullTaskList <AccessFullTaskList>` 
-   permission can see the |task-list-icon| :guilabel:`Tasks` menu item.
+   - The Full Task List dashboard works normally like any other dashboard. You can manage it in the :ref:`Dashboard Configuration <dashboard-configuration>` page.
+
+   - The template :guilabel:`Full Task List dashboard` will support you in creating a new dashboard with a similar layout, see :ref:`public-available-dashboard-template`.
+
+   - This dashboard is visible to all users by default. To restrict access to specific user roles, configure the dashboard permissions in the :ref:`Dashboard Configuration <dashboard-configuration>` page.
 
 .. tip:: 
    Depending on your application roles and Portal configuration, you might see not only your tasks but all open tasks.
@@ -311,36 +314,36 @@ Different task operations require specific permissions:
    +--------------------------------------+--------------------------------------------------------+
    | Action                               | Required Permission                                    |
    +======================================+========================================================+
-   | **Reset task**                       | :bdg-ref-warning:`🔑TaskDisplayResetAction             |
+   | **Reset task**                       | :ref:`🔑TaskDisplayResetAction                         |
    |                                      | <TaskDisplayResetAction>`                              |
    +--------------------------------------+--------------------------------------------------------+
-   | **Reserve task**                     | :bdg-ref-warning:`🔑TaskDisplayReserveAction           |
+   | **Reserve task**                     | :ref:`🔑TaskDisplayReserveAction                       |
    |                                      | <TaskDisplayReserveAction>`                            |
    +--------------------------------------+--------------------------------------------------------+
-   | **Delegate task**                    | :bdg-ref-warning:`🔑TaskDisplayDelegateAction          |
+   | **Delegate task**                    | :ref:`🔑TaskDisplayDelegateAction                      |
    |                                      | <TaskDisplayDelegateAction>`                           |
    +--------------------------------------+--------------------------------------------------------+
-   | **Destroy task**                     | :bdg-ref-warning:`🔑TaskDisplayDestroyAction           |
+   | **Destroy task**                     | :ref:`🔑TaskDisplayDestroyAction                       |
    |                                      | <TaskDisplayDestroyAction>`                            |
    +--------------------------------------+--------------------------------------------------------+
-   | **View additional options**          | :bdg-ref-warning:`🔑TaskDisplayAdditionalOptions       |
+   | **View additional options**          | :ref:`🔑TaskDisplayAdditionalOptions                   |
    |                                      | <TaskDisplayAdditionalOptions>`                        |
    +--------------------------------------+--------------------------------------------------------+
-   | **View workflow events**             | :bdg-ref-warning:`🔑TaskDisplayWorkflowEventAction     |
+   | **View workflow events**             | :ref:`🔑TaskDisplayWorkflowEventAction                 |
    |                                      | <TaskDisplayWorkflowEventAction>` and                  |
-   |                                      | :bdg-warning:`🔑WorkflowEventReadAll`                  |
+   |                                      | 🔑WorkflowEventReadAll                                 |
    +--------------------------------------+--------------------------------------------------------+
-   | **View custom fields**               | :bdg-ref-warning:`🔑TaskDisplayCustomFieldsAction      |
+   | **View custom fields**               | :ref:`🔑TaskDisplayCustomFieldsAction                  |
    |                                      | <TaskDisplayCustomFieldsAction>`                       |
    +--------------------------------------+--------------------------------------------------------+
-   | **Add/delete task documents**        | :bdg-ref-warning:`🔑DocumentOfInvolvedCaseWrite        |
+   | **Add/delete task documents**        | :ref:`🔑DocumentOfInvolvedCaseWrite                    |
    |                                      | <DocumentOfInvolvedCaseWrite>` or                      |
-   |                                      | :bdg-ref-warning:`🔑DocumentWrite <DocumentWrite>`     |
+   |                                      | :ref:`🔑DocumentWrite <DocumentWrite>`                 |
    +--------------------------------------+--------------------------------------------------------+
-   | **Add note to task**                 | :bdg-ref-warning:`🔑TaskCaseAddNote                    |
+   | **Add note to task**                 | :ref:`🔑TaskCaseAddNote                                |
    |                                      | <TaskCaseAddNote>`                                     |
    +--------------------------------------+--------------------------------------------------------+
-   | **Share task details link**          | :bdg-ref-warning:`🔑ShareTaskDetailsLink               |
+   | **Share task details link**          | :ref:`🔑ShareTaskDetailsLink                           |
    |                                      | <ShareTaskDetailsLink>`                                |
    +--------------------------------------+--------------------------------------------------------+
 

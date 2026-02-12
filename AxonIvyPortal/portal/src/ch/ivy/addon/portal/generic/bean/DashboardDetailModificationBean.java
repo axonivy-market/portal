@@ -195,54 +195,53 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     } catch (PortalException e) {
       Ivy.log().error(e);
     }
-    DashboardUtils.addDefaultTaskCaseListDashboardsIfMissing(collectedDashboards);
     return collectedDashboards.stream()
         .filter(dashboard -> dashboard.getId().equals(selectedDashboardId)).collect(Collectors.toList());
   }
 
   private WidgetSample taskSample() {
     return new WidgetSample(translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/taskList"), TASK,
-        "task-widget-sample.png", translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/taskListIntroduction"));
+        "si si-checklist-pen", translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/taskListIntroduction"));
   }
 
   private WidgetSample caseSample() {
     return new WidgetSample(translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/caseList"), CASE,
-        "case-widget-sample.png", translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/caseListIntroduction"));
+        "si si-list-bullets", translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/caseListIntroduction"));
   }
 
   private WidgetSample processSample() {
     return new WidgetSample(translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/processList"), PROCESS,
-        "process-widget-sample.png", translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/processListIntroduction"));
+        "si si-layout-bullets", translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/processListIntroduction"));
   }
 
   private WidgetSample externalPageSample() {
     return new WidgetSample(translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/ExternalPageWidget"), CUSTOM,
-        "si si-network-arrow", translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/ExternalPageWidgetIntroduction"), true);
+        "si si-network-arrow", translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/ExternalPageWidgetIntroduction"));
   }
 
   private WidgetSample processViewerSample() {
     return new WidgetSample(translate("/ch.ivy.addon.portalkit.ui.jsf/ProcessViewer/ProcessViewerText"), PROCESS_VIEWER,
-        "si si-hierarchy-6 si-rotate-270", translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/processViewerIntroduction"), true);
+        "si si-hierarchy-6 si-rotate-270", translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/processViewerIntroduction"));
   }
 
   private WidgetSample welcomeWidgetSample() {
     return new WidgetSample(translate("/ch.ivy.addon.portalkit.ui.jsf/Enums/DashboardWidgetType/WELCOME"), WELCOME,
-        "welcome-widget-sample.png", translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/WelcomeWidgetIntroduction"));
+        "si si-image-file-landscape", translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/WelcomeWidgetIntroduction"));
   }
 
   private WidgetSample newsSample() {
     return new WidgetSample(translate("/Dialogs/com/axonivy/portal/dashboard/component/NewsWidgetConfiguration/NewsWidgetTitle"),
         NEWS, News.DEFAULT_NEWS_ICON,
-        translate("/Dialogs/com/axonivy/portal/dashboard/component/NewsWidgetConfiguration/NewsWidgetDescription"), true);
+        translate("/Dialogs/com/axonivy/portal/dashboard/component/NewsWidgetConfiguration/NewsWidgetDescription"));
   }
 
   private WidgetSample notificationSample() {
     return new WidgetSample(translate("/ch.ivy.addon.portalkit.ui.jsf/Enums/DashboardWidgetType/NOTIFICATION"),
-        NOTIFICATION, "si si-alarm-bell", translate("/Dialogs/com/axonivy/portal/dashboard/component/NotificationWidgetConfiguration/NotificationWidgetDescription"), true);
+        NOTIFICATION, "si si-alarm-bell", translate("/Dialogs/com/axonivy/portal/dashboard/component/NotificationWidgetConfiguration/NotificationWidgetDescription"));
   }
   
   private WidgetSample navigationDashboardWidget() {
-    return new WidgetSample(translate("/ch.ivy.addon.portalkit.ui.jsf/Enums/DashboardWidgetType/NAVIGATION_DASHBOARD"), DashboardWidgetType.NAVIGATION_DASHBOARD, "si si-navigation-right-circle", translate("/Dialogs/com/axonivy/portal/dashboard/component/NavigationDashboardWidgetConfiguration/NavigationDashboardWidgetDescription"), true);
+    return new WidgetSample(translate("/ch.ivy.addon.portalkit.ui.jsf/Enums/DashboardWidgetType/NAVIGATION_DASHBOARD"), DashboardWidgetType.NAVIGATION_DASHBOARD, "si si-navigation-right-circle", translate("/Dialogs/com/axonivy/portal/dashboard/component/NavigationDashboardWidgetConfiguration/NavigationDashboardWidgetDescription"));
   }
 
   public void restore() {
@@ -1005,8 +1004,6 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   public List<Dashboard> initCloneableDashboards() {
     List<Dashboard> availableDashboards = new ArrayList<>();
     availableDashboards.addAll(DashboardUtils.getPublicDashboards());
-    DashboardUtils
-        .addDefaultTaskCaseListDashboardsIfMissing(availableDashboards);
 
     String dashboardInUserProperty = readDashboardBySessionUser();
     if (StringUtils.isNotBlank(dashboardInUserProperty)) {
@@ -1131,6 +1128,9 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   }
 
   public List<Statistic> getStatisticWidgets() {
+    if (Objects.isNull(statisticWidgets)) {
+      initStatisticWidgets();
+    }
     return statisticWidgets;
   }
 

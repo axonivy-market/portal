@@ -180,11 +180,7 @@ public class TaskActionBean implements Serializable {
     return isNotDone(task) && hasPermission(task, IPermission.TASK_WRITE_EXPIRY_TIMESTAMP)
         && CollectionUtils.isEmpty(task.expiry().responsibles().all()) && StringUtils.isBlank(task.getExpiryTaskStartElementPid());
   }
-
-  public boolean canChangeName(ITask task) {
-    return isNotDone(task) && hasPermission(task, IPermission.TASK_WRITE_NAME);
-  }
-
+  
   public boolean canChangeDescription(ITask task) {
     return isNotDone(task) && hasPermission(task, IPermission.TASK_WRITE_DESCRIPTION);
   }

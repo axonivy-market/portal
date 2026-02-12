@@ -379,7 +379,7 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
     NewDashboardDetailsEditPage detailsEditPage = editPage.navigateToEditDashboardDetailsByName("Dashboard");
     detailsEditPage.waitPageLoaded();
     WebElement newWidgetDialog = detailsEditPage.addWidget();
-    detailsEditPage.collapseStandardWidgets();
+    detailsEditPage.filterStatisticWidgets();
     ScreenshotUtils.resizeBrowser(new Dimension(1920, 1080));
     ScreenshotUtils.captureElementWithMarginOptionScreenshot(newWidgetDialog,
         ScreenshotUtils.NEW_DASHBOARD_FOLDER + "add-statistic-widget", new ScreenshotMargin(20));
@@ -480,6 +480,38 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
     caseWidget.removeFocusFilterDialog();
     ScreenshotUtils.captureElementWithMarginOptionScreenshot(caseWidget.getConfigurationFilter(),
         ScreenshotUtils.NEW_DASHBOARD_FOLDER + "case-task-widget-filter-combine", new ScreenshotMargin(20));
+  }
+
+  @Test
+  public void screenshotConfigurationPanelInEditWidget() throws IOException {
+    ScreenshotUtils.maximizeBrowser();
+    redirectToDashboardConfiguration();
+    DashboardConfigurationPage configPage = new DashboardConfigurationPage();
+    configPage.selectPublicDashboardType();
+    DashboardModificationPage editPage = new DashboardModificationPage();
+    NewDashboardDetailsEditPage detailsEditPage = editPage.navigateToEditDashboardDetailsByName("Dashboard");
+    detailsEditPage.waitForCaseWidgetLoaded();
+    detailsEditPage.addWidget();
+    
+    TaskEditWidgetNewDashBoardPage taskConfigurationPage = detailsEditPage.addNewTaskWidget();
+    taskConfigurationPage.waitPreviewTableLoaded();
+    
+    var taskConfigPanel = taskConfigurationPage.getWidgetConfigurationPanel();
+    taskConfigPanel.$("div[id$='quick-search-group']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    taskConfigurationPage.waitUntilElementToBeClickable(taskConfigPanel);
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(taskConfigPanel,
+        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "task-widget-configuration-panel", new ScreenshotMargin(200));
+    taskConfigurationPage.closeConfigurationDialog();
+    
+    detailsEditPage.addWidget();
+    CaseEditWidgetNewDashBoardPage caseConfigurationPage = detailsEditPage.addNewCaseWidget();
+    caseConfigurationPage.waitPreviewTableLoaded();
+    
+    var caseConfigPanel = caseConfigurationPage.getWidgetConfigurationPanel();
+    caseConfigPanel.$("div[id$='quick-search-group']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    caseConfigurationPage.waitUntilElementToBeClickable(caseConfigPanel);
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(caseConfigPanel,
+        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "case-widget-configuration-panel", new ScreenshotMargin(200));
   }
   
   @Test
