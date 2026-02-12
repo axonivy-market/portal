@@ -341,7 +341,7 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
 
   public WebElement getQuickSearchCheckBox() {
     return getWidgetConfigurationPanel().shouldBe(Condition.appear, DEFAULT_TIMEOUT)
-        .$("span[id$='quick-search-group']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("div[id$='quick-search']")
+        .$("div[id$='quick-search-group']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("div[id$='quick-search']")
         .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
   }
 
