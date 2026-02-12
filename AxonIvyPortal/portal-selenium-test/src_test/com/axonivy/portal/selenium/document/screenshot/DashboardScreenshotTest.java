@@ -45,6 +45,7 @@ import com.axonivy.portal.selenium.util.ConfigurationJsonUtils;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 
+import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 
 @IvyWebTest
@@ -602,6 +603,8 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
   @Test
   public void screenshotConfigurationPanelInEditWidget() throws IOException {
     ScreenshotUtils.maximizeBrowser();
+    updateGlobalVariable(GlobalVariable.ENABLE_PINNED_CASE.getKey(), Boolean.TRUE.toString());
+    updateGlobalVariable(GlobalVariable.ENABLE_PINNED_TASK.getKey(), Boolean.TRUE.toString());
     redirectToDashboardConfiguration();
     DashboardConfigurationPage configPage = new DashboardConfigurationPage();
     configPage.selectPublicDashboardType();
