@@ -547,32 +547,8 @@ public abstract class TemplatePage extends AbstractPage {
     element.sendKeys(value);
   }
 
-  public void waitAjaxEmpty() {
-    Selenide.Wait()
-    .withTimeout(DEFAULT_TIMEOUT)
-    .until(visibleAndAnimationComplete());
+  public void waitPageSilence() {
+    WaitHelper.waitPageSilence();
   }
-  
-  public static ExpectedCondition<Boolean> ajaxQueueEmpty() {
-    return script("return (!window.PrimeFaces || PrimeFaces.ajax.Queue.isEmpty());");
- }
-  
-  public static ExpectedCondition<Boolean> animationNotActive() {
-    return script("return ((!window.jQuery || jQuery.active == 0) && (!window.PrimeFaces || PrimeFaces.animationActive === false));");
- }
-  
-  public static ExpectedCondition<Boolean> documentLoaded() {
-    return script("return document.readyState === 'complete'");
- }
-
-  public static ExpectedCondition<Boolean> visibleAndAnimationComplete() {
-    return ExpectedConditions.and(new ExpectedCondition[]{documentLoaded(), animationNotActive(), ajaxQueueEmpty()});
- }
-
-  public static ExpectedCondition<Boolean> script(String script) {
-    return (driver) -> {
-       return (Boolean)((JavascriptExecutor)driver).executeScript(script, new Object[0]);
-    };
- }
 
 }

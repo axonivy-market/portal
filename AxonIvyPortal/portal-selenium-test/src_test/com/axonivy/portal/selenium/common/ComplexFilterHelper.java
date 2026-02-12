@@ -20,7 +20,7 @@ import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebElementCondition;
 
-public class ComplexFilterHelper {
+public class ComplexFilterHelper{
   protected final static Duration DEFAULT_TIMEOUT = Duration.ofSeconds(45);
 
   public static SelenideElement getNewFilter(int filterIndex) {
@@ -199,11 +199,11 @@ public class ComplexFilterHelper {
     for (int i = 0; i < dateInput.size(); i++) {
       dateInput.get(i).clear();
       dateInput.get(i).shouldBe(Condition.empty, DEFAULT_TIMEOUT).sendKeys(String.valueOf(values[i]));
+      WaitHelper.waitPageSilence();
+      dateInput.get(i).sendKeys(Keys.ESCAPE);
 
       if ($("div[id='new-widget-configuration-dialog']").isDisplayed()) {
         filterElement.$("span button").$("span[class*='ui-icon-calendar']").click();
-      } else {
-        dateInput.get(i).sendKeys(Keys.ESCAPE);
       }
     }
   }
