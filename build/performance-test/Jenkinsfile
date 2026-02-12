@@ -36,7 +36,7 @@ pipeline {
             def engineUrl = 'http://' + utils.getJenkinsMasterDomain() + ':9000'
             
             // Build both modules together at root level to resolve inter-module dependencies
-            maven cmd: "clean install -f AxonIvyPortal/pom.xml -pl portal-components,portal -am"
+            maven cmd: "clean install -f pom.xml -pl AxonIvyPortal/portal-components,AxonIvyPortal/portal -am"
             
             // Create zip file with all artifacts
             sh """
