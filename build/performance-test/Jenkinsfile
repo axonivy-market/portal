@@ -31,29 +31,43 @@ pipeline {
           """
 
           docker.build('build-portal-modules', '-f build/Dockerfile.python .').inside('-v /var/tools/maven-cache:/home/build/') {
+            def modules = ['AxonIvyPortal/portal-components', 'AxonIvyPortal/portal']
             def utils = load 'build/common/utils.groovy'
             utils.updatePortalDependenciesAsRangeVersion()
-            def engineUrl = 'http://' + utils.getJenkinsMasterDomain() + ':9000'
-            
-            // Build both modules together at root level to resolve inter-module dependencies
-            maven cmd: "clean install -f AxonIvyPortal/pom.xml -pl portal-components,portal -am"
-            
-            // Create zip file with all artifacts
-            sh """
-              mkdir -p portal-build
-              cp -r AxonIvyPortal/portal-components/target/portal-components-*.iar portal-build/ 2>/dev/null || true
-              cp -r AxonIvyPortal/portal/target/portal-*.iar portal-build/ 2>/dev/null || true
-              cd portal-build
-              zip -r ../portal-build.zip .
-              cd ..
+            for (module in modules) {
+              maven cmd: "clean install -f ${module}/pom.xml"
+            }
+            def deployZip = "${WORKSPACE}/portal-deploy.zip"
+            sh "rm -f ${deployZip}"
+            sh """#!/bin/bash
+              set -euo pipefail
+              DEPLOY_ZIP='${deployZip}' python3 - <<'PY'
+              import glob
+              import os
+              import zipfile
+
+              modules = ["AxonIvyPortal/portal-components", "AxonIvyPortal/portal"]
+              iar_files = []
+              for module in modules:
+                  iar_files.extend(glob.glob(os.path.join(module, "target", "*.iar")))
+
+              if not iar_files:
+                  raise SystemExit("No IAR files found to package for deployment.")
+
+              zip_path = os.environ.get("DEPLOY_ZIP")
+              if not zip_path:
+                  raise SystemExit("DEPLOY_ZIP environment variable is required.")
+
+              with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED) as zipf:
+                  for iar in iar_files:
+                      zipf.write(iar, arcname=os.path.basename(iar))
+
+              print(f"Created deploy bundle: {zip_path}")
+              PY
             """
-            
-            // Deploy using REST API
+            def engineUrl = 'http://' + utils.getJenkinsMasterDomain() + ':9000/system/api/apps/Portal'
             sh """
-              curl -X POST \\
-                -H "Content-Type: application/octet-stream" \\
-                --data-binary @portal-build.zip \\
-                "${engineUrl}/engine-public/rest/v1/applications/Portal/deployment"
+              curl --fail -X POST -F "file=@${deployZip}" ${engineUrl}
             """
           }
         }
@@ -98,7 +112,7 @@ pipeline {
       }
       script {
         if (binding.hasVariable('today')) {
-          perfReport sourceDataFiles: "${resultDir}/*.jtl", compareBuildPrevious :true, ignoreFailedBuilds: true, ignoreUnstableBuilds: true, errorFailedThreshold: 1
+          perfReport sourceDataFiles: "${resultDir}/*.jtl", compareBuildPrevious: true, ignoreFailedBuilds: true, ignoreUnstableBuilds: true, errorFailedThreshold: 1
         }
       }
     }
