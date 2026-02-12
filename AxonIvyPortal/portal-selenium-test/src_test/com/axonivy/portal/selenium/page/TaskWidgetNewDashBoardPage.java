@@ -136,7 +136,6 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
 
   public void openFilterWidget() {
     waitForGlobalGrowlDisappear();
-    waitPageSilence();
     getTaskWidgetHeader().$(".widget__filter-sidebar-link").shouldBe(appear, DEFAULT_TIMEOUT)
         .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
     waitForElementClickableThenClick(getTaskWidgetHeader().$(".widget__filter-sidebar-link"));
