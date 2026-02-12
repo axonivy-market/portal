@@ -59,7 +59,8 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
 
   public void applyFilter() {
     $(caseEditWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$("button[id$='preview-button']")
-        .shouldBe(getClickableCondition()).click();
+        .shouldBe(getClickableCondition());
+    clickByJavaScript($(caseEditWidgetId).$("button[id$='preview-button']"));
     $(caseEditWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$("button[id$='preview-button']").$("span[id*='ui-icon-loading]").exists();
     $(caseEditWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$("button[id$='preview-button']").shouldNotHave(Condition.attribute("disabled", "disabled"),DEFAULT_TIMEOUT);
   }
