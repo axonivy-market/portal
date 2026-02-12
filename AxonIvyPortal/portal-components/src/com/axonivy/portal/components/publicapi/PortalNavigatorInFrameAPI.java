@@ -39,7 +39,7 @@ public final class PortalNavigatorInFrameAPI extends BaseNavigator {
    * Navigate to portal home
    */
   public static void navigateToPortalHome() {
-    navigateToUrl(Ivy.html().applicationHomeLink().getAbsoluteEncoded());
+    navigateToUrl(Ivy.html().appHomeLink().getAbsoluteEncoded());
   }
 
 	/**

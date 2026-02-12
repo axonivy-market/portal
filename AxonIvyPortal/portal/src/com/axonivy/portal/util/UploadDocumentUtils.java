@@ -5,7 +5,7 @@ import static ch.ivy.addon.portal.chat.ChatReferencesContainer.log;
 import java.io.IOException;
 
 import org.apache.commons.io.FilenameUtils;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.primefaces.model.file.UploadedFile;
 import org.primefaces.virusscan.VirusException;
 import org.primefaces.virusscan.VirusScanner;

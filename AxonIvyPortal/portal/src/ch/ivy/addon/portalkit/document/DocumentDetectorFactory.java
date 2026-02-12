@@ -1,6 +1,6 @@
 package ch.ivy.addon.portalkit.document;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.components.document.DocumentDetector;
 import com.axonivy.portal.components.document.ExcelDocumentDetector;
