@@ -208,7 +208,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       thirdPartyApplication: サードパーティーのアプリケーション
     currentValue: 現在の値
     defaultValue: デフォルト値
-    deleteAppConfirmation: このアプリケーションを削除してよろしいですか？
+    deleteAppConfirmation: アプリケーション「<b>{0}</b>」を削除してもよろしいですか？
     dialogclosinginformation:
       dialogHeader: ポータル設定終了
       informMessage: ポータル設定を変更した場合、新しい構成を有効にするには現在のページの更新が必要です。
@@ -1127,11 +1127,11 @@ ch.ivy.addon.portalkit.ui.jsf:
       dialogHeaderTitle: '{0} の情報を編集'
     editProcesses: プロセスを編集
     externalLink: 外部リンク
+    externalLinkImage: 外部リンクの画像
     externalLinkVisibility: 表示設定
     goTo: '移動先:'
     icon: アイコン
     image: 画像
-    externalLinkImage: 外部リンクの画像
     isRequiredMessage: を設定する必要があります
     linkDescription: リンクの説明
     noProcess: プロセスがありません。
@@ -1249,6 +1249,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     taskNotes: ノート
     triggerEscalation: エスカレーションのトリガー
   taskList:
+    configuration: 設定
     deadline: 期限
     default: 初期値
     defaultColumns:
