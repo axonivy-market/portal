@@ -45,12 +45,12 @@ pipeline {
           // Deploy ZIP to engine via file-drop
           def containerId = sh(script: "docker compose -f ${composeFile} ps -q", returnStdout: true).trim()
           def zipFile = sh(script: "ls ${WORKSPACE}/AxonIvyPortal/PortalApp/target/portal-app-*.zip", returnStdout: true).trim()
-          sh "docker cp ${zipFile} ${containerId}:/opt/ivy/engine/deploy/Portal.zip"
+          sh "docker cp ${zipFile} ${containerId}:/ivy/deploy/Portal.zip"
 
           // Wait for deployment to complete
-          timeout(time: 5, unit: 'MINUTES') {
+          timeout(time: 2, unit: 'MINUTES') {
             waitUntil(initialRecurrencePeriod: 5000) {
-              def status = sh(script: "docker exec ${containerId} sh -c 'test -f /opt/ivy/engine/deploy/Portal.zip.deployed && echo deployed || echo waiting'", returnStdout: true).trim()
+              def status = sh(script: "docker exec ${containerId} sh -c 'test -f /ivy/deploy/Portal.zip.deployed && echo deployed || echo waiting'", returnStdout: true).trim()
               return status == 'deployed'
             }
           }
