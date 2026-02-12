@@ -5,7 +5,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
 
-import com.google.common.collect.Iterables;
+import org.apache.commons.collections4.IterableUtils;
 
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivyteam.ivy.workflow.custom.field.CustomFieldType;
@@ -46,7 +46,7 @@ public class PortalCustomFieldUtils {
         .forEach(field -> {
           for (String keyword : keywordList) {
             Iterable<Object> list = field.values().matching(keyword);
-            if (!Iterables.isEmpty(list)) {
+            if (!IterableUtils.isEmpty(list)) {
               for (Object obj : list) {
                 matchingValueList.add(obj.toString());
               }

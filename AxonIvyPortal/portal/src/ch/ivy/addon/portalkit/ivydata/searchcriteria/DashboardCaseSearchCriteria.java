@@ -7,8 +7,9 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import org.apache.commons.collections.CollectionUtils;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 import com.axonivy.portal.enums.dashboard.filter.FilterOperator;
@@ -76,7 +77,6 @@ public class DashboardCaseSearchCriteria {
     }
   }
 
-  @SuppressWarnings("unchecked")
   private void queryFilters(CaseQuery query) {
     List<DashboardFilter> allFilters =
         new ArrayList<>(CollectionUtils.union(filters, userFilters));
@@ -251,7 +251,7 @@ public class DashboardCaseSearchCriteria {
         return;
       }
 
-      DashboardColumnFormat format = columns.stream().filter(c -> StringUtils.equalsIgnoreCase(sortField, c.getField()))
+      DashboardColumnFormat format = columns.stream().filter(c -> Strings.CI.equals(sortField, c.getField()))
           .map(ColumnModel::getFormat).findFirst().orElse(DashboardColumnFormat.STRING);
       final ICustomFieldOrderBy customField = query.orderBy().customField();
 
