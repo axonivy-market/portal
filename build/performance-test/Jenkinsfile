@@ -38,32 +38,18 @@ pipeline {
               maven cmd: "clean install -f ${module}/pom.xml"
             }
             def deployZip = "${WORKSPACE}/portal-deploy.zip"
-            sh "rm -f ${deployZip}"
             sh """#!/bin/bash
               set -euo pipefail
-              DEPLOY_ZIP='${deployZip}' python3 - <<'PY'
-              import glob
-              import os
-              import zipfile
+              rm -f "${deployZip}"
 
-              modules = ["AxonIvyPortal/portal-components", "AxonIvyPortal/portal"]
-              iar_files = []
-              for module in modules:
-                  iar_files.extend(glob.glob(os.path.join(module, "target", "*.iar")))
+              IAR_FILES=(AxonIvyPortal/portal-components/target/*.iar AxonIvyPortal/portal/target/*.iar)
+              if [[ ! -e "${IAR_FILES[0]}" ]]; then
+                echo "No IAR files found to package for deployment."
+                exit 1
+              fi
 
-              if not iar_files:
-                  raise SystemExit("No IAR files found to package for deployment.")
-
-              zip_path = os.environ.get("DEPLOY_ZIP")
-              if not zip_path:
-                  raise SystemExit("DEPLOY_ZIP environment variable is required.")
-
-              with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED) as zipf:
-                  for iar in iar_files:
-                      zipf.write(iar, arcname=os.path.basename(iar))
-
-              print(f"Created deploy bundle: {zip_path}")
-              PY
+              zip -j "${deployZip}" "${IAR_FILES[@]}"
+              echo "Created deploy bundle: ${deployZip}"
             """
             def engineUrl = 'http://' + utils.getJenkinsMasterDomain() + ':9000/system/api/apps/Portal'
             sh """
