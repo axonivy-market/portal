@@ -64,8 +64,8 @@ public class UserMenuBean implements Serializable {
   protected static final String GOOGLE_PLAY_IMAGE_CMS_URL = "/images/MenuQRCode/GooglePlay/GooglePlay";
   private Map<Long, Boolean> caseIdToProcessViewerDisplayed;
   private boolean isHiddenChangePassword;
-  private boolean isShowQRCode;
-  private boolean isShowCaseDurationTime;
+  private boolean isShownQRCode;
+  private boolean isShownCaseDurationTime;
   private boolean isHiddenLogout;
 
   public String getLoggedInUser() {
@@ -102,14 +102,14 @@ public class UserMenuBean implements Serializable {
         || GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(
             GlobalVariable.HIDE_CHANGE_PASSWORD_BUTTON)
         || !hasChangePasswordPermission();
-    isShowQRCode = GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_QR_CODE);
-    isShowCaseDurationTime = GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_CASE_DURATION_TIME);
+    isShownQRCode = GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_QR_CODE);
+    isShownCaseDurationTime = GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_CASE_DURATION_TIME);
     isHiddenLogout = GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.HIDE_LOGOUT_BUTTON);
    
   }
 
   public boolean isShowCaseDurationTime() {
-    return isShowCaseDurationTime; 
+    return isShownCaseDurationTime; 
   }
 
   public boolean isHiddenLogout() {
@@ -117,11 +117,7 @@ public class UserMenuBean implements Serializable {
   }
 
   public boolean isHiddenChangePassword() {
-//    Ivy.log().error("XXXXXXXXXXXXXXXXXXXX isHiddenChangePassword");
-    return isHiddenChangePassword;/*loggedByExternalSecuritySystem()
-        || GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(
-            GlobalVariable.HIDE_CHANGE_PASSWORD_BUTTON)
-        || !hasChangePasswordPermission();*/
+    return isHiddenChangePassword;
   }
 
   private boolean hasChangePasswordPermission() {
@@ -364,7 +360,7 @@ public class UserMenuBean implements Serializable {
   }
   
   public boolean isShowQRCode() {
-    return isShowQRCode;
+    return isShownQRCode;
   }
   
   public String getQRcodeData() {
@@ -433,6 +429,7 @@ public class UserMenuBean implements Serializable {
    * JavaScript decodes this to set href attributes for right-click support.
    * 
    * Story ID: IVYPORTAL-19031
+   * @return String
    */
   public String getBase64EncodedHomeUrl() {
     return Base64.getUrlEncoder().encodeToString(getHomePageURL().getBytes());

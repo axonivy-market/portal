@@ -89,6 +89,7 @@ public class DashboardBean implements Serializable, IMultiLanguage {
   private String selectedDashboardName;
   private String searchScope;
   private boolean isShowPinnedItem;
+  private boolean isEnablePinTask;
 
   @PostConstruct
   public void init() {
@@ -118,6 +119,7 @@ public class DashboardBean implements Serializable, IMultiLanguage {
     }
 
     buildClientStatisticApiUri();
+    isEnablePinTask = GlobalSettingService.getInstance().isEnablePinTask();
   }
 
   private void buildClientStatisticApiUri() {
@@ -585,7 +587,7 @@ public class DashboardBean implements Serializable, IMultiLanguage {
 
   public boolean canShowPinnedItemToggle(DashboardWidget widget) {
     if (widget instanceof TaskDashboardWidget) {
-      return GlobalSettingService.getInstance().isEnablePinTask()
+      return isEnablePinTask
           && ((TaskDashboardWidget) widget).isShowPinnedToggle();
     }
 

@@ -26,7 +26,6 @@ import ch.ivy.addon.portalkit.enums.ProcessType;
 import ch.ivy.addon.portalkit.mapper.UserProcessMapper;
 import ch.ivy.addon.portalkit.service.ExternalLinkService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
-import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
 public abstract class AbstractProcessBean implements Serializable {
@@ -37,15 +36,14 @@ public abstract class AbstractProcessBean implements Serializable {
   protected static final String UNDERSCORE_SELF  = "_self";
   protected static final String DOT_ICM  = ".icm";
   private List<Process> portalProcesses;
-  private boolean isShowProcessInfo;
+  private boolean isShownProcessInfo;
 
   public synchronized void init() {
     List<Process> processes = new ArrayList<>();
     processes.addAll(findProcesses());
     processes.addAll(findExternalLink());
     portalProcesses = new CopyOnWriteArrayList<Process>(sortProcesses(processes));
-    isShowProcessInfo = GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_PROCESS_INFORMATION);
-    Ivy.log().error("isShowProcessInfo: {0}", isShowProcessInfo);
+    isShownProcessInfo = GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_PROCESS_INFORMATION);
   }
 
   public String getProcessInformationPageUrl(Process process) {
@@ -141,6 +139,6 @@ public abstract class AbstractProcessBean implements Serializable {
     }
     isProcessInfoDefined  =  StringUtils.isNotEmpty(portalProcessInformation);
     hasProcessInfo = (processSteps != null && processSteps.size() > 0) || isProcessInfoDefined;
-    return isShowProcessInfo && hasProcessInfo;
+    return isShownProcessInfo && hasProcessInfo;
   }
 }

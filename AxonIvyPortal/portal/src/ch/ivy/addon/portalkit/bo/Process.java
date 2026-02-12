@@ -57,7 +57,6 @@ public interface Process {
    * @return the CMSUri of image object
    */
   default public String collectProcessImage(IWebStartable process) {
-    Ivy.log().error("CALL collectProcessImage {0}", process.getId());
     var imageUri = DefaultImage.PROCESSMODELING.getPath();
     var defaultImageSetting = GlobalSettingService.getInstance()
         .findGlobalSettingByGlobalVariable(GlobalVariable.DEFAULT_PROCESS_IMAGE)
@@ -72,7 +71,6 @@ public interface Process {
   }
   
   default public String collectProcessImage(IWebStartable process, String defaultProcessImage) {
-//  Ivy.log().error("CALL collectProcessImage {0}", process.getId());
   var imageUri = DefaultImage.PROCESSMODELING.getPath();
   if (!defaultProcessImage.equals(DefaultImage.DEFAULT.name())) {
     imageUri = DefaultImage.IMAGE_PATH + defaultProcessImage;

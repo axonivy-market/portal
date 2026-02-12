@@ -45,7 +45,7 @@
             "import com.axonivy.portal.components.publicapi.ProcessStartAPI;",
             "import org.apache.commons.lang3.StringUtils;",
             "",
-            "/*String userExampleGuideLink = ProcessStartAPI.findStartableLinkByUserFriendlyRequestPath(\"Start Processes/UserExampleGuide/userExampleGuide.ivp\");",
+            "String userExampleGuideLink = ProcessStartAPI.findStartableLinkByUserFriendlyRequestPath(\"Start Processes/UserExampleGuide/userExampleGuide.ivp\");",
             "if (!StringUtils.isEmpty(userExampleGuideLink)){  ",
             "  CustomSubMenuItem userExampleGuide = new CustomSubMenuItem();",
             "  userExampleGuide.setIcon(\"si si-bulb\");",
@@ -61,17 +61,7 @@
             "google.setLink(\"www.google.com\");",
             "google.setIsExternalLink(true);",
             "google.setIndex(1);",
-            "in.subMenuItems.add(google);*/",
-            "",
-            "/*String testLink = ProcessStartAPI.findStartableLinkByUserFriendlyRequestPath(\"Start Processes/LeaveRequestWithSideStep/start.ivp\");",
-            "if (!StringUtils.isEmpty(testLink)){  ",
-            "  CustomSubMenuItem userExampleGuide = new CustomSubMenuItem();",
-            "  userExampleGuide.setIcon(\"si si-bulb\");",
-            "  userExampleGuide.setLabel(\"Test\");",
-            "  userExampleGuide.setLink(testLink + \"?embedInFrame\");",
-            "  userExampleGuide.setIndex(0);",
-            "  in.subMenuItems.add(userExampleGuide);",
-            "}*/"
+            "in.subMenuItems.add(google);"
           ]
         },
         "sudo" : true
