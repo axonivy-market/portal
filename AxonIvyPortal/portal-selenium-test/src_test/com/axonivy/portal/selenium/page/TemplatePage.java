@@ -24,6 +24,7 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -31,6 +32,7 @@ import com.axonivy.portal.selenium.common.NavigationHelper;
 import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
+import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverConditions;
 import com.codeborne.selenide.WebDriverRunner;
@@ -544,4 +546,33 @@ public abstract class TemplatePage extends AbstractPage {
     element.clear();
     element.sendKeys(value);
   }
+
+  public void waitAjaxEmpty() {
+    Selenide.Wait()
+    .withTimeout(DEFAULT_TIMEOUT)
+    .until(visibleAndAnimationComplete());
+  }
+  
+  public static ExpectedCondition<Boolean> ajaxQueueEmpty() {
+    return script("return (!window.PrimeFaces || PrimeFaces.ajax.Queue.isEmpty());");
+ }
+  
+  public static ExpectedCondition<Boolean> animationNotActive() {
+    return script("return ((!window.jQuery || jQuery.active == 0) && (!window.PrimeFaces || PrimeFaces.animationActive === false));");
+ }
+  
+  public static ExpectedCondition<Boolean> documentLoaded() {
+    return script("return document.readyState === 'complete'");
+ }
+
+  public static ExpectedCondition<Boolean> visibleAndAnimationComplete() {
+    return ExpectedConditions.and(new ExpectedCondition[]{documentLoaded(), animationNotActive(), ajaxQueueEmpty()});
+ }
+
+  public static ExpectedCondition<Boolean> script(String script) {
+    return (driver) -> {
+       return (Boolean)((JavascriptExecutor)driver).executeScript(script, new Object[0]);
+    };
+ }
+
 }
