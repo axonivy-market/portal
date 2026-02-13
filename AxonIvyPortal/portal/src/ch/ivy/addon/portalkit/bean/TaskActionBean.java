@@ -10,7 +10,7 @@ import java.util.Objects;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.primefaces.PF;
 
 import com.axonivy.portal.components.publicapi.ProcessStartAPI;
@@ -178,10 +178,6 @@ public class TaskActionBean implements Serializable {
   public boolean notHaveExpiryHandleLogic(ITask task) {
     return isNotDone(task) && hasPermission(task, IPermission.TASK_WRITE_EXPIRY_TIMESTAMP)
         && task.getExpiryActivator() == null && StringUtils.isBlank(task.getExpiryTaskStartElementPid());
-  }
-
-  public boolean canChangeName(ITask task) {
-    return isNotDone(task) && hasPermission(task, IPermission.TASK_WRITE_NAME);
   }
 
   public boolean canChangeDescription(ITask task) {

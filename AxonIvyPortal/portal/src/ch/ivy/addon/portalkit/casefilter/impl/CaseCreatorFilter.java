@@ -2,7 +2,8 @@ package ch.ivy.addon.portalkit.casefilter.impl;
 
 import java.util.Optional;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 
 import com.axonivy.portal.components.dto.UserDTO;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -73,7 +74,7 @@ public class CaseCreatorFilter extends CaseFilter {
    * @param memberName is selectedCreatorMemberName
    */
   private void findCreator(String memberName) {
-    if (selectedCreator == null || !StringUtils.equals(memberName, selectedCreator.getName())) {
+    if (selectedCreator == null || !Strings.CS.equals(memberName, selectedCreator.getName())) {
       setSelectedCreator(ServiceUtilities.findUserDTO(memberName.replaceFirst("#", "")));
     }
   }

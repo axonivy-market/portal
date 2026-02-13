@@ -1,3 +1,11 @@
+.. raw:: html
+
+   <style>
+      .wy-table-responsive table td, .wy-table-responsive table th {
+         white-space: inherit;
+      }
+   </style>
+
 .. _list-permissions:
 
 Permission List
@@ -8,7 +16,7 @@ Proper permission configuration ensures Portal security aligns with your organiz
 
 **Permission Architecture:**
 
-Portal's permission system extends Axon Ivy Engine's core security model with Portal-specific permissions. All permissions are configured in the Engine Cockpit under the PortalPermissions section and can be assigned to:
+Portal's permission system extends Axon Ivy Engine's core security model with Portal-specific permissions. All permissions are configured in the Engine Cockpit under the Portal Permissions section and can be assigned to:
 
 - **Roles**: Grant permissions to all users with specific roles (e.g., "Manager", "Employee")
 - **Individual Users**: Grant permissions to specific user accounts (prefix with ``#``)
@@ -24,7 +32,7 @@ Portal's permission system extends Axon Ivy Engine's core security model with Po
 
 **Configuration Location:**
 
-All permissions are configured in the :dev-url:`Engine Cockpit </doc/12.0/engine-guide/reference/engine-cockpit/security.html>` under Security > PortalPermissions. 
+All permissions are configured in the :dev-url:`Engine Cockpit </doc/12.0/engine-guide/reference/engine-cockpit/security.html>` under Security > Portal Permissions.
 For detailed configuration instructions and examples, see :ref:`Permission Settings <settings-permission-settings>`.
 
 **Best Practices:**
@@ -61,16 +69,19 @@ Portal has a flexible security system that allows you to configure who can acces
 .. important::
    **Portal Permission Support:**
    
-   The Portal is built as a layer above the Axon Ivy Engine core. Not every core engine permission is automatically honored or supported by the Portal.
-   If you require a specific engine permission not currently supported by the Portal, please contact Axon Ivy support.
+   Portal is built as a layer above the Axon Ivy Engine core. Not every core engine permission is automatically used or supported by Portal.
+   If you require a specific engine permission not currently supported by Portal, please contact Axon Ivy support.
+   
+   Many behaviors in Portal require multiple permissions to work correctly. For example, to reset a task, a user typically needs both the permission ``TaskDisplayResetAction`` to display Reset button and the permission ``TaskReset`` to reset it.
+   Ensure you review all related permissions when configuring access.
 
 .. note::
    **Permission Types in this Documentation:**
    
-   - **Portal Permissions** - Custom permissions defined by Portal (e.g., DashboardWriteOwn, ShareTaskDetailsLink, NewsManagement)
+   - **Portal Permissions** - Custom permissions defined by Portal (e.g., DashboardWriteOwn, ShareTaskDetailsLink, NewsManagement). These permissions have effect only in Portal.
    - **Engine Permissions** - Core Axon Ivy permissions that Portal respects (see list at end of this page)
    
-   Permissions marked with "Granted to role Everybody by default" are automatically assigned when Portal is installed.
+   Permissions marked with "Granted by default - role Everybody" are automatically assigned when Portal is installed.
 
 .. _permission-task-permissions:
 
@@ -78,520 +89,1448 @@ Portal has a flexible security system that allows you to configure who can acces
 Portal Task Permissions
 -----------------------
 
-Permissions controlling task visibility, actions, and property modifications.
-
-**Task Visibility**
-
 .. _TaskReadAll:
 
    :ref:`🔑TaskReadAll <TaskReadAll>`
-     - View all tasks in the system regardless of assignment
-     - Typically granted to administrators
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Engine Permission                                           |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Task Visibility                                             |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | Allows a user to view **all user tasks** in the system,     |
+       |                        | independent of task assignment, responsibility, or          |
+       |                        | involvement. System tasks are not included.                 |
+       |                        | With this you see all tasks in the security context.        |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Required for administrators, supervisors, or support users  |
+       |                        | who need a global overview of all user tasks for            |
+       |                        | monitoring, troubleshooting, audits, or operational support.| 
+       |                        | Without this permission, users only see tasks they are      |
+       |                        | directly involved in.                                       |
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | No                                                          |
+       +------------------------+-------------------------------------------------------------+
+
 
 .. _SystemTaskReadAll:
 
    :ref:`🔑SystemTaskReadAll <SystemTaskReadAll>`
-     - View system tasks (background/automated tasks)
-     - Required for debugging and system monitoring
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Engine Permission                                           |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Task Visibility                                             |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | Allows a user to view system tasks, such as background jobs | 
+       |                        | and automated tasks executed by the platform. These tasks   |
+       |                        | are not created or processed by end users.                  |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Intended for administrators and technical users who need    |                        
+       |                        | insight into **background processing**, system behavior, or |                        
+       |                        | task execution for **debugging, monitoring, or operational  |
+       |                        | troubleshooting**. Not relevant for business users.         |
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | No                                                          |
+       +------------------------+-------------------------------------------------------------+
+
 
 .. _TaskReadOwnCaseTasks:
 
    :ref:`🔑TaskReadOwnCaseTasks <TaskReadOwnCaseTasks>`
-     - View tasks related to cases where user is involved
-     - Granted to role Everybody by default
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Engine Permission                                           |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Task Visibility                                             |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | Allows a user to view **tasks that belong to cases they are |                        
+       |                        | involved in**, even if the tasks are assigned to other      |
+       |                        | users or roles.                                             |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | See my own task and case in task list, case list            |
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | Yes - Role ``Everybody``                                    |
+       +------------------------+-------------------------------------------------------------+
 
-**Task Actions**
 
 .. _TaskParkOwnWorkingTask:
 
    :ref:`🔑TaskParkOwnWorkingTask <TaskParkOwnWorkingTask>`
-     - Reserve (park) own working tasks
-     - Allows users to temporarily set aside tasks they're working on
-     - Granted to role Everybody by default
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Engine Permission                                           |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Task Actions                                                |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | Allows a user to **reserve (park) a task they are currently |
+       |                        | working on**, temporarily setting it aside without          |
+       |                        | completing or releasing it.                                 |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Useful when a user needs to **interrupt their work**, wait  |
+       |                        | for additional information, or switch priorities, while     |
+       |                        | ensuring the task remains reserved and is not taken by      |
+       |                        | another user. Enables the Reserve action in the task menu.  |                                            
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | Yes - Role ``Everybody``                                    |
+       +------------------------+-------------------------------------------------------------+
 
 .. _TaskResetOwnWorkingTask:
 
    :ref:`🔑TaskResetOwnWorkingTask <TaskResetOwnWorkingTask>`
-     - Reset own working tasks to their initial state
-     - Only works for tasks in states: RESUMED, PARKED, READY_FOR_JOIN, FAILED
-     - Granted to role Everybody by default
-
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Engine Permission                                           |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Task Actions                                                |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | Allows a user to **reset their own working task to its      |
+       |                        | initial state**. The reset action is available when the     |
+       |                        | task is in one of the following states: **RESUMED, PARKED,  |
+       |                        | READY_FOR_JOIN, FAILED**. Resetting a task clears the       |
+       |                        | current working progress and returns it to its original     |
+       |                        | start state.                                                |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Used when a user needs to **start a task over from the      |
+       |                        | beginning**, for example after an error, a failed execution,| 
+       |                        | or an invalid intermediate state. Enables the Reset         |
+       |                        | action in the task action menu for applicable task states.  |
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | Yes - Role ``Everybody``                                    |
+       +------------------------+-------------------------------------------------------------+
+     
 .. _TaskReset:
 
    :ref:`🔑TaskReset <TaskReset>`
-     - Reset any task in the system (administrative permission)
-     - Typically restricted to administrators
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Engine Permission                                           |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Task Actions                                                |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | Allows a user to **reset any task within the current        |
+       |                        | security context**, regardless of task ownership or         |
+       |                        | assignment.                                                 |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Intended for **high-privileged users**, such as             |
+       |                        | administrators or support staff, who need to reset tasks    |
+       |                        | to resolve errors, unblock processes, or correct invalid    |
+       |                        | task states.                                                |
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | No                                                          |
+       +------------------------+-------------------------------------------------------------+
 
 .. _TaskResetReadyForJoin:
 
+
    :ref:`🔑TaskResetReadyForJoin <TaskResetReadyForJoin>`
-     - Reset tasks in READY_FOR_JOIN state
-     - Useful for workflow error recovery
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Engine Permission                                           |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Task Actions                                                |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | Allows a user to **reset tasks that are currently in the    |
+       |                        | READY_FOR_JOIN state**.                                     |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Useful for **workflow error recovery**, for example when    |
+       |                        | tasks are blocked or cannot be joined correctly and need    |
+       |                        | to be reset to restore normal processing.                   | 
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | No                                                          |
+       +------------------------+-------------------------------------------------------------+
+
 
 .. _TaskDestroy:
 
    :ref:`🔑TaskDestroy <TaskDestroy>`
-     - Delete tasks permanently
-     - Only works if task state is not DESTROYED or DONE
-     - High-privilege permission for administrators
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Engine Permission                                           |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Task Actions                                                |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | Allows a user to **permanently delete tasks**. The action   |
+       |                        | is only available if the task state is **not DESTROYED or   |
+       |                        | DONE**.                                                     |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | High-privilege permission for **administrators** who need   |
+       |                        | to permanently remove tasks, for example during cleanup,    |
+       |                        | error handling, or system maintenance.                      | 
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | No                                                          |
+       +------------------------+-------------------------------------------------------------+
 
-**Task Property Modifications**
-
-.. _TaskWriteName:
-
-   :ref:`🔑TaskWriteName <TaskWriteName>`
-     - Modify task name/title
 
 .. _TaskWriteDescription:
 
    :ref:`🔑TaskWriteDescription <TaskWriteDescription>`
-     - Modify task description
-     - Cannot change terminated tasks (DONE, DESTROYED, FAILED)
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Engine Permission                                           |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Task Property Modifications                                 |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | Allows a user to **modify the task description**. The       | 
+       |                        | description cannot be changed if the task is in a           | 
+       |                        | terminated state (**DONE, DESTROYED, FAILED**).             |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Enables users with this permission to **update or correct   |
+       |                        | the task description** in the task details, for example to  |
+       |                        | clarify requirements or add missing information.            | 
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | No                                                          |
+       +------------------------+-------------------------------------------------------------+
+
 
 .. _TaskWriteOriginalPriority:
 
    :ref:`🔑TaskWriteOriginalPriority <TaskWriteOriginalPriority>`
-     - Change task priority level
-     - Cannot change tasks in states: DONE, DESTROYED, FAILED
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Engine Permission                                           |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Task Property Modifications                                 |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | Allows a user to **change the task priority level**. The    |
+       |                        | priority cannot be modified if the task is in one of        |
+       |                        | the following states: **DONE, DESTROYED, FAILED**.          | 
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Enables users with this permission to **adjust the          |
+       |                        | priority of a task** in the task details, for example to    |
+       |                        | reflect changing urgency or business importance.            | 
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | No                                                          |
+       +------------------------+-------------------------------------------------------------+
+
 
 .. _TaskWriteExpiryTimestamp:
 
    :ref:`🔑TaskWriteExpiryTimestamp <TaskWriteExpiryTimestamp>`
-     - Change task deadline/expiry date
-     - Cannot change tasks in states: DONE, DESTROYED, FAILED
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Engine Permission                                           |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Task Property Modifications                                 |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | Allows a user to **change the task expiry date**. The expiry| 
+       |                        | date cannot be modified if the task is in one of the        |
+       |                        | following states: **DONE, DESTROYED, FAILED**.              |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Allows users with the **AXONIVY_PORTAL_ADMIN** role and     |
+       |                        | this permission to **update the task expiry date**, for     |
+       |                        | example to extend or shorten deadlines.                     | 
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | No                                                          |
+       +------------------------+-------------------------------------------------------------+
+
 
 .. _TaskWriteActivator:
 
    :ref:`🔑TaskWriteActivator <TaskWriteActivator>`
-     - Delegate tasks to other users/roles
-     - Granted to role Everybody by default
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Engine Permission                                           |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Task Property Modifications                                 |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | Allows a user to **delegate tasks to other users or roles**.|
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Enables users with this permission to **delegate a task to  |
+       |                        | other users or roles within the same security context**,    |
+       |                        | for example to change responsibility or hand over work.     |  
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | No                                                          |
+       +------------------------+-------------------------------------------------------------+
+
 
 .. _TaskWriteExpiryActivator:
 
    :ref:`🔑TaskWriteExpiryActivator <TaskWriteExpiryActivator>`
-     - Change the user responsible when task expires
-     - Cannot change tasks in states: DONE, DESTROYED, FAILED
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Engine Permission                                           |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Task Property Modifications                                 |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | Allows a user to **change the responsible user or role when |
+       |                        | a task expires**. The responsible party cannot be changed   |
+       |                        | if the task is in one of the following states:              |
+       |                        | **DONE, DESTROYED, FAILED**.                                |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Enables users with the ``AXONIVY_PORTAL_ADMIN`` role and    |
+       |                        | this permission to **define or update who becomes           |
+       |                        | responsible after a task expires**.                         | 
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | No                                                          |
+       +------------------------+-------------------------------------------------------------+
 
 .. _TaskWriteDelayTimestamp:
 
    :ref:`🔑TaskWriteDelayTimestamp <TaskWriteDelayTimestamp>`
-     - Modify task delay/start time
-
-**Task UI Display Permissions**
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Engine Permission                                           |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Task Property Modifications                                 |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | Allows a user to **modify the task delay or start time**.   |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Enables users with the ``AXONIVY_PORTAL_ADMIN`` role and    |
+       |                        | this permission to **change when a task starts or is        |
+       |                        | delayed**, for example to reschedule execution.             |
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | No                                                          |
+       +------------------------+-------------------------------------------------------------+
 
 .. _TaskWriteActivatorOwnTasks:
 
    :ref:`🔑TaskWriteActivatorOwnTasks <TaskWriteActivatorOwnTasks>`
-     - Delegate personal/group tasks assigned to user
-     - Not assigned to Everybody by default (more restrictive than :ref:`🔑TaskWriteActivator <TaskWriteActivator>`)
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Portal permission                                           |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Task Property Modifications                                 |   
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | Enables users to **delegate tasks they currently own**      |
+       |                        | to another user or role via Portal UI, for example when     |
+       |                        | handing over work or changing responsibility within a team. |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Allows a user to **delegate personal or group tasks that    |    
+       |                        | are assigned to themselves**.                               |
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | No                                                          |
+       +------------------------+-------------------------------------------------------------+
+
 
 .. _TaskDisplayAdditionalOptions:
 
    :ref:`🔑TaskDisplayAdditionalOptions <TaskDisplayAdditionalOptions>`
-     - Display additional action menu in task lists
-     - Granted to role Everybody by default
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Portal permission                                           |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Task UI Display Permissions                                 |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | Allows Portal to **display additional task actions**        |
+       |                        | in the user interface.                                      |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Users with this permission will see **additional menu       |
+       |                        | items** on tasks that are defined in the **case map**,      |
+       |                        | enabling extended actions directly from the task UI.        |
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | Yes - Role ``Everybody``                                    |
+       +------------------------+-------------------------------------------------------------+
 
 .. _TaskDisplayResetAction:
 
    :ref:`🔑TaskDisplayResetAction <TaskDisplayResetAction>`
-     - Show Reset action button in task interface
-     - Requires corresponding :ref:`🔑TaskReset <TaskReset>` permission to execute
-     - Granted to role Everybody by default
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Portal permission                                           |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Task UI Display Permissions                                 |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | Allows Portal to **display the reset action** for tasks     | 
+       |                        | in the user interface.                                      |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Users with this permission will see the **Reset** menu item |
+       |                        | in the task action menu. To actually reset a task, the user |
+       |                        | must also have either the **TaskResetOwnWorkingTask** or    |
+       |                        | **TaskReset** permission.                                   |
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | Yes - Role ``Everybody``                                    |
+       +------------------------+-------------------------------------------------------------+
+
 
 .. _TaskDisplayReserveAction:
 
    :ref:`🔑TaskDisplayReserveAction <TaskDisplayReserveAction>`
-     - Show Reserve (Park) action button in task interface
-     - Requires :ref:`🔑TaskParkOwnWorkingTask <TaskParkOwnWorkingTask>` to execute
-     - Granted to role Everybody by default
-
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Portal permission                                           |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Task UI Display Permissions                                 |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | Allows Portal to **display the reserve action**             |
+       |                        | for tasks in the user interface.                            |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Users with this permission will see the **Reserve** menu    |
+       |                        | item in the task action menu. To actually reserve a task,   |
+       |                        | the user must also have the **TaskParkOwnWorkingTask**      |
+       |                        | permission.                                                 |
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | Yes - Role ``Everybody``                                    |
+       +------------------------+-------------------------------------------------------------+
+   
 .. _TaskDisplayDelegateAction:
 
    :ref:`🔑TaskDisplayDelegateAction <TaskDisplayDelegateAction>`
-     - Show Delegate action button in task interface
-     - Requires :ref:`🔑TaskWriteActivator <TaskWriteActivator>` to execute delegation
-     - Granted to role Everybody by default
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Portal permission                                           |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Task UI Display Permissions                                 |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | Allows Portal to **display the delegate action**            |
+       |                        | for tasks in the user interface.                            |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Users with this permission will see the **Delegate** menu   |
+       |                        | item in the task action menu. To actually delegate a task,  |
+       |                        | the user must also have the **TaskWriteActivator**          |
+       |                        | permission.                                                 |
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | Yes - Role ``Everybody``                                    |
+       +------------------------+-------------------------------------------------------------+
 
 .. _TaskDisplayDestroyAction:
 
    :ref:`🔑TaskDisplayDestroyAction <TaskDisplayDestroyAction>`
-     - Show Delete/Destroy action button in task interface
-     - Requires :ref:`🔑TaskDestroy <TaskDestroy>` permission to execute
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Portal permission                                           |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Task UI Display Permissions                                 |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | Allows Portal to **display the destroy action**             |
+       |                        | for tasks in the user interface.                            |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Users with this permission will see the **Destroy** menu    |
+       |                        | item in the task action menu. To actually destroy a task,   |
+       |                        | the user must also have the **TaskDestroy** permission.     |
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | No                                                          |
+       +------------------------+-------------------------------------------------------------+
 
 .. _TaskDisplayWorkflowEventAction:
 
    :ref:`🔑TaskDisplayWorkflowEventAction <TaskDisplayWorkflowEventAction>`
-     - Show Workflow Events button in task details
-     - Allows viewing task execution history and events
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Portal permission                                           |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Task UI Display Permissions                                 |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | Allows Portal to **display workflow events** for a          |
+       |                        | task, including the **task execution history and related    |
+       |                        | workflow events**.                                          |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Users with this permission will see the **Workflow Events** | 
+       |                        | menu item in the task action menu. To actually view the     |
+       |                        | workflow event data, the user must also have the            |
+       |                        | **WorkflowEventReadAll** permission.                        |
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | No                                                          |
+       +------------------------+-------------------------------------------------------------+
 
+     
 .. _TaskDisplayCustomFieldsAction:
 
    :ref:`🔑TaskDisplayCustomFieldsAction <TaskDisplayCustomFieldsAction>`
-     - Show Custom Fields button in task interface
-     - Displays additional business data fields
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Portal permission                                           |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Task UI Display Permissions                                 |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | Allows Portal to **display custom fields of a case**        |
+       |                        | in the task user interface.                                 | 
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Users with this permission will see the **Custom Fields**   |
+       |                        | menu item in the task action menu, allowing them to view    |
+       |                        | custom case fields related to the task.                     |
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | No                                                          |
+       +------------------------+-------------------------------------------------------------+
+
 
 .. _ShareTaskDetailsLink:
 
    :ref:`🔑ShareTaskDetailsLink <ShareTaskDetailsLink>`
-     - Show Share button in task details page
-     - Allows sharing direct links to specific tasks
-     - Granted to role Everybody by default
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Portal permission                                           |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Task UI Display Permissions                                 |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | Allows Portal to **display the share task details           |
+       |                        | link** in the task user interface.                          |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Users with this permission will see a **Share** button next |
+       |                        | to the **Edit** button in the task details, allowing them   |
+       |                        | to share a link to the task details.                        |
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | Yes - Role ``Everybody``                                    |
+       +------------------------+-------------------------------------------------------------+
 
 .. _permission-case-permissions:
 
 Portal Case Permissions
 -----------------------
 
-Permissions controlling case visibility, actions, and business details.
-
-**Case Visibility**
-
 .. _CaseReadAll:
 
    :ref:`🔑CaseReadAll <CaseReadAll>`
-     - View all cases in the system regardless of involvement
-     - Typically granted to administrators
-     - Combined with :ref:`🔑TaskReadAll <TaskReadAll>` for full system visibility
-
-**Case Actions**
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Engine Permission                                           |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Case Action                                                 |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | Allows a user to **view all cases within the security       |
+       |                        | context**, regardless of whether the user is involved       |
+       |                        | in the case.                                                |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Grant it to see all cases                                   | 
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | No                                                          |
+       +------------------------+-------------------------------------------------------------+
 
 .. _CaseDestroy:
 
    :ref:`🔑CaseDestroy <CaseDestroy>`
-     - Delete cases permanently
-     - Only works when case state is RUNNING
-     - High-privilege permission for administrators
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Engine Permission                                           |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Case Action                                                 |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | Allows to **permanently delete a case that is currently     |
+       |                        | running**. Once deleted, the case and its data cannot be    |
+       |                        | recovered.                                                  |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Intended for administrators who need to **remove            |
+       |                        | incorrectly started, test, or blocked cases, for example    |
+       |                        | during troubleshooting, cleanup, or system maintenance**.   |
+       |                        | The Destroy action will be available in the case action     |
+       |                        | menu.                                                       | 
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | No                                                          |
+       +------------------------+-------------------------------------------------------------+
+
 
 .. _CaseOwnerTaskDelegate:
 
    :ref:`🔑CaseOwnerTaskDelegate <CaseOwnerTaskDelegate>`
-     - Delegate all related tasks within cases where user is the case owner
-     - Allows case owners to manage task assignments for their cases
-
-**Case Property Modifications**
-
-.. _CaseWriteName:
-
-   :ref:`🔑CaseWriteName <CaseWriteName>`
-     - Modify case name/title
-     - Cannot change cases in DESTROYED state
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Portal permission                                           |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Case Action                                                 |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | Allows a **case owner to delegate all tasks related to      |
+       |                        | their case** to other users or roles.                       |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Users who are **case owners** and have this permission,     |
+       |                        | together with **TaskWriteActivator**, can **delegate tasks  |
+       |                        | within their own cases**, for example to hand over work,    |
+       |                        | involve other team members, or reassign responsibilities.   |
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | No                                                          |
+       +------------------------+-------------------------------------------------------------+
 
 .. _CaseWriteDescription:
 
    :ref:`🔑CaseWriteDescription <CaseWriteDescription>`
-     - Modify case description
-     - Cannot change cases in DESTROYED state
-
-**Case UI Display Permissions**
-
-.. _ShowAllTasksOfCase:
-
-   :ref:`🔑ShowAllTasksOfCase <ShowAllTasksOfCase>`
-     - Display "Show all tasks" action in case details
-     - Requires :ref:`🔑TaskReadOwnCaseTasks <TaskReadOwnCaseTasks>` or :ref:`🔑TaskReadAll <TaskReadAll>` to view tasks
-     - Granted to role Everybody by default
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Engine Permission                                           |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Case Action                                                 |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | Allows a user to **edit the case description**. The         |
+       |                        | description cannot be changed if the case is in the         |
+       |                        | **DESTROYED** state.                                        |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Enables users with this permission to **update or correct   | 
+       |                        | the case description** in the case details, for example to  |
+       |                        | add context, clarify information, or fix mistakes.          | 
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | No                                                          |
+       +------------------------+-------------------------------------------------------------+
 
 .. _ShowCaseDetails:
 
    :ref:`🔑ShowCaseDetails <ShowCaseDetails>`
-     - Display Business Details tab in case interface
-     - Shows additional case information and custom widgets
-     - Granted to role Everybody by default
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Portal permission                                           |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Case UI Display Permissions                                 |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | Allows Portal to **display business details of a case       |
+       |                        | in a separate tab**, providing additional case-related      |
+       |                        | information.                                                |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Users with this permission will see the **Business details**| 
+       |                        | menu item in the case action menu, allowing them to open    |
+       |                        | a new tab with extended case information.                   | 
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | Yes - Role ``Everybody``                                    |
+       +------------------------+-------------------------------------------------------------+
 
 .. _CaseDisplayCustomFieldsAction:
 
    :ref:`🔑CaseDisplayCustomFieldsAction <CaseDisplayCustomFieldsAction>`
-     - Display Custom Fields button in case interface
-     - Shows additional business data fields
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Portal permission                                           |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Case UI Display Permissions                                 |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | Allows Portal to **display custom fields of a case**        | 
+       |                        | in the user interface.                                      |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Users with this permission will see the **Custom fields**   |
+       |                        | menu item in the case action menu, allowing them to view    |
+       |                        | additional, case-specific information.                      | 
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | No                                                          |
+       +------------------------+-------------------------------------------------------------+
+
 
 .. _ShareCaseDetailsLink:
 
    :ref:`🔑ShareCaseDetailsLink <ShareCaseDetailsLink>`
-     - Show Share button in case details page
-     - Allows sharing direct links to specific cases
-     - Granted to role Everybody by default
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Portal permission                                           |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Case UI Display Permissions                                 |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | Allows Portal to **display a link for sharing case          |
+       |                        | details** in the user interface.                            |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Users with this permission will see a **Share** button next |
+       |                        | to the **Edit** button in the case details, allowing them   |
+       |                        | to share a link to the case details with others.            | 
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | Yes - Role ``Everybody``                                    |
+       +------------------------+-------------------------------------------------------------+
+
 
 .. _permission-general-permissions:
 
 Portal General Permissions
 --------------------------
 
-General permissions for dashboards, documents, lists, roles, and Portal features.
-
-**Portal Page Access**
-
 .. _AccessFullProcessList:
 
    :ref:`🔑AccessFullProcessList <AccessFullProcessList>`
-     - Access full process list page showing all available processes
-     - Shows "Processes" in left menu and "Show all processes" on Dashboard
-     - See :ref:`full-process-list` for details
-     - Granted to role Everybody by default
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Portal permission                                           |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Portal Page Access                                          |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | Controls the visibility of the **Processes** page in the    |
+       |                        | left navigation menu and the **Processes** tab in the       |
+       |                        | global search.                                              |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Used to **show or hide access to the Processes list** for   |
+       |                        | specific users or roles, for example to simplify the user   |
+       |                        | interface or restrict access to process overviews.          |
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | Yes - Role ``Everybody``                                    |     
+       +------------------------+-------------------------------------------------------------+
 
 .. _AccessFullTaskList:
 
    :ref:`🔑AccessFullTaskList <AccessFullTaskList>`
-     - Access full task list page showing all accessible tasks
-     - Shows "Tasks" in left menu and "Show full task list" on Dashboard
-     - See :ref:`full-task-list` for details
-     - Granted to role Everybody by default
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Portal permission                                           |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Portal Page Access                                          |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | Controls the visibility of the **Tasks** page in the left   |
+       |                        | navigation menu and the **Tasks** tab in the global search. |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Used to **show or hide access to the Tasks list** for       |
+       |                        | specific users or roles, for example to simplify the user   |
+       |                        | interface or restrict task visibility.                      |
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | Yes - Role ``Everybody``                                    |
+       +------------------------+-------------------------------------------------------------+
 
 .. _AccessFullCaseList:
 
    :ref:`🔑AccessFullCaseList <AccessFullCaseList>`
-     - Access full case list page showing all accessible cases
-     - Shows "Cases" in left menu
-     - See :ref:`full-case-list` for details
-     - Granted to role Everybody by default
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Portal permission                                           |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Portal Page Access                                          |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | Controls the visibility of the **Cases** page in the left   |
+       |                        | navigation menu and the **Cases** tab in the global search. |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Used to **show or hide access to the Cases list** for       |
+       |                        | specific users or roles, for example to simplify the user   |
+       |                        | interface or restrict case visibility.                      |
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | Yes - Role ``Everybody``                                    |
+       +------------------------+-------------------------------------------------------------+
 
-**Dashboard Permissions**
 
 .. _DashboardWriteOwn:
 
    :ref:`🔑DashboardWriteOwn <DashboardWriteOwn>`
-     - Create and modify private (personal) dashboards
-     - Granted to role Everybody by default
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Portal permission                                           |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Dashboard Permissions                                       |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | Allows a user to **create and modify private (personal)     |
+       |                        | dashboards** in the Dashboard Configuration page. If this   |
+       |                        | permission is not granted, the **Private Dashboard** tab is |
+       |                        | hidden and the user cannot manage their own dashboards.     |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Grant this permission to users who need to **create,        |
+       |                        | customize, and maintain their own private and personal      |
+       |                        | dashboards**.                                               |
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | Yes - Role ``Everybody``                                    |
+       +------------------------+-------------------------------------------------------------+
 
 .. _DashboardWritePublic:
 
    :ref:`🔑DashboardWritePublic <DashboardWritePublic>`
-     - Create and modify public (shared) dashboards
-     - Typically restricted to administrators or dashboard managers
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Portal permission                                           |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Dashboard Permissions                                       |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | Allows a user to **create and modify public (shared)        |
+       |                        | dashboards** in the **Dashboard Configuration** page. If    |
+       |                        | this permission is not granted, the **Public Dashboard**    |
+       |                        | tab is hidden and the user cannot manage shared dashboards. |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Grant to **administrators or dashboard managers** who       |
+       |                        | need to **create, maintain, and manage dashboards**         |
+       |                        | shared across the application.                              |
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | No                                                          |
+       +------------------------+-------------------------------------------------------------+
+
+.. note::
+   If a user is not granted either **DashboardWriteOwn** or **DashboardWritePublic** permission, 
+   the **Dashboard configuration** menu option will be hidden from the user profile dropdown menu.
 
 .. _DashboardExportOwn:
 
    :ref:`🔑DashboardExportOwn <DashboardExportOwn>`
-     - Export private dashboards to JSON files
-     - Allows backup and sharing of personal dashboard configurations
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Portal permission                                           |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Dashboard Permissions                                       |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | Allows a user to **export private (personal) dashboards as  |
+       |                        | JSON files** for backup or sharing purposes. If this        |
+       |                        | permission is not granted, the Export option is hidden      |
+       |                        | in the private dashboard actions menu.                      |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Grant to users who need to **back up their personal         |
+       |                        | dashboards or share dashboard configurations** with others  |
+       |                        | or across environments.                                     |
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | No                                                          |
+       +------------------------+-------------------------------------------------------------+
 
 .. _DashboardExportPublic:
 
    :ref:`🔑DashboardExportPublic <DashboardExportPublic>`
-     - Export public dashboards to JSON files
-     - Typically restricted to administrators
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Portal permission                                           |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Dashboard Permissions                                       |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | Allows a user to **export public (shared) dashboards        |
+       |                        | as JSON files** for backup or distribution purposes.        |
+       |                        | If this permission is not granted, the Export option is     |
+       |                        | hidden in the public dashboard actions menu.                |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Grant to administrators who need to **back up or distribute |
+       |                        | public dashboard templates**, for example across different  |
+       |                        | environments.                                               |
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | No                                                          |
+       +------------------------+-------------------------------------------------------------+
 
 .. _DashboardImportOwn:
 
    :ref:`🔑DashboardImportOwn <DashboardImportOwn>`
-     - Import private dashboards from JSON files
-     - Allows restoring or applying dashboard templates
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Portal permission                                           |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Dashboard Permissions                                       |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | Allows a user to **import private (personal) dashboards     |
+       |                        | from JSON files**. If this permission is not granted, the   |
+       |                        | Import option is hidden when creating private dashboards.   |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Grant to users who need to **create personal dashboards     |
+       |                        | from JSON templates**, for example when restoring backups   |
+       |                        | or reusing existing configurations.                         |
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | No                                                          |
+       +------------------------+-------------------------------------------------------------+
 
 .. _DashboardImportPublic:
 
    :ref:`🔑DashboardImportPublic <DashboardImportPublic>`
-     - Import public dashboards from JSON files
-     - Typically restricted to administrators
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Portal permission                                           |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Dashboard Permissions                                       |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | Allows a user to **import public (shared) dashboards        |
+       |                        | from JSON files**. If this permission is not granted, the   |
+       |                        | Import option is hidden when creating public dashboards.    |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Grant to users who need to **create shared dashboards       |
+       |                        | from JSON templates**, for example when setting up          |
+       |                        | dashboards across environments or reusing standard templates|
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | No                                                          |
+       +------------------------+-------------------------------------------------------------+
 
 .. _ShareDashboardLink:
 
    :ref:`🔑ShareDashboardLink <ShareDashboardLink>`
-     - Share dashboard links with other users
-     - Granted to role Everybody by default
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Portal permission                                           |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Dashboard Permissions                                       |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | Allows a user to **share direct links to public dashboards**| 
+       |                        | with other users. If this permission is not granted, the    |
+       |                        | Share option is hidden in the dashboard action menu.        |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Grant to users who need to **share dashboard links with     |
+       |                        | colleagues**, for example for collaboration, reporting,     |
+       |                        | or reference purposes.                                      |
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | Yes - Role ``Everybody``                                    |
+       +------------------------+-------------------------------------------------------------+
 
-**Document Permissions**
+
 
 .. _DocumentRead:
 
    :ref:`🔑DocumentRead <DocumentRead>`
-     - View all documents across all cases/tasks
-     - Administrative permission for full document visibility
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Engine Permission                                           |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Document                                                    |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | Allows a user to **view all documents across all cases and  |
+       |                        | tasks in Portal** on a dedicated page without               |
+       |                        | pagination. If this permission is not granted,              |
+       |                        | the **Show more** option is hidden in the Documents widget. |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Grant to users who need **full visibility into all          |
+       |                        | documents**, for example for review, auditing, or document  |
+       |                        | management purposes.                                        |
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | No                                                          |
+       +------------------------+-------------------------------------------------------------+
 
 .. _DocumentWrite:
-
-   :ref:`🔑DocumentWrite <DocumentWrite>`
-     - Upload and delete any documents
-     - Administrative permission for document management
-
 .. _DocumentOfInvolvedCaseWrite:
 
-   :ref:`🔑DocumentOfInvolvedCaseWrite <DocumentOfInvolvedCaseWrite>`
-     - Upload and delete documents in cases where user is involved
-     - Standard permission for case participants
-     - Granted to role Everybody by default
-
-**Role Management Permissions**
+   :ref:`🔑DocumentWrite <DocumentWrite>` and :ref:`🔑DocumentOfInvolvedCaseWrite <DocumentOfInvolvedCaseWrite>`
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Engine Permission                                           |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Document                                                    |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | These permissions allow users to **upload and delete        |
+       |                        | documents** in the Documents widget. Portal checks both     |
+       |                        | permissions: if a user has either one, the upload and       |
+       |                        | delete actions are shown.                                   |
+       |                        | Note: Upload and delete actions may be hidden for cases     |
+       |                        | in the **DONE** state if the global setting                 |
+       |                        | ``HIDE_UPLOAD_DOCUMENT_FOR_DONE_CASE`` is enabled.          |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Grant **one of these permissions** to users who need to     |
+       |                        | **upload or delete** documents within the Documents widget, |
+       |                        | depending on whether document access should be limited to   |
+       |                        | involved cases or allowed more broadly.                     |
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | ``DocumentWrite``: No                                       |
+       |                        | ``DocumentOfInvolvedCaseWrite``: role ``Everybody``         |
+       +------------------------+-------------------------------------------------------------+
 
 .. _RoleReadAll:
 
    :ref:`🔑RoleReadAll <RoleReadAll>`
-     - View all roles in the system
-     - Required for role selection in various features
-     - Granted to role Everybody by default
-
-.. _RoleManagement:
-
-   :ref:`🔑RoleManagement <RoleManagement>`
-     - Access Role Management tab in Admin Settings
-     - Required to view dynamic role configuration interface
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Engine Permission                                           |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Role Management                                             |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | Allows a user to **view all available roles**. Portal       |
+       |                        | itself does not apply additional logic based on this        |
+       |                        | permission, but it is **automatically granted to            |
+       |                        | administrators** to allow role visibility. If this          |
+       |                        | permission is missing, administrators will encounter an     |
+       |                        | error when accessing **Admin Settings**.                    |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Grant to **administrators or users** who need to **view     |
+       |                        | and access all roles**, for example when configuring users, | 
+       |                        | permissions, or role assignments.                           |
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | Yes - Role ``Everybody``                                    |
+       +------------------------+-------------------------------------------------------------+
 
 .. _RoleCreate:
 
    :ref:`🔑RoleCreate <RoleCreate>`
-     - Create new dynamic roles
-     - Typically restricted to administrators
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Engine Permission                                           |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Role Management                                             |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | Allows a user to **create new dynamic roles** in the **Role |
+       |                        | Management** tab within the **Admin Settings** page. If     |
+       |                        | this permission is not granted, the **Create new role**     |
+       |                        | button is hidden.                                           |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Grant to **selected administrators** who are responsible    |
+       |                        | for **creating and maintaining** dynamic roles within the   |
+       |                        | system.                                                     |
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | No                                                          |
+       +------------------------+-------------------------------------------------------------+
 
 .. _RoleDelete:
 
    :ref:`🔑RoleDelete <RoleDelete>`
-     - Delete existing dynamic roles
-     - Typically restricted to administrators
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Engine Permission                                           |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Role Management                                             |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | Allows a user to **delete dynamic roles** in the **Role     |
+       |                        | Management** tab within the **Admin Settings** page. If     |
+       |                        | this permission is not granted, the delete icon is disabled.| 
+       |                        | Even with this permission, **non-dynamic roles cannot be    |
+       |                        | deleted** and the delete icon remains disabled.             |
+       +------------------------+-------------------------------------------------------------+       
+       | **Use case**           | Grant to **selected administrators** who are responsible    |
+       |                        | for **removing dynamic roles** that are no longer needed.   |
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | No                                                          |
+       +------------------------+-------------------------------------------------------------+
+
+.. _RoleManagement:
+
+   :ref:`🔑RoleManagement <RoleManagement>`
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Portal permission                                           |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Role Management                                             |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | Allows a user to **access the Role Management tab** in      |
+       |                        | the **Admin Settings** page. This permission only grants    |
+       |                        | access to the page itself. To perform actions such as       |
+       |                        | **creating or deleting roles**, additional Engine           |
+       |                        | Permissions like **RoleCreate** and **RoleDelete** are      |
+       |                        | required.                                                   |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Grant to **selected administrators** who need **access to   |
+       |                        | role management**, while controlling specific actions       |
+       |                        | through additional permissions.                             |
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | No                                                          |
+       +------------------------+-------------------------------------------------------------+
 
 .. _RoleMove:
 
    :ref:`🔑RoleMove <RoleMove>`
-     - Change role hierarchy (select parent role)
-     - Affects role inheritance structure
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Engine Permission                                           |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Role Management                                             |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | Allows a user to **select a parent role when creating a     |
+       |                        | dynamic role** in the **Role Management** tab within the    |
+       |                        | **Admin Settings** page. If this permission is not granted, |
+       |                        | the parent role selection in the role creation dialog is    |
+       |                        | disabled and automatically set to **Everybody**.            |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Grant to **selected administrators** who need to **define   |
+       |                        | role hierarchies** by choosing a specific parent role when  |
+       |                        | creating dynamic roles.                                     |
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | No                                                          |
+       +------------------------+-------------------------------------------------------------+
 
-**Notes and Comments**
 
 .. _TaskCaseAddNote:
 
    :ref:`🔑TaskCaseAddNote <TaskCaseAddNote>`
-     - Add notes/comments to tasks and cases
-     - Enables collaboration and communication
-     - Granted to role Everybody by default
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Portal permission                                           |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Notes and Comments                                          |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | Allows a user to **add notes to a task or a case**. If      |
+       |                        | this permission is not granted, the **Add note** option is  |
+       |                        | hidden in the **History widget** (case details page) and    |
+       |                        | the **Notes widget** (task details page).                   |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Grant to users who need to **collaborate and communicate    |
+       |                        | on tasks and cases** by adding notes, comments, or          |
+       |                        | additional information.                                     |
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | Yes - Role ``Everybody``                                    |
+       +------------------------+-------------------------------------------------------------+
 
 .. _TaskCaseShowMoreNote:
 
    :ref:`🔑TaskCaseShowMoreNote <TaskCaseShowMoreNote>`
-     - View "Show more" option to expand long notes
-     - Granted to role Everybody by default
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Portal permission                                           |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Notes and Comments                                          |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | Controls the visibility of the **Show more** option in the  |
+       |                        | **History widget** (Full Case List) and the **Notes widget**| 
+       |                        | (Full Task List). When a user clicks **Show more**, the     |
+       |                        | complete list of notes is displayed on a separate page      |
+       |                        | **without pagination**.                                     |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Grant to users who need to **view the full list of notes**  | 
+       |                        | for tasks or cases, for example for review, auditing, or    |
+       |                        | detailed collaboration.                                     |
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | Yes - Role ``Everybody``                                    |
+       +------------------------+-------------------------------------------------------------+
 
 .. _NoteReadAllCaseTaskDetails:
 
    :ref:`🔑NoteReadAllCaseTaskDetails <NoteReadAllCaseTaskDetails>`
-     - View system notes in case and task details
-     - Allows non-admin users to see audit and system-generated notes
-     - **New in LTS 12.0+**: Replaces legacy global variables ``Portal.Histories.HideSystemNotes`` and ``Portal.Histories.HideSystemNotesForAdministrator``
-     
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Portal permission                                           |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Notes and Comments                                          |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | Allows **non-admin users** to view system notes in the      |
+       |                        | **History widget** and **Notes widget** for cases and tasks.| 
+       |                        | Without this permission, regular users only see their own   |
+       |                        | notes, while system notes remain visible only to admins.    |
+       |                        | **Note**: Visibility also depends on the global settings    |
+       |                        | ``HIDE_SYSTEM_NOTES_FROM_HISTORY`` and                      |
+       |                        | ``HIDE_SYSTEM_NOTES_FROM_HISTORY_ADMINISTRATOR``.           |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Grant to users who need to **see system-generated activity  |
+       |                        | logs and system notes** in case and task histories, for     |
+       |                        | example for troubleshooting or detailed process tracking.   |
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | No                                                          |
+       +------------------------+-------------------------------------------------------------+
+
    .. note::
       **Pre-LTS Versions:** This permission does not exist in Portal versions before 12.0. Use global variables ``Portal.Histories.HideSystemNotes`` and ``Portal.Histories.HideSystemNotesForAdministrator`` instead.
 
-**Admin Settings & Configuration**
-
-- :ref:`🔑RoleManagement <RoleManagement>`
-    - Access Role Management tab in Admin Settings
-    - See dynamic role configuration and management
 
 .. _NewsManagement:
 
    :ref:`🔑NewsManagement <NewsManagement>`
-     - Manage News widget content on dashboards
-     - Create, edit, and delete news items
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Portal permission                                           |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Dashboard Permissions                                       |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | Allows a user to **create, edit, and delete news items** in |
+       |                        | the **News widget** on dashboards. If this permission is    |
+       |                        | not granted, users can **only view news items**, but cannot |
+       |                        | create, edit, or delete them.                               |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Grant to users who are responsible for **managing and       |
+       |                        | publishing news content** on dashboard news widgets, for    |
+       |                        | example administrators or content managers.                 |
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | No                                                          |
+       +------------------------+-------------------------------------------------------------+
 
 .. _PasswordValidation:
 
    :ref:`🔑PasswordValidation <PasswordValidation>`
-     - Access Password Validation settings in Admin Settings
-     - Configure password complexity requirements
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Portal permission                                           |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Admin Settings & Configuration                              |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | Allows a user to **access the Password Validation** tab in  |
+       |                        | the **Admin Settings** page, where password complexity and  |
+       |                        | validation rules can be configured.                         |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Grant to **selected administrators** who are responsible    |
+       |                        | for **defining and maintaining password security policies** |
+       |                        | within the system.                                          |
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | No                                                          |
+       +------------------------+-------------------------------------------------------------+
 
 .. _NotificationChannelsSetting:
 
    :ref:`🔑NotificationChannelsSetting <NotificationChannelsSetting>`
-     - Customize notification channel preferences in :ref:`my-profile`
-     - Control email, browser, and other notification methods
-     - Granted to role Everybody by default
-
-**Process & External Links**
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Portal permission                                           |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Admin Settings & Configuration                              |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | Allows a user to **override the default notification        |
+       |                        | settings** (opt-out notifications) on the **My Profile**    |
+       |                        | page.                                                       |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Use this permission to **allow or restrict users or roles   |
+       |                        | from modifying their notification channel preferences** on  |
+       |                        | the **My Profile** page.                                    |
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | Yes - Role ``Everybody``                                    |
+       +------------------------+-------------------------------------------------------------+
 
 .. _CreatePublicExternalLink:
 
    :ref:`🔑CreatePublicExternalLink <CreatePublicExternalLink>`
-     - Create public external links visible to all users
-     - Links appear in full process list for all users
-     - Useful for sharing processes with external systems
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Portal permission                                           |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Process & External Links                                    |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | Controls the visibility of the **Visibility** section in    |
+       |                        | the **Add External Link** dialog on the **Full Process      |
+       |                        | List** page. If this permission is not granted, the         |
+       |                        | Visibility section is hidden and users can only create      |
+       |                        | **private external links** (visible only to themselves).    |
+       |                        | With this permission, users can create **public external    |
+       |                        | links** with role-based visibility that appear in the       |
+       |                        | process list for selected roles.                            |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Grant to users who need to **create external links shared   |
+       |                        | with other users or roles**, not just private links, for    |
+       |                        | example for collaboration or guided access to processes.    |
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | No                                                          |
+       +------------------------+-------------------------------------------------------------+
 
 .. _permission-absence-substitute:
 
 Portal Absence And Substitute Permissions
 -----------------------------------------
 
-Permissions for managing user absences and task substitution.
-
-**Absence Management - Own Absences**
 
 .. _UserReadOwnAbsences:
 
    :ref:`🔑UserReadOwnAbsences <UserReadOwnAbsences>`
-     - View own absence records
-     - Granted to role Everybody by default
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Engine Permission                                           |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Manage own absences                                         |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        |  Allows a user to **view their own absence records**.       |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Enables users to **see their personal absence information**,| 
+       |                        | for example to review planned or recorded absences.         | 
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | Yes - Role ``Everybody``                                    |
+       +------------------------+-------------------------------------------------------------+
 
 .. _UserCreateOwnAbsence:
 
    :ref:`🔑UserCreateOwnAbsence <UserCreateOwnAbsence>`
-     - Create and edit own absence periods
-     - Allows users to mark when they are unavailable
-     - Granted to role Everybody by default
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Engine Permission                                           |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Manage own absences                                         |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | Allows a user to **create and edit their own absences**.    |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Enables users to **create and maintain their own absence    |
+       |                        | entries**, for example for vacation or other planned        |
+       |                        | absences.                                                   | 
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | Yes - Role ``Everybody``                                    |
+       +------------------------+-------------------------------------------------------------+
 
 .. _UserDeleteOwnAbsence:
 
    :ref:`🔑UserDeleteOwnAbsence <UserDeleteOwnAbsence>`
-     - Delete own absence records
-     - Granted to role Everybody by default
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Engine Permission                                           |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Manage own absences                                         |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | Allows a user to **delete their own absence records**.      |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Enables users to **remove their own absence entries**, for  |
+       |                        | example if an absence was entered incorrectly or is no      |
+       |                        | longer relevant.                                            | 
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | Yes - Role ``Everybody``                                    |
+       +------------------------+-------------------------------------------------------------+
 
-**Absence Management - All Users**
 
 .. _UserReadAbsences:
 
    :ref:`🔑UserReadAbsences <UserReadAbsences>`
-     - View absence records of all users
-     - Administrative permission for HR or management
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Engine Permission                                           |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Manage absences for all users                               |
+       +------------------------+-------------------------------------------------------------+      
+       | **Description**        | Allows a user to **view absence records of all users**      |
+       |                        | within the current security context.                        |       
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Grant to administrators or managers who need **visibility   |
+       |                        | into absences of all users**, for example for planning,     |
+       |                        | coordination, or administrative oversight.                  | 
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | No                                                          |
+       +------------------------+-------------------------------------------------------------+
 
 .. _UserCreateAbsence:
 
    :ref:`🔑UserCreateAbsence <UserCreateAbsence>`
-     - Create and edit absences for any user
-     - Typically restricted to administrators or HR personnel
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Engine Permission                                           |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Manage absences for all users                               |
+       +------------------------+-------------------------------------------------------------+     
+       | **Description**        | Allows a user to **create and edit absence records** for    |
+       |                        | any user within the current security context.               |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Grant to administrators or managers who need to **create    |
+       |                        | or update absences on behalf of other users**, for example  |
+       |                        | for corrections or administrative handling.                 | 
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | No                                                          |
+       +------------------------+-------------------------------------------------------------+
 
 .. _UserDeleteAbsence:
 
    :ref:`🔑UserDeleteAbsence <UserDeleteAbsence>`
-     - Delete absence records for any user
-     - Administrative permission for absence management
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Engine Permission                                           |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Manage absences for all users                               |
+       +------------------------+-------------------------------------------------------------+    
+       | **Description**        | Allows a user to **delete absence records for any user**    |
+       |                        | within the current security context.                        |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Grant to administrators or managers who need to **remove    |
+       |                        | absence entries for other users**, for example to correct   |
+       |                        | mistakes or clean up outdated records.                      | 
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | No                                                          |
+       +------------------------+-------------------------------------------------------------+
 
-**Substitute Management**
 
 .. _UserCreateOwnSubstitute:
 
    :ref:`🔑UserCreateOwnSubstitute <UserCreateOwnSubstitute>`
-     - Create own substitute assignments
-     - Delegate tasks to others during absence
-     - Granted to role Everybody by default
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Engine Permission                                           |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Manage substitutes                                          |
+       +------------------------+-------------------------------------------------------------+   
+       | **Description**        | Allows a user to **create their own substitute**.           |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Enables users to **define a substitute for themselves**,    |
+       |                        | for example to ensure tasks and responsibilities are        |
+       |                        | handled during their absence                                |
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | Yes - Role ``Everybody``                                    |
+       +------------------------+-------------------------------------------------------------+
+   
 
 .. _UserCreateSubstitute:
 
    :ref:`🔑UserCreateSubstitute <UserCreateSubstitute>`
-     - Create substitute assignments for any user
-     - Administrative permission for managing substitutions
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Engine Permission                                           |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Manage substitutes                                          |
+       +------------------------+-------------------------------------------------------------+   
+       | **Description**        | Allows a user to **create substitute assignments for any    |
+       |                        | user** within the current security context.                 |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Grant to administrators or managers who need to **assign    |
+       |                        | substitutes on behalf of other users**, for example for     |
+       |                        | planned absences or organizational coverage.                | 
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | No                                                          |
+       +------------------------+-------------------------------------------------------------+
 
 .. _UserReadSubstitutes:
 
    :ref:`🔑UserReadSubstitutes <UserReadSubstitutes>`
-     - View substitute assignments for all users
-     - Required for seeing who is substituting whom
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Engine Permission                                           |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Manage substitutes                                          |
+       +------------------------+-------------------------------------------------------------+   
+       | **Description**        | Allows a user to **view substitute assignments of any       |
+       |                        | user** within the current security context.                 |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Grant to administrators or managers who need **visibility   |
+       |                        | into substitute assignments**, for example to review        |
+       |                        | coverage, validate substitutions, or support organizational | 
+       |                        | planning.                                                   | 
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | No                                                          |
+       +------------------------+-------------------------------------------------------------+
 
 .. _engine-permissions-respected:
 
-Engine Permissions Respected by Portal
----------------------------------------
+Engine Permissions used by Portal
+----------------------------------
 
-Portal honors the following Axon Ivy Engine core permissions. These are documented here for completeness as they directly affect Portal functionality:
+Portal uses the following Axon Ivy Engine Permissions. These are documented here for completeness as they directly affect Portal functionality:
 
 **Task Permissions:**
-:ref:`🔑TaskReadAll <TaskReadAll>`, :ref:`🔑TaskReadOwnCaseTasks <TaskReadOwnCaseTasks>`, :ref:`🔑TaskParkOwnWorkingTask <TaskParkOwnWorkingTask>`, :ref:`🔑TaskResetOwnWorkingTask <TaskResetOwnWorkingTask>`, :ref:`🔑TaskReset <TaskReset>`, :ref:`🔑TaskDestroy <TaskDestroy>`, :ref:`🔑TaskWriteName <TaskWriteName>`, :ref:`🔑TaskWriteDescription <TaskWriteDescription>`, :ref:`🔑TaskWriteOriginalPriority <TaskWriteOriginalPriority>`, :ref:`🔑TaskWriteExpiryTimestamp <TaskWriteExpiryTimestamp>`, :ref:`🔑TaskWriteActivator <TaskWriteActivator>`, :ref:`🔑TaskWriteDelayTimestamp <TaskWriteDelayTimestamp>`
+
+#. :ref:`🔑TaskReadAll <TaskReadAll>` 
+#. :ref:`🔑TaskReadOwnCaseTasks <TaskReadOwnCaseTasks>`
+#. :ref:`🔑TaskParkOwnWorkingTask <TaskParkOwnWorkingTask>` 
+#. :ref:`🔑TaskResetOwnWorkingTask <TaskResetOwnWorkingTask>`
+#. :ref:`🔑TaskReset <TaskReset>` 
+#. :ref:`🔑TaskDestroy <TaskDestroy>` 
+#. :ref:`🔑TaskWriteDescription <TaskWriteDescription>`
+#. :ref:`🔑TaskWriteOriginalPriority <TaskWriteOriginalPriority>`
+#. :ref:`🔑TaskWriteExpiryTimestamp <TaskWriteExpiryTimestamp>` 
+#. :ref:`🔑TaskWriteActivator <TaskWriteActivator>`
+#. :ref:`🔑TaskWriteDelayTimestamp <TaskWriteDelayTimestamp>`
 
 **Case Permissions:**
-:ref:`🔑CaseReadAll <CaseReadAll>`, :ref:`🔑CaseDestroy <CaseDestroy>`, :ref:`🔑CaseWriteName <CaseWriteName>`, :ref:`🔑CaseWriteDescription <CaseWriteDescription>`
+
+#. :ref:`🔑CaseReadAll <CaseReadAll>`
+#. :ref:`🔑CaseDestroy <CaseDestroy>`
+#. :ref:`🔑CaseWriteDescription <CaseWriteDescription>`
 
 **Role Permissions:**
-:ref:`🔑RoleReadAll <RoleReadAll>`, :ref:`🔑RoleCreate <RoleCreate>`, :ref:`🔑RoleDelete <RoleDelete>`, :ref:`🔑RoleMove <RoleMove>`
+
+#. :ref:`🔑RoleReadAll <RoleReadAll>`
+#. :ref:`🔑RoleCreate <RoleCreate>`
+#. :ref:`🔑RoleDelete <RoleDelete>`
+#. :ref:`🔑RoleMove <RoleMove>`
 
 **Document Permissions:**
-:ref:`🔑DocumentRead <DocumentRead>`, :ref:`🔑DocumentWrite <DocumentWrite>`, :ref:`🔑DocumentOfInvolvedCaseWrite <DocumentOfInvolvedCaseWrite>`
+
+#. :ref:`🔑DocumentRead <DocumentRead>`
+#. :ref:`🔑DocumentWrite <DocumentWrite>`
+#. :ref:`🔑DocumentOfInvolvedCaseWrite <DocumentOfInvolvedCaseWrite>`
 
 **Absence & Substitute Permissions:**
-:ref:`🔑UserReadOwnAbsences <UserReadOwnAbsences>`, :ref:`🔑UserCreateOwnAbsence <UserCreateOwnAbsence>`, :ref:`🔑UserDeleteOwnAbsence <UserDeleteOwnAbsence>`, :ref:`🔑UserReadAbsences <UserReadAbsences>`, :ref:`🔑UserCreateAbsence <UserCreateAbsence>`, :ref:`🔑UserDeleteAbsence <UserDeleteAbsence>`, :ref:`🔑UserCreateOwnSubstitute <UserCreateOwnSubstitute>`, :ref:`🔑UserCreateSubstitute <UserCreateSubstitute>`, :ref:`🔑UserReadSubstitutes <UserReadSubstitutes>`
+
+#. :ref:`🔑UserReadOwnAbsences <UserReadOwnAbsences>`
+#. :ref:`🔑UserCreateOwnAbsence <UserCreateOwnAbsence>`
+#. :ref:`🔑UserDeleteOwnAbsence <UserDeleteOwnAbsence>`
+#. :ref:`🔑UserReadAbsences <UserReadAbsences>`
+#. :ref:`🔑UserCreateAbsence <UserCreateAbsence>`
+#. :ref:`🔑UserDeleteAbsence <UserDeleteAbsence>`
+#. :ref:`🔑UserCreateOwnSubstitute <UserCreateOwnSubstitute>`
+#. :ref:`🔑UserCreateSubstitute <UserCreateSubstitute>`
+#. :ref:`🔑UserReadSubstitutes <UserReadSubstitutes>`
 
 .. tip::
    For comprehensive details on each permission including usage context and restrictions, see the detailed sections above.
+
 
