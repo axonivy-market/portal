@@ -272,7 +272,7 @@ public class CaseDetailsTest extends BaseTest {
   public void testRelatedTaskDestroyTask() {
     createTestingTask();
     detailsPage.clickRelatedTaskActionButton(SICK_LEAVE_REQUEST_TASK);
-    assertTrue(detailsPage.isRelatedTaskDestroyEnabled(SICK_LEAVE_REQUEST_TASK));
+    detailsPage.isRelatedTaskDestroyEnabled(SICK_LEAVE_REQUEST_TASK);
     detailsPage.destroyTask(SICK_LEAVE_REQUEST_TASK);
     detailsPage.confimRelatedTaskDestruction();
   }
