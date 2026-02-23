@@ -110,6 +110,7 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
 
     // In progress for admin user
     newDashboardPage.waitForGrowlMessageDisappear();
+    refreshPage();
     assertTaskActionsByTaskState(IN_PROGRESS, Arrays.asList(DETAILS, RESERVE, RESET, CLEAR_EXPIRY, DESTROY,
         WORKFLOW_EVENTS, PROCESS_VIEWER, ADD_AD_HOC_TASK));
 
