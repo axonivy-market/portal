@@ -1,46 +1,56 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
   "simpleName" : "PortalComponentSecurityServiceData",
   "namespace" : "com.axonivy.portal.components.service",
-  "isBusinessCaseData" : false,
   "fields" : [ {
     "name" : "application",
-    "type" : "ch.ivyteam.ivy.application.IApplication"
+    "type" : "ch.ivyteam.ivy.application.IApplication",
+    "modifiers" : [ ]
   }, {
     "name" : "apps",
-    "type" : "List<String>"
+    "type" : "List<String>",
+    "modifiers" : [ ]
   }, {
     "name" : "count",
-    "type" : "Integer"
+    "type" : "Integer",
+    "modifiers" : [ ]
   }, {
     "name" : "errors",
-    "type" : "java.util.List<com.axonivy.portal.components.ivydata.exception.PortalIvyDataException>"
+    "type" : "java.util.List<com.axonivy.portal.components.ivydata.exception.PortalIvyDataException>",
+    "modifiers" : [ ]
   }, {
     "name" : "query",
-    "type" : "String"
+    "modifiers" : [ ]
   }, {
     "name" : "roleDTOs",
-    "type" : "java.util.List<com.axonivy.portal.components.dto.RoleDTO>"
+    "type" : "java.util.List<com.axonivy.portal.components.dto.RoleDTO>",
+    "modifiers" : [ ]
   }, {
     "name" : "fromRoles",
-    "type" : "java.util.List<String>"
+    "type" : "java.util.List<String>",
+    "modifiers" : [ ]
   }, {
     "name" : "roles",
-    "type" : "java.util.List<ch.ivyteam.ivy.security.IRole>"
+    "type" : "java.util.List<ch.ivyteam.ivy.security.IRole>",
+    "modifiers" : [ ]
   }, {
     "name" : "securityMembers",
-    "type" : "java.util.List<com.axonivy.portal.components.dto.SecurityMemberDTO>"
+    "type" : "java.util.List<com.axonivy.portal.components.dto.SecurityMemberDTO>",
+    "modifiers" : [ ]
   }, {
     "name" : "startIndex",
-    "type" : "Integer"
+    "type" : "Integer",
+    "modifiers" : [ ]
   }, {
     "name" : "username",
-    "type" : "String"
+    "modifiers" : [ ]
   }, {
     "name" : "users",
-    "type" : "java.util.List<com.axonivy.portal.components.dto.UserDTO>"
+    "type" : "java.util.List<com.axonivy.portal.components.dto.UserDTO>",
+    "modifiers" : [ ]
   }, {
     "name" : "excludedUsernames",
-    "type" : "java.util.List<String>"
+    "type" : "java.util.List<String>",
+    "modifiers" : [ ]
   } ]
 }
