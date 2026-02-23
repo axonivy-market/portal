@@ -768,6 +768,11 @@ public class NewDashboardPage extends TemplatePage {
     selectDashboard.shouldBe(getClickableCondition()).click();
     selectDashboard.parent().shouldBe(Condition.cssClass("active-menuitem"), DEFAULT_TIMEOUT);
   }
+  
+  public void selectDashboardWithName(String name) {
+    getDashboardCollection().filter(Condition.text(name)).first().should(appear).click();
+    getDashboardCollection().filter(Condition.text(name)).first().parent().shouldBe(Condition.cssClass("active-menuitem"), DEFAULT_TIMEOUT);
+  }
 
   public StatisticWidgetDashboardPage selectStatisticWidget() {
     return new StatisticWidgetDashboardPage();

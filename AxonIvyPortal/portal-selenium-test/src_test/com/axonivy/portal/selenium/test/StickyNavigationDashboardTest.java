@@ -41,7 +41,7 @@ public class StickyNavigationDashboardTest extends BaseTest {
     createJSonFile("multi-dashboards.json", PortalVariable.DASHBOARD.key);
     newDashboardPage.waitForAbsencesGrowlMessageDisplay();
     newDashboardPage.getDashboardActive().shouldBe(Condition.text("New public dashboard"));
-    newDashboardPage.selectDashboard(1);
+    newDashboardPage.selectDashboardWithName("New public dashboard 1");
     newDashboardPage.waitForTaskListDisplay();
     newDashboardPage.getDashboardActive().shouldBe(Condition.text("New public dashboard 1"));
     TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget("Your Tasks");
@@ -69,7 +69,7 @@ public class StickyNavigationDashboardTest extends BaseTest {
     createJSonFile("multi-dashboards.json", PortalVariable.DASHBOARD.key);
     newDashboardPage.waitForAbsencesGrowlMessageDisplay();
     newDashboardPage.getDashboardActive().shouldBe(Condition.text("New public dashboard"));
-    newDashboardPage.selectDashboard(2);
+    newDashboardPage.selectDashboardWithName("New public dashboard 2");
     newDashboardPage.getDashboardActive().shouldBe(Condition.text("New public dashboard 2"));
     var configurationPage = newDashboardPage.openDashboardConfigurationPage();
     DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();
@@ -83,7 +83,7 @@ public class StickyNavigationDashboardTest extends BaseTest {
     createJSonFile("multi-dashboards.json", PortalVariable.DASHBOARD.key);
     newDashboardPage.waitForAbsencesGrowlMessageDisplay();
     newDashboardPage.getDashboardActive().shouldBe(Condition.text("New public dashboard"));
-    newDashboardPage.selectDashboard(1);
+    newDashboardPage.selectDashboardWithName("New public dashboard 1");
     newDashboardPage.getDashboardActive().shouldBe(Condition.text("New public dashboard 1"));
     var configurationPage = newDashboardPage.openDashboardConfigurationPage();
     configurationPage.reorderPrivateDashboard();
@@ -99,7 +99,7 @@ public class StickyNavigationDashboardTest extends BaseTest {
     createJSonFile("multi-dashboards.json", PortalVariable.DASHBOARD.key);
     newDashboardPage.waitForAbsencesGrowlMessageDisplay();
     newDashboardPage.getDashboardActive().shouldBe(Condition.text("New public dashboard"));
-    newDashboardPage.selectDashboard(1);
+    newDashboardPage.selectDashboardWithName("New public dashboard 1");
     newDashboardPage.getDashboardActive().shouldBe(Condition.text("New public dashboard 1"));
     ProcessWidgetNewDashBoardPage processWidget = new ProcessWidgetNewDashBoardPage();
     processWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
@@ -113,7 +113,7 @@ public class StickyNavigationDashboardTest extends BaseTest {
     createJSonFile("multi-dashboards.json", PortalVariable.DASHBOARD.key);
     newDashboardPage.waitForAbsencesGrowlMessageDisplay();
     newDashboardPage.getDashboardActive().shouldBe(Condition.text("New public dashboard"));
-    newDashboardPage.selectDashboard(1);
+    newDashboardPage.selectDashboardWithName("New public dashboard 1");
     newDashboardPage.getDashboardActive().shouldBe(Condition.text("New public dashboard 1"));
     String name = "New private dashboard 3";
     String icon = "fa-coffee";
@@ -131,7 +131,7 @@ public class StickyNavigationDashboardTest extends BaseTest {
     createJSonFile("multi-dashboards.json", PortalVariable.DASHBOARD.key);
     newDashboardPage.waitForAbsencesGrowlMessageDisplay();
     newDashboardPage.getDashboardActive().shouldBe(Condition.text("New public dashboard"));
-    newDashboardPage.selectDashboard(1);
+    newDashboardPage.selectDashboardWithName("New public dashboard 1");
     newDashboardPage.getDashboardActive().shouldBe(Condition.text("New public dashboard 1"));
     String name = "New public dashboard 3";
     String icon = "fa-coffee";
