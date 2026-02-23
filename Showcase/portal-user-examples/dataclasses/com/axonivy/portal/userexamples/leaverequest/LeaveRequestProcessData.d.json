@@ -1,22 +1,16 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
   "simpleName" : "LeaveRequestProcessData",
   "namespace" : "com.axonivy.portal.userexamples.leaverequest",
-  "isBusinessCaseData" : false,
   "fields" : [ {
-    "name" : "approver",
-    "type" : "String",
-    "modifiers" : [ "PERSISTENT" ]
+    "name" : "approver"
   }, {
     "name" : "isApproved",
-    "type" : "Boolean",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "Boolean"
   }, {
     "name" : "taskName",
-    "type" : "String"
+    "modifiers" : [ ]
   }, {
-    "name" : "requester",
-    "type" : "String",
-    "modifiers" : [ "PERSISTENT" ]
+    "name" : "requester"
   } ]
 }

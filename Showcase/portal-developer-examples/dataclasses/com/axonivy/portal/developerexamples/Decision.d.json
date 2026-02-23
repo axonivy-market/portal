@@ -1,15 +1,11 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
   "simpleName" : "Decision",
   "namespace" : "com.axonivy.portal.developerexamples",
-  "isBusinessCaseData" : false,
   "fields" : [ {
-    "name" : "note",
-    "type" : "String",
-    "modifiers" : [ "PERSISTENT" ]
+    "name" : "note"
   }, {
     "name" : "isApproved",
-    "type" : "Boolean",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "Boolean"
   } ]
 }

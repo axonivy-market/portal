@@ -1,15 +1,12 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
   "simpleName" : "PhotoLibraryOfDefaultProcessImageExampleData",
   "namespace" : "com.axonivy.portal.developerexamples.showcase.PhotoLibraryOfDefaultProcessImageExample",
-  "isBusinessCaseData" : false,
   "fields" : [ {
     "name" : "photoNames",
-    "type" : "java.util.ArrayList<com.axonivy.portal.developerexamples.enums.DefaultImage>",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "java.util.ArrayList<com.axonivy.portal.developerexamples.enums.DefaultImage>"
   }, {
     "name" : "photoName",
-    "type" : "com.axonivy.portal.developerexamples.enums.DefaultImage",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "com.axonivy.portal.developerexamples.enums.DefaultImage"
   } ]
 }
