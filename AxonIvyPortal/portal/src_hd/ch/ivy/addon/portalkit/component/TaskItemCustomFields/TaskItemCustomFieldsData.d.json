@@ -1,13 +1,14 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
   "simpleName" : "TaskItemCustomFieldsData",
   "namespace" : "ch.ivy.addon.portalkit.component.TaskItemCustomFields",
-  "isBusinessCaseData" : false,
   "fields" : [ {
     "name" : "customFieldList",
-    "type" : "List<ch.ivyteam.ivy.workflow.custom.field.ICustomField>"
+    "type" : "List<ch.ivyteam.ivy.workflow.custom.field.ICustomField>",
+    "modifiers" : [ ]
   }, {
     "name" : "task",
-    "type" : "ch.ivyteam.ivy.workflow.ITask"
+    "type" : "ch.ivyteam.ivy.workflow.ITask",
+    "modifiers" : [ ]
   } ]
 }

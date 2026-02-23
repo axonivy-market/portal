@@ -1,19 +1,13 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
   "simpleName" : "RedirectToTaskDetailsPageByUUIDExampleData",
   "namespace" : "com.axonivy.portal.components.examples.redirectstodetailspage.RedirectToTaskDetailsPageByUUIDExample",
-  "isBusinessCaseData" : false,
   "fields" : [ {
-    "name" : "uuid",
-    "type" : "String",
-    "modifiers" : [ "PERSISTENT" ]
+    "name" : "uuid"
   }, {
-    "name" : "taskLink",
-    "type" : "String",
-    "modifiers" : [ "PERSISTENT" ]
+    "name" : "taskLink"
   }, {
     "name" : "isLinkEnable",
-    "type" : "Boolean",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "Boolean"
   } ]
 }
