@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -501,8 +500,8 @@ public class TaskWidgetPage extends TemplatePage {
     return getTaskState(index).is(Condition.cssClass(state));
   }
 
-  public boolean isResetLinkDisabled(int taskId) {
-    return !$(getResetTaskLinkSelector(taskId)).isDisplayed();
+  public void isResetLinkDisabled(int taskId) {
+    $(getResetTaskLinkSelector(taskId)).should(Condition.disappear);
   }
 
   private String getResetTaskLinkSelector(int taskId) {
