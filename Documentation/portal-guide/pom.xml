@@ -29,7 +29,7 @@
               <resources>
                 <resource>
                   <directory>../public-api/target/site/apidocs</directory>
-                  <filtering>true</filtering>
+                  <filtering>false</filtering>
                 </resource>
               </resources>
             </configuration>
@@ -45,7 +45,7 @@
               <resources>
                 <resource>
                   <directory>../public-api/target/site/apidocs</directory>
-                  <filtering>true</filtering>
+                  <filtering>false</filtering>
                 </resource>
               </resources>
             </configuration>
