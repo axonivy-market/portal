@@ -38,10 +38,14 @@ public class CaseBean implements Serializable {
   private boolean isHideCaseCreator;
   private boolean isCaseOwnerEnabled;
 
+  private String globalDateTimePattern;
+  
+
   @PostConstruct
   public void init() {
     isCaseOwnerEnabled = GlobalSettingService.getInstance().isCaseOwnerEnabled();
     isHideCaseCreator = GlobalSettingService.getInstance().isHideCaseCreator();
+    globalDateTimePattern = DateTimeGlobalSettingService.getInstance().getGlobalDateTimePattern();
   }
 
   /**
@@ -125,11 +129,11 @@ public class CaseBean implements Serializable {
         if (DashboardStandardCaseColumn.STATE.getField().equalsIgnoreCase(col.getField())) {
           displayTexts.add(col.getHeaderText() + ": " + getState(icase));
         } else if (DashboardStandardCaseColumn.CREATED.getField().equalsIgnoreCase(col.getField())) {
-          String createdDateString = new SimpleDateFormat(DateTimeGlobalSettingService.getInstance().getGlobalDateTimePattern()).format(icase.getStartTimestamp());
+          String createdDateString = new SimpleDateFormat(globalDateTimePattern).format(icase.getStartTimestamp());
           displayTexts.add(col.getHeaderText() + ": " + createdDateString);
         } else if (DashboardStandardCaseColumn.FINISHED.getField().equalsIgnoreCase(col.getField())) {
           if (icase.getEndTimestamp() != null) {
-            String finishDateString = new SimpleDateFormat(DateTimeGlobalSettingService.getInstance().getGlobalDateTimePattern()).format(icase.getEndTimestamp());
+            String finishDateString = new SimpleDateFormat(globalDateTimePattern).format(icase.getEndTimestamp());
             displayTexts.add(col.getHeaderText() + ": " + finishDateString);
           }
         } else {

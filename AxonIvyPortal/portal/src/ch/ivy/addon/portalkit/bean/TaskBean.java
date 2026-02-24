@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 
 import org.apache.commons.lang3.StringUtils;
@@ -30,8 +31,6 @@ import ch.ivyteam.ivy.workflow.task.TaskBusinessState;
 
 /**
  * Provide the utilities related to Task.
- * 
- * @author bolt
  *
  */
 @ManagedBean(name = "taskBean")
@@ -39,6 +38,13 @@ public class TaskBean implements Serializable {
   private static final long serialVersionUID = 1L;
 
   private static final String TASK_BUSINESS_STATE_CMS_PATH = "/ch.ivy.addon.portalkit.ui.jsf/taskBusinessState/";
+
+  private String globalDateTimePattern;
+  
+  @PostConstruct
+  public void init() {
+    globalDateTimePattern = DateTimeGlobalSettingService.getInstance().getGlobalDateTimePattern();
+  }
 
   public String getPriority(WorkflowPriority priority) {
     return cms("/ch.ivy.addon.portalkit.ui.jsf/taskPriority/" + priority.name());
@@ -135,16 +141,16 @@ public class TaskBean implements Serializable {
         } else if (DashboardStandardTaskColumn.STATE.getField().equalsIgnoreCase(col.getField())) {
           displayTexts.add(col.getHeaderText() + ": " + getTaskBusinessState(task.getBusinessState()));
         } else if (DashboardStandardTaskColumn.CREATED.getField().equalsIgnoreCase(col.getField())) {
-          String createdDateString = new SimpleDateFormat(DateTimeGlobalSettingService.getInstance().getGlobalDateTimePattern()).format(task.getStartTimestamp());
+          String createdDateString = new SimpleDateFormat(globalDateTimePattern).format(task.getStartTimestamp());
           displayTexts.add(col.getHeaderText() + ": " + createdDateString);
         } else if (DashboardStandardTaskColumn.COMPLETED.getField().equalsIgnoreCase(col.getField())) {
           if (task.getEndTimestamp() != null) {
-            String completedDateString = new SimpleDateFormat(DateTimeGlobalSettingService.getInstance().getGlobalDateTimePattern()).format(task.getEndTimestamp());
+            String completedDateString = new SimpleDateFormat(globalDateTimePattern).format(task.getEndTimestamp());
             displayTexts.add(col.getHeaderText() + ": " + completedDateString);
           }
         } else if (DashboardStandardTaskColumn.EXPIRY.getField().equalsIgnoreCase(col.getField())) {
           if (task.getExpiryTimestamp() != null) {
-            String expiryDateString = new SimpleDateFormat(DateTimeGlobalSettingService.getInstance().getGlobalDateTimePattern()).format(task.getExpiryTimestamp());
+            String expiryDateString = new SimpleDateFormat(globalDateTimePattern).format(task.getExpiryTimestamp());
             displayTexts.add(col.getHeaderText() + ": " + expiryDateString);
           }
         } else {

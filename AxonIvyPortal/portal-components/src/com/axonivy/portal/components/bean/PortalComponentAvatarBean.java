@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Optional;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 
 import org.apache.commons.lang3.BooleanUtils;
@@ -24,9 +25,16 @@ import ch.ivyteam.ivy.security.IUser;
 public class PortalComponentAvatarBean implements Serializable {
 
   private static final long serialVersionUID = 6793376941093725298L;
+  private String isShownAvatar;
+  private String isShownTooltipTechnicalName;
+  @PostConstruct
+  public void init() {
+    isShownAvatar = GlobalSettingService.getInstance().findGlobalSettingValue(GlobalVariable.SHOW_AVATAR);
+    isShownTooltipTechnicalName = GlobalSettingService.getInstance().findGlobalSettingValue(GlobalVariable.SHOW_TOOLTIP_TECHNICAL_NAME);
+  }
 
   public boolean getPortalShowAvatarSettingOrDefault(boolean defaultIfEmpty) {
-    return GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_AVATAR, defaultIfEmpty);
+    return StringUtils.isEmpty(isShownAvatar) ? defaultIfEmpty : Boolean.valueOf(isShownAvatar);
   }
 
   public String getNameInitials(String displayName) {
@@ -72,7 +80,7 @@ public class PortalComponentAvatarBean implements Serializable {
   }
 
   public boolean getPortalShowTechnicalTooltipOrDefault(boolean defaultIfEmpty) {
-    return GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_TOOLTIP_TECHNICAL_NAME, defaultIfEmpty);
+    return StringUtils.isEmpty(isShownTooltipTechnicalName) ? defaultIfEmpty : Boolean.valueOf(isShownTooltipTechnicalName);
   }
 
   /**

@@ -167,7 +167,7 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
     List<IWebStartable> processes = ivyComponentLogicCaller.invokeComponentLogic(componentId, "#{logic.collectProcesses}", new Object[] {});
     List<Process> defaultPortalProcesses = new ArrayList<>();
     String defaultProcessImage = GlobalSettingService.getInstance().findGlobalSettingByGlobalVariable(GlobalVariable.DEFAULT_PROCESS_IMAGE)
-        .getDisplayValue().toUpperCase();;
+        .getDisplayValue().toUpperCase();
     processes.forEach(iWebStartable -> {
       IvyProcess ivyProcess = new IvyProcess(iWebStartable, defaultProcessImage);
       defaultPortalProcesses.add(ivyProcess);
