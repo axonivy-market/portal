@@ -346,7 +346,6 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
   }
   
   public void openFilter() {
-    waitPageSilence();
     $("div#new-widget-configuration-dialog").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
     .$("button[id$=':show-filter']").shouldBe(getClickableCondition()).click();
     $("div[id$='widget-filter-content']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);

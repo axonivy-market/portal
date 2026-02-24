@@ -154,8 +154,8 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void applyFilter() {
-    $("div.filter-overlay-panel__footer").shouldBe(appear, DEFAULT_TIMEOUT).$$("button[id$='apply-button']")
-        .filter(text("Apply")).first().shouldBe(getClickableCondition()).click();
+    clickByJavaScript($("div.filter-overlay-panel__footer").shouldBe(appear, DEFAULT_TIMEOUT).$$("button[id$='apply-button']")
+        .filter(text("Apply")).first());
     $("div[id$='task-task_1:filter-overlay-panel-0']").shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
   }
 
