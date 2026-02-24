@@ -200,12 +200,11 @@ public class ComplexFilterHelper{
       dateInput.get(i).clear();
       dateInput.get(i).shouldBe(Condition.empty, DEFAULT_TIMEOUT).sendKeys(String.valueOf(values[i]));
       WaitHelper.waitPageSilence();
-//      if ($(".ui-datepicker").isDisplayed()) {
-//        dateInput.get(i).sendKeys(Keys.ESCAPE);
-//      }
 
       if ($("div[id='new-widget-configuration-dialog']").isDisplayed()) {
         filterElement.$("span button").$("span[class*='ui-icon-calendar']").click();
+      } else {
+        dateInput.get(i).pressEscape();
       }
     }
   }

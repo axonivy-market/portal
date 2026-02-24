@@ -21,7 +21,7 @@ import com.axonivy.portal.selenium.page.TopMenuTaskWidgetPage;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 
-@IvyWebTest(headless = false)
+@IvyWebTest
 public class TaskWidgetTest extends BaseTest {
 
   private TaskDetailsPage taskDetailsPage;
