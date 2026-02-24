@@ -505,25 +505,14 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void clickOnHeaderTaskByColumn(String columnName) {
-    ElementsCollection elementsTH = $(taskWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$$("table thead tr th");
-    elementsTH.asDynamicIterable().forEach(headerElem -> {
-      if (headerElem.getText().equalsIgnoreCase(columnName)) {
-        waitForElementClickableThenClick(headerElem);
-
-        // Sometimes browser click before JS of Primefaces loaded correctly.
-        // -> header has state focus instead of active.
-        // -> should check: after click, if header has state focus instead of active,
-        // click again.
-        try {
-          headerElem.shouldHave(Condition.cssClass("ui-state-active"), DEFAULT_TIMEOUT);
-        } catch (AssertionError e) {
-          if (headerElem.has(Condition.cssClass("ui-state-focus"))) {
-            waitForElementClickableThenClick(headerElem);
-            headerElem.shouldHave(Condition.cssClass("ui-state-active"), DEFAULT_TIMEOUT);
-          }
-        }
-      }
-    });
+    $(taskWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$$("table thead tr th")
+      .shouldHave(CollectionCondition.containExactTextsCaseSensitive(columnName))
+      .filter(Condition.text(columnName)).first()
+      .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $(taskWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$$("table thead tr th")
+      .shouldHave(CollectionCondition.containExactTextsCaseSensitive(columnName))
+      .filter(Condition.text(columnName)).first()
+      .shouldHave(Condition.cssClass("ui-state-active"), DEFAULT_TIMEOUT);
   }
 
   public SelenideElement getTheFirstTaskWidgetByColumn(String columnName) {
