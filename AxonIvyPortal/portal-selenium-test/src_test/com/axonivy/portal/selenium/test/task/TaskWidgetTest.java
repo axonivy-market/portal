@@ -83,7 +83,7 @@ public class TaskWidgetTest extends BaseTest {
 
   @Test
   public void testFilterDateOnStandardFields() {
-    ScreenshotUtils.resizeBrowser(new Dimension(1167, 494));
+    resizeBrowserToSmallscreen();
     NavigationHelper.navigateToTaskList();
     TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
 
