@@ -436,4 +436,9 @@ public class BaseTest {
   public void resizeBrowserToFullHDResolution() {
     ScreenshotUtils.resizeBrowser(new Dimension(1900, 1080));
   }
+
+    public void resizeBrowserToSmallScreen() {
+    ScreenshotUtils.resizeBrowser(new Dimension(1167, 494));
+  }
+
 }
