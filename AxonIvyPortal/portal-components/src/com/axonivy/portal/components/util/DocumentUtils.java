@@ -15,6 +15,7 @@ import org.primefaces.model.StreamedContent;
 import com.axonivy.portal.components.ivydata.bo.IvyDocument;
 import com.axonivy.portal.components.service.IvyAdapterService;
 
+import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.call.SubProcessCallStart;
 import ch.ivyteam.ivy.process.call.SubProcessSearchFilter;
 import ch.ivyteam.ivy.process.call.SubProcessSearchFilter.SearchScope;
@@ -88,6 +89,9 @@ public final class DocumentUtils {
             return returnDefaultStreamedContent;
           }
         }
+      } catch (Exception e) {
+        Ivy.log().error(e);
+        throw new IOException();
       }
     }
     return streamedContent;

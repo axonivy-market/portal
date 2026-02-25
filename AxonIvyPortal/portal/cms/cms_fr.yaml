@@ -963,6 +963,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     fileCouldNotParse: Impossible d'analyser le fichier
     fileEmptyMessage: Le fichier est vide
     name: Nom du fichier
+    previewErrorMessage: Impossible d'afficher l'aperçu de ce fichier
     size: Taille du fichier
     type: Type
     upload: Ajouter un nouveau fichier

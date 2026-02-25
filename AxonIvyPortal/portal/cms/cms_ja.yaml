@@ -961,6 +961,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     fileCouldNotParse: ファイルを解析できませんでした
     fileEmptyMessage: ファイルは空です
     name: ファイル名
+    previewErrorMessage: このファイルのプレビューを表示できません
     size: ファイルサイズ
     type: タイプ
     upload: 新しいファイルをアップロード
