@@ -1,52 +1,43 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
   "simpleName" : "CaseItemHistoryData",
   "namespace" : "ch.ivy.addon.portalkit.component.CaseItemHistory",
-  "isBusinessCaseData" : false,
   "fields" : [ {
     "name" : "caze",
-    "type" : "ch.ivyteam.ivy.workflow.ICase"
+    "type" : "ch.ivyteam.ivy.workflow.ICase",
+    "modifiers" : [ ]
   }, {
     "name" : "histories",
-    "type" : "List<ch.ivy.addon.portalkit.bo.History>"
+    "type" : "List<ch.ivy.addon.portalkit.bo.History>",
+    "modifiers" : [ ]
   }, {
-    "name" : "noteContent",
-    "type" : "String",
-    "modifiers" : [ "PERSISTENT" ]
+    "name" : "noteContent"
   }, {
     "name" : "note",
-    "type" : "ch.ivyteam.ivy.workflow.note.Note"
+    "type" : "ch.ivyteam.ivy.workflow.note.Note",
+    "modifiers" : [ ]
   }, {
     "name" : "taskId",
-    "type" : "Long",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "Long"
   }, {
-    "name" : "fullNote",
-    "type" : "String",
-    "modifiers" : [ "PERSISTENT" ]
+    "name" : "fullNote"
   }, {
     "name" : "showSystemNotes",
-    "type" : "Boolean",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "Boolean"
   }, {
     "name" : "showSystemTasks",
-    "type" : "Boolean",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "Boolean"
   }, {
     "name" : "showSystemNotesChkbox",
-    "type" : "Boolean",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "Boolean"
   }, {
     "name" : "showSystemTasksChkbox",
-    "type" : "Boolean",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "Boolean"
   }, {
     "name" : "showRelatedCaseInfo",
-    "type" : "Boolean",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "Boolean"
   }, {
     "name" : "showRelatedCaseInfoCheckbox",
-    "type" : "Boolean",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "Boolean"
   } ]
 }

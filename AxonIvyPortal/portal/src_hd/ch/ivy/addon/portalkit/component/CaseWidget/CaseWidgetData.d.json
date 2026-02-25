@@ -1,69 +1,61 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
   "simpleName" : "CaseWidgetData",
   "namespace" : "ch.ivy.addon.portalkit.component.CaseWidget",
-  "isBusinessCaseData" : false,
   "fields" : [ {
     "name" : "caseId",
-    "type" : "Long",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "Long"
   }, {
     "name" : "cases",
-    "type" : "java.util.List<ch.ivyteam.ivy.workflow.ICase>"
+    "type" : "java.util.List<ch.ivyteam.ivy.workflow.ICase>",
+    "modifiers" : [ ]
   }, {
-    "name" : "filteringKeyword",
-    "type" : "String",
-    "modifiers" : [ "PERSISTENT" ]
+    "name" : "filteringKeyword"
   }, {
     "name" : "dataModel",
-    "type" : "ch.ivy.addon.portalkit.datamodel.CaseLazyDataModel"
+    "type" : "ch.ivy.addon.portalkit.datamodel.CaseLazyDataModel",
+    "modifiers" : [ ]
   }, {
     "name" : "totalCases",
-    "type" : "Long",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "Long"
   }, {
     "name" : "startIndex",
-    "type" : "Integer",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "Integer"
   }, {
     "name" : "count",
-    "type" : "Integer",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "Integer"
   }, {
     "name" : "caseSearchCriteria",
-    "type" : "ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria"
+    "type" : "ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria",
+    "modifiers" : [ ]
   }, {
-    "name" : "filterSetName",
-    "type" : "String",
-    "modifiers" : [ "PERSISTENT" ]
+    "name" : "filterSetName"
   }, {
     "name" : "isFilterExisted",
-    "type" : "Boolean",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "Boolean"
   }, {
     "name" : "filterGroupId",
-    "type" : "Long",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "Long"
   }, {
     "name" : "columnsVisibility",
-    "type" : "java.util.List<String>",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "java.util.List<String>"
   }, {
     "name" : "globalCaseId",
-    "type" : "ch.ivy.addon.portalkit.dto.GlobalCaseId"
+    "type" : "ch.ivy.addon.portalkit.dto.GlobalCaseId",
+    "modifiers" : [ ]
   }, {
     "name" : "exportedFile",
-    "type" : "org.primefaces.model.StreamedContent"
+    "type" : "org.primefaces.model.StreamedContent",
+    "modifiers" : [ ]
   }, {
     "name" : "loopCounter",
-    "type" : "Integer",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "Integer"
   }, {
     "name" : "maxResultNumberPerQuery",
-    "type" : "Integer",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "Integer"
   }, {
     "name" : "collectedCasesForExporting",
-    "type" : "java.util.List<ch.ivyteam.ivy.workflow.ICase>"
+    "type" : "java.util.List<ch.ivyteam.ivy.workflow.ICase>",
+    "modifiers" : [ ]
   } ]
 }
