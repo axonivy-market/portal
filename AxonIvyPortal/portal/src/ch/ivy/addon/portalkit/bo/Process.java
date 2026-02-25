@@ -71,15 +71,15 @@ public interface Process {
   }
   
   default public String collectProcessImage(IWebStartable process, String defaultProcessImage) {
-  var imageUri = DefaultImage.PROCESSMODELING.getPath();
-  if (!defaultProcessImage.equals(DefaultImage.DEFAULT.name())) {
-    imageUri = DefaultImage.IMAGE_PATH + defaultProcessImage;
+    var imageUri = DefaultImage.PROCESSMODELING.getPath();
+    if (!defaultProcessImage.equals(DefaultImage.DEFAULT.name())) {
+      imageUri = DefaultImage.IMAGE_PATH + defaultProcessImage;
+    }
+    if (StringUtils.isNotBlank(getCustomFieldProcessImage(process))) {
+      imageUri = getCustomFieldProcessImage(process);
+    }
+    return getContentImageUrl(imageUri);
   }
-  if (StringUtils.isNotBlank(getCustomFieldProcessImage(process))) {
-    imageUri = getCustomFieldProcessImage(process);
-  }
-  return getContentImageUrl(imageUri);
-}
  
   /**
    * This method collect the index of process define by Custom Field name portalSortIndex
