@@ -27,16 +27,16 @@ import ch.ivyteam.ivy.security.IUser;
 public class PortalComponentAvatarBean implements Serializable {
 
   private static final long serialVersionUID = 6793376941093725298L;
-  private String isShownAvatar;
-  private String isShownTooltipTechnicalName;
+  private String showAvatarSetting;
+  private String showTooltipTechnicalNameSetting;
   @PostConstruct
   public void init() {
-    isShownAvatar = GlobalSettingService.getInstance().findGlobalSettingValue(GlobalVariable.SHOW_AVATAR);
-    isShownTooltipTechnicalName = GlobalSettingService.getInstance().findGlobalSettingValue(GlobalVariable.SHOW_TOOLTIP_TECHNICAL_NAME);
+    showAvatarSetting = GlobalSettingService.getInstance().findGlobalSettingValue(GlobalVariable.SHOW_AVATAR);
+    showTooltipTechnicalNameSetting = GlobalSettingService.getInstance().findGlobalSettingValue(GlobalVariable.SHOW_TOOLTIP_TECHNICAL_NAME);
   }
 
   public boolean getPortalShowAvatarSettingOrDefault(boolean defaultIfEmpty) {
-    return StringUtils.isEmpty(isShownAvatar) ? defaultIfEmpty : Boolean.valueOf(isShownAvatar);
+    return StringUtils.isEmpty(showAvatarSetting) ? defaultIfEmpty : Boolean.valueOf(showAvatarSetting);
   }
 
   public String getNameInitials(String displayName) {
@@ -82,7 +82,7 @@ public class PortalComponentAvatarBean implements Serializable {
   }
 
   public boolean getPortalShowTechnicalTooltipOrDefault(boolean defaultIfEmpty) {
-    return StringUtils.isEmpty(isShownTooltipTechnicalName) ? defaultIfEmpty : Boolean.valueOf(isShownTooltipTechnicalName);
+    return StringUtils.isEmpty(showTooltipTechnicalNameSetting) ? defaultIfEmpty : Boolean.valueOf(showTooltipTechnicalNameSetting);
   }
 
   /**
