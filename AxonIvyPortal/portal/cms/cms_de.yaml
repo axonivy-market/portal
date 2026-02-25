@@ -1,8 +1,8 @@
 ch.ivy.addon.portal.generic:
   CaseDetailsTemplate:
     noCaseFound: Vorgang nicht gefunden oder Sie haben keine Berechtigung, diesen Vorgang zu sehen.
-    requestTabTitle: Anfrage
-    statusTabTitle: Vorgangsinformationen
+    requestTabTitle: Anfrage 2222
+    statusTabTitle: Vorgangsinformationen 32132
   OpenTaskTemplate:
     browserTabClosingWarning: Durch diese Aktion gehen ungespeicherte Änderungen verloren. Möchten Sie wirklich fortfahren?
     goToSidestepWarning: Bei starten eines Sidestep Prozesses werden die aktuelle Eingaben nicht gespeichert. Möchten Sie sich trotzdem fortsetzen?
@@ -1493,9 +1493,7 @@ Dialogs:
                         <span class="shortcut-key">Alt + 4</span>Fokus auf die Fälle
                     </div>
                 </div>
-              title: 'Barrierefreiheit Tastenkombinationen: Alt + 1: Se focaliser sur l’onglet du Dashboard. Alt + 2: Se focaliser sur l’onglet des processus. Alt + 3: Se focaliser sur l’onglet des tâches. Alt + 4: Se focaliser sur l’onglet des cas. Alt + 5: Se focaliser sur la recherche. Alt + 6: Se
-                focaliser sur les paramètres utilisateur. Alt + 7: Schaltet die Sichtbarkeit des Hauptmenüs um. Alt + A: Se focaliser sur le premier processus. Alt + W: Se focaliser sur la première tâche. Alt + Q: Se focaliser sur le premier cas. Tab: Navigation séquentielle entre les éléments. Esc: Fermer
-                les widgets agrandis/Fermer les menus contextuels. Enter: Confirmer la sélection'
+              title: 'Barrierefreiheit Tastenkombinationen: Alt + 1: Se focaliser sur l’onglet du Dashboard. Alt + 2: Se focaliser sur l’onglet des processus. Alt + 3: Se focaliser sur l’onglet des tâches. Alt + 4: Se focaliser sur l’onglet des cas. Alt + 5: Se focaliser sur la recherche. Alt + 6: Se focaliser sur les paramètres utilisateur. Alt + 7: Schaltet die Sichtbarkeit des Hauptmenüs um. Alt + A: Se focaliser sur le premier processus. Alt + W: Se focaliser sur la première tâche. Alt + Q: Se focaliser sur le premier cas. Tab: Navigation séquentielle entre les éléments. Esc: Fermer les widgets agrandis/Fermer les menus contextuels. Enter: Confirmer la sélection'
             CaseWidgetConfiguration:
               AddFilter: Filter hinzufügen
             ClientStatisticWidget:
