@@ -174,8 +174,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     ProcessViewerText: プロセスビューアー
     Title: プロセスビューアー
   SideStep:
-    NewSideStepMessage: '新しいサイドステップタスクが作成されました。'
-    SideStepProcess: '並列処理を開始する'
+    NewSideStepMessage: 新しいサイドステップタスクが作成されました。
+    SideStepProcess: 並列処理を開始する
   TaskDocuments:
     TaskDocumentsPageTitle: タスクドキュメント
   adminSettings:
@@ -206,7 +206,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       thirdPartyApplication: サードパーティーのアプリケーション
     currentValue: 現在の値
     defaultValue: デフォルト値
-    deleteAppConfirmation: このアプリケーションを削除してよろしいですか？
+    deleteAppConfirmation: アプリケーション「<b>{0}</b>」を削除してもよろしいですか？
     dialogclosinginformation:
       dialogHeader: ポータル設定終了
       informMessage: ポータル設定を変更した場合、新しい構成を有効にするには現在のページの更新が必要です。
@@ -1236,6 +1236,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     taskNotes: ノート
     triggerEscalation: エスカレーションのトリガー
   taskList:
+    configuration: 設定
     deadline: 期限
     default: 初期値
     defaultColumns:
@@ -1603,7 +1604,7 @@ Labels:
   AssignToUser: 'TODO: Select assigned user'
   Chat: TODO Chat
   Collapse: TODO 折りたたむ
-  Comma: '、'
+  Comma: 、
   CreateNewDashboard: 新しいダッシュボードを作成
   EditDescription: 説明を編集
   EnterFromValue: TODO Enter from value

@@ -42,14 +42,14 @@
         </div>
     </h:panelGroup>  
     
-    <div class="ui-g-4">
-      <p:commandButton id="show-filter" styleClass="Fright" icon="si si-filter-1" 
-        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/filter')}"
-        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/filter')}"
-        type="button" onclick="openFilterPanel(event);"/>
+    <div class="ui-g-4 flex justify-content-end">
+      <p:commandButton id="widget-configuration-button" 
+        styleClass="mr-2" type="button" label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/configuration')}"
+        icon="si si-cog-double-2" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/configuration')}"  
+        onclick="PF('widgetConfigurationPanel').show();"/>
       <p:commandButton id="manage-column"
         icon="si si-layers-grid-settings" 
-        styleClass="Fright u-mar-right-15"
+        styleClass="mr-2"
         ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/manageColumns')}"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/manageColumns')}"
         update="#{p:resolveFirstComponentWithId('column-management-dialog', view).clientId}" 
@@ -58,73 +58,81 @@
         global="false" >
         <p:resetInput target="#{p:resolveFirstComponentWithId('column-management-dialog', view).clientId}" />
       </p:commandButton>
+      <p:commandButton id="show-filter" styleClass="mr-2" icon="si si-filter-1" 
+        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/filter')}"
+        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/filter')}"
+        type="button" onclick="openFilterPanel(event);"/>
     </div>
     
-    <h:panelGroup id="quick-search-group"
-      rendered="#{managedBean.canEnableQuickSearch()}"
-      styleClass="ui-g-12 u-padding-0 ui-fluid">
-      <div class="ui-g-2 w-14rem">
-        <p:outputLabel for="quick-search" styleClass="u-mar-right-5"
-          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/QuickSearch')}" />
-        <h:outputText id="quick-search-info" styleClass="si si-information-circle" />
-        <p:tooltip for="quick-search-info" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/QuickSearchInfo')}" />
-      </div>
-      <div class="ui-g-2 ui-inputgroup">
-        <p:selectBooleanCheckbox id="quick-search"
-          value="#{widget.enableQuickSearch}">
-          <p:ajax process="quick-search-group" update="quick-search-group"
+    <p:overlayPanel id="widget-configuration-panel" for="widget-configuration-button"
+          styleClass="widget-configuration-overlaypanel" widgetVar="widgetConfigurationPanel" appendTo="@body"
+          my="right top" at="right bottom">
+      <h:panelGroup id="quick-search-group" layout="block"
+        rendered="#{managedBean.canEnableQuickSearch()}"
+        styleClass="widget-configuration-group-item ui-fluid flex">
+        <div class="label-item">
+          <p:outputLabel for="quick-search" styleClass="u-mar-right-5"
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/QuickSearch')}" />
+          <h:outputText id="quick-search-info" styleClass="si si-information-circle" />
+          <p:tooltip for="quick-search-info" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/QuickSearchInfo')}" />
+        </div>
+        <div class="ui-inputgroup">
+          <p:selectBooleanCheckbox id="quick-search"
+            value="#{widget.enableQuickSearch}">
+            <p:ajax process="quick-search-group" update="quick-search-group"
             partialSubmit="true" />
-        </p:selectBooleanCheckbox>
-      </div>
-    </h:panelGroup>
-    
-    <h:panelGroup id="widget-info-icon-group"
-      rendered="#{managedBean.displayWidgetInfoOption()}"
-      styleClass="ui-g-12 u-padding-0 ui-fluid">
-      <div class="ui-g-2 w-14rem">
-        <p:outputLabel for="widget-info" styleClass="u-mar-right-5"
-          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/widgetInfoIcon')}"/>
-      </div>
-      <div class="ui-g-2 ui-inputgroup">
-        <p:selectBooleanCheckbox id="widget-info"
-          value="#{widget.showWidgetInfo}">
-          <p:ajax process="widget-info-icon-group" update="widget-info-icon-group"
+          </p:selectBooleanCheckbox>
+        </div>
+      </h:panelGroup>
+      
+      <h:panelGroup id="widget-info-icon-group" layout="block"
+        rendered="#{managedBean.displayWidgetInfoOption()}"
+        styleClass="widget-configuration-group-item ui-fluid flex">
+        <div class="label-item">
+          <p:outputLabel for="widget-info" styleClass="u-mar-right-5"
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/widgetInfoIcon')}"/>
+        </div>
+        <div class="ui-inputgroup">
+          <p:selectBooleanCheckbox id="widget-info"
+            value="#{widget.showWidgetInfo}">
+            <p:ajax process="widget-info-icon-group" update="widget-info-icon-group"
             partialSubmit="true" />
-        </p:selectBooleanCheckbox>
-      </div>
-    </h:panelGroup>
-    
-    <h:panelGroup id="fullscreen-mode-group"
-      rendered="#{managedBean.displayFullscreenModeOption()}"
-      styleClass="ui-g-12 u-padding-0 ui-fluid">
-      <div class="ui-g-2 w-14rem">
-        <p:outputLabel for="fullscreen-mode" styleClass="u-mar-right-5"
-          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/fullscreenMode')}"/>
-      </div>
-      <div class="ui-g-2 ui-inputgroup">
-        <p:selectBooleanCheckbox id="fullscreen-mode"
-          value="#{widget.showFullscreenMode}">
-          <p:ajax process="fullscreen-mode-group" update="fullscreen-mode-group"
+          </p:selectBooleanCheckbox>
+        </div>
+      </h:panelGroup>
+      
+      <h:panelGroup id="fullscreen-mode-group" layout="block"
+        rendered="#{managedBean.displayFullscreenModeOption()}"
+        styleClass="widget-configuration-group-item ui-fluid flex">
+        <div class="label-item">
+          <p:outputLabel for="fullscreen-mode" styleClass="u-mar-right-5"
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/fullscreenMode')}"/>
+        </div>
+        <div class="ui-inputgroup">
+          <p:selectBooleanCheckbox id="fullscreen-mode"
+            value="#{widget.showFullscreenMode}">
+            <p:ajax process="fullscreen-mode-group" update="fullscreen-mode-group"
             partialSubmit="true" />
-        </p:selectBooleanCheckbox>
-      </div>
-    </h:panelGroup>
-    
-    <h:panelGroup id="pinned-toggle-group"
-      rendered="#{managedBean.displayPinnedItemToggleOption(widget)}"
-      styleClass="ui-g-8 u-padding-0 ui-fluid">
-      <div class="ui-g-4">
-        <p:outputLabel for="pinned-toggle-option" styleClass="u-mar-right-5"
-          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/ShowPinnedToggle')}"/>
-      </div>
-      <div class="ui-g-2 ui-inputgroup">
-        <p:selectBooleanCheckbox id="pinned-toggle-option"
-          value="#{widget.ShowPinnedToggle}">
-          <p:ajax process="pinned-toggle-group" update="pinned-toggle-group"
+          </p:selectBooleanCheckbox>
+        </div>
+      </h:panelGroup>
+      
+      <h:panelGroup id="pinned-toggle-group" layout="block"
+        rendered="#{managedBean.displayPinnedItemToggleOption(widget)}"
+        styleClass="widget-configuration-group-item ui-fluid flex">
+        <div class="label-item">
+          <p:outputLabel for="pinned-toggle-option" styleClass="u-mar-right-5"
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/ShowPinnedToggle')}"/>
+        </div>
+        <div class="ui-inputgroup">
+          <p:selectBooleanCheckbox id="pinned-toggle-option"
+            value="#{widget.showPinnedToggle}">
+            <p:ajax process="pinned-toggle-group" update="pinned-toggle-group"
             partialSubmit="true" />
-        </p:selectBooleanCheckbox>
-      </div>
-    </h:panelGroup>
+          </p:selectBooleanCheckbox>
+        </div>
+      </h:panelGroup>
+    </p:overlayPanel>
 
     <!-- Widget data -->
     <div class="ui-g-12">

@@ -23,7 +23,6 @@
 .process-details-column-title {
   opacity: 0.65;
   font-size: var(--process-details-column-title-font-size);
-  display: inline-flex;
   align-items: center;
 }
 
@@ -45,10 +44,6 @@
   padding-right: 0;
 }
 
-.process-viewer-info-container {
-  max-width: 500px;
-}
-
 .process-viewer-info-container .process-information-title {
   margin-left: 2px;
   margin-bottom: 7px;
@@ -62,6 +57,15 @@
 
 .process-technical-information-group {
   table-layout: fixed;
+  witdh: 100%;
+}
+
+.process-technical-information-group .process-details-column-title {
+  width: 20%;
+}
+
+.process-technical-information-group .process-details-column-value {
+  width: 80%;
 }
 
 .process-viewer-diagram {

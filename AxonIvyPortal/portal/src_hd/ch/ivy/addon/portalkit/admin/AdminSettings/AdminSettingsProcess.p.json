@@ -535,6 +535,66 @@
       "connect" : [
         { "id" : "f52", "to" : "f8", "color" : "default" }
       ]
+    }, {
+      "id" : "f3",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "updateContentMsg(Application)",
+      "config" : {
+        "signature" : "updateContentMsg",
+        "input" : {
+          "params" : [
+            { "name" : "selectedApplication", "type" : "ch.ivy.addon.portalkit.configuration.Application", "desc" : "" }
+          ],
+          "map" : {
+            "out.application" : "param.selectedApplication"
+          }
+        },
+        "guid" : "19C4BE25180FEFC6"
+      },
+      "visual" : {
+        "at" : { "x" : 920, "y" : 608 }
+      },
+      "connect" : [
+        { "id" : "f6", "to" : "f4" }
+      ]
+    }, {
+      "id" : "f4",
+      "type" : "Script",
+      "config" : {
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.selectedApp" : "in.application"
+          },
+          "code" : [
+            "import java.util.Arrays;",
+            "import ch.ivy.addon.portalkit.jsf.ManagedBeans;",
+            "import ch.ivy.addon.portalkit.bean.ThirdPartyApplicationBean;",
+            "ThirdPartyApplicationBean thirdPartyApplicationBean = ManagedBeans.find(\"thirdPartyApplicationBean\").get() as ThirdPartyApplicationBean;",
+            "",
+            "if (thirdPartyApplicationBean is initialized) {",
+            "  String thirdPartyApplicationName = thirdPartyApplicationBean.getAppNameInCurrentLocale(out.selectedApp);",
+            "  ivy.log.info(thirdPartyApplicationName);",
+            "  in.confirmMsg = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/adminSettings/deleteAppConfirmation\", Arrays.asList(thirdPartyApplicationName));",
+            "} else {",
+            "  in.confirmMsg = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/adminSettings/deleteAppConfirmation\", Arrays.asList());",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 920, "y" : 712 }
+      },
+      "connect" : [
+        { "id" : "f11", "to" : "f7" }
+      ]
+    }, {
+      "id" : "f7",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 920, "y" : 800 },
+        "labelOffset" : { "x" : 10, "y" : 30 }
+      }
     } ],
   "layout" : {
     "lanes" : [ {

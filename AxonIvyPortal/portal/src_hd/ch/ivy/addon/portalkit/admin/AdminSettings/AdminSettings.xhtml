@@ -94,6 +94,7 @@
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
                   icon="si si-bin-1" styleClass="color-destroy"
                   oncomplete="PF('deleteConfirmation').show()"
+                  action="#{logic.updateContentMsg(app)}"
                   actionListener="#{thirdPartyApplicationBean.setSelectedApp(app)}"
                   update=":#{p:resolveFirstComponentWithId('deleteConfirmationDialog', view).clientId}"
                   process="@this"/>
