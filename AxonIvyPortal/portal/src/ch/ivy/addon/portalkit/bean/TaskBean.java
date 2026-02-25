@@ -11,6 +11,7 @@ import java.util.Set;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.model.SortMeta;
@@ -34,6 +35,7 @@ import ch.ivyteam.ivy.workflow.task.TaskBusinessState;
  *
  */
 @ManagedBean(name = "taskBean")
+@ViewScoped
 public class TaskBean implements Serializable {
   private static final long serialVersionUID = 1L;
 
