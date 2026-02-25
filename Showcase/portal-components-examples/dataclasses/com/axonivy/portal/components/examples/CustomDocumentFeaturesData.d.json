@@ -1,54 +1,47 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
+  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
   "simpleName" : "CustomDocumentFeaturesData",
   "namespace" : "com.axonivy.portal.components.examples",
+  "isBusinessCaseData" : false,
   "fields" : [ {
     "name" : "businessCase",
-    "type" : "ch.ivyteam.ivy.workflow.ICase",
-    "modifiers" : [ ]
+    "type" : "ch.ivyteam.ivy.workflow.ICase"
   }, {
     "name" : "message",
-    "modifiers" : [ ]
+    "type" : "String"
   }, {
     "name" : "status",
-    "modifiers" : [ ]
+    "type" : "String"
   }, {
     "name" : "uploadedDocument",
-    "type" : "ch.ivyteam.ivy.workflow.document.IDocument",
-    "modifiers" : [ ]
+    "type" : "ch.ivyteam.ivy.workflow.document.IDocument"
   }, {
     "name" : "uploadedFile",
-    "type" : "org.primefaces.model.file.UploadedFile",
-    "modifiers" : [ ]
+    "type" : "org.primefaces.model.file.UploadedFile"
   }, {
     "name" : "enableVirusScannerForUploadedDocument",
-    "type" : "Boolean",
-    "modifiers" : [ ]
+    "type" : "Boolean"
   }, {
     "name" : "enableScriptCheckingForUploadedDocument",
-    "type" : "Boolean",
-    "modifiers" : [ ]
+    "type" : "Boolean"
   }, {
     "name" : "allowedUploadFileTypes",
-    "modifiers" : [ ]
+    "type" : "String"
   }, {
     "name" : "document",
-    "type" : "com.axonivy.portal.components.ivydata.bo.IvyDocument",
-    "modifiers" : [ ]
+    "type" : "com.axonivy.portal.components.ivydata.bo.IvyDocument"
   }, {
     "name" : "streamedContent",
-    "type" : "org.primefaces.model.StreamedContent",
-    "modifiers" : [ ]
+    "type" : "org.primefaces.model.StreamedContent"
   }, {
     "name" : "documents",
-    "type" : "java.util.List<com.axonivy.portal.components.ivydata.bo.IvyDocument>",
-    "modifiers" : [ ]
+    "type" : "java.util.List<com.axonivy.portal.components.ivydata.bo.IvyDocument>"
   }, {
     "name" : "skip",
-    "type" : "Boolean",
-    "modifiers" : [ ]
+    "type" : "Boolean"
   }, {
     "name" : "isRenamingSuccess",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ "PERSISTENT" ]
   } ]
 }

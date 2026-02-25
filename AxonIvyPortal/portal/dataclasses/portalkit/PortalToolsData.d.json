@@ -1,39 +1,37 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
+  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
   "simpleName" : "PortalToolsData",
   "namespace" : "portalkit",
+  "isBusinessCaseData" : false,
   "fields" : [ {
     "name" : "taskDashboardWidget",
-    "type" : "ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget",
-    "modifiers" : [ ]
+    "type" : "ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget"
   }, {
     "name" : "name",
-    "modifiers" : [ ]
+    "type" : "String"
   }, {
     "name" : "description",
-    "modifiers" : [ ]
+    "type" : "String"
   }, {
     "name" : "priority",
-    "modifiers" : [ ]
+    "type" : "String"
   }, {
     "name" : "state",
-    "modifiers" : [ ]
+    "type" : "String"
   }, {
     "name" : "caseDashboardWidget",
-    "type" : "ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget",
-    "modifiers" : [ ]
+    "type" : "ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget"
   }, {
     "name" : "processDashboardWidget",
-    "type" : "ch.ivy.addon.portalkit.dto.dashboard.ProcessDashboardWidget",
-    "modifiers" : [ ]
+    "type" : "ch.ivy.addon.portalkit.dto.dashboard.ProcessDashboardWidget"
   }, {
     "name" : "taskExpiryDateFrom",
-    "modifiers" : [ ]
+    "type" : "String"
   }, {
     "name" : "taskExpiryDateTo",
-    "modifiers" : [ ]
+    "type" : "String"
   }, {
     "name" : "onlyMyTask",
-    "modifiers" : [ ]
+    "type" : "String"
   } ]
 }

@@ -1,33 +1,34 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
+  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
   "simpleName" : "TaskDocumentsData",
   "namespace" : "ch.ivy.addon.portal.generic.TaskDocuments",
+  "isBusinessCaseData" : false,
   "fields" : [ {
     "name" : "task",
-    "type" : "ch.ivyteam.ivy.workflow.ITask",
-    "modifiers" : [ ]
+    "type" : "ch.ivyteam.ivy.workflow.ITask"
   }, {
     "name" : "documents",
-    "type" : "java.util.List<com.axonivy.portal.components.ivydata.bo.IvyDocument>",
-    "modifiers" : [ ]
+    "type" : "java.util.List<com.axonivy.portal.components.ivydata.bo.IvyDocument>"
   }, {
     "name" : "filteredDocuments",
-    "type" : "java.util.List<com.axonivy.portal.components.ivydata.bo.IvyDocument>",
-    "modifiers" : [ ]
+    "type" : "java.util.List<com.axonivy.portal.components.ivydata.bo.IvyDocument>"
   }, {
     "name" : "document",
-    "type" : "com.axonivy.portal.components.ivydata.bo.IvyDocument",
-    "modifiers" : [ ]
+    "type" : "com.axonivy.portal.components.ivydata.bo.IvyDocument"
   }, {
     "name" : "streamedContent",
-    "type" : "org.primefaces.model.StreamedContent",
-    "modifiers" : [ ]
+    "type" : "org.primefaces.model.StreamedContent"
   }, {
-    "name" : "deleteDocumentMessage"
+    "name" : "deleteDocumentMessage",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "isRenameDocumentSuccess",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
-    "name" : "renameDocumentMessage"
+    "name" : "renameDocumentMessage",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
   } ]
 }

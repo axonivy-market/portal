@@ -1,22 +1,35 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
+  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
   "simpleName" : "Investment",
   "namespace" : "com.axonivy.portal.userexamples.dashboardcustomwidget",
+  "isBusinessCaseData" : false,
   "fields" : [ {
-    "name" : "id"
+    "name" : "id",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "company",
-    "type" : "com.axonivy.portal.userexamples.dashboardcustomwidget.Company"
+    "type" : "com.axonivy.portal.userexamples.dashboardcustomwidget.Company",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
-    "name" : "investedMoney"
+    "name" : "investedMoney",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
-    "name" : "note"
+    "name" : "note",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "startDate",
-    "type" : "Date"
+    "type" : "Date",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
-    "name" : "profit"
+    "name" : "profit",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
-    "name" : "profitPercentage"
+    "name" : "profitPercentage",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
   } ]
 }

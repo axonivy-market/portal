@@ -1,16 +1,23 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
+  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
   "simpleName" : "InvestmentListData",
   "namespace" : "com.axonivy.portal.userexamples.InvestmentList",
+  "isBusinessCaseData" : false,
   "fields" : [ {
     "name" : "investments",
-    "type" : "List<com.axonivy.portal.userexamples.dashboardcustomwidget.Investment>"
+    "type" : "List<com.axonivy.portal.userexamples.dashboardcustomwidget.Investment>",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "startDate",
-    "type" : "Date"
+    "type" : "Date",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
-    "name" : "name"
+    "name" : "name",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
-    "name" : "note"
+    "name" : "note",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
   } ]
 }

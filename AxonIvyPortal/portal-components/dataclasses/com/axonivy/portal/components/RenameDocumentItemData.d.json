@@ -1,29 +1,25 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
+  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
   "simpleName" : "RenameDocumentItemData",
   "namespace" : "com.axonivy.portal.components",
+  "isBusinessCaseData" : false,
   "fields" : [ {
     "name" : "businessCase",
-    "type" : "ch.ivyteam.ivy.workflow.ICase",
-    "modifiers" : [ ]
+    "type" : "ch.ivyteam.ivy.workflow.ICase"
   }, {
     "name" : "document",
-    "type" : "com.axonivy.portal.components.ivydata.bo.IvyDocument",
-    "modifiers" : [ ]
+    "type" : "com.axonivy.portal.components.ivydata.bo.IvyDocument"
   }, {
     "name" : "message",
-    "modifiers" : [ ]
+    "type" : "String"
   }, {
     "name" : "isSuccess",
-    "type" : "Boolean",
-    "modifiers" : [ ]
+    "type" : "Boolean"
   }, {
     "name" : "hasCustomProcess",
-    "type" : "Boolean",
-    "modifiers" : [ ]
+    "type" : "Boolean"
   }, {
     "name" : "status",
-    "type" : "com.axonivy.portal.components.enums.CustomProcessStatus",
-    "modifiers" : [ ]
+    "type" : "com.axonivy.portal.components.enums.CustomProcessStatus"
   } ]
 }

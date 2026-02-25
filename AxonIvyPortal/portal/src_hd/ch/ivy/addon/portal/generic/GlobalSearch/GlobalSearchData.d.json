@@ -1,30 +1,41 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
+  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
   "simpleName" : "GlobalSearchData",
   "namespace" : "ch.ivy.addon.portal.generic.GlobalSearch",
+  "isBusinessCaseData" : false,
   "fields" : [ {
-    "name" : "keyword"
+    "name" : "keyword",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "isTaskFinished",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "isWorkingOnTask",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "caze",
-    "type" : "ch.ivyteam.ivy.workflow.ICase",
-    "modifiers" : [ ]
+    "type" : "ch.ivyteam.ivy.workflow.ICase"
   }, {
     "name" : "workingTask",
-    "type" : "ch.ivyteam.ivy.workflow.ITask",
-    "modifiers" : [ ]
+    "type" : "ch.ivyteam.ivy.workflow.ITask"
   }, {
-    "name" : "taskId"
+    "name" : "taskId",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
-    "name" : "caseId"
+    "name" : "caseId",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
-    "name" : "processId"
+    "name" : "processId",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
-    "name" : "activeTabIndex"
+    "name" : "activeTabIndex",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
   } ]
 }

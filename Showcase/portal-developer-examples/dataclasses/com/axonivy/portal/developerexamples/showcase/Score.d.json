@@ -1,18 +1,24 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
+  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
   "simpleName" : "Score",
   "namespace" : "com.axonivy.portal.developerexamples.showcase",
+  "isBusinessCaseData" : false,
   "fields" : [ {
     "name" : "id",
-    "type" : "Number"
+    "type" : "Number",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
-    "name" : "name"
+    "name" : "name",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "points",
-    "type" : "Number"
+    "type" : "Number",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "date",
     "type" : "java.util.Date",
-    "comment" : "java.util.Date used for filtering in the DataTable"
+    "comment" : "java.util.Date used for filtering in the DataTable",
+    "modifiers" : [ "PERSISTENT" ]
   } ]
 }

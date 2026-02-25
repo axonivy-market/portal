@@ -1,57 +1,55 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
+  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
   "simpleName" : "PortalCallableToolsData",
   "namespace" : "portalkit",
+  "isBusinessCaseData" : false,
   "fields" : [ {
     "name" : "username",
-    "modifiers" : [ ]
+    "type" : "String"
   }, {
     "name" : "role",
-    "modifiers" : [ ]
+    "type" : "String"
   }, {
     "name" : "users",
-    "type" : "java.util.List<com.axonivy.portal.components.dto.UserDTO>",
-    "modifiers" : [ ]
+    "type" : "java.util.List<com.axonivy.portal.components.dto.UserDTO>"
   }, {
     "name" : "taskName",
-    "modifiers" : [ ]
+    "type" : "String"
   }, {
     "name" : "taskPriority",
-    "modifiers" : [ ]
+    "type" : "String"
   }, {
     "name" : "taskDescription",
-    "modifiers" : [ ]
+    "type" : "String"
   }, {
     "name" : "taskState",
-    "modifiers" : [ ]
+    "type" : "String"
   }, {
     "name" : "taskDashboardWidget",
-    "type" : "ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget",
-    "modifiers" : [ ]
+    "type" : "ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget"
   }, {
     "name" : "result",
-    "type" : "com.axonivy.portal.components.dto.AiResultDTO",
-    "modifiers" : [ ]
+    "type" : "com.axonivy.portal.components.dto.AiResultDTO"
   }, {
     "name" : "validationError",
-    "modifiers" : [ ]
+    "type" : "String"
   }, {
     "name" : "taskId",
-    "modifiers" : [ ]
+    "type" : "String"
   }, {
     "name" : "dateFrom",
-    "modifiers" : [ ]
+    "type" : "String"
   }, {
     "name" : "dateTo",
-    "modifiers" : [ ]
+    "type" : "String"
   }, {
     "name" : "processId",
-    "modifiers" : [ ]
+    "type" : "String"
   }, {
     "name" : "parameters",
-    "modifiers" : [ ]
+    "type" : "String"
   }, {
     "name" : "onlyMyTask",
-    "modifiers" : [ ]
+    "type" : "String"
   } ]
 }

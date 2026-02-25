@@ -1,34 +1,41 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
+  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
   "simpleName" : "Data",
   "namespace" : "portalKit_test",
+  "isBusinessCaseData" : false,
   "fields" : [ {
     "name" : "taskId",
-    "type" : "Number"
+    "type" : "Number",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "taskCounter",
-    "type" : "Number"
+    "type" : "Number",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
-    "name" : "caseuuid"
+    "name" : "caseuuid",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "times",
-    "type" : "Integer"
+    "type" : "Integer",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "createdDate",
-    "type" : "Integer"
+    "type" : "Integer",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "date",
-    "type" : "java.util.Date"
+    "type" : "java.util.Date",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "cases",
-    "type" : "List<ch.ivyteam.ivy.workflow.ICase>",
-    "modifiers" : [ ]
+    "type" : "List<ch.ivyteam.ivy.workflow.ICase>"
   }, {
     "name" : "count",
-    "type" : "Integer"
+    "type" : "Integer",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "workingCase",
-    "type" : "ch.ivyteam.ivy.workflow.ICase",
-    "modifiers" : [ ]
+    "type" : "ch.ivyteam.ivy.workflow.ICase"
   } ]
 }

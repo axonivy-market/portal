@@ -1,40 +1,34 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
+  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
   "simpleName" : "UploadDocumentItemData",
   "namespace" : "com.axonivy.portal.components",
+  "isBusinessCaseData" : false,
   "fields" : [ {
     "name" : "businessCase",
-    "type" : "ch.ivyteam.ivy.workflow.ICase",
-    "modifiers" : [ ]
+    "type" : "ch.ivyteam.ivy.workflow.ICase"
   }, {
     "name" : "message",
-    "modifiers" : [ ]
+    "type" : "String"
   }, {
     "name" : "status",
-    "type" : "com.axonivy.portal.components.enums.UploadDocumentCheckStatus",
-    "modifiers" : [ ]
+    "type" : "com.axonivy.portal.components.enums.UploadDocumentCheckStatus"
   }, {
     "name" : "uploadedDocument",
-    "type" : "ch.ivyteam.ivy.workflow.document.IDocument",
-    "modifiers" : [ ]
+    "type" : "ch.ivyteam.ivy.workflow.document.IDocument"
   }, {
     "name" : "uploadedFile",
-    "type" : "org.primefaces.model.file.UploadedFile",
-    "modifiers" : [ ]
+    "type" : "org.primefaces.model.file.UploadedFile"
   }, {
     "name" : "enableVirusScannerForUploadedDocument",
-    "type" : "Boolean",
-    "modifiers" : [ ]
+    "type" : "Boolean"
   }, {
     "name" : "enableScriptCheckingForUploadedDocument",
-    "type" : "Boolean",
-    "modifiers" : [ ]
+    "type" : "Boolean"
   }, {
     "name" : "allowedUploadFileTypes",
-    "modifiers" : [ ]
+    "type" : "String"
   }, {
     "name" : "hasCustomProcess",
-    "type" : "Boolean",
-    "modifiers" : [ ]
+    "type" : "Boolean"
   } ]
 }

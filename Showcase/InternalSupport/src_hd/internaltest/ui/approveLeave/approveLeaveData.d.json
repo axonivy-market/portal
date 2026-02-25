@@ -1,39 +1,40 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
+  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
   "simpleName" : "approveLeaveData",
   "namespace" : "internaltest.ui.approveLeave",
+  "isBusinessCaseData" : false,
   "fields" : [ {
     "name" : "mitarbeiter",
-    "modifiers" : [ ]
+    "type" : "String"
   }, {
     "name" : "von",
-    "type" : "java.util.Date",
-    "modifiers" : [ ]
+    "type" : "java.util.Date"
   }, {
     "name" : "bis",
-    "type" : "java.util.Date",
-    "modifiers" : [ ]
+    "type" : "java.util.Date"
   }, {
     "name" : "beantragt",
-    "type" : "Boolean",
-    "modifiers" : [ ]
+    "type" : "Boolean"
   }, {
     "name" : "genehmigt",
-    "type" : "Boolean",
-    "modifiers" : [ ]
+    "type" : "Boolean"
   }, {
     "name" : "ablehnungsgrund",
-    "modifiers" : [ ]
+    "type" : "String"
   }, {
     "name" : "vertretung",
-    "modifiers" : [ ]
+    "type" : "String"
   }, {
     "name" : "actualStepIndex",
-    "type" : "Number"
+    "type" : "Number",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "steps",
-    "type" : "List<String>"
+    "type" : "List<String>",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
-    "name" : "taskCategory"
+    "name" : "taskCategory",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
   } ]
 }

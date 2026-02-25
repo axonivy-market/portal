@@ -1,70 +1,79 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
+  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
   "simpleName" : "DocumentTableData",
   "namespace" : "com.axonivy.portal.components.DocumentTable",
+  "isBusinessCaseData" : false,
   "fields" : [ {
     "name" : "documents",
-    "type" : "java.util.List<com.axonivy.portal.components.ivydata.bo.IvyDocument>",
-    "modifiers" : [ ]
+    "type" : "java.util.List<com.axonivy.portal.components.ivydata.bo.IvyDocument>"
   }, {
     "name" : "event",
-    "type" : "org.primefaces.event.FileUploadEvent",
-    "modifiers" : [ ]
+    "type" : "org.primefaces.event.FileUploadEvent"
   }, {
     "name" : "fileLimit",
-    "type" : "Integer"
+    "type" : "Integer",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "ivyCase",
-    "type" : "ch.ivyteam.ivy.workflow.ICase",
-    "modifiers" : [ ]
+    "type" : "ch.ivyteam.ivy.workflow.ICase"
   }, {
-    "name" : "message"
+    "name" : "message",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
-    "name" : "messageComponentId"
+    "name" : "messageComponentId",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "selectedDocument",
-    "type" : "com.axonivy.portal.components.ivydata.bo.IvyDocument",
-    "modifiers" : [ ]
+    "type" : "com.axonivy.portal.components.ivydata.bo.IvyDocument"
   }, {
     "name" : "streamedContent",
-    "type" : "org.primefaces.model.StreamedContent",
-    "modifiers" : [ ]
+    "type" : "org.primefaces.model.StreamedContent"
   }, {
     "name" : "typeColumnRendered",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "typeSelection",
-    "type" : "com.axonivy.portal.components.enums.DocumentType",
-    "modifiers" : [ ]
+    "type" : "com.axonivy.portal.components.enums.DocumentType"
   }, {
     "name" : "uploadDocumentCheckStatus",
-    "type" : "com.axonivy.portal.components.enums.UploadDocumentCheckStatus",
-    "modifiers" : [ ]
+    "type" : "com.axonivy.portal.components.enums.UploadDocumentCheckStatus"
   }, {
     "name" : "uploadedDocument",
-    "type" : "ch.ivyteam.ivy.workflow.document.IDocument",
-    "modifiers" : [ ]
+    "type" : "ch.ivyteam.ivy.workflow.document.IDocument"
   }, {
     "name" : "enableVirusScannerForUploadedDocument",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "enableScriptCheckingForUploadedDocument",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
-    "name" : "allowedUploadFileTypes"
+    "name" : "allowedUploadFileTypes",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "uploadedFile",
-    "type" : "org.primefaces.model.file.UploadedFile"
+    "type" : "org.primefaces.model.file.UploadedFile",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "sizeLimit",
-    "type" : "Long"
+    "type" : "Long",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "isImage",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "isRenameDocumentSuccess",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
-    "name" : "renameDocumentMessage"
+    "name" : "renameDocumentMessage",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
   } ]
 }

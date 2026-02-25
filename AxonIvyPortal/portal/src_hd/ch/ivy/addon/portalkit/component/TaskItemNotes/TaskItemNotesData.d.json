@@ -1,31 +1,36 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
+  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
   "simpleName" : "TaskItemNotesData",
   "namespace" : "ch.ivy.addon.portalkit.component.TaskItemNotes",
+  "isBusinessCaseData" : false,
   "fields" : [ {
     "name" : "excludeSystemNotes",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
-    "name" : "fullNote"
+    "name" : "fullNote",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "note",
-    "type" : "ch.ivyteam.ivy.workflow.note.Note",
-    "modifiers" : [ ]
+    "type" : "ch.ivyteam.ivy.workflow.note.Note"
   }, {
-    "name" : "noteContent"
+    "name" : "noteContent",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "notes",
-    "type" : "List<ch.ivyteam.ivy.workflow.note.Note>",
-    "modifiers" : [ ]
+    "type" : "List<ch.ivyteam.ivy.workflow.note.Note>"
   }, {
     "name" : "task",
-    "type" : "ch.ivyteam.ivy.workflow.ITask",
-    "modifiers" : [ ]
+    "type" : "ch.ivyteam.ivy.workflow.ITask"
   }, {
     "name" : "showSystemNotes",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "showSystemNotesChkbox",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ "PERSISTENT" ]
   } ]
 }

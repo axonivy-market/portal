@@ -1,17 +1,16 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
+  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
   "simpleName" : "CustomLogoutPageData",
   "namespace" : "com.axonivy.portal.developerexamples",
+  "isBusinessCaseData" : false,
   "fields" : [ {
     "name" : "logoutPage",
-    "modifiers" : [ ]
+    "type" : "String"
   }, {
     "name" : "isTaskReserve",
-    "type" : "Boolean",
-    "modifiers" : [ ]
+    "type" : "Boolean"
   }, {
     "name" : "task",
-    "type" : "ch.ivyteam.ivy.workflow.ITask",
-    "modifiers" : [ ]
+    "type" : "ch.ivyteam.ivy.workflow.ITask"
   } ]
 }

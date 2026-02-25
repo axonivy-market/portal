@@ -1,18 +1,19 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
+  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
   "simpleName" : "DashboardCustomWidgetExampleData",
   "namespace" : "com.axonivy.portal.userexamples",
+  "isBusinessCaseData" : false,
   "fields" : [ {
     "name" : "startDate",
-    "modifiers" : [ ]
+    "type" : "String"
   }, {
     "name" : "customer",
-    "modifiers" : [ ]
+    "type" : "String"
   }, {
     "name" : "email",
-    "modifiers" : [ ]
+    "type" : "String"
   }, {
     "name" : "note",
-    "modifiers" : [ ]
+    "type" : "String"
   } ]
 }

@@ -1,7 +1,8 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
+  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
   "simpleName" : "Employee",
   "namespace" : "com.axonivy.portal.developerexamples",
+  "isBusinessCaseData" : false,
   "entity" : {
     "tableName" : "Employee"
   },
@@ -9,21 +10,66 @@
     "name" : "id",
     "type" : "Integer",
     "comment" : "Identifier",
-    "modifiers" : [ "PERSISTENT", "ID", "GENERATED" ]
+    "modifiers" : [ "PERSISTENT", "ID", "GENERATED" ],
+    "entity" : {
+      "cascadeTypes" : [ "PERSIST", "MERGE" ],
+      "orphanRemoval" : false
+    }
   }, {
-    "name" : "firstName"
+    "name" : "firstName",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ],
+    "entity" : {
+      "cascadeTypes" : [ "PERSIST", "MERGE" ],
+      "orphanRemoval" : false
+    }
   }, {
-    "name" : "lastName"
+    "name" : "lastName",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ],
+    "entity" : {
+      "cascadeTypes" : [ "PERSIST", "MERGE" ],
+      "orphanRemoval" : false
+    }
   }, {
     "name" : "birthDay",
-    "type" : "java.util.Date"
+    "type" : "java.util.Date",
+    "modifiers" : [ "PERSISTENT" ],
+    "entity" : {
+      "cascadeTypes" : [ "PERSIST", "MERGE" ],
+      "orphanRemoval" : false
+    }
   }, {
-    "name" : "city"
+    "name" : "city",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ],
+    "entity" : {
+      "cascadeTypes" : [ "PERSIST", "MERGE" ],
+      "orphanRemoval" : false
+    }
   }, {
-    "name" : "country"
+    "name" : "country",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ],
+    "entity" : {
+      "cascadeTypes" : [ "PERSIST", "MERGE" ],
+      "orphanRemoval" : false
+    }
   }, {
-    "name" : "email"
+    "name" : "email",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ],
+    "entity" : {
+      "cascadeTypes" : [ "PERSIST", "MERGE" ],
+      "orphanRemoval" : false
+    }
   }, {
-    "name" : "title"
+    "name" : "title",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ],
+    "entity" : {
+      "cascadeTypes" : [ "PERSIST", "MERGE" ],
+      "orphanRemoval" : false
+    }
   } ]
 }

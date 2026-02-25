@@ -1,55 +1,60 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
+  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
   "simpleName" : "TaskItemDelegateData",
   "namespace" : "ch.ivy.addon.portalkit.component.TaskItemDelegate",
+  "isBusinessCaseData" : false,
   "fields" : [ {
     "name" : "canDelegateTask",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "usersToDelegate",
-    "type" : "java.util.List<com.axonivy.portal.components.dto.UserDTO>",
-    "modifiers" : [ ]
+    "type" : "java.util.List<com.axonivy.portal.components.dto.UserDTO>"
   }, {
     "name" : "rolesToDelegate",
-    "type" : "java.util.List<com.axonivy.portal.components.dto.RoleDTO>",
-    "modifiers" : [ ]
+    "type" : "java.util.List<com.axonivy.portal.components.dto.RoleDTO>"
   }, {
     "name" : "application",
-    "type" : "ch.ivyteam.ivy.application.IApplication",
-    "modifiers" : [ ]
+    "type" : "ch.ivyteam.ivy.application.IApplication"
   }, {
     "name" : "disabledDelegateButton",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "isUserDelegated",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "delegatedSecurityMember",
-    "type" : "ch.ivyteam.ivy.security.ISecurityMember",
-    "modifiers" : [ ]
+    "type" : "ch.ivyteam.ivy.security.ISecurityMember"
   }, {
-    "name" : "delegateComment"
+    "name" : "delegateComment",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
-    "name" : "queryAutoComplete"
+    "name" : "queryAutoComplete",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "task",
-    "type" : "ch.ivyteam.ivy.workflow.ITask",
-    "modifiers" : [ ]
+    "type" : "ch.ivyteam.ivy.workflow.ITask"
   }, {
     "name" : "selectedUser",
-    "type" : "com.axonivy.portal.components.dto.UserDTO",
-    "modifiers" : [ ]
+    "type" : "com.axonivy.portal.components.dto.UserDTO"
   }, {
     "name" : "selectedRole",
-    "type" : "com.axonivy.portal.components.dto.RoleDTO",
-    "modifiers" : [ ]
+    "type" : "com.axonivy.portal.components.dto.RoleDTO"
   }, {
-    "name" : "taskDelegationComment"
+    "name" : "taskDelegationComment",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "isEmptyUsers",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "isEmptyRoles",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ "PERSISTENT" ]
   } ]
 }

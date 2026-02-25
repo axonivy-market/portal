@@ -1,39 +1,38 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
+  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
   "simpleName" : "Data",
   "namespace" : "com.axonivy.portal.developerexamples",
+  "isBusinessCaseData" : false,
   "fields" : [ {
     "name" : "employeeInfo",
-    "type" : "com.axonivy.portal.developerexamples.Employee"
+    "type" : "com.axonivy.portal.developerexamples.Employee",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "caseNumber",
-    "type" : "Integer",
-    "modifiers" : [ ]
+    "type" : "Integer"
   }, {
     "name" : "count",
-    "type" : "Integer",
-    "modifiers" : [ ]
+    "type" : "Integer"
   }, {
     "name" : "category",
-    "modifiers" : [ ]
+    "type" : "String"
   }, {
     "name" : "eventId",
-    "modifiers" : [ ]
+    "type" : "String"
   }, {
     "name" : "exampleIFrameData",
-    "type" : "com.axonivy.portal.developerexamples.ExampleIFrameData",
-    "modifiers" : [ ]
+    "type" : "com.axonivy.portal.developerexamples.ExampleIFrameData"
   }, {
     "name" : "startFrom",
-    "modifiers" : [ ]
+    "type" : "String"
   }, {
     "name" : "startTo",
-    "modifiers" : [ ]
+    "type" : "String"
   }, {
     "name" : "caseId",
-    "modifiers" : [ ]
+    "type" : "String"
   }, {
     "name" : "taskId",
-    "modifiers" : [ ]
+    "type" : "String"
   } ]
 }

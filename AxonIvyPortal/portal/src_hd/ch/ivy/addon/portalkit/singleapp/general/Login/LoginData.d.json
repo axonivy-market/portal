@@ -1,18 +1,27 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
+  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
   "simpleName" : "LoginData",
   "namespace" : "ch.ivy.addon.portalkit.singleapp.general.Login",
+  "isBusinessCaseData" : false,
   "fields" : [ {
-    "name" : "username"
+    "name" : "username",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
-    "name" : "password"
+    "name" : "password",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "loginOk",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
-    "name" : "callbackUrl"
+    "name" : "callbackUrl",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "oauthProviders",
-    "type" : "java.util.List<ch.ivy.addon.portalkit.bo.OAuthProvider>"
+    "type" : "java.util.List<ch.ivy.addon.portalkit.bo.OAuthProvider>",
+    "modifiers" : [ "PERSISTENT" ]
   } ]
 }

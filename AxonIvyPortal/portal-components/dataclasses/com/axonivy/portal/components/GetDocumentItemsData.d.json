@@ -1,20 +1,20 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
+  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
   "simpleName" : "GetDocumentItemsData",
   "namespace" : "com.axonivy.portal.components",
+  "isBusinessCaseData" : false,
   "fields" : [ {
     "name" : "businessCase",
-    "type" : "ch.ivyteam.ivy.workflow.ICase",
-    "modifiers" : [ ]
+    "type" : "ch.ivyteam.ivy.workflow.ICase"
   }, {
     "name" : "message",
-    "modifiers" : [ ]
+    "type" : "String"
   }, {
     "name" : "documents",
-    "type" : "java.util.List<com.axonivy.portal.components.ivydata.bo.IvyDocument>",
-    "modifiers" : [ ]
+    "type" : "java.util.List<com.axonivy.portal.components.ivydata.bo.IvyDocument>"
   }, {
     "name" : "hasCustomProcess",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ "PERSISTENT" ]
   } ]
 }

@@ -1,31 +1,43 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
+  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
   "simpleName" : "TaskGenerationData",
   "namespace" : "ch.ivy.add.portalkit.task",
+  "isBusinessCaseData" : false,
   "fields" : [ {
-    "name" : "structuredData"
+    "name" : "structuredData",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "taskCounter",
-    "type" : "Number"
+    "type" : "Number",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
-    "name" : "activator"
+    "name" : "activator",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "pathCounter",
-    "type" : "Number"
+    "type" : "Number",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "categoryCounter",
-    "type" : "Number"
+    "type" : "Number",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "subCatCounter",
-    "type" : "Number"
+    "type" : "Number",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "categoryNumber",
-    "type" : "Number"
+    "type" : "Number",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "subCatNumber",
-    "type" : "Number"
+    "type" : "Number",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "isStart",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ "PERSISTENT" ]
   } ]
 }
