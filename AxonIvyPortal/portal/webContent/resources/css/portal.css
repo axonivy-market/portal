@@ -708,9 +708,6 @@ body .ui-datepicker .ui-timepicker-div dl dd {
   font-size: var(--large-font-size);
   font-weight: var(--output-label-task-template-title-font-weight); }
 
-.process-history-empty-message .ui-outputlabel {
-  font-size: var(--small-font-size); }
-
 .task-template-content .task-actions-button:focus {
   outline: var(--task-template-action-button-focus); }
 
@@ -865,21 +862,6 @@ body .ui-inputfield.case-detail-name-input {
 .process-start-list-item:hover .process-start-list-item-name,
 .process-widget .order-list-items.ui-orderlist .ui-orderlist-list .ui-orderlist-item:hover .process-start-list-item-name {
   font-weight: var(--process-start-list-item-name-font-weight); }
-
-.process-history-list .ui-widget-content {
-  border: none; }
-
-.process-history-list .ui-datascroller {
-  background-color: var(--process-history-list-data-scroller-background-color); }
-
-.process-history-column-header .is-selected {
-  color: var(--process-history-column-header-is-selected-color); }
-
-.process-history-column-header {
-  border-bottom: 1px solid var(--process-history-column-header-border); }
-
-.process-history-empty-message .ui-outputlabel {
-  color: var(--process-history-message-label-color); }
 
 .process-start-list-item .ui-commandlink,
 .process-start-list-item .ui-link,
