@@ -22,9 +22,11 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Set;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Function;
@@ -1077,10 +1079,23 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
 
   private Map<String, DisplayName> getMapLanguages() {
     List<DisplayName> languages = this.widget.getNames();
-    return languages.stream().collect(Collectors.toMap(o -> o.getLocale().toLanguageTag(), o -> o));
+    return languages.stream()
+        .filter(o -> o.getLocale() != null)
+        // Keep the first DisplayName per locale and avoid IllegalStateException on
+        // duplicate locale keys
+        .collect(Collectors.toMap(o -> o.getLocale().toLanguageTag(), o -> o, (existing, replacement) -> existing));
+  }
+
+  private void deduplicateWidgetNames() {
+    List<DisplayName> names = this.widget.getNames();
+    if (names != null) {
+      Set<String> seen = new LinkedHashSet<>();
+      names.removeIf(name -> name.getLocale() == null || !seen.add(name.getLocale().toLanguageTag()));
+    }
   }
 
   private void initMultipleLanguagesForWidgetName(String currentName) {
+    deduplicateWidgetNames();
     Map<String, DisplayName> mapLanguage = getMapLanguages();
     List<String> supportedLanguages = getSupportedLanguages();
     for (String language : supportedLanguages) {

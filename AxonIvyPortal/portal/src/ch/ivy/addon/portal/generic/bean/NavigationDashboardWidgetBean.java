@@ -4,10 +4,12 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayDeque;
 import java.util.Deque;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import javax.faces.bean.ManagedBean;
@@ -157,7 +159,16 @@ public class NavigationDashboardWidgetBean implements Serializable {
     }
   }
   
+  private void deduplicateButtonNames(NavigationDashboardWidget widget) {
+    List<DisplayName> names = widget.getButtonNames();
+    if (names != null) {
+      Set<String> seen = new LinkedHashSet<>();
+      names.removeIf(name -> name.getLocale() == null || !seen.add(name.getLocale().toLanguageTag()));
+    }
+  }
+
   private void initMultipleLanguagesForButtonWidgetName(NavigationDashboardWidget widget, String currentName) {
+    deduplicateButtonNames(widget);
     Map<String, DisplayName> mapLanguage = getMapLanguages(widget);
     List<String> supportedLanguages = getSupportedLanguages();
     for (String language : supportedLanguages) {
@@ -175,7 +186,12 @@ public class NavigationDashboardWidgetBean implements Serializable {
   
   private Map<String, DisplayName> getMapLanguages(NavigationDashboardWidget widget) {
     List<DisplayName> languages = widget.getButtonNames();
-    return languages.stream().collect(Collectors.toMap(o -> o.getLocale().toLanguageTag(), o -> o));
+    return languages.stream()
+        .filter(o -> o.getLocale() != null)
+        // Use a merge function to keep the first DisplayName for each language and
+        // ignore later duplicates,
+        // preventing IllegalStateException from duplicate keys in Collectors.toMap.
+        .collect(Collectors.toMap(o -> o.getLocale().toLanguageTag(), o -> o, (existing, replacement) -> existing));
   }
   
   private List<String> getSupportedLanguages() {

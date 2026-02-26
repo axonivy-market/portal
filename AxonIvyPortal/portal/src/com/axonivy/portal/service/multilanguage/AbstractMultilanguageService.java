@@ -1,9 +1,11 @@
 package com.axonivy.portal.service.multilanguage;
 
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
@@ -28,10 +30,23 @@ public abstract class AbstractMultilanguageService {
 
   private Map<String, DisplayName> getMapLanguages() {
     List<DisplayName> languages = getValues();
-    return languages.stream().collect(Collectors.toMap(o -> o.getLocale().toLanguageTag(), o -> o));
+    return languages.stream()
+        .filter(o -> o.getLocale() != null)
+        // Keep the first DisplayName for each language tag and ignore later duplicates
+        // to avoid IllegalStateException from Collectors.toMap on duplicate keys.
+        .collect(Collectors.toMap(o -> o.getLocale().toLanguageTag(), o -> o, (existing, replacement) -> existing));
+  }
+
+  private void deduplicateValues() {
+    List<DisplayName> values = getValues();
+    if (values != null) {
+      Set<String> seen = new LinkedHashSet<>();
+      values.removeIf(v -> v.getLocale() == null || !seen.add(v.getLocale().toLanguageTag()));
+    }
   }
 
   public void initMultipleLanguagesForName(String name) {
+    deduplicateValues();
     Map<String, DisplayName> mapLanguage = getMapLanguages();
     List<String> supportedLanguages = getSupportedLanguages();
     for (String language : supportedLanguages) {
@@ -57,6 +72,7 @@ public abstract class AbstractMultilanguageService {
         getValues().add(displayName);
       }
     }
+    deduplicateValues();
     return getValues();
   }
 
@@ -74,6 +90,7 @@ public abstract class AbstractMultilanguageService {
 
   public void updateNameByLocale() {
     String currentName = LanguageUtils.getLocalizedName(getValues(), getValue());
+    deduplicateValues();
     initAndSetValue(currentName, getValues());
   }
 
