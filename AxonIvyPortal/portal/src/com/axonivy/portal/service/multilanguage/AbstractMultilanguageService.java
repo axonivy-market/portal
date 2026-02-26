@@ -28,7 +28,8 @@ public abstract class AbstractMultilanguageService {
 
   private Map<String, DisplayName> getMapLanguages() {
     List<DisplayName> languages = getValues();
-    return languages.stream().collect(Collectors.toMap(o -> o.getLocale().toLanguageTag(), o -> o));
+    return languages.stream()
+        .collect(Collectors.toMap(o -> o.getLocale().toLanguageTag(), o -> o, (existing, replacement) -> existing));
   }
 
   public void initMultipleLanguagesForName(String name) {

@@ -175,7 +175,8 @@ public class NavigationDashboardWidgetBean implements Serializable {
   
   private Map<String, DisplayName> getMapLanguages(NavigationDashboardWidget widget) {
     List<DisplayName> languages = widget.getButtonNames();
-    return languages.stream().collect(Collectors.toMap(o -> o.getLocale().toLanguageTag(), o -> o));
+    return languages.stream()
+        .collect(Collectors.toMap(o -> o.getLocale().toLanguageTag(), o -> o, (existing, replacement) -> existing));
   }
   
   private List<String> getSupportedLanguages() {

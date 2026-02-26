@@ -6,11 +6,13 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.Collection;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import javax.faces.bean.ManagedBean;
@@ -289,15 +291,24 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
         this.selectedDashboard.getTitles().add(displayName);
       }
     }
+    deduplicateTitles();
     return this.selectedDashboard.getTitles();
+  }
+
+  private void deduplicateTitles() {
+    List<DisplayName> titles = this.selectedDashboard.getTitles();
+    Set<String> seen = new LinkedHashSet<>();
+    titles.removeIf(title -> !seen.add(title.getLocale().toLanguageTag()));
   }
 
   private Map<String, DisplayName> getMapLanguages() {
     List<DisplayName> languages = this.selectedDashboard.getTitles();
-    return languages.stream().collect(Collectors.toMap(o -> o.getLocale().toLanguageTag(), o -> o));
+    return languages.stream()
+        .collect(Collectors.toMap(o -> o.getLocale().toLanguageTag(), o -> o, (existing, replacement) -> existing));
   }
 
   private void initMultipleLanguagesForDashboardName(String currentTitle) {
+    deduplicateTitles();
     Map<String, DisplayName> mapLanguage = getMapLanguages();
     List<String> supportedLanguages = getSupportedLanguages();
     for (String language : supportedLanguages) {

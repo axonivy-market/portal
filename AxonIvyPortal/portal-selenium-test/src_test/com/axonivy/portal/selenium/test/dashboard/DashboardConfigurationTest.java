@@ -27,7 +27,7 @@ import com.codeborne.selenide.SelenideElement;
 
 import ch.ivy.addon.portalkit.enums.DashboardDisplayType;
 
-@IvyWebTest
+@IvyWebTest(headless = false)
 public class DashboardConfigurationTest extends BaseTest {
 
   private NewDashboardPage newDashboardPage;
