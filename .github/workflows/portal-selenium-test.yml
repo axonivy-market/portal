@@ -380,7 +380,7 @@ jobs:
             cat AxonIvyPortal/portal-selenium-test/target/testEngineOut.log 
 
         - name: Archive artifacts
-          uses: actions/upload-artifact@v4
+          uses: actions/upload-artifact@v7
           with:
             name: artifacts
             retention-days: 10
