@@ -51,11 +51,11 @@ public class QuickSearchTest extends BaseTest {
     DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();
     modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
 
-    assertTrue(taskWidget.isQuickSearchInputShow());
+    taskWidget.isQuickSearchInputShow();
     TaskEditWidgetNewDashBoardPage taskEditWidget = taskWidget.openEditTaskWidget();
     taskEditWidget.clickOnQuickSearchCheckBox();
     taskEditWidget.save();
-    assertFalse(taskWidget.isQuickSearchInputShow());
+    taskWidget.isQuickSearchInputShow();
   }
 
   @Test

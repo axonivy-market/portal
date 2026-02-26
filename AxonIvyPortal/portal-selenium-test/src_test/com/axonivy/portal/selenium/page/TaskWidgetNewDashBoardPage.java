@@ -538,9 +538,9 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
         .click();
   }
   
-  public boolean isQuickSearchInputShow() {
-    return getTaskWidgetHeader().$("div.widget__header").shouldBe(appear, DEFAULT_TIMEOUT)
-        .$("div[class*='widget-header-quick-search']").isDisplayed();
+  public void isQuickSearchInputShow() {
+    getTaskWidgetHeader().$("div.widget__header").shouldBe(appear, DEFAULT_TIMEOUT)
+        .$("div[class*='widget-header-quick-search']").should(appear, DEFAULT_TIMEOUT);
   }
   
   public void setInputForQuickSearch(String input) {
