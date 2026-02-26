@@ -15,6 +15,7 @@ import com.axonivy.portal.selenium.common.FilterOperator;
 import com.axonivy.portal.selenium.common.FilterValueType;
 import com.axonivy.portal.selenium.common.NavigationHelper;
 import com.axonivy.portal.selenium.common.TestAccount;
+import com.axonivy.portal.selenium.common.WaitHelper;
 import com.axonivy.portal.selenium.page.LeaveRequestPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.TopMenuTaskWidgetPage;
@@ -71,6 +72,7 @@ public class LeaveRequestTest extends BaseTest {
     TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
     taskWidget.startTaskIFrameByIndex(0);
     leaveRequestPage.assertPageTitle(APPROVAL_TITLE);
+    WaitHelper.waitPageNoAjaxAndAnimation();
     leaveRequestPage.enterApproverComment("Approved");
     leaveRequestPage.clickApproveBtn();
 

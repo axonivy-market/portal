@@ -42,7 +42,7 @@ public class ComplexFilterHelper {
   }
 
   public static void inputValueOnLatestFilter(FilterValueType type, Object... values) {
-    int currentIndex = $(".dashboard-widget-filter__main-panel").$$("div[id$=':filter-component:filter-selection-panel']").size();
+    int currentIndex = filterSelectionPanels().size();
     if (currentIndex < 1) {
       return;
     }
@@ -86,20 +86,15 @@ public class ComplexFilterHelper {
     }
   }
 
-  private static SelenideElement filterMainPanel() {
-    return $(".dashboard-widget-filter__main-panel")
-      .shouldBe(appear, DEFAULT_TIMEOUT);
-  }
-
   private static ElementsCollection filterSelectionPanels() {
-    return filterMainPanel()
-      .$$("div[id$=':filter-component:filter-selection-panel']");
+    return $$(".dashboard-widget-filter__main-panel div[id$=':filter-component:filter-selection-panel']")
+        .shouldBe(CollectionCondition.sizeGreaterThanOrEqual(0), DEFAULT_TIMEOUT);
   }
 
   public static SelenideElement addFilter(String columnName, FilterOperator operator) {
     int currentIndex = filterSelectionPanels().size();
     $("button[id$=':add-filter']").shouldBe(getClickableCondition()).click();
-    $(".dashboard-widget-filter__main-panel").$$("div[id$=':filter-component:filter-selection-panel']")
+    $$(".dashboard-widget-filter__main-panel div[id$=':filter-component:filter-selection-panel']")
         .shouldBe(CollectionCondition.sizeGreaterThanOrEqual(currentIndex + 1), DEFAULT_TIMEOUT);
     ComplexFilterHelper.selectFilterColumnName(columnName, currentIndex);
     if (operator != null) {

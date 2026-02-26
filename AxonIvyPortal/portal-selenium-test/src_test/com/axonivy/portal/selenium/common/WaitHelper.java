@@ -91,17 +91,32 @@ public final class WaitHelper {
 
   public static void waitPageNoAnimation() {
     Selenide.Wait()
-      .withTimeout(DEFAULT_TIMEOUT)
-      .until(animationNotActive());
+        .withTimeout(DEFAULT_TIMEOUT)
+        .until(animationNotActive());
+  }
+
+  public static void waitPageNoAjaxAndAnimation() {
+    Selenide.Wait()
+        .withTimeout(DEFAULT_TIMEOUT)
+        .until(visibleAndAnimationComplete());
+  }
+
+  public static ExpectedCondition<Boolean> visibleAndAnimationComplete() {
+    return ExpectedConditions.and(new ExpectedCondition[] { animationNotActive(), ajaxQueueEmpty() });
   }
 
   public static ExpectedCondition<Boolean> animationNotActive() {
-    return script("return ((!window.jQuery || jQuery.active == 0) && (!window.PrimeFaces || PrimeFaces.animationActive === false));");
+    return script(
+        "return ((!window.jQuery || jQuery.active == 0) && (!window.PrimeFaces || PrimeFaces.animationActive === false));");
+  }
+
+  public static ExpectedCondition<Boolean> ajaxQueueEmpty() {
+    return script("return (!window.PrimeFaces || PrimeFaces.ajax.Queue.isEmpty());");
   }
 
   public static ExpectedCondition<Boolean> script(String script) {
     return (driver) -> {
-        return (Boolean)((JavascriptExecutor)driver).executeScript(script, new Object[0]);
+      return (Boolean) ((JavascriptExecutor) driver).executeScript(script, new Object[0]);
     };
   }
 }
