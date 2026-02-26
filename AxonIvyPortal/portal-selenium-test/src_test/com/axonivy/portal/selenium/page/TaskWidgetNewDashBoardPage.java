@@ -367,6 +367,10 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
     return getCellByRowAndColumnName(0, FILTER_TASK_STATE).shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
+  public SelenideElement responsibleOfFirstTask() {
+    return getCellByRowAndColumnName(0, "Responsible").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
   public TaskEditWidgetNewDashBoardPage openEditTaskWidget() {
     $$("div.table-widget-panel div.widget__header").filter(text(taskWidgetName)).first()
         .shouldBe(appear, DEFAULT_TIMEOUT).$("div[id$='widget-header-actions']").$("[id*='edit-widget']")
