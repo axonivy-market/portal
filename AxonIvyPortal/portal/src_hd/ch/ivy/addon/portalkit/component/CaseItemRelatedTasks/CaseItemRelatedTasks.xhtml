@@ -31,7 +31,7 @@
           itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/ShowOnlyOpenTasks')}"
           styleClass="case-history-checkbox u-hidden-md-down u-hidden-sm-down">
           <p:ajax process="@this" partialSubmit="true"
-            update="case-details-related-task-table" oncomplete="PF('related-tasks-table').getPaginator().setPage(0)" />
+            update="case-details-related-task-table" oncomplete="correctNavigatorWhenFilteringOpenTasks()" />
         </p:selectBooleanCheckbox>
         </div>
         <h:form id="task-export-to-excel-form" styleClass="related-task-export-to-excel ui-sm-hidden">
@@ -83,7 +83,7 @@
           <p:tooltip id="related-task-description-tooltip-lg" for="related-task-description-lg" trackMouse="true" hideEvent="mouseleave click" value="#{taskDescription}" />
         </p:column>
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR')}"
-          styleClass="related-task-responsible-column" field="ACTIVATOR" sortBy="#{ACTIVATOR}" filterable="false"
+          styleClass="related-task-responsible-column" field="ACTIVATOR" filterable="false" sortable="false"
           visible="#{data.dataModel.isSelectedColumn(masterDataBean.taskSortFieldActivator)}">
           <pc:securityMemberNameAndAvatar securityMember="#{task.activator}"
             displayName="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(task.activator, task.activator.memberName)}" />
@@ -268,6 +268,20 @@
       var statusDialog = PF('related-task-status-dialog');
       statusDialog.jq.attr("download-status", "completed");
       statusDialog.hide();
+    }
+
+    /**
+     * Handle case navigator not rendered when user not at the first page
+     * and click on filter open tasks on Related Tasks of Case panel
+     **/ 
+    function correctNavigatorWhenFilteringOpenTasks() {
+      var relatedTable = PF('related-tasks-table')
+      var currentPage = relatedTable.getPaginator();
+      if(!currentPage){
+        return;
+      }
+      // reset to first page
+      relatedTable.filter(); 
     }
   </script>
 
