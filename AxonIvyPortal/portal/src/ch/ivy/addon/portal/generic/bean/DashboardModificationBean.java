@@ -298,7 +298,7 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
   private void deduplicateTitles() {
     List<DisplayName> titles = this.selectedDashboard.getTitles();
     Set<String> seen = new LinkedHashSet<>();
-    titles.removeIf(title -> !seen.add(title.getLocale().toLanguageTag()));
+    titles.removeIf(title -> title.getLocale() == null || !seen.add(title.getLocale().toLanguageTag()));
   }
 
   private Map<String, DisplayName> getMapLanguages() {
@@ -307,6 +307,7 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
     // IllegalStateException from Collectors.toMap when multiple titles share the
     // same locale.
     return languages.stream()
+        .filter(o -> o.getLocale() != null)
         .collect(Collectors.toMap(o -> o.getLocale().toLanguageTag(), o -> o, (existing, replacement) -> existing));
   }
 

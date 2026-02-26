@@ -150,7 +150,6 @@ public class NavigationDashboardWidgetBean implements Serializable {
   
   public void updateButtonNameByLocale(NavigationDashboardWidget widget) {
     String currentButtonName = widget.getButtonName();
-    deduplicateButtonNames(widget);
     initMultipleLanguagesForButtonWidgetName(widget, currentButtonName);
     String currentLanguage = UserUtils.getUserLanguage();
     Optional<DisplayName> optional = widget.getButtonNames().stream()
@@ -164,7 +163,7 @@ public class NavigationDashboardWidgetBean implements Serializable {
     List<DisplayName> names = widget.getButtonNames();
     if (names != null) {
       Set<String> seen = new LinkedHashSet<>();
-      names.removeIf(name -> !seen.add(name.getLocale().toLanguageTag()));
+      names.removeIf(name -> name.getLocale() == null || !seen.add(name.getLocale().toLanguageTag()));
     }
   }
 
@@ -188,6 +187,7 @@ public class NavigationDashboardWidgetBean implements Serializable {
   private Map<String, DisplayName> getMapLanguages(NavigationDashboardWidget widget) {
     List<DisplayName> languages = widget.getButtonNames();
     return languages.stream()
+        .filter(o -> o.getLocale() != null)
         // Use a merge function to keep the first DisplayName for each language and
         // ignore later duplicates,
         // preventing IllegalStateException from duplicate keys in Collectors.toMap.

@@ -1068,7 +1068,6 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
 
   public void updateWidgetNameByLocale() {
     String currentName = this.widget.getName();
-    deduplicateWidgetNames();
     initMultipleLanguagesForWidgetName(currentName);
     String currentLanguage = UserUtils.getUserLanguage();
     Optional<DisplayName> optional = this.widget.getNames().stream()
@@ -1081,6 +1080,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   private Map<String, DisplayName> getMapLanguages() {
     List<DisplayName> languages = this.widget.getNames();
     return languages.stream()
+        .filter(o -> o.getLocale() != null)
         // Keep the first DisplayName per locale and avoid IllegalStateException on
         // duplicate locale keys
         .collect(Collectors.toMap(o -> o.getLocale().toLanguageTag(), o -> o, (existing, replacement) -> existing));
@@ -1090,7 +1090,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     List<DisplayName> names = this.widget.getNames();
     if (names != null) {
       Set<String> seen = new LinkedHashSet<>();
-      names.removeIf(name -> !seen.add(name.getLocale().toLanguageTag()));
+      names.removeIf(name -> name.getLocale() == null || !seen.add(name.getLocale().toLanguageTag()));
     }
   }
 

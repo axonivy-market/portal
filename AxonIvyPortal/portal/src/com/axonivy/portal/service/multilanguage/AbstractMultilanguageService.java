@@ -31,6 +31,7 @@ public abstract class AbstractMultilanguageService {
   private Map<String, DisplayName> getMapLanguages() {
     List<DisplayName> languages = getValues();
     return languages.stream()
+        .filter(o -> o.getLocale() != null)
         // Keep the first DisplayName for each language tag and ignore later duplicates
         // to avoid IllegalStateException from Collectors.toMap on duplicate keys.
         .collect(Collectors.toMap(o -> o.getLocale().toLanguageTag(), o -> o, (existing, replacement) -> existing));
@@ -40,7 +41,7 @@ public abstract class AbstractMultilanguageService {
     List<DisplayName> values = getValues();
     if (values != null) {
       Set<String> seen = new LinkedHashSet<>();
-      values.removeIf(v -> !seen.add(v.getLocale().toLanguageTag()));
+      values.removeIf(v -> v.getLocale() == null || !seen.add(v.getLocale().toLanguageTag()));
     }
   }
 
