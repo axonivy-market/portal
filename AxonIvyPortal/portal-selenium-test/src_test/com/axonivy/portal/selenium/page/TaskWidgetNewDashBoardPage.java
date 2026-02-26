@@ -60,8 +60,11 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
 
   private int getIndexWidgetByColumn(String columnName) {
     ElementsCollection elementsTH = $(taskWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$$("table thead tr th");
-    for (int i = 0; i < elementsTH.size(); i++) {
-      if (elementsTH.get(i).getText().equalsIgnoreCase(columnName)) {
+    elementsTH.shouldBe(sizeGreaterThan(0), DEFAULT_TIMEOUT);
+    // Use texts() to get a snapshot and avoid StaleElementReferenceException during iteration
+    List<String> headers = elementsTH.texts();
+    for (int i = 0; i < headers.size(); i++) {
+      if (headers.get(i).equalsIgnoreCase(columnName)) {
         return i;
       }
     }
