@@ -1,5 +1,0 @@
-{
-  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
-  "simpleName" : "ProcessHistoryExampleData",
-  "namespace" : "com.axonivy.portal.components.examples"
-}

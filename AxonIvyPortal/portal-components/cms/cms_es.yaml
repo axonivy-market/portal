@@ -58,27 +58,6 @@ Dialogs:
               OTHERS: Otros
           ProcessChain:
             currentStepIsNotDefined: El paso ({0}) de la cadena de proceso no está definido
-          ProcessHistory:
-            CaseColumn:
-              CreationTime: Creado
-              Creator: Creador
-              Id: ID del caso
-              Name: Nombre
-              ProcessName: Nombre del proceso
-              State: 'Estatus '
-            CaseNameNotAvailable: '[Nombre del caso no disponible]'
-            CaseState:
-              CREATED: Creado
-              DESTROYED: Destruido
-              DONE: Hecho
-              FAILED: Ha fallado
-              OPEN: Pendiente
-              RUNNING: En progreso
-              ZOMBIE: Zombie
-            DefaultEmptyMessage: No hay casos
-            NoDescription: Sin descripción
-            NoName: Sin nombre
-            NotAvailable: NA
           ProcessViewer:
             CouldNotFindLinkedProcess: ¡No se pudo encontrar el proceso vinculado!
             NoPermissionToView: No tiene los permisos necesarios para ver este proceso.
