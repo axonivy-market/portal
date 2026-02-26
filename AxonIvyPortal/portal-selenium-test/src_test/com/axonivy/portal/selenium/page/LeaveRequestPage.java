@@ -105,7 +105,7 @@ public class LeaveRequestPage extends TaskTemplateIFramePage {
 
   public void enterApproverComment(String approverComment) {
     $("[id$='leave-request:approver-comment']").scrollTo();
-    findElementById("leave-request:approver-comment").sendKeys(approverComment);
+    findElementById("leave-request:approver-comment").should(Condition.editable, DEFAULT_TIMEOUT).setValue(approverComment);
   }
 
   public NewDashboardPage clickApproveBtn() {

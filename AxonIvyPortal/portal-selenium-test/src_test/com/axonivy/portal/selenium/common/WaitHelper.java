@@ -95,6 +95,12 @@ public final class WaitHelper {
     .until(visibleAndAnimationComplete());
   }
   
+  public static void waitPageNoAjaxAndAnimation() {
+    Selenide.Wait()
+    .withTimeout(DEFAULT_TIMEOUT)
+    .until(ajaxAndAnimationComplete());
+  }
+  
   public static ExpectedCondition<Boolean> ajaxQueueEmpty() {
     return script("return (!window.PrimeFaces || PrimeFaces.ajax.Queue.isEmpty());");
  }
@@ -109,6 +115,10 @@ public final class WaitHelper {
 
   public static ExpectedCondition<Boolean> visibleAndAnimationComplete() {
     return ExpectedConditions.and(new ExpectedCondition[]{documentLoaded(), animationNotActive(), ajaxQueueEmpty()});
+ }
+  
+  public static ExpectedCondition<Boolean> ajaxAndAnimationComplete() {
+    return ExpectedConditions.and(new ExpectedCondition[]{animationNotActive(), ajaxQueueEmpty()});
  }
 
   public static ExpectedCondition<Boolean> script(String script) {
