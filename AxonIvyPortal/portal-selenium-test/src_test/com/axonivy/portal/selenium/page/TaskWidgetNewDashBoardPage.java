@@ -58,19 +58,6 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
     return "[id$='dashboard-tasks-container']";
   }
 
-  private int getIndexWidgetByColumn(String columnName) {
-    ElementsCollection elementsTH = $(taskWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$$("table thead tr th");
-    elementsTH.shouldBe(sizeGreaterThan(0), DEFAULT_TIMEOUT);
-    // Use texts() to get a snapshot and avoid StaleElementReferenceException during iteration
-    List<String> headers = elementsTH.texts();
-    for (int i = 0; i < headers.size(); i++) {
-      if (headers.get(i).equalsIgnoreCase(columnName)) {
-        return i;
-      }
-    }
-    return 0;
-  }
-
   private SelenideElement getColumnOfTaskHasActionIndex(int index, String columnName) {
     return $(taskWidgetId).shouldBe(appear, DEFAULT_TIMEOUT)
     .$$("table tbody tr").shouldHave(CollectionCondition.sizeGreaterThanOrEqual(index))
@@ -79,34 +66,32 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
     .$("span a");
   }
 
-  private ElementsCollection getColumnOfTableWidget(int rowIndex) {
-    return $(taskWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$$("table tbody tr").get(rowIndex).$$("td");
-  }
-
   public ElementsCollection expand() {
     $$("div.widget__header").filter(text(taskWidgetName)).first().shouldBe(appear, DEFAULT_TIMEOUT);
     return $$("div.widget__header").filter(text(taskWidgetName));
   }
 
-  protected SelenideElement getColumnOfTaskHasIndex(int index, String columnName) {
-    int startIndex = getIndexWidgetByColumn(columnName);
-    return getColumnOfTableWidget(index).get(startIndex);
+  public SelenideElement getCellByRowAndColumnName(int rowIndex, String columnName) {
+    int columnIndex = $(taskWidgetId).shouldBe(appear, DEFAULT_TIMEOUT)
+      .$$("thead th").texts().indexOf(columnName);
+    return $(taskWidgetId).$("tbody[id$='dashboard-tasks_data']").$("tr[data-ri='" + rowIndex + "']")
+        .$$("td").get(columnIndex);
   }
 
   public void startFirstTask() {
     $(".task-dashboard-widget__panel span.widget__filter-noti-number").shouldBe(appear, DEFAULT_TIMEOUT);
-    WaitHelper.waitForNavigation(() -> getColumnOfTaskHasIndex(0, "Start").shouldBe(appear, DEFAULT_TIMEOUT).click());
+    WaitHelper.waitForNavigation(() -> getCellByRowAndColumnName(0, "Start").shouldBe(appear, DEFAULT_TIMEOUT).click());
   }
 
   public void startFirstTaskAndWaitShowHomePageButton() {
     $(".task-dashboard-widget__panel span.widget__filter-noti-number").shouldBe(appear, DEFAULT_TIMEOUT);
-    getColumnOfTaskHasIndex(0, "Start").shouldBe(appear, DEFAULT_TIMEOUT).click();
+    getCellByRowAndColumnName(0, "Start").shouldBe(appear, DEFAULT_TIMEOUT).click();
     // $("a>span.si-house-chimney-2.portal-icon").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public void startTask(int taskIndex) {
     $$("span.widget__filter-noti-number").first().shouldBe(appear, DEFAULT_TIMEOUT);
-    getColumnOfTaskHasIndex(taskIndex, "Start").shouldBe(getClickableCondition()).click();
+    getCellByRowAndColumnName(taskIndex, "Start").shouldBe(getClickableCondition()).click();
   }
 
   public ElementsCollection countRelatedCases() {
@@ -379,7 +364,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public SelenideElement stateOfFirstTask() {
-    return getColumnOfTaskHasIndex(0, FILTER_TASK_STATE).shouldBe(appear, DEFAULT_TIMEOUT);
+    return getCellByRowAndColumnName(0, FILTER_TASK_STATE).shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public TaskEditWidgetNewDashBoardPage openEditTaskWidget() {
@@ -482,7 +467,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public SelenideElement getTheFirstTaskWidgetByColumn(String columnName) {
-    return getColumnOfTaskHasIndex(0, columnName);
+    return getCellByRowAndColumnName(0, columnName);
   }
 
   public SelenideElement getTaskEmptyMessage() {
