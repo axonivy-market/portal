@@ -11,11 +11,13 @@ import java.util.function.Supplier;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.WebDriverRunner;
 
 public final class WaitHelper {
@@ -85,5 +87,21 @@ public final class WaitHelper {
     if (!condition) {
       $("ASSERTION FAILED, CHECK STACK TRACE from BaseTest.assertTrue").shouldBe(exist, ZERO);
     }
+  }
+
+  public static void waitPageNoAnimation() {
+    Selenide.Wait()
+      .withTimeout(DEFAULT_TIMEOUT)
+      .until(animationNotActive());
+  }
+
+  public static ExpectedCondition<Boolean> animationNotActive() {
+    return script("return ((!window.jQuery || jQuery.active == 0) && (!window.PrimeFaces || PrimeFaces.animationActive === false));");
+  }
+
+  public static ExpectedCondition<Boolean> script(String script) {
+    return (driver) -> {
+        return (Boolean)((JavascriptExecutor)driver).executeScript(script, new Object[0]);
+    };
   }
 }
