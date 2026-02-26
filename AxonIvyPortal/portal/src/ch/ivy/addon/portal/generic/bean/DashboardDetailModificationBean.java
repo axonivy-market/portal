@@ -1078,6 +1078,8 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   private Map<String, DisplayName> getMapLanguages() {
     List<DisplayName> languages = this.widget.getNames();
     return languages.stream()
+        // Keep the first DisplayName per locale and avoid IllegalStateException on
+        // duplicate locale keys
         .collect(Collectors.toMap(o -> o.getLocale().toLanguageTag(), o -> o, (existing, replacement) -> existing));
   }
 

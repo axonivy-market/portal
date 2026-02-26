@@ -303,6 +303,9 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
 
   private Map<String, DisplayName> getMapLanguages() {
     List<DisplayName> languages = this.selectedDashboard.getTitles();
+    // Use a merge function that keeps the existing entry on duplicate keys to avoid
+    // IllegalStateException from Collectors.toMap when multiple titles share the
+    // same locale.
     return languages.stream()
         .collect(Collectors.toMap(o -> o.getLocale().toLanguageTag(), o -> o, (existing, replacement) -> existing));
   }

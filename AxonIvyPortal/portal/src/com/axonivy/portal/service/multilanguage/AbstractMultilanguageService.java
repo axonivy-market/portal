@@ -29,6 +29,8 @@ public abstract class AbstractMultilanguageService {
   private Map<String, DisplayName> getMapLanguages() {
     List<DisplayName> languages = getValues();
     return languages.stream()
+        // Keep the first DisplayName for each language tag and ignore later duplicates
+        // to avoid IllegalStateException from Collectors.toMap on duplicate keys.
         .collect(Collectors.toMap(o -> o.getLocale().toLanguageTag(), o -> o, (existing, replacement) -> existing));
   }
 

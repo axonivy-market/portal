@@ -27,7 +27,7 @@ import com.codeborne.selenide.SelenideElement;
 
 import ch.ivy.addon.portalkit.enums.DashboardDisplayType;
 
-@IvyWebTest(headless = false)
+@IvyWebTest
 public class DashboardConfigurationTest extends BaseTest {
 
   private NewDashboardPage newDashboardPage;
@@ -514,7 +514,7 @@ public class DashboardConfigurationTest extends BaseTest {
   }
   
   @Test
-  public void testAddNewAcccessibilityDashboard() {
+  public void testAddNewAccessibilityDashboard() {
     String name = "Accessibility shortcuts dashboard";
     String icon = "fa-coffee";
     String description = "Accessibility shortcuts dashboard description";
