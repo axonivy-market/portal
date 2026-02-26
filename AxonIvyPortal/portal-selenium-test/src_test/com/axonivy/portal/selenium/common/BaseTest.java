@@ -12,12 +12,16 @@ import java.time.Duration;
 import java.util.Objects;
 
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WindowType;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.axonivy.ivy.webtest.engine.EngineUrl;
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.WebDriverRunner;
 
 import ch.ivy.addon.portalkit.enums.PortalPermission;
@@ -40,8 +44,21 @@ public class BaseTest {
 
   @AfterEach
   public void tearDown() {
-    WebDriverRunner.getWebDriver().quit();
+    Selenide.closeWebDriver();
   }
+  
+  @BeforeAll
+  public static void initConfig() {
+    FirefoxOptions options = new FirefoxOptions();
+    options.addPreference("dom.disable_beforeunload", true);
+   
+    if (Configuration.browserCapabilities != null) {
+      Configuration.browserCapabilities = Configuration.browserCapabilities.merge(options);
+    } else {
+      Configuration.browserCapabilities = options;
+    }
+  }
+ 
 
   protected String simplePaymentUrl = "portal-developer-examples/162511D2577DBA88/simplePayment.ivp";
   protected String createTaskWithIframe = "portal-developer-examples/16E5DB746865BCEC/CreateInvestment.ivp";
@@ -416,4 +433,9 @@ public class BaseTest {
   public void resizeBrowserToFullHDResolution() {
     ScreenshotUtils.resizeBrowser(new Dimension(1900, 1080));
   }
+  
+  public void resizeBrowserToSmallscreen() {
+    ScreenshotUtils.resizeBrowser(new Dimension(1167, 494));
+  }
+  
 }

@@ -81,6 +81,7 @@ public class TaskWidgetTest extends BaseTest {
 
   @Test
   public void testFilterDateOnStandardFields() {
+    resizeBrowserToSmallscreen();
     NavigationHelper.navigateToTaskList();
     TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
 
@@ -124,9 +125,10 @@ public class TaskWidgetTest extends BaseTest {
 
   @Test
   public void testTogglePinnedTask() {
-    resizeBrowserToFullHDResolution();
+    showNewDashboard();
     NavigationHelper.navigateToTaskList();
     TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
+    taskWidget.verifyTaskNumber(3);
     for (int i = 2; i > 0; i--) {
       taskWidget.pinTaskByIndex(i);
     }

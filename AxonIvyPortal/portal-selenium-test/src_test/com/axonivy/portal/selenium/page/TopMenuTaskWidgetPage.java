@@ -246,8 +246,7 @@ public class TopMenuTaskWidgetPage extends TaskWidgetNewDashBoardPage {
   }
 
   public void waitUntilTaskFilterReturnResultCount(int count) {
-    new WebDriverWait(WebDriverRunner.getWebDriver(), DEFAULT_TIMEOUT)
-        .until((driver) -> countAllTasks().size() == count);
+    $(taskWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$$("table tbody tr td").filter(Condition.cssClass("dashboard-tasks__name")).shouldHave(CollectionCondition.size(count));
   }
 
   public void isDelegateTypeSelectAvailable() {
@@ -321,6 +320,10 @@ public class TopMenuTaskWidgetPage extends TaskWidgetNewDashBoardPage {
   public void pinTaskByIndex(int taskIndex) {
     clickOnTaskActionLink(taskIndex);
     clickTaskAction(taskIndex, "Pin");
+  }
+  
+  public void verifyTaskNumber(int number) {
+    $(taskWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$$("table tbody tr").should(CollectionCondition.sizeGreaterThanOrEqual(number));
   }
 
   public void unpinTaskByIndex(int taskIndex) {

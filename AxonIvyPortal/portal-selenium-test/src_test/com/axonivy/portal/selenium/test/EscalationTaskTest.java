@@ -105,6 +105,9 @@ public class EscalationTaskTest extends BaseTest {
     caseDetailsPage = new CaseDetailsPage();
     // sometimes engine need time to render the proper tasks in the list
     // if not see it, click on the check box to reload the list from db
+    if (caseDetailsPage.getSizeOfRelatedTask() < 3) {
+      refreshPage();
+    }
     if(SICK_LEAVE_REQUEST.equals(caseDetailsPage.getNameOfRelatedTask(2).getText())) {
       caseDetailsPage.getNameOfRelatedTask(2).shouldHave(Condition.text(SICK_LEAVE_REQUEST));
     } else {

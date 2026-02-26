@@ -1,5 +1,5 @@
 package com.axonivy.portal.selenium.page;
-
+import static com.codeborne.selenide.CollectionCondition.containExactTextsCaseSensitive;
 import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Condition.disappear;
 import static com.codeborne.selenide.Condition.text;
@@ -61,31 +61,12 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
     return 0;
   }
 
-  private int getIndexWidgetByColumnScrollable(String columnName) {
-    SelenideElement taskWidget = $(taskWidgetId).shouldBe(appear, DEFAULT_TIMEOUT);
-    
-    // Try scrollable header first
-    if (taskWidget.$(".ui-datatable-scrollable-header").exists()) {
-      try {
-        ElementsCollection elementsTH = taskWidget.$(".ui-datatable-scrollable-header")
-            .shouldBe(appear, DEFAULT_TIMEOUT).$$("table thead tr th");
-        for (int i = 0; i < elementsTH.size(); i++) {
-          if (elementsTH.get(i).getAttribute("aria-label").equalsIgnoreCase(columnName)) {
-            return i;
-          }
-        }
-      } catch (Exception e) {
-        // Fall back to non-scrollable header
-      }
-    }
-    
-    // Fallback to regular header
-    return getIndexWidgetByColumn(columnName);
-  }
-
   private SelenideElement getColumnOfCaseHasActionIndex(int index, String columnName) {
-    int startIndex = getIndexWidgetByColumnScrollable(columnName);
-    return getColumnOfTableWidget(index).get(startIndex).$("span a");
+    return $(taskWidgetId).shouldBe(appear, DEFAULT_TIMEOUT)
+    .$$("table tbody tr").shouldHave(CollectionCondition.sizeGreaterThanOrEqual(index))
+    .get(index).$$("td").shouldHave(containExactTextsCaseSensitive(columnName))
+    .filter(Condition.text(columnName)).first()
+    .$("span a");
   }
 
   private ElementsCollection getColumnOfTableWidget(int rowIndex) {
@@ -151,8 +132,8 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void applyFilter() {
-    $("div.filter-overlay-panel__footer").shouldBe(appear, DEFAULT_TIMEOUT).$$("button[id$='apply-button']")
-        .filter(text("Apply")).first().shouldBe(getClickableCondition()).click();
+    clickByJavaScript($("div.filter-overlay-panel__footer").shouldBe(appear, DEFAULT_TIMEOUT).$$("button[id$='apply-button']")
+        .filter(text("Apply")).first());
     $("div[id$='task-task_1:filter-overlay-panel-0']").shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
   }
 
@@ -502,25 +483,14 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void clickOnHeaderTaskByColumn(String columnName) {
-    ElementsCollection elementsTH = $(taskWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$$("table thead tr th");
-    elementsTH.asDynamicIterable().forEach(headerElem -> {
-      if (headerElem.getText().equalsIgnoreCase(columnName)) {
-        waitForElementClickableThenClick(headerElem);
-
-        // Sometimes browser click before JS of Primefaces loaded correctly.
-        // -> header has state focus instead of active.
-        // -> should check: after click, if header has state focus instead of active,
-        // click again.
-        try {
-          headerElem.shouldHave(Condition.cssClass("ui-state-active"), DEFAULT_TIMEOUT);
-        } catch (AssertionError e) {
-          if (headerElem.has(Condition.cssClass("ui-state-focus"))) {
-            waitForElementClickableThenClick(headerElem);
-            headerElem.shouldHave(Condition.cssClass("ui-state-active"), DEFAULT_TIMEOUT);
-          }
-        }
-      }
-    });
+    $(taskWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$$("table thead tr th")
+      .shouldHave(CollectionCondition.containExactTextsCaseSensitive(columnName))
+      .filter(Condition.text(columnName)).first()
+      .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $(taskWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$$("table thead tr th")
+      .shouldHave(CollectionCondition.containExactTextsCaseSensitive(columnName))
+      .filter(Condition.text(columnName)).first()
+      .shouldHave(Condition.cssClass("ui-state-active"), DEFAULT_TIMEOUT);
   }
 
   public SelenideElement getTheFirstTaskWidgetByColumn(String columnName) {
@@ -546,9 +516,9 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
         .click();
   }
   
-  public boolean isQuickSearchInputShow() {
-    return getTaskWidgetHeader().$("div.widget__header").shouldBe(appear, DEFAULT_TIMEOUT)
-        .$("div[class*='widget-header-quick-search']").isDisplayed();
+  public void isQuickSearchInputShow() {
+    getTaskWidgetHeader().$("div.widget__header").shouldBe(appear, DEFAULT_TIMEOUT)
+        .$("div[class*='widget-header-quick-search']").should(appear, DEFAULT_TIMEOUT);
   }
   
   public void setInputForQuickSearch(String input) {
