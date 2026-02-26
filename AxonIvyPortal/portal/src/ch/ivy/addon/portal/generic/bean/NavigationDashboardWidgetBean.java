@@ -4,10 +4,12 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayDeque;
 import java.util.Deque;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import javax.faces.bean.ManagedBean;
@@ -148,6 +150,7 @@ public class NavigationDashboardWidgetBean implements Serializable {
   
   public void updateButtonNameByLocale(NavigationDashboardWidget widget) {
     String currentButtonName = widget.getButtonName();
+    deduplicateButtonNames(widget);
     initMultipleLanguagesForButtonWidgetName(widget, currentButtonName);
     String currentLanguage = UserUtils.getUserLanguage();
     Optional<DisplayName> optional = widget.getButtonNames().stream()
@@ -157,7 +160,16 @@ public class NavigationDashboardWidgetBean implements Serializable {
     }
   }
   
+  private void deduplicateButtonNames(NavigationDashboardWidget widget) {
+    List<DisplayName> names = widget.getButtonNames();
+    if (names != null) {
+      Set<String> seen = new LinkedHashSet<>();
+      names.removeIf(name -> !seen.add(name.getLocale().toLanguageTag()));
+    }
+  }
+
   private void initMultipleLanguagesForButtonWidgetName(NavigationDashboardWidget widget, String currentName) {
+    deduplicateButtonNames(widget);
     Map<String, DisplayName> mapLanguage = getMapLanguages(widget);
     List<String> supportedLanguages = getSupportedLanguages();
     for (String language : supportedLanguages) {
