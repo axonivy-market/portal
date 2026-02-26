@@ -321,6 +321,10 @@ public class TopMenuTaskWidgetPage extends TaskWidgetNewDashBoardPage {
     clickOnTaskActionLink(taskIndex);
     clickTaskAction(taskIndex, "Pin");
   }
+  
+  public void verifyTaskNumber(int number) {
+    $(taskWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$$("table tbody tr").should(CollectionCondition.sizeGreaterThanOrEqual(number));
+  }
 
   public void unpinTaskByIndex(int taskIndex) {
     clickOnTaskActionLink(taskIndex);

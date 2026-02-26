@@ -60,28 +60,6 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
     }
     return 0;
   }
-//
-//  private int getIndexWidgetByColumnScrollable(String columnName) {
-//    SelenideElement taskWidget = $(taskWidgetId).shouldBe(appear, DEFAULT_TIMEOUT);
-//    
-//    // Try scrollable header first
-//    if (taskWidget.$(".ui-datatable-scrollable-header").exists()) {
-//      try {
-//        ElementsCollection elementsTH = taskWidget.$(".ui-datatable-scrollable-header")
-//            .shouldBe(appear, DEFAULT_TIMEOUT).$$("table thead tr th");
-//        for (int i = 0; i < elementsTH.size(); i++) {
-//          if (elementsTH.get(i).getAttribute("aria-label").equalsIgnoreCase(columnName)) {
-//            return i;
-//          }
-//        }
-//      } catch (Exception e) {
-//        // Fall back to non-scrollable header
-//      }
-//    }
-//    
-//    // Fallback to regular header
-//    return getIndexWidgetByColumn(columnName);
-//  }
 
   private SelenideElement getColumnOfCaseHasActionIndex(int index, String columnName) {
     return $(taskWidgetId).shouldBe(appear, DEFAULT_TIMEOUT)
