@@ -1,0 +1,127 @@
+[
+  {
+    "id": "duplicate-test-dashboard",
+    "version": "13.1.0",
+    "templateId": "create-from-scratch",
+    "titles": [
+      {
+        "locale": "en",
+        "value": "Dashboard with Duplicates"
+      },
+      {
+        "locale": "en",
+        "value": "Duplicate English Entry"
+      },
+      {
+        "locale": "fr",
+        "value": "Tableau de bord"
+      },
+      {
+        "locale": "de",
+        "value": "Dashboard"
+      },
+      {
+        "locale": "de",
+        "value": "Duplicate German Entry"
+      }
+    ],
+    "icon": "fa-warning",
+    "widgets": [
+      {
+        "type": "task",
+        "id": "task_duplicate_test",
+        "names": [
+          {
+            "locale": "en",
+            "value": "Your Tasks"
+          },
+          {
+            "locale": "en",
+            "value": "Duplicate English Widget Name"
+          },
+          {
+            "locale": "de",
+            "value": "Ihre Aufgaben"
+          },
+          {
+            "locale": "fr",
+            "value": "Vos tâches"
+          },
+          {
+            "locale": "fr",
+            "value": "Duplicate French Widget Name"
+          }
+        ],
+        "layout": {
+          "w": 12,
+          "h": 5,
+          "x": 0,
+          "y": 0
+        },
+        "rowsPerPage": 5,
+        "canWorkOn": true,
+        "sortField": "startTimestamp",
+        "sortDescending": true,
+        "columns": [
+          {
+            "field": "name"
+          },
+          {
+            "field": "priority"
+          },
+          {
+            "field": "state"
+          },
+          {
+            "field": "actions"
+          }
+        ]
+      },
+      {
+        "type": "case",
+        "id": "case_duplicate_test",
+        "names": [
+          {
+            "locale": "en",
+            "value": "Your Cases"
+          },
+          {
+            "locale": "de",
+            "value": "Ihre Vorgänge"
+          },
+          {
+            "locale": "de",
+            "value": "Duplicate German Case Widget"
+          },
+          {
+            "locale": "es",
+            "value": "Sus casos"
+          }
+        ],
+        "layout": {
+          "w": 12,
+          "h": 5,
+          "x": 0,
+          "y": 5
+        },
+        "rowsPerPage": 5,
+        "sortField": "startTimestamp",
+        "sortDescending": true,
+        "columns": [
+          {
+            "field": "id"
+          },
+          {
+            "field": "name"
+          },
+          {
+            "field": "state"
+          },
+          {
+            "field": "actions"
+          }
+        ]
+      }
+    ]
+  }
+]

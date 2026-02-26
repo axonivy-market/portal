@@ -16,6 +16,7 @@ import org.openqa.selenium.interactions.Actions;
 import com.axonivy.portal.selenium.common.FileHelper;
 import com.axonivy.portal.selenium.common.Sleeper;
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
 
@@ -367,6 +368,13 @@ public class DashboardConfigurationPage extends TemplatePage {
 
     multipleLanguageDialog.$("button[type='submit']").click();
     multipleLanguageDialog.shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
+  }
+
+  public ElementsCollection getMultiLangDashboardImportTitle() {
+    getAddLanguageButton().click();
+    var multipleLanguageDialog = getImportMultipleLanguageDialog();
+    var elementsInput = multipleLanguageDialog.$$("td input");
+    return elementsInput;
   }
 
   private SelenideElement findPrivateDashboardRowByName(String dashboardName) {
