@@ -49,7 +49,7 @@ public class TopMenuTaskWidgetPage extends TaskWidgetNewDashBoardPage {
   }
 
   public TaskTemplatePage startTaskByIndex(int taskIndex) {
-    getColumnOfTaskHasIndex(taskIndex, "Start").shouldBe(getClickableCondition()).click();
+    getCellByRowAndColumnName(taskIndex, "Start").shouldBe(getClickableCondition()).click();
     return new TaskTemplatePage();
   }
 
@@ -62,13 +62,13 @@ public class TopMenuTaskWidgetPage extends TaskWidgetNewDashBoardPage {
   }
 
   public boolean checkNameOfTaskAt(int taskIndex, String taskName) {
-    return getColumnOfTaskHasIndex(taskIndex, "Task name").shouldBe(appear, DEFAULT_TIMEOUT)
+    return getCellByRowAndColumnName(taskIndex, "Task name").shouldBe(appear, DEFAULT_TIMEOUT)
         .is(Condition.text(taskName));
   }
 
 
   public TaskIFrameTemplatePage startTaskIFrameByIndex(int taskIndex) {
-    getColumnOfTaskHasIndex(taskIndex, "Start").shouldBe(getClickableCondition()).click();
+    getCellByRowAndColumnName(taskIndex, "Start").shouldBe(getClickableCondition()).click();
     switchToIFrameOfTask();
     return new TaskIFrameTemplatePage();
   }
@@ -173,7 +173,7 @@ public class TopMenuTaskWidgetPage extends TaskWidgetNewDashBoardPage {
 
   @Override
   public void startTask(int taskIndex) {
-    getColumnOfTaskHasIndex(taskIndex, "Start").shouldBe(getClickableCondition()).click();
+    getCellByRowAndColumnName(taskIndex, "Start").shouldBe(getClickableCondition()).click();
   }
   
   public boolean isTableHidden() {
@@ -347,14 +347,13 @@ public class TopMenuTaskWidgetPage extends TaskWidgetNewDashBoardPage {
     clickTaskAction(taskIndex, "Unpin");
   }
 
-  public boolean isTaskPinned(int taskIndex) {
-    return getAllTaskActions(taskIndex)
-        .filter(Condition.exactText("Pin")).shouldHave(CollectionCondition.size(0)).isEmpty();
+  public void isTaskPinned(int taskIndex) {
+    getAllTaskActions(taskIndex)
+        .filter(Condition.exactText("Pin")).shouldHave(CollectionCondition.size(0));
   }
 
-  public boolean isTaskUnpinned(int taskIndex) {
-    return getAllTaskActions(taskIndex).filter(Condition.exactText("Unpin")).shouldHave(CollectionCondition.size(0))
-        .isEmpty();
+  public void isTaskUnpinned(int taskIndex) {
+    getAllTaskActions(taskIndex).filter(Condition.exactText("Unpin")).shouldHave(CollectionCondition.size(0));
   }
 
   public void togglePinnedTask() {
@@ -364,7 +363,7 @@ public class TopMenuTaskWidgetPage extends TaskWidgetNewDashBoardPage {
   }
 
   public void clickOnPinColumn(int index) {
-    getColumnOfTaskHasIndex(index, "Pin").shouldBe(getClickableCondition()).click();
+    getCellByRowAndColumnName(index, "Pin").shouldBe(getClickableCondition()).click();
   }
   
   public void waitForTaskDelegateDialogContent() {

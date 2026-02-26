@@ -15,6 +15,7 @@ import com.axonivy.portal.selenium.common.FilterOperator;
 import com.axonivy.portal.selenium.common.FilterValueType;
 import com.axonivy.portal.selenium.common.NavigationHelper;
 import com.axonivy.portal.selenium.common.TestAccount;
+import com.axonivy.portal.selenium.common.WaitHelper;
 import com.axonivy.portal.selenium.page.LeaveRequestPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.TopMenuTaskWidgetPage;
@@ -49,15 +50,14 @@ public class LeaveRequestTest extends BaseTest {
     assertEquals("'To' must be later than 'From'.", leaveRequestPage.clickSubmitAndGetValidationMsg());
   }
 
-  @SuppressWarnings("deprecation")
   @Test
   public void testApproveScenario() {
     leaveRequestPage = startLeaveRequestProcess();
     assertEquals(CREATE_LEAVE_REQUEST_TITLE, leaveRequestPage.getPageTitle());
     String today =
-        LocalDateTime.now().format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN, new Locale("en")));
+        LocalDateTime.now().format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN, Locale.of("en")));
     String yesterday = LocalDateTime.now().minusDays(1)
-        .format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN, new Locale("en")));
+        .format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN, Locale.of("en")));
     leaveRequestPage.waitForIFrameContentVisible();
     leaveRequestPage.enterLeaveRequestInformation("Maternity Leave", yesterday, today,
         TestAccount.ADMIN_USER.getFullName(), "requester comment");
@@ -72,6 +72,7 @@ public class LeaveRequestTest extends BaseTest {
     TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
     taskWidget.startTaskIFrameByIndex(0);
     leaveRequestPage.assertPageTitle(APPROVAL_TITLE);
+    WaitHelper.waitPageNoAjaxAndAnimation();
     leaveRequestPage.enterApproverComment("Approved");
     leaveRequestPage.clickApproveBtn();
 
@@ -91,16 +92,15 @@ public class LeaveRequestTest extends BaseTest {
     leaveRequestPage.assertPageTitle(APPROVAL_RESULT_TITLE);
   }
 
-  @SuppressWarnings("deprecation")
   @Test
   public void testRejectScenario() {
     leaveRequestPage = startLeaveRequestProcess();
     leaveRequestPage.assertPageTitle(CREATE_LEAVE_REQUEST_TITLE);
 
     String today =
-        LocalDateTime.now().format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN, new Locale("en")));
+        LocalDateTime.now().format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN, Locale.of("en")));
     String yesterday = LocalDateTime.now().minusDays(1)
-        .format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN, new Locale("en")));
+        .format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN, Locale.of("en")));
     leaveRequestPage.enterLeaveRequestInformation("Maternity Leave", yesterday, today,
         TestAccount.ADMIN_USER.getFullName(), "requester comment");
     leaveRequestPage.clickSubmitButton();

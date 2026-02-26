@@ -2,10 +2,13 @@ package com.axonivy.portal.selenium.test;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.Dimension;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.NavigationHelper;
+import com.axonivy.portal.selenium.common.ScreenshotUtils;
+import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.page.CaseDetailsPage;
 import com.axonivy.portal.selenium.page.CaseWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.MainMenuPage;
@@ -34,13 +37,16 @@ public class ShowCaseNoteHistoryTest extends BaseTest {
     redirectToRelativeLink(createTestingTasksUrl);
     newDashboardPage = new NewDashboardPage();
     mainMenuPage = newDashboardPage.openMainMenu();
+    login(TestAccount.ADMIN_USER);
   }
 
   @Test
   public void testShowCaseNoteHistory() {
+    grantSpecificPortalPermission(PortalPermission.TASK_CASE_ADD_NOTE);
     CaseWidgetNewDashBoardPage casePage = mainMenuPage.selectCaseMenu();
     detailsPage = casePage.openDetailsCase(CASE_NAME);
-    resizeBrowserTo2kResolution();
+    ScreenshotUtils.resizeBrowser(new Dimension(1600, 3000));
+  
     String caseId = detailsPage.getCaseId();
     String uuid = detailsPage.getCaseUuid();
     detailsPage.addNote(NOTE_CONTENT);
