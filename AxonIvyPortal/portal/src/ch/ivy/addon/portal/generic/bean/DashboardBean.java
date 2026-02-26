@@ -89,7 +89,9 @@ public class DashboardBean implements Serializable, IMultiLanguage {
   private String selectedDashboardName;
   private String searchScope;
   private boolean isShowPinnedItem;
-  private boolean isEnablePinTask;
+  private boolean isEnabledPinnedTask;
+  private boolean isEnabledPinnedCase;
+  private boolean isHideCaseCreator;
 
   @PostConstruct
   public void init() {
@@ -119,7 +121,9 @@ public class DashboardBean implements Serializable, IMultiLanguage {
     }
 
     buildClientStatisticApiUri();
-    isEnablePinTask = GlobalSettingService.getInstance().isEnablePinTask();
+    isEnabledPinnedTask = GlobalSettingService.getInstance().isEnablePinTask();
+    isEnabledPinnedCase = GlobalSettingService.getInstance().isEnablePinCase();
+    isHideCaseCreator = GlobalSettingService.getInstance().isHideCaseCreator();
   }
 
   private void buildClientStatisticApiUri() {
@@ -528,7 +532,7 @@ public class DashboardBean implements Serializable, IMultiLanguage {
   }
 
   public boolean isHideCaseCreator() {
-    return GlobalSettingService.getInstance().isHideCaseCreator();
+    return isHideCaseCreator;
   }
 
   public String getScreenReaderNotificationContent() {
@@ -587,12 +591,12 @@ public class DashboardBean implements Serializable, IMultiLanguage {
 
   public boolean canShowPinnedItemToggle(DashboardWidget widget) {
     if (widget instanceof TaskDashboardWidget) {
-      return isEnablePinTask
+      return isEnabledPinnedTask
           && ((TaskDashboardWidget) widget).isShowPinnedToggle();
     }
 
     if (widget instanceof CaseDashboardWidget) {
-      return GlobalSettingService.getInstance().isEnablePinCase()
+      return isEnabledPinnedCase
           && ((CaseDashboardWidget) widget).isShowPinnedToggle();
     }
 

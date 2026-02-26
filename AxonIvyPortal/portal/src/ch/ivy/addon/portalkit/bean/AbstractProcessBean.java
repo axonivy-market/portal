@@ -43,6 +43,10 @@ public abstract class AbstractProcessBean implements Serializable {
     processes.addAll(findProcesses());
     processes.addAll(findExternalLink());
     portalProcesses = new CopyOnWriteArrayList<Process>(sortProcesses(processes));
+    loadShowProcessInfo();
+  }
+  
+  protected void loadShowProcessInfo() {
     isShownProcessInfo = GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_PROCESS_INFORMATION);
   }
 
