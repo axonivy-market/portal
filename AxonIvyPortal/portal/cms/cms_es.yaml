@@ -954,6 +954,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     RenamingDocumentNote: '{0} ha renombrado el archivo {1} a {2}'
     RenamingDocumentSuccess: Renombrado exitosamente.
     RenamingFailed: Se ha producido un error al renombrar el documento.
+    confirmationUploadDocument: El escaneo de scripts no está disponible para archivos PDF cifrados. ¿Desea continuar con la vista previa?
     deleteDocumentNote: '{0} ha eliminado {1}'
     deleteSuceed: Archivo eliminado con éxito
     download: Descargar
@@ -970,6 +971,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     uploadFailed: Se produjo un error al cargar este archivo. Por favor, pregunte a su administrador por este problema.
     uploadFileExists: El archivo {0} ya existe
     uploadSucceed: El archivo ha sido añadido con éxito
+    uploadSucceedWithWarning: El archivo se ha cargado correctamente, pero no se ha podido completar el análisis del script porque el archivo está cifrado o protegido con contraseña.
   emailSetting:
     dailySummary: Recibir un resumen diario
     eMail: Email

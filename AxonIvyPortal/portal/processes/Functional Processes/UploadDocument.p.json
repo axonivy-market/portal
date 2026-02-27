@@ -34,12 +34,14 @@
           "params" : [
             { "name" : "uploadedDocument", "type" : "ch.ivyteam.ivy.workflow.document.IDocument", "desc" : "" },
             { "name" : "message", "type" : "String", "desc" : "" },
-            { "name" : "status", "type" : "com.axonivy.portal.components.enums.UploadDocumentCheckStatus", "desc" : "" }
+            { "name" : "status", "type" : "com.axonivy.portal.components.enums.UploadDocumentCheckStatus", "desc" : "" },
+            { "name" : "isEncrypted", "type" : "Boolean", "desc" : "" }
           ],
           "map" : {
             "result.uploadedDocument" : "in.uploadedDocument",
             "result.message" : "in.message",
-            "result.status" : "in.status"
+            "result.status" : "in.status",
+            "result.isEncrypted" : "in.isEncrypted"
           }
         }
       },
@@ -188,6 +190,7 @@
           "config" : {
             "output" : {
               "code" : [
+                "import ch.ivy.addon.portalkit.util.PortalCustomFieldUtils;",
                 "import com.axonivy.portal.components.enums.UploadDocumentCheckStatus;",
                 "import ch.ivy.addon.portalkit.service.CaseDocumentService;",
                 "import java.util.Arrays;",
@@ -201,7 +204,12 @@
                 "if (out.#uploadedDocument != null) {  ",
                 "  String note = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/documentFiles/uploadDocumentNote\", Arrays.asList(ivy.session.getSessionUserName(), fileName));",
                 "  in.businessCase.createNote(ivy.session, note);",
-                "  out.message = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/documentFiles/uploadSucceed\");",
+                "  if (in.isEncrypted) {",
+                "    out.isEncrypted = in.isEncrypted;",
+                "    out.message = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/documentFiles/uploadSucceedWithWarning\");",
+                "  } else {",
+                "    out.message = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/documentFiles/uploadSucceed\");",
+                "  }",
                 "} else {",
                 "  out.message = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/documentFiles/uploadFailed\");",
                 "  out.status = UploadDocumentCheckStatus.FAIL;",
@@ -317,6 +325,27 @@
             "at" : { "x" : 1184, "y" : 160 }
           },
           "parentConnector" : "f9"
+        }, {
+          "id" : "S10-f3",
+          "type" : "ErrorStartEvent",
+          "name" : "portal:file:encrypted",
+          "config" : {
+            "errorCode" : "portal:file:encrypted",
+            "output" : {
+              "code" : [
+                "import com.axonivy.portal.components.enums.UploadDocumentCheckStatus;",
+                "in.isEncrypted = true;",
+                "in.status = UploadDocumentCheckStatus.OK;"
+              ]
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 600, "y" : 80 },
+            "labelOffset" : { "x" : 13, "y" : 33 }
+          },
+          "connect" : [
+            { "id" : "S10-f4", "to" : "S10-f53" }
+          ]
         } ],
       "visual" : {
         "at" : { "x" : 992, "y" : 272 }

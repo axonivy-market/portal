@@ -256,10 +256,14 @@
         "output" : {
           "code" : [
             "import com.axonivy.portal.components.util.FacesMessageUtils;",
+            "import javax.faces.application.FacesMessage.Severity;",
             "import javax.faces.application.FacesMessage;",
             "import javax.faces.context.FacesContext;",
-            "",
-            "FacesContext.getCurrentInstance().addMessage(\"\", FacesMessageUtils.sanitizedMessage(in.uploadDocumentCheckMessage, \"\" ));"
+            "if (in.isEncrypted) {",
+            "  FacesContext.getCurrentInstance().addMessage(\"\", FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_WARN, in.uploadDocumentCheckMessage, \"\"));",
+            "} else {",
+            "  FacesContext.getCurrentInstance().addMessage(\"\", FacesMessageUtils.sanitizedMessage(in.uploadDocumentCheckMessage, \"\" ));",
+            "}"
           ]
         }
       },
@@ -381,6 +385,7 @@
         "output" : {
           "map" : {
             "out" : "in",
+            "out.isEncrypted" : "result.isEncrypted",
             "out.uploadDocumentCheckMessage" : "result.message",
             "out.uploadDocumentCheckStatus" : "result.status"
           }
@@ -632,7 +637,7 @@
     }, {
       "id" : "f58",
       "type" : "SubProcessCall",
-      "name" : "Download Document",
+      "name" : "Download Document and check encrypted files",
       "config" : {
         "processCall" : "Functional Processes/DownloadDocument:downloadDocument(ch.ivyteam.ivy.workflow.ICase,com.axonivy.portal.components.ivydata.bo.IvyDocument)",
         "call" : {
@@ -645,21 +650,35 @@
           "map" : {
             "out" : "in",
             "out.streamedContent" : "result.streamedContent"
-          }
+          },
+          "code" : [
+            "import org.primefaces.model.StreamedContent;",
+            "import org.primefaces.PrimeFaces;",
+            "import javax.faces.context.FacesContext;",
+            "import com.axonivy.portal.util.UploadDocumentUtils;",
+            "import ch.ivy.addon.portalkit.service.CaseDocumentService;",
+            "",
+            "StreamedContent streamedContent = CaseDocumentService.newInstance(in.caze).download(in.document);",
+            "in.isEncrypted = UploadDocumentUtils.isEncrypted(streamedContent);",
+            "if (in.isEncrypted) {",
+            "  FacesContext.getCurrentInstance().validationFailed();",
+            "  PrimeFaces.current().executeScript(\"PF('preview-document-confirmation-dialog').show();\");",
+            "}"
+          ]
         }
       },
       "visual" : {
-        "at" : { "x" : 264, "y" : 1048 },
+        "at" : { "x" : 328, "y" : 1048 },
         "size" : { "width" : 128 }
       },
       "connect" : [
-        { "id" : "f60", "to" : "f62" }
+        { "id" : "f60", "to" : "f78" }
       ]
     }, {
       "id" : "f59",
       "type" : "HtmlDialogEnd",
       "visual" : {
-        "at" : { "x" : 616, "y" : 1048 }
+        "at" : { "x" : 728, "y" : 1048 }
       }
     }, {
       "id" : "f62",
@@ -681,7 +700,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 472, "y" : 1048 }
+        "at" : { "x" : 584, "y" : 1048 }
       },
       "connect" : [
         { "id" : "f64", "to" : "f59", "color" : "default" }
@@ -695,7 +714,7 @@
         "guid" : "19984C5B79EEDAF5"
       },
       "visual" : {
-        "at" : { "x" : 104, "y" : 1184 }
+        "at" : { "x" : 96, "y" : 1312 }
       },
       "connect" : [
         { "id" : "f68", "to" : "f67" }
@@ -704,7 +723,7 @@
       "id" : "f66",
       "type" : "HtmlDialogEnd",
       "visual" : {
-        "at" : { "x" : 408, "y" : 1184 },
+        "at" : { "x" : 400, "y" : 1312 },
         "labelOffset" : { "x" : 10, "y" : 30 }
       }
     }, {
@@ -725,10 +744,74 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 264, "y" : 1184 }
+        "at" : { "x" : 256, "y" : 1312 }
       },
       "connect" : [
         { "id" : "f70", "to" : "f66" }
+      ]
+    }, {
+      "id" : "f76",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "previewEncryptedDocument()",
+      "config" : {
+        "signature" : "previewEncryptedDocument",
+        "input" : {
+          "map" : { },
+          "code" : [
+            "import com.axonivy.portal.components.util.DocumentUtils;",
+            "out.isImage = DocumentUtils.isImageDocument(out.document);"
+          ]
+        },
+        "guid" : "19C9EBA3906B49EA"
+      },
+      "visual" : {
+        "at" : { "x" : 104, "y" : 1176 }
+      },
+      "connect" : [
+        { "id" : "f72", "to" : "f71" }
+      ]
+    }, {
+      "id" : "f78",
+      "type" : "Alternative",
+      "name" : "is encrypted ?",
+      "config" : {
+        "conditions" : {
+          "f79" : "!in.isEncrypted"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 456, "y" : 1048 },
+        "labelOffset" : { "x" : 14, "y" : 34 }
+      },
+      "connect" : [
+        { "id" : "f79", "to" : "f62", "color" : "default" },
+        { "id" : "f80", "to" : "f59", "via" : [ { "x" : 456, "y" : 1104 }, { "x" : 728, "y" : 1104 } ] }
+      ]
+    }, {
+      "id" : "f71",
+      "type" : "SubProcessCall",
+      "name" : "download document without checking encrypted files",
+      "config" : {
+        "processCall" : "Functional Processes/DownloadDocument:downloadDocument(ch.ivyteam.ivy.workflow.ICase,com.axonivy.portal.components.ivydata.bo.IvyDocument)",
+        "call" : {
+          "map" : {
+            "param.bussinessCase" : "in.caze",
+            "param.document" : "in.document"
+          }
+        },
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.streamedContent" : "result.streamedContent"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 328, "y" : 1176 },
+        "size" : { "width" : 136, "height" : 70 }
+      },
+      "connect" : [
+        { "id" : "f73", "to" : "f62", "via" : [ { "x" : 584, "y" : 1176 } ] }
       ]
     } ]
 }

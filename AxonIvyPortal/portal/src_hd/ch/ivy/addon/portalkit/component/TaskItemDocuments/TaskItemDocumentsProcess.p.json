@@ -257,9 +257,14 @@
         "output" : {
           "code" : [
             "import com.axonivy.portal.components.util.FacesMessageUtils;",
+            "import javax.faces.application.FacesMessage.Severity;",
             "import javax.faces.application.FacesMessage;",
             "import javax.faces.context.FacesContext;",
-            "FacesContext.getCurrentInstance().addMessage(\"\", FacesMessageUtils.sanitizedMessage(in.uploadDocumentCheckMessage, \"\" ));"
+            "if (in.isEncrypted) {",
+            "  FacesContext.getCurrentInstance().addMessage(\"\", FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_WARN, in.uploadDocumentCheckMessage, \"\"));",
+            "} else {",
+            "  FacesContext.getCurrentInstance().addMessage(\"\", FacesMessageUtils.sanitizedMessage(in.uploadDocumentCheckMessage, \"\" ));",
+            "}"
           ]
         }
       },
@@ -379,6 +384,7 @@
         "output" : {
           "map" : {
             "out" : "in",
+            "out.isEncrypted" : "result.isEncrypted",
             "out.uploadDocumentCheckMessage" : "result.message",
             "out.uploadDocumentCheckStatus" : "result.status"
           }
@@ -628,6 +634,7 @@
             "out.document" : "in.document"
           },
           "code" : [
+            "import org.primefaces.PrimeFaces;",
             "import javax.faces.context.FacesContext;",
             "import java.io.IOException;",
             "import com.axonivy.portal.components.util.DocumentUtils;",
@@ -636,12 +643,13 @@
             "    in.streamedContent = DocumentUtils.findDocFactoryAndConvert(in.streamedContent);",
             "  } catch (IOException e) {",
             "    FacesContext.getCurrentInstance().validationFailed();",
+            "    PrimeFaces.current().executeScript(\"PF('preview-document-warning-dialog').show();\");",
             "  }"
           ]
         }
       },
       "visual" : {
-        "at" : { "x" : 464, "y" : 1032 }
+        "at" : { "x" : 576, "y" : 1032 }
       },
       "connect" : [
         { "id" : "f64", "to" : "f59", "color" : "default" }
@@ -650,7 +658,7 @@
       "id" : "f59",
       "type" : "HtmlDialogEnd",
       "visual" : {
-        "at" : { "x" : 608, "y" : 1032 }
+        "at" : { "x" : 728, "y" : 1032 }
       }
     }, {
       "id" : "f56",
@@ -689,7 +697,7 @@
     }, {
       "id" : "f57",
       "type" : "SubProcessCall",
-      "name" : "Download Document",
+      "name" : "Download Document and check encrypted files",
       "config" : {
         "processCall" : "Functional Processes/DownloadDocument:downloadDocument(ch.ivyteam.ivy.workflow.ICase,com.axonivy.portal.components.ivydata.bo.IvyDocument)",
         "call" : {
@@ -702,15 +710,25 @@
           "map" : {
             "out" : "in",
             "out.streamedContent" : "result.streamedContent"
-          }
+          },
+          "code" : [
+            "import org.primefaces.PrimeFaces;",
+            "import javax.faces.context.FacesContext;",
+            "import com.axonivy.portal.util.UploadDocumentUtils;",
+            "in.isEncrypted = UploadDocumentUtils.isEncrypted(out.streamedContent);",
+            "if (in.isEncrypted) {",
+            "  FacesContext.getCurrentInstance().validationFailed();",
+            "  PrimeFaces.current().executeScript(\"PF('preview-document-confirmation-dialog').show();\");",
+            "}"
+          ]
         }
       },
       "visual" : {
-        "at" : { "x" : 256, "y" : 1032 },
-        "size" : { "width" : 128 }
+        "at" : { "x" : 328, "y" : 1033 },
+        "size" : { "width" : 144, "height" : 62 }
       },
       "connect" : [
-        { "id" : "f60", "to" : "f62" }
+        { "id" : "f60", "to" : "f74" }
       ]
     }, {
       "id" : "f65",
@@ -721,7 +739,7 @@
         "guid" : "19984CDAC8E2BC7C"
       },
       "visual" : {
-        "at" : { "x" : 96, "y" : 1152 }
+        "at" : { "x" : 80, "y" : 1304 }
       },
       "connect" : [
         { "id" : "f63", "to" : "f61" }
@@ -744,7 +762,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 256, "y" : 1152 }
+        "at" : { "x" : 224, "y" : 1304 }
       },
       "connect" : [
         { "id" : "f70", "to" : "f66" }
@@ -753,8 +771,73 @@
       "id" : "f66",
       "type" : "HtmlDialogEnd",
       "visual" : {
-        "at" : { "x" : 400, "y" : 1152 },
+        "at" : { "x" : 408, "y" : 1304 },
         "labelOffset" : { "x" : 10, "y" : 30 }
       }
+    }, {
+      "id" : "f81",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "previewEncryptedDocument()",
+      "config" : {
+        "signature" : "previewEncryptedDocument",
+        "input" : {
+          "map" : { },
+          "code" : [
+            "import com.axonivy.portal.components.util.DocumentUtils;",
+            "out.isImage = DocumentUtils.isImageDocument(out.document);"
+          ]
+        },
+        "guid" : "19C98163048FD136"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 1160 }
+      },
+      "connect" : [
+        { "id" : "f69", "to" : "f71" }
+      ]
+    }, {
+      "id" : "f74",
+      "type" : "Alternative",
+      "name" : "is encrypted ?",
+      "config" : {
+        "conditions" : {
+          "f75" : "!in.isEncrypted"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 448, "y" : 1032 },
+        "labelOffset" : { "x" : 14, "y" : 34 },
+        "description" : "if file is encrypted, show confirmation dialog"
+      },
+      "connect" : [
+        { "id" : "f75", "to" : "f62", "color" : "default" },
+        { "id" : "f78", "to" : "f59", "via" : [ { "x" : 448, "y" : 1088 }, { "x" : 728, "y" : 1088 } ] }
+      ]
+    }, {
+      "id" : "f71",
+      "type" : "SubProcessCall",
+      "name" : "Download document without checking encrypted files",
+      "config" : {
+        "processCall" : "Functional Processes/DownloadDocument:downloadDocument(ch.ivyteam.ivy.workflow.ICase,com.axonivy.portal.components.ivydata.bo.IvyDocument)",
+        "call" : {
+          "map" : {
+            "param.bussinessCase" : "in.businessCase",
+            "param.document" : "in.document"
+          }
+        },
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.streamedContent" : "result.streamedContent"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 328, "y" : 1160 },
+        "size" : { "width" : 144, "height" : 70 }
+      },
+      "connect" : [
+        { "id" : "f72", "to" : "f62", "via" : [ { "x" : 576, "y" : 1160 } ], "color" : "default" }
+      ]
     } ]
 }

@@ -954,6 +954,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     RenamingDocumentNote: '{0} hat die Datei {1} in {2} umbenannt'
     RenamingDocumentSuccess: Erfolgreich umbenannt.
     RenamingFailed: Beim Umbenennen des Dokuments ist ein Fehler aufgetreten.
+    confirmationUploadDocument: Das Scannen von Skripten ist für verschlüsselte PDF-Dateien nicht verfügbar. Möchten Sie mit der Vorschau fortfahren?
     deleteDocumentNote: '{0} hat folgendes gelöscht: {1}'
     deleteSuceed: Datei wurde erfolgreich gelöscht
     download: Herunterladen
@@ -969,6 +970,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     uploadFailed: Während des Hochladens ist ein Fehler aufgetreten. Bitte fragen Sie Ihren Administrator.
     uploadFileExists: Datei {0} ist bereits vorhanden
     uploadSucceed: Die Datei wurde erfolgreich hochgeladen
+    uploadSucceedWithWarning: Die Datei wurde erfolgreich hochgeladen, aber das Skript-Scannen konnte nicht abgeschlossen werden, da die Datei verschlüsselt oder passwortgeschützt ist.
   emailSetting:
     dailySummary: Tägliche Zusammenfassung erhalten
     eMail: E-Mail
