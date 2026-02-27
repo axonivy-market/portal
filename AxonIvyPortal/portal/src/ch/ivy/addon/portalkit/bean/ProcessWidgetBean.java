@@ -84,10 +84,12 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
   
   private String warningText;
   private String translatedText;
+  private boolean isShowGlobalSearchByProcesses;
   
   @PostConstruct
   public void initProcessWidgetBean() {
     super.loadShowProcessInfo();
+    isShowGlobalSearchByProcesses = GlobalSearchService.getInstance().isShowGlobalSearchByProcesses();
   }
 
   public void initConfiguration() {
@@ -610,7 +612,7 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
   }
   
   public boolean isShowGlobalSearchScope() {
-    return GlobalSearchService.getInstance().isShowGlobalSearchByProcesses();
+    return isShowGlobalSearchByProcesses;
   }
 
   public void resetPermission() {
