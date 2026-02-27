@@ -36,12 +36,18 @@ public abstract class AbstractProcessBean implements Serializable {
   protected static final String UNDERSCORE_SELF  = "_self";
   protected static final String DOT_ICM  = ".icm";
   private List<Process> portalProcesses;
+  private boolean isShownProcessInfo;
 
   public synchronized void init() {
     List<Process> processes = new ArrayList<>();
     processes.addAll(findProcesses());
     processes.addAll(findExternalLink());
     portalProcesses = new CopyOnWriteArrayList<Process>(sortProcesses(processes));
+    loadShowProcessInfo();
+  }
+  
+  protected void loadShowProcessInfo() {
+    isShownProcessInfo = GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_PROCESS_INFORMATION);
   }
 
   public String getProcessInformationPageUrl(Process process) {
@@ -137,6 +143,6 @@ public abstract class AbstractProcessBean implements Serializable {
     }
     isProcessInfoDefined  =  StringUtils.isNotEmpty(portalProcessInformation);
     hasProcessInfo = (processSteps != null && processSteps.size() > 0) || isProcessInfoDefined;
-    return GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_PROCESS_INFORMATION) && hasProcessInfo;
+    return isShownProcessInfo && hasProcessInfo;
   }
 }

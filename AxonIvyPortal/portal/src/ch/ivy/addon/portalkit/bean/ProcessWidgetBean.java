@@ -16,6 +16,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -83,6 +84,13 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
   
   private String warningText;
   private String translatedText;
+  private boolean isShowGlobalSearchByProcesses;
+  
+  @PostConstruct
+  public void initProcessWidgetBean() {
+    super.loadShowProcessInfo();
+    isShowGlobalSearchByProcesses = GlobalSearchService.getInstance().isShowGlobalSearchByProcesses();
+  }
 
   public void initConfiguration() {
     initProcessViewMode();
@@ -166,8 +174,10 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
     String componentId = Attrs.currentContext().getBuildInAttribute("clientId");
     List<IWebStartable> processes = ivyComponentLogicCaller.invokeComponentLogic(componentId, "#{logic.collectProcesses}", new Object[] {});
     List<Process> defaultPortalProcesses = new ArrayList<>();
+    String defaultProcessImage = GlobalSettingService.getInstance().findGlobalSettingByGlobalVariable(GlobalVariable.DEFAULT_PROCESS_IMAGE)
+        .getDisplayValue().toUpperCase();
     processes.forEach(iWebStartable -> {
-      IvyProcess ivyProcess = new IvyProcess(iWebStartable);
+      IvyProcess ivyProcess = new IvyProcess(iWebStartable, defaultProcessImage);
       defaultPortalProcesses.add(ivyProcess);
     });
     return defaultPortalProcesses;
@@ -602,7 +612,7 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
   }
   
   public boolean isShowGlobalSearchScope() {
-    return GlobalSearchService.getInstance().isShowGlobalSearchByProcesses();
+    return isShowGlobalSearchByProcesses;
   }
 
   public void resetPermission() {

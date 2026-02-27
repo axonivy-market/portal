@@ -1,6 +1,6 @@
 package ch.ivy.addon.portalkit.taskfilter.impl;
 
-import org.apache.commons.lang.WordUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.taskfilter.TaskFilter;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -17,7 +17,7 @@ public class TaskForAvailableActivatorFilter extends TaskFilter {
 
   @Override
   public String value() {
-    return WordUtils.capitalize(String.valueOf(queryTaskForUnavailableActivator));
+    return StringUtils.capitalize(String.valueOf(queryTaskForUnavailableActivator));
   }
 
   @Override
