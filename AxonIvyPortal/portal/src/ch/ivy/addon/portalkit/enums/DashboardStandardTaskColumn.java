@@ -16,6 +16,7 @@ public enum DashboardStandardTaskColumn {
   NAME("name"), 
   DESCRIPTION("description"), 
   RESPONSIBLE("activator"), 
+  DELEGATION("delegation"),
   STATE("state"),
   CREATED("startTimestamp"),
   COMPLETED("endTimestamp"),

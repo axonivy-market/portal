@@ -492,6 +492,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     days: journées
     default: Par défaut
     defaultNotificationMessage: Hmm... On dirait que quelque chose ne va pas.
+    delegation: Délégation
     delete: Supprimer
     deleteAbsenceHeaderText: Supprimer cette absence ?
     deleteChartHeaderText: Supprimer ce tableau ?
@@ -614,6 +615,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     showSystemTasks: Tâches du système
     sorting: triage
     start: Démarrage
+    startMultipleDelegation: Démarrer la délégation multiple
     startProcess: Démarrer le processus
     state: Etat
     status: Etat
@@ -631,6 +633,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     typeAdmin: Tous les administrateurs
     typeAllUsers: Tous les utilisateurs
     typeOnlyMe: Seulement pour moi
+    undelegation: Annuler la délégation
     unpin: Désépingler
     uploadHere: Téléchargez ici
     uploadOneHere: Téléchargez-en un ici
@@ -1259,6 +1262,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       COMPLETED: Fini le
       COMPLETED_ON: Fini le
       CREATION_TIME: Créé
+      DELEGATION: Délégation
       EXPIRY_TIME: Délai
       ID: Id de tâche
       NAME: Nom / Description

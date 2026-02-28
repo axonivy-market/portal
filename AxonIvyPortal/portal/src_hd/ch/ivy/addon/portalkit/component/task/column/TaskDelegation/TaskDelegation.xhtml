@@ -1,0 +1,31 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:cc="http://xmlns.jcp.org/jsf/composite"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<cc:interface componentType="IvyComponent">
+    <cc:attribute name="task" required="true" type="ch.ivyteam.ivy.workflow.ITask" />
+</cc:interface>
+
+<cc:implementation>
+    <c:set var="isDelegated" value="#{taskBean.isDelegatedTask(cc.attrs.task)}" />
+
+    <h:form id="delegation-form">
+        <p:commandLink 
+            ariaLabel="#{isDelegated ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/undelegation') : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delegation')}"
+            action="#{taskBean.clickOnDelegationTask(cc.attrs.task)}" 
+            update="@form"
+            styleClass="default-task-cell flex align-items-center justify-content-center h-full text-center delegation-cell-link">
+
+            <p:selectBooleanCheckbox value="#{isDelegated}" disabled="true" />
+
+            <p:tooltip for="@this" 
+                       value="#{isDelegated ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/undelegation') : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delegation')}" 
+                       trackMouse="true" 
+                       hideEvent="mouseleave click" />
+        </p:commandLink>
+    </h:form>
+</cc:implementation>
+
+</html>
