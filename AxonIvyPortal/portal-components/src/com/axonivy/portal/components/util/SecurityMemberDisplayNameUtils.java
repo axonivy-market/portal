@@ -2,6 +2,7 @@ package com.axonivy.portal.components.util;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import com.axonivy.portal.components.dto.UserDTO;
 
 import ch.ivyteam.ivy.environment.Ivy;
@@ -14,6 +15,7 @@ public class SecurityMemberDisplayNameUtils {
   private static final String NO_NAME_CMS = "/Labels/NoName";
   private static final String NOT_AVAILABLE_CMS = "/Labels/NotAvailable";
   private static final String FORMAT_DISABLED_USER = "%s %s";
+  private static final String TEXT_WITH_ROUND_BRACKETS_FORMAT = "/ch.ivy.addon.portalkit.ui.jsf/common/StringFormat/TextWithRoundBracket";
 
 
   public static String generateBriefDisplayNameForSecurityMember(ISecurityMember securityMember, String securityMemberName) {
@@ -66,6 +68,21 @@ public class SecurityMemberDisplayNameUtils {
 
     String displayName = StringUtils.defaultIfBlank(user.getDisplayName(), Ivy.cms().co(NO_NAME_CMS));
     return user.isEnabled() ? displayName : formatDisabledUser(displayName);
+  }
+
+  public static String generateDisplayNameForSecurityMemberDTO(SecurityMemberDTO responsible) {
+    String responsibleName = StringUtils.EMPTY;
+    if (responsible != null) {
+      if (StringUtils.isBlank(responsible.getDisplayName())) {
+        responsibleName = responsible.getName();
+      } else {
+        responsibleName = String.format(
+            Ivy.cms().co(TEXT_WITH_ROUND_BRACKETS_FORMAT),
+            responsible.getDisplayName(), responsible.getName());
+      }
+      return responsible.isEnabled() ? responsibleName : formatDisabledUser(responsibleName);
+    }
+    return responsibleName;
   }
 
   private static String formatDisabledUser(String displayName) {

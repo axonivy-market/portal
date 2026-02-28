@@ -669,6 +669,10 @@ ch.ivy.addon.portalkit.ui.jsf:
     statisticChartIntroduction: This widget displays available statistic charts.
     statisticChartWidget: Statistic chart
     switchToViewMode: View Mode
+    taskList: Task List
+    taskListIntroduction: This widget displays relevant task information according to defined settings.
+    taskStart: Task start
+    taskWidgetConfiguration: Task Widget Configuration
     taskWidgetInfo:
       expireToday: Expire today
       expiryThisWeek: Expire this week
@@ -676,10 +680,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       numberOfTasksByCategory: Number of tasks by category
       numberOfTasksByState: Number of tasks by state
       predefinedFilters: Predefined filters
-    taskList: Task List
-    taskListIntroduction: This widget displays relevant task information according to defined settings.
-    taskStart: Task start
-    taskWidgetConfiguration: Task Widget Configuration
     widgetInfo: Widget information
     widgetTitle: Widget Title
     widgetType: Widget type
@@ -1130,6 +1130,11 @@ Dialogs:
               DateFilter:
                 SelectPeriod: Select period
         page:
+          MenuManagement:
+            HelpText: Customize the menu in this section to match your specific needs or preferences.
+            MenuIcon: Menu icon
+            MenuType: Menu type
+            OpenInNewTab: Open in new tab
           StatisticConfiguration:
             Aggregate: Aggregate
             AggregationMethod: Aggregation method
@@ -1191,6 +1196,7 @@ Labels:
   Icon: Icon
   InsertTask-Explain: Insert the task. My task will be postponed.
   InsertTheTask: Insert the task
+  MenuConfiguration: Menu Configuration
   Name: Name
   Preview: Preview
   Save: Save

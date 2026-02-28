@@ -193,6 +193,18 @@ public class UserMenuBean implements Serializable {
     }
   }
 
+  public void navigateToMenuConfigurationOrDisplayWorkingTaskWarning(boolean isWorkingOnATask, ITask task)
+      throws IOException {
+    var url = PortalNavigator.buildMenuConfigurationUrl();
+    if (isWorkingOnATask && task.getState() != TaskState.DONE) {
+      openTaskLosingConfirmationDialog();
+      targetPage = url;
+    } else {
+      executeJSResetPortalMenuState();
+      getExternalContext().redirect(url);
+    }
+  }
+
   private String getAbsencesUrl() {
     return PortalNavigator.buildAbsencesUrl();
   }

@@ -22,6 +22,7 @@ import ch.addon.portal.generic.menu.SubMenuItem;
 import ch.addon.portal.generic.userprofile.homepage.HomepageUtils;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
+import ch.ivy.addon.portalkit.util.DashboardUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.call.SubProcessCallStartEvent;
 import ch.ivyteam.ivy.process.call.SubProcessSearchFilter;
@@ -45,7 +46,7 @@ public class CustomSubMenuItemService {
   }
 
   @SuppressWarnings("unchecked")
-  private static List<CustomSubMenuItem> loadFromSubProcess() {
+  public static List<CustomSubMenuItem> loadFromSubProcess() {
     return Sudo.get(() -> {
       var filter = SubProcessSearchFilter.create()
           .setSearchScope(SearchScope.SECURITY_CONTEXT)
@@ -99,8 +100,52 @@ public class CustomSubMenuItemService {
     };
   }
 
-  private static List<CustomSubMenuItem> loadFromConfiguration() {
+  public static List<CustomSubMenuItem> loadFromConfiguration() {
     String menuJson = Ivy.var().get(PortalVariable.CUSTOM_MENU_ITEMS.key);
     return BusinessEntityConverter.jsonValueToEntities(menuJson, CustomSubMenuItem.class);
+  }
+
+  public static CustomSubMenuItem saveConfiguration(CustomSubMenuItem entity) {
+    List<CustomSubMenuItem> existedEntities = loadFromConfiguration();
+    existedEntities
+        .removeIf(e -> Optional.ofNullable(e).map(CustomSubMenuItem::getId).orElse("").equals(entity.getId()));
+    existedEntities.add(entity);
+    Ivy.var().set(PortalVariable.CUSTOM_MENU_ITEMS.key, BusinessEntityConverter.entityToJsonValue(existedEntities));
+    return entity;
+  }
+
+  public static CustomSubMenuItem migrate(CustomSubMenuItem menu) {
+    boolean shouldMigrate = false;
+    if (menu != null && StringUtils.isBlank(menu.getId())) {
+      menu.setId(DashboardUtils.generateId());
+    }
+
+    if (shouldMigrate) {
+      return saveConfigurationUseLabel(menu);
+    }
+    return menu;
+  }
+
+  /**
+   * Method for old configurations which don't have ID, so compare both link and
+   * label
+   * 
+   * @param entity
+   * @return
+   */
+  public static CustomSubMenuItem saveConfigurationUseLabel(CustomSubMenuItem entity) {
+    List<CustomSubMenuItem> existedEntities = loadFromConfiguration();
+    existedEntities
+        .removeIf(e -> Optional.ofNullable(e).map(CustomSubMenuItem::getLabel).orElse("").equals(e.getLabel())
+            && Optional.ofNullable(e).map(CustomSubMenuItem::getLink).orElse("").equals(entity.getLink()));
+    existedEntities.add(entity);
+    Ivy.var().set(PortalVariable.CUSTOM_MENU_ITEMS.key, BusinessEntityConverter.entityToJsonValue(existedEntities));
+    return entity;
+  }
+
+  public static void removeConfiguration(CustomSubMenuItem entity) {
+    List<CustomSubMenuItem> existedEntities = loadFromConfiguration();
+    existedEntities.remove(entity);
+    Ivy.var().set(PortalVariable.CUSTOM_MENU_ITEMS.key, BusinessEntityConverter.entityToJsonValue(existedEntities));
   }
 }

@@ -13,11 +13,11 @@ import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.axonivy.portal.components.enums.MenuKind;
 import com.axonivy.portal.components.generic.navigation.BaseNavigator;
 import com.axonivy.portal.components.publicapi.ProcessStartAPI;
 import com.axonivy.portal.components.util.ProcessStartUtils;
 
-import com.axonivy.portal.components.enums.MenuKind;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.service.AiProcessService;
 import ch.ivy.addon.portalkit.util.RequestUtils;
@@ -43,6 +43,7 @@ public final class PortalNavigator extends BaseNavigator{
   private static final String PORTAL_NEW_DASHBOARD_CONFIGURATION = "Start Processes/PortalStart/PortalDashboardConfiguration.ivp";
   private static final String PORTAL_PROCESS_INFO = "Start Processes/PortalStart/ProcessInformation.ivp";
   private static final String PORTAL_DASHBOARD_DETAILS = "Start Processes/PortalStart/DashboardDetails.ivp";
+  private static final String PORTAL_MENU_CONFIGURATION = "Start Processes/PortalStart/MenuManagement.ivp";
 
   public static final String PORTAL_DASHBOARD_START = "/DefaultDashboardPage.ivp";
   public static final String PORTAL_PROCESS_START = "/DefaultProcessStartListPage.ivp";
@@ -202,6 +203,10 @@ public final class PortalNavigator extends BaseNavigator{
 
   public static String buildDashboardConfigurationUrl() {
     return buildUrlByKeyword("PortalDashboardConfiguration.ivp", PORTAL_NEW_DASHBOARD_CONFIGURATION, new HashMap<>());
+  }
+
+  public static String buildMenuConfigurationUrl() {
+    return buildUrlByKeyword("MenuManagement.ivp", PORTAL_MENU_CONFIGURATION, new HashMap<>());
   }
 
   public static String buildUserProfileUrl() {

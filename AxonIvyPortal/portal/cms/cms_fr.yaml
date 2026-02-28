@@ -1585,6 +1585,16 @@ Dialogs:
           IFrameTaskTemplate:
             TaskIFrameTitle: Cadre de travail
         page:
+          MenuManagement:
+            AddNewMenu: Ajouter un nouveau menu
+            CallableMenuMessage: Ce menu est généré automatiquement par un processus appelable et ne peut pas être modifié.
+            HelpText: Personnalisez le menu dans cette section en fonction de vos besoins ou préférences.
+            MenuDetails: Détails du menu
+            MenuIcon: Icône du menu
+            MenuTitle: Titre du menu
+            MenuType: Type de menu
+            OpenInNewTab: Ouvrir dans un nouvel onglet
+            StaticPagePath: Chemin de page statique
           StatisticConfiguration:
             AddFilter: Ajouter un filtre
             Advanced: Avancé
@@ -1869,6 +1879,13 @@ Labels:
       CASES: Cas
       PROCESSES: Processus
       TASKS: Tâches
+    MenuKind:
+      CUSTOM: Personnalisé
+      DASHBOARD: Tableau de bord
+      EXTERNAL_LINK: Lien externe
+      MAIN_DASHBOARD: Tableau de bord
+      STANDARD: Standard
+      STATIC_PAGE: Page statique
     SearchScopeCaseField:
       CUSTOM: Champs de chaînes personnalisées
       DESCRIPTION: Description du texte
@@ -1888,6 +1905,7 @@ Labels:
   Login:
     CompanyName: Axon Ivy Portal
     Copyright: Copyright Ⓒ Axon Ivy Portal
+  MenuConfiguration: Configuration du menu
   Name: Nom
   Permissions: Permissions
   PinnedCases: Cas épinglés

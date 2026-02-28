@@ -1583,6 +1583,16 @@ Dialogs:
           IFrameTaskTemplate:
             TaskIFrameTitle: タスクフレーム
         page:
+          MenuManagement:
+            AddNewMenu: TODO Add new menu
+            CallableMenuMessage: TODO This menu is generated programmatically by a callable process and cannot be edited.
+            HelpText: TODO Customize the menu in this section to match your specific needs or preferences.
+            MenuDetails: TODO Menu Details
+            MenuIcon: TODO Menu icon
+            MenuTitle: TODO Menu title
+            MenuType: TODO Menu type
+            OpenInNewTab: TODO Open in new tab
+            StaticPagePath: TODO Static Page Path
           StatisticConfiguration:
             AddFilter: フィルターを追加
             Advanced: 上級
@@ -1853,6 +1863,13 @@ Labels:
       CASES: ケース
       PROCESSES: プロセス
       TASKS: タスク
+    MenuKind:
+      CUSTOM: TODO Custom
+      DASHBOARD: TODO Dashboard
+      EXTERNAL_LINK: TODO External Link
+      MAIN_DASHBOARD: TODO Dashboard
+      STANDARD: TODO Standard
+      STATIC_PAGE: TODO Static page
     SearchScopeCaseField:
       CUSTOM: カスタム文字列フィールド
       DESCRIPTION: 説明

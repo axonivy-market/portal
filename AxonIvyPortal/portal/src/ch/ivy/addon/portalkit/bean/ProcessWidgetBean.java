@@ -1,7 +1,5 @@
 package ch.ivy.addon.portalkit.bean;
 
-import static org.apache.commons.lang3.StringUtils.EMPTY;
-
 import java.io.Serializable;
 import java.text.Collator;
 import java.util.ArrayList;
@@ -32,6 +30,7 @@ import org.primefaces.event.UnselectEvent;
 import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import com.axonivy.portal.components.util.ImageUploadResult;
 import com.axonivy.portal.components.util.RoleUtils;
+import com.axonivy.portal.components.util.SecurityMemberDisplayNameUtils;
 import com.axonivy.portal.service.GlobalSearchService;
 import com.axonivy.portal.service.IvyTranslationService;
 import com.axonivy.portal.util.ImageUploadUtils;
@@ -174,17 +173,7 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
   }
 
   public String formatName(SecurityMemberDTO responsible) {
-    String responsibleName = EMPTY;
-    if (responsible != null) {
-      if (StringUtils.isBlank(responsible.getDisplayName())) {
-        responsibleName = responsible.getName();
-      } else {
-        responsibleName = String.format(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/StringFormat/TextWithRoundBracket"), responsible.getDisplayName(), responsible.getName());
-      }
-      return responsible.isEnabled() ? responsibleName
-          : String.format("%s %s", Ivy.cms().co("/Labels/disabledUserPrefix"), responsibleName);
-    }
-    return responsibleName;
+    return SecurityMemberDisplayNameUtils.generateDisplayNameForSecurityMemberDTO(responsible);
   }
 
   public List<SecurityMemberDTO> completePermissionsWhenCreatingExternalLink(String query) {
