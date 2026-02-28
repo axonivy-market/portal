@@ -67,6 +67,7 @@
     <p:overlayPanel id="widget-configuration-panel" for="widget-configuration-button"
       styleClass="widget-configuration-overlaypanel" widgetVar="widgetConfigurationPanel" appendTo="@body"
       my="right top" at="right bottom">
+      <h4 class="widget-configuration-section-header">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/displaySettings')}</h4>
       <h:panelGroup id="quick-search-group" layout="block"
         rendered="#{managedBean.canEnableQuickSearch()}"
         styleClass="widget-configuration-group-item ui-fluid flex">
@@ -130,6 +131,28 @@
             <p:ajax process="pinned-toggle-group" update="pinned-toggle-group"
             partialSubmit="true" />
           </p:selectBooleanCheckbox>
+        </div>
+      </h:panelGroup>
+      <!-- Case Query Type Selector (Case Widget only) -->
+      <h:panelGroup rendered="#{widget.type.name() == 'CASE'}">
+        <h4 class="widget-configuration-section-header separator-top">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/dataSettings')}</h4>
+      </h:panelGroup>
+      <h:panelGroup id="case-query-type-group"
+        rendered="#{widget.type.name() == 'CASE'}"
+        styleClass="widget-configuration-group-item ui-fluid flex">
+        <div class="case-type-label-item">
+          <p:outputLabel for="case-query-type" styleClass="u-mar-right-5"
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/CaseQueryType/label')}" />
+          <h:outputText id="case-query-type-info" styleClass="si si-information-circle" />
+          <p:tooltip for="case-query-type-info" 
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/CaseQueryType/info')}" />
+        </div>
+        <div>
+          <p:selectOneMenu id="case-query-type" value="#{widget.caseQueryType}" styleClass="case-query-type-selector">
+            <f:selectItems value="#{managedBean.allCaseQueryTypes}" var="caseQueryType"
+              itemLabel="#{caseQueryType.getCmsName()}" itemValue="#{caseQueryType}" />
+            <p:ajax process="case-query-type-group" update="case-query-type-group #{componentToUpdateOnPreview}" partialSubmit="true" />
+          </p:selectOneMenu>
         </div>
       </h:panelGroup>
     </p:overlayPanel>

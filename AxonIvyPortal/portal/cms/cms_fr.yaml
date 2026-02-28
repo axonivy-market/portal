@@ -740,8 +740,12 @@ ch.ivy.addon.portalkit.ui.jsf:
       publicFilter: Publique
       savedFilters: 'Filtres enregistrés:'
   dashboard:
+    CaseQueryType:
+      info: Configurez les types de cas affichés dans le widget de cas. Par défaut, seuls les cas métier sont affichés, Sous-cas techniques affiche uniquement les sous-cas techniques, et Tous affiche à la fois les cas métier et les sous-cas techniques.
+      label: Type de cas
     CloneWidget: Cloner le widget
     CustomWidgets: Widgets personnalisés
+    dataSettings: Paramètres de données
     DashboardConfiguration:
       CreateFromScratch: Créer à partir de rien
       CreateFromScratchDescription: Créez votre propre tableau de bord à partir de zéro
@@ -761,6 +765,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       SelectAction: Sélectionnez l'action
       SomeThingWentWrong: Quelque chose n'a pas fonctionné
       Title: Configuration du tableau de bord
+    displaySettings: Paramètres d'affichage
     DrillDownWidget:
       caseDrillDown: Widget de cas détaillé pour {0}
       taskDrillDown: Widget de tâche détaillé pour {0}
@@ -1732,7 +1737,13 @@ Enums:
               LESSOREQUAL:
                 name: |+
                   Inférieur ou égal à
-
+          CaseQueryType:
+            ALL:
+              name: Cas métier + Sous-cas
+            BUSINESS_CASE:
+              name: Cas métier (Par défaut)
+            SUB_CASE:
+              name: Sous-cas
 Labels:
   AI:
     Error:
