@@ -1,0 +1,40 @@
+name: Claude Code Security Review
+run-name: 🔒 Claude Code Security Review
+
+permissions:
+  pull-requests: write
+  contents: read
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    paths:
+      - '**.java'
+      - '**.xhtml'
+      - '**.xml'
+      - '**.js'
+      - '**.json'
+      - '**.properties'
+      - '**.yml'
+      - '**.yaml'
+
+jobs:
+  security-review:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v5
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 2
+
+      - name: Run Claude Code Security Review
+        uses: anthropics/claude-code-security-review@main
+        with:
+          comment-pr: true
+          upload-results: true
+          claude-api-key: ${{ secrets.CLAUDE_API_KEY }}
+          claude-model: claude-opus-4-6
+          claudecode-timeout: 30
+          exclude-directories: 'target,node_modules,.settings,.git,doc'
+          custom-security-scan-instructions: .github/security-scan-instructions.txt

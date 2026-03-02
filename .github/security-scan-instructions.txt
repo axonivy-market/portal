@@ -1,0 +1,66 @@
+This is an enterprise Java portal application built on the Axon Ivy Platform (a workflow/process management platform).
+
+Technology Stack:
+- Java (primary language)
+- XHTML Facelets templates (JSF/PrimeFaces UI)
+- Axon Ivy Process definitions (.p files)
+- Maven build system
+- REST APIs
+- JavaScript (client-side)
+
+Focus Areas for This Project:
+
+1. INJECTION ATTACKS (Critical):
+   - SQL injection in database queries (especially dynamic JPQL/HQL)
+   - EL expression injection in XHTML Facelets templates
+   - Command injection via Runtime.exec() or ProcessBuilder
+   - LDAP injection in user/role lookups
+   - XPath injection in XML processing
+
+2. CROSS-SITE SCRIPTING (Critical):
+   - Stored XSS via user-supplied content rendered in XHTML templates
+   - Reflected XSS in URL parameters used in process start links
+   - DOM-based XSS in JavaScript code
+   - Unescaped output in PrimeFaces components
+
+3. AUTHENTICATION & AUTHORIZATION (Critical):
+   - Broken access control in Ivy REST endpoints
+   - Privilege escalation through task delegation/reassignment
+   - Missing permission checks on process starts
+   - Session fixation or session management issues
+
+4. SENSITIVE DATA EXPOSURE (High):
+   - Hardcoded credentials, API keys, or secrets
+   - Sensitive data in log output
+   - Information disclosure in error messages
+   - PII handling violations
+
+5. INSECURE DESERIALIZATION (High):
+   - Unsafe Java object deserialization
+   - Unvalidated JSON/XML deserialization
+
+6. XML EXTERNAL ENTITY (High):
+   - XXE in XML parsers processing user-supplied XML
+   - XXE in process definition parsing
+
+7. SERVER-SIDE REQUEST FORGERY (Medium):
+   - SSRF via unvalidated URLs in REST client calls
+   - SSRF in webhook or notification URLs
+
+8. PATH TRAVERSAL (Medium):
+   - File upload/download without path sanitization
+   - Document management file access issues
+
+Exclude from scanning:
+- Test files (*Test.java, *-test/ directories)
+- Documentation files (*.rst, *.md in Documentation/)
+- Build scripts and CI/CD configurations
+- Generated code in target/ directories
+- Third-party library code
+
+Axon Ivy Specific Security Concerns:
+- Process permissions: Verify role-based access control in .p process files
+- CMS entries: Check for unsanitized HTML content injection
+- Ivy scripting: Look for unsafe expressions in process scripts
+- REST service security: Validate authentication on custom REST services
+- SubProcess calls: Check for parameter injection between processes
