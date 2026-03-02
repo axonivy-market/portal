@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.axonivy.portal</groupId>
   <artifactId>portal</artifactId>
-  <version>10.0.35-SNAPSHOT</version>
+  <version>10.0.36-SNAPSHOT</version>
   <packaging>iar</packaging>
   <distributionManagement>
     <repository>
@@ -16,7 +16,7 @@
     </snapshotRepository>
   </distributionManagement>
   <properties>
-    <ivy.engine.version>10.0.35</ivy.engine.version>
+    <ivy.engine.version>10.0.36</ivy.engine.version>
     <build.plugin.version>10.0.17</build.plugin.version>
     <quartz.version>2.3.2</quartz.version>
   </properties>
@@ -24,7 +24,7 @@
     <dependency>
       <groupId>com.axonivy.portal</groupId>
       <artifactId>portal-components</artifactId>
-      <version>10.0.35-SNAPSHOT</version>
+      <version>10.0.36-SNAPSHOT</version>
       <type>iar</type>
     </dependency>
     <dependency>

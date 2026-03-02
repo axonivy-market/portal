@@ -15,6 +15,7 @@ import com.axonivy.portal.selenium.common.ScreenshotBaseTest;
 import com.axonivy.portal.selenium.common.ScreenshotMargin;
 import com.axonivy.portal.selenium.common.ScreenshotUtils;
 import com.axonivy.portal.selenium.common.TestAccount;
+import com.axonivy.portal.selenium.common.WaitHelper;
 import com.axonivy.portal.selenium.page.AdminSettingsPage;
 import com.axonivy.portal.selenium.page.CaseWidgetPage;
 import com.axonivy.portal.selenium.page.ExpressApprovalPage;
@@ -127,8 +128,7 @@ public class PortalExpressScreenshotTest extends ScreenshotBaseTest {
     expressProcessPage.addNewTask(0);
     expressProcessPage.createTask(1, INFORMATION_EMAIL_INDEX, null, null, null);
     ExpressFormDefinitionPage expressFormDefinition = expressProcessPage.goToFormDefinitionDefaultResolution();
-    expressFormDefinition.nextStep();
-    expressFormDefinition.waitForEmailEditorDisplayed();
+    WaitHelper.waitForActionComplete(".task-template-container form#form", () -> expressFormDefinition.nextStep());
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.EXPRESS_FOLDER + "express-workflow-email-editor");
   }
 
