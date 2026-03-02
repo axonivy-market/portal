@@ -5,10 +5,6 @@ pipeline {
     buildDiscarder(logRotator(numToKeepStr: '50', artifactNumToKeepStr: '5'))
   }
 
-  triggers {
-    cron('0 13 * * *')
-  }
-
   stages {
     stage('Build') {
       steps {
