@@ -4,7 +4,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Optional;
 
-import org.apache.commons.lang.WordUtils;
+import org.apache.commons.lang3.StringUtils;
 
 
 public class UrlHelpers {
@@ -17,7 +17,7 @@ public class UrlHelpers {
     if (!relativeProcessStartLink.contains("portal/") && !relativeProcessStartLink.contains("portal-developer-examples")
         && !relativeProcessStartLink.contains("portal-user-examples")
         && !relativeProcessStartLink.contains("portal-components-examples")) {
-      relativeProcessStartLink = WordUtils.capitalize(relativeProcessStartLink);
+      relativeProcessStartLink = StringUtils.capitalize(relativeProcessStartLink);
     }
     if (relativeProcessStartLink.endsWith(".icm")) {
       return getEngineUrl() + getApplicationName() + "/casemap/" + relativeProcessStartLink;

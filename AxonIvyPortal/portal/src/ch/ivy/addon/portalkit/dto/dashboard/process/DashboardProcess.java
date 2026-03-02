@@ -66,6 +66,20 @@ public class DashboardProcess implements Process {
     this.sortIndex = getSortIndexInCustomField(process);
     this.portalProcessInformation = getPortalProcessInformation(process);
   }
+  
+  public DashboardProcess(IWebStartable process, String defaultImageSetting) {
+    this.id = process.getId();
+    this.type = ProcessType.IVY_PROCESS;
+    this.name = process.getDisplayName();
+    this.description = process.getDescription();
+    this.startLink = process.getLink().getRelative();
+    this.icon = process.customFields().value("cssIcon");
+    this.category = process.getCategory();
+    this.application = process.pmv().getApplication().getName();
+    this.imageUrl = collectProcessImage(process, defaultImageSetting);
+    this.sortIndex = getSortIndexInCustomField(process);
+    this.portalProcessInformation = getPortalProcessInformation(process);
+  }
 
   @Override
   public String getId() {

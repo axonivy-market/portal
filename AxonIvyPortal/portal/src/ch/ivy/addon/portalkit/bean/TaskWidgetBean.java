@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
@@ -50,6 +51,12 @@ public class TaskWidgetBean implements Serializable {
   private boolean isShowFullTaskList;
   private boolean isAdminTaskStateIncluded;
   private boolean isRunningTaskWhenClickingOnTaskInList;
+  private boolean isShowGlobalSearchByTasks;
+  
+  @PostConstruct
+  public void init() {
+    isShowGlobalSearchByTasks = GlobalSearchService.getInstance().isShowGlobalSearchByTasks();
+  }
 
   public TaskWidgetBean() {
     expandedTaskId = -1L;
@@ -211,7 +218,7 @@ public class TaskWidgetBean implements Serializable {
   }
   
   public boolean isShowGlobalSearchScope() {
-    return GlobalSearchService.getInstance().isShowGlobalSearchByTasks();
+    return isShowGlobalSearchByTasks;
   }
   
   public String getSelectedTaskName() {
