@@ -35,7 +35,8 @@ public class GlobalSettingService {
   }
 
   public String findGlobalSettingValue(GlobalVariable variable) {
-    return Ivy.var().get(variable.getKey());
+    String key = variable.getKey();
+    return Ivy.var().get(key);
   }
 
   public boolean findBooleanGlobalSettingValue(GlobalVariable variable) {
