@@ -44,6 +44,7 @@ public class DashboardProcessBean extends AbstractProcessBean implements Seriali
   private PropertyChangeSupport propertyChangeSupport;
   private List<String> applications;
   private Boolean isPublicDashboard;
+  private String defaultImageSetting;
 
   @PostConstruct
   public void initBean() {
@@ -52,6 +53,9 @@ public class DashboardProcessBean extends AbstractProcessBean implements Seriali
         .sorted((mode1, mode2) -> mode1.getLabel().compareToIgnoreCase(mode2.getLabel()))
         .collect(Collectors.toList());
     propertyChangeSupport = new PropertyChangeSupport(this);
+    defaultImageSetting = GlobalSettingService.getInstance()
+        .findGlobalSettingByGlobalVariable(GlobalVariable.DEFAULT_PROCESS_IMAGE)
+        .getDisplayValue().toUpperCase();
   }
 
   public void initPortalDashboardProcesses(Boolean isPublicDashboard) {
@@ -75,9 +79,6 @@ public class DashboardProcessBean extends AbstractProcessBean implements Seriali
 
   @Override
   protected List<Process> findProcesses() {
-    String defaultImageSetting = GlobalSettingService.getInstance()
-        .findGlobalSettingByGlobalVariable(GlobalVariable.DEFAULT_PROCESS_IMAGE)
-        .getDisplayValue().toUpperCase();
     List<IWebStartable> processes = ProcessService.getInstance().findProcesses();
     List<Process> defaultPortalProcesses = new ArrayList<>();
     // TODO fix static ProcessService#ivyProcessResultDTO, maybe cause error when Jmeter 10 user NavigateToGlobalSearch
