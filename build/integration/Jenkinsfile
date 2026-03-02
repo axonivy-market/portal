@@ -1,99 +1,104 @@
 pipeline {
-  agent {label 'portal-slave'}
+  agent {label 'portal-slave-linux'}
   
   options {
     buildDiscarder(logRotator(numToKeepStr: '60', artifactNumToKeepStr: '5'))
   }
-  
-  tools { 
-      maven '3.9' 
-      jdk '25' 
-  }
 
   parameters {
       string(name: 'testPatternToRun', defaultValue: 'com.axonivy.portal.selenium.test.**.*Test', description: 'Test pattern to run')
-      string(name: 'engineDownloadURL', defaultValue: '-Divy.engine.download.url=https://developer.axonivy.com/permalink/nightly/axonivy-engine-windows.zip', description: '''Where to download engine? e.g.
-        -Divy.engine.download.url=https://developer.axonivy.com/permalink/nightly/axonivy-engine-windows.zip for nightly master
-        -Divy.engine.download.url=https://developer.axonivy.com/permalink/dev/axonivy-engine-windows.zip for dev master
-        -Divy.engine.download.url=file:///C:/wawa/engine/AxonIvyEngineX.X.X.X_Windows_x64.zip for downloaded engine
-        -Divy.engine.list.url=https://jenkins.ivyteam.io/job/core_product/job/release%252F9.4/lastSuccessfulBuild/artifact/workspace/ch.ivyteam.ivy.server.product/target/products/ -Divy.engine.os.arch=Windows_x64 for last successful build 9.4
+      string(name: 'engineDownloadURL', defaultValue: '-Divy.engine.download.url=https://developer.axonivy.com/permalink/nightly/axonivy-engine.zip', description: '''Where to download engine? e.g.
+        -Divy.engine.download.url=https://developer.axonivy.com/permalink/nightly/axonivy-engine.zip for nightly master
+        -Divy.engine.download.url=https://developer.axonivy.com/permalink/dev/axonivy-engine.zip for dev master
+        -Divy.engine.download.url=file:///home/build/engine/AxonIvyEngineX.X.X.X_Linux_x64.zip for downloaded engine
+        -Divy.engine.list.url=https://jenkins.ivyteam.io/job/core_product/job/release%252F9.4/lastSuccessfulBuild/artifact/workspace/ch.ivyteam.ivy.server.product/target/products/ -Divy.engine.os.arch=Linux_x64 for last successful build 9.4
       ''')
       booleanParam(name: 'skipReplacePortal', defaultValue: false, description: 'Should skip replace Portal artifacts in the engine? TRUE: keep built-in Portal of the engine, FALSE: replace built-in Portal of the engine by the latest successful release.')
   }
 
   environment {
     releaseDir = 'archive'
-    engineDir = "$env.WORKSPACE/engine"
+    engineDir = "${env.WORKSPACE}/AxonIvyPortal/portal-selenium-test/engine"
+    MAVEN_OPTS = "-Xmx3000m -XX:+HeapDumpOnOutOfMemoryError"
   }
   stages {
     stage('build') {
       steps {
         script {
           currentBuild.description = "On ${env.NODE_NAME}"
-          def utils = load 'build/common/utils.groovy'
-          utils.init()
-          downloadPortalRelease()
 
-          echo '====================Check out tag of Portal latest successful release===================='
-          powershell '''
-            $artifactPattern = $env:releaseDir + '/AxonIvyPortal/portal/target/*.iar' 
-            $artifactName = dir $artifactPattern | select -expand BaseName
-            $versionLastestReleasedPortal = $artifactName.substring(7)
-            git fetch --tags
-            git checkout tags/$versionLastestReleasedPortal
-            git reset --hard HEAD
-            git clean -fd
-          '''
+          def random = (new Random()).nextInt(10000000)
+          def networkName = "build-" + random
+          def seleniumName = "selenium-" + random
+          def testEngineContainerName = "wawa-" + random
+          sh "docker network create ${networkName}"
+          try {
+            docker.image("selenium/standalone-firefox:4").withRun("--shm-size=2g --name ${seleniumName} --network ${networkName} --hostname=wawa") {
+              docker.build('integration-test-portal', '-f build/Dockerfile .').inside("--name ${testEngineContainerName} --network ${networkName} -v /var/tools/maven-cache:/home/build/") {
 
-          echo '====================Copy patch to workspace if any. Note: this is in a tag and we cannot change code in git repo===================='
-          powershell '''
-            if (Test-Path ../patch/master) {
-              copy -path ../patch/master -recurse -force -destination .
+                downloadPortalRelease()
+
+                echo '====================Check out tag of Portal latest successful release===================='
+                sh '''#!/bin/bash
+                  artifactPattern="${releaseDir}/AxonIvyPortal/portal/target/*.iar"
+                  artifactName=$(basename $artifactPattern .iar)
+                  versionLastestReleasedPortal=${artifactName:7}
+                  git fetch --tags
+                  git checkout tags/$versionLastestReleasedPortal
+                  git reset --hard HEAD
+                  git clean -fd
+                '''
+
+                echo '====================Copy patch to workspace if any. Note: this is in a tag and we cannot change code in git repo===================='
+                sh '''
+                  if [ -d ../patch/master ]; then
+                    cp -rf ../patch/master/* .
+                  fi
+                '''
+
+                downloadPortalRelease()
+                installPortalToLocalRepo()
+
+                echo '====================Extract engine===================='
+                maven cmd: "clean compile -ntp -f AxonIvyPortal/portal-components/pom.xml -Divy.engine.directory=${env.engineDir} ${params.engineDownloadURL}"
+
+                echo '====================Build PortalKitTestHelper and InternalSupport===================='
+                def extraModules = ['AxonIvyPortal/PortalKitTestHelper', 'Showcase/InternalSupport']
+                for (module in extraModules) {
+                  maven cmd: "clean install -ntp -f ${module}/pom.xml -Divy.engine.directory=${env.engineDir} -Divy.compiler.engine.start.timeout=120"
+                }
+
+                echo '====================Update portal-demo-app with helper modules===================='
+                sh '''
+                  DEPLOYMENT="${engineDir}/system/demo-applications/demo-portal"
+                  tempDir="/tmp/portal-deployment-$$"
+                  mkdir -p "$tempDir"
+
+                  cp ${releaseDir}/Showcase/portal-developer-examples/target/*.iar ${releaseDir}/Showcase/portal-components-examples/target/*.iar AxonIvyPortal/PortalKitTestHelper/target/*.iar Showcase/InternalSupport/target/*.iar "$tempDir/"
+
+                  if [ "${skipReplacePortal}" = "false" ]; then
+                    rm -rf ${DEPLOYMENT}/*
+                    portalZip=$(ls ${releaseDir}/Showcase/portal-demo-app/target/*.zip | head -n 1)
+                    cp "$portalZip" "$DEPLOYMENT/"
+                    zipPath="$DEPLOYMENT/$(basename $portalZip)"
+                  else
+                    zipPath=$(ls $DEPLOYMENT/*.zip | head -n 1)
+                  fi
+
+                  cd "$tempDir"
+                  for iar in *.iar; do
+                    zip -u "$zipPath" "$iar"
+                  done
+                  rm -rf "$tempDir"
+                '''
+
+                echo '====================Test Portal===================='
+                maven cmd: "clean test -ntp -f AxonIvyPortal/portal-selenium-test/customized_pom.xml -Dtest=${params.testPatternToRun} -DbrowserType=FIREFOX -Dcapabilities.unhandledPromptBehavior=accept -DtrimStackTrace=false -Divy.engine.directory=${env.engineDir} -Divy.deploy.timeout.seconds=60 -Divy.engine.start.timeout.seconds=500 -Dsurefire.rerunFailingTestsCount=2 -Dselenide.remote=http://${seleniumName}:4444/wd/hub -Dtest.engine.url=http://${testEngineContainerName}:8080"
+              }
             }
-          '''
-
-          downloadPortalRelease()
-          installPortalToLocalRepo()
-
-          utils.extractEngine(env.engineDir, params.engineDownloadURL)
-
-          echo '====================Build PortalKitTestHelper and InternalSupport===================='
-          def extraModules = ['AxonIvyPortal/PortalKitTestHelper', 'Showcase/InternalSupport']
-          for (module in extraModules) {
-            bat "mvn clean install -f ${module}/pom.xml -Divy.engine.directory=%engineDir% -Divy.compiler.engine.start.timeout=120"
+          } finally {
+            sh "docker network rm ${networkName}"
           }
-
-          echo '====================Update portal-demo-app with helper modules===================='
-          powershell '''
-            $DEPLOYMENT = $env:engineDir + "/system/demo-applications/demo-portal"
-            $tempDir = "$env:TEMP/portal-deployment"
-            New-Item -ItemType Directory -Path $tempDir -Force | Out-Null
-            
-            Copy-Item $env:releaseDir/Showcase/portal-developer-examples/target/*.iar,$env:releaseDir/Showcase/portal-components-examples/target/*.iar,AxonIvyPortal/PortalKitTestHelper/target/*.iar,Showcase/InternalSupport/target/*.iar -Destination $tempDir
-            Add-Type -Assembly "System.IO.Compression.FileSystem"
-            
-            if ($env:skipReplacePortal -eq 'false') {
-              rmdir $DEPLOYMENT/* -recurse
-              $portalZip = Get-ChildItem "$env:releaseDir/Showcase/portal-demo-app/target/*.zip" | Select-Object -First 1
-              Copy-Item $portalZip.FullName -Destination $DEPLOYMENT
-              $zipPath = "$DEPLOYMENT/$($portalZip.Name)"
-            } else {
-              $zipPath = Get-ChildItem "$DEPLOYMENT/*.zip" | Select-Object -First 1 -ExpandProperty FullName
-            }
-            
-            $zip = [System.IO.Compression.ZipFile]::Open($zipPath, 'Update')
-            Get-ChildItem -Path $tempDir -Filter *.iar | ForEach-Object {
-              [System.IO.Compression.ZipFileExtensions]::CreateEntryFromFile($zip, $_.FullName, $_.Name, 'Optimal') | Out-Null
-            }
-            $zip.Dispose()
-            Remove-Item $tempDir -Recurse -Force
-          '''
-
-          utils.killUnnecessaryProcessesToRunTest()
-
-          echo '====================Test Portal===================='
-          bat "mvn clean test -f AxonIvyPortal/portal-selenium-test/customized_pom.xml -Dtest=${params.testPatternToRun} -DbrowserType=${props.browserType} -DtrimStackTrace=false -Divy.engine.directory=%engineDir% -Divy.deploy.timeout.seconds=60 -Divy.engine.start.timeout.seconds=500"
-          utils.cleanDisk()
         }
       }
     }
@@ -109,9 +114,9 @@ pipeline {
 
 def downloadPortalRelease() {
   echo '====================Download Portal latest successful release===================='
-  def branchName = env.BRANCH_NAME.replaceAll("/", "%%2F")
+  def branchName = env.BRANCH_NAME.replaceAll("/", "%252F")
   withCredentials([usernameColonPassword(credentialsId: 'wawa-jenkins', variable: 'credentials')]) {
-    bat "curl --user ${credentials} --output archive.zip ${env.JENKINS_URL}job/portal-release/job/${branchName}/lastSuccessfulBuild/artifact/*zip*/archive.zip"
+    sh "curl --user ${credentials} --output archive.zip ${env.JENKINS_URL}job/portal-release/job/${branchName}/lastSuccessfulBuild/artifact/*zip*/archive.zip"
   }
   unzip zipFile: 'archive.zip', quiet: true
 }
@@ -121,6 +126,6 @@ def installPortalToLocalRepo() {
   for (module in modules) {
     def iarFile = findFiles(glob: "${env.releaseDir}/${module}/target/*.iar")[0].path
     def pomFile = "${env.releaseDir}/${module}/pom.xml"
-    bat "mvn install:install-file -Dfile=${iarFile} -DpomFile=${pomFile}"
+    maven cmd: "install:install-file -ntp -Dfile=${iarFile} -DpomFile=${pomFile}"
   }
 }

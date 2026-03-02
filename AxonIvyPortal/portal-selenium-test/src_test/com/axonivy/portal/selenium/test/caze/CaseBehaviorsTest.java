@@ -52,16 +52,23 @@ public class CaseBehaviorsTest extends BaseTest {
     assertTrue(caseDetailsPage.isDisplayed());
     // show case details of related case
     caseDetailsPage.gotoCaseDetailsPageOfRelatedCase(TAKE_ORDER_AND_MAKE_PIZZA);
+  }
 
+  @Test
+  public void testShowCaseDetailsWhenClickOnCaseInGlobalSearch() {
+    updateGlobalVariable(Variable.CASE_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_CASE_LIST.getKey(), ACCESS_CASE_DETAILS);
+    redirectToNewDashBoard();
+    newDashboardPage = new NewDashboardPage();
     GlobalSearchResultPage resultPage = newDashboardPage.inputGlobalSearchKeyword(ORDER_PIZZA);
     resultPage.openCaseTab();
     String firstCaseName = resultPage.getNameOfCase(0);
     assertEquals(ORDER_PIZZA, firstCaseName);
     resultPage.clickOnCase(0);
-    caseDetailsPage = new CaseDetailsPage();
+    CaseDetailsPage caseDetailsPage = new CaseDetailsPage();
     caseDetailsPage.waitForCaseDetailsDisplay();
     assertEquals(ORDER_PIZZA, caseDetailsPage.getCaseName());
   }
+
 
   @Test
   public void testShowBusinessDetailsWhenClickOnCaseInCaseList() {
