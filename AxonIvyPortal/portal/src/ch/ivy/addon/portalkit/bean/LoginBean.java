@@ -2,7 +2,7 @@ package ch.ivy.addon.portalkit.bean;
 
 import java.io.Serializable;
 
-
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
@@ -21,13 +21,19 @@ public class LoginBean implements Serializable {
   private static final String LOGIN = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/login/login");
   
   private MasterDataBean masterDataBean;
+  private boolean loginPageRendered;
 
   public LoginBean() {
     masterDataBean = (MasterDataBean) ManagedBeans.get("masterDataBean");
   }
+  
+  @PostConstruct
+  public void init() {
+    loginPageRendered = Boolean.parseBoolean(Ivy.var().get(PORTAL_LOGIN_PAGE_DISPLAY));
+  }
 
   public boolean isLoginPageRendered() {
-    return Boolean.parseBoolean(Ivy.var().get(PORTAL_LOGIN_PAGE_DISPLAY));
+    return loginPageRendered;
   }
   
   public void navigateToPortalLoginPage() {
