@@ -129,6 +129,8 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   private Dashboard cloneFromDashboard;
   private DashboardWidget cloneFromWidget;
   private List<Dashboard> cloneableDashboards;
+  private boolean isEnablePinTask;
+  private boolean isEnablePinCase;
 
   @PostConstruct
   public void initConfigration() {
@@ -141,6 +143,8 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     if (getSelectedDashboard() != null) {
       foundTemplate = findSelectedTemplate(getSelectedDashboard().getTemplateId());
     }
+    isEnablePinTask = GlobalSettingService.getInstance().isEnablePinTask();
+    isEnablePinCase = GlobalSettingService.getInstance().isEnablePinCase();
   }
 
   public void initSampleWidgets() {
@@ -1108,11 +1112,11 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
 
   public boolean displayPinnedItemToggleOption(DashboardWidget widget) {
     if (widget instanceof TaskDashboardWidget) {
-      return GlobalSettingService.getInstance().isEnablePinTask();
+      return isEnablePinTask;
     }
 
     if (widget instanceof CaseDashboardWidget) {
-      return GlobalSettingService.getInstance().isEnablePinCase();
+      return isEnablePinCase;
     }
 
     return false;

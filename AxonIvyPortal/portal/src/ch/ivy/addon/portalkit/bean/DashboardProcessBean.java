@@ -27,9 +27,11 @@ import ch.ivy.addon.portalkit.bo.Process;
 import ch.ivy.addon.portalkit.configuration.ExternalLink;
 import ch.ivy.addon.portalkit.dto.dashboard.ProcessDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.process.DashboardProcess;
+import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.ProcessType;
 import ch.ivy.addon.portalkit.enums.ProcessWidgetMode;
 import ch.ivy.addon.portalkit.service.ExternalLinkService;
+import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
 @ManagedBean
@@ -73,11 +75,14 @@ public class DashboardProcessBean extends AbstractProcessBean implements Seriali
 
   @Override
   protected List<Process> findProcesses() {
+    String defaultImageSetting = GlobalSettingService.getInstance()
+        .findGlobalSettingByGlobalVariable(GlobalVariable.DEFAULT_PROCESS_IMAGE)
+        .getDisplayValue().toUpperCase();
     List<IWebStartable> processes = ProcessService.getInstance().findProcesses();
     List<Process> defaultPortalProcesses = new ArrayList<>();
     // TODO fix static ProcessService#ivyProcessResultDTO, maybe cause error when Jmeter 10 user NavigateToGlobalSearch
     if (CollectionUtils.isNotEmpty(processes)) {
-      processes.forEach(process -> defaultPortalProcesses.add(new DashboardProcess(process)));
+      processes.forEach(process -> defaultPortalProcesses.add(new DashboardProcess(process, defaultImageSetting)));
     }
     return defaultPortalProcesses;
   }
