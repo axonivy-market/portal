@@ -7314,11 +7314,11 @@ msgstr "**ユーザー名 メニュー**"
 #: ../../source/portal-user-guide/portal-header/index.rst:12
 msgid ""
 "Click on your username to access a menu with options for configuring "
-"Portal to your personal needs. See `User Settings in the Axon Ivy "
-"Portal`_ for detailed configuration options."
+"Portal to your personal needs. See :ref:`user-settings` for detailed "
+"configuration options."
 msgstr ""
-"ユーザー名をクリックすると、ポータルを個人用に設定するためのオプションメニューが表示されます。詳細な設定オプションについては、 `Axon Ivy"
-" Portal のユーザー設定`_ をご参照ください。"
+"ユーザー名をクリックすると、ポータルを個人用に設定するためのオプションメニューが表示されます。詳細な設定オプションについては、"
+" :ref:`user-settings` をご参照ください。"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:14
 msgid "**Global Search Bar**"
