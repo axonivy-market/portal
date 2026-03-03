@@ -953,7 +953,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     RenamingDocumentSuccess: Rename successfully.
     RenamingFailed: An error occurs while renaming the document.
     confirmation: Confirmation
-    confirmationUploadDocument: Script scanning is unavailable for PDF encrypted files. Would you like to continue with the preview?
+    confirmationUploadDocument: Script scanning is unavailable for encrypted files. Would you like to continue with the preview?
     deleteDocumentNote: '{0} has deleted {1}'
     deleteSuceed: File deleted successfully
     download: Download

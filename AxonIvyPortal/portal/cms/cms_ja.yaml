@@ -954,7 +954,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     RenamingDocumentSuccess: 'TODO: Rename successfully.'
     RenamingFailed: 'TODO: An error occurs while renaming the document.'
     confirmation: 確認
-    confirmationUploadDocument: PDF暗号化ファイルではスクリプトスキャンは利用できません。プレビューを続行しますか？
+    confirmationUploadDocument: 暗号化されたファイルのスクリプトスキャンは利用できません。プレビューを続行しますか？
     deleteDocumentNote: '{0} が {1} を削除しました'
     deleteSuceed: ファイルの削除に成功しました
     download: ダウンロード

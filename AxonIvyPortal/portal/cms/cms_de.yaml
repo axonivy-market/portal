@@ -955,7 +955,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     RenamingDocumentSuccess: Erfolgreich umbenannt.
     RenamingFailed: Beim Umbenennen des Dokuments ist ein Fehler aufgetreten.
     confirmation: Bestätigung
-    confirmationUploadDocument: Das Scannen von Skripten ist für verschlüsselte PDF-Dateien nicht verfügbar. Möchten Sie mit der Vorschau fortfahren?
+    confirmationUploadDocument: Das Scannen von Skripten ist für verschlüsselte Dateien nicht verfügbar. Möchten Sie mit der Vorschau fortfahren?
     deleteDocumentNote: '{0} hat folgendes gelöscht: {1}'
     deleteSuceed: Datei wurde erfolgreich gelöscht
     download: Herunterladen
