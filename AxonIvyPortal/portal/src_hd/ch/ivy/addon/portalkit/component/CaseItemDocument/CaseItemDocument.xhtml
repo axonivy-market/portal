@@ -225,7 +225,7 @@
       <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/continue')}"
         ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/continue')}" styleClass="w-full" update="#{cc.clientId}:preview-document-dialog"
         id="preview-encrypted-document-button" actionListener="#{logic.previewEncryptedDocument}"
-        oncomplete="if (args &amp;&amp; !args.validationFailed) {PF('preview-document-confirmation-dialog').hide(); PF('preview-document-dialog').show();}" />
+        oncomplete="PF('preview-document-confirmation-dialog').hide(); if (args &amp;&amp; !args.validationFailed) {PF('preview-document-dialog').show();}" />
       <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
         ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}" styleClass="pt-3 flex justify-content-center"
         id="preview-document-confirmation-close-button" onclick="PF('preview-document-confirmation-dialog').hide();" />
