@@ -580,7 +580,6 @@
             " try {",
             "    in.streamedContent = DocumentUtils.findDocFactoryAndConvert(in.streamedContent);",
             " } catch (IOException e) {",
-            "    ivy.log.error(e);",
             "    FacesContext.getCurrentInstance().validationFailed();",
             "    PrimeFaces.current().executeScript(\"PF('preview-document-warning-dialog').show();\");",
             " }"
