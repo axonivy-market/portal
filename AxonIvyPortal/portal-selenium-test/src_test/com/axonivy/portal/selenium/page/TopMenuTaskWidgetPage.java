@@ -58,7 +58,7 @@ public class TopMenuTaskWidgetPage extends TaskWidgetNewDashBoardPage {
   }
 
   public boolean checkNameOfTaskAt(int taskIndex, String taskName) {
-    return getColumnOfTaskHasIndex(taskIndex, "Task name").shouldBe(appear, DEFAULT_TIMEOUT)
+    return getCellByRowAndColumnName(taskIndex, "Task name").shouldBe(appear, DEFAULT_TIMEOUT)
         .is(Condition.text(taskName));
   }
 
@@ -161,8 +161,8 @@ public class TopMenuTaskWidgetPage extends TaskWidgetNewDashBoardPage {
     getColumnOfTaskHasIndex(taskIndex, "Start").shouldBe(getClickableCondition()).click();
   }
   
-  public boolean isTableHidden() {
-    return $(taskWidgetId).is(Condition.hidden);
+  public void isTableHidden() {
+    $(taskWidgetId).should(Condition.hidden, DEFAULT_TIMEOUT);
   }
 
   public boolean isTaskResetNotDisplayed(int index) {
@@ -320,6 +320,7 @@ public class TopMenuTaskWidgetPage extends TaskWidgetNewDashBoardPage {
   public void pinTaskByIndex(int taskIndex) {
     clickOnTaskActionLink(taskIndex);
     clickTaskAction(taskIndex, "Pin");
+    WaitHelper.waitPageNoAjaxAndAnimation();
   }
   
   public void verifyTaskNumber(int number) {

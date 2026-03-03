@@ -61,7 +61,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
     return 0;
   }
 
-  private SelenideElement getColumnOfCaseHasActionIndex(int index, String columnName) {
+  public SelenideElement getColumnOfCaseHasActionIndex(int index, String columnName) {
     return $(taskWidgetId).shouldBe(appear, DEFAULT_TIMEOUT)
     .$$("table tbody tr").shouldHave(CollectionCondition.sizeGreaterThanOrEqual(index))
     .get(index).$$("td").shouldHave(containExactTextsCaseSensitive(columnName))
@@ -90,6 +90,13 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   protected SelenideElement getColumnOfTaskHasIndex(int index, String columnName) {
     int startIndex = getIndexWidgetByColumn(columnName);
     return getColumnOfTableWidget(index).get(startIndex);
+  }
+  
+  public SelenideElement getCellByRowAndColumnName(int rowIndex, String columnName) {
+    int columnIndex = $(taskWidgetId).shouldBe(appear, DEFAULT_TIMEOUT)
+      .$$("thead th").texts().indexOf(columnName);
+    return $(taskWidgetId).$("tbody[id$='dashboard-tasks_data']").$("tr[data-ri='" + rowIndex + "']")
+        .$$("td").get(columnIndex);
   }
 
   public void startFirstTask() {
