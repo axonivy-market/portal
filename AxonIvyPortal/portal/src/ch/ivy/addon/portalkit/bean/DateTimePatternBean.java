@@ -14,47 +14,34 @@ public class DateTimePatternBean implements Serializable {
   private static final long serialVersionUID = 1L;
 
   private DateTimeGlobalSettingService dateTimePatternService;
-  private boolean isTimeHidden;
-
-  private boolean isDateFilterWithTime;
-  private String datePattern;
-  private String dateTimePattern;
-  private String dateTimestampPattern;
-  private String shortDatePattern;
 
   @PostConstruct
   public void init() {
     dateTimePatternService = DateTimeGlobalSettingService.getInstance();
-    isTimeHidden = dateTimePatternService.isTimeHidden();
-    isDateFilterWithTime = dateTimePatternService.isDateFilterWithTime();
-    datePattern = dateTimePatternService.getDatePattern();
-    dateTimePattern = dateTimePatternService.getDateTimePattern();
-    dateTimestampPattern = dateTimePatternService.getGlobalDateTimePattern();
-    shortDatePattern = dateTimePatternService.getDatePatternForDatePicker();
   }
 
   public String getDatePattern() {
-    return datePattern;
+    return dateTimePatternService.getDatePattern();
   }
 
   public String getDateTimePattern() {
-    return dateTimePattern;
+    return dateTimePatternService.getDateTimePattern();
   }
 
   public String getDateTimestampPattern() {
-    return dateTimestampPattern;
+    return dateTimePatternService.getGlobalDateTimePattern();
   }
 
   public boolean getIsDateFilterWithTime() {
-    return isDateFilterWithTime;
+    return dateTimePatternService.isDateFilterWithTime();
   }
 
   public boolean getIsTimeHidden() {
-    return isTimeHidden;
+    return dateTimePatternService.isTimeHidden();
   }
   
   public String getShortDatePattern() {
-    return shortDatePattern;
+    return dateTimePatternService.getDatePatternForDatePicker();
   }
 
   public String getShortDateTimePattern(boolean isDateFilter) {

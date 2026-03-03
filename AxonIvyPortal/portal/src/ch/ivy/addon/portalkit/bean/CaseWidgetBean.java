@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
@@ -46,13 +45,6 @@ public class CaseWidgetBean implements Serializable {
   private boolean isShowFullCaseList;
   private boolean isAdminCaseStateIncluded;
   private CaseLazyDataModel dataModel;
-
-  private boolean isShowGlobalSearchByCases;
-  
-  @PostConstruct
-  public void init() {
-    isShowGlobalSearchByCases = GlobalSearchService.getInstance().isShowGlobalSearchByCases();
-  }
 
   public CaseWidgetBean() {
     isShowFullCaseList = PermissionUtils.checkAccessFullCaseListPermission();
@@ -222,7 +214,7 @@ public class CaseWidgetBean implements Serializable {
   }
 
   public boolean isShowGlobalSearchScope() {
-    return isShowGlobalSearchByCases;
+    return GlobalSearchService.getInstance().isShowGlobalSearchByCases();
   }
 
   public boolean isCaseFound(ICase caze) {
