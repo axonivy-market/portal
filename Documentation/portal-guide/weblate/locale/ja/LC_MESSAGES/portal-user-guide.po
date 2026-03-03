@@ -9,15 +9,16 @@ msgstr ""
 "Project-Id-Version: Portal Guide ${revision}\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-03-03 10:45+0000\n"
-"PO-Revision-Date: 2026-01-12 09:12+0000\n"
-"Last-Translator: Thang Huynh Huu Quyet <hhqthang@axonactive.com>\n"
+"PO-Revision-Date: 2026-03-03 11:01+0000\n"
+"Last-Translator: DeepL <noreply-mt-deepl@weblate.org>\n"
+"Language-Team: Japanese <https://hosted.weblate.org/projects/axonivy-portal/"
+"portal-12/doc/portal-user-guide/ja/>\n"
 "Language: ja\n"
-"Language-Team: Japanese <https://hosted.weblate.org/projects/axonivy-"
-"portal/portal-12/doc/portal-user-guide/ja/>\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 5.17-dev\n"
 "Generated-By: Babel 2.18.0\n"
 
 #: ../../source/portal-user-guide/accessibility/index.rst:4
@@ -888,14 +889,14 @@ msgid ":guilabel:`Portal.Histories.HideSystemNotesForAdministrator`"
 msgstr ":guilabel:`Portal.Histories.HideSystemNotesForAdministrator`"
 
 #: ../../source/portal-user-guide/admin-settings/index.rst:91
-#, fuzzy
 msgid ""
 "**Migration**: Use the permission :ref:`🔑NoteReadAllCaseTaskDetails "
 "<NoteReadAllCaseTaskDetails>` to control visibility of system notes in "
 "task and case details instead."
 msgstr ""
-"**移行**: 代わりに、:bdg-ref-warning:`🔑NoteReadAllCaseTaskDetails "
-"<NoteReadAllCaseTaskDetails>` 権限を使用して、タスクおよびケース詳細におけるシステム注記の可視性を制御してください。"
+"**移行**: 代わりに、:ref:`🔑NoteReadAllCaseTaskDetails "
+"<NoteReadAllCaseTaskDetails>` 権限を使用して、タスクおよびケース詳細における"
+"システム注記の可視性を制御してください。"
 
 #: ../../source/portal-user-guide/admin-settings/index.rst:97
 msgid "Available settings"
@@ -1722,36 +1723,32 @@ msgid "Permission"
 msgstr "許可"
 
 #: ../../source/portal-user-guide/admin-settings/index.rst:136
-#, fuzzy
 msgid ":ref:`🔑RoleManagement <RoleManagement>`"
-msgstr ":bdg-ref-warning:`🔑RoleManagement <RoleManagement>`"
+msgstr ":ref:`🔑RoleManagement <RoleManagement>`"
 
 #: ../../source/portal-user-guide/admin-settings/index.rst:136
 msgid "View the Role Management tab"
 msgstr "ロール管理タブを表示"
 
 #: ../../source/portal-user-guide/admin-settings/index.rst:139
-#, fuzzy
 msgid ":ref:`🔑RoleCreate <RoleCreate>`"
-msgstr ":bdg-ref-warning:`🔑RoleCreate <RoleCreate>`"
+msgstr ":ref:`🔑RoleCreate <RoleCreate>`"
 
 #: ../../source/portal-user-guide/admin-settings/index.rst:139
 msgid "Create new dynamic roles"
 msgstr "新しい動的ロールを作成する"
 
 #: ../../source/portal-user-guide/admin-settings/index.rst:141
-#, fuzzy
 msgid ":ref:`🔑RoleDelete <RoleDelete>`"
-msgstr ":bdg-ref-warning:`🔑RoleDelete <RoleDelete>`"
+msgstr ":ref:`🔑RoleDelete <RoleDelete>`"
 
 #: ../../source/portal-user-guide/admin-settings/index.rst:141
 msgid "Delete existing dynamic roles"
 msgstr "既存の動的ロールを削除する"
 
 #: ../../source/portal-user-guide/admin-settings/index.rst:143
-#, fuzzy
 msgid ":ref:`🔑RoleMove <RoleMove>`"
-msgstr ":bdg-ref-warning:`🔑RoleMove <RoleMove>`"
+msgstr ":ref:`🔑RoleMove <RoleMove>`"
 
 #: ../../source/portal-user-guide/admin-settings/index.rst:143
 msgid "Select parent role during creation (default parent: ``Everybody``)"
@@ -1840,12 +1837,11 @@ msgstr ""
 "**適用されません**。これらのシステムは独自のパスワードポリシーを管理するためです。"
 
 #: ../../source/portal-user-guide/admin-settings/index.rst:182
-#, fuzzy
 msgid ""
 "To access Password Validation settings, you need the "
 ":ref:`🔑PasswordValidation <PasswordValidation>` permission."
 msgstr ""
-"パスワード検証設定にアクセスするには、:bdg-ref-warning:`🔑PasswordValidation "
+"パスワード検証設定にアクセスするには、:ref:`🔑PasswordValidation "
 "<PasswordValidation>` 権限が必要です。"
 
 #: ../../source/portal-user-guide/admin-settings/index.rst:185
@@ -2651,9 +2647,8 @@ msgid "*Example*: Find all cases that were created in the current month."
 msgstr "*例* ：現在の月に作成されたすべてのケースを検索します。"
 
 #: ../../source/portal-user-guide/complex-filter/index.rst:151
-#, fuzzy
 msgid ":guilabel:`Created Date` :guilabel:`Current` :guilabel:`Month`"
-msgstr ":bdg-dark-line:`作成日` :bdg-dark-line:`現在` :bdg-dark-line:`月`"
+msgstr ":guilabel:`Created Date` :guilabel:`Current` :guilabel:`Month`"
 
 #: ../../source/portal-user-guide/complex-filter/index.rst:153
 #: ../../source/portal-user-guide/complex-filter/index.rst:164
@@ -2692,13 +2687,12 @@ msgid "*Example*: Find all cases that were created within the last 2 years"
 msgstr "*例*：過去 2 年間に作成されたすべてのケースを検索します。"
 
 #: ../../source/portal-user-guide/complex-filter/index.rst:162
-#, fuzzy
 msgid ""
 ":guilabel:`Created Date` :guilabel:`Within the last` :guilabel:`2` "
 ":guilabel:`Year(s)`"
 msgstr ""
-":bdg-dark-line:`作成日` :bdg-dark-line:`今日までの期間` :bdg-dark-line:`2` :bdg-"
-"dark-line:`年`"
+":guilabel:`Created Date` :guilabel:`Within the last` :guilabel:`2` "
+":guilabel:`Year(s)`"
 
 #: ../../source/portal-user-guide/complex-filter/index.rst:165
 msgid "within the period from ``2/27/2022 00:00:00`` to ``2/27/2024 11:41:28``."
@@ -2723,13 +2717,12 @@ msgid "*Example*: Find all cases with Invoice Due Date within the next 3 weeks"
 msgstr "*例*：請求書の支払期日が次の 3 週間以内のすべてのケースを検索します。"
 
 #: ../../source/portal-user-guide/complex-filter/index.rst:173
-#, fuzzy
 msgid ""
 ":guilabel:`Invoice Due Date` :guilabel:`Within the next` :guilabel:`3` "
 ":guilabel:`Week(s)`"
 msgstr ""
-":bdg-dark-line:`請求書の支払期日` :bdg-dark-line:`次の期間` :bdg-dark-line:`3` :bdg-"
-"dark-line:`週`"
+":guilabel:`Invoice Due Date` :guilabel:`Within the next` :guilabel:`3` "
+":guilabel:`Week(s)`"
 
 #: ../../source/portal-user-guide/complex-filter/index.rst:175
 msgid ""
@@ -2822,7 +2815,6 @@ msgid "Dashboard Configuration"
 msgstr "ダッシュボード設定"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:7
-#, fuzzy
 msgid ""
 "**Access Requirements**: Only users with the :ref:`🔑DashboardWriteOwn "
 "<DashboardWriteOwn>` or :ref:`🔑DashboardWritePublic "
@@ -2830,10 +2822,11 @@ msgid ""
 ":guilabel:`Dashboard Configuration` menu item. These permissions allow "
 "you to add, edit, reorder, show, and hide private or public dashboards."
 msgstr ""
-"**アクセス要件**: :bdg-ref-warning:`🔑DashboardWriteOwn <DashboardWriteOwn>` または"
-" :bdg-ref-warning:`🔑DashboardWritePublic <DashboardWritePublic>` "
-"の権限を持つユーザーのみが、:guilabel:`Dashboard Configuration` "
-"メニュー項目を表示およびアクセスできます。これらの権限により、非公開または公開ダッシュボードの追加、編集、並べ替え、表示、非表示が可能になります。"
+"**アクセス要件**::ref:`🔑DashboardWriteOwn <DashboardWriteOwn>` また"
+"は:ref:`🔑DashboardWritePublic <DashboardWritePublic>` の権限を持つユーザーの"
+"みが、:guilabel:`Dashboard Configuration` メニュー項目を表示およびアクセスで"
+"きます。これらの権限により、非公開または公開ダッシュボードの追加、編集、並べ"
+"替え、表示、非表示が可能になります。"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:9
 msgid ""
@@ -2880,9 +2873,8 @@ msgstr "**プライベートダッシュボード**"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:25
 #: ../../source/portal-user-guide/portal-header/index.rst:211
-#, fuzzy
 msgid ":ref:`🔑DashboardWriteOwn <DashboardWriteOwn>`"
-msgstr ":bdg-ref-warning:`🔑DashboardWriteOwn <DashboardWriteOwn>`"
+msgstr ":ref:`🔑DashboardWriteOwn <DashboardWriteOwn>`"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:25
 msgid "Manage your personal dashboards visible only to you"
@@ -2894,9 +2886,8 @@ msgstr "**公開ダッシュボード**"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:28
 #: ../../source/portal-user-guide/portal-header/index.rst:214
-#, fuzzy
 msgid ":ref:`🔑DashboardWritePublic <DashboardWritePublic>`"
-msgstr ":bdg-ref-warning:`🔑DashboardWritePublic <DashboardWritePublic>`"
+msgstr ":ref:`🔑DashboardWritePublic <DashboardWritePublic>`"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:28
 msgid "Manage shared dashboards visible to users with specific permissions"
@@ -3016,9 +3007,8 @@ msgid "HowTo: import private dashboards"
 msgstr "HowTo: プライベートダッシュボードのインポート"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:78
-#, fuzzy
 msgid "Requires :ref:`🔑DashboardImportOwn <DashboardImportOwn>` permission."
-msgstr ":bdg-ref-warning:`🔑DashboardImportOwn <DashboardImportOwn>` 権限が必要です。"
+msgstr ":ref:`🔑DashboardImportOwn <DashboardImportOwn>` 権限が必要です。"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:80
 msgid "Select :guilabel:`Add new Dashboard` button."
@@ -3139,13 +3129,12 @@ msgid "settings-icon"
 msgstr "settings-icon"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:114
-#, fuzzy
 msgid ""
 "|download-icon| **Export**: Download dashboard as JSON file (requires "
 ":ref:`🔑DashboardExportOwn <DashboardExportOwn>` permission)"
 msgstr ""
-"|download-icon| **エクスポート**: ダッシュボードをJSONファイルとしてダウンロード（権限が必要 :bdg-ref-"
-"warning:`🔑DashboardExportOwn <DashboardExportOwn>`）"
+"|download-icon| **** のエクスポート：ダッシュボードをJSONファイルとして"
+"ダウンロード（ 権限が必要）:ref:`🔑DashboardExportOwn <DashboardExportOwn>`"
 
 #: ../../source/portal-user-guide/includes/_common-icon.rst:49
 msgid "download-icon"
@@ -3299,9 +3288,8 @@ msgid "HowTo: import public dashboard"
 msgstr "HowTo: 公開ダッシュボードのインポート"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:185
-#, fuzzy
 msgid "Requires :ref:`🔑DashboardImportPublic <DashboardImportPublic>` permission."
-msgstr ":bdg-ref-warning:`🔑DashboardImportPublic <DashboardImportPublic>` 権限が必要です。"
+msgstr ":ref:`🔑DashboardImportPublic <DashboardImportPublic>` 権限が必要です。"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:191
 msgid "The :guilabel:`Import Public Dashboard` dialog is opened."
@@ -3358,22 +3346,21 @@ msgid "|edit-icon| **Edit**: Modify dashboard name, permissions, and description
 msgstr "|edit-icon| **編集**: ダッシュボード名、権限、説明を変更"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:223
-#, fuzzy
 msgid ""
 "|download-icon| **Export**: Download dashboard as JSON file (requires "
 ":ref:`🔑DashboardExportPublic <DashboardExportPublic>` permission)"
 msgstr ""
-"|download-icon| **エクスポート**: ダッシュボードをJSONファイルとしてダウンロード（権限が必要 :bdg-ref-"
-"warning:`🔑DashboardExportPublic <DashboardExportPublic>`）"
+"|download-icon| **** のエクスポート：ダッシュボードをJSONファイルとして"
+"ダウンロード（ 権限が必要）:ref:`🔑DashboardExportPublic "
+"<DashboardExportPublic>`"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:224
-#, fuzzy
 msgid ""
 "|share-icon| **Share**: Generate a shareable link to the dashboard "
 "(requires :ref:`🔑ShareDashboardLink <ShareDashboardLink>` permission)"
 msgstr ""
-"|share-icon| **共有**: ダッシュボードへの共有リンクを生成（権限が必要 :bdg-ref-"
-"warning:`🔑ShareDashboardLink <ShareDashboardLink>`）"
+"|share-icon| **** を共有：ダッシュボードへの共有リンクを生成（ 権限が必要"
+"）:ref:`🔑ShareDashboardLink <ShareDashboardLink>`"
 
 #: ../../source/portal-user-guide/includes/_common-icon.rst:55
 msgid "share-icon"
@@ -3396,9 +3383,8 @@ msgid "HowTo: share public dashboards"
 msgstr "HowTo: 公開ダッシュボードの共有方法"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:234
-#, fuzzy
 msgid "Requires :ref:`🔑ShareDashboardLink <ShareDashboardLink>` permission."
-msgstr ":bdg-ref-warning:`🔑ShareDashboardLink <ShareDashboardLink>` 権限が必要です。"
+msgstr ":ref:`🔑ShareDashboardLink <ShareDashboardLink>` 権限が必要です。"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:236
 msgid ""
@@ -3454,45 +3440,40 @@ msgid "**Import private dashboard**"
 msgstr "**プライベートダッシュボードをインポート**"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:261
-#, fuzzy
 msgid ":ref:`🔑DashboardImportOwn <DashboardImportOwn>`"
-msgstr ":bdg-ref-warning:`🔑DashboardImportOwn <DashboardImportOwn>`"
+msgstr ":ref:`🔑DashboardImportOwn <DashboardImportOwn>`"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:263
 msgid "**Export private dashboard**"
 msgstr "**非公開ダッシュボードをエクスポート**"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:263
-#, fuzzy
 msgid ":ref:`🔑DashboardExportOwn <DashboardExportOwn>`"
-msgstr ":bdg-ref-warning:`🔑DashboardExportOwn <DashboardExportOwn>`"
+msgstr ":ref:`🔑DashboardExportOwn <DashboardExportOwn>`"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:265
 msgid "**Import public dashboard**"
 msgstr "**公開ダッシュボードをインポート**"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:265
-#, fuzzy
 msgid ":ref:`🔑DashboardImportPublic <DashboardImportPublic>`"
-msgstr ":bdg-ref-warning:`🔑DashboardImportPublic <DashboardImportPublic>`"
+msgstr ":ref:`🔑DashboardImportPublic <DashboardImportPublic>`"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:267
 msgid "**Export public dashboard**"
 msgstr "**公開ダッシュボードをエクスポート**"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:267
-#, fuzzy
 msgid ":ref:`🔑DashboardExportPublic <DashboardExportPublic>`"
-msgstr ":bdg-ref-warning:`🔑DashboardExportPublic <DashboardExportPublic>`"
+msgstr ":ref:`🔑DashboardExportPublic <DashboardExportPublic>`"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:269
 msgid "**Share public dashboard link**"
 msgstr "**公開ダッシュボードのリンクを共有する**"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:269
-#, fuzzy
 msgid ":ref:`🔑ShareDashboardLink <ShareDashboardLink>`"
-msgstr ":bdg-ref-warning:`🔑ShareDashboardLink <ShareDashboardLink>`"
+msgstr ":ref:`🔑ShareDashboardLink <ShareDashboardLink>`"
 
 #: ../../source/portal-user-guide/demo-processes/index.rst:4
 msgid "Demo Processes"
@@ -3898,14 +3879,13 @@ msgid "case-icon"
 msgstr "case-icon"
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:10
-#, fuzzy
 msgid ""
 "**Access Requirement**: Only users with the :ref:`🔑AccessFullCaseList "
 "<AccessFullCaseList>` permission can see the |case-icon| "
 ":guilabel:`Cases` menu item."
 msgstr ""
-"**アクセス要件**: :bdg-ref-warning:`🔑AccessFullCaseList <AccessFullCaseList>` "
-"権限を持つユーザーのみが、|case-icon| :guilabel:`Cases` メニュー項目を表示できます。"
+"**アクセス要件**::ref:`🔑AccessFullCaseList <AccessFullCaseList>` 権限を持つ"
+"ユーザーのみが|case-icon| :guilabel:`Cases` メニュー項目を表示できます。"
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:14
 msgid "The cases you see depend on the roles you hold in your applications."
@@ -4663,13 +4643,12 @@ msgid "**View related tasks of case**"
 msgstr "**ケースの関連タスクを表示**"
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:366
-#, fuzzy
 msgid ""
 ":ref:`🔑TaskReadOwnCaseTasks <TaskReadOwnCaseTasks>` or :ref:`🔑TaskReadAll"
 " <TaskReadAll>`"
 msgstr ""
-":bdg-ref-warning:`🔑TaskReadOwnCaseTasks <TaskReadOwnCaseTasks>` または :bdg-"
-"ref-warning:`🔑TaskReadAll <TaskReadAll>`"
+":ref:`🔑TaskReadOwnCaseTasks <TaskReadOwnCaseTasks>` または:ref:`🔑"
+"TaskReadAll <TaskReadAll>`"
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:370
 msgid "**Add/delete case documents**"
@@ -4677,14 +4656,12 @@ msgstr "**ケース文書の追加/削除**"
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:370
 #: ../../source/portal-user-guide/full-task-list/index.rst:336
-#, fuzzy
 msgid ""
 ":ref:`🔑DocumentOfInvolvedCaseWrite <DocumentOfInvolvedCaseWrite>` or "
 ":ref:`🔑DocumentWrite <DocumentWrite>`"
 msgstr ""
-":bdg-ref-warning:`🔑DocumentOfInvolvedCaseWrite "
-"<DocumentOfInvolvedCaseWrite>` または :bdg-ref-warning:`🔑DocumentWrite "
-"<DocumentWrite>`"
+":ref:`🔑DocumentOfInvolvedCaseWrite <DocumentOfInvolvedCaseWrite>` また"
+"は:ref:`🔑DocumentWrite <DocumentWrite>`"
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:374
 msgid "**Add note to case**"
@@ -4692,18 +4669,16 @@ msgstr "**注記を追加**"
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:374
 #: ../../source/portal-user-guide/full-task-list/index.rst:340
-#, fuzzy
 msgid ":ref:`🔑TaskCaseAddNote <TaskCaseAddNote>`"
-msgstr ":bdg-ref-warning:`🔑TaskCaseAddNote <TaskCaseAddNote>`"
+msgstr ":ref:`🔑TaskCaseAddNote <TaskCaseAddNote>`"
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:377
 msgid "**Share case details link**"
 msgstr "**ケース詳細を共有するリンク**"
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:377
-#, fuzzy
 msgid ":ref:`🔑ShareCaseDetailsLink <ShareCaseDetailsLink>`"
-msgstr ":bdg-ref-warning:`🔑ShareCaseDetailsLink <ShareCaseDetailsLink>`"
+msgstr ":ref:`🔑ShareCaseDetailsLink <ShareCaseDetailsLink>`"
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:380
 #: ../../source/portal-user-guide/full-task-list/index.rst:333
@@ -4711,11 +4686,8 @@ msgid "**View custom fields**"
 msgstr "**カスタムフィールドを表示**"
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:380
-#, fuzzy
 msgid ":ref:`🔑CaseDisplayCustomFieldsAction <CaseDisplayCustomFieldsAction>`"
-msgstr ""
-":bdg-ref-warning:`🔑CaseDisplayCustomFieldsAction "
-"<CaseDisplayCustomFieldsAction>`"
+msgstr ":ref:`🔑CaseDisplayCustomFieldsAction <CaseDisplayCustomFieldsAction>`"
 
 #: ../../source/portal-user-guide/full-process-list/index.rst:4
 msgid "Full Process List"
@@ -4731,15 +4703,13 @@ msgstr ""
 "Portal メニューの :guilabel:`プロセス` をクリックします。"
 
 #: ../../source/portal-user-guide/full-process-list/index.rst:11
-#, fuzzy
 msgid ""
 "**Access Requirement**: Only users with the :ref:`🔑AccessFullProcessList "
 "<AccessFullProcessList>` permission can see the :guilabel:`Processes` "
 "menu item."
 msgstr ""
-"**アクセス要件**: :bdg-ref-warning:`🔑AccessFullProcessList "
-"<AccessFullProcessList>` 権限を持つユーザーのみが、:guilabel:`Processes` "
-"メニュー項目を表示できます。"
+"**アクセス要件**::ref:`🔑AccessFullProcessList <AccessFullProcessList>` 権限"
+"を持つユーザーのみが:guilabel:`Processes` メニュー項目を表示できます。"
 
 #: ../../source/portal-user-guide/full-process-list/index.rst:14
 msgid "|navigate-to-full-process-list|"
@@ -4919,14 +4889,14 @@ msgid "HowTo: Add an external link"
 msgstr "ハウツー：外部リンクを追加する"
 
 #: ../../source/portal-user-guide/full-process-list/index.rst:97
-#, fuzzy
 msgid ""
 "Creating public external links (visible to all users) requires "
 ":ref:`🔑CreatePublicExternalLink <CreatePublicExternalLink>` permission. "
 "Private links can be created by any user."
 msgstr ""
-"公開外部リンク（全ユーザーに表示）の作成には、:bdg-ref-warning:`🔑CreatePublicExternalLink "
-"<CreatePublicExternalLink>` の権限が必要です。非公開リンクは全ユーザーが作成可能です。"
+"公開外部リンク（全ユーザーに表示）の作成には、:ref:`🔑"
+"CreatePublicExternalLink <CreatePublicExternalLink>` の権限が必要です。非公開"
+"リンクは全ユーザーが作成可能です。"
 
 #: ../../source/portal-user-guide/full-process-list/index.rst:99
 msgid ""
@@ -5162,9 +5132,8 @@ msgid "**Create public external link**"
 msgstr "**公開外部リンクを作成**"
 
 #: ../../source/portal-user-guide/full-process-list/index.rst:202
-#, fuzzy
 msgid ":ref:`🔑CreatePublicExternalLink <CreatePublicExternalLink>`"
-msgstr ":bdg-ref-warning:`🔑CreatePublicExternalLink <CreatePublicExternalLink>`"
+msgstr ":ref:`🔑CreatePublicExternalLink <CreatePublicExternalLink>`"
 
 #: ../../source/portal-user-guide/full-task-list/index.rst:4
 msgid "Full Task List"
@@ -5184,14 +5153,13 @@ msgid "task-list-icon"
 msgstr "task-list-icon"
 
 #: ../../source/portal-user-guide/full-task-list/index.rst:10
-#, fuzzy
 msgid ""
 "**Access Requirement**: Only users with the :ref:`🔑AccessFullTaskList "
 "<AccessFullTaskList>` permission can see the |task-list-icon| "
 ":guilabel:`Tasks` menu item."
 msgstr ""
-"**アクセス要件**: 「:bdg-ref-warning:`🔑AccessFullTaskList <AccessFullTaskList>` "
-"」権限を持つユーザーのみが、|task-list-icon| :guilabel:`Tasks` メニュー項目を表示できます。"
+"**アクセス要件**::ref:`🔑AccessFullTaskList <AccessFullTaskList>` 権限を持つ"
+"ユーザーのみが|task-list-icon| :guilabel:`Tasks` メニュー項目を表示できます。"
 
 #: ../../source/portal-user-guide/full-task-list/index.rst:14
 msgid ""
@@ -5664,68 +5632,56 @@ msgid "**Reset task**"
 msgstr "**タスクをリセット**"
 
 #: ../../source/portal-user-guide/full-task-list/index.rst:314
-#, fuzzy
 msgid ":ref:`🔑TaskDisplayResetAction <TaskDisplayResetAction>`"
-msgstr ":bdg-ref-warning:`🔑TaskDisplayResetAction <TaskDisplayResetAction>`"
+msgstr ":ref:`🔑TaskDisplayResetAction <TaskDisplayResetAction>`"
 
 #: ../../source/portal-user-guide/full-task-list/index.rst:317
 msgid "**Reserve task**"
 msgstr "**タスクを予約する**"
 
 #: ../../source/portal-user-guide/full-task-list/index.rst:317
-#, fuzzy
 msgid ":ref:`🔑TaskDisplayReserveAction <TaskDisplayReserveAction>`"
-msgstr ":bdg-ref-warning:`🔑TaskDisplayReserveAction <TaskDisplayReserveAction>`"
+msgstr ":ref:`🔑TaskDisplayReserveAction <TaskDisplayReserveAction>`"
 
 #: ../../source/portal-user-guide/full-task-list/index.rst:320
 msgid "**Delegate task**"
 msgstr "**タスクの委任**"
 
 #: ../../source/portal-user-guide/full-task-list/index.rst:320
-#, fuzzy
 msgid ":ref:`🔑TaskDisplayDelegateAction <TaskDisplayDelegateAction>`"
-msgstr ":bdg-ref-warning:`🔑TaskDisplayDelegateAction <TaskDisplayDelegateAction>`"
+msgstr ":ref:`🔑TaskDisplayDelegateAction <TaskDisplayDelegateAction>`"
 
 #: ../../source/portal-user-guide/full-task-list/index.rst:323
 msgid "**Destroy task**"
 msgstr "**タスクを破棄**"
 
 #: ../../source/portal-user-guide/full-task-list/index.rst:323
-#, fuzzy
 msgid ":ref:`🔑TaskDisplayDestroyAction <TaskDisplayDestroyAction>`"
-msgstr ":bdg-ref-warning:`🔑TaskDisplayDestroyAction <TaskDisplayDestroyAction>`"
+msgstr ":ref:`🔑TaskDisplayDestroyAction <TaskDisplayDestroyAction>`"
 
 #: ../../source/portal-user-guide/full-task-list/index.rst:326
 msgid "**View additional options**"
 msgstr "**追加オプションを表示**"
 
 #: ../../source/portal-user-guide/full-task-list/index.rst:326
-#, fuzzy
 msgid ":ref:`🔑TaskDisplayAdditionalOptions <TaskDisplayAdditionalOptions>`"
-msgstr ""
-":bdg-ref-warning:`🔑TaskDisplayAdditionalOptions "
-"<TaskDisplayAdditionalOptions>`"
+msgstr ":ref:`🔑TaskDisplayAdditionalOptions <TaskDisplayAdditionalOptions>`"
 
 #: ../../source/portal-user-guide/full-task-list/index.rst:329
 msgid "**View workflow events**"
 msgstr "**ワークフローイベントを表示**"
 
 #: ../../source/portal-user-guide/full-task-list/index.rst:329
-#, fuzzy
 msgid ""
 ":ref:`🔑TaskDisplayWorkflowEventAction <TaskDisplayWorkflowEventAction>` "
 "and 🔑WorkflowEventReadAll"
 msgstr ""
-":bdg-ref-warning:`🔑TaskDisplayWorkflowEventAction "
-"<TaskDisplayWorkflowEventAction>` および :bdg-"
-"warning:`🔑WorkflowEventReadAll`"
+":ref:`🔑TaskDisplayWorkflowEventAction <TaskDisplayWorkflowEventAction>` およ"
+"び 🔑WorkflowEventReadAll"
 
 #: ../../source/portal-user-guide/full-task-list/index.rst:333
-#, fuzzy
 msgid ":ref:`🔑TaskDisplayCustomFieldsAction <TaskDisplayCustomFieldsAction>`"
-msgstr ""
-":bdg-ref-warning:`🔑TaskDisplayCustomFieldsAction "
-"<TaskDisplayCustomFieldsAction>`"
+msgstr ":ref:`🔑TaskDisplayCustomFieldsAction <TaskDisplayCustomFieldsAction>`"
 
 #: ../../source/portal-user-guide/full-task-list/index.rst:336
 msgid "**Add/delete task documents**"
@@ -5740,9 +5696,8 @@ msgid "**Share task details link**"
 msgstr "**タスク詳細を共有するリンク**"
 
 #: ../../source/portal-user-guide/full-task-list/index.rst:343
-#, fuzzy
 msgid ":ref:`🔑ShareTaskDetailsLink <ShareTaskDetailsLink>`"
-msgstr ":bdg-ref-warning:`🔑ShareTaskDetailsLink <ShareTaskDetailsLink>`"
+msgstr ":ref:`🔑ShareTaskDetailsLink <ShareTaskDetailsLink>`"
 
 #: ../../source/portal-user-guide/index.rst:7
 msgid "Portal User Guide"
@@ -5952,15 +5907,14 @@ msgstr ""
 "ントの状態を指定できます。"
 
 #: ../../source/portal-user-guide/my-profile/index.rst:111
-#, fuzzy
 msgid ""
 "As an administrator, you can configure the permission "
 ":ref:`🔑NotificationChannelsSetting <NotificationChannelsSetting>` to "
 "allow or prevent users from modifying notification channel preferences."
 msgstr ""
-"管理者として、通知チャネル設定の編集を許可または禁止する権限 :bdg-ref-"
-"warning:`🔑NotificationChannelsSetting <NotificationChannelsSetting>` "
-"を設定できます。"
+"管理者として、:ref:`🔑NotificationChannelsSetting "
+"<NotificationChannelsSetting>` 権限を設定し、ユーザーが通知チャネルの設定を変"
+"更できるようにする、または禁止することができます。"
 
 #: ../../source/portal-user-guide/my-profile/index.rst:113
 msgid ""
@@ -6139,7 +6093,6 @@ msgid "Customizing Your Dashboard"
 msgstr "ダッシュボードのカスタマイズ"
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:70
-#, fuzzy
 msgid ""
 "**Required Permissions**: Only users with the :ref:`🔑DashboardWriteOwn "
 "<DashboardWriteOwn>` or :ref:`🔑DashboardWritePublic "
@@ -6147,10 +6100,11 @@ msgid ""
 "Configuration** menu item in the user menu. These permissions allow you "
 "to add, edit, reorder, show, and hide private or public dashboards."
 msgstr ""
-"**必要な権限**: ユーザーメニュー内の「**ダッシュボード設定」** メニュー項目を表示・アクセスできるのは、:bdg-ref-"
-"warning:`🔑DashboardWriteOwn <DashboardWriteOwn>` または :bdg-ref-"
-"warning:`🔑DashboardWritePublic <DashboardWritePublic>` "
-"の権限を持つユーザーのみです。これらの権限により、非公開または公開ダッシュボードの追加、編集、順序変更、表示/非表示が可能になります。"
+"**必要な権限**::ref:`🔑DashboardWriteOwn <DashboardWriteOwn>` または:ref:`🔑"
+"DashboardWritePublic <DashboardWritePublic>` の権限を持つユーザーのみが、"
+"ユーザーメニュー内の**ダッシュボード設定** メニュー項目を表示およびアクセスで"
+"きます。これらの権限により、プライベートまたはパブリックのダッシュボードを追"
+"加、編集、並べ替え、表示、非表示にできます。"
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:75
 msgid ""
@@ -6827,13 +6781,12 @@ msgid "**Manage news feed content**"
 msgstr "**ニュースフィードのコンテンツの管理**"
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:361
-#, fuzzy
 msgid ""
 "Grant permission :ref:`🔑NewsManagement <NewsManagement>` to allow a user "
 "to manage the content of the news feed."
 msgstr ""
-"ユーザーがニュースフィードのコンテンツを管理できるようにするには、 :bdg-ref-warning:`🔑NewsManagement "
-"<NewsManagement>` 権限を付与してください。"
+":ref:`🔑NewsManagement <NewsManagement>` 権限を付与し、ユーザーが"
+"ニュースフィードのコンテンツを管理できるようにする。"
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:363
 msgid "If the user has permission, then the user can:"
@@ -7782,45 +7735,40 @@ msgid "**Create own absences**"
 msgstr "**独自の欠席を作成する**"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:217
-#, fuzzy
 msgid ":ref:`🔑UserCreateOwnAbsence <UserCreateOwnAbsence>`"
-msgstr ":bdg-ref-warning:`🔑UserCreateOwnAbsence <UserCreateOwnAbsence>`"
+msgstr ":ref:`🔑UserCreateOwnAbsence <UserCreateOwnAbsence>`"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:220
 msgid "**Create public absences**"
 msgstr "**公開欠席を作成する**"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:220
-#, fuzzy
 msgid ":ref:`🔑UserCreateAbsence <UserCreateAbsence>`"
-msgstr ":bdg-ref-warning:`🔑UserCreateAbsence <UserCreateAbsence>`"
+msgstr ":ref:`🔑UserCreateAbsence <UserCreateAbsence>`"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:223
 msgid "**Create own substitutes**"
 msgstr "**独自の置換語を作成する**"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:223
-#, fuzzy
 msgid ":ref:`🔑UserCreateOwnSubstitute <UserCreateOwnSubstitute>`"
-msgstr ":bdg-ref-warning:`🔑UserCreateOwnSubstitute <UserCreateOwnSubstitute>`"
+msgstr ":ref:`🔑UserCreateOwnSubstitute <UserCreateOwnSubstitute>`"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:226
 msgid "**Create all substitutes**"
 msgstr "**すべての置換を作成する**"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:226
-#, fuzzy
 msgid ":ref:`🔑UserCreateSubstitute <UserCreateSubstitute>`"
-msgstr ":bdg-ref-warning:`🔑UserCreateSubstitute <UserCreateSubstitute>`"
+msgstr ":ref:`🔑UserCreateSubstitute <UserCreateSubstitute>`"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:229
 msgid "**Change own password**"
 msgstr "**自身のパスワードを変更する**"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:229
-#, fuzzy
 msgid "🔑UserSetOwnPassword"
-msgstr ":bdg-warning:`🔑UserSetOwnPassword`"
+msgstr "🔑UserSetOwnPassword"
 
 #: ../../source/portal-user-guide/portal-multi-language/index.rst:4
 msgid "Portal Multi Language"
@@ -8185,9 +8133,8 @@ msgid "Displays all tasks by priority"
 msgstr "優先度順にすべてのタスクを表示"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst:48
-#, fuzzy
 msgid "Chart type: ``Pie``"
-msgstr "チャートのタイプ： :bdg-info:`円グラフ`"
+msgstr "チャートタイプ:``Pie``"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst:50
 msgid "**Tasks By Priority (Bar Chart)**"
@@ -8208,9 +8155,8 @@ msgstr "ユーザーが作業可能な全タスクを、優先度別にグルー
 #: ../../source/portal-user-guide/statistic-chart/index.rst:55
 #: ../../source/portal-user-guide/statistic-chart/index.rst:69
 #: ../../source/portal-user-guide/statistic-chart/index.rst:121
-#, fuzzy
 msgid "Chart type: ``Bar``"
-msgstr "チャートのタイプ： :bdg-info:`棒グラフ`"
+msgstr "チャートタイプ:``Bar``"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst:57
 msgid "**Tasks By Priority (Number)**"
@@ -8233,9 +8179,8 @@ msgstr "ユーザーが優先度別に作業可能な全タスクを表示"
 #: ../../source/portal-user-guide/statistic-chart/index.rst:83
 #: ../../source/portal-user-guide/statistic-chart/index.rst:90
 #: ../../source/portal-user-guide/statistic-chart/index.rst:100
-#, fuzzy
 msgid "Chart type: ``Number``"
-msgstr "チャートのタイプ： :bdg-info:`数値表`"
+msgstr "チャートタイプ:``Number``"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst:64
 msgid "**Top Priority: 3 Days**"
@@ -8339,9 +8284,8 @@ msgstr "過去5日間の1日あたり開始件数を表示します"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst:107
 #: ../../source/portal-user-guide/statistic-chart/index.rst:114
-#, fuzzy
 msgid "Chart type: ``Line``"
-msgstr "チャートのタイプ： :bdg-info:`折れ線グラフ`"
+msgstr "チャートタイプ:``Line``"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst:109
 msgid "**Completed Cases Per Day**"
@@ -9411,4 +9355,3 @@ msgstr "カテゴリ別のケース平均処理時間を表示します"
 
 #~ msgid "Tasks By Priority"
 #~ msgstr "優先度別タスク"
-

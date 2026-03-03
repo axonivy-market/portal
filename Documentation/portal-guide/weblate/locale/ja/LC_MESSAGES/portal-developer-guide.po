@@ -9,15 +9,16 @@ msgstr ""
 "Project-Id-Version: Portal Guide ${revision}\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-03-03 10:45+0000\n"
-"PO-Revision-Date: 2026-01-12 09:12+0000\n"
-"Last-Translator: Tung Le <tung.le@axonactive.com>\n"
+"PO-Revision-Date: 2026-03-03 11:01+0000\n"
+"Last-Translator: DeepL <noreply-mt-deepl@weblate.org>\n"
+"Language-Team: Japanese <https://hosted.weblate.org/projects/axonivy-portal/"
+"portal-12/doc/portal-developer-guide/ja/>\n"
 "Language: ja\n"
-"Language-Team: Japanese <https://hosted.weblate.org/projects/axonivy-"
-"portal/portal-12/doc/portal-developer-guide/ja/>\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 5.17-dev\n"
 "Generated-By: Babel 2.18.0\n"
 
 #: ../../source/portal-developer-guide/architecture/index.rst:4
@@ -1345,6 +1346,9 @@ msgid ""
 "the case. Please take this into account if different project model "
 "versions use different Business Details Page UIs."
 msgstr ""
+"``businessDetails`` の値が設定されると、ケースに対する固定リンクとなります。"
+"異なるプロジェクトモデルバージョンでビジネス詳細ページのUIが異なる場合、この"
+"点を考慮してください。"
 
 #: ../../source/portal-developer-guide/customization/business-details-page.rst:26
 msgid ""
@@ -1553,14 +1557,14 @@ msgstr ""
 "で権限を設定します。セキュリティ領域で［PortalPermissions］、［PortalCasePermissions］、［ShowCaseDetails］を順に開いてください。"
 
 #: ../../source/portal-developer-guide/customization/business-details-page.rst:86
-#, fuzzy
 msgid ""
 "Or search :ref:`🔑ShowCaseDetails <ShowCaseDetails>` in the permissions "
 "search bar. By default, this permission is set to ``true`` for the role "
 "``Everybody``."
 msgstr ""
-"または、権限の検索バーで :bdg-ref-warning:`🔑ShowCaseDetails <ShowCaseDetails>` "
-"を検索します。 ``Everybody`` ロールの権限は自動的に ``true`` に設定されます。"
+"Everybody`または、権限検索バーで「:ref:`🔑ShowCaseDetails <ShowCaseDetails>` "
+"」を検索してください。デフォルトでは、この権限はロール「` 」に対して「` "
+"」`true`` に設定されています。"
 
 #: ../../source/portal-developer-guide/customization/case-item-details.rst:4
 msgid "Case Item Details"
@@ -1786,14 +1790,14 @@ msgid "We support all case business states in filter type ``states``."
 msgstr "フィルタータイプ ``states`` ではすべてのケースのビジネスの状態がサポートされます。"
 
 #: ../../source/portal-developer-guide/customization/case-item-details.rst:152
-#, fuzzy
 msgid ""
 "The built-in widget type ``businessDetails`` is not part of the default "
 "configuration and will only be displayed if the :ref:`🔑ShowCaseDetails "
 "<ShowCaseDetails>` permission is granted."
 msgstr ""
-"組み込みウィジェットのタイプ ``businessDetails`` はデフォルト設定の一部ではなく、 :bdg-ref-"
-"warning:`🔑ShowCaseDetails <ShowCaseDetails>` 権限が与えられている場合にのみ表示されます。"
+"組み込みウィジェットタイプ``businessDetails`` はデフォルト設定の一部ではなく"
+"、:ref:`🔑ShowCaseDetails <ShowCaseDetails>` 権限が付与されている場合にのみ表"
+"示されます。"
 
 #: ../../source/portal-developer-guide/customization/case-item-details.rst:158
 msgid "Show custom widgets"
@@ -3262,19 +3266,20 @@ msgid ""
 msgstr "**特定のURL**:``PortalNavigatorInFrameAPI.navigateToUrl(String url)`` を使用"
 
 #: ../../source/portal-developer-guide/customization/navigate-back.rst:30
-#, fuzzy
 msgid "Reset Task and Navigate"
-msgstr "ポータルスタイルとナビゲーションを適用"
+msgstr "タスクをリセットして移動"
 
 #: ../../source/portal-developer-guide/customization/navigate-back.rst:32
 msgid "To reset a task and navigate to a URL, use the following approach:"
-msgstr ""
+msgstr "タスクをリセットしてURLに移動するには、次の方法を使用します："
 
 #: ../../source/portal-developer-guide/customization/navigate-back.rst:38
 msgid ""
 "Alternatively, if the task is not in the CREATED state and has not been "
 "persisted, you can use the following approach:"
 msgstr ""
+"あるいは、タスクが CREATED 状態でなく、永続化されていない場合は、次の方法を使"
+"用できます："
 
 #: ../../source/portal-developer-guide/customization/page-header-footer-process.rst:4
 msgid "Page Header and Footer"
@@ -4623,12 +4628,11 @@ msgid "**Rich Content** - Display text, images, and formatted content"
 msgstr "**リッチコンテンツ** - テキスト、画像、書式付きコンテンツを表示"
 
 #: ../../source/portal-developer-guide/dashboard/dashboard-newsfeed-widget.rst:14
-#, fuzzy
 msgid ""
 "**User Management** - Requires :ref:`🔑NewsManagement <NewsManagement>` "
 "permission to manage news items"
 msgstr ""
-"**ユーザー管理** - ニュースアイテムを管理するには :bdg-ref-warning:`🔑NewsManagement "
+"**ユーザー管理** - ニュースアイテムを管理するには:ref:`🔑NewsManagement "
 "<NewsManagement>` の権限が必要です"
 
 #: ../../source/portal-developer-guide/dashboard/dashboard-newsfeed-widget.rst:15
@@ -4933,9 +4937,10 @@ msgid "To add, edit, or delete news items:"
 msgstr "ニュース項目の追加、編集、削除を行うには："
 
 #: ../../source/portal-developer-guide/dashboard/dashboard-newsfeed-widget.rst:150
-#, fuzzy
 msgid "User must have :ref:`🔑NewsManagement <NewsManagement>` permission"
-msgstr "ユーザーは :bdg-ref-warning:`🔑NewsManagement <NewsManagement>` 権限を保有している必要があります"
+msgstr ""
+"ユーザーは:ref:`🔑NewsManagement <NewsManagement>` 権限を保有している必要があ"
+"ります"
 
 #: ../../source/portal-developer-guide/dashboard/dashboard-newsfeed-widget.rst:151
 msgid "Access news management through the widget's action menu"
@@ -4960,14 +4965,14 @@ msgid "**Widget Visibility:**"
 msgstr "**ウィジェットの可視性:**"
 
 #: ../../source/portal-developer-guide/dashboard/dashboard-newsfeed-widget.rst:160
-#, fuzzy
 msgid ""
 "The News widget itself is controlled by dashboard permissions. However, "
 "news content management requires the separate :ref:`🔑NewsManagement "
 "<NewsManagement>` permission."
 msgstr ""
-"ニュースウィジェット自体はダッシュボード権限で制御されます。ただし、ニュースコンテンツの管理には別途「:bdg-ref-"
-"warning:`🔑NewsManagement <NewsManagement>` 」権限が必要です。"
+"ニュースウィジェット自体はダッシュボード権限で制御されます。ただし、"
+"ニュースコンテンツの管理には別途「:ref:`🔑NewsManagement <NewsManagement>` 」"
+"権限が必要です。"
 
 #: ../../source/portal-developer-guide/dashboard/index.rst:4
 msgid "Portal Dashboard"
@@ -11508,15 +11513,14 @@ msgid ""
 msgstr "ポータルのケースリストとケースの状態フィルターに新しいケースの状態 ``破棄済`` を含めました。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:602
-#, fuzzy
 msgid ""
 "Introduced :ref:`Workflow Events table <how-to-show-workflow-events>`, "
 "user who has permission 🔑WorkflowEventReadAll can see all "
 "``WORKFLOW_EVENTS``."
 msgstr ""
-":ref:`ワークフローイベントテーブル <how-to-show-workflow-events>` を導入しました。:bdg-"
-"warning:`🔑WorkflowEventReadAll` 権限を持つユーザーは、すべての ``WORKFLOW_EVENTS`` "
-"を表示できます。"
+":ref:`Workflow Events table <how-to-show-workflow-events>` を導入。権限 🔑"
+"WorkflowEventReadAll を持つユーザーは、すべての``WORKFLOW_EVENTS`` を閲覧可能"
+"。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:604
 msgid ""
@@ -12520,16 +12524,15 @@ msgid "**Permission Architecture:**"
 msgstr "**Permission Architecture:**"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:19
-#, fuzzy
 msgid ""
 "Portal's permission system extends Axon Ivy Engine's core security model "
 "with Portal-specific permissions. All permissions are configured in the "
 "Engine Cockpit under the Portal Permissions section and can be assigned "
 "to:"
 msgstr ""
-"Portalの権限システムは、Axon Ivy "
-"EngineのコアセキュリティモデルをPortal固有の権限で拡張します。すべての権限はEngine "
-"CockpitのPortalPermissionsセクションで設定され、以下に割り当てられます："
+"Portalの権限システムは、Axon Ivy EngineのコアセキュリティモデルをPortal固有の"
+"権限で拡張します。すべての権限はEngine Cockpitの「Portal Permissions」"
+"セクションで設定され、以下に割り当て可能です："
 
 #: ../../source/portal-developer-guide/permissions/index.rst:21
 msgid ""
@@ -12578,17 +12581,16 @@ msgid "**Configuration Location:**"
 msgstr "**設定場所:**"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:35
-#, fuzzy
 msgid ""
 "All permissions are configured in the :dev-url:`Engine Cockpit </doc/12.0"
 "/engine-guide/reference/engine-cockpit/security.html>` under Security > "
 "Portal Permissions. For detailed configuration instructions and examples,"
 " see :ref:`Permission Settings <settings-permission-settings>`."
 msgstr ""
-"すべての権限は、:dev-url:`Engine Cockpit </doc/12.0/engine-guide/reference"
-"/engine-cockpit/security.html>` "
-"の「セキュリティ」＞「PortalPermissions」で設定されます。詳細な設定手順と例については、:ref:`Permission "
-"Settings <settings-permission-settings>` を参照してください。"
+"すべての権限は、:dev-url:`Engine Cockpit </doc/12.0/engine-guide/reference/"
+"engine-cockpit/security.html>` の「セキュリティ」＞「ポータル権限」で設定され"
+"ます。詳細な設定手順と例については、:ref:`Permission Settings <settings-"
+"permission-settings>` を参照してください。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:38
 #: ../../source/portal-developer-guide/troubleshooting/index.rst:265
@@ -12683,16 +12685,16 @@ msgid "**Portal Permission Support:**"
 msgstr "**ポータル権限サポート：**"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:72
-#, fuzzy
 msgid ""
 "Portal is built as a layer above the Axon Ivy Engine core. Not every core"
 " engine permission is automatically used or supported by Portal. If you "
 "require a specific engine permission not currently supported by Portal, "
 "please contact Axon Ivy support."
 msgstr ""
-"ポータルはAxon Ivy "
-"Engineコアの上に構築されたレイヤーです。コアエンジンのすべての権限が自動的にポータルで尊重またはサポートされるわけではありません。ポータルで現在サポートされていない特定のエンジン権限が必要な場合は、Axon"
-" Ivyサポートまでお問い合わせください。"
+"PortalはAxon Ivy Engineコアの上に構築されたレイヤーです。コアエンジンのすべて"
+"の権限がPortalで自動的に使用またはサポートされるわけではありません。Portalで"
+"現在サポートされていない特定のエンジン権限が必要な場合は、Axon Ivyサポートま"
+"でお問い合わせください。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:75
 msgid ""
@@ -12702,20 +12704,25 @@ msgid ""
 "``TaskReset`` to reset it. Ensure you review all related permissions when"
 " configuring access."
 msgstr ""
+"Portalの多くの機能は、正しく動作させるために複数の権限を必要とします。例えば"
+"、タスクをリセットするには、通常、リセットボタンを表示する権"
+"限``TaskDisplayResetAction`` と、リセットを実行する権限``TaskReset`` の両方が"
+"ユーザーに必要です。アクセス権を設定する際は、関連するすべての権限を確認して"
+"ください。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:79
 msgid "**Permission Types in this Documentation:**"
 msgstr "**このドキュメントにおける許可の種類：**"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:81
-#, fuzzy
 msgid ""
 "**Portal Permissions** - Custom permissions defined by Portal (e.g., "
 "DashboardWriteOwn, ShareTaskDetailsLink, NewsManagement). These "
 "permissions have effect only in Portal."
 msgstr ""
-"**ポータル権限** - ポータルで定義されたカスタム権限（例: "
-"DashboardWriteOwn、ShareTaskDetailsLink、NewsManagement）"
+"**Portal Permissions** - Portal で定義されたカスタム権限（例: "
+"DashboardWriteOwn、ShareTaskDetailsLink、NewsManagement）。これらの権限は "
+"Portal でのみ有効です。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:82
 msgid ""
@@ -12724,11 +12731,12 @@ msgid ""
 msgstr "**エンジン権限** - Portalが尊重するコアAxon Ivy権限（本ページ末尾のリスト参照）"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:84
-#, fuzzy
 msgid ""
 "Permissions marked with \"Granted by default - role Everybody\" are "
 "automatically assigned when Portal is installed."
-msgstr "「デフォルトで全員ロールに付与」とマークされた権限は、Portalのインストール時に自動的に割り当てられます。"
+msgstr ""
+"「デフォルトで付与 - ロール: 全員」とマークされた権限は、Portalのインストール"
+"時に自動的に割り当てられます。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:90
 msgid "Portal Task Permissions"
@@ -12736,9 +12744,8 @@ msgstr "ポータルのタスクの権限"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:94
 #: ../../source/portal-developer-guide/permissions/index.rst:1490
-#, fuzzy
 msgid ":ref:`🔑TaskReadAll <TaskReadAll>`"
-msgstr ":bdg-ref-warning:`🔑TaskReadAll <TaskReadAll>`"
+msgstr ":ref:`🔑TaskReadAll <TaskReadAll>`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:96
 #: ../../source/portal-developer-guide/permissions/index.rst:121
@@ -12803,9 +12810,8 @@ msgstr ":bdg-ref-warning:`🔑TaskReadAll <TaskReadAll>`"
 #: ../../source/portal-developer-guide/permissions/index.rst:1424
 #: ../../source/portal-developer-guide/permissions/index.rst:1444
 #: ../../source/portal-developer-guide/permissions/index.rst:1464
-#, fuzzy
 msgid "Field"
-msgstr "``field``"
+msgstr "フィールド"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:98
 #: ../../source/portal-developer-guide/permissions/index.rst:123
@@ -12870,9 +12876,8 @@ msgstr "``field``"
 #: ../../source/portal-developer-guide/permissions/index.rst:1426
 #: ../../source/portal-developer-guide/permissions/index.rst:1446
 #: ../../source/portal-developer-guide/permissions/index.rst:1466
-#, fuzzy
 msgid "**Type**"
-msgstr "タイプ"
+msgstr "**タイプ**"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:98
 #: ../../source/portal-developer-guide/permissions/index.rst:123
@@ -12906,9 +12911,8 @@ msgstr "タイプ"
 #: ../../source/portal-developer-guide/permissions/index.rst:1426
 #: ../../source/portal-developer-guide/permissions/index.rst:1446
 #: ../../source/portal-developer-guide/permissions/index.rst:1466
-#, fuzzy
 msgid "Engine Permission"
-msgstr "必要な権限："
+msgstr "エンジン許可"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:100
 #: ../../source/portal-developer-guide/permissions/index.rst:125
@@ -12973,16 +12977,14 @@ msgstr "必要な権限："
 #: ../../source/portal-developer-guide/permissions/index.rst:1428
 #: ../../source/portal-developer-guide/permissions/index.rst:1448
 #: ../../source/portal-developer-guide/permissions/index.rst:1468
-#, fuzzy
 msgid "**Category**"
-msgstr "カテゴリ"
+msgstr "**カテゴリ**"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:100
 #: ../../source/portal-developer-guide/permissions/index.rst:125
 #: ../../source/portal-developer-guide/permissions/index.rst:148
-#, fuzzy
 msgid "Task Visibility"
-msgstr "**タスクの可視性**"
+msgstr "タスクの可視性"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:102
 #: ../../source/portal-developer-guide/permissions/index.rst:127
@@ -13047,9 +13049,8 @@ msgstr "**タスクの可視性**"
 #: ../../source/portal-developer-guide/permissions/index.rst:1430
 #: ../../source/portal-developer-guide/permissions/index.rst:1450
 #: ../../source/portal-developer-guide/permissions/index.rst:1470
-#, fuzzy
 msgid "**Description**"
-msgstr "説明"
+msgstr "**説明**"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:102
 msgid ""
@@ -13057,6 +13058,10 @@ msgid ""
 "task assignment, responsibility, or involvement. System tasks are not "
 "included. With this you see all tasks in the security context."
 msgstr ""
+"ユーザーがシステム内のすべてのユーザータスク（**）およびシステムタスク（** ）"
+"を、タスクの割り当て、責任、関与に関係なく閲覧できるようにします。"
+"システムタスクは含まれません。これにより、セキュリティコンテキスト内のすべて"
+"のタスクを確認できます。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:107
 #: ../../source/portal-developer-guide/permissions/index.rst:131
@@ -13121,9 +13126,8 @@ msgstr ""
 #: ../../source/portal-developer-guide/permissions/index.rst:1432
 #: ../../source/portal-developer-guide/permissions/index.rst:1453
 #: ../../source/portal-developer-guide/permissions/index.rst:1473
-#, fuzzy
 msgid "**Use case**"
-msgstr "ユースケース"
+msgstr "**ユースケース**"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:107
 msgid ""
@@ -13132,6 +13136,10 @@ msgid ""
 "audits, or operational support. Without this permission, users only see "
 "tasks they are directly involved in."
 msgstr ""
+"管理者、監督者、またはサポートユーザーが、監視、トラブルシューティング、監査"
+"、運用サポートのために全ユーザータスクの全体像を把握する必要がある場合に必須"
+"です。この権限がない場合、ユーザーは自身が直接関与するタスクのみを表示します"
+"。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:113
 #: ../../source/portal-developer-guide/permissions/index.rst:136
@@ -13196,9 +13204,8 @@ msgstr ""
 #: ../../source/portal-developer-guide/permissions/index.rst:1436
 #: ../../source/portal-developer-guide/permissions/index.rst:1457
 #: ../../source/portal-developer-guide/permissions/index.rst:1478
-#, fuzzy
 msgid "**Granted by default**"
-msgstr "デフォルトでは Everybody ロールに付与"
+msgstr "**デフォルトで許可**"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:113
 #: ../../source/portal-developer-guide/permissions/index.rst:136
@@ -13239,14 +13246,12 @@ msgstr "デフォルトでは Everybody ロールに付与"
 #: ../../source/portal-developer-guide/permissions/index.rst:1416
 #: ../../source/portal-developer-guide/permissions/index.rst:1457
 #: ../../source/portal-developer-guide/permissions/index.rst:1478
-#, fuzzy
 msgid "No"
-msgstr "注記"
+msgstr "いいえ"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:119
-#, fuzzy
 msgid ":ref:`🔑SystemTaskReadAll <SystemTaskReadAll>`"
-msgstr ":bdg-ref-warning:`🔑SystemTaskReadAll <SystemTaskReadAll>`"
+msgstr ":ref:`🔑SystemTaskReadAll <SystemTaskReadAll>`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:127
 msgid ""
@@ -13254,6 +13259,9 @@ msgid ""
 " tasks executed by the platform. These tasks are not created or processed"
 " by end users."
 msgstr ""
+"ユーザーがプラットフォームによって実行されるバックグラウンドジョブや自動化さ"
+"れたタスクなどのシステムタスクを表示できるようにします。これらのタスクは"
+"エンドユーザーによって作成または処理されるものではありません。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:131
 msgid ""
@@ -13262,22 +13270,26 @@ msgid ""
 "**debugging, monitoring, or operational troubleshooting**. Not relevant "
 "for business users."
 msgstr ""
+"管理者および技術ユーザー向け。**のバックグラウンド処理** 、システム動作、"
+"タスク実行**のデバッグ、監視、運用トラブルシューティング** に関する知見が必要"
+"な方。一般ユーザー向けではありません。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:142
 #: ../../source/portal-developer-guide/permissions/index.rst:1491
-#, fuzzy
 msgid ":ref:`🔑TaskReadOwnCaseTasks <TaskReadOwnCaseTasks>`"
-msgstr ":bdg-ref-warning:`🔑TaskReadOwnCaseTasks <TaskReadOwnCaseTasks>`"
+msgstr ":ref:`🔑TaskReadOwnCaseTasks <TaskReadOwnCaseTasks>`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:150
 msgid ""
 "Allows a user to view **tasks that belong to cases they are involved "
 "in**, even if the tasks are assigned to other users or roles."
 msgstr ""
+"ユーザーが関与しているケースに属する**タスクを閲覧できるようにします。** "
+"タスクが他のユーザーやロールに割り当てられている場合でも閲覧可能です。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:154
 msgid "See my own task and case in task list, case list"
-msgstr ""
+msgstr "タスクリスト内の自身のタスクとケースを参照、ケースリスト"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:156
 #: ../../source/portal-developer-guide/permissions/index.rst:179
@@ -13303,19 +13315,20 @@ msgstr ""
 #: ../../source/portal-developer-guide/permissions/index.rst:1355
 #: ../../source/portal-developer-guide/permissions/index.rst:1436
 msgid "Yes - Role ``Everybody``"
-msgstr ""
+msgstr "Yes - Role``Everybody``"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:162
 #: ../../source/portal-developer-guide/permissions/index.rst:1492
-#, fuzzy
 msgid ":ref:`🔑TaskParkOwnWorkingTask <TaskParkOwnWorkingTask>`"
-msgstr ":bdg-ref-warning:`🔑TaskParkOwnWorkingTask <TaskParkOwnWorkingTask>`"
+msgstr ":ref:`🔑TaskParkOwnWorkingTask <TaskParkOwnWorkingTask>`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:170
 msgid ""
 "Allows a user to **reserve (park) a task they are currently working on**,"
 " temporarily setting it aside without completing or releasing it."
 msgstr ""
+"****ユーザーが現在作業中のタスクを保留（一時停止）できる機能を提供します。こ"
+"れにより、タスクを完了または解放せずに一時的に脇に置くことが可能になります。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:174
 msgid ""
@@ -13324,12 +13337,14 @@ msgid ""
 "reserved and is not taken by another user. Enables the Reserve action in "
 "the task menu."
 msgstr ""
+"ユーザーが作業を中断（**）し、追加情報を待機（** ）、または優先度を切り替える"
+"必要がある場合に有用です。この間、タスクは予約された状態を維持し、他の"
+"ユーザーに奪われません。タスクメニューの「予約」アクションを有効にします。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:184
 #: ../../source/portal-developer-guide/permissions/index.rst:1493
-#, fuzzy
 msgid ":ref:`🔑TaskResetOwnWorkingTask <TaskResetOwnWorkingTask>`"
-msgstr ":bdg-ref-warning:`🔑TaskResetOwnWorkingTask <TaskResetOwnWorkingTask>`"
+msgstr ":ref:`🔑TaskResetOwnWorkingTask <TaskResetOwnWorkingTask>`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:192
 msgid ""
@@ -13339,6 +13354,10 @@ msgid ""
 "clears the current working progress and returns it to its original start "
 "state."
 msgstr ""
+"ユーザーが自身の作業タスクを初期状態にリセットできる機能を提供します**** 。"
+"リセット操作は、タスクが以下のいずれかの状態にある場合に利用可能で"
+"す:**RESUMED, PARKED, READY_FOR_JOIN, FAILED** 。タスクをリセットすると、現在"
+"の作業進捗がクリアされ、元の開始状態に戻ります。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:199
 msgid ""
@@ -13347,18 +13366,22 @@ msgid ""
 "state. Enables the Reset action in the task action menu for applicable "
 "task states."
 msgstr ""
+"****ユーザーがタスクを最初から再実行する必要がある場合に使用されます（例："
+"エラー、実行失敗、無効な中間状態の後）。該当するタスク状態において、"
+"タスクアクションメニューの「リセット」操作を有効にします。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:209
 #: ../../source/portal-developer-guide/permissions/index.rst:1494
-#, fuzzy
 msgid ":ref:`🔑TaskReset <TaskReset>`"
-msgstr ":bdg-ref-warning:`🔑TaskReset <TaskReset>`"
+msgstr ":ref:`🔑TaskReset <TaskReset>`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:217
 msgid ""
 "Allows a user to **reset any task within the current security context**, "
 "regardless of task ownership or assignment."
 msgstr ""
+"ユーザーが現在のセキュリティコンテキスト内（** ）の任意のタスクを、所有者や割"
+"り当てに関係なくリセット（**）できるようにします。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:221
 msgid ""
@@ -13366,18 +13389,19 @@ msgid ""
 " staff, who need to reset tasks to resolve errors, unblock processes, or "
 "correct invalid task states."
 msgstr ""
+"**の管理者やサポートスタッフなど、高権限ユーザー（** ）を対象としています。こ"
+"れらのユーザーは、エラーの解決、プロセスのブロック解除、または無効なタスク状"
+"態の修正のためにタスクをリセットする必要があります。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:232
-#, fuzzy
 msgid ":ref:`🔑TaskResetReadyForJoin <TaskResetReadyForJoin>`"
-msgstr ":bdg-ref-warning:`🔑TaskResetReadyForJoin <TaskResetReadyForJoin>`"
+msgstr ":ref:`🔑TaskResetReadyForJoin <TaskResetReadyForJoin>`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:240
-#, fuzzy
 msgid ""
 "Allows a user to **reset tasks that are currently in the READY_FOR_JOIN "
 "state**."
-msgstr "READY_FOR_JOIN 状態のタスクをリセット"
+msgstr "ユーザーが現在READY_FOR_JOIN状態にあるタスクをリセットできるようにする**** 。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:243
 msgid ""
@@ -13385,18 +13409,21 @@ msgid ""
 "blocked or cannot be joined correctly and need to be reset to restore "
 "normal processing."
 msgstr ""
+"**のワークフローエラー復旧に有用です（例：タスクがブロックされたり正しく結合"
+"できず、正常処理を回復するためにリセットが必要な場合）。**"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:253
 #: ../../source/portal-developer-guide/permissions/index.rst:1495
-#, fuzzy
 msgid ":ref:`🔑TaskDestroy <TaskDestroy>`"
-msgstr ":bdg-ref-warning:`🔑TaskDestroy <TaskDestroy>`"
+msgstr ":ref:`🔑TaskDestroy <TaskDestroy>`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:261
 msgid ""
 "Allows a user to **permanently delete tasks**. The action is only "
 "available if the task state is **not DESTROYED or DONE**."
 msgstr ""
+"****ユーザーがタスクを完全に削除する機能を提供します（**）。この操作は、"
+"タスクの状態が「破棄済み」または「完了」でない場合にのみ利用可能です（**）。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:265
 msgid ""
@@ -13404,12 +13431,13 @@ msgid ""
 "remove tasks, for example during cleanup, error handling, or system "
 "maintenance."
 msgstr ""
+"**管理者** が、クリーンアップ、エラー処理、システムメンテナンスなどの際に"
+"タスクを恒久的に削除する必要がある場合の、高特権許可。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:275
 #: ../../source/portal-developer-guide/permissions/index.rst:1496
-#, fuzzy
 msgid ":ref:`🔑TaskWriteDescription <TaskWriteDescription>`"
-msgstr ":bdg-ref-warning:`🔑TaskWriteDescription <TaskWriteDescription>`"
+msgstr ":ref:`🔑TaskWriteDescription <TaskWriteDescription>`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:281
 #: ../../source/portal-developer-guide/permissions/index.rst:303
@@ -13418,9 +13446,8 @@ msgstr ":bdg-ref-warning:`🔑TaskWriteDescription <TaskWriteDescription>`"
 #: ../../source/portal-developer-guide/permissions/index.rst:367
 #: ../../source/portal-developer-guide/permissions/index.rst:389
 #: ../../source/portal-developer-guide/permissions/index.rst:408
-#, fuzzy
 msgid "Task Property Modifications"
-msgstr "**タスクプロパティの変更**"
+msgstr "タスクプロパティの変更"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:283
 msgid ""
@@ -13428,6 +13455,8 @@ msgid ""
 "be changed if the task is in a terminated state (**DONE, DESTROYED, "
 "FAILED**)."
 msgstr ""
+"ユーザーがタスクの説明を**変更できるようにする** 。タスクが終了状態（**DONE、"
+"DESTROYED、FAILED** ）の場合、説明は変更できない。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:287
 msgid ""
@@ -13435,12 +13464,14 @@ msgid ""
 "description** in the task details, for example to clarify requirements or"
 " add missing information."
 msgstr ""
+"この権限を持つユーザーは、タスクの詳細ページでタスクの説明を**更新または修正"
+"できます。** 例えば、要件を明確化したり、不足している情報を追加したりするため"
+"です。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:297
 #: ../../source/portal-developer-guide/permissions/index.rst:1497
-#, fuzzy
 msgid ":ref:`🔑TaskWriteOriginalPriority <TaskWriteOriginalPriority>`"
-msgstr ":bdg-ref-warning:`🔑TaskWriteOriginalPriority <TaskWriteOriginalPriority>`"
+msgstr ":ref:`🔑TaskWriteOriginalPriority <TaskWriteOriginalPriority>`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:305
 msgid ""
@@ -13448,6 +13479,9 @@ msgid ""
 "be modified if the task is in one of the following states: **DONE, "
 "DESTROYED, FAILED**."
 msgstr ""
+"ユーザーがタスクの優先度レベルを変更できるようにします**** 。タスクが以下のい"
+"ずれかの状態にある場合、優先度は変更できません：**DONE, DESTROYED, FAILED** "
+"。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:309
 msgid ""
@@ -13455,12 +13489,13 @@ msgid ""
 "in the task details, for example to reflect changing urgency or business "
 "importance."
 msgstr ""
+"この権限を持つユーザーは、タスクの詳細画面でタスクの優先度を調整できます（例"
+"：緊急度や業務上の重要度の変化を反映するため）。****"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:319
 #: ../../source/portal-developer-guide/permissions/index.rst:1498
-#, fuzzy
 msgid ":ref:`🔑TaskWriteExpiryTimestamp <TaskWriteExpiryTimestamp>`"
-msgstr ":bdg-ref-warning:`🔑TaskWriteExpiryTimestamp <TaskWriteExpiryTimestamp>`"
+msgstr ":ref:`🔑TaskWriteExpiryTimestamp <TaskWriteExpiryTimestamp>`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:327
 msgid ""
@@ -13468,6 +13503,9 @@ msgid ""
 "be modified if the task is in one of the following states: **DONE, "
 "DESTROYED, FAILED**."
 msgstr ""
+"ユーザーがタスクの期限を変更できるようにします**change the task expiry "
+"date** 。タスクが以下のいずれかの状態にある場合、期限は変更できません"
+"：**DONE, DESTROYED, FAILED** 。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:331
 msgid ""
@@ -13475,17 +13513,17 @@ msgid ""
 "to **update the task expiry date**, for example to extend or shorten "
 "deadlines."
 msgstr ""
+"**** AXONIVY_PORTAL_ADMIN のロールとこの権限を持つユーザーは、 タスクの期限を"
+"更新できます（例：期限を延長または短縮）。** **"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:341
 #: ../../source/portal-developer-guide/permissions/index.rst:1499
-#, fuzzy
 msgid ":ref:`🔑TaskWriteActivator <TaskWriteActivator>`"
-msgstr ":bdg-ref-warning:`🔑TaskWriteActivator <TaskWriteActivator>`"
+msgstr ":ref:`🔑TaskWriteActivator <TaskWriteActivator>`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:349
-#, fuzzy
 msgid "Allows a user to **delegate tasks to other users or roles**."
-msgstr "タスクは他のユーザー/役割に委譲する"
+msgstr "ユーザーがタスクを他のユーザーや役割に委任できるようにする機能です。**** 。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:351
 msgid ""
@@ -13493,11 +13531,13 @@ msgid ""
 " roles within the same security context**, for example to change "
 "responsibility or hand over work."
 msgstr ""
+"この権限を持つユーザーは、**を使用して、同じセキュリティコンテキスト内の他の"
+"ユーザーまたはロールにタスクを委任できます。** 例えば、責任の変更や作業の引き"
+"継ぎなどです。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:361
-#, fuzzy
 msgid ":ref:`🔑TaskWriteExpiryActivator <TaskWriteExpiryActivator>`"
-msgstr ":bdg-ref-warning:`🔑TaskWriteExpiryActivator <TaskWriteExpiryActivator>`"
+msgstr ":ref:`🔑TaskWriteExpiryActivator <TaskWriteExpiryActivator>`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:369
 msgid ""
@@ -13505,23 +13545,25 @@ msgid ""
 "expires**. The responsible party cannot be changed if the task is in one "
 "of the following states: **DONE, DESTROYED, FAILED**."
 msgstr ""
+"**タスク期限切れ時に担当ユーザーまたは役割を変更可能（**）。ただし以下の状態"
+"では変更不可：**DONE, DESTROYED, FAILED** 。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:374
 msgid ""
 "Enables users with the ``AXONIVY_PORTAL_ADMIN`` role and this permission "
 "to **define or update who becomes responsible after a task expires**."
 msgstr ""
+"``AXONIVY_PORTAL_ADMIN`` ロールとこの権限を持つユーザーが、タスク期限切れ後の"
+"責任者を定義または更新できるようにします。**** 。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:383
 #: ../../source/portal-developer-guide/permissions/index.rst:1500
-#, fuzzy
 msgid ":ref:`🔑TaskWriteDelayTimestamp <TaskWriteDelayTimestamp>`"
-msgstr ":bdg-ref-warning:`🔑TaskWriteDelayTimestamp <TaskWriteDelayTimestamp>`"
+msgstr ":ref:`🔑TaskWriteDelayTimestamp <TaskWriteDelayTimestamp>`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:391
-#, fuzzy
 msgid "Allows a user to **modify the task delay or start time**."
-msgstr "タスクの遅延/開始時間を変更する"
+msgstr "ユーザーがタスクの遅延時間または開始時刻を変更できるようにします。****"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:393
 msgid ""
@@ -13529,13 +13571,12 @@ msgid ""
 "to **change when a task starts or is delayed**, for example to reschedule"
 " execution."
 msgstr ""
+"`**` ` ロールとこの権限を持つユーザーは、タスクが開始または遅延した際に 変更"
+"を実行できます。例えば、実行の再スケジュールなど。AXONIVY_PORTAL_ADMIN` **"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:402
-#, fuzzy
 msgid ":ref:`🔑TaskWriteActivatorOwnTasks <TaskWriteActivatorOwnTasks>`"
-msgstr ""
-":bdg-ref-warning:`🔑TaskWriteActivatorOwnTasks "
-"<TaskWriteActivatorOwnTasks>`"
+msgstr ":ref:`🔑TaskWriteActivatorOwnTasks <TaskWriteActivatorOwnTasks>`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:406
 #: ../../source/portal-developer-guide/permissions/index.rst:427
@@ -13578,20 +13619,21 @@ msgid ""
 " role via Portal UI, for example when handing over work or changing "
 "responsibility within a team."
 msgstr ""
+"ユーザーが**で現在所有しているタスクを** 、ポータルUI経由で別のユーザーまたは"
+"ロールに委任できるようにします。例えば、チーム内での業務引き継ぎや責任変更時"
+"などに利用されます。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:414
-#, fuzzy
 msgid ""
 "Allows a user to **delegate personal or group tasks that are assigned to "
 "themselves**."
-msgstr "ユーザーに割り当てられた個人/グループタスクは委譲する"
+msgstr ""
+"ユーザーが自身に割り当てられた個人またはグループのタスクを委任できるようにす"
+"る機能です。****"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:423
-#, fuzzy
 msgid ":ref:`🔑TaskDisplayAdditionalOptions <TaskDisplayAdditionalOptions>`"
-msgstr ""
-":bdg-ref-warning:`🔑TaskDisplayAdditionalOptions "
-"<TaskDisplayAdditionalOptions>`"
+msgstr ":ref:`🔑TaskDisplayAdditionalOptions <TaskDisplayAdditionalOptions>`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:429
 #: ../../source/portal-developer-guide/permissions/index.rst:449
@@ -13601,15 +13643,16 @@ msgstr ""
 #: ../../source/portal-developer-guide/permissions/index.rst:533
 #: ../../source/portal-developer-guide/permissions/index.rst:556
 #: ../../source/portal-developer-guide/permissions/index.rst:577
-#, fuzzy
 msgid "Task UI Display Permissions"
-msgstr "**タスク UI 表示権限**"
+msgstr "タスク UI 表示権限"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:431
 msgid ""
 "Allows Portal to **display additional task actions** in the user "
 "interface."
 msgstr ""
+"Portalが**で追加のタスクアクション** をユーザーインターフェースに表示できるよ"
+"うにします。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:434
 msgid ""
@@ -13617,17 +13660,20 @@ msgid ""
 "that are defined in the **case map**, enabling extended actions directly "
 "from the task UI."
 msgstr ""
+"**この権限を持つユーザーは、**のケースマップ** で定義されたタスク上で、追加"
+"メニュー項目** を表示し、タスク UI から直接拡張アクションを実行できます。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:443
-#, fuzzy
 msgid ":ref:`🔑TaskDisplayResetAction <TaskDisplayResetAction>`"
-msgstr ":bdg-ref-warning:`🔑TaskDisplayResetAction <TaskDisplayResetAction>`"
+msgstr ":ref:`🔑TaskDisplayResetAction <TaskDisplayResetAction>`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:451
 msgid ""
 "Allows Portal to **display the reset action** for tasks in the user "
 "interface."
 msgstr ""
+"Portalが**でリセットアクション** をユーザーインターフェースのタスクとして表示"
+"できるようにします。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:454
 msgid ""
@@ -13635,17 +13681,22 @@ msgid ""
 "action menu. To actually reset a task, the user must also have either the"
 " **TaskResetOwnWorkingTask** or **TaskReset** permission."
 msgstr ""
+"この権限を持つユーザーは、タスク操作メニューに「**」→「Reset」→「** 」"
+"メニュー項目が表示されます。実際にタスクをリセットするには、ユーザーが「**」→"
+"「TaskResetOwnWorkingTask」→「** 」または「**」→「TaskReset」→「** 」の権限も"
+"必要です。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:465
-#, fuzzy
 msgid ":ref:`🔑TaskDisplayReserveAction <TaskDisplayReserveAction>`"
-msgstr ":bdg-ref-warning:`🔑TaskDisplayReserveAction <TaskDisplayReserveAction>`"
+msgstr ":ref:`🔑TaskDisplayReserveAction <TaskDisplayReserveAction>`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:473
 msgid ""
 "Allows Portal to **display the reserve action** for tasks in the user "
 "interface."
 msgstr ""
+"Portalが**でタスクの予約アクション** をユーザーインターフェースに表示できるよ"
+"うにします。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:476
 msgid ""
@@ -13653,17 +13704,21 @@ msgid ""
 " action menu. To actually reserve a task, the user must also have the "
 "**TaskParkOwnWorkingTask** permission."
 msgstr ""
+"この権限を持つユーザーは、タスクアクションメニューに「**」→「Reserve」→「** "
+"」メニュー項目が表示されます。実際にタスクを予約するには、ユーザーは「**」→「"
+"TaskParkOwnWorkingTask」→「** 」権限も必要です。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:486
-#, fuzzy
 msgid ":ref:`🔑TaskDisplayDelegateAction <TaskDisplayDelegateAction>`"
-msgstr ":bdg-ref-warning:`🔑TaskDisplayDelegateAction <TaskDisplayDelegateAction>`"
+msgstr ":ref:`🔑TaskDisplayDelegateAction <TaskDisplayDelegateAction>`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:494
 msgid ""
 "Allows Portal to **display the delegate action** for tasks in the user "
 "interface."
 msgstr ""
+"Portalが**で、ユーザーインターフェース内のタスクに対する"
+"デリゲートアクション** を表示できるようにします。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:497
 msgid ""
@@ -13671,17 +13726,21 @@ msgid ""
 "task action menu. To actually delegate a task, the user must also have "
 "the **TaskWriteActivator** permission."
 msgstr ""
+"この権限を持つユーザーは、タスク操作メニューに「**」の「Delegate」** メニュー"
+"項目が表示されます。タスクを実際に委任するには、ユーザーは「**」の「"
+"TaskWriteActivator」** 権限も必要です。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:507
-#, fuzzy
 msgid ":ref:`🔑TaskDisplayDestroyAction <TaskDisplayDestroyAction>`"
-msgstr ":bdg-ref-warning:`🔑TaskDisplayDestroyAction <TaskDisplayDestroyAction>`"
+msgstr ":ref:`🔑TaskDisplayDestroyAction <TaskDisplayDestroyAction>`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:515
 msgid ""
 "Allows Portal to **display the destroy action** for tasks in the user "
 "interface."
 msgstr ""
+"Portalが**でタスクの破壊アクション** をユーザーインターフェースに表示できるよ"
+"うにします。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:518
 msgid ""
@@ -13689,19 +13748,21 @@ msgid ""
 " action menu. To actually destroy a task, the user must also have the "
 "**TaskDestroy** permission."
 msgstr ""
+"この権限を持つユーザーは、タスク操作メニューに「**」→「Destroy」→「** 」"
+"メニュー項目が表示されます。実際にタスクを破棄するには、ユーザーは「**」→「"
+"TaskDestroy」→「** 」権限も必要です。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:527
-#, fuzzy
 msgid ":ref:`🔑TaskDisplayWorkflowEventAction <TaskDisplayWorkflowEventAction>`"
-msgstr ""
-":bdg-ref-warning:`🔑TaskDisplayWorkflowEventAction "
-"<TaskDisplayWorkflowEventAction>`"
+msgstr ":ref:`🔑TaskDisplayWorkflowEventAction <TaskDisplayWorkflowEventAction>`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:535
 msgid ""
 "Allows Portal to **display workflow events** for a task, including the "
 "**task execution history and related workflow events**."
 msgstr ""
+"Portalが**でタスクのワークフローイベント** を表示できるようにします。これに"
+"は**のタスク実行履歴と関連ワークフローイベント** が含まれます。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:539
 msgid ""
@@ -13709,20 +13770,22 @@ msgid ""
 "the task action menu. To actually view the workflow event data, the user "
 "must also have the **WorkflowEventReadAll** permission."
 msgstr ""
+"この権限を持つユーザーは、タスクアクションメニューに「**」"
+"ワークフローイベント** のメニュー項目が表示されます。"
+"ワークフローイベントデータを実際に閲覧するには、ユーザーは「**」"
+"ワークフローイベント全読取** の権限も必要です。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:550
-#, fuzzy
 msgid ":ref:`🔑TaskDisplayCustomFieldsAction <TaskDisplayCustomFieldsAction>`"
-msgstr ""
-":bdg-ref-warning:`🔑TaskDisplayCustomFieldsAction "
-"<TaskDisplayCustomFieldsAction>`"
+msgstr ":ref:`🔑TaskDisplayCustomFieldsAction <TaskDisplayCustomFieldsAction>`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:558
-#, fuzzy
 msgid ""
 "Allows Portal to **display custom fields of a case** in the task user "
 "interface."
-msgstr "インターフェースに「カスタムフィールドを表示」ボタンを表示"
+msgstr ""
+"Portalが**でケースのカスタムフィールド** をタスクユーザーインターフェースに表"
+"示できるようにします。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:561
 msgid ""
@@ -13730,17 +13793,21 @@ msgid ""
 "the task action menu, allowing them to view custom case fields related to"
 " the task."
 msgstr ""
+"この権限を持つユーザーは、タスク操作メニューに「**カスタムフィールド」** "
+"メニュー項目が表示され、タスクに関連するカスタムケースフィールドを表示できま"
+"す。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:571
-#, fuzzy
 msgid ":ref:`🔑ShareTaskDetailsLink <ShareTaskDetailsLink>`"
-msgstr ":bdg-ref-warning:`🔑ShareTaskDetailsLink <ShareTaskDetailsLink>`"
+msgstr ":ref:`🔑ShareTaskDetailsLink <ShareTaskDetailsLink>`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:579
 msgid ""
 "Allows Portal to **display the share task details link** in the task user"
 " interface."
 msgstr ""
+"Portalが**で共有タスク詳細リンク** をタスクユーザーインターフェースに表示でき"
+"るようにします。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:582
 msgid ""
@@ -13748,6 +13815,8 @@ msgid ""
 "**Edit** button in the task details, allowing them to share a link to the"
 " task details."
 msgstr ""
+"この権限を持つユーザーは、タスク詳細画面で「**」編集ボタン（** ）の隣に「**」"
+"共有ボタン（** ）が表示され、タスク詳細へのリンクを共有できます。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:592
 msgid "Portal Case Permissions"
@@ -13755,39 +13824,40 @@ msgstr "ポータルのケースの権限"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:596
 #: ../../source/portal-developer-guide/permissions/index.rst:1504
-#, fuzzy
 msgid ":ref:`🔑CaseReadAll <CaseReadAll>`"
-msgstr ":bdg-ref-warning:`🔑CaseReadAll <CaseReadAll>`"
+msgstr ":ref:`🔑CaseReadAll <CaseReadAll>`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:602
 #: ../../source/portal-developer-guide/permissions/index.rst:621
 #: ../../source/portal-developer-guide/permissions/index.rst:645
 #: ../../source/portal-developer-guide/permissions/index.rst:666
-#, fuzzy
 msgid "Case Action"
-msgstr "**ケースアクション**"
+msgstr "ケース　アクション"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:604
 msgid ""
 "Allows a user to **view all cases within the security context**, "
 "regardless of whether the user is involved in the case."
 msgstr ""
+"ユーザーが**を実行すると、セキュリティコンテキスト** 内の全ケースを表示できま"
+"す。ユーザーが当該ケースに関与しているか否かは問いません。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:608
 msgid "Grant it to see all cases"
-msgstr ""
+msgstr "すべてのケースを表示する権限を付与"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:615
 #: ../../source/portal-developer-guide/permissions/index.rst:1505
-#, fuzzy
 msgid ":ref:`🔑CaseDestroy <CaseDestroy>`"
-msgstr ":bdg-ref-warning:`🔑CaseDestroy <CaseDestroy>`"
+msgstr ":ref:`🔑CaseDestroy <CaseDestroy>`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:623
 msgid ""
 "Allows to **permanently delete a case that is currently running**. Once "
 "deleted, the case and its data cannot be recovered."
 msgstr ""
+"**は、現在実行中のケースを完全に削除することを許可します** 。削除後、ケースと"
+"そのデータは復元できません。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:627
 msgid ""
@@ -13796,17 +13866,22 @@ msgid ""
 "system maintenance**. The Destroy action will be available in the case "
 "action menu."
 msgstr ""
+"管理者向けに設計されており、**トラブルシューティング、クリーンアップ、"
+"システムメンテナンス時などに、誤って開始されたケース、テストケース、ブロック"
+"されたケースを削除する必要があります。** 「破棄」アクションは"
+"ケースアクションメニューから利用可能です。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:639
-#, fuzzy
 msgid ":ref:`🔑CaseOwnerTaskDelegate <CaseOwnerTaskDelegate>`"
-msgstr ":bdg-ref-warning:`🔑CaseOwnerTaskDelegate <CaseOwnerTaskDelegate>`"
+msgstr ":ref:`🔑CaseOwnerTaskDelegate <CaseOwnerTaskDelegate>`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:647
 msgid ""
 "Allows a **case owner to delegate all tasks related to their case** to "
 "other users or roles."
 msgstr ""
+"**のケース所有者は、自身のケースに関連するすべてのタスクを他のユーザーまたは"
+"ロールに委任できます。**"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:650
 msgid ""
@@ -13815,18 +13890,22 @@ msgid ""
 "for example to hand over work, involve other team members, or reassign "
 "responsibilities."
 msgstr ""
+"**のケース所有者** で、この権限と**TaskWriteActivator** を併せ持つユーザーは"
+"、**自身のケース内** でタスクを委任できます。例えば、作業の引き継ぎ、他の"
+"チームメンバーの関与、責任の再割り当てなどが可能です。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:660
 #: ../../source/portal-developer-guide/permissions/index.rst:1506
-#, fuzzy
 msgid ":ref:`🔑CaseWriteDescription <CaseWriteDescription>`"
-msgstr ":bdg-ref-warning:`🔑CaseWriteDescription <CaseWriteDescription>`"
+msgstr ":ref:`🔑CaseWriteDescription <CaseWriteDescription>`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:668
 msgid ""
 "Allows a user to **edit the case description**. The description cannot be"
 " changed if the case is in the **DESTROYED** state."
 msgstr ""
+"ユーザーが**でケースの説明を編集できるようにします。** 。ケース"
+"が**DESTROYED** 状態にある場合、説明を変更できません。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:672
 msgid ""
@@ -13834,24 +13913,26 @@ msgid ""
 "description** in the case details, for example to add context, clarify "
 "information, or fix mistakes."
 msgstr ""
+"この権限を持つユーザーは、ケース詳細内のケース説明（例：コンテキストの追加、"
+"情報の明確化、誤りの修正など）を**更新または修正できます。**"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:681
-#, fuzzy
 msgid ":ref:`🔑ShowCaseDetails <ShowCaseDetails>`"
-msgstr ":bdg-ref-warning:`🔑ShowCaseDetails <ShowCaseDetails>`"
+msgstr ":ref:`🔑ShowCaseDetails <ShowCaseDetails>`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:687
 #: ../../source/portal-developer-guide/permissions/index.rst:708
 #: ../../source/portal-developer-guide/permissions/index.rst:729
-#, fuzzy
 msgid "Case UI Display Permissions"
-msgstr "**大文字小文字 UI 表示 権限**"
+msgstr "大文字小文字 UI 表示 権限"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:689
 msgid ""
 "Allows Portal to **display business details of a case in a separate "
 "tab**, providing additional case-related information."
 msgstr ""
+"Portalが**でケースの詳細情報を別タブ** に表示することを許可し、ケースに関連す"
+"る追加情報を提供します。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:693
 msgid ""
@@ -13859,20 +13940,21 @@ msgid ""
 " the case action menu, allowing them to open a new tab with extended case"
 " information."
 msgstr ""
+"この権限を持つユーザーは、ケースアクションメニューに「**ビジネス詳細** 」"
+"メニュー項目が表示され、拡張ケース情報を表示する新しいタブを開くことができま"
+"す。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:702
-#, fuzzy
 msgid ":ref:`🔑CaseDisplayCustomFieldsAction <CaseDisplayCustomFieldsAction>`"
-msgstr ""
-":bdg-ref-warning:`🔑CaseDisplayCustomFieldsAction "
-"<CaseDisplayCustomFieldsAction>`"
+msgstr ":ref:`🔑CaseDisplayCustomFieldsAction <CaseDisplayCustomFieldsAction>`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:710
-#, fuzzy
 msgid ""
 "Allows Portal to **display custom fields of a case** in the user "
 "interface."
-msgstr "インターフェースに「カスタムフィールドを表示」ボタンを表示"
+msgstr ""
+"Portalが**でケースのカスタムフィールド** をユーザーインターフェースに表示でき"
+"るようにします。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:713
 msgid ""
@@ -13880,17 +13962,20 @@ msgid ""
 "the case action menu, allowing them to view additional, case-specific "
 "information."
 msgstr ""
+"この権限を持つユーザーは、ケースアクションメニューに「**カスタムフィールド"
+"」** メニュー項目が表示され、ケース固有の追加情報を閲覧できます。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:723
-#, fuzzy
 msgid ":ref:`🔑ShareCaseDetailsLink <ShareCaseDetailsLink>`"
-msgstr ":bdg-ref-warning:`🔑ShareCaseDetailsLink <ShareCaseDetailsLink>`"
+msgstr ":ref:`🔑ShareCaseDetailsLink <ShareCaseDetailsLink>`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:731
 msgid ""
 "Allows Portal to **display a link for sharing case details** in the user "
 "interface."
 msgstr ""
+"Portalが**でケース詳細を共有するためのリンク** をユーザーインターフェースに表"
+"示できるようにします。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:734
 msgid ""
@@ -13898,6 +13983,8 @@ msgid ""
 "**Edit** button in the case details, allowing them to share a link to the"
 " case details with others."
 msgstr ""
+"この権限を持つユーザーは、ケース詳細画面で「**」編集ボタン（** ）の隣に「**」"
+"共有ボタン（** ）が表示され、ケース詳細へのリンクを他者と共有できます。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:745
 msgid "Portal General Permissions"
@@ -13905,22 +13992,22 @@ msgstr "ポータルの一般的な権限"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:749
 #: ../../source/portal-developer-guide/settings/index.rst:306
-#, fuzzy
 msgid ":ref:`🔑AccessFullProcessList <AccessFullProcessList>`"
-msgstr ":bdg-ref-warning:`🔑AccessFullProcessList <AccessFullProcessList>`"
+msgstr ":ref:`🔑AccessFullProcessList <AccessFullProcessList>`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:755
 #: ../../source/portal-developer-guide/permissions/index.rst:776
 #: ../../source/portal-developer-guide/permissions/index.rst:796
-#, fuzzy
 msgid "Portal Page Access"
-msgstr "**ポータルページへのアクセス**"
+msgstr "ポータルページへのアクセス"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:757
 msgid ""
 "Controls the visibility of the **Processes** page in the left navigation "
 "menu and the **Processes** tab in the global search."
 msgstr ""
+"左ナビゲーションメニューの「**プロセス** 」ページと、グローバル検索の"
+"「**プロセス** 」タブの表示を制御します。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:761
 msgid ""
@@ -13928,18 +14015,22 @@ msgid ""
 "or roles, for example to simplify the user interface or restrict access "
 "to process overviews."
 msgstr ""
+"**を使用して、特定のユーザーやロールに対してプロセス一覧** へのアクセスを表示"
+"または非表示にします。例えば、ユーザーインターフェースを簡素化したり、"
+"プロセス概要へのアクセスを制限したりする場合に利用されます。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:770
 #: ../../source/portal-developer-guide/settings/index.rst:311
-#, fuzzy
 msgid ":ref:`🔑AccessFullTaskList <AccessFullTaskList>`"
-msgstr ":bdg-ref-warning:`🔑AccessFullTaskList <AccessFullTaskList>`"
+msgstr ":ref:`🔑AccessFullTaskList <AccessFullTaskList>`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:778
 msgid ""
 "Controls the visibility of the **Tasks** page in the left navigation menu"
 " and the **Tasks** tab in the global search."
 msgstr ""
+"左ナビゲーションメニューの「**」タスク** ページと、グローバル検索の「**」"
+"タスク** タブの表示を制御します。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:781
 msgid ""
@@ -13947,18 +14038,22 @@ msgid ""
 "roles, for example to simplify the user interface or restrict task "
 "visibility."
 msgstr ""
+"**を使用して、特定のユーザーやロールに対してタスクリスト** へのアクセスを表示"
+"または非表示にします。これにより、ユーザーインターフェースを簡素化したり、"
+"タスクの可視性を制限したりできます。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:790
 #: ../../source/portal-developer-guide/settings/index.rst:316
-#, fuzzy
 msgid ":ref:`🔑AccessFullCaseList <AccessFullCaseList>`"
-msgstr ":bdg-ref-warning:`🔑AccessFullCaseList <AccessFullCaseList>`"
+msgstr ":ref:`🔑AccessFullCaseList <AccessFullCaseList>`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:798
 msgid ""
 "Controls the visibility of the **Cases** page in the left navigation menu"
 " and the **Cases** tab in the global search."
 msgstr ""
+"左ナビゲーションメニューの「**事例」** ページと、グローバル検索の「**事例"
+"」** タブの表示を制御します。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:801
 msgid ""
@@ -13966,11 +14061,13 @@ msgid ""
 "roles, for example to simplify the user interface or restrict case "
 "visibility."
 msgstr ""
+"**を使用して、特定のユーザーやロールに対してケース一覧** へのアクセスを表示ま"
+"たは非表示にします。これにより、ユーザーインターフェースを簡素化したり、"
+"ケースの可視性を制限したりできます。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:811
-#, fuzzy
 msgid ":ref:`🔑DashboardWriteOwn <DashboardWriteOwn>`"
-msgstr ":bdg-ref-warning:`🔑DashboardWriteOwn <DashboardWriteOwn>`"
+msgstr ":ref:`🔑DashboardWriteOwn <DashboardWriteOwn>`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:817
 #: ../../source/portal-developer-guide/permissions/index.rst:839
@@ -13980,9 +14077,8 @@ msgstr ":bdg-ref-warning:`🔑DashboardWriteOwn <DashboardWriteOwn>`"
 #: ../../source/portal-developer-guide/permissions/index.rst:930
 #: ../../source/portal-developer-guide/permissions/index.rst:951
 #: ../../source/portal-developer-guide/permissions/index.rst:1214
-#, fuzzy
 msgid "Dashboard Permissions"
-msgstr "**ダッシュボードの権限**"
+msgstr "ダッシュボードの権限"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:819
 msgid ""
@@ -13991,17 +14087,22 @@ msgid ""
 "**Private Dashboard** tab is hidden and the user cannot manage their own "
 "dashboards."
 msgstr ""
+"** ユーザーがダッシュボード設定ページでプライベート（個人用）ダッシュボードを"
+"作成・編集できるようにします（**）。この権限が付与されていない場合、"
+"プライベートダッシュボードタブ（**）は非表示となり、ユーザーは自身の"
+"ダッシュボードを管理できません（** ）。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:824
 msgid ""
 "Grant this permission to users who need to **create, customize, and "
 "maintain their own private and personal dashboards**."
 msgstr ""
+"**を使用して独自のプライベートおよびパーソナルダッシュボードを作成、"
+"カスタマイズ、維持する必要があるユーザーにこの権限を付与してください。**"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:833
-#, fuzzy
 msgid ":ref:`🔑DashboardWritePublic <DashboardWritePublic>`"
-msgstr ":bdg-ref-warning:`🔑DashboardWritePublic <DashboardWritePublic>`"
+msgstr ":ref:`🔑DashboardWritePublic <DashboardWritePublic>`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:841
 msgid ""
@@ -14010,12 +14111,18 @@ msgid ""
 "**Public Dashboard** tab is hidden and the user cannot manage shared "
 "dashboards."
 msgstr ""
+"ユーザーが** ** のダッシュボード設定** ページで、公開（共有）"
+"ダッシュボード** を作成および変更できるようにします。この権限が付与されていな"
+"い場合、**公開ダッシュボード** タブは非表示となり、ユーザーは共有"
+"ダッシュボードを管理できません。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:846
 msgid ""
 "Grant to **administrators or dashboard managers** who need to **create, "
 "maintain, and manage dashboards** shared across the application."
 msgstr ""
+"**の管理者またはダッシュボード管理者** に、アプリケーション全体で共有される"
+"ダッシュボード** の作成、維持、管理**を行う権限を付与します。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:854
 msgid ""
@@ -14023,11 +14130,13 @@ msgid ""
 "**DashboardWritePublic** permission, the **Dashboard configuration** menu"
 " option will be hidden from the user profile dropdown menu."
 msgstr ""
+"ユーザーが**DashboardWriteOwn** または**DashboardWritePublic** のいずれかの権"
+"限を付与されていない場合、**Dashboard configuration** のメニューオプションは"
+"、ユーザープロファイルのドロップダウンメニューから非表示になります。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:859
-#, fuzzy
 msgid ":ref:`🔑DashboardExportOwn <DashboardExportOwn>`"
-msgstr ":bdg-ref-warning:`🔑DashboardExportOwn <DashboardExportOwn>`"
+msgstr ":ref:`🔑DashboardExportOwn <DashboardExportOwn>`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:867
 msgid ""
@@ -14035,17 +14144,23 @@ msgid ""
 "for backup or sharing purposes. If this permission is not granted, the "
 "Export option is hidden in the private dashboard actions menu."
 msgstr ""
+"ユーザーが**でプライベート（個人用）ダッシュボードをJSONファイルとして"
+"エクスポートできるようにします。** バックアップや共有を目的としています。この"
+"権限が付与されていない場合、プライベートダッシュボードのアクションメニューか"
+"らエクスポートオプションは非表示になります。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:872
 msgid ""
 "Grant to users who need to **back up their personal dashboards or share "
 "dashboard configurations** with others or across environments."
 msgstr ""
+"**を使用して個人用ダッシュボードをバックアップする必要があるユーザー、また"
+"は** を通じて他者や環境間でダッシュボード設定を共有する必要があるユーザーに許"
+"可を与える。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:881
-#, fuzzy
 msgid ":ref:`🔑DashboardExportPublic <DashboardExportPublic>`"
-msgstr ":bdg-ref-warning:`🔑DashboardExportPublic <DashboardExportPublic>`"
+msgstr ":ref:`🔑DashboardExportPublic <DashboardExportPublic>`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:889
 msgid ""
@@ -14053,17 +14168,22 @@ msgid ""
 "backup or distribution purposes. If this permission is not granted, the "
 "Export option is hidden in the public dashboard actions menu."
 msgstr ""
+"ユーザーが**で公開（共有）ダッシュボードをJSONファイルとしてエクスポートでき"
+"るようにします。** バックアップや配布を目的としています。この権限が付与されて"
+"いない場合、公開ダッシュボードのアクションメニューからエクスポートオプション"
+"は非表示になります。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:894
 msgid ""
 "Grant to administrators who need to **back up or distribute public "
 "dashboard templates**, for example across different environments."
 msgstr ""
+"管理者に対して、公開ダッシュボードテンプレート（例：異なる環境間での）の"
+"バックアップや配布を許可します。****"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:903
-#, fuzzy
 msgid ":ref:`🔑DashboardImportOwn <DashboardImportOwn>`"
-msgstr ":bdg-ref-warning:`🔑DashboardImportOwn <DashboardImportOwn>`"
+msgstr ":ref:`🔑DashboardImportOwn <DashboardImportOwn>`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:911
 msgid ""
@@ -14071,6 +14191,9 @@ msgid ""
 "files**. If this permission is not granted, the Import option is hidden "
 "when creating private dashboards."
 msgstr ""
+"ユーザーが**でJSONファイルからプライベート（個人用）ダッシュボードを"
+"インポートできるようにします。** 。この権限が付与されていない場合、"
+"プライベートダッシュボード作成時にインポートオプションは非表示になります。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:915
 msgid ""
@@ -14078,11 +14201,13 @@ msgid ""
 "templates**, for example when restoring backups or reusing existing "
 "configurations."
 msgstr ""
+"**が必要なユーザーに、JSONテンプレート** から個人用ダッシュボードを作成する権"
+"限を付与します。例えば、バックアップの復元時や既存設定の再利用時などに利用さ"
+"れます。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:924
-#, fuzzy
 msgid ":ref:`🔑DashboardImportPublic <DashboardImportPublic>`"
-msgstr ":bdg-ref-warning:`🔑DashboardImportPublic <DashboardImportPublic>`"
+msgstr ":ref:`🔑DashboardImportPublic <DashboardImportPublic>`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:932
 msgid ""
@@ -14090,6 +14215,9 @@ msgid ""
 "If this permission is not granted, the Import option is hidden when "
 "creating public dashboards."
 msgstr ""
+"ユーザーが**でJSONファイルから公開（共有）ダッシュボードをインポートできるよ"
+"うにします。** 。この権限が付与されていない場合、公開ダッシュボード作成時に"
+"インポートオプションは非表示になります。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:936
 msgid ""
@@ -14097,12 +14225,14 @@ msgid ""
 "templates**, for example when setting up dashboards across environments "
 "or reusing standard templates"
 msgstr ""
+"**が必要なユーザーに権限を付与し、JSONテンプレート** から共有ダッシュボードを"
+"作成できるようにする。例：環境をまたいだダッシュボード設定時や標準"
+"テンプレートの再利用時など。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:945
 #: ../../source/portal-developer-guide/settings/index.rst:327
-#, fuzzy
 msgid ":ref:`🔑ShareDashboardLink <ShareDashboardLink>`"
-msgstr ":bdg-ref-warning:`🔑ShareDashboardLink <ShareDashboardLink>`"
+msgstr ":ref:`🔑ShareDashboardLink <ShareDashboardLink>`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:953
 msgid ""
@@ -14110,18 +14240,22 @@ msgid ""
 "users. If this permission is not granted, the Share option is hidden in "
 "the dashboard action menu."
 msgstr ""
+"ユーザーが**で公開ダッシュボード** への直接リンクを他のユーザーと共有できるよ"
+"うにします。この権限が付与されていない場合、ダッシュボードの"
+"アクションメニューから[共有]オプションが非表示になります。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:957
 msgid ""
 "Grant to users who need to **share dashboard links with colleagues**, for"
 " example for collaboration, reporting, or reference purposes."
 msgstr ""
+"**ダッシュボードのリンクを同僚と共有する必要があるユーザーに許可を与える。例"
+"：共同作業、報告、参照目的。**"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:968
 #: ../../source/portal-developer-guide/permissions/index.rst:1517
-#, fuzzy
 msgid ":ref:`🔑DocumentRead <DocumentRead>`"
-msgstr ":bdg-ref-warning:`🔑DocumentRead <DocumentRead>`"
+msgstr ":ref:`🔑DocumentRead <DocumentRead>`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:974
 #: ../../source/portal-developer-guide/permissions/index.rst:997
@@ -14135,21 +14269,25 @@ msgid ""
 "Portal** on a dedicated page without pagination. If this permission is "
 "not granted, the **Show more** option is hidden in the Documents widget."
 msgstr ""
+"ユーザーが**で、Portal** の全ケースとタスクにわたる全ドキュメントを専用ページ"
+"でページネーションなしに閲覧できるようにします。この権限が付与されていない場"
+"合、**の** オプションはDocumentsウィジェットで非表示になります。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:981
 msgid ""
 "Grant to users who need **full visibility into all documents**, for "
 "example for review, auditing, or document management purposes."
 msgstr ""
+"**が必要なユーザーに対し、すべての文書への完全な可視性を付与する。例："
+"レビュー、監査、文書管理の目的で。**"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:991
-#, fuzzy
 msgid ""
 ":ref:`🔑DocumentWrite <DocumentWrite>` and "
 ":ref:`🔑DocumentOfInvolvedCaseWrite <DocumentOfInvolvedCaseWrite>`"
 msgstr ""
-":bdg-ref-warning:`🔑DocumentWrite <DocumentWrite>` :bdg-ref-"
-"warning:`🔑DocumentOfInvolvedCaseWrite <DocumentOfInvolvedCaseWrite>`"
+":ref:`🔑DocumentWrite <DocumentWrite>` および:ref:`🔑"
+"DocumentOfInvolvedCaseWrite <DocumentOfInvolvedCaseWrite>`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:999
 msgid ""
@@ -14159,6 +14297,12 @@ msgid ""
 "actions may be hidden for cases in the **DONE** state if the global "
 "setting ``HIDE_UPLOAD_DOCUMENT_FOR_DONE_CASE`` is enabled."
 msgstr ""
+"これらの権限により、ユーザーはドキュメントウィジェットでドキュメントの"
+"アップロード（**）と削除（** ）が可能になります。ポータルは両方の権限を確認し"
+"ます：いずれか一方でもユーザーが持つ場合、アップロードと削除アクションが表示"
+"されます。注：グローバル設定``HIDE_UPLOAD_DOCUMENT_FOR_DONE_CASE`` が有効な場"
+"合、**DONE** 状態ではアップロードと削除アクションが非表示になることがあります"
+"。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1007
 msgid ""
@@ -14167,25 +14311,27 @@ msgid ""
 "document access should be limited to involved cases or allowed more "
 "broadly."
 msgstr ""
+"**に以下の権限のいずれかを付与してください** 。ドキュメントウィジェット内"
+"で**ドキュメントのアップロードまたは削除** を行う必要があるユーザーに対して、"
+"ドキュメントへのアクセスを関連ケースに限定するか、より広く許可するかによって"
+"権限を設定します。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1012
 msgid "``DocumentWrite``: No ``DocumentOfInvolvedCaseWrite``: role ``Everybody``"
-msgstr ""
+msgstr "``DocumentWrite``: No``DocumentOfInvolvedCaseWrite``: role``Everybody``"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1018
 #: ../../source/portal-developer-guide/permissions/index.rst:1510
-#, fuzzy
 msgid ":ref:`🔑RoleReadAll <RoleReadAll>`"
-msgstr ":bdg-ref-warning:`🔑RoleReadAll <RoleReadAll>`"
+msgstr ":ref:`🔑RoleReadAll <RoleReadAll>`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1024
 #: ../../source/portal-developer-guide/permissions/index.rst:1048
 #: ../../source/portal-developer-guide/permissions/index.rst:1070
 #: ../../source/portal-developer-guide/permissions/index.rst:1092
 #: ../../source/portal-developer-guide/permissions/index.rst:1116
-#, fuzzy
 msgid "Role Management"
-msgstr "RoleManagement"
+msgstr "ロール管理"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1026
 msgid ""
@@ -14195,6 +14341,10 @@ msgid ""
 "this permission is missing, administrators will encounter an error when "
 "accessing **Admin Settings**."
 msgstr ""
+"** ユーザーが利用可能な全ロールを閲覧できるようにします（**）。** 。ポータル"
+"自体はこの権限に基づく追加ロジックを適用しませんが、ロール可視化を許可するた"
+"め、管理者には自動的に付与されます（**）。この権限が欠如している場合、管理者"
+"は管理設定（**）** ）へのアクセス時にエラーが発生します。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1033
 msgid ""
@@ -14202,12 +14352,13 @@ msgid ""
 "roles**, for example when configuring users, permissions, or role "
 "assignments."
 msgstr ""
+"**の管理者またはユーザー** に、**すべてのロール** を閲覧・アクセスする権限を"
+"付与します。例：ユーザー設定、権限設定、ロール割り当て時など。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1042
 #: ../../source/portal-developer-guide/permissions/index.rst:1511
-#, fuzzy
 msgid ":ref:`🔑RoleCreate <RoleCreate>`"
-msgstr ":bdg-ref-warning:`🔑RoleCreate <RoleCreate>`"
+msgstr ":ref:`🔑RoleCreate <RoleCreate>`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1050
 msgid ""
@@ -14215,18 +14366,22 @@ msgid ""
 "tab within the **Admin Settings** page. If this permission is not "
 "granted, the **Create new role** button is hidden."
 msgstr ""
+"ユーザーが**新しい動的ロール** を**ロール管理** タブ内で**管理設定** ページに"
+"作成できるようにします。この権限が付与されていない場合、**新規ロール作成** "
+"ボタンは非表示になります。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1055
 msgid ""
 "Grant to **selected administrators** who are responsible for **creating "
 "and maintaining** dynamic roles within the system."
 msgstr ""
+"**** 内のシステム内で動的ロールの作成および維持を担当する、選択された管理者 "
+"に対して へのアクセス権を付与します。** **"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1064
 #: ../../source/portal-developer-guide/permissions/index.rst:1512
-#, fuzzy
 msgid ":ref:`🔑RoleDelete <RoleDelete>`"
-msgstr ":bdg-ref-warning:`🔑RoleDelete <RoleDelete>`"
+msgstr ":ref:`🔑RoleDelete <RoleDelete>`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1072
 msgid ""
@@ -14235,18 +14390,23 @@ msgid ""
 "the delete icon is disabled. Even with this permission, **non-dynamic "
 "roles cannot be deleted** and the delete icon remains disabled."
 msgstr ""
+"ユーザーが**動的ロール** を**ロール管理** タブ内の**管理設定** ページで削除で"
+"きるようにします。この権限が付与されていない場合、削除アイコンは無効化されま"
+"す。この権限があっても、**非動的ロールは削除できず** 削除アイコンは無効のまま"
+"です。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1078
 msgid ""
 "Grant to **selected administrators** who are responsible for **removing "
 "dynamic roles** that are no longer needed."
 msgstr ""
+"**に、**の管理責任を負う選択された管理者** を付与し、不要になった動的役割** "
+"を削除する権限を付与します。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1086
 #: ../../source/portal-developer-guide/settings/index.rst:333
-#, fuzzy
 msgid ":ref:`🔑RoleManagement <RoleManagement>`"
-msgstr ":bdg-ref-warning:`🔑RoleManagement <RoleManagement>`"
+msgstr ":ref:`🔑RoleManagement <RoleManagement>`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1094
 msgid ""
@@ -14255,6 +14415,10 @@ msgid ""
 "To perform actions such as **creating or deleting roles**, additional "
 "Engine Permissions like **RoleCreate** and **RoleDelete** are required."
 msgstr ""
+"ユーザーが** ** 管理設定** ページ内の「ロール管理」タブ** にアクセスできるよ"
+"うにします。この権限はページ自体へのアクセス権のみを付与します。ロールの作成"
+"や削除**** などの操作を実行するには、**RoleCreate** や**RoleDelete** などの追"
+"加のエンジン権限が必要です。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1101
 msgid ""
@@ -14262,12 +14426,13 @@ msgid ""
 "management**, while controlling specific actions through additional "
 "permissions."
 msgstr ""
+"**に、役割管理** へのアクセス権**が必要な選択された管理者** を付与し、追加の"
+"権限を通じて特定のアクションを制御します。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1110
 #: ../../source/portal-developer-guide/permissions/index.rst:1513
-#, fuzzy
 msgid ":ref:`🔑RoleMove <RoleMove>`"
-msgstr ":bdg-ref-warning:`🔑RoleMove <RoleMove>`"
+msgstr ":ref:`🔑RoleMove <RoleMove>`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1118
 msgid ""
@@ -14276,6 +14441,10 @@ msgid ""
 "permission is not granted, the parent role selection in the role creation"
 " dialog is disabled and automatically set to **Everybody**."
 msgstr ""
+"ユーザーが**動的ロールを作成する際に親ロールを選択できるようにします。** これ"
+"は**ロール管理** タブ内の**管理設定** ページで行われます。この権限が付与され"
+"ていない場合、ロール作成ダイアログでの親ロール選択は無効化され、自動的に**全"
+"員** に設定されます。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1124
 msgid ""
@@ -14283,19 +14452,19 @@ msgid ""
 "hierarchies** by choosing a specific parent role when creating dynamic "
 "roles."
 msgstr ""
+"**に、動的ロール作成時に特定の親ロールを選択することでロール階層を定義する必"
+"要がある管理者** への権限を付与します。****"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1134
 #: ../../source/portal-developer-guide/settings/index.rst:319
-#, fuzzy
 msgid ":ref:`🔑TaskCaseAddNote <TaskCaseAddNote>`"
-msgstr ":bdg-ref-warning:`🔑TaskCaseAddNote <TaskCaseAddNote>`"
+msgstr ":ref:`🔑TaskCaseAddNote <TaskCaseAddNote>`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1140
 #: ../../source/portal-developer-guide/permissions/index.rst:1162
 #: ../../source/portal-developer-guide/permissions/index.rst:1185
-#, fuzzy
 msgid "Notes and Comments"
-msgstr "**注記とコメント**"
+msgstr "注記とコメント"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1142
 msgid ""
@@ -14303,18 +14472,22 @@ msgid ""
 " not granted, the **Add note** option is hidden in the **History widget**"
 " (case details page) and the **Notes widget** (task details page)."
 msgstr ""
+"**** **** **** ユーザーがタスクまたはケースにメモを追加できるようにします"
+"（**）。この権限が付与されていない場合、メモ追加オプション（**）は、履歴"
+"ウィジェット（"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1147
 msgid ""
 "Grant to users who need to **collaborate and communicate on tasks and "
 "cases** by adding notes, comments, or additional information."
 msgstr ""
+"**でタスクやケースについて共同作業やコミュニケーションが必要なユーザーに、"
+"ノート、コメント、追加情報の追加を許可します。**"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1156
 #: ../../source/portal-developer-guide/settings/index.rst:321
-#, fuzzy
 msgid ":ref:`🔑TaskCaseShowMoreNote <TaskCaseShowMoreNote>`"
-msgstr ":bdg-ref-warning:`🔑TaskCaseShowMoreNote <TaskCaseShowMoreNote>`"
+msgstr ":ref:`🔑TaskCaseShowMoreNote <TaskCaseShowMoreNote>`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1164
 msgid ""
@@ -14323,20 +14496,23 @@ msgid ""
 " a user clicks **Show more**, the complete list of notes is displayed on "
 "a separate page **without pagination**."
 msgstr ""
+"**History ウィジェット** (全ケース一覧) および**Notes ウィジェット** (全"
+"タスクリスト) における**Show more** オプションの表示制御を行います。ユーザー"
+"が**Show more** をクリックすると、ノートの一覧が別ページ**に表示され、"
+"ページネーション** は適用されません。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1170
 msgid ""
 "Grant to users who need to **view the full list of notes** for tasks or "
 "cases, for example for review, auditing, or detailed collaboration."
 msgstr ""
+"ユーザーがタスクやケース（例：レビュー、監査、詳細な共同作業）のノート一覧"
+"を**で閲覧する必要がある場合、** の全ノートリストを閲覧する権限を付与する。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1179
 #: ../../source/portal-developer-guide/settings/index.rst:339
-#, fuzzy
 msgid ":ref:`🔑NoteReadAllCaseTaskDetails <NoteReadAllCaseTaskDetails>`"
-msgstr ""
-":bdg-ref-warning:`🔑NoteReadAllCaseTaskDetails "
-"<NoteReadAllCaseTaskDetails>`"
+msgstr ":ref:`🔑NoteReadAllCaseTaskDetails <NoteReadAllCaseTaskDetails>`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1187
 msgid ""
@@ -14347,6 +14523,12 @@ msgid ""
 " ``HIDE_SYSTEM_NOTES_FROM_HISTORY`` and "
 "``HIDE_SYSTEM_NOTES_FROM_HISTORY_ADMINISTRATOR``."
 msgstr ""
+"**の非管理者ユーザー** が、ケースおよびタスクの**History ウィジェット** およ"
+"び**Notes ウィジェット** でシステムノートを閲覧できるようにします。この権限が"
+"ない場合、一般ユーザーは自身のノートのみを閲覧でき、システムノートは管理者だ"
+"けに表示されます。**注記**: 可視性はグローバル設"
+"定``HIDE_SYSTEM_NOTES_FROM_HISTORY`` およ"
+"び``HIDE_SYSTEM_NOTES_FROM_HISTORY_ADMINISTRATOR`` にも依存します。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1195
 msgid ""
@@ -14354,6 +14536,9 @@ msgid ""
 "system notes** in case and task histories, for example for "
 "troubleshooting or detailed process tracking."
 msgstr ""
+"ユーザーが**を参照する必要がある場合、システム生成のアクティビティログや"
+"システムノート** をケースやタスク履歴内で閲覧できるようにする。例："
+"トラブルシューティングや詳細なプロセス追跡のため。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1203
 msgid ""
@@ -14367,9 +14552,8 @@ msgstr ""
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1208
 #: ../../source/portal-developer-guide/settings/index.rst:335
-#, fuzzy
 msgid ":ref:`🔑NewsManagement <NewsManagement>`"
-msgstr ":bdg-ref-warning:`🔑NewsManagement <NewsManagement>`"
+msgstr ":ref:`🔑NewsManagement <NewsManagement>`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1216
 msgid ""
@@ -14377,6 +14561,10 @@ msgid ""
 "widget** on dashboards. If this permission is not granted, users can "
 "**only view news items**, but cannot create, edit, or delete them."
 msgstr ""
+"ユーザーがダッシュボード上の**ニュースウィジェット** で"
+"、**ニュースアイテム** を作成、編集、削除できるようにします。この権限が付与さ"
+"れていない場合、ユーザーは**ニュースアイテム** を閲覧できますが、作成、編集、"
+"削除はできません。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1221
 msgid ""
@@ -14384,18 +14572,18 @@ msgid ""
 "content** on dashboard news widgets, for example administrators or "
 "content managers."
 msgstr ""
+"**のニュースコンテンツ管理および公開を担当するユーザー（例：管理者や"
+"コンテンツマネージャー）に付与します。**"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1230
 #: ../../source/portal-developer-guide/settings/index.rst:337
-#, fuzzy
 msgid ":ref:`🔑PasswordValidation <PasswordValidation>`"
-msgstr ":bdg-ref-warning:`🔑PasswordValidation <PasswordValidation>`"
+msgstr ":ref:`🔑PasswordValidation <PasswordValidation>`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1236
 #: ../../source/portal-developer-guide/permissions/index.rst:1257
-#, fuzzy
 msgid "Admin Settings & Configuration"
-msgstr "**管理設定と構成**"
+msgstr "管理設定と構成"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1238
 msgid ""
@@ -14403,43 +14591,46 @@ msgid ""
 "Settings** page, where password complexity and validation rules can be "
 "configured."
 msgstr ""
+"ユーザーが**にアクセスし、**管理設定** ページ内のパスワード検証** タブで、"
+"パスワードの複雑さと検証ルールを設定できるようにします。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1242
 msgid ""
 "Grant to **selected administrators** who are responsible for **defining "
 "and maintaining password security policies** within the system."
 msgstr ""
+"**内のパスワードセキュリティポリシーの定義および維持を担当する、選択された管"
+"理者** に対して権限を付与します。**システム内での**"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1251
 #: ../../source/portal-developer-guide/settings/index.rst:329
-#, fuzzy
 msgid ":ref:`🔑NotificationChannelsSetting <NotificationChannelsSetting>`"
-msgstr ""
-":bdg-ref-warning:`🔑NotificationChannelsSetting "
-"<NotificationChannelsSetting>`"
+msgstr ":ref:`🔑NotificationChannelsSetting <NotificationChannelsSetting>`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1259
 msgid ""
 "Allows a user to **override the default notification settings** (opt-out "
 "notifications) on the **My Profile** page."
 msgstr ""
+"ユーザーが**でデフォルトの通知設定をオーバーライドできるようにします。** （通"
+"知のオプトアウト）は、**の「マイプロフィール」ページ** で設定可能です。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1263
 msgid ""
 "Use this permission to **allow or restrict users or roles from modifying "
 "their notification channel preferences** on the **My Profile** page."
 msgstr ""
+"** この権限を使用して、**ユーザーまたはロールが、**の「マイプロフィール」"
+"ページ** で通知チャネル設定を変更することを許可または制限します。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1272
 #: ../../source/portal-developer-guide/settings/index.rst:323
-#, fuzzy
 msgid ":ref:`🔑CreatePublicExternalLink <CreatePublicExternalLink>`"
-msgstr ":bdg-ref-warning:`🔑CreatePublicExternalLink <CreatePublicExternalLink>`"
+msgstr ":ref:`🔑CreatePublicExternalLink <CreatePublicExternalLink>`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1278
-#, fuzzy
 msgid "Process & External Links"
-msgstr "**処理と外部リンク**"
+msgstr "処理と外部リンク"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1280
 msgid ""
@@ -14450,6 +14641,12 @@ msgid ""
 "With this permission, users can create **public external links** with "
 "role-based visibility that appear in the process list for selected roles."
 msgstr ""
+"**の可視性を制御します。可視性** セクションは、**の**外部リンクの追加** "
+"ダイアログ、および の フルプロセスリスト** ページに表示されます。この権限が付"
+"与されていない場合、可視性セクションは非表示となり、ユーザーは**プライベート"
+"外部リンク** （自身のみに表示）のみ作成できます。この権限を持つユーザーは"
+"、**ロールベースの可視性を持つパブリック外部リンク** を作成でき、選択された"
+"ロールのプロセスリストに表示されます。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1289
 msgid ""
@@ -14457,6 +14654,9 @@ msgid ""
 "users or roles**, not just private links, for example for collaboration "
 "or guided access to processes."
 msgstr ""
+"**他のユーザーやロールと共有する外部リンクを作成する必要があるユーザーに権限"
+"を付与してください。** プライベートリンクだけでなく、例えばコラボレーションや"
+"プロセスへのガイド付きアクセスなどの目的で。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1299
 msgid "Portal Absence And Substitute Permissions"
@@ -14464,81 +14664,80 @@ msgstr "ポータルの不在者と代行者の権限"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1304
 #: ../../source/portal-developer-guide/permissions/index.rst:1523
-#, fuzzy
 msgid ":ref:`🔑UserReadOwnAbsences <UserReadOwnAbsences>`"
-msgstr ":bdg-ref-warning:`🔑UserReadOwnAbsences <UserReadOwnAbsences>`"
+msgstr ":ref:`🔑UserReadOwnAbsences <UserReadOwnAbsences>`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1310
 #: ../../source/portal-developer-guide/permissions/index.rst:1328
 #: ../../source/portal-developer-guide/permissions/index.rst:1347
-#, fuzzy
 msgid "Manage own absences"
-msgstr "ユーザーの不在を管理できます"
+msgstr "自身の欠勤を管理する"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1312
-#, fuzzy
 msgid "Allows a user to **view their own absence records**."
-msgstr "自身の欠席記録を表示"
+msgstr "ユーザーが自身の欠席記録を**で閲覧できるようにする** 。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1314
 msgid ""
 "Enables users to **see their personal absence information**, for example "
 "to review planned or recorded absences."
 msgstr ""
+"ユーザーが自身の欠勤情報を確認できるようにします（例：予定または記録された欠"
+"勤を確認するため）。****"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1322
 #: ../../source/portal-developer-guide/permissions/index.rst:1524
-#, fuzzy
 msgid ":ref:`🔑UserCreateOwnAbsence <UserCreateOwnAbsence>`"
-msgstr ":bdg-ref-warning:`🔑UserCreateOwnAbsence <UserCreateOwnAbsence>`"
+msgstr ":ref:`🔑UserCreateOwnAbsence <UserCreateOwnAbsence>`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1330
-#, fuzzy
 msgid "Allows a user to **create and edit their own absences**."
-msgstr "独自の不在期間を作成・編集する"
+msgstr "ユーザーが自身の欠勤を**作成・編集できるようにする** 。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1332
 msgid ""
 "Enables users to **create and maintain their own absence entries**, for "
 "example for vacation or other planned absences."
 msgstr ""
+"ユーザーが休暇やその他の計画的な欠勤など、自身の欠勤エントリーを作成・管理で"
+"きるようにします。例:****"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1341
 #: ../../source/portal-developer-guide/permissions/index.rst:1525
-#, fuzzy
 msgid ":ref:`🔑UserDeleteOwnAbsence <UserDeleteOwnAbsence>`"
-msgstr ":bdg-ref-warning:`🔑UserDeleteOwnAbsence <UserDeleteOwnAbsence>`"
+msgstr ":ref:`🔑UserDeleteOwnAbsence <UserDeleteOwnAbsence>`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1349
-#, fuzzy
 msgid "Allows a user to **delete their own absence records**."
-msgstr "自身の不在記録を削除"
+msgstr "ユーザーが自身の欠席記録を削除できるようにする機能を提供します。****"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1351
 msgid ""
 "Enables users to **remove their own absence entries**, for example if an "
 "absence was entered incorrectly or is no longer relevant."
 msgstr ""
+"ユーザーが自身の欠席登録を削除できるようにします（例：誤って登録した場合や不"
+"要になった場合）。****"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1361
 #: ../../source/portal-developer-guide/permissions/index.rst:1526
 #: ../../source/portal-developer-guide/settings/index.rst:294
-#, fuzzy
 msgid ":ref:`🔑UserReadAbsences <UserReadAbsences>`"
-msgstr ":bdg-ref-warning:`🔑UserReadAbsences <UserReadAbsences>`"
+msgstr ":ref:`🔑UserReadAbsences <UserReadAbsences>`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1367
 #: ../../source/portal-developer-guide/permissions/index.rst:1387
 #: ../../source/portal-developer-guide/permissions/index.rst:1407
-#, fuzzy
 msgid "Manage absences for all users"
-msgstr "すべてのユーザーの不在の閲覧"
+msgstr "全ユーザーの欠勤を管理する"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1369
 msgid ""
 "Allows a user to **view absence records of all users** within the current"
 " security context."
 msgstr ""
+"ユーザーが現在のセキュリティコンテキスト内で、すべてのユーザーの不在記録"
+"を**で閲覧できるようにします。**"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1372
 msgid ""
@@ -14546,19 +14745,22 @@ msgid ""
 "of all users**, for example for planning, coordination, or administrative"
 " oversight."
 msgstr ""
+"管理者またはマネージャーに対し、**を通じて全ユーザーの欠勤状況を確認する権限"
+"を付与する。例：計画立案、調整、または管理上の監督のため。**"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1381
 #: ../../source/portal-developer-guide/permissions/index.rst:1527
 #: ../../source/portal-developer-guide/settings/index.rst:298
-#, fuzzy
 msgid ":ref:`🔑UserCreateAbsence <UserCreateAbsence>`"
-msgstr ":bdg-ref-warning:`🔑UserCreateAbsence <UserCreateAbsence>`"
+msgstr ":ref:`🔑UserCreateAbsence <UserCreateAbsence>`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1389
 msgid ""
 "Allows a user to **create and edit absence records** for any user within "
 "the current security context."
 msgstr ""
+"ユーザーが**で欠勤記録を作成・編集できるようにします。** は現在の"
+"セキュリティコンテキスト内の任意のユーザーに対して適用されます。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1392
 msgid ""
@@ -14566,19 +14768,22 @@ msgid ""
 "absences on behalf of other users**, for example for corrections or "
 "administrative handling."
 msgstr ""
+"管理者またはマネージャーに、他のユーザーに代わって欠勤の作成または更新を行う"
+"権限を付与します（例：修正や管理上の処理のため）。****"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1401
 #: ../../source/portal-developer-guide/permissions/index.rst:1528
 #: ../../source/portal-developer-guide/settings/index.rst:296
-#, fuzzy
 msgid ":ref:`🔑UserDeleteAbsence <UserDeleteAbsence>`"
-msgstr ":bdg-ref-warning:`🔑UserDeleteAbsence <UserDeleteAbsence>`"
+msgstr ":ref:`🔑UserDeleteAbsence <UserDeleteAbsence>`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1409
 msgid ""
 "Allows a user to **delete absence records for any user** within the "
 "current security context."
 msgstr ""
+"ユーザーが現在のセキュリティコンテキスト内で任意のユーザー（** ）の不在記録を"
+"削除できるようにします（**）。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1412
 msgid ""
@@ -14586,42 +14791,44 @@ msgid ""
 "for other users**, for example to correct mistakes or clean up outdated "
 "records."
 msgstr ""
+"管理者またはマネージャーには、他のユーザーの欠勤記録を削除する権限を付与しま"
+"す（例：誤りを修正したり、古い記録を整理したりするため）。****"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1422
 #: ../../source/portal-developer-guide/permissions/index.rst:1529
-#, fuzzy
 msgid ":ref:`🔑UserCreateOwnSubstitute <UserCreateOwnSubstitute>`"
-msgstr ":bdg-ref-warning:`🔑UserCreateOwnSubstitute <UserCreateOwnSubstitute>`"
+msgstr ":ref:`🔑UserCreateOwnSubstitute <UserCreateOwnSubstitute>`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1428
 #: ../../source/portal-developer-guide/permissions/index.rst:1448
 #: ../../source/portal-developer-guide/permissions/index.rst:1468
-#, fuzzy
 msgid "Manage substitutes"
-msgstr "代行者の管理"
+msgstr "置換を管理する"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1430
-#, fuzzy
 msgid "Allows a user to **create their own substitute**."
-msgstr "UserCreateOwnSubstitute"
+msgstr "ユーザーが独自の置換を作成できるようにする：****"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1432
 msgid ""
 "Enables users to **define a substitute for themselves**, for example to "
 "ensure tasks and responsibilities are handled during their absence"
 msgstr ""
+"ユーザーが自身に代わる代理人を定義できるようにします（例：**）。これにより、"
+"不在時のタスクや責任が確実に処理されます（例：** ）。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1442
 #: ../../source/portal-developer-guide/permissions/index.rst:1530
-#, fuzzy
 msgid ":ref:`🔑UserCreateSubstitute <UserCreateSubstitute>`"
-msgstr ":bdg-ref-warning:`🔑UserCreateSubstitute <UserCreateSubstitute>`"
+msgstr ":ref:`🔑UserCreateSubstitute <UserCreateSubstitute>`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1450
 msgid ""
 "Allows a user to **create substitute assignments for any user** within "
 "the current security context."
 msgstr ""
+"ユーザーが現在のセキュリティコンテキスト内で任意のユーザーに対する代替割り当"
+"てを作成できるようにします。****"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1453
 msgid ""
@@ -14629,18 +14836,21 @@ msgid ""
 "behalf of other users**, for example for planned absences or "
 "organizational coverage."
 msgstr ""
+"管理者またはマネージャーには、他のユーザーに代わって代理人を割り当てる権限を"
+"付与します（例：予定された不在や組織的なカバーのため）。****"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1462
 #: ../../source/portal-developer-guide/permissions/index.rst:1531
-#, fuzzy
 msgid ":ref:`🔑UserReadSubstitutes <UserReadSubstitutes>`"
-msgstr ":bdg-ref-warning:`🔑UserReadSubstitutes <UserReadSubstitutes>`"
+msgstr ":ref:`🔑UserReadSubstitutes <UserReadSubstitutes>`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1470
 msgid ""
 "Allows a user to **view substitute assignments of any user** within the "
 "current security context."
 msgstr ""
+"ユーザーが現在のセキュリティコンテキスト内で任意のユーザー** の置換割り当て"
+"を**で表示できるようにします。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1473
 msgid ""
@@ -14648,58 +14858,50 @@ msgid ""
 " assignments**, for example to review coverage, validate substitutions, "
 "or support organizational planning."
 msgstr ""
+"管理者またはマネージャーに対し、代替割り当ての可視性（例：カバレッジの"
+"レビュー、置換の検証、組織計画の支援）を必要とする場合に、**へのアクセス権を"
+"付与する。**"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1484
-#, fuzzy
 msgid "Engine Permissions used by Portal"
-msgstr "エンジン権限はポータルによって尊重されます"
+msgstr "ポータルで使用されるエンジン権限"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1486
-#, fuzzy
 msgid ""
 "Portal uses the following Axon Ivy Engine Permissions. These are "
 "documented here for completeness as they directly affect Portal "
 "functionality:"
 msgstr ""
-"Portalは、以下のAxon Ivy "
-"Engineコア権限を尊重します。これらはPortalの機能に直接影響するため、完全性を期すためにここに文書化されています："
+"Portalは以下のAxon Ivy Engine Permissionsを使用します。これらはPortalの機能に"
+"直接影響するため、完全性を期すためにここに文書化されています："
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1488
-#, fuzzy
 msgid "**Task Permissions:**"
-msgstr "タスクの権限"
+msgstr "**タスク権限：**"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1502
-#, fuzzy
 msgid "**Case Permissions:**"
-msgstr "ケースの権限"
+msgstr "**ケース権限：**"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1508
-#, fuzzy
 msgid "**Role Permissions:**"
-msgstr "**ポータル権限**"
+msgstr "**ロール権限：**"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1515
-#, fuzzy
 msgid "**Document Permissions:**"
-msgstr "**ドキュメントの許可**"
+msgstr "**ドキュメントの許可:**"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1518
-#, fuzzy
 msgid ":ref:`🔑DocumentWrite <DocumentWrite>`"
-msgstr ":bdg-ref-warning:`🔑DocumentWrite <DocumentWrite>`"
+msgstr ":ref:`🔑DocumentWrite <DocumentWrite>`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1519
-#, fuzzy
 msgid ":ref:`🔑DocumentOfInvolvedCaseWrite <DocumentOfInvolvedCaseWrite>`"
-msgstr ""
-":bdg-ref-warning:`🔑DocumentOfInvolvedCaseWrite "
-"<DocumentOfInvolvedCaseWrite>`"
+msgstr ":ref:`🔑DocumentOfInvolvedCaseWrite <DocumentOfInvolvedCaseWrite>`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1521
-#, fuzzy
 msgid "**Absence & Substitute Permissions:**"
-msgstr "ポータルの不在者と代行者の権限"
+msgstr "**欠落および置換の許可:**"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1534
 msgid ""
@@ -14826,7 +15028,6 @@ msgid "**Export CMS Entries**"
 msgstr "**CMSエントリのエクスポート**"
 
 #: ../../source/portal-developer-guide/settings/index.rst:62
-#, fuzzy
 msgid "Export all CMS entries of Portal to an Excel file"
 msgstr "ポータルのすべてのCMSエントリをExcelファイルにエクスポートする"
 
@@ -14956,12 +15157,10 @@ msgid "**Import and Deploy**"
 msgstr "**インポートとデプロイ**"
 
 #: ../../source/portal-developer-guide/settings/index.rst:102
-#, fuzzy
 msgid "Import the Excel file back into Portal"
-msgstr "Excelファイルをポータルに再インポートする"
+msgstr "ExcelファイルをPortalに再インポートする"
 
 #: ../../source/portal-developer-guide/settings/index.rst:103
-#, fuzzy
 msgid "Redeploy Portal"
 msgstr "ポータルの再デプロイ"
 
@@ -15002,7 +15201,6 @@ msgstr ""
 "で行ってください。すべてのポータル権限は「PortalPermissions」グループにまとめられています。"
 
 #: ../../source/portal-developer-guide/settings/index.rst:131
-#, fuzzy
 msgid ""
 "Portal is built as a layer above the Axon Ivy Engine core. Not every core"
 " engine permission is automatically honored or supported by Portal. "
@@ -15011,9 +15209,11 @@ msgid ""
 "permission that is not currently supported by Portal, please contact Axon"
 " Ivy support to discuss your requirements."
 msgstr ""
-"ポータルはAxon Ivy "
-"Engineコアの上に構築されたレイヤーです。コアエンジンのすべての権限が自動的に尊重またはサポートされるわけではありません。すべてのコア権限をサポートするには多大な労力が必要となり、保守オーバーヘッドが増加します。ポータルで現在サポートされていない特定のエンジン権限が必要な場合は、要件についてAxon"
-" Ivyサポートまでお問い合わせください。"
+"PortalはAxon Ivy Engineコアの上に構築されたレイヤーです。コアエンジンのすべて"
+"の権限がPortalによって自動的に尊重またはサポートされるわけではありません。す"
+"べてのエンジン権限をサポートするには多大な労力が必要となり、保守"
+"オーバーヘッドが増加します。Portalで現在サポートされていない特定のエンジン権"
+"限が必要な場合は、要件についてAxon Ivyサポートにお問い合わせください。"
 
 #: ../../source/portal-developer-guide/settings/index.rst:135
 msgid "**General Permission Rules:**"
@@ -15024,13 +15224,12 @@ msgid "Normal users can only see tasks and cases they can work on"
 msgstr "一般ユーザーは自身が対応可能なタスクとケースのみ閲覧可能"
 
 #: ../../source/portal-developer-guide/settings/index.rst:138
-#, fuzzy
 msgid ""
 "Administrators with :ref:`🔑TaskReadAll <TaskReadAll>` and "
 ":ref:`🔑CaseReadAll <CaseReadAll>` can see all tasks/cases"
 msgstr ""
-":bdg-ref-warning:`🔑TaskReadAll <TaskReadAll>` および :bdg-ref-"
-"warning:`🔑CaseReadAll <CaseReadAll>` の管理者権限を持つユーザーは、すべてのタスク/ケースを確認できます。"
+":ref:`🔑TaskReadAll <TaskReadAll>` および:ref:`🔑CaseReadAll <CaseReadAll>` "
+"の管理者権限を持つユーザーは、すべてのタスク/ケースを確認できます。"
 
 #: ../../source/portal-developer-guide/settings/index.rst:139
 msgid "Administrators can interact with, create, update, and delete all workflows"
@@ -15053,9 +15252,8 @@ msgstr "**注記を追加**"
 
 #: ../../source/portal-developer-guide/settings/index.rst:147
 #: ../../source/portal-developer-guide/settings/index.rst:240
-#, fuzzy
 msgid "User needs permission: :ref:`🔑TaskCaseAddNote <TaskCaseAddNote>`"
-msgstr "ユーザーは許可が必要です：:bdg-ref-warning:`🔑TaskCaseAddNote <TaskCaseAddNote>`"
+msgstr "ユーザーは許可が必要です：:ref:`🔑TaskCaseAddNote <TaskCaseAddNote>`"
 
 #: ../../source/portal-developer-guide/settings/index.rst:149
 msgid "**Delegate**"
@@ -15068,34 +15266,31 @@ msgid "Required permissions:"
 msgstr "必要な権限："
 
 #: ../../source/portal-developer-guide/settings/index.rst:153
-#, fuzzy
 msgid ""
 "To see delegate action: :ref:`🔑TaskDisplayDelegateAction "
 "<TaskDisplayDelegateAction>` and :ref:`🔑TaskWriteActivator "
 "<TaskWriteActivator>`"
 msgstr ""
-"デリゲートアクションの参照: :bdg-ref-warning:`🔑TaskDisplayDelegateAction "
-"<TaskDisplayDelegateAction>` および :bdg-ref-warning:`🔑TaskWriteActivator "
+"デリゲートアクションを確認するには::ref:`🔑TaskDisplayDelegateAction "
+"<TaskDisplayDelegateAction>` および:ref:`🔑TaskWriteActivator "
 "<TaskWriteActivator>`"
 
 #: ../../source/portal-developer-guide/settings/index.rst:154
-#, fuzzy
 msgid ""
 "To delegate personal/group tasks: :ref:`🔑TaskWriteActivatorOwnTasks "
 "<TaskWriteActivatorOwnTasks>` (not assigned to Everybody by default)"
 msgstr ""
-"個人/グループのタスクを委任するには：:bdg-ref-warning:`🔑TaskWriteActivatorOwnTasks "
+"個人/グループのタスクを委任するには：:ref:`🔑TaskWriteActivatorOwnTasks "
 "<TaskWriteActivatorOwnTasks>` （デフォルトでは全員に割り当てられません）"
 
 #: ../../source/portal-developer-guide/settings/index.rst:155
-#, fuzzy
 msgid ""
 "Case owner delegation: :ref:`🔑CaseOwnerTaskDelegate "
 "<CaseOwnerTaskDelegate>` allows delegating all related tasks within their"
 " case"
 msgstr ""
-"ケース所有者委任：:bdg-ref-warning:`🔑CaseOwnerTaskDelegate "
-"<CaseOwnerTaskDelegate>` により、ケース内の関連タスクをすべて委任可能"
+"ケース所有者委任：:ref:`🔑CaseOwnerTaskDelegate <CaseOwnerTaskDelegate>` によ"
+"り、ケース内の関連タスクをすべて委任可能"
 
 #: ../../source/portal-developer-guide/settings/index.rst:158
 msgid ""
@@ -15108,24 +15303,22 @@ msgid "**Reset**"
 msgstr "**リセット**"
 
 #: ../../source/portal-developer-guide/settings/index.rst:164
-#, fuzzy
 msgid ""
 "To see reset action: :ref:`🔑TaskDisplayResetAction "
 "<TaskDisplayResetAction>`"
 msgstr ""
-"リセット操作を確認するには：:bdg-ref-warning:`🔑TaskDisplayResetAction "
+"リセット操作を確認するには：:ref:`🔑TaskDisplayResetAction "
 "<TaskDisplayResetAction>`"
 
 #: ../../source/portal-developer-guide/settings/index.rst:165
-#, fuzzy
 msgid ""
 "To reset tasks: :ref:`🔑TaskResetOwnWorkingTask <TaskResetOwnWorkingTask>`"
 " or :ref:`🔑TaskResetReadyForJoin <TaskResetReadyForJoin>` or "
 ":ref:`🔑TaskReset <TaskReset>`"
 msgstr ""
-"タスクをリセットするには：:bdg-ref-warning:`🔑TaskResetOwnWorkingTask "
-"<TaskResetOwnWorkingTask>` または :bdg-ref-warning:`🔑TaskResetReadyForJoin "
-"<TaskResetReadyForJoin>` または :bdg-ref-warning:`🔑TaskReset <TaskReset>`"
+"タスクをリセットするには：:ref:`🔑TaskResetOwnWorkingTask "
+"<TaskResetOwnWorkingTask>` または:ref:`🔑TaskResetReadyForJoin "
+"<TaskResetReadyForJoin>` または:ref:`🔑TaskReset <TaskReset>`"
 
 #: ../../source/portal-developer-guide/settings/index.rst:168
 msgid "Only works for tasks in states: RESUMED, PARKED, READY_FOR_JOIN, FAILED"
@@ -15137,9 +15330,8 @@ msgid "**Delete**"
 msgstr "**削除**"
 
 #: ../../source/portal-developer-guide/settings/index.rst:172
-#, fuzzy
 msgid "User needs permission: :ref:`🔑TaskDestroy <TaskDestroy>`"
-msgstr "ユーザーは許可が必要です：:bdg-ref-warning:`🔑TaskDestroy <TaskDestroy>`"
+msgstr "ユーザーは許可が必要です：:ref:`🔑TaskDestroy <TaskDestroy>`"
 
 #: ../../source/portal-developer-guide/settings/index.rst:175
 msgid "Only works if task state is not DESTROYED or DONE"
@@ -15150,20 +15342,18 @@ msgid "**Reserve**"
 msgstr "**予約**"
 
 #: ../../source/portal-developer-guide/settings/index.rst:181
-#, fuzzy
 msgid ""
 "To see reserve action: :ref:`🔑TaskDisplayReserveAction "
 "<TaskDisplayReserveAction>`"
 msgstr ""
-"予約アクションを確認するには：:bdg-ref-warning:`🔑TaskDisplayReserveAction "
+"予約アクションを確認するには：:ref:`🔑TaskDisplayReserveAction "
 "<TaskDisplayReserveAction>`"
 
 #: ../../source/portal-developer-guide/settings/index.rst:182
-#, fuzzy
 msgid "To reserve a task: :ref:`🔑TaskParkOwnWorkingTask <TaskParkOwnWorkingTask>`"
 msgstr ""
-"タスクを予約するには：:bdg-ref-warning:`🔑TaskParkOwnWorkingTask "
-"<TaskParkOwnWorkingTask>`"
+"タスクを予約するには：:ref:`🔑TaskParkOwnWorkingTask <TaskParkOwnWorkingTask>"
+"`"
 
 #: ../../source/portal-developer-guide/settings/index.rst:185
 msgid "Only possible if task is in states: CREATED, RESUMED, SUSPENDED"
@@ -15175,11 +15365,10 @@ msgid "**Change Description**"
 msgstr "**変更内容の説明**"
 
 #: ../../source/portal-developer-guide/settings/index.rst:189
-#, fuzzy
 msgid "User needs permission: :ref:`🔑TaskWriteDescription <TaskWriteDescription>`"
 msgstr ""
-"ユーザーは許可が必要です：:bdg-ref-warning:`🔑TaskWriteDescription "
-"<TaskWriteDescription>`"
+"ユーザーは許可が必要です：:ref:`🔑TaskWriteDescription <TaskWriteDescription>"
+"`"
 
 #: ../../source/portal-developer-guide/settings/index.rst:192
 msgid ""
@@ -15192,12 +15381,11 @@ msgid "**Change Deadline**"
 msgstr "**変更期限**"
 
 #: ../../source/portal-developer-guide/settings/index.rst:196
-#, fuzzy
 msgid ""
 "User needs permission: :ref:`🔑TaskWriteExpiryTimestamp "
 "<TaskWriteExpiryTimestamp>`"
 msgstr ""
-"ユーザーは許可が必要です：:bdg-ref-warning:`🔑TaskWriteExpiryTimestamp "
+"ユーザーは許可が必要です：:ref:`🔑TaskWriteExpiryTimestamp "
 "<TaskWriteExpiryTimestamp>`"
 
 #: ../../source/portal-developer-guide/settings/index.rst:199
@@ -15211,12 +15399,11 @@ msgid "**Change Priority**"
 msgstr "**優先度を変更**"
 
 #: ../../source/portal-developer-guide/settings/index.rst:203
-#, fuzzy
 msgid ""
 "User needs permission: :ref:`🔑TaskWriteOriginalPriority "
 "<TaskWriteOriginalPriority>`"
 msgstr ""
-"ユーザーは許可が必要です：:bdg-ref-warning:`🔑TaskWriteOriginalPriority "
+"ユーザーは許可が必要です：:ref:`🔑TaskWriteOriginalPriority "
 "<TaskWriteOriginalPriority>`"
 
 #: ../../source/portal-developer-guide/settings/index.rst:208
@@ -15224,12 +15411,11 @@ msgid "**Display Additional Options**"
 msgstr "**追加オプションを表示**"
 
 #: ../../source/portal-developer-guide/settings/index.rst:210
-#, fuzzy
 msgid ""
 "User needs permission: :ref:`🔑TaskDisplayAdditionalOptions "
 "<TaskDisplayAdditionalOptions>`"
 msgstr ""
-"ユーザーは許可が必要です：:bdg-ref-warning:`🔑TaskDisplayAdditionalOptions "
+"ユーザーは許可が必要です：:ref:`🔑TaskDisplayAdditionalOptions "
 "<TaskDisplayAdditionalOptions>`"
 
 #: ../../source/portal-developer-guide/settings/index.rst:212
@@ -15237,12 +15423,11 @@ msgid "**Display Workflow Events**"
 msgstr "**表示ワークフローイベント**"
 
 #: ../../source/portal-developer-guide/settings/index.rst:214
-#, fuzzy
 msgid ""
 "User needs permission: :ref:`🔑TaskDisplayWorkflowEventAction "
 "<TaskDisplayWorkflowEventAction>`"
 msgstr ""
-"ユーザーは許可が必要です：:bdg-ref-warning:`🔑TaskDisplayWorkflowEventAction "
+"ユーザーは許可が必要です：:ref:`🔑TaskDisplayWorkflowEventAction "
 "<TaskDisplayWorkflowEventAction>`"
 
 #: ../../source/portal-developer-guide/settings/index.rst:216
@@ -15251,12 +15436,11 @@ msgid "**Display Custom Fields**"
 msgstr "**カスタムフィールドを表示**"
 
 #: ../../source/portal-developer-guide/settings/index.rst:218
-#, fuzzy
 msgid ""
 "User needs permission: :ref:`🔑TaskDisplayCustomFieldsAction "
 "<TaskDisplayCustomFieldsAction>`"
 msgstr ""
-"ユーザーは許可が必要です：:bdg-ref-warning:`🔑TaskDisplayCustomFieldsAction "
+"ユーザーは許可が必要です：:ref:`🔑TaskDisplayCustomFieldsAction "
 "<TaskDisplayCustomFieldsAction>`"
 
 #: ../../source/portal-developer-guide/settings/index.rst:220
@@ -15264,23 +15448,21 @@ msgid "**Share Task Details Link**"
 msgstr "**共有タスク詳細リンク**"
 
 #: ../../source/portal-developer-guide/settings/index.rst:222
-#, fuzzy
 msgid "User needs permission: :ref:`🔑ShareTaskDetailsLink <ShareTaskDetailsLink>`"
 msgstr ""
-"ユーザーは許可が必要です：:bdg-ref-warning:`🔑ShareTaskDetailsLink "
-"<ShareTaskDetailsLink>`"
+"ユーザーは許可が必要です：:ref:`🔑ShareTaskDetailsLink <ShareTaskDetailsLink>"
+"`"
 
 #: ../../source/portal-developer-guide/settings/index.rst:224
 msgid "**Change Expiry Activator**"
 msgstr "**有効期限アクティベーターの変更**"
 
 #: ../../source/portal-developer-guide/settings/index.rst:226
-#, fuzzy
 msgid ""
 "User needs permission: :ref:`🔑TaskWriteExpiryActivator "
 "<TaskWriteExpiryActivator>`"
 msgstr ""
-"ユーザーは許可が必要です：:bdg-ref-warning:`🔑TaskWriteExpiryActivator "
+"ユーザーは許可が必要です：:ref:`🔑TaskWriteExpiryActivator "
 "<TaskWriteExpiryActivator>`"
 
 #: ../../source/portal-developer-guide/settings/index.rst:231
@@ -15288,29 +15470,26 @@ msgid "**Read System Tasks**"
 msgstr "**システムタスクを読む**"
 
 #: ../../source/portal-developer-guide/settings/index.rst:233
-#, fuzzy
 msgid "User needs permission: :ref:`🔑SystemTaskReadAll <SystemTaskReadAll>`"
-msgstr "ユーザーは許可が必要です：:bdg-ref-warning:`🔑SystemTaskReadAll <SystemTaskReadAll>`"
+msgstr "ユーザーは許可が必要です：:ref:`🔑SystemTaskReadAll <SystemTaskReadAll>`"
 
 #: ../../source/portal-developer-guide/settings/index.rst:236
 msgid "Case Permissions"
 msgstr "ケースの権限"
 
 #: ../../source/portal-developer-guide/settings/index.rst:244
-#, fuzzy
 msgid "User needs permission: :ref:`🔑CaseDestroy <CaseDestroy>`"
-msgstr "ユーザーは許可が必要です：:bdg-ref-warning:`🔑CaseDestroy <CaseDestroy>`"
+msgstr "ユーザーは許可が必要です：:ref:`🔑CaseDestroy <CaseDestroy>`"
 
 #: ../../source/portal-developer-guide/settings/index.rst:247
 msgid "Case state must be RUNNING"
 msgstr "ケース状態は必ず RUNNING であること"
 
 #: ../../source/portal-developer-guide/settings/index.rst:251
-#, fuzzy
 msgid "User needs permission: :ref:`🔑CaseWriteDescription <CaseWriteDescription>`"
 msgstr ""
-"ユーザーは許可が必要です：:bdg-ref-warning:`🔑CaseWriteDescription "
-"<CaseWriteDescription>`"
+"ユーザーは許可が必要です：:ref:`🔑CaseWriteDescription <CaseWriteDescription>"
+"`"
 
 #: ../../source/portal-developer-guide/settings/index.rst:254
 #: ../../source/portal-developer-guide/settings/index.rst:261
@@ -15322,47 +15501,43 @@ msgid "**See Related Tasks of Case**"
 msgstr "**関連タスクを参照**"
 
 #: ../../source/portal-developer-guide/settings/index.rst:258
-#, fuzzy
 msgid ""
 "User needs permission: :ref:`🔑TaskReadOwnCaseTasks "
 "<TaskReadOwnCaseTasks>` or :ref:`🔑TaskReadAll <TaskReadAll>` to view "
 "related tasks."
 msgstr ""
-"タスクを表示するには :bdg-ref-warning:`🔑TaskReadOwnCaseTasks "
-"<TaskReadOwnCaseTasks>` または :bdg-ref-warning:`🔑TaskReadAll <TaskReadAll>`"
-" が必要です"
+"ユーザーは関連タスクを表示するために許可が必要です：:ref:`🔑"
+"TaskReadOwnCaseTasks <TaskReadOwnCaseTasks>` または:ref:`🔑TaskReadAll "
+"<TaskReadAll>`"
 
 #: ../../source/portal-developer-guide/settings/index.rst:263
 msgid "**Display Show Detail Link**"
 msgstr "**詳細リンクを表示**"
 
 #: ../../source/portal-developer-guide/settings/index.rst:265
-#, fuzzy
 msgid ""
 "User needs permission: :ref:`🔑ShowCaseDetails <ShowCaseDetails>` (not "
 "assigned to Everybody by default)"
 msgstr ""
-"ユーザーに必要な権限::bdg-ref-warning:`🔑ShowCaseDetails <ShowCaseDetails>` "
-"(デフォルトでは全員に割り当てられていません)"
+"ユーザーは許可が必要です：:ref:`🔑ShowCaseDetails <ShowCaseDetails>` （"
+"デフォルトでは全員に割り当てられていません）"
 
 #: ../../source/portal-developer-guide/settings/index.rst:267
 msgid "**Share Case Details Link**"
 msgstr "**ケース詳細リンクを共有**"
 
 #: ../../source/portal-developer-guide/settings/index.rst:269
-#, fuzzy
 msgid "User needs permission: :ref:`🔑ShareCaseDetailsLink <ShareCaseDetailsLink>`"
 msgstr ""
-"ユーザーは許可が必要です：:bdg-ref-warning:`🔑ShareCaseDetailsLink "
-"<ShareCaseDetailsLink>`"
+"ユーザーは許可が必要です：:ref:`🔑ShareCaseDetailsLink <ShareCaseDetailsLink>"
+"`"
 
 #: ../../source/portal-developer-guide/settings/index.rst:273
-#, fuzzy
 msgid ""
 "User needs permission: :ref:`🔑CaseDisplayCustomFieldsAction "
 "<CaseDisplayCustomFieldsAction>`"
 msgstr ""
-"ユーザーは許可が必要です：:bdg-ref-warning:`🔑CaseDisplayCustomFieldsAction "
+"ユーザーは許可が必要です：:ref:`🔑CaseDisplayCustomFieldsAction "
 "<CaseDisplayCustomFieldsAction>`"
 
 #: ../../source/portal-developer-guide/settings/index.rst:278
@@ -15386,39 +15561,36 @@ msgid "Read"
 msgstr "閲覧"
 
 #: ../../source/portal-developer-guide/settings/index.rst:285
-#, fuzzy
 msgid ""
 ":ref:`🔑UserReadOwnAbsences <UserReadOwnAbsences>`  or "
 ":ref:`🔑UserReadAbsences <UserReadAbsences>`"
 msgstr ""
-":bdg-ref-warning:`🔑UserReadOwnAbsences <UserReadOwnAbsences>`  または :bdg-"
-"ref-warning:`🔑UserReadAbsences <UserReadAbsences>`"
+":ref:`🔑UserReadOwnAbsences <UserReadOwnAbsences>` または:ref:`🔑"
+"UserReadAbsences <UserReadAbsences>`"
 
 #: ../../source/portal-developer-guide/settings/index.rst:288
 msgid "Create, edit"
 msgstr "作成、編集"
 
 #: ../../source/portal-developer-guide/settings/index.rst:288
-#, fuzzy
 msgid ""
 ":ref:`🔑UserCreateOwnAbsence <UserCreateOwnAbsence>` or "
 ":ref:`🔑UserCreateAbsence <UserCreateAbsence>`"
 msgstr ""
-":bdg-ref-warning:`🔑UserCreateOwnAbsence <UserCreateOwnAbsence>` または :bdg-"
-"ref-warning:`🔑UserCreateAbsence <UserCreateAbsence>`"
+":ref:`🔑UserCreateOwnAbsence <UserCreateOwnAbsence>` または:ref:`🔑"
+"UserCreateAbsence <UserCreateAbsence>`"
 
 #: ../../source/portal-developer-guide/settings/index.rst:291
 msgid "Delete"
 msgstr "削除"
 
 #: ../../source/portal-developer-guide/settings/index.rst:291
-#, fuzzy
 msgid ""
 ":ref:`🔑UserDeleteOwnAbsence <UserDeleteOwnAbsence>` or "
 ":ref:`🔑UserDeleteAbsence <UserDeleteAbsence>`"
 msgstr ""
-":bdg-ref-warning:`🔑UserDeleteOwnAbsence <UserDeleteOwnAbsence>` または :bdg-"
-"ref-warning:`🔑UserDeleteAbsence <UserDeleteAbsence>`"
+":ref:`🔑UserDeleteOwnAbsence <UserDeleteOwnAbsence>` または:ref:`🔑"
+"UserDeleteAbsence <UserDeleteAbsence>`"
 
 #: ../../source/portal-developer-guide/settings/index.rst:294
 msgid "Read absences of all users"
@@ -15441,26 +15613,24 @@ msgid "Manage substitute"
 msgstr "代行者の管理"
 
 #: ../../source/portal-developer-guide/settings/index.rst:300
-#, fuzzy
 msgid ""
 ":ref:`🔑UserCreateSubstitute <UserCreateSubstitute>` and "
 ":ref:`🔑UserReadSubstitutes <UserReadSubstitutes>`"
 msgstr ""
-":bdg-ref-warning:`🔑UserCreateSubstitute <UserCreateSubstitute>`、 :bdg-"
-"ref-warning:`🔑UserReadSubstitutes <UserReadSubstitutes>`"
+":ref:`🔑UserCreateSubstitute <UserCreateSubstitute>` および:ref:`🔑"
+"UserReadSubstitutes <UserReadSubstitutes>`"
 
 #: ../../source/portal-developer-guide/settings/index.rst:303
 msgid "Upload, delete"
 msgstr "アップロード、削除"
 
 #: ../../source/portal-developer-guide/settings/index.rst:303
-#, fuzzy
 msgid ""
 ":ref:`🔑DocumentWrite <DocumentWrite>` :ref:`🔑DocumentOfInvolvedCaseWrite "
 "<DocumentOfInvolvedCaseWrite>`"
 msgstr ""
-":bdg-ref-warning:`🔑DocumentWrite <DocumentWrite>` :bdg-ref-"
-"warning:`🔑DocumentOfInvolvedCaseWrite <DocumentOfInvolvedCaseWrite>`"
+":ref:`🔑DocumentWrite <DocumentWrite>` :ref:`🔑DocumentOfInvolvedCaseWrite "
+"<DocumentOfInvolvedCaseWrite>`"
 
 #: ../../source/portal-developer-guide/settings/index.rst:306
 msgid ""
@@ -15816,9 +15986,8 @@ msgid "Portal Processes External Links"
 msgstr "ポータルのプロセスの外部リンク"
 
 #: ../../source/portal-developer-guide/settings/index.rst:542
-#, fuzzy
 msgid "The standard external links of Portal are defined in the following file:"
-msgstr "ポータルの標準的な外部リンクは、以下のファイルで定義されます。"
+msgstr "Portalの標準外部リンクは次のファイルで定義されています："
 
 #: ../../source/portal-developer-guide/settings/index.rst:544
 msgid "Filename: ``variables.Portal.Processes.ExternalLinks.json``"
@@ -20164,4 +20333,3 @@ msgstr "Portal.UserMenu変数の変更は即時反映されます。更新内容
 #~ "関連タスクを表示するには: :bdg-ref-"
 #~ "warning:`🔑TaskReadOwnCaseTasks <TaskReadOwnCaseTasks>` または"
 #~ " :bdg-ref-warning:`🔑TaskReadAll <TaskReadAll>`"
-
