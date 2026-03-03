@@ -8,7 +8,7 @@ application available to you. To open the page, click :guilabel:`Processes` in
 the Axon Ivy Portal menu.
 
 .. important::
-   **Access Requirement**: Only users with the :bdg-ref-warning:`🔑AccessFullProcessList <AccessFullProcessList>` 
+   **Access Requirement**: Only users with the :ref:`🔑AccessFullProcessList <AccessFullProcessList>` 
    permission can see the :guilabel:`Processes` menu item.
 
 |navigate-to-full-process-list|
@@ -94,7 +94,7 @@ HowTo: Add an external link
 ---------------------------
 
 .. note::
-   Creating public external links (visible to all users) requires :bdg-ref-warning:`🔑CreatePublicExternalLink <CreatePublicExternalLink>` permission. Private links can be created by any user.
+   Creating public external links (visible to all users) requires :ref:`🔑CreatePublicExternalLink <CreatePublicExternalLink>` permission. Private links can be created by any user.
 
 #. Click on :guilabel:`Add external link` at the top of the page next to the search text box.
 
@@ -199,7 +199,7 @@ Different process operations require specific permissions:
    +--------------------------------------+--------------------------------------------------------+
    | Action                               | Required Permission                                    |
    +======================================+========================================================+
-   | **Create public external link**      | :bdg-ref-warning:`🔑CreatePublicExternalLink           |
+   | **Create public external link**      | :ref:`🔑CreatePublicExternalLink                       |
    |                                      | <CreatePublicExternalLink>`                            |
    +--------------------------------------+--------------------------------------------------------+
 

@@ -149,7 +149,7 @@ How to Configure Widgets in Case Details
       - ``x``, ``y``, ``w`` and ``h`` have to be **integers**.
       - ``x + w`` must **not be larger** than **12**.
       - We support all case business states in filter type ``states``.
-      - The built-in widget type ``businessDetails`` is not part of the default configuration and will only be displayed if the :bdg-ref-warning:`🔑ShowCaseDetails <ShowCaseDetails>` permission is granted.
+      - The built-in widget type ``businessDetails`` is not part of the default configuration and will only be displayed if the :ref:`🔑ShowCaseDetails <ShowCaseDetails>` permission is granted.
 
 
 .. _customization-case-item-details-how-to-override-ui-custom-body:
