@@ -89,7 +89,6 @@ public class DashboardBean implements Serializable, IMultiLanguage {
   private String selectedDashboardName;
   private String searchScope;
   private boolean isShowPinnedItem;
-  private boolean isHideCaseCreator;
 
   @PostConstruct
   public void init() {
@@ -119,7 +118,6 @@ public class DashboardBean implements Serializable, IMultiLanguage {
     }
 
     buildClientStatisticApiUri();
-    isHideCaseCreator = GlobalSettingService.getInstance().isHideCaseCreator();
   }
 
   private void buildClientStatisticApiUri() {
@@ -528,7 +526,7 @@ public class DashboardBean implements Serializable, IMultiLanguage {
   }
 
   public boolean isHideCaseCreator() {
-    return isHideCaseCreator;
+    return GlobalSettingService.getInstance().isHideCaseCreator();
   }
 
   public String getScreenReaderNotificationContent() {
