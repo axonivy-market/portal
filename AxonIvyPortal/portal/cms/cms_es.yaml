@@ -954,6 +954,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     RenamingDocumentNote: '{0} ha renombrado el archivo {1} a {2}'
     RenamingDocumentSuccess: Renombrado exitosamente.
     RenamingFailed: Se ha producido un error al renombrar el documento.
+    confirmation: Confirmación
     confirmationUploadDocument: El escaneo de scripts no está disponible para archivos PDF cifrados. ¿Desea continuar con la vista previa?
     deleteDocumentNote: '{0} ha eliminado {1}'
     deleteSuceed: Archivo eliminado con éxito

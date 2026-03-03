@@ -256,7 +256,6 @@
         "output" : {
           "code" : [
             "import com.axonivy.portal.components.util.FacesMessageUtils;",
-            "import javax.faces.application.FacesMessage.Severity;",
             "import javax.faces.application.FacesMessage;",
             "import javax.faces.context.FacesContext;",
             "if (in.isEncrypted) {",
@@ -687,6 +686,7 @@
       "config" : {
         "output" : {
           "code" : [
+            "import org.primefaces.PrimeFaces;",
             "import javax.faces.context.FacesContext;",
             "import java.io.IOException;",
             "import com.axonivy.portal.components.util.DocumentUtils;",
@@ -695,6 +695,7 @@
             "    in.streamedContent = DocumentUtils.findDocFactoryAndConvert(in.streamedContent);",
             "  } catch (IOException e) {",
             "    FacesContext.getCurrentInstance().validationFailed();",
+            "    PrimeFaces.current().executeScript(\"PF('preview-document-warning-dialog').show();\");",
             "  }"
           ]
         }

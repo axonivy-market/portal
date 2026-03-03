@@ -44,7 +44,6 @@ public class PDFDocumentDetector implements DocumentDetector {
     }
     catch (NoClassDefFoundError e) {
       Ivy.log().error("This file is encrypted and cannot be scanned for security threats before uploading.");
-      safeState = true;
       BpmError.create("portal:file:encrypted").throwError();
     }
     catch (Exception e) {

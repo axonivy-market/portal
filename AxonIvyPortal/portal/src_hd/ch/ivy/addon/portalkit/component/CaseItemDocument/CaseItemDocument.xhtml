@@ -218,13 +218,13 @@
     <ui:param name="styleClass" value="w-4"></ui:param>
     <ui:param name="iconClass" value="si si-delete-1" />
     <ui:param name="iconStyleClass" value="portal-dialog-error-icon" />
-    <ui:param name="headerText" value="Confirmation" />
+    <ui:param name="headerText" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/confirmation')}" />
     <ui:param name="dialogContent" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/confirmationUploadDocument')}" />
 
     <ui:define name="dialogFooter">
       <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/continue')}"
-        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/continue')}" styleClass="w-full"
-        id="preview-encrypted-document-button" actionListener="#{logic.previewEncryptedDocument}" 
+        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/continue')}" styleClass="w-full" update="#{cc.clientId}:preview-document-dialog"
+        id="preview-encrypted-document-button" actionListener="#{logic.previewEncryptedDocument}"
         oncomplete="if (args &amp;&amp; !args.validationFailed) {PF('preview-document-confirmation-dialog').hide(); PF('preview-document-dialog').show();}" />
       <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
         ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}" styleClass="pt-3 flex justify-content-center"

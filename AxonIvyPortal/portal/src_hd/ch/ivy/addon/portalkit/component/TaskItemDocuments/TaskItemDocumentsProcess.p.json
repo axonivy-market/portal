@@ -257,7 +257,6 @@
         "output" : {
           "code" : [
             "import com.axonivy.portal.components.util.FacesMessageUtils;",
-            "import javax.faces.application.FacesMessage.Severity;",
             "import javax.faces.application.FacesMessage;",
             "import javax.faces.context.FacesContext;",
             "if (in.isEncrypted) {",
