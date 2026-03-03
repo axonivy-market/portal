@@ -95,7 +95,7 @@ public final class DocumentUtils {
         }
       } catch (Exception e) {
         Ivy.log().error(e);
-        throw new IOException();
+        throw new IOException("Failed to convert document using DocFactory", e);
       }
     }
     return streamedContent;
