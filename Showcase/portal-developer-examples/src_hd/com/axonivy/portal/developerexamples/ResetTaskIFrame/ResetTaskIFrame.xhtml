@@ -13,8 +13,8 @@
         <h3 class="ui-g-12">An example of navigation in the iframe
           <br />
           <span class="font-size-75"> For more details, refer to
-            <a href="https://developer.axonivy.com/documentation/portal-guide/9.3.0-m214/portal-developer-guide/customization/navigate-back.html"
-            target="_blank">Portal Doc</a>.
+            <a href="https://market.axonivy.com/market-cache/portal/portal-guide/12.0/doc/en/portal-developer-guide/customization/navigate-back.html"
+            target="_blank">Portal Documentation</a>.
           </span>
         </h3>
 
@@ -24,18 +24,29 @@
           <ul>
             <li>
               <p>
-                Click on <a href="#form:cancel-to-home">Cancel to Home</a> button to reset this task and navigate to the <b>Homepage</b>.
+                Click on <a href="#form:cancel-to-home-by-api"><b>Cancel to Home by API</b></a> button to reset this task and navigate to the <b>Homepage</b>.
+              </p>
+              <blockquote>
+                <span class="code-block font-size-75">
+                  PortalNavigatorInFrameAPI.resetTaskAndNavigateToUrl(ivy.html.appHomeLink().getAbsoluteEncoded())
+                </span>
+              </blockquote>
+            </li>
+            <ui:fragment rendered="#{not data.isCreatedAndPersistent}">
+            <li>
+              <p>
+                Click on <a href="#form:cancel-to-home"><b>Cancel to Home</b></a> button to reset this task and navigate to the <b>Homepage</b>. This approach works if the task is not in the <b>CREATED</b> state and has not been <b>persisted</b>.
               </p>
               <blockquote>
                 <span class="code-block font-size-75">ivy.task.reset();
                   <br />
-                  PortalNavigatorInFrameAPI.navigateToUrl(ivy.html.applicationHomeRef())
+                  PortalNavigatorInFrameAPI.navigateToUrl(ivy.html.appHomeLink().getAbsoluteEncoded())
                 </span>
               </blockquote>
             </li>
             <li>
               <p>
-                Click on <a href="#form:cancel-to-endpage">Cancel to Previous</a> button to reset this task and navigate
+                Click on <a href="#form:cancel-to-endpage"><b>Cancel to Previous</b></a> button to reset this task and navigate
                 to the <b>Previous page</b>.
               </p>
               <blockquote>
@@ -47,7 +58,7 @@
             </li>
             <li>
               <p>
-                Click on <a href="#form:cancel-to-specifit">Cancel to a URL</a> button to reset this task and navigate
+                Click on <a href="#form:cancel-to-specifit"><b>Cancel to a URL</b></a> button to reset this task and navigate
                 to <b>Create Investment (IFrame + Task custom fields)</b> example.
               </p>
               <blockquote>
@@ -57,6 +68,7 @@
                 </span>
               </blockquote>
             </li>
+            </ui:fragment>
             <li>
               <p>
                 Click on <a href="#form:proceed">Proceed</a> button to finish the task.
@@ -67,14 +79,17 @@
         <br />
         <div class="ui-g-12">
           <div class="command-btns">
-            <p:commandButton id="cancel-to-home" value="Cancel to Home" actionListener="#{logic.cancelToHome}"
+            <p:commandButton id="cancel-to-home-by-api" value="Cancel to Home by API" actionListener="#{logic.cancelToHomeByAPI}"
               icon="si si-house-1" />
             <p:spacer width="5px" />
+            <p:commandButton id="cancel-to-home" value="Cancel to Home" actionListener="#{logic.cancelToHome}"
+              icon="si si-house-1" rendered="#{not data.isCreatedAndPersistent}" />
+            <p:spacer width="5px" />
             <p:commandButton id="cancel-to-endpage" value="Cancel to Endpage" actionListener="#{logic.cancelToEndpage}"
-              icon="si si-arrow-left" />
+              icon="si si-arrow-left" rendered="#{not data.isCreatedAndPersistent}" />
             <p:spacer width="5px" />
             <p:commandButton id="cancel-to-specifit" value="Cancel to a URL" actionListener="#{logic.cancelToUrl}"
-              icon="si si-hyperlink-3" />
+              icon="si si-hyperlink-3" rendered="#{not data.isCreatedAndPersistent}" />
             <p:spacer width="5px" />
             <p:commandButton id="proceed" actionListener="#{logic.proceed}" value="Proceed" update="form"
               icon="si si-check-double-1" />
