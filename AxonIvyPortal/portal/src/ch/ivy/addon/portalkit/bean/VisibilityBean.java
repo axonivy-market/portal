@@ -19,24 +19,18 @@ public class VisibilityBean implements Serializable {
 
   private static final long serialVersionUID = 6402332157509278585L;
   private GlobalSettingService globalSettingService;
-  private boolean isShownButtonIcon;
-  private boolean isEnablePinTask;
-  private boolean isEnablePinCase;
 
   @PostConstruct
   public void init() {
     globalSettingService = GlobalSettingService.getInstance();
-    isShownButtonIcon = globalSettingService.findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_BUTTON_ICON);
-    isEnablePinTask = globalSettingService.isEnablePinTask();
-    isEnablePinCase = globalSettingService.isEnablePinCase();
   }
 
   public boolean isShowButtonIcon() {
-    return isShownButtonIcon;
+    return globalSettingService.findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_BUTTON_ICON);
   }
 
   public String generateButtonIcon(String iconClass) {
-    return isShownButtonIcon ? iconClass : StringUtils.EMPTY;
+    return globalSettingService.findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_BUTTON_ICON) ? iconClass : StringUtils.EMPTY;
   }
 
   public boolean isShowLoginFooter() {
@@ -52,10 +46,10 @@ public class VisibilityBean implements Serializable {
   }
 
   public boolean isEnablePinTask() {
-    return isEnablePinTask;
+    return globalSettingService.isEnablePinTask();
   }
 
   public boolean isEnablePinCase() {
-    return isEnablePinCase;
+    return globalSettingService.isEnablePinCase();
   }
 }
