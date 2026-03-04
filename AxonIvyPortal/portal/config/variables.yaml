@@ -1,4 +1,4 @@
-# yaml-language-server: $schema=https://json-schema.axonivy.com/config/14.0.0/variables.json
+# yaml-language-server: $schema=https://json-schema.axonivy.com/14.0-dev/config/variables.json
 Variables:
   Portal:
     # To set the standard homepage which will be redirect to when click on home icon or logo.

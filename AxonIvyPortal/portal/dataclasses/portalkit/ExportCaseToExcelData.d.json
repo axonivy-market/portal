@@ -1,16 +1,18 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
   "simpleName" : "ExportCaseToExcelData",
   "namespace" : "portalkit",
-  "isBusinessCaseData" : false,
   "fields" : [ {
     "name" : "columnsVisibility",
-    "type" : "List<String>"
+    "type" : "List<String>",
+    "modifiers" : [ ]
   }, {
     "name" : "collectedCasesForExporting",
-    "type" : "java.util.List<ch.ivyteam.ivy.workflow.ICase>"
+    "type" : "java.util.List<ch.ivyteam.ivy.workflow.ICase>",
+    "modifiers" : [ ]
   }, {
     "name" : "exportedFile",
-    "type" : "org.primefaces.model.StreamedContent"
+    "type" : "org.primefaces.model.StreamedContent",
+    "modifiers" : [ ]
   } ]
 }

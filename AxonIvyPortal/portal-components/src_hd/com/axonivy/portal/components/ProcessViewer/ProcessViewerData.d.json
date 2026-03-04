@@ -1,48 +1,37 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
   "simpleName" : "ProcessViewerData",
   "namespace" : "com.axonivy.portal.components.ProcessViewer",
-  "isBusinessCaseData" : false,
   "fields" : [ {
     "name" : "caseId",
-    "type" : "Long",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "Long"
   }, {
-    "name" : "processId",
-    "type" : "String",
-    "modifiers" : [ "PERSISTENT" ]
+    "name" : "processId"
   }, {
     "name" : "isError",
-    "type" : "Boolean",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "Boolean"
   }, {
-    "name" : "errorMessage",
-    "type" : "String",
-    "modifiers" : [ "PERSISTENT" ]
+    "name" : "errorMessage"
   }, {
     "name" : "webStartable",
-    "type" : "ch.ivyteam.ivy.workflow.start.IWebStartable"
+    "type" : "ch.ivyteam.ivy.workflow.start.IWebStartable",
+    "modifiers" : [ ]
   }, {
     "name" : "webLink",
-    "type" : "ch.ivyteam.ivy.model.value.WebLink"
+    "type" : "ch.ivyteam.ivy.model.value.WebLink",
+    "modifiers" : [ ]
   }, {
-    "name" : "activatorName",
-    "type" : "String",
-    "modifiers" : [ "PERSISTENT" ]
+    "name" : "activatorName"
   }, {
     "name" : "activator",
-    "type" : "ch.ivyteam.ivy.security.ISecurityMember"
+    "type" : "ch.ivyteam.ivy.security.ISecurityMember",
+    "modifiers" : [ ]
   }, {
-    "name" : "category",
-    "type" : "String",
-    "modifiers" : [ "PERSISTENT" ]
+    "name" : "category"
   }, {
-    "name" : "errorIcon",
-    "type" : "String",
-    "modifiers" : [ "PERSISTENT" ]
+    "name" : "errorIcon"
   }, {
     "name" : "taskId",
-    "type" : "Long",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "Long"
   } ]
 }

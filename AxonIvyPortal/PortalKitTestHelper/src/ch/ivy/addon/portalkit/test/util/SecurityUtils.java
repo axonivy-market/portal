@@ -3,7 +3,6 @@ package ch.ivy.addon.portalkit.test.util;
 import static ch.ivyteam.ivy.security.IPermission.CASE_DESTROY;
 import static ch.ivyteam.ivy.security.IPermission.CASE_READ_ALL;
 import static ch.ivyteam.ivy.security.IPermission.CASE_WRITE_DESCRIPTION;
-import static ch.ivyteam.ivy.security.IPermission.CASE_WRITE_NAME;
 import static ch.ivyteam.ivy.security.IPermission.DOCUMENT_OF_INVOLVED_CASE_WRITE;
 import static ch.ivyteam.ivy.security.IPermission.TASK_PARK_OWN_WORKING_TASK;
 import static ch.ivyteam.ivy.security.IPermission.TASK_READ_ALL;
@@ -11,7 +10,6 @@ import static ch.ivyteam.ivy.security.IPermission.TASK_RESET_OWN_WORKING_TASK;
 import static ch.ivyteam.ivy.security.IPermission.TASK_WRITE_ACTIVATOR;
 import static ch.ivyteam.ivy.security.IPermission.TASK_WRITE_DESCRIPTION;
 import static ch.ivyteam.ivy.security.IPermission.TASK_WRITE_EXPIRY_TIMESTAMP;
-import static ch.ivyteam.ivy.security.IPermission.TASK_WRITE_NAME;
 import static ch.ivyteam.ivy.security.IPermission.TASK_WRITE_ORIGINAL_PRIORITY;
 import static ch.ivyteam.ivy.security.IPermission.USER_CREATE_ABSENCE;
 import static ch.ivyteam.ivy.security.IPermission.USER_CREATE_SUBSTITUTE;
@@ -50,15 +48,11 @@ public class SecurityUtils {
 
   CASE_DESTROY,
 
-  CASE_WRITE_NAME,
-
   CASE_WRITE_DESCRIPTION,
 
   TASK_READ_ALL,
 
   TASK_PARK_OWN_WORKING_TASK,
-
-  TASK_WRITE_NAME,
 
   TASK_WRITE_DESCRIPTION,
 
