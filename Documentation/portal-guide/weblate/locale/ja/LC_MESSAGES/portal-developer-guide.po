@@ -4632,7 +4632,7 @@ msgid ""
 "**User Management** - Requires :ref:`🔑NewsManagement <NewsManagement>` "
 "permission to manage news items"
 msgstr ""
-"**ユーザー管理** - ニュースアイテムを管理するには:ref:`🔑NewsManagement "
+"**ユーザー管理** - ニュースアイテムを管理するには :ref:`🔑NewsManagement "
 "<NewsManagement>` の権限が必要です"
 
 #: ../../source/portal-developer-guide/dashboard/dashboard-newsfeed-widget.rst:15
@@ -4939,7 +4939,7 @@ msgstr "ニュース項目の追加、編集、削除を行うには："
 #: ../../source/portal-developer-guide/dashboard/dashboard-newsfeed-widget.rst:150
 msgid "User must have :ref:`🔑NewsManagement <NewsManagement>` permission"
 msgstr ""
-"ユーザーは:ref:`🔑NewsManagement <NewsManagement>` 権限を保有している必要があ"
+"ユーザーは :ref:`🔑NewsManagement <NewsManagement>` 権限を保有している必要があ"
 "ります"
 
 #: ../../source/portal-developer-guide/dashboard/dashboard-newsfeed-widget.rst:151
@@ -13327,7 +13327,7 @@ msgid ""
 "Allows a user to **reserve (park) a task they are currently working on**,"
 " temporarily setting it aside without completing or releasing it."
 msgstr ""
-"****ユーザーが現在作業中のタスクを保留（一時停止）できる機能を提供します。こ"
+"ユーザーが現在作業中のタスクを保留（一時停止）できる機能を提供します。こ"
 "れにより、タスクを完了または解放せずに一時的に脇に置くことが可能になります。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:174
@@ -13354,7 +13354,7 @@ msgid ""
 "clears the current working progress and returns it to its original start "
 "state."
 msgstr ""
-"ユーザーが自身の作業タスクを初期状態にリセットできる機能を提供します**** 。"
+"ユーザーが自身の作業タスクを初期状態にリセットできる機能を提供します。"
 "リセット操作は、タスクが以下のいずれかの状態にある場合に利用可能で"
 "す:**RESUMED, PARKED, READY_FOR_JOIN, FAILED** 。タスクをリセットすると、現在"
 "の作業進捗がクリアされ、元の開始状態に戻ります。"
@@ -13366,7 +13366,7 @@ msgid ""
 "state. Enables the Reset action in the task action menu for applicable "
 "task states."
 msgstr ""
-"****ユーザーがタスクを最初から再実行する必要がある場合に使用されます（例："
+"ユーザーがタスクを最初から再実行する必要がある場合に使用されます（例："
 "エラー、実行失敗、無効な中間状態の後）。該当するタスク状態において、"
 "タスクアクションメニューの「リセット」操作を有効にします。"
 
@@ -13401,7 +13401,7 @@ msgstr ":ref:`🔑TaskResetReadyForJoin <TaskResetReadyForJoin>`"
 msgid ""
 "Allows a user to **reset tasks that are currently in the READY_FOR_JOIN "
 "state**."
-msgstr "ユーザーが現在READY_FOR_JOIN状態にあるタスクをリセットできるようにする**** 。"
+msgstr "ユーザーが現在READY_FOR_JOIN状態にあるタスクをリセットできるようにする。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:243
 msgid ""
@@ -13422,8 +13422,8 @@ msgid ""
 "Allows a user to **permanently delete tasks**. The action is only "
 "available if the task state is **not DESTROYED or DONE**."
 msgstr ""
-"****ユーザーがタスクを完全に削除する機能を提供します（**）。この操作は、"
-"タスクの状態が「破棄済み」または「完了」でない場合にのみ利用可能です（**）。"
+"ユーザーがタスクを完全に削除する機能を提供します。この操作は、"
+"タスクの状態が「破棄済み」または「完了」でない場合にのみ利用可能です。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:265
 msgid ""
@@ -13479,7 +13479,7 @@ msgid ""
 "be modified if the task is in one of the following states: **DONE, "
 "DESTROYED, FAILED**."
 msgstr ""
-"ユーザーがタスクの優先度レベルを変更できるようにします**** 。タスクが以下のい"
+"ユーザーがタスクの優先度レベルを変更できるようにします。タスクが以下のい"
 "ずれかの状態にある場合、優先度は変更できません：**DONE, DESTROYED, FAILED** "
 "。"
 
@@ -13490,7 +13490,7 @@ msgid ""
 "importance."
 msgstr ""
 "この権限を持つユーザーは、タスクの詳細画面でタスクの優先度を調整できます（例"
-"：緊急度や業務上の重要度の変化を反映するため）。****"
+"：緊急度や業務上の重要度の変化を反映するため）。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:319
 #: ../../source/portal-developer-guide/permissions/index.rst:1498
@@ -13513,8 +13513,8 @@ msgid ""
 "to **update the task expiry date**, for example to extend or shorten "
 "deadlines."
 msgstr ""
-"**** AXONIVY_PORTAL_ADMIN のロールとこの権限を持つユーザーは、 タスクの期限を"
-"更新できます（例：期限を延長または短縮）。** **"
+"AXONIVY_PORTAL_ADMIN のロールとこの権限を持つユーザーは、タスクの期限を"
+"更新できます（例：期限を延長または短縮）。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:341
 #: ../../source/portal-developer-guide/permissions/index.rst:1499
@@ -13523,7 +13523,7 @@ msgstr ":ref:`🔑TaskWriteActivator <TaskWriteActivator>`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:349
 msgid "Allows a user to **delegate tasks to other users or roles**."
-msgstr "ユーザーがタスクを他のユーザーや役割に委任できるようにする機能です。**** 。"
+msgstr "ユーザーがタスクを他のユーザーや役割に委任できるようにする機能です。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:351
 msgid ""
@@ -13554,7 +13554,7 @@ msgid ""
 "to **define or update who becomes responsible after a task expires**."
 msgstr ""
 "``AXONIVY_PORTAL_ADMIN`` ロールとこの権限を持つユーザーが、タスク期限切れ後の"
-"責任者を定義または更新できるようにします。**** 。"
+"責任者を定義または更新できるようにします。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:383
 #: ../../source/portal-developer-guide/permissions/index.rst:1500
@@ -13563,7 +13563,7 @@ msgstr ":ref:`🔑TaskWriteDelayTimestamp <TaskWriteDelayTimestamp>`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:391
 msgid "Allows a user to **modify the task delay or start time**."
-msgstr "ユーザーがタスクの遅延時間または開始時刻を変更できるようにします。****"
+msgstr "ユーザーがタスクの遅延時間または開始時刻を変更できるようにします。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:393
 msgid ""
@@ -13629,7 +13629,7 @@ msgid ""
 "themselves**."
 msgstr ""
 "ユーザーが自身に割り当てられた個人またはグループのタスクを委任できるようにす"
-"る機能です。****"
+"る機能です。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:423
 msgid ":ref:`🔑TaskDisplayAdditionalOptions <TaskDisplayAdditionalOptions>`"
@@ -14179,7 +14179,7 @@ msgid ""
 "dashboard templates**, for example across different environments."
 msgstr ""
 "管理者に対して、公開ダッシュボードテンプレート（例：異なる環境間での）の"
-"バックアップや配布を許可します。****"
+"バックアップや配布を許可します。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:903
 msgid ":ref:`🔑DashboardImportOwn <DashboardImportOwn>`"
@@ -14286,7 +14286,7 @@ msgid ""
 ":ref:`🔑DocumentWrite <DocumentWrite>` and "
 ":ref:`🔑DocumentOfInvolvedCaseWrite <DocumentOfInvolvedCaseWrite>`"
 msgstr ""
-":ref:`🔑DocumentWrite <DocumentWrite>` および:ref:`🔑"
+":ref:`🔑DocumentWrite <DocumentWrite>` および :ref:`🔑"
 "DocumentOfInvolvedCaseWrite <DocumentOfInvolvedCaseWrite>`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:999
@@ -14375,8 +14375,8 @@ msgid ""
 "Grant to **selected administrators** who are responsible for **creating "
 "and maintaining** dynamic roles within the system."
 msgstr ""
-"**** 内のシステム内で動的ロールの作成および維持を担当する、選択された管理者 "
-"に対して へのアクセス権を付与します。** **"
+"システム内で動的ロールの作成および維持を担当する、選択された管理者に対して"
+"アクセス権を付与します。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1064
 #: ../../source/portal-developer-guide/permissions/index.rst:1512
@@ -14415,9 +14415,9 @@ msgid ""
 "To perform actions such as **creating or deleting roles**, additional "
 "Engine Permissions like **RoleCreate** and **RoleDelete** are required."
 msgstr ""
-"ユーザーが** ** 管理設定** ページ内の「ロール管理」タブ** にアクセスできるよ"
+"ユーザーが **管理設定** ページ内の「ロール管理」タブにアクセスできるよ"
 "うにします。この権限はページ自体へのアクセス権のみを付与します。ロールの作成"
-"や削除**** などの操作を実行するには、**RoleCreate** や**RoleDelete** などの追"
+"や削除などの操作を実行するには、**RoleCreate** や **RoleDelete** などの追"
 "加のエンジン権限が必要です。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1101
@@ -14452,8 +14452,8 @@ msgid ""
 "hierarchies** by choosing a specific parent role when creating dynamic "
 "roles."
 msgstr ""
-"**に、動的ロール作成時に特定の親ロールを選択することでロール階層を定義する必"
-"要がある管理者** への権限を付与します。****"
+"動的ロール作成時に特定の親ロールを選択することでロール階層を定義する必要が"
+"ある、選択された管理者への権限を付与します。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1134
 #: ../../source/portal-developer-guide/settings/index.rst:319
@@ -14472,9 +14472,10 @@ msgid ""
 " not granted, the **Add note** option is hidden in the **History widget**"
 " (case details page) and the **Notes widget** (task details page)."
 msgstr ""
-"**** **** **** ユーザーがタスクまたはケースにメモを追加できるようにします"
-"（**）。この権限が付与されていない場合、メモ追加オプション（**）は、履歴"
-"ウィジェット（"
+"ユーザーがタスクまたはケースにメモを追加できるようにします。この権限が"
+"付与されていない場合、**メモ追加** オプションは、**履歴ウィジェット**"
+"（ケース詳細ページ）および **ノートウィジェット**（タスク詳細ページ）で"
+"非表示になります。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1147
 msgid ""
@@ -14683,7 +14684,7 @@ msgid ""
 "to review planned or recorded absences."
 msgstr ""
 "ユーザーが自身の欠勤情報を確認できるようにします（例：予定または記録された欠"
-"勤を確認するため）。****"
+"勤を確認するため）。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1322
 #: ../../source/portal-developer-guide/permissions/index.rst:1524
@@ -14700,7 +14701,7 @@ msgid ""
 "example for vacation or other planned absences."
 msgstr ""
 "ユーザーが休暇やその他の計画的な欠勤など、自身の欠勤エントリーを作成・管理で"
-"きるようにします。例:****"
+"きるようにします。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1341
 #: ../../source/portal-developer-guide/permissions/index.rst:1525
@@ -14709,7 +14710,7 @@ msgstr ":ref:`🔑UserDeleteOwnAbsence <UserDeleteOwnAbsence>`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1349
 msgid "Allows a user to **delete their own absence records**."
-msgstr "ユーザーが自身の欠席記録を削除できるようにする機能を提供します。****"
+msgstr "ユーザーが自身の欠席記録を削除できるようにする機能を提供します。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1351
 msgid ""
@@ -14717,7 +14718,7 @@ msgid ""
 "absence was entered incorrectly or is no longer relevant."
 msgstr ""
 "ユーザーが自身の欠席登録を削除できるようにします（例：誤って登録した場合や不"
-"要になった場合）。****"
+"要になった場合）。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1361
 #: ../../source/portal-developer-guide/permissions/index.rst:1526
@@ -14769,7 +14770,7 @@ msgid ""
 "administrative handling."
 msgstr ""
 "管理者またはマネージャーに、他のユーザーに代わって欠勤の作成または更新を行う"
-"権限を付与します（例：修正や管理上の処理のため）。****"
+"権限を付与します（例：修正や管理上の処理のため）。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1401
 #: ../../source/portal-developer-guide/permissions/index.rst:1528
@@ -14792,7 +14793,7 @@ msgid ""
 "records."
 msgstr ""
 "管理者またはマネージャーには、他のユーザーの欠勤記録を削除する権限を付与しま"
-"す（例：誤りを修正したり、古い記録を整理したりするため）。****"
+"す（例：誤りを修正したり、古い記録を整理したりするため）。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1422
 #: ../../source/portal-developer-guide/permissions/index.rst:1529
@@ -14807,7 +14808,7 @@ msgstr "置換を管理する"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1430
 msgid "Allows a user to **create their own substitute**."
-msgstr "ユーザーが独自の置換を作成できるようにする：****"
+msgstr "ユーザーが独自の置換を作成できるようにする。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1432
 msgid ""
@@ -14828,7 +14829,7 @@ msgid ""
 "the current security context."
 msgstr ""
 "ユーザーが現在のセキュリティコンテキスト内で任意のユーザーに対する代替割り当"
-"てを作成できるようにします。****"
+"てを作成できるようにします。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1453
 msgid ""
@@ -14837,7 +14838,7 @@ msgid ""
 "organizational coverage."
 msgstr ""
 "管理者またはマネージャーには、他のユーザーに代わって代理人を割り当てる権限を"
-"付与します（例：予定された不在や組織的なカバーのため）。****"
+"付与します（例：予定された不在や組織的なカバーのため）。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1462
 #: ../../source/portal-developer-guide/permissions/index.rst:1531
@@ -15228,7 +15229,7 @@ msgid ""
 "Administrators with :ref:`🔑TaskReadAll <TaskReadAll>` and "
 ":ref:`🔑CaseReadAll <CaseReadAll>` can see all tasks/cases"
 msgstr ""
-":ref:`🔑TaskReadAll <TaskReadAll>` および:ref:`🔑CaseReadAll <CaseReadAll>` "
+":ref:`🔑TaskReadAll <TaskReadAll>` および :ref:`🔑CaseReadAll <CaseReadAll>` "
 "の管理者権限を持つユーザーは、すべてのタスク/ケースを確認できます。"
 
 #: ../../source/portal-developer-guide/settings/index.rst:139
@@ -15272,7 +15273,7 @@ msgid ""
 "<TaskWriteActivator>`"
 msgstr ""
 "デリゲートアクションを確認するには::ref:`🔑TaskDisplayDelegateAction "
-"<TaskDisplayDelegateAction>` および:ref:`🔑TaskWriteActivator "
+"<TaskDisplayDelegateAction>` および :ref:`🔑TaskWriteActivator "
 "<TaskWriteActivator>`"
 
 #: ../../source/portal-developer-guide/settings/index.rst:154
@@ -15317,8 +15318,8 @@ msgid ""
 ":ref:`🔑TaskReset <TaskReset>`"
 msgstr ""
 "タスクをリセットするには：:ref:`🔑TaskResetOwnWorkingTask "
-"<TaskResetOwnWorkingTask>` または:ref:`🔑TaskResetReadyForJoin "
-"<TaskResetReadyForJoin>` または:ref:`🔑TaskReset <TaskReset>`"
+"<TaskResetOwnWorkingTask>` または :ref:`🔑TaskResetReadyForJoin "
+"<TaskResetReadyForJoin>` または :ref:`🔑TaskReset <TaskReset>`"
 
 #: ../../source/portal-developer-guide/settings/index.rst:168
 msgid "Only works for tasks in states: RESUMED, PARKED, READY_FOR_JOIN, FAILED"
@@ -15507,7 +15508,7 @@ msgid ""
 "related tasks."
 msgstr ""
 "ユーザーは関連タスクを表示するために許可が必要です：:ref:`🔑"
-"TaskReadOwnCaseTasks <TaskReadOwnCaseTasks>` または:ref:`🔑TaskReadAll "
+"TaskReadOwnCaseTasks <TaskReadOwnCaseTasks>` または :ref:`🔑TaskReadAll "
 "<TaskReadAll>`"
 
 #: ../../source/portal-developer-guide/settings/index.rst:263
@@ -15565,7 +15566,7 @@ msgid ""
 ":ref:`🔑UserReadOwnAbsences <UserReadOwnAbsences>`  or "
 ":ref:`🔑UserReadAbsences <UserReadAbsences>`"
 msgstr ""
-":ref:`🔑UserReadOwnAbsences <UserReadOwnAbsences>` または:ref:`🔑"
+":ref:`🔑UserReadOwnAbsences <UserReadOwnAbsences>` または :ref:`🔑"
 "UserReadAbsences <UserReadAbsences>`"
 
 #: ../../source/portal-developer-guide/settings/index.rst:288
@@ -15577,7 +15578,7 @@ msgid ""
 ":ref:`🔑UserCreateOwnAbsence <UserCreateOwnAbsence>` or "
 ":ref:`🔑UserCreateAbsence <UserCreateAbsence>`"
 msgstr ""
-":ref:`🔑UserCreateOwnAbsence <UserCreateOwnAbsence>` または:ref:`🔑"
+":ref:`🔑UserCreateOwnAbsence <UserCreateOwnAbsence>` または :ref:`🔑"
 "UserCreateAbsence <UserCreateAbsence>`"
 
 #: ../../source/portal-developer-guide/settings/index.rst:291
@@ -15589,7 +15590,7 @@ msgid ""
 ":ref:`🔑UserDeleteOwnAbsence <UserDeleteOwnAbsence>` or "
 ":ref:`🔑UserDeleteAbsence <UserDeleteAbsence>`"
 msgstr ""
-":ref:`🔑UserDeleteOwnAbsence <UserDeleteOwnAbsence>` または:ref:`🔑"
+":ref:`🔑UserDeleteOwnAbsence <UserDeleteOwnAbsence>` または :ref:`🔑"
 "UserDeleteAbsence <UserDeleteAbsence>`"
 
 #: ../../source/portal-developer-guide/settings/index.rst:294
@@ -15617,7 +15618,7 @@ msgid ""
 ":ref:`🔑UserCreateSubstitute <UserCreateSubstitute>` and "
 ":ref:`🔑UserReadSubstitutes <UserReadSubstitutes>`"
 msgstr ""
-":ref:`🔑UserCreateSubstitute <UserCreateSubstitute>` および:ref:`🔑"
+":ref:`🔑UserCreateSubstitute <UserCreateSubstitute>` および :ref:`🔑"
 "UserReadSubstitutes <UserReadSubstitutes>`"
 
 #: ../../source/portal-developer-guide/settings/index.rst:303
