@@ -6,3 +6,4 @@ Showcase/InternalSupport/target/
 **/target/
 **/logs/
 **/mvn-deps/
+.vscode

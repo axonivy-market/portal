@@ -1,19 +1,12 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
   "simpleName" : "Company",
   "namespace" : "com.axonivy.portal.developerexamples",
-  "isBusinessCaseData" : false,
   "fields" : [ {
-    "name" : "id",
-    "type" : "String",
-    "modifiers" : [ "PERSISTENT" ]
+    "name" : "id"
   }, {
-    "name" : "name",
-    "type" : "String",
-    "modifiers" : [ "PERSISTENT" ]
+    "name" : "name"
   }, {
-    "name" : "description",
-    "type" : "String",
-    "modifiers" : [ "PERSISTENT" ]
+    "name" : "description"
   } ]
 }
