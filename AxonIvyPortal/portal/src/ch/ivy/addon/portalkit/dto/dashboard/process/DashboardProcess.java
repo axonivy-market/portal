@@ -14,7 +14,6 @@ import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.enums.DefaultImage;
 import ch.ivy.addon.portalkit.enums.ProcessType;
 import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
-import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.category.Category;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
@@ -64,6 +63,20 @@ public class DashboardProcess implements Process {
     this.category = process.getCategory();
     this.application = process.pmv().getApplication().getName();
     this.imageUrl = collectProcessImage(process);
+    this.sortIndex = getSortIndexInCustomField(process);
+    this.portalProcessInformation = getPortalProcessInformation(process);
+  }
+  
+  public DashboardProcess(IWebStartable process, String defaultImageSetting) {
+    this.id = process.getId();
+    this.type = ProcessType.IVY_PROCESS;
+    this.name = process.getDisplayName();
+    this.description = process.getDescription();
+    this.startLink = process.getLink().getRelative();
+    this.icon = process.customFields().value("cssIcon");
+    this.category = process.getCategory();
+    this.application = process.pmv().getApplication().getName();
+    this.imageUrl = collectProcessImage(process, defaultImageSetting);
     this.sortIndex = getSortIndexInCustomField(process);
     this.portalProcessInformation = getPortalProcessInformation(process);
   }

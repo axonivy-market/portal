@@ -1,6 +1,6 @@
 package ch.ivy.addon.portalkit.casefilter.impl;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.casefilter.CaseFilter;
 import ch.ivy.addon.portalkit.util.CaseUtils;

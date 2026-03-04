@@ -1,6 +1,6 @@
 package ch.ivy.addon.portalkit.taskfilter.impl;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.taskfilter.TaskFilter;
 import ch.ivyteam.ivy.environment.Ivy;

@@ -2,7 +2,8 @@ package ch.ivy.addon.portalkit.taskfilter.impl;
 
 import java.util.Optional;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 
 import com.axonivy.portal.components.dto.UserDTO;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -73,7 +74,7 @@ public class TaskWorkerFilter extends TaskFilter {
    * @param memberName is selectedWorkerMemberName
    */
   private void findWorker(String memberName) {
-    if (selectedWorker == null || !StringUtils.equals(selectedWorkerMemberName, selectedWorker.getMemberName())) {
+    if (selectedWorker == null || !Strings.CI.equals(selectedWorkerMemberName, selectedWorker.getMemberName())) {
       setSelectedWorker(ServiceUtilities.findUserDTO(memberName.replaceFirst("#", "")));
     }
   }

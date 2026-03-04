@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 import javax.faces.event.ValueChangeEvent;
 
 import org.apache.commons.beanutils.BeanUtils;
-import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.PrimeFaces;
@@ -177,7 +177,6 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
     oldSelectedFilters = (List<CaseFilter>) event.getOldValue();
   }
 
-  @SuppressWarnings("unchecked")
   public void updateSelectedFilter() {
     List<CaseFilter> toggleFilters;
     if (selectedFilters.size() > oldSelectedFilters.size()) {

@@ -114,6 +114,8 @@ HowTo: Show/Hide the Announcement
 
 #. Turn off the :guilabel:`Enable announcement` option to hide the announcement.
 
+.. _manage-roles:
+
 HowTo: Manage Roles
 -------------------
 

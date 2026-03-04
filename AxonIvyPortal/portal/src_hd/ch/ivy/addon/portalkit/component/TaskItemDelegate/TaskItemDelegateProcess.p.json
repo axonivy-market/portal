@@ -143,7 +143,7 @@
         "output" : {
           "code" : [
             "import ch.ivy.addon.portalkit.util.SecurityMemberUtils;",
-            "import org.apache.commons.lang.StringUtils;",
+            "import org.apache.commons.lang3.StringUtils;",
             "",
             "String newResponsibleName = \"\";",
             "",

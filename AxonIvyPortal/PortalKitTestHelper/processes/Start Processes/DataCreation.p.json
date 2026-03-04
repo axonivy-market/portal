@@ -64,8 +64,9 @@
         "output" : {
           "code" : [
             "import org.apache.commons.lang3.StringUtils;",
+            "import org.apache.commons.lang3.Strings;",
             "in.caseName = in.taskStructureInfo + \"_\" + ivy.case.getId();",
-            "in.caseStructureInfo = StringUtils.replace(in.taskStructureInfo,StringUtils.SPACE,\"_\");"
+            "in.caseStructureInfo = Strings.CS.replace(in.taskStructureInfo,StringUtils.SPACE,\"_\");"
           ]
         }
       },

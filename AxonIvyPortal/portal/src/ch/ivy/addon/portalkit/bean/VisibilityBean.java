@@ -6,7 +6,9 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
+
+//import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
@@ -17,18 +19,24 @@ public class VisibilityBean implements Serializable {
 
   private static final long serialVersionUID = 6402332157509278585L;
   private GlobalSettingService globalSettingService;
+  private boolean isShownButtonIcon;
+  private boolean isEnablePinTask;
+  private boolean isEnablePinCase;
 
   @PostConstruct
   public void init() {
     globalSettingService = GlobalSettingService.getInstance();
+    isShownButtonIcon = globalSettingService.findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_BUTTON_ICON);
+    isEnablePinTask = globalSettingService.isEnablePinTask();
+    isEnablePinCase = globalSettingService.isEnablePinCase();
   }
 
   public boolean isShowButtonIcon() {
-    return globalSettingService.findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_BUTTON_ICON);
+    return isShownButtonIcon;
   }
 
   public String generateButtonIcon(String iconClass) {
-    return globalSettingService.findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_BUTTON_ICON) ? iconClass : StringUtils.EMPTY;
+    return isShownButtonIcon ? iconClass : StringUtils.EMPTY;
   }
 
   public boolean isShowLoginFooter() {
@@ -44,10 +52,10 @@ public class VisibilityBean implements Serializable {
   }
 
   public boolean isEnablePinTask() {
-    return globalSettingService.isEnablePinTask();
+    return isEnablePinTask;
   }
 
   public boolean isEnablePinCase() {
-    return globalSettingService.isEnablePinCase();
+    return isEnablePinCase;
   }
 }
