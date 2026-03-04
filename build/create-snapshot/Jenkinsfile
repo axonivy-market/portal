@@ -1,0 +1,66 @@
+pipeline {
+  agent { label 'linux' }
+
+  options {
+    buildDiscarder(logRotator(numToKeepStr: '30', artifactNumToKeepStr: '5'))
+  }
+
+  triggers {
+    cron('0 0 * * *')
+  }
+
+  parameters {
+    string(name: 'engineDownloadURL', defaultValue: '-Divy.engine.download.url=https://developer.axonivy.com/permalink/nightly/axonivy-engine.zip', description: '''Where to download engine? e.g.
+      -Divy.engine.download.url=https://developer.axonivy.com/permalink/nightly/axonivy-engine.zip for nightly master
+      -Divy.engine.download.url=https://developer.axonivy.com/permalink/dev/axonivy-engine.zip for dev master
+    ''')
+    booleanParam(name: 'deployToRepo', defaultValue: false, description: 'Should deploy artifacts to repo? If true, deployable modules are deployed to Nexus snapshots. If false, only local install.')
+  }
+
+  environment {
+    engineDir = "$env.WORKSPACE/engine"
+  }
+
+  stages {
+    stage('verify selenium tests') {
+      steps {
+        script {
+          currentBuild.description = "On ${env.NODE_NAME}"
+          build job: "portal-selenium-test/${java.net.URLEncoder.encode(env.BRANCH_NAME, 'UTF-8')}",
+            parameters: [string(name: 'engineDownloadURL', value: params.engineDownloadURL)],
+            wait: true, propagate: true
+        }
+      }
+    }
+
+    stage('verify performance') {
+      steps {
+        script {
+          build job: "portal-performance-test/${java.net.URLEncoder.encode(env.BRANCH_NAME, 'UTF-8')}",
+            wait: true, propagate: true
+        }
+      }
+    }
+
+    stage('deploy snapshot') {
+      steps {
+        script {
+          docker.build('build-portal-snapshot', '-f build/Dockerfile .').inside('-v /var/tools/maven-cache:/home/build/') {
+            // module structure [module path, isPossibleToDeploy]
+            def modules = [['AxonIvyPortal/portal-components', true], ['AxonIvyPortal/portal', true], ['AxonIvyPortal/PortalKitTestHelper', false], ['Showcase/portal-user-examples', true], ['Showcase/portal-developer-examples', true], ['Showcase/InternalSupport', false], ['Showcase/portal-components-examples', true], ['AxonIvyPortal/portal-product', true], ['AxonIvyPortal/PortalApp', true], ['Showcase/portal-demo-app', true]]
+            for (module in modules) {
+              def mavenGoal = params.deployToRepo && module[1] ? 'deploy' : 'install'
+              maven cmd: "clean ${mavenGoal} -Divy.engine.directory=${env.engineDir} -Divy.engine.version=[7.0.0,] -Divy.compiler.engine.start.timeout=120 ${params.engineDownloadURL} -f ${module[0]}/pom.xml"
+            }
+          }
+        }
+      }
+    }
+  }
+
+  post {
+    always {
+      archiveArtifacts artifacts: '**/target/*.iar,AxonIvyPortal/PortalApp/target/*.zip,Showcase/portal-demo-app/target/*.zip', allowEmptyArchive: true
+    }
+  }
+}
