@@ -6,24 +6,45 @@ CustomFields:
     Decision:
       Description: Statut de la décision
       Label: Décision
+      Values:
+        Approved: Approuvé
+        Pending: En attente
+        Rejected: Rejeté
     Department:
       Description: Département
       Label: Département
+      Values:
+        DepA: Dép A
+        DepB: Dép B
+        DepC: Dép C
+        DepD: Dép D
     Item:
       Description: Article
       Label: Article
+      Values:
+        Keyboard: Clavier
+        Laptop: Ordinateur portable
+        Mobile: Téléphone portable
+        Tablet: Tablette
     MonthYear:
       Description: Mois de l'année
       Label: Mois de l'Année
     ReworkCauses:
       Description: Causes des boucles de reprise
       Label: Causes de reprise
+      Values:
+        MissingInfo: Informations manquantes
+        NotEligible: Non éligible
+        TooExpensive: Trop cher
     ReworkNoLoops:
       Description: Nombre de boucles de processus
       Label: Boucles de reprise
     ReworkOccurred:
       Description: Indique si une boucle a été nécessaire
       Label: Reprise nécessaire
+      Values:
+        'No': Non
+        'Yes': Oui
     SpendAmount:
       Description: Montant des dépenses
       Label: Montant des Dépenses
@@ -193,11 +214,11 @@ Processes:
     InitConfig: Tableau de bord d'exemple Init (MISE À JOUR DU TABLEAU DE BORD DU PORTAIL ET DES VARIABLES STATISTIQUES)
     SampleStatisticValue:
       DaysToDecision: 2;5;6;2;7;4;9;4
-      Decision: Approuvé;Rejeté;En attente
-      Department: Dép A;Dép B;Dép C;Dép D
-      Item: Ordinateur portable ;Téléphone portable;Clavier;Tablette
+      Decision: Approved;Rejected;Pending
+      Department: DepA;DepB;DepC;DepD
+      Item: Laptop;Mobile;Keyboard;Tablet
       MonthOfYear: 01;02;03;04;05;06;07
-      ReworkCauses: Informations manquantes;Non éligible;Trop cher
+      ReworkCauses: MissingInfo;NotEligible;TooExpensive
       ReworkNoLoops: 0;1;2;0;0
       ReworkOccurred: Yes;No
       SpendAmount: 250.5;300.5;400.5;122.5;234.5

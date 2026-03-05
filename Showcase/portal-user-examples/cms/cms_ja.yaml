@@ -6,24 +6,45 @@ CustomFields:
     Decision:
       Description: 決定のステータス
       Label: 決定
+      Values:
+        Approved: 承認
+        Pending: 保留
+        Rejected: 却下
     Department:
       Description: 部門
       Label: 部門
+      Values:
+        DepA: 部門A
+        DepB: 部門B
+        DepC: 部門C
+        DepD: 部門D
     Item:
       Description: 項目
       Label: 項目
+      Values:
+        Keyboard: キーボード
+        Laptop: ノートパソコン
+        Mobile: モバイル端末
+        Tablet: タブレット
     MonthYear:
       Description: 年月
       Label: 年月
     ReworkCauses:
       Description: 手戻りループの原因
       Label: 手戻りの原因
+      Values:
+        MissingInfo: 情報不足
+        NotEligible: 対象外
+        TooExpensive: 高すぎる
     ReworkNoLoops:
       Description: プロセスループの回数
       Label: 手戻りループ数
     ReworkOccurred:
       Description: ループが必要だったかどうか
       Label: 手戻りが必要
+      Values:
+        'No': いいえ
+        'Yes': はい
     SpendAmount:
       Description: 支出額
       Label: 支出額
@@ -223,13 +244,13 @@ Processes:
     InitConfig: 初期サンプルダッシュボード（ポータルダッシュボードと統計変数の更新）
     SampleStatisticValue:
       DaysToDecision: 2;5;6;2;7;4;9;4
-      Decision: 承認;却下;保留
-      Department: 部門A;部門B;部門C;部門D
-      Item: ノートパソコン;モバイル端末;キーボード;テーブル
+      Decision: Approved;Rejected;Pending
+      Department: DepA;DepB;DepC;DepD
+      Item: Laptop;Mobile;Keyboard;Tablet
       MonthOfYear: 01;02;03;04;05;06;07
-      ReworkCauses: 情報不足;対象外;高すぎる
+      ReworkCauses: MissingInfo;NotEligible;TooExpensive
       ReworkNoLoops: 0;1;2;0;0
-      ReworkOccurred: はい;いいえ
+      ReworkOccurred: Yes;No
       SpendAmount: 250.5;300.5;400.5;122.5;234.5
     description: 以下のサンプルKPI統計データを生成するため、このプロセスを（複数回）実行してください。支出額、部門、品目、年度月、決定までの日数、決定内容、手直し作業などの調達情報はランダム化され、ケースのカスタムフィールドに割り当てられます。
     name: 調達
