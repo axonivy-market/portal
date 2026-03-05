@@ -194,6 +194,53 @@ public class DashboardEditCaseWidgetTest extends BaseTest {
     caseWidget.countCases().shouldBe(CollectionCondition.size(2));
   }
 
+  @Test
+  public void testCaseQueryTypeBusinessCase() {
+    redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
+    NewDashboardDetailsEditPage newDashboardDetailsEditPage = gotoEditPublicDashboardPage();
+    newDashboardDetailsEditPage.addWidget();
+    CaseEditWidgetNewDashBoardPage caseWidget = newDashboardDetailsEditPage.addNewCaseWidget();
+    caseWidget.waitPreviewTableLoaded();
+    // Default is BUSINESS_CASE, should show only business cases
+    caseWidget.countCases().shouldBe(CollectionCondition.size(2), DEFAULT_TIMEOUT);
+    // Explicitly select Business Cases to confirm
+    caseWidget.selectCaseQueryType("Business Cases (Default)");
+    caseWidget.waitPreviewTableLoaded();
+    caseWidget.countCases().shouldBe(CollectionCondition.size(2), DEFAULT_TIMEOUT);
+  }
+
+  @Test
+  public void testCaseQueryTypeSubCase() {
+    redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
+    NewDashboardDetailsEditPage newDashboardDetailsEditPage = gotoEditPublicDashboardPage();
+    newDashboardDetailsEditPage.addWidget();
+    CaseEditWidgetNewDashBoardPage caseWidget = newDashboardDetailsEditPage.addNewCaseWidget();
+    caseWidget.waitPreviewTableLoaded();
+    // Default shows business cases
+    caseWidget.countCases().shouldBe(CollectionCondition.size(2), DEFAULT_TIMEOUT);
+    // Switch to Sub Cases
+    caseWidget.selectCaseQueryType("Sub Cases");
+    caseWidget.waitPreviewTableLoaded();
+    // Should show only sub cases (at least 1 from OrderPizza)
+    caseWidget.countCases().shouldBe(CollectionCondition.sizeGreaterThanOrEqual(1), DEFAULT_TIMEOUT);
+  }
+
+  @Test
+  public void testCaseQueryTypeAll() {
+    redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
+    NewDashboardDetailsEditPage newDashboardDetailsEditPage = gotoEditPublicDashboardPage();
+    newDashboardDetailsEditPage.addWidget();
+    CaseEditWidgetNewDashBoardPage caseWidget = newDashboardDetailsEditPage.addNewCaseWidget();
+    caseWidget.waitPreviewTableLoaded();
+    // Default shows business cases only
+    caseWidget.countCases().shouldBe(CollectionCondition.size(2), DEFAULT_TIMEOUT);
+    // Switch to All (business + sub cases)
+    caseWidget.selectCaseQueryType("Business Cases + Sub Cases");
+    caseWidget.waitPreviewTableLoaded();
+    // Should show more cases than business only (at least 3: 2 business + 1 sub)
+    caseWidget.countCases().shouldBe(CollectionCondition.sizeGreaterThanOrEqual(3), DEFAULT_TIMEOUT);
+  }
+
   private NewDashboardDetailsEditPage gotoEditPublicDashboardPage() {
     LinkNavigator.redirectToPortalDashboardConfiguration();
     var configurationPage = new DashboardConfigurationPage();
