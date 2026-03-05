@@ -52,6 +52,7 @@ public class TaskColumnModel extends ColumnModel {
       case NAME -> new NameColumnModel();
       case DESCRIPTION -> new DescriptionColumnModel();
       case RESPONSIBLE -> new ResponsibleColumnModel();
+      case DELEGATION -> new DelegationColumnModel();
       case STATE -> new StateColumnModel();
       case CREATED -> new CreatedDateColumnModel();
       case COMPLETED -> new CompletedDateColumnModel();

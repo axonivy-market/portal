@@ -402,4 +402,5 @@ public class TaskActionBean implements Serializable {
   public boolean isTaskPinned(ITask task) {
     return TaskUtils.isPinnedTask(task);
   }
+
 }

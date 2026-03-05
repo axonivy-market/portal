@@ -930,6 +930,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       COMPLETED: Completed on
       COMPLETED_ON: Completed on
       CREATION_TIME: Created
+      DELEGATION: Delegation
       EXPIRY_TIME: Expiry
       ID: Task Id
       NAME: Name / Description

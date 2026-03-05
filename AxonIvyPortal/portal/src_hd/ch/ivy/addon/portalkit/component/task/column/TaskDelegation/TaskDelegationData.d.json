@@ -1,0 +1,5 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
+  "simpleName" : "TaskDelegationData",
+  "namespace" : "ch.ivy.addon.portalkit.component.task.column.TaskDelegation"
+}

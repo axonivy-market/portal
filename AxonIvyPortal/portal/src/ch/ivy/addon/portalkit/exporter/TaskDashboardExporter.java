@@ -53,6 +53,7 @@ public class TaskDashboardExporter extends DashboardWidgetExporter{
       case ID -> "/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ID";
       case PRIORITY -> "/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/PRIORITY";
       case RESPONSIBLE -> "/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR";
+      case DELEGATION -> "/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/DELEGATION";
       case CREATED -> "/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/CREATION_TIME";
       case COMPLETED -> "/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/COMPLETED";
       case EXPIRY -> "/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/EXPIRY_TIME";
@@ -94,6 +95,9 @@ public class TaskDashboardExporter extends DashboardWidgetExporter{
             .stream()
             .map(item -> SecurityMemberDisplayNameUtils.generateBriefDisplayNameForSecurityMember(item.get(), item.displayName()))
             .collect(Collectors.joining(Ivy.cms().co("/Labels/Comma")));
+      case DELEGATION -> taskItem.customFields().timestampField(ch.ivy.addon.portalkit.constant.CustomFields.CUSTOM_TIMESTAMP_FIELD5).get() != null 
+          ? Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/yes") 
+          : Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/no");
       case ID -> String.valueOf(taskItem.getId());
       case CREATED -> taskItem.getStartTimestamp();
       case COMPLETED -> taskItem.getEndTimestamp();

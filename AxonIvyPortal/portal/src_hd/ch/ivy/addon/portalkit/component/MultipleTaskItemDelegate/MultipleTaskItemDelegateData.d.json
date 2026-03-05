@@ -1,0 +1,55 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
+  "simpleName" : "MultipleTaskItemDelegateData",
+  "namespace" : "ch.ivy.addon.portalkit.component.MultipleTaskItemDelegate",
+  "fields" : [ {
+    "name" : "canDelegateTask",
+    "type" : "Boolean"
+  }, {
+    "name" : "usersToDelegate",
+    "type" : "java.util.List<com.axonivy.portal.components.dto.UserDTO>",
+    "modifiers" : [ ]
+  }, {
+    "name" : "rolesToDelegate",
+    "type" : "java.util.List<com.axonivy.portal.components.dto.RoleDTO>",
+    "modifiers" : [ ]
+  }, {
+    "name" : "application",
+    "type" : "ch.ivyteam.ivy.application.IApplication",
+    "modifiers" : [ ]
+  }, {
+    "name" : "disabledDelegateButton",
+    "type" : "Boolean"
+  }, {
+    "name" : "isUserDelegated",
+    "type" : "Boolean"
+  }, {
+    "name" : "delegatedSecurityMember",
+    "type" : "ch.ivyteam.ivy.security.ISecurityMember",
+    "modifiers" : [ ]
+  }, {
+    "name" : "delegateComment"
+  }, {
+    "name" : "queryAutoComplete"
+  }, {
+    "name" : "tasks",
+    "type" : "java.util.List<ch.ivyteam.ivy.workflow.ITask>",
+    "modifiers" : [ ]
+  }, {
+    "name" : "selectedUser",
+    "type" : "com.axonivy.portal.components.dto.UserDTO",
+    "modifiers" : [ ]
+  }, {
+    "name" : "selectedRole",
+    "type" : "com.axonivy.portal.components.dto.RoleDTO",
+    "modifiers" : [ ]
+  }, {
+    "name" : "taskDelegationComment"
+  }, {
+    "name" : "isEmptyUsers",
+    "type" : "Boolean"
+  }, {
+    "name" : "isEmptyRoles",
+    "type" : "Boolean"
+  } ]
+}

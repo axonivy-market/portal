@@ -164,4 +164,22 @@ public class TaskBean implements Serializable {
     TaskUtils.savePinnedTaskUuids(pinnedTaskUuids);
   }
 
+  public boolean isDelegatedTask(ITask task) {
+    return TaskUtils.isDelegatedTask(task);
+  }
+  
+  public void clickOnDelegationTask(ITask task) {
+    if (task == null)
+      return;
+
+    String taskUuid = task.uuid();
+    Set<String> delegatedTaskUuids = TaskUtils.getDelegatedTaskUuids();
+
+    if (!delegatedTaskUuids.remove(taskUuid)) {
+      delegatedTaskUuids.add(taskUuid);
+    }
+
+    TaskUtils.saveDelegatedTaskUuids(delegatedTaskUuids);
+  }
+
 }
