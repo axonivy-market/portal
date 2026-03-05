@@ -67,72 +67,19 @@ pipeline {
 }
 
 def updateVersion() {
-  def pomFiles = ['AxonIvyPortal/portal-components/pom.xml', 'AxonIvyPortal/portal/pom.xml', 'AxonIvyPortal/AxonIvyExpress/pom.xml', 'AxonIvyPortal/portal-migration/pom.xml',
-    'AxonIvyPortal/portal-selenium-test/pom.xml', 'AxonIvyPortal/portal-selenium-test/customized_pom.xml', 'AxonIvyPortal/portal-selenium-test/document_screenshot_pom.xml',
-    'AxonIvyPortal/PortalKitTestHelper/pom.xml', 'Showcase/portal-user-examples/pom.xml',
-    'Showcase/portal-developer-examples/pom.xml', 'Showcase/InternalSupport/pom.xml', 'Showcase/portal-components-examples/pom.xml']
-  for (pomFile in pomFiles) {
-    if (!params.ivyEngineVersion?.trim().isEmpty()) {
-      maven cmd: "-f ${pomFile} versions:set-property versions:commit -Dproperty=ivy.engine.version -DnewVersion=${params.ivyEngineVersion}"
-    }
-    if (!params.buildPluginVersion?.trim().isEmpty()) {
-      maven cmd: "-f ${pomFile} versions:set-property versions:commit -Dproperty=build.plugin.version -DnewVersion=${params.buildPluginVersion}"
-    } 
-  }
-
+  def command = "python3 build/update-pom/update_versions.py"
+  
   if (!params.portalVersion?.trim().isEmpty()) {
-    sh '''#!/bin/bash
-      updatePortalVersion() {
-        python3 - <<EOF
-import xml.etree.ElementTree as ET
-from pathlib import Path
-import sys
-
-def stripNamespace(element):
-    # Iterate over all the elements and remove the namespace from the tag
-    for elem in element.iter():
-        # If the tag contains a namespace (indicated by '}')
-        if '}' in elem.tag:
-            elem.tag = elem.tag.split('}', 1)[1]  # Keep only the part after '}'
-    return element
-
-portalVersion = "$portalVersion"
-filePath = "$1"
-
-try:
-  tree = ET.parse(filePath)
-  root = tree.getroot()
-  root = stripNamespace(root) # By default, tags like <project> are changed to tag <ns0:project>, need removing namespace
-  version = root.find("version")
-  if version is not None:
-    version.text = portalVersion
-
-  dependencies = root.find("dependencies")
-  if dependencies is not None:
-    for dependency in dependencies.findall("dependency"):
-      groupId = dependency.find("groupId")
-      if groupId is not None and groupId.text in [
-        "com.axonivy.portal","ch.ivyteam.ivy.project.portal",
-      ]:
-        versionTag = dependency.find("version")
-        if versionTag is not None:
-          versionTag.text = portalVersion
-
-  # Write changes back to the file
-  tree.write(filePath, encoding="utf-8", xml_declaration=True)
-except Exception as e:
-  print(f"Failed to process {filePath}: {e}", file=sys.stderr)
-EOF
-      }
-
-      filePatterns=("AxonIvyPortal/*/pom.xml" "Showcase/*/pom.xml" "AxonIvyPortal/portal-selenium-test/customized_pom.xml"
-          "AxonIvyPortal/portal-selenium-test/document_screenshot_pom.xml" "Documentation/public-api/pom.xml")
-
-      for pattern in "${filePatterns[@]}"; do
-        for file in $pattern; do
-          updatePortalVersion "$file"
-        done
-      done
-    '''
+    command += " --portal-version ${params.portalVersion}"
   }
+  if (!params.ivyEngineVersion?.trim().isEmpty()) {
+    command += " --engine-version ${params.ivyEngineVersion}"
+  }
+  if (!params.buildPluginVersion?.trim().isEmpty()) {
+    command += " --build-plugin-version ${params.buildPluginVersion}"
+  }
+  
+  sh """
+    ${command}
+  """
 }
