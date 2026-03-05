@@ -38,7 +38,7 @@ jobs:
         uses: actions/setup-java@v5
         with:
           distribution: 'temurin'
-          java-version: '21'
+          java-version: '25'
 
       - name: Set up Maven
         uses: stCarolas/setup-maven@v5
@@ -92,6 +92,7 @@ jobs:
       - name: Deploy Portal Modules
         run: |
           DEPLOYMENT=$ENGINE_DIR/system/demo-applications/demo-portal
+          mkdir -p $DEPLOYMENT
           rm -rf $DEPLOYMENT/*
           cp Showcase/portal-demo-app/target/*.zip $DEPLOYMENT
           cp Showcase/portal-developer-examples/target/*.iar $DEPLOYMENT

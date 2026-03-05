@@ -208,7 +208,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       thirdPartyApplication: サードパーティーのアプリケーション
     currentValue: 現在の値
     defaultValue: デフォルト値
-    deleteAppConfirmation: このアプリケーションを削除してよろしいですか？
+    deleteAppConfirmation: アプリケーション「<b>{0}</b>」を削除してもよろしいですか？
     dialogclosinginformation:
       dialogHeader: ポータル設定終了
       informMessage: ポータル設定を変更した場合、新しい構成を有効にするには現在のページの更新が必要です。
@@ -965,6 +965,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     RenamingDocumentNote: '{0}はファイル{1}の名前を{2}に変更しました'
     RenamingDocumentSuccess: 名前変更に成功しました。
     RenamingFailed: ドキュメントの名前変更中にエラーが発生しました。
+    confirmation: 確認
+    confirmationUploadDocument: 暗号化されたファイルのスクリプトスキャンは利用できません。プレビューを続行しますか？
     deleteDocumentNote: '{0} が {1} を削除しました'
     deleteSuceed: ファイルの削除に成功しました
     download: ダウンロード
@@ -973,6 +975,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     fileCouldNotParse: ファイルを解析できませんでした
     fileEmptyMessage: ファイルは空です
     name: ファイル名
+    previewErrorMessage: このファイルのプレビューを表示できません
     size: ファイルサイズ
     type: タイプ
     upload: 新しいファイルをアップロード
@@ -980,6 +983,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     uploadFailed: このファイルのアップロード中にエラーが発生しました。管理者にお問い合わせください。
     uploadFileExists: ファイル： {0} は既に存在します
     uploadSucceed: ファイルのアップロードに成功しました
+    uploadSucceedWithWarning: ファイルは正常にアップロードされましたが、ファイルが暗号化されているかパスワードで保護されているため、スクリプトのスキャンを完了できませんでした。
   emailSetting:
     dailySummary: 毎日の要約を受信
     eMail: メール
@@ -1133,11 +1137,11 @@ ch.ivy.addon.portalkit.ui.jsf:
       dialogHeaderTitle: '{0} の情報を編集'
     editProcesses: プロセスを編集
     externalLink: 外部リンク
+    externalLinkImage: 外部リンクの画像
     externalLinkVisibility: 表示設定
     goTo: '移動先:'
     icon: アイコン
     image: 画像
-    externalLinkImage: 外部リンクの画像
     isRequiredMessage: を設定する必要があります
     linkDescription: リンクの説明
     noProcess: プロセスがありません。
@@ -1255,6 +1259,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     taskNotes: ノート
     triggerEscalation: エスカレーションのトリガー
   taskList:
+    configuration: 設定
     deadline: 期限
     default: 初期値
     defaultColumns:

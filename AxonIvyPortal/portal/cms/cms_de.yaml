@@ -207,7 +207,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       thirdPartyApplication: 3rd Party Anwendung
     currentValue: Aktueller Wert
     defaultValue: Standard Wert
-    deleteAppConfirmation: Sind Sie sicher, dass Sie diese Anwendung entfernen möchten?
+    deleteAppConfirmation: Sind Sie sicher, dass Sie diese <b>{0}</b> Anwendung entfernen möchten?
     dialogclosinginformation:
       dialogHeader: Einstellungen abgeschlossen
       informMessage: Änderungen an den Portaleinstellungen erfordern eine Aktualisierung der aktuellen Seite, damit die neue Konfiguration wirksam wird.
@@ -934,6 +934,10 @@ ch.ivy.addon.portalkit.ui.jsf:
     statisticChartWidget: Statistisches Diagramm
     statisticWidgets: Statistik-Widgets
     switchToViewMode: Ansichtsmodus
+    taskList: Aufgabenliste
+    taskListIntroduction: Dieses Widget zeigt relevante Aufgabeninformationen gemäß der definierten Einstellungen an
+    taskStart: Aufgabe starten
+    taskWidgetConfiguration: Aufgaben-Widget-Konfiguration
     taskWidgetInfo:
       expireToday: Fälligkeitsdatum heute
       expiryThisWeek: Fälligkeitsdatum diese Woche
@@ -942,10 +946,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       numberOfTasksByState: Anzahl der Aufgaben nach Status
       predefinedFilters: Vordefinierte Filter
       taskDrillDownDashboard: Dashboard zur Aufgaben-Detailanalyse
-    taskList: Aufgabenliste
-    taskListIntroduction: Dieses Widget zeigt relevante Aufgabeninformationen gemäß der definierten Einstellungen an
-    taskStart: Aufgabe starten
-    taskWidgetConfiguration: Aufgaben-Widget-Konfiguration
     widgetInfo: Widget-Informationen
     widgetInfoIcon: Widget-Informations-Symbol
     widgetTitle: Widget-Titel
@@ -967,6 +967,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     RenamingDocumentNote: '{0} hat die Datei {1} in {2} umbenannt'
     RenamingDocumentSuccess: Erfolgreich umbenannt.
     RenamingFailed: Beim Umbenennen des Dokuments ist ein Fehler aufgetreten.
+    confirmation: Bestätigung
+    confirmationUploadDocument: Das Scannen von Skripten ist für verschlüsselte Dateien nicht verfügbar. Möchten Sie mit der Vorschau fortfahren?
     deleteDocumentNote: '{0} hat folgendes gelöscht: {1}'
     deleteSuceed: Datei wurde erfolgreich gelöscht
     download: Herunterladen
@@ -982,6 +984,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     uploadFailed: Während des Hochladens ist ein Fehler aufgetreten. Bitte fragen Sie Ihren Administrator.
     uploadFileExists: Datei {0} ist bereits vorhanden
     uploadSucceed: Die Datei wurde erfolgreich hochgeladen
+    uploadSucceedWithWarning: Die Datei wurde erfolgreich hochgeladen, aber das Skript-Scannen konnte nicht abgeschlossen werden, da die Datei verschlüsselt oder passwortgeschützt ist.
   emailSetting:
     dailySummary: Tägliche Zusammenfassung erhalten
     eMail: E-Mail
@@ -1136,11 +1139,11 @@ ch.ivy.addon.portalkit.ui.jsf:
       dialogHeaderTitle: Informationen bearbeiten für {0}
     editProcesses: Prozesse bearbeiten
     externalLink: Externer Link
+    externalLinkImage: Bild des externen Links
     externalLinkVisibility: Sichtbarkeit
     goTo: 'Gehe zu: '
     icon: Symbol
     image: Bild
-    externalLinkImage: Bild des externen Links
     isRequiredMessage: muss gesetzt werden
     linkDescription: Link Beschreibung
     noProcess: Keinen Prozess gefunden.
@@ -1258,6 +1261,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     taskNotes: Notizen
     triggerEscalation: Eskalation auslösen
   taskList:
+    configuration: Konfiguration
     deadline: Frist
     default: Standard
     defaultColumns:

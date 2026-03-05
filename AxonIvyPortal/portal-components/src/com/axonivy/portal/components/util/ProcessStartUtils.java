@@ -37,7 +37,6 @@ public class ProcessStartUtils {
 
       List<IApplication> apps = IApplicationRepository.of(ISecurityContext.current()).allReleased();
       List<IProcessModelVersion> processModelVersions = apps.stream()
-        .filter(app -> app.getReleaseState() == ReleaseState.RELEASED)
         .flatMap(app -> app.getProcessModelVersions())
         .toList();
       for (var pmv : processModelVersions) {

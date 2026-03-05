@@ -32,16 +32,10 @@
               <h:outputText id="application-name" value="#{entry.key}" />
             </f:facet>
             <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/projectInfo/projectName')}">
-              <h:outputText id="project-name" value="#{pmv.getProcessModel().getName()}" />
+              <h:outputText id="project-name" value="#{pmv.getName()}" />
             </p:column>
             <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/projectInfo/version')}" styleClass="project-version" >
               <h:outputText id="project-version" value="#{pmv.getLibraryVersion()}" />
-            </p:column>
-            <p:column headerText="PMV" width="35" styleClass="project-pmv">
-              <h:outputText id="pmv" value="#{pmv.getVersionNumber()}" />
-            </p:column>
-            <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/state')}" styleClass="project-state" >
-              <h:outputText id="state" value="#{projectVersionBean.translateReleaseState(pmv.getReleaseState())}" />
             </p:column>
           </p:dataTable>
         </div>

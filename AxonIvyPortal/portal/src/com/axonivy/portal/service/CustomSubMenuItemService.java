@@ -19,7 +19,7 @@ import com.axonivy.portal.components.publicapi.PortalNavigatorAPI;
 import com.axonivy.portal.enums.PortalCustomSignature;
 
 import ch.addon.portal.generic.menu.SubMenuItem;
-import ch.addon.portal.generic.userprofile.homepage.HomepageType;
+import ch.addon.portal.generic.userprofile.homepage.HomepageUtils;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -81,7 +81,6 @@ public class CustomSubMenuItemService {
       }
       result.setLink(link);
       result.setLabel(customMenu.getLabel());
-      result.setName(HomepageType.CUSTOM.name());
       result.setIcon(StringUtils.defaultIfBlank(customMenu.getIcon(), DEFAULT_ICON));
 
       if (customMenu.getMenuKind() != null) {
@@ -91,6 +90,10 @@ public class CustomSubMenuItemService {
             ? MenuKind.EXTERNAL_LINK
             : MenuKind.CUSTOM);
       }
+
+      String menuId = SubMenuItem.generateId(result.getMenuKind(), result.getLink());
+      result.setId(menuId);
+      result.setName(HomepageUtils.generateHomepageId(result.getMenuKind(), menuId));
 
       return result;
     };
