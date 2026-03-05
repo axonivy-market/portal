@@ -795,6 +795,12 @@ ch.ivy.addon.portalkit.ui.jsf:
       EmptyChartDataMessage: Wir haben nicht genug Daten, um ein schönes Diagramm zu erstellen!
       failToRenderChartMessage: Fehler beim Rendern des Diagramms. Bitte versuchen Sie es mit anderen Einstellungen erneut.
       firstConfigChartMessage: Noch kein Diagramm verfügbar. Bitte konfigurieren Sie Ihre Einstellungen, um ein Diagramm zu generieren.
+      TooltipAverageKpiLabel: Durchschnitt von {0}
+      TooltipMaxKpiLabel: Maximum von {0}
+      TooltipMinKpiLabel: Minimum von {0}
+      TooltipSumKpiLabel: Summe von {0}
+      TooltipTotalCaseLabel: 'Gesamt: {0} Vorgänge'
+      TooltipTotalTaskLabel: 'Gesamt: {0} Aufgaben'
     WelcomeWidgetIntroduction: Dieses Widget zeigt einen Willkommenstext und ein Bild auf dem Dashboard an.
     WelcomeWidgetNotFoundMessage: Wir können das Bild des Widgets nicht finden, bitte konfigurieren Sie Ihr Bild neu!
     WidgetFilterName: Name des Widget-Filters

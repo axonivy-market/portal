@@ -6,8 +6,10 @@ import static com.axonivy.portal.enums.statistic.ChartTarget.CASE;
 import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Optional;
 import java.util.Set;
@@ -41,6 +43,7 @@ import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
 import ch.ivy.addon.portalkit.service.exception.PortalException;
 import ch.ivy.addon.portalkit.statistics.StatisticResponse;
+import ch.ivy.addon.portalkit.util.PortalCustomFieldUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.searchengine.client.agg.AggregationResult;
 import ch.ivyteam.ivy.workflow.stats.WorkflowStats;
@@ -79,10 +82,12 @@ public class StatisticService {
     Statistic chart = findByStatisticId(payload.getChartId());
     validateChart(payload.getChartId(), chart);
     AggregationResult result = getChartData(chart);
-    chart.setAdditionalConfigs(new ArrayList<>());
-    chart.getAdditionalConfigs().addAll(getAdditionalConfig());
-    chart.getAdditionalConfigs().add(getManipulateValueBy(chart));
-    return new StatisticResponse(result, chart);
+
+    chart.setAdditionalConfigs(getAdditionalConfig(chart));
+
+    Map<String, String> localizedLabels = this.getLocalizedLabelMap(chart.getChartTarget(), chart.getStatisticAggregation());
+
+    return new StatisticResponse(result, chart, localizedLabels);
   }
 
   private void validateChart(String chartId, Statistic chart) {
@@ -153,13 +158,17 @@ public class StatisticService {
     }
   }
   
-  public List<Entry<String, String>> getAdditionalConfig() {
-    
+  public List<Entry<String, String>> getAdditionalConfig(Statistic chart) {
     List<Entry<String, String>> entries = new ArrayList<>();
     entries.add(new SimpleEntry<>(AdditionalChartConfig.EMPTY_CHART_DATA_MESSAGE.getKey(),
         Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/StatisticWidget/EmptyChartDataMessage")));
     entries.add(new SimpleEntry<>(AdditionalChartConfig.FAIL_TO_RENDER_CHART_MESSAGE.getKey(),
         Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/StatisticWidget/failToRenderChartMessage")));
+    Optional.ofNullable(getManipulateValueBy(chart)).ifPresent(entries::add);
+    entries.add(new SimpleEntry<>(AdditionalChartConfig.TOOLTIP_TOTAL_LABEL.getKey(),
+        getTooltipTotalLabel(chart.getChartTarget())));
+    entries.add(new SimpleEntry<>(AdditionalChartConfig.TOOLTIP_KPI_LABEL.getKey(),
+        getTooltipKpiLabel(chart.getChartTarget(), chart.getStatisticAggregation())));
     return entries;
   }
 
@@ -170,7 +179,7 @@ public class StatisticService {
                    .anyMatch(permission -> Ivy.session().getSessionUser().has().role(permission));
   }
 
-  public Entry<String, String> getManipulateValueBy(Statistic data) {
+  private Entry<String, String> getManipulateValueBy(Statistic data) {
     return Optional.ofNullable(data.getManipulateValueBy())
                    .map(value -> new SimpleEntry<>(AdditionalChartConfig.MANIPULATE_BY.getKey(), value))
                    .orElse(null);
@@ -323,4 +332,63 @@ public class StatisticService {
     drillDownService.createDrillDownDashboardInSession(statistic, drillDownData.getDrillDownValue());
   }
 
+  public Map<String, String> getLocalizedLabelMap(ChartTarget chartTarget, StatisticAggregation aggregation) {
+    Map<String, String> localizedLabels = new HashMap<>(getLocalizedValueLabels(chartTarget, aggregation));
+    getLocalizedKpiLabel(chartTarget, aggregation)
+        .ifPresent(entry -> localizedLabels.put(entry.getKey(), entry.getValue()));
+    return localizedLabels;
+  }
+
+  private Map<String, String> getLocalizedValueLabels(ChartTarget chartTarget, StatisticAggregation aggregation) {
+    if (aggregation.getType() != DashboardColumnType.CUSTOM) {
+      return Map.of();
+    }
+
+    if (CASE == chartTarget) {
+      return PortalCustomFieldUtils.getLocalizedValueLabelMapOnCaseField(aggregation.getCustomFieldValue());
+    } else {
+      return PortalCustomFieldUtils.getLocalizedValueLabelMapOnTaskField(aggregation.getCustomFieldValue());
+    }
+  }
+
+  private Optional<Entry<String, String>> getLocalizedKpiLabel(ChartTarget chartTarget, StatisticAggregation aggregation) {
+    String kpiField = aggregation.getKpiField();
+    if (StringUtils.isBlank(kpiField)) {
+      return Optional.empty();
+    }
+
+    String kpiLabel = CASE == chartTarget ? PortalCustomFieldUtils.getLocalizedLabelOnCaseField(kpiField) 
+      : PortalCustomFieldUtils.getLocalizedLabelOnTaskField(kpiField);
+    
+    return Optional.of(new SimpleEntry<>(kpiField, kpiLabel));
+  }
+
+  private String getTooltipTotalLabel(ChartTarget chartTarget) {
+    String cmsKey = CASE == chartTarget ? "TooltipTotalCaseLabel" : "TooltipTotalTaskLabel";
+    return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/StatisticWidget/" + cmsKey);
+  }
+
+  private String getTooltipKpiLabel(ChartTarget chartTarget, StatisticAggregation aggregation) {
+    String kpiField = aggregation.getKpiField();
+    if (StringUtils.isBlank(kpiField)) {
+      return StringUtils.EMPTY;
+    }
+
+    String localizedKpiLabel = CASE == chartTarget ? PortalCustomFieldUtils.getLocalizedLabelOnCaseField(kpiField)
+      : PortalCustomFieldUtils.getLocalizedLabelOnTaskField(kpiField);
+
+    String cmsKey = switch (aggregation.getAggregationMethod()) {
+      case "sum" -> "TooltipSumKpiLabel";
+      case "avg" -> "TooltipAverageKpiLabel";
+      case "max" -> "TooltipMaxKpiLabel";
+      case "min" -> "TooltipMinKpiLabel";
+      default -> null;
+    };
+
+    if (cmsKey == null) {
+      return StringUtils.EMPTY;
+    }
+
+    return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/StatisticWidget/" + cmsKey, Arrays.asList(localizedKpiLabel));
+  }
 }

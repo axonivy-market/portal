@@ -15,6 +15,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
@@ -486,13 +487,12 @@ public class StatisticConfigurationBean implements Serializable, IMultiLanguage 
     syncUIConfigWithChartConfig();
     cleanUpFilter();
     StatisticService statisticService = StatisticService.getInstance();
-    statistic.setAdditionalConfigs(new ArrayList<>());
-    statistic.getAdditionalConfigs().addAll(statisticService.getAdditionalConfig());
-    statistic.getAdditionalConfigs().add(statisticService.getManipulateValueBy(statistic));
-    
+    statistic.setAdditionalConfigs(statisticService.getAdditionalConfig(statistic));
+
     AggregationResult result = statisticService.getChartData(statistic);
+    Map<String, String> localizedLabels = statisticService.getLocalizedLabelMap(statistic.getChartTarget(), statistic.getStatisticAggregation());
     PrimeFaces.current().ajax().addCallbackParam("jsonResponse",
-        BusinessEntityConverter.entityToJsonValue(new StatisticResponse(result, statistic)));
+        BusinessEntityConverter.entityToJsonValue(new StatisticResponse(result, statistic, localizedLabels)));
     populateBackgroundColorsIfMissing();
   }
   
@@ -501,11 +501,10 @@ public class StatisticConfigurationBean implements Serializable, IMultiLanguage 
     handleAggregateWithDateTimeInterval();
     cleanUpFilter();
     StatisticService statisticService = StatisticService.getInstance();
-    statistic.setAdditionalConfigs(new ArrayList<>());
-    statistic.getAdditionalConfigs().addAll(statisticService.getAdditionalConfig());
-    statistic.getAdditionalConfigs().add(statisticService.getManipulateValueBy(statistic));
+    statistic.setAdditionalConfigs(statisticService.getAdditionalConfig(statistic));
     AggregationResult result = statisticService.getChartData(statistic);
-    String data = BusinessEntityConverter.entityToJsonValue(new StatisticResponse(result, statistic));
+    Map<String, String> localizedLabels = statisticService.getLocalizedLabelMap(statistic.getChartTarget(), statistic.getStatisticAggregation());
+    String data = BusinessEntityConverter.entityToJsonValue(new StatisticResponse(result, statistic, localizedLabels));
     JSONObject jsonObject = new JSONObject(data);
     JSONArray buckets = jsonObject
         .getJSONObject("result")

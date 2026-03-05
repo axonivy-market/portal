@@ -793,6 +793,12 @@ ch.ivy.addon.portalkit.ui.jsf:
       EmptyChartDataMessage: 適切なチャートを作成するにはデータが足りません！
       failToRenderChartMessage: チャートを描画中にエラーが発生しました。設定を変更して再試行してください。
       firstConfigChartMessage: チャートはまだ利用できません。チャートを生成するには設定を構成してください。
+      TooltipAverageKpiLabel: '{0}の平均'
+      TooltipMaxKpiLabel: '{0}の最大値'
+      TooltipMinKpiLabel: '{0}の最小値'
+      TooltipSumKpiLabel: '{0}の合計'
+      TooltipTotalCaseLabel: '合計: {0} ケース'
+      TooltipTotalTaskLabel: '合計: {0} タスク'
     WelcomeWidgetIntroduction: このウィジェットは、ダッシュボードにウェルカムテキストと画像を表示します。
     WelcomeWidgetNotFoundMessage: ウィジェットの画像が見つかりません。画像を再設定してください。
     WidgetFilterName: ウィジェットフィルター名
