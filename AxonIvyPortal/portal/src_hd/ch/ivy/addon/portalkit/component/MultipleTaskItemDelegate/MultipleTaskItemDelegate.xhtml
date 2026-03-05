@@ -85,7 +85,7 @@
             ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/delegate')}"
             icon="#{visibilityBean.generateButtonIcon('si si-road-sign-u-turn-right')}"
             actionListener="#{logic.delegateTask}" process=":#{p:resolveFirstComponentWithId('activator-panel', view).clientId} delegate-comment-panel" disabled="#{data.disabledDelegateButton}"
-            update="@(.task-view-container) #{cc.attrs.componentToUpdate}"
+            update="@(.task-view-container) @(.delegation-action-bar) @(.widget-header-default-actions) #{cc.attrs.componentToUpdate}"
             oncomplete="#{cc.attrs.onCompletedCallback}"
             onsuccess="PF('multiple-task-delegate-dialog').hide();" />
         </h:panelGroup>

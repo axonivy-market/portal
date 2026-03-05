@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/13.2.0/process.json",
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/process.json",
   "id" : "17EE8CACE2CB2C75",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -513,7 +513,10 @@
             "  }",
             "}",
             "",
-            "in.taskDelegationComment = \"\";"
+            "in.taskDelegationComment = \"\";",
+            "",
+            "// Clear delegation selections after successful delegation",
+            "TaskUtils.removeAllDelegatedTasks();"
           ]
         },
         "sudo" : true

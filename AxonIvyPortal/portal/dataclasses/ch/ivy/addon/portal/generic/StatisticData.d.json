@@ -1,13 +1,14 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
   "simpleName" : "StatisticData",
   "namespace" : "ch.ivy.addon.portal.generic",
-  "isBusinessCaseData" : false,
   "fields" : [ {
     "name" : "priorityStatistic",
-    "type" : "ch.ivy.addon.portalkit.bo.PriorityStatistic"
+    "type" : "ch.ivy.addon.portalkit.bo.PriorityStatistic",
+    "modifiers" : [ ]
   }, {
     "name" : "expiryStatistic",
-    "type" : "ch.ivy.addon.portalkit.bo.ExpiryStatistic"
+    "type" : "ch.ivy.addon.portalkit.bo.ExpiryStatistic",
+    "modifiers" : [ ]
   } ]
 }

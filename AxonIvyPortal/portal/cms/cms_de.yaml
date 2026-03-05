@@ -492,6 +492,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     days: Tage
     default: Standardeinstellung
     defaultNotificationMessage: Hmm... Hier ist wohl etwas schief gelaufen.
+    delegateTasks: Aufgaben delegieren
     delegation: Delegation
     delete: Löschen
     deleteAbsenceHeaderText: 'Diese Abwesenheit löschen? '
@@ -500,6 +501,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     deleteFilterHeaderText: Diesen Filter löschen?
     deleteSettingHeaderText: Diese Einstellung löschen?
     description: Beschreibung
+    deselectAll: Auswahl aufheben
     design: Design
     destroy: Löschen
     destroyCaseHeaderText: Diesen Vorgang löschen?
@@ -542,6 +544,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     hours: Stunden
     inactive: Deaktiviert
     information: Information
+    itemsSelected: '{0} Elemente ausgewählt'
     leave: Verlassen
     leaveAndReserve: Verlassen und reservieren
     linkToCaseDetails: Klicken Sie <a href="{0}" >hier</a> für weitere Details.

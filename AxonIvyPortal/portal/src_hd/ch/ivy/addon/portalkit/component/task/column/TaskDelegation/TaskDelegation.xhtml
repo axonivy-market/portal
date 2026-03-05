@@ -15,7 +15,7 @@
         <p:commandLink 
             ariaLabel="#{isDelegated ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/undelegation') : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delegation')}"
             action="#{taskBean.clickOnDelegationTask(cc.attrs.task)}" 
-            update="@form"
+            update="@form @(.delegation-action-bar) @(.widget-header-default-actions)"
             styleClass="default-task-cell flex align-items-center justify-content-center h-full text-center delegation-cell-link">
 
             <p:selectBooleanCheckbox value="#{isDelegated}" disabled="true" />

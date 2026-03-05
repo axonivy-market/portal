@@ -323,11 +323,6 @@ public class TaskDashboardWidget extends DashboardWidget {
     this.dataModel.setShowPinnedItem(showPinnedItem);
   }
 
-  @Override
-  public void toggleShowDelegated() {
-    this.dataModel.setShowDelegatedItem(showDelegatedItem);
-  }
-
   public boolean isShowPinnedToggle() {
     return showPinnedToggle;
   }

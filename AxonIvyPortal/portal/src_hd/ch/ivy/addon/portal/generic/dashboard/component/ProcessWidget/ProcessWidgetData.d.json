@@ -1,32 +1,36 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
   "simpleName" : "ProcessWidgetData",
   "namespace" : "ch.ivy.addon.portal.generic.dashboard.component.ProcessWidget",
-  "isBusinessCaseData" : false,
   "fields" : [ {
     "name" : "tasks",
-    "type" : "java.util.List<ch.ivyteam.ivy.workflow.ITask>"
+    "type" : "java.util.List<ch.ivyteam.ivy.workflow.ITask>",
+    "modifiers" : [ ]
   }, {
     "name" : "taskSearchCriteria",
-    "type" : "ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria"
+    "type" : "ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria",
+    "modifiers" : [ ]
   }, {
     "name" : "taskQuery",
-    "type" : "ch.ivyteam.ivy.workflow.query.TaskQuery"
+    "type" : "ch.ivyteam.ivy.workflow.query.TaskQuery",
+    "modifiers" : [ ]
   }, {
     "name" : "taskWidget",
-    "type" : "ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget"
+    "type" : "ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget",
+    "modifiers" : [ ]
   }, {
     "name" : "filteredTasks",
-    "type" : "java.util.List<ch.ivyteam.ivy.workflow.ITask>"
+    "type" : "java.util.List<ch.ivyteam.ivy.workflow.ITask>",
+    "modifiers" : [ ]
   }, {
     "name" : "dataModel",
-    "type" : "ch.ivy.addon.portalkit.datamodel.DashboardTaskLazyDataModel"
+    "type" : "ch.ivy.addon.portalkit.datamodel.DashboardTaskLazyDataModel",
+    "modifiers" : [ ]
   }, {
-    "name" : "currentPortalPage",
-    "type" : "String",
-    "modifiers" : [ "PERSISTENT" ]
+    "name" : "currentPortalPage"
   }, {
     "name" : "selectedTask",
-    "type" : "ch.ivyteam.ivy.workflow.ITask"
+    "type" : "ch.ivyteam.ivy.workflow.ITask",
+    "modifiers" : [ ]
   } ]
 }

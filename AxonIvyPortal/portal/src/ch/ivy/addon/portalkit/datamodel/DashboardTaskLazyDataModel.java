@@ -157,7 +157,4 @@ public class DashboardTaskLazyDataModel extends LiveScrollLazyModel<ITask> {
     criteria.setShowPinnedItem(showPinnedItem);
   }
 
-  public void setShowDelegatedItem(boolean showDelegatedItem) {
-    criteria.setShowDelegatedItem(showDelegatedItem);
-  }
 }

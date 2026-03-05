@@ -89,7 +89,6 @@ public class DashboardBean implements Serializable, IMultiLanguage {
   private String selectedDashboardName;
   private String searchScope;
   private boolean isShowPinnedItem;
-  private boolean isShowDelegatedItem;
   private List<ITask> selectedDelegatedTasks;
 
   @PostConstruct
@@ -630,17 +629,16 @@ public class DashboardBean implements Serializable, IMultiLanguage {
     return widget instanceof TaskDashboardWidget;
   }
 
-  public boolean getShowDelegatedItem() {
-    return this.isShowDelegatedItem;
+  public boolean hasDelegatedTasks() {
+    return CollectionUtils.isNotEmpty(TaskUtils.getDelegatedTaskUuids());
   }
 
-  public void setShowDelegatedItem(boolean isShowDelegatedItem) {
-    this.isShowDelegatedItem = isShowDelegatedItem;
+  public int getDelegatedTaskCount() {
+    return TaskUtils.getDelegatedTaskUuids().size();
   }
 
-  public void toggleDelegated(DashboardWidget widget) {
-    widget.setShowDelegatedItem(isShowDelegatedItem);
-    widget.toggleShowDelegated();
+  public void deselectAllDelegatedTasks() {
+    TaskUtils.removeAllDelegatedTasks();
   }
 
   public List<ITask> getSelectedDelegatedTasks() {
@@ -657,7 +655,7 @@ public class DashboardBean implements Serializable, IMultiLanguage {
       this.selectedDelegatedTasks = new ArrayList<>();
       return;
     }
-    
+
     TaskService taskService = TaskService.newInstance();
     this.selectedDelegatedTasks = delegatedTaskUuids.stream()
       .map(uuid -> taskService.findTaskByUUID(uuid))

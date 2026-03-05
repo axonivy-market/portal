@@ -41,7 +41,6 @@ public class DashboardTaskSearchCriteria {
   private boolean isInConfiguration;
   private String quickSearchKeyword;
   private boolean showPinnedItem;
-  private boolean showDelegatedItem;
 
   public TaskQuery buildQuery() {
     TaskQuery query = buildQueryWithoutOrderByClause();
@@ -57,9 +56,6 @@ public class DashboardTaskSearchCriteria {
     queryCanWorkOn(query);
     if (showPinnedItem) {
       queryPinnedTasks(query);
-    }
-    if (showDelegatedItem) {
-      queryDelegatedTasks(query);
     }
     return query;
   }
@@ -384,26 +380,6 @@ public class DashboardTaskSearchCriteria {
       String[] uuidArray = pinnedTaskUuids.toArray(new String[0]);
       query.where().uuid().isIn(uuidArray);
     }
-  }
-
-  private void queryDelegatedTasks(TaskQuery query) {
-    Set<String> delegatedTaskUuids = Optional.ofNullable(TaskUtils.getDelegatedTaskUuids())
-        .orElse(Collections.emptySet());
-
-    if (delegatedTaskUuids.isEmpty()) {
-      query.where().uuid().isEqual(StringUtils.EMPTY); // value that can never match
-    } else {
-      String[] uuidArray = delegatedTaskUuids.toArray(new String[0]);
-      query.where().uuid().isIn(uuidArray);
-    }
-  }
-
-  public boolean showDelegatedItem() {
-    return showDelegatedItem;
-  }
-
-  public void setShowDelegatedItem(boolean showDelegatedItem) {
-    this.showDelegatedItem = showDelegatedItem;
   }
 
 }
