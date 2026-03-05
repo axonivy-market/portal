@@ -490,12 +490,12 @@ public class StatisticConfigurationBean implements Serializable, IMultiLanguage 
     statistic.setAdditionalConfigs(statisticService.getAdditionalConfig(statistic));
 
     AggregationResult result = statisticService.getChartData(statistic);
-    Map<String, String> localizedLabels = statisticService.getLocalizedLabelMap(statistic.getChartTarget(), statistic.getStatisticAggregation());
+    Map<String, String> localizedValues = statisticService.getLocalizedValues(statistic.getChartTarget(), statistic.getStatisticAggregation());
     PrimeFaces.current().ajax().addCallbackParam("jsonResponse",
-        BusinessEntityConverter.entityToJsonValue(new StatisticResponse(result, statistic, localizedLabels)));
+        BusinessEntityConverter.entityToJsonValue(new StatisticResponse(result, statistic, localizedValues)));
     populateBackgroundColorsIfMissing();
   }
-  
+
   public void fetchCategoryData() {
     handleCustomFieldAggregation();
     handleAggregateWithDateTimeInterval();
@@ -503,8 +503,8 @@ public class StatisticConfigurationBean implements Serializable, IMultiLanguage 
     StatisticService statisticService = StatisticService.getInstance();
     statistic.setAdditionalConfigs(statisticService.getAdditionalConfig(statistic));
     AggregationResult result = statisticService.getChartData(statistic);
-    Map<String, String> localizedLabels = statisticService.getLocalizedLabelMap(statistic.getChartTarget(), statistic.getStatisticAggregation());
-    String data = BusinessEntityConverter.entityToJsonValue(new StatisticResponse(result, statistic, localizedLabels));
+    Map<String, String> localizedValues = statisticService.getLocalizedValues(statistic.getChartTarget(), statistic.getStatisticAggregation());
+    String data = BusinessEntityConverter.entityToJsonValue(new StatisticResponse(result, statistic, localizedValues));
     JSONObject jsonObject = new JSONObject(data);
     JSONArray buckets = jsonObject
         .getJSONObject("result")

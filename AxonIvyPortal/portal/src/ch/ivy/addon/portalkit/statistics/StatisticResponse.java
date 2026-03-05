@@ -11,17 +11,17 @@ public class StatisticResponse {
   private AggregationResult result;
   private Statistic chartConfig;
 
-  private Map<String, String> customFieldLocalizedValues = new HashMap<>();
+  private Map<String, String> localizedValues = new HashMap<>();
 
   public StatisticResponse(AggregationResult result, Statistic config) {
     this.result = result;
     this.chartConfig = config;
   }
 
-  public StatisticResponse(AggregationResult result, Statistic config, Map<String, String> customFieldLocalizedValues) {
+  public StatisticResponse(AggregationResult result, Statistic config, Map<String, String> localizedValues) {
     this.result = result;
     this.chartConfig = config;
-    this.customFieldLocalizedValues = customFieldLocalizedValues;
+    this.localizedValues = localizedValues;
   }
 
   public Statistic getChartConfig() {
@@ -40,11 +40,11 @@ public class StatisticResponse {
     this.result = result;
   }
 
-  public Map<String, String> getCustomFieldLocalizedValues() {
-    return customFieldLocalizedValues;
+  public Map<String, String> getLocalizedValues() {
+    return localizedValues;
   }
 
-  public void setCustomFieldLocalizedValues(Map<String, String> customFieldLocalizedValues) {
-    this.customFieldLocalizedValues = customFieldLocalizedValues;
+  public void setLocalizedValues(Map<String, String> localizedValues) {
+    this.localizedValues = localizedValues;
   }
 }

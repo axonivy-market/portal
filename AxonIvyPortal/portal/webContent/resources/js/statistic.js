@@ -204,7 +204,7 @@ async function fetchChartData(chart, chartId) {
     const response = await postFetchApi(statisticApiURL, JSON.stringify({ "chartId": chartId }));
     cloneResponse = response.clone();
     data = await response.json();
-    localizeBucketKeys(data.result?.aggs, data.customFieldLocalizedValues);
+    localizeBucketKeys(data.result?.aggs, data.localizedValues);
     data['statusCode'] = response.status;
     return await data;
   } catch (error) {
@@ -300,7 +300,7 @@ function previewChart(data, defaultLocale, datePatternConfig, defaultContentLoca
   
   try {
     console.log(data);
-    localizeBucketKeys(data.result?.aggs, data.customFieldLocalizedValues);
+    localizeBucketKeys(data.result?.aggs, data.localizedValues);
     let chartData = generateChart(charts[0], data);
     if (chartData) {
       chartData.render();
