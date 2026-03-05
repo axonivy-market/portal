@@ -258,8 +258,11 @@
             "import com.axonivy.portal.components.util.FacesMessageUtils;",
             "import javax.faces.application.FacesMessage;",
             "import javax.faces.context.FacesContext;",
-            "",
-            "FacesContext.getCurrentInstance().addMessage(\"\", FacesMessageUtils.sanitizedMessage(in.uploadDocumentCheckMessage, \"\" ));"
+            "if (in.isEncrypted) {",
+            " FacesContext.getCurrentInstance().addMessage(\"\", FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_WARN, in.uploadDocumentCheckMessage, \"\"));",
+            "} else {",
+            " FacesContext.getCurrentInstance().addMessage(\"\", FacesMessageUtils.sanitizedMessage(in.uploadDocumentCheckMessage, \"\" ));",
+            "}"
           ]
         }
       },
@@ -381,6 +384,7 @@
         "output" : {
           "map" : {
             "out" : "in",
+            "out.isEncrypted" : "result.isEncrypted",
             "out.uploadDocumentCheckMessage" : "result.message",
             "out.uploadDocumentCheckStatus" : "result.status"
           }
@@ -500,7 +504,7 @@
     }, {
       "id" : "f72",
       "type" : "SubProcessCall",
-      "name" : "Download Document",
+      "name" : "Download Document and check encrypted files",
       "config" : {
         "processCall" : "Functional Processes/DownloadDocument:downloadDocument(ch.ivyteam.ivy.workflow.ICase,com.axonivy.portal.components.ivydata.bo.IvyDocument)",
         "call" : {
@@ -513,21 +517,33 @@
           "map" : {
             "out" : "in",
             "out.streamedContent" : "result.streamedContent"
-          }
+          },
+          "code" : [
+            "import org.primefaces.model.StreamedContent;",
+            "import org.primefaces.PrimeFaces;",
+            "import javax.faces.context.FacesContext;",
+            "import com.axonivy.portal.util.UploadDocumentUtils;",
+            "",
+            "in.isEncrypted = UploadDocumentUtils.isEncrypted(out.streamedContent);",
+            "if (in.isEncrypted) {",
+            " FacesContext.getCurrentInstance().validationFailed();",
+            " PrimeFaces.current().executeScript(\"PF('preview-document-confirmation-dialog').show();\");",
+            "}"
+          ]
         }
       },
       "visual" : {
-        "at" : { "x" : 256, "y" : 776 },
+        "at" : { "x" : 328, "y" : 776 },
         "size" : { "width" : 128 }
       },
       "connect" : [
-        { "id" : "f80", "to" : "f79" }
+        { "id" : "f80", "to" : "f90" }
       ]
     }, {
       "id" : "f74",
       "type" : "HtmlDialogEnd",
       "visual" : {
-        "at" : { "x" : 632, "y" : 776 }
+        "at" : { "x" : 776, "y" : 776 }
       }
     }, {
       "id" : "f77",
@@ -556,13 +572,22 @@
       "config" : {
         "output" : {
           "code" : [
+            "import org.primefaces.PrimeFaces;",
+            "import javax.faces.context.FacesContext;",
+            "import java.io.IOException;",
             "import com.axonivy.portal.components.util.DocumentUtils;",
-            "in.streamedContent = DocumentUtils.findDocFactoryAndConvert(in.streamedContent);"
+            "",
+            " try {",
+            "    in.streamedContent = DocumentUtils.findDocFactoryAndConvert(in.streamedContent);",
+            " } catch (IOException e) {",
+            "    FacesContext.getCurrentInstance().validationFailed();",
+            "    PrimeFaces.current().executeScript(\"PF('preview-document-warning-dialog').show();\");",
+            " }"
           ]
         }
       },
       "visual" : {
-        "at" : { "x" : 440, "y" : 776 }
+        "at" : { "x" : 584, "y" : 776 }
       },
       "connect" : [
         { "id" : "f81", "to" : "f74" }
@@ -576,7 +601,7 @@
         "guid" : "1990F07DC10AB8AD"
       },
       "visual" : {
-        "at" : { "x" : 96, "y" : 952 }
+        "at" : { "x" : 72, "y" : 1056 }
       },
       "connect" : [
         { "id" : "f43", "to" : "f37" }
@@ -602,7 +627,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 256, "y" : 952 }
+        "at" : { "x" : 232, "y" : 1056 }
       },
       "connect" : [
         { "id" : "f48", "to" : "f44" }
@@ -623,7 +648,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 528, "y" : 952 }
+        "at" : { "x" : 504, "y" : 1056 }
       },
       "connect" : [
         { "id" : "f52", "to" : "f40" }
@@ -644,10 +669,10 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 392, "y" : 1072 }
+        "at" : { "x" : 368, "y" : 1176 }
       },
       "connect" : [
-        { "id" : "f55", "to" : "f40", "via" : [ { "x" : 688, "y" : 1072 } ] }
+        { "id" : "f55", "to" : "f40", "via" : [ { "x" : 664, "y" : 1176 } ] }
       ]
     }, {
       "id" : "f40",
@@ -668,7 +693,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 688, "y" : 952 }
+        "at" : { "x" : 664, "y" : 1056 }
       },
       "connect" : [
         { "id" : "f54", "to" : "f41" }
@@ -677,7 +702,7 @@
       "id" : "f41",
       "type" : "HtmlDialogEnd",
       "visual" : {
-        "at" : { "x" : 800, "y" : 952 },
+        "at" : { "x" : 776, "y" : 1056 },
         "labelOffset" : { "x" : 10, "y" : 30 }
       }
     }, {
@@ -690,7 +715,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 392, "y" : 952 },
+        "at" : { "x" : 368, "y" : 1056 },
         "labelOffset" : { "x" : 24, "y" : -24 }
       },
       "connect" : [
@@ -710,7 +735,7 @@
         "guid" : "1998596ACA5A4357"
       },
       "visual" : {
-        "at" : { "x" : 96, "y" : 1160 }
+        "at" : { "x" : 96, "y" : 1312 }
       },
       "connect" : [
         { "id" : "f83", "to" : "f84" }
@@ -733,7 +758,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 256, "y" : 1160 }
+        "at" : { "x" : 256, "y" : 1312 }
       },
       "connect" : [
         { "id" : "f85", "to" : "f86" }
@@ -742,7 +767,71 @@
       "id" : "f86",
       "type" : "HtmlDialogEnd",
       "visual" : {
-        "at" : { "x" : 392, "y" : 1160 }
+        "at" : { "x" : 392, "y" : 1312 }
       }
+    }, {
+      "id" : "f87",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "previewEncryptedDocument()",
+      "config" : {
+        "signature" : "previewEncryptedDocument",
+        "input" : {
+          "map" : { },
+          "code" : [
+            "import com.axonivy.portal.components.util.DocumentUtils;",
+            "out.isImage = DocumentUtils.isImageDocument(out.document);"
+          ]
+        },
+        "guid" : "19C9EBA3906B49EA"
+      },
+      "visual" : {
+        "at" : { "x" : 104, "y" : 904 }
+      },
+      "connect" : [
+        { "id" : "f88", "to" : "f91" }
+      ]
+    }, {
+      "id" : "f90",
+      "type" : "Alternative",
+      "name" : "is encrypted ?",
+      "config" : {
+        "conditions" : {
+          "f92" : "!in.isEncrypted"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 456, "y" : 776 },
+        "labelOffset" : { "x" : 14, "y" : 34 }
+      },
+      "connect" : [
+        { "id" : "f92", "to" : "f79", "color" : "default" },
+        { "id" : "f93", "to" : "f74", "via" : [ { "x" : 456, "y" : 832 }, { "x" : 776, "y" : 832 } ] }
+      ]
+    }, {
+      "id" : "f91",
+      "type" : "SubProcessCall",
+      "name" : "download document without checking encrypted files",
+      "config" : {
+        "processCall" : "Functional Processes/DownloadDocument:downloadDocument(ch.ivyteam.ivy.workflow.ICase,com.axonivy.portal.components.ivydata.bo.IvyDocument)",
+        "call" : {
+          "map" : {
+            "param.bussinessCase" : "in.caze",
+            "param.document" : "in.document"
+          }
+        },
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.streamedContent" : "result.streamedContent"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 328, "y" : 904 },
+        "size" : { "width" : 136, "height" : 70 }
+      },
+      "connect" : [
+        { "id" : "f94", "to" : "f79", "via" : [ { "x" : 584, "y" : 904 } ] }
+      ]
     } ]
 }
