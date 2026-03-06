@@ -12,36 +12,8 @@
   <artifactId>portal-guide</artifactId>
   <packaging>pom</packaging>
   <name>Portal Guide</name>
-
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-  </properties>
-
   <build>
     <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-antrun-plugin</artifactId>
-        <version>3.1.0</version>
-        <executions>
-          <execution>
-            <id>prepare-doc-output</id>
-            <phase>generate-resources</phase>
-            <goals>
-              <goal>run</goal>
-            </goals>
-            <configuration>
-              <target>
-                <delete dir="${project.build.directory}/doc/en/portal-developer-guide/public-api"/>
-                <delete dir="${project.build.directory}/doc/ja/portal-developer-guide/public-api"/>
-                <mkdir dir="${project.build.directory}/doc/en/portal-developer-guide/public-api"/>
-                <mkdir dir="${project.build.directory}/doc/ja/portal-developer-guide/public-api"/>
-              </target>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-
       <plugin>
         <artifactId>maven-resources-plugin</artifactId>
         <version>3.4.0</version>
@@ -53,13 +25,11 @@
               <goal>copy-resources</goal>
             </goals>
             <configuration>
-              <encoding>${project.build.sourceEncoding}</encoding>
-              <outputDirectory>${project.build.directory}/doc/en/portal-developer-guide/public-api</outputDirectory>
-              <overwrite>true</overwrite>
+              <outputDirectory>build/doc/en/portal-developer-guide/public-api</outputDirectory>
               <resources>
                 <resource>
                   <directory>../public-api/target/site/apidocs</directory>
-                  <filtering>false</filtering>
+                  <filtering>true</filtering>
                 </resource>
               </resources>
             </configuration>
@@ -71,13 +41,11 @@
               <goal>copy-resources</goal>
             </goals>
             <configuration>
-              <encoding>${project.build.sourceEncoding}</encoding>
-              <outputDirectory>${project.build.directory}/doc/ja/portal-developer-guide/public-api</outputDirectory>
-              <overwrite>true</overwrite>
+              <outputDirectory>build/doc/ja/portal-developer-guide/public-api</outputDirectory>
               <resources>
                 <resource>
                   <directory>../public-api/target/site/apidocs</directory>
-                  <filtering>false</filtering>
+                  <filtering>true</filtering>
                 </resource>
               </resources>
             </configuration>
