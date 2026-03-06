@@ -70,9 +70,7 @@ public class DisplayNameConvertor {
   public static void initMultipleLanguages(String currentValue, List<DisplayName> values) {
     Map<String, DisplayName> mapLanguage = values
                                             .stream()
-        .filter(o -> o.getLocale() != null)
-        .collect(Collectors.toMap(o -> o.getLocale().toLanguageTag(), o -> o,
-            (existing, replacement) -> existing));
+                                            .collect(Collectors.toMap(o -> o.getLocale().toLanguageTag(), o -> o));
     List<String> supportedLanguages = LanguageService.getInstance().getIvyLanguageOfUser().getSupportedLanguages();
     for (String language : supportedLanguages) {
       DisplayName localeLanguage = mapLanguage.get(language);
