@@ -62,12 +62,12 @@ jobs:
           path: Documentation/portal-guide/source/screenshots
 
       - name: Download artifacts from screenshot workflow
-        if: steps.get_screenshots_head_branch.outcome != 'success' && github.ref_name != 'master'
+        if: steps.get_screenshots_head_branch.outcome != 'success' && github.ref_name != 'release/10.0'
         uses: dawidd6/action-download-artifact@v11
         with:
           workflow: portal-document-screenshot-test.yml
           name: screenshots
-          branch: master
+          branch: release/10.0
           path: Documentation/portal-guide/source/screenshots
             
       - name: install zip
