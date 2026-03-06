@@ -17,12 +17,6 @@
       <plugin>
         <artifactId>maven-resources-plugin</artifactId>
         <version>2.7</version>
-        <configuration>
-          <nonFilteredFileExtensions>
-            <nonFilteredFileExtension>woff</nonFilteredFileExtension>
-            <nonFilteredFileExtension>woff2</nonFilteredFileExtension>
-          </nonFilteredFileExtensions>
-        </configuration>
         <executions>
           <execution>
             <id>copy-javadoc-en</id>
@@ -36,6 +30,10 @@
                 <resource>
                   <directory>../public-api/target/site/apidocs</directory>
                   <filtering>true</filtering>
+                    <excludes>
+                    <exclude>**/*.woff</exclude>
+                    <exclude>**/*.woff2</exclude>
+                  </excludes>
                 </resource>
               </resources>
             </configuration>
@@ -52,6 +50,10 @@
                 <resource>
                   <directory>../public-api/target/site/apidocs</directory>
                   <filtering>true</filtering>
+                    <excludes>
+                    <exclude>**/*.woff</exclude>
+                    <exclude>**/*.woff2</exclude>
+                  </excludes>
                 </resource>
               </resources>
             </configuration>
