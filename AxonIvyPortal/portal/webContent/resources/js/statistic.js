@@ -178,24 +178,6 @@ function shouldRenderEmptyChart(data) {
   return false;
 }
 
-function localizeBucketKeys(aggs, localizedValues) {
-  if (!aggs || !localizedValues || Object.keys(localizedValues).length === 0) {
-    return;
-  }
-  aggs.forEach(agg => {
-    if (agg.buckets) {
-      agg.buckets.forEach(bucket => {
-        if (bucket.key in localizedValues) {
-          bucket.key = localizedValues[bucket.key];
-        }
-        if (bucket.aggs) {
-          localizeBucketKeys(bucket.aggs, localizedValues);
-        }
-      });
-    }
-  });
-}
-
 async function fetchChartData(chart, chartId) {
   let data;
   let cloneResponse;
@@ -204,7 +186,6 @@ async function fetchChartData(chart, chartId) {
     const response = await postFetchApi(statisticApiURL, JSON.stringify({ "chartId": chartId }));
     cloneResponse = response.clone();
     data = await response.json();
-    localizeBucketKeys(data.result?.aggs, data.localizedValues);
     data['statusCode'] = response.status;
     return await data;
   } catch (error) {
@@ -300,7 +281,6 @@ function previewChart(data, defaultLocale, datePatternConfig, defaultContentLoca
   
   try {
     console.log(data);
-    localizeBucketKeys(data.result?.aggs, data.localizedValues);
     let chartData = generateChart(charts[0], data);
     if (chartData) {
       chartData.render();

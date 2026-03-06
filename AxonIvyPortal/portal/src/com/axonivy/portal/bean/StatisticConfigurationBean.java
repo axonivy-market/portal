@@ -33,8 +33,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.primefaces.PrimeFaces;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
-import org.primefaces.shaded.json.JSONArray;
-import org.primefaces.shaded.json.JSONObject;
 
 import com.axonivy.portal.bo.BarChartConfig;
 import com.axonivy.portal.bo.ColumnChartConfig;
@@ -51,6 +49,7 @@ import com.axonivy.portal.components.publicapi.PortalNavigatorAPI;
 import com.axonivy.portal.components.service.DateTimeGlobalSettingService;
 import com.axonivy.portal.components.util.FacesMessageUtils;
 import com.axonivy.portal.components.util.RoleUtils;
+import com.axonivy.portal.constant.StatisticConstants;
 import com.axonivy.portal.dto.dashboard.filter.BaseFilter;
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 import com.axonivy.portal.enums.statistic.AggregationField;
@@ -77,6 +76,9 @@ import ch.ivy.addon.portalkit.ivydata.mapper.SecurityMemberDTOMapper;
 import ch.ivy.addon.portalkit.jsf.Attrs;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
+import com.axonivy.portal.dto.statistic.AggregationResultDTO;
+import com.axonivy.portal.dto.statistic.BucketDTO;
+import com.axonivy.portal.util.AggregationResultMapper;
 import ch.ivy.addon.portalkit.statistics.StatisticResponse;
 import ch.ivy.addon.portalkit.util.LanguageUtils;
 import ch.ivy.addon.portalkit.util.LanguageUtils.NameResult;
@@ -487,12 +489,14 @@ public class StatisticConfigurationBean implements Serializable, IMultiLanguage 
     syncUIConfigWithChartConfig();
     cleanUpFilter();
     StatisticService statisticService = StatisticService.getInstance();
-    statistic.setAdditionalConfigs(statisticService.getAdditionalConfig(statistic));
 
     AggregationResult result = statisticService.getChartData(statistic);
-    Map<String, String> localizedValues = statisticService.getLocalizedValues(statistic.getChartTarget(), statistic.getStatisticAggregation());
+    AggregationResultDTO chartResult = AggregationResultMapper.toAggResultDTO(result);
+    statisticService.localizeChartKeys(chartResult, statistic.getChartTarget(), statistic.getStatisticAggregation());
+    statistic.setAdditionalConfigs(statisticService.getAdditionalConfig(statistic));
+
     PrimeFaces.current().ajax().addCallbackParam("jsonResponse",
-        BusinessEntityConverter.entityToJsonValue(new StatisticResponse(result, statistic, localizedValues)));
+        BusinessEntityConverter.entityToJsonValue(new StatisticResponse(chartResult, statistic)));
     populateBackgroundColorsIfMissing();
   }
 
@@ -501,32 +505,23 @@ public class StatisticConfigurationBean implements Serializable, IMultiLanguage 
     handleAggregateWithDateTimeInterval();
     cleanUpFilter();
     StatisticService statisticService = StatisticService.getInstance();
+
+    AggregationResultDTO chartResult = AggregationResultMapper.toAggResultDTO(statisticService.getChartData(statistic));
+    statisticService.localizeChartKeys(chartResult, statistic.getChartTarget(), statistic.getStatisticAggregation());
     statistic.setAdditionalConfigs(statisticService.getAdditionalConfig(statistic));
-    AggregationResult result = statisticService.getChartData(statistic);
-    Map<String, String> localizedValues = statisticService.getLocalizedValues(statistic.getChartTarget(), statistic.getStatisticAggregation());
-    String data = BusinessEntityConverter.entityToJsonValue(new StatisticResponse(result, statistic, localizedValues));
-    JSONObject jsonObject = new JSONObject(data);
-    JSONArray buckets = jsonObject
-        .getJSONObject("result")
-        .getJSONArray("aggs")
-        .getJSONObject(0)
-        .getJSONArray("buckets");
+
+    List<BucketDTO> buckets = chartResult.getAggs().get(0).getBuckets();
     if (isDateTimeSelected) {
-      List<Long> keys = new ArrayList<>();
-      for (int i = 0; i < buckets.length(); i++) {
-        keys.add(buckets.getJSONObject(i).getLong("key"));
-      }
-      List<String> stringList = keys.stream()
-          .map(String::valueOf)
+      List<String> stringList = buckets.stream()
+          .map(b -> String.valueOf(((Number) b.getKey()).longValue()))
           .collect(Collectors.toList());
       setCategoryData(stringList);
       return;
     }
-    List<String> keys = new ArrayList<>();
-    for (int i = 0; i < buckets.length(); i++) {
-        keys.add(buckets.getJSONObject(i).getString("key"));
-    }
-    List<String> targetValues = keys.stream().filter(item -> !StringUtils.isBlank(item)).collect(Collectors.toList());
+    List<String> targetValues = buckets.stream()
+        .map(b -> (String) b.getKey())
+        .filter(key -> !StringUtils.isBlank(key))
+        .collect(Collectors.toList());
     setCategoryData(targetValues);
     updateIsCategoryDataAvailable();
   }
