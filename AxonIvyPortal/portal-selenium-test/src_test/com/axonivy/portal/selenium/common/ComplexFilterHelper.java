@@ -12,12 +12,15 @@ import static com.codeborne.selenide.Selenide.$$;
 import java.time.Duration;
 import java.util.Arrays;
 
+import org.openqa.selenium.Keys;
+
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebElementCondition;
 
-public class ComplexFilterHelper {
+public class ComplexFilterHelper{
   protected final static Duration DEFAULT_TIMEOUT = Duration.ofSeconds(45);
 
   public static SelenideElement getNewFilter(int filterIndex) {
@@ -40,8 +43,18 @@ public class ComplexFilterHelper {
             .filter(text(operator.getValue())).first().click());
   }
 
+  private static SelenideElement filterMainPanel() {
+    return $(".dashboard-widget-filter__main-panel")
+      .shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  private static ElementsCollection filterSelectionPanels() {
+    return filterMainPanel()
+      .$$("div[id$=':filter-component:filter-selection-panel']");
+  }
+
   public static void inputValueOnLatestFilter(FilterValueType type, Object... values) {
-    int currentIndex = $(".dashboard-widget-filter__main-panel").$$("div[id$=':filter-component:filter-selection-panel']").size();
+    int currentIndex = filterSelectionPanels().size();
     if (currentIndex < 1) {
       return;
     }
@@ -87,7 +100,7 @@ public class ComplexFilterHelper {
   
   public static SelenideElement addFilter(String columnName, FilterOperator operator) {
     $("div[id$='widget-filter-content']").shouldBe(appear, DEFAULT_TIMEOUT);
-    int currentIndex = $(".dashboard-widget-filter__main-panel").$$("div[id$=':filter-component:filter-selection-panel']").size();
+    int currentIndex = filterSelectionPanels().size();
     $("button[id$=':add-filter']").shouldBe(getClickableCondition()).click();
     $(".dashboard-widget-filter__main-panel").$$("div[id$=':filter-component:filter-selection-panel']")
         .shouldBe(CollectionCondition.sizeGreaterThanOrEqual(currentIndex + 1), DEFAULT_TIMEOUT);
@@ -186,6 +199,7 @@ public class ComplexFilterHelper {
     for (int i = 0; i < dateInput.size(); i++) {
       dateInput.get(i).clear();
       dateInput.get(i).shouldBe(Condition.empty, DEFAULT_TIMEOUT).sendKeys(String.valueOf(values[i]));
+      WaitHelper.waitPageSilence();
 
       if ($("div[id='new-widget-configuration-dialog']").isDisplayed()) {
         filterElement.$("span button").$("span[class*='ui-icon-calendar']").click();

@@ -63,5 +63,8 @@
     "name" : "isDocumentPreviewEnabled",
     "type" : "Boolean",
     "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "isEncrypted",
+    "type" : "Boolean"
   } ]
 }

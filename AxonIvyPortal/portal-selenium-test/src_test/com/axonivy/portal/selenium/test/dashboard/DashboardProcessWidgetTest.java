@@ -219,22 +219,22 @@ public class DashboardProcessWidgetTest extends BaseTest {
   public void testChangeCombinedModeProcess() {
     ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
         newDashboardPage.editProcessWidgetConfiguration();
-    editProcessWidgetConfiguration.selectCombinedModeProcessAndSaveWidget(CATEGORIED_LEAVE_REQUEST);
+    editProcessWidgetConfiguration.selectCombinedModeProcessAndSaveWidget(APPRAISAL);
     ScreenshotUtils.resizeBrowser(new Dimension(2560, 1440));
     newDashboardPage.resizeCombinedModeProcess();
     newDashboardPage.getStartButton().shouldBe(Condition.disabled);
     newDashboardPage.checkTasksTabDisplayedDataContainer();
 
     editProcessWidgetConfiguration = newDashboardPage.editCombinedModeProcess();
-    editProcessWidgetConfiguration.changeCombinedModeProcessAndSaveWidget(APPRAISAL);
-    newDashboardPage.getCombinedModeProcessName().shouldHave(Condition.exactTextCaseSensitive(APPRAISAL));
+    editProcessWidgetConfiguration.changeCombinedModeProcessAndSaveWidget(CATEGORIED_LEAVE_REQUEST);
+    newDashboardPage.getCombinedModeProcessName().shouldHave(Condition.exactTextCaseSensitive(CATEGORIED_LEAVE_REQUEST));
   }
 
   @Test
   public void testDeleteCombinedModeProcess() {
     ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
         newDashboardPage.editProcessWidgetConfiguration();
-    editProcessWidgetConfiguration.selectCombinedModeProcessAndSaveWidget(CATEGORIED_LEAVE_REQUEST);
+    editProcessWidgetConfiguration.selectCombinedModeProcessAndSaveWidget(APPRAISAL);
     ScreenshotUtils.resizeBrowser(new Dimension(2560, 1440));
     newDashboardPage.resizeCombinedModeProcess();
     newDashboardPage.getStartButton().shouldBe(Condition.disabled);

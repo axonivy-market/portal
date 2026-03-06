@@ -30,5 +30,9 @@
   }, {
     "name" : "hasCustomProcess",
     "type" : "Boolean"
+  }, {
+    "name" : "isEncrypted",
+    "type" : "Boolean",
+    "modifiers" : [ ]
   } ]
 }

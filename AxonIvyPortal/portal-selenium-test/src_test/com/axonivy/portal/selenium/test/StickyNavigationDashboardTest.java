@@ -100,6 +100,7 @@ public class StickyNavigationDashboardTest extends BaseTest {
     newDashboardPage.selectDashboard(1);
     newDashboardPage.getDashboardActive().shouldBe(Condition.text("New public dashboard 1"), DEFAULT_TIMEOUT);
     ProcessWidgetNewDashBoardPage processWidget = new ProcessWidgetNewDashBoardPage();
+    processWidget.waitPageLoaded();
     processWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
     WaitHelper.waitForNavigation(() -> processWidget.startProcessByName("Categoried Leave Request"));
     newDashboardPage.waitPageLoaded();
