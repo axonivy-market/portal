@@ -84,17 +84,7 @@ def killUnnecessaryProcessesToRunTest() {
 
 def extractEngine(String engineDir, String engineDownloadURL) {
   echo '====================Extract engine===================='
-  bat """
-    mvn clean compile -f AxonIvyPortal/portal-components/pom.xml -Divy.engine.directory=${engineDir} ${engineDownloadURL}
-  """
-}
-
-def cleanDisk() {
-  echo '====================Clean disk===================='
-  bat """
-    c:/tools/clean-disk.bat
-    exit 0
-  """
+  maven cmd: "clean compile -ntp -f AxonIvyPortal/portal-components/pom.xml -Divy.engine.directory=${env.engineDir} ${params.engineDownloadURL}"
 }
 
 def getJenkinsMasterDomain() {

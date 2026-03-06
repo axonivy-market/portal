@@ -40,8 +40,9 @@ public class UrlHelpers {
     if (vmArgUrl != null) {
       try {
         URL originalURL = new URL(vmArgUrl);
-        URL newURL = new URL(originalURL.getProtocol(), "localhost", originalURL.getPort(), originalURL.getFile());
-        return newURL.toString();
+        URL newURL = new URL(originalURL.getProtocol(), originalURL.getHost(), originalURL.getPort(), originalURL.getFile());
+        String newURLStr = newURL.toString();
+        return newURLStr.endsWith("/") ? newURLStr : newURLStr + "/";
       } catch (MalformedURLException e) {
         throw new PortalGUITestException("Wrong Engine URL");
       }

@@ -19,6 +19,7 @@ import com.axonivy.portal.selenium.common.LinkNavigator;
 import com.axonivy.portal.selenium.common.ScreenshotUtils;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
+import com.axonivy.portal.selenium.common.WaitHelper;
 import com.axonivy.portal.selenium.page.CaseDetailsPage;
 import com.axonivy.portal.selenium.page.CaseEditWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.CaseWidgetNewDashBoardPage;
@@ -283,6 +284,7 @@ public class DashboardCaseWidgetTest extends BaseTest {
     caseEditWidget.openFilter();
     caseEditWidget.resetFilter();
     caseEditWidget.applyFilter();
+    WaitHelper.waitPageSilence();
     caseEditWidget.openColumnManagementDialog();
 
     caseEditWidget.removeAddedField("id");
