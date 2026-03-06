@@ -953,6 +953,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     RenamingDocumentNote: 'TODO: {0} has renamed the file {1} to {2}'
     RenamingDocumentSuccess: 'TODO: Rename successfully.'
     RenamingFailed: 'TODO: An error occurs while renaming the document.'
+    confirmation: 確認
+    confirmationUploadDocument: 暗号化されたファイルのスクリプトスキャンは利用できません。プレビューを続行しますか？
     deleteDocumentNote: '{0} が {1} を削除しました'
     deleteSuceed: ファイルの削除に成功しました
     download: ダウンロード
@@ -961,6 +963,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     fileCouldNotParse: ファイルを解析できませんでした
     fileEmptyMessage: ファイルは空です
     name: ファイル名
+    previewErrorMessage: このファイルのプレビューを表示できません
     size: ファイルサイズ
     type: タイプ
     upload: 新しいファイルをアップロード
@@ -968,6 +971,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     uploadFailed: このファイルのアップロード中にエラーが発生しました。管理者にお問い合わせください。
     uploadFileExists: ファイル： {0} は既に存在します
     uploadSucceed: ファイルのアップロードに成功しました
+    uploadSucceedWithWarning: ファイルは正常にアップロードされましたが、ファイルが暗号化されているかパスワードで保護されているため、スクリプトのスキャンを完了できませんでした。
   emailSetting:
     dailySummary: 毎日の要約を受信
     eMail: メール

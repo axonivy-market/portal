@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Portal Guide ${revision}\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-12 03:37+0000\n"
+"POT-Creation-Date: 2026-03-03 10:45+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: es\n"
@@ -18,7 +18,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.17.0\n"
+"Generated-By: Babel 2.18.0\n"
 
 #: ../../source/portal-user-guide/accessibility/index.rst:4
 msgid "Accessibility"
@@ -671,7 +671,7 @@ msgid "Available Tabs"
 msgstr ""
 
 #: ../../source/portal-user-guide/admin-settings/index.rst:21
-#: ../../source/portal-user-guide/admin-settings/index.rst:132
+#: ../../source/portal-user-guide/admin-settings/index.rst:134
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:23
 #: ../../source/portal-user-guide/new-dashboard/index.rst:28
 #: ../../source/portal-user-guide/qr-code/index.rst:17
@@ -730,7 +730,7 @@ msgstr ""
 msgid "|select-admin-settings|"
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:212
+#: ../../source/portal-user-guide/admin-settings/index.rst:214
 msgid "Admin setting menu"
 msgstr ""
 
@@ -746,7 +746,7 @@ msgstr ""
 msgid "|applications|"
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:206
+#: ../../source/portal-user-guide/admin-settings/index.rst:208
 msgid "Admin setting: applications"
 msgstr ""
 
@@ -760,7 +760,7 @@ msgstr ""
 msgid "|add-application|"
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:208
+#: ../../source/portal-user-guide/admin-settings/index.rst:210
 msgid "Admin setting: Add application dialog"
 msgstr ""
 
@@ -802,7 +802,7 @@ msgstr ""
 msgid "|global-settings|"
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:214
+#: ../../source/portal-user-guide/admin-settings/index.rst:216
 msgid "Admin setting: Global settings"
 msgstr ""
 
@@ -820,7 +820,7 @@ msgstr ""
 msgid "|edit-global-settings|"
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:216
+#: ../../source/portal-user-guide/admin-settings/index.rst:218
 msgid "Admin setting: Edit global setting dialog"
 msgstr ""
 
@@ -859,9 +859,9 @@ msgstr ""
 
 #: ../../source/portal-user-guide/admin-settings/index.rst:91
 msgid ""
-"**Migration**: Use the permission :bdg-ref-"
-"warning:`🔑NoteReadAllCaseTaskDetails <NoteReadAllCaseTaskDetails>` to "
-"control visibility of system notes in task and case details instead."
+"**Migration**: Use the permission :ref:`🔑NoteReadAllCaseTaskDetails "
+"<NoteReadAllCaseTaskDetails>` to control visibility of system notes in "
+"task and case details instead."
 msgstr ""
 
 #: ../../source/portal-user-guide/admin-settings/index.rst:97
@@ -938,13 +938,13 @@ msgstr ""
 msgid "Portal.Cases.EnableOwner"
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv
+#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid ""
 "Set to true to enable filtering case owner when cases are queried. This "
 "setting affects all case"
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv
+#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:2
 msgid ""
 "queries e.g. for case widget, global search. It also makes the \"Filter "
 "tasks by current case owner\" filter available in the task widget, which "
@@ -994,13 +994,13 @@ msgstr ""
 msgid "3"
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv
+#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid ""
 "The set number controls the amount of tabs allowed with active chat. If "
 "more tabs are opened,"
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv
+#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:2
 msgid "the chat will be disabled in inactive tabs. Allowed values are 1 to 5."
 msgstr ""
 
@@ -1012,13 +1012,13 @@ msgstr ""
 msgid "0"
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv
+#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid ""
 "Chat response timeout in seconds, default value is 0 and means no "
 "timeout. If chat messages go through"
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv
+#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:2
 msgid ""
 "the reverse proxy Nginx, chat response timeout must be less than the "
 "Nginx timeout, e.g. less than 60 seconds."
@@ -1062,7 +1062,7 @@ msgstr ""
 msgid "Portal.DisplayUsersOfRole"
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv
+#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid ""
 "Controls the SecurityMemberDisplayName component.| If true and the "
 "SecurityMember is a role, lists all users of this role under the info "
@@ -1093,33 +1093,33 @@ msgstr ""
 msgid "Portal.Document.WhitelistExtension"
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv
+#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "doc, docx, xls,"
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv
+#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:2
 msgid "xlsx, xlsm, csv,"
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv
+#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:3
 msgid "pdf, ppt, pptx,"
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv
+#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:4
 msgid "txt, zip, jpg,"
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv
+#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:5
 msgid "jpeg, bmp, png"
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv
+#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid ""
 "Leave value empty if you allow all extensions. If you allow just some "
 "extensions, list out these extensions here,"
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv
+#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:2
 msgid "separated by comma. Example: pdf, txt, doc, docx."
 msgstr ""
 
@@ -1193,13 +1193,13 @@ msgstr ""
 msgid "``Dashboard``"
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv
+#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid ""
 "Define the standard homepage which will be redirected to when clicking on"
 " home icon or logo."
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv
+#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:2
 msgid "This setting also applies to the end page for finished tasks."
 msgstr ""
 
@@ -1293,11 +1293,11 @@ msgstr ""
 msgid "Run the task"
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv
+#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Default behaviors (run the task or access task details) when clicking."
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv
+#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:2
 msgid ""
 "on a line in the task widget, task widget of the dashboard or on related "
 "tasks in the case details page."
@@ -1319,11 +1319,11 @@ msgstr ""
 msgid "Access case details"
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv
+#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Toggle between accessing case details or business details when clicking"
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv
+#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:2
 msgid ""
 "on a case in the case widget on the dashboard, global search, related "
 "cases, and process widget in combined mode."
@@ -1395,13 +1395,13 @@ msgstr ""
 msgid "50"
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv
+#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid ""
 "Controls the number of direct child roles that are shown in the Role "
 "Management tab."
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv
+#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:2
 msgid "Valid numbers: 10, 50, 100."
 msgstr ""
 
@@ -1413,13 +1413,13 @@ msgstr ""
 msgid "10"
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv
+#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid ""
 "Controls the number of parent roles that are shown when filtering roles "
 "in the Role Management tab."
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv
+#: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:2
 msgid "Valid numbers: 5, 10, 20."
 msgstr ""
 
@@ -1631,7 +1631,7 @@ msgstr ""
 msgid "|announcement|"
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:210
+#: ../../source/portal-user-guide/admin-settings/index.rst:212
 msgid "Admin setting: Announcement"
 msgstr ""
 
@@ -1651,118 +1651,118 @@ msgid ""
 "announcement."
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:118
+#: ../../source/portal-user-guide/admin-settings/index.rst:120
 msgid "HowTo: Manage Roles"
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:120
+#: ../../source/portal-user-guide/admin-settings/index.rst:122
 msgid ""
 "Portal provides the :guilabel:`Role Management` tab in the "
 ":guilabel:`Admin Settings` area for creating and managing dynamic roles."
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:124
-#: ../../source/portal-user-guide/admin-settings/index.rst:178
+#: ../../source/portal-user-guide/admin-settings/index.rst:126
+#: ../../source/portal-user-guide/admin-settings/index.rst:180
 msgid "Prerequisites"
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:126
+#: ../../source/portal-user-guide/admin-settings/index.rst:128
 msgid "To access and use Role Management, you need specific permissions:"
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:132
+#: ../../source/portal-user-guide/admin-settings/index.rst:134
 msgid "Permission"
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:134
-msgid ":bdg-ref-warning:`🔑RoleManagement <RoleManagement>`"
+#: ../../source/portal-user-guide/admin-settings/index.rst:136
+msgid ":ref:`🔑RoleManagement <RoleManagement>`"
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:134
+#: ../../source/portal-user-guide/admin-settings/index.rst:136
 msgid "View the Role Management tab"
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:137
-msgid ":bdg-ref-warning:`🔑RoleCreate <RoleCreate>`"
+#: ../../source/portal-user-guide/admin-settings/index.rst:139
+msgid ":ref:`🔑RoleCreate <RoleCreate>`"
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:137
+#: ../../source/portal-user-guide/admin-settings/index.rst:139
 msgid "Create new dynamic roles"
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:139
-msgid ":bdg-ref-warning:`🔑RoleDelete <RoleDelete>`"
+#: ../../source/portal-user-guide/admin-settings/index.rst:141
+msgid ":ref:`🔑RoleDelete <RoleDelete>`"
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:139
+#: ../../source/portal-user-guide/admin-settings/index.rst:141
 msgid "Delete existing dynamic roles"
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:141
-msgid ":bdg-ref-warning:`🔑RoleMove <RoleMove>`"
+#: ../../source/portal-user-guide/admin-settings/index.rst:143
+msgid ":ref:`🔑RoleMove <RoleMove>`"
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:141
+#: ../../source/portal-user-guide/admin-settings/index.rst:143
 msgid "Select parent role during creation (default parent: ``Everybody``)"
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:146
+#: ../../source/portal-user-guide/admin-settings/index.rst:148
 msgid "Steps to Manage Roles"
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:148
+#: ../../source/portal-user-guide/admin-settings/index.rst:150
 msgid "Select the :guilabel:`Role Management` tab."
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:150
+#: ../../source/portal-user-guide/admin-settings/index.rst:152
 msgid "|role-assignment-tab|"
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:218
+#: ../../source/portal-user-guide/admin-settings/index.rst:220
 msgid "Admin setting: Role management"
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:152
+#: ../../source/portal-user-guide/admin-settings/index.rst:154
 msgid "Click on the :guilabel:`Create new role` button and fill in the data."
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:154
+#: ../../source/portal-user-guide/admin-settings/index.rst:156
 msgid "|role-assignment-creation-dialog|"
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:220
+#: ../../source/portal-user-guide/admin-settings/index.rst:222
 msgid "Admin setting: role creation dialog"
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:156
+#: ../../source/portal-user-guide/admin-settings/index.rst:158
 msgid ""
 "After filling all mandatory fields, click on the :guilabel:`Save` button "
 "to create the role."
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:158
+#: ../../source/portal-user-guide/admin-settings/index.rst:160
 msgid "On the role tree table, you will see the new role."
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:160
+#: ../../source/portal-user-guide/admin-settings/index.rst:162
 msgid ""
 "The user can manage this new role by editing role properties, assigning "
 "users to the role, and deleting the role using the actions available on "
 "the :guilabel:`Actions` column."
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:163
+#: ../../source/portal-user-guide/admin-settings/index.rst:165
 msgid ""
 "Portal provides two advanced configuration variables to control the "
 "number of roles displayed in the Role Management tab. See :ref:`Settings "
 "Variables <portal-available-settings>` for details."
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:167
+#: ../../source/portal-user-guide/admin-settings/index.rst:169
 msgid "HowTo: Enable/Disable Password Validation"
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:169
+#: ../../source/portal-user-guide/admin-settings/index.rst:171
 msgid ""
 "Portal provides the :guilabel:`Password Validation` tab in the "
 ":guilabel:`Admin Settings` area to configure password strength "
@@ -1771,64 +1771,64 @@ msgid ""
 "password>` and password change functionality)."
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:174
+#: ../../source/portal-user-guide/admin-settings/index.rst:176
 msgid ""
 "**External Authentication**: Password validation does **not** apply when "
 "using external identity providers like Active Directory, Entra ID, or "
 "LDAP, as those systems manage their own password policies."
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:180
+#: ../../source/portal-user-guide/admin-settings/index.rst:182
 msgid ""
-"To access Password Validation settings, you need the :bdg-ref-"
-"warning:`🔑PasswordValidation <PasswordValidation>` permission."
-msgstr ""
-
-#: ../../source/portal-user-guide/admin-settings/index.rst:183
-msgid "Steps to Configure Password Validation"
+"To access Password Validation settings, you need the "
+":ref:`🔑PasswordValidation <PasswordValidation>` permission."
 msgstr ""
 
 #: ../../source/portal-user-guide/admin-settings/index.rst:185
-msgid "Select the :guilabel:`Password Validation` tab."
+msgid "Steps to Configure Password Validation"
 msgstr ""
 
 #: ../../source/portal-user-guide/admin-settings/index.rst:187
-msgid "|password-validation-tab|"
-msgstr ""
-
-#: ../../source/portal-user-guide/admin-settings/index.rst:222
-msgid "Admin setting: Password Validation"
+msgid "Select the :guilabel:`Password Validation` tab."
 msgstr ""
 
 #: ../../source/portal-user-guide/admin-settings/index.rst:189
+msgid "|password-validation-tab|"
+msgstr ""
+
+#: ../../source/portal-user-guide/admin-settings/index.rst:224
+msgid "Admin setting: Password Validation"
+msgstr ""
+
+#: ../../source/portal-user-guide/admin-settings/index.rst:191
 msgid ""
 "Toggle the :guilabel:`Enable Password Validation` switch to enable or "
 "disable the feature."
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:191
+#: ../../source/portal-user-guide/admin-settings/index.rst:193
 msgid "When enabled, you can:"
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:193
+#: ../../source/portal-user-guide/admin-settings/index.rst:195
 msgid "Activate or deactivate individual password policies"
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:194
+#: ../../source/portal-user-guide/admin-settings/index.rst:196
 msgid "Adjust policy settings (minimum length, required character types, etc.)"
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:196
+#: ../../source/portal-user-guide/admin-settings/index.rst:198
 msgid "Click :guilabel:`Save` to apply the configuration."
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:198
+#: ../../source/portal-user-guide/admin-settings/index.rst:200
 msgid ""
 "Verify the configuration by testing password change or reset password "
 "functionality."
 msgstr ""
 
-#: ../../source/portal-user-guide/admin-settings/index.rst:201
+#: ../../source/portal-user-guide/admin-settings/index.rst:203
 msgid ""
 "Define password policies that balance security requirements with user "
 "experience. Overly complex requirements may frustrate users and lead to "
@@ -2309,13 +2309,15 @@ msgstr ""
 msgid "In"
 msgstr ""
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:85
 msgid ""
 "Valid for category, state, creator, application. Specify a single value "
 "or multiple values."
 msgstr ""
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:86
+#: ../../source/portal-user-guide/complex-filter/index.rst:104
+#: ../../source/portal-user-guide/complex-filter/index.rst:128
 msgid ""
 "Results include only records where the data in the column match the value"
 " in the filter."
@@ -2325,11 +2327,13 @@ msgstr ""
 msgid "Not In"
 msgstr ""
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:88
 msgid "Valid for category, creator. Specify a single value or multiple values."
 msgstr ""
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:89
+#: ../../source/portal-user-guide/complex-filter/index.rst:107
+#: ../../source/portal-user-guide/complex-filter/index.rst:131
 msgid ""
 "Results include only records where the data in the column does not match "
 "the value in the filter."
@@ -2339,13 +2343,14 @@ msgstr ""
 msgid "Contains"
 msgstr ""
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:91
+#: ../../source/portal-user-guide/complex-filter/index.rst:94
 msgid ""
 "Valid for category, ID and column that contains text. Specify a single "
 "value or multiple values."
 msgstr ""
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:92
 msgid ""
 "Results include only records where the data in the column contains the "
 "value in the filter."
@@ -2355,7 +2360,7 @@ msgstr ""
 msgid "Doesn't Contains"
 msgstr ""
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:95
 msgid ""
 "Results include only records where the data in the column dóes not "
 "contain the value in the filter."
@@ -2365,11 +2370,12 @@ msgstr ""
 msgid "Between"
 msgstr ""
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:97
+#: ../../source/portal-user-guide/complex-filter/index.rst:100
 msgid "Valid for a column that contains number, dates. Specify two values."
 msgstr ""
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:98
 msgid ""
 "Result include only records where the data in the column is between the "
 "two values in the filter."
@@ -2379,7 +2385,7 @@ msgstr ""
 msgid "Not Between"
 msgstr ""
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:101
 msgid ""
 "Result include only records where the data in the column is not between "
 "the two values in the filter."
@@ -2389,7 +2395,12 @@ msgstr ""
 msgid "Equal"
 msgstr ""
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:103
+#: ../../source/portal-user-guide/complex-filter/index.rst:106
+#: ../../source/portal-user-guide/complex-filter/index.rst:109
+#: ../../source/portal-user-guide/complex-filter/index.rst:112
+#: ../../source/portal-user-guide/complex-filter/index.rst:115
+#: ../../source/portal-user-guide/complex-filter/index.rst:118
 msgid "Valid for a column that contains number. Specify a single value."
 msgstr ""
 
@@ -2401,7 +2412,7 @@ msgstr ""
 msgid "Less"
 msgstr ""
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:110
 msgid ""
 "Results include only records where the data in the column is less than "
 "the value in the filter."
@@ -2411,7 +2422,7 @@ msgstr ""
 msgid "Less or equal"
 msgstr ""
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:113
 msgid ""
 "Results include only records where the data in the column is less than or"
 " the equal to the value in the filter."
@@ -2421,7 +2432,7 @@ msgstr ""
 msgid "Greater"
 msgstr ""
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:116
 msgid ""
 "Results include only records where the data in the column is greater than"
 " the value in the filter."
@@ -2431,7 +2442,7 @@ msgstr ""
 msgid "Greater or equal"
 msgstr ""
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:119
 msgid ""
 "Results include only records where the data in the column is greater than"
 " or equal to the value in the filter."
@@ -2441,13 +2452,14 @@ msgstr ""
 msgid "Is Empty"
 msgstr ""
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:121
+#: ../../source/portal-user-guide/complex-filter/index.rst:124
 msgid ""
 "Valid for a column that contains text, numbers, or dates. Do not specify "
 "a value."
 msgstr ""
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:122
 msgid "Results include only records that contain no data in the column."
 msgstr ""
 
@@ -2455,7 +2467,7 @@ msgstr ""
 msgid "Is Not Empty"
 msgstr ""
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:125
 msgid "Results include only records that contain data in the column."
 msgstr ""
 
@@ -2463,7 +2475,8 @@ msgstr ""
 msgid "Is"
 msgstr ""
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:127
+#: ../../source/portal-user-guide/complex-filter/index.rst:130
 msgid ""
 "Valid for a column that contains text, dates. Specify a single value or "
 "multiple values."
@@ -2477,11 +2490,12 @@ msgstr ""
 msgid "Today"
 msgstr ""
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:133
+#: ../../source/portal-user-guide/complex-filter/index.rst:136
 msgid "Valid for a column that contains dates. Do not specify a value."
 msgstr ""
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:134
 msgid ""
 "Results include only records where the date in the column matches the "
 "current date."
@@ -2491,7 +2505,7 @@ msgstr ""
 msgid "Yesterday"
 msgstr ""
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:137
 msgid ""
 "Results include only records where the date in the column matches the "
 "yesterday's date."
@@ -2501,11 +2515,12 @@ msgstr ""
 msgid "Is Before"
 msgstr ""
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:139
+#: ../../source/portal-user-guide/complex-filter/index.rst:142
 msgid "Valid for a column that contains dates. Specify a single value."
 msgstr ""
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:140
 msgid ""
 "Results include only records where the date in the column is before the "
 "date in the filter."
@@ -2515,7 +2530,7 @@ msgstr ""
 msgid "Is After"
 msgstr ""
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:143
 msgid ""
 "Results include only records where the date in the column is after the "
 "date in the filter."
@@ -2525,43 +2540,44 @@ msgstr ""
 msgid "Current"
 msgstr ""
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:145
 msgid "Valid for a column that contains dates. Select Year, Month or Week."
 msgstr ""
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:146
+#: ../../source/portal-user-guide/complex-filter/index.rst:157
+#: ../../source/portal-user-guide/complex-filter/index.rst:168
 msgid ""
 "Results include only records where the date in the column falls within "
 "the range specified in the filter."
 msgstr ""
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:147
 msgid ""
 "Specifically, it will be from the first day of the current "
 "year/month/week to the end of the last day of the current"
 msgstr ""
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:148
 msgid "year/month/week."
 msgstr ""
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:150
 msgid "*Example*: Find all cases that were created in the current month."
 msgstr ""
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
-msgid ""
-":bdg-dark-line:`Created Date` :bdg-dark-line:`Current` :bdg-dark-"
-"line:`Month`"
+#: ../../source/portal-user-guide/complex-filter/index.rst:151
+msgid ":guilabel:`Created Date` :guilabel:`Current` :guilabel:`Month`"
 msgstr ""
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:153
+#: ../../source/portal-user-guide/complex-filter/index.rst:164
 msgid ""
 "*Explanation*: Assuming today is ``2/27/2024 11:41:28``, the query will "
 "retrieve cases where the Created Date falls"
 msgstr ""
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:154
 msgid "within the period from ``2/1/2024 00:00:00`` to ``2/29/2024 23:59:59``."
 msgstr ""
 
@@ -2569,33 +2585,34 @@ msgstr ""
 msgid "Within the last"
 msgstr ""
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:156
+#: ../../source/portal-user-guide/complex-filter/index.rst:167
 msgid ""
 "Valid for a column that contains dates. Specify a single value then "
 "select Year(s), Month(s), Week(s) or Day(s)."
 msgstr ""
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:158
 msgid ""
 "Specifically, it will be from the beginning of the first day of the last "
 "<input_value> year(s)/month(s)/week(s)"
 msgstr ""
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:159
 msgid "to the present moment."
 msgstr ""
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:161
 msgid "*Example*: Find all cases that were created within the last 2 years"
 msgstr ""
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:162
 msgid ""
-":bdg-dark-line:`Created Date` :bdg-dark-line:`Within the last` :bdg-dark-"
-"line:`2` :bdg-dark-line:`Year(s)`"
+":guilabel:`Created Date` :guilabel:`Within the last` :guilabel:`2` "
+":guilabel:`Year(s)`"
 msgstr ""
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:165
 msgid "within the period from ``2/27/2022 00:00:00`` to ``2/27/2024 11:41:28``."
 msgstr ""
 
@@ -2603,33 +2620,33 @@ msgstr ""
 msgid "Within the next"
 msgstr ""
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:169
 msgid ""
 "Specifically, it will be from the present moment to the end of the day of"
 " the next <input_value>"
 msgstr ""
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:170
 msgid "year(s)/month(s)/week(s)."
 msgstr ""
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:172
 msgid "*Example*: Find all cases with Invoice Due Date within the next 3 weeks"
 msgstr ""
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:173
 msgid ""
-":bdg-dark-line:`Invoice Due Date` :bdg-dark-line:`Within the next` :bdg-"
-"dark-line:`3` :bdg-dark-line:`Week(s)`"
+":guilabel:`Invoice Due Date` :guilabel:`Within the next` :guilabel:`3` "
+":guilabel:`Week(s)`"
 msgstr ""
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:175
 msgid ""
 "*Explanation*: Assuming today is ``2/27/2024 11:41:28``, the query will "
 "retrieve cases where the Invoice Due Date falls"
 msgstr ""
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:176
 msgid "within the period from ``2/27/2024 11:41:28`` to ``3/19/2024 23:59:59``."
 msgstr ""
 
@@ -2637,13 +2654,16 @@ msgstr ""
 msgid "Starts with"
 msgstr ""
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:178
+#: ../../source/portal-user-guide/complex-filter/index.rst:181
+#: ../../source/portal-user-guide/complex-filter/index.rst:184
+#: ../../source/portal-user-guide/complex-filter/index.rst:187
 msgid ""
 "Valid for a column that contains text. Specify a single value or multiple"
 " values."
 msgstr ""
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:179
 msgid ""
 "Results include only records where the data in the column start with the "
 "value in the filter."
@@ -2653,7 +2673,7 @@ msgstr ""
 msgid "Doesn't start with"
 msgstr ""
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:182
 msgid ""
 "Results include only records where the data in the column does not start "
 "with the value in the filter."
@@ -2663,7 +2683,7 @@ msgstr ""
 msgid "Ends with"
 msgstr ""
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:185
 msgid ""
 "Results include only records where the data in the column end with the "
 "value in the filter."
@@ -2673,7 +2693,7 @@ msgstr ""
 msgid "Doesn't end with"
 msgstr ""
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:188
 msgid ""
 "Results include only records where the data in the column does not end "
 "with the value in the filter."
@@ -2683,11 +2703,11 @@ msgstr ""
 msgid "No Category"
 msgstr ""
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:190
 msgid "Valid for category. Do not specify a value."
 msgstr ""
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:191
 msgid "Results include only records where the data in the column has no category."
 msgstr ""
 
@@ -2695,11 +2715,11 @@ msgstr ""
 msgid "Current user"
 msgstr ""
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:193
 msgid "Valid for creator. Do not specify a value."
 msgstr ""
 
-#: ../../source/portal-user-guide/complex-filter/index.rst
+#: ../../source/portal-user-guide/complex-filter/index.rst:194
 msgid ""
 "Results include only records where the data in the column has been "
 "created by current user."
@@ -2712,12 +2732,11 @@ msgstr ""
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:7
 msgid ""
-"**Access Requirements**: Only users with the :bdg-ref-"
-"warning:`🔑DashboardWriteOwn <DashboardWriteOwn>` or :bdg-ref-"
-"warning:`🔑DashboardWritePublic <DashboardWritePublic>` permission can see"
-" and access the :guilabel:`Dashboard Configuration` menu item. These "
-"permissions allow you to add, edit, reorder, show, and hide private or "
-"public dashboards."
+"**Access Requirements**: Only users with the :ref:`🔑DashboardWriteOwn "
+"<DashboardWriteOwn>` or :ref:`🔑DashboardWritePublic "
+"<DashboardWritePublic>` permission can see and access the "
+":guilabel:`Dashboard Configuration` menu item. These permissions allow "
+"you to add, edit, reorder, show, and hide private or public dashboards."
 msgstr ""
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:9
@@ -2763,7 +2782,7 @@ msgstr ""
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:25
 #: ../../source/portal-user-guide/portal-header/index.rst:211
-msgid ":bdg-ref-warning:`🔑DashboardWriteOwn <DashboardWriteOwn>`"
+msgid ":ref:`🔑DashboardWriteOwn <DashboardWriteOwn>`"
 msgstr ""
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:25
@@ -2776,7 +2795,7 @@ msgstr ""
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:28
 #: ../../source/portal-user-guide/portal-header/index.rst:214
-msgid ":bdg-ref-warning:`🔑DashboardWritePublic <DashboardWritePublic>`"
+msgid ":ref:`🔑DashboardWritePublic <DashboardWritePublic>`"
 msgstr ""
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:28
@@ -2891,9 +2910,7 @@ msgid "HowTo: import private dashboards"
 msgstr ""
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:78
-msgid ""
-"Requires :bdg-ref-warning:`🔑DashboardImportOwn <DashboardImportOwn>` "
-"permission."
+msgid "Requires :ref:`🔑DashboardImportOwn <DashboardImportOwn>` permission."
 msgstr ""
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:80
@@ -3011,7 +3028,7 @@ msgstr ""
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:114
 msgid ""
 "|download-icon| **Export**: Download dashboard as JSON file (requires "
-":bdg-ref-warning:`🔑DashboardExportOwn <DashboardExportOwn>` permission)"
+":ref:`🔑DashboardExportOwn <DashboardExportOwn>` permission)"
 msgstr ""
 
 #: ../../source/portal-user-guide/includes/_common-icon.rst:49
@@ -3159,9 +3176,7 @@ msgid "HowTo: import public dashboard"
 msgstr ""
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:185
-msgid ""
-"Requires :bdg-ref-warning:`🔑DashboardImportPublic "
-"<DashboardImportPublic>` permission."
+msgid "Requires :ref:`🔑DashboardImportPublic <DashboardImportPublic>` permission."
 msgstr ""
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:191
@@ -3218,15 +3233,13 @@ msgstr ""
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:223
 msgid ""
 "|download-icon| **Export**: Download dashboard as JSON file (requires "
-":bdg-ref-warning:`🔑DashboardExportPublic <DashboardExportPublic>` "
-"permission)"
+":ref:`🔑DashboardExportPublic <DashboardExportPublic>` permission)"
 msgstr ""
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:224
 msgid ""
 "|share-icon| **Share**: Generate a shareable link to the dashboard "
-"(requires :bdg-ref-warning:`🔑ShareDashboardLink <ShareDashboardLink>` "
-"permission)"
+"(requires :ref:`🔑ShareDashboardLink <ShareDashboardLink>` permission)"
 msgstr ""
 
 #: ../../source/portal-user-guide/includes/_common-icon.rst:55
@@ -3250,9 +3263,7 @@ msgid "HowTo: share public dashboards"
 msgstr ""
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:234
-msgid ""
-"Requires :bdg-ref-warning:`🔑ShareDashboardLink <ShareDashboardLink>` "
-"permission."
+msgid "Requires :ref:`🔑ShareDashboardLink <ShareDashboardLink>` permission."
 msgstr ""
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:236
@@ -3305,7 +3316,7 @@ msgid "**Import private dashboard**"
 msgstr ""
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:261
-msgid ":bdg-ref-warning:`🔑DashboardImportOwn <DashboardImportOwn>`"
+msgid ":ref:`🔑DashboardImportOwn <DashboardImportOwn>`"
 msgstr ""
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:263
@@ -3313,7 +3324,7 @@ msgid "**Export private dashboard**"
 msgstr ""
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:263
-msgid ":bdg-ref-warning:`🔑DashboardExportOwn <DashboardExportOwn>`"
+msgid ":ref:`🔑DashboardExportOwn <DashboardExportOwn>`"
 msgstr ""
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:265
@@ -3321,7 +3332,7 @@ msgid "**Import public dashboard**"
 msgstr ""
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:265
-msgid ":bdg-ref-warning:`🔑DashboardImportPublic <DashboardImportPublic>`"
+msgid ":ref:`🔑DashboardImportPublic <DashboardImportPublic>`"
 msgstr ""
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:267
@@ -3329,7 +3340,7 @@ msgid "**Export public dashboard**"
 msgstr ""
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:267
-msgid ":bdg-ref-warning:`🔑DashboardExportPublic <DashboardExportPublic>`"
+msgid ":ref:`🔑DashboardExportPublic <DashboardExportPublic>`"
 msgstr ""
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:269
@@ -3337,7 +3348,7 @@ msgid "**Share public dashboard link**"
 msgstr ""
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:269
-msgid ":bdg-ref-warning:`🔑ShareDashboardLink <ShareDashboardLink>`"
+msgid ":ref:`🔑ShareDashboardLink <ShareDashboardLink>`"
 msgstr ""
 
 #: ../../source/portal-user-guide/demo-processes/index.rst:4
@@ -3718,9 +3729,9 @@ msgstr ""
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:10
 msgid ""
-"**Access Requirement**: Only users with the :bdg-ref-"
-"warning:`🔑AccessFullCaseList <AccessFullCaseList>` permission can see the"
-" |case-icon| :guilabel:`Cases` menu item."
+"**Access Requirement**: Only users with the :ref:`🔑AccessFullCaseList "
+"<AccessFullCaseList>` permission can see the |case-icon| "
+":guilabel:`Cases` menu item."
 msgstr ""
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:14
@@ -4468,8 +4479,8 @@ msgstr ""
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:366
 msgid ""
-":bdg-ref-warning:`🔑TaskReadOwnCaseTasks <TaskReadOwnCaseTasks>` or :bdg-"
-"ref-warning:`🔑TaskReadAll <TaskReadAll>`"
+":ref:`🔑TaskReadOwnCaseTasks <TaskReadOwnCaseTasks>` or :ref:`🔑TaskReadAll"
+" <TaskReadAll>`"
 msgstr ""
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:370
@@ -4479,9 +4490,8 @@ msgstr ""
 #: ../../source/portal-user-guide/full-case-list/index.rst:370
 #: ../../source/portal-user-guide/full-task-list/index.rst:336
 msgid ""
-":bdg-ref-warning:`🔑DocumentOfInvolvedCaseWrite "
-"<DocumentOfInvolvedCaseWrite>` or :bdg-ref-warning:`🔑DocumentWrite "
-"<DocumentWrite>`"
+":ref:`🔑DocumentOfInvolvedCaseWrite <DocumentOfInvolvedCaseWrite>` or "
+":ref:`🔑DocumentWrite <DocumentWrite>`"
 msgstr ""
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:374
@@ -4490,7 +4500,7 @@ msgstr ""
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:374
 #: ../../source/portal-user-guide/full-task-list/index.rst:340
-msgid ":bdg-ref-warning:`🔑TaskCaseAddNote <TaskCaseAddNote>`"
+msgid ":ref:`🔑TaskCaseAddNote <TaskCaseAddNote>`"
 msgstr ""
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:377
@@ -4498,7 +4508,7 @@ msgid "**Share case details link**"
 msgstr ""
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:377
-msgid ":bdg-ref-warning:`🔑ShareCaseDetailsLink <ShareCaseDetailsLink>`"
+msgid ":ref:`🔑ShareCaseDetailsLink <ShareCaseDetailsLink>`"
 msgstr ""
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:380
@@ -4507,9 +4517,7 @@ msgid "**View custom fields**"
 msgstr ""
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:380
-msgid ""
-":bdg-ref-warning:`🔑CaseDisplayCustomFieldsAction "
-"<CaseDisplayCustomFieldsAction>`"
+msgid ":ref:`🔑CaseDisplayCustomFieldsAction <CaseDisplayCustomFieldsAction>`"
 msgstr ""
 
 #: ../../source/portal-user-guide/full-process-list/index.rst:4
@@ -4525,9 +4533,9 @@ msgstr ""
 
 #: ../../source/portal-user-guide/full-process-list/index.rst:11
 msgid ""
-"**Access Requirement**: Only users with the :bdg-ref-"
-"warning:`🔑AccessFullProcessList <AccessFullProcessList>` permission can "
-"see the :guilabel:`Processes` menu item."
+"**Access Requirement**: Only users with the :ref:`🔑AccessFullProcessList "
+"<AccessFullProcessList>` permission can see the :guilabel:`Processes` "
+"menu item."
 msgstr ""
 
 #: ../../source/portal-user-guide/full-process-list/index.rst:14
@@ -4702,9 +4710,9 @@ msgstr ""
 
 #: ../../source/portal-user-guide/full-process-list/index.rst:97
 msgid ""
-"Creating public external links (visible to all users) requires :bdg-ref-"
-"warning:`🔑CreatePublicExternalLink <CreatePublicExternalLink>` "
-"permission. Private links can be created by any user."
+"Creating public external links (visible to all users) requires "
+":ref:`🔑CreatePublicExternalLink <CreatePublicExternalLink>` permission. "
+"Private links can be created by any user."
 msgstr ""
 
 #: ../../source/portal-user-guide/full-process-list/index.rst:99
@@ -4927,7 +4935,7 @@ msgid "**Create public external link**"
 msgstr ""
 
 #: ../../source/portal-user-guide/full-process-list/index.rst:202
-msgid ":bdg-ref-warning:`🔑CreatePublicExternalLink <CreatePublicExternalLink>`"
+msgid ":ref:`🔑CreatePublicExternalLink <CreatePublicExternalLink>`"
 msgstr ""
 
 #: ../../source/portal-user-guide/full-task-list/index.rst:4
@@ -4947,9 +4955,9 @@ msgstr ""
 
 #: ../../source/portal-user-guide/full-task-list/index.rst:10
 msgid ""
-"**Access Requirement**: Only users with the :bdg-ref-"
-"warning:`🔑AccessFullTaskList <AccessFullTaskList>` permission can see the"
-" |task-list-icon| :guilabel:`Tasks` menu item."
+"**Access Requirement**: Only users with the :ref:`🔑AccessFullTaskList "
+"<AccessFullTaskList>` permission can see the |task-list-icon| "
+":guilabel:`Tasks` menu item."
 msgstr ""
 
 #: ../../source/portal-user-guide/full-task-list/index.rst:14
@@ -5415,7 +5423,7 @@ msgid "**Reset task**"
 msgstr ""
 
 #: ../../source/portal-user-guide/full-task-list/index.rst:314
-msgid ":bdg-ref-warning:`🔑TaskDisplayResetAction <TaskDisplayResetAction>`"
+msgid ":ref:`🔑TaskDisplayResetAction <TaskDisplayResetAction>`"
 msgstr ""
 
 #: ../../source/portal-user-guide/full-task-list/index.rst:317
@@ -5423,7 +5431,7 @@ msgid "**Reserve task**"
 msgstr ""
 
 #: ../../source/portal-user-guide/full-task-list/index.rst:317
-msgid ":bdg-ref-warning:`🔑TaskDisplayReserveAction <TaskDisplayReserveAction>`"
+msgid ":ref:`🔑TaskDisplayReserveAction <TaskDisplayReserveAction>`"
 msgstr ""
 
 #: ../../source/portal-user-guide/full-task-list/index.rst:320
@@ -5431,7 +5439,7 @@ msgid "**Delegate task**"
 msgstr ""
 
 #: ../../source/portal-user-guide/full-task-list/index.rst:320
-msgid ":bdg-ref-warning:`🔑TaskDisplayDelegateAction <TaskDisplayDelegateAction>`"
+msgid ":ref:`🔑TaskDisplayDelegateAction <TaskDisplayDelegateAction>`"
 msgstr ""
 
 #: ../../source/portal-user-guide/full-task-list/index.rst:323
@@ -5439,7 +5447,7 @@ msgid "**Destroy task**"
 msgstr ""
 
 #: ../../source/portal-user-guide/full-task-list/index.rst:323
-msgid ":bdg-ref-warning:`🔑TaskDisplayDestroyAction <TaskDisplayDestroyAction>`"
+msgid ":ref:`🔑TaskDisplayDestroyAction <TaskDisplayDestroyAction>`"
 msgstr ""
 
 #: ../../source/portal-user-guide/full-task-list/index.rst:326
@@ -5447,9 +5455,7 @@ msgid "**View additional options**"
 msgstr ""
 
 #: ../../source/portal-user-guide/full-task-list/index.rst:326
-msgid ""
-":bdg-ref-warning:`🔑TaskDisplayAdditionalOptions "
-"<TaskDisplayAdditionalOptions>`"
+msgid ":ref:`🔑TaskDisplayAdditionalOptions <TaskDisplayAdditionalOptions>`"
 msgstr ""
 
 #: ../../source/portal-user-guide/full-task-list/index.rst:329
@@ -5458,15 +5464,12 @@ msgstr ""
 
 #: ../../source/portal-user-guide/full-task-list/index.rst:329
 msgid ""
-":bdg-ref-warning:`🔑TaskDisplayWorkflowEventAction "
-"<TaskDisplayWorkflowEventAction>` and :bdg-"
-"warning:`🔑WorkflowEventReadAll`"
+":ref:`🔑TaskDisplayWorkflowEventAction <TaskDisplayWorkflowEventAction>` "
+"and 🔑WorkflowEventReadAll"
 msgstr ""
 
 #: ../../source/portal-user-guide/full-task-list/index.rst:333
-msgid ""
-":bdg-ref-warning:`🔑TaskDisplayCustomFieldsAction "
-"<TaskDisplayCustomFieldsAction>`"
+msgid ":ref:`🔑TaskDisplayCustomFieldsAction <TaskDisplayCustomFieldsAction>`"
 msgstr ""
 
 #: ../../source/portal-user-guide/full-task-list/index.rst:336
@@ -5482,7 +5485,7 @@ msgid "**Share task details link**"
 msgstr ""
 
 #: ../../source/portal-user-guide/full-task-list/index.rst:343
-msgid ":bdg-ref-warning:`🔑ShareTaskDetailsLink <ShareTaskDetailsLink>`"
+msgid ":ref:`🔑ShareTaskDetailsLink <ShareTaskDetailsLink>`"
 msgstr ""
 
 #: ../../source/portal-user-guide/index.rst:7
@@ -5681,8 +5684,8 @@ msgstr ""
 
 #: ../../source/portal-user-guide/my-profile/index.rst:111
 msgid ""
-"As an administrator, you can configure the permission :bdg-ref-"
-"warning:`🔑NotificationChannelsSetting <NotificationChannelsSetting>` to "
+"As an administrator, you can configure the permission "
+":ref:`🔑NotificationChannelsSetting <NotificationChannelsSetting>` to "
 "allow or prevent users from modifying notification channel preferences."
 msgstr ""
 
@@ -5859,12 +5862,11 @@ msgstr ""
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:70
 msgid ""
-"**Required Permissions**: Only users with the :bdg-ref-"
-"warning:`🔑DashboardWriteOwn <DashboardWriteOwn>` or :bdg-ref-"
-"warning:`🔑DashboardWritePublic <DashboardWritePublic>` permission can see"
-" and access the **Dashboard Configuration** menu item in the user menu. "
-"These permissions allow you to add, edit, reorder, show, and hide private"
-" or public dashboards."
+"**Required Permissions**: Only users with the :ref:`🔑DashboardWriteOwn "
+"<DashboardWriteOwn>` or :ref:`🔑DashboardWritePublic "
+"<DashboardWritePublic>` permission can see and access the **Dashboard "
+"Configuration** menu item in the user menu. These permissions allow you "
+"to add, edit, reorder, show, and hide private or public dashboards."
 msgstr ""
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:75
@@ -6526,8 +6528,8 @@ msgstr ""
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:361
 msgid ""
-"Grant permission :bdg-ref-warning:`🔑NewsManagement <NewsManagement>` to "
-"allow a user to manage the content of the news feed."
+"Grant permission :ref:`🔑NewsManagement <NewsManagement>` to allow a user "
+"to manage the content of the news feed."
 msgstr ""
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:363
@@ -7441,7 +7443,7 @@ msgid "**Create own absences**"
 msgstr ""
 
 #: ../../source/portal-user-guide/portal-header/index.rst:217
-msgid ":bdg-ref-warning:`🔑UserCreateOwnAbsence <UserCreateOwnAbsence>`"
+msgid ":ref:`🔑UserCreateOwnAbsence <UserCreateOwnAbsence>`"
 msgstr ""
 
 #: ../../source/portal-user-guide/portal-header/index.rst:220
@@ -7449,7 +7451,7 @@ msgid "**Create public absences**"
 msgstr ""
 
 #: ../../source/portal-user-guide/portal-header/index.rst:220
-msgid ":bdg-ref-warning:`🔑UserCreateAbsence <UserCreateAbsence>`"
+msgid ":ref:`🔑UserCreateAbsence <UserCreateAbsence>`"
 msgstr ""
 
 #: ../../source/portal-user-guide/portal-header/index.rst:223
@@ -7457,7 +7459,7 @@ msgid "**Create own substitutes**"
 msgstr ""
 
 #: ../../source/portal-user-guide/portal-header/index.rst:223
-msgid ":bdg-ref-warning:`🔑UserCreateOwnSubstitute <UserCreateOwnSubstitute>`"
+msgid ":ref:`🔑UserCreateOwnSubstitute <UserCreateOwnSubstitute>`"
 msgstr ""
 
 #: ../../source/portal-user-guide/portal-header/index.rst:226
@@ -7465,7 +7467,7 @@ msgid "**Create all substitutes**"
 msgstr ""
 
 #: ../../source/portal-user-guide/portal-header/index.rst:226
-msgid ":bdg-ref-warning:`🔑UserCreateSubstitute <UserCreateSubstitute>`"
+msgid ":ref:`🔑UserCreateSubstitute <UserCreateSubstitute>`"
 msgstr ""
 
 #: ../../source/portal-user-guide/portal-header/index.rst:229
@@ -7473,7 +7475,7 @@ msgid "**Change own password**"
 msgstr ""
 
 #: ../../source/portal-user-guide/portal-header/index.rst:229
-msgid ":bdg-warning:`🔑UserSetOwnPassword`"
+msgid "🔑UserSetOwnPassword"
 msgstr ""
 
 #: ../../source/portal-user-guide/portal-multi-language/index.rst:4
@@ -7829,7 +7831,7 @@ msgid "Displays all tasks by priority"
 msgstr ""
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst:48
-msgid "Chart type: :bdg-info:`Pie`"
+msgid "Chart type: ``Pie``"
 msgstr ""
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst:50
@@ -7851,7 +7853,7 @@ msgstr ""
 #: ../../source/portal-user-guide/statistic-chart/index.rst:55
 #: ../../source/portal-user-guide/statistic-chart/index.rst:69
 #: ../../source/portal-user-guide/statistic-chart/index.rst:121
-msgid "Chart type: :bdg-info:`Bar`"
+msgid "Chart type: ``Bar``"
 msgstr ""
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst:57
@@ -7875,7 +7877,7 @@ msgstr ""
 #: ../../source/portal-user-guide/statistic-chart/index.rst:83
 #: ../../source/portal-user-guide/statistic-chart/index.rst:90
 #: ../../source/portal-user-guide/statistic-chart/index.rst:100
-msgid "Chart type: :bdg-info:`Number`"
+msgid "Chart type: ``Number``"
 msgstr ""
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst:64
@@ -7980,7 +7982,7 @@ msgstr ""
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst:107
 #: ../../source/portal-user-guide/statistic-chart/index.rst:114
-msgid "Chart type: :bdg-info:`Line`"
+msgid "Chart type: ``Line``"
 msgstr ""
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst:109
@@ -9973,5 +9975,262 @@ msgstr ""
 #~ msgstr ""
 
 #~ msgid "This chart shows all tasks that are due today."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "**Migration**: Use the permission :bdg-"
+#~ "ref-warning:`🔑NoteReadAllCaseTaskDetails "
+#~ "<NoteReadAllCaseTaskDetails>` to control visibility"
+#~ " of system notes in task and "
+#~ "case details instead."
+#~ msgstr ""
+
+#~ msgid ":bdg-ref-warning:`🔑RoleManagement <RoleManagement>`"
+#~ msgstr ""
+
+#~ msgid ":bdg-ref-warning:`🔑RoleCreate <RoleCreate>`"
+#~ msgstr ""
+
+#~ msgid ":bdg-ref-warning:`🔑RoleDelete <RoleDelete>`"
+#~ msgstr ""
+
+#~ msgid ":bdg-ref-warning:`🔑RoleMove <RoleMove>`"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "To access Password Validation settings, "
+#~ "you need the :bdg-ref-"
+#~ "warning:`🔑PasswordValidation <PasswordValidation>` "
+#~ "permission."
+#~ msgstr ""
+
+#~ msgid ""
+#~ ":bdg-dark-line:`Created Date` :bdg-"
+#~ "dark-line:`Current` :bdg-dark-line:`Month`"
+#~ msgstr ""
+
+#~ msgid ""
+#~ ":bdg-dark-line:`Created Date` :bdg-"
+#~ "dark-line:`Within the last` :bdg-dark-"
+#~ "line:`2` :bdg-dark-line:`Year(s)`"
+#~ msgstr ""
+
+#~ msgid ""
+#~ ":bdg-dark-line:`Invoice Due Date` "
+#~ ":bdg-dark-line:`Within the next` :bdg-"
+#~ "dark-line:`3` :bdg-dark-line:`Week(s)`"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "**Access Requirements**: Only users with "
+#~ "the :bdg-ref-warning:`🔑DashboardWriteOwn "
+#~ "<DashboardWriteOwn>` or :bdg-ref-"
+#~ "warning:`🔑DashboardWritePublic <DashboardWritePublic>` "
+#~ "permission can see and access the "
+#~ ":guilabel:`Dashboard Configuration` menu item. "
+#~ "These permissions allow you to add, "
+#~ "edit, reorder, show, and hide private"
+#~ " or public dashboards."
+#~ msgstr ""
+
+#~ msgid ":bdg-ref-warning:`🔑DashboardWriteOwn <DashboardWriteOwn>`"
+#~ msgstr ""
+
+#~ msgid ":bdg-ref-warning:`🔑DashboardWritePublic <DashboardWritePublic>`"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Requires :bdg-ref-warning:`🔑DashboardImportOwn "
+#~ "<DashboardImportOwn>` permission."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "|download-icon| **Export**: Download dashboard"
+#~ " as JSON file (requires :bdg-ref-"
+#~ "warning:`🔑DashboardExportOwn <DashboardExportOwn>` "
+#~ "permission)"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Requires :bdg-ref-warning:`🔑DashboardImportPublic"
+#~ " <DashboardImportPublic>` permission."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "|download-icon| **Export**: Download dashboard"
+#~ " as JSON file (requires :bdg-ref-"
+#~ "warning:`🔑DashboardExportPublic <DashboardExportPublic>` "
+#~ "permission)"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "|share-icon| **Share**: Generate a "
+#~ "shareable link to the dashboard "
+#~ "(requires :bdg-ref-warning:`🔑ShareDashboardLink "
+#~ "<ShareDashboardLink>` permission)"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Requires :bdg-ref-warning:`🔑ShareDashboardLink "
+#~ "<ShareDashboardLink>` permission."
+#~ msgstr ""
+
+#~ msgid ":bdg-ref-warning:`🔑DashboardImportOwn <DashboardImportOwn>`"
+#~ msgstr ""
+
+#~ msgid ":bdg-ref-warning:`🔑DashboardExportOwn <DashboardExportOwn>`"
+#~ msgstr ""
+
+#~ msgid ":bdg-ref-warning:`🔑DashboardImportPublic <DashboardImportPublic>`"
+#~ msgstr ""
+
+#~ msgid ":bdg-ref-warning:`🔑DashboardExportPublic <DashboardExportPublic>`"
+#~ msgstr ""
+
+#~ msgid ":bdg-ref-warning:`🔑ShareDashboardLink <ShareDashboardLink>`"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "**Access Requirement**: Only users with "
+#~ "the :bdg-ref-warning:`🔑AccessFullCaseList "
+#~ "<AccessFullCaseList>` permission can see the"
+#~ " |case-icon| :guilabel:`Cases` menu item."
+#~ msgstr ""
+
+#~ msgid ""
+#~ ":bdg-ref-warning:`🔑TaskReadOwnCaseTasks "
+#~ "<TaskReadOwnCaseTasks>` or :bdg-ref-"
+#~ "warning:`🔑TaskReadAll <TaskReadAll>`"
+#~ msgstr ""
+
+#~ msgid ""
+#~ ":bdg-ref-warning:`🔑DocumentOfInvolvedCaseWrite "
+#~ "<DocumentOfInvolvedCaseWrite>` or :bdg-ref-"
+#~ "warning:`🔑DocumentWrite <DocumentWrite>`"
+#~ msgstr ""
+
+#~ msgid ":bdg-ref-warning:`🔑TaskCaseAddNote <TaskCaseAddNote>`"
+#~ msgstr ""
+
+#~ msgid ":bdg-ref-warning:`🔑ShareCaseDetailsLink <ShareCaseDetailsLink>`"
+#~ msgstr ""
+
+#~ msgid ""
+#~ ":bdg-ref-warning:`🔑CaseDisplayCustomFieldsAction "
+#~ "<CaseDisplayCustomFieldsAction>`"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "**Access Requirement**: Only users with "
+#~ "the :bdg-ref-warning:`🔑AccessFullProcessList "
+#~ "<AccessFullProcessList>` permission can see "
+#~ "the :guilabel:`Processes` menu item."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Creating public external links (visible "
+#~ "to all users) requires :bdg-ref-"
+#~ "warning:`🔑CreatePublicExternalLink <CreatePublicExternalLink>`"
+#~ " permission. Private links can be "
+#~ "created by any user."
+#~ msgstr ""
+
+#~ msgid ":bdg-ref-warning:`🔑CreatePublicExternalLink <CreatePublicExternalLink>`"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "**Access Requirement**: Only users with "
+#~ "the :bdg-ref-warning:`🔑AccessFullTaskList "
+#~ "<AccessFullTaskList>` permission can see the"
+#~ " |task-list-icon| :guilabel:`Tasks` menu"
+#~ " item."
+#~ msgstr ""
+
+#~ msgid ":bdg-ref-warning:`🔑TaskDisplayResetAction <TaskDisplayResetAction>`"
+#~ msgstr ""
+
+#~ msgid ":bdg-ref-warning:`🔑TaskDisplayReserveAction <TaskDisplayReserveAction>`"
+#~ msgstr ""
+
+#~ msgid ""
+#~ ":bdg-ref-warning:`🔑TaskDisplayDelegateAction "
+#~ "<TaskDisplayDelegateAction>`"
+#~ msgstr ""
+
+#~ msgid ":bdg-ref-warning:`🔑TaskDisplayDestroyAction <TaskDisplayDestroyAction>`"
+#~ msgstr ""
+
+#~ msgid ""
+#~ ":bdg-ref-warning:`🔑TaskDisplayAdditionalOptions "
+#~ "<TaskDisplayAdditionalOptions>`"
+#~ msgstr ""
+
+#~ msgid ""
+#~ ":bdg-ref-warning:`🔑TaskDisplayWorkflowEventAction "
+#~ "<TaskDisplayWorkflowEventAction>` and :bdg-"
+#~ "warning:`🔑WorkflowEventReadAll`"
+#~ msgstr ""
+
+#~ msgid ""
+#~ ":bdg-ref-warning:`🔑TaskDisplayCustomFieldsAction "
+#~ "<TaskDisplayCustomFieldsAction>`"
+#~ msgstr ""
+
+#~ msgid ":bdg-ref-warning:`🔑ShareTaskDetailsLink <ShareTaskDetailsLink>`"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "As an administrator, you can configure"
+#~ " the permission :bdg-ref-"
+#~ "warning:`🔑NotificationChannelsSetting "
+#~ "<NotificationChannelsSetting>` to allow or "
+#~ "prevent users from modifying notification "
+#~ "channel preferences."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "**Required Permissions**: Only users with "
+#~ "the :bdg-ref-warning:`🔑DashboardWriteOwn "
+#~ "<DashboardWriteOwn>` or :bdg-ref-"
+#~ "warning:`🔑DashboardWritePublic <DashboardWritePublic>` "
+#~ "permission can see and access the "
+#~ "**Dashboard Configuration** menu item in "
+#~ "the user menu. These permissions allow"
+#~ " you to add, edit, reorder, show, "
+#~ "and hide private or public dashboards."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Grant permission :bdg-ref-"
+#~ "warning:`🔑NewsManagement <NewsManagement>` to allow"
+#~ " a user to manage the content "
+#~ "of the news feed."
+#~ msgstr ""
+
+#~ msgid ":bdg-ref-warning:`🔑UserCreateOwnAbsence <UserCreateOwnAbsence>`"
+#~ msgstr ""
+
+#~ msgid ":bdg-ref-warning:`🔑UserCreateAbsence <UserCreateAbsence>`"
+#~ msgstr ""
+
+#~ msgid ":bdg-ref-warning:`🔑UserCreateOwnSubstitute <UserCreateOwnSubstitute>`"
+#~ msgstr ""
+
+#~ msgid ":bdg-ref-warning:`🔑UserCreateSubstitute <UserCreateSubstitute>`"
+#~ msgstr ""
+
+#~ msgid ":bdg-warning:`🔑UserSetOwnPassword`"
+#~ msgstr ""
+
+#~ msgid "Chart type: :bdg-info:`Pie`"
+#~ msgstr ""
+
+#~ msgid "Chart type: :bdg-info:`Bar`"
+#~ msgstr ""
+
+#~ msgid "Chart type: :bdg-info:`Number`"
+#~ msgstr ""
+
+#~ msgid "Chart type: :bdg-info:`Line`"
 #~ msgstr ""
 

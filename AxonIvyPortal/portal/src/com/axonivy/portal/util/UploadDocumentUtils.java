@@ -3,9 +3,12 @@ package com.axonivy.portal.util;
 import static ch.ivy.addon.portal.chat.ChatReferencesContainer.log;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.util.function.Supplier;
 
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.primefaces.model.StreamedContent;
 import org.primefaces.model.file.UploadedFile;
 import org.primefaces.virusscan.VirusException;
 import org.primefaces.virusscan.VirusScanner;
@@ -16,6 +19,7 @@ import com.axonivy.portal.components.document.DocumentDetector;
 import ch.ivy.addon.portalkit.document.DocumentDetectorFactory;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
+import ch.ivyteam.ivy.bpm.error.BpmError;
 import ch.ivyteam.ivy.environment.Ivy;
 
 public class UploadDocumentUtils {
@@ -79,6 +83,33 @@ public class UploadDocumentUtils {
     }
     return false;
   }
+
+  public static boolean isEncrypted(StreamedContent streamedContent) {
+    if (streamedContent == null || streamedContent.getName() == null) {
+        return false;
+    }
+
+    String extension = FilenameUtils.getExtension(StringUtils.lowerCase(streamedContent.getName()));
+    DocumentDetector documentDetector = new DocumentDetectorFactory().getDocumentDetector(extension);
+    Supplier<InputStream> streamSupplier = streamedContent.getStream();
+
+    if (documentDetector == null || streamSupplier == null) {
+        return false;
+    }
+
+    try (InputStream inputStream = streamSupplier.get()) {
+        if (inputStream != null) {
+            documentDetector.isSafe(inputStream);
+        }
+    } catch (BpmError e) {
+        return "portal:file:encrypted".equals(e.getErrorCode());
+    } catch (Exception e) {
+        Ivy.log().error(e);
+        return false;
+    }
+
+    return false;
+}
 
   public static Long getDocumentUploadSizeLimit() {
     String documentUploadSizeLimit =
