@@ -26,6 +26,7 @@
             </goals>
             <configuration>
               <outputDirectory>build/doc/en/portal-developer-guide/public-api</outputDirectory>
+              <overwrite>true</overwrite>
               <resources>
                 <resource>
                   <directory>../public-api/target/site/apidocs</directory>
@@ -42,6 +43,7 @@
             </goals>
             <configuration>
               <outputDirectory>build/doc/ja/portal-developer-guide/public-api</outputDirectory>
+              <overwrite>true</overwrite>
               <resources>
                 <resource>
                   <directory>../public-api/target/site/apidocs</directory>
