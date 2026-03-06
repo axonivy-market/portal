@@ -8,7 +8,7 @@
 
   <fileSets>
     <fileSet>
-      <directory>build/doc</directory>
+      <directory>${project.build.directory}/doc</directory>
       <outputDirectory>.</outputDirectory>
       <excludes>
         <exclude>_sources/.doctrees/**</exclude>
