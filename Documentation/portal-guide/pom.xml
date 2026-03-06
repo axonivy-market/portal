@@ -17,6 +17,12 @@
       <plugin>
         <artifactId>maven-resources-plugin</artifactId>
         <version>3.4.0</version>
+        <configuration>
+          <nonFilteredFileExtensions>
+            <nonFilteredFileExtension>woff</nonFilteredFileExtension>
+            <nonFilteredFileExtension>woff2</nonFilteredFileExtension>
+          </nonFilteredFileExtensions>
+        </configuration>
         <executions>
           <execution>
             <id>copy-javadoc-en</id>
