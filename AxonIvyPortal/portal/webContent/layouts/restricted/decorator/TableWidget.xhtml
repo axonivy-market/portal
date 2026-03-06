@@ -37,22 +37,55 @@
   <h:panelGroup layout="block" class="widget__header" rendered="#{not isHeaderHidden}">
     <h:panelGroup id="widget__header" class="widget__header-title text-ellipsis" pt:role="heading" pt:aria-level="1">#{widget.name}</h:panelGroup>
     <p:tooltip for="widget__header" value="#{widget.name}" trackMouse="true" hideEvent="mouseleave click"/>
-    
-<h:panelGroup id="show-pin-#{index}" layout="block"
-    styleClass="#{isReadOnlyMode ? 'mr-3' : 'mr-1' } widget-header-show-pin"
-    rendered="#{dashboardBean.canShowPinnedItemToggle(widget)}">
-    <h:form id="show-pin-form">
-        <c:set var="widgetContentId" value="#{cc.clientId}:widget-content" />
-        <h:panelGroup layout="block" styleClass="flex align-items-center justify-content-between gap-2">
-            <h:outputText value="#{dashboardBean.showPinnedItemToggleLable(widget)}"
-                styleClass="text-base font-semibold text-left"/>
-            <p:toggleSwitch value="#{dashboardBean.showPinnedItem}" id="show-pin-toggle" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/pin')}">
-                <p:ajax listener="#{dashboardBean.togglePinned(widget)}"
-                    update="#{componentToUpdateOnResetFilter} @form" />
-            </p:toggleSwitch>
-        </h:panelGroup>
-    </h:form>
-</h:panelGroup>
+
+    <h:panelGroup id="delegation-action-bar-#{index}" layout="block" styleClass="delegation-action-bar">
+      <h:panelGroup rendered="#{dashboardBean.canShowBulkSelectDelegation(widget)}">
+        <h:form id="delegation-action-form">
+          <h:panelGroup layout="block" styleClass="flex align-items-center gap-2">
+            <h:outputFormat value="#{dashboardBean.getBulkSelectDelegationCount(widget)} item selected"
+              styleClass="text-color-secondary white-space-nowrap">
+            </h:outputFormat>
+
+            <p:commandButton id="delegate-tasks-btn-#{index}"
+              value="Delegate tasks"
+              icon="si si-multiple-neutral-1"
+              styleClass="ui-delegate-all-tasks-button ui-button"
+              ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delegateTasks')}"
+              actionListener="#{dashboardBean.startMultipleDelegation()}"
+              oncomplete="initDataToDelegateMultiple()"
+              process="@this" />
+
+            <p:commandButton id="deselect-all-btn-#{index}"
+              value="Deselect all"
+              icon="si si-remove"
+              styleClass="ui-button ui-deselect-all-button"
+              ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/deselectAll')}"
+              actionListener="#{dashboardBean.deselectAllDelegatedTasks(widget)}"
+              update="@(.delegation-action-bar) @(.widget-header-default-actions) #{componentToUpdateOnResetFilter}"
+              process="@this" />
+          </h:panelGroup>
+        </h:form>
+      </h:panelGroup>
+    </h:panelGroup>
+
+    <h:panelGroup id="widget-header-default-actions-#{index}" layout="block" styleClass="widget-header-default-actions flex align-items-center">
+    <h:panelGroup rendered="#{not dashboardBean.canShowBulkSelectDelegation(widget)}">
+
+    <h:panelGroup id="show-pin-#{index}" layout="block"
+        styleClass="#{isReadOnlyMode ? 'mr-3' : 'mr-1' } widget-header-show-pin"
+        rendered="#{dashboardBean.canShowPinnedItemToggle(widget)}">
+        <h:form id="show-pin-form">
+            <c:set var="widgetContentId" value="#{cc.clientId}:widget-content" />
+            <h:panelGroup layout="block" styleClass="flex align-items-center justify-content-between gap-2">
+                <h:outputText value="#{dashboardBean.showPinnedItemToggleLable(widget)}"
+                    styleClass="text-base font-semibold text-left"/>
+                <p:toggleSwitch value="#{dashboardBean.showPinnedItem}" id="show-pin-toggle" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/pin')}">
+                    <p:ajax listener="#{dashboardBean.togglePinned(widget)}"
+                        update="#{componentToUpdateOnResetFilter} @form" />
+                </p:toggleSwitch>
+            </h:panelGroup>
+        </h:form>
+    </h:panelGroup>
 
     <h:panelGroup id="widget-header-quick-search-#{index}" layout="block"
       styleClass="#{isReadOnlyMode ? 'mr-3' : 'mr-1'} widget-header-quick-search"
@@ -326,6 +359,8 @@
         </h:form>
       </p:overlayPanel>
     </h:panelGroup>
+      </h:panelGroup>
+    </h:panelGroup>
   </h:panelGroup>
 
   <h:panelGroup id="widget-content" styleClass="widget__content #{widget.id} #{widgetContentStyleClass} dashboard-widget-panel-container" layout="block">
@@ -346,5 +381,14 @@
       rendered="#{renderExpandCollapse and isHeaderHidden}"
       onclick="collapseFullscreen(#{index}, '#{htmlSanitizerBean.escapeForJS(widget.id)}')" />
   </h:panelGroup>
+
+  <h:panelGroup rendered="#{dashboardBean.canShowBulkSelectDelegation(widget)}">
+    <ic:ch.ivy.addon.portalkit.component.MultipleTaskItemsDelegate
+      id="multiple-task-items-delegate-#{index}"
+      tasks="#{dashboardBean.selectedDelegatedTasks}"
+      componentToUpdate="@(.task-widget)"
+      />
+  </h:panelGroup>
+
 </h:panelGroup>
 </html>

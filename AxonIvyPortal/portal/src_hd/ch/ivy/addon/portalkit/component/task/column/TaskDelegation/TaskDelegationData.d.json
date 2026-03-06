@@ -1,0 +1,15 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
+  "simpleName" : "TaskDelegationData",
+  "namespace" : "ch.ivy.addon.portalkit.component.task.column.TaskDelegation",
+  "fields" : [ {
+    "name" : "isSelected",
+    "type" : "Boolean"
+  }, {
+    "name" : "selectedTaskList",
+    "type" : "List<ch.ivyteam.ivy.workflow.ITask>"
+  }, {
+    "name" : "task",
+    "type" : "ch.ivyteam.ivy.workflow.ITask"
+  } ]
+}

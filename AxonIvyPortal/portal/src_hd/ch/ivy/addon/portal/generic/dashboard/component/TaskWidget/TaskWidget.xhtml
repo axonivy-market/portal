@@ -96,6 +96,14 @@
           <h:panelGroup rendered="#{column.field eq 'activator'}">
             <ui:include src="ResponsibleCell.xhtml" />
           </h:panelGroup>
+
+          <h:panelGroup rendered="#{column.field eq 'delegation'}">
+            <c:set var="canDelegate" value="#{taskActionBean.canDelegate(task)}" />
+            <h:outputText id="task-delegation" value="#{column.display(task)}"/>
+            <ic:ch.ivy.addon.portalkit.component.task.column.TaskDelegation task="#{task}" 
+            canDelegate="#{canDelegate}" managedBean="#{dashboardTaskWidgetBean}" componentToUpdate="@widgetVar(#{cc.attrs.taskWidgetVar}-#{taskWidget.id})"
+            selectedTasksForBulkDelegation="#{taskWidget.selectedTasksForBulkDelegation}"/>
+          </h:panelGroup>
           
           <h:panelGroup rendered="#{column.field eq 'state'}">
             <ic:ch.ivy.addon.portalkit.component.task.column.TaskState state="#{task.businessState}"

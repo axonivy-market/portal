@@ -2019,9 +2019,16 @@ body .ui-button.rounded-button.dashboard-widget-filter__remove-filter .ui-icon {
   box-sizing: border-box;
 }
 
-body .ui-button.ui-widget.ui-widget-filter-btn {
+body .ui-button.ui-widget.ui-widget-filter-btn, .ui-button.ui-widget.ui-deselect-all-button {
   background: var(--widget-filter-background-color);
   color: var(--text-color);
+  border: none;
+}
+
+body .ui-button.ui-delegate-all-tasks-button {
+  background: var(--portal-accessibility-bg-color);
+  color: var(--portal-button-text-color);
+  font-weight: 600;
   border: none;
 }
 

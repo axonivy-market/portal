@@ -27,6 +27,7 @@ import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.support.HtmlParser;
 import ch.ivy.addon.portalkit.util.TaskUtils;
+import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.ITask;
 
 @ViewScoped
@@ -102,5 +103,18 @@ public class DashboardTaskWidgetBean implements Serializable {
 
   public String createExtractedTextFromHtml(String text) {
     return HtmlParser.extractTextFromHtml(text);
+  }
+
+  public void onSelectDelegateTask(boolean isSelected, ITask task, List<ITask> selectedTasksForBulkDelegation) {
+    if (isSelected) {
+      selectedTasksForBulkDelegation.add(task);
+    } else {
+      selectedTasksForBulkDelegation.remove(task);
+    }
+    Ivy.log().info(isSelected);
+  }
+
+  public boolean checkSelectedTaskForDelegation(ITask task, List<ITask> selectedTasksForBulkDelegation) {
+    return selectedTasksForBulkDelegation.isEmpty() ? false : selectedTasksForBulkDelegation.contains(task);
   }
 }

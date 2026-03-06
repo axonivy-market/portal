@@ -26,6 +26,7 @@ import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.WidgetFilterService;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 import ch.ivy.addon.portalkit.util.SortFieldUtil;
+import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.task.TaskBusinessState;
 
 public class TaskDashboardWidget extends DashboardWidget {
@@ -51,6 +52,8 @@ public class TaskDashboardWidget extends DashboardWidget {
   private boolean showPinnedToggle;
 
   @JsonIgnore
+  private List<ITask> selectedTasksForBulkDelegation;
+  @JsonIgnore
   private List<String> errors;
 
   public TaskDashboardWidget() {
@@ -61,6 +64,7 @@ public class TaskDashboardWidget extends DashboardWidget {
     setShowWidgetInfo(true);
     setShowFullscreenMode(true);
     setShowPinnedToggle(true);
+    setSelectedTasksForBulkDelegation(new ArrayList<>());
   }
 
   @Override
@@ -316,6 +320,16 @@ public class TaskDashboardWidget extends DashboardWidget {
 
   public void setErrors(List<String> errors) {
     this.errors = errors;
+  }
+
+  @JsonIgnore
+  public List<ITask> getSelectedTasksForBulkDelegation() {
+    return selectedTasksForBulkDelegation;
+  }
+
+  @JsonIgnore
+  public void setSelectedTasksForBulkDelegation(List<ITask> selectedTasksForBulkDelegation) {
+    this.selectedTasksForBulkDelegation = selectedTasksForBulkDelegation;
   }
 
   @Override
