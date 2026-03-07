@@ -1585,6 +1585,16 @@ Dialogs:
           IFrameTaskTemplate:
             TaskIFrameTitle: Task frame
         page:
+          MenuManagement:
+            AddNewMenu: Add new menu
+            CallableMenuMessage: This menu is generated programmatically by a callable process and cannot be edited.
+            HelpText: Customize the menu in this section to match your specific needs or preferences.
+            MenuDetails: Menu Details
+            MenuIcon: Menu icon
+            MenuTitle: Menu title
+            MenuType: Menu type
+            OpenInNewTab: Open in new tab
+            StaticPagePath: Static Page Path
           StatisticConfiguration:
             AddFilter: Add filter
             Advanced: Advanced
@@ -1858,6 +1868,13 @@ Labels:
       CASES: Cases
       PROCESSES: Processes
       TASKS: Tasks
+    MenuKind:
+      CUSTOM: Custom
+      DASHBOARD: Dashboard
+      EXTERNAL_LINK: External Link
+      MAIN_DASHBOARD: Dashboard
+      STANDARD: Standard
+      STATIC_PAGE: Static page
     SearchScopeCaseField:
       CUSTOM: Custom string fields
       DESCRIPTION: Description
@@ -1877,6 +1894,7 @@ Labels:
   Login:
     CompanyName: Axon Ivy Portal
     Copyright: Copyright Ⓒ Axon Ivy Portal
+  MenuConfiguration: Menu Configuration
   Name: Name
   Permissions: Permissions
   PinnedCases: Pinned Cases

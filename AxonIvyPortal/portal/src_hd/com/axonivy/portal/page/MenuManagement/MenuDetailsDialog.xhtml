@@ -1,0 +1,241 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:pc="http://xmlns.jcp.org/jsf/composite/components"
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+<ui:composition>
+  <c:set var="isReadOnly" value="#{menuDetailsBean.readOnly}" />
+  <c:set var="contentState" value="#{menuDetailsBean.contentState}" />
+
+<p:dialog id="menu-configuration-dialog" widgetVar="menu-configuration-dialog"
+    header="#{menuDetailsBean.configurationDialogHeader}"
+    appendTo="@(body)" closeOnEscape="true"
+    fitViewport="true" responsive="true"
+    resizable="false" width="650px"
+    modal="true" dynamic="true"
+    position="center center"
+    onShow="PF('menu-configuration-dialog').initPosition()">
+    <h:form id="menu-configuration-form" class="flex w-full flex-column">
+      <c:set var="selectedMenu" value="#{menuDetailsBean.selectedMenuDefinition}" />
+      <p:messages id="menu-configuration-messages" />
+      <div id="clone-widget-panel" class="flex w-full flex-column">
+        <h:panelGroup layout="block" styleClass="w-full mb-5"
+          rendered="#{selectedMenu.source eq 'CALLABLE'}">
+          <span>#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/MenuManagement/CallableMenuMessage')}</span>
+        </h:panelGroup>
+        <div class="mb-3">
+          <p:outputLabel for="menu-type" styleClass="font-semibold"
+            value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/MenuManagement/MenuType')}" />
+        </div>
+        <div class="mb-3 ui-fluid">
+          <p:selectOneMenu id="menu-type" value="#{menuDetailsBean.selectedMenuKind}"
+            disabled="#{isReadOnly or menuDetailsBean.isEdit()}"
+            required="true"
+            requiredMessage="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/MenuManagement/MenuType')}: #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}">
+            <f:selectItem noSelectionOption="true" value="#{null}" />
+            <f:selectItems value="#{menuDetailsBean.menuKinds}" var="menuKind"
+              itemValue="#{menuKind}" itemLabel="#{menuDetailsBean.getMenuKindLabel(menuKind)}" />
+              <p:ajax event="change" process="@(this)" global="false" update="@(form) menu-configuration-messages"
+                listener="#{menuDetailsBean.onSelectMenuKind}"
+                oncomplete="PF('menu-configuration-dialog').initPosition();" />
+              <f:param name="skipValidator" value="true" />
+          </p:selectOneMenu>
+        </div>
+      </div>
+
+      <!-- Dashboard selection -->
+      <h:panelGroup id="dashboard-selection-panel" layout="block"
+        styleClass="flex flex-column w-full"
+        rendered="#{contentState.showDashboardSelection}">
+        <div class="col-12 mb-3 p-0">
+          <p:outputLabel value="#{ivy.cms.co('/Labels/Enums/MenuKind/MAIN_DASHBOARD')}" styleClass="font-semibold"
+            for="dashboard-selection" />
+        </div>
+        <div class="col-12 mb-3 ui-fluid p-0">
+          <p:selectOneMenu id="dashboard-selection" value="#{menuDetailsBean.selectedDashboard}"
+            converter="pojoConverter" disabled="#{!contentState.enableDashboardSelection}"
+            required="#{param['skipValidator'] == null}"
+            requiredMessage="#{ivy.cms.co('/Labels/Enums/MenuKind/MAIN_DASHBOARD')}: #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}">
+            <f:selectItem noSelectionOption="true" value="#{null}" />
+            <f:selectItems  value="#{menuDetailsBean.visibleDashboards}" var="dashboard"
+              itemValue="#{dashboard}" itemLabel="#{dashboard.title}" />
+            <p:ajax event="change" update="@(form)" process="dashboard-selection" global="false"
+              listener="#{menuDetailsBean.onSelectDashboard}"
+              oncomplete="PF('menu-configuration-dialog').initPosition();" />
+          </p:selectOneMenu>
+        </div>
+      </h:panelGroup>
+
+      <!-- Process selection -->
+      <h:panelGroup id="process-selection-panel" layout="block"
+        styleClass="flex flex-column w-full"
+        rendered="#{contentState.showProcessSelection}">
+        <div class="col-12 mb-3 p-0">
+          <p:outputLabel for="process-selection" styleClass="font-semibold"
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/process')}" />
+        </div>
+        <div class="col-12 mb-3 ui-fluid p-0">
+        <p:autoComplete id="process-selection"
+          disabled="#{!contentState.enableProcessSelection}"
+          dropdown="true" scrollHeight="300" forceSelection="true"
+          completeMethod="#{menuDetailsBean.findProcess}"
+          value="#{menuDetailsBean.selectedProcess}" var="process"
+          itemValue="#{process}" itemLabel="#{process.name}" queryDelay="500" cache="true"
+          minQueryLength="2" itemtipAtPosition="right top" converter="pojoConverter"
+          required="#{param['skipValidator'] == null}"
+          requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/processes/noProcessSelected')}">
+              <p:ajax event="query" global="false" />
+              <p:ajax event="change" update="@(form)" process="@(this)" global="false" oncomplete="onSelectProcess();" />
+              <f:param name="skipValidator" value="true" />
+              <p:column>
+                <h:outputText styleClass="autocomplete-tooltip" value="#{process.name}" title="#{process.description}" />
+              </p:column>
+          </p:autoComplete>
+          <p:remoteCommand name="onSelectProcess"
+            actionListener="#{menuDetailsBean.onSelectProcess}"
+            process="process-selection" update="@(form)" global="false"
+            oncomplete="PF('menu-configuration-dialog').initPosition();" />
+        </div>
+      </h:panelGroup>
+      
+      <!-- External link -->
+      <h:panelGroup id="external-link-panel" layout="block"
+        styleClass="flex flex-column w-full"
+        rendered="#{contentState.showExternalLinkInput and menuDetailsBean.selectedMenuKind ne 'STATIC_PAGE'}">
+        <div class="col-12 mb-3 p-0">
+          <p:outputLabel for="external-link" styleClass="font-semibold"
+            value="#{ivy.cms.co('/Labels/Enums/MenuKind/EXTERNAL_LINK')}" />
+        </div>
+        <div class="col-12 mb-3 ui-fluid p-0">
+          <p:inputText id="external-link" value="#{menuDetailsBean.externalLink}"
+            required="#{param['skipValidator'] == null}"
+            requiredMessage="#{ivy.cms.co('/Labels/Enums/MenuKind/EXTERNAL_LINK')}: #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}"
+            disabled="#{!contentState.enableExternalLinkInput}" autocomplete="off">
+            <p:ajax event="blur" process="@this" update="@this" global="false" immediate="true" />
+          </p:inputText>
+        </div>
+        <div class="col-12 mb-3 p-0 flex align-items-center">
+          <p:toggleSwitch id="is-new-tab" styleClass="mr-2" value="#{menuDetailsBean.openInNewTab}"
+            disabled="#{!contentState.enableExternalLinkInput or (selectedMenu.source eq 'THIRD_PARTY_APP_CONFIGURATION')}" />
+          <p:outputLabel for="is-new-tab" styleClass="font-semibold"
+            value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/MenuManagement/OpenInNewTab')}" />
+        </div>
+      </h:panelGroup>
+
+      <!-- Static Page Path -->
+      <h:panelGroup id="static-page-path-panel" layout="block"
+        styleClass="flex flex-column w-full"
+        rendered="#{contentState.showStaticPageInput}">
+        <div class="col-12 mb-3 p-0">
+          <p:outputLabel for="static-page-path" styleClass="font-semibold"
+            value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/MenuManagement/StaticPagePath')}" />
+        </div>
+        <div class="col-12 mb-3 ui-fluid p-0">
+          <p:inputText id="static-page-path" value="#{menuDetailsBean.staticPagePath}"
+            required="#{param['skipValidator'] == null}"
+            requiredMessage="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/MenuManagement/StaticPagePath')}: #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}"
+            disabled="#{!contentState.enableStaticPageInput}" autocomplete="off">
+            <p:ajax event="blur" process="@this" update="@this" global="false" immediate="true" />
+          </p:inputText>
+        </div>
+      </h:panelGroup>
+
+      <!-- Menu Icon -->
+      <h:panelGroup id="menu-icon-label" styleClass="col-12 mb-3 p-0">
+          <h:outputText styleClass="font-semibold"
+            value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/MenuManagement/MenuIcon')}" />
+      </h:panelGroup>
+      <h:panelGroup id="non-dashboard-menu-icon-panel" layout="block"
+        styleClass="col-12 mb-3 ui-fluid p-0">
+        <ic:ch.ivy.addon.portalkit.component.IconSelection
+          value="#{menuDetailsBean.selectedIcon}" isReadOnly="#{!contentState.enableIconSelection}" />
+      </h:panelGroup>
+
+      <!-- Menu Title -->
+      <h:panelGroup id="menu-titles-label" styleClass="col-12 mb-3 p-0">
+          <p:outputLabel for="menu-titles" styleClass="font-semibold"
+            value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/MenuManagement/MenuTitle')}" />
+      </h:panelGroup>
+      <h:panelGroup id="menu-titles-panel" styleClass="col-12 mb-3 ui-fluid p-0 ui-inputgroup">
+        <p:inputText id="menu-titles" value="#{selectedMenu.displayTitle}"
+          disabled="#{!contentState.enableTitleInput}" autocomplete="off"
+          required="#{param['skipValidator'] == null}" styleClass="manage-dashboard__input">
+          <p:ajax event="blur" process="@this" update="@this" global="false" immediate="true" />
+        </p:inputText>
+        <p:commandButton id="add-language-button" icon="si si-chat-translate"
+          actionListener="#{menuDetailsBean.updateSelectedMenuTitlesByLocale()}"
+          process="menu-titles"
+          disabled="#{!contentState.enableTitleInput or !contentState.enableMultiLanguage}"
+          update="title-language-config:multiple-languages-dialog"
+          oncomplete="PF('multiple-languages-dialog').show();">
+          <f:param name="skipValidator" value="true" />
+        </p:commandButton>
+      </h:panelGroup>
+    
+      <!-- Permissions -->
+      <h:panelGroup id="permissions-label" styleClass="col-12 mb-3 p-0">
+          <p:outputLabel for="menu-permission" styleClass="font-semibold"
+            value="#{ivy.cms.co('/Labels/Permissions')}" />
+      </h:panelGroup>
+      <h:panelGroup id="permissions-panel" styleClass="col-12 mb-3 ui-fluid p-0">
+        <p:autoComplete id="menu-permission" scrollHeight="210"
+          dropdown="true" required="#{param['skipValidator'] == null}"
+          disabled="#{!contentState.enablePermissionSelection}"
+          completeMethod="#{menuDetailsBean.completePermissions}" styleClass="manage-dashboard__input"
+          inputStyleClass="manage-dashboard__autocomplete-input"
+          value="#{selectedMenu.permissionDTOs}" var="responsible"
+          itemValue="#{responsible}" itemLabel="#{responsible.briefDisplayNameWithState}" converter="pojoConverter"
+          cache="true" maxResults="100" multiple="true"
+          moreText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}..." dynamic="true" forceSelection="true">
+          <p:ajax event="itemSelect" listener="#{menuDetailsBean.onSelectPermission}"
+            update="permissions-panel" global="false" process="permissions-panel" immediate="true"/>
+          <p:ajax event="itemUnselect" listener="#{menuDetailsBean.onUnSelectPermission}"
+            global="false" process="permissions-panel" update="permissions-panel" immediate="true"/>
+            <f:param name="skipValidator" value="true" />
+          <p:column>
+            <pc:securityMemberNameAndAvatar
+              displayName="#{menuDetailsBean.formatName(responsible)}" securityMember="#{responsible}">
+              <f:facet name="alternativeAvatar">
+                <h:outputText rendered="#{not avatarBean.isShowAvatar()}" styleClass="fa #{responsible.isUser() ? 'fa-user' : 'fa-users'} u-mar-right-5" />
+              </f:facet>
+            </pc:securityMemberNameAndAvatar>
+          </p:column>
+        </p:autoComplete>
+      </h:panelGroup>
+    </h:form>
+
+    <ic:ch.ivy.addon.portal.generic.dashboard.component.MultiLanguageConfiguration
+        id="title-language-config" titles="#{selectedMenu.titles}"
+        managedBean="#{menuDetailsBean}" dynamic="true"
+        updateCurrentLanguage="#{menuDetailsBean.updateCurrentLanguage()}"
+        componentToUpdateOnCreate="menu-configuration-form:menu-titles-panel" />
+
+    <f:facet name="footer">
+      <h:panelGroup id="footer-panel" layout="block" styleClass="text-right">
+        <h:form styleClass="w-full">
+          <p:commandButton id="create-button" styleClass="w-full"
+            rendered="#{menuDetailsBean.isCreate()}" partialSubmit="true"
+            disabled="#{menuDetailsBean.selectedMenuDefinition eq null}"
+            value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/Create')}"
+            ariaLabel="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/Create')}"
+            actionListener="#{menuDetailsBean.createMenu}"
+            process="menu-configuration-form"
+            update="menu-configuration-form"
+            oncomplete="if (args &amp;&amp; !args.validationFailed) {location.reload();}" />
+          <p:commandButton id="update-button" styleClass="w-full"
+            rendered="#{!menuDetailsBean.isCreate()}" partialSubmit="true"
+            disabled="#{isReadOnly}"
+            value="#{ivy.cms.co('/Labels/Save')}"
+            ariaLabel="#{ivy.cms.co('/Labels/Save')}"
+            actionListener="#{menuDetailsBean.updateMenu}"
+            process="menu-configuration-form"
+            update="menu-configuration-form"
+            oncomplete="if (args &amp;&amp; !args.validationFailed) {location.reload();}" />
+        </h:form>
+      </h:panelGroup>
+  </f:facet>
+</p:dialog>
+
+</ui:composition>
+</html>
