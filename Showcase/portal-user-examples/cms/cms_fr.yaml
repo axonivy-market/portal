@@ -1,3 +1,7 @@
+Categories:
+  Procurement:
+    InternalOperation:
+      name: Fonctionnement interne
 CustomFields:
   Cases:
     DaysToDecision:
@@ -212,16 +216,6 @@ Processes:
   Procurement:
     CreateDataProcess: Données d'approvisionnement pour le tableau de bord statistique des échantillons
     InitConfig: Tableau de bord d'exemple Init (MISE À JOUR DU TABLEAU DE BORD DU PORTAIL ET DES VARIABLES STATISTIQUES)
-    SampleStatisticValue:
-      DaysToDecision: 2;5;6;2;7;4;9;4
-      Decision: Approved;Rejected;Pending
-      Department: DepA;DepB;DepC;DepD
-      Item: Laptop;Mobile;Keyboard;Tablet
-      MonthOfYear: 01;02;03;04;05;06;07
-      ReworkCauses: MissingInfo;NotEligible;TooExpensive
-      ReworkNoLoops: 0;1;2;0;0
-      ReworkOccurred: Yes;No
-      SpendAmount: 250.5;300.5;400.5;122.5;234.5
     description: Exécutez ce processus (à plusieurs reprises) pour générer les données utilisées dans l'exemple de statistiques KPI ci-dessous. Les informations relatives aux achats, telles que le montant des dépenses, le service, l'article, le mois de l'année, le délai de décision, la décision et les
       retouches, sont randomisées et attribuées à des champs personnalisés du dossier.
     name: Approvisionnement

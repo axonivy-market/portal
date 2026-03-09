@@ -1,3 +1,7 @@
+Categories:
+  Procurement:
+    InternalOperation:
+      name: 内部操作
 CustomFields:
   Cases:
     DaysToDecision:
@@ -242,16 +246,6 @@ Processes:
   Procurement:
     CreateDataProcess: サンプル統計ダッシュボード向け調達データ
     InitConfig: 初期サンプルダッシュボード（ポータルダッシュボードと統計変数の更新）
-    SampleStatisticValue:
-      DaysToDecision: 2;5;6;2;7;4;9;4
-      Decision: Approved;Rejected;Pending
-      Department: DepA;DepB;DepC;DepD
-      Item: Laptop;Mobile;Keyboard;Tablet
-      MonthOfYear: 01;02;03;04;05;06;07
-      ReworkCauses: MissingInfo;NotEligible;TooExpensive
-      ReworkNoLoops: 0;1;2;0;0
-      ReworkOccurred: Yes;No
-      SpendAmount: 250.5;300.5;400.5;122.5;234.5
     description: 以下のサンプルKPI統計データを生成するため、このプロセスを（複数回）実行してください。支出額、部門、品目、年度月、決定までの日数、決定内容、手直し作業などの調達情報はランダム化され、ケースのカスタムフィールドに割り当てられます。
     name: 調達
   UserExampleGuide:

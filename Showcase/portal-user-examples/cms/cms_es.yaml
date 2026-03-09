@@ -1,3 +1,7 @@
+Categories:
+  Procurement:
+    InternalOperation:
+      name: Operación interna
 CustomFields:
   Cases:
     DaysToDecision:
@@ -223,16 +227,6 @@ Processes:
   Procurement:
     CreateDataProcess: Datos de compras para el panel de estadísticas de muestras
     InitConfig: Iniciar panel de control de muestra (ACTUALIZAR PANEL DE CONTROL DEL PORTAL Y VARIABLES ESTADÍSTICAS)
-    SampleStatisticValue:
-      DaysToDecision: 2;5;6;2;7;4;9;4
-      Decision: Approved;Rejected;Pending
-      Department: DepA;DepB;DepC;DepD
-      Item: Laptop;Mobile;Keyboard;Tablet
-      MonthOfYear: 01;02;03;04;05;06;07
-      ReworkCauses: MissingInfo;NotEligible;TooExpensive
-      ReworkNoLoops: 0;1;2;0;0
-      ReworkOccurred: Yes;No
-      SpendAmount: 250.5;300.5;400.5;122.5;234.5
     description: Ejecute este proceso (varias veces) para generar datos para la estadística de KPI de muestra que se muestra a continuación. La información de adquisición, como el importe del gasto, el departamento, el artículo, el mes del año, los días hasta la decisión, la decisión y la reelaboración,
       se aleatoriza y se asigna a campos personalizados del caso.
     name: Adquisición

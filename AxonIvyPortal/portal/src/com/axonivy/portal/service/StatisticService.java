@@ -345,7 +345,7 @@ public class StatisticService {
       return;
     }
 
-    UnaryOperator<String> keyLocalizer = buildKeyLocalizer(chartTarget, aggregation);
+    UnaryOperator<String> keyLocalizer = this.buildKeyLocalizer(chartTarget, aggregation);
     for (AggregationDTO agg : chartResult.getAggs()) {
       this.localizeBuckets(agg, keyLocalizer);
     }

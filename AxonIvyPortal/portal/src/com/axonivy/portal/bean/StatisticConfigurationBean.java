@@ -490,13 +490,12 @@ public class StatisticConfigurationBean implements Serializable, IMultiLanguage 
     cleanUpFilter();
     StatisticService statisticService = StatisticService.getInstance();
 
-    AggregationResult result = statisticService.getChartData(statistic);
-    AggregationResultDTO chartResult = AggregationResultMapper.toAggResultDTO(result);
-    statisticService.localizeChartKeys(chartResult, statistic.getChartTarget(), statistic.getStatisticAggregation());
+    AggregationResultDTO result = AggregationResultMapper.toAggResultDTO(statisticService.getChartData(statistic));
+    statisticService.localizeChartKeys(result, statistic.getChartTarget(), statistic.getStatisticAggregation());
     statistic.setAdditionalConfigs(statisticService.getAdditionalConfig(statistic));
 
     PrimeFaces.current().ajax().addCallbackParam("jsonResponse",
-        BusinessEntityConverter.entityToJsonValue(new StatisticResponse(chartResult, statistic)));
+        BusinessEntityConverter.entityToJsonValue(new StatisticResponse(result, statistic)));
     populateBackgroundColorsIfMissing();
   }
 

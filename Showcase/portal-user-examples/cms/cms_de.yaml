@@ -1,3 +1,7 @@
+Categories:
+  Procurement:
+    InternalOperation:
+      name: Interner Betrieb
 CustomFields:
   Cases:
     DaysToDecision:
@@ -221,16 +225,6 @@ Processes:
   Procurement:
     CreateDataProcess: Beschaffungsdaten für statistisches Dashboard mit Beispielen
     InitConfig: Beispiel-Dashboard initialisieren (PORTAL-DASHBOARD UND STATISTISCHE VARIABLEN AKTUALISIEREN)
-    SampleStatisticValue:
-      DaysToDecision: 2;5;6;2;7;4;9;4
-      Decision: Approved;Rejected;Pending
-      Department: DepA;DepB;DepC;DepD
-      Item: Laptop;Mobile;Keyboard;Tablet
-      MonthOfYear: 01;02;03;04;05;06;07
-      ReworkCauses: MissingInfo;NotEligible;TooExpensive
-      ReworkNoLoops: 0;1;2;0;0
-      ReworkOccurred: Yes;No
-      SpendAmount: 250.5;300.5;400.5;122.5;234.5
     description: Führen Sie diesen Prozess (mehrmals) aus, um Daten für die unten stehende Beispiel-KPI-Statistik zu generieren. Beschaffungsinformationen wie Ausgabenbetrag, Abteilung, Artikel, Monat des Jahres, Tage bis zur Entscheidung, Entscheidung, Nacharbeit werden zufällig ausgewählt und benutzerdefinierten
       Feldern des Falls zugewiesen.
     name: Beschaffung

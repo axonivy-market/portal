@@ -799,8 +799,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       TooltipMaxKpiLabel: Maximum von {0}
       TooltipMinKpiLabel: Minimum von {0}
       TooltipSumKpiLabel: Summe von {0}
-      TooltipTotalCaseLabel: 'Gesamt: {0} Vorgänge'
-      TooltipTotalTaskLabel: 'Gesamt: {0} Aufgaben'
+      TooltipTotalCaseLabel: 'Gesamtzahl der Vorgänge: {0}'
+      TooltipTotalTaskLabel: 'Gesamtzahl der Aufgaben: {0}'
     WelcomeWidgetIntroduction: Dieses Widget zeigt einen Willkommenstext und ein Bild auf dem Dashboard an.
     WelcomeWidgetNotFoundMessage: Wir können das Bild des Widgets nicht finden, bitte konfigurieren Sie Ihr Bild neu!
     WidgetFilterName: Name des Widget-Filters

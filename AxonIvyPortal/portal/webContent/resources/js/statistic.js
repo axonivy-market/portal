@@ -280,7 +280,6 @@ function previewChart(data, defaultLocale, datePatternConfig, defaultContentLoca
   initConfig(defaultLocale, defaultContentLocale, datePatternConfig);
   
   try {
-    console.log(data);
     let chartData = generateChart(charts[0], data);
     if (chartData) {
       chartData.render();
