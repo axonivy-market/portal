@@ -56,7 +56,8 @@
           ],
           "map" : {
             "out.tasks" : "param.tasks"
-          }
+          },
+          "code" : "ivy.log.info(out.tasks);"
         },
         "guid" : "19CBDC6DB2A307C0"
       },
@@ -192,20 +193,31 @@
       "config" : {
         "output" : {
           "code" : [
+            "import java.util.ArrayList;",
             "import ch.ivyteam.ivy.workflow.ITask;",
             "import ch.ivy.addon.portalkit.util.TaskUtils;",
             "import ch.ivy.addon.portalkit.util.SecurityMemberUtils;",
+            "import org.primefaces.PrimeFaces;",
             "",
             "if (in.#selectedUser != null) {",
             "  in.delegatedSecurityMember = SecurityMemberUtils.findISecurityMemberFromUserDTO(in.selectedUser);",
             "} else if (in.#selectedRole != null) {",
             "  in.delegatedSecurityMember = SecurityMemberUtils.findISecurityMemberFromRoleDTO(in.selectedRole);",
             "}",
-            "",
+            "in.failedTasks = new ArrayList();",
             "if (in.delegatedSecurityMember != null && in.tasks != null) {",
             "  for (ITask task : in.tasks) {",
-            "    TaskUtils.delegateTask(task, in.delegatedSecurityMember);",
+            "    try {",
+            "      TaskUtils.delegateTask(task, in.delegatedSecurityMember);",
+            "    } catch (Exception e) {",
+            "      ivy.log.error(\"Failed to delegate task: \" + task.getName(), e);",
+            "      in.failedTasks.add(task.getName());",
+            "    }",
             "  }",
+            "}",
+            "",
+            "if (!in.failedTasks.isEmpty()) {",
+            "  PrimeFaces.current().executeScript(\"PF('delegation-error-dialog').show();\");",
             "}",
             "",
             "TaskUtils.removeAllDelegatedTasks();",

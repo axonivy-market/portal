@@ -17,7 +17,7 @@
     <c:set var="task" value="#{cc.attrs.task}" />
     <c:set var="managedBean" value="#{cc.attrs.managedBean}" />
     <h:form id="delegation-form">
-      <p:selectBooleanCheckbox value="#{cc.attrs.taskSelectionMap[cc.attrs.task.uuid()]}" disabled="#{!cc.attrs.canDelegate}">
+      <p:selectBooleanCheckbox value="#{cc.attrs.taskSelectionMap[cc.attrs.task.uuid()]}" >
           <p:ajax event="change" process="@this" update="@(.widget-header-default-actions) @(.delegation-action-bar)"
                   listener="#{managedBean.onSelectDelegateTask(task, cc.attrs.selectedTasksForBulkDelegation, cc.attrs.taskSelectionMap)}"/>
       </p:selectBooleanCheckbox>

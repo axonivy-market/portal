@@ -49,5 +49,9 @@
   }, {
     "name" : "isEmptyRoles",
     "type" : "Boolean"
+  }, {
+    "name" : "failedTasks",
+    "type" : "java.util.List<String>",
+    "modifiers" : [ ]
   } ]
 }
