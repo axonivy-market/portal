@@ -53,14 +53,14 @@ pipeline {
         script {
           withCredentials([usernameColonPassword(credentialsId: 'wawa-jenkins', variable: 'credentials')]) {
             def perfResult = sh(
-              script: "curl -s --user ${credentials} '${env.JENKINS_URL}job/performance-test/job/release%2F12.0/lastCompletedBuild/api/json?tree=result'", 
+              script: "curl -s --user ${credentials} '${env.JENKINS_URL}job/portal-performance/job/release%2F12.0/lastCompletedBuild/api/json?tree=result'", 
               returnStdout: true
             ).trim()
             
             echo "Portal Performance Test Status: ${perfResult}"
             
             if (!perfResult.contains('"SUCCESS"')) {
-              error("❌ Verification failed: portal-performance-test did not succeed. Result was: ${perfResult}")
+              error("❌ Verification failed: performance-test did not succeed. Result was: ${perfResult}")
             } else {
               echo "✅ portal-performance-test was successful."
             }
