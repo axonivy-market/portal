@@ -10,18 +10,17 @@
     <cc:attribute name="canDelegate" required="true" type="java.lang.Boolean" />
     <cc:attribute name="managedBean" required="true" />
     <cc:attribute name="selectedTasksForBulkDelegation" type="java.util.List" />
-    <cc:attribute name="componentToUpdate"></cc:attribute>
+    <cc:attribute name="taskSelectionMap" type="java.util.Map" required="true" />
   </cc:interface>
 
   <cc:implementation>
     <c:set var="task" value="#{cc.attrs.task}" />
     <c:set var="managedBean" value="#{cc.attrs.managedBean}" />
-    <c:set var="selectedTasksForBulkDelegation" value="#{cc.attrs.selectedTasksForBulkDelegation}" />
-    <c:set var="isSelected" value="" />
     <h:form id="delegation-form">
-        <p:selectBooleanCheckbox value="#{managedBean.checkSelectedTaskForDelegation(task, selectedTasksForBulkDelegation)}"  disabled="#{!cc.attrs.canDelegate}">
-            <p:ajax event="change" process="@this" update="@(.widget-header-default-actions) @(.delegation-action-bar)" listener="#{managedBean.onSelectDelegateTask(isSelected,task, selectedTasksForBulkDelegation)}"/>
-        </p:selectBooleanCheckbox>false
+      <p:selectBooleanCheckbox value="#{cc.attrs.taskSelectionMap[cc.attrs.task.uuid()]}" disabled="#{!cc.attrs.canDelegate}">
+          <p:ajax event="change" process="@this" update="@(.widget-header-default-actions) @(.delegation-action-bar)"
+                  listener="#{managedBean.onSelectDelegateTask(task, cc.attrs.selectedTasksForBulkDelegation, cc.attrs.taskSelectionMap)}"/>
+      </p:selectBooleanCheckbox>
     </h:form>
 
   </cc:implementation>

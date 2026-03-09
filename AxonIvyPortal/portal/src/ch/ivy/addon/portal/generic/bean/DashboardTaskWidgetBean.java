@@ -3,6 +3,7 @@ package ch.ivy.addon.portal.generic.bean;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Random;
 import java.util.stream.Collectors;
@@ -105,16 +106,13 @@ public class DashboardTaskWidgetBean implements Serializable {
     return HtmlParser.extractTextFromHtml(text);
   }
 
-  public void onSelectDelegateTask(boolean isSelected, ITask task, List<ITask> selectedTasksForBulkDelegation) {
+  public void onSelectDelegateTask(ITask task, List<ITask> selectedTasksForBulkDelegation, Map<String, Boolean> taskSelectionMap) {
+    boolean isSelected = Boolean.TRUE.equals(taskSelectionMap.get(task.uuid()));
     if (isSelected) {
       selectedTasksForBulkDelegation.add(task);
     } else {
       selectedTasksForBulkDelegation.remove(task);
     }
-    Ivy.log().info(isSelected);
-  }
-
-  public boolean checkSelectedTaskForDelegation(ITask task, List<ITask> selectedTasksForBulkDelegation) {
-    return selectedTasksForBulkDelegation.isEmpty() ? false : selectedTasksForBulkDelegation.contains(task);
+    Ivy.log().info(selectedTasksForBulkDelegation);
   }
 }

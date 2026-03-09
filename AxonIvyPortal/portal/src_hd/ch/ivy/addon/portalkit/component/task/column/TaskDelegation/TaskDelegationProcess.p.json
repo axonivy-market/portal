@@ -49,9 +49,9 @@
     }, {
       "id" : "f6",
       "type" : "HtmlDialogMethodStart",
-      "name" : "isTaskSelected",
+      "name" : "handleTaskSelect",
       "config" : {
-        "signature" : "method",
+        "signature" : "handleTaskSelect",
         "input" : {
           "params" : [
             { "name" : "taskList", "type" : "List<ch.ivyteam.ivy.workflow.ITask>", "desc" : "" },

@@ -3,6 +3,7 @@ package ch.ivy.addon.portalkit.dto.dashboard;
 import static ch.ivy.addon.portalkit.constant.DashboardConstants.REMOTE_COMMAND_PATTERN;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -54,6 +55,8 @@ public class TaskDashboardWidget extends DashboardWidget {
   @JsonIgnore
   private List<ITask> selectedTasksForBulkDelegation;
   @JsonIgnore
+  private Map<String, Boolean> taskSelectionMap;
+  @JsonIgnore
   private List<String> errors;
 
   public TaskDashboardWidget() {
@@ -65,6 +68,7 @@ public class TaskDashboardWidget extends DashboardWidget {
     setShowFullscreenMode(true);
     setShowPinnedToggle(true);
     setSelectedTasksForBulkDelegation(new ArrayList<>());
+    setTaskSelectionMap(new HashMap<>());
   }
 
   @Override
@@ -332,6 +336,16 @@ public class TaskDashboardWidget extends DashboardWidget {
     this.selectedTasksForBulkDelegation = selectedTasksForBulkDelegation;
   }
 
+  @JsonIgnore
+  public Map<String, Boolean> getTaskSelectionMap() {
+    return taskSelectionMap;
+  }
+
+  @JsonIgnore
+  public void setTaskSelectionMap(Map<String, Boolean> taskSelectionMap) {
+    this.taskSelectionMap = taskSelectionMap;
+  }
+
   @Override
   public void toggleShowPinned() {
     this.dataModel.setShowPinnedItem(showPinnedItem);
@@ -343,6 +357,11 @@ public class TaskDashboardWidget extends DashboardWidget {
 
   public void setShowPinnedToggle(boolean showPinnedToggle) {
     this.showPinnedToggle = showPinnedToggle;
+  }
+
+  public void resetSelectedTasksForBulkDelegation() {
+    this.selectedTasksForBulkDelegation.clear();
+    this.taskSelectionMap.clear();
   }
 
 }

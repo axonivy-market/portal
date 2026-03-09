@@ -35,7 +35,7 @@
   <c:set var="renderExpandCollapse" value="#{isReadOnlyMode and (empty isRenderExpandCollapse ? 'true': isRenderExpandCollapse)}"/>
   <f:event listener="#{dashboardBean.setSearchScope(widget)}" type="preRenderComponent" />
   <h:panelGroup layout="block" class="widget__header" rendered="#{not isHeaderHidden}">
-    <h:panelGroup id="widget__header" class="widget__header-title text-ellipsis" pt:role="heading" pt:aria-level="1">#{widget.name}</h:panelGroup>
+    <h:panelGroup id="widget__header" class="widget__header-title text-ellipsis" pt:role="heading" pt:aria-level="1">#{widget.id}</h:panelGroup>
     <p:tooltip for="widget__header" value="#{widget.name}" trackMouse="true" hideEvent="mouseleave click"/>
 
     <h:panelGroup id="delegation-action-bar-#{index}" layout="block" styleClass="delegation-action-bar">
@@ -52,7 +52,7 @@
               styleClass="ui-delegate-all-tasks-button ui-button"
               ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delegateTasks')}"
               actionListener="#{dashboardBean.startMultipleDelegation()}"
-              oncomplete="initDataToDelegateMultiple()"
+              oncomplete="initDataToDelegateMultipleTasks();"
               process="@this" />
 
             <p:commandButton id="deselect-all-btn-#{index}"
@@ -382,11 +382,11 @@
       onclick="collapseFullscreen(#{index}, '#{htmlSanitizerBean.escapeForJS(widget.id)}')" />
   </h:panelGroup>
 
-  <h:panelGroup rendered="#{dashboardBean.canShowBulkSelectDelegation(widget)}">
+  <h:panelGroup rendered="#{dashboardBean.isTaskWidget(widget)}">
     <ic:ch.ivy.addon.portalkit.component.MultipleTaskItemsDelegate
       id="multiple-task-items-delegate-#{index}"
-      tasks="#{dashboardBean.selectedDelegatedTasks}"
-      componentToUpdate="@(.task-widget)"
+      tasks="#{widget.selectedTasksForBulkDelegation}"
+      componentToUpdate="@(.task-widget)" taskWidget="#{widget}"
       />
   </h:panelGroup>
 

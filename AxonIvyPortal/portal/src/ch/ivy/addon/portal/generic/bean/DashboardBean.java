@@ -625,6 +625,10 @@ public class DashboardBean implements Serializable, IMultiLanguage {
     return Ivy.cms().co("/Labels/PinnedCases");
   }
 
+  public boolean isTaskWidget(DashboardWidget widget) {
+    return widget instanceof TaskDashboardWidget;
+  }
+
   public boolean canShowBulkSelectDelegation(DashboardWidget widget) {
     if (widget instanceof TaskDashboardWidget) {
       TaskDashboardWidget taskWidget = (TaskDashboardWidget) widget;
@@ -653,6 +657,7 @@ public class DashboardBean implements Serializable, IMultiLanguage {
     if (widget instanceof TaskDashboardWidget) {
       TaskDashboardWidget taskWidget = (TaskDashboardWidget) widget;
       taskWidget.getSelectedTasksForBulkDelegation().clear();
+      taskWidget.getTaskSelectionMap().clear();
     }
   }
 
@@ -665,17 +670,17 @@ public class DashboardBean implements Serializable, IMultiLanguage {
   }
 
   public void startMultipleDelegation() {
-    Set<String> delegatedTaskUuids = TaskUtils.getDelegatedTaskUuids();
-    if (CollectionUtils.isEmpty(delegatedTaskUuids)) {
-      this.selectedDelegatedTasks = new ArrayList<>();
-      return;
-    }
+    // Set<String> delegatedTaskUuids = TaskUtils.getDelegatedTaskUuids();
+    // if (CollectionUtils.isEmpty(delegatedTaskUuids)) {
+    //   this.selectedDelegatedTasks = new ArrayList<>();
+    //   return;
+    // }
 
-    TaskService taskService = TaskService.newInstance();
-    this.selectedDelegatedTasks = delegatedTaskUuids.stream()
-        .map(uuid -> taskService.findTaskByUUID(uuid))
-        .filter(task -> task != null)
-        .collect(Collectors.toList());
+    // TaskService taskService = TaskService.newInstance();
+    // this.selectedDelegatedTasks = delegatedTaskUuids.stream()
+    //     .map(uuid -> taskService.findTaskByUUID(uuid))
+    //     .filter(task -> task != null)
+    //     .collect(Collectors.toList());
   }
 
 }

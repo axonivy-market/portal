@@ -9,12 +9,13 @@
   <cc:attribute name="tasks" shortDescription="Tasks" type="java.util.List" />
   <cc:attribute name="componentToUpdate" />
   <cc:attribute name="onCompletedCallback" default="" />
+  <cc:attribute name="taskWidget" />
 </cc:interface>
 
 <cc:implementation>
-  <p:remoteCommand id="init-data-to-delegate-multiple-rc" name="initDataToDelegateMultiple"
+  <p:remoteCommand id="init-data-to-delegate-multiple-rc" name="initDataToDelegateMultipleTasks"
     actionListener="#{logic.initDataToDelegateTasks(cc.attrs.tasks)}"
-    oncomplete="PF('multiple-task-delegate-dialog').show()"
+    oncomplete="PF('multiple-task-delegate-dialog').show();"
     update="#{cc.clientId}:multiple-task-delegate-dialog"
     process="@this" />
 
@@ -89,8 +90,11 @@
             process="#{cc.clientId}:multiple-task-delegate-form:multiple-activator-panel #{cc.clientId}:multiple-task-delegate-form:delegate-comment-panel"
             disabled="#{data.disabledDelegateButton}"
             update="@(.task-view-container) @(.delegation-action-bar) @(.widget-header-default-actions) #{cc.attrs.componentToUpdate}"
-            onsuccess="PF('multiple-task-delegate-dialog').hide();" />
+            onsuccess="resetSelectedTasksInWidget(); PF('multiple-task-delegate-dialog').hide();" />
         </h:panelGroup>
+        <p:remoteCommand id="reset-selected-tasks-rc" name="resetSelectedTasksInWidget"
+            actionListener="#{cc.attrs.taskWidget.resetSelectedTasksForBulkDelegation()}" update="@(.task-dashboard-widget__panel)"
+            process="@this" />
       </h:form>
     </h:panelGroup>
     <h:panelGroup rendered="#{!data.canDelegateTask}" styleClass="ui-g" layout="block">
