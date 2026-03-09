@@ -28,7 +28,7 @@ pipeline {
           currentBuild.description = "On ${env.NODE_NAME}"
         }
         withCredentials([usernameColonPassword(credentialsId: 'wawa-jenkins', variable: 'credentials')]) {
-          sh "curl -s --user ${credentials} '${env.JENKINS_URL}job/portal-selenium-test/job/master/lastBuild/api/json?tree=result' | grep -q '\"SUCCESS\"'"
+          sh "curl -s --user ${credentials} '${env.JENKINS_URL}job/portal-selenium-test/job/master/lastCompletedBuild/api/json?tree=result' | grep -q '\"SUCCESS\"'"
         }
       }
     }
@@ -36,7 +36,7 @@ pipeline {
     stage('verify performance') {
       steps {
         withCredentials([usernameColonPassword(credentialsId: 'wawa-jenkins', variable: 'credentials')]) {
-          sh "curl -s --user ${credentials} '${env.JENKINS_URL}job/portal-performance-test/job/release%252F12.0/lastBuild/api/json?tree=result' | grep -q '"SUCCESS"'"
+          sh "curl -s --user ${credentials} '${env.JENKINS_URL}job/portal-performance-test/job/release%2F12.0/lastCompletedBuild/api/json?tree=result' | grep -q '\"SUCCESS\"'"
         }
       }
     }
