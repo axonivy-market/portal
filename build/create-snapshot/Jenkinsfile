@@ -26,25 +26,17 @@ pipeline {
       steps {
         script {
           currentBuild.description = "On ${env.NODE_NAME}"
-          def job = Jenkins.instance.getItemByFullName('portal-selenium-test/master')
-          def lastBuild = job?.lastBuild
-          if (lastBuild == null || lastBuild.result != hudson.model.Result.SUCCESS) {
-            error("Latest build of portal-selenium-test/master is not successful (result: ${lastBuild?.result})")
-          }
-          echo "portal-selenium-test/master latest build #${lastBuild.number}: ${lastBuild.result}"
+        }
+        withCredentials([usernameColonPassword(credentialsId: 'wawa-jenkins', variable: 'credentials')]) {
+          sh "curl -s --user ${credentials} '${env.JENKINS_URL}job/portal-selenium-test/job/master/lastBuild/api/json?tree=result' | grep -q '\"SUCCESS\"'"
         }
       }
     }
 
     stage('verify performance') {
       steps {
-        script {
-          def job = Jenkins.instance.getItemByFullName('portal-performance-test/master')
-          def lastBuild = job?.lastBuild
-          if (lastBuild == null || lastBuild.result != hudson.model.Result.SUCCESS) {
-            error("Latest build of portal-performance-test/master is not successful (result: ${lastBuild?.result})")
-          }
-          echo "portal-performance-test/master latest build #${lastBuild.number}: ${lastBuild.result}"
+        withCredentials([usernameColonPassword(credentialsId: 'wawa-jenkins', variable: 'credentials')]) {
+          sh "curl -s --user ${credentials} '${env.JENKINS_URL}job/portal-performance-test/job/master/lastBuild/api/json?tree=result' | grep -q '\"SUCCESS\"'"
         }
       }
     }
