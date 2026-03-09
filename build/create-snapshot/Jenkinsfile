@@ -22,21 +22,49 @@ pipeline {
   }
 
   stages {
-    stage('verify selenium tests') {
+      stage('verify selenium tests') {
       steps {
         script {
           currentBuild.description = "On ${env.NODE_NAME}"
-        }
-        withCredentials([usernameColonPassword(credentialsId: 'wawa-jenkins', variable: 'credentials')]) {
-          sh "curl -s --user ${credentials} '${env.JENKINS_URL}job/portal-selenium-test/job/master/lastCompletedBuild/api/json?tree=result' | grep -q '\"SUCCESS\"'"
+          
+          withCredentials([usernameColonPassword(credentialsId: 'wawa-jenkins', variable: 'credentials')]) {
+            // 1. Capture the curl output into a variable
+            def seleniumResult = sh(
+              script: "curl -s --user ${credentials} '${env.JENKINS_URL}job/portal-selenium-test/job/master/lastCompletedBuild/api/json?tree=result'", 
+              returnStdout: true
+            ).trim()
+            
+            // 2. Print the exact JSON result to the Jenkins log
+            echo "Portal Selenium Test Status: ${seleniumResult}"
+            
+            // 3. Check if SUCCESS is in the response and fail clearly if not
+            if (!seleniumResult.contains('"SUCCESS"')) {
+              error("❌ Verification failed: portal-selenium-test did not succeed. Result was: ${seleniumResult}")
+            } else {
+              echo "✅ portal-selenium-test was successful."
+            }
+          }
         }
       }
     }
 
     stage('verify performance') {
       steps {
-        withCredentials([usernameColonPassword(credentialsId: 'wawa-jenkins', variable: 'credentials')]) {
-          sh "curl -s --user ${credentials} '${env.JENKINS_URL}job/portal-performance-test/job/release%2F12.0/lastCompletedBuild/api/json?tree=result' | grep -q '\"SUCCESS\"'"
+        script {
+          withCredentials([usernameColonPassword(credentialsId: 'wawa-jenkins', variable: 'credentials')]) {
+            def perfResult = sh(
+              script: "curl -s --user ${credentials} '${env.JENKINS_URL}job/portal-performance-test/job/release%2F12.0/lastCompletedBuild/api/json?tree=result'", 
+              returnStdout: true
+            ).trim()
+            
+            echo "Portal Performance Test Status: ${perfResult}"
+            
+            if (!perfResult.contains('"SUCCESS"')) {
+              error("❌ Verification failed: portal-performance-test did not succeed. Result was: ${perfResult}")
+            } else {
+              echo "✅ portal-performance-test was successful."
+            }
+          }
         }
       }
     }
