@@ -29,7 +29,7 @@ import com.axonivy.portal.constant.StatisticConstants;
 import com.axonivy.portal.dto.StatisticDrillDownDTO;
 import com.axonivy.portal.dto.StatisticDTO;
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
-import com.axonivy.portal.enums.AdditionalChartConfig;
+import com.axonivy.portal.enums.statistic.AdditionalChartConfig;
 import com.axonivy.portal.enums.statistic.AggregationField;
 import com.axonivy.portal.enums.statistic.ChartTarget;
 import com.axonivy.portal.enums.statistic.ChartType;
@@ -357,7 +357,9 @@ public class StatisticService {
     }
     for (BucketDTO bucket : agg.getBuckets()) {
       if (bucket.getKey() instanceof String strKey) {
-        bucket.setKey(keyLocalizer.apply(strKey));
+        bucket.setDisplayKey(keyLocalizer.apply(strKey));
+      } else {
+        bucket.setDisplayKey(bucket.getKey());
       }
       if (CollectionUtils.isNotEmpty(bucket.getAggs())) {
         for (AggregationDTO nestedAgg : bucket.getAggs()) {
@@ -420,14 +422,12 @@ public class StatisticService {
   }
 
   private String resolveCategoryName(String categoryPath) {
-    String localizedCategory = IApplicationRepository.of(ISecurityContext.current()).all()
+    return IApplicationRepository.of(ISecurityContext.current()).all()
       .stream().flatMap(app -> app.getProcessModelVersions())
       .map(pmv -> ContentManagement.of(pmv).co("/Categories/" + categoryPath + "/name"))
       .filter(StringUtils::isNotBlank)
       .findFirst()
-      .orElse(StringUtils.EMPTY);
-
-    return StringUtils.isBlank(localizedCategory) ? categoryPath : localizedCategory;
+      .orElse(categoryPath);
   }
 
   private String getTooltipTotalLabel(ChartTarget chartTarget) {

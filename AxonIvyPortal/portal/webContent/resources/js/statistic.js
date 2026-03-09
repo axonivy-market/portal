@@ -148,6 +148,7 @@ const processYValue = (result, config) => {
         bucket.aggs.forEach((item) => {
           values.push({
             key: bucket.key,
+            displayKey: bucket.displayKey,
             count: convertYValue(item.value, config)
           });
         });
@@ -606,7 +607,7 @@ class ClientCanvasChart extends ClientChart {
     }
 
     // Update client chart config by new data
-    this.clientChartConfig.data.labels = result.map(bucket => this.formatChartLabel(bucket.key));
+    this.clientChartConfig.data.labels = result.map(bucket => this.formatChartLabel(bucket.displayKey));
     if (this.clientChartConfig.data.datasets[0]) {
       this.clientChartConfig.data.datasets[0].data = result.map(bucket => bucket.count)
       this.clientChartConfig.data.datasets[0].label = config.name;
@@ -637,7 +638,7 @@ class ClientPieChart extends ClientCanvasChart {
         type: config.chartType,
         label: config.name,
         data: {
-          labels: result.map(bucket => this.formatChartLabel(bucket.key)),
+          labels: result.map(bucket => this.formatChartLabel(bucket.displayKey)),
           datasets: [{
             label: config.name,
             data: data.map(bucket => bucket.count),
@@ -716,7 +717,7 @@ class ClientCartesianChart extends ClientCanvasChart {
       this.clientChartConfig = new Chart(canvasObject, {
         type: config.chartType,
         data: {
-          labels: data.map(bucket => this.formatChartLabel(bucket.key)),
+          labels: data.map(bucket => this.formatChartLabel(bucket.displayKey)),
           datasets: [{
             label: config.name,
             data: data.map(bucket => bucket.count),
@@ -824,7 +825,7 @@ class ClientBarChart extends ClientCartesianChart {
         }
       }
       let data = result;
-      this.clientChartConfig.data.labels = result.map(bucket => this.formatChartLabel(bucket.key));
+      this.clientChartConfig.data.labels = result.map(bucket => this.formatChartLabel(bucket.displayKey));
       this.clientChartConfig.data.datasets = [{
         label: config.name,
         data: data.map(bucket => bucket.count),
@@ -957,7 +958,7 @@ class ClientNumberChart extends ClientChart {
         result.forEach((item, index) => {
           const yValue = item.aggs.length > 0 ? this.formatNumberValue(item.aggs[0].value) : item.count;
           const counting = item.aggs.length > 0 ? totalLabelTemplate.replace('{0}', item.count) : '';
-          let htmlString = this.generateItemHtml(item.key, yValue, suffixSymbold, index, counting);
+          let htmlString = this.generateItemHtml(item.displayKey, yValue, suffixSymbold, index, counting);
           multipleNumberChartInHTML += htmlString;
         })
 

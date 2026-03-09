@@ -5,6 +5,7 @@ import java.util.List;
 public class BucketDTO {
 
   private Object key;
+  private Object displayKey;
   private long count;
   private List<AggregationDTO> aggs;
 
@@ -16,6 +17,14 @@ public class BucketDTO {
 
   public void setKey(Object key) {
     this.key = key;
+  }
+
+  public Object getDisplayKey() {
+    return displayKey;
+  }
+
+  public void setDisplayKey(Object displayKey) {
+    this.displayKey = displayKey;
   }
 
   public long getCount() {
