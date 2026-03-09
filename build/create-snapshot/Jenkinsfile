@@ -26,7 +26,7 @@ pipeline {
       steps {
         script {
           currentBuild.description = "On ${env.NODE_NAME}"
-          build job: "portal-selenium-test/${java.net.URLEncoder.encode(env.BRANCH_NAME, 'UTF-8')}",
+          build job: "portal-selenium-test/master",
             parameters: [string(name: 'engineDownloadURL', value: params.engineDownloadURL)],
             wait: true, propagate: true
         }
@@ -36,7 +36,7 @@ pipeline {
     stage('verify performance') {
       steps {
         script {
-          build job: "portal-performance-test/${java.net.URLEncoder.encode(env.BRANCH_NAME, 'UTF-8')}",
+          build job: "portal-performance-test/master",
             wait: true, propagate: true
         }
       }
