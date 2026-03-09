@@ -7,3 +7,4 @@ Showcase/InternalSupport/target/
 **/logs/
 **/mvn-deps/
 .vscode
+AxonIvyPortal/portal/bin/src_dataClasses/
