@@ -87,7 +87,7 @@ pipeline {
 
   post {
     always {
-      archiveArtifacts artifacts: '**/target/*.iar,AxonIvyPortal/PortalApp/target/*.zip,Showcase/portal-demo-app/target/*.zip', allowEmptyArchive: true
+      archiveArtifacts artifacts: '**/target/*.iar,AxonIvyPortal/PortalApp/target/*.zip,Showcase/portal-demo-app/target/*.zip,*/*/pom.xml', allowEmptyArchive: true
     }
   }
 }
