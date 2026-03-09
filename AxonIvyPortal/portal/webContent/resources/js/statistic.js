@@ -1073,7 +1073,7 @@ const customBeforeBodyChartTooltip = (tooltipItems) => {
   }
 
   return getAdditionalConfigValue(tooltipItems[0].dataset.additionalConfigs, TOOLTIP_KPI_LABEL);
-}
+};
 
 function getAdditionalConfigValue(additionalConfigs, key) {
   if (!additionalConfigs) return undefined;
