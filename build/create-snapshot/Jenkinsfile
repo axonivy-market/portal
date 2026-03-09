@@ -36,7 +36,7 @@ pipeline {
     stage('verify performance') {
       steps {
         withCredentials([usernameColonPassword(credentialsId: 'wawa-jenkins', variable: 'credentials')]) {
-          sh "curl -s --user ${credentials} '${env.JENKINS_URL}job/portal-performance-test/job/master/lastBuild/api/json?tree=result' | grep -q '\"SUCCESS\"'"
+          sh "curl -s --user ${credentials} '${env.JENKINS_URL}job/portal-performance-test/job/release%252F12.0/lastBuild/api/json?tree=result' | grep -q '"SUCCESS"'"
         }
       }
     }
