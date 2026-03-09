@@ -53,7 +53,7 @@ pipeline {
         script {
           withCredentials([usernameColonPassword(credentialsId: 'wawa-jenkins', variable: 'credentials')]) {
             def perfResult = sh(
-              script: "curl -s --user ${credentials} '${env.JENKINS_URL}job/portal-performance-test/job/release%2F12.0/lastCompletedBuild/api/json?tree=result'", 
+              script: "curl -s --user ${credentials} '${env.JENKINS_URL}job/performance-test/job/release%2F12.0/lastCompletedBuild/api/json?tree=result'", 
               returnStdout: true
             ).trim()
             
