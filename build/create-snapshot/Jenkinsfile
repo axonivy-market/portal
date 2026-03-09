@@ -26,9 +26,12 @@ pipeline {
       steps {
         script {
           currentBuild.description = "On ${env.NODE_NAME}"
-          build job: "portal-selenium-test/master",
-            parameters: [string(name: 'engineDownloadURL', value: params.engineDownloadURL)],
-            wait: true, propagate: true
+          def job = Jenkins.instance.getItemByFullName('portal-selenium-test/master')
+          def lastBuild = job?.lastBuild
+          if (lastBuild == null || lastBuild.result != hudson.model.Result.SUCCESS) {
+            error("Latest build of portal-selenium-test/master is not successful (result: ${lastBuild?.result})")
+          }
+          echo "portal-selenium-test/master latest build #${lastBuild.number}: ${lastBuild.result}"
         }
       }
     }
@@ -36,8 +39,12 @@ pipeline {
     stage('verify performance') {
       steps {
         script {
-          build job: "portal-performance-test/master",
-            wait: true, propagate: true
+          def job = Jenkins.instance.getItemByFullName('portal-performance-test/master')
+          def lastBuild = job?.lastBuild
+          if (lastBuild == null || lastBuild.result != hudson.model.Result.SUCCESS) {
+            error("Latest build of portal-performance-test/master is not successful (result: ${lastBuild?.result})")
+          }
+          echo "portal-performance-test/master latest build #${lastBuild.number}: ${lastBuild.result}"
         }
       }
     }
