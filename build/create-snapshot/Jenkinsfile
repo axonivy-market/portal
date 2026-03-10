@@ -88,7 +88,7 @@ pipeline {
           def effectiveVersion = params.releaseVersion?.trim()
           if (!effectiveVersion) {
             def baseVersion = sh(
-              script: "xmlstarlet sel -N n='http://maven.apache.org/POM/4.0.0' -t -v '/n:project/n:version' AxonIvyPortal/portal/pom.xml | sed 's/-SNAPSHOT//'",
+              script: "grep -m1 '<version>' AxonIvyPortal/portal/pom.xml | sed 's|.*<version>\\(.*\\)</version>.*|\\1|' | sed 's/-SNAPSHOT//'",
               returnStdout: true
             ).trim()
             def timestamp = sh(script: 'date +%Y%m%d.%H%M%S', returnStdout: true).trim()
