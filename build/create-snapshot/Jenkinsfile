@@ -1,3 +1,5 @@
+def canContinue = true
+
 pipeline {
   agent { label 'linux' }
 
@@ -47,17 +49,21 @@ pipeline {
             }
 
             if (!timerBuild) {
-              error("❌ No timer-triggered build found among the last 10 builds of portal-selenium-test.")
-            }
-
-            echo "Timer-triggered build number: ${timerBuild.number}"
-            echo "Found timer-triggered build #${timerBuild.number} with result: ${timerBuild.result}"
-
-            // 4. Check if it succeeded
-            if (timerBuild.result != 'SUCCESS') {
-              error("❌ Verification failed: portal-selenium-test build #${timerBuild.number} did not succeed. Result was: ${timerBuild.result}")
+              canContinue = false
+              currentBuild.result = 'FAILURE'
+              echo "❌ No timer-triggered build found among the last 10 builds of portal-selenium-test."
             } else {
-              echo "✅ portal-selenium-test build #${timerBuild.number} was successful."
+              echo "Timer-triggered build number: ${timerBuild.number}"
+              echo "Found timer-triggered build #${timerBuild.number} with result: ${timerBuild.result}"
+
+              // 4. Check if it succeeded
+              if (timerBuild.result != 'SUCCESS') {
+                canContinue = false
+                currentBuild.result = 'FAILURE'
+                echo "❌ Verification failed: portal-selenium-test build #${timerBuild.number} did not succeed. Result was: ${timerBuild.result}"
+              } else {
+                echo "✅ portal-selenium-test build #${timerBuild.number} was successful."
+              }
             }
           }
         }
