@@ -73,7 +73,7 @@ pipeline {
       steps {
         script {
           withCredentials([usernameColonPassword(credentialsId: 'wawa-jenkins', variable: 'credentials')]) {
-            sh "curl -s --user ${credentials} '${env.JENKINS_URL}job/performance-test/job/release%2F12.0/lastCompletedBuild/api/json?tree=result' | grep -q '\"SUCCESS\"'"
+            sh "curl -s --user ${credentials} '${env.JENKINS_URL}job/portal-performance/job/release%2F12.0/lastCompletedBuild/api/json?tree=result' | grep -q '\"SUCCESS\"'"
           }
           echo "✅ portal-performance-test was successful."
         }
