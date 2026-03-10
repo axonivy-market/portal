@@ -22,7 +22,7 @@ pipeline {
   }
 
   stages {
-        stage('Verify Selenium Tests') {
+        stage('Verify Selenium Test') {
       steps {
         script {
           currentBuild.description = "On ${env.NODE_NAME}"
