@@ -31,7 +31,7 @@ pipeline {
             // Fetch the 10 most recent builds
             echo "Fetching selenium test builds from Jenkins API..."
             def buildsJson = sh(
-              script: "curl -sS --user ${credentials} '${env.JENKINS_URL}job/portal-selenium-test/job/master/api/json?tree=builds[number,result,actions[causes[_class]]]{0,10}' || true",
+              script: "curl -gsS --user ${credentials} '${env.JENKINS_URL}job/portal-selenium-test/job/master/api/json?tree=builds%5Bnumber,result,actions%5Bcauses%5B_class%5D%5D%5D%7B0,10%7D' || true",
               returnStdout: true
             ).trim()
             echo "API response: ${buildsJson}"
