@@ -1,5 +1,3 @@
-def canContinue = true
-
 pipeline {
   agent { label 'linux' }
 
@@ -38,6 +36,7 @@ pipeline {
 
             // 2. Parse JSON
             def buildsData = new groovy.json.JsonSlurper().parseText(buildsJson)
+            writeFile file: 'selenium-builds.txt', text: new groovy.json.JsonOutput().prettyPrint(buildsJson)
 
             // 3. Find the first (most recent) build triggered by a timer
             def timerBuild = buildsData.builds.find { build ->
@@ -49,18 +48,14 @@ pipeline {
             }
 
             if (!timerBuild) {
-              canContinue = false
-              currentBuild.result = 'FAILURE'
-              echo "❌ No timer-triggered build found among the last 10 builds of portal-selenium-test."
+              error("❌ No timer-triggered build found among the last 10 builds of portal-selenium-test.")
             } else {
               echo "Timer-triggered build number: ${timerBuild.number}"
               echo "Found timer-triggered build #${timerBuild.number} with result: ${timerBuild.result}"
 
               // 4. Check if it succeeded
               if (timerBuild.result != 'SUCCESS') {
-                canContinue = false
-                currentBuild.result = 'FAILURE'
-                echo "❌ Verification failed: portal-selenium-test build #${timerBuild.number} did not succeed. Result was: ${timerBuild.result}"
+                error("❌ Verification failed: portal-selenium-test build #${timerBuild.number} did not succeed. Result was: ${timerBuild.result}")
               } else {
                 echo "✅ portal-selenium-test build #${timerBuild.number} was successful."
               }
@@ -109,7 +104,7 @@ pipeline {
 
   post {
     always {
-      archiveArtifacts artifacts: '**/target/*.iar,AxonIvyPortal/PortalApp/target/*.zip,Showcase/portal-demo-app/target/*.zip,*/*/pom.xml', allowEmptyArchive: true
+      archiveArtifacts artifacts: '**/target/*.iar,AxonIvyPortal/PortalApp/target/*.zip,Showcase/portal-demo-app/target/*.zip,*/*/pom.xml,selenium-builds.txt', allowEmptyArchive: true
     }
   }
 }
