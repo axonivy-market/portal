@@ -60,6 +60,7 @@ public class CaseBehaviorsTest extends BaseTest {
     redirectToNewDashBoard();
     newDashboardPage = new NewDashboardPage();
     GlobalSearchResultPage resultPage = newDashboardPage.inputGlobalSearchKeyword(ORDER_PIZZA);
+    resultPage.waitForFirstTabFinishedLoading();
     resultPage.openCaseTab();
     String firstCaseName = resultPage.getNameOfCase(0);
     assertEquals(ORDER_PIZZA, firstCaseName);
