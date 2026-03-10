@@ -29,14 +29,19 @@ pipeline {
 
           withCredentials([usernameColonPassword(credentialsId: 'wawa-jenkins', variable: 'credentials')]) {
             // 1. Fetch the 10 most recent builds with their trigger causes and result
-            def buildsJson = sh(
-              script: "curl -s --user ${credentials} '${env.JENKINS_URL}job/portal-selenium-test/job/master/api/json?tree=builds[number,result,actions[causes[_class]]]{0,10}'",
-              returnStdout: true
-            ).trim()
+            def curlExitCode = sh(
+              script: "curl -sS --user ${credentials} -o selenium-builds.txt -w '%{http_code}' '${env.JENKINS_URL}job/portal-selenium-test/job/master/api/json?tree=builds[number,result,actions[causes[_class]]]{0,10}'",
+              returnStatus: true
+            )
+            echo "Curl exit code: ${curlExitCode}"
 
-            // 2. Log raw response and write to file for debugging
+            // 2. Read response from file and log it
+            def buildsJson = readFile('selenium-builds.txt').trim()
             echo "Raw Jenkins API response: ${buildsJson}"
-            writeFile file: 'selenium-builds.txt', text: buildsJson
+
+            if (curlExitCode != 0 || !buildsJson) {
+              error("❌ Failed to fetch selenium test builds. Curl exit code: ${curlExitCode}")
+            }
 
             // 3. Parse JSON
             def buildsData = new groovy.json.JsonSlurper().parseText(buildsJson)
