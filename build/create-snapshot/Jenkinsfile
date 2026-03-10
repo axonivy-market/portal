@@ -97,7 +97,7 @@ pipeline {
           echo "Building snapshot with version: ${effectiveVersion}"
           currentBuild.description = "${effectiveVersion} on ${env.NODE_NAME}"
 
-          docker.build('build-portal-snapshot', '-f build/Dockerfile .').inside('-v /var/tools/maven-cache:/home/build/') {
+          docker.build('build-portal-snapshot', '-f build/create-snapshot/Dockerfile .').inside('-v /var/tools/maven-cache:/home/build/') {
             updateVersion(effectiveVersion)
 
             // module structure [module path, isPossibleToDeploy]
