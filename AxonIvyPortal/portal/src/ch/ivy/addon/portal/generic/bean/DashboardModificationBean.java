@@ -6,6 +6,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -20,6 +21,7 @@ import javax.ws.rs.core.MediaType;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.util.Strings;
+import org.primefaces.PrimeFaces;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
 import org.primefaces.model.DefaultStreamedContent;
@@ -63,6 +65,8 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
 
   protected boolean isPublicDashboard;
   protected List<String> selectedDashboardPermissions;
+  private Dashboard dashboardToExport;
+  private List<String> referencedDashboardTitles = new ArrayList<>();
 
   public void initConfigration(boolean isPublicDashboard) {
     this.isPublicDashboard = isPublicDashboard;
@@ -192,7 +196,7 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
     }
   }
 
-  private void saveDashboards(List<Dashboard> dashboards) {
+  protected void saveDashboards(List<Dashboard> dashboards) {
     String dashboardJson = BusinessEntityConverter.entityToJsonValue(dashboards);
     if (isPublicDashboard) {
       Ivy.var().set(PortalVariable.DASHBOARD.key, dashboardJson);
@@ -345,36 +349,29 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
         PermissionUtils.hasDashboardImportPublicPermission() : PermissionUtils.hasDashboardImportOwnPermission();
   }
 
+  public void prepareExportInfo(Dashboard dashboard) {
+    this.dashboardToExport = dashboard;
+    Map<String, Dashboard> dashboardById = collectAllAvailableDashboardsById();
+    this.referencedDashboardTitles = Optional.ofNullable(dashboard.getWidgets())
+        .orElse(Collections.emptyList()).stream()
+        .filter(w -> w instanceof NavigationDashboardWidget)
+        .map(w -> ((NavigationDashboardWidget) w).getTargetDashboardId())
+        .filter(StringUtils::isNotBlank)
+        .distinct()
+        .map(dashboardById::get)
+        .filter(Objects::nonNull)
+        .map(Dashboard::getTitle)
+        .collect(Collectors.toList());
+    PrimeFaces.current().ajax().addCallbackParam("hasReferencedDashboards", !referencedDashboardTitles.isEmpty());
+  }
+
+  public StreamedContent exportStoredDashboard() {
+    return exportToJsonFile(this.dashboardToExport);
+  }
+
   public StreamedContent exportToJsonFile(Dashboard dashboard) {
-    dashboard.setVersion(DashboardJsonVersion.LATEST_VERSION.getValue());
-
-    // For private dashboard, we don't need to export permission
-    if (!dashboard.getIsPublic()) {
-      dashboard.setPermissions(null);
-    }
-
-    Optional.ofNullable(dashboard).map(Dashboard::getWidgets).orElse(new ArrayList<>()).stream().forEach(widget -> {
-      if (widget instanceof WelcomeDashboardWidget) {
-        WelcomeDashboardWidget welcomeWidget = (WelcomeDashboardWidget) widget;
-        welcomeWidget.setImageType(WelcomeWidgetUtils.getFileTypeOfImage(welcomeWidget.getImageType()));
-        welcomeWidget.setImageContent(encodeWelcomeWidgetImage(welcomeWidget.getImageLocation(), welcomeWidget.getImageType()));
-        
-        welcomeWidget.setImageTypeDarkMode(WelcomeWidgetUtils.getFileTypeOfImage(welcomeWidget.getImageTypeDarkMode()));
-        welcomeWidget.setImageContentDarkMode(encodeWelcomeWidgetImage(welcomeWidget.getImageLocationDarkMode(), welcomeWidget.getImageTypeDarkMode()));
-      } else if (widget instanceof NavigationDashboardWidget) {
-        NavigationDashboardWidget navWid = (NavigationDashboardWidget) widget;
-        navWid.setImageContent(ImageUploadUtils.imageToBase64(navWid.getImageLocation(), 
-            navWid.getImageType(), ImageUploadUtils.NAVIGATION_WIDGET_IMAGE_DIRECTORY));
-        navWid.setImageContentDarkMode(ImageUploadUtils.imageToBase64(navWid.getImageLocationDarkMode(), 
-            navWid.getImageTypeDarkMode(), ImageUploadUtils.NAVIGATION_WIDGET_IMAGE_DIRECTORY));
-      }
-    });
-
     List<Dashboard> dashboardList = new ArrayList<>();
-
-    for (var widget : dashboard.getWidgets()) {
-      DashboardWidgetUtils.simplifyWidgetColumnData(widget);
-    }
+    prepareDashboardForExport(dashboard);
     dashboardList.add(dashboard);
 
     return DefaultStreamedContent
@@ -384,6 +381,40 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
         .contentType(MediaType.APPLICATION_JSON)
         .name(getFileName(dashboard.getTitle()))
         .build();
+  }
+
+  private Map<String, Dashboard> collectAllAvailableDashboardsById() {
+    List<Dashboard> all = new ArrayList<>();
+    all.addAll(DashboardUtils.getPublicDashboards());
+    all.addAll(DashboardUtils.getPrivateDashboards());
+    return all.stream().filter(d -> d.getId() != null)
+        .collect(Collectors.toMap(Dashboard::getId, d -> d, (a, b) -> a));
+  }
+
+  private void prepareDashboardForExport(Dashboard dashboard) {
+    dashboard.setOldId(null);
+    dashboard.setVersion(DashboardJsonVersion.LATEST_VERSION.getValue());
+    if (!dashboard.getIsPublic()) {
+      dashboard.setPermissions(null);
+    }
+    Optional.ofNullable(dashboard.getWidgets()).orElse(Collections.emptyList()).forEach(widget -> {
+      if (widget instanceof WelcomeDashboardWidget) {
+        WelcomeDashboardWidget welcomeWidget = (WelcomeDashboardWidget) widget;
+        welcomeWidget.setImageType(WelcomeWidgetUtils.getFileTypeOfImage(welcomeWidget.getImageType()));
+        welcomeWidget
+            .setImageContent(encodeWelcomeWidgetImage(welcomeWidget.getImageLocation(), welcomeWidget.getImageType()));
+        welcomeWidget.setImageTypeDarkMode(WelcomeWidgetUtils.getFileTypeOfImage(welcomeWidget.getImageTypeDarkMode()));
+        welcomeWidget.setImageContentDarkMode(encodeWelcomeWidgetImage(welcomeWidget.getImageLocationDarkMode(), welcomeWidget.getImageTypeDarkMode()));
+      } else if (widget instanceof NavigationDashboardWidget) {
+        NavigationDashboardWidget navWid = (NavigationDashboardWidget) widget;
+        navWid.setImageContent(ImageUploadUtils.imageToBase64(navWid.getImageLocation(),
+            navWid.getImageType(), ImageUploadUtils.NAVIGATION_WIDGET_IMAGE_DIRECTORY));
+        navWid.setImageContentDarkMode(ImageUploadUtils.imageToBase64(navWid.getImageLocationDarkMode(),
+            navWid.getImageTypeDarkMode(), ImageUploadUtils.NAVIGATION_WIDGET_IMAGE_DIRECTORY));
+      }
+    });
+    Optional.ofNullable(dashboard.getWidgets()).orElse(Collections.emptyList())
+        .forEach(DashboardWidgetUtils::simplifyWidgetColumnData);
   }
 
   private String encodeWelcomeWidgetImage(String imageLocation, String imageType) {
@@ -400,6 +431,10 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
 
   private String getFileName(String dashboardName) {
     return dashboardName + JSON_FILE_SUFFIX;
+  }
+
+  public List<String> getReferencedDashboardTitles() {
+    return referencedDashboardTitles;
   }
 
   public boolean isShowShareButtonOnConfig(boolean isPublicDashboard) {

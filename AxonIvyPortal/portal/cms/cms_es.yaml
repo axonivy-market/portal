@@ -751,6 +751,9 @@ ch.ivy.addon.portalkit.ui.jsf:
       DoNotSupportMobile: La configuración del panel de control no es compatible con los dispositivos móviles.
       EditPrivateDashboards: Editar tu cuadro de mando
       EditPublicDashboards: Editar dashboard públicos
+      ExportReferencedDialogHeader: El panel hace referencia a otros paneles
+      ExportReferencedDialogMessage: 'Los siguientes paneles son referenciados por widgets de navegación. Expórtelos e impórtelos también para que los widgets funcionen correctamente:'
+      ExportReferencedDialogProceed: Exportar de todos modos
       ExportDashboard: Exportar el cuadro de mandos
       PrivateDashboard: Dashboard - Configuración  personalizada
       PrivateDashboardConfiguration: Configuración de tableros privados
@@ -1535,6 +1538,7 @@ Dialogs:
               FileInfomation: Informacion del archivo
               ImportPrivate: Importar panel privado
               ImportPublic: Importar panel público
+              NavigationWidgetMissingTarget: 'El widget de navegación "{0}" hace referencia a un panel que no fue importado y no existe en este portal. Es posible que el widget no funcione correctamente.'
               chooseAJsonFile: Elija un archivo json
             DashboardSharing:
               ShareDashboard: Compartir panel

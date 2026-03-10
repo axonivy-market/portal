@@ -749,6 +749,9 @@ ch.ivy.addon.portalkit.ui.jsf:
       DoNotSupportMobile: Dashboard configuration is not supported for mobile devices.
       EditPrivateDashboards: Edit your private dashboards
       EditPublicDashboards: Edit public dashboards
+      ExportReferencedDialogHeader: Dashboard references other dashboards
+      ExportReferencedDialogMessage: 'The following dashboards are referenced by navigation widgets. Export and import them too for the widgets to work correctly:'
+      ExportReferencedDialogProceed: Export anyway
       ExportDashboard: Export dashboard
       PrivateDashboard: Private dashboards
       PrivateDashboardConfiguration: Private dashboard configuration
@@ -1531,6 +1534,7 @@ Dialogs:
               FileInfomation: File Infomation
               ImportPrivate: Import Private Dashboard
               ImportPublic: Import Public Dashboard
+              NavigationWidgetMissingTarget: 'Navigation widget "{0}" references a dashboard that was not imported and does not exist in this portal. The widget may not work correctly.'
               chooseAJsonFile: Choose a json file
             DashboardSharing:
               ShareDashboard: Share Dashboard
