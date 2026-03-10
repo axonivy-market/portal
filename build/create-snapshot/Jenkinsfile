@@ -1,3 +1,5 @@
+def canContinue = true
+
 pipeline {
   agent { label 'linux' }
 
@@ -22,7 +24,7 @@ pipeline {
   }
 
   stages {
-        stage('Verify Selenium Test') {
+    stage('Verify Selenium Test') {
       steps {
         script {
           currentBuild.description = "On ${env.NODE_NAME}"
@@ -37,6 +39,9 @@ pipeline {
 
             if (!buildsJson) {
               echo("❌ Failed to fetch selenium test builds.")
+              canContinue = false
+              currentBuild.result = 'FAILURE'
+              return
             }
 
             // Parse JSON and filter for timer trigger
@@ -55,11 +60,15 @@ pipeline {
             // Check status and halt if failed (skips remaining stages)
             if (!timerBuild) {
               echo("❌ No timer-triggered build found among the last 10 builds of portal-selenium-test.")
+              canContinue = false
+              currentBuild.result = 'FAILURE'
             } else {
               echo "Found timer-triggered build #${timerBuild.number} with result: ${timerBuild.result}"
-              
+
               if (timerBuild.result != 'SUCCESS') {
                 echo("❌ Verification failed: portal-selenium-test build #${timerBuild.number} did not succeed. Result was: ${timerBuild.result}")
+                canContinue = false
+                currentBuild.result = 'FAILURE'
               } else {
                 echo "✅ portal-selenium-test build #${timerBuild.number} was successful."
               }
@@ -70,17 +79,45 @@ pipeline {
     }
 
     stage('Verify Performance') {
+      when {
+        expression { return canContinue }
+      }
       steps {
         script {
           withCredentials([usernameColonPassword(credentialsId: 'wawa-jenkins', variable: 'credentials')]) {
-            sh "curl -s --user \${credentials} '${env.JENKINS_URL}job/portal-performance/job/master/lastCompletedBuild/api/json?tree=result' | grep -q '\"SUCCESS\"'"
+            def perfJson = sh(
+              script: "curl -gsS --user \${credentials} '${env.JENKINS_URL}job/portal-performance/job/master/lastCompletedBuild/api/json?tree=number,result' || true",
+              returnStdout: true
+            ).trim()
+
+            if (!perfJson) {
+              echo("❌ Failed to fetch performance test builds.")
+              canContinue = false
+              currentBuild.result = 'FAILURE'
+              return
+            }
+
+            def perfData = new groovy.json.JsonSlurper().parseText(perfJson)
+
+            echo "Performance build number: ${perfData.number}"
+            echo "Portal Performance Test Status: ${perfData.result}"
+
+            if (perfData.result != 'SUCCESS') {
+              echo("❌ Verification failed: performance build #${perfData.number} did not succeed. Result was: ${perfData.result}")
+              canContinue = false
+              currentBuild.result = 'FAILURE'
+            } else {
+              echo "✅ portal-performance-test build #${perfData.number} was successful."
+            }
           }
-          echo "✅ portal-performance-test was successful."
         }
       }
     }
 
     stage('deploy snapshot') {
+      when {
+        expression { return canContinue }
+      }
       steps {
         script {
           docker.build('build-portal-snapshot', '-f build/Dockerfile .').inside('-v /var/tools/maven-cache:/home/build/') {
