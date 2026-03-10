@@ -49,5 +49,8 @@
     "name" : "renameDocumentMessage",
     "type" : "String",
     "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "isEncrypted",
+    "type" : "Boolean"
   } ]
 }

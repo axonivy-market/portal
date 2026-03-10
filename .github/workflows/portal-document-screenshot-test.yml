@@ -108,6 +108,7 @@ jobs:
         run: |
           mvn clean package -f AxonIvyPortal/portal-selenium-test/deployment-pom.xml -Divy.engine.directory=$ENGINE_DIR
           DEPLOYMENT=$ENGINE_DIR/system/demo-applications/demo-portal
+          mkdir -p $DEPLOYMENT
           rm -rf $DEPLOYMENT/*
           cp AxonIvyPortal/portal-selenium-test/target/*.zip $DEPLOYMENT
 
