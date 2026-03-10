@@ -22,19 +22,23 @@ pipeline {
   }
 
   stages {
-    stage('Verify Selenium Test') {
+        stage('Verify Selenium Tests') {
       steps {
         script {
           currentBuild.description = "On ${env.NODE_NAME}"
 
           withCredentials([usernameColonPassword(credentialsId: 'wawa-jenkins', variable: 'credentials')]) {
             // Fetch the 10 most recent builds
+            echo "Fetching selenium test builds from Jenkins API..."
             def curlExitCode = sh(
               script: "curl -sS --user ${credentials} -o selenium-builds.txt -w '%{http_code}' '${env.JENKINS_URL}job/portal-selenium-test/job/master/api/json?tree=builds[number,result,actions[causes[_class]]]{0,10}'",
               returnStatus: true
             )
-            
+            echo "Curl exit code: ${curlExitCode}"
+
             def buildsJson = readFile('selenium-builds.txt').trim()
+            echo "API response length: ${buildsJson.length()}"
+            echo "API response: ${buildsJson}"
 
             if (curlExitCode != 0 || !buildsJson) {
               error("❌ Failed to fetch selenium test builds. Curl exit code: ${curlExitCode}")
@@ -42,6 +46,8 @@ pipeline {
 
             // Parse JSON and filter for timer trigger
             def buildsData = new groovy.json.JsonSlurper().parseText(buildsJson)
+            echo "Number of builds fetched: ${buildsData.builds?.size()}"
+
             def timerBuild = buildsData.builds.find { build ->
               build.actions?.any { action ->
                 action.causes?.any { cause ->
@@ -49,6 +55,8 @@ pipeline {
                 }
               }
             }
+
+            echo "Timer build found: ${timerBuild != null}"
 
             // Check status and halt if failed (skips remaining stages)
             if (!timerBuild) {
