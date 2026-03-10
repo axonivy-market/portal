@@ -10,7 +10,6 @@ pipeline {
   }
 
   parameters {
-    string(name: 'releaseVersion', defaultValue: '', description: 'The snapshot version. If empty, auto-generated from the pom base version + timestamp + build number (e.g. 14.0.0-20260130.103918-1).')
     string(name: 'engineDownloadURL', defaultValue: '-Divy.engine.download.url=https://developer.axonivy.com/permalink/nightly/axonivy-engine.zip', description: '''Where to download engine? e.g.
       -Divy.engine.download.url=https://developer.axonivy.com/permalink/nightly/axonivy-engine.zip for nightly master
       -Divy.engine.download.url=https://developer.axonivy.com/permalink/dev/axonivy-engine.zip for dev master
@@ -74,7 +73,7 @@ pipeline {
       steps {
         script {
           withCredentials([usernameColonPassword(credentialsId: 'wawa-jenkins', variable: 'credentials')]) {
-            sh "curl -s --user \${credentials} '${env.JENKINS_URL}job/portal-performance/job/release%2F12.0/lastCompletedBuild/api/json?tree=result' | grep -q '\"SUCCESS\"'"
+            sh "curl -s --user \${credentials} '${env.JENKINS_URL}job/portal-performance/job/master/lastCompletedBuild/api/json?tree=result' | grep -q '\"SUCCESS\"'"
           }
           echo "✅ portal-performance-test was successful."
         }
@@ -84,22 +83,7 @@ pipeline {
     stage('deploy snapshot') {
       steps {
         script {
-          // Resolve effective version: use param if set, otherwise auto-generate
-          def effectiveVersion = params.releaseVersion?.trim()
-          if (!effectiveVersion) {
-            def baseVersion = sh(
-              script: "grep -m1 '<version>' AxonIvyPortal/portal/pom.xml | sed 's|.*<version>\\(.*\\)</version>.*|\\1|' | sed 's/-SNAPSHOT//'",
-              returnStdout: true
-            ).trim()
-            def timestamp = sh(script: 'date +%Y%m%d.%H%M%S', returnStdout: true).trim()
-            effectiveVersion = "${baseVersion}-${timestamp}-${env.BUILD_NUMBER}"
-          }
-          echo "Building snapshot with version: ${effectiveVersion}"
-          currentBuild.description = "${effectiveVersion} on ${env.NODE_NAME}"
-
-          docker.build('build-portal-snapshot', '-f build/create-snapshot/Dockerfile .').inside('-v /var/tools/maven-cache:/home/build/') {
-            updateVersion(effectiveVersion)
-
+          docker.build('build-portal-snapshot', '-f build/Dockerfile .').inside('-v /var/tools/maven-cache:/home/build/') {
             // module structure [module path, isPossibleToDeploy]
             def modules = [['AxonIvyPortal/portal-components', true], ['AxonIvyPortal/portal', true], ['AxonIvyPortal/PortalKitTestHelper', false], ['Showcase/portal-user-examples', true], ['Showcase/portal-developer-examples', true], ['Showcase/InternalSupport', false], ['Showcase/portal-components-examples', true], ['AxonIvyPortal/portal-product', true], ['AxonIvyPortal/PortalApp', true], ['Showcase/portal-demo-app', true]]
             for (module in modules) {
@@ -115,43 +99,6 @@ pipeline {
   post {
     always {
       archiveArtifacts artifacts: '**/target/*.iar,AxonIvyPortal/PortalApp/target/*.zip,Showcase/portal-demo-app/target/*.zip,*/*/pom.xml', allowEmptyArchive: true
-    }
-  }
-}
-
-def updateVersion(def releaseVersion) {
-  def POM_PATTERN_FILES = [
-    'AxonIvyPortal/*/pom.xml',
-    'Showcase/*/pom.xml',
-    'AxonIvyPortal/portal-selenium-test/customized_pom.xml',
-    'AxonIvyPortal/portal-selenium-test/document_screenshot_pom.xml',
-    'Documentation/public-api/pom.xml'
-  ]
-
-  def DEPENDENCY_GROUP_IDS = [
-    'ch.ivyteam.ivy.project.portal',
-    'com.axonivy.portal'
-  ]
-
-  def pomFiles = []
-  POM_PATTERN_FILES.each { pattern ->
-    def foundFiles = sh(script: "find ${pattern}", returnStdout: true).trim().split('\n')
-    pomFiles.addAll(foundFiles)
-  }
-
-  pomFiles.each { pomFile ->
-    sh """
-       xmlstarlet ed --inplace \
-       -N n="http://maven.apache.org/POM/4.0.0" \
-       -u "/n:project/n:version" -v "${releaseVersion}" ${pomFile}
-       """
-    for (groupId in DEPENDENCY_GROUP_IDS) {
-      sh """
-         xmlstarlet ed --inplace \
-         -N n="http://maven.apache.org/POM/4.0.0" \
-         -u "//n:dependencies/n:dependency[n:groupId='${groupId}']/n:version" \
-         -v "${releaseVersion}" ${pomFile}
-         """
     }
   }
 }
