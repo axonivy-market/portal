@@ -658,11 +658,12 @@ class ClientNumberChart extends ClientChart {
   generateItemHtml(label, number, suffixSymbol, index) {
     let border = '<div class="chart-border">' + '</div>';
     label = this.data.chartConfig.hideLabel === true ? '' : this.formatChartLabel(label) ;
+    let ariaLabel = label ? label + ': ' + number : number;
     let html =
-      '<div class="text-center chart-content-card">' +
+      '<div class="text-center chart-content-card" role="group" aria-label="' + ariaLabel + '">' +
       '    <div class="chart-number-container">' +
       '        <span class="card-number chart-number-font-size chart-number-animation">' + number + '</span>' +
-      '        <i class="card-number chart-number-font-size chart-number-animation ' + suffixSymbol + '"></i>' +
+      '        <i class="card-number chart-number-font-size chart-number-animation ' + suffixSymbol + '" aria-hidden="true"></i>' +
       '    </div>' +
       '    <div class="chart-label-container">' +
       '        <span class="card-name chart-name-font-size chart-number-animation">' + label + '</span>' +

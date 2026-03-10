@@ -1071,6 +1071,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     markAsRead: 既読にする
     noNotificationText: 通知なし
     notificationTitle: 通知
+    notificationsBadgeLabel: 通知パネルを開く、{0} 件未読
     olderText: 昨日以前
     onlyUnread: 未読のみ
     todayText: 今日

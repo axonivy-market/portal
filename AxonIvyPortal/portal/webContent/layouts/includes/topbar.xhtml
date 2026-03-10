@@ -44,7 +44,7 @@
         </li>
         <li class="topbar-item">
           <p:commandLink id="open-notifications-panel" global="false" update="#{p:resolveFirstComponentWithId('has-notifications', view).clientId}" 
-          rendered="#{notificationBean.isBellIconNeeded}" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/chat/toggleChat')}"
+          rendered="#{notificationBean.isBellIconNeeded}" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/notificationsBadgeLabel', [notificationBean.getUnreadNotifications()])}"
           actionListener="#{notificationBean.setRender(true)}" onclick="openNotificationPanel()" process="@this">
             <i class="topbar-icon pi pi-bell" />
             <h:panelGroup class="notifications-badge" id="topbar-unread-notifications-container">

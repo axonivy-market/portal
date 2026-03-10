@@ -1072,6 +1072,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     markAsRead: Als gelesen markieren
     noNotificationText: Keine Benachrichtigungen
     notificationTitle: Benachrichtigungen
+    notificationsBadgeLabel: Benachrichtigungsfeld öffnen, {0} ungelesen
     olderText: Ältere
     onlyUnread: Nur ungelesen
     todayText: Heute
