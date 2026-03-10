@@ -34,9 +34,12 @@ pipeline {
               returnStdout: true
             ).trim()
 
-            // 2. Parse JSON
+            // 2. Log raw response and write to file for debugging
+            echo "Raw Jenkins API response: ${buildsJson}"
+            writeFile file: 'selenium-builds.txt', text: buildsJson
+
+            // 3. Parse JSON
             def buildsData = new groovy.json.JsonSlurper().parseText(buildsJson)
-            writeFile file: 'selenium-builds.txt', text: new groovy.json.JsonOutput().prettyPrint(buildsJson)
 
             // 3. Find the first (most recent) build triggered by a timer
             def timerBuild = buildsData.builds.find { build ->
