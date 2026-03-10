@@ -46,7 +46,7 @@ Below is a sample JSON definition of the case widget in the Portal dashboard.
       "showWidgetInfo": true,
       "showFullscreenMode": true,
       "enableQuickSearch": true,
-      "caseQueryType" : "BUSINESS_CASE",
+      "caseQueryType": "BUSINESS_CASE",
       "isTopMenu": false,
       "columns": [
          {
