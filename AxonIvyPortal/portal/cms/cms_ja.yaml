@@ -208,7 +208,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       thirdPartyApplication: サードパーティーのアプリケーション
     currentValue: 現在の値
     defaultValue: デフォルト値
-    deleteAppConfirmation: このアプリケーションを削除してよろしいですか？
+    deleteAppConfirmation: アプリケーション「<b>{0}</b>」を削除してもよろしいですか？
     dialogclosinginformation:
       dialogHeader: ポータル設定終了
       informMessage: ポータル設定を変更した場合、新しい構成を有効にするには現在のページの更新が必要です。
@@ -742,6 +742,7 @@ ch.ivy.addon.portalkit.ui.jsf:
   dashboard:
     CloneWidget: ウィジェット複製
     CustomWidgets: カスタムウィジェット
+    dataSettings: データ設定
     DashboardConfiguration:
       CreateFromScratch: 最初から作成
       CreateFromScratchDescription: 最初から独自のダッシュボードを作成する
@@ -761,6 +762,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       SelectAction: アクションを選択してください
       SomeThingWentWrong: 問題が発生しました
       Title: ダッシュボードの設定
+    displaySettings: 表示設定
     DrillDownWidget:
       caseDrillDown: 「{0}」用ドリルダウンケースウィジェット
       taskDrillDown: 「{0}」用ドリルダウンタスクウィジェット
@@ -782,11 +784,9 @@ ch.ivy.addon.portalkit.ui.jsf:
     QuickSearch: クイック検索
     QuickSearchInfo: ウィジェットの列管理で、クイック検索の範囲をカスタマイズできます。「含む」に基づいて検索しますが、多数の列を追加する場合はパフォーマンスに注意してください。
     QuickSearchScope: 検索範囲：{0}
-    CaseQueryType: ケースタイプ
-    CaseQueryTypeInfo: ケースウィジェットに表示するケースタイプを設定します。デフォルトはビジネスケースのみ、技術サブケースは技術サブケースのみ、すべてはビジネスケースと技術サブケースの両方を表示します。
-    CaseQueryType/BusinessCase: ビジネスケース（デフォルト）
-    CaseQueryType/SubCase: 技術サブケース
-    CaseQueryType/All: ビジネスケース + サブケース
+    CaseQueryType:
+      info: ケースウィジェットに表示するケースタイプを設定します。デフォルトはビジネスケースのみ、技術サブケースは技術サブケースのみ、すべてはビジネスケースと技術サブケースの両方を表示します。
+      label: ケースタイプ
     RestoreDefaultDashboardMessage: 続行すると、自分で作成したすべてのウィジェットが失われます。<span class="dashboard-template-name-message">{0}</span> の標準設定が適用されます。
     SaveNewWidgetFilterHeader: 新しいウィジェットフィルターを保存
     SavedFilterHeader: 保存されたフィルター
@@ -964,6 +964,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     RenamingDocumentNote: '{0}はファイル{1}の名前を{2}に変更しました'
     RenamingDocumentSuccess: 名前変更に成功しました。
     RenamingFailed: ドキュメントの名前変更中にエラーが発生しました。
+    confirmation: 確認
+    confirmationUploadDocument: 暗号化されたファイルのスクリプトスキャンは利用できません。プレビューを続行しますか？
     deleteDocumentNote: '{0} が {1} を削除しました'
     deleteSuceed: ファイルの削除に成功しました
     download: ダウンロード
@@ -972,6 +974,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     fileCouldNotParse: ファイルを解析できませんでした
     fileEmptyMessage: ファイルは空です
     name: ファイル名
+    previewErrorMessage: このファイルのプレビューを表示できません
     size: ファイルサイズ
     type: タイプ
     upload: 新しいファイルをアップロード
@@ -979,6 +982,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     uploadFailed: このファイルのアップロード中にエラーが発生しました。管理者にお問い合わせください。
     uploadFileExists: ファイル： {0} は既に存在します
     uploadSucceed: ファイルのアップロードに成功しました
+    uploadSucceedWithWarning: ファイルは正常にアップロードされましたが、ファイルが暗号化されているかパスワードで保護されているため、スクリプトのスキャンを完了できませんでした。
   emailSetting:
     dailySummary: 毎日の要約を受信
     eMail: メール
@@ -1132,11 +1136,11 @@ ch.ivy.addon.portalkit.ui.jsf:
       dialogHeaderTitle: '{0} の情報を編集'
     editProcesses: プロセスを編集
     externalLink: 外部リンク
+    externalLinkImage: 外部リンクの画像
     externalLinkVisibility: 表示設定
     goTo: '移動先:'
     icon: アイコン
     image: 画像
-    externalLinkImage: 外部リンクの画像
     isRequiredMessage: を設定する必要があります
     linkDescription: リンクの説明
     noProcess: プロセスがありません。
@@ -1254,6 +1258,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     taskNotes: ノート
     triggerEscalation: エスカレーションのトリガー
   taskList:
+    configuration: 設定
     deadline: 期限
     default: 初期値
     defaultColumns:
@@ -1725,6 +1730,13 @@ Enums:
                 name: より小さい
               LESSOREQUAL:
                 name: 以下
+          CaseQueryType:
+            ALL:
+              name: ビジネスケース + サブケース
+            BUSINESS_CASE:
+              name: ビジネスケース（デフォルト）
+            SUB_CASE:
+              name: 技術サブケース
 Labels:
   AI:
     Error:

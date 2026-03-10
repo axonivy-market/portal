@@ -207,7 +207,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       thirdPartyApplication: Aplicación de terceros
     currentValue: Valor actual
     defaultValue: Valor estándard
-    deleteAppConfirmation: ¿Seguro que quiere eliminar esta aplicación?
+    deleteAppConfirmation: ¿Seguro que quiere eliminar esta <b>{0}</b> aplicación?
     dialogclosinginformation:
       dialogHeader: Configuración del portal cerrada
       informMessage: Las modificaciones en la configuración del portal requieren una actualización de la página actual para que la nueva configuración surta efecto.
@@ -742,6 +742,7 @@ ch.ivy.addon.portalkit.ui.jsf:
   dashboard:
     CloneWidget: Clonar el widget
     CustomWidgets: Widgets personalizados
+    dataSettings: Configuración de datos
     DashboardConfiguration:
       CreateFromScratch: Crear desde cero
       CreateFromScratchDescription: Cree su propio panel de control desde cero
@@ -761,6 +762,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       SelectAction: Seleccione la acción
       SomeThingWentWrong: Algo salió mal
       Title: Configuración Dashboard
+    displaySettings: Configuración de visualización
     DrillDownWidget:
       caseDrillDown: Widget de casos detallados para {0}
       taskDrillDown: Widget de tareas detalladas para {0}
@@ -782,11 +784,9 @@ ch.ivy.addon.portalkit.ui.jsf:
     QuickSearch: Búsqueda rápida
     QuickSearchInfo: Puede personalizar el alcance de la búsqueda rápida en la gestión de columnas de widgets. La búsqueda se realiza en función de "contiene", pero tenga en cuenta el rendimiento al agregar numerosas columnas.
     QuickSearchScope: 'Ámbito de búsqueda: {0}'
-    CaseQueryType: Tipo de caso
-    CaseQueryTypeInfo: Configure qué tipos de casos se muestran en el widget de casos. Predeterminado muestra solo casos de negocio, Subcasos técnicos muestra solo subcasos técnicos, y Todos muestra tanto casos de negocio como subcasos técnicos.
-    CaseQueryType/BusinessCase: Casos de negocio (Predeterminado)
-    CaseQueryType/SubCase: Subcasos técnicos
-    CaseQueryType/All: Casos de negocio + Subcasos
+    CaseQueryType:
+      info: Configure qué tipos de casos se muestran en el widget de casos. Predeterminado muestra solo casos de negocio, Subcasos técnicos muestra solo subcasos técnicos, y Todos muestra tanto casos de negocio como subcasos técnicos.
+      label: Tipo de caso
     RestoreDefaultDashboardMessage: Si continúa, perderá todos los widgets creados por usted. Se aplicará la configuración estándar de <span class="dashboard-template-name-message">{0}</span>.
     SaveNewWidgetFilterHeader: Guardar un nuevo filtro de widget
     SavedFilterHeader: Filtros guardados
@@ -931,6 +931,10 @@ ch.ivy.addon.portalkit.ui.jsf:
     statisticChartWidget: Gráfico estadístico
     statisticWidgets: Widgets estadísticos
     switchToViewMode: Modo de visualización
+    taskList: Lista de tareas
+    taskListIntroduction: Este widget muestra la información relevante de la tarea según la configuración definida.
+    taskStart: Iniciar tarea
+    taskWidgetConfiguration: Configuración del widget de tareas
     taskWidgetInfo:
       expireToday: Expira hoy
       expiryThisWeek: Expira esta semana
@@ -939,10 +943,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       numberOfTasksByState: Número de tareas por estado
       predefinedFilters: Filtros predefinidos
       taskDrillDownDashboard: Panel de análisis detallado de tareas
-    taskList: Lista de tareas
-    taskListIntroduction: Este widget muestra la información relevante de la tarea según la configuración definida.
-    taskStart: Iniciar tarea
-    taskWidgetConfiguration: Configuración del widget de tareas
     widgetInfo: Información del widget
     widgetInfoIcon: Icono de información del widget
     widgetTitle: Título del widget
@@ -964,6 +964,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     RenamingDocumentNote: '{0} ha renombrado el archivo {1} a {2}'
     RenamingDocumentSuccess: Renombrado exitosamente.
     RenamingFailed: Se ha producido un error al renombrar el documento.
+    confirmation: Confirmación
+    confirmationUploadDocument: El análisis de scripts no está disponible para archivos cifrados. ¿Desea continuar con la vista previa?
     deleteDocumentNote: '{0} ha eliminado {1}'
     deleteSuceed: Archivo eliminado con éxito
     download: Descargar
@@ -972,6 +974,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     fileCouldNotParse: No se pudo analizar el archivo
     fileEmptyMessage: El archivo está vacío
     name: Nombre de archivo
+    previewErrorMessage: No se puede obtener la vista previa de este archivo
     size: Tamaño de archivo
     type: Tipo
     upload: Cargar archivo nuevo
@@ -979,6 +982,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     uploadFailed: Se produjo un error al cargar este archivo. Por favor, pregunte a su administrador por este problema.
     uploadFileExists: El archivo {0} ya existe
     uploadSucceed: El archivo ha sido añadido con éxito
+    uploadSucceedWithWarning: El archivo se ha cargado correctamente, pero no se ha podido completar el análisis del script porque el archivo está cifrado o protegido con contraseña.
   emailSetting:
     dailySummary: Recibir un resumen diario
     eMail: Email
@@ -1133,11 +1137,11 @@ ch.ivy.addon.portalkit.ui.jsf:
       dialogHeaderTitle: Editar información para {0}
     editProcesses: Editar procesos
     externalLink: Enlace externo
+    externalLinkImage: Imagen del enlace externo
     externalLinkVisibility: Visibilidad
     goTo: 'Ir a:'
     icon: Icono
     image: Imagen
-    externalLinkImage: Imagen del enlace externo
     isRequiredMessage: tiene que ser configurado
     linkDescription: Descripción del enlace
     noProcess: Ningún proceso encontrado
@@ -1255,6 +1259,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     taskNotes: Notas
     triggerEscalation: Ejecutar escalación
   taskList:
+    configuration: Configuración
     deadline: Fecha límite
     default: Predeterminado
     defaultColumns:
@@ -1741,7 +1746,13 @@ Enums:
               LESSOREQUAL:
                 name: |+
                   Menor o igual que
-
+          CaseQueryType:
+            ALL:
+              name: Casos de negocio + Subcasos
+            BUSINESS_CASE:
+              name: Casos de negocio (Predeterminado)
+            SUB_CASE:
+              name: Subcasos técnicos
 Labels:
   AI:
     Error:

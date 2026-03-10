@@ -1,19 +1,14 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
   "simpleName" : "ProcessViewerExampleData",
   "namespace" : "com.axonivy.portal.components.examples.ProcessViewerExample",
-  "isBusinessCaseData" : false,
   "fields" : [ {
     "name" : "taskId",
-    "type" : "Long",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "Long"
   }, {
     "name" : "caseId",
-    "type" : "Long",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "Long"
   }, {
-    "name" : "processLink",
-    "type" : "String",
-    "modifiers" : [ "PERSISTENT" ]
+    "name" : "processLink"
   } ]
 }

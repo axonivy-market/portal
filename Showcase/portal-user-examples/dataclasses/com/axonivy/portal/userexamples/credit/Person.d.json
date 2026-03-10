@@ -1,27 +1,19 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
   "simpleName" : "Person",
   "namespace" : "com.axonivy.portal.userexamples.credit",
-  "isBusinessCaseData" : false,
   "fields" : [ {
-    "name" : "lastName",
-    "type" : "String",
-    "modifiers" : [ "PERSISTENT" ]
+    "name" : "lastName"
   }, {
-    "name" : "firstName",
-    "type" : "String",
-    "modifiers" : [ "PERSISTENT" ]
+    "name" : "firstName"
   }, {
     "name" : "birthDate",
-    "type" : "java.util.Date",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "java.util.Date"
   }, {
     "name" : "isMale",
-    "type" : "Boolean",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "Boolean"
   }, {
     "name" : "address",
-    "type" : "com.axonivy.portal.userexamples.credit.Address",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "com.axonivy.portal.userexamples.credit.Address"
   } ]
 }

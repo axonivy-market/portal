@@ -207,7 +207,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       thirdPartyApplication: Third Party Application
     currentValue: Current value
     defaultValue: Default value
-    deleteAppConfirmation: Are you sure to delete this application ?
+    deleteAppConfirmation: Are you sure to delete the <b>{0}</b> application?
     dialogclosinginformation:
       dialogHeader: Portal configuration closed
       informMessage: Modifications in portal settings require a refresh of the current page for the new configuration to take effect.
@@ -739,13 +739,11 @@ ch.ivy.addon.portalkit.ui.jsf:
       savedFilters: 'Saved filters:'
   dashboard:
     CaseQueryType:
-      All: Business Cases + Sub Cases
-      BusinessCase: Business Cases (Default)
-      SubCase: Sub Cases
-      _: Case Type
-    CaseQueryTypeInfo: Configure which case types are shown in the Case Widget. Default shows business cases only, Sub Cases shows technical subcases only, and All shows both business cases and technical subcases.
+      info: Configure which case types are shown in the Case Widget. Default shows business cases only, Sub Cases shows technical subcases only, and All shows both business cases and technical subcases.
+      label: Case Type
     CloneWidget: Clone widget
     CustomWidgets: Custom Widgets
+    dataSettings: Data Settings
     DashboardConfiguration:
       CreateFromScratch: Create from scratch
       CreateFromScratchDescription: Create your own dashboard from scratch
@@ -765,6 +763,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       SelectAction: Select the action
       SomeThingWentWrong: Something went wrong
       Title: Dashboard configuration
+    displaySettings: Display Settings
     DrillDownWidget:
       caseDrillDown: Drill-down case widget for {0}
       taskDrillDown: Drill-down task widget for {0}
@@ -963,6 +962,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     RenamingDocumentNote: '{0} has renamed the file {1} to {2}'
     RenamingDocumentSuccess: Rename successfully.
     RenamingFailed: An error occurs while renaming the document.
+    confirmation: Confirmation
+    confirmationUploadDocument: Script scanning is unavailable for encrypted files. Would you like to continue with the preview?
     deleteDocumentNote: '{0} has deleted {1}'
     deleteSuceed: File deleted successfully
     download: Download
@@ -971,6 +972,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     fileCouldNotParse: Could not parse the file
     fileEmptyMessage: File is empty
     name: Filename
+    previewErrorMessage: Unable to preview this file
     size: File size
     type: Type
     upload: Upload new file
@@ -978,6 +980,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     uploadFailed: An error occurred while uploading this file. Please ask your administrator for this issue.
     uploadFileExists: File {0} already exists
     uploadSucceed: The file was uploaded successfully
+    uploadSucceedWithWarning: File uploaded successfully, but script scanning could not be completed because the file is encrypted or password-protected.
   emailSetting:
     dailySummary: Receive daily summary
     eMail: E-mail
@@ -1253,6 +1256,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     taskNotes: Notes
     triggerEscalation: Trigger Escalation
   taskList:
+    configuration: Configuration
     deadline: Deadline
     default: Default
     defaultColumns:
@@ -1724,6 +1728,13 @@ Enums:
                 name: Less than
               LESSOREQUAL:
                 name: Less than or equal to
+          CaseQueryType:
+            ALL:
+              name: Business Cases + Sub Cases
+            BUSINESS_CASE:
+              name: Business Cases (Default)
+            SUB_CASE:
+              name: Sub Cases
 Labels:
   AI:
     Error:
