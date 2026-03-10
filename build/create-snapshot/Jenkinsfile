@@ -22,31 +22,26 @@ pipeline {
   }
 
   stages {
-    stage('verify selenium tests') {
+    stage('Verify Selenium Test') {
       steps {
         script {
           currentBuild.description = "On ${env.NODE_NAME}"
 
           withCredentials([usernameColonPassword(credentialsId: 'wawa-jenkins', variable: 'credentials')]) {
-            // 1. Fetch the 10 most recent builds with their trigger causes and result
+            // Fetch the 10 most recent builds
             def curlExitCode = sh(
               script: "curl -sS --user ${credentials} -o selenium-builds.txt -w '%{http_code}' '${env.JENKINS_URL}job/portal-selenium-test/job/master/api/json?tree=builds[number,result,actions[causes[_class]]]{0,10}'",
               returnStatus: true
             )
-            echo "Curl exit code: ${curlExitCode}"
-
-            // 2. Read response from file and log it
+            
             def buildsJson = readFile('selenium-builds.txt').trim()
-            echo "Raw Jenkins API response: ${buildsJson}"
 
             if (curlExitCode != 0 || !buildsJson) {
               error("❌ Failed to fetch selenium test builds. Curl exit code: ${curlExitCode}")
             }
 
-            // 3. Parse JSON
+            // Parse JSON and filter for timer trigger
             def buildsData = new groovy.json.JsonSlurper().parseText(buildsJson)
-
-            // 3. Find the first (most recent) build triggered by a timer
             def timerBuild = buildsData.builds.find { build ->
               build.actions?.any { action ->
                 action.causes?.any { cause ->
@@ -55,13 +50,12 @@ pipeline {
               }
             }
 
+            // Check status and halt if failed (skips remaining stages)
             if (!timerBuild) {
               error("❌ No timer-triggered build found among the last 10 builds of portal-selenium-test.")
             } else {
-              echo "Timer-triggered build number: ${timerBuild.number}"
               echo "Found timer-triggered build #${timerBuild.number} with result: ${timerBuild.result}"
-
-              // 4. Check if it succeeded
+              
               if (timerBuild.result != 'SUCCESS') {
                 error("❌ Verification failed: portal-selenium-test build #${timerBuild.number} did not succeed. Result was: ${timerBuild.result}")
               } else {
@@ -73,19 +67,26 @@ pipeline {
       }
     }
 
-    stage('verify performance') {
+    stage('Verify Performance') {
       steps {
         script {
           withCredentials([usernameColonPassword(credentialsId: 'wawa-jenkins', variable: 'credentials')]) {
-            def perfResult = sh(
-              script: "curl -s --user ${credentials} '${env.JENKINS_URL}job/portal-performance/job/release%2F12.0/lastCompletedBuild/api/json?tree=result'", 
+            def perfJsonString = sh(
+              script: "curl -sS --user ${credentials} '${env.JENKINS_URL}job/portal-performance/job/release%2F12.0/lastCompletedBuild/api/json?tree=result'", 
               returnStdout: true
             ).trim()
             
-            echo "Portal Performance Test Status: ${perfResult}"
+            if (!perfJsonString) {
+              error("❌ Verification failed: Could not fetch performance test result.")
+            }
+
+            // Parsed consistently using JsonSlurper
+            def perfData = new groovy.json.JsonSlurper().parseText(perfJsonString)
+            echo "Portal Performance Test Status: ${perfData.result}"
             
-            if (!perfResult.contains('"SUCCESS"')) {
-              error("❌ Verification failed: performance-test did not succeed. Result was: ${perfResult}")
+            // Halt if failed (skips remaining stages)
+            if (perfData.result != 'SUCCESS') {
+              error("❌ Verification failed: performance-test did not succeed. Result was: ${perfData.result}")
             } else {
               echo "✅ portal-performance-test was successful."
             }
