@@ -22,26 +22,42 @@ pipeline {
   }
 
   stages {
-      stage('verify selenium tests') {
+    stage('verify selenium tests') {
       steps {
         script {
           currentBuild.description = "On ${env.NODE_NAME}"
-          
+
           withCredentials([usernameColonPassword(credentialsId: 'wawa-jenkins', variable: 'credentials')]) {
-            // 1. Capture the curl output into a variable
-            def seleniumResult = sh(
-              script: "curl -s --user ${credentials} '${env.JENKINS_URL}job/portal-selenium-test/job/master/lastCompletedBuild/api/json?tree=result'", 
+            // 1. Fetch the 10 most recent builds with their trigger causes and result
+            def buildsJson = sh(
+              script: "curl -s --user ${credentials} '${env.JENKINS_URL}job/portal-selenium-test/job/master/api/json?tree=builds[number,result,actions[causes[_class]]]{0,10}'",
               returnStdout: true
             ).trim()
-            
-            // 2. Print the exact JSON result to the Jenkins log
-            echo "Portal Selenium Test Status: ${seleniumResult}"
-            
-            // 3. Check if SUCCESS is in the response and fail clearly if not
-            if (!seleniumResult.contains('"SUCCESS"')) {
-              error("❌ Verification failed: portal-selenium-test did not succeed. Result was: ${seleniumResult}")
+
+            // 2. Parse JSON
+            def buildsData = new groovy.json.JsonSlurper().parseText(buildsJson)
+
+            // 3. Find the first (most recent) build triggered by a timer
+            def timerBuild = buildsData.builds.find { build ->
+              build.actions?.any { action ->
+                action.causes?.any { cause ->
+                  cause._class == 'hudson.triggers.TimerTrigger$TimerTriggerCause'
+                }
+              }
+            }
+
+            if (!timerBuild) {
+              error("❌ No timer-triggered build found among the last 10 builds of portal-selenium-test.")
+            }
+
+            echo "Timer-triggered build number: ${timerBuild.number}"
+            echo "Found timer-triggered build #${timerBuild.number} with result: ${timerBuild.result}"
+
+            // 4. Check if it succeeded
+            if (timerBuild.result != 'SUCCESS') {
+              error("❌ Verification failed: portal-selenium-test build #${timerBuild.number} did not succeed. Result was: ${timerBuild.result}")
             } else {
-              echo "✅ portal-selenium-test was successful."
+              echo "✅ portal-selenium-test build #${timerBuild.number} was successful."
             }
           }
         }
