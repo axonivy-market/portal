@@ -295,8 +295,18 @@ class ClientCanvasChart extends ClientChart {
   }
 
   // Method to render canvas
-  renderChartCanvas(chartId) {
-    return '<canvas id="' + chartId + '" />';
+  renderChartCanvas(chartId, ariaLabel) {
+    return '<canvas id="' + chartId + '" role="img" aria-label="' + (ariaLabel || '') + '"></canvas>';
+  };
+
+  // Method to build accessible description from chart data
+  buildChartAriaLabel(name, labels, values) {
+    let description = name || '';
+    if (labels && values && labels.length > 0) {
+      let items = labels.map((label, i) => label + ': ' + values[i]);
+      description += ', ' + items.join(', ');
+    }
+    return description;
   };
 
   // Method to format chart label
@@ -340,12 +350,20 @@ class ClientCanvasChart extends ClientChart {
     }
 
     // Update client chart config by new data
-    this.clientChartConfig.data.labels = result.map(bucket => this.formatChartLabel(bucket.key));
+    let labels = result.map(bucket => this.formatChartLabel(bucket.key));
+    let values = result.map(bucket => bucket.count);
+    this.clientChartConfig.data.labels = labels;
     this.clientChartConfig.data.datasets = [{
       label: config.name,
-      data: result.map(bucket => bucket.count),
+      data: values,
       backgroundColor: chartColors
     }]
+
+    // Update canvas aria-label with new data
+    let canvasElem = $(chart).find('canvas').get(0);
+    if (canvasElem) {
+      canvasElem.setAttribute('aria-label', this.buildChartAriaLabel(config.name, labels, values));
+    }
 
     this.clientChartConfig.update("none");
   }
@@ -363,17 +381,20 @@ class ClientPieChart extends ClientCanvasChart {
     if (result.length == 0) {
       return this.renderEmptyChart(chart, config.additionalConfig);
     } else {
-      let html = this.renderChartCanvas(chart.getAttribute(DATA_CHART_ID));
+      let labels = result.map(bucket => this.formatChartLabel(bucket.key));
+      let values = result.map(bucket => bucket.count);
+      let ariaLabel = this.buildChartAriaLabel(config.name, labels, values);
+      let html = this.renderChartCanvas(chart.getAttribute(DATA_CHART_ID), ariaLabel);
       $(chart).html(html);
       let canvasObject = $(chart).find('canvas');
       this.clientChartConfig = new Chart(canvasObject, {
         type: config.chartType,
         label: config.name,
         data: {
-          labels: result.map(bucket => this.formatChartLabel(bucket.key)),
+          labels: labels,
           datasets: [{
             label: config.name,
-            data: result.map(bucket => bucket.count),
+            data: values,
             backgroundColor: chartColors
           }],
           hoverOffset: 4
@@ -421,17 +442,20 @@ class ClientCartesianChart extends ClientCanvasChart {
       }
 
       let stepSize = chartTypeConfig?.yValue === 'time' ? 200 : 2;
-      let html = this.renderChartCanvas(chart.getAttribute(DATA_CHART_ID));
+      let labels = data.map(bucket => this.formatChartLabel(bucket.key));
+      let values = data.map(bucket => bucket.count);
+      let ariaLabel = this.buildChartAriaLabel(config.name, labels, values);
+      let html = this.renderChartCanvas(chart.getAttribute(DATA_CHART_ID), ariaLabel);
 
       $(chart).html(html);
       let canvasObject = $(chart).find('canvas');
       this.clientChartConfig = new Chart(canvasObject, {
         type: config.chartType,
         data: {
-          labels: data.map(bucket => this.formatChartLabel(bucket.key)),
+          labels: labels,
           datasets: [{
             label: config.name,
-            data: data.map(bucket => bucket.count),
+            data: values,
             backgroundColor: chartColors
           }]
         },
