@@ -52,10 +52,12 @@
         "signature" : "initDataToDelegateTasks",
         "input" : {
           "params" : [
-            { "name" : "tasks", "type" : "java.util.List<ch.ivyteam.ivy.workflow.ITask>", "desc" : "" }
+            { "name" : "tasks", "type" : "java.util.List<ch.ivyteam.ivy.workflow.ITask>", "desc" : "" },
+            { "name" : "widgetIndex", "type" : "String", "desc" : "" }
           ],
           "map" : {
-            "out.tasks" : "param.tasks"
+            "out.tasks" : "param.tasks",
+            "out.widgetIndex" : "param.widgetIndex"
           },
           "code" : "ivy.log.info(out.tasks);"
         },
@@ -175,69 +177,37 @@
     }, {
       "id" : "f20",
       "type" : "HtmlDialogMethodStart",
-      "name" : "delegateTask()",
+      "name" : "delegateTask(TaskDashboardWidget)",
       "config" : {
         "signature" : "delegateTask",
+        "input" : {
+          "params" : [
+            { "name" : "taskWidget", "type" : "ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget", "desc" : "" }
+          ],
+          "map" : {
+            "out.taskWidget" : "param.taskWidget"
+          },
+          "code" : [
+            "if (out.tasks.size() > 0) {",
+            "  out.numberOfSelectedTasks = 0;",
+            "} else {",
+            "  out.numberOfSelectedTasks = -1;",
+            "}"
+          ]
+        },
         "guid" : "19CBDC6DB2A307C1"
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 384 }
       },
       "connect" : [
-        { "id" : "e20", "to" : "f21" }
-      ]
-    }, {
-      "id" : "f21",
-      "type" : "Script",
-      "name" : "Delegate all tasks",
-      "config" : {
-        "output" : {
-          "code" : [
-            "import java.util.ArrayList;",
-            "import ch.ivyteam.ivy.workflow.ITask;",
-            "import ch.ivy.addon.portalkit.util.TaskUtils;",
-            "import ch.ivy.addon.portalkit.util.SecurityMemberUtils;",
-            "import org.primefaces.PrimeFaces;",
-            "",
-            "if (in.#selectedUser != null) {",
-            "  in.delegatedSecurityMember = SecurityMemberUtils.findISecurityMemberFromUserDTO(in.selectedUser);",
-            "} else if (in.#selectedRole != null) {",
-            "  in.delegatedSecurityMember = SecurityMemberUtils.findISecurityMemberFromRoleDTO(in.selectedRole);",
-            "}",
-            "in.failedTasks = new ArrayList();",
-            "if (in.delegatedSecurityMember != null && in.tasks != null) {",
-            "  for (ITask task : in.tasks) {",
-            "    try {",
-            "      TaskUtils.delegateTask(task, in.delegatedSecurityMember);",
-            "    } catch (Exception e) {",
-            "      ivy.log.error(\"Failed to delegate task: \" + task.getName(), e);",
-            "      in.failedTasks.add(task.getName());",
-            "    }",
-            "  }",
-            "}",
-            "",
-            "if (!in.failedTasks.isEmpty()) {",
-            "  PrimeFaces.current().executeScript(\"PF('delegation-error-dialog').show();\");",
-            "}",
-            "",
-            "TaskUtils.removeAllDelegatedTasks();",
-            "in.taskDelegationComment = \"\";"
-          ]
-        },
-        "sudo" : true
-      },
-      "visual" : {
-        "at" : { "x" : 256, "y" : 384 },
-        "size" : { "width" : 160 }
-      },
-      "connect" : [
-        { "id" : "e21", "to" : "f22" }
+        { "id" : "e20", "to" : "f55" }
       ]
     }, {
       "id" : "f22",
       "type" : "HtmlDialogEnd",
       "visual" : {
-        "at" : { "x" : 448, "y" : 384 }
+        "at" : { "x" : 1192, "y" : 384 }
       }
     }, {
       "id" : "f30",
@@ -381,5 +351,139 @@
       "visual" : {
         "at" : { "x" : 448, "y" : 768 }
       }
+    }, {
+      "id" : "f53",
+      "type" : "Script",
+      "config" : {
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.numberOfSelectedTasks" : "in.numberOfSelectedTasks",
+            "out.tasks" : "in.tasks"
+          },
+          "code" : [
+            "import ch.ivy.addon.portalkit.util.TaskUtils;",
+            "import ch.ivyteam.ivy.workflow.ITask;",
+            "import ch.ivy.addon.portalkit.util.TaskUtils;",
+            "import ch.ivy.addon.portalkit.util.SecurityMemberUtils;",
+            "import org.apache.commons.lang3.StringUtils;",
+            "ivy.log.info(in.numberOfSelectedTasks == -1);",
+            "if (in.numberOfSelectedTasks > -1) {",
+            "  in.targetTask = in.tasks.get(in.numberOfSelectedTasks);",
+            "  if (in.targetTask != null) {",
+            "    TaskUtils.resetTask(in.targetTask);",
+            "  }",
+            "",
+            "  String newResponsibleName = \"\";",
+            "",
+            "  if (in.#selectedUser != null) {",
+            "    newResponsibleName = in.#selectedUser.#displayName;",
+            "    in.delegatedSecurityMember = SecurityMemberUtils.findISecurityMemberFromUserDTO(in.selectedUser);",
+            "  } else if (in.#selectedRole != null) {",
+            "    newResponsibleName = in.#selectedRole.#displayName;",
+            "    in.delegatedSecurityMember = SecurityMemberUtils.findISecurityMemberFromRoleDTO(in.selectedRole);",
+            "  }",
+            "",
+            "  String oldResponsibleName = TaskUtils.toDisplayNameResponsible(in.targetTask.responsibles());",
+            "  in.delegateComment = StringUtils.isBlank(in.#taskDelegationComment) ?",
+            "    ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/taskDelegate/delegateComment\", [in.targetTask.getId(), oldResponsibleName, newResponsibleName])",
+            "    : ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/taskDelegate/delegateReasonIncludedComment\", [in.targetTask.getId(), oldResponsibleName, newResponsibleName, in.#taskDelegationComment.trim()]);",
+            "",
+            "  in.taskDelegationComment = \"\";",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 568, "y" : 520 }
+      },
+      "connect" : [
+        { "id" : "f61", "to" : "f60" }
+      ]
+    }, {
+      "id" : "f55",
+      "type" : "Alternative",
+      "config" : {
+        "conditions" : {
+          "f59" : "in.numberOfSelectedTasks == -1",
+          "f56" : ""
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 680, "y" : 384 }
+      },
+      "connect" : [
+        { "id" : "f56", "to" : "f53" },
+        { "id" : "f59", "to" : "f63" }
+      ]
+    }, {
+      "id" : "f60",
+      "type" : "Script",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import java.util.ArrayList;",
+            "import ch.ivyteam.ivy.workflow.ITask;",
+            "import ch.ivy.addon.portalkit.util.TaskUtils;",
+            "import ch.ivy.addon.portalkit.util.SecurityMemberUtils;",
+            "import org.primefaces.PrimeFaces;",
+            "ivy.log.info(\"delegate\" + in.numberOfSelectedTasks);",
+            "if (in.#selectedUser != null) {",
+            "  in.delegatedSecurityMember = SecurityMemberUtils.findISecurityMemberFromUserDTO(in.selectedUser);",
+            "} else if (in.#selectedRole != null) {",
+            "  in.delegatedSecurityMember = SecurityMemberUtils.findISecurityMemberFromRoleDTO(in.selectedRole);",
+            "}",
+            "in.failedTasks = new ArrayList();",
+            "",
+            "    try {",
+            "      TaskUtils.delegateTask(in.targetTask, in.delegatedSecurityMember);",
+            "    } catch (Exception e) {",
+            "      ivy.log.error(\"Failed to delegate task: \" + in.targetTask.getName(), e);",
+            "      in.failedTasks.add(in.targetTask.getName());",
+            "    }",
+            "",
+            "if (!in.failedTasks.isEmpty()) {",
+            "  PrimeFaces.current().executeScript(\"PF('delegation-error-dialog-\" + in.widgetIndex + \"').show();\");",
+            "} else {",
+            "  in.targetTask.getCase().createNote(ivy.session, in.delegateComment);",
+            "  if (in.numberOfSelectedTasks >= in.tasks.size() - 1) {",
+            "    ivy.log.info(\"change to -1\");",
+            "    in.numberOfSelectedTasks = -1;",
+            "  } else {",
+            "    in.numberOfSelectedTasks++;",
+            "  }",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 776, "y" : 520 }
+      },
+      "connect" : [
+        { "id" : "f62", "to" : "f55" }
+      ]
+    }, {
+      "id" : "f63",
+      "type" : "Script",
+      "config" : {
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.taskWidget" : "in.taskWidget"
+          },
+          "code" : [
+            "",
+            "out.taskWidget.selectedTasksForBulkDelegation.clear();",
+            "out.taskWidget.taskSelectionMap.clear();",
+            "ivy.log.info(out.taskWidget.selectedTasksForBulkDelegation);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 936, "y" : 384 }
+      },
+      "connect" : [
+        { "id" : "f64", "to" : "f22", "color" : "default" }
+      ]
     } ]
 }

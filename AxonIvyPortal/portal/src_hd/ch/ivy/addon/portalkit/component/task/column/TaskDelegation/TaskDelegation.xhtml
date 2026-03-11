@@ -10,16 +10,17 @@
     <cc:attribute name="canDelegate" required="true" type="java.lang.Boolean" />
     <cc:attribute name="managedBean" required="true" />
     <cc:attribute name="selectedTasksForBulkDelegation" type="java.util.List" />
-    <cc:attribute name="taskSelectionMap" type="java.util.Map" required="true" />
+    <cc:attribute name="taskWidget" required="true" />
   </cc:interface>
 
   <cc:implementation>
     <c:set var="task" value="#{cc.attrs.task}" />
     <c:set var="managedBean" value="#{cc.attrs.managedBean}" />
+    <c:set var="taskWidget" value="#{cc.attrs.taskWidget}" />
     <h:form id="delegation-form">
-      <p:selectBooleanCheckbox value="#{cc.attrs.taskSelectionMap[cc.attrs.task.uuid()]}" disabled="#{!cc.attrs.canDelegate}">
+      <p:selectBooleanCheckbox value="#{taskWidget.taskSelectionMap[task.uuid()]}" disabled="#{!cc.attrs.canDelegate}">
           <p:ajax event="change" process="@this" update="@(.widget-header-default-actions) @(.delegation-action-bar)"
-                  listener="#{managedBean.onSelectDelegateTask(task, cc.attrs.selectedTasksForBulkDelegation, cc.attrs.taskSelectionMap)}"/>
+                  listener="#{managedBean.onSelectDelegateTask(task, cc.attrs.selectedTasksForBulkDelegation, taskWidget.taskSelectionMap)}"/>
       </p:selectBooleanCheckbox>
     </h:form>
 

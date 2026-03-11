@@ -103,7 +103,7 @@
             <ic:ch.ivy.addon.portalkit.component.task.column.TaskDelegation task="#{task}"
             canDelegate="#{canDelegate}" managedBean="#{dashboardTaskWidgetBean}"
             selectedTasksForBulkDelegation="#{taskWidget.selectedTasksForBulkDelegation}"
-            taskSelectionMap="#{taskWidget.taskSelectionMap}"/>
+            taskWidget="#{taskWidget}"/>
           </h:panelGroup>
           
           <h:panelGroup rendered="#{column.field eq 'state'}">

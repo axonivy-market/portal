@@ -10,17 +10,19 @@
   <cc:attribute name="componentToUpdate" />
   <cc:attribute name="onCompletedCallback" default="" />
   <cc:attribute name="taskWidget" />
+  <cc:attribute name="widgetIndex" />
 </cc:interface>
 
 <cc:implementation>
-  <p:remoteCommand id="init-data-to-delegate-multiple-rc" name="initDataToDelegateMultipleTasks"
-    actionListener="#{logic.initDataToDelegateTasks(cc.attrs.tasks)}"
-    oncomplete="PF('multiple-task-delegate-dialog').show();"
-    update="#{cc.clientId}:multiple-task-delegate-dialog"
+  <c:set var="widgetIndex" value="#{cc.attrs.widgetIndex}" />
+  <p:remoteCommand id="init-data-to-delegate-multiple-rc" name="initDataToDelegateMultipleTasks#{widgetIndex}"
+    actionListener="#{logic.initDataToDelegateTasks(cc.attrs.tasks, cc.attrs.widgetIndex)}"
+    oncomplete="PF('multiple-task-delegate-dialog-#{widgetIndex}').show();"
+    update="#{cc.clientId}:multiple-task-delegate-dialog-#{widgetIndex}"
     process="@this" />
 
-  <p:dialog id="multiple-task-delegate-dialog" closeOnEscape="true" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/delegateTask')}"
-    widgetVar="multiple-task-delegate-dialog" dynamic="true" modal="true" showEffect="fade" hideEffect="fade" resizable="false" appendTo="@(body)"
+  <p:dialog id="multiple-task-delegate-dialog-#{widgetIndex}" closeOnEscape="true" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/delegateTask')}"
+    widgetVar="multiple-task-delegate-dialog-#{widgetIndex}" dynamic="true" modal="true" showEffect="fade" hideEffect="fade" resizable="false" appendTo="@(body)"
     styleClass="task-delegate-dialog" responsive="true">
 
     <h:panelGroup rendered="#{data.canDelegateTask}">
@@ -81,20 +83,16 @@
 
         <h:panelGroup id="delegate-action-panel" layout="block" styleClass="text-right">
           <p:link id="cancel-multiple-task-delegate-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-            href="#" onclick="PF('multiple-task-delegate-dialog').hide(); return false;" />
+            href="#" onclick="PF('multiple-task-delegate-dialog-#{widgetIndex}').hide(); return false;" />
           <p:spacer width="15px" />
           <p:commandButton id="proceed-multiple-task-delegate-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/delegate')}"
             ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/delegate')}"
             icon="#{visibilityBean.generateButtonIcon('si si-road-sign-u-turn-right')}"
-            actionListener="#{logic.delegateTask}"
-            process="#{cc.clientId}:multiple-task-delegate-form:multiple-activator-panel #{cc.clientId}:multiple-task-delegate-form:delegate-comment-panel"
-            disabled="#{data.disabledDelegateButton}"
-            update="@(.task-view-container) @(.delegation-action-bar) @(.widget-header-default-actions) #{cc.attrs.componentToUpdate} #{cc.clientId}:delegation-error-dialog"
-            onsuccess="resetSelectedTasksInWidget(); PF('multiple-task-delegate-dialog').hide();" />
+            actionListener="#{logic.delegateTask(cc.attrs.taskWidget)}" immediate="false"
+            process="@this #{cc.clientId}:multiple-task-delegate-form:multiple-activator-panel #{cc.clientId}:multiple-task-delegate-form:delegate-comment-panel"
+            disabled="#{data.disabledDelegateButton}" update="#{cc.attrs.componentToUpdate} @(.dashboard-tasks-container)"
+            oncomplete="PF('multiple-task-delegate-dialog-#{widgetIndex}').hide();"/>
         </h:panelGroup>
-        <p:remoteCommand id="reset-selected-tasks-rc" name="resetSelectedTasksInWidget"
-            actionListener="#{cc.attrs.taskWidget.resetSelectedTasksForBulkDelegation()}" update="@(.task-dashboard-widget__panel)"
-            process="@this" />
       </h:form>
     </h:panelGroup>
     <h:panelGroup rendered="#{!data.canDelegateTask}" styleClass="ui-g" layout="block">
@@ -102,7 +100,7 @@
     </h:panelGroup>
   </p:dialog>
 
-  <p:dialog id="delegation-error-dialog" widgetVar="delegation-error-dialog"
+  <p:dialog id="delegation-error-dialog-#{widgetIndex}" widgetVar="delegation-error-dialog-#{widgetIndex}"
     modal="true" closable="true" closeOnEscape="true" resizable="false"
     appendTo="@(body)" styleClass="portal-dialog" dynamic="true"
     header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/error')}">
@@ -120,7 +118,7 @@
     <f:facet name="footer">
       <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
         ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
-        onclick="PF('delegation-error-dialog').hide(); return false;"
+        onclick="PF('delegation-error-dialog-#{widgetIndex}').hide(); return false;"
         styleClass="ui-button-outlined" type="button" />
     </f:facet>
   </p:dialog>

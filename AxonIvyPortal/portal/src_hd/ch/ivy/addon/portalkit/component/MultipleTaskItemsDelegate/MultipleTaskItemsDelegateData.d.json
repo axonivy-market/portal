@@ -7,12 +7,10 @@
     "type" : "Boolean"
   }, {
     "name" : "usersToDelegate",
-    "type" : "java.util.List<com.axonivy.portal.components.dto.UserDTO>",
-    "modifiers" : [ ]
+    "type" : "java.util.List<com.axonivy.portal.components.dto.UserDTO>"
   }, {
     "name" : "rolesToDelegate",
-    "type" : "java.util.List<com.axonivy.portal.components.dto.RoleDTO>",
-    "modifiers" : [ ]
+    "type" : "java.util.List<com.axonivy.portal.components.dto.RoleDTO>"
   }, {
     "name" : "application",
     "type" : "ch.ivyteam.ivy.application.IApplication",
@@ -35,12 +33,10 @@
     "modifiers" : [ ]
   }, {
     "name" : "selectedUser",
-    "type" : "com.axonivy.portal.components.dto.UserDTO",
-    "modifiers" : [ ]
+    "type" : "com.axonivy.portal.components.dto.UserDTO"
   }, {
     "name" : "selectedRole",
-    "type" : "com.axonivy.portal.components.dto.RoleDTO",
-    "modifiers" : [ ]
+    "type" : "com.axonivy.portal.components.dto.RoleDTO"
   }, {
     "name" : "taskDelegationComment"
   }, {
@@ -51,7 +47,21 @@
     "type" : "Boolean"
   }, {
     "name" : "failedTasks",
-    "type" : "java.util.List<String>",
+    "type" : "java.util.List<String>"
+  }, {
+    "name" : "widgetIndex"
+  }, {
+    "name" : "taskWidget",
+    "type" : "ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget"
+  }, {
+    "name" : "numberOfSelectedTasks",
+    "type" : "java.lang.Integer"
+  }, {
+    "name" : "delegateComment",
+    "modifiers" : [ ]
+  }, {
+    "name" : "targetTask",
+    "type" : "ch.ivyteam.ivy.workflow.ITask",
     "modifiers" : [ ]
   } ]
 }
