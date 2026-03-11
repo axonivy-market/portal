@@ -7,6 +7,7 @@ import com.itextpdf.text.pdf.PdfDictionary;
 import com.itextpdf.text.pdf.PdfName;
 import com.itextpdf.text.pdf.PdfReader;
 
+import ch.ivyteam.ivy.bpm.error.BpmError;
 import ch.ivyteam.ivy.environment.Ivy;
 
 public class PDFDocumentDetector implements DocumentDetector {
@@ -40,7 +41,12 @@ public class PDFDocumentDetector implements DocumentDetector {
           safeState = (namesArray == null || namesArray.isEmpty()) && !hasAcroForm && !hasOpenAction;
         }
       }
-    } catch (Exception e) {
+    }
+    catch (NoClassDefFoundError e) {
+      Ivy.log().error("This file is encrypted and cannot be scanned for security threats before uploading.");
+      BpmError.create("portal:file:encrypted").throwError();
+    }
+    catch (Exception e) {
       Ivy.log().error("PDF security check failed", e);
       safeState = false;
     } finally {

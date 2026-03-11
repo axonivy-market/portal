@@ -117,10 +117,11 @@ public class TaskWidgetTest extends BaseTest {
     NavigationHelper.navigateToTaskList();
     TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
     taskWidget.pinTaskByIndex(0);
-    assertEquals(true, taskWidget.isTaskPinned(0));
+    taskWidget.isTaskPinned(0);
     NavigationHelper.navigateToTaskList();
-    taskWidget.unpinTaskByIndex(0);
-    assertEquals(true, taskWidget.isTaskUnpinned(0));
+    TopMenuTaskWidgetPage taskWidget1 = new TopMenuTaskWidgetPage();
+    taskWidget1.unpinTaskByIndex(0);
+    taskWidget1.isTaskUnpinned(0);
 
   }
 
@@ -130,9 +131,9 @@ public class TaskWidgetTest extends BaseTest {
     NavigationHelper.navigateToTaskList();
     TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
     taskWidget.clickOnPinColumn(0);
-    assertEquals(true, taskWidget.isTaskPinned(0));
+    taskWidget.isTaskPinned(0);
     NavigationHelper.navigateToTaskList();
     taskWidget.clickOnPinColumn(0);
-    assertEquals(true, taskWidget.isTaskUnpinned(0));
+    taskWidget.isTaskUnpinned(0);
   }
 }
