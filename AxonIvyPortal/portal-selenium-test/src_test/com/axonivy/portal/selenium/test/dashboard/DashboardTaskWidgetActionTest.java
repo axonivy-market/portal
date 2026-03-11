@@ -101,7 +101,7 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
   @Test
   public void testVisibilityTaskActionForInprogressTasks() {
     login(TestAccount.ADMIN_USER);
-    createTasksForTesting();
+    redirectToRelativeLink(createTestingTasksUrl);
     filterTaskByNameAndState("Sick Leave Request", SUSPENDED);
     TaskWidgetNewDashBoardPage taskWidget = new TaskWidgetNewDashBoardPage();
     taskWidget.startTask(0);
