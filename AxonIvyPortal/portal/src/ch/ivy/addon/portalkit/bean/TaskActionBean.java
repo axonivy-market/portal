@@ -10,7 +10,7 @@ import java.util.Objects;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.primefaces.PF;
 
 import com.axonivy.portal.components.publicapi.ProcessStartAPI;

@@ -4,7 +4,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Optional;
 
-import org.apache.commons.lang.WordUtils;
+import org.apache.commons.lang3.StringUtils;
+
 
 public class UrlHelpers {
 
@@ -16,7 +17,7 @@ public class UrlHelpers {
     if (!relativeProcessStartLink.contains("portal/") && !relativeProcessStartLink.contains("portal-developer-examples")
         && !relativeProcessStartLink.contains("portal-user-examples")
         && !relativeProcessStartLink.contains("portal-components-examples")) {
-      relativeProcessStartLink = WordUtils.capitalize(relativeProcessStartLink);
+      relativeProcessStartLink = StringUtils.capitalize(relativeProcessStartLink);
     }
     if (relativeProcessStartLink.endsWith(".icm")) {
       return getEngineUrl() + getApplicationName() + "/casemap/" + relativeProcessStartLink;
@@ -39,8 +40,9 @@ public class UrlHelpers {
     if (vmArgUrl != null) {
       try {
         URL originalURL = new URL(vmArgUrl);
-        URL newURL = new URL(originalURL.getProtocol(), "localhost", originalURL.getPort(), originalURL.getFile());
-        return newURL.toString();
+        URL newURL = new URL(originalURL.getProtocol(), originalURL.getHost(), originalURL.getPort(), originalURL.getFile());
+        String newURLStr = newURL.toString();
+        return newURLStr.endsWith("/") ? newURLStr : newURLStr + "/";
       } catch (MalformedURLException e) {
         throw new PortalGUITestException("Wrong Engine URL");
       }

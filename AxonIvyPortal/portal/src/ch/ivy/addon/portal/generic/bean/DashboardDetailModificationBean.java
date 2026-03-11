@@ -28,6 +28,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
@@ -53,7 +54,7 @@ import com.axonivy.portal.service.ClientStatisticService;
 import com.axonivy.portal.service.DeepLTranslationService;
 import com.axonivy.portal.util.DashboardCloneUtils;
 import com.axonivy.portal.util.WelcomeWidgetUtils;
-import com.google.common.base.Predicate;
+//import com.google.common.base.Predicate;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.bean.DashboardProcessBean;
@@ -128,6 +129,8 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   private Dashboard cloneFromDashboard;
   private DashboardWidget cloneFromWidget;
   private List<Dashboard> cloneableDashboards;
+  private boolean isEnablePinTask;
+  private boolean isEnablePinCase;
 
   @PostConstruct
   public void initConfigration() {
@@ -140,6 +143,8 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     if (getSelectedDashboard() != null) {
       foundTemplate = findSelectedTemplate(getSelectedDashboard().getTemplateId());
     }
+    isEnablePinTask = GlobalSettingService.getInstance().isEnablePinTask();
+    isEnablePinCase = GlobalSettingService.getInstance().isEnablePinCase();
   }
 
   public void initSampleWidgets() {
@@ -1107,11 +1112,11 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
 
   public boolean displayPinnedItemToggleOption(DashboardWidget widget) {
     if (widget instanceof TaskDashboardWidget) {
-      return GlobalSettingService.getInstance().isEnablePinTask();
+      return isEnablePinTask;
     }
 
     if (widget instanceof CaseDashboardWidget) {
-      return GlobalSettingService.getInstance().isEnablePinCase();
+      return isEnablePinCase;
     }
 
     return false;

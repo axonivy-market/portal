@@ -2,7 +2,8 @@ package ch.ivy.addon.portalkit.casefilter.impl;
 
 import java.util.Optional;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 
 import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -72,7 +73,7 @@ public class CaseOwnerFilter extends CaseFilter {
    * then find correspond SecurityMemberDTO of selectedOwnerMemberName
    */
   public void findSelectedOwner() {
-    if (selectedOwner == null || !StringUtils.equals(selectedOwnerMemberName, selectedOwner.getMemberName())) {
+    if (selectedOwner == null || !Strings.CS.equals(selectedOwnerMemberName, selectedOwner.getMemberName())) {
       setSelectedOwner(ServiceUtilities.findSecurityMemberByName(selectedOwnerMemberName));
     }
   }

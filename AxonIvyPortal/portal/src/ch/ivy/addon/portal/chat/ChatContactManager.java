@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.Strings;
 
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.ISecurityConstants;
@@ -36,8 +36,8 @@ public final class ChatContactManager {
       onlineUsernames = securityContext().sessions().clusterSnapshot().getSessionInfos().stream()
           .map(SessionInfo::getSessionUserName).distinct();
     }
-    return onlineUsernames.filter(session -> !StringUtils.equals(session, Ivy.session().getSessionUserName())
-        && !StringUtils.contains(session, UNKNOWN_USER)).collect(Collectors.toList());
+    return onlineUsernames.filter(session -> !Strings.CS.equals(session, Ivy.session().getSessionUserName())
+        && !Strings.CS.contains(session, UNKNOWN_USER)).collect(Collectors.toList());
   }
 
   private static ISecurityContext securityContext() {
@@ -71,7 +71,7 @@ public final class ChatContactManager {
 
   private static List<IUser> getContextUsers() {
     return wf().getSecurityContext().users().paged().stream()
-        .filter(user -> !StringUtils.equals(user.getName(), ISecurityConstants.SYSTEM_USER_NAME))
+        .filter(user -> !Strings.CS.equals(user.getName(), ISecurityConstants.SYSTEM_USER_NAME))
         .sorted((first, second) -> first.getName().compareToIgnoreCase(second.getName())).collect(Collectors.toList());
   }
 }

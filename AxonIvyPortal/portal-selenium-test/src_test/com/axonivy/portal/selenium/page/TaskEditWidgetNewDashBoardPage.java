@@ -1,6 +1,7 @@
 package com.axonivy.portal.selenium.page;
 
 import static com.codeborne.selenide.Condition.appear;
+import static com.codeborne.selenide.Condition.cssClass;
 import static com.codeborne.selenide.Condition.disappear;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
@@ -406,7 +407,12 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void clickOnQuickSearchCheckBox() {
-    getQuickSearchCheckBox().click();
+    SelenideElement checkbox = getQuickSearchCheckBox();
+    if (!checkbox.find(".ui-chkbox-icon").has(cssClass("ui-icon-check"))) {
+      checkbox.find(".ui-chkbox-box").click();
+    }
+    checkbox.find(".ui-chkbox-icon").shouldHave(Condition.cssClass("ui-icon-check"));
+
   }
   
   public boolean isQuickSearchClicked(String fieldName) {

@@ -49,7 +49,7 @@
       "name" : "Set logout page",
       "config" : {
         "output" : {
-          "code" : "in.logoutPage = ivy.html.applicationHomeLink().getAbsoluteEncoded();"
+          "code" : "in.logoutPage = ivy.html.appHomeLink().getAbsoluteEncoded();"
         }
       },
       "visual" : {

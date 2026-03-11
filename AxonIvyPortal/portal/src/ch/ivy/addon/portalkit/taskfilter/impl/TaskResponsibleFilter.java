@@ -2,11 +2,12 @@ package ch.ivy.addon.portalkit.taskfilter.impl;
 
 import java.util.Optional;
 
-import org.apache.commons.lang.StringUtils;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 
 import com.axonivy.portal.components.dto.SecurityMemberDTO;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilter;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -85,7 +86,7 @@ public class TaskResponsibleFilter extends TaskFilter {
    * then find correspond SecurityMemberDTO of selectedResponsibleMemberName
    */
   public void findSelectedResponsible() {
-    if (selectedResponsible == null || !StringUtils.equals(selectedResponsibleMemberName, selectedResponsible.getMemberName())) {
+    if (selectedResponsible == null || !Strings.CI.equals(selectedResponsibleMemberName, selectedResponsible.getMemberName())) {
       setSelectedResponsible(getResponsibles(selectedResponsibleMemberName));
     }
   }

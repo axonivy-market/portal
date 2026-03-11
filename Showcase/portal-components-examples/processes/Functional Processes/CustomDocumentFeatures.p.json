@@ -199,7 +199,7 @@
             "    String stringField = DocumentCustomField.TYPE_PREFIX + doc.uuid;",
             "    documentTypeString = in.businessCase.customFields().stringField(stringField).getOrNull();",
             "    if (StringUtils.isBlank(documentTypeString)) {",
-            "      stringField = DocumentCustomField.TYPE_PREFIX + doc.id;",
+            "      stringField = DocumentCustomField.TYPE_PREFIX + doc.uuid;",
             "      documentTypeString = in.businessCase.customFields().stringField(stringField).getOrNull();",
             "    }",
             "    if (StringUtils.isNotBlank(documentTypeString)) {",

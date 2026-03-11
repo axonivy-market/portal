@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -11,8 +12,8 @@ import javax.faces.context.FacesContext;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.lang.BooleanUtils;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.BooleanUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.primefaces.PrimeFaces;
 
 import com.axonivy.portal.components.enums.BasicDocumentType;
@@ -41,7 +42,19 @@ public class MasterDataBean implements Serializable {
   private static final String APPLICATION_NAME = GlobalVariable.APPLICATION_NAME.getKey();
   private static final String PORTAL_NAME = Ivy.cms().co("/ch.ivy.addon.portal.generic/PortalName/PortalName");
   private static final String LOGO_DESCRIPTION = "Portal.LogoDescription";
-
+  private String logoDescription;
+  private String applicationName;
+  
+  @PostConstruct
+  public void init() {
+    if (Ivy.var().variable(LOGO_DESCRIPTION) == null || Ivy.var().variable(LOGO_DESCRIPTION).isDefault()) {
+      logoDescription = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/homeLogo");
+    } else {
+      logoDescription = Ivy.var().get(LOGO_DESCRIPTION);
+    }
+    applicationName = Ivy.var().get(APPLICATION_NAME);
+    
+  }
   public AwesomeIcon[] getAwesomeIcons() {
     return AwesomeIcon.values();
   }
@@ -126,14 +139,11 @@ public class MasterDataBean implements Serializable {
   }
 
   public String getApplicationName() {
-    return Ivy.var().get(APPLICATION_NAME);
+    return applicationName;
   }
 
   public String getLogoDescription() {
-    if (Ivy.var().variable(LOGO_DESCRIPTION) == null || Ivy.var().variable(LOGO_DESCRIPTION).isDefault()) {
-      return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/homeLogo");
-    }
-    return Ivy.var().get(LOGO_DESCRIPTION);
+    return logoDescription;
   }
 
   public String getUserLanguage() {

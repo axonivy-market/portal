@@ -3,7 +3,7 @@ package com.axonivy.portal.developerexamples.util;
 import java.text.ParseException;
 import java.util.Date;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateUtils;
 
 import com.axonivy.portal.components.service.exception.PortalException;

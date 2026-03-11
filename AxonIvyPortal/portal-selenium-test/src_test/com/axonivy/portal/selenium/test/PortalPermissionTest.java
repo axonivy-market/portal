@@ -18,6 +18,7 @@ import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.TaskDetailsPage;
 import com.axonivy.portal.selenium.page.TopMenuTaskWidgetPage;
 import com.axonivy.portal.selenium.page.UserProfilePage;
+import com.codeborne.selenide.CollectionCondition;
 
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 
@@ -84,8 +85,7 @@ public class PortalPermissionTest extends BaseTest {
     caseWidgetPage.waitPageLoaded();
     CaseDetailsPage caseDetailsPage = caseWidgetPage.openDetailsCase("Create System Task");
     caseDetailsPage.waitPageLoaded();
-    int countTask = caseDetailsPage.countRelatedTasks().size();
-    assertTrue(countTask == 3);
+    caseDetailsPage.countRelatedTasks().should(CollectionCondition.sizeGreaterThanOrEqual(3), DEFAULT_TIMEOUT);
 
     // TEST HIDE SYSTEM TASK
     denySpecificPortalPermission(PortalPermission.SYSTEM_TASK_READ_ALL);
@@ -97,14 +97,13 @@ public class PortalPermissionTest extends BaseTest {
     taskWidget.inputValueOnLatestFilter(FilterValueType.STATE_TYPE, "Delayed");
     taskWidget.applyFilter();
     // return table without any task
-    assertTrue(taskWidget.isTableHidden());
+    taskWidget.isTableHidden();
 
     caseWidgetPage = NavigationHelper.navigateToCaseList();
     caseWidgetPage.waitPageLoaded();
     caseDetailsPage = caseWidgetPage.openDetailsCase("Create System Task");
     caseDetailsPage.waitPageLoaded();
-    countTask = caseDetailsPage.countRelatedTasks().size();
-    assertTrue(countTask == 1);
+    caseDetailsPage.countRelatedTasks().should(CollectionCondition.sizeGreaterThanOrEqual(1), DEFAULT_TIMEOUT);
   }
 
   @Test

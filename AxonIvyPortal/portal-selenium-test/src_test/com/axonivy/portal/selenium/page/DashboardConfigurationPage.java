@@ -7,7 +7,6 @@ import static com.codeborne.selenide.Selenide.$$;
 
 import java.util.List;
 
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
@@ -17,7 +16,6 @@ import com.axonivy.portal.selenium.common.Sleeper;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
-import com.codeborne.selenide.conditions.CssClass;
 
 public class DashboardConfigurationPage extends TemplatePage {
 

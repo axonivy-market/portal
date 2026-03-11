@@ -14,6 +14,7 @@ import java.util.stream.IntStream;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.JavascriptExecutor;
@@ -85,10 +86,10 @@ public class CaseDetailsPage extends TemplatePage {
 
   public void addNoteContent(String noteContent) {
     $("div.ui-dialog[aria-hidden='false']").shouldBe(appear, DEFAULT_TIMEOUT);
+    WaitHelper.waitPageNoAjaxAndAnimation();
     SelenideElement addNoteDialog = $("div.ui-dialog[aria-hidden='false']").shouldBe(appear, DEFAULT_TIMEOUT);
-    SelenideElement textArea = addNoteDialog.$("textarea[id$='note-content']").shouldBe(appear, DEFAULT_TIMEOUT);
-    textArea.shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-    textArea.sendKeys(noteContent);
+    SelenideElement textArea = addNoteDialog.$("textarea[id$='note-content']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(Condition.editable);;
+    textArea.setValue(noteContent);
     SelenideElement saveButton = addNoteDialog.$("button[id$='save-add-note-command']");
     saveButton.shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     saveButton.shouldBe(disappear, DEFAULT_TIMEOUT);
@@ -139,6 +140,12 @@ public class CaseDetailsPage extends TemplatePage {
         .findBy(Condition.attributeMatching("class", ".*related-task-name-column.*")).shouldBe(appear, DEFAULT_TIMEOUT)
         .$("span");
   }
+  
+  public int getSizeOfRelatedTask() {
+    return getRelatedTasksPanel().$("div[id$='case-details-related-task-table'] table tbody")
+        .shouldBe(appear, DEFAULT_TIMEOUT).$$("tr").size();
+  }
+  
 
   public SelenideElement getStateOfRelatedTask(int index) {
     getRelatedTasksPanel().shouldBe(appear, DEFAULT_TIMEOUT);
@@ -714,7 +721,7 @@ public class CaseDetailsPage extends TemplatePage {
   public boolean isDownloadCompleted(String statusDialogId) {
     WebElement statusDialog = driver.findElement(By.cssSelector("div[id$=':" + statusDialogId + "']"));
     WaitHelper.assertTrueWithWait(() -> StringUtils.isNotBlank(statusDialog.getDomAttribute("download-status")));
-    return StringUtils.equals(statusDialog.getDomAttribute("download-status"), "completed");
+    return Strings.CS.equals(statusDialog.getDomAttribute("download-status"), "completed");
   }
 
   public Integer getTaskRowIndex(String taskName) {
