@@ -82,8 +82,6 @@ jobs:
             "Showcase/portal-developer-examples"
             "Showcase/InternalSupport"
             "Showcase/portal-components-examples"
-            "AxonIvyPortal/PortalApp"
-            "Showcase/portal-demo-app"
           )
           for module in "${modules[@]}"; do
             mvn clean install -f $module/pom.xml -Divy.engine.directory=$ENGINE_DIR
@@ -91,7 +89,7 @@ jobs:
 
       - name: Deploy Portal Modules
         run: |
-          DEPLOYMENT=$ENGINE_DIR/system/demo-applications/demo-portal
+          DEPLOYMENT=$ENGINE_DIR/system/demo-applications/portal
           mkdir -p $DEPLOYMENT
           rm -rf $DEPLOYMENT/*
           modules=(
@@ -102,8 +100,6 @@ jobs:
             "Showcase/portal-developer-examples"
             "Showcase/InternalSupport"
             "Showcase/portal-components-examples"
-            "AxonIvyPortal/PortalApp"
-            "Showcase/portal-demo-app"
           )
           for module in "${modules[@]}"; do
             cp $module/target/*.iar $DEPLOYMENT 2>/dev/null || cp $module/target/*.zip $DEPLOYMENT 2>/dev/null || true
@@ -117,7 +113,7 @@ jobs:
           nohup ./AxonIvyEngine > engine.log 2>&1 &
           echo $! > engine.pid
           for ((i=1; i<=${{ env.WAIT_TIME }}; i++)); do
-            if curl -s -f http://localhost:8080/demo-portal/pro/portal-developer-examples/162511D2577DBA88/CategoriedLeaveRequest.ivp?embedInFrame= > /dev/null; then
+            if curl -s -f http://localhost:8080/portal/pro/portal-developer-examples/162511D2577DBA88/CategoriedLeaveRequest.ivp?embedInFrame= > /dev/null; then
               exit 0
             fi
             sleep 1
