@@ -214,7 +214,7 @@ EOF
     }
 
     filePatterns=("AxonIvyPortal/*/pom.xml" "Showcase/*/pom.xml" "AxonIvyPortal/portal-selenium-test/customized_pom.xml"
-        "AxonIvyPortal/portal-selenium-test/document_screenshot_pom.xml" "Documentation/public-api/pom.xml")
+        "AxonIvyPortal/portal-selenium-test/document_screenshot_pom.xml" "AxonIvyPortal/portal-selenium-test/deployment-pom.xml" "Documentation/public-api/pom.xml")
 
     for pattern in "${filePatterns[@]}"; do
       for file in $pattern; do
