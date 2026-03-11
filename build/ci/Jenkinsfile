@@ -41,7 +41,7 @@ pipeline {
               def deploymentPom = 'AxonIvyPortal/portal-selenium-test/deployment-pom.xml'
               maven cmd: "clean package -f ${deploymentPom}"
               def deployZip = sh(returnStdout: true, script: "find \${PWD}/AxonIvyPortal/portal-selenium-test/target -name '*.zip' | head -1").trim()
-              maven cmd: "com.axonivy.ivy.ci:project-build-plugin:${buildPluginVersion}:deploy-to-engine -f ${deploymentPom} -Divy.deploy.file=${deployZip} -Divy.deploy.server.id=engine-cockpit -Divy.deploy.engine.app=Portal -Divy.deploy.method=HTTP -Divy.deploy.engine.url=${engineUrl} -Divy.test.engine=MODIFY_EXISTING -Divy.deploy.test.users=true -Divy.deploy.target.version=RELEASED"
+              maven cmd: "com.axonivy.ivy.ci:project-build-plugin:${buildPluginVersion}:deploy-to-engine -f ${deploymentPom} -Divy.deploy.file=${deployZip} -Divy.deploy.server.id=engine-cockpit -Divy.deploy.engine.app=Portal -Divy.deploy.method=HTTP -Divy.deploy.engine.url=${engineUrl} -Divy.test.engine=RECREATE -Divy.deploy.test.users=true -Divy.deploy.target.version=RELEASED"
             }
           }
         }
