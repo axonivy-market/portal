@@ -16,6 +16,7 @@ import org.primefaces.model.SortMeta;
 
 import com.axonivy.portal.dto.dashboard.WidgetInformationCategoryStatisticData;
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
+import com.axonivy.portal.enums.CaseQueryType;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import ch.ivy.addon.portalkit.datamodel.DashboardCaseLazyDataModel;
@@ -43,6 +44,7 @@ public class CaseDashboardWidget extends DashboardWidget {
   private boolean showWidgetInfo;
   private boolean showFullscreenMode;
   private boolean showPinnedToggle;
+  private CaseQueryType caseQueryType;
   
   public CaseDashboardWidget() {
     dataModel = new DashboardCaseLazyDataModel();
@@ -52,6 +54,7 @@ public class CaseDashboardWidget extends DashboardWidget {
     setShowWidgetInfo(true);
     setShowFullscreenMode(true);
     setShowPinnedToggle(true);
+    setCaseQueryType(CaseQueryType.BUSINESS_CASE);
   }
 
   @JsonIgnore
@@ -267,4 +270,16 @@ public class CaseDashboardWidget extends DashboardWidget {
   public void setShowPinnedToggle(boolean showPinnedToggle) {
     this.showPinnedToggle = showPinnedToggle;
   }
+
+  public CaseQueryType getCaseQueryType() {
+    return caseQueryType;
+  }
+
+  public void setCaseQueryType(CaseQueryType caseQueryType) {
+    this.caseQueryType = caseQueryType;
+    if (this.dataModel != null && this.dataModel.getCriteria() != null) {
+      this.dataModel.getCriteria().setCaseQueryType(caseQueryType);
+    }
+  }
+
 }
