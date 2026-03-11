@@ -46,7 +46,6 @@ public class DashboardProcessWidgetTest extends BaseTest {
   private static final String ACCESS_TASK_DETAILS = "ACCESS_TASK_DETAILS";
   private static final String ALPHABETICALLY_SORTING = "Alphabetically";
   private static final String SORTING_INDEX = "Sorting index";
-  private static final String CUSTOM_ORDER = "Custom order";
   private static final String YOUR_PROCESSES = "Your Processes";
 
   private NewDashboardPage newDashboardPage;
@@ -58,6 +57,7 @@ public class DashboardProcessWidgetTest extends BaseTest {
     login(TestAccount.ADMIN_USER);
     redirectToNewDashBoard();
     newDashboardPage = new NewDashboardPage();
+    resizeBrowserTo2kResolution();
   }
 
   @Test
