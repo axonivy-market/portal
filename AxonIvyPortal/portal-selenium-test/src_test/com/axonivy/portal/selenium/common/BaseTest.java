@@ -385,6 +385,10 @@ public class BaseTest {
     ScreenshotUtils.resizeBrowser(new Dimension(2560, 1440));
   }
 
+  public void resizeBrowserToFHDResolution() {
+    ScreenshotUtils.resizeBrowser(new Dimension(1920, 1080));
+  }
+
   public void assertTrue(boolean condition) {
     assertTrue(condition, "");
   }

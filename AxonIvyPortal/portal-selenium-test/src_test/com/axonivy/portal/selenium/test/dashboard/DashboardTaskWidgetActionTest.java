@@ -54,6 +54,7 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
   @BeforeEach
   public void setup() {
     super.setup();
+    redirectToRelativeLink(grantPortalPermission);
     createJSonFile("dashboard-has-one-task-widget.json", PortalVariable.DASHBOARD.key);
     redirectToRelativeLink(createTestingTasksUrl);
     newDashboardPage = new NewDashboardPage();

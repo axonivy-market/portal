@@ -33,6 +33,7 @@ public class StickyNavigationDashboardTest extends BaseTest {
     login(TestAccount.ADMIN_USER);
     redirectToRelativeLink(grantPortalPermission);
     newDashboardPage = new NewDashboardPage();
+    resizeBrowserToFHDResolution();
   }
 
   @Test
