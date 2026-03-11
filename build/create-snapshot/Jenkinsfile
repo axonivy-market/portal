@@ -34,7 +34,7 @@ pipeline {
         script {
           currentBuild.description = "On ${env.NODE_NAME}"
 
-          latestSha = sh(script: "gh api repos/:owner/:repo/git/refs/heads/master --jq '.object.sha'", returnStdout: true).trim()
+          latestSha = sh(script: "gh api repos/axonivy-market/portal/commits/master --jq '.sha'", returnStdout: true).trim()
           echo "Latest master SHA: ${latestSha}"
 
           withCredentials([usernameColonPassword(credentialsId: 'wawa-jenkins', variable: 'credentials')]) {
