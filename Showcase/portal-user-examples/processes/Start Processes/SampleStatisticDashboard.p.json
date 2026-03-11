@@ -20,6 +20,7 @@
         },
         "case" : {
           "name" : "Procurement",
+          "category" : "Procurement/InternalOperation",
           "customFields" : [
             { "name" : "DaysToDecision", "type" : "NUMBER", "value" : "in1.daysToDecision" },
             { "name" : "Decision", "type" : "STRING", "value" : "in1.decision" },
@@ -90,44 +91,9 @@
       "config" : {
         "output" : {
           "code" : [
-            "import com.axonivy.portal.userexamples.SampleStatisticDashboardData;",
-            "import java.time.YearMonth;",
+            "import com.axonivy.portal.userexamples.utils.ProcurementDataGenerator;",
             "",
-            "SampleStatisticDashboardData instanceData;",
-            "",
-            "for (int i = 0; i < 10; i++) {",
-            "  instanceData = new SampleStatisticDashboardData();",
-            "",
-            "  List<String> departments = ivy.cms.co(\"/Processes/Procurement/SampleStatisticValue/Department\").split(\";\");",
-            "  instanceData.department = departments.get((Math.random() * departments.size()).intValue());",
-            "  ",
-            "  List<String> items = ivy.cms.co(\"/Processes/Procurement/SampleStatisticValue/Item\").split(\";\");",
-            "  instanceData.item = items.get((Math.random() * items.size()).intValue());",
-            "  ",
-            "  List<String> monthOfYears = ivy.cms.co(\"/Processes/Procurement/SampleStatisticValue/MonthOfYear\").split(\";\");",
-            "  int month = Integer.parseInt(monthOfYears.get((Math.random() * monthOfYears.size()).intValue()));",
-            "  instanceData.monthOfYear = new DateTime(2025, month, 1, 7, 1, 1);",
-            "  ",
-            "  List<String> spendAmounts = ivy.cms.co(\"/Processes/Procurement/SampleStatisticValue/SpendAmount\").split(\";\");",
-            "  instanceData.spendAmount = Double.valueOf(spendAmounts.get((Math.random() * spendAmounts.size()).intValue()));",
-            "",
-            "  List<String> daysToDecisions = ivy.cms.co(\"/Processes/Procurement/SampleStatisticValue/DaysToDecision\").split(\";\");",
-            "  instanceData.daysToDecision = Integer.valueOf(daysToDecisions.get((Math.random() * daysToDecisions.size()).intValue()));",
-            "",
-            "  List<String> decisions = ivy.cms.co(\"/Processes/Procurement/SampleStatisticValue/Decision\").split(\";\");",
-            "  instanceData.decision = decisions.get((Math.random() * decisions.size()).intValue());",
-            "",
-            "  List<String> reworkCauses = ivy.cms.co(\"/Processes/Procurement/SampleStatisticValue/ReworkCauses\").split(\";\");",
-            "  instanceData.reworkCauses = reworkCauses.get((Math.random() * reworkCauses.size()).intValue());  ",
-            "",
-            "  List<String> reworkNoLoops = ivy.cms.co(\"/Processes/Procurement/SampleStatisticValue/ReworkNoLoops\").split(\";\");",
-            "  instanceData.reworkNoLoops = Integer.valueOf(reworkNoLoops.get((Math.random() * reworkNoLoops.size()).intValue()));",
-            "",
-            "  List<String> reworkOccurred = ivy.cms.co(\"/Processes/Procurement/SampleStatisticValue/ReworkOccurred\").split(\";\");",
-            "  instanceData.reworkOccurred = reworkOccurred.get((Math.random() * reworkOccurred.size()).intValue());  ",
-            "",
-            "  ivy.wf.signals().create().data(instanceData).send(\"com:axonivy:portal:portaluserexamples:createProcurementKPIcase\");",
-            "}"
+            "ProcurementDataGenerator.generateAndSend(10);"
           ]
         }
       },

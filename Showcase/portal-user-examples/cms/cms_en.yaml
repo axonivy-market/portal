@@ -1,3 +1,7 @@
+Categories:
+  Procurement:
+    InternalOperation:
+      name: Internal Operation
 CustomFields:
   Cases:
     DaysToDecision:
@@ -6,24 +10,45 @@ CustomFields:
     Decision:
       Description: Status of decision
       Label: Decision
+      Values:
+        Approved: Approved
+        Pending: Pending
+        Rejected: Rejected
     Department:
       Description: Department
       Label: Department
+      Values:
+        DepA: Dep A
+        DepB: Dep B
+        DepC: Dep C
+        DepD: Dep D
     Item:
       Description: Item
       Label: Item
+      Values:
+        Keyboard: Keyboard
+        Laptop: Laptop
+        Mobile: Mobile
+        Tablet: Tablet
     MonthYear:
       Description: Month of year
       Label: Month of Year
     ReworkCauses:
       Description: Causes for rework loops
       Label: Rework causes
+      Values:
+        MissingInfo: Missing info
+        NotEligible: Not eligible
+        TooExpensive: Too expensive
     ReworkNoLoops:
       Description: Number of process loops
       Label: Rework loops
     ReworkOccurred:
       Description: Indicates if a loop was necessary
       Label: Rework necessary
+      Values:
+        'No': 'No'
+        'Yes': 'Yes'
     SpendAmount:
       Description: Spend amount
       Label: Spend Amount
@@ -191,16 +216,6 @@ Processes:
   Procurement:
     CreateDataProcess: Procurement Data For Sample Statistic Dashboard
     InitConfig: Init sample dashboard (UPDATE PORTAL DASHBOARD AND STATISTIC VARIABLES)
-    SampleStatisticValue:
-      DaysToDecision: 2;5;6;2;7;4;9;4
-      Decision: Approved;Rejected;Pending
-      Department: Dep A;Dep B;Dep C;Dep D
-      Item: Laptop;Mobile;Keyboard;Tablet
-      MonthOfYear: 01;02;03;04;05;06;07
-      ReworkCauses: Missing info;Not eligible;Too expensive
-      ReworkNoLoops: 0;1;2;0;0
-      ReworkOccurred: Yes;No
-      SpendAmount: 250.5;300.5;400.5;122.5;234.5
     description: Run this process (many times) to generate data for Sample KPI Statistic below. Procurement information such as spend amount, department, item, month of year, days to decision, decision, rework are randomized and assigned to custom fields of case.
     name: Procurement
   UserExampleGuide:
