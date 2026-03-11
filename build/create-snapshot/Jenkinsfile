@@ -1,6 +1,6 @@
 def canContinue = true
 def latestSha = ''
-
+def fullTestPattern = 'com.axonivy.portal.selenium.test.**.*Test'
 pipeline {
   agent { label 'linux' }
 
@@ -34,14 +34,14 @@ pipeline {
         script {
           currentBuild.description = "On ${env.NODE_NAME}"
 
-          latestSha = sh(script: 'git rev-parse HEAD', returnStdout: true).trim()
-          echo "Latest SHA: ${latestSha}"
+          latestSha = sh(script: "gh api repos/axonivy-market/portal/commits/master --jq '.sha'", returnStdout: true).trim()
+          echo "Latest master SHA: ${latestSha}"
 
           withCredentials([usernameColonPassword(credentialsId: 'wawa-jenkins', variable: 'credentials')]) {
             // Fetch the 10 most recent builds
             echo "Fetching selenium test builds from Jenkins API..."
             def buildsJson = sh(
-              script: "curl -gsS --user \${credentials} '${env.JENKINS_URL}job/portal-selenium-test/job/master/api/json?tree=builds%5Bnumber%2Cresult%2Cactions%5B_class%2Ccauses%5B_class%5D%2ClastBuiltRevision%5BSHA1%5D%5D%5D%7B0%2C10%7D' || true",
+              script: "curl -gsS --user \${credentials} '${env.JENKINS_URL}job/portal-selenium-test/job/master/api/json?tree=builds%5Bnumber%2Cresult%2Cactions%5B_class%2Ccauses%5B_class%5D%2ClastBuiltRevision%5BSHA1%5D%2Cparameters%5Bname%2Cvalue%5D%5D%5D%7B0%2C10%7D' || true",
               returnStdout: true
             ).trim()
 
@@ -52,15 +52,17 @@ pipeline {
               return
             }
 
-            // Parse JSON and filter by SHA
+            // Parse JSON and filter by SHA and testPatternToRun parameter
             def buildsData = new groovy.json.JsonSlurper().parseText(buildsJson)
 
             def shaMatchingBuilds = buildsData.builds.findAll { build ->
-              build.actions?.find { it._class == 'hudson.plugins.git.util.BuildData' }?.lastBuiltRevision?.SHA1 == latestSha
+              def buildSha = build.actions?.find { it._class == 'hudson.plugins.git.util.BuildData' }?.lastBuiltRevision?.SHA1
+              def buildPattern = build.actions?.find { it._class == 'hudson.model.ParametersAction' }?.parameters?.find { it.name == 'testPatternToRun' }?.value
+              buildSha == latestSha && buildPattern == fullTestPattern
             }
 
             if (!shaMatchingBuilds) {
-              echo("❌ No selenium test builds found matching SHA ${latestSha}.")
+              echo("❌ No selenium test builds found matching SHA ${latestSha} and test pattern '${fullTestPattern}'.")
               canContinue = false
               currentBuild.result = 'FAILURE'
               return
