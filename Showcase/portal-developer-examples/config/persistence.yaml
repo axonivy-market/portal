@@ -1,2 +1,2 @@
-# yaml-language-server: $schema=https://json-schema.axonivy.com/14.0-dev/config/persistence.json
+# yaml-language-server: $schema=https://json-schema.axonivy.com/14.0-dev/config/persistence-1.json
 Persistence:

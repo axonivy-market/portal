@@ -14,6 +14,7 @@ import java.util.Arrays;
 
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebElementCondition;
 
@@ -41,7 +42,7 @@ public class ComplexFilterHelper {
   }
 
   public static void inputValueOnLatestFilter(FilterValueType type, Object... values) {
-    int currentIndex = $(".dashboard-widget-filter__main-panel").$$("div[id$=':filter-component:filter-selection-panel']").size();
+    int currentIndex = filterSelectionPanels().size();
     if (currentIndex < 1) {
       return;
     }
@@ -84,11 +85,16 @@ public class ComplexFilterHelper {
         break;
     }
   }
-  
+
+  private static ElementsCollection filterSelectionPanels() {
+    return $$(".dashboard-widget-filter__main-panel div[id$=':filter-component:filter-selection-panel']")
+        .shouldBe(CollectionCondition.sizeGreaterThanOrEqual(0), DEFAULT_TIMEOUT);
+  }
+
   public static SelenideElement addFilter(String columnName, FilterOperator operator) {
-    int currentIndex = $(".dashboard-widget-filter__main-panel").$$("div[id$=':filter-component:filter-selection-panel']").size();
+    int currentIndex = filterSelectionPanels().size();
     $("button[id$=':add-filter']").shouldBe(getClickableCondition()).click();
-    $(".dashboard-widget-filter__main-panel").$$("div[id$=':filter-component:filter-selection-panel']")
+    $$(".dashboard-widget-filter__main-panel div[id$=':filter-component:filter-selection-panel']")
         .shouldBe(CollectionCondition.sizeGreaterThanOrEqual(currentIndex + 1), DEFAULT_TIMEOUT);
     ComplexFilterHelper.selectFilterColumnName(columnName, currentIndex);
     if (operator != null) {
@@ -185,6 +191,7 @@ public class ComplexFilterHelper {
     for (int i = 0; i < dateInput.size(); i++) {
       dateInput.get(i).clear();
       dateInput.get(i).shouldBe(Condition.empty, DEFAULT_TIMEOUT).sendKeys(String.valueOf(values[i]));
+      WaitHelper.waitPageNoAnimation();
 
       if ($("div[id='new-widget-configuration-dialog']").isDisplayed()) {
         filterElement.$("span button").$("span[class*='ui-icon-calendar']").click();
@@ -217,6 +224,7 @@ public class ComplexFilterHelper {
         .shouldBe(Condition.editable);
     toInput.clear();
     toInput.sendKeys(String.valueOf(values[1]));
+    WaitHelper.waitPageNoAnimation();
     toInput.pressEscape();
   }
 

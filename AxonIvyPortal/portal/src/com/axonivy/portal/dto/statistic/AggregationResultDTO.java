@@ -2,6 +2,9 @@ package com.axonivy.portal.dto.statistic;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class AggregationResultDTO {
 
   private List<AggregationDTO> aggs;

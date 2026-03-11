@@ -959,11 +959,17 @@ body .ui-widget.new-widget-dialog__introduction {
 }
 
 .widget-configuration-overlaypanel {
-  width: 35vw;
+  width: 26rem;
 }
 
-.widget-configuration-overlaypanel .label-item {
-  width: 70%;
+.widget-configuration-overlaypanel .ui-overlaypanel-content {
+  padding: 0 !important;
+}
+
+.widget-configuration-overlaypanel .label-item,
+.widget-configuration-overlaypanel .case-type-label-item {
+  flex: 1;
+  min-width: 0;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -972,11 +978,41 @@ body .ui-widget.new-widget-dialog__introduction {
 .widget-configuration-overlaypanel .ui-inputgroup {
   justify-content: flex-end;
   display: flex;
-  width: 30%;
+  flex-shrink: 0;
+  margin-left: auto;
 }
 
 .widget-configuration-overlaypanel .widget-configuration-group-item {
+  display: flex;
   padding: 0.5rem 1rem;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.widget-configuration-overlaypanel .widget-configuration-group-item:hover {
+  background: var(--hover-surface-ground, rgba(0, 0, 0, 0.03));
+}
+
+.widget-configuration-overlaypanel .widget-configuration-section-header {
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-color-secondary);
+  background: var(--surface-ground);
+  margin: 0;
+}
+
+.widget-configuration-overlaypanel .widget-configuration-section-header.separator-top {
+  border-top: 1px solid var(--surface-border);
+  margin-top: 0.25rem;
+  padding-top: 0.5rem;
+}
+
+.widget-configuration-overlaypanel .case-query-type-selector {
+  width: auto !important;
+  min-width: 16rem;
 }
 
 .new-widget-configuration-dialog_content .widget-preview.widget-preview--process {
