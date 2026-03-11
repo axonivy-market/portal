@@ -407,12 +407,7 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void clickOnQuickSearchCheckBox() {
-    SelenideElement checkbox = getQuickSearchCheckBox();
-    if (!checkbox.find(".ui-chkbox-icon").has(cssClass("ui-icon-check"))) {
-      checkbox.find(".ui-chkbox-box").click();
-    }
-    checkbox.find(".ui-chkbox-icon").shouldHave(Condition.cssClass("ui-icon-check"));
-
+    getQuickSearchCheckBox().click();
   }
   
   public boolean isQuickSearchClicked(String fieldName) {
@@ -469,11 +464,6 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
     getWidgetInfoIconCheckbox().shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
 
-  public SelenideElement getWidgetConfigurationForm() {
-    return $("div#new-widget-configuration-dialog").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
-        .$("form#widget-configuration-form").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
-  }
-
   public SelenideElement getExpandModeCheckbox() {
     return getWidgetConfigurationPanel().$("div[id$='fullscreen-mode-group']").shouldBe(Condition.appear,
         DEFAULT_TIMEOUT).$("div[class*='ui-inputgroup']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
@@ -500,14 +490,4 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
     return $("div[id$='task-widget-preview:dashboard-tasks']").$$("table tbody tr").get(0);
   }
   
-  public SelenideElement getWidgetConfigurationPanel() {
-    SelenideElement form = getWidgetConfigurationForm();
-    SelenideElement panel = $("div[id$='widget-configuration-panel']");
-    if (!panel.exists() || !panel.is(Condition.visible)) {
-      form.$("button[id$='widget-configuration-button']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
-      panel.shouldBe(Condition.appear, DEFAULT_TIMEOUT);
-    }
-    return panel;
-  }
-
 }

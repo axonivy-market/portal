@@ -402,11 +402,6 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
     getWidgetInfoIconCheckbox().shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
 
-  public SelenideElement getWidgetConfigurationForm() {
-    return $("div#new-widget-configuration-dialog").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
-        .$("form#widget-configuration-form").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
-  }
-
   public SelenideElement getExpandModeCheckbox() {
     return getWidgetConfigurationPanel().$("div[id$='fullscreen-mode-group']").shouldBe(Condition.appear,
         DEFAULT_TIMEOUT).$("div[class*='ui-inputgroup']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
@@ -435,16 +430,6 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
     $("div[id$='case-widget-preview:dashboard-cases']").shouldBe(appear, DEFAULT_TIMEOUT).$$("table tbody tr").get(0).shouldBe(appear,
         DEFAULT_TIMEOUT);
     return $("div[id$='case-widget-preview:dashboard-cases']").$$("table tbody tr").get(0);
-  }
-  
-  public SelenideElement getWidgetConfigurationPanel() {
-    SelenideElement form = getWidgetConfigurationForm();
-    SelenideElement panel = $("div[id$='widget-configuration-panel']");
-    if (!panel.exists() || !panel.is(Condition.visible)) {
-      form.$("button[id$='widget-configuration-button']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
-      panel.shouldBe(Condition.appear, DEFAULT_TIMEOUT);
-    }
-    return panel;
   }
 
 }

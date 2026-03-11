@@ -567,17 +567,20 @@
             "out.selectedApp" : "in.application"
           },
           "code" : [
+            "import java.util.Optional;",
             "import java.util.Arrays;",
             "import ch.ivy.addon.portalkit.jsf.ManagedBeans;",
             "import ch.ivy.addon.portalkit.bean.ThirdPartyApplicationBean;",
-            "ThirdPartyApplicationBean thirdPartyApplicationBean = ManagedBeans.find(\"thirdPartyApplicationBean\").get() as ThirdPartyApplicationBean;",
             "",
-            "if (thirdPartyApplicationBean is initialized) {",
-            "  String thirdPartyApplicationName = thirdPartyApplicationBean.getAppNameInCurrentLocale(out.selectedApp);",
-            "  ivy.log.info(thirdPartyApplicationName);",
-            "  in.confirmMsg = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/adminSettings/deleteAppConfirmation\", Arrays.asList(thirdPartyApplicationName));",
+            "Optional bean = ManagedBeans.find(\"thirdPartyApplicationBean\");",
+            "if (bean.isPresent()) {",
+            "  ThirdPartyApplicationBean thirdPartyApplicationBean = bean.get() as ThirdPartyApplicationBean;",
+            "  if (thirdPartyApplicationBean is initialized) {",
+            "    String thirdPartyApplicationName = thirdPartyApplicationBean.getAppNameInCurrentLocale(out.selectedApp);",
+            "    in.confirmMsg = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/adminSettings/deleteAppConfirmation\", Arrays.asList(thirdPartyApplicationName));",
             "} else {",
-            "  in.confirmMsg = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/adminSettings/deleteAppConfirmation\", Arrays.asList());",
+            "    in.confirmMsg = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/adminSettings/deleteAppConfirmation\", Arrays.asList());",
+            "}",
             "}"
           ]
         }
