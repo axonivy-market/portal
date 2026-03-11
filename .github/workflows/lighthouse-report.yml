@@ -94,9 +94,20 @@ jobs:
           DEPLOYMENT=$ENGINE_DIR/system/demo-applications/demo-portal
           mkdir -p $DEPLOYMENT
           rm -rf $DEPLOYMENT/*
-          cp Showcase/portal-demo-app/target/*.zip $DEPLOYMENT
-          cp Showcase/portal-developer-examples/target/*.iar $DEPLOYMENT
-          cp Showcase/portal-components-examples/target/*.iar $DEPLOYMENT
+          modules=(
+            "AxonIvyPortal/portal-components"
+            "AxonIvyPortal/portal"
+            "AxonIvyPortal/PortalKitTestHelper"
+            "Showcase/portal-user-examples"
+            "Showcase/portal-developer-examples"
+            "Showcase/InternalSupport"
+            "Showcase/portal-components-examples"
+            "AxonIvyPortal/PortalApp"
+            "Showcase/portal-demo-app"
+          )
+          for module in "${modules[@]}"; do
+            cp $module/target/*.iar $DEPLOYMENT 2>/dev/null || cp $module/target/*.zip $DEPLOYMENT 2>/dev/null || true
+          done
           ls -l $DEPLOYMENT
 
       - name: Start Axon Ivy Engine
