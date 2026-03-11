@@ -1,4 +1,5 @@
 def canContinue = true
+def latestSha = ''
 
 pipeline {
   agent { label 'linux' }
@@ -17,6 +18,7 @@ pipeline {
       -Divy.engine.download.url=https://developer.axonivy.com/permalink/dev/axonivy-engine.zip for dev master
     ''')
     booleanParam(name: 'deployToRepo', defaultValue: false, description: 'Should deploy artifacts to repo? If true, deployable modules are deployed to Nexus snapshots. If false, only local install.')
+    booleanParam(name: 'skipVerification', defaultValue: false, description: 'Skip the Verify Selenium Test and Verify Performance stages and proceed directly to deploy.')
   }
 
   environment {
@@ -25,15 +27,21 @@ pipeline {
 
   stages {
     stage('Verify Selenium Test') {
+      when {
+        expression { return !params.skipVerification }
+      }
       steps {
         script {
           currentBuild.description = "On ${env.NODE_NAME}"
+
+          latestSha = sh(script: 'git rev-parse HEAD', returnStdout: true).trim()
+          echo "Latest SHA: ${latestSha}"
 
           withCredentials([usernameColonPassword(credentialsId: 'wawa-jenkins', variable: 'credentials')]) {
             // Fetch the 10 most recent builds
             echo "Fetching selenium test builds from Jenkins API..."
             def buildsJson = sh(
-              script: "curl -gsS --user \${credentials} '${env.JENKINS_URL}job/portal-selenium-test/job/master/api/json?tree=builds%5Bnumber,result,actions%5Bcauses%5B_class%5D%5D%5D%7B0,10%7D' || true",
+              script: "curl -gsS --user \${credentials} '${env.JENKINS_URL}job/portal-selenium-test/job/master/api/json?tree=builds%5Bnumber%2Cresult%2Cactions%5B_class%2Ccauses%5B_class%5D%2ClastBuiltRevision%5BSHA1%5D%5D%5D%7B0%2C10%7D' || true",
               returnStdout: true
             ).trim()
 
@@ -44,10 +52,22 @@ pipeline {
               return
             }
 
-            // Parse JSON and filter for timer trigger
+            // Parse JSON and filter by SHA
             def buildsData = new groovy.json.JsonSlurper().parseText(buildsJson)
 
-            def timerBuild = buildsData.builds.find { build ->
+            def shaMatchingBuilds = buildsData.builds.findAll { build ->
+              build.actions?.find { it._class == 'hudson.plugins.git.util.BuildData' }?.lastBuiltRevision?.SHA1 == latestSha
+            }
+
+            if (!shaMatchingBuilds) {
+              echo("❌ No selenium test builds found matching SHA ${latestSha}.")
+              canContinue = false
+              currentBuild.result = 'FAILURE'
+              return
+            }
+
+            // Among SHA-matching builds, find a timer-triggered one
+            def timerBuild = shaMatchingBuilds.find { build ->
               build.actions?.any { action ->
                 action.causes?.any { cause ->
                   cause._class == 'hudson.triggers.TimerTrigger$TimerTriggerCause'
@@ -80,13 +100,13 @@ pipeline {
 
     stage('Verify Performance') {
       when {
-        expression { return canContinue }
+        expression { return canContinue && !params.skipVerification }
       }
       steps {
         script {
           withCredentials([usernameColonPassword(credentialsId: 'wawa-jenkins', variable: 'credentials')]) {
             def perfJson = sh(
-              script: "curl -gsS --user \${credentials} '${env.JENKINS_URL}job/portal-performance/job/master/lastCompletedBuild/api/json?tree=number,result' || true",
+              script: "curl -gsS --user \${credentials} '${env.JENKINS_URL}job/portal-performance/job/master/api/json?tree=builds%5Bnumber%2Cresult%2Cactions%5B_class%2ClastBuiltRevision%5BSHA1%5D%5D%5D%7B0%2C10%7D' || true",
               returnStdout: true
             ).trim()
 
@@ -97,17 +117,29 @@ pipeline {
               return
             }
 
-            def perfData = new groovy.json.JsonSlurper().parseText(perfJson)
+            def perfBuildsData = new groovy.json.JsonSlurper().parseText(perfJson)
 
-            echo "Performance build number: ${perfData.number}"
-            echo "Portal Performance Test Status: ${perfData.result}"
+            def shaMatchingPerf = perfBuildsData.builds.findAll { build ->
+              build.actions?.find { it._class == 'hudson.plugins.git.util.BuildData' }?.lastBuiltRevision?.SHA1 == latestSha
+            }
 
-            if (perfData.result != 'SUCCESS') {
-              echo("❌ Verification failed: performance build #${perfData.number} did not succeed. Result was: ${perfData.result}")
+            if (!shaMatchingPerf) {
+              echo("❌ No performance builds found matching SHA ${latestSha}.")
+              canContinue = false
+              currentBuild.result = 'FAILURE'
+              return
+            }
+
+            def perfBuild = shaMatchingPerf[0]
+            echo "Performance build number: ${perfBuild.number}"
+            echo "Portal Performance Test Status: ${perfBuild.result}"
+
+            if (perfBuild.result != 'SUCCESS') {
+              echo("❌ Verification failed: performance build #${perfBuild.number} did not succeed. Result was: ${perfBuild.result}")
               canContinue = false
               currentBuild.result = 'FAILURE'
             } else {
-              echo "✅ portal-performance-test build #${perfData.number} was successful."
+              echo "✅ portal-performance-test build #${perfBuild.number} was successful."
             }
           }
         }
