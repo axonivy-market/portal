@@ -44,7 +44,7 @@ pipeline {
         script {
           currentBuild.description = "On ${env.NODE_NAME}"
           buildImage.inside('-v /var/tools/maven-cache:/home/build/') {
-            withCredentials([string(credentialsId: 'wawa-axonivy--github', variable: 'GH_TOKEN')]) {
+            withCredentials([usernamePassword(credentialsId: 'lmluat-gh-token', usernameVariable: 'GH_USER', passwordVariable: 'GH_TOKEN')]) {
               latestSha = sh(script: "gh api repos/axonivy-market/portal/commits/master --jq '.sha'", returnStdout: true).trim()
               echo "Latest master SHA: ${latestSha}"
             }
