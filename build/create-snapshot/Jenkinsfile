@@ -1,6 +1,8 @@
 def canContinue = true
 def latestSha = ''
-def fullTestPattern = 'com.axonivy.portal.selenium.test.**.*Test'
+def seleniumTestPattern = 'com.axonivy.portal.selenium.test.**.*Test'
+def screenshotTestPattern = 'com.axonivy.portal.selenium.document.screenshot.*Test'
+def buildImage
 pipeline {
   agent { label 'linux' }
 
@@ -26,6 +28,14 @@ pipeline {
   }
 
   stages {
+    stage('Build Image') {
+      steps {
+        script {
+          buildImage = docker.build('build-portal-snapshot', '-f build/create-snapshot/Dockerfile .')
+        }
+      }
+    }
+
     stage('Verify Selenium Test') {
       when {
         expression { return !params.skipVerification }
@@ -33,66 +43,69 @@ pipeline {
       steps {
         script {
           currentBuild.description = "On ${env.NODE_NAME}"
-
-          latestSha = sh(script: "gh api repos/axonivy-market/portal/commits/master --jq '.sha'", returnStdout: true).trim()
-          echo "Latest master SHA: ${latestSha}"
-
-          withCredentials([usernameColonPassword(credentialsId: 'wawa-jenkins', variable: 'credentials')]) {
-            // Fetch the 10 most recent builds
-            echo "Fetching selenium test builds from Jenkins API..."
-            def buildsJson = sh(
-              script: "curl -gsS --user \${credentials} '${env.JENKINS_URL}job/portal-selenium-test/job/master/api/json?tree=builds%5Bnumber%2Cresult%2Cactions%5B_class%2Ccauses%5B_class%5D%2ClastBuiltRevision%5BSHA1%5D%2Cparameters%5Bname%2Cvalue%5D%5D%5D%7B0%2C10%7D' || true",
-              returnStdout: true
-            ).trim()
-
-            if (!buildsJson) {
-              echo("❌ Failed to fetch selenium test builds.")
-              canContinue = false
-              currentBuild.result = 'FAILURE'
-              return
+          buildImage.inside('-v /var/tools/maven-cache:/home/build/') {
+            withCredentials([string(credentialsId: 'wawa-axonivy--github', variable: 'GH_TOKEN')]) {
+              latestSha = sh(script: "gh api repos/axonivy-market/portal/commits/master --jq '.sha'", returnStdout: true).trim()
+              echo "Latest master SHA: ${latestSha}"
             }
 
-            // Parse JSON and filter by SHA and testPatternToRun parameter
-            def buildsData = new groovy.json.JsonSlurper().parseText(buildsJson)
+            withCredentials([usernameColonPassword(credentialsId: 'wawa-jenkins', variable: 'credentials')]) {
+              // Fetch the 10 most recent builds
+              echo "Fetching selenium test builds from Jenkins API..."
+              def buildsJson = sh(
+                script: "curl -gsS --user \${credentials} '${env.JENKINS_URL}job/portal-selenium-test/job/master/api/json?tree=builds%5Bnumber%2Cresult%2Cactions%5B_class%2Ccauses%5B_class%5D%2ClastBuiltRevision%5BSHA1%5D%2Cparameters%5Bname%2Cvalue%5D%5D%5D%7B0%2C10%7D' || true",
+                returnStdout: true
+              ).trim()
 
-            def shaMatchingBuilds = buildsData.builds.findAll { build ->
-              def buildSha = build.actions?.find { it._class == 'hudson.plugins.git.util.BuildData' }?.lastBuiltRevision?.SHA1
-              def buildPattern = build.actions?.find { it._class == 'hudson.model.ParametersAction' }?.parameters?.find { it.name == 'testPatternToRun' }?.value
-              buildSha == latestSha && buildPattern == fullTestPattern
-            }
+              if (!buildsJson) {
+                echo("❌ Failed to fetch selenium test builds.")
+                canContinue = false
+                currentBuild.result = 'FAILURE'
+                return
+              }
 
-            if (!shaMatchingBuilds) {
-              echo("❌ No selenium test builds found matching SHA ${latestSha} and test pattern '${fullTestPattern}'.")
-              canContinue = false
-              currentBuild.result = 'FAILURE'
-              return
-            }
+              // Parse JSON and filter by SHA and testPatternToRun parameter
+              def buildsData = new groovy.json.JsonSlurper().parseText(buildsJson)
 
-            // Among SHA-matching builds, find a timer-triggered one
-            def timerBuild = shaMatchingBuilds.find { build ->
-              build.actions?.any { action ->
-                action.causes?.any { cause ->
-                  cause._class == 'hudson.triggers.TimerTrigger$TimerTriggerCause'
+              def shaMatchingBuilds = buildsData.builds.findAll { build ->
+                def buildSha = build.actions?.find { it._class == 'hudson.plugins.git.util.BuildData' }?.lastBuiltRevision?.SHA1
+                def buildPattern = build.actions?.find { it._class == 'hudson.model.ParametersAction' }?.parameters?.find { it.name == 'testPatternToRun' }?.value
+                buildSha == latestSha && buildPattern == seleniumTestPattern
+              }
+
+              if (!shaMatchingBuilds) {
+                echo("❌ No selenium test builds found matching SHA ${latestSha} and test pattern '${seleniumTestPattern}'.")
+                canContinue = false
+                currentBuild.result = 'FAILURE'
+                return
+              }
+
+              // Among SHA-matching builds, find a timer-triggered one
+              def timerBuild = shaMatchingBuilds.find { build ->
+                build.actions?.any { action ->
+                  action.causes?.any { cause ->
+                    cause._class == 'hudson.triggers.TimerTrigger$TimerTriggerCause'
+                  }
                 }
               }
-            }
 
-            echo "Timer build found: ${timerBuild != null}"
+              echo "Timer build found: ${timerBuild != null}"
 
-            // Check status and halt if failed (skips remaining stages)
-            if (!timerBuild) {
-              echo("❌ No timer-triggered build found among the last 10 builds of portal-selenium-test.")
-              canContinue = false
-              currentBuild.result = 'FAILURE'
-            } else {
-              echo "Found timer-triggered build #${timerBuild.number} with result: ${timerBuild.result}"
-
-              if (timerBuild.result != 'SUCCESS') {
-                echo("❌ Verification failed: portal-selenium-test build #${timerBuild.number} did not succeed. Result was: ${timerBuild.result}")
+              // Check status and halt if failed (skips remaining stages)
+              if (!timerBuild) {
+                echo("❌ No timer-triggered build found among the last 10 builds of portal-selenium-test.")
                 canContinue = false
                 currentBuild.result = 'FAILURE'
               } else {
-                echo "✅ portal-selenium-test build #${timerBuild.number} was successful."
+                echo "Found timer-triggered build #${timerBuild.number} with result: ${timerBuild.result}"
+
+                if (timerBuild.result != 'SUCCESS') {
+                  echo("❌ Verification failed: portal-selenium-test build #${timerBuild.number} did not succeed. Result was: ${timerBuild.result}")
+                  canContinue = false
+                  currentBuild.result = 'FAILURE'
+                } else {
+                  echo "✅ portal-selenium-test build #${timerBuild.number} was successful."
+                }
               }
             }
           }
@@ -106,42 +119,144 @@ pipeline {
       }
       steps {
         script {
-          withCredentials([usernameColonPassword(credentialsId: 'wawa-jenkins', variable: 'credentials')]) {
-            def perfJson = sh(
-              script: "curl -gsS --user \${credentials} '${env.JENKINS_URL}job/portal-performance/job/master/api/json?tree=builds%5Bnumber%2Cresult%2Cactions%5B_class%2ClastBuiltRevision%5BSHA1%5D%5D%5D%7B0%2C10%7D' || true",
-              returnStdout: true
-            ).trim()
+          buildImage.inside('-v /var/tools/maven-cache:/home/build/') {
+            withCredentials([usernameColonPassword(credentialsId: 'wawa-jenkins', variable: 'credentials')]) {
+              def perfJson = sh(
+                script: "curl -gsS --user \${credentials} '${env.JENKINS_URL}job/portal-performance/job/master/api/json?tree=builds%5Bnumber%2Cresult%2Cactions%5B_class%2ClastBuiltRevision%5BSHA1%5D%5D%5D%7B0%2C10%7D' || true",
+                returnStdout: true
+              ).trim()
 
-            if (!perfJson) {
-              echo("❌ Failed to fetch performance test builds.")
-              canContinue = false
-              currentBuild.result = 'FAILURE'
-              return
+              if (!perfJson) {
+                echo("❌ Failed to fetch performance test builds.")
+                canContinue = false
+                currentBuild.result = 'FAILURE'
+                return
+              }
+
+              def perfBuildsData = new groovy.json.JsonSlurper().parseText(perfJson)
+
+              def shaMatchingPerf = perfBuildsData.builds.findAll { build ->
+                build.actions?.find { it._class == 'hudson.plugins.git.util.BuildData' }?.lastBuiltRevision?.SHA1 == latestSha
+              }
+
+              if (!shaMatchingPerf) {
+                echo("❌ No performance builds found matching SHA ${latestSha}.")
+                canContinue = false
+                currentBuild.result = 'FAILURE'
+                return
+              }
+
+              def perfBuild = shaMatchingPerf[0]
+              echo "Performance build number: ${perfBuild.number}"
+              echo "Portal Performance Test Status: ${perfBuild.result}"
+
+              if (perfBuild.result != 'SUCCESS') {
+                echo("❌ Verification failed: performance build #${perfBuild.number} did not succeed. Result was: ${perfBuild.result}")
+                canContinue = false
+                currentBuild.result = 'FAILURE'
+              } else {
+                echo "✅ portal-performance-test build #${perfBuild.number} was successful."
+              }
             }
+          }
+        }
+      }
+    }
 
-            def perfBuildsData = new groovy.json.JsonSlurper().parseText(perfJson)
+    stage('Verify Screenshot') {
+      when {
+        expression { return canContinue && !params.skipVerification }
+      }
+      steps {
+        script {
+          buildImage.inside('-v /var/tools/maven-cache:/home/build/') {
+            withCredentials([string(credentialsId: 'github-token', variable: 'GH_TOKEN')]) {
+              echo "Fetching screenshot builds from GitHub Actions..."
+              def screenshotJson = sh(
+                script: "gh api repos/axonivy-market/portal/actions/workflows/portal-document-screenshot.yml/runs?per_page=10 --jq '.workflow_runs'",
+                returnStdout: true
+              ).trim()
 
-            def shaMatchingPerf = perfBuildsData.builds.findAll { build ->
-              build.actions?.find { it._class == 'hudson.plugins.git.util.BuildData' }?.lastBuiltRevision?.SHA1 == latestSha
+              if (!screenshotJson) {
+                echo("❌ Failed to fetch screenshot workflow runs.")
+                canContinue = false
+                currentBuild.result = 'FAILURE'
+                return
+              }
+
+              def screenshotRuns = new groovy.json.JsonSlurper().parseText(screenshotJson)
+
+              def shaMatchingRuns = screenshotRuns.findAll { run ->
+                run.head_sha == latestSha && run.inputs?.testPatternToRun == screenshotTestPattern
+              }
+
+              if (!shaMatchingRuns) {
+                echo("❌ No screenshot builds found matching SHA ${latestSha} and test pattern '${screenshotTestPattern}'.")
+                canContinue = false
+                currentBuild.result = 'FAILURE'
+                return
+              }
+
+              def screenshotRun = shaMatchingRuns[0]
+              echo "Screenshot workflow run: ID ${screenshotRun.id}, Status: ${screenshotRun.status}, Conclusion: ${screenshotRun.conclusion}"
+
+              if (screenshotRun.conclusion != 'success') {
+                echo("❌ Verification failed: screenshot workflow run ID ${screenshotRun.id} did not succeed. Conclusion was: ${screenshotRun.conclusion}")
+                canContinue = false
+                currentBuild.result = 'FAILURE'
+              } else {
+                echo "✅ Screenshot workflow run ID ${screenshotRun.id} was successful."
+              }
             }
+          }
+        }
+      }
+    }
 
-            if (!shaMatchingPerf) {
-              echo("❌ No performance builds found matching SHA ${latestSha}.")
-              canContinue = false
-              currentBuild.result = 'FAILURE'
-              return
-            }
+    stage('Verify Documentation') {
+      when {
+        expression { return canContinue && !params.skipVerification }
+      }
+      steps {
+        script {
+          buildImage.inside('-v /var/tools/maven-cache:/home/build/') {
+            withCredentials([string(credentialsId: 'github-token', variable: 'GH_TOKEN')]) {
+              echo "Fetching documentation builds from GitHub Actions..."
+              def docJson = sh(
+                script: "gh api repos/axonivy-market/portal/actions/workflows/portal-documentation.yml/runs?per_page=10 --jq '.workflow_runs'",
+                returnStdout: true
+              ).trim()
 
-            def perfBuild = shaMatchingPerf[0]
-            echo "Performance build number: ${perfBuild.number}"
-            echo "Portal Performance Test Status: ${perfBuild.result}"
+              if (!docJson) {
+                echo("❌ Failed to fetch documentation workflow runs.")
+                canContinue = false
+                currentBuild.result = 'FAILURE'
+                return
+              }
 
-            if (perfBuild.result != 'SUCCESS') {
-              echo("❌ Verification failed: performance build #${perfBuild.number} did not succeed. Result was: ${perfBuild.result}")
-              canContinue = false
-              currentBuild.result = 'FAILURE'
-            } else {
-              echo "✅ portal-performance-test build #${perfBuild.number} was successful."
+              def docRuns = new groovy.json.JsonSlurper().parseText(docJson)
+
+              def shaMatchingDocRuns = docRuns.findAll { run ->
+                run.head_sha == latestSha
+              }
+
+              if (!shaMatchingDocRuns) {
+                echo("❌ No documentation builds found matching SHA ${latestSha}.")
+                canContinue = false
+                currentBuild.result = 'FAILURE'
+                return
+              }
+
+              def docRun = shaMatchingDocRuns[0]
+              echo "Documentation workflow run: ID ${docRun.id}, Status: ${docRun.status}, Conclusion: ${docRun.conclusion}"
+
+              if (docRun.conclusion != 'success') {
+                echo("❌ Verification failed: documentation workflow run ID ${docRun.id} did not succeed. Conclusion was: ${docRun.conclusion}")
+                canContinue = false
+                currentBuild.result = 'FAILURE'
+              } else {
+                echo "✅ Documentation workflow run ID ${docRun.id} was successful."
+              }
             }
           }
         }
@@ -154,7 +269,7 @@ pipeline {
       }
       steps {
         script {
-          docker.build('build-portal-snapshot', '-f build/Dockerfile .').inside('-v /var/tools/maven-cache:/home/build/') {
+          buildImage.inside('-v /var/tools/maven-cache:/home/build/') {
             // module structure [module path, isPossibleToDeploy]
             def modules = [['AxonIvyPortal/portal-components', true], ['AxonIvyPortal/portal', true], ['AxonIvyPortal/PortalKitTestHelper', false], ['Showcase/portal-user-examples', true], ['Showcase/portal-developer-examples', true], ['Showcase/InternalSupport', false], ['Showcase/portal-components-examples', true], ['AxonIvyPortal/portal-product', true], ['AxonIvyPortal/PortalApp', true], ['Showcase/portal-demo-app', true]]
             for (module in modules) {
