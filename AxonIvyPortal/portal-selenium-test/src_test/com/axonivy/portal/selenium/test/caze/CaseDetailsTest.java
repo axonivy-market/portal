@@ -271,6 +271,7 @@ public class CaseDetailsTest extends BaseTest {
 
   @Test
   public void testRelatedTaskDestroyTask() {
+    redirectToRelativeLink(grantPortalPermission);
     createTestingTask();
     detailsPage.clickRelatedTaskActionButton(SICK_LEAVE_REQUEST_TASK);
     detailsPage.isRelatedTaskDestroyEnabled(SICK_LEAVE_REQUEST_TASK);

@@ -40,6 +40,7 @@ public class ShowCaseNoteHistoryTest extends BaseTest {
 
   @Test
   public void testShowCaseNoteHistory() {
+    grantSpecificPortalPermission(PortalPermission.TASK_CASE_ADD_NOTE);
     CaseWidgetPage casePage = mainMenuPage.selectCaseMenu();
     detailsPage = casePage.openDetailsOfCaseHasName(CASE_NAME);
     resizeBrowserTo2kResolution();
