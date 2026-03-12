@@ -522,10 +522,10 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
     $("div.info-overlay-panel__footer").$(".dashboard-excel-export-form").$("a").shouldBe(getClickableCondition())
         .click();
   }
-  
-  public void isQuickSearchInputShow() {
-    getTaskWidgetHeader().$("div.widget__header").shouldBe(appear, DEFAULT_TIMEOUT)
-        .$("div[class*='widget-header-quick-search']").should(appear, DEFAULT_TIMEOUT);
+
+  public boolean isQuickSearchInputVisible() {
+    return getTaskWidgetHeader().$("div.widget__header").shouldBe(appear, DEFAULT_TIMEOUT)
+        .$("div[class*='widget-header-quick-search']").exists();
   }
   
   public void setInputForQuickSearch(String input) {
