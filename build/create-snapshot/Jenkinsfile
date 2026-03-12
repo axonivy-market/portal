@@ -58,10 +58,9 @@ pipeline {
               ).trim()
 
               if (!buildsJson) {
-                echo("❌ Failed to fetch selenium test builds.")
                 canContinue = false
-                currentBuild.result = 'FAILURE'
-                return
+                echo("❌ Failed to fetch selenium test builds.")
+                error("Failed to fetch selenium test builds.")
               }
 
               // Parse JSON and filter by SHA and testPatternToRun parameter
@@ -74,10 +73,9 @@ pipeline {
               }
 
               if (!shaMatchingBuilds) {
-                echo("❌ No selenium test builds found matching SHA ${latestSha} and test pattern '${seleniumTestPattern}'.")
                 canContinue = false
-                currentBuild.result = 'FAILURE'
-                return
+                echo("❌ No selenium test builds found matching SHA ${latestSha} and test pattern '${seleniumTestPattern}'.")
+                error("No selenium test builds found matching SHA and test pattern.")
               }
 
               // Among SHA-matching builds, find a timer-triggered one
@@ -93,16 +91,16 @@ pipeline {
 
               // Check status and halt if failed (skips remaining stages)
               if (!timerBuild) {
-                echo("❌ No timer-triggered build found among the last 10 builds of portal-selenium-test.")
                 canContinue = false
-                currentBuild.result = 'FAILURE'
+                echo("❌ No timer-triggered build found among the last 10 builds of portal-selenium-test.")
+                error("No timer-triggered build found among the last 10 builds of portal-selenium-test.")
               } else {
                 echo "Found timer-triggered build #${timerBuild.number} with result: ${timerBuild.result}"
 
                 if (timerBuild.result != 'SUCCESS') {
-                  echo("❌ Verification failed: portal-selenium-test build #${timerBuild.number} did not succeed. Result was: ${timerBuild.result}")
                   canContinue = false
-                  currentBuild.result = 'FAILURE'
+                  echo("❌ Verification failed: portal-selenium-test build #${timerBuild.number} did not succeed. Result was: ${timerBuild.result}")
+                  error("portal-selenium-test build #${timerBuild.number} did not succeed. Result was: ${timerBuild.result}")
                 } else {
                   echo "✅ portal-selenium-test build #${timerBuild.number} was successful."
                 }
@@ -128,10 +126,9 @@ pipeline {
               ).trim()
 
               if (!screenshotJson) {
-                echo("❌ Failed to fetch screenshot workflow runs.")
                 canContinue = false
-                currentBuild.result = 'FAILURE'
-                return
+                echo("❌ Failed to fetch screenshot workflow runs.")
+                error("Failed to fetch screenshot workflow runs.")
               }
 
               def screenshotRuns = new groovy.json.JsonSlurper().parseText(screenshotJson)
@@ -141,19 +138,18 @@ pipeline {
               }
 
               if (!shaMatchingRuns) {
-                echo("❌ No screenshot builds found matching SHA ${latestSha} and test pattern '${screenshotTestPattern}'.")
                 canContinue = false
-                currentBuild.result = 'FAILURE'
-                return
+                echo("❌ No screenshot builds found matching SHA ${latestSha} and test pattern '${screenshotTestPattern}'.")
+                error("No screenshot builds found matching SHA and test pattern.")
               }
 
               def screenshotRun = shaMatchingRuns[0]
               echo "Screenshot workflow run: ID ${screenshotRun.id}, Status: ${screenshotRun.status}, Conclusion: ${screenshotRun.conclusion}"
 
               if (screenshotRun.conclusion != 'success') {
-                echo("❌ Verification failed: screenshot workflow run ID ${screenshotRun.id} did not succeed. Conclusion was: ${screenshotRun.conclusion}")
                 canContinue = false
-                currentBuild.result = 'FAILURE'
+                echo("❌ Verification failed: screenshot workflow run ID ${screenshotRun.id} did not succeed. Conclusion was: ${screenshotRun.conclusion}")
+                error("Screenshot workflow run ID ${screenshotRun.id} did not succeed. Conclusion was: ${screenshotRun.conclusion}")
               } else {
                 echo "✅ Screenshot workflow run ID ${screenshotRun.id} was successful."
               }
@@ -178,10 +174,9 @@ pipeline {
               ).trim()
 
               if (!docJson) {
-                echo("❌ Failed to fetch documentation workflow runs.")
                 canContinue = false
-                currentBuild.result = 'FAILURE'
-                return
+                echo("❌ Failed to fetch documentation workflow runs.")
+                error("Failed to fetch documentation workflow runs.")
               }
 
               def docRuns = new groovy.json.JsonSlurper().parseText(docJson)
@@ -191,19 +186,18 @@ pipeline {
               }
 
               if (!shaMatchingDocRuns) {
-                echo("❌ No documentation builds found matching SHA ${latestSha}.")
                 canContinue = false
-                currentBuild.result = 'FAILURE'
-                return
+                echo("❌ No documentation builds found matching SHA ${latestSha}.")
+                error("No documentation builds found matching SHA ${latestSha}.")
               }
 
               def docRun = shaMatchingDocRuns[0]
               echo "Documentation workflow run: ID ${docRun.id}, Status: ${docRun.status}, Conclusion: ${docRun.conclusion}"
 
               if (docRun.conclusion != 'success') {
-                echo("❌ Verification failed: documentation workflow run ID ${docRun.id} did not succeed. Conclusion was: ${docRun.conclusion}")
                 canContinue = false
-                currentBuild.result = 'FAILURE'
+                echo("❌ Verification failed: documentation workflow run ID ${docRun.id} did not succeed. Conclusion was: ${docRun.conclusion}")
+                error("Documentation workflow run ID ${docRun.id} did not succeed. Conclusion was: ${docRun.conclusion}")
               } else {
                 echo "✅ Documentation workflow run ID ${docRun.id} was successful."
               }
