@@ -17,6 +17,6 @@ public class StatisticConstants {
   public static final String OWNERS_NAME = "owners.name";
   public static final String CUSTOM_STRING = "customFields.strings.";
   public static final String CUSTOM_NUMBER = "customFields.numbers.";
+  public static final String CATEGORY = "category";
   public static final String CUSTOM_TIMESTAMP = "customFields.timestamps.";
-  
 }

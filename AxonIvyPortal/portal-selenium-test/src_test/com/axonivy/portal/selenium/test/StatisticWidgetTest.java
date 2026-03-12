@@ -38,6 +38,7 @@ public class StatisticWidgetTest extends BaseTest {
     login(TestAccount.ADMIN_USER);
     redirectToRelativeLink(create12CasesWithCategoryUrl);
     redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
+    redirectToRelativeLink(reloadSearchEngine);
     redirectToNewDashBoard();
     StatisticWidgetNewDashboardPage openTasksWidget = newDashboardPage.selectStatisticChartWidget("Open Tasks");
     StatisticWidgetNewDashboardPage runningCasesWidget = newDashboardPage.selectStatisticChartWidget("Running Cases");
@@ -51,8 +52,7 @@ public class StatisticWidgetTest extends BaseTest {
   @Test
   public void testAddNewStatisticWidget() {
     login(TestAccount.ADMIN_USER);
-    redirectToRelativeLink(create12CasesWithCategoryUrl);
-    redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
+    redirectToRelativeLink(reloadSearchEngine);
     redirectToNewDashBoard();
     DashboardConfigurationPage configurationPage = newDashboardPage.openDashboardConfigurationPage();
     var modificationPage = configurationPage.openEditPublicDashboardsPage();
@@ -68,6 +68,7 @@ public class StatisticWidgetTest extends BaseTest {
     login(TestAccount.ADMIN_USER);
     redirectToRelativeLink(create12CasesWithCategoryUrl);
     redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
+    redirectToRelativeLink(reloadSearchEngine);
     redirectToNewDashBoard();
 
     DashboardConfigurationPage configurationPage = newDashboardPage.openDashboardConfigurationPage();
@@ -173,6 +174,7 @@ public class StatisticWidgetTest extends BaseTest {
     login(TestAccount.ADMIN_USER);
     redirectToRelativeLink(create12CasesWithCategoryUrl);
     redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
+    redirectToRelativeLink(reloadSearchEngine);
     redirectToNewDashBoard();
 
     DashboardConfigurationPage configurationPage = newDashboardPage.openDashboardConfigurationPage();
@@ -291,6 +293,7 @@ public class StatisticWidgetTest extends BaseTest {
     login(TestAccount.ADMIN_USER);
     redirectToRelativeLink(create12CasesWithCategoryUrl);
     redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
+    redirectToRelativeLink(reloadSearchEngine);
     redirectToNewDashBoard();
 
     DashboardConfigurationPage configurationPage = newDashboardPage.openDashboardConfigurationPage();
@@ -339,6 +342,7 @@ public class StatisticWidgetTest extends BaseTest {
     login(TestAccount.ADMIN_USER);
     redirectToRelativeLink(create12CasesWithCategoryUrl);
     redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
+    redirectToRelativeLink(reloadSearchEngine);
     redirectToNewDashBoard();
 
     DashboardConfigurationPage configurationPage = newDashboardPage.openDashboardConfigurationPage();
@@ -387,6 +391,7 @@ public class StatisticWidgetTest extends BaseTest {
     login(TestAccount.ADMIN_USER);
     redirectToRelativeLink(create12CasesWithCategoryUrl);
     redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
+    redirectToRelativeLink(reloadSearchEngine);
     redirectToNewDashBoard();
 
     DashboardConfigurationPage configurationPage = newDashboardPage.openDashboardConfigurationPage();
@@ -414,6 +419,7 @@ public class StatisticWidgetTest extends BaseTest {
     redirectToRelativeLink(create12CasesWithCategoryUrl);
     redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
     redirectToRelativeLink(createCasesForCaseListCustomization);
+    redirectToRelativeLink(reloadSearchEngine);
     redirectToNewDashBoard();
 
     DashboardConfigurationPage configurationPage = newDashboardPage.openDashboardConfigurationPage();
@@ -446,6 +452,7 @@ public class StatisticWidgetTest extends BaseTest {
     redirectToRelativeLink(create12CasesWithCategoryUrl);
     redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
     redirectToRelativeLink(testCaseListPermission);
+    redirectToRelativeLink(reloadSearchEngine);
     redirectToNewDashBoard();
 
     DashboardConfigurationPage configurationPage = newDashboardPage.openDashboardConfigurationPage();
@@ -509,6 +516,7 @@ public class StatisticWidgetTest extends BaseTest {
   public void testEnableDrillDownOnStatisticConfiguration() {
     login(TestAccount.ADMIN_USER);
     redirectToRelativeLink(create12CasesWithCategoryUrl);
+    redirectToRelativeLink(reloadSearchEngine);
     redirectToNewDashBoard();
 
     DashboardConfigurationPage configurationPage = newDashboardPage.openDashboardConfigurationPage();
@@ -541,6 +549,7 @@ public class StatisticWidgetTest extends BaseTest {
     redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
     redirectToRelativeLink(create12CasesWithCategoryUrl);
     redirectToRelativeLink(testCaseListPermission);
+    redirectToRelativeLink(reloadSearchEngine);
     redirectToNewDashBoard();
 
     DashboardConfigurationPage configurationPage = newDashboardPage.openDashboardConfigurationPage();
@@ -589,6 +598,7 @@ public class StatisticWidgetTest extends BaseTest {
     redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
     redirectToRelativeLink(create12CasesWithCategoryUrl);
     redirectToRelativeLink(testCaseListPermission);
+    redirectToRelativeLink(reloadSearchEngine);
     redirectToNewDashBoard();
 
     DashboardConfigurationPage configurationPage = newDashboardPage.openDashboardConfigurationPage();
