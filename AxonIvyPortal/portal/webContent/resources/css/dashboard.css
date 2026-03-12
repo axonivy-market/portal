@@ -961,6 +961,27 @@ body .ui-widget.new-widget-dialog__introduction {
   flex-direction: column;
 }
 
+.widget-configuration-overlaypanel {
+  width: 35vw;
+}
+
+.widget-configuration-overlaypanel .label-item {
+  width: 70%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.widget-configuration-overlaypanel .ui-inputgroup {
+  justify-content: flex-end;
+  display: flex;
+  width: 30%;
+}
+
+.widget-configuration-overlaypanel .widget-configuration-group-item {
+  padding: 0.5rem 1rem;
+}
+
 .widget-preview--combined {
   width: 40vw;
 }
