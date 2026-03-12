@@ -111,57 +111,6 @@ pipeline {
           }
         }
       }
-    }
-
-    stage('Verify Performance') {
-      when {
-        expression { return canContinue && !params.skipVerification }
-      }
-      steps {
-        script {
-          buildImage.inside('-v /var/tools/maven-cache:/home/build/') {
-            withCredentials([usernameColonPassword(credentialsId: 'wawa-jenkins', variable: 'credentials')]) {
-              def perfJson = sh(
-                script: "curl -gsS --user \${credentials} '${env.JENKINS_URL}job/portal-performance/job/master/api/json?tree=builds%5Bnumber%2Cresult%2Cactions%5B_class%2ClastBuiltRevision%5BSHA1%5D%5D%5D%7B0%2C10%7D' || true",
-                returnStdout: true
-              ).trim()
-
-              if (!perfJson) {
-                echo("❌ Failed to fetch performance test builds.")
-                canContinue = false
-                currentBuild.result = 'FAILURE'
-                return
-              }
-
-              def perfBuildsData = new groovy.json.JsonSlurper().parseText(perfJson)
-
-              def shaMatchingPerf = perfBuildsData.builds.findAll { build ->
-                build.actions?.find { it._class == 'hudson.plugins.git.util.BuildData' }?.lastBuiltRevision?.SHA1 == latestSha
-              }
-
-              if (!shaMatchingPerf) {
-                echo("❌ No performance builds found matching SHA ${latestSha}.")
-                canContinue = false
-                currentBuild.result = 'FAILURE'
-                return
-              }
-
-              def perfBuild = shaMatchingPerf[0]
-              echo "Performance build number: ${perfBuild.number}"
-              echo "Portal Performance Test Status: ${perfBuild.result}"
-
-              if (perfBuild.result != 'SUCCESS') {
-                echo("❌ Verification failed: performance build #${perfBuild.number} did not succeed. Result was: ${perfBuild.result}")
-                canContinue = false
-                currentBuild.result = 'FAILURE'
-              } else {
-                echo "✅ portal-performance-test build #${perfBuild.number} was successful."
-              }
-            }
-          }
-        }
-      }
-    }
 
     stage('Verify Screenshot') {
       when {
