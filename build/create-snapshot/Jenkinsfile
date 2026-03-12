@@ -1,6 +1,7 @@
 def canContinue = true
 def latestSha = ''
 def portalBranch = 'feature/IVYPORTAL-20071-Create-a-portal-snapshot-periodically'
+def portalBranchEncoded = portalBranch.replace('/', '%2F')
 def seleniumTestPattern = 'com.axonivy.portal.selenium.test.**.*Test'
 def screenshotTestPattern = 'com.axonivy.portal.selenium.document.screenshot.*Test'
 def buildImage
@@ -54,7 +55,7 @@ pipeline {
               // Fetch the 10 most recent builds
               echo "Fetching selenium test builds from Jenkins API..."
               def buildsJson = sh(
-                script: "curl -gsS --user \${credentials} '${env.JENKINS_URL}job/portal-selenium-test/job/${portalBranch}/api/json?tree=builds%5Bnumber%2Cresult%2Cactions%5B_class%2Ccauses%5B_class%5D%2ClastBuiltRevision%5BSHA1%5D%2Cparameters%5Bname%2Cvalue%5D%5D%5D%7B0%2C10%7D' || true",
+                script: "curl -gsS --user \${credentials} '${env.JENKINS_URL}job/portal-selenium-test/job/${portalBranchEncoded}/api/json?tree=builds%5Bnumber%2Cresult%2Cactions%5B_class%2Ccauses%5B_class%5D%2ClastBuiltRevision%5BSHA1%5D%2Cparameters%5Bname%2Cvalue%5D%5D%5D%7B0%2C10%7D' || true",
                 returnStdout: true
               ).trim()
 
