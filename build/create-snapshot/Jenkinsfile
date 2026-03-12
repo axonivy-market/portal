@@ -111,6 +111,7 @@ pipeline {
           }
         }
       }
+    }
 
     stage('Verify Screenshot') {
       when {
