@@ -3,7 +3,9 @@ package com.axonivy.portal.enums.statistic;
 public enum AdditionalChartConfig {
   EMPTY_CHART_DATA_MESSAGE("emptyChartDataMessage"),
   FAIL_TO_RENDER_CHART_MESSAGE("failToRenderChartMessage"),
-  MANIPULATE_BY("manipulateValueBy");
+  MANIPULATE_BY("manipulateValueBy"),
+  TOOLTIP_TOTAL_LABEL("tooltipTotalLabel"),
+  TOOLTIP_KPI_LABEL("tooltipKpiLabel");
 
   private String key;
 

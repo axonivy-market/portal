@@ -173,6 +173,8 @@ public class BaseTest {
   protected String displayCustomFieldCaseOnTaskWidget = "PortalKitTestHelper/153CACC26D0D4C3D/displayCustomFieldCaseOnTaskWidget.ivp";
   protected String taskWithMultiResponsibles = "InternalSupport/14B2FC03D2E87141/TaskWithMultiResponsible.ivp";
   protected String createSideStepUrl = "portal-developer-examples/182E92730FF57036/start.ivp";
+  protected String reloadSearchEngine = "internalSupport/14B2FC03D2E87141/ReloadSearchEngine.ivp";
+
   
   protected void redirectToNewDashBoard() {
     open(EngineUrl.createProcessUrl(PORTAL_HOME_PAGE_URL));
@@ -434,4 +436,9 @@ public class BaseTest {
   public void resizeBrowserToFullHDResolution() {
     ScreenshotUtils.resizeBrowser(new Dimension(1900, 1080));
   }
+
+    public void resizeBrowserToSmallScreen() {
+    ScreenshotUtils.resizeBrowser(new Dimension(1167, 494));
+  }
+
 }

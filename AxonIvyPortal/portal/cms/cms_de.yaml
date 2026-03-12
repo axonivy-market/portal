@@ -742,8 +742,12 @@ ch.ivy.addon.portalkit.ui.jsf:
       publicFilter: Öffentlich
       savedFilters: 'Gespeicherte Filter:'
   dashboard:
+    CaseQueryType:
+      info: Konfigurieren Sie, welche Vorgangstypen im Vorgangs-Widget angezeigt werden. Standard zeigt nur Geschäftsvorgänge, Technische Untervorgänge zeigt nur technische Untervorgänge, und Alle zeigt sowohl Geschäftsvorgänge als auch technische Untervorgänge.
+      label: Vorgangstyp
     CloneWidget: Widget klonen
     CustomWidgets: Benutzerdefinierte Widgets
+    dataSettings: Dateneinstellungen
     DashboardConfiguration:
       CreateFromScratch: Von Grund auf neu erstellen
       CreateFromScratchDescription: Erstellen Sie Ihr eigenes Dashboard von Grund auf
@@ -766,6 +770,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       SelectAction: Wählen Sie die Aktion
       SomeThingWentWrong: Etwas ist schief gelaufen
       Title: Dashboard-Konfiguration
+    displaySettings: Anzeigeeinstellungen
     DrillDownWidget:
       caseDrillDown: Drilldown-Fall-Widget für {0}
       taskDrillDown: Drilldown-Aufgaben-Widget für {0}
@@ -798,6 +803,12 @@ ch.ivy.addon.portalkit.ui.jsf:
       EmptyChartDataMessage: Wir haben nicht genug Daten, um ein schönes Diagramm zu erstellen!
       failToRenderChartMessage: Fehler beim Rendern des Diagramms. Bitte versuchen Sie es mit anderen Einstellungen erneut.
       firstConfigChartMessage: Noch kein Diagramm verfügbar. Bitte konfigurieren Sie Ihre Einstellungen, um ein Diagramm zu generieren.
+      TooltipAverageKpiLabel: Durchschnitt von {0}
+      TooltipMaxKpiLabel: Maximum von {0}
+      TooltipMinKpiLabel: Minimum von {0}
+      TooltipSumKpiLabel: Summe von {0}
+      TooltipTotalCaseLabel: 'Gesamtzahl der Vorgänge: {0}'
+      TooltipTotalTaskLabel: 'Gesamtzahl der Aufgaben: {0}'
     WelcomeWidgetIntroduction: Dieses Widget zeigt einen Willkommenstext und ein Bild auf dem Dashboard an.
     WelcomeWidgetNotFoundMessage: Wir können das Bild des Widgets nicht finden, bitte konfigurieren Sie Ihr Bild neu!
     WidgetFilterName: Name des Widget-Filters
@@ -1744,7 +1755,13 @@ Enums:
               LESSOREQUAL:
                 name: |+
                   Kleiner oder gleich
-
+          CaseQueryType:
+            ALL:
+              name: Geschäftsvorgänge + Untervorgänge
+            BUSINESS_CASE:
+              name: Geschäftsvorgänge (Standard)
+            SUB_CASE:
+              name: Untervorgänge
 Labels:
   AI:
     Error:

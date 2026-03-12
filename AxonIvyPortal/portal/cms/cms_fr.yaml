@@ -740,8 +740,12 @@ ch.ivy.addon.portalkit.ui.jsf:
       publicFilter: Publique
       savedFilters: 'Filtres enregistrés:'
   dashboard:
+    CaseQueryType:
+      info: Configurez les types de cas affichés dans le widget de cas. Par défaut, seuls les cas métier sont affichés, Sous-cas techniques affiche uniquement les sous-cas techniques, et Tous affiche à la fois les cas métier et les sous-cas techniques.
+      label: Type de cas
     CloneWidget: Cloner le widget
     CustomWidgets: Widgets personnalisés
+    dataSettings: Paramètres de données
     DashboardConfiguration:
       CreateFromScratch: Créer à partir de rien
       CreateFromScratchDescription: Créez votre propre tableau de bord à partir de zéro
@@ -764,6 +768,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       SelectAction: Sélectionnez l'action
       SomeThingWentWrong: Quelque chose n'a pas fonctionné
       Title: Configuration du tableau de bord
+    displaySettings: Paramètres d'affichage
     DrillDownWidget:
       caseDrillDown: Widget de cas détaillé pour {0}
       taskDrillDown: Widget de tâche détaillé pour {0}
@@ -796,6 +801,12 @@ ch.ivy.addon.portalkit.ui.jsf:
       EmptyChartDataMessage: Nous n'avons pas assez de données pour créer un beau graphique !
       failToRenderChartMessage: Erreur lors du rendu du graphique. Veuillez réessayer avec des paramètres différents.
       firstConfigChartMessage: Aucun graphique disponible pour le moment. Veuillez configurer vos paramètres pour générer un graphique.
+      TooltipAverageKpiLabel: Moyenne de {0}
+      TooltipMaxKpiLabel: Maximum de {0}
+      TooltipMinKpiLabel: Minimum de {0}
+      TooltipSumKpiLabel: Somme de {0}
+      TooltipTotalCaseLabel: 'Nombre total de cas : {0}'
+      TooltipTotalTaskLabel: 'Nombre total de tâches : {0}'
     WelcomeWidgetIntroduction: Ce widget affiche un texte et une image de bienvenue sur le tableau de bord.
     WelcomeWidgetNotFoundMessage: Nous ne pouvons pas trouver l'image du widget, veuillez reconfigurer votre image !
     WidgetFilterName: Nom du filtre du widget
@@ -1740,7 +1751,13 @@ Enums:
               LESSOREQUAL:
                 name: |+
                   Inférieur ou égal à
-
+          CaseQueryType:
+            ALL:
+              name: Cas métier + Sous-cas
+            BUSINESS_CASE:
+              name: Cas métier (Par défaut)
+            SUB_CASE:
+              name: Sous-cas
 Labels:
   AI:
     Error:
