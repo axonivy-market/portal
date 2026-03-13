@@ -65,7 +65,7 @@ pipeline {
               }
 
               // Parse JSON and filter by SHA and testPatternToRun parameter
-              def buildsData = new groovy.json.JsonSlurperClassic().parseText(buildsJson)
+              def buildsData = readJSON text: buildsJson
 
               def shaMatchingBuilds = buildsData.builds.findAll { build ->
                 def shaMatches = build.actions?.any { it._class == 'hudson.plugins.git.util.BuildData' && it.lastBuiltRevision?.SHA1 == latestSha }
@@ -112,7 +112,7 @@ pipeline {
                 error("Failed to fetch screenshot workflow runs.")
               }
 
-              def screenshotRuns = new groovy.json.JsonSlurperClassic().parseText(screenshotJson)
+              def screenshotRuns = readJSON text: screenshotJson
 
               def shaMatchingRuns = screenshotRuns.findAll { run ->
                 run.head_sha == latestSha
@@ -157,7 +157,7 @@ pipeline {
                 error("Failed to fetch documentation workflow runs.")
               }
 
-              def docRuns = new groovy.json.JsonSlurperClassic().parseText(docJson)
+              def docRuns = readJSON text: docJson
 
               def shaMatchingDocRuns = docRuns.findAll { run ->
                 run.head_sha == latestSha && run.status == 'completed'
@@ -199,14 +199,14 @@ pipeline {
                 -f 'inputs[deploySnapshot]=${params.deployToRepo}'""")
               echo "Documentation workflow dispatched at ${docDispatchTime}. Polling for completion..."
 
-              sleep(time: 5, unit: 'MINUTES')
+              sleep(time: 3, unit: 'MINUTES')
               def docRunId = null
               for (int i = 0; i < 6; i++) {
                 def runsJson = sh(
                   script: "gh api 'repos/axonivy-market/portal/actions/workflows/portal-documentation.yml/runs?per_page=20&branch=${params.portalBranch}' --jq '.workflow_runs'",
                   returnStdout: true
                 ).trim()
-                def runs = new groovy.json.JsonSlurperClassic().parseText(runsJson)
+                def runs = readJSON text: runsJson
                 def matchedRun = runs.find { run -> run.created_at > docDispatchTime && run.status == 'completed' }
                 if (matchedRun) {
                   docRunId = matchedRun.id
