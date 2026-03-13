@@ -755,6 +755,9 @@ ch.ivy.addon.portalkit.ui.jsf:
       DoNotSupportMobile: La configuration du tableau de bord n'est pas prise en charge pour les appareils mobiles.
       EditPrivateDashboards: Modifier vos tableaux de bord privés
       EditPublicDashboards: Modifier les tableaux de bord publics
+      ExportReferencedDialogHeader: Le tableau de bord référence d'autres tableaux de bord
+      ExportReferencedDialogMessage: 'Les tableaux de bord suivants sont référencés par des widgets de navigation. Exportez-les et importez-les également pour que les widgets fonctionnent correctement :'
+      ExportReferencedDialogProceed: Exporter quand même
       ExportDashboard: Exporter le tableau de bord
       PrivateDashboard: Tableaux de bord privés
       PrivateDashboardConfiguration: Configuration des tableaux de bord privés
@@ -1544,6 +1547,7 @@ Dialogs:
               FileInfomation: Informations sur le fichier
               ImportPrivate: Importer un tableau de bord privé
               ImportPublic: Importer un tableau de bord public
+              NavigationWidgetMissingTarget: 'Le widget de navigation "{0}" fait référence à un tableau de bord qui n''a pas été importé et n''existe pas dans ce portail. Le widget peut ne pas fonctionner correctement.'
               chooseAJsonFile: Choisissez un fichier json
             DashboardSharing:
               ShareDashboard: Partager le tableau de bord
