@@ -787,7 +787,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     ShareThisDashboard: Share this dashboard
     ShowPinnedToggle: Show 'Pinned Items' Toggle
     CaseQueryType:
-      info: Configure which case types are shown in the Case Widget.
+      info: Configure which case types are shown in the Case Widget. Default shows business cases only, Sub Cases shows technical subcases only, and All shows both business cases and technical subcases.
       label: Case Type
     dataSettings: Data Settings
     displaySettings: Display Settings

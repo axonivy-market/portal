@@ -789,7 +789,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     ShareThisDashboard: Partager ce tableau de bord
     ShowPinnedToggle: Afficher le bouton de bascule 'Éléments épinglés'
     CaseQueryType:
-      info: Configurez les types de cas affichés dans le widget de cas.
+      info: Configurez les types de cas affichés dans le widget de cas. Par défaut, seuls les cas métier sont affichés, Sous-cas techniques affiche uniquement les sous-cas techniques, et Tous affiche à la fois les cas métier et les sous-cas techniques.
       label: Type de cas
     dataSettings: Paramètres des données
     displaySettings: Paramètres d'affichage

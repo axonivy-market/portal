@@ -789,7 +789,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     ShareThisDashboard: Comparte este panel
     ShowPinnedToggle: Mostrar alternar 'Elementos fijados'
     CaseQueryType:
-      info: Configure qué tipos de casos se muestran en el widget de casos.
+      info: Configure qué tipos de casos se muestran en el widget de casos. Predeterminado muestra solo casos de negocio, Subcasos técnicos muestra solo subcasos técnicos, y Todos muestra tanto casos de negocio como subcasos técnicos.
       label: Tipo de caso
     dataSettings: Configuración de datos
     displaySettings: Configuración de visualización

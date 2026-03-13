@@ -788,7 +788,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     ShareThisDashboard: このダッシュボードを共有
     ShowPinnedToggle: 'TODO: Show ''Pinned Tasks'' Toggle'
     CaseQueryType:
-      info: ケースウィジェットに表示するケースタイプを設定します。
+      info: ケースウィジェットに表示するケースタイプを設定します。デフォルトはビジネスケースのみ、技術サブケースは技術サブケースのみ、すべてはビジネスケースと技術サブケースの両方を表示します。
       label: ケースタイプ
     dataSettings: データ設定
     displaySettings: 表示設定

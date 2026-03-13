@@ -791,7 +791,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     ShareThisDashboard: Teilen Sie dieses Dashboard
     ShowPinnedToggle: '''Angeheftete Elemente'' umschalten anzeigen'
     CaseQueryType:
-      info: Konfigurieren Sie, welche Vorgangstypen im Vorgangs-Widget angezeigt werden.
+      info: Konfigurieren Sie, welche Vorgangstypen im Vorgangs-Widget angezeigt werden. Standard zeigt nur Geschäftsvorgänge, Technische Untervorgänge zeigt nur technische Untervorgänge, und Alle zeigt sowohl Geschäftsvorgänge als auch technische Untervorgänge.
       label: Vorgangstyp
     dataSettings: Dateneinstellungen
     displaySettings: Anzeigeeinstellungen
