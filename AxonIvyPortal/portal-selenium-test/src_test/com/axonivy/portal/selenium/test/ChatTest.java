@@ -1,9 +1,13 @@
 package com.axonivy.portal.selenium.test;
 
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
+
 import java.util.Arrays;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WindowType;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
@@ -12,12 +16,13 @@ import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.NavigationHelper;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
-import com.axonivy.portal.selenium.common.WaitHelper;
 import com.axonivy.portal.selenium.page.ChatPage;
 import com.axonivy.portal.selenium.page.HomePage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.TaskTemplatePage;
 import com.axonivy.portal.selenium.page.TaskWidgetPage;
+import com.codeborne.selenide.CollectionCondition;
+import com.codeborne.selenide.Condition;
 
 
 
@@ -188,7 +193,9 @@ public class ChatTest extends BaseTest {
   }
 
   private void assertContainMessage(ChatPage chatPage, String message) {
-    WaitHelper.assertTrueWithWait(() -> chatPage.getAllMessagesChatLog().contains(message));
+//    WaitHelper.assertTrueWithWait(() -> chatPage.getAllMessagesChatLog().contains(message));
+    $(By.id("chat-message-list")).should(Condition.appear);
+    $$(".js-message").should(CollectionCondition.containExactTextsCaseSensitive(message));
   }
 
   private void assertChatNotification(ChatPage chatPage, boolean hasNotification) {

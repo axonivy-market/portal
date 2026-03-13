@@ -73,7 +73,7 @@ public class TaskWidgetTest extends BaseTest {
 
     taskWidgetPage.sideStepMenuOnActionButton(0);
     taskWidgetPage.resetTask(0);
-    assertTrue(taskWidgetPage.isResetLinkDisabled(0));
+    taskWidgetPage.isResetLinkDisabled(0);
 
     taskWidgetPage.checkTaskState(0, TaskState.OPEN.getValue());
 

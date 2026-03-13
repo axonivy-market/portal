@@ -72,6 +72,7 @@ public class CaseDetailsTest extends BaseTest {
   @BeforeEach
   public void setup() {
     super.setup();
+    resizeBrowserToFHDResolution();
     login(TestAccount.ADMIN_USER);
     newDashboardPage = new NewDashboardPage();
     updateGlobalVariable(Variable.TASK_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST.getKey(), ACCESS_TASK_DETAILS);
@@ -270,9 +271,10 @@ public class CaseDetailsTest extends BaseTest {
 
   @Test
   public void testRelatedTaskDestroyTask() {
+    redirectToRelativeLink(grantPortalPermission);
     createTestingTask();
     detailsPage.clickRelatedTaskActionButton(SICK_LEAVE_REQUEST_TASK);
-    assertTrue(detailsPage.isRelatedTaskDestroyEnabled(SICK_LEAVE_REQUEST_TASK));
+    detailsPage.isRelatedTaskDestroyEnabled(SICK_LEAVE_REQUEST_TASK);
     detailsPage.destroyTask(SICK_LEAVE_REQUEST_TASK);
     detailsPage.confimRelatedTaskDestruction();
   }

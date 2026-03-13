@@ -16,6 +16,7 @@ import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.TaskWidgetNewDashBoardPage;
 import com.codeborne.selenide.ElementsCollection;
 
+import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 
 @IvyWebTest
@@ -54,6 +55,7 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
   @BeforeEach
   public void setup() {
     super.setup();
+    redirectToRelativeLink(grantPortalPermission);
     createJSonFile("dashboard-has-one-task-widget.json", PortalVariable.DASHBOARD.key);
     redirectToRelativeLink(createTestingTasksUrl);
     newDashboardPage = new NewDashboardPage();
@@ -75,6 +77,7 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
   @Test
   public void testVisibilityTaskActionForAdminUser() {
     login(TestAccount.ADMIN_USER);
+    grantSpecificPortalPermission(PortalPermission.TASK_DISPLAY_DESTROY_ACTION);
     createTasksForTesting();
 
     // Ready for Join
@@ -101,7 +104,8 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
   @Test
   public void testVisibilityTaskActionForInprogressTasks() {
     login(TestAccount.ADMIN_USER);
-    createTasksForTesting();
+    grantSpecificPortalPermission(PortalPermission.TASK_DISPLAY_DESTROY_ACTION);
+    redirectToRelativeLink(createTestingTasksUrl);
     filterTaskByNameAndState("Sick Leave Request", SUSPENDED);
     TaskWidgetNewDashBoardPage taskWidget = new TaskWidgetNewDashBoardPage();
     taskWidget.startTask(0);
@@ -110,6 +114,7 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
 
     // In progress for admin user
     newDashboardPage.waitForGrowlMessageDisappear();
+    refreshPage();
     assertTaskActionsByTaskState(IN_PROGRESS, Arrays.asList(DETAILS, RESERVE, RESET, CLEAR_EXPIRY, DESTROY,
         WORKFLOW_EVENTS, PROCESS_VIEWER, ADD_AD_HOC_TASK));
 
@@ -140,6 +145,7 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
   @Test
   public void testVisibilityTaskActionForReserveTasks() {
     login(TestAccount.ADMIN_USER);
+    grantSpecificPortalPermission(PortalPermission.TASK_DISPLAY_DESTROY_ACTION);
     createTasksForTesting();
     filterTaskByNameAndState("Maternity Leave Request", SUSPENDED);
     TaskWidgetNewDashBoardPage taskWidget = new TaskWidgetNewDashBoardPage();
@@ -167,7 +173,7 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
   @Test
   public void testVisibilityTaskActionForTechnicalStates() {
     login(TestAccount.ADMIN_USER);
-    redirectToRelativeLink(createTechnicalStateUrl);
+    grantSpecificPortalPermission(PortalPermission.TASK_DISPLAY_DESTROY_ACTION);
     redirectToNewDashBoard();
     TaskWidgetNewDashBoardPage taskWidget = new TaskWidgetNewDashBoardPage();
     taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);

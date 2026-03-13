@@ -104,6 +104,7 @@ public class WidgetSupportMultiLanguageTest extends BaseTest {
 
   @Test
   public void testAddNewProcessList() {
+    resizeBrowserToFHDResolution();
     NewDashboardDetailsEditPage newDashboardDetailsEditPage = gotoEditPublicDashboardPage();
     newDashboardDetailsEditPage.addWidget();
     ProcessEditWidgetNewDashBoardPage newProcessWidget = newDashboardDetailsEditPage.addNewProcessWidget();

@@ -45,6 +45,7 @@ public class DashboardConfigurationTest extends BaseTest {
     redirectToRelativeLink(grantDashboardWriteOwnPermissionUrl);
     redirectToNewDashBoard();
     newDashboardPage = new NewDashboardPage();
+    resizeBrowserToFHDResolution();
   }
 
   @Test

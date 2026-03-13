@@ -783,9 +783,12 @@ public class CaseDetailsPage extends TemplatePage {
     return delegateButton.getAttribute(CLASS).contains("ui-state-disabled");
   }
 
-  public boolean isRelatedTaskDestroyEnabled(String taskName) {
-    WebElement destroyButton = findDestroyCommand(taskName);
-    return !destroyButton.getAttribute(CLASS).contains("ui-state-disabled");
+  public void isRelatedTaskDestroyEnabled(String taskName) {
+    Integer index = getTaskRowIndex(taskName);
+    String destroyCommandButton =
+        String.format("[id$='task-widget:related-tasks:%d:additional-options:task-destroy-command", index);
+    waitForElementDisplayed(By.cssSelector(destroyCommandButton), true);
+    $(destroyCommandButton).should(Condition.enabled);
   }
 
   public void selectDelegateResponsible(String responsibleName, boolean isRole) {

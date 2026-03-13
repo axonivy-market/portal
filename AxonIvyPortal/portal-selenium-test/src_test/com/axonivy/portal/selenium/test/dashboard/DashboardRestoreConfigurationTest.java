@@ -33,6 +33,7 @@ public class DashboardRestoreConfigurationTest extends BaseTest {
   @BeforeEach
   public void setup() {
     super.setup();
+    resizeBrowserToFHDResolution();
     newDashboardPage = new NewDashboardPage();
     login(TestAccount.ADMIN_USER);
     redirectToRelativeLink(grantDashboardWritePublicPermissionUrl);
