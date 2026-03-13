@@ -199,7 +199,7 @@ pipeline {
                 -f 'inputs[deploySnapshot]=${params.deployToRepo}'""")
               echo "Documentation workflow dispatched at ${docDispatchTime}. Polling for completion..."
 
-              sleep(time: 3, unit: 'MINUTES')
+              sleep(time: 5, unit: 'MINUTES')
               def docRunId = null
               for (int i = 0; i < 6; i++) {
                 def runsJson = sh(
