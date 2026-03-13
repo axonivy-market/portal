@@ -168,7 +168,7 @@ pipeline {
               def docRuns = new groovy.json.JsonSlurper().parseText(docJson)
 
               def shaMatchingDocRuns = docRuns.findAll { run ->
-                run.head_sha == latestSha
+                run.head_sha == latestSha && run.status == 'completed'
               }
 
               if (!shaMatchingDocRuns) {
