@@ -426,6 +426,20 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
     .$("th[id$='dashboard-cases-columns:1']").shouldBe(getClickableCondition()).click();
   } 
   
+  public void selectCaseQueryType(String label) {
+    SelenideElement configPanel = getWidgetConfigurationPanel();
+    configPanel.$("div[id$='case-query-type'] .ui-selectonemenu-trigger")
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $$("div[id$='case-query-type_panel'] li").filter(text(label)).first()
+        .shouldBe(getClickableCondition()).click();
+  }
+
+  public String getCaseQueryTypeLabel() {
+    SelenideElement configPanel = getWidgetConfigurationPanel();
+    return configPanel.$("div[id$='case-query-type'] .ui-selectonemenu-label")
+        .getText();
+  }
+
   public SelenideElement getFirstCaseOfCaseWidget() {
     $("div[id$='case-widget-preview:dashboard-cases']").shouldBe(appear, DEFAULT_TIMEOUT).$$("table tbody tr").get(0).shouldBe(appear,
         DEFAULT_TIMEOUT);

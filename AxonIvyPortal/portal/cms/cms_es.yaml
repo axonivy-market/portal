@@ -788,6 +788,11 @@ ch.ivy.addon.portalkit.ui.jsf:
     SearchForFilter: Buscar un filtro
     ShareThisDashboard: Comparte este panel
     ShowPinnedToggle: Mostrar alternar 'Elementos fijados'
+    CaseQueryType:
+      info: Configure qué tipos de casos se muestran en el widget de casos.
+      label: Tipo de caso
+    dataSettings: Configuración de datos
+    displaySettings: Configuración de visualización
     StandardWidgets: Widgets estándar
     StatisticWidget:
       EmptyChartDataMessage: No tenemos suficientes datos para crear un buen gráfico.
@@ -1635,6 +1640,10 @@ Labels:
       TUTORIAL:
         header: Tutorial
         question: ¿Dónde puedo encontrar la documentación o los tutoriales de Axon Ivy Portal?
+    CaseQueryType:
+      ALL: Casos de negocio + Subcasos
+      BUSINESS_CASE: Casos de negocio (Predeterminado)
+      SUB_CASE: Subcasos técnicos
     DashboardStandardCaseColumn:
       ACTIONS: Acciones
       APPLICATION: Aplicación

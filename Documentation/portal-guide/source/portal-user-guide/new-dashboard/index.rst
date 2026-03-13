@@ -224,6 +224,8 @@ The configuration panel offers the following options:
 
 - **Show pinned items toggle**: Show or hide the pinned items toggle. When enabled, users can filter the widget to get only the pinned cases.
 
+- **Case Type**: Select which level of cases the widget displays. Available options: **Business Case** shows only top-level cases, **Sub Case** shows only sub-cases (children of a business case), **All** shows both business cases and sub-cases. By default, the widget queries by **Business Case**.
+
 **Filters panel**
 
 By clicking on the :guilabel:`Filter` button, you can configure the complex filter for

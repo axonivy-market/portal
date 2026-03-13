@@ -790,6 +790,11 @@ ch.ivy.addon.portalkit.ui.jsf:
     SearchForFilter: Nach Filter suchen
     ShareThisDashboard: Teilen Sie dieses Dashboard
     ShowPinnedToggle: '''Angeheftete Elemente'' umschalten anzeigen'
+    CaseQueryType:
+      info: Konfigurieren Sie, welche Vorgangstypen im Vorgangs-Widget angezeigt werden.
+      label: Vorgangstyp
+    dataSettings: Dateneinstellungen
+    displaySettings: Anzeigeeinstellungen
     StandardWidgets: Standard-Widgets
     StatisticWidget:
       EmptyChartDataMessage: Wir haben nicht genug Daten, um ein schönes Diagramm zu erstellen!
@@ -1637,6 +1642,10 @@ Labels:
       TUTORIAL:
         header: Tutorial
         question: Wo kann ich die Dokumentation oder Tutorials für das Axon Ivy Portal finden?
+    CaseQueryType:
+      ALL: Geschäftsvorgänge + Untervorgänge
+      BUSINESS_CASE: Geschäftsvorgänge (Standard)
+      SUB_CASE: Untervorgänge
     DashboardStandardCaseColumn:
       ACTIONS: Aktionen
       APPLICATION: Anmeldung

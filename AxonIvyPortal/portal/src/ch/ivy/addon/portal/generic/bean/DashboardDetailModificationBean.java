@@ -44,6 +44,7 @@ import org.primefaces.PrimeFaces;
 import org.primefaces.event.ColumnResizeEvent;
 
 import com.axonivy.portal.bo.ClientStatistic;
+import com.axonivy.portal.enums.CaseQueryType;
 import com.axonivy.portal.components.dto.UserDTO;
 import com.axonivy.portal.components.service.impl.ProcessService;
 import com.axonivy.portal.dto.News;
@@ -1120,6 +1121,10 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     }
 
     return false;
+  }
+
+  public List<CaseQueryType> getAllCaseQueryTypes() {
+    return Arrays.asList(CaseQueryType.values());
   }
 
   public void onResizeColumn(ColumnResizeEvent event) {

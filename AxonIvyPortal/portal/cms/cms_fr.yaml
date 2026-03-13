@@ -788,6 +788,11 @@ ch.ivy.addon.portalkit.ui.jsf:
     SearchForFilter: Rechercher un filtre
     ShareThisDashboard: Partager ce tableau de bord
     ShowPinnedToggle: Afficher le bouton de bascule 'Éléments épinglés'
+    CaseQueryType:
+      info: Configurez les types de cas affichés dans le widget de cas.
+      label: Type de cas
+    dataSettings: Paramètres des données
+    displaySettings: Paramètres d'affichage
     StandardWidgets: Widgets standard
     StatisticWidget:
       EmptyChartDataMessage: Nous n'avons pas assez de données pour créer un beau graphique !
@@ -1635,6 +1640,10 @@ Labels:
       TUTORIAL:
         header: Tutorial
         question: Où puis-je trouver la documentation ou les tutoriels pour le portail Axon Ivy ?
+    CaseQueryType:
+      ALL: Cas métier + Sous-cas
+      BUSINESS_CASE: Cas métier (Par défaut)
+      SUB_CASE: Sous-cas
     DashboardStandardCaseColumn:
       ACTIONS: Actions
       APPLICATION: Application
