@@ -177,11 +177,12 @@ var SidebarClickMode = {
       // Restore expanded state from cookie (user may have expanded before navigating)
       if ($.cookie('freya_menu_static')) {
         this._isExpanded = true;
+        $('.sidebar-toggle-label').show();
+        $('.js-sidebar-toggle-btn').attr('aria-expanded', 'true');
       } else {
         this._isExpanded = false;
         this.ensureCollapsed();
       }
-      this.bindClickOutside();
       this.bindSubmenuAutoExpand();
     }
   },
@@ -220,9 +221,13 @@ var SidebarClickMode = {
     if (this._isExpanded) {
       $layoutWrapper.addClass('layout-static');
       $.cookie('freya_menu_static', 'freya_menu_static', { path: '/' });
+      $('.sidebar-toggle-label').show();
+      $('.js-sidebar-toggle-btn').attr('aria-expanded', 'true');
     } else {
       $layoutWrapper.removeClass('layout-static');
       $.removeCookie('freya_menu_static', { path: '/' });
+      $('.sidebar-toggle-label').hide();
+      $('.js-sidebar-toggle-btn').attr('aria-expanded', 'false');
     }
     var self = this;
     setTimeout(function() {
@@ -242,6 +247,8 @@ var SidebarClickMode = {
     var $layoutWrapper = $('.js-layout-wrapper');
     $layoutWrapper.removeClass('layout-static');
     $.removeCookie('freya_menu_static', { path: '/' });
+    $('.sidebar-toggle-label').hide();
+    $('.js-sidebar-toggle-btn').attr('aria-expanded', 'false');
     var self = this;
     setTimeout(function() {
       try {
@@ -251,17 +258,6 @@ var SidebarClickMode = {
         self._toggling = false;
       }
     }, 250);
-  },
-
-  bindClickOutside: function() {
-    var self = this;
-    $(document).off('click.sidebarClickOutside').on('click.sidebarClickOutside', function (e) {
-      if (!self._isExpanded) return;
-      if (!$(e.target).closest('.menu-wrapper.js-left-sidebar').length
-          && !$(e.target).closest('.sidebar-toggle-btn').length) {
-        self.collapse();
-      }
-    });
   },
 
   bindSubmenuAutoExpand: function() {

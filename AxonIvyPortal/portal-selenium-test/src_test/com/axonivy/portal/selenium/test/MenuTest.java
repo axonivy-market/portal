@@ -20,7 +20,7 @@ import com.axonivy.portal.selenium.page.UserProfilePage;
 import ch.ivy.addon.portalkit.enums.DashboardDisplayType;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 
-@IvyWebTest
+@IvyWebTest(headless = false)
 public class MenuTest extends BaseTest {
 
   private static final String CASES_PAGE_TITLE = "Cases - Portal - Axon Ivy";
@@ -195,7 +195,31 @@ public class MenuTest extends BaseTest {
     mainMenuPage.openProcessList();
     mainMenuPage.isSidebarAlwaysExpand();
   }
-  
+
+  @Test
+  public void sidebarClickMode() {
+    updatePortalSetting(Variable.SIDEBAR_BEHAVIOUR.getKey(), "CLICK");
+    login(TestAccount.DEMO_USER);
+    MainMenuPage mainMenuPage = new MainMenuPage();
+
+    // Starts collapsed
+    mainMenuPage.isSidebarClickModeCollapsed();
+
+    // Toggle expands
+    mainMenuPage.clickSidebarToggleButton();
+    mainMenuPage.isSidebarClickModeExpanded();
+
+    // Toggle collapses
+    mainMenuPage.clickSidebarToggleButton();
+    mainMenuPage.isSidebarClickModeCollapsed();
+
+    // Expanded state persists across navigation
+    mainMenuPage.clickSidebarToggleButton();
+    mainMenuPage.isSidebarClickModeExpanded();
+    mainMenuPage.openProcessList();
+    mainMenuPage.isSidebarClickModeExpanded();
+  }
+
   private void setUserLanguage(NewDashboardPage newDashboardPage, int index) {
 	UserProfilePage userProfilePage = newDashboardPage.openMyProfilePage();
 	userProfilePage.selectLanguage(index);

@@ -189,4 +189,20 @@ public class MainMenuPage extends TemplatePage {
     $("#left-menu").$(".PROCESS").should(appear);
     $("#left-menu").$(".sidebar-pin").should(disappear);
   }
+
+  public void isSidebarClickModeCollapsed() {
+    $(".js-layout-wrapper").shouldHave(Condition.cssClass("sidebar-click-mode"));
+    $(".js-layout-wrapper").shouldNotHave(Condition.cssClass("layout-static"));
+    $(".sidebar-toggle-btn").should(appear);
+  }
+
+  public void isSidebarClickModeExpanded() {
+    $(".js-layout-wrapper").shouldHave(Condition.cssClass("sidebar-click-mode"));
+    $(".js-layout-wrapper").shouldHave(Condition.cssClass("layout-static"));
+    $(".sidebar-toggle-btn").should(appear);
+  }
+
+  public void clickSidebarToggleButton() {
+    $(".sidebar-toggle-btn a").click();
+  }
 }

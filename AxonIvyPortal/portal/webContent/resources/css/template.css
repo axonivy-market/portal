@@ -225,20 +225,34 @@ a.left-sidebar-menu-icon {
   z-index: 1;
 }
 
+/* Values mirror Freya's .layout-menu-light .layout-menu > li > a rules (layout-ivy-light.css):
+   normal: #1B1B1B; hover: var(--primary-color)
+   padding: 6px 15px; font-size: 20px; border-radius: 8px
+   and .layout-menu li > a > span: margin-left: 14px; font: 600 12px/14px */
 .sidebar-toggle-btn a {
   display: flex;
   align-items: center;
-  justify-content: center;
   width: 100%;
   height: 100%;
+  padding: 6px 15px;
   cursor: pointer;
-  font-size: 1.25rem;
-  color: var(--sidebar-item-text-color, #515C66);
+  font-size: 20px;
+  color: #1B1B1B;
   text-decoration: none;
+  border-radius: 8px;
+}
+
+.sidebar-toggle-label {
+  display: none;
+  margin-left: 14px;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 14px;
+  white-space: nowrap;
 }
 
 .sidebar-toggle-btn a:hover {
-  color: var(--sidebar-item-text-hover-color, #1976d2);
+  color: var(--primary-color);
 }
 
 /* END CLICK MODE */
