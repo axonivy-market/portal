@@ -32,10 +32,12 @@ CustomFields:
       Label: Department
       Description: Department
       Type: STRING
+      HasCmsValues: true
     Item:
       Label: Item
       Description: Item
       Type: STRING
+      HasCmsValues: true
     MonthYear:
       Label: MonthYear
       Description: MonthYear
@@ -48,6 +50,7 @@ CustomFields:
       Label: Decision
       Description: Decision
       Type: STRING
+      HasCmsValues: true
     ReworkNoLoops:
       Label: ReworkNoLoops
       Description: ReworkNoLoops
@@ -56,10 +59,12 @@ CustomFields:
       Label: ReworkCauses
       Description: ReworkCauses
       Type: STRING
+      HasCmsValues: true
     ReworkOccurred:
       Label: ReworkOccurred
       Description: ReworkOccurred
       Type: STRING
+      HasCmsValues: true
   
   Starts:
 #   MyStartCustomField:

@@ -21,6 +21,7 @@ import ch.ivy.addon.portalkit.util.LanguageUtils.NameResult;
 public class Dashboard extends AbstractConfiguration implements Serializable {
 
   private static final long serialVersionUID = 4580715578128184706L;
+  private String oldId;
   private String templateId;
   @JsonProperty(access = Access.WRITE_ONLY)
   private String title;
@@ -46,6 +47,7 @@ public class Dashboard extends AbstractConfiguration implements Serializable {
 
   public Dashboard(Dashboard dashboard) {
     setId(dashboard.getId());
+    setOldId(dashboard.getOldId());
     setIsPublic(dashboard.getIsPublic());
     setVersion(dashboard.getVersion());
     templateId = dashboard.getTemplateId();
@@ -63,6 +65,14 @@ public class Dashboard extends AbstractConfiguration implements Serializable {
   
   public String getTitle() {
     return LanguageUtils.getLocalizedName(titles, title);
+  }
+
+  public String getOldId() {
+    return oldId;
+  }
+
+  public void setOldId(String oldId) {
+    this.oldId = oldId;
   }
 
   public void setTitle(String title) {
