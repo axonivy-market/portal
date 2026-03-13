@@ -20,7 +20,7 @@ pipeline {
       -Divy.engine.download.url=https://developer.axonivy.com/permalink/dev/axonivy-engine.zip for dev master
     ''')
     booleanParam(name: 'deployToRepo', defaultValue: false, description: 'Should deploy artifacts to repo? If true, deployable modules are deployed to Nexus snapshots. If false, only local install.')
-    booleanParam(name: 'skipVerification', defaultValue: false, description: 'Skip the Verify Selenium Test and Verify Performance stages and proceed directly to deploy.')
+    booleanParam(name: 'skipVerification', defaultValue: false, description: 'Skip all verification stages and proceed directly to build and deploy.')
   }
 
   environment {
@@ -176,6 +176,54 @@ pipeline {
                 error("Documentation workflow run ID ${docRun.id} did not succeed. Conclusion was: ${docRun.conclusion}")
               } else {
                 echo "✅ Documentation workflow run ID ${docRun.id} was successful."
+              }
+            }
+          }
+        }
+      }
+    }
+
+    stage('Build Documentation') {
+      when {
+        expression { return canContinue }
+      }
+      steps {
+        script {
+          buildImage.inside('-v /var/tools/maven-cache:/home/build/') {
+            withCredentials([string(credentialsId: 'lmluat-gh-token', variable: 'GH_TOKEN')]) {
+              echo "Triggering documentation workflow on branch ${params.portalBranch}..."
+              def docDispatchTime = sh(script: "date -u +%Y-%m-%dT%H:%M:%SZ", returnStdout: true).trim()
+              sh(script: """gh api repos/axonivy-market/portal/actions/workflows/portal-documentation.yml/dispatches \
+                -X POST \
+                -f ref='${params.portalBranch}' \
+                -f 'inputs[deploySnapshot]=${params.deployToRepo}'""")
+              echo "Documentation workflow dispatched at ${docDispatchTime}. Polling for completion..."
+
+              sleep(time: 15, unit: 'SECONDS')
+              def docRunId = null
+              for (int i = 0; i < 180; i++) {
+                def runsJson = sh(
+                  script: "gh api 'repos/axonivy-market/portal/actions/workflows/portal-documentation.yml/runs?per_page=20&branch=${params.portalBranch}' --jq '.workflow_runs'",
+                  returnStdout: true
+                ).trim()
+                def runs = new groovy.json.JsonSlurper().parseText(runsJson)
+                def matchedRun = runs.find { run -> run.created_at > docDispatchTime && run.status == 'completed' }
+                if (matchedRun) {
+                  docRunId = matchedRun.id
+                  if (matchedRun.conclusion != 'success') {
+                    canContinue = false
+                    error("Documentation workflow run ID ${docRunId} did not succeed. Conclusion was: ${matchedRun.conclusion}")
+                  }
+                  echo "✅ Documentation workflow run ID ${docRunId} was successful."
+                  break
+                }
+                def inProgressRun = runs.find { run -> run.created_at > docDispatchTime }
+                echo inProgressRun ? "Documentation run ID ${inProgressRun.id} in progress (status: ${inProgressRun.status}). Waiting..." : "No documentation run found yet. Waiting..."
+                sleep(time: 30, unit: 'SECONDS')
+              }
+              if (!docRunId) {
+                canContinue = false
+                error("Documentation workflow did not complete within the timeout period.")
               }
             }
           }
