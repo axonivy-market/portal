@@ -104,7 +104,7 @@ pipeline {
       steps {
         script {
           buildImage.inside('-v /var/tools/maven-cache:/home/build/') {
-            withCredentials([string(credentialsId: 'github-token', variable: 'GH_TOKEN')]) {
+            withCredentials([string(credentialsId: 'lmluat-gh-token', variable: 'GH_TOKEN')]) {
               echo "Fetching screenshot builds from GitHub Actions..."
               def screenshotJson = sh(
                 script: "gh api 'repos/axonivy-market/portal/actions/workflows/portal-document-screenshot.yml/runs?per_page=10&branch=${params.portalBranch}' --jq '.workflow_runs'",
@@ -152,7 +152,7 @@ pipeline {
       steps {
         script {
           buildImage.inside('-v /var/tools/maven-cache:/home/build/') {
-            withCredentials([string(credentialsId: 'github-token', variable: 'GH_TOKEN')]) {
+            withCredentials([string(credentialsId: 'lmluat-gh-token', variable: 'GH_TOKEN')]) {
               echo "Fetching documentation builds from GitHub Actions..."
               def docJson = sh(
                 script: "gh api 'repos/axonivy-market/portal/actions/workflows/portal-documentation.yml/runs?per_page=10&branch=${params.portalBranch}' --jq '.workflow_runs'",
