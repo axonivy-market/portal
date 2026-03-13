@@ -1,5 +1,5 @@
 name: Document Screenshot
-run-name: 🖼️ Document Screenshot 
+run-name: 🖼️ Document Screenshot test with [${{ inputs.testPatternToRun }}]
 permissions:
   actions: write
   checks: write
