@@ -752,6 +752,9 @@ ch.ivy.addon.portalkit.ui.jsf:
       DoNotSupportMobile: ダッシュボードの設定は、モバイルデバイスではサポートされていません。
       EditPrivateDashboards: 個人用ダッシュボードを編集する
       EditPublicDashboards: 公開用ダッシュボードを編集する
+      ExportReferencedDialogHeader: ダッシュボードが他のダッシュボードを参照しています
+      ExportReferencedDialogMessage: '以下のダッシュボードはナビゲーションウィジェットから参照されています。ウィジェットが正しく機能するように、それらもエクスポートおよびインポートしてください:'
+      ExportReferencedDialogProceed: このままエクスポート
       ExportDashboard: ダッシュボードをエクスポート
       PrivateDashboard: 個人用ダッシュボード
       PrivateDashboardConfiguration: 個人用ダッシュボードの設定
@@ -1544,6 +1547,7 @@ Dialogs:
               FileInfomation: ファイル情報
               ImportPrivate: 個人用ダッシュボードをインポートする
               ImportPublic: 公開用ダッシュボードをインポートする
+              NavigationWidgetMissingTarget: 'ナビゲーションウィジェット"{0}"は、インポートされておらず、このポータルに存在しないダッシュボードを参照しています。ウィジェットが正しく機能しない可能性があります。'
               chooseAJsonFile: JSON ファイルを選択してください
             DashboardSharing:
               ShareDashboard: ダッシュボードを共有

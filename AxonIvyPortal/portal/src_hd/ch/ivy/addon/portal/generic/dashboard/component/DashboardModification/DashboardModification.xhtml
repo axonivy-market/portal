@@ -66,12 +66,16 @@
                 styleClass="dashboard-configuration-action-menu-icon" oncomplete="resetPortalLeftMenuState()"
                 value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/configuration')}" rendered="true"
                 title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/configuration')}" />
-              <p:menuitem id="export-dashboard" styleClass="dashboard-configuration-action-menu-icon"
-                title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/ExportDashboard')}"
-                icon="si si-download-bottom"
-                value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/ExportDashboard')}"
-                rendered="#{dashboardModificationBean.hasExportDashboardPermission()}"
-                onclick="PF('exportDashboardBtn-#{dashboard.id}').jq.click()"/>
+              <p:menuitem id="export-dashboard"
+                  styleClass="dashboard-configuration-action-menu-icon"
+                  title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/ExportDashboard')}"
+                  icon="si si-download-bottom"
+                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/ExportDashboard')}"
+                  rendered="#{dashboardModificationBean.hasExportDashboardPermission()}"
+                  actionListener="#{dashboardModificationBean.prepareExportInfo(dashboard)}"
+                  process="@this"
+                  update="dashboard-modification-component:export-referenced-dialog"
+                  oncomplete="if (args &amp;&amp; args.hasReferencedDashboards) { PF('export-referenced-dialog').show(); } else { PF('exportDashboardSubmit').jq.click(); }" />
               <p:menuitem id="share-dashboard" rendered="#{dashboardModificationBean.isShowShareButtonOnConfig(isPublicDashboard)}"
                 styleClass="rounded-button ui-button-outlined" actionListener="#{dashboardModificationBean.initShareDashboardLink(dashboard)}"
                 oncomplete="PF('share-dashboard-dialog').show()"
@@ -86,16 +90,7 @@
             </p:menu>
           </h:panelGroup>
         </div>
-          <h:form style="display:none"
-            rendered="#{dashboardModificationBean.hasExportDashboardPermission()}">
-            <p:commandButton id="export-dashboard"
-              ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/ExportDashboard')}"
-              widgetVar="exportDashboardBtn-#{dashboard.id}"
-              style="display:none"
-              update="@this" immediate="true" ajax="false">
-              <p:fileDownload value="#{dashboardModificationBean.exportToJsonFile(dashboard)}" />
-            </p:commandButton>
-          </h:form>
+
       </p:column>
       <p:column styleClass="settings-table-reorder w-3rem">
         <h:panelGroup styleClass=" ui-button-outlined action-column-icon-button u-mar-right-5">
@@ -104,6 +99,46 @@
       </p:column>
     </p:dataTable>
   </h:panelGroup>
+
+  <h:form id="export-dashboard-form" style="display:none"
+      rendered="#{dashboardModificationBean.hasExportDashboardPermission()}">
+      <p:commandButton id="export-dashboard-submit"
+        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/ExportDashboard')}"
+        widgetVar="exportDashboardSubmit"
+        style="display:none"
+        update="@this" immediate="true" ajax="false">
+        <p:fileDownload value="#{dashboardModificationBean.exportStoredDashboard()}" />
+      </p:commandButton>
+    </h:form>
+
+  <ui:decorate template="/layouts/decorator/portal-dialog-with-icon.xhtml">
+    <ui:param name="id" value="export-referenced-dialog" />
+    <ui:param name="widgetVar" value="export-referenced-dialog" />
+    <ui:param name="appendTo" value="@(body)" />
+    <ui:param name="iconClass" value="si si-road-sign-warning" />
+    <ui:param name="iconStyleClass" value="portal-dialog-warning-icon portal-dialog-icon" />
+    <ui:param name="headerText" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/ExportReferencedDialogHeader')}" />
+    <ui:define name="dialogContentSection">
+      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/ExportReferencedDialogMessage')}" />
+      <ul style="margin: 0.75rem 0 0; padding-left: 1.5rem;">
+        <ui:repeat value="#{dashboardModificationBean.referencedDashboardTitles}" var="title">
+          <li><h:outputText value="#{title}" /></li>
+        </ui:repeat>
+      </ul>
+    </ui:define>
+    <ui:define name="dialogFooter">
+      <div class="flex flex-column">
+        <p:commandButton
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/ExportReferencedDialogProceed')}"
+          onclick="PF('export-referenced-dialog').hide(); PF('exportDashboardSubmit').jq.click(); return false;"
+          styleClass="w-full" />
+        <p:link href="#"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+          onclick="PF('export-referenced-dialog').hide();"
+          styleClass="ui-button-flat mt-3 mx-auto w-max flex" />
+      </div>
+    </ui:define>
+  </ui:decorate>
 
   <ic:ch.ivy.addon.portal.generic.dashboard.component.DashboardDetails id="configuration-dashboard-detail-component"
     detailDialogId="configuration-dashboard-detail-dialog"
