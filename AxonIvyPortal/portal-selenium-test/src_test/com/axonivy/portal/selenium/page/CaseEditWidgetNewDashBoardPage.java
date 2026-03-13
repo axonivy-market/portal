@@ -421,8 +421,21 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
 
   public void clickOnExpandModeCheckbox() {
     getExpandModeCheckbox().shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-  } 
-  
+  }
+
+  public void selectCaseQueryType(String label) {
+    SelenideElement configPanel = getWidgetConfigurationPanel();
+    configPanel.$("div[id$='case-query-type'] .ui-selectonemenu-trigger")
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $$("div[id$='case-query-type_panel'] li").filter(text(label)).first()
+        .shouldBe(getClickableCondition()).click();
+  }
+
+  public String getCaseQueryTypeLabel() {
+    SelenideElement configPanel = getWidgetConfigurationPanel();
+    return configPanel.$("div[id$='case-query-type'] .ui-selectonemenu-label").getText();
+  }
+
   public void resizeColumn() {
     ElementsCollection elements = $("[id=\"task-task_1:task-component:dashboard-tasks:dashboard-tasks-columns:1\"]")
     .$$(".ui-column-resizer.ui-draggable.ui-draggable-handle");

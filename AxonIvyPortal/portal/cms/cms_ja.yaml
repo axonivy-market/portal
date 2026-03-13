@@ -742,6 +742,7 @@ ch.ivy.addon.portalkit.ui.jsf:
   dashboard:
     CloneWidget: ウィジェット複製
     CustomWidgets: カスタムウィジェット
+    dataSettings: データ設定
     DashboardConfiguration:
       CreateFromScratch: 最初から作成
       CreateFromScratchDescription: 最初から独自のダッシュボードを作成する
@@ -751,6 +752,9 @@ ch.ivy.addon.portalkit.ui.jsf:
       DoNotSupportMobile: ダッシュボードの設定は、モバイルデバイスではサポートされていません。
       EditPrivateDashboards: 個人用ダッシュボードを編集する
       EditPublicDashboards: 公開用ダッシュボードを編集する
+      ExportReferencedDialogHeader: ダッシュボードが他のダッシュボードを参照しています
+      ExportReferencedDialogMessage: '以下のダッシュボードはナビゲーションウィジェットから参照されています。ウィジェットが正しく機能するように、それらもエクスポートおよびインポートしてください:'
+      ExportReferencedDialogProceed: このままエクスポート
       ExportDashboard: ダッシュボードをエクスポート
       PrivateDashboard: 個人用ダッシュボード
       PrivateDashboardConfiguration: 個人用ダッシュボードの設定
@@ -761,6 +765,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       SelectAction: アクションを選択してください
       SomeThingWentWrong: 問題が発生しました
       Title: ダッシュボードの設定
+    displaySettings: 表示設定
     DrillDownWidget:
       caseDrillDown: 「{0}」用ドリルダウンケースウィジェット
       taskDrillDown: 「{0}」用ドリルダウンタスクウィジェット
@@ -782,6 +787,9 @@ ch.ivy.addon.portalkit.ui.jsf:
     QuickSearch: クイック検索
     QuickSearchInfo: ウィジェットの列管理で、クイック検索の範囲をカスタマイズできます。「含む」に基づいて検索しますが、多数の列を追加する場合はパフォーマンスに注意してください。
     QuickSearchScope: 検索範囲：{0}
+    CaseQueryType:
+      info: ケースウィジェットに表示するケースタイプを設定します。デフォルトはビジネスケースのみ、技術サブケースは技術サブケースのみ、すべてはビジネスケースと技術サブケースの両方を表示します。
+      label: ケースタイプ
     RestoreDefaultDashboardMessage: 続行すると、自分で作成したすべてのウィジェットが失われます。<span class="dashboard-template-name-message">{0}</span> の標準設定が適用されます。
     SaveNewWidgetFilterHeader: 新しいウィジェットフィルターを保存
     SavedFilterHeader: 保存されたフィルター
@@ -793,6 +801,12 @@ ch.ivy.addon.portalkit.ui.jsf:
       EmptyChartDataMessage: 適切なチャートを作成するにはデータが足りません！
       failToRenderChartMessage: チャートを描画中にエラーが発生しました。設定を変更して再試行してください。
       firstConfigChartMessage: チャートはまだ利用できません。チャートを生成するには設定を構成してください。
+      TooltipAverageKpiLabel: '{0}の平均'
+      TooltipMaxKpiLabel: '{0}の最大値'
+      TooltipMinKpiLabel: '{0}の最小値'
+      TooltipSumKpiLabel: '{0}の合計'
+      TooltipTotalCaseLabel: '合計ケース: {0}'
+      TooltipTotalTaskLabel: '合計タスク: {0}'
     WelcomeWidgetIntroduction: このウィジェットは、ダッシュボードにウェルカムテキストと画像を表示します。
     WelcomeWidgetNotFoundMessage: ウィジェットの画像が見つかりません。画像を再設定してください。
     WidgetFilterName: ウィジェットフィルター名
@@ -959,6 +973,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     RenamingDocumentNote: '{0}はファイル{1}の名前を{2}に変更しました'
     RenamingDocumentSuccess: 名前変更に成功しました。
     RenamingFailed: ドキュメントの名前変更中にエラーが発生しました。
+    confirmation: 確認
+    confirmationUploadDocument: 暗号化されたファイルのスクリプトスキャンは利用できません。プレビューを続行しますか？
     deleteDocumentNote: '{0} が {1} を削除しました'
     deleteSuceed: ファイルの削除に成功しました
     download: ダウンロード
@@ -967,6 +983,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     fileCouldNotParse: ファイルを解析できませんでした
     fileEmptyMessage: ファイルは空です
     name: ファイル名
+    previewErrorMessage: このファイルのプレビューを表示できません
     size: ファイルサイズ
     type: タイプ
     upload: 新しいファイルをアップロード
@@ -974,6 +991,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     uploadFailed: このファイルのアップロード中にエラーが発生しました。管理者にお問い合わせください。
     uploadFileExists: ファイル： {0} は既に存在します
     uploadSucceed: ファイルのアップロードに成功しました
+    uploadSucceedWithWarning: ファイルは正常にアップロードされましたが、ファイルが暗号化されているかパスワードで保護されているため、スクリプトのスキャンを完了できませんでした。
   emailSetting:
     dailySummary: 毎日の要約を受信
     eMail: メール
@@ -1529,6 +1547,7 @@ Dialogs:
               FileInfomation: ファイル情報
               ImportPrivate: 個人用ダッシュボードをインポートする
               ImportPublic: 公開用ダッシュボードをインポートする
+              NavigationWidgetMissingTarget: 'ナビゲーションウィジェット"{0}"は、インポートされておらず、このポータルに存在しないダッシュボードを参照しています。ウィジェットが正しく機能しない可能性があります。'
               chooseAJsonFile: JSON ファイルを選択してください
             DashboardSharing:
               ShareDashboard: ダッシュボードを共有
@@ -1721,6 +1740,13 @@ Enums:
                 name: より小さい
               LESSOREQUAL:
                 name: 以下
+          CaseQueryType:
+            ALL:
+              name: ビジネスケース + サブケース
+            BUSINESS_CASE:
+              name: ビジネスケース（デフォルト）
+            SUB_CASE:
+              name: 技術サブケース
 Labels:
   AI:
     Error:

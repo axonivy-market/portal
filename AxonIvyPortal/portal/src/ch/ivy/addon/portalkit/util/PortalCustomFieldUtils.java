@@ -3,7 +3,9 @@ package ch.ivy.addon.portalkit.util;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivyteam.ivy.workflow.custom.field.CustomFieldType;
@@ -72,6 +74,43 @@ public class PortalCustomFieldUtils {
 
     return meta.values().labels().stream().sorted(Comparator.comparing(ValueLabel<Object>::label))
         .map(vl -> vl.value().toString()).toList();
+  }
+
+  public static Map<String, String> getLocalizedValueLabelMapOnCaseField(String columnField) {
+    ICustomFieldMeta meta =
+        ICustomFieldMeta.cases().stream().filter(m -> m.name().equals(columnField)).findAny().orElse(null);
+    return getLocalizedValueLabelMapByField(meta);
+  }
+
+  public static Map<String, String> getLocalizedValueLabelMapOnTaskField(String columnField) {
+    ICustomFieldMeta meta =
+        ICustomFieldMeta.tasks().stream().filter(m -> m.name().equals(columnField)).findAny().orElse(null);
+    return getLocalizedValueLabelMapByField(meta);
+  }
+
+  private static Map<String, String> getLocalizedValueLabelMapByField(ICustomFieldMeta meta) {
+    if (meta == null || (meta.type() != CustomFieldType.STRING && meta.type() != CustomFieldType.NUMBER)) {
+      return Map.of();
+    }
+
+    return meta.values().labels().stream()
+        .collect(Collectors.toMap(vl -> vl.value().toString(), ValueLabel::label));
+  }
+
+  public static String getLocalizedLabelOnCaseField(String columnField) {
+    return ICustomFieldMeta.cases().stream()
+        .filter(m -> m.name().equals(columnField))
+        .findAny()
+        .map(ICustomFieldMeta::label)
+        .orElse(columnField);
+  }
+
+  public static String getLocalizedLabelOnTaskField(String columnField) {
+    return ICustomFieldMeta.tasks().stream()
+        .filter(m -> m.name().equals(columnField))
+        .findAny()
+        .map(ICustomFieldMeta::label)
+        .orElse(columnField);
   }
 
   public static String getDisplayValueByField(ICustomFields customFields, String field) {
