@@ -112,7 +112,6 @@ jobs:
           cp AxonIvyPortal/portal-selenium-test/target/*.zip $DEPLOYMENT
 
       - name: Run test
-        if: false
         id: run-test        
         run: |
           mvn clean install -f AxonIvyPortal/portal-selenium-test/document_screenshot_pom.xml -Divy.engine.download.url=${{ inputs.engineDownloadURL }} -Dtest=${{ inputs.testPatternToRun }} -DbrowserType=FIREFOX -DtrimStackTrace=false -Divy.engine.directory=$ENGINE_DIR -Divy.deploy.timeout.seconds=60 -Divy.engine.start.timeout.seconds=150
