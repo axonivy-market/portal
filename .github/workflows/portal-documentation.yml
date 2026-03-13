@@ -81,6 +81,7 @@ jobs:
 
       - name: Download artifacts from screenshot workflow
         if: steps.get_screenshots_head_branch.outcome != 'success' && github.ref_name != 'master'
+        continue-on-error: true
         uses: dawidd6/action-download-artifact@v11
         with:
           workflow: portal-document-screenshot-test.yml
@@ -90,6 +91,7 @@ jobs:
 
       - name: install zip
         uses: montudor/action-zip@v1
+        if: hashFiles('Documentation/portal-guide/source/screenshots/*.zip') != ''
         with:
           args: unzip -qq Documentation/portal-guide/source/screenshots/*.zip -d Documentation/portal-guide/source/screenshots/
 
