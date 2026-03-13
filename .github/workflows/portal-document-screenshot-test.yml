@@ -26,6 +26,10 @@ on:
         type: string
         default: 'https://developer.axonivy.com/permalink/nightly/axonivy-engine.zip'
         required: true
+      skipTests:
+        description: 'Skip all test-related steps for a quick green build'
+        type: boolean
+        default: false
 
 env:
   ENGINE_DIR: $GITHUB_WORKSPACE/ivy/engine/nightly
@@ -113,13 +117,14 @@ jobs:
           cp AxonIvyPortal/portal-selenium-test/target/*.zip $DEPLOYMENT
 
       - name: Run test
+        if: ${{ !inputs.skipTests }}
         id: run-test        
         run: |
           mvn clean install -f AxonIvyPortal/portal-selenium-test/document_screenshot_pom.xml -Divy.engine.download.url=${{ inputs.engineDownloadURL }} -Dtest=${{ inputs.testPatternToRun }} -DbrowserType=FIREFOX -DtrimStackTrace=false -Divy.engine.directory=$ENGINE_DIR -Divy.deploy.timeout.seconds=60 -Divy.engine.start.timeout.seconds=150
         continue-on-error: true
 
       - name: Log out on failures
-        if: job.steps.run-test.status == failure()
+        if: ${{ !inputs.skipTests && job.steps.run-test.status == 'failure' }}
         run: |
           cat AxonIvyPortal/portal-selenium-test/target/testEngineOut.log 
           
@@ -132,6 +137,7 @@ jobs:
             AxonIvyPortal/portal-selenium-test/target/*.zip
       
       - name: Archive test reports
+        if: ${{ !inputs.skipTests }}
         uses: actions/upload-artifact@v4
         with:
           name: screenshot-test-reports
@@ -140,6 +146,7 @@ jobs:
             AxonIvyPortal/portal-selenium-test/target/surefire-reports/*
       
       - name: Report
+        if: ${{ !inputs.skipTests }}
         uses: dorny/test-reporter@v2.1.1
         with:
           artifact: screenshot-test-reports
