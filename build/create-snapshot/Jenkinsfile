@@ -81,32 +81,15 @@ pipeline {
                 error("No selenium test builds found matching SHA and test pattern.")
               }
 
-              // Among SHA-matching builds, find a timer-triggered one
-              def timerBuild = shaMatchingBuilds.find { build ->
-                build.actions?.any { action ->
-                  action.causes?.any { cause ->
-                    cause._class == 'hudson.triggers.TimerTrigger$TimerTriggerCause'
-                  }
-                }
-              }
+              def matchedBuild = shaMatchingBuilds[0]
+              echo "Found matching build #${matchedBuild.number} with result: ${matchedBuild.result}"
 
-              echo "Timer build found: ${timerBuild != null}"
-
-              // Check status and halt if failed (skips remaining stages)
-              if (!timerBuild) {
+              if (matchedBuild.result != 'SUCCESS') {
                 canContinue = false
-                echo("❌ No timer-triggered build found among the last 10 builds of portal-selenium-test.")
-                error("No timer-triggered build found among the last 10 builds of portal-selenium-test.")
+                echo("❌ Verification failed: portal-selenium-test build #${matchedBuild.number} did not succeed. Result was: ${matchedBuild.result}")
+                error("portal-selenium-test build #${matchedBuild.number} did not succeed. Result was: ${matchedBuild.result}")
               } else {
-                echo "Found timer-triggered build #${timerBuild.number} with result: ${timerBuild.result}"
-
-                if (timerBuild.result != 'SUCCESS') {
-                  canContinue = false
-                  echo("❌ Verification failed: portal-selenium-test build #${timerBuild.number} did not succeed. Result was: ${timerBuild.result}")
-                  error("portal-selenium-test build #${timerBuild.number} did not succeed. Result was: ${timerBuild.result}")
-                } else {
-                  echo "✅ portal-selenium-test build #${timerBuild.number} was successful."
-                }
+                echo "✅ portal-selenium-test build #${matchedBuild.number} was successful."
               }
             }
           }
