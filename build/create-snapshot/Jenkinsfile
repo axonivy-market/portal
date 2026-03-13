@@ -70,9 +70,9 @@ pipeline {
               def buildsData = new groovy.json.JsonSlurper().parseText(buildsJson)
 
               def shaMatchingBuilds = buildsData.builds.findAll { build ->
-                def buildSha = build.actions?.find { it._class == 'hudson.plugins.git.util.BuildData' }?.lastBuiltRevision?.SHA1
+                def shaMatches = build.actions?.any { it._class == 'hudson.plugins.git.util.BuildData' && it.lastBuiltRevision?.SHA1 == latestSha }
                 def buildPattern = build.actions?.find { it._class == 'hudson.model.ParametersAction' }?.parameters?.find { it.name == 'testPatternToRun' }?.value
-                buildSha == latestSha && buildPattern == seleniumTestPattern
+                shaMatches && buildPattern == seleniumTestPattern
               }
 
               if (!shaMatchingBuilds) {
