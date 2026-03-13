@@ -1,7 +1,5 @@
 def canContinue = true
 def latestSha = ''
-def portalBranch = 'feature/IVYPORTAL-20071-Create-a-portal-snapshot-periodically'
-def portalBranchEncoded = portalBranch.replace('/', '%2F')
 def seleniumTestPattern = 'com.axonivy.portal.selenium.test.**.*Test'
 def screenshotTestPattern = 'com.axonivy.portal.selenium.document.screenshot.*Test'
 def buildImage
@@ -17,6 +15,7 @@ pipeline {
   }
 
   parameters {
+    string(name: 'portalBranch', defaultValue: 'master', description: 'Which branch of portal to test and build snapshot from?')
     string(name: 'engineDownloadURL', defaultValue: '-Divy.engine.download.url=https://developer.axonivy.com/permalink/nightly/axonivy-engine.zip', description: '''Where to download engine? e.g.
       -Divy.engine.download.url=https://developer.axonivy.com/permalink/nightly/axonivy-engine.zip for nightly master
       -Divy.engine.download.url=https://developer.axonivy.com/permalink/dev/axonivy-engine.zip for dev master
@@ -123,7 +122,7 @@ pipeline {
             withCredentials([string(credentialsId: 'github-token', variable: 'GH_TOKEN')]) {
               echo "Fetching screenshot builds from GitHub Actions..."
               def screenshotJson = sh(
-                script: "gh api repos/axonivy-market/portal/actions/workflows/portal-document-screenshot.yml/runs?per_page=10 --jq '.workflow_runs'",
+                script: "gh api 'repos/axonivy-market/portal/actions/workflows/portal-document-screenshot.yml/runs?per_page=10&branch=${params.portalBranch}' --jq '.workflow_runs'",
                 returnStdout: true
               ).trim()
 
@@ -171,7 +170,7 @@ pipeline {
             withCredentials([string(credentialsId: 'github-token', variable: 'GH_TOKEN')]) {
               echo "Fetching documentation builds from GitHub Actions..."
               def docJson = sh(
-                script: "gh api repos/axonivy-market/portal/actions/workflows/portal-documentation.yml/runs?per_page=10 --jq '.workflow_runs'",
+                script: "gh api 'repos/axonivy-market/portal/actions/workflows/portal-documentation.yml/runs?per_page=10&branch=${params.portalBranch}' --jq '.workflow_runs'",
                 returnStdout: true
               ).trim()
 
