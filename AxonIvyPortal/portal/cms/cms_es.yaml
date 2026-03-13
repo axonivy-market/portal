@@ -279,7 +279,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       hideUploadDocumentForDoneCaseNote: Cambiar a "true" para impedir el upload de documentos después de que un caso esté terminado.
       hideYear: activar para ocultar el año, de lo contrario se mostrará.
       imageUploadSizeLimit: Establece el límite de tamaño para la carga de imágenes en megabytes (MB). El valor predeterminado es 6 MB.
-      keepSidebarExpanded: Mantener siempre expandida la barra lateral (menú izquierdo)
+      sidebarBehaviour: Controla cómo se abre la barra lateral. Hover se expande al pasar el ratón, Clic usa un botón de alternancia, Fijar la mantiene siempre expandida.
       loggedInUserFormat: Opción para definir el formato visible del usuario conectado
       refreshTaskListIntervalNote: Actualización de la lista de tareas en segundos
       showAvatar: Para activar/desactivar la visualización de los avatares de los usuarios/roles.
@@ -1905,6 +1905,10 @@ Labels:
     SearchScopeTaskField:
       DESCRIPTION: Descripción
       NAME: Nombre
+    SidebarBehaviour:
+      CLICK: Clic
+      HOVER: Hover
+      STICK: Fijar
     ThemeMode:
       DARK: Oscuro
       LIGHT: Luz

@@ -15,11 +15,15 @@
 
     <ui:define name="footer">
       <script type="text/javascript">
-        $(function() {
-           var simpleScreen = new ProcessListScreenHandler();
-           var responsiveToolkit = ResponsiveToolkit(simpleScreen);
-           Portal.init(responsiveToolkit);
-        });
+          $(function() {
+          var simpleScreen = new ProcessListScreenHandler();
+          var responsiveToolkit = ResponsiveToolkit(simpleScreen);
+          Portal.init(responsiveToolkit);
+          Portal.updateLayoutContent();
+          Portal.updateBreadcrumb();
+          MainMenu.highlightMenuItem();
+          SidebarClickMode.init($('.js-layout-wrapper').data('sidebar-behaviour'));
+          });
       </script>
     </ui:define>
   </ui:composition>

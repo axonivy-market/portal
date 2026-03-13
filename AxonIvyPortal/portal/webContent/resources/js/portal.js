@@ -117,6 +117,11 @@ var Portal = {
         var breadCrumbMarginLeft = 0;
         if (layoutWrapper.hasClass('layout-static')) {
           breadCrumbMarginLeft = leftSidebarMenu.outerWidth(true) - leftTopbar.outerWidth(true) - parseInt(rightTopbar.css("padding-left")) + "px";
+        } else if (layoutWrapper.hasClass('sidebar-click-mode')) {
+          // In CLICK mode collapsed state, .menu-wrapper DOM width is always the full expanded width (230px)
+          // because the icon rail is faked via max-width on the inner .layout-menu.
+          // Read the actual left offset of .layout-main instead, which Freya sets to 50px via CSS.
+          breadCrumbMarginLeft = ($('.js-layout-main').css('padding-left') || '50px');
         } else {
           if ($("a.menu-button").is(":visible")) {
             breadCrumbMarginLeft = 0;
@@ -158,6 +163,118 @@ var Portal = {
   },
 
 }
+
+var SidebarClickMode = {
+  mode: 'HOVER',
+  _isExpanded: false,
+  _toggling: false,
+
+  init: function(sidebarBehaviour) {
+    this.mode = sidebarBehaviour || 'HOVER';
+    if (this.mode === 'CLICK') {
+      this._toggling = false;
+      this.observeAndBlockHover();
+      // Restore expanded state from cookie (user may have expanded before navigating)
+      if ($.cookie('freya_menu_static')) {
+        this._isExpanded = true;
+      } else {
+        this._isExpanded = false;
+        this.ensureCollapsed();
+      }
+      this.bindClickOutside();
+      this.bindSubmenuAutoExpand();
+    }
+  },
+
+  // Block Freya's cookie-restore expansion via MutationObserver on layout-wrapper.
+  // Hover is already blocked because we add layout-sidebar-static to the wrapper:
+  // Freya's own guard (line 132 in layout.js): if(!wrapper.hasClass('layout-sidebar-static')) skips hover.
+  observeAndBlockHover: function() {
+    var self = this;
+    var wrapper = document.querySelector('.js-layout-wrapper');
+    if (!wrapper) return;
+    new MutationObserver(function () {
+      if (self._toggling) return;
+      if (wrapper.classList.contains('layout-static') && !self._isExpanded) {
+        wrapper.classList.remove('layout-static', 'layout-static-restore');
+      }
+    }).observe(wrapper, { attributes: true, attributeFilter: ['class'] });
+  },
+
+  ensureCollapsed: function() {
+    var wrapper = document.querySelector('.js-layout-wrapper');
+    if (wrapper) {
+      wrapper.classList.remove('layout-static', 'layout-static-restore');
+    }
+    var menuWrapper = document.querySelector('.menu-wrapper.js-left-sidebar');
+    if (menuWrapper) {
+      menuWrapper.classList.remove('layout-sidebar-active');
+    }
+  },
+
+  toggle: function() {
+    if (this.mode !== 'CLICK') return;
+    this._toggling = true;
+    this._isExpanded = !this._isExpanded;
+    var $layoutWrapper = $('.js-layout-wrapper');
+    if (this._isExpanded) {
+      $layoutWrapper.addClass('layout-static');
+      $.cookie('freya_menu_static', 'freya_menu_static', { path: '/' });
+    } else {
+      $layoutWrapper.removeClass('layout-static');
+      $.removeCookie('freya_menu_static', { path: '/' });
+    }
+    var self = this;
+    setTimeout(function() {
+      try {
+        Portal.updateBreadcrumb();
+        Portal.updateLayoutContent();
+      } finally {
+        self._toggling = false;
+      }
+    }, 250);
+  },
+
+  collapse: function() {
+    if (this.mode !== 'CLICK' || !this._isExpanded) return;
+    this._toggling = true;
+    this._isExpanded = false;
+    var $layoutWrapper = $('.js-layout-wrapper');
+    $layoutWrapper.removeClass('layout-static');
+    $.removeCookie('freya_menu_static', { path: '/' });
+    var self = this;
+    setTimeout(function() {
+      try {
+        Portal.updateBreadcrumb();
+        Portal.updateLayoutContent();
+      } finally {
+        self._toggling = false;
+      }
+    }, 250);
+  },
+
+  bindClickOutside: function() {
+    var self = this;
+    $(document).off('click.sidebarClickOutside').on('click.sidebarClickOutside', function (e) {
+      if (!self._isExpanded) return;
+      if (!$(e.target).closest('.menu-wrapper.js-left-sidebar').length
+          && !$(e.target).closest('.sidebar-toggle-btn').length) {
+        self.collapse();
+      }
+    });
+  },
+
+  bindSubmenuAutoExpand: function() {
+    var self = this;
+    $(document).off('click.sidebarSubmenu').on('click.sidebarSubmenu', '.layout-menu li > a', function () {
+      if (self.mode !== 'CLICK' || self._isExpanded) return;
+      var $li = $(this).closest('li');
+      if ($li.find('> ul').length > 0) {
+        self.toggle();
+      }
+    });
+  }
+};
 
 function searchIconByName(element) {
   var keyword = element.value.toLowerCase();
@@ -543,8 +660,12 @@ $(document).ready(function () {
 
   function toggleLeftMenu(key) {
     if (key === 'Digit7') {
-      addFocusClass($(pinButton));
-      $(pinButton).trigger('click');
+      if (SidebarClickMode.mode === 'CLICK') {
+        SidebarClickMode.toggle();
+      } else {
+        addFocusClass($(pinButton));
+        $(pinButton).trigger('click');
+      }
       return true;
     }
     removeFocusClass($(pinButton));
