@@ -135,11 +135,11 @@
       </h:panelGroup>
 
       <!-- Case Query Type Selector (Case Widget only) -->
-      <h:panelGroup rendered="#{widget.type.name() == 'CASE'}">
+      <h:panelGroup rendered="#{widget.type eq 'CASE'}">
         <h4 class="widget-configuration-section-header separator-top">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/dataSettings')}</h4>
       </h:panelGroup>
       <h:panelGroup id="case-query-type-group"
-        rendered="#{widget.type.name() == 'CASE'}"
+        rendered="#{widget.type eq 'CASE'}"
         styleClass="widget-configuration-group-item ui-fluid flex">
         <div class="case-type-label-item">
           <p:outputLabel for="case-query-type" styleClass="u-mar-right-5"
