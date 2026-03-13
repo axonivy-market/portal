@@ -61,7 +61,6 @@ pipeline {
 
               if (!buildsJson) {
                 canContinue = false
-                echo("❌ Failed to fetch selenium test builds.")
                 error("Failed to fetch selenium test builds.")
               }
 
@@ -76,8 +75,7 @@ pipeline {
 
               if (!shaMatchingBuilds) {
                 canContinue = false
-                echo("❌ No selenium test builds found matching SHA ${latestSha} and test pattern '${seleniumTestPattern}'.")
-                error("No selenium test builds found matching SHA and test pattern.")
+                error("No selenium test builds found matching SHA ${latestSha} and test pattern '${seleniumTestPattern}'.")
               }
 
               def matchedBuild = shaMatchingBuilds[0]
@@ -85,7 +83,6 @@ pipeline {
 
               if (matchedBuild.result != 'SUCCESS') {
                 canContinue = false
-                echo("❌ Verification failed: portal-selenium-test build #${matchedBuild.number} did not succeed. Result was: ${matchedBuild.result}")
                 error("portal-selenium-test build #${matchedBuild.number} did not succeed. Result was: ${matchedBuild.result}")
               } else {
                 echo "✅ portal-selenium-test build #${matchedBuild.number} was successful."
@@ -106,13 +103,12 @@ pipeline {
             withCredentials([string(credentialsId: 'lmluat-gh-token', variable: 'GH_TOKEN')]) {
               echo "Fetching screenshot builds from GitHub Actions..."
               def screenshotJson = sh(
-                script: "gh api 'repos/axonivy-market/portal/actions/workflows/portal-document-screenshot-test.yml/runs?per_page=50&branch=${params.portalBranch}' --jq '.workflow_runs'",
+                script: "gh api 'repos/axonivy-market/portal/actions/workflows/portal-document-screenshot-test.yml/runs?per_page=10&branch=${params.portalBranch}' --jq '.workflow_runs'",
                 returnStdout: true
               ).trim()
 
               if (!screenshotJson) {
                 canContinue = false
-                echo("❌ Failed to fetch screenshot workflow runs.")
                 error("Failed to fetch screenshot workflow runs.")
               }
 
@@ -124,7 +120,6 @@ pipeline {
 
               if (!shaMatchingRuns) {
                 canContinue = false
-                echo("❌ No screenshot builds found matching SHA ${latestSha} '.")
                 error("No screenshot builds found matching SHA ${latestSha} '.")
               }
 
@@ -133,7 +128,6 @@ pipeline {
 
               if (screenshotRun.conclusion != 'success') {
                 canContinue = false
-                echo("❌ Verification failed: screenshot workflow run ID ${screenshotRun.id} did not succeed. Conclusion was: ${screenshotRun.conclusion}")
                 error("Screenshot workflow run ID ${screenshotRun.id} did not succeed. Conclusion was: ${screenshotRun.conclusion}")
               } else {
                 echo "✅ Screenshot workflow run ID ${screenshotRun.id} was successful."
@@ -154,13 +148,12 @@ pipeline {
             withCredentials([string(credentialsId: 'lmluat-gh-token', variable: 'GH_TOKEN')]) {
               echo "Fetching documentation builds from GitHub Actions..."
               def docJson = sh(
-                script: "gh api 'repos/axonivy-market/portal/actions/workflows/portal-documentation.yml/runs?per_page=50&branch=${params.portalBranch}' --jq '.workflow_runs'",
+                script: "gh api 'repos/axonivy-market/portal/actions/workflows/portal-documentation.yml/runs?per_page=10&branch=${params.portalBranch}' --jq '.workflow_runs'",
                 returnStdout: true
               ).trim()
 
               if (!docJson) {
                 canContinue = false
-                echo("❌ Failed to fetch documentation workflow runs.")
                 error("Failed to fetch documentation workflow runs.")
               }
 
@@ -172,7 +165,6 @@ pipeline {
 
               if (!shaMatchingDocRuns) {
                 canContinue = false
-                echo("❌ No documentation builds found matching SHA ${latestSha}.")
                 error("No documentation builds found matching SHA ${latestSha}.")
               }
 
@@ -181,7 +173,6 @@ pipeline {
 
               if (docRun.conclusion != 'success') {
                 canContinue = false
-                echo("❌ Verification failed: documentation workflow run ID ${docRun.id} did not succeed. Conclusion was: ${docRun.conclusion}")
                 error("Documentation workflow run ID ${docRun.id} did not succeed. Conclusion was: ${docRun.conclusion}")
               } else {
                 echo "✅ Documentation workflow run ID ${docRun.id} was successful."
