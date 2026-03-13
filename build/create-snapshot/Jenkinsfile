@@ -1,7 +1,6 @@
 def canContinue = true
 def latestSha = ''
 def seleniumTestPattern = 'com.axonivy.portal.selenium.test.**.*Test'
-def screenshotTestPattern = 'com.axonivy.portal.selenium.document.screenshot.*Test'
 def buildImage
 pipeline {
   agent { label 'linux' }
@@ -120,13 +119,13 @@ pipeline {
               def screenshotRuns = new groovy.json.JsonSlurper().parseText(screenshotJson)
 
               def shaMatchingRuns = screenshotRuns.findAll { run ->
-                run.head_sha == latestSha && run.inputs?.testPatternToRun == screenshotTestPattern
+                run.head_sha == latestSha
               }
 
               if (!shaMatchingRuns) {
                 canContinue = false
-                echo("❌ No screenshot builds found matching SHA ${latestSha} and test pattern '${screenshotTestPattern}'.")
-                error("No screenshot builds found matching SHA and test pattern.")
+                echo("❌ No screenshot builds found matching SHA ${latestSha} '.")
+                error("No screenshot builds found matching SHA ${latestSha} '.")
               }
 
               def screenshotRun = shaMatchingRuns[0]
