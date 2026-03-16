@@ -59,6 +59,33 @@
   margin-top: 30px;
 }
 
+.document-table-component .document-dropzone-wrapper {
+  position: relative;
+}
+
+.document-table-component .document-drag-overlay {
+  display: none;
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  border: 2px dashed var(--primary-color);
+  border-radius: 8px;
+  pointer-events: none;
+}
+
+.document-table-component .document-dropzone-wrapper.ui-state-drag .document-drag-overlay {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.document-table-component .document-drag-overlay-text {
+  color: var(--primary-color);
+  padding: 12px 24px;
+  border-radius: 8px;
+  background-color: var(--surface-card);
+}
+
 .document-table-component .document-action-column {
   width: 100px;
 } 
@@ -123,7 +150,7 @@
 
 /*SPECIFIC STYLES FOR THEMES*/
 
-body.freya .document-table-component .upload-container .type-selection-label {
+.document-table-component .upload-container .type-selection-label {
   line-height: 2.5;
 }
 .preview-image{

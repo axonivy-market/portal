@@ -6,6 +6,9 @@ Document Table
 This component is a case document table with functions display, upload,
 preview, download and delete document entries.
 
+.. hint::
+   It supports multiple file uploads and drag-and-drop. Users can select multiple files at once via the upload button or drag files directly onto the table to upload.
+
 |document-table|
 
 Attributes
