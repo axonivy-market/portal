@@ -168,6 +168,8 @@ var SidebarClickMode = {
   mode: 'HOVER',
   _isExpanded: false,
   _toggling: false,
+  _observer: null,
+  _initialized: false,
 
   init: function(sidebarBehaviour) {
     this.mode = sidebarBehaviour || 'HOVER';
@@ -183,7 +185,10 @@ var SidebarClickMode = {
         this._isExpanded = false;
         this.ensureCollapsed();
       }
-      this.bindSubmenuAutoExpand();
+      if (!this._initialized) {
+        this.bindSubmenuAutoExpand();
+        this._initialized = true;
+      }
     }
   },
 
@@ -191,15 +196,20 @@ var SidebarClickMode = {
   // Hover is already blocked because we add layout-sidebar-static to the wrapper:
   // Freya's own guard (line 132 in layout.js): if(!wrapper.hasClass('layout-sidebar-static')) skips hover.
   observeAndBlockHover: function() {
+    // Disconnect previous observer to prevent leaks on re-init
+    if (this._observer) {
+      this._observer.disconnect();
+    }
     var self = this;
     var wrapper = document.querySelector('.js-layout-wrapper');
     if (!wrapper) return;
-    new MutationObserver(function () {
+    this._observer = new MutationObserver(function () {
       if (self._toggling) return;
       if (wrapper.classList.contains('layout-static') && !self._isExpanded) {
         wrapper.classList.remove('layout-static', 'layout-static-restore');
       }
-    }).observe(wrapper, { attributes: true, attributeFilter: ['class'] });
+    });
+    this._observer.observe(wrapper, { attributes: true, attributeFilter: ['class'] });
   },
 
   ensureCollapsed: function() {
