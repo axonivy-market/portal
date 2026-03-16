@@ -120,7 +120,7 @@ var Portal = {
         } else if (layoutWrapper.hasClass('sidebar-click-mode')) {
           // In CLICK mode collapsed state, .menu-wrapper DOM width is always the full expanded width (230px)
           // because the icon rail is faked via max-width on the inner .layout-menu.
-          // Read the actual left offset of .layout-main instead, which Freya sets to 50px via CSS.
+          // Read the actual left padding of .layout-main instead, which Freya sets to 50px via CSS.
           breadCrumbMarginLeft = ($('.js-layout-main').css('padding-left') || '50px');
         } else {
           if ($("a.menu-button").is(":visible")) {
