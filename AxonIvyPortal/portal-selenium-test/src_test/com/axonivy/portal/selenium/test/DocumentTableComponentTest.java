@@ -27,6 +27,17 @@ public class DocumentTableComponentTest extends BaseTest {
     assertEquals(1, documentTableComponentPage.countDocuments());
   }
 
+
+  @Test
+  public void testUploadMultipleDocuments() {
+    DocumentTableComponentPage documentTableComponentPage = new DocumentTableComponentPage();
+    documentTableComponentPage.uploadSampleDocument(FileHelper.getAbsolutePathToTestFile("sample-file.txt") 
+      + "\n" + FileHelper.getAbsolutePathToTestFile("test-no-files-no-js.pdf"));
+    refreshPage();
+    documentTableComponentPage.waitForDocumentTableComponentPageLoaded();
+    assertEquals(2, documentTableComponentPage.countDocuments());
+  }
+
   @Test
   public void testPreviewDocument() {
     DocumentTableComponentPage documentTableComponentPage = new DocumentTableComponentPage();

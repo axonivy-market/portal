@@ -62,8 +62,13 @@
   <f:event type="preRenderComponent" listener="#{logic.renderComponent(messageComponentId, cc.attrs.typeColumnRendered, selectedType, cc.attrs.enableScriptCheckingForUploadedDocument, cc.attrs.enableVirusScannerForUploadedDocument, cc.attrs.allowedUploadFileTypes, cc.attrs.sizeLimit)}" />
 
   <div id="#{cc.clientId}" class="document-table-component">
-
+    
     <cc:renderFacet name="componentHeader" />
+    
+    <p:outputPanel id="document-dropzone-wrapper" styleClass="document-dropzone-wrapper">
+    <div class="document-drag-overlay">
+      <span class="document-drag-overlay-text">Drop your files here to upload</span>
+    </div>
 
     <p:messages id="document-messages" for="document-messages" rendered="#{cc.attrs.messageRendered}" />
     <p:dataTable id="document-table" value="#{data.documents}" var="document"
@@ -133,6 +138,7 @@
     <div class="ui-g">
       <h:panelGroup layout="block" rendered="#{cc.attrs.typeColumnRendered or cc.attrs.uploadRendered}" styleClass="upload-container ui-g-12">
         <p:fileUpload id="document-upload" mode="advanced" auto="true" dragDropSupport="true"
+          multiple="true" dropZone="document-dropzone-wrapper"
           chooseIcon="#{cc.attrs.renderChooseUploadIcon? 'si si-add-small' : '' }"
           listener="#{logic.upload}"
           rendered="#{cc.attrs.uploadRendered}"
@@ -151,6 +157,8 @@
         <p:outputLabel for="type-selection" value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/Type')}: " styleClass="type-selection-label" rendered="#{cc.attrs.typeColumnRendered}" />
       </h:panelGroup>
     </div>
+
+    </p:outputPanel>
 
     <cc:renderFacet name="componentFooter" />
     
