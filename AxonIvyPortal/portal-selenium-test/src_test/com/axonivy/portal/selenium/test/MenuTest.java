@@ -197,28 +197,59 @@ public class MenuTest extends BaseTest {
   }
 
   @Test
-  public void sidebarClickMode() {
+  public void testSidebarClickModeBasicToggle() {
     updatePortalSetting(Variable.SIDEBAR_BEHAVIOUR.getKey(), "CLICK");
     login(TestAccount.DEMO_USER);
     MainMenuPage mainMenuPage = new MainMenuPage();
 
-    // Starts collapsed
+    // Verify initial collapsed state
     mainMenuPage.isSidebarClickModeCollapsed();
 
-    // Toggle expands
+    // Click toggle button to expand
     mainMenuPage.clickSidebarToggleButton();
     mainMenuPage.isSidebarClickModeExpanded();
 
-    // Toggle collapses
+    // Click toggle button to collapse
     mainMenuPage.clickSidebarToggleButton();
     mainMenuPage.isSidebarClickModeCollapsed();
+  }
 
-    // Expanded state persists across navigation
+  @Test
+  public void testSidebarClickModeExpandedStatePersistsAcrossNavigation() {
+    updatePortalSetting(Variable.SIDEBAR_BEHAVIOUR.getKey(), "CLICK");
+    login(TestAccount.DEMO_USER);
+    MainMenuPage mainMenuPage = new MainMenuPage();
+
+    // Start collapsed, then expand
+    mainMenuPage.isSidebarClickModeCollapsed();
     mainMenuPage.clickSidebarToggleButton();
     mainMenuPage.isSidebarClickModeExpanded();
+
+    // Navigate to another page, expanded state should persist
     mainMenuPage.openProcessList();
     mainMenuPage.isSidebarClickModeExpanded();
   }
+
+  @Test
+  public void testSidebarClickModeCollapsedStatePersistsAcrossNavigation() {
+    updatePortalSetting(Variable.SIDEBAR_BEHAVIOUR.getKey(), "CLICK");
+    login(TestAccount.DEMO_USER);
+    MainMenuPage mainMenuPage = new MainMenuPage();
+
+    // Verify initial collapsed state
+    mainMenuPage.isSidebarClickModeCollapsed();
+
+    // Expand then collapse
+    mainMenuPage.clickSidebarToggleButton();
+    mainMenuPage.isSidebarClickModeExpanded();
+    mainMenuPage.clickSidebarToggleButton();
+    mainMenuPage.isSidebarClickModeCollapsed();
+
+    // Navigate to another page, collapsed state should persist
+    mainMenuPage.openProcessList();
+    mainMenuPage.isSidebarClickModeCollapsed();
+  }
+
 
   private void setUserLanguage(NewDashboardPage newDashboardPage, int index) {
 	UserProfilePage userProfilePage = newDashboardPage.openMyProfilePage();

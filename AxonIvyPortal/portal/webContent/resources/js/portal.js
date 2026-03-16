@@ -240,26 +240,6 @@ var SidebarClickMode = {
     }, 250);
   },
 
-  collapse: function() {
-    if (this.mode !== 'CLICK' || !this._isExpanded) return;
-    this._toggling = true;
-    this._isExpanded = false;
-    var $layoutWrapper = $('.js-layout-wrapper');
-    $layoutWrapper.removeClass('layout-static');
-    $.removeCookie('freya_menu_static', { path: '/' });
-    $('.sidebar-toggle-label').hide();
-    $('.js-sidebar-toggle-btn').attr('aria-expanded', 'false');
-    var self = this;
-    setTimeout(function() {
-      try {
-        Portal.updateBreadcrumb();
-        Portal.updateLayoutContent();
-      } finally {
-        self._toggling = false;
-      }
-    }, 250);
-  },
-
   bindSubmenuAutoExpand: function() {
     var self = this;
     $(document).off('click.sidebarSubmenu').on('click.sidebarSubmenu', '.layout-menu li > a', function () {

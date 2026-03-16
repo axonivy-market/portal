@@ -19,9 +19,6 @@
           var simpleScreen = new ProcessListScreenHandler();
           var responsiveToolkit = ResponsiveToolkit(simpleScreen);
           Portal.init(responsiveToolkit);
-          Portal.updateLayoutContent();
-          Portal.updateBreadcrumb();
-          MainMenu.highlightMenuItem();
           SidebarClickMode.init($('.js-layout-wrapper').data('sidebar-behaviour'));
           });
       </script>

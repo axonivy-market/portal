@@ -115,6 +115,26 @@ public class GlobalSettingService {
     return findGlobalSettingValueAsBoolean(GlobalVariable.ALLOW_KEYBOARD_SHORTCUTS_CONFIGURATION);
   }
 
+  /**
+   * Migrates deprecated Portal.KeepSidebarExpanded (boolean) to Portal.Sidebar.Behaviour (enum).
+   * If the old setting was "true", sets the new setting to STICK (if still at default HOVER).
+   * Then resets the old setting to "false" so migration won't run again.
+   * Safe to call multiple times — no-op when old setting is already "false".
+   */
+  public void migrateSidebarSetting() {
+    String oldKey = "Portal.KeepSidebarExpanded";
+    String oldValue = Ivy.var().get(oldKey);
+    if (Boolean.parseBoolean(oldValue)) {
+      String newKey = GlobalVariable.SIDEBAR_BEHAVIOUR.getKey();
+      String currentNewValue = Ivy.var().get(newKey);
+      if (com.axonivy.portal.enums.SidebarBehaviour.HOVER.name().equals(currentNewValue)) {
+        Ivy.var().set(newKey, com.axonivy.portal.enums.SidebarBehaviour.STICK.name());
+        Ivy.log().info("Migrated Portal.KeepSidebarExpanded=true to Portal.Sidebar.Behaviour=STICK");
+      }
+      Ivy.var().set(oldKey, "false");
+    }
+  }
+
   public boolean isCheckSystemNotesByDefault() {
     return findGlobalSettingValueAsBoolean(GlobalVariable.CHECK_SYSTEM_NOTES_FROM_HISTORY);
   }
