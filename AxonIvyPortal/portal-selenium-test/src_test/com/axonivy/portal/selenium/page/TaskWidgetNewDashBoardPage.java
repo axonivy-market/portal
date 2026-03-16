@@ -132,13 +132,15 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void applyFilter() {
-    $("div.filter-overlay-panel__footer").shouldBe(appear, DEFAULT_TIMEOUT).$$("button[id$='apply-button']")
+    $("div.filter-overlay-panel__footer").shouldBe(appear, DEFAULT_TIMEOUT); 
+    $("div.filter-overlay-panel__footer").$$("button[id$='apply-button']")
         .filter(text("Apply")).first().shouldBe(getClickableCondition()).click();
     $("div[id$='task-task_1:filter-overlay-panel-0']").shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
   }
 
   public void resetFilter() {
-    $("div.filter-overlay-panel__footer").shouldBe(appear, DEFAULT_TIMEOUT).$$("button[id$='reset-button']")
+    $("div.filter-overlay-panel__footer").shouldBe(appear, DEFAULT_TIMEOUT); 
+    $("div.filter-overlay-panel__footer").$$("button[id$='reset-button']")
         .filter(text("Reset")).first().shouldBe(getClickableCondition()).click();
   }
 
