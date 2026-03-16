@@ -26,7 +26,7 @@ pipeline {
       steps {
         script {
           currentBuild.description = "On ${env.NODE_NAME}"
-
+          def utils = load 'build/common/utils.groovy'
           def random = (new Random()).nextInt(10000000)
           def networkName = "build-" + random
           def seleniumName = "selenium-" + random
@@ -58,9 +58,7 @@ pipeline {
 
                 downloadPortalRelease()
                 installPortalToLocalRepo()
-
-                echo '====================Extract engine===================='
-                maven cmd: "clean compile -ntp -f AxonIvyPortal/portal-components/pom.xml -Divy.engine.directory=${env.engineDir} ${params.engineDownloadURL}"
+                utils.extractEngine(env.engineDir, params.engineDownloadURL)
 
                 echo '====================Build PortalKitTestHelper and InternalSupport===================='
                 def extraModules = ['AxonIvyPortal/PortalKitTestHelper', 'Showcase/InternalSupport']
