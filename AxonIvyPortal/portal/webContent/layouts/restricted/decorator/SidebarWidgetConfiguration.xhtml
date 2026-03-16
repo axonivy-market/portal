@@ -155,17 +155,17 @@
               var="caseQueryType" itemLabel="#{caseQueryType.getLabel()}"
               itemValue="#{caseQueryType}" />
             <p:ajax process="case-query-type-group"
-              update="case-query-type-group #{componentToUpdateOnPreview}"
-              partialSubmit="true" />
+              update="widget-preview-data"
+              partialSubmit="true"/>
           </p:selectOneMenu>
         </div>
       </h:panelGroup>
     </p:overlayPanel>
 
     <!-- Widget data -->
-    <div class="ui-g-12">
+    <h:panelGroup id="widget-preview-data" layout="block" styleClass="ui-g-12">
       <ui:insert name="widgetPreviewContent" />
-    </div>
+    </h:panelGroup>
   </div>
 </h:panelGroup>
 
