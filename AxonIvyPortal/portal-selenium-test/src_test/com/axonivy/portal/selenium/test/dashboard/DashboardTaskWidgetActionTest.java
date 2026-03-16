@@ -173,7 +173,7 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
   @Test
   public void testVisibilityTaskActionForTechnicalStates() {
     login(TestAccount.ADMIN_USER);
-    grantSpecificPortalPermission(PortalPermission.TASK_DISPLAY_DESTROY_ACTION);
+    redirectToRelativeLink(createTechnicalStateUrl);
     redirectToNewDashBoard();
     TaskWidgetNewDashBoardPage taskWidget = new TaskWidgetNewDashBoardPage();
     taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
@@ -183,9 +183,13 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
     assertTaskActionsByTaskStateAndName(FAILED, "Signal create Task failed",
         Arrays.asList(DETAILS, RESET, DESTROY, WORKFLOW_EVENTS, PROCESS_VIEWER));
     // Join failed
+    taskWidget.openFilterWidget();
+    taskWidget.resetFilter();
     assertTaskActionsByTaskStateAndName(JOIN_FAILED, "Signal create Technical task",
         Arrays.asList(DETAILS, DESTROY, WORKFLOW_EVENTS, PROCESS_VIEWER));
     // waiting for event
+    taskWidget.openFilterWidget();
+    taskWidget.resetFilter();
     assertTaskActionsByTaskState(WAITING_FOR_EVENT, Arrays.asList(DETAILS, DESTROY, WORKFLOW_EVENTS, PROCESS_VIEWER));
   }
 
