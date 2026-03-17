@@ -32,7 +32,6 @@ public class DashboardCaseWidgetActionTest extends BaseTest {
     super.setup();
     redirectToRelativeLink(createTestingTasksUrl);
     newDashboardPage = new NewDashboardPage();
-    redirectToRelativeLink(grantPortalPermission);
   }
 
   @Test
