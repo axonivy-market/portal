@@ -167,7 +167,7 @@
       <h:panelGroup layout="block" rendered="#{cc.attrs.typeColumnRendered or cc.attrs.uploadRendered}" styleClass="upload-container ui-g-12">
         <p:commandButton id="open-upload-dialog-button"
           value="#{not empty cc.attrs.uploadText ? cc.attrs.uploadText : ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/Upload')}"
-          icon="si si-add-small"
+          icon="#{cc.attrs.renderChooseUploadIcon? 'si si-add-small' : ''}"
           rendered="#{cc.attrs.uploadRendered}"
           type="button"
           styleClass="open-upload-dialog-button"
@@ -196,7 +196,6 @@
         </p>
         <p:fileUpload id="document-upload" widgetVar="document-upload-widget" mode="advanced" auto="true" dragDropSupport="true"
           multiple="true" dropZone="document-upload-dropzone"
-          chooseIcon="si si-add-small"
           listener="#{logic.upload}"
           rendered="#{cc.attrs.uploadRendered}"
           update="document-table document-upload-messages #{cc.attrs.updatedComponentAfterUploaded}"
