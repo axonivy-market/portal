@@ -25,66 +25,8 @@
   float: right;
 }
 
-.document-table-component .upload-container .upload-button {
-  padding: 0 !important;
-}
-
 .document-table-component .upload-container .type-selection, .document-table-component .upload-container .type-selection-label {
   margin-right: 5px;
-}
-
-.document-table-component .upload-container .ui-widget.ui-fileupload {
-  margin-top: 0;
-  margin-left: 10px;
-}
-
-.document-table-component .upload-container .ui-widget.ui-fileupload .ui-fileupload-buttonbar {
-  padding: 0;
-  background-color: transparent !important;
-  border: none !important;
-}
-
-.document-table-component .upload-container .ui-widget.ui-fileupload .ui-fileupload-buttonbar .ui-widget.ui-button {
-  float: right !important;
-  margin-right: 0;
-}
-
-.document-table-component .upload-container .ui-widget.ui-fileupload .ui-fileupload-content {
-  border: none;
-  padding-right: 0;
-  padding-bottom: 0;
-}
-
-.document-table-component .upload-container .ui-widget.ui-fileupload .ui-fileupload-content .ui-fileupload-messages {
-  margin-top: 30px;
-}
-
-
-.document-table-component .document-dropzone-wrapper {
-  position: relative;
-}
-
-.document-table-component .document-drag-overlay {
-  display: none;
-  position: absolute;
-  inset: 0;
-  z-index: 10;
-  border: 2px dashed var(--primary-color);
-  border-radius: 8px;
-  pointer-events: none;
-}
-
-.document-table-component .document-dropzone-wrapper.ui-state-drag .document-drag-overlay {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.document-table-component .document-drag-overlay-text {
-  color: var(--primary-color);
-  padding: 12px 24px;
-  border-radius: 8px;
-  background-color: var(--surface-card);
 }
 
 .document-table-component .document-action-column {
@@ -145,13 +87,9 @@
   }
 }
 
-.document-table-component .upload-container .ui-fileupload-files {
-  margin-top: 20px;
-}
-
 /*SPECIFIC STYLES FOR THEMES*/
 
-body.freya .document-table-component .upload-container .type-selection-label {
+.document-table-component .upload-container .type-selection-label {
   line-height: 2.5;
 }
 
@@ -164,4 +102,47 @@ body.serenity .document-table-component .upload-container .ui-widget.ui-outputla
 }
 .ui-dialog-maximized .preview-image {
   height: auto;
+}
+
+.document-upload-dialog-content .document-upload-supported-types {
+  margin: 0 0 16px 0;
+  font-weight: bold;
+
+}
+
+.document-upload-in-dialog .ui-fileupload-content,
+.document-upload-in-dialog .ui-fileupload-buttonbar {
+  display: none;
+}
+
+.document-upload-dropzone {
+  border: 1px solid var(--surface-border, #dee2e6);
+  border-radius: 10px;
+  height: 20em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.document-upload-dropzone.ui-state-drag {
+  border-color: var(--primary-color);
+  border-style: dashed;
+  background-color: var(--highlight-bg, rgba(0, 123, 255, 0.04));
+}
+
+.document-upload-dropzone-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 24px;
+}
+
+.document-upload-icon {
+  font-size: 36px !important;
+}
+
+.document-upload-dropzone-link {
+  color: var(--primary-color);
+  cursor: pointer;
 }

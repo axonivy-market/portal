@@ -23,6 +23,9 @@ Dialogs:
             Type: Tipo
             'Yes': Sí
           DocumentTable:
+            AddDocument: Añadir documento
+            AddDocumentHelpText: Arrastra y suelta tus archivos aquí para subirlos o
+            BrowseFiles: Explorar archivos
             Delete: Borrar
             DeleteDocumentNote: '{0} ha eliminado {1}'
             DeleteSuceed: Archivo eliminado con éxito
@@ -43,6 +46,7 @@ Dialogs:
             RenamingDocumentSuccess: Renombrado exitosamente.
             RenamingFailed: Se ha producido un error al renombrar el documento.
             Size: Tamaño de archivo
+            SupportFileTypes: 'Tipos de archivos admitidos para cargar: {0}'
             Type: Tipo
             Upload: Cargar archivo nuevo
             UploadDocumentNote: '{0} ha subido {1}'

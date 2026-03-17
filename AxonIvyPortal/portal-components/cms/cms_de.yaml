@@ -23,6 +23,9 @@ Dialogs:
             Type: Typ
             'Yes': Ja
           DocumentTable:
+            AddDocument: Dokument hinzufügen
+            AddDocumentHelpText: Zieh deine Dateien per Drag & Drop hierher, um sie hochzuladen, oder
+            BrowseFiles: Dateien durchsuchen
             Delete: Löschen
             DeleteDocumentNote: '{0} hat folgendes gelöscht: {1}'
             DeleteSuceed: Datei wurde erfolgreich gelöscht
@@ -43,6 +46,7 @@ Dialogs:
             RenamingDocumentSuccess: Erfolgreich umbenannt.
             RenamingFailed: Beim Umbenennen des Dokuments ist ein Fehler aufgetreten.
             Size: Dateigröße
+            SupportFileTypes: 'Unterstützte Dateitypen für Uploads: {0}'
             Type: Typ
             Upload: Neue Datei hochladen
             UploadDocumentNote: '{0} hat {1} hochgeladen.'

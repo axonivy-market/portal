@@ -23,6 +23,9 @@ Dialogs:
             Type: Type
             'Yes': 'Yes'
           DocumentTable:
+            AddDocument: Add document
+            AddDocumentHelpText: Drag & drop your files here to upload or
+            BrowseFiles: Browse files
             Delete: Delete
             DeleteDocumentNote: '{0} has deleted {1}'
             DeleteSuceed: File deleted successfully
@@ -43,6 +46,7 @@ Dialogs:
             RenamingDocumentSuccess: Rename successfully.
             RenamingFailed: An error occurs while renaming the document.
             Size: File size
+            SupportFileTypes: 'Upload file type supported: {0}'
             Type: Type
             Upload: Upload new file
             UploadDocumentNote: '{0} has uploaded {1}'
