@@ -16,7 +16,6 @@ import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.TaskWidgetNewDashBoardPage;
 import com.codeborne.selenide.ElementsCollection;
 
-import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 
 @IvyWebTest
@@ -65,38 +64,55 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
   public void testVisibilityTaskActionForNormalUser() {
     login(TestAccount.DEMO_USER);
     createTasksForTesting();
+    TaskWidgetNewDashBoardPage taskWidget = new TaskWidgetNewDashBoardPage();
+
     // TaskState : Ready for Join <=> TaskBusinessState : Done
     assertTaskActionsByTaskState(READY_FOR_JOIN, Arrays.asList(DETAILS, PROCESS_VIEWER));
+
     // TaskState : Suspended <=> TaskBusinessState : Open
+    taskWidget.openFilterWidget();
+    taskWidget.resetFilter();
     assertTaskActionsByTaskState(SUSPENDED,
         Arrays.asList(DETAILS, DELEGATE, RESERVE, CLEAR_EXPIRY, PROCESS_VIEWER, ADD_AD_HOC_TASK));
+
     // TaskState : Done <=> TaskBusinessState : Done
+    taskWidget.openFilterWidget();
+    taskWidget.resetFilter();
     assertTaskActionsByTaskState(DONE, Arrays.asList(DETAILS, PROCESS_VIEWER));
   }
 
   @Test
   public void testVisibilityTaskActionForAdminUser() {
     login(TestAccount.ADMIN_USER);
-    grantSpecificPortalPermission(PortalPermission.TASK_DISPLAY_DESTROY_ACTION);
+//    grantSpecificPortalPermission(PortalPermission.TASK_DISPLAY_DESTROY_ACTION);
     createTasksForTesting();
 
+    TaskWidgetNewDashBoardPage taskWidget = new TaskWidgetNewDashBoardPage();
     // Ready for Join
     assertTaskActionsByTaskStateAndName(READY_FOR_JOIN, "Task Switch A",
         Arrays.asList(DETAILS, RESET, DESTROY, WORKFLOW_EVENTS, PROCESS_VIEWER));
 
     // Suspended
+    taskWidget.openFilterWidget();
+    taskWidget.resetFilter();
     assertTaskActionsByTaskStateAndName(SUSPENDED, "Sick Leave Request", Arrays.asList(DETAILS, DELEGATE, RESERVE,
         CLEAR_EXPIRY, DESTROY, TRIGGER_ESCALATION, WORKFLOW_EVENTS, PROCESS_VIEWER, ADD_AD_HOC_TASK));
 
     // Done
+    taskWidget.openFilterWidget();
+    taskWidget.resetFilter();
     assertTaskActionsByTaskStateAndName(DONE, "Categoried Leave Request",
         Arrays.asList(DETAILS, WORKFLOW_EVENTS, PROCESS_VIEWER));
 
     // Delayed
+    taskWidget.openFilterWidget();
+    taskWidget.resetFilter();
     assertTaskActionsByTaskStateAndName(DELAYED, "Task Switch C",
         Arrays.asList(DETAILS, DELEGATE, CLEAR_DELAY, DESTROY, WORKFLOW_EVENTS, PROCESS_VIEWER, ADD_AD_HOC_TASK));
 
     // Destroyed
+    taskWidget.openFilterWidget();
+    taskWidget.resetFilter();
     assertTaskActionsByTaskStateAndName(DESTROYED, "Task Switch B",
         Arrays.asList(DETAILS, WORKFLOW_EVENTS, PROCESS_VIEWER));
   }
@@ -104,7 +120,6 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
   @Test
   public void testVisibilityTaskActionForInprogressTasks() {
     login(TestAccount.ADMIN_USER);
-    grantSpecificPortalPermission(PortalPermission.TASK_DISPLAY_DESTROY_ACTION);
     redirectToRelativeLink(createTestingTasksUrl);
     filterTaskByNameAndState("Sick Leave Request", SUSPENDED);
     TaskWidgetNewDashBoardPage taskWidget = new TaskWidgetNewDashBoardPage();
@@ -145,7 +160,7 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
   @Test
   public void testVisibilityTaskActionForReserveTasks() {
     login(TestAccount.ADMIN_USER);
-    grantSpecificPortalPermission(PortalPermission.TASK_DISPLAY_DESTROY_ACTION);
+//    grantSpecificPortalPermission(PortalPermission.TASK_DISPLAY_DESTROY_ACTION);
     createTasksForTesting();
     filterTaskByNameAndState("Maternity Leave Request", SUSPENDED);
     TaskWidgetNewDashBoardPage taskWidget = new TaskWidgetNewDashBoardPage();
@@ -188,6 +203,7 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
     assertTaskActionsByTaskStateAndName(JOIN_FAILED, "Signal create Technical task",
         Arrays.asList(DETAILS, DESTROY, WORKFLOW_EVENTS, PROCESS_VIEWER));
     // waiting for event
+    refreshPage();
     taskWidget.openFilterWidget();
     taskWidget.resetFilter();
     assertTaskActionsByTaskState(WAITING_FOR_EVENT, Arrays.asList(DETAILS, DESTROY, WORKFLOW_EVENTS, PROCESS_VIEWER));

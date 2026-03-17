@@ -119,8 +119,8 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void filterTaskName(String input) {
-    var taskNameFilter = $("div[id$='widget-filter-content']").shouldBe(appear, DEFAULT_TIMEOUT)
-        .$(".ui-inputfield.text-field-input-name");
+    $("div[id$='widget-filter-content']").shouldBe(appear, DEFAULT_TIMEOUT);
+    var taskNameFilter = $("div[id$='widget-filter-content']").$(".ui-inputfield.text-field-input-name");
     taskNameFilter.clear();
     taskNameFilter.sendKeys(input);
   }
