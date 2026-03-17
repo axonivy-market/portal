@@ -23,6 +23,9 @@ Dialogs:
             Type: Type
             'Yes': Oui
           DocumentTable:
+            AddDocument: Ajouter un document
+            AddDocumentHelpText: Faites glisser vos fichiers ici pour les télécharger ou
+            BrowseFiles: Parcourir les fichiers
             Delete: Supprimer
             DeleteDocumentNote: '{0} a supprimé(e) {1}'
             DeleteSuceed: Le fichier a été supprimé avec succès
@@ -43,6 +46,7 @@ Dialogs:
             RenamingDocumentSuccess: Renommé avec succès.
             RenamingFailed: Une erreur s'est produite lors du renommage du document.
             Size: Taille du fichier
+            SupportFileTypes: 'Types de fichiers pris en charge pour le téléchargement : {0}'
             Type: Type
             Upload: Ajouter un nouveau fichier
             UploadDocumentNote: '{0} a téléchargé(e) {1}'

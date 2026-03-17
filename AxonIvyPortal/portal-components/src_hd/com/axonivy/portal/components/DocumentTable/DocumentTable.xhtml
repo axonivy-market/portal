@@ -99,10 +99,6 @@
 
     <p:outputPanel id="document-dropzone-wrapper" styleClass="document-dropzone-wrapper">
 
-    <div class="document-drag-overlay">
-      <span class="document-drag-overlay-text">Drop your files here to upload</span>
-    </div>
-
     <p:messages id="document-messages" for="document-messages" rendered="#{cc.attrs.messageRendered}" />
     <p:dataTable id="document-table" value="#{data.documents}" var="document"
       emptyMessage="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/NoFile')}" styleClass="margin-top-5"
@@ -169,18 +165,13 @@
     </p:dataTable>
     <div class="ui-g">
       <h:panelGroup layout="block" rendered="#{cc.attrs.typeColumnRendered or cc.attrs.uploadRendered}" styleClass="upload-container ui-g-12">
-        <p:fileUpload id="document-upload" mode="advanced" auto="true" dragDropSupport="true"
-          multiple="true" dropZone="document-dropzone-wrapper"
-          chooseIcon="#{cc.attrs.renderChooseUploadIcon? 'si si-add-small' : '' }"
-          listener="#{logic.upload}"
+        <p:commandButton id="open-upload-dialog-button"
+          value="#{not empty cc.attrs.uploadText ? cc.attrs.uploadText : ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/Upload')}"
+          icon="si si-add-small"
           rendered="#{cc.attrs.uploadRendered}"
-          update="document-table document-messages #{cc.attrs.updatedComponentAfterUploaded}"
-          invalidSizeMessage="#{documentUploadBean.getFileUploadInvalidSizeMessage(documentUploadBean.fileUploadSizeLimit)}" 
-          label="#{not empty cc.attrs.uploadText ? cc.attrs.uploadText : ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/Upload')}"
-          cancelLabel="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/Common/Cancel')}"
-          onstart="#{logic.setFileLimit(cc.attrs.fileLimit)}" sizeLimit="#{documentUploadBean.fileUploadSizeLimit}"
-          styleClass="upload-button" value="#{data.uploadedFile}">
-        </p:fileUpload>
+          type="button"
+          styleClass="open-upload-dialog-button"
+          onclick="PF('document-upload-dialog').show()" />
         <p:selectOneMenu id="type-selection" value="#{data.typeSelection}" rendered="#{cc.attrs.typeColumnRendered}" converter="pojoConverter" styleClass="type-selection">
           <p:ajax global="false" />
           <f:selectItems value="#{typeSelectionItems}" var="type" itemLabel="#{type.toString()}"
@@ -193,6 +184,38 @@
     </p:outputPanel>
 
     <cc:renderFacet name="componentFooter" />
+
+    <p:dialog id="document-upload-dialog" widgetVar="document-upload-dialog" appendTo="@(body)"
+      header="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/AddDocument')}" 
+      modal="true" resizable="false" showEffect="fade" hideEffect="fade"
+      width="450" closable="true" closeOnEscape="true" responsive="true" fitViewport="true">
+      <div class="document-upload-dialog-content">
+        <p:messages id="document-upload-messages" for="document-messages" rendered="#{cc.attrs.messageRendered}" />
+        <p class="document-upload-supported-types">
+          #{ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/SupportFileTypes', [cc.attrs.allowedUploadFileTypes])}
+        </p>
+        <p:fileUpload id="document-upload" widgetVar="document-upload-widget" mode="advanced" auto="true" dragDropSupport="true"
+          multiple="true" dropZone="document-upload-dropzone"
+          chooseIcon="si si-add-small"
+          listener="#{logic.upload}"
+          rendered="#{cc.attrs.uploadRendered}"
+          update="document-table document-upload-messages #{cc.attrs.updatedComponentAfterUploaded}"
+          invalidSizeMessage="#{documentUploadBean.getFileUploadInvalidSizeMessage(documentUploadBean.fileUploadSizeLimit)}"
+          onstart="#{logic.setFileLimit(cc.attrs.fileLimit)}" sizeLimit="#{documentUploadBean.fileUploadSizeLimit}"
+          styleClass="document-upload-in-dialog" value="#{data.uploadedFile}">
+        </p:fileUpload>
+        <p:outputPanel id="document-upload-dropzone" styleClass="document-upload-dropzone">
+          <div class="document-upload-dropzone-content">
+            <i class="si si-file-code-upload-1 document-upload-icon" />
+            <span class="document-upload-dropzone-text">
+              #{ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/AddDocumentHelpText')}
+              <span class="document-upload-dropzone-link"
+                onclick="PF('document-upload-widget').show();return false">#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/BrowseFiles')}</span>
+            </span>
+          </div>
+        </p:outputPanel>
+      </div>
+    </p:dialog>
     
     <!-- set closable to true to force to close stream by clicking Close button -->
     <p:dialog widgetVar="preview-document-dialog" id="preview-document-dialog" appendTo="@(body)" maximizable="true"
