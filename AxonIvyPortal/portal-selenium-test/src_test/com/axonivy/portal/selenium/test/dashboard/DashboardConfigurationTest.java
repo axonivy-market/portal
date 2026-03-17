@@ -343,6 +343,9 @@ public class DashboardConfigurationTest extends BaseTest {
     publicDashboardPage.waitForDashboardTableToLoad();
     publicDashboardPage.getDashboardExportButtonOfDashboard("New public dashboard")
         .shouldBe(Condition.appear);
+    // make sure it closed before navigate to private dashboard
+    publicDashboardPage.getDashboardExportButtonOfDashboard("New public dashboard")
+        .shouldBe(Condition.disappear);
     DashboardModificationPage privateDashboardPage = configurationPage.openEditPrivateDashboardsPage();
     privateDashboardPage.waitForDashboardTableToLoad();
     privateDashboardPage.getDashboardExportButtonOfDashboard("New private dashboard")
