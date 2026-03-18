@@ -1,4 +1,3 @@
-def canContinue = true
 def latestSha = ''
 def seleniumTestPattern = 'com.axonivy.portal.selenium.test.**.*Test'
 def buildImage
@@ -70,7 +69,6 @@ pipeline {
               ).trim()
 
               if (!buildsJson) {
-                canContinue = false
                 error("Failed to fetch selenium test builds.")
               }
 
@@ -84,7 +82,6 @@ pipeline {
               }
 
               if (!shaMatchingBuilds) {
-                canContinue = false
                 error("No selenium test builds found matching SHA ${latestSha} and test pattern '${seleniumTestPattern}'.")
               }
 
@@ -92,7 +89,6 @@ pipeline {
               echo "Found matching build #${matchedBuild.number} with result: ${matchedBuild.result}"
 
               if (matchedBuild.result != 'SUCCESS') {
-                canContinue = false
                 error("portal-selenium-test build #${matchedBuild.number} did not succeed. Result was: ${matchedBuild.result}")
               } else {
                 echo "✅ portal-selenium-test build #${matchedBuild.number} was successful."
@@ -105,7 +101,7 @@ pipeline {
 
     stage('Verify performance') {
       when {
-        expression { return canContinue && !params.skipVerification }
+        expression { return !params.skipVerification }
       }
       steps {
         script {
@@ -120,7 +116,6 @@ pipeline {
               ).trim()
 
               if (!perfJson) {
-                canContinue = false
                 error("Failed to fetch performance test builds.")
               }
 
@@ -131,7 +126,6 @@ pipeline {
               }
 
               if (!shaMatchingPerf) {
-                canContinue = false
                 error("No performance builds found matching SHA ${latestSha}.")
               }
 
@@ -139,7 +133,6 @@ pipeline {
               echo "Found matching build #${perfBuild.number} with result: ${perfBuild.result}"
 
               if (perfBuild.result != 'SUCCESS') {
-                canContinue = false
                 error("portal-performance build #${perfBuild.number} did not succeed. Result was: ${perfBuild.result}")
               } else {
                 echo "✅ portal-performance-test build #${perfBuild.number} was successful."
@@ -152,7 +145,7 @@ pipeline {
 
     stage('Verify Screenshot') {
       when {
-        expression { return canContinue && !params.skipVerification }
+        expression { return !params.skipVerification }
       }
       steps {
         script {
@@ -165,7 +158,6 @@ pipeline {
               ).trim()
 
               if (!screenshotJson) {
-                canContinue = false
                 error("Failed to fetch screenshot workflow runs.")
               }
 
@@ -176,7 +168,6 @@ pipeline {
               }
 
               if (!shaMatchingRuns) {
-                canContinue = false
                 error("No screenshot builds found matching SHA ${latestSha}.")
               }
 
@@ -184,7 +175,6 @@ pipeline {
               echo "Screenshot workflow run: ID ${screenshotRun.id}, Status: ${screenshotRun.status}, Conclusion: ${screenshotRun.conclusion}"
 
               if (screenshotRun.conclusion != 'success') {
-                canContinue = false
                 error("Screenshot workflow run ID ${screenshotRun.id} did not succeed. Conclusion was: ${screenshotRun.conclusion}")
               } else {
                 echo "✅ Screenshot workflow run ID ${screenshotRun.id} was successful."
@@ -197,7 +187,7 @@ pipeline {
 
     stage('Verify Documentation') {
       when {
-        expression { return canContinue && !params.skipVerification }
+        expression { return !params.skipVerification }
       }
       steps {
         script {
@@ -210,7 +200,6 @@ pipeline {
               ).trim()
 
               if (!docJson) {
-                canContinue = false
                 error("Failed to fetch documentation workflow runs.")
               }
 
@@ -221,7 +210,6 @@ pipeline {
               }
 
               if (!shaMatchingDocRuns) {
-                canContinue = false
                 error("No documentation builds found matching SHA ${latestSha}.")
               }
 
@@ -229,7 +217,6 @@ pipeline {
               echo "Documentation workflow run: ID ${docRun.id}, Status: ${docRun.status}, Conclusion: ${docRun.conclusion}"
 
               if (docRun.conclusion != 'success') {
-                canContinue = false
                 error("Documentation workflow run ID ${docRun.id} did not succeed. Conclusion was: ${docRun.conclusion}")
               } else {
                 echo "✅ Documentation workflow run ID ${docRun.id} was successful."
@@ -241,9 +228,6 @@ pipeline {
     }
 
     stage('Build Documentation') {
-      when {
-        expression { return canContinue }
-      }
       steps {
         script {
           buildImage.inside('-v /var/tools/maven-cache:/home/build/') {
@@ -268,7 +252,6 @@ pipeline {
                 if (matchedRun) {
                   docRunId = matchedRun.id
                   if (matchedRun.conclusion != 'success') {
-                    canContinue = false
                     error("Documentation workflow run ID ${docRunId} did not succeed. Conclusion was: ${matchedRun.conclusion}")
                   }
                   echo "✅ Documentation workflow run ID ${docRunId} was successful."
@@ -279,7 +262,6 @@ pipeline {
                 sleep(time: 30, unit: 'SECONDS')
               }
               if (!docRunId) {
-                canContinue = false
                 error("Documentation workflow did not complete within the timeout period.")
               }
             }
@@ -289,9 +271,6 @@ pipeline {
     }
 
     stage('deploy snapshot') {
-      when {
-        expression { return canContinue }
-      }
       steps {
         script {
           buildImage.inside('-v /var/tools/maven-cache:/home/build/') {
@@ -310,7 +289,7 @@ pipeline {
   post {
     always {
       script {
-        if (canContinue) {
+        if (currentBuild.currentResult == 'SUCCESS') {
           archiveArtifacts artifacts: '**/target/*.iar,AxonIvyPortal/PortalApp/target/*.zip,Showcase/portal-demo-app/target/*.zip,*/*/pom.xml', allowEmptyArchive: true
         }
       }
