@@ -13,7 +13,7 @@
 
     <h:form id="pin-form">
         <p:commandLink 
-            ariaLabel="#{isPinned ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/unpin') : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/pin')}"
+            ariaLabel="#{isPinned ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/unpinCaseContext', ivy.cms.createList(cc.attrs.case.name)) : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/pinCaseContext', ivy.cms.createList(cc.attrs.case.name))}"
             action="#{caseBean.clickOnPinCase(cc.attrs.case)}" 
             update="@form"
             style="display: block; width: 100%; height: 100%; text-decoration: none;"

@@ -579,6 +579,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     ok: OK
     'on': オン
     pin: 'TODO: Pin'
+    pinCaseContext: "ケース{0}をピン留め"
+    pinTaskContext: "タスク{0}をピン留め"
     pleaseAddDocument: 上記のリンクにドキュメントを追加してください。
     pleaseAddNote: 上記のリンクにノートを追加してください。
     previousStage: 前のステージ
@@ -641,6 +643,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     typeAllUsers: すべてのユーザー
     typeOnlyMe: 自分のみ
     unpin: 'TODO: Unpin'
+    unpinCaseContext: "ケース{0}のピン留めを解除"
+    unpinTaskContext: "タスク{0}のピン留めを解除"
     uploadHere: 有効な日付を入力してください。
     uploadOneHere: ここにアップロード
     user: '{0} ユーザー'

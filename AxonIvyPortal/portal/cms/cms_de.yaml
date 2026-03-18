@@ -578,6 +578,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     ok: OK
     'on': am
     pin: Anheften
+    pinCaseContext: "Vorgang {0} anheften"
+    pinTaskContext: "Aufgabe {0} anheften"
     pleaseAddDocument: Verwenden Sie bitte den Link oben, um Dokumente hochzuladen
     pleaseAddNote: Verwenden Sie bitte den Link oben, um Notizen hochzuladen
     previousStage: Vorherige Stufe
@@ -640,6 +642,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     typeAllUsers: Alle Benutzer
     typeOnlyMe: Nur für mich
     unpin: Anheftung aufheben
+    unpinCaseContext: "Anheftung von Vorgang {0} aufheben"
+    unpinTaskContext: "Anheftung von Aufgabe {0} aufheben"
     uploadHere: Hier hochladen
     uploadOneHere: Auswählen
     user: '{0} Benutzer'

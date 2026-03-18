@@ -578,6 +578,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     ok: OK
     'on': 'on'
     pin: Pin
+    pinCaseContext: "Pin case {0}"
+    pinTaskContext: "Pin task {0}"
     pleaseAddDocument: Please add a document with the link above.
     pleaseAddNote: Please add a note with the link above.
     previousStage: Previous stage
@@ -640,6 +642,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     typeAllUsers: All users
     typeOnlyMe: Only me
     unpin: Unpin
+    unpinCaseContext: "Unpin case {0}"
+    unpinTaskContext: "Unpin task {0}"
     uploadHere: Upload here
     uploadOneHere: Upload one here
     user: '{0} user'

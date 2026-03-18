@@ -580,6 +580,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     ok: OK
     'on': le
     pin: Épingler
+    pinCaseContext: "Épingler le cas {0}"
+    pinTaskContext: "Épingler la tâche {0}"
     pleaseAddDocument: Veuillez ajouter un document avec le lien ci-dessus.
     pleaseAddNote: Veuillez ajouter une note avec le lien ci-dessus.
     previousStage: Étape précédente
@@ -642,6 +644,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     typeAllUsers: Tous les utilisateurs
     typeOnlyMe: Seulement pour moi
     unpin: Désépingler
+    unpinCaseContext: "Désépingler le cas {0}"
+    unpinTaskContext: "Désépingler la tâche {0}"
     uploadHere: Téléchargez ici
     uploadOneHere: Téléchargez-en un ici
     user: '{0} utilisateur'

@@ -580,6 +580,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     ok: OK
     'on': en
     pin: Fijar
+    pinCaseContext: "Fijar caso {0}"
+    pinTaskContext: "Fijar tarea {0}"
     pleaseAddDocument: Por favor agregue documentos usando el enlace superior
     pleaseAddNote: Por favor agregue notas usando el enlace superior
     previousStage: Etapa anterior
@@ -642,6 +644,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     typeAllUsers: Todos los usuarios
     typeOnlyMe: Solo yo
     unpin: Desfijar
+    unpinCaseContext: "Desfijar caso {0}"
+    unpinTaskContext: "Desfijar tarea {0}"
     uploadHere: Cargue aquí
     uploadOneHere: Seleccionar
     user: '{0} usuario'
