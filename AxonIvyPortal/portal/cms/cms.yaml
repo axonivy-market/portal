@@ -347,17 +347,20 @@ ch.ivy.addon.portalkit.ui.jsf:
     action: Actions
     active: Active
     add: Add
+    addContext: Add {0}
     addDocument: Add document
     addNote: Add note
     allCategories: All Categories
     allowPng: Only png types allowed
     apply: Apply
+    applyContext: Apply {0}
     at: at
     author: Author
     back: Back
     backToCaseMap: Back to case map
     backgroundColor: Background color
     cancel: Cancel
+    cancelContext: Cancel {0}
     case: Case
     caseCategory: Case category
     caseInformation: Case Information
@@ -365,6 +368,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     categories: Categories
     change: Change
     close: Close
+    closeContext: Close {0}
     cockpit: Cockpit
     colors: Colors
     comment: Comment
@@ -385,6 +389,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     default: Default
     defaultNotificationMessage: Hmm... Looks like something went wrong.
     delete: Delete
+    deleteContext: Delete {0}
     deleteAbsenceHeaderText: Delete this absence?
     deleteChartHeaderText: Delete this chart?
     deleteDocumentHeaderText: Delete this document?
@@ -474,6 +479,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     restoreToDefaultChartHeaderText: Restore to default charts?
     role: Role
     save: Save
+    saveContext: Save {0}
     saveAll: Save all
     saveSuccessfully: Data saved successfully.
     search: Search

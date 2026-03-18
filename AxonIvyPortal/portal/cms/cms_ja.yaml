@@ -454,6 +454,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     action: アクション
     active: アクティブ
     add: 追加
+    addContext: "{0}を追加"
     addDocument: ドキュメントを追加
     addLink: リンクを追加
     addNote: ノートを追加
@@ -461,12 +462,14 @@ ch.ivy.addon.portalkit.ui.jsf:
     allTypes: 戻る
     allowPng: png形式のみ許可されます
     apply: 適用
+    applyContext: "{0}を適用"
     at: に
     author: 作成者
     back: 戻る
     backToCaseMap: ケースマップに戻る
     backgroundColor: 背景色
     cancel: キャンセル
+    cancelContext: "{0}をキャンセル"
     case: ケース
     caseCategory: ケースカテゴリー
     caseInformation: ケース情報
@@ -474,6 +477,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     categories: カテゴリー
     change: 変更
     close: 閉じる
+    closeContext: "{0}を閉じる"
     cockpit: コックピット
     colors: 色
     comment: コメント
@@ -494,6 +498,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     default: 初期値
     defaultNotificationMessage: 問題が発生しましたようです。
     delete: 削除
+    deleteContext: "{0}を削除"
     deleteAbsenceHeaderText: この不在日程を削除しますか?
     deleteChartHeaderText: このチャートを削除しますか?
     deleteDocumentHeaderText: このドキュメントを削除しますか?
@@ -595,6 +600,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     restoreToDefaultChartHeaderText: デフォルトのチャートに戻しますか？
     role: ロール
     save: 保存
+    saveContext: "{0}を保存"
     saveAll: すべて保存
     saveSuccessfully: データの保存に成功しました。
     search: 検索

@@ -453,6 +453,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     action: Aktionen
     active: Aktiviert
     add: Hinzufügen
+    addContext: "{0} hinzufügen"
     addDocument: Dokument hinzufügen
     addLink: Link hinzufügen
     addNote: Notiz hinzufügen
@@ -460,12 +461,14 @@ ch.ivy.addon.portalkit.ui.jsf:
     allTypes: Alle Typen
     allowPng: Nur das png Format wird unterstützt
     apply: Anwenden
+    applyContext: "{0} anwenden"
     at: am
     author: Autor
     back: Zurück
     backToCaseMap: Zurück zur Case Map
     backgroundColor: Hintergrundfarbe
     cancel: Abbrechen
+    cancelContext: "{0} abbrechen"
     case: Vorgang
     caseCategory: Vorgangskategorie
     caseInformation: Vorgangsinformationen
@@ -473,6 +476,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     categories: Kategorien
     change: Ändern
     close: Schließen
+    closeContext: "{0} schließen"
     cockpit: Cockpit
     colors: Farben
     comment: Kommentar
@@ -493,6 +497,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     default: Standardeinstellung
     defaultNotificationMessage: Hmm... Hier ist wohl etwas schief gelaufen.
     delete: Löschen
+    deleteContext: "{0} löschen"
     deleteAbsenceHeaderText: 'Diese Abwesenheit löschen? '
     deleteChartHeaderText: Dieses Diagramm löschen?
     deleteDocumentHeaderText: 'Dieses Dokument löschen? '
@@ -594,6 +599,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     restoreToDefaultChartHeaderText: Auf Standarddiagramme zurücksetzen?
     role: Rolle
     save: Speichern
+    saveContext: "{0} speichern"
     saveAll: Speichern
     saveSuccessfully: Daten erfolgreich gespeichert.
     search: Suche

@@ -2,7 +2,8 @@
   xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
   xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
   xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
-  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core" xmlns:jsf="http://xmlns.jcp.org/jsf">
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core" xmlns:jsf="http://xmlns.jcp.org/jsf"
+  xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="actionLinkId" />
@@ -42,7 +43,8 @@
   <p:overlayPanel id="side-steps-panel" widgetVar="#{cc.attrs.panelWidgetVar}" for="#{cc.attrs.actionLinkId}" appendTo="@(body)"
     styleClass="options-panel #{cc.attrs.sideStepsPanelStyleClass}" dynamic="true" rendered="#{!cc.attrs.isDisabled}"
     my="right top" at="right bottom" showCloseIcon="true" dismissable="false" cache="false"
-    onShow="focusFirstVisibleElementInPanel('#{cc.attrs.panelWidgetVar}', 'a')">
+    onShow="focusFirstVisibleElementInPanel('#{cc.attrs.panelWidgetVar}', 'a')"
+    pt:aria-label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}">
 
     <p:commandLink id="task-open-detail-command" styleClass="option-item ui-menu-items"
                    ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/detail')}"

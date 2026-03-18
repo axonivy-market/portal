@@ -5,6 +5,7 @@ Dialogs:
         components:
           Common:
             Cancel: Cancel
+            CancelContext: Cancel {0}
             Categories: Categories
             ConfirmForDelete: Are you sure you want to delete this item?
             Confirmation: Confirmation
@@ -17,6 +18,7 @@ Dialogs:
               ProcessName: Process name
             RequiredFieldMessage: This field is required
             Save: Save
+            SaveContext: Save {0}
             SideStepPrefix: 'Side step task for: '
             Task:
               Activator: Responsible
@@ -104,6 +106,7 @@ Labels:
       ErrorWhenProceedRequest: An error has occurred while trying to process your request. Please try again later.
       SomethingWentWrong: Something went wrong when proceed your request. Please try again later.
   Close: Close
+  CloseContext: Close {0}
   DisabledUserPrefix: (disabled)
   Enums:
     NewFilenameValidation:

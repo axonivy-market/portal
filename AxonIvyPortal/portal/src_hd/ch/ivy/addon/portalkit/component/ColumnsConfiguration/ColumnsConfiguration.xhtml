@@ -2,7 +2,7 @@
   xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
   xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
   xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
-  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core" xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="dataModel" />
@@ -27,7 +27,8 @@
 
   <p:overlayPanel id="#{cc.attrs.overlayPanelId}" widgetVar="#{cc.attrs.overlayPanelId}" appendTo="@(body)"
     styleClass="advanced-filter-panel filter-add-panel config-columns-panel" dismissable="true"
-    for="#{cc.clientId}:#{cc.attrs.configButtonId}" my="left top" at="left bottom">
+    for="#{cc.clientId}:#{cc.attrs.configButtonId}" my="left top" at="left bottom"
+    pt:aria-label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/manageColumns')}">
     <h:form id="select-columns-form">
       <div class="config-checkbox-container">
         <p:selectBooleanCheckbox id="default-columns" itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/default')}"
@@ -44,7 +45,7 @@
 
         <h:panelGroup id="advanced-filter-panel-footer" layout="block" styleClass="ui-overlaypanel-footer">
           <p:commandLink id="cancel-command" process="@this" global="false"
-            ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+            ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancelContext', [ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/manageColumns')])}"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
             update="#{cc.clientId}:config-columns-container #{cc.clientId}:#{cc.attrs.overlayPanelId}" resetValues="true"
             oncomplete="PF('#{cc.attrs.overlayPanelId}').hide()"
@@ -53,7 +54,7 @@
           <p:commandButton id="update-command" global="true"
             icon="#{visibilityBean.generateButtonIcon('si si-check-1')}"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/apply')}"
-            ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/apply')}"
+            ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/applyContext', [ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/manageColumns')])}"
             actionListener="#{dataModel.saveColumnsConfiguration()}"
             update="#{cc.clientId}:config-columns-container @form #{cc.attrs.updatedComponent}"
             oncomplete="#{cc.attrs.oncomplete}">

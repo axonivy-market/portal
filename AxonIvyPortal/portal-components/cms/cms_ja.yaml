@@ -5,6 +5,7 @@ Dialogs:
         components:
           Common:
             Cancel: キャンセル
+            CancelContext: "{0}をキャンセル"
             Categories: カテゴリー
             ConfirmForDelete: このアイテムを削除してもよろしいですか？
             Confirmation: 確認
@@ -17,6 +18,7 @@ Dialogs:
               ProcessName: プロセス名
             RequiredFieldMessage: このフィールドは必須です
             Save: 'TODO: Save'
+            SaveContext: "{0}を保存"
             SideStepPrefix: サイドステップ：
             Task:
               Activator: 責任者
@@ -104,6 +106,7 @@ Labels:
       ErrorWhenProceedRequest: リクエストの処理中にエラーが発生しました。しばらくしてから、もう一度お試しください。
       SomethingWentWrong: リクエストの処理中に問題が発生しました。しばらくしてから、もう一度お試しください。
   Close: 閉じる
+  CloseContext: "{0}を閉じる"
   DisabledUserPrefix: （無効）
   Enums:
     NewFilenameValidation:
