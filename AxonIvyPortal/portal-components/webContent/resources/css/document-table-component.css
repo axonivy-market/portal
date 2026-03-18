@@ -89,7 +89,7 @@
 
 /*SPECIFIC STYLES FOR THEMES*/
 
-.document-table-component .upload-container .type-selection-label {
+body.freya .document-table-component .upload-container .type-selection-label {
   line-height: 2.5;
 }
 
