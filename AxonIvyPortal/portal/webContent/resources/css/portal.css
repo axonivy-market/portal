@@ -1627,6 +1627,21 @@ body .notification-full-scroll>.ui-datascroller-content  {
   color: var(--text-color) !important;
 }
 
+@media screen and (max-width: 40em) {
+  .notifications-panel.active {
+    width: 100vw;
+  }
+
+  .notifications-item-list {
+    width: 100%;
+  }
+
+  .only-unread-block {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+}
+
 i.dashboard-icon-drag-drop {
     color: var(--dashboard-icon-drag-drop-color);
     width: 2.357rem;

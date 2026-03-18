@@ -1083,11 +1083,14 @@ ch.ivy.addon.portalkit.ui.jsf:
     markAllAsRead: Marquer tous comme lus
     markAsRead: Marquer comme lu
     noNotificationText: Pas de notification
+    notificationOptions: Options de notification
     notificationTitle: Notifications
     notificationsBadgeLabel: Ouvrir le panneau de notifications, {0} non lues
     olderText: Plus ancien
     onlyUnread: Uniquement non lu
+    openNotificationSettings: Ouvrir les paramètres de notification
     todayText: Aujourd'hui
+    viewNotificationsFullScreen: Afficher les notifications en plein écran
     xDaysAgo: Il y a %s jours
     xHoursAgo: Il y a %s heures
     xMinutesAgo: Il y a %s minutes

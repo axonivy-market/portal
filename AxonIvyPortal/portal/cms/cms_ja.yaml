@@ -1081,11 +1081,14 @@ ch.ivy.addon.portalkit.ui.jsf:
     markAllAsRead: すべて既読にする
     markAsRead: 既読にする
     noNotificationText: 通知なし
+    notificationOptions: 通知オプション
     notificationTitle: 通知
     notificationsBadgeLabel: 通知パネルを開く、{0} 件未読
     olderText: 昨日以前
     onlyUnread: 未読のみ
+    openNotificationSettings: 通知設定を開く
     todayText: 今日
+    viewNotificationsFullScreen: 通知を全画面で表示
     xDaysAgo: '%s 日前'
     xHoursAgo: '%s 時間前'
     xMinutesAgo: '%s 分前'
