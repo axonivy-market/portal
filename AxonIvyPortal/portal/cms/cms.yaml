@@ -345,6 +345,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     TaskCaseInformation: Task and Case Information
     Update: Update
     action: Actions
+    actionMenuContext: "Open actions menu for {0}"
     active: Active
     add: Add
     addContext: Add {0}

@@ -452,6 +452,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     Update: 更新
     Widget: ウィジェット
     action: アクション
+    actionMenuContext: "{0}のアクションメニューを開く"
     active: アクティブ
     add: 追加
     addContext: "{0}を追加"
