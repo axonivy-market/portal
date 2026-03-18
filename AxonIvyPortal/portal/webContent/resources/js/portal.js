@@ -930,6 +930,14 @@ function initFocusManagament(targetWindow) {
             } catch(e) {
               console.warn("Cannot store focused element");
             }
+
+            var panel = self;
+            self.escHandler = function(e) {
+              if (e.key === 'Escape' && panel.isVisible()) {
+                panel.hide();
+              }
+            };
+            targetWindow.document.addEventListener('keydown', self.escHandler);
           };
 
           cfg.onHide = function() {            
@@ -940,6 +948,10 @@ function initFocusManagament(targetWindow) {
                 restoreFocusedElement(targetWindow.document, lastFocusedElements, this.cfg.id);
               } catch (e) {
                 console.warn("Cannot focus on last element");
+              }
+              if (self.escHandler) {
+                targetWindow.document.removeEventListener('keydown', self.escHandler);
+                self.escHandler = null;
               }
           };
       }
