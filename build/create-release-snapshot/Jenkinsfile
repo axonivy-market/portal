@@ -24,14 +24,20 @@ pipeline {
   }
 
   environment {
-    engineDir = "$env.WORKSPACE/engine"
+    engineDir = "${env.WORKSPACE}/engine"
   }
 
   stages {
+    stage('Checkout') {
+      steps {
+        git branch: params.portalBranch, url: 'https://github.com/axonivy-market/portal.git'
+      }
+    }
+
     stage('Build Image') {
       steps {
         script {
-          buildImage = docker.build('build-portal-snapshot', '-f build/create-snapshot/Dockerfile .')
+          buildImage = docker.build('build-portal-snapshot', '-f build/create-release-snapshot/Dockerfile .')
         }
       }
     }
@@ -162,12 +168,12 @@ pipeline {
               def screenshotRuns = readJSON text: screenshotJson
 
               def shaMatchingRuns = screenshotRuns.findAll { run ->
-                run.head_sha == latestSha
+                run.head_sha == latestSha && run.status == 'completed'
               }
 
               if (!shaMatchingRuns) {
                 canContinue = false
-                error("No screenshot builds found matching SHA ${latestSha} '.")
+                error("No screenshot builds found matching SHA ${latestSha}.")
               }
 
               def screenshotRun = shaMatchingRuns[0]
@@ -254,7 +260,7 @@ pipeline {
                   returnStdout: true
                 ).trim()
                 def runs = readJSON text: runsJson
-                def matchedRun = runs.find { run -> run.created_at > docDispatchTime && run.status == 'completed' }
+                def matchedRun = runs.find { run -> run.created_at >= docDispatchTime && run.status == 'completed' }
                 if (matchedRun) {
                   docRunId = matchedRun.id
                   if (matchedRun.conclusion != 'success') {
