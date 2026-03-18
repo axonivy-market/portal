@@ -53,7 +53,7 @@ pipeline {
         script {
           currentBuild.description = "On ${env.NODE_NAME}"
           buildImage.inside('-v /var/tools/maven-cache:/home/build/') {
-            withCredentials([string(credentialsId: 'lmluat-gh-token', variable: 'GH_TOKEN')]) {
+            withCredentials([string(credentialsId: 'github-token', variable: 'GH_TOKEN')]) {
               latestSha = sh(script: "gh api repos/axonivy-market/portal/commits/${params.portalBranch} --jq '.sha'", returnStdout: true).trim()
               echo "Latest ${params.portalBranch} SHA: ${latestSha}"
             }
@@ -150,7 +150,7 @@ pipeline {
       steps {
         script {
           buildImage.inside('-v /var/tools/maven-cache:/home/build/') {
-            withCredentials([string(credentialsId: 'lmluat-gh-token', variable: 'GH_TOKEN')]) {
+            withCredentials([string(credentialsId: 'github-token', variable: 'GH_TOKEN')]) {
               echo "Fetching screenshot builds from GitHub Actions..."
               def screenshotJson = sh(
                 script: "gh api 'repos/axonivy-market/portal/actions/workflows/portal-document-screenshot-test.yml/runs?per_page=10&branch=${params.portalBranch}' --jq '.workflow_runs'",
@@ -192,7 +192,7 @@ pipeline {
       steps {
         script {
           buildImage.inside('-v /var/tools/maven-cache:/home/build/') {
-            withCredentials([string(credentialsId: 'lmluat-gh-token', variable: 'GH_TOKEN')]) {
+            withCredentials([string(credentialsId: 'github-token', variable: 'GH_TOKEN')]) {
               echo "Fetching documentation builds from GitHub Actions..."
               def docJson = sh(
                 script: "gh api 'repos/axonivy-market/portal/actions/workflows/portal-documentation.yml/runs?per_page=10&branch=${params.portalBranch}' --jq '.workflow_runs'",
@@ -231,7 +231,7 @@ pipeline {
       steps {
         script {
           buildImage.inside('-v /var/tools/maven-cache:/home/build/') {
-            withCredentials([string(credentialsId: 'lmluat-gh-token', variable: 'GH_TOKEN')]) {
+            withCredentials([string(credentialsId: 'github-token', variable: 'GH_TOKEN')]) {
               echo "Triggering documentation workflow on branch ${params.portalBranch}..."
               def docDispatchTime = sh(script: "date -u +%Y-%m-%dT%H:%M:%SZ", returnStdout: true).trim()
               sh(script: """gh api repos/axonivy-market/portal/actions/workflows/portal-documentation.yml/dispatches \
