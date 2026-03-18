@@ -282,6 +282,6 @@ Changes in 12.0.11
 
 Changes in 12.0.14
 ------------------
-- Supports multiple file uploads and drag-and-drop. Users can select multiple files at once via the upload button or drag files directly onto the table to upload.
+- It supports multiple file uploads and drag-and-drop. Click the :guilabel:`Upload new file` button to open the upload dialog, then select files via "Browse files" or drag them directly into the dialog's drop zone.
 
 .. |document-table| image:: ../../screenshots/components/document-table.png
