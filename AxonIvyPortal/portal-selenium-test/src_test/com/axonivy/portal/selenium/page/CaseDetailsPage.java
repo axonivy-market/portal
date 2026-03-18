@@ -681,6 +681,7 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public Integer getTaskRowIndex(String taskName) {
+    $$(".task-name-value").shouldBe(CollectionCondition.sizeGreaterThanOrEqual(1), DEFAULT_TIMEOUT);
     List<SelenideElement> taskNames = $$(".task-name-value");
     int taskIndex = IntStream.range(0, taskNames.size()).filter(i -> taskNames.get(i).getText().equals(taskName))
         .findFirst().getAsInt();

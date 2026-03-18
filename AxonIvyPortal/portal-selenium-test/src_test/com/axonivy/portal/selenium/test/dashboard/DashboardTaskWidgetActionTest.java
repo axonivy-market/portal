@@ -130,6 +130,9 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
     // In progress for admin user
     newDashboardPage.waitForGrowlMessageDisappear();
     refreshPage();
+    newDashboardPage = new NewDashboardPage();
+    TaskWidgetNewDashBoardPage refreshedWidget = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
+    refreshedWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
     assertTaskActionsByTaskState(IN_PROGRESS, Arrays.asList(DETAILS, RESERVE, RESET, CLEAR_EXPIRY, DESTROY,
         WORKFLOW_EVENTS, PROCESS_VIEWER, ADD_AD_HOC_TASK));
 
@@ -166,6 +169,9 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
     TaskWidgetNewDashBoardPage taskWidget = new TaskWidgetNewDashBoardPage();
     taskWidget.reserveTask(0);
     refreshPage();
+    newDashboardPage = new NewDashboardPage();
+    taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
+    taskWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
 
     // Reserved for admin user
     assertTaskActionsByTaskState(RESERVED, Arrays.asList(DETAILS, DELEGATE, RESET, CLEAR_EXPIRY, DESTROY,
@@ -204,6 +210,8 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
         Arrays.asList(DETAILS, DESTROY, WORKFLOW_EVENTS, PROCESS_VIEWER));
     // waiting for event
     refreshPage();
+    taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
+    taskWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
     taskWidget.openFilterWidget();
     taskWidget.resetFilter();
     assertTaskActionsByTaskState(WAITING_FOR_EVENT, Arrays.asList(DETAILS, DESTROY, WORKFLOW_EVENTS, PROCESS_VIEWER));
@@ -224,7 +232,7 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
     ElementsCollection actions = taskWidget.getActiveTaskActions(index);
     actions.shouldHave(size(taskActionsInTask.size()));
     assertTrue(actions.texts().containsAll(taskActionsInTask));
-    taskWidget.clickOnTaskActionLink(index);
+    taskWidget.closeActionPanel(index);
   }
 
   private void filterTaskByState(String state) {
@@ -233,6 +241,8 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
     taskWidget.openFilterWidget();
     taskWidget.resetFilter();
     refreshPage();
+    taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
+    taskWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
     taskWidget.openFilterWidget();
     taskWidget.filterTaskState();
     taskWidget.selectState(state);
