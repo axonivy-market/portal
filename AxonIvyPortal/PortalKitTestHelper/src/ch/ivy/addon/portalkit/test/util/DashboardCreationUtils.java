@@ -29,7 +29,7 @@ public class DashboardCreationUtils {
     Locale sessionLocale = LanguageService.getInstance().getUserLocale();
     var news = new News();
     news.setLocale(sessionLocale);
-    news.setIcon("si-send-email");
+    news.setIcon("ti-mail");
     news.setName("Welcome to Portal News feed");
     news.setDescription("This is a great place to share relevant information as News Feed into Axon Ivy.");
     newsList.add(news);

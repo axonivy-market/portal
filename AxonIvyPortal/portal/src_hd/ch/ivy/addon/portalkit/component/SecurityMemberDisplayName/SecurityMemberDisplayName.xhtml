@@ -32,7 +32,7 @@
     <cc:renderFacet name="afterName" />
     <h:panelGroup id="deputy-info"
       rendered="#{cc.attrs.renderDeputyInfo and responsibleBean.isSubstituteForTask(task.responsibles())}}">
-      <i class="si si-information-circle" />
+      <i class="ti ti-info-circle" />
     </h:panelGroup>
     <p:tooltip for="deputy-info" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/taskFromSubstitution')}"
       trackMouse="true" hideEvent="mouseleave click"
@@ -64,7 +64,7 @@
         process="@this"
         ariaLabel="#{securityMemberDisplayNameBean.getBriefDisplayName(securityMember, memberName)} - #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/SecurityMemberDisplayName/tooltipHelper')}"
         immediate="true">
-        <i class="si si-information-circle icon-compact-mode" />
+        <i class="ti ti-info-circle icon-compact-mode" />
       </p:commandLink>
       <p:tooltip for="#{cc.attrs.textId}-activator"
         value="#{securityMemberDisplayNameBean.getBriefDisplayName(securityMember, memberName)} - #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/SecurityMemberDisplayName/tooltipHelper')}"
@@ -94,7 +94,7 @@
 
           <h:panelGroup layout="block" styleClass="ui-g-12">
             <ic:ch.ivy.addon.portalkit.component.Filter id="filter-container"
-              icon="fa fa-filter"
+              icon="ti ti-filter"
               placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/SecurityMemberDisplayName/filterByUsername')}"
               styleClass="widget-header-filter-input"
               keywordStoresIn="#{data.keyword}"
@@ -113,7 +113,7 @@
             <h:outputText rendered="#{totalMember >= 100 and empty user.name}" value="#{user.displayName}"/>
             <f:facet name="loader">
               <p:link rendered="#{totalMember gt 20}" href="#">
-                <i class="fa fa-angle-double-down u-mar-right-5" />
+                <i class="ti ti-chevrons-down u-mar-right-5" />
                 <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/SecurityMemberDisplayName/loadMore')}</span>
               </p:link>
             </f:facet>

@@ -14,12 +14,12 @@
         disabled="#{!taskActionBean.isNotDone(task) or !taskActionBean.canResume(task)}" rendered="#{task.state != 'RESUMED' and !cc.attrs.readOnly}" onstart="event.stopPropagation();"
         styleClass="task-action-item start-task-action #{taskWidgetBean.runningTaskWhenClickingOnTaskInList ? 'u-hidden-md-down' : ''}" oncomplete="resetPortalLeftMenuState()">
         <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/start')}" styleClass="task-action-item-label u-hidden-lg-down" />
-        <i class="si si-arrow-right-1 icon-compact-mode" />
+        <i class="ti ti-chevron-right icon-compact-mode" />
       </p:commandLink>
 
       <p:commandLink id="task-open-detail-command" styleClass="task-action-item u-hidden-lg-up" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/detail')}"
         actionListener="#{logic.openDetails(task, dataModel, cc.attrs.inFrame)}" rendered="#{taskWidgetBean.runningTaskWhenClickingOnTaskInList}">
-        <i class="si si-information-circle icon-compact-mode" />
+        <i class="ti ti-info-circle icon-compact-mode" />
       </p:commandLink>
 
       <p:commandLink id="resume-task-action-component" disabled="#{!taskActionBean.isNotDone(task) or !taskActionBean.canResume(task)}"
@@ -30,7 +30,7 @@
         <p:ajax event="click" listener="#{logic.validate(task, dataModel)}" onstart="event.stopPropagation();"
           oncomplete="if (args &amp;&amp; !args.validationFailed) {PF('reset-task-dialog').show();}" />
         <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/start')}" styleClass="task-action-item-label u-hidden-lg-down" />
-        <i class="si si-arrow-right-1 icon-compact-mode" />
+        <i class="ti ti-chevron-right icon-compact-mode" />
       </p:commandLink>
 
       <ic:ch.ivy.addon.portalkit.component.SideStep id="additional-options" actionLinkId="task-side-steps-menu"

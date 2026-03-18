@@ -39,7 +39,7 @@
     <ui:param name="appendTo" value="@(body)" />
     <ui:param name="styleClass" value="error-ajax-dialog" />
     <ui:param name="headerText" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/warning')}" />
-    <ui:param name="iconClass" value="si si-road-sign-warning" />
+    <ui:param name="iconClass" value="ti ti-alert-triangle" />
     <ui:param name="iconStyleClass" value="portal-dialog-warning-icon" />
 
     <ui:define name="dialogContentSection">
@@ -52,7 +52,7 @@
             <p:button rendered="#{!isPortalInTeams}" href="#"
               onclick="window.open('#{htmlSanitizerBean.escapeForJS(userMenuBean.getHomePageURL())}', '_self')"
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/errorPage/backToHomePage')}"
-              icon="#{visibilityBean.generateButtonIcon('si si-house-chimney-2')}" />
+              icon="#{visibilityBean.generateButtonIcon('ti ti-home')}" />
           </div>
           <p:link id="#{cc.clientId}-show-more" rendered="#{renderDetail}"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}" styleClass="ui-g-12" href="#" />

@@ -41,7 +41,7 @@
             <p:commandLink ajax="false" id="case-export-to-excel"
                            ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/exportButton')}"
                            onclick="PrimeFaces.monitorDownload(start, stop);">
-              <i class="si si-office-file-xls-1 u-mar-right-5" />
+              <i class="ti ti-file-type-xls u-mar-right-5" />
               <span class="link-text">
                 <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/exportButton')}" />
               </span>
@@ -58,7 +58,7 @@
         <p:commandLink id="back-link" actionListener="#{logic.backToCaseDetails()}" styleClass="list-back-link js-back-link"
                        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}"
                        process="@this" immediate="true" update="@none">
-          <i class="si si-arrow-left-1 u-mar-right-5" />
+          <i class="ti ti-chevron-left u-mar-right-5" />
           <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}"/>
         </p:commandLink>
       </h:panelGroup>
@@ -95,7 +95,7 @@
     <ui:param name="id" value="destroy-case-confirmation-dialog" />
     <ui:param name="widgetVar" value="destroy-case-dialog" />
     <ui:param name="appendTo" value="@(body)" />
-    <ui:param name="iconClass" value="si si-delete-1" />
+    <ui:param name="iconClass" value="ti ti-trash" />
     <ui:param name="iconStyleClass" value="portal-dialog-error-icon" />
     <ui:param name="headerText" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroyCaseHeaderText')}" />
     <ui:param name="dialogContent" value="#{caseWidgetBean.getDestroyCaseMessage()}" />

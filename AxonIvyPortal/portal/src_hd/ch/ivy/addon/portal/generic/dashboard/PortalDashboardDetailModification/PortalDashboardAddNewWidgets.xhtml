@@ -18,7 +18,7 @@
         placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/name')}, #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/description')}"
         pt:aria-label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/search')}"
         onkeyup="searchNewWidgetByNameOrDescription(this);" />
-      <span class="si si-search new-widget-dialog__search-icon" />
+      <span class="ti ti-search new-widget-dialog__search-icon" />
     </div>
   </h:form>
   
@@ -57,7 +57,7 @@
             ariaLabel="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/generic/dashboard/PortalDashboardDetailModification/CreateCustomStatistic')}"
             actionListener="#{dashboardDetailModificationBean.navigateToCustomStatisticWidgetPage(null)}">
             <div class="flex flex-column align-items-center justify-content-center h-full">
-              <span class="si si-add new-widget-dialog__icon mb-2"/>
+              <span class="ti ti-plus new-widget-dialog__icon mb-2"/>
               <h:outputText value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/generic/dashboard/PortalDashboardDetailModification/CreateCustomStatistic')}" 
                 styleClass="new-widget-dialog__widget-name text-center"/>
             </div>
@@ -188,7 +188,7 @@
 
     <p:commandButton id="widget-configuration-save-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
       ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
-      actionListener="#{dashboardDetailModificationBean.saveWidget()}" icon="si si-floppy-disk"
+      actionListener="#{dashboardDetailModificationBean.saveWidget()}" icon="ti ti-device-floppy"
       oncomplete="if (args &amp;&amp; !args.validationFailed){PF('new-widget-configuration-dialog').hide();loadGridAfterAddedNewWidget(); initStatistics();}"
       process="#{dashboardDetailModificationBean.componentToProcessOnSave}"
       partialSubmit="true"
@@ -201,7 +201,7 @@
 <ui:decorate template="/layouts/decorator/portal-dialog-with-icon.xhtml">
   <ui:param name="id" value="remove-statistic-widget-dialog" />
   <ui:param name="widgetVar" value="remove-statistic-widget-dialog" />
-  <ui:param name="iconClass" value="si si-delete-1" />
+  <ui:param name="iconClass" value="ti ti-trash" />
   <ui:param name="appendTo" value="@(body)" />
   <ui:param name="closeable" value="true" />
   <ui:param name="closeOnEscape" value="true" />

@@ -7,7 +7,7 @@
   <!-- TOPBAR START -->
   <div class="layout-topbar-left">
     <a href="#" class="menu-button">
-      <i class="si si-navigation-menu" />
+      <i class="ti ti-menu-2" />
     </a>
     <ic:ch.ivy.addon.portalkit.component.WarningBeforeLeavingTask id="task-leave-warning-component"
       rendered="#{isWorkingOnATask}" leaveActionListener="#{userMenuBean.resetTaskAndNavigateWithGrowl(task)}"
@@ -37,7 +37,7 @@
                  <p:commandLink id="back-to-previous-dashboard-page" action="#{navigationDashboardWidgetBean.backToPreviousDashboard()}"
                    ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}"
                    styleClass="inline-flex align-items-center hover:underline" rendered="#{topBarBean.showNavigationBackButton}" process="@this">
-                   <i class="si si-arrow-left-1" />
+                   <i class="ti ti-chevron-left" />
                    <p:spacer width="3px" />
                    <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}" />
                  </p:commandLink>
@@ -87,7 +87,7 @@
           <p:commandLink id="toggle-chat-panel-command" global="false" 
             ariaLabel="#{ivy.cms.co('/Labels/Chat')}"
             styleClass="notification-badge mod-chat-menu">
-            <i class="topbar-icon si si-messages-bubble" />
+            <i class="topbar-icon ti ti-message" />
           </p:commandLink>
         </li>
 
@@ -192,7 +192,7 @@
                   styleClass="qr-code-image" />
               </div>
               <div class="ui-g-7">
-                <span class="si si-information-circle" />
+                <span class="ti ti-info-circle" />
                 <h:outputText
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/mobile/QRCodeDescription')}"
                   styleClass="MarLeft10" />
@@ -209,7 +209,7 @@
               </div>
               <div class="ui-g-7">
                 <div class="ui-g-12">
-                  <span class="si si-information-circle" />
+                  <span class="ti ti-info-circle" />
                   <h:outputText
                     value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/mobile/QRCodeDownloadDescription')}"
                     styleClass="MarLeft10" />
@@ -234,7 +234,7 @@
               </div>
               <div class="ui-g-7">
                 <div class="ui-g-12">
-                  <span class="si si-information-circle" />
+                  <span class="ti ti-info-circle" />
                   <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/mobile/QRCodeDownloadDescription')}" styleClass="MarLeft10" />
                 </div>
                 <div class="ui-g-12">
@@ -253,7 +253,7 @@
         <div class="u-dialog-footer-actions-group">
           <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}" id="mobile-app-close-button" type="button"
             ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
-            icon="#{visibilityBean.generateButtonIcon('si si-remove')}" onclick="PF('mobile-app-dialog').hide();" />
+            icon="#{visibilityBean.generateButtonIcon('ti ti-x')}" onclick="PF('mobile-app-dialog').hide();" />
         </div>
       </p:dialog>
 

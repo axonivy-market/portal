@@ -48,7 +48,7 @@
               rendered="#{chatRendererBean.isPrivateChatRendered}" />
           </div>
           <div class="close-chat">
-            <p:commandButton id="close-chat-button" icon="si si-arrow-right-1" onclick="view.closeChatPanel();" process="@(this)" partialSubmit="true" immediate="true" global="false"
+            <p:commandButton id="close-chat-button" icon="ti ti-chevron-right" onclick="view.closeChatPanel();" process="@(this)" partialSubmit="true" immediate="true" global="false"
               ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
               styleClass="rounded-button ui-button-outlined"/>
           </div>
@@ -57,7 +57,7 @@
           <div class="message-list-header">
             <span class="message-chat-header-name js-message-chat-header-name text-center" />
             <a href="#" class="message-list-header-close js-close-message-list">
-              <i class="si si-delete-1" />
+              <i class="ti ti-trash" />
             </a>
             <p:commandLink id="show-participants-link" styleClass="show-participants-link"
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/chat/viewParticipant')}"
@@ -71,7 +71,7 @@
               <textarea id="message-input-field" onkeydown="chat.onKeyEvent(event)" placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/chat/typeMessage')}" maxlength="2500"
                 class="message-list-content-send-input js-input-message ui-inputfield ui-inputtextarea ui-widget ui-state-default ui-corner-all message-list-content-send-input js-input-message ui-inputtextarea-resizable">
               </textarea>
-              <p:commandButton icon="si si-send-email" onclick="chat.sendMessage()"
+              <p:commandButton icon="ti ti-mail" onclick="chat.sendMessage()"
                 ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/send')}"
                 styleClass="message-list-content-send-button js-send-chat-message" global="false" type="button" />
             </h:panelGroup>
@@ -82,7 +82,7 @@
       <span class="contact-card js-no-group-chat-template no-group-chat hidden">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/chat/noGroupChat')}</span>
 
       <div class="contact-card js-show-group-chat-message js-group-template hidden">
-        <span class="contact-card-icon js-show-contact-message-unread"> <i class="si si-multiple-neutral-1" />
+        <span class="contact-card-icon js-show-contact-message-unread"> <i class="ti ti-users" />
         </span>
         <div class="contact-card-name">
           <span class="js-group-card-name" />
@@ -91,7 +91,7 @@
       </div>
 
       <div id="contact-template" class="contact-card js-contact-template js-show-chat-message hidden">
-        <span class="contact-card-icon js-show-contact-message-unread"> <i class="si si-single-neutral-actions" /> <i
+        <span class="contact-card-icon js-show-contact-message-unread"> <i class="ti ti-user-check" /> <i
           class="contact-card-status js-contact-card-status" />
         </span> <span class="contact-card-name js-contact-card-name" /> <span class="contact-notification js-notification hidden" />
       </div>
@@ -121,7 +121,7 @@
         <h:panelGroup layout="block">
           <p:commandButton onclick="PF('participants-list-dialog').hide()" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
             ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
-            type="button" icon="#{visibilityBean.generateButtonIcon('si si-remove')}" />
+            type="button" icon="#{visibilityBean.generateButtonIcon('ti ti-x')}" />
         </h:panelGroup>
       </f:facet>
     </p:dialog>

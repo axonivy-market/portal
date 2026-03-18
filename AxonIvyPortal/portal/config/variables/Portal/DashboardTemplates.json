@@ -46,7 +46,7 @@
         "value": "ウェルカムウィジェット、タスクリスト、ケースリスト、プロセスリストウィジェット、及びいくつかの標準表示項目を備えたダッシュボードを作成します"
       }
     ],
-    "icon": "si-pie-line-graph",
+    "icon": "ti-report-analytics",
     "dashboard": {
       "id": "public-dashboard",
       "templateId": "default-portal-dashboard-template",
@@ -422,7 +422,7 @@
         "value": "２つのタスクリストと１つのプロセスリストを含むダッシュボードを作成する"
       }
     ],
-    "icon": "si-layout-dashboard",
+    "icon": "ti-layout-dashboard",
     "dashboard": {
       "id": "",
       "templateId": "two-task-widget-dashboard-template",
@@ -641,7 +641,7 @@
         "value": "アクセシビリティーのために最適化された縮小ダッシュボード"
       }
     ],
-    "icon": "si-layout-dashboard",
+    "icon": "ti-accessible",
     "dashboard": {
       "id": "",
       "templateId": "accessibility-dashboard-template",
@@ -935,7 +935,7 @@
         "value": "フル幅のタスクウィジェットを備えたダッシュボードを作成します"
       }
     ],
-    "icon": "si-task-list-edit",
+    "icon": "ti-checklist",
     "dashboard": {
       "id": "default-task-list-dashboard",
       "templateId": "create-from-scratch",
@@ -1086,7 +1086,7 @@
         "value": "フル幅のケースウィジェットを備えたダッシュボードを作成します"
       }
     ],
-    "icon": "si-layout-bullets",
+    "icon": "ti-folder-open",
     "dashboard":   {
       "id": "default-case-list-dashboard",
       "templateId": "create-from-scratch",

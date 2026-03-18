@@ -54,7 +54,7 @@
                   <p:tooltip for="download" trackMouse="true" hideEvent="mouseleave click" value="#{document.relativePath}" />
                 </p:commandLink>
                 <p:commandLink id="edit-filename" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/RenameFile')} #{document.name}"
-                  styleClass="si si-graphic-tablet-drawing-pen Fright document-renaming ui-sm-hidden"
+                  styleClass="ti ti-pencil Fright document-renaming ui-sm-hidden"
                   actionListener="#{data.setDocument(document)}"
                   update="document-renaming-dialog"
                   oncomplete="PF('document-renaming-dialog').show()">
@@ -64,7 +64,7 @@
                 <p:commandLink id="delete-file" actionListener="#{data.setDocument(document)}"
                   ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/deleteFile')} #{document.name}"
                   rendered="#{caseTaskDocumentBean.canWriteDocument(data.selectedCase)}"
-                  styleClass="si si-remove Fright case-document-download"
+                  styleClass="ti ti-x Fright case-document-download"
                   oncomplete="PF('document-deletion-dialog').show()">
                   <p:tooltip for="delete-file" trackMouse="true" hideEvent="mouseleave click"
                     value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/deleteFile')} #{document.name}" />
@@ -95,7 +95,7 @@
             <p:commandButton actionListener="#{logic.close}"
               ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
-              icon="#{visibilityBean.generateButtonIcon('si si-remove')}"/>
+              icon="#{visibilityBean.generateButtonIcon('ti ti-x')}"/>
           </div>
         </h:form>
       </div>
@@ -117,7 +117,7 @@
             <p:commandButton id="document-rename-save-button"
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
               ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}" 
-              icon="#{visibilityBean.generateButtonIcon('si si-floppy-disk')}"
+              icon="#{visibilityBean.generateButtonIcon('ti ti-device-floppy')}"
               actionListener="#{logic.renameDocument}"
               update="case-doc-form renaming-file-messages"
               oncomplete="if (document.querySelector('.ui-messages-info')) PF('document-renaming-dialog').hide()"
@@ -129,7 +129,7 @@
       <ui:decorate template="/layouts/decorator/portal-dialog-with-icon.xhtml">
         <ui:param name="widgetVar" value="document-deletion-dialog" />
         <ui:param name="appendTo" value="@(body)" />
-        <ui:param name="iconClass" value="si si-delete-1" />
+        <ui:param name="iconClass" value="ti ti-trash" />
         <ui:param name="iconStyleClass" value="portal-dialog-error-icon" />
         <ui:param name="headerText" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/deleteDocumentHeaderText')}" />
         <ui:param name="dialogContent" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmForDelete')}" />

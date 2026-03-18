@@ -51,7 +51,7 @@
                     ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/AutoTranslation')}"
                     actionListener="#{newsWidgetBean.resetTranslation()}"
                     disabled="#{not empty newsWidgetBean.warningText}">
-                    <span class="fa fa-language language-icon-padding-right" />
+                    <span class="ti ti-language language-icon-padding-right" />
                     <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/AutoTranslation')}" />
                   </p:commandLink>
                   <h:panelGroup id="translated-text-panel" layout="block">
@@ -81,7 +81,7 @@
                     <button class="ql-strike"></button>
                     <p:commandButton
                       styleClass="ui-button-flat #{isShowTranslation ? 'hidden' : ''}"
-                      id="translate-language-button" icon="si si-chat-translate si-lg"
+                      id="translate-language-button" icon="ti ti-message-2 ti-lg"
                       ariaLabel="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/NewsWidget/Translate')}"
                       title="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/NewsWidget/Translate')}">
                       <p:ajax event="click"
@@ -118,7 +118,7 @@
   <ui:param name="id" value="delete-news-dialog" />
   <ui:param name="widgetVar" value="delete-news-dialog" />
   <ui:param name="appendTo" value="@(body)" />
-  <ui:param name="iconClass" value="si si-delete-1" />
+  <ui:param name="iconClass" value="ti ti-trash" />
   <ui:param name="iconStyleClass" value="portal-dialog-error-icon portal-dialog-icon" />
   <ui:param name="headerText"
     value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/NewsWidget/RemoveNewsHeader')}" />
@@ -133,7 +133,7 @@
       onclick="PF('delete-news-dialog').hide();" styleClass="u-mar-right-15" />
     <p:commandButton id="remove-widget-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/remove')}"
       ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/remove')}"
-      actionListener="#{newsWidgetBean.deleteNews()}" icon="#{visibilityBean.generateButtonIcon('si si-remove-circle')}"
+      actionListener="#{newsWidgetBean.deleteNews()}" icon="#{visibilityBean.generateButtonIcon('ti ti-circle-minus')}"
       oncomplete="PF('delete-news-dialog').hide();" update="#{cc.clientId}:widget-content" />
   </ui:define>
 </ui:decorate>

@@ -21,13 +21,31 @@
   }
 }
 
-.portal-icon.ui-widget.si,
-.portal-icon-container .ui-widget.si,
-.ui-widget.si::before {
+.ti,
+.tif {
+  font-size: var(--portal-tabler-icon-size);
+}
+
+.portal-icon.ui-widget.ti,
+.portal-icon.ui-widget.tif,
+.portal-icon-container .ui-widget.ti,
+.portal-icon-container .ui-widget.tif,
+.ui-widget.ti::before,
+.ui-widget.tif::before {
   font-family: var(--portal-icon-font-family);
 }
 
+.portal-icon.ui-widget.si,
+.portal-icon-container .ui-widget.si,
+.ui-widget.si::before {
+  font-family: "StreamlineIcons";
+}
+
+.portal-icon.ui-icon.ti,
+.portal-icon.ui-icon.tif,
 .portal-icon.ui-icon.si,
+.portal-icon-container .ui-icon.ti,
+.portal-icon-container .ui-icon.tif,
 .portal-icon-container .ui-icon.si {
   font-size: var(--portal-icon-ui-icon-font-size);
   line-height: var(--portal-icon-line-height);
@@ -170,6 +188,8 @@ body .portal-breadcrumb.ui-breadcrumb ul li .ui-menuitem-link.ui-state-disabled 
   opacity: var(--current-step-opacity);
   color: var(--current-step-color); }
 
+.portal-breadcrumb .ti,
+.portal-breadcrumb .tif,
 .portal-breadcrumb .si {
   color: var(--breadcrumb-home-icon-color) !important;
 }
@@ -743,12 +763,6 @@ body .ui-datepicker .ui-timepicker-div dl dd {
 .case-widget-container .ui-widget.ui-button.advanced-filter-command.ui-state-focus {
   background: var(--widget-advanced-filter-command-state-focus-background-color); }
 
-.ui-commandlink.advanced-filter-icon {
-  color: var(--widget-advanced-filter-icon-color);}
-
-.advanced-filter-icon:hover {
-  color: var(--widget-advanced-filter-icon-color-hover);}
-
 .history-note .task-note-link:hover {
   color: var(--task-note-link-hover-color); }
 
@@ -899,6 +913,8 @@ body .ui-inputfield.case-detail-name-input {
   font-family: var(--icon-font-family);
   font-size: var(--large-font-size); }
 
+.process-item-action-container .ti,
+.process-item-action-container .tif,
 .process-item-action-container .si {
   font-size: var(--large-font-size); }
 
@@ -1282,11 +1298,8 @@ background-color:var(--primary-color);
 color: var(--button-text-color);
 }
 
-.no-item-panel .si {
-  font-size: var(--no-item-icon-font-size) !important;
-  color: var(--no-item-icon-color);
-}
-
+.no-item-panel .ti,
+.no-item-panel .tif,
 .no-item-panel .si {
   font-size: var(--no-item-icon-font-size) !important;
   color: var(--no-item-icon-color);
@@ -1353,22 +1366,22 @@ body.in-dialog .ui-widget-overlay {
   background-color: transparent;
 }
 
-.time-information .si-graphic-tablet-drawing-pen,
-.general-information .si-graphic-tablet-drawing-pen,
-.task-detail-description .si-add-circle,
-.task-detail-description .si-subtract-circle,
-.case-detail-description .si-add-circle,
-.case-detail-description .si-subtract-circle {
+.time-information .ti-pencil,
+.general-information .ti-pencil,
+.task-detail-description .ti-circle-plus,
+.task-detail-description .ti-circle-minus,
+.case-detail-description .ti-circle-plus,
+.case-detail-description .ti-circle-minus {
   margin-left: 5px;
   color: var(--primary-color);
 }
 
-.task-details-description-title .si-graphic-tablet-drawing-pen, .case-details-description-title .si-graphic-tablet-drawing-pen {
+.task-details-description-title .ti-pencil, .case-details-description-title .ti-pencil {
   margin: 0 2px;
   color: var(--primary-color);
 }
 
-.time-information .si-information-circle {
+.time-information .ti-info-circle {
   margin-left: 5px;
   top: 2px;
   color: var(--primary-color);
@@ -1493,6 +1506,8 @@ body.in-dialog .ui-widget-overlay {
   border-radius:50%;
   background-color:var(--ivy-primary-color);
 }
+.notifications-button.ti,
+.notifications-button.tif,
 .notifications-button.si {
   font-size: var(--default-font-size);
 }
@@ -1508,6 +1523,8 @@ body.in-dialog .ui-widget-overlay {
   padding-right: 5px;
 }
 
+.notifications-action-button.ti,
+.notifications-action-button.tif,
 .notifications-action-button.si {
   font-size: var(--default-font-size);
 }

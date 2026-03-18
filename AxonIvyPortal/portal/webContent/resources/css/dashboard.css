@@ -248,6 +248,8 @@
 }
 
 .widget__header .widget__header-title,
+.widget__header .ui-link.ti,
+.widget__header .ui-link.tif,
 .widget__header .ui-link.si, .navigation-widget-title {
   font-size: var(--widget-header-font-size);
 }
@@ -259,7 +261,11 @@
   text-align: center;
 }
 
+.process-grid-item__action--combined a.ti,
+.process-grid-item__action--combined a.tif,
 .process-grid-item__action--combined a.si,
+.widget__header-actions > a.ti,
+.widget__header-actions > a.tif,
 .widget__header-actions > a.si {
   font-size: var(--widget-header-font-size);
 }
@@ -826,7 +832,7 @@ body .dashboard__table--preview.ui-datatable tbody tr.ui-state-hover {
   width: 7rem;
 }
 
-span.new-widget-dialog__icon.si, span.new-widget-dialog__icon.fa {
+span.new-widget-dialog__icon.ti, span.new-widget-dialog__icon.tif, span.new-widget-dialog__icon.si, span.new-widget-dialog__icon.fa {
   font-size: 40px;
   text-align: center;
   line-height: 1;

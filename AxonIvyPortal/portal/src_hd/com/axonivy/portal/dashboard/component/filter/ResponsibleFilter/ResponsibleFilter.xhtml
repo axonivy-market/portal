@@ -60,7 +60,7 @@
         <pc:securityMemberNameAndAvatar
           displayName="#{taskWidgetConfigurationFilterBean.formatName(responsible)}" securityMember="#{responsible}">
           <f:facet name="alternativeAvatar">
-            <h:outputText  rendered="#{not avatarBean.isShowAvatar()}" styleClass="si #{responsible.isUser() ? 'si-single-neutral-actions' : 'si-multiple-neutral-1'} u-mar-right-5" />
+            <h:outputText  rendered="#{not avatarBean.isShowAvatar()}" styleClass="si #{responsible.isUser() ? 'ti-user-check' : 'ti-users'} u-mar-right-5" />
           </f:facet>
         </pc:securityMemberNameAndAvatar>
       </p:column>

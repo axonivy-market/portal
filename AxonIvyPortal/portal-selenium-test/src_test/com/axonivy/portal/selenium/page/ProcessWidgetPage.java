@@ -319,10 +319,10 @@ public class ProcessWidgetPage extends TemplatePage {
 
   public void addNewRolePermission(String rolePermission) {
     waitForElementDisplayed(By.cssSelector(
-        "span[id='process-widget:edit-process-form:role-permissions-editor-for-external-link_display'] a.si.si-graphic-tablet-drawing-pen"),
+        "span[id='process-widget:edit-process-form:role-permissions-editor-for-external-link_display'] a.si.ti-pencil"),
         true);
     waitForElementClickableThenClick($(
-        "span[id='process-widget:edit-process-form:role-permissions-editor-for-external-link_display'] a.si.si-graphic-tablet-drawing-pen"));
+        "span[id='process-widget:edit-process-form:role-permissions-editor-for-external-link_display'] a.si.ti-pencil"));
     WebElement rolePermissionInput = findDisplayedElementByCssSelector(
         "[id$='process-widget:edit-process-form:role-autocomplete-for-editing-external-link_input']");
     rolePermissionInput.sendKeys(rolePermission);

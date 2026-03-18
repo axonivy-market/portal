@@ -190,7 +190,7 @@
             <ui:param name="id" value="destroy-task-confirmation-dialog" />
             <ui:param name="widgetVar" value="destroy-task-dialog" />
             <ui:param name="appendTo" value="@(body)" />
-            <ui:param name="iconClass" value="si si-delete-1" />
+            <ui:param name="iconClass" value="ti ti-trash" />
             <ui:param name="iconStyleClass" value="portal-dialog-error-icon" />
             <ui:param name="headerText" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroyTaskHeaderText')}" />
             <ui:param name="dialogContent"
@@ -216,7 +216,7 @@
             <ui:param name="id" value="escalation-task-confirmation-dialog" />
             <ui:param name="widgetVar" value="escalation-task-dialog" />
             <ui:param name="appendTo" value="@(body)" />
-            <ui:param name="iconClass" value="si si-road-sign-warning" />
+            <ui:param name="iconClass" value="ti ti-alert-triangle" />
             <ui:param name="iconStyleClass" value="portal-dialog-warning-icon" />
             <ui:param name="headerText" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/escalationTaskHeaderText')}" />
             <ui:param name="dialogContent"
@@ -228,7 +228,7 @@
                 onclick="PF('escalation-task-dialog').hide();" styleClass="u-mar-right-15" />
               <p:commandButton id="confirm-escalation-dashboard-tasks" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}"
                 ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}"
-                icon="#{visibilityBean.generateButtonIcon('si si-check-1')}"
+                icon="#{visibilityBean.generateButtonIcon('ti ti-check')}"
                 actionListener="#{taskWidgetBean.expiryTask(taskWidgetBean.selectedTaskItemId)}"
                 oncomplete="PF('escalation-task-dialog').hide();loadGrid(#{managedBean.selectedDashboard.isResponsive});initStatistics();" update="grid-stack dashboard-title-container" />
             </ui:define>
@@ -251,7 +251,7 @@
             <ui:param name="id" value="destroy-case-confirmation-dialog" />
             <ui:param name="widgetVar" value="destroy-case-dialog" />
             <ui:param name="appendTo" value="@(body)" />
-            <ui:param name="iconClass" value="si si-delete-1" />
+            <ui:param name="iconClass" value="ti ti-trash" />
             <ui:param name="iconStyleClass" value="portal-dialog-error-icon" />
             <ui:param name="headerText" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroyCaseHeaderText')}" />
             <ui:param name="dialogContent" value="#{caseWidgetBean.getDestroyCaseMessage()}" />
@@ -295,7 +295,7 @@
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
                   ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
                   actionListener="#{widgetFilterHelperBean.saveNewWidgetFilter()}"
-                  icon="#{visibilityBean.generateButtonIcon('si si-floppy-disk')}"
+                  icon="#{visibilityBean.generateButtonIcon('ti ti-device-floppy')}"
                   oncomplete="if (!args.validationFailed) { #{widgetFilterHelperBean.loadWidgetFilters}; PF('save-widget-filter-dialog').hide();}"
                   update="save-filter-form"
                   process="save-filter-form"/>

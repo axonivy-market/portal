@@ -35,13 +35,13 @@
           value="#{data.selectedDeputies}" var="deputy">
           <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/SelectedSubtitutes')}">
             <h:outputText rendered="#{not avatarBean.isShowAvatar()}"
-              id="deputy-type-icon" class="si si-single-neutral-actions" />
+              id="deputy-type-icon" class="ti ti-user-check" />
             <pc:securityMemberNameAndAvatar
               displayName="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(deputy, deputy.getName())}"
               securityMember="#{deputy}" />
           </p:column>
           <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}" styleClass="w-2 text-center">
-            <p:commandLink id="delete-deputy" styleClass="si si-bin-1 delete-deputy"
+            <p:commandLink id="delete-deputy" styleClass="ti ti-trash delete-deputy"
               actionListener="#{logic.removeDeputy(deputy)}" update="deputy-selection-form"
               ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}" />
           </p:column>

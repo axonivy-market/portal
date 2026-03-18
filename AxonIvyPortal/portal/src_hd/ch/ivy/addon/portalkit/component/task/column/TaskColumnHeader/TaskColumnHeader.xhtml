@@ -26,9 +26,9 @@
       binding="#{logic.sort(sortField, isSelected and !data.dataModel.sortDescending)}" />
     <f:actionListener binding="#{taskWidgetBean.setExpandedTaskId(0, false)}" />
     <h:outputText value="#{cc.attrs.value}" />
-    <i class="sort-icon fa fa-angle-down"
+    <i class="sort-icon ti ti-chevron-down"
       jsf:rendered="#{isSelected and data.dataModel.sortDescending}" />
-    <i class="sort-icon fa fa-angle-up"
+    <i class="sort-icon ti ti-chevron-up"
       jsf:rendered="#{isSelected and !data.dataModel.sortDescending}" />
   </p:commandLink>
   <h:panelGroup id="unsortable-#{id}" rendered="#{!cc.attrs.sortable and data.dataModel.isSelectedColumn(sortField)}" styleClass="#{cc.attrs.styleClass} #{cc.attrs.responsiveStyleClass} case-list-unsortable-header-cell js-unsortable-header-cell">

@@ -21,7 +21,7 @@
         "value": "Dashboard"
       }
     ],
-    "icon": "si-pie-line-graph",
+    "icon": "ti-chart-pie",
     "widgets": [
       {
         "type": "task",

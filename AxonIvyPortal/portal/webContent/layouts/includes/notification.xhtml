@@ -20,15 +20,15 @@
                   <span class="notifications-title-header">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/notificationTitle')}</span>
                   <div class="flex">
                     <h:form>
-                      <p:menuButton id="notification-more-option" icon="si si-navigation-menu-horizontal" buttonStyleClass="ui-button-flat" buttonStyle="color: var(--text-color)">
+                      <p:menuButton id="notification-more-option" icon="ti ti-dots" buttonStyleClass="ui-button-flat" buttonStyle="color: var(--text-color)">
                         <p:menuitem id="notification-setting" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/linkToNotificationSettings')}"
-                          icon="notifications-button si si-cog"
+                          icon="notifications-button ti ti-settings"
                           actionListener="#{userMenuBean.navigateToUserProfileOrDisplayWorkingTaskWarning(isWorkingOnATask, task)}"
                           oncomplete="Portal.updateLayoutContent()" global="false" />
                         <p:divider />
                         <p:menuitem id="notification-full-page" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/linkToFullScreen')}"
                           actionListener="#{userMenuBean.navigateToNotificationOrDisplayWorkingTaskWarning(isWorkingOnATask, task)}"
-                          icon="si si-expand-6" />
+                          icon="ti ti-queue-pop-out" />
                       </p:menuButton>
                     </h:form>
                   </div>
@@ -49,7 +49,7 @@
                       update="#{unreadNotificationsId}, #{notificationScrollerId} notification-mark-all-as-read"
                       ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/markAllAsRead')}"
                       value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/markAllAsRead')}" oncomplete="Portal.updateLayoutContent()"
-                      actionListener="#{notificationBean.readAll()}" icon="si si-check-double-1">
+                      actionListener="#{notificationBean.readAll()}" icon="ti ti-checks">
                     </p:commandButton>
                   </div>
                 </h:panelGroup>
@@ -80,7 +80,7 @@
                               process="@this" partialSubmit="true" global="false" onclick="markAsRead('#{htmlSanitizerBean.escapeForJS(notification.id)}')"
                               ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/markAsRead')}"
                               oncomplete="Portal.updateLayoutContent();" update="#{unreadNotificationsId} notification-mark-all-as-read">
-                              <i class="notifications-indicator-icon fa #{notification.read ? '': 'fa-circle'}" id="#{notification.id}" />
+                              <i class="notifications-indicator-icon tif #{notification.read ? '' : 'tif-circle'}" id="#{notification.id}" />
                             </p:commandLink>
                             <p:tooltip for="notification-mark-as-read"
                               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/markAsRead')}" />
@@ -104,7 +104,7 @@
                               styleClass="notification-start-task"
                               ariaLabel="#{notification.runAction.title}" onclick="removeNavigationDashboardBackButton();"
                               actionListener="#{notificationBean.startTaskFromNotification(notification, isWorkingOnATask, task)}">
-                              <i class="fa fa-play notification-start-task-icon" />
+                              <i class="ti ti-player-play notification-start-task-icon" />
                             </p:commandLink>
                             <p:tooltip for="notification-start-task" value="#{notification.runAction.title}" />
                           </p:outputPanel>

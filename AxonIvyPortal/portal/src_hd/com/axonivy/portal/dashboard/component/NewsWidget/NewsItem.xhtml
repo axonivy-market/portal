@@ -36,11 +36,11 @@
       <h:panelGroup rendered="#{newsWidgetBean.canManageNews and isReadOnlyMode}" styleClass="news__manage-actions">
         <p:commandLink id="news-item-edit-link"
           ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}"
-          styleClass="si si-pencil u-mar-right-10 ui-sm-hidden"
+          styleClass="ti ti-pencil u-mar-right-10 ui-sm-hidden"
           actionListener="#{newsWidgetBean.preEditingNews(news)}" oncomplete="PF('manage-news-dialog').show()"
           update="#{cc.clientId}:management-news-group #{cc.clientId}:manage-news-dialog"/>
         <p:commandLink id="news-item-delete-link"
-          styleClass="si si-bin-1" actionListener="#{newsWidgetBean.setSelectedNews(news)}"
+          styleClass="ti ti-trash" actionListener="#{newsWidgetBean.setSelectedNews(news)}"
           ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
           oncomplete="PF('delete-news-dialog').show()" update="news-#{widget.id}:delete-news-dialog" />
       </h:panelGroup>

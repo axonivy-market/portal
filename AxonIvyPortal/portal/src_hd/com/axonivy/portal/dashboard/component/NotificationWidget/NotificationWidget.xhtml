@@ -65,7 +65,7 @@
                       onclick="markAsRead('#{htmlSanitizerBean.escapeForJS(widget.id)}__#{htmlSanitizerBean.escapeForJS(notification.id)}')"
                       oncomplete="Portal.updateLayoutContent();"
                       update="#{unreadNotificationsId}">
-                      <i class="notifications-indicator-icon fa #{notification.read ? '': 'fa-circle'}" id="#{widget.id}__#{notification.id}" />
+                      <i class="notifications-indicator-icon tif #{notification.read ? '' : 'tif-circle'}" id="#{widget.id}__#{notification.id}" />
                     </p:commandLink>
                     <p:tooltip for="notification-mark-as-read"
                       value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/markAsRead')}" />
@@ -89,7 +89,7 @@
                     <p:commandLink disabled="#{!isReadOnlyMode}" id="notification-start-task" styleClass="notification-start-task"
                       ariaLabel="#{notification.runAction.title}"
                       actionListener="#{widget.startTaskFromNoti(notification)}" rendered="#{notification.runAction != null}" >
-                      <i class="fa fa-play notification-start-task-icon" />
+                      <i class="ti ti-player-play notification-start-task-icon" />
                     </p:commandLink>
                     <p:tooltip for="notification-start-task" value="#{notification.runAction.title}" />
                   </p:outputPanel>
@@ -98,7 +98,7 @@
             </p:dataScroller>
             <h:panelGroup layout="block" id="empty-message" rendered="#{!widget.hasNotifications()}"
               styleClass="empty-message-container">
-              <i class="si si-alarm-bell empty-message-icon" />
+              <i class="ti ti-bell empty-message-icon" />
               <br />
               <h:outputText value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/NotificationWidget/NoNotificationAvailable')}" styleClass="empty-message-text" />
             </h:panelGroup>

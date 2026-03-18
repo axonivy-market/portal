@@ -38,7 +38,7 @@
           <!-- Add language button -->
           <p:commandButton styleClass="app-setting-button"
             ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/addLanguages')}"
-            icon="si si-chat-translate" id="title-language-button"
+            icon="ti ti-message-2" id="title-language-button"
             actionListener="#{managedBean.updateWidgetNameByLocale()}"
             process="widget-title"
             update="#{cc.clientId}:title-language-config:multiple-languages-dialog"
@@ -65,7 +65,7 @@
           <!-- Add language button -->
           <p:commandButton styleClass="app-setting-button"
             ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/addLanguages')}"
-            icon="si si-chat-translate" id="button-name-language"
+            icon="ti ti-message-2" id="button-name-language"
             actionListener="#{navigationDashboardWidgetBean.updateButtonNameByLocale(widget)}"
             process="button-name"
             update="#{cc.clientId}:button-name-language-config:multiple-languages-dialog"
@@ -116,7 +116,7 @@
                   widgetVar="navigationWidgetUpload"
                   rendered="#{empty widget.imageLocation}"
                   listener="#{navigationDashboardWidgetConfigurationBean.handleImageUpload}"
-                  chooseIcon="#{visibilityBean.generateButtonIcon('si si-add-small')}"
+                  chooseIcon="#{visibilityBean.generateButtonIcon('ti ti-plus')}"
                   dragDropSupport="true" auto="true" update="file-upload-panel"
                   allowTypes="/(\.|\/)(png|jpg|jpeg|svg)$/i"
                   accept=".png,.jpg,.jpeg,.svg" onvalidationfailure="handleUploadFileFail('navigationWidgetUpload');"
@@ -127,7 +127,7 @@
                   
                 <p:outputPanel id="navigation-widget-preview-image-panel" styleClass="ui-navigation-widget-preview-image-panel" >
                     <h:panelGroup rendered="#{empty widget.imageLocation}" class="ui-navigation-widget-preview-image-label">
-                    <i class="si si-file-code-upload-1" id="ui-navigation-widget-preview-image-icon" />
+                    <i class="ti ti-file-upload" id="ui-navigation-widget-preview-image-icon" />
                     <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/dragAndDropImage')}">
                     <p:link value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/uploadOneHere')}" onclick="PF('navigationWidgetUpload').show();return false"/>
                     </p:outputLabel>
@@ -147,7 +147,7 @@
                     partialSubmit="true" update="file-upload-panel"
                     rendered="#{not empty widget.imageLocation}"
                     styleClass="external-link-delete-image-button"
-                    icon="si si-bin-1" immediate="true" />
+                    icon="ti ti-trash" immediate="true" />
                 </h:panelGroup>
               </h:panelGroup>
             </p:tab>
@@ -159,7 +159,7 @@
                   widgetVar="navigationWidgetDarkModeUpload"
                   rendered="#{empty widget.imageLocationDarkMode}"
                   listener="#{navigationDashboardWidgetConfigurationBean.handleImageDarkModeUpload}"
-                  chooseIcon="#{visibilityBean.generateButtonIcon('si si-add-small')}"
+                  chooseIcon="#{visibilityBean.generateButtonIcon('ti ti-plus')}"
                   dragDropSupport="true" auto="true" update="file-upload-panel-dark-mode"
                   allowTypes="/(\.|\/)(png|jpg|jpeg|svg)$/i"
                   accept=".png,.jpg,.jpeg,.svg" onvalidationfailure="handleUploadFileFail('navigationWidgetDarkModeUpload');"
@@ -170,7 +170,7 @@
                   
                 <p:outputPanel id="navigation-widget-preview-image-dark-mode-panel" styleClass="ui-navigation-widget-preview-image-panel" >
                     <h:panelGroup rendered="#{empty widget.imageLocationDarkMode}" class="ui-navigation-widget-preview-image-label">
-                    <i class="si si-file-code-upload-1" id="ui-navigation-widget-preview-image-icon" />
+                    <i class="ti ti-file-upload" id="ui-navigation-widget-preview-image-icon" />
                     <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/dragAndDropImage')}">
                     <p:link value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/uploadOneHere')}" onclick="PF('navigationWidgetDarkModeUpload').show();return false"/>
                     </p:outputLabel>
@@ -190,7 +190,7 @@
                     partialSubmit="true" update="file-upload-panel-dark-mode"
                     rendered="#{not empty widget.imageLocationDarkMode}"
                     styleClass="external-link-delete-image-button"
-                    icon="si si-bin-1" immediate="true" />
+                    icon="ti ti-trash" immediate="true" />
                 </h:panelGroup>
               </h:panelGroup>
             </p:tab>

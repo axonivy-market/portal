@@ -47,7 +47,7 @@
                          ariaLabel="#{cc.attrs.title} #{data.dataModel.disableTaskCount ? '' : '('.concat(data.dataModel.rowCount).concat(')')}"
                          styleClass="compact-toggle-tasks-link ui-lg-hidden ui-xl-hidden ui-md-hidden"
                          global="false" oncomplete="toggleShowTaskList();">
-            <i class="si si-subtract-small u-mar-right-5"/>
+            <i class="ti ti-minus u-mar-right-5"/>
             <h:outputText value="#{cc.attrs.title} #{data.dataModel.disableTaskCount ? '' : '('.concat(data.dataModel.rowCount).concat(')')}" />
           </p:commandLink>
         </h:panelGroup>
@@ -80,7 +80,7 @@
             <p:commandLink ajax="false" id="task-export-to-excel"
                            ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/exportButton')}"
                            onclick="PrimeFaces.monitorDownload(start, stop);">
-              <i class="si si-office-file-xls-1 u-mar-right-5" />
+              <i class="ti ti-file-type-xls u-mar-right-5" />
               <span class="link-text">
                 <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/exportButton')}" />
               </span>
@@ -103,7 +103,7 @@
                        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}"
                        actionListener="#{logic.backToCaseDetails()}"
                        process="@this" immediate="true" update="@none">
-          <i class="si si-arrow-left-1 u-mar-right-5" />
+          <i class="ti ti-chevron-left u-mar-right-5" />
           <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}"/>
         </p:commandLink>
       </h:panelGroup>
@@ -163,7 +163,7 @@
     <ui:param name="id" value="reset-task-dialog" />
     <ui:param name="widgetVar" value="reset-task-dialog" />
     <ui:param name="appendTo" value="@(body)" />
-    <ui:param name="iconClass" value="si si-road-sign-warning" />
+    <ui:param name="iconClass" value="ti ti-alert-triangle" />
     <ui:param name="iconStyleClass" value="portal-dialog-warning-icon" />
     <ui:param name="headerText" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/resetTaskHeaderText')}" />
     <ui:param name="dialogContent" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/resetTaskWarning')}" />
@@ -175,7 +175,7 @@
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" styleClass="u-mar-right-15" />
         <p:commandButton id="reset-task-button" actionListener="#{logic.resetAndOpenTask(cc.attrs.currentPortalPage, taskWidgetBean.selectedTaskItemId)}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
           ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
-          icon="#{visibilityBean.generateButtonIcon('si si-road-sign-u-turn-left')}" onstart="#{cc.attrs.onTaskStartCallback}" oncomplete="resetPortalLeftMenuState()"/>
+          icon="#{visibilityBean.generateButtonIcon('ti ti-arrow-back-up')}" onstart="#{cc.attrs.onTaskStartCallback}" oncomplete="resetPortalLeftMenuState()"/>
       </h:form>
     </ui:define>
   </ui:decorate>
@@ -185,7 +185,7 @@
     <ui:param name="id" value="destroy-task-confirmation-dialog" />
     <ui:param name="widgetVar" value="destroy-task-dialog" />
     <ui:param name="appendTo" value="@(body)" />
-    <ui:param name="iconClass" value="si si-delete-1" />
+    <ui:param name="iconClass" value="ti ti-trash" />
     <ui:param name="iconStyleClass" value="portal-dialog-error-icon" />
     <ui:param name="headerText" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroyTaskHeaderText')}" />
     <ui:param name="dialogContent" value="#{taskWidgetBean.getDestroyTaskMessage()}" />
@@ -210,7 +210,7 @@
     <ui:param name="id" value="escalation-task-confirmation-dialog" />
     <ui:param name="widgetVar" value="escalation-task-dialog" />
     <ui:param name="appendTo" value="@(body)" />
-    <ui:param name="iconClass" value="si si-road-sign-warning" />
+    <ui:param name="iconClass" value="ti ti-alert-triangle" />
     <ui:param name="iconStyleClass" value="portal-dialog-warning-icon" />
     <ui:param name="headerText" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/escalationTaskHeaderText')}" />
     <ui:param name="dialogContent" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/escalationTaskMessage')}" />
@@ -221,7 +221,7 @@
         onclick="PF('escalation-task-dialog').hide();" styleClass="u-mar-right-15"/>
        <p:commandButton id="confirm-escalation" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}"
         ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}"
-        icon="#{visibilityBean.generateButtonIcon('si si-check-1')}"
+        icon="#{visibilityBean.generateButtonIcon('ti ti-check')}"
         actionListener="#{taskWidgetBean.expiryTask(taskWidgetBean.selectedTaskItemId)}"
         oncomplete="taskWidget.setupScrollbar();PF('escalation-task-dialog').hide()"
         update="#{cc.clientId}:task-view" />
@@ -250,7 +250,7 @@
       function toggleShowTaskList() {
         $('[id $= "task-widget-sub-header"]').toggleClass("ui-sm-hidden").toggleClass("ui-md-hidden");
         $('[id $= "task-view"]').toggleClass("ui-sm-hidden").toggleClass("ui-md-hidden");
-        $('[id $= "toggle-tasks-link"] > i').toggleClass("si-add-small").toggleClass("si-subtract-small");
+        $('[id $= "toggle-tasks-link"] > i').toggleClass("ti-plus").toggleClass("ti-minus");
       }
 
       $(function() {

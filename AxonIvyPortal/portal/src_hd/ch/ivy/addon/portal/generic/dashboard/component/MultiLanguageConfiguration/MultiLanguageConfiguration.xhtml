@@ -64,7 +64,7 @@
               <p:commandLink id="tranlate-link" actionListener="#{managedBean.applyTranslatedText(title)}" update="@form" process="@this"
                              partialSubmit="true" disabled="#{not empty managedBean.warningText}"
                              ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/AutoTranslation')}">
-                <span class="fa fa-language language-icon-padding-right"/>
+                <span class="ti ti-language language-icon-padding-right"/>
                 <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/AutoTranslation')}" />
               </p:commandLink>
               <h:panelGroup id="translated-text-panel" layout="block">

@@ -192,7 +192,7 @@ public class NewDashboardPage extends TemplatePage {
       .click();
     }
     $("[id$=':image-process-action-component:process-action-menu']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
-        .$("span.si-graphic-tablet-drawing-pen").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
+        .$("span.ti-pencil").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
     $("div[id='new-widget-configuration-dialog']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     return new ProcessEditWidgetNewDashBoardPage();
   }
@@ -256,7 +256,7 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   private void openEditCombinedModeProcessDialog() {
-    $(".process-grid-item__action--combined .si-pencil").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
+    $(".process-grid-item__action--combined .ti-pencil").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
     $("div[id='new-widget-configuration-dialog']").shouldHave(Condition.appear);
   }
 

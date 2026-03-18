@@ -33,7 +33,7 @@
         <!-- Add language button -->
         <p:commandButton styleClass="app-setting-button"
           ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/addLanguages')}"
-          icon="si si-chat-translate" id="add-language-button"
+          icon="ti ti-message-2" id="add-language-button"
           actionListener="#{managedBean.updateWidgetNameByLocale()}"
           process="widget-title"
           partialSubmit="true"
@@ -45,10 +45,10 @@
     <div class="ui-g-4 flex justify-content-end">
       <p:commandButton id="widget-configuration-button" 
         styleClass="mr-2" type="button" label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/configuration')}"
-        icon="si si-cog-double-2" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/configuration')}"  
+        icon="ti ti-settings" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/configuration')}"  
         onclick="PF('widgetConfigurationPanel').show();"/>
       <p:commandButton id="manage-column"
-        icon="si si-layers-grid-settings" 
+        icon="ti ti-layout-grid" 
         styleClass="mr-2"
         ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/manageColumns')}"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/manageColumns')}"
@@ -58,7 +58,7 @@
         global="false" >
         <p:resetInput target="#{p:resolveFirstComponentWithId('column-management-dialog', view).clientId}" />
       </p:commandButton>
-      <p:commandButton id="show-filter" styleClass="mr-2" icon="si si-filter-1" 
+      <p:commandButton id="show-filter" styleClass="mr-2" icon="ti ti-filter" 
         ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/filter')}"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/filter')}"
         type="button" onclick="openFilterPanel(event);"/>
@@ -74,7 +74,7 @@
         <div class="label-item">
           <p:outputLabel for="quick-search" styleClass="u-mar-right-5"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/QuickSearch')}" />
-          <h:outputText id="quick-search-info" styleClass="si si-information-circle" />
+          <h:outputText id="quick-search-info" styleClass="ti ti-info-circle" />
           <p:tooltip for="quick-search-info" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/QuickSearchInfo')}" />
         </div>
         <div class="ui-inputgroup">
@@ -143,7 +143,7 @@
         <div class="case-type-label-item">
           <p:outputLabel for="case-query-type" styleClass="u-mar-right-5"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/CaseQueryType/label')}" />
-          <h:outputText id="case-query-type-info" styleClass="si si-information-circle" />
+          <h:outputText id="case-query-type-info" styleClass="ti ti-info-circle" />
           <p:tooltip for="case-query-type-info" 
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/CaseQueryType/info')}" />
         </div>
@@ -176,10 +176,10 @@
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/apply')}"
             ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/apply')}"
             actionListener="#{taskWidgetConfigurationFilterBean.updateWidgetFilterBeforeApply(widget)}"
-            styleClass="Fright preview-button u-hidden-sm-down" icon="si si-check-1"
+            styleClass="Fright preview-button u-hidden-sm-down" icon="ti ti-check"
             update="predefined-filter configuration-filter-messages-panel"
             oncomplete="closeFilterPanelWithValidation(); if (args &amp;&amp; !args.validationFailed) { updateComponentOnPreviewCmd(); }" />
-          <p:commandButton id="reset-filter" icon="si si-button-refresh-arrows"
+          <p:commandButton id="reset-filter" icon="ti ti-refresh"
             update="predefined-filter configuration-filter-messages-panel" process="predefined-filter" styleClass="Fright ui-button-secondary preview-button u-hidden-sm-down u-mar-right-5"
             actionListener="#{taskWidgetConfigurationFilterBean.resetFilter(widget)}"
             ariaLabel="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/TaskWidgetConfiguration/ResetFilter')}"

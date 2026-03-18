@@ -14,7 +14,7 @@
           "name" : "<%=ivy.cms.co(\"/Processes/LeaveRequest/leaveRequest\")%>",
           "description" : "<%=ivy.cms.co(\"/Processes/LeaveRequest/description\")%>",
           "customFields" : [
-            { "name" : "cssIcon", "value" : "si si-advertising-megaphone-2" },
+            { "name" : "cssIcon", "value" : "ti ti-speakerphone" },
             { "name" : "processImage", "value" : "<%=ivy.cms.cr(\"/Images/process/NASASTART\")%>" }
           ]
         },

@@ -20,7 +20,7 @@
     <h:form id="task-document-form" prependId="false" styleClass="ui-g-12 u-padding-0">
       <div class="task-detail-section-title ui-g-12">
         <div class="task-details-document-title ui-g-6 u-truncate-text u-padding-0 task-details-panel-title" role="heading" aria-level="1">
-          <i class="si si-common-file-text" /> #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/documents')}
+          <i class="ti ti-file-text" /> #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/documents')}
         </div>
         <h:panelGroup layout="block" styleClass="ui-g-6 u-padding-0 document-task-detail-section-header-actions">
           <p:commandLink id="add-document-command" global="false"
@@ -28,14 +28,14 @@
                          rendered="#{caseTaskDocumentBean.canWriteDocument(task)}"
                          styleClass="task-details-document-add-link u-mar-right-10"
                          oncomplete="PF('document-upload-dialog').show()">
-            <span class="si si-common-file-add" />
+            <span class="ti ti-file-plus" />
             <span class="display-full-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addDocument')}</span>
             <span class="display-short-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/add')}</span>
           </p:commandLink>
           <p:link id="show-more-doc-link" rendered="#{caseTaskDocumentBean.showMoreDocument}"
             styleClass="task-details-document-add-link doc-show-more-link"
             href="#{caseTaskDocumentBean.getTaskDocumentsLink(task)}" target="_blank">
-            <span class="si si-expand-6 doc-show-more-link-icon" />
+            <span class="ti ti-queue-pop-out doc-show-more-link-icon" />
             <span class="display-full-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/showMoreBtn')}</span>
             <span class="display-short-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}</span>
           </p:link>
@@ -67,14 +67,14 @@
               </p:commandLink>
               <p:commandLink id="preview-file" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/PreviewDocument')}" 
                 process="@this" update="#{cc.clientId}:preview-document-dialog"
-                styleClass="si si-view-1 Fright document-preview ui-sm-hidden" actionListener="#{logic.previewDocument(document)}"
+                styleClass="ti ti-eye Fright document-preview ui-sm-hidden" actionListener="#{logic.previewDocument(document)}"
                 rendered="#{data.isDocumentPreviewEnabled and caseTaskDocumentBean.isSupportedPreviewType(document)}"
                 oncomplete="if (args &amp;&amp; !args.validationFailed) {PF('preview-document-dialog').show();}">
                 <p:tooltip for="preview-file" trackMouse="true" hideEvent="mouseleave click"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/PreviewDocument')}" />
               </p:commandLink>
               <p:commandLink id="edit-filename" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/RenameFile')} #{document.name}"
-                styleClass="si si-graphic-tablet-drawing-pen Fright document-renaming ui-sm-hidden"
+                styleClass="ti ti-pencil Fright document-renaming ui-sm-hidden"
                 rendered="#{caseTaskDocumentBean.canWriteDocument(task)}"
                 actionListener="#{data.setDocument(document)}"
                 update="#{cc.clientId}:document-renaming-dialog"
@@ -84,7 +84,7 @@
               </p:commandLink>
               <p:commandLink id="delete-file" actionListener="#{data.setDocument(document)}" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/deleteFile')} #{document.name}"
                 rendered="#{caseTaskDocumentBean.canWriteDocument(task)}"
-                styleClass="si si-remove Fright task-document-download" oncomplete="PF('document-deletion-dialog').show()">
+                styleClass="ti ti-x Fright task-document-download" oncomplete="PF('document-deletion-dialog').show()">
                 <p:tooltip for="delete-file" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/deleteFile')} #{document.name}"
                   trackMouse="true" hideEvent="mouseleave click"/>
               </p:commandLink>
@@ -113,7 +113,7 @@
         </p:dataTable>
 
         <h:panelGroup layout="block" styleClass="ui-g-12 no-item-panel" rendered="#{empty data.documents}">
-          <i class="si si-information-circle" />
+          <i class="ti ti-info-circle" />
           <h:outputText styleClass="no-item-header" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noDocumentAvailable')}" />
           <h:outputText styleClass="no-item-detail" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/pleaseAddDocument')}"
             rendered="#{caseTaskDocumentBean.canWriteDocument(task)}" />
@@ -142,7 +142,7 @@
         <div class="w-full">
           <p:fileUpload id="document-upload-panel"
             listener="#{logic.uploadDocument}" mode="advanced"
-            chooseIcon="#{visibilityBean.generateButtonIcon('si si-add-small')}"
+            chooseIcon="#{visibilityBean.generateButtonIcon('ti ti-plus')}"
             style="display: none;" dragDropSupport="true"
             label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/select')}"
             auto="true" multiple="true"
@@ -156,7 +156,7 @@
         <div class="ui-g-12">
           <p:outputPanel id="document-upload-file-panel" styleClass="ui-document-upload-file-panel">
             <span class="ui-document-upload-file-label"> 
-            <i class="si si-file-code-upload-1" id="ui-document-upload-file-icon" />
+            <i class="ti ti-file-upload" id="ui-document-upload-file-icon" />
               <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/addDocumentHelpText')}">
                 <p:link value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/uploadHere')}"
                   onclick="PF('documentUpload').show();return false" />
@@ -192,7 +192,7 @@
         <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}" 
           ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
           id="preview-document-close-button" actionListener="#{logic.closeStream}"
-          icon="#{visibilityBean.generateButtonIcon('si si-remove')}" onclick="PF('preview-document-dialog').hide();" />
+          icon="#{visibilityBean.generateButtonIcon('ti ti-x')}" onclick="PF('preview-document-dialog').hide();" />
       </div>
     </f:facet>
   </p:dialog>
@@ -201,7 +201,7 @@
     <ui:param name="widgetVar" value="preview-document-warning-dialog" />
     <ui:param name="appendTo" value="@(body)" />
     <ui:param name="styleClass" value="w-4"></ui:param>
-    <ui:param name="iconClass" value="si si-delete-1" />
+    <ui:param name="iconClass" value="ti ti-trash" />
     <ui:param name="iconStyleClass" value="portal-dialog-error-icon" />
     <ui:param name="headerText" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/warning')}" />
     <ui:param name="dialogContent" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/previewErrorMessage')}" />
@@ -217,7 +217,7 @@
     <ui:param name="widgetVar" value="preview-document-confirmation-dialog" />
     <ui:param name="appendTo" value="@(body)" />
     <ui:param name="styleClass" value="w-4"></ui:param>
-    <ui:param name="iconClass" value="si si-delete-1" />
+    <ui:param name="iconClass" value="ti ti-trash" />
     <ui:param name="iconStyleClass" value="portal-dialog-error-icon" />
     <ui:param name="headerText" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/confirmation')}" />
     <ui:param name="dialogContent" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/confirmationUploadDocument')}" />
@@ -250,7 +250,7 @@
         <p:commandButton id="document-rename-save-button"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
           ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}" 
-          icon="#{visibilityBean.generateButtonIcon('si si-floppy-disk')}"
+          icon="#{visibilityBean.generateButtonIcon('ti ti-device-floppy')}"
           actionListener="#{logic.renameDocument}"
           update="#{cc.clientId}:task-details-documents #{cc.attrs.componentToUpdate} #{cc.clientId}:document-renaming-form:renaming-file-messages"
           oncomplete="if (document.querySelector('.ui-messages-info')) PF('document-renaming-dialog').hide(); ResponsiveTable.init(':case-details-documents')"
@@ -263,7 +263,7 @@
     <ui:param name="id" value="document-deletion-dialog" />
     <ui:param name="widgetVar" value="document-deletion-dialog" />
     <ui:param name="appendTo" value="@(body)" />
-    <ui:param name="iconClass" value="si si-delete-1" />
+    <ui:param name="iconClass" value="ti ti-trash" />
     <ui:param name="iconStyleClass" value="portal-dialog-error-icon" />
     <ui:param name="headerText" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/deleteDocumentHeaderText')}" />
     <ui:param name="dialogContent" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmForDelete')}" />

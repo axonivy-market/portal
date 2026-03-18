@@ -341,7 +341,7 @@ function renderFailToRenderChart(chart, additionalConfig) {
   // HTML element for the empty chart
   let failToRenderChartHtml =
     '<div class="empty-message-container">' +
-    '    <i class="si si-analytics-pie-2 empty-message-icon"></i>' +
+    '    <i class="ti ti-chart-pie empty-message-icon"></i>' +
     '    <p class="empty-message-text">' + failToRenderChartMessage + '</p>' +
     '</div>';
   $(chart).html(failToRenderChartHtml);
@@ -525,7 +525,7 @@ getBackgroundColorsWithAllScope(chartConfig, data) {
     // HTML element for the empty chart
     let emptyChartHtml =
       '<div class="empty-message-container">' +
-      '    <i class="si si-analytics-pie-2 empty-message-icon"></i>' +
+      '    <i class="ti ti-chart-pie empty-message-icon"></i>' +
       '    <p class="empty-message-text">' + emptyChartDataMessage + '</p>' +
       '</div>';
     $(chart).html(emptyChartHtml);
@@ -537,7 +537,7 @@ getBackgroundColorsWithAllScope(chartConfig, data) {
     // HTML element for the empty chart with no permission message
     let noPermissionChartHtml =
       '<div class="process-dashboard-widget__empty-process empty-message-container">' +
-      '    <i class="si si-lock-1 empty-message-icon"></i>' +
+      '    <i class="ti ti-lock empty-message-icon"></i>' +
       '    <br><span class="empty-message-text">' + noPermissionChartMessage + '</span>' +
       '</div>';
 

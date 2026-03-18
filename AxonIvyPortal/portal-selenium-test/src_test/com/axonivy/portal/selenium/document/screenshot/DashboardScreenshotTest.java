@@ -418,7 +418,7 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
     DashboardNewsWidgetPage newDashboardPage = new DashboardNewsWidgetPage("News feed");
 
     newDashboardPage.openAddNewsFeedItemDialog();
-    newDashboardPage.enterNewsItemData("en", "si-send-email", "Welcome to Portal News feed",
+    newDashboardPage.enterNewsItemData("en", "ti-mail", "Welcome to Portal News feed",
         "Welcome to Portal News feed");
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.NEW_DASHBOARD_FOLDER + "news-feed-widget-manage-content");
   }

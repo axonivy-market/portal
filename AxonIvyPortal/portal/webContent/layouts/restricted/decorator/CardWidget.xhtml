@@ -31,7 +31,7 @@
     <p:tooltip for="widget__header" value="#{widget.name}" trackMouse="true" hideEvent="mouseleave click"/>
 
     <h:panelGroup id="widget-header-actions" styleClass="widget__header-actions" layout="block">
-      <p:commandButton id="info-sidebar-link-#{index}" type="button" icon="si si-statistics-daytum"
+      <p:commandButton id="info-sidebar-link-#{index}" type="button" icon="ti ti-brand-google-analytics"
         styleClass="rounded-button ui-button-outlined widget__info-sidebar-link u-mar-right-5"
         ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/widgetInfo')}"
         rendered="#{renderInfo}" />
@@ -40,13 +40,13 @@
         rendered="#{renderInfo}"
         hideEvent="mouseleave click" />
 
-      <p:commandButton id="expand-link-#{index}" type="button" icon="si si-expand-1"
+      <p:commandButton id="expand-link-#{index}" type="button" icon="ti ti-arrows-maximize"
         styleClass="rounded-button ui-button-outlined expand-link u-mar-right-5 ui-button-widget"
         ariaLabel="#{ivy.cms.co('/Labels/Expand')}"
         rendered="#{renderExpandCollapse}"
         onclick="expandFullscreen(#{index}, '#{htmlSanitizerBean.escapeForJS(widget.id)}');#{onClickExpandWidget}"/>
 
-      <p:commandButton id="collapse-link-#{index}" type="button" icon="si si-shrink-1"
+      <p:commandButton id="collapse-link-#{index}" type="button" icon="ti ti-arrows-minimize"
         styleClass="rounded-button ui-button-outlined collapse-link u-mar-right-5 ui-button-widget"
         ariaLabel="#{ivy.cms.co('/Labels/Collapse')}"
         rendered="#{renderExpandCollapse}"
@@ -54,7 +54,7 @@
 
       <p:commandButton id="edit-widget-#{index}"
         ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/editWidget')}"
-        icon="si si-pencil"
+        icon="ti ti-pencil"
         styleClass="rounded-button ui-button-outlined u-hidden-sm-down u-mar-right-5"
         oncomplete="PF('new-widget-configuration-dialog').show()"
         global="false"
@@ -66,7 +66,7 @@
       <p:tooltip for="edit-widget-#{index}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/editWidget')}" trackMouse="true"
         hideEvent="mouseleave click" rendered="#{!isReadOnlyMode}"/>
 
-      <p:commandButton id="clone-widget-#{index}" type="button" icon="si si-copy-paste"
+      <p:commandButton id="clone-widget-#{index}" type="button" icon="ti ti-copy"
         styleClass="rounded-button ui-button-outlined u-mar-right-5"
         ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/CloneWidget')}"
         rendered="#{!isReadOnlyMode}">
@@ -79,7 +79,7 @@
         trackMouse="true" hideEvent="mouseleave click" />
 
       <p:commandButton id="delete-widget-#{index}"
-        icon="si si-bin-1"
+        icon="ti ti-trash"
         ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/deleteWidget')}"
         styleClass="rounded-button ui-button-outlined ui-button-danger"
         oncomplete="PF('remove-widget-dialog').show()"

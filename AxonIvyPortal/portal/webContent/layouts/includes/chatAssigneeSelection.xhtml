@@ -45,7 +45,7 @@
 
     <div class="ui-g-12 chat-add-assignee-button-grid">
       <p:commandButton id="chat-add-assignee-button"
-        icon="#{visibilityBean.generateButtonIcon('si si-add-small')}"
+        icon="#{visibilityBean.generateButtonIcon('ti ti-plus')}"
         ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/add')}"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/add')}"
         disabled="#{chatAssigneeBean.selectedUser == null and chatAssigneeBean.selectedRole == null}" actionListener="#{chatAssigneeBean.addAssignee}"
@@ -61,10 +61,10 @@
               <pc:securityMemberNameAndAvatar securityMember="#{assignee}"
               displayName="#{assignee.briefDisplayNameWithState}" >
                 <f:facet name="alternativeAvatar">
-                  <h:outputText id="chat-assign-type-icon" rendered="#{not avatarBean.isShowAvatar()}" styleClass="si #{assignee.isUser() ? 'si-single-neutral-actions' : 'si-multiple-neutral-1'} u-mar-right-5" />
+                  <h:outputText id="chat-assign-type-icon" rendered="#{not avatarBean.isShowAvatar()}" styleClass="si #{assignee.isUser() ? 'ti-user-check' : 'ti-users'} u-mar-right-5" />
                 </f:facet>
               </pc:securityMemberNameAndAvatar>
-              <p:commandLink id="chat-delete-assignee" styleClass="si si-bin-1 chat-delete-assignee"
+              <p:commandLink id="chat-delete-assignee" styleClass="ti ti-trash chat-delete-assignee"
                 rendered="#{assignee ne ivy.session.getSessionUser()}"
                 ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
                 actionListener="#{chatAssigneeBean.removeAssignee(assignee)}" update="#{p:resolveFirstComponentWithId('chat-assignee-selection-panel', view).clientId}" />
@@ -77,7 +77,7 @@
     <div class="ui-g-12 chat-action-container">
       <p:commandButton id="chat-group-create-button" actionListener="#{chatBean[createGroupChat]}"
         ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/chat/createProcessChat')}"
-        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/chat/createProcessChat')}" icon="#{visibilityBean.generateButtonIcon('si si-check-1')}">
+        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/chat/createProcessChat')}" icon="#{visibilityBean.generateButtonIcon('ti ti-check')}">
       </p:commandButton>
     </div>
   </h:panelGroup>

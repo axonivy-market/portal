@@ -84,7 +84,7 @@
           <p:spacer width="15px" />
           <p:commandButton id="proceed-task-delegate-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/delegate')}"
             ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/delegate')}"
-            icon="#{visibilityBean.generateButtonIcon('si si-road-sign-u-turn-right')}"
+            icon="#{visibilityBean.generateButtonIcon('ti ti-arrow-forward-up')}"
             actionListener="#{logic.delegateTask}" process=":#{p:resolveFirstComponentWithId('activator-panel', view).clientId} delegate-comment-panel" disabled="#{data.disabledDelegateButton}"
             update="@(.task-view-container) #{cc.attrs.componentToUpdate}"
             oncomplete="#{cc.attrs.onCompletedCallback}"

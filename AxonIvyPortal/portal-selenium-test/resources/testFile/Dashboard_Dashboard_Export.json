@@ -21,7 +21,7 @@
         "value": "Tablero de mandos"
       }
     ],
-    "icon": "si-pie-line-graph",
+    "icon": "ti-report-analytics",
     "widgets": [
       {
         "type": "task",

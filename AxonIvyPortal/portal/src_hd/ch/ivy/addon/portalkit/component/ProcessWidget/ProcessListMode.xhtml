@@ -24,12 +24,12 @@
           <h:panelGroup rendered="#{isExternalLink}" layout="block"
             styleClass="process-start-list-item-action #{isExternalLink ? 'is-external-link' : ''} u-padding-0">
             <h:panelGroup id="external-link-icon"
-              styleClass="si si-hyperlink-3 external-link-icon #{!process.getProcess().ableToEdit ? 'public-external-link' : ''}" />
+              styleClass="ti ti-link external-link-icon #{!process.getProcess().ableToEdit ? 'public-external-link' : ''}" />
             <p:tooltip id="external-link-icon-tooltip" for="external-link-icon"
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/externalLink')}" position="top" trackMouse="true"
               hideEvent="mouseleave click" styleClass="process-tooltip"/>
             
-            <p:commandLink id="edit-external-link" styleClass="si si-graphic-tablet-drawing-pen process-item"
+            <p:commandLink id="edit-external-link" styleClass="ti ti-pencil process-item"
               ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}"
               actionListener="#{processWidgetBean.setEditedProcess(process)}" oncomplete="PF('edit-process-dialog').show();"
               update="#{cc.clientId}:edit-process-dialog" rendered="#{process.getProcess().ableToEdit}" />
@@ -37,7 +37,7 @@
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}"
               rendered="#{process.getProcess().ableToEdit}" />
             
-            <p:commandLink id="delete-external-link" styleClass="si si-bin-1 process-item"
+            <p:commandLink id="delete-external-link" styleClass="ti ti-trash process-item"
               ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/deleteExternalLinkTooltip')}"
               actionListener="#{processWidgetBean.setDeletedProcess(process)}" oncomplete="PF('remove-process-workflow-dialog').show();"
               update="#{cc.clientId}:remove-process-workflow-dialog" rendered="#{process.getProcess().ableToEdit}" />
@@ -46,11 +46,11 @@
               rendered="#{process.getProcess().ableToEdit}" />
           </h:panelGroup>
           <h:panelGroup styleClass="process-start-list-item-action u-hidden-md-down">
-            <h:outputText id="info-workflow" styleClass="si si-information-circle process-description process-item" />
+            <h:outputText id="info-workflow" styleClass="ti ti-info-circle process-description process-item" />
             <p:tooltip id="info-workflow-tooltip" for="info-workflow" value="#{process.description}" position="top" trackMouse="true"
               hideEvent="mouseleave click" styleClass="js-process-start-list-item-description process-tooltip" />
           </h:panelGroup>
-          <span id="open-process-start" class="si si-arrow-right-1 open-icon" />
+          <span id="open-process-start" class="ti ti-chevron-right open-icon" />
         </div>
       </p:commandLink>
     </h:form>

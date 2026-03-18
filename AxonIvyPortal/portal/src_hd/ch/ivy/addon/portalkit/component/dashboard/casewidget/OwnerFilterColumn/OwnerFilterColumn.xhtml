@@ -26,7 +26,7 @@
           <pc:securityMemberNameAndAvatar
             displayName="#{caseWidgetConfigurationFilterBean.formatName(owner)}" securityMember="#{owner}">
             <f:facet name="alternativeAvatar">
-              <h:outputText rendered="#{not avatarBean.isShowAvatar()}" styleClass="si #{owner.isUser() ? 'si-single-neutral-actions' : 'si-multiple-neutral-1'} u-mar-right-5" />
+              <h:outputText rendered="#{not avatarBean.isShowAvatar()}" styleClass="si #{owner.isUser() ? 'ti-user-check' : 'ti-users'} u-mar-right-5" />
             </f:facet>
           </pc:securityMemberNameAndAvatar>
         </p:column>

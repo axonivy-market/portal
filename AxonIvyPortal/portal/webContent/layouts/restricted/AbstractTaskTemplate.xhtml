@@ -61,14 +61,14 @@
             
             <h:panelGroup id="vertical-task-template-tasks-command" class="task-template-tasks-command" rendered="#{!(isHideCaseInfo and isHideTaskAction) and processChainDirection eq 'VERTICAL'}">
               <p:commandButton id="vertical-case-info" type="button" styleClass="rounded-button ui-button-outlined"
-                title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/caseInformation')}" icon="si si-folder-search"
+                title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/caseInformation')}" icon="ti ti-folder-search"
                 ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/caseInformation')}"
                 onclick="openCaseInfo()" rendered="#{!isHideCaseInfo}"
                 global="false" />
               <p:spacer width="10" />
               <p:commandButton id="vertical-task-actions" type="button" rendered="#{!isHideTaskAction}" styleClass="rounded-button ui-button-outlined"
                 ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}"
-                title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}" icon="si si-navigation-menu" />
+                title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}" icon="ti ti-menu-2" />
             </h:panelGroup>
             
             <h:form id="vertical-task-action-form" rendered="#{processChainDirection eq 'VERTICAL'}">
@@ -106,23 +106,23 @@
           <h:panelGroup id="horizontal-task-template-tasks-command" styleClass="task-template-tasks-command" rendered="#{!(isHideCaseInfo and isHideTaskAction) and processChainDirection ne 'VERTICAL'}">
             <p:commandButton id="horizontal-case-info" type="button" styleClass="rounded-button ui-button-outlined"
               ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/caseInformation')}"
-              title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/caseInformation')}" icon="si si-folder-search"
+              title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/caseInformation')}" icon="ti ti-folder-search"
               onclick="openCaseInfo()" rendered="#{!isHideCaseInfo}"
               global="false" />
             <p:spacer width="10" />
             <p:commandButton id="horizontal-task-actions" type="button" rendered="#{!isHideTaskAction}" styleClass="rounded-button ui-button-outlined"
               ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}"
-              title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}" icon="si si-navigation-menu" />
+              title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}" icon="ti ti-menu-2" />
           
             <h:form id="horizontal-task-action-form">
               <p:menu id="horizontal-task-action-menu" overlay="true" trigger="horizontal-task-actions" my="right top" at="right bottom"
                 styleClass="action-steps-panel task-actions-menu" rendered="#{!isHideTaskAction}">
     
-                <p:menuitem id="chat-group" icon="si si-messages-bubble-add" action="#{chatAssigneeBean.createGroupChatForConfiguredRoleList(currentTask)}"
+                <p:menuitem id="chat-group" icon="ti ti-message-plus" action="#{chatAssigneeBean.createGroupChatForConfiguredRoleList(currentTask)}"
                   rendered="#{chatRendererBean.isGroupChatRendered and !(currentTask.state eq 'CREATED')}"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/chat/createProcessChat')}" update="chat-assignee-dialog" />
                 
-                 <p:menuitem id="side-steps-process" icon="si si-hierarchy-6 si-rotate-270"
+                 <p:menuitem id="side-steps-process" icon="ti ti-sitemap"
                   rendered="#{sideStepProcessBean.isRendered(currentTask)}" onclick="PF('side-step-process-dialog').show();"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/SideStep/SideStepProcess')}" />
                 <p:divider styleClass="separator"
@@ -200,7 +200,7 @@
                 onclick="PF('chat-assignee-dialog').hide()" />
               <p:spacer width="15px" />
               <p:commandButton id="chat-group-join-button" actionListener="#{chatAssigneeBean.joinGroupChat()}"
-                icon="#{visibilityBean.generateButtonIcon('si si-messages-bubble-square-sync')}"
+                icon="#{visibilityBean.generateButtonIcon('ti ti-message-2-share')}"
                 ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/chat/joinProcessChat')}"
                 value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/chat/joinProcessChat')}" process="@this"
                 update="@none" />
@@ -327,7 +327,7 @@
           <ui:param name="widgetVar" value="sidestep-task-reset-confirmation-dialog" />
           <ui:param name="dynamic" value="true"/>
           <ui:param name="appendTo" value="@(body)" />
-          <ui:param name="iconClass" value="si si-road-sign-warning" />
+          <ui:param name="iconClass" value="ti ti-alert-triangle" />
           <ui:param name="iconStyleClass" value="portal-dialog-warning-icon" />
           <ui:param name="dialogContent" value="#{ivy.cms.co('/ch.ivy.addon.portal.generic/OpenTaskTemplate/goToSidestepWarning')}" />
           
@@ -341,7 +341,7 @@
                 <p:commandButton widgetVar="sideStepStartOkButton" id="side-step-start-ok"
                   onclick="PF('sideStepStartOkButton').disable()"
                   actionListener="#{abstractTaskTemplateBean.startSideStep(currentTask)}" process="@this" update="@none"
-                  icon="#{visibilityBean.generateButtonIcon('si si-check-1')}"
+                  icon="#{visibilityBean.generateButtonIcon('ti ti-check')}"
                   ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" />
               </h:panelGroup>

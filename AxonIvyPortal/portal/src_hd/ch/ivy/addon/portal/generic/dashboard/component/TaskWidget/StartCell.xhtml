@@ -8,7 +8,7 @@
   disabled="#{!taskActionBean.isNotDone(task) or !taskActionBean.canResume(task)} or isPreviewMode or isResizing" oncomplete="resetPortalLeftMenuState()"
   ariaLabel="#{ariaLabel}"
   process="@this">
-  <span class="si si-controls-play" />
+  <span class="ti ti-player-play" />
 </p:commandLink>
 <p:tooltip for="start-task" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/taskStart')}" trackMouse="true"
   hideEvent="mouseleave click" />

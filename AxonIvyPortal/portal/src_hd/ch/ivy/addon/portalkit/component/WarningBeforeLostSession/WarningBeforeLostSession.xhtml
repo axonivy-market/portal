@@ -16,7 +16,7 @@
     <ui:param name="id" value="timeout-warning-dialog" />
     <ui:param name="widgetVar" value="timeout-warning-dialog" />
     <ui:param name="appendTo" value="@(body)" />
-    <ui:param name="iconClass" value="si si-road-sign-warning" />
+    <ui:param name="iconClass" value="ti ti-alert-triangle" />
     <ui:param name="iconStyleClass" value="portal-dialog-warning-icon" />
     <ui:param name="headerText" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/warning')}" />
     <ui:param name="dialogContent" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/warningBeforeLostSession/warningMessage')}" />
@@ -33,7 +33,7 @@
     <ui:param name="id" value="timeout-dialog" />
     <ui:param name="widgetVar" value="timeout-dialog" />
     <ui:param name="appendTo" value="@(body)" />
-    <ui:param name="iconClass" value="si si-road-sign-warning" />
+    <ui:param name="iconClass" value="ti ti-alert-triangle" />
     <ui:param name="iconStyleClass" value="portal-dialog-warning-icon" />
     <ui:param name="headerText" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/warning')}" />
     <ui:param name="dialogContent" value="#{ivy.cms.co(sessionExpriedMsg)}" />
@@ -41,7 +41,7 @@
     <ui:define name="dialogFooter">
       <p:commandButton rendered="#{!isPortalInTeams}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" onclick="redirectDefaultPage();"
         ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
-        icon="#{visibilityBean.generateButtonIcon('si si-check-1')}" type="button" />
+        icon="#{visibilityBean.generateButtonIcon('ti ti-check')}" type="button" />
     </ui:define>
   </ui:decorate>
 

@@ -46,7 +46,7 @@
             onCompleteRemoveFilter="PF('new-widget-configuration-dialog').initPosition();" />
         </ui:repeat>
         <div class="ui-g-12 u-padding-0 MarTop10">
-          <p:commandButton id="add-filter" icon="#{visibilityBean.generateButtonIcon('si si-add-circle')}"
+          <p:commandButton id="add-filter" icon="#{visibilityBean.generateButtonIcon('ti ti-circle-plus')}"
             update="predefined-filter" process="predefined-filter" styleClass="u-mar-right-5 ui-button-flat"
             actionListener="#{taskWidgetConfigurationFilterBean.addNewFilter(widget)}"
             ariaLabel="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/TaskWidgetConfiguration/AddFilter')}"

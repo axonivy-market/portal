@@ -35,7 +35,7 @@
   <p:commandLink id="#{cc.attrs.actionLinkId}" onclick="event.stopPropagation(); return false;" ariaLabel="#{cc.attrs.ariaLabel}"
     styleClass="#{isPreviewMode ? '' : cc.attrs.actionLinkStyleClass} #{cc.attrs.taskId} action-link portal-icon ui-sidestep-action" disabled="#{cc.attrs.readOnly or isPreviewMode}">
     <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}" styleClass="task-action-item-label" />
-    <i class="si si-arrow-down-1" />
+    <i class="ti ti-chevron-down" />
   </p:commandLink>
 
   <p:overlayPanel id="action-steps-panel" widgetVar="#{cc.attrs.panelWidgetVar}"
@@ -46,7 +46,7 @@
     <p:commandLink id="case-item-open-detail-link" styleClass="case-command action-step-item ui-menu-items"
                    ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/detail')}"
                    actionListener="#{logic.openDetails(case, inFrame)}" rendered="#{showOpenCaseDetail}">
-      <span class="action-icon si si-information-circle" />
+      <span class="action-icon ti ti-info-circle" />
       <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/detail')}" />
     </p:commandLink>
     
@@ -63,13 +63,13 @@
     <p:link id="show-process-overview-link" styleClass="additional-case-details-link action-step-item ui-menu-items"
       rendered="#{showProcessOverview}"
       href="#{caseActionBean.getProcessOverviewPageUri(case)}">
-      <i class="action-icon si si-presentation-statistics" />
+      <i class="action-icon ti ti-presentation-analytics" />
       <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/showProcessOverview')}</span>
     </p:link>
 
     <p:link id="show-additional-case-details-link" styleClass="additional-case-details-link case-command action-step-item ui-menu-items" target="_blank"
       href="#{caseActionBean.getAdditionalCaseDetailsPageUri(case)}" rendered="#{showAdditionalCaseDetails}">
-      <i class="action-icon si si-business-contract-handshake-sign" />
+      <i class="action-icon ti ti-contract" />
       <h:outputText value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/ShowBusinessDetails')}" />
     </p:link>
     
@@ -78,7 +78,7 @@
                    ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/customFields')}" 
                    styleClass="case-command action-step-item ui-menu-items" onclick="initCustomFieldCaseListData();"
                    update="@parent #{cc.attrs.update}" process="@this">
-      <i class="action-icon si si-cog-double-2" />
+      <i class="action-icon ti ti-settings" />
       <span class="option-item-label">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/customFields')}</span>
     </p:commandLink>
     <ic:ch.ivy.addon.portalkit.component.CaseItemCustomFields id="custom-fields-component" case="#{case}" />
@@ -87,7 +87,7 @@
       styleClass="show-process-viewer-link case-command action-step-item"
       href="#{caseActionBean.getProcessViewerPageUri(case)}"
       rendered="#{showProcessViewer}">
-      <i class="action-icon si si-hierarchy-6 si-rotate-270" />
+      <i class="action-icon ti ti-sitemap" />
       <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/ProcessViewer/ProcessViewerText')}" />
     </p:link>
     

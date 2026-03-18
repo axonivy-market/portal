@@ -115,7 +115,7 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
   }
 
   public void deleteImageModeProcess() {
-    getProcessActionMenu().shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("span.si-bin-1")
+    getProcessActionMenu().shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("span.ti-trash")
         .shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
     getRemoveWidgetDialog().shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
     getRemoveWidgetButton().click();
@@ -132,7 +132,7 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
 
   public void deleteFullModeProcess() {
     $("button[id$=':process-action-button']").shouldBe(Condition.appear).click();
-    $("[id$=':process-action-menu']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("span.si-bin-1")
+    $("[id$=':process-action-menu']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("span.ti-trash")
         .shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
     getRemoveWidgetDialog().shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
     getRemoveWidgetButton().click();
@@ -155,14 +155,14 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
   }
 
   private void openDeleteCombinedModeProcessDialog() {
-    $(".process-grid-item__action--combined .si-bin-1").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
+    $(".process-grid-item__action--combined .ti-trash").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
     getRemoveWidgetDialog().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
 
   public ProcessEditWidgetNewDashBoardPage editFullModeProcess() {
     getProcessActionMenu();
     $("[id$=':process-item:grid-process-action-component:edit-process']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
-        .$("span.si-graphic-tablet-drawing-pen").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
+        .$("span.ti-pencil").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
     $("div[id='new-widget-configuration-dialog']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     return new ProcessEditWidgetNewDashBoardPage();
   }

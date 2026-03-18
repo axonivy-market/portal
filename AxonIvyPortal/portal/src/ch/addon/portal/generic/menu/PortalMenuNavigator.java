@@ -166,11 +166,20 @@ public class PortalMenuNavigator {
 
     // Set default icon if it's blank
     if (StringUtils.isBlank(dashboard.getIcon())) {
-      dashboard.setIcon(dashboard.getIsPublic() ? "si-network-share" : "si-single-neutral-shield");
+      dashboard.setIcon(dashboard.getIsPublic() ? "ti-world" : "ti-lock-square-rounded");
     }
 
     // Set icon with the appropriate prefix
-    item.icon = (dashboard.getIcon().startsWith("fa") ? "fa " : "si ") + dashboard.getIcon();
+    String iconValue = dashboard.getIcon();
+    if (iconValue.startsWith("fa")) {
+      item.icon = "fa " + iconValue;
+    } else if (iconValue.startsWith("tif")) {
+      item.icon = "tif " + iconValue;
+    } else if (iconValue.startsWith("si")) {
+      item.icon = "si " + iconValue;
+    } else {
+      item.icon = "ti " + iconValue;
+    }
 
     // Set the name of the submenu item based on the current language or use default title
     item.label = dashboard.getTitles().stream()

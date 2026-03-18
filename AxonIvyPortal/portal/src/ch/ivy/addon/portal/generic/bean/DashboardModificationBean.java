@@ -61,8 +61,8 @@ import ch.ivyteam.ivy.environment.Ivy;
 public class DashboardModificationBean extends DashboardBean implements Serializable {
 
   private static final long serialVersionUID = 1L;
-  protected static final String PUBLIC_DASHBOARD_DEFAULT_ICON = "si-network-share";
-  protected static final String PRIVATE_DASHBOARD_DEFAULT_ICON = "si-single-neutral-shield";
+  protected static final String PUBLIC_DASHBOARD_DEFAULT_ICON = "ti-world";
+  protected static final String PRIVATE_DASHBOARD_DEFAULT_ICON = "ti-lock-square-rounded";
   private static final String JSON_FILE_SUFFIX = "_Dashboard_Export.json";
 
   protected boolean isPublicDashboard;
