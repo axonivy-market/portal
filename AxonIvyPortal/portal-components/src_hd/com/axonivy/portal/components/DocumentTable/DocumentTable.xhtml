@@ -183,18 +183,17 @@
 
     <p:dialog id="document-upload-dialog" widgetVar="document-upload-dialog" appendTo="@(body)"
       header="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/AddDocument')}" 
-      modal="true" resizable="false" showEffect="fade" hideEffect="fade"
+      modal="true" resizable="false" showEffect="fade" hideEffect="fade" dynamic="true"
       width="450" closable="true" closeOnEscape="true" responsive="true" fitViewport="true">
-      <div class="document-upload-dialog-content">
+      <h:form id="document-upload-dialog-content">
         <p:messages id="document-upload-messages" rendered="#{cc.attrs.messageRendered}" />
-        <p class="document-upload-supported-types">
-          #{ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/SupportFileTypes', [cc.attrs.allowedUploadFileTypes])}
-        </p>
+        <h:outputText styleClass="document-upload-supported-types"
+          value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/SupportFileTypes', [cc.attrs.allowedUploadFileTypes])}" />
         <p:fileUpload id="document-upload" widgetVar="document-upload-widget" mode="advanced" auto="true" dragDropSupport="true"
           multiple="true" dropZone="document-upload-dropzone"
           listener="#{logic.upload}"
           rendered="#{cc.attrs.uploadRendered}"
-          update="document-table document-upload-messages #{cc.attrs.updatedComponentAfterUploaded}"
+          update="#{cc.clientId}:document-table document-upload-messages #{cc.attrs.updatedComponentAfterUploaded}"
           invalidSizeMessage="#{documentUploadBean.getFileUploadInvalidSizeMessage(documentUploadBean.fileUploadSizeLimit)}"
           onstart="#{logic.setFileLimit(cc.attrs.fileLimit)}" sizeLimit="#{documentUploadBean.fileUploadSizeLimit}"
           styleClass="document-upload-in-dialog" value="#{data.uploadedFile}">
@@ -202,18 +201,16 @@
         <p:outputPanel id="document-upload-dropzone" styleClass="document-upload-dropzone">
           <div class="document-upload-dropzone-content">
             <i class="ti ti-file-upload document-upload-icon" />
-            <span class="document-upload-dropzone-text">
-              #{ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/AddDocumentHelpText')}
-                <p:commandLink styleClass="document-upload-dropzone-link"
-                  type="button"
-                  onclick="PF('document-upload-widget').show();return false"
-                  tabindex="0">
-                  #{ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/BrowseFiles')}
-                </p:commandLink>
-            </span>
+            <h:panelGroup id="dropzone-text">
+              <h:outputText value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/AddDocumentHelpText')} " />
+              <p:commandLink styleClass="document-upload-dropzone-link"
+                value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/BrowseFiles')}"
+                onclick="PF('document-upload-widget').show();return false"
+                tabindex="0" />
+            </h:panelGroup>
           </div>
         </p:outputPanel>
-      </div>
+      </h:form>
     </p:dialog>
     
     <!-- set closable to true to force to close stream by clicking Close button -->
@@ -245,7 +242,7 @@
         <p:commandButton id="document-deletion-yes"
           ariaLabel="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/Common/Yes')}"
           value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/Common/Yes')}" process="@this"
-          update="document-table document-messages #{cc.attrs.updatedComponentAfterDeleted}"
+          update="#{cc.clientId}:document-table #{cc.clientId}:document-messages #{cc.attrs.updatedComponentAfterDeleted}"
           actionListener="#{logic.delete}" oncomplete="PF('document-delete-dialog').hide();" />
         <p:commandButton id="document-deletion-no" styleClass="portal-cancel-button"
           ariaLabel="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/Common/No')}"

@@ -99,10 +99,14 @@
   height: auto;
 }
 
-.document-upload-dialog-content .document-upload-supported-types {
+.document-table-component .upload-container .open-upload-dialog-button {
+  margin-left: 10px;
+}
+
+.document-upload-supported-types {
+  display: block;
   margin: 0 0 16px 0;
   font-weight: bold;
-  
 }
 
 .document-upload-in-dialog .ui-fileupload-content,
@@ -112,6 +116,7 @@
 
 .document-upload-dropzone {
   border: 1px solid var(--surface-border, #dee2e6);
+  background-color: var(--surface-ground, #f8f9fa);
   border-radius: 10px;
   height: 20em;
   display: flex;
@@ -134,7 +139,7 @@
 }
 
 .document-upload-icon {
-  font-size: 36px !important;
+  font-size: 48px !important;
 }
 
 .document-upload-dropzone-link {
