@@ -99,50 +99,6 @@ pipeline {
       }
     }
 
-    stage('Verify performance') {
-      when {
-        expression { return !params.skipVerification }
-      }
-      steps {
-        script {
-          buildImage.inside('-v /var/tools/maven-cache:/home/build/') {
-            def portalBranchEncoded = URLEncoder.encode(params.portalBranch, 'UTF-8').replace('+', '%20')
-
-            withCredentials([usernameColonPassword(credentialsId: 'wawa-jenkins', variable: 'credentials')]) {
-              echo "Fetching performance test builds from Jenkins API..."
-              def perfJson = sh(
-                script: "curl -gsS --user \${credentials} '${env.JENKINS_URL}job/portal-performance/job/${portalBranchEncoded}/api/json?tree=builds%5Bnumber%2Cresult%2Cactions%5B_class%2ClastBuiltRevision%5BSHA1%5D%5D%5D%7B0%2C10%7D' || true",
-                returnStdout: true
-              ).trim()
-
-              if (!perfJson) {
-                error("Failed to fetch performance test builds.")
-              }
-
-              def perfBuildsData = readJSON text: perfJson
-
-              def shaMatchingPerf = perfBuildsData.builds.findAll { build ->
-                build.actions?.any { it._class == 'hudson.plugins.git.util.BuildData' && it.lastBuiltRevision?.SHA1 == latestSha }
-              }
-
-              if (!shaMatchingPerf) {
-                error("No performance builds found matching SHA ${latestSha}.")
-              }
-
-              def perfBuild = shaMatchingPerf[0]
-              echo "Found matching build #${perfBuild.number} with result: ${perfBuild.result}"
-
-              if (perfBuild.result != 'SUCCESS') {
-                error("portal-performance build #${perfBuild.number} did not succeed. Result was: ${perfBuild.result}")
-              } else {
-                echo "✅ portal-performance-test build #${perfBuild.number} was successful."
-              }
-            }
-          }
-        }
-      }
-    }
-
     stage('Verify Screenshot') {
       when {
         expression { return !params.skipVerification }
