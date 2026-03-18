@@ -30,7 +30,11 @@ pipeline {
   stages {
     stage('Checkout') {
       steps {
-        git branch: params.portalBranch, url: 'https://github.com/axonivy-market/portal.git'
+        checkout([
+          $class: 'GitSCM',
+          branches: [[name: "*/${params.portalBranch}"]],
+          userRemoteConfigs: [[url: 'https://github.com/axonivy-market/portal.git']]
+        ])
       }
     }
 
