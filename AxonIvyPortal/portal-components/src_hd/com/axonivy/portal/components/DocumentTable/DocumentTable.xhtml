@@ -65,9 +65,7 @@
 
     <cc:renderFacet name="componentHeader" />
 
-    <p:outputPanel id="document-dropzone-wrapper" styleClass="document-dropzone-wrapper">
-
-    <p:messages id="document-messages" for="document-messages" rendered="#{cc.attrs.messageRendered}" />
+    <p:messages id="document-messages" rendered="#{cc.attrs.messageRendered}" />
     <p:dataTable id="document-table" value="#{data.documents}" var="document"
       emptyMessage="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/NoFile')}" styleClass="margin-top-5"
       widgetVar="fileTableVar" lazy="#{cc.attrs.lazy}"
@@ -150,8 +148,6 @@
       </h:panelGroup>
     </div>
 
-    </p:outputPanel>
-
     <cc:renderFacet name="componentFooter" />
 
     <p:dialog id="document-upload-dialog" widgetVar="document-upload-dialog" appendTo="@(body)"
@@ -159,7 +155,7 @@
       modal="true" resizable="false" showEffect="fade" hideEffect="fade"
       width="450" closable="true" closeOnEscape="true" responsive="true" fitViewport="true">
       <div class="document-upload-dialog-content">
-        <p:messages id="document-upload-messages" for="document-messages" rendered="#{cc.attrs.messageRendered}" />
+        <p:messages id="document-upload-messages" rendered="#{cc.attrs.messageRendered}" />
         <p class="document-upload-supported-types">
           #{ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/SupportFileTypes', [cc.attrs.allowedUploadFileTypes])}
         </p>

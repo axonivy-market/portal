@@ -46,7 +46,7 @@ Dialogs:
             RenamingDocumentSuccess: 'TODO: Rename successfully.'
             RenamingFailed: 'TODO: An error occurs while renaming the document.'
             Size: ファイルサイズ
-            SupportFileTypes: サポートされている種類のファイルをアップロードしてください：{0}
+            SupportFileTypes: アップロード可能なファイル形式：{0}
             Type: タイプ
             Upload: 新しいファイルをアップロード
             UploadDocumentNote: '{0} が {1} をアップロードしました'
