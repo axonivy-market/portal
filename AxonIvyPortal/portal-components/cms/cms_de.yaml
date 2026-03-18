@@ -46,7 +46,7 @@ Dialogs:
             RenamingDocumentSuccess: Erfolgreich umbenannt.
             RenamingFailed: Beim Umbenennen des Dokuments ist ein Fehler aufgetreten.
             Size: Dateigröße
-            SupportFileTypes: 'Unterstützte Dateitypen für Uploads: {0}'
+            SupportFileTypes: 'Unterstützte Dateiformate für den Upload: {0}'
             Type: Typ
             Upload: Neue Datei hochladen
             UploadDocumentNote: '{0} hat {1} hochgeladen.'

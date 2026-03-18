@@ -7,6 +7,7 @@ This component is a case document table with functions display, upload,
 preview, download and delete document entries.
 
 .. hint::
+
    It supports multiple file uploads and drag-and-drop. Click the :guilabel:`Upload new file` button to open the upload dialog, then select files via "Browse files" or drag them directly into the dialog's drop zone.
 
 |document-table|

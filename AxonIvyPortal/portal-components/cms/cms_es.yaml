@@ -46,7 +46,7 @@ Dialogs:
             RenamingDocumentSuccess: Renombrado exitosamente.
             RenamingFailed: Se ha producido un error al renombrar el documento.
             Size: Tamaño de archivo
-            SupportFileTypes: 'Tipos de archivos admitidos para cargar: {0}'
+            SupportFileTypes: 'Tipos de archivo admitidos para la subida: {0}'
             Type: Tipo
             Upload: Cargar archivo nuevo
             UploadDocumentNote: '{0} ha subido {1}'
