@@ -28,6 +28,14 @@ pipeline {
   }
 
   stages {
+    stage('Build Image') {
+      steps {
+        script {
+          buildImage = docker.build('build-portal-snapshot', '-f build/create-release-snapshot/Dockerfile .')
+        }
+      }
+    }
+
     stage('Checkout') {
       steps {
         checkout([
@@ -35,14 +43,6 @@ pipeline {
           branches: [[name: "*/${params.portalBranch}"]],
           userRemoteConfigs: [[url: 'https://github.com/axonivy-market/portal.git']]
         ])
-      }
-    }
-
-    stage('Build Image') {
-      steps {
-        script {
-          buildImage = docker.build('build-portal-snapshot', '-f build/create-release-snapshot/Dockerfile .')
-        }
       }
     }
 
