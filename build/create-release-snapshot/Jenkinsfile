@@ -1,6 +1,6 @@
-def latestSha = ''
-def seleniumTestPattern = 'com.axonivy.portal.selenium.test.**.*Test'
-def buildImage
+latestSha = ''
+seleniumTestPattern = 'com.axonivy.portal.selenium.test.**.*Test'
+buildImage = null
 
 pipeline {
   agent { label 'linux' }
