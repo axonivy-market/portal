@@ -141,7 +141,7 @@ pipeline {
                 -X POST \
                 -f ref='${params.portalBranch}' \
                 -f 'inputs[deploySnapshot]=${params.deployToRepo}' \
-                -F return_run_details=true'""", returnStdout: true).trim()
+                -F return_run_details=true""", returnStdout: true).trim()
               def dispatchData = readJSON text: dispatchResponse
               def docWorkflowRunId = dispatchData.workflow_run_id
               echo "Documentation workflow triggered. Run ID: ${docWorkflowRunId}"
