@@ -19,7 +19,7 @@ pipeline {
       -Divy.engine.download.url=https://developer.axonivy.com/permalink/nightly/axonivy-engine.zip for nightly master
       -Divy.engine.download.url=https://developer.axonivy.com/permalink/dev/axonivy-engine.zip for dev master
     ''')
-    booleanParam(name: 'deployToRepo', defaultValue: false, description: 'Should deploy artifacts to repo? If true, deployable modules are deployed to Nexus snapshots. If false, only local install.')
+    booleanParam(name: 'deployToRepo', defaultValue: true, description: 'Should deploy artifacts to repo? If true, deployable modules are deployed to Nexus snapshots. If false, only local install.')
     booleanParam(name: 'skipVerification', defaultValue: false, description: 'Skip all verification stages and proceed directly to build and deploy.')
   }
 
