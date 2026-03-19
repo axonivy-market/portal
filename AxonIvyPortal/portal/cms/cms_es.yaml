@@ -455,6 +455,10 @@ ch.ivy.addon.portalkit.ui.jsf:
     action: Acciones
     actionMenuContext: "Abrir menú de acciones para {0}"
     active: Activado
+    collapseWidgetContext: "Contraer widget {0}"
+    expandWidgetContext: "Expandir widget {0}"
+    openWidgetFiltersContext: "Abrir filtros de {0}"
+    openWidgetInfoContext: "Abrir información de {0}"
     add: Añadir
     addContext: "Añadir {0}"
     addDocument: Agregar documento

@@ -38,14 +38,14 @@
 <h:panelGroup id="process-action-read-only" rendered="#{isReadOnlyMode}" styleClass="process-grid-item__action--combined">
   <p:commandButton id="expand-link" type="button"
         icon="si si-expand-1"
-        ariaLabel="#{ivy.cms.co('/Labels/Expand')}"
+        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/expandWidgetContext', [widget.name])}"
         styleClass="rounded-button ui-button-outlined expand-link ui-button-widget"
         rendered="#{isReadOnlyMode}"
         onclick="expandFullscreen(#{index}, '#{widget.id}')" />
   
   <p:commandButton id="collapse-link" type="button"
         icon="si si-shrink-1"
-        ariaLabel="#{ivy.cms.co('/Labels/Collapse')}"
+        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/collapseWidgetContext', [widget.name])}"
         styleClass="rounded-button ui-button-outlined collapse-link ui-button-widget"
         rendered="#{isReadOnlyMode}"
         onclick="collapseFullscreen(#{index}, '#{widget.id}')" />
