@@ -53,48 +53,53 @@ pipeline {
       steps {
         script {
           currentBuild.description = "On ${env.NODE_NAME}"
-          withBuildImage {
-            withCredentials([string(credentialsId: 'github-token', variable: 'GH_TOKEN')]) {
-              latestSha = sh(script: "gh api repos/axonivy-market/portal/commits/${params.portalBranch} --jq '.sha'", returnStdout: true).trim()
-              echo "Latest ${params.portalBranch} SHA: ${latestSha}"
+          try {
+            withBuildImage {
+              withCredentials([string(credentialsId: 'github-token', variable: 'GH_TOKEN')]) {
+                latestSha = sh(script: "gh api repos/axonivy-market/portal/commits/${params.portalBranch} --jq '.sha'", returnStdout: true).trim()
+                echo "Latest ${params.portalBranch} SHA: ${latestSha}"
+              }
+
+              def portalBranchEncoded = URLEncoder.encode(params.portalBranch, 'UTF-8').replace('+', '%20')
+
+              withCredentials([usernameColonPassword(credentialsId: 'wawa-jenkins', variable: 'credentials')]) {
+                // Fetch the 10 most recent builds
+                echo "Fetching selenium test builds from Jenkins API..."
+                def buildsJson = sh(
+                  script: "curl -gsS --user \${credentials} '${env.JENKINS_URL}job/portal-selenium-test/job/${portalBranchEncoded}/api/json?tree=builds%5Bnumber%2Cresult%2Cactions%5B_class%2Ccauses%5B_class%5D%2ClastBuiltRevision%5BSHA1%5D%2Cparameters%5Bname%2Cvalue%5D%5D%5D%7B0%2C10%7D' || true",
+                  returnStdout: true
+                ).trim()
+
+                if (!buildsJson) {
+                  error("Failed to fetch selenium test builds.")
+                }
+
+                // Parse JSON and filter by SHA and testPatternToRun parameter
+                def buildsData = readJSON text: buildsJson
+
+                def shaMatchingBuilds = buildsData.builds.findAll { build ->
+                  def shaMatches = build.actions?.any { it._class == 'hudson.plugins.git.util.BuildData' && it.lastBuiltRevision?.SHA1 == latestSha }
+                  def buildPattern = build.actions?.find { it._class == 'hudson.model.ParametersAction' }?.parameters?.find { it.name == 'testPatternToRun' }?.value
+                  shaMatches && buildPattern == seleniumTestPattern
+                }
+
+                if (!shaMatchingBuilds) {
+                  error("No selenium test builds found matching SHA ${latestSha} and test pattern '${seleniumTestPattern}'.")
+                }
+
+                def matchedBuild = shaMatchingBuilds[0]
+                echo "Found matching build #${matchedBuild.number} with result: ${matchedBuild.result}"
+
+                if (matchedBuild.result != 'SUCCESS') {
+                  error("portal-selenium-test build #${matchedBuild.number} did not succeed. Result was: ${matchedBuild.result}")
+                } else {
+                  echo "✅ portal-selenium-test build #${matchedBuild.number} was successful."
+                }
+              }
             }
-
-            def portalBranchEncoded = URLEncoder.encode(params.portalBranch, 'UTF-8').replace('+', '%20')
-
-            withCredentials([usernameColonPassword(credentialsId: 'wawa-jenkins', variable: 'credentials')]) {
-              // Fetch the 10 most recent builds
-              echo "Fetching selenium test builds from Jenkins API..."
-              def buildsJson = sh(
-                script: "curl -gsS --user \${credentials} '${env.JENKINS_URL}job/portal-selenium-test/job/${portalBranchEncoded}/api/json?tree=builds%5Bnumber%2Cresult%2Cactions%5B_class%2Ccauses%5B_class%5D%2ClastBuiltRevision%5BSHA1%5D%2Cparameters%5Bname%2Cvalue%5D%5D%5D%7B0%2C10%7D' || true",
-                returnStdout: true
-              ).trim()
-
-              if (!buildsJson) {
-                error("Failed to fetch selenium test builds.")
-              }
-
-              // Parse JSON and filter by SHA and testPatternToRun parameter
-              def buildsData = readJSON text: buildsJson
-
-              def shaMatchingBuilds = buildsData.builds.findAll { build ->
-                def shaMatches = build.actions?.any { it._class == 'hudson.plugins.git.util.BuildData' && it.lastBuiltRevision?.SHA1 == latestSha }
-                def buildPattern = build.actions?.find { it._class == 'hudson.model.ParametersAction' }?.parameters?.find { it.name == 'testPatternToRun' }?.value
-                shaMatches && buildPattern == seleniumTestPattern
-              }
-
-              if (!shaMatchingBuilds) {
-                error("No selenium test builds found matching SHA ${latestSha} and test pattern '${seleniumTestPattern}'.")
-              }
-
-              def matchedBuild = shaMatchingBuilds[0]
-              echo "Found matching build #${matchedBuild.number} with result: ${matchedBuild.result}"
-
-              if (matchedBuild.result != 'SUCCESS') {
-                error("portal-selenium-test build #${matchedBuild.number} did not succeed. Result was: ${matchedBuild.result}")
-              } else {
-                echo "✅ portal-selenium-test build #${matchedBuild.number} was successful."
-              }
-            }
+          } catch (Exception e) {
+            echo "Selenium verification failed: ${e.message}"
+            throw e
           }
         }
       }
