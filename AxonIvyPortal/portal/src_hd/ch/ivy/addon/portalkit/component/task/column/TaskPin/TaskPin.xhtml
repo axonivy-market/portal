@@ -13,7 +13,7 @@
 
     <h:form id="pin-form">
         <p:commandLink 
-            ariaLabel="#{isPinned ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/unpinTaskContext', ivy.cms.createList(cc.attrs.task.name)) : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/pinTaskContext', ivy.cms.createList(cc.attrs.task.name))}"
+            ariaLabel="#{isPinned ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/unpinTaskContext', [cc.attrs.task.name]) : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/pinTaskContext', [cc.attrs.task.name])}"
             action="#{taskBean.clickOnPinTask(cc.attrs.task)}" 
             update="@form"
             style="display: block; width: 100%; height: 100%;"
