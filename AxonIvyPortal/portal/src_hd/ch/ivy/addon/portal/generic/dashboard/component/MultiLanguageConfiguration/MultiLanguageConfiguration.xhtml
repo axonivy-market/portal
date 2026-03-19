@@ -43,7 +43,7 @@
           styleClass="ui-g-12 #{cc.attrs.useInputText ? '' : 'external-link-description-label'}"/>
         </h:column>
         <h:column>
-          <div class="ui-g-12 ui-fluid">
+          <div class="ui-g-12 ui-fluid" lang="#{title.locale.language}">
             <p:focus for="#{cc.attrs.useInputText ? 'title-input' : 'title-textarea'}" rendered="#{managedBean.isFocus(title)}" />
             <p:inputText value="#{title.value}" id="title-input" autocomplete="off" rendered="#{cc.attrs.useInputText}"
               required="#{managedBean.isRequiredField(title) and titleRequired}"

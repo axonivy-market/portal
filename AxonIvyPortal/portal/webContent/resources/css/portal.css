@@ -1680,6 +1680,9 @@ i.dashboard-icon-drag-drop {
   .ui-inputfield.global-search-input {
     max-width: 200px;
   }
+  .setting-container .user-name {
+    display: none;
+  }
 }
 
 .global-search-all-results {
