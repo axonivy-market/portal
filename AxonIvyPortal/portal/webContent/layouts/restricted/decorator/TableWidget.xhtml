@@ -34,8 +34,8 @@
   <c:set var="renderInfo" value="#{isReadOnlyMode and (empty isRenderInfo ? 'true': isRenderInfo)}"/>
   <c:set var="renderExpandCollapse" value="#{isReadOnlyMode and (empty isRenderExpandCollapse ? 'true': isRenderExpandCollapse)}"/>
   <f:event listener="#{dashboardBean.setSearchScope(widget)}" type="preRenderComponent" />
-  <h:panelGroup layout="block" class="widget__header" rendered="#{not isHeaderHidden}">
-    <h:panelGroup id="widget__header" class="widget__header-title text-ellipsis" pt:role="heading" pt:aria-level="1">#{widget.name}</h:panelGroup>
+  <h:panelGroup layout="block" styleClass="widget__header" rendered="#{not isHeaderHidden}">
+    <h:panelGroup id="widget__header" styleClass="widget__header-title text-ellipsis" pt:role="heading" pt:aria-level="1">#{widget.name}</h:panelGroup>
     <p:tooltip for="widget__header" value="#{widget.name}" trackMouse="true" hideEvent="mouseleave click"/>
 
     <h:panelGroup id="delegation-action-bar-#{index}" layout="block" styleClass="delegation-action-bar">
@@ -109,6 +109,20 @@
           event="paste" process="@this"
           update="#{componentToUpdateOnResetFilter}" />
       </p:inputText>
+      </h:form>
+    </h:panelGroup>
+
+    <h:panelGroup layout="block" styleClass="u-mar-right-2" rendered="#{dashboardBean.canShowMultiSelect(widget)}">
+      <h:form id="toggle-delegation-form">
+        <p:commandButton id="a231421"
+          icon="si si-list-bullets"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/multiSelect')}"
+          styleClass="rounded-button ui-button-outlined u-mar-right-5 ui-button-widget #{dashboardTaskWidgetBean.isDelegationColumnVisible(widget) ? 'ui-button-primary' : ''}"
+          actionListener="#{dashboardTaskWidgetBean.toggleDelegationColumn(widget)}"
+          update="#{componentToUpdateOnResetFilter}"
+          process="@this" />
+        <p:tooltip for="a231421" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/multiSelect')}"
+          trackMouse="true" hideEvent="mouseleave click" />
       </h:form>
     </h:panelGroup>
     

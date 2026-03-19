@@ -14,13 +14,16 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
+import org.apache.commons.lang3.BooleanUtils;
 import org.primefaces.event.SelectEvent;
 
 import com.axonivy.portal.components.util.HtmlUtils;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.constant.PortalConstants;
+import ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget;
 import ch.ivy.addon.portalkit.enums.BehaviourWhenClickingOnLineInTaskList;
+import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.PortalPage;
 import ch.ivy.addon.portalkit.enums.TaskEmptyMessage;
@@ -104,6 +107,21 @@ public class DashboardTaskWidgetBean implements Serializable {
 
   public String createExtractedTextFromHtml(String text) {
     return HtmlParser.extractTextFromHtml(text);
+  }
+
+  public void toggleDelegationColumn(TaskDashboardWidget widget) {
+    widget.getColumns().stream()
+        .filter(col -> DashboardStandardTaskColumn.SELECTION.getField().equals(col.getField()))
+        .findFirst()
+        .ifPresent(col -> col.setVisible(BooleanUtils.isFalse(col.getVisible())));
+  }
+
+  public boolean isDelegationColumnVisible(TaskDashboardWidget widget) {
+    return widget.getColumns().stream()
+        .filter(col -> DashboardStandardTaskColumn.SELECTION.getField().equals(col.getField()))
+        .findFirst()
+        .map(col -> BooleanUtils.isTrue(col.getVisible()))
+        .orElse(false);
   }
 
   public void onSelectDelegateTask(ITask task, List<ITask> selectedTasksForBulkDelegation, Map<String, Boolean> taskSelectionMap) {

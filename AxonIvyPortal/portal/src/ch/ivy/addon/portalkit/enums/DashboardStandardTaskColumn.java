@@ -16,13 +16,13 @@ public enum DashboardStandardTaskColumn {
   NAME("name"), 
   DESCRIPTION("description"), 
   RESPONSIBLE("activator"), 
-  DELEGATION("delegation"),
   STATE("state"),
   CREATED("startTimestamp"),
   COMPLETED("endTimestamp"),
   EXPIRY("expiryTimestamp"), 
   CATEGORY("category"),
   APPLICATION("application"),
+  SELECTION("selection"),
   ACTIONS("actions");
 
   private final String field;

@@ -2127,3 +2127,15 @@ body .widget__content .ui-datatable.dashboard-tasks--table .ui-widget-header the
 .chart-content-card-clickable {
   cursor: pointer;
 }
+
+/* 1. Turn OFF the border for ALL columns completely */
+body .ui-datatable:not(.ui-datatable-gridlines) thead th:before,
+body .ui-treetable:not(.ui-treetable-gridlines) thead th:before {
+    display: none !important;
+}
+
+/* 2. Turn the border ON ONLY if a visible column has another visible column anywhere before it */
+body .ui-datatable:not(.ui-datatable-gridlines) thead th:not(.ui-helper-hidden) ~ th:not(.ui-helper-hidden):before,
+body .ui-treetable:not(.ui-treetable-gridlines) thead th:not(.ui-helper-hidden) ~ th:not(.ui-helper-hidden):before {
+    display: block !important;
+}

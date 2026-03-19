@@ -5,14 +5,14 @@ import java.io.Serializable;
 import ch.ivy.addon.portalkit.enums.DashboardColumnFormat;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 
-public class DelegationColumnModel extends TaskColumnModel implements Serializable {
+public class SelectionColumnModel extends TaskColumnModel implements Serializable {
 
   private static final long serialVersionUID = -4315469062114036720L;
 
   @Override
   public void initDefaultValue() {
     super.initDefaultValue();
-    this.field = DashboardStandardTaskColumn.DELEGATION.getField();
+    this.field = DashboardStandardTaskColumn.SELECTION.getField();
     this.styleToDisplay = initDefaultStyle();
     this.format = getDefaultFormat();
     this.styleClass = defaultIfEmpty(this.styleClass, getDefaultStyleClass());

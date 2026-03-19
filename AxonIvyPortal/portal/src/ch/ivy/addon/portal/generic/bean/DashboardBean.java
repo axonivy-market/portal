@@ -605,6 +605,13 @@ public class DashboardBean implements Serializable, IMultiLanguage {
     return false;
   }
 
+  public boolean canShowMultiSelect(DashboardWidget widget) {
+    if (widget instanceof TaskDashboardWidget) {
+      return true;
+    }
+    return false;
+  }
+
   public boolean getShowPinnedItem() {
     return this.isShowPinnedItem;
   }
