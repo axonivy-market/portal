@@ -137,35 +137,35 @@ pipeline {
           withBuildImage {
             withCredentials([string(credentialsId: 'github-token', variable: 'GH_TOKEN')]) {
               echo "Triggering documentation workflow on branch ${params.portalBranch}..."
-              def docDispatchTime = sh(script: "date -u +%Y-%m-%dT%H:%M:%SZ", returnStdout: true).trim()
-              sh(script: """gh api repos/axonivy-market/portal/actions/workflows/portal-documentation.yml/dispatches \
+              def dispatchResponse = sh(script: """gh api repos/axonivy-market/portal/actions/workflows/portal-documentation.yml/dispatches \
                 -X POST \
                 -f ref='${params.portalBranch}' \
-                -f 'inputs[deploySnapshot]=${params.deployToRepo}'""")
-              echo "Documentation workflow dispatched at ${docDispatchTime}. Polling for completion..."
+                -f 'inputs[deploySnapshot]=${params.deployToRepo}' \
+                -F return_run_details=true'""", returnStdout: true).trim()
+              def dispatchData = readJSON text: dispatchResponse
+              def docWorkflowRunId = dispatchData.workflow_run_id
+              echo "Documentation workflow triggered. Run ID: ${docWorkflowRunId}"
 
               sleep(time: 3, unit: 'MINUTES')
-              def docRunId = null
+              def completed = false
               for (int i = 0; i < 6; i++) {
-                def runsJson = sh(
-                  script: "gh api 'repos/axonivy-market/portal/actions/workflows/portal-documentation.yml/runs?per_page=20&branch=${params.portalBranch}' --jq '.workflow_runs'",
+                def runJson = sh(
+                  script: "gh api 'repos/axonivy-market/portal/actions/runs/${docWorkflowRunId}'",
                   returnStdout: true
                 ).trim()
-                def runs = readJSON text: runsJson
-                def matchedRun = runs.find { run -> run.created_at >= docDispatchTime && run.status == 'completed' }
-                if (matchedRun) {
-                  docRunId = matchedRun.id
-                  if (matchedRun.conclusion != 'success') {
-                    error("Documentation workflow run ID ${docRunId} did not succeed. Conclusion was: ${matchedRun.conclusion}")
+                def run = readJSON text: runJson
+                echo "Documentation build #${run.run_number} status: ${run.status} - ${run.html_url}"
+                if (run.status == 'completed') {
+                  if (run.conclusion != 'success') {
+                    error("Documentation build #${run.run_number} did not succeed. Conclusion was: ${run.conclusion}")
                   }
-                  echo "✅ Documentation workflow run ID ${docRunId} was successful."
+                  echo "✅ Documentation build #${run.run_number} was successful."
+                  completed = true
                   break
                 }
-                def inProgressRun = runs.find { run -> run.created_at > docDispatchTime }
-                echo inProgressRun ? "Documentation run ID ${inProgressRun.id} in progress (status: ${inProgressRun.status}). Waiting..." : "No documentation run found yet. Waiting..."
                 sleep(time: 30, unit: 'SECONDS')
               }
-              if (!docRunId) {
+              if (!completed) {
                 error("Documentation workflow did not complete within the timeout period.")
               }
             }
