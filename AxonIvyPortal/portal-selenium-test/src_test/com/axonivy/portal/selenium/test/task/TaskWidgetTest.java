@@ -32,8 +32,6 @@ public class TaskWidgetTest extends BaseTest {
       "portalKitTestHelper/14DE09882B540AD5/grantOnlyDelegateOwnTasksPermission.ivp";
   private static final String DENY_DELEGATE_OWN_TASK_PERMISSION_PROCESS_URL =
       "portalKitTestHelper/14DE09882B540AD5/undoOnlyDelegateOwnTasksPermission.ivp";
-  private static final String DENY_DESTROY_TASK_URL =
-      "portalKitTestHelper/14DE09882B540AD5/denyDestroyTaskPermission.ivp";
   private static final String GRANT_DESTROY_TASK_URL =
       "portalKitTestHelper/14DE09882B540AD5/grantDestroyTaskPermission.ivp";
 
@@ -127,7 +125,6 @@ public class TaskWidgetTest extends BaseTest {
     taskWidgetPage.confimDestruction();
     taskWidgetPage.checkTaskState(0, TaskState.DESTROYED.getValue());
 
-    redirectToRelativeLink(DENY_DESTROY_TASK_URL);
   }
 
   @Test

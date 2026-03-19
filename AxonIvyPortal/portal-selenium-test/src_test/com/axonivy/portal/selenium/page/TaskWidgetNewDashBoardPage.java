@@ -119,8 +119,8 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void filterTaskName(String input) {
-    var taskNameFilter = $("div[id$='widget-filter-content']").shouldBe(appear, DEFAULT_TIMEOUT)
-        .$(".ui-inputfield.text-field-input-name");
+    $("div[id$='widget-filter-content']").shouldBe(appear, DEFAULT_TIMEOUT);
+    var taskNameFilter = $("div[id$='widget-filter-content']").$(".ui-inputfield.text-field-input-name");
     taskNameFilter.clear();
     taskNameFilter.sendKeys(input);
   }
@@ -337,12 +337,22 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
 
   public ElementsCollection getActiveTaskActions(int taskIndex) {
     clickOnTaskActionLink(taskIndex);
-    return $$(String.format("div.js-task-side-steps-panel-task_1-%d", taskIndex)).filter(appear).first()
-        .shouldBe(appear, DEFAULT_TIMEOUT).$("div.ui-overlaypanel-content").$$("a[class*='option-item']");
+    var panel = $$(String.format("div.js-task-side-steps-panel-task_1-%d", taskIndex)).filter(appear).first()
+        .shouldBe(appear, DEFAULT_TIMEOUT).$("div.ui-overlaypanel-content");
+    panel.shouldBe(appear, DEFAULT_TIMEOUT);
+    ElementsCollection actions = panel.$$("a[class*='option-item']");
+    actions.shouldBe(CollectionCondition.sizeGreaterThanOrEqual(1), DEFAULT_TIMEOUT);
+    return actions;
   }
 
   public void clickOnTaskActionLink(int taskIndex) {
     getColumnOfCaseHasActionIndex(taskIndex, "Actions").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+  }
+
+  public void closeActionPanel(int taskIndex) {
+    clickOnTaskActionLink(taskIndex);
+    $$(String.format("div.js-task-side-steps-panel-task_1-%d", taskIndex)).first()
+        .shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 
   public void reserveTask(int taskIndex) {
@@ -392,7 +402,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void destroy() {
-    destroyTaskLink().shouldBe(getClickableCondition()).click();
+    destroyTaskLink().shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
     confirmDestroy();
   }
 
