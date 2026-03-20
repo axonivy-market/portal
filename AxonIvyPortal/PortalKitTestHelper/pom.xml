@@ -9,16 +9,16 @@
   </parent>
   <groupId>com.axonivy.portal</groupId>
   <artifactId>portalKitTestHelper</artifactId>
-  <version>13.2.1-SNAPSHOT</version>
+  <version>13.2.0.2</version>
   <packaging>iar</packaging>
   <properties>
-    <ivy.engine.version>13.2.1</ivy.engine.version>
+    <ivy.engine.version>13.2.0</ivy.engine.version>
   </properties>
   <dependencies>
     <dependency>
       <groupId>com.axonivy.portal</groupId>
       <artifactId>portal</artifactId>
-      <version>13.2.1-SNAPSHOT</version>
+      <version>13.2.0.2</version>
       <type>iar</type>
     </dependency>
     <dependency>
