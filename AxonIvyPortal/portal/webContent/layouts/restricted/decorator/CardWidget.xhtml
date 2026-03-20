@@ -21,10 +21,11 @@
     * panelStyleClass: styleClass for the main panel.
     -->
 
-<h:panelGroup id="#{panelId}" styleClass="card-widget-panel #{panelStyleClass}" layout="block" pt:role="region" pt:aria-label="#{widget.name}">
+<h:panelGroup id="#{panelId}" styleClass="card-widget-panel #{panelStyleClass}" layout="block" pt:role="region" pt:aria-label="#{widget.name != null ? widget.name : ''}">
   <c:set var="renderInfo" value="#{isReadOnlyMode and (empty isRenderInfo ? 'true': isRenderInfo)}"/>
   <c:set var="renderEdit" value="#{not isReadOnlyMode and (empty isRenderEdit ? 'true': isRenderEdit)}"/>
   <c:set var="renderExpandCollapse" value="#{isReadOnlyMode and (empty isRenderExpandCollapse ? 'true': isRenderExpandCollapse)}"/>
+  <c:set var="widgetName" value="#{widget.name != null ? widget.name : ''}"/>
 
   <div class="widget__header">
     <h:panelGroup id="widget__header" class="widget__header-title text-ellipsis" pt:role="heading" pt:aria-level="1">#{widget.name}</h:panelGroup>
@@ -32,7 +33,7 @@
 
     <h:panelGroup id="widget-header-actions" styleClass="widget__header-actions" layout="block">
       <p:commandButton id="info-sidebar-link-#{index}" type="button" icon="si si-statistics-daytum"
-        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/openWidgetInfoContext', [widget.name])}"
+        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/openWidgetInfoContext', [widgetName])}"
         styleClass="rounded-button ui-button-outlined widget__info-sidebar-link u-mar-right-5"
         rendered="#{renderInfo}" />
       <p:tooltip for="info-sidebar-link-#{index}"
@@ -42,13 +43,13 @@
 
       <p:commandButton id="expand-link-#{index}" type="button" icon="si si-expand-1"
         styleClass="rounded-button ui-button-outlined expand-link u-mar-right-5 ui-button-widget"
-        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/expandWidgetContext', [widget.name])}"
+        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/expandWidgetContext', [widgetName])}"
         rendered="#{renderExpandCollapse}"
         onclick="expandFullscreen(#{index}, '#{widget.id}');#{onClickExpandWidget}"/>
 
       <p:commandButton id="collapse-link-#{index}" type="button" icon="si si-shrink-1"
         styleClass="rounded-button ui-button-outlined collapse-link u-mar-right-5 ui-button-widget"
-        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/collapseWidgetContext', [widget.name])}"
+        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/collapseWidgetContext', [widgetName])}"
         rendered="#{renderExpandCollapse}"
         onclick="collapseFullscreen(#{index}, '#{widget.id}');#{onClickCollapseWidget}"/>
 

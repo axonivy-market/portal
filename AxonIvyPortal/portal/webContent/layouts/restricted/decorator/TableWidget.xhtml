@@ -29,10 +29,11 @@
     * panelStyleClass: styleClass for the main panel.
     -->
 
-<h:panelGroup id="#{panelId}" styleClass="table-widget-panel #{panelStyleClass}" layout="block" pt:role="region" pt:aria-label="#{widget.name}">
+<h:panelGroup id="#{panelId}" styleClass="table-widget-panel #{panelStyleClass}" layout="block" pt:role="region" pt:aria-label="#{widget.name != null ? widget.name : ''}">
   <c:set var="renderFilter" value="#{isReadOnlyMode and (empty isRenderFilter ? 'true': isRenderFilter)}"/>
   <c:set var="renderInfo" value="#{isReadOnlyMode and (empty isRenderInfo ? 'true': isRenderInfo)}"/>
   <c:set var="renderExpandCollapse" value="#{isReadOnlyMode and (empty isRenderExpandCollapse ? 'true': isRenderExpandCollapse)}"/>
+  <c:set var="widgetName" value="#{widget.name != null ? widget.name : ''}"/>
   <f:event listener="#{dashboardBean.setSearchScope(widget)}" type="preRenderComponent" />
   <h:panelGroup layout="block" class="widget__header" rendered="#{not isHeaderHidden}">
     <h:panelGroup id="widget__header" class="widget__header-title text-ellipsis" pt:role="heading" pt:aria-level="1">#{widget.name}</h:panelGroup>
@@ -128,7 +129,7 @@
         <p:badge value="#{countFilter}" visible="#{countFilter ne '0'}"
           rendered="#{renderFilter}" styleClass="widget__filter-noti-number">
           <p:commandButton id="filter-sidebar-link-#{index}" type="button" icon="si si-filter-1"
-          	ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/openWidgetFiltersContext', [widget.name])}"
+          	ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/openWidgetFiltersContext', [widgetName])}"
             styleClass="rounded-button widget__filter-sidebar-link ui-button-outlined ui-button-widget" />
         </p:badge>
         <p:tooltip for="filter-sidebar-link-#{index}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/filters')}"
@@ -136,7 +137,7 @@
       </span>
 
       <p:commandButton id="info-sidebar-link-#{index}" type="button" icon="si si-statistics-daytum"
-      	ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/openWidgetInfoContext', [widget.name])}"
+      	ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/openWidgetInfoContext', [widgetName])}"
         styleClass="rounded-button ui-button-outlined widget__info-sidebar-link u-mar-right-5 ui-button-widget"
         rendered="#{renderInfo}" />
       <p:tooltip for="info-sidebar-link-#{index}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/widgetInfo')}" trackMouse="true"
