@@ -246,10 +246,10 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 1144, "y" : 592 }
+        "at" : { "x" : 1376, "y" : 592 }
       },
       "connect" : [
-        { "id" : "f58", "to" : "f47", "via" : [ { "x" : 1376, "y" : 592 } ] }
+        { "id" : "f58", "to" : "f47", "via" : [ { "x" : 1488, "y" : 592 } ] }
       ]
     }, {
       "id" : "f98",
@@ -279,12 +279,18 @@
       "config" : {
         "output" : {
           "code" : [
+            "import ch.ivy.addon.portalkit.enums.DeputyRoleType;",
+            "import ch.ivy.addon.portalkit.util.DeputyRoleUtils;",
             "in.backupAbsence.setUser(in.selectedAbsence.getUser());",
             "in.backupAbsence.setFrom(in.selectedAbsence.getFrom());",
             "in.backupAbsence.setUntil(in.selectedAbsence.getUntil());",
             "in.backupAbsence.setComment(in.selectedAbsence.getComment());",
             "in.selectedUser = in.selectedAbsence.getUser();",
-            "in.isCreateMode = false;"
+            "in.isCreateMode = false;",
+            "in.selectedDeputyRole = DeputyRoleUtils.findDeputyRoleByType(in.deputyRoles, DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE);",
+            "if (in.selectedDeputyRole != null) {",
+            "  in.selectedDeputies = in.selectedDeputyRole.getDeputies();",
+            "}"
           ]
         }
       },
@@ -386,7 +392,7 @@
         "at" : { "x" : 716, "y" : 320 }
       },
       "connect" : [
-        { "id" : "f50", "to" : "f47", "via" : [ { "x" : 1376, "y" : 320 } ] }
+        { "id" : "f50", "to" : "f47", "via" : [ { "x" : 1488, "y" : 320 } ] }
       ]
     }, {
       "id" : "f19",
@@ -568,11 +574,14 @@
       "config" : {
         "output" : {
           "code" : [
+            "import ch.ivy.addon.portalkit.util.DeputyRoleUtils;",
             "import com.axonivy.portal.components.dto.UserDTO;",
             "import ch.ivyteam.ivy.security.IPermission;",
             "import ch.ivy.addon.portalkit.util.PermissionUtils;",
             "import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;",
             "import ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence;",
+            "import ch.ivy.addon.portalkit.enums.DeputyRoleType;",
+            "import ch.ivy.addon.portalkit.dto.DeputyRole;",
             "",
             "UserDTO currentUserDTO = in.canCreateAbsenceForOtherUsers ? ",
             "  new UserDTO(in.selectedAbsenceUser) : new UserDTO(ivy.session.getSessionUser());",
@@ -585,7 +594,12 @@
             "in.selectedUser = currentUserDTO;",
             "",
             "in.validationError = false;",
-            "in.isCreateMode = true;"
+            "in.isCreateMode = true;",
+            "",
+            "in.selectedDeputyRole = DeputyRoleUtils.findDeputyRoleByType(in.deputyRoles, DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE);",
+            "if (in.selectedDeputyRole != null) {",
+            "  in.selectedDeputies = in.selectedDeputyRole.getDeputies();",
+            "}"
           ]
         },
         "sudo" : true
@@ -753,7 +767,7 @@
         "at" : { "x" : 656, "y" : 528 }
       },
       "connect" : [
-        { "id" : "f60", "to" : "f28" }
+        { "id" : "f60", "to" : "f169" }
       ]
     }, {
       "id" : "f137",
@@ -812,7 +826,7 @@
       "id" : "f100",
       "type" : "HtmlDialogEnd",
       "visual" : {
-        "at" : { "x" : 1504, "y" : 424 }
+        "at" : { "x" : 1656, "y" : 424 }
       }
     }, {
       "id" : "f45",
@@ -936,10 +950,10 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 968, "y" : 592 }
+        "at" : { "x" : 920, "y" : 592 }
       },
       "connect" : [
-        { "id" : "f16", "to" : "f86" }
+        { "id" : "f165", "to" : "f167" }
       ]
     }, {
       "id" : "f101",
@@ -1082,7 +1096,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 1376, "y" : 424 }
+        "at" : { "x" : 1488, "y" : 424 }
       },
       "connect" : [
         { "id" : "f18", "to" : "f100" }
@@ -1112,10 +1126,10 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 844, "y" : 528 }
+        "at" : { "x" : 1240, "y" : 528 }
       },
       "connect" : [
-        { "id" : "f27", "to" : "f47", "via" : [ { "x" : 1376, "y" : 528 } ] }
+        { "id" : "f27", "to" : "f47", "via" : [ { "x" : 1400, "y" : 528 } ] }
       ]
     }, {
       "id" : "f66",
@@ -1138,6 +1152,17 @@
       "name" : "addDeputy()",
       "config" : {
         "signature" : "addDeputy",
+        "input" : {
+          "map" : { },
+          "code" : [
+            "import ch.ivy.addon.portalkit.enums.DeputyRoleType;",
+            "import ch.ivy.addon.portalkit.util.DeputyRoleUtils;",
+            "out.selectedDeputyRole = DeputyRoleUtils.findDeputyRoleByType(out.deputyRoles, DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE);",
+            "if (out.selectedDeputyRole != null) {",
+            "  out.selectedDeputies = out.selectedDeputyRole.getDeputies();",
+            "}"
+          ]
+        },
         "guid" : "178C51E41C8D1372"
       },
       "visual" : {
@@ -1412,6 +1437,96 @@
       },
       "connect" : [
         { "id" : "f93", "to" : "f13", "via" : [ { "x" : 1144, "y" : 1144 } ] }
+      ]
+    }, {
+      "id" : "f161",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "method()",
+      "config" : {
+        "signature" : "method",
+        "guid" : "19D0AB8F9D9E0C9D"
+      },
+      "visual" : {
+        "at" : { "x" : 1456, "y" : 720 }
+      },
+      "connect" : [
+        { "id" : "f163", "to" : "f162" }
+      ]
+    }, {
+      "id" : "f162",
+      "type" : "Script",
+      "visual" : {
+        "at" : { "x" : 1648, "y" : 720 }
+      }
+    }, {
+      "id" : "f164",
+      "type" : "SubProcessCall",
+      "config" : {
+        "processCall" : "Ivy Data Processes/SubstituteService:saveSubstitutes(com.axonivy.portal.components.dto.UserDTO,java.util.List<ch.ivy.addon.portalkit.ivydata.bo.IvySubstitute>)",
+        "call" : {
+          "map" : {
+            "param.userDTO" : "in.selectedAbsenceUser",
+            "param.substitutes" : "in.substitutes"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 1240, "y" : 592 }
+      },
+      "connect" : [
+        { "id" : "f166", "to" : "f86" }
+      ]
+    }, {
+      "id" : "f167",
+      "type" : "Script",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.util.DeputyRoleUtils;",
+            "in.substitutes = DeputyRoleUtils.getSubstitutesFromDeputyRoles(in.deputyRoles);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 1080, "y" : 592 }
+      },
+      "connect" : [
+        { "id" : "f168", "to" : "f164", "color" : "default" }
+      ]
+    }, {
+      "id" : "f169",
+      "type" : "Script",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.util.DeputyRoleUtils;",
+            "in.substitutes = DeputyRoleUtils.getSubstitutesFromDeputyRoles(in.deputyRoles);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 848, "y" : 528 }
+      },
+      "connect" : [
+        { "id" : "f170", "to" : "f171", "color" : "default" }
+      ]
+    }, {
+      "id" : "f171",
+      "type" : "SubProcessCall",
+      "config" : {
+        "processCall" : "Ivy Data Processes/SubstituteService:saveSubstitutes(com.axonivy.portal.components.dto.UserDTO,java.util.List<ch.ivy.addon.portalkit.ivydata.bo.IvySubstitute>)",
+        "call" : {
+          "map" : {
+            "param.userDTO" : "in.selectedAbsenceUser",
+            "param.substitutes" : "in.substitutes"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 1032, "y" : 528 }
+      },
+      "connect" : [
+        { "id" : "f172", "to" : "f28", "color" : "default" }
       ]
     } ]
 }

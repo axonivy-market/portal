@@ -163,16 +163,8 @@
                         <div class="absence-column-value">
                           <c:set var="deputiesDisplayNames"
                             value="#{securityMemberDisplayNameFormatBean.joinSecurityMemberNames(deputyRole.deputies)}" />
-                          <p:commandLink id="selected-deputies-link" immediate="true"
-                            ariaLabel="#{not empty deputiesDisplayNames ? deputiesDisplayNames : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/noDeputy')}"
-                            styleClass="task-responsible-link"
-                            value="#{not empty deputiesDisplayNames ? deputiesDisplayNames : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/noDeputy')}"
-                            actionListener="#{logic.initSelectedDeputies(deputyRole)}"
-                            oncomplete="PF('choose-deputy-dialog').show();"
-                            update="deputy-selection-form:deputy-selection-panel" global="false"
-                            disabled="#{!absenceManagementBean.canCreateSubstitute(data.selectedAbsenceUser)}">
-                            <i class="si si-notes-quill" />
-                          </p:commandLink>
+                          <h:outputText
+                            value="#{not empty deputiesDisplayNames ? deputiesDisplayNames : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/noDeputy')}" />
                         </div>
                       </p:column>
                     </p:dataTable>
@@ -253,7 +245,7 @@
             </div>
           </div>
         </div>
-      </h:form>
+      </h:form> 
 
       <ui:decorate template="/layouts/decorator/portal-dialog-with-icon.xhtml">
         <ui:param name="id" value="delete-absence-confirmation-dialog" />
@@ -283,12 +275,6 @@
         <ui:include src="Absence.xhtml" />
       </c:if>
 
-      <p:dialog id="choose-deputy-dialog" styleClass="choose-deputy-dialog w-3" dynamic="true"
-        header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/selectDeputies')}" widgetVar="choose-deputy-dialog"
-        modal="true" appendTo="@(body)" resizable="false" responsive="true">
-        <p:ajax event="close" listener="#{logic.closeDialog}" global="false" immediate="true" />
-        <ui:include src="SelectDeputy.xhtml" />
-      </p:dialog>
     </ui:define>
   </ui:composition>
 </h:body>
