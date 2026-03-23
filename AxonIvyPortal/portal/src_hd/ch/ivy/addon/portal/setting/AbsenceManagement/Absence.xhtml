@@ -19,7 +19,6 @@
     styleClass="add-absence-dialog"
     blockScroll="true"
     header="#{ivy.cms.co(data.isCreateMode ? '/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/addAbsence' : '/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/editAbsence')}">
-
     <h:form id="absence-form" styleClass="ui-g absence-panel-grid">
       <div class="ui-g-12">
         <p:messages widgetVar="growl" closable="true" id="absence-messages" escape="false" styleClass="new-absence-messages " />
@@ -79,7 +78,7 @@
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/comment')}:" />
         <div class="ui-g-12">
           <p:inputTextarea value="#{data.selectedAbsence.comment}" id="comment" autoResize="false"
-            styleClass="add-absences-dialog-input-comment" rows="5" />
+            styleClass="add-absences-dialog-input-comment" rows="2" />
         </div>
       </h:panelGroup>
 

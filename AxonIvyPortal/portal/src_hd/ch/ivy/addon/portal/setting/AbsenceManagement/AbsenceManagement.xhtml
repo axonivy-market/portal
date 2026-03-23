@@ -78,6 +78,12 @@
                         sortBy="#{absence.period}" styleClass="absence-period">
                         <h:outputText value="#{absence.period}" styleClass="absence-column-value" />
                       </p:column>
+                      <p:column headerText="Substitutes for personally assigned tasks during the absence">
+                        <h:outputText
+                          value="#{securityMemberDisplayNameFormatBean.joinSecurityMemberNames(
+                                    absenceManagementBean.getPersonalTaskDeputies(data.deputyRoles))}"
+                          styleClass="absence-column-value" />
+                      </p:column>
                       <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/comment')}"
                         sortBy="#{absence.comment}" styleClass="u-truncate-text">
                         <h:outputText value="#{absence.comment}" title="#{absence.comment}"
