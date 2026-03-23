@@ -62,12 +62,8 @@ If your system uses an additional Tomcat **Valve**, add ``asyncSupported`` in ``
 Limitations
 -----------
 
-**Single-Application Scope**
+**Security Context Scope**
 
-Portal Chat does not support cross-application chat. Users can chat with other users in the current application, but cannot chat with users in other applications within the same security context.
-
-.. note::
-
-   Chat operates within application boundaries. For multi-application deployments, each application maintains its own separate chat context.
+Portal Chat operates at the security context level. Users can chat with any other user within the same security context, even if they are working in different applications. This means that in multi-application deployments sharing a security context, chat is shared across all applications.
 
 .. |chat| image:: ../../screenshots/chat/chat.png
