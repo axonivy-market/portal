@@ -3,10 +3,12 @@
   xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
   xmlns:pe="http://primefaces.org/ui/extensions" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
   xmlns:pc="http://xmlns.jcp.org/jsf/composite/components">
-
-<ui:composition>
-    <h:panelGroup id="deputy-selection-panel" styleClass="deputy-selection-panel ui-g-12" layout="block">
-      <div class="pb-3">Substitutes</div>
+<h:body>
+  <h:form id="deputy-selection-form">
+    <p:messages id="error-message" showSummary="false" showDetail="true">
+      <p:autoUpdate/>
+    </p:messages>
+    <p:panelGrid id="deputy-selection-panel" columns="1" styleClass="deputy-selection-panel ui-g-12" layout="tabular">
       <h:panelGroup id="select-deputy" layout="block" styleClass="select-deputy w-full flex no-wrap">
         <ic:com.axonivy.portal.components.UserSelection id="user-selection-component"
           completeMethod="#{logic.autoCompleteForSubstituteOnApp}"
@@ -17,31 +19,45 @@
               securityMember="#{user}" isStandAlone="false"/>
           </p:column>
           <f:facet name="event">
-            <p:ajax event="itemSelect" update="absence-form:add-deputy-button" />
+            <p:ajax event="itemSelect" update="deputy-selection-form:add-deputy-button" />
           </f:facet>
         </ic:com.axonivy.portal.components.UserSelection>
 
         <p:commandButton id="add-deputy-button" styleClass="add-deputy-button px-2 ml-2" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/add')}"
           ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/add')}"
           disabled="#{data.selectedDeputy == null}" actionListener="#{logic.addDeputy()}" global="false"
-          update="absence-messages selected-deputy-panel" ignoreAutoUpdate="true" />
+          update="error-message selected-deputy-fieldset" ignoreAutoUpdate="true" />
       </h:panelGroup>
 
-      <p:dataTable id="selected-deputy-panel" styleClass="deputy-selection" paginator="true" rows="2" pageLinks="5" paginatorPosition="bottom"
-        emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
-        value="#{data.selectedDeputies}" var="deputy">
-        <p:column headerText="Substitutes during absence">
-          <h:outputText rendered="#{not avatarBean.isShowAvatar()}"
-            id="deputy-type-icon" class="si si-single-neutral-actions" />
-          <pc:securityMemberNameAndAvatar containerStyleClass="w-9"
-            displayName="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(deputy, deputy.getName())}"
-            securityMember="#{deputy}" />
-          <p:commandLink id="delete-deputy" styleClass="si si-bin-1 delete-deputy"
-            actionListener="#{logic.removeDeputy(deputy)}" update="absence-form:deputy-selection-panel"
-            ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}" />
-        </p:column>
-      </p:dataTable>
-    </h:panelGroup>
-</ui:composition>
+      <p:fieldset id="selected-deputy-fieldset" styleClass="selected-deputy-panel m-0">
+        <p:dataTable id="selected-deputy-panel" styleClass="deputy-selection"
+          emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
+          value="#{data.selectedDeputies}" var="deputy">
+          <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/SelectedSubtitutes')}">
+            <h:outputText rendered="#{not avatarBean.isShowAvatar()}"
+              id="deputy-type-icon" class="si si-single-neutral-actions" />
+            <pc:securityMemberNameAndAvatar
+              displayName="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(deputy, deputy.getName())}"
+              securityMember="#{deputy}" />
+          </p:column>
+          <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}" styleClass="w-2 text-center">
+            <p:commandLink id="delete-deputy" styleClass="si si-bin-1 delete-deputy"
+              actionListener="#{logic.removeDeputy(deputy)}" update="deputy-selection-form"
+              ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}" />
+          </p:column>
+        </p:dataTable>
+      </p:fieldset>
+
+      <p:outputPanel styleClass="text-right">
+        <p:commandButton id="save-deputy-button" styleClass="save-deputy-button w-full"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}" actionListener="#{logic.saveSubstitutes}"
+          oncomplete="PF('choose-deputy-dialog').hide();" update="@(.substitute-table)">
+          <p:resetInput target="choose-deputy-dialog" />
+        </p:commandButton>
+      </p:outputPanel>
+    </p:panelGrid>
+  </h:form>
+</h:body>
 
 </html>

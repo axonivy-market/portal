@@ -67,6 +67,7 @@
                   </div>
 
                   <div class="ui-g-12 u-no-padding-top mb-2 pl-0">
+                    <c:set var="duringAbsenceDeputyRole" value="#{absenceManagementBean.getPersonalTaskDeputies(data.deputyRoles)}"></c:set>
                     <p:dataTable id="absence-table" styleClass="absence-table pl-0"
                       emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
                       reflow="true" value="#{data.displayedAbsences}" var="absence" paginator="true" rows="4"
@@ -78,10 +79,9 @@
                         sortBy="#{absence.period}" styleClass="absence-period">
                         <h:outputText value="#{absence.period}" styleClass="absence-column-value" />
                       </p:column>
-                      <p:column headerText="Substitutes for personally assigned tasks during the absence">
+                      <p:column headerText="Substitutes for personally assigned tasks during the absence" groupRow="true">
                         <h:outputText
-                          value="#{securityMemberDisplayNameFormatBean.joinSecurityMemberNames(
-                                    absenceManagementBean.getPersonalTaskDeputies(data.deputyRoles))}"
+                          value="#{securityMemberDisplayNameFormatBean.joinSecurityMemberNames(duringAbsenceDeputyRole)}"
                           styleClass="absence-column-value" />
                       </p:column>
                       <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/comment')}"
@@ -99,7 +99,7 @@
                           my="right top" at="right bottom" styleClass="settings-action-menu">
                           <p:menuitem id="edit-absence"
                             actionListener="#{logic.editAbsence(absence)}"
-                            oncomplete="PF('absence-dialog').show()" update="@widgetVar(absence-dialog)"
+                            oncomplete="PF('absence-dialog').show()" update="@widgetVar(absence-dialog) absence-table"
                             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}"
                             icon="si si-graphic-tablet-drawing-pen" process="@this"
                             rendered="#{absenceManagementBean.isAbsenceEditable(absence) }">
@@ -148,13 +148,14 @@
                 </div>
                 <div id="username-deputy" class="ui-g-12 u-no-padding-top">
                   <div class="ui-g-12 pl-0">
+                    <c:set var="filteredDeputyRoles" value="#{absenceManagementBean.getDeputyRolesExcludePersonalTaskDuringAbsence(data.deputyRoles)}"></c:set>
                     <p:dataTable id="substitute-table"
                       rendered="#{absenceManagementBean.canReadSubstitute(data.selectedAbsenceUser)}"
                       emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
                       styleClass="substitute-table" reflow="true"
-                      value="#{data.deputyRoles}" var="deputyRole"
-                      paginator="true" rows="4"
-                      paginatorAlwaysVisible="false"
+                      value="#{filteredDeputyRoles}" var="deputyRole"
+                      paginator="true" rows="4" 
+                      paginatorAlwaysVisible="false" 
                       paginatorPosition="bottom" pageLinks="3"
                       paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
                       currentPageReportTemplate="{currentPage} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/curentReportOf')} {totalPages}"
@@ -169,8 +170,16 @@
                         <div class="absence-column-value">
                           <c:set var="deputiesDisplayNames"
                             value="#{securityMemberDisplayNameFormatBean.joinSecurityMemberNames(deputyRole.deputies)}" />
-                          <h:outputText
-                            value="#{not empty deputiesDisplayNames ? deputiesDisplayNames : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/noDeputy')}" />
+                          <p:commandLink id="selected-deputies-link" immediate="true"
+                            ariaLabel="#{not empty deputiesDisplayNames ? deputiesDisplayNames : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/noDeputy')}"
+                            styleClass="task-responsible-link"
+                            value="#{not empty deputiesDisplayNames ? deputiesDisplayNames : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/noDeputy')}"
+                            actionListener="#{logic.initSelectedDeputies(deputyRole)}"
+                            oncomplete="PF('choose-deputy-dialog').show();"
+                            update="deputy-selection-form:deputy-selection-panel" global="false"
+                            disabled="#{!absenceManagementBean.canCreateSubstitute(data.selectedAbsenceUser)}">
+                            <i class="si si-notes-quill" />
+                          </p:commandLink>
                         </div>
                       </p:column>
                     </p:dataTable>
@@ -251,7 +260,7 @@
             </div>
           </div>
         </div>
-      </h:form> 
+      </h:form>
 
       <ui:decorate template="/layouts/decorator/portal-dialog-with-icon.xhtml">
         <ui:param name="id" value="delete-absence-confirmation-dialog" />
@@ -280,7 +289,12 @@
       <c:if test="#{absenceManagementBean.absencesCreatable ||  absenceManagementBean.ownAbsencesCreatable}">
         <ui:include src="Absence.xhtml" />
       </c:if>
-
+      <p:dialog id="choose-deputy-dialog" styleClass="choose-deputy-dialog w-3" dynamic="true"
+        header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/selectDeputies')}" widgetVar="choose-deputy-dialog"
+        modal="true" appendTo="@(body)" resizable="false" responsive="true">
+        <p:ajax event="close" listener="#{logic.closeDialog}" global="false" immediate="true" />
+        <ui:include src="SelectDeputy.xhtml" />
+      </p:dialog>
     </ui:define>
   </ui:composition>
 </h:body>

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
 
@@ -120,6 +121,14 @@ public class DeputyRoleUtils {
   
   public static void main(String[] args) {
     System.out.println(null == null);
+  }
+
+  public static List<ISecurityMember> getDeputiesByType(List<DeputyRole> deputyRoles, DeputyRoleType type) {
+    return CollectionUtils.emptyIfNull(deputyRoles).stream()
+        .filter(r -> type == r.getDeputyRoleType())
+        .flatMap(r -> CollectionUtils.emptyIfNull(r.getDeputies()).stream())
+        .distinct()
+        .collect(Collectors.toList());
   }
 
   public static boolean isSecurityMemberSelectedInDeputyRoleByType(List<DeputyRole> deputyRoles,

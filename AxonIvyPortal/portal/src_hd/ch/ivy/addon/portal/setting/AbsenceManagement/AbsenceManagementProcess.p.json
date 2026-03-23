@@ -287,10 +287,7 @@
             "in.backupAbsence.setComment(in.selectedAbsence.getComment());",
             "in.selectedUser = in.selectedAbsence.getUser();",
             "in.isCreateMode = false;",
-            "in.selectedDeputyRole = DeputyRoleUtils.findDeputyRoleByType(in.deputyRoles, DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE);",
-            "if (in.selectedDeputyRole != null) {",
-            "  in.selectedDeputies = in.selectedDeputyRole.getDeputies();",
-            "}"
+            "in.backupDeputies = in.selectedDeputies;"
           ]
         }
       },
@@ -313,10 +310,13 @@
       "config" : {
         "output" : {
           "code" : [
+            "import ch.ivy.addon.portalkit.enums.DeputyRoleType;",
+            "import ch.ivy.addon.portalkit.util.DeputyRoleUtils;",
             "out.selectedAbsence.setUser(in.backupAbsence.getUser());",
             "out.selectedAbsence.setFrom(in.backupAbsence.getFrom());",
             "out.selectedAbsence.setUntil(in.backupAbsence.getUntil());",
-            "out.selectedAbsence.setComment(in.backupAbsence.getComment());"
+            "out.selectedAbsence.setComment(in.backupAbsence.getComment());",
+            "out.selectedDeputies = DeputyRoleUtils.findDeputyRoleByType(in.deputyRoles, DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE).getDeputies();"
           ]
         }
       },
@@ -1325,10 +1325,7 @@
           "map" : {
             "out.selectedDeputyRole" : "param.deputyRole"
           },
-          "code" : [
-            "int indexOfSelectedDeputyRole = out.deputyRoles.indexOf(param.deputyRole);",
-            "out.selectedDeputyRoleId = \"absences-management-form:substitute-table:\" + indexOfSelectedDeputyRole + \":selected-deputies-link\";"
-          ]
+          "code" : "ivy.log.info(out.selectedDeputyRole.deputyRoleType);"
         },
         "guid" : "178C5540F2DB1373"
       },
@@ -1439,26 +1436,6 @@
         { "id" : "f93", "to" : "f13", "via" : [ { "x" : 1144, "y" : 1144 } ] }
       ]
     }, {
-      "id" : "f161",
-      "type" : "HtmlDialogMethodStart",
-      "name" : "method()",
-      "config" : {
-        "signature" : "method",
-        "guid" : "19D0AB8F9D9E0C9D"
-      },
-      "visual" : {
-        "at" : { "x" : 1456, "y" : 720 }
-      },
-      "connect" : [
-        { "id" : "f163", "to" : "f162" }
-      ]
-    }, {
-      "id" : "f162",
-      "type" : "Script",
-      "visual" : {
-        "at" : { "x" : 1648, "y" : 720 }
-      }
-    }, {
       "id" : "f164",
       "type" : "SubProcessCall",
       "config" : {
@@ -1485,7 +1462,8 @@
             "import ch.ivy.addon.portalkit.util.DeputyRoleUtils;",
             "in.substitutes = DeputyRoleUtils.getSubstitutesFromDeputyRoles(in.deputyRoles);"
           ]
-        }
+        },
+        "sudo" : true
       },
       "visual" : {
         "at" : { "x" : 1080, "y" : 592 }
@@ -1502,7 +1480,8 @@
             "import ch.ivy.addon.portalkit.util.DeputyRoleUtils;",
             "in.substitutes = DeputyRoleUtils.getSubstitutesFromDeputyRoles(in.deputyRoles);"
           ]
-        }
+        },
+        "sudo" : true
       },
       "visual" : {
         "at" : { "x" : 848, "y" : 528 }
