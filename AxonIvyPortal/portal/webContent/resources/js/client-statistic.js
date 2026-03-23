@@ -662,9 +662,8 @@ class ClientNumberChart extends ClientChart {
     $(this.chart).parents('.statistic-chart-widget__chart').addClass('client-number-chart');
     let multipleKPI = this.renderMultipleNumberChartInHTML(result, config.numberChartConfig.suffixSymbol);
     let chartContainer = $(this.chart);
-    chartContainer.attr('role', 'list');
-    chartContainer.attr('aria-label', config.name);
     chartContainer.attr('tabindex', '0');
+    chartContainer.attr('aria-label', this.buildNumberChartAriaLabel(config.name, result));
     return chartContainer.html(multipleKPI);
   }
 
@@ -702,12 +701,12 @@ class ClientNumberChart extends ClientChart {
     label = this.data.chartConfig.hideLabel === true ? '' : this.formatChartLabel(label) ;
     let ariaLabel = label ? label + ': ' + number : number;
     let html =
-      '<div class="text-center chart-content-card" role="listitem" aria-label="' + ariaLabel + '">' +
-      '    <div class="chart-number-container" aria-hidden="true">' +
+      '<div class="text-center chart-content-card" role="group" aria-hidden="true">' +
+      '    <div class="chart-number-container">' +
       '        <span class="card-number chart-number-font-size chart-number-animation">' + number + '</span>' +
       '        <i class="card-number chart-number-font-size chart-number-animation ' + suffixSymbol + '" aria-hidden="true"></i>' +
       '    </div>' +
-      '    <div class="chart-label-container" aria-hidden="true">' +
+      '    <div class="chart-label-container">' +
       '        <span class="card-name chart-name-font-size chart-number-animation">' + label + '</span>' +
       '    </div>' +
       '</div>';
@@ -743,6 +742,18 @@ class ClientNumberChart extends ClientChart {
       });
     // Remove duplicated states if any. ['OPEN','DONE', 'OPEN'] => ['OPEN','DONE']
     return result.filter((item, index) => result.indexOf(item) == index);
+  }
+
+  buildNumberChartAriaLabel(name, result) {
+    let description = name || '';
+    if (result && result.length > 0) {
+      let items = result.map(item => {
+        let label = this.data.chartConfig.hideLabel === true ? '' : this.formatChartLabel(item.key);
+        return label ? label + ': ' + item.count : '' + item.count;
+      });
+      description += ', ' + items.join(', ');
+    }
+    return description;
   }
 
   updateClientChart() {
