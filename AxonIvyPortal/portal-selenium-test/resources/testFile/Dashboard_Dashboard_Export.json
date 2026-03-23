@@ -276,7 +276,7 @@
         "value": "Thinh Dashboard"
       }
     ],
-    "icon": "fa-warning",
+    "icon": "ti-alert-triangle",
     "widgets": [
       {
         "type": "welcome",

@@ -47,7 +47,7 @@
 	color: #f21c0a !important;
 }
 
-.deleteCase.fa-trash-o:before {
+.deleteCase.ti-trash:before {
 	display: block;
 	font-size: 14px;
 	margin-bottom: 1px;
@@ -84,8 +84,8 @@ div[id*='caseTable'] table {
 	float: right;
 }
 
-.creatorColumn .fa-info-circle:before {
-	content: "\f05a";
+.creatorColumn .ti-info-circle:before {
+	content: "\ea4c";
 	float: right;
 	margin-left: 5px;
 }

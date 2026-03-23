@@ -111,7 +111,7 @@ Task Details
    Custom text for the task name display.
 
 ``taskIcon`` (string)
-   Icon using Streamline or Font Awesome (e.g., ``"si si-bulb"``).
+   Icon using Tabler Icons (e.g., ``"ti ti-bulb"``).
 
 ``isHideTaskName`` (boolean, default: false)
    ``true`` = hide task name, ``false`` = show.
@@ -188,7 +188,7 @@ The recommended approach uses the Portal component for type-safe configuration:
          <ui:define name="content">
             <ic:com.axonivy.portal.components.IFrameTaskConfig 
                taskName="Approve Investment" 
-               taskIcon="si si-bulb"
+               taskIcon="ti ti-bulb"
                isHideTaskName="false"
                caseId="123456"
                isHideCaseInfo="false"
@@ -224,7 +224,7 @@ You can customize task details, such as the task name and icon.
 
    <ic:com.axonivy.portal.components.IFrameTaskConfig
       taskName="Approve Investment Request"
-      taskIcon="si si-bulb"
+      taskIcon="ti ti-bulb"
       isHideTaskName="false"
    />
 
@@ -289,7 +289,7 @@ Complete Configuration Example
          <ui:define name="content">
             <ic:com.axonivy.portal.components.IFrameTaskConfig 
                taskName="#{data.taskName}"
-               taskIcon="si si-file-edit"
+               taskIcon="ti ti-file-pencil"
                isHideTaskName="false"
                caseId="#{ivy.case.uuid}"
                isHideCaseInfo="false"
@@ -370,7 +370,7 @@ Best Practices
 #. **Use IFrameTaskConfig Component**: Prefer the component-based approach over JavaScript configuration
 #. **Sanitize All Parameters**: Use ``SanitizeAPI.escapeForJavascript`` for dynamic values
 #. **Process Steps**: Provide clear, descriptive step names for better user experience
-#. **Task Icons**: Use consistent icon styles (Streamline or Font Awesome) across your application
+#. **Task Icons**: Use consistent icon styles (Tabler Icons) across your application
 #. **Card Frame**: Enable ``isCardFrame`` for better visual separation of embedded content
 
 .. |request-tab-embedInFrame| image:: images/request-tab-embedInFrame.png

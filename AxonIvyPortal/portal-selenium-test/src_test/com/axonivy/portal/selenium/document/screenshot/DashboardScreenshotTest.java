@@ -346,7 +346,7 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
     DashboardConfigurationPage configPage = new DashboardConfigurationPage();
     configPage.selectPublicDashboardType();
     String name = "New public dashboard";
-    String icon = "fa-coffee";
+    String icon = "ti-coffee";
     String description = "New public dashboard description";
     List<String> permissions = Arrays.asList("Everybody");
     configPage.openCreatePublicDashboardMenu();

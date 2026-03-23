@@ -62,7 +62,7 @@ public class MenuTest extends BaseTest {
     createJSonFile("default-dashboard.json", PortalVariable.DASHBOARD.key);
     newDashboardPage.waitForAbsencesGrowlMessageDisplay();
     String name = "Dashboard Menu Item";
-    String icon = "fa-coffee";
+    String icon = "ti-coffee";
     String description = "Dashboard Menu Item";
     List<String> permissions = new ArrayList<>();
     permissions.add("Everybody");

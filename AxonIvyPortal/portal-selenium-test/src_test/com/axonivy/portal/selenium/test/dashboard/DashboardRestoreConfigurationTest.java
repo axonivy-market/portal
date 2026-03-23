@@ -27,7 +27,7 @@ public class DashboardRestoreConfigurationTest extends BaseTest {
   private NewDashboardPage newDashboardPage;
   private static final String CASE_WIDGET_NAME = "Your New Cases Widget";
   private static final String DASHBOARD_NAME = "New public dashboard";
-  private static final String ICON = "fa-coffee";
+  private static final String ICON = "ti-coffee";
   private static final String DASHBOARD_DESCRIPTION = "New public dashboard description";
   private static final List<String> DASHBOARD_PERMISSION = Arrays.asList("Cost Object (CostObject)");
 

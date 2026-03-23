@@ -51,6 +51,14 @@
   line-height: var(--portal-icon-line-height);
 }
 
+.ui-button .ui-icon.ti,
+.ui-button .ui-icon.tif {
+  overflow: visible;
+  background-image: none;
+  text-indent: 0;
+  width: 1em;
+}
+
 .ui-outputlabel .ui-outputlabel-rfi {
   color: var(--asterik-icon-color); }
 
