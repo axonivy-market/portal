@@ -296,7 +296,11 @@ class ClientCanvasChart extends ClientChart {
 
   // Method to render canvas
   renderChartCanvas(chartId, ariaLabel) {
-    return '<canvas id="' + chartId + '" role="img" aria-label="' + (ariaLabel || '') + '"></canvas>';
+    let canvas = $('<canvas></canvas>');
+    canvas.attr('id', chartId);
+    canvas.attr('role', 'img');
+    canvas.attr('aria-label', ariaLabel || '');
+    return canvas;
   };
 
   // Method to build accessible description from chart data
@@ -555,12 +559,20 @@ class ClientBarChart extends ClientCartesianChart {
         }
       }
       let data = result;
-      this.clientChartConfig.data.labels = result.map(bucket => this.formatChartLabel(bucket.key));
+      let labels = result.map(bucket => this.formatChartLabel(bucket.key));
+      let values = data.map(bucket => bucket.count);
+      this.clientChartConfig.data.labels = labels;
       this.clientChartConfig.data.datasets = [{
         label: config.name,
-        data: data.map(bucket => bucket.count),
+        data: values,
         backgroundColor: chartColors
       }]
+
+      // Update canvas aria-label with new data
+      let canvasElem = $(chart).find('canvas').get(0);
+      if (canvasElem) {
+        canvasElem.setAttribute('aria-label', this.buildChartAriaLabel(config.name, labels, values));
+      }
     }
 
     // If there is no chart from the beginning, init chart config
@@ -680,20 +692,27 @@ class ClientNumberChart extends ClientChart {
   }
 
   generateItemHtml(label, number, suffixSymbol, index) {
-    let border = '<div class="chart-border">' + '</div>';
     label = this.data.chartConfig.hideLabel === true ? '' : this.formatChartLabel(label) ;
     let ariaLabel = label ? label + ': ' + number : number;
-    let html =
-      '<div class="text-center chart-content-card" role="group" aria-label="' + ariaLabel + '">' +
-      '    <div class="chart-number-container">' +
-      '        <span class="card-number chart-number-font-size chart-number-animation">' + number + '</span>' +
-      '        <i class="card-number chart-number-font-size chart-number-animation ' + suffixSymbol + '" aria-hidden="true"></i>' +
-      '    </div>' +
-      '    <div class="chart-label-container">' +
-      '        <span class="card-name chart-name-font-size chart-number-animation">' + label + '</span>' +
-      '    </div>' +
-      '</div>';
-    return index > 0 ? border + html : html;
+
+    let card = $('<div class="text-center chart-content-card" role="group"></div>');
+    card.attr('aria-label', ariaLabel);
+
+    let numberContainer = $('<div class="chart-number-container"></div>');
+    $('<span class="card-number chart-number-font-size chart-number-animation"></span>').text(number).appendTo(numberContainer);
+    $('<i class="card-number chart-number-font-size chart-number-animation" aria-hidden="true"></i>').addClass(suffixSymbol).appendTo(numberContainer);
+    numberContainer.appendTo(card);
+
+    let labelContainer = $('<div class="chart-label-container"></div>');
+    $('<span class="card-name chart-name-font-size chart-number-animation"></span>').text(label).appendTo(labelContainer);
+    labelContainer.appendTo(card);
+
+    let wrapper = $('<div></div>');
+    if (index > 0) {
+      $('<div class="chart-border"></div>').appendTo(wrapper);
+    }
+    card.appendTo(wrapper);
+    return wrapper.html();
   };
 
   // Method to format chart label.

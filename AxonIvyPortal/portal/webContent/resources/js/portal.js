@@ -931,6 +931,9 @@ function initFocusManagament(targetWindow) {
               console.warn("Cannot store focused element");
             }
 
+            if (self.escHandler) {
+              targetWindow.document.removeEventListener('keydown', self.escHandler);
+            }
             var panel = self;
             self.escHandler = function(e) {
               if (e.key === 'Escape' && panel.isVisible()) {
