@@ -12,11 +12,14 @@ import static ch.ivyteam.ivy.security.IPermission.USER_READ_OWN_SUBSTITUTES;
 import static ch.ivyteam.ivy.security.IPermission.USER_READ_SUBSTITUTES;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.primefaces.model.FilterMeta;
+import org.primefaces.model.MatchMode;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -50,7 +53,7 @@ public class AbsenceManagementBean implements Serializable{
   private boolean substitutionCreatable;
   private boolean ownSubstitutionReadable;
   private boolean substitutionReadable;
-  
+  private List<FilterMeta> filterBy;
 
   @PostConstruct
   public void init() {
@@ -67,6 +70,8 @@ public class AbsenceManagementBean implements Serializable{
 
     substitutionReadable = PermissionUtils.hasPermission(USER_READ_SUBSTITUTES);
     ownSubstitutionReadable = PermissionUtils.hasPermission(USER_READ_OWN_SUBSTITUTES);
+    filterBy = new ArrayList<>();
+    filterBy.add(FilterMeta.builder().field("deputyRoleType").filterValue(DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE).matchMode(MatchMode.NOT_EQUALS).build());
   }
 
   public boolean isOwnAbsencesReadable() {
@@ -139,6 +144,10 @@ public class AbsenceManagementBean implements Serializable{
 
   public void setAbsencesDeletable(boolean absencesDeletable) {
     this.absencesDeletable = absencesDeletable;
+  }
+
+  public List<FilterMeta> getFilterBy() {
+    return filterBy;
   }
 
   private UserDTO getCurrentUserAsDefaultIfEmpty(UserDTO selectedUser) {

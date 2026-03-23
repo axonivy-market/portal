@@ -286,8 +286,7 @@
             "in.backupAbsence.setUntil(in.selectedAbsence.getUntil());",
             "in.backupAbsence.setComment(in.selectedAbsence.getComment());",
             "in.selectedUser = in.selectedAbsence.getUser();",
-            "in.isCreateMode = false;",
-            "in.backupDeputies = in.selectedDeputies;"
+            "in.isCreateMode = false;"
           ]
         }
       },
