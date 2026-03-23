@@ -94,7 +94,7 @@ public class ThirdPartyApplicationBean implements Serializable, IMultiLanguage {
     if (CollectionUtils.isNotEmpty(responsibles)) {
       Collection<SecurityMemberDTO> distinctPermissionDTOs =
           responsibles.stream().collect(Collectors.toMap(SecurityMemberDTO::getMemberName, responsible -> responsible,
-              (responsible1, responsible2) -> responsible1)).values();
+              (responsible1, _) -> responsible1)).values();
       responsibles.clear();
       responsibles.addAll(distinctPermissionDTOs);
       displayedPermission =

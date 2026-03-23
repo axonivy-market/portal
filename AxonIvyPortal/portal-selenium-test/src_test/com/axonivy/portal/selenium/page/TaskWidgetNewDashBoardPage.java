@@ -1,8 +1,6 @@
 package com.axonivy.portal.selenium.page;
 
 import static com.codeborne.selenide.CollectionCondition.containExactTextsCaseSensitive;
-import static com.codeborne.selenide.CollectionCondition.size;
-import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
 import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Condition.disappear;
 import static com.codeborne.selenide.Condition.text;
@@ -25,7 +23,6 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.ScrollIntoViewOptions;
 import com.codeborne.selenide.SelenideElement;
-import com.codeborne.selenide.WebElementsCondition;
 import com.codeborne.selenide.ScrollIntoViewOptions.Block;
 
 public class TaskWidgetNewDashBoardPage extends TemplatePage {

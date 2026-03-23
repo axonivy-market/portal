@@ -75,7 +75,7 @@ public class DashboardWidgetInformationService {
   }
 
   private static Collector<Entry<TaskBusinessState, Long>, ?, LinkedHashMap<TaskBusinessState, Long>> collectToTaskStateMap() {
-    return Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (oldValue, newValue) -> oldValue,
+    return Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (oldValue, _) -> oldValue,
         LinkedHashMap::new);
   }
 
@@ -172,7 +172,7 @@ public class DashboardWidgetInformationService {
   }
 
   private Collector<Entry<CaseBusinessState, Long>, ?, LinkedHashMap<CaseBusinessState, Long>> collectToCaseStateMap() {
-    return Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (oldValue, newValue) -> oldValue,
+    return Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (oldValue, _) -> oldValue,
         LinkedHashMap::new);
   }
 
