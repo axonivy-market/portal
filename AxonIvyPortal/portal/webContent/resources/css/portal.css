@@ -2047,3 +2047,7 @@ canvas#preview-statistic-chart {
 .dialog-responsive.ui-dialog {
   max-width: 100vw;
 }
+
+.login-body .login-wrapper .login-panel > button > span.ui-button-icon-left {
+  font-weight: normal;
+}
