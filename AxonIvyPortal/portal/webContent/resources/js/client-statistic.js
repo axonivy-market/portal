@@ -296,12 +296,7 @@ class ClientCanvasChart extends ClientChart {
 
   // Method to render canvas
   renderChartCanvas(chartId, ariaLabel) {
-    let canvas = $('<canvas></canvas>');
-    canvas.attr('id', chartId);
-    canvas.attr('role', 'img');
-    canvas.attr('aria-label', ariaLabel || '');
-    canvas.attr('tabindex', '0');
-    return canvas;
+    return '<canvas id="' + chartId + '" role="img" tabindex="0" aria-label="' + (ariaLabel || '') + '"></canvas>';
   };
 
   // Method to build accessible description from chart data
