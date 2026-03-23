@@ -300,6 +300,7 @@ class ClientCanvasChart extends ClientChart {
     canvas.attr('id', chartId);
     canvas.attr('role', 'img');
     canvas.attr('aria-label', ariaLabel || '');
+    canvas.attr('tabindex', '0');
     return canvas;
   };
 
@@ -540,14 +541,15 @@ class ClientBarChart extends ClientCartesianChart {
   }
 
   updateClientChart() {
+    this.initWidgetTitle();
     let result = this.data.result.aggs?.[0]?.buckets ?? [];
     let config = this.data.chartConfig;
     let chart = this.chart;
 
-    // Render empty chart when result empty 
+    // Render empty chart when result empty
     if (result.length == 0) {
       return this.renderEmptyChart(chart, config.additionalConfig);
-    } 
+    }
     else if (result.length > 0) {
       // Update y value in case y value is time
       if (config.barChartConfig?.yValue === 'time') {
@@ -659,7 +661,11 @@ class ClientNumberChart extends ClientChart {
 
     $(this.chart).parents('.statistic-chart-widget__chart').addClass('client-number-chart');
     let multipleKPI = this.renderMultipleNumberChartInHTML(result, config.numberChartConfig.suffixSymbol);
-    return $(this.chart).html(multipleKPI);
+    let chartContainer = $(this.chart);
+    chartContainer.attr('role', 'list');
+    chartContainer.attr('aria-label', config.name);
+    chartContainer.attr('tabindex', '0');
+    return chartContainer.html(multipleKPI);
   }
 
   initWidgetHeaderName(chart, widgetName) {
@@ -695,24 +701,23 @@ class ClientNumberChart extends ClientChart {
     label = this.data.chartConfig.hideLabel === true ? '' : this.formatChartLabel(label) ;
     let ariaLabel = label ? label + ': ' + number : number;
 
-    let card = $('<div class="text-center chart-content-card" role="group"></div>');
+    let card = $('<div class="text-center chart-content-card" role="listitem"></div>');
     card.attr('aria-label', ariaLabel);
 
-    let numberContainer = $('<div class="chart-number-container"></div>');
+    if (index > 0) {
+      $('<div class="chart-border" aria-hidden="true"></div>').appendTo(card);
+    }
+
+    let numberContainer = $('<div class="chart-number-container" aria-hidden="true"></div>');
     $('<span class="card-number chart-number-font-size chart-number-animation"></span>').text(number).appendTo(numberContainer);
     $('<i class="card-number chart-number-font-size chart-number-animation" aria-hidden="true"></i>').addClass(suffixSymbol).appendTo(numberContainer);
     numberContainer.appendTo(card);
 
-    let labelContainer = $('<div class="chart-label-container"></div>');
+    let labelContainer = $('<div class="chart-label-container" aria-hidden="true"></div>');
     $('<span class="card-name chart-name-font-size chart-number-animation"></span>').text(label).appendTo(labelContainer);
     labelContainer.appendTo(card);
 
-    let wrapper = $('<div></div>');
-    if (index > 0) {
-      $('<div class="chart-border"></div>').appendTo(wrapper);
-    }
-    card.appendTo(wrapper);
-    return wrapper.html();
+    return card.prop('outerHTML');
   };
 
   // Method to format chart label.
