@@ -210,12 +210,20 @@ a.left-sidebar-menu-icon {
 }
 
 .sidebar-toggle-btn a {
-  font-size: 1.25rem;
-  color: var(--sidebar-item-text-color, #515C66);
+  padding: 6px 15px;
+  font-size: 20px;
+  color: #1B1B1B;
+}
+
+.sidebar-toggle-label {
+  display: none;
+  margin-left: 14px;
+  font-size: 12px;
+  line-height: 14px;
 }
 
 .sidebar-toggle-btn a:hover {
-  color: var(--sidebar-item-text-hover-color, #1976d2);
+  color: var(--primary-color);
 }
 
 .task-template-title-horizontal-container {

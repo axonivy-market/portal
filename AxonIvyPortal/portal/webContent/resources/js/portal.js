@@ -164,6 +164,8 @@ var SidebarClickMode = {
   mode: 'HOVER',
   _isExpanded: false,
   _toggling: false,
+  _observer: null,
+  _initialized: false,
 
   init: function(sidebarBehaviour) {
     this.mode = sidebarBehaviour || 'HOVER';
@@ -172,25 +174,33 @@ var SidebarClickMode = {
       this.observeAndBlockHover();
       if ($.cookie('freya_menu_static')) {
         this._isExpanded = true;
+        $('.sidebar-toggle-label').show();
+        $('.js-sidebar-toggle-btn').attr('aria-expanded', 'true');
       } else {
         this._isExpanded = false;
         this.ensureCollapsed();
       }
-      this.bindClickOutside();
-      this.bindSubmenuAutoExpand();
+      if (!this._initialized) {
+        this.bindSubmenuAutoExpand();
+        this._initialized = true;
+      }
     }
   },
 
   observeAndBlockHover: function() {
+    if (this._observer) {
+      this._observer.disconnect();
+    }
     var self = this;
     var wrapper = document.querySelector('.js-layout-wrapper');
     if (!wrapper) return;
-    new MutationObserver(function () {
+    this._observer = new MutationObserver(function () {
       if (self._toggling) return;
       if (wrapper.classList.contains('layout-static') && !self._isExpanded) {
         wrapper.classList.remove('layout-static', 'layout-static-restore');
       }
-    }).observe(wrapper, { attributes: true, attributeFilter: ['class'] });
+    });
+    this._observer.observe(wrapper, { attributes: true, attributeFilter: ['class'] });
   },
 
   ensureCollapsed: function() {
@@ -212,9 +222,13 @@ var SidebarClickMode = {
     if (this._isExpanded) {
       $layoutWrapper.addClass('layout-static');
       $.cookie('freya_menu_static', 'freya_menu_static', { path: '/' });
+      $('.sidebar-toggle-label').show();
+      $('.js-sidebar-toggle-btn').attr('aria-expanded', 'true');
     } else {
       $layoutWrapper.removeClass('layout-static');
       $.removeCookie('freya_menu_static', { path: '/' });
+      $('.sidebar-toggle-label').hide();
+      $('.js-sidebar-toggle-btn').attr('aria-expanded', 'false');
     }
     var self = this;
     setTimeout(function() {
@@ -225,35 +239,6 @@ var SidebarClickMode = {
         self._toggling = false;
       }
     }, 250);
-  },
-
-  collapse: function() {
-    if (this.mode !== 'CLICK' || !this._isExpanded) return;
-    this._toggling = true;
-    this._isExpanded = false;
-    var $layoutWrapper = $('.js-layout-wrapper');
-    $layoutWrapper.removeClass('layout-static');
-    $.removeCookie('freya_menu_static', { path: '/' });
-    var self = this;
-    setTimeout(function() {
-      try {
-        Portal.updateBreadcrumb();
-        Portal.updateLayoutContent();
-      } finally {
-        self._toggling = false;
-      }
-    }, 250);
-  },
-
-  bindClickOutside: function() {
-    var self = this;
-    $(document).off('click.sidebarClickOutside').on('click.sidebarClickOutside', function (e) {
-      if (!self._isExpanded) return;
-      if (!$(e.target).closest('.menu-wrapper.js-left-sidebar').length
-          && !$(e.target).closest('.sidebar-toggle-btn').length) {
-        self.collapse();
-      }
-    });
   },
 
   bindSubmenuAutoExpand: function() {

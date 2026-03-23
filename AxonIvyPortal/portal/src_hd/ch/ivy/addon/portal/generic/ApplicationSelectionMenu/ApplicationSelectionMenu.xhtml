@@ -74,9 +74,11 @@
 
   <!-- CLICK mode toggle button -->
   <h:panelGroup layout="block" styleClass="sidebar-toggle-btn absolute bottom-0 left-0 w-full flex align-items-center justify-content-center" rendered="#{masterDataBean.sidebarBehaviour == 'CLICK'}">
-    <a href="#" onclick="SidebarClickMode.toggle(); return false;" aria-label="#{ivy.cms.co('/Labels/ToggleMenu')}"
-      class="flex align-items-center justify-content-center w-full h-full cursor-pointer no-underline">
-        <i class="si si-navigation-menu-horizontal-filled sidebar-toggle-icon" />
+    <a onclick="SidebarClickMode.toggle(); return false;"
+      aria-label="#{ivy.cms.co('/Labels/ToggleMenu')}" aria-expanded="false"
+      class="js-sidebar-toggle-btn flex align-items-center w-full h-full cursor-pointer no-underline border-round-lg">
+      <i class="si si-navigation-menu sidebar-toggle-icon" />
+      <span class="sidebar-toggle-label font-semibold white-space-nowrap">#{ivy.cms.co('/Labels/Collapse')}</span>
     </a>
   </h:panelGroup>
 
