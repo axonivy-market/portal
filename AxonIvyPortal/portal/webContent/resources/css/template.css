@@ -191,71 +191,40 @@ a.left-sidebar-menu-icon {
 }
 /* END APPLICATION MENU */
 
-/* CLICK MODE - Hover blocked by layout-sidebar-static on wrapper (Freya's own guard).
-   Toggle button controls expand/collapse via layout-static on wrapper.
-     MutationObserver in portal.js blocks cookie-restore expansion. */
-
-/* --sidebar-logo-height matches Freya's .menu-wrapper .sidebar-logo { height: 54px }
-   --sidebar-toggle-height is our toggle button, defined once here and reused below */
 .sidebar-click-mode {
   --sidebar-logo-height: 54px;
   --sidebar-toggle-height: 42px;
 }
-/* Enable scrollbar in click mode expanded state (Freya only sets overflow:auto for layout-sidebar-active, not layout-static) */
 .sidebar-click-mode.layout-static .menu-wrapper .layout-menu-container {
   overflow: auto;
 }
-/* Reserve space at bottom for toggle button so menu items don't flow behind it */
 .sidebar-click-mode .menu-wrapper .layout-menu-container {
   height: calc(100% - var(--sidebar-logo-height) - var(--sidebar-toggle-height));
 }
 
-/* Toggle button pinned at bottom of sidebar, separated from menu content */
 .sidebar-toggle-btn {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
   height: var(--sidebar-toggle-height);
-  display: flex;
-  align-items: center;
-  justify-content: center;
   border-top: 1px solid var(--sidebar-border-color, #dee2e6);
   background-color: var(--sidebar-bg-color, #ffffff);
   z-index: 1;
 }
 
-/* Values mirror Freya's .layout-menu-light .layout-menu > li > a rules (layout-ivy-light.css):
-   normal: #1B1B1B; hover: var(--primary-color)
-   padding: 6px 15px; font-size: 20px; border-radius: 8px
-   and .layout-menu li > a > span: margin-left: 14px; font: 600 12px/14px */
 .sidebar-toggle-btn a {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  height: 100%;
   padding: 6px 15px;
-  cursor: pointer;
   font-size: 20px;
   color: #1B1B1B;
-  text-decoration: none;
-  border-radius: 8px;
 }
 
 .sidebar-toggle-label {
   display: none;
   margin-left: 14px;
-  font-weight: 600;
   font-size: 12px;
   line-height: 14px;
-  white-space: nowrap;
 }
 
 .sidebar-toggle-btn a:hover {
   color: var(--primary-color);
 }
-
-/* END CLICK MODE */
 
 .task-template-title-horizontal-container {
   display: flex;

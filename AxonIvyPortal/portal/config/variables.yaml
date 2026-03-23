@@ -211,9 +211,6 @@ Variables:
     Accessibility:
       # Set to true to enable keyboard shortcuts
       AllowKeyboardShortcutsConfiguration: "true"
-    # @Deprecated (replaced by Portal.Sidebar.Behaviour)
-    # This setting will be removed in a future version, use Portal.Sidebar.Behaviour instead.
-    KeepSidebarExpanded: "false"
     Sidebar:
       # Controls sidebar behavior: HOVER (default), CLICK, or STICK
       # [enum: HOVER, CLICK, STICK]

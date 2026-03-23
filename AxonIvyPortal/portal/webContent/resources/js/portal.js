@@ -118,9 +118,6 @@ var Portal = {
         if (layoutWrapper.hasClass('layout-static')) {
           breadCrumbMarginLeft = leftSidebarMenu.outerWidth(true) - leftTopbar.outerWidth(true) - parseInt(rightTopbar.css("padding-left")) + "px";
         } else if (layoutWrapper.hasClass('sidebar-click-mode')) {
-          // In CLICK mode collapsed state, .menu-wrapper DOM width is always the full expanded width (230px)
-          // because the icon rail is faked via max-width on the inner .layout-menu.
-          // Read the actual left padding of .layout-main instead, which Freya sets to 50px via CSS.
           breadCrumbMarginLeft = ($('.js-layout-main').css('padding-left') || '50px');
         } else {
           if ($("a.menu-button").is(":visible")) {
@@ -176,7 +173,6 @@ var SidebarClickMode = {
     if (this.mode === 'CLICK') {
       this._toggling = false;
       this.observeAndBlockHover();
-      // Restore expanded state from cookie (user may have expanded before navigating)
       if ($.cookie('freya_menu_static')) {
         this._isExpanded = true;
         $('.sidebar-toggle-label').show();
@@ -192,11 +188,7 @@ var SidebarClickMode = {
     }
   },
 
-  // Block Freya's cookie-restore expansion via MutationObserver on layout-wrapper.
-  // Hover is already blocked because we add layout-sidebar-static to the wrapper:
-  // Freya's own guard (line 132 in layout.js): if(!wrapper.hasClass('layout-sidebar-static')) skips hover.
   observeAndBlockHover: function() {
-    // Disconnect previous observer to prevent leaks on re-init
     if (this._observer) {
       this._observer.disconnect();
     }
