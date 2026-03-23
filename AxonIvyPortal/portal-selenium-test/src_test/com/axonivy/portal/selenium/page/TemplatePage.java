@@ -390,7 +390,7 @@ public abstract class TemplatePage extends AbstractPage {
   }
 
   protected void refreshAndWaitElement(String cssSelector) {
-    new WebDriverWait(WebDriverRunner.getWebDriver(), DEFAULT_TIMEOUT).until((webDriver) -> {
+    new WebDriverWait(WebDriverRunner.getWebDriver(), DEFAULT_TIMEOUT).until((_) -> {
       if (($$(cssSelector).isEmpty())) {
         WaitHelper.waitForNavigation(() -> refresh());
         return false;
@@ -488,7 +488,7 @@ public abstract class TemplatePage extends AbstractPage {
 
   public void waitForIFrameScreenshotSizeGreaterThan(long fileSizeInBytes) {
     switchToDefaultContent();
-    new WebDriverWait(WebDriverRunner.getWebDriver(), DEFAULT_TIMEOUT).until((driver) -> {
+    new WebDriverWait(WebDriverRunner.getWebDriver(), DEFAULT_TIMEOUT).until((_) -> {
       return $("iFrame").getScreenshotAs(OutputType.FILE).length() > fileSizeInBytes;
     });
     switchToIFrameOfTask();
