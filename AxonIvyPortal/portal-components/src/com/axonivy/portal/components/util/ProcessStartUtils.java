@@ -10,7 +10,6 @@ import com.axonivy.portal.components.enums.SessionAttribute;
 
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.application.IProcessModelVersion;
-import ch.ivyteam.ivy.application.ReleaseState;
 import ch.ivyteam.ivy.application.app.IApplicationRepository;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.request.IHttpResponse;
