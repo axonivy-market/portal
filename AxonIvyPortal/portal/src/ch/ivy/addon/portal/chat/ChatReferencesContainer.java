@@ -11,8 +11,9 @@ import ch.ivyteam.log.ILogger;
  * mode, when handling system event, it does not have Ivy context, therefore we use these references instead of
  * Ivy.wf(), Ivy.log()
  *
- * Chat is scoped at the security system level (not application level), because users, roles, and sessions all belong
- * to the security context. This allows users across different applications under the same security system to chat.
+ * Chat accesses users, roles, and sessions through the security context directly (via {@link #securityContext()})
+ * instead of the deprecated {@code wf().getApplication().getSecurityContext()} path. The functional scope remains
+ * single-application — this is purely a technical migration away from deprecated IApplication APIs.
  */
 public final class ChatReferencesContainer {
 
@@ -35,8 +36,8 @@ public final class ChatReferencesContainer {
   }
 
   /**
-   * Returns the security context directly, replacing the former getApplication().getSecurityContext() pattern.
-   * Users, roles, and sessions are managed at the security system level — not per application.
+   * Returns the security context directly, replacing the deprecated
+   * {@code getApplication().getSecurityContext()} pattern.
    */
   public static ISecurityContext securityContext() {
     return wf().getSecurityContext();
