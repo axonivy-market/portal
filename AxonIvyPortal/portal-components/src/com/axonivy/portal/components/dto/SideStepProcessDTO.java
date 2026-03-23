@@ -20,7 +20,7 @@ import ch.ivyteam.ivy.security.ISecurityContext;
  * <p><b>Examples</b></p>
  * <pre>
  * SideStepProcessDTO.builder()
- * .signal("com:axonivy:portal:developerexample:sideStepProcess")
+ * .signal("com:axonivy:portal:portaldeveloperexamples:sideStepProcess")
  * .processNameCmsUri("/Processes/SideStep/AskForDetails")
  * .customSecurityMemberCallable("getCustomSecurityMemberSubProcessName()")
  * .build();
