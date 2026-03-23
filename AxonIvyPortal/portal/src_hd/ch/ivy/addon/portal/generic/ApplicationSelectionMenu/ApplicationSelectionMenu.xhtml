@@ -35,8 +35,8 @@
         alt="#{logoDescription}" />
     </p:commandLink>
 
-    <p:commandLink id="toggle-menu" styleClass="sidebar-pin" global="false" ariaLabel="#{ivy.cms.co('/Labels/ToggleMenu')}" 
-      onclick="hideBreadcrumb()" oncomplete="Portal.updateBreadcrumb();" rendered="#{!masterDataBean.expandedSidebar}">
+    <p:commandLink id="toggle-menu" styleClass="sidebar-pin" global="false" ariaLabel="#{ivy.cms.co('/Labels/ToggleMenu')}"
+      onclick="hideBreadcrumb()" oncomplete="Portal.updateBreadcrumb();" rendered="#{masterDataBean.sidebarBehaviour == 'HOVER'}">
       <span class="pin"></span>
     </p:commandLink>
   </div>
@@ -70,6 +70,14 @@
           actionListener="#{logic.clickBreadcrumb('HOME')}" oncomplete="PF('task-losing-confirmation-dialog').show();" />
       </h:form>
     </div>
+  </h:panelGroup>
+
+  <!-- CLICK mode toggle button -->
+  <h:panelGroup layout="block" styleClass="sidebar-toggle-btn absolute bottom-0 left-0 w-full flex align-items-center justify-content-center" rendered="#{masterDataBean.sidebarBehaviour == 'CLICK'}">
+    <a href="#" onclick="SidebarClickMode.toggle(); return false;" aria-label="#{ivy.cms.co('/Labels/ToggleMenu')}"
+      class="flex align-items-center justify-content-center w-full h-full cursor-pointer no-underline">
+        <i class="si si-navigation-menu-horizontal-filled sidebar-toggle-icon" />
+    </a>
   </h:panelGroup>
 
   <!-- Warning before leaving task -->

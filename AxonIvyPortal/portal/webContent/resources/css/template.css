@@ -191,6 +191,33 @@ a.left-sidebar-menu-icon {
 }
 /* END APPLICATION MENU */
 
+.sidebar-click-mode {
+  --sidebar-logo-height: 54px;
+  --sidebar-toggle-height: 42px;
+}
+.sidebar-click-mode.layout-static .menu-wrapper .layout-menu-container {
+  overflow: auto;
+}
+.sidebar-click-mode .menu-wrapper .layout-menu-container {
+  height: calc(100% - var(--sidebar-logo-height) - var(--sidebar-toggle-height));
+}
+
+.sidebar-toggle-btn {
+  height: var(--sidebar-toggle-height);
+  border-top: 1px solid var(--sidebar-border-color, #dee2e6);
+  background-color: var(--sidebar-bg-color, #ffffff);
+  z-index: 1;
+}
+
+.sidebar-toggle-btn a {
+  font-size: 1.25rem;
+  color: var(--sidebar-item-text-color, #515C66);
+}
+
+.sidebar-toggle-btn a:hover {
+  color: var(--sidebar-item-text-hover-color, #1976d2);
+}
+
 .task-template-title-horizontal-container {
   display: flex;
   flex-wrap: wrap;

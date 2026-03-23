@@ -279,8 +279,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       hideTimeNote: 日付の横の時間と分を非表示にするには、true に設定してください。
       hideUploadDocumentForDoneCaseNote: ケース完了後のドキュメントのアップロード（および削除）を拒否するには、true に設定します。
       hideYear: true に設定すると、年は非表示になり、そうでない場合は表示されます。
-      imageUploadSizeLimit: 'TODO: Set the size limit for uploading images in megabytes (MB). The default value is 6MB.'
-      keepSidebarExpanded: サイドバー（左メニュー）を常に展開する
+      imageUploadSizeLimit: 画像アップロードのサイズ制限をメガバイト（MB）単位で設定します。デフォルト値は6MBです。
+      sidebarBehaviour: サイドバーの動作を制御します。ホバーはマウスオーバーで展開、クリックはトグルボタンで切り替え、固定は常に展開します。
       loggedInUserFormat: ログインしたユーザー形式を表示するオプション
       refreshTaskListIntervalNote: タスクリストの更新間隔。（秒単位）
       showAvatar: ユーザー／ロールのアバターの表示のオン／オフを切り替えます。
@@ -1706,6 +1706,10 @@ Labels:
     SearchScopeTaskField:
       DESCRIPTION: 説明
       NAME: 名前
+    SidebarBehaviour:
+      CLICK: クリック
+      HOVER: ホバー
+      STICK: 固定
     ThemeMode:
       DARK: 暗い
       LIGHT: 明るい

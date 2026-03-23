@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Stream;
 
+import com.axonivy.portal.migration.migrator.OldVariableMigrator;
+
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivy.addon.portalkit.enums.PortalPermissionGroup;
 import ch.ivy.addon.portalkit.security.PortalSecurity;
@@ -40,6 +42,7 @@ public class PortalPermissionInitBean extends AbstractProcessStartEventBean {
     getEventBeanRuntime().poll().disable();
     initEveryBodyPermissionAccessList();
     initPermissions();
+    OldVariableMigrator.migrateSidebarSetting();
   }
 
   private void initEveryBodyPermissionAccessList() {
