@@ -1,8 +1,8 @@
 package ch.ivy.addon.portal.chat;
 
+import static ch.ivy.addon.portal.chat.ChatReferencesContainer.getApplication;
 import static ch.ivy.addon.portal.chat.ChatReferencesContainer.getChatService;
 import static ch.ivy.addon.portal.chat.ChatReferencesContainer.log;
-import static ch.ivy.addon.portal.chat.ChatReferencesContainer.wf;
 import static ch.ivy.addon.portal.chat.ClusterChatAction.CLUSTER_CHAT_ACTION_PREFIX;
 
 import java.util.ArrayList;
@@ -45,15 +45,15 @@ public class ClusterChatEventListener implements ISystemEventListener {
     ClusterChatEventListener.subscribeToSystemEvents();
   }
 
-  @SuppressWarnings("removal")
+  // System event listener registration only exists on IApplication — no ISecurityContext equivalent.
+  // This is a cluster transport concern, not a scoping concern.
   private void subscribeToSystemEvents() {
-    wf().getApplication().addSystemEventListener(EnumSet.of(SystemEventCategory.THIRD_PARTY), this);
+    getApplication().addSystemEventListener(EnumSet.of(SystemEventCategory.THIRD_PARTY), this);
     listeners.add(this);
   }
 
-  @SuppressWarnings("removal")
   private void unsubscribeToSystemEvents() {
-    wf().getApplication().removeSystemEventListener(EnumSet.of(SystemEventCategory.THIRD_PARTY), this);
+    getApplication().removeSystemEventListener(EnumSet.of(SystemEventCategory.THIRD_PARTY), this);
   }
 
   private static void clearAllListeners() {

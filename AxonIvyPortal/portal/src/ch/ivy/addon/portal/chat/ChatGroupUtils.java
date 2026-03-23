@@ -1,7 +1,7 @@
 package ch.ivy.addon.portal.chat;
 
-import static ch.ivy.addon.portal.chat.ChatReferencesContainer.getApplication;
 import static ch.ivy.addon.portal.chat.ChatReferencesContainer.log;
+import static ch.ivy.addon.portal.chat.ChatReferencesContainer.securityContext;
 import static ch.ivy.addon.portal.chat.ChatReferencesContainer.wf;
 
 import java.io.IOException;
@@ -56,7 +56,8 @@ public class ChatGroupUtils {
 
   public static Set<String> getAllUsersFromRole(String roleName) {
     Set<String> userNames = new HashSet<>();
-    IRole role = getApplication().getSecurityContext().roles().find(roleName);
+    // Roles are resolved from the security context directly (security-system-scoped, not application-scoped)
+    IRole role = securityContext().roles().find(roleName);
     if (role != null) {
       userNames.addAll(role.users().allPaged().stream().map(IUser::getName).collect(Collectors.toSet()));
     }
@@ -65,7 +66,7 @@ public class ChatGroupUtils {
   }
 
   public static boolean hasRole(ISecurityMember securityRole, IUser user) {
-    IRole role = getApplication().getSecurityContext().roles().find(securityRole.getName());
+    IRole role = securityContext().roles().find(securityRole.getName());
     return user.getUserToken().hasRole(role);
   }
 
@@ -134,7 +135,7 @@ public class ChatGroupUtils {
   private static Set<String> getAllUsersFromRoles(Set<String> roleNames) {
     Set<String> userNames = new HashSet<>();
     for (String roleName : roleNames) {
-      IRole role = getApplication().getSecurityContext().roles().find(roleName);
+      IRole role = securityContext().roles().find(roleName);
       if (role != null) {
         userNames.addAll(role.users().allPaged().stream().map(IUser::getName).collect(Collectors.toSet()));
       }
