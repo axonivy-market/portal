@@ -698,26 +698,20 @@ class ClientNumberChart extends ClientChart {
   }
 
   generateItemHtml(label, number, suffixSymbol, index) {
+    let border = '<div class="chart-border">' + '</div>';
     label = this.data.chartConfig.hideLabel === true ? '' : this.formatChartLabel(label) ;
     let ariaLabel = label ? label + ': ' + number : number;
-
-    let card = $('<div class="text-center chart-content-card" role="listitem"></div>');
-    card.attr('aria-label', ariaLabel);
-
-    if (index > 0) {
-      $('<div class="chart-border" aria-hidden="true"></div>').appendTo(card);
-    }
-
-    let numberContainer = $('<div class="chart-number-container" aria-hidden="true"></div>');
-    $('<span class="card-number chart-number-font-size chart-number-animation"></span>').text(number).appendTo(numberContainer);
-    $('<i class="card-number chart-number-font-size chart-number-animation" aria-hidden="true"></i>').addClass(suffixSymbol).appendTo(numberContainer);
-    numberContainer.appendTo(card);
-
-    let labelContainer = $('<div class="chart-label-container" aria-hidden="true"></div>');
-    $('<span class="card-name chart-name-font-size chart-number-animation"></span>').text(label).appendTo(labelContainer);
-    labelContainer.appendTo(card);
-
-    return card.prop('outerHTML');
+    let html =
+      '<div class="text-center chart-content-card" role="listitem" aria-label="' + ariaLabel + '">' +
+      '    <div class="chart-number-container" aria-hidden="true">' +
+      '        <span class="card-number chart-number-font-size chart-number-animation">' + number + '</span>' +
+      '        <i class="card-number chart-number-font-size chart-number-animation ' + suffixSymbol + '" aria-hidden="true"></i>' +
+      '    </div>' +
+      '    <div class="chart-label-container" aria-hidden="true">' +
+      '        <span class="card-name chart-name-font-size chart-number-animation">' + label + '</span>' +
+      '    </div>' +
+      '</div>';
+    return index > 0 ? border + html : html;
   };
 
   // Method to format chart label.
