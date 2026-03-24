@@ -28,7 +28,7 @@
   }, {
     "name" : "queryAutoComplete"
   }, {
-    "name" : "tasks",
+    "name" : "selectedTasks",
     "type" : "java.util.List<ch.ivyteam.ivy.workflow.ITask>",
     "modifiers" : [ ]
   }, {

@@ -399,7 +399,7 @@
   <h:panelGroup rendered="#{dashboardBean.isTaskWidget(widget)}">
     <ic:ch.ivy.addon.portalkit.component.MultipleTaskItemsDelegate
       id="multiple-task-items-delegate-#{index}"
-      tasks="#{widget.selectedTasksForBulkDelegation}"
+      selectedTasks="#{widget.selectedTasksForBulkDelegation}"
       componentToUpdate="@(.task-widget)" taskWidget="#{widget}"
       />
   </h:panelGroup>

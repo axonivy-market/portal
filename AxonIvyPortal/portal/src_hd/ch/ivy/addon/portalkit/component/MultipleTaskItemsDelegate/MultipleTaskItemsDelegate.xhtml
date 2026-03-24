@@ -6,7 +6,7 @@
   xmlns:pc="http://xmlns.jcp.org/jsf/composite/components">
 
 <cc:interface componentType="IvyComponent">
-  <cc:attribute name="tasks" shortDescription="Tasks" type="java.util.List" />
+  <cc:attribute name="selectedTasks" shortDescription="Tasks" type="java.util.List" />
   <cc:attribute name="componentToUpdate" />
   <cc:attribute name="onCompletedCallback" default="" />
   <cc:attribute name="taskWidget" />
@@ -16,7 +16,7 @@
 <cc:implementation>
   <c:set var="widgetIndex" value="#{cc.attrs.widgetIndex}" />
   <p:remoteCommand id="init-data-to-delegate-multiple-rc" name="initDataToDelegateMultipleTasks#{widgetIndex}"
-    actionListener="#{logic.initDataToDelegateTasks(cc.attrs.tasks, cc.attrs.widgetIndex)}"
+    actionListener="#{logic.initDataToDelegateTasks(cc.attrs.selectedTasks, cc.attrs.widgetIndex)}"
     oncomplete="PF('multiple-task-delegate-dialog-#{widgetIndex}').show();"
     update="#{cc.clientId}:multiple-task-delegate-dialog-#{widgetIndex}"
     process="@this" />

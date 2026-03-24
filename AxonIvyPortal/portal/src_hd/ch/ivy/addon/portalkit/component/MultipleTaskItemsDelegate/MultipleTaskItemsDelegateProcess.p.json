@@ -52,14 +52,14 @@
         "signature" : "initDataToDelegateTasks",
         "input" : {
           "params" : [
-            { "name" : "tasks", "type" : "java.util.List<ch.ivyteam.ivy.workflow.ITask>", "desc" : "" },
+            { "name" : "selectedTasks", "type" : "java.util.List<ch.ivyteam.ivy.workflow.ITask>", "desc" : "" },
             { "name" : "widgetIndex", "type" : "String", "desc" : "" }
           ],
           "map" : {
-            "out.tasks" : "param.tasks",
+            "out.selectedTasks" : "param.selectedTasks",
             "out.widgetIndex" : "param.widgetIndex"
           },
-          "code" : "ivy.log.info(out.tasks);"
+          "code" : "ivy.log.info(out.selectedTasks);"
         },
         "guid" : "19CBDC6DB2A307C0"
       },
@@ -81,7 +81,7 @@
             "in.delegatedSecurityMember = null;",
             "in.selectedRole = null;",
             "in.selectedUser = null;",
-            "in.application = (in.tasks != null && !in.tasks.isEmpty()) ? in.tasks.get(0).getApplication() : null;"
+            "in.application = (in.selectedTasks != null && !in.selectedTasks.isEmpty()) ? in.selectedTasks.get(0).getApplication() : null;"
           ]
         },
         "sudo" : true
@@ -188,7 +188,7 @@
             "out.taskWidget" : "param.taskWidget"
           },
           "code" : [
-            "if (out.tasks.size() > 0) {",
+            "if (out.selectedTasks.size() > 0) {",
             "  out.numberOfSelectedTasks = 0;",
             "} else {",
             "  out.numberOfSelectedTasks = -1;",
@@ -359,7 +359,7 @@
           "map" : {
             "out" : "in",
             "out.numberOfSelectedTasks" : "in.numberOfSelectedTasks",
-            "out.tasks" : "in.tasks"
+            "out.selectedTasks" : "in.selectedTasks"
           },
           "code" : [
             "import ch.ivy.addon.portalkit.util.TaskUtils;",
@@ -369,7 +369,7 @@
             "import org.apache.commons.lang3.StringUtils;",
             "ivy.log.info(in.numberOfSelectedTasks == -1);",
             "if (in.numberOfSelectedTasks > -1) {",
-            "  in.targetTask = in.tasks.get(in.numberOfSelectedTasks);",
+            "  in.targetTask = in.selectedTasks.get(in.numberOfSelectedTasks);",
             "  if (in.targetTask != null) {",
             "    TaskUtils.resetTask(in.targetTask);",
             "  }",
@@ -446,7 +446,7 @@
             "  PrimeFaces.current().executeScript(\"PF('delegation-error-dialog-\" + in.widgetIndex + \"').show();\");",
             "} else {",
             "  in.targetTask.getCase().createNote(ivy.session, in.delegateComment);",
-            "  if (in.numberOfSelectedTasks >= in.tasks.size() - 1) {",
+            "  if (in.numberOfSelectedTasks >= in.selectedTasks.size() - 1) {",
             "    ivy.log.info(\"change to -1\");",
             "    in.numberOfSelectedTasks = -1;",
             "  } else {",
@@ -484,6 +484,93 @@
       },
       "connect" : [
         { "id" : "f64", "to" : "f22", "color" : "default" }
+      ]
+    }, {
+      "id" : "f65",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 1264, "y" : 728 }
+      }
+    }, {
+      "id" : "f68",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "autoCompleteForUserDelegate2(String)",
+      "config" : {
+        "signature" : "autoCompleteForUserDelegate2",
+        "input" : {
+          "params" : [
+            { "name" : "query", "type" : "String", "desc" : "" }
+          ],
+          "map" : {
+            "out.queryAutoComplete" : "param.query"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "usersToDelegate", "type" : "java.util.List<com.axonivy.portal.components.dto.UserDTO>", "desc" : "" }
+          ],
+          "map" : {
+            "result.usersToDelegate" : "in.usersToDelegate"
+          }
+        },
+        "guid" : "19D19A06A35B76F5"
+      },
+      "visual" : {
+        "at" : { "x" : 648, "y" : 728 }
+      },
+      "connect" : [
+        { "id" : "f70", "to" : "f72" }
+      ]
+    }, {
+      "id" : "f69",
+      "type" : "Script",
+      "config" : {
+        "output" : {
+          "code" : [
+            "// in.usersDTOList = new com.axonivy.portal.developerexamples.bean.Test()",
+            "//     .getBulkDelegateAutocomplete(",
+            "//         in.selectedTasks, ",
+            "//         in.query, ",
+            "//         in.startIndex, ",
+            "//         in.count, ",
+            "//         in.currentUser.getMemberName(), ",
+            "//         in.excludedUsernames",
+            "//     );"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 1064, "y" : 728 }
+      },
+      "connect" : [
+        { "id" : "f71", "to" : "f65" }
+      ]
+    }, {
+      "id" : "f72",
+      "type" : "SubProcessCall",
+      "name" : "SecurityService - Find Users",
+      "config" : {
+        "processCall" : "Ivy Data Processes/SecurityService:findUsersWithRoles(Integer,Integer,java.util.List<String>,java.util.List<String>,String)",
+        "call" : {
+          "map" : {
+            "param.query" : "in.queryAutoComplete",
+            "param.startIndex" : "0",
+            "param.count" : "101"
+          }
+        },
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.usersToDelegate" : "result.users"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 864, "y" : 728 },
+        "size" : { "width" : 160 }
+      },
+      "connect" : [
+        { "id" : "f73", "to" : "f69", "color" : "default" }
       ]
     } ]
 }
