@@ -1,0 +1,432 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/process.json",
+  "id" : "19D1974BBF7358E4",
+  "config" : {
+    "data" : "Signal.locneData"
+  },
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "RequestStart",
+      "name" : "start",
+      "config" : {
+        "signature" : "start"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f2", "to" : "f3" }
+      ]
+    }, {
+      "id" : "f1",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 352, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "TaskSwitchEvent",
+      "config" : {
+        "task" : {
+          "name" : "TC_AVG_1"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f4", "to" : "f1", "color" : "default" }
+      ]
+    }, {
+      "id" : "f5",
+      "type" : "RequestStart",
+      "name" : "start2",
+      "config" : {
+        "signature" : "start2"
+      },
+      "visual" : {
+        "at" : { "x" : 104, "y" : 216 }
+      },
+      "connect" : [
+        { "id" : "f6", "to" : "f7" }
+      ]
+    }, {
+      "id" : "f7",
+      "type" : "TaskSwitchEvent",
+      "config" : {
+        "task" : {
+          "name" : "TC_AVG_3"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 232, "y" : 216 }
+      },
+      "connect" : [
+        { "id" : "f8", "to" : "f9", "color" : "default" }
+      ]
+    }, {
+      "id" : "f9",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 360, "y" : 216 }
+      }
+    }, {
+      "id" : "f10",
+      "type" : "RequestStart",
+      "name" : "start3",
+      "config" : {
+        "signature" : "start3"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 136 }
+      },
+      "connect" : [
+        { "id" : "f11", "to" : "f12" }
+      ]
+    }, {
+      "id" : "f12",
+      "type" : "TaskSwitchEvent",
+      "config" : {
+        "task" : {
+          "name" : "TC_AVG_2"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 128 }
+      },
+      "connect" : [
+        { "id" : "f13", "to" : "f14", "color" : "default" }
+      ]
+    }, {
+      "id" : "f14",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 360, "y" : 136 }
+      }
+    }, {
+      "id" : "f15",
+      "type" : "RequestStart",
+      "name" : "start4",
+      "config" : {
+        "signature" : "start4"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 304 }
+      },
+      "connect" : [
+        { "id" : "f16", "to" : "f17" }
+      ]
+    }, {
+      "id" : "f17",
+      "type" : "TaskSwitchEvent",
+      "config" : {
+        "task" : {
+          "name" : "TC_AVG_4"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 304 }
+      },
+      "connect" : [
+        { "id" : "f18", "to" : "f19", "color" : "default" }
+      ]
+    }, {
+      "id" : "f19",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 352, "y" : 304 }
+      }
+    }, {
+      "id" : "f20",
+      "type" : "RequestStart",
+      "name" : "start5",
+      "config" : {
+        "signature" : "start5"
+      },
+      "visual" : {
+        "at" : { "x" : 88, "y" : 368 }
+      },
+      "connect" : [
+        { "id" : "f21", "to" : "f22" }
+      ]
+    }, {
+      "id" : "f22",
+      "type" : "TaskSwitchEvent",
+      "config" : {
+        "task" : {
+          "name" : "TC_AVG_5"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 216, "y" : 368 }
+      },
+      "connect" : [
+        { "id" : "f23", "to" : "f24", "color" : "default" }
+      ]
+    }, {
+      "id" : "f24",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 344, "y" : 368 }
+      }
+    }, {
+      "id" : "f25",
+      "type" : "TaskSwitchEvent",
+      "config" : {
+        "task" : {
+          "name" : "TC_LARGE_3"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 616, "y" : 216 }
+      },
+      "connect" : [
+        { "id" : "f26", "to" : "f27", "color" : "default" }
+      ]
+    }, {
+      "id" : "f27",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 744, "y" : 216 }
+      }
+    }, {
+      "id" : "f28",
+      "type" : "RequestStart",
+      "name" : "start42",
+      "config" : {
+        "signature" : "start42"
+      },
+      "visual" : {
+        "at" : { "x" : 496, "y" : 152 }
+      },
+      "connect" : [
+        { "id" : "f29", "to" : "f30" }
+      ]
+    }, {
+      "id" : "f30",
+      "type" : "TaskSwitchEvent",
+      "config" : {
+        "task" : {
+          "name" : "TC_LARGE_2"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 624, "y" : 152 }
+      },
+      "connect" : [
+        { "id" : "f31", "to" : "f32", "color" : "default" }
+      ]
+    }, {
+      "id" : "f32",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 752, "y" : 152 }
+      }
+    }, {
+      "id" : "f33",
+      "type" : "RequestStart",
+      "name" : "start52",
+      "config" : {
+        "signature" : "start52"
+      },
+      "visual" : {
+        "at" : { "x" : 488, "y" : 216 }
+      },
+      "connect" : [
+        { "id" : "f34", "to" : "f25" }
+      ]
+    }, {
+      "id" : "f35",
+      "type" : "RequestStart",
+      "name" : "start22",
+      "config" : {
+        "signature" : "start22"
+      },
+      "visual" : {
+        "at" : { "x" : 504, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f36", "to" : "f37" }
+      ]
+    }, {
+      "id" : "f37",
+      "type" : "TaskSwitchEvent",
+      "config" : {
+        "task" : {
+          "name" : "TC_LARGE_1"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 632, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f38", "to" : "f39", "color" : "default" }
+      ]
+    }, {
+      "id" : "f39",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 760, "y" : 64 }
+      }
+    }, {
+      "id" : "f40",
+      "type" : "TaskSwitchEvent",
+      "visual" : {
+        "at" : { "x" : 1016, "y" : 128 }
+      },
+      "connect" : [
+        { "id" : "f41", "to" : "f42", "color" : "default" }
+      ]
+    }, {
+      "id" : "f42",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 1144, "y" : 128 }
+      }
+    }, {
+      "id" : "f43",
+      "type" : "RequestStart",
+      "name" : "start522",
+      "config" : {
+        "signature" : "start522"
+      },
+      "visual" : {
+        "at" : { "x" : 888, "y" : 128 }
+      },
+      "connect" : [
+        { "id" : "f44", "to" : "f40" }
+      ]
+    }, {
+      "id" : "f45",
+      "type" : "TaskSwitchEvent",
+      "config" : {
+        "task" : {
+          "name" : "TC_NO_OVERLAP_2"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 1016, "y" : 128 }
+      },
+      "connect" : [
+        { "id" : "f46", "to" : "f47", "color" : "default" }
+      ]
+    }, {
+      "id" : "f47",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 1144, "y" : 128 }
+      }
+    }, {
+      "id" : "f48",
+      "type" : "RequestStart",
+      "name" : "start523",
+      "config" : {
+        "signature" : "start523"
+      },
+      "visual" : {
+        "at" : { "x" : 888, "y" : 128 }
+      },
+      "connect" : [
+        { "id" : "f49", "to" : "f45" }
+      ]
+    }, {
+      "id" : "f50",
+      "type" : "TaskSwitchEvent",
+      "config" : {
+        "task" : {
+          "name" : "TC_NO_OVERLAP_1"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 1016, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f51", "to" : "f52", "color" : "default" }
+      ]
+    }, {
+      "id" : "f52",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 1144, "y" : 64 }
+      }
+    }, {
+      "id" : "f53",
+      "type" : "RequestStart",
+      "name" : "start524",
+      "config" : {
+        "signature" : "start524"
+      },
+      "visual" : {
+        "at" : { "x" : 888, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f54", "to" : "f50" }
+      ]
+    }, {
+      "id" : "f55",
+      "type" : "TaskSwitchEvent",
+      "config" : {
+        "task" : {
+          "name" : "TC_LARGE_5"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 608, "y" : 352 }
+      },
+      "connect" : [
+        { "id" : "f56", "to" : "f57", "color" : "default" }
+      ]
+    }, {
+      "id" : "f57",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 736, "y" : 352 }
+      }
+    }, {
+      "id" : "f58",
+      "type" : "RequestStart",
+      "name" : "start422",
+      "config" : {
+        "signature" : "start422"
+      },
+      "visual" : {
+        "at" : { "x" : 488, "y" : 288 }
+      },
+      "connect" : [
+        { "id" : "f59", "to" : "f60" }
+      ]
+    }, {
+      "id" : "f60",
+      "type" : "TaskSwitchEvent",
+      "config" : {
+        "task" : {
+          "name" : "TC_LARGE_4"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 616, "y" : 288 }
+      },
+      "connect" : [
+        { "id" : "f61", "to" : "f62", "color" : "default" }
+      ]
+    }, {
+      "id" : "f62",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 744, "y" : 288 }
+      }
+    }, {
+      "id" : "f63",
+      "type" : "RequestStart",
+      "name" : "start525",
+      "config" : {
+        "signature" : "start525"
+      },
+      "visual" : {
+        "at" : { "x" : 480, "y" : 352 }
+      },
+      "connect" : [
+        { "id" : "f64", "to" : "f55" }
+      ]
+    } ]
+}
