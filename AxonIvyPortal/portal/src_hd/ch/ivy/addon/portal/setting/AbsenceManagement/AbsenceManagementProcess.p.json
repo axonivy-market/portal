@@ -286,7 +286,11 @@
             "in.backupAbsence.setUntil(in.selectedAbsence.getUntil());",
             "in.backupAbsence.setComment(in.selectedAbsence.getComment());",
             "in.selectedUser = in.selectedAbsence.getUser();",
-            "in.isCreateMode = false;"
+            "in.isCreateMode = false;",
+            "in.selectedDeputyRole = DeputyRoleUtils.findDeputyRoleByType(in.deputyRoles, DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE);",
+            "if (in.selectedDeputyRole != null) {",
+            "  in.selectedDeputies = in.selectedDeputyRole.getDeputies();",
+            "}"
           ]
         }
       },
