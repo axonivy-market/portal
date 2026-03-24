@@ -53,7 +53,6 @@ public class AbsenceManagementBean implements Serializable{
   private boolean substitutionCreatable;
   private boolean ownSubstitutionReadable;
   private boolean substitutionReadable;
-  private List<FilterMeta> filterBy;
 
   @PostConstruct
   public void init() {
@@ -70,8 +69,6 @@ public class AbsenceManagementBean implements Serializable{
 
     substitutionReadable = PermissionUtils.hasPermission(USER_READ_SUBSTITUTES);
     ownSubstitutionReadable = PermissionUtils.hasPermission(USER_READ_OWN_SUBSTITUTES);
-    filterBy = new ArrayList<>();
-    filterBy.add(FilterMeta.builder().field("deputyRoleType").filterValue(DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE).matchMode(MatchMode.NOT_EQUALS).build());
   }
 
   public boolean isOwnAbsencesReadable() {
@@ -144,10 +141,6 @@ public class AbsenceManagementBean implements Serializable{
 
   public void setAbsencesDeletable(boolean absencesDeletable) {
     this.absencesDeletable = absencesDeletable;
-  }
-
-  public List<FilterMeta> getFilterBy() {
-    return filterBy;
   }
 
   private UserDTO getCurrentUserAsDefaultIfEmpty(UserDTO selectedUser) {

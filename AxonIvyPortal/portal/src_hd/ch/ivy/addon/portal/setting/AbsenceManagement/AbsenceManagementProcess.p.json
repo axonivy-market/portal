@@ -1152,15 +1152,18 @@
     }, {
       "id" : "f34",
       "type" : "HtmlDialogMethodStart",
-      "name" : "addDeputy()",
+      "name" : "addDeputy(DeputyRoleType)",
       "config" : {
         "signature" : "addDeputy",
         "input" : {
+          "params" : [
+            { "name" : "deputyRoleType", "type" : "ch.ivy.addon.portalkit.enums.DeputyRoleType", "desc" : "" }
+          ],
           "map" : { },
           "code" : [
             "import ch.ivy.addon.portalkit.enums.DeputyRoleType;",
             "import ch.ivy.addon.portalkit.util.DeputyRoleUtils;",
-            "out.selectedDeputyRole = DeputyRoleUtils.findDeputyRoleByType(out.deputyRoles, DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE);",
+            "out.selectedDeputyRole = DeputyRoleUtils.findDeputyRoleByType(out.deputyRoles, param.deputyRoleType);",
             "if (out.selectedDeputyRole != null) {",
             "  out.selectedDeputies = out.selectedDeputyRole.getDeputies();",
             "}"
@@ -1354,7 +1357,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 440, "y" : 1408 }
+        "at" : { "x" : 576, "y" : 1408 }
       },
       "connect" : [
         { "id" : "f81", "to" : "f76", "via" : [ { "x" : 672, "y" : 1408 } ] }

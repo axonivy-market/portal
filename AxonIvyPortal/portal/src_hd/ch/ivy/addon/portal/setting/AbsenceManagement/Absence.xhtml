@@ -102,7 +102,7 @@
 
           <p:commandButton id="add-deputy-button" styleClass="add-deputy-button px-2 ml-2" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/add')}"
             ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/add')}"
-            disabled="#{data.selectedDeputy == null}" actionListener="#{logic.addDeputy()}" global="false"
+            disabled="#{data.selectedDeputy == null}" actionListener="#{logic.addDeputy('PERSONAL_TASK_DURING_ABSENCE')}" global="false"
             process="@this"
             update="error-message absence-form:selected-deputy-panel" />
         </h:panelGroup>

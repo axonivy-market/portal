@@ -50,8 +50,8 @@
                         </f:facet>
                       </ic:com.axonivy.portal.components.UserSelection>
                     </div>
-                    <div class="#{data.isSupervisor ? ' ui-sm-12 ui-g-6' : 'ui-g-6'} add-absence-panel pl-0">
-                      <div class="ui-fluid flex justify-content-start gap-3 align-items-center h-full">
+                    <h:panelGroup layout="block" styleClass="#{data.isSupervisor ? ' ui-sm-12 ui-g-6' : 'ui-g-6'} add-absence-panel pl-0">
+                      <h:panelGroup layout="block" styleClass="ui-fluid flex justify-content-start gap-3 align-items-center h-full">
                         <h:panelGroup layout="block">
                           <p:outputLabel id="show-absence-in-the-past-label"
                             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/showAbsencesInThePast')}"
@@ -62,12 +62,11 @@
                           <p:ajax event="change" listener="#{logic.findAbsencesAndSubstitutes()}" global="false"
                             update="@(.absence-table)" partialSubmit="true" />
                         </p:toggleSwitch>
-                      </div>
-                    </div>
+                      </h:panelGroup>
+                    </h:panelGroup>
                   </div>
 
                   <div class="ui-g-12 u-no-padding-top mb-2 pl-0">
-                    <c:set var="duringAbsenceDeputyRole" value="#{absenceManagementBean.getPersonalTaskDeputies(data.deputyRoles)}"></c:set>
                     <p:dataTable id="absence-table" styleClass="absence-table pl-0"
                       emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
                       reflow="true" value="#{data.displayedAbsences}" var="absence" paginator="true" rows="4"
@@ -81,7 +80,7 @@
                       </p:column>
                       <p:column headerText="Substitutes for personally assigned tasks during the absence" groupRow="true">
                         <h:outputText
-                          value="#{securityMemberDisplayNameFormatBean.joinSecurityMemberNames(duringAbsenceDeputyRole)}"
+                          value="#{securityMemberDisplayNameFormatBean.joinSecurityMemberNames(absenceManagementBean.getPersonalTaskDeputies(data.deputyRoles))}"
                           styleClass="absence-column-value" />
                       </p:column>
                       <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/comment')}"
@@ -153,15 +152,15 @@
                       emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
                       styleClass="substitute-table ui-filter-togglable" reflow="true"
                       value="#{data.deputyRoles}" var="deputyRole"
-                      paginator="true" rows="4" filterBy="#{absenceManagementBean.filterBy}" 
-                      paginatorAlwaysVisible="false" 
+                      paginator="true" rows="4"
+                      paginatorAlwaysVisible="false"
                       paginatorPosition="bottom" pageLinks="3"
                       paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
                       currentPageReportTemplate="{currentPage} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/curentReportOf')} {totalPages}"
                       lazy="false">
-                      <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/applicationAndRole')}" field="deputyRoleType" styleClass="ui-filter-togglable"
+                      <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/applicationAndRole')}" styleClass="ui-filter-togglable"
                         sortBy="#{deputyRole.deputyRoleDisplayName}" sortOrder="ASC">
-                        <h:outputText value="#{deputyRole.deputyRoleType}" 
+                        <h:outputText value="#{deputyRole.deputyRoleDisplayName}" 
                           styleClass="substition-role-display-name absence-column-value" />
                         <span class="substition-role-type" deputy-role-type="#{deputyRole.deputyRoleType.toString()}" />
                       </p:column>
