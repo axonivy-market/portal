@@ -580,6 +580,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     numberFromBiggerThanTo: Nach" muss größer sein als "Von".
     numberOfSelectedFilter: Ausgewählte Filter
     ok: OK
+    okContext: OK {0}
     'on': am
     pin: Anheften
     pinCaseContext: "Vorgang {0} anheften"
@@ -784,6 +785,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     ExternalPageWidgetIntroduction: Dieses Widget kann eine externe Webseite anzeigen.
     Filter:
       FilterOptionHeader: Filter-Optionen
+      FilterPanelHeader: Filterbereich
       ManageWidgetFilterHeader: Widget-Filter-Verwaltung
       NotFound: Kein Filter gefunden
       WidgetNameColumn: Widget-Name

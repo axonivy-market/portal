@@ -582,6 +582,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     numberFromBiggerThanTo: L'adresse de destination doit être plus grande que l'adresse de départ.
     numberOfSelectedFilter: filtres sélectionnés
     ok: OK
+    okContext: OK {0}
     'on': le
     pin: Épingler
     pinCaseContext: "Épingler le cas {0}"
@@ -784,6 +785,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     ExternalPageWidgetIntroduction: Ce widget peut afficher une page web externe.
     Filter:
       FilterOptionHeader: Options de filtre
+      FilterPanelHeader: Panneau de filtre
       ManageWidgetFilterHeader: Gestion des filtres des widgets
       NotFound: Aucun filtre trouvé
       WidgetNameColumn: Nom du widget

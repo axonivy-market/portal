@@ -458,6 +458,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     note: NOTE
     numberOfSelectedFilter: selected filters
     ok: OK
+    okContext: OK {0}
     'on': 'on'
     pleaseAddDocument: Please add a document with the link above.
     pleaseAddNote: Please add a note with the link above.
@@ -582,6 +583,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     EmptyFilterMessage: No widget filter found
     Filter:
       FilterOptionHeader: Filter options
+      FilterPanelHeader: Filter panel
       ManageWidgetFilterHeader: Widget filter management
       NotFound: No filter found
       WidgetNameColumn: Widget name

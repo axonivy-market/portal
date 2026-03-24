@@ -581,6 +581,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     numberFromBiggerThanTo: 「終了」は、「開始」より大きな値にしてください。
     numberOfSelectedFilter: 選択されたフィルター
     ok: OK
+    okContext: OK {0}
     'on': オン
     pin: 'TODO: Pin'
     pinCaseContext: "ケース{0}をピン留め"
@@ -783,6 +784,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     ExternalPageWidgetIntroduction: このウィジェットは外部Webページを表示できます。
     Filter:
       FilterOptionHeader: フィルターオプション
+      FilterPanelHeader: フィルターパネル
       ManageWidgetFilterHeader: ウィジェットフィルター管理
       NotFound: フィルターが見つかりません
       WidgetNameColumn: ウィジェット名

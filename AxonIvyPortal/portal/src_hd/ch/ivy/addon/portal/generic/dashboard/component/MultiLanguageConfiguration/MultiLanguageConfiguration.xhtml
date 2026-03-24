@@ -78,12 +78,12 @@
       </h:dataTable>
     </h:panelGroup>
       <div class="u-dialog-footer-actions-group">
-        <p:commandLink id="multi-language-cancel-button" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+        <p:commandLink id="multi-language-cancel-button" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancelContext', [ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/settingMultipleLanguages')])}"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
           onclick="PF('multiple-languages-dialog').hide(); return false;" />
         <p:spacer width="15px" rendered="#{!titles.isEmpty()}" />
         <p:commandButton id="multi-language-ok-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
-          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/okContext', [ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/settingMultipleLanguages')])}"
           update="#{cc.attrs.componentToUpdateOnCreate}, #{cc.attrs.componentToUpdateOnModify}, @form" process="@form"
           oncomplete="PF('multiple-languages-dialog').hide();"
           actionListener="#{cc.attrs.updateCurrentLanguage}"
