@@ -77,9 +77,9 @@
     }, {
       "id" : "f9",
       "type" : "SignalStartEvent",
-      "name" : "customcasedetails:tech",
+      "name" : "com:axonivy:portal:portaldeveloperexamples:customCaseDetails",
       "config" : {
-        "signalCode" : "customcasedetails:tech"
+        "signalCode" : "com:axonivy:portal:portaldeveloperexamples:customCaseDetails"
       },
       "visual" : {
         "at" : { "x" : 272, "y" : 212 },
@@ -120,7 +120,7 @@
         "output" : {
           "code" : [
             "// send simple signal",
-            "ivy.wf.signals().send(\"customcasedetails:tech\");"
+            "ivy.wf.signals().send(\"com:axonivy:portal:portaldeveloperexamples:customCaseDetails\");"
           ]
         }
       },

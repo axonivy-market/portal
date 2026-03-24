@@ -15,7 +15,7 @@
       "type" : "SignalStartEvent",
       "name" : "Signal side step ask more details",
       "config" : {
-        "signalCode" : "com:axonivy:portal:developerexample:sideStep:askMoreDetails",
+        "signalCode" : "com:axonivy:portal:portaldeveloperexamples:sidestep:askMoreDetails",
         "output" : {
           "map" : { },
           "code" : [

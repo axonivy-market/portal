@@ -1,14 +1,16 @@
 package ch.ivy.addon.portal.chat;
 
-import static ch.ivy.addon.portal.chat.ChatReferencesContainer.getApplication;
-
 import java.util.Deque;
 import java.util.concurrent.ConcurrentLinkedDeque;
 
+import ch.ivyteam.ivy.data.cache.IDataCache;
+import ch.ivyteam.ivy.data.cache.IDataCacheEntry;
+import ch.ivyteam.ivy.data.cache.IDataCacheGroup;
+import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.exec.Sudo;
 
 public final class ConcurrentChatUtils {
-  public static final String PORTAL_CHAT_RESPONSE_HISTORY = "PortalChatResponseHistory_%s";
+  private static final String PORTAL_CHAT_RESPONSE_HISTORY_GROUP = "PortalChatResponseHistory";
   private static final int RECENT_HISTORY_SIZE = 20;
 
   private ConcurrentChatUtils() {}
@@ -16,11 +18,16 @@ public final class ConcurrentChatUtils {
   @SuppressWarnings("unchecked")
   public static Deque<ChatResponse> getRecentChatResponseHistory(String username) {
     return Sudo.get(() -> {
-      Deque<ChatResponse> history =
-          (Deque<ChatResponse>) getApplication().getAttribute(String.format(PORTAL_CHAT_RESPONSE_HISTORY, username));
+      IDataCache appCache = Ivy.datacache().getAppCache();
+      IDataCacheEntry cacheEntry = appCache.getEntry(PORTAL_CHAT_RESPONSE_HISTORY_GROUP, username);
+      Deque<ChatResponse> history = null;
+      if (cacheEntry != null && cacheEntry.isValid()) {
+        history = (Deque<ChatResponse>) cacheEntry.getValue();
+      }
       if (history == null) {
         history = new ConcurrentLinkedDeque<>();
-        getApplication().setAttribute(String.format(PORTAL_CHAT_RESPONSE_HISTORY, username), history);
+        appCache.setEntry(PORTAL_CHAT_RESPONSE_HISTORY_GROUP, username,
+            com.axonivy.portal.components.service.IvyCacheService.MAX_TIMEOUT, history);
       }
       if (history.size() > RECENT_HISTORY_SIZE) {
         int numberOfEntriesToRemove = history.size() - RECENT_HISTORY_SIZE;
@@ -34,7 +41,14 @@ public final class ConcurrentChatUtils {
 
   public static void removePortalChatResponseHistory(String username) {
     Sudo.get(() -> {
-      getApplication().removeAttribute(String.format(PORTAL_CHAT_RESPONSE_HISTORY, username));
+      IDataCache appCache = Ivy.datacache().getAppCache();
+      IDataCacheGroup group = appCache.getGroup(PORTAL_CHAT_RESPONSE_HISTORY_GROUP);
+      if (group != null) {
+        IDataCacheEntry entry = appCache.getEntry(PORTAL_CHAT_RESPONSE_HISTORY_GROUP, username);
+        if (entry != null) {
+          appCache.invalidateEntry(group, entry);
+        }
+      }
       return null;
     });
   }

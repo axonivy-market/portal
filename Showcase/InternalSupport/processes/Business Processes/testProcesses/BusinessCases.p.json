@@ -38,7 +38,7 @@
       "type" : "SignalStartEvent",
       "name" : "signal",
       "config" : {
-        "signalCode" : "ch:axonivy:portal:internalsupport:updatecheckintime"
+        "signalCode" : "com:axonivy:portal:internalsupport:updateCheckinTime"
       },
       "visual" : {
         "at" : { "x" : 288, "y" : 96 },
@@ -80,7 +80,7 @@
           "code" : [
             "import ch.ivyteam.ivy.process.model.value.SignalCode;",
             "",
-            "SignalCode code = new SignalCode(\"ch:axonivy:portal:internalsupport:updatecheckintime\");",
+            "SignalCode code = new SignalCode(\"com:axonivy:portal:internalsupport:updateCheckinTime\");",
             "ivy.wf.signals().send(code);"
           ]
         }
@@ -197,7 +197,7 @@
       "type" : "SignalStartEvent",
       "name" : "delivery",
       "config" : {
-        "signalCode" : "ivy:portal:pizza:delivery"
+        "signalCode" : "com:axonivy:portal:internalsupport:pizzaDelivery"
       },
       "visual" : {
         "at" : { "x" : 896, "y" : 96 },
@@ -281,7 +281,7 @@
           "code" : [
             "import ch.ivyteam.ivy.process.model.value.SignalCode;",
             "",
-            "SignalCode code = new SignalCode(\"ivy:portal:pizza:delivery\");",
+            "SignalCode code = new SignalCode(\"com:axonivy:portal:internalsupport:pizzaDelivery\");",
             "ivy.wf.signals().send(code);"
           ]
         }
@@ -363,7 +363,7 @@
           "code" : [
             "import ch.ivyteam.ivy.process.model.value.SignalCode;",
             "",
-            "SignalCode code = new SignalCode(\"sale:inform\");",
+            "SignalCode code = new SignalCode(\"com:axonivy:portal:internalsupport:informSale\");",
             "ivy.wf.signals().send(code);"
           ]
         }
@@ -379,7 +379,7 @@
       "type" : "SignalStartEvent",
       "name" : "Send mail",
       "config" : {
-        "signalCode" : "sale:inform"
+        "signalCode" : "com:axonivy:portal:internalsupport:informSale"
       },
       "visual" : {
         "at" : { "x" : 1296, "y" : 208 },
