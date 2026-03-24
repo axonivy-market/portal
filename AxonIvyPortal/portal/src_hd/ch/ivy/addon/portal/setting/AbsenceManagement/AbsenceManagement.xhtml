@@ -78,7 +78,7 @@
                         sortBy="#{absence.period}" styleClass="absence-period">
                         <h:outputText value="#{absence.period}" styleClass="absence-column-value" />
                       </p:column>
-                      <p:column headerText="Substitutes for personally assigned tasks during the absence" groupRow="true">
+                      <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/personalTaskDuringAbsenceDeputies')}" groupRow="true">
                         <h:outputText
                           value="#{securityMemberDisplayNameFormatBean.joinSecurityMemberNames(absenceManagementBean.getPersonalTaskDeputies(data.deputyRoles))}"
                           styleClass="absence-column-value" />
@@ -121,7 +121,7 @@
                       process="@this" global="false"
                       oncomplete="PF('absence-dialog').show()"
                       actionListener="#{logic.add}"
-                      update=":absence-form"
+                      update="absence-form absence-dialog"
                       resetValues="true"
                       rendered="#{absenceManagementBean.absencesCreatable || absenceManagementBean.ownAbsencesCreatable}" />
                     <!-- Show on Mobile screen - Only show icon -->
@@ -237,24 +237,6 @@
                 </div>
               </div>
               <!-- END OF Deputy-For setting card -->
-
-              <!-- FOOTER BUTTONS -->
-              <!-- <div class="user-profile-footer ui-g-12 relative">
-                <p:commandLink id="cancel-subsitute" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-                  rendered="#{absenceManagementBean.substitutionCapable}"
-                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-                  actionListener="#{logic.backToHome()}"
-                  styleClass="u-mar-right-15" />
-
-                <p:commandButton id="save-substitute"
-                  ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/saveAll')}"
-                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/saveAll')}"
-                  rendered="#{absenceManagementBean.substitutionCapable}"
-                  actionListener="#{logic.saveSubstitutes}"
-                  process="absences-management-form"
-                  partialSubmit="true" update="absences-management-form"
-                  styleClass="u-mar-right-5" />
-              </div> -->
             </div>
           </div>
         </div>
