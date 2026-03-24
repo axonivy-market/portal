@@ -296,7 +296,12 @@ class ClientCanvasChart extends ClientChart {
 
   // Method to render canvas
   renderChartCanvas(chartId, ariaLabel) {
-    return '<canvas id="' + chartId + '" role="img" tabindex="0" aria-label="' + (ariaLabel || '') + '"></canvas>';
+    let canvas = $('<canvas></canvas>');
+    canvas.attr('id', chartId);
+    canvas.attr('role', 'img');
+    canvas.attr('tabindex', '0');
+    canvas.attr('aria-label', ariaLabel || '');
+    return canvas;
   };
 
   // Method to build accessible description from chart data
@@ -384,10 +389,9 @@ class ClientPieChart extends ClientCanvasChart {
       let labels = result.map(bucket => this.formatChartLabel(bucket.key));
       let values = result.map(bucket => bucket.count);
       let ariaLabel = this.buildChartAriaLabel(config.name, labels, values);
-      let html = this.renderChartCanvas(chart.getAttribute(DATA_CHART_ID), ariaLabel);
-      $(chart).html(html);
-      let canvasObject = $(chart).find('canvas');
-      this.clientChartConfig = new Chart(canvasObject, {
+      let canvas = this.renderChartCanvas(chart.getAttribute(DATA_CHART_ID), ariaLabel);
+      $(chart).empty().append(canvas);
+      this.clientChartConfig = new Chart(canvas, {
         type: config.chartType,
         label: config.name,
         data: {
@@ -445,11 +449,10 @@ class ClientCartesianChart extends ClientCanvasChart {
       let labels = data.map(bucket => this.formatChartLabel(bucket.key));
       let values = data.map(bucket => bucket.count);
       let ariaLabel = this.buildChartAriaLabel(config.name, labels, values);
-      let html = this.renderChartCanvas(chart.getAttribute(DATA_CHART_ID), ariaLabel);
+      let canvas = this.renderChartCanvas(chart.getAttribute(DATA_CHART_ID), ariaLabel);
 
-      $(chart).html(html);
-      let canvasObject = $(chart).find('canvas');
-      this.clientChartConfig = new Chart(canvasObject, {
+      $(chart).empty().append(canvas);
+      this.clientChartConfig = new Chart(canvas, {
         type: config.chartType,
         data: {
           labels: labels,
@@ -692,20 +695,25 @@ class ClientNumberChart extends ClientChart {
   }
 
   generateItemHtml(label, number, suffixSymbol, index) {
-    let border = '<div class="chart-border">' + '</div>';
     label = this.data.chartConfig.hideLabel === true ? '' : this.formatChartLabel(label) ;
-    let ariaLabel = label ? label + ': ' + number : number;
-    let html =
-      '<div class="text-center chart-content-card" role="group" aria-hidden="true">' +
-      '    <div class="chart-number-container">' +
-      '        <span class="card-number chart-number-font-size chart-number-animation">' + number + '</span>' +
-      '        <i class="card-number chart-number-font-size chart-number-animation ' + suffixSymbol + '" aria-hidden="true"></i>' +
-      '    </div>' +
-      '    <div class="chart-label-container">' +
-      '        <span class="card-name chart-name-font-size chart-number-animation">' + label + '</span>' +
-      '    </div>' +
-      '</div>';
-    return index > 0 ? border + html : html;
+
+    let container = $('<div class="text-center chart-content-card" role="group" aria-hidden="true"></div>');
+
+    let numberContainer = $('<div class="chart-number-container"></div>');
+    $('<span class="card-number chart-number-font-size chart-number-animation"></span>').text(number).appendTo(numberContainer);
+    $('<i class="card-number chart-number-font-size chart-number-animation" aria-hidden="true"></i>').addClass(suffixSymbol).appendTo(numberContainer);
+    numberContainer.appendTo(container);
+
+    let labelContainer = $('<div class="chart-label-container"></div>');
+    $('<span class="card-name chart-name-font-size chart-number-animation"></span>').text(label).appendTo(labelContainer);
+    labelContainer.appendTo(container);
+
+    let wrapper = $('<div></div>');
+    if (index > 0) {
+      $('<div class="chart-border"></div>').appendTo(wrapper);
+    }
+    container.appendTo(wrapper);
+    return wrapper.html();
   };
 
   // Method to format chart label.

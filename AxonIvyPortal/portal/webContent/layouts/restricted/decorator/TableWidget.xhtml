@@ -145,12 +145,12 @@
         hideEvent="mouseleave click" />
 
       <p:commandButton id="expand-link-#{index}" type="button" icon="si si-expand-1"
-      	ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/expandWidgetContext', [widget.name])}"
+      	ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/expandWidgetContext', [widgetName])}"
         styleClass="rounded-button ui-button-outlined expand-link u-mar-right-5 ui-button-widget"
         rendered="#{renderExpandCollapse}" onclick="expandFullscreen(#{index}, '#{widget.id}')"/>
 
       <p:commandButton id="collapse-link-#{index}" type="button" icon="si si-shrink-1"
-      	ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/collapseWidgetContext', [widget.name])}"
+      	ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/collapseWidgetContext', [widgetName])}"
         styleClass="rounded-button ui-button-outlined collapse-link u-mar-right-5 ui-button-widget"
         rendered="#{renderExpandCollapse}"
         onclick="collapseFullscreen(#{index}, '#{widget.id}')" />
@@ -338,13 +338,13 @@
     <!-- maximize and minimize buttons in custom widget no header -->
     <p:commandButton id="expand-link-widget-no-header-#{index}"
       type="button" icon="si si-expand-1"
-      ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/expandWidgetContext', [widget.name])}"
+      ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/expandWidgetContext', [widgetName])}"
       styleClass="rounded-button ui-button-outlined expand-link widget-no-header ui-button-widget"
       rendered="#{renderExpandCollapse and isHeaderHidden}"
       onclick="expandFullscreen(#{index}, '#{widget.id}')" />
     <p:commandButton id="collapse-link-widget-no-header-#{index}"
       type="button" icon="si si-shrink-1"
-      ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/collapseWidgetContext', [widget.name])}"
+      ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/collapseWidgetContext', [widgetName])}"
       styleClass="rounded-button ui-button-outlined collapse-link widget-no-header"
       rendered="#{renderExpandCollapse and isHeaderHidden}"
       onclick="collapseFullscreen(#{index}, '#{widget.id}')" />

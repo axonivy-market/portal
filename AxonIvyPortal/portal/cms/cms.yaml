@@ -371,6 +371,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     close: Close
     closeContext: Close {0}
     cockpit: Cockpit
+    collapseWidgetContext: "Collapse {0} widget"
     colors: Colors
     comment: Comment
     completedOn: Completed on
@@ -641,6 +642,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     deleteWidget: Delete widget
     editWidget: Edit widget
     existingField: The {0} field has already been existing
+    expandWidgetContext: "Expand {0} widget"
     expiryFrom: Expiry From
     expiryTo: Expiry To
     field: Field
@@ -798,6 +800,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     requireConfirmPassword: Password confirmation was missing
     requireCurrentPassword: Please specify the current password
     requireNewPassword: Please specify the new password as well
+    unpinTaskContext: "Unpin task {0}"
     updatePasswordSuccessfully: Password updated successfully.
     wrongPassword: Authentication failed, your password seems to be wrong!
   permission:
@@ -919,9 +922,12 @@ ch.ivy.addon.portalkit.ui.jsf:
     histories: Notes
     note: Note information
     noteDetail: Note details
+    openWidgetFiltersContext: "Open {0} filters"
+    openWidgetInfoContext: "Open {0} information"
     openRequest: Open
     openTaskTooltip: Open task
     park: Park
+    pinTaskContext: "Pin task {0}"
     parkTaskSuccessfully: Task has been parked successfully.
     reserveTaskTooltip: Reserve task
     resetTaskSuccessfully: Task has been unparked successfully.
