@@ -118,7 +118,7 @@ public class DeputyRoleUtils {
             .findFirst()
             .orElse(null);
   }
-  
+
   public static void main(String[] args) {
     System.out.println(null == null);
   }
@@ -129,6 +129,10 @@ public class DeputyRoleUtils {
         .flatMap(r -> CollectionUtils.emptyIfNull(r.getDeputies()).stream())
         .distinct()
         .collect(Collectors.toList());
+  }
+
+  public static List<ISecurityMember> cloneDeputyList(List<ISecurityMember> deputies) {
+    return new ArrayList<>(CollectionUtils.emptyIfNull(deputies));
   }
 
   public static boolean isSecurityMemberSelectedInDeputyRoleByType(List<DeputyRole> deputyRoles,
