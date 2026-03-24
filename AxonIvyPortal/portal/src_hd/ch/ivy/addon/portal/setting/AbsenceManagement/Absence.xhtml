@@ -83,10 +83,7 @@
       </h:panelGroup>
 
       <h:panelGroup id="edit-deputy-selection-panel" styleClass="deputy-selection-panel ui-g-12" layout="block">
-        <div class="pb-3">Substitutes</div>
-        <p:messages id="error-message" showSummary="false" showDetail="true">
-          <p:autoUpdate/>
-        </p:messages>
+        <div class="pb-3">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/Substitutes')}</div>
         <h:panelGroup id="select-deputy" layout="block" styleClass="select-deputy w-full flex no-wrap">
           <ic:com.axonivy.portal.components.UserSelection id="user-selection-component"
             selectedUser="#{data.selectedDeputy}" queryDelay="500" isRenderedMessage="false"
@@ -103,14 +100,14 @@
           <p:commandButton id="add-deputy-button" styleClass="add-deputy-button px-2 ml-2" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/add')}"
             ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/add')}"
             disabled="#{data.selectedDeputy == null}" actionListener="#{logic.addDeputy('PERSONAL_TASK_DURING_ABSENCE')}" global="false"
-            process="@this"
-            update="error-message absence-form:selected-deputy-panel" />
+            process="@form"
+            update="@form absence-form:absence-messages" />
         </h:panelGroup>
 
         <p:dataTable id="selected-deputy-panel" styleClass="deputy-selection" paginator="true" rows="2" pageLinks="5" paginatorPosition="bottom"
           emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
           value="#{data.selectedDeputies}" var="deputy">
-          <p:column headerText="Substitutes during absence">
+          <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/personalTaskDuringAbsenceDeputies')}">
             <h:outputText rendered="#{not avatarBean.isShowAvatar()}"
               id="deputy-type-icon" class="si si-single-neutral-actions" />
             <pc:securityMemberNameAndAvatar containerStyleClass="w-9"
@@ -129,7 +126,7 @@
           ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
           oncomplete="if (args &amp;&amp; !args.validationFailed)PF('absence-dialog').hide();"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}" actionListener="#{logic.saveAbsence}"
-          update="@(.absence-table) absence-messages @(.substitute-table) @(.substitution-table)" />
+          update="@(.absence-table) @(.substitute-table) @(.substitution-table) absence-messages" />
         <p:commandLink id="close-edit-absence-dialog" actionListener="#{logic.cancel}" rendered="#{!data.isCreateMode}"
                        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" update="absence-form"
                        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"

@@ -392,7 +392,7 @@
         "sudo" : true
       },
       "visual" : {
-        "at" : { "x" : 716, "y" : 320 }
+        "at" : { "x" : 720, "y" : 320 }
       },
       "connect" : [
         { "id" : "f50", "to" : "f47", "via" : [ { "x" : 1488, "y" : 320 } ] }
@@ -577,6 +577,8 @@
       "config" : {
         "output" : {
           "code" : [
+            "import java.util.ArrayList;",
+            "import ch.ivyteam.ivy.security.ISecurityMember;",
             "import ch.ivy.addon.portalkit.util.DeputyRoleUtils;",
             "import com.axonivy.portal.components.dto.UserDTO;",
             "import ch.ivyteam.ivy.security.IPermission;",
@@ -595,13 +597,15 @@
             "in.selectedAbsence.user = currentUserDTO;",
             "",
             "in.selectedUser = currentUserDTO;",
-            "",
+            "in.selectedDeputy = null;",
             "in.validationError = false;",
             "in.isCreateMode = true;",
             "",
             "in.selectedDeputyRole = DeputyRoleUtils.findDeputyRoleByType(in.deputyRoles, DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE);",
             "if (in.selectedDeputyRole != null) {",
             "  in.selectedDeputies = in.selectedDeputyRole.getDeputies();",
+            "} else {",
+            "  in.selectedDeputies = new ArrayList();",
             "}"
           ]
         },
@@ -1094,7 +1098,7 @@
             "import javax.faces.application.FacesMessage;",
             "",
             "FacesMessage message = new javax.faces.application.FacesMessage(FacesMessage.SEVERITY_INFO, \"\", in.message);",
-            "PrimeFacesContext.getCurrentInstance().addMessage(\"absences-management-message\", message);"
+            "PrimeFacesContext.getCurrentInstance().addMessage(\"absences-management-info\", message);"
           ]
         }
       },
@@ -1200,15 +1204,16 @@
             "import javax.faces.context.FacesContext;",
             "import ch.ivyteam.ivy.security.ISecurityMember;",
             "",
+            "String messageId = \"absence-messages\";",
             "ISecurityMember selectedAssignee = in.#selectedDeputy is initialized ? ISecurityContext.current().members().find(in.selectedDeputy.getMemberName()) : null;",
             "if (!(#selectedAssignee is initialized) || in.selectedDeputies.contains(selectedAssignee)) {",
-            "  FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR, \"\", ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/Messages/errorSelectInvalidDeputy\")));",
+            "  FacesContext.getCurrentInstance().addMessage(messageId, FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR, \"\", ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/Messages/errorSelectInvalidDeputy\")));",
             "} else if (DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE.equals(in.selectedDeputyRole.deputyRoleType) && DeputyRoleUtils.isSecurityMemberSelectedInDeputyRoleByType(in.deputyRoles, DeputyRoleType.PERSONAL_TASK_PERMANENT, selectedAssignee)) {",
             "  String errorMessage = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/Messages/errorSelectedInPersonalTaskPermanentDeputies\", Arrays.asList(ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/personalTaskPermanentDeputies\")));",
-            "  FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR, \"\", errorMessage));",
+            "  FacesContext.getCurrentInstance().addMessage(messageId, FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR, \"\", errorMessage));",
             "} else if (DeputyRoleType.PERSONAL_TASK_PERMANENT.equals(in.selectedDeputyRole.deputyRoleType) && DeputyRoleUtils.isSecurityMemberSelectedInDeputyRoleByType(in.deputyRoles, DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE, selectedAssignee)) {",
             "  String errorMessage = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/Messages/errorSelectedInPersonalTaskPermanentDeputies\", Arrays.asList(ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/personalTaskDuringAbsenceDeputies\")));",
-            "  FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR, \"\", errorMessage));",
+            "  FacesContext.getCurrentInstance().addMessage(messageId, FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR, \"\", errorMessage));",
             "} else {",
             "  in.selectedDeputies.add(selectedAssignee);",
             "}"
@@ -1286,7 +1291,10 @@
           "code" : [
             "import ch.ivy.addon.portalkit.util.DeputyRoleUtils;",
             "",
-            "in.selectedDeputies = in.selectedDeputyRole.getDeputies();"
+            "in.selectedDeputies = in.selectedDeputyRole.getDeputies();",
+            "in.selectedDeputy = null;",
+            "",
+            "in.backupDeputies = in.selectedDeputies;"
           ]
         }
       },
@@ -1302,21 +1310,26 @@
       "name" : "update selected deputies",
       "config" : {
         "output" : {
-          "code" : "in.selectedDeputyRole.setDeputies(in.selectedDeputies);"
-        }
+          "code" : [
+            "import ch.ivy.addon.portalkit.util.DeputyRoleUtils;",
+            "in.selectedDeputyRole.setDeputies(in.selectedDeputies);",
+            "in.substitutes = DeputyRoleUtils.getSubstitutesFromDeputyRole(in.selectedDeputyRole);"
+          ]
+        },
+        "sudo" : true
       },
       "visual" : {
         "at" : { "x" : 256, "y" : 1408 },
         "size" : { "width" : 144 }
       },
       "connect" : [
-        { "id" : "f80", "to" : "f78" }
+        { "id" : "f80", "to" : "f173" }
       ]
     }, {
       "id" : "f76",
       "type" : "HtmlDialogEnd",
       "visual" : {
-        "at" : { "x" : 672, "y" : 1312 }
+        "at" : { "x" : 704, "y" : 1312 }
       }
     }, {
       "id" : "f77",
@@ -1330,8 +1343,7 @@
           ],
           "map" : {
             "out.selectedDeputyRole" : "param.deputyRole"
-          },
-          "code" : "ivy.log.info(out.selectedDeputyRole.deputyRoleType);"
+          }
         },
         "guid" : "178C5540F2DB1373"
       },
@@ -1351,16 +1363,16 @@
           "code" : [
             "import java.util.ArrayList;",
             "",
-            "out.selectedDeputies = new ArrayList();",
+            "out.selectedDeputies = out.backupDeputies;",
             "out.selectedDeputy = null;"
           ]
         }
       },
       "visual" : {
-        "at" : { "x" : 576, "y" : 1408 }
+        "at" : { "x" : 608, "y" : 1408 }
       },
       "connect" : [
-        { "id" : "f81", "to" : "f76", "via" : [ { "x" : 672, "y" : 1408 } ] }
+        { "id" : "f81", "to" : "f76", "via" : [ { "x" : 704, "y" : 1408 } ] }
       ]
     }, {
       "id" : "f51",
@@ -1370,7 +1382,9 @@
         "output" : {
           "code" : [
             "import ch.ivy.addon.portalkit.util.DeputyRoleUtils;",
-            "",
+            "import ch.ivy.addon.portalkit.util.DeputyRoleUtils;",
+            "in.selectedDeputyRole.setDeputies(in.selectedDeputies);",
+            "in.substitutes = DeputyRoleUtils.getSubstitutesFromDeputyRole(in.selectedDeputyRole);",
             "in.substitutes = DeputyRoleUtils.getSubstitutesFromDeputyRoles(in.deputyRoles);"
           ]
         },
@@ -1512,6 +1526,25 @@
       },
       "connect" : [
         { "id" : "f172", "to" : "f28", "color" : "default" }
+      ]
+    }, {
+      "id" : "f173",
+      "type" : "SubProcessCall",
+      "name" : "Save substitutes",
+      "config" : {
+        "processCall" : "Ivy Data Processes/SubstituteService:saveSubstitutes(com.axonivy.portal.components.dto.UserDTO,java.util.List<ch.ivy.addon.portalkit.ivydata.bo.IvySubstitute>)",
+        "call" : {
+          "map" : {
+            "param.userDTO" : "in.selectedAbsenceUser",
+            "param.substitutes" : "in.substitutes"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 424, "y" : 1408 }
+      },
+      "connect" : [
+        { "id" : "f174", "to" : "f78", "color" : "default" }
       ]
     } ]
 }

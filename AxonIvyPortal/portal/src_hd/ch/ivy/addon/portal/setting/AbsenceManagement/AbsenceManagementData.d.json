@@ -7,81 +7,69 @@
     "type" : "java.util.Map"
   }, {
     "name" : "backupAbsence",
-    "type" : "ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence",
-    "modifiers" : [ ]
+    "type" : "ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence"
   }, {
     "name" : "isSupervisor",
-    "type" : "Boolean",
-    "modifiers" : [ ]
+    "type" : "Boolean"
   }, {
     "name" : "users",
-    "type" : "java.util.List<com.axonivy.portal.components.dto.UserDTO>",
-    "modifiers" : [ ]
+    "type" : "java.util.List<com.axonivy.portal.components.dto.UserDTO>"
   }, {
-    "name" : "queryAutoComplete",
-    "modifiers" : [ ]
+    "name" : "queryAutoComplete"
   }, {
     "name" : "selectedAbsence",
-    "type" : "ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence",
-    "modifiers" : [ ]
+    "type" : "ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence"
   }, {
     "name" : "validationError",
-    "type" : "Boolean",
-    "modifiers" : [ ]
+    "type" : "Boolean"
   }, {
     "name" : "absenceInThePastShown",
     "type" : "Boolean"
   }, {
     "name" : "displayedAbsences",
-    "type" : "java.util.List<ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence>",
-    "modifiers" : [ ]
+    "type" : "java.util.List<ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence>"
   }, {
     "name" : "isAbsenceBeingCreated",
     "type" : "Boolean"
   }, {
     "name" : "selectedAbsenceUser",
-    "type" : "com.axonivy.portal.components.dto.UserDTO",
-    "modifiers" : [ ]
+    "type" : "com.axonivy.portal.components.dto.UserDTO"
   }, {
     "name" : "selectedUser",
-    "type" : "com.axonivy.portal.components.dto.UserDTO",
-    "modifiers" : [ ]
+    "type" : "com.axonivy.portal.components.dto.UserDTO"
   }, {
     "name" : "isCreateMode",
     "type" : "Boolean"
   }, {
     "name" : "substitutes",
-    "type" : "java.util.List<ch.ivy.addon.portalkit.ivydata.bo.IvySubstitute>",
-    "modifiers" : [ ]
+    "type" : "java.util.List<ch.ivy.addon.portalkit.ivydata.bo.IvySubstitute>"
   }, {
     "name" : "substitutions",
-    "type" : "java.util.List<ch.ivy.addon.portalkit.ivydata.bo.IvySubstitute>",
-    "modifiers" : [ ]
+    "type" : "java.util.List<ch.ivy.addon.portalkit.ivydata.bo.IvySubstitute>"
   }, {
     "name" : "message"
   }, {
     "name" : "deputyRoles",
-    "type" : "java.util.List<ch.ivy.addon.portalkit.dto.DeputyRole>",
-    "modifiers" : [ ]
+    "type" : "java.util.List<ch.ivy.addon.portalkit.dto.DeputyRole>"
   }, {
     "name" : "selectedDeputyRole",
-    "type" : "ch.ivy.addon.portalkit.dto.DeputyRole",
-    "modifiers" : [ ]
+    "type" : "ch.ivy.addon.portalkit.dto.DeputyRole"
   }, {
     "name" : "selectedDeputyRoleId"
   }, {
     "name" : "selectedDeputy",
-    "type" : "com.axonivy.portal.components.dto.UserDTO",
-    "modifiers" : [ ]
+    "type" : "com.axonivy.portal.components.dto.UserDTO"
   }, {
     "name" : "selectedDeputies",
-    "type" : "java.util.List<ch.ivyteam.ivy.security.ISecurityMember>",
-    "modifiers" : [ ]
+    "type" : "java.util.List<ch.ivyteam.ivy.security.ISecurityMember>"
   }, {
     "name" : "canCreateAbsenceForOtherUsers",
     "type" : "Boolean"
   }, {
     "name" : "canCreateSubstituteForOtherUsers",
     "type" : "Boolean"
+  }, {
+    "name" : "backupDeputies",
+    "type" : "List<ch.ivyteam.ivy.security.ISecurityMember>"
   } ]
 }

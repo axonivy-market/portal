@@ -12,7 +12,7 @@
         <div id="absences-management-container" class="ui-g-12 absences-management-container">
           <div class="ui-g-12">
             <p:growl id="absences-management-info" showDetail="true"
-              severity="info" for="absences-management-message"
+              severity="info"
               sticky="true" redisplay="false">
               <p:autoUpdate />
             </p:growl>
@@ -121,7 +121,7 @@
                       process="@this" global="false"
                       oncomplete="PF('absence-dialog').show()"
                       actionListener="#{logic.add}"
-                      update="absence-dialog absence-form"
+                      update=":absence-form"
                       resetValues="true"
                       rendered="#{absenceManagementBean.absencesCreatable || absenceManagementBean.ownAbsencesCreatable}" />
                     <!-- Show on Mobile screen - Only show icon -->
@@ -151,7 +151,7 @@
                       rendered="#{absenceManagementBean.canReadSubstitute(data.selectedAbsenceUser)}"
                       emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
                       styleClass="substitute-table ui-filter-togglable" reflow="true"
-                      value="#{data.deputyRoles}" var="deputyRole"
+                      value="#{absenceManagementBean.getDeputyRolesExcludePersonalTaskDuringAbsence(data.deputyRoles)}" var="deputyRole" 
                       paginator="true" rows="4"
                       paginatorAlwaysVisible="false"
                       paginatorPosition="bottom" pageLinks="3"
@@ -239,7 +239,7 @@
               <!-- END OF Deputy-For setting card -->
 
               <!-- FOOTER BUTTONS -->
-              <div class="user-profile-footer ui-g-12 relative">
+              <!-- <div class="user-profile-footer ui-g-12 relative">
                 <p:commandLink id="cancel-subsitute" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
                   rendered="#{absenceManagementBean.substitutionCapable}"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
@@ -254,7 +254,7 @@
                   process="absences-management-form"
                   partialSubmit="true" update="absences-management-form"
                   styleClass="u-mar-right-5" />
-              </div>
+              </div> -->
             </div>
           </div>
         </div>
@@ -287,7 +287,7 @@
       <c:if test="#{absenceManagementBean.absencesCreatable ||  absenceManagementBean.ownAbsencesCreatable}">
         <ui:include src="Absence.xhtml" />
       </c:if>
-      <p:dialog id="choose-deputy-dialog" styleClass="choose-deputy-dialog w-3" dynamic="true"
+      <p:dialog id="choose-deputy-dialog" styleClass="choose-deputy-dialog w-3" dynamic="true" closable="false"
         header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/selectDeputies')}" widgetVar="choose-deputy-dialog"
         modal="true" appendTo="@(body)" resizable="false" responsive="true">
         <p:ajax event="close" listener="#{logic.closeDialog}" global="false" immediate="true" />

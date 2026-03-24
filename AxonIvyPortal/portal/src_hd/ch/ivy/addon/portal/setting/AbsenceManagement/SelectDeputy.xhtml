@@ -19,7 +19,7 @@
               securityMember="#{user}" isStandAlone="false"/>
           </p:column>
           <f:facet name="event">
-            <p:ajax event="itemSelect" update="deputy-selection-form:add-deputy-button" />
+            <p:ajax event="itemSelect" update="deputy-selection-form:add-deputy-button deputy-selection-form:save-deputy-button" />
           </f:facet>
         </ic:com.axonivy.portal.components.UserSelection>
 
@@ -49,12 +49,16 @@
       </p:fieldset>
 
       <p:outputPanel styleClass="text-right">
-        <p:commandButton id="save-deputy-button" styleClass="save-deputy-button w-full"
-          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
-          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}" actionListener="#{logic.updateSelectedDeputies}"
-          oncomplete="PF('choose-deputy-dialog').hide();" update="absences-management-form">
+        <p:commandButton id="save-deputy-button" styleClass="save-deputy-button w-full" partialSubmit="true" disabled="#{data.selectedDeputy == null}"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}" update=":absences-management-form"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}" actionListener="#{logic.saveSubstitutes}"
+          oncomplete="PF('choose-deputy-dialog').hide();" >
           <p:resetInput target="choose-deputy-dialog" />
         </p:commandButton>
+        <p:commandLink id="close-edit-absence-dialog" actionListener="#{logic.closeDialog}" rendered="#{!data.isCreateMode}"
+                              ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+                              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+                              oncomplete="PF('choose-deputy-dialog').hide();" styleClass="mt-3 flex flex-direction-column justify-content-center" />
       </p:outputPanel>
     </p:panelGrid>
   </h:form>
