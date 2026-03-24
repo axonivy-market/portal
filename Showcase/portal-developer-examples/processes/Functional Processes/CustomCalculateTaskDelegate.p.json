@@ -56,8 +56,8 @@
         "}"
       ],
       "visual" : {
-        "at" : { "x" : 488, "y" : 225 },
-        "size" : { "width" : 688, "height" : 142 }
+        "at" : { "x" : 464, "y" : 205 },
+        "size" : { "width" : 688, "height" : 108 }
       },
       "connect" : [
         { "id" : "f2", "to" : "f6" }
@@ -69,8 +69,6 @@
       "config" : {
         "output" : {
           "code" : [
-            "import ch.ivyteam.ivy.security.IUser;",
-            "import ch.ivyteam.ivy.security.IRole;",
             "import com.axonivy.portal.components.enums.CustomProcessStatus;",
             "import com.axonivy.portal.components.dto.RoleDTO;",
             "import com.axonivy.portal.components.dto.UserDTO;",
@@ -89,13 +87,7 @@
             "} else if (\"#guest\".equalsIgnoreCase(in.currentUser.getMemberName())) {",
             "  in.users = new ArrayList();",
             "  in.roles = new ArrayList();",
-            "}",
-            "",
-            "in.status = CustomProcessStatus.OK;",
-            "com.axonivy.portal.developerexamples.bean.Test.DelegationData resultData = ",
-            "    new com.axonivy.portal.developerexamples.bean.Test().getCustomDelegates(in.task.name, in.currentUser.getMemberName());",
-            "in.users = resultData.getUsers();",
-            "in.roles = resultData.getRoles();"
+            "}"
           ]
         },
         "sudo" : true

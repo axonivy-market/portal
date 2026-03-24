@@ -2026,56 +2026,5 @@
       "visual" : {
         "at" : { "x" : 338, "y" : 2450 }
       }
-    }, {
-      "id" : "f128",
-      "type" : "RequestStart",
-      "name" : "start",
-      "config" : {
-        "signature" : "start"
-      },
-      "visual" : {
-        "at" : { "x" : 1128, "y" : 408 }
-      },
-      "connect" : [
-        { "id" : "f130", "to" : "f129", "var" : "in1" }
-      ]
-    }, {
-      "id" : "f129",
-      "type" : "TaskSwitchGateway",
-      "config" : {
-        "tasks" : [ {
-            "id" : "TaskA"
-          }, {
-            "id" : "TaskB"
-          }, {
-            "id" : "TaskC"
-          } ]
-      },
-      "visual" : {
-        "at" : { "x" : 1264, "y" : 408 }
-      },
-      "connect" : [
-        { "id" : "f133", "to" : "f132", "condition" : "ivp==\"TaskA.ivp\"" },
-        { "id" : "f134", "to" : "f131", "condition" : "ivp==\"TaskB.ivp\"" },
-        { "id" : "f136", "to" : "f135", "condition" : "ivp==\"TaskC.ivp\"" }
-      ]
-    }, {
-      "id" : "f131",
-      "type" : "DialogCall",
-      "visual" : {
-        "at" : { "x" : 1464, "y" : 336 }
-      }
-    }, {
-      "id" : "f132",
-      "type" : "TaskSwitchEvent",
-      "visual" : {
-        "at" : { "x" : 1464, "y" : 424 }
-      }
-    }, {
-      "id" : "f135",
-      "type" : "Script",
-      "visual" : {
-        "at" : { "x" : 1440, "y" : 520 }
-      }
     } ]
 }
