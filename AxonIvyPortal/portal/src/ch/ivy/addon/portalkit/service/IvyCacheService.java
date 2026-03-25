@@ -121,6 +121,22 @@ public class IvyCacheService {
     return null;
   }
 
+  /**
+   * Invalidate a single entry in application cache with key is groupName and entryName
+   * @param groupName
+   * @param entryName
+   */
+  public void invalidateApplicationCacheEntry(String groupName, String entryName) {
+    verifyIdentifier(groupName, entryName);
+    IDataCacheGroup group = applicationCache().getGroup(groupName);
+    if (group != null) {
+      IDataCacheEntry entry = applicationCache().getEntry(groupName, entryName);
+      if (entry != null) {
+        applicationCache().invalidateEntry(group, entry);
+      }
+    }
+  }
+
   public void invalidateApplicationCacheByGroupName(String groupName) {
     IDataCacheGroup cacheGroup = applicationCache().getGroup(groupName);
     if(cacheGroup != null) {
