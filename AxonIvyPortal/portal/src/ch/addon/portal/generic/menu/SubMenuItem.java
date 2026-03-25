@@ -4,7 +4,6 @@ import java.nio.charset.StandardCharsets;
 import java.util.UUID;
 
 import com.axonivy.portal.components.enums.MenuKind;
-import com.axonivy.portal.enums.StandardMenuItemDefinitionType;
 
 import ch.ivy.addon.portalkit.enums.Protocol;
 import ch.ivyteam.ivy.application.IApplication;
@@ -17,7 +16,6 @@ public class SubMenuItem {
   protected String icon;
   protected String label;
   protected String name;
-  protected StandardMenuItemDefinitionType standardType;
   
   public String getId() {
     return id;
@@ -69,14 +67,6 @@ public class SubMenuItem {
 
   public String buildLink() {
     return correctProcessLink(link);
-  }
-
-  public StandardMenuItemDefinitionType getStandardType() {
-    return standardType;
-  }
-
-  public void setStandardType(StandardMenuItemDefinitionType standardType) {
-    this.standardType = standardType;
   }
 
   private String correctProcessLink(String link) {
