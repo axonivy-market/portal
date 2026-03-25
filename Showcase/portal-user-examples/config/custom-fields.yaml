@@ -1,3 +1,4 @@
+# yaml-language-server: $schema=https://json-schema.axonivy.com/14.0-dev/config/custom-fields.json
 # == Custom Fields Information ==
 # 
 # You can define here your project custom fields.
@@ -21,7 +22,7 @@ CustomFields:
       Label: My case custom field NUMBER
       Description: This new case custom field can be used to ...
       Type: NUMBER
-
+    
     # CustomFields used for KPI sample statistic
     SpendAmount:
       Label: SpendAmount
@@ -31,10 +32,12 @@ CustomFields:
       Label: Department
       Description: Department
       Type: STRING
+      HasCmsValues: true
     Item:
       Label: Item
       Description: Item
       Type: STRING
+      HasCmsValues: true
     MonthYear:
       Label: MonthYear
       Description: MonthYear
@@ -47,6 +50,7 @@ CustomFields:
       Label: Decision
       Description: Decision
       Type: STRING
+      HasCmsValues: true
     ReworkNoLoops:
       Label: ReworkNoLoops
       Description: ReworkNoLoops
@@ -55,11 +59,13 @@ CustomFields:
       Label: ReworkCauses
       Description: ReworkCauses
       Type: STRING
+      HasCmsValues: true
     ReworkOccurred:
       Label: ReworkOccurred
       Description: ReworkOccurred
       Type: STRING
-
+      HasCmsValues: true
+  
   Starts:
 #   MyStartCustomField:
 #      Label: My start custom field

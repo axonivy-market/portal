@@ -7,8 +7,11 @@ The **Full Case List** page is a dashboard featuring a single, full-width case w
 You can reach the page by using the |case-icon| :guilabel:`Cases` link in the Axon Ivy Portal menu.
 
 .. important::
-   **Access Requirement**: Only users with the :ref:`🔑AccessFullCaseList <AccessFullCaseList>` 
-   permission can see the |case-icon| :guilabel:`Cases` menu item.
+   - The Full Case List dashboard works normally like any other dashboard. You can manage it in the :ref:`Dashboard Configuration <dashboard-configuration>` page.
+
+   - The template :guilabel:`Full Case List dashboard` will support you in creating a new dashboard with a similar layout, see :ref:`public-available-dashboard-template`.
+
+   - This dashboard is visible to all users by default. To restrict access to specific user roles, configure the dashboard permissions in the :ref:`Dashboard Configuration <dashboard-configuration>` page.
 
 .. tip:: 
    The cases you see depend on the roles you hold in your applications.

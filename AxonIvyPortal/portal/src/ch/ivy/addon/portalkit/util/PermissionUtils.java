@@ -106,24 +106,6 @@ public class PermissionUtils {
   }
 
   /**
-   * Check if current user has permission to see full task list
-   *
-   * @return true if current user has permission to see full task list
-   */
-  public static boolean checkAccessFullTaskListPermission() {
-    return hasPortalPermission(PortalPermission.ACCESS_FULL_TASK_LIST);
-  }
-
-  /**
-   * Check if current user has permission to see full case list
-   *
-   * @return true if current user has permission to see full case list
-   */
-  public static boolean checkAccessFullCaseListPermission() {
-    return hasPortalPermission(PortalPermission.ACCESS_FULL_CASE_LIST);
-  }
-
-  /**
    * Check if current user has permission to create public external link
    *
    * @return true if current user has permission to create public external link

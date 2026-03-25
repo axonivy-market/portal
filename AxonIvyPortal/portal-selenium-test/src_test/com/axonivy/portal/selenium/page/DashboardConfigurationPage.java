@@ -16,6 +16,7 @@ import org.openqa.selenium.interactions.Actions;
 import com.axonivy.portal.selenium.common.FileHelper;
 import com.axonivy.portal.selenium.common.Sleeper;
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
 
@@ -157,6 +158,13 @@ public class DashboardConfigurationPage extends TemplatePage {
     waitForCreateNewDashboardSectionAppear().$("a[id$='" + templateIndex + ":template']")
         .shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
     inputCreateDashboardDialog(newName, icon, newDescription, permissions, true, DashboardDisplayType.SUB_MENU);
+  }
+
+  public void createPublicDashboardFromTemplate(String newName, String icon, String newDescription,
+      List<String> permissions, int templateIndex, boolean isPublicDashboard, DashboardDisplayType type) {
+    waitForCreateNewDashboardSectionAppear().$("a[id$='" + templateIndex + ":template']")
+        .shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+    inputCreateDashboardDialog(newName, icon, newDescription, permissions, isPublicDashboard, type);
   }
 
   public SelenideElement openCreateDashboardDialog() {
@@ -360,6 +368,13 @@ public class DashboardConfigurationPage extends TemplatePage {
 
     multipleLanguageDialog.$("button[type='submit']").click();
     multipleLanguageDialog.shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
+  }
+
+  public ElementsCollection getMultiLangDashboardImportTitle() {
+    getAddLanguageButton().click();
+    var multipleLanguageDialog = getImportMultipleLanguageDialog();
+    var elementsInput = multipleLanguageDialog.$$("td input");
+    return elementsInput;
   }
 
   private SelenideElement findPrivateDashboardRowByName(String dashboardName) {

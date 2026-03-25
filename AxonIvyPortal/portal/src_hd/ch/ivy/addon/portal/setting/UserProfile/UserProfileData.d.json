@@ -1,47 +1,33 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/data-class/13.1.0/data-class.json",
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
   "simpleName" : "UserProfileData",
   "namespace" : "ch.ivy.addon.portal.setting.UserProfile",
-  "isBusinessCaseData" : false,
   "fields" : [ {
     "name" : "language",
-    "type" : "ch.ivy.addon.portalkit.ivydata.bo.IvyLanguage",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "ch.ivy.addon.portalkit.ivydata.bo.IvyLanguage"
   }, {
     "name" : "selectedHomepage",
-    "type" : "ch.addon.portal.generic.userprofile.homepage.Homepage",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "ch.addon.portal.generic.userprofile.homepage.Homepage"
   }, {
     "name" : "homepages",
-    "type" : "java.util.List<ch.addon.portal.generic.userprofile.homepage.Homepage>",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "java.util.List<ch.addon.portal.generic.userprofile.homepage.Homepage>"
   }, {
-    "name" : "selectedDateFormat",
-    "type" : "String",
-    "modifiers" : [ "PERSISTENT" ]
+    "name" : "selectedDateFormat"
   }, {
     "name" : "dateFormats",
-    "type" : "java.util.List<String>",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "java.util.List<String>"
   }, {
     "name" : "processModes",
-    "type" : "java.util.List<String>",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "java.util.List<String>"
   }, {
-    "name" : "selectedProcessMode",
-    "type" : "String",
-    "modifiers" : [ "PERSISTENT" ]
+    "name" : "selectedProcessMode"
   }, {
-    "name" : "queryLanguage",
-    "type" : "String",
-    "modifiers" : [ "PERSISTENT" ]
+    "name" : "queryLanguage"
   }, {
     "name" : "formatLanguages",
-    "type" : "java.util.List<javax.faces.model.SelectItem>",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "java.util.List<javax.faces.model.SelectItem>"
   }, {
     "name" : "isShortcutEnabled",
-    "type" : "Boolean",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "Boolean"
   } ]
 }

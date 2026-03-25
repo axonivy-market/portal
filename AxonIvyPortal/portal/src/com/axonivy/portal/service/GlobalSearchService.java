@@ -119,7 +119,6 @@ public class GlobalSearchService {
   }
 
   public boolean isShowGlobalSearchByCases() {
-    boolean isShowFullCaseList = PermissionUtils.checkAccessFullCaseListPermission();
     String globalSearchScopeCategoriesString = Ivy.var().get(GlobalVariable.GLOBAL_SEARCH_SCOPE_BY_CATEGORIES.getKey());
     boolean isHasSearchScope = false;
     if (StringUtils.isNotBlank(globalSearchScopeCategoriesString)) {
@@ -132,11 +131,10 @@ public class GlobalSearchService {
         }
       }
     }
-    return isShowFullCaseList && isHasSearchScope;
+    return isHasSearchScope;
   }
   
   public boolean isShowGlobalSearchByTasks() {
-    boolean isShowFullTaskList = PermissionUtils.checkAccessFullTaskListPermission();
     String globalSearchScopeCategoriesString = Ivy.var().get(GlobalVariable.GLOBAL_SEARCH_SCOPE_BY_CATEGORIES.getKey());
     boolean isHasSearchScope = false;
     if (StringUtils.isNotBlank(globalSearchScopeCategoriesString)) {
@@ -149,7 +147,7 @@ public class GlobalSearchService {
         }
       }
     }
-    return isShowFullTaskList && isHasSearchScope;
+    return isHasSearchScope;
   }
   
   private List<SearchScopeTaskField> getSearchScopeTaskFields() {

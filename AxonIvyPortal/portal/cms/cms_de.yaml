@@ -167,7 +167,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     notificationChannelsReset: Benachrichtigungskanäle zurücksetzen
     subscribed: abonniert
     unpinAllPinnedCases: Alle angehefteten Fälle wurden für den Benutzer {0} entfernt.
-    unpinAllPinnedTasks: Alle angehängten Aufgaben wurden für den Benutzer {0} entfernt.
+    unpinAllPinnedTasks: Alle angehefteten Aufgaben wurden für den Benutzer {0} entfernt.
   PortalManagement:
     AdminSetting: Administration
   ProcessViewer:
@@ -207,7 +207,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       thirdPartyApplication: 3rd Party Anwendung
     currentValue: Aktueller Wert
     defaultValue: Standard Wert
-    deleteAppConfirmation: Sind Sie sicher, dass Sie diese Anwendung entfernen möchten?
+    deleteAppConfirmation: Sind Sie sicher, dass Sie diese <b>{0}</b> Anwendung entfernen möchten?
     dialogclosinginformation:
       dialogHeader: Einstellungen abgeschlossen
       informMessage: Änderungen an den Portaleinstellungen erfordern eine Aktualisierung der aktuellen Seite, damit die neue Konfiguration wirksam wird.
@@ -742,8 +742,12 @@ ch.ivy.addon.portalkit.ui.jsf:
       publicFilter: Öffentlich
       savedFilters: 'Gespeicherte Filter:'
   dashboard:
+    CaseQueryType:
+      info: Konfigurieren Sie, welche Vorgangstypen im Vorgangs-Widget angezeigt werden. Standard zeigt nur Geschäftsvorgänge, Technische Untervorgänge zeigt nur technische Untervorgänge, und Alle zeigt sowohl Geschäftsvorgänge als auch technische Untervorgänge.
+      label: Vorgangstyp
     CloneWidget: Widget klonen
     CustomWidgets: Benutzerdefinierte Widgets
+    dataSettings: Dateneinstellungen
     DashboardConfiguration:
       CreateFromScratch: Von Grund auf neu erstellen
       CreateFromScratchDescription: Erstellen Sie Ihr eigenes Dashboard von Grund auf
@@ -753,6 +757,9 @@ ch.ivy.addon.portalkit.ui.jsf:
       DoNotSupportMobile: Die Dashboard-Konfiguration wird für mobile Geräte nicht unterstützt.
       EditPrivateDashboards: Private Dashboards bearbeiten
       EditPublicDashboards: Öffentliche Dashboards bearbeiten
+      ExportReferencedDialogHeader: Dashboard referenziert andere Dashboards
+      ExportReferencedDialogMessage: 'Die folgenden Dashboards werden von Navigations-Widgets referenziert. Exportieren und importieren Sie sie ebenfalls, damit die Widgets korrekt funktionieren:'
+      ExportReferencedDialogProceed: Trotzdem exportieren
       ExportDashboard: Dashboard exportieren
       PrivateDashboard: Private Dashboards
       PrivateDashboardConfiguration: Private Dashboard-Konfiguration
@@ -763,6 +770,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       SelectAction: Wählen Sie die Aktion
       SomeThingWentWrong: Etwas ist schief gelaufen
       Title: Dashboard-Konfiguration
+    displaySettings: Anzeigeeinstellungen
     DrillDownWidget:
       caseDrillDown: Drilldown-Fall-Widget für {0}
       taskDrillDown: Drilldown-Aufgaben-Widget für {0}
@@ -795,6 +803,12 @@ ch.ivy.addon.portalkit.ui.jsf:
       EmptyChartDataMessage: Wir haben nicht genug Daten, um ein schönes Diagramm zu erstellen!
       failToRenderChartMessage: Fehler beim Rendern des Diagramms. Bitte versuchen Sie es mit anderen Einstellungen erneut.
       firstConfigChartMessage: Noch kein Diagramm verfügbar. Bitte konfigurieren Sie Ihre Einstellungen, um ein Diagramm zu generieren.
+      TooltipAverageKpiLabel: Durchschnitt von {0}
+      TooltipMaxKpiLabel: Maximum von {0}
+      TooltipMinKpiLabel: Minimum von {0}
+      TooltipSumKpiLabel: Summe von {0}
+      TooltipTotalCaseLabel: 'Gesamtzahl der Vorgänge: {0}'
+      TooltipTotalTaskLabel: 'Gesamtzahl der Aufgaben: {0}'
     WelcomeWidgetIntroduction: Dieses Widget zeigt einen Willkommenstext und ein Bild auf dem Dashboard an.
     WelcomeWidgetNotFoundMessage: Wir können das Bild des Widgets nicht finden, bitte konfigurieren Sie Ihr Bild neu!
     WidgetFilterName: Name des Widget-Filters
@@ -872,7 +886,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       dashboardIcon: Dashboard-Symbol
       dashboardPermission: Dashboard Berechtigung
       dashboardTitle: Dashboard Titel
-      deleteDashboardMessage: Sind Sie sicher, dass Sie die "{0}" dashboard?
+      deleteDashboardMessage: Sind Sie sicher, dass Sie das Dashboard "{0}" löschen wollen?
       editDashboard: Dashboard editieren
       manageDashboard: Dashboard verwalten
       removeDashboardHeader: Dashboard "{0}" entfernen
@@ -961,6 +975,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     RenamingDocumentNote: '{0} hat die Datei {1} in {2} umbenannt'
     RenamingDocumentSuccess: Erfolgreich umbenannt.
     RenamingFailed: Beim Umbenennen des Dokuments ist ein Fehler aufgetreten.
+    confirmation: Bestätigung
+    confirmationUploadDocument: Das Scannen von Skripten ist für verschlüsselte Dateien nicht verfügbar. Möchten Sie mit der Vorschau fortfahren?
     deleteDocumentNote: '{0} hat folgendes gelöscht: {1}'
     deleteSuceed: Datei wurde erfolgreich gelöscht
     download: Herunterladen
@@ -976,6 +992,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     uploadFailed: Während des Hochladens ist ein Fehler aufgetreten. Bitte fragen Sie Ihren Administrator.
     uploadFileExists: Datei {0} ist bereits vorhanden
     uploadSucceed: Die Datei wurde erfolgreich hochgeladen
+    uploadSucceedWithWarning: Die Datei wurde erfolgreich hochgeladen, aber das Skript-Scannen konnte nicht abgeschlossen werden, da die Datei verschlüsselt oder passwortgeschützt ist.
   emailSetting:
     dailySummary: Tägliche Zusammenfassung erhalten
     eMail: E-Mail
@@ -1130,11 +1147,11 @@ ch.ivy.addon.portalkit.ui.jsf:
       dialogHeaderTitle: Informationen bearbeiten für {0}
     editProcesses: Prozesse bearbeiten
     externalLink: Externer Link
+    externalLinkImage: Bild des externen Links
     externalLinkVisibility: Sichtbarkeit
     goTo: 'Gehe zu: '
     icon: Symbol
     image: Bild
-    externalLinkImage: Bild des externen Links
     isRequiredMessage: muss gesetzt werden
     linkDescription: Link Beschreibung
     noProcess: Keinen Prozess gefunden.
@@ -1252,6 +1269,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     taskNotes: Notizen
     triggerEscalation: Eskalation auslösen
   taskList:
+    configuration: Konfiguration
     deadline: Frist
     default: Standard
     defaultColumns:
@@ -1535,6 +1553,7 @@ Dialogs:
               FileInfomation: Dateiinformationen
               ImportPrivate: Privates Dashboard importieren
               ImportPublic: Öffentliches Dashboard importieren
+              NavigationWidgetMissingTarget: 'Navigations-Widget "{0}" verweist auf ein Dashboard, das nicht importiert wurde und in diesem Portal nicht vorhanden ist. Das Widget funktioniert möglicherweise nicht korrekt.'
               chooseAJsonFile: Wählen Sie eine JSON-Datei
             DashboardSharing:
               ShareDashboard: Dashboard teilen
@@ -1744,9 +1763,15 @@ Enums:
                   Kleiner als
 
               LESSOREQUAL:
-                name: |+
+                name: |
                   Kleiner oder gleich
-
+          CaseQueryType:
+            ALL:
+              name: Geschäftsvorgänge + Untervorgänge
+            BUSINESS_CASE:
+              name: Geschäftsvorgänge (Standard)
+            SUB_CASE:
+              name: Untervorgänge
 Labels:
   AI:
     Error:
@@ -1912,7 +1937,7 @@ Labels:
   Name: Titel
   Permissions: Berechtigungen
   PinnedCases: Angeheftete Fälle
-  PinnedTasks: Angehängte Aufgaben
+  PinnedTasks: Angehefteten Aufgaben
   Preview: Vorschau
   RequiredFieldMessage: '{0}: Wert ist erforderlich'
   Save: Speichern

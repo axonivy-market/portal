@@ -51,6 +51,7 @@ import com.axonivy.portal.dto.dashboard.NavigationDashboardWidget;
 import com.axonivy.portal.dto.dashboard.NewsDashboardWidget;
 import com.axonivy.portal.dto.dashboard.NotificationDashboardWidget;
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
+import com.axonivy.portal.enums.CaseQueryType;
 import com.axonivy.portal.service.IvyTranslationService;
 import com.axonivy.portal.service.StatisticService;
 import com.axonivy.portal.util.DashboardCloneUtils;
@@ -195,7 +196,6 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     } catch (PortalException e) {
       Ivy.log().error(e);
     }
-    DashboardUtils.addDefaultTaskCaseListDashboardsIfMissing(collectedDashboards);
     return collectedDashboards.stream()
         .filter(dashboard -> dashboard.getId().equals(selectedDashboardId)).collect(Collectors.toList());
   }
@@ -1005,8 +1005,6 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   public List<Dashboard> initCloneableDashboards() {
     List<Dashboard> availableDashboards = new ArrayList<>();
     availableDashboards.addAll(DashboardUtils.getPublicDashboards());
-    DashboardUtils
-        .addDefaultTaskCaseListDashboardsIfMissing(availableDashboards);
 
     String dashboardInUserProperty = readDashboardBySessionUser();
     if (StringUtils.isNotBlank(dashboardInUserProperty)) {
@@ -1167,6 +1165,10 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     }
 
     return false;
+  }
+
+  public List<CaseQueryType> getAllCaseQueryTypes() {
+    return Arrays.asList(CaseQueryType.values());
   }
 
   public void onResizeColumn(ColumnResizeEvent event) {

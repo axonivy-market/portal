@@ -1,25 +1,22 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
   "simpleName" : "ProcessViewerData",
   "namespace" : "ch.ivy.addon.portal.generic.ProcessViewer",
-  "isBusinessCaseData" : false,
   "fields" : [ {
     "name" : "caseId",
-    "type" : "Long",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "Long"
   }, {
     "name" : "selectedCase",
-    "type" : "ch.ivyteam.ivy.workflow.ICase"
+    "type" : "ch.ivyteam.ivy.workflow.ICase",
+    "modifiers" : [ ]
   }, {
-    "name" : "processId",
-    "type" : "String",
-    "modifiers" : [ "PERSISTENT" ]
+    "name" : "processId"
   }, {
     "name" : "taskId",
-    "type" : "Long",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "Long"
   }, {
     "name" : "selectedTask",
-    "type" : "ch.ivyteam.ivy.workflow.ITask"
+    "type" : "ch.ivyteam.ivy.workflow.ITask",
+    "modifiers" : [ ]
   } ]
 }

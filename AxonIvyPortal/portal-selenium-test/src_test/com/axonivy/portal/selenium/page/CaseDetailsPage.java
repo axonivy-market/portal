@@ -28,7 +28,11 @@ import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
+import com.codeborne.selenide.ScrollIntoViewOptions;
 import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.ScrollIntoViewOptions.Behavior;
+import com.codeborne.selenide.ScrollIntoViewOptions.Block;
+import com.codeborne.selenide.ScrollIntoViewOptions.Inline;
 
 import ch.ivyteam.ivy.workflow.task.TaskBusinessState;
 
@@ -298,8 +302,8 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public void waitForIFrameWidgetLoad() {
-    $("[name='custom-widget-iframe']").shouldBe(appear, DEFAULT_TIMEOUT);
-    switchToIframeWithNameOrId("custom-widget-iframe");
+    SelenideElement iframe = $("[name$='custom-widget-iframe']").shouldBe(appear, DEFAULT_TIMEOUT);
+    switchToIframeWithWebElement(iframe);
     $("form[id='content-form']").shouldBe(Condition.visible, DEFAULT_TIMEOUT);
     switchBackToParent();
   }
@@ -391,7 +395,7 @@ public class CaseDetailsPage extends TemplatePage {
   }
   
   public void onClickHistoryIcon() {
-    $("a[id$=':case-histories:add-note-command']").shouldBe(appear, DEFAULT_TIMEOUT).scrollIntoCenter();
+    $("a[id$=':case-histories:add-note-command']").shouldBe(appear, DEFAULT_TIMEOUT).scrollIntoView(new ScrollIntoViewOptions(Behavior.instant, Block.end, Inline.end));
     $("a[id$=':case-histories:add-note-command']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
 
@@ -550,7 +554,7 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public boolean iframeCustomWidgetIsDisplayed() {
-    return findElementByCssSelector("iframe[name='custom-widget-iframe']").isDisplayed();
+    return findElementByCssSelector("iframe[name$='custom-widget-iframe']").isDisplayed();
   }
 
   public void resetToDefault() {
@@ -589,7 +593,7 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public String getProcessLinkInCustomIFrameWidget() {
-    WebElement formInFrame = findElementByCssSelector("form[id='custom-widget-iframe-data']");
+    WebElement formInFrame = findElementByCssSelector("form[id$='custom-widget-iframe-data']");
     return formInFrame.getDomAttribute("action");
   }
 

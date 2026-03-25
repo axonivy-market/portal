@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/13.2.0/process.json",
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/process.json",
   "id" : "15EF0843F1DB39F2",
   "kind" : "CALLABLE_SUB",
   "config" : {
@@ -42,7 +42,16 @@
       "config" : {
         "output" : {
           "code" : [
+            "import java.util.HashMap;",
+            "import java.util.Map;",
+            "import com.axonivy.portal.components.service.IvyAdapterService;",
+            "import com.axonivy.portal.enums.PortalCustomSignature;",
+            "",
             "if (in.isTaskReserve) {",
+            "  Map params = new HashMap();",
+            "  params.put(\"workingTask\", in.task);",
+            "",
+            "  IvyAdapterService.startSubProcessInSecurityContext(PortalCustomSignature.EXTEND_TASK_RESERVE.getSignature(), params);",
             "  ivy.session.parkTask(in.#task != null ? in.task : ivy.task);",
             "}",
             "ivy.session.logoutSessionUser();"

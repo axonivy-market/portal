@@ -1,46 +1,58 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
   "simpleName" : "TaskServiceData",
   "namespace" : "ch.ivyteam.wf.processes",
-  "isBusinessCaseData" : false,
   "fields" : [ {
     "name" : "categoryTree",
-    "type" : "ch.ivyteam.ivy.workflow.category.CategoryTree"
+    "type" : "ch.ivyteam.ivy.workflow.category.CategoryTree",
+    "modifiers" : [ ]
   }, {
     "name" : "count",
-    "type" : "Integer"
+    "type" : "Integer",
+    "modifiers" : [ ]
   }, {
     "name" : "elapsedTimeStatistic",
-    "type" : "ch.ivy.addon.portalkit.bo.ElapsedTimeStatistic"
+    "type" : "ch.ivy.addon.portalkit.bo.ElapsedTimeStatistic",
+    "modifiers" : [ ]
   }, {
     "name" : "expiryStatistic",
-    "type" : "ch.ivy.addon.portalkit.bo.ExpiryStatistic"
+    "type" : "ch.ivy.addon.portalkit.bo.ExpiryStatistic",
+    "modifiers" : [ ]
   }, {
     "name" : "priorityStatistic",
-    "type" : "ch.ivy.addon.portalkit.bo.PriorityStatistic"
+    "type" : "ch.ivy.addon.portalkit.bo.PriorityStatistic",
+    "modifiers" : [ ]
   }, {
     "name" : "startIndex",
-    "type" : "Integer"
+    "type" : "Integer",
+    "modifiers" : [ ]
   }, {
     "name" : "taskCategorySearchCriteria",
-    "type" : "ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskCategorySearchCriteria"
+    "type" : "ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskCategorySearchCriteria",
+    "modifiers" : [ ]
   }, {
     "name" : "tasks",
-    "type" : "java.util.List<ch.ivyteam.ivy.workflow.ITask>"
+    "type" : "java.util.List<ch.ivyteam.ivy.workflow.ITask>",
+    "modifiers" : [ ]
   }, {
     "name" : "taskSearchCriteria",
-    "type" : "ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria"
+    "type" : "ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria",
+    "modifiers" : [ ]
   }, {
     "name" : "totalTasks",
-    "type" : "Long"
+    "type" : "Long",
+    "modifiers" : [ ]
   }, {
     "name" : "taskStateStatistic",
-    "type" : "ch.ivy.addon.portalkit.bo.TaskStateStatistic"
+    "type" : "ch.ivy.addon.portalkit.bo.TaskStateStatistic",
+    "modifiers" : [ ]
   }, {
     "name" : "taskQuery",
-    "type" : "ch.ivyteam.ivy.workflow.query.TaskQuery"
+    "type" : "ch.ivyteam.ivy.workflow.query.TaskQuery",
+    "modifiers" : [ ]
   }, {
     "name" : "taskByCategoryStatistics",
-    "type" : "List<com.axonivy.portal.bo.ItemByCategoryStatistic>"
+    "type" : "List<com.axonivy.portal.bo.ItemByCategoryStatistic>",
+    "modifiers" : [ ]
   } ]
 }

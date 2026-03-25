@@ -5,6 +5,8 @@ const AVERAGE_BUSINESS_RUNTIME = "avg-businessRuntime";
 // Additional configs
 const EMPTY_CHART_MESSAGE =  'emptyChartDataMessage';
 const MANIPULATE_BY = 'manipulateValueBy';
+const TOOLTIP_TOTAL_LABEL = 'tooltipTotalLabel';
+const TOOLTIP_KPI_LABEL = 'tooltipKpiLabel';
 const CHART_TEXT_COLOR = '#808080';
 const CHART_GRID_COLOR = 'rgba(192, 192, 192, 0.5)';
 const MIN_REFRESH_INTERVAL = 60;
@@ -146,6 +148,7 @@ const processYValue = (result, config) => {
         bucket.aggs.forEach((item) => {
           values.push({
             key: bucket.key,
+            displayKey: bucket.displayKey,
             count: convertYValue(item.value, config)
           });
         });
@@ -604,7 +607,7 @@ class ClientCanvasChart extends ClientChart {
     }
 
     // Update client chart config by new data
-    this.clientChartConfig.data.labels = result.map(bucket => this.formatChartLabel(bucket.key));
+    this.clientChartConfig.data.labels = result.map(bucket => this.formatChartLabel(bucket.displayKey));
     if (this.clientChartConfig.data.datasets[0]) {
       this.clientChartConfig.data.datasets[0].data = result.map(bucket => bucket.count)
       this.clientChartConfig.data.datasets[0].label = config.name;
@@ -635,13 +638,14 @@ class ClientPieChart extends ClientCanvasChart {
         type: config.chartType,
         label: config.name,
         data: {
-          labels: result.map(bucket => this.formatChartLabel(bucket.key)),
+          labels: result.map(bucket => this.formatChartLabel(bucket.displayKey)),
           datasets: [{
             label: config.name,
             data: data.map(bucket => bucket.count),
             counting: result.map(bucket => bucket.count),
             chartTarget: config.chartTarget,
             aggregation: config.statisticAggregation,
+            additionalConfigs: config.additionalConfigs,
             backgroundColor: backgroundColors
           }],
           hoverOffset: 4
@@ -713,13 +717,14 @@ class ClientCartesianChart extends ClientCanvasChart {
       this.clientChartConfig = new Chart(canvasObject, {
         type: config.chartType,
         data: {
-          labels: data.map(bucket => this.formatChartLabel(bucket.key)),
+          labels: data.map(bucket => this.formatChartLabel(bucket.displayKey)),
           datasets: [{
             label: config.name,
             data: data.map(bucket => bucket.count),
             counting: result.map(bucket => bucket.count),
             chartTarget: config.chartTarget,
             aggregation: config.statisticAggregation,
+            additionalConfigs: config.additionalConfigs,
             backgroundColor: backgroundColors,
             pointBorderColor: backgroundColors,
             pointRadius: 4,
@@ -820,7 +825,7 @@ class ClientBarChart extends ClientCartesianChart {
         }
       }
       let data = result;
-      this.clientChartConfig.data.labels = result.map(bucket => this.formatChartLabel(bucket.key));
+      this.clientChartConfig.data.labels = result.map(bucket => this.formatChartLabel(bucket.displayKey));
       this.clientChartConfig.data.datasets = [{
         label: config.name,
         data: data.map(bucket => bucket.count),
@@ -874,6 +879,7 @@ class ClientNumberChart extends ClientChart {
       if (!dataResultKeys.includes(item)) {
         result.push({
           key: item,
+          displayKey: item,
           count: 0,
           aggs: []
         })
@@ -890,6 +896,7 @@ class ClientNumberChart extends ClientChart {
       this.items.forEach(item => {
         result.push({
           key: item,
+          displayKey: item,
           count: 0,
           aggs: []
         });
@@ -900,6 +907,7 @@ class ClientNumberChart extends ClientChart {
     // If cannot recognize result, render only 1 result with empty key
     return [{
       key: '',
+      displayKey: '',
       count: 0,
       aggs: []
     }];
@@ -919,7 +927,7 @@ class ClientNumberChart extends ClientChart {
     }
 
     $(this.chart).parents('.statistic-chart-widget__chart').addClass('client-number-chart');
-    let multipleKPI = this.renderMultipleNumberChartInHTML(result, config.numberChartConfig.suffixSymbol, config.chartTarget);
+    let multipleKPI = this.renderMultipleNumberChartInHTML(result, config.numberChartConfig.suffixSymbol);
     $(this.chart).html(multipleKPI);
     
     if (this.canDrillDown()) {
@@ -946,13 +954,14 @@ class ClientNumberChart extends ClientChart {
     }
   }
 
-  renderMultipleNumberChartInHTML(result, suffixSymbold, chartTarget) {
+  renderMultipleNumberChartInHTML(result, suffixSymbold) {
+    const totalLabelTemplate = getAdditionalConfigValue(this.data.chartConfig.additionalConfigs, TOOLTIP_TOTAL_LABEL) || '';
     let multipleNumberChartInHTML = '';
     if (result?.length > 0) {
         result.forEach((item, index) => {
           const yValue = item.aggs.length > 0 ? this.formatNumberValue(item.aggs[0].value) : item.count;
-          const counting = item.aggs.length > 0 ? item.count + " " + chartTarget + (item.count > 1 ? "s" : "") : "";
-          let htmlString = this.generateItemHtml(item.key, yValue, suffixSymbold, index, counting);
+          const counting = item.aggs.length > 0 ? totalLabelTemplate.replace('{0}', item.count) : '';
+          let htmlString = this.generateItemHtml(item.displayKey, yValue, suffixSymbold, index, counting);
           multipleNumberChartInHTML += htmlString;
         })
 
@@ -1046,19 +1055,37 @@ class ClientNumberChart extends ClientChart {
 }
 
 const customFooterChartTooltip = (tooltipItems) => {
-  let total = 0;
   if (tooltipItems.length === 0 || !tooltipItems[0].dataset.aggregation?.kpiField) {
     return;
   }
+
+  const template = getAdditionalConfigValue(tooltipItems[0].dataset.additionalConfigs, TOOLTIP_TOTAL_LABEL);
+  if (!template) {
+    return;
+  }
+
+  let total = 0;
   tooltipItems.forEach((tooltipItem) => total += tooltipItem.dataset.counting[tooltipItem.dataIndex]);
-  return `Total: ${total} ${tooltipItems[0].dataset.chartTarget}${total !== 1 ? "s" : ""}`;
+
+  return template.replace('{0}', total);
 };
 
 const customBeforeBodyChartTooltip = (tooltipItems) => {
   if (tooltipItems.length === 0 || !tooltipItems[0].dataset.aggregation?.kpiField) {
     return;
   }
-  const aggregation = tooltipItems[0].dataset.aggregation;
-  const s = aggregation.aggregationMethod + " of " + aggregation.kpiField;
-  return s.charAt(0).toUpperCase() + s.slice(1);
+
+  return getAdditionalConfigValue(tooltipItems[0].dataset.additionalConfigs, TOOLTIP_KPI_LABEL);
+};
+
+function getAdditionalConfigValue(additionalConfigs, key) {
+  if (!additionalConfigs) return undefined;
+
+  for (const item of additionalConfigs) {
+    if (item && Object.keys(item)[0] === key) {
+      return item[key];
+    }
+  }
+
+  return undefined;
 }

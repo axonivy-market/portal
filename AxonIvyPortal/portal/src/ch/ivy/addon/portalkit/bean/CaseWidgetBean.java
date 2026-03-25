@@ -19,7 +19,6 @@ import ch.ivy.addon.portalkit.datamodel.CaseLazyDataModel;
 import ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel;
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivy.addon.portalkit.enums.CaseSortField;
-import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.enums.TaskSortField;
 import ch.ivy.addon.portalkit.exporter.Exporter;
@@ -27,7 +26,6 @@ import ch.ivy.addon.portalkit.ivydata.service.impl.CaseService;
 import ch.ivy.addon.portalkit.support.HtmlParser;
 import ch.ivy.addon.portalkit.util.CaseUtils;
 import ch.ivy.addon.portalkit.util.NumberUtils;
-import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.ICase;
 
@@ -38,14 +36,10 @@ public class CaseWidgetBean implements Serializable {
   private static final long serialVersionUID = 1L;
 
   private ICase selectedCase;
-  private boolean isShowAllTasksOfCase;
-  private boolean isShowFullCaseList;
   private boolean isAdminCaseStateIncluded;
   private CaseLazyDataModel dataModel;
 
   public CaseWidgetBean() {
-    isShowAllTasksOfCase = PermissionUtils.hasPortalPermission(PortalPermission.SHOW_ALL_TASKS_OF_CASE);
-    isShowFullCaseList = PermissionUtils.checkAccessFullCaseListPermission();
   }
 
   public ICase getSelectedCase() {
@@ -86,22 +80,6 @@ public class CaseWidgetBean implements Serializable {
 
   public String formatCaseDescription(String text) {
     return HtmlParser.extractTextFromHtml(text);
-  }
-
-  public boolean isShowAllTasksOfCase() {
-    return isShowAllTasksOfCase;
-  }
-
-  public void setShowAllTasksOfCase(boolean isShowAllTasksOfCase) {
-    this.isShowAllTasksOfCase = isShowAllTasksOfCase;
-  }
-
-  public boolean isShowFullCaseList() {
-    return isShowFullCaseList;
-  }
-
-  public void setShowFullCaseList(boolean isShowFullCaseList) {
-    this.isShowFullCaseList = isShowFullCaseList;
   }
   
   public <T> List<T> getFirst20Items(List<T> items) {

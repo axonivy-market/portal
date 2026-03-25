@@ -62,7 +62,7 @@ public class DashboardConfigurationScreenshotTest extends ScreenshotBaseTest {
     ScreenshotUtils.captureElementWithMarginOptionScreenshot(dashboardConfigurationPage.getDashboardConfigurationPage(),
         ScreenshotUtils.DASHBOARD_CONFIGURATION_FOLDER + "reorder-public-dashboards", new ScreenshotMargin(10));
     dashboardConfigurationPage.openCreatePublicDashboardMenu();
-    ScreenshotUtils.resizeBrowser(new Dimension(1920, 1080));
+    ScreenshotUtils.resizeBrowser(new Dimension(1920, 1300));
     ScreenshotUtils.captureElementScreenshot(dashboardConfigurationPage.getDashboardTemplates(),
         ScreenshotUtils.DASHBOARD_CONFIGURATION_FOLDER + "dashboard-templates");
     // screenshot highlight for accessibility template

@@ -6,11 +6,14 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.Collection;
+import java.util.LinkedHashSet;
+import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import javax.faces.bean.ManagedBean;
@@ -20,6 +23,7 @@ import javax.ws.rs.core.MediaType;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.util.Strings;
+import org.primefaces.PrimeFaces;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
 import org.primefaces.model.DefaultStreamedContent;
@@ -63,6 +67,8 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
 
   protected boolean isPublicDashboard;
   protected List<String> selectedDashboardPermissions;
+  private Dashboard dashboardToExport;
+  private List<String> referencedDashboardTitles = new ArrayList<>();
 
   public void initConfigration(boolean isPublicDashboard) {
     this.isPublicDashboard = isPublicDashboard;
@@ -75,7 +81,6 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
     String dashboardInUserProperty = readDashboardBySessionUser();
     if (isPublicDashboard) {
       this.dashboards = DashboardUtils.getPublicDashboards();
-      DashboardUtils.addDefaultTaskCaseListDashboardsIfMissing(this.dashboards);
     } else if (StringUtils.isNoneEmpty(dashboardInUserProperty)) {
       List<Dashboard> myDashboards = DashboardUtils.getPrivateDashboards();
       this.dashboards.addAll(myDashboards);
@@ -193,7 +198,7 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
     }
   }
 
-  private void saveDashboards(List<Dashboard> dashboards) {
+  protected void saveDashboards(List<Dashboard> dashboards) {
     String dashboardJson = BusinessEntityConverter.entityToJsonValue(dashboards);
     if (isPublicDashboard) {
       Ivy.var().set(PortalVariable.DASHBOARD.key, dashboardJson);
@@ -258,7 +263,7 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
   public void updateDashboardTitleByLocale() {
     String currentTitle = this.selectedDashboard.getTitle();
     initMultipleLanguagesForDashboardName(currentTitle);
-    String currentLanguage = UserUtils.getUserLanguage();
+    String currentLanguage = Locale.forLanguageTag(UserUtils.getUserLanguage()).getLanguage();
     Optional<DisplayName> optional = this.selectedDashboard.getTitles().stream()
         .filter(lang -> currentLanguage.equals(lang.getLocale().getLanguage())).findFirst();
     if (optional.isPresent()) {
@@ -268,7 +273,7 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
 
   public void updateCurrentLanguage() {
     List<DisplayName> languages = this.selectedDashboard.getTitles();
-    String currentLanguage = UserUtils.getUserLanguage();
+    String currentLanguage = Locale.forLanguageTag(UserUtils.getUserLanguage()).getLanguage();
     Optional<DisplayName> optional = languages.stream()
         .filter(lang -> currentLanguage.equals(lang.getLocale().getLanguage()))
         .findFirst();
@@ -290,19 +295,30 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
         this.selectedDashboard.getTitles().add(displayName);
       }
     }
+    deduplicateTitles();
     return this.selectedDashboard.getTitles();
+  }
+
+  private void deduplicateTitles() {
+    List<DisplayName> titles = this.selectedDashboard.getTitles();
+    Set<String> seen = new LinkedHashSet<>();
+    titles.removeIf(title -> title.getLocale() == null || !seen.add(title.getLocale().getLanguage()));
   }
 
   private Map<String, DisplayName> getMapLanguages() {
     List<DisplayName> languages = this.selectedDashboard.getTitles();
-    return languages.stream().collect(Collectors.toMap(o -> o.getLocale().toLanguageTag(), o -> o));
+    return languages.stream()
+        .filter(o -> o.getLocale() != null)
+        .collect(Collectors.toMap(o -> o.getLocale().getLanguage(), o -> o, (existing, replacement) -> existing));
   }
 
   private void initMultipleLanguagesForDashboardName(String currentTitle) {
+    deduplicateTitles();
     Map<String, DisplayName> mapLanguage = getMapLanguages();
     List<String> supportedLanguages = getSupportedLanguages();
     for (String language : supportedLanguages) {
-      DisplayName localeLanguage = mapLanguage.get(language);
+      String langCode = Locale.forLanguageTag(language).getLanguage();
+      DisplayName localeLanguage = mapLanguage.get(langCode);
       if (localeLanguage == null) {
         DisplayName displayName = new DisplayName();
         displayName.setLocale(Locale.forLanguageTag(language));
@@ -346,36 +362,29 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
         PermissionUtils.hasDashboardImportPublicPermission() : PermissionUtils.hasDashboardImportOwnPermission();
   }
 
+  public void prepareExportInfo(Dashboard dashboard) {
+    this.dashboardToExport = dashboard;
+    Map<String, Dashboard> dashboardById = collectAllAvailableDashboardsById();
+    this.referencedDashboardTitles = Optional.ofNullable(dashboard.getWidgets())
+        .orElse(Collections.emptyList()).stream()
+        .filter(w -> w instanceof NavigationDashboardWidget)
+        .map(w -> ((NavigationDashboardWidget) w).getTargetDashboardId())
+        .filter(StringUtils::isNotBlank)
+        .distinct()
+        .map(dashboardById::get)
+        .filter(Objects::nonNull)
+        .map(Dashboard::getTitle)
+        .collect(Collectors.toList());
+    PrimeFaces.current().ajax().addCallbackParam("hasReferencedDashboards", !referencedDashboardTitles.isEmpty());
+  }
+
+  public StreamedContent exportStoredDashboard() {
+    return exportToJsonFile(this.dashboardToExport);
+  }
+
   public StreamedContent exportToJsonFile(Dashboard dashboard) {
-    dashboard.setVersion(DashboardJsonVersion.LATEST_VERSION.getValue());
-
-    // For private dashboard, we don't need to export permission
-    if (!dashboard.getIsPublic()) {
-      dashboard.setPermissions(null);
-    }
-
-    Optional.ofNullable(dashboard).map(Dashboard::getWidgets).orElse(new ArrayList<>()).stream().forEach(widget -> {
-      if (widget instanceof WelcomeDashboardWidget) {
-        WelcomeDashboardWidget welcomeWidget = (WelcomeDashboardWidget) widget;
-        welcomeWidget.setImageType(WelcomeWidgetUtils.getFileTypeOfImage(welcomeWidget.getImageType()));
-        welcomeWidget.setImageContent(encodeWelcomeWidgetImage(welcomeWidget.getImageLocation(), welcomeWidget.getImageType()));
-        
-        welcomeWidget.setImageTypeDarkMode(WelcomeWidgetUtils.getFileTypeOfImage(welcomeWidget.getImageTypeDarkMode()));
-        welcomeWidget.setImageContentDarkMode(encodeWelcomeWidgetImage(welcomeWidget.getImageLocationDarkMode(), welcomeWidget.getImageTypeDarkMode()));
-      } else if (widget instanceof NavigationDashboardWidget) {
-        NavigationDashboardWidget navWid = (NavigationDashboardWidget) widget;
-        navWid.setImageContent(ImageUploadUtils.imageToBase64(navWid.getImageLocation(), 
-            navWid.getImageType(), ImageUploadUtils.NAVIGATION_WIDGET_IMAGE_DIRECTORY));
-        navWid.setImageContentDarkMode(ImageUploadUtils.imageToBase64(navWid.getImageLocationDarkMode(), 
-            navWid.getImageTypeDarkMode(), ImageUploadUtils.NAVIGATION_WIDGET_IMAGE_DIRECTORY));
-      }
-    });
-
     List<Dashboard> dashboardList = new ArrayList<>();
-
-    for (var widget : dashboard.getWidgets()) {
-      DashboardWidgetUtils.simplifyWidgetColumnData(widget);
-    }
+    prepareDashboardForExport(dashboard);
     dashboardList.add(dashboard);
 
     return DefaultStreamedContent
@@ -385,6 +394,40 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
         .contentType(MediaType.APPLICATION_JSON)
         .name(getFileName(dashboard.getTitle()))
         .build();
+  }
+
+  private Map<String, Dashboard> collectAllAvailableDashboardsById() {
+    List<Dashboard> all = new ArrayList<>();
+    all.addAll(DashboardUtils.getPublicDashboards());
+    all.addAll(DashboardUtils.getPrivateDashboards());
+    return all.stream().filter(d -> d.getId() != null)
+        .collect(Collectors.toMap(Dashboard::getId, d -> d, (a, b) -> a));
+  }
+
+  private void prepareDashboardForExport(Dashboard dashboard) {
+    dashboard.setOldId(null);
+    dashboard.setVersion(DashboardJsonVersion.LATEST_VERSION.getValue());
+    if (!dashboard.getIsPublic()) {
+      dashboard.setPermissions(null);
+    }
+    Optional.ofNullable(dashboard.getWidgets()).orElse(Collections.emptyList()).forEach(widget -> {
+      if (widget instanceof WelcomeDashboardWidget) {
+        WelcomeDashboardWidget welcomeWidget = (WelcomeDashboardWidget) widget;
+        welcomeWidget.setImageType(WelcomeWidgetUtils.getFileTypeOfImage(welcomeWidget.getImageType()));
+        welcomeWidget
+            .setImageContent(encodeWelcomeWidgetImage(welcomeWidget.getImageLocation(), welcomeWidget.getImageType()));
+        welcomeWidget.setImageTypeDarkMode(WelcomeWidgetUtils.getFileTypeOfImage(welcomeWidget.getImageTypeDarkMode()));
+        welcomeWidget.setImageContentDarkMode(encodeWelcomeWidgetImage(welcomeWidget.getImageLocationDarkMode(), welcomeWidget.getImageTypeDarkMode()));
+      } else if (widget instanceof NavigationDashboardWidget) {
+        NavigationDashboardWidget navWid = (NavigationDashboardWidget) widget;
+        navWid.setImageContent(ImageUploadUtils.imageToBase64(navWid.getImageLocation(),
+            navWid.getImageType(), ImageUploadUtils.NAVIGATION_WIDGET_IMAGE_DIRECTORY));
+        navWid.setImageContentDarkMode(ImageUploadUtils.imageToBase64(navWid.getImageLocationDarkMode(),
+            navWid.getImageTypeDarkMode(), ImageUploadUtils.NAVIGATION_WIDGET_IMAGE_DIRECTORY));
+      }
+    });
+    Optional.ofNullable(dashboard.getWidgets()).orElse(Collections.emptyList())
+        .forEach(DashboardWidgetUtils::simplifyWidgetColumnData);
   }
 
   private String encodeWelcomeWidgetImage(String imageLocation, String imageType) {
@@ -401,6 +444,10 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
 
   private String getFileName(String dashboardName) {
     return dashboardName + JSON_FILE_SUFFIX;
+  }
+
+  public List<String> getReferencedDashboardTitles() {
+    return referencedDashboardTitles;
   }
 
   public boolean isShowShareButtonOnConfig(boolean isPublicDashboard) {
