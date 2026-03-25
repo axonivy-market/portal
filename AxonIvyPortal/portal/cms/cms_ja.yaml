@@ -787,6 +787,11 @@ ch.ivy.addon.portalkit.ui.jsf:
     SearchForFilter: フィルターを検索
     ShareThisDashboard: このダッシュボードを共有
     ShowPinnedToggle: 'TODO: Show ''Pinned Tasks'' Toggle'
+    CaseQueryType:
+      info: ケースウィジェットに表示するケースタイプを設定します。デフォルトはビジネスケースのみ、技術サブケースは技術サブケースのみ、すべてはビジネスケースと技術サブケースの両方を表示します。
+      label: ケースタイプ
+    dataSettings: データ設定
+    displaySettings: 表示設定
     StandardWidgets: 標準ウィジェット
     StatisticWidget:
       EmptyChartDataMessage: 適切なチャートを作成するにはデータが足りません！
@@ -1626,6 +1631,10 @@ Labels:
       TUTORIAL:
         header: チュートリアル
         question: Axon Ivy ポータルのドキュメントやチュートリアルはどこにありますか？
+    CaseQueryType:
+      ALL: ビジネスケース + サブケース
+      BUSINESS_CASE: ビジネスケース（デフォルト）
+      SUB_CASE: 技術サブケース
     DashboardStandardCaseColumn:
       ACTIONS: アクション
       APPLICATION: アプリケーション
