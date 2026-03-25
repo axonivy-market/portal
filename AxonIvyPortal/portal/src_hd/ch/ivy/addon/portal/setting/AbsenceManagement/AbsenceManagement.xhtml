@@ -50,8 +50,8 @@
                         </f:facet>
                       </ic:com.axonivy.portal.components.UserSelection>
                     </div>
-                    <h:panelGroup layout="block" styleClass="#{data.isSupervisor ? ' ui-sm-12 ui-g-6' : 'ui-g-6'} add-absence-panel pl-0">
-                      <h:panelGroup layout="block" styleClass="ui-fluid flex justify-content-start gap-3 align-items-center h-full">
+                    <div class="#{data.isSupervisor ? ' ui-sm-12 ui-g-6' : 'ui-g-6'} add-absence-panel pl-0">
+                      <div class="ui-fluid flex justify-content-start gap-3 align-items-center h-full">
                         <h:panelGroup layout="block">
                           <p:outputLabel id="show-absence-in-the-past-label"
                             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/showAbsencesInThePast')}"
@@ -62,8 +62,8 @@
                           <p:ajax event="change" listener="#{logic.findAbsencesAndSubstitutes}" global="false"
                             update="@(.absence-table)" partialSubmit="true" />
                         </p:toggleSwitch>
-                      </h:panelGroup>
-                    </h:panelGroup>
+                      </div>
+                    </div>
                   </div>
 
                   <div class="ui-g-12 u-no-padding-top mb-2 pl-0">
@@ -83,7 +83,7 @@
                           value="#{securityMemberDisplayNameFormatBean.joinSecurityMemberNames(absenceManagementBean.getPersonalTaskDeputies(data.deputyRoles))}"
                           styleClass="absence-column-value" />
                       </p:column>
-                      <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/comment')}"
+                      <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/comment')}" 
                         sortBy="#{absence.comment}" styleClass="u-truncate-text">
                         <h:outputText value="#{absence.comment}" title="#{absence.comment}"
                           styleClass="absence-column-value" />

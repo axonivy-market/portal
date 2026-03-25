@@ -47,10 +47,10 @@ public class AbsencePage extends TemplatePage {
   }
 
   public void showAbsencesInThePast(boolean shown) {
-    SelenideElement checkBox = $(".show-absence-in-the-past-panel");
-    boolean checkBoxSelected = checkBox.isSelected();
-    if (checkBoxSelected != shown) {
-      waitForElementClickableThenClick(checkBox);
+    SelenideElement toggleSwitch = $(".show-absence-in-the-past-panel");
+    boolean isChecked = toggleSwitch.getDomAttribute("class").contains("ui-toggleswitch-checked");
+    if (isChecked != shown) {
+      toggleSwitch.$(".ui-toggleswitch-slider").shouldBe(appear, DEFAULT_TIMEOUT).click();
     }
   }
 
@@ -155,6 +155,11 @@ public class AbsencePage extends TemplatePage {
     return deputyFor.getText();
   }
 
+  public void saveSubstitute() {
+    waitForElementClickableThenClick("button[id$='absences-management-form:save-substitute']");
+    waitForAbsencesGrowlMessageDisplay();
+  }
+
   public void setDuringAbsenceDeputyInAbsenceDialog(List<String> fullNames) {
     for (String fullName : fullNames) {
       SelenideElement input = $(By.id("absence-form:user-selection-component:user-selection_input"));
@@ -168,7 +173,8 @@ public class AbsencePage extends TemplatePage {
   }
 
   public String getDuringAbsenceDeputiesFromAbsenceTable() {
-    return $("div[id*='absence-table'] td:nth-child(2) .absence-column-value")
+    $("div[id*='absence-table']").shouldBe(appear, DEFAULT_TIMEOUT);
+    return $("tbody[id$='absence-table_data'] tr td:nth-child(2) .absence-column-value")
         .shouldBe(appear, DEFAULT_TIMEOUT).getText();
   }
 
