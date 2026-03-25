@@ -1164,17 +1164,7 @@
           "params" : [
             { "name" : "deputyRoleType", "type" : "ch.ivy.addon.portalkit.enums.DeputyRoleType", "desc" : "" }
           ],
-          "map" : { },
-          "code" : [
-            "import ch.ivyteam.ivy.security.ISecurityMember;",
-            "import java.util.ArrayList;",
-            "import ch.ivy.addon.portalkit.enums.DeputyRoleType;",
-            "import ch.ivy.addon.portalkit.util.DeputyRoleUtils;",
-            "out.selectedDeputyRole = DeputyRoleUtils.findDeputyRoleByType(out.deputyRoles, param.deputyRoleType);",
-            "if (out.selectedDeputyRole != null) {",
-            "  out.selectedDeputies = DeputyRoleUtils.cloneDeputyList(out.selectedDeputyRole.getDeputies());",
-            "}"
-          ]
+          "map" : { }
         },
         "guid" : "178C51E41C8D1372"
       },
@@ -1294,7 +1284,7 @@
           "code" : [
             "import ch.ivy.addon.portalkit.util.DeputyRoleUtils;",
             "",
-            "in.selectedDeputies = in.selectedDeputyRole.getDeputies();",
+            "in.selectedDeputies = DeputyRoleUtils.cloneDeputyList(in.selectedDeputyRole.getDeputies());",
             "in.selectedDeputy = null;"
           ]
         }
@@ -1362,10 +1352,11 @@
       "config" : {
         "output" : {
           "code" : [
+            "import ch.ivy.addon.portalkit.util.DeputyRoleUtils;",
             "import java.util.ArrayList;",
             "",
-            "out.selectedDeputies = out.backupDeputies;",
-            "out.selectedDeputy = null;"
+            "out.selectedDeputy = null;",
+            "out.selectedDeputies = DeputyRoleUtils.cloneDeputyList(out.selectedDeputyRole.getDeputies());"
           ]
         }
       },

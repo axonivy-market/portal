@@ -34,7 +34,6 @@ public class DisabledUserTest extends BaseTest {
     AbsencePage absencePage = new NewDashboardPage().openAbsencePage();
     absencePage.setSubstitutedByAdmin(VISIBILITY_USER_FULL_NAME);
     absencePage.setDeputy(Arrays.asList(TestAccount.DEMO_USER.getFullName()), 0);
-    absencePage.saveSubstitute();
     redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
     absencePage = new NewDashboardPage().openAbsencePage();
     absencePage.setSubstitutedByAdmin(TestAccount.DEMO_USER.getFullName());

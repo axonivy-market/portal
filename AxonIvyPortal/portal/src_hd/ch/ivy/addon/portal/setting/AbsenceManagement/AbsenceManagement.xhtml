@@ -59,7 +59,7 @@
                         </h:panelGroup>
                         <p:toggleSwitch id="show-absence-in-the-past" value="#{data.absenceInThePastShown}"
                           styleClass="show-absence-in-the-past-panel">
-                          <p:ajax event="change" listener="#{logic.findAbsencesAndSubstitutes()}" global="false"
+                          <p:ajax event="change" listener="#{logic.findAbsencesAndSubstitutes}" global="false"
                             update="@(.absence-table)" partialSubmit="true" />
                         </p:toggleSwitch>
                       </h:panelGroup>

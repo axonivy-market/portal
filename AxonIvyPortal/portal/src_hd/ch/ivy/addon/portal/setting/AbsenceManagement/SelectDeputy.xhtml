@@ -49,13 +49,13 @@
       </p:fieldset>
 
       <p:outputPanel styleClass="text-right">
-        <p:commandButton id="save-deputy-button" styleClass="save-deputy-button w-full" partialSubmit="true" disabled="#{data.selectedDeputy == null}"
+        <p:commandButton id="save-deputy-button" styleClass="save-deputy-button w-full" partialSubmit="true"
           ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}" update=":absences-management-form"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}" actionListener="#{logic.saveSubstitutes}"
           oncomplete="PF('choose-deputy-dialog').hide();" >
           <p:resetInput target="choose-deputy-dialog" />
         </p:commandButton>
-        <p:commandLink id="close-edit-absence-dialog" actionListener="#{logic.closeDialog}" rendered="#{!data.isCreateMode}"
+        <p:commandLink id="close-edit-absence-dialog" actionListener="#{logic.closeDialog}"
                               ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
                               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
                               oncomplete="PF('choose-deputy-dialog').hide();" styleClass="mt-3 flex flex-direction-column justify-content-center" />

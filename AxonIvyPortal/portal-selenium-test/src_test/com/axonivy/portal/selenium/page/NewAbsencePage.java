@@ -66,6 +66,11 @@ public class NewAbsencePage extends TemplatePage {
     return errorMessage.getText();
   }
 
+  public String getAbsenceDialogErrorMessage() {
+    String selector = "[id*='absence-messages'] span.ui-messages-error-detail";
+    return $(selector).shouldBe(appear, DEFAULT_TIMEOUT).getText();
+  }
+
   public void proceed() {
     $(By.id("absence-dialog_title")).click();
     $("button[id*='save-absence']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT)

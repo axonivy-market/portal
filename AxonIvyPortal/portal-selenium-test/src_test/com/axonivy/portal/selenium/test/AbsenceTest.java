@@ -22,7 +22,7 @@ import com.codeborne.selenide.Condition;
 import ch.ivy.addon.portalkit.enums.DeputyRoleType;
 
 
-@IvyWebTest
+@IvyWebTest(headless = false)
 public class AbsenceTest extends BaseTest {
   private static final LocalDate TODAY = LocalDate.now();
   private static final LocalDate YESTERDAY = TODAY.minusDays(1);
@@ -82,17 +82,23 @@ public class AbsenceTest extends BaseTest {
   @Test
   public void testDeputyAsNormalUser() {
     AbsencePage absencePage = openAbsencePage();
+    // Set DURING_ABSENCE deputies via absence dialog
     List<String> personalTaskDuringAbsenceDeputyNames =
         Arrays.asList(TestAccount.CASE_OWNER_USER.getFullName(), TestAccount.GUEST_USER.getFullName());
-    absencePage.setDeputy(personalTaskDuringAbsenceDeputyNames, DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE);
+    NewAbsencePage newAbsencePage = absencePage.openNewAbsenceDialog();
+    newAbsencePage.input(TODAY, TODAY, "Test absence");
+    absencePage.setDuringAbsenceDeputyInAbsenceDialog(personalTaskDuringAbsenceDeputyNames);
+    newAbsencePage.proceed();
+    // Set PERMANENT deputies via substitute table (auto-saves in dialog)
     List<String> personalTaskPermanentDeputyNames =
         Arrays.asList(TestAccount.ADMIN_USER.getFullName(), TestAccount.HR_ROLE_USER.getFullName());
     absencePage.setDeputy(personalTaskPermanentDeputyNames, DeputyRoleType.PERSONAL_TASK_PERMANENT);
-    absencePage.saveSubstitute();
-    absencePage.getMyDeputy(absencePage.indexOfDeputyRole(DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE))
-        .shouldBe(Condition.text(joinDeputyNames(personalTaskDuringAbsenceDeputyNames)));
+    // Verify PERMANENT deputies in substitute table
     absencePage.getMyDeputy(absencePage.indexOfDeputyRole(DeputyRoleType.PERSONAL_TASK_PERMANENT))
         .shouldBe(Condition.text(joinDeputyNames(personalTaskPermanentDeputyNames)));
+    // Verify DURING_ABSENCE deputies in absence table column
+    absencePage.getDuringAbsenceDeputiesFromAbsenceTable()
+        .contains(joinDeputyNames(personalTaskDuringAbsenceDeputyNames));
   }
 
   @Test
@@ -104,18 +110,28 @@ public class AbsenceTest extends BaseTest {
     AbsencePage absencePage = openAbsencePage();
     absencePage.setSubstitutedByAdmin(TestAccount.DEMO_USER.getFullName());
     List<String> deputyNames = Arrays.asList(TestAccount.CASE_OWNER_USER.getFullName());
+    // Set as permanent deputy first (auto-saves in dialog)
     absencePage.setDeputy(deputyNames, DeputyRoleType.PERSONAL_TASK_PERMANENT);
-    absencePage.setDeputy(deputyNames, DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE, false);
-    assertEquals(absencePage.getChooseDeputyDialogError().startsWith("Substitute is already selected in"), true);
+    // Open absence dialog and try to add same user as DURING_ABSENCE deputy
+    NewAbsencePage newAbsencePage = absencePage.openNewAbsenceDialog();
+    newAbsencePage.input(TestAccount.DEMO_USER.getFullName(), TODAY, TODAY, "Test");
+    absencePage.setDuringAbsenceDeputyInAbsenceDialog(deputyNames);
+    assertEquals(newAbsencePage.getAbsenceDialogErrorMessage().startsWith("Substitute is already selected in"), true);
   }
 
   @Test
   public void testAddDeputyInDuringAbsenceToPermanent() {
     login(TestAccount.ADMIN_USER);
+    redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/grantCreateAbsencePermission.ivp");
     AbsencePage absencePage = openAbsencePage();
     absencePage.setSubstitutedByAdmin(TestAccount.DEMO_USER.getFullName());
     List<String> deputyNames = Arrays.asList(TestAccount.CASE_OWNER_USER.getFullName());
-    absencePage.setDeputy(deputyNames, DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE);
+    // Set DURING_ABSENCE deputy via absence dialog
+    NewAbsencePage newAbsencePage = absencePage.openNewAbsenceDialog();
+    newAbsencePage.input(TestAccount.DEMO_USER.getFullName(), TODAY, TODAY, "Test");
+    absencePage.setDuringAbsenceDeputyInAbsenceDialog(deputyNames);
+    newAbsencePage.proceed();
+    // Try to add same user as PERMANENT deputy
     absencePage.setDeputy(deputyNames, DeputyRoleType.PERSONAL_TASK_PERMANENT, false);
     assertEquals(absencePage.getChooseDeputyDialogError().startsWith("Substitute is already selected in"), true);
   }
@@ -128,7 +144,6 @@ public class AbsenceTest extends BaseTest {
     createAbsenceForCurrentUser(TOMORROW, TOMORROW, "For Family", absencePage);
 
     absencePage.setDeputy(Arrays.asList(TestAccount.DEMO_USER.getFullName()), 0);
-    absencePage.saveSubstitute();
     login(TestAccount.DEMO_USER);
     absencePage = openAbsencePage(new NewDashboardPage());
     assertEquals(absencePage.getIAMDeputyFor().contains(TestAccount.ADMIN_USER.getFullName()), true);
@@ -201,30 +216,40 @@ public class AbsenceTest extends BaseTest {
   public void testReadOnlyDeputyOfOtherUser() {
     login(TestAccount.DEMO_USER);
     redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/grantCreateOwnSubstitutePermission.ivp");
+    redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/grantCreateAbsencePermission.ivp");
     AbsencePage absencePage = openAbsencePage();
     List<String> deputyNames = Arrays.asList(TestAccount.GUEST_USER.getFullName());
-    absencePage.setDeputy(deputyNames, DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE);
-    absencePage.saveSubstitute();
+    // Set DURING_ABSENCE deputy via absence dialog
+    NewAbsencePage newAbsencePage = absencePage.openNewAbsenceDialog();
+    newAbsencePage.input(TODAY, TODAY, "Test absence");
+    absencePage.setDuringAbsenceDeputyInAbsenceDialog(deputyNames);
+    newAbsencePage.proceed();
 
     login(TestAccount.GUEST_USER);
     redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/grantCreateOwnSubstitutePermission.ivp");
     absencePage = openAbsencePage();
     absencePage.setSubstitutedByAdmin(TestAccount.DEMO_USER.getFullName());
-    assertEquals(TestAccount.GUEST_USER.getFullName(),
-        absencePage.getMyDisabledDeputy(absencePage.indexOfDeputyRole(DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE)));
+    // Verify DURING_ABSENCE deputy is visible in absence table column
+    assertEquals(true,
+        absencePage.getDuringAbsenceDeputiesFromAbsenceTable().contains(TestAccount.GUEST_USER.getFullName()));
   }
 
   @Test
   public void testSelectDeputyOfOtherUser() {
     login(TestAccount.GUEST_USER);
     redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/grantCreateSubstitutePermission.ivp");
+    redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/grantCreateAbsencePermission.ivp");
     AbsencePage absencePage = openAbsencePage();
     absencePage.setSubstitutedByAdmin(TestAccount.DEMO_USER.getFullName());
     List<String> deputyNames = Arrays.asList(TestAccount.GUEST_USER.getFullName());
-    absencePage.setDeputy(deputyNames, DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE);
-    absencePage.saveSubstitute();
-    absencePage.getMyDeputy(absencePage.indexOfDeputyRole(DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE))
-        .shouldBe(Condition.text(TestAccount.GUEST_USER.getFullName()));
+    // Set DURING_ABSENCE deputy via absence dialog
+    NewAbsencePage newAbsencePage = absencePage.openNewAbsenceDialog();
+    newAbsencePage.input(TestAccount.DEMO_USER.getFullName(), TODAY, TODAY, "Test");
+    absencePage.setDuringAbsenceDeputyInAbsenceDialog(deputyNames);
+    newAbsencePage.proceed();
+    // Verify deputy in absence table column
+    assertEquals(true,
+        absencePage.getDuringAbsenceDeputiesFromAbsenceTable().contains(TestAccount.GUEST_USER.getFullName()));
   }
 
   @Test

@@ -155,9 +155,21 @@ public class AbsencePage extends TemplatePage {
     return deputyFor.getText();
   }
 
-  public void saveSubstitute() {
-    waitForElementClickableThenClick("button[id$='absences-management-form:save-substitute']");
-    waitForAbsencesGrowlMessageDisplay();
+  public void setDuringAbsenceDeputyInAbsenceDialog(List<String> fullNames) {
+    for (String fullName : fullNames) {
+      SelenideElement input = $(By.id("absence-form:user-selection-component:user-selection_input"));
+      input.clear();
+      input.sendKeys(fullName);
+      SelenideElement panel = $(By.id("absence-form:user-selection-component:user-selection_panel"));
+      panel.shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+      panel.shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
+      waitForElementClickableThenClick("[id$='absence-form:add-deputy-button']");
+    }
+  }
+
+  public String getDuringAbsenceDeputiesFromAbsenceTable() {
+    return $("div[id*='absence-table'] td:nth-child(2) .absence-column-value")
+        .shouldBe(appear, DEFAULT_TIMEOUT).getText();
   }
 
   public WebElement getAbsenceForm() {
