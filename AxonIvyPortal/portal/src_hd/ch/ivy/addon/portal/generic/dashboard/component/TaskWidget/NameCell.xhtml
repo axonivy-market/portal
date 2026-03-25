@@ -19,7 +19,7 @@
     <p:tooltip id="task-name-tooltip-sm" for="task-name-sm" styleClass="#{cc.attrs.stateTooltipStyleClass}" trackMouse="true" hideEvent="mouseleave click" 
       value="#{taskName}" />
 
-    <h:outputText id="task-description" styleClass="dashboard-tasks__column-small-screen-description" value="taskDescription" />
+    <h:outputText id="task-description" styleClass="dashboard-tasks__column-small-screen-description" value="#{taskDescription}" />
     <p:tooltip for="task-description" value="#{taskDescription}" trackMouse="true" hideEvent="mouseleave click" />
   </h:panelGroup>
 

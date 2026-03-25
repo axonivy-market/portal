@@ -167,7 +167,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     notificationChannelsReset: Benachrichtigungskanäle zurücksetzen
     subscribed: abonniert
     unpinAllPinnedCases: Alle angehefteten Fälle wurden für den Benutzer {0} entfernt.
-    unpinAllPinnedTasks: Alle angehängten Aufgaben wurden für den Benutzer {0} entfernt.
+    unpinAllPinnedTasks: Alle angehefteten Aufgaben wurden für den Benutzer {0} entfernt.
   PortalManagement:
     AdminSetting: Administration
   ProcessViewer:
@@ -757,6 +757,9 @@ ch.ivy.addon.portalkit.ui.jsf:
       DoNotSupportMobile: Die Dashboard-Konfiguration wird für mobile Geräte nicht unterstützt.
       EditPrivateDashboards: Private Dashboards bearbeiten
       EditPublicDashboards: Öffentliche Dashboards bearbeiten
+      ExportReferencedDialogHeader: Dashboard referenziert andere Dashboards
+      ExportReferencedDialogMessage: 'Die folgenden Dashboards werden von Navigations-Widgets referenziert. Exportieren und importieren Sie sie ebenfalls, damit die Widgets korrekt funktionieren:'
+      ExportReferencedDialogProceed: Trotzdem exportieren
       ExportDashboard: Dashboard exportieren
       PrivateDashboard: Private Dashboards
       PrivateDashboardConfiguration: Private Dashboard-Konfiguration
@@ -883,7 +886,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       dashboardIcon: Dashboard-Symbol
       dashboardPermission: Dashboard Berechtigung
       dashboardTitle: Dashboard Titel
-      deleteDashboardMessage: Sind Sie sicher, dass Sie die "{0}" dashboard?
+      deleteDashboardMessage: Sind Sie sicher, dass Sie das Dashboard "{0}" löschen wollen?
       editDashboard: Dashboard editieren
       manageDashboard: Dashboard verwalten
       removeDashboardHeader: Dashboard "{0}" entfernen
@@ -1550,6 +1553,7 @@ Dialogs:
               FileInfomation: Dateiinformationen
               ImportPrivate: Privates Dashboard importieren
               ImportPublic: Öffentliches Dashboard importieren
+              NavigationWidgetMissingTarget: 'Navigations-Widget "{0}" verweist auf ein Dashboard, das nicht importiert wurde und in diesem Portal nicht vorhanden ist. Das Widget funktioniert möglicherweise nicht korrekt.'
               chooseAJsonFile: Wählen Sie eine JSON-Datei
             DashboardSharing:
               ShareDashboard: Dashboard teilen
@@ -1749,7 +1753,7 @@ Enums:
                   Kleiner als
 
               LESSOREQUAL:
-                name: |+
+                name: |
                   Kleiner oder gleich
           CaseQueryType:
             ALL:
@@ -1915,7 +1919,7 @@ Labels:
   Name: Titel
   Permissions: Berechtigungen
   PinnedCases: Angeheftete Fälle
-  PinnedTasks: Angehängte Aufgaben
+  PinnedTasks: Angehefteten Aufgaben
   Preview: Vorschau
   RequiredFieldMessage: '{0}: Wert ist erforderlich'
   Save: Speichern
