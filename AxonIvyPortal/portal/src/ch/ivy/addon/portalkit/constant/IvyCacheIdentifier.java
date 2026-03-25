@@ -18,6 +18,8 @@ public final class IvyCacheIdentifier {
   public static final String PORTAL_PUBLIC_DASHBOARDS = "PORTAL_PUBLIC_DASHBOARDS";
   public static final String PORTAL_USER_LOCALE = "PORTAL_USER_LOCALE";
   
+  public static final String PORTAL_CHAT_RESPONSE_HISTORY_CACHE_GROUP_NAME = "PortalChatResponseHistory";
+
   // for caching locales
   public static final String PORTAL_CONTENT_LOCALES = "PORTAL_CONTENT_LOCALES";
   public static final String PORTAL_FORMATTING_LOCALES = "PORTAL_FORMATTING_LOCALES";
