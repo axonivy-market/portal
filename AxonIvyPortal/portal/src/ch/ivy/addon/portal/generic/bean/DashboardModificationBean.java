@@ -69,6 +69,8 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
   protected List<String> selectedDashboardPermissions;
   private Dashboard dashboardToExport;
   private List<String> referencedDashboardTitles = new ArrayList<>();
+  private long topMenuDashboardCount;
+  private List<Dashboard> topMenuDashboards = new ArrayList<>();
 
   public void initConfigration(boolean isPublicDashboard) {
     this.isPublicDashboard = isPublicDashboard;
@@ -79,12 +81,21 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
   protected void collectDashboardsForManagement() {
     this.dashboards = new ArrayList<>();
     String dashboardInUserProperty = readDashboardBySessionUser();
+    List<Dashboard> allDashboards;
     if (isPublicDashboard) {
-      this.dashboards = DashboardUtils.getPublicDashboards();
+      allDashboards = DashboardUtils.getPublicDashboards();
     } else if (StringUtils.isNoneEmpty(dashboardInUserProperty)) {
-      List<Dashboard> myDashboards = DashboardUtils.getPrivateDashboards();
-      this.dashboards.addAll(myDashboards);
+      allDashboards = DashboardUtils.getPrivateDashboards();
+    } else {
+      allDashboards = new ArrayList<>();
     }
+    // Single pass: partition into TOP_MENU (managed in Menu management tab) and the rest (displayed here)
+    Map<Boolean, List<Dashboard>> partitioned = allDashboards.stream()
+        .collect(Collectors.partitioningBy(
+            dashboard -> DashboardDisplayType.TOP_MENU.equals(dashboard.getDashboardDisplayType())));
+    topMenuDashboards = partitioned.get(true);
+    topMenuDashboardCount = topMenuDashboards.size();
+    this.dashboards = partitioned.get(false);
   }
 
   public void openDashboardDetailDialog(Dashboard dashboard) {
@@ -199,7 +210,10 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
   }
 
   protected void saveDashboards(List<Dashboard> dashboards) {
-    String dashboardJson = BusinessEntityConverter.entityToJsonValue(dashboards);
+    // Merge back TOP_MENU dashboards that are excluded from the display list
+    List<Dashboard> allDashboards = new ArrayList<>(topMenuDashboards);
+    allDashboards.addAll(dashboards);
+    String dashboardJson = BusinessEntityConverter.entityToJsonValue(allDashboards);
     if (isPublicDashboard) {
       Ivy.var().set(PortalVariable.DASHBOARD.key, dashboardJson);
     } else {
@@ -484,11 +498,17 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
   }
 
   public void savePrivateArrangement() {
-    String dashboardJson = BusinessEntityConverter.entityToJsonValue(this.dashboards);
+    List<Dashboard> allDashboards = new ArrayList<>(topMenuDashboards);
+    allDashboards.addAll(this.dashboards);
+    String dashboardJson = BusinessEntityConverter.entityToJsonValue(allDashboards);
     Ivy.session().getSessionUser().setProperty(PortalVariable.DASHBOARD.key, dashboardJson);
   }
 
   private void updateDashboardCache() {
     DashboardUtils.updateDashboardCache();
+  }
+
+  public long getTopMenuDashboardCount() {
+    return topMenuDashboardCount;
   }
 }

@@ -753,7 +753,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       CreateFromScratchDescription: Erstellen Sie Ihr eigenes Dashboard von Grund auf
       CreateNewPrivateDashboard: Neues privates Dashboard erstellen
       CreateNewPublicDashboard: Neues öffentliches Dashboard erstellen
-      Description: In diesem Bereich können Sie die Dashboards nach Ihren Wünschen konfigurieren.
+      Description: In diesem Bereich können Sie die Dashboards nach Ihren Wünschen konfigurieren und die Reihenfolge der Navigationselemente ändern.
       DoNotSupportMobile: Die Dashboard-Konfiguration wird für mobile Geräte nicht unterstützt.
       EditPrivateDashboards: Private Dashboards bearbeiten
       EditPublicDashboards: Öffentliche Dashboards bearbeiten
@@ -761,6 +761,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       ExportReferencedDialogMessage: 'Die folgenden Dashboards werden von Navigations-Widgets referenziert. Exportieren und importieren Sie sie ebenfalls, damit die Widgets korrekt funktionieren:'
       ExportReferencedDialogProceed: Trotzdem exportieren
       ExportDashboard: Dashboard exportieren
+      MenuManagement: Menüverwaltung
+      MenuManagementDashboardHint: '{0} Dashboard(s) werden als Hauptmenüpunkte angezeigt. Sie können diese im Tab Menüverwaltung verwalten.'
       PrivateDashboard: Private Dashboards
       PrivateDashboardConfiguration: Private Dashboard-Konfiguration
       PublicDashboard: Öffentliche Dashboards
@@ -769,7 +771,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       ReorderPublicDashboards: Öffentliche Dashboards neu anordnen
       SelectAction: Wählen Sie die Aktion
       SomeThingWentWrong: Etwas ist schief gelaufen
-      Title: Dashboard-Konfiguration
+      Title: Portal-Konfiguration
     displaySettings: Anzeigeeinstellungen
     DrillDownWidget:
       caseDrillDown: Drilldown-Fall-Widget für {0}

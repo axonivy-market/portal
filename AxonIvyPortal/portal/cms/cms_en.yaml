@@ -749,7 +749,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       CreateFromScratchDescription: Create your own dashboard from scratch
       CreateNewPrivateDashboard: Create new private dashboard
       CreateNewPublicDashboard: Create new public dashboard
-      Description: In this area, you can configure the dashboards according to your requirements.
+      Description: In this area, you can configure the dashboards according to your requirements and modify the order of the navigation elements.
       DoNotSupportMobile: Dashboard configuration is not supported for mobile devices.
       EditPrivateDashboards: Edit your private dashboards
       EditPublicDashboards: Edit public dashboards
@@ -757,6 +757,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       ExportReferencedDialogMessage: 'The following dashboards are referenced by navigation widgets. Export and import them too for the widgets to work correctly:'
       ExportReferencedDialogProceed: Export anyway
       ExportDashboard: Export dashboard
+      MenuManagement: Menu management
+      MenuManagementDashboardHint: '{0} dashboard(s) are displayed as top menu items. You can manage them in the Menu management tab.'
       PrivateDashboard: Private dashboards
       PrivateDashboardConfiguration: Private dashboard configuration
       PublicDashboard: Public dashboards
@@ -765,7 +767,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       ReorderPublicDashboards: Reorder public dashboards
       SelectAction: Select the action
       SomeThingWentWrong: Something went wrong
-      Title: Dashboard configuration
+      Title: Portal configuration
     displaySettings: Display Settings
     DrillDownWidget:
       caseDrillDown: Drill-down case widget for {0}

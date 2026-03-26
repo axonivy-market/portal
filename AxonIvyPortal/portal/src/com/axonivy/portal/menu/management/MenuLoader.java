@@ -31,7 +31,7 @@ import com.axonivy.portal.service.CustomSubMenuItemService;
 import ch.ivy.addon.portalkit.configuration.Application;
 import ch.ivy.addon.portalkit.service.DashboardService;
 import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
-import ch.ivy.addon.portalkit.util.DefaultDashboardUtils;
+
 
 /**
  * Responsible for loading menu definitions from various sources including
@@ -44,11 +44,20 @@ public final class MenuLoader implements Serializable {
 
   public static List<PortalMenuItemDefinition> loadMenuDefinitions() {
     List<PortalMenuItemDefinition> menuDefinitions = new ArrayList<>();
+    // Order matches typical sidebar: Defaults -> Dashboards -> Callable -> Config -> ThirdParty
     menuDefinitions.addAll(buildDefaultMenus());
+    menuDefinitions.addAll(buildDashboardMenus());
     menuDefinitions.addAll(buildCallableMenus());
     menuDefinitions.addAll(buildConfigurationMenus());
-    menuDefinitions.addAll(buildDashboardMenus());
     menuDefinitions.addAll(buildThirdPartyMenus());
+
+    // Assign indices based on list position to ensure correct default ordering.
+    // Source indices from adapters are ignored here — the list order defines the
+    // initial sidebar order. User's custom ordering is applied later by MenuOrderManager.
+    for (int i = 0; i < menuDefinitions.size(); i++) {
+      menuDefinitions.get(i).setIndex(i);
+    }
+
     return menuDefinitions.stream().distinct().collect(Collectors.toList());
   }
 
@@ -96,8 +105,7 @@ public final class MenuLoader implements Serializable {
   }
 
   private static List<PortalMenuItemDefinition> buildDefaultMenus() {
-    return Arrays.asList(buildDefaultDashboardMenu(), buildDefaultProcessMenu(), buildDefaultTaskMenu(),
-        buildDefaultCaseMenu());
+    return Arrays.asList(buildDefaultDashboardMenu(), buildDefaultProcessMenu());
   }
 
   private static PortalMenuItemDefinition buildDefaultDashboardMenu() {
@@ -111,22 +119,6 @@ public final class MenuLoader implements Serializable {
     PortalMenuItemDefinition menu = new StandardMenuItemDefinition(StandardMenuItemDefinitionType.PROCESS);
     menu.setSource(STANDARD);
     menu.setIndex(1);
-    return menu;
-  }
-
-  private static PortalMenuItemDefinition buildDefaultTaskMenu() {
-    PortalMenuItemDefinition menu = DashboardMenuItemDefinitionAdapter.getInstance()
-        .toMenuDefinition(DefaultDashboardUtils.getDefaultTaskListDashboard(), DASHBOARD);
-    menu.setSource(STANDARD);
-    menu.setIndex(2);
-    return menu;
-  }
-
-  private static PortalMenuItemDefinition buildDefaultCaseMenu() {
-    PortalMenuItemDefinition menu = DashboardMenuItemDefinitionAdapter.getInstance()
-        .toMenuDefinition(DefaultDashboardUtils.getDefaultCaseListDashboard(), DASHBOARD);
-    menu.setSource(STANDARD);
-    menu.setIndex(3);
     return menu;
   }
 }

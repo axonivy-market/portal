@@ -19,8 +19,6 @@ import com.axonivy.portal.menu.management.adapter.CustomMenuItemDefinitionAdapte
 import com.axonivy.portal.menu.management.adapter.ExternalLinkMenuItemDefinitionAdapter;
 import com.axonivy.portal.menu.management.adapter.StaticPageMenuItemDefinitionAdapter;
 import com.axonivy.portal.service.CustomSubMenuItemService;
-import com.axonivy.portal.service.PortalMenuItemDefinitionService;
-
 import ch.ivy.addon.portalkit.configuration.Application;
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
 import ch.ivy.addon.portalkit.enums.DashboardDisplayType;
@@ -41,7 +39,6 @@ public final class MenuRemovalHandler implements Serializable {
       case STATIC_PAGE -> removeStaticPageMenu(menu);
       default -> {}
     }
-    PortalMenuItemDefinitionService.getInstance().delete(menu.getId());
   }
 
   private static void removeDashboardMenu(PortalMenuItemDefinition menu) {

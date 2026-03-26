@@ -25,6 +25,7 @@ public class DashboardConfigurationBean implements Serializable {
   private boolean isSelectingTemplate;
   private boolean isEditingDashboard;
   private boolean isReorderingDashboard;
+  private boolean isMenuManagement;
 
   @PostConstruct
   public void initConfigurationBean() {
@@ -50,6 +51,7 @@ public class DashboardConfigurationBean implements Serializable {
     isSelectingTemplate = false;
     isEditingDashboard = false;
     isReorderingDashboard = false;
+    isMenuManagement = false;
   }
 
   public void switchDashboardType(boolean isPublicDashboard) {
@@ -79,6 +81,11 @@ public class DashboardConfigurationBean implements Serializable {
     resetAllIndicators();
     this.isReorderingDashboard = true;
     this.isPublicDashboard = isPublicDashboard;
+  }
+
+  public void accessToMenuManagement() {
+    resetAllIndicators();
+    this.isMenuManagement = true;
   }
 
   public boolean isMobileDevice() {
@@ -143,5 +150,13 @@ public class DashboardConfigurationBean implements Serializable {
 
   public void setReorderingDashboard(boolean isReorderingDashboard) {
     this.isReorderingDashboard = isReorderingDashboard;
+  }
+
+  public boolean isMenuManagement() {
+    return isMenuManagement;
+  }
+
+  public void setMenuManagement(boolean isMenuManagement) {
+    this.isMenuManagement = isMenuManagement;
   }
 }

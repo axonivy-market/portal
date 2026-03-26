@@ -748,7 +748,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       CreateFromScratchDescription: Cree su propio panel de control desde cero
       CreateNewPrivateDashboard: Crear un nuevo cuadro de mando personalizado
       CreateNewPublicDashboard: Crear un dashboard público
-      Description: En esta sección puedes configurar los cuadros de mando según tus necesidades.
+      Description: En esta sección puedes configurar los cuadros de mando según tus necesidades y modificar el orden de los elementos de navegación.
       DoNotSupportMobile: La configuración del panel de control no es compatible con los dispositivos móviles.
       EditPrivateDashboards: Editar tu cuadro de mando
       EditPublicDashboards: Editar dashboard públicos
@@ -756,6 +756,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       ExportReferencedDialogMessage: 'Los siguientes paneles son referenciados por widgets de navegación. Expórtelos e impórtelos también para que los widgets funcionen correctamente:'
       ExportReferencedDialogProceed: Exportar de todos modos
       ExportDashboard: Exportar el cuadro de mandos
+      MenuManagement: Gestión de menús
+      MenuManagementDashboardHint: '{0} panel(es) se muestran como elementos del menú principal. Puede gestionarlos en la pestaña Gestión de menús.'
       PrivateDashboard: Dashboard - Configuración  personalizada
       PrivateDashboardConfiguration: Configuración de tableros privados
       PublicDashboard: Dashboard - Configuración pública
@@ -764,7 +766,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       ReorderPublicDashboards: Reordenar dashboard públicos
       SelectAction: Seleccione la acción
       SomeThingWentWrong: Algo salió mal
-      Title: Configuración Dashboard
+      Title: Configuración del portal
     displaySettings: Configuración de visualización
     DrillDownWidget:
       caseDrillDown: Widget de casos detallados para {0}

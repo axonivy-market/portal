@@ -748,7 +748,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       CreateFromScratchDescription: 最初から独自のダッシュボードを作成する
       CreateNewPrivateDashboard: 新しい個人用ダッシュボードを作成する
       CreateNewPublicDashboard: 新しい公開用ダッシュボードを作成する
-      Description: この領域では、要件に応じてダッシュボードを構成できます。
+      Description: この領域では、要件に応じてダッシュボードを構成し、ナビゲーション要素の順序を変更できます。
       DoNotSupportMobile: ダッシュボードの設定は、モバイルデバイスではサポートされていません。
       EditPrivateDashboards: 個人用ダッシュボードを編集する
       EditPublicDashboards: 公開用ダッシュボードを編集する
@@ -756,6 +756,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       ExportReferencedDialogMessage: '以下のダッシュボードはナビゲーションウィジェットから参照されています。ウィジェットが正しく機能するように、それらもエクスポートおよびインポートしてください:'
       ExportReferencedDialogProceed: このままエクスポート
       ExportDashboard: ダッシュボードをエクスポート
+      MenuManagement: メニュー管理
+      MenuManagementDashboardHint: '{0} 個のダッシュボードがトップメニュー項目として表示されています。メニュー管理タブで管理できます。'
       PrivateDashboard: 個人用ダッシュボード
       PrivateDashboardConfiguration: 個人用ダッシュボードの設定
       PublicDashboard: 公開用ダッシュボード
@@ -764,7 +766,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       ReorderPublicDashboards: 公開用ダッシュボードを並び替える
       SelectAction: アクションを選択してください
       SomeThingWentWrong: 問題が発生しました
-      Title: ダッシュボードの設定
+      Title: ポータル設定
     displaySettings: 表示設定
     DrillDownWidget:
       caseDrillDown: 「{0}」用ドリルダウンケースウィジェット

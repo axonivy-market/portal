@@ -751,7 +751,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       CreateFromScratchDescription: Créez votre propre tableau de bord à partir de zéro
       CreateNewPrivateDashboard: Créer un nouveau tableau de bord privé
       CreateNewPublicDashboard: Créer un nouveau tableau de bord public
-      Description: Dans cette zone, vous pouvez configurer les tableaux de bord en fonction de vos besoins.
+      Description: Dans cette zone, vous pouvez configurer les tableaux de bord en fonction de vos besoins et modifier l'ordre des éléments de navigation.
       DoNotSupportMobile: La configuration du tableau de bord n'est pas prise en charge pour les appareils mobiles.
       EditPrivateDashboards: Modifier vos tableaux de bord privés
       EditPublicDashboards: Modifier les tableaux de bord publics
@@ -759,6 +759,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       ExportReferencedDialogMessage: 'Les tableaux de bord suivants sont référencés par des widgets de navigation. Exportez-les et importez-les également pour que les widgets fonctionnent correctement :'
       ExportReferencedDialogProceed: Exporter quand même
       ExportDashboard: Exporter le tableau de bord
+      MenuManagement: Gestion des menus
+      MenuManagementDashboardHint: '{0} tableau(x) de bord sont affichés comme éléments du menu principal. Vous pouvez les gérer dans l''onglet Gestion des menus.'
       PrivateDashboard: Tableaux de bord privés
       PrivateDashboardConfiguration: Configuration des tableaux de bord privés
       PublicDashboard: Tableaux de bord publics
@@ -767,7 +769,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       ReorderPublicDashboards: Réorganiser les tableaux de bord publics
       SelectAction: Sélectionnez l'action
       SomeThingWentWrong: Quelque chose n'a pas fonctionné
-      Title: Configuration du tableau de bord
+      Title: Configuration du portail
     displaySettings: Paramètres d'affichage
     DrillDownWidget:
       caseDrillDown: Widget de cas détaillé pour {0}

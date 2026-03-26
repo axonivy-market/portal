@@ -14,6 +14,15 @@
   <f:event listener="#{dashboardModificationBean.initConfigration(isPublicDashboard)}" type="preRenderComponent" />
   <h:panelGroup id="dashboard-modification-container" styleClass="ui-g-12">
 
+    <h:panelGroup layout="block" rendered="#{dashboardModificationBean.topMenuDashboardCount gt 0}"
+      styleClass="ui-g-12 flex align-items-center u-padding-bottom-10">
+      <span class="si si-information-circle" />
+      <h:outputFormat styleClass="MarLeft10"
+        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/MenuManagementDashboardHint')}">
+        <f:param value="#{dashboardModificationBean.topMenuDashboardCount}" />
+      </h:outputFormat>
+    </h:panelGroup>
+
     <p:dataTable id="dashboard-table" lazy="false" draggableRows="true" rowDragSelector="i.si-navigation-menu"
       value="#{dashboardModificationBean.dashboards}" var="dashboard"
       styleClass="ui-g-12 u-no-padding-left u-no-padding-right"
