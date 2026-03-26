@@ -7,11 +7,10 @@ pipeline {
     buildDiscarder(logRotator(numToKeepStr: '60', artifactNumToKeepStr: '60'))
   }
 
-  // DISABLE FOR FEATURE BRANCH, UNCOMMENT BEFORE MERGE
-  // triggers {
-  //   pollSCM '0 5 * * *'
-  //   cron('0 11 * * *')
-  // }
+  triggers {
+    pollSCM '0 5 * * *'
+    cron('0 11 * * *')
+  }
 
   parameters {
     string(name: 'testPatternToRun', defaultValue: 'com.axonivy.portal.selenium.test.**.*Test', description: 'Test pattern to run')

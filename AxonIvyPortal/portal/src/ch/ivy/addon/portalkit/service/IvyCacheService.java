@@ -102,6 +102,7 @@ public class IvyCacheService {
    * @param value
    */
   public void setApplicationCache(String groupName, String entryName, Object value) {
+    verifyIdentifier(groupName, entryName);
     applicationCache().setEntry(groupName, entryName,
         com.axonivy.portal.components.service.IvyCacheService.MAX_TIMEOUT,
         value);
@@ -114,6 +115,7 @@ public class IvyCacheService {
    * @return value
    */
   public Object getApplicationCache(String groupName, String entryName) {
+    verifyIdentifier(groupName, entryName);
     IDataCacheEntry entry = applicationCache().getEntry(groupName, entryName);
     if (entry != null && entry.isValid()) {
       return entry.getValue();
@@ -121,18 +123,14 @@ public class IvyCacheService {
     return null;
   }
 
-  /**
-   * Invalidate a single entry in application cache with key is groupName and entryName
-   * @param groupName
-   * @param entryName
-   */
   public void invalidateApplicationCacheEntry(String groupName, String entryName) {
     verifyIdentifier(groupName, entryName);
-    IDataCacheGroup group = applicationCache().getGroup(groupName);
+    IDataCache cache = applicationCache();
+    IDataCacheGroup group = cache.getGroup(groupName);
     if (group != null) {
-      IDataCacheEntry entry = applicationCache().getEntry(groupName, entryName);
+      IDataCacheEntry entry = cache.getEntry(groupName, entryName);
       if (entry != null) {
-        applicationCache().invalidateEntry(group, entry);
+        cache.invalidateEntry(group, entry);
       }
     }
   }
