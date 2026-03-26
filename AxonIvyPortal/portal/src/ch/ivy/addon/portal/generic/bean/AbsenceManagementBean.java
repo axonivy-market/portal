@@ -12,18 +12,15 @@ import static ch.ivyteam.ivy.security.IPermission.USER_READ_OWN_SUBSTITUTES;
 import static ch.ivyteam.ivy.security.IPermission.USER_READ_SUBSTITUTES;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.apache.commons.collections4.CollectionUtils;
-import org.primefaces.model.FilterMeta;
-import org.primefaces.model.MatchMode;
-
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+
+import org.apache.commons.collections4.CollectionUtils;
 
 import com.axonivy.portal.components.dto.UserDTO;
 
@@ -154,10 +151,6 @@ public class AbsenceManagementBean implements Serializable{
   public List<ISecurityMember> getPersonalTaskDeputies(List<DeputyRole> deputyRoles) {
       DeputyRole role = DeputyRoleUtils.findDeputyRoleByType(deputyRoles, DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE);
       return role != null ? role.getDeputies() : Collections.emptyList();
-  }
-
-  public List<DeputyRole> getDeputyRolesByType(List<DeputyRole> list, DeputyRoleType type) {
-    return CollectionUtils.emptyIfNull(list).stream().filter(item -> type.equals(item.getDeputyRoleType())).collect(Collectors.toList());
   }
 
   public List<DeputyRole> getDeputyRolesExcludePersonalTaskDuringAbsence(List<DeputyRole> list) {
