@@ -36,9 +36,9 @@ public final class ProcessStartAPI {
     return Sudo.get(() -> {
       var apps = IApplicationRepository.of(ISecurityContext.current()).allReleased();
       for (IApplication app : apps) {
-        var processStart = findStartableProcessStartByUserFriendlyRequestPath(friendlyRequestPath, app);
-        if (processStart != null) {
-          return processStart.getLink().getRelative();
+        var webStartable = findWebStartableByUserFriendlyRequestPath(friendlyRequestPath, app);
+        if (webStartable != null) {
+          return webStartable.getLink().getRelative();
         }
       }
       return "";
@@ -53,26 +53,28 @@ public final class ProcessStartAPI {
    * @return start link or empty string
    */
   public static String findRelativeUrlByProcessStartFriendlyRequestPath(String friendlyRequestPath) {
-    IProcessStart processStart = ProcessStartUtils.findProcessStartByUserFriendlyRequestPath(friendlyRequestPath);
-    return processStart != null ? processStart.getLink().getRelative() : StringUtils.EMPTY;
+    IWebStartable webStartable = ProcessStartUtils.findWebStartableByUserFriendlyRequestPath(friendlyRequestPath);
+    return webStartable != null ? webStartable.getLink().getRelative() : StringUtils.EMPTY;
   }
 
-  private static IProcessStart findStartableProcessStartByUserFriendlyRequestPath(String requestPath, IApplication application) {
+  private static IWebStartable findWebStartableByUserFriendlyRequestPath(String requestPath, IApplication application) {
     return application.getProcessModelVersions()
-        .map(p -> getProcessStart(requestPath, p))
+        .map(p -> findWebStartableByPathAndPmv(requestPath, p))
         .filter(Objects::nonNull)
-        .filter(processStart -> isStartableProcessStart(processStart.getLink().getRelative()))
+        .filter(ws -> isStartableProcess(ws.getLink().getRelative()))
         .findFirst()
         .orElse(null);
   }
 
-  private static IProcessStart getProcessStart(String requestPath, IProcessModelVersion processModelVersion) {
-    return IWorkflowProcessModelVersion.of(processModelVersion).findStartElementByUserFriendlyRequestPath(requestPath);
+  private static IWebStartable findWebStartableByPathAndPmv(String requestPath, IProcessModelVersion processModelVersion) {
+    return IWorkflowProcessModelVersion.of(processModelVersion).getAllStartables()
+        .filter(ws -> ws.getId().endsWith(requestPath))
+        .findFirst().orElse(null);
   }
 
-  private static boolean isStartableProcessStart(String processRelativeLink) {
+  private static boolean isStartableProcess(String processRelativeLink) {
     return ProcessService.getInstance().findProcesses().stream()
         .map(IWebStartable::getLink)
-        .filter(webLink -> webLink.getRelative().equals(processRelativeLink)).findFirst().isPresent();
+        .anyMatch(webLink -> webLink.getRelative().equals(processRelativeLink));
   }
 }
