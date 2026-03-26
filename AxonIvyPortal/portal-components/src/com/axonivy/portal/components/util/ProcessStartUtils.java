@@ -1,9 +1,7 @@
 package com.axonivy.portal.components.util;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
-import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.components.enums.SessionAttribute;
@@ -15,8 +13,8 @@ import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.request.IHttpResponse;
 import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.security.exec.Sudo;
-import ch.ivyteam.ivy.workflow.IProcessStart;
 import ch.ivyteam.ivy.workflow.IWorkflowProcessModelVersion;
+import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
 public class ProcessStartUtils {
 
@@ -27,11 +25,19 @@ public class ProcessStartUtils {
     });
   }
 
-  public static IProcessStart findProcessStartByUserFriendlyRequestPath(String requestPath) {
+  public static Long findTaskStartIdByUserFriendlyRequestPath(String requestPath) {
+    return Sudo.get(() -> Ivy.session().getStartableProcessStarts().stream()
+        .filter(ps -> ps.getUserFriendlyRequestPath().endsWith(requestPath))
+        .findFirst()
+        .map(ps -> ps.getTaskStart().getId())
+        .orElse(null));
+  }
+
+  public static IWebStartable findWebStartableByUserFriendlyRequestPath(String requestPath) {
     return Sudo.get(() -> {
-      IProcessStart processStart = findProcessStartByUserFriendlyRequestPathAndPmv(requestPath, Ivy.request().getProcessModelVersion());
-      if (processStart != null) {
-        return processStart;
+      IWebStartable webStartable = findWebStartableByPathAndPmv(requestPath, Ivy.request().getProcessModelVersion());
+      if (webStartable != null) {
+        return webStartable;
       }
 
       List<IApplication> apps = IApplicationRepository.of(ISecurityContext.current()).allReleased();
@@ -39,18 +45,20 @@ public class ProcessStartUtils {
         .flatMap(app -> app.getProcessModelVersions())
         .toList();
       for (var pmv : processModelVersions) {
-        processStart = findProcessStartByUserFriendlyRequestPathAndPmv(requestPath, pmv);
-        if (processStart != null) {
-          return processStart;
+        webStartable = findWebStartableByPathAndPmv(requestPath, pmv);
+        if (webStartable != null) {
+          return webStartable;
         }
       }
-      return processStart;
+      return webStartable;
     });
   }
 
-  private static IProcessStart findProcessStartByUserFriendlyRequestPathAndPmv(String requestPath,
+  private static IWebStartable findWebStartableByPathAndPmv(String requestPath,
       IProcessModelVersion processModelVersion) {
-    return IWorkflowProcessModelVersion.of(processModelVersion).findStartElementByUserFriendlyRequestPath(requestPath);
+    return IWorkflowProcessModelVersion.of(processModelVersion).getAllStartables()
+        .filter(ws -> ws.getId().endsWith(requestPath))
+        .findFirst().orElse(null);
   }
 
   public static void redirect(String uri) throws java.io.IOException {
@@ -72,23 +80,15 @@ public class ProcessStartUtils {
     }
     return StringUtils.EMPTY;
   }
-  
+
   private static String findFriendlyRequestPathContainsKeywordInPMV(String keyword, IProcessModelVersion processModelVersion) {
     if (processModelVersion != null) {
-      List<IProcessStart> processStarts =
-          findProcessStartRequestPathContainsKeywordAndPmv(keyword, processModelVersion);
-      if (CollectionUtils.isNotEmpty(processStarts)) {
-        return processStarts.get(0).getUserFriendlyRequestPath();
-      }
+      return IWorkflowProcessModelVersion.of(processModelVersion).getAllStartables()
+          .filter(ws -> ws.getId().contains(keyword))
+          .findFirst()
+          .map(IWebStartable::getId)
+          .orElse(StringUtils.EMPTY);
     }
     return StringUtils.EMPTY;
-  }
-
-  private static List<IProcessStart> findProcessStartRequestPathContainsKeywordAndPmv(String keyword,
-      IProcessModelVersion processModelVersion) {
-    IWorkflowProcessModelVersion workflowPmv = IWorkflowProcessModelVersion.of(processModelVersion);
-    return workflowPmv.getProcessStarts().stream()
-        .filter(processStart -> processStart.getUserFriendlyRequestPath().contains(keyword))
-        .collect(Collectors.toList());
   }
 }
