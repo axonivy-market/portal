@@ -78,11 +78,7 @@
                         sortBy="#{absence.period}" styleClass="absence-period">
                         <h:outputText value="#{absence.period}" styleClass="absence-column-value" />
                       </p:column>
-                      <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/personalTaskDuringAbsenceDeputies')}" groupRow="true">
-                        <h:outputText
-                          value="#{securityMemberDisplayNameFormatBean.joinSecurityMemberNames(absenceManagementBean.getPersonalTaskDeputies(data.deputyRoles))}"
-                          styleClass="absence-column-value" />
-                      </p:column>
+
                       <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/comment')}" 
                         sortBy="#{absence.comment}" styleClass="u-truncate-text">
                         <h:outputText value="#{absence.comment}" title="#{absence.comment}"
@@ -111,6 +107,23 @@
                           </p:menuitem>
                         </p:menu>
                       </p:column>
+                      <p:subTable>
+                      <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/personalTaskDuringAbsenceDeputies')}" groupRow="true">
+                        <h:panelGroup styleClass="absence-column-value" layout="block">
+                          <c:set var="deputiesDisplayNames"
+                            value="#{securityMemberDisplayNameFormatBean.joinSecurityMemberNames(absenceManagementBean.getPersonalTaskDeputies(data.deputyRoles))}" />
+                          <p:commandLink id="selected-deputies-link" immediate="true" 
+                            ariaLabel="#{not empty deputiesDisplayNames ? deputiesDisplayNames : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/noDeputy')}"
+                            styleClass="task-responsible-link"
+                            value="#{not empty deputiesDisplayNames ? deputiesDisplayNames : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/noDeputy')}"
+                            actionListener="#{logic.initSelectedDeputies(deputyRole)}"
+                            oncomplete="PF('choose-deputy-dialog').show();"
+                            update="deputy-selection-form:deputy-selection-panel" global="false"
+                            disabled="#{!absenceManagementBean.canCreateSubstitute(data.selectedAbsenceUser)}">
+                          </p:commandLink>
+                        </h:panelGroup>
+                      </p:column>
+                      </p:subTable>
                     </p:dataTable>
                   </div>
                   <div class="ui-fluid u-padding-0">
