@@ -106,8 +106,11 @@ public class AbsenceTest extends BaseTest {
     absencePage.setSubstitutedByAdmin(TestAccount.DEMO_USER.getFullName());
     List<String> deputyNames = Arrays.asList(TestAccount.CASE_OWNER_USER.getFullName());
     absencePage.setDeputy(deputyNames, DeputyRoleType.PERSONAL_TASK_PERMANENT);
-    absencePage.setDeputy(deputyNames, DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE, false);
-    assertEquals(absencePage.getChooseDeputyDialogError().startsWith("Substitute is already selected in"), true);
+    NewAbsencePage newAbsencePage = absencePage.openNewAbsenceDialog();
+    newAbsencePage.input(TODAY, TODAY, "get sick");
+    absencePage.setDuringAbsenceDeputyInAbsenceDialog(deputyNames);
+    newAbsencePage.proceed();
+    assertEquals(newAbsencePage.getAbsenceDialogErrorMessage().startsWith("Substitute is already selected in"), true);
   }
 
   @Test
@@ -116,7 +119,7 @@ public class AbsenceTest extends BaseTest {
     AbsencePage absencePage = openAbsencePage();
     absencePage.setSubstitutedByAdmin(TestAccount.DEMO_USER.getFullName());
     List<String> deputyNames = Arrays.asList(TestAccount.CASE_OWNER_USER.getFullName());
-    absencePage.setDeputy(deputyNames, DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE);
+    createAbsenceWithDeputies(TODAY, TODAY, "get sick", deputyNames, absencePage);
     absencePage.setDeputy(deputyNames, DeputyRoleType.PERSONAL_TASK_PERMANENT, false);
     assertEquals(absencePage.getChooseDeputyDialogError().startsWith("Substitute is already selected in"), true);
   }
@@ -224,14 +227,13 @@ public class AbsenceTest extends BaseTest {
   @Test
   public void testSelectDeputyOfOtherUser() {
     login(TestAccount.GUEST_USER);
+    redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/grantReadAbsencesPermission.ivp");
     redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/grantCreateSubstitutePermission.ivp");
     AbsencePage absencePage = openAbsencePage();
     absencePage.setSubstitutedByAdmin(TestAccount.DEMO_USER.getFullName());
     List<String> deputyNames = Arrays.asList(TestAccount.GUEST_USER.getFullName());
-    absencePage.setDeputy(deputyNames, DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE);
-    absencePage.saveSubstitute();
-    absencePage.getMyDeputy(absencePage.indexOfDeputyRole(DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE))
-        .shouldBe(Condition.text(TestAccount.GUEST_USER.getFullName()));
+    createAbsenceWithDeputies(TODAY, TODAY, "get sick", deputyNames, absencePage);
+    assertTrue(absencePage.getDuringAbsenceDeputiesFromAbsenceTable().contains(TestAccount.GUEST_USER.getFullName()));
   }
 
   @Test

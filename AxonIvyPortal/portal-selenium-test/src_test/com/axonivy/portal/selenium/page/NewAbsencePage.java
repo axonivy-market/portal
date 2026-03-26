@@ -16,8 +16,9 @@ import com.codeborne.selenide.Condition;
 
 public class NewAbsencePage extends TemplatePage {
 
-  private static final String ABSENCE_ERROR_MESSAGE_SELECTOR =
-      "[id*='absence-messages'] span.ui-messages-error-summary";
+  private static final String ABSENCE_ERROR_MESSAGE_SELECTOR = "[id*='absence-messages'] span.ui-messages-error-summary";
+
+  private static final String ABSENCE_DETAIL_ERROR_MESSAGE_SELECTOR = "[id*='absence-messages'] span.ui-messages-error-detail";
 
   @Override
   protected String getLoadedLocator() {
@@ -63,6 +64,11 @@ public class NewAbsencePage extends TemplatePage {
 
   public String getErrorMessage() {
     WebElement errorMessage = $(ABSENCE_ERROR_MESSAGE_SELECTOR);
+    return errorMessage.getText();
+  }
+
+    public String getErrorDetailMessage() {
+    WebElement errorMessage = $(ABSENCE_DETAIL_ERROR_MESSAGE_SELECTOR);
     return errorMessage.getText();
   }
 

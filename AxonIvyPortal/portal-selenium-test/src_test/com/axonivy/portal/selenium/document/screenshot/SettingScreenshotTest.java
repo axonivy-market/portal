@@ -123,10 +123,13 @@ public class SettingScreenshotTest extends ScreenshotBaseTest {
     newAbsencePage.enterCommentForAbsence("Add new absence");
 
     ScreenshotUtils.captureElementWithMarginOptionScreenshot(absencePage.getAddAbsenceDialog(),
-        ScreenshotUtils.SETTINGS_FOLDER + "new-absence", new ScreenshotMargin(20));
+        ScreenshotUtils.SETTINGS_FOLDER + "new-absence", new ScreenshotMargin(20)); 
     newAbsencePage.closeAddAbsenceDialog();
     ScreenshotUtils.captureElementScreenshot(absencePage.getAbsenceForm(), ScreenshotUtils.SETTINGS_FOLDER + "absence");
-    absencePage.setDeputy(Arrays.asList(TestAccount.DEMO_USER.getFullName(), TestAccount.GUEST_USER.getFullName()), 0);
+    absencePage.setDeputy(Arrays.asList(TestAccount.DEMO_USER.getFullName(), TestAccount.GUEST_USER.getFullName()), 0, false);
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(absencePage.getChooseDeputyDialog(),
+        ScreenshotUtils.SETTINGS_FOLDER + "add-deputy-dialog", new ScreenshotMargin(20));
+    absencePage.saveSelectedDeputies();
     ScreenshotUtils.captureElementScreenshot(absencePage.getAbsenceForm(),
         ScreenshotUtils.SETTINGS_FOLDER + "set-deputy");
   }

@@ -213,4 +213,13 @@ public class AbsencePage extends TemplatePage {
   public void isDeputySettingSectionDisplayed(boolean isDisplay) {
     waitForElementDisplayed(By.id("deputy-setting"), isDisplay);
   }
+
+  public WebElement getChooseDeputyDialog() {
+    return $(By.id("choose-deputy-dialog")).shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  public void saveSelectedDeputies() {
+    waitForElementClickableThenClick("[id='deputy-selection-form:save-deputy-button']");
+    $(By.id("choose-deputy-dialog")).shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
+  }
 }

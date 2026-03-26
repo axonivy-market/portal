@@ -87,12 +87,14 @@ HowTo: Add Absence
 #. The :guilabel:`Add absence` dialog opens
 #. Enter :guilabel:`From` and :guilabel:`Until` dates
 #. Optionally provide an explanatory comment
+#. Select substitutes for your personal tasks during the absence
 #. Confirm your absence by clicking the :guilabel:`Save` button
 
 |how-to-add-an-absence|
 
 HowTo: Set Substitute
 """""""""""""""""""""
+|how-to-set-absence-substitutes|
 
 The substitute list contains entries for your personal tasks and each role you hold.
 
@@ -107,13 +109,15 @@ The substitute list contains entries for your personal tasks and each role you h
   .. note::
      A substitute can only belong to one type.
 
-**Steps:**
+To add a new substitute:
 
-#. Click the link ending with |si-notes-quill| to specify substitutes
-#. Select substitutes and click the :guilabel:`Add` button
+#. Click on the link to specify substitutes
+#. In the dialog, type the name of the user you want to add as a substitute
+#. Select the user from the suggestion list and click the :guilabel:`Add` button
+#. Repeat for additional substitutes if needed
 #. Confirm your substitutes with the :guilabel:`Save` button
 
-|how-to-set-absence-substitutes|
+|how-to-add-deputy-dialog|
 
 Change Password
 ^^^^^^^^^^^^^^^
@@ -237,6 +241,8 @@ Different header features require specific permissions:
    :alt: Absences page
 .. |how-to-add-an-absence| image:: ../../screenshots/settings/new-absence.png
    :alt: Absences page: Add new absence dialog
+.. |how-to-add-deputy-dialog| image:: ../../screenshots/settings/add-deputy-dialog.png
+   :alt: Absences page: Add deputy dialog
 .. |how-to-set-absence-substitutes| image:: ../../screenshots/settings/set-deputy.png
    :alt: Absences page: Set deputy section
 .. |portal-password-change-dialog| image:: ../../screenshots/settings/change-password.png
