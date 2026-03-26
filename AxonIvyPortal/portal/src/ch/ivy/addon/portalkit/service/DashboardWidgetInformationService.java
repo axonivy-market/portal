@@ -13,6 +13,7 @@ import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
+import com.axonivy.portal.enums.CaseQueryType;
 import org.apache.commons.lang3.time.DateUtils;
 
 import com.axonivy.portal.bo.ItemByCategoryStatistic;
@@ -199,6 +200,15 @@ public class DashboardWidgetInformationService {
     caseSearchCriteria.setCustomCaseQuery(
         dataModel.getCriteria().buildQueryWithoutOrderByClause());
     caseSearchCriteria.setAdminQuery(PermissionUtils.checkReadAllCasesPermission());
+
+    CaseQueryType queryType = Optional.ofNullable(dataModel.getCriteria().getCaseQueryType())
+        .orElse(CaseQueryType.BUSINESS_CASE);
+    if (queryType == CaseQueryType.BUSINESS_CASE) {
+      caseSearchCriteria.setBusinessCase(true);
+    } else if (queryType == CaseQueryType.SUB_CASE) {
+      caseSearchCriteria.setTechnicalCase(true);
+    }
+
     return caseSearchCriteria;
   }
 

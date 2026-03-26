@@ -46,6 +46,7 @@ Below is a sample JSON definition of the case widget in the Portal dashboard.
       "showWidgetInfo": true,
       "showFullscreenMode": true,
       "enableQuickSearch": true,
+      "caseQueryType": "BUSINESS_CASE",
       "columns": [
          {
             "field": "id"
@@ -186,6 +187,10 @@ JSON Configuration Reference
      - boolean
      - ``false``
      - Enable quick search text box
+   * - ``caseQueryType``
+     - string
+     - ``"BUSINESS_CASE"``
+     - Defines which level of cases to display. By default, the widget queries by ``"BUSINESS_CASE"``. Available values: ``"BUSINESS_CASE"`` shows only top-level cases, ``"SUB_CASE"`` shows only sub-cases (children of a business case), ``"ALL"`` shows both business cases and sub-cases
    * - ``isTopMenu``
      - boolean
      - ``false``

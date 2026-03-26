@@ -206,7 +206,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       thirdPartyApplication: Third Party Application
     currentValue: Current value
     defaultValue: Default value
-    deleteAppConfirmation: Are you sure to delete this application ?
+    deleteAppConfirmation: Are you sure you want to delete the <b>{0}</b> application?
     dialogclosinginformation:
       dialogHeader: Portal configuration closed
       informMessage: Modifications in portal settings require a refresh of the current page for the new configuration to take effect.
@@ -803,6 +803,11 @@ ch.ivy.addon.portalkit.ui.jsf:
     SearchForFilter: Search for filter
     ShareThisDashboard: Share this dashboard
     ShowPinnedToggle: Show 'Pinned Items' Toggle
+    CaseQueryType:
+      info: Configure which case types are shown in the Case Widget. Default shows business cases only, Sub Cases shows technical subcases only, and All shows both business cases and technical subcases.
+      label: Case Type
+    dataSettings: Data Settings
+    displaySettings: Display Settings
     StandardWidgets: Standard Widgets
     StatisticWidget:
       EmptyChartDataMessage: We do not have enough data to create a nice chart!
@@ -1260,6 +1265,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     taskNotes: Notes
     triggerEscalation: Trigger Escalation
   taskList:
+    configuration: Configuration
     deadline: Deadline
     default: Default
     defaultColumns:
@@ -1651,6 +1657,10 @@ Labels:
       TUTORIAL:
         header: Tutorial
         question: Where can I find the documentation or tutorials for the Axon Ivy Portal?
+    CaseQueryType:
+      ALL: Business Cases + Sub Cases
+      BUSINESS_CASE: Business Cases (Default)
+      SUB_CASE: Sub Cases
     DashboardStandardCaseColumn:
       ACTIONS: Actions
       APPLICATION: Application

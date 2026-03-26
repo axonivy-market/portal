@@ -81,10 +81,8 @@ public class TaskWidgetTest extends BaseTest {
 
   @Test
   public void testFilterDateOnStandardFields() {
-    resizeBrowserToSmallscreen();
     NavigationHelper.navigateToTaskList();
     TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
-    resizeBrowserToFullHDResolution();
     taskWidget.openFilterWidget();
     taskWidget.addFilter("Created", FilterOperator.AFTER);
     taskWidget.inputValueOnLatestFilter(FilterValueType.DATE, "01/01/2024");

@@ -194,6 +194,40 @@ public class DashboardEditCaseWidgetTest extends BaseTest {
     caseWidget.countCases().shouldBe(CollectionCondition.size(2));
   }
 
+  @Test
+  public void testCaseQueryTypeBusinessCase() {
+    redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
+    NewDashboardDetailsEditPage newDashboardDetailsEditPage = gotoEditPublicDashboardPage();
+    newDashboardDetailsEditPage.addWidget();
+    CaseEditWidgetNewDashBoardPage caseWidget = newDashboardDetailsEditPage.addNewCaseWidget();
+    caseWidget.waitPreviewTableLoaded();
+    caseWidget.countCases().shouldBe(CollectionCondition.size(2), DEFAULT_TIMEOUT);
+  }
+
+  @Test
+  public void testCaseQueryTypeSubCase() {
+    redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
+    NewDashboardDetailsEditPage newDashboardDetailsEditPage = gotoEditPublicDashboardPage();
+    newDashboardDetailsEditPage.addWidget();
+    CaseEditWidgetNewDashBoardPage caseWidget = newDashboardDetailsEditPage.addNewCaseWidget();
+    caseWidget.waitPreviewTableLoaded();
+    caseWidget.selectCaseQueryType("Sub Cases");
+    caseWidget.waitPreviewTableLoaded();
+    caseWidget.countCases().shouldBe(CollectionCondition.sizeGreaterThanOrEqual(1), DEFAULT_TIMEOUT);
+  }
+
+  @Test
+  public void testCaseQueryTypeAll() {
+    redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
+    NewDashboardDetailsEditPage newDashboardDetailsEditPage = gotoEditPublicDashboardPage();
+    newDashboardDetailsEditPage.addWidget();
+    CaseEditWidgetNewDashBoardPage caseWidget = newDashboardDetailsEditPage.addNewCaseWidget();
+    caseWidget.waitPreviewTableLoaded();
+    caseWidget.selectCaseQueryType("Business Cases + Sub Cases");
+    caseWidget.waitPreviewTableLoaded();
+    caseWidget.countCases().shouldBe(CollectionCondition.sizeGreaterThanOrEqual(3), DEFAULT_TIMEOUT);
+  }
+
   private NewDashboardDetailsEditPage gotoEditPublicDashboardPage() {
     LinkNavigator.redirectToPortalDashboardConfiguration();
     var configurationPage = new DashboardConfigurationPage();

@@ -550,5 +550,20 @@ public abstract class TemplatePage extends AbstractPage {
   public void waitPageSilence() {
     WaitHelper.waitPageSilence();
   }
+  
+  public SelenideElement getWidgetConfigurationPanel() {
+    SelenideElement form = getWidgetConfigurationForm();
+    SelenideElement panel = $("div[id$='widget-configuration-panel']");
+    if (!panel.exists() || !panel.is(Condition.visible)) {
+      form.$("button[id$='widget-configuration-button']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
+      panel.shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    }
+    return panel;
+  }
+  
+  public SelenideElement getWidgetConfigurationForm() {
+    return $("div#new-widget-configuration-dialog").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+        .$("form#widget-configuration-form").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+  }
 
 }

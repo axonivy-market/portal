@@ -401,19 +401,13 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
     countFilterSelect().shouldBe(CollectionCondition.size(0), DEFAULT_TIMEOUT);
   }
 
-  public SelenideElement getQuickSearchCheckBox() {
-    return $("div[id$='widget-preview']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
-        .$("span[id$='quick-search-group']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("div[id$='quick-search']")
+  public WebElement getQuickSearchCheckBox() {
+    return getWidgetConfigurationPanel().$("div[id$='quick-search-group']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("div[id$='quick-search']")
         .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
   }
 
   public void clickOnQuickSearchCheckBox() {
-    SelenideElement checkbox = getQuickSearchCheckBox();
-    if (!checkbox.find(".ui-chkbox-icon").has(cssClass("ui-icon-check"))) {
-      checkbox.find(".ui-chkbox-box").click();
-    }
-    checkbox.find(".ui-chkbox-icon").shouldHave(Condition.cssClass("ui-icon-check"));
-
+    getQuickSearchCheckBox().click();
   }
   
   public boolean isQuickSearchClicked(String fieldName) {
@@ -459,7 +453,7 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
   }
   
   public SelenideElement getWidgetInfoIconCheckbox() {
-    return getWidgetConfigurationForm().$("span[id$='widget-info-icon-group']").shouldBe(Condition.appear,
+    return getWidgetConfigurationPanel().$("div[id$='widget-info-icon-group']").shouldBe(Condition.appear,
         DEFAULT_TIMEOUT).$("div[class*='ui-inputgroup']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
         .$("div[id$='widget-info']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("div[class*='ui-chkbox-box']")
         .shouldBe(Condition.appear, DEFAULT_TIMEOUT)
@@ -470,13 +464,8 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
     getWidgetInfoIconCheckbox().shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
 
-  public SelenideElement getWidgetConfigurationForm() {
-    return $("div#new-widget-configuration-dialog").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
-        .$("form#widget-configuration-form").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
-  }
-
   public SelenideElement getExpandModeCheckbox() {
-    return getWidgetConfigurationForm().$("span[id$='fullscreen-mode-group']").shouldBe(Condition.appear,
+    return getWidgetConfigurationPanel().$("div[id$='fullscreen-mode-group']").shouldBe(Condition.appear,
         DEFAULT_TIMEOUT).$("div[class*='ui-inputgroup']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
         .$("div[id$='fullscreen-mode']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
@@ -500,5 +489,5 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
         DEFAULT_TIMEOUT);
     return $("div[id$='task-widget-preview:dashboard-tasks']").$$("table tbody tr").get(0);
   }
-
+  
 }

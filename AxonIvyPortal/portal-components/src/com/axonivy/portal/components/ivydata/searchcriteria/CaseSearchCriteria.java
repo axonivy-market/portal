@@ -48,7 +48,11 @@ public class CaseSearchCriteria {
     if (isBusinessCase) {
       finalQuery = CaseQuery.businessCases();
     } else if (isTechnicalCase) {
-      finalQuery = CaseQuery.subCases().where().and().businessCaseId().isEqual(businessCaseId);
+      if (businessCaseId != null) {
+        finalQuery = CaseQuery.subCases().where().and().businessCaseId().isEqual(businessCaseId);
+      } else {
+        finalQuery = CaseQuery.subCases();
+      }
     } else {
       finalQuery = CaseQuery.create();
     }

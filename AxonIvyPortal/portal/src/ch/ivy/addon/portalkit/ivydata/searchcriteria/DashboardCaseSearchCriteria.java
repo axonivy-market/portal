@@ -25,6 +25,7 @@ import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.util.CaseUtils;
 import ch.ivy.addon.portalkit.util.PortalCustomFieldUtils;
+import com.axonivy.portal.enums.CaseQueryType;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 import ch.ivyteam.ivy.workflow.query.CaseQuery.ICustomFieldOrderBy;
 import ch.ivyteam.ivy.workflow.query.CaseQuery.OrderByColumnQuery;
@@ -39,6 +40,7 @@ public class DashboardCaseSearchCriteria {
   private boolean isInConfiguration;
   private String quickSearchKeyword;
   private boolean showPinnedItem;
+  private CaseQueryType caseQueryType;
 
   public CaseQuery buildQuery() {
     CaseQuery query = buildQueryWithoutOrderByClause();
@@ -48,13 +50,23 @@ public class DashboardCaseSearchCriteria {
   }
 
   public CaseQuery buildQueryWithoutOrderByClause() {
-    CaseQuery query = CaseQuery.businessCases();
+    CaseQuery query = buildQueryBasedOnType();
     queryFilters(query);
     appendQuickSearchQuery(query);
     if (showPinnedItem) {
       queryPinnedCase(query);
     }
     return query;
+  }
+
+  private CaseQuery buildQueryBasedOnType() {
+    CaseQueryType type = Optional.ofNullable(caseQueryType)
+        .orElse(CaseQueryType.BUSINESS_CASE);
+    return switch (type) {
+      case SUB_CASE -> CaseQuery.subCases();
+      case ALL -> CaseQuery.create();
+      default -> CaseQuery.businessCases();
+    };
   }
 
   private void queryComplexFilter(CaseQuery query, List<DashboardFilter> filterList) {
@@ -312,6 +324,14 @@ public class DashboardCaseSearchCriteria {
 
   public void setShowPinnedItem(boolean showPinnedItem) {
     this.showPinnedItem = showPinnedItem;
+  }
+
+  public CaseQueryType getCaseQueryType() {
+    return caseQueryType;
+  }
+
+  public void setCaseQueryType(CaseQueryType caseQueryType) {
+    this.caseQueryType = caseQueryType;
   }
 
   private void queryPinnedCase(CaseQuery query) {
