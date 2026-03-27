@@ -148,7 +148,6 @@
                 <div id="username-deputy" class="ui-g-12 u-no-padding-top">
                   <div class="ui-g-12 pl-0">
                     <p:dataTable id="substitute-table"
-                      rendered="#{absenceManagementBean.canReadSubstitute(data.selectedAbsenceUser)}"
                       emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
                       styleClass="substitute-table ui-filter-togglable" reflow="true"
                       value="#{absenceManagementBean.getDeputyRolesBasedOnPermissions(data.deputyRoles, data.selectedAbsenceUser)}" var="deputyRole" 
@@ -193,7 +192,7 @@
                     : '/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/deputyFor')}</h3>
                 </div>
                 <div class="ui-g-12 u-no-padding-bottom">
-                  <p:dataTable id="substitution-table" rendered="#{absenceManagementBean.substitutionCapable}"
+                  <p:dataTable id="substitution-table"
                     emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
                     styleClass="substitution-table ui-g-12 u-no-padding-top pl-0"
                     reflow="true" value="#{data.substitutions}"

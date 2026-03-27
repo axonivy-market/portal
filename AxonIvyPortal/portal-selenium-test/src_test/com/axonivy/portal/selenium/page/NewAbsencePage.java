@@ -55,6 +55,7 @@ public class NewAbsencePage extends TemplatePage {
     fromInput.sendKeys(Keys.chord(Keys.CONTROL, "a"));
     fromInput.sendKeys(Keys.BACK_SPACE);
     fromInput.sendKeys(absenceFrom.format(formatter));
+    fromInput.sendKeys(Keys.ESCAPE);
   }
 
   public boolean isErrorMessageDisplayed() {
