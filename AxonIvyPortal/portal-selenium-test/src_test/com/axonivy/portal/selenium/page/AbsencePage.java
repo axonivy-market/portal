@@ -183,6 +183,10 @@ public class AbsencePage extends TemplatePage {
     return $("[id$='absences-management-container']");
   }
 
+  public SelenideElement getAbsenceManagement() {
+    return $("div[class*='absence-management']").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
   public SelenideElement getAddAbsenceDialog() {
     $("[id='absence-dialog_title']").click();
     return $("[id$='absence-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);

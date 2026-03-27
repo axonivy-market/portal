@@ -117,6 +117,8 @@ public class SettingScreenshotTest extends ScreenshotBaseTest {
     showNewDashboard();
     NewDashboardPage homePage = new NewDashboardPage();
     AbsencePage absencePage = homePage.openAbsencePage();
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(absencePage.getAbsenceManagement(),
+        ScreenshotUtils.SETTINGS_FOLDER + "select-absence-user", new ScreenshotMargin(10, 20));
     createAbsenceForCurrentUser(TODAY, TODAY, "Personal leave", absencePage);
     createAbsenceForCurrentUser(TOMORROW, TOMORROW, "Vacation", absencePage);
     NewAbsencePage newAbsencePage = absencePage.openNewAbsenceDialog();
