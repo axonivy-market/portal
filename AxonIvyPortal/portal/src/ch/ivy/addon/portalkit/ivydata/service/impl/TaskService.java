@@ -158,7 +158,7 @@ public class TaskService {
     return Sudo.get(() -> {
       IvyTaskResultDTO result = new IvyTaskResultDTO();
       TaskQuery finalQuery = extendQueryWithUserCanWorkOn(criteria);
-      finalQuery.aggregate().countRows().groupBy().expiryTimestamp().orderBy().expiryTimestamp();
+      finalQuery.aggregate().countRows().orderBy().expiryTimestamp();
 
       Recordset recordSet = taskQueryExecutor().getRecordset(finalQuery);
       ExpiryStatistic expiryStatistic = null;

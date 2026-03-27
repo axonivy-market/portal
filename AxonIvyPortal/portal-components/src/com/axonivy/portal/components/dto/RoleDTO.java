@@ -22,6 +22,7 @@ public class RoleDTO {
     super();
   }
 
+  @SuppressWarnings("removal")
   public RoleDTO(IRole iRole) {
     this.id = iRole.getId();
     this.name = iRole.getName();

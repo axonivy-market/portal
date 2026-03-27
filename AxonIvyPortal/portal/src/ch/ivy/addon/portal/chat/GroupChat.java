@@ -91,6 +91,7 @@ public class GroupChat implements Serializable {
     return this.assignees;
   }
 
+  @SuppressWarnings("removal")
   public void setAssignees(Set<SecurityMemberDTO> assignees) {
     this.assignees = assignees;
     if (CollectionUtils.isNotEmpty(assignees)) {
