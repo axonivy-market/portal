@@ -605,13 +605,6 @@ public class DashboardBean implements Serializable, IMultiLanguage {
     return false;
   }
 
-  public boolean canShowMultiSelect(DashboardWidget widget) {
-    if (widget instanceof TaskDashboardWidget) {
-      return true;
-    }
-    return false;
-  }
-
   public boolean getShowPinnedItem() {
     return this.isShowPinnedItem;
   }
@@ -663,8 +656,9 @@ public class DashboardBean implements Serializable, IMultiLanguage {
   public void deselectAllDelegatedTasks(DashboardWidget widget) {
     if (widget instanceof TaskDashboardWidget) {
       TaskDashboardWidget taskWidget = (TaskDashboardWidget) widget;
-      taskWidget.getSelectedTasksForBulkDelegation().clear();
-      taskWidget.getTaskSelectionMap().clear();
+      // taskWidget.getSelectedTasksForBulkDelegation().clear();
+      // taskWidget.getTaskSelectionMap().clear();
+      taskWidget.clearSelectedTasks();
     }
   }
 

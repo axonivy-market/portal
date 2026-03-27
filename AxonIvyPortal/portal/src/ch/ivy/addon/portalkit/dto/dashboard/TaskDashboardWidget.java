@@ -53,6 +53,7 @@ public class TaskDashboardWidget extends DashboardWidget {
   private boolean showWidgetInfo;
   private boolean showFullscreenMode;
   private boolean showPinnedToggle;
+  private boolean showSelectionToggle;
 
   @JsonIgnore
   private List<ITask> selectedTasksForBulkDelegation;
@@ -76,6 +77,7 @@ public class TaskDashboardWidget extends DashboardWidget {
     setSelectedTasksForBulkDelegation(new ArrayList<>());
     setTaskSelectionMap(new HashMap<>());
     setShowSelection(false);
+    setShowSelectionToggle(true);
   }
 
   public boolean isShowSelection() {
@@ -92,6 +94,14 @@ public class TaskDashboardWidget extends DashboardWidget {
 
   public void setBulkActionType(BulkActionType bulkActionType) {
     this.bulkActionType = bulkActionType;
+  }
+
+  public boolean isShowSelectionToggle() {
+    return showSelectionToggle;
+  }
+
+  public void setShowSelectionToggle(boolean showSelectionToggle) {
+    this.showSelectionToggle = showSelectionToggle;
   }
 
   @Override
@@ -382,9 +392,11 @@ public class TaskDashboardWidget extends DashboardWidget {
     this.showPinnedToggle = showPinnedToggle;
   }
 
-  public void resetSelectedTasksForBulkDelegation() {
+  public void clearSelectedTasks() {
     this.selectedTasksForBulkDelegation.clear();
     this.taskSelectionMap.clear();
+    this.bulkActionType = BulkActionType.NONE;
+    this.showSelection = false;
   }
 
 }

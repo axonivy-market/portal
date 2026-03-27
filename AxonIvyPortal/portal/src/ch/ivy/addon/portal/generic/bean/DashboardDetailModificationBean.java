@@ -1167,6 +1167,10 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     return false;
   }
 
+  public boolean displaySelectionToggleOption(DashboardWidget widget) {
+    return widget instanceof TaskDashboardWidget;
+  }
+
   public List<CaseQueryType> getAllCaseQueryTypes() {
     return Arrays.asList(CaseQueryType.values());
   }
