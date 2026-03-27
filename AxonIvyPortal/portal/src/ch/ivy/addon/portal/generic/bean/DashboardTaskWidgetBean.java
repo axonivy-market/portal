@@ -18,6 +18,7 @@ import org.apache.commons.lang3.BooleanUtils;
 import org.primefaces.event.SelectEvent;
 
 import com.axonivy.portal.components.util.HtmlUtils;
+import com.axonivy.portal.enums.BulkActionType;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.constant.PortalConstants;
@@ -43,6 +44,16 @@ public class DashboardTaskWidgetBean implements Serializable {
   private ITask selectedTask;
   private boolean isRunningTaskWhenClickingOnTaskInList;
   private TaskEmptyMessage noTasksMessage;
+
+  private boolean showDelegationColumn;
+
+  public boolean isShowDelegationColumn() {
+    return showDelegationColumn;
+  }
+
+  public void setShowDelegationColumn(boolean showDelegationColumn) {
+    this.showDelegationColumn = showDelegationColumn;
+  }
 
   @PostConstruct
   public void init() {
@@ -110,27 +121,30 @@ public class DashboardTaskWidgetBean implements Serializable {
   }
 
   public void toggleDelegationColumn(TaskDashboardWidget widget) {
-    widget.getColumns().stream()
-        .filter(col -> DashboardStandardTaskColumn.SELECTION.getField().equals(col.getField()))
-        .findFirst()
-        .ifPresent(col -> col.setVisible(BooleanUtils.isFalse(col.getVisible())));
+    widget.setShowSelection(!widget.isShowSelection());
+    if (!widget.isShowSelection()) {
+      widget.setBulkActionType(BulkActionType.NONE);
+    } else {
+      widget.setBulkActionType(BulkActionType.DELEGATE);
+    }
   }
 
-  public boolean isDelegationColumnVisible(TaskDashboardWidget widget) {
-    return widget.getColumns().stream()
-        .filter(col -> DashboardStandardTaskColumn.SELECTION.getField().equals(col.getField()))
-        .findFirst()
-        .map(col -> BooleanUtils.isTrue(col.getVisible()))
-        .orElse(false);
-  }
-
-  public void onSelectDelegateTask(ITask task, List<ITask> selectedTasksForBulkDelegation, Map<String, Boolean> taskSelectionMap) {
+  public void onSelectTask(BulkActionType bulkActionType, ITask task, List<ITask> selectedTasksForBulkDelegation, Map<String, Boolean> taskSelectionMap) {
     boolean isSelected = Boolean.TRUE.equals(taskSelectionMap.get(task.uuid()));
+    // switch (bulkActionType) {
+    //   case DELEGATE:
+        
+    //     break;
+    
+    //   default:
+    //     break;
+    // }
+
     if (isSelected) {
       selectedTasksForBulkDelegation.add(task);
     } else {
       selectedTasksForBulkDelegation.remove(task);
     }
-    Ivy.log().info(selectedTasksForBulkDelegation);
+    // Ivy.log().info(selectedTasksForBulkDelegation);
   }
 }

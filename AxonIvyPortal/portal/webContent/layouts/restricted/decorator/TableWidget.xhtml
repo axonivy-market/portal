@@ -117,7 +117,7 @@
         <p:commandButton id="a231421"
           icon="si si-list-bullets"
           ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/multiSelect')}"
-          styleClass="rounded-button ui-button-outlined u-mar-right-5 ui-button-widget #{dashboardTaskWidgetBean.isDelegationColumnVisible(widget) ? 'ui-button-primary' : ''}"
+          styleClass="rounded-button ui-button-outlined u-mar-right-5 ui-button-widget #{widget.showSelection ? 'ui-button-primary' : ''}"
           actionListener="#{dashboardTaskWidgetBean.toggleDelegationColumn(widget)}"
           update="#{componentToUpdateOnResetFilter}"
           process="@this" />

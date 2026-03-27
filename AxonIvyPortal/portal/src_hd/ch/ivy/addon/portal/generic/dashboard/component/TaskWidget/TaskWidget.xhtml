@@ -66,6 +66,15 @@
         <f:attribute name="widgetId" value="#{taskWidget.id}" />
         <p:ajax event="sort" update="dashboard-tasks" onstart="liveScroll()" disabled="#{!isPreviewMode and !isReadOnlyMode}" />
 
+        <p:column headerText="" rendered="#{taskWidget.showSelection}" style="text-align: center; width: 80px">
+          <h:panelGroup >
+            <ic:ch.ivy.addon.portalkit.component.task.column.TaskSelection task="#{task}"
+              isEnabled="#{taskActionBean.handleSelectionAction(taskWidget.bulkActionType, task)}" managedBean="#{dashboardTaskWidgetBean}"
+              onSelectCheckbox="#{dashboardTaskWidgetBean.onSelectTask(taskWidget.bulkActionType, task, taskWidget.selectedTasksForBulkDelegation, taskWidget.taskSelectionMap)}"
+              taskWidget="#{taskWidget}" />
+          </h:panelGroup>
+        </p:column>
+
         <p:columns id="dashboard-tasks-columns" var="column" value="#{taskWidget.columns}" styleClass="#{column.styleClass} #{(column.field eq 'start' or column.field eq 'name' or column.field eq 'actions') ? '' : 'u-hidden-sm-down'} widget-column-header"
           visible="#{column.visible}" field="#{column.field}" filterable="false"
           sortBy="#{column.field}" sortable="#{(isPreviewMode or isReadOnlyMode) and column.sortable}"
@@ -95,15 +104,6 @@
           
           <h:panelGroup rendered="#{column.field eq 'activator'}">
             <ui:include src="ResponsibleCell.xhtml" />
-          </h:panelGroup>
-
-          <h:panelGroup rendered="#{column.field eq 'selection'}">
-            <c:set var="canDelegate" value="#{taskActionBean.canDelegate(task)}" />
-            <h:outputText id="task-delegation" value="#{column.display(task)}"/>
-            <ic:ch.ivy.addon.portalkit.component.task.column.TaskDelegation task="#{task}"
-            canDelegate="#{canDelegate}" managedBean="#{dashboardTaskWidgetBean}"
-            selectedTasksForBulkDelegation="#{taskWidget.selectedTasksForBulkDelegation}"
-            taskWidget="#{taskWidget}"/>
           </h:panelGroup>
           
           <h:panelGroup rendered="#{column.field eq 'state'}">

@@ -162,7 +162,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 816, "y" : 256 },
+        "at" : { "x" : 864, "y" : 256 },
         "size" : { "width" : 160 }
       },
       "connect" : [
@@ -319,7 +319,7 @@
         "guid" : "19CBDC6DB2A307C4"
       },
       "visual" : {
-        "at" : { "x" : 96, "y" : 768 }
+        "at" : { "x" : 96, "y" : 872 }
       },
       "connect" : [
         { "id" : "e50", "to" : "f51" }
@@ -339,7 +339,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 256, "y" : 768 },
+        "at" : { "x" : 264, "y" : 872 },
         "size" : { "width" : 160 }
       },
       "connect" : [
@@ -349,7 +349,7 @@
       "id" : "f52",
       "type" : "HtmlDialogEnd",
       "visual" : {
-        "at" : { "x" : 448, "y" : 768 }
+        "at" : { "x" : 448, "y" : 872 }
       }
     }, {
       "id" : "f53",
@@ -489,7 +489,7 @@
       "id" : "f65",
       "type" : "HtmlDialogEnd",
       "visual" : {
-        "at" : { "x" : 1264, "y" : 728 }
+        "at" : { "x" : 416, "y" : 752 }
       }
     }, {
       "id" : "f68",
@@ -516,10 +516,10 @@
         "guid" : "19D19A06A35B76F5"
       },
       "visual" : {
-        "at" : { "x" : 648, "y" : 728 }
+        "at" : { "x" : 88, "y" : 752 }
       },
       "connect" : [
-        { "id" : "f70", "to" : "f72" }
+        { "id" : "f72", "to" : "f69" }
       ]
     }, {
       "id" : "f69",
@@ -527,50 +527,23 @@
       "config" : {
         "output" : {
           "code" : [
-            "// in.usersDTOList = new com.axonivy.portal.developerexamples.bean.Test()",
-            "//     .getBulkDelegateAutocomplete(",
-            "//         in.selectedTasks, ",
-            "//         in.query, ",
-            "//         in.startIndex, ",
-            "//         in.count, ",
-            "//         in.currentUser.getMemberName(), ",
-            "//         in.excludedUsernames",
-            "//     );"
+            "import com.axonivy.portal.service.BulkDelegateService.DelegationData;",
+            "import com.axonivy.portal.service.BulkDelegateService;",
+            "import java.util.ArrayList;",
+            "import ch.ivy.addon.portalkit.util.SecurityMemberUtils;",
+            "",
+            "DelegationData data = BulkDelegateService.getInstance().getBulkDelegateAutocomplete(in.rolesToDelegate, in.usersToDelegate, in.selectedTasks, ",
+            "SecurityMemberUtils.getCurrentSessionUserAsSecurityMemberDTO());",
+            "in.rolesToDelegate = data.getRoles();",
+            "in.usersToDelegate = data.getUsers();"
           ]
         }
       },
       "visual" : {
-        "at" : { "x" : 1064, "y" : 728 }
+        "at" : { "x" : 272, "y" : 752 }
       },
       "connect" : [
         { "id" : "f71", "to" : "f65" }
-      ]
-    }, {
-      "id" : "f72",
-      "type" : "SubProcessCall",
-      "name" : "SecurityService - Find Users",
-      "config" : {
-        "processCall" : "Ivy Data Processes/SecurityService:findUsersWithRoles(Integer,Integer,java.util.List<String>,java.util.List<String>,String)",
-        "call" : {
-          "map" : {
-            "param.query" : "in.queryAutoComplete",
-            "param.startIndex" : "0",
-            "param.count" : "101"
-          }
-        },
-        "output" : {
-          "map" : {
-            "out" : "in",
-            "out.usersToDelegate" : "result.users"
-          }
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 864, "y" : 728 },
-        "size" : { "width" : 160 }
-      },
-      "connect" : [
-        { "id" : "f73", "to" : "f69", "color" : "default" }
       ]
     } ]
 }

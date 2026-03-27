@@ -25,7 +25,7 @@
     widgetVar="multiple-task-delegate-dialog-#{widgetIndex}" dynamic="true" modal="true" showEffect="fade" hideEffect="fade" resizable="false" appendTo="@(body)"
     styleClass="task-delegate-dialog" responsive="true">
 
-    <h:panelGroup rendered="#{data.canDelegateTask}">
+    <h:panelGroup>
       <h:form id="multiple-task-delegate-form">
         <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDelegate/delegateTaskHeaderLabel')}</span>
         <h:panelGroup id="multiple-activator-panel" layout="block" styleClass="delegate-dialog-activator-panel"
@@ -61,7 +61,7 @@
 
           <ic:com.axonivy.portal.components.RoleSelection id="group-activator-select-component" scrollHeight="400"
             componentId="group-activator-select" selectedRole="#{data.selectedRole}" rendered="#{!data.isUserDelegated}"
-            cache="true" queryDelay="500" completeMethod="#{logic.autoCompleteForRoleDelegate}"
+            cache="true" queryDelay="500" completeMethod="#{logic.autoCompleteForRoleDelegate2}"
             isRenderedMessage="false"
             appendOption="#{visibilityBean.delegationAppendOption()}"
             autoCompletePanelStyleClass="ui-fluid">
@@ -94,9 +94,6 @@
             oncomplete="PF('multiple-task-delegate-dialog-#{widgetIndex}').hide();"/>
         </h:panelGroup>
       </h:form>
-    </h:panelGroup>
-    <h:panelGroup rendered="#{!data.canDelegateTask}" styleClass="ui-g" layout="block">
-      <h:outputText styleClass="ui-g-12 u-no-padding-right u-no-padding-left" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/cannotDelegateTaskMessage')}" />
     </h:panelGroup>
   </p:dialog>
 

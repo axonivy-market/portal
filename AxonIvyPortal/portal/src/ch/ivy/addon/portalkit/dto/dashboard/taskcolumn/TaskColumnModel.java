@@ -5,6 +5,7 @@ import java.util.Optional;
 import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
+import ch.ivy.addon.portalkit.service.exception.PortalException;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.custom.field.CustomFieldType;
@@ -52,7 +53,6 @@ public class TaskColumnModel extends ColumnModel {
       case NAME -> new NameColumnModel();
       case DESCRIPTION -> new DescriptionColumnModel();
       case RESPONSIBLE -> new ResponsibleColumnModel();
-      case SELECTION -> new SelectionColumnModel();
       case STATE -> new StateColumnModel();
       case CREATED -> new CreatedDateColumnModel();
       case COMPLETED -> new CompletedDateColumnModel();
@@ -60,6 +60,7 @@ public class TaskColumnModel extends ColumnModel {
       case CATEGORY -> new CategoryColumnModel();
       case APPLICATION -> new ApplicationColumnModel();
       case ACTIONS -> new ActionsColumnModel();
+      default -> throw new PortalException("Unexpected value: " + columnType);
     }).orElse(new TaskColumnModel());
   }
 

@@ -53,7 +53,6 @@ public class TaskDashboardExporter extends DashboardWidgetExporter{
       case ID -> "/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ID";
       case PRIORITY -> "/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/PRIORITY";
       case RESPONSIBLE -> "/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR";
-      case SELECTION -> "/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/DELEGATION";
       case CREATED -> "/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/CREATION_TIME";
       case COMPLETED -> "/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/COMPLETED";
       case EXPIRY -> "/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/EXPIRY_TIME";

@@ -17,6 +17,7 @@ import org.primefaces.model.SortMeta;
 
 import com.axonivy.portal.dto.dashboard.WidgetInformationCategoryStatisticData;
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
+import com.axonivy.portal.enums.BulkActionType;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import ch.ivy.addon.portalkit.datamodel.DashboardTaskLazyDataModel;
@@ -27,6 +28,7 @@ import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.WidgetFilterService;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 import ch.ivy.addon.portalkit.util.SortFieldUtil;
+import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.task.TaskBusinessState;
 
@@ -58,6 +60,10 @@ public class TaskDashboardWidget extends DashboardWidget {
   private Map<String, Boolean> taskSelectionMap;
   @JsonIgnore
   private List<String> errors;
+  @JsonIgnore
+  private boolean showSelection;
+  @JsonIgnore
+  private BulkActionType bulkActionType;
 
   public TaskDashboardWidget() {
     dataModel = new DashboardTaskLazyDataModel();
@@ -69,6 +75,23 @@ public class TaskDashboardWidget extends DashboardWidget {
     setShowPinnedToggle(true);
     setSelectedTasksForBulkDelegation(new ArrayList<>());
     setTaskSelectionMap(new HashMap<>());
+    setShowSelection(false);
+  }
+
+  public boolean isShowSelection() {
+    return showSelection;
+  }
+
+  public void setShowSelection(boolean showSelection) {
+    this.showSelection = showSelection;
+  }
+
+  public BulkActionType getBulkActionType() {
+    return bulkActionType;
+  }
+
+  public void setBulkActionType(BulkActionType bulkActionType) {
+    this.bulkActionType = bulkActionType;
   }
 
   @Override
