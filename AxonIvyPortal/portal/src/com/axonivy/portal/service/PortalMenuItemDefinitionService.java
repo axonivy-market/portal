@@ -27,7 +27,7 @@ public class PortalMenuItemDefinitionService extends JsonConfigurationService<Po
 
   @Override
   public String getConfigKey() {
-    return PortalVariable.MENU.key;
+    return PortalVariable.MENU_ORDER.key;
   }
 
   @Override

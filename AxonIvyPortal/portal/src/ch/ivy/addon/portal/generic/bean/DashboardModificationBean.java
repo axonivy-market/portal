@@ -6,6 +6,8 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.Collection;
+import java.util.Comparator;
+import java.util.HashMap;
 import java.util.LinkedHashSet;
 import java.util.Collections;
 import java.util.List;
@@ -30,6 +32,11 @@ import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 
 import com.axonivy.portal.bo.jsonversion.DashboardJsonVersion;
+import com.axonivy.portal.dto.menu.DashboardMenuItemDefinition;
+import com.axonivy.portal.dto.menu.PortalMenuItemDefinition;
+import com.axonivy.portal.menu.management.adapter.DashboardMenuItemDefinitionAdapter;
+import com.axonivy.portal.menu.management.enums.MenuSource;
+import com.axonivy.portal.service.PortalMenuItemDefinitionService;
 import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import com.axonivy.portal.components.util.RoleUtils;
 import com.axonivy.portal.dto.dashboard.NavigationDashboardWidget;
@@ -69,6 +76,9 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
   protected List<String> selectedDashboardPermissions;
   private Dashboard dashboardToExport;
   private List<String> referencedDashboardTitles = new ArrayList<>();
+  private List<Dashboard> hiddenDashboards = new ArrayList<>();
+  private DashboardDisplayType previousDisplayType;
+  private List<Dashboard> topMenuDashboards = new ArrayList<>();
 
   public void initConfigration(boolean isPublicDashboard) {
     this.isPublicDashboard = isPublicDashboard;
@@ -79,17 +89,26 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
   protected void collectDashboardsForManagement() {
     this.dashboards = new ArrayList<>();
     String dashboardInUserProperty = readDashboardBySessionUser();
+    List<Dashboard> allDashboards;
     if (isPublicDashboard) {
-      this.dashboards = DashboardUtils.getPublicDashboards();
+      allDashboards = DashboardUtils.getPublicDashboards();
     } else if (StringUtils.isNoneEmpty(dashboardInUserProperty)) {
-      List<Dashboard> myDashboards = DashboardUtils.getPrivateDashboards();
-      this.dashboards.addAll(myDashboards);
+      allDashboards = DashboardUtils.getPrivateDashboards();
+    } else {
+      allDashboards = new ArrayList<>();
     }
+    Map<DashboardDisplayType, List<Dashboard>> groupedDashboardFollowingType = allDashboards.stream()
+        .collect(Collectors.groupingBy(dashboard ->
+            dashboard.getDashboardDisplayType() != null ? dashboard.getDashboardDisplayType() : DashboardDisplayType.SUB_MENU));
+    topMenuDashboards = sortByMenuOrder(groupedDashboardFollowingType.getOrDefault(DashboardDisplayType.TOP_MENU, new ArrayList<>()));
+    hiddenDashboards = groupedDashboardFollowingType.getOrDefault(DashboardDisplayType.HIDDEN, new ArrayList<>());
+    this.dashboards = groupedDashboardFollowingType.getOrDefault(DashboardDisplayType.SUB_MENU, new ArrayList<>());
   }
 
   public void openDashboardDetailDialog(Dashboard dashboard) {
     this.selectedDashboardPermissions = new ArrayList<>();
     this.selectedDashboard = dashboard;
+    this.previousDisplayType = dashboard.getDashboardDisplayType();
     if (StringUtils.isBlank(this.selectedDashboard.getIcon())) {
       this.selectedDashboard
           .setIcon(this.isPublicDashboard ? PUBLIC_DASHBOARD_DEFAULT_ICON
@@ -139,13 +158,46 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
     }
     this.selectedDashboard.setDisplayedPermission(displayedPermission);
     this.selectedDashboard.setPermissions(permissions);
-    if (!this.dashboards.contains(selectedDashboard)) {
+    if (!this.dashboards.contains(selectedDashboard) && !topMenuDashboards.contains(selectedDashboard)
+        && !hiddenDashboards.contains(selectedDashboard)) {
       selectedDashboard.setVersion(DashboardJsonVersion.LATEST_VERSION.getValue());
       this.dashboards.add(selectedDashboard);
     }
     
     saveDashboards(new ArrayList<>(this.dashboards));
     updateSessionAttributeWhenDisplayTypeIsHidden();
+    updateMenuOrderOnDashboardTypeChange();
+    collectDashboardsForManagement();
+  }
+
+  private void updateMenuOrderOnDashboardTypeChange() {
+    DashboardDisplayType newDisplayType = this.selectedDashboard.getDashboardDisplayType();
+    if (previousDisplayType == newDisplayType) {
+      return;
+    }
+    PortalMenuItemDefinitionService menuService = PortalMenuItemDefinitionService.getInstance();
+    if (DashboardDisplayType.TOP_MENU.equals(newDisplayType)) {
+      // add to top menu: add to menu order at the bottom
+      DashboardMenuItemDefinition menuDef = DashboardMenuItemDefinitionAdapter.getInstance()
+          .toMenuDefinition(selectedDashboard, MenuSource.DASHBOARD);
+      List<PortalMenuItemDefinition> currentOrder = menuService.findAll();
+      int maxIndex = currentOrder.stream()
+          .map(PortalMenuItemDefinition::getIndex)
+          .filter(idx -> idx != null)
+          .max(Integer::compareTo)
+          .orElse(-1);
+      menuDef.setIndex(maxIndex + 1);
+      currentOrder.add(menuDef);
+      menuService.saveAllPublicConfig(currentOrder);
+    } else if (DashboardDisplayType.TOP_MENU.equals(previousDisplayType)) {
+      // remove from top menu: remove from menu order
+      List<PortalMenuItemDefinition> currentOrder = menuService.findAll();
+      String dashboardId = selectedDashboard.getId();
+      if (dashboardId != null) {
+        currentOrder.removeIf(m -> dashboardId.equals(m.getId()));
+      }
+      menuService.saveAllPublicConfig(currentOrder);
+    }
   }
   
   private void updateSessionAttributeWhenDisplayTypeIsHidden() {
@@ -157,9 +209,12 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
   
   public void removeDashboard() {
     removeWidgetImagesOfDashboard(selectedDashboard);
-    
+
     this.dashboards.remove(selectedDashboard);
+    topMenuDashboards.remove(selectedDashboard);
+    hiddenDashboards.remove(selectedDashboard);
     saveDashboards(new ArrayList<>(this.dashboards));
+    collectDashboardsForManagement();
   }
 
   /**
@@ -199,7 +254,10 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
   }
 
   protected void saveDashboards(List<Dashboard> dashboards) {
-    String dashboardJson = BusinessEntityConverter.entityToJsonValue(dashboards);
+    List<Dashboard> allDashboards = new ArrayList<>(topMenuDashboards);
+    allDashboards.addAll(dashboards);
+    allDashboards.addAll(hiddenDashboards);
+    String dashboardJson = BusinessEntityConverter.entityToJsonValue(allDashboards);
     if (isPublicDashboard) {
       Ivy.var().set(PortalVariable.DASHBOARD.key, dashboardJson);
     } else {
@@ -484,11 +542,38 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
   }
 
   public void savePrivateArrangement() {
-    String dashboardJson = BusinessEntityConverter.entityToJsonValue(this.dashboards);
+    List<Dashboard> allDashboards = new ArrayList<>(topMenuDashboards);
+    allDashboards.addAll(this.dashboards);
+    allDashboards.addAll(hiddenDashboards);
+    String dashboardJson = BusinessEntityConverter.entityToJsonValue(allDashboards);
     Ivy.session().getSessionUser().setProperty(PortalVariable.DASHBOARD.key, dashboardJson);
   }
 
   private void updateDashboardCache() {
     DashboardUtils.updateDashboardCache();
+  }
+
+  public List<Dashboard> getTopMenuDashboards() {
+    return topMenuDashboards;
+  }
+
+  public List<Dashboard> getHiddenDashboards() {
+    return hiddenDashboards;
+  }
+
+  private List<Dashboard> sortByMenuOrder(List<Dashboard> dashboards) {
+    List<PortalMenuItemDefinition> menuOrder = PortalMenuItemDefinitionService.getInstance().findAll();
+    if (CollectionUtils.isEmpty(menuOrder)) {
+      return dashboards;
+    }
+    Map<String, Integer> idToIndex = new HashMap<>();
+    for (PortalMenuItemDefinition menuDef : menuOrder) {
+      if (menuDef.getId() != null && menuDef.getIndex() != null) {
+        idToIndex.put(menuDef.getId(), menuDef.getIndex());
+      }
+    }
+    dashboards.sort(Comparator.comparingInt(
+        d -> idToIndex.getOrDefault(d.getId(), Integer.MAX_VALUE)));
+    return dashboards;
   }
 }
