@@ -61,6 +61,7 @@ public class CustomWidgetUtils {
     return getPropertyByKeyPattern(task.getId(), keyPattern);
   }
 
+  @SuppressWarnings("removal")
   public static String getUserPropertyByKeyPattern(IUser user, String keyPattern) {
     return getPropertyByKeyPattern(user.getId(), keyPattern);
   }
@@ -103,6 +104,7 @@ public class CustomWidgetUtils {
     return propertyValue;
   }
 
+  @SuppressWarnings("removal")
   private static String getUserPropertyKey(Long referenceId, String[] keyParts) {
     String propertyValue = EMPTY;
     IUser user =  UserUtils.findUserByUserId(referenceId);

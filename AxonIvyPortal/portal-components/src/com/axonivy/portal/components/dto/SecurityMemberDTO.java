@@ -22,6 +22,7 @@ public class SecurityMemberDTO implements Serializable {
 
   public SecurityMemberDTO() {}
 
+  @SuppressWarnings("removal")
   public SecurityMemberDTO(ISecurityMember securityMember) {
     this.id = securityMember.getId();
     this.securityMemberId = securityMember.getSecurityMemberId();
