@@ -82,11 +82,11 @@
         </div>
       </h:panelGroup>
 
-      <h:panelGroup id="edit-deputy-selection-panel" styleClass="deputy-selection-panel ui-g-12" layout="block">
+      <h:panelGroup id="edit-deputy-selection-panel" styleClass="deputy-selection-panel ui-g-12" layout="block" rendered="#{absenceManagementBean.canReadSubstitute(data.selectedAbsenceUser)}">
         <div class="pb-3">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/Substitutes')}</div>
         <h:panelGroup id="select-deputy" layout="block" styleClass="select-deputy w-full flex no-wrap">
           <ic:com.axonivy.portal.components.UserSelection id="user-selection-component"
-            selectedUser="#{data.selectedDeputy}" queryDelay="500" isRenderedMessage="false"
+            selectedUser="#{data.selectedDeputy}" queryDelay="500" isRenderedMessage="false" isDisabled="#{!absenceManagementBean.canCreateSubstitute(data.selectedAbsenceUser)}"
             autoCompletePanelStyleClass="flex-grow-1" hasCustomizedSelectionList="true">
             <p:column>
               <pc:securityMemberNameAndAvatar displayName="#{securityMemberDisplayNameFormatBean.generateFullDisplayNameForUserDTO(user)}"
@@ -99,7 +99,7 @@
 
           <p:commandButton id="add-deputy-button" styleClass="add-deputy-button px-2 ml-2" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/add')}"
             ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/add')}"
-            disabled="#{data.selectedDeputy == null}" actionListener="#{logic.addDeputy('PERSONAL_TASK_DURING_ABSENCE')}" global="false"
+            disabled="#{!absenceManagementBean.canCreateSubstitute(data.selectedAbsenceUser)}" actionListener="#{logic.addDeputy('PERSONAL_TASK_DURING_ABSENCE')}" global="false"
             process="@form"
             update="@form absence-form:absence-messages" />
         </h:panelGroup>
@@ -113,7 +113,7 @@
             <pc:securityMemberNameAndAvatar containerStyleClass="w-9"
               displayName="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(deputy, deputy.getName())}"
               securityMember="#{deputy}" />
-            <p:commandLink id="delete-deputy" styleClass="si si-bin-1 delete-deputy"
+            <p:commandLink id="delete-deputy" styleClass="si si-bin-1 delete-deputy" disabled="#{!absenceManagementBean.canCreateSubstitute(data.selectedAbsenceUser)}"
               actionListener="#{logic.removeDeputy(deputy)}" update="absence-form:edit-deputy-selection-panel"
               ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}" />
           </p:column>

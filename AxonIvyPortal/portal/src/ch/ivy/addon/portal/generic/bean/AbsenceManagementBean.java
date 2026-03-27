@@ -153,10 +153,23 @@ public class AbsenceManagementBean implements Serializable{
       return role != null ? role.getDeputies() : Collections.emptyList();
   }
 
-  public List<DeputyRole> getDeputyRolesExcludePersonalTaskDuringAbsence(List<DeputyRole> list) {
+  public List<DeputyRole> getDeputyRolesBasedOnPermissions(List<DeputyRole> list, UserDTO selectedAbsenceUser) {
+    boolean isTheCurrentUser = Ivy.session().getSessionUserName().contentEquals(selectedAbsenceUser.getName());
+    boolean isAbsenceReadable = PermissionUtils.hasPermission(USER_READ_ABSENCES);
+    if (isAbsenceReadable && substitutionReadable && substitutionCreatable && !isTheCurrentUser) {
+      return list;
+    }
     return CollectionUtils.emptyIfNull(list).stream()
         .filter(item -> !DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE.equals(item.getDeputyRoleType()))
         .collect(Collectors.toList());
+  }
+
+  public boolean canAddAbsence(UserDTO selectedAbsenceUser) {
+    boolean isTheCurrentUser = Ivy.session().getSessionUserName().contentEquals(selectedAbsenceUser.getName());
+    if (isTheCurrentUser) {
+      return absencesCreatable || ownAbsencesCreatable;
+    }
+    return absencesCreatable;
   }
 
 }
