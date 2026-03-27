@@ -22,7 +22,7 @@ import com.codeborne.selenide.Condition;
 import ch.ivy.addon.portalkit.enums.DeputyRoleType;
 
 
-@IvyWebTest(headless = false)
+@IvyWebTest
 public class AbsenceTest extends BaseTest {
   private static final LocalDate TODAY = LocalDate.now();
   private static final LocalDate YESTERDAY = TODAY.minusDays(1);
@@ -180,7 +180,7 @@ public class AbsenceTest extends BaseTest {
     redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/grantReadOwnAbsencesPermission.ivp");
     redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/grantCreateAbsencePermission.ivp");
     AbsencePage absencePage = openAbsencePage();
-    createAbsenceForCurrentUser(YESTERDAY, YESTERDAY, "For travel", absencePage);
+    createAbsence(TestAccount.GUEST_USER.getFullName(),YESTERDAY, YESTERDAY, "For travel", absencePage);
 
     login(TestAccount.DEMO_USER);
     redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/grantReadOwnAbsencesPermission.ivp");
@@ -214,14 +214,14 @@ public class AbsenceTest extends BaseTest {
     redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/grantCreateOwnSubstitutePermission.ivp");
     AbsencePage absencePage = openAbsencePage();
     List<String> deputyNames = Arrays.asList(TestAccount.GUEST_USER.getFullName());
-    absencePage.setDeputy(deputyNames, DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE);
-
+    createAbsenceWithDeputies(TODAY, TODAY, "get sick", deputyNames, absencePage);
+    
     login(TestAccount.GUEST_USER);
     redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/grantCreateOwnSubstitutePermission.ivp");
     absencePage = openAbsencePage();
     absencePage.setSubstitutedByAdmin(TestAccount.DEMO_USER.getFullName());
     assertEquals(TestAccount.GUEST_USER.getFullName(),
-        absencePage.getMyDisabledDeputy(absencePage.indexOfDeputyRole(DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE)));
+        absencePage.getDuringAbsenceDeputiesFromAbsenceTable());
   }
 
   @Test
