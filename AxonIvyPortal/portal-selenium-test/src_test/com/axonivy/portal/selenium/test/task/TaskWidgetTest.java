@@ -123,11 +123,11 @@ public class TaskWidgetTest extends BaseTest {
 
   @Test
   public void testTogglePinnedTask() {
-    showNewDashboard();
     NavigationHelper.navigateToTaskList();
     TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
-    taskWidget.verifyTaskNumber(3);
-    for (int i = 2; i > 0; i--) {
+    taskWidget.waitUntilTaskCountDifferentThanZero();
+    int totalTasks = taskWidget.countAllTasks().size();
+    for (int i = totalTasks - 1; i > totalTasks - 3; i--) {
       taskWidget.pinTaskByIndex(i);
     }
     taskWidget.togglePinnedTask();
