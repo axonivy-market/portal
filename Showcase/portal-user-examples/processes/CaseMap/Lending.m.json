@@ -1,4 +1,5 @@
 {
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/casemap.json",
   "uuid" : "70765b37-a3e8-418a-a8d5-c2b3a539408e",
   "id" : "lending",
   "name" : "Lending (Case Map)",
