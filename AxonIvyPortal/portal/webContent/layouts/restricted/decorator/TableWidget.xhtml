@@ -33,6 +33,8 @@
   <c:set var="renderFilter" value="#{isReadOnlyMode and (empty isRenderFilter ? 'true': isRenderFilter)}"/>
   <c:set var="renderInfo" value="#{isReadOnlyMode and (empty isRenderInfo ? 'true': isRenderInfo)}"/>
   <c:set var="renderExpandCollapse" value="#{isReadOnlyMode and (empty isRenderExpandCollapse ? 'true': isRenderExpandCollapse)}"/>
+  <c:set var="renderSelectionToggle" value="#{isReadOnlyMode and (empty isRenderSelectionToggle ? 'true': isRenderSelectionToggle)}"/>
+
   <f:event listener="#{dashboardBean.setSearchScope(widget)}" type="preRenderComponent" />
   <h:panelGroup layout="block" styleClass="widget__header" rendered="#{not isHeaderHidden}">
     <h:panelGroup id="widget__header" styleClass="widget__header-title text-ellipsis" pt:role="heading" pt:aria-level="1">#{widget.name}</h:panelGroup>
@@ -112,7 +114,7 @@
       </h:form>
     </h:panelGroup>
 
-    <h:panelGroup layout="block" styleClass="u-mar-right-2" rendered="#{dashboardBean.canShowMultiSelect(widget)}">
+    <h:panelGroup layout="block" styleClass="u-mar-right-2" rendered="#{renderSelectionToggle}">
       <h:form id="toggle-delegation-form">
         <p:commandButton id="a231421"
           icon="si si-list-bullets"

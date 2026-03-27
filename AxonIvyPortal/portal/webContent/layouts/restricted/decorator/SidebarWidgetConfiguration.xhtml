@@ -133,6 +133,23 @@
           </p:selectBooleanCheckbox>
         </div>
       </h:panelGroup>
+
+      <h:panelGroup id="selection-toggle-group" layout="block"
+        rendered="#{managedBean.displaySelectionToggleOption(widget)}"
+        styleClass="widget-configuration-group-item ui-fluid flex">
+        <div class="label-item">
+          <p:outputLabel for="selection-toggle-option" styleClass="u-mar-right-5"
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/ShowSelectionToggle')} locne"/>
+        </div>
+        <div class="ui-inputgroup">
+          <p:selectBooleanCheckbox id="selection-toggle-option"
+            value="#{widget.showSelectionToggle}">
+            <p:ajax process="selection-toggle-group" update="selection-toggle-group"
+            partialSubmit="true" />
+          </p:selectBooleanCheckbox>
+        </div>
+      </h:panelGroup>
+      
       <!-- Case Query Type Selector (Case Widget only) -->
       <h:panelGroup rendered="#{widget.type.name() == 'CASE'}">
         <h4 class="widget-configuration-section-header separator-top">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/dataSettings')}</h4>
