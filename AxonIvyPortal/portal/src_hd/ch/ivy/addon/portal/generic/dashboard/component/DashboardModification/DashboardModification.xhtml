@@ -14,7 +14,7 @@
   <f:event listener="#{dashboardModificationBean.initConfigration(isPublicDashboard)}" type="preRenderComponent" />
   <h:panelGroup id="dashboard-modification-container" styleClass="ui-g-12">
 
-    <h:panelGroup layout="block" rendered="#{isPublicDashboard and dashboardModificationBean.topMenuDashboardCount gt 0}"
+    <h:panelGroup layout="block" rendered="#{isPublicDashboard}"
       styleClass="ui-g-12 u-no-padding-left">
       <h4>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/SubMenuDashboards')}</h4>
       <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/SubMenuDashboardsDescription')}</span>
@@ -97,7 +97,7 @@
       </p:column>
     </p:dataTable>
 
-    <h:panelGroup layout="block" rendered="#{isPublicDashboard and dashboardModificationBean.topMenuDashboardCount gt 0}"
+    <h:panelGroup layout="block" rendered="#{isPublicDashboard and not empty dashboardModificationBean.topMenuDashboards}"
       styleClass="ui-g-12 u-padding-top-10">
       <h4>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/MenuDashboards')}</h4>
       <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/MenuDashboardsDescription')}</span>

@@ -113,7 +113,7 @@ public class MenuView implements Serializable {
       Predicate<PortalMenuItemDefinition> matcher = MenuMatcher.matcherFor(subMenu);
 
       int menuIndex = menuDefinitions.stream().filter(matcher).findFirst().map(PortalMenuItemDefinition::getIndex)
-          .orElseGet(() -> subMenuItems.indexOf(subMenu) + 1);
+          .orElseGet(() -> menuDefinitions.size() + subMenuItems.indexOf(subMenu));
 
       return buildSubMenuItem(subMenu, menuIndex);
     }).collect(Collectors.toList());
@@ -126,7 +126,7 @@ public class MenuView implements Serializable {
           .filter(menu -> {
             ExternalLinkMenuItemDefinition externalMenu = (ExternalLinkMenuItemDefinition) menu;
             return adaptor.getDisplayNameAsString().contentEquals(MenuUtils.getDisplayTitle(externalMenu));
-          }).findFirst().map(PortalMenuItemDefinition::getIndex).orElseGet(() -> mainMenuModel.getElements().size());
+          }).findFirst().map(PortalMenuItemDefinition::getIndex).orElseGet(() -> menuDefinitions.size() + thirdPartyApps.indexOf(app));
 
       return buildThirdPartyItem(app, index);
     }).collect(Collectors.toList()));

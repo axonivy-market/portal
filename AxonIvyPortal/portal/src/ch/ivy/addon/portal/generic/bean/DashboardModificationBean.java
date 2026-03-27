@@ -97,12 +97,12 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
     } else {
       allDashboards = new ArrayList<>();
     }
-    Map<DashboardDisplayType, List<Dashboard>> grouped = allDashboards.stream()
+    Map<DashboardDisplayType, List<Dashboard>> groupedDashboardFollowingType = allDashboards.stream()
         .collect(Collectors.groupingBy(dashboard ->
             dashboard.getDashboardDisplayType() != null ? dashboard.getDashboardDisplayType() : DashboardDisplayType.SUB_MENU));
-    topMenuDashboards = sortByMenuOrder(grouped.getOrDefault(DashboardDisplayType.TOP_MENU, new ArrayList<>()));
-    hiddenDashboards = grouped.getOrDefault(DashboardDisplayType.HIDDEN, new ArrayList<>());
-    this.dashboards = grouped.getOrDefault(DashboardDisplayType.SUB_MENU, new ArrayList<>());
+    topMenuDashboards = sortByMenuOrder(groupedDashboardFollowingType.getOrDefault(DashboardDisplayType.TOP_MENU, new ArrayList<>()));
+    hiddenDashboards = groupedDashboardFollowingType.getOrDefault(DashboardDisplayType.HIDDEN, new ArrayList<>());
+    this.dashboards = groupedDashboardFollowingType.getOrDefault(DashboardDisplayType.SUB_MENU, new ArrayList<>());
   }
 
   public void openDashboardDetailDialog(Dashboard dashboard) {

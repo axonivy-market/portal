@@ -743,7 +743,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       label: Case Type
     CloneWidget: Clone widget
     CustomWidgets: Custom Widgets
-    dataSettings: Data Settings
     DashboardConfiguration:
       CreateFromScratch: Create from scratch
       CreateFromScratchDescription: Create your own dashboard from scratch
@@ -753,17 +752,15 @@ ch.ivy.addon.portalkit.ui.jsf:
       DoNotSupportMobile: Dashboard configuration is not supported for mobile devices.
       EditPrivateDashboards: Edit your private dashboards
       EditPublicDashboards: Edit public dashboards
+      ExportDashboard: Export dashboard
       ExportReferencedDialogHeader: Dashboard references other dashboards
       ExportReferencedDialogMessage: 'The following dashboards are referenced by navigation widgets. Export and import them too for the widgets to work correctly:'
       ExportReferencedDialogProceed: Export anyway
-      ExportDashboard: Export dashboard
       HiddenDashboards: Hidden
       HiddenDashboardsDescription: These dashboards are not visible to users.
-      MenuDashboards: Sidebar menu items
+      MenuDashboards: Top menu
       MenuDashboardsDescription: These dashboards appear as top-level items in the sidebar. Manage their order in the Menu management tab.
       MenuManagement: Menu management
-      SubMenuDashboards: Dashboard submenu
-      SubMenuDashboardsDescription: These dashboards appear under the Dashboard icon in the sidebar.
       PrivateDashboard: Private dashboards
       PrivateDashboardConfiguration: Private dashboard configuration
       PublicDashboard: Public dashboards
@@ -772,8 +769,9 @@ ch.ivy.addon.portalkit.ui.jsf:
       ReorderPublicDashboards: Reorder public dashboards
       SelectAction: Select the action
       SomeThingWentWrong: Something went wrong
+      SubMenuDashboards: Sub menu
+      SubMenuDashboardsDescription: These dashboards appear under the Dashboard icon in the sidebar.
       Title: Portal configuration
-    displaySettings: Display Settings
     DrillDownWidget:
       caseDrillDown: Drill-down case widget for {0}
       taskDrillDown: Drill-down task widget for {0}
@@ -804,14 +802,14 @@ ch.ivy.addon.portalkit.ui.jsf:
     StandardWidgets: Standard Widgets
     StatisticWidget:
       EmptyChartDataMessage: We do not have enough data to create a nice chart!
-      failToRenderChartMessage: Error while rendering chart. Please retry with different settings.
-      firstConfigChartMessage: No chart available yet. Please configure your settings to generate a chart.
       TooltipAverageKpiLabel: Average of {0}
       TooltipMaxKpiLabel: Max of {0}
       TooltipMinKpiLabel: Min of {0}
       TooltipSumKpiLabel: Sum of {0}
       TooltipTotalCaseLabel: 'Total cases: {0}'
       TooltipTotalTaskLabel: 'Total tasks: {0}'
+      failToRenderChartMessage: Error while rendering chart. Please retry with different settings.
+      firstConfigChartMessage: No chart available yet. Please configure your settings to generate a chart.
     WelcomeWidgetIntroduction: This widget displays a welcome text and image on dashboard.
     WelcomeWidgetNotFoundMessage: We cannot find the image of widget, please reconfigure your image!
     WidgetFilterName: Widget filter name
@@ -893,7 +891,9 @@ ch.ivy.addon.portalkit.ui.jsf:
       editDashboard: Edit dashboard
       manageDashboard: Manage dashboard
       removeDashboardHeader: Remove the "{0}" dashboard
+    dataSettings: Data Settings
     deleteWidget: Delete widget
+    displaySettings: Display Settings
     downloadZipFileExplanation: If the number of items to export exceeds the limit of Excel rows, data will be split to multiple Excel files, then compressed in a ZIP file to download.
     editWidget: Edit widget
     existingField: The {0} field has already been existing
@@ -1552,7 +1552,7 @@ Dialogs:
               FileInfomation: File Infomation
               ImportPrivate: Import Private Dashboard
               ImportPublic: Import Public Dashboard
-              NavigationWidgetMissingTarget: 'Navigation widget "{0}" references a dashboard that was not imported and does not exist in this portal. The widget may not work correctly.'
+              NavigationWidgetMissingTarget: Navigation widget "{0}" references a dashboard that was not imported and does not exist in this portal. The widget may not work correctly.
               chooseAJsonFile: Choose a json file
             DashboardSharing:
               ShareDashboard: Share Dashboard
@@ -1686,6 +1686,13 @@ Enums:
     axonivy:
       portal:
         enums:
+          CaseQueryType:
+            ALL:
+              name: Business Cases + Sub Cases
+            BUSINESS_CASE:
+              name: Business Cases (Default)
+            SUB_CASE:
+              name: Sub Cases
           statistic:
             AggregationField:
               ACTIVATOR_NAME:
@@ -1755,13 +1762,6 @@ Enums:
                 name: Less than
               LESSOREQUAL:
                 name: Less than or equal to
-          CaseQueryType:
-            ALL:
-              name: Business Cases + Sub Cases
-            BUSINESS_CASE:
-              name: Business Cases (Default)
-            SUB_CASE:
-              name: Sub Cases
 Labels:
   AI:
     Error:
