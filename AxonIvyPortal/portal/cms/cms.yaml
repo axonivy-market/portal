@@ -345,7 +345,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     TaskCaseInformation: Task and Case Information
     Update: Update
     action: Actions
-    actionMenuContext: "Open actions menu for {0}"
+    actionMenuContext: "Open actions menu for {0} process"
     active: Active
     add: Add
     addContext: Add {0}
@@ -923,7 +923,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     note: Note information
     noteDetail: Note details
     openWidgetFiltersContext: "Open {0} filters"
-    openWidgetInfoContext: "Open {0} information"
+    openWidgetFiltersWithCountContext: "Open {0} filters, {1} active filters"
+    openWidgetInfoContext: "Open {0} widget information"
     openRequest: Open
     openTaskTooltip: Open task
     park: Park

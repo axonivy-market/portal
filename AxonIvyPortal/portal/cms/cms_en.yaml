@@ -451,12 +451,13 @@ ch.ivy.addon.portalkit.ui.jsf:
     Update: Update
     Widget: Widget
     action: Actions
-    actionMenuContext: "Open actions menu for {0}"
+    actionMenuContext: "Open actions menu for {0} process"
     active: Active
     collapseWidgetContext: "Collapse {0} widget"
     expandWidgetContext: "Expand {0} widget"
     openWidgetFiltersContext: "Open {0} filters"
-    openWidgetInfoContext: "Open {0} information"
+    openWidgetFiltersWithCountContext: "Open {0} filters, {1} active filters"
+    openWidgetInfoContext: "Open {0} widget information"
     add: Add
     addContext: Add {0}
     addDocument: Add document
