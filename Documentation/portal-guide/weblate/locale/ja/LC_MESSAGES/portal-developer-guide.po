@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: Portal Guide ${revision}\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-03-16 03:14+0000\n"
-"PO-Revision-Date: 2026-03-17 11:09+0000\n"
-"Last-Translator: DeepL <noreply-mt-deepl@weblate.org>\n"
+"PO-Revision-Date: 2026-03-27 04:45+0000\n"
+"Last-Translator: LibreTranslate <noreply-mt-libretranslate@weblate.org>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/axonivy-portal/"
 "portal-le/doc/portal-doc-developer-guide/ja/>\n"
 "Language: ja\n"
@@ -13805,8 +13805,8 @@ msgid ""
 "Allows a user to **reserve (park) a task they are currently working on**,"
 " temporarily setting it aside without completing or releasing it."
 msgstr ""
-"****ユーザーが現在作業中のタスクを保留（一時停止）できる機能を提供します。こ"
-"れにより、タスクを完了または解放せずに一時的に脇に置くことが可能になります。"
+"ユーザーが** で動作しているタスクを ** 応答 (公園) に許可します。** は、"
+"コンパイルまたは解放せずに一時的に設定します."
 
 #: ../../source/portal-developer-guide/permissions/index.rst:174
 msgid ""
@@ -13844,9 +13844,9 @@ msgid ""
 "state. Enables the Reset action in the task action menu for applicable "
 "task states."
 msgstr ""
-"****ユーザーがタスクを最初から再実行する必要がある場合に使用されます（例："
-"エラー、実行失敗、無効な中間状態の後）。該当するタスク状態において、"
-"タスクアクションメニューの「リセット」操作を有効にします。"
+"エラー、失敗した実行、または無効な中間状態など、ユーザーが**先頭からタスクを"
+"開始する必要がある場合に使用されます。 タスクアクションメニューでReset"
+"アクションを有効にして、該当するタスクの状態を処理します."
 
 #: ../../source/portal-developer-guide/permissions/index.rst:209
 #: ../../source/portal-developer-guide/permissions/index.rst:1454
@@ -13967,8 +13967,8 @@ msgid ""
 "in the task details, for example to reflect changing urgency or business "
 "importance."
 msgstr ""
-"この権限を持つユーザーは、タスクの詳細画面でタスクの優先度を調整できます（例"
-"：緊急度や業務上の重要度の変化を反映するため）。****"
+"この権限を持つユーザーは、タスク**の優先度をタスクの優先度に調整することがで"
+"きます。例えば、緊急性やビジネス上の重要性の変更を反映します."
 
 #: ../../source/portal-developer-guide/permissions/index.rst:319
 #: ../../source/portal-developer-guide/permissions/index.rst:1458
@@ -13991,8 +13991,8 @@ msgid ""
 "to **update the task expiry date**, for example to extend or shorten "
 "deadlines."
 msgstr ""
-"**** AXONIVY_PORTAL_ADMIN のロールとこの権限を持つユーザーは、 タスクの期限を"
-"更新できます（例：期限を延長または短縮）。** **"
+"*AXONIVY_PORTAL_ADMIN** のロールと、このパーミッションは、タスクの有効期限を"
+"延長または短縮するなど、** にユーザーを許可します."
 
 #: ../../source/portal-developer-guide/permissions/index.rst:341
 #: ../../source/portal-developer-guide/permissions/index.rst:1459
@@ -14001,7 +14001,7 @@ msgstr ":ref:`🔑TaskWriteActivator <TaskWriteActivator>`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:349
 msgid "Allows a user to **delegate tasks to other users or roles**."
-msgstr "ユーザーがタスクを他のユーザーや役割に委任できるようにする機能です。**** 。"
+msgstr "ユーザーは、他のユーザーやロールに**タスクを割り当てることができます**."
 
 #: ../../source/portal-developer-guide/permissions/index.rst:351
 msgid ""
@@ -14031,8 +14031,8 @@ msgid ""
 "Enables users with the ``AXONIVY_PORTAL_ADMIN`` role and this permission "
 "to **define or update who becomes responsible after a task expires**."
 msgstr ""
-"``AXONIVY_PORTAL_ADMIN`` ロールとこの権限を持つユーザーが、タスク期限切れ後の"
-"責任者を定義または更新できるようにします。**** 。"
+"ユーザを `` で有効化 AXONIVY_PORTAL_ADMIN` の役割と、この権限は、タスクの有効"
+"期限が切れた後に責任を負う **定義または更新にのみ有効です**."
 
 #: ../../source/portal-developer-guide/permissions/index.rst:383
 #: ../../source/portal-developer-guide/permissions/index.rst:1460
@@ -14041,7 +14041,7 @@ msgstr ":ref:`🔑TaskWriteDelayTimestamp <TaskWriteDelayTimestamp>`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:391
 msgid "Allows a user to **modify the task delay or start time**."
-msgstr "ユーザーがタスクの遅延時間または開始時刻を変更できるようにします。****"
+msgstr "タスクの遅延または開始時間**を*変更するユーザを許可します."
 
 #: ../../source/portal-developer-guide/permissions/index.rst:393
 msgid ""
@@ -14104,8 +14104,8 @@ msgid ""
 "Allows a user to **delegate personal or group tasks that are assigned to "
 "themselves**."
 msgstr ""
-"ユーザーが自身に割り当てられた個人またはグループのタスクを委任できるようにす"
-"る機能です。****"
+"ユーザが自身に割り当てられた個人またはグループタスクを**委任することを可能に"
+"します."
 
 #: ../../source/portal-developer-guide/permissions/index.rst:423
 msgid ":ref:`🔑TaskDisplayAdditionalOptions <TaskDisplayAdditionalOptions>`"
@@ -14606,8 +14606,8 @@ msgid ""
 "Grant to administrators who need to **back up or distribute public "
 "dashboard templates**, for example across different environments."
 msgstr ""
-"管理者に対して、公開ダッシュボードテンプレート（例：異なる環境間での）の"
-"バックアップや配布を許可します。****"
+"さまざまな環境で、** バックアップまたはパブリック ダッシュボード "
+"テンプレート** を配布する必要がある管理者に付与します."
 
 #: ../../source/portal-developer-guide/permissions/index.rst:863
 msgid ":ref:`🔑DashboardImportOwn <DashboardImportOwn>`"
@@ -14803,8 +14803,8 @@ msgid ""
 "Grant to **selected administrators** who are responsible for **creating "
 "and maintaining** dynamic roles within the system."
 msgstr ""
-"**** 内のシステム内で動的ロールの作成および維持を担当する、選択された管理者 "
-"に対して へのアクセス権を付与します。** **"
+"*creating and Maintenance** システム内の動的な役割を担当する**選択した管理者"
+"に付与します."
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1024
 #: ../../source/portal-developer-guide/permissions/index.rst:1472
@@ -14880,8 +14880,8 @@ msgid ""
 "hierarchies** by choosing a specific parent role when creating dynamic "
 "roles."
 msgstr ""
-"**に、動的ロール作成時に特定の親ロールを選択することでロール階層を定義する必"
-"要がある管理者** への権限を付与します。****"
+"動的ロールを作成するときに特定の親ロールを選択することにより、**役割の階層を"
+"欠く必要がある**を選択管理者に付与します."
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1094
 #: ../../source/portal-developer-guide/settings/index.rst:306
@@ -14900,9 +14900,9 @@ msgid ""
 " not granted, the **Add note** option is hidden in the **History widget**"
 " (case details page) and the **Notes widget** (task details page)."
 msgstr ""
-"**** **** **** ユーザーがタスクまたはケースにメモを追加できるようにします"
-"（**）。この権限が付与されていない場合、メモ追加オプション（**）は、履歴"
-"ウィジェット（"
+"ユーザが**メモをタスクや case** に追加できるようにします。 この権限が付与され"
+"ていない場合、**Add Note**オプションは、**History ウィジェット**(ケース詳細"
+"ページ)と**Notes ウィジェット**(タスク詳細ページ)に隠されています."
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1107
 msgid ""
@@ -15110,8 +15110,8 @@ msgid ""
 "Enables users to **see their personal absence information**, for example "
 "to review planned or recorded absences."
 msgstr ""
-"ユーザーが自身の欠勤情報を確認できるようにします（例：予定または記録された欠"
-"勤を確認するため）。****"
+"ユーザーは、予定されているまたは記録された不在をレビューするなど、ユーザーの"
+"個人的な不在情報**を参照してください."
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1282
 #: ../../source/portal-developer-guide/permissions/index.rst:1484
@@ -15127,8 +15127,8 @@ msgid ""
 "Enables users to **create and maintain their own absence entries**, for "
 "example for vacation or other planned absences."
 msgstr ""
-"ユーザーが休暇やその他の計画的な欠勤など、自身の欠勤エントリーを作成・管理で"
-"きるようにします。例:****"
+"ユーザーは、休暇や他の計画的な欠如など、**独自の不在エントリを作成および維持"
+"することができます."
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1301
 #: ../../source/portal-developer-guide/permissions/index.rst:1485
@@ -15137,15 +15137,15 @@ msgstr ":ref:`🔑UserDeleteOwnAbsence <UserDeleteOwnAbsence>`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1309
 msgid "Allows a user to **delete their own absence records**."
-msgstr "ユーザーが自身の欠席記録を削除できるようにする機能を提供します。****"
+msgstr "ユーザが**自身の不在レコードを削除できるように**."
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1311
 msgid ""
 "Enables users to **remove their own absence entries**, for example if an "
 "absence was entered incorrectly or is no longer relevant."
 msgstr ""
-"ユーザーが自身の欠席登録を削除できるようにします（例：誤って登録した場合や不"
-"要になった場合）。****"
+"不在が誤って入力されたり、関連性がなくなったりするなど、ユーザーは自身の不在"
+"のエントリを削除できるようにします."
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1321
 #: ../../source/portal-developer-guide/permissions/index.rst:1486
@@ -15196,8 +15196,8 @@ msgid ""
 "absences on behalf of other users**, for example for corrections or "
 "administrative handling."
 msgstr ""
-"管理者またはマネージャーに、他のユーザーに代わって欠勤の作成または更新を行う"
-"権限を付与します（例：修正や管理上の処理のため）。****"
+"他のユーザーを代わって*作成または更新する必要が管理者または管理者に付与**、修"
+"正または管理処理など."
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1361
 #: ../../source/portal-developer-guide/permissions/index.rst:1488
@@ -15219,8 +15219,8 @@ msgid ""
 "for other users**, for example to correct mistakes or clean up outdated "
 "records."
 msgstr ""
-"管理者またはマネージャーには、他のユーザーの欠勤記録を削除する権限を付与しま"
-"す（例：誤りを修正したり、古い記録を整理したりするため）。****"
+"管理者や管理者に付与します。** 他のユーザの不在エントリを削除する必要がありま"
+"す**。たとえば、誤りを修正したり、古いレコードをクリーンアップしたりします."
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1382
 #: ../../source/portal-developer-guide/permissions/index.rst:1489
@@ -15235,7 +15235,7 @@ msgstr "置換を管理する"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1390
 msgid "Allows a user to **create their own substitute**."
-msgstr "ユーザーが独自の置換を作成できるようにする：****"
+msgstr "ユーザが**独自の置換を作成できるように**."
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1392
 msgid ""
@@ -15255,8 +15255,8 @@ msgid ""
 "Allows a user to **create substitute assignments for any user** within "
 "the current security context."
 msgstr ""
-"ユーザーが現在のセキュリティコンテキスト内で任意のユーザーに対する代替割り当"
-"てを作成できるようにします。****"
+"ユーザは、現在のセキュリティコンテキスト内で、任意のユーザ**の置換代入を**作"
+"成できるようにします."
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1413
 msgid ""
@@ -15264,8 +15264,8 @@ msgid ""
 "behalf of other users**, for example for planned absences or "
 "organizational coverage."
 msgstr ""
-"管理者またはマネージャーには、他のユーザーに代わって代理人を割り当てる権限を"
-"付与します（例：予定された不在や組織的なカバーのため）。****"
+"管理者または管理者が、**以外のユーザの代わりに**を割り当てる必要がある場合(計"
+"画的な欠如や組織上のカバレッジなど)."
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1422
 #: ../../source/portal-developer-guide/permissions/index.rst:1491
