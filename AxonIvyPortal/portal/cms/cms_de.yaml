@@ -761,8 +761,13 @@ ch.ivy.addon.portalkit.ui.jsf:
       ExportReferencedDialogMessage: 'Die folgenden Dashboards werden von Navigations-Widgets referenziert. Exportieren und importieren Sie sie ebenfalls, damit die Widgets korrekt funktionieren:'
       ExportReferencedDialogProceed: Trotzdem exportieren
       ExportDashboard: Dashboard exportieren
+      HiddenDashboards: Ausgeblendet
+      HiddenDashboardsDescription: Diese Dashboards sind für Benutzer nicht sichtbar.
+      MenuDashboards: Seitenleisten-Menüeinträge
+      MenuDashboardsDescription: Diese Dashboards erscheinen als Haupteinträge in der Seitenleiste. Verwalten Sie die Reihenfolge im Tab Menüverwaltung.
       MenuManagement: Menüverwaltung
-      MenuManagementDashboardHint: '{0} Dashboard(s) werden als Hauptmenüpunkte angezeigt. Sie können diese im Tab Menüverwaltung verwalten.'
+      SubMenuDashboards: Dashboard-Untermenü
+      SubMenuDashboardsDescription: Diese Dashboards erscheinen unter dem Dashboard-Symbol in der Seitenleiste.
       PrivateDashboard: Private Dashboards
       PrivateDashboardConfiguration: Private Dashboard-Konfiguration
       PublicDashboard: Öffentliche Dashboards

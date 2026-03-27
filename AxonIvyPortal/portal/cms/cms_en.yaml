@@ -757,8 +757,13 @@ ch.ivy.addon.portalkit.ui.jsf:
       ExportReferencedDialogMessage: 'The following dashboards are referenced by navigation widgets. Export and import them too for the widgets to work correctly:'
       ExportReferencedDialogProceed: Export anyway
       ExportDashboard: Export dashboard
+      HiddenDashboards: Hidden
+      HiddenDashboardsDescription: These dashboards are not visible to users.
+      MenuDashboards: Sidebar menu items
+      MenuDashboardsDescription: These dashboards appear as top-level items in the sidebar. Manage their order in the Menu management tab.
       MenuManagement: Menu management
-      MenuManagementDashboardHint: '{0} dashboard(s) are displayed as top menu items. You can manage them in the Menu management tab.'
+      SubMenuDashboards: Dashboard submenu
+      SubMenuDashboardsDescription: These dashboards appear under the Dashboard icon in the sidebar.
       PrivateDashboard: Private dashboards
       PrivateDashboardConfiguration: Private dashboard configuration
       PublicDashboard: Public dashboards

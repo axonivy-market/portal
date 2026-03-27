@@ -759,8 +759,13 @@ ch.ivy.addon.portalkit.ui.jsf:
       ExportReferencedDialogMessage: 'Les tableaux de bord suivants sont référencés par des widgets de navigation. Exportez-les et importez-les également pour que les widgets fonctionnent correctement :'
       ExportReferencedDialogProceed: Exporter quand même
       ExportDashboard: Exporter le tableau de bord
+      HiddenDashboards: Masqués
+      HiddenDashboardsDescription: Ces tableaux de bord ne sont pas visibles pour les utilisateurs.
+      MenuDashboards: Éléments du menu latéral
+      MenuDashboardsDescription: Ces tableaux de bord apparaissent comme éléments principaux dans la barre latérale. Gérez leur ordre dans l'onglet Gestion des menus.
       MenuManagement: Gestion des menus
-      MenuManagementDashboardHint: '{0} tableau(x) de bord sont affichés comme éléments du menu principal. Vous pouvez les gérer dans l''onglet Gestion des menus.'
+      SubMenuDashboards: Sous-menu Dashboard
+      SubMenuDashboardsDescription: Ces tableaux de bord apparaissent sous l'icône Dashboard dans la barre latérale.
       PrivateDashboard: Tableaux de bord privés
       PrivateDashboardConfiguration: Configuration des tableaux de bord privés
       PublicDashboard: Tableaux de bord publics

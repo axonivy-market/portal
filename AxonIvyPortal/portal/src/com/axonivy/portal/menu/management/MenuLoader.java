@@ -51,9 +51,6 @@ public final class MenuLoader implements Serializable {
     menuDefinitions.addAll(buildConfigurationMenus());
     menuDefinitions.addAll(buildThirdPartyMenus());
 
-    // Assign indices based on list position to ensure correct default ordering.
-    // Source indices from adapters are ignored here — the list order defines the
-    // initial sidebar order. User's custom ordering is applied later by MenuOrderManager.
     for (int i = 0; i < menuDefinitions.size(); i++) {
       menuDefinitions.get(i).setIndex(i);
     }
@@ -61,9 +58,6 @@ public final class MenuLoader implements Serializable {
     return menuDefinitions.stream().distinct().collect(Collectors.toList());
   }
 
-  /**
-   * Converts a CustomSubMenuItem to a PortalMenuItemDefinition.
-   */
   private static PortalMenuItemDefinition convertToMenuDefinition(CustomSubMenuItem menu, MenuSource source) {
     // Silent migrate: Add ID to old menu which doesn't have the ID field
     CustomSubMenuItem migratedMenu = CustomSubMenuItemService.migrate(menu);

@@ -756,8 +756,13 @@ ch.ivy.addon.portalkit.ui.jsf:
       ExportReferencedDialogMessage: '以下のダッシュボードはナビゲーションウィジェットから参照されています。ウィジェットが正しく機能するように、それらもエクスポートおよびインポートしてください:'
       ExportReferencedDialogProceed: このままエクスポート
       ExportDashboard: ダッシュボードをエクスポート
+      HiddenDashboards: 非表示
+      HiddenDashboardsDescription: これらのダッシュボードはユーザーに表示されません。
+      MenuDashboards: サイドバーメニュー項目
+      MenuDashboardsDescription: これらのダッシュボードはサイドバーのトップレベル項目として表示されます。メニュー管理タブで順序を管理できます。
       MenuManagement: メニュー管理
-      MenuManagementDashboardHint: '{0} 個のダッシュボードがトップメニュー項目として表示されています。メニュー管理タブで管理できます。'
+      SubMenuDashboards: ダッシュボードサブメニュー
+      SubMenuDashboardsDescription: これらのダッシュボードはサイドバーのダッシュボードアイコンの下に表示されます。
       PrivateDashboard: 個人用ダッシュボード
       PrivateDashboardConfiguration: 個人用ダッシュボードの設定
       PublicDashboard: 公開用ダッシュボード

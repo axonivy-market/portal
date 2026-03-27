@@ -756,8 +756,13 @@ ch.ivy.addon.portalkit.ui.jsf:
       ExportReferencedDialogMessage: 'Los siguientes paneles son referenciados por widgets de navegación. Expórtelos e impórtelos también para que los widgets funcionen correctamente:'
       ExportReferencedDialogProceed: Exportar de todos modos
       ExportDashboard: Exportar el cuadro de mandos
+      HiddenDashboards: Ocultos
+      HiddenDashboardsDescription: Estos paneles no son visibles para los usuarios.
+      MenuDashboards: Elementos del menú lateral
+      MenuDashboardsDescription: Estos paneles aparecen como elementos principales en la barra lateral. Gestione su orden en la pestaña Gestión de menús.
       MenuManagement: Gestión de menús
-      MenuManagementDashboardHint: '{0} panel(es) se muestran como elementos del menú principal. Puede gestionarlos en la pestaña Gestión de menús.'
+      SubMenuDashboards: Submenú del panel
+      SubMenuDashboardsDescription: Estos paneles aparecen bajo el icono del panel en la barra lateral.
       PrivateDashboard: Dashboard - Configuración  personalizada
       PrivateDashboardConfiguration: Configuración de tableros privados
       PublicDashboard: Dashboard - Configuración pública

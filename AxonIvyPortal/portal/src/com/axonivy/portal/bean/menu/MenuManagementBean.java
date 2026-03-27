@@ -15,7 +15,6 @@ import javax.faces.bean.ViewScoped;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.event.ReorderEvent;
-
 import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import com.axonivy.portal.components.enums.MenuKind;
 import com.axonivy.portal.dto.menu.PortalMenuItemDefinition;
@@ -101,4 +100,5 @@ public class MenuManagementBean extends AbstractMenuBean implements Serializable
   public void setSelectedMenuDefinition(PortalMenuItemDefinition selectedMenuDefinition) {
     this.selectedMenuDefinition = selectedMenuDefinition;
   }
+
 }
