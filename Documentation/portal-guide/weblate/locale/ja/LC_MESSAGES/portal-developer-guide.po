@@ -10,7 +10,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-03-16 03:14+0000\n"
 "PO-Revision-Date: 2026-03-27 04:45+0000\n"
-"Last-Translator: LibreTranslate <noreply-mt-libretranslate@weblate.org>\n"
+"Last-Translator: Thang Huynh Huu Quyet <hhqthang@axonactive.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/axonivy-portal/"
 "portal-le/doc/portal-doc-developer-guide/ja/>\n"
 "Language: ja\n"
@@ -14880,8 +14880,8 @@ msgid ""
 "hierarchies** by choosing a specific parent role when creating dynamic "
 "roles."
 msgstr ""
-"動的ロールを作成するときに特定の親ロールを選択することにより、**役割の階層を"
-"欠く必要がある**を選択管理者に付与します."
+"動的なロールを作成する際に特定の親ロールを選択して **ロール階層を定義** する"
+"必要がある **特定の管理者** に対して権限を付与します。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1094
 #: ../../source/portal-developer-guide/settings/index.rst:306
@@ -14900,9 +14900,9 @@ msgid ""
 " not granted, the **Add note** option is hidden in the **History widget**"
 " (case details page) and the **Notes widget** (task details page)."
 msgstr ""
-"ユーザが**メモをタスクや case** に追加できるようにします。 この権限が付与され"
-"ていない場合、**Add Note**オプションは、**History ウィジェット**(ケース詳細"
-"ページ)と**Notes ウィジェット**(タスク詳細ページ)に隠されています."
+"ユーザが **メモをタスクや case** に追加できるようにします。 この権限が付与さ"
+"れていない場合、**Add Note** オプションは、**History ウィジェット** (ケース詳"
+"細ページ) と**Notes ウィジェット** (タスク詳細ページ) に隠されています."
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1107
 msgid ""
@@ -15127,8 +15127,8 @@ msgid ""
 "Enables users to **create and maintain their own absence entries**, for "
 "example for vacation or other planned absences."
 msgstr ""
-"ユーザーは、休暇や他の計画的な欠如など、**独自の不在エントリを作成および維持"
-"することができます."
+"ユーザーは、休暇やその他の予定された欠勤など、**自身の欠勤記録を作成・管理** "
+"できるようになります。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1301
 #: ../../source/portal-developer-guide/permissions/index.rst:1485
@@ -15264,8 +15264,8 @@ msgid ""
 "behalf of other users**, for example for planned absences or "
 "organizational coverage."
 msgstr ""
-"管理者または管理者が、**以外のユーザの代わりに**を割り当てる必要がある場合(計"
-"画的な欠如や組織上のカバレッジなど)."
+"管理者または管理者が、**以外のユーザの代わりに** を割り当てる必要がある場合"
+"(計画的な欠如や組織上のカバレッジなど)."
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1422
 #: ../../source/portal-developer-guide/permissions/index.rst:1491
