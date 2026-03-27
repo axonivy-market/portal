@@ -89,6 +89,7 @@ public class NewAbsencePage extends TemplatePage {
   }
 
   public void proceed() {
+    $(By.id("absence-dialog_title")).click();
     $("button[id*='save-absence']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT)
         .click();
   }
