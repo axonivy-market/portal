@@ -4665,7 +4665,7 @@ msgid ""
 "**User Management** - Requires :ref:`🔑NewsManagement <NewsManagement>` "
 "permission to manage news items"
 msgstr ""
-"**ユーザー管理** - ニュースアイテムを管理するには:ref:`🔑NewsManagement "
+"**ユーザー管理** - ニュースアイテムを管理するには :ref:`🔑NewsManagement "
 "<NewsManagement>` の権限が必要です"
 
 #: ../../source/portal-developer-guide/dashboard/dashboard-newsfeed-widget.rst:15
@@ -4977,7 +4977,7 @@ msgstr "ニュース項目の追加、編集、削除については："
 #: ../../source/portal-developer-guide/dashboard/dashboard-newsfeed-widget.rst:150
 msgid "User must have :ref:`🔑NewsManagement <NewsManagement>` permission"
 msgstr ""
-"ユーザーは:ref:`🔑NewsManagement <NewsManagement>` 権限を保有している必要があ"
+"ユーザーは :ref:`🔑NewsManagement <NewsManagement>` 権限を保有している必要があ"
 "ります"
 
 #: ../../source/portal-developer-guide/dashboard/dashboard-newsfeed-widget.rst:151
@@ -14714,7 +14714,7 @@ msgid ""
 ":ref:`🔑DocumentWrite <DocumentWrite>` and "
 ":ref:`🔑DocumentOfInvolvedCaseWrite <DocumentOfInvolvedCaseWrite>`"
 msgstr ""
-":ref:`🔑DocumentWrite <DocumentWrite>` および:ref:`🔑"
+":ref:`🔑DocumentWrite <DocumentWrite>` および :ref:`🔑"
 "DocumentOfInvolvedCaseWrite <DocumentOfInvolvedCaseWrite>`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:959
@@ -15481,7 +15481,7 @@ msgid ""
 "locales.html>`_ for supported locale codes"
 msgstr ""
 "サポートされているロケールコードについては、`および Java supported "
-"locales<https://www.oracle.com/java/technologies/javase/jdk25-suported-"
+"locales <https://www.oracle.com/java/technologies/javase/jdk25-suported-"
 "locales.html>`_ を参照してください。"
 
 #: ../../source/portal-developer-guide/settings/index.rst:69
@@ -15643,7 +15643,7 @@ msgid ""
 "Administrators with :ref:`🔑TaskReadAll <TaskReadAll>` and "
 ":ref:`🔑CaseReadAll <CaseReadAll>` can see all tasks/cases"
 msgstr ""
-":ref:`🔑TaskReadAll <TaskReadAll>` および:ref:`🔑CaseReadAll <CaseReadAll>` "
+":ref:`🔑TaskReadAll <TaskReadAll>` および :ref:`🔑CaseReadAll <CaseReadAll>` "
 "の管理者権限を持つユーザーは、すべてのタスク/ケースを確認できます。"
 
 #: ../../source/portal-developer-guide/settings/index.rst:134
@@ -15686,8 +15686,8 @@ msgid ""
 "<TaskDisplayDelegateAction>` and :ref:`🔑TaskWriteActivator "
 "<TaskWriteActivator>`"
 msgstr ""
-"デリゲートアクションを確認するには::ref:`🔑TaskDisplayDelegateAction "
-"<TaskDisplayDelegateAction>` および:ref:`🔑TaskWriteActivator "
+"デリゲートアクションを確認するには: :ref:`🔑TaskDisplayDelegateAction "
+"<TaskDisplayDelegateAction>` および :ref:`🔑TaskWriteActivator "
 "<TaskWriteActivator>`"
 
 #: ../../source/portal-developer-guide/settings/index.rst:149
@@ -15732,8 +15732,8 @@ msgid ""
 ":ref:`🔑TaskReset <TaskReset>`"
 msgstr ""
 "タスクをリセットするには：:ref:`🔑TaskResetOwnWorkingTask "
-"<TaskResetOwnWorkingTask>` または:ref:`🔑TaskResetReadyForJoin "
-"<TaskResetReadyForJoin>` または:ref:`🔑TaskReset <TaskReset>`"
+"<TaskResetOwnWorkingTask>` または :ref:`🔑TaskResetReadyForJoin "
+"<TaskResetReadyForJoin>` または :ref:`🔑TaskReset <TaskReset>`"
 
 #: ../../source/portal-developer-guide/settings/index.rst:163
 msgid "Only works for tasks in states: RESUMED, PARKED, READY_FOR_JOIN, FAILED"
@@ -15921,7 +15921,7 @@ msgid ""
 "<TaskReadOwnCaseTasks>` or :ref:`🔑TaskReadAll <TaskReadAll>`"
 msgstr ""
 "ユーザーには以下の権限が必要です：:ref:`🔑TaskReadOwnCaseTasks "
-"<TaskReadOwnCaseTasks>` または:ref:`🔑TaskReadAll <TaskReadAll>`"
+"<TaskReadOwnCaseTasks>` または :ref:`🔑TaskReadAll <TaskReadAll>`"
 
 #: ../../source/portal-developer-guide/settings/index.rst:258
 msgid "**Display Show Detail Link**"
@@ -15978,7 +15978,7 @@ msgid ""
 ":ref:`🔑UserReadOwnAbsences <UserReadOwnAbsences>`  or "
 ":ref:`🔑UserReadAbsences <UserReadAbsences>`"
 msgstr ""
-":ref:`🔑UserReadOwnAbsences <UserReadOwnAbsences>` または:ref:`🔑"
+":ref:`🔑UserReadOwnAbsences <UserReadOwnAbsences>` または :ref:`🔑"
 "UserReadAbsences <UserReadAbsences>`"
 
 #: ../../source/portal-developer-guide/settings/index.rst:283
@@ -15990,7 +15990,7 @@ msgid ""
 ":ref:`🔑UserCreateOwnAbsence <UserCreateOwnAbsence>` or "
 ":ref:`🔑UserCreateAbsence <UserCreateAbsence>`"
 msgstr ""
-":ref:`🔑UserCreateOwnAbsence <UserCreateOwnAbsence>` または:ref:`🔑"
+":ref:`🔑UserCreateOwnAbsence <UserCreateOwnAbsence>` または :ref:`🔑"
 "UserCreateAbsence <UserCreateAbsence>`"
 
 #: ../../source/portal-developer-guide/settings/index.rst:286
@@ -16002,7 +16002,7 @@ msgid ""
 ":ref:`🔑UserDeleteOwnAbsence <UserDeleteOwnAbsence>` or "
 ":ref:`🔑UserDeleteAbsence <UserDeleteAbsence>`"
 msgstr ""
-":ref:`🔑UserDeleteOwnAbsence <UserDeleteOwnAbsence>` または:ref:`🔑"
+":ref:`🔑UserDeleteOwnAbsence <UserDeleteOwnAbsence>` または :ref:`🔑"
 "UserDeleteAbsence <UserDeleteAbsence>`"
 
 #: ../../source/portal-developer-guide/settings/index.rst:289
@@ -16030,7 +16030,7 @@ msgid ""
 ":ref:`🔑UserCreateSubstitute <UserCreateSubstitute>` and "
 ":ref:`🔑UserReadSubstitutes <UserReadSubstitutes>`"
 msgstr ""
-":ref:`🔑UserCreateSubstitute <UserCreateSubstitute>` および:ref:`🔑"
+":ref:`🔑UserCreateSubstitute <UserCreateSubstitute>` および :ref:`🔑"
 "UserReadSubstitutes <UserReadSubstitutes>`"
 
 #: ../../source/portal-developer-guide/settings/index.rst:298
