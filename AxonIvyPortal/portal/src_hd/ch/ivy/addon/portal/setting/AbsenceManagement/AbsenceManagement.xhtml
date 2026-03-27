@@ -121,7 +121,7 @@
                       process="@this" global="false"
                       oncomplete="PF('absence-dialog').show()"
                       actionListener="#{logic.add}"
-                      update="absence-form absence-dialog"
+                      update="absence-dialog absence-form"
                       resetValues="true"
                       rendered="#{absenceManagementBean.canAddAbsence(data.selectedAbsenceUser)}" />
                     <!-- Show on Mobile screen - Only show icon -->
@@ -149,7 +149,7 @@
                   <div class="ui-g-12 pl-0">
                     <p:dataTable id="substitute-table"
                       emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
-                      styleClass="substitute-table ui-filter-togglable" reflow="true"
+                      styleClass="substitute-table" reflow="true"
                       value="#{absenceManagementBean.getDeputyRolesBasedOnPermissions(data.deputyRoles, data.selectedAbsenceUser)}" var="deputyRole" 
                       paginator="true" rows="4"
                       paginatorAlwaysVisible="false"
@@ -157,9 +157,9 @@
                       paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
                       currentPageReportTemplate="{currentPage} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/curentReportOf')} {totalPages}"
                       lazy="false">
-                      <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/applicationAndRole')}" styleClass="ui-filter-togglable"
+                      <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/applicationAndRole')}"
                         sortBy="#{deputyRole.deputyRoleDisplayName}" sortOrder="ASC">
-                        <h:outputText value="#{deputyRole.deputyRoleDisplayName}" 
+                        <h:outputText value="#{deputyRole.deputyRoleDisplayName}"
                           styleClass="substition-role-display-name absence-column-value" />
                         <span class="substition-role-type" deputy-role-type="#{deputyRole.deputyRoleType.toString()}" />
                       </p:column>
@@ -167,7 +167,7 @@
                         <div class="absence-column-value">
                           <c:set var="deputiesDisplayNames"
                             value="#{securityMemberDisplayNameFormatBean.joinSecurityMemberNames(deputyRole.deputies)}" />
-                          <p:commandLink id="selected-deputies-link" immediate="true" 
+                          <p:commandLink id="selected-deputies-link" immediate="true"
                             ariaLabel="#{not empty deputiesDisplayNames ? deputiesDisplayNames : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/noDeputy')}"
                             styleClass="task-responsible-link"
                             value="#{not empty deputiesDisplayNames ? deputiesDisplayNames : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/noDeputy')}"
