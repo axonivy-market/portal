@@ -13,6 +13,8 @@ import org.openqa.selenium.WebElement;
 
 import com.axonivy.portal.selenium.common.DateTimePattern;
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.Selenide;
+import com.codeborne.selenide.SelenideElement;
 
 public class NewAbsencePage extends TemplatePage {
 
@@ -55,7 +57,15 @@ public class NewAbsencePage extends TemplatePage {
     fromInput.sendKeys(Keys.chord(Keys.CONTROL, "a"));
     fromInput.sendKeys(Keys.BACK_SPACE);
     fromInput.sendKeys(absenceFrom.format(formatter));
-    fromInput.sendKeys(Keys.ESCAPE);
+    closeDatePickerPanel(inputCssSelector);
+  }
+
+  private void closeDatePickerPanel(String inputCssSelector) {
+    String panelSelector = inputCssSelector.replace("input", "div").replace("']", "_panel']");
+    SelenideElement panel = $(panelSelector);
+    if (panel.exists() && panel.isDisplayed()) {
+      Selenide.executeJavaScript("arguments[0].style.display = 'none'", panel);
+    }
   }
 
   public boolean isErrorMessageDisplayed() {
