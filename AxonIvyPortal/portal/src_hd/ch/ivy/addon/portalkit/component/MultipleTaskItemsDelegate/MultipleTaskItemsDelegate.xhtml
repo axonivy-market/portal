@@ -61,7 +61,7 @@
 
           <ic:com.axonivy.portal.components.RoleSelection id="group-activator-select-component" scrollHeight="400"
             componentId="group-activator-select" selectedRole="#{data.selectedRole}" rendered="#{!data.isUserDelegated}"
-            cache="true" queryDelay="500" completeMethod="#{logic.autoCompleteForRoleDelegate2}"
+            cache="true" queryDelay="500" completeMethod="#{logic.autoCompleteForRoleDelegate}"
             isRenderedMessage="false"
             appendOption="#{visibilityBean.delegationAppendOption()}"
             autoCompletePanelStyleClass="ui-fluid">

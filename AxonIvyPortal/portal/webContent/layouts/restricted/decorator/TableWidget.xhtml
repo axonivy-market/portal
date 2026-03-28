@@ -33,7 +33,7 @@
   <c:set var="renderFilter" value="#{isReadOnlyMode and (empty isRenderFilter ? 'true': isRenderFilter)}"/>
   <c:set var="renderInfo" value="#{isReadOnlyMode and (empty isRenderInfo ? 'true': isRenderInfo)}"/>
   <c:set var="renderExpandCollapse" value="#{isReadOnlyMode and (empty isRenderExpandCollapse ? 'true': isRenderExpandCollapse)}"/>
-  <c:set var="renderSelectionToggle" value="#{isReadOnlyMode and (empty isRenderSelectionToggle ? 'true': isRenderSelectionToggle)}"/>
+  <c:set var="renderSelectionToggle" value="#{isReadOnlyMode and (empty isRenderSelectionToggle ? 'false': isRenderSelectionToggle)}"/>
 
   <f:event listener="#{dashboardBean.setSearchScope(widget)}" type="preRenderComponent" />
   <h:panelGroup layout="block" styleClass="widget__header" rendered="#{not isHeaderHidden}">
@@ -41,10 +41,10 @@
     <p:tooltip for="widget__header" value="#{widget.name}" trackMouse="true" hideEvent="mouseleave click"/>
 
     <h:panelGroup id="delegation-action-bar-#{index}" layout="block" styleClass="delegation-action-bar">
-      <h:panelGroup rendered="#{dashboardBean.canShowBulkSelectDelegation(widget)}">
+      <h:panelGroup rendered="#{dashboardTaskWidgetBean.canShowBulkSelectDelegation(widget)}">
         <h:form id="delegation-action-form">
           <h:panelGroup layout="block" styleClass="flex align-items-center gap-2">
-            <h:outputFormat value="#{dashboardBean.getBulkSelectDelegationCount(widget)} item selected"
+            <h:outputFormat value="#{dashboardTaskWidgetBean.getBulkSelectCount(widget)} item selected"
               styleClass="text-color-secondary white-space-nowrap">
             </h:outputFormat>
 
@@ -53,7 +53,6 @@
               icon="si si-multiple-neutral-1"
               styleClass="ui-delegate-all-tasks-button ui-button"
               ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delegateTasks')}"
-              actionListener="#{dashboardBean.startMultipleDelegation()}"
               oncomplete="initDataToDelegateMultipleTasks();"
               process="@this" />
 
@@ -62,7 +61,7 @@
               icon="si si-remove"
               styleClass="ui-button ui-deselect-all-button"
               ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/deselectAll')}"
-              actionListener="#{dashboardBean.deselectAllDelegatedTasks(widget)}"
+              actionListener="#{dashboardTaskWidgetBean.deselectAllDelegatedTasks(widget)}"
               update="@(.delegation-action-bar) @(.widget-header-default-actions) #{componentToUpdateOnResetFilter}"
               process="@this" />
           </h:panelGroup>
@@ -71,7 +70,7 @@
     </h:panelGroup>
 
     <h:panelGroup id="widget-header-default-actions-#{index}" layout="block" styleClass="widget-header-default-actions flex align-items-center">
-    <h:panelGroup rendered="#{not dashboardBean.canShowBulkSelectDelegation(widget)}">
+    <h:panelGroup rendered="#{not dashboardTaskWidgetBean.canShowBulkSelectDelegation(widget)}">
 
     <h:panelGroup id="show-pin-#{index}" layout="block"
         styleClass="#{isReadOnlyMode ? 'mr-3' : 'mr-1' } widget-header-show-pin"

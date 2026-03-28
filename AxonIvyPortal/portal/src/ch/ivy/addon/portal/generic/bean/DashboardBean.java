@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
@@ -48,7 +47,6 @@ import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.enums.TaskEmptyMessage;
 import ch.ivy.addon.portalkit.exporter.Exporter;
 import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
-import ch.ivy.addon.portalkit.ivydata.service.impl.TaskService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.WidgetFilterService;
 import ch.ivy.addon.portalkit.support.HtmlParser;
@@ -627,61 +625,6 @@ public class DashboardBean implements Serializable, IMultiLanguage {
 
   public boolean isTaskWidget(DashboardWidget widget) {
     return widget instanceof TaskDashboardWidget;
-  }
-
-  public boolean canShowBulkSelectDelegation(DashboardWidget widget) {
-    if (widget instanceof TaskDashboardWidget) {
-      TaskDashboardWidget taskWidget = (TaskDashboardWidget) widget;
-      return !taskWidget.getSelectedTasksForBulkDelegation().isEmpty();
-    }
-    return false;
-  }
-
-  public int getBulkSelectDelegationCount(DashboardWidget widget) {
-    if (widget instanceof TaskDashboardWidget) {
-      TaskDashboardWidget taskWidget = (TaskDashboardWidget) widget;
-      return taskWidget.getSelectedTasksForBulkDelegation().size();
-    }
-    return 0;
-  }
-
-  public boolean hasDelegatedTasks() {
-    return CollectionUtils.isNotEmpty(TaskUtils.getDelegatedTaskUuids());
-  }
-
-  public int getDelegatedTaskCount() {
-    return TaskUtils.getDelegatedTaskUuids().size();
-  }
-
-  public void deselectAllDelegatedTasks(DashboardWidget widget) {
-    if (widget instanceof TaskDashboardWidget) {
-      TaskDashboardWidget taskWidget = (TaskDashboardWidget) widget;
-      // taskWidget.getSelectedTasksForBulkDelegation().clear();
-      // taskWidget.getTaskSelectionMap().clear();
-      taskWidget.clearSelectedTasks();
-    }
-  }
-
-  public List<ITask> getSelectedDelegatedTasks() {
-    return selectedDelegatedTasks;
-  }
-
-  public void setSelectedDelegatedTasks(List<ITask> selectedDelegatedTasks) {
-    this.selectedDelegatedTasks = selectedDelegatedTasks;
-  }
-
-  public void startMultipleDelegation() {
-    // Set<String> delegatedTaskUuids = TaskUtils.getDelegatedTaskUuids();
-    // if (CollectionUtils.isEmpty(delegatedTaskUuids)) {
-    //   this.selectedDelegatedTasks = new ArrayList<>();
-    //   return;
-    // }
-
-    // TaskService taskService = TaskService.newInstance();
-    // this.selectedDelegatedTasks = delegatedTaskUuids.stream()
-    //     .map(uuid -> taskService.findTaskByUUID(uuid))
-    //     .filter(task -> task != null)
-    //     .collect(Collectors.toList());
   }
 
 }

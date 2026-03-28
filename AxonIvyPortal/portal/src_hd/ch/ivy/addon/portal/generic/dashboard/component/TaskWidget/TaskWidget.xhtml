@@ -70,7 +70,7 @@
           <h:panelGroup >
             <ic:ch.ivy.addon.portalkit.component.task.column.TaskSelection task="#{task}"
               isEnabled="#{taskActionBean.handleSelectionAction(taskWidget.bulkActionType, task)}" managedBean="#{dashboardTaskWidgetBean}"
-              onSelectCheckbox="#{dashboardTaskWidgetBean.onSelectTask(taskWidget.bulkActionType, task, taskWidget.selectedTasksForBulkDelegation, taskWidget.taskSelectionMap)}"
+              onSelectCheckbox="#{dashboardTaskWidgetBean.onSelectTask(taskWidget.bulkActionType, task, taskWidget)}"
               taskWidget="#{taskWidget}" />
           </h:panelGroup>
         </p:column>

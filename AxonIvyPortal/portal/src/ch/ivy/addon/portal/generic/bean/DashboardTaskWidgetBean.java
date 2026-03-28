@@ -2,6 +2,8 @@ package ch.ivy.addon.portal.generic.bean;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -14,7 +16,6 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
-import org.apache.commons.lang3.BooleanUtils;
 import org.primefaces.event.SelectEvent;
 
 import com.axonivy.portal.components.util.HtmlUtils;
@@ -22,9 +23,9 @@ import com.axonivy.portal.enums.BulkActionType;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.constant.PortalConstants;
+import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget;
 import ch.ivy.addon.portalkit.enums.BehaviourWhenClickingOnLineInTaskList;
-import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.PortalPage;
 import ch.ivy.addon.portalkit.enums.TaskEmptyMessage;
@@ -32,7 +33,6 @@ import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.support.HtmlParser;
 import ch.ivy.addon.portalkit.util.TaskUtils;
-import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.ITask;
 
 @ViewScoped
@@ -44,16 +44,7 @@ public class DashboardTaskWidgetBean implements Serializable {
   private ITask selectedTask;
   private boolean isRunningTaskWhenClickingOnTaskInList;
   private TaskEmptyMessage noTasksMessage;
-
-  private boolean showDelegationColumn;
-
-  public boolean isShowDelegationColumn() {
-    return showDelegationColumn;
-  }
-
-  public void setShowDelegationColumn(boolean showDelegationColumn) {
-    this.showDelegationColumn = showDelegationColumn;
-  }
+  private Map<String, List<ITask>> taskSelectionMap;
 
   @PostConstruct
   public void init() {
@@ -120,6 +111,14 @@ public class DashboardTaskWidgetBean implements Serializable {
     return HtmlParser.extractTextFromHtml(text);
   }
 
+  public Map<String, List<ITask>> getTaskSelectionMap() {
+    return taskSelectionMap;
+  }
+
+  public void setTaskSelectionMap(Map<String, List<ITask>> taskSelectionMap) {
+    this.taskSelectionMap = taskSelectionMap;
+  }
+
   public void toggleDelegationColumn(TaskDashboardWidget widget) {
     widget.setShowSelection(!widget.isShowSelection());
     if (!widget.isShowSelection()) {
@@ -129,22 +128,45 @@ public class DashboardTaskWidgetBean implements Serializable {
     }
   }
 
-  public void onSelectTask(BulkActionType bulkActionType, ITask task, List<ITask> selectedTasksForBulkDelegation, Map<String, Boolean> taskSelectionMap) {
-    boolean isSelected = Boolean.TRUE.equals(taskSelectionMap.get(task.uuid()));
-    // switch (bulkActionType) {
-    //   case DELEGATE:
-        
-    //     break;
-    
-    //   default:
-    //     break;
-    // }
-
-    if (isSelected) {
-      selectedTasksForBulkDelegation.add(task);
-    } else {
-      selectedTasksForBulkDelegation.remove(task);
+  public void onSelectTask(BulkActionType bulkActionType, ITask task, TaskDashboardWidget widget) {
+    if (taskSelectionMap == null) {
+      taskSelectionMap = new HashMap<>();
     }
-    // Ivy.log().info(selectedTasksForBulkDelegation);
+
+    List<ITask> selectedTasks = taskSelectionMap.computeIfAbsent(widget.getId(), k -> new ArrayList<>());
+
+    if (widget.getTaskSelectionMap().getOrDefault(task.uuid(), false)) {        
+      selectedTasks.add(task);
+    } else {
+      selectedTasks.remove(task);
+    }
+  }
+
+  public boolean canShowBulkSelectDelegation(DashboardWidget widget) {
+    if (!(widget instanceof TaskDashboardWidget)) {
+      return false;
+    }
+    if (taskSelectionMap == null || widget == null) {
+      return false;
+    }
+    List<ITask> selectedTasks = taskSelectionMap.get(widget.getId());
+    return selectedTasks != null && !selectedTasks.isEmpty();
+  }
+
+  public int getBulkSelectCount(DashboardWidget widget) {
+    if (!(widget instanceof TaskDashboardWidget) || taskSelectionMap == null) {
+      return 0;
+    }
+    List<ITask> selectedTasks = taskSelectionMap.get(widget.getId());
+    return selectedTasks != null ? selectedTasks.size() : 0;
+  }
+
+  public void deselectAllDelegatedTasks(DashboardWidget widget) {
+    if (widget instanceof TaskDashboardWidget) {
+      TaskDashboardWidget taskWidget = (TaskDashboardWidget) widget;
+      taskSelectionMap.get(widget.getId()).clear();
+      taskWidget.clearSelectedTasks();
+      
+    }
   }
 }
