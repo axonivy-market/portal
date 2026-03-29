@@ -128,14 +128,20 @@ public class DashboardTaskWidgetBean implements Serializable {
     }
   }
 
+  private int maxSelectedTasks = 100; // Configurable limit per widget ID
+
   public void onSelectTask(BulkActionType bulkActionType, ITask task, TaskDashboardWidget widget) {
     if (taskSelectionMap == null) {
       taskSelectionMap = new HashMap<>();
     }
-
     List<ITask> selectedTasks = taskSelectionMap.computeIfAbsent(widget.getId(), k -> new ArrayList<>());
 
     if (widget.getTaskSelectionMap().getOrDefault(task.uuid(), false)) {        
+      if (selectedTasks.size() >= maxSelectedTasks) {
+        // Revert selection and optionally show a message
+        widget.getTaskSelectionMap().put(task.uuid(), false);
+        return;
+      }
       selectedTasks.add(task);
     } else {
       selectedTasks.remove(task);
@@ -166,7 +172,6 @@ public class DashboardTaskWidgetBean implements Serializable {
       TaskDashboardWidget taskWidget = (TaskDashboardWidget) widget;
       taskSelectionMap.get(widget.getId()).clear();
       taskWidget.clearSelectedTasks();
-      
     }
   }
 }
