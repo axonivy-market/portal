@@ -148,9 +148,8 @@ public class DashboardTaskWidgetBean implements Serializable {
     }
   }
 
-  
   public void onSelectTask(BulkActionType bulkActionType, ITask task, TaskDashboardWidget widget) {
-    int maxSelectedTasks = getMaximumSelectedTasks(); // Configurable limit per widget ID
+    Integer maxSelectedTasks = getMaximumSelectedTasks();
 
     if (selectedTasksMap == null) {
       selectedTasksMap = new HashMap<>();
@@ -159,7 +158,7 @@ public class DashboardTaskWidgetBean implements Serializable {
     Map<String, Boolean> checkboxMap = taskCheckboxSelectionMap.computeIfAbsent(widget.getId(), k -> new HashMap<>());
 
     if (checkboxMap.getOrDefault(task.uuid(), false)) {        
-      if (maxSelectedTasks != -1 && selectedTasks.size() >= maxSelectedTasks) {
+      if (maxSelectedTasks != null && maxSelectedTasks > 0 && selectedTasks.size() >= maxSelectedTasks) {
         // Revert selection and optionally show a message
         checkboxMap.put(task.uuid(), false);
         return;
@@ -171,15 +170,18 @@ public class DashboardTaskWidgetBean implements Serializable {
   }
 
   public boolean isReachMaxSelectionLimit(TaskDashboardWidget widget) {
-    int maxSelectedTasks = getMaximumSelectedTasks();
-    if (selectedTasksMap == null || widget == null || maxSelectedTasks == -1) {
+    Integer maxSelectedTasks = getMaximumSelectedTasks();
+    if (maxSelectedTasks == null || maxSelectedTasks <= 0) {
+      return false;
+    }
+    if (selectedTasksMap == null || widget == null) {
       return false;
     }
     List<ITask> selectedTasks = selectedTasksMap.get(widget.getId());
     return selectedTasks != null && selectedTasks.size() >= maxSelectedTasks;
   }
 
-  public int getMaxSelectedTasks() {
+  public Integer getMaxSelectedTasks() {
     return getMaximumSelectedTasks();
   }
 
@@ -213,15 +215,13 @@ public class DashboardTaskWidgetBean implements Serializable {
     }
   }
 
-  private static int getMaximumSelectedTasks() {
+  private static Integer getMaximumSelectedTasks() {
     String maxTasksSetting = GlobalSettingService.getInstance().findGlobalSettingValue(GlobalVariable.MAXIMUM_SELECTED_TASKS);
     try {
-      if (maxTasksSetting != null && !maxTasksSetting.trim().isEmpty()) {
-        return Integer.parseInt(maxTasksSetting.trim());
-      }
-    } catch (NumberFormatException e) {
-      // Ignore and return default
+      Integer parsedValue = Integer.valueOf(maxTasksSetting.trim());
+      return parsedValue > 0 ? parsedValue : null;
+    } catch (NumberFormatException | NullPointerException e) {
+      return null;
     }
-    return -1; // Default or fallback if empty/invalid
   }
 }

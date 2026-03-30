@@ -76,103 +76,26 @@
       "config" : {
         "output" : {
           "code" : [
-            "in.disabledDelegateButton = true;",
-            "in.isUserDelegated = true;",
-            "in.delegatedSecurityMember = null;",
-            "in.selectedRole = null;",
-            "in.selectedUser = null;",
-            "in.application = (in.selectedTasks != null && !in.selectedTasks.isEmpty()) ? in.selectedTasks.get(0).getApplication() : null;"
+            "// in.disabledDelegateButton = true;",
+            "// in.isUserDelegated = true;",
+            "// in.delegatedSecurityMember = null;",
+            "// in.selectedRole = null;",
+            "// in.selectedUser = null;"
           ]
         },
         "sudo" : true
       },
       "visual" : {
-        "at" : { "x" : 256, "y" : 256 }
+        "at" : { "x" : 248, "y" : 256 }
       },
       "connect" : [
-        { "id" : "e11", "to" : "f12" }
-      ]
-    }, {
-      "id" : "f12",
-      "type" : "SubProcessCall",
-      "name" : "SecurityService - Find Users",
-      "config" : {
-        "processCall" : "Ivy Data Processes/SecurityService:findUsersWithRoles(Integer,Integer,java.util.List<String>,java.util.List<String>,String)",
-        "call" : {
-          "map" : {
-            "param.query" : "\"\"",
-            "param.startIndex" : "0",
-            "param.count" : "101"
-          }
-        },
-        "output" : {
-          "map" : {
-            "out" : "in",
-            "out.usersToDelegate" : "result.users"
-          }
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 432, "y" : 256 },
-        "size" : { "width" : 160 }
-      },
-      "connect" : [
-        { "id" : "e12", "to" : "f13" }
-      ]
-    }, {
-      "id" : "f13",
-      "type" : "SubProcessCall",
-      "name" : "SecurityService - Find Roles",
-      "config" : {
-        "processCall" : "Ivy Data Processes/SecurityService:findRolesDTO()",
-        "output" : {
-          "map" : {
-            "out" : "in",
-            "out.rolesToDelegate" : "result.roles"
-          }
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 624, "y" : 256 },
-        "size" : { "width" : 160 }
-      },
-      "connect" : [
-        { "id" : "e13", "to" : "f14" }
-      ]
-    }, {
-      "id" : "f14",
-      "type" : "Script",
-      "name" : "Check if can delegate task",
-      "config" : {
-        "output" : {
-          "code" : [
-            "in.canDelegateTask = !(in.rolesToDelegate.isEmpty() && in.usersToDelegate.isEmpty());",
-            "in.isEmptyUsers = in.usersToDelegate.isEmpty();",
-            "in.isEmptyRoles = in.rolesToDelegate.isEmpty();",
-            "",
-            "if (in.canDelegateTask) {",
-            "  if (in.rolesToDelegate.isEmpty()) {",
-            "    in.isUserDelegated = true;",
-            "  }",
-            "  if (in.usersToDelegate.isEmpty()) {",
-            "    in.isUserDelegated = false;",
-            "  }",
-            "}"
-          ]
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 864, "y" : 256 },
-        "size" : { "width" : 160 }
-      },
-      "connect" : [
-        { "id" : "e14", "to" : "f15" }
+        { "id" : "f75", "to" : "f15" }
       ]
     }, {
       "id" : "f15",
       "type" : "HtmlDialogEnd",
       "visual" : {
-        "at" : { "x" : 1008, "y" : 256 }
+        "at" : { "x" : 448, "y" : 256 }
       }
     }, {
       "id" : "f20",
@@ -201,13 +124,13 @@
         "at" : { "x" : 96, "y" : 384 }
       },
       "connect" : [
-        { "id" : "e20", "to" : "f55" }
+        { "id" : "e20", "to" : "f73" }
       ]
     }, {
       "id" : "f22",
       "type" : "HtmlDialogEnd",
       "visual" : {
-        "at" : { "x" : 1192, "y" : 384 }
+        "at" : { "x" : 440, "y" : 384 }
       }
     }, {
       "id" : "f30",
@@ -309,7 +232,7 @@
       "id" : "f41",
       "type" : "HtmlDialogEnd",
       "visual" : {
-        "at" : { "x" : 224, "y" : 640 }
+        "at" : { "x" : 448, "y" : 640 }
       }
     }, {
       "id" : "f50",
@@ -351,140 +274,6 @@
       "visual" : {
         "at" : { "x" : 448, "y" : 872 }
       }
-    }, {
-      "id" : "f53",
-      "type" : "Script",
-      "config" : {
-        "output" : {
-          "map" : {
-            "out" : "in",
-            "out.numberOfSelectedTasks" : "in.numberOfSelectedTasks",
-            "out.selectedTasks" : "in.selectedTasks"
-          },
-          "code" : [
-            "import ch.ivy.addon.portalkit.util.TaskUtils;",
-            "import ch.ivyteam.ivy.workflow.ITask;",
-            "import ch.ivy.addon.portalkit.util.TaskUtils;",
-            "import ch.ivy.addon.portalkit.util.SecurityMemberUtils;",
-            "import org.apache.commons.lang3.StringUtils;",
-            "ivy.log.info(in.numberOfSelectedTasks == -1);",
-            "if (in.numberOfSelectedTasks > -1) {",
-            "  in.targetTask = in.selectedTasks.get(in.numberOfSelectedTasks);",
-            "  if (in.targetTask != null) {",
-            "    TaskUtils.resetTask(in.targetTask);",
-            "  }",
-            "",
-            "  String newResponsibleName = \"\";",
-            "",
-            "  if (in.#selectedUser != null) {",
-            "    newResponsibleName = in.#selectedUser.#displayName;",
-            "    in.delegatedSecurityMember = SecurityMemberUtils.findISecurityMemberFromUserDTO(in.selectedUser);",
-            "  } else if (in.#selectedRole != null) {",
-            "    newResponsibleName = in.#selectedRole.#displayName;",
-            "    in.delegatedSecurityMember = SecurityMemberUtils.findISecurityMemberFromRoleDTO(in.selectedRole);",
-            "  }",
-            "",
-            "  String oldResponsibleName = TaskUtils.toDisplayNameResponsible(in.targetTask.responsibles());",
-            "  in.delegateComment = StringUtils.isBlank(in.#taskDelegationComment) ?",
-            "    ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/taskDelegate/delegateComment\", [in.targetTask.getId(), oldResponsibleName, newResponsibleName])",
-            "    : ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/taskDelegate/delegateReasonIncludedComment\", [in.targetTask.getId(), oldResponsibleName, newResponsibleName, in.#taskDelegationComment.trim()]);",
-            "",
-            "  in.taskDelegationComment = \"\";",
-            "}"
-          ]
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 568, "y" : 520 }
-      },
-      "connect" : [
-        { "id" : "f61", "to" : "f60" }
-      ]
-    }, {
-      "id" : "f55",
-      "type" : "Alternative",
-      "config" : {
-        "conditions" : {
-          "f59" : "in.numberOfSelectedTasks == -1",
-          "f56" : ""
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 680, "y" : 384 }
-      },
-      "connect" : [
-        { "id" : "f56", "to" : "f53" },
-        { "id" : "f59", "to" : "f63" }
-      ]
-    }, {
-      "id" : "f60",
-      "type" : "Script",
-      "config" : {
-        "output" : {
-          "code" : [
-            "import java.util.ArrayList;",
-            "import ch.ivyteam.ivy.workflow.ITask;",
-            "import ch.ivy.addon.portalkit.util.TaskUtils;",
-            "import ch.ivy.addon.portalkit.util.SecurityMemberUtils;",
-            "import org.primefaces.PrimeFaces;",
-            "ivy.log.info(\"delegate\" + in.numberOfSelectedTasks);",
-            "if (in.#selectedUser != null) {",
-            "  in.delegatedSecurityMember = SecurityMemberUtils.findISecurityMemberFromUserDTO(in.selectedUser);",
-            "} else if (in.#selectedRole != null) {",
-            "  in.delegatedSecurityMember = SecurityMemberUtils.findISecurityMemberFromRoleDTO(in.selectedRole);",
-            "}",
-            "in.failedTasks = new ArrayList();",
-            "",
-            "    try {",
-            "      TaskUtils.delegateTask(in.targetTask, in.delegatedSecurityMember);",
-            "    } catch (Exception e) {",
-            "      ivy.log.error(\"Failed to delegate task: \" + in.targetTask.getName(), e);",
-            "      in.failedTasks.add(in.targetTask.getName());",
-            "    }",
-            "",
-            "if (!in.failedTasks.isEmpty()) {",
-            "  PrimeFaces.current().executeScript(\"PF('delegation-error-dialog-\" + in.widgetIndex + \"').show();\");",
-            "} else {",
-            "  in.targetTask.getCase().createNote(ivy.session, in.delegateComment);",
-            "  if (in.numberOfSelectedTasks >= in.selectedTasks.size() - 1) {",
-            "    ivy.log.info(\"change to -1\");",
-            "    in.numberOfSelectedTasks = -1;",
-            "  } else {",
-            "    in.numberOfSelectedTasks++;",
-            "  }",
-            "}"
-          ]
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 776, "y" : 520 }
-      },
-      "connect" : [
-        { "id" : "f62", "to" : "f55" }
-      ]
-    }, {
-      "id" : "f63",
-      "type" : "Script",
-      "config" : {
-        "output" : {
-          "map" : {
-            "out" : "in",
-            "out.taskWidget" : "in.taskWidget"
-          },
-          "code" : [
-            "",
-            "out.taskWidget.selectedTasksForBulkDelegation.clear();",
-            "out.taskWidget.taskSelectionMap.clear();",
-            "ivy.log.info(out.taskWidget.selectedTasksForBulkDelegation);"
-          ]
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 936, "y" : 384 }
-      },
-      "connect" : [
-        { "id" : "f64", "to" : "f22", "color" : "default" }
-      ]
     }, {
       "id" : "f65",
       "type" : "HtmlDialogEnd",
@@ -544,6 +333,25 @@
       },
       "connect" : [
         { "id" : "f71", "to" : "f65" }
+      ]
+    }, {
+      "id" : "f73",
+      "type" : "Script",
+      "name" : "Bulk delegate tasks",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.service.BulkDelegateService;",
+            "",
+            "BulkDelegateService.getInstance().delegateTasks(in.selectedTasks, in.selectedUser, in.selectedRole, in.delegateComment);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 248, "y" : 384 }
+      },
+      "connect" : [
+        { "id" : "f74", "to" : "f22" }
       ]
     } ]
 }

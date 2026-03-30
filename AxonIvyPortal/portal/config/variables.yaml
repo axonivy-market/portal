@@ -80,6 +80,7 @@ Variables:
       BehaviourWhenClickingOnLineInTaskList: RUN_TASK
       # Set this property to true to enable the ability to pin tasks.
       EnablePinnedTask: "true"
+      MaximumSelectedTasks: ""
     # You can configure the look and feel for task details according to your needs via this json file.
     # This setting will be taken over for all other task details.
     # [file: json]
@@ -196,7 +197,7 @@ Variables:
     # You can define the application name via this JSON file.
     # It will be shown with the page title
     ApplicationName: Axon Ivy
-    LogoDescription: ''
+    LogoDescription: ""
     Upload:
       # Set the size limit for uploading documents in megabytes (MB). The default value is 20MB.
       DocumentUploadSizeLimit: "20"

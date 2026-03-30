@@ -1,25 +1,30 @@
 package com.axonivy.portal.service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.components.dto.RoleDTO;
 import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import com.axonivy.portal.components.dto.UserDTO;
-import ch.ivy.addon.portalkit.ivydata.service.impl.SecurityService;
 import com.axonivy.portal.components.service.IvyAdapterService;
 import com.axonivy.portal.components.util.CustomProcessUtils;
 import com.axonivy.portal.enums.PortalCustomSignature;
 
+import ch.ivy.addon.portalkit.ivydata.service.impl.SecurityService;
+import ch.ivy.addon.portalkit.util.SecurityMemberUtils;
+import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.call.SubProcessCallStartEvent;
 import ch.ivyteam.ivy.process.call.SubProcessSearchFilter;
 import ch.ivyteam.ivy.process.call.SubProcessSearchFilter.SearchScope;
+import ch.ivyteam.ivy.security.ISecurityMember;
 import ch.ivyteam.ivy.workflow.ITask;
 
 public class BulkDelegateService {
@@ -136,5 +141,42 @@ public class BulkDelegateService {
       intersectedUsers.removeIf(u -> !uniqUserIds.contains(u.getSecurityMemberId()));
     }
     return intersectedUsers; 
+  }
+
+  public void delegateTasks(List<ITask> tasks, UserDTO selectedUser, RoleDTO selectedRole, String taskDelegationComment) {
+    for (ITask task : tasks) {
+      // Reset task
+      TaskUtils.resetTask(task);
+
+      // Resolve the delegate target
+      String newResponsibleName = "";
+      ISecurityMember delegatedSecurityMember = null;
+
+      if (selectedUser != null) {
+        newResponsibleName = selectedUser.getDisplayName();
+        delegatedSecurityMember = SecurityMemberUtils.findISecurityMemberFromUserDTO(selectedUser);
+      } else if (selectedRole != null) {
+        newResponsibleName = selectedRole.getDisplayName();
+        delegatedSecurityMember = SecurityMemberUtils.findISecurityMemberFromRoleDTO(selectedRole);
+      }
+
+      // Create note
+      String oldResponsibleName = TaskUtils.toDisplayNameResponsible(task.responsibles());
+
+      String delegateComment;
+      if (StringUtils.isBlank(taskDelegationComment)) {
+        delegateComment = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskDelegate/delegateComment",
+            Arrays.asList(task.getId(), oldResponsibleName, newResponsibleName));
+      } else {
+        delegateComment = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskDelegate/delegateReasonIncludedComment",
+            Arrays.asList(task.getId(), oldResponsibleName, newResponsibleName, taskDelegationComment.trim()));
+      }
+
+      // Delegate task
+      TaskUtils.delegateTask(task, delegatedSecurityMember);
+
+      // Add note
+      task.getCase().createNote(Ivy.session(), delegateComment);
+    }
   }
 }

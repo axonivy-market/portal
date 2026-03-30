@@ -308,7 +308,6 @@ public class TaskDashboardWidget extends DashboardWidget {
     WidgetFilterService.getInstance().updateFilterOptionsData(this, latestUserFilterOptions);
   }
   
-
   @JsonIgnore
   @Override
   public void onApplyUserFilters() {

@@ -46,10 +46,10 @@
           <h:panelGroup layout="block" styleClass="flex align-items-center gap-2">
             <h:outputText value="#{dashboardTaskWidgetBean.getBulkSelectCount(widget)} item selected"
               styleClass="text-color-secondary white-space-nowrap"
-              rendered="#{dashboardTaskWidgetBean.getMaxSelectedTasks() == -1}" />
+              rendered="#{empty dashboardTaskWidgetBean.getMaxSelectedTasks() or dashboardTaskWidgetBean.getMaxSelectedTasks() le 0}" />
             <h:outputFormat value="#{dashboardTaskWidgetBean.getBulkSelectCount(widget)} / #{dashboardTaskWidgetBean.getMaxSelectedTasks()} item selected"
               styleClass="text-color-secondary white-space-nowrap"
-              rendered="#{dashboardTaskWidgetBean.getMaxSelectedTasks() != -1}">
+              rendered="#{not empty dashboardTaskWidgetBean.getMaxSelectedTasks() and dashboardTaskWidgetBean.getMaxSelectedTasks() gt 0}">
             </h:outputFormat>
 
             <p:commandButton id="delegate-tasks-btn-#{index}"
