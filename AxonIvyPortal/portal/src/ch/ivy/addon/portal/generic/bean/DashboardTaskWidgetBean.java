@@ -44,7 +44,8 @@ public class DashboardTaskWidgetBean implements Serializable {
   private ITask selectedTask;
   private boolean isRunningTaskWhenClickingOnTaskInList;
   private TaskEmptyMessage noTasksMessage;
-  private Map<String, List<ITask>> taskSelectionMap;
+  private Map<String, List<ITask>> selectedTasksMap = new HashMap<>();
+  private Map<String, Map<String, Boolean>> taskCheckboxSelectionMap = new HashMap<>();
 
   @PostConstruct
   public void init() {
@@ -111,35 +112,55 @@ public class DashboardTaskWidgetBean implements Serializable {
     return HtmlParser.extractTextFromHtml(text);
   }
 
-  public Map<String, List<ITask>> getTaskSelectionMap() {
-    return taskSelectionMap;
+  public Map<String, List<ITask>> getSelectedTasksMap() {
+    return selectedTasksMap;
   }
 
-  public void setTaskSelectionMap(Map<String, List<ITask>> taskSelectionMap) {
-    this.taskSelectionMap = taskSelectionMap;
+  public void setSelectedTasksMap(Map<String, List<ITask>> selectedTasksMap) {
+    this.selectedTasksMap = selectedTasksMap;
+  }
+
+  public Map<String, Map<String, Boolean>> getTaskCheckboxSelectionMap() {
+    return taskCheckboxSelectionMap;
+  }
+
+  public void setTaskCheckboxSelectionMap(Map<String, Map<String, Boolean>> taskCheckboxSelectionMap) {
+    this.taskCheckboxSelectionMap = taskCheckboxSelectionMap;
+  }
+
+  public boolean isShowSelection(DashboardWidget widget) {
+    if (widget == null || selectedTasksMap == null) {
+      return false;
+    }
+    return selectedTasksMap.containsKey(widget.getId());
   }
 
   public void toggleDelegationColumn(TaskDashboardWidget widget) {
-    widget.setShowSelection(!widget.isShowSelection());
-    if (!widget.isShowSelection()) {
+    if (isShowSelection(widget)) {
       widget.setBulkActionType(BulkActionType.NONE);
+      deselectAllDelegatedTasks(widget);
+      selectedTasksMap.remove(widget.getId());
+      taskCheckboxSelectionMap.remove(widget.getId());
     } else {
       widget.setBulkActionType(BulkActionType.DELEGATE);
+      selectedTasksMap.put(widget.getId(), new ArrayList<>());
+      taskCheckboxSelectionMap.put(widget.getId(), new HashMap<>());
     }
   }
 
-  private int maxSelectedTasks = 100; // Configurable limit per widget ID
+  private int maxSelectedTasks = 5; // Configurable limit per widget ID
 
   public void onSelectTask(BulkActionType bulkActionType, ITask task, TaskDashboardWidget widget) {
-    if (taskSelectionMap == null) {
-      taskSelectionMap = new HashMap<>();
+    if (selectedTasksMap == null) {
+      selectedTasksMap = new HashMap<>();
     }
-    List<ITask> selectedTasks = taskSelectionMap.computeIfAbsent(widget.getId(), k -> new ArrayList<>());
+    List<ITask> selectedTasks = selectedTasksMap.computeIfAbsent(widget.getId(), k -> new ArrayList<>());
+    Map<String, Boolean> checkboxMap = taskCheckboxSelectionMap.computeIfAbsent(widget.getId(), k -> new HashMap<>());
 
-    if (widget.getTaskSelectionMap().getOrDefault(task.uuid(), false)) {        
+    if (checkboxMap.getOrDefault(task.uuid(), false)) {        
       if (selectedTasks.size() >= maxSelectedTasks) {
         // Revert selection and optionally show a message
-        widget.getTaskSelectionMap().put(task.uuid(), false);
+        checkboxMap.put(task.uuid(), false);
         return;
       }
       selectedTasks.add(task);
@@ -148,30 +169,45 @@ public class DashboardTaskWidgetBean implements Serializable {
     }
   }
 
+  public boolean isReachMaxSelectionLimit(TaskDashboardWidget widget) {
+    if (selectedTasksMap == null || widget == null) {
+      return false;
+    }
+    List<ITask> selectedTasks = selectedTasksMap.get(widget.getId());
+    return selectedTasks != null && selectedTasks.size() >= maxSelectedTasks;
+  }
+
+  public int getMaxSelectedTasks() {
+    return maxSelectedTasks;
+  }
+
   public boolean canShowBulkSelectDelegation(DashboardWidget widget) {
     if (!(widget instanceof TaskDashboardWidget)) {
       return false;
     }
-    if (taskSelectionMap == null || widget == null) {
+    if (selectedTasksMap == null || widget == null) {
       return false;
     }
-    List<ITask> selectedTasks = taskSelectionMap.get(widget.getId());
+    List<ITask> selectedTasks = selectedTasksMap.get(widget.getId());
     return selectedTasks != null && !selectedTasks.isEmpty();
   }
 
   public int getBulkSelectCount(DashboardWidget widget) {
-    if (!(widget instanceof TaskDashboardWidget) || taskSelectionMap == null) {
+    if (!(widget instanceof TaskDashboardWidget) || selectedTasksMap == null) {
       return 0;
     }
-    List<ITask> selectedTasks = taskSelectionMap.get(widget.getId());
+    List<ITask> selectedTasks = selectedTasksMap.get(widget.getId());
     return selectedTasks != null ? selectedTasks.size() : 0;
   }
 
   public void deselectAllDelegatedTasks(DashboardWidget widget) {
     if (widget instanceof TaskDashboardWidget) {
-      TaskDashboardWidget taskWidget = (TaskDashboardWidget) widget;
-      taskSelectionMap.get(widget.getId()).clear();
-      taskWidget.clearSelectedTasks();
+      if (selectedTasksMap.containsKey(widget.getId())) {
+        selectedTasksMap.get(widget.getId()).clear();
+      }
+      if (taskCheckboxSelectionMap.containsKey(widget.getId())) {
+        taskCheckboxSelectionMap.get(widget.getId()).clear();
+      }
     }
   }
 }

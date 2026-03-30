@@ -3,7 +3,6 @@ package ch.ivy.addon.portalkit.dto.dashboard;
 import static ch.ivy.addon.portalkit.constant.DashboardConstants.REMOTE_COMMAND_PATTERN;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -28,7 +27,6 @@ import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.WidgetFilterService;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 import ch.ivy.addon.portalkit.util.SortFieldUtil;
-import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.task.TaskBusinessState;
 
 public class TaskDashboardWidget extends DashboardWidget {
@@ -55,13 +53,7 @@ public class TaskDashboardWidget extends DashboardWidget {
   private boolean showSelectionToggle;
 
   @JsonIgnore
-  private List<ITask> selectedTasksForBulkDelegation;
-  @JsonIgnore
-  private Map<String, Boolean> taskSelectionMap;
-  @JsonIgnore
   private List<String> errors;
-  @JsonIgnore
-  private boolean showSelection;
   @JsonIgnore
   private BulkActionType bulkActionType;
 
@@ -73,18 +65,7 @@ public class TaskDashboardWidget extends DashboardWidget {
     setShowWidgetInfo(true);
     setShowFullscreenMode(true);
     setShowPinnedToggle(true);
-    setSelectedTasksForBulkDelegation(new ArrayList<>());
-    setTaskSelectionMap(new HashMap<>());
-    setShowSelection(false);
     setShowSelectionToggle(true);
-  }
-
-  public boolean isShowSelection() {
-    return showSelection;
-  }
-
-  public void setShowSelection(boolean showSelection) {
-    this.showSelection = showSelection;
   }
 
   public BulkActionType getBulkActionType() {
@@ -358,26 +339,6 @@ public class TaskDashboardWidget extends DashboardWidget {
     this.errors = errors;
   }
 
-  @JsonIgnore
-  public List<ITask> getSelectedTasksForBulkDelegation() {
-    return selectedTasksForBulkDelegation;
-  }
-
-  @JsonIgnore
-  public void setSelectedTasksForBulkDelegation(List<ITask> selectedTasksForBulkDelegation) {
-    this.selectedTasksForBulkDelegation = selectedTasksForBulkDelegation;
-  }
-
-  @JsonIgnore
-  public Map<String, Boolean> getTaskSelectionMap() {
-    return taskSelectionMap;
-  }
-
-  @JsonIgnore
-  public void setTaskSelectionMap(Map<String, Boolean> taskSelectionMap) {
-    this.taskSelectionMap = taskSelectionMap;
-  }
-
   @Override
   public void toggleShowPinned() {
     this.dataModel.setShowPinnedItem(showPinnedItem);
@@ -389,13 +350,6 @@ public class TaskDashboardWidget extends DashboardWidget {
 
   public void setShowPinnedToggle(boolean showPinnedToggle) {
     this.showPinnedToggle = showPinnedToggle;
-  }
-
-  public void clearSelectedTasks() {
-    this.selectedTasksForBulkDelegation.clear();
-    this.taskSelectionMap.clear();
-    this.bulkActionType = BulkActionType.NONE;
-    this.showSelection = false;
   }
 
 }

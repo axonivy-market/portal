@@ -40,37 +40,38 @@
     <h:panelGroup id="widget__header" styleClass="widget__header-title text-ellipsis" pt:role="heading" pt:aria-level="1">#{widget.name}</h:panelGroup>
     <p:tooltip for="widget__header" value="#{widget.name}" trackMouse="true" hideEvent="mouseleave click"/>
 
-    <h:panelGroup id="delegation-action-bar-#{index}" layout="block" styleClass="delegation-action-bar">
-      <h:panelGroup rendered="#{dashboardTaskWidgetBean.canShowBulkSelectDelegation(widget)}">
+    <h:panelGroup id="delegation-action-bar-#{index}" layout="block" styleClass="delegation-action-bar delegation-action-bar-#{widget.id}">
+      <h:panelGroup rendered="#{dashboardBean.isTaskWidget(widget) and dashboardTaskWidgetBean.isShowSelection(widget)}">
         <h:form id="delegation-action-form">
           <h:panelGroup layout="block" styleClass="flex align-items-center gap-2">
-            <h:outputFormat value="#{dashboardTaskWidgetBean.getBulkSelectCount(widget)} item selected"
+            <h:outputFormat value="#{dashboardTaskWidgetBean.getBulkSelectCount(widget)} / #{dashboardTaskWidgetBean.getMaxSelectedTasks()} item selected"
               styleClass="text-color-secondary white-space-nowrap">
             </h:outputFormat>
 
             <p:commandButton id="delegate-tasks-btn-#{index}"
               value="Delegate tasks"
               icon="si si-multiple-neutral-1"
-              styleClass="ui-delegate-all-tasks-button ui-button"
+              styleClass="ui-delegate-all-tasks-button ui-button #{dashboardTaskWidgetBean.getBulkSelectCount(widget) == 0 ? 'ui-state-disabled' : ''}"
+              disabled="#{dashboardTaskWidgetBean.getBulkSelectCount(widget) == 0}"
               ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delegateTasks')}"
               oncomplete="initDataToDelegateMultipleTasks();"
               process="@this" />
 
-            <p:commandButton id="deselect-all-btn-#{index}"
-              value="Deselect all"
+            <p:commandButton id="cancel-selection-btn-#{index}"
+              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
               icon="si si-remove"
               styleClass="ui-button ui-deselect-all-button"
-              ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/deselectAll')}"
-              actionListener="#{dashboardTaskWidgetBean.deselectAllDelegatedTasks(widget)}"
-              update="@(.delegation-action-bar) @(.widget-header-default-actions) #{componentToUpdateOnResetFilter}"
+              ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+              actionListener="#{dashboardTaskWidgetBean.toggleDelegationColumn(widget)}"
+              update="@(.delegation-action-bar-#{widget.id}) @(.widget-header-default-actions-#{widget.id}) #{componentToUpdateOnResetFilter}"
               process="@this" />
           </h:panelGroup>
         </h:form>
       </h:panelGroup>
     </h:panelGroup>
 
-    <h:panelGroup id="widget-header-default-actions-#{index}" layout="block" styleClass="widget-header-default-actions flex align-items-center">
-    <h:panelGroup rendered="#{not dashboardTaskWidgetBean.canShowBulkSelectDelegation(widget)}">
+    <h:panelGroup id="widget-header-default-actions-#{index}" layout="block" styleClass="widget-header-default-actions widget-header-default-actions-#{widget.id} flex align-items-center">
+    <h:panelGroup rendered="#{not dashboardBean.isTaskWidget(widget) or not dashboardTaskWidgetBean.isShowSelection(widget)}">
 
     <h:panelGroup id="show-pin-#{index}" layout="block"
         styleClass="#{isReadOnlyMode ? 'mr-3' : 'mr-1' } widget-header-show-pin"
@@ -118,9 +119,9 @@
         <p:commandButton id="a231421"
           icon="si si-list-bullets"
           ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/multiSelect')}"
-          styleClass="rounded-button ui-button-outlined u-mar-right-5 ui-button-widget #{widget.showSelection ? 'ui-button-primary' : ''}"
+          styleClass="rounded-button ui-button-outlined u-mar-right-5 ui-button-widget #{dashboardTaskWidgetBean.isShowSelection(widget) ? 'ui-button-primary' : ''}"
           actionListener="#{dashboardTaskWidgetBean.toggleDelegationColumn(widget)}"
-          update="#{componentToUpdateOnResetFilter}"
+          update="@(.delegation-action-bar-#{widget.id}) @(.widget-header-default-actions-#{widget.id}) #{componentToUpdateOnResetFilter}"
           process="@this" />
         <p:tooltip for="a231421" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/multiSelect')}"
           trackMouse="true" hideEvent="mouseleave click" />
@@ -400,7 +401,7 @@
   <h:panelGroup rendered="#{dashboardBean.isTaskWidget(widget)}">
     <ic:ch.ivy.addon.portalkit.component.MultipleTaskItemsDelegate
       id="multiple-task-items-delegate-#{index}"
-      selectedTasks="#{widget.selectedTasksForBulkDelegation}"
+      selectedTasks="#{dashboardTaskWidgetBean.selectedTasksMap[widget.id]}"
       componentToUpdate="@(.task-widget)" taskWidget="#{widget}"
       />
   </h:panelGroup>
