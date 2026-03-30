@@ -106,11 +106,8 @@ public class AbsenceTest extends BaseTest {
     absencePage.setSubstitutedByAdmin(TestAccount.DEMO_USER.getFullName());
     List<String> deputyNames = Arrays.asList(TestAccount.CASE_OWNER_USER.getFullName());
     absencePage.setDeputy(deputyNames, DeputyRoleType.PERSONAL_TASK_PERMANENT);
-    NewAbsencePage newAbsencePage = absencePage.openNewAbsenceDialog();
-    newAbsencePage.input(TODAY, TODAY, "get sick");
-    absencePage.setDuringAbsenceDeputyInAbsenceDialog(deputyNames);
-    newAbsencePage.proceed();
-    assertEquals(newAbsencePage.getAbsenceDialogErrorMessage().startsWith("Substitute is already selected in"), true);
+    absencePage.setDeputy(deputyNames, DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE, false);
+    assertEquals(absencePage.getChooseDeputyDialogError().startsWith("Substitute is already selected in"), true);
   }
 
   @Test
