@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
+import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
 
 public class ExportUtils {
@@ -21,7 +22,8 @@ public class ExportUtils {
     List<String> visibleColumns = new ArrayList<>();
     for (ColumnModel column : columns) {
       if (column.getVisible() && !column.getField().contentEquals(DashboardStandardCaseColumn.ACTIONS.getField())) {
-        if (column.getType().isCustomColumn()) {
+        if (column.getType() == DashboardColumnType.CUSTOM || column.getType() == DashboardColumnType.CUSTOM_CASE
+            || column.getType() == DashboardColumnType.CUSTOM_BUSINESS_CASE) {
           visibleColumns.add(
               String.format(CUSTOM_FIELD_FORMAT, column.getFormat().name(), column.getField(), column.getHeader(),
                   column.getType()));
