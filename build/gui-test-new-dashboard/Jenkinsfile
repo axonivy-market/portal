@@ -7,9 +7,9 @@ pipeline {
     buildDiscarder(logRotator(numToKeepStr: '60', artifactNumToKeepStr: '60'))
   }
 
-  // triggers {
-  //   cron('0 16 * * *')
-  // }
+  triggers {
+    cron('0 16 * * *')
+  }
 
   parameters {
     string(name: 'testPatternToRun', defaultValue: 'com.axonivy.portal.selenium.test.**.*Test', description: 'Test pattern to run')
