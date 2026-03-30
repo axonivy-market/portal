@@ -133,7 +133,7 @@ public class DashboardProcessBean extends AbstractProcessBean implements Seriali
   }
 
   public boolean isCaseMap(DashboardProcess process) {
-    return !Objects.isNull(process) && (process.getStartLink().endsWith(".icm") || process.getStartLink().endsWith(".m.json"));
+    return !Objects.isNull(process) && (process.getStartLink().endsWith(DOT_ICM) || process.getStartLink().endsWith(DOT_M_JSON));
   }
 
   public String getProcessInformationPageUrl(DashboardProcess process) {
