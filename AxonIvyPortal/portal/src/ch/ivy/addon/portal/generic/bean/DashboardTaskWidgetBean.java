@@ -148,9 +148,10 @@ public class DashboardTaskWidgetBean implements Serializable {
     }
   }
 
-  private int maxSelectedTasks = 5; // Configurable limit per widget ID
-
+  
   public void onSelectTask(BulkActionType bulkActionType, ITask task, TaskDashboardWidget widget) {
+    int maxSelectedTasks = getMaximumSelectedTasks(); // Configurable limit per widget ID
+
     if (selectedTasksMap == null) {
       selectedTasksMap = new HashMap<>();
     }
@@ -158,7 +159,7 @@ public class DashboardTaskWidgetBean implements Serializable {
     Map<String, Boolean> checkboxMap = taskCheckboxSelectionMap.computeIfAbsent(widget.getId(), k -> new HashMap<>());
 
     if (checkboxMap.getOrDefault(task.uuid(), false)) {        
-      if (selectedTasks.size() >= maxSelectedTasks) {
+      if (maxSelectedTasks != -1 && selectedTasks.size() >= maxSelectedTasks) {
         // Revert selection and optionally show a message
         checkboxMap.put(task.uuid(), false);
         return;
@@ -170,7 +171,8 @@ public class DashboardTaskWidgetBean implements Serializable {
   }
 
   public boolean isReachMaxSelectionLimit(TaskDashboardWidget widget) {
-    if (selectedTasksMap == null || widget == null) {
+    int maxSelectedTasks = getMaximumSelectedTasks();
+    if (selectedTasksMap == null || widget == null || maxSelectedTasks == -1) {
       return false;
     }
     List<ITask> selectedTasks = selectedTasksMap.get(widget.getId());
@@ -178,7 +180,7 @@ public class DashboardTaskWidgetBean implements Serializable {
   }
 
   public int getMaxSelectedTasks() {
-    return maxSelectedTasks;
+    return getMaximumSelectedTasks();
   }
 
   public boolean canShowBulkSelectDelegation(DashboardWidget widget) {
@@ -209,5 +211,17 @@ public class DashboardTaskWidgetBean implements Serializable {
         taskCheckboxSelectionMap.get(widget.getId()).clear();
       }
     }
+  }
+
+  private static int getMaximumSelectedTasks() {
+    String maxTasksSetting = GlobalSettingService.getInstance().findGlobalSettingValue(GlobalVariable.MAXIMUM_SELECTED_TASKS);
+    try {
+      if (maxTasksSetting != null && !maxTasksSetting.trim().isEmpty()) {
+        return Integer.parseInt(maxTasksSetting.trim());
+      }
+    } catch (NumberFormatException e) {
+      // Ignore and return default
+    }
+    return -1; // Default or fallback if empty/invalid
   }
 }

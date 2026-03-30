@@ -44,8 +44,12 @@
       <h:panelGroup rendered="#{dashboardBean.isTaskWidget(widget) and dashboardTaskWidgetBean.isShowSelection(widget)}">
         <h:form id="delegation-action-form">
           <h:panelGroup layout="block" styleClass="flex align-items-center gap-2">
+            <h:outputText value="#{dashboardTaskWidgetBean.getBulkSelectCount(widget)} item selected"
+              styleClass="text-color-secondary white-space-nowrap"
+              rendered="#{dashboardTaskWidgetBean.getMaxSelectedTasks() == -1}" />
             <h:outputFormat value="#{dashboardTaskWidgetBean.getBulkSelectCount(widget)} / #{dashboardTaskWidgetBean.getMaxSelectedTasks()} item selected"
-              styleClass="text-color-secondary white-space-nowrap">
+              styleClass="text-color-secondary white-space-nowrap"
+              rendered="#{dashboardTaskWidgetBean.getMaxSelectedTasks() != -1}">
             </h:outputFormat>
 
             <p:commandButton id="delegate-tasks-btn-#{index}"
