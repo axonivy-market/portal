@@ -580,6 +580,7 @@ public class DashboardWidgetUtils {
     return publicExternalLinksNotForIvySessionUser.stream().map(link -> link.getId()).toList();
   }
 
+  @SuppressWarnings("removal")
   private static void updateProcessStartIdForCombined(ProcessDashboardWidget processWidget, DashboardProcess process) {
     if (processWidget.getDisplayMode() == ProcessWidgetMode.COMBINED_MODE && process.getProcessStartId() == null) {
       Ivy.session().getStartableProcessStarts().stream()
