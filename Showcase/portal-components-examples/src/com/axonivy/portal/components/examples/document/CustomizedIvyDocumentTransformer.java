@@ -14,7 +14,6 @@ public class CustomizedIvyDocumentTransformer {
   public CustomizedIvyDocument transform(IDocument document) {
     CustomizedIvyDocument result = new CustomizedIvyDocument();
 
-    result.setId(String.valueOf(document.getId()));
     result.setName(document.getName());
     result.setPath(document.getPath().asString());
     result.setRelativePath(document.getRelativePath().asString());
