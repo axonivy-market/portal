@@ -271,6 +271,19 @@
       <p:dialog id="choose-deputy-dialog" styleClass="choose-deputy-dialog w-3" dynamic="true" closable="false"
         header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/selectDeputies')}" widgetVar="choose-deputy-dialog"
         modal="true" appendTo="@(body)" resizable="false" responsive="true">
+        <f:facet name="header" >
+          <div class="flex">
+            <div class="w-12 pl-2">
+              <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/selectDeputies')}" />
+            </div>
+              <h:form id="choose-deputy-close-form">
+                <p:commandButton icon="pi pi-times"
+                                oncomplete="PF('choose-deputy-dialog').hide();" update="absences-management-form"
+                                process="@this" actionListener="#{logic.closeDialog}"
+                                styleClass="ui-button ui-widget ui-state-default ui-corner-all absence-page-close-button ui-button-icon-only ui-button-flat rounded-button" />
+              </h:form>
+          </div>
+        </f:facet>
         <p:ajax event="close" listener="#{logic.closeDialog}" global="false" immediate="true" />
         <ui:include src="SelectDeputy.xhtml" />
       </p:dialog>

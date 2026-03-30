@@ -12,13 +12,26 @@
     modal="true"
     dynamic="true"
     resizable="false"
-    closable="true"
+    closable="false"
     appendTo="@(body)"
     position="center"
     responsive="true"
     styleClass="add-absence-dialog"
     blockScroll="true"
     header="#{ivy.cms.co(data.isCreateMode ? '/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/addAbsence' : '/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/editAbsence')}">
+    <f:facet name="header" >
+      <div class="flex">
+        <div class="w-12 pl-2">
+          <h:outputText value="#{ivy.cms.co(data.isCreateMode ? '/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/addAbsence' : '/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/editAbsence')}" />
+        </div>
+          <h:form id="absence-close-form">
+            <p:commandButton icon="pi pi-times"
+                            oncomplete="PF('absence-dialog').hide();" update="absence-form"
+                            process="@this" actionListener="#{logic.cancel}"
+                            styleClass="ui-button ui-widget ui-state-default ui-corner-all absence-page-close-button ui-button-icon-only ui-button-flat rounded-button" />
+          </h:form>
+      </div>
+    </f:facet>
     <h:form id="absence-form" styleClass="ui-g absence-panel-grid">
       <div class="ui-g-12">
         <p:messages widgetVar="growl" closable="true" id="absence-messages" escape="false" showDetail="true" styleClass="new-absence-messages " />

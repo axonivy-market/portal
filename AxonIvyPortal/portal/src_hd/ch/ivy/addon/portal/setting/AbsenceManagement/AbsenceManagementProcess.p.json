@@ -782,7 +782,7 @@
       "type" : "Script",
       "name" : [
         "Set end date",
-        "to selected absence"
+        "to selected absence - created mode true"
       ],
       "config" : {
         "output" : {
@@ -790,9 +790,7 @@
             "import ch.ivy.addon.portalkit.util.Dates;",
             "",
             "java.util.Date endOfDate = Dates.toEndOfDate(in.selectedAbsence.getUntil());",
-            "in.selectedAbsence.setUntil(endOfDate);",
-            "",
-            "in.isAbsenceBeingCreated = true;"
+            "in.selectedAbsence.setUntil(endOfDate);"
           ]
         }
       },
@@ -1021,14 +1019,13 @@
             "import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;",
             "",
             "in.selectedAbsenceUser = new UserDTO(ivy.session.getSessionUser());",
-            "in.canCreateAbsenceForOtherUsers = PermissionUtils.hasPermission(IPermission.USER_CREATE_ABSENCE);",
-            "in.canCreateSubstituteForOtherUsers = PermissionUtils.hasPermission(IPermission.USER_CREATE_SUBSTITUTE);"
+            "in.canCreateAbsenceForOtherUsers = PermissionUtils.hasPermission(IPermission.USER_CREATE_ABSENCE);"
           ]
         },
         "sudo" : true
       },
       "visual" : {
-        "at" : { "x" : 276, "y" : 96 }
+        "at" : { "x" : 272, "y" : 96 }
       },
       "connect" : [
         { "id" : "f26", "to" : "S10" }
@@ -1255,25 +1252,10 @@
         "guid" : "0178C5540F2D37A3"
       },
       "visual" : {
-        "at" : { "x" : 96, "y" : 1704 }
+        "at" : { "x" : 88, "y" : 1640 }
       },
       "connect" : [
-        { "id" : "f79", "to" : "f78", "via" : [ { "x" : 440, "y" : 1704 } ] }
-      ]
-    }, {
-      "id" : "f73",
-      "type" : "HtmlDialogMethodStart",
-      "name" : "updateSelectedDeputies()",
-      "config" : {
-        "signature" : "updateSelectedDeputies",
-        "guid" : "178C5540F2DA7BD2"
-      },
-      "visual" : {
-        "at" : { "x" : 96, "y" : 1640 },
-        "labelOffset" : { "x" : 18 }
-      },
-      "connect" : [
-        { "id" : "f85", "to" : "f75" }
+        { "id" : "f79", "to" : "f78" }
       ]
     }, {
       "id" : "f74",
@@ -1294,27 +1276,6 @@
       },
       "connect" : [
         { "id" : "f82", "to" : "f76" }
-      ]
-    }, {
-      "id" : "f75",
-      "type" : "Script",
-      "name" : "update selected deputies",
-      "config" : {
-        "output" : {
-          "code" : [
-            "import ch.ivy.addon.portalkit.util.DeputyRoleUtils;",
-            "in.selectedDeputyRole.setDeputies(in.selectedDeputies);",
-            "in.substitutes = DeputyRoleUtils.getSubstitutesFromDeputyRole(in.selectedDeputyRole);"
-          ]
-        },
-        "sudo" : true
-      },
-      "visual" : {
-        "at" : { "x" : 256, "y" : 1640 },
-        "size" : { "width" : 144 }
-      },
-      "connect" : [
-        { "id" : "f80", "to" : "f173" }
       ]
     }, {
       "id" : "f76",
@@ -1524,25 +1485,6 @@
       },
       "connect" : [
         { "id" : "f172", "to" : "f28", "color" : "default" }
-      ]
-    }, {
-      "id" : "f173",
-      "type" : "SubProcessCall",
-      "name" : "Save substitutes",
-      "config" : {
-        "processCall" : "Ivy Data Processes/SubstituteService:saveSubstitutes(com.axonivy.portal.components.dto.UserDTO,java.util.List<ch.ivy.addon.portalkit.ivydata.bo.IvySubstitute>)",
-        "call" : {
-          "map" : {
-            "param.userDTO" : "in.selectedAbsenceUser",
-            "param.substitutes" : "in.substitutes"
-          }
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 424, "y" : 1640 }
-      },
-      "connect" : [
-        { "id" : "f174", "to" : "f78", "color" : "default" }
       ]
     } ]
 }
