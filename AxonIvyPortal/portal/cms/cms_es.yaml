@@ -75,6 +75,10 @@ ch.ivy.addon.portalkit.ui.jsf:
     DashboardCustomWidgetType:
       EXTERNAL_URL: Link externo
       PROCESS: Proceso de Axon Ivy
+    DashboardDisplayType:
+      HIDDEN: Oculto
+      SUB_MENU: Submenú
+      TOP_MENU: Barra lateral
     DashboardWidgetType:
       CASE: Widget del caso
       CUSTOM: Widget personalizado
@@ -753,16 +757,20 @@ ch.ivy.addon.portalkit.ui.jsf:
       Description: En esta sección puedes configurar los cuadros de mando según tus necesidades y modificar el orden de los elementos de navegación.
       DoNotSupportMobile: La configuración del panel de control no es compatible con los dispositivos móviles.
       EditPrivateDashboards: Editar tu cuadro de mando
+      PrivateTabInfo: 'Cree y gestione sus paneles personales.<ul><li>Estos paneles solo son visibles para usted</li><li>Aparecen bajo el icono del panel en la barra lateral</li></ul>'
+      PublicTabInfo: 'Gestione paneles para todos los usuarios. Controle la visibilidad:<ul><li><b>Barra lateral</b> — aparece como elemento principal en el menú lateral</li><li><b>Submenú</b> — aparece bajo el icono del panel</li><li><b>Oculto</b> — no visible para los usuarios</li></ul>'
+      Visibility: Visibilidad
       EditPublicDashboards: Editar dashboard públicos
       ExportDashboard: Exportar el cuadro de mandos
       ExportReferencedDialogHeader: El panel hace referencia a otros paneles
       ExportReferencedDialogMessage: 'Los siguientes paneles son referenciados por widgets de navegación. Expórtelos e impórtelos también para que los widgets funcionen correctamente:'
       ExportReferencedDialogProceed: Exportar de todos modos
-      HiddenDashboards: Ocultos
+      HiddenDashboards: Elementos ocultos
       HiddenDashboardsDescription: Estos paneles no son visibles para los usuarios.
-      MenuDashboards: Top menu
+      MenuDashboards: Elementos de la barra lateral
       MenuDashboardsDescription: Estos paneles aparecen como elementos principales en la barra lateral. Gestione su orden en la pestaña Gestión de menús.
       MenuManagement: Gestión de menús
+      MenuManagementTabInfo: 'Gestione los elementos de navegación de la barra lateral. Puede:<ul><li>Agregar nuevas entradas de menú (paneles, enlaces externos, procesos Ivy)</li><li>Reordenar elementos arrastrando y soltando</li><li>Editar o eliminar entradas de menú existentes</li></ul>'
       PrivateDashboard: Dashboard - Configuración  personalizada
       PrivateDashboardConfiguration: Configuración de tableros privados
       PublicDashboard: Dashboard - Configuración pública
@@ -771,7 +779,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       ReorderPublicDashboards: Reordenar dashboard públicos
       SelectAction: Seleccione la acción
       SomeThingWentWrong: Algo salió mal
-      SubMenuDashboards: Submenú
+      SubMenuDashboards: Elementos del submenú
       SubMenuDashboardsDescription: Estos paneles aparecen bajo el icono del panel en la barra lateral.
       Title: Configuración del portal
     DrillDownWidget:

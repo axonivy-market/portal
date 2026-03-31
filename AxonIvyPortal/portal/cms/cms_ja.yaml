@@ -75,6 +75,10 @@ ch.ivy.addon.portalkit.ui.jsf:
     DashboardCustomWidgetType:
       EXTERNAL_URL: 外部 URL
       PROCESS: Axon Ivy プロセス
+    DashboardDisplayType:
+      HIDDEN: 非表示
+      SUB_MENU: サブメニュー
+      TOP_MENU: サイドバー
     DashboardWidgetType:
       CASE: ケースウィジェット
       CLIENT_STATISTIC: 統計ウィジェット
@@ -754,15 +758,19 @@ ch.ivy.addon.portalkit.ui.jsf:
       DoNotSupportMobile: ダッシュボードの設定は、モバイルデバイスではサポートされていません。
       EditPrivateDashboards: 個人用ダッシュボードを編集する
       EditPublicDashboards: 公開用ダッシュボードを編集する
+      PrivateTabInfo: '個人用ダッシュボードを作成・管理します。<ul><li>あなただけに表示されます</li><li>サイドバーのダッシュボードアイコンの下に表示されます</li></ul>'
+      PublicTabInfo: 'すべてのユーザー向けのダッシュボードを管理します。表示設定:<ul><li><b>サイドバー</b> — サイドバーメニューのトップレベル項目として表示</li><li><b>サブメニュー</b> — ダッシュボードアイコンの下に表示</li><li><b>非表示</b> — ユーザーに表示されません</li></ul>'
+      Visibility: 表示設定
       ExportDashboard: ダッシュボードをエクスポート
       ExportReferencedDialogHeader: ダッシュボードが他のダッシュボードを参照しています
       ExportReferencedDialogMessage: '以下のダッシュボードはナビゲーションウィジェットから参照されています。ウィジェットが正しく機能するように、それらもエクスポートおよびインポートしてください:'
       ExportReferencedDialogProceed: このままエクスポート
-      HiddenDashboards: 非表示
+      HiddenDashboards: 非表示項目
       HiddenDashboardsDescription: これらのダッシュボードはユーザーに表示されません。
-      MenuDashboards: Top m
+      MenuDashboards: サイドバー項目
       MenuDashboardsDescription: これらのダッシュボードはサイドバーのトップレベル項目として表示されます。メニュー管理タブで順序を管理できます。
       MenuManagement: メニュー管理
+      MenuManagementTabInfo: 'サイドバーのナビゲーション項目を管理します。以下の操作が可能です:<ul><li>新しいメニュー項目の追加（ダッシュボード、外部リンク、Ivyプロセス）</li><li>ドラッグ＆ドロップで項目を並べ替え</li><li>既存のメニュー項目を編集・削除</li></ul>'
       PrivateDashboard: 個人用ダッシュボード
       PrivateDashboardConfiguration: 個人用ダッシュボードの設定
       PublicDashboard: 公開用ダッシュボード
@@ -771,7 +779,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       ReorderPublicDashboards: 公開用ダッシュボードを並び替える
       SelectAction: アクションを選択してください
       SomeThingWentWrong: 問題が発生しました
-      SubMenuDashboards: ドサブメニュー
+      SubMenuDashboards: サブメニュー項目
       SubMenuDashboardsDescription: これらのダッシュボードはサイドバーのダッシュボードアイコンの下に表示されます。
       Title: ポータル設定
     DrillDownWidget:

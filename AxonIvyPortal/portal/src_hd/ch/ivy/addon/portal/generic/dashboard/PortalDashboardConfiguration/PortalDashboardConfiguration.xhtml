@@ -58,6 +58,13 @@
               <h:panelGroup layout="block"
                 rendered="#{!dashboardConfigurationBean.mobileDevice and !dashboardConfigurationBean.menuManagement}"
                 styleClass="ui-g-12 dashboard-configuration__content u-no-padding-top #{isPublicDashboard ? 'js-public-dashboard-configuration':'js-private-dashboard-configuration'}">
+                <p:panel toggleable="true" collapsed="true" styleClass="ui-g-12"
+                  header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/information')}">
+                  <h:outputText value="#{isPublicDashboard
+                    ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/PublicTabInfo')
+                    : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/PrivateTabInfo')}"
+                    escape="false" />
+                </p:panel>
                 <h:panelGroup>
                   <div class="text-right ui-g-12">
                     <p:commandButton id="create-dashboard-action" actionListener="#{dashboardConfigurationBean.addNewDashboard(isPublicDashboard)}"
@@ -83,6 +90,11 @@
               <h:panelGroup layout="block"
                 rendered="#{!dashboardConfigurationBean.mobileDevice and dashboardConfigurationBean.menuManagement}"
                 styleClass="ui-g-12 dashboard-configuration__content u-no-padding-top">
+              <p:panel toggleable="true" collapsed="true" styleClass="ui-g-12"
+                header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/information')}">
+                <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/MenuManagementTabInfo')}"
+                  escape="false" />
+              </p:panel>
               <div class="col-12 flex flex-row-reverse">
                 <h:form id="menu-management-form" class="w-full">
                   <p:commandButton id="create-menu-action" actionListener="#{menuDetailsBean.onCreateNewMenu(menuManagementBean.getLastIndex())}"

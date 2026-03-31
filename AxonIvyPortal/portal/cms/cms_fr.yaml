@@ -75,6 +75,10 @@ ch.ivy.addon.portalkit.ui.jsf:
     DashboardCustomWidgetType:
       EXTERNAL_URL: URL externe
       PROCESS: Processus Axon Ivy
+    DashboardDisplayType:
+      HIDDEN: Masqué
+      SUB_MENU: Sous-menu
+      TOP_MENU: Barre latérale
     DashboardWidgetType:
       CASE: Widget de cas
       CUSTOM: Widget personnalisé
@@ -753,16 +757,20 @@ ch.ivy.addon.portalkit.ui.jsf:
       Description: Dans cette zone, vous pouvez configurer les tableaux de bord en fonction de vos besoins et modifier l'ordre des éléments de navigation.
       DoNotSupportMobile: La configuration du tableau de bord n'est pas prise en charge pour les appareils mobiles.
       EditPrivateDashboards: Modifier vos tableaux de bord privés
+      PrivateTabInfo: 'Créez et gérez vos tableaux de bord personnels.<ul><li>Ils ne sont visibles que par vous</li><li>Ils apparaissent sous l''icône Dashboard dans la barre latérale</li></ul>'
+      PublicTabInfo: 'Gérez les tableaux de bord pour tous les utilisateurs. Définissez la visibilité:<ul><li><b>Barre latérale</b> — apparaît comme élément principal dans le menu latéral</li><li><b>Sous-menu</b> — apparaît sous l''icône Dashboard</li><li><b>Masqué</b> — non visible pour les utilisateurs</li></ul>'
+      Visibility: Visibilité
       EditPublicDashboards: Modifier les tableaux de bord publics
       ExportDashboard: Exporter le tableau de bord
       ExportReferencedDialogHeader: Le tableau de bord référence d'autres tableaux de bord
       ExportReferencedDialogMessage: 'Les tableaux de bord suivants sont référencés par des widgets de navigation. Exportez-les et importez-les également pour que les widgets fonctionnent correctement :'
       ExportReferencedDialogProceed: Exporter quand même
-      HiddenDashboards: Masqués
+      HiddenDashboards: Éléments masqués
       HiddenDashboardsDescription: Ces tableaux de bord ne sont pas visibles pour les utilisateurs.
-      MenuDashboards: Top menu
+      MenuDashboards: Éléments de la barre latérale
       MenuDashboardsDescription: Ces tableaux de bord apparaissent comme éléments principaux dans la barre latérale. Gérez leur ordre dans l'onglet Gestion des menus.
       MenuManagement: Gestion des menus
+      MenuManagementTabInfo: 'Gérez les éléments de navigation de la barre latérale. Vous pouvez:<ul><li>Ajouter de nouveaux éléments de menu (tableaux de bord, liens externes, processus Ivy)</li><li>Réorganiser les éléments par glisser-déposer</li><li>Modifier ou supprimer des éléments de menu existants</li></ul>'
       PrivateDashboard: Tableaux de bord privés
       PrivateDashboardConfiguration: Configuration des tableaux de bord privés
       PublicDashboard: Tableaux de bord publics
@@ -771,7 +779,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       ReorderPublicDashboards: Réorganiser les tableaux de bord publics
       SelectAction: Sélectionnez l'action
       SomeThingWentWrong: Quelque chose n'a pas fonctionné
-      SubMenuDashboards: Sous-menu
+      SubMenuDashboards: Éléments du sous-menu
       SubMenuDashboardsDescription: Ces tableaux de bord apparaissent sous l'icône Dashboard dans la barre latérale.
       Title: Configuration du portail
     DrillDownWidget:

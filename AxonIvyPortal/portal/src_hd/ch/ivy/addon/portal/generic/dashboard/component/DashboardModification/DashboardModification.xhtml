@@ -16,7 +16,7 @@
 
     <h:panelGroup layout="block" rendered="#{isPublicDashboard}"
       styleClass="ui-g-12 u-no-padding-left">
-      <h4>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/SubMenuDashboards')}</h4>
+      <h5>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/SubMenuDashboards')}</h5>
       <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/SubMenuDashboardsDescription')}</span>
     </h:panelGroup>
 
@@ -44,6 +44,10 @@
           <h:outputText value="#{dashboard.description}" />
           <p:tooltip for="dashboard-description-group" value="#{dashboard.description}" trackMouse="true" hideEvent="mouseleave click" styleClass="dashboard-configuration-tooltip"/>
         </h:panelGroup>
+      </p:column>
+      <p:column rendered="#{isPublicDashboard}" width="100"
+        headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/Visibility')}">
+        <h:outputText value="#{dashboardBean.getDashboardDisplayTypeLabel(dashboard.dashboardDisplayType)}" />
       </p:column>
       <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}"
         width="#{dashboardModificationBean.hasExportDashboardPermission() ? '120' : '210'}" styleClass="text-center">
@@ -98,12 +102,12 @@
     </p:dataTable>
 
     <h:panelGroup layout="block" rendered="#{isPublicDashboard and not empty dashboardModificationBean.topMenuDashboards}"
-      styleClass="ui-g-12 u-padding-top-10">
-      <h4>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/MenuDashboards')}</h4>
+      styleClass="u-padding-top-10">
+      <h5>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/MenuDashboards')}</h5>
       <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/MenuDashboardsDescription')}</span>
       <p:dataTable id="top-menu-dashboard-table" lazy="false"
         value="#{dashboardModificationBean.topMenuDashboards}" var="topDashboard"
-        styleClass="ui-g-12 u-no-padding-left u-no-padding-right"
+        styleClass="ui-g-12 u-no-padding-left u-no-padding-right ui-datatable-no-header"
         emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}">
         <p:column width="20%"
           headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/dashboardManagement/dashboardTitle')}">
@@ -120,6 +124,10 @@
           <h:panelGroup id="top-dashboard-description-group" styleClass="u-truncate-text" layout="block">
             <h:outputText value="#{topDashboard.description}" />
           </h:panelGroup>
+        </p:column>
+        <p:column width="100"
+          headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/Visibility')}">
+          <h:outputText value="#{dashboardBean.getDashboardDisplayTypeLabel(topDashboard.dashboardDisplayType)}" />
         </p:column>
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}"
           width="#{dashboardModificationBean.hasExportDashboardPermission() ? '120' : '210'}" styleClass="text-center">
@@ -165,16 +173,17 @@
             </h:panelGroup>
           </div>
         </p:column>
+        <p:column styleClass="w-3rem" />
       </p:dataTable>
     </h:panelGroup>
 
     <h:panelGroup layout="block" rendered="#{isPublicDashboard and not empty dashboardModificationBean.hiddenDashboards}"
-      styleClass="ui-g-12 u-padding-top-10">
-      <h4>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/HiddenDashboards')}</h4>
+      styleClass="u-padding-top-10">
+      <h5>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/HiddenDashboards')}</h5>
       <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/HiddenDashboardsDescription')}</span>
       <p:dataTable id="hidden-dashboard-table" lazy="false"
         value="#{dashboardModificationBean.hiddenDashboards}" var="hiddenDashboard"
-        styleClass="ui-g-12 u-no-padding-left u-no-padding-right"
+        styleClass="ui-g-12 u-no-padding-left u-no-padding-right ui-datatable-no-header"
         emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}">
         <p:column width="20%"
           headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/dashboardManagement/dashboardTitle')}">
@@ -191,6 +200,10 @@
           <h:panelGroup id="hidden-dashboard-description-group" styleClass="u-truncate-text" layout="block">
             <h:outputText value="#{hiddenDashboard.description}" />
           </h:panelGroup>
+        </p:column>
+        <p:column width="100"
+          headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/Visibility')}">
+          <h:outputText value="#{dashboardBean.getDashboardDisplayTypeLabel(hiddenDashboard.dashboardDisplayType)}" />
         </p:column>
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}"
           width="#{dashboardModificationBean.hasExportDashboardPermission() ? '120' : '210'}" styleClass="text-center">
@@ -236,6 +249,7 @@
             </h:panelGroup>
           </div>
         </p:column>
+        <p:column styleClass="w-3rem" />
       </p:dataTable>
     </h:panelGroup>
   </h:panelGroup>
