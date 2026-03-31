@@ -89,7 +89,7 @@ public class NewAbsencePage extends TemplatePage {
   }
 
   public void proceed() {
-    $(By.id("absence-dialog_title")).click();
+    $("div[class*='absence-dialog-header']").shouldBe(appear, DEFAULT_TIMEOUT).click();
     $("button[id*='save-absence']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT)
         .click();
   }

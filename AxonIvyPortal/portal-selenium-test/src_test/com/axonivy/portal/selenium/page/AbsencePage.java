@@ -188,7 +188,7 @@ public class AbsencePage extends TemplatePage {
   }
 
   public SelenideElement getAddAbsenceDialog() {
-    $("[id='absence-dialog_title']").click();
+    $("div[class*='absence-dialog-header']").shouldBe(appear, DEFAULT_TIMEOUT).click();
     return $("[id$='absence-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
