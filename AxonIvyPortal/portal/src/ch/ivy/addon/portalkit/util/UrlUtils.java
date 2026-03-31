@@ -36,7 +36,7 @@ public class UrlUtils {
   public static boolean isIvyUrl(String url) {
     return url == null
         || (Strings.CS.contains(url, ".ivp?")
-            || Strings.CS.endsWithAny(url, ".ivp", ".icm"));
+            || Strings.CS.endsWithAny(url, ".ivp", ".icm", ".m.json"));
   }
 
   public static String buildUrl(String url) {

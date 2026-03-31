@@ -8,7 +8,7 @@ import { dirname } from "path";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-const PORTAL_URL = "http://localhost:8080/demo-portal";
+const PORTAL_URL = "http://localhost:8080/portal";
 const LOGIN_URL = `${PORTAL_URL}/login`;
 const DASHBOARD_URL = `${PORTAL_URL}/pro/portal/1549F58C18A6C562/DashboardPage.ivp?dashboardId=1`;
 const CREATE_TASK_URL = `${PORTAL_URL}/pro/portal-developer-examples/162511D2577DBA88/CategoriedLeaveRequest.ivp?embedInFrame=`;
@@ -86,7 +86,7 @@ const debugLog = (msg) => console.log(`[Debug] ${msg}`);
         `Create task page failed to load: ${createTaskResponse.status()}`
       );
     }
-    debugLog(`Create task page: ${loginResponse.status()}`);
+    debugLog(`Create task page: ${createTaskResponse.status()}`);
 
     // Redirected to dashboard
     await page.goto(DASHBOARD_URL, {

@@ -879,6 +879,7 @@ class ClientNumberChart extends ClientChart {
       if (!dataResultKeys.includes(item)) {
         result.push({
           key: item,
+          displayKey: item,
           count: 0,
           aggs: []
         })
@@ -895,6 +896,7 @@ class ClientNumberChart extends ClientChart {
       this.items.forEach(item => {
         result.push({
           key: item,
+          displayKey: item,
           count: 0,
           aggs: []
         });
@@ -905,6 +907,7 @@ class ClientNumberChart extends ClientChart {
     // If cannot recognize result, render only 1 result with empty key
     return [{
       key: '',
+      displayKey: '',
       count: 0,
       aggs: []
     }];
