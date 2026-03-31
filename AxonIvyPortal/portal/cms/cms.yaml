@@ -791,6 +791,11 @@ ch.ivy.addon.portalkit.ui.jsf:
   notes:
     newNoteHeader: Add new note
     wroteAt: wrote at
+  notifications:
+    notificationOptions: Notification options
+    notificationsBadgeLabel: "Open notification panel, {0} unread"
+    openNotificationSettings: Open notification settings
+    viewNotificationsFullScreen: View notifications in full screen
   passwordSetting:
     changePasswordWSError: An error occurred while changing your password. Please contact your administrator if this problem persists.
     confirmNewPassword: Confirm new password
@@ -800,6 +805,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     requireConfirmPassword: Password confirmation was missing
     requireCurrentPassword: Please specify the current password
     requireNewPassword: Please specify the new password as well
+    unpinCaseContext: "Unpin case {0}"
     unpinTaskContext: "Unpin task {0}"
     updatePasswordSuccessfully: Password updated successfully.
     wrongPassword: Authentication failed, your password seems to be wrong!
@@ -928,6 +934,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     openRequest: Open
     openTaskTooltip: Open task
     park: Park
+    pinCaseContext: "Pin case {0}"
     pinTaskContext: "Pin task {0}"
     parkTaskSuccessfully: Task has been parked successfully.
     reserveTaskTooltip: Reserve task

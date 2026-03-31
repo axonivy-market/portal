@@ -4,10 +4,12 @@ Dialogs:
       portal:
         components:
           Common:
+            CancelContext: Cancel {0}
             Categories: Categories
             Description: Description
             Name: Name
             NotAvailable: N/A
+            SaveContext: Save {0}
             Process:
               ProcessName: Process name
             Task:

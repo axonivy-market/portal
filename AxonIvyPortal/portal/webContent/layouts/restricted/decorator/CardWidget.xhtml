@@ -101,7 +101,7 @@
         styleClass="info-overlay-panel js-dashboard-overlay-panel"
         dismissable="false"
         dynamic="true"
-        pt:aria-label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/widgetType')}">
+        pt:aria-label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/widgetInfo')}">
         <!-- Widget Filters -->
         <ui:insert name="widgetInfoContent" />
 
@@ -109,7 +109,7 @@
           <div class="ui-g-12">
             <p:commandLink styleClass="Fright info-overlay-panel__close-link"
               onclick="PF('info-overlay-panel-#{index}').hide();"
-              ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/closeContext', [ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/widgetType')])}"
+              ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/closeContext', [ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/widgetInfo')])}"
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
               partialSubmit="true" immediate="true" global="false" process="@this"/>
           </div>
