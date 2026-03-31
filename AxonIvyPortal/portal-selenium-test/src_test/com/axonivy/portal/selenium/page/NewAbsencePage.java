@@ -7,7 +7,6 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 import org.apache.commons.lang3.StringUtils;
-import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 
@@ -24,7 +23,7 @@ public class NewAbsencePage extends TemplatePage {
 
   @Override
   protected String getLoadedLocator() {
-    return "[id='absence-dialog_title']";
+    return "[class*='absence-dialog-header']";
   }
 
   public void input(LocalDate absenceFrom, LocalDate absenceTill, String comment) {
@@ -37,7 +36,7 @@ public class NewAbsencePage extends TemplatePage {
 
   public void input(String fullName, LocalDate absenceFrom, LocalDate absenceTill, String comment) {
     $("textarea[id*='comment']").sendKeys(comment);
-    $(By.id("absence-dialog_title")).click();
+    $("div[class*='absence-dialog-header']").shouldBe(appear, DEFAULT_TIMEOUT).click();
     if (StringUtils.isNotEmpty(fullName)) {
       WebElement usernameInput = $("input[id*='absence-username']").shouldBe(appear, DEFAULT_TIMEOUT);
       usernameInput.clear();
@@ -95,7 +94,7 @@ public class NewAbsencePage extends TemplatePage {
   }
 
   public void closeAddAbsenceDialog() {
-    $("[id='absence-dialog_title']").click();
+    $("div[class*='absence-dialog-header']").shouldBe(appear, DEFAULT_TIMEOUT).click();
     $("div[id='absence-dialog']").$("span.ui-icon-closethick").shouldBe(appear, DEFAULT_TIMEOUT)
         .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     $("[id$='absence-dialog']").shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
