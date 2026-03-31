@@ -11,7 +11,6 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.components.dto.RoleDTO;
-import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import com.axonivy.portal.components.dto.UserDTO;
 import com.axonivy.portal.components.service.IvyAdapterService;
 import com.axonivy.portal.components.util.CustomProcessUtils;
@@ -37,90 +36,92 @@ public class BulkDelegateService {
     return BulkDelegateService.instance;
   }
 
-  public static class DelegationData {
-      private List<UserDTO> users = new ArrayList<>();
-      private List<RoleDTO> roles = new ArrayList<>();
-
-      public List<UserDTO> getUsers() { return users; }
-      public List<RoleDTO> getRoles() { return roles; }
-  }
-
   @SuppressWarnings("unchecked")
-  public static DelegationData getBulkDelegateAutocomplete(
-      List<RoleDTO> roles,
-      List<UserDTO> users,
-      List<ITask> selectedTasks,
-      SecurityMemberDTO currentUserName)
-  {
-    var filter = SubProcessSearchFilter.create()
-          .setSearchScope(SearchScope.SECURITY_CONTEXT)
-          .setSignature(PortalCustomSignature.DELEGATE.getSignature()).toFilter();
-
-    var subProcessStartList = SubProcessCallStartEvent.find(filter);
-    if (CollectionUtils.isEmpty(subProcessStartList)) {
-      SecurityService.newInstance().findUsersWithRoles(null, 0, 0, null, null);
-      return null;
+  public List<UserDTO> completeUserForBulkDelegate(String query, List<ITask> selectedTasks) {
+    boolean customDelegateAvailable = checkCustomDelegateAvailable();
+    if (!customDelegateAvailable) {
+      Ivy.log().info("No custom delegate found, using default user search for query: " + query);
+      var dto = SecurityService.newInstance().findUsersWithRoles(query, 0, 101, null, null);
+      return dto.getUsers();
     }
-
-    DelegationData data = new DelegationData();
     if (selectedTasks == null || selectedTasks.isEmpty()) {
-      return data;
+      return new ArrayList<>();
     }
-    List<UserDTO> intersectedUsers = null;
-    List<RoleDTO> intersectedRoles = null;
-    long totalStartTime = System.currentTimeMillis();
+    Ivy.log().info("Starting bulk delegate user autocomplete for query: '" + query + "' with " + selectedTasks.size() + " selected tasks.");
+    List<UserDTO> intersectedUsers = new ArrayList<>();
     for (ITask task : selectedTasks) {
-      long taskStartTime = System.currentTimeMillis();
-
-      Map<String, Object> params = new HashMap<>();
-      params.put("roles", roles);
-      params.put("users", users);
-      params.put("currentUser", currentUserName);
-      params.put("task", task);
-      List<Map<String, Object>> result = IvyAdapterService
-          .startSubProcessesInSecurityContext(PortalCustomSignature.DELEGATE.getSignature(), params);
-      List<RoleDTO> customRoles = new ArrayList<>();
+      List<Map<String, Object>> result = callCustomDelegate(task);
       List<UserDTO> customUsers = new ArrayList<>();
-      
+      if (CollectionUtils.isEmpty(result)) {
+        Ivy.log().info("No custom delegate result for task '" + task.getName() + "'. Skipping.");
+        continue;
+      }
       for (Map<String, Object> map : (List<Map<String, Object>>) result) {
         if (!CustomProcessUtils.isSkipCustomProcess(map)) {
-          Object rolesObj = map.get("roles");
-          if (rolesObj instanceof List) {
-            customRoles.addAll((List<RoleDTO>) rolesObj);
-          }
           Object usersObj = map.get("users");
           if (usersObj instanceof List) {
             customUsers.addAll((List<UserDTO>) usersObj);
           }
         }
       }
-
       intersectedUsers = getUniqUserIds(intersectedUsers, customUsers);
-      intersectedRoles = getUniqRoleIds(intersectedRoles, customRoles);
-
-      long taskEndTime = System.currentTimeMillis();
-      Ivy.log()
-          .info("Performance: Task '" + task.getName() + "' calculated in " + (taskEndTime - taskStartTime) + " ms."
-              + " Extracted " + customRoles.size() + " candidates, remaining intersection: " + intersectedRoles.size());
-
     }
-    Ivy.log().info(intersectedUsers.size() + " users can perform all selected tasks.");
-    Ivy.log().info(intersectedRoles.size() + " roles can perform all selected tasks.");
-    Ivy.log().info("Performance: Total bulk delegation calculation took "
-        + (System.currentTimeMillis() - totalStartTime) + " ms.");
-    if (intersectedUsers != null) {
-      data.getUsers().addAll(intersectedUsers);
-    }
-    if (intersectedRoles != null) {
-      data.getRoles().addAll(intersectedRoles);
-    }
-    return data;
+    return intersectedUsers;
   }
 
-  private static List<RoleDTO> getUniqRoleIds(List<RoleDTO> intersectedRoles, List<RoleDTO> customRoles) {
+  public List<RoleDTO> completeRoleForBulkDelegate(String query, List<ITask> selectedTasks) {
+    boolean customDelegateAvailable = checkCustomDelegateAvailable();
+    if (!customDelegateAvailable) {
+      Ivy.log().info("No custom delegate found, using default role search for query: " + query);
+      var dto = SecurityService.newInstance().findUsersWithRoles(query, 0, 101, null, null);
+      return dto.getRoleDTOs();
+    }
+    if (selectedTasks == null || selectedTasks.isEmpty()) {
+      return new ArrayList<>();
+    }
+    List<RoleDTO> intersectedRoles = new ArrayList<>();
+    for (ITask task : selectedTasks) {
+      List<Map<String, Object>> result = callCustomDelegate(task);
+      List<RoleDTO> customRoles = new ArrayList<>();
+
+      for (Map<String, Object> map : (List<Map<String, Object>>) result) {
+        if (!CustomProcessUtils.isSkipCustomProcess(map)) {
+          Object rolesObj = map.get("roles");
+          if (rolesObj instanceof List) {
+            customRoles.addAll((List<RoleDTO>) rolesObj);
+          }
+        }
+      }
+      intersectedRoles = getUniqRoleIds(intersectedRoles, customRoles);
+    }
+    return intersectedRoles;
+  }
+  
+  private static boolean checkCustomDelegateAvailable() {
+    var filter = SubProcessSearchFilter.create()
+        .setSearchScope(SearchScope.SECURITY_CONTEXT)
+        .setSignature(PortalCustomSignature.DELEGATE.getSignature()).toFilter();
+
+    var subProcessStartList = SubProcessCallStartEvent.find(filter);
+    Ivy.log().info(subProcessStartList);
+    return CollectionUtils.isNotEmpty(subProcessStartList);
+  }
+
+  private List<Map<String, Object>> callCustomDelegate(ITask task) {
+    Map<String, Object> params = new HashMap<>();
+    params.put("roles", null);
+    params.put("users", null);
+    params.put("currentUser", SecurityMemberUtils.getCurrentSessionUserAsSecurityMemberDTO());
+    params.put("task", task);
+    List<Map<String, Object>> result = IvyAdapterService
+        .startSubProcessesInSecurityContext(PortalCustomSignature.DELEGATE.getSignature(), params);
+    return result;
+  }
+
+    private static List<RoleDTO> getUniqRoleIds(List<RoleDTO> intersectedRoles, List<RoleDTO> customRoles) {
     Set<String> uniqRoleIds = customRoles.stream()
-          .map(RoleDTO::getSecurityMemberId)
-          .collect(java.util.stream.Collectors.toSet());
+        .map(RoleDTO::getSecurityMemberId)
+        .collect(java.util.stream.Collectors.toSet());
     if (intersectedRoles == null) {
       intersectedRoles = new ArrayList<>(customRoles);
     } else {
@@ -140,10 +141,11 @@ public class BulkDelegateService {
       // Keep ONLY users that currently exist in both sets
       intersectedUsers.removeIf(u -> !uniqUserIds.contains(u.getSecurityMemberId()));
     }
-    return intersectedUsers; 
+    return intersectedUsers;
   }
 
-  public void delegateTasks(List<ITask> tasks, UserDTO selectedUser, RoleDTO selectedRole, String taskDelegationComment) {
+  public void delegateTasks(List<ITask> tasks, UserDTO selectedUser, RoleDTO selectedRole,
+      String taskDelegationComment) {
     for (ITask task : tasks) {
       // Reset task
       TaskUtils.resetTask(task);

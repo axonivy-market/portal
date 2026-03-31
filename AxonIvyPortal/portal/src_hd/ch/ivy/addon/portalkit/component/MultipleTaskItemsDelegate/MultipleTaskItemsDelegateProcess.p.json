@@ -86,7 +86,7 @@
         "sudo" : true
       },
       "visual" : {
-        "at" : { "x" : 248, "y" : 256 }
+        "at" : { "x" : 288, "y" : 256 }
       },
       "connect" : [
         { "id" : "f75", "to" : "f15" }
@@ -133,69 +133,6 @@
         "at" : { "x" : 440, "y" : 384 }
       }
     }, {
-      "id" : "f30",
-      "type" : "HtmlDialogMethodStart",
-      "name" : "autoCompleteForUserDelegate(String)",
-      "config" : {
-        "signature" : "autoCompleteForUserDelegate",
-        "input" : {
-          "params" : [
-            { "name" : "query", "type" : "String", "desc" : "" }
-          ],
-          "map" : {
-            "out.queryAutoComplete" : "param.query"
-          }
-        },
-        "result" : {
-          "params" : [
-            { "name" : "usersToDelegate", "type" : "java.util.List<com.axonivy.portal.components.dto.UserDTO>", "desc" : "" }
-          ],
-          "map" : {
-            "result.usersToDelegate" : "in.usersToDelegate"
-          }
-        },
-        "guid" : "19CBDC6DB2A307C2"
-      },
-      "visual" : {
-        "at" : { "x" : 96, "y" : 512 }
-      },
-      "connect" : [
-        { "id" : "e30", "to" : "f31" }
-      ]
-    }, {
-      "id" : "f31",
-      "type" : "SubProcessCall",
-      "name" : "SecurityService - Find Users",
-      "config" : {
-        "processCall" : "Ivy Data Processes/SecurityService:findUsersWithRoles(Integer,Integer,java.util.List<String>,java.util.List<String>,String)",
-        "call" : {
-          "map" : {
-            "param.query" : "in.queryAutoComplete",
-            "param.startIndex" : "0",
-            "param.count" : "101"
-          }
-        },
-        "output" : {
-          "map" : {
-            "out" : "in",
-            "out.usersToDelegate" : "result.users"
-          }
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 256, "y" : 512 },
-        "size" : { "width" : 160 }
-      },
-      "connect" : [
-        { "id" : "e31", "to" : "f32" }
-      ]
-    }, {
-      "id" : "f32",
-      "type" : "HtmlDialogEnd",
-      "visual" : {
-        "at" : { "x" : 448, "y" : 512 }
-      }
-    }, {
       "id" : "f40",
       "type" : "HtmlDialogMethodStart",
       "name" : "autoCompleteForRoleDelegate(String)",
@@ -223,16 +160,16 @@
         "guid" : "19CBDC6DB2A307C3"
       },
       "visual" : {
-        "at" : { "x" : 96, "y" : 640 }
+        "at" : { "x" : 96, "y" : 616 }
       },
       "connect" : [
-        { "id" : "e40", "to" : "f41" }
+        { "id" : "e40", "to" : "f76" }
       ]
     }, {
       "id" : "f41",
       "type" : "HtmlDialogEnd",
       "visual" : {
-        "at" : { "x" : 448, "y" : 640 }
+        "at" : { "x" : 448, "y" : 616 }
       }
     }, {
       "id" : "f50",
@@ -242,7 +179,7 @@
         "guid" : "19CBDC6DB2A307C4"
       },
       "visual" : {
-        "at" : { "x" : 96, "y" : 872 }
+        "at" : { "x" : 96, "y" : 736 }
       },
       "connect" : [
         { "id" : "e50", "to" : "f51" }
@@ -262,7 +199,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 264, "y" : 872 },
+        "at" : { "x" : 304, "y" : 736 },
         "size" : { "width" : 160 }
       },
       "connect" : [
@@ -272,20 +209,20 @@
       "id" : "f52",
       "type" : "HtmlDialogEnd",
       "visual" : {
-        "at" : { "x" : 448, "y" : 872 }
+        "at" : { "x" : 448, "y" : 736 }
       }
     }, {
       "id" : "f65",
       "type" : "HtmlDialogEnd",
       "visual" : {
-        "at" : { "x" : 416, "y" : 752 }
+        "at" : { "x" : 424, "y" : 504 }
       }
     }, {
       "id" : "f68",
       "type" : "HtmlDialogMethodStart",
-      "name" : "autoCompleteForUserDelegate2(String)",
+      "name" : "autoCompleteForUserDelegate(String)",
       "config" : {
-        "signature" : "autoCompleteForUserDelegate2",
+        "signature" : "autoCompleteForUserDelegate",
         "input" : {
           "params" : [
             { "name" : "query", "type" : "String", "desc" : "" }
@@ -305,7 +242,7 @@
         "guid" : "19D19A06A35B76F5"
       },
       "visual" : {
-        "at" : { "x" : 88, "y" : 752 }
+        "at" : { "x" : 96, "y" : 504 }
       },
       "connect" : [
         { "id" : "f72", "to" : "f69" }
@@ -313,23 +250,18 @@
     }, {
       "id" : "f69",
       "type" : "Script",
+      "name" : "Fetch users",
       "config" : {
         "output" : {
           "code" : [
-            "import com.axonivy.portal.service.BulkDelegateService.DelegationData;",
             "import com.axonivy.portal.service.BulkDelegateService;",
-            "import java.util.ArrayList;",
-            "import ch.ivy.addon.portalkit.util.SecurityMemberUtils;",
             "",
-            "DelegationData data = BulkDelegateService.getInstance().getBulkDelegateAutocomplete(in.rolesToDelegate, in.usersToDelegate, in.selectedTasks, ",
-            "SecurityMemberUtils.getCurrentSessionUserAsSecurityMemberDTO());",
-            "in.rolesToDelegate = data.getRoles();",
-            "in.usersToDelegate = data.getUsers();"
+            "in.usersToDelegate = BulkDelegateService.getInstance().completeUserForBulkDelegate(in.queryAutoComplete, in.selectedTasks);"
           ]
         }
       },
       "visual" : {
-        "at" : { "x" : 272, "y" : 752 }
+        "at" : { "x" : 296, "y" : 504 }
       },
       "connect" : [
         { "id" : "f71", "to" : "f65" }
@@ -348,10 +280,29 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 248, "y" : 384 }
+        "at" : { "x" : 288, "y" : 384 }
       },
       "connect" : [
         { "id" : "f74", "to" : "f22" }
+      ]
+    }, {
+      "id" : "f76",
+      "type" : "Script",
+      "name" : "Fetch roles",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.service.BulkDelegateService;",
+            "",
+            "in.rolesToDelegate = BulkDelegateService.getInstance().completeRoleForBulkDelegate(in.queryAutoComplete, in.selectedTasks);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 296, "y" : 616 }
+      },
+      "connect" : [
+        { "id" : "f77", "to" : "f41", "color" : "default" }
       ]
     } ]
 }

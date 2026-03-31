@@ -16,7 +16,6 @@
 <cc:implementation>
   <c:set var="widgetIndex" value="#{cc.attrs.widgetIndex}" />
   <p:remoteCommand id="init-data-to-delegate-multiple-rc" name="initDataToDelegateMultipleTasks#{widgetIndex}"
-    actionListener="#{logic.initDataToDelegateTasks(cc.attrs.selectedTasks, cc.attrs.widgetIndex)}"
     oncomplete="PF('multiple-task-delegate-dialog-#{widgetIndex}').show();"
     update="#{cc.clientId}:multiple-task-delegate-dialog-#{widgetIndex}"
     process="@this" />
@@ -28,8 +27,7 @@
     <h:panelGroup>
       <h:form id="multiple-task-delegate-form">
         <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDelegate/delegateTaskHeaderLabel')}</span>
-        <h:panelGroup id="multiple-activator-panel" layout="block" styleClass="delegate-dialog-activator-panel"
-          rendered="#{not empty data.rolesToDelegate or not empty data.usersToDelegate}">
+        <h:panelGroup id="multiple-activator-panel" layout="block" styleClass="delegate-dialog-activator-panel">
           <div class="delegate-type-container">
             <p:selectOneRadio id="activator-type-select" value="#{data.isUserDelegated}">
               <f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDelegate/toUser')}" itemValue="true"
@@ -45,7 +43,7 @@
         <h:panelGroup id="select-delegate-panel" layout="block" styleClass="select-delegate-panel">
           <ic:com.axonivy.portal.components.UserSelection id="user-activator-component"
             componentId="user-activator-select" selectedUser="#{data.selectedUser}"
-            rendered="#{data.isUserDelegated}" completeMethod="#{logic.autoCompleteForUserDelegate}"
+            completeMethod="#{logic.autoCompleteForUserDelegate}"
             isRenderedMessage="false"
             autoCompletePanelStyleClass="ui-fluid"
             hasCustomizedSelectionList="true">
@@ -60,7 +58,7 @@
           </ic:com.axonivy.portal.components.UserSelection>
 
           <ic:com.axonivy.portal.components.RoleSelection id="group-activator-select-component" scrollHeight="400"
-            componentId="group-activator-select" selectedRole="#{data.selectedRole}" rendered="#{!data.isUserDelegated}"
+            componentId="group-activator-select" selectedRole="#{data.selectedRole}"
             cache="true" queryDelay="500" completeMethod="#{logic.autoCompleteForRoleDelegate}"
             isRenderedMessage="false"
             appendOption="#{visibilityBean.delegationAppendOption()}"
