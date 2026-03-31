@@ -14,6 +14,7 @@ import com.axonivy.portal.components.dto.RoleDTO;
 import com.axonivy.portal.components.dto.UserDTO;
 import com.axonivy.portal.components.service.IvyAdapterService;
 import com.axonivy.portal.components.util.CustomProcessUtils;
+import com.axonivy.portal.components.util.RoleUtils;
 import com.axonivy.portal.enums.PortalCustomSignature;
 
 import ch.ivy.addon.portalkit.ivydata.service.impl.SecurityService;
@@ -40,21 +41,18 @@ public class BulkDelegateService {
   public List<UserDTO> completeUserForBulkDelegate(String query, List<ITask> selectedTasks) {
     boolean customDelegateAvailable = checkCustomDelegateAvailable();
     if (!customDelegateAvailable) {
-      Ivy.log().info("No custom delegate found, using default user search for query: " + query);
       var dto = SecurityService.newInstance().findUsersWithRoles(query, 0, 101, null, null);
       return dto.getUsers();
     }
     if (selectedTasks == null || selectedTasks.isEmpty()) {
       return new ArrayList<>();
     }
-    Ivy.log().info("Starting bulk delegate user autocomplete for query: '" + query + "' with " + selectedTasks.size() + " selected tasks.");
     List<UserDTO> intersectedUsers = new ArrayList<>();
     for (ITask task : selectedTasks) {
       List<Map<String, Object>> result = callCustomDelegate(task);
       List<UserDTO> customUsers = new ArrayList<>();
       if (CollectionUtils.isEmpty(result)) {
-        Ivy.log().info("No custom delegate result for task '" + task.getName() + "'. Skipping.");
-        continue;
+        return new ArrayList<>();
       }
       for (Map<String, Object> map : (List<Map<String, Object>>) result) {
         if (!CustomProcessUtils.isSkipCustomProcess(map)) {
@@ -72,9 +70,7 @@ public class BulkDelegateService {
   public List<RoleDTO> completeRoleForBulkDelegate(String query, List<ITask> selectedTasks) {
     boolean customDelegateAvailable = checkCustomDelegateAvailable();
     if (!customDelegateAvailable) {
-      Ivy.log().info("No custom delegate found, using default role search for query: " + query);
-      var dto = SecurityService.newInstance().findUsersWithRoles(query, 0, 101, null, null);
-      return dto.getRoleDTOs();
+      return RoleUtils.findRoles(null, null, query);
     }
     if (selectedTasks == null || selectedTasks.isEmpty()) {
       return new ArrayList<>();
@@ -164,7 +160,6 @@ public class BulkDelegateService {
 
       // Create note
       String oldResponsibleName = TaskUtils.toDisplayNameResponsible(task.responsibles());
-
       String delegateComment;
       if (StringUtils.isBlank(taskDelegationComment)) {
         delegateComment = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskDelegate/delegateComment",
@@ -176,7 +171,6 @@ public class BulkDelegateService {
 
       // Delegate task
       TaskUtils.delegateTask(task, delegatedSecurityMember);
-
       // Add note
       task.getCase().createNote(Ivy.session(), delegateComment);
     }

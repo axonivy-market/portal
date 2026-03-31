@@ -12,7 +12,8 @@
         onEscalationComplete="PF('escalation-task-dialog').show()"
         onWorkflowEventComplete="initWorkflowEventData()"
         sideStepsPanelStyleClass="js-task-side-steps-panel-#{cc.attrs.taskWidget.id}-#{rowIndex}"
-        isPreviewMode="#{cc.attrs.isPreviewMode}" />
+        isPreviewMode="#{cc.attrs.isPreviewMode}" 
+        isDisabled="#{isDisableActions}"/>
   </h:panelGroup>
 
   <h:panelGroup styleClass="action-container" rendered="#{cc.attrs.isAIResult}">

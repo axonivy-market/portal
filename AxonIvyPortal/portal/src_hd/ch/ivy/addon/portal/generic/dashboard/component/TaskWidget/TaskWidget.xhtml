@@ -148,6 +148,7 @@
           <h:panelGroup rendered="#{column.field eq 'actions'}" id="action-cell-item">
             <ui:include src="ActionsCell.xhtml">
               <ui:param name="destroyTaskDialogComponent" value="destroy-task-confirmation-dialog" />
+              <ui:param name="isDisableActions" value="#{dashboardTaskWidgetBean.isShowSelection(taskWidget)}" />
             </ui:include>
           </h:panelGroup>
           

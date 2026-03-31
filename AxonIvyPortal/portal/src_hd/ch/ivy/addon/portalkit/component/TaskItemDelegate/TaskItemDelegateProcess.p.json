@@ -513,42 +513,5 @@
       "connect" : [
         { "id" : "f8", "to" : "f5" }
       ]
-    }, {
-      "id" : "f111",
-      "type" : "HtmlDialogMethodStart",
-      "name" : "autoCompleteForUserDelegate2(String)",
-      "config" : {
-        "signature" : "autoCompleteForUserDelegate2",
-        "input" : {
-          "params" : [
-            { "name" : "query", "type" : "String", "desc" : "" }
-          ],
-          "map" : {
-            "out.queryAutoComplete" : "param.query"
-          }
-        },
-        "result" : {
-          "params" : [
-            { "name" : "usersToDelegate", "type" : "java.util.List<com.axonivy.portal.components.dto.UserDTO>", "desc" : "" }
-          ],
-          "map" : {
-            "result.usersToDelegate" : "in.usersToDelegate"
-          }
-        },
-        "guid" : "19D293A312125E20"
-      },
-      "visual" : {
-        "at" : { "x" : 880, "y" : 408 },
-        "labelOffset" : { "x" : 62, "y" : 32 }
-      },
-      "connect" : [
-        { "id" : "f113", "to" : "f112" }
-      ]
-    }, {
-      "id" : "f112",
-      "type" : "HtmlDialogEnd",
-      "visual" : {
-        "at" : { "x" : 1088, "y" : 408 }
-      }
     } ]
 }

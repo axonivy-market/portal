@@ -52,12 +52,10 @@
         "signature" : "initDataToDelegateTasks",
         "input" : {
           "params" : [
-            { "name" : "selectedTasks", "type" : "java.util.List<ch.ivyteam.ivy.workflow.ITask>", "desc" : "" },
-            { "name" : "widgetIndex", "type" : "String", "desc" : "" }
+            { "name" : "selectedTasks", "type" : "java.util.List<ch.ivyteam.ivy.workflow.ITask>", "desc" : "" }
           ],
           "map" : {
-            "out.selectedTasks" : "param.selectedTasks",
-            "out.widgetIndex" : "param.widgetIndex"
+            "out.selectedTasks" : "param.selectedTasks"
           },
           "code" : "ivy.log.info(out.selectedTasks);"
         },
@@ -76,17 +74,17 @@
       "config" : {
         "output" : {
           "code" : [
-            "// in.disabledDelegateButton = true;",
-            "// in.isUserDelegated = true;",
+            "in.disabledDelegateButton = true;",
+            "in.isUserDelegated = true;",
             "// in.delegatedSecurityMember = null;",
-            "// in.selectedRole = null;",
-            "// in.selectedUser = null;"
+            "in.selectedRole = null;",
+            "in.selectedUser = null;"
           ]
         },
         "sudo" : true
       },
       "visual" : {
-        "at" : { "x" : 288, "y" : 256 }
+        "at" : { "x" : 280, "y" : 256 }
       },
       "connect" : [
         { "id" : "f75", "to" : "f15" }
@@ -100,24 +98,9 @@
     }, {
       "id" : "f20",
       "type" : "HtmlDialogMethodStart",
-      "name" : "delegateTask(TaskDashboardWidget)",
+      "name" : "delegateTask()",
       "config" : {
         "signature" : "delegateTask",
-        "input" : {
-          "params" : [
-            { "name" : "taskWidget", "type" : "ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget", "desc" : "" }
-          ],
-          "map" : {
-            "out.taskWidget" : "param.taskWidget"
-          },
-          "code" : [
-            "if (out.selectedTasks.size() > 0) {",
-            "  out.numberOfSelectedTasks = 0;",
-            "} else {",
-            "  out.numberOfSelectedTasks = -1;",
-            "}"
-          ]
-        },
         "guid" : "19CBDC6DB2A307C1"
       },
       "visual" : {
@@ -130,7 +113,7 @@
       "id" : "f22",
       "type" : "HtmlDialogEnd",
       "visual" : {
-        "at" : { "x" : 440, "y" : 384 }
+        "at" : { "x" : 448, "y" : 384 }
       }
     }, {
       "id" : "f40",
@@ -191,7 +174,7 @@
       "config" : {
         "output" : {
           "code" : [
-            "out.delegatedSecurityMember = null;",
+            "// out.delegatedSecurityMember = null;",
             "out.disabledDelegateButton = true;",
             "out.selectedRole = null;",
             "out.selectedUser = null;"
@@ -215,7 +198,7 @@
       "id" : "f65",
       "type" : "HtmlDialogEnd",
       "visual" : {
-        "at" : { "x" : 424, "y" : 504 }
+        "at" : { "x" : 448, "y" : 504 }
       }
     }, {
       "id" : "f68",
@@ -261,7 +244,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 296, "y" : 504 }
+        "at" : { "x" : 280, "y" : 504 }
       },
       "connect" : [
         { "id" : "f71", "to" : "f65" }
@@ -280,7 +263,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 288, "y" : 384 }
+        "at" : { "x" : 280, "y" : 384 }
       },
       "connect" : [
         { "id" : "f74", "to" : "f22" }
@@ -299,7 +282,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 296, "y" : 616 }
+        "at" : { "x" : 280, "y" : 616 }
       },
       "connect" : [
         { "id" : "f77", "to" : "f41", "color" : "default" }

@@ -45,7 +45,6 @@ public class DashboardTaskWidgetBean implements Serializable {
   private boolean isRunningTaskWhenClickingOnTaskInList;
   private TaskEmptyMessage noTasksMessage;
   private Map<String, List<ITask>> selectedTasksMap = new HashMap<>();
-  private Map<String, Map<String, Boolean>> taskCheckboxSelectionMap = new HashMap<>();
 
   @PostConstruct
   public void init() {
@@ -121,11 +120,15 @@ public class DashboardTaskWidgetBean implements Serializable {
   }
 
   public Map<String, Map<String, Boolean>> getTaskCheckboxSelectionMap() {
-    return taskCheckboxSelectionMap;
-  }
-
-  public void setTaskCheckboxSelectionMap(Map<String, Map<String, Boolean>> taskCheckboxSelectionMap) {
-    this.taskCheckboxSelectionMap = taskCheckboxSelectionMap;
+    Map<String, Map<String, Boolean>> computedMap = new HashMap<>();
+    for (Map.Entry<String, List<ITask>> entry : selectedTasksMap.entrySet()) {
+      Map<String, Boolean> innerMap = new HashMap<>();
+      for (ITask task : entry.getValue()) {
+        innerMap.put(task.uuid(), Boolean.TRUE);
+      }
+      computedMap.put(entry.getKey(), innerMap);
+    }
+    return computedMap;
   }
 
   public boolean isShowSelection(DashboardWidget widget) {
@@ -138,14 +141,17 @@ public class DashboardTaskWidgetBean implements Serializable {
   public void toggleDelegationColumn(TaskDashboardWidget widget) {
     if (isShowSelection(widget)) {
       widget.setBulkActionType(BulkActionType.NONE);
-      deselectAllDelegatedTasks(widget);
+      deselectAllDelegatedTasks(widget.getId());
       selectedTasksMap.remove(widget.getId());
-      taskCheckboxSelectionMap.remove(widget.getId());
     } else {
       widget.setBulkActionType(BulkActionType.DELEGATE);
       selectedTasksMap.put(widget.getId(), new ArrayList<>());
-      taskCheckboxSelectionMap.put(widget.getId(), new HashMap<>());
     }
+  }
+
+  public void resetTaskSelectionOnWidget(String widgetId) {
+    deselectAllDelegatedTasks(widgetId);
+    selectedTasksMap.remove(widgetId);
   }
 
   public void onSelectTask(BulkActionType bulkActionType, ITask task, TaskDashboardWidget widget) {
@@ -155,17 +161,15 @@ public class DashboardTaskWidgetBean implements Serializable {
       selectedTasksMap = new HashMap<>();
     }
     List<ITask> selectedTasks = selectedTasksMap.computeIfAbsent(widget.getId(), k -> new ArrayList<>());
-    Map<String, Boolean> checkboxMap = taskCheckboxSelectionMap.computeIfAbsent(widget.getId(), k -> new HashMap<>());
+    boolean alreadySelected = selectedTasks.stream().anyMatch(t -> t.uuid().equals(task.uuid()));
 
-    if (checkboxMap.getOrDefault(task.uuid(), false)) {        
+    if (!alreadySelected) {
       if (maxSelectedTasks != null && maxSelectedTasks > 0 && selectedTasks.size() >= maxSelectedTasks) {
-        // Revert selection and optionally show a message
-        checkboxMap.put(task.uuid(), false);
         return;
       }
       selectedTasks.add(task);
     } else {
-      selectedTasks.remove(task);
+      selectedTasks.removeIf(t -> t.uuid().equals(task.uuid()));
     }
   }
 
@@ -196,22 +200,14 @@ public class DashboardTaskWidgetBean implements Serializable {
     return selectedTasks != null && !selectedTasks.isEmpty();
   }
 
-  public int getBulkSelectCount(DashboardWidget widget) {
-    if (!(widget instanceof TaskDashboardWidget) || selectedTasksMap == null) {
-      return 0;
-    }
-    List<ITask> selectedTasks = selectedTasksMap.get(widget.getId());
+  public int getBulkSelectCount(String widgetId) {
+    List<ITask> selectedTasks = selectedTasksMap.get(widgetId);
     return selectedTasks != null ? selectedTasks.size() : 0;
   }
 
-  public void deselectAllDelegatedTasks(DashboardWidget widget) {
-    if (widget instanceof TaskDashboardWidget) {
-      if (selectedTasksMap.containsKey(widget.getId())) {
-        selectedTasksMap.get(widget.getId()).clear();
-      }
-      if (taskCheckboxSelectionMap.containsKey(widget.getId())) {
-        taskCheckboxSelectionMap.get(widget.getId()).clear();
-      }
+  public void deselectAllDelegatedTasks(String widgetId) {
+    if (selectedTasksMap.containsKey(widgetId)) {
+      selectedTasksMap.get(widgetId).clear();
     }
   }
 

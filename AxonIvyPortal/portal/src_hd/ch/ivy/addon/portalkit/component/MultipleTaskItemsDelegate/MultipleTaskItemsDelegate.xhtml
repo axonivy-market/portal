@@ -9,18 +9,25 @@
   <cc:attribute name="selectedTasks" shortDescription="Tasks" type="java.util.List" />
   <cc:attribute name="componentToUpdate" />
   <cc:attribute name="onCompletedCallback" default="" />
-  <cc:attribute name="taskWidget" />
   <cc:attribute name="widgetIndex" />
 </cc:interface>
 
 <cc:implementation>
   <c:set var="widgetIndex" value="#{cc.attrs.widgetIndex}" />
+  <c:set var="selectedTasks" value="#{cc.attrs.selectedTasks}" />
+
   <p:remoteCommand id="init-data-to-delegate-multiple-rc" name="initDataToDelegateMultipleTasks#{widgetIndex}"
+    actionListener="#{logic.initDataToDelegateTasks(selectedTasks)}"
     oncomplete="PF('multiple-task-delegate-dialog-#{widgetIndex}').show();"
     update="#{cc.clientId}:multiple-task-delegate-dialog-#{widgetIndex}"
     process="@this" />
 
-  <p:dialog id="multiple-task-delegate-dialog-#{widgetIndex}" closeOnEscape="true" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/delegateTask')}"
+  <p:remoteCommand id="reset-task-selection-rc-#{widgetIndex}" name="resetTaskSelectionOnWidget#{widgetIndex}"
+    actionListener="#{dashboardTaskWidgetBean.resetTaskSelectionOnWidget(widgetIndex)}"
+    update="@(.delegation-action-bar-#{widgetIndex}) @(.widget-header-default-actions-#{widgetIndex})"
+    process="@this" />
+
+  <p:dialog id="multiple-task-delegate-dialog-#{widgetIndex}" closeOnEscape="true" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/delegateTask')} #{dashboardTaskWidgetBean.getBulkSelectCount(widgetIndex)}"
     widgetVar="multiple-task-delegate-dialog-#{widgetIndex}" dynamic="true" modal="true" showEffect="fade" hideEffect="fade" resizable="false" appendTo="@(body)"
     styleClass="task-delegate-dialog" responsive="true">
 
@@ -43,7 +50,7 @@
         <h:panelGroup id="select-delegate-panel" layout="block" styleClass="select-delegate-panel">
           <ic:com.axonivy.portal.components.UserSelection id="user-activator-component"
             componentId="user-activator-select" selectedUser="#{data.selectedUser}"
-            completeMethod="#{logic.autoCompleteForUserDelegate}"
+            rendered="#{data.isUserDelegated}" completeMethod="#{logic.autoCompleteForUserDelegate}" 
             isRenderedMessage="false"
             autoCompletePanelStyleClass="ui-fluid"
             hasCustomizedSelectionList="true">
@@ -58,7 +65,7 @@
           </ic:com.axonivy.portal.components.UserSelection>
 
           <ic:com.axonivy.portal.components.RoleSelection id="group-activator-select-component" scrollHeight="400"
-            componentId="group-activator-select" selectedRole="#{data.selectedRole}"
+            componentId="group-activator-select" selectedRole="#{data.selectedRole}" rendered="#{!data.isUserDelegated}"
             cache="true" queryDelay="500" completeMethod="#{logic.autoCompleteForRoleDelegate}"
             isRenderedMessage="false"
             appendOption="#{visibilityBean.delegationAppendOption()}"
@@ -86,10 +93,10 @@
           <p:commandButton id="proceed-multiple-task-delegate-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/delegate')}"
             ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/delegate')}"
             icon="#{visibilityBean.generateButtonIcon('si si-road-sign-u-turn-right')}"
-            actionListener="#{logic.delegateTask(cc.attrs.taskWidget)}" immediate="false"
+            actionListener="#{logic.delegateTask}" immediate="false"
             process="@this #{cc.clientId}:multiple-task-delegate-form:multiple-activator-panel #{cc.clientId}:multiple-task-delegate-form:delegate-comment-panel"
             disabled="#{data.disabledDelegateButton}" update="#{cc.attrs.componentToUpdate} @(.dashboard-tasks-container)"
-            oncomplete="PF('multiple-task-delegate-dialog-#{widgetIndex}').hide();"/>
+            oncomplete="PF('multiple-task-delegate-dialog-#{widgetIndex}').hide(); resetTaskSelectionOnWidget#{widgetIndex}();"/>
         </h:panelGroup>
       </h:form>
     </h:panelGroup>

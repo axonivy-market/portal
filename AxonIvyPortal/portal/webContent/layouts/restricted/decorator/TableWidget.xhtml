@@ -44,10 +44,10 @@
       <h:panelGroup rendered="#{dashboardBean.isTaskWidget(widget) and dashboardTaskWidgetBean.isShowSelection(widget)}">
         <h:form id="delegation-action-form">
           <h:panelGroup layout="block" styleClass="flex align-items-center gap-2">
-            <h:outputText value="#{dashboardTaskWidgetBean.getBulkSelectCount(widget)} item selected"
+            <h:outputText value="#{dashboardTaskWidgetBean.getBulkSelectCount(widget.id)} item selected"
               styleClass="text-color-secondary white-space-nowrap"
               rendered="#{empty dashboardTaskWidgetBean.getMaxSelectedTasks() or dashboardTaskWidgetBean.getMaxSelectedTasks() le 0}" />
-            <h:outputFormat value="#{dashboardTaskWidgetBean.getBulkSelectCount(widget)} / #{dashboardTaskWidgetBean.getMaxSelectedTasks()} item selected"
+            <h:outputFormat value="#{dashboardTaskWidgetBean.getBulkSelectCount(widget.id)} / #{dashboardTaskWidgetBean.getMaxSelectedTasks()} item selected"
               styleClass="text-color-secondary white-space-nowrap"
               rendered="#{not empty dashboardTaskWidgetBean.getMaxSelectedTasks() and dashboardTaskWidgetBean.getMaxSelectedTasks() gt 0}">
             </h:outputFormat>
@@ -55,10 +55,10 @@
             <p:commandButton id="delegate-tasks-btn-#{index}"
               value="Delegate tasks"
               icon="si si-multiple-neutral-1"
-              styleClass="ui-delegate-all-tasks-button ui-button #{dashboardTaskWidgetBean.getBulkSelectCount(widget) == 0 ? 'ui-state-disabled' : ''}"
-              disabled="#{dashboardTaskWidgetBean.getBulkSelectCount(widget) == 0}"
+              styleClass="ui-delegate-all-tasks-button ui-button #{dashboardTaskWidgetBean.getBulkSelectCount(widget.id) == 0 ? 'ui-state-disabled' : ''}"
+              disabled="#{dashboardTaskWidgetBean.getBulkSelectCount(widget.id) == 0}"
               ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delegateTasks')}"
-              oncomplete="initDataToDelegateMultipleTasks();"
+              oncomplete="initDataToDelegateMultipleTasks#{widget.id}();"
               process="@this" />
 
             <p:commandButton id="cancel-selection-btn-#{index}"
@@ -406,7 +406,7 @@
     <ic:ch.ivy.addon.portalkit.component.MultipleTaskItemsDelegate
       id="multiple-task-items-delegate-#{index}"
       selectedTasks="#{dashboardTaskWidgetBean.selectedTasksMap[widget.id]}"
-      componentToUpdate="@(.task-widget)" taskWidget="#{widget}"
+      componentToUpdate="@(.task-widget)" widgetIndex="#{widget.id}"
       />
   </h:panelGroup>
 
