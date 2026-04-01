@@ -200,7 +200,6 @@ public class WelcomeDashboardWidget extends DashboardWidget {
 
   @Override
   public void cancelUserFilter() {
-    // TODO Auto-generated method stub
     
   }
 
