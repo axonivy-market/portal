@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 
 import org.primefaces.PrimeFaces;
 import org.primefaces.model.FilterMeta;
+import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortMeta;
 
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.DashboardCaseSearchCriteria;
@@ -18,7 +19,7 @@ import ch.ivy.addon.portalkit.service.exception.PortalException;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.util.threadcontext.IvyThreadContext;
 
-public class DashboardCaseLazyDataModel extends LiveScrollLazyModel<ICase> {
+public class DashboardCaseLazyDataModel extends LazyDataModel<ICase> {
 
   private static final long serialVersionUID = -6615871274830927272L;
 
@@ -97,10 +98,10 @@ public class DashboardCaseLazyDataModel extends LiveScrollLazyModel<ICase> {
     cases.addAll(foundCases);
   }
 
-  @Override
-  public List<ICase> getResults() {
-    return this.cases;
-  }
+//  @Override
+//  public List<ICase> getResults() {
+//    return this.cases;
+//  }
 
   @Override
   public ICase getRowData(String rowKey) {

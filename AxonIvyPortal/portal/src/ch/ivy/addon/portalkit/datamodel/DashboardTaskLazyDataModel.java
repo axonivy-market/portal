@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 import org.apache.commons.collections4.map.HashedMap;
 import org.primefaces.PrimeFaces;
 import org.primefaces.model.FilterMeta;
+import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortMeta;
 
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.DashboardTaskSearchCriteria;
@@ -18,7 +19,7 @@ import ch.ivy.addon.portalkit.service.exception.PortalException;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.util.threadcontext.IvyThreadContext;
 
-public class DashboardTaskLazyDataModel extends LiveScrollLazyModel<ITask> {
+public class DashboardTaskLazyDataModel extends LazyDataModel<ITask> {
 
   private static final long serialVersionUID = -6615871274830927272L;
 
@@ -135,10 +136,10 @@ public class DashboardTaskLazyDataModel extends LiveScrollLazyModel<ITask> {
     this.criteria.setFilterTasksByCurrentCaseOwner(filterTasksByCurrentCaseOwner);
   }
 
-  @Override
-  public List<ITask> getResults() {
-    return this.tasks;
-  }
+//  @Override
+//  public List<ITask> getResults() {
+//    return this.tasks;
+//  }
 
   @Override
   public int count(Map<String, FilterMeta> filterBy) {
