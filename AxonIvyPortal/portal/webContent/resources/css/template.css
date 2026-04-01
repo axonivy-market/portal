@@ -191,6 +191,20 @@ a.left-sidebar-menu-icon {
 }
 /* END APPLICATION MENU */
 
+.sidebar-hidden .menu-wrapper {
+  display: none !important;
+}
+.sidebar-hidden .layout-main {
+  margin-left: 0 !important;
+  padding-left: 0 !important;
+}
+.sidebar-hidden .layout-topbar {
+  left: 0 !important;
+}
+.sidebar-hidden .layout-topbar-left {
+  display: none !important;
+}
+
 .sidebar-click-mode {
   --sidebar-logo-height: 54px;
   --sidebar-toggle-height: 42px;

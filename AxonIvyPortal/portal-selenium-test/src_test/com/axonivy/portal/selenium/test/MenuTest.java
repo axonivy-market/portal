@@ -188,7 +188,7 @@ public class MenuTest extends BaseTest {
 
   @Test
   public void keepSidebarExpand() {
-    updatePortalSetting(Variable.SIDEBAR_BEHAVIOUR.getKey(), "STICK");
+    updatePortalSetting(Variable.SIDEBAR_MODE.getKey(), "STICK");
     login(TestAccount.DEMO_USER);
     MainMenuPage mainMenuPage = new MainMenuPage();
     mainMenuPage.isSidebarAlwaysExpand();
@@ -198,7 +198,7 @@ public class MenuTest extends BaseTest {
 
   @Test
   public void testSidebarClickModeBasicToggle() {
-    updatePortalSetting(Variable.SIDEBAR_BEHAVIOUR.getKey(), "CLICK");
+    updatePortalSetting(Variable.SIDEBAR_MODE.getKey(), "CLICK");
     login(TestAccount.DEMO_USER);
     MainMenuPage mainMenuPage = new MainMenuPage();
 
@@ -216,7 +216,7 @@ public class MenuTest extends BaseTest {
 
   @Test
   public void testSidebarClickModeExpandedStatePersistsAcrossNavigation() {
-    updatePortalSetting(Variable.SIDEBAR_BEHAVIOUR.getKey(), "CLICK");
+    updatePortalSetting(Variable.SIDEBAR_MODE.getKey(), "CLICK");
     login(TestAccount.DEMO_USER);
     MainMenuPage mainMenuPage = new MainMenuPage();
 
@@ -232,7 +232,7 @@ public class MenuTest extends BaseTest {
 
   @Test
   public void testSidebarClickModeCollapsedStatePersistsAcrossNavigation() {
-    updatePortalSetting(Variable.SIDEBAR_BEHAVIOUR.getKey(), "CLICK");
+    updatePortalSetting(Variable.SIDEBAR_MODE.getKey(), "CLICK");
     login(TestAccount.DEMO_USER);
     MainMenuPage mainMenuPage = new MainMenuPage();
 

@@ -18,8 +18,8 @@ var SidebarClickMode = (function() {
     _observer: null,
     _initialized: false,
 
-    init: function(sidebarBehaviour) {
-      this.mode = sidebarBehaviour || 'HOVER';
+    init: function(sidebarMode) {
+      this.mode = sidebarMode || 'HOVER';
       if (this.mode === 'CLICK') {
         this._toggling = false;
         this.observeAndBlockHover();

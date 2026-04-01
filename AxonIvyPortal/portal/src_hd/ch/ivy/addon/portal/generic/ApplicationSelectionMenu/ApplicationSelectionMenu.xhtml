@@ -34,7 +34,7 @@
     </p:commandLink>
 
     <p:commandLink id="toggle-menu" styleClass="sidebar-pin" global="false" ariaLabel="#{ivy.cms.co('/Labels/ToggleMenu')}"
-      onclick="hideBreadcrumb()" oncomplete="Portal.updateBreadcrumb();" rendered="#{masterDataBean.sidebarBehaviour == 'HOVER'}">
+      onclick="hideBreadcrumb()" oncomplete="Portal.updateBreadcrumb();" rendered="#{masterDataBean.sidebarMode == 'HOVER'}">
       <span class="pin"></span>
     </p:commandLink>
   </div>
@@ -73,7 +73,7 @@
   </h:panelGroup>
 
   <!-- CLICK mode toggle button -->
-  <h:panelGroup layout="block" styleClass="sidebar-toggle-btn absolute bottom-0 left-0 w-full flex align-items-center justify-content-center" rendered="#{masterDataBean.sidebarBehaviour == 'CLICK'}">
+  <h:panelGroup layout="block" styleClass="sidebar-toggle-btn absolute bottom-0 left-0 w-full flex align-items-center justify-content-center" rendered="#{masterDataBean.sidebarMode == 'CLICK'}">
     <a onclick="SidebarClickMode.toggle(); return false;"
       aria-label="#{ivy.cms.co('/Labels/ToggleMenu')}" aria-expanded="false"
       title="#{ivy.cms.co('/Labels/ToggleMenu')}"
