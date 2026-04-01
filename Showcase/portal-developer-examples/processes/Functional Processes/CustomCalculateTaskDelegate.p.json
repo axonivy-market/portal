@@ -10,7 +10,7 @@
       "type" : "CallSubStart",
       "name" : "call()",
       "config" : {
-        "signature" : "portalCalculateTaskDelegate",
+        "signature" : "portalCalculateTaskDelegate1",
         "input" : {
           "params" : [
             { "name" : "roles", "type" : "java.util.List<com.axonivy.portal.components.dto.RoleDTO>", "desc" : "" },
