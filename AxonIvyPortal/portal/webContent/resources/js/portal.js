@@ -2,6 +2,7 @@
 // We need to delay a bit before calculating scrollbar
 var isFinishedRestoreMenuState = false;
 var delayTime = 0;
+var DEFAULT_SIDEBAR_RAIL_WIDTH = '50px';
 
 var Portal = {
   init : function(responsiveToolkit) {
@@ -118,7 +119,7 @@ var Portal = {
         if (layoutWrapper.hasClass('layout-static')) {
           breadCrumbMarginLeft = leftSidebarMenu.outerWidth(true) - leftTopbar.outerWidth(true) - parseInt(rightTopbar.css("padding-left")) + "px";
         } else if (layoutWrapper.hasClass('sidebar-click-mode')) {
-          breadCrumbMarginLeft = ($('.js-layout-main').css('padding-left') || '50px');
+          breadCrumbMarginLeft = ($('.js-layout-main').css('padding-left') || DEFAULT_SIDEBAR_RAIL_WIDTH);
         } else {
           if ($("a.menu-button").is(":visible")) {
             breadCrumbMarginLeft = 0;
