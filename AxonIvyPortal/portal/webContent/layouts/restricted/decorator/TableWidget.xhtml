@@ -402,13 +402,13 @@
       onclick="collapseFullscreen(#{index}, '#{htmlSanitizerBean.escapeForJS(widget.id)}')" />
   </h:panelGroup>
 
-  <h:panelGroup rendered="#{dashboardBean.isTaskWidget(widget)}">
-    <ic:ch.ivy.addon.portalkit.component.MultipleTaskItemsDelegate
-      id="multiple-task-items-delegate-#{index}"
-      selectedTasks="#{dashboardTaskWidgetBean.selectedTasksMap[widget.id]}"
-      componentToUpdate="@(.task-widget)" widgetIndex="#{widget.id}"
-      />
-  </h:panelGroup>
+  <ic:ch.ivy.addon.portalkit.component.MultipleTaskItemsDelegate
+    rendered="#{dashboardBean.isTaskWidget(widget)}"
+    id="multiple-task-items-delegate-#{index}"
+    selectedTasks="#{dashboardTaskWidgetBean.selectedTasksMap[widget.id]}"
+    componentToUpdate="@(.task-widget)" 
+    widgetIndex="#{widget.id}"
+    />
 
 </h:panelGroup>
 </html>
