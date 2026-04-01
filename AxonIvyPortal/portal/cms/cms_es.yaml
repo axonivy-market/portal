@@ -224,6 +224,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       EnableSwitchThemeModeButton: Establecer en true para habilitar el botón de cambio de tema.
       GlobalSearchScopeCategoriesNote: Definición de los tipos que buscará la búsqueda global
       GooglePlayURL: Establece la URL para descargar la aplicación móvil Axon Ivy en Google Play.
+      maximumSelectedTasks: Define el número máximo de tareas que un usuario puede seleccionar simultáneamente dentro de un widget de tareas para operaciones masivas. Establezca este valor en un número entero positivo para imponer un límite específico, o déjelo en blanco para permitir una selección de
+        tareas ilimitada.
       RoleDirectChildrenLimit: 'El número establecido controla la cantidad de roles hijos directos que se muestra en la pestaña de gestión de roles. Número válido: 10, 50, 100'
       RoleParentLimit: 'El número establecido controla la cantidad de roles padre que se muestra al filtrar los roles en la pestaña Gestión de roles. Número válido: 5, 10, 20'
       SearchScopeCaseFields: Definición de los campos que la búsqueda global utilizará para encontrar casos coincidentes además del Id de caso (esto puede influir en el rendimiento de la búsqueda)

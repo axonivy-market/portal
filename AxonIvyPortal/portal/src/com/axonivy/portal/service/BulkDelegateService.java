@@ -51,10 +51,10 @@ public class BulkDelegateService {
     List<UserDTO> intersectedUsers = new ArrayList<>();
     for (ITask task : selectedTasks) {
       List<Map<String, Object>> result = callCustomDelegate(task);
-      List<UserDTO> customUsers = new ArrayList<>();
       if (CollectionUtils.isEmpty(result)) {
         return new ArrayList<>();
       }
+      List<UserDTO> customUsers = new ArrayList<>();
       for (Map<String, Object> map : (List<Map<String, Object>>) result) {
         if (!CustomProcessUtils.isSkipCustomProcess(map)) {
           Object usersObj = map.get("users");
