@@ -1,15 +1,15 @@
-var SidebarClickMode = (function() {
-  var CLS_LAYOUT_STATIC  = 'layout-static';
-  var CLS_STATIC_RESTORE = 'layout-static-restore';
-  var CLS_SIDEBAR_ACTIVE = 'layout-sidebar-active';
+var SidebarClickMode = (function () {
+  const CLS_LAYOUT_STATIC = 'layout-static';
+  const CLS_STATIC_RESTORE = 'layout-static-restore';
+  const CLS_SIDEBAR_ACTIVE = 'layout-sidebar-active';
 
-  var SEL_WRAPPER      = '.js-layout-wrapper';
-  var SEL_MENU_WRAPPER = '.menu-wrapper.js-left-sidebar';
-  var SEL_TOGGLE_LABEL = '.sidebar-toggle-label';
-  var SEL_TOGGLE_BTN   = '.js-sidebar-toggle-btn';
+  const SEL_WRAPPER = '.js-layout-wrapper';
+  const SEL_MENU_WRAPPER = '.menu-wrapper.js-left-sidebar';
+  const SEL_TOGGLE_LABEL = '.sidebar-toggle-label';
+  const SEL_TOGGLE_BTN = '.js-sidebar-toggle-btn';
 
-  var FREYA_TRANSITION_MS = 250;
-  var COOKIE_MENU_STATIC  = 'freya_menu_static';
+  const FREYA_TRANSITION_MS = 250;
+  const COOKIE_MENU_STATIC = 'freya_menu_static';
 
   return {
     mode: 'HOVER',
@@ -18,7 +18,7 @@ var SidebarClickMode = (function() {
     _observer: null,
     _initialized: false,
 
-    init: function(sidebarMode) {
+    init: function (sidebarMode) {
       this.mode = sidebarMode || 'HOVER';
       if (this.mode === 'CLICK') {
         this._toggling = false;
@@ -38,15 +38,17 @@ var SidebarClickMode = (function() {
       }
     },
 
-    observeAndBlockHover: function() {
+    observeAndBlockHover: function () {
       if (this._observer) {
         this._observer.disconnect();
       }
       var self = this;
       var $wrapper = $(SEL_WRAPPER);
-      if ($wrapper.length === 0) return;
+      if ($wrapper.length === 0) { return; }
       this._observer = new MutationObserver(function () {
-        if (self._toggling) return;
+        if (self._toggling) {
+          return;
+        }
         if ($wrapper.hasClass(CLS_LAYOUT_STATIC) && !self._isExpanded) {
           $wrapper.removeClass(CLS_LAYOUT_STATIC + ' ' + CLS_STATIC_RESTORE);
         }
@@ -54,13 +56,15 @@ var SidebarClickMode = (function() {
       this._observer.observe($wrapper[0], { attributes: true, attributeFilter: ['class'] });
     },
 
-    ensureCollapsed: function() {
+    ensureCollapsed: function () {
       $(SEL_WRAPPER).removeClass(CLS_LAYOUT_STATIC + ' ' + CLS_STATIC_RESTORE);
       $(SEL_MENU_WRAPPER).removeClass(CLS_SIDEBAR_ACTIVE);
     },
 
-    toggle: function() {
-      if (this.mode !== 'CLICK') return;
+    toggle: function () {
+      if (this.mode !== 'CLICK') { 
+        return;
+      }
       this._toggling = true;
       this._isExpanded = !this._isExpanded;
       var $layoutWrapper = $(SEL_WRAPPER);
@@ -74,7 +78,7 @@ var SidebarClickMode = (function() {
         $(SEL_TOGGLE_BTN).attr('aria-expanded', 'false');
       }
       var self = this;
-      setTimeout(function() {
+      setTimeout(function () {
         try {
           Portal.updateBreadcrumb();
           Portal.updateLayoutContent();
@@ -84,10 +88,12 @@ var SidebarClickMode = (function() {
       }, FREYA_TRANSITION_MS);
     },
 
-    bindSubmenuAutoExpand: function() {
+    bindSubmenuAutoExpand: function () {
       var self = this;
       $(document).off('click.sidebarSubmenu').on('click.sidebarSubmenu', '.layout-menu li > a', function () {
-        if (self.mode !== 'CLICK' || self._isExpanded) return;
+        if (self.mode !== 'CLICK' || self._isExpanded) {
+          return;
+        }
         var $li = $(this).closest('li');
         if ($li.find('> ul').length > 0) {
           self.toggle();

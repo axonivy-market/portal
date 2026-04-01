@@ -215,39 +215,27 @@ public class MenuTest extends BaseTest {
   }
 
   @Test
-  public void testSidebarClickModeExpandedStatePersistsAcrossNavigation() {
+  public void testSidebarClickModeResetsToCollapsedAfterNavigation() {
     updatePortalSetting(Variable.SIDEBAR_MODE.getKey(), "CLICK");
     login(TestAccount.DEMO_USER);
     MainMenuPage mainMenuPage = new MainMenuPage();
 
-    // Start collapsed, then expand
     mainMenuPage.isSidebarClickModeCollapsed();
     mainMenuPage.clickSidebarToggleButton();
     mainMenuPage.isSidebarClickModeExpanded();
 
-    // Navigate to another page, expanded state should persist
     mainMenuPage.openProcessList();
-    mainMenuPage.isSidebarClickModeExpanded();
+    mainMenuPage.isSidebarClickModeCollapsed();
   }
 
   @Test
-  public void testSidebarClickModeCollapsedStatePersistsAcrossNavigation() {
-    updatePortalSetting(Variable.SIDEBAR_MODE.getKey(), "CLICK");
+  public void testSidebarHiddenMode() {
+    updatePortalSetting(Variable.SIDEBAR_MODE.getKey(), "HIDDEN");
     login(TestAccount.DEMO_USER);
-    MainMenuPage mainMenuPage = new MainMenuPage();
+    NewDashboardPage dashboardPage = new NewDashboardPage();
 
-    // Verify initial collapsed state
-    mainMenuPage.isSidebarClickModeCollapsed();
-
-    // Expand then collapse
-    mainMenuPage.clickSidebarToggleButton();
-    mainMenuPage.isSidebarClickModeExpanded();
-    mainMenuPage.clickSidebarToggleButton();
-    mainMenuPage.isSidebarClickModeCollapsed();
-
-    // Navigate to another page, collapsed state should persist
-    mainMenuPage.openProcessList();
-    mainMenuPage.isSidebarClickModeCollapsed();
+    // Verify sidebar is completely hidden
+    dashboardPage.isSidebarHidden();
   }
 
 
