@@ -18,6 +18,7 @@ import com.axonivy.portal.components.util.RoleUtils;
 import com.axonivy.portal.enums.PortalCustomSignature;
 
 import ch.ivy.addon.portalkit.ivydata.service.impl.SecurityService;
+import ch.ivy.addon.portalkit.service.exception.PortalException;
 import ch.ivy.addon.portalkit.util.SecurityMemberUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -67,6 +68,7 @@ public class BulkDelegateService {
     return intersectedUsers;
   }
 
+  @SuppressWarnings("unchecked")
   public List<RoleDTO> completeRoleForBulkDelegate(String query, List<ITask> selectedTasks) {
     boolean customDelegateAvailable = checkCustomDelegateAvailable();
     if (!customDelegateAvailable) {
@@ -78,6 +80,9 @@ public class BulkDelegateService {
     List<RoleDTO> intersectedRoles = new ArrayList<>();
     for (ITask task : selectedTasks) {
       List<Map<String, Object>> result = callCustomDelegate(task);
+      if (CollectionUtils.isEmpty(result)) {
+        return new ArrayList<>();
+      }
       List<RoleDTO> customRoles = new ArrayList<>();
 
       for (Map<String, Object> map : (List<Map<String, Object>>) result) {
@@ -99,7 +104,6 @@ public class BulkDelegateService {
         .setSignature(PortalCustomSignature.DELEGATE.getSignature()).toFilter();
 
     var subProcessStartList = SubProcessCallStartEvent.find(filter);
-    Ivy.log().info(subProcessStartList);
     return CollectionUtils.isNotEmpty(subProcessStartList);
   }
 
@@ -142,6 +146,9 @@ public class BulkDelegateService {
 
   public void delegateTasks(List<ITask> tasks, UserDTO selectedUser, RoleDTO selectedRole,
       String taskDelegationComment) {
+    if (selectedUser == null && selectedRole == null) {
+      throw new PortalException("Either selectedUser or selectedRole must be provided");
+    }
     for (ITask task : tasks) {
       // Reset task
       TaskUtils.resetTask(task);

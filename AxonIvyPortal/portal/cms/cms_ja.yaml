@@ -493,6 +493,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     default: 初期値
     defaultNotificationMessage: 問題が発生しましたようです。
     delete: 削除
+    delegateTasks: タスクを委任する
     deleteAbsenceHeaderText: この不在日程を削除しますか?
     deleteChartHeaderText: このチャートを削除しますか?
     deleteDocumentHeaderText: このドキュメントを削除しますか?

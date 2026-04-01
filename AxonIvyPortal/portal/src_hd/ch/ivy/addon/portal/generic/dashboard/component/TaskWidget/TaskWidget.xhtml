@@ -66,7 +66,7 @@
         <f:attribute name="widgetId" value="#{taskWidget.id}" />
         <p:ajax event="sort" update="dashboard-tasks" onstart="liveScroll()" disabled="#{!isPreviewMode and !isReadOnlyMode}" />
 
-        <p:column headerText="" rendered="#{dashboardTaskWidgetBean.isShowSelection(taskWidget)}" style="text-align: center; width: 40px">
+        <p:column headerText="" rendered="#{dashboardTaskWidgetBean.isShowSelection(taskWidget)}" styleClass="dashboard-tasks__selection-column">
           <h:panelGroup styleClass="js-task-selection js-task-selection-#{taskWidget.id}">
             <ic:ch.ivy.addon.portalkit.component.task.column.TaskSelection task="#{task}"
               isEnabled="#{taskActionBean.handleSelectionAction(taskWidget.bulkActionType, task) and not dashboardTaskWidgetBean.isReachMaxSelectionLimit(taskWidget)}" managedBean="#{dashboardTaskWidgetBean}"

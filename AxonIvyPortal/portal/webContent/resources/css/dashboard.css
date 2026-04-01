@@ -2139,3 +2139,8 @@ body .ui-datatable:not(.ui-datatable-gridlines) thead th:not(.ui-helper-hidden) 
 body .ui-treetable:not(.ui-treetable-gridlines) thead th:not(.ui-helper-hidden) ~ th:not(.ui-helper-hidden):before {
     display: block !important;
 }
+
+.dashboard-tasks__selection-column {
+  text-align: center;
+  width: 40px;
+}

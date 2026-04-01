@@ -493,6 +493,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     default: Por defecto
     defaultNotificationMessage: Hmm… Parece que algo ha ido mal.
     delete: Borrar
+    delegateTasks: Delegar tareas
     deleteAbsenceHeaderText: ¿Borrar esta ausencia?
     deleteChartHeaderText: ¿Borrar este gráfico?
     deleteDocumentHeaderText: ¿Borrar este documento?

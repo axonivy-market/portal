@@ -56,8 +56,7 @@
           ],
           "map" : {
             "out.selectedTasks" : "param.selectedTasks"
-          },
-          "code" : "ivy.log.info(out.selectedTasks);"
+          }
         },
         "guid" : "19CBDC6DB2A307C0"
       },

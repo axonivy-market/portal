@@ -53,7 +53,7 @@
             </h:outputFormat>
 
             <p:commandButton id="delegate-tasks-btn-#{index}"
-              value="Delegate tasks"
+              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delegateTasks')}"
               icon="si si-multiple-neutral-1"
               styleClass="ui-delegate-all-tasks-button ui-button #{dashboardTaskWidgetBean.getBulkSelectCount(widget.id) == 0 ? 'ui-state-disabled' : ''}"
               disabled="#{dashboardTaskWidgetBean.getBulkSelectCount(widget.id) == 0}"
@@ -120,14 +120,14 @@
 
     <h:panelGroup layout="block" styleClass="u-mar-right-2" rendered="#{renderSelectionToggle}">
       <h:form id="toggle-delegation-form">
-        <p:commandButton id="a231421"
+        <p:commandButton id="selection-toggle-button-#{index}"
           icon="si si-list-bullets"
           ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/multiSelect')}"
           styleClass="rounded-button ui-button-outlined u-mar-right-5 ui-button-widget #{dashboardTaskWidgetBean.isShowSelection(widget) ? 'ui-button-primary' : ''}"
           actionListener="#{dashboardTaskWidgetBean.toggleDelegationColumn(widget)}"
           update="@(.delegation-action-bar-#{widget.id}) @(.widget-header-default-actions-#{widget.id}) #{componentToUpdateOnResetFilter}"
           process="@this" />
-        <p:tooltip for="a231421" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/multiSelect')}"
+        <p:tooltip for="selection-toggle-button-#{index}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/multiSelect')}"
           trackMouse="true" hideEvent="mouseleave click" />
       </h:form>
     </h:panelGroup>

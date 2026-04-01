@@ -87,7 +87,6 @@ public class DashboardBean implements Serializable, IMultiLanguage {
   private String selectedDashboardName;
   private String searchScope;
   private boolean isShowPinnedItem;
-  private List<ITask> selectedDelegatedTasks;
 
   @PostConstruct
   public void init() {
