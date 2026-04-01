@@ -279,7 +279,7 @@ public class TaskSearchCriteria {
       }
     }
     
-    private void appendSortByCategoryIfSet(@SuppressWarnings("unused") TaskSearchCriteria criteria) {
+    private void appendSortByCategoryIfSet(TaskSearchCriteria criteria) {
 //      if (TaskSortField.CATEGORY.toString().equalsIgnoreCase(criteria.getSortField())) {
 //        if (criteria.isSortDescending()) {
 //          query.orderBy().category().descending();

@@ -1,11 +1,9 @@
 package ch.ivy.addon.portalkit.dto.dashboard.taskcolumn;
 
-import java.io.Serializable;
-
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 
-public class PinColumnModel extends TaskColumnModel implements Serializable {
+public class PinColumnModel extends TaskColumnModel {
 
   private static final long serialVersionUID = -7132266991495711489L;
 

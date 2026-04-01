@@ -2,7 +2,6 @@ package com.axonivy.portal.bean.dashboard.filter;
 
 import static org.apache.commons.lang3.StringUtils.EMPTY;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +23,7 @@ import ch.ivyteam.ivy.workflow.task.TaskBusinessState;
 
 @ManagedBean
 @ViewScoped
-public class TaskWidgetConfigurationFilterBean extends AbstractTaskWidgetFilterBean implements Serializable {
+public class TaskWidgetConfigurationFilterBean extends AbstractTaskWidgetFilterBean {
 
   private static final long serialVersionUID = -6820861008506479795L;
 

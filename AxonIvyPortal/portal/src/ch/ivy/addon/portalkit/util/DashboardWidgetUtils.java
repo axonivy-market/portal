@@ -404,7 +404,7 @@ public class DashboardWidgetUtils {
   }
 
 
-  private static DashboardWidget buildDefaultStatisticWidget(String id, @SuppressWarnings("unused") String name, @SuppressWarnings("unused") DashboardWidgetType widgetType) {
+  private static DashboardWidget buildDefaultStatisticWidget(String id, String name, DashboardWidgetType widgetType) {
     DashboardWidget widget = null;
     widget = new StatisticDashboardWidget();
     widget.setId(id);
