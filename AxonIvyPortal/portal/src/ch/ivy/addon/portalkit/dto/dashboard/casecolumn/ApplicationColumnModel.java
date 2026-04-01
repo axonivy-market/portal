@@ -1,6 +1,5 @@
 package ch.ivy.addon.portalkit.dto.dashboard.casecolumn;
 
-import java.io.Serializable;
 import java.util.List;
 
 import org.apache.commons.collections4.CollectionUtils;
@@ -16,7 +15,7 @@ import ch.ivyteam.ivy.application.app.IApplicationRepository;
 import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.workflow.ICase;
 
-public class ApplicationColumnModel extends CaseColumnModel implements Serializable {
+public class ApplicationColumnModel extends CaseColumnModel {
   private static final long serialVersionUID = 6708953330031478257L;
 
   @Override
@@ -57,9 +56,9 @@ public class ApplicationColumnModel extends CaseColumnModel implements Serializa
     return false;
   }
   
-  public void updateApplications(@SuppressWarnings("unused") CaseDashboardWidget widget) {
+  public void updateApplications(CaseDashboardWidget widget) {
   }
-  public void initializeApplications(@SuppressWarnings("unused") CaseDashboardWidget widget) {
+  public void initializeApplications(CaseDashboardWidget widget) {
   }
   
   @Override

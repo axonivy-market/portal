@@ -1,6 +1,5 @@
 package ch.ivy.addon.portalkit.dto.dashboard.process;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +23,7 @@ import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.application.app.IApplicationRepository;
 import ch.ivyteam.ivy.security.ISecurityContext;
 
-public class ApplicationColumnModel extends ProcessColumnModel implements Serializable {
+public class ApplicationColumnModel extends ProcessColumnModel {
   private static final long serialVersionUID = -4196645833691283486L;
 
   @Override
