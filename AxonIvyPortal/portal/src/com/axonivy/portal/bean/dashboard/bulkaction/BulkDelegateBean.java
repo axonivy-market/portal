@@ -71,7 +71,7 @@ public class BulkDelegateBean implements Serializable {
     selectedTasksMap.remove(widgetId);
   }
 
-  public void onSelectTask(BulkActionType bulkActionType, ITask task, TaskDashboardWidget widget) {
+  public void onSelectTask(ITask task, TaskDashboardWidget widget) {
     Integer maxSelectedTasks = getMaximumSelectedTasks();
 
     if (selectedTasksMap == null) {
@@ -148,7 +148,6 @@ public class BulkDelegateBean implements Serializable {
   }
 
   public boolean isRenderBulkDelegateToggle(TaskDashboardWidget widget) {
-    Ivy.log().info(isShowSelection(widget) && PermissionUtils.hasPortalPermission(PortalPermission.TASK_DISPLAY_DELEGATE_ACTION));
     return widget.isShowSelectionToggle() && PermissionUtils.hasPortalPermission(PortalPermission.TASK_DISPLAY_DELEGATE_ACTION);
   }
 }
