@@ -1459,6 +1459,9 @@ Dialogs:
               CustomWidgetIFrameTitle: Custom widget frame
             IconSelection:
               IconLinkTooltip: Click to change icon
+            MultipleTaskItemsDelegate:
+              DelegateMultipleTaskTitle: |
+                Delegate {0} tasks
             TaskItemDetails:
               CannotWorkOnDestroyedTaskWarning: You cannot work on the task because it was destroyed.
               CannotWorkOnTaskWarning: You cannot work on the task because user <strong>{0}</strong> is currently working on it.

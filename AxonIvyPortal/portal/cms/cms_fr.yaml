@@ -1462,6 +1462,8 @@ Dialogs:
               CustomWidgetIFrameTitle: Cadre de widget personnalisé
             IconSelection:
               IconLinkTooltip: Cliquez pour changer d'icône
+            MultipleTaskItemsDelegate:
+              DelegateMultipleTaskTitle: Déléguer {0} tâches
             TaskItemDetails:
               CannotWorkOnDestroyedTaskWarning: Vous ne pouvez pas travailler sur la tâche parce qu'elle a été détruite.
               CannotWorkOnTaskWarning: Vous ne pouvez pas travailler sur cette tâche car l'utilisateur <strong>{0}</strong> y travaille déjà.

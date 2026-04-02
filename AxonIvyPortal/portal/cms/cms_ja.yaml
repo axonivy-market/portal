@@ -1459,6 +1459,8 @@ Dialogs:
               CustomWidgetIFrameTitle: カスタムウィジェットフレーム
             IconSelection:
               IconLinkTooltip: クリックしてアイコンを変更
+            MultipleTaskItemsDelegate:
+              DelegateMultipleTaskTitle: '{0} 個のタスクを委任する'
             TaskItemDetails:
               CannotWorkOnDestroyedTaskWarning: タスクは破棄されたため、作業できません。
               CannotWorkOnTaskWarning: ユーザー <strong>{0}</strong> が現在作業中のため、タスクに取り組むことはできません。

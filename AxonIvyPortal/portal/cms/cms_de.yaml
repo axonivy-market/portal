@@ -1464,6 +1464,8 @@ Dialogs:
               CustomWidgetIFrameTitle: Benutzerdefinierter Widget-Rahmen
             IconSelection:
               IconLinkTooltip: Zum Ändern des Symbols anklicken
+            MultipleTaskItemsDelegate:
+              DelegateMultipleTaskTitle: '{0} Aufgaben delegieren'
             TaskItemDetails:
               CannotWorkOnDestroyedTaskWarning: Sie können nicht an der Aufgabe arbeiten, weil sie zerstört wurde.
               CannotWorkOnTaskWarning: Sie können die Aufgabe nicht bearbeiten, weil der Benutzer <strong>{0}</strong> gerade daran arbeitet.
