@@ -50,7 +50,7 @@ public class TaskDashboardWidget extends DashboardWidget {
   private boolean showWidgetInfo;
   private boolean showFullscreenMode;
   private boolean showPinnedToggle;
-  private boolean showSelectionToggle;
+  private boolean showBulkDelegateToggle;
 
   @JsonIgnore
   private List<String> errors;
@@ -65,7 +65,7 @@ public class TaskDashboardWidget extends DashboardWidget {
     setShowWidgetInfo(true);
     setShowFullscreenMode(true);
     setShowPinnedToggle(true);
-    setShowSelectionToggle(true);
+    setShowBulkDelegateToggle(true);
   }
 
   public BulkActionType getBulkActionType() {
@@ -76,12 +76,12 @@ public class TaskDashboardWidget extends DashboardWidget {
     this.bulkActionType = bulkActionType;
   }
 
-  public boolean isShowSelectionToggle() {
-    return showSelectionToggle;
+  public boolean isShowBulkDelegateToggle() {
+    return showBulkDelegateToggle;
   }
 
-  public void setShowSelectionToggle(boolean showSelectionToggle) {
-    this.showSelectionToggle = showSelectionToggle;
+  public void setShowBulkDelegateToggle(boolean showBulkDelegateToggle) {
+    this.showBulkDelegateToggle = showBulkDelegateToggle;
   }
 
   @Override

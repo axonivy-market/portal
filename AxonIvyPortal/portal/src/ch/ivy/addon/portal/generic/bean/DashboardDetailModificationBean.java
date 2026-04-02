@@ -1167,7 +1167,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     return false;
   }
 
-  public boolean displaySelectionToggleOption(DashboardWidget widget) {
+  public boolean displayBulkDelegateToggleOption(DashboardWidget widget) {
     return widget instanceof TaskDashboardWidget;
   }
 
