@@ -346,6 +346,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     Update: Update
     action: Actions
     actionMenuContext: "Open actions menu for {0} process"
+    taskActionMenuContext: "Open actions menu for {0} task"
     active: Active
     add: Add
     addContext: Add {0}

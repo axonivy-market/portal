@@ -454,6 +454,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     Widget: Widget
     action: Aktionen
     actionMenuContext: "Aktionsmenü für Prozess {0} öffnen"
+    taskActionMenuContext: "Aktionsmenü für Aufgabe {0} öffnen"
     active: Aktiviert
     collapseWidgetContext: "Widget {0} minimieren"
     expandWidgetContext: "Widget {0} erweitern"

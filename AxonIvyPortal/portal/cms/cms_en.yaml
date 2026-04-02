@@ -452,6 +452,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     Widget: Widget
     action: Actions
     actionMenuContext: "Open actions menu for {0} process"
+    taskActionMenuContext: "Open actions menu for {0} task"
     active: Active
     collapseWidgetContext: "Collapse {0} widget"
     expandWidgetContext: "Expand {0} widget"

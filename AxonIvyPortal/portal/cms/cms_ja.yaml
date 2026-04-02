@@ -453,6 +453,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     Widget: ウィジェット
     action: アクション
     actionMenuContext: "プロセス{0}のアクションメニューを開く"
+    taskActionMenuContext: "タスク{0}のアクションメニューを開く"
     active: アクティブ
     collapseWidgetContext: "{0}ウィジェットを縮小"
     expandWidgetContext: "{0}ウィジェットを展開"
