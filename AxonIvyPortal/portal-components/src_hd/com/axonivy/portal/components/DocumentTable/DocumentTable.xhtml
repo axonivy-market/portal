@@ -167,7 +167,7 @@
       <f:facet name="footer">
         <div class="u-dialog-footer-actions-group">
           <p:commandButton value="#{ivy.cms.co('/Labels/Close')}" 
-            ariaLabel="#{ivy.cms.co('/Labels/Close')}"
+            ariaLabel="#{ivy.cms.co('/Labels/CloseContext', [ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/Preview')])}"
             id="preview-document-close-button" actionListener="#{logic.closeStream}"
             icon="#{visibilityBean.generateButtonIcon('si si-remove')}" onclick="PF('preview-document-dialog').hide();" />
           </div>
@@ -203,11 +203,11 @@
         <h:panelGroup layout="block" styleClass="mt-4 flex gap-3 align-items-center justify-content-end">
           <p:commandLink id="document-rename-cancel-button"
             value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/Common/Cancel')}"
-            ariaLabel="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/Common/Cancel')}"
+            ariaLabel="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/Common/CancelContext', [cc.attrs.renameTitle])}"
             onclick="PF('document-renaming-dialog').hide(); return false;" />
           <p:commandButton id="document-rename-save-button"
             value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/Common/Save')}"
-            ariaLabel="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/Common/Save')}" 
+            ariaLabel="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/Common/SaveContext', [cc.attrs.renameTitle])}" 
             icon="si si-floppy-disk"
             process="@form"
             actionListener="#{logic.renameDocument}"

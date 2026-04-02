@@ -85,8 +85,16 @@ public class ClientStatisticService extends JsonConfigurationService<ClientStati
   }
 
   private List<Entry<String, String>> getAdditionalConfig() {
-    return List.of(new SimpleEntry<>(AdditionalChartConfig.EMPTY_CHART_DATA_MESSAGE.getKey(),
-        Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/StatisticWidget/EmptyChartDataMessage")));
+    return List.of(
+        new SimpleEntry<>(AdditionalChartConfig.EMPTY_CHART_DATA_MESSAGE.getKey(),
+            Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/StatisticWidget/EmptyChartDataMessage")),
+        new SimpleEntry<>(AdditionalChartConfig.EXPAND_LABEL_TEMPLATE.getKey(),
+            Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/expandWidgetContext", Arrays.asList("{0}"))),
+        new SimpleEntry<>(AdditionalChartConfig.COLLAPSE_LABEL_TEMPLATE.getKey(),
+            Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/collapseWidgetContext", Arrays.asList("{0}"))),
+        new SimpleEntry<>(AdditionalChartConfig.INFO_LABEL_TEMPLATE.getKey(),
+            Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/openWidgetInfoContext", Arrays.asList("{0}")))
+    );
   }
 
   private boolean isPermissionValid(ClientStatistic data) {

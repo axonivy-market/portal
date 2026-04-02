@@ -111,12 +111,12 @@
           <h:panelGroup layout="block" styleClass="MarTop20 text-right">
             <p:commandLink id="document-rename-cancel-button"
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-              ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+              ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancelContext', [ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/RenamingDocument')])}"
               onclick="PF('document-renaming-dialog').hide(); return false;"
               styleClass="u-mar-right-15" />
             <p:commandButton id="document-rename-save-button"
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
-              ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}" 
+              ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/saveContext', [ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/RenamingDocument')])}" 
               icon="#{visibilityBean.generateButtonIcon('si si-floppy-disk')}"
               actionListener="#{logic.renameDocument}"
               update="case-doc-form renaming-file-messages"
@@ -136,12 +136,12 @@
 
         <ui:define name="dialogFooter">
           <p:commandButton id="document-deletion-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
-            process="@this" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
+            process="@this" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/deleteContext', [ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/deleteDocumentHeaderText')])}"
             update="case-document-global-messages case-doc-form"
             actionListener="#{logic.deleteDocument}" styleClass="w-full portal-remove-button"
             oncomplete="PF('document-deletion-dialog').hide();" />
           <p:commandLink id="document-deletion-cancellation-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-                         ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+                         ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancelContext', [ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/deleteDocumentHeaderText')])}"
                          process="@this" onsuccess="PF('document-deletion-dialog').hide()" styleClass="pt-3 flex justify-content-center"/>
         </ui:define>
       </ui:decorate>
