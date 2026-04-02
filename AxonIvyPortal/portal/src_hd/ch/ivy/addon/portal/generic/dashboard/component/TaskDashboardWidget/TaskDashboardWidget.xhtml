@@ -28,7 +28,7 @@
     <ui:param name="onCompleteApplyFilters" value="PF('dashboard-tasks-#{widget.id}').filter()" />
     <ui:param name="isRenderExpandCollapse" value="#{widget.isShowFullscreenMode()}" />
     <ui:param name="isRenderInfo" value="#{widget.isShowWidgetInfo()}" />
-    <ui:param name="isRenderSelectionToggle" value="#{widget.isShowSelectionToggle() and taskActionBean.showDelegateTask}" />
+    <ui:param name="isRenderSelectionToggle" value="#{bulkDelegateBean.isRenderBulkDelegateToggle(widget)}" />
     <ui:param name="widgetContentStyleClass" value="task-widget" />
     <ui:define name="widgetInformationContent">
       <ui:include src="TaskInfo.xhtml">

@@ -14,7 +14,9 @@ import com.axonivy.portal.enums.BulkActionType;
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
+import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
+import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.ITask;
 
@@ -143,5 +145,10 @@ public class BulkDelegateBean implements Serializable {
     }
     return Ivy.cms().co("/Dialogs/ch/ivy/addon/portalkit/component/MultipleTaskItemsDelegate/DelegateMultipleTaskTitle",
         List.of(getBulkSelectCount(widgetId)));
+  }
+
+  public boolean isRenderBulkDelegateToggle(TaskDashboardWidget widget) {
+    Ivy.log().info(isShowSelection(widget) && PermissionUtils.hasPortalPermission(PortalPermission.TASK_DISPLAY_DELEGATE_ACTION));
+    return widget.isShowSelectionToggle() && PermissionUtils.hasPortalPermission(PortalPermission.TASK_DISPLAY_DELEGATE_ACTION);
   }
 }
