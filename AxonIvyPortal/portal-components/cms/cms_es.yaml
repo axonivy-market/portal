@@ -24,7 +24,7 @@ Dialogs:
             'Yes': Sí
           DocumentTable:
             AddDocument: Añadir documento
-            AddDocumentHelpText: Arrastra y suelta tus archivos aquí para subirlos o
+            AddDocumentHelpText: 'Arrastra y suelta tus archivos aquí para subirlos o '
             BrowseFiles: Explorar archivos
             Delete: Borrar
             DeleteDocumentNote: '{0} ha eliminado {1}'

@@ -24,7 +24,7 @@ Dialogs:
             'Yes': 'Yes'
           DocumentTable:
             AddDocument: Add document
-            AddDocumentHelpText: Drag & drop your files here to upload or
+            AddDocumentHelpText: 'Drag & drop your files here to upload or '
             BrowseFiles: Browse files
             Delete: Delete
             DeleteDocumentNote: '{0} has deleted {1}'

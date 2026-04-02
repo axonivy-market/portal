@@ -144,8 +144,8 @@ body.serenity .document-table-component .upload-container .ui-widget.ui-outputla
   padding: 24px;
 }
 
-.document-upload-icon {
-  font-size: 48px !important;
+i.document-upload-icon {
+  font-size: 48px;
 }
 
 .document-upload-dropzone-link {

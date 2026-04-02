@@ -136,9 +136,10 @@
           value="#{not empty cc.attrs.uploadText ? cc.attrs.uploadText : ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/Upload')}"
           icon="#{cc.attrs.renderChooseUploadIcon? 'si si-add-small' : ''}"
           rendered="#{cc.attrs.uploadRendered}"
-          type="button"
-          styleClass="open-upload-dialog-button"
-          onclick="PF('document-upload-dialog').show()" />
+          process="@none"
+          update="#{cc.clientId}:document-upload-dialog-content:document-upload-messages"
+          oncomplete="PF('document-upload-dialog').show()"
+          styleClass="open-upload-dialog-button" />
         <p:selectOneMenu id="type-selection" value="#{data.typeSelection}" rendered="#{cc.attrs.typeColumnRendered}" converter="pojoConverter" styleClass="type-selection">
           <p:ajax global="false" />
           <f:selectItems value="#{typeSelectionItems}" var="type" itemLabel="#{type.toString()}"
@@ -153,7 +154,7 @@
     <p:dialog id="document-upload-dialog" widgetVar="document-upload-dialog" appendTo="@(body)"
       header="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/AddDocument')}"
       modal="true" resizable="false" showEffect="fade" hideEffect="fade" dynamic="true"
-      width="450" closable="true" closeOnEscape="true" responsive="true" fitViewport="true">
+      width="90vw" style="max-width: 450px;" closable="true" closeOnEscape="true" responsive="true" fitViewport="true">
       <h:form id="document-upload-dialog-content">
         <p:messages id="document-upload-messages" rendered="#{cc.attrs.messageRendered}" />
         <h:outputText styleClass="document-upload-supported-types"
@@ -171,8 +172,8 @@
           <div class="document-upload-dropzone-content">
             <i class="si si-file-code-upload-1 document-upload-icon" />
             <h:panelGroup id="dropzone-text">
-              <h:outputText value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/AddDocumentHelpText')} " />
-              <p:commandLink styleClass="document-upload-dropzone-link"
+              <h:outputText value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/AddDocumentHelpText')}" />
+              <p:link styleClass="document-upload-dropzone-link"
                 value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/BrowseFiles')}"
                 onclick="PF('document-upload-widget').show();return false"
                 tabindex="0" />
