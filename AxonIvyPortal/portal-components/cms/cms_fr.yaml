@@ -5,6 +5,7 @@ Dialogs:
         components:
           Common:
             Cancel: Annuler
+            CancelContext: "Annuler {0}"
             Categories: Catégories
             ConfirmForDelete: Etes-vous sûr de vouloir supprimer ?
             Confirmation: Confirmation
@@ -17,6 +18,7 @@ Dialogs:
               ProcessName: Nom du processus
             RequiredFieldMessage: Ce champ est obligatoire
             Save: Enregistrer
+            SaveContext: "Enregistrer {0}"
             SideStepPrefix: 'Tâche de contournement pour: '
             Task:
               Activator: Responsable
@@ -104,6 +106,7 @@ Labels:
       ErrorWhenProceedRequest: An error has occurred while trying to process your request. Please try again later.
       SomethingWentWrong: Something went wrong when proceed your request. Please try again later.
   Close: Fermer
+  CloseContext: "Fermer {0}"
   DisabledUserPrefix: (désactivé)
   Enums:
     NewFilenameValidation:
