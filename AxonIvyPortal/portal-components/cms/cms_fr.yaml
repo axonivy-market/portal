@@ -24,7 +24,7 @@ Dialogs:
             'Yes': Oui
           DocumentTable:
             AddDocument: Ajouter un document
-            AddDocumentHelpText: Faites glisser vos fichiers ici pour les télécharger ou
+            AddDocumentHelpText: 'Faites glisser vos fichiers ici pour les télécharger ou '
             BrowseFiles: Parcourir les fichiers
             Delete: Supprimer
             DeleteDocumentNote: '{0} a supprimé(e) {1}'
