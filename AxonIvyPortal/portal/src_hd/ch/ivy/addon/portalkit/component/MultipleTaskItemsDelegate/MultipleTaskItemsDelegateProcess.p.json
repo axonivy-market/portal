@@ -257,7 +257,7 @@
           "code" : [
             "import com.axonivy.portal.service.BulkDelegateService;",
             "",
-            "BulkDelegateService.getInstance().delegateTasks(in.selectedTasks, in.selectedUser, in.selectedRole, in.delegateComment);"
+            "BulkDelegateService.getInstance().delegateTasks(in.selectedTasks, in.selectedUser, in.selectedRole, in.taskDelegationComment);"
           ]
         }
       },
