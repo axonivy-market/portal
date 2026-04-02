@@ -58,27 +58,6 @@ Dialogs:
               OTHERS: その他
           ProcessChain:
             currentStepIsNotDefined: プロセスチェーンの現在のステップ ({0}) が定義されていません
-          ProcessHistory:
-            CaseColumn:
-              CreationTime: 作成日
-              Creator: クリエイター
-              Id: ケースID
-              Name: 名前
-              ProcessName: プロセス名
-              State: 状態
-            CaseNameNotAvailable: ［ケース名がありません］
-            CaseState:
-              CREATED: 作成済み
-              DESTROYED: 破棄済み
-              DONE: 完了
-              FAILED: 失敗
-              OPEN: 未完了
-              RUNNING: 進行中
-              ZOMBIE: 破綻
-            DefaultEmptyMessage: ケースはありません
-            NoDescription: 説明なし
-            NoName: 名前なし
-            NotAvailable: 利用不可
           ProcessViewer:
             CouldNotFindLinkedProcess: リンクされたプロセスが見つかりませんでした。
             NoPermissionToView: このプロセスを表示するために必要な権限がありません。

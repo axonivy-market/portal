@@ -58,27 +58,6 @@ Dialogs:
               OTHERS: Andere Dateiformate
           ProcessChain:
             currentStepIsNotDefined: Aktueller Schritt ({0}) der Prozesskette ist nicht definiert
-          ProcessHistory:
-            CaseColumn:
-              CreationTime: Erstellt
-              Creator: Ersteller
-              Id: Vorgangs Id
-              Name: Name
-              ProcessName: Prozessname
-              State: Status
-            CaseNameNotAvailable: '[Kein Vorgangsname verfügbar]'
-            CaseState:
-              CREATED: Erstellt
-              DESTROYED: Gelöscht
-              DONE: Erledigt
-              FAILED: Gescheitert
-              OPEN: Offen
-              RUNNING: in Bearbeitung
-              ZOMBIE: Zombie
-            DefaultEmptyMessage: Keine Vorgänge verfügbar
-            NoDescription: Keine Beschreibung vorhanden
-            NoName: kein Name
-            NotAvailable: NV
           ProcessViewer:
             CouldNotFindLinkedProcess: Der verlinkte Prozess konnte nicht gefunden werden!
             NoPermissionToView: Sie besitzen nicht die erforderlichen Rechte um diesen Prozess zu sehen.

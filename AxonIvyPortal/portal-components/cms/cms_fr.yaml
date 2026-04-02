@@ -58,27 +58,6 @@ Dialogs:
               OTHERS: Autres
           ProcessChain:
             currentStepIsNotDefined: L'étape actuelle ({0}) de la chaîne de processus n'est pas définie
-          ProcessHistory:
-            CaseColumn:
-              CreationTime: Créé
-              Creator: Créateur
-              Id: Id du dossier
-              Name: Nom
-              ProcessName: Nom du processus
-              State: Etat
-            CaseNameNotAvailable: '[Nom de cas pas disponible]'
-            CaseState:
-              CREATED: Créé
-              DESTROYED: Supprimé
-              DONE: Terminé
-              FAILED: Échoué
-              OPEN: Ouverte
-              RUNNING: En cours
-              ZOMBIE: Zombie
-            DefaultEmptyMessage: Il n'y a pas de dossiers
-            NoDescription: Aucune description
-            NoName: Aucun nom
-            NotAvailable: '-'
           ProcessViewer:
             CouldNotFindLinkedProcess: Impossible de trouver le processus lié !
             NoPermissionToView: Vous n'avez pas l'autorisation requise pour visualiser ce processus.
