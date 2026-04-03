@@ -1,6 +1,5 @@
 package ch.ivy.addon.portalkit.dto.dashboard.taskcolumn;
 
-import java.io.Serializable;
 import java.util.List;
 
 import org.apache.commons.collections4.CollectionUtils;
@@ -16,7 +15,7 @@ import ch.ivyteam.ivy.application.app.IApplicationRepository;
 import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.workflow.ITask;
 
-public class ApplicationColumnModel extends TaskColumnModel implements Serializable {
+public class ApplicationColumnModel extends TaskColumnModel {
   private static final long serialVersionUID = 8918150285605338212L;
 
   @Override
@@ -62,9 +61,9 @@ public class ApplicationColumnModel extends TaskColumnModel implements Serializa
     return false;
   }
 
-  public void updateApplications(@SuppressWarnings("unused") TaskDashboardWidget  widget) {
+  public void updateApplications(TaskDashboardWidget widget) {
   }
-  public void initializeApplications(@SuppressWarnings("unused") TaskDashboardWidget widget) {
+  public void initializeApplications(TaskDashboardWidget widget) {
   }
   
   @Override

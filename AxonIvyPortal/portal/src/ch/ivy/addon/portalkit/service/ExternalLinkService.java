@@ -31,6 +31,7 @@ public class ExternalLinkService extends JsonConfigurationService<ExternalLink> 
     return findAll().stream().filter(link -> externalLinkName.equals(link.getName())).findFirst().orElse(null);
   }
 
+  @SuppressWarnings("removal")
   public List<ExternalLink> filterPublicExternalLinksForIvySessionUser() {
     IUser sessionUser = Ivy.session().getSessionUser();
     return ExternalLinkService.getInstance().getPublicConfig().stream()
@@ -39,6 +40,7 @@ public class ExternalLinkService extends JsonConfigurationService<ExternalLink> 
         .collect(Collectors.toList());
   }
 
+  @SuppressWarnings("removal")
   public List<ExternalLink> filterPublicExternalLinksNotForIvySessionUser() {
     IUser sessionUser = Ivy.session().getSessionUser();
     return ExternalLinkService.getInstance().getPublicConfig().stream()

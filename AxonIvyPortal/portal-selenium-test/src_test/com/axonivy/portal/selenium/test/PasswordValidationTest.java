@@ -60,7 +60,7 @@ public class PasswordValidationTest extends BaseTest {
     accessToPasswordValidation();
     passwordValidationPage.clickOnPasswordValidationToggle();
     new WebDriverWait(WebDriverRunner.getWebDriver(), DEFAULT_TIMEOUT)
-        .until((driver) -> passwordValidationPage.isEnableSaveButton());
+        .until((_) -> passwordValidationPage.isEnableSaveButton());
     assertTrue(passwordValidationPage.isEnableSaveButton());
   }
 
@@ -80,10 +80,10 @@ public class PasswordValidationTest extends BaseTest {
     accessToPasswordValidation();
     passwordValidationPage.clickOnPasswordValidationToggle();
     new WebDriverWait(WebDriverRunner.getWebDriver(), DEFAULT_TIMEOUT)
-        .until((driver) -> passwordValidationPage.isEnableSaveButton());
+        .until((_) -> passwordValidationPage.isEnableSaveButton());
     passwordValidationPage.clickOnSaveButton();
     new WebDriverWait(WebDriverRunner.getWebDriver(), DEFAULT_TIMEOUT)
-        .until((driver) -> !passwordValidationPage.isEnableSaveButton());
+        .until((_) -> !passwordValidationPage.isEnableSaveButton());
   }
 
   private PasswordValidationPage accessToPasswordValidation() {

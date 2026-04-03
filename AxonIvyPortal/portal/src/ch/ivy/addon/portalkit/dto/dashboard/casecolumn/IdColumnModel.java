@@ -1,11 +1,9 @@
 package ch.ivy.addon.portalkit.dto.dashboard.casecolumn;
 
-import java.io.Serializable;
-
 import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
 import ch.ivyteam.ivy.workflow.ICase;
 
-public class IdColumnModel extends CaseColumnModel implements Serializable {
+public class IdColumnModel extends CaseColumnModel {
 
   private static final long serialVersionUID = -8721107805389913589L;
 

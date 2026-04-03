@@ -2,7 +2,6 @@ package ch.ivy.addon.portalkit.bean;
 
 import static org.apache.commons.lang3.StringUtils.EMPTY;
 
-import java.io.Serializable;
 import java.text.Collator;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -62,7 +61,7 @@ import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
 @ManagedBean
 @ViewScoped
-public class ProcessWidgetBean extends AbstractProcessBean implements Serializable, IMultiLanguage {
+public class ProcessWidgetBean extends AbstractProcessBean implements IMultiLanguage {
 
   private static final long serialVersionUID = -5889375917550618261L;
   private static final String SPECIAL_CHARACTER_KEY = "SPECIAL_CHARACTER";
@@ -135,7 +134,7 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
     List<Process> processesBySpecialCharacterGroup = processesByAlphabet.remove(SPECIAL_CHARACTER_KEY);
     Collator collator = Collator.getInstance(Locale.GERMAN);
     processesByAlphabet = processesByAlphabet.entrySet().stream().sorted(Map.Entry.comparingByKey(collator::compare))
-        .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e2, LinkedHashMap::new));
+        .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (_, e2) -> e2, LinkedHashMap::new));
     if (CollectionUtils.isNotEmpty(processesBySpecialCharacterGroup)) {
       processesByAlphabet.put(SPECIAL_CHARACTER_KEY, processesBySpecialCharacterGroup);
     }
@@ -298,7 +297,8 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
       return;
     }
     removeTempExternalLinkImage();
-    ImageUploadResult imageInfo = ImageUploadUtils.handleImageUpload(event, ImageUploadUtils.EXTERNAL_LINK_IMAGE_DIRECTORY);    if (imageInfo.isInvalid()) {
+    ImageUploadResult imageInfo = ImageUploadUtils.handleImageUpload(event, ImageUploadUtils.EXTERNAL_LINK_IMAGE_DIRECTORY);
+    if (imageInfo.isInvalid()) {
       FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR,
           Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/documentFiles/fileContainScript"), null);
       FacesContext.getCurrentInstance().addMessage("edit-external-link-error-message", message);
