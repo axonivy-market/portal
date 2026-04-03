@@ -42,13 +42,12 @@ public class BulkDelegateService {
   public List<UserDTO> completeUserForBulkDelegate(String query, List<ITask> selectedTasks) {
     boolean customDelegateAvailable = checkCustomDelegateAvailable();
     if (!customDelegateAvailable) {
-      var dto = SecurityService.newInstance().findUsersWithRoles(query, 0, 101, null, null);
-      return dto.getUsers();
+      return findUsers(query);
     }
     if (selectedTasks == null || selectedTasks.isEmpty()) {
       return new ArrayList<>();
     }
-    List<UserDTO> intersectedUsers = new ArrayList<>();
+    List<UserDTO> intersectedUsers = null;
     for (ITask task : selectedTasks) {
       List<Map<String, Object>> result = callCustomDelegate(task);
       if (CollectionUtils.isEmpty(result)) {
@@ -61,11 +60,18 @@ public class BulkDelegateService {
           if (usersObj instanceof List) {
             customUsers.addAll((List<UserDTO>) usersObj);
           }
+        } else {
+          customUsers.addAll(findUsers(query));
         }
       }
       intersectedUsers = getUniqUserIds(intersectedUsers, customUsers);
     }
     return intersectedUsers;
+  }
+
+  private List<UserDTO> findUsers(String query) {
+    var userDtos = SecurityService.newInstance().findUsersWithRoles(query, 0, 101, null, null);
+    return userDtos.getUsers();
   }
 
   @SuppressWarnings("unchecked")
@@ -77,7 +83,7 @@ public class BulkDelegateService {
     if (selectedTasks == null || selectedTasks.isEmpty()) {
       return new ArrayList<>();
     }
-    List<RoleDTO> intersectedRoles = new ArrayList<>();
+    List<RoleDTO> intersectedRoles = null;
     for (ITask task : selectedTasks) {
       List<Map<String, Object>> result = callCustomDelegate(task);
       if (CollectionUtils.isEmpty(result)) {
@@ -91,6 +97,8 @@ public class BulkDelegateService {
           if (rolesObj instanceof List) {
             customRoles.addAll((List<RoleDTO>) rolesObj);
           }
+        } else {
+          customRoles.addAll(RoleUtils.findRoles(null, null, query));
         }
       }
       intersectedRoles = getUniqRoleIds(intersectedRoles, customRoles);
@@ -134,7 +142,6 @@ public class BulkDelegateService {
     Set<String> uniqUserIds = customUsers.stream()
         .map(UserDTO::getSecurityMemberId)
         .collect(java.util.stream.Collectors.toSet());
-
     if (intersectedUsers == null) {
       intersectedUsers = new ArrayList<>(customUsers);
     } else {

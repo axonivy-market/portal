@@ -1461,6 +1461,7 @@ Dialogs:
               IconLinkTooltip: クリックしてアイコンを変更
             MultipleTaskItemsDelegate:
               DelegateMultipleTaskTitle: '{0} 個のタスクを委任する'
+              bulkDelegatePerformanceWarning: 複数のタスクの委任には時間がかかる場合があります。しばらくお待ちください。
             TaskItemDetails:
               CannotWorkOnDestroyedTaskWarning: タスクは破棄されたため、作業できません。
               CannotWorkOnTaskWarning: ユーザー <strong>{0}</strong> が現在作業中のため、タスクに取り組むことはできません。

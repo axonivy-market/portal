@@ -1462,6 +1462,7 @@ Dialogs:
             MultipleTaskItemsDelegate:
               DelegateMultipleTaskTitle: |
                 Delegate {0} tasks
+              bulkDelegatePerformanceWarning: Delegating multiple tasks may take some time. Please be patient.
             TaskItemDetails:
               CannotWorkOnDestroyedTaskWarning: You cannot work on the task because it was destroyed.
               CannotWorkOnTaskWarning: You cannot work on the task because user <strong>{0}</strong> is currently working on it.

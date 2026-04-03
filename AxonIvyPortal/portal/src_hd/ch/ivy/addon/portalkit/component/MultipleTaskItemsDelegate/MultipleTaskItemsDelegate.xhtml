@@ -33,7 +33,13 @@
 
     <h:panelGroup>
       <h:form id="multiple-task-delegate-form">
-        <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDelegate/delegateTaskHeaderLabel')}</span>
+        <div class="ui-message ui-message-warn ui-widget ui-corner-all bulk-delegate-warning m-0">
+          <span class="ui-message-warn-icon si si-road-sign-warning" />
+          <span class="ui-message-warn-detail">#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/MultipleTaskItemsDelegate/bulkDelegatePerformanceWarning')}</span>
+        </div>
+        <div class="delegate-dialog-user-label">
+          <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDelegate/delegateTaskHeaderLabel')}</span>
+        </div>
         <h:panelGroup id="multiple-activator-panel" layout="block" styleClass="delegate-dialog-activator-panel">
           <div class="delegate-type-container">
             <p:selectOneRadio id="activator-type-select" value="#{data.isUserDelegated}">
@@ -100,29 +106,6 @@
         </h:panelGroup>
       </h:form>
     </h:panelGroup>
-  </p:dialog>
-
-  <p:dialog id="delegation-error-dialog-#{widgetIndex}" widgetVar="delegation-error-dialog-#{widgetIndex}"
-    modal="true" closable="true" closeOnEscape="true" resizable="false"
-    appendTo="@(body)" styleClass="portal-dialog" dynamic="true"
-    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/error')}">
-    <div class="text-center">
-      <i class="si si-road-sign-warning portal-dialog-warning-icon" style="font-size: 3rem;" />
-    </div>
-    <div class="portal-dialog-content text-center pt-3">
-      <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/cannotDelegateTaskMessage')}</span>
-      <ul class="text-left mt-2">
-        <ui:repeat var="failedTask" value="#{data.failedTasks}">
-          <li>#{failedTask}</li>
-        </ui:repeat>
-      </ul>
-    </div>
-    <f:facet name="footer">
-      <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
-        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
-        onclick="PF('delegation-error-dialog-#{widgetIndex}').hide(); return false;"
-        styleClass="ui-button-outlined" type="button" />
-    </f:facet>
   </p:dialog>
 
 </cc:implementation>

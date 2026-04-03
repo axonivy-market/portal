@@ -1466,6 +1466,7 @@ Dialogs:
               IconLinkTooltip: Zum Ändern des Symbols anklicken
             MultipleTaskItemsDelegate:
               DelegateMultipleTaskTitle: '{0} Aufgaben delegieren'
+              bulkDelegatePerformanceWarning: Das Delegieren mehrerer Aufgaben kann einige Zeit dauern. Bitte haben Sie Geduld.
             TaskItemDetails:
               CannotWorkOnDestroyedTaskWarning: Sie können nicht an der Aufgabe arbeiten, weil sie zerstört wurde.
               CannotWorkOnTaskWarning: Sie können die Aufgabe nicht bearbeiten, weil der Benutzer <strong>{0}</strong> gerade daran arbeitet.

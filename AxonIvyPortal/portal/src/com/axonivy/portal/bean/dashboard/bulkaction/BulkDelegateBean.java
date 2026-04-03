@@ -148,6 +148,6 @@ public class BulkDelegateBean implements Serializable {
   }
 
   public boolean isRenderBulkDelegateToggle(TaskDashboardWidget widget) {
-    return widget.isShowSelectionToggle() && PermissionUtils.hasPortalPermission(PortalPermission.TASK_DISPLAY_DELEGATE_ACTION);
+    return widget.isShowBulkDelegateToggle() && PermissionUtils.hasPortalPermission(PortalPermission.TASK_DISPLAY_DELEGATE_ACTION);
   }
 }
