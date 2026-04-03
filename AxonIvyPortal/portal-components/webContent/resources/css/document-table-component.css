@@ -25,38 +25,8 @@
   float: right;
 }
 
-.document-table-component .upload-container .upload-button {
-  padding: 0 !important;
-}
-
 .document-table-component .upload-container .type-selection, .document-table-component .upload-container .type-selection-label {
   margin-right: 5px;
-}
-
-.document-table-component .upload-container .ui-widget.ui-fileupload {
-  margin-top: 0;
-  margin-left: 10px;
-}
-
-.document-table-component .upload-container .ui-widget.ui-fileupload .ui-fileupload-buttonbar {
-  padding: 0;
-  background-color: transparent !important;
-  border: none !important;
-}
-
-.document-table-component .upload-container .ui-widget.ui-fileupload .ui-fileupload-buttonbar .ui-widget.ui-button {
-  float: right !important;
-  margin-right: 0;
-}
-
-.document-table-component .upload-container .ui-widget.ui-fileupload .ui-fileupload-content {
-  border: none;
-  padding-right: 0;
-  padding-bottom: 0;
-}
-
-.document-table-component .upload-container .ui-widget.ui-fileupload .ui-fileupload-content .ui-fileupload-messages {
-  margin-top: 30px;
 }
 
 .document-table-component .document-action-column {
@@ -117,10 +87,6 @@
   }
 }
 
-.document-table-component .upload-container .ui-fileupload-files {
-  margin-top: 20px;
-}
-
 /*SPECIFIC STYLES FOR THEMES*/
 
 body.freya .document-table-component .upload-container .type-selection-label {
@@ -136,4 +102,60 @@ body.serenity .document-table-component .upload-container .ui-widget.ui-outputla
 }
 .ui-dialog-maximized .preview-image {
   height: auto;
+}
+
+.document-table-component .upload-container .open-upload-dialog-button {
+  margin-left: 10px;
+}
+
+.document-upload-supported-types {
+  display: block;
+  margin: 0 0 16px 0;
+  font-weight: 600;
+}
+
+.document-upload-in-dialog .ui-fileupload-content,
+.document-upload-in-dialog .ui-fileupload-buttonbar {
+  display: none;
+}
+
+.document-upload-dropzone {
+  border: 1px solid var(--surface-border, #dee2e6);
+  background-color: var(--surface-ground, #f8f9fa);
+  border-radius: 10px;
+  height: 20em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.document-upload-dropzone.ui-state-drag {
+  border-color: var(--primary-color);
+  border-style: dashed;
+  background-color: var(--highlight-bg, rgba(0, 123, 255, 0.04));
+}
+
+.document-upload-dropzone-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 24px;
+}
+
+i.document-upload-icon {
+  font-size: 2em;
+}
+
+.document-upload-dropzone-link {
+  color: var(--primary-color);
+  cursor: pointer;
+}
+
+.document-upload-dialog {
+  max-width: 450px;
+}
+
+.document-upload-dialog .ui-messages > div {
+  margin-top: 0;
 }

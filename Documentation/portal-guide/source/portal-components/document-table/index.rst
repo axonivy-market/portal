@@ -280,4 +280,8 @@ Changes in 12.0.11
 ------------------
 - Added lazy loading functionality to the Document Table component, enabling efficient data loading through pagination.
 
+Changes in 12.0.14
+------------------
+- It supports multiple file uploads and drag-and-drop. Click the :guilabel:`Upload new file` button to open the upload dialog, then select files via "Browse files" or drag them directly into the dialog's drop zone.
+
 .. |document-table| image:: ../../screenshots/components/document-table.png
