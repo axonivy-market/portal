@@ -106,7 +106,7 @@
 .document-upload-supported-types {
   display: block;
   margin: 0 0 16px 0;
-  font-weight: bold;
+  font-weight: 600;
 }
 
 .document-upload-in-dialog .ui-fileupload-content,
@@ -138,11 +138,19 @@
   padding: 24px;
 }
 
-.document-upload-icon {
-  font-size: 48px;
+i.document-upload-icon {
+  font-size: 3em;
 }
 
 .document-upload-dropzone-link {
   color: var(--primary-color);
   cursor: pointer;
+}
+
+.document-upload-dialog {
+  max-width: 450px;
+}
+
+.document-upload-dialog .ui-messages > div {
+  margin-top: 0;
 }
