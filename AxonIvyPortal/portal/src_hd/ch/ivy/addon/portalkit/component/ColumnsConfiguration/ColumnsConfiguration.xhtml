@@ -44,7 +44,7 @@
 
         <h:panelGroup id="advanced-filter-panel-footer" layout="block" styleClass="ui-overlaypanel-footer">
           <p:commandLink id="cancel-command" process="@this" global="false"
-            ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+            ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancelContext', [ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/manageColumns')])}"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
             update="#{cc.clientId}:config-columns-container #{cc.clientId}:#{cc.attrs.overlayPanelId}" resetValues="true"
             oncomplete="PF('#{cc.attrs.overlayPanelId}').hide()"
@@ -53,7 +53,7 @@
           <p:commandButton id="update-command" global="true"
             icon="#{visibilityBean.generateButtonIcon('si si-check-1')}"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/apply')}"
-            ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/apply')}"
+            ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/applyContext', [ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/manageColumns')])}"
             actionListener="#{dataModel.saveColumnsConfiguration()}"
             update="#{cc.clientId}:config-columns-container @form #{cc.attrs.updatedComponent}"
             oncomplete="#{cc.attrs.oncomplete}">

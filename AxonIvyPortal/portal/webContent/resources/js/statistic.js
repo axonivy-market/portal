@@ -7,6 +7,9 @@ const EMPTY_CHART_MESSAGE =  'emptyChartDataMessage';
 const MANIPULATE_BY = 'manipulateValueBy';
 const TOOLTIP_TOTAL_LABEL = 'tooltipTotalLabel';
 const TOOLTIP_KPI_LABEL = 'tooltipKpiLabel';
+const EXPAND_LABEL_TEMPLATE = 'expandLabelTemplate';
+const COLLAPSE_LABEL_TEMPLATE = 'collapseLabelTemplate';
+const INFO_LABEL_TEMPLATE = 'infoLabelTemplate';
 const CHART_TEXT_COLOR = '#808080';
 const CHART_GRID_COLOR = 'rgba(192, 192, 192, 0.5)';
 const MIN_REFRESH_INTERVAL = 60;
@@ -586,6 +589,20 @@ class ClientCanvasChart extends ClientChart {
       cardPanel.get(0).ariaLabel = getFormatedTitle(this.data.chartConfig.names)
     }
 
+    let additionalConfigs = this.data.chartConfig.additionalConfigs;
+    let widgetName = getFormatedTitle(this.data.chartConfig.names);
+    let expandTemplate = getAdditionalConfigValue(additionalConfigs, EXPAND_LABEL_TEMPLATE);
+    let collapseTemplate = getAdditionalConfigValue(additionalConfigs, COLLAPSE_LABEL_TEMPLATE);
+    let infoTemplate = getAdditionalConfigValue(additionalConfigs, INFO_LABEL_TEMPLATE);
+    if (expandTemplate) {
+      $(this.chart).parents('.card-widget-panel').find('.expand-link').attr('aria-label', expandTemplate.replace('{0}', widgetName));
+    }
+    if (collapseTemplate) {
+      $(this.chart).parents('.card-widget-panel').find('.collapse-link').attr('aria-label', collapseTemplate.replace('{0}', widgetName));
+    }
+    if (infoTemplate) {
+      $(this.chart).parents('.card-widget-panel').find('.widget__info-sidebar-link').attr('aria-label', infoTemplate.replace('{0}', widgetName));
+    }
   }
 
   updateClientChart() {
@@ -951,6 +968,20 @@ class ClientNumberChart extends ClientChart {
     let widgetPanel = $(chart).parents(".card-widget-panel").get(0);
     if (widgetPanel) {
       widgetPanel.ariaLabel = widgetName;
+    }
+
+    let additionalConfigs = this.data.chartConfig.additionalConfigs;
+    let expandTemplate = getAdditionalConfigValue(additionalConfigs, EXPAND_LABEL_TEMPLATE);
+    let collapseTemplate = getAdditionalConfigValue(additionalConfigs, COLLAPSE_LABEL_TEMPLATE);
+    let infoTemplate = getAdditionalConfigValue(additionalConfigs, INFO_LABEL_TEMPLATE);
+    if (expandTemplate) {
+      $(chart).parents('.card-widget-panel').find('.expand-link').attr('aria-label', expandTemplate.replace('{0}', widgetName));
+    }
+    if (collapseTemplate) {
+      $(chart).parents('.card-widget-panel').find('.collapse-link').attr('aria-label', collapseTemplate.replace('{0}', widgetName));
+    }
+    if (infoTemplate) {
+      $(chart).parents('.card-widget-panel').find('.widget__info-sidebar-link').attr('aria-label', infoTemplate.replace('{0}', widgetName));
     }
   }
 
