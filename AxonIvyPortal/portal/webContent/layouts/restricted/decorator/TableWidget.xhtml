@@ -403,7 +403,7 @@
   </h:panelGroup>
 
   <ic:ch.ivy.addon.portalkit.component.MultipleTaskItemsDelegate
-    rendered="#{dashboardBean.isTaskWidget(widget)}"
+    rendered="#{dashboardBean.isRenderMultipleTaskItemsDelegate(widget)}"
     id="multiple-task-items-delegate-#{index}"
     selectedTasks="#{bulkDelegateBean.selectedTasksMap[widget.id]}"
     componentToUpdate="@(.grid-stack) @(.dashboard-title-container)"
