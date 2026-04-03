@@ -93,7 +93,8 @@ public enum GlobalVariable {
   ENABLE_PINNED_CASE("Portal.Cases.EnablePinnedCase", GlobalVariableType.SELECTION, Option.TRUE.toString(),
       "enablePinCase"),ALLOW_KEYBOARD_SHORTCUTS_CONFIGURATION(
           "Portal.Accessibility.AllowKeyboardShortcutsConfiguration", GlobalVariableType.SELECTION, Option.TRUE.toString(), "allowKeyboardShortcutsConfiguration"),
-  EXPANDED_SIDEBAR("Portal.KeepSidebarExpanded", GlobalVariableType.SELECTION, Option.FALSE.toString(), "keepSidebarExpanded");
+  EXPANDED_SIDEBAR("Portal.KeepSidebarExpanded", GlobalVariableType.SELECTION, Option.FALSE.toString(), "keepSidebarExpanded"),
+  MAXIMUM_SELECTED_TASKS("Portal.Tasks.MaximumSelectedTasks", GlobalVariableType.NUMBER, "", "maximumSelectedTasks");
 
   private String key;
   private GlobalVariableType type;

@@ -224,6 +224,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       EnableSwitchThemeModeButton: Set to true to enable the switch theme button.
       GlobalSearchScopeCategoriesNote: Defining the types that the global search will search for
       GooglePlayURL: Set URL to download Axon Ivy mobile app on Google Play.
+      maximumSelectedTasks: Defines the maximum number of tasks a user can select simultaneously within a task widget for bulk operations. Set this value to a positive integer to enforce a specific limit, or leave it empty to allow unlimited task selection.
       RoleDirectChildrenLimit: 'The set number controls the amount of direct children roles that is shown in Role Management tab. Valid number: 10, 50, 100'
       RoleParentLimit: 'The set number controls the amount of parent roles that is shown when filtering roles in Role Management tab. Valid number: 5, 10, 20'
       SearchScopeCaseFields: Defining the fields that the global search will use to find matching cases beside case Id (this can influence the performance of the search)
@@ -491,6 +492,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     default: Default
     defaultNotificationMessage: Hmm... Looks like something went wrong.
     delete: Delete
+    delegateTasks: Delegate tasks
     deleteAbsenceHeaderText: Delete this absence?
     deleteChartHeaderText: Delete this chart?
     deleteDocumentHeaderText: Delete this document?
@@ -1457,6 +1459,10 @@ Dialogs:
               CustomWidgetIFrameTitle: Custom widget frame
             IconSelection:
               IconLinkTooltip: Click to change icon
+            MultipleTaskItemsDelegate:
+              DelegateMultipleTaskTitle: |
+                Delegate {0} tasks
+              bulkDelegatePerformanceWarning: Delegating multiple tasks may take some time. Please be patient.
             TaskItemDetails:
               CannotWorkOnDestroyedTaskWarning: You cannot work on the task because it was destroyed.
               CannotWorkOnTaskWarning: You cannot work on the task because user <strong>{0}</strong> is currently working on it.

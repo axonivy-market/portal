@@ -103,4 +103,5 @@ public class DashboardTaskWidgetBean implements Serializable {
   public String createExtractedTextFromHtml(String text) {
     return HtmlParser.extractTextFromHtml(text);
   }
+
 }

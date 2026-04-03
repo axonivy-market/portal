@@ -1,0 +1,290 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/process.json",
+  "id" : "19CBDC6DB267D05D",
+  "kind" : "HTML_DIALOG",
+  "config" : {
+    "data" : "ch.ivy.addon.portalkit.component.MultipleTaskItemsDelegate.MultipleTaskItemsDelegateData"
+  },
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "HtmlDialogStart",
+      "name" : "start()",
+      "config" : {
+        "signature" : "start",
+        "guid" : "19CBDC6DB2A307BE"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f2", "to" : "f1" }
+      ]
+    }, {
+      "id" : "f1",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 224, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "HtmlDialogEventStart",
+      "name" : "close",
+      "config" : {
+        "guid" : "19CBDC6DB4566AB6"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 160 }
+      },
+      "connect" : [
+        { "id" : "f5", "to" : "f4" }
+      ]
+    }, {
+      "id" : "f4",
+      "type" : "HtmlDialogExit",
+      "visual" : {
+        "at" : { "x" : 224, "y" : 160 }
+      }
+    }, {
+      "id" : "f10",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "initDataToDelegateTasks(List)",
+      "config" : {
+        "signature" : "initDataToDelegateTasks",
+        "input" : {
+          "params" : [
+            { "name" : "selectedTasks", "type" : "java.util.List<ch.ivyteam.ivy.workflow.ITask>", "desc" : "" }
+          ],
+          "map" : {
+            "out.selectedTasks" : "param.selectedTasks"
+          }
+        },
+        "guid" : "19CBDC6DB2A307C0"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 256 }
+      },
+      "connect" : [
+        { "id" : "e10", "to" : "f11" }
+      ]
+    }, {
+      "id" : "f11",
+      "type" : "Script",
+      "name" : "Init data",
+      "config" : {
+        "output" : {
+          "code" : [
+            "in.disabledDelegateButton = true;",
+            "in.isUserDelegated = true;",
+            "// in.delegatedSecurityMember = null;",
+            "in.selectedRole = null;",
+            "in.selectedUser = null;"
+          ]
+        },
+        "sudo" : true
+      },
+      "visual" : {
+        "at" : { "x" : 280, "y" : 256 }
+      },
+      "connect" : [
+        { "id" : "f75", "to" : "f15" }
+      ]
+    }, {
+      "id" : "f15",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 448, "y" : 256 }
+      }
+    }, {
+      "id" : "f20",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "delegateTask()",
+      "config" : {
+        "signature" : "delegateTask",
+        "guid" : "19CBDC6DB2A307C1"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 384 }
+      },
+      "connect" : [
+        { "id" : "e20", "to" : "f73" }
+      ]
+    }, {
+      "id" : "f22",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 448, "y" : 384 }
+      }
+    }, {
+      "id" : "f40",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "autoCompleteForRoleDelegate(String)",
+      "config" : {
+        "signature" : "autoCompleteForRoleDelegate",
+        "input" : {
+          "params" : [
+            { "name" : "query", "type" : "String", "desc" : "" }
+          ],
+          "map" : {
+            "out.queryAutoComplete" : "param.query"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "rolesToDelegate", "type" : "java.util.List<com.axonivy.portal.components.dto.RoleDTO>", "desc" : "" }
+          ],
+          "map" : { },
+          "code" : [
+            "import ch.ivy.addon.portalkit.util.RoleUtils;",
+            "",
+            "result.rolesToDelegate = RoleUtils.filterRoleDTO(in.rolesToDelegate, in.queryAutoComplete);"
+          ]
+        },
+        "guid" : "19CBDC6DB2A307C3"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 616 }
+      },
+      "connect" : [
+        { "id" : "e40", "to" : "f76" }
+      ]
+    }, {
+      "id" : "f41",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 448, "y" : 616 }
+      }
+    }, {
+      "id" : "f50",
+      "type" : "HtmlDialogEventStart",
+      "name" : "changeAssignType",
+      "config" : {
+        "guid" : "19CBDC6DB2A307C4"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 736 }
+      },
+      "connect" : [
+        { "id" : "e50", "to" : "f51" }
+      ]
+    }, {
+      "id" : "f51",
+      "type" : "Script",
+      "name" : "Change assignee type to delegate",
+      "config" : {
+        "output" : {
+          "code" : [
+            "// out.delegatedSecurityMember = null;",
+            "out.disabledDelegateButton = true;",
+            "out.selectedRole = null;",
+            "out.selectedUser = null;"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 304, "y" : 736 },
+        "size" : { "width" : 160 }
+      },
+      "connect" : [
+        { "id" : "e51", "to" : "f52" }
+      ]
+    }, {
+      "id" : "f52",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 448, "y" : 736 }
+      }
+    }, {
+      "id" : "f65",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 448, "y" : 504 }
+      }
+    }, {
+      "id" : "f68",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "autoCompleteForUserDelegate(String)",
+      "config" : {
+        "signature" : "autoCompleteForUserDelegate",
+        "input" : {
+          "params" : [
+            { "name" : "query", "type" : "String", "desc" : "" }
+          ],
+          "map" : {
+            "out.queryAutoComplete" : "param.query"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "usersToDelegate", "type" : "java.util.List<com.axonivy.portal.components.dto.UserDTO>", "desc" : "" }
+          ],
+          "map" : {
+            "result.usersToDelegate" : "in.usersToDelegate"
+          }
+        },
+        "guid" : "19D19A06A35B76F5"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 504 }
+      },
+      "connect" : [
+        { "id" : "f72", "to" : "f69" }
+      ]
+    }, {
+      "id" : "f69",
+      "type" : "Script",
+      "name" : "Fetch users",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.service.BulkDelegateService;",
+            "",
+            "in.usersToDelegate = BulkDelegateService.getInstance().completeUserForBulkDelegate(in.queryAutoComplete, in.selectedTasks);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 280, "y" : 504 }
+      },
+      "connect" : [
+        { "id" : "f71", "to" : "f65" }
+      ]
+    }, {
+      "id" : "f73",
+      "type" : "Script",
+      "name" : "Bulk delegate tasks",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.service.BulkDelegateService;",
+            "",
+            "BulkDelegateService.getInstance().delegateTasks(in.selectedTasks, in.selectedUser, in.selectedRole, in.taskDelegationComment);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 280, "y" : 384 }
+      },
+      "connect" : [
+        { "id" : "f74", "to" : "f22" }
+      ]
+    }, {
+      "id" : "f76",
+      "type" : "Script",
+      "name" : "Fetch roles",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.service.BulkDelegateService;",
+            "",
+            "in.rolesToDelegate = BulkDelegateService.getInstance().completeRoleForBulkDelegate(in.queryAutoComplete, in.selectedTasks);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 280, "y" : 616 }
+      },
+      "connect" : [
+        { "id" : "f77", "to" : "f41", "color" : "default" }
+      ]
+    } ]
+}
