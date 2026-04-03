@@ -154,7 +154,7 @@
     <p:dialog id="document-upload-dialog" widgetVar="document-upload-dialog" appendTo="@(body)"
       header="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/AddDocument')}"
       modal="true" resizable="false" showEffect="fade" hideEffect="fade" dynamic="true"
-      width="90vw" style="max-width: 450px;" closable="true" closeOnEscape="true" responsive="true" fitViewport="true">
+      width="90vw" styleClass="document-upload-dialog" closable="true" closeOnEscape="true" responsive="true" fitViewport="true">
       <h:form id="document-upload-dialog-content">
         <p:messages id="document-upload-messages" rendered="#{cc.attrs.messageRendered}" />
         <h:outputText styleClass="document-upload-supported-types"
