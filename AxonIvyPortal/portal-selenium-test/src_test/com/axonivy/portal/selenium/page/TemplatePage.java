@@ -543,4 +543,10 @@ public abstract class TemplatePage extends AbstractPage {
     element.clear();
     element.sendKeys(value);
   }
+
+  public void isSidebarHidden() {
+    $(".js-layout-wrapper.sidebar-hidden").should(Condition.exist, DEFAULT_TIMEOUT);
+    $(".menu-wrapper").shouldNotBe(Condition.visible, DEFAULT_TIMEOUT);
+    $(".layout-topbar-left").shouldNotBe(Condition.visible, DEFAULT_TIMEOUT);
+  }
 }
