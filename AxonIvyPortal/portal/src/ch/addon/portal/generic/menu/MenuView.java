@@ -160,7 +160,7 @@ public class MenuView implements Serializable {
     } else if (subItemDashboards.size() == 1) {
       Dashboard dashboard = subItemDashboards.getFirst();
       String localizedTitle = getLocalizedTitle(dashboard, currentLanguage, dashboardTitle);
-      return buildSingleDashboardMenu(localizedTitle, dashboardId, dashboardLink, dashboard.getIcon());
+      return buildSingleDashboardMenu(localizedTitle, dashboardId, dashboardLink, dashboard.getIconClass());
     }
     
     return buildSingleDashboardMenu(dashboardTitle, "", dashboardLink, "");
