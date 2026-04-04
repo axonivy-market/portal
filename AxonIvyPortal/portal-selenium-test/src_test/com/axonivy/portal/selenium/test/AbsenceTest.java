@@ -84,13 +84,14 @@ public class AbsenceTest extends BaseTest {
     AbsencePage absencePage = openAbsencePage();
     List<String> personalTaskDuringAbsenceDeputyNames =
         Arrays.asList(TestAccount.CASE_OWNER_USER.getFullName(), TestAccount.GUEST_USER.getFullName());
-    absencePage.setDeputy(personalTaskDuringAbsenceDeputyNames, DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE);
+    LocalDate chosenDay = LocalDate.now();
+    LocalDate theNextDayOfChosenDay = chosenDay.plusDays(1);
+    createAbsenceWithDeputies(chosenDay, theNextDayOfChosenDay, "Just day off",personalTaskDuringAbsenceDeputyNames, absencePage);
     List<String> personalTaskPermanentDeputyNames =
         Arrays.asList(TestAccount.ADMIN_USER.getFullName(), TestAccount.HR_ROLE_USER.getFullName());
     absencePage.setDeputy(personalTaskPermanentDeputyNames, DeputyRoleType.PERSONAL_TASK_PERMANENT);
-    absencePage.saveSubstitute();
-    absencePage.getMyDeputy(absencePage.indexOfDeputyRole(DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE))
-        .shouldBe(Condition.text(joinDeputyNames(personalTaskDuringAbsenceDeputyNames)));
+    String duringAbsenceDeputies = absencePage.getDuringAbsenceDeputiesFromAbsenceTable();
+    assertTrue(duringAbsenceDeputies.contains("caseOwnerUser"));
     absencePage.getMyDeputy(absencePage.indexOfDeputyRole(DeputyRoleType.PERSONAL_TASK_PERMANENT))
         .shouldBe(Condition.text(joinDeputyNames(personalTaskPermanentDeputyNames)));
   }
@@ -115,7 +116,7 @@ public class AbsenceTest extends BaseTest {
     AbsencePage absencePage = openAbsencePage();
     absencePage.setSubstitutedByAdmin(TestAccount.DEMO_USER.getFullName());
     List<String> deputyNames = Arrays.asList(TestAccount.CASE_OWNER_USER.getFullName());
-    absencePage.setDeputy(deputyNames, DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE);
+    createAbsenceWithDeputies(TODAY, TODAY, "get sick", deputyNames, absencePage);
     absencePage.setDeputy(deputyNames, DeputyRoleType.PERSONAL_TASK_PERMANENT, false);
     assertEquals(absencePage.getChooseDeputyDialogError().startsWith("Substitute is already selected in"), true);
   }
@@ -128,7 +129,6 @@ public class AbsenceTest extends BaseTest {
     createAbsenceForCurrentUser(TOMORROW, TOMORROW, "For Family", absencePage);
 
     absencePage.setDeputy(Arrays.asList(TestAccount.DEMO_USER.getFullName()), 0);
-    absencePage.saveSubstitute();
     login(TestAccount.DEMO_USER);
     absencePage = openAbsencePage(new NewDashboardPage());
     assertEquals(absencePage.getIAMDeputyFor().contains(TestAccount.ADMIN_USER.getFullName()), true);
@@ -145,6 +145,14 @@ public class AbsenceTest extends BaseTest {
 
   private void createAbsenceForCurrentUser(LocalDate from, LocalDate till, String comment, AbsencePage absencePage) {
     createAbsence("", from, till, comment, absencePage);
+  }
+
+  private void createAbsenceWithDeputies(LocalDate from, LocalDate till, String comment,
+      List<String> deputyNames, AbsencePage absencePage) {
+    NewAbsencePage newAbsencePage = absencePage.openNewAbsenceDialog();
+    newAbsencePage.input(from, till, comment);
+    absencePage.setDuringAbsenceDeputyInAbsenceDialog(deputyNames);
+    newAbsencePage.proceed();
   }
 
   private void createAbsence(String fullname, LocalDate from, LocalDate till, String comment, AbsencePage absencePage) {
@@ -169,7 +177,7 @@ public class AbsenceTest extends BaseTest {
     redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/grantReadOwnAbsencesPermission.ivp");
     redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/grantCreateAbsencePermission.ivp");
     AbsencePage absencePage = openAbsencePage();
-    createAbsenceForCurrentUser(YESTERDAY, YESTERDAY, "For travel", absencePage);
+    createAbsence(TestAccount.GUEST_USER.getFullName(),YESTERDAY, YESTERDAY, "For travel", absencePage);
 
     login(TestAccount.DEMO_USER);
     redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/grantReadOwnAbsencesPermission.ivp");
@@ -203,28 +211,27 @@ public class AbsenceTest extends BaseTest {
     redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/grantCreateOwnSubstitutePermission.ivp");
     AbsencePage absencePage = openAbsencePage();
     List<String> deputyNames = Arrays.asList(TestAccount.GUEST_USER.getFullName());
-    absencePage.setDeputy(deputyNames, DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE);
-    absencePage.saveSubstitute();
-
+    createAbsenceWithDeputies(TODAY, TODAY, "get sick", deputyNames, absencePage);
+    
     login(TestAccount.GUEST_USER);
     redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/grantCreateOwnSubstitutePermission.ivp");
     absencePage = openAbsencePage();
     absencePage.setSubstitutedByAdmin(TestAccount.DEMO_USER.getFullName());
     assertEquals(TestAccount.GUEST_USER.getFullName(),
-        absencePage.getMyDisabledDeputy(absencePage.indexOfDeputyRole(DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE)));
+        absencePage.getDuringAbsenceDeputiesFromAbsenceTable());
   }
 
   @Test
   public void testSelectDeputyOfOtherUser() {
     login(TestAccount.GUEST_USER);
+    redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/grantReadAbsencesPermission.ivp");
+    redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/grantCreateAbsencePermission.ivp");
     redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/grantCreateSubstitutePermission.ivp");
     AbsencePage absencePage = openAbsencePage();
     absencePage.setSubstitutedByAdmin(TestAccount.DEMO_USER.getFullName());
     List<String> deputyNames = Arrays.asList(TestAccount.GUEST_USER.getFullName());
-    absencePage.setDeputy(deputyNames, DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE);
-    absencePage.saveSubstitute();
-    absencePage.getMyDeputy(absencePage.indexOfDeputyRole(DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE))
-        .shouldBe(Condition.text(TestAccount.GUEST_USER.getFullName()));
+    createAbsenceWithDeputies(TODAY, TODAY, "get sick", deputyNames, absencePage);
+    assertTrue(absencePage.getDuringAbsenceDeputiesFromAbsenceTable().contains(TestAccount.GUEST_USER.getFullName()));
   }
 
   @Test

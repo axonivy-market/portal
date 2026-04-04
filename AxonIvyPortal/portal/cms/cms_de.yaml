@@ -17,6 +17,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       overlappingAbsence: Die Abwesenheit überschneidet sich mit einer anderen Abwesenheit.
       userNameRequired: '''Benutzername'' darf nicht leer sein.'
     SelectedSubtitutes: Auswahl Stellvertreter:in
+    Substitutes: 'Stellvertreter:'
     absences: Abwesenheiten
     addAbsence: Abwesenheit erfassen
     deputies: Stellvertreter
@@ -747,7 +748,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       label: Vorgangstyp
     CloneWidget: Widget klonen
     CustomWidgets: Benutzerdefinierte Widgets
-    dataSettings: Dateneinstellungen
     DashboardConfiguration:
       CreateFromScratch: Von Grund auf neu erstellen
       CreateFromScratchDescription: Erstellen Sie Ihr eigenes Dashboard von Grund auf
@@ -757,10 +757,10 @@ ch.ivy.addon.portalkit.ui.jsf:
       DoNotSupportMobile: Die Dashboard-Konfiguration wird für mobile Geräte nicht unterstützt.
       EditPrivateDashboards: Private Dashboards bearbeiten
       EditPublicDashboards: Öffentliche Dashboards bearbeiten
+      ExportDashboard: Dashboard exportieren
       ExportReferencedDialogHeader: Dashboard referenziert andere Dashboards
       ExportReferencedDialogMessage: 'Die folgenden Dashboards werden von Navigations-Widgets referenziert. Exportieren und importieren Sie sie ebenfalls, damit die Widgets korrekt funktionieren:'
       ExportReferencedDialogProceed: Trotzdem exportieren
-      ExportDashboard: Dashboard exportieren
       PrivateDashboard: Private Dashboards
       PrivateDashboardConfiguration: Private Dashboard-Konfiguration
       PublicDashboard: Öffentliche Dashboards
@@ -770,7 +770,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       SelectAction: Wählen Sie die Aktion
       SomeThingWentWrong: Etwas ist schief gelaufen
       Title: Dashboard-Konfiguration
-    displaySettings: Anzeigeeinstellungen
     DrillDownWidget:
       caseDrillDown: Drilldown-Fall-Widget für {0}
       taskDrillDown: Drilldown-Aufgaben-Widget für {0}
@@ -801,14 +800,14 @@ ch.ivy.addon.portalkit.ui.jsf:
     StandardWidgets: Standard-Widgets
     StatisticWidget:
       EmptyChartDataMessage: Wir haben nicht genug Daten, um ein schönes Diagramm zu erstellen!
-      failToRenderChartMessage: Fehler beim Rendern des Diagramms. Bitte versuchen Sie es mit anderen Einstellungen erneut.
-      firstConfigChartMessage: Noch kein Diagramm verfügbar. Bitte konfigurieren Sie Ihre Einstellungen, um ein Diagramm zu generieren.
       TooltipAverageKpiLabel: Durchschnitt von {0}
       TooltipMaxKpiLabel: Maximum von {0}
       TooltipMinKpiLabel: Minimum von {0}
       TooltipSumKpiLabel: Summe von {0}
       TooltipTotalCaseLabel: 'Gesamtzahl der Vorgänge: {0}'
       TooltipTotalTaskLabel: 'Gesamtzahl der Aufgaben: {0}'
+      failToRenderChartMessage: Fehler beim Rendern des Diagramms. Bitte versuchen Sie es mit anderen Einstellungen erneut.
+      firstConfigChartMessage: Noch kein Diagramm verfügbar. Bitte konfigurieren Sie Ihre Einstellungen, um ein Diagramm zu generieren.
     WelcomeWidgetIntroduction: Dieses Widget zeigt einen Willkommenstext und ein Bild auf dem Dashboard an.
     WelcomeWidgetNotFoundMessage: Wir können das Bild des Widgets nicht finden, bitte konfigurieren Sie Ihr Bild neu!
     WidgetFilterName: Name des Widget-Filters
@@ -890,7 +889,9 @@ ch.ivy.addon.portalkit.ui.jsf:
       editDashboard: Dashboard editieren
       manageDashboard: Dashboard verwalten
       removeDashboardHeader: Dashboard "{0}" entfernen
+    dataSettings: Dateneinstellungen
     deleteWidget: Widget löschen
+    displaySettings: Anzeigeeinstellungen
     downloadZipFileExplanation: Wenn die Anzahl der zu exportierenden Elemente die Anzahl der Excel-Zeilen übersteigt, werden die Daten in mehrere Excel-Dateien aufgeteilt und anschließend in einer ZIP-Datei zum Herunterladen komprimiert.
     editWidget: Widget bearbeiten
     existingField: Das Feld {0} ist bereits vorhanden
@@ -1553,7 +1554,7 @@ Dialogs:
               FileInfomation: Dateiinformationen
               ImportPrivate: Privates Dashboard importieren
               ImportPublic: Öffentliches Dashboard importieren
-              NavigationWidgetMissingTarget: 'Navigations-Widget "{0}" verweist auf ein Dashboard, das nicht importiert wurde und in diesem Portal nicht vorhanden ist. Das Widget funktioniert möglicherweise nicht korrekt.'
+              NavigationWidgetMissingTarget: Navigations-Widget "{0}" verweist auf ein Dashboard, das nicht importiert wurde und in diesem Portal nicht vorhanden ist. Das Widget funktioniert möglicherweise nicht korrekt.
               chooseAJsonFile: Wählen Sie eine JSON-Datei
             DashboardSharing:
               ShareDashboard: Dashboard teilen
@@ -1683,6 +1684,13 @@ Enums:
     axonivy:
       portal:
         enums:
+          CaseQueryType:
+            ALL:
+              name: Geschäftsvorgänge + Untervorgänge
+            BUSINESS_CASE:
+              name: Geschäftsvorgänge (Standard)
+            SUB_CASE:
+              name: Untervorgänge
           statistic:
             AggregationField:
               ACTIVATOR_NAME:
@@ -1755,13 +1763,6 @@ Enums:
               LESSOREQUAL:
                 name: |
                   Kleiner oder gleich
-          CaseQueryType:
-            ALL:
-              name: Geschäftsvorgänge + Untervorgänge
-            BUSINESS_CASE:
-              name: Geschäftsvorgänge (Standard)
-            SUB_CASE:
-              name: Untervorgänge
 Labels:
   AI:
     Error:

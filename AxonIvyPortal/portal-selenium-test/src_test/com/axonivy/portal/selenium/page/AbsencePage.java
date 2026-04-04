@@ -47,10 +47,10 @@ public class AbsencePage extends TemplatePage {
   }
 
   public void showAbsencesInThePast(boolean shown) {
-    SelenideElement checkBox = $(".show-absence-in-the-past-panel");
-    boolean checkBoxSelected = checkBox.isSelected();
-    if (checkBoxSelected != shown) {
-      waitForElementClickableThenClick(checkBox);
+    SelenideElement toggleSwitch = $(".show-absence-in-the-past-panel");
+    boolean isChecked = toggleSwitch.getDomAttribute("class").contains("ui-toggleswitch-checked");
+    if (isChecked != shown) {
+      toggleSwitch.$(".ui-toggleswitch-slider").shouldBe(appear, DEFAULT_TIMEOUT).click();
     }
   }
 
@@ -160,13 +160,35 @@ public class AbsencePage extends TemplatePage {
     waitForAbsencesGrowlMessageDisplay();
   }
 
+  public void setDuringAbsenceDeputyInAbsenceDialog(List<String> fullNames) {
+    for (String fullName : fullNames) {
+      SelenideElement input = $(By.id("absence-form:user-selection-component:user-selection_input"));
+      input.clear();
+      input.sendKeys(fullName);
+      SelenideElement panel = $(By.id("absence-form:user-selection-component:user-selection_panel"));
+      panel.shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+      panel.shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
+      waitForElementClickableThenClick("[id$='absence-form:add-deputy-button']");
+    }
+  }
+
+  public String getDuringAbsenceDeputiesFromAbsenceTable() {
+    $("div[id*='absence-table']").shouldBe(appear, DEFAULT_TIMEOUT);
+    return $("tbody[id$='absence-table_data'] tr td:nth-child(2) .absence-column-value")
+        .shouldBe(appear, DEFAULT_TIMEOUT).getText();
+  }
+
   public WebElement getAbsenceForm() {
     Sleeper.sleep(500); // Explicitly wait for better screenshots
     return $("[id$='absences-management-container']");
   }
 
+  public SelenideElement getAbsenceManagement() {
+    return $("div[class*='absence-management']").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
   public SelenideElement getAddAbsenceDialog() {
-    $("[id='absence-dialog_title']").click();
+    $("div[class*='absence-dialog-header']").shouldBe(appear, DEFAULT_TIMEOUT).click();
     return $("[id$='absence-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
@@ -194,5 +216,14 @@ public class AbsencePage extends TemplatePage {
 
   public void isDeputySettingSectionDisplayed(boolean isDisplay) {
     waitForElementDisplayed(By.id("deputy-setting"), isDisplay);
+  }
+
+  public WebElement getChooseDeputyDialog() {
+    return $(By.id("choose-deputy-dialog")).shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  public void saveSelectedDeputies() {
+    waitForElementClickableThenClick("[id='deputy-selection-form:save-deputy-button']");
+    $(By.id("choose-deputy-dialog")).shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
   }
 }

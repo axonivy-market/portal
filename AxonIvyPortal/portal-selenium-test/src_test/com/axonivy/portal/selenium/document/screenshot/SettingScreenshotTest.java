@@ -117,16 +117,21 @@ public class SettingScreenshotTest extends ScreenshotBaseTest {
     showNewDashboard();
     NewDashboardPage homePage = new NewDashboardPage();
     AbsencePage absencePage = homePage.openAbsencePage();
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(absencePage.getAbsenceManagement(),
+        ScreenshotUtils.SETTINGS_FOLDER + "select-absence-user", new ScreenshotMargin(10, 20));
     createAbsenceForCurrentUser(TODAY, TODAY, "Personal leave", absencePage);
     createAbsenceForCurrentUser(TOMORROW, TOMORROW, "Vacation", absencePage);
     NewAbsencePage newAbsencePage = absencePage.openNewAbsenceDialog();
     newAbsencePage.enterCommentForAbsence("Add new absence");
 
     ScreenshotUtils.captureElementWithMarginOptionScreenshot(absencePage.getAddAbsenceDialog(),
-        ScreenshotUtils.SETTINGS_FOLDER + "new-absence", new ScreenshotMargin(20));
+        ScreenshotUtils.SETTINGS_FOLDER + "new-absence", new ScreenshotMargin(20)); 
     newAbsencePage.closeAddAbsenceDialog();
     ScreenshotUtils.captureElementScreenshot(absencePage.getAbsenceForm(), ScreenshotUtils.SETTINGS_FOLDER + "absence");
-    absencePage.setDeputy(Arrays.asList(TestAccount.DEMO_USER.getFullName(), TestAccount.GUEST_USER.getFullName()), 0);
+    absencePage.setDeputy(Arrays.asList(TestAccount.DEMO_USER.getFullName(), TestAccount.GUEST_USER.getFullName()), 0, false);
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(absencePage.getChooseDeputyDialog(),
+        ScreenshotUtils.SETTINGS_FOLDER + "add-deputy-dialog", new ScreenshotMargin(20));
+    absencePage.saveSelectedDeputies();
     ScreenshotUtils.captureElementScreenshot(absencePage.getAbsenceForm(),
         ScreenshotUtils.SETTINGS_FOLDER + "set-deputy");
   }

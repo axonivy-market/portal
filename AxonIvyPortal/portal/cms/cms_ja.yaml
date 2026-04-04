@@ -17,6 +17,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       overlappingAbsence: この不在日程は、別の不在日程と重複しています。
       userNameRequired: ユーザー名は空欄に出来ません。
     SelectedSubtitutes: 選択された代行者
+    Substitutes: '代理人:'
     absences: 不在
     addAbsence: 不在の追加
     deputies: 代行者
@@ -740,9 +741,11 @@ ch.ivy.addon.portalkit.ui.jsf:
       publicFilter: 公開用
       savedFilters: 保存されたフィルター：
   dashboard:
+    CaseQueryType:
+      info: ケースウィジェットに表示するケースタイプを設定します。デフォルトはビジネスケースのみ、技術サブケースは技術サブケースのみ、すべてはビジネスケースと技術サブケースの両方を表示します。
+      label: ケースタイプ
     CloneWidget: ウィジェット複製
     CustomWidgets: カスタムウィジェット
-    dataSettings: データ設定
     DashboardConfiguration:
       CreateFromScratch: 最初から作成
       CreateFromScratchDescription: 最初から独自のダッシュボードを作成する
@@ -752,10 +755,10 @@ ch.ivy.addon.portalkit.ui.jsf:
       DoNotSupportMobile: ダッシュボードの設定は、モバイルデバイスではサポートされていません。
       EditPrivateDashboards: 個人用ダッシュボードを編集する
       EditPublicDashboards: 公開用ダッシュボードを編集する
+      ExportDashboard: ダッシュボードをエクスポート
       ExportReferencedDialogHeader: ダッシュボードが他のダッシュボードを参照しています
       ExportReferencedDialogMessage: '以下のダッシュボードはナビゲーションウィジェットから参照されています。ウィジェットが正しく機能するように、それらもエクスポートおよびインポートしてください:'
       ExportReferencedDialogProceed: このままエクスポート
-      ExportDashboard: ダッシュボードをエクスポート
       PrivateDashboard: 個人用ダッシュボード
       PrivateDashboardConfiguration: 個人用ダッシュボードの設定
       PublicDashboard: 公開用ダッシュボード
@@ -765,7 +768,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       SelectAction: アクションを選択してください
       SomeThingWentWrong: 問題が発生しました
       Title: ダッシュボードの設定
-    displaySettings: 表示設定
     DrillDownWidget:
       caseDrillDown: 「{0}」用ドリルダウンケースウィジェット
       taskDrillDown: 「{0}」用ドリルダウンタスクウィジェット
@@ -787,9 +789,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     QuickSearch: クイック検索
     QuickSearchInfo: ウィジェットの列管理で、クイック検索の範囲をカスタマイズできます。「含む」に基づいて検索しますが、多数の列を追加する場合はパフォーマンスに注意してください。
     QuickSearchScope: 検索範囲：{0}
-    CaseQueryType:
-      info: ケースウィジェットに表示するケースタイプを設定します。デフォルトはビジネスケースのみ、技術サブケースは技術サブケースのみ、すべてはビジネスケースと技術サブケースの両方を表示します。
-      label: ケースタイプ
     RestoreDefaultDashboardMessage: 続行すると、自分で作成したすべてのウィジェットが失われます。<span class="dashboard-template-name-message">{0}</span> の標準設定が適用されます。
     SaveNewWidgetFilterHeader: 新しいウィジェットフィルターを保存
     SavedFilterHeader: 保存されたフィルター
@@ -799,14 +798,14 @@ ch.ivy.addon.portalkit.ui.jsf:
     StandardWidgets: 標準ウィジェット
     StatisticWidget:
       EmptyChartDataMessage: 適切なチャートを作成するにはデータが足りません！
-      failToRenderChartMessage: チャートを描画中にエラーが発生しました。設定を変更して再試行してください。
-      firstConfigChartMessage: チャートはまだ利用できません。チャートを生成するには設定を構成してください。
       TooltipAverageKpiLabel: '{0}の平均'
       TooltipMaxKpiLabel: '{0}の最大値'
       TooltipMinKpiLabel: '{0}の最小値'
       TooltipSumKpiLabel: '{0}の合計'
       TooltipTotalCaseLabel: '合計ケース: {0}'
       TooltipTotalTaskLabel: '合計タスク: {0}'
+      failToRenderChartMessage: チャートを描画中にエラーが発生しました。設定を変更して再試行してください。
+      firstConfigChartMessage: チャートはまだ利用できません。チャートを生成するには設定を構成してください。
     WelcomeWidgetIntroduction: このウィジェットは、ダッシュボードにウェルカムテキストと画像を表示します。
     WelcomeWidgetNotFoundMessage: ウィジェットの画像が見つかりません。画像を再設定してください。
     WidgetFilterName: ウィジェットフィルター名
@@ -888,7 +887,9 @@ ch.ivy.addon.portalkit.ui.jsf:
       editDashboard: ダッシュボードの編集
       manageDashboard: ダッシュボードの管理
       removeDashboardHeader: 「{0}」のダッシュボードを削除
+    dataSettings: データ設定
     deleteWidget: ウィジェットを削除
+    displaySettings: 表示設定
     downloadZipFileExplanation: エクスポートするアイテム数が Excel の行数の制限を超える場合、データは複数の Excel ファイルに分割され、ZIP ファイルに圧縮されてダウンロードされます。
     editWidget: ウィジェットの編集
     existingField: '{0} フィールドは既に存在します'
@@ -1547,7 +1548,7 @@ Dialogs:
               FileInfomation: ファイル情報
               ImportPrivate: 個人用ダッシュボードをインポートする
               ImportPublic: 公開用ダッシュボードをインポートする
-              NavigationWidgetMissingTarget: 'ナビゲーションウィジェット"{0}"は、インポートされておらず、このポータルに存在しないダッシュボードを参照しています。ウィジェットが正しく機能しない可能性があります。'
+              NavigationWidgetMissingTarget: ナビゲーションウィジェット"{0}"は、インポートされておらず、このポータルに存在しないダッシュボードを参照しています。ウィジェットが正しく機能しない可能性があります。
               chooseAJsonFile: JSON ファイルを選択してください
             DashboardSharing:
               ShareDashboard: ダッシュボードを共有
@@ -1671,6 +1672,13 @@ Enums:
     axonivy:
       portal:
         enums:
+          CaseQueryType:
+            ALL:
+              name: ビジネスケース + サブケース
+            BUSINESS_CASE:
+              name: ビジネスケース（デフォルト）
+            SUB_CASE:
+              name: 技術サブケース
           statistic:
             AggregationField:
               ACTIVATOR_NAME:
@@ -1740,13 +1748,6 @@ Enums:
                 name: より小さい
               LESSOREQUAL:
                 name: 以下
-          CaseQueryType:
-            ALL:
-              name: ビジネスケース + サブケース
-            BUSINESS_CASE:
-              name: ビジネスケース（デフォルト）
-            SUB_CASE:
-              name: 技術サブケース
 Labels:
   AI:
     Error:

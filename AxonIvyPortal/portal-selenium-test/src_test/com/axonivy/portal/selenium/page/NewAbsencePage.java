@@ -7,21 +7,23 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 import org.apache.commons.lang3.StringUtils;
-import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 
 import com.axonivy.portal.selenium.common.DateTimePattern;
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.Selenide;
+import com.codeborne.selenide.SelenideElement;
 
 public class NewAbsencePage extends TemplatePage {
 
-  private static final String ABSENCE_ERROR_MESSAGE_SELECTOR =
-      "[id*='absence-messages'] span.ui-messages-error-summary";
+  private static final String ABSENCE_ERROR_MESSAGE_SELECTOR = "[id*='absence-messages'] span.ui-messages-error-summary";
+
+  private static final String ABSENCE_DETAIL_ERROR_MESSAGE_SELECTOR = "[id*='absence-messages'] span.ui-messages-error-detail";
 
   @Override
   protected String getLoadedLocator() {
-    return "[id='absence-dialog_title']";
+    return "[class*='absence-dialog-header']";
   }
 
   public void input(LocalDate absenceFrom, LocalDate absenceTill, String comment) {
@@ -33,10 +35,8 @@ public class NewAbsencePage extends TemplatePage {
   }
 
   public void input(String fullName, LocalDate absenceFrom, LocalDate absenceTill, String comment) {
-    inputDate(absenceFrom, "input[id*='absence-start-date']");
-    inputDate(absenceTill, "input[id*='absence-end-date']");
     $("textarea[id*='comment']").sendKeys(comment);
-    $(By.id("absence-dialog_title")).click();
+    $("div[class*='absence-dialog-header']").shouldBe(appear, DEFAULT_TIMEOUT).click();
     if (StringUtils.isNotEmpty(fullName)) {
       WebElement usernameInput = $("input[id*='absence-username']").shouldBe(appear, DEFAULT_TIMEOUT);
       usernameInput.clear();
@@ -44,6 +44,8 @@ public class NewAbsencePage extends TemplatePage {
       String itemSelector = "tr[data-item-label*='" + fullName + "'].ui-state-highlight";
       $(itemSelector).shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     }
+    inputDate(absenceFrom, "input[id*='absence-start-date']");
+    inputDate(absenceTill, "input[id*='absence-end-date']");
   }
 
   private void inputDate(LocalDate absenceFrom, String inputCssSelector) {
@@ -54,6 +56,15 @@ public class NewAbsencePage extends TemplatePage {
     fromInput.sendKeys(Keys.chord(Keys.CONTROL, "a"));
     fromInput.sendKeys(Keys.BACK_SPACE);
     fromInput.sendKeys(absenceFrom.format(formatter));
+    closeDatePickerPanel(inputCssSelector);
+  }
+
+  private void closeDatePickerPanel(String inputCssSelector) {
+    String panelSelector = inputCssSelector.replace("input", "div").replace("']", "_panel']");
+    SelenideElement panel = $(panelSelector);
+    if (panel.exists() && panel.isDisplayed()) {
+      Selenide.executeJavaScript("arguments[0].style.display = 'none'", panel);
+    }
   }
 
   public boolean isErrorMessageDisplayed() {
@@ -66,14 +77,24 @@ public class NewAbsencePage extends TemplatePage {
     return errorMessage.getText();
   }
 
+    public String getErrorDetailMessage() {
+    WebElement errorMessage = $(ABSENCE_DETAIL_ERROR_MESSAGE_SELECTOR);
+    return errorMessage.getText();
+  }
+
+  public String getAbsenceDialogErrorMessage() {
+    String selector = "[id*='absence-messages'] span.ui-messages-error-detail";
+    return $(selector).shouldBe(appear, DEFAULT_TIMEOUT).getText();
+  }
+
   public void proceed() {
-    $(By.id("absence-dialog_title")).click();
+    $("div[class*='absence-dialog-header']").shouldBe(appear, DEFAULT_TIMEOUT).click();
     $("button[id*='save-absence']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT)
         .click();
   }
 
   public void closeAddAbsenceDialog() {
-    $("[id='absence-dialog_title']").click();
+    $("div[class*='absence-dialog-header']").shouldBe(appear, DEFAULT_TIMEOUT).click();
     $("div[id='absence-dialog']").$("span.ui-icon-closethick").shouldBe(appear, DEFAULT_TIMEOUT)
         .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     $("[id$='absence-dialog']").shouldBe(Condition.disappear, DEFAULT_TIMEOUT);

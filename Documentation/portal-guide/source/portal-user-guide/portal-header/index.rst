@@ -75,7 +75,7 @@ The :guilabel:`Absences` menu entry provides an absence management component whe
 
 |portal-absences|
 
-The absence dialog displays all current and upcoming absences. You can also view past absences by activating the :guilabel:`Display absences in the past` option. Edit or delete absences using the |edit-icon| **Edit** or |trash-icon| **Delete** actions in the respective absence row.
+The absence table displays all current and upcoming absences, substitutes for personally assigned tasks during the absence. You can also view past absences by activating the :guilabel:`Display absences in the past` option. Edit or delete absences using the |edit-icon| **Edit** or |trash-icon| **Delete** actions in the respective absence row.
 
 .. tip::
    Specify delegates only for tasks assigned directly to you. Roles are typically held by multiple users, so if you're absent, another member can handle the task.
@@ -87,12 +87,14 @@ HowTo: Add Absence
 #. The :guilabel:`Add absence` dialog opens
 #. Enter :guilabel:`From` and :guilabel:`Until` dates
 #. Optionally provide an explanatory comment
+#. Select substitutes for your personal tasks during the absence
 #. Confirm your absence by clicking the :guilabel:`Save` button
 
 |how-to-add-an-absence|
 
 HowTo: Set Substitute
 """""""""""""""""""""
+|how-to-set-absence-substitutes|
 
 The substitute list contains entries for your personal tasks and each role you hold.
 
@@ -101,19 +103,34 @@ The substitute list contains entries for your personal tasks and each role you h
 - **For roles**: You can choose multiple substitutes for each role
 - **For personal tasks**: You can choose multiple substitutes in two categories:
 
-  - Permanent substitutes for personally assigned tasks
-  - Substitutes for personally assigned tasks during absence
+  - **Permanent substitute**: Permanent substitutes for personally assigned tasks
+  - **Substitutes during absence**: Subsitutes for personally assigned tasks during absence
 
   .. note::
-     A substitute can only belong to one type.
+     - A substitute can only belong to one type.
+     - For **Substitutes during absence** type, you can select substitutes directly on add new absence dialog.
 
-**Steps:**
+To add a new substitute:
 
-#. Click the link ending with |si-notes-quill| to specify substitutes
-#. Select substitutes and click the :guilabel:`Add` button
+#. Click on the link to specify substitutes
+#. In the dialog, type the name of the user you want to add as a substitute
+#. Select the user from the suggestion list and click the :guilabel:`Add` button
+#. Repeat for additional substitutes if needed
 #. Confirm your substitutes with the :guilabel:`Save` button
 
-|how-to-set-absence-substitutes|
+|how-to-add-deputy-dialog|
+
+Add absence and substitute for other users
+""""""""""""""""""""""""""""""""""""""""""
+
+When a user has the required permissions (e.g., :ref:`UserCreateAbsence <UserCreateAbsence>` or :ref:`UserCreateSubstitute <UserCreateSubstitute>`), they can perform actions on behalf of other users. To do so:
+
+#. Click the :guilabel:`Selected user` option at the top of the absence management page
+#. Search for and select the user you want to manage absences or substitutes for
+#. The absence and substitute tables will update to show the selected user's data
+#. You can then add, edit, or delete absences and substitutes for the selected user
+
+|select-absence-user|
 
 Change Password
 ^^^^^^^^^^^^^^^
@@ -237,8 +254,12 @@ Different header features require specific permissions:
    :alt: Absences page
 .. |how-to-add-an-absence| image:: ../../screenshots/settings/new-absence.png
    :alt: Absences page: Add new absence dialog
+.. |how-to-add-deputy-dialog| image:: ../../screenshots/settings/add-deputy-dialog.png
+   :alt: Absences page: Add deputy dialog
 .. |how-to-set-absence-substitutes| image:: ../../screenshots/settings/set-deputy.png
    :alt: Absences page: Set deputy section
+.. |select-absence-user| image:: ../../screenshots/settings/select-absence-user.png
+   :alt: Absences page: Select absence user option
 .. |portal-password-change-dialog| image:: ../../screenshots/settings/change-password.png
    :alt: Change password dialog
 .. |portal-version-information| image:: ../../screenshots/settings/portal-version-information.png
