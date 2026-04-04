@@ -1,0 +1,9 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
+  "simpleName" : "XssDemoData",
+  "namespace" : "com.axonivy.portal.developerexamples.XssDemo",
+  "fields" : [ {
+    "name" : "url",
+    "type" : "String"
+  } ]
+}
