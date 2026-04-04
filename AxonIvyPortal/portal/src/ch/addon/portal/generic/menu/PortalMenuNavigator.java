@@ -169,6 +169,9 @@ public class PortalMenuNavigator {
       dashboard.setIcon(dashboard.getIsPublic() ? "si-network-share" : "si-single-neutral-shield");
     }
 
+    // Set id
+    item.setId(dashboard.getId());
+
     // Set icon with the appropriate prefix
     item.icon = (dashboard.getIcon().startsWith("fa") ? "fa " : "si ") + dashboard.getIcon();
 
