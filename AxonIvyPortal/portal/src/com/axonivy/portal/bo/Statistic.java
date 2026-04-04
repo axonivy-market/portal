@@ -31,7 +31,7 @@ import ch.ivy.addon.portalkit.util.PermissionUtils;
 public class Statistic extends AbstractConfiguration implements Serializable {
 
   private static final long serialVersionUID = -8416553636564399910L;
-  public static final String DEFAULT_ICON = "si-pie-line-graph";
+  public static final String DEFAULT_ICON = "ti-chart-pie";
   private String aggregates;
   private StatisticAggregation statisticAggregation;
   private String filter;

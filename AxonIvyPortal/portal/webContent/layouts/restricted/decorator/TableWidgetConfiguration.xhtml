@@ -33,7 +33,7 @@
           value="#{widget.name}" />
         <!-- Add language button -->
         <p:commandButton styleClass="app-setting-button"
-          icon="si si-chat-translate" id="add-language-button"
+          icon="ti ti-message-2" id="add-language-button"
           ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/addLanguages')}"
           actionListener="#{managedBean.updateWidgetNameByLocale()}"
           process="widget-title"
@@ -52,7 +52,7 @@
         <p:commandButton id="preview-button"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/preview')}"
           ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/preview')}"
-          styleClass="Fright preview-button u-hidden-sm-down" icon="si si-search"
+          styleClass="Fright preview-button u-hidden-sm-down" icon="ti ti-search"
           update="#{componentToUpdateOnPreview}" />
       </div>
     </div>

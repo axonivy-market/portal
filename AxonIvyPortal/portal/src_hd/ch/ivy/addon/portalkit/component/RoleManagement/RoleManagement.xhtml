@@ -51,7 +51,7 @@
                 title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ExpandAll')}"
                 styleClass="action-column-icon-button expand-all"
                 process="@this">
-                <i class="si si-move-expand-vertical"/>
+                <i class="ti ti-arrows-vertical"/>
               </p:commandLink>
               <p:commandLink id="collapse-all"
                 actionListener="#{roleManagementBean.roleTreeModel.collapseAllNodes}"
@@ -60,7 +60,7 @@
                 title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/CollapseAll')}"
                 styleClass="action-column-icon-button"
                 process="@this">
-                <i class="si si-move-shrink-vertical"/>
+                <i class="ti ti-arrows-minimize"/>
               </p:commandLink>
             </span>
           </div>
@@ -104,7 +104,7 @@
                 process="@this"
                 disabled="#{!role.dynamic or !roleManagementBean.canCreateRole}"
                 styleClass="action-column-icon-button">
-                <i class="si si-pencil" />
+                <i class="ti ti-pencil" />
               </p:commandLink>
               <p:tooltip for="edit-role-action" rendered="#{!roleManagementBean.canCreateRole}"
                 value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/RoleManagement/CannotEditRoleTooltip')}"/>
@@ -121,7 +121,7 @@
                 oncomplete="PF('role-details-dialog').show()"
                 update="@(.manage-role-details-form) @(.role-details-dialog)"
                 process="@this">
-                <i class="si si-multiple-actions-add" />
+                <i class="ti ti-user-plus" />
               </p:commandLink>
             </h:panelGroup>
 
@@ -135,7 +135,7 @@
                 update="#{cc.clientId}:delete-role-dialog"
                 disabled="#{!role.dynamic or !roleManagementBean.canDeleteRole}"
                 process="@this">
-                <i class="si si-bin-1" />
+                <i class="ti ti-trash" />
               </p:commandLink>
               <p:tooltip for="delete-role-action" rendered="#{!roleManagementBean.canDeleteRole}"
                 value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/RoleManagement/CannotDeleteRoleTooltip')}"/>
@@ -250,7 +250,7 @@
                   widgetVar="add-new-user-button"
                   ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/add')}"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/add')}"
-                  icon="si si-add"
+                  icon="ti ti-plus"
                   actionListener="#{roleManagementBean.assignUserToRole()}"
                   update="users-of-role-table user-assignment-group"
                   process="user-assignment-group"
@@ -297,7 +297,7 @@
                   process="@this" partialSubmit="true"
                   actionListener="#{roleManagementBean.removeUserOutOfRole(user)}"
                   disabled="#{showInheritedMembership}">
-                  <i class="si si-bin-1" />
+                  <i class="ti ti-trash" />
                 </p:commandLink>
               </h:panelGroup>
               <p:tooltip for="user-of-role-action-group"
@@ -322,7 +322,7 @@
           onclick="if (#{canModifyUserAssignment}) {PF('users-of-role-table').unselectAllRows();PF('users-of-role-table').clearFilters();}"
           oncomplete="PF('role-details-dialog').hide()"/>
         <p:commandButton id="save-role-configuration"
-          icon="si si-floppy-disk"
+          icon="ti ti-device-floppy"
           ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
           process="manage-role-details-form"
@@ -336,7 +336,7 @@
         <p:commandButton id="cancel-update-users"
           ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
-          icon="si si-close"
+          icon="ti ti-x"
           process="@this"
           update="#{cc.clientId}:role-management-form:role-tree-table"
           global="false"
@@ -351,7 +351,7 @@
     <ui:param name="id" value="delete-role-dialog" />
     <ui:param name="widgetVar" value="delete-role-dialog" />
     <ui:param name="appendTo" value="@(body)" />
-    <ui:param name="iconClass" value="si si-delete-1" />
+    <ui:param name="iconClass" value="ti ti-trash" />
     <ui:param name="iconStyleClass" value="portal-dialog-error-icon" />
     <ui:param name="headerText" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/RoleManagement/RemovingRoleHeader', [roleManagementBean.selectedRole.displayName])}" />
     <ui:param name="dialogContent" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/RoleManagement/Messages/ConfirmDeleteRole')}"/>
@@ -364,7 +364,7 @@
       <p:commandButton id="yes-button"
         ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}"
-        icon="#{visibilityBean.generateButtonIcon('si si-check-1')}"
+        icon="#{visibilityBean.generateButtonIcon('ti ti-check')}"
         oncomplete="PF('role-tree-table').clearFilters(); PF('delete-role-dialog').hide()"
         global="false"
         actionListener="#{roleManagementBean.deleteSelectedRole()}" />

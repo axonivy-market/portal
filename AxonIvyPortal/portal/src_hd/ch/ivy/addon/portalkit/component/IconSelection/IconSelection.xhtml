@@ -23,9 +23,9 @@
       <p:commandLink id="change-icon-link" styleClass="select-awesome-icon-button icon-color"
                      ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/change')}"
                      process="@this" onclick="PF('#{cc.clientId}-select-icon-dialog').show();"
-                     oncomplete="loadDialogStreamlineIcon('#{cc.clientId}');"
+                     oncomplete="loadDialogTablerIconAll('#{cc.clientId}');"
         rendered="#{!readOnly}">
-          <span class="si si-add-circle si-lg" />
+          <span class="ti ti-circle-plus ti-lg" />
         </p:commandLink>
     </h:panelGroup>
     <h:panelGroup rendered="#{hideIconArray}">
@@ -33,7 +33,7 @@
         styleClass="select-icon-link icon-color"
         process="@this" rendered="#{!readOnly}"
         onclick="PF('#{cc.clientId}-select-icon-dialog').show();"
-        oncomplete="loadDialogStreamlineIcon('#{cc.clientId}');">
+        oncomplete="loadDialogTablerIconAll('#{cc.clientId}');">
         <h:outputText id="selected-icon-display" styleClass="#{iconSelectionBean.iconPattern} #{cc.attrs.value} vertical-align-middle" />
       </p:commandLink>
       <h:panelGroup rendered="#{readOnly}" layout="block" styleClass="select-awesome-icon-button">
@@ -57,10 +57,16 @@
         styleClass="search-icon-input Fright" />
     </div>
     <h:form id="icons-selection-form">
-      <p:fieldset legend="Streamline" id="streamline-icon">
-        <h:panelGroup layout="block" id="icons" />
-      </p:fieldset>
-      <p:fieldset legend="Awesome" id="awesome-icon" styleClass="MarTop20">
+        <p:fieldset legend="Tabler" id="tabler-icon">
+          <h:panelGroup layout="block" id="tabler-icons" />
+        </p:fieldset>
+        <p:fieldset legend="Tabler Filled" id="tabler-filled-icon" styleClass="MarTop20">
+          <h:panelGroup layout="block" id="tabler-filled-icons" />
+        </p:fieldset>
+        <p:fieldset legend="Streamline" id="streamline-icon" styleClass="MarTop20">
+          <h:panelGroup layout="block" id="streamline-icons" />
+        </p:fieldset>
+        <p:fieldset legend="Awesome" id="awesome-icon" styleClass="MarTop20">
         <ui:repeat var="icon" value="#{masterDataBean.awesomeIcons}">
           <c:set var="iconCode" value="#{htmlSanitizerBean.escapeForJS(icon.iconCode)}" />
           <h:link id="awesome-icon" styleClass="icon-selection-dialog-selecting-icon icon-color"

@@ -177,13 +177,13 @@ public class CustomWidgetUtils {
       if (isNull(startable)) {
         customWidget.getData().setStartRequestPath(EMPTY);
         customWidget.setErrorMessage(Ivy.cms().co("/Dialogs/com/axonivy/portal/components/ProcessViewer/ProcessNotFound"));
-        customWidget.setErrorIcon("si si-alert-circle");
+        customWidget.setErrorIcon("ti ti-alert-circle");
         return;
       } 
       boolean isViewerAllowed = Ivy.session().getAllStartables().anyMatch(item-> item.getId().equals(startable.getId()));
       if (!isViewerAllowed) {
         customWidget.getData().setStartRequestPath(EMPTY);
-        customWidget.setErrorIcon("si si-lock-1");
+        customWidget.setErrorIcon("ti ti-lock");
         customWidget.setErrorMessage(Ivy.cms().co("/Dialogs/com/axonivy/portal/components/ProcessViewer/NoPermissionToView"));
         return;
       }

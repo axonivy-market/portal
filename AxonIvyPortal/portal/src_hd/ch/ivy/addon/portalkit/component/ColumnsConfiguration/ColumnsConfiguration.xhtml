@@ -18,7 +18,7 @@
     <p:commandLink id="#{cc.attrs.configButtonId}"
       ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/manageColumns')}"
       styleClass="config-columns" global="false">
-      <i class="si si-layers-grid-settings u-mar-right-5" />
+      <i class="ti ti-layout-grid u-mar-right-5" />
       <span class="link-text">
         <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/manageColumns')}" />
       </span>
@@ -51,7 +51,7 @@
             actionListener="#{dataModel.setDisableSelectionCheckboxes(dataModel.autoHideColumns)}" />
           <p:spacer width="15" />
           <p:commandButton id="update-command" global="true"
-            icon="#{visibilityBean.generateButtonIcon('si si-check-1')}"
+            icon="#{visibilityBean.generateButtonIcon('ti ti-check')}"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/apply')}"
             ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/apply')}"
             actionListener="#{dataModel.saveColumnsConfiguration()}"

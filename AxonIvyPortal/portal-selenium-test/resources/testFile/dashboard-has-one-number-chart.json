@@ -61,7 +61,7 @@
                 "value": "Dashboard"
             }
         ],
-        "icon": "si-network-share",
+        "icon": "ti-share",
         "widgets": [
             {
                 "type": "client-statistic",

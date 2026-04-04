@@ -150,7 +150,7 @@
           value="#{taskWidget.userDefinedFiltersCount.isPresent() or (not empty taskWidget.quickSearchKeyword)}" />
         <h:panelGroup layout="block" id="empty-message-when-filter"
           rendered="#{noTasksWhenFilter}">
-          <i class="si si-filter-1 empty-message-icon" />
+          <i class="ti ti-filter empty-message-icon" />
           <br />
           <h:outputText
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/iconMessage/taskWidget/noTasksFoundWhenFilter')}"
@@ -158,7 +158,7 @@
         </h:panelGroup>
         <h:panelGroup layout="block" id="empty-message-when-not-filter"
           rendered="#{!noTasksWhenFilter}">
-          <i class="si #{dashboardTaskWidgetBean.noTasksMessage.icon} empty-message-icon" />
+          <i class="ti #{dashboardTaskWidgetBean.noTasksMessage.icon} empty-message-icon" />
           <br />
           <h:outputText value="#{dashboardTaskWidgetBean.noTasksMessage.message}"
             styleClass="empty-message-text" />
@@ -170,7 +170,7 @@
     <ui:param name="id" value="reset-task-confirmation-dialog" />
     <ui:param name="widgetVar" value="reset-task-confirmation-dialog" />
     <ui:param name="appendTo" value="@(body)" />
-    <ui:param name="iconClass" value="si si-road-sign-warning" />
+    <ui:param name="iconClass" value="ti ti-alert-triangle" />
     <ui:param name="iconStyleClass" value="portal-dialog-warning-icon" />
     <ui:param name="headerText" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/resetTaskHeaderText')}" />
     <ui:param name="dialogContent" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/resetTaskWarning')}" />
@@ -183,7 +183,7 @@
         <p:commandButton actionListener="#{dashboardTaskWidgetBean.resetAndOpenTask}"
           ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
-          icon="#{visibilityBean.generateButtonIcon('si si-road-sign-u-turn-left')}"
+          icon="#{visibilityBean.generateButtonIcon('ti ti-arrow-back-up')}"
           onstart="#{cc.attrs.onTaskStartCallback}" oncomplete="resetPortalLeftMenuState()"/>
       </h:form>
     </ui:define>

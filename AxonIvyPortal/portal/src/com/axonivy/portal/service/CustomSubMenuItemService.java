@@ -31,7 +31,7 @@ import ch.ivyteam.ivy.security.exec.Sudo;
 public class CustomSubMenuItemService {
 
   public final static String SUB_MENU = "subMenuItems";
-  public final static String DEFAULT_ICON = "si si si-hierarchy-6 si-rotate-270";
+  public final static String DEFAULT_ICON = "ti ti-sitemap";
 
   public static List<SubMenuItem> findAll() {
     List<CustomSubMenuItem> customMenus = loadFromSubProcess();

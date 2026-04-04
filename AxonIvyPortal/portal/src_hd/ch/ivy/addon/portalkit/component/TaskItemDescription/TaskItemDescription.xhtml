@@ -19,7 +19,7 @@
       #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/description')}
       <p:commandLink onclick="showWidgetDescriptionInplaceEditor();" ariaLabel="#{ivy.cms.co('/Labels/EditDescription')}" global="false"
         rendered="#{canChangeDescription and !cc.attrs.readOnly}" id="edit-description-link">
-        <i class="si si-graphic-tablet-drawing-pen" />
+        <i class="ti ti-pencil" />
       </p:commandLink>
     </div>
   </h:panelGroup>
@@ -46,10 +46,10 @@
             </h:panelGroup>
           </div>
           <p:commandLink onclick="displayMoreText()" id="icon-more-link" styleClass="icon-more-link" global="false" process="@this" partialSubmit="true" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ExpandAll')}">
-            <i class="si si-add-circle si-add-circle-task-description" />
+            <i class="ti ti-circle-plus ti-circle-plus" />
           </p:commandLink>
           <p:commandLink onclick="displayLessText()" id="icon-less-link" styleClass="icon-less-link" global="false" process="@this" partialSubmit="true" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/CollapseAll')}">
-            <i class="si si-subtract-circle" />
+            <i class="ti ti-circle-minus" />
           </p:commandLink>
         </div>
       </h:form>

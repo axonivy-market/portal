@@ -37,7 +37,7 @@ Below is a comprehensive JSON example configuring a dashboard with a task widget
                "value": "Tablero de mandos"
             }
          ],
-         "icon": "fa-play",
+         "icon": "ti-player-play",
          "widgets": [
             {
                "type": "task",
@@ -138,8 +138,7 @@ Each dashboard in the JSON array supports the following properties:
     ``icon`` (string)
         Dashboard tab icon
         
-        - Supports FontAwesome (e.g., ``"fa-play"``, ``"fa-dashboard"``)
-        - Supports Streamline (e.g., ``"si si-layout-bullets"``)
+        - Supports Tabler Icons (e.g., ``"ti-player-play"``, ``"ti-dashboard"``)
 
     ``widgets`` (array)
         Array of widget configurations for the dashboard
@@ -252,7 +251,7 @@ Customize the Dashboard menu item using the **Portal.Dashboard.MainMenuEntry** v
             "value": "Tableros"
          }
       ],
-      "icon": "si si-layout-bullets"
+      "icon": "ti ti-layout-list"
    }
 
 ..
@@ -269,8 +268,7 @@ Customize the Dashboard menu item using the **Portal.Dashboard.MainMenuEntry** v
     ``icon`` (string)
         Icon displayed next to menu label
         
-        - **Streamline Icons**: ``si si-icon-name`` (e.g., ``"si si-layout-bullets"``)
-        - **FontAwesome Icons**: ``fa fa-icon-name`` (e.g., ``"fa fa-dashboard"``)
+        - **Tabler Icons**: ``ti ti-icon-name`` (e.g., ``"ti ti-layout-list"``)
 
 .. important::
    The menu entry name follows the user's language setting. If no matching locale is found, the first entry in the ``names`` array is used as default.

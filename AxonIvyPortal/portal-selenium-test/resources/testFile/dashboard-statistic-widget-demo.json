@@ -45,7 +45,7 @@
     "locale" : "zu",
     "value" : "Dashboard"
   } ],
-  "icon" : "si-network-share",
+  "icon" : "ti-share",
   "widgets" : [  {
     "type" : "client-statistic",
     "id" : "client_statistic_3d9d80486efe4567acdcfe72c535a06d",

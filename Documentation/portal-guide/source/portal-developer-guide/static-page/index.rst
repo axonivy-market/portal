@@ -101,7 +101,7 @@ Add the following JSON configuration to the ``Portal.CustomMenuItems`` variable:
             "menuKind": "STATIC_PAGE",
             "link": "portal-components-examples/faces/view/help/user-guide.xhtml",
             "label": "User Guide",
-            "icon": "si si-book-open-1",
+            "icon": "ti ti-book",
             "index": 0,
             "version": "12.0.0"
         },
@@ -109,7 +109,7 @@ Add the following JSON configuration to the ``Portal.CustomMenuItems`` variable:
             "menuKind": "STATIC_PAGE",
             "link": "portal-components-examples/faces/view/documentation/api-reference.xhtml",
             "label": "API Reference",
-            "icon": "si si-common-file-text",
+            "icon": "ti ti-file-text",
             "index": 1,
             "version": "12.0.0"
         }
@@ -135,9 +135,9 @@ Add the following JSON configuration to the ``Portal.CustomMenuItems`` variable:
     ``icon`` (string, optional)
         Icon class for menu item
         
-        - Use Streamline Icons: ``si si-icon-name``
-        - Example: ``si si-book-open-1``, ``si si-common-file-text``
-        - Browse available icons in Portal UI or Streamline documentation
+        - Use Tabler Icons: ``ti ti-icon-name``
+        - Example: ``ti ti-book``, ``ti ti-file-text``
+        - Browse available icons in `HTML Dialog Demo <https://market.axonivy.com/html-dialog-demo>`_
 
     ``index`` (number, optional)
         Menu position order (lower numbers appear first)
@@ -163,7 +163,7 @@ For dynamic menu generation, add static pages programmatically using Java code i
     // Create new static page menu item
     CustomSubMenuItem staticPage = new CustomSubMenuItem();
     staticPage.setMenuKind(MenuKind.STATIC_PAGE);
-    staticPage.setIcon("si si-book-open-1");
+    staticPage.setIcon("ti ti-book");
     staticPage.setLabel("User Guide");
     staticPage.setLink("portal-components-examples/faces/view/help/user-guide.xhtml");
     staticPage.setIndex(0);

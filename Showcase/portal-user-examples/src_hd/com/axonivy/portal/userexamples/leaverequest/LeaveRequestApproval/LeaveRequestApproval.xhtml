@@ -67,11 +67,11 @@
 
           </p:panel>
         </h:panelGroup>
-        <p:commandButton value="#{ivy.cms.co('/Dialog/Common/approve')}" icon="si si-check-1"
+        <p:commandButton value="#{ivy.cms.co('/Dialog/Common/approve')}" icon="ti ti-check"
           styleClass="Fright MarTop10" partialSubmit="true" id="approved-btn" actionListener="#{logic.approved}"
           process=":leave-request" update=":leave-request" style="width: auto" />
         <p:spacer width="5px" styleClass="Fright MarTop10" />
-        <p:commandButton value="#{ivy.cms.co('/Dialog/Common/reject')}" icon="si si-delete" partialSubmit="true"
+        <p:commandButton value="#{ivy.cms.co('/Dialog/Common/reject')}" icon="ti ti-trash" partialSubmit="true"
           id="rejected-btn" styleClass="secondary-btn Fright MarTop10" actionListener="#{logic.rejected}"
           process=":leave-request" update=":leave-request" style="width: auto" />
       </h:form>

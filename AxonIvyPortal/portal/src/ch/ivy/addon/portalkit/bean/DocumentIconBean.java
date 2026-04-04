@@ -30,7 +30,7 @@ public class DocumentIconBean implements Serializable {
    */
 
   private static final String FILE_NAME_REGEX = "[\\/:*?\"<>|]";
-  private static final String PREFIX = "si si-office-file-";
+  private static final String PREFIX = "ti ti-file";
   private static final String SUFFIX = "-1";
 
   // Known extensions
@@ -39,12 +39,12 @@ public class DocumentIconBean implements Serializable {
   private static final String PDF = "pdf";
   private static final String POWER_POINT = "ppt";
   private static final String TEXT = "txt";
-  private static final String CSV = "si si-file-csv";
-  private static final String ARCHIVE = "si si-file-zip";
-  private static final String XML = "si si-file-xml";
-  private static final String IMAGE = "si si-image-file-landscape";
-  private static final String EMAIL = "si si-email-action-unread";
-  private static final String DEFAULT = "si si-common-file-empty";
+  private static final String CSV = "ti ti-file-type-xls";
+  private static final String ARCHIVE = "ti ti-file-zip";
+  private static final String XML = "ti ti-file-code";
+  private static final String IMAGE = "ti ti-photo";
+  private static final String EMAIL = "ti ti-mail-opened";
+  private static final String DEFAULT = "ti ti-file";
 
   /**
    * Base on extension of document, getIconCssClass method detects a corresponding ivy icon.

@@ -21,7 +21,7 @@
         "value": "Tablero de mandos"
       }
     ],
-    "icon": "si-pie-line-graph",
+    "icon": "ti-report-analytics",
     "widgets": [
       {
         "type": "task",
@@ -351,7 +351,7 @@
         "value": "Tareas"
       }
     ],
-    "icon": "si-task-list-edit",
+    "icon": "ti-checklist",
     "description": "Default Task List Dashboard",
     "widgets": [
       {
@@ -463,7 +463,7 @@
         "value": "Casos"
       }
     ],
-    "icon": "si-layout-bullets",
+    "icon": "ti-folder-open",
     "description": "Default Case List Dashboard",
     "widgets": [
       {
@@ -554,7 +554,7 @@
         "value": "Main Dashboard 1"
       }
     ],
-    "icon": "si-task-list-edit",
+    "icon": "ti-checklist",
     "description": "Main Dashboard 1",
     "widgets": [
       {
@@ -654,7 +654,7 @@
         "value": "Main Dashboard 2"
       }
     ],
-    "icon": "si-layout-bullets",
+    "icon": "ti-folder-open",
     "description": "Main Dashboard 2",
     "widgets": [
       {
@@ -745,7 +745,7 @@
         "value": "Sub Dashboard 1"
       }
     ],
-    "icon": "si-task-list-edit",
+    "icon": "ti-checklist",
     "description": "Sub Dashboard 1",
     "widgets": [
       {
@@ -844,7 +844,7 @@
         "value": "Sub Dashboard 2"
       }
     ],
-    "icon": "si-layout-bullets",
+    "icon": "ti-folder-open",
     "description": "Sub Dashboard 2",
     "widgets": [
       {

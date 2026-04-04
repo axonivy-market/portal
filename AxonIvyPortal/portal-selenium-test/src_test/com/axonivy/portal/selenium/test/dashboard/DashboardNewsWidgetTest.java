@@ -31,7 +31,7 @@ public class DashboardNewsWidgetTest extends BaseTest {
   private static final String DEFAULT_NEWS_WIDGET_NAME = "News feed";
   private static final String PORTAL_NEWS_WIDGET_NAME = "Portal News feed";
   private static final String NEWS_ITEM_LANG = "en";
-  private static final String NEWS_ITEM_ICON = "si-send-email";
+  private static final String NEWS_ITEM_ICON = "ti-mail";
   private static final String NEWS_ITEM_TITLE = "Welcome to Portal News feed";
   private static final String NEWS_ITEM_CONTENT =
       "This is great place to share relevant information as News Feed into Axon Ivy.";
@@ -88,7 +88,7 @@ public class DashboardNewsWidgetTest extends BaseTest {
   @Test
   public void testAddNewsItemAndChangeLaguage() {
     int newsItemIndex = 0;
-    String frenchIcon = "si-messages-bubble-add-2";
+    String frenchIcon = "ti-message-plus";
     String frenchTitle = NEWS_ITEM_TITLE + "- French";
     String frenchContent = NEWS_ITEM_CONTENT + "- French";
     newsWidget = loginAsAdminAndPreDashboard();
@@ -126,7 +126,7 @@ public class DashboardNewsWidgetTest extends BaseTest {
   @Test
   public void testEditAnExistingNewsItem() {
     int newsItemIndex = 0;
-    String editIcon = "si-pencil";
+    String editIcon = "ti-pencil";
     String editTitle = NEWS_ITEM_TITLE + "- Edited";
     String editContent = NEWS_ITEM_CONTENT + "- Edited";
     newsWidget = loginAsAdminAndPreDashboard();

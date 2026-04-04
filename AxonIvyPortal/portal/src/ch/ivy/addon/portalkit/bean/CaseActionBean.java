@@ -100,7 +100,7 @@ public class CaseActionBean implements Serializable {
   }
 
   public String getPinnedIcon(ICase caze) {
-    return CaseUtils.isPinnedCase(caze) ? "option-action-icon si si-pin-bold" : "option-action-icon si si-pin";
+    return CaseUtils.isPinnedCase(caze) ? "option-action-icon tif tif-pin" : "option-action-icon ti ti-pin";
   }
 
   public String getPinnedLabel(ICase caze) {

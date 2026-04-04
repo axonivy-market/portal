@@ -32,7 +32,7 @@
       <div class="ui-g-12">
         <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/WelcomeWidget/PreviewLightMode')}"
           styleClass="welcome-text-label" for="preview-panel">
-          <h:outputText id="preview-icon" styleClass="si si-information-circle welcome-widget-configuration-icon" />
+          <h:outputText id="preview-icon" styleClass="ti ti-info-circle welcome-widget-configuration-icon" />
           <p:tooltip for="preview-icon"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/WelcomeWidget/PreviewTooltip')}" />
         </p:outputLabel>
@@ -52,7 +52,7 @@
         <p:fileUpload id="image-upload-panel"
           widgetVar="ImageLightUpload"
           listener="#{dashboardWelcomeWidgetConfigurationBean.handleFileUpload}"
-          chooseIcon="#{visibilityBean.generateButtonIcon('si si-add-small')}" 
+          chooseIcon="#{visibilityBean.generateButtonIcon('ti ti-plus')}" 
           auto="true"
           update="preview-panel config-welcome-widget-message" 
           allowTypes="/(\.|\/)(png|jpg|jpeg|svg)$/i"
@@ -82,7 +82,7 @@
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/WelcomeWidget/PreviewDarkMode')}"
           styleClass="welcome-text-label" for="preview-panel-dark-mode">
           <h:outputText id="preview-icon-dark-mode"
-            styleClass="si si-information-circle welcome-widget-configuration-icon" />
+            styleClass="ti ti-info-circle welcome-widget-configuration-icon" />
           <p:tooltip for="preview-icon-dark-mode"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/WelcomeWidget/PreviewTooltip')}" />
         </p:outputLabel>
@@ -103,7 +103,7 @@
         <p:fileUpload id="image-dark-mode-upload-panel" 
           widgetVar="ImageDarkUpload"
           listener="#{dashboardWelcomeWidgetConfigurationBean.handleFileUploadDarkMode}"
-          chooseIcon="#{visibilityBean.generateButtonIcon('si si-add-small')}" 
+          chooseIcon="#{visibilityBean.generateButtonIcon('ti ti-plus')}" 
           auto="true"
           update="preview-panel-dark-mode config-welcome-widget-message" 
           allowTypes="/(\.|\/)(png|jpg|jpeg|svg)$/i" 
@@ -257,7 +257,7 @@
               <p:inputText id="text-alt-class" value="#{dashboardWelcomeWidgetConfigurationBean.widget.altText}" styleClass="js-text-style-class"
                 onchange="WelcomeWidgetConfiguration.updateStyleClasses();" />
               <!-- Add language button -->
-              <p:commandButton styleClass="app-setting-button" icon="si si-chat-translate" id="add-language-button"
+              <p:commandButton styleClass="app-setting-button" icon="ti ti-message-2" id="add-language-button"
                 ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/addLanguages')}"
                 actionListener="#{dashboardWelcomeWidgetConfigurationBean.updateAltTextByLocale()}" process="text-alt-class" partialSubmit="true"
                 update="#{cc.clientId}:title-language-config:multiple-languages-dialog" oncomplete="PF('multiple-languages-dialog').show();"

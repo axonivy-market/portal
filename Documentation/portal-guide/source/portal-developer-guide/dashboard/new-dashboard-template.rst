@@ -40,7 +40,7 @@ Below is a sample JSON definition of a Portal dashboard template:
                "value": "Dashboard mit Aufgabenliste und Fallübersicht"
             }
          ],
-         "icon": "si-cog-double-2",
+         "icon": "ti-settings",
          "dashboard": {
             "id": "dashboard_id",
             "templateId": "template-id",
@@ -95,7 +95,7 @@ JSON Configuration Reference
    Multilingual descriptions shown in template selection. Format: ``[{"locale": "en", "value": "Description"}]``
 
 ``icon`` (string, required)
-   Streamline icon class for template display (e.g., ``"si-cog-double-2"``)
+   Tabler icon class for template display (e.g., ``"ti-settings"``)
 
 ``dashboard`` (object, required)
    Complete dashboard configuration (see Dashboard Configuration below)
@@ -123,7 +123,7 @@ Additional properties (various)
    See :ref:`Dashboard Configuration <customization-new-dashboard>` for full details
 
 .. tip::
-   **Icon Selection:** Portal supports Streamline icons. Find available icons in the `HTML Dialog Demo <https://market.axonivy.com/html-dialog-demo>`_.
+   **Icon Selection:** Portal supports Tabler icons. Find available icons in the `HTML Dialog Demo <https://market.axonivy.com/html-dialog-demo>`_.
 
 .. note::
    For detailed widget configuration options, refer to the individual widget documentation pages (task widget, case widget, process widget, etc.).

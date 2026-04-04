@@ -16,7 +16,7 @@
 
     <div class="case-detail-section-title ui-g-12">
       <div class="ui-g-3 u-truncate-text u-padding-0 task-details-panel-title" role="heading" aria-level="1">
-        <i class="si si-synchronize-arrow-clock" /> #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/history')}
+        <i class="ti ti-clock-play" /> #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/history')}
       </div>
       <div class="ui-g-9 u-padding-0">
         <h:panelGroup layout="block" styleClass="case-detail-history-section-header-actions">
@@ -41,7 +41,7 @@
             ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addNote')}"
             rendered="#{caseTaskNoteHistoryBean.showAddNote}" onclick="PF('add-note-dialog-#{case.id}').show()"
             actionListener="#{data.setCaze(case)}">
-            <span class="si si-notes-add" />
+            <span class="ti ti-notes" />
             <span class="display-full-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addNote')}</span>
             <span class="display-short-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/add')}</span>
           </p:commandLink>
@@ -49,7 +49,7 @@
             styleClass="case-details-document-add-link note-show-more-link js-note-show-more-link" target="_blank"
             href="#{caseTaskNoteHistoryBean.getCaseNoteHistoryLink(case.uuid())}"
             rendered="#{caseTaskNoteHistoryBean.showMoreNote}">
-            <span class="si si-expand-6 note-show-more-link-icon" />
+            <span class="ti ti-queue-pop-out note-show-more-link-icon" />
             <span class="display-full-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/showMoreBtn')}</span>
             <span class="display-short-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}</span>
           </p:link>
@@ -102,13 +102,13 @@
             displayName="#{history.displayName}" securityMember="#{history.involvedUser}"
             displayNameStyleClass="history-fullname">
             <f:facet name="alternativeAvatar">
-              <i class="si si-check-circle-1" jsf:id="done-task"
+              <i class="ti ti-circle-check" jsf:id="done-task"
               jsf:rendered="#{not avatarBean.isShowAvatar() and history.type eq 'TASK' and history.taskState.toString() eq 'DONE'}" />
-              <i class="si si-alert-circle" jsf:id="destroyed-task"
+              <i class="ti ti-alert-circle" jsf:id="destroyed-task"
               jsf:rendered="#{not avatarBean.isShowAvatar() and history.type eq 'TASK' and history.taskState.toString() eq 'DESTROYED'}" />
-              <i class="si si-check-circle-1" jsf:id="created-task"
+              <i class="ti ti-circle-check" jsf:id="created-task"
               jsf:rendered="#{not avatarBean.isShowAvatar() and history.type eq 'TASK' and history.taskState.toString() eq 'CREATED'}" />
-              <i class="si si-notes-quill" jsf:rendered="#{not avatarBean.isShowAvatar() and history.type eq 'NOTE'}" />
+              <i class="ti ti-notes" jsf:rendered="#{not avatarBean.isShowAvatar() and history.type eq 'NOTE'}" />
             </f:facet>
           </pc:securityMemberNameAndAvatar>
         </p:column>
@@ -123,7 +123,7 @@
       </p:dataTable>
 
       <h:panelGroup layout="block" styleClass="ui-g-12 no-item-panel" rendered="#{empty data.histories}">
-        <i class="si si-information-circle" />
+        <i class="ti ti-info-circle" />
         <h:outputText styleClass="no-item-header" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noNoteAvailable')}" />
         <h:outputText styleClass="no-item-detail" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/pleaseAddNote')}" />
       </h:panelGroup>
@@ -141,7 +141,7 @@
     <f:facet name="footer">
       <p:commandButton id="view-note-dialog-close-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}" 
         ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
-        icon="#{visibilityBean.generateButtonIcon('si si-remove')}" type="button"
+        icon="#{visibilityBean.generateButtonIcon('ti ti-x')}" type="button"
         onclick="PF('view-note-dialog').hide()" />
     </f:facet>
   </p:dialog>
@@ -166,7 +166,7 @@
           update="note-content create-note-msg" />
         <p:spacer width="15px" />
         <p:commandButton styleClass="add-new-note-save-command" id="save-add-note-command"
-          icon="#{visibilityBean.generateButtonIcon('si si-floppy-disk')}" partialSubmit="true"
+          icon="#{visibilityBean.generateButtonIcon('ti ti-device-floppy')}" partialSubmit="true"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}" 
           ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
           process="note-content #{p:resolveFirstComponentWithId('system-note-checkbox', view).clientId} #{p:resolveFirstComponentWithId('system-task-checkbox', view).clientId}"

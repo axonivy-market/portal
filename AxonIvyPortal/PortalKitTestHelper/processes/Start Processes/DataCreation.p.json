@@ -1397,7 +1397,7 @@
             "Application app = new Application();",
             "app.displayName = convertor.toJson();",
             "app.link = \"https://www.google.com/\";",
-            "app.menuIcon = \"fa fa-play\";",
+            "app.menuIcon = \"ti ti-player-play\";",
             "app.menuOrdinal = 99;",
             "app.name = convertor.toJson();",
             "app.permissions = new ArrayList<String>();",

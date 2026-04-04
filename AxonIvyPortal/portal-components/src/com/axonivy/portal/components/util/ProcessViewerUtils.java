@@ -66,7 +66,7 @@ public class ProcessViewerUtils {
 
       // try to init data using processLink
       if (webLink == null) {
-        errorIcon = "si si-alert-circle";
+        errorIcon = "ti ti-alert-circle";
         webStartable = findWebStartable(processLink);
         isViewerAllowed = isViewerAllowed(webStartable);
         if (isViewerAllowed) {
@@ -83,10 +83,10 @@ public class ProcessViewerUtils {
     if (webLink == null) {
       isError = true;
       if (!isViewerAllowed) {
-        errorIcon = "si si-lock-1";
+        errorIcon = "ti ti-lock";
         errorMessage = Ivy.cms().co("/Dialogs/com/axonivy/portal/components/ProcessViewer/NoPermissionToView");
       } else {
-        errorIcon = "si si-alert-circle";
+        errorIcon = "ti ti-alert-circle";
         errorMessage = Ivy.cms().co("/Dialogs/com/axonivy/portal/components/ProcessViewer/ProcessNotFound");
       }
     } 

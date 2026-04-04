@@ -31,19 +31,19 @@
                 <h:panelGroup styleClass="process-start-list-item-action u-hidden-md-down"
                   rendered="#{not empty process.description}">
                   <h:outputText id="info-workflow"
-                    styleClass="si si-information-circle process-description process-item" />
+                    styleClass="ti ti-info-circle process-description process-item" />
                   <p:tooltip id="info-workflow-tooltip" for="info-workflow" value="#{process.description}"
                     position="top" trackMouse="true" hideEvent="mouseleave click"
                     styleClass="js-process-start-list-item-description process-tooltip" />
                 </h:panelGroup>
                 <h:panelGroup styleClass="process-start-list-item-action"
                   rendered="#{compactDashboardProcessBean.isBrokenLink(process)}">
-                  <h:outputText id="warning-icon" styleClass="si si-road-sign-warning warning-icon" />
+                  <h:outputText id="warning-icon" styleClass="ti ti-alert-triangle warning-icon" />
                   <p:tooltip id="warning-icon-tooltip" for="warning-icon"
                     value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/brokenLinkProcess')}"
                     position="top" trackMouse="true" hideEvent="mouseleave click" />
                 </h:panelGroup>
-                <h:panelGroup id="open-process-start" class="si si-arrow-right-1 open-icon" />
+                <h:panelGroup id="open-process-start" class="ti ti-chevron-right open-icon" />
               </div>
             </p:commandLink>
           </span>
@@ -68,19 +68,19 @@
             <div class="process-item-action-container">
               <h:panelGroup styleClass="process-start-list-item-action u-hidden-md-down"
                 rendered="#{not empty process.description}">
-                <h:outputText id="info-workflow" styleClass="si si-information-circle process-description process-item" />
+                <h:outputText id="info-workflow" styleClass="ti ti-info-circle process-description process-item" />
                 <p:tooltip id="info-workflow-tooltip" for="info-workflow" value="#{process.description}" position="top"
                   trackMouse="true" hideEvent="mouseleave click"
                   styleClass="js-process-start-list-item-description process-tooltip" />
               </h:panelGroup>
               <h:panelGroup styleClass="process-start-list-item-action"
                 rendered="#{compactDashboardProcessBean.isBrokenLink(process)}">
-                <h:outputText id="warning-icon" styleClass="si si-road-sign-warning warning-icon" />
+                <h:outputText id="warning-icon" styleClass="ti ti-alert-triangle warning-icon" />
                 <p:tooltip id="warning-icon-tooltip" for="warning-icon"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/brokenLinkProcess')}" position="top"
                   trackMouse="true" hideEvent="mouseleave click" />
               </h:panelGroup>
-              <h:panelGroup id="open-process-start" class="si si-arrow-right-1 open-icon" />
+              <h:panelGroup id="open-process-start" class="ti ti-chevron-right open-icon" />
             </div>
           </p:commandLink>
         </span>

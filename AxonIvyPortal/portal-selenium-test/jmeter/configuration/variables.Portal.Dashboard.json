@@ -15,7 +15,7 @@
     "locale" : "es",
     "value" : "Default new dashboard"
   } ],
-  "icon" : "si-network-share",
+  "icon" : "ti-share",
   "description" : "Default new dashboard",
   "widgets" : [ {
     "type" : "task",
@@ -280,7 +280,7 @@
       "value": "Tareas"
     }
   ],
-  "icon": "si-task-list-edit",
+  "icon": "ti-checklist",
   "description": "Default Task List Dashboard",
   "widgets": [
     {
@@ -392,7 +392,7 @@
       "value": "Casos"
     }
   ],
-  "icon": "si-layout-bullets",
+  "icon": "ti-folder-open",
   "description": "Default Case List Dashboard",
   "widgets": [
     {

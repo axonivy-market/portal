@@ -388,7 +388,7 @@ public class TaskActionBean implements Serializable {
   }
 
   public String getPinnedIcon(ITask task) {
-    return TaskUtils.isPinnedTask(task) ? "option-action-icon si si-pin-bold" : "option-action-icon si si-pin";
+    return TaskUtils.isPinnedTask(task) ? "option-action-icon tif tif-pin" : "option-action-icon ti ti-pin";
   }
 
   public String getPinnedStyleClass(ITask task) {

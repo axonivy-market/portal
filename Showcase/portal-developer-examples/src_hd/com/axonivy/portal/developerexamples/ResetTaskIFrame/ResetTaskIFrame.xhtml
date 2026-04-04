@@ -80,19 +80,19 @@
         <div class="ui-g-12">
           <div class="command-btns">
             <p:commandButton id="cancel-to-home-by-api" value="Cancel to Home by API" actionListener="#{logic.cancelToHomeByAPI}"
-              icon="si si-house-1" />
+              icon="ti ti-home" />
             <p:spacer width="5px" />
             <p:commandButton id="cancel-to-home" value="Cancel to Home" actionListener="#{logic.cancelToHome}"
-              icon="si si-house-1" rendered="#{not data.isCreatedAndPersistent}" />
+              icon="ti ti-home" rendered="#{not data.isCreatedAndPersistent}" />
             <p:spacer width="5px" />
             <p:commandButton id="cancel-to-endpage" value="Cancel to Endpage" actionListener="#{logic.cancelToEndpage}"
-              icon="si si-arrow-left" rendered="#{not data.isCreatedAndPersistent}" />
+              icon="ti ti-arrow-left" rendered="#{not data.isCreatedAndPersistent}" />
             <p:spacer width="5px" />
             <p:commandButton id="cancel-to-specific" value="Cancel to a URL" actionListener="#{logic.cancelToUrl}"
-              icon="si si-hyperlink-3" rendered="#{not data.isCreatedAndPersistent}" />
+              icon="ti ti-link" rendered="#{not data.isCreatedAndPersistent}" />
             <p:spacer width="5px" />
             <p:commandButton id="proceed" actionListener="#{logic.proceed}" value="Proceed" update="form"
-              icon="si si-check-double-1" />
+              icon="ti ti-checks" />
           </div>
         </div>
       </h:form>

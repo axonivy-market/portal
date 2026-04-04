@@ -344,11 +344,11 @@ Follow these steps to implement it:
                DestroyCaseAction:
                   Label: Destroy Case Action
                   Category: Custom Case Action
-                  Icon: si si-controls-play
+                  Icon: ti ti-player-play
                   IsCustomAction: true
 
       - ``IsCustomAction: true`` is mandatory to inform Portal that it is an action button.
-      - For the ``Icon``, please refer to the streamline icon showcase available in Html Dialog Demos on Axon Ivy Market.
+      - For the ``Icon``, please refer to the Tabler icon showcase available in `HTML Dialog Demo <https://market.axonivy.com/html-dialog-demo>`_.
 
    #. On the process start of the main process, assign a custom field to it.
    

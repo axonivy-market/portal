@@ -73,7 +73,7 @@
          </h:panelGroup>
 
          <div class="remove-threshold-panel align-items-center flex mt-3">
-          <p:commandButton id="remove-threshold" icon="si si-subtract"  disabled="#{!managedBean.isCategoryDataAvailable and managedBean.statistic.conditionBasedColoringScope eq 'SPECIFIC'}"
+          <p:commandButton id="remove-threshold" icon="ti ti-minus"  disabled="#{!managedBean.isCategoryDataAvailable and managedBean.statistic.conditionBasedColoringScope eq 'SPECIFIC'}"
             styleClass="rounded-button ui-button-outlined action-column-icon-button ui-button-danger dashboard-widget-filter__remove-filter"
             actionListener="#{managedBean.removeThreshold(threshold)}"
             update="#{cc.attrs.componentToUpdateWhenRemoveThreshold} #{cc.attrs.componentToUpdate}" global="false"

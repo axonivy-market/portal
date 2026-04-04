@@ -25,7 +25,7 @@
         "value": "タスク"
       }
     ],
-    "icon": "si-task-list-edit",
+    "icon": "ti-checklist",
     "description": "Default Task List Dashboard",
     "widgets": [
       {
@@ -153,7 +153,7 @@
         "value": "ケース"
       }
     ],
-    "icon": "si-layout-bullets",
+    "icon": "ti-folder-open",
     "description": "Default Case List Dashboard",
     "widgets": [
       {
@@ -264,7 +264,7 @@
         "value": "Tablero de mandos"
       }
     ],
-    "icon": "si-pie-line-graph",
+    "icon": "ti-report-analytics",
     "widgets": [
       {
         "type": "task",

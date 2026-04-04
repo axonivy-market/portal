@@ -56,7 +56,7 @@ public class ExternalLinkTest extends BaseTest {
     ProcessWidgetPage processPage = new ProcessWidgetPage();
     processPage.waitForStartListShow();
     ScreenshotUtils.resizeBrowser(new Dimension(2560, 1440));
-    String iconClass = "si-server-search";
+    String iconClass = "ti-server-search";
     processPage.addExternalLink(TEST_PROCESS, "https://www.google.com", iconClass, "test-welcome-widget-image.jpg");
 
     $("i." + iconClass).should(Condition.appear);

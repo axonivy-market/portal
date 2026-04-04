@@ -340,7 +340,7 @@ if (document) {
     return '<a href="' + process.link + '" class="task-even-row full-mode task-start-list-item js-task-start-list-item search-process-list-item">' +
       '   <div class="task-start-link js-task-start-link">' +
       '     <div class="task-priority-item">' +
-      '       <span class="priority-cell search-item-result"  data-id="' + process.link + '">' +
+      '       <span class="search-item-result"  data-id="' + process.link + '">' +
       '         <span class="priority-icon">' +
       '           <i class="' + process.icon + '"></i>' +
       '         </span>' +
@@ -358,22 +358,22 @@ if (document) {
     let iconClass;
     switch (priority) {
       case 'LOW':
-        iconClass = "priority si si-navigation-down-circle low-priority";
+        iconClass = "priority ti ti-circle-arrow-down low-priority";
         break;
       case 'NORMAL':
-        iconClass = "priority si si-navigation-right-circle-1 normal-priority";
+        iconClass = "priority ti ti-circle-arrow-right normal-priority";
         break;
       case 'HIGH':
-        iconClass = "priority si si-navigation-up-circle high-priority";
+        iconClass = "priority ti ti-circle-arrow-up high-priority";
         break;
       default:
-        iconClass = "priority si si-alert-circle exception-priority";
+        iconClass = "priority ti ti-alert-circle exception-priority";
         break;
     }
     return '<a href="' + task.link + '" class="task-even-row full-mode task-start-list-item js-task-start-list-item search-task-list-item">' +
       '  <div class="task-start-link js-task-start-link">' +
       '     <div class="task-priority-item search-item-result" data-id="' + task.uuid + '">' +
-      '       <span class="priority-cell search-item">' +
+      '       <span class="search-item">' +
       '        <span class="priority-icon">' +
       '          <i class="' + iconClass + '"></i>' +
       '      </span>' +
@@ -391,9 +391,9 @@ if (document) {
     return '<a href="' + caze.link + '" class="task-even-row full-mode task-start-list-item js-task-start-list-item search-case-list-item">' +
       '     <div class="task-start-link js-task-start-link">' +
       '       <div class="task-priority-item">' +
-      '         <span class="priority-cell search-item-result" data-id="' + caze.uuid + '">' +
+      '         <span class=" search-item-result" data-id="' + caze.uuid + '">' +
       '           <span class="priority-icon">' +
-      '             <i class="si si-layout-bullets"></i>' +
+      '             <i class="ti ti-folder-open"></i>' +
       '           </span>' +
       '         </span>' +
       '       </div>' +

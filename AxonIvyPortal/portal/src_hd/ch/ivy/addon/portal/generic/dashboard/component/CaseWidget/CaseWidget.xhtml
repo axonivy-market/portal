@@ -149,7 +149,7 @@
           value="#{caseWidget.userDefinedFiltersCount.isPresent() or (not empty caseWidget.quickSearchKeyword)}" />
         <h:panelGroup layout="block" id="empty-message-when-filter"
           rendered="#{noCasesWhenFilter}">
-          <i class="si si-filter-1 empty-message-icon" />
+          <i class="ti ti-filter empty-message-icon" />
           <br />
           <h:outputText
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/iconMessage/caseWidget/noCasesFoundWhenFilter')}"
@@ -157,7 +157,7 @@
         </h:panelGroup>
         <h:panelGroup layout="block" id="empty-message-when-not-filter"
           rendered="#{!noCasesWhenFilter}">
-          <i class="si #{dashboardCaseWidgetBean.noCasesMessage.icon} empty-message-icon" />
+          <i class="ti #{dashboardCaseWidgetBean.noCasesMessage.icon} empty-message-icon" />
           <br />
           <h:outputText value="#{dashboardCaseWidgetBean.noCasesMessage.message}"
             styleClass="empty-message-text" />

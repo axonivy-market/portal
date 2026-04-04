@@ -56,7 +56,7 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements 
   private static final String VIEW_NAME = "viewName";
   private static final String TASK_NAME = "taskName";
   public static final String PORTAL_GROWL_MESSGE_PARAM = "portalGrowlMessage";
-  private static final String DEFAULT_TASK_ICON = "si si-task-list-edit";
+  private static final String DEFAULT_TASK_ICON = "ti ti-checklist";
   private static final String TASK_ICON = "taskIcon";
   private static final String TASK_URL = "taskUrl";
 

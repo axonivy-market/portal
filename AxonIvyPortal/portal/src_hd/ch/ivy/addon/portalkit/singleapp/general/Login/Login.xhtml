@@ -35,11 +35,11 @@
         <p:commandButton id="login-command" actionListener="#{logic.login}" ajax="false"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/login/login')}"
           ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/login/login')}"
-          icon="#{visibilityBean.generateButtonIcon('si si-login-3')}"/>
+          icon="#{visibilityBean.generateButtonIcon('ti ti-login-2')}"/>
 
         <h:panelGroup styleClass="forgot-link" rendered="#{forgotPasswordBean.isForgotPasswordRendered()}" layout="block">
           <p:link id="forgot-password-link" href="#{forgotPasswordBean.getForgotPasswordUrl()}">
-            <i class="si si-question-circle u-mar-right-5" />
+            <i class="ti ti-help-circle u-mar-right-5" />
             <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/forgotPassword/forgotPassword')}" />
           </p:link>
         </h:panelGroup>

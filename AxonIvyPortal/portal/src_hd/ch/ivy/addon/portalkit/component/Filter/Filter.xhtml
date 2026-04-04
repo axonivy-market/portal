@@ -26,7 +26,7 @@
   <cc:implementation>
     <div id="#{cc.clientId}" class="filter-widget">
       <span class="ui-input-icon-left">
-      <i class="si si-search" />
+      <i class="ti ti-search" />
       <p:inputText id="ajax-keyword-filter" styleClass="filter-widget-input #{cc.attrs.styleClass}" rendered="#{cc.attrs.ajax}" placeholder="#{cc.attrs.placeholder}" value="#{cc.attrs.keywordStoresIn}">
         <p:ajax global="false" event="#{cc.attrs.event}" delay="#{cc.attrs.delay}" listener="#{cc.attrs.listener}" update="#{cc.attrs.updateComponent}" oncomplete="#{cc.attrs.onCompletedCallback}" />
       </p:inputText>
@@ -35,7 +35,7 @@
       <h:panelGroup styleClass="MarLeft10 mobile-filter-icon" rendered="#{cc.attrs.isFilterToggleRenderedOnMobile}">
         <p:commandButton id="mobile-filter-icon" 
           ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/filter')}"
-          styleClass="mobile-filter-icon rounded-button ui-button-outlined" icon="si si-filter-1"
+          styleClass="mobile-filter-icon rounded-button ui-button-outlined" icon="ti ti-filter"
           onclick="#{cc.attrs.onClickIconFilter}" global="false" type="button" />
       </h:panelGroup>
     </div>

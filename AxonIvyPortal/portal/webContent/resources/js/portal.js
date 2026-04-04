@@ -469,15 +469,15 @@ function showQuickSearchInput(index) {
   function changeQuickSearchIconButton(index) {
     var spanEl = "button[id$='quick-search-icon-" + index + "'] > span";
     var quickSearchButton = "button[id$='quick-search-icon-" + index + "']";
-    if ($(spanEl).hasClass("si-search")) {
-      $(spanEl).removeClass("si-search");
-      $(spanEl).addClass("si-remove");
+    if ($(spanEl).hasClass("ti-search")) {
+      $(spanEl).removeClass("ti-search");
+      $(spanEl).addClass("ti-x");
       $(quickSearchButton).blur();
       $(quickSearchInput).focus();
       $(quickSearchInput).click();  
     } else {
-      $(spanEl).removeClass("si-remove");
-      $(spanEl).addClass("si-search");
+      $(spanEl).removeClass("ti-x");
+      $(spanEl).addClass("ti-search");
     }
   }
 }

@@ -82,7 +82,7 @@ Example of a menu that redirects to an Ivy process.
         if (!StringUtils.isEmpty(userExampleGuideLink)) {  
            CustomSubMenuItem userExampleGuide = new CustomSubMenuItem();
 
-           userExampleGuide.setIcon("si si-bulb");
+           userExampleGuide.setIcon("ti ti-bulb");
            userExampleGuide.setLabel("User example guide");
            userExampleGuide.setLink(userExampleGuideLink + "?embedInFrame");
            userExampleGuide.setIndex(0);
@@ -100,7 +100,7 @@ Example of an external link:
         import org.apache.commons.lang3.StringUtils;
 
         CustomSubMenuItem google = new CustomSubMenuItem();
-        google.setIcon("si si-information-circle");
+        google.setIcon("ti ti-info-circle");
         google.setLabel(ApplicationMultiLanguageAPI.getCmsValueByUserLocale("/Processes/google"));
         google.setLink("www.google.com");
         google.setIsExternalLink(true);
@@ -133,7 +133,7 @@ Here's an example of custom menu items in the Portal.CustomMenuItems variable.
                 "link": "https://your_external_page.com",
                 "label": "External link",
                 "isExternal": "true",
-                "icon": "si si-bulb",
+                "icon": "ti ti-bulb",
                 "version": "11.2.0"
             }, {
                 "index": 1,
