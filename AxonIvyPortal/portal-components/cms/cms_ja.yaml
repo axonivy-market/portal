@@ -25,6 +25,9 @@ Dialogs:
             Type: タイプ
             'Yes': はい
           DocumentTable:
+            AddDocument: ドキュメントを追加
+            AddDocumentHelpText: ファイルをここにドラッグ＆ドロップしてアップロードするか、
+            BrowseFiles: ファイルを閲覧する
             Delete: 削除
             DeleteDocumentNote: '{0} が {1} を削除しました'
             DeleteSuceed: ファイルが正常に削除されました
@@ -45,6 +48,7 @@ Dialogs:
             RenamingDocumentSuccess: 'TODO: Rename successfully.'
             RenamingFailed: 'TODO: An error occurs while renaming the document.'
             Size: ファイルサイズ
+            SupportFileTypes: アップロード可能なファイル形式：{0}
             Type: タイプ
             Upload: 新しいファイルをアップロード
             UploadDocumentNote: '{0} が {1} をアップロードしました'
