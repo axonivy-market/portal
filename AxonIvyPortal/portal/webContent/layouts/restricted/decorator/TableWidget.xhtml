@@ -132,7 +132,7 @@
             styleClass="rounded-button widget__filter-sidebar-link ui-button-outlined ui-button-widget" />
         </p:badge>
         <p:tooltip for="filter-sidebar-link-#{index}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/filters')}"
-          trackMouse="true" hideEvent="mouseleave click" rendered="#{renderFilter}" />
+          showEvent="mouseenter" hideEvent="mouseleave" trackMouse="true" rendered="#{renderFilter}" />
       </span>
 
       <p:commandButton id="info-sidebar-link-#{index}" type="button" icon="si si-statistics-daytum"
@@ -203,7 +203,8 @@
         onShow="buildStatisticInfos#{index}(); return false;"
         onHide="updateWidgetStatisticPannel#{index}(); return false;"
         dismissable="false"
-        dynamic="true">
+        dynamic="true"
+        pt:aria-label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/widgetInfo')}">
         <div class="ui-g widget-info--type">
           <h:outputText styleClass="ui-g-8 widget-info-type--label u-no-padding-left" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/widgetType')}" />
           <h:outputText styleClass="ui-g-4 u-no-padding-bottom u-no-padding-left text-right" value="#{widget.type.label}" />
@@ -221,7 +222,7 @@
           <div class="ui-g-12">
             <ui:insert name="statisticPanelOtherAction" />
             <p:commandLink styleClass="Fright info-overlay-panel__close-link"
-              ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
+              ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/closeContext', [ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/widgetInfo')])}"
               onclick="PF('info-overlay-panel-#{index}').hide();"
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
               partialSubmit="true" immediate="true" global="false" process="@this"/>
@@ -236,7 +237,8 @@
         styleClass="filter-overlay-panel js-dashboard-overlay-panel ui-sm-12"
         dismissable="false"
         dynamic="true"
-        onShow="loadUserFilters#{index}(); #{onFilterOverlayPanelShow};">
+        onShow="loadUserFilters#{index}(); #{onFilterOverlayPanelShow};"
+        pt:aria-label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/Filter/FilterPanelHeader')}">
         <h:form id="filter-form-#{index}" styleClass="filter-form">
           <h:panelGroup id="filter-overlaypanel-content-#{index}" styleClass="ui-g" layout="block">
             <h:panelGroup id="saved-filters-container" styleClass="ui-g-3 u-padding-0 saved-filter ui-sm-hidden" layout="block">
@@ -294,7 +296,7 @@
               
               <div class="ui-g-6 ui-sm-12">
               <p:commandButton id="apply-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/apply')}"
-                ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/apply')}"
+                ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/applyContext', [ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/Filter/FilterOptionHeader')])}"
                 partialSubmit="true"
                 update="filter-form-#{index}"
                 process="filter-form-#{index}"

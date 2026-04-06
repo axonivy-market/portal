@@ -911,14 +911,31 @@ function addMissingAttr(query, attrName, attrValue) {
   });
 }
 
+function isTopMostPanel(panel, targetWindow) {
+  var maxZIndex = -1;
+  var topPanel = null;
+  var widgets = targetWindow.PrimeFaces.widgets;
+  for (var key in widgets) {
+    var w = widgets[key];
+    if (w instanceof targetWindow.PrimeFaces.widget.OverlayPanel && w.isVisible()) {
+      var zIndex = parseInt(w.jq.css('z-index'), 10) || 0;
+      if (zIndex > maxZIndex) {
+        maxZIndex = zIndex;
+        topPanel = w;
+      }
+    }
+  }
+  return topPanel === panel;
+}
+
 function initFocusManagament(targetWindow) {
   if (!targetWindow || !targetWindow.PrimeFaces) {
     return;
   }
   var lastFocusedElements = [];
 
-  // OverlayPanel
-  if (targetWindow.PrimeFaces.widget.OverlayPanel) {
+  // OverlayPanel - only extend once per window
+  if (targetWindow.PrimeFaces.widget.OverlayPanel && !targetWindow.PrimeFaces.widget.OverlayPanel._focusManaged) {
     targetWindow.PrimeFaces.widget.OverlayPanel = targetWindow.PrimeFaces.widget.OverlayPanel.extend({
         init: function(cfg) {
           this._super(cfg);
@@ -940,6 +957,17 @@ function initFocusManagament(targetWindow) {
             } catch(e) {
               console.warn("Cannot store focused element");
             }
+
+            if (self.escHandler) {
+              targetWindow.document.removeEventListener('keydown', self.escHandler);
+            }
+            var panel = self;
+            self.escHandler = function(e) {
+              if (e.key === 'Escape' && panel.isVisible() && isTopMostPanel(panel, targetWindow)) {
+                panel.hide();
+              }
+            };
+            targetWindow.document.addEventListener('keydown', self.escHandler);
           };
 
           cfg.onHide = function() {            
@@ -951,10 +979,16 @@ function initFocusManagament(targetWindow) {
               } catch (e) {
                 console.warn("Cannot focus on last element");
               }
+              if (self.escHandler) {
+                targetWindow.document.removeEventListener('keydown', self.escHandler);
+                self.escHandler = null;
+              }
           };
       }
     })
+    targetWindow.PrimeFaces.widget.OverlayPanel._focusManaged = true;
   }
+
 }
 
 function storeFocusedElement(targetDocument, focusElements, containerId, targetElement) {
