@@ -9,15 +9,16 @@ msgstr ""
 "Project-Id-Version: Portal Guide ${revision}\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-04-06 10:38+0000\n"
-"PO-Revision-Date: 2026-03-03 11:01+0000\n"
+"PO-Revision-Date: 2026-04-06 10:51+0000\n"
 "Last-Translator: DeepL <noreply-mt-deepl@weblate.org>\n"
+"Language-Team: Japanese <https://hosted.weblate.org/projects/axonivy-portal/"
+"portal-12/doc/portal-developer-guide/ja/>\n"
 "Language: ja\n"
-"Language-Team: Japanese <https://hosted.weblate.org/projects/axonivy-"
-"portal/portal-12/doc/portal-developer-guide/ja/>\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 5.17-dev\n"
 "Generated-By: Babel 2.18.0\n"
 
 #: ../../source/portal-developer-guide/architecture/index.rst:4
@@ -5870,14 +5871,12 @@ msgid "Enable quick search text box"
 msgstr "クイック検索テキストボックスを有効にする"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:190
-#, fuzzy
 msgid "``caseQueryType``"
-msgstr "``type``"
+msgstr "``caseQueryType``"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:192
-#, fuzzy
 msgid "``\"BUSINESS_CASE\"``"
-msgstr "``\"false\"``"
+msgstr "``\"BUSINESS_CASE\"``"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:193
 msgid ""
@@ -5886,6 +5885,11 @@ msgid ""
 "only top-level cases, ``\"SUB_CASE\"`` shows only sub-cases (children of "
 "a business case), ``\"ALL\"`` shows both business cases and sub-cases"
 msgstr ""
+"表示するケースのレベルを定義します。デフォルトでは、ウィジェットは ``` およ"
+"び `\"BUSINESS_CASE\"`` を参照します。利用可能な値：``\"BUSINESS_CASE\"`` は"
+"トップレベルのケースのみを表示します。``\"SUB_CASE\"`` はサブケース（"
+"ビジネスケースの子）のみを表示します。``\"ALL\"`` はビジネスケースと"
+"サブケースの両方を表示します。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:194
 msgid "``isTopMenu``"
@@ -20130,4 +20134,3 @@ msgstr "Portal.UserMenu変数の変更は即時反映されます。更新内容
 #~ "関連タスクを表示するには: :bdg-ref-"
 #~ "warning:`🔑TaskReadOwnCaseTasks <TaskReadOwnCaseTasks>` または"
 #~ " :bdg-ref-warning:`🔑TaskReadAll <TaskReadAll>`"
-
