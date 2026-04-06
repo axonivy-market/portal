@@ -142,16 +142,16 @@
         "guid" : "19CBDC6DB2A307C3"
       },
       "visual" : {
-        "at" : { "x" : 96, "y" : 616 }
+        "at" : { "x" : 88, "y" : 728 }
       },
       "connect" : [
-        { "id" : "e40", "to" : "f76" }
+        { "id" : "e40", "to" : "f90" }
       ]
     }, {
       "id" : "f41",
       "type" : "HtmlDialogEnd",
       "visual" : {
-        "at" : { "x" : 448, "y" : 616 }
+        "at" : { "x" : 632, "y" : 728 }
       }
     }, {
       "id" : "f50",
@@ -161,7 +161,7 @@
         "guid" : "19CBDC6DB2A307C4"
       },
       "visual" : {
-        "at" : { "x" : 96, "y" : 736 }
+        "at" : { "x" : 80, "y" : 968 }
       },
       "connect" : [
         { "id" : "e50", "to" : "f51" }
@@ -181,7 +181,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 304, "y" : 736 },
+        "at" : { "x" : 288, "y" : 968 },
         "size" : { "width" : 160 }
       },
       "connect" : [
@@ -191,13 +191,13 @@
       "id" : "f52",
       "type" : "HtmlDialogEnd",
       "visual" : {
-        "at" : { "x" : 448, "y" : 736 }
+        "at" : { "x" : 432, "y" : 968 }
       }
     }, {
       "id" : "f65",
       "type" : "HtmlDialogEnd",
       "visual" : {
-        "at" : { "x" : 448, "y" : 504 }
+        "at" : { "x" : 608, "y" : 504 }
       }
     }, {
       "id" : "f68",
@@ -227,7 +227,7 @@
         "at" : { "x" : 96, "y" : 504 }
       },
       "connect" : [
-        { "id" : "f72", "to" : "f69" }
+        { "id" : "f72", "to" : "f78" }
       ]
     }, {
       "id" : "f69",
@@ -243,7 +243,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 280, "y" : 504 }
+        "at" : { "x" : 440, "y" : 504 }
       },
       "connect" : [
         { "id" : "f71", "to" : "f65" }
@@ -281,10 +281,146 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 280, "y" : 616 }
+        "at" : { "x" : 416, "y" : 728 }
       },
       "connect" : [
         { "id" : "f77", "to" : "f41", "color" : "default" }
+      ]
+    }, {
+      "id" : "f78",
+      "type" : "Alternative",
+      "config" : {
+        "conditions" : {
+          "f85" : "in.selectedTasks.size() == 1",
+          "f79" : ""
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 272, "y" : 504 }
+      },
+      "connect" : [
+        { "id" : "f79", "to" : "f69", "color" : "default" },
+        { "id" : "f85", "to" : "f80" }
+      ]
+    }, {
+      "id" : "f80",
+      "type" : "SubProcessCall",
+      "name" : "SecurityService - Find Users",
+      "config" : {
+        "processCall" : "Ivy Data Processes/SecurityService:findUsersWithRoles(Integer,Integer,java.util.List<String>,java.util.List<String>,String)",
+        "call" : {
+          "map" : {
+            "param.query" : "in.queryAutoComplete",
+            "param.startIndex" : "0",
+            "param.count" : "101"
+          }
+        },
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.usersToDelegate" : "result.users"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 272, "y" : 616 },
+        "size" : { "width" : 160 }
+      },
+      "connect" : [
+        { "id" : "f86", "to" : "f82" }
+      ]
+    }, {
+      "id" : "f82",
+      "type" : "SubProcessCall",
+      "name" : "CalculateTaskDelegate",
+      "config" : {
+        "processCall" : "Functional Processes/CalculateTaskDelegate:call(java.util.List<com.axonivy.portal.components.dto.RoleDTO>,java.util.List<com.axonivy.portal.components.dto.UserDTO>,com.axonivy.portal.components.dto.SecurityMemberDTO,ch.ivyteam.ivy.workflow.ITask)",
+        "call" : {
+          "map" : {
+            "param.roles" : "in.rolesToDelegate",
+            "param.users" : "in.usersToDelegate",
+            "param.currentUser" : "ch.ivy.addon.portalkit.util.SecurityMemberUtils.getCurrentSessionUserAsSecurityMemberDTO()",
+            "param.task" : "in.selectedTasks.get(0)"
+          }
+        },
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.usersToDelegate" : "result.users"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 480, "y" : 616 },
+        "size" : { "width" : 144 }
+      },
+      "connect" : [
+        { "id" : "f84", "to" : "f65", "via" : [ { "x" : 608, "y" : 616 } ] }
+      ]
+    }, {
+      "id" : "f87",
+      "type" : "SubProcessCall",
+      "name" : "CalculateTaskDelegate",
+      "config" : {
+        "processCall" : "Functional Processes/CalculateTaskDelegate:call(java.util.List<com.axonivy.portal.components.dto.RoleDTO>,java.util.List<com.axonivy.portal.components.dto.UserDTO>,com.axonivy.portal.components.dto.SecurityMemberDTO,ch.ivyteam.ivy.workflow.ITask)",
+        "call" : {
+          "map" : {
+            "param.roles" : "in.rolesToDelegate",
+            "param.users" : "in.usersToDelegate",
+            "param.currentUser" : "ch.ivy.addon.portalkit.util.SecurityMemberUtils.getCurrentSessionUserAsSecurityMemberDTO()",
+            "param.task" : "in.selectedTasks.get(0)"
+          }
+        },
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.rolesToDelegate" : "result.roles",
+            "out.usersToDelegate" : "result.users"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 480, "y" : 848 },
+        "size" : { "width" : 144 }
+      },
+      "connect" : [
+        { "id" : "f93", "to" : "f41", "via" : [ { "x" : 632, "y" : 848 } ] }
+      ]
+    }, {
+      "id" : "f88",
+      "type" : "SubProcessCall",
+      "name" : "SecurityService - find roles",
+      "config" : {
+        "processCall" : "Ivy Data Processes/SecurityService:findRolesDTO()",
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.rolesToDelegate" : "result.roles"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 264, "y" : 848 },
+        "size" : { "width" : 160 }
+      },
+      "connect" : [
+        { "id" : "f89", "to" : "f87" }
+      ]
+    }, {
+      "id" : "f90",
+      "type" : "Alternative",
+      "config" : {
+        "conditions" : {
+          "f92" : "in.selectedTasks.size() == 1",
+          "f91" : ""
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 264, "y" : 728 }
+      },
+      "connect" : [
+        { "id" : "f91", "to" : "f76", "color" : "default" },
+        { "id" : "f92", "to" : "f88" }
       ]
     } ]
 }

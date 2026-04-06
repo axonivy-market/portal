@@ -496,6 +496,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     defaultNotificationMessage: Hmm... Hier ist wohl etwas schief gelaufen.
     delete: Löschen
     delegateTasks: Aufgaben delegieren
+    toggleBulkDelegation: Massendelegierung umschalten
     deleteAbsenceHeaderText: 'Diese Abwesenheit löschen? '
     deleteChartHeaderText: Dieses Diagramm löschen?
     deleteDocumentHeaderText: 'Dieses Dokument löschen? '

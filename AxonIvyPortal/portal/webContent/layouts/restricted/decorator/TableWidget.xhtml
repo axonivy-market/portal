@@ -120,14 +120,14 @@
 
     <h:panelGroup layout="block" styleClass="u-mar-right-2" rendered="#{renderSelectionToggle}">
       <h:form id="toggle-delegation-form">
-        <p:commandButton id="selection-toggle-button-#{index}"
+        <p:commandButton id="bulk-delegate-toggle-button-#{index}"
           icon="si si-list-bullets"
-          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/multiSelect')}"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/toggleBulkDelegation')}"
           styleClass="rounded-button ui-button-outlined u-mar-right-5 ui-button-widget #{bulkDelegateBean.isShowSelection(widget) ? 'ui-button-primary' : ''}"
           actionListener="#{bulkDelegateBean.toggleDelegationColumn(widget)}"
           update="@(.delegation-action-bar-#{widget.id}) @(.widget-header-default-actions-#{widget.id}) #{componentToUpdateOnResetFilter}"
           process="@this" />
-        <p:tooltip for="selection-toggle-button-#{index}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/multiSelect')}"
+        <p:tooltip for="bulk-delegate-toggle-button-#{index}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/toggleBulkDelegation')}"
           trackMouse="true" hideEvent="mouseleave click" />
       </h:form>
     </h:panelGroup>
