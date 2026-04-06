@@ -50,7 +50,7 @@
 
       <p:outputPanel styleClass="text-right">
         <p:commandButton id="save-deputy-button" styleClass="save-deputy-button w-full"
-          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/saveContext', [ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/selectDeputies')])}"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}" actionListener="#{logic.updateSelectedDeputies()}"
           oncomplete="PF('choose-deputy-dialog').hide();" update="#{data.selectedDeputyRoleId}">
           <p:resetInput target="choose-deputy-dialog" />
