@@ -9,15 +9,16 @@ msgstr ""
 "Project-Id-Version: Portal Guide ${revision}\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-04-06 10:38+0000\n"
-"PO-Revision-Date: 2026-03-03 11:01+0000\n"
-"Last-Translator: DeepL <noreply-mt-deepl@weblate.org>\n"
+"PO-Revision-Date: 2026-04-06 10:55+0000\n"
+"Last-Translator: Vu Tong <vu.tongphanhoang@axonactive.com>\n"
+"Language-Team: Japanese <https://hosted.weblate.org/projects/axonivy-portal/"
+"portal-12/doc/portal-user-guide/ja/>\n"
 "Language: ja\n"
-"Language-Team: Japanese <https://hosted.weblate.org/projects/axonivy-"
-"portal/portal-12/doc/portal-user-guide/ja/>\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 5.17-dev\n"
 "Generated-By: Babel 2.18.0\n"
 
 #: ../../source/portal-user-guide/accessibility/index.rst:4
@@ -6199,9 +6200,8 @@ msgstr "タスクリストウィジェット"
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:110
 #: ../../source/portal-user-guide/new-dashboard/index.rst:211
-#, fuzzy
 msgid "**Configuration panel**"
-msgstr "設定"
+msgstr "**設定パネル**"
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:112
 #: ../../source/portal-user-guide/new-dashboard/index.rst:213
@@ -6209,6 +6209,8 @@ msgid ""
 "By clicking on the :guilabel:`Configuration` button at the top right of "
 "the dialog, you can access additional widget settings:"
 msgstr ""
+"ダイアログの右上にある「:guilabel:`Configuration` 」ボタンをクリックすると、"
+"ウィジェットの追加設定にアクセスできます："
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:114
 #, fuzzy
@@ -6216,15 +6218,13 @@ msgid "|task-widget-configuration-panel|"
 msgstr "|task-list-widget-configuration|"
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:492
-#, fuzzy
 msgid "Dashboard task widget's configuration options panel"
-msgstr "ダッシュボードのタスクウィジェットの設定パネル"
+msgstr "ダッシュボードのタスクウィジェットの設定オプションパネル"
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:116
 #: ../../source/portal-user-guide/new-dashboard/index.rst:217
-#, fuzzy
 msgid "The configuration panel offers the following options:"
-msgstr "ダッシュボード設定ページには2つのタブがあります："
+msgstr "設定パネルでは、以下のオプションが利用可能です："
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:118
 #: ../../source/portal-user-guide/new-dashboard/index.rst:219
@@ -6233,6 +6233,9 @@ msgid ""
 "the widget. When enabled, users can quickly search and filter data using "
 "a search box in the widget header."
 msgstr ""
+"**クイック検索**: ウィジェットのクイック検索機能を有効または無効にします。有"
+"効にすると、ユーザーはウィジェットヘッダーの検索ボックスを使用して、データを"
+"すばやく検索およびフィルタリングできます。"
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:120
 #: ../../source/portal-user-guide/new-dashboard/index.rst:221
@@ -6241,6 +6244,9 @@ msgid ""
 "visible, users can click this icon to view additional widget details, "
 "statistics, and export options."
 msgstr ""
+"**ウィジェット情報アイコン**: ウィジェット情報アイコンを表示または非表示にし"
+"ます。表示されている場合、ユーザーはこのアイコンをクリックして、ウィジェット"
+"の詳細情報、統計情報、およびエクスポートオプションを確認できます。"
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:122
 #: ../../source/portal-user-guide/new-dashboard/index.rst:223
@@ -6249,12 +6255,18 @@ msgid ""
 " users can expand the widget to fill the entire screen for better data "
 "viewing."
 msgstr ""
+"**全画面モード**: 全画面モードのアイコンを表示または非表示にします。表示され"
+"ている場合、ユーザーはウィジェットを画面全体に拡大して、データをより見やすく"
+"表示できます。"
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:124
 msgid ""
 "**Show pinned items toggle**: Show or hide the pinned items toggle. When "
 "enabled, users can filter the widget to get only the pinned tasks."
 msgstr ""
+"**「ピン留めされた項目」のトグルを表示**: 「ピン留めされた項目」のトグルを表"
+"示または非表示にします。有効にすると、ユーザーはウィジェットをフィルタリング"
+"して、ピン留めされたタスクのみを表示できます。"
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:126
 #: ../../source/portal-user-guide/new-dashboard/index.rst:229
@@ -6519,15 +6531,17 @@ msgid "|case-widget-configuration-panel|"
 msgstr "|case-list-widget-configuration|"
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:504
-#, fuzzy
 msgid "Dashboard case widget's configuration options panel"
-msgstr "ダッシュボードのケースウィジェットの設定パネル"
+msgstr "ダッシュボードのケースウィジェットの設定オプションパネル"
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:225
 msgid ""
 "**Show pinned items toggle**: Show or hide the pinned items toggle. When "
 "enabled, users can filter the widget to get only the pinned cases."
 msgstr ""
+"**「ピン留めされた項目」のトグルを表示**: 「ピン留めされた項目」のトグルを表"
+"示または非表示にします。有効にすると、ユーザーはウィジェットをフィルタリング"
+"して、ピン留めされたケースのみを表示できます。"
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:227
 msgid ""
@@ -6537,6 +6551,11 @@ msgid ""
 "business cases and sub-cases. By default, the widget queries by "
 "**Business Case**."
 msgstr ""
+"**ケースの種類**: ウィジェットに表示するケースのレベルを選択します。利用可能"
+"なオプション：**ビジネスケース** はトップレベルのケースのみを表示します"
+"。**サブケース** はサブケース（ビジネスケースの子要素）のみを表示します。**す"
+"べて** はビジネスケースとサブケースの両方を表示します。デフォルトでは、"
+"ウィジェットは**ビジネスケース** をクエリします。"
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:235
 msgid "|case-list-widget-configuration|"
@@ -9434,4 +9453,3 @@ msgstr "カテゴリ別のケース平均処理時間を表示します"
 #~ "order of the table columns by "
 #~ "clicking on the column headers."
 #~ msgstr "ウィジェット設定パネルでウィジェット名を定義し、クイック検索機能を有効にし、ウィジェット情報と全画面モードのアイコンの表示／非表示を切り替え、列とフィルターを管理し、列のヘッダーをクリックして表の列の並べ替え順を編集できます。"
-
