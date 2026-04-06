@@ -8,17 +8,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Portal Guide ${revision}\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-03 10:45+0000\n"
+"POT-Creation-Date: 2026-04-06 10:38+0000\n"
 "PO-Revision-Date: 2026-03-03 11:01+0000\n"
 "Last-Translator: DeepL <noreply-mt-deepl@weblate.org>\n"
-"Language-Team: Japanese <https://hosted.weblate.org/projects/axonivy-portal/"
-"portal-12/doc/portal-components/ja/>\n"
 "Language: ja\n"
+"Language-Team: Japanese <https://hosted.weblate.org/projects/axonivy-"
+"portal/portal-12/doc/portal-components/ja/>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.17-dev\n"
 "Generated-By: Babel 2.18.0\n"
 
 #: ../../source/portal-components/document-table/index.rst:4
@@ -35,7 +34,7 @@ msgstr "このコンポーネントは、ドキュメントのエントリの表
 msgid "|document-table|"
 msgstr "|document-table|"
 
-#: ../../source/portal-components/document-table/index.rst:283
+#: ../../source/portal-components/document-table/index.rst:287
 msgid "document-table"
 msgstr "document-table"
 
@@ -380,9 +379,7 @@ msgstr "selectedType"
 msgid ""
 "String value to specify the selected document types, by default it will "
 "be first element in ``typeSelectionItems``."
-msgstr ""
-"選択されたドキュメントタイプを指定する文字列値。デフォルトでは "
-"``typeSelectionItems`` の最初の要素となります。"
+msgstr "選択されたドキュメントタイプを指定する文字列値。デフォルトでは ``typeSelectionItems`` の最初の要素となります。"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "typeSelectionItems"
@@ -1004,6 +1001,19 @@ msgid ""
 "enabling efficient data loading through pagination."
 msgstr "Document Tableコンポーネントに遅延ロード機能を追加し、ページネーションによる効率的なデータロードを可能にしました。"
 
+#: ../../source/portal-components/document-table/index.rst:284
+#, fuzzy
+msgid "Changes in 12.0.14"
+msgstr "12.0.11での変更点"
+
+#: ../../source/portal-components/document-table/index.rst:285
+msgid ""
+"It supports multiple file uploads and drag-and-drop. Click the "
+":guilabel:`Upload new file` button to open the upload dialog, then select"
+" files via \"Browse files\" or drag them directly into the dialog's drop "
+"zone."
+msgstr ""
+
 #: ../../source/portal-components/index.rst:4
 msgid "Portal Components"
 msgstr "ポータルのコンポーネント"
@@ -1440,9 +1450,7 @@ msgstr "List<String>"
 msgid ""
 "Child Role list will be loaded based on this list. If empty, all roles "
 "will be loaded."
-msgstr ""
-"子ロールリストはこのリストに基づいて読み込まれます。空の場合、すべてのロール"
-"が読み込まれます。"
+msgstr "子ロールリストはこのリストに基づいて読み込まれます。空の場合、すべてのロールが読み込まれます。"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 msgid "Id of role autocomplete."
@@ -1468,9 +1476,7 @@ msgstr "excludedRolenames"
 msgid ""
 "Roles to be excluded from role selection. Applied if you use default "
 "completeMethod."
-msgstr ""
-"ロール選択から除外されるロール。デフォルトのcompleteMethodを使用する場合に適"
-"用されます。"
+msgstr "ロール選択から除外されるロール。デフォルトのcompleteMethodを使用する場合に適用されます。"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
@@ -1588,9 +1594,7 @@ msgstr "floatingLabel"
 msgid ""
 "If true, display label with floating style and labelPanelStyleClass can't"
 " be applied."
-msgstr ""
-"trueの場合、ラベルはフローティングスタイルで表示され、labelPanelStyleClassは"
-"適用できません。"
+msgstr "trueの場合、ラベルはフローティングスタイルで表示され、labelPanelStyleClassは適用できません。"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
@@ -2399,9 +2403,7 @@ msgstr ""
 msgid ""
 "User list will be generated based on this list. If empty, all users will "
 "be loaded."
-msgstr ""
-"ユーザーリストはこのリストに基づいて生成されます。空の場合、すべてのユーザー"
-"が読み込まれます。"
+msgstr "ユーザーリストはこのリストに基づいて生成されます。空の場合、すべてのユーザーが読み込まれます。"
 
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
 msgid "Id of user autocomplete."
@@ -2427,9 +2429,7 @@ msgstr "excludedUsernames"
 msgid ""
 "Users to be excluded from user selection. This is applied if you use the "
 "default completeMethod."
-msgstr ""
-"ユーザー選択から除外されるユーザー。デフォルトの completeMethod を使用する場"
-"合に適用されます。"
+msgstr "ユーザー選択から除外されるユーザー。デフォルトの completeMethod を使用する場合に適用されます。"
 
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
 msgid "Message to be displayed when user autocomplete validation fails."
@@ -3047,3 +3047,4 @@ msgstr ""
 #~ "this attribute, please remove it from"
 #~ " your code."
 #~ msgstr "属性 ``` `labelPanelStyleClass`` も削除されました。この属性を使用していた場合は、コードから削除してください。"
+
