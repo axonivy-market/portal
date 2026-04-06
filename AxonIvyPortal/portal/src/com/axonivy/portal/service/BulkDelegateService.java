@@ -164,10 +164,10 @@ public class BulkDelegateService {
       String newResponsibleName = "";
       ISecurityMember delegatedSecurityMember = null;
 
-      if (selectedUser != null) {
+      if (selectedUser != null && selectedUser.getSecurityMemberId() != null) {
         newResponsibleName = selectedUser.getDisplayName();
         delegatedSecurityMember = SecurityMemberUtils.findISecurityMemberFromUserDTO(selectedUser);
-      } else if (selectedRole != null) {
+      } else if (selectedRole != null && selectedRole.getSecurityMemberId() != null) {
         newResponsibleName = selectedRole.getDisplayName();
         delegatedSecurityMember = SecurityMemberUtils.findISecurityMemberFromRoleDTO(selectedRole);
       }
