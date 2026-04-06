@@ -20,7 +20,8 @@
                   <span class="notifications-title-header">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/notificationTitle')}</span>
                   <div class="flex">
                     <h:form>
-                      <p:menuButton id="notification-more-option" icon="si si-navigation-menu-horizontal" buttonStyleClass="ui-button-flat" buttonStyle="color: var(--text-color)">
+                      <p:menuButton id="notification-more-option" icon="si si-navigation-menu-horizontal" buttonStyleClass="ui-button-flat" buttonStyle="color: var(--text-color)"
+                        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/notificationOptions')}">
                         <p:menuitem id="notification-setting" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/linkToNotificationSettings')}"
                           icon="notifications-button si si-cog"
                           actionListener="#{userMenuBean.navigateToUserProfileOrDisplayWorkingTaskWarning(isWorkingOnATask, task)}"

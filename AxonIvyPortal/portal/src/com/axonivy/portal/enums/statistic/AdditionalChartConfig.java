@@ -5,7 +5,10 @@ public enum AdditionalChartConfig {
   FAIL_TO_RENDER_CHART_MESSAGE("failToRenderChartMessage"),
   MANIPULATE_BY("manipulateValueBy"),
   TOOLTIP_TOTAL_LABEL("tooltipTotalLabel"),
-  TOOLTIP_KPI_LABEL("tooltipKpiLabel");
+  TOOLTIP_KPI_LABEL("tooltipKpiLabel"),
+  EXPAND_LABEL_TEMPLATE("expandLabelTemplate"),
+  COLLAPSE_LABEL_TEMPLATE("collapseLabelTemplate"),
+  INFO_LABEL_TEMPLATE("infoLabelTemplate");
 
   private String key;
 
