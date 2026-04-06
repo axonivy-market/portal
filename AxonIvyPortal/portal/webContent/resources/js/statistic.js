@@ -1042,28 +1042,33 @@ class ClientNumberChart extends ClientChart {
   }
 
   generateItemHtml(label, number, suffixSymbol, index, counting) {
-    let border = '<div class="chart-border">' + '</div>';
     label = this.data.chartConfig.numberChartConfig?.hideLabel === true ? '' : this.formatChartLabel(label) ;
     const isClickable = this.canDrillDown() ? 'chart-content-card-clickable' : '';
-    let html =
-      `<div class="text-center chart-content-card ${isClickable}" data-index="${index}">` +
-      '    <div class="chart-number-container">' +
-      '        <span class="card-number chart-number-font-size chart-number-animation">' + number + '</span>' +
-      '        <i class="card-number chart-number-font-size chart-number-animation ' + suffixSymbol + '"></i>' +
-      '    </div>' + this.generateCountingHTML(counting) +
-      '    <div class="chart-label-container">' +
-      '        <span class="card-name chart-name-font-size chart-number-animation">' + label + '</span>' +
-      '    </div>' +
-      '</div>';
-    return index > 0 ? border + html : html;
-  };
 
-  generateCountingHTML(counting) {
+    let container = $('<div class="text-center chart-content-card" role="group" aria-hidden="true"></div>');
+    container.addClass(isClickable);
+    container.attr('data-index', index);
+
+    let numberContainer = $('<div class="chart-number-container"></div>');
+    $('<span class="card-number chart-number-font-size chart-number-animation"></span>').text(number).appendTo(numberContainer);
+    $('<i class="card-number chart-number-font-size chart-number-animation" aria-hidden="true"></i>').addClass(suffixSymbol).appendTo(numberContainer);
+    numberContainer.appendTo(container);
+
     if (counting) {
-      return '<div class="chart-number-animation chart-number-counting" style="padding-top: 10px;">' + counting + '</div>';
+      $('<div class="chart-number-animation chart-number-counting" style="padding-top: 10px;"></div>').text(counting).appendTo(container);
     }
-    return '';
-  }
+
+    let labelContainer = $('<div class="chart-label-container"></div>');
+    $('<span class="card-name chart-name-font-size chart-number-animation"></span>').text(label).appendTo(labelContainer);
+    labelContainer.appendTo(container);
+
+    let wrapper = $('<div></div>');
+    if (index > 0) {
+      $('<div class="chart-border"></div>').appendTo(wrapper);
+    }
+    container.appendTo(wrapper);
+    return wrapper.html();
+  };
 
   // Method to format chart label.
   formatChartLabel(label) {
