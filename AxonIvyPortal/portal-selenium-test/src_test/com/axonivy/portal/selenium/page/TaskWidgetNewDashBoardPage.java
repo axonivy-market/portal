@@ -709,4 +709,29 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
         .map(SelenideElement::getText)
         .collect(Collectors.toList());
   }
+
+  public void selectTaskByName(String taskName) {
+    int rowIndex = getAllTasksOfTaskWidget().asFixedIterable().stream()
+        .map(WebElement::getText).collect(Collectors.toList()).indexOf(taskName);
+    $(taskWidgetId).$("tbody[id$='dashboard-tasks_data']")
+        .$("tr[data-ri='" + rowIndex + "']")
+        .$("td.dashboard-tasks__selection-column .ui-chkbox-box")
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $(".delegation-action-bar").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  public void clickBulkDelegateToggleButton(int widgetIndex) {
+    $("button[id$='bulk-delegate-toggle-button-" + widgetIndex + "']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $(".dashboard-tasks__selection-column").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  public void clickDelegateTasksButton(int widgetIndex) {
+    $("button[id$='delegate-tasks-btn-" + widgetIndex + "']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $("div.task-delegate-dialog").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  public ElementsCollection openBulkDelegateUserDropdownAndGetItems() {
+    $("button[id$='user-activator-select_button']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    return $$("span[id$='user-activator-select_panel'] .ui-autocomplete-item");
+  }
 }

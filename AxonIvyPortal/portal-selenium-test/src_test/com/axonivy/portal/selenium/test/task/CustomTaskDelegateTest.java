@@ -10,9 +10,13 @@ import com.axonivy.portal.selenium.common.FilterValueType;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.page.MainMenuPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
+import com.axonivy.portal.selenium.page.TaskWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.TopMenuTaskWidgetPage;
+import com.codeborne.selenide.CollectionCondition;
+import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.ElementsCollection;
 
-@IvyWebTest
+@IvyWebTest(headless = false)
 public class CustomTaskDelegateTest extends BaseTest {
 
   private static final String SICK_LEAVE_REQUEST = "Sick Leave Request";
@@ -93,9 +97,37 @@ public class CustomTaskDelegateTest extends BaseTest {
     assertEquals("This task cannot be delegated to any other user or group.", taskWidget.getCannotDelegateText());
   }
 
+  @Test
+  public void testBulkDelegateTasksOnDashboard() {
+    login(TestAccount.HR_ROLE_USER);
+    redirectToNewDashBoard();
+    NewDashboardPage dashboardPage = new NewDashboardPage();
+    dashboardPage.waitForCaseWidgetLoaded();
+
+    TaskWidgetNewDashBoardPage taskWidget = new TaskWidgetNewDashBoardPage();
+
+    // Toggle selection mode
+    taskWidget.clickBulkDelegateToggleButton(0);
+
+    // Select both tasks
+    taskWidget.selectTaskByName(MATERNITY_LEAVE_REQUEST);
+    taskWidget.selectTaskByName(SICK_LEAVE_REQUEST);
+
+    // Open bulk delegate dialog
+    taskWidget.clickDelegateTasksButton(0);
+
+    // Open user autocomplete dropdown and assert 2 items: emma and ethan
+    ElementsCollection items = taskWidget.openBulkDelegateUserDropdownAndGetItems()
+        .shouldHave(CollectionCondition.size(2), DEFAULT_TIMEOUT);
+    items.filter(Condition.text("Emma")).shouldHave(CollectionCondition.size(1));
+    items.filter(Condition.text("Ethan")).shouldHave(CollectionCondition.size(1));
+  }
+
   private void openDashboard() {
     redirectToNewDashBoard();
     NewDashboardPage dashboardPage = new NewDashboardPage();
     dashboardPage.waitForCaseWidgetLoaded();
   }
+
+  
 }
