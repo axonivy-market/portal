@@ -121,6 +121,64 @@ public class CustomTaskDelegateTest extends BaseTest {
         .shouldHave(CollectionCondition.size(2), DEFAULT_TIMEOUT);
     items.filter(Condition.text("Emma")).shouldHave(CollectionCondition.size(1));
     items.filter(Condition.text("Ethan")).shouldHave(CollectionCondition.size(1));
+
+    // Select Emma and proceed with delegation
+    taskWidget.selectUserFromBulkDelegateDropdown(items, "Emma");
+    taskWidget.clickBulkDelegateProceedButton();
+
+    // Re-login as admin to verify task responsible
+    login(TestAccount.EMMA_USER);
+    redirectToNewDashBoard();
+    NewDashboardPage adminDashboard = new NewDashboardPage();
+    adminDashboard.waitForCaseWidgetLoaded();
+
+    // Verify Responsible column shows Emma for both delegated tasks
+    TaskWidgetNewDashBoardPage adminTaskWidget = new TaskWidgetNewDashBoardPage();
+    adminTaskWidget.getResponsibleCellByTaskName(MATERNITY_LEAVE_REQUEST)
+        .shouldHave(Condition.text("Emma"), DEFAULT_TIMEOUT);
+    adminTaskWidget.getResponsibleCellByTaskName(SICK_LEAVE_REQUEST)
+        .shouldHave(Condition.text("Emma"), DEFAULT_TIMEOUT);
+  }
+
+  @Test
+  public void testBulkDelegateTaskForRole() {
+    login(TestAccount.HR_ROLE_USER);
+    redirectToNewDashBoard();
+    NewDashboardPage dashboardPage = new NewDashboardPage();
+    dashboardPage.waitForCaseWidgetLoaded();
+
+    TaskWidgetNewDashBoardPage taskWidget = new TaskWidgetNewDashBoardPage();
+
+    // Toggle selection mode
+    taskWidget.clickBulkDelegateToggleButton(0);
+
+    // Select both tasks
+    taskWidget.selectTaskByName(MATERNITY_LEAVE_REQUEST);
+    taskWidget.selectTaskByName(SICK_LEAVE_REQUEST);
+
+    // Open bulk delegate dialog
+    taskWidget.clickDelegateTasksButton(0);
+
+    // Switch to Role radio button
+    taskWidget.clickRoleRadioButtonInBulkDelegate();
+
+    // Open role autocomplete dropdown and assert only General Manager is available
+    ElementsCollection roleItems = taskWidget.openBulkDelegateRoleDropdownAndGetItems()
+        .shouldHave(CollectionCondition.size(1), DEFAULT_TIMEOUT);
+    roleItems.filter(Condition.text("General Manager")).shouldHave(CollectionCondition.size(1));
+
+    // Select General Manager and proceed with delegation
+    taskWidget.selectRoleFromBulkDelegateDropdown(roleItems, "General Manager");
+    taskWidget.clickBulkDelegateProceedButton();
+
+    // Login as gm1 and verify tasks are assigned
+    login(TestAccount.GM_USER);
+    redirectToNewDashBoard();
+    NewDashboardPage gmDashboard = new NewDashboardPage();
+    gmDashboard.waitForCaseWidgetLoaded();
+
+    TaskWidgetNewDashBoardPage gmTaskWidget = new TaskWidgetNewDashBoardPage();
+    gmTaskWidget.countAllTasks().shouldHave(CollectionCondition.sizeGreaterThan(0), DEFAULT_TIMEOUT);
   }
 
   private void openDashboard() {

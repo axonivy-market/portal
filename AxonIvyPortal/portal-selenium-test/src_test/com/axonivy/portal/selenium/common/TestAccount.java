@@ -12,7 +12,11 @@ public enum TestAccount {
 
   HR_ROLE_USER(nameOfHrRoleUser(), passwordOfHrRoleUser(), "david"),
 
+  EMMA_USER("emma", "emma", "Emma"),
+
   HR_ROLE_USER_2("peter", "peter", "peter"),
+
+  GM_USER("gm1", "gm1", "General Manager"),
 
   TEST_CHANGE_PASSWORD_USER("test_change_password_user", "123", "Elton"),
 

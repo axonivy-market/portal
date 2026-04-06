@@ -734,4 +734,34 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
     $("button[id$='user-activator-select_button']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     return $$("span[id$='user-activator-select_panel'] .ui-autocomplete-item");
   }
+
+  public void selectUserFromBulkDelegateDropdown(ElementsCollection items, String userName) {
+    items.filter(Condition.text(userName)).first().shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+  }
+
+  public void clickRoleRadioButtonInBulkDelegate() {
+    $$("label[for$='activator-type-select:1']").first().shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $("input[id$='group-activator-select_input']").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  public ElementsCollection openBulkDelegateRoleDropdownAndGetItems() {
+    $("button[id$='group-activator-select_button']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    return $$("span[id$='group-activator-select_panel'] .ui-autocomplete-item");
+  }
+
+  public void selectRoleFromBulkDelegateDropdown(ElementsCollection items, String roleName) {
+    items.filter(Condition.text(roleName)).first().shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+  }
+
+  public void clickBulkDelegateProceedButton() {
+    $("button[id$='proceed-multiple-task-delegate-command']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $("div.task-delegate-dialog").shouldBe(disappear, DEFAULT_TIMEOUT);
+    waitForPageLoad();
+  }
+
+  public SelenideElement getResponsibleCellByTaskName(String taskName) {
+    int rowIndex = getAllTasksOfTaskWidget().asFixedIterable().stream()
+        .map(WebElement::getText).collect(Collectors.toList()).indexOf(taskName);
+    return getCellByRowAndColumnName(rowIndex, "Responsible");
+  }
 }
