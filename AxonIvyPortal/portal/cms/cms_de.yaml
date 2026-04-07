@@ -167,7 +167,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     notificationChannelsReset: Benachrichtigungskanäle zurücksetzen
     subscribed: abonniert
     unpinAllPinnedCases: Alle angehefteten Fälle wurden für den Benutzer {0} entfernt.
-    unpinAllPinnedTasks: Alle angehängten Aufgaben wurden für den Benutzer {0} entfernt.
+    unpinAllPinnedTasks: Alle angehefteten Aufgaben wurden für den Benutzer {0} entfernt.
   PortalManagement:
     AdminSetting: Administration
   ProcessViewer:
@@ -451,8 +451,16 @@ ch.ivy.addon.portalkit.ui.jsf:
     Update: Aktualisieren
     Widget: Widget
     action: Aktionen
+    actionMenuContext: "Aktionsmenü für Prozess {0} öffnen"
+    taskActionMenuContext: "Aktionsmenü für Aufgabe {0} öffnen"
     active: Aktiviert
+    collapseWidgetContext: "Widget {0} minimieren"
+    expandWidgetContext: "Widget {0} erweitern"
+    openWidgetFiltersContext: "Filter für {0} öffnen"
+    openWidgetFiltersWithCountContext: "Filter für {0} öffnen, {1} aktive Filter"
+    openWidgetInfoContext: "Widget-Informationen zu {0} öffnen"
     add: Hinzufügen
+    addContext: "{0} hinzufügen"
     addDocument: Dokument hinzufügen
     addLink: Link hinzufügen
     addNote: Notiz hinzufügen
@@ -460,12 +468,14 @@ ch.ivy.addon.portalkit.ui.jsf:
     allTypes: Alle Typen
     allowPng: Nur das png Format wird unterstützt
     apply: Anwenden
+    applyContext: "{0} anwenden"
     at: am
     author: Autor
     back: Zurück
     backToCaseMap: Zurück zur Case Map
     backgroundColor: Hintergrundfarbe
     cancel: Abbrechen
+    cancelContext: "{0} abbrechen"
     case: Vorgang
     caseCategory: Vorgangskategorie
     caseInformation: Vorgangsinformationen
@@ -473,6 +483,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     categories: Kategorien
     change: Ändern
     close: Schließen
+    closeContext: "{0} schließen"
     cockpit: Cockpit
     colors: Farben
     comment: Kommentar
@@ -493,6 +504,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     default: Standardeinstellung
     defaultNotificationMessage: Hmm... Hier ist wohl etwas schief gelaufen.
     delete: Löschen
+    deleteContext: "{0} löschen"
     deleteAbsenceHeaderText: 'Diese Abwesenheit löschen? '
     deleteChartHeaderText: Dieses Diagramm löschen?
     deleteDocumentHeaderText: 'Dieses Dokument löschen? '
@@ -570,8 +582,11 @@ ch.ivy.addon.portalkit.ui.jsf:
     numberFromBiggerThanTo: Nach" muss größer sein als "Von".
     numberOfSelectedFilter: Ausgewählte Filter
     ok: OK
+    okContext: OK {0}
     'on': am
     pin: Anheften
+    pinCaseContext: "Vorgang {0} anheften"
+    pinTaskContext: "Aufgabe {0} anheften"
     pleaseAddDocument: Verwenden Sie bitte den Link oben, um Dokumente hochzuladen
     pleaseAddNote: Verwenden Sie bitte den Link oben, um Notizen hochzuladen
     previousStage: Vorherige Stufe
@@ -594,6 +609,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     restoreToDefaultChartHeaderText: Auf Standarddiagramme zurücksetzen?
     role: Rolle
     save: Speichern
+    saveContext: "{0} speichern"
     saveAll: Speichern
     saveSuccessfully: Daten erfolgreich gespeichert.
     search: Suche
@@ -632,6 +648,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     typeAllUsers: Alle Benutzer
     typeOnlyMe: Nur für mich
     unpin: Anheftung aufheben
+    unpinCaseContext: "Anheftung von Vorgang {0} aufheben"
+    unpinTaskContext: "Anheftung von Aufgabe {0} aufheben"
     uploadHere: Hier hochladen
     uploadOneHere: Auswählen
     user: '{0} Benutzer'
@@ -779,6 +797,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     ExternalPageWidgetIntroduction: Dieses Widget kann eine externe Webseite anzeigen.
     Filter:
       FilterOptionHeader: Filter-Optionen
+      FilterPanelHeader: Filterbereich
       ManageWidgetFilterHeader: Widget-Filter-Verwaltung
       NotFound: Kein Filter gefunden
       WidgetNameColumn: Widget-Name
@@ -886,7 +905,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       dashboardIcon: Dashboard-Symbol
       dashboardPermission: Dashboard Berechtigung
       dashboardTitle: Dashboard Titel
-      deleteDashboardMessage: Sind Sie sicher, dass Sie die "{0}" dashboard?
+      deleteDashboardMessage: Sind Sie sicher, dass Sie das Dashboard "{0}" löschen wollen?
       editDashboard: Dashboard editieren
       manageDashboard: Dashboard verwalten
       removeDashboardHeader: Dashboard "{0}" entfernen
@@ -1097,11 +1116,15 @@ ch.ivy.addon.portalkit.ui.jsf:
     markAllAsRead: Alle als gelesen markieren
     markAsRead: Als gelesen markieren
     noNotificationText: Keine Benachrichtigungen
+    notificationOptions: Benachrichtigungsoptionen
     notificationTitle: Benachrichtigungen
+    notificationsBadgeLabel: Benachrichtigungsfeld öffnen, {0} ungelesen
     olderText: Ältere
     onlyUnread: Nur ungelesen
+    openNotificationSettings: Benachrichtigungseinstellungen öffnen
     openNotifications: Benachrichtigungen öffnen
     todayText: Heute
+    viewNotificationsFullScreen: Benachrichtigungen im Vollbild anzeigen
     xDaysAgo: vor %s Tagen
     xHoursAgo: vor %s Stunden
     xMinutesAgo: vor %s Minuten
@@ -1753,7 +1776,7 @@ Enums:
                   Kleiner als
 
               LESSOREQUAL:
-                name: |+
+                name: |
                   Kleiner oder gleich
           CaseQueryType:
             ALL:
@@ -1919,7 +1942,7 @@ Labels:
   Name: Titel
   Permissions: Berechtigungen
   PinnedCases: Angeheftete Fälle
-  PinnedTasks: Angehängte Aufgaben
+  PinnedTasks: Angehefteten Aufgaben
   Preview: Vorschau
   RequiredFieldMessage: '{0}: Wert ist erforderlich'
   Save: Speichern

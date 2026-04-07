@@ -7,6 +7,9 @@ const EMPTY_CHART_MESSAGE =  'emptyChartDataMessage';
 const MANIPULATE_BY = 'manipulateValueBy';
 const TOOLTIP_TOTAL_LABEL = 'tooltipTotalLabel';
 const TOOLTIP_KPI_LABEL = 'tooltipKpiLabel';
+const EXPAND_LABEL_TEMPLATE = 'expandLabelTemplate';
+const COLLAPSE_LABEL_TEMPLATE = 'collapseLabelTemplate';
+const INFO_LABEL_TEMPLATE = 'infoLabelTemplate';
 const CHART_TEXT_COLOR = '#808080';
 const CHART_GRID_COLOR = 'rgba(192, 192, 192, 0.5)';
 const MIN_REFRESH_INTERVAL = 60;
@@ -577,15 +580,29 @@ class ClientCanvasChart extends ClientChart {
 
   // Method to init the dashboard statistic widget title
   initWidgetTitle() {
-    $(this.chart).parents('.dashboard__widget').find('.widget__header > .widget__header-title')
-      .text(getFormatedTitle(this.data.chartConfig.names));
-
-    // Add aria-label
+    let widgetName = getFormatedTitle(this.data.chartConfig.names);
     let cardPanel = $(this.chart).parents('.card-widget-panel');
+
+    $(this.chart).parents('.dashboard__widget').find('.widget__header > .widget__header-title')
+      .text(widgetName);
+
     if (cardPanel.length > 0) {
-      cardPanel.get(0).ariaLabel = getFormatedTitle(this.data.chartConfig.names)
+      cardPanel.get(0).ariaLabel = widgetName;
     }
 
+    let additionalConfigs = this.data.chartConfig.additionalConfigs;
+    let expandTemplate = getAdditionalConfigValue(additionalConfigs, EXPAND_LABEL_TEMPLATE);
+    let collapseTemplate = getAdditionalConfigValue(additionalConfigs, COLLAPSE_LABEL_TEMPLATE);
+    let infoTemplate = getAdditionalConfigValue(additionalConfigs, INFO_LABEL_TEMPLATE);
+    if (expandTemplate) {
+      cardPanel.find('.expand-link').attr('aria-label', expandTemplate.replace('{0}', widgetName));
+    }
+    if (collapseTemplate) {
+      cardPanel.find('.collapse-link').attr('aria-label', collapseTemplate.replace('{0}', widgetName));
+    }
+    if (infoTemplate) {
+      cardPanel.find('.widget__info-sidebar-link').attr('aria-label', infoTemplate.replace('{0}', widgetName));
+    }
   }
 
   updateClientChart() {
@@ -940,17 +957,30 @@ class ClientNumberChart extends ClientChart {
   }
 
   initWidgetHeaderName(chart, widgetName) {
-    let widgetHeader = $(chart).parents(".card-widget-panel")
-      .find(".widget__header")
-      .find(".widget__header-title").get(0);
+    let cardPanel = $(chart).parents(".card-widget-panel");
+
+    let widgetHeader = cardPanel.find(".widget__header .widget__header-title").get(0);
     if (widgetHeader) {
       widgetHeader.textContent = widgetName;
     }
 
-    // Add aria-label
-    let widgetPanel = $(chart).parents(".card-widget-panel").get(0);
+    let widgetPanel = cardPanel.get(0);
     if (widgetPanel) {
       widgetPanel.ariaLabel = widgetName;
+    }
+
+    let additionalConfigs = this.data.chartConfig.additionalConfigs;
+    let expandTemplate = getAdditionalConfigValue(additionalConfigs, EXPAND_LABEL_TEMPLATE);
+    let collapseTemplate = getAdditionalConfigValue(additionalConfigs, COLLAPSE_LABEL_TEMPLATE);
+    let infoTemplate = getAdditionalConfigValue(additionalConfigs, INFO_LABEL_TEMPLATE);
+    if (expandTemplate) {
+      cardPanel.find('.expand-link').attr('aria-label', expandTemplate.replace('{0}', widgetName));
+    }
+    if (collapseTemplate) {
+      cardPanel.find('.collapse-link').attr('aria-label', collapseTemplate.replace('{0}', widgetName));
+    }
+    if (infoTemplate) {
+      cardPanel.find('.widget__info-sidebar-link').attr('aria-label', infoTemplate.replace('{0}', widgetName));
     }
   }
 

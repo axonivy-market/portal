@@ -177,6 +177,12 @@ public class StatisticService {
         this.getTooltipTotalLabel(chart.getChartTarget())));
     entries.add(new SimpleEntry<>(AdditionalChartConfig.TOOLTIP_KPI_LABEL.getKey(),
         this.getTooltipKpiLabel(chart.getChartTarget(), chart.getStatisticAggregation())));
+    entries.add(new SimpleEntry<>(AdditionalChartConfig.EXPAND_LABEL_TEMPLATE.getKey(),
+        Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/expandWidgetContext", Arrays.asList("{0}"))));
+    entries.add(new SimpleEntry<>(AdditionalChartConfig.COLLAPSE_LABEL_TEMPLATE.getKey(),
+        Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/collapseWidgetContext", Arrays.asList("{0}"))));
+    entries.add(new SimpleEntry<>(AdditionalChartConfig.INFO_LABEL_TEMPLATE.getKey(),
+        Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/openWidgetInfoContext", Arrays.asList("{0}"))));
     return entries;
   }
 

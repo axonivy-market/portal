@@ -92,7 +92,17 @@ var Portal = {
       });
       $('.notification-scroll .ui-datascroller-content').outerHeight(notificationContentHeight * 0.95 + 'px')
     }
-    
+
+    let notificationsBadgeValueEl = document.getElementById('notifications-badge-value');
+    if (notificationsBadgeValueEl) {
+      let notificationsBadgeTemplate = document.getElementById('notifications-badge-label-template');
+      let notificationsBadgeLink = document.getElementById('open-notifications-panel');
+      if (notificationsBadgeTemplate && notificationsBadgeLink) {
+        let count = notificationsBadgeValueEl.value;
+        notificationsBadgeLink.setAttribute('aria-label', notificationsBadgeTemplate.value.replace('{0}', count));
+      }
+    }
+
     $portalHeader.removeClass('u-invisibility');
     $layoutMain.removeClass('u-invisibility');
     $portalFooter.removeClass('u-invisibility');

@@ -18,7 +18,7 @@ import com.codeborne.selenide.Condition;
 public class CaseMapTest extends BaseTest {
 
   private static final String CREATE_CONTRACT = "Create Contract";
-  private static final String CASE_MAP_URL = "/portal-user-examples/70765b37-a3e8-418a-a8d5-c2b3a539408e.icm";
+  private static final String CASE_MAP_URL = "/portal-user-examples/70765b37-a3e8-418a-a8d5-c2b3a539408e.m.json";
   private static final String VERIFY_PERSONAL_DATA = "Verify Personal Data";
   private static final String INTERNAL_SOLVENCY_CHECK = "Internal Solvency Check";
   private static final String APPROVAL_LEVEL_1 = "Approve Level 1";
