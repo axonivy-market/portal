@@ -205,39 +205,48 @@ a.left-sidebar-menu-icon {
   display: none !important;
 }
 
-.sidebar-click-mode {
-  --sidebar-logo-height: 54px;
-  --sidebar-toggle-height: 42px;
-}
 .sidebar-click-mode.layout-static .menu-wrapper .layout-menu-container {
   overflow: auto;
 }
-.sidebar-click-mode .menu-wrapper .layout-menu-container {
-  height: calc(100% - var(--sidebar-logo-height) - var(--sidebar-toggle-height));
-}
 
-.sidebar-toggle-btn {
-  height: var(--sidebar-toggle-height);
-  border-top: 1px solid var(--sidebar-border-color, #dee2e6);
-  background-color: var(--sidebar-bg-color, #ffffff);
-  z-index: 1;
-}
-
-.sidebar-toggle-btn a {
-  padding: 6px 15px;
-  font-size: 20px;
-  color: #1B1B1B;
-}
-
-.sidebar-toggle-label {
+.sidebar-collapse-btn {
   display: none;
-  margin-left: 14px;
-  font-size: 12px;
-  line-height: 14px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 18px;
+  color: var(--menuitem-text-color, var(--text-color));
 }
 
-.sidebar-toggle-btn a:hover {
-  color: var(--primary-color);
+.sidebar-collapse-btn:hover {
+  color: var(--menuitem-hover-text-color, var(--primary-color));
+}
+
+.layout-wrapper:not(.layout-static) .menu-wrapper .sidebar-logo .portal-home-logo-small img {
+  height: 30px;
+}
+
+/* Collapsed: on hover, hide logo and show toggle button */
+.sidebar-click-mode:not(.layout-static) .menu-wrapper:hover .sidebar-logo a[id$='logo'],
+.sidebar-click-mode:not(.layout-static) .menu-wrapper:hover .sidebar-logo .portal-home-logo-small {
+  display: none;
+}
+
+.sidebar-click-mode:not(.layout-static) .menu-wrapper:hover .sidebar-collapse-btn {
+  display: flex;
+}
+
+/* Expanded: always show the button */
+.sidebar-click-mode.layout-static .sidebar-collapse-btn {
+  display: flex;
+}
+
+.sidebar-click-mode .menu-wrapper {
+  cursor: pointer;
+}
+
+.sidebar-click-mode.layout-static .menu-wrapper {
+  cursor: default;
 }
 
 .task-template-title-horizontal-container {
