@@ -38,5 +38,6 @@ jobs:
           config: release.yml
           disable-autolabeler: true
           commitish: ${{ inputs.branch || github.ref_name }}
+          name: next release 10.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
