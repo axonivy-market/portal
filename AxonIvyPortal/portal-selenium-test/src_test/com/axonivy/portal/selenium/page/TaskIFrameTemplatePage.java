@@ -225,17 +225,16 @@ public class TaskIFrameTemplatePage extends TemplatePage {
   public void inputValue(String employee, String from, String to, String representation) {
     SelenideElement fullNameElement =
         $(By.id("leave-request:fullname")).shouldBe(Condition.appear).shouldBe(Condition.editable);
-    fullNameElement.click();
-    fullNameElement.sendKeys(employee);
-    SelenideElement representationElement = $(By.id("leave-request:substitute"));
-    representationElement.click();
-    representationElement.sendKeys(representation);
-    SelenideElement fromElement = $(By.id("leave-request:from_input"));
-    fromElement.click();
-    fromElement.sendKeys(from);
-    SelenideElement toElement = $(By.id("leave-request:to_input"));
-    toElement.click();
-    toElement.sendKeys(to);
+    fullNameElement.setValue(employee);
+    SelenideElement representationElement =
+        $(By.id("leave-request:substitute")).shouldBe(Condition.appear).shouldBe(Condition.editable);
+    representationElement.setValue(representation);
+    SelenideElement fromElement =
+        $(By.id("leave-request:from_input")).shouldBe(Condition.appear).shouldBe(Condition.editable);
+    fromElement.setValue(from);
+    SelenideElement toElement =
+        $(By.id("leave-request:to_input")).shouldBe(Condition.appear).shouldBe(Condition.editable);
+    toElement.setValue(to);
   }
 
   public NewDashboardPage clickSubmitButton() {
@@ -246,11 +245,10 @@ public class TaskIFrameTemplatePage extends TemplatePage {
   public void addInputValueTaskPayment(String employee, String date) {
     SelenideElement fullNameElement =
         $(By.id("payment-request:fullname")).shouldBe(Condition.appear).shouldBe(Condition.editable);
-    fullNameElement.click();
-    fullNameElement.sendKeys(employee);
-    SelenideElement fromElement = $(By.id("payment-request:from_input"));
-    fromElement.click();
-    fromElement.sendKeys(date);
+    fullNameElement.setValue(employee);
+    SelenideElement fromElement =
+        $(By.id("payment-request:from_input")).shouldBe(Condition.appear).shouldBe(Condition.editable);
+    fromElement.setValue(date);
   }
 
   public void clickSubmitButtonProceed() {

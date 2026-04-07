@@ -14,7 +14,7 @@ lib/mvn-deps/
 
 # ivy
 classes/
-src_dataClasses/
-src_generated/
-src_wsproc/
+src_generated/dataclass/
+src_generated/repo/
+src_generated/wsprocess/
 logs/

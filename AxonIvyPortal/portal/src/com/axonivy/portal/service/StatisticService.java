@@ -6,11 +6,14 @@ import static com.axonivy.portal.enums.statistic.ChartTarget.CASE;
 import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Optional;
 import java.util.Set;
+import java.util.function.UnaryOperator;
 import java.util.stream.Collectors;
 
 import javax.ws.rs.NotFoundException;
@@ -26,7 +29,7 @@ import com.axonivy.portal.constant.StatisticConstants;
 import com.axonivy.portal.dto.StatisticDrillDownDTO;
 import com.axonivy.portal.dto.StatisticDTO;
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
-import com.axonivy.portal.enums.AdditionalChartConfig;
+import com.axonivy.portal.enums.statistic.AdditionalChartConfig;
 import com.axonivy.portal.enums.statistic.AggregationField;
 import com.axonivy.portal.enums.statistic.ChartTarget;
 import com.axonivy.portal.enums.statistic.ChartType;
@@ -40,10 +43,21 @@ import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
 import ch.ivy.addon.portalkit.service.exception.PortalException;
+import com.axonivy.portal.dto.statistic.AggregationDTO;
+import com.axonivy.portal.dto.statistic.AggregationResultDTO;
+import com.axonivy.portal.dto.statistic.BucketDTO;
+import com.axonivy.portal.util.AggregationResultMapper;
 import ch.ivy.addon.portalkit.statistics.StatisticResponse;
+import ch.ivy.addon.portalkit.util.PortalCustomFieldUtils;
+import ch.ivyteam.ivy.application.app.IApplicationRepository;
+import ch.ivyteam.ivy.cm.exec.ContentManagement;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.searchengine.client.agg.AggregationResult;
+import ch.ivyteam.ivy.security.ISecurityContext;
+import ch.ivyteam.ivy.workflow.WorkflowPriority;
+import ch.ivyteam.ivy.workflow.caze.CaseBusinessState;
 import ch.ivyteam.ivy.workflow.stats.WorkflowStats;
+import ch.ivyteam.ivy.workflow.task.TaskBusinessState;
 
 public class StatisticService {
 
@@ -78,11 +92,10 @@ public class StatisticService {
       throws NotFoundException {
     Statistic chart = findByStatisticId(payload.getChartId());
     validateChart(payload.getChartId(), chart);
-    AggregationResult result = getChartData(chart);
-    chart.setAdditionalConfigs(new ArrayList<>());
-    chart.getAdditionalConfigs().addAll(getAdditionalConfig());
-    chart.getAdditionalConfigs().add(getManipulateValueBy(chart));
-    return new StatisticResponse(result, chart);
+    AggregationResultDTO chartResult = AggregationResultMapper.toAggResultDTO(this.getChartData(chart));
+    this.localizeChartKeys(chartResult, chart.getChartTarget(), chart.getStatisticAggregation());
+    chart.setAdditionalConfigs(this.getAdditionalConfig(chart));
+    return new StatisticResponse(chartResult, chart);
   }
 
   private void validateChart(String chartId, Statistic chart) {
@@ -153,13 +166,17 @@ public class StatisticService {
     }
   }
   
-  public List<Entry<String, String>> getAdditionalConfig() {
-    
+  public List<Entry<String, String>> getAdditionalConfig(Statistic chart) {
     List<Entry<String, String>> entries = new ArrayList<>();
     entries.add(new SimpleEntry<>(AdditionalChartConfig.EMPTY_CHART_DATA_MESSAGE.getKey(),
         Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/StatisticWidget/EmptyChartDataMessage")));
     entries.add(new SimpleEntry<>(AdditionalChartConfig.FAIL_TO_RENDER_CHART_MESSAGE.getKey(),
         Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/StatisticWidget/failToRenderChartMessage")));
+    Optional.ofNullable(getManipulateValueBy(chart)).ifPresent(entries::add);
+    entries.add(new SimpleEntry<>(AdditionalChartConfig.TOOLTIP_TOTAL_LABEL.getKey(),
+        this.getTooltipTotalLabel(chart.getChartTarget())));
+    entries.add(new SimpleEntry<>(AdditionalChartConfig.TOOLTIP_KPI_LABEL.getKey(),
+        this.getTooltipKpiLabel(chart.getChartTarget(), chart.getStatisticAggregation())));
     return entries;
   }
 
@@ -170,7 +187,7 @@ public class StatisticService {
                    .anyMatch(permission -> Ivy.session().getSessionUser().has().role(permission));
   }
 
-  public Entry<String, String> getManipulateValueBy(Statistic data) {
+  private Entry<String, String> getManipulateValueBy(Statistic data) {
     return Optional.ofNullable(data.getManipulateValueBy())
                    .map(value -> new SimpleEntry<>(AdditionalChartConfig.MANIPULATE_BY.getKey(), value))
                    .orElse(null);
@@ -323,4 +340,123 @@ public class StatisticService {
     drillDownService.createDrillDownDashboardInSession(statistic, drillDownData.getDrillDownValue());
   }
 
+  public void localizeChartKeys(AggregationResultDTO chartResult, ChartTarget chartTarget, StatisticAggregation aggregation) {
+    if (chartResult == null || CollectionUtils.isEmpty(chartResult.getAggs())) {
+      return;
+    }
+
+    UnaryOperator<String> keyLocalizer = this.buildKeyLocalizer(chartTarget, aggregation);
+    for (AggregationDTO agg : chartResult.getAggs()) {
+      this.localizeBuckets(agg, keyLocalizer);
+    }
+  }
+
+  private void localizeBuckets(AggregationDTO agg, UnaryOperator<String> keyLocalizer) {
+    if (CollectionUtils.isEmpty(agg.getBuckets())) {
+      return;
+    }
+    for (BucketDTO bucket : agg.getBuckets()) {
+      if (bucket.getKey() instanceof String strKey) {
+        bucket.setDisplayKey(keyLocalizer.apply(strKey));
+      } else {
+        bucket.setDisplayKey(bucket.getKey());
+      }
+      if (CollectionUtils.isNotEmpty(bucket.getAggs())) {
+        for (AggregationDTO nestedAgg : bucket.getAggs()) {
+          this.localizeBuckets(nestedAgg, keyLocalizer);
+        }
+      }
+    }
+  }
+
+  private UnaryOperator<String> buildKeyLocalizer(ChartTarget chartTarget, StatisticAggregation aggregation) {
+    String field = aggregation.getField();
+
+    if (StatisticConstants.CATEGORY.equals(field)) {
+      return this::resolveCategoryName;
+    }
+
+    if (StatisticConstants.STATE.equals(field)) {
+      Map<String, String> map = this.buildStateLocalizedMap(chartTarget);
+      return key -> map.getOrDefault(key, key);
+    }
+
+    if (StatisticConstants.PRIORITY.equals(field)) {
+      Map<String, String> map = this.buildPriorityLocalizedMap();
+      return key -> map.getOrDefault(key, key);
+    }
+
+    if (aggregation.getType() == DashboardColumnType.CUSTOM) {
+      Map<String, String> map = this.buildCustomFieldLocalizedMap(chartTarget, aggregation.getCustomFieldValue());
+      return key -> map.getOrDefault(key, key);
+    }
+
+    return key -> key;
+  }
+
+  private Map<String, String> buildStateLocalizedMap(ChartTarget chartTarget) {
+    Map<String, String> map = new HashMap<>();
+    if (CASE == chartTarget) {
+      for (CaseBusinessState state : CaseBusinessState.values()) {
+        map.put(state.name(), Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/businessCaseState/" + state));
+      }
+    } else {
+      for (TaskBusinessState state : TaskBusinessState.values()) {
+        map.put(state.name(), Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskBusinessState/" + state));
+      }
+    }
+    return map;
+  }
+
+  private Map<String, String> buildPriorityLocalizedMap() {
+    Map<String, String> map = new HashMap<>();
+    for (WorkflowPriority priority : WorkflowPriority.values()) {
+      map.put(priority.name(), Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskPriority/" + priority));
+    }
+    return map;
+  }
+
+  private Map<String, String> buildCustomFieldLocalizedMap(ChartTarget chartTarget, String customFieldValue) {
+    return CASE == chartTarget ? PortalCustomFieldUtils.getLocalizedValueLabelMapOnCaseField(customFieldValue)
+        : PortalCustomFieldUtils.getLocalizedValueLabelMapOnTaskField(customFieldValue);
+  }
+
+  private String resolveCategoryName(String categoryPath) {
+    return IApplicationRepository.of(ISecurityContext.current()).all()
+      .stream().flatMap(app -> app.getProcessModelVersions())
+      .map(pmv -> ContentManagement.of(pmv).co("/Categories/" + categoryPath + "/name"))
+      .filter(StringUtils::isNotBlank)
+      .findFirst()
+      .orElse(categoryPath);
+  }
+
+  private String getTooltipTotalLabel(ChartTarget chartTarget) {
+    String cmsKey = CASE == chartTarget ? "TooltipTotalCaseLabel" : "TooltipTotalTaskLabel";
+    return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/StatisticWidget/" + cmsKey);
+  }
+
+  private String getTooltipKpiLabel(ChartTarget chartTarget, StatisticAggregation aggregation) {
+    String kpiField = aggregation.getKpiField();
+
+    if (StringUtils.isBlank(kpiField)) {
+      return StringUtils.EMPTY;
+    }
+
+    String localizedKpiLabel = CASE == chartTarget ? PortalCustomFieldUtils.getLocalizedLabelOnCaseField(kpiField)
+      : PortalCustomFieldUtils.getLocalizedLabelOnTaskField(kpiField);
+
+    String cmsKey = switch (aggregation.getAggregationMethod()) {
+      case "sum" -> "TooltipSumKpiLabel";
+      case "avg" -> "TooltipAverageKpiLabel";
+      case "max" -> "TooltipMaxKpiLabel";
+      case "min" -> "TooltipMinKpiLabel";
+      default -> null;
+    };
+
+    if (cmsKey == null) {
+      return StringUtils.EMPTY;
+    }
+
+    return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/StatisticWidget/" + cmsKey, Arrays.asList(localizedKpiLabel));
+  }
 }

@@ -1,14 +1,14 @@
 package ch.ivy.addon.portalkit.statistics;
 
 import com.axonivy.portal.bo.Statistic;
-
-import ch.ivyteam.ivy.searchengine.client.agg.AggregationResult;
+import com.axonivy.portal.dto.statistic.AggregationResultDTO;
 
 public class StatisticResponse {
-  private AggregationResult result;
+
+  private AggregationResultDTO result;
   private Statistic chartConfig;
 
-  public StatisticResponse(AggregationResult result, Statistic config) {
+  public StatisticResponse(AggregationResultDTO result, Statistic config) {
     this.result = result;
     this.chartConfig = config;
   }
@@ -21,12 +21,11 @@ public class StatisticResponse {
     this.chartConfig = chartConfig;
   }
 
-  public AggregationResult getResult() {
+  public AggregationResultDTO getResult() {
     return result;
   }
 
-  public void setResult(AggregationResult result) {
+  public void setResult(AggregationResultDTO result) {
     this.result = result;
   }
-
 }

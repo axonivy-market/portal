@@ -1,15 +1,12 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
   "simpleName" : "EmployeeDetailsInFrameData",
   "namespace" : "com.axonivy.portal.developerexamples.testdata.EmployeeDetailsInFrame",
-  "isBusinessCaseData" : false,
   "fields" : [ {
     "name" : "employee",
-    "type" : "com.axonivy.portal.developerexamples.Employee",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "com.axonivy.portal.developerexamples.Employee"
   }, {
     "name" : "employeeId",
-    "type" : "Integer",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "Integer"
   } ]
 }

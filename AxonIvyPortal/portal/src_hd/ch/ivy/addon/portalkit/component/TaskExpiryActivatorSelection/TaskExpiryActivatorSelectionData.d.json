@@ -1,49 +1,45 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
   "simpleName" : "TaskExpiryActivatorSelectionData",
   "namespace" : "ch.ivy.addon.portalkit.component.TaskExpiryActivatorSelection",
-  "isBusinessCaseData" : false,
   "fields" : [ {
     "name" : "canChangeTaskActivator",
-    "type" : "Boolean",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "Boolean"
   }, {
     "name" : "users",
-    "type" : "java.util.List<com.axonivy.portal.components.dto.UserDTO>"
+    "type" : "java.util.List<com.axonivy.portal.components.dto.UserDTO>",
+    "modifiers" : [ ]
   }, {
     "name" : "roles",
-    "type" : "java.util.List<com.axonivy.portal.components.dto.RoleDTO>"
+    "type" : "java.util.List<com.axonivy.portal.components.dto.RoleDTO>",
+    "modifiers" : [ ]
   }, {
     "name" : "selectedActivator",
-    "type" : "ch.ivyteam.ivy.security.ISecurityMember"
+    "type" : "ch.ivyteam.ivy.security.ISecurityMember",
+    "modifiers" : [ ]
   }, {
-    "name" : "queryAutoComplete",
-    "type" : "String",
-    "modifiers" : [ "PERSISTENT" ]
+    "name" : "queryAutoComplete"
   }, {
     "name" : "task",
-    "type" : "ch.ivyteam.ivy.workflow.ITask"
+    "type" : "ch.ivyteam.ivy.workflow.ITask",
+    "modifiers" : [ ]
   }, {
     "name" : "selectedUser",
-    "type" : "com.axonivy.portal.components.dto.UserDTO"
+    "type" : "com.axonivy.portal.components.dto.UserDTO",
+    "modifiers" : [ ]
   }, {
     "name" : "selectedRole",
-    "type" : "com.axonivy.portal.components.dto.RoleDTO"
+    "type" : "com.axonivy.portal.components.dto.RoleDTO",
+    "modifiers" : [ ]
   }, {
-    "name" : "comment",
-    "type" : "String",
-    "modifiers" : [ "PERSISTENT" ]
+    "name" : "comment"
   }, {
-    "name" : "notes",
-    "type" : "String",
-    "modifiers" : [ "PERSISTENT" ]
+    "name" : "notes"
   }, {
     "name" : "isUserAssigned",
-    "type" : "Boolean",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "Boolean"
   }, {
     "name" : "isDisabledAssignButton",
-    "type" : "Boolean",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "Boolean"
   } ]
 }

@@ -1,6 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
   "simpleName" : "ColumnManagementData",
-  "namespace" : "ch.ivy.addon.portal.generic.dashboard.component.ColumnManagement",
-  "isBusinessCaseData" : false
+  "namespace" : "ch.ivy.addon.portal.generic.dashboard.component.ColumnManagement"
 }

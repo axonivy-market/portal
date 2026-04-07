@@ -88,6 +88,10 @@ public abstract class TemplatePage extends AbstractPage {
     WebDriverRunner.getWebDriver().switchTo().frame($("iframe[id='" + id + "']"));
   }
 
+  public void switchToIframeWithWebElement(WebElement element) {
+    WebDriverRunner.getWebDriver().switchTo().frame(element);
+  }
+
   public void switchToIframeWithNameOrId(String value) {
     WebDriverRunner.getWebDriver().switchTo().frame(value);
   }

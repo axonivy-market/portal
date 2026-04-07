@@ -1,108 +1,84 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
   "simpleName" : "TaskWidgetData",
   "namespace" : "ch.ivy.addon.portalkit.component.TaskWidget",
-  "isBusinessCaseData" : false,
   "fields" : [ {
     "name" : "count",
-    "type" : "Integer",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "Integer"
   }, {
     "name" : "dataModel",
-    "type" : "ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel"
   }, {
     "name" : "expandedTaskId",
-    "type" : "Long",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "Long"
   }, {
-    "name" : "filterSetName",
-    "type" : "String",
-    "modifiers" : [ "PERSISTENT" ]
+    "name" : "filterSetName"
   }, {
     "name" : "isFilterExisted",
-    "type" : "Boolean",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "Boolean"
   }, {
-    "name" : "keyword",
-    "type" : "String",
-    "modifiers" : [ "PERSISTENT" ]
+    "name" : "keyword"
   }, {
     "name" : "latestTaskDate",
-    "type" : "java.util.Date",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "java.util.Date"
   }, {
     "name" : "latestTasks",
-    "type" : "java.util.List<ch.ivyteam.ivy.workflow.ITask>"
+    "type" : "java.util.List<ch.ivyteam.ivy.workflow.ITask>",
+    "modifiers" : [ ]
   }, {
-    "name" : "selectedSort",
-    "type" : "String",
-    "modifiers" : [ "PERSISTENT" ]
+    "name" : "selectedSort"
   }, {
     "name" : "newTaskSearchCriteria",
-    "type" : "ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria"
   }, {
     "name" : "numberOfNewTask",
-    "type" : "Long",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "Long"
   }, {
     "name" : "scrollPosition",
-    "type" : "Integer",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "Integer"
   }, {
     "name" : "sortDescending",
-    "type" : "Boolean",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "Boolean"
   }, {
-    "name" : "sortField",
-    "type" : "String",
-    "modifiers" : [ "PERSISTENT" ]
+    "name" : "sortField"
   }, {
     "name" : "startIndex",
-    "type" : "Integer",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "Integer"
   }, {
     "name" : "tasks",
-    "type" : "java.util.List<ch.ivyteam.ivy.workflow.ITask>"
+    "type" : "java.util.List<ch.ivyteam.ivy.workflow.ITask>",
+    "modifiers" : [ ]
   }, {
     "name" : "taskSearchCriteria",
-    "type" : "ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria"
   }, {
     "name" : "totalTasks",
-    "type" : "Long",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "Long"
   }, {
     "name" : "selectedTask",
     "type" : "ch.ivyteam.ivy.workflow.ITask",
-    "comment" : "Task is selected for reset or delegate"
+    "comment" : "Task is selected for reset or delegate",
+    "modifiers" : [ ]
   }, {
-    "name" : "currentPortalPage",
-    "type" : "String",
-    "modifiers" : [ "PERSISTENT" ]
+    "name" : "currentPortalPage"
   }, {
     "name" : "exportedFile",
-    "type" : "org.primefaces.model.StreamedContent",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "org.primefaces.model.StreamedContent"
   }, {
     "name" : "caseId",
-    "type" : "ch.ivy.addon.portalkit.dto.GlobalCaseId",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "ch.ivy.addon.portalkit.dto.GlobalCaseId"
   }, {
     "name" : "loopCounter",
-    "type" : "Integer",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "Integer"
   }, {
     "name" : "maxResultNumberPerQuery",
-    "type" : "Integer",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "Integer"
   }, {
     "name" : "collectedTasksForExporting",
-    "type" : "List<ch.ivyteam.ivy.workflow.ITask>"
+    "type" : "List<ch.ivyteam.ivy.workflow.ITask>",
+    "modifiers" : [ ]
   }, {
     "name" : "columnsVisibility",
-    "type" : "List<String>",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "List<String>"
   } ]
 }

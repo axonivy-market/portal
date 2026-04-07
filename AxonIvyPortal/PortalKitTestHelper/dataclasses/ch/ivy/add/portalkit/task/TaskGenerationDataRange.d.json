@@ -1,23 +1,17 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
   "simpleName" : "TaskGenerationDataRange",
   "namespace" : "ch.ivy.add.portalkit.task",
-  "isBusinessCaseData" : false,
   "fields" : [ {
-    "name" : "structuredData",
-    "type" : "String",
-    "modifiers" : [ "PERSISTENT" ]
+    "name" : "structuredData"
   }, {
     "name" : "taskCounter",
-    "type" : "Number",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "Number"
   }, {
     "name" : "from",
-    "type" : "Number",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "Number"
   }, {
     "name" : "to",
-    "type" : "Number",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "Number"
   } ]
 }

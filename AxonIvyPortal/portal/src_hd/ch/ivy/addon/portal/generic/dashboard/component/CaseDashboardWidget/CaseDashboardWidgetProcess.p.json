@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/13.2.0/process.json",
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/process.json",
   "id" : "178592835845348C",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -85,7 +85,8 @@
             "",
             "in.totalCases = DashboardCaseService.getInstance().countByCaseQuery(in.widget.dataModel.criteria.buildQuery());"
           ]
-        }
+        },
+        "sudo" : true
       },
       "visual" : {
         "at" : { "x" : 320, "y" : 272 }
@@ -128,7 +129,8 @@
             "int startIndex = in.loopCounter * in.maxResultNumberPerQuery;",
             "in.collectedCasesForExporting.addAll(DashboardCaseService.getInstance().findByCaseQuery(in.widget.dataModel.getCriteria().buildQuery(), startIndex, in.maxResultNumberPerQuery));"
           ]
-        }
+        },
+        "sudo" : true
       },
       "visual" : {
         "at" : { "x" : 624, "y" : 376 }

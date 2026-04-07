@@ -1,40 +1,44 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
   "simpleName" : "Data",
   "namespace" : "ch.ivy.addon.portal.generic",
-  "isBusinessCaseData" : false,
   "fields" : [ {
     "name" : "caseId",
-    "type" : "Number"
+    "type" : "Number",
+    "modifiers" : [ ]
   }, {
     "name" : "taskId",
-    "type" : "Number"
+    "type" : "Number",
+    "modifiers" : [ ]
   }, {
     "name" : "url",
-    "type" : "String"
+    "modifiers" : [ ]
   }, {
     "name" : "appName",
-    "type" : "String"
+    "modifiers" : [ ]
   }, {
     "name" : "errorCode",
-    "type" : "String"
+    "modifiers" : [ ]
   }, {
     "name" : "keyword",
-    "type" : "String"
+    "modifiers" : [ ]
   }, {
     "name" : "serverId",
-    "type" : "Long"
+    "type" : "Long",
+    "modifiers" : [ ]
   }, {
     "name" : "processStartLink",
-    "type" : "String"
+    "modifiers" : [ ]
   }, {
     "name" : "caseName",
-    "type" : "String"
+    "modifiers" : [ ]
   }, {
     "name" : "caseView",
-    "type" : "ch.ivy.addon.portal.generic.view.CaseView"
+    "type" : "ch.ivy.addon.portal.generic.view.CaseView",
+    "modifiers" : [ ]
   }, {
     "name" : "taskView",
-    "type" : "ch.ivy.addon.portal.generic.view.TaskView"
+    "type" : "ch.ivy.addon.portal.generic.view.TaskView",
+    "modifiers" : [ ]
   } ]
 }

@@ -16,6 +16,7 @@ import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.TaskDetailsPage;
 import com.axonivy.portal.selenium.page.TaskWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.TopMenuTaskWidgetPage;
+import com.codeborne.selenide.Condition;
 
 @IvyWebTest
 public class AvatarTest extends BaseTest {
@@ -68,7 +69,7 @@ public class AvatarTest extends BaseTest {
     updateGlobalVariable(Variable.SHOW_AVATAR.getKey(), "False");
     redirectToRelativeLink(createTestingTasksUrl);
     TaskWidgetNewDashBoardPage taskWidgetNewDashBoardPage = new TaskWidgetNewDashBoardPage();
-    assertTrue(taskWidgetNewDashBoardPage.stateOfFirstTask().exists());
+    taskWidgetNewDashBoardPage.responsibleOfFirstTask().should(Condition.appear, DEFAULT_TIMEOUT);
     $$(".ui-avatar").shouldBe(empty);
   }
 

@@ -1,34 +1,37 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/data-class/13.1.0/data-class.json",
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
   "simpleName" : "UserExampleGuideData",
   "namespace" : "com.axonivy.portal.userexamples",
-  "isBusinessCaseData" : false,
   "fields" : [ {
     "name" : "state",
-    "type" : "com.axonivy.portal.userexamples.enums.RequestState"
+    "type" : "com.axonivy.portal.userexamples.enums.RequestState",
+    "modifiers" : [ ]
   }, {
     "name" : "process",
-    "type" : "com.axonivy.portal.userexamples.dto.UserProcess"
+    "type" : "com.axonivy.portal.userexamples.dto.UserProcess",
+    "modifiers" : [ ]
   }, {
     "name" : "caseMapDetail",
-    "type" : "com.axonivy.portal.userexamples.dto.CaseMapDetail"
+    "type" : "com.axonivy.portal.userexamples.dto.CaseMapDetail",
+    "modifiers" : [ ]
   }, {
     "name" : "stageIndex",
-    "type" : "Integer"
+    "type" : "Integer",
+    "modifiers" : [ ]
   }, {
     "name" : "noteDE",
-    "type" : "String"
+    "modifiers" : [ ]
   }, {
     "name" : "noteEN",
-    "type" : "String"
+    "modifiers" : [ ]
   }, {
     "name" : "noteJP",
-    "type" : "String"
+    "modifiers" : [ ]
   }, {
     "name" : "noteFR",
-    "type" : "String"
+    "modifiers" : [ ]
   }, {
     "name" : "noteES",
-    "type" : "String"
+    "modifiers" : [ ]
   } ]
 }

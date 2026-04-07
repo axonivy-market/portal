@@ -1,127 +1,154 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/data-class/13.1.0/data-class.json",
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
   "simpleName" : "PortalStartData",
   "namespace" : "ch.ivy.addon.portal.generic",
-  "isBusinessCaseData" : false,
   "fields" : [ {
     "name" : "portalPage",
-    "type" : "ch.ivy.addon.portalkit.enums.PortalPage"
+    "type" : "ch.ivy.addon.portalkit.enums.PortalPage",
+    "modifiers" : [ ]
   }, {
     "name" : "caseView",
-    "type" : "ch.ivy.addon.portal.generic.view.CaseView"
+    "type" : "ch.ivy.addon.portal.generic.view.CaseView",
+    "modifiers" : [ ]
   }, {
     "name" : "taskView",
-    "type" : "ch.ivy.addon.portal.generic.view.TaskView"
+    "type" : "ch.ivy.addon.portal.generic.view.TaskView",
+    "modifiers" : [ ]
   }, {
     "name" : "endedTaskId",
-    "type" : "Number"
+    "type" : "Number",
+    "modifiers" : [ ]
   }, {
     "name" : "dataModel",
-    "type" : "ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel"
+    "type" : "ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel",
+    "modifiers" : [ ]
   }, {
     "name" : "selectedTaskId",
-    "type" : "Number"
+    "type" : "Number",
+    "modifiers" : [ ]
   }, {
     "name" : "callbackUrl",
-    "type" : "String"
+    "modifiers" : [ ]
   }, {
     "name" : "caseDataModel",
-    "type" : "ch.ivy.addon.portalkit.datamodel.CaseLazyDataModel"
+    "type" : "ch.ivy.addon.portalkit.datamodel.CaseLazyDataModel",
+    "modifiers" : [ ]
   }, {
     "name" : "searchResultsDataModel",
-    "type" : "ch.ivy.addon.portalkit.datamodel.SearchResultsDataModel"
+    "type" : "ch.ivy.addon.portalkit.datamodel.SearchResultsDataModel",
+    "modifiers" : [ ]
   }, {
     "name" : "caseId",
-    "type" : "Long"
+    "type" : "Long",
+    "modifiers" : [ ]
   }, {
     "name" : "isTaskStartedInDetails",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ ]
   }, {
     "name" : "isTaskFinished",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ ]
   }, {
     "name" : "taskSelected",
-    "type" : "ch.ivyteam.ivy.workflow.ITask"
+    "type" : "ch.ivyteam.ivy.workflow.ITask",
+    "modifiers" : [ ]
   }, {
     "name" : "caseSelected",
-    "type" : "ch.ivyteam.ivy.workflow.ICase"
+    "type" : "ch.ivyteam.ivy.workflow.ICase",
+    "modifiers" : [ ]
   }, {
     "name" : "backFromTaskDetails",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ ]
   }, {
     "name" : "isFirstTask",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ ]
   }, {
     "name" : "isBusinessCase",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ ]
   }, {
     "name" : "caseName",
-    "type" : "String"
+    "modifiers" : [ ]
   }, {
     "name" : "keyword",
-    "type" : "String",
-    "comment" : "used in global search process"
+    "comment" : "used in global search process",
+    "modifiers" : [ ]
   }, {
     "name" : "embedInIFrame",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ ]
   }, {
     "name" : "homepage",
     "type" : "ch.addon.portal.generic.userprofile.homepage.Homepage",
-    "comment" : "selected homepage of user"
+    "comment" : "selected homepage of user",
+    "modifiers" : [ ]
   }, {
     "name" : "passwordResetToken",
-    "type" : "String"
+    "modifiers" : [ ]
   }, {
     "name" : "passwordResetUsername",
-    "type" : "String"
+    "modifiers" : [ ]
   }, {
     "name" : "isValidResetUrl",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ ]
   }, {
     "name" : "passwordResetMessage",
-    "type" : "String"
+    "modifiers" : [ ]
   }, {
     "name" : "isShowDashboard",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ ]
   }, {
     "name" : "processId",
-    "type" : "String"
+    "modifiers" : [ ]
   }, {
     "name" : "histories",
-    "type" : "java.util.List<ch.ivy.addon.portalkit.bo.History>"
+    "type" : "java.util.List<ch.ivy.addon.portalkit.bo.History>",
+    "modifiers" : [ ]
   }, {
     "name" : "taskId",
-    "type" : "Long"
+    "type" : "Long",
+    "modifiers" : [ ]
   }, {
     "name" : "notes",
-    "type" : "List<ch.ivyteam.ivy.workflow.note.Note>"
+    "type" : "List<ch.ivyteam.ivy.workflow.note.Note>",
+    "modifiers" : [ ]
   }, {
     "name" : "isAuthorized",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ ]
   }, {
     "name" : "isPublicDashboard",
     "type" : "Boolean",
-    "comment" : "used in configuring new dashboard"
+    "comment" : "used in configuring new dashboard",
+    "modifiers" : [ ]
   }, {
     "name" : "dashboardId",
-    "type" : "String"
+    "modifiers" : [ ]
   }, {
     "name" : "uuid",
-    "type" : "String"
+    "modifiers" : [ ]
   }, {
     "name" : "isOpenWithoutMenu",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ ]
   }, {
     "name" : "isOpenDashboardFromLink",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ ]
   }, {
     "name" : "activeTabIndex",
-    "type" : "String"
+    "modifiers" : [ ]
   }, {
     "name" : "id",
-    "type" : "String"
+    "modifiers" : [ ]
   }, {
     "name" : "isMainDashboard",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ ]
   } ]
 }

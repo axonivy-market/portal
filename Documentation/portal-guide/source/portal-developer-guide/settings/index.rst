@@ -58,13 +58,13 @@ HowTo: Add a New Language to Portal
 
 #. **Export CMS Entries**
 
-   Export all CMS entries of the Portal to an Excel file
+   Export all CMS entries from Portal to an Excel file
 
 #. **Add Language Column**
 
    - Open the exported Excel file
    - Add a new column at the end with the language locale code (e.g., ``it`` for Italian)
-   - Refer to `Java supported locales <https://www.oracle.com/java/technologies/javase/jdk21-suported-locales.html>`_ for supported locale codes
+   - Refer to `Java supported locales <https://www.oracle.com/java/technologies/javase/jdk25-suported-locales.html>`_ for supported locale codes
    
    |export-cms|
 
@@ -94,8 +94,8 @@ HowTo: Add a New Language to Portal
 
 #. **Import and Deploy**
 
-   - Import the Excel file back into the Portal
-   - Redeploy the Portal
+   - Import the Excel file back into Portal
+   - Redeploy Portal
 
 Role Configuration
 ==================
@@ -123,8 +123,8 @@ Configure permissions in the :doc-url:`Engine Cockpit </engine-guide/reference/e
 .. important::
    **Portal Permission Support:**
    
-   The Portal is built as a layer above the Axon Ivy Engine core. Not every core engine permission is automatically honored or supported by the Portal. Supporting every core permission would require significant effort and increase maintenance overhead.
-   If you require a specific engine permission that is not currently supported by the Portal, please contact Axon Ivy support to discuss your requirements.
+   Portal is built as a layer above the Axon Ivy Engine core. Not every core engine permission is automatically used or supported by Portal. Supporting every engine permission would require significant effort and increase maintenance overhead.
+   If you require a specific engine permission that is not currently supported by Portal, please contact Axon Ivy support to discuss your requirements.
 
 .. note::
    **General Permission Rules:**
@@ -250,10 +250,7 @@ User needs permission: :ref:`🔑CaseWriteDescription <CaseWriteDescription>`
 
 **See Related Tasks of Case**
 
-Required permissions:
-
-- To see the action: :ref:`🔑ShowAllTasksOfCase <ShowAllTasksOfCase>`
-- To view related tasks: :ref:`🔑TaskReadOwnCaseTasks <TaskReadOwnCaseTasks>` or :ref:`🔑TaskReadAll <TaskReadAll>`
+User needs permission: :ref:`🔑TaskReadOwnCaseTasks <TaskReadOwnCaseTasks>` or :ref:`🔑TaskReadAll <TaskReadAll>`
 
 .. important::
    Case state cannot be DESTROYED
@@ -714,7 +711,7 @@ For some specific charts such as ``Bar``, ``Pie``, ``Line`` or ``Number``, there
 
 Portal Processes External Links
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-The standard external links of the Portal are defined in the following file:
+The standard external links in Portal are defined in the following file:
 
 Filename: ``variables.Portal.Processes.ExternalLinks.json``
 

@@ -40,8 +40,7 @@ public class UrlHelpers {
     if (vmArgUrl != null) {
       try {
         URL originalURL = new URL(vmArgUrl);
-        URL newURL = new URL(originalURL.getProtocol(), "localhost", originalURL.getPort(), originalURL.getFile());
-        
+        URL newURL = new URL(originalURL.getProtocol(), originalURL.getHost(), originalURL.getPort(), originalURL.getFile());
         // Make sure the engine URL end with slash (/).
         // Example: https://localhost:8081/
         String newURLStr = newURL.toString();

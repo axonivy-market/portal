@@ -51,6 +51,7 @@ import com.axonivy.portal.dto.dashboard.NavigationDashboardWidget;
 import com.axonivy.portal.dto.dashboard.NewsDashboardWidget;
 import com.axonivy.portal.dto.dashboard.NotificationDashboardWidget;
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
+import com.axonivy.portal.enums.CaseQueryType;
 import com.axonivy.portal.service.IvyTranslationService;
 import com.axonivy.portal.service.StatisticService;
 import com.axonivy.portal.util.DashboardCloneUtils;
@@ -1164,6 +1165,10 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     }
 
     return false;
+  }
+
+  public List<CaseQueryType> getAllCaseQueryTypes() {
+    return Arrays.asList(CaseQueryType.values());
   }
 
   public void onResizeColumn(ColumnResizeEvent event) {

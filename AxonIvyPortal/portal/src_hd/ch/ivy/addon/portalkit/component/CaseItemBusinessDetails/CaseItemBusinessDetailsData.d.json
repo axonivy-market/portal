@@ -1,16 +1,17 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/data-class/13.1.0/data-class.json",
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
   "simpleName" : "CaseItemBusinessDetailsData",
   "namespace" : "ch.ivy.addon.portalkit.component.CaseItemBusinessDetails",
-  "isBusinessCaseData" : false,
   "fields" : [ {
     "name" : "url",
-    "type" : "String"
+    "modifiers" : [ ]
   }, {
     "name" : "caze",
-    "type" : "ch.ivyteam.ivy.workflow.ICase"
+    "type" : "ch.ivyteam.ivy.workflow.ICase",
+    "modifiers" : [ ]
   }, {
     "name" : "hasPermission",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ ]
   } ]
 }

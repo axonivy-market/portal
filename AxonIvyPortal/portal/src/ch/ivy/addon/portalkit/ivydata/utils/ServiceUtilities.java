@@ -71,8 +71,8 @@ public class ServiceUtilities {
     requireNonNull(app);
 
     return app.getProcessModelVersions()
-          .filter(pm -> pm.getApplication().getActivityState() == ActivityState.ACTIVE)
-          .filter(pm -> pm.getApplication().getReleaseState() == ReleaseState.RELEASED)
+          .filter(pmv -> pmv.getApplication().getActivityState() == ActivityState.ACTIVE)
+          .filter(pmv -> pmv.getApplication().getReleaseState() == ReleaseState.RELEASED)
           .collect(Collectors.toList());
   }
 

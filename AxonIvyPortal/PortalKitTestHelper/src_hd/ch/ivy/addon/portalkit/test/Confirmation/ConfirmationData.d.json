@@ -1,19 +1,13 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
   "simpleName" : "ConfirmationData",
   "namespace" : "ch.ivy.addon.portalkit.test.Confirmation",
-  "isBusinessCaseData" : false,
   "fields" : [ {
-    "name" : "message",
-    "type" : "String",
-    "modifiers" : [ "PERSISTENT" ]
+    "name" : "message"
   }, {
-    "name" : "title",
-    "type" : "String",
-    "modifiers" : [ "PERSISTENT" ]
+    "name" : "title"
   }, {
     "name" : "approved",
-    "type" : "Boolean",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "Boolean"
   } ]
 }

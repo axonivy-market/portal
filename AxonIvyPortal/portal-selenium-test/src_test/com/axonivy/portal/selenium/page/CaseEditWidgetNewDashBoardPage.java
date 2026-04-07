@@ -337,8 +337,8 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public WebElement getQuickSearchCheckBox() {
-    return $("div[id$='widget-preview']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
-        .$("span[id$='quick-search-group']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("div[id$='quick-search']")
+    return getWidgetConfigurationPanel().shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+        .$("div[id$='quick-search-group']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("div[id$='quick-search']")
         .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
   }
 
@@ -387,11 +387,21 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
   }
   
   public SelenideElement getWidgetInfoIconCheckbox() {
-    return getWidgetConfigurationForm().$("span[id$='widget-info-icon-group']").shouldBe(Condition.appear,
+    return getWidgetConfigurationPanel().$("div[id$='widget-info-icon-group']").shouldBe(Condition.appear,
         DEFAULT_TIMEOUT).$("div[class*='ui-inputgroup']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
         .$("div[id$='widget-info']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("div[class*='ui-chkbox-box']")
         .shouldBe(Condition.appear, DEFAULT_TIMEOUT)
         .$("span");
+  }
+
+  public SelenideElement getWidgetConfigurationPanel() {
+    SelenideElement form = getWidgetConfigurationForm();
+    SelenideElement panel = $("div[id$='widget-configuration-panel']");
+    if (!panel.exists() || !panel.is(Condition.visible)) {
+      form.$("button[id$='widget-configuration-button']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
+      panel.shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    }
+    return panel;
   }
 
   public void clickOnWidgetInfoIconCheckbox() {
@@ -404,15 +414,28 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public SelenideElement getExpandModeCheckbox() {
-    return getWidgetConfigurationForm().$("span[id$='fullscreen-mode-group']").shouldBe(Condition.appear,
+    return getWidgetConfigurationPanel().$("div[id$='fullscreen-mode-group']").shouldBe(Condition.appear,
         DEFAULT_TIMEOUT).$("div[class*='ui-inputgroup']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
         .$("div[id$='fullscreen-mode']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
 
   public void clickOnExpandModeCheckbox() {
     getExpandModeCheckbox().shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-  } 
-  
+  }
+
+  public void selectCaseQueryType(String label) {
+    SelenideElement configPanel = getWidgetConfigurationPanel();
+    configPanel.$("div[id$='case-query-type'] .ui-selectonemenu-trigger")
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $$("div[id$='case-query-type_panel'] li").filter(text(label)).first()
+        .shouldBe(getClickableCondition()).click();
+  }
+
+  public String getCaseQueryTypeLabel() {
+    SelenideElement configPanel = getWidgetConfigurationPanel();
+    return configPanel.$("div[id$='case-query-type'] .ui-selectonemenu-label").getText();
+  }
+
   public void resizeColumn() {
     ElementsCollection elements = $("[id=\"task-task_1:task-component:dashboard-tasks:dashboard-tasks-columns:1\"]")
     .$$(".ui-column-resizer.ui-draggable.ui-draggable-handle");

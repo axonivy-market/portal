@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/13.2.0/process.json",
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/process.json",
   "id" : "14DE09882B540AD5",
   "config" : {
     "data" : "portalKit_test.GrantPermissionsData"
@@ -451,11 +451,6 @@
             "      ISecurityContext.current().securityDescriptor().grantPermission(iPermission, ivy.session.getSessionUser());",
             "    }",
             "    ",
-            "    iPermission = IPermissionRepository.instance().findByName(PortalPermission.SHOW_ALL_TASKS_OF_CASE.getValue());",
-            "    if (Objects.nonNull(iPermission)){",
-            "      ISecurityContext.current().securityDescriptor().grantPermission(iPermission, ivy.session.getSessionUser());",
-            "    }",
-            "    ",
             "    iPermission = IPermissionRepository.instance().findByName(PortalPermission.TASK_CASE_ADD_NOTE.getValue());",
             "    if (Objects.nonNull(iPermission)){",
             "      ISecurityContext.current().securityDescriptor().grantPermission(iPermission, ivy.session.getSessionUser());",
@@ -590,11 +585,6 @@
             "import ch.ivyteam.ivy.security.IPermission;",
             "",
             "    IPermission iPermission = IPermissionRepository.instance().findByName(PortalPermission.SHOW_CASE_DETAILS.getValue());",
-            "    if (Objects.nonNull(iPermission)){",
-            "      ISecurityContext.current().securityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());",
-            "    }",
-            "    ",
-            "    iPermission = IPermissionRepository.instance().findByName(PortalPermission.SHOW_ALL_TASKS_OF_CASE.getValue());",
             "    if (Objects.nonNull(iPermission)){",
             "      ISecurityContext.current().securityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());",
             "    }",

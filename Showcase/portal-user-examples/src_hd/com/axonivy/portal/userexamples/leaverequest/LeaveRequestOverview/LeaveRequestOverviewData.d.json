@@ -1,19 +1,15 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
   "simpleName" : "LeaveRequestOverviewData",
   "namespace" : "com.axonivy.portal.userexamples.leaverequest.LeaveRequestOverview",
-  "isBusinessCaseData" : false,
   "fields" : [ {
     "name" : "processSteps",
-    "type" : "java.util.List<com.axonivy.portal.userexamples.dto.ProcessStep>",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "java.util.List<com.axonivy.portal.userexamples.dto.ProcessStep>"
   }, {
     "name" : "userProcess",
-    "type" : "com.axonivy.portal.userexamples.dto.UserProcess",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "com.axonivy.portal.userexamples.dto.UserProcess"
   }, {
     "name" : "state",
-    "type" : "com.axonivy.portal.userexamples.enums.RequestState",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "com.axonivy.portal.userexamples.enums.RequestState"
   } ]
 }

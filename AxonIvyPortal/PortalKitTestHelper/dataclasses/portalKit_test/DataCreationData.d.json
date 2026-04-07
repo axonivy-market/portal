@@ -1,68 +1,75 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
   "simpleName" : "DataCreationData",
   "namespace" : "portalKit_test",
-  "isBusinessCaseData" : false,
   "fields" : [ {
     "name" : "taskStructureInfo",
-    "type" : "String",
-    "comment" : "contain information of category, sub category of tasks. E.g. CAT1/SUBCAT1"
+    "comment" : "contain information of category, sub category of tasks. E.g. CAT1/SUBCAT1",
+    "modifiers" : [ ]
   }, {
     "name" : "numOfCats",
-    "type" : "Integer"
+    "type" : "Integer",
+    "modifiers" : [ ]
   }, {
     "name" : "numOfSubCats",
-    "type" : "Integer"
+    "type" : "Integer",
+    "modifiers" : [ ]
   }, {
     "name" : "numOfCasesPerSubCat",
-    "type" : "Integer"
+    "type" : "Integer",
+    "modifiers" : [ ]
   }, {
     "name" : "caseName",
-    "type" : "String"
+    "modifiers" : [ ]
   }, {
     "name" : "handler",
-    "type" : "ch.ivy.addon.portalkit.test.util.DataCreationHandler",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "ch.ivy.addon.portalkit.test.util.DataCreationHandler"
   }, {
     "name" : "counter",
-    "type" : "Integer"
+    "type" : "Integer",
+    "modifiers" : [ ]
   }, {
     "name" : "numerOfUsers",
-    "type" : "Integer"
+    "type" : "Integer",
+    "modifiers" : [ ]
   }, {
     "name" : "numberOfUsersInApplication",
-    "type" : "Integer"
+    "type" : "Integer",
+    "modifiers" : [ ]
   }, {
     "name" : "numberOfCases",
-    "type" : "Integer"
+    "type" : "Integer",
+    "modifiers" : [ ]
   }, {
     "name" : "caseStructureInfo",
-    "type" : "String",
-    "comment" : "contain information of category, sub category of tasks. E.g. CAT1/SUBCAT1"
+    "comment" : "contain information of category, sub category of tasks. E.g. CAT1/SUBCAT1",
+    "modifiers" : [ ]
   }, {
     "name" : "attachToBusinessCase",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ ]
   }, {
     "name" : "caseCatagories",
-    "type" : "java.util.List<String>"
+    "type" : "java.util.List<String>",
+    "modifiers" : [ ]
   }, {
     "name" : "caseCategory",
-    "type" : "String"
+    "modifiers" : [ ]
   }, {
     "name" : "selectedTaskId",
-    "type" : "Long"
+    "type" : "Long",
+    "modifiers" : [ ]
   }, {
     "name" : "expressExportFilePath",
-    "type" : "String"
+    "modifiers" : [ ]
   }, {
     "name" : "jsonFilePath",
-    "type" : "String"
+    "modifiers" : [ ]
   }, {
     "name" : "jsonKey",
-    "type" : "String"
+    "modifiers" : [ ]
   }, {
     "name" : "persistedCounter",
-    "type" : "java.lang.Integer",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "java.lang.Integer"
   } ]
 }

@@ -53,7 +53,8 @@ public class GlobalSearchResultPage extends TemplatePage {
   
   public void clickOnCase(int index) {
     String id = "search-results-tabview:case-results:case-list-scroller:" + index + ":case-item";
-    $("div[id='search-results-tabview:case-results:case-list-scroller'] div ul li div[id='" + id + "'] div span.case-info-row").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $("div[id='" + id + "']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    $("span[id$='case-item:case-info-row']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
   }
 
   public String getNameOfCase(int index) {

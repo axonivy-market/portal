@@ -1,5 +1,8 @@
 package com.axonivy.portal.selenium.page;
 
+import static com.codeborne.selenide.CollectionCondition.containExactTextsCaseSensitive;
+import static com.codeborne.selenide.CollectionCondition.size;
+import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
 import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Condition.disappear;
 import static com.codeborne.selenide.Condition.text;
@@ -22,6 +25,7 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.ScrollIntoViewOptions;
 import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.WebElementsCondition;
 import com.codeborne.selenide.ScrollIntoViewOptions.Block;
 
 public class TaskWidgetNewDashBoardPage extends TemplatePage {
@@ -54,34 +58,12 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
     return "[id$='dashboard-tasks-container']";
   }
 
-  private int getIndexWidgetByColumn(String columnName) {
-    ElementsCollection elementsTH = $(taskWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$$("table thead tr th");
-    for (int i = 0; i < elementsTH.size(); i++) {
-      if (elementsTH.get(i).getText().equalsIgnoreCase(columnName)) {
-        return i;
-      }
-    }
-    return 0;
-  }
-
-  private int getIndexWidgetByColumnScrollable(String columnName) {
-    ElementsCollection elementsTH =
-        $(taskWidgetId).$(".ui-datatable-scrollable-header").shouldBe(appear, DEFAULT_TIMEOUT).$$("table thead tr th");
-    for (int i = 0; i < elementsTH.size(); i++) {
-      if (elementsTH.get(i).getAttribute("aria-label").equalsIgnoreCase(columnName)) {
-        return i;
-      }
-    }
-    return 0;
-  }
-
   private SelenideElement getColumnOfTaskHasActionIndex(int index, String columnName) {
-    int startIndex = getIndexWidgetByColumnScrollable(columnName);
-    return getColumnOfTableWidget(index).get(startIndex).$("span a");
-  }
-
-  private ElementsCollection getColumnOfTableWidget(int rowIndex) {
-    return $(taskWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$$("table tbody tr").get(rowIndex).$$("td");
+    return $(taskWidgetId).shouldBe(appear, DEFAULT_TIMEOUT)
+    .$$("table tbody tr").shouldHave(CollectionCondition.sizeGreaterThanOrEqual(index))
+    .get(index).$$("td").shouldHave(containExactTextsCaseSensitive(columnName))
+    .filter(Condition.text(columnName)).first()
+    .$("span a");
   }
 
   public ElementsCollection expand() {
@@ -89,25 +71,27 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
     return $$("div.widget__header").filter(text(taskWidgetName));
   }
 
-  protected SelenideElement getColumnOfTaskHasIndex(int index, String columnName) {
-    int startIndex = getIndexWidgetByColumn(columnName);
-    return getColumnOfTableWidget(index).get(startIndex);
+  public SelenideElement getCellByRowAndColumnName(int rowIndex, String columnName) {
+    int columnIndex = $(taskWidgetId).shouldBe(appear, DEFAULT_TIMEOUT)
+      .$$("thead th").texts().indexOf(columnName);
+    return $(taskWidgetId).$("tbody[id$='dashboard-tasks_data']").$("tr[data-ri='" + rowIndex + "']")
+        .$$("td").get(columnIndex);
   }
 
   public void startFirstTask() {
     $(".task-dashboard-widget__panel span.widget__filter-noti-number").shouldBe(appear, DEFAULT_TIMEOUT);
-    WaitHelper.waitForNavigation(() -> getColumnOfTaskHasIndex(0, "Start").shouldBe(appear, DEFAULT_TIMEOUT).click());
+    WaitHelper.waitForNavigation(() -> getCellByRowAndColumnName(0, "Start").shouldBe(appear, DEFAULT_TIMEOUT).click());
   }
 
   public void startFirstTaskAndWaitShowHomePageButton() {
     $(".task-dashboard-widget__panel span.widget__filter-noti-number").shouldBe(appear, DEFAULT_TIMEOUT);
-    getColumnOfTaskHasIndex(0, "Start").shouldBe(appear, DEFAULT_TIMEOUT).click();
+    getCellByRowAndColumnName(0, "Start").shouldBe(appear, DEFAULT_TIMEOUT).click();
     // $("a>span.si-house-chimney-2.portal-icon").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public void startTask(int taskIndex) {
     $$("span.widget__filter-noti-number").first().shouldBe(appear, DEFAULT_TIMEOUT);
-    getColumnOfTaskHasIndex(taskIndex, "Start").shouldBe(getClickableCondition()).click();
+    getCellByRowAndColumnName(taskIndex, "Start").shouldBe(getClickableCondition()).click();
   }
 
   public ElementsCollection countRelatedCases() {
@@ -295,6 +279,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void clickOnTaskActionLink(int taskIndex) {
+    waitForGrowlMessageDisappear();
     getColumnOfTaskHasActionIndex(taskIndex, "Actions").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
 
@@ -379,7 +364,11 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public SelenideElement stateOfFirstTask() {
-    return getColumnOfTaskHasIndex(0, FILTER_TASK_STATE).shouldBe(appear, DEFAULT_TIMEOUT);
+    return getCellByRowAndColumnName(0, FILTER_TASK_STATE).shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  public SelenideElement responsibleOfFirstTask() {
+    return getCellByRowAndColumnName(0, "Responsible").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public TaskEditWidgetNewDashBoardPage openEditTaskWidget() {
@@ -475,29 +464,14 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void clickOnHeaderTaskByColumn(String columnName) {
-    ElementsCollection elementsTH = $(taskWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$$("table thead tr th");
-    elementsTH.asDynamicIterable().forEach(headerElem -> {
-      if (headerElem.getText().equalsIgnoreCase(columnName)) {
-        waitForElementClickableThenClick(headerElem);
-
-        // Sometimes browser click before JS of Primefaces loaded correctly.
-        // -> header has state focus instead of active.
-        // -> should check: after click, if header has state focus instead of active,
-        // click again.
-        try {
-          headerElem.shouldHave(Condition.cssClass("ui-state-active"), DEFAULT_TIMEOUT);
-        } catch (AssertionError e) {
-          if (headerElem.has(Condition.cssClass("ui-state-focus"))) {
-            waitForElementClickableThenClick(headerElem);
-            headerElem.shouldHave(Condition.cssClass("ui-state-active"), DEFAULT_TIMEOUT);
-          }
-        }
-      }
-    });
+    $(taskWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$$("table thead tr th").shouldHave(CollectionCondition.containExactTextsCaseSensitive(columnName)).filter(Condition.text(columnName)).first()
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $(taskWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$$("table thead tr th").shouldHave(CollectionCondition.containExactTextsCaseSensitive(columnName)).filter(Condition.text(columnName)).first()
+    .shouldHave(Condition.cssClass("ui-state-active"), DEFAULT_TIMEOUT);
   }
 
   public SelenideElement getTheFirstTaskWidgetByColumn(String columnName) {
-    return getColumnOfTaskHasIndex(0, columnName);
+    return getCellByRowAndColumnName(0, columnName);
   }
 
   public SelenideElement getTaskEmptyMessage() {

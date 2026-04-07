@@ -1,84 +1,87 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
   "simpleName" : "AbsenceManagementData",
   "namespace" : "ch.ivy.addon.portal.setting.AbsenceManagement",
-  "isBusinessCaseData" : false,
   "fields" : [ {
     "name" : "absencesByUser",
-    "type" : "java.util.Map",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "java.util.Map"
   }, {
     "name" : "backupAbsence",
-    "type" : "ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence"
+    "type" : "ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence",
+    "modifiers" : [ ]
   }, {
     "name" : "isSupervisor",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ ]
   }, {
     "name" : "users",
-    "type" : "java.util.List<com.axonivy.portal.components.dto.UserDTO>"
+    "type" : "java.util.List<com.axonivy.portal.components.dto.UserDTO>",
+    "modifiers" : [ ]
   }, {
     "name" : "queryAutoComplete",
-    "type" : "String"
+    "modifiers" : [ ]
   }, {
     "name" : "selectedAbsence",
-    "type" : "ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence"
+    "type" : "ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence",
+    "modifiers" : [ ]
   }, {
     "name" : "validationError",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ ]
   }, {
     "name" : "absenceInThePastShown",
-    "type" : "Boolean",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "Boolean"
   }, {
     "name" : "displayedAbsences",
-    "type" : "java.util.List<ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence>"
+    "type" : "java.util.List<ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence>",
+    "modifiers" : [ ]
   }, {
     "name" : "isAbsenceBeingCreated",
-    "type" : "Boolean",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "Boolean"
   }, {
     "name" : "selectedAbsenceUser",
-    "type" : "com.axonivy.portal.components.dto.UserDTO"
+    "type" : "com.axonivy.portal.components.dto.UserDTO",
+    "modifiers" : [ ]
   }, {
     "name" : "selectedUser",
-    "type" : "com.axonivy.portal.components.dto.UserDTO"
+    "type" : "com.axonivy.portal.components.dto.UserDTO",
+    "modifiers" : [ ]
   }, {
     "name" : "isCreateMode",
-    "type" : "Boolean",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "Boolean"
   }, {
     "name" : "substitutes",
-    "type" : "java.util.List<ch.ivy.addon.portalkit.ivydata.bo.IvySubstitute>"
+    "type" : "java.util.List<ch.ivy.addon.portalkit.ivydata.bo.IvySubstitute>",
+    "modifiers" : [ ]
   }, {
     "name" : "substitutions",
-    "type" : "java.util.List<ch.ivy.addon.portalkit.ivydata.bo.IvySubstitute>"
+    "type" : "java.util.List<ch.ivy.addon.portalkit.ivydata.bo.IvySubstitute>",
+    "modifiers" : [ ]
   }, {
-    "name" : "message",
-    "type" : "String",
-    "modifiers" : [ "PERSISTENT" ]
+    "name" : "message"
   }, {
     "name" : "deputyRoles",
-    "type" : "java.util.List<ch.ivy.addon.portalkit.dto.DeputyRole>"
+    "type" : "java.util.List<ch.ivy.addon.portalkit.dto.DeputyRole>",
+    "modifiers" : [ ]
   }, {
     "name" : "selectedDeputyRole",
-    "type" : "ch.ivy.addon.portalkit.dto.DeputyRole"
+    "type" : "ch.ivy.addon.portalkit.dto.DeputyRole",
+    "modifiers" : [ ]
   }, {
-    "name" : "selectedDeputyRoleId",
-    "type" : "String",
-    "modifiers" : [ "PERSISTENT" ]
+    "name" : "selectedDeputyRoleId"
   }, {
     "name" : "selectedDeputy",
-    "type" : "com.axonivy.portal.components.dto.UserDTO"
+    "type" : "com.axonivy.portal.components.dto.UserDTO",
+    "modifiers" : [ ]
   }, {
     "name" : "selectedDeputies",
-    "type" : "java.util.List<ch.ivyteam.ivy.security.ISecurityMember>"
+    "type" : "java.util.List<ch.ivyteam.ivy.security.ISecurityMember>",
+    "modifiers" : [ ]
   }, {
     "name" : "canCreateAbsenceForOtherUsers",
-    "type" : "Boolean",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "Boolean"
   }, {
     "name" : "canCreateSubstituteForOtherUsers",
-    "type" : "Boolean",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "Boolean"
   } ]
 }

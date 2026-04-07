@@ -69,81 +69,22 @@ pipeline {
 }
 
 def updateVersion() {
-
-  // Update buildPluginVersion for the portal-components project
-  def portalComponent = 'AxonIvyPortal/portal-components/pom.xml'
+  def command = "python3 build/update-pom/update_versions.py"
+  
+  if (!params.portalVersion?.trim().isEmpty()) {
+    command += " --portal-version ${params.portalVersion}"
+  }
+  if (!params.ivyEngineVersion?.trim().isEmpty()) {
+    command += " --engine-version ${params.ivyEngineVersion}"
+  }
+  if (!params.parentVersion?.trim().isEmpty()) {
+    command += " --parent-version ${params.parentVersion}"
+  }
   if (!params.buildPluginVersion?.trim().isEmpty()) {
-    maven cmd: "-f ${portalComponent} versions:set-property versions:commit -Dproperty=build.plugin.version -DnewVersion=${params.buildPluginVersion}"
+    command += " --build-plugin-version ${params.buildPluginVersion}"
   }
-
-  // Update ivyEngineVersion for all portal projects
-  def pomFiles = ['AxonIvyPortal/portal-components/pom.xml', 'AxonIvyPortal/portal/pom.xml', 'AxonIvyPortal/portal-selenium-test/pom.xml', 'AxonIvyPortal/portal-selenium-test/customized_pom.xml', 'AxonIvyPortal/portal-selenium-test/document_screenshot_pom.xml', 'AxonIvyPortal/PortalKitTestHelper/pom.xml', 'Showcase/portal-user-examples/pom.xml', 'Showcase/portal-developer-examples/pom.xml', 'Showcase/InternalSupport/pom.xml', 'Showcase/portal-components-examples/pom.xml']
-  for (pomFile in pomFiles) {
-    if (!params.ivyEngineVersion?.trim().isEmpty()) {
-      maven cmd: "-f ${pomFile} versions:set-property versions:commit -Dproperty=ivy.engine.version -DnewVersion=${params.ivyEngineVersion}"
-    }
-  }
-
-  // Update portalVersion and parentVersion for all portal projects
-  if (!params.portalVersion?.trim().isEmpty() || !params.parentVersion?.trim().isEmpty()) {
-    sh '''#!/bin/bash
-      updatePortalAndParentVersion() {
-        python3 - <<EOF
-import xml.etree.ElementTree as ET
-from pathlib import Path
-import sys
-
-portal_version = "$portalVersion"
-parent_version = "$parentVersion"
-
-filePath = "$1"
-
-try:
-  ET.register_namespace('', 'http://maven.apache.org/POM/4.0.0')
-  maven_ns = '{http://maven.apache.org/POM/4.0.0}'
-  tree = ET.parse(filePath)
-  root = tree.getroot()
-
-  # Update portal version if needed
-  if portal_version and portal_version.strip():
-    version = root.find(f'{maven_ns}version')
-    if version is not None:
-      version.text = portal_version
-   
-    dependencies = root.find(f'{maven_ns}dependencies')
-    if dependencies is not None:
-      for dependency in dependencies.findall(f'{maven_ns}dependency'):
-        groupId = dependency.find(f'{maven_ns}groupId')
-        if groupId is not None and groupId.text in [
-          "com.axonivy.portal",
-        ]:
-          versionTag = dependency.find(f'{maven_ns}version')
-          if versionTag is not None:
-            versionTag.text = portal_version
-
-  # Update parent version if needed
-  if parent_version and parent_version.strip():
-    parent = root.find(f'{maven_ns}parent')
-    if parent is not None:
-      versionTag = parent.find(f'{maven_ns}version')
-      if versionTag is not None:
-        versionTag.text = parent_version
-
-  # Write changes back to the file
-  tree.write(filePath, encoding="utf-8", xml_declaration=True)
-except Exception as e:
-  print(f"Failed to process {filePath}: {e}", file=sys.stderr)
-EOF
-      }
-
-      filePatterns=("AxonIvyPortal/*/pom.xml" "Showcase/*/pom.xml" "AxonIvyPortal/portal-selenium-test/customized_pom.xml"
-          "AxonIvyPortal/portal-selenium-test/document_screenshot_pom.xml" "Documentation/public-api/pom.xml")
-
-      for pattern in "${filePatterns[@]}"; do
-        for file in $pattern; do
-          updatePortalAndParentVersion "$file"
-        done
-      done
-    '''
-  }
+  
+  sh """
+    ${command}
+  """
 }

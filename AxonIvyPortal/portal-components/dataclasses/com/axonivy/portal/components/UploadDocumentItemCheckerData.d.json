@@ -1,25 +1,28 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
   "simpleName" : "UploadDocumentItemCheckerData",
   "namespace" : "com.axonivy.portal.components",
-  "isBusinessCaseData" : false,
   "fields" : [ {
     "name" : "uploadedFile",
-    "type" : "org.primefaces.model.file.UploadedFile"
+    "type" : "org.primefaces.model.file.UploadedFile",
+    "modifiers" : [ ]
   }, {
     "name" : "checkStatus",
-    "type" : "com.axonivy.portal.components.enums.UploadDocumentCheckStatus"
+    "type" : "com.axonivy.portal.components.enums.UploadDocumentCheckStatus",
+    "modifiers" : [ ]
   }, {
     "name" : "message",
-    "type" : "String"
+    "modifiers" : [ ]
   }, {
     "name" : "enableVirusScannerForUploadedDocument",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ ]
   }, {
     "name" : "enableScriptCheckingForUploadedDocument",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ ]
   }, {
     "name" : "allowedUploadFileTypes",
-    "type" : "String"
+    "modifiers" : [ ]
   } ]
 }

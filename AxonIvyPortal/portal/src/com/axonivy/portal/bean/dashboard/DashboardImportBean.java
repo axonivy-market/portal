@@ -2,7 +2,10 @@ package com.axonivy.portal.bean.dashboard;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
@@ -46,6 +49,7 @@ public class DashboardImportBean extends DashboardModificationBean implements Se
   private IRole everybodyRole;
   private int index = 0;
   private int activeIndex;
+  private Map<String, String> oldToNewIdMap = new HashMap<>();
 
   @Override
   @PostConstruct
@@ -88,10 +92,22 @@ public class DashboardImportBean extends DashboardModificationBean implements Se
       return;
     }
 
+    // Build oldId → newId map so navigation widget references can be remapped after
+    // import
+    oldToNewIdMap = new HashMap<>();
+
     importedDashboards.stream().forEach(dashboard -> {
       selectedDashboard = dashboard;
+      String newId = DashboardUtils.generateId();
+      // Use existing oldId if present (exported before this change), otherwise use
+      // current id
+      String originalId = StringUtils.isNotBlank(dashboard.getOldId()) ? dashboard.getOldId() : dashboard.getId();
+      if (originalId != null) {
+        oldToNewIdMap.put(originalId, newId);
+        selectedDashboard.setOldId(originalId);
+      }
       selectedDashboard.setIsPublic(isPublicDashboard);
-      selectedDashboard.setId(DashboardUtils.generateId());
+      selectedDashboard.setId(newId);
       selectedDashboard.setPermissionDTOs(new ArrayList<>());
       findAndSetPermissions();
       if (!isPublicDashboard) {
@@ -99,6 +115,9 @@ public class DashboardImportBean extends DashboardModificationBean implements Se
       }
     });
 
+    Map<String, String> portalOldIdToCurrentIdMap = buildPortalOldIdToCurrentIdMap();
+    importedDashboards
+        .forEach(dashboard -> remapNavigationWidgetTargetIds(dashboard, oldToNewIdMap, portalOldIdToCurrentIdMap));
 
     fileSize = FileUtils.byteCountToDisplaySize(importFile.getSize());
     isLoaded = true;
@@ -143,6 +162,7 @@ public class DashboardImportBean extends DashboardModificationBean implements Se
         }
         createDashboards();
       }
+      fixExistingNavigationWidgetReferences();
       if (importedDashboards.size() > 1) {
         if (this.isPublicDashboard) {
           navigateToPublicDashBoardListPage();
@@ -155,9 +175,63 @@ public class DashboardImportBean extends DashboardModificationBean implements Se
     }
   }
 
+  private void remapNavigationWidgetTargetIds(Dashboard dashboard, Map<String, String> oldToNewIdMap,
+      Map<String, String> portalOldIdToCurrentIdMap) {
+    Optional.ofNullable(dashboard.getWidgets()).orElse(new ArrayList<>()).stream()
+        .filter(w -> w instanceof NavigationDashboardWidget)
+        .map(w -> (NavigationDashboardWidget) w)
+        .forEach(navWidget -> {
+          String targetId = navWidget.getTargetDashboardId();
+          if (StringUtils.isNotBlank(targetId)) {
+            if (oldToNewIdMap.containsKey(targetId)) {
+              // Same-file import: remap to the new ID assigned in this import
+              navWidget.setTargetDashboardId(oldToNewIdMap.get(targetId));
+            } else if (portalOldIdToCurrentIdMap.containsKey(targetId)) {
+              // Cross-file import: target was imported in a prior session; resolve via oldId
+              navWidget.setTargetDashboardId(portalOldIdToCurrentIdMap.get(targetId));
+            } else {
+              Ivy.log().warn(
+                  "Navigation widget ''{0}'' references dashboard ID ''{1}'' which is not in the import file and does not exist in this portal.",
+                  navWidget.getName(), targetId);
+              displayWarningMessage(
+                  Ivy.cms().co(
+                      "/Dialogs/com/axonivy/portal/dashboard/component/DashboardImportDetails/NavigationWidgetMissingTarget",
+                      List.of(navWidget.getName())));
+            }
+          }
+        });
+  }
+
+  /**
+   * Builds a map from every known portal dashboard's old or current ID → its
+   * current ID.
+   * This allows navigation widget targets to be resolved even when the target
+   * dashboard
+   * was imported in a prior separate import operation.
+   */
+  private Map<String, String> buildPortalOldIdToCurrentIdMap() {
+    Map<String, String> map = new HashMap<>();
+    List<Dashboard> allDashboards = new ArrayList<>(DashboardUtils.getPublicDashboards());
+    allDashboards.addAll(DashboardUtils.getPrivateDashboards());
+    for (Dashboard d : allDashboards) {
+      if (d.getId() != null) {
+        map.put(d.getId(), d.getId());
+      }
+      if (StringUtils.isNotBlank(d.getOldId())) {
+        map.put(d.getOldId(), d.getId());
+      }
+    }
+    return map;
+  }
+
   private void displayedMessage(String validateMessage) {
     FacesContext.getCurrentInstance().addMessage("import-dashboard-form:import-dashboard-dialog-message",
         FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR, validateMessage, null));
+  }
+
+  private void displayWarningMessage(String message) {
+    FacesContext.getCurrentInstance().addMessage("import-dashboard-form:import-dashboard-dialog-message",
+        FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_WARN, message, null));
   }
 
   private void resetDialog() {
@@ -170,6 +244,7 @@ public class DashboardImportBean extends DashboardModificationBean implements Se
     isLoaded = isError = false;
     index = 0;
     activeIndex = 0;
+    oldToNewIdMap = new HashMap<>();
   }
 
   public boolean isLoaded() {
@@ -218,6 +293,53 @@ public class DashboardImportBean extends DashboardModificationBean implements Se
 
   public void setActiveIndex(int activeIndex) {
     this.activeIndex = activeIndex;
+  }
+
+  /**
+   * After all imported dashboards are saved, re-scan every portal dashboard's
+   * navigation widgets and remap any targetDashboardId that matches an oldId
+   * from this import. This fixes the case where the navigation widget dashboard
+   * was imported before the target dashboard.
+   */
+  private void fixExistingNavigationWidgetReferences() {
+    if (oldToNewIdMap.isEmpty()) {
+      return;
+    }
+    List<Dashboard> publicDashboards = DashboardUtils.getPublicDashboards();
+    if (fixNavigationWidgets(publicDashboards)) {
+      boolean prev = isPublicDashboard;
+      isPublicDashboard = true;
+      saveDashboards(publicDashboards);
+      isPublicDashboard = prev;
+    }
+    List<Dashboard> privateDashboards = DashboardUtils.getPrivateDashboards();
+    if (fixNavigationWidgets(privateDashboards)) {
+      boolean prev = isPublicDashboard;
+      isPublicDashboard = false;
+      saveDashboards(privateDashboards);
+      isPublicDashboard = prev;
+    }
+  }
+
+  private boolean fixNavigationWidgets(List<Dashboard> dashboards) {
+    boolean anyFixed = false;
+    for (Dashboard dashboard : dashboards) {
+      if (CollectionUtils.isEmpty(dashboard.getWidgets())) {
+        continue;
+      }
+      for (DashboardWidget widget : dashboard.getWidgets()) {
+        if (!(widget instanceof NavigationDashboardWidget)) {
+          continue;
+        }
+        NavigationDashboardWidget navWidget = (NavigationDashboardWidget) widget;
+        String targetId = navWidget.getTargetDashboardId();
+        if (StringUtils.isNotBlank(targetId) && oldToNewIdMap.containsKey(targetId)) {
+          navWidget.setTargetDashboardId(oldToNewIdMap.get(targetId));
+          anyFixed = true;
+        }
+      }
+    }
+    return anyFixed;
   }
 
 }

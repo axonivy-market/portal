@@ -1,15 +1,11 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
   "simpleName" : "PortalDashboardDetailModificationData",
   "namespace" : "ch.ivy.addon.portal.generic.dashboard.PortalDashboardDetailModification",
-  "isBusinessCaseData" : false,
   "fields" : [ {
-    "name" : "dashboardId",
-    "type" : "String",
-    "modifiers" : [ "PERSISTENT" ]
+    "name" : "dashboardId"
   }, {
     "name" : "isPublicDashboard",
-    "type" : "Boolean",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "Boolean"
   } ]
 }

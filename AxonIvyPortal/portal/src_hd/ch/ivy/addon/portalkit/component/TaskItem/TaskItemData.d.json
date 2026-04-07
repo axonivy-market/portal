@@ -1,37 +1,32 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
   "simpleName" : "TaskItemData",
   "namespace" : "ch.ivy.addon.portalkit.component.TaskItem",
-  "isBusinessCaseData" : false,
   "fields" : [ {
     "name" : "task",
-    "type" : "ch.ivyteam.ivy.workflow.ITask"
+    "type" : "ch.ivyteam.ivy.workflow.ITask",
+    "modifiers" : [ ]
   }, {
     "name" : "compactMode",
-    "type" : "Boolean",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "Boolean"
   }, {
     "name" : "expandedTask",
-    "type" : "ch.ivyteam.ivy.workflow.ITask"
+    "type" : "ch.ivyteam.ivy.workflow.ITask",
+    "modifiers" : [ ]
   }, {
     "name" : "canUserResumeTask",
-    "type" : "Boolean",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "Boolean"
   }, {
     "name" : "callbackUrl",
-    "type" : "String",
-    "comment" : "Portal Task List url is used to be back after finish task",
-    "modifiers" : [ "PERSISTENT" ]
+    "comment" : "Portal Task List url is used to be back after finish task"
   }, {
     "name" : "dataModel",
-    "type" : "ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel"
+    "type" : "ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel",
+    "modifiers" : [ ]
   }, {
-    "name" : "currentPortalPage",
-    "type" : "String",
-    "modifiers" : [ "PERSISTENT" ]
+    "name" : "currentPortalPage"
   }, {
     "name" : "inFrame",
-    "type" : "Boolean",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "Boolean"
   } ]
 }

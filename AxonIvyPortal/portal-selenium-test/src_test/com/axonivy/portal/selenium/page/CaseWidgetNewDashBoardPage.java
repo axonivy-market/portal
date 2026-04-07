@@ -59,9 +59,12 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
     return 0;
   }
 
+  private ElementsCollection getCaseCollection() {
+    return $(caseWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$(".ui-datatable-scrollable-header").shouldBe(appear, DEFAULT_TIMEOUT).$$("table thead tr th");
+  }
+
   private int getIndexWidgetByColumnScrollable(String columnName) {
-    ElementsCollection elementsTH =
-        $(caseWidgetId).$(".ui-datatable-scrollable-header").shouldBe(appear, DEFAULT_TIMEOUT).$$("table thead tr th");
+    ElementsCollection elementsTH = getCaseCollection();
     for (int i = 0; i < elementsTH.size(); i++) {
       if (elementsTH.get(i).getAttribute("aria-label").equalsIgnoreCase(columnName)) {
         return i;

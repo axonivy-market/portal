@@ -491,6 +491,45 @@ public class DashboardConfigurationTest extends BaseTest {
   }
 
   @Test
+  public void testImportDashboardWithDuplicateLocales() {
+    redirectToRelativeLink(grantDashboardImportOwnPermissionUrl);
+    LinkNavigator.redirectToPortalDashboardConfiguration();
+    var configurationPage = new DashboardConfigurationPage();
+    configurationPage.openCreatePrivateDashboardMenu();
+    configurationPage.getImportDashboardDialog();
+
+    configurationPage.uploadFile("Dashboard_With_Duplicate_Locales.json");
+    configurationPage.getDashboardImportSaveButton().shouldBe(Condition.enabled, DEFAULT_TIMEOUT);
+
+    var titles = configurationPage.getMultiLangDashboardImportTitle();
+    titles.get(0).shouldHave(Condition.value("Dashboard with Duplicates"));
+    titles.get(2).shouldHave(Condition.value("Dashboard"));
+
+    configurationPage.getImportMultipleLanguageDialog().$("button[type='submit']").click();
+
+    String name = "Imported Duplicate Dashboard";
+    String newGermanName = "German Duplicate Dashboard";
+    String icon = "fa-warning";
+    String description = "Dashboard imported from JSON with duplicate locales";
+
+    configurationPage.saveImportDashboard(name, newGermanName, description, icon);
+
+    NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
+    newDashboardDetailsEditPage.getTitleByIndex(0).shouldBe(Condition.exactText(name));
+    newDashboardDetailsEditPage.getIconByIndex(0, icon).shouldBe(Condition.appear);
+
+    newDashboardDetailsEditPage.getWidgets().shouldBe(CollectionCondition.size(2));
+
+    SelenideElement taskWidgetTitle = newDashboardDetailsEditPage.getWidgets().get(0).$("span.widget__header-title");
+    taskWidgetTitle.shouldHave(Condition.text("Your Tasks"));
+
+    SelenideElement caseWidgetTitle = newDashboardDetailsEditPage.getWidgets().get(1).$("span.widget__header-title");
+    caseWidgetTitle.shouldHave(Condition.text("Your Cases"));
+
+    goBackConfigurationAndVerifyDashboards(name, description, newDashboardDetailsEditPage, false);
+  }
+
+  @Test
   public void testImportPublicDashboard() {
     redirectToRelativeLink(grantDashboardImportPublicPermissionUrl);
     LinkNavigator.redirectToPortalDashboardConfiguration();
@@ -514,7 +553,7 @@ public class DashboardConfigurationTest extends BaseTest {
   }
   
   @Test
-  public void testAddNewAcccessibilityDashboard() {
+  public void testAddNewAccessibilityDashboard() {
     String name = "Accessibility shortcuts dashboard";
     String icon = "fa-coffee";
     String description = "Accessibility shortcuts dashboard description";

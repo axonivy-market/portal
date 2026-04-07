@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/data-class/13.2.0/data-class.json",
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
   "simpleName" : "SideStepCEOApprovalData",
   "namespace" : "com.axonivy.portal.developerexamples.customization.sidestep.SideStepCEOApproval",
   "isBusinessCaseData" : false,
