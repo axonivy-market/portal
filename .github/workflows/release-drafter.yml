@@ -35,7 +35,7 @@ jobs:
     steps:
       - uses: release-drafter/release-drafter@v6
         with:
-          config: release.yml
+          config-name: release-drafter.yml
           disable-autolabeler: true
           commitish: ${{ inputs.branch || github.ref_name }}
           name: next release 10.0
