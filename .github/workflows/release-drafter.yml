@@ -21,8 +21,22 @@ on:
   pull_request:
     types: [opened, reopened, synchronize]
   workflow_dispatch:
+    inputs:
+      branch:
+        description: 'Branch to draft release for'
+        required: true
+        default: 'master'
+        type: string
 
 jobs:
   release_drafter:
-    if: ${{ github.event_name == 'pull_request' || github.ref_name == 'master' || startsWith(github.ref_name, 'release/') }}
-    uses: axonivy-market/github-workflows/.github/workflows/release-drafter.yml@v6
+    if: ${{ github.event_name == 'pull_request' || github.event_name == 'workflow_dispatch' || github.ref_name == 'master' || startsWith(github.ref_name, 'release/') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: release-drafter/release-drafter@v6
+        with:
+          config: release.yml
+          disable-autolabeler: true
+          commitish: ${{ inputs.branch || github.ref_name }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
