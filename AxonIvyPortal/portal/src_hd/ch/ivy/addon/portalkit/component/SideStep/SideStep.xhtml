@@ -23,6 +23,7 @@
   <cc:attribute name="onWorkflowEventComplete" />
   <cc:attribute name="onCustomFieldsDialogComplete" />
   <cc:attribute name="showInTaskList" type="java.lang.Boolean" default="true" shortDescription="Indicator to display SideStep in TaskList"/>
+  <cc:attribute name="ariaLabel" />
   <cc:attribute name="inFrame" default="false"/>
   <cc:attribute name="isPreviewMode" default="false"/>
 </cc:interface>
@@ -34,6 +35,7 @@
   <f:event listener="#{data.setCurrentPortalPage(cc.attrs.currentPortalPage)}" type="preRenderComponent" />
 
   <p:link id="#{cc.attrs.actionLinkId}" disabled="#{cc.attrs.isDisabled or cc.attrs.isPreviewMode}" onclick="event.stopPropagation(); return false;"
+    ariaLabel="#{cc.attrs.ariaLabel}"
     styleClass="action-link #{cc.attrs.buttonStyleClass} portal-icon ui-sidestep-action">
     <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}" styleClass="task-action-item-label" />
     <i class="si si-arrow-down-1" />
