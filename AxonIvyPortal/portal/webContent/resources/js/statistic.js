@@ -566,12 +566,27 @@ class ClientCanvasChart extends ClientChart {
 
   // Method to build accessible description from chart data
   buildChartAriaLabel(name, labels, values) {
-    let description = name || '';
+    let description = name
+      || $(this.chart).parents('.dashboard__widget').find('.widget__header > .widget__header-title').text().trim()
+      || getFormatedTitle(this.data.chartConfig.names)
+      || this.data.chartConfig.name
+      || '';
     if (labels && values && labels.length > 0) {
-      let items = labels.map((label, i) => label + ': ' + values[i]);
-      description += ', ' + items.join(', ');
+      let items = labels.map((label, i) => this.formatAriaLabel(label) + ': ' + values[i]);
+      if (description) {
+        description += ', ';
+      }
+      description += items.join(', ');
     }
     return description;
+  };
+
+  // Method to format label for aria description
+  formatAriaLabel(label) {
+    if (typeof label === 'string' && !isNaN(Date.parse(label)) && label.includes('T')) {
+      return formatDateFollowLocale(new Date(label));
+    }
+    return label;
   };
 
   // Method to format chart label
@@ -650,7 +665,7 @@ class ClientCanvasChart extends ClientChart {
     // Update canvas aria-label with new data
     let canvasElem = $(chart).find('canvas').get(0);
     if (canvasElem) {
-      canvasElem.setAttribute('aria-label', this.buildChartAriaLabel(config.name, labels, values));
+      canvasElem.setAttribute('aria-label', this.buildChartAriaLabel(getFormatedTitle(config.names), labels, values));
     }
 
     this.clientChartConfig.update("none");
@@ -673,7 +688,7 @@ class ClientPieChart extends ClientCanvasChart {
     } else {
       let labels = result.map(bucket => this.formatChartLabel(bucket.displayKey));
       let values = data.map(bucket => bucket.count);
-      let ariaLabel = this.buildChartAriaLabel(config.name, labels, values);
+      let ariaLabel = this.buildChartAriaLabel(getFormatedTitle(config.names), labels, values);
       let canvas = this.renderChartCanvas(chart.getAttribute(DATA_CHART_ID), ariaLabel);
       $(chart).empty().append(canvas);
       let backgroundColors = this.calculateConditionalColors(config, result, config.pieChartConfig.backgroundColors);
@@ -755,7 +770,7 @@ class ClientCartesianChart extends ClientCanvasChart {
       let stepSize = chartTypeConfig?.yValue === 'time' ? 200 : undefined;
       let labels = data.map(bucket => this.formatChartLabel(bucket.displayKey));
       let values = data.map(bucket => bucket.count);
-      let ariaLabel = this.buildChartAriaLabel(config.name, labels, values);
+      let ariaLabel = this.buildChartAriaLabel(getFormatedTitle(config.names), labels, values);
       let canvas = this.renderChartCanvas(chart.getAttribute(DATA_CHART_ID), ariaLabel);
       let backgroundColors = this.calculateConditionalColors(config, data, config.chartType == 'bar' ? config.barChartConfig.backgroundColors : config.lineChartConfig.backgroundColors);
       $(chart).empty().append(canvas);
@@ -883,7 +898,7 @@ class ClientBarChart extends ClientCartesianChart {
       // Update canvas aria-label with new data
       let canvasElem = $(chart).find('canvas').get(0);
       if (canvasElem) {
-        canvasElem.setAttribute('aria-label', this.buildChartAriaLabel(config.name, labels, values));
+        canvasElem.setAttribute('aria-label', this.buildChartAriaLabel(getFormatedTitle(config.names), labels, values));
       }
     }
 
