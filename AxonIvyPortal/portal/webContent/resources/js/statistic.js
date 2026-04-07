@@ -565,12 +565,8 @@ class ClientCanvasChart extends ClientChart {
   };
 
   // Method to build accessible description from chart data
-  buildChartAriaLabel(name, labels, values) {
-    let description = name
-      || $(this.chart).parents('.dashboard__widget').find('.widget__header > .widget__header-title').text().trim()
-      || getFormatedTitle(this.data.chartConfig.names)
-      || this.data.chartConfig.name
-      || '';
+  buildChartAriaLabel(labels, values) {
+    let description = this.widgetName || '';
     if (labels && values && labels.length > 0) {
       let items = labels.map((label, i) => this.formatAriaLabel(label) + ': ' + values[i]);
       if (description) {
@@ -611,6 +607,7 @@ class ClientCanvasChart extends ClientChart {
   // Method to init the dashboard statistic widget title
   initWidgetTitle() {
     let widgetName = getFormatedTitle(this.data.chartConfig.names);
+    this.widgetName = widgetName;
     let cardPanel = $(this.chart).parents('.card-widget-panel');
 
     $(this.chart).parents('.dashboard__widget').find('.widget__header > .widget__header-title')
@@ -665,14 +662,13 @@ class ClientCanvasChart extends ClientChart {
     // Update canvas aria-label with new data
     let canvasElem = $(chart).find('canvas').get(0);
     if (canvasElem) {
-      canvasElem.setAttribute('aria-label', this.buildChartAriaLabel(getFormatedTitle(config.names), labels, values));
+      canvasElem.setAttribute('aria-label', this.buildChartAriaLabel(labels, values));
     }
 
     this.clientChartConfig.update("none");
   }
 }
 
-// Class for pie charts
 class ClientPieChart extends ClientCanvasChart {
   render() {
     this.initWidgetTitle();
@@ -688,7 +684,7 @@ class ClientPieChart extends ClientCanvasChart {
     } else {
       let labels = result.map(bucket => this.formatChartLabel(bucket.displayKey));
       let values = data.map(bucket => bucket.count);
-      let ariaLabel = this.buildChartAriaLabel(getFormatedTitle(config.names), labels, values);
+      let ariaLabel = this.buildChartAriaLabel(labels, values);
       let canvas = this.renderChartCanvas(chart.getAttribute(DATA_CHART_ID), ariaLabel);
       $(chart).empty().append(canvas);
       let backgroundColors = this.calculateConditionalColors(config, result, config.pieChartConfig.backgroundColors);
@@ -770,7 +766,7 @@ class ClientCartesianChart extends ClientCanvasChart {
       let stepSize = chartTypeConfig?.yValue === 'time' ? 200 : undefined;
       let labels = data.map(bucket => this.formatChartLabel(bucket.displayKey));
       let values = data.map(bucket => bucket.count);
-      let ariaLabel = this.buildChartAriaLabel(getFormatedTitle(config.names), labels, values);
+      let ariaLabel = this.buildChartAriaLabel(labels, values);
       let canvas = this.renderChartCanvas(chart.getAttribute(DATA_CHART_ID), ariaLabel);
       let backgroundColors = this.calculateConditionalColors(config, data, config.chartType == 'bar' ? config.barChartConfig.backgroundColors : config.lineChartConfig.backgroundColors);
       $(chart).empty().append(canvas);
@@ -898,7 +894,7 @@ class ClientBarChart extends ClientCartesianChart {
       // Update canvas aria-label with new data
       let canvasElem = $(chart).find('canvas').get(0);
       if (canvasElem) {
-        canvasElem.setAttribute('aria-label', this.buildChartAriaLabel(getFormatedTitle(config.names), labels, values));
+        canvasElem.setAttribute('aria-label', this.buildChartAriaLabel(labels, values));
       }
     }
 
@@ -1005,6 +1001,12 @@ class ClientNumberChart extends ClientChart {
     if (this.canDrillDown()) {
       $(this.chart).find('.chart-content-card-clickable').each((index, element) => {
         element.addEventListener('click', (event) => this.handleNumberCardClick(element, event));
+        element.addEventListener('keydown', (event) => {
+          if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            this.handleNumberCardClick(element, event);
+          }
+        });
       });
     }
     
@@ -1058,11 +1060,18 @@ class ClientNumberChart extends ClientChart {
 
   generateItemHtml(label, number, suffixSymbol, index, counting) {
     label = this.data.chartConfig.numberChartConfig?.hideLabel === true ? '' : this.formatChartLabel(label) ;
-    const isClickable = this.canDrillDown() ? 'chart-content-card-clickable' : '';
+    const isDrillDown = this.canDrillDown();
+    const isClickable = isDrillDown ? 'chart-content-card-clickable' : '';
 
-    let container = $('<div class="text-center chart-content-card" role="group" aria-hidden="true"></div>');
+    let container = $('<div class="text-center chart-content-card" role="group"></div>');
     container.addClass(isClickable);
     container.attr('data-index', index);
+    if (isDrillDown) {
+      container.attr('role', 'button');
+      container.attr('tabindex', '0');
+    } else {
+      container.attr('aria-hidden', 'true');
+    }
 
     let numberContainer = $('<div class="chart-number-container"></div>');
     $('<span class="card-number chart-number-font-size chart-number-animation"></span>').text(number).appendTo(numberContainer);
@@ -1128,11 +1137,16 @@ class ClientNumberChart extends ClientChart {
   buildNumberChartAriaLabel(name, result) {
     let description = name || '';
     if (result && result.length > 0) {
+      let hideLabel = this.data.chartConfig.numberChartConfig?.hideLabel === true;
       let items = result.map(item => {
-        let label = this.data.chartConfig.numberChartConfig?.hideLabel === true ? '' : this.formatChartLabel(item.key);
-        return label ? label + ': ' + item.count : '' + item.count;
+        let label = hideLabel ? '' : this.formatChartLabel(item.displayKey);
+        let value = item.aggs.length > 0 ? this.formatNumberValue(item.aggs[0].value) : item.count;
+        return label ? label + ': ' + value : '' + value;
       });
-      description += ', ' + items.join(', ');
+      if (description) {
+        description += ', ';
+      }
+      description += items.join(', ');
     }
     return description;
   }
