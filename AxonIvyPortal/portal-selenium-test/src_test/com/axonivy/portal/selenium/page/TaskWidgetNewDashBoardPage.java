@@ -1,8 +1,6 @@
 package com.axonivy.portal.selenium.page;
 
 import static com.codeborne.selenide.CollectionCondition.containExactTextsCaseSensitive;
-import static com.codeborne.selenide.CollectionCondition.size;
-import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
 import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Condition.disappear;
 import static com.codeborne.selenide.Condition.text;
@@ -24,9 +22,8 @@ import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.ScrollIntoViewOptions;
-import com.codeborne.selenide.SelenideElement;
-import com.codeborne.selenide.WebElementsCondition;
 import com.codeborne.selenide.ScrollIntoViewOptions.Block;
+import com.codeborne.selenide.SelenideElement;
 
 public class TaskWidgetNewDashBoardPage extends TemplatePage {
 
@@ -708,6 +705,15 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
         .stream()
         .map(SelenideElement::getText)
         .collect(Collectors.toList());
+  }
+
+  public void selectTaskToDelegateAtRow(int rowIndex, int widgetIndex) {
+    $(taskWidgetId).$("tbody[id$='dashboard-tasks_data']")
+        .$("tr[data-ri='" + rowIndex + "']")
+        .$("td.dashboard-tasks__selection-column .ui-chkbox-box")
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $("button[id$='delegate-tasks-btn-" + widgetIndex + "']")
+        .shouldNotHave(Condition.cssClass("ui-state-disabled"), DEFAULT_TIMEOUT);
   }
 
   public void selectTaskByName(String taskName) {
