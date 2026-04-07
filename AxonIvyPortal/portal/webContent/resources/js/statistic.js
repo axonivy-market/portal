@@ -1001,12 +1001,6 @@ class ClientNumberChart extends ClientChart {
     if (this.canDrillDown()) {
       $(this.chart).find('.chart-content-card-clickable').each((index, element) => {
         element.addEventListener('click', (event) => this.handleNumberCardClick(element, event));
-        element.addEventListener('keydown', (event) => {
-          if (event.key === 'Enter' || event.key === ' ') {
-            event.preventDefault();
-            this.handleNumberCardClick(element, event);
-          }
-        });
       });
     }
     
@@ -1060,18 +1054,11 @@ class ClientNumberChart extends ClientChart {
 
   generateItemHtml(label, number, suffixSymbol, index, counting) {
     label = this.data.chartConfig.numberChartConfig?.hideLabel === true ? '' : this.formatChartLabel(label) ;
-    const isDrillDown = this.canDrillDown();
-    const isClickable = isDrillDown ? 'chart-content-card-clickable' : '';
+    const isClickable = this.canDrillDown() ? 'chart-content-card-clickable' : '';
 
-    let container = $('<div class="text-center chart-content-card" role="group"></div>');
+    let container = $('<div class="text-center chart-content-card" role="group" aria-hidden="true"></div>');
     container.addClass(isClickable);
     container.attr('data-index', index);
-    if (isDrillDown) {
-      container.attr('role', 'button');
-      container.attr('tabindex', '0');
-    } else {
-      container.attr('aria-hidden', 'true');
-    }
 
     let numberContainer = $('<div class="chart-number-container"></div>');
     $('<span class="card-number chart-number-font-size chart-number-animation"></span>').text(number).appendTo(numberContainer);
