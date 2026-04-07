@@ -3,10 +3,10 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.axonivy.portal</groupId>
   <artifactId>portal-selenium-test</artifactId>
-  <version>12.0.14-SNAPSHOT</version>
+  <version>12.0.14</version>
   <packaging>iar</packaging>
   <properties>
-    <build.plugin.version>12.0.8</build.plugin.version>
+    <build.plugin.version>12.0.13</build.plugin.version>
     <ivy.engine.version>12.0.14</ivy.engine.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
@@ -14,7 +14,7 @@
     <dependency>
       <groupId>com.axonivy.portal</groupId>
       <artifactId>portal</artifactId>
-      <version>12.0.14-SNAPSHOT</version>
+      <version>12.0.14</version>
       <type>iar</type>
     </dependency>
     <dependency>
