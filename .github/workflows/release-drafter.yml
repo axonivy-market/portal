@@ -40,3 +40,9 @@ jobs:
           name: Next release draft
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # Use the output in a later step
+      - name: Check the list of PRs
+        run: |
+          echo "The generated release body is:"
+          echo "${{ steps.release_drafter.outputs.body }}"
