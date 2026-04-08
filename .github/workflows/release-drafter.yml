@@ -38,7 +38,7 @@ jobs:
           config-name: release-drafter.yml
           disable-autolabeler: true
           commitish: ${{ inputs.branch || github.ref_name }}
-          filter-by-commitish: true
+          filter-by-commitish: commitish
           name: next release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
