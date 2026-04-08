@@ -73,20 +73,19 @@ public abstract class AbstractTaskWidgetFilterBean implements Serializable {
       return;
     }
 
-    // Remove filters whose field is no longer available
-    this.widget.getFilters().removeIf(filter -> !isFilterAvailable(filter));
-
     // If the filter available in the filter list, initialize it
     for (DashboardFilter filter : this.widget.getFilters()) {
-      FilterField filterField = TaskFilterFieldFactory
-          .findBy(this.widget.getId(), Optional.ofNullable(filter).map(DashboardFilter::getField).orElse(""),
-              Optional.ofNullable(filter).map(DashboardFilter::getFilterType).orElse(null));
-      if (filterField != null) {
-        TaskColumnModel taskColumnModel = this.mapHeaders.get(filterField.getName());
-        if (taskColumnModel != null) {
-          filter.setLabel(taskColumnModel.getHeaderText());
+      if (isFilterAvailable(filter)) {
+        FilterField filterField = TaskFilterFieldFactory
+            .findBy(this.widget.getId(), Optional.ofNullable(filter).map(DashboardFilter::getField).orElse(""),
+                Optional.ofNullable(filter).map(DashboardFilter::getFilterType).orElse(null));
+        if (filterField != null) {
+          TaskColumnModel taskColumnModel = this.mapHeaders.get(filterField.getName());
+          if (taskColumnModel != null) {
+            filter.setLabel(taskColumnModel.getHeaderText());
+          }
+          filterField.initFilter(filter);
         }
-        filterField.initFilter(filter);
       }
     }
   }
