@@ -160,7 +160,6 @@ public class DashboardTaskWidgetFilterTest extends BaseTest {
     login(TestAccount.ADMIN_USER);
     redirectToNewDashBoard();
     TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASK_WIDGET);
-    resizeBrowserToSmallScreen();
     
     taskWidget.openFilterWidget();
     taskWidget.addFilter("Created", FilterOperator.AFTER);
