@@ -76,18 +76,19 @@ public abstract class AbstractCaseWidgetFilterBean implements Serializable {
       return;
     }
 
+    // Remove filters whose field is no longer available
+    this.widget.getFilters().removeIf(filter -> !isFilterAvailable(filter));
+
     // If the filter available in the filter list, initialize it
     for (DashboardFilter filter : this.widget.getFilters()) {
-      if (isFilterAvailable(filter)) {
-        FilterField filterField =
-            FilterFieldFactory.findBy(this.widget.getId(), Optional.ofNullable(filter).map(DashboardFilter::getField).orElse(""));
-        if (filterField != null) {
-          CaseColumnModel caseColumnModel = this.mapHeaders.get(filterField.getName());
-          if (caseColumnModel != null) {
-            filter.setLabel(caseColumnModel.getHeaderText());
-          }
-          filterField.initFilter(filter);
+      FilterField filterField =
+          FilterFieldFactory.findBy(this.widget.getId(), Optional.ofNullable(filter).map(DashboardFilter::getField).orElse(""));
+      if (filterField != null) {
+        CaseColumnModel caseColumnModel = this.mapHeaders.get(filterField.getName());
+        if (caseColumnModel != null) {
+          filter.setLabel(caseColumnModel.getHeaderText());
         }
+        filterField.initFilter(filter);
       }
     }
   }
