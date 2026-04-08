@@ -33,12 +33,12 @@ jobs:
     if: ${{ github.event_name == 'pull_request' || github.event_name == 'workflow_dispatch' || github.ref_name == 'master' || startsWith(github.ref_name, 'release/') }}
     runs-on: ubuntu-latest
     steps:
-      - uses: release-drafter/release-drafter@v5
+      - uses: release-drafter/release-drafter@v7
         with:
           config-name: release-drafter.yml
           disable-autolabeler: true
           commitish: ${{ inputs.branch || github.ref_name }}
-          filter-by-commitish: 'commitish'
+          filter-by-commitish: true
           name: next release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
