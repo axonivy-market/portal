@@ -26,7 +26,7 @@ public class DashboardTaskLazyDataModel extends LazyDataModel<ITask> {
   private List<ITask> tasks;
 //  private Map<Long, ITask> mapTasks;
   private int countLoad;
-  private boolean isFirstTime = false;
+  private boolean isFirstTime = true;
   private CompletableFuture<Void> future;
   List<ITask> foundTasks;
 
