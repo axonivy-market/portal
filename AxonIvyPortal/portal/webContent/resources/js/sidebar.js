@@ -7,8 +7,8 @@ var SidebarClickMode = (function () {
   const SEL_MENU_WRAPPER = '.menu-wrapper.js-left-sidebar';
   const SEL_TOGGLE_BTN = '.js-sidebar-toggle-btn';
   const SEL_TOGGLE_ICON = '.js-sidebar-toggle-icon';
-  const CLS_ICON_EXPAND = 'si-arrow-right-1';
-  const CLS_ICON_COLLAPSE = 'si-arrow-left-1';
+  const CLS_ICON_EXPAND = 'si-navigation-right-circle-1';
+  const CLS_ICON_COLLAPSE = 'si-navigation-left-circle-1';
 
   const FREYA_TRANSITION_MS = 250;
   const COOKIE_MENU_STATIC = 'freya_menu_static';
