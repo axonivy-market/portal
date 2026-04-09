@@ -1,0 +1,218 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/process.json",
+  "id" : "1818977D467E3129",
+  "config" : {
+    "data" : "com.axonivy.portal.components.examples.CreateCompanyExampleData"
+  },
+  "elements" : [ {
+      "id" : "f3",
+      "type" : "RequestStart",
+      "name" : "createAlphaCompany.ivp",
+      "config" : {
+        "signature" : "createAlphaCompany",
+        "request" : {
+          "name" : "Create Alpha Company"
+        },
+        "case" : {
+          "name" : "Alpha Company"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 128, "y" : 64 },
+        "labelOffset" : { "x" : 20 }
+      },
+      "connect" : [
+        { "id" : "f5", "to" : "f4" }
+      ]
+    }, {
+      "id" : "f4",
+      "type" : "Script",
+      "name" : [
+        "Set process",
+        "code name"
+      ],
+      "config" : {
+        "output" : {
+          "code" : "ivy.case.setCategoryPath(\"Alpha Company\");"
+        },
+        "sudo" : true
+      },
+      "visual" : {
+        "at" : { "x" : 344, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f7", "to" : "f6" }
+      ]
+    }, {
+      "id" : "f6",
+      "type" : "SubProcessCall",
+      "name" : "SetCaseBusinessEntity",
+      "config" : {
+        "processCall" : "Functional Processes/SetCaseBusinessEntity:call(String)",
+        "call" : {
+          "map" : {
+            "param.businessEntityId" : "\"alpha\""
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 520, "y" : 64 },
+        "size" : { "width" : 144 }
+      },
+      "connect" : [
+        { "id" : "f10", "to" : "f8" }
+      ]
+    }, {
+      "id" : "f8",
+      "type" : "TaskSwitchEvent",
+      "name" : "Alpha Company",
+      "config" : {
+        "task" : {
+          "name" : "Alpha Company"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 704, "y" : 64 },
+        "labelOffset" : { "x" : 19, "y" : 36 }
+      },
+      "connect" : [
+        { "id" : "f11", "to" : "f9" }
+      ]
+    }, {
+      "id" : "f9",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 800, "y" : 64 }
+      }
+    }, {
+      "id" : "f20",
+      "type" : "RequestStart",
+      "name" : "createBetaCompany.ivp",
+      "config" : {
+        "signature" : "createBetaCompany",
+        "request" : {
+          "name" : "Create Beta Company"
+        },
+        "case" : {
+          "name" : "Beta Company"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 128, "y" : 192 },
+        "labelOffset" : { "x" : 13 }
+      },
+      "connect" : [
+        { "id" : "f22", "to" : "f21" }
+      ]
+    }, {
+      "id" : "f21",
+      "type" : "Script",
+      "name" : [
+        "Set process",
+        "code name"
+      ],
+      "config" : {
+        "output" : {
+          "code" : "ivy.case.setCategoryPath(\"Beta Company\");"
+        },
+        "sudo" : true
+      },
+      "visual" : {
+        "at" : { "x" : 344, "y" : 192 }
+      },
+      "connect" : [
+        { "id" : "f24", "to" : "f23" }
+      ]
+    }, {
+      "id" : "f23",
+      "type" : "Script",
+      "name" : "Send signal to create company",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivyteam.ivy.process.model.value.SignalCode;",
+            "",
+            "SignalCode code = new SignalCode(\"com:axonivy:portal:portalcomponentsexamples:createBetaCompany\");",
+            "ivy.wf.signals().send(code);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 536, "y" : 192 },
+        "size" : { "width" : 176 }
+      },
+      "connect" : [
+        { "id" : "f26", "to" : "f25" }
+      ]
+    }, {
+      "id" : "f25",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 800, "y" : 192 }
+      }
+    }, {
+      "id" : "f27",
+      "type" : "SignalStartEvent",
+      "name" : "Signal create Beta Company",
+      "config" : {
+        "signalCode" : "com:axonivy:portal:portalcomponentsexamples:createBetaCompany"
+      },
+      "visual" : {
+        "at" : { "x" : 128, "y" : 288 },
+        "labelOffset" : { "x" : 25, "y" : 37 }
+      },
+      "connect" : [
+        { "id" : "f29", "to" : "f28" }
+      ]
+    }, {
+      "id" : "f28",
+      "type" : "SubProcessCall",
+      "name" : "SetCaseBusinessEntity",
+      "config" : {
+        "processCall" : "Functional Processes/SetCaseBusinessEntity:call(String)",
+        "call" : {
+          "map" : {
+            "param.businessEntityId" : "\"beta\""
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 520, "y" : 288 },
+        "size" : { "width" : 144 }
+      },
+      "connect" : [
+        { "id" : "f31", "to" : "f30" }
+      ]
+    }, {
+      "id" : "f30",
+      "type" : "TaskSwitchEvent",
+      "name" : "Beta Company",
+      "config" : {
+        "task" : {
+          "name" : "Beta Company"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 704, "y" : 288 },
+        "labelOffset" : { "x" : 14, "y" : 36 }
+      },
+      "connect" : [
+        { "id" : "f33", "to" : "f32" }
+      ]
+    }, {
+      "id" : "f32",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 800, "y" : 288 }
+      }
+    } ],
+  "layout" : {
+    "lanes" : [ {
+        "name" : "Alpha",
+        "size" : 130
+      }, {
+        "name" : "Beta",
+        "size" : 200
+      } ]
+  }
+}
