@@ -4,10 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
-import java.util.function.Function;
-import java.util.stream.Collectors;
 
-import org.apache.commons.collections4.map.HashedMap;
+import org.apache.commons.lang3.Strings;
 import org.primefaces.PrimeFaces;
 import org.primefaces.model.FilterMeta;
 import org.primefaces.model.LazyDataModel;
@@ -16,6 +14,7 @@ import org.primefaces.model.SortMeta;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.DashboardTaskSearchCriteria;
 import ch.ivy.addon.portalkit.ivydata.service.impl.DashboardTaskService;
 import ch.ivy.addon.portalkit.service.exception.PortalException;
+import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.util.threadcontext.IvyThreadContext;
 
@@ -25,9 +24,9 @@ public class DashboardTaskLazyDataModel extends LazyDataModel<ITask> {
 
   private DashboardTaskSearchCriteria criteria;
   private List<ITask> tasks;
-  private Map<Long, ITask> mapTasks;
+//  private Map<Long, ITask> mapTasks;
   private int countLoad;
-  private boolean isFirstTime = true;
+  private boolean isFirstTime = false;
   private CompletableFuture<Void> future;
   List<ITask> foundTasks;
 
@@ -35,7 +34,7 @@ public class DashboardTaskLazyDataModel extends LazyDataModel<ITask> {
     criteria = new DashboardTaskSearchCriteria();
     tasks = new ArrayList<>();
     foundTasks = new ArrayList<>();
-    mapTasks = new HashedMap<>();
+//    mapTasks = new HashedMap<>();
   }
 
   @Override
@@ -66,7 +65,7 @@ public class DashboardTaskLazyDataModel extends LazyDataModel<ITask> {
       }
       foundTasks = DashboardTaskService.getInstance().findDashboardTaskByCriteria(criteria, first, pageSize);
       addDistict(tasks, foundTasks);
-      mapTasks.putAll(foundTasks.stream().collect(Collectors.toMap(o -> o.getId(), Function.identity())));
+//      mapTasks.putAll(foundTasks.stream().collect(Collectors.toMap(o -> o.getId(), Function.identity())));
     }
 
     int rowCount = 0;
@@ -85,7 +84,7 @@ public class DashboardTaskLazyDataModel extends LazyDataModel<ITask> {
       IvyThreadContext.restoreFromMemento(memento);
       foundTasks = DashboardTaskService.getInstance().findDashboardTaskByCriteria(criteria, 0, 25);
       addDistict(tasks, foundTasks);
-      mapTasks.putAll(foundTasks.stream().collect(Collectors.toMap(o -> o.getId(), Function.identity())));
+//      mapTasks.putAll(foundTasks.stream().collect(Collectors.toMap(o -> o.getId(), Function.identity())));
       IvyThreadContext.reset();
     });
     isFirstTime = true;
@@ -100,16 +99,23 @@ public class DashboardTaskLazyDataModel extends LazyDataModel<ITask> {
 
   @Override
   public ITask getRowData(String rowKey) {
-    ITask task = mapTasks.get(Long.valueOf(rowKey));
-    if (task != null) {
-      return task;
+    Ivy.log().error("row key is " + rowKey);
+//    ITask task = mapTasks.get(Long.valueOf(rowKey));
+//    if (task != null) {
+//      return task;
+//    }
+    for (ITask task : tasks) {
+      if (Strings.CS.equals(rowKey, task.uuid())) {
+        return task;
+      }
     }
     return null;
   }
 
   @Override
   public String getRowKey(ITask task) {
-    return String.valueOf(task.getId());
+//    return String.valueOf(task.getId());
+    return task.uuid();
   }
 
   public DashboardTaskSearchCriteria getCriteria() {

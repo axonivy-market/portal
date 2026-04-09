@@ -128,52 +128,6 @@
         { "id" : "f22", "to" : "f9" }
       ]
     }, {
-      "id" : "f3",
-      "type" : "HtmlDialogMethodStart",
-      "name" : "openDetails(ITask,TaskLazyDataModel,Boolean)",
-      "config" : {
-        "signature" : "openDetails",
-        "input" : {
-          "params" : [
-            { "name" : "task", "type" : "ch.ivyteam.ivy.workflow.ITask", "desc" : "" },
-            { "name" : "dataModel", "type" : "ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel", "desc" : "" },
-            { "name" : "inFrame", "type" : "Boolean", "desc" : "" }
-          ],
-          "map" : {
-            "out.dataModel" : "param.dataModel",
-            "out.inFrame" : "param.inFrame",
-            "out.task" : "param.task"
-          }
-        },
-        "guid" : "1700E48002A4D237"
-      },
-      "visual" : {
-        "at" : { "x" : 88, "y" : 400 },
-        "labelOffset" : { "x" : 71, "y" : 35 }
-      },
-      "connect" : [
-        { "id" : "f14", "to" : "f13" }
-      ]
-    }, {
-      "id" : "f7",
-      "type" : "SubProcessCall",
-      "name" : "TaskDetails in frame",
-      "config" : {
-        "processCall" : "Functional Processes/OpenPortalTaskDetailsHook:callInFrame(ch.ivyteam.ivy.workflow.ITask,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel,ch.ivy.addon.portalkit.enums.PortalPage,Boolean)",
-        "call" : {
-          "map" : {
-            "param.task" : "in.task",
-            "param.dataModel" : "in.dataModel",
-            "param.portalPage" : "ch.ivy.addon.portalkit.enums.PortalPage.valueOf(in.currentPortalPage)",
-            "param.isFromTaskList" : "true"
-          }
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 544, "y" : 400 },
-        "size" : { "width" : 128 }
-      }
-    }, {
       "id" : "f4",
       "type" : "HtmlDialogMethodStart",
       "name" : "clearDelay(ITask)",
@@ -232,45 +186,6 @@
       "connect" : [
         { "id" : "f10", "to" : "f5" }
       ]
-    }, {
-      "id" : "f13",
-      "type" : "Alternative",
-      "name" : "in frame ?",
-      "config" : {
-        "conditions" : {
-          "f8" : "in.inFrame"
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 320, "y" : 400 },
-        "labelOffset" : { "x" : 10, "y" : -14 }
-      },
-      "connect" : [
-        { "id" : "f8", "to" : "f7", "label" : {
-            "name" : "yes",
-            "offset" : { "y" : -14 }
-          } },
-        { "id" : "f19", "to" : "f15", "via" : [ { "x" : 320, "y" : 496 } ] }
-      ]
-    }, {
-      "id" : "f15",
-      "type" : "SubProcessCall",
-      "name" : "OpenPortalTaskDetails",
-      "config" : {
-        "processCall" : "Functional Processes/OpenPortalTaskDetailsHook:call(ch.ivyteam.ivy.workflow.ITask,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel,ch.ivy.addon.portalkit.enums.PortalPage,Boolean,Boolean)",
-        "call" : {
-          "map" : {
-            "param.task" : "in.task",
-            "param.dataModel" : "in.dataModel",
-            "param.portalPage" : "ch.ivy.addon.portalkit.enums.PortalPage.valueOf(in.currentPortalPage)",
-            "param.isFromTaskList" : "true"
-          }
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 544, "y" : 496 },
-        "size" : { "width" : 144 }
-      }
     }, {
       "id" : "f20",
       "type" : "HtmlDialogMethodStart",

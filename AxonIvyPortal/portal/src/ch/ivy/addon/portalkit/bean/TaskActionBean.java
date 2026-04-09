@@ -9,6 +9,7 @@ import java.util.Objects;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.PF;
@@ -45,6 +46,8 @@ public class TaskActionBean implements Serializable {
   private boolean isShowDestroyTask;
   private boolean isShowReadWorkflowEvent;
   private boolean isShowCustomFieldsAction;
+  private String uuid;
+  private ITask selectedTask;
   private static final String BACK_FROM_TASK_DETAILS = "Start Processes/PortalStart/BackFromTaskDetails.ivp";
 
   public TaskActionBean() {
@@ -292,7 +295,7 @@ public class TaskActionBean implements Serializable {
   }
 
   public boolean showClearDelayTime(ITask task) {
-    return TaskState.DELAYED.equals(task.getState()) && task.getDelayTimestamp() != null && isNotDoneForWorkingUser(task);
+    return task != null && TaskState.DELAYED.equals(task.getState()) && task.getDelayTimestamp() != null && isNotDoneForWorkingUser(task);
   }
 
   public boolean showClearExpiryTime(ITask task) {
@@ -360,6 +363,9 @@ public class TaskActionBean implements Serializable {
   }
 
   public boolean showProcessViewer(ITask task) {
+    if (task == null) {
+      return false;
+    }
     return ((UserMenuBean) ManagedBeans.get("userMenuBean")).isProcessViewerDisplayed(task.getCase().getBusinessCase());
   }
   
@@ -400,5 +406,28 @@ public class TaskActionBean implements Serializable {
 
   public boolean isTaskPinned(ITask task) {
     return TaskUtils.isPinnedTask(task);
+  }
+  
+  public void navigateToTaskDetails(ITask task) {
+  //  String uuid = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("uuid");
+    if (task != null) {
+//      Ivy.log().error("task name for navigate is {0}", task.getName());
+      PortalNavigator.navigateToPortalTaskDetails(task.uuid());
+    }
+  }
+  
+  public void findTask() {
+    uuid = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("uuid");
+    selectedTask = Ivy.wf().findTask(uuid);
+//    Ivy.log().error("task name found : {0}", selectedTask.getName());
+  }
+  
+  public void findTask(String uuid) {
+    selectedTask = Ivy.wf().findTask(uuid);
+//    Ivy.log().error("task name found : {0}", selectedTask.getName());
+  }
+  
+  public ITask getSelectedTask() {
+    return this.selectedTask;
   }
 }
