@@ -5,6 +5,7 @@ Dialogs:
         components:
           Common:
             Cancel: Cancelar
+            CancelContext: "Cancelar {0}"
             Categories: Categorias
             ConfirmForDelete: ¿Está seguro que quiere borrar este artículo?
             Confirmation: Confirmación
@@ -17,12 +18,16 @@ Dialogs:
               ProcessName: Nombre del proceso
             RequiredFieldMessage: este campo es obligatorio
             Save: Guardar
+            SaveContext: "Guardar {0}"
             SideStepPrefix: 'Tarea de paso lateral para:'
             Task:
               Activator: Responsable
             Type: Tipo
             'Yes': Sí
           DocumentTable:
+            AddDocument: Añadir documento
+            AddDocumentHelpText: 'Arrastra y suelta tus archivos aquí para subirlos o '
+            BrowseFiles: Explorar archivos
             Delete: Borrar
             DeleteDocumentNote: '{0} ha eliminado {1}'
             DeleteSuceed: Archivo eliminado con éxito
@@ -43,6 +48,7 @@ Dialogs:
             RenamingDocumentSuccess: Renombrado exitosamente.
             RenamingFailed: Se ha producido un error al renombrar el documento.
             Size: Tamaño de archivo
+            SupportFileTypes: 'Tipos de archivo admitidos para la subida: {0}'
             Type: Tipo
             Upload: Cargar archivo nuevo
             UploadDocumentNote: '{0} ha subido {1}'
@@ -104,6 +110,7 @@ Labels:
       ErrorWhenProceedRequest: An error has occurred while trying to process your request. Please try again later.
       SomethingWentWrong: Something went wrong when proceed your request. Please try again later.
   Close: Cerrar
+  CloseContext: "Cerrar {0}"
   DisabledUserPrefix: (inactivo)
   Enums:
     NewFilenameValidation:

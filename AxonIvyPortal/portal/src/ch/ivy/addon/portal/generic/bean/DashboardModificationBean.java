@@ -8,11 +8,13 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.Collection;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import javax.faces.bean.ManagedBean;
@@ -247,7 +249,7 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
   public void updateDashboardTitleByLocale() {
     String currentTitle = this.selectedDashboard.getTitle();
     initMultipleLanguagesForDashboardName(currentTitle);
-    String currentLanguage = UserUtils.getUserLanguage();
+    String currentLanguage = Locale.forLanguageTag(UserUtils.getUserLanguage()).getLanguage();
     Optional<DisplayName> optional = this.selectedDashboard.getTitles().stream()
         .filter(lang -> currentLanguage.equals(lang.getLocale().getLanguage())).findFirst();
     if (optional.isPresent()) {
@@ -257,7 +259,7 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
 
   public void updateCurrentLanguage() {
     List<DisplayName> languages = this.selectedDashboard.getTitles();
-    String currentLanguage = UserUtils.getUserLanguage();
+    String currentLanguage = Locale.forLanguageTag(UserUtils.getUserLanguage()).getLanguage();
     Optional<DisplayName> optional = languages.stream()
         .filter(lang -> currentLanguage.equals(lang.getLocale().getLanguage()))
         .findFirst();
@@ -279,19 +281,30 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
         this.selectedDashboard.getTitles().add(displayName);
       }
     }
+    deduplicateTitles();
     return this.selectedDashboard.getTitles();
+  }
+
+  private void deduplicateTitles() {
+    List<DisplayName> titles = this.selectedDashboard.getTitles();
+    Set<String> seen = new LinkedHashSet<>();
+    titles.removeIf(title -> title.getLocale() == null || !seen.add(title.getLocale().getLanguage()));
   }
 
   private Map<String, DisplayName> getMapLanguages() {
     List<DisplayName> languages = this.selectedDashboard.getTitles();
-    return languages.stream().collect(Collectors.toMap(o -> o.getLocale().toLanguageTag(), o -> o));
+    return languages.stream()
+        .filter(o -> o.getLocale() != null)
+        .collect(Collectors.toMap(o -> o.getLocale().getLanguage(), o -> o, (existing, replacement) -> existing));
   }
 
   private void initMultipleLanguagesForDashboardName(String currentTitle) {
+    deduplicateTitles();
     Map<String, DisplayName> mapLanguage = getMapLanguages();
     List<String> supportedLanguages = getSupportedLanguages();
     for (String language : supportedLanguages) {
-      DisplayName localeLanguage = mapLanguage.get(language);
+      String langCode = Locale.forLanguageTag(language).getLanguage();
+      DisplayName localeLanguage = mapLanguage.get(langCode);
       if (localeLanguage == null) {
         DisplayName displayName = new DisplayName();
         displayName.setLocale(Locale.forLanguageTag(language));

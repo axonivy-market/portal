@@ -345,19 +345,24 @@ ch.ivy.addon.portalkit.ui.jsf:
     TaskCaseInformation: Task and Case Information
     Update: Update
     action: Actions
+    actionMenuContext: "Open actions menu for {0} process"
+    taskActionMenuContext: "Open actions menu for {0} task"
     active: Active
     add: Add
+    addContext: Add {0}
     addDocument: Add document
     addNote: Add note
     allCategories: All Categories
     allowPng: Only png types allowed
     apply: Apply
+    applyContext: Apply {0}
     at: at
     author: Author
     back: Back
     backToCaseMap: Back to case map
     backgroundColor: Background color
     cancel: Cancel
+    cancelContext: Cancel {0}
     case: Case
     caseCategory: Case category
     caseInformation: Case Information
@@ -365,7 +370,9 @@ ch.ivy.addon.portalkit.ui.jsf:
     categories: Categories
     change: Change
     close: Close
+    closeContext: Close {0}
     cockpit: Cockpit
+    collapseWidgetContext: "Collapse {0} widget"
     colors: Colors
     comment: Comment
     completedOn: Completed on
@@ -385,6 +392,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     default: Default
     defaultNotificationMessage: Hmm... Looks like something went wrong.
     delete: Delete
+    deleteContext: Delete {0}
     deleteAbsenceHeaderText: Delete this absence?
     deleteChartHeaderText: Delete this chart?
     deleteDocumentHeaderText: Delete this document?
@@ -452,6 +460,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     note: NOTE
     numberOfSelectedFilter: selected filters
     ok: OK
+    okContext: OK {0}
     'on': 'on'
     pleaseAddDocument: Please add a document with the link above.
     pleaseAddNote: Please add a note with the link above.
@@ -474,6 +483,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     restoreToDefaultChartHeaderText: Restore to default charts?
     role: Role
     save: Save
+    saveContext: Save {0}
     saveAll: Save all
     saveSuccessfully: Data saved successfully.
     search: Search
@@ -575,6 +585,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     EmptyFilterMessage: No widget filter found
     Filter:
       FilterOptionHeader: Filter options
+      FilterPanelHeader: Filter panel
       ManageWidgetFilterHeader: Widget filter management
       NotFound: No filter found
       WidgetNameColumn: Widget name
@@ -632,6 +643,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     deleteWidget: Delete widget
     editWidget: Edit widget
     existingField: The {0} field has already been existing
+    expandWidgetContext: "Expand {0} widget"
     expiryFrom: Expiry From
     expiryTo: Expiry To
     field: Field
@@ -780,6 +792,11 @@ ch.ivy.addon.portalkit.ui.jsf:
   notes:
     newNoteHeader: Add new note
     wroteAt: wrote at
+  notifications:
+    notificationOptions: Notification options
+    notificationsBadgeLabel: "Open notification panel, {0} unread"
+    openNotificationSettings: Open notification settings
+    viewNotificationsFullScreen: View notifications in full screen
   passwordSetting:
     changePasswordWSError: An error occurred while changing your password. Please contact your administrator if this problem persists.
     confirmNewPassword: Confirm new password
@@ -789,6 +806,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     requireConfirmPassword: Password confirmation was missing
     requireCurrentPassword: Please specify the current password
     requireNewPassword: Please specify the new password as well
+    unpinCaseContext: "Unpin case {0}"
+    unpinTaskContext: "Unpin task {0}"
     updatePasswordSuccessfully: Password updated successfully.
     wrongPassword: Authentication failed, your password seems to be wrong!
   permission:
@@ -910,9 +929,14 @@ ch.ivy.addon.portalkit.ui.jsf:
     histories: Notes
     note: Note information
     noteDetail: Note details
+    openWidgetFiltersContext: "Open {0} filters"
+    openWidgetFiltersWithCountContext: "Open {0} filters, {1} active filters"
+    openWidgetInfoContext: "Open {0} widget information"
     openRequest: Open
     openTaskTooltip: Open task
     park: Park
+    pinCaseContext: "Pin case {0}"
+    pinTaskContext: "Pin task {0}"
     parkTaskSuccessfully: Task has been parked successfully.
     reserveTaskTooltip: Reserve task
     resetTaskSuccessfully: Task has been unparked successfully.

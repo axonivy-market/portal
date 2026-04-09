@@ -5,6 +5,7 @@ Dialogs:
         components:
           Common:
             Cancel: キャンセル
+            CancelContext: "{0}をキャンセル"
             Categories: カテゴリー
             ConfirmForDelete: このアイテムを削除してもよろしいですか？
             Confirmation: 確認
@@ -17,12 +18,16 @@ Dialogs:
               ProcessName: プロセス名
             RequiredFieldMessage: このフィールドは必須です
             Save: 'TODO: Save'
+            SaveContext: "{0}を保存"
             SideStepPrefix: サイドステップ：
             Task:
               Activator: 責任者
             Type: タイプ
             'Yes': はい
           DocumentTable:
+            AddDocument: ドキュメントを追加
+            AddDocumentHelpText: ファイルをここにドラッグ＆ドロップしてアップロードするか、
+            BrowseFiles: ファイルを閲覧する
             Delete: 削除
             DeleteDocumentNote: '{0} が {1} を削除しました'
             DeleteSuceed: ファイルが正常に削除されました
@@ -43,6 +48,7 @@ Dialogs:
             RenamingDocumentSuccess: 'TODO: Rename successfully.'
             RenamingFailed: 'TODO: An error occurs while renaming the document.'
             Size: ファイルサイズ
+            SupportFileTypes: アップロード可能なファイル形式：{0}
             Type: タイプ
             Upload: 新しいファイルをアップロード
             UploadDocumentNote: '{0} が {1} をアップロードしました'
@@ -104,6 +110,7 @@ Labels:
       ErrorWhenProceedRequest: リクエストの処理中にエラーが発生しました。しばらくしてから、もう一度お試しください。
       SomethingWentWrong: リクエストの処理中に問題が発生しました。しばらくしてから、もう一度お試しください。
   Close: 閉じる
+  CloseContext: "{0}を閉じる"
   DisabledUserPrefix: （無効）
   Enums:
     NewFilenameValidation:

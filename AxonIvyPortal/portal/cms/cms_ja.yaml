@@ -452,8 +452,16 @@ ch.ivy.addon.portalkit.ui.jsf:
     Update: 更新
     Widget: ウィジェット
     action: アクション
+    actionMenuContext: "プロセス{0}のアクションメニューを開く"
+    taskActionMenuContext: "タスク{0}のアクションメニューを開く"
     active: アクティブ
+    collapseWidgetContext: "{0}ウィジェットを縮小"
+    expandWidgetContext: "{0}ウィジェットを展開"
+    openWidgetFiltersContext: "{0}のフィルターを開く"
+    openWidgetFiltersWithCountContext: "{0}のフィルターを開く、{1}件のアクティブフィルター"
+    openWidgetInfoContext: "{0}ウィジェットの情報を開く"
     add: 追加
+    addContext: "{0}を追加"
     addDocument: ドキュメントを追加
     addLink: リンクを追加
     addNote: ノートを追加
@@ -461,12 +469,14 @@ ch.ivy.addon.portalkit.ui.jsf:
     allTypes: 戻る
     allowPng: png形式のみ許可されます
     apply: 適用
+    applyContext: "{0}を適用"
     at: に
     author: 作成者
     back: 戻る
     backToCaseMap: ケースマップに戻る
     backgroundColor: 背景色
     cancel: キャンセル
+    cancelContext: "{0}をキャンセル"
     case: ケース
     caseCategory: ケースカテゴリー
     caseInformation: ケース情報
@@ -474,6 +484,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     categories: カテゴリー
     change: 変更
     close: 閉じる
+    closeContext: "{0}を閉じる"
     cockpit: コックピット
     colors: 色
     comment: コメント
@@ -494,6 +505,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     default: 初期値
     defaultNotificationMessage: 問題が発生しましたようです。
     delete: 削除
+    deleteContext: "{0}を削除"
     deleteAbsenceHeaderText: この不在日程を削除しますか?
     deleteChartHeaderText: このチャートを削除しますか?
     deleteDocumentHeaderText: このドキュメントを削除しますか?
@@ -571,8 +583,11 @@ ch.ivy.addon.portalkit.ui.jsf:
     numberFromBiggerThanTo: 「終了」は、「開始」より大きな値にしてください。
     numberOfSelectedFilter: 選択されたフィルター
     ok: OK
+    okContext: OK {0}
     'on': オン
     pin: 'TODO: Pin'
+    pinCaseContext: "ケース{0}をピン留め"
+    pinTaskContext: "タスク{0}をピン留め"
     pleaseAddDocument: 上記のリンクにドキュメントを追加してください。
     pleaseAddNote: 上記のリンクにノートを追加してください。
     previousStage: 前のステージ
@@ -595,6 +610,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     restoreToDefaultChartHeaderText: デフォルトのチャートに戻しますか？
     role: ロール
     save: 保存
+    saveContext: "{0}を保存"
     saveAll: すべて保存
     saveSuccessfully: データの保存に成功しました。
     search: 検索
@@ -634,6 +650,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     typeAllUsers: すべてのユーザー
     typeOnlyMe: 自分のみ
     unpin: 'TODO: Unpin'
+    unpinCaseContext: "ケース{0}のピン留めを解除"
+    unpinTaskContext: "タスク{0}のピン留めを解除"
     uploadHere: 有効な日付を入力してください。
     uploadOneHere: ここにアップロード
     user: '{0} ユーザー'
@@ -768,6 +786,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     ExternalPageWidgetIntroduction: このウィジェットは外部Webページを表示できます。
     Filter:
       FilterOptionHeader: フィルターオプション
+      FilterPanelHeader: フィルターパネル
       ManageWidgetFilterHeader: ウィジェットフィルター管理
       NotFound: フィルターが見つかりません
       WidgetNameColumn: ウィジェット名
@@ -1075,10 +1094,14 @@ ch.ivy.addon.portalkit.ui.jsf:
     markAllAsRead: すべて既読にする
     markAsRead: 既読にする
     noNotificationText: 通知なし
+    notificationOptions: 通知オプション
     notificationTitle: 通知
+    notificationsBadgeLabel: 通知パネルを開く、{0} 件未読
     olderText: 昨日以前
     onlyUnread: 未読のみ
+    openNotificationSettings: 通知設定を開く
     todayText: 今日
+    viewNotificationsFullScreen: 通知を全画面で表示
     xDaysAgo: '%s 日前'
     xHoursAgo: '%s 時間前'
     xMinutesAgo: '%s 分前'
