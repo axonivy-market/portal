@@ -154,6 +154,16 @@ In Engine
 
 #. Follow detailed migration notes for each version below.
 
+Application Configuration
+-------------------------
+
+Starting from version 12, the application configuration has changed. Please review and update as needed.
+
+.. code-block:: yaml
+
+   StandardProcess:
+     DefaultPages: com.axonivy.portal:portal
+
 Migrate 11.3.2 To 12.0.0
 ------------------------
 
