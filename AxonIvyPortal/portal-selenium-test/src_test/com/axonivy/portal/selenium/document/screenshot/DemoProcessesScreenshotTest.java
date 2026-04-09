@@ -22,7 +22,7 @@ import com.axonivy.portal.selenium.page.TopMenuTaskWidgetPage;
 public class DemoProcessesScreenshotTest extends ScreenshotBaseTest {
 
   private static String LEAVE_REQUEST_START_LINK = "portal-user-examples/170321BD7F5539D6/start.ivp";
-  private static final String CASE_MAP_URL = "/portal-user-examples/70765b37-a3e8-418a-a8d5-c2b3a539408e.icm";
+  private static final String CASE_MAP_URL = "/portal-user-examples/70765b37-a3e8-418a-a8d5-c2b3a539408e.m.json";
 
   private MainMenuPage mainMenuPage;
   // private ExampleOverviewPage exampleOverviewPage;

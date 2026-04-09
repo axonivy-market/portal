@@ -19,7 +19,7 @@ public class UrlHelpers {
         && !relativeProcessStartLink.contains("portal-components-examples")) {
       relativeProcessStartLink = WordUtils.capitalize(relativeProcessStartLink);
     }
-    if (relativeProcessStartLink.endsWith(".icm")) {
+    if (relativeProcessStartLink.endsWith(".icm") || relativeProcessStartLink.endsWith(".m.json")) {
       return getEngineUrl() + getApplicationName() + "/casemap/" + relativeProcessStartLink;
     }
     return getEngineUrl() + getApplicationName() + "/pro/" + relativeProcessStartLink;

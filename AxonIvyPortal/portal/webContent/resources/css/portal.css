@@ -1659,6 +1659,13 @@ body .notification-full-scroll>.ui-datascroller-content  {
     margin: 0.5rem 0 1.3rem 0;
 }
 
+@media screen and (max-width: 40em) {
+  .only-unread-block {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+}
+
 .notification-action-block {
   margin-left: auto;
   flex: 0 0 4rem;
@@ -1725,6 +1732,9 @@ i.dashboard-icon-drag-drop {
   }
   .ui-inputfield.global-search-input {
     max-width: 200px;
+  }
+  .setting-container .user-name {
+    display: none;
   }
 }
 

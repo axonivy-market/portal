@@ -334,7 +334,7 @@
       </h:panelGroup>
       <h:panelGroup rendered="#{!creationMode and canModifyUserAssignment}">
         <p:commandButton id="cancel-update-users"
-          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/closeContext', [roleManagementBean.roleInformationHeaderDialog])}"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
           icon="ti ti-x"
           process="@this"
