@@ -154,16 +154,6 @@ In Engine
 
 #. Follow detailed migration notes for each version below.
 
-Application Configuration
--------------------------
-
-Starting from version 12, the application configuration has changed. Please review and update as needed.
-
-.. code-block:: yaml
-
-   StandardProcess:
-     DefaultPages: com.axonivy.portal:portal
-
 Migrate 11.3.2 To 12.0.0
 ------------------------
 
@@ -300,6 +290,8 @@ Migrate 8.x To 10.0
 
 You need to do all steps starting at ``Migrate 8.x To ...`` up to and including
 ``Migrate ... To 9.x``
+
+After migrating to version 10, reset the ``StandardProcess.DefaultPages`` value in your application configuration as needed.
 
 Migrate 9.3 To 9.4
 ------------------
