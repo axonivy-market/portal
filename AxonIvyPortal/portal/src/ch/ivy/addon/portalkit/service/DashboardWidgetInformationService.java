@@ -2,7 +2,6 @@ package ch.ivy.addon.portalkit.service;
 
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -14,7 +13,6 @@ import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
 import com.axonivy.portal.enums.CaseQueryType;
-import org.apache.commons.lang3.time.DateUtils;
 
 import com.axonivy.portal.bo.ItemByCategoryStatistic;
 import com.axonivy.portal.components.service.IvyAdapterService;
@@ -32,7 +30,6 @@ import ch.ivy.addon.portalkit.enums.ProcessType;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
-import ch.ivy.addon.portalkit.util.TimesUtils;
 import ch.ivyteam.ivy.workflow.caze.CaseBusinessState;
 import ch.ivyteam.ivy.workflow.task.TaskBusinessState;
 
@@ -80,26 +77,15 @@ public class DashboardWidgetInformationService {
   }
 
   public Map<String, Long> buildStatisticOfTaskExpiry(DashboardTaskLazyDataModel dataModel) {
-    Map<String, Long> numberOfTasksExpireMap = new HashMap<>();
-    long numberOfTasksExpireToday = 0L;
-    long numberOfTasksExpireThisWeek = 0L;
-
     Map<String, Object> params = new HashMap<>();
     params.put("taskSearchCriteria", generateTaskSearchCriteriaWithoutOrderByClause(dataModel));
 
     Map<String, Object> response = IvyAdapterService.startSubProcessInProjectAndAllRequired(ANALYZE_TASK_EXPIRY, params);
     var expiryStatistic = (ExpiryStatistic) response.get("expiryStatistic");
 
-    for (Entry<Date, Long> entry : expiryStatistic.getNumberOfTasksByExpiryTime().entrySet()) {
-      if (DateUtils.isSameDay(new Date(), entry.getKey())) {
-        numberOfTasksExpireToday++;
-        numberOfTasksExpireThisWeek++;
-      } else if (TimesUtils.isDateInCurrentWeek(entry.getKey())) {
-        numberOfTasksExpireThisWeek++;
-      }
-    }
-    numberOfTasksExpireMap.put(TASKS_EXPIRE_TODAY, numberOfTasksExpireToday);
-    numberOfTasksExpireMap.put(TASKS_EXPIRE_THIS_WEEK, numberOfTasksExpireThisWeek);
+    Map<String, Long> numberOfTasksExpireMap = new HashMap<>();
+    numberOfTasksExpireMap.put(TASKS_EXPIRE_TODAY, expiryStatistic.getNumberOfTasksExpiredToday());
+    numberOfTasksExpireMap.put(TASKS_EXPIRE_THIS_WEEK, expiryStatistic.getNumberOfTasksExpiredThisWeek());
     return numberOfTasksExpireMap;
   }
 
