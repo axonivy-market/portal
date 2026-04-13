@@ -7,7 +7,8 @@ import java.util.Objects;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
 import com.axonivy.portal.util.BusinessDetailsUtils;
 
@@ -25,19 +26,21 @@ import ch.ivyteam.ivy.security.IPermission;
 import ch.ivyteam.ivy.workflow.ICase;
 
 @ManagedBean
-@RequestScoped
+@ViewScoped
 public class CaseActionBean implements Serializable {
 
   private static final long serialVersionUID = 7468665222036995531L;
   private boolean isShowCaseDetails;
+  private String uuid;
+  private ICase selectedCase;
 
   @PostConstruct
   public void initCaseActions() {
     isShowCaseDetails = PermissionUtils.hasPortalPermission(SHOW_CASE_DETAILS);
   }
 
-  public String getAdditionalCaseDetailsPageUri(ICase iCase) {
-    return BusinessDetailsUtils.getAdditionalCaseDetailsPageUri(iCase);
+  public String getAdditionalCaseDetailsPageUri(ICase caze) {
+    return caze == null? null : BusinessDetailsUtils.getAdditionalCaseDetailsPageUri(caze);
   }
 
   public String getProcessViewerPageUri(ICase selectedCase) {
@@ -80,6 +83,9 @@ public class CaseActionBean implements Serializable {
   }
 
   public boolean showProcessViewer(ICase caze) {
+    if (caze == null) {
+      return false;
+    }
     return ((UserMenuBean) ManagedBeans.get("userMenuBean")).isProcessViewerDisplayed(caze);
   }
 
@@ -110,5 +116,24 @@ public class CaseActionBean implements Serializable {
   
   public boolean showCustomFieldsDialog() {
     return PermissionUtils.hasPortalPermission(PortalPermission.CASE_DISPLAY_CUSTOM_FIELDS_ACTION);
+  }
+  
+  public void navigateToCaseDetails(ICase caze) {
+    if (caze != null) {
+      Ivy.log().error("navigateToPortalCaseDetails is {0}", caze.uuid());
+      PortalNavigator.navigateToPortalCaseDetails(caze.uuid());
+    } else {
+      Ivy.log().error("caze null");
+    }
+  }
+  
+  public void findCase() {
+    uuid = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("uuid");
+    selectedCase = Ivy.wf().findCase(uuid);
+    Ivy.log().error("uuid is {0}, case name is {1}", uuid, selectedCase.getName());
+  }
+  
+  public ICase getSelectedCase() {
+    return this.selectedCase;
   }
 }

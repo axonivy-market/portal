@@ -409,9 +409,7 @@ public class TaskActionBean implements Serializable {
   }
   
   public void navigateToTaskDetails(ITask task) {
-  //  String uuid = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("uuid");
     if (task != null) {
-//      Ivy.log().error("task name for navigate is {0}", task.getName());
       PortalNavigator.navigateToPortalTaskDetails(task.uuid());
     }
   }
@@ -419,12 +417,6 @@ public class TaskActionBean implements Serializable {
   public void findTask() {
     uuid = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("uuid");
     selectedTask = Ivy.wf().findTask(uuid);
-//    Ivy.log().error("task name found : {0}", selectedTask.getName());
-  }
-  
-  public void findTask(String uuid) {
-    selectedTask = Ivy.wf().findTask(uuid);
-//    Ivy.log().error("task name found : {0}", selectedTask.getName());
   }
   
   public ITask getSelectedTask() {

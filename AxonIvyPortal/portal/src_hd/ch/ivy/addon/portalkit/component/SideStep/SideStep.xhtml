@@ -39,12 +39,14 @@
     <i class="si si-arrow-down-1" />
   </p:link>
   
+  <!-- https://axon-ivy.atlassian.net/browse/IVYPORTAL-20358 -->
+  <!-- This hidden input and remote command are introduced to fix bug get wrong index after scroll for a while -->
   <h:inputHidden id="hidden-uuid" value="#{cc.attrs.task.uuid()}" />
   <p:remoteCommand name="rc" actionListener="#{taskActionBean.findTask()}" update="#{cc.clientId}:side-steps-panel"/>
 
   <p:overlayPanel id="side-steps-panel" widgetVar="#{cc.attrs.panelWidgetVar}" for="#{cc.attrs.actionLinkId}" appendTo="@(body)"
     styleClass="options-panel #{cc.attrs.sideStepsPanelStyleClass}" dynamic="true" rendered="#{!cc.attrs.isDisabled}"
-    my="right top" at="right bottom" showCloseIcon="true" dismissable="false" cache="false" modal="true"
+    my="right top" at="right bottom" showCloseIcon="true" dismissable="false" cache="false"
     onShow="focusFirstVisibleElementInPanel('#{cc.attrs.panelWidgetVar}', 'a')"
     pt:aria-label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}">
 

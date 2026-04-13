@@ -1,13 +1,11 @@
 package ch.ivy.addon.portalkit.datamodel;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
-import java.util.function.Function;
-import java.util.stream.Collectors;
 
+import org.apache.commons.lang3.Strings;
 import org.primefaces.PrimeFaces;
 import org.primefaces.model.FilterMeta;
 import org.primefaces.model.LazyDataModel;
@@ -25,7 +23,6 @@ public class DashboardCaseLazyDataModel extends LazyDataModel<ICase> {
 
   private DashboardCaseSearchCriteria criteria;
   private List<ICase> cases;
-  private Map<Long, ICase> mapCases;
   private int countLoad;
   private boolean isFirstTime = true;
   private CompletableFuture<Void> future;
@@ -34,7 +31,6 @@ public class DashboardCaseLazyDataModel extends LazyDataModel<ICase> {
   public DashboardCaseLazyDataModel() {
     criteria = new DashboardCaseSearchCriteria();
     cases = new ArrayList<>();
-    mapCases = new HashMap<>();
     foundCases = new ArrayList<>();
   }
 
@@ -66,7 +62,6 @@ public class DashboardCaseLazyDataModel extends LazyDataModel<ICase> {
       }
       foundCases = DashboardCaseService.getInstance().findByCaseQuery(criteria.buildQuery(), first, pageSize);
       addDistict(cases, foundCases);
-      mapCases.putAll(foundCases.stream().collect(Collectors.toMap(o -> o.getId(), Function.identity())));
     }
 
     int rowCount = 0;
@@ -85,7 +80,6 @@ public class DashboardCaseLazyDataModel extends LazyDataModel<ICase> {
       IvyThreadContext.restoreFromMemento(memento);
       foundCases = DashboardCaseService.getInstance().findByCaseQuery(criteria.buildQuery(), 0, 25);
       addDistict(cases, foundCases);
-      mapCases.putAll(foundCases.stream().collect(Collectors.toMap(o -> o.getId(), Function.identity())));
       IvyThreadContext.reset();
     });
     isFirstTime = true;
@@ -98,23 +92,19 @@ public class DashboardCaseLazyDataModel extends LazyDataModel<ICase> {
     cases.addAll(foundCases);
   }
 
-//  @Override
-//  public List<ICase> getResults() {
-//    return this.cases;
-//  }
-
   @Override
   public ICase getRowData(String rowKey) {
-    ICase caze = mapCases.get(Long.valueOf(rowKey));
-    if (caze != null) {
-      return caze;
+    for (ICase caze : cases) {
+      if (Strings.CS.equals(rowKey, caze.uuid())) {
+        return caze;
+      }
     }
     return null;
   }
 
   @Override
   public String getRowKey(ICase caze) {
-    return String.valueOf(caze.getId());
+    return caze.uuid();
   }
 
   public DashboardCaseSearchCriteria getCriteria() {
