@@ -309,6 +309,8 @@ Migrate 8.x To 10.0
 You need to do all steps starting at ``Migrate 8.x To ...`` up to and including
 ``Migrate ... To 9.x``
 
+After migrating to version 10, reset the ``StandardProcess.DefaultPages`` value in your application configuration as needed.
+
 Migrate 9.3 To 9.4
 ------------------
 

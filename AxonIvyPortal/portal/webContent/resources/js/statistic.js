@@ -555,8 +555,34 @@ class ClientCanvasChart extends ClientChart {
   }
 
   // Method to render canvas
-  renderChartCanvas(chartId) {
-    return '<canvas id="' + chartId + '" />';
+  renderChartCanvas(chartId, ariaLabel) {
+    let canvas = $('<canvas></canvas>');
+    canvas.attr('id', chartId);
+    canvas.attr('role', 'img');
+    canvas.attr('tabindex', '0');
+    canvas.attr('aria-label', ariaLabel || '');
+    return canvas;
+  };
+
+  // Method to build accessible description from chart data
+  buildChartAriaLabel(labels, values) {
+    let description = this.widgetName || '';
+    if (labels && values && labels.length > 0) {
+      let items = labels.map((label, i) => this.formatAriaLabel(label) + ': ' + values[i]);
+      if (description) {
+        description += ', ';
+      }
+      description += items.join(', ');
+    }
+    return description;
+  };
+
+  // Method to format label for aria description
+  formatAriaLabel(label) {
+    if (typeof label === 'string' && !isNaN(Date.parse(label)) && label.includes('T')) {
+      return formatDateFollowLocale(new Date(label));
+    }
+    return label;
   };
 
   // Method to format chart label
@@ -581,6 +607,7 @@ class ClientCanvasChart extends ClientChart {
   // Method to init the dashboard statistic widget title
   initWidgetTitle() {
     let widgetName = getFormatedTitle(this.data.chartConfig.names);
+    this.widgetName = widgetName;
     let cardPanel = $(this.chart).parents('.card-widget-panel');
 
     $(this.chart).parents('.dashboard__widget').find('.widget__header > .widget__header-title')
@@ -624,16 +651,24 @@ class ClientCanvasChart extends ClientChart {
     }
 
     // Update client chart config by new data
-    this.clientChartConfig.data.labels = result.map(bucket => this.formatChartLabel(bucket.displayKey));
+    let labels = result.map(bucket => this.formatChartLabel(bucket.displayKey));
+    let values = result.map(bucket => bucket.count);
+    this.clientChartConfig.data.labels = labels;
     if (this.clientChartConfig.data.datasets[0]) {
-      this.clientChartConfig.data.datasets[0].data = result.map(bucket => bucket.count)
+      this.clientChartConfig.data.datasets[0].data = values;
       this.clientChartConfig.data.datasets[0].label = config.name;
     }
+
+    // Update canvas aria-label with new data
+    let canvasElem = $(chart).find('canvas').get(0);
+    if (canvasElem) {
+      canvasElem.setAttribute('aria-label', this.buildChartAriaLabel(labels, values));
+    }
+
     this.clientChartConfig.update("none");
   }
 }
 
-// Class for pie charts
 class ClientPieChart extends ClientCanvasChart {
   render() {
     this.initWidgetTitle();
@@ -647,18 +682,20 @@ class ClientPieChart extends ClientCanvasChart {
     if (shouldRenderEmptyChart(this.data)) {
       return this.renderEmptyChart(chart, config.additionalConfigs);
     } else {
-      let html = this.renderChartCanvas(chart.getAttribute(DATA_CHART_ID));
-      $(chart).html(html);
-      let canvasObject = $(chart).find('canvas');
+      let labels = result.map(bucket => this.formatChartLabel(bucket.displayKey));
+      let values = data.map(bucket => bucket.count);
+      let ariaLabel = this.buildChartAriaLabel(labels, values);
+      let canvas = this.renderChartCanvas(chart.getAttribute(DATA_CHART_ID), ariaLabel);
+      $(chart).empty().append(canvas);
       let backgroundColors = this.calculateConditionalColors(config, result, config.pieChartConfig.backgroundColors);
-      this.clientChartConfig = new Chart(canvasObject, {
+      this.clientChartConfig = new Chart(canvas, {
         type: config.chartType,
         label: config.name,
         data: {
-          labels: result.map(bucket => this.formatChartLabel(bucket.displayKey)),
+          labels: labels,
           datasets: [{
             label: config.name,
-            data: data.map(bucket => bucket.count),
+            data: values,
             counting: result.map(bucket => bucket.count),
             chartTarget: config.chartTarget,
             aggregation: config.statisticAggregation,
@@ -727,17 +764,19 @@ class ClientCartesianChart extends ClientCanvasChart {
       }
 
       let stepSize = chartTypeConfig?.yValue === 'time' ? 200 : undefined;
-      let html = this.renderChartCanvas(chart.getAttribute(DATA_CHART_ID));
+      let labels = data.map(bucket => this.formatChartLabel(bucket.displayKey));
+      let values = data.map(bucket => bucket.count);
+      let ariaLabel = this.buildChartAriaLabel(labels, values);
+      let canvas = this.renderChartCanvas(chart.getAttribute(DATA_CHART_ID), ariaLabel);
       let backgroundColors = this.calculateConditionalColors(config, data, config.chartType == 'bar' ? config.barChartConfig.backgroundColors : config.lineChartConfig.backgroundColors);
-      $(chart).html(html);
-      let canvasObject = $(chart).find('canvas');
-      this.clientChartConfig = new Chart(canvasObject, {
+      $(chart).empty().append(canvas);
+      this.clientChartConfig = new Chart(canvas, {
         type: config.chartType,
         data: {
-          labels: data.map(bucket => this.formatChartLabel(bucket.displayKey)),
+          labels: labels,
           datasets: [{
             label: config.name,
-            data: data.map(bucket => bucket.count),
+            data: values,
             counting: result.map(bucket => bucket.count),
             chartTarget: config.chartTarget,
             aggregation: config.statisticAggregation,
@@ -823,6 +862,7 @@ class ClientBarChart extends ClientCartesianChart {
   }
 
   updateClientChart() {
+    this.initWidgetTitle();
     let result = this.data.result.aggs?.[0]?.buckets ?? [];
     let config = this.data.chartConfig;
     let chart = this.chart;
@@ -842,12 +882,20 @@ class ClientBarChart extends ClientCartesianChart {
         }
       }
       let data = result;
-      this.clientChartConfig.data.labels = result.map(bucket => this.formatChartLabel(bucket.displayKey));
+      let labels = result.map(bucket => this.formatChartLabel(bucket.displayKey));
+      let values = data.map(bucket => bucket.count);
+      this.clientChartConfig.data.labels = labels;
       this.clientChartConfig.data.datasets = [{
         label: config.name,
-        data: data.map(bucket => bucket.count),
+        data: values,
         backgroundColor: config.backgroundColors ? config.backgroundColors : chartColors
       }]
+
+      // Update canvas aria-label with new data
+      let canvasElem = $(chart).find('canvas').get(0);
+      if (canvasElem) {
+        canvasElem.setAttribute('aria-label', this.buildChartAriaLabel(labels, values));
+      }
     }
 
     // If there is no chart from the beginning, init chart config
@@ -945,7 +993,10 @@ class ClientNumberChart extends ClientChart {
 
     $(this.chart).parents('.statistic-chart-widget__chart').addClass('client-number-chart');
     let multipleKPI = this.renderMultipleNumberChartInHTML(result, config.numberChartConfig.suffixSymbol);
-    $(this.chart).html(multipleKPI);
+    let chartContainer = $(this.chart);
+    chartContainer.attr('tabindex', '0');
+    chartContainer.attr('aria-label', this.buildNumberChartAriaLabel(getFormatedTitle(config.names), result));
+    chartContainer.html(multipleKPI);
     
     if (this.canDrillDown()) {
       $(this.chart).find('.chart-content-card-clickable').each((index, element) => {
@@ -1002,28 +1053,33 @@ class ClientNumberChart extends ClientChart {
   }
 
   generateItemHtml(label, number, suffixSymbol, index, counting) {
-    let border = '<div class="chart-border">' + '</div>';
     label = this.data.chartConfig.numberChartConfig?.hideLabel === true ? '' : this.formatChartLabel(label) ;
     const isClickable = this.canDrillDown() ? 'chart-content-card-clickable' : '';
-    let html =
-      `<div class="text-center chart-content-card ${isClickable}" data-index="${index}">` +
-      '    <div class="chart-number-container">' +
-      '        <span class="card-number chart-number-font-size chart-number-animation">' + number + '</span>' +
-      '        <i class="card-number chart-number-font-size chart-number-animation ' + suffixSymbol + '"></i>' +
-      '    </div>' + this.generateCountingHTML(counting) +
-      '    <div class="chart-label-container">' +
-      '        <span class="card-name chart-name-font-size chart-number-animation">' + label + '</span>' +
-      '    </div>' +
-      '</div>';
-    return index > 0 ? border + html : html;
-  };
 
-  generateCountingHTML(counting) {
+    let container = $('<div class="text-center chart-content-card" role="group" aria-hidden="true"></div>');
+    container.addClass(isClickable);
+    container.attr('data-index', index);
+
+    let numberContainer = $('<div class="chart-number-container"></div>');
+    $('<span class="card-number chart-number-font-size chart-number-animation"></span>').text(number).appendTo(numberContainer);
+    $('<i class="card-number chart-number-font-size chart-number-animation" aria-hidden="true"></i>').addClass(suffixSymbol).appendTo(numberContainer);
+    numberContainer.appendTo(container);
+
     if (counting) {
-      return '<div class="chart-number-animation chart-number-counting" style="padding-top: 10px;">' + counting + '</div>';
+      $('<div class="chart-number-animation chart-number-counting" style="padding-top: 10px;"></div>').text(counting).appendTo(container);
     }
-    return '';
-  }
+
+    let labelContainer = $('<div class="chart-label-container"></div>');
+    $('<span class="card-name chart-name-font-size chart-number-animation"></span>').text(label).appendTo(labelContainer);
+    labelContainer.appendTo(container);
+
+    let wrapper = $('<div></div>');
+    if (index > 0) {
+      $('<div class="chart-border"></div>').appendTo(wrapper);
+    }
+    container.appendTo(wrapper);
+    return wrapper.html();
+  };
 
   // Method to format chart label.
   formatChartLabel(label) {
@@ -1063,6 +1119,23 @@ class ClientNumberChart extends ClientChart {
     // Remove duplicated states if any. ['OPEN','DONE', 'OPEN'] => ['OPEN','DONE']
     // result = result.filter(item => item !== "" && item !== null);
     return result.filter((item, index) => result.indexOf(item) == index);
+  }
+
+  buildNumberChartAriaLabel(name, result) {
+    let description = name || '';
+    if (result && result.length > 0) {
+      let hideLabel = this.data.chartConfig.numberChartConfig?.hideLabel === true;
+      let items = result.map(item => {
+        let label = hideLabel ? '' : this.formatChartLabel(item.displayKey);
+        let value = item.aggs.length > 0 ? this.formatNumberValue(item.aggs[0].value) : item.count;
+        return label ? label + ': ' + value : '' + value;
+      });
+      if (description) {
+        description += ', ';
+      }
+      description += items.join(', ');
+    }
+    return description;
   }
 
   updateClientChart() {
