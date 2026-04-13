@@ -1,9 +1,9 @@
 {
-    "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-    "extends": [
-        "config:recommended"
-    ],
-    "baseBranches": [
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended"
+  ],
+  "baseBranches": [
         "master",
         "release/12.0",
         "release/10.0"
@@ -11,10 +11,7 @@
     "labels": [
         "skip-changelog"
     ],
-    "schedule": [
-        "before 5am on monday"
-    ],
-    "rebaseWhen": "never",
+    "schedule": ["before 5am on monday"],
     "semanticCommits": "disabled",
     "packageRules": [
         {
@@ -23,14 +20,9 @@
                 "release/10.0",
                 "release/12.0"
             ],
-            "matchUpdateTypes": [
-                "major"
-            ],
+            "matchUpdateTypes": ["major"],
             "dependencyDashboardApproval": true,
             "enabled": false
         }
     ]
-}
-}
-]
 }
