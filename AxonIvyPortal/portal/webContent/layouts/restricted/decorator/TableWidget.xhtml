@@ -112,7 +112,7 @@
 
       <!-- remote-command to apply widget filter -->
       <p:remoteCommand id="apply-widget-filter-command-#{index}"
-        name="applyWidgetFilterCommand#{index}"
+        name="applyWidgetFilterCommand#{index}" onstart="PF('applyButton#{index}').disable();"
         update="#{componentToUpdateOnApplyFilter} #{cc.clientId}:widget-header-actions"
         oncomplete="PF('filter-overlay-panel-#{index}').hide();"
         global="false" process="@this" partialSubmit="true" immediate="true"
@@ -295,7 +295,7 @@
               <div class="ui-g-6 ui-sm-12">
               <p:commandButton id="apply-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/apply')}"
                 ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/apply')}"
-                partialSubmit="true"
+                partialSubmit="true" widgetVar="applyButton#{index}"
                 update="filter-form-#{index}"
                 process="filter-form-#{index}"
                 oncomplete="if (args &amp;&amp; !args.validationFailed) {
