@@ -115,7 +115,6 @@
       <p:remoteCommand id="apply-widget-filter-command-#{index}"
         name="applyWidgetFilterCommand#{index}"
         update="#{componentToUpdateOnApplyFilter} #{cc.clientId}:widget-header-actions"
-        oncomplete="PF('filter-overlay-panel-#{index}').hide();"
         global="false" process="@this" partialSubmit="true" immediate="true"
         rendered="#{renderFilter}"/>
         
@@ -302,6 +301,7 @@
                 update="filter-form-#{index}"
                 process="filter-form-#{index}"
                 oncomplete="if (args &amp;&amp; !args.validationFailed) {
+                      PF('filter-overlay-panel-#{index}').hide();
 	                  applyWidgetFilterCommand#{index}();
 	                } else {
 	                  applyInvalidWidgetFilterCommand#{index}();
