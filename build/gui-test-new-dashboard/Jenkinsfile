@@ -56,9 +56,9 @@ pipeline {
                 maven cmd: "clean package -ntp -f AxonIvyPortal/portal-selenium-test/deployment-pom.xml -Divy.engine.directory=${env.engineDir}"
                 sh """
                   DEPLOYMENT="${env.engineDir}/system/demo-applications/demo-portal"
+                  rm -rf \${DEPLOYMENT}
                   mkdir -p \${DEPLOYMENT}
                   chmod -R 777 \${DEPLOYMENT}
-                  rm -rf \${DEPLOYMENT}/*
                   cp AxonIvyPortal/portal-selenium-test/target/*zip \${DEPLOYMENT}/
                 """
 
