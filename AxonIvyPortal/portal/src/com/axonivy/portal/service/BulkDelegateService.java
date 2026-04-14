@@ -64,7 +64,7 @@ public class BulkDelegateService {
           customUsers.addAll(findUsers(query));
         }
       }
-      intersectedUsers = getUniqUserIds(intersectedUsers, customUsers);
+      intersectedUsers = getIntersectedUserIds(intersectedUsers, customUsers);
     }
     return intersectedUsers;
   }
@@ -101,7 +101,7 @@ public class BulkDelegateService {
           customRoles.addAll(RoleUtils.findRoles(null, null, query));
         }
       }
-      intersectedRoles = getUniqRoleIds(intersectedRoles, customRoles);
+      intersectedRoles = getIntersectedRoleIds(intersectedRoles, customRoles);
     }
     return intersectedRoles;
   }
@@ -126,7 +126,7 @@ public class BulkDelegateService {
     return result;
   }
 
-    private static List<RoleDTO> getUniqRoleIds(List<RoleDTO> intersectedRoles, List<RoleDTO> customRoles) {
+    private static List<RoleDTO> getIntersectedRoleIds(List<RoleDTO> intersectedRoles, List<RoleDTO> customRoles) {
     Set<String> uniqRoleIds = customRoles.stream()
         .map(RoleDTO::getSecurityMemberId)
         .collect(java.util.stream.Collectors.toSet());
@@ -138,7 +138,7 @@ public class BulkDelegateService {
     return intersectedRoles;
   }
 
-  private static List<UserDTO> getUniqUserIds(List<UserDTO> intersectedUsers, List<UserDTO> customUsers) {
+  private static List<UserDTO> getIntersectedUserIds(List<UserDTO> intersectedUsers, List<UserDTO> customUsers) {
     Set<String> uniqUserIds = customUsers.stream()
         .map(UserDTO::getSecurityMemberId)
         .collect(java.util.stream.Collectors.toSet());

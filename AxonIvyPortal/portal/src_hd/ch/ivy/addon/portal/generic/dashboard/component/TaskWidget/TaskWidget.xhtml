@@ -53,20 +53,20 @@
       </h:panelGroup>
       <p:dataTable id="dashboard-tasks" widgetVar="#{cc.attrs.taskWidgetVar}-#{taskWidget.id}" value="#{taskWidget.dataModel}" var="task"
         lazy="true" scrollRows="25"
-        disabledSelection="#{isPreviewMode or bulkDelegateBean.isShowSelection(taskWidget)}" partialUpdate="false"
+        disabledSelection="#{isPreviewMode or bulkDelegateBean.isInBulkMode(taskWidget)}" partialUpdate="false"
         liveScroll="true" scrollable="true" sortBy="#{isResizing ? null : taskWidget.sortBy}"
         showGridlines="#{isResizing}" resizableColumns="#{isResizing}" resizeMode="expand"
-        rowIndexVar="rowIndex" rowHover="#{isReadOnlyMode and not bulkDelegateBean.isShowSelection(taskWidget)}" selectionMode="single"
+        rowIndexVar="rowIndex" rowHover="#{isReadOnlyMode and not bulkDelegateBean.isInBulkMode(taskWidget)}" selectionMode="single"
         styleClass="dashboard-tasks--table #{isReadOnlyMode ? '' : 'dashboard__table--edit'} #{isPreviewMode ? 'dashboard__table--preview' : ''} #{!isPreviewMode and taskWidget.taskCount lt 1 ? 'hidden' : ''} #{isResizing ? 'js-resizing' : ''}"
         rowStyleClass="dashboard-table--row-style"
         emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}">
-        <p:ajax event="rowSelect" listener="#{dashboardTaskWidgetBean.handleRowSelectEventOnTaskWidget}" disabled="#{!isReadOnlyMode or bulkDelegateBean.isShowSelection(taskWidget)}" />
+        <p:ajax event="rowSelect" listener="#{dashboardTaskWidgetBean.handleRowSelectEventOnTaskWidget}" disabled="#{!isReadOnlyMode or bulkDelegateBean.isInBulkMode(taskWidget)}" />
         <p:ajax event="colResize" process="dashboard-tasks" global="false" partialSubmit="true"
           listener="#{dashboardDetailModificationBean.onResizeColumn}" disabled="#{!isResizing}" />
         <f:attribute name="widgetId" value="#{taskWidget.id}" />
         <p:ajax event="sort" update="dashboard-tasks" onstart="liveScroll()" disabled="#{!isPreviewMode and !isReadOnlyMode}" />
 
-        <p:column headerText="" rendered="#{bulkDelegateBean.isShowSelection(taskWidget)}" styleClass="dashboard-tasks__selection-column">
+        <p:column headerText="" rendered="#{bulkDelegateBean.isInBulkMode(taskWidget)}" styleClass="dashboard-tasks__selection-column">
           <h:panelGroup styleClass="js-task-selection js-task-selection-#{taskWidget.id}">
             <ic:ch.ivy.addon.portalkit.component.task.column.TaskSelection task="#{task}"
               isEnabled="#{taskActionBean.handleSelectionAction(taskWidget.bulkActionType, task) and not bulkDelegateBean.isReachMaxSelectionLimit(taskWidget)}" managedBean="#{bulkDelegateBean}"
@@ -148,7 +148,7 @@
           <h:panelGroup rendered="#{column.field eq 'actions'}" id="action-cell-item">
             <ui:include src="ActionsCell.xhtml">
               <ui:param name="destroyTaskDialogComponent" value="destroy-task-confirmation-dialog" />
-              <ui:param name="isDisableActions" value="#{bulkDelegateBean.isShowSelection(taskWidget)}" />
+              <ui:param name="isDisableActions" value="#{bulkDelegateBean.isInBulkMode(taskWidget)}" />
             </ui:include>
           </h:panelGroup>
           

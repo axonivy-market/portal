@@ -48,7 +48,7 @@ public class BulkDelegateBean implements Serializable {
     return computedMap;
   }
 
-  public boolean isShowSelection(DashboardWidget widget) {
+  public boolean isInBulkMode(DashboardWidget widget) {
     if (widget == null || selectedTasksMap == null) {
       return false;
     }
@@ -56,9 +56,8 @@ public class BulkDelegateBean implements Serializable {
   }
 
   public void toggleDelegationColumn(TaskDashboardWidget widget) {
-    if (isShowSelection(widget)) {
+    if (isInBulkMode(widget)) {
       widget.setBulkActionType(BulkActionType.NONE);
-      deselectAllDelegatedTasks(widget.getId());
       selectedTasksMap.remove(widget.getId());
     } else {
       widget.setBulkActionType(BulkActionType.DELEGATE);
@@ -67,7 +66,6 @@ public class BulkDelegateBean implements Serializable {
   }
 
   public void resetTaskSelectionOnWidget(String widgetId) {
-    deselectAllDelegatedTasks(widgetId);
     selectedTasksMap.remove(widgetId);
   }
 
@@ -101,34 +99,13 @@ public class BulkDelegateBean implements Serializable {
     List<ITask> selectedTasks = selectedTasksMap.get(widget.getId());
     return selectedTasks != null && selectedTasks.size() >= maxSelectedTasks;
   }
-
-  public Integer getMaxSelectedTasks() {
-    return getMaximumSelectedTasks();
-  }
-
-  public boolean canShowBulkSelectDelegation(DashboardWidget widget) {
-    if (!(widget instanceof TaskDashboardWidget)) {
-      return false;
-    }
-    if (selectedTasksMap == null || widget == null) {
-      return false;
-    }
-    List<ITask> selectedTasks = selectedTasksMap.get(widget.getId());
-    return selectedTasks != null && !selectedTasks.isEmpty();
-  }
-
+  
   public int getBulkSelectCount(String widgetId) {
     List<ITask> selectedTasks = selectedTasksMap.get(widgetId);
     return selectedTasks != null ? selectedTasks.size() : 0;
   }
 
-  public void deselectAllDelegatedTasks(String widgetId) {
-    if (selectedTasksMap.containsKey(widgetId)) {
-      selectedTasksMap.get(widgetId).clear();
-    }
-  }
-
-  private static Integer getMaximumSelectedTasks() {
+  public Integer getMaximumSelectedTasks() {
     String maxTasksSetting = GlobalSettingService.getInstance()
         .findGlobalSettingValue(GlobalVariable.MAXIMUM_SELECTED_TASKS);
     try {

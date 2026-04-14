@@ -627,7 +627,7 @@ public class DashboardBean implements Serializable, IMultiLanguage {
   }
 
   public boolean isRenderMultipleTaskItemsDelegate(DashboardWidget widget) {
-    return widget instanceof TaskDashboardWidget && ((TaskDashboardWidget) widget).isShowBulkDelegateToggle();
+    return isTaskWidget(widget) && ((TaskDashboardWidget) widget).isShowBulkDelegateToggle();
   }
 
 }

@@ -42,15 +42,15 @@
     <p:tooltip for="widget__header" value="#{widget.name}" trackMouse="true" hideEvent="mouseleave click"/>
 
     <h:panelGroup id="delegation-action-bar-#{index}" layout="block" styleClass="delegation-action-bar delegation-action-bar-#{widget.id}">
-      <h:panelGroup rendered="#{dashboardBean.isTaskWidget(widget) and bulkDelegateBean.isShowSelection(widget)}">
+      <h:panelGroup rendered="#{dashboardBean.isTaskWidget(widget) and bulkDelegateBean.isInBulkMode(widget)}">
         <h:form id="delegation-action-form">
           <h:panelGroup layout="block" styleClass="flex align-items-center gap-2">
             <h:outputText value="#{bulkDelegateBean.getBulkSelectCount(widget.id)} item selected"
               styleClass="text-color-secondary white-space-nowrap"
-              rendered="#{empty bulkDelegateBean.getMaxSelectedTasks() or bulkDelegateBean.getMaxSelectedTasks() le 0}" />
-            <h:outputFormat value="#{bulkDelegateBean.getBulkSelectCount(widget.id)} / #{bulkDelegateBean.getMaxSelectedTasks()} item selected"
+              rendered="#{empty bulkDelegateBean.getMaximumSelectedTasks() or bulkDelegateBean.getMaximumSelectedTasks() le 0}" />
+            <h:outputFormat value="#{bulkDelegateBean.getBulkSelectCount(widget.id)} / #{bulkDelegateBean.getMaximumSelectedTasks()} item selected"
               styleClass="text-color-secondary white-space-nowrap"
-              rendered="#{not empty bulkDelegateBean.getMaxSelectedTasks() and bulkDelegateBean.getMaxSelectedTasks() gt 0}">
+              rendered="#{not empty bulkDelegateBean.getMaximumSelectedTasks() and bulkDelegateBean.getMaximumSelectedTasks() gt 0}">
             </h:outputFormat>
 
             <p:commandButton id="delegate-tasks-btn-#{index}"
@@ -76,7 +76,7 @@
     </h:panelGroup>
 
     <h:panelGroup id="widget-header-default-actions-#{index}" layout="block" styleClass="widget-header-default-actions widget-header-default-actions-#{widget.id} flex align-items-center">
-    <h:panelGroup rendered="#{not dashboardBean.isTaskWidget(widget) or not bulkDelegateBean.isShowSelection(widget)}">
+    <h:panelGroup rendered="#{not dashboardBean.isTaskWidget(widget) or not bulkDelegateBean.isInBulkMode(widget)}">
 
     <h:panelGroup id="show-pin-#{index}" layout="block"
         styleClass="#{isReadOnlyMode ? 'mr-3' : 'mr-1' } widget-header-show-pin"
@@ -124,7 +124,7 @@
         <p:commandButton id="bulk-delegate-toggle-button-#{index}"
           icon="si si-list-bullets"
           ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/toggleBulkDelegation')}"
-          styleClass="rounded-button ui-button-outlined u-mar-right-5 ui-button-widget #{bulkDelegateBean.isShowSelection(widget) ? 'ui-button-primary' : ''}"
+          styleClass="rounded-button ui-button-outlined u-mar-right-5 ui-button-widget #{bulkDelegateBean.isInBulkMode(widget) ? 'ui-button-primary' : ''}"
           actionListener="#{bulkDelegateBean.toggleDelegationColumn(widget)}"
           update="@(.delegation-action-bar-#{widget.id}) @(.widget-header-default-actions-#{widget.id}) #{componentToUpdateOnResetFilter}"
           process="@this" />
