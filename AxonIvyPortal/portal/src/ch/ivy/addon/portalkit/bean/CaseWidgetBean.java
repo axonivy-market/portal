@@ -63,7 +63,6 @@ public class CaseWidgetBean implements Serializable {
   }
 
   public void setSelectedCase(ICase selectedCase) {
-    Ivy.log().error("CASE NAME TO DESTROY {0}", selectedCase!= null? selectedCase.getName():"null name");
     this.selectedCase = selectedCase;
   }
 

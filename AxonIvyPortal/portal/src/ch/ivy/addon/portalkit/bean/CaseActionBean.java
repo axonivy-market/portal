@@ -120,17 +120,13 @@ public class CaseActionBean implements Serializable {
   
   public void navigateToCaseDetails(ICase caze) {
     if (caze != null) {
-      Ivy.log().error("navigateToPortalCaseDetails is {0}", caze.uuid());
       PortalNavigator.navigateToPortalCaseDetails(caze.uuid());
-    } else {
-      Ivy.log().error("caze null");
-    }
+    } 
   }
   
   public void findCase() {
     uuid = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("uuid");
     selectedCase = Ivy.wf().findCase(uuid);
-    Ivy.log().error("uuid is {0}, case name is {1}", uuid, selectedCase.getName());
   }
   
   public ICase getSelectedCase() {

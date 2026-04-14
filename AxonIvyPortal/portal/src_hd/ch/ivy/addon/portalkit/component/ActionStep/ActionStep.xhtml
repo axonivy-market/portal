@@ -95,7 +95,7 @@
       <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/ProcessViewer/ProcessViewerText')}" />
     </p:link>
     
-    <p:commandLink id="destroy-case" rendered="#{renderDestroyAction}" update="@parent #{cc.attrs.update} #{cc.attrs.destroyCaseDialogComponent}"
+    <p:commandLink id="destroy-case" rendered="#{renderDestroyAction}" update="#{cc.attrs.update} #{cc.attrs.destroyCaseDialogComponent}"
                    ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroy')}"
                    actionListener="#{caseWidgetBean.setSelectedCase(caseActionBean.getSelectedCase())}" global="false"
                    styleClass="case-command action-step-item color-destroy ui-menu-items" process="@this"
@@ -104,16 +104,6 @@
       <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroy')}" />
     </p:commandLink>
     
-     <!-- <p:commandLink id="task-destroy-command" disabled="#{!taskActionBean.canDestroyTask(taskActionBean.getSelectedTask())}" rendered="#{taskActionBean.showDestroyTask}"
-      ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroy')}"
-      styleClass="option-item color-destroy ui-menu-items" update="@parent #{cc.attrs.componentToUpdate} #{cc.attrs.destroyTaskDialogComponent}"
-      actionListener="#{taskWidgetBean.updateSelectedTask(isShowInTaskList, taskActionBean.getSelectedTask())}"
-      oncomplete="#{cc.attrs.onDestroyComplete};" process="@this">
-      <i class="option-action-icon pi pi-trash" />
-      <span class="option-item-label">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroy')}</span>
-    </p:commandLink> -->
-    
-
     <h:panelGroup id="side-steps" styleClass="case-side-steps-panel">
       <f:event listener="#{sideStepBean.getSideSteps(cc.attrs.taskId, caseActionBean.getSelectedCase().id)}" type="preRenderComponent" />
       <h:outputText rendered="#{empty sideStepBean.currentSideSteps}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noSideSteps')}" styleClass="action-step-item" />

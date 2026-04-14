@@ -295,7 +295,7 @@ public class TaskActionBean implements Serializable {
   }
 
   public boolean showClearDelayTime(ITask task) {
-    return task != null && TaskState.DELAYED.equals(task.getState()) && task.getDelayTimestamp() != null && isNotDoneForWorkingUser(task);
+    return task != null && TaskState.DELAYED == task.getState() && task.getDelayTimestamp() != null && isNotDoneForWorkingUser(task);
   }
 
   public boolean showClearExpiryTime(ITask task) {
