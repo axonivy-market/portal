@@ -29,10 +29,11 @@
     * panelStyleClass: styleClass for the main panel.
     -->
 
-<h:panelGroup id="#{panelId}" styleClass="table-widget-panel #{panelStyleClass}" layout="block" pt:role="region" pt:aria-label="#{widget.name}">
+<h:panelGroup id="#{panelId}" styleClass="table-widget-panel #{panelStyleClass}" layout="block" pt:role="region" pt:aria-label="#{widget.name != null ? widget.name : ''}">
   <c:set var="renderFilter" value="#{isReadOnlyMode and (empty isRenderFilter ? 'true': isRenderFilter)}"/>
   <c:set var="renderInfo" value="#{isReadOnlyMode and (empty isRenderInfo ? 'true': isRenderInfo)}"/>
   <c:set var="renderExpandCollapse" value="#{isReadOnlyMode and (empty isRenderExpandCollapse ? 'true': isRenderExpandCollapse)}"/>
+  <c:set var="widgetName" value="#{widget.name != null ? widget.name : ''}"/>
   <c:set var="renderSelectionToggle" value="#{isReadOnlyMode and (empty isRenderSelectionToggle ? 'false': isRenderSelectionToggle)}"/>
 
   <f:event listener="#{dashboardBean.setSearchScope(widget)}" type="preRenderComponent" />
@@ -181,15 +182,15 @@
         <p:badge value="#{countFilter}" visible="#{countFilter ne '0'}"
           rendered="#{renderFilter}" styleClass="widget__filter-noti-number">
           <p:commandButton id="filter-sidebar-link-#{index}" type="button" icon="si si-filter-1"
-            ariaLabel="#{countFilter ne '0' ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/openWidgetFiltersWithCountContext', [widget.name, countFilter]) : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/openWidgetFiltersContext', [widget.name])}"
+            ariaLabel="#{countFilter ne '0' ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/openWidgetFiltersWithCountContext', [widgetName, countFilter]) : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/openWidgetFiltersContext', [widgetName])}"
             styleClass="rounded-button widget__filter-sidebar-link ui-button-outlined ui-button-widget" />
         </p:badge>
         <p:tooltip for="filter-sidebar-link-#{index}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/filters')}"
-          trackMouse="true" hideEvent="mouseleave click" rendered="#{renderFilter}" />
+          showEvent="mouseenter" hideEvent="mouseleave" trackMouse="true" rendered="#{renderFilter}" />
       </span>
 
       <p:commandButton id="info-sidebar-link-#{index}" type="button" icon="si si-statistics-daytum"
-        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/openWidgetInfoContext', [widget.name])}"
+        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/openWidgetInfoContext', [widgetName])}"
         styleClass="rounded-button ui-button-outlined widget__info-sidebar-link u-mar-right-5 ui-button-widget"
         rendered="#{renderInfo}" />
       <p:tooltip for="info-sidebar-link-#{index}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/widgetInfo')}" trackMouse="true"
@@ -197,12 +198,12 @@
         hideEvent="mouseleave click" />
 
       <p:commandButton id="expand-link-#{index}" type="button" icon="si si-expand-1"
-        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/expandWidgetContext', [widget.name != null ? widget.name : ''])}"
+        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/expandWidgetContext', [widgetName])}"
         styleClass="rounded-button ui-button-outlined expand-link u-mar-right-5 ui-button-widget"
         rendered="#{renderExpandCollapse}" onclick="expandFullscreen(#{index}, '#{htmlSanitizerBean.escapeForJS(widget.id)}')"/>
 
       <p:commandButton id="collapse-link-#{index}" type="button" icon="si si-shrink-1"
-        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/collapseWidgetContext', [widget.name != null ? widget.name : ''])}"
+        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/collapseWidgetContext', [widgetName])}"
         styleClass="rounded-button ui-button-outlined collapse-link u-mar-right-5 ui-button-widget"
         rendered="#{renderExpandCollapse}"
         onclick="collapseFullscreen(#{index}, '#{htmlSanitizerBean.escapeForJS(widget.id)}')" />
@@ -256,7 +257,8 @@
         onShow="buildStatisticInfos#{index}(); return false;"
         onHide="updateWidgetStatisticPannel#{index}(); return false;"
         dismissable="false"
-        dynamic="true">
+        dynamic="true"
+        pt:aria-label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/widgetInfo')}">
         <div class="ui-g widget-info--type">
           <h:outputText styleClass="ui-g-8 widget-info-type--label u-no-padding-left" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/widgetType')}" />
           <h:outputText styleClass="ui-g-4 u-no-padding-bottom u-no-padding-left text-right" value="#{widget.type.label}" />
@@ -274,7 +276,7 @@
           <div class="ui-g-12">
             <ui:insert name="statisticPanelOtherAction" />
             <p:commandLink styleClass="Fright info-overlay-panel__close-link"
-              ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
+              ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/closeContext', [ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/widgetInfo')])}"
               onclick="PF('info-overlay-panel-#{index}').hide();"
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
               partialSubmit="true" immediate="true" global="false" process="@this"/>
@@ -289,7 +291,8 @@
         styleClass="filter-overlay-panel js-dashboard-overlay-panel ui-sm-12"
         dismissable="false"
         dynamic="true"
-        onShow="loadUserFilters#{index}(); #{onFilterOverlayPanelShow};">
+        onShow="loadUserFilters#{index}(); #{onFilterOverlayPanelShow};"
+        pt:aria-label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/Filter/FilterPanelHeader')}">
         <h:form id="filter-form-#{index}" styleClass="filter-form">
           <h:panelGroup id="filter-overlaypanel-content-#{index}" styleClass="ui-g" layout="block">
             <h:panelGroup id="saved-filters-container" styleClass="ui-g-3 u-padding-0 saved-filter ui-sm-hidden" layout="block">
@@ -347,7 +350,7 @@
               
               <div class="ui-g-6 ui-sm-12">
               <p:commandButton id="apply-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/apply')}"
-                ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/apply')}"
+                ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/applyContext', [ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/Filter/FilterOptionHeader')])}"
                 partialSubmit="true"
                 update="filter-form-#{index}"
                 process="filter-form-#{index}"
@@ -390,13 +393,13 @@
     <!-- maximize and minimize buttons in custom widget no header -->
     <p:commandButton id="expand-link-widget-no-header-#{index}"
       type="button" icon="si si-expand-1"
-      ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/expandWidgetContext', [widget.name != null ? widget.name : ''])}"
+      ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/expandWidgetContext', [widgetName])}"
       styleClass="rounded-button ui-button-outlined expand-link widget-no-header ui-button-widget"
       rendered="#{renderExpandCollapse and isHeaderHidden}"
       onclick="expandFullscreen(#{index}, '#{htmlSanitizerBean.escapeForJS(widget.id)}')" />
     <p:commandButton id="collapse-link-widget-no-header-#{index}"
       type="button" icon="si si-shrink-1"
-      ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/collapseWidgetContext', [widget.name != null ? widget.name : ''])}"
+      ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/collapseWidgetContext', [widgetName])}"
       styleClass="rounded-button ui-button-outlined collapse-link widget-no-header"
       rendered="#{renderExpandCollapse and isHeaderHidden}"
       onclick="collapseFullscreen(#{index}, '#{htmlSanitizerBean.escapeForJS(widget.id)}')" />
