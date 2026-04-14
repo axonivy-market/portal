@@ -642,7 +642,7 @@ jobs:
               }
         
         - name: Report
-          uses: dorny/test-reporter@v2.1.1
+          uses: dorny/test-reporter@v2.7.0
           with:
             artifact: artifacts
             name: Selenium tests
