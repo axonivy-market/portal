@@ -281,7 +281,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       hideUploadDocumentForDoneCaseNote: Set to true to deny upload (also delete) document after a case is done.
       hideYear: Set to true, year will be hidden, otherwise it will be shown.
       imageUploadSizeLimit: Set the size limit for uploading images in megabytes (MB). The default value is 6MB.
-      keepSidebarExpanded: Always keep sidebar (left menu) expanded
+      sidebarMode: Controls how the sidebar navigation behaves. Hover expands on hover, Click uses a toggle button, Stick keeps it always expanded, Hidden removes the sidebar completely.
       loggedInUserFormat: The option to show logged-in user format
       refreshTaskListIntervalNote: Task list refresh interval in seconds.
       showAvatar: For switch on/off the display of user/role avatars.
@@ -453,8 +453,16 @@ ch.ivy.addon.portalkit.ui.jsf:
     Update: Update
     Widget: Widget
     action: Actions
+    actionMenuContext: "Open actions menu for {0} process"
+    taskActionMenuContext: "Open actions menu for {0} task"
     active: Active
+    collapseWidgetContext: "Collapse {0} widget"
+    expandWidgetContext: "Expand {0} widget"
+    openWidgetFiltersContext: "Open {0} filters"
+    openWidgetFiltersWithCountContext: "Open {0} filters, {1} active filters"
+    openWidgetInfoContext: "Open {0} widget information"
     add: Add
+    addContext: Add {0}
     addDocument: Add document
     addLink: Add Link
     addNote: Add note
@@ -462,12 +470,14 @@ ch.ivy.addon.portalkit.ui.jsf:
     allTypes: All types
     allowPng: Only png types allowed
     apply: Apply
+    applyContext: Apply {0}
     at: at
     author: Author
     back: Back
     backToCaseMap: Back to case map
     backgroundColor: Background color
     cancel: Cancel
+    cancelContext: Cancel {0}
     case: Case
     caseCategory: Case category
     caseInformation: Case Information
@@ -475,6 +485,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     categories: Categories
     change: Change
     close: Close
+    closeContext: Close {0}
     cockpit: Cockpit
     colors: Colors
     comment: Comment
@@ -495,6 +506,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     default: Default
     defaultNotificationMessage: Hmm... Looks like something went wrong.
     delete: Delete
+    deleteContext: Delete {0}
     deleteAbsenceHeaderText: Delete this absence?
     deleteChartHeaderText: Delete this chart?
     deleteDocumentHeaderText: Delete this document?
@@ -572,8 +584,11 @@ ch.ivy.addon.portalkit.ui.jsf:
     numberFromBiggerThanTo: '''To'' must be bigger than ''From''.'
     numberOfSelectedFilter: selected filters
     ok: OK
+    okContext: OK {0}
     'on': 'on'
     pin: Pin
+    pinCaseContext: "Pin case {0}"
+    pinTaskContext: "Pin task {0}"
     pleaseAddDocument: Please add a document with the link above.
     pleaseAddNote: Please add a note with the link above.
     previousStage: Previous stage
@@ -596,6 +611,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     restoreToDefaultChartHeaderText: Restore to default charts?
     role: Role
     save: Save
+    saveContext: Save {0}
     saveAll: Save all
     saveSuccessfully: Data saved successfully.
     search: Search
@@ -634,6 +650,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     typeAllUsers: All users
     typeOnlyMe: Only me
     unpin: Unpin
+    unpinCaseContext: "Unpin case {0}"
+    unpinTaskContext: "Unpin task {0}"
     uploadHere: Upload here
     uploadOneHere: Upload one here
     user: '{0} user'
@@ -788,6 +806,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     ExternalPageWidgetIntroduction: This widget can display an external webpage.
     Filter:
       FilterOptionHeader: Filter options
+      FilterPanelHeader: Filter panel
       ManageWidgetFilterHeader: Widget filter management
       NotFound: No filter found
       WidgetNameColumn: Widget name
@@ -1108,11 +1127,15 @@ ch.ivy.addon.portalkit.ui.jsf:
     markAllAsRead: Mark all as read
     markAsRead: Mark as read
     noNotificationText: No Notifications
+    notificationOptions: Notification options
     notificationTitle: Notifications
+    notificationsBadgeLabel: Open notification panel, {0} unread
     olderText: Older
     onlyUnread: Only unread
+    openNotificationSettings: Open notification settings
     openNotifications: Open notifications
     todayText: Today
+    viewNotificationsFullScreen: View notifications in full screen
     xDaysAgo: '%s days ago'
     xHoursAgo: '%s hours ago'
     xMinutesAgo: '%s minutes ago'
@@ -1919,6 +1942,11 @@ Labels:
     SearchScopeTaskField:
       DESCRIPTION: Description
       NAME: Name
+    SidebarMode:
+      CLICK: Click
+      HIDDEN: Hidden
+      HOVER: Hover
+      STICK: Stick
     ThemeMode:
       DARK: Dark
       LIGHT: Light
