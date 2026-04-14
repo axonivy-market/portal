@@ -57,6 +57,7 @@ pipeline {
                 sh """
                   DEPLOYMENT="${env.engineDir}/system/demo-applications/demo-portal"
                   mkdir -p \${DEPLOYMENT}
+                  chmod -R 777 \${DEPLOYMENT}
                   rm -rf \${DEPLOYMENT}/*
                   cp AxonIvyPortal/portal-selenium-test/target/*zip \${DEPLOYMENT}/
                 """
