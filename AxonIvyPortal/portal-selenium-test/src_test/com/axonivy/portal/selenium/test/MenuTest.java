@@ -234,7 +234,6 @@ public class MenuTest extends BaseTest {
     login(TestAccount.DEMO_USER);
     NewDashboardPage dashboardPage = new NewDashboardPage();
 
-    // Verify sidebar is completely hidden
     dashboardPage.isSidebarHidden();
   }
 
