@@ -193,11 +193,7 @@ public class ComplexFilterHelper {
       dateInput.get(i).shouldBe(Condition.empty, DEFAULT_TIMEOUT).sendKeys(String.valueOf(values[i]));
       WaitHelper.waitPageNoAnimation();
 
-      if ($("div[id='new-widget-configuration-dialog']").isDisplayed()) {
-        filterElement.$("span button").$("span[class*='ui-icon-calendar']").click();
-      } else {
-        dateInput.get(i).pressEscape();
-      }
+      filterElement.$("span button").$("span[class*='ui-icon-calendar']").shouldBe(appear, DEFAULT_TIMEOUT).click();
     }
   }
 
@@ -218,14 +214,13 @@ public class ComplexFilterHelper {
         .shouldBe(Condition.editable);
     fromInput.clear();
     fromInput.sendKeys(String.valueOf(values[0]));
-    fromInput.pressEscape();
 
     var toInput = filterElement.$("div[id$=':between-dates-panel-to']").$("input[id$=':to-date_input']")
         .shouldBe(Condition.editable);
     toInput.clear();
     toInput.sendKeys(String.valueOf(values[1]));
     WaitHelper.waitPageNoAnimation();
-    toInput.pressEscape();
+    filterElement.$("div[id$=':between-dates-panel-to']").$("button").$("span[class*='ui-icon-calendar']").shouldBe(appear, DEFAULT_TIMEOUT).click();
   }
 
   private static SelenideElement getValueOfCheckBox(String value) {

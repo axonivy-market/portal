@@ -15,6 +15,7 @@ import com.axonivy.portal.enums.GlobalSearchScopeCategory;
 import com.axonivy.portal.enums.SearchScopeCaseField;
 import com.axonivy.portal.enums.SearchScopeTaskField;
 import com.axonivy.portal.enums.ThemeMode;
+import com.axonivy.portal.enums.SidebarMode;
 
 import ch.addon.portal.generic.userprofile.homepage.HomepageType;
 import ch.ivy.addon.portalkit.document.DocumentExtensionConstants;
@@ -93,7 +94,7 @@ public enum GlobalVariable {
   ENABLE_PINNED_CASE("Portal.Cases.EnablePinnedCase", GlobalVariableType.SELECTION, Option.TRUE.toString(),
       "enablePinCase"),ALLOW_KEYBOARD_SHORTCUTS_CONFIGURATION(
           "Portal.Accessibility.AllowKeyboardShortcutsConfiguration", GlobalVariableType.SELECTION, Option.TRUE.toString(), "allowKeyboardShortcutsConfiguration"),
-  EXPANDED_SIDEBAR("Portal.KeepSidebarExpanded", GlobalVariableType.SELECTION, Option.FALSE.toString(), "keepSidebarExpanded");
+  SIDEBAR_MODE("Portal.Sidebar.Mode", GlobalVariableType.EXTERNAL_SELECTION, SidebarMode.HOVER.name(), "sidebarMode", getSidebarModes());
 
   private String key;
   private GlobalVariableType type;
@@ -292,6 +293,14 @@ public enum GlobalVariable {
     Map<String, Object> result = new HashMap<>();
     for (DelegationAppendOption option : DelegationAppendOption.values()) {
       result.put(option.name(), option);
+    }
+    return result;
+  }
+
+  private static Map<String, Object> getSidebarModes() {
+    Map<String, Object> result = new HashMap<>();
+    for (SidebarMode mode : SidebarMode.values()) {
+      result.put(mode.name(), mode);
     }
     return result;
   }
