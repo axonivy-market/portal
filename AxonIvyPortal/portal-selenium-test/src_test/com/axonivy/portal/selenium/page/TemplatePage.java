@@ -566,4 +566,10 @@ public abstract class TemplatePage extends AbstractPage {
         .$("form#widget-configuration-form").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
 
+  public void isSidebarHidden() {
+    $(".js-layout-wrapper.sidebar-hidden").should(Condition.exist, DEFAULT_TIMEOUT);
+    $(".menu-wrapper").shouldNotBe(Condition.visible, DEFAULT_TIMEOUT);
+    $(".layout-topbar-left").shouldNotBe(Condition.visible, DEFAULT_TIMEOUT);
+  }
+
 }

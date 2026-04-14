@@ -50,6 +50,7 @@
   <h:outputScript name="responsive-toolkit.js" library="js" />
   <h:outputScript name="main.js" library="js" />
   <h:outputScript name="portal.js" library="js" />
+  <h:outputScript name="sidebar.js" library="js" />
   <ui:insert name="head" />
 </h:head>
 
@@ -85,7 +86,7 @@
       <c:set var="showGlobalSearch" value="#{userMenuBean.isShowGlobalSearch}" />
       <c:set var="showQuickGlobalSearch" value="#{userMenuBean.isShowQuickGlobalSearch}" />
       <c:set var="isKeyboardShortcutsEnabled" value="#{masterDataBean.keyboardShortcutsEnabled}" />
-      <c:set var="sidebarBehaviour" value="#{masterDataBean.sidebarBehaviour}" />
+      <c:set var="sidebarMode" value="#{masterDataBean.sidebarMode}" />
 
      <div id="portal-template-header" class="js-portal-template-header #{showMainArea eq true ? '' : 'u-invisibility'}">
         <ic:ch.ivy.addon.portalkit.component.PageHeader />
@@ -93,8 +94,8 @@
 
       <div
           class="#{isPortalInTeams ? '' : 'layout-wrapper layout-sidebar'} layout-topbar-#{ivyFreyaTheme.mode} layout-menu-#{ivyFreyaTheme.mode}
-        js-layout-wrapper #{isPortalInTeams ? 'ms-teams-layout' : ''} #{sidebarBehaviour == 'STICK' ? 'layout-static' : ''} #{sidebarBehaviour == 'CLICK' ? 'sidebar-click-mode layout-sidebar-static' : ''}"
-          data-sidebar-behaviour="#{sidebarBehaviour}">
+        js-layout-wrapper #{isPortalInTeams ? 'ms-teams-layout' : ''} #{sidebarMode == 'STICK' ? 'layout-static' : ''} #{sidebarMode == 'CLICK' ? 'sidebar-click-mode layout-sidebar-static' : ''} #{sidebarMode == 'HIDDEN' ? 'sidebar-hidden' : ''}"
+          data-sidebar-mode="#{sidebarMode}">
 
         <h:panelGroup layout="block" rendered="#{!isPortalInTeams}" styleClass="layout-topbar js-layout-topbar" pt:role="banner">
           <h:panelGroup layout="block" id="layout-topbar-menu-wrapper" styleClass="layout-topbar-wrapper">
@@ -171,7 +172,7 @@
         Portal.updateLayoutContent();
         Portal.updateBreadcrumb();
         MainMenu.highlightMenuItem();
-        SidebarClickMode.init($('.js-layout-wrapper').data('sidebar-behaviour'));
+        SidebarClickMode.init($('.js-layout-wrapper').data('sidebar-mode'));
         });
     </script>
   </ui:insert>

@@ -162,9 +162,9 @@ public class MasterDataBean implements Serializable {
     return UserSettingService.getInstance().isKeyboardShortcutsEnabled();
   }
   
-  public String getSidebarBehaviour() {
-    String value = GlobalSettingService.getInstance().findGlobalSettingValue(GlobalVariable.SIDEBAR_BEHAVIOUR);
-    return StringUtils.defaultIfBlank(value, com.axonivy.portal.enums.SidebarBehaviour.HOVER.name());
+  public String getSidebarMode() {
+    String value = GlobalSettingService.getInstance().findGlobalSettingValue(GlobalVariable.SIDEBAR_MODE);
+    return StringUtils.defaultIfBlank(value, com.axonivy.portal.enums.SidebarMode.HOVER.name());
   }
 }
 

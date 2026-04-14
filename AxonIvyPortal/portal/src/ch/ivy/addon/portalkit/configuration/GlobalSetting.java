@@ -11,7 +11,7 @@ import org.apache.commons.lang3.StringUtils;
 import com.axonivy.portal.enums.GlobalSearchScopeCategory;
 import com.axonivy.portal.enums.SearchScopeCaseField;
 import com.axonivy.portal.enums.SearchScopeTaskField;
-import com.axonivy.portal.enums.SidebarBehaviour;
+import com.axonivy.portal.enums.SidebarMode;
 import com.axonivy.portal.enums.ThemeMode;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -125,7 +125,7 @@ public class GlobalSetting extends AbstractConfiguration {
       case SearchScopeCaseField castObject -> castObject.getLabel();
       case GlobalSearchScopeCategory castObject -> castObject.getLabel();
       case DelegationAppendOption castObject -> castObject.getLabel();
-      case SidebarBehaviour castObject -> castObject.getLabel();
+      case SidebarMode castObject -> castObject.getLabel();
       default -> (String) object;
     };
   }
