@@ -9,6 +9,7 @@ import ch.ivy.addon.portalkit.enums.Protocol;
 import ch.ivyteam.ivy.application.IApplication;
 
 public class SubMenuItem {
+  
   protected String id;
   protected MenuKind menuKind;
   protected String link;

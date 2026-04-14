@@ -9,12 +9,16 @@ import static org.apache.commons.lang3.StringUtils.EMPTY;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Base64;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -34,6 +38,15 @@ import org.primefaces.model.menu.MenuModel;
 
 import com.axonivy.portal.components.enums.MenuKind;
 import com.axonivy.portal.components.publicapi.ApplicationMultiLanguageAPI;
+import com.axonivy.portal.components.util.Locales;
+import com.axonivy.portal.dto.menu.ExternalLinkMenuItemDefinition;
+import com.axonivy.portal.dto.menu.PortalMenuItemDefinition;
+import com.axonivy.portal.dto.menu.StandardMenuItemDefinition;
+import com.axonivy.portal.enums.StandardMenuItemDefinitionType;
+import com.axonivy.portal.menu.management.enums.MenuSource;
+import com.axonivy.portal.menu.view.MenuMatcher;
+import com.axonivy.portal.service.PortalMenuItemDefinitionService;
+import com.axonivy.portal.util.MenuUtils;
 
 import ch.addon.portal.generic.menu.PortalMenuItem.PortalMenuBuilder;
 import ch.addon.portal.generic.userprofile.homepage.HomepageType;
@@ -47,6 +60,7 @@ import ch.ivy.addon.portalkit.enums.DashboardDisplayType;
 import ch.ivy.addon.portalkit.service.ApplicationMultiLanguage;
 import ch.ivy.addon.portalkit.service.MainMenuEntryService;
 import ch.ivy.addon.portalkit.util.DashboardUtils;
+import ch.ivy.addon.portalkit.util.DisplayNameAdaptor;
 import ch.ivy.addon.portalkit.util.UrlUtils;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -89,22 +103,46 @@ public class MenuView implements Serializable {
   public void buildPortalLeftMenu(ITask workingTask, boolean isWorkingOnATask) {
     initTaskParams(workingTask, isWorkingOnATask);
     mainMenuModel = new DefaultMenuModel();
-    mainMenuModel.getElements().add(buildDashboardItem()); // menuIndex = 0
+
+    List<PortalMenuItemDefinition> menuDefinitions = Optional
+        .ofNullable(PortalMenuItemDefinitionService.getInstance().findAll()).orElseGet(ArrayList::new);
 
     List<SubMenuItem> subMenuItems = PortalMenuNavigator.callSubMenuItemsProcess();
-    int menuIndex = 1;
-    for (SubMenuItem subMenu : subMenuItems) {
-      DefaultMenuItem item = buildSubMenuItem(subMenu, menuIndex);
-      mainMenuModel.getElements().add(item);
-      menuIndex++;
-    }
 
+    List<PortalMenuItem> menuList = subMenuItems.stream().map(subMenu -> {
+      Predicate<PortalMenuItemDefinition> matcher = MenuMatcher.matcherFor(subMenu);
+
+      int menuIndex = menuDefinitions.stream().filter(matcher).findFirst().map(PortalMenuItemDefinition::getIndex)
+          .orElseGet(() -> subMenuItems.indexOf(subMenu) + 1);
+
+      return buildSubMenuItem(subMenu, menuIndex);
+    }).collect(Collectors.toList());
+
+    // Add third-party apps to the menu list
     List<Application> thirdPartyApps = PortalMenuNavigator.getThirdPartyApps();
-    for (Application app : thirdPartyApps) {
-      DefaultMenuItem item = buildThirdPartyItem(app, menuIndex);
-      mainMenuModel.getElements().add(item);
-      menuIndex++;
-    }
+    menuList.addAll(thirdPartyApps.stream().map(app -> {
+      DisplayNameAdaptor adaptor = new DisplayNameAdaptor(app.getDisplayName(), Locales.getCurrentLocale());
+      int index = menuDefinitions.stream().filter(menu -> menu.getSource() == MenuSource.THIRD_PARTY_APP_CONFIGURATION)
+          .filter(menu -> {
+            ExternalLinkMenuItemDefinition externalMenu = (ExternalLinkMenuItemDefinition) menu;
+            return adaptor.getDisplayNameAsString().contentEquals(MenuUtils.getDisplayTitle(externalMenu));
+          }).findFirst().map(PortalMenuItemDefinition::getIndex).orElseGet(() -> mainMenuModel.getElements().size());
+
+      return buildThirdPartyItem(app, index);
+    }).collect(Collectors.toList()));
+
+    // Sort and put the menu list to the main menu model
+    menuList.sort(Comparator.comparingInt(PortalMenuItem::getIndex));
+    mainMenuModel.getElements().addAll(menuList);
+
+    // Handle default dashboard
+    MenuElement defaultDashboardMenu = buildDashboardItem();
+    int defaultDashboardMenuIndex = menuDefinitions.stream().filter(menu -> menu.getType() == MenuKind.STANDARD)
+        .filter(
+            menu -> ((StandardMenuItemDefinition) menu).getStandardType() == StandardMenuItemDefinitionType.DASHBOARD)
+        .findFirst().map(PortalMenuItemDefinition::getIndex).orElse(0);
+    mainMenuModel.getElements().add(defaultDashboardMenuIndex, defaultDashboardMenu);
+
     mainMenuModel.generateUniqueIds();
   }
 
@@ -113,7 +151,7 @@ public class MenuView implements Serializable {
     this.isWorkingOnATask = isWorkingOnATask;
   }
 
-  private DefaultMenuItem buildSubMenuItem(SubMenuItem subMenuItem, int menuIndex) {
+  private PortalMenuItem buildSubMenuItem(SubMenuItem subMenuItem, int menuIndex) {
     boolean isExternalLink = isExternalLink(subMenuItem);
     return new PortalMenuBuilder(subMenuItem.getLabel(), subMenuItem.getMenuKind(), isWorkingOnATask)
         .url(subMenuItem.buildLink())
@@ -128,16 +166,12 @@ public class MenuView implements Serializable {
         || subMenuItem.getMenuKind() == MenuKind.THIRD_PARTY || subMenuItem.getMenuKind() == MenuKind.STATIC_PAGE;
   }
 
-  private DefaultMenuItem buildThirdPartyItem(Application application, int menuIndex) {
+  private PortalMenuItem buildThirdPartyItem(Application application, int menuIndex) {
     String menuIcon = StringUtils.defaultString(application.getMenuIcon());
     String iconClass = (menuIcon.startsWith("fa") ? "fa " : "si ") + menuIcon;
-    return new PortalMenuBuilder(ApplicationMultiLanguage.getDisplayNameInCurrentLocale(application), MenuKind.THIRD_PARTY, this.isWorkingOnATask)
-        .icon(iconClass)
-        .url(UrlUtils.buildUrl(application.getLink()))
-        .workingTaskId(this.workingTaskId)
-        .cleanParam(true)
-        .menuIndex(menuIndex)
-        .build();
+    return new PortalMenuBuilder(ApplicationMultiLanguage.getDisplayNameInCurrentLocale(application),
+        MenuKind.THIRD_PARTY, this.isWorkingOnATask).icon(iconClass).url(UrlUtils.buildUrl(application.getLink()))
+        .workingTaskId(this.workingTaskId).cleanParam(true).menuIndex(menuIndex).build();
   }
 
   private MenuElement buildDashboardItem() {
