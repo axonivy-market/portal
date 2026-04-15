@@ -44,7 +44,7 @@ pipeline {
           try {
             docker.image("selenium/standalone-firefox:4").withRun("--shm-size=2g --name ${seleniumName} --network ${networkName} --hostname=wawa ${debugPort}") {
               docker.build('gui-test-portal', '-f build/Dockerfile .').inside("--name ${testEngineContainerName} --network ${networkName} -v /var/tools/maven-cache:/home/build/") {
-                def engineDownloadUrl = params.engineDownloadURL.replaceAll('.*-Divy\.engine\.download\.url=', '').split(' ')[0]
+                def engineDownloadUrl = params.engineDownloadURL.replace('-Divy.engine.download.url=', '').split(' ')[0]
                 sh """
                   mkdir -p ${env.engineDir}
                   curl -sL '${engineDownloadUrl}' -o /tmp/engine.zip
