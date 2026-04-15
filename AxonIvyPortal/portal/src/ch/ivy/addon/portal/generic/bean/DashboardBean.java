@@ -196,11 +196,17 @@ public class DashboardBean implements Serializable {
   }
 
   public void navigateToSelectedTaskDetails(SelectEvent<Object> event) {
+    if (event.getObject() == null) {
+      return;
+    }
     Long taskId = ((ITask) event.getObject()).getId();
     PortalNavigator.navigateToPortalTaskDetails(taskId);
   }
 
   public void handleRowSelectEventOnTaskWidget(SelectEvent<Object> event) throws IOException {
+    if (event.getObject() == null) {
+      return;
+    }
     ITask task = ((ITask) event.getObject());
     handleSelectedTask(task);
   }
@@ -223,6 +229,9 @@ public class DashboardBean implements Serializable {
   }
 
   public void navigateToSelectedCaseDetails(SelectEvent<Object> event) {
+    if (event.getObject() == null) {
+      return;
+    }
     Long caseId = ((ICase) event.getObject()).getId();
     PortalNavigator.navigateToPortalCaseDetails(caseId);
   }

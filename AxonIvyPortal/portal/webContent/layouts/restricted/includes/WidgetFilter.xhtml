@@ -28,6 +28,7 @@
         styleClass="saved-filter__search" value="#{widget.searchSavedFilterKeyword}"
         onfocus="#{widget.type == 'PROCESS'} ? preventFocus() : 'false' "
         onclick="retrieveFocus()"
+        onkeydown="if (event.key === 'Enter') { event.preventDefault(); event.stopPropagation(); return false; }"
         valueChangeListener="#{widget.searchSavedFilters()}">
         <p:ajax event="keyup" delay="50" partialSubmit="true" global="false" process="@this"
           onstart="searchWigetFilter#{index}()" />
