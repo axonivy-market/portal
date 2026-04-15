@@ -73,6 +73,7 @@ public class TaskService {
           .getResultsPaged(finalQuery);
       result.setTasks(iTask.window(startIndex, count));
       int i = 0;
+      int j = 0;
       result.setTotalTasks(iTask.count());
       return result;
     });
