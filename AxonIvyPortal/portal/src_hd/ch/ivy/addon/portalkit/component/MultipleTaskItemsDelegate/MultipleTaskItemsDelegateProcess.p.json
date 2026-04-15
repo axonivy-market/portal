@@ -77,7 +77,8 @@
             "in.isUserDelegated = true;",
             "// in.delegatedSecurityMember = null;",
             "in.selectedRole = null;",
-            "in.selectedUser = null;"
+            "in.selectedUser = null;",
+            "in.taskDelegationComment = \"\";"
           ]
         },
         "sudo" : true
