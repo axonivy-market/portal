@@ -505,7 +505,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     delete: Delete
     deleteContext: Delete {0}
     delegateTasks: Delegate tasks
-    toggleBulkDelegation: Toggle bulk delegation
+    Toggle Bulk Delegation: Toggle bulk delegation
     deleteAbsenceHeaderText: Delete this absence?
     deleteChartHeaderText: Delete this chart?
     deleteDocumentHeaderText: Delete this document?
@@ -1618,6 +1618,7 @@ Dialogs:
             TaskWidgetConfiguration:
               AddFilter: Add filter
               ResetFilter: Reset filter
+              ShowBulkDelegateToggle: Show 'Bulk Delegate' Toggle
             filter:
               DashboardFilter:
                 HasCmsValuesEnabledTooltip: This field only allows to use Contains operator

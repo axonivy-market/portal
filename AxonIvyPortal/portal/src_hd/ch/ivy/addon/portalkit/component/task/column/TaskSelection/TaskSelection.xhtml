@@ -17,7 +17,7 @@
     <c:set var="task" value="#{cc.attrs.task}" />
     <c:set var="managedBean" value="#{cc.attrs.managedBean}" />
     <c:set var="taskWidget" value="#{cc.attrs.taskWidget}" />
-    <p:selectBooleanCheckbox id="checkbox" styleClass="js-task-checkbox js-task-checkbox-#{taskWidget.id}" value="#{bulkDelegateBean.taskCheckboxSelectionMap[taskWidget.id][task.uuid()]}" disabled="#{!cc.attrs.isEnabled and !bulkDelegateBean.taskCheckboxSelectionMap[taskWidget.id][task.uuid()]}">
+    <p:selectBooleanCheckbox id="checkbox" styleClass="js-task-checkbox js-task-checkbox-#{taskWidget.id}" value="#{bulkActionBean.taskCheckboxSelectionMap[taskWidget.id][task.uuid()]}" disabled="#{!cc.attrs.isEnabled and !bulkActionBean.taskCheckboxSelectionMap[taskWidget.id][task.uuid()]}">
         <p:ajax event="change" process="@this" update="@(.delegation-action-bar-#{taskWidget.id}) @(.js-task-checkbox-#{taskWidget.id})"
                 listener="#{cc.attrs.onSelectCheckbox}"/>
     </p:selectBooleanCheckbox>

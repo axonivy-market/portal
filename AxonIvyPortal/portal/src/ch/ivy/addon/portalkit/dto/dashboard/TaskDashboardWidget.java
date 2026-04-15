@@ -16,7 +16,6 @@ import org.primefaces.model.SortMeta;
 
 import com.axonivy.portal.dto.dashboard.WidgetInformationCategoryStatisticData;
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
-import com.axonivy.portal.enums.BulkActionType;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import ch.ivy.addon.portalkit.datamodel.DashboardTaskLazyDataModel;
@@ -54,8 +53,6 @@ public class TaskDashboardWidget extends DashboardWidget {
 
   @JsonIgnore
   private List<String> errors;
-  @JsonIgnore
-  private BulkActionType bulkActionType;
 
   public TaskDashboardWidget() {
     dataModel = new DashboardTaskLazyDataModel();
@@ -66,14 +63,6 @@ public class TaskDashboardWidget extends DashboardWidget {
     setShowFullscreenMode(true);
     setShowPinnedToggle(true);
     setShowBulkDelegateToggle(true);
-  }
-
-  public BulkActionType getBulkActionType() {
-    return bulkActionType;
-  }
-
-  public void setBulkActionType(BulkActionType bulkActionType) {
-    this.bulkActionType = bulkActionType;
   }
 
   public boolean isShowBulkDelegateToggle() {

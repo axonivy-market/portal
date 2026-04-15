@@ -1626,6 +1626,7 @@ Dialogs:
             TaskWidgetConfiguration:
               AddFilter: Filter hinzufügen
               ResetFilter: Filter zurücksetzen
+              ShowBulkDelegateToggle: '''Sammelweiterleitung'' umschalten anzeigen'
             filter:
               DashboardFilter:
                 HasCmsValuesEnabledTooltip: Dieses Feld erlaubt nur die Verwendung des Operators „Enthält"

@@ -42,22 +42,22 @@
     <p:tooltip for="widget__header" value="#{widget.name}" trackMouse="true" hideEvent="mouseleave click"/>
 
     <h:panelGroup id="delegation-action-bar-#{index}" layout="block" styleClass="delegation-action-bar delegation-action-bar-#{widget.id}">
-      <h:panelGroup rendered="#{dashboardBean.isTaskWidget(widget) and bulkDelegateBean.isInBulkMode(widget)}">
+      <h:panelGroup rendered="#{dashboardBean.isTaskWidget(widget) and bulkActionBean.isInBulkMode(widget)}">
         <h:form id="delegation-action-form">
           <h:panelGroup layout="block" styleClass="flex align-items-center gap-2">
-            <h:outputText value="#{bulkDelegateBean.getBulkSelectCount(widget.id)} item selected"
+            <h:outputText value="#{bulkActionBean.getBulkSelectCount(widget.id)} item selected"
               styleClass="text-color-secondary white-space-nowrap"
-              rendered="#{empty bulkDelegateBean.getMaximumSelectedTasks() or bulkDelegateBean.getMaximumSelectedTasks() le 0}" />
-            <h:outputFormat value="#{bulkDelegateBean.getBulkSelectCount(widget.id)} / #{bulkDelegateBean.getMaximumSelectedTasks()} item selected"
+              rendered="#{empty bulkActionBean.getMaximumSelectedTasks() or bulkActionBean.getMaximumSelectedTasks() le 0}" />
+            <h:outputFormat value="#{bulkActionBean.getBulkSelectCount(widget.id)} / #{bulkActionBean.getMaximumSelectedTasks()} item selected"
               styleClass="text-color-secondary white-space-nowrap"
-              rendered="#{not empty bulkDelegateBean.getMaximumSelectedTasks() and bulkDelegateBean.getMaximumSelectedTasks() gt 0}">
+              rendered="#{not empty bulkActionBean.getMaximumSelectedTasks() and bulkActionBean.getMaximumSelectedTasks() gt 0}">
             </h:outputFormat>
 
             <p:commandButton id="delegate-tasks-btn-#{index}"
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delegateTasks')}"
               icon="si si-multiple-neutral-1"
-              styleClass="ui-delegate-all-tasks-button ui-button #{bulkDelegateBean.getBulkSelectCount(widget.id) == 0 ? 'ui-state-disabled' : ''}"
-              disabled="#{bulkDelegateBean.getBulkSelectCount(widget.id) == 0}"
+              styleClass="ui-delegate-all-tasks-button ui-button #{bulkActionBean.getBulkSelectCount(widget.id) == 0 ? 'ui-state-disabled' : ''}"
+              disabled="#{bulkActionBean.getBulkSelectCount(widget.id) == 0}"
               ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delegateTasks')}"
               oncomplete="initDataToDelegateMultipleTasks#{widget.id}();"
               process="@this" />
@@ -67,7 +67,7 @@
               icon="si si-remove"
               styleClass="ui-button ui-deselect-all-button"
               ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-              actionListener="#{bulkDelegateBean.toggleDelegationColumn(widget)}"
+              actionListener="#{bulkActionBean.cancelBulkAction(widget)}"
               update="@(.delegation-action-bar-#{widget.id}) @(.widget-header-default-actions-#{widget.id}) #{componentToUpdateOnResetFilter}"
               process="@this" />
           </h:panelGroup>
@@ -76,7 +76,7 @@
     </h:panelGroup>
 
     <h:panelGroup id="widget-header-default-actions-#{index}" layout="block" styleClass="widget-header-default-actions widget-header-default-actions-#{widget.id} flex align-items-center">
-    <h:panelGroup rendered="#{not dashboardBean.isTaskWidget(widget) or not bulkDelegateBean.isInBulkMode(widget)}">
+    <h:panelGroup rendered="#{not dashboardBean.isTaskWidget(widget) or not bulkActionBean.isInBulkMode(widget)}">
 
     <h:panelGroup id="show-pin-#{index}" layout="block"
         styleClass="#{isReadOnlyMode ? 'mr-3' : 'mr-1' } widget-header-show-pin"
@@ -124,8 +124,8 @@
         <p:commandButton id="bulk-delegate-toggle-button-#{index}"
           icon="si si-list-bullets"
           ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/toggleBulkDelegation')}"
-          styleClass="rounded-button ui-button-outlined u-mar-right-5 ui-button-widget #{bulkDelegateBean.isInBulkMode(widget) ? 'ui-button-primary' : ''}"
-          actionListener="#{bulkDelegateBean.toggleDelegationColumn(widget)}"
+          styleClass="rounded-button ui-button-outlined u-mar-right-5 ui-button-widget #{bulkActionBean.isInBulkMode(widget) ? 'ui-button-primary' : ''}"
+          actionListener="#{bulkActionBean.startBulkDelegation(widget)}"
           update="@(.delegation-action-bar-#{widget.id}) @(.widget-header-default-actions-#{widget.id}) #{componentToUpdateOnResetFilter}"
           process="@this" />
         <p:tooltip for="bulk-delegate-toggle-button-#{index}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/toggleBulkDelegation')}"
@@ -408,7 +408,7 @@
   <ic:ch.ivy.addon.portalkit.component.MultipleTaskItemsDelegate
     rendered="#{dashboardBean.isRenderMultipleTaskItemsDelegate(widget)}"
     id="multiple-task-items-delegate-#{index}"
-    selectedTasks="#{bulkDelegateBean.selectedTasksMap[widget.id]}"
+    selectedTasks="#{bulkActionBean.getSelectedTasks(widget.id)}"
     componentToUpdate="@(.grid-stack) @(.dashboard-title-container)"
     widgetIndex="#{widget.id}"
     onCompletedCallback="loadGrid(#{managedBean.selectedDashboard.isResponsive}); initStatistics();"

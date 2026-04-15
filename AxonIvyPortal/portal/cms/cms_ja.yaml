@@ -1619,6 +1619,7 @@ Dialogs:
             TaskWidgetConfiguration:
               AddFilter: フィルターの追加
               ResetFilter: フィルターのリセット
+              ShowBulkDelegateToggle: 「一括委任」トグルを表示
             filter:
               DashboardFilter:
                 HasCmsValuesEnabledTooltip: このフィールドは「含む」演算子のみ使用できます

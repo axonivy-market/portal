@@ -1624,6 +1624,7 @@ Dialogs:
             TaskWidgetConfiguration:
               AddFilter: Añadir filtro
               ResetFilter: Restablecer filtro
+              ShowBulkDelegateToggle: Mostrar alternar 'Delegación masiva'
             filter:
               DashboardFilter:
                 HasCmsValuesEnabledTooltip: Este campo solo permite usar el operador Contiene

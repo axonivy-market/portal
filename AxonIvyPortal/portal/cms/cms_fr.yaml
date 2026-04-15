@@ -1622,6 +1622,7 @@ Dialogs:
             TaskWidgetConfiguration:
               AddFilter: Ajouter un filtre
               ResetFilter: Réinitialiser le filtre
+              ShowBulkDelegateToggle: Afficher le bouton de bascule 'Délégation groupée'
             filter:
               DashboardFilter:
                 HasCmsValuesEnabledTooltip: Ce champ permet uniquement d'utiliser l'opérateur Contient
