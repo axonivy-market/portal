@@ -5,9 +5,24 @@
 Adapted from [axonivy-market/smart-workflow#220](https://github.com/axonivy-market/smart-workflow/pull/220).
 
 The goal is to keep the Portal codebase free from unnoticed compiler warning regressions.
-Any pull request that **increases** the number of compiler warnings compared to the latest
-successful `master` run is automatically flagged via a dedicated GitHub check run named
-**"Compiler Warnings"**, giving reviewers an early, automated signal before merging.
+Any push or pull request that **increases** the number of compiler warnings compared to a
+baseline is automatically flagged via:
+
+1. A dedicated GitHub **check run** named `Compiler Warnings` (visible in the PR Checks section) — marks the run as `action_required` if warnings increased.
+2. A **PR comment** posted automatically when warnings increase on a pull request — unmissable, no need to dig into the checks panel.
+
+### Differences from smart-workflow
+
+The original smart-workflow script only compares against the latest successful run
+on the **default branch (`master`)**. This works well once the workflow is merged to
+`master` (so a baseline exists), but is **silent** on feature branches before the
+first merge — there is no master baseline, so the script always reports "success" even
+when warnings increase commit-by-commit.
+
+**Portal's additions:**
+- Dual-baseline strategy: tries `master` first, falls back to the previous successful
+  run on the **same branch** when no master baseline exists.
+- PR comment posted by the script when `increased === true` during a `pull_request` event.
 
 ---
 
@@ -17,8 +32,10 @@ successful `master` run is automatically flagged via a dedicated GitHub check ru
 |---|---|
 | New `[WARNING]` lines introduced by Maven | Converted to `::warning::` GitHub annotations at build time via `sed` |
 | ECJ-style `WARNING in File.java (at line N)` messages | Converted to `::warning file=…,line=N::` annotations |
-| Warning count delta against `master` | `warnings-awareness.cjs` compares current run vs. last successful run on the default branch |
-| Visible gate on every PR | A dedicated check run (`Compiler Warnings`) is created with conclusion `action_required` if warnings increased, or `success` otherwise |
+| Warning count delta — master baseline | `warnings-awareness.cjs` tries the last successful `master` run first |
+| Warning count delta — branch fallback | If no master baseline found, falls back to the previous successful run on the **same branch** (catches regressions before the first master merge) |
+| Visible gate on every PR (checks) | A `Compiler Warnings` check run is created: `action_required` if warnings increased, `success` otherwise |
+| Explicit PR notification | A PR comment is posted when warnings increase during a `pull_request` event |
 
 ---
 
@@ -37,15 +54,22 @@ successful `master` run is automatically flagged via a dedicated GitHub check ru
 A CommonJS module executed by `actions/github-script`. It:
 
 1. Iterates over every job in the **current** workflow run and collects all annotations
-   with `annotation_level === 'warning'` (i.e., every `::warning::` line emitted by the
-   build).
-2. Finds the last **successful** run of `ci.yml` on the default branch to use as the
-   baseline.
+   with `annotation_level === 'warning'` (every `::warning::` line emitted by the build,
+   including Node.js deprecation notices from runner actions).
+2. Determines the baseline using a **two-step priority**:
+   - **Step 1 — master baseline**: looks for the last successful run of `ci.yml` on
+     the default branch. This is the canonical reference once the workflow is merged.
+   - **Step 2 — branch fallback**: if no master baseline exists (e.g., the workflow has
+     never run on `master` yet), looks for the previous successful run on the **current
+     branch**. This ensures regressions are caught on feature branches from the very
+     first run.
 3. Computes the delta (`current − baseline`).
 4. Creates a GitHub **check run** (`github.rest.checks.create`) with:
    - `conclusion: 'success'` — if the warning count did not increase.
    - `conclusion: 'action_required'` — if new warnings were introduced.
-5. Exposes `current`, `baseline`, `delta`, and `status` as step outputs for the
+5. **Posts a PR comment** when `increased === true` and the event is `pull_request`,
+   so developers don't need to actively look for the check run result.
+6. Exposes `current`, `baseline`, `delta`, and `status` as step outputs for the
    summary step.
 
 ### `.github/workflows/ci.yml`
@@ -74,13 +98,15 @@ The workflow uses minimal permissions:
 
 ```yaml
 permissions:
-  actions: read   # list workflow runs and jobs
-  contents: read  # checkout
-  checks: write   # create the "Compiler Warnings" check run
+  actions: read        # list workflow runs and jobs
+  contents: read       # checkout
+  checks: write        # create the "Compiler Warnings" check run
+  pull-requests: write # post the PR comment when warnings increase
 ```
 
-> These must **not** be reduced; removing `checks: write` will cause the
-> `github.rest.checks.create` call in the script to fail with a 403.
+> Removing any of these will break the corresponding feature (e.g., removing
+> `checks: write` causes a 403 on `github.rest.checks.create`; removing
+> `pull-requests: write` prevents the PR comment).
 
 ---
 
@@ -151,20 +177,34 @@ gh run view "$RUN_ID" --repo axonivy-market/portal --web
 
 ## How to Check (Reviewing a PR)
 
+### Via the PR Checks section
+
 1. Open the PR on GitHub.
 2. Scroll to the **Checks** section at the bottom of the conversation.
 3. Look for the **"Compiler Warnings"** check:
-   - ✅ **Success** — warning count is equal to or below the master baseline. Safe to merge.
+   - ✅ **Success** — warning count is equal to or below the baseline. Safe to merge.
    - ❌ **Action required** — the PR introduced new warnings. The check run's summary
-     shows the exact delta:
-     ```
-     Warning awareness gate against latest successful default-branch run.
-     - Current warnings: 5
-     - Baseline warnings: 3
-     - Delta: +2
-     Result: Action required - warning count increased.
-     ```
+     shows the exact delta and which baseline was used (master or branch fallback).
 4. Click the check to see the full output in the **Actions** tab.
+
+### Via PR comments (when warnings increase)
+
+When the warning count increases on a `pull_request` event, the script automatically
+posts a comment on the PR:
+
+```
+## ⚠️ Compiler Warnings Increased (+2)
+
+This PR introduces 2 new compiler warnings.
+
+| | Count |
+|---|---|
+| Baseline (previous run on feature/...) | 3 |
+| This run | 5 |
+| **Delta** | **+2** |
+
+[View full details in the Compiler Warnings check run](...)
+```
 
 You can also check via CLI:
 
@@ -209,26 +249,43 @@ export PATH="$HOME/.local/bin:$PATH"
 gh run list --repo axonivy-market/portal --workflow ci.yml --limit 3
 ```
 
-### 3 — Verify a regression is caught
+### 3 — Verify baseline strategy
 
-The feature branch `feature/IVYPORTAL-20070-Reduce-Warnings-in-Portal-Part-1-3`
-already has a commit ("Add some warnings for testing") that intentionally introduces
-warnings. The `warnings-awareness` job should detect an increased count vs. the
-`master` baseline and set the check conclusion to `action_required`.
+The step summary in the `Compiler Warnings` job shows which baseline was used:
 
-To test this manually on any branch:
+```
+Warning awareness gate — baseline: run #N from previous run on feature/...
+- Current warnings: 5
+- Baseline warnings: 5
+- Delta: 0
+✅ Result: No warning increase detected.
+```
 
-1. Add an unused import or call a `@Deprecated` method without `@SuppressWarnings`
+To confirm the master baseline takes over: once `ci.yml` is merged to `master` and a
+green run completes on `master`, subsequent feature branch runs will compare against
+that master run instead of the branch's previous run.
+
+### 4 — Verify a regression is caught
+
+The feature branch already has a commit ("Add some warnings for testing") that
+intentionally introduced warnings (`i`, `j` variables, unnecessary `@SuppressWarnings`).
+To test the regression flow manually:
+
+1. Add an unused variable or call a `@Deprecated` method without `@SuppressWarnings`
    in any Java source file.
 2. Push the commit.
-3. The `build` job emits `::warning::` annotations.
-4. The `warnings-awareness` job detects the delta and marks the check
-   `action_required`.
+3. The `build` job emits `::warning::` annotations for those lines.
+4. The `warnings-awareness` job detects the delta and:
+   - Sets the check run conclusion to `action_required`.
+   - Posts a comment on any open PR for this branch.
 
-### 4 — Verify a clean build passes
+### 5 — Note on warning count
 
-1. Revert the introduced warning and push.
-2. The `warnings-awareness` check should report `Delta: 0` and conclude `success`.
+The script counts **all** `annotation_level === 'warning'` annotations from all jobs,
+including runner infrastructure warnings (e.g., Node.js deprecation notice from
+`stCarolas/setup-maven@v5`). These infrastructure warnings are **stable** (always
+present, same count), so they don't affect the delta. Only new code-level warnings
+cause the delta to increase.
 
 ---
 
@@ -236,9 +293,10 @@ To test this manually on any branch:
 
 | Symptom | Likely cause | Fix |
 |---|---|---|
-| `Compiler Warnings` check never appears | `checks: write` permission is missing | Restore permission in `ci.yml` |
-| `workflow_dispatch` returns 404 | Workflow not on default branch yet | Push to trigger via the `push` event instead |
-| Baseline is `n/a` | No prior successful `ci.yml` run on `master` | Merge the workflow to `master` first with a green run |
-| Warning count unexpectedly high | Maven lifecycle / plugin warnings counted as `[WARNING]` | Inspect the step log; use `-q` flag or filter specific modules if needed |
-| Build fails before annotations appear | Engine download timed out or Ivy project parent unresolvable | Check engine URL; ensure `maven.axonivy.com` is reachable from the runner |
+| `Compiler Warnings` check always `success`, summary shows `Baseline: n/a` | No prior successful run found on master OR current branch | Push a first succeeding commit on the branch; once it runs once, subsequent runs have a baseline |
+| `Compiler Warnings` check fires `action_required` on clean branch | Infrastructure warning count changed (e.g., a new runner action was added) | The delta is from structural changes, not code; review the check run summary for details |
+| No PR comment posted despite `action_required` check | `pull-requests: write` permission is missing, or event is `push` (not `pull_request`) | Restore permission in `ci.yml`; note comments only appear on PR events |
+| `workflow_dispatch` returns 404 | Workflow not yet on default branch | Push to trigger via the `push` event instead |
+| Baseline is `n/a` after many runs | Unlikely — only when ALL previous runs on master AND current branch failed | Check Actions tab for failed runs; fix whatever broke them |
 | `gh: command not found` | PATH not updated | Run `export PATH="$HOME/.local/bin:$PATH"` or add it to `~/.zshrc` |
+| Build fails before annotations appear | Engine download timed out or Ivy project parent unresolvable | Check engine URL; ensure `maven.axonivy.com` is reachable from the runner |
