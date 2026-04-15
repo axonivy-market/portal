@@ -1,0 +1,89 @@
+name: CI
+run-name: 🏗️ CI - Compiler Warnings
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  actions: read
+  contents: read
+  checks: write
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: Set up Java
+        uses: actions/setup-java@v5
+        with:
+          distribution: 'temurin'
+          java-version: '25'
+
+      - name: Set up Maven
+        uses: stCarolas/setup-maven@v5
+        with:
+          maven-version: 3.9.8
+
+      - name: Set up engine directory
+        run: |
+          ENGINE_DIR="${GITHUB_WORKSPACE}/ivy/engine"
+          mkdir -p "$ENGINE_DIR"
+          echo "ENGINE_DIR=$ENGINE_DIR" >> "$GITHUB_ENV"
+
+      - name: Download Ivy engine
+        run: |
+          wget https://developer.axonivy.com/permalink/nightly/axonivy-engine.zip -O "$ENGINE_DIR/engine.zip"
+          unzip -o "$ENGINE_DIR/engine.zip" -d "$ENGINE_DIR"
+          rm "$ENGINE_DIR/engine.zip"
+
+      - name: Build Portal modules
+        run: |
+          set -o pipefail
+          modules=(
+            "AxonIvyPortal/portal-components"
+            "AxonIvyPortal/portal"
+            "AxonIvyPortal/PortalKitTestHelper"
+            "Showcase/portal-user-examples"
+            "Showcase/portal-developer-examples"
+            "Showcase/InternalSupport"
+            "Showcase/portal-components-examples"
+          )
+          for module in "${modules[@]}"; do
+            mvn clean install -DskipTests -f "$module/pom.xml" -Divy.engine.directory="$ENGINE_DIR" 2>&1 | \
+              sed -E "s|[0-9]+\. (WARNING) in ([^ ]*) \(at line ([0-9]+)\)(.*)|::\L\1 file=\2,line=\3::build issue|g" | \
+              sed -E "s|\[WARNING\] |::warning::|g"
+          done
+
+  warnings-awareness:
+    name: Compiler Warnings
+    runs-on: ubuntu-latest
+    needs:
+      - build
+    if: ${{ needs.build.result == 'success' }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: Compute warning delta and publish awareness check
+        id: warn
+        uses: actions/github-script@v8
+        with:
+          script: |
+            const runWarningsAwareness = require('./.github/scripts/warnings-awareness.cjs');
+            await runWarningsAwareness({ github, context, core });
+
+      - name: Add warning summary
+        run: |
+          echo "## Compiler Warnings" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Current warnings: ${{ steps.warn.outputs.current }}" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Baseline warnings: ${{ steps.warn.outputs.baseline }}" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Delta: ${{ steps.warn.outputs.delta }}" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Check conclusion: ${{ steps.warn.outputs.status }}" >> "$GITHUB_STEP_SUMMARY"
