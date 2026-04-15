@@ -44,7 +44,13 @@ pipeline {
           try {
             docker.image("selenium/standalone-firefox:4").withRun("--shm-size=2g --name ${seleniumName} --network ${networkName} --hostname=wawa ${debugPort}") {
               docker.build('gui-test-portal', '-f build/Dockerfile .').inside("--name ${testEngineContainerName} --network ${networkName} -v /var/tools/maven-cache:/home/build/") {
-                utils.extractEngine(env.engineDir, params.engineDownloadURL)
+                def engineDownloadUrl = params.engineDownloadURL.replaceAll('.*-Divy\.engine\.download\.url=', '').split(' ')[0]
+                sh """
+                  mkdir -p ${env.engineDir}
+                  curl -sL '${engineDownloadUrl}' -o /tmp/engine.zip
+                  unzip -o /tmp/engine.zip -d ${env.engineDir}
+                  rm /tmp/engine.zip
+                """
 
                 echo '====================Build Portal modules===================='
                 def modules = ['AxonIvyPortal/portal-components', 'AxonIvyPortal/portal', 'AxonIvyPortal/PortalKitTestHelper', 'Showcase/portal-user-examples', 'Showcase/portal-developer-examples', 'Showcase/InternalSupport', 'Showcase/portal-components-examples']
