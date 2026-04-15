@@ -50,6 +50,7 @@ public class SideStepProcessDTO implements Serializable {
   /**
    * @return Ivy signal.
    */
+  @SuppressWarnings("unchecked")
   public String getSignal() {
     return signal;
   }

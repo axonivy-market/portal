@@ -55,6 +55,7 @@ public class TaskService {
     return new TaskService();
   }
   
+  @SuppressWarnings("deprecation")
   public IvyTaskResultDTO findTasksByCriteria(TaskSearchCriteria criteria, int startIndex, int count) { 
     return Sudo.get(() -> {
       IvyTaskResultDTO result = new IvyTaskResultDTO();
@@ -71,6 +72,7 @@ public class TaskService {
       IPagedResult<ITask> iTask = Ivy.wf().getTaskQueryExecutor()
           .getResultsPaged(finalQuery);
       result.setTasks(iTask.window(startIndex, count));
+      int i = 0;
       result.setTotalTasks(iTask.count());
       return result;
     });
