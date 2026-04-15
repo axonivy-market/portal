@@ -57,11 +57,15 @@ module.exports = async ({ github, context, core }) => {
 
   const repoInfo = await github.rest.repos.get({ owner, repo });
   const defaultBranch = repoInfo.data.default_branch;
+  const currentBranch = (context.payload.pull_request
+    ? context.payload.pull_request.head.ref
+    : context.ref.replace('refs/heads/', ''));
   const workflowFile = (context.workflowRef || '').split('@')[0].split('/').pop() || 'ci.yml';
 
   const currentWarnings = await countWarningsForRun(currentRunId);
 
-  const workflowRuns = await github.rest.actions.listWorkflowRuns({
+  // 1. Try master (default branch) as baseline — the canonical reference.
+  const masterRuns = await github.rest.actions.listWorkflowRuns({
     owner,
     repo,
     workflow_id: workflowFile,
@@ -70,9 +74,30 @@ module.exports = async ({ github, context, core }) => {
     per_page: 30,
   });
 
-  const baselineRun = workflowRuns.data.workflow_runs.find(
+  let baselineRun = masterRuns.data.workflow_runs.find(
     run => run.id !== currentRunId && run.conclusion === 'success'
   );
+  let baselineSource = `default branch (${defaultBranch})`;
+
+  // 2. Fallback: if no master baseline exists yet (workflow not yet merged to master),
+  //    compare against the previous successful run on the current branch.
+  //    This catches warning regressions on feature branches before the first master merge.
+  if (!baselineRun) {
+    const branchRuns = await github.rest.actions.listWorkflowRuns({
+      owner,
+      repo,
+      workflow_id: workflowFile,
+      branch: currentBranch,
+      status: 'completed',
+      per_page: 30,
+    });
+    baselineRun = branchRuns.data.workflow_runs.find(
+      run => run.id !== currentRunId && run.conclusion === 'success'
+    );
+    if (baselineRun) {
+      baselineSource = `previous run on ${currentBranch}`;
+    }
+  }
 
   let baselineWarnings = null;
   if (baselineRun) {
@@ -84,12 +109,12 @@ module.exports = async ({ github, context, core }) => {
   const conclusion = increased ? 'action_required' : 'success';
 
   const summaryLines = [
-    'Warning awareness gate against latest successful default-branch run.',
+    `Warning awareness gate — baseline: ${baselineRun ? `[run #${baselineRun.run_number}](${baselineRun.html_url}) from ${baselineSource}` : 'none found'}.`,
     `- Current warnings: ${currentWarnings}`,
   ];
 
   if (baselineWarnings === null) {
-    summaryLines.push('- Baseline warnings: n/a (no successful baseline run found)');
+    summaryLines.push('- Baseline warnings: n/a (no prior successful run found on any branch)');
     summaryLines.push('- Delta: n/a');
   } else {
     const sign = delta > 0 ? '+' : '';
@@ -98,9 +123,9 @@ module.exports = async ({ github, context, core }) => {
   }
 
   if (increased) {
-    summaryLines.push('Result: Action required - warning count increased.');
+    summaryLines.push('⚠️ Result: Action required — warning count increased.');
   } else {
-    summaryLines.push('Result: No warning increase detected.');
+    summaryLines.push('✅ Result: No warning increase detected.');
   }
 
   await github.rest.checks.create({
@@ -111,10 +136,34 @@ module.exports = async ({ github, context, core }) => {
     status: 'completed',
     conclusion,
     output: {
-      title: increased ? 'Warning count increased' : 'No warning increase',
+      title: increased ? `⚠️ Warning count increased (+${delta})` : '✅ No warning increase',
       summary: summaryLines.join('\n'),
     },
   });
+
+  // Post a PR comment when warnings increased so developers get explicit notification.
+  if (increased && context.payload.pull_request) {
+    const prNumber = context.payload.pull_request.number;
+    const commentLines = [
+      `## ⚠️ Compiler Warnings Increased (+${delta})`,
+      '',
+      `This PR introduces **${delta} new compiler warning${delta === 1 ? '' : 's'}**.`,
+      '',
+      '| | Count |',
+      '|---|---|',
+      `| Baseline (${baselineSource}) | ${baselineWarnings} |`,
+      `| This run | ${currentWarnings} |`,
+      `| **Delta** | **+${delta}** |`,
+      '',
+      `[View full details in the Compiler Warnings check run](${context.serverUrl}/${owner}/${repo}/actions/runs/${currentRunId})`,
+    ];
+    await github.rest.issues.createComment({
+      owner,
+      repo,
+      issue_number: prNumber,
+      body: commentLines.join('\n'),
+    });
+  }
 
   core.setOutput('current', String(currentWarnings));
   core.setOutput('baseline', baselineWarnings === null ? 'n/a' : String(baselineWarnings));
