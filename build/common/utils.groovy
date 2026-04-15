@@ -94,8 +94,9 @@ def extractEngine(String engineDir, String engineDownloadURL) {
     mkdir -p ${engineDir}
     curl -sL '${engineDownloadUrl}' -o /tmp/engine.zip
     unzip -q /tmp/engine.zip -d /tmp/engine-tmp/
-    SUBDIR=\$(find /tmp/engine-tmp/ -maxdepth 1 -mindepth 1 -type d | head -1)
-    if [ -n "\${SUBDIR}" ]; then
+    DIR_COUNT=\$(find /tmp/engine-tmp/ -maxdepth 1 -mindepth 1 -type d | wc -l)
+    if [ "\${DIR_COUNT}" -eq 1 ]; then
+      SUBDIR=\$(find /tmp/engine-tmp/ -maxdepth 1 -mindepth 1 -type d)
       cp -r "\${SUBDIR}/." ${engineDir}/
     else
       cp -r /tmp/engine-tmp/. ${engineDir}/
@@ -103,6 +104,7 @@ def extractEngine(String engineDir, String engineDownloadURL) {
     rm -rf /tmp/engine.zip /tmp/engine-tmp/
   """
 }
+
 
 
 def cleanDisk() {
