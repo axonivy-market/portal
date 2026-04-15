@@ -84,6 +84,71 @@ permissions:
 
 ---
 
+## Prerequisites — GitHub CLI (`gh`)
+
+Install `gh` once (no sudo needed):
+
+```bash
+GH_VERSION=$(curl -s https://api.github.com/repos/cli/cli/releases/latest \
+  | grep '"tag_name"' | cut -d'"' -f4 | sed 's/v//')
+curl -sL "https://github.com/cli/cli/releases/download/v${GH_VERSION}/gh_${GH_VERSION}_linux_amd64.tar.gz" \
+  -o /tmp/gh.tar.gz
+tar -xzf /tmp/gh.tar.gz -C /tmp
+mkdir -p ~/.local/bin
+cp /tmp/gh_${GH_VERSION}_linux_amd64/bin/gh ~/.local/bin/gh
+export PATH="$HOME/.local/bin:$PATH"   # add this to ~/.zshrc to persist
+```
+
+Authenticate (a one-time step):
+
+```bash
+gh auth login --web --hostname github.com
+# When prompted: copy the displayed code, open https://github.com/login/device,
+# paste the code in the browser, then press Enter back in the terminal.
+```
+
+---
+
+## How to Trigger a Run (CLI)
+
+### On any `feature/**` or `master` push (automatic)
+
+The workflow fires automatically on every `git push` to `master` or any `feature/**`
+branch. Just push a commit and the run starts.
+
+### Manual dispatch on any ref
+
+```bash
+export PATH="$HOME/.local/bin:$PATH"
+
+# Dispatch on current branch
+BRANCH=$(git branch --show-current)
+gh api repos/axonivy-market/portal/actions/workflows/ci.yml/dispatches \
+  --method POST -f ref="$BRANCH"
+```
+
+> **Note:** `workflow_dispatch` only works once the workflow exists on the
+> **default branch** (`master`). Until then, use commits/pushes to trigger it.
+
+### Watch the run live
+
+```bash
+export PATH="$HOME/.local/bin:$PATH"
+
+# List recent ci.yml runs
+gh run list --repo axonivy-market/portal --workflow ci.yml --limit 5
+
+# Watch the latest run until it finishes (refreshes every 15 s)
+RUN_ID=$(gh run list --repo axonivy-market/portal --workflow ci.yml \
+  --limit 1 --json databaseId -q '.[0].databaseId')
+gh run watch "$RUN_ID" --repo axonivy-market/portal --interval 15
+
+# Or open the run directly in the browser
+gh run view "$RUN_ID" --repo axonivy-market/portal --web
+```
+
+---
+
 ## How to Check (Reviewing a PR)
 
 1. Open the PR on GitHub.
@@ -100,6 +165,15 @@ permissions:
      Result: Action required - warning count increased.
      ```
 4. Click the check to see the full output in the **Actions** tab.
+
+You can also check via CLI:
+
+```bash
+export PATH="$HOME/.local/bin:$PATH"
+RUN_ID=$(gh run list --repo axonivy-market/portal --workflow ci.yml \
+  --limit 1 --json databaseId -q '.[0].databaseId')
+gh run view "$RUN_ID" --repo axonivy-market/portal
+```
 
 ---
 
@@ -121,24 +195,40 @@ Every line starting with `::warning::` would become a GitHub warning annotation.
 
 ### 2 — Trigger the workflow
 
-Push any commit on a branch and open a PR. The `CI - Compiler Warnings` workflow runs
-automatically and the **Compiler Warnings** check appears in the PR's checks list.
+Push any commit to the feature branch. Example:
+
+```bash
+git commit --allow-empty -m "chore: trigger CI run"
+git push
+```
+
+Monitor it:
+
+```bash
+export PATH="$HOME/.local/bin:$PATH"
+gh run list --repo axonivy-market/portal --workflow ci.yml --limit 3
+```
 
 ### 3 — Verify a regression is caught
 
-1. Temporarily introduce a compiler warning in any Java source file (e.g., add an
-   unused import or call a `@Deprecated` method without `@SuppressWarnings`).
-2. Open a PR with that change.
-3. The `build` job will emit `::warning::` annotations for those lines.
-4. The `warnings-awareness` job will detect the increased count and set the check
-   conclusion to `action_required`.
+The feature branch `feature/IVYPORTAL-20070-Reduce-Warnings-in-Portal-Part-1-3`
+already has a commit ("Add some warnings for testing") that intentionally introduces
+warnings. The `warnings-awareness` job should detect an increased count vs. the
+`master` baseline and set the check conclusion to `action_required`.
+
+To test this manually on any branch:
+
+1. Add an unused import or call a `@Deprecated` method without `@SuppressWarnings`
+   in any Java source file.
+2. Push the commit.
+3. The `build` job emits `::warning::` annotations.
+4. The `warnings-awareness` job detects the delta and marks the check
+   `action_required`.
 
 ### 4 — Verify a clean build passes
 
-1. Ensure no new warnings are introduced (the portal currently has zero Java compiler
-   warnings on `master`).
-2. Open any PR that does not change Java sources (e.g., a docs or YAML change).
-3. The `warnings-awareness` check should report `Delta: 0` and conclude `success`.
+1. Revert the introduced warning and push.
+2. The `warnings-awareness` check should report `Delta: 0` and conclude `success`.
 
 ---
 
@@ -147,6 +237,8 @@ automatically and the **Compiler Warnings** check appears in the PR's checks lis
 | Symptom | Likely cause | Fix |
 |---|---|---|
 | `Compiler Warnings` check never appears | `checks: write` permission is missing | Restore permission in `ci.yml` |
-| Baseline is `n/a` | No prior successful `ci.yml` run on `master` | Merge the workflow on `master` with a green run first |
+| `workflow_dispatch` returns 404 | Workflow not on default branch yet | Push to trigger via the `push` event instead |
+| Baseline is `n/a` | No prior successful `ci.yml` run on `master` | Merge the workflow to `master` first with a green run |
 | Warning count unexpectedly high | Maven lifecycle / plugin warnings counted as `[WARNING]` | Inspect the step log; use `-q` flag or filter specific modules if needed |
 | Build fails before annotations appear | Engine download timed out or Ivy project parent unresolvable | Check engine URL; ensure `maven.axonivy.com` is reachable from the runner |
+| `gh: command not found` | PATH not updated | Run `export PATH="$HOME/.local/bin:$PATH"` or add it to `~/.zshrc` |
