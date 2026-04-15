@@ -16,7 +16,6 @@ public class IvyDocumentTransformer {
     try {
     File  file = new File(document.getPath().asString());
     return IvyDocument.builder()
-              .id(String.valueOf(document.getId()))
               .name(document.getName())
               .path(document.getPath().asString())
               .relativePath(document.getRelativePath().asString())

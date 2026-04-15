@@ -280,7 +280,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       hideUploadDocumentForDoneCaseNote: Cambiar a "true" para impedir el upload de documentos después de que un caso esté terminado.
       hideYear: activar para ocultar el año, de lo contrario se mostrará.
       imageUploadSizeLimit: Establece el límite de tamaño para la carga de imágenes en megabytes (MB). El valor predeterminado es 6 MB.
-      keepSidebarExpanded: Mantener siempre expandida la barra lateral (menú izquierdo)
+      sidebarMode: Controla el modo de la barra lateral. Hover se expande al pasar el ratón, Clic usa un botón de alternancia, Fijar la mantiene siempre expandida, Oculto elimina la barra lateral por completo.
       loggedInUserFormat: Opción para definir el formato visible del usuario conectado
       refreshTaskListIntervalNote: Actualización de la lista de tareas en segundos
       showAvatar: Para activar/desactivar la visualización de los avatares de los usuarios/roles.
@@ -452,8 +452,16 @@ ch.ivy.addon.portalkit.ui.jsf:
     Update: Aktualizar
     Widget: Widget
     action: Acciones
+    actionMenuContext: "Abrir menú de acciones para el proceso {0}"
+    taskActionMenuContext: "Abrir menú de acciones para la tarea {0}"
     active: Activado
+    collapseWidgetContext: "Contraer widget {0}"
+    expandWidgetContext: "Expandir widget {0}"
+    openWidgetFiltersContext: "Abrir filtros de {0}"
+    openWidgetFiltersWithCountContext: "Abrir filtros de {0}, {1} filtros activos"
+    openWidgetInfoContext: "Abrir información del widget {0}"
     add: Añadir
+    addContext: "Añadir {0}"
     addDocument: Agregar documento
     addLink: Añadir enlace
     addNote: Agregar nota
@@ -461,12 +469,14 @@ ch.ivy.addon.portalkit.ui.jsf:
     allTypes: Todos los tipos
     allowPng: Solo se permiten los tipos png
     apply: Aplicar
+    applyContext: "Aplicar {0}"
     at: en
     author: Autor
     back: Regresar
     backToCaseMap: Volver al mapa de caso
     backgroundColor: Color de fondo
     cancel: Cancelar
+    cancelContext: "Cancelar {0}"
     case: Caso
     caseCategory: Categoría de caso
     caseInformation: Informaciones del caso
@@ -474,6 +484,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     categories: Categorias
     change: Cambiar
     close: Cerrar
+    closeContext: "Cerrar {0}"
     cockpit: Inicio
     colors: Colores
     comment: Comentario
@@ -494,6 +505,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     default: Por defecto
     defaultNotificationMessage: Hmm… Parece que algo ha ido mal.
     delete: Borrar
+    deleteContext: "Borrar {0}"
     deleteAbsenceHeaderText: ¿Borrar esta ausencia?
     deleteChartHeaderText: ¿Borrar este gráfico?
     deleteDocumentHeaderText: ¿Borrar este documento?
@@ -571,8 +583,11 @@ ch.ivy.addon.portalkit.ui.jsf:
     numberFromBiggerThanTo: Para" debe ser mayor que "De".
     numberOfSelectedFilter: Filtros seleccionados
     ok: OK
+    okContext: OK {0}
     'on': en
     pin: Fijar
+    pinCaseContext: "Fijar caso {0}"
+    pinTaskContext: "Fijar tarea {0}"
     pleaseAddDocument: Por favor agregue documentos usando el enlace superior
     pleaseAddNote: Por favor agregue notas usando el enlace superior
     previousStage: Etapa anterior
@@ -595,6 +610,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     restoreToDefaultChartHeaderText: ¿Restablecer a los gráficos por defecto?
     role: Rol
     save: Guardar
+    saveContext: "Guardar {0}"
     saveAll: Guardar todos
     saveSuccessfully: Datos guardados exitosamente.
     search: Buscar
@@ -633,6 +649,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     typeAllUsers: Todos los usuarios
     typeOnlyMe: Solo yo
     unpin: Desfijar
+    unpinCaseContext: "Desfijar caso {0}"
+    unpinTaskContext: "Desfijar tarea {0}"
     uploadHere: Cargue aquí
     uploadOneHere: Seleccionar
     user: '{0} usuario'
@@ -776,6 +794,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     ExternalPageWidgetIntroduction: Este widget puede mostrar una página web externa.
     Filter:
       FilterOptionHeader: Opciones de filtro
+      FilterPanelHeader: Panel de filtro
       ManageWidgetFilterHeader: Gestión de filtros de widgets
       NotFound: No se ha encontrado ningún filtro
       WidgetNameColumn: Nombre de widget
@@ -1097,11 +1116,15 @@ ch.ivy.addon.portalkit.ui.jsf:
     markAllAsRead: Marcar todo como leído
     markAsRead: Marcar como leído
     noNotificationText: Notificaciones
+    notificationOptions: Opciones de notificación
     notificationTitle: Notificaciones
+    notificationsBadgeLabel: Abrir panel de notificaciones, {0} sin leer
     olderText: Más antiguos
     onlyUnread: Sólo no leídos
+    openNotificationSettings: Abrir ajustes de notificación
     openNotifications: Abrir las notificaciones
     todayText: Hoy
+    viewNotificationsFullScreen: Ver notificaciones en pantalla completa
     xDaysAgo: Hace %s días
     xHoursAgo: Hace %s horas
     xMinutesAgo: Hace %s minutos
@@ -1906,6 +1929,11 @@ Labels:
     SearchScopeTaskField:
       DESCRIPTION: Descripción
       NAME: Nombre
+    SidebarMode:
+      CLICK: Clic
+      HIDDEN: Oculto
+      HOVER: Hover
+      STICK: Fijar
     ThemeMode:
       DARK: Oscuro
       LIGHT: Luz

@@ -43,7 +43,7 @@
           styleClass="ui-g-12 #{cc.attrs.useInputText ? '' : 'external-link-description-label'}"/>
         </h:column>
         <h:column>
-          <div class="ui-g-12 ui-fluid">
+          <div class="ui-g-12 ui-fluid" lang="#{title.locale.language}">
             <p:focus for="#{cc.attrs.useInputText ? 'title-input' : 'title-textarea'}" rendered="#{managedBean.isFocus(title)}" />
             <p:inputText value="#{title.value}" id="title-input" autocomplete="off" rendered="#{cc.attrs.useInputText}"
               required="#{managedBean.isRequiredField(title) and titleRequired}"
@@ -78,12 +78,12 @@
       </h:dataTable>
     </h:panelGroup>
       <div class="u-dialog-footer-actions-group">
-        <p:commandLink id="multi-language-cancel-button" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+        <p:commandLink id="multi-language-cancel-button" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancelContext', [ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/settingMultipleLanguages')])}"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
           onclick="PF('multiple-languages-dialog').hide(); return false;" />
         <p:spacer width="15px" rendered="#{!titles.isEmpty()}" />
         <p:commandButton id="multi-language-ok-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
-          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/okContext', [ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/settingMultipleLanguages')])}"
           update="#{cc.attrs.componentToUpdateOnCreate}, #{cc.attrs.componentToUpdateOnModify}, @form" process="@form"
           oncomplete="PF('multiple-languages-dialog').hide();"
           actionListener="#{cc.attrs.updateCurrentLanguage}"

@@ -62,13 +62,14 @@
         </li>
         <li class="topbar-item">
           <p:commandLink id="open-notifications-panel" global="false" update="#{p:resolveFirstComponentWithId('has-notifications', view).clientId}" 
-          rendered="#{notificationBean.isBellIconNeeded}" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/openNotifications')}"
+          rendered="#{notificationBean.isBellIconNeeded}" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/notificationsBadgeLabel', [notificationBean.countUnread])}"
           actionListener="#{notificationBean.setRender(true)}" onclick="openNotificationPanel()" process="@this">
             <i class="topbar-icon pi pi-bell" />
             <h:panelGroup class="notifications-badge" id="topbar-unread-notifications-container">
               <h:outputText id="topbar-unread-notifications"
                 value="#{notificationBean.getUnreadNotifications()}" />
-              <input type="hidden" id="notifications-badge-value" value="#{notificationBean.countUnread}"/>  
+              <input type="hidden" id="notifications-badge-value" value="#{notificationBean.countUnread}"/>
+              <input type="hidden" id="notifications-badge-label-template" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/notificationsBadgeLabel', ['{0}'])}"/>
             </h:panelGroup>
           </p:commandLink>
         </li>
@@ -102,7 +103,7 @@
                actionListener="#{userMenuBean.navigateToUserProfileOrDisplayWorkingTaskWarning(isWorkingOnATask, task)}" />
              </li>
 
-            <li class="ui-menu-items" jsf:rendered="#{userMenuBean.showDashboardConfigurationMenu}">
+            <li class="ui-menu-items u-hidden-sm-down" jsf:rendered="#{userMenuBean.showDashboardConfigurationMenu}">
               <p:commandLink id="dashboard-configuration"
                 process="@this" 
                 ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/Title')}"
@@ -110,7 +111,7 @@
                 actionListener="#{userMenuBean.navigateToDashboardConfigurationOrDisplayWorkingTaskWarning(isWorkingOnATask, task)}"/>
             </li>
 
-            <li class="ui-menu-items" jsf:rendered="#{userMenuBean.showAdminSetting}">
+            <li class="ui-menu-items u-hidden-sm-down" jsf:rendered="#{userMenuBean.showAdminSetting}">
               <p:commandLink id="adminui-menu-item" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/applicationMenuHeader/adminSettings')}"
                 process="@this"
                 actionListener="#{userMenuBean.navigateToPortalManagementDisplayWorkingTaskWarning(isWorkingOnATask, task)}" />

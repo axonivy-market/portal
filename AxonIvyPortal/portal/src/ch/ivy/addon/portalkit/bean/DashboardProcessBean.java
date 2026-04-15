@@ -3,7 +3,6 @@ package ch.ivy.addon.portalkit.bean;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.io.IOException;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -34,7 +33,7 @@ import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
 @ManagedBean
 @ViewScoped
-public class DashboardProcessBean extends AbstractProcessBean implements Serializable {
+public class DashboardProcessBean extends AbstractProcessBean {
 
   private static final long serialVersionUID = -6664090186198762432L;
   private List<ProcessWidgetMode> displayModes;
@@ -75,7 +74,6 @@ public class DashboardProcessBean extends AbstractProcessBean implements Seriali
   protected List<Process> findProcesses() {
     List<IWebStartable> processes = ProcessService.getInstance().findProcesses();
     List<Process> defaultPortalProcesses = new ArrayList<>();
-    // TODO fix static ProcessService#ivyProcessResultDTO, maybe cause error when Jmeter 10 user NavigateToGlobalSearch
     if (CollectionUtils.isNotEmpty(processes)) {
       processes.forEach(process -> defaultPortalProcesses.add(new DashboardProcess(process)));
     }
@@ -133,7 +131,7 @@ public class DashboardProcessBean extends AbstractProcessBean implements Seriali
   }
 
   public boolean isCaseMap(DashboardProcess process) {
-    return !Objects.isNull(process) && process.getStartLink().endsWith(".icm");
+    return !Objects.isNull(process) && (process.getStartLink().endsWith(DOT_ICM) || process.getStartLink().endsWith(DOT_M_JSON));
   }
 
   public String getProcessInformationPageUrl(DashboardProcess process) {

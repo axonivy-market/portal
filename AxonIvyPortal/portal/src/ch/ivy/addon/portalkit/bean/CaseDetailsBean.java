@@ -1,7 +1,6 @@
 package ch.ivy.addon.portalkit.bean;
 
 import java.io.IOException;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -48,7 +47,7 @@ import ch.ivyteam.ivy.workflow.query.CaseQuery;
 
 @ManagedBean
 @ViewScoped
-public class CaseDetailsBean extends AbstractConfigurableContentBean<CaseDetails> implements Serializable {
+public class CaseDetailsBean extends AbstractConfigurableContentBean<CaseDetails> {
 
   private static final long serialVersionUID = 1023540096176033250L;
   private static final String OPEN_CASES_LIST = "Start Processes/PortalStart/CaseListPage.ivp";

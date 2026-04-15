@@ -1,10 +1,10 @@
 package com.axonivy.portal.components.util;
 
-import static java.util.Comparator.comparingLong;
-
 import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.toCollection;
 import static java.util.stream.Collectors.toList;
+
+import java.util.Comparator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -77,7 +77,7 @@ public class UserUtils {
   }
 
   /**
-   * Distinct a list of UserDTO by id then sort by display name.
+   * Distinct a list of UserDTO by security member ID then sort by display name.
    * 
    * @param userList original list of users
    * @return distinct and sorted list of users
@@ -88,7 +88,7 @@ public class UserUtils {
     }
 
     List<UserDTO> result = userList.stream()
-        .collect(collectingAndThen(toCollection(() -> new TreeSet<>(comparingLong(UserDTO::getId))), ArrayList::new));
+        .collect(collectingAndThen(toCollection(() -> new TreeSet<>(Comparator.comparing(UserDTO::getSecurityMemberId))), ArrayList::new));
 
     result.sort((u1, u2) -> u1.getDisplayName().compareTo(u2.getDisplayName()));
     return result;

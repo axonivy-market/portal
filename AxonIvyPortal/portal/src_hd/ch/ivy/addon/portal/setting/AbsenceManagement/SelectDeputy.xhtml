@@ -43,16 +43,17 @@
           <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}" styleClass="w-2 text-center">
             <p:commandLink id="delete-deputy" styleClass="si si-bin-1 delete-deputy"
               actionListener="#{logic.removeDeputy(deputy)}" update="deputy-selection-form"
-              ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}" />
+              ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/deleteContext', [securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(deputy, deputy.getName())])}" />
           </p:column>
         </p:dataTable>
       </p:fieldset>
 
       <p:outputPanel styleClass="text-right">
         <p:commandButton id="save-deputy-button" styleClass="save-deputy-button w-full" partialSubmit="true"
-          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}" update=":absences-management-form"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/saveContext', [ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/selectDeputies')])}" update=":absences-management-form"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}" actionListener="#{logic.saveSubstitutes}"
           oncomplete="PF('choose-deputy-dialog').hide();" >
+
           <p:resetInput target="choose-deputy-dialog" />
         </p:commandButton>
         <p:commandLink id="close-edit-absence-dialog" actionListener="#{logic.closeDialog}"

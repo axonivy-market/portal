@@ -483,7 +483,7 @@ public class ChatService {
     if (isChatResponseTimeoutConfigured()) {
       Long chatResponseTimeout = Long.parseLong(getChatResponseTimeoutValue());
       response.setTimeout(chatResponseTimeout, TimeUnit.SECONDS);
-      response.setTimeoutHandler(asyncResponse -> {
+      response.setTimeoutHandler(_ -> {
         for (Queue<ResponseInfo> queue : userToResponse.values()) {
           ResponseInfo responseInfo =
               queue.stream().filter(info -> info.getAsyncResponse().equals(response)).findFirst().orElse(null);
