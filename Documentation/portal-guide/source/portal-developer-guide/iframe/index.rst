@@ -344,7 +344,7 @@ Always sanitize your data before sending it to prevent XSS attacks. Portal provi
 
 .. code-block:: java
 
-   import ch.ivy.addon.portalkit.publicapi.SanitizeAPI;
+   import com.axonivy.portal.components.publicapi.SanitizeAPI;
 
    public class TaskBean {
       public String getSafeTaskName() {
