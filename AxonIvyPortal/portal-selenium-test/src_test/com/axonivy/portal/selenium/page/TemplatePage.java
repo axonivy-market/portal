@@ -571,5 +571,4 @@ public abstract class TemplatePage extends AbstractPage {
     $(".menu-wrapper").shouldNotBe(Condition.visible, DEFAULT_TIMEOUT);
     $(".layout-topbar-left").shouldNotBe(Condition.visible, DEFAULT_TIMEOUT);
   }
-
 }
