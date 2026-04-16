@@ -169,7 +169,7 @@
       <div class="ui-g-12">
         <p:commandButton id="document-upload-close-command" type="button"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
-          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/closeContext', [ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addDocument')])}"
           onclick="PF('document-upload-dialog').hide();" styleClass="w-full" />
       </div>
       <p:ajax event="close" global="false"
@@ -190,8 +190,8 @@
     </div>
     <f:facet name="footer">
       <div class="u-dialog-footer-actions-group">
-        <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}" 
-          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
+        <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/closeContext', [ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/PreviewDocument')])}"
           id="preview-document-close-button" actionListener="#{logic.closeStream}"
           icon="#{visibilityBean.generateButtonIcon('si si-remove')}" onclick="PF('preview-document-dialog').hide();" />
       </div>
@@ -209,7 +209,7 @@
 
     <ui:define name="dialogFooter">
       <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
-        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}" type="button"
+        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/closeContext', [ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/warning')])}" type="button"
         id="preview-document-warning-close-button" styleClass="w-full" onclick="PF('preview-document-warning-dialog').hide();" />
     </ui:define>
   </ui:decorate>
@@ -229,7 +229,7 @@
         id="preview-encrypted-document-button" actionListener="#{logic.previewEncryptedDocument}"
         oncomplete="PF('preview-document-confirmation-dialog').hide(); if (args &amp;&amp; !args.validationFailed) {PF('preview-document-dialog').show();}" />
       <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
-        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}" styleClass="pt-3 flex justify-content-center"
+        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/closeContext', [ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/confirmation')])}" styleClass="pt-3 flex justify-content-center"
         id="preview-document-confirmation-close-button" onclick="PF('preview-document-confirmation-dialog').hide();" />
     </ui:define>
   </ui:decorate>

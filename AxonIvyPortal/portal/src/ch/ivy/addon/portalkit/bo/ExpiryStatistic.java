@@ -1,18 +1,24 @@
 package ch.ivy.addon.portalkit.bo;
 
-import java.util.Date;
-import java.util.Map;
-
 public class ExpiryStatistic {
 
-  private Map<Date, Long> numberOfTasksByExpiryTime;
+  private long numberOfTasksExpiredToday;
+  private long numberOfTasksExpiredThisWeek;
 
-  public Map<Date, Long> getNumberOfTasksByExpiryTime() {
-    return numberOfTasksByExpiryTime;
+  public long getNumberOfTasksExpiredToday() {
+    return numberOfTasksExpiredToday;
   }
 
-  public void setNumberOfTasksByExpiryTime(Map<Date, Long> numberOfTasksByExpiryTime) {
-    this.numberOfTasksByExpiryTime = numberOfTasksByExpiryTime;
+  public void setNumberOfTasksExpiredToday(long numberOfTasksExpiredToday) {
+    this.numberOfTasksExpiredToday = numberOfTasksExpiredToday;
   }
-  
+
+  public long getNumberOfTasksExpiredThisWeek() {
+    return numberOfTasksExpiredThisWeek;
+  }
+
+  public void setNumberOfTasksExpiredThisWeek(long numberOfTasksExpiredThisWeek) {
+    this.numberOfTasksExpiredThisWeek = numberOfTasksExpiredThisWeek;
+  }
+
 }

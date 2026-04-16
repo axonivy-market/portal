@@ -158,8 +158,11 @@ Migrate To 14.0
 ---------------
 
 1. Permissions **🔑AccessFullCaseList** and **🔑AccessFullTaskList** have been removed.
-Default Tasks and Cases dashboards now work like any other dashboards. If you want to restrict access to these dashboards, you can now configure their permissions using user roles. 
+Default Tasks and Cases dashboards now work like any other dashboards. If you want to restrict access to these dashboards, you can now configure their permissions using user roles.
 Please access the :ref:`Dashboard Configuration <dashboard-configuration>` page to change its default settings.
+
+2. The global variable ``Portal.KeepSidebarExpanded`` has been removed. Use ``Portal.Sidebar.Mode`` instead.
+Set ``Portal.Sidebar.Mode`` to ``STICK`` to achieve the same effect as ``Portal.KeepSidebarExpanded=true``.
 
 Migrate 13.1 To 13.2
 --------------------
@@ -305,6 +308,8 @@ Migrate 8.x To 10.0
 
 You need to do all steps starting at ``Migrate 8.x To ...`` up to and including
 ``Migrate ... To 9.x``
+
+After migrating to version 10, reset the ``StandardProcess.DefaultPages`` value in your application configuration as needed.
 
 Migrate 9.3 To 9.4
 ------------------

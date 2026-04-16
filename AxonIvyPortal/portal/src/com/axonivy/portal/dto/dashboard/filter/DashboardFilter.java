@@ -1,6 +1,5 @@
 package com.axonivy.portal.dto.dashboard.filter;
 
-import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -22,7 +21,7 @@ import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
 import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-public class DashboardFilter extends BaseFilter implements Serializable {
+public class DashboardFilter extends BaseFilter {
   private static final long serialVersionUID = -2098346832426240167L;
   @JsonIgnore
   public static final String APPLICATION = "application";
