@@ -35,10 +35,17 @@
         alt="#{logoDescription}" />
     </p:commandLink>
 
-    <p:commandLink id="toggle-menu" styleClass="sidebar-pin" global="false" ariaLabel="#{ivy.cms.co('/Labels/ToggleMenu')}" 
-      onclick="hideBreadcrumb()" oncomplete="Portal.updateBreadcrumb();" rendered="#{!masterDataBean.expandedSidebar}">
+    <p:commandLink id="toggle-menu" styleClass="sidebar-pin" global="false" ariaLabel="#{ivy.cms.co('/Labels/ToggleMenu')}"
+      onclick="hideBreadcrumb()" oncomplete="Portal.updateBreadcrumb();" rendered="#{masterDataBean.sidebarMode == 'HOVER'}">
       <span class="pin"></span>
     </p:commandLink>
+    <ui:fragment rendered="#{masterDataBean.sidebarMode eq 'CLICK'}">
+      <a class="js-sidebar-toggle-btn sidebar-collapse-btn"
+        aria-label="#{ivy.cms.co('/Labels/ToggleMenu')}" aria-expanded="false"
+        title="#{ivy.cms.co('/Labels/ToggleMenu')}">
+        <i class="si si-navigation-right-circle-1 js-sidebar-toggle-icon" />
+      </a>
+    </ui:fragment>
   </div>
 
   <!-- APPLICATION MENU -->

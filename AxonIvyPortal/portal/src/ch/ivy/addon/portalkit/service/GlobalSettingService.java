@@ -121,7 +121,7 @@ public class GlobalSettingService {
   public boolean isAllowedConfigShortcutsByAdmin() {
     return findGlobalSettingValueAsBoolean(GlobalVariable.ALLOW_KEYBOARD_SHORTCUTS_CONFIGURATION);
   }
-  
+
   public boolean isCheckSystemNotesByDefault() {
     return findGlobalSettingValueAsBoolean(GlobalVariable.CHECK_SYSTEM_NOTES_FROM_HISTORY);
   }

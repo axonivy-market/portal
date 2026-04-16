@@ -154,6 +154,12 @@ In Engine
 
 #. Follow detailed migration notes for each version below.
 
+Migrate To 12.0.15
+------------------
+
+1. The global variable ``Portal.KeepSidebarExpanded`` is deprecated and will be removed in a future version.
+Use ``Portal.Sidebar.Mode`` instead.
+
 Migrate 11.3.2 To 12.0.0
 ------------------------
 
