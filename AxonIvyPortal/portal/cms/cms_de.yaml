@@ -1947,11 +1947,13 @@ Labels:
       TASKS: Aufgaben
     MenuKind:
       CUSTOM: Benutzerdefiniert
-      DASHBOARD: Armaturenbrett
+      DASHBOARD: Dashboard
       EXTERNAL_LINK: Externer Link
-      MAIN_DASHBOARD: Armaturenbrett
+      MAIN_DASHBOARD: Haupt-Dashboard
+      PROCESS: Prozess
       STANDARD: Standard
       STATIC_PAGE: Statische Seite
+      THIRD_PARTY: Drittanbieter
     SearchScopeCaseField:
       CUSTOM: Benutzerdefinierte Stringfelder
       DESCRIPTION: Beschreibung

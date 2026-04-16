@@ -1946,9 +1946,11 @@ Labels:
       CUSTOM: Personnalisé
       DASHBOARD: Tableau de bord
       EXTERNAL_LINK: Lien externe
-      MAIN_DASHBOARD: Tableau de bord
+      MAIN_DASHBOARD: Tableau de bord principal
+      PROCESS: Processus
       STANDARD: Standard
       STATIC_PAGE: Page statique
+      THIRD_PARTY: Tiers
     SearchScopeCaseField:
       CUSTOM: Champs de chaînes personnalisées
       DESCRIPTION: Description du texte

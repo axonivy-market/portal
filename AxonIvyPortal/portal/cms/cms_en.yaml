@@ -775,28 +775,43 @@ ch.ivy.addon.portalkit.ui.jsf:
       EditPrivateDashboards: Edit your private dashboards
       PrivateTabInfo: 'Create and manage your personal dashboards.<ul><li>These dashboards are only visible to you</li><li>They appear under the Dashboard icon in the sidebar</li></ul>'
       PublicTabInfo: 'Manage dashboards for all users. Control where each dashboard appears:<ul><li><b>Sidebar</b> — appears as a top-level item in the sidebar menu</li><li><b>Submenu</b> — appears under the Dashboard icon</li><li><b>Hidden</b> — not visible to users</li></ul>'
+      SidebarNavigationTabInfo: 'Manage sidebar navigation items. You can:'
       Visibility: Visibility
       EditPublicDashboards: Edit public dashboards
       ExportDashboard: Export dashboard
       ExportReferencedDialogHeader: Dashboard references other dashboards
       ExportReferencedDialogMessage: 'The following dashboards are referenced by navigation widgets. Export and import them too for the widgets to work correctly:'
       ExportReferencedDialogProceed: Export anyway
-      HiddenDashboards: Hidden items
-      HiddenDashboardsDescription: These dashboards are not visible to users.
+      Hidden: Hidden
+      HiddenDashboardsDescription: Not shown in the sidebar. Can still be used as a direct link target — e.g. as a landing page inside a process flow
+      SubMenuDashboards: Submenu dashboards
+      SubMenuDashboardsDescription: Appear grouped under the Dashboard icon in the sidebar.
+      PrivateDashboardTabInfoPanel: 'Create and manage your personal dashboards.<ul><li>These dashboards are only visible to you</li><li>They appear under the Dashboard icon in the sidebar</li></ul>'
+      DashboardTabInfoPanel: '<div style="max-width: 300px;"><h4 style="margin-top: 0;">What can I do here?</h4><p>Create, edit and delete public dashboards. Set who can see each one using permissions. This is the central library for all shared dashboards.</p><h4>Visibility & placement</h4><p>A dashboard''s visibility controls where it appears as a sidebar item, grouped in the dashboard submenu or not at all. Manage sidebar order in the <b>Sidebar navigation</b> tab.</p><h4>Hidden dashboards</h4><p>Hidden dashboards are not shown in the sidebar but can still be linked directly — e.g. as a landing page inside a process flow.</p></div>'
+      MenuManagementTabInfoPanel: '<div style="max-width: 300px;"><h4 style="margin-top: 0;">Sidebar navigation</h4><p>Configure the sidebar menu items and their order. You can add custom links, reorder items by dragging, and disable the sidebar entirely if needed.</p><ul><li>Add custom menu items pointing to any process or external URL</li><li>Drag items to reorder them in the sidebar</li><li>Use <b>Disable sidebar</b> to hide the sidebar for all users</li></ul></div>'
+      SidebarTopLevelDashboards: Sidebar top-level dashboards
+      SidebarTopLevelDashboardsDescription: Appear as top-level items in the sidebar.
       MenuDashboards: Sidebar items
       MenuDashboardsDescription: These dashboards appear as top-level items in the sidebar. Manage their order in the Menu management tab.
+      SidebarNavigation: Sidebar navigation
+      SidebarSettings: Sidebar settings
+      SidebarMode: Sidebar mode
+      DisableSidebar: Disable sidebar
+      SidebarBehaviour: Sidebar behaviour
+      AddItem: Add item
+      Label: Label
+      LinksTo: Links to
       MenuManagement: Menu management
       MenuManagementTabInfo: 'Manage the top-level sidebar navigation items. You can:<ul><li>Add new menu entries (dashboards, external links, Ivy processes)</li><li>Reorder items by drag and drop</li><li>Edit or remove existing menu entries</li></ul>'
       PrivateDashboard: Private dashboards
       PrivateDashboardConfiguration: Private dashboard configuration
+      Dashboard: Dashboard
       PublicDashboard: Public dashboards
       PublicDashboardConfiguration: Public dashboard configuration
       ReorderPrivateDashboards: Reorder your dashboards
       ReorderPublicDashboards: Reorder public dashboards
       SelectAction: Select the action
       SomeThingWentWrong: Something went wrong
-      SubMenuDashboards: Submenu items
-      SubMenuDashboardsDescription: These dashboards appear under the Dashboard icon in the sidebar.
       Title: Portal configuration
     DrillDownWidget:
       caseDrillDown: Drill-down case widget for {0}
@@ -1932,9 +1947,11 @@ Labels:
       CUSTOM: Custom
       DASHBOARD: Dashboard
       EXTERNAL_LINK: External Link
-      MAIN_DASHBOARD: Dashboard
+      MAIN_DASHBOARD: Main Dashboard
+      PROCESS: Process
       STANDARD: Standard
-      STATIC_PAGE: Static page
+      STATIC_PAGE: Static Page
+      THIRD_PARTY: Third Party Application
     SearchScopeCaseField:
       CUSTOM: Custom string fields
       DESCRIPTION: Description

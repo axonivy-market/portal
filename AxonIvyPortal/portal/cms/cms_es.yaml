@@ -1950,9 +1950,11 @@ Labels:
       CUSTOM: Personalizado
       DASHBOARD: Panel de control
       EXTERNAL_LINK: Enlace externo
-      MAIN_DASHBOARD: Panel de control
+      MAIN_DASHBOARD: Panel de control principal
+      PROCESS: Proceso
       STANDARD: Estándar
       STATIC_PAGE: Página estática
+      THIRD_PARTY: Terceros
     SearchScopeCaseField:
       CUSTOM: Campos de cadena personalizados
       DESCRIPTION: Descripción
