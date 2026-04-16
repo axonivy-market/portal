@@ -1,0 +1,116 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions">
+<h:body>
+  <ui:composition template="/layouts/BasicTemplate.xhtml">
+    <ui:define name="title">AI Search</ui:define>
+    <ui:define name="pageContent">
+
+      <h:form id="form">
+        <p:messages id="messages" />
+
+        <div class="grid mb-3">
+          <div class="col-12">
+            <h2 class="mt-0 mb-3">AI Search </h2>
+            <div class="flex align-items-center gap-2">
+              <span class="ui-input-icon-left flex-1">
+                <i class="si si-search" />
+                <p:inputText id="keyword" value="#{data.keyword}" styleClass="w-full"
+                  placeholder="Enter keyword to search..."
+                  onkeypress="if (event.keyCode == 13) { PF('searchBtn').jq.click(); return false; }" />
+              </span>
+              <p:commandButton id="search-btn" widgetVar="searchBtn" value="Search"
+                icon="si si-search" iconPos="left"
+                action="#{aISearchBean.searchWithAI(data.keyword)}"
+                update="form"
+                styleClass="ui-button-primary" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Rephrased query display -->
+        <p:outputPanel id="rephrased-panel" rendered="#{aISearchBean.searched and not empty aISearchBean.rephrased}">
+          <div class="flex align-items-center gap-2 p-2 mb-3 border-round surface-100">
+            <i class="si si-information-circle text-primary" />
+            <span>
+              <strong>Interpreted as: </strong>
+              <h:outputText value="#{aISearchBean.rephrased}" />
+            </span>
+            <p:badge id="confidence-badge"
+              value="#{aISearchBean.confidence}"
+              severity="#{aISearchBean.confidence ge 0.7 ? 'success' : 'warning'}"
+              style="margin-left: auto;" />
+          </div>
+        </p:outputPanel>
+
+        <!-- Max clarification rounds warning -->
+        <p:outputPanel id="max-rounds-panel"
+          rendered="#{aISearchBean.searched and not aISearchBean.needsClarification and aISearchBean.clarificationCount ge 2 and aISearchBean.confidence lt 0.7}">
+          <div class="flex align-items-center gap-2 p-2 mb-3 border-round border-1 surface-overlay"
+            style="border-color: var(--yellow-500);">
+            <i class="si si-alert-triangle" style="color: var(--yellow-500);" />
+            <span class="text-color-secondary text-sm">
+              Could not fully understand your query. Showing best-guess results.
+            </span>
+          </div>
+        </p:outputPanel>
+
+        <!-- Clarification panel -->
+        <p:outputPanel id="clarification-panel" rendered="#{aISearchBean.needsClarification}">
+          <div class="p-3 mb-3 border-round border-1 border-primary surface-overlay">
+            <div class="flex align-items-start gap-2 mb-3">
+              <i class="si si-help-circle text-primary text-xl" />
+              <div>
+                <div class="font-bold mb-1">I need a bit more information:</div>
+                <h:outputText value="#{aISearchBean.clarification}" styleClass="text-color-secondary" />
+              </div>
+            </div>
+            <div class="flex align-items-center gap-2">
+              <span class="ui-input-icon-left flex-1">
+                <i class="si si-message-circle" />
+                <p:inputText id="clarification-answer" value="#{aISearchBean.clarificationAnswer}"
+                  styleClass="w-full"
+                  placeholder="Type your answer..."
+                  onkeypress="if (event.keyCode == 13) { PF('clarifyBtn').jq.click(); return false; }" />
+              </span>
+              <p:commandButton id="clarify-btn" widgetVar="clarifyBtn" value="Send"
+                icon="si si-send" iconPos="left"
+                action="#{aISearchBean.answerClarification(data.keyword)}"
+                update="form"
+                styleClass="ui-button-primary" />
+            </div>
+            <div class="text-color-secondary text-sm mt-2">
+              <h:outputText value="Clarification round #{aISearchBean.clarificationCount + 1} of 2" />
+            </div>
+          </div>
+        </p:outputPanel>
+
+        <!-- Results table (hidden during clarification) -->
+        <p:outputPanel id="results-panel" rendered="#{not aISearchBean.needsClarification}">
+          <div class="grid">
+            <div class="col-12">
+              <p:dataTable id="results-table" value="#{aISearchBean.results}" var="result"
+                emptyMessage="No results found."
+                styleClass="w-full"
+                paginator="true" rows="10"
+                paginatorPosition="bottom"
+                paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+                currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords}">
+                <p:column id="name-col" headerText="Name" sortBy="#{result.name}">
+                  <h:outputText value="#{result.name}" />
+                </p:column>
+                <p:column id="description-col" headerText="Description" sortBy="#{result.description}">
+                  <h:outputText value="#{result.description}" />
+                </p:column>
+              </p:dataTable>
+            </div>
+          </div>
+        </p:outputPanel>
+
+      </h:form>
+
+    </ui:define>
+  </ui:composition>
+</h:body>
+</html>

@@ -1,0 +1,9 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
+  "simpleName" : "AISearchData",
+  "namespace" : "com.axonivy.portal.page.AISearch",
+  "fields" : [ {
+    "name" : "keyword",
+    "type" : "String"
+  } ]
+}

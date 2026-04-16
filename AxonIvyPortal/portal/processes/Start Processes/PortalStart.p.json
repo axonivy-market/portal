@@ -4349,5 +4349,37 @@
         "at" : { "x" : 808, "y" : 1601 },
         "size" : { "width" : 128, "height" : 62 }
       }
+    }, {
+      "id" : "f302",
+      "type" : "RequestStart",
+      "name" : "AISearchPage",
+      "config" : {
+        "signature" : "AISearch"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 4176 }
+      },
+      "connect" : [
+        { "id" : "f305", "to" : "f303" }
+      ]
+    }, {
+      "id" : "f303",
+      "type" : "DialogCall",
+      "name" : "AISearch Page",
+      "config" : {
+        "dialog" : "com.axonivy.portal.page.AISearch:start()"
+      },
+      "visual" : {
+        "at" : { "x" : 208, "y" : 4176 }
+      },
+      "connect" : [
+        { "id" : "f306", "to" : "f304" }
+      ]
+    }, {
+      "id" : "f304",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 320, "y" : 4176 }
+      }
     } ]
 }
