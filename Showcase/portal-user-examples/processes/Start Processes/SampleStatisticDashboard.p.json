@@ -80,10 +80,7 @@
       "visual" : {
         "at" : { "x" : 544, "y" : 248 },
         "description" : "Signal to create Procurement Case for sample statistic"
-      },
-      "connect" : [
-        { "id" : "f9", "to" : "f4" }
-      ]
+      }
     }, {
       "id" : "f10",
       "type" : "Script",
@@ -120,10 +117,7 @@
       "visual" : {
         "at" : { "x" : 544, "y" : 384 },
         "description" : "Signal to generate data for sample statistic"
-      },
-      "connect" : [
-        { "id" : "f17", "to" : "f10" }
-      ]
+      }
     }, {
       "id" : "f18",
       "type" : "RequestStart",

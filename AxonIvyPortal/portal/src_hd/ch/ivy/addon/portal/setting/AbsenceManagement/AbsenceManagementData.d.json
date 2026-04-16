@@ -80,5 +80,13 @@
     "name" : "canCreateAbsenceForOtherUsers",
     "type" : "Boolean",
     "modifiers" : [ ]
+  }, {
+    "name" : "onAbsenceDeputies",
+    "type" : "List<ch.ivyteam.ivy.security.ISecurityMember>",
+    "modifiers" : [ ]
+  }, {
+    "name" : "permanentDeputies",
+    "type" : "List<ch.ivyteam.ivy.security.ISecurityMember>",
+    "modifiers" : [ ]
   } ]
 }

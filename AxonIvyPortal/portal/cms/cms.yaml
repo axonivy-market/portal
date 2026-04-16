@@ -23,7 +23,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     noDeputy: No substitute
     noPermissionToSeeThisArea: You do not have the required permission to see this area.
     period: Period
-    personalTaskDuringAbsenceDeputies: Substitutes for personally assigned tasks during the absence
+    personalTaskDuringAbsenceDeputies: Substitutes
     personalTaskPermanentDeputies: Permanent substitutes for personally assigned tasks
     selectDeputies: Select substitutes
     selectedDeputies: Selected substitutes
@@ -39,14 +39,17 @@ ch.ivy.addon.portalkit.ui.jsf:
       updateAbsence: Asence updated successfully
     absenceAndDeputy: Absences and substitutes
     allAbsences: Absences of all users
+    amount: Amount
     applicationAndRole: Application and role
     definedDeputies: Defined Substitutes
     deputyFor: I am substitute for
     myAbsences: My absences
     myDeputies: My substitutes
     nextAbsence: Upcoming absence
+    requestAbsences: Request absences
     selectedDeputyFor: Selected user is substitute for
     selectedUser: Selected user
+    substitutes: Substitutes
   AllTasks:
     caseDescription: Case description
     taskDescription: Task description
@@ -342,14 +345,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     TaskCaseInformation: Task and Case Information
     Update: Update
     action: Actions
-    actionMenuContext: "Open actions menu for {0} process"
-    taskActionMenuContext: "Open actions menu for {0} task"
+    actionMenuContext: Open actions menu for {0} process
     active: Active
-    collapseWidgetContext: "Collapse {0} widget"
-    expandWidgetContext: "Expand {0} widget"
-    openWidgetFiltersContext: "Open {0} filters"
-    openWidgetFiltersWithCountContext: "Open {0} filters, {1} active filters"
-    openWidgetInfoContext: "Open {0} widget information"
     add: Add
     addContext: Add {0}
     addDocument: Add document
@@ -374,6 +371,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     close: Close
     closeContext: Close {0}
     cockpit: Cockpit
+    collapseWidgetContext: Collapse {0} widget
     colors: Colors
     comment: Comment
     completedOn: Completed on
@@ -393,9 +391,9 @@ ch.ivy.addon.portalkit.ui.jsf:
     default: Default
     defaultNotificationMessage: Hmm... Looks like something went wrong.
     delete: Delete
-    deleteContext: Delete {0}
     deleteAbsenceHeaderText: Delete this absence?
     deleteChartHeaderText: Delete this chart?
+    deleteContext: Delete {0}
     deleteDocumentHeaderText: Delete this document?
     deleteFilterHeaderText: Delete this filter?
     deleteSettingHeaderText: Delete this setting?
@@ -412,6 +410,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     errorFileUploadSize: The file size must be lower than {0}
     errorNotification: Error notification
     errorXhr: Failed to update website content
+    expandWidgetContext: Expand {0} widget
     filter:
       from: from
       moreOptions: More options
@@ -463,8 +462,11 @@ ch.ivy.addon.portalkit.ui.jsf:
     ok: OK
     okContext: OK {0}
     'on': 'on'
-    pinCaseContext: "Pin case {0}"
-    pinTaskContext: "Pin task {0}"
+    openWidgetFiltersContext: Open {0} filters
+    openWidgetFiltersWithCountContext: Open {0} filters, {1} active filters
+    openWidgetInfoContext: Open {0} widget information
+    pinCaseContext: Pin case {0}
+    pinTaskContext: Pin task {0}
     pleaseAddDocument: Please add a document with the link above.
     pleaseAddNote: Please add a note with the link above.
     previousStage: Previous stage
@@ -486,8 +488,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     restoreToDefaultChartHeaderText: Restore to default charts?
     role: Role
     save: Save
-    saveContext: Save {0}
     saveAll: Save all
+    saveContext: Save {0}
     saveSuccessfully: Data saved successfully.
     search: Search
     second: second
@@ -508,6 +510,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     state: State
     status: Status
     switchToDesktopVersion: Switch to desktop version
+    taskActionMenuContext: Open actions menu for {0} task
     taskCanceledAndLeftSuccessfully: You have cancelled and left the task successfully. You can find the task in the dashboard or your task list.
     taskFinishedSuccessfully: You have finished the task successfully
     taskName: Task name
@@ -520,8 +523,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     typeAdmin: All administrators
     typeAllUsers: All users
     typeOnlyMe: Only me
-    unpinCaseContext: "Unpin case {0}"
-    unpinTaskContext: "Unpin task {0}"
+    unpinCaseContext: Unpin case {0}
+    unpinTaskContext: Unpin task {0}
     uploadOneHere: Upload one here
     user: '{0} user'
     users: Users
@@ -688,6 +691,10 @@ ch.ivy.addon.portalkit.ui.jsf:
     statisticChartIntroduction: This widget displays available statistic charts.
     statisticChartWidget: Statistic chart
     switchToViewMode: View Mode
+    taskList: Task List
+    taskListIntroduction: This widget displays relevant task information according to defined settings.
+    taskStart: Task start
+    taskWidgetConfiguration: Task Widget Configuration
     taskWidgetInfo:
       expireToday: Expire today
       expiryThisWeek: Expire this week
@@ -695,10 +702,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       numberOfTasksByCategory: Number of tasks by category
       numberOfTasksByState: Number of tasks by state
       predefinedFilters: Predefined filters
-    taskList: Task List
-    taskListIntroduction: This widget displays relevant task information according to defined settings.
-    taskStart: Task start
-    taskWidgetConfiguration: Task Widget Configuration
     widgetInfo: Widget information
     widgetTitle: Widget Title
     widgetType: Widget type
@@ -797,7 +800,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     wroteAt: wrote at
   notifications:
     notificationOptions: Notification options
-    notificationsBadgeLabel: "Open notification panel, {0} unread"
+    notificationsBadgeLabel: Open notification panel, {0} unread
     openNotificationSettings: Open notification settings
     viewNotificationsFullScreen: View notifications in full screen
   passwordSetting:

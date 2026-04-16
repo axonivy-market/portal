@@ -107,7 +107,7 @@
                           </p:column>
                           <p:column rendered="#{absenceManagementBean.canReadSubstitute(data.selectedAbsenceUser)}" groupRow="true"
                             headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/Substitutes')}">
-                            <ui:repeat value="#{absenceManagementBean.getPersonalTaskDeputies(data.deputyRoles)}" var="deputy">
+                            <ui:repeat value="#{data.selectedDeputies}" var="deputy">
                               <pc:securityMemberNameAndAvatar
                                 displayName="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(deputy, deputy.memberName)}"
                                 securityMember="#{deputy}" />

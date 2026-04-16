@@ -51,6 +51,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     myAbsences: Mon absence
     myDeputies: Mes substituts
     nextAbsence: Absence à venir
+    requestAbsences: Demander des absences
+    substitutes: Remplaçants
     selectedDeputyFor: L'utilisateur sélectionné est un remplaçant de
     selectedUser: Utilisateur sélectionné
   AccessibilityShortcuts:

@@ -49,19 +49,20 @@ public class SubstituteService{
     List<IvySubstitute> substitutes = user.getSubstitutes().stream()
         .map(this::getIvySubstitute)
         .collect(Collectors.toList());
+    substitutes.forEach(item -> Ivy.log().info(item));
     Set<IRole> existRoles = substitutes.stream()
-        .map(IvySubstitute::getSubstitionRole)
+        .map(IvySubstitute::getSubstitutionRole)
         .collect(Collectors.toSet());
     
     List<IRole> iRoles = getAllRoles(user).stream()
         .filter(role -> !existRoles.contains(role))
         .collect(Collectors.toList());
     
-    boolean isPersonalPermanentExist = substitutes.stream().anyMatch(substitute -> substitute.getSubstitionRole() == null && SubstitutionType.PERMANENT.equals(substitute.getSubstitutionType()));
+    boolean isPersonalPermanentExist = substitutes.stream().anyMatch(substitute -> substitute.getSubstitutionRole() == null && SubstitutionType.PERMANENT.equals(substitute.getSubstitutionType()));
     if (!isPersonalPermanentExist) {
       substitutes.add(new IvySubstitute(SubstitutionType.PERMANENT));
     }
-    boolean isPersonalOnAbsenceExist = substitutes.stream().anyMatch(substitute -> substitute.getSubstitionRole() == null && SubstitutionType.ON_ABSENCE.equals(substitute.getSubstitutionType()));
+    boolean isPersonalOnAbsenceExist = substitutes.stream().anyMatch(substitute -> substitute.getSubstitutionRole() == null && SubstitutionType.ON_ABSENCE.equals(substitute.getSubstitutionType()));
     if (!isPersonalOnAbsenceExist) {
       substitutes.add(new IvySubstitute(SubstitutionType.ON_ABSENCE));
     }
@@ -110,10 +111,10 @@ public class SubstituteService{
     for (IvySubstitute ivySubstitute : substitutes) {
       if (ivySubstitute.getSubstituteUser() != null) {
         IUser iUser = UserUtils.findUserByUsername(ivySubstitute.getSubstituteUser().getName());
-        if (ivySubstitute.getSubstitionRole() == null) {
+        if (ivySubstitute.getSubstitutionRole() == null) {
           user.createSubstitute(iUser, "", ivySubstitute.getSubstitutionType());
         } else {
-          user.createSubstitute(iUser, ivySubstitute.getSubstitionRole(), "");
+          user.createSubstitute(iUser, ivySubstitute.getSubstitutionRole(), "");
         }
       }
     }

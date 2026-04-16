@@ -13,7 +13,9 @@ import static ch.ivyteam.ivy.security.IPermission.USER_READ_SUBSTITUTES;
 
 import java.io.Serializable;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
@@ -33,6 +35,7 @@ import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.ISecurityMember;
 import ch.ivyteam.ivy.security.IUser;
+import ch.ivyteam.ivy.security.SubstitutionType;
 
 @ManagedBean
 @ViewScoped
@@ -50,6 +53,7 @@ public class AbsenceManagementBean implements Serializable{
   private boolean substitutionCreatable;
   private boolean ownSubstitutionReadable;
   private boolean substitutionReadable;
+  private Map<String, List<ISecurityMember>> selectedDeputyMap;
 
   @PostConstruct
   public void init() {
@@ -66,6 +70,7 @@ public class AbsenceManagementBean implements Serializable{
 
     substitutionReadable = PermissionUtils.hasPermission(USER_READ_SUBSTITUTES);
     ownSubstitutionReadable = PermissionUtils.hasPermission(USER_READ_OWN_SUBSTITUTES);
+    selectedDeputyMap = new HashMap<>();
   }
 
   public boolean isOwnAbsencesReadable() {
@@ -170,6 +175,15 @@ public class AbsenceManagementBean implements Serializable{
       return absencesCreatable || ownAbsencesCreatable;
     }
     return absencesCreatable;
+  }
+
+  public void updateDeputyMap(List<ISecurityMember> permanentList, List<ISecurityMember> duringAbsenceList) {
+    this.selectedDeputyMap.put(SubstitutionType.PERMANENT.name(), permanentList);
+    this.selectedDeputyMap.put(SubstitutionType.ON_ABSENCE.name(), duringAbsenceList);
+  }
+
+  public Map<String, List<ISecurityMember>> getSelectedDeputyMap() {
+    return this.selectedDeputyMap;
   }
 
 }

@@ -27,7 +27,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     noDeputy: No substitute
     noPermissionToSeeThisArea: You do not have the required permission to see this area.
     period: Period
-    personalTaskDuringAbsenceDeputies: Substitutes for personally assigned tasks during the absence
+    personalTaskDuringAbsenceDeputies: Substitutes
     personalTaskPermanentDeputies: Permanent substitutes for personally assigned tasks
     selectDeputies: Select substitutes
     selectedDeputies: Selected substitutes
@@ -51,8 +51,10 @@ ch.ivy.addon.portalkit.ui.jsf:
     myAbsences: My absences
     myDeputies: My substitutes
     nextAbsence: Upcoming absence
+    requestAbsences: Request absences
     selectedDeputyFor: Selected user is substitute for
     selectedUser: Selected user
+    substitutes: Substitutes
   AccessibilityShortcuts:
     processName: Accessibility shortcuts process
   AllTasks:
@@ -279,7 +281,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       hideUploadDocumentForDoneCaseNote: Set to true to deny upload (also delete) document after a case is done.
       hideYear: Set to true, year will be hidden, otherwise it will be shown.
       imageUploadSizeLimit: Set the size limit for uploading images in megabytes (MB). The default value is 6MB.
-      sidebarMode: Controls how the sidebar navigation behaves. Hover expands on hover, Click uses a toggle button, Stick keeps it always expanded, Hidden removes the sidebar completely.
       loggedInUserFormat: The option to show logged-in user format
       refreshTaskListIntervalNote: Task list refresh interval in seconds.
       showAvatar: For switch on/off the display of user/role avatars.
@@ -291,6 +292,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       showQuickGlobalSearch: For switch on/off the display of the quick global search.
       showTaskDurationTime: For switch on/off the display of the duration time in task details page.
       showTooltipTechnicalName: Enable to show users' technical name on tooltips.
+      sidebarMode: Controls how the sidebar navigation behaves. Hover expands on hover, Click uses a toggle button, Stick keeps it always expanded, Hidden removes the sidebar completely.
       uploadDocumentWhiteListExtensionNote: 'Leave value empty if you allow all extensions. If just allow some extensions, list out extensions here, separated by comma. Example: pdf, txt, doc, docx.'
     key: Key
     link: Link
@@ -451,14 +453,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     Update: Update
     Widget: Widget
     action: Actions
-    actionMenuContext: "Open actions menu for {0} process"
-    taskActionMenuContext: "Open actions menu for {0} task"
+    actionMenuContext: Open actions menu for {0} process
     active: Active
-    collapseWidgetContext: "Collapse {0} widget"
-    expandWidgetContext: "Expand {0} widget"
-    openWidgetFiltersContext: "Open {0} filters"
-    openWidgetFiltersWithCountContext: "Open {0} filters, {1} active filters"
-    openWidgetInfoContext: "Open {0} widget information"
     add: Add
     addContext: Add {0}
     addDocument: Add document
@@ -485,6 +481,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     close: Close
     closeContext: Close {0}
     cockpit: Cockpit
+    collapseWidgetContext: Collapse {0} widget
     colors: Colors
     comment: Comment
     completedOn: Completed on
@@ -504,9 +501,9 @@ ch.ivy.addon.portalkit.ui.jsf:
     default: Default
     defaultNotificationMessage: Hmm... Looks like something went wrong.
     delete: Delete
-    deleteContext: Delete {0}
     deleteAbsenceHeaderText: Delete this absence?
     deleteChartHeaderText: Delete this chart?
+    deleteContext: Delete {0}
     deleteDocumentHeaderText: Delete this document?
     deleteFilterHeaderText: Delete this filter?
     deleteSettingHeaderText: Delete this setting?
@@ -528,6 +525,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     errorXhr: Failed to update website content
     escalationTaskHeaderText: Trigger Escalation
     escalationTaskMessage: Expiry is set to now, thus the task expires. Are you sure?
+    expandWidgetContext: Expand {0} widget
     filter:
       from: from
       moreOptions: More options
@@ -584,9 +582,12 @@ ch.ivy.addon.portalkit.ui.jsf:
     ok: OK
     okContext: OK {0}
     'on': 'on'
+    openWidgetFiltersContext: Open {0} filters
+    openWidgetFiltersWithCountContext: Open {0} filters, {1} active filters
+    openWidgetInfoContext: Open {0} widget information
     pin: Pin
-    pinCaseContext: "Pin case {0}"
-    pinTaskContext: "Pin task {0}"
+    pinCaseContext: Pin case {0}
+    pinTaskContext: Pin task {0}
     pleaseAddDocument: Please add a document with the link above.
     pleaseAddNote: Please add a note with the link above.
     previousStage: Previous stage
@@ -609,8 +610,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     restoreToDefaultChartHeaderText: Restore to default charts?
     role: Role
     save: Save
-    saveContext: Save {0}
     saveAll: Save all
+    saveContext: Save {0}
     saveSuccessfully: Data saved successfully.
     search: Search
     second: second
@@ -634,6 +635,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     state: State
     status: Status
     switchToDesktopVersion: Switch to desktop version
+    taskActionMenuContext: Open actions menu for {0} task
     taskCanceledAndLeftSuccessfully: You have cancelled and left the task successfully. You can find the task in the dashboard or your task list.
     taskFinishedSuccessfully: You have finished the task successfully
     taskFromSubstitution: You see this task because you are the substitute
@@ -648,8 +650,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     typeAllUsers: All users
     typeOnlyMe: Only me
     unpin: Unpin
-    unpinCaseContext: "Unpin case {0}"
-    unpinTaskContext: "Unpin task {0}"
+    unpinCaseContext: Unpin case {0}
+    unpinTaskContext: Unpin task {0}
     uploadHere: Upload here
     uploadOneHere: Upload one here
     user: '{0} user'

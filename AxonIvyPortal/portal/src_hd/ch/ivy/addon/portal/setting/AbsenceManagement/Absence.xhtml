@@ -2,6 +2,7 @@
   xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
   xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
   xmlns:pe="http://primefaces.org/ui/extensions"
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
   xmlns:pc="http://xmlns.jcp.org/jsf/composite/components">
 
 <ui:composition>
@@ -115,20 +116,41 @@
             update="@form absence-form:absence-messages" />
         </h:panelGroup>
 
-        <p:dataTable id="selected-deputy-panel" styleClass="deputy-selection" paginator="true" rows="2" pageLinks="5" paginatorPosition="bottom"
+        <div class="deputy-selection-scroll-wrapper">
+        <p:dataTable id="selected-deputy-panel" styleClass="deputy-selection"
           emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
           value="#{data.selectedDeputies}" var="deputy">
-          <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/personalTaskDuringAbsenceDeputies')}">
-            <h:outputText rendered="#{not avatarBean.isShowAvatar()}"
-              id="deputy-type-icon" class="si si-single-neutral-actions" />
-            <pc:securityMemberNameAndAvatar containerStyleClass="w-9"
-              displayName="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(deputy, deputy.getName())}"
-              securityMember="#{deputy}" />
-            <p:commandLink id="delete-deputy" styleClass="si si-bin-1 delete-deputy" disabled="#{!absenceManagementBean.canCreateSubstitute(data.selectedAbsenceUser)}"
-              actionListener="#{logic.removeDeputy(deputy)}" update="absence-form:edit-deputy-selection-panel"
-              ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}" />
+          <p:column>
+            <c:set var="isPermanent" value="#{data.permanentDeputies.contains(deputy)}" />
+            <div class="flex align-items-center">
+              <h:outputText rendered="#{not avatarBean.isShowAvatar()}"
+                id="deputy-type-icon" class="si si-single-neutral-actions" />
+              <pc:securityMemberNameAndAvatar containerStyleClass="w-8"
+                displayName="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(deputy, deputy.getName())}"
+                securityMember="#{deputy}" />
+              <h:panelGroup layout="block" styleClass="deputy-type flex align-items-center gap-1 mr-2" rendered="#{isPermanent}">
+                <i class="fa fa-star"></i>
+                <span>Set as permanent</span>
+              </h:panelGroup>
+              <p:commandButton id="substitute-action-button" icon="fa fa-ellipsis-h"
+                ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}"
+                styleClass="rounded-button icon-more-menu-button ui-no-rounded-button-process-page ml-auto"
+                type="button" />
+              <p:menu class="absence-column-value" overlay="true" trigger="substitute-action-button"
+                my="right top" at="right bottom" styleClass="settings-action-menu">
+                <p:menuitem id="change-deputy-type" icon="#{isPermanent ? 'fa fa-star' : 'fa fa-star-o'}" styleClass="" disabled="#{!absenceManagementBean.canCreateSubstitute(data.selectedAbsenceUser)}"
+                  update="absence-form:edit-deputy-selection-panel" value="Set as permanent" action="#{logic.updatePermanentDeputies(deputy, isPermanent)}"
+                  ariaLabel="Set as permanent">
+                </p:menuitem>
+                <p:menuitem id="delete-deputy" icon="si si-bin-1" styleClass="rounded-button ui-button-outlined ui-button-danger color-destroy" disabled="#{!absenceManagementBean.canCreateSubstitute(data.selectedAbsenceUser)}"
+                  actionListener="#{logic.removeDeputy(deputy)}" update="absence-form:edit-deputy-selection-panel" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
+                  ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}">
+                </p:menuitem>
+              </p:menu>
+            </div>
           </p:column>
         </p:dataTable>
+        </div>
       </h:panelGroup>
 
       <div class="text-right ui-g-12">
@@ -138,10 +160,6 @@
           oncomplete="if (args &amp;&amp; !args.validationFailed)PF('absence-dialog').hide();"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}" actionListener="#{logic.saveAbsence}"
           update="@(.absence-table) @(.substitute-table) @(.substitution-table) absence-messages" />
-        <p:commandLink id="close-edit-absence-dialog" actionListener="#{logic.cancel}" rendered="#{!data.isCreateMode}" update="absence-form"
-                       ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancelContext', [ivy.cms.co(data.isCreateMode ? '/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/addAbsence' : '/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/editAbsence')])}"
-                       value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-                       oncomplete="PF('absence-dialog').hide();" styleClass="mt-3 flex flex-direction-column justify-content-center" />
       </div>
     </h:form>
   </p:dialog>
