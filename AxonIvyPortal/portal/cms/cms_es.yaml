@@ -44,6 +44,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     absenceAndDeputy: Ausencias y sustituciones
     activeAbsence: Ausencia activa
     allAbsences: Ausencias de todos los usuarios
+    amount: Cantidad
     applicationAndRole: Aplicación y rol
     definedDeputies: Sustitutos definidos
     deputyFor: Soy sustituto de

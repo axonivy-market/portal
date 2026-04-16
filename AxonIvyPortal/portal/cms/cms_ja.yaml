@@ -44,6 +44,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     absenceAndDeputy: 不在者と代行者
     activeAbsence: 欠席中
     allAbsences: すべてのユーザーの不在状況
+    amount: 日数
     applicationAndRole: アプリケーションと役割
     definedDeputies: 定義された代行者
     deputyFor: 私は以下のメンバーの代行者です
