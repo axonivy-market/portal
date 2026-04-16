@@ -21,7 +21,9 @@ public final class PortalNavigatorInFrameAPI extends BaseNavigator {
    * @param url target url
    */ 
   public static void navigateToUrl(String url) {
-    String statement = "parent.redirectToUrlCommand([{name: 'url', value: '" + URLDecoder.decode(url, StandardCharsets.UTF_8) + "'}])";
+    String decoded = URLDecoder.decode(url, StandardCharsets.UTF_8);
+    String escaped = SanitizeAPI.escapeForJavascript(decoded);
+    String statement = "parent.redirectToUrlCommand([{name: 'url', value: '" + escaped + "'}])";
     PrimeFaces.current().executeScript(statement);
   }
   
