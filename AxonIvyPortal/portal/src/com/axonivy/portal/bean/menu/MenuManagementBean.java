@@ -189,10 +189,6 @@ public class MenuManagementBean extends AbstractMenuBean implements Serializable
     return new SidebarMode[] { SidebarMode.HOVER, SidebarMode.CLICK, SidebarMode.STICK };
   }
 
-  public SidebarMode[] getSidebarModes() {
-    return SidebarMode.values();
-  }
-
   public void saveSidebarMode() {
     GlobalSetting setting = GlobalSettingService.getInstance()
         .findGlobalSettingByGlobalVariable(GlobalVariable.SIDEBAR_MODE);

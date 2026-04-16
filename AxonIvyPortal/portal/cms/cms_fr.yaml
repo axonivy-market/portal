@@ -783,10 +783,27 @@ ch.ivy.addon.portalkit.ui.jsf:
       ExportReferencedDialogHeader: Le tableau de bord référence d'autres tableaux de bord
       ExportReferencedDialogMessage: 'Les tableaux de bord suivants sont référencés par des widgets de navigation. Exportez-les et importez-les également pour que les widgets fonctionnent correctement :'
       ExportReferencedDialogProceed: Exporter quand même
+      Hidden: Masqué
       HiddenDashboards: Éléments masqués
-      HiddenDashboardsDescription: Ces tableaux de bord ne sont pas visibles pour les utilisateurs.
+      HiddenDashboardsDescription: Non affiché dans la barre latérale. Peut toujours être utilisé comme cible de lien direct.
+      SubMenuDashboards: Tableaux de bord du sous-menu
+      SubMenuDashboardsDescription: Apparaissent groupés sous l'icône Tableau de bord dans la barre latérale.
+      SidebarTopLevelDashboards: Tableaux de bord principaux de la barre latérale
+      SidebarTopLevelDashboardsDescription: Apparaissent comme éléments principaux dans la barre latérale.
       MenuDashboards: Éléments de la barre latérale
-      MenuDashboardsDescription: Ces tableaux de bord apparaissent comme éléments principaux dans la barre latérale. Gérez leur ordre dans l'onglet Gestion des menus.
+      MenuDashboardsDescription: Ces tableaux de bord apparaissent comme éléments principaux dans la barre latérale. Gérez leur ordre dans l'onglet Navigation de la barre latérale.
+      PrivateDashboardTabInfoPanel: '<p><b>Que puis-je faire ici ?</b></p><p>Créez et gérez des tableaux de bord visibles uniquement par vous. Ils apparaissent groupés sous l''icône Tableau de bord dans la barre latérale et n''affectent jamais les autres utilisateurs.</p><p><b>Réorganiser</b></p><p>Faites glisser une ligne pour changer l''ordre d''apparition dans le sous-menu. L''ordre est enregistré dans vos paramètres personnels.</p><p><b>Actions par tableau de bord</b></p><p>Modifier permet de mettre à jour le titre, la description, l''icône ou les titres multilingues. Configurer ouvre le tableau de bord pour ajouter ou réorganiser des widgets. Si vous disposez de la permission d''export, vous pouvez télécharger un tableau de bord au format JSON.</p>'
+      DashboardTabInfoPanel: '<p><b>Que puis-je faire ici ?</b></p><p>Créez, modifiez et supprimez des tableaux de bord publics. Définissez qui peut les voir grâce aux autorisations. Il s''agit de la bibliothèque centrale de tous les tableaux de bord partagés.</p><p><b>Visibilité &amp; emplacement</b></p><p>Les tableaux de bord sont répartis en trois sections selon leur emplacement dans la barre latérale. Pour déplacer un tableau de bord, ouvrez Modifier et changez son Type d''affichage. Seule la section Sous-menu supporte le glisser-déposer pour la réorganisation.</p><p><b>Actions par tableau de bord</b></p><p>Modifier met à jour nom, description, icône, autorisations et type d''affichage. Configurer ouvre le tableau de bord pour ajouter ou organiser des widgets. Exporter télécharge un fichier JSON — si le tableau de bord en référence d''autres, une confirmation est demandée. Partager génère un lien direct. Supprimer le retire définitivement.</p>'
+      MenuManagementTabInfoPanel: '<p><b>Que puis-je faire ici ?</b></p><p>Configurez tout ce qui est visible dans la barre latérale : les éléments, leur ordre et le comportement global de la barre latérale.</p><p><b>Ajouter de nouveaux éléments</b></p><p>Utilisez Ajouter un élément pour créer une nouvelle entrée. Vous pouvez choisir : Tableau de bord principal (lien vers un tableau de bord), Lien externe (toute URL, avec option ouverture dans un nouvel onglet) ou Page statique. Chaque élément dispose d''un titre multilingue, d''une icône et d''autorisations configurables. Le type d''élément ne peut pas être modifié après création.</p><p><b>Gérer les éléments existants</b></p><p>Modifier met à jour le titre, l''icône, le lien et les autorisations des éléments personnalisés. Supprimer les retire. Les éléments intégrés (type Standard) ne peuvent être ni modifiés ni supprimés. Faites glisser les lignes pour réorganiser tous les éléments.</p><p><b>Paramètres de la barre latérale</b></p><p>Désactiver la barre latérale la masque entièrement pour tous les utilisateurs. Comportement contrôle comment elle s''ouvre : Survol (au survol de la souris), Clic (nécessite un clic) ou Ancré (toujours visible).</p>'
+      SidebarNavigation: Navigation de la barre latérale
+      SidebarSettings: Paramètres de la barre latérale
+      SidebarMode: Mode de la barre latérale
+      DisableSidebar: Désactiver la barre latérale
+      SidebarBehaviour: Comportement de la barre latérale
+      AddItem: Ajouter un élément
+      Label: Libellé
+      LinksTo: Lien vers
+      Dashboard: Tableau de bord
       MenuManagement: Gestion des menus
       MenuManagementTabInfo: 'Gérez les éléments de navigation de la barre latérale. Vous pouvez:<ul><li>Ajouter de nouveaux éléments de menu (tableaux de bord, liens externes, processus Ivy)</li><li>Réorganiser les éléments par glisser-déposer</li><li>Modifier ou supprimer des éléments de menu existants</li></ul>'
       PrivateDashboard: Tableaux de bord privés

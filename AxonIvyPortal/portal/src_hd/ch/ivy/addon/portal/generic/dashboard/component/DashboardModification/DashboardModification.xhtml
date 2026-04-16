@@ -81,7 +81,6 @@
             </h:panelGroup>
           </div>
         </p:column>
-        <p:column styleClass="w-3rem" />
       </p:dataTable>
     </h:panelGroup>
 
@@ -93,7 +92,7 @@
 
     <p:dataTable id="dashboard-table" lazy="false" draggableRows="true" rowDragSelector="i.si-navigation-menu"
       value="#{dashboardModificationBean.dashboards}" var="dashboard"
-      styleClass="ui-g-12 u-no-padding-left u-no-padding-right ui-datatable-no-header"
+      styleClass="ui-g-12 u-no-padding-left u-no-padding-right"
       emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}">
       <p:ajax event="rowReorder" global="false" update="dashboard-table" listener="#{dashboardModificationBean.saveArrangment()}"/>
       <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/dashboardManagement/dashboardTitle')}">
@@ -120,7 +119,7 @@
           <h:panelGroup layout="block">
             <p:commandButton id="dashboard-configuration-action-button" icon="fa fa-ellipsis-h"
               ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}"
-              styleClass="rounded-button icon-more-menu-button #{buttonStyle} ui-no-rounded-button-process-page ui-focused" type="button" />
+              styleClass="rounded-button icon-more-menu-button ui-no-rounded-button-process-page ui-focused" type="button" />
             <p:menu id="dashboard-configuration-action-menu" styleClass="w-auto" overlay="true" trigger="dashboard-configuration-action-button"
               my="right top" at="right bottom">
               <p:menuitem id="edit" process="@this" actionListener="#{dashboardModificationBean.openDashboardDetailDialog(dashboard)}"
@@ -172,7 +171,7 @@
       <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/HiddenDashboardsDescription')}</span>
       <p:dataTable id="hidden-dashboard-table" lazy="false"
         value="#{dashboardModificationBean.hiddenDashboards}" var="hiddenDashboard"
-        styleClass="ui-g-12 u-no-padding-left u-no-padding-right ui-datatable-no-header"
+        styleClass="ui-g-12 u-no-padding-left u-no-padding-right"
         emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}">
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/dashboardManagement/dashboardTitle')}">
           <h:panelGroup id="hidden-dashboard-title-group" styleClass="u-truncate-text" layout="block">
@@ -233,7 +232,6 @@
             </h:panelGroup>
           </div>
         </p:column>
-        <p:column styleClass="w-3rem" />
       </p:dataTable>
     </h:panelGroup>
   </h:panelGroup>

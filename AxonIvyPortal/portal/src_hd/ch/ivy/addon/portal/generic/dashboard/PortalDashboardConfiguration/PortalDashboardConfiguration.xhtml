@@ -103,15 +103,15 @@
 
               <!-- Sidebar Settings -->
               <div class="w-full u-padding-bottom-10">
-                <div class="w-full p-3 border-round" style="background: var(--surface-ground); border: 1px solid var(--surface-border); box-sizing: border-box;">
-                  <h5 class="u-no-margin-top u-mar-bottom-10" style="font-weight: 600;">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/SidebarSettings')}</h5>
+                <div class="w-full p-3 border-round sidebar-settings-card">
+                  <h5 class="u-no-margin-top u-mar-bottom-10">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/SidebarSettings')}</h5>
                   <h:form id="sidebar-settings-form" styleClass="w-full">
                     <div class="flex align-items-center gap-4 w-full">
                       <div class="flex align-items-center gap-2 white-space-nowrap">
                         <label>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/DisableSidebar')}</label>
                         <p:inputSwitch id="disable-sidebar-switch" value="#{menuManagementBean.sidebarDisabled}">
                           <p:ajax event="change" listener="#{menuManagementBean.saveSidebarMode}"
-                            update="sidebar-behaviour-panel" global="false" oncomplete="location.reload();" />
+                            update="sidebar-behaviour-panel" oncomplete="location.reload();" />
                         </p:inputSwitch>
                       </div>
                       <h:panelGroup id="sidebar-behaviour-panel" layout="block" rendered="#{not menuManagementBean.sidebarDisabled}"
@@ -122,7 +122,7 @@
                           <f:selectItems value="#{menuManagementBean.sidebarBehaviourModes}" var="mode"
                             itemValue="#{mode}" itemLabel="#{mode.label}" />
                           <p:ajax event="change" listener="#{menuManagementBean.saveSidebarMode}"
-                            global="false" oncomplete="location.reload();" />
+                            oncomplete="location.reload();" />
                         </p:selectOneMenu>
                       </h:panelGroup>
                     </div>

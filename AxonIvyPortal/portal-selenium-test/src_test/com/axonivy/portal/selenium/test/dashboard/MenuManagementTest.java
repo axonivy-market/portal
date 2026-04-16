@@ -74,7 +74,7 @@ public class MenuManagementTest extends BaseTest {
     PortalConfigurationPage page = LinkNavigator.navigateToPortalConfiguration();
     page.selectMenuManagementTab();
     $("[id$='menu-table']").shouldBe(visible, DEFAULT_TIMEOUT);
-    $("button[id$='create-menu-action']").shouldBe(visible, DEFAULT_TIMEOUT);
+    $("button[id$='add-menu-item-action']").shouldBe(visible, DEFAULT_TIMEOUT);
     $(".js-private-dashboard-configuration").shouldBe(disappear, DEFAULT_TIMEOUT);
     $(".js-public-dashboard-configuration").shouldBe(disappear, DEFAULT_TIMEOUT);
   }
@@ -212,5 +212,113 @@ public class MenuManagementTest extends BaseTest {
     dialog.shouldBe(appear, DEFAULT_TIMEOUT);
     dialog.$("[id$='menu-configuration-form:menu-type']").shouldBe(appear, DEFAULT_TIMEOUT);
     $("[id$='create-button']").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  @Test
+  public void testSidebarSettingsPanelIsVisible() {
+    PortalConfigurationPage page = LinkNavigator.navigateToPortalConfiguration();
+    page.selectMenuManagementTab();
+
+    page.getSidebarSettingsCard().shouldBe(appear, DEFAULT_TIMEOUT);
+    page.getDisableSidebarSwitch().shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  @Test
+  public void testDisableSidebarHidesBehaviourPanel() {
+    PortalConfigurationPage page = LinkNavigator.navigateToPortalConfiguration();
+    page.selectMenuManagementTab();
+
+    // Ensure sidebar is currently enabled so the behaviour panel is visible.
+    page.ensureSidebarEnabled();
+    page.getSidebarBehaviourPanel().shouldBe(appear, DEFAULT_TIMEOUT);
+
+    // Disable the sidebar — this triggers an AJAX save + page reload.
+    page.clickDisableSidebarSwitch();
+
+    // After reload the behaviour panel must be gone.
+    page.getSidebarBehaviourPanel().shouldBe(disappear, DEFAULT_TIMEOUT);
+
+    // Restore: re-enable the sidebar so subsequent tests start in a clean state.
+    page.selectMenuManagementTabWhenSidebarMayBeDisabled();
+    page.ensureSidebarEnabled();
+  }
+
+  @Test
+  public void testSidebarBehaviourOptionsAreAvailable() {
+    PortalConfigurationPage page = LinkNavigator.navigateToPortalConfiguration();
+    page.selectMenuManagementTab();
+
+    page.ensureSidebarEnabled();
+
+    page.openSidebarBehaviourDropdown();
+    SelenideElement items = page.getSidebarBehaviourDropdownItems();
+    items.$$("li").filter(text("Hover")).first().shouldBe(appear, DEFAULT_TIMEOUT);
+    items.$$("li").filter(text("Click")).first().shouldBe(appear, DEFAULT_TIMEOUT);
+    items.$$("li").filter(text("Stick")).first().shouldBe(appear, DEFAULT_TIMEOUT);
+    // Close the dropdown by clicking elsewhere.
+    $("body").click();
+  }
+
+  @Test
+  public void testMenuTableColumnsAreCorrect() {
+    PortalConfigurationPage page = LinkNavigator.navigateToPortalConfiguration();
+    page.selectMenuManagementTab();
+
+    SelenideElement header = page.getMenuTableHeaderRow();
+    header.shouldBe(appear, DEFAULT_TIMEOUT);
+    header.$$("th").filter(text("Label")).first().shouldBe(appear, DEFAULT_TIMEOUT);
+    header.$$("th").filter(text("Links to")).first().shouldBe(appear, DEFAULT_TIMEOUT);
+    header.$$("th").filter(text("Type")).first().shouldBe(appear, DEFAULT_TIMEOUT);
+    header.$$("th").filter(text("Action")).first().shouldBe(appear, DEFAULT_TIMEOUT);
+    // Reorder column has no header text; verify it exists via CSS class.
+    header.$$("th.settings-table-reorder").first().shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  @Test
+  public void testPublicDashboardTabShowsThreeSections() {
+    PortalConfigurationPage page = LinkNavigator.navigateToPortalConfiguration();
+    page.selectPublicDashboardTab();
+
+    page.getTopMenuDashboardTable().shouldBe(appear, DEFAULT_TIMEOUT);
+    page.getSubmenuDashboardTable().shouldBe(appear, DEFAULT_TIMEOUT);
+    page.getHiddenDashboardTable().shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  @Test
+  public void testPublicDashboardSubmenuSectionHasDragHandle() {
+    PortalConfigurationPage page = LinkNavigator.navigateToPortalConfiguration();
+    page.selectPublicDashboardTab();
+
+    SelenideElement submenuTable = page.getSubmenuDashboardTable();
+    submenuTable.shouldBe(appear, DEFAULT_TIMEOUT);
+    submenuTable.$("i.si-navigation-menu").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  @Test
+  public void testPublicDashboardTopMenuSectionHasNoDragHandle() {
+    PortalConfigurationPage page = LinkNavigator.navigateToPortalConfiguration();
+    page.selectPublicDashboardTab();
+
+    SelenideElement topMenuTable = page.getTopMenuDashboardTable();
+    topMenuTable.shouldBe(appear, DEFAULT_TIMEOUT);
+    assertTrue(topMenuTable.$$("i.si-navigation-menu").filter(visible).isEmpty(),
+        "Top-menu dashboard table must not contain drag-handle icons");
+  }
+
+  @Test
+  public void testInfoPanelIsVisibleOnEachTab() {
+    PortalConfigurationPage page = LinkNavigator.navigateToPortalConfiguration();
+
+    // Private Dashboard tab
+    page.selectPrivateDashboardTab();
+    page.getInfoPanelButton().shouldBe(appear, DEFAULT_TIMEOUT);
+
+    // Public Dashboard tab
+    page.selectPublicDashboardTab();
+    page.getInfoPanelButton().shouldBe(appear, DEFAULT_TIMEOUT);
+
+    // Sidebar Navigation tab
+    page.selectMenuManagementTab();
+    page.getInfoPanelButton().shouldBe(appear, DEFAULT_TIMEOUT);
   }
 }

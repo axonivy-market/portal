@@ -783,10 +783,27 @@ ch.ivy.addon.portalkit.ui.jsf:
       ExportReferencedDialogHeader: El panel hace referencia a otros paneles
       ExportReferencedDialogMessage: 'Los siguientes paneles son referenciados por widgets de navegación. Expórtelos e impórtelos también para que los widgets funcionen correctamente:'
       ExportReferencedDialogProceed: Exportar de todos modos
+      Hidden: Oculto
       HiddenDashboards: Elementos ocultos
-      HiddenDashboardsDescription: Estos paneles no son visibles para los usuarios.
+      HiddenDashboardsDescription: No se muestra en la barra lateral. Se puede seguir usando como destino de enlace directo.
+      SubMenuDashboards: Paneles del submenú
+      SubMenuDashboardsDescription: Aparecen agrupados bajo el icono de Panel en la barra lateral.
+      SidebarTopLevelDashboards: Paneles principales de la barra lateral
+      SidebarTopLevelDashboardsDescription: Aparecen como elementos principales en la barra lateral.
       MenuDashboards: Elementos de la barra lateral
-      MenuDashboardsDescription: Estos paneles aparecen como elementos principales en la barra lateral. Gestione su orden en la pestaña Gestión de menús.
+      MenuDashboardsDescription: Estos paneles aparecen como elementos principales en la barra lateral. Gestione su orden en la pestaña Navegación de la barra lateral.
+      PrivateDashboardTabInfoPanel: '<p><b>¿Qué puedo hacer aquí?</b></p><p>Cree y gestione paneles visibles solo para usted. Aparecen agrupados bajo el icono de Panel en la barra lateral y nunca afectan a otros usuarios.</p><p><b>Reordenar</b></p><p>Arrastre cualquier fila para cambiar el orden en que sus paneles aparecen en el submenú. El orden se guarda en su configuración personal.</p><p><b>Acciones por panel</b></p><p>Use Editar para actualizar el título, descripción, icono o títulos en varios idiomas. Use Configurar para abrir el panel y añadir o reorganizar widgets. Si tiene el permiso de exportación, también puede descargar un panel como archivo JSON.</p>'
+      DashboardTabInfoPanel: '<p><b>¿Qué puedo hacer aquí?</b></p><p>Cree, edite y elimine paneles públicos. Defina quién puede verlos mediante permisos. Esta es la biblioteca central de todos los paneles compartidos.</p><p><b>Visibilidad &amp; ubicación</b></p><p>Los paneles se dividen en tres secciones según dónde aparecen en la barra lateral. Para mover un panel entre secciones, abra Editar y cambie su Tipo de visualización. Solo la sección Submenú admite reordenación por arrastre.</p><p><b>Acciones por panel</b></p><p>Editar actualiza nombre, descripción, icono, permisos y tipo de visualización. Configurar abre el panel para añadir o reorganizar widgets. Exportar descarga un archivo JSON — si el panel hace referencia a otros, se le pedirá confirmación. Compartir genera un enlace directo. Eliminar lo borra permanentemente.</p>'
+      MenuManagementTabInfoPanel: '<p><b>¿Qué puedo hacer aquí?</b></p><p>Configure todo lo visible en la barra lateral: elementos, su orden y el comportamiento global de la barra lateral.</p><p><b>Añadir nuevos elementos</b></p><p>Use Añadir elemento para crear una nueva entrada. Puede elegir entre: Panel principal (enlaza a un panel), Enlace externo (cualquier URL, con opción de abrir en nueva pestaña) o Página estática. Cada elemento tiene un título multiidioma, un icono y permisos configurables. El tipo de elemento no puede cambiarse tras la creación.</p><p><b>Gestionar elementos existentes</b></p><p>Editar actualiza el título, icono, enlace y permisos de elementos personalizados. Eliminar los borra. Los elementos integrados (tipo Estándar) no pueden editarse ni eliminarse. Arrastre filas para reordenar todos los elementos.</p><p><b>Configuración de la barra lateral</b></p><p>Deshabilitar barra lateral la oculta completamente para todos los usuarios. Comportamiento controla cómo se abre: Hover (al pasar el ratón), Clic (requiere clic) o Fijo (siempre visible).</p>'
+      SidebarNavigation: Navegación de la barra lateral
+      SidebarSettings: Configuración de la barra lateral
+      SidebarMode: Modo de barra lateral
+      DisableSidebar: Deshabilitar barra lateral
+      SidebarBehaviour: Comportamiento de la barra lateral
+      AddItem: Agregar elemento
+      Label: Etiqueta
+      LinksTo: Enlaza a
+      Dashboard: Panel de control
       MenuManagement: Gestión de menús
       MenuManagementTabInfo: 'Gestione los elementos de navegación de la barra lateral. Puede:<ul><li>Agregar nuevas entradas de menú (paneles, enlaces externos, procesos Ivy)</li><li>Reordenar elementos arrastrando y soltando</li><li>Editar o eliminar entradas de menú existentes</li></ul>'
       PrivateDashboard: Dashboard - Configuración  personalizada

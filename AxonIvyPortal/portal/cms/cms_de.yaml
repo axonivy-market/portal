@@ -785,10 +785,27 @@ ch.ivy.addon.portalkit.ui.jsf:
       ExportReferencedDialogHeader: Dashboard referenziert andere Dashboards
       ExportReferencedDialogMessage: 'Die folgenden Dashboards werden von Navigations-Widgets referenziert. Exportieren und importieren Sie sie ebenfalls, damit die Widgets korrekt funktionieren:'
       ExportReferencedDialogProceed: Trotzdem exportieren
+      Hidden: Ausgeblendet
       HiddenDashboards: Ausgeblendete Einträge
-      HiddenDashboardsDescription: Diese Dashboards sind für Benutzer nicht sichtbar.
+      HiddenDashboardsDescription: Nicht in der Seitenleiste angezeigt. Kann dennoch als direktes Linkziel verwendet werden – z.B. als Einstiegsseite in einem Prozessablauf.
+      SubMenuDashboards: Untermenü-Dashboards
+      SubMenuDashboardsDescription: Erscheinen gruppiert unter dem Dashboard-Symbol in der Seitenleiste.
+      SidebarTopLevelDashboards: Seitenleisten-Haupteinträge
+      SidebarTopLevelDashboardsDescription: Erscheinen als Haupteinträge in der Seitenleiste.
       MenuDashboards: Seitenleisten-Einträge
-      MenuDashboardsDescription: Diese Dashboards erscheinen als Haupteinträge in der Seitenleiste. Verwalten Sie die Reihenfolge im Tab Menüverwaltung.
+      MenuDashboardsDescription: Diese Dashboards erscheinen als Haupteinträge in der Seitenleiste. Verwalten Sie die Reihenfolge im Tab Seitenleisten-Navigation.
+      PrivateDashboardTabInfoPanel: '<p><b>Was kann ich hier tun?</b></p><p>Erstellen und verwalten Sie Dashboards, die nur für Sie sichtbar sind. Sie erscheinen gruppiert unter dem Dashboard-Symbol in der Seitenleiste und beeinflussen andere Benutzer nicht.</p><p><b>Reihenfolge ändern</b></p><p>Ziehen Sie eine Zeile, um die Reihenfolge Ihrer Dashboards im Untermenü zu ändern. Die Reihenfolge wird in Ihren persönlichen Einstellungen gespeichert.</p><p><b>Aktionen pro Dashboard</b></p><p>Mit Bearbeiten können Sie Titel, Beschreibung, Symbol oder mehrsprachige Titel anpassen. Mit Konfigurieren öffnen Sie das Dashboard und fügen Widgets hinzu oder ordnen sie neu an. Mit der entsprechenden Berechtigung können Sie ein Dashboard auch als JSON-Datei exportieren.</p>'
+      DashboardTabInfoPanel: '<p><b>Was kann ich hier tun?</b></p><p>Öffentliche Dashboards erstellen, bearbeiten und löschen. Legen Sie fest, wer sie sehen kann. Dies ist die zentrale Bibliothek aller geteilten Dashboards.</p><p><b>Sichtbarkeit &amp; Platzierung</b></p><p>Dashboards sind in drei Bereiche unterteilt: Seitenleisten-Haupteintrag, Untermenü oder Ausgeblendet. Um ein Dashboard zu verschieben, öffnen Sie Bearbeiten und ändern Sie den Anzeigetyp. Nur der Untermenü-Bereich unterstützt Drag-and-Drop-Reihenfolge.</p><p><b>Aktionen pro Dashboard</b></p><p>Bearbeiten aktualisiert Name, Beschreibung, Symbol, Berechtigungen und Anzeigetyp. Konfigurieren öffnet das Dashboard zum Hinzufügen oder Anordnen von Widgets. Exportieren lädt eine JSON-Datei herunter — bei referenzierten Dashboards erscheint eine Rückfrage. Teilen erstellt einen Direktlink. Löschen entfernt das Dashboard dauerhaft.</p>'
+      MenuManagementTabInfoPanel: '<p><b>Was kann ich hier tun?</b></p><p>Konfigurieren Sie alles, was in der Seitenleiste erscheint: Einträge, Reihenfolge und das globale Seitenleisten-Verhalten.</p><p><b>Neue Einträge hinzufügen</b></p><p>Erstellen Sie mit Eintrag hinzufügen einen neuen Seitenleisteneintrag. Zur Auswahl stehen: Haupt-Dashboard (verlinkt zu einem Dashboard), Externer Link (beliebige URL, optional in neuem Tab) oder Statische Seite. Jeder Eintrag hat einen mehrsprachigen Titel, ein Symbol und konfigurierbare Berechtigungen. Der Eintragstyp kann nach der Erstellung nicht mehr geändert werden.</p><p><b>Bestehende Einträge verwalten</b></p><p>Bearbeiten aktualisiert Titel, Symbol, Link und Berechtigungen benutzerdefinierter Einträge. Löschen entfernt sie. Standard-Einträge (integrierte Elemente) können weder bearbeitet noch gelöscht werden. Zeilen per Drag-and-Drop neu anordnen.</p><p><b>Seitenleisten-Einstellungen</b></p><p>Seitenleiste deaktivieren blendet die Seitenleiste für alle Benutzer aus. Seitenleisten-Verhalten steuert, wie sie sich öffnet: Hover (beim Überfahren), Klick (erfordert Klick) oder Stick (immer sichtbar).</p>'
+      SidebarNavigation: Seitenleisten-Navigation
+      SidebarSettings: Seitenleisten-Einstellungen
+      SidebarMode: Seitenleisten-Modus
+      DisableSidebar: Seitenleiste deaktivieren
+      SidebarBehaviour: Seitenleisten-Verhalten
+      AddItem: Eintrag hinzufügen
+      Label: Bezeichnung
+      LinksTo: Verlinkt auf
+      Dashboard: Dashboard
       MenuManagement: Menüverwaltung
       MenuManagementTabInfo: 'Verwalten Sie die Navigationselemente der Seitenleiste. Sie können:<ul><li>Neue Menüeinträge hinzufügen (Dashboards, externe Links, Ivy-Prozesse)</li><li>Einträge per Drag-and-Drop neu anordnen</li><li>Bestehende Menüeinträge bearbeiten oder entfernen</li></ul>'
       PrivateDashboard: Private Dashboards

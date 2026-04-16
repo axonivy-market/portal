@@ -2226,3 +2226,16 @@ body.dark .menu-type-static {
   border-color: #2a6b50 !important;
   font-weight: 600 !important;
 }
+
+/* Info tooltip for Portal Configuration page */
+.dashboard-info-tooltip .ui-tooltip-text {
+  max-width: 320px;
+  white-space: normal;
+}
+
+/* Sidebar settings card in Sidebar navigation tab */
+.sidebar-settings-card {
+  background: var(--surface-ground);
+  border: 1px solid var(--surface-border);
+  box-sizing: border-box;
+}
