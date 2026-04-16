@@ -1,5 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
   xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
   xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
@@ -33,10 +31,17 @@
       <p:graphicImage styleClass="portal-home-logo portal-home-logo-small" name="logo_small" library="ivy-branding" alt="#{logoDescription}" />
     </p:commandLink>
 
-    <p:commandLink id="toggle-menu" styleClass="sidebar-pin" global="false" ariaLabel="#{ivy.cms.co('/Labels/ToggleMenu')}" 
-      onclick="hideBreadcrumb()" oncomplete="Portal.updateBreadcrumb();" rendered="#{!masterDataBean.expandSidebar}">
+    <p:commandLink id="toggle-menu" styleClass="sidebar-pin" global="false" ariaLabel="#{ivy.cms.co('/Labels/ToggleMenu')}"
+      onclick="hideBreadcrumb()" oncomplete="Portal.updateBreadcrumb();" rendered="#{masterDataBean.sidebarMode == 'HOVER'}">
       <span class="pin"></span>
     </p:commandLink>
+    <ui:fragment rendered="#{masterDataBean.sidebarMode eq 'CLICK'}">  
+      <a class="js-sidebar-toggle-btn sidebar-collapse-btn"  
+        aria-label="#{ivy.cms.co('/Labels/ToggleMenu')}" aria-expanded="false"  
+        title="#{ivy.cms.co('/Labels/ToggleMenu')}">  
+        <i class="si si-navigation-right-circle-1 js-sidebar-toggle-icon" />  
+      </a>  
+    </ui:fragment>  
   </div>
 
   <!-- APPLICATION MENU -->
@@ -72,7 +77,8 @@
     </div>
   </h:panelGroup>
 
-  <!-- Warning before leaving task -->
+
+    <!-- Warning before leaving task -->
   <ic:ch.ivy.addon.portalkit.component.WarningBeforeLeavingTask id="warning-before-leaving-task-component" componentId="task-leave-warning-dialog"
     widgetVar="task-losing-confirmation-dialog" renderedDialog="#{data.isWorkingOnATask}" taskState="#{task.state}"
     leaveActionListener="#{logic.fireEventClickOnMenuItem()}" leaveOnComplete="leaveTask();"

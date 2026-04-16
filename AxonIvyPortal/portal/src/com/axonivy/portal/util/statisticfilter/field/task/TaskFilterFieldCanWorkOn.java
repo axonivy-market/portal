@@ -48,13 +48,11 @@ public class TaskFilterFieldCanWorkOn extends FilterField{
 
   @Override
   public CaseQuery generateFilterQuery(DashboardFilter filter) {
-    // TODO Auto-generated method stub
     return null;
   }
 
   @Override
   public TaskQuery generateFilterTaskQuery(DashboardFilter filter) {
-    // TODO Auto-generated method stub
     return null;
   }
 

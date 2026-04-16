@@ -24,10 +24,12 @@
                         ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/notificationOptions')}">
                         <p:menuitem id="notification-setting" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/linkToNotificationSettings')}"
                           icon="notifications-button si si-cog"
+                          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/openNotificationSettings')}"
                           actionListener="#{userMenuBean.navigateToUserProfileOrDisplayWorkingTaskWarning(isWorkingOnATask, task)}"
                           oncomplete="Portal.updateLayoutContent()" global="false" />
                         <p:divider />
                         <p:menuitem id="notification-full-page" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/linkToFullScreen')}"
+                          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/viewNotificationsFullScreen')}"
                           actionListener="#{userMenuBean.navigateToNotificationOrDisplayWorkingTaskWarning(isWorkingOnATask, task)}"
                           icon="si si-expand-6" />
                       </p:menuButton>

@@ -211,7 +211,6 @@ public class DashboardTaskSearchCriteria {
 
     private TaskQuery query;
     private OrderByColumnQuery order;
-    @SuppressWarnings("unused")
     private boolean sortStandardColumn;
 
     public TaskSortingQueryAppender(TaskQuery query) {

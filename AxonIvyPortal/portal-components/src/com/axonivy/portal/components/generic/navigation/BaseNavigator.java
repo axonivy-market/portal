@@ -15,6 +15,7 @@ import com.axonivy.portal.components.util.ProcessStartUtils;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.security.exec.Sudo;
 import ch.ivyteam.ivy.workflow.IProcessStart;
+import ch.ivyteam.ivy.workflow.start.IWebStartable;
 import ch.ivyteam.ivy.workflow.StandardProcessType;
 import ch.ivyteam.ivy.workflow.standard.DefaultPagesConfigurator;
 
@@ -72,7 +73,7 @@ public class BaseNavigator {
   }
 
   public static String findAbsoluteUrlByProcessStartFriendlyRequestPath(String friendlyRequestPath) {
-    IProcessStart processStart = ProcessStartUtils.findProcessStartByUserFriendlyRequestPath(friendlyRequestPath);
-    return processStart != null ? processStart.getLink().getAbsolute() : StringUtils.EMPTY;
+    IWebStartable webStartable = ProcessStartUtils.findWebStartableByUserFriendlyRequestPath(friendlyRequestPath);
+    return webStartable != null ? webStartable.getLink().getAbsolute() : StringUtils.EMPTY;
   }
 }

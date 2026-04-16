@@ -1,6 +1,5 @@
 package com.axonivy.portal.bean.dashboard;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -40,7 +39,7 @@ import ch.ivyteam.ivy.security.IRole;
 
 @ViewScoped
 @ManagedBean
-public class DashboardImportBean extends DashboardModificationBean implements Serializable {
+public class DashboardImportBean extends DashboardModificationBean {
   private static final long serialVersionUID = 1L;
   private boolean isLoaded = false;
   private UploadedFile importFile;
