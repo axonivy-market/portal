@@ -34,8 +34,7 @@ public class ChatTest extends BaseTest {
 
   // Currently still not have any idea how to open two browser with difference session to test chat between multiple
   // user
-  // Tests that still not implement
-  // TODO chatGroupMultiTabs, chatGroupOnTwoInstanceOfBrowser
+  // Tests that still not implement chatGroupMultiTabs, chatGroupOnTwoInstanceOfBrowser
 
   @Test
   public void chatAddGroup() {

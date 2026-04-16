@@ -147,7 +147,6 @@ public class IvyCacheService {
    * This method will invalidate global configuration cache store in application cache
    * @param cacheGroupName
    */
-  //TODO: after switch to application scope for all configuration, we don't need this method, just clear cache on current app
   public void invalidateApplicationCacheForAllAvailableApplications(String cacheGroupName) {
     try {
       Sudo.run(() -> {

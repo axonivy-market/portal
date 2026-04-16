@@ -31,10 +31,17 @@
       <p:graphicImage styleClass="portal-home-logo portal-home-logo-small" name="logo_small" library="ivy-branding" alt="#{logoDescription}" />
     </p:commandLink>
 
-    <p:commandLink id="toggle-menu" styleClass="sidebar-pin" global="false" ariaLabel="#{ivy.cms.co('/Labels/ToggleMenu')}" 
-      onclick="hideBreadcrumb()" oncomplete="Portal.updateBreadcrumb();" rendered="#{!masterDataBean.expandSidebar}">
+    <p:commandLink id="toggle-menu" styleClass="sidebar-pin" global="false" ariaLabel="#{ivy.cms.co('/Labels/ToggleMenu')}"
+      onclick="hideBreadcrumb()" oncomplete="Portal.updateBreadcrumb();" rendered="#{masterDataBean.sidebarMode == 'HOVER'}">
       <span class="pin"></span>
     </p:commandLink>
+    <ui:fragment rendered="#{masterDataBean.sidebarMode eq 'CLICK'}">  
+      <a class="js-sidebar-toggle-btn sidebar-collapse-btn"  
+        aria-label="#{ivy.cms.co('/Labels/ToggleMenu')}" aria-expanded="false"  
+        title="#{ivy.cms.co('/Labels/ToggleMenu')}">  
+        <i class="si si-navigation-right-circle-1 js-sidebar-toggle-icon" />  
+      </a>  
+    </ui:fragment>  
   </div>
 
   <!-- APPLICATION MENU -->
@@ -70,7 +77,8 @@
     </div>
   </h:panelGroup>
 
-  <!-- Warning before leaving task -->
+
+    <!-- Warning before leaving task -->
   <ic:ch.ivy.addon.portalkit.component.WarningBeforeLeavingTask id="warning-before-leaving-task-component" componentId="task-leave-warning-dialog"
     widgetVar="task-losing-confirmation-dialog" renderedDialog="#{data.isWorkingOnATask}" taskState="#{task.state}"
     leaveActionListener="#{logic.fireEventClickOnMenuItem()}" leaveOnComplete="leaveTask();"

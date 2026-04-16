@@ -215,6 +215,7 @@ public class UserUtils {
    * @param userId
    * @return {@link IUser}
    */
+  @SuppressWarnings("removal")
   @Deprecated(forRemoval = true, since = "11.2.0")
   public static IUser findUserByUserId(Long userId) {
     return Sudo.get(() -> {
