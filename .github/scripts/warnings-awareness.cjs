@@ -1,11 +1,7 @@
 const { execSync } = require('child_process');
 
 function exec(cmd, cwd) {
-  try {
-    return execSync(cmd, { encoding: 'utf8', cwd }).trim();
-  } catch {
-    return '';
-  }
+  return execSync(cmd, { encoding: 'utf8', cwd }).trim();
 }
 
 function execCount(cmd, cwd) {
@@ -66,9 +62,9 @@ async function resolveRunContext(github, context) {
 }
 
 function findNewWarnings(currentAnnotations, baselineAnnotations) {
-  const baselineKeys = new Set(baselineAnnotations.map(annotation => `${annotation.path}|${annotation.message}`));
+  const baselineKeys = new Set(baselineAnnotations.map(a => `${a.path}|${a.start_line}|${a.message}`));
   return currentAnnotations
-    .filter(annotation => !baselineKeys.has(`${annotation.path}|${annotation.message}`))
+    .filter(annotation => !baselineKeys.has(`${annotation.path}|${annotation.start_line}|${annotation.message}`))
     .map(annotation => {
       if (annotation.path && annotation.path !== '.github') {
         return `${annotation.path}:${annotation.start_line} — ${annotation.message}`;
