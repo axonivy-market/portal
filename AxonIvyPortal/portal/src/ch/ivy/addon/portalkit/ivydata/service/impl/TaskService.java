@@ -57,6 +57,7 @@ public class TaskService {
   
   public IvyTaskResultDTO findTasksByCriteria(TaskSearchCriteria criteria, int startIndex, int count) { 
     return Sudo.get(() -> {
+      int i = 0;
       IvyTaskResultDTO result = new IvyTaskResultDTO();
       TaskQuery finalQuery = extendQueryWithUserHasPermissionToSee(criteria);
       result.setTasks(executeTaskQuery(finalQuery, startIndex, count));
@@ -101,6 +102,7 @@ public class TaskService {
     return TaskQuery.create().where().customField().stringField(AdditionalProperty.HIDE.toString()).isNull();
   }
 
+  @SuppressWarnings("deprecation")
   public IvyTaskResultDTO findCategoriesByCriteria(TaskCategorySearchCriteria criteria) { 
     return Sudo.get(() -> {
       IvyTaskResultDTO result = new IvyTaskResultDTO();
