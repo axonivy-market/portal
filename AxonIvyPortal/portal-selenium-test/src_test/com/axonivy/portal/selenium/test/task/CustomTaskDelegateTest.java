@@ -99,7 +99,7 @@ public class CustomTaskDelegateTest extends BaseTest {
 
   @Test
   public void testBulkDelegateTasksOnDashboard() {
-    login(TestAccount.HR_ROLE_USER);
+    login(TestAccount.HUANG_USER);
     redirectToNewDashBoard();
     NewDashboardPage dashboardPage = new NewDashboardPage();
     dashboardPage.waitForCaseWidgetLoaded();
@@ -142,7 +142,7 @@ public class CustomTaskDelegateTest extends BaseTest {
 
   @Test
   public void testBulkDelegateTaskForRole() {
-    login(TestAccount.HR_ROLE_USER);
+    login(TestAccount.HUANG_USER);
     redirectToNewDashBoard();
     NewDashboardPage dashboardPage = new NewDashboardPage();
     dashboardPage.waitForCaseWidgetLoaded();

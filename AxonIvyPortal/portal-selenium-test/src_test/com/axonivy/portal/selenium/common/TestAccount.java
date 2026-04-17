@@ -14,6 +14,8 @@ public enum TestAccount {
 
   EMMA_USER("emma", "emma", "Emma"),
 
+  HUANG_USER("huang", "huang", "Huang"),
+
   HR_ROLE_USER_2("peter", "peter", "peter"),
 
   GM_USER("gm1", "gm1", "General Manager"),
