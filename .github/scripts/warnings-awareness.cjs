@@ -116,8 +116,8 @@ module.exports.checkSuppressWarnings = async ({ github, context, core }) => {
   exec(`git fetch origin ${defaultBranch} --depth=1`, workspace);
 
   const mergeBase = exec(`git merge-base HEAD origin/${defaultBranch}`, workspace);
-  const current = execCount(`git grep "@SuppressWarnings" HEAD -- "*.java" | wc -l`, workspace);
-  const baseline = execCount(`git grep "@SuppressWarnings" ${mergeBase} -- "*.java" | wc -l`, workspace);
+  const current = execCount(`git grep "@SuppressWarnings" HEAD -- "*.java" | wc -l || true`, workspace);
+  const baseline = execCount(`git grep "@SuppressWarnings" ${mergeBase} -- "*.java" | wc -l || true`, workspace);
   const delta = current - baseline;
   const regressed = delta > 0;
   const newlyIntroduced = regressed
