@@ -37,6 +37,27 @@ public class DashboardConfigurationPage extends TemplatePage {
     waitForDashboardConfigurationTypeSelectionAppear();
     return $("div[id$='configuration-group']");
   }
+
+  public void selectSidebarNavigationType() {
+    waitForDashboardConfigurationTypeSelectionAppear();
+    $("a[id$='sidebar-navigation-type']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+    $("[id$='sidebar-navigation-content']").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  public SelenideElement getSidebarSettingsCard() {
+    return $(".sidebar-settings-card").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  public SelenideElement clickAddMenuItemButton() {
+    $("button[id$='add-menu-item-action']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+    return $("[id$='menu-configuration-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  public void closeMenuConfigurationDialog() {
+    $("[id$='menu-configuration-dialog']").shouldBe(appear, DEFAULT_TIMEOUT)
+        .$(".ui-dialog-titlebar-close").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $("[id$='menu-configuration-dialog']").shouldBe(disappear, DEFAULT_TIMEOUT);
+  }
   
   public SelenideElement getDashboardConfigurationPageWithActionsMenu() {
     waitForDashboardConfigurationTypeSelectionAppear();

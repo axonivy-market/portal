@@ -15,6 +15,7 @@ import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.page.DashboardConfigurationPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
+import com.codeborne.selenide.SelenideElement;
 
 @IvyWebTest
 public class DashboardConfigurationScreenshotTest extends ScreenshotBaseTest {
@@ -87,6 +88,23 @@ public class DashboardConfigurationScreenshotTest extends ScreenshotBaseTest {
         ScreenshotUtils.DASHBOARD_CONFIGURATION_FOLDER + "import-public-dashboard-dialog");
   }
   
+  @Test
+  public void screenshotSidebarNavigationUserGuide() throws IOException {
+    showNewDashboard();
+    newDashboardPage = new NewDashboardPage();
+    DashboardConfigurationPage dashboardConfigurationPage = newDashboardPage.openDashboardConfigurationPage();
+    ScreenshotUtils.resizeBrowser(new Dimension(1050, 750));
+    dashboardConfigurationPage.selectSidebarNavigationType();
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(dashboardConfigurationPage.getDashboardConfigurationPage(),
+        ScreenshotUtils.DASHBOARD_CONFIGURATION_FOLDER + "sidebar-navigation-configuration", new ScreenshotMargin(10));
+    SelenideElement addMenuItemDialog = dashboardConfigurationPage.clickAddMenuItemButton();
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(addMenuItemDialog,
+        ScreenshotUtils.DASHBOARD_CONFIGURATION_FOLDER + "add-menu-item-dialog", new ScreenshotMargin(10));
+    dashboardConfigurationPage.closeMenuConfigurationDialog();
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(dashboardConfigurationPage.getSidebarSettingsCard(),
+        ScreenshotUtils.DASHBOARD_CONFIGURATION_FOLDER + "sidebar-settings-panel", new ScreenshotMargin(10));
+  }
+
   @Test
   public void screenshotImportPrivateDashboard() throws IOException {
     showNewDashboard();

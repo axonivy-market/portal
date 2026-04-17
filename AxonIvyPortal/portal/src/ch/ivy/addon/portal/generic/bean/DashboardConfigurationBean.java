@@ -20,6 +20,7 @@ public class DashboardConfigurationBean implements Serializable {
   private boolean isMobileDevice;
   private boolean canEditPrivateDashboard;
   private boolean canEditPublicDashboard;
+  private boolean canManageSidebarNavigation;
   private boolean isPublicDashboard;
   private boolean isSelectingAction = true;
   private boolean isSelectingTemplate;
@@ -43,6 +44,7 @@ public class DashboardConfigurationBean implements Serializable {
     if (!isMobileDevice) {
       canEditPrivateDashboard = PermissionUtils.hasDashboardWriteOwnPermission();
       canEditPublicDashboard = PermissionUtils.hasDashboardWritePublicPermission();
+      canManageSidebarNavigation = PermissionUtils.isSessionUserHasAdminRole();
     }
   }
 
@@ -110,6 +112,10 @@ public class DashboardConfigurationBean implements Serializable {
 
   public void setCanEditPublicDashboard(boolean canEditPublicDashboard) {
     this.canEditPublicDashboard = canEditPublicDashboard;
+  }
+
+  public boolean isCanManageSidebarNavigation() {
+    return canManageSidebarNavigation;
   }
 
   public boolean isPublicDashboard() {

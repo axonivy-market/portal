@@ -58,7 +58,7 @@
                       update="dashboard-configuration-type dashboard-configuration-content sidebar-navigation-content dashboard-info-button-form" process="@this"
                       partialSubmit="true"/>
                   </li>
-                  <li class="#{dashboardConfigurationBean.menuManagement ? 'active' : ''}">
+                  <li class="#{dashboardConfigurationBean.menuManagement ? 'active' : ''}" jsf:rendered="#{dashboardConfigurationBean.canManageSidebarNavigation}">
                     <i class="si si-navigation-menu u-mar-right-5"/>
                     <p:commandLink id="sidebar-navigation-type" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/SidebarNavigation')}"
                       value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/SidebarNavigation')}"
@@ -98,7 +98,7 @@
             <!-- Sidebar Navigation Content -->
             <h:panelGroup id="sidebar-navigation-content" layout="block" styleClass="w-full">
               <h:panelGroup layout="block"
-                rendered="#{!dashboardConfigurationBean.mobileDevice and dashboardConfigurationBean.menuManagement}"
+                rendered="#{!dashboardConfigurationBean.mobileDevice and dashboardConfigurationBean.menuManagement and dashboardConfigurationBean.canManageSidebarNavigation}"
                 styleClass="w-full dashboard-configuration__content u-no-padding-top">
 
               <!-- Sidebar Settings -->
