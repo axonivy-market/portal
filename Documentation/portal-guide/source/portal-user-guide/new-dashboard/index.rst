@@ -133,6 +133,7 @@ The configuration panel offers the following options:
 
 - **Show pinned items toggle**: Show or hide the pinned items toggle. When enabled, users can filter the widget to get only the pinned tasks.
 
+- **Show Bulk Delegate toggle**: Show or hide the bulk delegate toggle. When enabled, users can select multiple tasks and delegate them in bulk.
 
 **Filters panel**
 

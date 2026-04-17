@@ -94,18 +94,6 @@ public class BulkActionBean implements Serializable {
     return selectionDto != null ? selectionDto.getSelectedTasks() : List.of();
   }
 
-  public Map<String, Map<String, Boolean>> getTaskCheckboxSelectionMap() {
-    Map<String, Map<String, Boolean>> computedMap = new HashMap<>();
-    for (Map.Entry<String, TaskSelectionDto> entry : taskSelectionMap.entrySet()) {
-      Map<String, Boolean> innerMap = new HashMap<>();
-      for (ITask task : entry.getValue().getSelectedTasks()) {
-        innerMap.put(task.uuid(), Boolean.TRUE);
-      }
-      computedMap.put(entry.getKey(), innerMap);
-    }
-    return computedMap;
-  }
-
   public Integer getMaximumSelectedTasks() {
     String maxTasksSetting = GlobalSettingService.getInstance()
         .findGlobalSettingValue(GlobalVariable.MAXIMUM_SELECTED_TASKS);

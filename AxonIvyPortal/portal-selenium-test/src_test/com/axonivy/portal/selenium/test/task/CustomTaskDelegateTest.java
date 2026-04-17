@@ -3,6 +3,7 @@ package com.axonivy.portal.selenium.test.task;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.FilterOperator;
 import com.axonivy.portal.selenium.common.FilterValueType;
@@ -15,6 +16,7 @@ import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 
+@IvyWebTest
 public class CustomTaskDelegateTest extends BaseTest {
 
   private static final String SICK_LEAVE_REQUEST = "Sick Leave Request";

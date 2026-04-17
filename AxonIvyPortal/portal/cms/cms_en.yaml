@@ -505,7 +505,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     delete: Delete
     deleteContext: Delete {0}
     delegateTasks: Delegate tasks
-    Toggle Bulk Delegation: Toggle bulk delegation
+    toggleBulkDelegation: Toggle bulk delegation
     deleteAbsenceHeaderText: Delete this absence?
     deleteChartHeaderText: Delete this chart?
     deleteDocumentHeaderText: Delete this document?
