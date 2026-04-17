@@ -20,6 +20,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     Substitutes: Substitutes
     absences: Absences
     addAbsence: Add absence
+    addSubstitute: Add substitute
     deputies: Substitutes
     description: Set up your vacations, illnesses or other external obligations that leads to any absence.
     editAbsence: Edit absence
@@ -27,11 +28,14 @@ ch.ivy.addon.portalkit.ui.jsf:
     noDeputy: No substitute
     noPermissionToSeeThisArea: You do not have the required permission to see this area.
     period: Period
-    personalTaskDuringAbsenceDeputies: Substitutes
+    personalTaskDuringAbsenceDeputies: Substitutes for personally assigned tasks during the absence
     personalTaskPermanentDeputies: Permanent substitutes for personally assigned tasks
     selectDeputies: Select substitutes
+    selectSubstitute: Select substitute
     selectedDeputies: Selected substitutes
     showAbsencesInThePast: Display absences in the past
+    substituteName: Substitute name
+    substituteType: Substitute type
     substitutedUser: Substituted user
     taskForRole: 'Task for role: '
     till: Until

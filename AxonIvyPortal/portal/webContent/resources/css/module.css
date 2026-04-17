@@ -3268,7 +3268,7 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   overflow-y: auto;
 }
 
-.add-absence-dialog .deputy-type {
+.add-absence-dialog .deputy-type, .absence-table .deputy-type {
   color: var(--ivy-primary-color);
   border: 1px solid var(--ivy-primary-color);
   border-radius: 1rem;

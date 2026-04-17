@@ -29,9 +29,13 @@ ch.ivy.addon.portalkit.ui.jsf:
     period: Zeitraum
     personalTaskDuringAbsenceDeputies: Vertretungen für persönlich zugewiesene Aufgaben während der Abwesenheit
     personalTaskPermanentDeputies: Ständige Stellvertreter für persönlich zugewiesene Aufgaben
+    addSubstitute: Stellvertreter hinzufügen
     selectDeputies: Stellvertreter auswählen
+    selectSubstitute: Stellvertreter auswählen
     selectedDeputies: Ausgewählte Stellvertreter
     showAbsencesInThePast: Vergangene Abwesenheiten anzeigen
+    substituteType: Stellvertretertyp
+    substituteName: Stellvertretername
     substitutedUser: Vertretener Benutzer
     taskForRole: 'Aufgabe für Rolle: '
     till: Bis

@@ -29,9 +29,13 @@ ch.ivy.addon.portalkit.ui.jsf:
     period: Periodo
     personalTaskDuringAbsenceDeputies: Sustituye las tareas asignadas personalmente durante la ausencia
     personalTaskPermanentDeputies: Sustitución permanente de las tareas asignadas personalmente
+    addSubstitute: Agregar sustituto
     selectDeputies: Seleccionar sustitutos
+    selectSubstitute: Seleccionar sustituto
     selectedDeputies: Sustitutos seleccionados
     showAbsencesInThePast: Mostrar ausencias en el pasado
+    substituteType: Tipo de sustituto
+    substituteName: Nombre del sustituto
     substitutedUser: Usuario sustituido
     taskForRole: 'Tarea para el rol:'
     till: Hasta

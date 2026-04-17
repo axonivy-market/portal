@@ -139,7 +139,7 @@
               <p:menu class="absence-column-value" overlay="true" trigger="substitute-action-button"
                 my="right top" at="right bottom" styleClass="settings-action-menu">
                 <p:menuitem id="change-deputy-type" icon="#{isPermanent ? 'fa fa-star' : 'fa fa-star-o'}" styleClass="" disabled="#{!absenceManagementBean.canCreateSubstitute(absenceManagementBean.selectedAbsenceUser)}"
-                  update="absence-form:edit-deputy-selection-panel" value="Set as permanent" action="#{logic.setAsPermanent(deputy,isPermanent)}"
+                  update="absence-form:edit-deputy-selection-panel" value="Set as permanent" action="#{absenceManagementBean.setAsPermanent(deputy,isPermanent)}"
                   ariaLabel="Set as permanent">
                 </p:menuitem>
                 <p:menuitem id="delete-deputy" icon="si si-bin-1" styleClass="rounded-button ui-button-outlined ui-button-danger color-destroy" disabled="#{!absenceManagementBean.canCreateSubstitute(absenceManagementBean.selectedAbsenceUser)}"

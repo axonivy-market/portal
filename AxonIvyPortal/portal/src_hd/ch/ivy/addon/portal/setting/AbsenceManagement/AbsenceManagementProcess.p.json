@@ -333,30 +333,6 @@
         { "id" : "f87", "to" : "f57" }
       ]
     }, {
-      "id" : "f39",
-      "type" : "SubProcessCall",
-      "name" : "AbsenceService",
-      "config" : {
-        "processCall" : "Ivy Data Processes/AbsenceService:deleteAbsence(ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence)",
-        "call" : {
-          "map" : {
-            "param.ivyAbsence" : "in.selectedAbsence"
-          }
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 528, "y" : 320 }
-      },
-      "connect" : [
-        { "id" : "f22", "to" : "f9" }
-      ]
-    }, {
-      "id" : "f23",
-      "type" : "HtmlDialogEnd",
-      "visual" : {
-        "at" : { "x" : 224, "y" : 320 }
-      }
-    }, {
       "id" : "f96",
       "type" : "HtmlDialogEventStart",
       "name" : "saveSubstitutes",
@@ -369,36 +345,6 @@
       },
       "connect" : [
         { "id" : "f62", "to" : "f51" }
-      ]
-    }, {
-      "id" : "f9",
-      "type" : "Script",
-      "name" : "Remove from list",
-      "config" : {
-        "output" : {
-          "code" : [
-            "import java.util.Arrays;",
-            "import javax.faces.application.FacesMessage;",
-            "import org.primefaces.context.PrimeFacesContext;",
-            "import ch.ivy.addon.portalkit.util.UserUtils;",
-            "import ch.ivy.addon.portalkit.util.AbsenceAndSubstituteUtils;",
-            "import ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence;",
-            "import java.util.Set;",
-            "",
-            "out.displayedAbsences.remove(in.selectedAbsence);",
-            "Set<IvyAbsence> ivyAbsences = out.absencesByUser.get(in.selectedAbsence.user.getName()) as Set;",
-            "ivyAbsences.remove(in.selectedAbsence);",
-            "",
-            "in.message = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/Messages/removedAbsences\", Arrays.asList(in.selectedAbsence.user.getName()));"
-          ]
-        },
-        "sudo" : true
-      },
-      "visual" : {
-        "at" : { "x" : 720, "y" : 320 }
-      },
-      "connect" : [
-        { "id" : "f50", "to" : "f47", "via" : [ { "x" : 1488, "y" : 320 } ] }
       ]
     }, {
       "id" : "f19",
@@ -532,20 +478,6 @@
         { "id" : "f131", "to" : "f37" }
       ]
     }, {
-      "id" : "f38",
-      "type" : "HtmlDialogEventStart",
-      "name" : "deleteAbsence",
-      "config" : {
-        "guid" : "1756E446A9D95FC1"
-      },
-      "visual" : {
-        "at" : { "x" : 336, "y" : 320 },
-        "labelOffset" : { "x" : 2 }
-      },
-      "connect" : [
-        { "id" : "f63", "to" : "f39" }
-      ]
-    }, {
       "id" : "f6",
       "type" : "HtmlDialogEventStart",
       "name" : "dateChange",
@@ -609,15 +541,16 @@
             "in.isCreateMode = true;",
             "in.permanentDeputies = new ArrayList();",
             "in.onAbsenceDeputies = new ArrayList();",
-            "",
+            "in.selectedDeputies = new ArrayList();",
             "in.selectedDeputyRole = DeputyRoleUtils.findDeputyRoleByType(in.deputyRoles, DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE);",
+            "",
             "if (in.selectedDeputyRole != null) {",
             "  in.onAbsenceDeputies = DeputyRoleUtils.cloneDeputyList(in.selectedDeputyRole.getDeputies());",
             "}",
             "",
             "DeputyRole permanentDeputyRole = DeputyRoleUtils.findDeputyRoleByType(in.deputyRoles, DeputyRoleType.PERSONAL_TASK_PERMANENT);",
             "if (permanentDeputyRole != null) {",
-            "  in.permanentDeputies = permanentDeputyRole.getDeputies();",
+            "  in.permanentDeputies = DeputyRoleUtils.cloneDeputyList(permanentDeputyRole.getDeputies());",
             "}",
             "in.selectedDeputies.addAll(in.onAbsenceDeputies);",
             "in.selectedDeputies.addAll(in.permanentDeputies);"
@@ -720,28 +653,6 @@
       },
       "connect" : [
         { "id" : "f20", "to" : "f8" }
-      ]
-    }, {
-      "id" : "f12",
-      "type" : "HtmlDialogMethodStart",
-      "name" : "preDelete(IvyAbsence)",
-      "config" : {
-        "signature" : "preDelete",
-        "input" : {
-          "params" : [
-            { "name" : "selectedAbsence", "type" : "ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence", "desc" : "" }
-          ],
-          "map" : {
-            "out.selectedAbsence" : "param.selectedAbsence"
-          }
-        },
-        "guid" : "1756E446A9D3C830"
-      },
-      "visual" : {
-        "at" : { "x" : 104, "y" : 320 }
-      },
-      "connect" : [
-        { "id" : "f30", "to" : "f23" }
       ]
     }, {
       "id" : "f57",
@@ -1459,9 +1370,11 @@
             "",
             "if (!in.permanentDeputies.isEmpty()) {",
             "  DeputyRole deputyRole = DeputyRoleUtils.findDeputyRoleByType(in.deputyRoles, DeputyRoleType.PERSONAL_TASK_PERMANENT);",
-            "  deputyRole.setDeputies(in.onAbsenceDeputies);",
+            "  deputyRole.setDeputies(in.permanentDeputies);",
             "  in.substitutes.addAll(DeputyRoleUtils.getSubstitutesFromDeputyRole(deputyRole));",
-            "}"
+            "}",
+            "",
+            "ivy.log.info(in.substitutes);"
           ]
         },
         "sudo" : true
@@ -1514,9 +1427,9 @@
     }, {
       "id" : "f173",
       "type" : "HtmlDialogMethodStart",
-      "name" : "updatePermanentDeputies(ISecurityMember,Boolean)",
+      "name" : "setAsPermanent(ISecurityMember,Boolean)",
       "config" : {
-        "signature" : "updatePermanentDeputies",
+        "signature" : "setAsPermanent",
         "input" : {
           "params" : [
             { "name" : "selectedDeputy", "type" : "ch.ivyteam.ivy.security.ISecurityMember", "desc" : "" },

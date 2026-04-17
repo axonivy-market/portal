@@ -29,9 +29,13 @@ ch.ivy.addon.portalkit.ui.jsf:
     period: 期間
     personalTaskDuringAbsenceDeputies: この不在期間中、個人的に割り当てられたタスクを代行する人
     personalTaskPermanentDeputies: 個人的に割り当てられたタスクを恒久的に代行する人
+    addSubstitute: 代行者を追加
     selectDeputies: 代行者の選択
+    selectSubstitute: 代行者を選択
     selectedDeputies: 選択された代行者
     showAbsencesInThePast: 過去の不在を表示
+    substituteType: 代行者タイプ
+    substituteName: 代行者名
     substitutedUser: 代行されたユーザー
     taskForRole: 役割のタスク
     till: 終了日
