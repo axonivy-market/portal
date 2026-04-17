@@ -92,6 +92,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
 
       - name: Check SuppressWarnings usage
         uses: actions/github-script@v8
