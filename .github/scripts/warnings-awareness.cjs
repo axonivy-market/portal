@@ -57,7 +57,6 @@ async function resolveRunContext(github, context) {
   const { data: repoInfo } = await github.rest.repos.get({ owner, repo });
   const defaultBranch = repoInfo.default_branch;
   const workflowFile = (context.workflowRef || '').split('@')[0].split('/').pop() || 'ci.yml';
-  exec(`git fetch origin ${defaultBranch} --depth=1`, workspace);
   return { owner, repo, workspace, defaultBranch, workflowFile };
 }
 
@@ -114,8 +113,9 @@ module.exports.checkCompilerWarnings = async ({ github, context, core }) => {
 
 module.exports.checkSuppressWarnings = async ({ github, context, core }) => {
   const { workspace, defaultBranch } = await resolveRunContext(github, context);
+  exec(`git fetch origin ${defaultBranch} --depth=1`, workspace);
 
-  const mergeBase = exec(`git merge-base HEAD origin/${defaultBranch}`, workspace) || `origin/${defaultBranch}`;
+  const mergeBase = exec(`git merge-base HEAD origin/${defaultBranch}`, workspace);
   const current = execCount(`git grep "@SuppressWarnings" HEAD -- "*.java" | wc -l`, workspace);
   const baseline = execCount(`git grep "@SuppressWarnings" ${mergeBase} -- "*.java" | wc -l`, workspace);
   const delta = current - baseline;
