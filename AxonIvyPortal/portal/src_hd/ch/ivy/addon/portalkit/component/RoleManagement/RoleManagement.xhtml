@@ -51,16 +51,16 @@
                 title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ExpandAll')}"
                 styleClass="action-column-icon-button expand-all"
                 process="@this">
-                <i class="ti ti-arrows-vertical"/>
+                <i class="ti ti-caret-down"/>
               </p:commandLink>
-              <p:commandLink id="collapse-all"
+              <p:commandLink id="collapse-all" 
                 actionListener="#{roleManagementBean.roleTreeModel.collapseAllNodes}"
                 update="role-tree-table"
                 ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/CollapseAll')}"
                 title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/CollapseAll')}"
                 styleClass="action-column-icon-button"
                 process="@this">
-                <i class="ti ti-arrows-minimize"/>
+                <i class="ti ti-caret-up"/>
               </p:commandLink>
             </span>
           </div>
