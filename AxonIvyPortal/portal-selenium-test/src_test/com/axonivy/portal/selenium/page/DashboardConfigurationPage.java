@@ -77,8 +77,8 @@ public class DashboardConfigurationPage extends TemplatePage {
   }
   
   public SelenideElement getDashboardConfigurationActionMenu() {
-    $("button[id*='dashboard-modification-component:dashboard-table:0:dashboard-configuration-action-button']").shouldBe(appear, DEFAULT_TIMEOUT)
-    .shouldBe(getClickableCondition()).click();
+    $$("button[id$='dashboard-configuration-action-button']").filter(Condition.visible).first()
+        .shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
     return $$("div[id$='dashboard-configuration-action-menu']").filter(Condition.appear).first();
   }
 
@@ -122,9 +122,10 @@ public class DashboardConfigurationPage extends TemplatePage {
 
   public void clickButtonOnDashboardConfigurationActionMenu(String buttonName,
       int dashboardIndex) {
-    $(String.format(
-        "[id$='dashboard-modification-component:dashboard-table:%d:dashboard-configuration-action-button']",
-        dashboardIndex)).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT)
+    $$("button[id$='dashboard-configuration-action-button']")
+        .filter(Condition.visible)
+        .get(dashboardIndex)
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT)
         .click();
 
     $$("div[id$='dashboard-configuration-action-menu']")
@@ -433,9 +434,10 @@ public class DashboardConfigurationPage extends TemplatePage {
   }
 
   private SelenideElement findPublicDashboardRowByName(String dashboardName) {
-    return $("[id$=':dashboard-table_data']").shouldBe(appear, DEFAULT_TIMEOUT)
-        .$$("tr.ui-widget-content").asFixedIterable()
-        .stream().filter(row -> row.getText().contains(dashboardName)).findFirst().get();
+    return $$("[id$='-dashboard-table_data'], [id$=':dashboard-table_data']")
+        .filter(Condition.appear).asFixedIterable().stream()
+        .flatMap(table -> table.$$("tr.ui-widget-content").asFixedIterable().stream())
+        .filter(row -> row.getText().contains(dashboardName)).findFirst().get();
   }
 
   public void createPrivateDashboardFromScratch() {

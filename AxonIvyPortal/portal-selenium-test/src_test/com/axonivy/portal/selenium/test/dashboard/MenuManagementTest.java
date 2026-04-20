@@ -36,6 +36,7 @@ public class MenuManagementTest extends BaseTest {
     login(TestAccount.ADMIN_USER);
     redirectToRelativeLink(grantDashboardWritePublicPermissionUrl);
     redirectToRelativeLink(grantDashboardWriteOwnPermissionUrl);
+    redirectToRelativeLink(createSampleDashboardUrl);
   }
 
   @Test
@@ -217,7 +218,7 @@ public class MenuManagementTest extends BaseTest {
   @Test
   public void testSidebarSettingsPanelIsVisible() {
     PortalConfigurationPage page = LinkNavigator.navigateToPortalConfiguration();
-    page.selectMenuManagementTab();
+    page.selectMenuManagementTabWhenSidebarMayBeDisabled();
 
     page.getSidebarSettingsCard().shouldBe(appear, DEFAULT_TIMEOUT);
     page.getDisableSidebarSwitch().shouldBe(appear, DEFAULT_TIMEOUT);
@@ -226,7 +227,7 @@ public class MenuManagementTest extends BaseTest {
   @Test
   public void testDisableSidebarHidesBehaviourPanel() {
     PortalConfigurationPage page = LinkNavigator.navigateToPortalConfiguration();
-    page.selectMenuManagementTab();
+    page.selectMenuManagementTabWhenSidebarMayBeDisabled();
 
     // Ensure sidebar is currently enabled so the behaviour panel is visible.
     page.ensureSidebarEnabled();
@@ -246,7 +247,7 @@ public class MenuManagementTest extends BaseTest {
   @Test
   public void testSidebarBehaviourOptionsAreAvailable() {
     PortalConfigurationPage page = LinkNavigator.navigateToPortalConfiguration();
-    page.selectMenuManagementTab();
+    page.selectMenuManagementTabWhenSidebarMayBeDisabled();
 
     page.ensureSidebarEnabled();
 
@@ -262,7 +263,8 @@ public class MenuManagementTest extends BaseTest {
   @Test
   public void testMenuTableColumnsAreCorrect() {
     PortalConfigurationPage page = LinkNavigator.navigateToPortalConfiguration();
-    page.selectMenuManagementTab();
+    page.selectMenuManagementTabWhenSidebarMayBeDisabled();
+    page.ensureSidebarEnabled();
 
     SelenideElement header = page.getMenuTableHeaderRow();
     header.shouldBe(appear, DEFAULT_TIMEOUT);
@@ -301,8 +303,7 @@ public class MenuManagementTest extends BaseTest {
 
     SelenideElement topMenuTable = page.getTopMenuDashboardTable();
     topMenuTable.shouldBe(appear, DEFAULT_TIMEOUT);
-    assertTrue(topMenuTable.$$("i.si-navigation-menu").filter(visible).isEmpty(),
-        "Top-menu dashboard table must not contain drag-handle icons");
+    assertTrue(topMenuTable.$$("i.si-navigation-menu").filter(visible).isEmpty());
   }
 
   @Test

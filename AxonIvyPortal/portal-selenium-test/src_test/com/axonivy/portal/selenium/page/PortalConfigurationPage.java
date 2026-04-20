@@ -180,11 +180,6 @@ public class PortalConfigurationPage extends TemplatePage {
         .$(".ui-dialog-title").getText();
   }
 
-  // ---------------------------------------------------------------------------
-  // Sidebar settings panel
-  // ---------------------------------------------------------------------------
-
-  /** Returns the card element that wraps the sidebar settings (disable + behaviour). */
   public SelenideElement getSidebarSettingsCard() {
     return $(".sidebar-settings-card").shouldBe(appear, DEFAULT_TIMEOUT);
   }
@@ -194,32 +189,19 @@ public class PortalConfigurationPage extends TemplatePage {
     return $("[id$='disable-sidebar-switch']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
-  /**
-   * Returns the sidebar-behaviour panel wrapper.  This panel is only rendered
-   * when the sidebar is NOT disabled; use {@code shouldBe(disappear)} to
-   * assert it is gone.
-   */
   public SelenideElement getSidebarBehaviourPanel() {
     return $("[id$='sidebar-behaviour-panel']");
   }
 
-  /**
-   * Clicks the disable-sidebar toggle.  The AJAX oncomplete triggers a full
-   * page reload, so the caller must re-navigate or wait for the configuration
-   * group to reappear before interacting with the page again.
-   */
   public void clickDisableSidebarSwitch() {
+    SelenideElement configGroupRef = $("[id$='configuration-group']");
+    configGroupRef.shouldBe(appear, DEFAULT_TIMEOUT);
     $("[id$='disable-sidebar-switch']").shouldBe(appear, DEFAULT_TIMEOUT)
         .shouldBe(getClickableCondition()).click();
-    // The oncomplete fires location.reload() — wait for the page to recover.
+    configGroupRef.shouldBe(disappear, DEFAULT_TIMEOUT);
     $("[id$='configuration-group']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
-  /**
-   * Ensures the sidebar is currently enabled (behaviour panel visible).
-   * If it is already enabled, does nothing.  If it is disabled, clicks the
-   * switch to re-enable it and waits for the page to reload.
-   */
   public void ensureSidebarEnabled() {
     if (getSidebarBehaviourPanel().is(disappear)) {
       clickDisableSidebarSwitch();
@@ -229,13 +211,6 @@ public class PortalConfigurationPage extends TemplatePage {
     }
   }
 
-  /**
-   * Ensures the sidebar is currently disabled (behaviour panel hidden).
-   * If it is already disabled, does nothing.  If it is enabled, clicks the
-   * switch to disable it and waits for the page to reload.
-   * Uses the safe navigation variant that does NOT wait for the menu table,
-   * since the table is not rendered when the sidebar is disabled.
-   */
   public void ensureSidebarDisabled() {
     if (getSidebarBehaviourPanel().is(appear)) {
       clickDisableSidebarSwitch();
@@ -243,7 +218,6 @@ public class PortalConfigurationPage extends TemplatePage {
     }
   }
 
-  /** Opens the sidebar behaviour select-one-menu dropdown. */
   public void openSidebarBehaviourDropdown() {
     $("[id$='sidebar-mode-select']").shouldBe(appear, DEFAULT_TIMEOUT)
         .shouldBe(getClickableCondition()).click();
@@ -255,27 +229,16 @@ public class PortalConfigurationPage extends TemplatePage {
     return $("[id$='sidebar-mode-select_items']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
-  // ---------------------------------------------------------------------------
-  // Menu table header
-  // ---------------------------------------------------------------------------
-
-  /** Returns the first {@code <tr>} in the menu table's {@code <thead>}. */
   public SelenideElement getMenuTableHeaderRow() {
     return $("[id$='menu-table'] thead tr").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
-  // ---------------------------------------------------------------------------
-  // Public Dashboard section tables
-  // ---------------------------------------------------------------------------
-
-  /** Returns the top-menu dashboard table (TOP_MENU dashboards). */
   public SelenideElement getTopMenuDashboardTable() {
     return $("[id$='top-menu-dashboard-table']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
-  /** Returns the submenu dashboard table (SUB_MENU dashboards, supports drag-drop). */
   public SelenideElement getSubmenuDashboardTable() {
-    return $("[id$='dashboard-table']").shouldBe(appear, DEFAULT_TIMEOUT);
+    return $("[id$=':dashboard-table']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   /** Returns the hidden dashboard table (HIDDEN dashboards). */
@@ -283,14 +246,6 @@ public class PortalConfigurationPage extends TemplatePage {
     return $("[id$='hidden-dashboard-table']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
-  // ---------------------------------------------------------------------------
-  // Info panel trigger button
-  // ---------------------------------------------------------------------------
-
-  /**
-   * Returns the info/tooltip trigger button that is present on all three tabs.
-   * The button carries the {@code dashboard-info-button} id suffix.
-   */
   public SelenideElement getInfoPanelButton() {
     return $("[id$='dashboard-info-button']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
