@@ -1,5 +1,5 @@
-name: CI
-run-name: 🏗️ CI - Compiler Warnings
+name: Continuous Integration
+run-name: 🔄 Continuous Integration
 
 on:
   push:
@@ -11,11 +11,11 @@ on:
 permissions:
   actions: read
   contents: read
-  checks: write
+  checks: read
 
 jobs:
   build:
-    name: Build
+    name: Maven Build
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -59,12 +59,15 @@ jobs:
           for module in "${modules[@]}"; do
             mvn clean install -DskipTests -f "$module/pom.xml" -Divy.engine.directory="$ENGINE_DIR" 2>&1 | \
               sed -E "s|[0-9]+\. (WARNING) in ([^ ]*) \(at line ([0-9]+)\)(.*)|::\L\1 file=\2,line=\3::build issue|g" | \
-              sed -E "s|\[WARNING\] |::warning::|g"
+              sed -E "s|\[WARNING\] ${GITHUB_WORKSPACE}/([^:]+):\[([0-9]+),[0-9]+\] (.*)|::warning file=\1,line=\2::\3|g" | \
+              sed -E "s|\[WARNING\] |::warning::|g" | \
+              sed "s|::warning file=${GITHUB_WORKSPACE}/|::warning file=|g"
           done
 
-  warnings-awareness:
+  compiler-warnings:
     name: Compiler Warnings
     runs-on: ubuntu-latest
+    continue-on-error: true
     needs:
       - build
     if: ${{ needs.build.result == 'success' }}
@@ -72,18 +75,29 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v5
 
-      - name: Compute warning delta and publish awareness check
-        id: warn
+      - name: Check compiler warnings
         uses: actions/github-script@v8
         with:
           script: |
-            const runWarningsAwareness = require('./.github/scripts/warnings-awareness.cjs');
-            await runWarningsAwareness({ github, context, core });
+            const { checkCompilerWarnings } = require('./.github/scripts/warnings-awareness.cjs');
+            await checkCompilerWarnings({ github, context, core });
 
-      - name: Add warning summary
-        run: |
-          echo "## Compiler Warnings" >> "$GITHUB_STEP_SUMMARY"
-          echo "- Current warnings: ${{ steps.warn.outputs.current }}" >> "$GITHUB_STEP_SUMMARY"
-          echo "- Baseline warnings: ${{ steps.warn.outputs.baseline }}" >> "$GITHUB_STEP_SUMMARY"
-          echo "- Delta: ${{ steps.warn.outputs.delta }}" >> "$GITHUB_STEP_SUMMARY"
-          echo "- Check conclusion: ${{ steps.warn.outputs.status }}" >> "$GITHUB_STEP_SUMMARY"
+  suppress-warnings:
+    name: Suppress Warnings
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    needs:
+      - build
+    if: ${{ needs.build.result == 'success' }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 100
+
+      - name: Check SuppressWarnings usage
+        uses: actions/github-script@v8
+        with:
+          script: |
+            const { checkSuppressWarnings } = require('./.github/scripts/warnings-awareness.cjs');
+            await checkSuppressWarnings({ github, context, core });
