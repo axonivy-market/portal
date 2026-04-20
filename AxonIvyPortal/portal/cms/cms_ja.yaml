@@ -75,6 +75,10 @@ ch.ivy.addon.portalkit.ui.jsf:
     DashboardCustomWidgetType:
       EXTERNAL_URL: 外部 URL
       PROCESS: Axon Ivy プロセス
+    DashboardDisplayType:
+      HIDDEN: 非表示
+      SUB_MENU: サブメニュー
+      TOP_MENU: サイドバー
     DashboardWidgetType:
       CASE: ケースウィジェット
       CLIENT_STATISTIC: 統計ウィジェット
@@ -758,22 +762,50 @@ ch.ivy.addon.portalkit.ui.jsf:
       publicFilter: 公開用
       savedFilters: 保存されたフィルター：
   dashboard:
+    CaseQueryType:
+      info: ケースウィジェットに表示するケースタイプを設定します。デフォルトはビジネスケースのみ、技術サブケースは技術サブケースのみ、すべてはビジネスケースと技術サブケースの両方を表示します。
+      label: ケースタイプ
     CloneWidget: ウィジェット複製
     CustomWidgets: カスタムウィジェット
-    dataSettings: データ設定
     DashboardConfiguration:
       CreateFromScratch: 最初から作成
       CreateFromScratchDescription: 最初から独自のダッシュボードを作成する
       CreateNewPrivateDashboard: 新しい個人用ダッシュボードを作成する
       CreateNewPublicDashboard: 新しい公開用ダッシュボードを作成する
-      Description: この領域では、要件に応じてダッシュボードを構成できます。
+      Description: この領域では、要件に応じてダッシュボードを構成し、ナビゲーション要素の順序を変更できます。
       DoNotSupportMobile: ダッシュボードの設定は、モバイルデバイスではサポートされていません。
       EditPrivateDashboards: 個人用ダッシュボードを編集する
       EditPublicDashboards: 公開用ダッシュボードを編集する
+      PrivateTabInfo: '個人用ダッシュボードを作成・管理します。<ul><li>あなただけに表示されます</li><li>サイドバーのダッシュボードアイコンの下に表示されます</li></ul>'
+      PublicTabInfo: 'すべてのユーザー向けのダッシュボードを管理します。表示設定:<ul><li><b>サイドバー</b> — サイドバーメニューのトップレベル項目として表示</li><li><b>サブメニュー</b> — ダッシュボードアイコンの下に表示</li><li><b>非表示</b> — ユーザーに表示されません</li></ul>'
+      Visibility: 表示設定
+      ExportDashboard: ダッシュボードをエクスポート
       ExportReferencedDialogHeader: ダッシュボードが他のダッシュボードを参照しています
       ExportReferencedDialogMessage: '以下のダッシュボードはナビゲーションウィジェットから参照されています。ウィジェットが正しく機能するように、それらもエクスポートおよびインポートしてください:'
       ExportReferencedDialogProceed: このままエクスポート
-      ExportDashboard: ダッシュボードをエクスポート
+      Hidden: 非表示
+      HiddenDashboards: 非表示項目
+      HiddenDashboardsDescription: サイドバーには表示されません。直接リンクのターゲットとして引き続き使用できます。
+      SubMenuDashboards: サブメニューダッシュボード
+      SubMenuDashboardsDescription: サイドバーのダッシュボードアイコンの下にグループ表示されます。
+      SidebarTopLevelDashboards: サイドバートップレベルダッシュボード
+      SidebarTopLevelDashboardsDescription: サイドバーのトップレベル項目として表示されます。
+      MenuDashboards: サイドバー項目
+      MenuDashboardsDescription: これらのダッシュボードはサイドバーのトップレベル項目として表示されます。サイドバーナビゲーションタブで順序を管理できます。
+      PrivateDashboardTabInfoPanel: '<p><b>ここでできること</b></p><p>自分だけに表示されるダッシュボードを作成・管理できます。サイドバーのダッシュボードアイコンの下にグループ表示され、他のユーザーには影響しません。</p><p><b>並べ替え</b></p><p>行をドラッグしてサブメニューでの表示順を変更できます。順序は個人設定に保存されます。</p><p><b>各ダッシュボードの操作</b></p><p>編集でタイトル・説明・アイコン・多言語タイトルを更新できます。設定でダッシュボードを開いてウィジェットを追加・配置できます。エクスポート権限がある場合はJSONファイルとしてダウンロードも可能です。</p>'
+      DashboardTabInfoPanel: '<p><b>ここでできること</b></p><p>公開ダッシュボードの作成、編集、削除ができます。権限を設定して各ダッシュボードの閲覧者を制御できます。これはすべての共有ダッシュボードの中央ライブラリです。</p><p><b>表示位置の設定</b></p><p>ダッシュボードはサイドバーでの表示場所に応じて3つのセクションに分類されます。セクション間を移動するには、編集を開いて表示タイプを変更してください。ドラッグ＆ドロップによる並べ替えはサブメニューセクションのみ対応しています。</p><p><b>各ダッシュボードの操作</b></p><p>編集は名前・説明・アイコン・権限・表示タイプを更新します。設定はダッシュボードを開いてウィジェットを追加・配置します。エクスポートはJSONファイルをダウンロードします（他のダッシュボードを参照している場合は確認が表示されます）。共有は直接リンクを生成します。削除は永続的に削除します。</p>'
+      MenuManagementTabInfoPanel: '<p><b>ここでできること</b></p><p>サイドバーに表示されるすべてのもの（項目・順序・サイドバーの動作）をグローバルに設定できます。</p><p><b>新しい項目の追加</b></p><p>項目を追加ボタンで新しいサイドバーエントリを作成できます。タイプはメインダッシュボード（ダッシュボードへのリンク）、外部リンク（任意のURL、新しいタブで開くオプション付き）、静的ページから選択できます。各項目には多言語対応タイトル、アイコン、権限を設定できます。タイプは作成後に変更できません。</p><p><b>既存の項目の管理</b></p><p>編集でカスタム項目のタイトル・アイコン・リンク・権限を更新できます。削除で項目を削除できます。標準タイプの組み込み項目は編集・削除できません。行をドラッグしてすべてのサイドバー項目を並べ替えできます。</p><p><b>サイドバーの設定</b></p><p>サイドバーを無効にするで全ユーザーのサイドバーを完全に非表示にできます。サイドバーの動作で開き方を制御できます：ホバー（マウスオーバーで開く）、クリック（クリックが必要）、固定（常に表示）。</p>'
+      SidebarNavigation: サイドバーナビゲーション
+      SidebarSettings: サイドバー設定
+      SidebarMode: サイドバーモード
+      DisableSidebar: サイドバーを無効にする
+      SidebarBehaviour: サイドバーの動作
+      AddItem: 項目を追加
+      Label: ラベル
+      LinksTo: リンク先
+      Dashboard: ダッシュボード
+      MenuManagement: メニュー管理
+      MenuManagementTabInfo: 'サイドバーのナビゲーション項目を管理します。以下の操作が可能です:<ul><li>新しいメニュー項目の追加（ダッシュボード、外部リンク、Ivyプロセス）</li><li>ドラッグ＆ドロップで項目を並べ替え</li><li>既存のメニュー項目を編集・削除</li></ul>'
       PrivateDashboard: 個人用ダッシュボード
       PrivateDashboardConfiguration: 個人用ダッシュボードの設定
       PublicDashboard: 公開用ダッシュボード
@@ -782,8 +814,9 @@ ch.ivy.addon.portalkit.ui.jsf:
       ReorderPublicDashboards: 公開用ダッシュボードを並び替える
       SelectAction: アクションを選択してください
       SomeThingWentWrong: 問題が発生しました
-      Title: ダッシュボードの設定
-    displaySettings: 表示設定
+      SubMenuDashboards: サブメニュー項目
+      SubMenuDashboardsDescription: これらのダッシュボードはサイドバーのダッシュボードアイコンの下に表示されます。
+      Title: ポータル設定
     DrillDownWidget:
       caseDrillDown: 「{0}」用ドリルダウンケースウィジェット
       taskDrillDown: 「{0}」用ドリルダウンタスクウィジェット
@@ -806,9 +839,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     QuickSearch: クイック検索
     QuickSearchInfo: ウィジェットの列管理で、クイック検索の範囲をカスタマイズできます。「含む」に基づいて検索しますが、多数の列を追加する場合はパフォーマンスに注意してください。
     QuickSearchScope: 検索範囲：{0}
-    CaseQueryType:
-      info: ケースウィジェットに表示するケースタイプを設定します。デフォルトはビジネスケースのみ、技術サブケースは技術サブケースのみ、すべてはビジネスケースと技術サブケースの両方を表示します。
-      label: ケースタイプ
     RestoreDefaultDashboardMessage: 続行すると、自分で作成したすべてのウィジェットが失われます。<span class="dashboard-template-name-message">{0}</span> の標準設定が適用されます。
     SaveNewWidgetFilterHeader: 新しいウィジェットフィルターを保存
     SavedFilterHeader: 保存されたフィルター
@@ -818,14 +848,14 @@ ch.ivy.addon.portalkit.ui.jsf:
     StandardWidgets: 標準ウィジェット
     StatisticWidget:
       EmptyChartDataMessage: 適切なチャートを作成するにはデータが足りません！
-      failToRenderChartMessage: チャートを描画中にエラーが発生しました。設定を変更して再試行してください。
-      firstConfigChartMessage: チャートはまだ利用できません。チャートを生成するには設定を構成してください。
       TooltipAverageKpiLabel: '{0}の平均'
       TooltipMaxKpiLabel: '{0}の最大値'
       TooltipMinKpiLabel: '{0}の最小値'
       TooltipSumKpiLabel: '{0}の合計'
       TooltipTotalCaseLabel: '合計ケース: {0}'
       TooltipTotalTaskLabel: '合計タスク: {0}'
+      failToRenderChartMessage: チャートを描画中にエラーが発生しました。設定を変更して再試行してください。
+      firstConfigChartMessage: チャートはまだ利用できません。チャートを生成するには設定を構成してください。
     WelcomeWidgetIntroduction: このウィジェットは、ダッシュボードにウェルカムテキストと画像を表示します。
     WelcomeWidgetNotFoundMessage: ウィジェットの画像が見つかりません。画像を再設定してください。
     WidgetFilterName: ウィジェットフィルター名
@@ -907,7 +937,9 @@ ch.ivy.addon.portalkit.ui.jsf:
       editDashboard: ダッシュボードの編集
       manageDashboard: ダッシュボードの管理
       removeDashboardHeader: 「{0}」のダッシュボードを削除
+    dataSettings: データ設定
     deleteWidget: ウィジェットを削除
+    displaySettings: 表示設定
     downloadZipFileExplanation: エクスポートするアイテム数が Excel の行数の制限を超える場合、データは複数の Excel ファイルに分割され、ZIP ファイルに圧縮されてダウンロードされます。
     editWidget: ウィジェットの編集
     existingField: '{0} フィールドは既に存在します'
@@ -1570,7 +1602,7 @@ Dialogs:
               FileInfomation: ファイル情報
               ImportPrivate: 個人用ダッシュボードをインポートする
               ImportPublic: 公開用ダッシュボードをインポートする
-              NavigationWidgetMissingTarget: 'ナビゲーションウィジェット"{0}"は、インポートされておらず、このポータルに存在しないダッシュボードを参照しています。ウィジェットが正しく機能しない可能性があります。'
+              NavigationWidgetMissingTarget: ナビゲーションウィジェット"{0}"は、インポートされておらず、このポータルに存在しないダッシュボードを参照しています。ウィジェットが正しく機能しない可能性があります。
               chooseAJsonFile: JSON ファイルを選択してください
             DashboardSharing:
               ShareDashboard: ダッシュボードを共有
@@ -1704,6 +1736,13 @@ Enums:
     axonivy:
       portal:
         enums:
+          CaseQueryType:
+            ALL:
+              name: ビジネスケース + サブケース
+            BUSINESS_CASE:
+              name: ビジネスケース（デフォルト）
+            SUB_CASE:
+              name: 技術サブケース
           statistic:
             AggregationField:
               ACTIVATOR_NAME:
@@ -1773,13 +1812,6 @@ Enums:
                 name: より小さい
               LESSOREQUAL:
                 name: 以下
-          CaseQueryType:
-            ALL:
-              name: ビジネスケース + サブケース
-            BUSINESS_CASE:
-              name: ビジネスケース（デフォルト）
-            SUB_CASE:
-              name: 技術サブケース
 Labels:
   AI:
     Error:
@@ -1913,12 +1945,14 @@ Labels:
       PROCESSES: プロセス
       TASKS: タスク
     MenuKind:
-      CUSTOM: TODO Custom
-      DASHBOARD: TODO Dashboard
-      EXTERNAL_LINK: TODO External Link
-      MAIN_DASHBOARD: TODO Dashboard
-      STANDARD: TODO Standard
-      STATIC_PAGE: TODO Static page
+      CUSTOM: カスタム
+      DASHBOARD: ダッシュボード
+      EXTERNAL_LINK: 外部リンク
+      MAIN_DASHBOARD: メインダッシュボード
+      PROCESS: プロセス
+      STANDARD: 標準
+      STATIC_PAGE: 静的ページ
+      THIRD_PARTY: サードパーティ
     SearchScopeCaseField:
       CUSTOM: カスタム文字列フィールド
       DESCRIPTION: 説明

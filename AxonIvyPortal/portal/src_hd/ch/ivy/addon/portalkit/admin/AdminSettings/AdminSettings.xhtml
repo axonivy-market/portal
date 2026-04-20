@@ -50,10 +50,9 @@
         </h:panelGroup>
         <!-- Applications Table -->
         <h:panelGroup id="applicationPanel" layout="block">
-          <p:dataTable value="#{thirdPartyApplicationBean.applicationList}" var="app" id="applicationTable" draggableRows="true" rowDragSelector="i.si-navigation-menu"
+          <p:dataTable value="#{thirdPartyApplicationBean.applicationList}" var="app" id="applicationTable"
             reflow="true" styleClass="admin-table application-table" widgetVar="applicationTable"
             emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}" lazy="false">
-            <p:ajax event="rowReorder" listener="#{adminSettingBean.onApplicationReorder}" update="applicationTable" />
 
             <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/type')}"
               styleClass="application-table-type-column">
@@ -97,11 +96,6 @@
                   update=":#{p:resolveFirstComponentWithId('deleteConfirmationDialog', view).clientId}"
                   process="@this"/>
               </p:menu>
-            </p:column>
-            <p:column styleClass="settings-table-reorder w-3rem">
-              <h:panelGroup styleClass=" ui-button-outlined action-column-icon-button u-mar-right-5">
-                <i id="reorder-button-#{dashboard.id}" class="si si-navigation-menu dashboard-icon-drag-drop" />
-              </h:panelGroup>
             </p:column>
           </p:dataTable>
         </h:panelGroup>

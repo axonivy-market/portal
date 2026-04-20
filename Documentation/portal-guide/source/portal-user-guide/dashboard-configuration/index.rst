@@ -1,20 +1,20 @@
 .. _dashboard-configuration:
 
-Dashboard Configuration
-***********************
+Portal Configuration
+********************
 
 .. important::
-   **Access Requirements**: Only users with the :ref:`🔑DashboardWriteOwn <DashboardWriteOwn>` or :ref:`🔑DashboardWritePublic <DashboardWritePublic>` permission can see and access the :guilabel:`Dashboard Configuration` menu item. These permissions allow you to add, edit, reorder, show, and hide private or public dashboards.
+   **Access Requirements**: Only users with the :ref:`🔑DashboardWriteOwn <DashboardWriteOwn>` or :ref:`🔑DashboardWritePublic <DashboardWritePublic>` permission, or the ``AXONIVY_PORTAL_ADMIN`` role, can see and access the :guilabel:`Portal Configuration` menu item. These permissions allow you to add, edit, reorder, show, and hide private or public dashboards, and to configure sidebar navigation.
 
-Dashboard Configuration provides centralized management of your personal and organization-wide dashboards. 
-Access it through the :guilabel:`Dashboard Configuration` user menu item.
+Portal Configuration provides centralized management of your personal and organization-wide dashboards, as well as the sidebar navigation menu.
+Access it through the :guilabel:`Portal Configuration` user menu item.
 
-|dashboard-configuration|
+|portal-configuration|
 
 Overview
 ========
 
-The Dashboard Configuration page has two tabs:
+The Portal Configuration page has three tabs:
 
 .. table::
    :widths: 20 40 40
@@ -27,6 +27,9 @@ The Dashboard Configuration page has two tabs:
    +-------------------------+---------------------------------------------------+--------------------------------------------+
    | **Public Dashboards**   | :ref:`🔑DashboardWritePublic                      | Manage shared dashboards visible           |
    |                         | <DashboardWritePublic>`                           | to users with specific permissions         |
+   +-------------------------+---------------------------------------------------+--------------------------------------------+
+   | **Sidebar Navigation**  | ``AXONIVY_PORTAL_ADMIN`` role                     | Configure sidebar menu items and           |
+   |                         |                                                   | sidebar behaviour (admin only)             |
    +-------------------------+---------------------------------------------------+--------------------------------------------+
 
 Private dashboards configuration
@@ -61,7 +64,7 @@ To set multi languages for the dashboard title, see at :ref:`portal-multi-langua
 
 .. _private-available-dashboard-template:
 
-Available dashboard templates 
+Available dashboard templates
 -----------------------------
 
 :guilabel:`Default Template`, :guilabel:`Two Task list dashboard` template, :guilabel:`Accessibility dashboard` template, :guilabel:`Full Task list dashboard` template and :guilabel:`Full Case list dashboard` template. Please see the image below for more details.
@@ -136,6 +139,11 @@ Public dashboards configuration
 ================================
 
 The tab :guilabel:`Public dashboards` allows you to add, edit, and reorder public dashboards.
+Public dashboards are organized into three sections based on their **Display Type** setting:
+
+- **Top Menu** — dashboards appear as top-level items in the sidebar navigation
+- **Submenu** — dashboards are grouped under the Dashboard icon in the sidebar
+- **Hidden** — dashboards are not shown in the sidebar
 
 |public-dashboard-configuration|
 
@@ -151,8 +159,11 @@ HowTo: add public dashboard
 #. The :guilabel:`Create new public dashboard` dialog is opened.
 
 #. Enter the mandatory title, permissions to see the public dashboard and the optional description for the public dashboard.
-   If the `Top Menu Item` checkbox is checked, the dashboard appears as a top-level item in the navigation bar. 
-   If unchecked, it appears as a sub-item under `Dashboard` menu item.
+   Select a **Display Type** to control where the dashboard appears in the sidebar:
+
+   - **Submenu** — the dashboard is grouped under the Dashboard icon in the sidebar
+   - **Top Menu** — the dashboard appears as a top-level item in the sidebar navigation
+   - **Hidden** — the dashboard is not shown in the sidebar
 
 #. Create the public dashboard by selecting |add-icon| Create dashboard.
 
@@ -193,8 +204,11 @@ HowTo: import public dashboard
 #. Drag and drop, or click on the :guilabel:`Upload one here` link to select the JSON file containing the dashboard you want to import.
 
 #. Edit the mandatory title, permissions to see the public dashboard and the optional description for the public dashboard.
-   If the `Top Menu Item` checkbox is checked, the dashboard appears as a top-level item in the navigation bar. 
-   If unchecked, it appears as a sub-item under `Dashboard` menu item.
+   Select a **Display Type** to control where the dashboard appears in the sidebar:
+
+   - **Submenu** — the dashboard is grouped under the Dashboard icon in the sidebar
+   - **Top Menu** — the dashboard appears as a top-level item in the sidebar navigation
+   - **Hidden** — the dashboard is not shown in the sidebar
 
 #. Import the dashboard by selecting :guilabel:`Create Dashboard` button.
 
@@ -207,24 +221,30 @@ HowTo: import public dashboard
 HowTo: edit public dashboards
 -----------------------------
 
-The :guilabel:`Edit public dashboards` section shows you the public dashboards in a table with the following columns:
+The :guilabel:`Edit public dashboards` section shows you the public dashboards organized into three sections: **Top Menu**, **Submenu**, and **Hidden**. Each section displays a table with the following columns:
 
 - **Dashboard title**: The name of the dashboard
 - **Dashboard permissions**: Roles/permissions that can access the dashboard
 - **Dashboard description**: Optional description text
-- **Display as top menu or not**: Whether it appears in the top navigation bar
+- **Display Type**: Where the dashboard appears in the sidebar (Top Menu, Submenu, or Hidden)
 
 **Available Actions:**
 
 Click on |actions-menu-icon| to open the :guilabel:`Actions` menu with these options:
 
-- |edit-icon| **Edit**: Modify dashboard name, permissions, and description
+- |edit-icon| **Edit**: Modify dashboard name, permissions, description, and Display Type
 - |settings-icon| **Configuration**: Configure dashboard widgets (see: :ref:`Dashboards <new-dashboard>`)
 - |download-icon| **Export**: Download dashboard as JSON file (requires :ref:`🔑DashboardExportPublic <DashboardExportPublic>` permission)
 - |share-icon| **Share**: Generate a shareable link to the dashboard (requires :ref:`🔑ShareDashboardLink <ShareDashboardLink>` permission)
 - |trash-icon| **Delete**: Remove the public dashboard
 
 |edit-public-dashboards|
+
+.. note::
+   To move a dashboard between sections, open the Edit dialog and change the **Display Type** field.
+
+.. hint::
+   When exporting a dashboard that references other dashboards, you will be prompted to include the referenced dashboards in the export.
 
 
 HowTo: share public dashboards
@@ -243,14 +263,119 @@ To generate a public dashboard link, simply click on the |share-icon| Share in t
 HowTo: reorder public dashboards
 --------------------------------
 
-You can rearrange dashboards by dragging and dropping |reorder-dashboard-icon| icon.
+You can rearrange dashboards within the **Submenu** section by dragging and dropping |reorder-dashboard-icon| icon.
 
 |reorder-public-dashboards|
+
+.. note::
+   Drag-and-drop reordering is only available within the **Submenu** section. Dashboards in the **Top Menu** and **Hidden** sections cannot be reordered by drag and drop.
+
+Sidebar Navigation configuration
+==================================
+
+.. important::
+   **Admin Access Required**: The :guilabel:`Sidebar Navigation` tab is only accessible to users with the ``AXONIVY_PORTAL_ADMIN`` role.
+
+The tab :guilabel:`Sidebar Navigation` allows portal administrators to manage the sidebar menu items and configure sidebar behaviour for all users.
+
+|sidebar-navigation-configuration|
+
+Menu Items
+----------
+
+The menu items table displays all sidebar navigation entries with the following columns:
+
+- **Label**: The display title of the menu item
+- **Links To**: The URL or dashboard the item links to
+- **Type**: The kind of item (Standard, External Link, Main Dashboard, Static Page, etc.)
+- **Actions**: Edit and Delete operations accessible via the overflow menu
+- **Reorder**: Drag handle (|reorder-dashboard-icon|) to reorder items
+
+.. note::
+   Built-in items such as **Dashboard** and **Processes** are Standard items and cannot be edited or deleted. The Actions menu is not available for these items.
+
+HowTo: add a sidebar menu item
+-------------------------------
+
+#. Click :guilabel:`Add Item` to open the :guilabel:`Add Menu Item` dialog.
+
+   |add-menu-item-dialog|
+
+#. Select the item type:
+
+   - **Main Dashboard** — links to a portal dashboard
+   - **External Link** — links to any URL; can be configured to open in a new tab
+   - **Static Page** — links to a static portal page
+
+   .. note::
+      The item type cannot be changed after the menu item has been created.
+
+#. Enter a title for the item. To provide translations, use the multi-language input (see :ref:`portal-multi-language`).
+
+#. Select an icon to represent the item in the sidebar.
+
+#. Set permissions to control which users can see this menu item.
+
+#. Click :guilabel:`Save` to add the item to the sidebar.
+
+HowTo: edit a sidebar menu item
+--------------------------------
+
+#. In the menu items table, click |actions-menu-icon| next to the item you want to edit.
+
+#. Select |edit-icon| **Edit**.
+
+#. Update the title, icon, link target, or permissions as needed.
+
+#. Click :guilabel:`Save` to apply the changes.
+
+HowTo: delete a sidebar menu item
+----------------------------------
+
+#. In the menu items table, click |actions-menu-icon| next to the item you want to remove.
+
+#. Select |trash-icon| **Delete**.
+
+#. Confirm the deletion in the confirmation dialog.
+
+.. note::
+   Deletion is permanent. Standard (built-in) items cannot be deleted.
+
+HowTo: reorder sidebar menu items
+-----------------------------------
+
+You can rearrange sidebar menu items by dragging and dropping |reorder-dashboard-icon| icon to the desired position.
+
+Sidebar Settings
+----------------
+
+Below the menu items table, the **Sidebar Settings** card provides controls that affect the sidebar behaviour for all users.
+
+|sidebar-settings-panel|
+
+.. table::
+   :widths: 25 75
+
+   +---------------------------+--------------------------------------------------------------+
+   | Setting                   | Description                                                  |
+   +===========================+==============================================================+
+   | **Disable Sidebar**       | When enabled, hides the entire sidebar for all users.        |
+   +---------------------------+--------------------------------------------------------------+
+   | **Sidebar Behaviour**     | Controls how the sidebar opens. Only visible when the        |
+   |                           | sidebar is not disabled. Options:                            |
+   |                           |                                                              |
+   |                           | - **Hover** — sidebar opens on mouse-over                    |
+   |                           | - **Click** — sidebar requires a click to open               |
+   |                           | - **Stick** — sidebar is always visible (pinned)             |
+   +---------------------------+--------------------------------------------------------------+
+
+.. note::
+   When either Sidebar Setting is changed, the page automatically reloads to apply the change.
 
 Permission Reference
 ====================
 
-Different dashboard actions require specific permissions:
+Different Portal Configuration actions require specific permissions:
 
 .. table::
    :widths: 35 65
@@ -268,11 +393,13 @@ Different dashboard actions require specific permissions:
    +---------------------------------------+------------------------------------------------------------------------------+
    | **Share public dashboard link**       | :ref:`🔑ShareDashboardLink <ShareDashboardLink>`                             |
    +---------------------------------------+------------------------------------------------------------------------------+
+   | **Manage sidebar navigation**         | ``AXONIVY_PORTAL_ADMIN`` role                                                |
+   +---------------------------------------+------------------------------------------------------------------------------+
 
 .. include:: ../includes/_common-icon.rst
 
-.. |dashboard-configuration| image:: ../../screenshots/settings/dashboard-configuration.png
-   :alt: Dashboard configuration menu
+.. |portal-configuration| image:: ../../screenshots/settings/dashboard-configuration.png
+   :alt: Portal configuration menu
 .. |private-dashboard-configuration| image:: ../../screenshots/dashboard-configuration/private-dashboard-configuration.png
    :alt: Private dashboard configuration
 .. |create-private-dashboard-dialog| image:: ../../screenshots/dashboard-configuration/create-private-dashboard-dialog.png
@@ -297,3 +424,9 @@ Different dashboard actions require specific permissions:
    :alt: Import private dashboard dialog
 .. |share-public-dashboards| image:: ../../screenshots/dashboard-configuration/share-dashboard-dialog.png
    :alt: Share dashboard dialog
+.. |sidebar-navigation-configuration| image:: ../../screenshots/dashboard-configuration/sidebar-navigation-configuration.png
+   :alt: Sidebar navigation configuration tab
+.. |add-menu-item-dialog| image:: ../../screenshots/dashboard-configuration/add-menu-item-dialog.png
+   :alt: Add menu item dialog
+.. |sidebar-settings-panel| image:: ../../screenshots/dashboard-configuration/sidebar-settings-panel.png
+   :alt: Sidebar settings panel

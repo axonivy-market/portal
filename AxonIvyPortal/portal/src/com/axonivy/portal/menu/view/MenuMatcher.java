@@ -4,6 +4,7 @@ import java.util.function.Predicate;
 
 import com.axonivy.portal.components.enums.MenuKind;
 import com.axonivy.portal.dto.menu.CustomMenuItemDefinition;
+import com.axonivy.portal.dto.menu.DashboardMenuItemDefinition;
 import com.axonivy.portal.dto.menu.PortalMenuItemDefinition;
 import com.axonivy.portal.dto.menu.StandardMenuItemDefinition;
 import com.axonivy.portal.enums.StandardMenuItemDefinitionType;
@@ -41,7 +42,11 @@ public class MenuMatcher {
   }
 
   private static Predicate<PortalMenuItemDefinition> matchDashboardMenu(SubMenuItem subMenu) {
-    return menu -> menu.getType() == MenuKind.MAIN_DASHBOARD && menu.getId().equals(subMenu.getId());
+    return menu -> menu.getType() == MenuKind.MAIN_DASHBOARD
+        && menu instanceof DashboardMenuItemDefinition dashboardMenu
+        && dashboardMenu.getDashboardId() != null
+        && subMenu.getLink() != null
+        && subMenu.getLink().contains(dashboardMenu.getDashboardId());
   }
 
   private static Predicate<PortalMenuItemDefinition> matchExternalLink(SubMenuItem subMenu) {

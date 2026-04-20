@@ -24,53 +24,77 @@ public final class MenuOrderManager implements Serializable {
    * 
    * @param menuDefinitions Current menu definitions to reorder
    */
-  public static void initOrder(List<PortalMenuItemDefinition> menuDefinitions) {
+  public static boolean initOrder(List<PortalMenuItemDefinition> menuDefinitions) {
     List<PortalMenuItemDefinition> snapshotMenuDefinitions = PortalMenuItemDefinitionService.getInstance().findAll();
 
-    for (var menu : menuDefinitions) {
+    if (CollectionUtils.isEmpty(snapshotMenuDefinitions)) {
+      correctMenuIndex(menuDefinitions);
+      return true; // first load — bootstrap the JSON
+    }
+
+    boolean[] matched = new boolean[menuDefinitions.size()];
+
+    for (int i = 0; i < menuDefinitions.size(); i++) {
+      var menu = menuDefinitions.get(i);
       for (var menuOrder : snapshotMenuDefinitions) {
         menuOrder.setDisplayTitle(MenuUtils.getDisplayTitle(menuOrder));
-        matchAndSetIndex(menu, menuOrder);
+        if (tryMatchIndex(menu, menuOrder)) {
+          matched[i] = true;
+        }
+      }
+    }
+
+    // New items (not in snapshot) get appended at the end
+    int maxIndex = snapshotMenuDefinitions.stream()
+        .map(PortalMenuItemDefinition::getIndex)
+        .filter(idx -> idx != null)
+        .max(Integer::compareTo)
+        .orElse(menuDefinitions.size());
+
+    boolean hasNewItems = false;
+    for (int i = 0; i < menuDefinitions.size(); i++) {
+      if (!matched[i]) {
+        menuDefinitions.get(i).setIndex(++maxIndex);
+        hasNewItems = true;
       }
     }
 
     correctMenuIndex(menuDefinitions);
+    return hasNewItems;
   }
 
-  private static void matchAndSetIndex(PortalMenuItemDefinition menu, PortalMenuItemDefinition menuOrder) {
+  private static boolean tryMatchIndex(PortalMenuItemDefinition menu, PortalMenuItemDefinition menuOrder) {
     switch (menu.getType()) {
       case MAIN_DASHBOARD:
-        // For dashboard menu: compare the menu ID
-        if (menu.getId().contentEquals(menuOrder.getId())) {
+        if (menu.getId() != null && menu.getId().contentEquals(menuOrder.getId())) {
           menu.setIndex(menuOrder.getIndex());
+          return true;
         }
         break;
-  
       case STANDARD:
-        // For standard menu: compare the standard type (dashboard, task, case, or
-        // process)
         if (menuOrder.getType() == MenuKind.STANDARD) {
           StandardMenuItemDefinition standardMenu = (StandardMenuItemDefinition) menu;
           StandardMenuItemDefinition standardOrder = (StandardMenuItemDefinition) menuOrder;
           if (standardMenu.getStandardType() == standardOrder.getStandardType()) {
             menu.setIndex(menuOrder.getIndex());
+            return true;
           }
         }
         break;
-  
       case CUSTOM:
       case THIRD_PARTY:
       case EXTERNAL_LINK:
-        // For other menu: compare the display title because menu of these types don't
-        // have ID to compare
-        if (menu.getDisplayTitle().contentEquals(menuOrder.getDisplayTitle())) {
+      case STATIC_PAGE:
+        if (menu.getDisplayTitle() != null && menuOrder.getDisplayTitle() != null
+            && menu.getDisplayTitle().contentEquals(menuOrder.getDisplayTitle())) {
           menu.setIndex(menuOrder.getIndex());
+          return true;
         }
         break;
-  
       default:
         break;
     }
+    return false;
   }
 
   /**
@@ -135,5 +159,6 @@ public final class MenuOrderManager implements Serializable {
       }
     }
   }
+
 
 }

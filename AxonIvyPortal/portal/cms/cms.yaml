@@ -69,6 +69,10 @@ ch.ivy.addon.portalkit.ui.jsf:
     DashboardCustomWidgetType:
       EXTERNAL_URL: External URL
       PROCESS: Axon Ivy process
+    DashboardDisplayType:
+      HIDDEN: Hidden
+      SUB_MENU: Submenu
+      TOP_MENU: Sidebar
     DashboardWidgetType:
       CASE: Case widget
       CUSTOM: Custom widget
@@ -586,7 +590,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       PublicDashboardConfiguration: Public dashboard configuration
       ReorderPrivateDashboards: Reorder your dashboards
       ReorderPublicDashboards: Reorder public dashboards
-      Title: Dashboard configuration
+      Title: Portal configuration
     EmptyFilterMessage: No widget filter found
     Filter:
       FilterOptionHeader: Filter options

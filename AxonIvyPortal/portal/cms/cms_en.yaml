@@ -75,6 +75,10 @@ ch.ivy.addon.portalkit.ui.jsf:
     DashboardCustomWidgetType:
       EXTERNAL_URL: External URL
       PROCESS: Axon Ivy process
+    DashboardDisplayType:
+      HIDDEN: Hidden
+      SUB_MENU: Submenu
+      TOP_MENU: Sidebar
     DashboardWidgetType:
       CASE: Case widget
       CUSTOM: Custom widget
@@ -761,30 +765,53 @@ ch.ivy.addon.portalkit.ui.jsf:
       label: Case Type
     CloneWidget: Clone widget
     CustomWidgets: Custom Widgets
-    dataSettings: Data Settings
     DashboardConfiguration:
       CreateFromScratch: Create from scratch
       CreateFromScratchDescription: Create your own dashboard from scratch
       CreateNewPrivateDashboard: Create new private dashboard
       CreateNewPublicDashboard: Create new public dashboard
-      Description: In this area, you can configure the dashboards according to your requirements.
+      Description: In this area, you can configure the dashboards according to your requirements and modify the order of the navigation elements.
       DoNotSupportMobile: Dashboard configuration is not supported for mobile devices.
       EditPrivateDashboards: Edit your private dashboards
+      PrivateTabInfo: 'Create and manage your personal dashboards.<ul><li>These dashboards are only visible to you</li><li>They appear under the Dashboard icon in the sidebar</li></ul>'
+      PublicTabInfo: 'Manage dashboards for all users. Control where each dashboard appears:<ul><li><b>Sidebar</b> — appears as a top-level item in the sidebar menu</li><li><b>Submenu</b> — appears under the Dashboard icon</li><li><b>Hidden</b> — not visible to users</li></ul>'
+      Visibility: Visibility
       EditPublicDashboards: Edit public dashboards
+      ExportDashboard: Export dashboard
       ExportReferencedDialogHeader: Dashboard references other dashboards
       ExportReferencedDialogMessage: 'The following dashboards are referenced by navigation widgets. Export and import them too for the widgets to work correctly:'
       ExportReferencedDialogProceed: Export anyway
-      ExportDashboard: Export dashboard
+      Hidden: Hidden
+      HiddenDashboardsDescription: Not shown in the sidebar. Can still be used as a direct link target — e.g. as a landing page inside a process flow
+      SubMenuDashboards: Submenu dashboards
+      SubMenuDashboardsDescription: Appear grouped under the Dashboard icon in the sidebar.
+      PrivateDashboardTabInfoPanel: '<p><b>What can I do here?</b></p><p>Create and manage dashboards that only you can see. They appear grouped under the Dashboard icon in the sidebar and never affect other users.</p><p><b>Reordering</b></p><p>Drag any row to change the order your dashboards appear in the submenu. The order is saved to your personal settings.</p><p><b>Actions per dashboard</b></p><p>Use Edit to update the title, description, icon, or set multi-language titles. Use Configure to open the dashboard and add or rearrange widgets. If you have the export permission, you can also download a dashboard as a JSON file for backup or reuse.</p>'
+      DashboardTabInfoPanel: '<p><b>What can I do here?</b></p><p>Create, edit and delete public dashboards. Set who can see each one using permissions. This is the central library for all shared dashboards.</p><p><b>Visibility &amp; placement</b></p><p>Dashboards are split into three sections based on where they appear in the sidebar. To move a dashboard between sections, open Edit and change its Display Type. Only the Submenu section supports drag-and-drop reordering.</p><p><b>Actions per dashboard</b></p><p>Edit updates name, description, icon, permissions, and display type. Configure opens the dashboard to add or arrange widgets. Export downloads a JSON file — if the dashboard references others, you will be prompted to include them. Share generates a direct link. Delete removes the dashboard permanently.</p>'
+      MenuManagementTabInfoPanel: '<p><b>What can I do here?</b></p><p>Configure everything visible in the sidebar: items, their order, and global sidebar behaviour.</p><p><b>Adding new items</b></p><p>Use Add Item to create a new sidebar entry. You can choose between Main Dashboard (links to a dashboard), External Link (any URL, with optional open in new tab), or Static Page. Each item has a title with multi-language support, an icon, and configurable permissions. The item type cannot be changed after creation.</p><p><b>Managing existing items</b></p><p>Edit updates the title, icon, link, and permissions of any custom item. Delete removes it. Built-in items (type: Standard) cannot be edited or deleted. Drag any row to reorder all sidebar items.</p><p><b>Sidebar settings</b></p><p>Disable sidebar hides the sidebar entirely for all users. Sidebar behaviour controls how it opens: Hover (opens on mouse over), Click (requires a click), or Stick (always visible).</p>'
+      SidebarTopLevelDashboards: Sidebar top-level dashboards
+      SidebarTopLevelDashboardsDescription: Appear as top-level items in the sidebar.
+      MenuDashboards: Sidebar items
+      MenuDashboardsDescription: These dashboards appear as top-level items in the sidebar. Manage their order in the Menu management tab.
+      SidebarNavigation: Sidebar navigation
+      SidebarSettings: Sidebar settings
+      SidebarMode: Sidebar mode
+      DisableSidebar: Disable sidebar
+      SidebarBehaviour: Sidebar behaviour
+      AddItem: Add item
+      Label: Label
+      LinksTo: Links to
+      MenuManagement: Menu management
+      MenuManagementTabInfo: 'Manage the top-level sidebar navigation items. You can:<ul><li>Add new menu entries (dashboards, external links, Ivy processes)</li><li>Reorder items by drag and drop</li><li>Edit or remove existing menu entries</li></ul>'
       PrivateDashboard: Private dashboards
       PrivateDashboardConfiguration: Private dashboard configuration
+      Dashboard: Dashboard
       PublicDashboard: Public dashboards
       PublicDashboardConfiguration: Public dashboard configuration
       ReorderPrivateDashboards: Reorder your dashboards
       ReorderPublicDashboards: Reorder public dashboards
       SelectAction: Select the action
       SomeThingWentWrong: Something went wrong
-      Title: Dashboard configuration
-    displaySettings: Display Settings
+      Title: Portal configuration
     DrillDownWidget:
       caseDrillDown: Drill-down case widget for {0}
       taskDrillDown: Drill-down task widget for {0}
@@ -816,14 +843,14 @@ ch.ivy.addon.portalkit.ui.jsf:
     StandardWidgets: Standard Widgets
     StatisticWidget:
       EmptyChartDataMessage: We do not have enough data to create a nice chart!
-      failToRenderChartMessage: Error while rendering chart. Please retry with different settings.
-      firstConfigChartMessage: No chart available yet. Please configure your settings to generate a chart.
       TooltipAverageKpiLabel: Average of {0}
       TooltipMaxKpiLabel: Max of {0}
       TooltipMinKpiLabel: Min of {0}
       TooltipSumKpiLabel: Sum of {0}
       TooltipTotalCaseLabel: 'Total cases: {0}'
       TooltipTotalTaskLabel: 'Total tasks: {0}'
+      failToRenderChartMessage: Error while rendering chart. Please retry with different settings.
+      firstConfigChartMessage: No chart available yet. Please configure your settings to generate a chart.
     WelcomeWidgetIntroduction: This widget displays a welcome text and image on dashboard.
     WelcomeWidgetNotFoundMessage: We cannot find the image of widget, please reconfigure your image!
     WidgetFilterName: Widget filter name
@@ -905,7 +932,9 @@ ch.ivy.addon.portalkit.ui.jsf:
       editDashboard: Edit dashboard
       manageDashboard: Manage dashboard
       removeDashboardHeader: Remove the "{0}" dashboard
+    dataSettings: Data Settings
     deleteWidget: Delete widget
+    displaySettings: Display Settings
     downloadZipFileExplanation: If the number of items to export exceeds the limit of Excel rows, data will be split to multiple Excel files, then compressed in a ZIP file to download.
     editWidget: Edit widget
     existingField: The {0} field has already been existing
@@ -1568,7 +1597,7 @@ Dialogs:
               FileInfomation: File Infomation
               ImportPrivate: Import Private Dashboard
               ImportPublic: Import Public Dashboard
-              NavigationWidgetMissingTarget: 'Navigation widget "{0}" references a dashboard that was not imported and does not exist in this portal. The widget may not work correctly.'
+              NavigationWidgetMissingTarget: Navigation widget "{0}" references a dashboard that was not imported and does not exist in this portal. The widget may not work correctly.
               chooseAJsonFile: Choose a json file
             DashboardSharing:
               ShareDashboard: Share Dashboard
@@ -1702,6 +1731,13 @@ Enums:
     axonivy:
       portal:
         enums:
+          CaseQueryType:
+            ALL:
+              name: Business Cases + Sub Cases
+            BUSINESS_CASE:
+              name: Business Cases (Default)
+            SUB_CASE:
+              name: Sub Cases
           statistic:
             AggregationField:
               ACTIVATOR_NAME:
@@ -1771,13 +1807,6 @@ Enums:
                 name: Less than
               LESSOREQUAL:
                 name: Less than or equal to
-          CaseQueryType:
-            ALL:
-              name: Business Cases + Sub Cases
-            BUSINESS_CASE:
-              name: Business Cases (Default)
-            SUB_CASE:
-              name: Sub Cases
 Labels:
   AI:
     Error:
@@ -1917,9 +1946,11 @@ Labels:
       CUSTOM: Custom
       DASHBOARD: Dashboard
       EXTERNAL_LINK: External Link
-      MAIN_DASHBOARD: Dashboard
+      MAIN_DASHBOARD: Main Dashboard
+      PROCESS: Process
       STANDARD: Standard
-      STATIC_PAGE: Static page
+      STATIC_PAGE: Static Page
+      THIRD_PARTY: Third Party Application
     SearchScopeCaseField:
       CUSTOM: Custom string fields
       DESCRIPTION: Description

@@ -75,6 +75,10 @@ ch.ivy.addon.portalkit.ui.jsf:
     DashboardCustomWidgetType:
       EXTERNAL_URL: URL externe
       PROCESS: Processus Axon Ivy
+    DashboardDisplayType:
+      HIDDEN: Masqué
+      SUB_MENU: Sous-menu
+      TOP_MENU: Barre latérale
     DashboardWidgetType:
       CASE: Widget de cas
       CUSTOM: Widget personnalisé
@@ -763,20 +767,45 @@ ch.ivy.addon.portalkit.ui.jsf:
       label: Type de cas
     CloneWidget: Cloner le widget
     CustomWidgets: Widgets personnalisés
-    dataSettings: Paramètres de données
     DashboardConfiguration:
       CreateFromScratch: Créer à partir de rien
       CreateFromScratchDescription: Créez votre propre tableau de bord à partir de zéro
       CreateNewPrivateDashboard: Créer un nouveau tableau de bord privé
       CreateNewPublicDashboard: Créer un nouveau tableau de bord public
-      Description: Dans cette zone, vous pouvez configurer les tableaux de bord en fonction de vos besoins.
+      Description: Dans cette zone, vous pouvez configurer les tableaux de bord en fonction de vos besoins et modifier l'ordre des éléments de navigation.
       DoNotSupportMobile: La configuration du tableau de bord n'est pas prise en charge pour les appareils mobiles.
       EditPrivateDashboards: Modifier vos tableaux de bord privés
+      PrivateTabInfo: 'Créez et gérez vos tableaux de bord personnels.<ul><li>Ils ne sont visibles que par vous</li><li>Ils apparaissent sous l''icône Dashboard dans la barre latérale</li></ul>'
+      PublicTabInfo: 'Gérez les tableaux de bord pour tous les utilisateurs. Définissez la visibilité:<ul><li><b>Barre latérale</b> — apparaît comme élément principal dans le menu latéral</li><li><b>Sous-menu</b> — apparaît sous l''icône Dashboard</li><li><b>Masqué</b> — non visible pour les utilisateurs</li></ul>'
+      Visibility: Visibilité
       EditPublicDashboards: Modifier les tableaux de bord publics
+      ExportDashboard: Exporter le tableau de bord
       ExportReferencedDialogHeader: Le tableau de bord référence d'autres tableaux de bord
       ExportReferencedDialogMessage: 'Les tableaux de bord suivants sont référencés par des widgets de navigation. Exportez-les et importez-les également pour que les widgets fonctionnent correctement :'
       ExportReferencedDialogProceed: Exporter quand même
-      ExportDashboard: Exporter le tableau de bord
+      Hidden: Masqué
+      HiddenDashboards: Éléments masqués
+      HiddenDashboardsDescription: Non affiché dans la barre latérale. Peut toujours être utilisé comme cible de lien direct.
+      SubMenuDashboards: Tableaux de bord du sous-menu
+      SubMenuDashboardsDescription: Apparaissent groupés sous l'icône Tableau de bord dans la barre latérale.
+      SidebarTopLevelDashboards: Tableaux de bord principaux de la barre latérale
+      SidebarTopLevelDashboardsDescription: Apparaissent comme éléments principaux dans la barre latérale.
+      MenuDashboards: Éléments de la barre latérale
+      MenuDashboardsDescription: Ces tableaux de bord apparaissent comme éléments principaux dans la barre latérale. Gérez leur ordre dans l'onglet Navigation de la barre latérale.
+      PrivateDashboardTabInfoPanel: '<p><b>Que puis-je faire ici ?</b></p><p>Créez et gérez des tableaux de bord visibles uniquement par vous. Ils apparaissent groupés sous l''icône Tableau de bord dans la barre latérale et n''affectent jamais les autres utilisateurs.</p><p><b>Réorganiser</b></p><p>Faites glisser une ligne pour changer l''ordre d''apparition dans le sous-menu. L''ordre est enregistré dans vos paramètres personnels.</p><p><b>Actions par tableau de bord</b></p><p>Modifier permet de mettre à jour le titre, la description, l''icône ou les titres multilingues. Configurer ouvre le tableau de bord pour ajouter ou réorganiser des widgets. Si vous disposez de la permission d''export, vous pouvez télécharger un tableau de bord au format JSON.</p>'
+      DashboardTabInfoPanel: '<p><b>Que puis-je faire ici ?</b></p><p>Créez, modifiez et supprimez des tableaux de bord publics. Définissez qui peut les voir grâce aux autorisations. Il s''agit de la bibliothèque centrale de tous les tableaux de bord partagés.</p><p><b>Visibilité &amp; emplacement</b></p><p>Les tableaux de bord sont répartis en trois sections selon leur emplacement dans la barre latérale. Pour déplacer un tableau de bord, ouvrez Modifier et changez son Type d''affichage. Seule la section Sous-menu supporte le glisser-déposer pour la réorganisation.</p><p><b>Actions par tableau de bord</b></p><p>Modifier met à jour nom, description, icône, autorisations et type d''affichage. Configurer ouvre le tableau de bord pour ajouter ou organiser des widgets. Exporter télécharge un fichier JSON — si le tableau de bord en référence d''autres, une confirmation est demandée. Partager génère un lien direct. Supprimer le retire définitivement.</p>'
+      MenuManagementTabInfoPanel: '<p><b>Que puis-je faire ici ?</b></p><p>Configurez tout ce qui est visible dans la barre latérale : les éléments, leur ordre et le comportement global de la barre latérale.</p><p><b>Ajouter de nouveaux éléments</b></p><p>Utilisez Ajouter un élément pour créer une nouvelle entrée. Vous pouvez choisir : Tableau de bord principal (lien vers un tableau de bord), Lien externe (toute URL, avec option ouverture dans un nouvel onglet) ou Page statique. Chaque élément dispose d''un titre multilingue, d''une icône et d''autorisations configurables. Le type d''élément ne peut pas être modifié après création.</p><p><b>Gérer les éléments existants</b></p><p>Modifier met à jour le titre, l''icône, le lien et les autorisations des éléments personnalisés. Supprimer les retire. Les éléments intégrés (type Standard) ne peuvent être ni modifiés ni supprimés. Faites glisser les lignes pour réorganiser tous les éléments.</p><p><b>Paramètres de la barre latérale</b></p><p>Désactiver la barre latérale la masque entièrement pour tous les utilisateurs. Comportement contrôle comment elle s''ouvre : Survol (au survol de la souris), Clic (nécessite un clic) ou Ancré (toujours visible).</p>'
+      SidebarNavigation: Navigation de la barre latérale
+      SidebarSettings: Paramètres de la barre latérale
+      SidebarMode: Mode de la barre latérale
+      DisableSidebar: Désactiver la barre latérale
+      SidebarBehaviour: Comportement de la barre latérale
+      AddItem: Ajouter un élément
+      Label: Libellé
+      LinksTo: Lien vers
+      Dashboard: Tableau de bord
+      MenuManagement: Gestion des menus
+      MenuManagementTabInfo: 'Gérez les éléments de navigation de la barre latérale. Vous pouvez:<ul><li>Ajouter de nouveaux éléments de menu (tableaux de bord, liens externes, processus Ivy)</li><li>Réorganiser les éléments par glisser-déposer</li><li>Modifier ou supprimer des éléments de menu existants</li></ul>'
       PrivateDashboard: Tableaux de bord privés
       PrivateDashboardConfiguration: Configuration des tableaux de bord privés
       PublicDashboard: Tableaux de bord publics
@@ -785,8 +814,9 @@ ch.ivy.addon.portalkit.ui.jsf:
       ReorderPublicDashboards: Réorganiser les tableaux de bord publics
       SelectAction: Sélectionnez l'action
       SomeThingWentWrong: Quelque chose n'a pas fonctionné
-      Title: Configuration du tableau de bord
-    displaySettings: Paramètres d'affichage
+      SubMenuDashboards: Éléments du sous-menu
+      SubMenuDashboardsDescription: Ces tableaux de bord apparaissent sous l'icône Dashboard dans la barre latérale.
+      Title: Configuration du portail
     DrillDownWidget:
       caseDrillDown: Widget de cas détaillé pour {0}
       taskDrillDown: Widget de tâche détaillé pour {0}
@@ -818,14 +848,14 @@ ch.ivy.addon.portalkit.ui.jsf:
     StandardWidgets: Widgets standard
     StatisticWidget:
       EmptyChartDataMessage: Nous n'avons pas assez de données pour créer un beau graphique !
-      failToRenderChartMessage: Erreur lors du rendu du graphique. Veuillez réessayer avec des paramètres différents.
-      firstConfigChartMessage: Aucun graphique disponible pour le moment. Veuillez configurer vos paramètres pour générer un graphique.
       TooltipAverageKpiLabel: Moyenne de {0}
       TooltipMaxKpiLabel: Maximum de {0}
       TooltipMinKpiLabel: Minimum de {0}
       TooltipSumKpiLabel: Somme de {0}
       TooltipTotalCaseLabel: 'Nombre total de cas : {0}'
       TooltipTotalTaskLabel: 'Nombre total de tâches : {0}'
+      failToRenderChartMessage: Erreur lors du rendu du graphique. Veuillez réessayer avec des paramètres différents.
+      firstConfigChartMessage: Aucun graphique disponible pour le moment. Veuillez configurer vos paramètres pour générer un graphique.
     WelcomeWidgetIntroduction: Ce widget affiche un texte et une image de bienvenue sur le tableau de bord.
     WelcomeWidgetNotFoundMessage: Nous ne pouvons pas trouver l'image du widget, veuillez reconfigurer votre image !
     WidgetFilterName: Nom du filtre du widget
@@ -907,7 +937,9 @@ ch.ivy.addon.portalkit.ui.jsf:
       editDashboard: Modifier le tableau de bord
       manageDashboard: Gérer le tableau de bord
       removeDashboardHeader: Supprimez le tableau de bord "{0}".
+    dataSettings: Paramètres de données
     deleteWidget: Supprimer le widget
+    displaySettings: Paramètres d'affichage
     downloadZipFileExplanation: Si le nombre d'éléments à exporter dépasse la limite des lignes Excel, les données seront divisées en plusieurs fichiers Excel, puis compressées dans un fichier ZIP à télécharger.
     editWidget: Modifier le widget
     existingField: Le champ {0} a déjà été créé
@@ -1570,7 +1602,7 @@ Dialogs:
               FileInfomation: Informations sur le fichier
               ImportPrivate: Importer un tableau de bord privé
               ImportPublic: Importer un tableau de bord public
-              NavigationWidgetMissingTarget: 'Le widget de navigation "{0}" fait référence à un tableau de bord qui n''a pas été importé et n''existe pas dans ce portail. Le widget peut ne pas fonctionner correctement.'
+              NavigationWidgetMissingTarget: Le widget de navigation "{0}" fait référence à un tableau de bord qui n'a pas été importé et n'existe pas dans ce portail. Le widget peut ne pas fonctionner correctement.
               chooseAJsonFile: Choisissez un fichier json
             DashboardSharing:
               ShareDashboard: Partager le tableau de bord
@@ -1712,6 +1744,13 @@ Enums:
     axonivy:
       portal:
         enums:
+          CaseQueryType:
+            ALL:
+              name: Cas métier + Sous-cas
+            BUSINESS_CASE:
+              name: Cas métier (Par défaut)
+            SUB_CASE:
+              name: Sous-cas
           statistic:
             AggregationField:
               ACTIVATOR_NAME:
@@ -1782,15 +1821,8 @@ Enums:
                   Inférieur à
 
               LESSOREQUAL:
-                name: |+
+                name: |
                   Inférieur ou égal à
-          CaseQueryType:
-            ALL:
-              name: Cas métier + Sous-cas
-            BUSINESS_CASE:
-              name: Cas métier (Par défaut)
-            SUB_CASE:
-              name: Sous-cas
 Labels:
   AI:
     Error:
@@ -1931,9 +1963,11 @@ Labels:
       CUSTOM: Personnalisé
       DASHBOARD: Tableau de bord
       EXTERNAL_LINK: Lien externe
-      MAIN_DASHBOARD: Tableau de bord
+      MAIN_DASHBOARD: Tableau de bord principal
+      PROCESS: Processus
       STANDARD: Standard
       STATIC_PAGE: Page statique
+      THIRD_PARTY: Tiers
     SearchScopeCaseField:
       CUSTOM: Champs de chaînes personnalisées
       DESCRIPTION: Description du texte

@@ -75,6 +75,10 @@ ch.ivy.addon.portalkit.ui.jsf:
     DashboardCustomWidgetType:
       EXTERNAL_URL: Link externo
       PROCESS: Proceso de Axon Ivy
+    DashboardDisplayType:
+      HIDDEN: Oculto
+      SUB_MENU: Submenú
+      TOP_MENU: Barra lateral
     DashboardWidgetType:
       CASE: Widget del caso
       CUSTOM: Widget personalizado
@@ -758,22 +762,50 @@ ch.ivy.addon.portalkit.ui.jsf:
       publicFilter: Público
       savedFilters: 'Filtros guardados:'
   dashboard:
+    CaseQueryType:
+      info: Configure qué tipos de casos se muestran en el widget de casos. Predeterminado muestra solo casos de negocio, Subcasos técnicos muestra solo subcasos técnicos, y Todos muestra tanto casos de negocio como subcasos técnicos.
+      label: Tipo de caso
     CloneWidget: Clonar el widget
     CustomWidgets: Widgets personalizados
-    dataSettings: Configuración de datos
     DashboardConfiguration:
       CreateFromScratch: Crear desde cero
       CreateFromScratchDescription: Cree su propio panel de control desde cero
       CreateNewPrivateDashboard: Crear un nuevo cuadro de mando personalizado
       CreateNewPublicDashboard: Crear un dashboard público
-      Description: En esta sección puedes configurar los cuadros de mando según tus necesidades.
+      Description: En esta sección puedes configurar los cuadros de mando según tus necesidades y modificar el orden de los elementos de navegación.
       DoNotSupportMobile: La configuración del panel de control no es compatible con los dispositivos móviles.
       EditPrivateDashboards: Editar tu cuadro de mando
+      PrivateTabInfo: 'Cree y gestione sus paneles personales.<ul><li>Estos paneles solo son visibles para usted</li><li>Aparecen bajo el icono del panel en la barra lateral</li></ul>'
+      PublicTabInfo: 'Gestione paneles para todos los usuarios. Controle la visibilidad:<ul><li><b>Barra lateral</b> — aparece como elemento principal en el menú lateral</li><li><b>Submenú</b> — aparece bajo el icono del panel</li><li><b>Oculto</b> — no visible para los usuarios</li></ul>'
+      Visibility: Visibilidad
       EditPublicDashboards: Editar dashboard públicos
+      ExportDashboard: Exportar el cuadro de mandos
       ExportReferencedDialogHeader: El panel hace referencia a otros paneles
       ExportReferencedDialogMessage: 'Los siguientes paneles son referenciados por widgets de navegación. Expórtelos e impórtelos también para que los widgets funcionen correctamente:'
       ExportReferencedDialogProceed: Exportar de todos modos
-      ExportDashboard: Exportar el cuadro de mandos
+      Hidden: Oculto
+      HiddenDashboards: Elementos ocultos
+      HiddenDashboardsDescription: No se muestra en la barra lateral. Se puede seguir usando como destino de enlace directo.
+      SubMenuDashboards: Paneles del submenú
+      SubMenuDashboardsDescription: Aparecen agrupados bajo el icono de Panel en la barra lateral.
+      SidebarTopLevelDashboards: Paneles principales de la barra lateral
+      SidebarTopLevelDashboardsDescription: Aparecen como elementos principales en la barra lateral.
+      MenuDashboards: Elementos de la barra lateral
+      MenuDashboardsDescription: Estos paneles aparecen como elementos principales en la barra lateral. Gestione su orden en la pestaña Navegación de la barra lateral.
+      PrivateDashboardTabInfoPanel: '<p><b>¿Qué puedo hacer aquí?</b></p><p>Cree y gestione paneles visibles solo para usted. Aparecen agrupados bajo el icono de Panel en la barra lateral y nunca afectan a otros usuarios.</p><p><b>Reordenar</b></p><p>Arrastre cualquier fila para cambiar el orden en que sus paneles aparecen en el submenú. El orden se guarda en su configuración personal.</p><p><b>Acciones por panel</b></p><p>Use Editar para actualizar el título, descripción, icono o títulos en varios idiomas. Use Configurar para abrir el panel y añadir o reorganizar widgets. Si tiene el permiso de exportación, también puede descargar un panel como archivo JSON.</p>'
+      DashboardTabInfoPanel: '<p><b>¿Qué puedo hacer aquí?</b></p><p>Cree, edite y elimine paneles públicos. Defina quién puede verlos mediante permisos. Esta es la biblioteca central de todos los paneles compartidos.</p><p><b>Visibilidad &amp; ubicación</b></p><p>Los paneles se dividen en tres secciones según dónde aparecen en la barra lateral. Para mover un panel entre secciones, abra Editar y cambie su Tipo de visualización. Solo la sección Submenú admite reordenación por arrastre.</p><p><b>Acciones por panel</b></p><p>Editar actualiza nombre, descripción, icono, permisos y tipo de visualización. Configurar abre el panel para añadir o reorganizar widgets. Exportar descarga un archivo JSON — si el panel hace referencia a otros, se le pedirá confirmación. Compartir genera un enlace directo. Eliminar lo borra permanentemente.</p>'
+      MenuManagementTabInfoPanel: '<p><b>¿Qué puedo hacer aquí?</b></p><p>Configure todo lo visible en la barra lateral: elementos, su orden y el comportamiento global de la barra lateral.</p><p><b>Añadir nuevos elementos</b></p><p>Use Añadir elemento para crear una nueva entrada. Puede elegir entre: Panel principal (enlaza a un panel), Enlace externo (cualquier URL, con opción de abrir en nueva pestaña) o Página estática. Cada elemento tiene un título multiidioma, un icono y permisos configurables. El tipo de elemento no puede cambiarse tras la creación.</p><p><b>Gestionar elementos existentes</b></p><p>Editar actualiza el título, icono, enlace y permisos de elementos personalizados. Eliminar los borra. Los elementos integrados (tipo Estándar) no pueden editarse ni eliminarse. Arrastre filas para reordenar todos los elementos.</p><p><b>Configuración de la barra lateral</b></p><p>Deshabilitar barra lateral la oculta completamente para todos los usuarios. Comportamiento controla cómo se abre: Hover (al pasar el ratón), Clic (requiere clic) o Fijo (siempre visible).</p>'
+      SidebarNavigation: Navegación de la barra lateral
+      SidebarSettings: Configuración de la barra lateral
+      SidebarMode: Modo de barra lateral
+      DisableSidebar: Deshabilitar barra lateral
+      SidebarBehaviour: Comportamiento de la barra lateral
+      AddItem: Agregar elemento
+      Label: Etiqueta
+      LinksTo: Enlaza a
+      Dashboard: Panel de control
+      MenuManagement: Gestión de menús
+      MenuManagementTabInfo: 'Gestione los elementos de navegación de la barra lateral. Puede:<ul><li>Agregar nuevas entradas de menú (paneles, enlaces externos, procesos Ivy)</li><li>Reordenar elementos arrastrando y soltando</li><li>Editar o eliminar entradas de menú existentes</li></ul>'
       PrivateDashboard: Dashboard - Configuración  personalizada
       PrivateDashboardConfiguration: Configuración de tableros privados
       PublicDashboard: Dashboard - Configuración pública
@@ -782,8 +814,9 @@ ch.ivy.addon.portalkit.ui.jsf:
       ReorderPublicDashboards: Reordenar dashboard públicos
       SelectAction: Seleccione la acción
       SomeThingWentWrong: Algo salió mal
-      Title: Configuración Dashboard
-    displaySettings: Configuración de visualización
+      SubMenuDashboards: Elementos del submenú
+      SubMenuDashboardsDescription: Estos paneles aparecen bajo el icono del panel en la barra lateral.
+      Title: Configuración del portal
     DrillDownWidget:
       caseDrillDown: Widget de casos detallados para {0}
       taskDrillDown: Widget de tareas detalladas para {0}
@@ -806,9 +839,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     QuickSearch: Búsqueda rápida
     QuickSearchInfo: Puede personalizar el alcance de la búsqueda rápida en la gestión de columnas de widgets. La búsqueda se realiza en función de "contiene", pero tenga en cuenta el rendimiento al agregar numerosas columnas.
     QuickSearchScope: 'Ámbito de búsqueda: {0}'
-    CaseQueryType:
-      info: Configure qué tipos de casos se muestran en el widget de casos. Predeterminado muestra solo casos de negocio, Subcasos técnicos muestra solo subcasos técnicos, y Todos muestra tanto casos de negocio como subcasos técnicos.
-      label: Tipo de caso
     RestoreDefaultDashboardMessage: Si continúa, perderá todos los widgets creados por usted. Se aplicará la configuración estándar de <span class="dashboard-template-name-message">{0}</span>.
     SaveNewWidgetFilterHeader: Guardar un nuevo filtro de widget
     SavedFilterHeader: Filtros guardados
@@ -818,14 +848,14 @@ ch.ivy.addon.portalkit.ui.jsf:
     StandardWidgets: Widgets estándar
     StatisticWidget:
       EmptyChartDataMessage: No tenemos suficientes datos para crear un buen gráfico.
-      failToRenderChartMessage: Error al renderizar el gráfico. Inténtelo de nuevo con una configuración diferente.
-      firstConfigChartMessage: Aún no hay gráfico disponible. Configure sus ajustes para generar un gráfico.
       TooltipAverageKpiLabel: Promedio de {0}
       TooltipMaxKpiLabel: Máximo de {0}
       TooltipMinKpiLabel: Mínimo de {0}
       TooltipSumKpiLabel: Suma de {0}
       TooltipTotalCaseLabel: 'Total de casos: {0}'
       TooltipTotalTaskLabel: 'Total de tareas: {0}'
+      failToRenderChartMessage: Error al renderizar el gráfico. Inténtelo de nuevo con una configuración diferente.
+      firstConfigChartMessage: Aún no hay gráfico disponible. Configure sus ajustes para generar un gráfico.
     WelcomeWidgetIntroduction: Este widget muestra un texto y una imagen de bienvenida en el panel de control.
     WelcomeWidgetNotFoundMessage: No podemos encontrar la imagen del widget, por favor reconfigure su imagen.
     WidgetFilterName: Nombre del filtro del widget
@@ -907,7 +937,9 @@ ch.ivy.addon.portalkit.ui.jsf:
       editDashboard: Editar tablero
       manageDashboard: Administrar tablero
       removeDashboardHeader: Borrar el tablero "{0}"
+    dataSettings: Configuración de datos
     deleteWidget: Eliminar el widget
+    displaySettings: Configuración de visualización
     downloadZipFileExplanation: Si el número de elementos a exportar supera el límite de filas de Excel, los datos se dividirán en varios archivos Excel y, a continuación, se comprimirán en un archivo ZIP para su descarga.
     editWidget: Editar widget
     existingField: El campo {0} ya existe
@@ -1572,7 +1604,7 @@ Dialogs:
               FileInfomation: Informacion del archivo
               ImportPrivate: Importar panel privado
               ImportPublic: Importar panel público
-              NavigationWidgetMissingTarget: 'El widget de navegación "{0}" hace referencia a un panel que no fue importado y no existe en este portal. Es posible que el widget no funcione correctamente.'
+              NavigationWidgetMissingTarget: El widget de navegación "{0}" hace referencia a un panel que no fue importado y no existe en este portal. Es posible que el widget no funcione correctamente.
               chooseAJsonFile: Elija un archivo json
             DashboardSharing:
               ShareDashboard: Compartir panel
@@ -1715,6 +1747,13 @@ Enums:
     axonivy:
       portal:
         enums:
+          CaseQueryType:
+            ALL:
+              name: Casos de negocio + Subcasos
+            BUSINESS_CASE:
+              name: Casos de negocio (Predeterminado)
+            SUB_CASE:
+              name: Subcasos técnicos
           statistic:
             AggregationField:
               ACTIVATOR_NAME:
@@ -1787,15 +1826,8 @@ Enums:
                   Menor que
 
               LESSOREQUAL:
-                name: |+
+                name: |
                   Menor o igual que
-          CaseQueryType:
-            ALL:
-              name: Casos de negocio + Subcasos
-            BUSINESS_CASE:
-              name: Casos de negocio (Predeterminado)
-            SUB_CASE:
-              name: Subcasos técnicos
 Labels:
   AI:
     Error:
@@ -1935,9 +1967,11 @@ Labels:
       CUSTOM: Personalizado
       DASHBOARD: Panel de control
       EXTERNAL_LINK: Enlace externo
-      MAIN_DASHBOARD: Panel de control
+      MAIN_DASHBOARD: Panel de control principal
+      PROCESS: Proceso
       STANDARD: Estándar
       STATIC_PAGE: Página estática
+      THIRD_PARTY: Terceros
     SearchScopeCaseField:
       CUSTOM: Campos de cadena personalizados
       DESCRIPTION: Descripción
