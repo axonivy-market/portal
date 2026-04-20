@@ -503,7 +503,7 @@
         "at" : { "x" : 96, "y" : 96 }
       },
       "connect" : [
-        { "id" : "f0", "to" : "f102" }
+        { "id" : "f179", "to" : "f178" }
       ]
     }, {
       "id" : "f8",
@@ -949,7 +949,7 @@
         "sudo" : true
       },
       "visual" : {
-        "at" : { "x" : 272, "y" : 96 }
+        "at" : { "x" : 616, "y" : 248 }
       },
       "connect" : [
         { "id" : "f26", "to" : "S10" }
@@ -1460,6 +1460,12 @@
       "type" : "HtmlDialogEnd",
       "visual" : {
         "at" : { "x" : 256, "y" : 1768 }
+      }
+    }, {
+      "id" : "f178",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 216, "y" : 96 }
       }
     } ]
 }

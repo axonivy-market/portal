@@ -53,9 +53,9 @@ import ch.ivyteam.ivy.security.SubstitutionType;
 
 @ManagedBean
 @ViewScoped
-public class AbsenceManagementBean implements Serializable{
+public class AbsenceManagementBean implements Serializable {
   private static final long serialVersionUID = 1L;
-  
+
   private boolean ownAbsencesReadable;
   private boolean ownAbsencesCreatable;
   private boolean ownAbsencesDeletable;
@@ -156,14 +156,14 @@ public class AbsenceManagementBean implements Serializable{
     return substitutionReadable || (ownSubstitutionReadable && isLoginUser);
   }
 
-  private boolean isOwnAbsence (IvyAbsence absence) {
+  private boolean isOwnAbsence(IvyAbsence absence) {
     return absence.getUsername().contentEquals(Ivy.session().getSessionUserName());
   }
 
   public String getDisplayedName(IvyAbsence absence) {
     return UserUtils.getDisplayedName(absence.getFullname(), absence.getUsername());
   }
-  
+
   public String findNextAbsence(IUser iUser) {
     return iUser != null ? UserUtils.findNextAbsenceOfUser(iUser) : "";
   }
@@ -205,8 +205,8 @@ public class AbsenceManagementBean implements Serializable{
 
   // AbsenceManagementBean.java
   public List<ISecurityMember> getPersonalTaskDeputies(List<DeputyRole> deputyRoles) {
-      DeputyRole role = DeputyRoleUtils.findDeputyRoleByType(deputyRoles, DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE);
-      return role != null ? role.getDeputies() : Collections.emptyList();
+    DeputyRole role = DeputyRoleUtils.findDeputyRoleByType(deputyRoles, DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE);
+    return role != null ? role.getDeputies() : Collections.emptyList();
   }
 
   public List<DeputyRole> getDeputyRolesBasedOnPermissions(List<DeputyRole> list, UserDTO selectedAbsenceUser) {
@@ -297,26 +297,16 @@ public class AbsenceManagementBean implements Serializable{
     createMode = true;
 
     selectedDeputyRole = DeputyRoleUtils.findDeputyRoleByType(deputyRoles, DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE);
+    permanentDeputies = new ArrayList<>();
     initDeputyLists();
   }
 
   private void initDeputyLists() {
-    onAbsenceDeputies = new ArrayList<>();
-    permanentDeputies = new ArrayList<>();
-
-    DeputyRole duringAbsenceRole = DeputyRoleUtils.findDeputyRoleByType(deputyRoles, DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE);
-    if (duringAbsenceRole != null) {
-      onAbsenceDeputies = DeputyRoleUtils.cloneDeputyList(duringAbsenceRole.getDeputies());
+    if (selectedDeputyRole != null) {
+      selectedDeputies = DeputyRoleUtils.cloneDeputyList(selectedDeputyRole.getDeputies());
+    } else {
+      selectedDeputies = new ArrayList<>();
     }
-
-    DeputyRole permanentRole = DeputyRoleUtils.findDeputyRoleByType(deputyRoles, DeputyRoleType.PERSONAL_TASK_PERMANENT);
-    if (permanentRole != null) {
-      permanentDeputies = new ArrayList<>(permanentRole.getDeputies());
-    }
-
-    selectedDeputies = new ArrayList<>();
-    selectedDeputies.addAll(onAbsenceDeputies);
-    selectedDeputies.addAll(permanentDeputies);
   }
 
   public void preDelete(IvyAbsence absence) {
@@ -384,28 +374,14 @@ public class AbsenceManagementBean implements Serializable{
 
     AbsenceService.newInstance().createAbsence(selectedAbsence);
 
-    substitutes = new ArrayList<>();
-    if (!onAbsenceDeputies.isEmpty()) {
-      DeputyRole duringAbsenceRole = DeputyRoleUtils.findDeputyRoleByType(deputyRoles, DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE);
-      if (duringAbsenceRole != null) {
-        duringAbsenceRole.setDeputies(onAbsenceDeputies);
-        substitutes = new ArrayList<>(DeputyRoleUtils.getSubstitutesFromDeputyRole(duringAbsenceRole));
-      }
-    }
-    if (!permanentDeputies.isEmpty()) {
-      DeputyRole permanentRole = DeputyRoleUtils.findDeputyRoleByType(deputyRoles, DeputyRoleType.PERSONAL_TASK_PERMANENT);
-      if (permanentRole != null) {
-        permanentRole.setDeputies(permanentDeputies);
-        substitutes.addAll(DeputyRoleUtils.getSubstitutesFromDeputyRole(permanentRole));
-      }
-    }
-    SubstituteService.newInstance().saveSubstitutes(selectedAbsenceUser, substitutes);
+    saveSubstitutesOnAddNewAbsence();
 
     boolean showNewAbsence = selectedAbsence.getUser().getName().equals(
         selectedAbsenceUser != null ? selectedAbsenceUser.getName() : selectedUser.getName());
     if (showNewAbsence && (!AbsenceAndSubstituteUtils.isInThePast(selectedAbsence) || absenceInThePastShown)) {
       displayedAbsences.add(selectedAbsence);
-      Set<IvyAbsence> userAbsences = absencesByUser.get(selectedAbsenceUser != null ? selectedAbsenceUser.getName() : selectedUser.getName());
+      Set<IvyAbsence> userAbsences = absencesByUser
+          .get(selectedAbsenceUser != null ? selectedAbsenceUser.getName() : selectedUser.getName());
       if (userAbsences != null) {
         userAbsences.add(selectedAbsence);
       }
@@ -415,6 +391,48 @@ public class AbsenceManagementBean implements Serializable{
     message = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/Messages/addNewAbsence",
         Arrays.asList(selectedAbsence.getUser().getName()));
     showMessage();
+  }
+
+  private void saveSubstitutesOnAddNewAbsence() {
+    substitutes = new ArrayList<>();
+    if (selectedDeputies.size() > 0) {
+      filterSelectedDeputiesIfPermamnentDeputiesExists();
+      if (selectedDeputies.size() > 0) {
+        DeputyRole duringAbsenceRole = DeputyRoleUtils.findDeputyRoleByType(deputyRoles,
+            DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE);
+        duringAbsenceRole.setDeputies(selectedDeputies);
+        substitutes.addAll(DeputyRoleUtils.getSubstitutesFromDeputyRole(duringAbsenceRole));
+      }
+    }
+    if (permanentDeputies.size() > 0) {
+      DeputyRole permanentDeputyRole = DeputyRoleUtils.findDeputyRoleByType(deputyRoles,
+          DeputyRoleType.PERSONAL_TASK_PERMANENT);
+      permanentDeputies.addAll(permanentDeputyRole.getDeputies());
+      permanentDeputyRole.setDeputies(permanentDeputies);
+      substitutes.addAll(DeputyRoleUtils.getSubstitutesFromDeputyRole(permanentDeputyRole));
+    }
+    SubstituteService.newInstance().saveSubstitutes(selectedAbsenceUser, substitutes);
+  }
+
+  private void saveSubstitutes(List<ISecurityMember> selectedDeputies, DeputyRole deputyRole) {
+    deputyRole.setDeputies(selectedDeputies);
+    substitutes = DeputyRoleUtils.getSubstitutesFromDeputyRole(deputyRole);
+    SubstituteService.newInstance().saveSubstitutes(selectedAbsenceUser, substitutes);
+  }
+
+  private void filterSelectedDeputiesIfPermamnentDeputiesExists() {
+    for (ISecurityMember member : permanentDeputies) {
+      if (selectedDeputies.contains(member)) {
+        selectedDeputies.remove(member);
+      }
+    }
+  }
+
+  public boolean isPermanentDeputy(ISecurityMember member) {
+    DeputyRole permanentDeputyRole = DeputyRoleUtils.findDeputyRoleByType(deputyRoles,
+        DeputyRoleType.PERSONAL_TASK_PERMANENT);
+
+    return permanentDeputyRole.getDeputies().contains(member);
   }
 
   private void saveEditAbsence() {
@@ -432,36 +450,26 @@ public class AbsenceManagementBean implements Serializable{
     if (selectedDeputyRole != null) {
       substitutes = new ArrayList<>();
       if (!onAbsenceDeputies.isEmpty()) {
-        DeputyRole duringAbsenceRole = DeputyRoleUtils.findDeputyRoleByType(deputyRoles, DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE);
+        DeputyRole duringAbsenceRole = DeputyRoleUtils.findDeputyRoleByType(deputyRoles,
+            DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE);
         if (duringAbsenceRole != null) {
           duringAbsenceRole.setDeputies(onAbsenceDeputies);
           substitutes = new ArrayList<>(DeputyRoleUtils.getSubstitutesFromDeputyRole(duringAbsenceRole));
         }
       }
       if (!permanentDeputies.isEmpty()) {
-        DeputyRole permanentRole = DeputyRoleUtils.findDeputyRoleByType(deputyRoles, DeputyRoleType.PERSONAL_TASK_PERMANENT);
+        DeputyRole permanentRole = DeputyRoleUtils.findDeputyRoleByType(deputyRoles,
+            DeputyRoleType.PERSONAL_TASK_PERMANENT);
         if (permanentRole != null) {
           permanentRole.setDeputies(permanentDeputies);
           substitutes.addAll(DeputyRoleUtils.getSubstitutesFromDeputyRole(permanentRole));
         }
-      SubstituteService.newInstance().saveSubstitutes(selectedAbsenceUser, substitutes);
+        SubstituteService.newInstance().saveSubstitutes(selectedAbsenceUser, substitutes);
       }
     }
 
     message = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/Messages/updateAbsence");
     showMessage();
-  }
-
-  public void saveSubstitutes() {
-    if (selectedDeputyRole != null) {
-      if (createDeputyMode) {
-        selectedDeputyRole.getDeputies().addAll(selectedDeputies);
-      } else {
-        selectedDeputyRole.setDeputies(selectedDeputies);
-      }
-      substitutes = DeputyRoleUtils.getSubstitutesFromDeputyRole(selectedDeputyRole);
-      SubstituteService.newInstance().saveSubstitutes(selectedAbsenceUser, substitutes);
-    }
   }
 
   private void showMessage() {
@@ -475,29 +483,63 @@ public class AbsenceManagementBean implements Serializable{
     selectedAbsence.setUntil(backupAbsence.getUntil());
     selectedAbsence.setComment(backupAbsence.getComment());
 
-    DeputyRole duringAbsenceRole = DeputyRoleUtils.findDeputyRoleByType(deputyRoles, DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE);
+    DeputyRole duringAbsenceRole = DeputyRoleUtils.findDeputyRoleByType(deputyRoles,
+        DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE);
     selectedDeputies = duringAbsenceRole != null ? duringAbsenceRole.getDeputies() : new ArrayList<>();
     permanentDeputies = new ArrayList<>();
   }
 
-  public void addDeputy(String deputyRoleTypeName) {
+  public void addDeputy() {
     String messageId = "absence-form:absence-messages";
     ISecurityMember selectedAssignee = selectedDeputy != null
-        ? ISecurityContext.current().members().find(selectedDeputy.getMemberName()) : null;
-    List<ISecurityMember> assignedMembers = selectedDeputyRole.getDeputies();
-    if (selectedAssignee == null || assignedMembers.contains(selectedAssignee) || selectedDeputies.contains(selectedAssignee)) {
+        ? ISecurityContext.current().members().find(selectedDeputy.getMemberName())
+        : null;
+
+    if (selectedAssignee == null || selectedDeputies.contains(selectedAssignee)) {
       FacesContext.getCurrentInstance().addMessage(messageId, FacesMessageUtils.sanitizedMessage(
           FacesMessage.SEVERITY_ERROR, "",
           Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/Messages/errorSelectInvalidDeputy")));
+    } else if (selectedDeputyRole != null
+        && DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE.equals(selectedDeputyRole.getDeputyRoleType())
+        && DeputyRoleUtils.isSecurityMemberSelectedInDeputyRoleByType(deputyRoles,
+            DeputyRoleType.PERSONAL_TASK_PERMANENT, selectedAssignee)) {
+      String errorMessage = Ivy.cms().co(
+          "/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/Messages/errorSelectedInPersonalTaskPermanentDeputies",
+          Arrays.asList(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/personalTaskPermanentDeputies")));
+      FacesContext.getCurrentInstance().addMessage(messageId, FacesMessageUtils.sanitizedMessage(
+          FacesMessage.SEVERITY_ERROR, "", errorMessage));
+    } else if (selectedDeputyRole != null
+        && DeputyRoleType.PERSONAL_TASK_PERMANENT.equals(selectedDeputyRole.getDeputyRoleType())
+        && DeputyRoleUtils.isSecurityMemberSelectedInDeputyRoleByType(deputyRoles,
+            DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE, selectedAssignee)) {
+      String errorMessage = Ivy.cms().co(
+          "/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/Messages/errorSelectedInPersonalTaskPermanentDeputies",
+          Arrays.asList(
+              Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/personalTaskDuringAbsenceDeputies")));
+      FacesContext.getCurrentInstance().addMessage(messageId, FacesMessageUtils.sanitizedMessage(
+          FacesMessage.SEVERITY_ERROR, "", errorMessage));
     } else {
       selectedDeputies.add(selectedAssignee);
     }
   }
 
+  public List<ISecurityMember> fetchDisplaySubstitutesOnAbsenceTab() {
+    DeputyRole duringDeputyRole = DeputyRoleUtils.findDeputyRoleByType(deputyRoles,
+        DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE);
+    List<ISecurityMember> displayDeputies = duringDeputyRole != null
+        ? DeputyRoleUtils.cloneDeputyList(duringDeputyRole.getDeputies())
+        : new ArrayList<>();
+    DeputyRole permanentDeputyRole = DeputyRoleUtils.findDeputyRoleByType(deputyRoles,
+        DeputyRoleType.PERSONAL_TASK_PERMANENT);
+    List<ISecurityMember> permanentDisplayDeputies = duringDeputyRole != null
+        ? DeputyRoleUtils.cloneDeputyList(permanentDeputyRole.getDeputies())
+        : new ArrayList<>();
+    displayDeputies.addAll(permanentDisplayDeputies);
+    return displayDeputies;
+  }
+
   public void removeDeputy(ISecurityMember deputy) {
     selectedDeputies.remove(deputy);
-    onAbsenceDeputies.remove(deputy);
-    permanentDeputies.remove(deputy);
   }
 
   public void closeDialog() {
@@ -519,13 +561,15 @@ public class AbsenceManagementBean implements Serializable{
   public void initAddSubstituteDialog() {
     this.createDeputyMode = true;
     this.selectedDeputies = new ArrayList<>();
-    this.selectedDeputyRole = deputyRoles.stream().filter(item -> DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE.equals(item.getDeputyRoleType())).findFirst().get();
+    this.selectedDeputyRole = deputyRoles.stream()
+        .filter(item -> DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE.equals(item.getDeputyRoleType())).findFirst().get();
     this.selectedDeputy = null;
   }
 
   public List<ISecurityMember> getDeputyListDisplayedOnAbsenceTable() {
     List<ISecurityMember> displayDeputyList = new ArrayList<>();
-    DeputyRole deputyRole = DeputyRoleUtils.findDeputyRoleByType(deputyRoles, DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE);
+    DeputyRole deputyRole = DeputyRoleUtils.findDeputyRoleByType(deputyRoles,
+        DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE);
     if (deputyRole != null) {
       displayDeputyList.addAll(deputyRole.getDeputies());
     }
@@ -537,10 +581,44 @@ public class AbsenceManagementBean implements Serializable{
   public void setAsPermanent(ISecurityMember selectedMember, boolean isPermanent) {
     if (isPermanent) {
       permanentDeputies.remove(selectedMember);
-      onAbsenceDeputies.add(selectedMember);
     } else {
-      onAbsenceDeputies.remove(selectedMember);
       permanentDeputies.add(selectedMember);
+    }
+  }
+
+  public void onFromDateChange() {
+    validationError = false;
+    if (AbsenceAndSubstituteUtils.isFromDateAfterTill(selectedAbsence)) {
+      selectedAbsence.setUntil(selectedAbsence.getFrom());
+    }
+    validateOverlap();
+  }
+
+  public void onDateChange() {
+    validationError = false;
+    selectedAbsence.setUser(selectedUser);
+    if (AbsenceAndSubstituteUtils.checkFromBiggerThanTill(selectedAbsence)) {
+      validationError = true;
+      FacesContext.getCurrentInstance().validationFailed();
+    }
+    validateOverlap();
+  }
+
+  public void onUserSelectInAbsence() {
+    onDateChange();
+  }
+
+  private void validateOverlap() {
+    if (selectedUser == null) {
+      return;
+    }
+    String username = selectedUser.getName();
+    if (AbsenceAndSubstituteUtils.doesNewAbsenceOverlap(absencesByUser.get(username), selectedAbsence)) {
+      validationError = true;
+      FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.sanitizedMessage(
+          FacesMessage.SEVERITY_ERROR,
+          Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/Messages/overlappingAbsence"), ""));
+      FacesContext.getCurrentInstance().validationFailed();
     }
   }
 

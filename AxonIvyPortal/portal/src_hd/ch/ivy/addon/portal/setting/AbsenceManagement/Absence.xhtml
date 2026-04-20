@@ -49,7 +49,7 @@
                 securityMember="#{user}" isStandAlone="false" />
             </p:column>
             <f:facet name="event">
-              <p:ajax event="itemSelect" listener="#{logic.userSelectInAbsence}"
+              <p:ajax event="itemSelect" listener="#{absenceManagementBean.onUserSelectInAbsence()}"
                 update="#{p:resolveFirstComponentWithId('absence-messages', view).clientId} #{p:resolveFirstComponentWithId('save-absence', view).clientId}" />
             </f:facet>
           </ic:com.axonivy.portal.components.UserSelection>
@@ -64,7 +64,7 @@
               showIcon="true" converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/wrongDateFormat')}"
               required="true"
               requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/dateRequired')}">
-              <p:ajax event="dateSelect" listener="#{logic.fromDateChange}"
+              <p:ajax event="dateSelect" listener="#{absenceManagementBean.onFromDateChange()}"
                 update="absence-end-date #{p:resolveFirstComponentWithId('absence-messages', view).clientId} #{p:resolveFirstComponentWithId('save-absence', view).clientId}" />
             </p:datePicker>
           </div>
@@ -80,7 +80,7 @@
               placeholder="#{dateTimePatternBean.shortDatePattern}"
               converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/wrongDateFormat')}"
               requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/dateRequired')}">
-              <p:ajax event="dateSelect" listener="#{logic.dateChange}"
+              <p:ajax event="dateSelect" listener="#{absenceManagementBean.onDateChange()}"
                 update="#{p:resolveFirstComponentWithId('absence-messages', view).clientId} #{p:resolveFirstComponentWithId('save-absence', view).clientId}" />
             </p:datePicker>
           </div>
@@ -105,13 +105,13 @@
                 securityMember="#{user}" isStandAlone="false"/>
             </p:column>
             <f:facet name="event">
-              <p:ajax event="itemSelect" update="absence-form:add-deputy-button" />
+              <p:ajax event="itemSelect" update="absence-form:selected-deputy-panel" />
             </f:facet>
           </ic:com.axonivy.portal.components.UserSelection>
 
           <p:commandButton id="add-deputy-button" styleClass="add-deputy-button px-2 ml-2" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/add')}"
             ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/add')}"
-            disabled="#{!absenceManagementBean.canCreateSubstitute(absenceManagementBean.selectedAbsenceUser)}" actionListener="#{absenceManagementBean.addDeputy('PERSONAL_TASK_DURING_ABSENCE')}" global="false"
+            disabled="#{!absenceManagementBean.canCreateSubstitute(absenceManagementBean.selectedAbsenceUser)}" actionListener="#{absenceManagementBean.addDeputy()}" global="false"
             process="@form"
             update="@form absence-form:absence-messages" />
         </h:panelGroup>
@@ -159,7 +159,7 @@
           ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/saveContext', [ivy.cms.co(absenceManagementBean.createMode ? '/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/addAbsence' : '/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/editAbsence')])}"
           oncomplete="if (args &amp;&amp; !args.validationFailed)PF('absence-dialog').hide();"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}" actionListener="#{absenceManagementBean.saveAbsence()}"
-          update="@(.absence-table) @(.substitute-table) @(.substitution-table) absence-messages" />
+          update=":absence-form @(.absence-table) @(.substitute-table)" />
       </div>
     </h:form>
   </p:dialog>

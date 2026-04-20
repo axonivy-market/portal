@@ -123,7 +123,11 @@ public class DeputyRoleUtils {
   }
 
   public static List<ISecurityMember> cloneDeputyList(List<ISecurityMember> deputies) {
-    return new ArrayList<>(CollectionUtils.emptyIfNull(deputies));
+    List<ISecurityMember> newDeputies = new ArrayList<>();
+    for (ISecurityMember member : deputies) {
+      newDeputies.add(member);
+    }
+    return newDeputies;
   }
 
   public static boolean isSecurityMemberSelectedInDeputyRoleByType(List<DeputyRole> deputyRoles,

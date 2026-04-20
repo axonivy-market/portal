@@ -97,7 +97,6 @@
                           paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
                           currentPageReportTemplate="{currentPage} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/curentReportOf')} {totalPages}"
                           lazy="false">
-                          <c:set var="isPermanent" value="#{absenceManagementBean.permanentDeputies.contains(deputy)}" />
                           <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/period')}"
                             sortBy="#{absence.period}" styleClass="absence-period">
                             <h:outputText value="#{absence.period}" styleClass="absence-column-value" />
@@ -106,10 +105,11 @@
                             sortBy="#{absence.amount}" styleClass="absence-amount">
                             <h:outputText value="#{absence.amount} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/days')}" styleClass="absence-column-value" />
                           </p:column>
-                          <p:column rendered="#{absenceManagementBean.canReadSubstitute(absenceManagementBean.selectedAbsenceUser)}" groupRow="true" styleClass=""
+                          <p:column rendered="#{absenceManagementBean.canReadSubstitute(absenceManagementBean.selectedAbsenceUser)}" groupRow="true"
                             headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/Substitutes')}">
-                              <ui:repeat value="#{absenceManagementBean.getDeputyListDisplayedOnAbsenceTable()}" var="deputy">
-                                <div class="flex align-items-center">
+                              <ui:repeat value="#{absenceManagementBean.fetchDisplaySubstitutesOnAbsenceTab()}" var="deputy">
+                              <c:set var="isPermanent" value="#{absenceManagementBean.isPermanentDeputy(deputy)}" />
+                              <div class="flex align-items-center">
                                 <pc:securityMemberNameAndAvatar 
                                   displayName="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(deputy, deputy.memberName)}"
                                   securityMember="#{deputy}" />
