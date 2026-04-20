@@ -62,7 +62,7 @@
                 value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}" oncomplete="PF('configuration-dashboard-detail-dialog').show()"
                 target="_blank" resetValues="true" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}" rendered="true" />
               <p:menuitem id="configure-dashboard" process="@this"
-                actionListener="#{dashboardModificationBean.navigateToDashboardDetailsPage(dashboard.id)}" icon="ti ti-settings" update="@this"
+                actionListener="#{dashboardModificationBean.navigateToDashboardDetailsPage(dashboard.id)}" icon="ti ti-settings-cog" update="@this"
                 styleClass="dashboard-configuration-action-menu-icon" oncomplete="resetPortalLeftMenuState()"
                 value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/configuration')}" rendered="true"
                 title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/configuration')}" />

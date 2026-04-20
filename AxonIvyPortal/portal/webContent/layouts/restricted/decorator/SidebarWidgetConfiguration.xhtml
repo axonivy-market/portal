@@ -33,7 +33,7 @@
         <!-- Add language button -->
         <p:commandButton styleClass="app-setting-button"
           ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/addLanguages')}"
-          icon="ti ti-message-2" id="add-language-button"
+          icon="ti ti-language" id="add-language-button"
           actionListener="#{managedBean.updateWidgetNameByLocale()}"
           process="widget-title"
           partialSubmit="true"
@@ -45,10 +45,10 @@
     <div class="ui-g-4 flex justify-content-end">
       <p:commandButton id="widget-configuration-button" 
         styleClass="mr-2" type="button" label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/configuration')}"
-        icon="ti ti-settings" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/configuration')}"  
+        icon="ti ti-settings-cog" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/configuration')}"  
         onclick="PF('widgetConfigurationPanel').show();"/>
       <p:commandButton id="manage-column"
-        icon="ti ti-layout-grid" 
+        icon="ti ti-cube" 
         styleClass="mr-2"
         ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/manageColumns')}"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/manageColumns')}"

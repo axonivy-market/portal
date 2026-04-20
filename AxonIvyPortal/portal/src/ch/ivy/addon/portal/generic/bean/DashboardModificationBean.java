@@ -60,7 +60,7 @@ import ch.ivyteam.ivy.environment.Ivy;
 public class DashboardModificationBean extends DashboardBean {
 
   private static final long serialVersionUID = 1L;
-  protected static final String PUBLIC_DASHBOARD_DEFAULT_ICON = "ti-world";
+  protected static final String PUBLIC_DASHBOARD_DEFAULT_ICON = "ti-world-share";
   protected static final String PRIVATE_DASHBOARD_DEFAULT_ICON = "ti-lock-square-rounded";
   private static final String JSON_FILE_SUFFIX = "_Dashboard_Export.json";
 

@@ -127,7 +127,7 @@
       update="@parent #{cc.attrs.componentToUpdate} @widgetVar(task-custom-fields-dialog)"
       actionListener="#{taskActionBean.updateSelectedTaskItemId(isShowInTaskList, task.id)}"
       oncomplete="#{cc.attrs.onCustomFieldsDialogComplete}" global="false" >
-      <i class="option-action-icon ti ti-settings" />
+      <i class="option-action-icon ti ti-settings-cog" />
       <span class="option-item-label">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/customFields')}</span>
     </p:commandLink>
 

@@ -131,7 +131,7 @@ public class MenuTest extends BaseTest {
     MainMenuPage mainMenuPage = newDashboardPage.openMainMenu();
 	redirectToRelativeLink(createSampleDashboardUrl);
     String iconClass = mainMenuPage.getIconClassMainMenuEntryAsString();
-    Assertions.assertEquals("ti ti-folder-open",iconClass);
+    Assertions.assertEquals("ti ti-file-pencil",iconClass);
   }
   
   @Test

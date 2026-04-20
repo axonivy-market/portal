@@ -40,7 +40,7 @@ Below is a sample JSON definition of a Portal dashboard template:
                "value": "Dashboard mit Aufgabenliste und Fallübersicht"
             }
          ],
-         "icon": "ti-settings",
+         "icon": "ti-settings-cog",
          "dashboard": {
             "id": "dashboard_id",
             "templateId": "template-id",
@@ -95,7 +95,7 @@ JSON Configuration Reference
    Multilingual descriptions shown in template selection. Format: ``[{"locale": "en", "value": "Description"}]``
 
 ``icon`` (string, required)
-   Tabler icon class for template display (e.g., ``"ti-settings"``)
+   Tabler icon class for template display (e.g., ``"ti-settings-cog"``)
 
 ``dashboard`` (object, required)
    Complete dashboard configuration (see Dashboard Configuration below)

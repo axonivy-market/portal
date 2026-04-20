@@ -40,7 +40,7 @@
           <p:inputText id="dashboard-title" value="#{managedBean.selectedDashboard.title}"
             required="#{param['skipValidator'] == null}" styleClass="manage-dashboard__input" autocomplete="off"
             requiredMessage="#{ivy.cms.co('/Labels/RequiredFieldMessage', [ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/dashboardManagement/dashboardTitle')])}" />
-          <p:commandButton id="add-language-button" icon="ti ti-message-2"
+          <p:commandButton id="add-language-button" icon="ti ti-language"
             actionListener="#{managedBean.updateDashboardTitleByLocale()}"
             process="dashboard-title"
             ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/addLanguages')}"

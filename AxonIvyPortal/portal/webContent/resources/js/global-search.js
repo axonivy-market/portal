@@ -393,7 +393,7 @@ if (document) {
       '       <div class="task-priority-item">' +
       '         <span class=" search-item-result" data-id="' + caze.uuid + '">' +
       '           <span class="priority-icon">' +
-      '             <i class="ti ti-folder-open"></i>' +
+      '             <i class="ti ti-file-pencil"></i>' +
       '           </span>' +
       '         </span>' +
       '       </div>' +

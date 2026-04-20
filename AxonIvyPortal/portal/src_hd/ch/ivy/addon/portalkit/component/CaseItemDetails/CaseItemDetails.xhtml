@@ -47,7 +47,7 @@
     styleClass="switch-and-reset-buttons-area ui-g-12 ui-sm-hidden u-no-padding-bottom">
     <p:commandButton id="share-page-button" rendered="#{caseDetailsBean.isShowShareButton}"
         onclick="PF('share-case-details-dialog').show(); return false;"
-        icon="#{visibilityBean.generateButtonIcon('ti ti-share')}" 
+        icon="#{visibilityBean.generateButtonIcon('ti ti-world-share')}" 
         ariaLabel="#{ivy.cms.co('/Labels/Share')}"
         title="#{ivy.cms.co('/Labels/Share')}" styleClass="u-mar-right-5 ui-button-flat"/>
     <p:commandButton id="switch-to-edit-mode-button" rendered="#{caseDetailsBean.readOnlyMode}"

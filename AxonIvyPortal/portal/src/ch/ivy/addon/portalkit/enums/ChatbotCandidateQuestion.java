@@ -5,8 +5,8 @@ import ch.ivyteam.ivy.environment.Ivy;
 public enum ChatbotCandidateQuestion {
 
   EXPLORE("ti-bulb"),
-  TUTORIAL("ti-pointer"),
-  INTERACT("ti-settings");
+  TUTORIAL("ti-hand-finger"),
+  INTERACT("ti-settings-cog");
 
   private String icon;
 

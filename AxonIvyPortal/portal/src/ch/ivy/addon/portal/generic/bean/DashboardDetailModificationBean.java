@@ -206,7 +206,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Pr
 
   private WidgetSample caseSample() {
     return new WidgetSample(translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/caseList"), CASE,
-        "ti ti-folder-open", translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/caseListIntroduction"));
+        "ti ti-file-pencil", translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/caseListIntroduction"));
   }
 
   private WidgetSample processSample() {

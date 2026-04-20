@@ -16,7 +16,7 @@
 
     <div class="case-detail-section-title ui-g-12">
       <div class="ui-g-3 u-truncate-text u-padding-0 task-details-panel-title" role="heading" aria-level="1">
-        <i class="ti ti-clock-play" /> #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/history')}
+        <i class="ti ti-clock-check" /> #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/history')}
       </div>
       <div class="ui-g-9 u-padding-0">
         <h:panelGroup layout="block" styleClass="case-detail-history-section-header-actions">
@@ -41,7 +41,7 @@
             ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addNote')}"
             rendered="#{caseTaskNoteHistoryBean.showAddNote}" onclick="PF('add-note-dialog-#{case.id}').show()"
             actionListener="#{data.setCaze(case)}">
-            <span class="ti ti-notes" />
+            <span class="ti ti-clipboard-plus" />
             <span class="display-full-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addNote')}</span>
             <span class="display-short-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/add')}</span>
           </p:commandLink>
@@ -108,7 +108,7 @@
               jsf:rendered="#{not avatarBean.isShowAvatar() and history.type eq 'TASK' and history.taskState.toString() eq 'DESTROYED'}" />
               <i class="ti ti-circle-check" jsf:id="created-task"
               jsf:rendered="#{not avatarBean.isShowAvatar() and history.type eq 'TASK' and history.taskState.toString() eq 'CREATED'}" />
-              <i class="ti ti-notes" jsf:rendered="#{not avatarBean.isShowAvatar() and history.type eq 'NOTE'}" />
+              <i class="ti ti-clipboard-plus" jsf:rendered="#{not avatarBean.isShowAvatar() and history.type eq 'NOTE'}" />
             </f:facet>
           </pc:securityMemberNameAndAvatar>
         </p:column>

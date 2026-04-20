@@ -15,7 +15,7 @@
     "locale" : "es",
     "value" : "Default new dashboard"
   } ],
-  "icon" : "ti-share",
+  "icon" : "ti-world-share",
   "description" : "Default new dashboard",
   "widgets" : [ {
     "type" : "task",
@@ -392,7 +392,7 @@
       "value": "Casos"
     }
   ],
-  "icon": "ti-folder-open",
+  "icon": "ti-file-pencil",
   "description": "Default Case List Dashboard",
   "widgets": [
     {

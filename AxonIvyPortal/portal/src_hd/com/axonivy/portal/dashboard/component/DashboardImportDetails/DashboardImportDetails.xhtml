@@ -34,7 +34,7 @@
           <h5 class="import-header-title"><h:outputText value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/DashboardImportDetails/chooseAJsonFile')}" /></h5>
         </div>
         <div class="ui-g-12">
-          <p:fileUpload id="dashboard-upload" chooseIcon="#{visibilityBean.generateButtonIcon('ti ti-pointer')}"
+          <p:fileUpload id="dashboard-upload" chooseIcon="#{visibilityBean.generateButtonIcon('ti ti-hand-finger')}"
             dragDropSupport="true" fileLimit="1" widgetVar="dashboardUpload" style="display: none;" onvalidationfailure="handleUploadFileFail('dashboardUpload');"
             label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/select')}"
             styleClass="dashboard-upload" mode="advanced"
@@ -93,7 +93,7 @@
                     value="#{dashboard.title}"
                     styleClass="manage-dashboard__input" required="true" />
                   <p:commandButton id="add-language-button"
-                    icon="ti ti-message-2"
+                    icon="ti ti-language"
                     ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/addLanguages')}"
                     actionListener="#{managedBean.updateDashboardTitleByLocale()}"
                     process="import-dashboard-title"

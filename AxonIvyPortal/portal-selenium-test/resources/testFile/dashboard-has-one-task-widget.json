@@ -9,7 +9,7 @@
         "value": "Dashboard"
       }
     ],
-    "icon": "ti-share",
+    "icon": "ti-world-share",
     "widgets": [
       {
         "type": "task",

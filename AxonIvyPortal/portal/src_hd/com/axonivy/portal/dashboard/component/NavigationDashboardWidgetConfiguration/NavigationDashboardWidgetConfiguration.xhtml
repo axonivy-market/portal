@@ -38,7 +38,7 @@
           <!-- Add language button -->
           <p:commandButton styleClass="app-setting-button"
             ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/addLanguages')}"
-            icon="ti ti-message-2" id="title-language-button"
+            icon="ti ti-language" id="title-language-button"
             actionListener="#{managedBean.updateWidgetNameByLocale()}"
             process="widget-title"
             update="#{cc.clientId}:title-language-config:multiple-languages-dialog"
@@ -65,7 +65,7 @@
           <!-- Add language button -->
           <p:commandButton styleClass="app-setting-button"
             ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/addLanguages')}"
-            icon="ti ti-message-2" id="button-name-language"
+            icon="ti ti-language" id="button-name-language"
             actionListener="#{navigationDashboardWidgetBean.updateButtonNameByLocale(widget)}"
             process="button-name"
             update="#{cc.clientId}:button-name-language-config:multiple-languages-dialog"

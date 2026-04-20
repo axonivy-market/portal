@@ -61,7 +61,7 @@
               <pc:securityMemberNameAndAvatar securityMember="#{assignee}"
               displayName="#{assignee.briefDisplayNameWithState}" >
                 <f:facet name="alternativeAvatar">
-                  <h:outputText id="chat-assign-type-icon" rendered="#{not avatarBean.isShowAvatar()}" styleClass="si #{assignee.isUser() ? 'ti-user-check' : 'ti-users'} u-mar-right-5" />
+                  <h:outputText id="chat-assign-type-icon" rendered="#{not avatarBean.isShowAvatar()}" styleClass="ti #{assignee.isUser() ? 'ti-user-check' : 'ti-users'} u-mar-right-5" />
                 </f:facet>
               </pc:securityMemberNameAndAvatar>
               <p:commandLink id="chat-delete-assignee" styleClass="ti ti-trash chat-delete-assignee"

@@ -166,7 +166,7 @@ public class PortalMenuNavigator {
 
     // Set default icon if it's blank
     if (StringUtils.isBlank(dashboard.getIcon())) {
-      dashboard.setIcon(dashboard.getIsPublic() ? "ti-world" : "ti-lock-square-rounded");
+      dashboard.setIcon(dashboard.getIsPublic() ? "ti-world-share" : "ti-lock-square-rounded");
     }
 
     // Set icon with the appropriate prefix

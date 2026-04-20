@@ -158,7 +158,7 @@
            readonly="#{selectedCustomField or selectedCustomCaseField or selectedCustomBusinessCaseField}"
            disabled="#{selectedCustomField or selectedCustomCaseField or selectedCustomBusinessCaseField}"/>
 
-        <p:commandButton id="name-add-language-button" icon="ti ti-message-2"
+        <p:commandButton id="name-add-language-button" icon="ti ti-language"
                          rendered="#{columnManagementBean.isDisplayMultiLanguage()}"
                          actionListener="#{columnManagementBean.updateNameByLocale()}" process="field-display-name"
                          update="name-language-config:multiple-languages-dialog"

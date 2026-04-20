@@ -495,7 +495,7 @@
         "value": "ケース"
       }
     ],
-    "icon": "ti-folder-open",
+    "icon": "ti-file-pencil",
     "description": "Default Case List Dashboard",
     "widgets": [
       {

@@ -48,7 +48,7 @@
                     <p:inputText id="name" value="#{statisticConfigurationBean.statistic.name}" maxlength="#{statisticInput}"
                       requiredMessage="#{ivy.cms.co('/Labels/RequiredFieldMessage',[ivy.cms.co('/Labels/Name')])}"
                       styleClass="w-full" required="true" />
-                    <p:commandButton id="add-name-language-button" icon="ti ti-message-2"
+                    <p:commandButton id="add-name-language-button" icon="ti ti-language"
                       actionListener="#{statisticConfigurationBean.updateNameByLocale()}" process="name"
                       ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/addLanguages')}"
                       update="name-language-config:multiple-languages-dialog"
@@ -61,7 +61,7 @@
                   <div class="ui-inputgroup">
                     <p:inputText id="description" value="#{statisticConfigurationBean.statistic.description}"
                       maxlength="#{statisticInput}" styleClass="w-full" />
-                    <p:commandButton id="add-description-language-button" icon="ti ti-message-2"
+                    <p:commandButton id="add-description-language-button" icon="ti ti-language"
                       actionListener="#{statisticConfigurationBean.updateDescriptionByLocale()}" process="description"
                       ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/addLanguages')}"
                       update="description-language-config:multiple-languages-dialog"
@@ -264,7 +264,7 @@
                      <div class="ui-inputgroup">
                        <p:inputText id="x-title" value="#{statisticConfigurationBean.xTitle}" maxlength="200"
                          styleClass="w-full" />
-                       <p:commandButton id="x-title-add-language-button" icon="ti ti-message-2"
+                       <p:commandButton id="x-title-add-language-button" icon="ti ti-language"
                          actionListener="#{statisticConfigurationBean.updateXTitleByLocale()}" process="x-title"
                          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/addLanguages')}"
                          update="x-title-language-config:multiple-languages-dialog"
@@ -283,7 +283,7 @@
                      <div class="ui-inputgroup">
                        <p:inputText id="y-title" value="#{statisticConfigurationBean.yTitle}" maxlength="200"
                          styleClass="w-full" />
-                       <p:commandButton id="y-title-add-language-button" icon="ti ti-message-2"
+                       <p:commandButton id="y-title-add-language-button" icon="ti ti-language"
                          actionListener="#{statisticConfigurationBean.updateYTitleByLocale()}" process="y-title"
                          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/addLanguages')}"
                          update="y-title-language-config:multiple-languages-dialog"

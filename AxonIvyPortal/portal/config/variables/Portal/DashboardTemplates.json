@@ -1086,7 +1086,7 @@
         "value": "フル幅のケースウィジェットを備えたダッシュボードを作成します"
       }
     ],
-    "icon": "ti-folder-open",
+    "icon": "ti-file-pencil",
     "dashboard":   {
       "id": "default-case-list-dashboard",
       "templateId": "create-from-scratch",

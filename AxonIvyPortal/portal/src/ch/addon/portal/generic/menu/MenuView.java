@@ -224,7 +224,7 @@ public class MenuView implements Serializable {
 
   private String determineIconClass(Dashboard board) {
     if (StringUtils.isBlank(board.getIcon())) {
-      board.setIcon(board.getIsPublic() ? "ti-world" : "ti-lock-square-rounded");
+      board.setIcon(board.getIsPublic() ? "ti-world-share" : "ti-lock-square-rounded");
     }
     return buildIconClass(board.getIcon());
   }

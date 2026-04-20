@@ -57,7 +57,7 @@
               <p:inputText id="external-link-name" value="#{processWidgetBean.editedExternalLink.name}" required="true"
                 maxlength="85" 
                 requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/processName')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/isRequiredMessage')}" />
-              <p:commandButton id="edit-name-language-button"  icon="ti ti-message-2" 
+              <p:commandButton id="edit-name-language-button"  icon="ti ti-language" 
                 ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/addLanguages')}"
                 actionListener="#{processWidgetBean.updateNameByLocale()}"
                 process="#{cc.clientId}:edit-process-form:external-link-name"
@@ -93,7 +93,7 @@
             <div class="ui-fluid ui-inputgroup">
             <p:inputTextarea id="external-description" value="#{processWidgetBean.editedExternalLink.description}"
               maxlength="200" rows="3" />
-            <p:commandButton id="edit-description-language-button" icon="ti ti-message-2" 
+            <p:commandButton id="edit-description-language-button" icon="ti ti-language" 
               ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/addLanguages')}"
               actionListener="#{processWidgetBean.updateDescriptionByLocale()}"
               process="#{cc.clientId}:edit-process-form:external-description"
@@ -257,7 +257,7 @@
         <p:inputText id="external-link-name" value="#{externalLinkBean.externalLink.name}" required="true"
           maxlength="85"
           requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/processName')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/isRequiredMessage')}" />
-        <p:commandButton id="add-name-language-button"  icon="ti ti-message-2" 
+        <p:commandButton id="add-name-language-button"  icon="ti ti-language" 
           actionListener="#{externalLinkBean.updateNameByLocale()}"
           ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/addLanguages')}"
           process="#{cc.clientId}:add-external-link-form:external-link-name"
@@ -284,7 +284,7 @@
       <div class="ui-g-12 ui-fluid ui-inputgroup">
         <p:inputTextarea id="external-description" value="#{externalLinkBean.externalLink.description}"
           styleClass="external-description-field" maxlength="200" rows="3" />
-        <p:commandButton id="add-description-language-button" icon="ti ti-message-2" 
+        <p:commandButton id="add-description-language-button" icon="ti ti-language" 
           actionListener="#{externalLinkBean.updateDescriptionByLocale()}"
           ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/addLanguages')}"
           process="#{cc.clientId}:add-external-link-form:external-description"
