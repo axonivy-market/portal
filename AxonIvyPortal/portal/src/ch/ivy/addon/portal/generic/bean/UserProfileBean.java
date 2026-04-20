@@ -67,7 +67,7 @@ public class UserProfileBean implements Serializable {
 
   private void resetChannel(IvyNotificationChannelDTO channel) {
     channel.getSubscriptions().forEach(
-        (event, subscription) -> subscription.setState(IvyNotificationChannelSubcriptionDTO.State.USE_DEFAULT));
+        (_, subscription) -> subscription.setState(IvyNotificationChannelSubcriptionDTO.State.USE_DEFAULT));
     saveChannel(channel);
   }
 

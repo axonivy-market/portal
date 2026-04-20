@@ -2,8 +2,6 @@ package ch.ivy.addon.portalkit.dto.dashboard;
 
 import static ch.ivy.addon.portalkit.constant.DashboardConfigurationPrefix.CMS;
 
-import java.io.Serializable;
-
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.validator.ValidatorException;
@@ -22,7 +20,7 @@ import ch.ivyteam.ivy.workflow.custom.field.ICustomFields;
 @JsonIgnoreProperties({"format", "filterType", "filterListOptions", "dateFilterFrom", "dateFilterTo", "userFilter",
     "userFilterList", "userFilterFrom", "userFilterTo", "userDateFilterFrom", "userDateFilterTo",
     "userFilterListOptions"})
-public class ColumnModel extends AbstractColumn implements Serializable {
+public class ColumnModel extends AbstractColumn {
 
   private static final long serialVersionUID = -4315469062114036720L;
 
@@ -35,7 +33,6 @@ public class ColumnModel extends AbstractColumn implements Serializable {
   }
 
   @JsonIgnore
-  @SuppressWarnings("unused")
   public void validate(FacesContext context, UIComponent component, Object value) throws ValidatorException {}
   
   @JsonIgnore

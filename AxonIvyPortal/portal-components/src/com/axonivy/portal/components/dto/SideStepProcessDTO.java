@@ -8,8 +8,6 @@ import org.apache.commons.lang3.StringUtils;
 import com.axonivy.portal.components.util.DisplayNameUtils;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
-import ch.ivyteam.ivy.security.ISecurityContext;
-
 /**
  * DTO object contains information about side step task process.
  * <pre>
@@ -20,9 +18,9 @@ import ch.ivyteam.ivy.security.ISecurityContext;
  * <p><b>Examples</b></p>
  * <pre>
  * SideStepProcessDTO.builder()
- * .signal("com:axonivy:portal:developerexample:sideStepProcess")
+ * .signal("com:axonivy:portal:portaldeveloperexamples:sideStepProcess")
  * .processNameCmsUri("/Processes/SideStep/AskForDetails")
- * .customSecurityMemberCallable("getCustomSecurityMemberSubProcessName()")
+ * .customSecurityMembersCallable("getCustomSecurityMemberSubProcessName()")
  * .build();
  * </pre>
  */
@@ -79,7 +77,7 @@ public class SideStepProcessDTO implements Serializable {
 
     /**
      * Sets name of Ivy callable subprocess to define custom list of users or roles which side step can be assigned to.
-     * This is optional. If it's not defined, side step task can assign to all users or roles of {@link ISecurityContext}
+     * This is optional. If it's not defined, side step task can assign to all users or roles of {@link ch.ivyteam.ivy.security.ISecurityContext}
      * @param customSecurityMemberCallable
      * @return builder of {@link SideStepProcessDTO}
      */

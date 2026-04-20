@@ -1,6 +1,5 @@
 package ch.ivy.addon.portalkit.bean;
 
-import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.EnumSet;
@@ -33,7 +32,7 @@ import ch.ivyteam.ivy.workflow.TaskState;
 
 @ViewScoped
 @ManagedBean
-public class TaskDetailsBean extends AbstractConfigurableContentBean<TaskDetails> implements Serializable {
+public class TaskDetailsBean extends AbstractConfigurableContentBean<TaskDetails> {
 
   private static final long serialVersionUID = 8566646437739271552L;
   private static final String RESET_TASK_FRIENDLY_REQUEST_PATH = "Start Processes/PortaStart/ResetTask.ivp";

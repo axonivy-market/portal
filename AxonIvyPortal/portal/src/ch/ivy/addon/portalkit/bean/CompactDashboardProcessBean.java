@@ -31,6 +31,7 @@ import ch.ivy.addon.portalkit.enums.ProcessSorting;
 import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 import ch.ivyteam.ivy.environment.Ivy;
+import com.axonivy.portal.components.publicapi.SanitizeAPI;
 
 @ManagedBean
 @ViewScoped
@@ -183,8 +184,10 @@ public class CompactDashboardProcessBean
     link = dashboardProcessBean.getRedirectLink(link,
         !dashboardProcessBean.isExternalLink(process));
 
+    String decoded = URLDecoder.decode(link, StandardCharsets.UTF_8);
+    String escaped = SanitizeAPI.escapeForJavascript(decoded);
     String statement = "parent.parent.redirectToUrlCommand([{name: 'url', value: '"
-        + URLDecoder.decode(link, StandardCharsets.UTF_8) + "'}])";
+        + escaped + "'}])";
     PrimeFaces.current().executeScript(statement);
   }
 

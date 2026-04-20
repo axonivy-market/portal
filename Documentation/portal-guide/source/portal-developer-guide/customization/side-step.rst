@@ -43,7 +43,7 @@ How to Use and Set Up
 #. Model the side step process
 
    Create a process that performs the additional work (for example “Ask for more details”)
-   and define a signal that starts this process (e.g. ``com:axonivy:portal:developerexample:sideStep:askMoreDetails`` ).
+   and define a signal that starts this process (e.g. ``com:axonivy:portal:portaldeveloperexamples:sidestep:askMoreDetails`` ).
    
    |signal-process|
 
@@ -64,7 +64,7 @@ How to Use and Set Up
         // First configuration option - using CMS URI for multilingual process names
         SideStepProcessDTO dto1 = SideStepProcessDTO.builder()
         .processNameCmsUri("/Processes/SideStep/AskMoreDetails")
-        .signal("com:axonivy:portal:developerexample:sideStep:askMoreDetails")
+        .signal("com:axonivy:portal:portaldeveloperexamples:sidestep:askMoreDetails")
         .build();
 
         // Second configuration option - with project-specific CMS URI
@@ -73,7 +73,7 @@ How to Use and Set Up
         .cmsProjectName("portal-developer-examples")  // Optional - if not provided, uses current project context
         // Set signature name of the process which defines custom users and roles in the previous step
         .customSecurityMembersCallable("getCustomSecurityMemberForSideStep()")  // Optional
-        .signal("com:axonivy:portal:developerexample:sideStep:CEOApproval")
+        .signal("com:axonivy:portal:portaldeveloperexamples:sidestep:ceoApproval")
         .build();
 
         // Define side step process dto list
@@ -120,7 +120,7 @@ How to Use and Set Up
         "version": "12.0.12",
         "processes": [
           {
-            "signal": "com:axonivy:portal:developerexample:sideStep:askMoreDetails",
+            "signal": "com:axonivy:portal:portaldeveloperexamples:sidestep:askMoreDetails",
             "processNames": [
               {
                 "value": "/Processes/SideStep/AskMoreDetails",
@@ -129,7 +129,7 @@ How to Use and Set Up
             ]
           },
           {
-            "signal": "com:axonivy:portal:developerexample:sideStep:CEOApproval",
+            "signal": "com:axonivy:portal:portaldeveloperexamples:sidestep:ceoApproval",
             "processNames": [
               {
                 "value": "/Processes/SideStep/CEOApproval",
@@ -139,7 +139,7 @@ How to Use and Set Up
             "customSecurityMemberCallable": "getCustomSecurityMemberForSideStep()"
           },
           {
-            "signal": "com:axonivy:portal:developerexample:sideStep:informCustomer",
+            "signal": "com:axonivy:portal:portaldeveloperexamples:sidestep:informCustomer",
             "processNames": [
               {
                 "value": "/Processes/SideStep/InformCustomer",
