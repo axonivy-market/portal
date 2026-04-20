@@ -18,6 +18,13 @@ If using an IFrame:
 -  Previous page: call ``navigateToPortalEndPage()`` from class ``PortalNavigatorInFrameAPI``.
 -  A specific URL: call ``navigateToUrl(String url)`` from class ``PortalNavigatorInFrameAPI``.
 
+.. warning::
+   Never pass unsanitized, user-controlled input directly as the ``url`` parameter.
+   ``navigateToUrl()`` internally URL-decodes the value and escapes it for JavaScript
+   context via ``SanitizeAPI.escapeForJavascript()``. However, you should still validate
+   the URL at the application boundary (e.g., check that the scheme is ``http`` or
+   ``https``) to prevent open-redirect or protocol-injection attacks.
+
 Without IFrame:
 
 -  Home page: call ``navigateToPortalHome()`` from class ``PortalNavigatorAPI``.
