@@ -64,7 +64,7 @@
           <p:commandLink id="open-notifications-panel" global="false" update="#{p:resolveFirstComponentWithId('has-notifications', view).clientId}" 
           rendered="#{notificationBean.isBellIconNeeded}" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/notificationsBadgeLabel', [notificationBean.countUnread])}"
           actionListener="#{notificationBean.setRender(true)}" onclick="openNotificationPanel()" process="@this">
-            <i class="topbar-icon pi pi-bell" />
+            <i class="topbar-icon ti ti-bell" />
             <h:panelGroup class="notifications-badge" id="topbar-unread-notifications-container">
               <h:outputText id="topbar-unread-notifications"
                 value="#{notificationBean.getUnreadNotifications()}" />

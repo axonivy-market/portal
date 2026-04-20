@@ -39,11 +39,11 @@ public class DocumentIconBean implements Serializable {
   private static final String PDF = "pdf";
   private static final String POWER_POINT = "ppt";
   private static final String TEXT = "txt";
-  private static final String CSV = "ti ti-file-type-xls";
-  private static final String ARCHIVE = "ti ti-file-zip";
-  private static final String XML = "ti ti-file-code";
+  private static final String CSV = "ti ti-file-type-csv";
+  private static final String ARCHIVE = "ti ti-file-type-zip";
+  private static final String XML = "ti ti-file-type-xml";
   private static final String IMAGE = "ti ti-photo";
-  private static final String EMAIL = "ti ti-mail-opened";
+  private static final String EMAIL = "ti ti-mail";
   private static final String DEFAULT = "ti ti-file";
 
   /**
