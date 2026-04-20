@@ -6,6 +6,8 @@
   <ui:composition template="/layouts/BasicTemplate.xhtml">
     <ui:define name="title">AI Search</ui:define>
     <ui:define name="pageContent">
+      <h:outputScript library="js" name="dashboard.js" />
+      <h:outputStylesheet library="css" name="ai-search.css" />
 
       <h:form id="form">
         <p:messages id="messages" />
@@ -16,15 +18,20 @@
             <div class="flex align-items-center gap-2">
               <span class="ui-input-icon-left flex-1">
                 <i class="si si-search" />
-                <p:inputText id="keyword" value="#{data.keyword}" styleClass="w-full"
+                <p:inputText id="keyword" value="#{data.keyword}" styleClass="w-full ai-input"
                   placeholder="Enter keyword to search..."
-                  onkeypress="if (event.keyCode == 13) { PF('searchBtn').jq.click(); return false; }" />
+                  onkeypress="if (event.keyCode == 13) { PF('searchBtn').jq.click(); return false; }">
+                  <p:ajax event="input" delay="300" update="search-btn" />
+                </p:inputText>
               </span>
               <p:commandButton id="search-btn" widgetVar="searchBtn" value="Search"
+                disabled="#{empty data.keyword}"
                 icon="si si-search" iconPos="left"
                 action="#{aISearchBean.searchWithAI(data.keyword)}"
-                update="form"
-                styleClass="ui-button-primary" />
+                update="form results-panel"
+                onstart="$('.ai-input').addClass('ai-loading-input'); $('.ai-btn').addClass('ai-loading-button');"
+                oncomplete="$('.ai-input').removeClass('ai-loading-input'); $('.ai-btn').removeClass('ai-loading-button'); setTimeout(function() { $(window).trigger('resize'); }, 200);"
+                styleClass="ui-button-primary ai-btn" />
             </div>
           </div>
         </div>
@@ -44,71 +51,24 @@
           </div>
         </p:outputPanel>
 
-        <!-- Max clarification rounds warning -->
-        <p:outputPanel id="max-rounds-panel"
-          rendered="#{aISearchBean.searched and not aISearchBean.needsClarification and aISearchBean.clarificationCount ge 2 and aISearchBean.confidence lt 0.7}">
-          <div class="flex align-items-center gap-2 p-2 mb-3 border-round border-1 surface-overlay"
-            style="border-color: var(--yellow-500);">
-            <i class="si si-alert-triangle" style="color: var(--yellow-500);" />
-            <span class="text-color-secondary text-sm">
-              Could not fully understand your query. Showing best-guess results.
-            </span>
-          </div>
-        </p:outputPanel>
-
-        <!-- Clarification panel -->
-        <p:outputPanel id="clarification-panel" rendered="#{aISearchBean.needsClarification}">
-          <div class="p-3 mb-3 border-round border-1 border-primary surface-overlay">
-            <div class="flex align-items-start gap-2 mb-3">
-              <i class="si si-help-circle text-primary text-xl" />
-              <div>
-                <div class="font-bold mb-1">I need a bit more information:</div>
-                <h:outputText value="#{aISearchBean.clarification}" styleClass="text-color-secondary" />
-              </div>
-            </div>
-            <div class="flex align-items-center gap-2">
-              <span class="ui-input-icon-left flex-1">
-                <i class="si si-message-circle" />
-                <p:inputText id="clarification-answer" value="#{aISearchBean.clarificationAnswer}"
-                  styleClass="w-full"
-                  placeholder="Type your answer..."
-                  onkeypress="if (event.keyCode == 13) { PF('clarifyBtn').jq.click(); return false; }" />
-              </span>
-              <p:commandButton id="clarify-btn" widgetVar="clarifyBtn" value="Send"
-                icon="si si-send" iconPos="left"
-                action="#{aISearchBean.answerClarification(data.keyword)}"
-                update="form"
-                styleClass="ui-button-primary" />
-            </div>
-            <div class="text-color-secondary text-sm mt-2">
-              <h:outputText value="Clarification round #{aISearchBean.clarificationCount + 1} of 2" />
-            </div>
-          </div>
-        </p:outputPanel>
-
-        <!-- Results table (hidden during clarification) -->
-        <p:outputPanel id="results-panel" rendered="#{not aISearchBean.needsClarification}">
-          <div class="grid">
-            <div class="col-12">
-              <p:dataTable id="results-table" value="#{aISearchBean.results}" var="result"
-                emptyMessage="No results found."
-                styleClass="w-full"
-                paginator="true" rows="10"
-                paginatorPosition="bottom"
-                paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
-                currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords}">
-                <p:column id="name-col" headerText="Name" sortBy="#{result.name}">
-                  <h:outputText value="#{result.name}" />
-                </p:column>
-                <p:column id="description-col" headerText="Description" sortBy="#{result.description}">
-                  <h:outputText value="#{result.description}" />
-                </p:column>
-              </p:dataTable>
-            </div>
-          </div>
-        </p:outputPanel>
-
       </h:form>
+
+      <!-- Results table -->
+      <p:outputPanel id="results-panel">
+        <div class="grid">
+          <div class="col-12">
+            <p:tabView id="search-results-tabview" activeIndex="0" dynamic="true" cache="false">
+              <p:ajax event="tabChange" oncomplete="setTimeout(function() { $(window).trigger('resize'); }, 100);" />
+              <p:tab id="tasks-tab" title="Tasks (#{aISearchBean.taskCount})">
+                <ic:ch.ivy.addon.portal.generic.dashboard.component.TaskWidget taskWidget="#{aISearchBean.taskWidget}" isReadOnlyMode="true" isAIResult="true"/>
+              </p:tab>
+              <p:tab id="cases-tab" title="Cases (#{aISearchBean.caseCount})">
+                <ic:ch.ivy.addon.portal.generic.dashboard.component.CaseWidget caseWidget="#{aISearchBean.caseWidget}" isReadOnlyMode="true" isAIResult="true"/>
+              </p:tab>
+            </p:tabView>
+          </div>
+        </div>
+      </p:outputPanel>
 
     </ui:define>
   </ui:composition>

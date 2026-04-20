@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
@@ -20,39 +21,159 @@ import com.axonivy.portal.enums.PortalCustomSignature;
 import com.axonivy.portal.enums.PortalSystemMessage;
 import com.axonivy.portal.page.AISearch.SearchResult;
 import com.axonivy.portal.util.filter.field.FilterField;
+import com.axonivy.portal.util.filter.field.FilterFieldFactory;
 import com.axonivy.portal.util.filter.field.TaskFilterFieldFactory;
 
 import ch.ivy.addon.portalkit.datamodel.GlobalSearchAiResultModel;
+import ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget;
+import ch.ivy.addon.portalkit.dto.dashboard.casecolumn.CaseColumnModel;
 import ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.TaskColumnModel;
+import ch.ivy.addon.portalkit.ivydata.service.impl.DashboardCaseService;
+import ch.ivy.addon.portalkit.ivydata.service.impl.DashboardTaskService;
+import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.ITask;
 
 @ManagedBean
 @ViewScoped
 public class AISearchBean {
 
-  private static final double CONFIDENCE_THRESHOLD = 0.7;
-  private static final int MAX_CLARIFICATION_ROUNDS = 2;
-
   private String rephrased;
-  private String clarification;
-  private String clarificationAnswer;
-  private boolean needsClarification;
-  private int clarificationCount;
   private double confidence;
+  private boolean hasTaskFilters;
+  private boolean hasCaseFilters;
   private boolean searched;
+  private int taskCount;
+  private int caseCount;
   private List<SearchResult> results = new ArrayList<>();
   private TaskDashboardWidget taskWidget;
+  private CaseDashboardWidget caseWidget;
   protected Map<String, TaskColumnModel> taskMapHeaders;
+  protected Map<String, CaseColumnModel> caseMapHeaders;
   private Map<String, SortMeta> sortBy = new HashMap<>();
   private List<GlobalSearchAiResultModel> globalSearchResults = new ArrayList<>();
 
+  @PostConstruct
+  public void init() {
+    taskWidget = new TaskDashboardWidget() {
+      private static final long serialVersionUID = 1L;
+
+      @Override
+      public Integer[] loadingItems() {
+        return searched ? super.loadingItems() : new Integer[0];
+      }
+    };
+    taskWidget.setId("ai-task-widget");
+    taskWidget.setName("Tasks");
+
+    ch.ivy.addon.portalkit.dto.WidgetLayout layout = new ch.ivy.addon.portalkit.dto.WidgetLayout();
+    layout.setWidth(12);
+    layout.setHeight(5);
+    taskWidget.setLayout(layout);
+
+    taskWidget.setAutoPosition(true);
+    taskWidget.setSortField(ch.ivy.addon.portalkit.enums.TaskSortField.ID.toString());
+    taskWidget.setSortDescending(true);
+
+    taskWidget.setDataModel(new ch.ivy.addon.portalkit.datamodel.DashboardTaskLazyDataModel() {
+      private static final long serialVersionUID = 1L;
+
+      @Override
+      public void loadFirstTime() {
+        if (hasTaskFilters) {
+          super.loadFirstTime();
+        }
+      }
+
+      @Override
+      public List<ITask> load(int first, int pageSize, Map<String, SortMeta> sortBy, java.util.Map<String, org.primefaces.model.FilterMeta> filterBy) {
+        if (!hasTaskFilters) {
+          setRowCount(0);
+          return new ArrayList<>();
+        }
+        return super.load(first, pageSize, sortBy, filterBy);
+      }
+
+      @Override
+      public int getRowCount() {
+        return hasTaskFilters ? super.getRowCount() : 0;
+      }
+    });
+
+    taskWidget.setColumns(DashboardWidgetUtils.initStandardTaskColumns());
+    taskWidget.setFilters(new ArrayList<>());
+    taskWidget.setUserFilters(new ArrayList<>());
+    DashboardWidgetUtils.buildTaskColumns(taskWidget);
+
+    if (taskWidget.getColumns() != null) {
+      taskMapHeaders = taskWidget.getColumns().stream()
+          .collect(Collectors.toMap(TaskColumnModel::getField, c -> c));
+    } else {
+      taskMapHeaders = new HashMap<>();
+    }
+
+    caseWidget = new CaseDashboardWidget() {
+      private static final long serialVersionUID = 1L;
+
+      @Override
+      public Integer[] loadingItems() {
+        return searched ? super.loadingItems() : new Integer[0];
+      }
+    };
+    caseWidget.setId("ai-case-widget");
+    caseWidget.setName("Cases");
+    caseWidget.setLayout(layout);
+    caseWidget.setAutoPosition(true);
+    caseWidget.setSortField(ch.ivy.addon.portalkit.enums.CaseSortField.ID.toString());
+    caseWidget.setSortDescending(true);
+
+    caseWidget.setDataModel(new ch.ivy.addon.portalkit.datamodel.DashboardCaseLazyDataModel() {
+      private static final long serialVersionUID = 1L;
+
+      @Override
+      public void loadFirstTime() {
+        if (hasCaseFilters) {
+          super.loadFirstTime();
+        }
+      }
+
+      @Override
+      public List<ICase> load(int first, int pageSize, Map<String, SortMeta> sortBy, java.util.Map<String, org.primefaces.model.FilterMeta> filterBy) {
+        if (!hasCaseFilters) {
+          setRowCount(0);
+          return new ArrayList<>();
+        }
+        return super.load(first, pageSize, sortBy, filterBy);
+      }
+
+      @Override
+      public int getRowCount() {
+        return hasCaseFilters ? super.getRowCount() : 0;
+      }
+    });
+
+    caseWidget.setColumns(DashboardWidgetUtils.initStandardColumns());
+    caseWidget.setFilters(new ArrayList<>());
+    caseWidget.setUserFilters(new ArrayList<>());
+    DashboardWidgetUtils.buildCaseColumns(caseWidget);
+
+    if (caseWidget.getColumns() != null) {
+      caseMapHeaders = caseWidget.getColumns().stream()
+          .collect(Collectors.toMap(CaseColumnModel::getField, c -> c));
+    } else {
+      caseMapHeaders = new HashMap<>();
+    }
+  }
+
   public void searchWithAI(String keyword) {
+    // Ivy.log().info();
     searched = true;
-    clarificationCount = 0;
-    needsClarification = false;
-    clarificationAnswer = null;
+    hasTaskFilters = false;
+    hasCaseFilters = false;
+    taskCount = 0;
+    caseCount = 0;
     results.clear();
 
     try {
@@ -63,42 +184,10 @@ public class AISearchBean {
     }
   }
 
-  public void answerClarification(String originalKeyword) {
-    int currentRound = ++clarificationCount;
-    String combinedQuery = "Original query: \"" + originalKeyword + "\"\nClarification answer: \"" + clarificationAnswer
-        + "\"";
-    clarificationAnswer = null;
-
-    try {
-      AISearchResponse response = getAIResponse(combinedQuery);
-
-      if (currentRound >= MAX_CLARIFICATION_ROUNDS) {
-        // Force apply filters regardless of confidence
-        needsClarification = false;
-        rephrased = response.getRephrased();
-        confidence = response.getConfidence();
-        clarification = null;
-        populateResults(response);
-      } else {
-        applyResponse(response);
-      }
-    } catch (Exception e) {
-      Ivy.log().error("AI clarification failed", e);
-    }
-  }
-
   private void applyResponse(AISearchResponse response) {
     rephrased = response.getRephrased();
     confidence = response.getConfidence();
-
-    if (response.getConfidence() < CONFIDENCE_THRESHOLD) {
-      needsClarification = true;
-      clarification = response.getClarification();
-    } else {
-      needsClarification = false;
-      clarification = null;
-      populateResults(response);
-    }
+    populateResults(response);
   }
 
   private void populateResults(AISearchResponse response) {
@@ -107,6 +196,7 @@ public class AISearchBean {
         "Applying filters — taskFilters: " + response.getTaskFilters().toString() + ", caseFilters: "
             + response.getCaseFilters().toString());
     applyTaskFilters(response.getTaskFilters());
+    applyCaseFilters(response.getCaseFilters());
   }
 
   private AISearchResponse getAIResponse(String query) throws Exception {
@@ -125,7 +215,17 @@ public class AISearchBean {
   }
 
   private void applyTaskFilters(List<DashboardFilter> filters) {
-    taskWidget.getUserFilters().clear();
+    if (taskWidget.getUserFilters() != null) {
+      taskWidget.getUserFilters().clear();
+    }
+
+    if (CollectionUtils.isEmpty(filters)) {
+      taskWidget.setUserFilters(new ArrayList<>());
+      taskWidget.getDataModel().setRowCount(0);
+      return;
+    }
+    
+    hasTaskFilters = true;
 
     filters.forEach(this::buildFilterFieldsForTask);
     updateTaskFilterLabels(filters.stream()
@@ -134,6 +234,8 @@ public class AISearchBean {
 
     taskWidget.setUserFilters(filters);
     List<ITask> taskResults = loadTaskWidgetData();
+    taskCount = DashboardTaskService.getInstance().countDashboardTaskByCriteria(taskWidget.getDataModel().getCriteria()).intValue();
+    
     if (CollectionUtils.isNotEmpty(taskResults)) {
       taskResults.forEach(item -> {
         globalSearchResults.add(new GlobalSearchAiResultModel(
@@ -141,6 +243,39 @@ public class AISearchBean {
             item.getName(),
             item.getDescription(),
             "TASK"));
+      });
+    }
+  }
+
+  private void applyCaseFilters(List<DashboardFilter> filters) {
+    if (caseWidget.getUserFilters() != null) {
+      caseWidget.getUserFilters().clear();
+    }
+
+    if (CollectionUtils.isEmpty(filters)) {
+      caseWidget.setUserFilters(new ArrayList<>());
+      caseWidget.getDataModel().setRowCount(0);
+      return;
+    }
+    
+    hasCaseFilters = true;
+
+    filters.forEach(this::buildFilterFieldsForCase);
+    updateCaseFilterLabels(filters.stream()
+        .map(DashboardFilter::getFilterField)
+        .collect(Collectors.toList()));
+
+    caseWidget.setUserFilters(filters);
+    List<ICase> caseResults = loadCaseWidgetData();
+    caseCount = DashboardCaseService.getInstance().countByCaseQuery(caseWidget.getDataModel().getCriteria().buildQuery()).intValue();
+    
+    if (CollectionUtils.isNotEmpty(caseResults)) {
+      caseResults.forEach(item -> {
+        globalSearchResults.add(new GlobalSearchAiResultModel(
+            item.getId(),
+            item.getName(),
+            item.getDescription(),
+            "CASE"));
       });
     }
   }
@@ -153,11 +288,32 @@ public class AISearchBean {
     }
   }
 
+  private void buildFilterFieldsForCase(DashboardFilter filter) {
+    FilterField filterField = FilterFieldFactory.findBy(filter.getField());
+    if (filterField != null) {
+      filterField.initFilter(filter);
+      filter.setFilterField(filterField);
+    }
+  }
+
   private void updateTaskFilterLabels(List<FilterField> filterFields) {
     for (FilterField filter : filterFields) {
-      TaskColumnModel taskColumnModel = this.taskMapHeaders.get(filter.getName());
-      if (taskColumnModel != null) {
-        filter.setLabel(taskColumnModel.getHeaderText());
+      if (filter != null) {
+        TaskColumnModel taskColumnModel = this.taskMapHeaders.get(filter.getName());
+        if (taskColumnModel != null) {
+          filter.setLabel(taskColumnModel.getHeaderText());
+        }
+      }
+    }
+  }
+
+  private void updateCaseFilterLabels(List<FilterField> filterFields) {
+    for (FilterField filter : filterFields) {
+      if (filter != null) {
+        CaseColumnModel caseColumnModel = this.caseMapHeaders.get(filter.getName());
+        if (caseColumnModel != null) {
+          filter.setLabel(caseColumnModel.getHeaderText());
+        }
       }
     }
   }
@@ -167,44 +323,17 @@ public class AISearchBean {
     return taskWidget.getDataModel().load(0, 5, sortBy, null);
   }
 
+  private List<ICase> loadCaseWidgetData() {
+    caseWidget.getDataModel().getResults().clear();
+    return caseWidget.getDataModel().load(0, 5, sortBy, null);
+  }
+
   public String getRephrased() {
     return rephrased;
   }
 
   public void setRephrased(String rephrased) {
     this.rephrased = rephrased;
-  }
-
-  public String getClarification() {
-    return clarification;
-  }
-
-  public void setClarification(String clarification) {
-    this.clarification = clarification;
-  }
-
-  public String getClarificationAnswer() {
-    return clarificationAnswer;
-  }
-
-  public void setClarificationAnswer(String clarificationAnswer) {
-    this.clarificationAnswer = clarificationAnswer;
-  }
-
-  public boolean isNeedsClarification() {
-    return needsClarification;
-  }
-
-  public void setNeedsClarification(boolean needsClarification) {
-    this.needsClarification = needsClarification;
-  }
-
-  public int getClarificationCount() {
-    return clarificationCount;
-  }
-
-  public void setClarificationCount(int clarificationCount) {
-    this.clarificationCount = clarificationCount;
   }
 
   public double getConfidence() {
@@ -229,5 +358,45 @@ public class AISearchBean {
 
   public void setResults(List<SearchResult> results) {
     this.results = results;
+  }
+
+  public TaskDashboardWidget getTaskWidget() {
+    return taskWidget;
+  }
+
+  public void setTaskWidget(TaskDashboardWidget taskWidget) {
+    this.taskWidget = taskWidget;
+  }
+
+  public boolean isHasTaskFilters() {
+    return hasTaskFilters;
+  }
+
+  public boolean isHasCaseFilters() {
+    return hasCaseFilters;
+  }
+
+  public int getTaskCount() {
+    return taskCount;
+  }
+
+  public void setTaskCount(int taskCount) {
+    this.taskCount = taskCount;
+  }
+
+  public int getCaseCount() {
+    return caseCount;
+  }
+
+  public void setCaseCount(int caseCount) {
+    this.caseCount = caseCount;
+  }
+
+  public CaseDashboardWidget getCaseWidget() {
+    return caseWidget;
+  }
+
+  public void setCaseWidget(CaseDashboardWidget caseWidget) {
+    this.caseWidget = caseWidget;
   }
 }

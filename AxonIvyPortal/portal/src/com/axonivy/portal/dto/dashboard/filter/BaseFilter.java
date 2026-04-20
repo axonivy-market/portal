@@ -14,6 +14,7 @@ import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import com.axonivy.portal.enums.dashboard.filter.FilterFormat;
 import com.axonivy.portal.enums.dashboard.filter.FilterOperator;
 import com.axonivy.portal.enums.dashboard.filter.FilterPeriodType;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -55,6 +56,7 @@ public class BaseFilter implements Serializable{
   @JsonIgnore
   private Date toDate;
 
+  @JsonFormat(with = JsonFormat.Feature.ACCEPT_SINGLE_VALUE_AS_ARRAY)
   private List<String> values;
 
   private String value;
