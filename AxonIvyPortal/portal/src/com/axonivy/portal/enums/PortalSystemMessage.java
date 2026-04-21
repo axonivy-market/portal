@@ -6,7 +6,7 @@ import java.nio.charset.StandardCharsets;
 
 public enum PortalSystemMessage {
 
-  FILTER_CREATION_INSTRUCTION1(loadPrompt("/com/axonivy/portal/util/prompts/filter-creation-instruction.md")),
+  FILTER_CREATION_INSTRUCTION1(loadPrompt("/com/axonivy/portal/util/prompts/AI-system-instruction.md")),
 
   FILTER_CREATION_INSTRUCTION(
     """

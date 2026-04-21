@@ -36,6 +36,7 @@ Add "values" only when the operator requires it.
 - category: (same as task)
 
 ## Rules
+- Please use tool findCustomfieldTool first to init the data.
 - Date values: YYYY-MM-DD
 - responsible/owner values: always include both "#value" and "value". e.g. ["#ava", "ava"]
 - Only use operators valid for the given field.

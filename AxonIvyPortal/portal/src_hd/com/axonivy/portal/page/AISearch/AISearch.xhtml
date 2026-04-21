@@ -7,6 +7,7 @@
     <ui:define name="title">AI Search</ui:define>
     <ui:define name="pageContent">
       <h:outputScript library="js" name="dashboard.js" />
+      <h:outputScript library="js" name="task-widget.js" />
       <h:outputStylesheet library="css" name="ai-search.css" />
 
       <h:form id="form">
@@ -30,7 +31,7 @@
                 action="#{aISearchBean.searchWithAI(data.keyword)}"
                 update="form results-panel"
                 onstart="$('.ai-input').addClass('ai-loading-input'); $('.ai-btn').addClass('ai-loading-button');"
-                oncomplete="$('.ai-input').removeClass('ai-loading-input'); $('.ai-btn').removeClass('ai-loading-button'); setTimeout(function() { $(window).trigger('resize'); }, 200);"
+                oncomplete="$('.ai-input').removeClass('ai-loading-input'); $('.ai-btn').removeClass('ai-loading-button');"
                 styleClass="ui-button-primary ai-btn" />
             </div>
           </div>
@@ -57,18 +58,34 @@
       <p:outputPanel id="results-panel">
         <div class="grid">
           <div class="col-12">
-            <p:tabView id="search-results-tabview" activeIndex="0" dynamic="true" cache="false">
-              <p:ajax event="tabChange" oncomplete="setTimeout(function() { $(window).trigger('resize'); }, 100);" />
+            <p:tabView id="search-results-tabview" activeIndex="0">
+              <!-- Listen for tab switches without complex logic -->
               <p:tab id="tasks-tab" title="Tasks (#{aISearchBean.taskCount})">
-                <ic:ch.ivy.addon.portal.generic.dashboard.component.TaskWidget taskWidget="#{aISearchBean.taskWidget}" isReadOnlyMode="true" isAIResult="true"/>
+                  <ic:ch.ivy.addon.portal.generic.dashboard.component.TaskWidget taskWidget="#{aISearchBean.taskWidget}" isReadOnlyMode="true" isAIResult="true"/>
               </p:tab>
               <p:tab id="cases-tab" title="Cases (#{aISearchBean.caseCount})">
-                <ic:ch.ivy.addon.portal.generic.dashboard.component.CaseWidget caseWidget="#{aISearchBean.caseWidget}" isReadOnlyMode="true" isAIResult="true"/>
+                  <ic:ch.ivy.addon.portal.generic.dashboard.component.CaseWidget caseWidget="#{aISearchBean.caseWidget}" isReadOnlyMode="true" isAIResult="true"/>
               </p:tab>
             </p:tabView>
           </div>
         </div>
       </p:outputPanel>
+      <script>
+      // Scroll events do not bubble, so jQuery delegated events .on('scroll', ...) fail.
+      // We must use a native capture listener to intercept scroll events from the body.
+      document.addEventListener('scroll', function(e) {
+        if (e.target &amp;&amp; e.target.classList &amp;&amp; e.target.classList.contains('ui-datatable-scrollable-body')) {
+            var scrollLeft = e.target.scrollLeft;
+            var datatable = e.target.closest('.ui-datatable-scrollable');
+            if (datatable) {
+                var headerBox = datatable.querySelector('.ui-datatable-scrollable-header-box');
+                if (headerBox) {
+                    headerBox.style.marginLeft = -scrollLeft + 'px';
+                }
+            }
+        }
+      }, true); // true for capture phase!
+      </script>
 
     </ui:define>
   </ui:composition>
