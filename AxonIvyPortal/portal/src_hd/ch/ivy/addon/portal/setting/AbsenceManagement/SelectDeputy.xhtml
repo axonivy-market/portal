@@ -42,7 +42,7 @@
 
           <p:commandButton id="add-deputy-button" styleClass="add-deputy-button px-2 ml-2 w-2" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/add')}"
             ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/add')}"
-            disabled="#{absenceManagementBean.selectedDeputy == null}" actionListener="#{absenceManagementBean.addDeputy()}" global="false"
+            disabled="#{absenceManagementBean.selectedDeputy == null}" actionListener="#{absenceManagementBean.addDeputy(absenceManagementBean.selectedDeputyRole.deputyRoleType)}" global="false"
             update="error-message selected-deputy-fieldset" ignoreAutoUpdate="true" />
         </h:panelGroup>
       </div>

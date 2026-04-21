@@ -20,6 +20,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     Substitutes: 'Stellvertreter:'
     absences: Abwesenheiten
     addAbsence: Abwesenheit erfassen
+    addSubstitute: Stellvertreter hinzufügen
     deputies: Stellvertreter
     description: Während meiner Abwesenheit werden Workflow Aufgaben automatisch den definierten Stellvertretern zugeteilt.
     editAbsence: Abwesenheiten bearbeiten
@@ -29,13 +30,12 @@ ch.ivy.addon.portalkit.ui.jsf:
     period: Zeitraum
     personalTaskDuringAbsenceDeputies: Vertretungen für persönlich zugewiesene Aufgaben während der Abwesenheit
     personalTaskPermanentDeputies: Ständige Stellvertreter für persönlich zugewiesene Aufgaben
-    addSubstitute: Stellvertreter hinzufügen
     selectDeputies: Stellvertreter auswählen
     selectSubstitute: Stellvertreter auswählen
     selectedDeputies: Ausgewählte Stellvertreter
     showAbsencesInThePast: Vergangene Abwesenheiten anzeigen
-    substituteType: Stellvertretertyp
     substituteName: Stellvertretername
+    substituteType: Stellvertretertyp
     substitutedUser: Vertretener Benutzer
     taskForRole: 'Aufgabe für Rolle: '
     till: Bis
@@ -55,10 +55,12 @@ ch.ivy.addon.portalkit.ui.jsf:
     myAbsences: Meine Abwesenheit
     myDeputies: Meine Stellvertreter
     nextAbsence: Bevorstehende Abwesenheit
+    noSubstitutesDefined: Keine Stellvertreter definiert
+    notSubstitutingAnybody: Derzeit kein Stellvertreter für andere
     requestAbsences: Abwesenheiten beantragen
-    substitutes: Stellvertreter
     selectedDeputyFor: Ausgewählter Benutzer ist Stellvertreter für
     selectedUser: Ausgewählter Benutzer
+    substitutes: Stellvertreter
   AccessibilityShortcuts:
     processName: Barrierefreiheit Tastenkombinationen Widgets
   AllTasks:
@@ -287,7 +289,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       hideUploadDocumentForDoneCaseNote: Auf "true" setzen, um das Hochladen und Löschen von Dokumenten bei einem abgeschlossenen Vorgang zu unterbinden.
       hideYear: Auf "true" um das Jahr auszublenden, andernfalls wird es angezeigt.
       imageUploadSizeLimit: Legen Sie das Größenlimit für das Hochladen von Bildern in Megabyte (MB) fest. Der Standardwert beträgt 6 MB.
-      sidebarMode: Steuert den Modus der Seitenleiste. Hover öffnet beim Darüberfahren, Klick verwendet eine Umschalttaste, Fixiert hält sie immer geöffnet, Versteckt entfernt die Seitenleiste vollständig.
       loggedInUserFormat: Definiert das Format, um den eingeloggten Benutzer anzuzeigen
       refreshTaskListIntervalNote: Intervall in Sekunden um die Aufgabenliste neu zu laden.
       showAvatar: Zum Ein- und Ausschalten der Anzeige von Benutzer-/Rollenavataren.
@@ -299,6 +300,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       showQuickGlobalSearch: Zum Ein-/Ausschalten der Anzeige der globalen Schnellsuche.
       showTaskDurationTime: Zum Ein-/Ausschalten der Anzeige der Bearbeitungszeit auf der Aufgabendetailseite.
       showTooltipTechnicalName: Ermöglicht die Anzeige des technischen Namens der Benutzer in den Tooltips.
+      sidebarMode: Steuert den Modus der Seitenleiste. Hover öffnet beim Darüberfahren, Klick verwendet eine Umschalttaste, Fixiert hält sie immer geöffnet, Versteckt entfernt die Seitenleiste vollständig.
       uploadDocumentWhiteListExtensionNote: 'Leer lassen, falls Sie alle Formate erlauben. Falls Sie nur eine geringe Anzahl an Formate erlauben möchten (White list), können Sie diese hier, mit Komma getrennt, aufführen. Z.B.: pdf, txt, doc, docx.'
     key: Schlüssel
     link: Link
@@ -459,16 +461,10 @@ ch.ivy.addon.portalkit.ui.jsf:
     Update: Aktualisieren
     Widget: Widget
     action: Aktionen
-    actionMenuContext: "Aktionsmenü für Prozess {0} öffnen"
-    taskActionMenuContext: "Aktionsmenü für Aufgabe {0} öffnen"
+    actionMenuContext: Aktionsmenü für Prozess {0} öffnen
     active: Aktiviert
-    collapseWidgetContext: "Widget {0} minimieren"
-    expandWidgetContext: "Widget {0} erweitern"
-    openWidgetFiltersContext: "Filter für {0} öffnen"
-    openWidgetFiltersWithCountContext: "Filter für {0} öffnen, {1} aktive Filter"
-    openWidgetInfoContext: "Widget-Informationen zu {0} öffnen"
     add: Hinzufügen
-    addContext: "{0} hinzufügen"
+    addContext: '{0} hinzufügen'
     addDocument: Dokument hinzufügen
     addLink: Link hinzufügen
     addNote: Notiz hinzufügen
@@ -476,14 +472,14 @@ ch.ivy.addon.portalkit.ui.jsf:
     allTypes: Alle Typen
     allowPng: Nur das png Format wird unterstützt
     apply: Anwenden
-    applyContext: "{0} anwenden"
+    applyContext: '{0} anwenden'
     at: am
     author: Autor
     back: Zurück
     backToCaseMap: Zurück zur Case Map
     backgroundColor: Hintergrundfarbe
     cancel: Abbrechen
-    cancelContext: "{0} abbrechen"
+    cancelContext: '{0} abbrechen'
     case: Vorgang
     caseCategory: Vorgangskategorie
     caseInformation: Vorgangsinformationen
@@ -491,8 +487,9 @@ ch.ivy.addon.portalkit.ui.jsf:
     categories: Kategorien
     change: Ändern
     close: Schließen
-    closeContext: "{0} schließen"
+    closeContext: '{0} schließen'
     cockpit: Cockpit
+    collapseWidgetContext: Widget {0} minimieren
     colors: Farben
     comment: Kommentar
     completedOn: Erledigt am
@@ -508,13 +505,13 @@ ch.ivy.addon.portalkit.ui.jsf:
     dateRequired: Datum darf nicht leer sein.
     day: Tag
     dayUnit: Tag
-    days: Tage
+    days: Tag(e)
     default: Standardeinstellung
     defaultNotificationMessage: Hmm... Hier ist wohl etwas schief gelaufen.
     delete: Löschen
-    deleteContext: "{0} löschen"
     deleteAbsenceHeaderText: 'Diese Abwesenheit löschen? '
     deleteChartHeaderText: Dieses Diagramm löschen?
+    deleteContext: '{0} löschen'
     deleteDocumentHeaderText: 'Dieses Dokument löschen? '
     deleteFilterHeaderText: Diesen Filter löschen?
     deleteSettingHeaderText: Diese Einstellung löschen?
@@ -536,6 +533,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     errorXhr: Fehler beim aktualisieren der Webseiteinhalte
     escalationTaskHeaderText: Eskalation auslösen
     escalationTaskMessage: Frist wird auf jetzt gesetzt, somit läuft die Bearbeitungsfrist ab. Sind Sie sicher?
+    expandWidgetContext: Widget {0} erweitern
     filter:
       from: von
       moreOptions: Mehr Optionen
@@ -592,9 +590,12 @@ ch.ivy.addon.portalkit.ui.jsf:
     ok: OK
     okContext: OK {0}
     'on': am
+    openWidgetFiltersContext: Filter für {0} öffnen
+    openWidgetFiltersWithCountContext: Filter für {0} öffnen, {1} aktive Filter
+    openWidgetInfoContext: Widget-Informationen zu {0} öffnen
     pin: Anheften
-    pinCaseContext: "Vorgang {0} anheften"
-    pinTaskContext: "Aufgabe {0} anheften"
+    pinCaseContext: Vorgang {0} anheften
+    pinTaskContext: Aufgabe {0} anheften
     pleaseAddDocument: Verwenden Sie bitte den Link oben, um Dokumente hochzuladen
     pleaseAddNote: Verwenden Sie bitte den Link oben, um Notizen hochzuladen
     previousStage: Vorherige Stufe
@@ -617,8 +618,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     restoreToDefaultChartHeaderText: Auf Standarddiagramme zurücksetzen?
     role: Rolle
     save: Speichern
-    saveContext: "{0} speichern"
     saveAll: Speichern
+    saveContext: '{0} speichern'
     saveSuccessfully: Daten erfolgreich gespeichert.
     search: Suche
     second: Sekunde
@@ -642,6 +643,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     state: Status
     status: Status
     switchToDesktopVersion: Zur Desktop-Version wechseln
+    taskActionMenuContext: Aktionsmenü für Aufgabe {0} öffnen
     taskCanceledAndLeftSuccessfully: Sie haben die Aufgabe abgebrochen. Sie finden die Aufgabe im Dashboard oder in Ihrer Aufgabenliste.
     taskFinishedSuccessfully: Sie haben die Aufgabe erfolgreich abgeschlossen
     taskFromSubstitution: Sie sehen diese Aufgabe, weil Sie der Stellvertreter sind
@@ -656,8 +658,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     typeAllUsers: Alle Benutzer
     typeOnlyMe: Nur für mich
     unpin: Anheftung aufheben
-    unpinCaseContext: "Anheftung von Vorgang {0} aufheben"
-    unpinTaskContext: "Anheftung von Aufgabe {0} aufheben"
+    unpinCaseContext: Anheftung von Vorgang {0} aufheben
+    unpinTaskContext: Anheftung von Aufgabe {0} aufheben
     uploadHere: Hier hochladen
     uploadOneHere: Auswählen
     user: '{0} Benutzer'

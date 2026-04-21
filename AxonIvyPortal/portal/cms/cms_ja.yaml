@@ -55,6 +55,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     myAbsences: 私の不在情報
     myDeputies: 私の代行者情報
     nextAbsence: 次の不在日程
+    noSubstitutesDefined: 代行者が定義されていません
+    notSubstitutingAnybody: 現在、誰の代行者でもありません
     requestAbsences: 不在申請
     substitutes: 代行者
     selectedDeputyFor: 選択されたユーザーは、以下のメンバーの代行者です

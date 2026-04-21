@@ -1356,6 +1356,17 @@ body.in-dialog .ui-widget-overlay {
   background-color: transparent;
 }
 
+.absence-user-selection-wrapper [id$="autocomplete-panel"] {
+  flex-direction: row !important;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.absence-user-selection-wrapper [id$="autocomplete-panel"] label {
+  white-space: nowrap;
+  margin-bottom: 0;
+}
+
 .time-information .si-graphic-tablet-drawing-pen,
 .general-information .si-graphic-tablet-drawing-pen,
 .task-detail-description .si-add-circle,

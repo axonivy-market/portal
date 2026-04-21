@@ -55,6 +55,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     myAbsences: My absences
     myDeputies: My substitutes
     nextAbsence: Upcoming absence
+    noSubstitutesDefined: No substitutes defined
+    notSubstitutingAnybody: Currently not substituting anybody
     requestAbsences: Request absences
     selectedDeputyFor: Selected user is substitute for
     selectedUser: Selected user
@@ -501,7 +503,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     dateRequired: Date can not be empty.
     day: Day
     dayUnit: day
-    days: days
+    days: day(s)
     default: Default
     defaultNotificationMessage: Hmm... Looks like something went wrong.
     delete: Delete

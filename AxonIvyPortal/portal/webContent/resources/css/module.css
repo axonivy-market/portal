@@ -3240,10 +3240,6 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   display: none;
 }
 
-.substitution-table .ui-datatable-empty-message td {
-  padding-left: 0 !important;
-}
-
 .absences-management-container .substitute-table tbody.ui-datatable-data .substition-role-display-name,
 .substitute-table .task-responsible-link,
 .absences-management-container .substitution-table tbody.ui-datatable-data .substition-role-display-name {

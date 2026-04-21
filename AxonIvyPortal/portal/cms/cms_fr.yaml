@@ -20,6 +20,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     Substitutes: 'Remplaçants:'
     absences: Absences
     addAbsence: Ajouter une absence
+    addSubstitute: Ajouter un substitut
     deputies: Remplaçant
     description: Veuillez inscrire vos vacances, maladies ou autres obligations extérieures conduisant à une absence.
     editAbsence: Editer les absences
@@ -29,13 +30,12 @@ ch.ivy.addon.portalkit.ui.jsf:
     period: Période
     personalTaskDuringAbsenceDeputies: Remplacer les tâches assignées personnellement pendant l'absence
     personalTaskPermanentDeputies: Remplacement permanent des tâches confiées personnellement
-    addSubstitute: Ajouter un substitut
     selectDeputies: Choisir des substituts
     selectSubstitute: Sélectionner un substitut
     selectedDeputies: Substituts sélectionnés
     showAbsencesInThePast: Afficher les absences du passé
-    substituteType: Type de substitut
     substituteName: Nom du substitut
+    substituteType: Type de substitut
     substitutedUser: Utilisateur remplacé
     taskForRole: 'Tâche pour le rôle:'
     till: Jusqu'à
@@ -55,10 +55,12 @@ ch.ivy.addon.portalkit.ui.jsf:
     myAbsences: Mon absence
     myDeputies: Mes substituts
     nextAbsence: Absence à venir
+    noSubstitutesDefined: Aucun remplaçant défini
+    notSubstitutingAnybody: Ne remplace actuellement personne
     requestAbsences: Demander des absences
-    substitutes: Remplaçants
     selectedDeputyFor: L'utilisateur sélectionné est un remplaçant de
     selectedUser: Utilisateur sélectionné
+    substitutes: Remplaçants
   AccessibilityShortcuts:
     processName: Raccourcis d'accessibilité Widgets
   AllTasks:
@@ -287,7 +289,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       hideUploadDocumentForDoneCaseNote: Définissez la valeur true pour refuser le téléchargement (également supprimer) du document une fois la requête terminée.
       hideYear: Définissez la valeur true, l'année sera cachée, sinon elle sera montrée.
       imageUploadSizeLimit: Définissez la limite de taille pour le téléchargement d’images en mégaoctets (Mo). La valeur par défaut est de 6 Mo.
-      sidebarMode: Contrôle le mode de la barre latérale. Survol s'ouvre au survol, Clic utilise un bouton bascule, Fixe la garde toujours ouverte, Masqué supprime complètement la barre latérale.
       loggedInUserFormat: L'option pour afficher le format de l'utilisateur connecté
       refreshTaskListIntervalNote: Intervalle d'actualisation de la liste des tâches en secondes.
       showAvatar: Pour activer/désactiver l'affichage des avatars des utilisateurs/rôles.
@@ -299,6 +300,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       showQuickGlobalSearch: Pour activer/désactiver l'affichage de la recherche globale rapide.
       showTaskDurationTime: Pour activer/désactiver l'affichage de la durée dans la page des détails de la tâche.
       showTooltipTechnicalName: Activer l'affichage du nom technique des utilisateurs dans les infobulles.
+      sidebarMode: Contrôle le mode de la barre latérale. Survol s'ouvre au survol, Clic utilise un bouton bascule, Fixe la garde toujours ouverte, Masqué supprime complètement la barre latérale.
       uploadDocumentWhiteListExtensionNote: 'Laissez la valeur vide si vous autorisez toutes les extensions. Si juste autoriser quelques extensions, listez les extensions ici, séparées par des virgules. Exemple: pdf, txt, doc, docx.'
     key: Clé
     link: Lien
@@ -459,16 +461,10 @@ ch.ivy.addon.portalkit.ui.jsf:
     Update: Mettre à jour
     Widget: Widget
     action: Actions
-    actionMenuContext: "Ouvrir le menu d'actions pour le processus {0}"
-    taskActionMenuContext: "Ouvrir le menu d'actions pour la tâche {0}"
+    actionMenuContext: Ouvrir le menu d'actions pour le processus {0}
     active: Activé
-    collapseWidgetContext: "Réduire le widget {0}"
-    expandWidgetContext: "Agrandir le widget {0}"
-    openWidgetFiltersContext: "Ouvrir les filtres de {0}"
-    openWidgetFiltersWithCountContext: "Ouvrir les filtres de {0}, {1} filtres actifs"
-    openWidgetInfoContext: "Ouvrir les informations du widget {0}"
     add: Ajouter
-    addContext: "Ajouter {0}"
+    addContext: Ajouter {0}
     addDocument: Ajouter un document
     addLink: Ajouter un lien
     addNote: Ajouter une note
@@ -476,14 +472,14 @@ ch.ivy.addon.portalkit.ui.jsf:
     allTypes: Tous les types
     allowPng: Seulement les types .png autorisés
     apply: Utiliser
-    applyContext: "Utiliser {0}"
+    applyContext: Utiliser {0}
     at: le
     author: Auteur
     back: Retour
     backToCaseMap: Retour à la carte des cas
     backgroundColor: Couleur de fond
     cancel: Annuler
-    cancelContext: "Annuler {0}"
+    cancelContext: Annuler {0}
     case: Dossier
     caseCategory: Catégorie des cas
     caseInformation: Information sur le cas
@@ -491,8 +487,9 @@ ch.ivy.addon.portalkit.ui.jsf:
     categories: Catégories
     change: Modifier
     close: Fermer
-    closeContext: "Fermer {0}"
+    closeContext: Fermer {0}
     cockpit: Cockpit
+    collapseWidgetContext: Réduire le widget {0}
     colors: Couleur
     comment: Commentaire
     completedOn: Fini le
@@ -508,13 +505,13 @@ ch.ivy.addon.portalkit.ui.jsf:
     dateRequired: La date doit être remplie
     day: journée
     dayUnit: jour
-    days: journées
+    days: jour(s)
     default: Par défaut
     defaultNotificationMessage: Hmm... On dirait que quelque chose ne va pas.
     delete: Supprimer
-    deleteContext: "Supprimer {0}"
     deleteAbsenceHeaderText: Supprimer cette absence ?
     deleteChartHeaderText: Supprimer ce tableau ?
+    deleteContext: Supprimer {0}
     deleteDocumentHeaderText: Supprimer ce document ?
     deleteFilterHeaderText: Supprimer ce filtre ?
     deleteSettingHeaderText: Supprimer ce paramètre ?
@@ -536,6 +533,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     errorXhr: N'a pas réussi à mettre à jour le contenu du site Web
     escalationTaskHeaderText: Escalader
     escalationTaskMessage: L'expiration est fixée à maintenant, donc la tâche expire. Etes-vous sûr?
+    expandWidgetContext: Agrandir le widget {0}
     filter:
       from: du
       moreOptions: Plus d'options
@@ -592,9 +590,12 @@ ch.ivy.addon.portalkit.ui.jsf:
     ok: OK
     okContext: OK {0}
     'on': le
+    openWidgetFiltersContext: Ouvrir les filtres de {0}
+    openWidgetFiltersWithCountContext: Ouvrir les filtres de {0}, {1} filtres actifs
+    openWidgetInfoContext: Ouvrir les informations du widget {0}
     pin: Épingler
-    pinCaseContext: "Épingler le cas {0}"
-    pinTaskContext: "Épingler la tâche {0}"
+    pinCaseContext: Épingler le cas {0}
+    pinTaskContext: Épingler la tâche {0}
     pleaseAddDocument: Veuillez ajouter un document avec le lien ci-dessus.
     pleaseAddNote: Veuillez ajouter une note avec le lien ci-dessus.
     previousStage: Étape précédente
@@ -617,8 +618,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     restoreToDefaultChartHeaderText: Rétablir les graphiques par défaut ?
     role: Rôle
     save: Enregistrer
-    saveContext: "Enregistrer {0}"
     saveAll: Enregistrer tout
+    saveContext: Enregistrer {0}
     saveSuccessfully: Les données ont été correctement enregistrées
     search: Recherche
     second: seconde
@@ -642,6 +643,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     state: Etat
     status: Etat
     switchToDesktopVersion: Passer à la version de bureau
+    taskActionMenuContext: Ouvrir le menu d'actions pour la tâche {0}
     taskCanceledAndLeftSuccessfully: Vous avez annulé et quitté la tâche avec succès. Vous pouvez trouver la tâche dans le tableau de bord ou dans votre liste de tâches.
     taskFinishedSuccessfully: Vous avez terminé la tâche avec succès
     taskFromSubstitution: Vous voyez cette tâche parce que vous êtes le remplaçant
@@ -656,8 +658,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     typeAllUsers: Tous les utilisateurs
     typeOnlyMe: Seulement pour moi
     unpin: Désépingler
-    unpinCaseContext: "Désépingler le cas {0}"
-    unpinTaskContext: "Désépingler la tâche {0}"
+    unpinCaseContext: Désépingler le cas {0}
+    unpinTaskContext: Désépingler la tâche {0}
     uploadHere: Téléchargez ici
     uploadOneHere: Téléchargez-en un ici
     user: '{0} utilisateur'
