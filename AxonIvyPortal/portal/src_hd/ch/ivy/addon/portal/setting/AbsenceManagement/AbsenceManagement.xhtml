@@ -175,12 +175,16 @@
                         rendered="#{absenceManagementBean.canCreateSubstitute(absenceManagementBean.selectedAbsenceUser)}" />
                     </div>
                     <div id="username-deputy" class="ui-g-12 u-no-padding-top">
+                      <div class="setting-header ui-g-12 u-no-padding-bottom">
+                        <h3 class="mb-0">#{ivy.cms.co(data.isSupervisor ? '/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/definedDeputies'
+                          : '/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/myDeputies')}</h3>
+                      </div>
                       <div class="ui-g-12 pl-0">
                         <p:dataTable id="substitute-table"
                           emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/noSubstitutesDefined')}"
                           styleClass="substitute-table" reflow="true"
                           value="#{absenceManagementBean.filteredDeputyRoleList}" var="deputyRole"
-                          rendered="#{not empty absenceManagementBean.deputyRoles}"
+                          rendered="#{absenceManagementBean.canReadSubstitute(absenceManagementBean.selectedUser)}"
                           paginator="true" rows="4"
                           paginatorAlwaysVisible="false"
                           paginatorPosition="bottom" pageLinks="3"
