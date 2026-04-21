@@ -26,6 +26,7 @@ import ch.ivyteam.ivy.process.call.SubProcessCallStartEvent;
 import ch.ivyteam.ivy.process.call.SubProcessSearchFilter;
 import ch.ivyteam.ivy.process.call.SubProcessSearchFilter.SearchScope;
 import ch.ivyteam.ivy.security.ISecurityMember;
+import ch.ivyteam.ivy.security.exec.Sudo;
 import ch.ivyteam.ivy.workflow.ITask;
 
 public class BulkDelegateService {
@@ -47,6 +48,7 @@ public class BulkDelegateService {
     if (selectedTasks == null || selectedTasks.isEmpty()) {
       return new ArrayList<>();
     }
+    List<UserDTO> cacheAllUserDTOs = new ArrayList<>();
     List<UserDTO> intersectedUsers = null;
     for (ITask task : selectedTasks) {
       List<Map<String, Object>> result = callCustomDelegate(task);
@@ -57,16 +59,33 @@ public class BulkDelegateService {
       for (Map<String, Object> map : (List<Map<String, Object>>) result) {
         if (!CustomProcessUtils.isSkipCustomProcess(map)) {
           Object usersObj = map.get("users");
+          
           if (usersObj instanceof List) {
-            customUsers.addAll((List<UserDTO>) usersObj);
+            List<UserDTO> usersList = (List<UserDTO>) usersObj;
+            if (usersList.isEmpty()) {
+              cacheAllUserDTOs = getCachedUsers(query, cacheAllUserDTOs);
+              customUsers.addAll(cacheAllUserDTOs);
+            } else {
+              customUsers.addAll(usersList);
+            }
           }
         } else {
-          customUsers.addAll(findUsers(query));
+          cacheAllUserDTOs = getCachedUsers(query, cacheAllUserDTOs);
+          customUsers.addAll(cacheAllUserDTOs);
         }
       }
       intersectedUsers = getIntersectedUserIds(intersectedUsers, customUsers);
     }
     return intersectedUsers;
+  }
+
+  private List<UserDTO> getCachedUsers(String query, List<UserDTO> cacheAllUserDTOs) {
+    return Sudo.get(() -> {
+      if (cacheAllUserDTOs.isEmpty()) {
+        cacheAllUserDTOs.addAll(findUsers(query));
+      }
+      return cacheAllUserDTOs;
+    });
   }
 
   private List<UserDTO> findUsers(String query) {
@@ -90,20 +109,39 @@ public class BulkDelegateService {
         return new ArrayList<>();
       }
       List<RoleDTO> customRoles = new ArrayList<>();
+      List<RoleDTO> cacheAllRoleDTOs = new ArrayList<>();
 
       for (Map<String, Object> map : (List<Map<String, Object>>) result) {
         if (!CustomProcessUtils.isSkipCustomProcess(map)) {
           Object rolesObj = map.get("roles");
           if (rolesObj instanceof List) {
+            List<RoleDTO> rolesList = (List<RoleDTO>) rolesObj;
+            if (rolesList.isEmpty()) {
+              cacheAllRoleDTOs = getCachedRoles(query, cacheAllRoleDTOs);
+              customRoles.addAll(cacheAllRoleDTOs);
+            } else {
+              customRoles.addAll(rolesList);
+            }
+
             customRoles.addAll((List<RoleDTO>) rolesObj);
           }
         } else {
-          customRoles.addAll(RoleUtils.findRoles(null, null, query));
+          cacheAllRoleDTOs = getCachedRoles(query, cacheAllRoleDTOs);
+          customRoles.addAll(cacheAllRoleDTOs);
         }
       }
       intersectedRoles = getIntersectedRoleIds(intersectedRoles, customRoles);
     }
     return intersectedRoles;
+  }
+
+  private List<RoleDTO> getCachedRoles(String query, List<RoleDTO> cacheAllRoleDTOs) {
+    return Sudo.get(() -> {
+      if (cacheAllRoleDTOs.isEmpty()) {
+        cacheAllRoleDTOs.addAll(RoleUtils.findRoles(null, null, query));
+      }
+      return cacheAllRoleDTOs;
+    });
   }
   
   private static boolean checkCustomDelegateAvailable() {
